@@ -78,6 +78,32 @@ function BranchDetail({ branch }: { branch: ClassificationBranch }) {
           </div>
         </div>
       ))}
+      {branch.subGroups?.map((subGroup) => (
+        <div
+          key={subGroup.label}
+          className="mt-3 rounded-lg border border-border/70 bg-background/40 p-3 first:mt-0"
+        >
+          <p className="font-display text-[12.5px] font-bold text-foreground">{subGroup.label}</p>
+          {subGroup.detail && (
+            <p className="mt-1 text-[11.5px] leading-relaxed text-muted-foreground">{subGroup.detail}</p>
+          )}
+          {subGroup.groups.map((group) => (
+            <div key={group.label} className="mt-2.5 border-l-2 border-primary/30 pl-2.5">
+              <p className="mb-1.5 text-[11px] font-semibold text-muted-foreground">{group.label}</p>
+              <div className="flex flex-wrap gap-1.5">
+                {group.chips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[11.5px] text-foreground"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
       {branch.vertebrateGroups && <VertebrateGroupTabs groups={branch.vertebrateGroups} />}
     </div>
   );

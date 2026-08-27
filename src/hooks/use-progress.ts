@@ -1,3 +1,4 @@
+/* eslint-disable no-empty -- Storage failures intentionally fall back to in-memory progress. */
 import { useEffect, useState, useCallback, useRef } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
@@ -13,6 +14,7 @@ import {
   removePendingGeographyF3Progress,
   sanitizeRemovedGeographyF3Progress,
 } from "@/lib/removed-content-progress";
+<<<<<<< HEAD
 import {
   RANKS,
   getRank,
@@ -28,6 +30,10 @@ import {
   createXpProgressionEvent,
   publishProgressionEvent,
 } from "@/lib/progression-events";
+=======
+import { RANKS, getRank, getNextRank, getRankProgress, type SpaceRank } from "@/data/rankAssets";
+import { DEFAULT_PROFILE_AVATAR_ID, type ProfileAvatarId } from "@/data/profile-avatars";
+>>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
 
 export {
   RANKS,
@@ -259,6 +265,18 @@ export function getRankUpTransition(fromXp: number, toXp: number) {
   const fromRank = getRank(fromXp);
   const toRank = getRank(toXp);
   return fromRank.id === toRank.id ? null : { fromRank, toRank };
+}
+
+/** Existing learning-activity streak rule, extracted for regression coverage. */
+export function getLearningActivityStreak(
+  currentStreak: number,
+  lastActive: string,
+  currentDate: string,
+  nowMs = Date.now(),
+): number {
+  if (lastActive === currentDate) return currentStreak;
+  const yesterday = new Date(nowMs - 86400000).toISOString().slice(0, 10);
+  return lastActive === yesterday ? currentStreak + 1 : 1;
 }
 
 // ─── Badge definitions ────────────────────────────────────────────────────────
@@ -525,8 +543,7 @@ function pushRecentActivity(
 ): RecentActivity[] {
   const timestamp = activity.timestamp || Date.now();
   const id =
-    activity.id ??
-    `${activity.type}:${activity.subjectId}:${activity.chapterKey}:${timestamp}`;
+    activity.id ?? `${activity.type}:${activity.subjectId}:${activity.chapterKey}:${timestamp}`;
   const nextItem: RecentActivity = { ...activity, timestamp, id };
   const deduped = (current ?? []).filter(
     (item) =>
@@ -726,12 +743,25 @@ async function saveToSupabase(userId: string, p: Progress): Promise<void> {
  * handled by `recordQuizResult` regardless of whether this insert
  * succeeds. Only runs for a signed-in user with Supabase configured.
  */
-async function insertQuizHistoryRow(
-  result: { subjectId: string; chapterKey: string; scorePct: number; correct: number; total: number; xpEarned?: number },
-): Promise<void> {
+async function insertQuizHistoryRow(result: {
+  subjectId: string;
+  chapterKey: string;
+  scorePct: number;
+  correct: number;
+  total: number;
+  xpEarned?: number;
+  timerMode?: "none" | 60 | 30 | 15;
+  baseXp?: number;
+  speedBonusXp?: number;
+  streakBonusXp?: number;
+  passBonusXp?: number;
+  bestCorrectStreak?: number;
+}): Promise<void> {
   if (!isSupabaseConfigured) return;
   try {
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!user) return;
 
     const { data: subscription, error: subscriptionError } = await supabase
@@ -740,10 +770,7 @@ async function insertQuizHistoryRow(
       .eq("user_id", user.id)
       .eq("status", "active")
       .maybeSingle();
-    if (
-      subscriptionError ||
-      !hasFeature(resolveStoredPlan(subscription?.plan), "quiz_history")
-    )
+    if (subscriptionError || !hasFeature(resolveStoredPlan(subscription?.plan), "quiz_history"))
       return;
 
     const { error } = await supabase.from("quiz_history").insert({
@@ -758,6 +785,14 @@ async function insertQuizHistoryRow(
       // that don't pass it, which the Galaxy Hall of Fame's Monthly XP
       // ranking treats as "no data" rather than 0.
       ...(result.xpEarned != null ? { xp_earned: result.xpEarned } : {}),
+      ...(result.timerMode != null ? { timer_mode: String(result.timerMode) } : {}),
+      ...(result.baseXp != null ? { base_xp: result.baseXp } : {}),
+      ...(result.speedBonusXp != null ? { speed_bonus_xp: result.speedBonusXp } : {}),
+      ...(result.streakBonusXp != null ? { streak_bonus_xp: result.streakBonusXp } : {}),
+      ...(result.passBonusXp != null ? { pass_bonus_xp: result.passBonusXp } : {}),
+      ...(result.bestCorrectStreak != null
+        ? { best_correct_streak: result.bestCorrectStreak }
+        : {}),
     });
     if (!error) window.dispatchEvent(new Event("academy:quiz-history-updated"));
   } catch {
@@ -898,10 +933,10 @@ export function useProgress() {
   const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /** Compares XP before/after an update and raises transient celebration events. Does not touch persisted state. */
-  const detectProgressionEvents = useCallback(
-    (prev: Progress, next: Progress) => {
-      if (next.xp === prev.xp) return;
+  const detectProgressionEvents = useCallback((prev: Progress, next: Progress) => {
+    if (next.xp === prev.xp) return;
 
+<<<<<<< HEAD
       publishProgressionEvent(createXpProgressionEvent(prev.xp, next.xp));
 
       const rankUp = getRankUpTransition(prev.xp, next.xp);
@@ -910,31 +945,34 @@ export function useProgress() {
           fromRank: rankUp.fromRank.id,
           toRank: rankUp.toRank.id,
           xpGained: next.xp - prev.xp,
+=======
+    const rankUp = getRankUpTransition(prev.xp, next.xp);
+    if (rankUp) {
+      setLastRankUp({
+        fromRank: rankUp.fromRank.id,
+        toRank: rankUp.toRank.id,
+        xpGained: next.xp - prev.xp,
+        timestamp: Date.now(),
+      });
+    }
+
+    const companion = next.companion ?? prev.companion;
+    if (companion) {
+      const evolution = getCompanionEvolutionTransition(prev.xp, next.xp);
+      if (evolution) {
+        setLastCompanionEvolution({
+          fromStage: evolution.fromStage,
+          toStage: evolution.toStage,
+          companionId: companion.id,
+>>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
           timestamp: Date.now(),
         });
       }
-
-      const companion = next.companion ?? prev.companion;
-      if (companion) {
-        const evolution = getCompanionEvolutionTransition(prev.xp, next.xp);
-        if (evolution) {
-          setLastCompanionEvolution({
-            fromStage: evolution.fromStage,
-            toStage: evolution.toStage,
-            companionId: companion.id,
-            timestamp: Date.now(),
-          });
-        }
-      }
-    },
-    [],
-  );
+    }
+  }, []);
 
   const clearRankUpEvent = useCallback(() => setLastRankUp(null), []);
-  const clearCompanionEvolutionEvent = useCallback(
-    () => setLastCompanionEvolution(null),
-    [],
-  );
+  const clearCompanionEvolutionEvent = useCallback(() => setLastCompanionEvolution(null), []);
 
   // On mount: load localStorage immediately, subscribe to the shared
   // singleton's broadcasts, and kick off auth sync (a no-op if some other
@@ -974,6 +1012,12 @@ export function useProgress() {
     [scheduleSync],
   );
 
+  /** Flush local-first progress before an authoritative reward transaction. */
+  const syncProgressNow = useCallback(async () => {
+    if (!sharedUserId) return;
+    await saveToSupabase(sharedUserId, progress);
+  }, [progress]);
+
   const acceptMissionState = useCallback(
     (state: MissionSystemState) => {
       if (state.totalXp == null) return;
@@ -997,8 +1041,13 @@ export function useProgress() {
   );
 
   const trackMissionActivity = useCallback(
-    (activity: MissionActivityType, eventKey: string, dateKey = today()) => {
-      void recordMissionActivityRemote({ activity, eventKey, dateKey })
+    (
+      activity: MissionActivityType,
+      eventKey: string,
+      dateKey = today(),
+      metadata?: { correct?: number; total?: number; rating?: number; subjectId?: string },
+    ) => {
+      void recordMissionActivityRemote({ activity, eventKey, dateKey, metadata })
         .then(acceptMissionState)
         .catch(() => {
           // Local progress remains available; the originating learning action
@@ -1012,11 +1061,7 @@ export function useProgress() {
     (amount: number, subjectId?: string) => {
       setProgress((prev) => {
         const t = today();
-        let streak = prev.streak;
-        if (prev.lastActive !== t) {
-          const yest = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
-          streak = prev.lastActive === yest ? streak + 1 : 1;
-        }
+        const streak = getLearningActivityStreak(prev.streak, prev.lastActive, t);
         const newXp = prev.xp + amount;
         let newBadges = [...prev.badges];
 
@@ -1118,7 +1163,9 @@ export function useProgress() {
     (subjectId: string, chapterKey: string, kind: keyof ChapterActivity) => {
       if (kind === "read") {
         const dateKey = today();
-        trackMissionActivity("lesson", `lesson:${dateKey}:${subjectId}:${chapterKey}`, dateKey);
+        trackMissionActivity("lesson", `lesson:${dateKey}:${subjectId}:${chapterKey}`, dateKey, {
+          subjectId,
+        });
       }
       setProgress((prev) => {
         const k = chapterActivityKey(subjectId, chapterKey);
@@ -1165,7 +1212,7 @@ export function useProgress() {
   const rateCard = useCallback(
     (cardId: string, rating: 0 | 1 | 2 | 3) => {
       const dateKey = today();
-      trackMissionActivity("flashcard", `flashcard:${dateKey}:${cardId}`, dateKey);
+      trackMissionActivity("flashcard", `flashcard:${dateKey}:${cardId}`, dateKey, { rating });
       setProgress((prev) => {
         const existing = prev.cardMastery?.[cardId];
         const newRecord = sm2(existing, rating);
@@ -1298,6 +1345,12 @@ export function useProgress() {
       correct: number;
       total: number;
       xpEarned?: number;
+      timerMode?: "none" | 60 | 30 | 15;
+      baseXp?: number;
+      speedBonusXp?: number;
+      streakBonusXp?: number;
+      passBonusXp?: number;
+      bestCorrectStreak?: number;
     }): number => {
       const total = Math.max(1, input.total);
       const correct = Math.max(0, Math.min(input.correct, total));
@@ -1313,7 +1366,11 @@ export function useProgress() {
         date: new Date().toISOString(),
       };
 
-      trackMissionActivity("quiz", `quiz:${result.id}`, getLocalDateKey(new Date(result.date)));
+      trackMissionActivity("quiz", `quiz:${result.id}`, getLocalDateKey(new Date(result.date)), {
+        correct,
+        total,
+        subjectId: input.subjectId,
+      });
       if (sharedUserId) {
         void insertQuizHistoryRow({
           subjectId: input.subjectId,
@@ -1322,6 +1379,12 @@ export function useProgress() {
           correct,
           total,
           xpEarned: input.xpEarned,
+          timerMode: input.timerMode,
+          baseXp: input.baseXp,
+          speedBonusXp: input.speedBonusXp,
+          streakBonusXp: input.streakBonusXp,
+          passBonusXp: input.passBonusXp,
+          bestCorrectStreak: input.bestCorrectStreak,
         });
       }
 
@@ -1430,6 +1493,7 @@ export function useProgress() {
     clearRankUpEvent,
     clearCompanionEvolutionEvent,
     acceptMissionState,
+    syncProgressNow,
   };
 }
 

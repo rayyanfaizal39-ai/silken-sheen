@@ -103,6 +103,12 @@ import { MathF2Chapter13NotesBlock } from "@/components/notes/MathF2Chapter13Not
 import { MathF3Chapter1NotesBlock } from "@/components/notes/MathF3Chapter1NotesBlock";
 import { MathF3Chapter2NotesBlock } from "@/components/notes/MathF3Chapter2NotesBlock";
 import { MathF3Chapter3NotesBlock } from "@/components/notes/MathF3Chapter3NotesBlock";
+import { MathF3Chapter4NotesBlock } from "@/components/notes/MathF3Chapter4NotesBlock";
+import { MathF3Chapter5NotesBlock } from "@/components/notes/MathF3Chapter5NotesBlock";
+import { MathF3Chapter6NotesBlock } from "@/components/notes/MathF3Chapter6NotesBlock";
+import { MathF3Chapter7NotesBlock } from "@/components/notes/MathF3Chapter7NotesBlock";
+import { MathF3Chapter8NotesBlock } from "@/components/notes/MathF3Chapter8NotesBlock";
+import { MathF3Chapter9NotesBlock } from "@/components/notes/MathF3Chapter9NotesBlock";
 import { ScienceF2Chapter1NotesBlock } from "@/components/notes/ScienceF2Chapter1NotesBlock";
 import { ScienceF2Chapter2NotesBlock } from "@/components/notes/ScienceF2Chapter2NotesBlock";
 import { ScienceF2Chapter3NotesBlock } from "@/components/notes/ScienceF2Chapter3NotesBlock";
@@ -238,6 +244,26 @@ function getSubjectArtwork(subjectId: string) {
   return SUBJECT_ARTWORK[subjectId] ?? null;
 }
 
+// Form 2 Chapters 2-13 all share the sciF2InteractiveData shape and the same
+// reusable ScienceF2InteractiveNotesBlock renderer, but each needs its own
+// metaOverride (see F3_SCIENCE_LAB_META below) since their chapter numbers
+// would otherwise collide with the Form-1-indexed SCIENCE_LAB_META lookup.
+// Only Chapter 3 has been content-audited in detail so far; the rest use a
+// conservative shared default until each is audited individually.
+const F2_INTERACTIVE_DEFAULT_META = {
+  modules: 10,
+  minutes: 20,
+  experiments: 1,
+  difficulty: "Core",
+} as const;
+const F2_SCIENCE_INTERACTIVE_META: Record<
+  number,
+  { modules: number; minutes: number; experiments: number; difficulty: string }
+> = {
+  2: { modules: 11, minutes: 26, experiments: 1, difficulty: "Core" },
+  3: { modules: 13, minutes: 30, experiments: 2, difficulty: "Core" },
+};
+
 // Form 3 Science Chapters 1-3 reuse the Lab Telemetry hero's Form-1-indexed
 // SCIENCE_LAB_META lookup, which would otherwise collide with Form 1's own
 // chapters 1-3 stats — same reasoning as ScienceF2 Chapter 1's metaOverride.
@@ -362,11 +388,18 @@ function NotesPage() {
     form === "Form 2" &&
     activeChapterKey === "Chapter 1" &&
     !!activeChapter?.sciF2C1Data;
+  // Covers every Form 2 chapter that ships sciF2InteractiveData (Chapters 2-13),
+  // not just Chapter 2 — the Science Discovery chrome (header + Mini
+  // Investigation) previously excluded Chapters 3-13 purely because this flag
+  // was hard-scoped to chapter 2 alone.
+  const isScienceF2Interactive =
+    subject === "science" && form === "Form 2" && !!activeChapter?.sciF2InteractiveData;
   const isScienceF3Interactive =
     subject === "science" && form === "Form 3" && !!activeChapter?.sciF3InteractiveData;
   const isScienceDiscovery =
     (subject === "science" && form === "Form 1" && !!activeChapterKey) ||
     isScienceF2C1 ||
+    isScienceF2Interactive ||
     isScienceF3Interactive;
   const isSejarahChapter = subject === "sejarah" && !!activeChapterKey;
   const activeChapterProgress = activeChapterKey ? (notesProgress[activeChapterKey] ?? 0) : 0;
@@ -820,6 +853,7 @@ function NotesPage() {
           <NotesContentWithVideo
             notesContentRef={notesContentRef}
             video={activeChapter?.video}
+            videoLang={subject === "science" && scienceLang === "bm" ? "bm" : "en"}
             header={
               isScienceDiscovery ? (
                 <ScienceDiscoveryChapterHeader
@@ -833,9 +867,13 @@ function NotesPage() {
                   metaOverride={
                     isScienceF2C1
                       ? { modules: 12, minutes: 22, experiments: 2, difficulty: "Core" }
-                      : isScienceF3Interactive
-                        ? F3_SCIENCE_LAB_META[Number(activeChapterKey?.match(/\d+/)?.[0] ?? 1)]
-                        : undefined
+                      : isScienceF2Interactive
+                        ? (F2_SCIENCE_INTERACTIVE_META[
+                            activeChapter?.sciF2InteractiveData?.chapter ?? 0
+                          ] ?? F2_INTERACTIVE_DEFAULT_META)
+                        : isScienceF3Interactive
+                          ? F3_SCIENCE_LAB_META[Number(activeChapterKey?.match(/\d+/)?.[0] ?? 1)]
+                          : undefined
                   }
                 />
               ) : undefined
@@ -1863,6 +1901,72 @@ function NotesPage() {
               <MathF3Chapter3NotesBlock
                 id="notes"
                 content={activeChapter.mathF3Chapter3Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF3Chapter4Data ? (
+              <MathF3Chapter4NotesBlock
+                id="notes"
+                content={activeChapter.mathF3Chapter4Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF3Chapter5Data ? (
+              <MathF3Chapter5NotesBlock
+                id="notes"
+                content={activeChapter.mathF3Chapter5Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF3Chapter6Data ? (
+              <MathF3Chapter6NotesBlock
+                id="notes"
+                content={activeChapter.mathF3Chapter6Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF3Chapter7Data ? (
+              <MathF3Chapter7NotesBlock
+                id="notes"
+                content={activeChapter.mathF3Chapter7Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF3Chapter8Data ? (
+              <MathF3Chapter8NotesBlock
+                id="notes"
+                content={activeChapter.mathF3Chapter8Data}
+                lang={scienceLang === "dlp" ? "en" : "bm"}
+                storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
+                isRead={isRead}
+                onMarkRead={() =>
+                  subject && activeChapterKey && markChapter(subject, activeChapterKey, "read")
+                }
+              />
+            ) : activeChapter?.mathF3Chapter9Data ? (
+              <MathF3Chapter9NotesBlock
+                id="notes"
+                content={activeChapter.mathF3Chapter9Data}
                 lang={scienceLang === "dlp" ? "en" : "bm"}
                 storageKey={`notes:${subject}:${activeChapterKey}:study-notes`}
                 isRead={isRead}

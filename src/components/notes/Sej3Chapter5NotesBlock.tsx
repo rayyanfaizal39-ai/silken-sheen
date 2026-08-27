@@ -108,7 +108,7 @@ export function Sej3Chapter5NotesBlock({
             <img
               src={ketibaanJamesBrooke}
               alt="Ketibaan James Brooke di Kuching"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.localGovernance.intro}</p>
             <div className="grid gap-3 sm:grid-cols-2">

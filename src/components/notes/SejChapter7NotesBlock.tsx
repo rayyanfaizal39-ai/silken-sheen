@@ -149,7 +149,7 @@ export function SejChapter7NotesBlock({
             <img
               src={transformasiAsoka}
               alt="Transformasi Asoka"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl p-4" style={{ background: bgPanel, boxShadow: groupGlow(neon.red, 18, 0.15) }}>
@@ -189,7 +189,7 @@ export function SejChapter7NotesBlock({
             <img
               src={dinastiQinHan}
               alt="Dinasti Qin dan Han"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <ChinaDynastyTimeline
               items={content.chineseDynasties.map((d, i) => ({

@@ -1,4 +1,5 @@
 import { ArrowLeft, ArrowRight, Leaf, Zap } from "lucide-react";
+import { parseWordEquation } from "./EquationFlow";
 
 export interface ReciprocalProcessSide {
   title: string;
@@ -22,6 +23,7 @@ const TONE = {
 function ProcessCard({ side }: { side: ReciprocalProcessSide }) {
   const style = TONE[side.tone];
   const Icon = side.tone === "blue" ? Zap : Leaf;
+  const equation = parseWordEquation(side.equation);
 
   return (
     <article className={`relative min-w-0 rounded-2xl border p-4 sm:p-5 ${style.shell}`}>
@@ -31,9 +33,14 @@ function ProcessCard({ side }: { side: ReciprocalProcessSide }) {
         </span>
         <h4 className={`font-display text-sm font-bold sm:text-base ${style.label}`}>{side.title}</h4>
       </div>
-      <p className="mt-4 rounded-xl border border-border bg-background/35 px-3 py-3 text-center text-[12.5px] font-semibold leading-relaxed text-foreground sm:px-4 sm:text-[13px]">
-        {side.equation}
-      </p>
+      <div className="mt-4 rounded-xl border border-border bg-background/35 px-3 py-3 text-center text-[12.5px] font-semibold leading-relaxed text-foreground sm:px-4 sm:text-[13px]">
+        <span>{equation.reactants}</span>
+        <span className="mx-2 inline-flex flex-col items-center align-middle">
+          {equation.conditions && <span className="max-w-32 text-[9px] font-medium leading-tight text-muted-foreground">{equation.conditions}</span>}
+          <ArrowRight className="h-4 w-4 text-primary" aria-hidden="true" />
+        </span>
+        <span>{equation.products}</span>
+      </div>
     </article>
   );
 }

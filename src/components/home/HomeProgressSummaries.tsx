@@ -167,11 +167,15 @@ function HomeJourneySummary({ xp }: { xp: number }) {
         <p className="home-skeleton__section-label">Your Journey</p>
         <div className="home-progress-summary__title-row">
           <h2 id="journey-title">{journey.rank.name}</h2>
-          <span>Level {journey.level}</span>
+          <span>Companion Lv {journey.level}</span>
         </div>
         <div className="home-progress-summary__metric">
           <strong>{journey.xp.toLocaleString()}</strong>
-          <span>{maximumRank ? " XP earned" : ` / ${journey.xpGoal.toLocaleString()} XP`}</span>
+          <span>
+            {maximumRank
+              ? " Lifetime XP earned"
+              : ` / ${journey.xpGoal.toLocaleString()} Lifetime XP`}
+          </span>
         </div>
         <div
           className="home-progress-summary__progress"
@@ -187,7 +191,7 @@ function HomeJourneySummary({ xp }: { xp: number }) {
           {journey.nextRank ? (
             <>
               Next: <strong>{journey.nextRank.name}</strong> ·{" "}
-              {journey.xpRemaining.toLocaleString()} XP remaining
+              {journey.xpRemaining.toLocaleString()} XP until {journey.nextRank.name}
             </>
           ) : (
             <strong>Highest rank achieved</strong>
@@ -230,9 +234,11 @@ function HomeCompanionSummary({
         <p className="home-skeleton__section-label">Cosmic Companion</p>
         <h2 id="companion-summary-title">{displayName} is ready to explore</h2>
         <p className="home-progress-summary__companion-meta">
-          {species.name} · {stage.name} Stage · Level {companionProgress.currentLevel}
+          {species.name} · {stage.name} Stage · Companion Level {companionProgress.currentLevel}
         </p>
-        <p className="home-progress-summary__message">{message}</p>
+        <p className="home-progress-summary__message">
+          Earn Lifetime XP to help {displayName} grow. {message}
+        </p>
         <div
           className="home-progress-summary__progress home-progress-summary__progress--companion"
           role="progressbar"

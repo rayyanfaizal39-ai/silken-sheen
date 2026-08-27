@@ -361,8 +361,8 @@ export const scienceF2C2FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     lang: "bm",
-    front: "Bandingkan konsep piramid tenaga dengan aliran tenaga linear dalam rantai makanan.",
-    back: "Aliran tenaga linear: tenaga berpindah dari pengeluar ke pengguna secara berurutan. Piramid tenaga: gambaran visual bahawa jumlah tenaga berkurang pada setiap peringkat trofik yang lebih tinggi.",
+    front: "[Tambahan] Bandingkan konsep piramid tenaga dengan aliran tenaga linear dalam rantai makanan.",
+    back: "Aliran tenaga linear: tenaga berpindah dari pengeluar ke pengguna secara berurutan. Piramid tenaga: gambaran visual bahawa jumlah tenaga berkurang pada setiap peringkat trofik yang lebih tinggi. Nota: 'piramid tenaga' bukan istilah wajib bagi bab ini — ia hanya membantu memvisualisasikan idea yang sama.",
   },
 
   // Deck 3: Peperiksaan (Cards 41-60)
@@ -427,7 +427,7 @@ export const scienceF2C2FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 2",
     lang: "bm",
     front: "[Kesilapan Lazim] Adakah tenaga dikitar semula seperti nutrien?",
-    back: "Tidak. Tenaga mengalir satu hala dan hilang sebagai haba/najis pada setiap peringkat trofik; hanya nutrien yang dikitar semula.",
+    back: "Tidak. Tenaga mengalir satu hala: pada setiap aras ia hilang sebagai haba melalui respirasi dan pergerakan, dan pada pengguna juga melalui najis (makanan tidak tercerna). Pengeluar tiada kehilangan najis. Hanya nutrien yang dikitar semula.",
   },
   {
     id: "sci-f2-c2-bm-f48",
@@ -534,7 +534,7 @@ export const scienceF2C2FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     lang: "bm",
-    front: "Apakah hipotesis yang diuji dalam Eksperimen 2.1 mengenai kutu kayu (woodlice)?",
+    front: "Dalam penyiasatan makmal tentang kutu kayu (woodlice), apakah hipotesis yang diuji?",
     back: "Kutu kayu berkumpul di kawasan bersuhu sederhana, gelap dan lembap — menunjukkan suhu, cahaya dan kelembapan mempengaruhi taburan organisma.",
   },
   {

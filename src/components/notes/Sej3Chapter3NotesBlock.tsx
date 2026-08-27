@@ -138,7 +138,7 @@ export function Sej3Chapter3NotesBlock({
             <img
               src={legendaBijihTimah}
               alt="Legenda Penemuan Bijih Timah di Larut"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <div
               className="rounded-2xl border-l-[3px] p-6"
@@ -191,7 +191,7 @@ export function Sej3Chapter3NotesBlock({
             <img
               src={perjanjianPangkor}
               alt="Perjanjian Pangkor 1874"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <p className="text-[12px] leading-relaxed text-muted-foreground">
               <b className="text-foreground">Pengantara:</b> {content.pangkorTreaty.mediator}

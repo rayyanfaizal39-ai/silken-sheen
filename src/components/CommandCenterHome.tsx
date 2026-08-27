@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Flame, Sparkles, Star, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ReliableImage } from "@/components/ReliableImage";
+import { StreakInfoPopover, XpInfoPopover } from "@/components/progression/ProgressionHelp";
 import { HomeMissionControl } from "@/components/home/HomeMissionControl";
 import { HomePapercraftBackground } from "@/components/home/HomePapercraftBackground";
 import { HomeContinueLearning } from "@/components/home/HomeContinueLearning";
@@ -62,28 +63,30 @@ export function CommandCenterHome() {
             </p>
 
             <div className="home-hero__stats" aria-label="Student progress">
-              <div className="home-hero__stat">
+              <StreakInfoPopover streak={progress.streak} className="home-hero__stat text-left">
                 <Flame aria-hidden="true" />
                 <span>
-                  <strong>{progress.streak}</strong>
-                  {progress.streak === 1 ? "Day Streak" : "Days Streak"}
+                  <strong>{progress.streak > 0 ? progress.streak : "Start"}</strong>
+                  {progress.streak > 0 ? "Day Streak" : "Your Streak"}
                 </span>
-              </div>
+              </StreakInfoPopover>
               <div className="home-hero__stat">
                 <Trophy aria-hidden="true" />
                 <span>
-                  <strong>Lv {level}</strong>
-                  {rank.name}
+                  <strong>Companion Lv {level}</strong>
+                  {rank.name} Rank
                 </span>
               </div>
               <div className="home-hero__stat">
                 <Star aria-hidden="true" />
                 <span>
                   <strong>{progress.xp.toLocaleString()}</strong>
-                  XP
+                  Lifetime XP
                 </span>
               </div>
             </div>
+
+            <XpInfoPopover className="mt-1" />
 
             <Link className="home-skeleton__primary-button home-hero__cta" to="/subjects">
               Continue Learning

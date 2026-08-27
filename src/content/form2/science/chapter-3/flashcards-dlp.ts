@@ -44,8 +44,8 @@ export const scienceF2C3FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 3",
     lang: "dlp",
-    front: "What is Kwashiorkor?",
-    back: "A disease caused by protein deficiency, generally occurring in children aged 1-3 years.",
+    front: "What is the effect of severe protein deficiency on a growing child?",
+    back: "Stunted growth and poorly developed muscles, since protein is needed for growth and tissue repair.",
   },
   {
     id: "sci-f2-c3-dlp-f6",
@@ -307,8 +307,8 @@ export const scienceF2C3FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 3",
     lang: "dlp",
-    front: "What food group is at the base of the Malaysian Food Pyramid, and how many servings daily?",
-    back: "Rice, noodles, bread, grains and potatoes; 4-8 servings daily.",
+    front: "What food group is at the base of the Malaysia Food Pyramid 2020, and how many servings daily?",
+    back: "Vegetables (at least 3 servings a day) and fruits (2 servings a day). The rice/grains/tubers group (3-5 servings a day) sits on the tier above.",
   },
   {
     id: "sci-f2-c3-dlp-f35",
@@ -317,7 +317,7 @@ export const scienceF2C3FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 3",
     lang: "dlp",
     front: "How many servings of vegetables and fruits are recommended daily?",
-    back: "Vegetables: 3 servings daily. Fruits: 2 servings daily.",
+    back: "Vegetables: at least 3 servings daily. Fruits: 2 servings daily.",
   },
   {
     id: "sci-f2-c3-dlp-f36",

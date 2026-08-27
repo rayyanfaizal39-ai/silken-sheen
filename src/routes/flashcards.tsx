@@ -5427,7 +5427,14 @@ function FlashcardsPage() {
       );
     }
     if (!subject || !chapter) return [];
-    return getFlashcardDeckCards(subject, form, chapter, scienceLang ?? undefined, registry, dataModule);
+    return getFlashcardDeckCards(
+      subject,
+      form,
+      chapter,
+      scienceLang ?? undefined,
+      registry,
+      dataModule,
+    );
   }, [subject, chapter, form, scienceLang, mathFlashcardLang, registry, dataModule]);
   const hasSelectedChapterFlashcards =
     !!subject &&
@@ -5521,7 +5528,7 @@ function FlashcardsPage() {
     if (rateCard) rateCard(current.id, rating);
 
     const pass = rating >= 2;
-    const xpAmount = rating === 3 ? 15 : rating === 2 ? 10 : rating === 1 ? 5 : 0;
+    const xpAmount = rating === 3 ? 15 : rating === 2 ? 10 : 0;
 
     if (pass) {
       sfx.ding();
@@ -5981,7 +5988,14 @@ function FlashcardsPage() {
             form={form}
             mode="flashcards"
             isChapterAvailable={(chapterKey) =>
-              hasFlashcardDeck(subject, form, chapterKey, scienceLang ?? undefined, registry, dataModule) ||
+              hasFlashcardDeck(
+                subject,
+                form,
+                chapterKey,
+                scienceLang ?? undefined,
+                registry,
+                dataModule,
+              ) ||
               (subject === "math" && form === "Form 1" && Boolean(MATH_FLASHCARD_BANKS[chapterKey]))
             }
             onSelect={(key) => {
@@ -6280,7 +6294,7 @@ function FlashcardsPage() {
                   </div>
                   <div className="glass rounded-2xl p-3">
                     <div className="text-2xl font-bold text-nova-yellow">+{xpEarned}</div>
-                    <div className="text-xs text-muted-foreground">XP earned</div>
+                    <div className="text-xs text-muted-foreground">Activity XP earned</div>
                   </div>
                 </div>
                 <div className="mt-7 flex flex-wrap gap-3 justify-center">
@@ -6527,7 +6541,7 @@ function FlashcardsPage() {
                   >
                     <span className="text-base">😓</span>
                     <span>Hampir</span>
-                    <span className="text-[10px] font-normal opacity-60">+5 XP</span>
+                    <span className="text-[10px] font-normal opacity-60">No XP</span>
                   </button>
                   <button
                     type="button"

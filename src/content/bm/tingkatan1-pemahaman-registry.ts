@@ -3,6 +3,7 @@ import { bahasaMelayuTingkatan1MaksudFrasaUngkapanMindMap } from "@/content/bm/m
 import { bahasaMelayuTingkatan1MenjawabSoalanKbatMindMap } from "@/content/bm/menjawab-soalan-kbat-form1-mindmap";
 import { bahasaMelayuTingkatan1MembuatRumusanRingkasMindMap } from "@/content/bm/membuat-rumusan-ringkas-form1-mindmap";
 import { bahasaMelayuTingkatan1TeknikMenggunakanBuktiPetikanMindMap } from "@/content/bm/teknik-menggunakan-bukti-petikan-form1-mindmap";
+import { bahasaMelayuTingkatan1KesalahanLazimPemahamanMindMap } from "@/content/bm/kesalahan-lazim-pemahaman-form1-mindmap";
 import { bahasaMelayuTingkatan1IsiTersiratMindMap } from "@/content/bm/mengenal-pasti-isi-tersirat-form1-mindmap";
 import { bahasaMelayuTingkatan1IsiTersuratMindMap } from "@/content/bm/mengenal-pasti-isi-tersurat-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiPemahamanMindMap } from "@/content/bm/strategi-menjawab-soalan-pemahaman-form1-mindmap";
@@ -104,6 +105,20 @@ export const bahasaMelayuTingkatan1PemahamanRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1TeknikMenggunakanBuktiPetikanMindMap,
       title: "Teknik Menggunakan Bukti daripada Petikan",
+    },
+  },
+  {
+    id: "bm-f1-kesalahan-lazim-pemahaman-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kesalahan Lazim dalam Pemahaman",
+    title: "Kesalahan Lazim dalam Pemahaman",
+    description:
+      "Kenal pasti kesilapan yang sering dilakukan murid dan cara mengelakkannya semasa menjawab soalan pemahaman.",
+    categoryLabel: "Pemahaman",
+    mindMap: {
+      data: bahasaMelayuTingkatan1KesalahanLazimPemahamanMindMap,
+      title: "Kesalahan Lazim dalam Pemahaman",
     },
   },
 ] as const satisfies readonly ChapterContent[];

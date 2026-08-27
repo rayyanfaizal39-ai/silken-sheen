@@ -122,7 +122,7 @@ export function Sej2Chapter10NotesBlock({
               <img
                 src={santubongImg}
                 alt="Santubong Pelabuhan Purba"
-                className="mx-auto mb-4 block w-full max-w-2xl rounded-2xl border border-border"
+                className="notes-figure-img mb-4 rounded-2xl border border-border"
               />
               <EraDotTimeline
                 items={content.connectionToAlamMelayu.earlyTradePosts
@@ -246,7 +246,7 @@ export function Sej2Chapter10NotesBlock({
               <img
                 src={kaumBumiputeraImg}
                 alt="Kaum Bumiputera Sarawak dan Sabah"
-                className="mx-auto mb-4 block w-full max-w-2xl rounded-2xl border border-border"
+                className="notes-figure-img mb-4 rounded-2xl border border-border"
               />
               <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
                 {[...content.bumiputeraUniqueness.sarawakGroups, ...content.bumiputeraUniqueness.sabahGroups].map((g) => (

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import type { Difficulty, QuizQuestion } from "@/data/content";
-import { useProgress } from "@/hooks/use-progress";
+import { QUIZ_PASS_BONUS_XP, QUIZ_PASS_PCT, useProgress } from "@/hooks/use-progress";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
@@ -99,6 +99,142 @@ import {
   orderQuestionsByDifficulty,
   shuffleQuestionOptions,
 } from "@/features/quiz/difficulty/quizDifficulty";
+import {
+  calculateQuizQuestionXp,
+  QUIZ_TIMER_BONUS_XP,
+  timerPrefToMode,
+  type QuizXpBreakdown,
+} from "@/features/quiz/bonus/quizBonusXp";
+import {
+  mathF2C1ChallengeQuizzesDLP,
+  mathF2C1FoundationQuizzesDLP,
+  mathF2C1PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-1/quizzes-dlp";
+import {
+  mathF2C1ChallengeQuizzesBM,
+  mathF2C1FoundationQuizzesBM,
+  mathF2C1PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-1/quizzes-bm";
+import {
+  mathF2C2ChallengeQuizzesDLP,
+  mathF2C2FoundationQuizzesDLP,
+  mathF2C2PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-2/quizzes-dlp";
+import {
+  mathF2C2ChallengeQuizzesBM,
+  mathF2C2FoundationQuizzesBM,
+  mathF2C2PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-2/quizzes-bm";
+import {
+  mathF2C3ChallengeQuizzesDLP,
+  mathF2C3FoundationQuizzesDLP,
+  mathF2C3PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-3/quizzes-dlp";
+import {
+  mathF2C3ChallengeQuizzesBM,
+  mathF2C3FoundationQuizzesBM,
+  mathF2C3PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-3/quizzes-bm";
+import {
+  mathF2C4ChallengeQuizzesDLP,
+  mathF2C4FoundationQuizzesDLP,
+  mathF2C4PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-4/quizzes-dlp";
+import {
+  mathF2C4ChallengeQuizzesBM,
+  mathF2C4FoundationQuizzesBM,
+  mathF2C4PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-4/quizzes-bm";
+import {
+  mathF2C5ChallengeQuizzesDLP,
+  mathF2C5FoundationQuizzesDLP,
+  mathF2C5PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-5/quizzes-dlp";
+import {
+  mathF2C5ChallengeQuizzesBM,
+  mathF2C5FoundationQuizzesBM,
+  mathF2C5PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-5/quizzes-bm";
+import {
+  mathF2C6ChallengeQuizzesDLP,
+  mathF2C6FoundationQuizzesDLP,
+  mathF2C6PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-6/quizzes-dlp";
+import {
+  mathF2C6ChallengeQuizzesBM,
+  mathF2C6FoundationQuizzesBM,
+  mathF2C6PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-6/quizzes-bm";
+import {
+  mathF2C7ChallengeQuizzesDLP,
+  mathF2C7FoundationQuizzesDLP,
+  mathF2C7PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-7/quizzes-dlp";
+import {
+  mathF2C7ChallengeQuizzesBM,
+  mathF2C7FoundationQuizzesBM,
+  mathF2C7PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-7/quizzes-bm";
+import {
+  mathF2C8ChallengeQuizzesDLP,
+  mathF2C8FoundationQuizzesDLP,
+  mathF2C8PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-8/quizzes-dlp";
+import {
+  mathF2C8ChallengeQuizzesBM,
+  mathF2C8FoundationQuizzesBM,
+  mathF2C8PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-8/quizzes-bm";
+import {
+  mathF2C9ChallengeQuizzesDLP,
+  mathF2C9FoundationQuizzesDLP,
+  mathF2C9PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-9/quizzes-dlp";
+import {
+  mathF2C9ChallengeQuizzesBM,
+  mathF2C9FoundationQuizzesBM,
+  mathF2C9PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-9/quizzes-bm";
+import {
+  mathF2C10ChallengeQuizzesDLP,
+  mathF2C10FoundationQuizzesDLP,
+  mathF2C10PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-10/quizzes-dlp";
+import {
+  mathF2C10ChallengeQuizzesBM,
+  mathF2C10FoundationQuizzesBM,
+  mathF2C10PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-10/quizzes-bm";
+import {
+  mathF2C11ChallengeQuizzesDLP,
+  mathF2C11FoundationQuizzesDLP,
+  mathF2C11PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-11/quizzes-dlp";
+import {
+  mathF2C11ChallengeQuizzesBM,
+  mathF2C11FoundationQuizzesBM,
+  mathF2C11PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-11/quizzes-bm";
+import {
+  mathF2C12ChallengeQuizzesDLP,
+  mathF2C12FoundationQuizzesDLP,
+  mathF2C12PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-12/quizzes-dlp";
+import {
+  mathF2C12ChallengeQuizzesBM,
+  mathF2C12FoundationQuizzesBM,
+  mathF2C12PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-12/quizzes-bm";
+import {
+  mathF2C13ChallengeQuizzesDLP,
+  mathF2C13FoundationQuizzesDLP,
+  mathF2C13PracticeQuizzesDLP,
+} from "@/content/form2/math/chapter-13/quizzes-dlp";
+import {
+  mathF2C13ChallengeQuizzesBM,
+  mathF2C13FoundationQuizzesBM,
+  mathF2C13PracticeQuizzesBM,
+} from "@/content/form2/math/chapter-13/quizzes-bm";
 
 export const Route = createFileRoute("/quizzes")({
   head: ({ match }) => {
@@ -119,11 +255,7 @@ export const Route = createFileRoute("/quizzes")({
       title,
       description,
       path: subjectName ? `/quizzes?subject=${subjectId}` : "/quizzes",
-      keywords: [
-        "KSSM quiz",
-        "Form 1 quiz",
-        ...subjectSeoKeywords(subjectId),
-      ],
+      keywords: ["KSSM quiz", "Form 1 quiz", ...subjectSeoKeywords(subjectId)],
       jsonLd: [
         courseJsonLd({
           name: subjectName
@@ -143,8 +275,24 @@ export const Route = createFileRoute("/quizzes")({
 const diffs: ("All" | Difficulty)[] = ["All", "Easy", "Medium", "Hard"];
 const CORRECT_MSGS = ["Hebat! 🔥", "Betul! ⚡", "Awesome! 🌟", "Bagus! 💫", "Power! 🚀"];
 const WRONG_MSGS = ["Cuba lagi! 💪", "Jangan give up! 🎯", "Hampir! 🤔", "Keep going! 🌱"];
+const SCIENCE_QUIZ_FEEDBACK = {
+  bm: {
+    correct: ["Hebat! 🔥", "Betul! ⚡", "Bagus! 🌟"],
+    wrong: ["Belum tepat. 💪", "Cuba lagi! 🎯", "Hampir! 🤔"],
+  },
+  dlp: {
+    correct: ["Excellent! 🔥", "Correct! ⚡", "Well done! 🌟"],
+    wrong: ["Not quite. 💪", "Try again! 🎯", "Almost! 🤔"],
+  },
+} as const;
 type TimerMode = "timer" | "none";
 type TimerPref = { mode: TimerMode; seconds: number } | null;
+type QuizFeedback = {
+  kind: "correct" | "wrong";
+  msg: string;
+  xp?: QuizXpBreakdown;
+  streakReset?: boolean;
+};
 type MathObjectiveId = "objective-1" | "objective-2" | "objective-3";
 type MathObjectivePhase = "select" | "intro" | "quiz" | "results";
 type MathQuizLang = "bm" | "dlp";
@@ -3068,3338 +3216,6 @@ function mathQuestions(items: MathQuestionSeed[]): ShuffledQuestion[] {
     mq(question, options, answerIndex, explanation, difficulty),
   );
 }
-
-const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
-  [
-    "Apakah maksud kuasa dua?",
-    [
-      "Mendarab nombor dengan dirinya sendiri",
-      "Mendarab nombor dengan 2",
-      "Menambah nombor dua kali",
-      "Membahagi nombor dengan 2",
-    ],
-    0,
-    "Kuasa dua bermaksud mendarab nombor dengan dirinya sendiri.",
-    "Easy",
-  ],
-  ["Apakah maksud a²?", ["a + a", "a x a", "a ÷ a", "2 x a"], 1, "a² bermaksud a x a.", "Easy"],
-  ["Berapakah 4²?", ["8", "12", "16", "24"], 2, "4² = 4 x 4 = 16.", "Easy"],
-  [
-    "Kuasa dua boleh dikaitkan dengan:",
-    ["Luas segi empat sama", "Isipadu kubus", "Lilitan bulatan", "Panjang garis sahaja"],
-    0,
-    "Jika sisi segi empat sama ialah s, luasnya ialah s².",
-    "Easy",
-  ],
-  [
-    "Apakah kuasa dua sempurna?",
-    [
-      "Nombor hasil kuasa dua nombor bulat",
-      "Nombor perpuluhan",
-      "Nombor negatif sahaja",
-      "Nombor yang dibahagi 3",
-    ],
-    0,
-    "Kuasa dua sempurna terhasil daripada kuasa dua nombor bulat.",
-    "Easy",
-  ],
-  [
-    "Manakah kuasa dua sempurna?",
-    ["12", "16", "18", "20"],
-    1,
-    "16 = 4², jadi 16 ialah kuasa dua sempurna.",
-    "Easy",
-  ],
-  [
-    "Dalam pemfaktoran perdana, kuasa dua sempurna boleh dikumpulkan dalam:",
-    [
-      "Satu kumpulan",
-      "Dua kumpulan yang sama",
-      "Tiga kumpulan yang sama",
-      "Empat kumpulan berbeza",
-    ],
-    1,
-    "Kuasa dua sempurna mempunyai faktor perdana yang boleh dipasangkan.",
-    "Easy",
-  ],
-  [
-    "Punca kuasa dua ialah songsangan kepada:",
-    ["Kuasa dua", "Kuasa tiga", "Tambah", "Tolak"],
-    0,
-    "Punca kuasa dua membalikkan proses kuasa dua.",
-    "Easy",
-  ],
-  ["Jika 6² = 36, maka √36 ialah:", ["5", "6", "7", "8"], 1, "√36 = 6 kerana 6² = 36.", "Easy"],
-  [
-    "Punca kuasa dua bagi luas segi empat sama memberi:",
-    ["Panjang sisi", "Isipadu", "Sudut", "Jisim"],
-    0,
-    "Panjang sisi diperoleh dengan mencari punca kuasa dua luas.",
-    "Easy",
-  ],
-  [
-    "Berapakah √(49/81)?",
-    ["7/9", "49/9", "7/81", "9/7"],
-    0,
-    "√49 = 7 dan √81 = 9, jadi √(49/81) = 7/9.",
-    "Easy",
-  ],
-  [
-    "Sebelum mencari punca kuasa dua nombor bercampur, nombor itu perlu ditukar kepada:",
-    ["Pecahan tak wajar", "Perpuluhan negatif", "Nombor perdana", "Kuasa tiga"],
-    0,
-    "Nombor bercampur ditukar kepada pecahan tak wajar dahulu.",
-    "Easy",
-  ],
-  ["Apakah nilai √a x √a?", ["a", "2a", "√2a", "a²"], 0, "√a x √a = a.", "Easy"],
-  ["Apakah nilai √a x √b?", ["√ab", "a + b", "ab²", "√a + √b"], 0, "√a x √b = √ab.", "Easy"],
-  [
-    "Apakah maksud kuasa tiga?",
-    [
-      "Mendarab nombor dengan dirinya sendiri tiga kali",
-      "Mendarab nombor dengan 3 sahaja",
-      "Menambah nombor tiga kali",
-      "Membahagi nombor dengan 3",
-    ],
-    0,
-    "Kuasa tiga bermaksud a x a x a.",
-    "Easy",
-  ],
-  [
-    "Apakah maksud a³?",
-    ["a + a + a", "a x 3", "a x a x a", "a ÷ 3"],
-    2,
-    "a³ bermaksud a x a x a.",
-    "Easy",
-  ],
-  ["Berapakah 2³?", ["5", "6", "8", "9"], 2, "2³ = 2 x 2 x 2 = 8.", "Easy"],
-  [
-    "2³ bukan bermaksud:",
-    ["2 x 2 x 2", "8", "2 x 3", "Kuasa tiga bagi 2"],
-    2,
-    "Kesilapan biasa ialah menganggap 2³ sebagai 2 x 3.",
-    "Easy",
-  ],
-  [
-    "Kuasa tiga boleh dikaitkan dengan:",
-    ["Isipadu kubus", "Luas segi empat sama", "Panjang garis", "Jisim objek"],
-    0,
-    "Jika sisi kubus ialah s, isipadunya ialah s³.",
-    "Easy",
-  ],
-  [
-    "Manakah kuasa tiga sempurna?",
-    ["16", "27", "50", "81"],
-    1,
-    "27 = 3³, jadi 27 ialah kuasa tiga sempurna.",
-    "Easy",
-  ],
-  [
-    "Dalam pemfaktoran perdana, kuasa tiga sempurna boleh dikumpulkan dalam:",
-    ["Dua kumpulan yang sama", "Tiga kumpulan yang sama", "Lima kumpulan", "Kumpulan tidak sama"],
-    1,
-    "Kuasa tiga sempurna mempunyai faktor perdana dalam kumpulan tiga.",
-    "Easy",
-  ],
-  [
-    "Kuasa tiga bagi nombor positif menghasilkan:",
-    ["Positif", "Negatif", "Sifar sahaja", "Pecahan sahaja"],
-    0,
-    "Nombor positif yang dikuasakan tiga kekal positif.",
-    "Easy",
-  ],
-  [
-    "Kuasa tiga bagi nombor negatif menghasilkan:",
-    ["Positif", "Negatif", "Sentiasa sifar", "Tiada jawapan"],
-    1,
-    "Nombor negatif yang dikuasakan tiga menghasilkan nilai negatif.",
-    "Easy",
-  ],
-  [
-    "Berapakah (-5)³?",
-    ["125", "-125", "15", "-15"],
-    1,
-    "(-5)³ = (-5) x (-5) x (-5) = -125.",
-    "Easy",
-  ],
-  [
-    "Punca kuasa tiga ialah songsangan kepada:",
-    ["Kuasa tiga", "Kuasa dua", "Pendaraban dua nombor", "Penolakan"],
-    0,
-    "Punca kuasa tiga membalikkan proses kuasa tiga.",
-    "Easy",
-  ],
-  ["Berapakah ∛8?", ["2", "3", "4", "8"], 0, "∛8 = 2 kerana 2³ = 8.", "Easy"],
-  ["Berapakah ∛(-8)?", ["2", "-2", "4", "-4"], 1, "∛(-8) = -2 kerana (-2)³ = -8.", "Easy"],
-  [
-    "Punca kuasa tiga bagi isipadu kubus memberi:",
-    ["Panjang sisi kubus", "Luas permukaan", "Jisim kubus", "Sudut kubus"],
-    0,
-    "Panjang sisi kubus diperoleh dengan mencari punca kuasa tiga isipadu.",
-    "Easy",
-  ],
-  [
-    "√54 terletak antara:",
-    ["5 dan 6", "6 dan 7", "7 dan 8", "8 dan 9"],
-    2,
-    "49 < 54 < 64, jadi √54 terletak antara 7 dan 8.",
-    "Easy",
-  ],
-  [
-    "Dalam tertib operasi, langkah pertama ialah:",
-    ["Kurungan", "Tambah", "Tolak", "Darab dari kanan"],
-    0,
-    "Kurungan diselesaikan dahulu sebelum operasi lain.",
-    "Easy",
-  ],
-]);
-
-const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
-  [
-    "What does square mean?",
-    [
-      "Multiplying a number by itself",
-      "Multiplying a number by 2",
-      "Adding a number twice",
-      "Dividing a number by 2",
-    ],
-    0,
-    "Square means multiplying a number by itself.",
-    "Easy",
-  ],
-  ["What does a² mean?", ["a + a", "a x a", "a ÷ a", "2 x a"], 1, "a² means a x a.", "Easy"],
-  ["What is 4²?", ["8", "12", "16", "24"], 2, "4² = 4 x 4 = 16.", "Easy"],
-  [
-    "A square can be related to:",
-    ["Area of a square", "Volume of a cube", "Circumference of a circle", "Length of a line only"],
-    0,
-    "If the side of a square is s, its area is s².",
-    "Easy",
-  ],
-  [
-    "What is a perfect square?",
-    [
-      "A number produced by squaring a whole number",
-      "A decimal number",
-      "A negative number only",
-      "A number divided by 3",
-    ],
-    0,
-    "A perfect square is produced by squaring a whole number.",
-    "Easy",
-  ],
-  [
-    "Which is a perfect square?",
-    ["12", "16", "18", "20"],
-    1,
-    "16 = 4², so 16 is a perfect square.",
-    "Easy",
-  ],
-  [
-    "In prime factorisation, a perfect square can be grouped into:",
-    ["One group", "Two identical groups", "Three identical groups", "Four different groups"],
-    1,
-    "A perfect square has prime factors that can be paired.",
-    "Easy",
-  ],
-  [
-    "Square root is the inverse of:",
-    ["Squaring", "Cubing", "Addition", "Subtraction"],
-    0,
-    "Square root reverses the squaring process.",
-    "Easy",
-  ],
-  ["If 6² = 36, then √36 is:", ["5", "6", "7", "8"], 1, "√36 = 6 because 6² = 36.", "Easy"],
-  [
-    "The square root of a square's area gives:",
-    ["Side length", "Volume", "Angle", "Mass"],
-    0,
-    "Side length is found by taking the square root of the area.",
-    "Easy",
-  ],
-  [
-    "What is √(49/81)?",
-    ["7/9", "49/9", "7/81", "9/7"],
-    0,
-    "√49 = 7 and √81 = 9, so √(49/81) = 7/9.",
-    "Easy",
-  ],
-  [
-    "Before finding the square root of a mixed number, it should be converted to:",
-    ["An improper fraction", "A negative decimal", "A prime number", "A cube"],
-    0,
-    "A mixed number is converted to an improper fraction first.",
-    "Easy",
-  ],
-  ["What is the value of √a x √a?", ["a", "2a", "√2a", "a²"], 0, "√a x √a = a.", "Easy"],
-  [
-    "What is the value of √a x √b?",
-    ["√ab", "a + b", "ab²", "√a + √b"],
-    0,
-    "√a x √b = √ab.",
-    "Easy",
-  ],
-  [
-    "What does cube mean?",
-    [
-      "Multiplying a number by itself three times",
-      "Multiplying a number by 3 only",
-      "Adding a number three times",
-      "Dividing a number by 3",
-    ],
-    0,
-    "Cube means a x a x a.",
-    "Easy",
-  ],
-  [
-    "What does a³ mean?",
-    ["a + a + a", "a x 3", "a x a x a", "a ÷ 3"],
-    2,
-    "a³ means a x a x a.",
-    "Easy",
-  ],
-  ["What is 2³?", ["5", "6", "8", "9"], 2, "2³ = 2 x 2 x 2 = 8.", "Easy"],
-  [
-    "2³ does not mean:",
-    ["2 x 2 x 2", "8", "2 x 3", "The cube of 2"],
-    2,
-    "A common mistake is thinking 2³ means 2 x 3.",
-    "Easy",
-  ],
-  [
-    "A cube can be related to:",
-    ["Volume of a cube", "Area of a square", "Length of a line", "Mass of an object"],
-    0,
-    "If the edge of a cube is s, its volume is s³.",
-    "Easy",
-  ],
-  [
-    "Which is a perfect cube?",
-    ["16", "27", "50", "81"],
-    1,
-    "27 = 3³, so 27 is a perfect cube.",
-    "Easy",
-  ],
-  [
-    "In prime factorisation, a perfect cube can be grouped into:",
-    ["Two identical groups", "Three identical groups", "Five groups", "Unequal groups"],
-    1,
-    "A perfect cube has prime factors in groups of three.",
-    "Easy",
-  ],
-  [
-    "The cube of a positive number produces:",
-    ["Positive", "Negative", "Zero only", "Fractions only"],
-    0,
-    "A positive number cubed remains positive.",
-    "Easy",
-  ],
-  [
-    "The cube of a negative number produces:",
-    ["Positive", "Negative", "Always zero", "No answer"],
-    1,
-    "A negative number cubed produces a negative value.",
-    "Easy",
-  ],
-  ["What is (-5)³?", ["125", "-125", "15", "-15"], 1, "(-5)³ = (-5) x (-5) x (-5) = -125.", "Easy"],
-  [
-    "Cube root is the inverse of:",
-    ["Cubing", "Squaring", "Multiplying two numbers", "Subtraction"],
-    0,
-    "Cube root reverses the cubing process.",
-    "Easy",
-  ],
-  ["What is ∛8?", ["2", "3", "4", "8"], 0, "∛8 = 2 because 2³ = 8.", "Easy"],
-  ["What is ∛(-8)?", ["2", "-2", "4", "-4"], 1, "∛(-8) = -2 because (-2)³ = -8.", "Easy"],
-  [
-    "The cube root of a cube's volume gives:",
-    ["Edge length of the cube", "Surface area", "Mass of the cube", "Angle of the cube"],
-    0,
-    "The edge length of a cube is found by taking the cube root of the volume.",
-    "Easy",
-  ],
-  [
-    "√54 lies between:",
-    ["5 and 6", "6 and 7", "7 and 8", "8 and 9"],
-    2,
-    "49 < 54 < 64, so √54 lies between 7 and 8.",
-    "Easy",
-  ],
-  [
-    "In order of operations, the first step is:",
-    ["Brackets", "Addition", "Subtraction", "Multiplication from the right"],
-    0,
-    "Brackets are solved before other operations.",
-    "Easy",
-  ],
-]);
-
-const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
-  ["Berapakah 9²?", ["18", "72", "81", "90"], 2, "9² = 9 x 9 = 81.", "Medium"],
-  ["Berapakah 12²?", ["124", "144", "154", "164"], 1, "12² = 12 x 12 = 144.", "Medium"],
-  ["Berapakah √121?", ["9", "10", "11", "12"], 2, "11² = 121, jadi √121 = 11.", "Medium"],
-  [
-    "Berapakah √(16/25)?",
-    ["2/5", "4/5", "8/25", "16/5"],
-    1,
-    "√16 = 4 dan √25 = 5, jadi √(16/25) = 4/5.",
-    "Medium",
-  ],
-  ["Berapakah √64 x √64?", ["8", "16", "64", "128"], 2, "√64 x √64 = 64.", "Medium"],
-  [
-    "Berapakah √9 x √16?",
-    ["7", "12", "25", "144"],
-    1,
-    "√9 = 3 dan √16 = 4, maka 3 x 4 = 12.",
-    "Medium",
-  ],
-  ["Berapakah 3³?", ["9", "18", "24", "27"], 3, "3³ = 3 x 3 x 3 = 27.", "Medium"],
-  ["Berapakah 6³?", ["36", "126", "216", "236"], 2, "6³ = 216.", "Medium"],
-  ["Berapakah (-4)³?", ["64", "-64", "12", "-12"], 1, "(-4)³ = -64.", "Medium"],
-  ["Berapakah ∛27?", ["2", "3", "4", "9"], 1, "∛27 = 3 kerana 3³ = 27.", "Medium"],
-  ["Berapakah ∛125?", ["3", "4", "5", "25"], 2, "∛125 = 5 kerana 5³ = 125.", "Medium"],
-  ["Berapakah ∛(-64)?", ["-4", "4", "-8", "8"], 0, "∛(-64) = -4 kerana (-4)³ = -64.", "Medium"],
-  [
-    "Luas segi empat sama ialah 49 cm². Panjang sisinya ialah:",
-    ["6 cm", "7 cm", "8 cm", "9 cm"],
-    1,
-    "Panjang sisi = √49 = 7 cm.",
-    "Medium",
-  ],
-  [
-    "Isipadu kubus ialah 216 cm³. Panjang sisinya ialah:",
-    ["4 cm", "5 cm", "6 cm", "7 cm"],
-    2,
-    "Panjang sisi = ∛216 = 6 cm.",
-    "Medium",
-  ],
-  [
-    "√80 terletak antara:",
-    ["7 dan 8", "8 dan 9", "9 dan 10", "10 dan 11"],
-    1,
-    "64 < 80 < 81, jadi √80 terletak antara 8 dan 9.",
-    "Medium",
-  ],
-  [
-    "5.1³ terletak antara:",
-    ["4³ dan 5³", "5³ dan 6³", "6³ dan 7³", "7³ dan 8³"],
-    1,
-    "5.1 berada antara 5 dan 6, jadi 5.1³ berada antara 5³ dan 6³.",
-    "Medium",
-  ],
-  ["Hitung: 2² + 3²", ["10", "12", "13", "18"], 2, "2² + 3² = 4 + 9 = 13.", "Medium"],
-  ["Hitung: 4³ - 5²", ["29", "39", "49", "89"], 1, "4³ - 5² = 64 - 25 = 39.", "Medium"],
-  ["Hitung: √36 + ∛8", ["6", "8", "10", "14"], 1, "√36 = 6 dan ∛8 = 2, jumlah = 8.", "Medium"],
-  ["Hitung: (√49)²", ["7", "14", "49", "98"], 2, "√49 = 7, maka 7² = 49.", "Medium"],
-  ["Hitung: ∛(2³)", ["2", "4", "6", "8"], 0, "2³ = 8 dan ∛8 = 2.", "Medium"],
-  ["Hitung: 7² x 2", ["49", "56", "98", "108"], 2, "7² = 49 dan 49 x 2 = 98.", "Medium"],
-  ["Hitung: 100 - 4³", ["26", "36", "64", "96"], 1, "4³ = 64, jadi 100 - 64 = 36.", "Medium"],
-  ["Hitung: √81 ÷ 3", ["2", "3", "6", "9"], 1, "√81 = 9 dan 9 ÷ 3 = 3.", "Medium"],
-  ["Hitung: ∛1000 + 5", ["10", "15", "20", "105"], 1, "∛1000 = 10, jadi 10 + 5 = 15.", "Medium"],
-  ["Hitung: 3² + ∛27", ["9", "12", "18", "36"], 1, "3² = 9 dan ∛27 = 3, jumlah = 12.", "Medium"],
-  [
-    "Berapakah √(25/36)?",
-    ["5/6", "25/6", "5/36", "6/5"],
-    0,
-    "√25 = 5 dan √36 = 6, jadi √(25/36) = 5/6.",
-    "Medium",
-  ],
-  ["Hitung: 2³ + 2²", ["8", "10", "12", "16"], 2, "2³ = 8 dan 2² = 4, jumlah = 12.", "Medium"],
-  ["Hitung: √64 + √16", ["8", "10", "12", "16"], 2, "√64 = 8 dan √16 = 4, jumlah = 12.", "Medium"],
-  ["Hitung: ∛(-27) + 10", ["3", "7", "13", "37"], 1, "∛(-27) = -3, jadi -3 + 10 = 7.", "Medium"],
-]);
-
-const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
-  ["What is 9²?", ["18", "72", "81", "90"], 2, "9² = 9 x 9 = 81.", "Medium"],
-  ["What is 12²?", ["124", "144", "154", "164"], 1, "12² = 12 x 12 = 144.", "Medium"],
-  ["What is √121?", ["9", "10", "11", "12"], 2, "11² = 121, so √121 = 11.", "Medium"],
-  [
-    "What is √(16/25)?",
-    ["2/5", "4/5", "8/25", "16/5"],
-    1,
-    "√16 = 4 and √25 = 5, so √(16/25) = 4/5.",
-    "Medium",
-  ],
-  ["What is √64 x √64?", ["8", "16", "64", "128"], 2, "√64 x √64 = 64.", "Medium"],
-  [
-    "What is √9 x √16?",
-    ["7", "12", "25", "144"],
-    1,
-    "√9 = 3 and √16 = 4, so 3 x 4 = 12.",
-    "Medium",
-  ],
-  ["What is 3³?", ["9", "18", "24", "27"], 3, "3³ = 3 x 3 x 3 = 27.", "Medium"],
-  ["What is 6³?", ["36", "126", "216", "236"], 2, "6³ = 216.", "Medium"],
-  ["What is (-4)³?", ["64", "-64", "12", "-12"], 1, "(-4)³ = -64.", "Medium"],
-  ["What is ∛27?", ["2", "3", "4", "9"], 1, "∛27 = 3 because 3³ = 27.", "Medium"],
-  ["What is ∛125?", ["3", "4", "5", "25"], 2, "∛125 = 5 because 5³ = 125.", "Medium"],
-  ["What is ∛(-64)?", ["-4", "4", "-8", "8"], 0, "∛(-64) = -4 because (-4)³ = -64.", "Medium"],
-  [
-    "The area of a square is 49 cm². Its side length is:",
-    ["6 cm", "7 cm", "8 cm", "9 cm"],
-    1,
-    "Side length = √49 = 7 cm.",
-    "Medium",
-  ],
-  [
-    "The volume of a cube is 216 cm³. Its edge length is:",
-    ["4 cm", "5 cm", "6 cm", "7 cm"],
-    2,
-    "Edge length = ∛216 = 6 cm.",
-    "Medium",
-  ],
-  [
-    "√80 lies between:",
-    ["7 and 8", "8 and 9", "9 and 10", "10 and 11"],
-    1,
-    "64 < 80 < 81, so √80 lies between 8 and 9.",
-    "Medium",
-  ],
-  [
-    "5.1³ lies between:",
-    ["4³ and 5³", "5³ and 6³", "6³ and 7³", "7³ and 8³"],
-    1,
-    "5.1 is between 5 and 6, so 5.1³ is between 5³ and 6³.",
-    "Medium",
-  ],
-  ["Calculate: 2² + 3²", ["10", "12", "13", "18"], 2, "2² + 3² = 4 + 9 = 13.", "Medium"],
-  ["Calculate: 4³ - 5²", ["29", "39", "49", "89"], 1, "4³ - 5² = 64 - 25 = 39.", "Medium"],
-  ["Calculate: √36 + ∛8", ["6", "8", "10", "14"], 1, "√36 = 6 and ∛8 = 2, total = 8.", "Medium"],
-  ["Calculate: (√49)²", ["7", "14", "49", "98"], 2, "√49 = 7, so 7² = 49.", "Medium"],
-  ["Calculate: ∛(2³)", ["2", "4", "6", "8"], 0, "2³ = 8 and ∛8 = 2.", "Medium"],
-  ["Calculate: 7² x 2", ["49", "56", "98", "108"], 2, "7² = 49 and 49 x 2 = 98.", "Medium"],
-  ["Calculate: 100 - 4³", ["26", "36", "64", "96"], 1, "4³ = 64, so 100 - 64 = 36.", "Medium"],
-  ["Calculate: √81 ÷ 3", ["2", "3", "6", "9"], 1, "√81 = 9 and 9 ÷ 3 = 3.", "Medium"],
-  ["Calculate: ∛1000 + 5", ["10", "15", "20", "105"], 1, "∛1000 = 10, so 10 + 5 = 15.", "Medium"],
-  ["Calculate: 3² + ∛27", ["9", "12", "18", "36"], 1, "3² = 9 and ∛27 = 3, total = 12.", "Medium"],
-  [
-    "What is √(25/36)?",
-    ["5/6", "25/6", "5/36", "6/5"],
-    0,
-    "√25 = 5 and √36 = 6, so √(25/36) = 5/6.",
-    "Medium",
-  ],
-  ["Calculate: 2³ + 2²", ["8", "10", "12", "16"], 2, "2³ = 8 and 2² = 4, total = 12.", "Medium"],
-  [
-    "Calculate: √64 + √16",
-    ["8", "10", "12", "16"],
-    2,
-    "√64 = 8 and √16 = 4, total = 12.",
-    "Medium",
-  ],
-  ["Calculate: ∛(-27) + 10", ["3", "7", "13", "37"], 1, "∛(-27) = -3, so -3 + 10 = 7.", "Medium"],
-]);
-
-const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
-  [
-    "Luas segi empat sama ialah 144 cm². Panjang sisinya ialah:",
-    ["10 cm", "11 cm", "12 cm", "14 cm"],
-    2,
-    "Panjang sisi = √144 = 12 cm.",
-    "Hard",
-  ],
-  [
-    "Isipadu kubus ialah 512 cm³. Panjang sisinya ialah:",
-    ["6 cm", "7 cm", "8 cm", "9 cm"],
-    2,
-    "Panjang sisi = ∛512 = 8 cm.",
-    "Hard",
-  ],
-  [
-    "Segi empat sama mempunyai sisi 9 cm. Luasnya ialah:",
-    ["18 cm²", "45 cm²", "81 cm²", "90 cm²"],
-    2,
-    "Luas = 9² = 81 cm².",
-    "Hard",
-  ],
-  [
-    "Kubus mempunyai sisi 6 cm. Isipadunya ialah:",
-    ["36 cm³", "72 cm³", "216 cm³", "236 cm³"],
-    2,
-    "Isipadu = 6³ = 216 cm³.",
-    "Hard",
-  ],
-  [
-    "Luas taman berbentuk segi empat sama ialah 169 m². Panjang sisinya ialah:",
-    ["11 m", "12 m", "13 m", "14 m"],
-    2,
-    "Panjang sisi = √169 = 13 m.",
-    "Hard",
-  ],
-  [
-    "Isipadu kotak berbentuk kubus ialah 343 cm³. Panjang sisinya ialah:",
-    ["6 cm", "7 cm", "8 cm", "9 cm"],
-    1,
-    "Panjang sisi = ∛343 = 7 cm.",
-    "Hard",
-  ],
-  [
-    "Anggaran terbaik: √54 berada antara:",
-    ["6 dan 7", "7 dan 8", "8 dan 9", "9 dan 10"],
-    1,
-    "49 < 54 < 64, maka √54 berada antara 7 dan 8.",
-    "Hard",
-  ],
-  [
-    "4.2³ berada antara:",
-    ["3³ dan 4³", "4³ dan 5³", "5³ dan 6³", "6³ dan 7³"],
-    1,
-    "4.2 berada antara 4 dan 5, jadi 4.2³ antara 4³ dan 5³.",
-    "Hard",
-  ],
-  [
-    "Hitung: 3² + √64 x 2",
-    ["17", "20", "25", "34"],
-    2,
-    "√64 = 8. Darab dahulu: 8 x 2 = 16. Kemudian 9 + 16 = 25.",
-    "Hard",
-  ],
-  [
-    "Hitung: (∛27 + √16)²",
-    ["25", "36", "49", "64"],
-    2,
-    "∛27 = 3 dan √16 = 4. (3 + 4)² = 7² = 49.",
-    "Hard",
-  ],
-  [
-    "Hitung: √(81/100) + ∛8",
-    ["2.3", "2.7", "2.9", "3.1"],
-    2,
-    "√(81/100) = 9/10 = 0.9 dan ∛8 = 2, jumlah = 2.9.",
-    "Hard",
-  ],
-  [
-    "Hitung: (-3)³ + √49",
-    ["-34", "-20", "20", "34"],
-    1,
-    "(-3)³ = -27 dan √49 = 7, jadi -27 + 7 = -20.",
-    "Hard",
-  ],
-  [
-    "Hitung: ∛(-125) x 2²",
-    ["-20", "-10", "10", "20"],
-    0,
-    "∛(-125) = -5 dan 2² = 4, maka -5 x 4 = -20.",
-    "Hard",
-  ],
-  [
-    "Hitung: (√36 + ∛64) x 2",
-    ["10", "16", "20", "24"],
-    2,
-    "√36 = 6 dan ∛64 = 4. (6 + 4) x 2 = 20.",
-    "Hard",
-  ],
-  ["Hitung: √(16 + 9)", ["4", "5", "7", "25"], 1, "16 + 9 = 25 dan √25 = 5.", "Hard"],
-  [
-    "Jika isipadu kubus ialah 1000 cm³, panjang sisinya ialah:",
-    ["10 cm", "20 cm", "100 cm", "500 cm"],
-    0,
-    "∛1000 = 10.",
-    "Hard",
-  ],
-  [
-    "Jika luas segi empat sama ialah 225 cm², panjang sisinya ialah:",
-    ["12 cm", "13 cm", "14 cm", "15 cm"],
-    3,
-    "√225 = 15.",
-    "Hard",
-  ],
-  [
-    "Sisi segi empat sama berubah daripada 5 cm kepada 10 cm. Luas baharu ialah:",
-    ["25 cm²", "50 cm²", "100 cm²", "125 cm²"],
-    2,
-    "Luas baharu = 10² = 100 cm².",
-    "Hard",
-  ],
-  [
-    "Dua kubus bersisi 3 cm dan 4 cm. Jumlah isipadu ialah:",
-    ["37 cm³", "64 cm³", "91 cm³", "100 cm³"],
-    2,
-    "3³ + 4³ = 27 + 64 = 91 cm³.",
-    "Hard",
-  ],
-  [
-    "Beza antara 8² dan 4³ ialah:",
-    ["0", "8", "16", "32"],
-    0,
-    "8² = 64 dan 4³ = 64, jadi bezanya 0.",
-    "Hard",
-  ],
-  [
-    "Hitung: ∛216 + √144",
-    ["12", "18", "24", "30"],
-    1,
-    "∛216 = 6 dan √144 = 12, jumlah = 18.",
-    "Hard",
-  ],
-  [
-    "Hitung: √196 - ∛27",
-    ["9", "10", "11", "17"],
-    2,
-    "√196 = 14 dan ∛27 = 3, jadi 14 - 3 = 11.",
-    "Hard",
-  ],
-  [
-    "√150 terletak antara:",
-    ["10 dan 11", "11 dan 12", "12 dan 13", "13 dan 14"],
-    2,
-    "144 < 150 < 169, jadi √150 terletak antara 12 dan 13.",
-    "Hard",
-  ],
-  [
-    "6.8³ terletak antara:",
-    ["5³ dan 6³", "6³ dan 7³", "7³ dan 8³", "8³ dan 9³"],
-    1,
-    "6.8 berada antara 6 dan 7, jadi 6.8³ antara 6³ dan 7³.",
-    "Hard",
-  ],
-  [
-    "Jika panjang sisi kubus ialah 5 cm, isipadunya ialah:",
-    ["25 cm³", "75 cm³", "100 cm³", "125 cm³"],
-    3,
-    "Isipadu = 5³ = 125 cm³.",
-    "Hard",
-  ],
-  [
-    "Jika isipadu kubus ialah 27 cm³, panjang sisinya ialah:",
-    ["2 cm", "3 cm", "6 cm", "9 cm"],
-    1,
-    "Panjang sisi = ∛27 = 3 cm.",
-    "Hard",
-  ],
-  [
-    "Jika √a x √a = 49, nilai a ialah:",
-    ["7", "14", "49", "98"],
-    2,
-    "√a x √a = a, jadi a = 49.",
-    "Hard",
-  ],
-  ["Jika a³ = -8, nilai a ialah:", ["-2", "2", "-4", "4"], 0, "(-2)³ = -8, jadi a = -2.", "Hard"],
-  ["Hitung: (√25)³", ["15", "25", "100", "125"], 3, "√25 = 5 dan 5³ = 125.", "Hard"],
-  ["Hitung: ∛(10³)", ["10", "30", "100", "1000"], 0, "10³ = 1000 dan ∛1000 = 10.", "Hard"],
-]);
-
-const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
-  [
-    "The area of a square is 144 cm². Its side length is:",
-    ["10 cm", "11 cm", "12 cm", "14 cm"],
-    2,
-    "Side length = √144 = 12 cm.",
-    "Hard",
-  ],
-  [
-    "The volume of a cube is 512 cm³. Its edge length is:",
-    ["6 cm", "7 cm", "8 cm", "9 cm"],
-    2,
-    "Edge length = ∛512 = 8 cm.",
-    "Hard",
-  ],
-  [
-    "A square has a side length of 9 cm. Its area is:",
-    ["18 cm²", "45 cm²", "81 cm²", "90 cm²"],
-    2,
-    "Area = 9² = 81 cm².",
-    "Hard",
-  ],
-  [
-    "A cube has an edge length of 6 cm. Its volume is:",
-    ["36 cm³", "72 cm³", "216 cm³", "236 cm³"],
-    2,
-    "Volume = 6³ = 216 cm³.",
-    "Hard",
-  ],
-  [
-    "A square garden has an area of 169 m². Its side length is:",
-    ["11 m", "12 m", "13 m", "14 m"],
-    2,
-    "Side length = √169 = 13 m.",
-    "Hard",
-  ],
-  [
-    "A cube-shaped box has a volume of 343 cm³. Its edge length is:",
-    ["6 cm", "7 cm", "8 cm", "9 cm"],
-    1,
-    "Edge length = ∛343 = 7 cm.",
-    "Hard",
-  ],
-  [
-    "Best estimate: √54 lies between:",
-    ["6 and 7", "7 and 8", "8 and 9", "9 and 10"],
-    1,
-    "49 < 54 < 64, so √54 lies between 7 and 8.",
-    "Hard",
-  ],
-  [
-    "4.2³ lies between:",
-    ["3³ and 4³", "4³ and 5³", "5³ and 6³", "6³ and 7³"],
-    1,
-    "4.2 is between 4 and 5, so 4.2³ is between 4³ and 5³.",
-    "Hard",
-  ],
-  [
-    "Calculate: 3² + √64 x 2",
-    ["17", "20", "25", "34"],
-    2,
-    "√64 = 8. Multiply first: 8 x 2 = 16. Then 9 + 16 = 25.",
-    "Hard",
-  ],
-  [
-    "Calculate: (∛27 + √16)²",
-    ["25", "36", "49", "64"],
-    2,
-    "∛27 = 3 and √16 = 4. (3 + 4)² = 7² = 49.",
-    "Hard",
-  ],
-  [
-    "Calculate: √(81/100) + ∛8",
-    ["2.3", "2.7", "2.9", "3.1"],
-    2,
-    "√(81/100) = 9/10 = 0.9 and ∛8 = 2, total = 2.9.",
-    "Hard",
-  ],
-  [
-    "Calculate: (-3)³ + √49",
-    ["-34", "-20", "20", "34"],
-    1,
-    "(-3)³ = -27 and √49 = 7, so -27 + 7 = -20.",
-    "Hard",
-  ],
-  [
-    "Calculate: ∛(-125) x 2²",
-    ["-20", "-10", "10", "20"],
-    0,
-    "∛(-125) = -5 and 2² = 4, so -5 x 4 = -20.",
-    "Hard",
-  ],
-  [
-    "Calculate: (√36 + ∛64) x 2",
-    ["10", "16", "20", "24"],
-    2,
-    "√36 = 6 and ∛64 = 4. (6 + 4) x 2 = 20.",
-    "Hard",
-  ],
-  ["Calculate: √(16 + 9)", ["4", "5", "7", "25"], 1, "16 + 9 = 25 and √25 = 5.", "Hard"],
-  [
-    "If the volume of a cube is 1000 cm³, its edge length is:",
-    ["10 cm", "20 cm", "100 cm", "500 cm"],
-    0,
-    "∛1000 = 10.",
-    "Hard",
-  ],
-  [
-    "If the area of a square is 225 cm², its side length is:",
-    ["12 cm", "13 cm", "14 cm", "15 cm"],
-    3,
-    "√225 = 15.",
-    "Hard",
-  ],
-  [
-    "The side length of a square changes from 5 cm to 10 cm. The new area is:",
-    ["25 cm²", "50 cm²", "100 cm²", "125 cm²"],
-    2,
-    "New area = 10² = 100 cm².",
-    "Hard",
-  ],
-  [
-    "Two cubes have edge lengths of 3 cm and 4 cm. Their total volume is:",
-    ["37 cm³", "64 cm³", "91 cm³", "100 cm³"],
-    2,
-    "3³ + 4³ = 27 + 64 = 91 cm³.",
-    "Hard",
-  ],
-  [
-    "The difference between 8² and 4³ is:",
-    ["0", "8", "16", "32"],
-    0,
-    "8² = 64 and 4³ = 64, so the difference is 0.",
-    "Hard",
-  ],
-  [
-    "Calculate: ∛216 + √144",
-    ["12", "18", "24", "30"],
-    1,
-    "∛216 = 6 and √144 = 12, total = 18.",
-    "Hard",
-  ],
-  [
-    "Calculate: √196 - ∛27",
-    ["9", "10", "11", "17"],
-    2,
-    "√196 = 14 and ∛27 = 3, so 14 - 3 = 11.",
-    "Hard",
-  ],
-  [
-    "√150 lies between:",
-    ["10 and 11", "11 and 12", "12 and 13", "13 and 14"],
-    2,
-    "144 < 150 < 169, so √150 lies between 12 and 13.",
-    "Hard",
-  ],
-  [
-    "6.8³ lies between:",
-    ["5³ and 6³", "6³ and 7³", "7³ and 8³", "8³ and 9³"],
-    1,
-    "6.8 is between 6 and 7, so 6.8³ is between 6³ and 7³.",
-    "Hard",
-  ],
-  [
-    "If the edge length of a cube is 5 cm, its volume is:",
-    ["25 cm³", "75 cm³", "100 cm³", "125 cm³"],
-    3,
-    "Volume = 5³ = 125 cm³.",
-    "Hard",
-  ],
-  [
-    "If the volume of a cube is 27 cm³, its edge length is:",
-    ["2 cm", "3 cm", "6 cm", "9 cm"],
-    1,
-    "Edge length = ∛27 = 3 cm.",
-    "Hard",
-  ],
-  [
-    "If √a x √a = 49, the value of a is:",
-    ["7", "14", "49", "98"],
-    2,
-    "√a x √a = a, so a = 49.",
-    "Hard",
-  ],
-  ["If a³ = -8, the value of a is:", ["-2", "2", "-4", "4"], 0, "(-2)³ = -8, so a = -2.", "Hard"],
-  ["Calculate: (√25)³", ["15", "25", "100", "125"], 3, "√25 = 5 and 5³ = 125.", "Hard"],
-  ["Calculate: ∛(10³)", ["10", "30", "100", "1000"], 0, "10³ = 1000 and ∛1000 = 10.", "Hard"],
-]);
-
-const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
-  [
-    "Apakah nisbah?",
-    [
-      "Perbandingan kuantiti sama jenis dan unit",
-      "Perbandingan kuantiti berbeza jenis",
-      "Hasil tambah dua nombor",
-      "Hasil darab dua nombor",
-    ],
-    0,
-    "Nisbah membandingkan kuantiti sama jenis dan unit.",
-    "Easy",
-  ],
-  [
-    "Bagaimana nisbah ditulis?",
-    ["a + b", "a : b", "a − b", "a × b"],
-    1,
-    "Nisbah ditulis dalam bentuk a : b.",
-    "Easy",
-  ],
-  [
-    "Manakah bentuk nisbah yang sah?",
-    ["3 cm : 5 m", "3 cm : 5 cm", "3 kg : 5 cm", "3 jam : 5 km"],
-    1,
-    "Unit kedua-dua sebutan mestilah sama.",
-    "Easy",
-  ],
-  [
-    "Apakah nisbah setara?",
-    [
-      "Nisbah yang berbeza nilai",
-      "Nisbah yang nilainya sama",
-      "Pecahan campuran",
-      "Peratusan sama",
-    ],
-    1,
-    "Nisbah setara mempunyai nilai sama.",
-    "Easy",
-  ],
-  [
-    "2 : 3 setara dengan?",
-    ["3 : 2", "4 : 6", "5 : 7", "1 : 2"],
-    1,
-    "Darab 2 dan 3 dengan 2 → 4 : 6.",
-    "Easy",
-  ],
-  [
-    "Apakah bentuk termudah 12 : 18?",
-    ["6 : 9", "4 : 6", "2 : 3", "3 : 2"],
-    2,
-    "FSTB 12 dan 18 ialah 6 → 2 : 3.",
-    "Easy",
-  ],
-  [
-    "Bagaimana mempermudah nisbah?",
-    ["Bahagi dengan FSTB", "Darab dengan GSTK", "Tambah dengan 1", "Bahagi dengan jumlah"],
-    0,
-    "Bahagikan semua sebutan dengan FSTB.",
-    "Easy",
-  ],
-  [
-    "Apakah kadar?",
-    ["Kuantiti sama jenis", "Kuantiti berbeza jenis/unit", "Hanya kelajuan", "Hanya harga"],
-    1,
-    "Kadar membandingkan dua kuantiti berbeza jenis atau unit.",
-    "Easy",
-  ],
-  [
-    "Contoh kadar ialah?",
-    ["3 : 5", "60 km/j", "1/2", "0.5"],
-    1,
-    "Km/j ialah kadar antara jarak dan masa.",
-    "Easy",
-  ],
-  [
-    "Apakah kadaran?",
-    ["Dua nisbah setara", "Dua nombor berbeza", "Hasil tambah", "Pecahan"],
-    0,
-    "Kadaran ialah persamaan dua nisbah setara.",
-    "Easy",
-  ],
-  [
-    "a : b = c : d juga ditulis sebagai?",
-    ["a × b = c × d", "a/b = c/d", "a + b = c + d", "a − b = c − d"],
-    1,
-    "Nisbah boleh ditulis sebagai pecahan setara.",
-    "Easy",
-  ],
-  [
-    "50% sebagai nisbah ialah?",
-    ["1 : 2", "2 : 1", "1 : 5", "5 : 1"],
-    0,
-    "50% = 50 : 100 = 1 : 2.",
-    "Easy",
-  ],
-  [
-    "20% sebagai nisbah termudah?",
-    ["1 : 2", "1 : 4", "1 : 5", "2 : 5"],
-    2,
-    "20% = 20 : 100 = 1 : 5.",
-    "Easy",
-  ],
-  [
-    "25% sebagai nisbah termudah?",
-    ["1 : 3", "1 : 4", "1 : 5", "2 : 5"],
-    1,
-    "25% = 25 : 100 = 1 : 4.",
-    "Easy",
-  ],
-  ["1 m = ? cm", ["10", "100", "1000", "10000"], 1, "1 m = 100 cm.", "Easy"],
-  ["1 km = ? m", ["100", "1000", "10 000", "100 000"], 1, "1 km = 1000 m.", "Easy"],
-  ["1 jam = ? minit", ["30", "60", "100", "360"], 1, "1 jam = 60 minit.", "Easy"],
-  ["1 kg = ? g", ["10", "100", "1000", "10000"], 2, "1 kg = 1000 g.", "Easy"],
-  [
-    "Manakah BUKAN kadar?",
-    ["RM 5/kg", "60 km/j", "3 : 5", "RM 12/jam"],
-    2,
-    "3 : 5 ialah nisbah, bukan kadar.",
-    "Easy",
-  ],
-  [
-    "6 : 9 dipermudahkan menjadi?",
-    ["1 : 2", "2 : 3", "3 : 4", "2 : 5"],
-    1,
-    "FSTB 6 dan 9 ialah 3 → 2 : 3.",
-    "Easy",
-  ],
-  [
-    "Adakah 4 : 6 setara dengan 2 : 3?",
-    ["Ya", "Tidak", "Hanya kadang-kadang", "Tidak ditentukan"],
-    0,
-    "4 : 6 dibahagi 2 → 2 : 3.",
-    "Easy",
-  ],
-  [
-    "Kaedah unitari bermula dengan?",
-    ["Cari nilai semua unit", "Cari nilai satu unit", "Cari peratusan", "Pendaraban silang"],
-    1,
-    "Cari nilai satu unit dahulu.",
-    "Easy",
-  ],
-  [
-    "Pendaraban silang bagi a/b = c/d ialah?",
-    ["a + d = b + c", "a × d = b × c", "a − d = b − c", "a/d = b/c"],
-    1,
-    "a × d = b × c.",
-    "Easy",
-  ],
-  [
-    "Skala peta 1 : 1000 bermaksud?",
-    [
-      "Peta lebih besar",
-      "1 unit peta = 1000 unit sebenar",
-      "Sama saiz",
-      "1 unit peta = 100 unit sebenar",
-    ],
-    1,
-    "1 unit pada peta mewakili 1000 unit sebenar.",
-    "Easy",
-  ],
-  [
-    "3 : 5 sama nilai dengan?",
-    ["6 : 10", "5 : 7", "8 : 13", "7 : 9"],
-    0,
-    "Darab dengan 2 → 6 : 10.",
-    "Easy",
-  ],
-  [
-    "75% sebagai nisbah termudah?",
-    ["3 : 4", "1 : 4", "7 : 10", "3 : 5"],
-    0,
-    "75% = 75 : 100 = 3 : 4.",
-    "Easy",
-  ],
-  [
-    "80% sebagai nisbah termudah?",
-    ["4 : 5", "1 : 5", "8 : 9", "2 : 5"],
-    0,
-    "80% = 80 : 100 = 4 : 5.",
-    "Easy",
-  ],
-  [
-    "Manakah pernyataan kadaran?",
-    ["2 + 3 = 5", "2 × 3 = 6", "2 : 3 = 4 : 6", "2 − 1 = 1"],
-    2,
-    "Kadaran ialah dua nisbah setara.",
-    "Easy",
-  ],
-  [
-    "Nisbah a : b boleh ditulis sebagai pecahan?",
-    ["a − b", "a/b", "a × b", "b/a"],
-    1,
-    "Nisbah a : b = a/b.",
-    "Easy",
-  ],
-  [
-    "Bilakah pendaraban silang digunakan?",
-    [
-      "Apabila hanya satu nisbah ada",
-      "Apabila menyelesaikan kadaran dengan nilai tidak diketahui",
-      "Untuk mempermudah nisbah",
-      "Untuk menggabungkan nisbah",
-    ],
-    1,
-    "Digunakan untuk mencari nilai tidak diketahui dalam kadaran.",
-    "Easy",
-  ],
-]);
-
-const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
-  [
-    "What is a ratio?",
-    [
-      "Compares quantities of same kind and unit",
-      "Compares different kinds",
-      "Sum of two numbers",
-      "Product of two numbers",
-    ],
-    0,
-    "A ratio compares quantities of the same kind and unit.",
-    "Easy",
-  ],
-  [
-    "How is a ratio written?",
-    ["a + b", "a : b", "a − b", "a × b"],
-    1,
-    "A ratio is written as a : b.",
-    "Easy",
-  ],
-  [
-    "Which is a valid ratio form?",
-    ["3 cm : 5 m", "3 cm : 5 cm", "3 kg : 5 cm", "3 h : 5 km"],
-    1,
-    "Both terms must share the same unit.",
-    "Easy",
-  ],
-  [
-    "What are equivalent ratios?",
-    [
-      "Ratios of different value",
-      "Ratios of the same value",
-      "Mixed fractions",
-      "Equal percentages",
-    ],
-    1,
-    "Equivalent ratios have the same value.",
-    "Easy",
-  ],
-  [
-    "2 : 3 is equivalent to?",
-    ["3 : 2", "4 : 6", "5 : 7", "1 : 2"],
-    1,
-    "Multiply 2 and 3 by 2 → 4 : 6.",
-    "Easy",
-  ],
-  [
-    "What is the simplest form of 12 : 18?",
-    ["6 : 9", "4 : 6", "2 : 3", "3 : 2"],
-    2,
-    "HCF of 12 and 18 is 6 → 2 : 3.",
-    "Easy",
-  ],
-  [
-    "How do you simplify a ratio?",
-    ["Divide by HCF", "Multiply by LCM", "Add 1", "Divide by total"],
-    0,
-    "Divide all terms by the HCF.",
-    "Easy",
-  ],
-  [
-    "What is a rate?",
-    ["Same kind quantities", "Different kinds/units", "Only speed", "Only price"],
-    1,
-    "A rate compares two different-kind quantities.",
-    "Easy",
-  ],
-  [
-    "Example of a rate?",
-    ["3 : 5", "60 km/h", "1/2", "0.5"],
-    1,
-    "Km/h is a rate of distance per time.",
-    "Easy",
-  ],
-  [
-    "What is a proportion?",
-    ["Two equivalent ratios", "Two different numbers", "A sum", "A fraction"],
-    0,
-    "A proportion equates two equivalent ratios.",
-    "Easy",
-  ],
-  [
-    "a : b = c : d also written as?",
-    ["a × b = c × d", "a/b = c/d", "a + b = c + d", "a − b = c − d"],
-    1,
-    "Ratios can be written as equivalent fractions.",
-    "Easy",
-  ],
-  [
-    "50% as a ratio is?",
-    ["1 : 2", "2 : 1", "1 : 5", "5 : 1"],
-    0,
-    "50% = 50 : 100 = 1 : 2.",
-    "Easy",
-  ],
-  [
-    "20% as simplest ratio?",
-    ["1 : 2", "1 : 4", "1 : 5", "2 : 5"],
-    2,
-    "20% = 20 : 100 = 1 : 5.",
-    "Easy",
-  ],
-  [
-    "25% as simplest ratio?",
-    ["1 : 3", "1 : 4", "1 : 5", "2 : 5"],
-    1,
-    "25% = 25 : 100 = 1 : 4.",
-    "Easy",
-  ],
-  ["1 m = ? cm", ["10", "100", "1000", "10000"], 1, "1 m = 100 cm.", "Easy"],
-  ["1 km = ? m", ["100", "1000", "10 000", "100 000"], 1, "1 km = 1000 m.", "Easy"],
-  ["1 hour = ? minutes", ["30", "60", "100", "360"], 1, "1 hour = 60 minutes.", "Easy"],
-  ["1 kg = ? g", ["10", "100", "1000", "10000"], 2, "1 kg = 1000 g.", "Easy"],
-  [
-    "Which is NOT a rate?",
-    ["RM 5/kg", "60 km/h", "3 : 5", "RM 12/hour"],
-    2,
-    "3 : 5 is a ratio, not a rate.",
-    "Easy",
-  ],
-  [
-    "6 : 9 simplifies to?",
-    ["1 : 2", "2 : 3", "3 : 4", "2 : 5"],
-    1,
-    "HCF 6 and 9 is 3 → 2 : 3.",
-    "Easy",
-  ],
-  [
-    "Is 4 : 6 equivalent to 2 : 3?",
-    ["Yes", "No", "Sometimes", "Undefined"],
-    0,
-    "4 : 6 divided by 2 → 2 : 3.",
-    "Easy",
-  ],
-  [
-    "The unitary method starts by?",
-    ["Find all unit values", "Find one unit value", "Find percentage", "Cross multiply"],
-    1,
-    "Find the value of one unit first.",
-    "Easy",
-  ],
-  [
-    "Cross multiplication of a/b = c/d gives?",
-    ["a + d = b + c", "a × d = b × c", "a − d = b − c", "a/d = b/c"],
-    1,
-    "a × d = b × c.",
-    "Easy",
-  ],
-  [
-    "A map scale 1 : 1000 means?",
-    [
-      "Map is bigger",
-      "1 unit map = 1000 actual units",
-      "Same size",
-      "1 unit map = 100 actual units",
-    ],
-    1,
-    "1 map unit represents 1000 actual units.",
-    "Easy",
-  ],
-  [
-    "3 : 5 is equivalent to?",
-    ["6 : 10", "5 : 7", "8 : 13", "7 : 9"],
-    0,
-    "Multiply by 2 → 6 : 10.",
-    "Easy",
-  ],
-  [
-    "75% as simplest ratio?",
-    ["3 : 4", "1 : 4", "7 : 10", "3 : 5"],
-    0,
-    "75% = 75 : 100 = 3 : 4.",
-    "Easy",
-  ],
-  [
-    "80% as simplest ratio?",
-    ["4 : 5", "1 : 5", "8 : 9", "2 : 5"],
-    0,
-    "80% = 80 : 100 = 4 : 5.",
-    "Easy",
-  ],
-  [
-    "Which is a proportion statement?",
-    ["2 + 3 = 5", "2 × 3 = 6", "2 : 3 = 4 : 6", "2 − 1 = 1"],
-    2,
-    "A proportion has two equivalent ratios.",
-    "Easy",
-  ],
-  [
-    "Ratio a : b as a fraction is?",
-    ["a − b", "a/b", "a × b", "b/a"],
-    1,
-    "Ratio a : b = a/b.",
-    "Easy",
-  ],
-  [
-    "When is cross multiplication used?",
-    [
-      "When only one ratio exists",
-      "When solving a proportion with an unknown",
-      "To simplify a ratio",
-      "To combine ratios",
-    ],
-    1,
-    "It finds the unknown in a proportion.",
-    "Easy",
-  ],
-]);
-
-const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
-  [
-    "Permudahkan 15 : 25.",
-    ["3 : 4", "3 : 5", "5 : 7", "1 : 2"],
-    1,
-    "FSTB 15 dan 25 ialah 5 → 3 : 5.",
-    "Medium",
-  ],
-  ["Permudahkan 24 : 36.", ["1 : 2", "2 : 3", "3 : 4", "4 : 5"], 1, "FSTB = 12 → 2 : 3.", "Medium"],
-  [
-    "Permudahkan 8 : 12 : 20.",
-    ["1 : 2 : 3", "2 : 3 : 5", "4 : 6 : 10", "2 : 3 : 4"],
-    1,
-    "FSTB = 4 → 2 : 3 : 5.",
-    "Medium",
-  ],
-  [
-    "Tukarkan 500 g : 1 kg kepada bentuk termudah.",
-    ["1 : 2", "5 : 10", "1 : 5", "2 : 5"],
-    0,
-    "1 kg = 1000 g; 500 : 1000 = 1 : 2.",
-    "Medium",
-  ],
-  ["3 : 7 = 9 : ?", ["14", "18", "21", "24"], 2, "Darab dengan 3 → 9 : 21.", "Medium"],
-  [
-    "Selesaikan 4/6 = x/9.",
-    ["4", "5", "6", "8"],
-    2,
-    "Pendaraban silang: 4 × 9 = 6x → x = 6.",
-    "Medium",
-  ],
-  ["Selesaikan 5/8 = x/24.", ["10", "12", "15", "20"], 2, "5 × 24 = 8x → x = 15.", "Medium"],
-  [
-    "Jika A : B = 2 : 3 dan B : C = 4 : 5, A : B : C ialah?",
-    ["2 : 3 : 5", "8 : 12 : 15", "4 : 6 : 10", "2 : 12 : 5"],
-    1,
-    "Samakan B = 12 → 8 : 12 : 15.",
-    "Medium",
-  ],
-  [
-    "Kereta 180 km dalam 3 jam. Kelajuan?",
-    ["50 km/j", "60 km/j", "70 km/j", "90 km/j"],
-    1,
-    "180 ÷ 3 = 60 km/j.",
-    "Medium",
-  ],
-  [
-    "RM 24 untuk 4 kg gula. Harga 7 kg?",
-    ["RM 36", "RM 42", "RM 48", "RM 56"],
-    1,
-    "1 kg = RM 6; 7 kg = RM 42.",
-    "Medium",
-  ],
-  [
-    "5 buku = RM 35. 12 buku?",
-    ["RM 70", "RM 80", "RM 84", "RM 90"],
-    2,
-    "1 buku = RM 7; 12 buku = RM 84.",
-    "Medium",
-  ],
-  [
-    "Tukarkan 90 km/j kepada m/s.",
-    ["20", "25", "27", "30"],
-    1,
-    "90 × 1000/3600 = 25 m/s.",
-    "Medium",
-  ],
-  [
-    "Tukarkan RM 8 per m kepada RM per cm.",
-    ["0.08", "0.8", "8", "80"],
-    0,
-    "RM 8 ÷ 100 = RM 0.08 per cm.",
-    "Medium",
-  ],
-  [
-    "Resipi 4 orang gunakan 200 g tepung. Untuk 6 orang?",
-    ["250 g", "280 g", "300 g", "350 g"],
-    2,
-    "200 × 6/4 = 300 g.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 200 ml : 1 liter.",
-    ["1 : 2", "1 : 5", "2 : 5", "1 : 10"],
-    1,
-    "1 L = 1000 ml; 200 : 1000 = 1 : 5.",
-    "Medium",
-  ],
-  [
-    "40% sebagai nisbah termudah?",
-    ["2 : 5", "4 : 5", "1 : 4", "1 : 5"],
-    0,
-    "40% = 40 : 100 = 2 : 5.",
-    "Medium",
-  ],
-  [
-    "60% sebagai nisbah termudah?",
-    ["3 : 5", "2 : 5", "6 : 11", "3 : 4"],
-    0,
-    "60% = 60 : 100 = 3 : 5.",
-    "Medium",
-  ],
-  ["Selesaikan 7 : 4 = 21 : x.", ["10", "12", "14", "16"], 1, "x = 4 × 21/7 = 12.", "Medium"],
-  [
-    "Jika nisbah lelaki : perempuan = 3 : 2 dan jumlah 30, bilangan lelaki?",
-    ["12", "15", "18", "20"],
-    2,
-    "3/5 × 30 = 18.",
-    "Medium",
-  ],
-  [
-    "Jika 2 paun = 9 ringgit, 5 paun = ?",
-    ["RM 18", "RM 20", "RM 22.50", "RM 25"],
-    2,
-    "1 paun = RM 4.50; 5 paun = RM 22.50.",
-    "Medium",
-  ],
-  [
-    "Skala 1 : 5000. Jarak 4 cm peta = jarak sebenar?",
-    ["200 m", "100 m", "2000 m", "20 m"],
-    0,
-    "4 × 5000 = 20 000 cm = 200 m.",
-    "Medium",
-  ],
-  [
-    "Kadar pekerja: 5 jam = RM 75. 1 jam = ?",
-    ["RM 12", "RM 15", "RM 18", "RM 20"],
-    1,
-    "75 ÷ 5 = RM 15.",
-    "Medium",
-  ],
-  [
-    "Pertukaran 2 m³ kepada cm³?",
-    ["2000", "20 000", "200 000", "2 000 000"],
-    3,
-    "1 m³ = 1 000 000 cm³.",
-    "Medium",
-  ],
-  [
-    "Sebuah peta 5 cm = 25 km sebenar. Skala?",
-    ["1 : 5000", "1 : 50 000", "1 : 500 000", "1 : 5 000 000"],
-    2,
-    "25 km = 2 500 000 cm; 5 : 2 500 000 = 1 : 500 000.",
-    "Medium",
-  ],
-  [
-    "Permudahkan nisbah 45 minit : 2 jam.",
-    ["3 : 8", "1 : 2", "2 : 3", "3 : 5"],
-    0,
-    "2 jam = 120 min; 45 : 120 = 3 : 8.",
-    "Medium",
-  ],
-  ["Selesaikan 3 : x = 9 : 15.", ["4", "5", "6", "10"], 1, "x = 3 × 15/9 = 5.", "Medium"],
-  [
-    "Jika 6 pekerja siap dalam 8 hari, 8 pekerja siap dalam? (kerja sama)",
-    ["5 hari", "6 hari", "7 hari", "9 hari"],
-    1,
-    "6 × 8 = 8 × t → t = 6 hari.",
-    "Medium",
-  ],
-  [
-    "Tukarkan 36 km/j kepada m/s.",
-    ["8", "10", "12", "15"],
-    1,
-    "36 × 1000/3600 = 10 m/s.",
-    "Medium",
-  ],
-  [
-    "A : B = 5 : 3. Jika A = 25, B = ?",
-    ["10", "12", "15", "20"],
-    2,
-    "B = 25 × 3/5 = 15.",
-    "Medium",
-  ],
-  [
-    "A : B : C = 2 : 3 : 5. Jika jumlah 100, nilai C?",
-    ["20", "30", "40", "50"],
-    3,
-    "C = 5/10 × 100 = 50.",
-    "Medium",
-  ],
-]);
-
-const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
-  [
-    "Simplify 15 : 25.",
-    ["3 : 4", "3 : 5", "5 : 7", "1 : 2"],
-    1,
-    "HCF 15 and 25 is 5 → 3 : 5.",
-    "Medium",
-  ],
-  ["Simplify 24 : 36.", ["1 : 2", "2 : 3", "3 : 4", "4 : 5"], 1, "HCF = 12 → 2 : 3.", "Medium"],
-  [
-    "Simplify 8 : 12 : 20.",
-    ["1 : 2 : 3", "2 : 3 : 5", "4 : 6 : 10", "2 : 3 : 4"],
-    1,
-    "HCF = 4 → 2 : 3 : 5.",
-    "Medium",
-  ],
-  [
-    "Express 500 g : 1 kg in simplest form.",
-    ["1 : 2", "5 : 10", "1 : 5", "2 : 5"],
-    0,
-    "1 kg = 1000 g; 500 : 1000 = 1 : 2.",
-    "Medium",
-  ],
-  ["3 : 7 = 9 : ?", ["14", "18", "21", "24"], 2, "Multiply by 3 → 9 : 21.", "Medium"],
-  ["Solve 4/6 = x/9.", ["4", "5", "6", "8"], 2, "Cross multiply: 4 × 9 = 6x → x = 6.", "Medium"],
-  ["Solve 5/8 = x/24.", ["10", "12", "15", "20"], 2, "5 × 24 = 8x → x = 15.", "Medium"],
-  [
-    "If A : B = 2 : 3 and B : C = 4 : 5, then A : B : C = ?",
-    ["2 : 3 : 5", "8 : 12 : 15", "4 : 6 : 10", "2 : 12 : 5"],
-    1,
-    "Make B = 12 → 8 : 12 : 15.",
-    "Medium",
-  ],
-  [
-    "A car travels 180 km in 3 hours. Speed?",
-    ["50 km/h", "60 km/h", "70 km/h", "90 km/h"],
-    1,
-    "180 ÷ 3 = 60 km/h.",
-    "Medium",
-  ],
-  [
-    "RM 24 for 4 kg of sugar. Cost of 7 kg?",
-    ["RM 36", "RM 42", "RM 48", "RM 56"],
-    1,
-    "1 kg = RM 6; 7 kg = RM 42.",
-    "Medium",
-  ],
-  [
-    "5 books = RM 35. 12 books?",
-    ["RM 70", "RM 80", "RM 84", "RM 90"],
-    2,
-    "1 book = RM 7; 12 books = RM 84.",
-    "Medium",
-  ],
-  ["Convert 90 km/h to m/s.", ["20", "25", "27", "30"], 1, "90 × 1000/3600 = 25 m/s.", "Medium"],
-  [
-    "Convert RM 8 per m to RM per cm.",
-    ["0.08", "0.8", "8", "80"],
-    0,
-    "RM 8 ÷ 100 = RM 0.08 per cm.",
-    "Medium",
-  ],
-  [
-    "A recipe for 4 uses 200 g flour. For 6 people?",
-    ["250 g", "280 g", "300 g", "350 g"],
-    2,
-    "200 × 6/4 = 300 g.",
-    "Medium",
-  ],
-  [
-    "Simplify 200 ml : 1 litre.",
-    ["1 : 2", "1 : 5", "2 : 5", "1 : 10"],
-    1,
-    "1 L = 1000 ml; 200 : 1000 = 1 : 5.",
-    "Medium",
-  ],
-  [
-    "40% as simplest ratio?",
-    ["2 : 5", "4 : 5", "1 : 4", "1 : 5"],
-    0,
-    "40% = 40 : 100 = 2 : 5.",
-    "Medium",
-  ],
-  [
-    "60% as simplest ratio?",
-    ["3 : 5", "2 : 5", "6 : 11", "3 : 4"],
-    0,
-    "60% = 60 : 100 = 3 : 5.",
-    "Medium",
-  ],
-  ["Solve 7 : 4 = 21 : x.", ["10", "12", "14", "16"], 1, "x = 4 × 21/7 = 12.", "Medium"],
-  [
-    "If boys : girls = 3 : 2 and total is 30, number of boys?",
-    ["12", "15", "18", "20"],
-    2,
-    "3/5 × 30 = 18.",
-    "Medium",
-  ],
-  [
-    "If 2 pounds = 9 ringgit, 5 pounds = ?",
-    ["RM 18", "RM 20", "RM 22.50", "RM 25"],
-    2,
-    "1 pound = RM 4.50; 5 pounds = RM 22.50.",
-    "Medium",
-  ],
-  [
-    "Scale 1 : 5000. Map distance 4 cm = actual?",
-    ["200 m", "100 m", "2000 m", "20 m"],
-    0,
-    "4 × 5000 = 20 000 cm = 200 m.",
-    "Medium",
-  ],
-  [
-    "Worker rate: 5 hours = RM 75. 1 hour = ?",
-    ["RM 12", "RM 15", "RM 18", "RM 20"],
-    1,
-    "75 ÷ 5 = RM 15.",
-    "Medium",
-  ],
-  [
-    "Convert 2 m³ to cm³.",
-    ["2000", "20 000", "200 000", "2 000 000"],
-    3,
-    "1 m³ = 1 000 000 cm³.",
-    "Medium",
-  ],
-  [
-    "On a map, 5 cm = 25 km. Scale?",
-    ["1 : 5000", "1 : 50 000", "1 : 500 000", "1 : 5 000 000"],
-    2,
-    "25 km = 2 500 000 cm; 5 : 2 500 000 = 1 : 500 000.",
-    "Medium",
-  ],
-  [
-    "Simplify ratio 45 minutes : 2 hours.",
-    ["3 : 8", "1 : 2", "2 : 3", "3 : 5"],
-    0,
-    "2 h = 120 min; 45 : 120 = 3 : 8.",
-    "Medium",
-  ],
-  ["Solve 3 : x = 9 : 15.", ["4", "5", "6", "10"], 1, "x = 3 × 15/9 = 5.", "Medium"],
-  [
-    "If 6 workers finish in 8 days, 8 workers (same work) finish in?",
-    ["5 days", "6 days", "7 days", "9 days"],
-    1,
-    "6 × 8 = 8 × t → t = 6 days.",
-    "Medium",
-  ],
-  ["Convert 36 km/h to m/s.", ["8", "10", "12", "15"], 1, "36 × 1000/3600 = 10 m/s.", "Medium"],
-  ["A : B = 5 : 3. If A = 25, B = ?", ["10", "12", "15", "20"], 2, "B = 25 × 3/5 = 15.", "Medium"],
-  [
-    "A : B : C = 2 : 3 : 5. If total is 100, value of C?",
-    ["20", "30", "40", "50"],
-    3,
-    "C = 5/10 × 100 = 50.",
-    "Medium",
-  ],
-]);
-
-const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
-  [
-    "Resipi 8 keping kek gunakan 400 g mentega. Untuk 14 keping?",
-    ["500 g", "600 g", "650 g", "700 g"],
-    3,
-    "400 × 14/8 = 700 g.",
-    "Hard",
-  ],
-  [
-    "Jika 60% pelajar lelaki dan jumlah 40, bilangan perempuan?",
-    ["12", "16", "20", "24"],
-    1,
-    "40% perempuan = 0.40 × 40 = 16.",
-    "Hard",
-  ],
-  [
-    "Skala peta 1 : 250 000. Dua bandar 6 cm pada peta. Jarak sebenar (km)?",
-    ["10", "12", "15", "20"],
-    2,
-    "6 × 250 000 = 1 500 000 cm = 15 km.",
-    "Hard",
-  ],
-  [
-    "Anggar populasi: 40 ditanda dilepas. 80 ditangkap; 8 bertanda. Anggaran?",
-    ["200", "320", "400", "640"],
-    2,
-    "8/80 = 40/N → N = 400.",
-    "Hard",
-  ],
-  [
-    "A : B = 3 : 5. Jika B − A = 8, nilai A?",
-    ["10", "12", "15", "20"],
-    1,
-    "B − A = 5k − 3k = 2k = 8 → k = 4; A = 12.",
-    "Hard",
-  ],
-  [
-    "Larutan 5 : 3 air : sirap. Untuk 240 ml sirap, isipadu air?",
-    ["360 ml", "400 ml", "420 ml", "480 ml"],
-    1,
-    "Air = 5/3 × 240 = 400 ml.",
-    "Hard",
-  ],
-  [
-    "Kereta A: 240 km dalam 3 jam. Kereta B: 300 km dalam 4 jam. Yang lebih laju?",
-    ["Kereta A", "Kereta B", "Sama", "Tidak ditentukan"],
-    0,
-    "A = 80 km/j; B = 75 km/j.",
-    "Hard",
-  ],
-  [
-    "12 pekerja siap dalam 10 hari. 15 pekerja dalam? (kerja malar)",
-    ["6", "7", "8", "9"],
-    2,
-    "12×10 = 15×t → t = 8.",
-    "Hard",
-  ],
-  [
-    "Membeli 3 kg untuk RM 21 atau 5 kg untuk RM 30. Yang lebih jimat per kg?",
-    ["3 kg", "5 kg", "Sama", "Tidak ditentukan"],
-    1,
-    "RM 7/kg vs RM 6/kg → 5 kg lebih jimat.",
-    "Hard",
-  ],
-  [
-    "A : B : C = 2 : 3 : 4. Jumlah RM 90. Bahagian C?",
-    ["RM 20", "RM 30", "RM 40", "RM 45"],
-    2,
-    "C = 4/9 × 90 = RM 40.",
-    "Hard",
-  ],
-  [
-    "Nisbah lelaki kepada perempuan 7 : 5. Jika perempuan 35, jumlah?",
-    ["56", "70", "84", "96"],
-    2,
-    "Lelaki = 7/5 × 35 = 49; jumlah 84.",
-    "Hard",
-  ],
-  [
-    "Kadar laju 72 km/j dalam m/s?",
-    ["18", "20", "22", "24"],
-    1,
-    "72 × 1000/3600 = 20 m/s.",
-    "Hard",
-  ],
-  [
-    "Jika 5 kg buah berharga RM 60, harga 250 g?",
-    ["RM 3", "RM 4", "RM 5", "RM 6"],
-    0,
-    "1 kg = RM 12; 0.25 kg = RM 3.",
-    "Hard",
-  ],
-  [
-    "Larutan 1 : 4 jus : air. Untuk 1.5 liter jumlah, isipadu jus?",
-    ["200 ml", "250 ml", "300 ml", "375 ml"],
-    2,
-    "Jus = 1/5 × 1500 = 300 ml.",
-    "Hard",
-  ],
-  [
-    "Cas teksi RM 3 mula + RM 1.50/km. Bayaran 8 km?",
-    ["RM 12", "RM 13", "RM 14", "RM 15"],
-    3,
-    "3 + 1.5×8 = RM 15.",
-    "Hard",
-  ],
-  ["Tukarkan 0.5 m/s kepada km/j.", ["1.5", "1.8", "2", "5"], 1, "0.5 × 3.6 = 1.8 km/j.", "Hard"],
-  [
-    "Peta skala 1 : 100 000. Bahagian sebenar 7.5 km = berapa cm pada peta?",
-    ["5.5", "6.5", "7", "7.5"],
-    3,
-    "7.5 km = 750 000 cm ÷ 100 000 = 7.5 cm.",
-    "Hard",
-  ],
-  [
-    "Jika 70% pelajar lulus dan 21 gagal, jumlah pelajar?",
-    ["50", "60", "70", "80"],
-    2,
-    "30% = 21 → 100% = 70.",
-    "Hard",
-  ],
-  [
-    "Resipi cookies 5 : 3 : 2 (tepung : gula : mentega). Jumlah 500 g. Tepung?",
-    ["200 g", "230 g", "250 g", "300 g"],
-    2,
-    "5/10 × 500 = 250 g.",
-    "Hard",
-  ],
-  [
-    "Selesaikan 2x : 5 = 8 : 10.",
-    ["x = 2", "x = 4", "x = 5", "x = 8"],
-    0,
-    "2x × 10 = 5 × 8 → 20x = 40 → x = 2.",
-    "Hard",
-  ],
-  [
-    "Larutan 3 : 2 alkohol : air. Jika alkohol 150 ml, isipadu air?",
-    ["75 ml", "100 ml", "125 ml", "150 ml"],
-    1,
-    "Air = 2/3 × 150 = 100 ml.",
-    "Hard",
-  ],
-  [
-    "A bekerja 6 hari, B bekerja 9 hari. Bayaran RM 450 dibahagi nisbah hari. Bayaran B?",
-    ["RM 180", "RM 200", "RM 250", "RM 270"],
-    3,
-    "B = 9/15 × 450 = RM 270.",
-    "Hard",
-  ],
-  [
-    "Bas 240 km dalam 5 jam. Berapa jam untuk 168 km?",
-    ["3", "3.2", "3.5", "4"],
-    2,
-    "Kelajuan 48 km/j; 168/48 = 3.5 jam.",
-    "Hard",
-  ],
-  [
-    "Dua segi tiga serupa dengan nisbah sisi 2 : 5. Nisbah luas?",
-    ["2 : 5", "4 : 10", "4 : 25", "8 : 125"],
-    2,
-    "Luas mengikut kuadrat: 2² : 5² = 4 : 25.",
-    "Hard",
-  ],
-  [
-    "Jika RM 50 ditukar 1100 yen, RM 80 = ?",
-    ["1600 yen", "1700 yen", "1760 yen", "1800 yen"],
-    2,
-    "1 RM = 22 yen; 80 × 22 = 1760.",
-    "Hard",
-  ],
-  [
-    "Anggar populasi ikan: 25 ditanda. Tangkap kedua 100; 5 bertanda.",
-    ["400", "500", "600", "1000"],
-    1,
-    "5/100 = 25/N → N = 500.",
-    "Hard",
-  ],
-  [
-    "Kadar 0.6 liter/minit. Berapa liter dalam 25 minit?",
-    ["10", "12", "15", "18"],
-    2,
-    "0.6 × 25 = 15 L.",
-    "Hard",
-  ],
-  [
-    "Kos pengeluaran ialah RM 12/kg. Jika harga jualan RM 15/kg, peratus untung?",
-    ["20%", "25%", "30%", "33%"],
-    1,
-    "Untung 3 atas 12 = 25%.",
-    "Hard",
-  ],
-  [
-    "Selesaikan (x+1)/4 = 3/2.",
-    ["3", "4", "5", "6"],
-    2,
-    "Pendaraban silang: 2(x+1) = 12 → x = 5.",
-    "Hard",
-  ],
-  [
-    "Petrol kereta 8 km/L. Berapa liter untuk 200 km?",
-    ["20", "22", "24", "25"],
-    3,
-    "200 ÷ 8 = 25 L.",
-    "Hard",
-  ],
-]);
-
-const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
-  [
-    "A recipe for 8 cakes uses 400 g butter. For 14 cakes?",
-    ["500 g", "600 g", "650 g", "700 g"],
-    3,
-    "400 × 14/8 = 700 g.",
-    "Hard",
-  ],
-  [
-    "If 60% of students are boys and total is 40, number of girls?",
-    ["12", "16", "20", "24"],
-    1,
-    "40% girls = 0.40 × 40 = 16.",
-    "Hard",
-  ],
-  [
-    "Map scale 1 : 250 000. Two cities 6 cm apart on map. Actual distance (km)?",
-    ["10", "12", "15", "20"],
-    2,
-    "6 × 250 000 = 1 500 000 cm = 15 km.",
-    "Hard",
-  ],
-  [
-    "Population estimate: 40 marked released. 80 recaptured; 8 marked. Estimate?",
-    ["200", "320", "400", "640"],
-    2,
-    "8/80 = 40/N → N = 400.",
-    "Hard",
-  ],
-  [
-    "Solution 3 : 2 alcohol : water. If alcohol is 150 ml, volume of water?",
-    ["75 ml", "100 ml", "125 ml", "150 ml"],
-    1,
-    "Water = 2/3 × 150 = 100 ml.",
-    "Hard",
-  ],
-  [
-    "Solution 5 : 3 water : syrup. For 240 ml syrup, volume of water?",
-    ["360 ml", "400 ml", "420 ml", "480 ml"],
-    1,
-    "Water = 5/3 × 240 = 400 ml.",
-    "Hard",
-  ],
-  [
-    "Car A: 240 km in 3 h. Car B: 300 km in 4 h. Which is faster?",
-    ["Car A", "Car B", "Same", "Undefined"],
-    0,
-    "A = 80 km/h; B = 75 km/h.",
-    "Hard",
-  ],
-  [
-    "12 workers finish in 10 days. 15 workers in? (constant work)",
-    ["6", "7", "8", "9"],
-    2,
-    "12×10 = 15×t → t = 8.",
-    "Hard",
-  ],
-  [
-    "Buy 3 kg for RM 21 or 5 kg for RM 30. Which is cheaper per kg?",
-    ["3 kg pack", "5 kg pack", "Same", "Undefined"],
-    1,
-    "RM 7/kg vs RM 6/kg → 5 kg cheaper.",
-    "Hard",
-  ],
-  [
-    "A : B : C = 2 : 3 : 4. Total RM 90. Share of C?",
-    ["RM 20", "RM 30", "RM 40", "RM 45"],
-    2,
-    "C = 4/9 × 90 = RM 40.",
-    "Hard",
-  ],
-  [
-    "Boys : girls = 7 : 5. If girls = 35, total?",
-    ["56", "70", "84", "96"],
-    2,
-    "Boys = 7/5 × 35 = 49; total 84.",
-    "Hard",
-  ],
-  ["Rate 72 km/h in m/s?", ["18", "20", "22", "24"], 1, "72 × 1000/3600 = 20 m/s.", "Hard"],
-  [
-    "If 5 kg of fruit cost RM 60, price of 250 g?",
-    ["RM 3", "RM 4", "RM 5", "RM 6"],
-    0,
-    "1 kg = RM 12; 0.25 kg = RM 3.",
-    "Hard",
-  ],
-  [
-    "Mixture 1 : 4 juice : water. For total 1.5 litres, volume of juice?",
-    ["200 ml", "250 ml", "300 ml", "375 ml"],
-    2,
-    "Juice = 1/5 × 1500 = 300 ml.",
-    "Hard",
-  ],
-  [
-    "Taxi fare RM 3 base + RM 1.50/km. Fare for 8 km?",
-    ["RM 12", "RM 13", "RM 14", "RM 15"],
-    3,
-    "3 + 1.5×8 = RM 15.",
-    "Hard",
-  ],
-  ["Convert 0.5 m/s to km/h.", ["1.5", "1.8", "2", "5"], 1, "0.5 × 3.6 = 1.8 km/h.", "Hard"],
-  [
-    "Map scale 1 : 100 000. Actual distance 7.5 km = how many cm on map?",
-    ["5.5", "6.5", "7", "7.5"],
-    3,
-    "7.5 km = 750 000 cm ÷ 100 000 = 7.5 cm.",
-    "Hard",
-  ],
-  [
-    "If 70% of students pass and 21 fail, total students?",
-    ["50", "60", "70", "80"],
-    2,
-    "30% = 21 → 100% = 70.",
-    "Hard",
-  ],
-  [
-    "Cookie recipe 5 : 3 : 2 (flour : sugar : butter). Total 500 g. Flour?",
-    ["200 g", "230 g", "250 g", "300 g"],
-    2,
-    "5/10 × 500 = 250 g.",
-    "Hard",
-  ],
-  [
-    "Solve 2x : 5 = 8 : 10.",
-    ["x = 2", "x = 4", "x = 5", "x = 8"],
-    0,
-    "2x × 10 = 5 × 8 → 20x = 40 → x = 2.",
-    "Hard",
-  ],
-  [
-    "A works 6 days, B works 9 days. RM 450 split by days. B's share?",
-    ["RM 180", "RM 200", "RM 250", "RM 270"],
-    3,
-    "B = 9/15 × 450 = RM 270.",
-    "Hard",
-  ],
-  [
-    "Bus 240 km in 5 h. How many hours for 168 km?",
-    ["3", "3.2", "3.5", "4"],
-    2,
-    "Speed 48 km/h; 168/48 = 3.5 h.",
-    "Hard",
-  ],
-  [
-    "Two similar triangles have side ratio 2 : 5. Area ratio?",
-    ["2 : 5", "4 : 10", "4 : 25", "8 : 125"],
-    2,
-    "Area scales by square: 2² : 5² = 4 : 25.",
-    "Hard",
-  ],
-  [
-    "If RM 50 exchanges for 1100 yen, RM 80 = ?",
-    ["1600 yen", "1700 yen", "1760 yen", "1800 yen"],
-    2,
-    "1 RM = 22 yen; 80 × 22 = 1760.",
-    "Hard",
-  ],
-  [
-    "Fish population estimate: 25 marked. Second catch 100; 5 marked.",
-    ["400", "500", "600", "1000"],
-    1,
-    "5/100 = 25/N → N = 500.",
-    "Hard",
-  ],
-  [
-    "Rate 0.6 litre/minute. How many litres in 25 minutes?",
-    ["10", "12", "15", "18"],
-    2,
-    "0.6 × 25 = 15 L.",
-    "Hard",
-  ],
-  [
-    "Production cost RM 12/kg. Selling price RM 15/kg. Profit %?",
-    ["20%", "25%", "30%", "33%"],
-    1,
-    "Profit 3 over 12 = 25%.",
-    "Hard",
-  ],
-  ["Solve (x+1)/4 = 3/2.", ["3", "4", "5", "6"], 2, "Cross multiply: 2(x+1) = 12 → x = 5.", "Hard"],
-  [
-    "Car petrol 8 km/L. Litres needed for 200 km?",
-    ["20", "22", "24", "25"],
-    3,
-    "200 ÷ 8 = 25 L.",
-    "Hard",
-  ],
-  [
-    "A : B = 3 : 5. If B − A = 8, value of A?",
-    ["10", "12", "15", "20"],
-    1,
-    "B − A = 5k − 3k = 2k = 8 → k = 4; A = 12.",
-    "Hard",
-  ],
-]);
-
-const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
-  [
-    "Apakah pemboleh ubah?",
-    [
-      "Nombor tetap",
-      "Huruf atau simbol yang mewakili nilai yang tidak diketahui",
-      "Tanda operasi",
-      "Unit ukuran",
-    ],
-    1,
-    "Pemboleh ubah ialah huruf atau simbol yang mewakili nilai yang tidak diketahui.",
-    "Easy",
-  ],
-  [
-    "Manakah antara berikut ialah pemboleh ubah?",
-    ["5", "+", "x", "="],
-    2,
-    "x ialah huruf yang digunakan untuk mewakili nilai yang tidak diketahui; nombor dan simbol operasi bukan pemboleh ubah.",
-    "Easy",
-  ],
-  [
-    "Daripada manakah perkataan 'algebra' berasal?",
-    ["Bahasa Yunani", "Perkataan Arab 'al-jabr'", "Bahasa Latin", "Bahasa Sanskrit"],
-    1,
-    "Perkataan 'algebra' berasal daripada perkataan Arab 'al-jabr'.",
-    "Easy",
-  ],
-  [
-    "Apakah ungkapan algebra bagi 'n biji gula-gula tambah 6'?",
-    ["n − 6", "n + 6", "6n", "n ÷ 6"],
-    1,
-    "Menambah 6 biji gula-gula kepada n biji gula-gula memberikan ungkapan n + 6.",
-    "Easy",
-  ],
-  [
-    "Apakah ungkapan algebra bagi 'n biji gula-gula tolak 1'?",
-    ["n + 1", "1 − n", "n − 1", "n × 1"],
-    2,
-    "Memakan 1 biji gula-gula daripada n biji gula-gula memberikan ungkapan n − 1.",
-    "Easy",
-  ],
-  [
-    "Apakah ungkapan bagi 'tiga balang, setiap satu mengandungi n biji gula-gula'?",
-    ["n + 3", "n − 3", "n/3", "3n"],
-    3,
-    "Tiga balang yang setiap satu mengandungi n biji gula-gula memberi 3 × n = 3n.",
-    "Easy",
-  ],
-  [
-    "Apakah sebutan algebra?",
-    [
-      "Hanya nombor sahaja",
-      "Hanya pemboleh ubah sahaja",
-      "Nombor, pemboleh ubah, atau hasil darab antara kedua-duanya",
-      "Hanya tanda operasi sahaja",
-    ],
-    2,
-    "Sebutan algebra ialah nombor, pemboleh ubah, atau hasil darab antara nombor dengan pemboleh ubah.",
-    "Easy",
-  ],
-  [
-    "Berapakah bilangan sebutan dalam ungkapan 3ab + 5x − 2y + 7?",
-    ["2", "3", "4", "5"],
-    2,
-    "Ungkapan 3ab + 5x − 2y + 7 mempunyai empat sebutan: 3ab, 5x, −2y dan 7.",
-    "Easy",
-  ],
-  [
-    "Apakah pekali bagi sebutan 3x?",
-    ["x", "3", "3x", "1"],
-    1,
-    "Pekali ialah faktor nombor yang mendarab pemboleh ubah; pekali bagi 3x ialah 3.",
-    "Easy",
-  ],
-  [
-    "Apakah pekali bagi sebutan −7ab?",
-    ["7", "ab", "−7", "−1"],
-    2,
-    "Pekali bagi −7ab ialah −7 kerana tanda negatif adalah sebahagian daripada pekali.",
-    "Easy",
-  ],
-  [
-    "Apakah pekali bagi sebutan y?",
-    ["0", "y", "1", "tiada"],
-    2,
-    "y bermaksud 1y, jadi pekalinya ialah 1.",
-    "Easy",
-  ],
-  [
-    "Apakah pekali bagi sebutan −n?",
-    ["1", "−1", "n", "0"],
-    1,
-    "−n bermaksud −1n, jadi pekalinya ialah −1.",
-    "Easy",
-  ],
-  [
-    "Manakah pasangan berikut ialah sebutan serupa?",
-    ["3x dan 8x", "x dan x²", "2a dan 2b", "ab dan abc"],
-    0,
-    "3x dan 8x mempunyai pemboleh ubah x dengan kuasa yang sama, jadi ia ialah sebutan serupa.",
-    "Easy",
-  ],
-  [
-    "Manakah pasangan berikut ialah sebutan serupa?",
-    ["xy dan yx", "x dan y", "a dan a²", "m dan mn"],
-    0,
-    "xy dan yx mewakili hasil darab pemboleh ubah yang sama (x × y = y × x), jadi ia ialah sebutan serupa.",
-    "Easy",
-  ],
-  [
-    "Manakah pasangan berikut ialah sebutan tidak serupa?",
-    ["3x dan 8x", "2ab dan −5ab", "x dan x²", "xy dan yx"],
-    2,
-    "x dan x² mempunyai kuasa yang berbeza (kuasa 1 berbanding kuasa 2), jadi ia ialah sebutan tidak serupa.",
-    "Easy",
-  ],
-  [
-    "Mengapakah x dan x² ialah sebutan tidak serupa?",
-    ["Pemboleh ubah berbeza", "Kuasa berbeza", "Pekali berbeza", "Tanda berbeza"],
-    1,
-    "x mempunyai kuasa 1 manakala x² mempunyai kuasa 2, maka kuasanya berbeza.",
-    "Easy",
-  ],
-  [
-    "Mengapakah 2a dan 2b ialah sebutan tidak serupa?",
-    ["Pekali berbeza", "Kuasa berbeza", "Pemboleh ubah berbeza", "Operasi berbeza"],
-    2,
-    "2a dan 2b mempunyai pemboleh ubah yang berbeza, iaitu a dan b.",
-    "Easy",
-  ],
-  [
-    "Apakah ciri utama sebutan serupa?",
-    [
-      "Pekali yang sama",
-      "Pemboleh ubah dan kuasa yang sama",
-      "Tanda yang sama",
-      "Bilangan sebutan yang sama",
-    ],
-    1,
-    "Sebutan serupa mesti mempunyai pemboleh ubah yang sama dan kuasa yang sama bagi setiap pemboleh ubah.",
-    "Easy",
-  ],
-  [
-    "Manakah antara berikut ialah sebutan tunggal?",
-    ["3x + 5", "7", "x − y", "2a + 3b"],
-    1,
-    "Sebutan tunggal ialah satu sebutan sahaja seperti nombor 7, tanpa digabungkan dengan sebutan lain.",
-    "Easy",
-  ],
-  [
-    "Apakah maksud 'nilai berubah'?",
-    [
-      "Nilai yang sentiasa tetap",
-      "Nilai yang berubah-ubah mengikut keadaan",
-      "Nilai yang sentiasa sifar",
-      "Nilai yang tidak boleh diukur",
-    ],
-    1,
-    "Nilai berubah ialah kuantiti yang nilainya boleh berubah-ubah mengikut keadaan.",
-    "Easy",
-  ],
-  [
-    "Berikan contoh nilai tetap.",
-    [
-      "Masa perjalanan ke sekolah",
-      "Bilangan pelajar yang hadir",
-      "Kadar faedah tahunan",
-      "Suhu udara harian",
-    ],
-    2,
-    "Kadar faedah tahunan ditetapkan dan kekal sama, jadi ia ialah nilai tetap.",
-    "Easy",
-  ],
-  [
-    "Berikan contoh nilai berubah.",
-    [
-      "Kadar faedah tahunan",
-      "Bilangan hari dalam seminggu",
-      "Masa perjalanan ke sekolah setiap hari",
-      "Takat didih air pada paras laut",
-    ],
-    2,
-    "Masa perjalanan ke sekolah berbeza setiap hari mengikut keadaan, jadi ia ialah nilai berubah.",
-    "Easy",
-  ],
-  [
-    "Apakah ungkapan algebra?",
-    [
-      "Hanya satu nombor sahaja",
-      "Gabungan sebutan yang dipisahkan oleh + atau −",
-      "Hanya satu pemboleh ubah sahaja",
-      "Persamaan dengan tanda sama dengan",
-    ],
-    1,
-    "Ungkapan algebra terdiri daripada satu atau lebih sebutan yang dipisahkan oleh + atau −.",
-    "Easy",
-  ],
-  [
-    "Apakah yang biasanya diwakili oleh pemboleh ubah n?",
-    ["Bilangan atau kuantiti sesuatu", "Hanya warna", "Hanya unit jisim", "Tanda operasi"],
-    0,
-    "Pemboleh ubah n biasanya mewakili bilangan atau kuantiti sesuatu benda.",
-    "Easy",
-  ],
-  [
-    "Manakah ungkapan yang mempunyai tepat dua sebutan?",
-    ["5", "3x + 2y", "x", "4ab − 2x + y"],
-    1,
-    "Ungkapan 3x + 2y mempunyai dua sebutan iaitu 3x dan 2y.",
-    "Easy",
-  ],
-  [
-    "Apakah pekali bagi sebutan 5x dalam ungkapan 5x − 2y?",
-    ["5", "x", "−2", "1"],
-    0,
-    "Pekali bagi sebutan 5x ialah 5.",
-    "Easy",
-  ],
-  [
-    "Apakah pekali bagi sebutan −2y dalam ungkapan 5x − 2y?",
-    ["2", "y", "−2", "−y"],
-    2,
-    "Pekali bagi sebutan −2y ialah −2 kerana tanda negatif termasuk dalam pekali.",
-    "Easy",
-  ],
-  [
-    "Manakah pasangan sebutan serupa?",
-    ["4m dan 4n", "2xy dan 7xy", "3a dan 3a²", "p dan pq"],
-    1,
-    "2xy dan 7xy mempunyai pemboleh ubah x dan y dengan kuasa yang sama, jadi ia sebutan serupa.",
-    "Easy",
-  ],
-  [
-    "Berapakah bilangan pemboleh ubah dalam sebutan abc?",
-    ["1", "2", "3", "0"],
-    2,
-    "Sebutan abc mengandungi tiga pemboleh ubah, iaitu a, b dan c.",
-    "Easy",
-  ],
-  [
-    "Apakah maksud 'al-jabr' dalam bahasa Arab?",
-    ["Membahagi", "Menyatukan semula bahagian yang terpisah", "Mendarab", "Menolak"],
-    1,
-    "'Al-jabr' bermaksud 'menyusun semula' atau 'menggabungkan bahagian yang terpisah'.",
-    "Easy",
-  ],
-]);
-
-const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
-  [
-    "What is a variable?",
-    [
-      "A fixed number",
-      "A letter or symbol that represents an unknown value",
-      "An operation sign",
-      "A unit of measurement",
-    ],
-    1,
-    "A variable is a letter or symbol that represents an unknown value.",
-    "Easy",
-  ],
-  [
-    "Which of the following is a variable?",
-    ["5", "+", "x", "="],
-    2,
-    "x is a letter used to represent an unknown value; numbers and operation signs are not variables.",
-    "Easy",
-  ],
-  [
-    "Where does the word 'algebra' come from?",
-    ["Greek", "The Arabic word 'al-jabr'", "Latin", "Sanskrit"],
-    1,
-    "The word 'algebra' comes from the Arabic word 'al-jabr'.",
-    "Easy",
-  ],
-  [
-    "What is the algebraic expression for 'n sweets plus 6'?",
-    ["n − 6", "n + 6", "6n", "n ÷ 6"],
-    1,
-    "Adding 6 sweets to n sweets gives the expression n + 6.",
-    "Easy",
-  ],
-  [
-    "What is the algebraic expression for 'n sweets minus 1'?",
-    ["n + 1", "1 − n", "n − 1", "n × 1"],
-    2,
-    "Eating 1 sweet from n sweets gives the expression n − 1.",
-    "Easy",
-  ],
-  [
-    "What is the expression for 'three jars, each containing n sweets'?",
-    ["n + 3", "n − 3", "n/3", "3n"],
-    3,
-    "Three jars, each containing n sweets, gives 3 × n = 3n.",
-    "Easy",
-  ],
-  [
-    "What is an algebraic term?",
-    [
-      "Only a number",
-      "Only a variable",
-      "A number, a variable, or the product of both",
-      "Only an operation sign",
-    ],
-    2,
-    "An algebraic term is a number, a variable, or the product of a number and a variable.",
-    "Easy",
-  ],
-  [
-    "How many terms are in the expression 3ab + 5x − 2y + 7?",
-    ["2", "3", "4", "5"],
-    2,
-    "The expression 3ab + 5x − 2y + 7 has four terms: 3ab, 5x, −2y and 7.",
-    "Easy",
-  ],
-  [
-    "What is the coefficient of the term 3x?",
-    ["x", "3", "3x", "1"],
-    1,
-    "A coefficient is the numerical factor that multiplies a variable; the coefficient of 3x is 3.",
-    "Easy",
-  ],
-  [
-    "What is the coefficient of the term −7ab?",
-    ["7", "ab", "−7", "−1"],
-    2,
-    "The coefficient of −7ab is −7 because the negative sign is part of the coefficient.",
-    "Easy",
-  ],
-  [
-    "What is the coefficient of the term y?",
-    ["0", "y", "1", "none"],
-    2,
-    "y means 1y, so its coefficient is 1.",
-    "Easy",
-  ],
-  [
-    "What is the coefficient of the term −n?",
-    ["1", "−1", "n", "0"],
-    1,
-    "−n means −1n, so its coefficient is −1.",
-    "Easy",
-  ],
-  [
-    "Which pair are like terms?",
-    ["3x and 8x", "x and x²", "2a and 2b", "ab and abc"],
-    0,
-    "3x and 8x have the same variable x with the same power, so they are like terms.",
-    "Easy",
-  ],
-  [
-    "Which pair are like terms?",
-    ["xy and yx", "x and y", "a and a²", "m and mn"],
-    0,
-    "xy and yx represent the product of the same variables (x × y = y × x), so they are like terms.",
-    "Easy",
-  ],
-  [
-    "Which pair are unlike terms?",
-    ["3x and 8x", "2ab and −5ab", "x and x²", "xy and yx"],
-    2,
-    "x and x² have different powers (power 1 versus power 2), so they are unlike terms.",
-    "Easy",
-  ],
-  [
-    "Why are x and x² unlike terms?",
-    ["Different variables", "Different powers", "Different coefficients", "Different signs"],
-    1,
-    "x has power 1 while x² has power 2, so their powers are different.",
-    "Easy",
-  ],
-  [
-    "Why are 2a and 2b unlike terms?",
-    ["Different coefficients", "Different powers", "Different variables", "Different operations"],
-    2,
-    "2a and 2b have different variables, namely a and b.",
-    "Easy",
-  ],
-  [
-    "What is the main feature of like terms?",
-    ["Same coefficient", "Same variables and same powers", "Same sign", "Same number of terms"],
-    1,
-    "Like terms must have the same variables and the same power for each variable.",
-    "Easy",
-  ],
-  [
-    "Which of the following is a single term?",
-    ["3x + 5", "7", "x − y", "2a + 3b"],
-    1,
-    "A single term is just one term on its own, like the number 7, not combined with other terms.",
-    "Easy",
-  ],
-  [
-    "What does 'varied value' mean?",
-    [
-      "A value that is always fixed",
-      "A value that changes depending on circumstances",
-      "A value that is always zero",
-      "A value that cannot be measured",
-    ],
-    1,
-    "A varied value is a quantity whose value can change depending on circumstances.",
-    "Easy",
-  ],
-  [
-    "Give an example of a fixed value.",
-    [
-      "Travel time to school",
-      "Number of students present",
-      "Annual interest rate",
-      "Daily air temperature",
-    ],
-    2,
-    "The annual interest rate is fixed and stays the same, so it is a fixed value.",
-    "Easy",
-  ],
-  [
-    "Give an example of a varied value.",
-    [
-      "Annual interest rate",
-      "Number of days in a week",
-      "Daily travel time to school",
-      "Boiling point of water at sea level",
-    ],
-    2,
-    "Travel time to school differs each day depending on circumstances, so it is a varied value.",
-    "Easy",
-  ],
-  [
-    "What is an algebraic expression?",
-    [
-      "Only a single number",
-      "A combination of terms separated by + or −",
-      "Only a single variable",
-      "An equation with an equals sign",
-    ],
-    1,
-    "An algebraic expression consists of one or more terms separated by + or −.",
-    "Easy",
-  ],
-  [
-    "What does the variable n usually represent?",
-    ["A number or quantity", "Only a colour", "Only a unit of mass", "An operation sign"],
-    0,
-    "The variable n usually represents the number or quantity of something.",
-    "Easy",
-  ],
-  [
-    "Which expression contains exactly two terms?",
-    ["5", "3x + 2y", "x", "4ab − 2x + y"],
-    1,
-    "The expression 3x + 2y has two terms: 3x and 2y.",
-    "Easy",
-  ],
-  [
-    "What is the coefficient of the term 5x in the expression 5x − 2y?",
-    ["5", "x", "−2", "1"],
-    0,
-    "The coefficient of the term 5x is 5.",
-    "Easy",
-  ],
-  [
-    "What is the coefficient of the term −2y in the expression 5x − 2y?",
-    ["2", "y", "−2", "−y"],
-    2,
-    "The coefficient of the term −2y is −2 because the negative sign is part of the coefficient.",
-    "Easy",
-  ],
-  [
-    "Which of these is a pair of like terms?",
-    ["4m and 4n", "2xy and 7xy", "3a and 3a²", "p and pq"],
-    1,
-    "2xy and 7xy have the same variables x and y with the same powers, so they are like terms.",
-    "Easy",
-  ],
-  [
-    "How many variables are in the term abc?",
-    ["1", "2", "3", "0"],
-    2,
-    "The term abc contains three variables: a, b and c.",
-    "Easy",
-  ],
-  [
-    "What does 'al-jabr' mean in Arabic?",
-    ["To divide", "To reunite/put together", "To multiply", "To subtract"],
-    1,
-    "'Al-jabr' means 'to reunite' or 'to put broken parts together'.",
-    "Easy",
-  ],
-]);
-
-const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
-  ["Diberi x = 3, cari nilai 2x + 1.", ["5", "6", "7", "8"], 2, "2x + 1 = 2(3) + 1 = 7.", "Medium"],
-  [
-    "Diberi x = 4, cari nilai 3x − 2.",
-    ["8", "9", "10", "12"],
-    2,
-    "3x − 2 = 3(4) − 2 = 10.",
-    "Medium",
-  ],
-  [
-    "Diberi x = 3 dan y = 2, cari nilai 8x − 5y + 7.",
-    ["19", "20", "21", "22"],
-    2,
-    "8(3) − 5(2) + 7 = 24 − 10 + 7 = 21.",
-    "Medium",
-  ],
-  [
-    "Diberi a = 5, cari nilai a² + 1.",
-    ["11", "21", "25", "26"],
-    3,
-    "a² + 1 = 5² + 1 = 25 + 1 = 26.",
-    "Medium",
-  ],
-  [
-    "Diberi x = 2, cari nilai 5x − x².",
-    ["4", "6", "8", "10"],
-    1,
-    "5x − x² = 5(2) − 2² = 10 − 4 = 6.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 3x + 2x.",
-    ["5x", "5x²", "6x", "x"],
-    0,
-    "3x + 2x = 5x kerana kedua-duanya sebutan serupa.",
-    "Medium",
-  ],
-  ["Permudahkan 9y − 4y.", ["4y", "5y", "5", "13y"], 1, "9y − 4y = 5y.", "Medium"],
-  ["Permudahkan 7ab − 4ab.", ["3", "3a", "3ab", "11ab"], 2, "7ab − 4ab = 3ab.", "Medium"],
-  ["Permudahkan 6x + 3x − 2x.", ["5x", "7x", "9x", "11x"], 1, "6x + 3x − 2x = 7x.", "Medium"],
-  [
-    "Permudahkan 4m + 5n − m.",
-    ["3m + 5n", "9m + 5n", "4m + 4n", "3m − 5n"],
-    0,
-    "Gabungkan sebutan serupa m: 4m − m = 3m, hasilnya 3m + 5n.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 2a + 3b + 4a − b.",
-    ["6a + 2b", "6a + 4b", "2a + 2b", "6a − 2b"],
-    0,
-    "Gabungkan sebutan serupa: (2a + 4a) + (3b − b) = 6a + 2b.",
-    "Medium",
-  ],
-  [
-    "Permudahkan −(x + 4).",
-    ["x + 4", "−x + 4", "−x − 4", "x − 4"],
-    2,
-    "−(x + 4) = −x − 4.",
-    "Medium",
-  ],
-  [
-    "Permudahkan −(3a − 2b).",
-    ["−3a − 2b", "−3a + 2b", "3a − 2b", "3a + 2b"],
-    1,
-    "−(3a − 2b) = −3a + 2b.",
-    "Medium",
-  ],
-  [
-    "Permudahkan −(−5x − 1).",
-    ["5x + 1", "−5x − 1", "−5x + 1", "5x − 1"],
-    0,
-    "−(−5x − 1) = 5x + 1.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 5x − (2x − 3).",
-    ["3x − 3", "3x + 3", "7x − 3", "7x + 3"],
-    1,
-    "5x − (2x − 3) = 5x − 2x + 3 = 3x + 3.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 8a − (3a + 2).",
-    ["5a + 2", "5a − 2", "11a + 2", "11a − 2"],
-    1,
-    "8a − (3a + 2) = 8a − 3a − 2 = 5a − 2.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 6x − (x − 5).",
-    ["5x − 5", "5x + 5", "7x − 5", "7x + 5"],
-    1,
-    "6x − (x − 5) = 6x − x + 5 = 5x + 5.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 4y + (2y − 3).",
-    ["6y − 3", "6y + 3", "2y − 3", "2y + 3"],
-    0,
-    "4y + (2y − 3) = 4y + 2y − 3 = 6y − 3.",
-    "Medium",
-  ],
-  [
-    "Manakah persamaan yang betul?",
-    ["−(a + b) = a + b", "−(a + b) = −a + b", "−(a + b) = −a − b", "−(a + b) = a − b"],
-    2,
-    "−(a + b) = −a − b kerana tanda negatif didarab dengan setiap sebutan dalam kurungan.",
-    "Medium",
-  ],
-  [
-    "Manakah persamaan yang betul?",
-    ["−(a − b) = −a − b", "−(a − b) = −a + b", "−(a − b) = a − b", "−(a − b) = a + b"],
-    1,
-    "−(a − b) = −a + b kerana tanda setiap sebutan dalam kurungan bertukar.",
-    "Medium",
-  ],
-  [
-    "Permudahkan −(2x + 3) + 5x.",
-    ["3x − 3", "3x + 3", "7x − 3", "7x + 3"],
-    0,
-    "−(2x + 3) + 5x = −2x − 3 + 5x = 3x − 3.",
-    "Medium",
-  ],
-  [
-    "Permudahkan −(4a − b) + 2a.",
-    ["−2a + b", "−2a − b", "6a − b", "2a − b"],
-    0,
-    "−(4a − b) + 2a = −4a + b + 2a = −2a + b.",
-    "Medium",
-  ],
-  [
-    "Diberi x = 5, cari nilai 4x − 3.",
-    ["15", "17", "20", "23"],
-    1,
-    "4x − 3 = 4(5) − 3 = 20 − 3 = 17.",
-    "Medium",
-  ],
-  [
-    "Diberi x = 1 dan y = 4, cari nilai 6x + 2y.",
-    ["12", "14", "16", "18"],
-    1,
-    "6x + 2y = 6(1) + 2(4) = 6 + 8 = 14.",
-    "Medium",
-  ],
-  [
-    "Diberi a = 2 dan b = 3, cari nilai a² + b².",
-    ["11", "12", "13", "14"],
-    2,
-    "a² + b² = 2² + 3² = 4 + 9 = 13.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 5x + 7 − 2x − 4.",
-    ["3x + 3", "3x − 3", "7x + 3", "7x − 3"],
-    0,
-    "Gabungkan sebutan serupa: (5x − 2x) + (7 − 4) = 3x + 3.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 9ab − 5ab + ab.",
-    ["3ab", "4ab", "5ab", "13ab"],
-    2,
-    "9ab − 5ab + ab = 5ab.",
-    "Medium",
-  ],
-  ["Apakah hasil bagi 3x + 5x − x?", ["6x", "7x", "8x", "9x"], 1, "3x + 5x − x = 7x.", "Medium"],
-  [
-    "Permudahkan 10p − (3p − 2).",
-    ["7p − 2", "7p + 2", "13p − 2", "13p + 2"],
-    1,
-    "10p − (3p − 2) = 10p − 3p + 2 = 7p + 2.",
-    "Medium",
-  ],
-  [
-    "Manakah ungkapan yang dipermudahkan dengan betul daripada 6x − (2x − 5)?",
-    ["4x − 5", "4x + 5", "8x − 5", "8x + 5"],
-    1,
-    "6x − (2x − 5) = 6x − 2x + 5 = 4x + 5.",
-    "Medium",
-  ],
-]);
-
-const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
-  [
-    "Given x = 3, find the value of 2x + 1.",
-    ["5", "6", "7", "8"],
-    2,
-    "2x + 1 = 2(3) + 1 = 7.",
-    "Medium",
-  ],
-  [
-    "Given x = 4, find the value of 3x − 2.",
-    ["8", "9", "10", "12"],
-    2,
-    "3x − 2 = 3(4) − 2 = 10.",
-    "Medium",
-  ],
-  [
-    "Given x = 3 and y = 2, find the value of 8x − 5y + 7.",
-    ["19", "20", "21", "22"],
-    2,
-    "8(3) − 5(2) + 7 = 24 − 10 + 7 = 21.",
-    "Medium",
-  ],
-  [
-    "Given a = 5, find the value of a² + 1.",
-    ["11", "21", "25", "26"],
-    3,
-    "a² + 1 = 5² + 1 = 25 + 1 = 26.",
-    "Medium",
-  ],
-  [
-    "Given x = 2, find the value of 5x − x².",
-    ["4", "6", "8", "10"],
-    1,
-    "5x − x² = 5(2) − 2² = 10 − 4 = 6.",
-    "Medium",
-  ],
-  [
-    "Simplify 3x + 2x.",
-    ["5x", "5x²", "6x", "x"],
-    0,
-    "3x + 2x = 5x because both are like terms.",
-    "Medium",
-  ],
-  ["Simplify 9y − 4y.", ["4y", "5y", "5", "13y"], 1, "9y − 4y = 5y.", "Medium"],
-  ["Simplify 7ab − 4ab.", ["3", "3a", "3ab", "11ab"], 2, "7ab − 4ab = 3ab.", "Medium"],
-  ["Simplify 6x + 3x − 2x.", ["5x", "7x", "9x", "11x"], 1, "6x + 3x − 2x = 7x.", "Medium"],
-  [
-    "Simplify 4m + 5n − m.",
-    ["3m + 5n", "9m + 5n", "4m + 4n", "3m − 5n"],
-    0,
-    "Combine the like terms m: 4m − m = 3m, giving 3m + 5n.",
-    "Medium",
-  ],
-  [
-    "Simplify 2a + 3b + 4a − b.",
-    ["6a + 2b", "6a + 4b", "2a + 2b", "6a − 2b"],
-    0,
-    "Combine like terms: (2a + 4a) + (3b − b) = 6a + 2b.",
-    "Medium",
-  ],
-  ["Simplify −(x + 4).", ["x + 4", "−x + 4", "−x − 4", "x − 4"], 2, "−(x + 4) = −x − 4.", "Medium"],
-  [
-    "Simplify −(3a − 2b).",
-    ["−3a − 2b", "−3a + 2b", "3a − 2b", "3a + 2b"],
-    1,
-    "−(3a − 2b) = −3a + 2b.",
-    "Medium",
-  ],
-  [
-    "Simplify −(−5x − 1).",
-    ["5x + 1", "−5x − 1", "−5x + 1", "5x − 1"],
-    0,
-    "−(−5x − 1) = 5x + 1.",
-    "Medium",
-  ],
-  [
-    "Simplify 5x − (2x − 3).",
-    ["3x − 3", "3x + 3", "7x − 3", "7x + 3"],
-    1,
-    "5x − (2x − 3) = 5x − 2x + 3 = 3x + 3.",
-    "Medium",
-  ],
-  [
-    "Simplify 8a − (3a + 2).",
-    ["5a + 2", "5a − 2", "11a + 2", "11a − 2"],
-    1,
-    "8a − (3a + 2) = 8a − 3a − 2 = 5a − 2.",
-    "Medium",
-  ],
-  [
-    "Simplify 6x − (x − 5).",
-    ["5x − 5", "5x + 5", "7x − 5", "7x + 5"],
-    1,
-    "6x − (x − 5) = 6x − x + 5 = 5x + 5.",
-    "Medium",
-  ],
-  [
-    "Simplify 4y + (2y − 3).",
-    ["6y − 3", "6y + 3", "2y − 3", "2y + 3"],
-    0,
-    "4y + (2y − 3) = 4y + 2y − 3 = 6y − 3.",
-    "Medium",
-  ],
-  [
-    "Which equation is correct?",
-    ["−(a + b) = a + b", "−(a + b) = −a + b", "−(a + b) = −a − b", "−(a + b) = a − b"],
-    2,
-    "−(a + b) = −a − b because the negative sign multiplies every term inside the brackets.",
-    "Medium",
-  ],
-  [
-    "Which equation is correct?",
-    ["−(a − b) = −a − b", "−(a − b) = −a + b", "−(a − b) = a − b", "−(a − b) = a + b"],
-    1,
-    "−(a − b) = −a + b because the sign of every term inside the brackets changes.",
-    "Medium",
-  ],
-  [
-    "Simplify −(2x + 3) + 5x.",
-    ["3x − 3", "3x + 3", "7x − 3", "7x + 3"],
-    0,
-    "−(2x + 3) + 5x = −2x − 3 + 5x = 3x − 3.",
-    "Medium",
-  ],
-  [
-    "Simplify −(4a − b) + 2a.",
-    ["−2a + b", "−2a − b", "6a − b", "2a − b"],
-    0,
-    "−(4a − b) + 2a = −4a + b + 2a = −2a + b.",
-    "Medium",
-  ],
-  [
-    "Given x = 5, find the value of 4x − 3.",
-    ["15", "17", "20", "23"],
-    1,
-    "4x − 3 = 4(5) − 3 = 20 − 3 = 17.",
-    "Medium",
-  ],
-  [
-    "Given x = 1 and y = 4, find the value of 6x + 2y.",
-    ["12", "14", "16", "18"],
-    1,
-    "6x + 2y = 6(1) + 2(4) = 6 + 8 = 14.",
-    "Medium",
-  ],
-  [
-    "Given a = 2 and b = 3, find the value of a² + b².",
-    ["11", "12", "13", "14"],
-    2,
-    "a² + b² = 2² + 3² = 4 + 9 = 13.",
-    "Medium",
-  ],
-  [
-    "Simplify 5x + 7 − 2x − 4.",
-    ["3x + 3", "3x − 3", "7x + 3", "7x − 3"],
-    0,
-    "Combine like terms: (5x − 2x) + (7 − 4) = 3x + 3.",
-    "Medium",
-  ],
-  ["Simplify 9ab − 5ab + ab.", ["3ab", "4ab", "5ab", "13ab"], 2, "9ab − 5ab + ab = 5ab.", "Medium"],
-  [
-    "What is the result of 3x + 5x − x?",
-    ["6x", "7x", "8x", "9x"],
-    1,
-    "3x + 5x − x = 7x.",
-    "Medium",
-  ],
-  [
-    "Simplify 10p − (3p − 2).",
-    ["7p − 2", "7p + 2", "13p − 2", "13p + 2"],
-    1,
-    "10p − (3p − 2) = 10p − 3p + 2 = 7p + 2.",
-    "Medium",
-  ],
-  [
-    "Which expression is the correctly simplified form of 6x − (2x − 5)?",
-    ["4x − 5", "4x + 5", "8x − 5", "8x + 5"],
-    1,
-    "6x − (2x − 5) = 6x − 2x + 5 = 4x + 5.",
-    "Medium",
-  ],
-]);
-
-const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
-  [
-    "Permudahkan a × a × a.",
-    ["3a", "a³", "a + 3", "3a³"],
-    1,
-    "a × a × a = a³ kerana pemboleh ubah didarab dengan dirinya sendiri tiga kali.",
-    "Medium",
-  ],
-  [
-    "Permudahkan a² × a³.",
-    ["a⁵", "a⁶", "2a⁵", "a¹"],
-    0,
-    "a² × a³ = a²⁺³ = a⁵ (tambah kuasa pemboleh ubah yang sama).",
-    "Medium",
-  ],
-  [
-    "Permudahkan a⁵ ÷ a².",
-    ["a²", "a³", "a⁷", "a¹⁰"],
-    1,
-    "a⁵ ÷ a² = a⁵⁻² = a³ (tolak kuasa pemboleh ubah yang sama).",
-    "Medium",
-  ],
-  ["Permudahkan b⁴ ÷ b.", ["b³", "b⁴", "b⁵", "b"], 0, "b⁴ ÷ b = b⁴⁻¹ = b³.", "Medium"],
-  [
-    "Permudahkan 2a × 3a.",
-    ["5a", "6a", "5a²", "6a²"],
-    3,
-    "2a × 3a = (2 × 3) × (a × a) = 6a².",
-    "Medium",
-  ],
-  [
-    "Permudahkan 4x × 2x².",
-    ["6x²", "6x³", "8x²", "8x³"],
-    3,
-    "4x × 2x² = (4 × 2) × (x × x²) = 8x¹⁺² = 8x³.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 3ab² × 4a³b.",
-    ["7a⁴b³", "12a³b²", "12a⁴b³", "12a⁴b²"],
-    2,
-    "3ab² × 4a³b = (3 × 4) × a¹⁺³ × b²⁺¹ = 12a⁴b³.",
-    "Hard",
-  ],
-  [
-    "Permudahkan 5m²n × 2mn³.",
-    ["7m³n⁴", "10m³n⁴", "10m²n³", "7m²n³"],
-    1,
-    "5m²n × 2mn³ = (5 × 2) × m²⁺¹ × n¹⁺³ = 10m³n⁴.",
-    "Hard",
-  ],
-  [
-    "Permudahkan 20m⁴n² ÷ 5m²n³.",
-    ["4m²n", "4m²/n", "4mn⁻¹", "4m⁶n⁻¹"],
-    1,
-    "20m⁴n² ÷ 5m²n³ = (20 ÷ 5) × m⁴⁻² × n²⁻³ = 4m²n⁻¹ = 4m²/n.",
-    "Hard",
-  ],
-  [
-    "Permudahkan 12x³y² ÷ 4xy.",
-    ["3x²y", "3x³y²", "3xy", "8x²y"],
-    0,
-    "12x³y² ÷ 4xy = (12 ÷ 4) × x³⁻¹ × y²⁻¹ = 3x²y.",
-    "Hard",
-  ],
-  [
-    "Permudahkan 18a⁵b³ ÷ 6a²b.",
-    ["3a³b²", "3a⁷b⁴", "12a³b²", "3a²b³"],
-    0,
-    "18a⁵b³ ÷ 6a²b = (18 ÷ 6) × a⁵⁻² × b³⁻¹ = 3a³b².",
-    "Hard",
-  ],
-  [
-    "Tulis m × m × m × m dalam bentuk kuasa.",
-    ["m³", "m⁴", "4m", "4m⁴"],
-    1,
-    "m × m × m × m = m⁴ (empat kali pendaraban berulang).",
-    "Medium",
-  ],
-  [
-    "Tulis (a + b)(a + b)(a + b) dalam bentuk kuasa.",
-    ["(a + b) + 3", "3(a + b)", "(a + b)³", "(a + b)²"],
-    2,
-    "(a + b)(a + b)(a + b) = (a + b)³ (pendaraban berulang ungkapan).",
-    "Medium",
-  ],
-  [
-    "Permudahkan 6x² × 3x.",
-    ["9x²", "9x³", "18x²", "18x³"],
-    3,
-    "6x² × 3x = (6 × 3) × x²⁺¹ = 18x³.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 9p⁴ ÷ 3p².",
-    ["3p", "3p²", "6p²", "6p⁶"],
-    1,
-    "9p⁴ ÷ 3p² = (9 ÷ 3) × p⁴⁻² = 3p².",
-    "Medium",
-  ],
-  [
-    "Permudahkan 7a²b³ × 2ab².",
-    ["9a³b⁵", "14a²b⁵", "14a³b⁵", "14a³b⁶"],
-    2,
-    "7a²b³ × 2ab² = (7 × 2) × a²⁺¹ × b³⁺² = 14a³b⁵.",
-    "Hard",
-  ],
-  [
-    "Permudahkan 24x⁵y⁴ ÷ 8x³y².",
-    ["3x²y²", "3x⁸y⁶", "16x²y²", "3x²y⁶"],
-    0,
-    "24x⁵y⁴ ÷ 8x³y² = (24 ÷ 8) × x⁵⁻³ × y⁴⁻² = 3x²y².",
-    "Hard",
-  ],
-  [
-    "Permudahkan 7x − (2x − 3) + 4.",
-    ["5x − 1", "5x + 7", "5x + 1", "9x + 1"],
-    1,
-    "7x − (2x − 3) + 4 = 7x − 2x + 3 + 4 = 5x + 7.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 5a − (3a + 2) − 4.",
-    ["2a − 6", "2a + 6", "8a − 6", "8a + 6"],
-    0,
-    "5a − (3a + 2) − 4 = 5a − 3a − 2 − 4 = 2a − 6.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 9y − (y − 6) + 2y.",
-    ["10y + 6", "10y − 6", "12y + 6", "6y + 6"],
-    0,
-    "9y − (y − 6) + 2y = 9y − y + 6 + 2y = 10y + 6.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 4m²n × 5mn² ÷ 2mn.",
-    ["10m²n²", "10mn²", "20m²n²", "20mn"],
-    0,
-    "4m²n × 5mn² = 20m³n³; kemudian 20m³n³ ÷ 2mn = 10m²n².",
-    "Hard",
-  ],
-  [
-    "Permudahkan (3x²y)(2xy²) ÷ (xy).",
-    ["6x²y²", "6xy²", "6x²y", "3xy²"],
-    0,
-    "(3x²y)(2xy²) = 6x³y³; kemudian 6x³y³ ÷ (xy) = 6x²y².",
-    "Hard",
-  ],
-  [
-    "Cari nilai bagi 5x² − 2x apabila x = 3.",
-    ["35", "39", "41", "45"],
-    1,
-    "5x² − 2x = 5(3)² − 2(3) = 45 − 6 = 39.",
-    "Medium",
-  ],
-  [
-    "Cari nilai bagi 2a² + 3b apabila a = 2 dan b = 4.",
-    ["14", "16", "18", "20"],
-    3,
-    "2a² + 3b = 2(2)² + 3(4) = 8 + 12 = 20.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 8x − 3y − (2x − y).",
-    ["6x − 2y", "6x − 4y", "10x − 2y", "10x − 4y"],
-    0,
-    "8x − 3y − (2x − y) = 8x − 3y − 2x + y = 6x − 2y.",
-    "Medium",
-  ],
-  [
-    "Permudahkan 7m − 4n − (3m − 2n).",
-    ["4m − 2n", "4m − 6n", "10m − 2n", "10m − 6n"],
-    0,
-    "7m − 4n − (3m − 2n) = 7m − 4n − 3m + 2n = 4m − 2n.",
-    "Medium",
-  ],
-  [
-    "Sebuah segi empat tepat mempunyai panjang 3x dan lebar 2x. Apakah ungkapan bagi luasnya?",
-    ["5x", "6x", "5x²", "6x²"],
-    3,
-    "Luas segi empat tepat = panjang × lebar = 3x × 2x = 6x².",
-    "Hard",
-  ],
-  [
-    "Sebuah kotak berbentuk kubus mempunyai sisi sepanjang a unit. Apakah ungkapan bagi isipadunya?",
-    ["3a", "a³", "a²", "3a³"],
-    1,
-    "Isipadu kubus = sisi × sisi × sisi = a × a × a = a³.",
-    "Hard",
-  ],
-  [
-    "Permudahkan 6x²y³ ÷ 3xy menggunakan hukum kuasa.",
-    ["2xy²", "3xy²", "2x²y³", "2xy"],
-    0,
-    "6x²y³ ÷ 3xy = (6 ÷ 3) × x²⁻¹ × y³⁻¹ = 2xy².",
-    "Hard",
-  ],
-  [
-    "Permudahkan −(2x − y) − (x + 3y).",
-    ["−3x − 2y", "−3x + 2y", "−x − 2y", "−x + 4y"],
-    0,
-    "−(2x − y) − (x + 3y) = (−2x + y) + (−x − 3y) = −3x − 2y.",
-    "Hard",
-  ],
-]);
-
-const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
-  [
-    "Simplify a × a × a.",
-    ["3a", "a³", "a + 3", "3a³"],
-    1,
-    "a × a × a = a³ because the variable is multiplied by itself three times.",
-    "Medium",
-  ],
-  [
-    "Simplify a² × a³.",
-    ["a⁵", "a⁶", "2a⁵", "a¹"],
-    0,
-    "a² × a³ = a²⁺³ = a⁵ (add the powers of the same variable).",
-    "Medium",
-  ],
-  [
-    "Simplify a⁵ ÷ a².",
-    ["a²", "a³", "a⁷", "a¹⁰"],
-    1,
-    "a⁵ ÷ a² = a⁵⁻² = a³ (subtract the powers of the same variable).",
-    "Medium",
-  ],
-  ["Simplify b⁴ ÷ b.", ["b³", "b⁴", "b⁵", "b"], 0, "b⁴ ÷ b = b⁴⁻¹ = b³.", "Medium"],
-  [
-    "Simplify 2a × 3a.",
-    ["5a", "6a", "5a²", "6a²"],
-    3,
-    "2a × 3a = (2 × 3) × (a × a) = 6a².",
-    "Medium",
-  ],
-  [
-    "Simplify 4x × 2x².",
-    ["6x²", "6x³", "8x²", "8x³"],
-    3,
-    "4x × 2x² = (4 × 2) × (x × x²) = 8x¹⁺² = 8x³.",
-    "Medium",
-  ],
-  [
-    "Simplify 3ab² × 4a³b.",
-    ["7a⁴b³", "12a³b²", "12a⁴b³", "12a⁴b²"],
-    2,
-    "3ab² × 4a³b = (3 × 4) × a¹⁺³ × b²⁺¹ = 12a⁴b³.",
-    "Hard",
-  ],
-  [
-    "Simplify 5m²n × 2mn³.",
-    ["7m³n⁴", "10m³n⁴", "10m²n³", "7m²n³"],
-    1,
-    "5m²n × 2mn³ = (5 × 2) × m²⁺¹ × n¹⁺³ = 10m³n⁴.",
-    "Hard",
-  ],
-  [
-    "Simplify 20m⁴n² ÷ 5m²n³.",
-    ["4m²n", "4m²/n", "4mn⁻¹", "4m⁶n⁻¹"],
-    1,
-    "20m⁴n² ÷ 5m²n³ = (20 ÷ 5) × m⁴⁻² × n²⁻³ = 4m²n⁻¹ = 4m²/n.",
-    "Hard",
-  ],
-  [
-    "Simplify 12x³y² ÷ 4xy.",
-    ["3x²y", "3x³y²", "3xy", "8x²y"],
-    0,
-    "12x³y² ÷ 4xy = (12 ÷ 4) × x³⁻¹ × y²⁻¹ = 3x²y.",
-    "Hard",
-  ],
-  [
-    "Simplify 18a⁵b³ ÷ 6a²b.",
-    ["3a³b²", "3a⁷b⁴", "12a³b²", "3a²b³"],
-    0,
-    "18a⁵b³ ÷ 6a²b = (18 ÷ 6) × a⁵⁻² × b³⁻¹ = 3a³b².",
-    "Hard",
-  ],
-  [
-    "Write m × m × m × m in power form.",
-    ["m³", "m⁴", "4m", "4m⁴"],
-    1,
-    "m × m × m × m = m⁴ (four repeated multiplications).",
-    "Medium",
-  ],
-  [
-    "Write (a + b)(a + b)(a + b) in power form.",
-    ["(a + b) + 3", "3(a + b)", "(a + b)³", "(a + b)²"],
-    2,
-    "(a + b)(a + b)(a + b) = (a + b)³ (repeated multiplication of an expression).",
-    "Medium",
-  ],
-  [
-    "Simplify 6x² × 3x.",
-    ["9x²", "9x³", "18x²", "18x³"],
-    3,
-    "6x² × 3x = (6 × 3) × x²⁺¹ = 18x³.",
-    "Medium",
-  ],
-  [
-    "Simplify 9p⁴ ÷ 3p².",
-    ["3p", "3p²", "6p²", "6p⁶"],
-    1,
-    "9p⁴ ÷ 3p² = (9 ÷ 3) × p⁴⁻² = 3p².",
-    "Medium",
-  ],
-  [
-    "Simplify 7a²b³ × 2ab².",
-    ["9a³b⁵", "14a²b⁵", "14a³b⁵", "14a³b⁶"],
-    2,
-    "7a²b³ × 2ab² = (7 × 2) × a²⁺¹ × b³⁺² = 14a³b⁵.",
-    "Hard",
-  ],
-  [
-    "Simplify 24x⁵y⁴ ÷ 8x³y².",
-    ["3x²y²", "3x⁸y⁶", "16x²y²", "3x²y⁶"],
-    0,
-    "24x⁵y⁴ ÷ 8x³y² = (24 ÷ 8) × x⁵⁻³ × y⁴⁻² = 3x²y².",
-    "Hard",
-  ],
-  [
-    "Simplify 7x − (2x − 3) + 4.",
-    ["5x − 1", "5x + 7", "5x + 1", "9x + 1"],
-    1,
-    "7x − (2x − 3) + 4 = 7x − 2x + 3 + 4 = 5x + 7.",
-    "Medium",
-  ],
-  [
-    "Simplify 5a − (3a + 2) − 4.",
-    ["2a − 6", "2a + 6", "8a − 6", "8a + 6"],
-    0,
-    "5a − (3a + 2) − 4 = 5a − 3a − 2 − 4 = 2a − 6.",
-    "Medium",
-  ],
-  [
-    "Simplify 9y − (y − 6) + 2y.",
-    ["10y + 6", "10y − 6", "12y + 6", "6y + 6"],
-    0,
-    "9y − (y − 6) + 2y = 9y − y + 6 + 2y = 10y + 6.",
-    "Medium",
-  ],
-  [
-    "Simplify 4m²n × 5mn² ÷ 2mn.",
-    ["10m²n²", "10mn²", "20m²n²", "20mn"],
-    0,
-    "4m²n × 5mn² = 20m³n³; then 20m³n³ ÷ 2mn = 10m²n².",
-    "Hard",
-  ],
-  [
-    "Simplify (3x²y)(2xy²) ÷ (xy).",
-    ["6x²y²", "6xy²", "6x²y", "3xy²"],
-    0,
-    "(3x²y)(2xy²) = 6x³y³; then 6x³y³ ÷ (xy) = 6x²y².",
-    "Hard",
-  ],
-  [
-    "Find the value of 5x² − 2x when x = 3.",
-    ["35", "39", "41", "45"],
-    1,
-    "5x² − 2x = 5(3)² − 2(3) = 45 − 6 = 39.",
-    "Medium",
-  ],
-  [
-    "Find the value of 2a² + 3b when a = 2 and b = 4.",
-    ["14", "16", "18", "20"],
-    3,
-    "2a² + 3b = 2(2)² + 3(4) = 8 + 12 = 20.",
-    "Medium",
-  ],
-  [
-    "Simplify 8x − 3y − (2x − y).",
-    ["6x − 2y", "6x − 4y", "10x − 2y", "10x − 4y"],
-    0,
-    "8x − 3y − (2x − y) = 8x − 3y − 2x + y = 6x − 2y.",
-    "Medium",
-  ],
-  [
-    "Simplify 7m − 4n − (3m − 2n).",
-    ["4m − 2n", "4m − 6n", "10m − 2n", "10m − 6n"],
-    0,
-    "7m − 4n − (3m − 2n) = 7m − 4n − 3m + 2n = 4m − 2n.",
-    "Medium",
-  ],
-  [
-    "A rectangle has a length of 3x and a width of 2x. What is the expression for its area?",
-    ["5x", "6x", "5x²", "6x²"],
-    3,
-    "Area of rectangle = length × width = 3x × 2x = 6x².",
-    "Hard",
-  ],
-  [
-    "A cube-shaped box has sides of length a units. What is the expression for its volume?",
-    ["3a", "a³", "a²", "3a³"],
-    1,
-    "Volume of cube = side × side × side = a × a × a = a³.",
-    "Hard",
-  ],
-  [
-    "Simplify 6x²y³ ÷ 3xy using the laws of indices.",
-    ["2xy²", "3xy²", "2x²y³", "2xy"],
-    0,
-    "6x²y³ ÷ 3xy = (6 ÷ 3) × x²⁻¹ × y³⁻¹ = 2xy².",
-    "Hard",
-  ],
-  [
-    "Simplify −(2x − y) − (x + 3y).",
-    ["−3x − 2y", "−3x + 2y", "−x − 2y", "−x + 4y"],
-    0,
-    "−(2x − y) − (x + 3y) = (−2x + y) + (−x − 3y) = −3x − 2y.",
-    "Hard",
-  ],
-]);
 
 const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
@@ -18814,44 +15630,44 @@ const MATH_QUIZ_BANKS: Partial<
   },
   "Chapter 3": {
     "objective-1": {
-      bm: MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS,
-      dlp: MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP,
+      bm: mathF2C3FoundationQuizzesBM,
+      dlp: mathF2C3FoundationQuizzesDLP,
     },
     "objective-2": {
-      bm: MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS,
-      dlp: MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP,
+      bm: mathF2C3PracticeQuizzesBM,
+      dlp: mathF2C3PracticeQuizzesDLP,
     },
     "objective-3": {
-      bm: MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS,
-      dlp: MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
+      bm: mathF2C3ChallengeQuizzesBM,
+      dlp: mathF2C3ChallengeQuizzesDLP,
     },
   },
   "Chapter 4": {
     "objective-1": {
-      bm: MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS,
-      dlp: MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP,
+      bm: mathF2C4FoundationQuizzesBM,
+      dlp: mathF2C4FoundationQuizzesDLP,
     },
     "objective-2": {
-      bm: MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS,
-      dlp: MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP,
+      bm: mathF2C4PracticeQuizzesBM,
+      dlp: mathF2C4PracticeQuizzesDLP,
     },
     "objective-3": {
-      bm: MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS,
-      dlp: MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
+      bm: mathF2C4ChallengeQuizzesBM,
+      dlp: mathF2C4ChallengeQuizzesDLP,
     },
   },
   "Chapter 5": {
     "objective-1": {
-      bm: MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS,
-      dlp: MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP,
+      bm: mathF2C5FoundationQuizzesBM,
+      dlp: mathF2C5FoundationQuizzesDLP,
     },
     "objective-2": {
-      bm: MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS,
-      dlp: MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP,
+      bm: mathF2C5PracticeQuizzesBM,
+      dlp: mathF2C5PracticeQuizzesDLP,
     },
     "objective-3": {
-      bm: MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS,
-      dlp: MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP,
+      bm: mathF2C5ChallengeQuizzesBM,
+      dlp: mathF2C5ChallengeQuizzesDLP,
     },
   },
   "Chapter 6": {
@@ -18968,6 +15784,138 @@ const MATH_QUIZ_BANKS: Partial<
   },
 };
 
+const MATH_F2_C1_DLP_OBJECTIVE_BANK: Record<MathObjectiveId, ShuffledQuestion[]> = {
+  "objective-1": mathF2C1FoundationQuizzesDLP,
+  "objective-2": mathF2C1PracticeQuizzesDLP,
+  "objective-3": mathF2C1ChallengeQuizzesDLP,
+};
+
+const MATH_F2_C1_BM_OBJECTIVE_BANK: Record<MathObjectiveId, ShuffledQuestion[]> = {
+  "objective-1": mathF2C1FoundationQuizzesBM,
+  "objective-2": mathF2C1PracticeQuizzesBM,
+  "objective-3": mathF2C1ChallengeQuizzesBM,
+};
+
+const MATH_F2_C2_DLP_OBJECTIVE_BANK: Record<MathObjectiveId, ShuffledQuestion[]> = {
+  "objective-1": mathF2C2FoundationQuizzesDLP,
+  "objective-2": mathF2C2PracticeQuizzesDLP,
+  "objective-3": mathF2C2ChallengeQuizzesDLP,
+};
+
+const MATH_F2_C2_BM_OBJECTIVE_BANK: Record<MathObjectiveId, ShuffledQuestion[]> = {
+  "objective-1": mathF2C2FoundationQuizzesBM,
+  "objective-2": mathF2C2PracticeQuizzesBM,
+  "objective-3": mathF2C2ChallengeQuizzesBM,
+};
+
+const MATH_F2_BATCH_B_OBJECTIVE_BANKS: Record<
+  "Chapter 6" | "Chapter 7" | "Chapter 8",
+  Record<"bm" | "dlp", Record<MathObjectiveId, ShuffledQuestion[]>>
+> = {
+  "Chapter 6": {
+    bm: {
+      "objective-1": mathF2C6FoundationQuizzesBM,
+      "objective-2": mathF2C6PracticeQuizzesBM,
+      "objective-3": mathF2C6ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C6FoundationQuizzesDLP,
+      "objective-2": mathF2C6PracticeQuizzesDLP,
+      "objective-3": mathF2C6ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 7": {
+    bm: {
+      "objective-1": mathF2C7FoundationQuizzesBM,
+      "objective-2": mathF2C7PracticeQuizzesBM,
+      "objective-3": mathF2C7ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C7FoundationQuizzesDLP,
+      "objective-2": mathF2C7PracticeQuizzesDLP,
+      "objective-3": mathF2C7ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 8": {
+    bm: {
+      "objective-1": mathF2C8FoundationQuizzesBM,
+      "objective-2": mathF2C8PracticeQuizzesBM,
+      "objective-3": mathF2C8ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C8FoundationQuizzesDLP,
+      "objective-2": mathF2C8PracticeQuizzesDLP,
+      "objective-3": mathF2C8ChallengeQuizzesDLP,
+    },
+  },
+};
+
+const MATH_F2_BATCH_C_OBJECTIVE_BANKS: Record<
+  "Chapter 9" | "Chapter 10" | "Chapter 11" | "Chapter 12" | "Chapter 13",
+  Record<"bm" | "dlp", Record<MathObjectiveId, ShuffledQuestion[]>>
+> = {
+  "Chapter 9": {
+    bm: {
+      "objective-1": mathF2C9FoundationQuizzesBM,
+      "objective-2": mathF2C9PracticeQuizzesBM,
+      "objective-3": mathF2C9ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C9FoundationQuizzesDLP,
+      "objective-2": mathF2C9PracticeQuizzesDLP,
+      "objective-3": mathF2C9ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 10": {
+    bm: {
+      "objective-1": mathF2C10FoundationQuizzesBM,
+      "objective-2": mathF2C10PracticeQuizzesBM,
+      "objective-3": mathF2C10ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C10FoundationQuizzesDLP,
+      "objective-2": mathF2C10PracticeQuizzesDLP,
+      "objective-3": mathF2C10ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 11": {
+    bm: {
+      "objective-1": mathF2C11FoundationQuizzesBM,
+      "objective-2": mathF2C11PracticeQuizzesBM,
+      "objective-3": mathF2C11ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C11FoundationQuizzesDLP,
+      "objective-2": mathF2C11PracticeQuizzesDLP,
+      "objective-3": mathF2C11ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 12": {
+    bm: {
+      "objective-1": mathF2C12FoundationQuizzesBM,
+      "objective-2": mathF2C12PracticeQuizzesBM,
+      "objective-3": mathF2C12ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C12FoundationQuizzesDLP,
+      "objective-2": mathF2C12PracticeQuizzesDLP,
+      "objective-3": mathF2C12ChallengeQuizzesDLP,
+    },
+  },
+  "Chapter 13": {
+    bm: {
+      "objective-1": mathF2C13FoundationQuizzesBM,
+      "objective-2": mathF2C13PracticeQuizzesBM,
+      "objective-3": mathF2C13ChallengeQuizzesBM,
+    },
+    dlp: {
+      "objective-1": mathF2C13FoundationQuizzesDLP,
+      "objective-2": mathF2C13PracticeQuizzesDLP,
+      "objective-3": mathF2C13ChallengeQuizzesDLP,
+    },
+  },
+};
+
 interface ShuffledQuestion {
   id?: string;
   question: string;
@@ -19027,7 +15975,7 @@ function QuizzesPage() {
   const [done, setDone] = useState(false);
   // Background music is now handled globally by BgMusicController.
   const [animatedScore, setAnimatedScore] = useState(0);
-  const [feedback, setFeedback] = useState<{ kind: "correct" | "wrong"; msg: string } | null>(null);
+  const [feedback, setFeedback] = useState<QuizFeedback | null>(null);
   const [timerPref, setTimerPref] = useState<TimerPref>(null);
   const [shuffledPool, setShuffledPool] = useState<ShuffledQuestion[] | null>(null);
   const [mathObjectiveId, setMathObjectiveId] = useState<MathObjectiveId | null>(null);
@@ -19046,6 +15994,10 @@ function QuizzesPage() {
   >(null);
   const questionSeconds = timerPref?.mode === "timer" ? timerPref.seconds : 0;
   const [timeLeft, setTimeLeft] = useState(0);
+  const [baseXpEarned, setBaseXpEarned] = useState(0);
+  const [speedBonusXpEarned, setSpeedBonusXpEarned] = useState(0);
+  const [streakBonusXpEarned, setStreakBonusXpEarned] = useState(0);
+  const [attemptStartXp, setAttemptStartXp] = useState(progress.xp);
   const quizStreak = useQuizStreak(
     `${subject ?? "picker"}:${form}:${chapter ?? "none"}:${mathObjectiveId ?? "regular"}:${englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "none"}`,
   );
@@ -19138,20 +16090,138 @@ function QuizzesPage() {
     () => MATH_OBJECTIVES.find((objective) => objective.id === mathObjectiveId) ?? null,
     [mathObjectiveId],
   );
+  const isForm2Chapter1DlpObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
+  const isForm2Chapter1BmObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
+  const isForm2Chapter2DlpObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 2" && scienceLang === "dlp";
+  const isForm2Chapter2BmObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 2" && scienceLang === "bm";
+  const isForm2Chapter3DlpObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 3" && scienceLang === "dlp";
+  const isForm2Chapter3BmObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 3" && scienceLang === "bm";
+  const isForm2Chapter4DlpObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 4" && scienceLang === "dlp";
+  const isForm2Chapter4BmObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 4" && scienceLang === "bm";
+  const isForm2Chapter5DlpObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 5" && scienceLang === "dlp";
+  const isForm2Chapter5BmObjective =
+    subject === "math" && form === "Form 2" && chapter === "Chapter 5" && scienceLang === "bm";
+  const isForm2BatchBDlpObjective =
+    subject === "math" &&
+    form === "Form 2" &&
+    (chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8") &&
+    scienceLang === "dlp";
+  const isForm2BatchBBmObjective =
+    subject === "math" &&
+    form === "Form 2" &&
+    (chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8") &&
+    scienceLang === "bm";
+  const isForm2BatchCDlpObjective =
+    subject === "math" &&
+    form === "Form 2" &&
+    (chapter === "Chapter 9" ||
+      chapter === "Chapter 10" ||
+      chapter === "Chapter 11" ||
+      chapter === "Chapter 12" ||
+      chapter === "Chapter 13") &&
+    scienceLang === "dlp";
+  const isForm2BatchCBmObjective =
+    subject === "math" &&
+    form === "Form 2" &&
+    (chapter === "Chapter 9" ||
+      chapter === "Chapter 10" ||
+      chapter === "Chapter 11" ||
+      chapter === "Chapter 12" ||
+      chapter === "Chapter 13") &&
+    scienceLang === "bm";
+  const activeMathQuizLang =
+    // Route contract: isForm2Chapter1DlpObjective || isForm2Chapter1BmObjective
+    // must continue selecting separate language-specific question banks.
+    mathQuizLang ??
+    (isForm2Chapter1DlpObjective ||
+    isForm2Chapter2DlpObjective ||
+    isForm2Chapter3DlpObjective ||
+    isForm2Chapter4DlpObjective ||
+    isForm2Chapter5DlpObjective ||
+    isForm2BatchBDlpObjective ||
+    isForm2BatchCDlpObjective
+      ? "dlp"
+      : isForm2Chapter1BmObjective ||
+          isForm2Chapter2BmObjective ||
+          isForm2Chapter3BmObjective ||
+          isForm2Chapter4BmObjective ||
+          isForm2Chapter5BmObjective ||
+          isForm2BatchBBmObjective ||
+          isForm2BatchCBmObjective
+        ? "bm"
+        : null);
   const mathObjectiveQuestions = useMemo(() => {
-    const lang = mathQuizLang ?? "bm";
+    const lang = activeMathQuizLang ?? "bm";
     if (!chapter || !mathObjectiveId) return [];
-    const questions = MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? [];
+    const isForm2Chapter1Dlp =
+      form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
+    const isForm2Chapter1Bm = form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
+    const isForm2Chapter2Dlp =
+      form === "Form 2" && chapter === "Chapter 2" && scienceLang === "dlp";
+    const isForm2Chapter2Bm = form === "Form 2" && chapter === "Chapter 2" && scienceLang === "bm";
+    const batchBChapter =
+      form === "Form 2" &&
+      (chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8")
+        ? chapter
+        : null;
+    const batchCChapter =
+      form === "Form 2" &&
+      (chapter === "Chapter 9" ||
+        chapter === "Chapter 10" ||
+        chapter === "Chapter 11" ||
+        chapter === "Chapter 12" ||
+        chapter === "Chapter 13")
+        ? chapter
+        : null;
+    const isForm2ObjectiveChapter =
+      form === "Form 2" &&
+      (chapter === "Chapter 1" ||
+        chapter === "Chapter 2" ||
+        chapter === "Chapter 3" ||
+        chapter === "Chapter 4" ||
+        chapter === "Chapter 5" ||
+        chapter === "Chapter 6" ||
+        chapter === "Chapter 7" ||
+        chapter === "Chapter 8" ||
+        chapter === "Chapter 9" ||
+        chapter === "Chapter 10" ||
+        chapter === "Chapter 11" ||
+        chapter === "Chapter 12" ||
+        chapter === "Chapter 13");
+    const questions = isForm2Chapter1Dlp
+      ? MATH_F2_C1_DLP_OBJECTIVE_BANK[mathObjectiveId]
+      : isForm2Chapter1Bm
+        ? MATH_F2_C1_BM_OBJECTIVE_BANK[mathObjectiveId]
+        : isForm2Chapter2Dlp
+          ? MATH_F2_C2_DLP_OBJECTIVE_BANK[mathObjectiveId]
+          : isForm2Chapter2Bm
+            ? MATH_F2_C2_BM_OBJECTIVE_BANK[mathObjectiveId]
+            : batchBChapter
+              ? MATH_F2_BATCH_B_OBJECTIVE_BANKS[batchBChapter][lang][mathObjectiveId]
+              : batchCChapter
+                ? MATH_F2_BATCH_C_OBJECTIVE_BANKS[batchCChapter][lang][mathObjectiveId]
+                : (MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? []);
     const chapterNumber = Number(chapter.replace("Chapter ", ""));
     return questions.map((question, questionIndex) => ({
       ...question,
-      id: `math-f1-c${chapterNumber}-${mathObjectiveId}-${lang}-q${questionIndex + 1}`,
-      form: "Form 1" as const,
+      id:
+        question.id ??
+        `math-${isForm2ObjectiveChapter ? "f2" : "f1"}-c${chapterNumber}-${mathObjectiveId}-${lang}-q${questionIndex + 1}`,
+      form: isForm2ObjectiveChapter ? ("Form 2" as const) : ("Form 1" as const),
       chapter,
       lang,
       set: mathObjectiveId,
     }));
-  }, [chapter, mathObjectiveId, mathQuizLang]);
+  }, [activeMathQuizLang, chapter, form, mathObjectiveId, scienceLang]);
   const currentMathQuestion = mathShuffledQuestions?.[idx] ?? null;
   const selectedEnglishSet = useMemo(
     () => ENGLISH_QUIZ_SETS.find((set) => set.id === englishSetId) ?? null,
@@ -19193,7 +16263,11 @@ function QuizzesPage() {
             questionId: `regular:${subject}:${chapter}:${idx}`,
             correct: false,
           });
-          setFeedback({ kind: "wrong", msg: "Masa tamat! ⏰" });
+          setFeedback({
+            kind: "wrong",
+            msg: "Masa tamat! ⏰",
+            streakReset: quizStreak.streak > 0,
+          });
           return 0;
         }
         return t - 1;
@@ -19210,6 +16284,7 @@ function QuizzesPage() {
     subject,
     chapter,
     confirmStreakAnswer,
+    quizStreak.streak,
   ]);
 
   // Build shuffled questions when quiz starts
@@ -19270,6 +16345,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     quizStreak.resetStreak();
     setFeedback(null);
     setTimeLeft(questionSeconds);
@@ -19281,28 +16359,44 @@ function QuizzesPage() {
     setSelected(i);
     const correct = i === current.answerIndex;
     if (correct) {
-      const gain = current.difficulty === "Hard" ? 30 : current.difficulty === "Medium" ? 20 : 10;
+      const reward = calculateQuizQuestionXp({
+        correct: true,
+        timerMode: timerPrefToMode(timerPref),
+        difficulty: current.difficulty,
+      });
+      const gain = reward.totalQuestionXp;
       setScore((s) => s + 1);
       addXp(gain, current.subjectId);
       setXpEarned((x) => x + gain);
+      setBaseXpEarned((x) => x + reward.baseXp);
+      setSpeedBonusXpEarned((x) => x + reward.timerBonusXp);
+      setStreakBonusXpEarned((x) => x + reward.streakBonusXp);
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `regular:${subject}:${chapter}:${idx}`,
         correct: true,
-        xpAwarded: gain,
+        xpAwarded: reward.streakBonusXp,
       });
+      const messages = subject === "science" && scienceLang
+        ? SCIENCE_QUIZ_FEEDBACK[scienceLang].correct
+        : CORRECT_MSGS;
       setFeedback({
         kind: "correct",
-        msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
+        msg: messages[Math.floor(Math.random() * messages.length)],
+        xp: reward,
       });
     } else {
       quizStreak.confirmAnswer({
         questionId: `regular:${subject}:${chapter}:${idx}`,
         correct: false,
       });
+      const messages = subject === "science" && scienceLang
+        ? SCIENCE_QUIZ_FEEDBACK[scienceLang].wrong
+        : WRONG_MSGS;
       setFeedback({
         kind: "wrong",
-        msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
+        msg: messages[Math.floor(Math.random() * messages.length)],
+        streakReset: quizStreak.streak > 0,
       });
     }
   }
@@ -19312,17 +16406,20 @@ function QuizzesPage() {
     if (idx + 1 >= total) {
       setDone(true);
       recordQuiz();
-      const lastWasCorrect = selected === current?.answerIndex;
-      const finalCorrect = score + (lastWasCorrect ? 1 : 0);
-      const lastGain =
-        current?.difficulty === "Hard" ? 30 : current?.difficulty === "Medium" ? 20 : 10;
-      const finalXp = xpEarned + (lastWasCorrect ? lastGain : 0);
+      const finalCorrect = score;
+      const passed = total > 0 && Math.round((finalCorrect / total) * 100) >= QUIZ_PASS_PCT;
       recordQuizResult({
         subjectId: subject ?? current?.subjectId ?? "unknown",
         chapterKey: chapter ?? "all",
         correct: finalCorrect,
         total,
-        xpEarned: finalXp,
+        xpEarned: xpEarned + (passed ? QUIZ_PASS_BONUS_XP : 0),
+        timerMode: timerPrefToMode(timerPref),
+        baseXp: baseXpEarned,
+        speedBonusXp: speedBonusXpEarned,
+        streakBonusXp: streakBonusXpEarned,
+        passBonusXp: passed ? QUIZ_PASS_BONUS_XP : 0,
+        bestCorrectStreak: quizStreak.bestStreak,
       });
       if (subject && chapter) markChapter(subject, chapter, "quiz");
       if (
@@ -19344,6 +16441,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -19368,6 +16468,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -19385,6 +16488,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -19401,25 +16507,28 @@ function QuizzesPage() {
     const correct = i === currentMathQuestion.answerIndex;
 
     if (correct) {
-      const gain =
-        currentMathQuestion.difficulty === "Hard"
-          ? 30
-          : currentMathQuestion.difficulty === "Medium"
-            ? 20
-            : 10;
+      const reward = calculateQuizQuestionXp({
+        correct: true,
+        timerMode: "none",
+        difficulty: currentMathQuestion.difficulty,
+      });
+      const gain = reward.totalQuestionXp;
       setScore((s) => s + 1);
       addXp(gain, currentMathQuestion.subjectId);
       setXpEarned((x) => x + gain);
+      setBaseXpEarned((x) => x + reward.baseXp);
+      setStreakBonusXpEarned((x) => x + reward.streakBonusXp);
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `math:${chapter}:${mathObjectiveId}:${idx}`,
         correct: true,
-        xpAwarded: gain,
+        xpAwarded: reward.streakBonusXp,
       });
 
       setFeedback({
         kind: "correct",
         msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
+        xp: reward,
       });
     } else {
       quizStreak.confirmAnswer({
@@ -19429,6 +16538,7 @@ function QuizzesPage() {
       setFeedback({
         kind: "wrong",
         msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
+        streakReset: quizStreak.streak > 0,
       });
     }
   }
@@ -19441,19 +16551,19 @@ function QuizzesPage() {
       setMathObjectivePhase("results");
       recordQuiz();
       {
-        const lastWasCorrect = selected === currentMathQuestion?.answerIndex;
-        const lastGain =
-          currentMathQuestion?.difficulty === "Hard"
-            ? 30
-            : currentMathQuestion?.difficulty === "Medium"
-              ? 20
-              : 10;
+        const passed = total > 0 && Math.round((score / total) * 100) >= QUIZ_PASS_PCT;
         recordQuizResult({
           subjectId: subject ?? "math",
           chapterKey: chapter ?? "all",
-          correct: score + (lastWasCorrect ? 1 : 0),
+          correct: score,
           total,
-          xpEarned: xpEarned + (lastWasCorrect ? lastGain : 0),
+          xpEarned: xpEarned + (passed ? QUIZ_PASS_BONUS_XP : 0),
+          timerMode: "none",
+          baseXp: baseXpEarned,
+          speedBonusXp: 0,
+          streakBonusXp: streakBonusXpEarned,
+          passBonusXp: passed ? QUIZ_PASS_BONUS_XP : 0,
+          bestCorrectStreak: quizStreak.bestStreak,
         });
       }
       if (subject && chapter) markChapter(subject, chapter, "quiz");
@@ -19471,6 +16581,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -19486,6 +16599,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -19501,6 +16617,9 @@ function QuizzesPage() {
     setSelected(null);
     setScore(0);
     setXpEarned(0);
+    setBaseXpEarned(0);
+    setSpeedBonusXpEarned(0);
+    setStreakBonusXpEarned(0);
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -19517,25 +16636,28 @@ function QuizzesPage() {
     const correct = i === currentEnglishQuestion.answerIndex;
 
     if (correct) {
-      const gain =
-        currentEnglishQuestion.difficulty === "Hard"
-          ? 30
-          : currentEnglishQuestion.difficulty === "Medium"
-            ? 20
-            : 10;
+      const reward = calculateQuizQuestionXp({
+        correct: true,
+        timerMode: "none",
+        difficulty: currentEnglishQuestion.difficulty,
+      });
+      const gain = reward.totalQuestionXp;
       setScore((s) => s + 1);
       addXp(gain, currentEnglishQuestion.subjectId);
       setXpEarned((x) => x + gain);
+      setBaseXpEarned((x) => x + reward.baseXp);
+      setStreakBonusXpEarned((x) => x + reward.streakBonusXp);
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `english:${englishSetId ?? englishSetIdF2 ?? englishSetIdF3}:${idx}`,
         correct: true,
-        xpAwarded: gain,
+        xpAwarded: reward.streakBonusXp,
       });
 
       setFeedback({
         kind: "correct",
         msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
+        xp: reward,
       });
     } else {
       quizStreak.confirmAnswer({
@@ -19545,6 +16667,7 @@ function QuizzesPage() {
       setFeedback({
         kind: "wrong",
         msg: WRONG_MSGS[Math.floor(Math.random() * WRONG_MSGS.length)],
+        streakReset: quizStreak.streak > 0,
       });
     }
   }
@@ -19569,19 +16692,19 @@ function QuizzesPage() {
       setEnglishPhase("results");
       recordQuiz();
       {
-        const lastWasCorrect = selected === currentEnglishQuestion?.answerIndex;
-        const lastGain =
-          currentEnglishQuestion?.difficulty === "Hard"
-            ? 30
-            : currentEnglishQuestion?.difficulty === "Medium"
-              ? 20
-              : 10;
+        const passed = total > 0 && Math.round((score / total) * 100) >= QUIZ_PASS_PCT;
         recordQuizResult({
           subjectId: "english",
           chapterKey: activeEnglishSet?.title ?? `English ${form}`,
-          correct: score + (lastWasCorrect ? 1 : 0),
+          correct: score,
           total,
-          xpEarned: xpEarned + (lastWasCorrect ? lastGain : 0),
+          xpEarned: xpEarned + (passed ? QUIZ_PASS_BONUS_XP : 0),
+          timerMode: "none",
+          baseXp: baseXpEarned,
+          speedBonusXp: 0,
+          streakBonusXp: streakBonusXpEarned,
+          passBonusXp: passed ? QUIZ_PASS_BONUS_XP : 0,
+          bestCorrectStreak: quizStreak.bestStreak,
         });
       }
       if (activeEnglishSet) markChapter("english", activeEnglishSet.title, "quiz");
@@ -19619,6 +16742,65 @@ function QuizzesPage() {
 
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const planetTheme = getPlanetTheme(subject);
+  const regularQuizBm = subject === "science" && scienceLang === "bm";
+  const regularQuizCopy = regularQuizBm
+    ? {
+        shuffleTitle: "Rawak semula soalan",
+        shuffle: "Rawak semula",
+        lifetimeXp: "XP sepanjang masa",
+        correct: "Betul",
+        streakLabel: "Turutan jawapan betul kuiz",
+        shuffled: "Soalan dirawakkan pada setiap sesi",
+        noQuestions: "Tiada soalan yang sepadan — cuba penapis lain.",
+        perfectScore: "Skor Sempurna!",
+        greatJob: "Syabas!",
+        quizComplete: "Kuiz Selesai!",
+        resultIntro: "Inilah pencapaian anda",
+        accuracy: "Ketepatan",
+        totalXpEarned: "Jumlah XP diperoleh",
+        bestStreak: "Turutan betul terbaik",
+        xpEarned: "XP diperoleh",
+        baseQuestionXp: "XP Asas Soalan",
+        speedBonus: "Bonus Kepantasan",
+        streakBonus: "Bonus Turutan Betul",
+        passBonus: "Bonus Lulus",
+        totalXp: "JUMLAH XP",
+        tryAgain: "Cuba Lagi",
+        chooseChapter: "Pilih Bab",
+        nextQuestion: "Soalan Seterusnya →",
+        seeResults: "Lihat Keputusan ✨",
+        askWhy: "Ace — Mengapakah jawapan saya salah?",
+      }
+    : {
+        shuffleTitle: "Shuffle questions",
+        shuffle: "Shuffle",
+        lifetimeXp: "Lifetime XP",
+        correct: "Correct",
+        streakLabel: "Quiz correct-answer streak",
+        shuffled: "Questions are shuffled every session",
+        noQuestions: "No questions match — try different filters.",
+        perfectScore: "Perfect Score!",
+        greatJob: "Great Job!",
+        quizComplete: "Quiz Complete!",
+        resultIntro: "Here's how you did",
+        accuracy: "Accuracy",
+        totalXpEarned: "Total XP earned",
+        bestStreak: "Best correct streak",
+        xpEarned: "XP earned",
+        baseQuestionXp: "Base Question XP",
+        speedBonus: "Speed Bonus",
+        streakBonus: "Correct Streak Bonus",
+        passBonus: "Pass Bonus",
+        totalXp: "TOTAL XP",
+        tryAgain: "Try Again",
+        chooseChapter: "Choose Chapter",
+        nextQuestion: "Next Question →",
+        seeResults: "See Results ✨",
+        askWhy: "Ace — Why was my answer wrong?",
+      };
+  const regularDifficultyLabels: Record<"All" | Difficulty, string> = regularQuizBm
+    ? { All: "Semua", Easy: "Mudah", Medium: "Sederhana", Hard: "Sukar" }
+    : { All: "All", Easy: "Easy", Medium: "Medium", Hard: "Hard" };
 
   // ── BM has its own hub page ───────────────────────────────────────────────
   if (subject && !formWasChosen && !chapter) {
@@ -19972,9 +17154,14 @@ function QuizzesPage() {
         <div className="space-y-6">
           <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
             {(() => {
-              const lastQuiz = progress.lastVisited?.type === "quiz" ? progress.lastVisited : undefined;
+              const lastQuiz =
+                progress.lastVisited?.type === "quiz" ? progress.lastVisited : undefined;
               const lastResult = [...(progress.quizHistory ?? [])]
-                .filter((r) => !lastQuiz || (r.subjectId === lastQuiz.subjectId && r.chapterKey === lastQuiz.chapterKey))
+                .filter(
+                  (r) =>
+                    !lastQuiz ||
+                    (r.subjectId === lastQuiz.subjectId && r.chapterKey === lastQuiz.chapterKey),
+                )
                 .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
               if (!authUser) {
                 return (
@@ -20155,8 +17342,23 @@ function QuizzesPage() {
             reset();
           }}
         />
-      ) : subject === "math" && form === "Form 1" ? (
-        !mathQuizLang ? (
+      ) : subject === "math" &&
+        (form === "Form 1" ||
+          isForm2Chapter1DlpObjective ||
+          isForm2Chapter1BmObjective ||
+          isForm2Chapter2DlpObjective ||
+          isForm2Chapter2BmObjective ||
+          isForm2Chapter3DlpObjective ||
+          isForm2Chapter3BmObjective ||
+          isForm2Chapter4DlpObjective ||
+          isForm2Chapter4BmObjective ||
+          isForm2Chapter5DlpObjective ||
+          isForm2Chapter5BmObjective ||
+          isForm2BatchBDlpObjective ||
+          isForm2BatchBBmObjective ||
+          isForm2BatchCDlpObjective ||
+          isForm2BatchCBmObjective) ? (
+        !activeMathQuizLang ? (
           <MathQuizLanguagePicker
             subjectId={subject}
             chapterKey={chapter}
@@ -20180,7 +17382,7 @@ function QuizzesPage() {
               subjectId={subject}
               chapterKey={chapter}
               scienceLang={scienceLang ?? undefined}
-              quizLang={mathQuizLang}
+              quizLang={activeMathQuizLang}
               onBack={() => {
                 setMathObjectiveId(null);
                 setMathObjectivePhase("select");
@@ -20192,7 +17394,7 @@ function QuizzesPage() {
               objective={selectedMathObjective}
               score={score}
               total={mathShuffledQuestions?.length ?? mathObjectiveQuestions.length}
-              quizLang={mathQuizLang}
+              quizLang={activeMathQuizLang}
               chapterKey={chapter}
               onBack={() => {
                 setMathObjectiveId(null);
@@ -20209,7 +17411,7 @@ function QuizzesPage() {
               subjectId={subject}
               chapterKey={chapter}
               scienceLang={scienceLang ?? undefined}
-              quizLang={mathQuizLang}
+              quizLang={activeMathQuizLang}
               questions={mathShuffledQuestions ?? mathObjectiveQuestions}
               current={currentMathQuestion}
               idx={idx}
@@ -20241,12 +17443,33 @@ function QuizzesPage() {
             subjectId={subject}
             chapterKey={chapter}
             scienceLang={scienceLang ?? undefined}
-            quizLang={mathQuizLang}
+            quizLang={activeMathQuizLang}
             onBack={() => {
-              setMathQuizLang(null);
-              setMathObjectiveId(null);
-              setMathObjectivePhase("select");
-              resetRegularQuiz();
+              if (
+                isForm2Chapter1DlpObjective ||
+                isForm2Chapter1BmObjective ||
+                isForm2Chapter2DlpObjective ||
+                isForm2Chapter2BmObjective ||
+                isForm2Chapter3DlpObjective ||
+                isForm2Chapter3BmObjective ||
+                isForm2Chapter4DlpObjective ||
+                isForm2Chapter4BmObjective ||
+                isForm2Chapter5DlpObjective ||
+                isForm2Chapter5BmObjective ||
+                isForm2BatchBDlpObjective ||
+                isForm2BatchBBmObjective ||
+                isForm2BatchCDlpObjective ||
+                isForm2BatchCBmObjective
+              ) {
+                setChapter(null);
+                updateQuizSearch({ chapter: null });
+                reset();
+              } else {
+                setMathQuizLang(null);
+                setMathObjectiveId(null);
+                setMathObjectivePhase("select");
+                resetRegularQuiz();
+              }
             }}
             onSelect={(objectiveId) => {
               setMathObjectiveId(objectiveId);
@@ -20266,7 +17489,10 @@ function QuizzesPage() {
             updateQuizSearch({ chapter: null });
             reset();
           }}
-          onStart={(pref) => setTimerPref(pref)}
+          onStart={(pref) => {
+            setAttemptStartXp(progress.xp);
+            setTimerPref(pref);
+          }}
         />
       ) : (
         <>
@@ -20332,7 +17558,7 @@ function QuizzesPage() {
                             : "bg-white/5 text-muted-foreground"
                         }`}
                       >
-                        {d}
+                        {regularDifficultyLabels[d]}
                       </button>
                     ))}
                   </div>
@@ -20342,21 +17568,28 @@ function QuizzesPage() {
             <div className="flex items-center gap-3 text-sm">
               <button
                 onClick={reshuffle}
-                title="Shuffle questions"
+                title={regularQuizCopy.shuffleTitle}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition bg-white/5 text-muted-foreground hover:bg-white/10"
               >
-                <Shuffle className="w-3.5 h-3.5" /> Shuffle
+                <Shuffle className="w-3.5 h-3.5" /> {regularQuizCopy.shuffle}
               </button>
               {/* Music toggle removed — background music is adaptive and global. */}
-              <span className="text-muted-foreground">XP</span>
+              <span className="text-muted-foreground">{regularQuizCopy.lifetimeXp}</span>
               <span data-quiz-xp-target className="font-bold text-nova-yellow">
                 {progress.xp}
               </span>
-              <span className="text-muted-foreground">🔥 {quizStreak.streak}</span>
+              <span
+                className="text-muted-foreground"
+                aria-label={`${regularQuizCopy.streakLabel}: ${quizStreak.streak}`}
+                title={regularQuizCopy.streakLabel}
+              >
+                <Flame className="mr-1 inline h-3.5 w-3.5 text-orange-400" aria-hidden="true" />
+                {quizStreak.streak} {regularQuizCopy.correct}
+              </span>
             </div>
           </div>
           <p className="text-center text-xs text-muted-foreground mb-6 animate-fade-up">
-            🔀 Questions are shuffled every session
+            🔀 {regularQuizCopy.shuffled}
           </p>
 
           {pool.length === 0 || !shuffledPool || shuffledPool.length === 0 ? (
@@ -20364,7 +17597,7 @@ function QuizzesPage() {
               <p className="text-muted-foreground">
                 {subject === "math"
                   ? "Quizzes Coming Soon"
-                  : "No questions match — try different filters."}
+                  : regularQuizCopy.noQuestions}
               </p>
             </div>
           ) : done ? (
@@ -20403,13 +17636,13 @@ function QuizzesPage() {
 
                   <h2 className="font-display text-3xl font-extrabold">
                     {shuffledPool && score === shuffledPool.length
-                      ? "Perfect Score!"
+                      ? regularQuizCopy.perfectScore
                       : score >= Math.ceil((shuffledPool?.length ?? pool.length) * 0.7)
-                        ? "Great Job!"
-                        : "Quiz Complete!"}
+                        ? regularQuizCopy.greatJob
+                        : regularQuizCopy.quizComplete}
                   </h2>
 
-                  <p className="mt-1.5 text-sm text-white/50">Here's how you did</p>
+                  <p className="mt-1.5 text-sm text-white/50">{regularQuizCopy.resultIntro}</p>
 
                   {/* Big score number */}
                   <p
@@ -20429,18 +17662,62 @@ function QuizzesPage() {
                       <span className="text-sm font-bold">
                         {Math.round((score / (shuffledPool?.length ?? pool.length)) * 100)}%
                       </span>
-                      <span className="text-xs text-white/40">Accuracy</span>
+                      <span className="text-xs text-white/40">{regularQuizCopy.accuracy}</span>
                     </div>
                     <div className="flex items-center gap-2 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-4 py-2">
                       <Zap className="h-4 w-4 text-[#FBBF24]" />
-                      <span className="text-sm font-bold text-[#FBBF24]">+{score * 10}</span>
-                      <span className="text-xs text-white/40">XP Earned</span>
+                      <span className="text-sm font-bold text-[#FBBF24]">
+                        +
+                        {xpEarned +
+                          (Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
+                          QUIZ_PASS_PCT
+                            ? QUIZ_PASS_BONUS_XP
+                            : 0)}
+                      </span>
+                      <span className="text-xs text-white/40">{regularQuizCopy.totalXpEarned}</span>
                     </div>
                     <div className="flex items-center gap-2 rounded-full border border-orange-500/25 bg-orange-500/10 px-4 py-2">
                       <Flame className="h-4 w-4 text-orange-400" />
-                      <span className="text-sm font-bold text-orange-300">{quizStreak.streak}</span>
-                      <span className="text-xs text-white/40">Combo</span>
+                      <span className="text-sm font-bold text-orange-300">
+                        {quizStreak.bestStreak}
+                      </span>
+                      <span className="text-xs text-white/40">{regularQuizCopy.bestStreak}</span>
                     </div>
+                  </div>
+
+                  <div className="mx-auto mb-8 max-w-md rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left">
+                    <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-white/50">
+                      {regularQuizCopy.xpEarned}
+                    </p>
+                    <XpResultRow label={regularQuizCopy.baseQuestionXp} value={baseXpEarned} />
+                    <XpResultRow label={regularQuizCopy.speedBonus} value={speedBonusXpEarned} />
+                    <XpResultRow label={regularQuizCopy.streakBonus} value={streakBonusXpEarned} />
+                    <XpResultRow
+                      label={regularQuizCopy.passBonus}
+                      value={
+                        Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
+                        QUIZ_PASS_PCT
+                          ? QUIZ_PASS_BONUS_XP
+                          : 0
+                      }
+                    />
+                    <div className="mt-3 border-t border-white/10 pt-3">
+                      <XpResultRow
+                        label={regularQuizCopy.totalXp}
+                        value={
+                          xpEarned +
+                          (Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
+                          QUIZ_PASS_PCT
+                            ? QUIZ_PASS_BONUS_XP
+                            : 0)
+                        }
+                        strong
+                      />
+                    </div>
+                    <p className="mt-3 text-xs text-white/45">
+                      {regularQuizCopy.lifetimeXp} {attemptStartXp.toLocaleString()} → {progress.xp.toLocaleString()}{" "}
+                      XP
+                    </p>
                   </div>
 
                   {/* CTA buttons */}
@@ -20449,7 +17726,7 @@ function QuizzesPage() {
                       onClick={reset}
                       className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-8 py-3.5 font-bold text-white shadow-[0_0_32px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] hover:shadow-[0_0_48px_rgba(139,92,246,0.5)]"
                     >
-                      <RotateCcw className="h-4 w-4" /> Try Again
+                      <RotateCcw className="h-4 w-4" /> {regularQuizCopy.tryAgain}
                     </button>
                     <button
                       onClick={() => {
@@ -20459,7 +17736,7 @@ function QuizzesPage() {
                       }}
                       className="inline-flex items-center gap-2 rounded-2xl border border-white/[0.12] bg-white/[0.06] px-8 py-3.5 font-bold text-white transition-all hover:bg-white/[0.10]"
                     >
-                      <ArrowLeft className="h-4 w-4" /> Choose Chapter
+                      <ArrowLeft className="h-4 w-4" /> {regularQuizCopy.chooseChapter}
                     </button>
                   </div>
                 </div>
@@ -20508,7 +17785,7 @@ function QuizzesPage() {
                             : "bg-emerald-500/20 text-emerald-300"
                       }`}
                     >
-                      {current.difficulty}
+                      {regularDifficultyLabels[current.difficulty]}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
@@ -20516,7 +17793,7 @@ function QuizzesPage() {
                     <div className="flex items-center gap-1.5 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-3 py-1.5">
                       <Zap className="h-3 w-3 text-[#FBBF24]" />
                       <span className="text-xs font-bold text-[#FBBF24]">{score}</span>
-                      <span className="text-[10px] text-white/30">correct</span>
+                      <span className="text-[10px] text-white/30">{regularQuizCopy.correct}</span>
                     </div>
                     {timerPref?.mode === "timer" && (
                       <div
@@ -20657,28 +17934,7 @@ function QuizzesPage() {
                 </div>
 
                 {/* ── Feedback callout ── */}
-                {feedback && (
-                  <div
-                    className={`mx-6 mb-4 flex items-center gap-3 rounded-2xl border p-4 animate-fade-up ${
-                      feedback.kind === "correct"
-                        ? "border-emerald-400/30 bg-emerald-500/12"
-                        : "border-rose-400/30 bg-rose-500/12"
-                    }`}
-                  >
-                    {feedback.kind === "correct" ? (
-                      <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
-                    ) : (
-                      <XCircle className="h-5 w-5 shrink-0 text-rose-400" />
-                    )}
-                    <span
-                      className={`font-display text-lg font-bold ${
-                        feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
-                      }`}
-                    >
-                      {feedback.msg}
-                    </span>
-                  </div>
-                )}
+                {feedback && <QuestionXpFeedback feedback={feedback} bm={regularQuizBm} />}
 
                 {/* ── Explanation ── */}
                 {selected !== null && current.explanation && (
@@ -20707,13 +17963,15 @@ function QuizzesPage() {
                             explanation: current.explanation,
                             subjectId: subject ?? undefined,
                           },
-                          initialMessage: `Saya salah pilih "${current.options[selected]}" untuk soalan ini. Boleh Cikgu terangkan kenapa jawapan saya salah dan kenapa "${current.options[current.answerIndex]}" adalah betul?`,
+                          initialMessage: regularQuizBm
+                            ? `Saya salah pilih "${current.options[selected]}" untuk soalan ini. Boleh Cikgu terangkan mengapa jawapan saya salah dan mengapa "${current.options[current.answerIndex]}" ialah jawapan yang betul?`
+                            : `I chose "${current.options[selected]}" for this question. Can you explain why it is wrong and why "${current.options[current.answerIndex]}" is correct?`,
                         })
                       }
                       className="w-full flex items-center justify-center gap-2.5 rounded-2xl border border-[#6366F1]/30 bg-[#6366F1]/10 py-3 text-sm font-semibold text-[#A5B4FC] transition-all hover:bg-[#6366F1]/20 hover:border-[#6366F1]/50 active:scale-[0.99]"
                     >
                       <span className="text-base">👨‍🚀</span>
-                      Ace — Kenapa jawapan saya salah?
+                      {regularQuizCopy.askWhy}
                     </button>
                   </div>
                 )}
@@ -20726,8 +17984,8 @@ function QuizzesPage() {
                       className="w-full rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-3.5 font-bold text-white shadow-[0_0_28px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] active:scale-[0.99]"
                     >
                       {idx + 1 >= (shuffledPool?.length ?? pool.length)
-                        ? "See Results ✨"
-                        : "Next Question →"}
+                        ? regularQuizCopy.seeResults
+                        : regularQuizCopy.nextQuestion}
                     </button>
                   </div>
                 )}
@@ -20737,6 +17995,74 @@ function QuizzesPage() {
         </>
       )}
     </AcademyPageShell>
+  );
+}
+
+function XpResultRow({
+  label,
+  value,
+  strong = false,
+}: {
+  label: string;
+  value: number;
+  strong?: boolean;
+}) {
+  return (
+    <div
+      className={`flex items-center justify-between gap-4 py-1.5 ${strong ? "font-bold text-white" : "text-sm text-white/65"}`}
+    >
+      <span>{label}</span>
+      <span className={strong ? "text-[#FBBF24]" : "text-white"}>+{value} XP</span>
+    </div>
+  );
+}
+
+function QuestionXpFeedback({ feedback, bm = false }: { feedback: QuizFeedback; bm?: boolean }) {
+  const reward = feedback.xp;
+  return (
+    <div
+      className={`quiz-xp-feedback mx-6 mb-4 rounded-2xl border p-4 ${
+        feedback.kind === "correct"
+          ? "border-emerald-400/30 bg-emerald-500/12"
+          : "border-rose-400/30 bg-rose-500/12"
+      }`}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="flex items-center gap-3">
+        {feedback.kind === "correct" ? (
+          <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" aria-hidden="true" />
+        ) : (
+          <XCircle className="h-5 w-5 shrink-0 text-rose-400" aria-hidden="true" />
+        )}
+        <span
+          className={`font-display text-lg font-bold ${feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"}`}
+        >
+          {feedback.msg}
+        </span>
+      </div>
+      {reward && (
+        <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1 text-xs sm:flex sm:flex-wrap sm:items-center sm:gap-3">
+          <span>+{reward.baseXp} {bm ? "XP Asas" : "Base XP"}</span>
+          <span aria-label={`${bm ? "Bonus Kepantasan tambah" : "Speed Bonus plus"} ${reward.timerBonusXp} XP`}>
+            <Zap className="mr-1 inline h-3.5 w-3.5 text-amber-300" aria-hidden="true" />+
+            {reward.timerBonusXp} {bm ? "Bonus Kepantasan" : "Speed Bonus"}
+          </span>
+          <span aria-label={`${bm ? "Bonus Turutan Betul tambah" : "Correct Streak Bonus plus"} ${reward.streakBonusXp} XP`}>
+            <Flame className="mr-1 inline h-3.5 w-3.5 text-orange-400" aria-hidden="true" />+
+            {reward.streakBonusXp} {bm ? "Bonus Turutan" : "Streak Bonus"}
+          </span>
+          <strong className="text-[#FBBF24]">{bm ? "JUMLAH" : "TOTAL"} +{reward.totalQuestionXp} XP</strong>
+        </div>
+      )}
+      {feedback.streakReset && (
+        <p className="mt-2 text-xs text-white/55">
+          {bm
+            ? "Turutan jawapan betul ditetapkan semula. Bina semula pada soalan seterusnya."
+            : "Correct-answer streak reset. Build it again on the next question."}
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -20784,13 +18110,15 @@ function QuizSettingsScreen({
           <h2 className="font-display text-3xl font-bold">
             Quiz <span className="gradient-text">Settings</span>
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">Pick how you want to play.</p>
+          <p className="mt-2 text-sm text-muted-foreground">Shorter timer = bigger Speed Bonus.</p>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
           {/* With Timer */}
           <button
             onClick={() => setMode("timer")}
+            aria-pressed={mode === "timer"}
+            aria-label={`Timed quiz. Select 15, 30, or 60 seconds per question. Current Speed Bonus plus ${QUIZ_TIMER_BONUS_XP[seconds as 15 | 30 | 60]} XP per correct answer.`}
             className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
               mode === "timer"
                 ? "border-2 border-primary shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.55)] scale-[1.02]"
@@ -20812,12 +18140,14 @@ function QuizSettingsScreen({
                 <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">
                   Time per question
                 </p>
-                <div className="flex gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {[15, 30, 60].map((s) => (
                     <span
                       key={s}
                       role="button"
                       tabIndex={0}
+                      aria-pressed={seconds === s}
+                      aria-label={`${s === 60 ? "1 minute" : `${s} seconds`}, plus ${QUIZ_TIMER_BONUS_XP[s as 15 | 30 | 60]} Speed Bonus XP per correct answer${s === 15 ? ", challenge mode" : ""}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         setSeconds(s);
@@ -20829,13 +18159,18 @@ function QuizSettingsScreen({
                           setSeconds(s);
                         }
                       }}
-                      className={`px-3 py-1.5 rounded-full text-xs font-bold cursor-pointer transition ${
+                      className={`min-h-11 rounded-xl px-2 py-2 text-center text-xs font-bold cursor-pointer transition ${
                         seconds === s
-                          ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+                          ? s === 15
+                            ? "bg-gradient-to-r from-rose-500 to-amber-500 text-white shadow-lg"
+                            : "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
                           : "bg-white/5 text-muted-foreground hover:bg-white/10"
                       }`}
                     >
-                      {s}s
+                      <span className="block">{s === 60 ? "1 MIN" : `${s} SEC`}</span>
+                      <span className="mt-0.5 block text-[10px]">
+                        +{QUIZ_TIMER_BONUS_XP[s as 15 | 30 | 60]} XP
+                      </span>
                     </span>
                   ))}
                 </div>
@@ -20846,6 +18181,8 @@ function QuizSettingsScreen({
           {/* No Timer */}
           <button
             onClick={() => setMode("none")}
+            aria-pressed={mode === "none"}
+            aria-label={`No Timer, no Speed Bonus${mode === "none" ? ", selected" : ""}`}
             className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
               mode === "none"
                 ? "border-2 border-accent shadow-[0_0_30px_oklch(0.7_0.18_180_/_0.5)] scale-[1.02]"
@@ -20861,8 +18198,34 @@ function QuizSettingsScreen({
             <p className="mt-2 text-xs text-muted-foreground">
               No countdown, no pressure. Just learn.
             </p>
+            <span className="mt-4 inline-flex rounded-full bg-white/5 px-3 py-1.5 text-xs font-bold text-emerald-200">
+              NO TIMER · +0 XP
+            </span>
           </button>
         </div>
+
+        {mode && (
+          <div
+            className="mt-5 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-center text-sm text-white/70"
+            role="status"
+          >
+            <span className="font-bold text-white">
+              {mode === "none"
+                ? "No Timer"
+                : `${seconds === 60 ? "1 Minute" : `${seconds} Second`} Challenge`}
+            </span>
+            <span className="mx-2 text-white/25">•</span>
+            <span aria-label="Speed Bonus">
+              <Zap className="mr-1 inline h-4 w-4 text-amber-300" aria-hidden="true" />+
+              {mode === "none" ? 0 : QUIZ_TIMER_BONUS_XP[seconds as 15 | 30 | 60]} XP per correct
+            </span>
+            <span className="mx-2 text-white/25">•</span>
+            <span aria-label="Correct Streak Bonus">
+              <Flame className="mr-1 inline h-4 w-4 text-orange-400" aria-hidden="true" />
+              +5 XP when your correct streak increases
+            </span>
+          </div>
+        )}
 
         <button
           disabled={!ready}
@@ -21085,7 +18448,7 @@ function EnglishQuizScreenF2(props: {
   current: ShuffledQuestion | null;
   idx: number;
   selected: number | null;
-  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  feedback: QuizFeedback | null;
   score: number;
   onAnswer: (index: number) => void;
   onNext: () => void;
@@ -21266,7 +18629,7 @@ function EnglishQuizScreen({
   current: ShuffledQuestion | null;
   idx: number;
   selected: number | null;
-  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  feedback: QuizFeedback | null;
   score: number;
   onAnswer: (index: number) => void;
   onNext: () => void;
@@ -21415,28 +18778,7 @@ function EnglishQuizScreen({
           })}
         </div>
 
-        {feedback && (
-          <div
-            className={`mx-6 mb-4 flex items-center gap-3 rounded-2xl border p-4 animate-fade-up ${
-              feedback.kind === "correct"
-                ? "border-emerald-400/30 bg-emerald-500/12"
-                : "border-rose-400/30 bg-rose-500/12"
-            }`}
-          >
-            {feedback.kind === "correct" ? (
-              <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
-            ) : (
-              <XCircle className="h-5 w-5 shrink-0 text-rose-400" />
-            )}
-            <span
-              className={`font-display text-lg font-bold ${
-                feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"
-              }`}
-            >
-              {feedback.msg}
-            </span>
-          </div>
-        )}
+        {feedback && <QuestionXpFeedback feedback={feedback} />}
 
         {selected !== null && current.explanation && (
           <div className="mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-[#8B5CF6]/20 bg-[#8B5CF6]/8 p-4 animate-fade-up">
@@ -21466,7 +18808,7 @@ function EnglishQuizScreenF3(props: {
   current: ShuffledQuestion | null;
   idx: number;
   selected: number | null;
-  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  feedback: QuizFeedback | null;
   score: number;
   onAnswer: (index: number) => void;
   onNext: () => void;
@@ -22382,7 +19724,7 @@ function MathObjectiveQuizScreen({
   current: ShuffledQuestion | null;
   idx: number;
   selected: number | null;
-  feedback: { kind: "correct" | "wrong"; msg: string } | null;
+  feedback: QuizFeedback | null;
   score: number;
   onAnswer: (index: number) => void;
   onNext: () => void;
@@ -22527,26 +19869,7 @@ function MathObjectiveQuizScreen({
         </div>
 
         {/* Feedback */}
-        {feedback && (
-          <div
-            className={`mx-6 mb-4 flex items-center gap-3 rounded-2xl border p-4 animate-fade-up ${
-              feedback.kind === "correct"
-                ? "border-emerald-400/30 bg-emerald-500/12"
-                : "border-rose-400/30 bg-rose-500/12"
-            }`}
-          >
-            {feedback.kind === "correct" ? (
-              <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
-            ) : (
-              <XCircle className="h-5 w-5 shrink-0 text-rose-400" />
-            )}
-            <span
-              className={`font-display text-lg font-bold ${feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"}`}
-            >
-              {feedback.msg}
-            </span>
-          </div>
-        )}
+        {feedback && <QuestionXpFeedback feedback={feedback} />}
 
         {selected !== null && current.explanation && (
           <div className="mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-[#8B5CF6]/20 bg-[#8B5CF6]/8 p-4 animate-fade-up">

@@ -25,7 +25,7 @@ import {
   getCompanionLevelProgress,
   getCompanionStageForXp,
 } from "@/hooks/use-progress";
-import { CompanionImage, getCompanionSpecies } from "@/companion";
+import { CompanionImage, getCompanionDisplayName, getCompanionSpecies } from "@/companion";
 import { subjects } from "@/data/subjects-meta";
 import {
   Target,
@@ -49,29 +49,45 @@ import {
   PlayCircle,
   Lock,
 } from "lucide-react";
-import {
-  AcademyPageShell,
-  NotesSubjectCard,
-  type SubjectPlanetId,
-} from "@/components/AcademyPage";
+import { AcademyPageShell, NotesSubjectCard, type SubjectPlanetId } from "@/components/AcademyPage";
 import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
 import { seoMeta } from "@/lib/seo";
 import {
+<<<<<<< HEAD
   completeJourneyUnlock,
   subscribeToJourneyUnlocks,
 } from "@/lib/progression-events";
+=======
+  CompanionInfoPopover,
+  StreakInfoPopover,
+  XpInfoPopover,
+} from "@/components/progression/ProgressionHelp";
+import {
+  DAILY_COMPLETION_REWARD_XP,
+  DAILY_MISSION_POOL,
+  DAILY_OBJECTIVE_REWARD_XP,
+  createLocalMissionState,
+  fetchMissionState,
+  getMissionProgress,
+  isMissionComplete,
+  type MissionReadyEvent,
+  type MissionSystemState,
+} from "@/lib/mission-system";
+import { getLocalDateKey } from "@/lib/local-date";
+>>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
 
 export const Route = createFileRoute("/dashboard")({
   // Personal, per-user stats page — not useful search-result content, and
   // indexing it would just be a wall of identical placeholder XP/streak
   // markup for every crawl. Standard practice: noindex app/account pages.
-  head: () => seoMeta({
-    title: "Dashboard",
-    description: "Track your XP, streaks, badges and KSSM study progress on AcadeMY.",
-    path: "/dashboard",
-    noindex: true,
-  }),
+  head: () =>
+    seoMeta({
+      title: "Dashboard",
+      description: "Track your XP, streaks, badges and KSSM study progress on AcadeMY.",
+      path: "/dashboard",
+      noindex: true,
+    }),
   component: DashboardPage,
 });
 
@@ -84,12 +100,34 @@ const TYPE_ROUTES = {
 } as const;
 
 const TYPE_ICONS: Record<string, string> = { notes: "📖", flashcards: "🃏", quiz: "🧠" };
-const TYPE_LABELS: Record<string, string> = { notes: "Notes", flashcards: "Flashcards", quiz: "Quiz" };
+const TYPE_LABELS: Record<string, string> = {
+  notes: "Notes",
+  flashcards: "Flashcards",
+  quiz: "Quiz",
+};
 
 const STARTER_ACTIONS = [
-  { title: "Explore Notes", subtitle: "Pick a subject and start your first chapter.", to: "/notes" as const, Icon: BookOpen, color: "#60A5FA" },
-  { title: "Try a Quiz", subtitle: "Test what you already know.", to: "/quizzes" as const, Icon: TrendingUp, color: "#FBBF24" },
-  { title: "Review Flashcards", subtitle: "Build memory with quick study cards.", to: "/flashcards" as const, Icon: BookMarked, color: "#A78BFA" },
+  {
+    title: "Explore Notes",
+    subtitle: "Pick a subject and start your first chapter.",
+    to: "/notes" as const,
+    Icon: BookOpen,
+    color: "#60A5FA",
+  },
+  {
+    title: "Try a Quiz",
+    subtitle: "Test what you already know.",
+    to: "/quizzes" as const,
+    Icon: TrendingUp,
+    color: "#FBBF24",
+  },
+  {
+    title: "Review Flashcards",
+    subtitle: "Build memory with quick study cards.",
+    to: "/flashcards" as const,
+    Icon: BookMarked,
+    color: "#A78BFA",
+  },
 ];
 
 function timeAgo(ts: number) {
@@ -179,11 +217,11 @@ function DashboardPage() {
   const { progress } = useProgress();
   const { user } = useAuth();
   const { openCikgu } = useCikgu();
-  const rank       = getRank(progress.xp);
-  const nextRank   = getNextRank(progress.xp);
-  const rankPct    = getRankProgress(progress.xp);
-  const completed  = totalChaptersCompleted(progress.chapterActivity);
-  const dueCount   = getDueCount(progress.cardMastery);
+  const rank = getRank(progress.xp);
+  const nextRank = getNextRank(progress.xp);
+  const rankPct = getRankProgress(progress.xp);
+  const completed = totalChaptersCompleted(progress.chapterActivity);
+  const dueCount = getDueCount(progress.cardMastery);
   const masteredCount = getMasteredCount(progress.cardMastery);
   const streakUrgent = useStreakUrgent(progress.lastActive, progress.streak);
 
@@ -201,8 +239,8 @@ function DashboardPage() {
       const chapterKey = key.slice(colonIdx + 1);
       const subject = subjects.find((s) => s.id === subjectId);
       const missing: string[] = [];
-      if (!a.read)  missing.push("Notes");
-      if (!a.quiz)  missing.push("Quiz");
+      if (!a.read) missing.push("Notes");
+      if (!a.quiz) missing.push("Quiz");
       if (!a.cards) missing.push("Flashcards");
       return { key, subjectId, chapterKey, subject, a, missing, pct: chapterProgressPct(a) };
     })
@@ -211,6 +249,7 @@ function DashboardPage() {
   const firstName = user?.name?.split(" ")[0] ?? "Student";
   const greeting = useLocalGreeting(firstName);
   const companionId = progress.companion?.id ?? "nova";
+  const companionName = getCompanionDisplayName(progress.companion ?? { id: "nova" });
   const nextGoalLabel = getNextGoalLabel(todaysMissions);
   const [celebratingRankId, setCelebratingRankId] = useState<string | null>(null);
   const [journeyDisplayXp, setJourneyDisplayXp] = useState<number | null>(null);
@@ -233,15 +272,16 @@ function DashboardPage() {
       {/* ── Slim header — greeting / streak / CTA ─────────────────────── */}
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-[#6366F1]">Your Space Journey</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#6366F1]">
+            Your Space Journey
+          </p>
           <h1 className="font-display text-xl font-black text-white sm:text-2xl">{greeting}</h1>
         </div>
         <div className="flex items-center gap-3">
-          {progress.streak > 0 && (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-500/20 bg-orange-500/10 px-3.5 py-2 text-xs font-bold text-orange-300">
-              🔥 {progress.streak}-day streak
-            </span>
-          )}
+          <StreakInfoPopover
+            streak={progress.streak}
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-orange-500/25 bg-orange-500/10 px-3.5 text-xs font-bold text-orange-200 shadow-[0_0_18px_rgba(251,146,60,0.10)] transition-colors hover:bg-orange-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
+          />
           <Link
             to="/notes"
             className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-2.5 text-sm font-bold text-white shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] active:scale-[0.98]"
@@ -258,6 +298,7 @@ function DashboardPage() {
         xp={progress.xp}
         rankPct={rankPct}
         companionId={companionId}
+        companionName={companionName}
         nextGoalLabel={nextGoalLabel}
       />
 
@@ -271,7 +312,9 @@ function DashboardPage() {
             <Bell className="h-5 w-5 text-orange-400" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="font-bold text-orange-200">Don't break your {progress.streak}-day streak! 🔥</p>
+            <p className="font-bold text-orange-200">
+              Don't break your {progress.streak}-day streak! 🔥
+            </p>
             <p className="text-sm text-orange-300/70">Study before midnight to keep it alive.</p>
           </div>
           <ArrowRight className="h-4 w-4 shrink-0 text-orange-400" />
@@ -290,7 +333,9 @@ function DashboardPage() {
           compact
           notesStudied={missionsActive && progress.missions ? progress.missions.readChapters : 0}
           quizzesCompleted={missionsActive && progress.missions ? progress.missions.quizzesDone : 0}
-          flashcardsMastered={missionsActive && progress.missions ? progress.missions.flashcardsDone : 0}
+          flashcardsMastered={
+            missionsActive && progress.missions ? progress.missions.flashcardsDone : 0
+          }
           totalXp={progress.xp}
         />
       </div>
@@ -299,7 +344,10 @@ function DashboardPage() {
       <Card className="mb-6">
         <div className="mb-4 flex items-center justify-between">
           <SectionLabel>Subject Worlds</SectionLabel>
-          <Link to="/notes" className="text-xs font-bold text-[#94A3B8] hover:text-white transition-colors">
+          <Link
+            to="/notes"
+            className="text-xs font-bold text-[#94A3B8] hover:text-white transition-colors"
+          >
             Study Now →
           </Link>
         </div>
@@ -337,15 +385,15 @@ function DashboardPage() {
             <div>
               <p className="font-display text-4xl font-bold text-white">{completed}</p>
               <p className="text-sm text-[#94A3B8]">
-                {completed === 0 ? "No chapters fully mastered yet" : `chapter${completed !== 1 ? "s" : ""} fully mastered`}
+                {completed === 0
+                  ? "No chapters fully mastered yet"
+                  : `chapter${completed !== 1 ? "s" : ""} fully mastered`}
               </p>
             </div>
           </Card>
 
           {/* Ace CTA */}
-          <div
-            className="rounded-[2rem] border border-[#6366F1]/25 bg-gradient-to-br from-[#6366F1]/15 to-[#8B5CF6]/15 p-5 backdrop-blur-2xl"
-          >
+          <div className="rounded-[2rem] border border-[#6366F1]/25 bg-gradient-to-br from-[#6366F1]/15 to-[#8B5CF6]/15 p-5 backdrop-blur-2xl">
             <div className="flex items-center gap-3 mb-3">
               <div
                 className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl"
@@ -398,7 +446,7 @@ function DashboardPage() {
 
       {/* ── ROW 6 — Daily Missions ──────────────────────────────────────── */}
       <Card className="mb-6">
-        <DailyMissionsSection missions={todaysMissions} />
+        <DailyMissionsSection />
       </Card>
 
       {/* ── ROW 7 — Achievements / Recent Activity ──────────────────────── */}
@@ -428,9 +476,7 @@ function DashboardPage() {
                   <p className="text-sm font-semibold text-white capitalize truncate">
                     {ch.subject?.name ?? ch.subjectId} · {ch.chapterKey}
                   </p>
-                  <p className="text-xs text-amber-300/70">
-                    Still needed: {ch.missing.join(", ")}
-                  </p>
+                  <p className="text-xs text-amber-300/70">Still needed: {ch.missing.join(", ")}</p>
                 </div>
                 <div className="shrink-0 text-right">
                   <p className="text-sm font-bold text-amber-300">{ch.pct}%</p>
@@ -460,6 +506,7 @@ function HeroRow({
   xp,
   rankPct,
   companionId,
+  companionName,
   nextGoalLabel,
 }: {
   rank: SpaceRank;
@@ -467,12 +514,13 @@ function HeroRow({
   xp: number;
   rankPct: number;
   companionId: CompanionId;
+  companionName: string;
   nextGoalLabel: string;
 }) {
   return (
     <div className="mb-6 grid gap-4 sm:grid-cols-3">
       <RankHeroCard rank={rank} nextRank={nextRank} xp={xp} rankPct={rankPct} />
-      <CompanionHeroCard xp={xp} companionId={companionId} />
+      <CompanionHeroCard xp={xp} companionId={companionId} companionName={companionName} />
       <NextGoalHeroCard nextGoalLabel={nextGoalLabel} nextRank={nextRank} xp={xp} />
     </div>
   );
@@ -498,6 +546,7 @@ function RankHeroCard({
         className="pointer-events-none absolute inset-0 opacity-80"
         style={{ background: `radial-gradient(circle at 20% 18%, ${theme.soft}, transparent 60%)` }}
       />
+      <XpInfoPopover className="absolute right-2 top-2 z-20 w-11 justify-center px-0 text-[0px] xl:w-auto xl:px-2 xl:text-[11px]" />
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center text-center">
         <SectionLabel className="mb-3">Current Rank</SectionLabel>
         <CosmicPlanet rank={rank} size={88} current spotlight />
@@ -508,11 +557,23 @@ function RankHeroCard({
           {rank.name}
         </p>
         <div className="mt-4 w-full">
-          <div className="mb-1.5 flex items-center justify-between text-xs font-bold text-white/60">
-            <span>{xp.toLocaleString()} XP</span>
+          <div className="mb-1.5 flex items-end justify-between text-xs font-bold text-white/60">
+            <span className="text-left">
+              <strong className="block text-white">{xp.toLocaleString()} XP</strong>
+              <small className="text-[9px] uppercase tracking-wide text-white/40">
+                Lifetime XP
+              </small>
+            </span>
             <span>{rankPct}%</span>
           </div>
-          <div className="h-3 w-full overflow-hidden rounded-full bg-white/[0.08]">
+          <div
+            className="h-3 w-full overflow-hidden rounded-full bg-white/[0.08]"
+            role="progressbar"
+            aria-label={`Progress from ${rank.name} to ${nextRank?.name ?? "highest rank"}`}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={rankPct}
+          >
             <div
               className="h-full rounded-full transition-all duration-700"
               style={{
@@ -523,7 +584,9 @@ function RankHeroCard({
             />
           </div>
           <p className="mt-2 text-xs font-bold text-white/50">
-            {nextRank ? `${xpRemaining.toLocaleString()} XP to ${nextRank.name}` : "Highest rank reached! 🌟"}
+            {nextRank
+              ? `${xpRemaining.toLocaleString()} XP until ${nextRank.name}`
+              : "Highest rank reached! 🌟"}
           </p>
         </div>
       </div>
@@ -531,7 +594,15 @@ function RankHeroCard({
   );
 }
 
-function CompanionHeroCard({ xp, companionId }: { xp: number; companionId: CompanionId }) {
+function CompanionHeroCard({
+  xp,
+  companionId,
+  companionName,
+}: {
+  xp: number;
+  companionId: CompanionId;
+  companionName: string;
+}) {
   const stageId = getCompanionStageForXp(xp);
   const species = getCompanionSpecies(companionId);
 
@@ -539,7 +610,14 @@ function CompanionHeroCard({ xp, companionId }: { xp: number; companionId: Compa
     <Card className="relative flex h-[280px] flex-col overflow-hidden text-center !p-4 sm:h-[300px] sm:!p-5">
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
-        style={{ background: "radial-gradient(circle at 50% 10%, rgba(167,139,250,0.32), transparent 65%)" }}
+        style={{
+          background: "radial-gradient(circle at 50% 10%, rgba(167,139,250,0.32), transparent 65%)",
+        }}
+      />
+      <CompanionInfoPopover
+        xp={xp}
+        companionName={companionName}
+        className="absolute right-2 top-2 z-20 w-11 justify-center px-0 text-[0px] xl:w-auto xl:px-2 xl:text-[11px]"
       />
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center">
         <SectionLabel>Companion</SectionLabel>
@@ -552,8 +630,8 @@ function CompanionHeroCard({ xp, companionId }: { xp: number; companionId: Compa
             className="!h-full !w-full object-contain"
           />
         </div>
-        <p className="mt-1 text-sm font-bold text-white">
-          XP: <span className="text-[#A78BFA]">{xp.toLocaleString()}</span>
+        <p className="mt-1 text-xs font-bold text-[#E9D5FF]">
+          Earn Lifetime XP to help {companionName} grow.
         </p>
       </div>
     </Card>
@@ -605,7 +683,9 @@ function ContinueLearningCard({ lastVisited }: { lastVisited: LastVisited }) {
           {TYPE_ICONS[lastVisited.type]}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[#818CF8]">Continue Learning</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[#818CF8]">
+            Continue Learning
+          </p>
           <p className="text-sm font-bold text-white capitalize truncate">{lastVisited.label}</p>
         </div>
       </div>
@@ -621,7 +701,13 @@ function ContinueLearningCard({ lastVisited }: { lastVisited: LastVisited }) {
 
 // ─── Flashcards Due — compact alert/status card ────────────────────────────────
 
-function FlashcardsDueCard({ dueCount, masteredCount }: { dueCount: number; masteredCount: number }) {
+function FlashcardsDueCard({
+  dueCount,
+  masteredCount,
+}: {
+  dueCount: number;
+  masteredCount: number;
+}) {
   const due = dueCount > 0;
   return (
     <Link
@@ -629,18 +715,28 @@ function FlashcardsDueCard({ dueCount, masteredCount }: { dueCount: number; mast
       className={`academy-surface group flex flex-col rounded-[2rem] border p-4 backdrop-blur-2xl transition-all ${due ? "border-sky-500/30 bg-sky-500/10 hover:border-sky-500/50 hover:bg-sky-500/15" : "border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06]"}`}
     >
       <div className="flex items-center gap-3">
-        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${due ? "bg-sky-500/20" : "bg-white/[0.06]"}`}>
+        <div
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${due ? "bg-sky-500/20" : "bg-white/[0.06]"}`}
+        >
           <RotateCcw className={`h-5 w-5 ${due ? "text-sky-400" : "text-white/40"}`} />
         </div>
         <div className="flex-1 min-w-0">
-          <p className={`text-[10px] font-bold uppercase tracking-widest ${due ? "text-sky-300" : "text-[#94A3B8]"}`}>Flashcards Due</p>
+          <p
+            className={`text-[10px] font-bold uppercase tracking-widest ${due ? "text-sky-300" : "text-[#94A3B8]"}`}
+          >
+            Flashcards Due
+          </p>
           <p className="text-sm font-bold text-white">
             {due ? `${dueCount} card${dueCount !== 1 ? "s" : ""} to review` : "All caught up!"}
           </p>
         </div>
       </div>
-      <p className="mt-2 text-xs text-white/40">{masteredCount} card{masteredCount !== 1 ? "s" : ""} mastered</p>
-      <div className={`mt-auto flex items-center gap-1.5 pt-3 text-sm font-bold transition-transform group-hover:translate-x-0.5 ${due ? "text-sky-300" : "text-white/50"}`}>
+      <p className="mt-2 text-xs text-white/40">
+        {masteredCount} card{masteredCount !== 1 ? "s" : ""} mastered
+      </p>
+      <div
+        className={`mt-auto flex items-center gap-1.5 pt-3 text-sm font-bold transition-transform group-hover:translate-x-0.5 ${due ? "text-sky-300" : "text-white/50"}`}
+      >
         Review <ArrowRight className="h-4 w-4" />
       </div>
     </Link>
@@ -652,7 +748,7 @@ function FlashcardsDueCard({ dueCount, masteredCount }: { dueCount: number; mast
 function StarterCards({ compact = false }: { compact?: boolean }) {
   return (
     <Card className={compact ? "" : "mb-6"}>
-      <div className="mb-4 flex items-center gap-2">
+      <div className="mb-4 flex flex-wrap items-center gap-2">
         <Compass className="h-4 w-4 text-cyan-300" />
         <SectionLabel>Start Your Journey</SectionLabel>
       </div>
@@ -663,7 +759,10 @@ function StarterCards({ compact = false }: { compact?: boolean }) {
             to={item.to}
             className="group rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 transition-all hover:-translate-y-0.5 hover:bg-white/[0.07]"
           >
-            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-white/[0.06]" style={{ color: item.color }}>
+            <div
+              className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-white/[0.06]"
+              style={{ color: item.color }}
+            >
               <item.Icon className="h-5 w-5" />
             </div>
             <p className="font-bold text-white">{item.title}</p>
@@ -679,20 +778,62 @@ function StarterCards({ compact = false }: { compact?: boolean }) {
 // ─── Daily Missions — 3 individual mission cards ───────────────────────────────
 
 const MISSION_ICONS: Record<string, { Icon: typeof BookOpen; color: string }> = {
-  read2: { Icon: BookOpen, color: "#60A5FA" },
-  quiz2: { Icon: ClipboardList, color: "#FBBF24" },
-  cards1: { Icon: BookMarked, color: "#A78BFA" },
+  lesson: { Icon: BookOpen, color: "#60A5FA" },
+  quiz: { Icon: ClipboardList, color: "#FBBF24" },
+  flashcard: { Icon: BookMarked, color: "#A78BFA" },
 };
 
-function DailyMissionsSection({ missions }: { missions?: MissionProgress }) {
-  const missionRows = DAILY_MISSIONS.map((m) => ({
-    id: m.id,
-    label: m.label,
-    current: missions ? Math.min(m.current(missions), m.target) : 0,
-    target: m.target,
-    ...(MISSION_ICONS[m.id] ?? { Icon: Star, color: "#94A3B8" }),
-  }));
-  const doneCount = missionRows.filter((mission) => mission.current >= mission.target).length;
+function DailyMissionsSection() {
+  const { user } = useAuth();
+  const { progress, acceptMissionState } = useProgress();
+  const [remoteState, setRemoteState] = useState<MissionSystemState | null>(null);
+  const dateKey = getLocalDateKey();
+  const daily = progress.missions?.dailyDate === dateKey ? progress.missions : undefined;
+  const localState = createLocalMissionState(user?.id ?? "local-installation", new Date(), {
+    lesson: daily?.readChapters ?? 0,
+    quiz: daily?.quizzesDone ?? 0,
+    flashcard: daily?.flashcardReviews ?? 0,
+  });
+  const state = remoteState?.dateKey === dateKey ? remoteState : localState;
+
+  useEffect(() => {
+    if (!user?.id) return;
+    let active = true;
+    void fetchMissionState(dateKey)
+      .then((next) => {
+        if (!active) return;
+        setRemoteState(next);
+        acceptMissionState(next);
+      })
+      .catch(() => {});
+    const onUpdate = (event: Event) => {
+      const next = (event as CustomEvent<MissionSystemState>).detail;
+      if (next?.dateKey === dateKey) setRemoteState(next);
+    };
+    window.addEventListener("academy:mission-updated", onUpdate);
+    return () => {
+      active = false;
+      window.removeEventListener("academy:mission-updated", onUpdate);
+    };
+  }, [acceptMissionState, dateKey, user?.id]);
+
+  const missionRows = state.dailyMissionIds.map((id) => {
+    const mission = DAILY_MISSION_POOL[id];
+    const current = getMissionProgress(mission, state.counters.daily);
+    return {
+      ...mission,
+      current,
+      done: isMissionComplete(mission, state.counters.daily),
+      claimed: state.claimedDailyMissionIds.includes(id),
+      ...(MISSION_ICONS[mission.activity] ?? { Icon: Star, color: "#94A3B8" }),
+    };
+  });
+  const doneCount = missionRows.filter((mission) => mission.done).length;
+  const claimedCount = missionRows.filter((mission) => mission.claimed).length;
+  const requestClaim = (event: MissionReadyEvent) =>
+    window.dispatchEvent(
+      new CustomEvent<MissionReadyEvent>("academy:mission-ready", { detail: event }),
+    );
 
   return (
     <div>
@@ -702,10 +843,31 @@ function DailyMissionsSection({ missions }: { missions?: MissionProgress }) {
         <span className="rounded-full bg-[#FBBF24]/20 px-2 py-0.5 text-[10px] font-bold text-[#FBBF24]">
           {doneCount}/{missionRows.length}
         </span>
+        <span className="ml-auto text-[10px] font-bold text-[#FDE68A] sm:text-xs">
+          {claimedCount === 3 && !state.dailyBonusClaimed ? (
+            <button
+              type="button"
+              className="rounded-xl bg-[#FBBF24] px-3 py-2 font-black text-[#251803]"
+              onClick={() =>
+                requestClaim({
+                  kind: "daily_bonus",
+                  missionId: null,
+                  title: "Daily Completion Bonus",
+                  rewardXp: DAILY_COMPLETION_REWARD_XP,
+                  dateKey,
+                })
+              }
+            >
+              Claim +{DAILY_COMPLETION_REWARD_XP.toLocaleString()} XP Bonus
+            </button>
+          ) : (
+            `Daily bonus +${DAILY_COMPLETION_REWARD_XP.toLocaleString()} XP · ${claimedCount}/3 claimed`
+          )}
+        </span>
       </div>
       <div className="grid gap-4 sm:grid-cols-3">
         {missionRows.map((mission) => {
-          const done = mission.current >= mission.target;
+          const done = mission.done;
           const pct = Math.min(100, Math.round((mission.current / mission.target) * 100));
           return (
             <div
@@ -727,9 +889,15 @@ function DailyMissionsSection({ missions }: { missions?: MissionProgress }) {
               </div>
               <p className="mt-3 text-sm font-bold text-white">{mission.label}</p>
               <div className="mt-2 flex items-center justify-between text-xs font-bold text-white/50">
-                <span>{mission.current}/{mission.target}</span>
+                <span>
+                  {mission.current}/{mission.target}
+                </span>
                 <span className={done ? "text-emerald-300" : "text-[#FBBF24]/80"}>
-                  {done ? "✓ Objective done" : "Full-set reward"}
+                  {mission.claimed
+                    ? `✓ +${DAILY_OBJECTIVE_REWARD_XP} XP claimed`
+                    : done
+                      ? "Reward ready"
+                      : `+${DAILY_OBJECTIVE_REWARD_XP} XP`}
                 </span>
               </div>
               <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/[0.08]">
@@ -738,9 +906,29 @@ function DailyMissionsSection({ missions }: { missions?: MissionProgress }) {
                   style={{ width: `${pct}%` }}
                 />
               </div>
-              <p className={`mt-3 text-[10px] font-bold uppercase tracking-wide ${done ? "text-emerald-300" : "text-white/35"}`}>
-                {done ? "Claimed" : "In progress"}
-              </p>
+              {done && !mission.claimed ? (
+                <button
+                  type="button"
+                  className="mt-3 min-h-11 w-full rounded-xl bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] text-xs font-black text-[#251803]"
+                  onClick={() =>
+                    requestClaim({
+                      kind: "daily_objective",
+                      missionId: mission.id,
+                      title: mission.label,
+                      rewardXp: DAILY_OBJECTIVE_REWARD_XP,
+                      dateKey,
+                    })
+                  }
+                >
+                  Claim +{DAILY_OBJECTIVE_REWARD_XP} XP
+                </button>
+              ) : (
+                <p
+                  className={`mt-3 text-[10px] font-bold uppercase tracking-wide ${mission.claimed ? "text-emerald-300" : "text-white/35"}`}
+                >
+                  {mission.claimed ? "Claimed" : "In progress"}
+                </p>
+              )}
             </div>
           );
         })}
@@ -769,7 +957,9 @@ function AchievementShowcase({ progress }: { progress: Progress }) {
       <div className="grid gap-3 sm:grid-cols-2">
         {/* Recent achievement */}
         <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] p-4 text-center">
-          <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">Recent Achievement</p>
+          <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">
+            Recent Achievement
+          </p>
           {recentBadge ? (
             <>
               <p className="mt-2 text-3xl">{recentBadge.emoji}</p>
@@ -788,7 +978,9 @@ function AchievementShowcase({ progress }: { progress: Progress }) {
 
         {/* Next achievement */}
         <div className="rounded-2xl border border-white/[0.1] bg-white/[0.04] p-4 text-center">
-          <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">Next Achievement</p>
+          <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">
+            Next Achievement
+          </p>
           {nextBadge ? (
             <>
               <p className="mt-2 text-3xl opacity-70">{nextBadge.emoji}</p>
@@ -802,7 +994,9 @@ function AchievementShowcase({ progress }: { progress: Progress }) {
                   <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/[0.08]">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#A78BFA]"
-                      style={{ width: `${Math.min(100, Math.round((nextProgress.current / nextProgress.target) * 100))}%` }}
+                      style={{
+                        width: `${Math.min(100, Math.round((nextProgress.current / nextProgress.target) * 100))}%`,
+                      }}
                     />
                   </div>
                 </>
@@ -839,7 +1033,8 @@ function RecentActivityCard({ activity }: { activity: RecentActivity[] }) {
       ) : (
         <div className="relative space-y-2.5 before:absolute before:bottom-2 before:left-[18px] before:top-2 before:w-px before:bg-white/[0.08] before:content-['']">
           {recent.map((item) => {
-            const subjectName = subjects.find((subject) => subject.id === item.subjectId)?.name ?? item.subjectId;
+            const subjectName =
+              subjects.find((subject) => subject.id === item.subjectId)?.name ?? item.subjectId;
             return (
               <Link
                 key={item.id}
@@ -938,7 +1133,9 @@ function QuickActionsCard({ lastVisited }: { lastVisited?: LastVisited }) {
 
 function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`academy-surface rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6 ${className}`}>
+    <div
+      className={`academy-surface rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6 ${className}`}
+    >
       {children}
     </div>
   );
@@ -946,7 +1143,9 @@ function Card({ children, className = "" }: { children: ReactNode; className?: s
 
 function SectionLabel({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <p className={`text-xs font-bold uppercase tracking-wider text-[#94A3B8] ${className}`}>{children}</p>
+    <p className={`text-xs font-bold uppercase tracking-wider text-[#94A3B8] ${className}`}>
+      {children}
+    </p>
   );
 }
 
@@ -997,8 +1196,17 @@ function TodayStatGlassCard({
       />
       <div className="relative z-10">
         <span className={compact ? "text-lg" : "text-2xl"}>{icon}</span>
-        <p className={`font-display font-bold text-white ${compact ? "mt-2 text-xl" : "mt-3 text-3xl"}`}>{count.toLocaleString()}</p>
-        <p className={`mt-1 font-semibold uppercase tracking-wide ${compact ? "text-[10px]" : "text-xs"}`} style={{ color }}>{label}</p>
+        <p
+          className={`font-display font-bold text-white ${compact ? "mt-2 text-xl" : "mt-3 text-3xl"}`}
+        >
+          {count.toLocaleString()}
+        </p>
+        <p
+          className={`mt-1 font-semibold uppercase tracking-wide ${compact ? "text-[10px]" : "text-xs"}`}
+          style={{ color }}
+        >
+          {label}
+        </p>
       </div>
     </div>
   );
@@ -1021,10 +1229,38 @@ function TodayProgressGrid({
     <Card className={compact ? "flex h-[380px] flex-col justify-center p-4" : undefined}>
       <SectionLabel className="mb-3">Today's Progress</SectionLabel>
       <div className={compact ? "grid grid-cols-2 gap-3" : "grid grid-cols-2 gap-4 md:grid-cols-4"}>
-        <TodayStatGlassCard compact={compact} icon="📚" label="Notes Studied" value={notesStudied} color="#60A5FA" glow="rgba(96,165,250,0.45)" />
-        <TodayStatGlassCard compact={compact} icon="📝" label="Quizzes Completed" value={quizzesCompleted} color="#34D399" glow="rgba(52,211,153,0.45)" />
-        <TodayStatGlassCard compact={compact} icon="🎴" label="Flashcards Mastered" value={flashcardsMastered} color="#A78BFA" glow="rgba(167,139,250,0.45)" />
-        <TodayStatGlassCard compact={compact} icon="⭐" label="XP Earned" value={totalXp} color="#FBBF24" glow="rgba(251,191,36,0.45)" />
+        <TodayStatGlassCard
+          compact={compact}
+          icon="📚"
+          label="Notes Studied"
+          value={notesStudied}
+          color="#60A5FA"
+          glow="rgba(96,165,250,0.45)"
+        />
+        <TodayStatGlassCard
+          compact={compact}
+          icon="📝"
+          label="Quizzes Completed"
+          value={quizzesCompleted}
+          color="#34D399"
+          glow="rgba(52,211,153,0.45)"
+        />
+        <TodayStatGlassCard
+          compact={compact}
+          icon="🎴"
+          label="Flashcards Mastered"
+          value={flashcardsMastered}
+          color="#A78BFA"
+          glow="rgba(167,139,250,0.45)"
+        />
+        <TodayStatGlassCard
+          compact={compact}
+          icon="⭐"
+          label="Lifetime XP"
+          value={totalXp}
+          color="#FBBF24"
+          glow="rgba(251,191,36,0.45)"
+        />
       </div>
     </Card>
   );
@@ -1064,7 +1300,13 @@ function CompanionEvolutionPath({ currentStageId }: { currentStageId: CompanionS
               </span>
               <span
                 className="text-[10px] font-bold"
-                style={{ color: isCurrent ? "#C4B5FD" : done ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.3)" }}
+                style={{
+                  color: isCurrent
+                    ? "#C4B5FD"
+                    : done
+                      ? "rgba(255,255,255,0.6)"
+                      : "rgba(255,255,255,0.3)",
+                }}
               >
                 {stage.name}
               </span>
@@ -1072,7 +1314,10 @@ function CompanionEvolutionPath({ currentStageId }: { currentStageId: CompanionS
             {i < COMPANION_STAGES.length - 1 && (
               <span
                 className="mx-1 h-px flex-1 shrink-0"
-                style={{ background: done ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)", minWidth: 16 }}
+                style={{
+                  background: done ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)",
+                  minWidth: 16,
+                }}
               />
             )}
           </div>
@@ -1083,13 +1328,7 @@ function CompanionEvolutionPath({ currentStageId }: { currentStageId: CompanionS
 }
 
 /** Large, prominent companion card — current stage, next evolution, and the full evolution path. */
-function CosmicCompanionCard({
-  xp,
-  companionId,
-}: {
-  xp: number;
-  companionId: CompanionId;
-}) {
+function CosmicCompanionCard({ xp, companionId }: { xp: number; companionId: CompanionId }) {
   const companionProgress = getCompanionLevelProgress(xp);
   const stageId = companionProgress.currentStage.id;
   const stage = companionProgress.currentStage;
@@ -1101,13 +1340,18 @@ function CosmicCompanionCard({
     <Card className="relative overflow-hidden">
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
-        style={{ background: "radial-gradient(circle at 50% 10%, rgba(167,139,250,0.32), transparent 65%)" }}
+        style={{
+          background: "radial-gradient(circle at 50% 10%, rgba(167,139,250,0.32), transparent 65%)",
+        }}
       />
       <div className="relative z-10">
         <SectionLabel>Cosmic Companion</SectionLabel>
         <div className="mt-4 flex flex-col items-center gap-5 sm:flex-row sm:items-center">
           {/* LEFT — large companion artwork */}
-          <div className="relative flex shrink-0 items-end justify-center" style={{ width: 168, height: 168 }}>
+          <div
+            className="relative flex shrink-0 items-end justify-center"
+            style={{ width: 168, height: 168 }}
+          >
             <div className="cosmic-companion-pedestal absolute bottom-2 left-1/2 -translate-x-1/2" />
             <div className="cosmic-companion-egg relative z-10 mb-3">
               <CompanionImage speciesId={companionId} stage={stageId} size={140} />
@@ -1130,9 +1374,13 @@ function CosmicCompanionCard({
           {/* RIGHT — next evolution preview */}
           {nextStage && (
             <div className="shrink-0 rounded-2xl border border-white/[0.1] bg-white/[0.04] px-5 py-4 text-center sm:min-w-[164px]">
-              <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">Next Evolution</p>
+              <p className="text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">
+                Next Evolution
+              </p>
               <p className="mt-1 text-base font-bold text-[#F0ABFC]">{nextStage.name}</p>
-              <p className="mt-3 text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">XP Remaining</p>
+              <p className="mt-3 text-[10px] font-bold uppercase tracking-wide text-[#94A3B8]">
+                XP Remaining
+              </p>
               <p
                 className="mt-0.5 font-display text-2xl font-black text-[#F0ABFC]"
                 style={{ textShadow: "0 0 18px rgba(240,171,252,0.55)" }}
@@ -1255,13 +1503,15 @@ function CosmicPlanet({
       ]
         .filter(Boolean)
         .join(" ")}
-      style={{
-        width: size,
-        height: size,
-        ["--planet-color" as string]: rank.color,
-        ["--planet-glow" as string]: theme.glow,
-        ["--planet-glow-soft" as string]: theme.soft,
-      } as CSSProperties}
+      style={
+        {
+          width: size,
+          height: size,
+          ["--planet-color" as string]: rank.color,
+          ["--planet-glow" as string]: theme.glow,
+          ["--planet-glow-soft" as string]: theme.soft,
+        } as CSSProperties
+      }
     >
       {spotlight && (
         <span
@@ -1300,12 +1550,18 @@ function CosmicJourneyPath({
   ranks,
   currentId,
   xp,
+<<<<<<< HEAD
   celebratingRankId,
+=======
+>>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
 }: {
   ranks: SpaceRank[];
   currentId: string;
   xp: number;
+<<<<<<< HEAD
   celebratingRankId?: string | null;
+=======
+>>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
 }) {
   const BASE_SIZE = 64;
   const CURRENT_SIZE = 72;
@@ -1382,7 +1638,11 @@ function CosmicJourneyPath({
                     <div className="flex h-[70px] w-[70px] shrink-0 items-center justify-center sm:h-[82px] sm:w-[82px]">
                       <CosmicPlanet
                         rank={rank}
-                        size={isCurrent ? `clamp(64px, 18vw, ${CURRENT_SIZE}px)` : `clamp(56px, 16vw, ${BASE_SIZE}px)`}
+                        size={
+                          isCurrent
+                            ? `clamp(64px, 18vw, ${CURRENT_SIZE}px)`
+                            : `clamp(56px, 16vw, ${BASE_SIZE}px)`
+                        }
                         current={isCurrent}
                         locked={!unlocked}
                         floaty={isCurrent}
@@ -1391,16 +1651,27 @@ function CosmicJourneyPath({
                     </div>
                     <span
                       className="max-w-[72px] truncate text-center text-[9px] font-bold leading-tight sm:max-w-[96px] sm:text-[10px]"
-                      style={{ color: isCurrent ? theme.glow : unlocked ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.3)" }}
+                      style={{
+                        color: isCurrent
+                          ? theme.glow
+                          : unlocked
+                            ? "rgba(255,255,255,0.65)"
+                            : "rgba(255,255,255,0.3)",
+                      }}
                     >
                       {rank.name}
                     </span>
                     <span className="h-3 text-[8px] font-bold uppercase tracking-wide text-white/30">
-                      {isCurrent ? "Current Rank" : unlocked ? "Unlocked" : `${rank.minXp.toLocaleString()} XP`}
+                      {isCurrent
+                        ? "Current Rank"
+                        : unlocked
+                          ? "Unlocked"
+                          : `${rank.minXp.toLocaleString()} XP`}
                     </span>
                   </div>
                   {next && (
                     <span
+<<<<<<< HEAD
                       className={`cosmic-journey-line mx-1 w-4 shrink-0 sm:w-10 ${
                         celebratingRankId === next.id ? "is-celebrating" : ""
                       }`}
@@ -1408,6 +1679,18 @@ function CosmicJourneyPath({
                         ["--from-color" as string]: lineUnlocked ? theme.glow : "rgba(139,92,246,0.14)",
                         ["--to-color" as string]: lineUnlocked && nextTheme ? nextTheme.glow : "rgba(139,92,246,0.08)",
                       } as CSSProperties}
+=======
+                      className="cosmic-journey-line mx-1 w-4 shrink-0 sm:w-10"
+                      style={
+                        {
+                          ["--from-color" as string]: lineUnlocked
+                            ? theme.glow
+                            : "rgba(139,92,246,0.14)",
+                          ["--to-color" as string]:
+                            lineUnlocked && nextTheme ? nextTheme.glow : "rgba(139,92,246,0.08)",
+                        } as CSSProperties
+                      }
+>>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
                     >
                       {lineUnlocked && <span className="cosmic-journey-line-energy" />}
                     </span>
@@ -1429,8 +1712,14 @@ function CosmicDashboardBackdrop() {
       <div className="absolute inset-0 cosmic-bg-nebula" />
       <div className="absolute inset-0 cosmic-bg-stars" />
       <div className="absolute inset-0 cosmic-bg-particles" />
-      <span className="cosmic-shooting-star" style={{ left: "8%", top: "6%", animationDelay: "1.5s" }} />
-      <span className="cosmic-shooting-star" style={{ left: "55%", top: "2%", animationDelay: "6.5s" }} />
+      <span
+        className="cosmic-shooting-star"
+        style={{ left: "8%", top: "6%", animationDelay: "1.5s" }}
+      />
+      <span
+        className="cosmic-shooting-star"
+        style={{ left: "55%", top: "2%", animationDelay: "6.5s" }}
+      />
     </div>
   );
 }

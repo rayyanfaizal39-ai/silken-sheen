@@ -17,6 +17,7 @@ export function useQuizStreak(sessionKey: string) {
   const eventIdRef = useRef(0);
   const cleanupTimerRef = useRef<number | null>(null);
   const [streak, setStreak] = useState(0);
+  const [bestStreak, setBestStreak] = useState(0);
   const [celebration, setCelebration] = useState<StreakCelebration | null>(null);
 
   const clearCelebration = useCallback(() => {
@@ -30,6 +31,7 @@ export function useQuizStreak(sessionKey: string) {
   const resetStreak = useCallback(() => {
     stateRef.current = { streak: 0, handledQuestionIds: new Set<string>() };
     setStreak(0);
+    setBestStreak(0);
     clearCelebration();
   }, [clearCelebration]);
 
@@ -56,6 +58,7 @@ export function useQuizStreak(sessionKey: string) {
 
       stateRef.current = result.state;
       setStreak(result.state.streak);
+      setBestStreak((currentBest) => Math.max(currentBest, result.state.streak));
       clearCelebration();
 
       if (result.celebration) {
@@ -74,5 +77,5 @@ export function useQuizStreak(sessionKey: string) {
     [clearCelebration],
   );
 
-  return { streak, celebration, confirmAnswer, resetStreak, clearCelebration };
+  return { streak, bestStreak, celebration, confirmAnswer, resetStreak, clearCelebration };
 }

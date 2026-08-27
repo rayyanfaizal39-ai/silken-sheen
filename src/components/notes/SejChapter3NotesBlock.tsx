@@ -155,7 +155,7 @@ export function SejChapter3NotesBlock({
           <img
             src={evolusiPeralatan}
             alt="Evolusi Peralatan"
-            className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+            className="notes-figure-img rounded-2xl border border-border"
           />
         )}
 
@@ -163,7 +163,7 @@ export function SejChapter3NotesBlock({
           <img
             src={kehidupanPrasejarah}
             alt="Kehidupan Manusia Zaman Prasejarah"
-            className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+            className="notes-figure-img rounded-2xl border border-border"
           />
         )}
 

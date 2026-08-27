@@ -361,6 +361,16 @@ export const Route = createFileRoute("/mindmaps")({
           "bukti petikan",
         ],
       },
+      "Strategi Menjawab Soalan Pemahaman (Lanjutan)": {
+        description:
+          "Peta minda strategi pemahaman Tingkatan 2: analisis petikan, inferens, hubungan idea, bukti dan jawapan KBAT.",
+        keywords: [
+          "Strategi Menjawab Soalan Pemahaman Lanjutan",
+          "Pemahaman Bahasa Melayu Tingkatan 2",
+          "inferens dan bukti petikan",
+          "jawapan KBAT Tingkatan 2",
+        ],
+      },
     }[
       match.search.chapter as
         | "Kata Nama"
@@ -397,10 +407,13 @@ export const Route = createFileRoute("/mindmaps")({
         | "Teknik Menjana Idea KBAT"
         | "Kesalahan Lazim dalam Penulisan"
         | "Strategi Menjawab Soalan Pemahaman"
+        | "Strategi Menjawab Soalan Pemahaman (Lanjutan)"
     ];
     if (normalizeSubjectParam(match.search.subject) === "bm" && bmTopic) {
       const isPeribahasa = match.search.chapter === "Simpulan Bahasa";
-      const isPemahaman = match.search.chapter === "Strategi Menjawab Soalan Pemahaman";
+      const isPemahaman =
+        match.search.chapter === "Strategi Menjawab Soalan Pemahaman" ||
+        match.search.chapter === "Strategi Menjawab Soalan Pemahaman (Lanjutan)";
       const bmCategory = isPemahaman
         ? "Pemahaman"
         : match.search.chapter === "Pendahuluan" ||
@@ -495,21 +508,30 @@ function MindMapsPage() {
     activeChapterIndex > 0 ? subjectChapters[activeChapterIndex - 1] : undefined;
   const nextCandidate =
     activeChapterIndex >= 0 ? subjectChapters[activeChapterIndex + 1] : undefined;
-  const isForm1Pemahaman =
-    subject === "bm" && form === "Form 1" && chapterMeta?.categoryLabel === "Pemahaman";
-  const previousTopic = isForm1Pemahaman
-    ? previousCandidate?.categoryLabel === "Pemahaman"
+  const activeBahasaMelayuCategory =
+    subject === "bm" &&
+    chapterMeta?.categoryLabel &&
+    getBahasaMelayuMindMapCategories(form).includes(
+      chapterMeta.categoryLabel as BahasaMelayuMindMapCategory,
+    )
+      ? (chapterMeta.categoryLabel as BahasaMelayuMindMapCategory)
+      : undefined;
+  const isBahasaMelayuPemahaman = activeBahasaMelayuCategory === "Pemahaman";
+  const usesBahasaMelayuCategoryNavigation =
+    isBahasaMelayuPemahaman || activeBahasaMelayuCategory === "KOMSAS";
+  const previousTopic = usesBahasaMelayuCategoryNavigation
+    ? previousCandidate?.categoryLabel === activeBahasaMelayuCategory
       ? previousCandidate
       : undefined
     : previousCandidate;
-  const nextTopic = isForm1Pemahaman
-    ? nextCandidate?.categoryLabel === "Pemahaman"
+  const nextTopic = usesBahasaMelayuCategoryNavigation
+    ? nextCandidate?.categoryLabel === activeBahasaMelayuCategory
       ? nextCandidate
       : undefined
     : nextCandidate;
   const showBmTopicNavigation =
     subject === "bm" &&
-    (isForm1Pemahaman ||
+    (usesBahasaMelayuCategoryNavigation ||
       (form === "Form 2" &&
         (activeChapterKey === "Frasa Adjektif" ||
           activeChapterKey === "Ayat Aktif" ||
@@ -539,10 +561,10 @@ function MindMapsPage() {
   }, [subject, form, search.chapter]);
 
   useEffect(() => {
-    if (isForm1Pemahaman) {
-      setSelectedBmCategory("Pemahaman");
+    if (activeBahasaMelayuCategory) {
+      setSelectedBmCategory(activeBahasaMelayuCategory);
     }
-  }, [isForm1Pemahaman]);
+  }, [activeBahasaMelayuCategory]);
 
   function chooseSubject(subjectId: string) {
     setChapter(null);
@@ -920,7 +942,9 @@ function MindMapChapterGrid({
           role="tablist"
           aria-label="Kategori peta minda Bahasa Melayu"
           className={`mb-8 grid gap-2 rounded-2xl border border-white/[0.08] bg-[#08101D]/70 p-2 sm:inline-grid ${
-            bahasaMelayuCategories.length === 4
+            bahasaMelayuCategories.length === 5
+              ? "grid-cols-2 sm:min-w-[720px] sm:grid-cols-5"
+              : bahasaMelayuCategories.length === 4
               ? "grid-cols-2 sm:min-w-[720px] sm:grid-cols-4"
               : bahasaMelayuCategories.length === 3
                 ? "grid-cols-3 sm:min-w-[540px]"

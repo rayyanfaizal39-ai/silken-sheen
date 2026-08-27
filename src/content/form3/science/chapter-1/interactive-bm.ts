@@ -44,14 +44,27 @@ export const scienceF3C1InteractiveBM: ScienceF3InteractiveContent = {
             {
               id: "luarkawal",
               label: "Tindakan Luar Kawal",
-              body: "Tindakan automatik tanpa pemikiran sedar, terbahagi kepada dua jenis. Melibatkan medula oblongata: degupan jantung, pernafasan, peristalsis. Tindakan refleks, melalui saraf tunjang: menarik tangan daripada objek panas, bersin.",
+              body: "Tindakan automatik tanpa pemikiran sedar, terbahagi kepada dua jenis. Melibatkan medula oblongata: degupan jantung, pernafasan, peristalsis, rembesan air liur. Tindakan refleks, melalui saraf tunjang: menarik tangan daripada objek panas, menarik kaki apabila terpijak objek tajam, bersin apabila habuk memasuki hidung.",
             },
           ],
         },
       ],
+      sequence: {
+        title: "Laluan Impuls dalam Tindakan Refleks",
+        instruction: "Ketik setiap langkah untuk mengikuti laluan impuls semasa tindakan refleks, seperti menarik tangan daripada objek panas.",
+        steps: [
+          { title: "Rangsangan", body: "Objek panas menyentuh kulit tangan." },
+          { title: "Afektor (reseptor)", body: "Reseptor pada kulit mengesan rangsangan dan menjana impuls saraf." },
+          { title: "Impuls saraf", body: "Impuls dihantar melalui neuron deria ke sistem saraf pusat." },
+          { title: "Saraf tunjang", body: "Saraf tunjang memproses impuls dengan pantas tanpa menunggu arahan otak." },
+          { title: "Efektor", body: "Impuls dihantar melalui neuron motor ke otot tangan." },
+          { title: "Gerak balas", body: "Otot mengecut dan tangan ditarik daripada objek panas serta-merta." },
+        ],
+      },
       checks: [
         { question: "Bermain badminton — tindakan terkawal atau tindakan luar kawal?", hint: "Tindakan terkawal — ia adalah tindakan sedar yang dikawal oleh otak, walaupun ia berlaku dengan pantas." },
         { question: "Apakah yang berlaku sekiranya otak seseorang mengalami kecederaan?", hint: "Bergantung kepada keterukan, seseorang itu mungkin lumpuh sementara, sebahagian, atau sepenuhnya, atau kehilangan kawalan terhadap fungsi badan tertentu." },
+        { question: "Mengapakah tindakan refleks tidak menunggu arahan daripada otak?", hint: "Saraf tunjang boleh memproses dan menghantar impuls terus ke efektor tanpa menunggu otak, menjadikan gerak balas lebih pantas untuk melindungi badan daripada bahaya serta-merta." },
       ],
     },
     {
@@ -79,9 +92,40 @@ export const scienceF3C1InteractiveBM: ScienceF3InteractiveContent = {
         { title: "Batasan pendengaran", body: "Telinga manusia hanya dapat mengesan 20 Hz hingga 20,000 Hz. Semakin tua usia seseorang, gegendang telinga menjadi kurang elastik dan julat frekuensi ini semakin sempit." },
         { title: "Penuaan", body: "Kepekaan penglihatan dan pendengaran semula jadi merosot dengan usia — kanta mata menjadi tegar, gegendang telinga kehilangan keanjalan." },
       ],
+      sequence: {
+        title: "Mekanisme Penglihatan",
+        instruction: "Ketik setiap struktur untuk mengikuti laluan cahaya dari mata ke otak.",
+        steps: [
+          { title: "Cahaya", body: "Cahaya daripada objek memasuki mata." },
+          { title: "Kornea", body: "Kornea membiaskan cahaya yang masuk ke mata." },
+          { title: "Gelemair", body: "Cecair di ruang hadapan mata terus membiaskan cahaya menuju kanta mata." },
+          { title: "Kanta mata", body: "Kanta mata memfokuskan cahaya dengan tepat ke retina." },
+          { title: "Gelemaca", body: "Cecair likat di ruang belakang mata mengekalkan bentuk bebola mata semasa cahaya melaluinya." },
+          { title: "Retina", body: "Fotoreseptor pada retina mengesan cahaya yang difokuskan." },
+          { title: "Impuls saraf", body: "Fotoreseptor menghasilkan impuls saraf daripada cahaya yang dikesan." },
+          { title: "Saraf optik", body: "Saraf optik menghantar impuls saraf dari retina ke otak." },
+          { title: "Otak", body: "Otak mentafsir impuls saraf tersebut sebagai imej yang dilihat." },
+        ],
+      },
+      ladder: {
+        title: "Mekanisme Pendengaran",
+        instruction: "Ketik setiap langkah mengikut urutan untuk mengikuti laluan bunyi dari sumbernya ke otak.",
+        items: [
+          { symbol: "1", name: "Sumber bunyi", fact: "Sumber bunyi menghasilkan getaran di udara." },
+          { symbol: "2", name: "Cuping telinga", fact: "Cuping telinga mengumpul dan menyalurkan getaran bunyi." },
+          { symbol: "3", name: "Salur telinga", fact: "Getaran bunyi bergerak melalui salur telinga." },
+          { symbol: "4", name: "Gegendang telinga", fact: "Gegendang telinga bergetar mengikut getaran bunyi yang diterima." },
+          { symbol: "5", name: "Osikel", fact: "Tiga tulang osikel di telinga tengah mengamplifikasi getaran." },
+          { symbol: "6", name: "Jendela bujur", fact: "Getaran yang diamplifikasi dihantar melalui jendela bujur ke telinga dalam." },
+          { symbol: "7", name: "Koklea", fact: "Koklea menukarkan getaran bunyi kepada impuls saraf." },
+          { symbol: "8", name: "Impuls saraf", fact: "Impuls saraf terhasil daripada penukaran getaran oleh koklea." },
+          { symbol: "9", name: "Saraf auditori", fact: "Saraf auditori menghantar impuls saraf ke otak." },
+          { symbol: "10", name: "Otak", fact: "Otak mentafsir impuls saraf tersebut sebagai bunyi yang didengar." },
+        ],
+      },
       checks: [
         { question: "Mengapakah hujung jari, bukan tapak tangan, digunakan untuk membaca Braille?", hint: "Hujung jari mempunyai bilangan reseptor sentuhan yang banyak dan epidermis yang nipis, menjadikannya jauh lebih peka terhadap sentuhan berbanding tapak tangan." },
-        { question: "Mengapakah makanan panas selalunya lebih enak?", hint: "Deria bau menyumbang besar kepada persepsi rasa — haba melepaskan lebih banyak molekul aroma, dan gabungan isyarat bau serta rasa ditafsir oleh otak sebagai rasa yang lebih penuh." },
+        { question: "Mengapakah makanan terasa kurang jelas apabila hidung tersumbat?", hint: "Deria rasa dan deria bau bekerjasama untuk menghasilkan persepsi rasa makanan sepenuhnya. Apabila hidung tersumbat, molekul aroma tidak dapat mencapai reseptor bau, jadi otak hanya menerima isyarat daripada lidah sahaja, menjadikan rasa makanan kurang jelas." },
       ],
     },
     {
@@ -89,6 +133,19 @@ export const scienceF3C1InteractiveBM: ScienceF3InteractiveContent = {
       title: "Rangsangan dan Gerak Balas dalam Tumbuhan",
       intro:
         "Tumbuhan mengesan cahaya, air, graviti dan sentuhan, lalu bertindak balas dengan dua cara: tropisme, iaitu gerak balas pertumbuhan berarah yang perlahan, dan gerak balas nasti, iaitu gerak balas pantas yang tidak bergantung kepada arah rangsangan. Mimosa sp. melipat daunnya ke dalam sebaik disentuh — mekanisme pertahanan terhadap musuh dan angin kencang yang menunjukkan gerak balas nasti.",
+      cards: [
+        { title: "Eksperimen: Fototropisme", body: "Tujuan: Mengkaji kesan cahaya ke atas arah pertumbuhan pucuk. Apa yang diuji: Anak pokok ditempatkan berhampiran satu sumber cahaya sehala. Pemerhatian: Pucuk membengkok dan tumbuh ke arah cahaya.", detail: "Kesimpulan: Pucuk menunjukkan fototropisme positif." },
+        { title: "Eksperimen: Geotropisme", body: "Tujuan: Mengkaji kesan graviti ke atas arah pertumbuhan akar dan pucuk. Apa yang diuji: Anak benih yang telah bercambah diletakkan mengufuk dan dibiarkan tumbuh. Pemerhatian: Akar membengkok tumbuh ke bawah, pucuk membengkok tumbuh ke atas.", detail: "Kesimpulan: Akar menunjukkan geotropisme positif, pucuk menunjukkan geotropisme negatif." },
+        { title: "Eksperimen: Hidrotropisme", body: "Tujuan: Mengkaji kesan air ke atas arah pertumbuhan akar. Apa yang diuji: Anak benih ditanam di tengah bekas berpasir dengan sumber air hanya pada satu sisi. Pemerhatian: Akar membengkok dan tumbuh ke arah sumber air.", detail: "Kesimpulan: Akar menunjukkan hidrotropisme positif." },
+      ],
+      accordions: [
+        { title: "Tropisme positif", body: "Bahagian tumbuhan tumbuh ke arah rangsangan, contohnya pucuk tumbuh ke arah cahaya (fototropisme positif)." },
+        { title: "Tropisme negatif", body: "Bahagian tumbuhan tumbuh menjauhi rangsangan, contohnya pucuk tumbuh menjauhi graviti (geotropisme negatif)." },
+        { title: "Kepentingan fototropisme", body: "Pucuk membesar ke arah cahaya supaya daun mendapat lebih banyak cahaya untuk fotosintesis." },
+        { title: "Kepentingan geotropisme", body: "Akar membesar ke dalam tanah untuk mencengkam tumbuhan dengan kukuh dan mencapai air serta mineral; pucuk membesar ke atas untuk mendapatkan cahaya." },
+        { title: "Kepentingan hidrotropisme", body: "Akar membesar ke arah sumber air supaya tumbuhan dapat memperoleh air dan garam mineral yang diperlukan." },
+        { title: "Kepentingan tigmotropisme", body: "Sulur paut atau batang yang melilit objek sokongan membantu tumbuhan memanjat untuk mendapatkan sokongan dan cahaya." },
+      ],
       matcher: {
         title: "Padankan tropisme dengan rangsangannya",
         instruction: "Pilih satu jenis tropisme, kemudian pilih rangsangan yang sepadan.",
@@ -99,8 +156,16 @@ export const scienceF3C1InteractiveBM: ScienceF3InteractiveContent = {
           { id: "tigmo", label: "Tigmotropisme", match: "Sentuhan — sulur membelit objek" },
         ],
       },
+      comparison: {
+        title: "Tropisme berbanding gerak balas nasti",
+        columns: [
+          { title: "Tropisme", body: "Gerak balas terarah — arah pertumbuhan bergantung pada arah rangsangan. Biasanya berlaku secara perlahan kerana melibatkan pertumbuhan." },
+          { title: "Gerak balas nasti", body: "Arah gerak balas tidak bergantung pada arah rangsangan. Biasanya berlaku dengan pantas — contohnya daun pokok semalu menguncup serta-merta apabila disentuh sebagai pertahanan." },
+        ],
+      },
       checks: [
         { question: "Mengapakah geotropisme positif pada akar penting untuk kemandirian tumbuhan?", hint: "Pertumbuhan ke bawah mengikut arah graviti membolehkan akar menambatkan tumbuhan dengan kukuh di dalam tanah dan mencapai air serta mineral jauh di dalam tanah." },
+        { question: "Mengapakah pengucupan daun pokok semalu digolongkan sebagai gerak balas nasti dan bukan tropisme?", hint: "Kerana arah pengucupan daunnya tidak bergantung kepada arah sentuhan (rangsangan) — inilah ciri utama gerak balas nasti, berbeza daripada tropisme yang arahnya ditentukan oleh arah rangsangan." },
       ],
     },
     {
@@ -126,6 +191,17 @@ export const scienceF3C1InteractiveBM: ScienceF3InteractiveContent = {
           ],
         },
       ],
+      flipCardGroups: [
+        {
+          title: "Organ deria membantu kemandirian haiwan",
+          instruction: "Ketik setiap haiwan untuk melihat bagaimana organ deria atau gerak balasnya membantu ia terus hidup.",
+          items: [
+            { id: "cockroach", icon: "🪳", label: "Lipas", fact: "Gerak balas: pengeluaran feromon — isyarat kimia ini membolehkan lipas berkomunikasi dengan lipas lain, contohnya untuk mengesan sumber makanan atau bahaya." },
+            { id: "fish", icon: "🐟", label: "Ikan", fact: "Organ deria: garis lateral — mengesan perubahan tekanan dan pergerakan air di sekelilingnya, membantu ikan mengesan pemangsa, mangsa atau halangan." },
+            { id: "eel", icon: "⚡", label: "Belut elektrik", fact: "Gerak balas: penghasilan medan elektrik — digunakan untuk mengesan objek di sekeliling serta melumpuhkan mangsa atau pemangsa." },
+          ],
+        },
+      ],
       flipCards: [
         { id: "elephant", icon: "🐘", label: "Gajah", fact: "16 – 12,000 Hz — julat terendah dalam kumpulan ini, sesuai mengesan deruman dalam." },
         { id: "dog", icon: "🐕", label: "Anjing", fact: "67 – 45,000 Hz — terkenal mampu mendengar wisel 'senyap' yang tidak dapat didengar manusia." },
@@ -136,6 +212,7 @@ export const scienceF3C1InteractiveBM: ScienceF3InteractiveContent = {
       ],
       checks: [
         { question: "Jenis penglihatan apakah yang dijangka dimiliki oleh helang (pemangsa utama), dan mengapa?", hint: "Penglihatan stereoskopik — persepsi kedalaman yang tepat penting untuk menganggar jarak semasa menukik untuk menangkap mangsa." },
+        { question: "Mengapakah garis lateral penting untuk kemandirian ikan?", hint: "Garis lateral membolehkan ikan mengesan pergerakan dan perubahan tekanan air tanpa bergantung sepenuhnya pada penglihatan, jadi ikan tetap dapat mengesan pemangsa, mangsa atau halangan walaupun dalam air yang keruh." },
       ],
     },
   ],

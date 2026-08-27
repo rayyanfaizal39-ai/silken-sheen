@@ -54,6 +54,10 @@ import {
   scienceF1C2FlashcardsBM,
   scienceF1C2FlashcardsDLP,
 } from "@/content/form1/science/chapter-2/flashcards";
+import {
+  scienceF1C2QuizzesBM,
+  scienceF1C2QuizzesDLP,
+} from "@/content/form1/science/chapter-2/quizzes";
 import { chapter3Content } from "@/content/form1/science/chapter-3/chapter3-content";
 import { chapter4Content } from "@/content/form1/science/chapter-4/chapter4-content";
 import { chapter5Content } from "@/content/form1/science/chapter-5/chapter5-content";
@@ -308,6 +312,9 @@ import { bahasaMelayuForm1KaranganBerpandukanGambarMindMap } from "@/content/bm/
 import { bahasaMelayuForm1KaranganResponsTerbukaMindMap } from "@/content/bm/karangan-respons-terbuka-form1-mindmap";
 import { bahasaMelayuForm1MengeditMenyemakKaranganMindMap } from "@/content/bm/mengedit-menyemak-karangan-form1-mindmap";
 import { bahasaMelayuTingkatan1PemahamanRegistry } from "@/content/bm/tingkatan1-pemahaman-registry";
+import { bahasaMelayuTingkatan1KomsasRegistry } from "@/content/bm/tingkatan1-komsas-registry";
+import { bahasaMelayuTingkatan2PemahamanRegistry } from "@/content/bm/tingkatan2-pemahaman-registry";
+import { bahasaMelayuTingkatan3PemahamanRegistry } from "@/content/bm/tingkatan3-pemahaman-registry";
 
 // Mathematics F1 mind maps (BM)
 import { mathF1C1MindMapBM } from "@/content/form1/math/chapter-1/mindmap-bm";
@@ -599,6 +606,12 @@ import { mathF2C13MindMapDLP } from "@/content/form2/math/chapter-13/mindmap-dlp
 import { mathF3C1InteractiveContent } from "@/content/form3/math/chapter-1/interactive-content";
 import { mathF3C2InteractiveContent } from "@/content/form3/math/chapter-2/interactive-content";
 import { mathF3C3InteractiveContent } from "@/content/form3/math/chapter-3/interactive-content";
+import { mathF3C4InteractiveContent } from "@/content/form3/math/chapter-4/interactive-content";
+import { mathF3C5InteractiveContent } from "@/content/form3/math/chapter-5/interactive-content";
+import { mathF3C6InteractiveContent } from "@/content/form3/math/chapter-6/interactive-content";
+import { mathF3C7InteractiveContent } from "@/content/form3/math/chapter-7/interactive-content";
+import { mathF3C8InteractiveContent } from "@/content/form3/math/chapter-8/interactive-content";
+import { mathF3C9InteractiveContent } from "@/content/form3/math/chapter-9/interactive-content";
 import { mathF3C1NotesBM } from "@/content/form3/math/chapter-1/notes-bm";
 import { mathF3C1NotesDLP } from "@/content/form3/math/chapter-1/notes-dlp";
 import { mathF3C1MindMapBM } from "@/content/form3/math/chapter-1/mindmap-bm";
@@ -858,6 +871,14 @@ function mathForm1DlpVideo(chapterNumber: number): VideoBlock {
   const video = getEducationalVideo(`math-f1-c${chapterNumber}`, "dlp");
   if (!video) {
     throw new Error(`Missing Mathematics Form 1 DLP video for Chapter ${chapterNumber}`);
+  }
+  return video;
+}
+
+function mathForm1BmVideo(chapterNumber: number): VideoBlock {
+  const video = getEducationalVideo(`math-f1-c${chapterNumber}`, "bm");
+  if (!video) {
+    throw new Error(`Missing Matematik Tingkatan 1 BM video for Chapter ${chapterNumber}`);
   }
   return video;
 }
@@ -1432,6 +1453,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Nombor Nisbah",
     lang: "bm",
+    video: mathForm1BmVideo(1),
     mindMap: { data: mathF1C1MindMapBM, title: "Nombor Nisbah" },
     notes: mathF1C1NotesBM,
     mathChapter1Data: mathF1C1InteractiveContent,
@@ -1455,6 +1477,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 2",
     title: "Faktor dan Gandaan",
     lang: "bm",
+    video: mathForm1BmVideo(2),
     mindMap: { data: mathF1C2MindMapBM, title: "Faktor dan Gandaan" },
     notes: mathF1C2NotesBM,
     mathChapter2Data: mathF1C2InteractiveContent,
@@ -1478,6 +1501,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 3",
     title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga dan Punca Kuasa Tiga",
     lang: "bm",
+    video: mathForm1BmVideo(3),
     mindMap: {
       data: mathF1C3MindMapBM,
       title: "Kuasa Dua, Punca Kuasa Dua, Kuasa Tiga & Punca Kuasa Tiga",
@@ -1504,6 +1528,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 4",
     title: "Nisbah, Kadar dan Kadaran",
     lang: "bm",
+    video: mathForm1BmVideo(4),
     mindMap: { data: mathF1C4MindMapBM, title: "Nisbah, Kadar dan Kadaran" },
     notes: mathF1C4NotesBM,
     mathChapter4Data: mathF1C4InteractiveContent,
@@ -1527,6 +1552,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 5",
     title: "Ungkapan Algebra",
     lang: "bm",
+    video: mathForm1BmVideo(5),
     mindMap: { data: mathF1C5MindMapBM, title: "Ungkapan Algebra" },
     notes: mathF1C5NotesBM,
     mathChapter5Data: mathF1C5InteractiveContent,
@@ -1550,6 +1576,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 6",
     title: "Persamaan Linear",
     lang: "bm",
+    video: mathForm1BmVideo(6),
     mindMap: { data: mathF1C6MindMapBM, title: "Persamaan Linear" },
     notes: mathF1C6NotesBM,
     mathChapter6Data: mathF1C6InteractiveContent,
@@ -1573,6 +1600,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Ketaksamaan Linear",
     lang: "bm",
+    video: mathForm1BmVideo(7),
     mindMap: { data: mathF1C7MindMapBM, title: "Ketaksamaan Linear" },
     notes: mathF1C7NotesBM,
     mathChapter7Data: mathF1C7InteractiveContent,
@@ -1596,6 +1624,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Garis dan Sudut",
     lang: "bm",
+    video: mathForm1BmVideo(8),
     mindMap: { data: mathF1C8MindMapBM, title: "Garis dan Sudut" },
     notes: mathF1C8NotesBM,
     mathChapter8Data: mathF1C8InteractiveContent,
@@ -1619,6 +1648,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Poligon Asas",
     lang: "bm",
+    video: mathForm1BmVideo(9),
     mindMap: { data: mathF1C9MindMapBM, title: "Poligon Asas" },
     notes: mathF1C9NotesBM,
     mathChapter9Data: mathF1C9InteractiveContent,
@@ -1642,6 +1672,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Perimeter dan Luas",
     lang: "bm",
+    video: mathForm1BmVideo(10),
     mindMap: { data: mathF1C10MindMapBM, title: "Perimeter dan Luas" },
     notes: mathF1C10NotesBM,
     mathChapter10Data: mathF1C10InteractiveContent,
@@ -1665,6 +1696,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 11",
     title: "Pengenalan Set",
     lang: "bm",
+    video: mathForm1BmVideo(11),
     mindMap: { data: mathF1C11MindMapBM, title: "Pengenalan Set" },
     notes: mathF1C11NotesBM,
     mathChapter11Data: mathF1C11InteractiveContent,
@@ -1688,6 +1720,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 12",
     title: "Pengendalian Data",
     lang: "bm",
+    video: mathForm1BmVideo(12),
     mindMap: { data: mathF1C12MindMapBM, title: "Pengendalian Data" },
     notes: mathF1C12NotesBM,
     mathChapter12Data: mathF1C12InteractiveContent,
@@ -1711,6 +1744,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 13",
     title: "Teorem Pythagoras",
     lang: "bm",
+    video: mathForm1BmVideo(13),
     mindMap: { data: mathF1C13MindMapBM, title: "Teorem Pythagoras" },
     notes: mathF1C13NotesBM,
     mathChapter13Data: mathF1C13InteractiveContent,
@@ -1825,9 +1859,9 @@ export const chapters: ChapterContent[] = [
     subjectId: "math",
     form: "Form 2",
     chapterKey: "Chapter 4",
-    title: "Polygons",
+    title: "Polygon",
     lang: "dlp",
-    mindMap: { data: mathF2C4MindMapDLP, title: "Polygons" },
+    mindMap: { data: mathF2C4MindMapDLP, title: "Polygon" },
     notes: mathF2C4NotesDLP,
     mathF2Chapter4Data: mathF2C4InteractiveContent,
     flashcards: mathF2C4FlashcardsDLP,
@@ -2156,6 +2190,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C4MindMapBM, title: "Lukisan Berskala" },
     notes: mathF3C4NotesBM,
+    mathF3Chapter4Data: mathF3C4InteractiveContent,
     flashcards: mathF3C4FlashcardsBM,
     quiz: mathF3C4QuizzesBM,
   },
@@ -2168,6 +2203,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C4MindMapDLP, title: "Scale Drawings" },
     notes: mathF3C4NotesDLP,
+    mathF3Chapter4Data: mathF3C4InteractiveContent,
     flashcards: mathF3C4FlashcardsDLP,
     quiz: mathF3C4QuizzesDLP,
   },
@@ -2180,6 +2216,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C5MindMapBM, title: "Nisbah Trigonometri" },
     notes: mathF3C5NotesBM,
+    mathF3Chapter5Data: mathF3C5InteractiveContent,
     flashcards: mathF3C5FlashcardsBM,
     quiz: mathF3C5QuizzesBM,
   },
@@ -2192,6 +2229,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C5MindMapDLP, title: "Trigonometric Ratios" },
     notes: mathF3C5NotesDLP,
+    mathF3Chapter5Data: mathF3C5InteractiveContent,
     flashcards: mathF3C5FlashcardsDLP,
     quiz: mathF3C5QuizzesDLP,
   },
@@ -2204,6 +2242,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C6MindMapBM, title: "Sudut dan Tangen bagi Bulatan" },
     notes: mathF3C6NotesBM,
+    mathF3Chapter6Data: mathF3C6InteractiveContent,
     flashcards: mathF3C6FlashcardsBM,
     quiz: mathF3C6QuizzesBM,
   },
@@ -2216,6 +2255,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C6MindMapDLP, title: "Angles and Tangents of Circles" },
     notes: mathF3C6NotesDLP,
+    mathF3Chapter6Data: mathF3C6InteractiveContent,
     flashcards: mathF3C6FlashcardsDLP,
     quiz: mathF3C6QuizzesDLP,
   },
@@ -2228,6 +2268,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C7MindMapBM, title: "Pelan dan Dongakan" },
     notes: mathF3C7NotesBM,
+    mathF3Chapter7Data: mathF3C7InteractiveContent,
     flashcards: mathF3C7FlashcardsBM,
     quiz: mathF3C7QuizzesBM,
   },
@@ -2240,6 +2281,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C7MindMapDLP, title: "Plan and Elevation" },
     notes: mathF3C7NotesDLP,
+    mathF3Chapter7Data: mathF3C7InteractiveContent,
     flashcards: mathF3C7FlashcardsDLP,
     quiz: mathF3C7QuizzesDLP,
   },
@@ -2252,6 +2294,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C8MindMapBM, title: "Lokus dalam Dua Dimensi" },
     notes: mathF3C8NotesBM,
+    mathF3Chapter8Data: mathF3C8InteractiveContent,
     flashcards: mathF3C8FlashcardsBM,
     quiz: mathF3C8QuizzesBM,
   },
@@ -2264,6 +2307,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C8MindMapDLP, title: "Locus in Two Dimensions" },
     notes: mathF3C8NotesDLP,
+    mathF3Chapter8Data: mathF3C8InteractiveContent,
     flashcards: mathF3C8FlashcardsDLP,
     quiz: mathF3C8QuizzesDLP,
   },
@@ -2276,6 +2320,7 @@ export const chapters: ChapterContent[] = [
     lang: "bm",
     mindMap: { data: mathF3C9MindMapBM, title: "Garis Lurus" },
     notes: mathF3C9NotesBM,
+    mathF3Chapter9Data: mathF3C9InteractiveContent,
     flashcards: mathF3C9FlashcardsBM,
     quiz: mathF3C9QuizzesBM,
   },
@@ -2288,6 +2333,7 @@ export const chapters: ChapterContent[] = [
     lang: "dlp",
     mindMap: { data: mathF3C9MindMapDLP, title: "Straight Lines" },
     notes: mathF3C9NotesDLP,
+    mathF3Chapter9Data: mathF3C9InteractiveContent,
     flashcards: mathF3C9FlashcardsDLP,
     quiz: mathF3C9QuizzesDLP,
   },
@@ -2320,12 +2366,13 @@ export const chapters: ChapterContent[] = [
     subjectId: "science",
     form: "Form 1",
     chapterKey: "Chapter 2",
-    title: "Sel sebagai Unit Asas Kehidupan",
+    title: "Sel sebagai Unit Asas Hidupan",
     lang: "bm",
     video: getEducationalVideo("science-f1-c2"),
     mindMap: { data: scienceF1C2MindMapBM, title: "Sel sebagai Unit Asas Hidupan" },
     notes: scienceF1C2NotesBM,
     flashcards: scienceF1C2FlashcardsBM,
+    quiz: scienceF1C2QuizzesBM,
     chapter2Data: chapter2Content,
   },
   {
@@ -2336,9 +2383,10 @@ export const chapters: ChapterContent[] = [
     title: "Cell as the Basic Unit of Life",
     lang: "dlp",
     video: getEducationalVideo("science-f1-c2", "dlp"),
-    mindMap: { data: scienceF1C2MindMapDLP, title: "Cells as the Basic Unit of Life" },
+    mindMap: { data: scienceF1C2MindMapDLP, title: "Cell as the Basic Unit of Life" },
     notes: scienceF1C2NotesDLP,
     flashcards: scienceF1C2FlashcardsDLP,
+    quiz: scienceF1C2QuizzesDLP,
     chapter2Data: chapter2Content,
   },
   {
@@ -2636,6 +2684,7 @@ export const chapters: ChapterContent[] = [
       title: "Cakap Ajuk dan Cakap Pindah",
     },
   },
+  ...bahasaMelayuTingkatan3PemahamanRegistry,
   {
     id: "bm-f3-strategi-menjawab-uasa-mindmap",
     subjectId: "bm",
@@ -2831,6 +2880,7 @@ export const chapters: ChapterContent[] = [
     mindMap: { data: bahasaMelayuSimpulanBahasaMindMap, title: "Simpulan Bahasa" },
   },
   ...bahasaMelayuTingkatan1PemahamanRegistry,
+  ...bahasaMelayuTingkatan1KomsasRegistry,
   {
     id: "bm-f1-asas-penulisan-mindmap",
     subjectId: "bm",
@@ -2941,6 +2991,7 @@ export const chapters: ChapterContent[] = [
       title: "Mengedit dan Menyemak Karangan",
     },
   },
+  ...bahasaMelayuTingkatan2PemahamanRegistry,
   {
     id: "bm-f2-mengembangkan-isi-karangan-mindmap",
     subjectId: "bm",

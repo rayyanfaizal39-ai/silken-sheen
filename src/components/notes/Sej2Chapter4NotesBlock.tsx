@@ -158,7 +158,7 @@ export function Sej2Chapter4NotesBlock({
             <img
               src={penyebaranAgama}
               alt="Penyebaran Agama di Alam Melayu"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <EraDotTimeline items={RELIGION_TIMELINE} />
             <p className="text-center text-[11px] text-muted-foreground">

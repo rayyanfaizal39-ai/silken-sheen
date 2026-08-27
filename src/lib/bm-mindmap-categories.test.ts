@@ -5,25 +5,22 @@ import {
 } from "./bm-mindmap-categories";
 
 describe("Bahasa Melayu mind-map categories", () => {
-  it("adds Pemahaman only to Form 1 after the existing categories", () => {
+  it("adds KOMSAS only after the existing Form 1 categories", () => {
     expect(getBahasaMelayuMindMapCategories("Form 1")).toEqual([
       "Tatabahasa",
       "Peribahasa",
       "Penulisan",
       "Pemahaman",
+      "KOMSAS",
     ]);
   });
 
-  it("shows Penulisan for Forms 2 and 3", () => {
-    expect(getBahasaMelayuMindMapCategories("Form 2")).toEqual([
+  it.each(["Form 2", "Form 3"] as const)("keeps KOMSAS out of %s", (form) => {
+    expect(getBahasaMelayuMindMapCategories(form)).toEqual([
       "Tatabahasa",
       "Peribahasa",
       "Penulisan",
-    ]);
-    expect(getBahasaMelayuMindMapCategories("Form 3")).toEqual([
-      "Tatabahasa",
-      "Peribahasa",
-      "Penulisan",
+      "Pemahaman",
     ]);
   });
 
@@ -34,5 +31,14 @@ describe("Bahasa Melayu mind-map categories", () => {
       badge: "READY",
     });
     expect(JSON.stringify(BAHASA_MELAYU_CATEGORY_DETAILS.Pemahaman)).not.toMatch(/\d/);
+  });
+
+  it("provides the requested count-free READY identity for KOMSAS", () => {
+    expect(BAHASA_MELAYU_CATEGORY_DETAILS.KOMSAS).toEqual({
+      description:
+        "Memahami karya sastera melalui tema, persoalan, watak, nilai, pengajaran, gaya bahasa dan bukti daripada teks.",
+      badge: "READY",
+    });
+    expect(JSON.stringify(BAHASA_MELAYU_CATEGORY_DETAILS.KOMSAS)).not.toMatch(/\d/);
   });
 });

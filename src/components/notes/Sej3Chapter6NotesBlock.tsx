@@ -119,7 +119,7 @@ export function Sej3Chapter6NotesBlock({
             <img
               src={ekonomiModen}
               alt="Ekonomi Moden Bijih Timah dan Kereta Api"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.modernEconomyIntro}</p>
           </div>

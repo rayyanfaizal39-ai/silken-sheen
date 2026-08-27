@@ -51,16 +51,16 @@ export const scienceF2C4MindMapBM: MindNode = {
       children: [
         {
           id: "c2-1",
-          label: "Pertahanan 1: Kulit & Membran Mukus",
+          label: "Pertahanan 1: Kulit & Membran Mukus — pertahanan TIDAK SPESIFIK",
           children: [
             { id: "c2-1-1", label: "Kulit: lapisan tebal, peluh & sebum bunuh mikroorganisma" },
             { id: "c2-1-2", label: "Membran mukus: bulu hidung, mukus, air mata, tahi telinga" },
           ],
         },
-        { id: "c2-2", label: "Pertahanan 2: Fagositosis (sel darah putih telan patogen)" },
+        { id: "c2-2", label: "Pertahanan 2: Fagositosis oleh sel darah putih — pertahanan TIDAK SPESIFIK" },
         {
           id: "c2-3",
-          label: "Pertahanan 3: Sistem Imun",
+          label: "Pertahanan 3: Sistem Imun (antibodi) — pertahanan SPESIFIK",
           children: [
             { id: "c2-3-1", label: "Antigen: bahan asing yang merangsang penghasilan antibodi" },
             { id: "c2-3-2", label: "Antibodi: protein dihasilkan sel darah putih sebagai tindak balas" },
@@ -91,6 +91,16 @@ export const scienceF2C4MindMapBM: MindNode = {
             { id: "c2-6-1", label: "Lemahkan: udara tercemar, racun perosak, stres, gula berlebihan, merokok" },
             { id: "c2-6-2", label: "Kukuhkan: tidur cukup, bersenam, udara segar, tidak merokok, pemeriksaan kesihatan" },
             { id: "c2-6-3", label: "Alahan: tindak balas imun terhadap alergen (debu, debunga, makanan, ubat)" },
+          ],
+        },
+        {
+          id: "c2-7",
+          label: "Kesihatan, Imunisasi & Masyarakat",
+          children: [
+            { id: "c2-7-1", label: "Pengulangan penyakit terkawal: kusta, batuk kokol, tibi" },
+            { id: "c2-7-2", label: "Kos rawatan kesihatan meningkat jika wabak berlaku" },
+            { id: "c2-7-3", label: "Kualiti kerja terjejas; tenaga kerja & migrasi" },
+            { id: "c2-7-4", label: "Pembelian insurans & kualiti kehidupan keluarga" },
           ],
         },
       ],

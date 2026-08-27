@@ -328,7 +328,8 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
       "Because insects undergo internal fertilisation like mammals",
     ],
     answerIndex: 1,
-    explanation: "Insects' success despite being poikilothermic is due to their hard exoskeleton for protection, small size allowing them to occupy many habitat niches, and high reproduction rate.",
+    explanation:
+      "Insects' success despite being poikilothermic is due to their hard exoskeleton for protection, small size allowing them to occupy many habitat niches, and high reproduction rate.",
   },
   {
     id: "sci-f2-c1-dlp-q24",

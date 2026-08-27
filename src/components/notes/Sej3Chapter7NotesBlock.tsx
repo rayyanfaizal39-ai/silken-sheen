@@ -266,7 +266,7 @@ export function Sej3Chapter7NotesBlock({
             <img
               src={kubuRentap}
               alt="Kubu Rentap di Bukit Sadok"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <p className="text-center text-[11px] text-muted-foreground">Bertahan 1853-1861 — dilengkapi meriam besi &ldquo;Bujang Timpang Berang&rdquo;.</p>
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.resistanceStrengths.intro}</p>

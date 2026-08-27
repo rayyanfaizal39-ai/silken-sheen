@@ -38,8 +38,11 @@ import { CompanionTip } from "@/components/CompanionTip";
 import { NextMissionCard } from "@/components/NextMissionCard";
 import { ProgressionCelebrationHost } from "@/components/progression/RankUpCelebration";
 import { CompanionEvolutionModal } from "@/components/progression/CompanionEvolutionModal";
+import { MissionRewardCelebration } from "@/components/progression/MissionRewardCelebration";
 import { SiteFooter } from "@/components/SiteFooter";
 import { AcademyLogo } from "@/components/AcademyLogo";
+import { CompanionInfoPopover, StreakInfoPopover } from "@/components/progression/ProgressionHelp";
+import { getCompanionDisplayName } from "@/companion";
 import { isRouteActive } from "@/lib/study-routing";
 import { getProfileForAdminCheck, hasAdministratorRole } from "@/lib/admin-access";
 import { BackgroundMusicControl } from "@/components/audio/BackgroundMusicControl";
@@ -267,14 +270,19 @@ function SidebarBottom() {
             <p className="truncate text-xs font-bold" style={{ color: rank.color }}>
               {rank.name}
             </p>
-            <p className="text-[10px] text-white/40">
+            <p
+              className="text-[10px] text-white/40"
+              title="Display rating: 1,000 plus Lifetime XP, capped at 3,000. It does not determine Rank or Monthly Leaderboard placement."
+            >
               Rating {getChessRating(progress.xp).toLocaleString()}
             </p>
           </div>
           {progress.streak > 0 && (
             <div className="flex items-center gap-1 rounded-xl bg-orange-500/15 px-2 py-1">
               <Flame className="h-3 w-3 text-orange-400" />
-              <span className="text-[10px] font-bold text-orange-300">{progress.streak}</span>
+              <span className="text-[10px] font-bold text-orange-300">
+                {progress.streak} Day Streak
+              </span>
             </div>
           )}
         </div>
@@ -550,8 +558,13 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
 
       <AICompanionButton />
       <CompanionTip />
+<<<<<<< HEAD
       <ProgressionCelebrationHost />
       <CompanionEvolutionModal />
+=======
+      {lastRankUp ? <RankUpModal /> : <CompanionEvolutionModal />}
+      <MissionRewardCelebration />
+>>>>>>> 946422f0c064196ec42c384ca34f4a8c392ce0b7
 
       {moreOpen && (
         <div
@@ -743,13 +756,11 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
 
 function HeaderStreak() {
   const { progress } = useProgress();
-  if (progress.streak <= 0) return null;
   return (
-    <div className="hidden items-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.06] px-3 py-2 sm:flex">
-      <Flame className="h-4 w-4 text-orange-400" />
-      <span className="text-sm font-bold">{progress.streak}</span>
-      <span className="text-xs text-white/40">day{progress.streak !== 1 ? "s" : ""}</span>
-    </div>
+    <StreakInfoPopover
+      streak={progress.streak}
+      className="hidden min-h-11 items-center gap-1.5 rounded-xl border border-orange-300/15 bg-orange-400/[0.08] px-3 text-xs font-bold text-orange-100 shadow-[0_0_18px_rgba(251,146,60,0.10)] transition-colors hover:bg-orange-400/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 sm:flex"
+    />
   );
 }
 
@@ -773,18 +784,27 @@ function HeaderAuthAction() {
 
 function HeaderCompanion() {
   const { progress } = useProgress();
+  const companion = progress.companion ?? { id: "nova" as const, level: 1 };
   const companionLevel = getCompanionLevelProgress(progress.xp).currentLevel;
+  const companionName = getCompanionDisplayName(companion);
   return (
-    <Link
-      to="/companion"
-      className="flex items-center gap-1.5 rounded-xl border border-[#F0ABFC]/25 bg-[#F0ABFC]/10 px-2.5 py-2 transition-colors hover:bg-[#F0ABFC]/20"
-      aria-label="Open Cosmic Companion"
-    >
-      <Sparkles className="h-4 w-4 text-[#F0ABFC]" />
-      <span className="text-sm font-bold tabular-nums text-white">
-        {progress.companion ? `Lv ${companionLevel}` : "Egg"}
-      </span>
-    </Link>
+    <div className="flex items-center">
+      <Link
+        to="/companion"
+        className="flex min-h-11 items-center gap-1.5 rounded-l-xl border border-r-0 border-[#F0ABFC]/25 bg-[#F0ABFC]/10 px-2.5 transition-colors hover:bg-[#F0ABFC]/20"
+        aria-label={`Open ${companionName}, Companion Level ${companionLevel}`}
+      >
+        <Sparkles className="h-4 w-4 text-[#F0ABFC]" />
+        <span className="text-xs font-bold tabular-nums text-white">
+          <span className="hidden sm:inline">Companion </span>Lv {companionLevel}
+        </span>
+      </Link>
+      <CompanionInfoPopover
+        xp={progress.xp}
+        companionName={companionName}
+        className="w-11 justify-center gap-0 rounded-l-none border border-[#F0ABFC]/25 bg-[#F0ABFC]/10 px-0 text-[0px] [&_svg]:h-4 [&_svg]:w-4"
+      />
+    </div>
   );
 }
 

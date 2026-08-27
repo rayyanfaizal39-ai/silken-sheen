@@ -173,7 +173,7 @@ function ExplorerProfilePage() {
                   <RankBadge rank={rank} size={34} />
                   <span>{rank.name}</span>
                   <span aria-hidden="true">·</span>
-                  <span>Level {companionProgress.currentLevel}</span>
+                  <span>Companion Level {companionProgress.currentLevel}</span>
                 </div>
               </div>
             </div>
@@ -238,7 +238,7 @@ function ExplorerProfilePage() {
             </div>
             <Sparkles aria-hidden="true" />
           </div>
-          <Metric icon={<Zap />} label="Total XP" value={`${progress.xp.toLocaleString()} XP`} />
+          <Metric icon={<Zap />} label="Lifetime XP" value={`${progress.xp.toLocaleString()} XP`} />
           <Metric icon={<Award />} label="Current rank" value={rank.name} />
           <Metric
             icon={<Flame />}

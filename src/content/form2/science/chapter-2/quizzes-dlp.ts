@@ -125,15 +125,16 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 2",
     lang: "dlp",
-    question: "What is biological control?",
+    question: "Why are the leaves of a cactus reduced to spines in a desert habitat?",
     options: [
-      "Using chemical pesticides to kill pests",
-      "A method using natural predators, parasites or pathogens to reduce the number of pests",
-      "Using chemical fertilisers to increase crop yield",
-      "Replanting trees in forest areas",
+      "So that the cactus can absorb more sunlight",
+      "To reduce the surface area so that the rate of transpiration becomes very low",
+      "To help the cactus respire at night",
+      "So that the cactus can move with the direction of the wind",
     ],
     answerIndex: 1,
-    explanation: "Biological control uses organisms that are natural predators, parasites or pathogens to reduce the number of pests in an area.",
+    explanation:
+      "The main challenge in a desert is water loss. Spines have a far smaller surface area than ordinary leaves, so transpiration is reduced and the water stored in the thick stem lasts through the dry season.",
   },
   {
     id: "sci-f2-c2-dlp-q10",
@@ -169,13 +170,14 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Why is energy NOT recycled in an ecosystem, unlike nutrients?",
     options: [
-      "Because energy is lost as heat and through faeces at every trophic level",
+      "Because energy is lost as heat through respiration and movement at every level, and through faeces in consumers",
       "Because energy is permanently stored in the producer's body",
       "Because only decomposers need energy",
       "Because energy only exists at the tertiary consumer level",
     ],
     answerIndex: 0,
-    explanation: "Energy is lost as heat and through undigested food (faeces) at every trophic level, which is why it flows in one direction and is not recycled like nutrients.",
+    explanation:
+      "At every trophic level energy is lost as heat through respiration and movement. Consumers lose extra energy in undigested food (faeces); producers do not, because they make their own food. That is why energy flows in one direction and is not recycled like nutrients.",
   },
   {
     id: "sci-f2-c2-dlp-q13",
@@ -230,15 +232,17 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "dlp",
-    question: "What is the main difference between prey-predator and competition?",
+    question:
+      "The Arctic fox has small ears compared with foxes in hot regions. Justify why this feature matters for its survival.",
     options: [
-      "Prey-predator involves feeding between organisms; competition involves struggling for limited basic needs",
-      "Prey-predator only occurs between plants; competition only occurs between animals",
-      "Both are the same thing",
-      "Competition only occurs to get a mate, not food",
+      "Small ears let it hear prey under the snow more clearly",
+      "Small ears reduce the exposed surface area, so less body heat is lost to the extremely cold surroundings",
+      "Small ears let it swim faster in cold water",
+      "Small ears have no connection to its survival",
     ],
-    answerIndex: 0,
-    explanation: "Prey-predator involves one organism eating another organism, while competition occurs when organisms compete for limited basic needs such as light, water, food and mates.",
+    answerIndex: 1,
+    explanation:
+      "The main challenge in the tundra is extreme cold. Small ears reduce the surface area from which heat can escape, so the Arctic fox keeps a steady body temperature even in very cold surroundings. That is why this adaptation matters, rather than it being just a physical feature.",
   },
   {
     id: "sci-f2-c2-dlp-q17",
@@ -365,15 +369,16 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "dlp",
     question:
-      "Compare commensalism with mutualism. What is the main distinguishing feature between these two types of interaction?",
+      "A farming area draws river water excessively for irrigation all year round. How does this disrupt the water cycle and the ecosystem there?",
     options: [
-      "In mutualism both organisms benefit; in commensalism only one organism benefits and the other is unaffected (not harmed)",
-      "In commensalism both organisms are harmed",
-      "Mutualism only occurs between plants, commensalism only between animals",
-      "There is no clear distinction between the two",
+      "There is no effect because water always returns through rainfall at the same rate",
+      "River and groundwater stores fall, so less water is available for plants and animals and the water cycle is disrupted",
+      "The oxygen content of the atmosphere rises sharply",
+      "The rate of photosynthesis increases because the soil becomes drier",
     ],
-    answerIndex: 0,
-    explanation: "Mutualism benefits BOTH organisms, while commensalism only benefits ONE organism (the commensal) without affecting the other organism.",
+    answerIndex: 1,
+    explanation:
+      "Excessive use of water for agricultural and domestic purposes is one of the three main disruptions to the nutrient cycle. Over-extraction lowers river and groundwater stores, reducing the resources available to living things and disrupting the water cycle. Solutions include conserving water and harvesting rainwater.",
   },
   {
     id: "sci-f2-c2-dlp-q25",
@@ -450,15 +455,11 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "dlp",
     question:
-      "Why is the energy pyramid concept suitable for illustrating the trophic structure in an ecosystem?",
-    options: [
-      "Because the number of organisms is always the same at every trophic level",
-      "Because the amount of usable energy decreases from the producer level upward due to energy loss at each level",
-      "Because the pyramid only illustrates the water cycle, not energy flow",
-      "Because tertiary consumers always have more energy than producers",
-    ],
-    answerIndex: 1,
-    explanation: "The trophic structure is illustrated as a pyramid because the amount of usable energy decreases from the producer level upward, due to energy lost through respiration, heat and faeces at each level.",
+      "In a vegetable-garden food web: cabbage is eaten by caterpillars, snails and grasshoppers; caterpillars, snails and grasshoppers are eaten by birds; grasshoppers are also eaten by frogs; and birds and frogs are eaten by a snake. How many complete food chains can be built from this web?",
+    options: ["Two", "Three", "Four", "Six"],
+    answerIndex: 2,
+    explanation:
+      "Four chains: cabbage → caterpillar → bird → snake; cabbage → snail → bird → snake; cabbage → grasshopper → bird → snake; cabbage → grasshopper → frog → snake. Each chain starts with the producer and ends with the tertiary consumer — that is how a food web is interpreted.",
   },
   {
     id: "sci-f2-c2-dlp-q30",

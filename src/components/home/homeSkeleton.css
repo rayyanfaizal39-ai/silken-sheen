@@ -1158,7 +1158,7 @@
 
 .todays-mission__task {
   min-height: 48px;
-  grid-template-columns: auto auto minmax(0, 1fr) minmax(48px, auto);
+  grid-template-columns: auto auto minmax(0, 1fr) minmax(42px, auto) auto auto;
   gap: 0.6rem;
   border: 1px solid rgba(167, 139, 250, 0.11);
   border-radius: 13px 11px 14px 10px;
@@ -1170,6 +1170,78 @@
   box-shadow:
     inset 0 1px rgba(255, 255, 255, 0.035),
     0 5px 14px rgba(4, 2, 16, 0.08);
+}
+
+.todays-mission__pending {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+  border: 1px solid rgba(250, 204, 21, 0.2);
+  border-radius: 999px;
+  padding: 0.2rem 0.48rem;
+  color: rgb(253 224 71);
+  font-size: 0.61rem;
+  font-weight: 900;
+  background: rgba(250, 204, 21, 0.075);
+}
+
+.todays-mission__pending svg {
+  width: 0.72rem;
+  height: 0.72rem;
+}
+
+.todays-mission__objective-reward {
+  border: 1px solid rgba(250, 204, 21, 0.16);
+  border-radius: 999px;
+  padding: 0.2rem 0.42rem;
+  color: rgb(253 224 71);
+  font-size: 0.59rem;
+  font-weight: 900;
+  white-space: nowrap;
+  background: rgba(250, 204, 21, 0.06);
+}
+
+.todays-mission__claim {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border: 1px solid rgba(253, 224, 71, 0.4);
+  border-radius: 10px;
+  padding: 0 0.65rem;
+  color: #251803;
+  font-size: 0.65rem;
+  font-weight: 950;
+  background: linear-gradient(180deg, #ffe36a, #f5c518);
+  box-shadow: 0 7px 18px rgba(245, 197, 24, 0.14);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    transform 180ms ease-out,
+    box-shadow 180ms ease-out;
+}
+
+.todays-mission__claim:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(245, 197, 24, 0.2);
+}
+
+.todays-mission__claim:focus-visible {
+  outline: 2px solid rgb(253 224 71);
+  outline-offset: 2px;
+}
+
+.todays-mission__claim svg {
+  width: 0.78rem;
+  height: 0.78rem;
+}
+
+.todays-mission__task.is-claimed {
+  border-color: rgba(167, 243, 208, 0.12);
+  opacity: 0.78;
 }
 
 .todays-mission__task:nth-child(even) {
@@ -1258,6 +1330,12 @@
   color: rgb(253 224 71);
 }
 
+.todays-mission__reward small {
+  width: 100%;
+  color: rgb(148 163 184);
+  font-size: 0.56rem;
+}
+
 .todays-mission__reward.is-claimed {
   color: rgb(167 243 208);
   border-color: rgba(52, 211, 153, 0.17);
@@ -1278,6 +1356,23 @@
   color: rgb(167 243 208);
   background: rgba(52, 211, 153, 0.1);
   box-shadow: none;
+}
+
+.todays-mission__cta--claim {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.todays-mission__cta--claim svg {
+  width: 0.9rem;
+  height: 0.9rem;
 }
 
 .todays-mission__weekly-heading h3 {
@@ -1463,6 +1558,21 @@
   .todays-mission__weekly-strip-progress {
     display: none;
   }
+
+  .todays-mission__task {
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
+  }
+
+  .todays-mission__objective-reward {
+    grid-column: 3;
+    justify-self: start;
+  }
+
+  .todays-mission__claim {
+    min-height: 44px;
+    grid-column: 4;
+    grid-row: 1 / span 2;
+  }
 }
 
 @media (max-width: 430px) {
@@ -1483,6 +1593,14 @@
 @media (prefers-reduced-motion: reduce) {
   .todays-mission__sync svg.is-spinning {
     animation: none;
+  }
+
+  .todays-mission__claim {
+    transition: none;
+  }
+
+  .todays-mission__claim:hover {
+    transform: none;
   }
 }
 

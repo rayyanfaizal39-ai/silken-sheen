@@ -6,10 +6,12 @@ export function MatchingPairs({
   pairs,
   instruction,
   onComplete,
+  resetLabel = "Reset",
 }: {
   pairs: ScienceInteractiveMatcherPair[];
   instruction: string;
   onComplete?: () => void;
+  resetLabel?: string;
 }) {
   const shuffledMatches = useMemo(
     () => [...pairs].sort((a, b) => a.match.localeCompare(b.match)),
@@ -100,7 +102,7 @@ export function MatchingPairs({
           onClick={reset}
           className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-xs font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
-          <RotateCcw className="h-3.5 w-3.5" /> Reset
+          <RotateCcw className="h-3.5 w-3.5" /> {resetLabel}
         </button>
       </div>
     </div>

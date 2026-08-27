@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { VideoBlock } from "@/components/notes/VideoBlock";
 import { chapters, getChapter } from "@/content/registry";
-import { educationalVideos, getEducationalVideo } from "./educationalVideos";
+import { educationalVideos, getEducationalVideo, mathForm1 } from "./educationalVideos";
 
 vi.mock("@/hooks/use-background-music", () => ({
   useBackgroundMusic: () => ({
@@ -80,7 +80,81 @@ const scienceForm2Dlp = [
   "Ht_O3z-Kg_s",
 ] as const;
 
+const expectedMathForm1 = {
+  1: "6lWuKWNSgMk",
+  2: "POEPWyIvNzg",
+  3: "79eb3y4ExLk",
+  4: "M6pyN2PTKwQ",
+  5: "N_CQgE89uNA",
+  6: "DpShYS-YkvU",
+  7: "wPWywnuflNI",
+  8: "TqUAI_4Wiw4",
+  9: "weMfkPy4Ffc",
+  10: "AOXply-AzqI",
+  11: "5qJVdhIy1yk",
+  12: "sVUzqhRzDHg",
+  13: "k0MFu757pm0",
+} as const;
+
 describe("educational video registry", () => {
+  it("keeps the Matematik Tingkatan 1 BM registry exact and complete", () => {
+    expect(mathForm1).toEqual(expectedMathForm1);
+    expect(Object.keys(mathForm1)).toHaveLength(13);
+  });
+
+  it("resolves all Matematik Tingkatan 1 videos by language without crossing BM and DLP", () => {
+    Object.entries(expectedMathForm1).forEach(([chapterNumber, youtubeId]) => {
+      const chapterId = `math-f1-c${chapterNumber}`;
+      const bmVideo = getEducationalVideo(chapterId, "bm");
+      const dlpVideo = getEducationalVideo(chapterId, "dlp");
+
+      expect(bmVideo).toEqual(educationalVideos[`${chapterId}-bm`]);
+      expect(bmVideo).toMatchObject({
+        title: `Matematik Tingkatan 1 — Bab ${chapterNumber}`,
+        youtubeId,
+        captionLang: "ms",
+      });
+      expect(dlpVideo).toEqual(educationalVideos[`${chapterId}-dlp`]);
+      expect(dlpVideo?.youtubeId).not.toBe(youtubeId);
+      expect(bmVideo).not.toBe(dlpVideo);
+    });
+  });
+
+  it("attaches each BM video only to its matching Matematik Tingkatan 1 BM chapter", () => {
+    Object.entries(expectedMathForm1).forEach(([chapterNumber, youtubeId]) => {
+      const bmChapter = getChapter("math", `Chapter ${chapterNumber}`, "bm", "Form 1");
+      const dlpChapter = getChapter("math", `Chapter ${chapterNumber}`, "dlp", "Form 1");
+
+      expect(bmChapter).toMatchObject({
+        id: `math-f1-c${chapterNumber}-bm`,
+        lang: "bm",
+        video: {
+          title: `Matematik Tingkatan 1 — Bab ${chapterNumber}`,
+          youtubeId,
+          captionLang: "ms",
+        },
+      });
+      expect(dlpChapter?.id).toBe(`math-f1-c${chapterNumber}-dlp`);
+      expect(dlpChapter?.video?.youtubeId).not.toBe(youtubeId);
+    });
+  });
+
+  it("renders all Matematik Tingkatan 1 BM videos with the existing safe player behavior", () => {
+    Object.entries(expectedMathForm1).forEach(([chapterNumber, youtubeId]) => {
+      const video = getEducationalVideo(`math-f1-c${chapterNumber}`, "bm");
+      expect(video).toBeDefined();
+
+      const markup = renderToStaticMarkup(createElement(VideoBlock, { video: video! }));
+      expect(markup.match(/<iframe/g)).toHaveLength(1);
+      expect(markup).toContain(`youtube-nocookie.com/embed/${youtubeId}?`);
+      expect(markup).toContain('loading="lazy"');
+      expect(markup).toContain("aspect-video");
+      expect(markup).toContain("w-full h-full");
+      expect(markup).toContain('allowFullScreen=""');
+      expect(markup).not.toContain("autoplay=1");
+    });
+  });
+
   it("maps every Sejarah Tingkatan 1 chapter to its intended video", () => {
     sejarahForm1.forEach(([chapterId, youtubeId, startSeconds], index) => {
       const video = getEducationalVideo(chapterId);
@@ -148,7 +222,7 @@ describe("educational video registry", () => {
   it("selects DLP Science videos by language while preserving the BM defaults", () => {
     const dlpIds = [
       "TY49EVN-mJI",
-      "U1ncevXORm0",
+      "2OmTAjr6Uxs",
       "nROw9wVMw2Y",
       "JrUIDZWCORU",
       "yZpe3OYE1wk",
