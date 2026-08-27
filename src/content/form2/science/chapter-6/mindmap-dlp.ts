@@ -42,6 +42,7 @@ export const scienceF2C6MindMapDLP: MindNode = {
           children: [
             { id: "c1-4-1", label: "Colouring/mixture of colourings that change colour based on substance tested" },
             { id: "c1-4-2", label: "Used to determine neutral, acidic or alkaline" },
+            { id: "c1-tool-meter", label: "pH meter: precise numerical pH reading" },
           ],
         },
         {
@@ -55,8 +56,19 @@ export const scienceF2C6MindMapDLP: MindNode = {
           ],
         },
         {
+          id: "c1-strength",
+          label: "Strength of Acids and Alkalis",
+          children: [
+            { id: "c1-strength-1", label: "Compared at the same concentration" },
+            { id: "c1-strength-2", label: "Strong acid: hydrochloric acid (pH ~1)" },
+            { id: "c1-strength-3", label: "Weak acid: ethanoic acid (pH ~3) — the acid in vinegar" },
+            { id: "c1-strength-4", label: "Strong alkali: sodium hydroxide solution (pH ~13)" },
+            { id: "c1-strength-5", label: "Weak alkali: ammonia solution (pH ~11)" },
+          ],
+        },
+        {
           id: "c1-6",
-          label: "Activity 6.1: Studying Properties of Acids & Alkalis",
+          label: "Testing Acid and Alkali Properties: Studying Properties of Acids & Alkalis",
           children: [
             { id: "c1-6-1", label: "pH value using pH paper" },
             { id: "c1-6-2", label: "Taste: lime juice (sour) and bitter gourd juice (bitter)" },
@@ -152,7 +164,7 @@ export const scienceF2C6MindMapDLP: MindNode = {
         },
         {
           id: "c2-3",
-          label: "Activity 6.5: Titration",
+          label: "Acid-Alkali Titration",
           children: [
             { id: "c2-3-1", label: "Burette filled with hydrochloric acid" },
             { id: "c2-3-2", label: "Pipette transfers sodium hydroxide solution into conical flask" },
