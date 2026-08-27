@@ -64,11 +64,21 @@ export const scienceF2C5MindMapDLP: MindNode = {
         { id: "c2-4", label: "Colloid: between solution & suspension (foam, emulsion)" },
         {
           id: "c2-5",
-          label: "Solubility & Rate Factors",
+          label: "Solubility: HOW MUCH",
           children: [
-            { id: "c2-5-1", label: "Temperature of solvent: higher → faster" },
-            { id: "c2-5-2", label: "Rate of stirring: faster → faster" },
-            { id: "c2-5-3", label: "Size of solute: smaller → faster" },
+            { id: "c2-5-1", label: "Maximum amount of solute in 100 ml of solvent" },
+            { id: "c2-5-2", label: "Stated at a specified temperature" },
+            { id: "c2-5-3", label: "Higher temperature → most solids dissolve in greater amount" },
+          ],
+        },
+        {
+          id: "c2-8",
+          label: "Rate of solubility: HOW FAST",
+          children: [
+            { id: "c2-8-1", label: "Temperature of solvent: higher → dissolves faster" },
+            { id: "c2-8-2", label: "Rate of stirring: faster → dissolves faster" },
+            { id: "c2-8-3", label: "Size of solute: smaller → dissolves faster" },
+            { id: "c2-8-4", label: "Responding variable: rate of solubility" },
           ],
         },
         { id: "c2-6", label: "Water as Universal Solvent: dissolves almost everything" },
@@ -87,14 +97,16 @@ export const scienceF2C5MindMapDLP: MindNode = {
             { id: "c3-1-2", label: "Boiling: kills microorganisms" },
             { id: "c3-1-3", label: "Chlorination: kills microorganisms" },
             { id: "c3-1-4", label: "Distillation: removes everything (purest)" },
+            { id: "c3-1-5", label: "Purification = produce pure water; only distillation achieves it" },
           ],
         },
         {
           id: "c3-2",
           label: "Water Supply System",
           children: [
-            { id: "c3-2-1", label: "Filtration → Oxidation → Coagulation" },
+            { id: "c3-2-1", label: "Screening → Oxidation → Coagulation" },
             { id: "c3-2-2", label: "Sedimentation → Filtration → Chlorination/Fluoridation" },
+            { id: "c3-2-3", label: "Alum: clumps mud; Slaked lime: reduces acidity" },
           ],
         },
         {
@@ -102,7 +114,18 @@ export const scienceF2C5MindMapDLP: MindNode = {
           label: "Water Sustainability",
           children: [
             { id: "c3-3-1", label: "Pollutants: domestic, industrial, agricultural, oil spill" },
-            { id: "c3-3-2", label: "NEWater (recycled sewage); reverse osmosis (desalination)" },
+            { id: "c3-3-2", label: "Safe drinking water: free of microorganisms & toxic substances" },
+            { id: "c3-3-3", label: "Minamata Bay: mercury poisoning through the food chain" },
+            { id: "c3-3-4", label: "Water audit: record usage → identify wastage" },
+          ],
+        },
+        {
+          id: "c3-4",
+          label: "Alternative Water Supplies",
+          children: [
+            { id: "c3-4-1", label: "Reverse osmosis: seawater pressed through a fine membrane" },
+            { id: "c3-4-2", label: "Water recycling: NEWater (Singapore)" },
+            { id: "c3-4-3", label: "Water from fog: nets collect fine droplets" },
           ],
         },
       ],

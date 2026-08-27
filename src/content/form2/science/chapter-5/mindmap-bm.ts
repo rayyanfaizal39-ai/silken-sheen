@@ -64,11 +64,21 @@ export const scienceF2C5MindMapBM: MindNode = {
         { id: "c2-4", label: "Koloid: pertengahan larutan & ampaian (buih, emulsi)" },
         {
           id: "c2-5",
-          label: "Keterlarutan & Kadar",
+          label: "Keterlarutan: BERAPA BANYAK",
           children: [
-            { id: "c2-5-1", label: "Suhu pelarut: tinggi → lebih cepat" },
-            { id: "c2-5-2", label: "Kadar kacauan: cepat → lebih cepat" },
-            { id: "c2-5-3", label: "Saiz zat terlarut: kecil → lebih cepat" },
+            { id: "c2-5-1", label: "Kuantiti maksimum zat terlarut dalam 100 ml pelarut" },
+            { id: "c2-5-2", label: "Dinyatakan pada suhu tertentu" },
+            { id: "c2-5-3", label: "Suhu lebih tinggi → kebanyakan pepejal larut lebih banyak" },
+          ],
+        },
+        {
+          id: "c2-8",
+          label: "Kadar keterlarutan: BERAPA CEPAT",
+          children: [
+            { id: "c2-8-1", label: "Suhu pelarut: tinggi → larut lebih cepat" },
+            { id: "c2-8-2", label: "Kadar kacauan: cepat → larut lebih cepat" },
+            { id: "c2-8-3", label: "Saiz zat terlarut: kecil → larut lebih cepat" },
+            { id: "c2-8-4", label: "Pemboleh ubah bergerak balas: kadar keterlarutan" },
           ],
         },
         { id: "c2-6", label: "Air sebagai Pelarut Semesta: larutkan hampir semua bahan" },
@@ -87,14 +97,16 @@ export const scienceF2C5MindMapBM: MindNode = {
             { id: "c3-1-2", label: "Pendidihan: bunuh mikroorganisma" },
             { id: "c3-1-3", label: "Pengklorinan: bunuh mikroorganisma" },
             { id: "c3-1-4", label: "Penyulingan: buang semuanya (paling tulen)" },
+            { id: "c3-1-5", label: "Penulenan = hasilkan air tulen; hanya penyulingan capai" },
           ],
         },
         {
           id: "c3-2",
           label: "Sistem Bekalan Air",
           children: [
-            { id: "c3-2-1", label: "Penurasan → Oksidasi → Kogulasi" },
-            { id: "c3-2-2", label: "Pemendapan → Penurasan → Pengklorinan/Pemfluoridaan" },
+            { id: "c3-2-1", label: "Penapisan → Pengoksidaan → Penggumpalan" },
+            { id: "c3-2-2", label: "Pengenapan → Penurasan → Pengklorinan/Pemfluoridaan" },
+            { id: "c3-2-3", label: "Alum: gumpalkan lumpur; Kapur mati: kurangkan keasidan" },
           ],
         },
         {
@@ -102,7 +114,18 @@ export const scienceF2C5MindMapBM: MindNode = {
           label: "Kelestarian Air",
           children: [
             { id: "c3-3-1", label: "Pencemar: domestik, perindustrian, pertanian, tumpahan minyak" },
-            { id: "c3-3-2", label: "NEWater (kumbahan dikitar semula); osmosis berbalik (penyahgaraman)" },
+            { id: "c3-3-2", label: "Air selamat diminum: bebas mikroorganisma & bahan beracun" },
+            { id: "c3-3-3", label: "Teluk Minamata: keracunan merkuri melalui rantai makanan" },
+            { id: "c3-3-4", label: "Audit air: rekod penggunaan → kenal pasti pembaziran" },
+          ],
+        },
+        {
+          id: "c3-4",
+          label: "Bekalan Air Alternatif",
+          children: [
+            { id: "c3-4-1", label: "Osmosis berbalik: air laut ditekan melalui membran halus" },
+            { id: "c3-4-2", label: "Kitar semula air: NEWater (Singapura)" },
+            { id: "c3-4-3", label: "Air dari kabus: jaring kumpul titisan halus" },
           ],
         },
       ],

@@ -441,6 +441,211 @@ export type VillusDiagramBlock = {
   image?: DiagramImage;
 };
 
+/**
+ * One investigated factor inside a MiniExperimentBlock — a self-contained
+ * manipulated-variable study with its own hypothesis and variable set.
+ *
+ * Kept generic rather than water-specific: every KSSM science chapter carries
+ * compulsory experiments with exactly this shape, so later chapters reuse the
+ * block instead of re-authoring one.
+ */
+export type MiniExperimentPart = {
+  id: string;
+  /** Short tab label, e.g. "Kelembapan udara". */
+  label: string;
+  icon?: string;
+  /** The question the part investigates. */
+  question: string;
+  hypothesis: string;
+  manipulated: string;
+  responding: string;
+  /** Held-constant variables, already joined into one readable phrase. */
+  controlled: string;
+  /** Materials + apparatus, kept to one short line each. */
+  materials: string;
+  apparatus: string;
+  /** Three to five short steps. */
+  method: string[];
+  observation: string;
+  conclusion: string;
+};
+
+export type MiniExperimentBlock = {
+  title: string;
+  /** The shared aim across every part. */
+  aim: string;
+  instruction?: string;
+  aimLabel: string;
+  hypothesisLabel: string;
+  manipulatedLabel: string;
+  respondingLabel: string;
+  controlledLabel: string;
+  materialsLabel: string;
+  apparatusLabel: string;
+  methodLabel: string;
+  observationLabel: string;
+  conclusionLabel: string;
+  parts: MiniExperimentPart[];
+};
+
+/** A yes / no / partial answer for one criterion in a ComparisonMatrixBlock. */
+export type ComparisonMatrixValue = "yes" | "no" | "partial";
+
+export type ComparisonMatrixRow = {
+  id: string;
+  label: string;
+  icon?: string;
+  /** One value per column, in the same order as `columns`. */
+  values: ComparisonMatrixValue[];
+  note: string;
+};
+
+/**
+ * Generic "which method does what" table. Rows are the options being compared,
+ * columns are the criteria. Reusable wherever a chapter needs a capability grid.
+ */
+export type ComparisonMatrixBlock = {
+  title: string;
+  instruction?: string;
+  /** Column headings, e.g. "Membuang pepejal tak larut?". */
+  columns: string[];
+  rows: ComparisonMatrixRow[];
+  yesLabel: string;
+  noLabel: string;
+  partialLabel: string;
+  hint: string;
+};
+
+/**
+ * A method or option explained through the same three facets every time, so
+ * learners can compare across options rather than reading three unlike stories.
+ */
+export type MethodCard = {
+  id: string;
+  name: string;
+  icon?: string;
+  /** WHAT IS IT? */
+  what: string;
+  /** HOW DOES IT WORK? */
+  how: string;
+  /** WHEN / WHY IS IT USEFUL? */
+  when: string;
+};
+
+export type MethodCardsBlock = {
+  title: string;
+  instruction?: string;
+  whatLabel: string;
+  howLabel: string;
+  whenLabel: string;
+  cards: MethodCard[];
+};
+
+/**
+ * Two concepts that learners routinely fuse into one, shown side by side with
+ * the distinguishing question stated first.
+ */
+export type ConceptContrastSide = {
+  id: string;
+  /** The concept name, e.g. "Keterlarutan". */
+  term: string;
+  /** The one-line question it answers, e.g. "BERAPA BANYAK boleh larut?". */
+  question: string;
+  definition: string;
+  /** Two or three concrete illustrations. */
+  examples: string[];
+  icon?: string;
+};
+
+export type ConceptContrastBlock = {
+  title: string;
+  instruction?: string;
+  left: ConceptContrastSide;
+  right: ConceptContrastSide;
+  /** The takeaway shown under both columns. */
+  keyPoint: string;
+};
+
+/** A clickable label on the capillary-action diagram. */
+export type CapillaryLabel = {
+  id: "cohesion" | "adhesion" | "capillary";
+  label: string;
+  note: string;
+};
+
+export type CapillaryDiagramBlock = {
+  title: string;
+  instruction?: string;
+  labels: CapillaryLabel[];
+  /** Caption under the tube, e.g. "Air bergerak dari akar ke daun". */
+  caption: string;
+  hint: string;
+};
+
+/** A clickable part of the electrolysis diagram. */
+export type ElectrolysisLabel = {
+  id: "anode" | "cathode" | "oxygen" | "hydrogen";
+  label: string;
+  note: string;
+};
+
+export type ElectrolysisDiagramBlock = {
+  title: string;
+  instruction?: string;
+  labels: ElectrolysisLabel[];
+  /** The volume-ratio caption, e.g. "Isi padu hidrogen : oksigen = 2 : 1". */
+  ratioCaption: string;
+  hint: string;
+};
+
+/** One mixture type in the solution / suspension / colloid visual. */
+export type MixtureKind = {
+  id: "solution" | "suspension" | "colloid";
+  name: string;
+  /**
+   * Does a light beam pass through? Drives the beam drawing.
+   *
+   * "between" is for the colloid: the source places it between a solution and a
+   * suspension but does not state a light-path behaviour for it, so the beam is
+   * drawn as intermediate and no specific claim is made in the copy.
+   */
+  lightPasses: "yes" | "no" | "between";
+  appearance: string;
+  filtration: string;
+  example: string;
+  note: string;
+};
+
+export type MixtureComparisonBlock = {
+  title: string;
+  instruction?: string;
+  appearanceLabel: string;
+  lightLabel: string;
+  filtrationLabel: string;
+  exampleLabel: string;
+  kinds: MixtureKind[];
+  hint: string;
+};
+
+/** One stage of the water-supply system. */
+export type TreatmentStage = {
+  id: string;
+  name: string;
+  icon?: string;
+  /** What the stage does — shown when the stage is selected. */
+  fn: string;
+  /** Optional chemical added at this stage. */
+  chemical?: string;
+};
+
+export type WaterTreatmentFlowBlock = {
+  title: string;
+  instruction?: string;
+  stages: TreatmentStage[];
+  chemicalLabel: string;
+  hint: string;
+};
+
 export type ScienceInteractiveSection = {
   number: string;
   title: string;
@@ -467,6 +672,14 @@ export type ScienceInteractiveSection = {
   immuneResponseGraph?: ImmuneResponseGraphBlock;
   defenceLines?: DefenceLinesBlock;
   immunityMatrix?: ImmunityMatrixBlock;
+  miniExperiment?: MiniExperimentBlock;
+  comparisonMatrix?: ComparisonMatrixBlock;
+  methodCards?: MethodCardsBlock;
+  conceptContrast?: ConceptContrastBlock;
+  capillaryDiagram?: CapillaryDiagramBlock;
+  electrolysisDiagram?: ElectrolysisDiagramBlock;
+  mixtureComparison?: MixtureComparisonBlock;
+  waterTreatmentFlow?: WaterTreatmentFlowBlock;
   /** Standalone annotated reference illustrations for this section. */
   images?: AnnotatedImageBlock[];
   matcher?: {

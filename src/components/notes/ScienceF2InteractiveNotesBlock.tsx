@@ -36,6 +36,14 @@ import { EnzymeExplorer } from "@/components/notes/blocks/EnzymeExplorer";
 import { ImmuneResponseGraph } from "@/components/notes/blocks/ImmuneResponseGraph";
 import { DefenceLinesDiagram } from "@/components/notes/blocks/DefenceLinesDiagram";
 import { ImmunityMatrix } from "@/components/notes/blocks/ImmunityMatrix";
+import { MiniExperiment } from "@/components/notes/blocks/MiniExperiment";
+import { ComparisonMatrix } from "@/components/notes/blocks/ComparisonMatrix";
+import { MethodCards } from "@/components/notes/blocks/MethodCards";
+import { ConceptContrast } from "@/components/notes/blocks/ConceptContrast";
+import { CapillaryDiagram } from "@/components/notes/blocks/CapillaryDiagram";
+import { ElectrolysisDiagram } from "@/components/notes/blocks/ElectrolysisDiagram";
+import { MixtureComparison } from "@/components/notes/blocks/MixtureComparison";
+import { WaterTreatmentFlow } from "@/components/notes/blocks/WaterTreatmentFlow";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
 
 type Lang = "en" | "bm";
@@ -375,6 +383,70 @@ export function ScienceF2InteractiveNotesBlock({
               {section.enzymeExplorer.title}
             </h3>
             <EnzymeExplorer block={section.enzymeExplorer} />
+          </div>
+        )}
+        {section.conceptContrast && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.conceptContrast.title}
+            </h3>
+            <ConceptContrast block={section.conceptContrast} />
+          </div>
+        )}
+        {section.capillaryDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.capillaryDiagram.title}
+            </h3>
+            <CapillaryDiagram block={section.capillaryDiagram} />
+          </div>
+        )}
+        {section.electrolysisDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.electrolysisDiagram.title}
+            </h3>
+            <ElectrolysisDiagram block={section.electrolysisDiagram} />
+          </div>
+        )}
+        {section.mixtureComparison && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.mixtureComparison.title}
+            </h3>
+            <MixtureComparison block={section.mixtureComparison} />
+          </div>
+        )}
+        {section.miniExperiment && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.miniExperiment.title}
+            </h3>
+            <MiniExperiment block={section.miniExperiment} />
+          </div>
+        )}
+        {section.comparisonMatrix && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.comparisonMatrix.title}
+            </h3>
+            <ComparisonMatrix block={section.comparisonMatrix} />
+          </div>
+        )}
+        {section.waterTreatmentFlow && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.waterTreatmentFlow.title}
+            </h3>
+            <WaterTreatmentFlow block={section.waterTreatmentFlow} />
+          </div>
+        )}
+        {section.methodCards && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.methodCards.title}
+            </h3>
+            <MethodCards block={section.methodCards} />
           </div>
         )}
         {section.images?.map((image) => (
