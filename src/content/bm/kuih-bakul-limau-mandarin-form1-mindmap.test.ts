@@ -25,6 +25,7 @@ const expectedTopics = [
   title,
   "Hadiah — Drama",
   "Kita Umpama Sehelai Daun",
+  "Pantun Dua Kerat (Nasihat)",
 ];
 const expectedBranches = [
   "Sinopsis",

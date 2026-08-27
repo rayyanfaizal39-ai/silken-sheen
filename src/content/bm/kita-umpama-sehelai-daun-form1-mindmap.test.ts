@@ -25,6 +25,7 @@ const expectedTopics = [
   "Kuih Bakul Limau Mandarin",
   "Hadiah — Drama",
   title,
+  "Pantun Dua Kerat (Nasihat)",
 ];
 const expectedBranches = [
   "Maksud Rangkap",
@@ -78,14 +79,14 @@ describe("Bahasa Melayu Form 1 Kita Umpama Sehelai Daun mind map", () => {
     expect(getChapter("bm", title, undefined, "Form 2")).toBeUndefined();
   });
 
-  it("uses registry-driven previous navigation and disables next navigation", () => {
+  it("uses registry-driven previous and next navigation", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 1").filter(
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = topics.findIndex((topic) => topic.key === title);
     expect(topics.map((topic) => topic.key)).toEqual(expectedTopics);
     expect(topics[index - 1]?.key).toBe("Hadiah — Drama");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Pantun Dua Kerat (Nasihat)");
   });
 
   it("uses the prescribed identity and twelve title-only first-level branches", () => {

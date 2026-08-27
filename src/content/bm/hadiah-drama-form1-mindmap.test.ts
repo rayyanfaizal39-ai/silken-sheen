@@ -27,6 +27,7 @@ const expectedTopics = [
   "Kuih Bakul Limau Mandarin",
   chapterKey,
   "Kita Umpama Sehelai Daun",
+  "Pantun Dua Kerat (Nasihat)",
 ];
 const expectedBranches = [
   "Sinopsis",

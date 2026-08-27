@@ -7,6 +7,7 @@ import { bahasaMelayuTingkatan1OrenMindMap } from "@/content/bm/oren-form1-mindm
 import { bahasaMelayuTingkatan1KuihBakulLimauMandarinMindMap } from "@/content/bm/kuih-bakul-limau-mandarin-form1-mindmap";
 import { bahasaMelayuTingkatan1HadiahDramaMindMap } from "@/content/bm/hadiah-drama-form1-mindmap";
 import { bahasaMelayuTingkatan1KitaUmpamaSehelaiDaunMindMap } from "@/content/bm/kita-umpama-sehelai-daun-form1-mindmap";
+import { bahasaMelayuTingkatan1PantunDuaKeratNasihatMindMap } from "@/content/bm/pantun-dua-kerat-nasihat-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiKomsasMindMap } from "@/content/bm/strategi-memahami-menjawab-komsas-form1-mindmap";
 
 export const bahasaMelayuTingkatan1KomsasRegistry = [
@@ -134,6 +135,20 @@ export const bahasaMelayuTingkatan1KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1KitaUmpamaSehelaiDaunMindMap,
       title: "Kita Umpama Sehelai Daun",
+    },
+  },
+  {
+    id: "bm-f1-pantun-dua-kerat-nasihat-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Pantun Dua Kerat (Nasihat)",
+    title: "Pantun Dua Kerat (Nasihat)",
+    description:
+      "Pantun yang menyampaikan nasihat tentang sikap, tutur kata, usaha, ilmu dan tingkah laku yang baik dalam kehidupan.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan1PantunDuaKeratNasihatMindMap,
+      title: "Pantun Dua Kerat (Nasihat)",
     },
   },
 ] as const satisfies readonly ChapterContent[];
