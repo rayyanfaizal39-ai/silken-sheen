@@ -97,7 +97,16 @@ export function publishProgressionEvent(event: ProgressionEvent | null): void {
 
   deliveredEventIds.add(event.id);
   latestEvent = event;
-  progressionListeners.forEach((listener) => listener(event));
+
+  // XP detection runs from React state updater functions. Notify the global
+  // celebration host after that updater has finished so React never receives
+  // a cross-component state update during render.
+  const listenersAtPublish = [...progressionListeners];
+  queueMicrotask(() => {
+    listenersAtPublish.forEach((listener) => {
+      if (progressionListeners.has(listener)) listener(event);
+    });
+  });
 }
 
 export function subscribeToProgressionEvents(

@@ -41,6 +41,7 @@ import { Route as AuthConfirmRouteImport } from './routes/auth.confirm'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AdminLoginRouteImport } from './routes/admin_.login'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminTrafficRouteImport } from './routes/admin.traffic'
 import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-library'
 import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
@@ -208,6 +209,11 @@ const AdminUsersRoute = AdminUsersRouteImport.update({
   path: '/users',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminTrafficRoute = AdminTrafficRouteImport.update({
+  id: '/traffic',
+  path: '/traffic',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminReportsRoute = AdminReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
@@ -272,6 +278,7 @@ export interface FileRoutesByFullPath {
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
+  '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -311,6 +318,7 @@ export interface FileRoutesByTo {
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
+  '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -352,6 +360,7 @@ export interface FileRoutesById {
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
+  '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin_/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -394,6 +403,7 @@ export interface FileRouteTypes {
     | '/admin/cikgu-intel'
     | '/admin/content-library'
     | '/admin/reports'
+    | '/admin/traffic'
     | '/admin/users'
     | '/admin/login'
     | '/auth/callback'
@@ -433,6 +443,7 @@ export interface FileRouteTypes {
     | '/admin/cikgu-intel'
     | '/admin/content-library'
     | '/admin/reports'
+    | '/admin/traffic'
     | '/admin/users'
     | '/admin/login'
     | '/auth/callback'
@@ -473,6 +484,7 @@ export interface FileRouteTypes {
     | '/admin/cikgu-intel'
     | '/admin/content-library'
     | '/admin/reports'
+    | '/admin/traffic'
     | '/admin/users'
     | '/admin_/login'
     | '/auth/callback'
@@ -743,6 +755,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsersRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/traffic': {
+      id: '/admin/traffic'
+      path: '/traffic'
+      fullPath: '/admin/traffic'
+      preLoaderRoute: typeof AdminTrafficRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/reports': {
       id: '/admin/reports'
       path: '/reports'
@@ -792,6 +811,7 @@ interface AdminRouteChildren {
   AdminCikguIntelRoute: typeof AdminCikguIntelRoute
   AdminContentLibraryRoute: typeof AdminContentLibraryRoute
   AdminReportsRoute: typeof AdminReportsRoute
+  AdminTrafficRoute: typeof AdminTrafficRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminContentQuizImporterRoute: typeof AdminContentQuizImporterRoute
@@ -801,6 +821,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminCikguIntelRoute: AdminCikguIntelRoute,
   AdminContentLibraryRoute: AdminContentLibraryRoute,
   AdminReportsRoute: AdminReportsRoute,
+  AdminTrafficRoute: AdminTrafficRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminContentQuizImporterRoute: AdminContentQuizImporterRoute,

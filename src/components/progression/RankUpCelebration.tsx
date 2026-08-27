@@ -8,6 +8,7 @@ import {
   acknowledgeRankUp,
   clearPublishedProgressionEvent,
   createXpProgressionEvent,
+  publishProgressionEvent,
   queueJourneyUnlock,
   subscribeToProgressionEvents,
   type RankUpProgressionEvent,
@@ -350,11 +351,33 @@ export function RankUpCelebration({
             animate={{ opacity: 1, transform: "translate3d(0px,0px,0px) scale(1)" }}
             transition={{ delay: delay(2.7), duration: duration(0.42), ease: [0.23, 1, 0.32, 1] }}
           >
+            <svg className="rank-up-celebration__chroma-defs" aria-hidden="true">
+              <filter id="rank-up-companion-chroma-key" colorInterpolationFilters="sRGB">
+                <feColorMatrix
+                  type="matrix"
+                  values="1 0 0 0 0
+                          0 1 0 0 0
+                          0 0 1 0 0
+                          2 -1.8 1.2 0 0.15"
+                />
+              </filter>
+            </svg>
             <div className="rank-up-celebration__speech">
               <strong>{companion.name}</strong>
               <span>{companionMessage}</span>
             </div>
-            <CompanionImage speciesId={companion.id} stage={companion.stage} size={148} />
+            <video
+              className="rank-up-celebration__companion-dance"
+              autoPlay={!reduceMotion}
+              loop={!reduceMotion}
+              muted
+              playsInline
+              preload="auto"
+              aria-label={`${companion.name} dancing happily`}
+            >
+              <source src="/videos/companion-rank-up-happy-dance.mp4" type="video/mp4" />
+              <CompanionImage speciesId={companion.id} stage={companion.stage} size={148} />
+            </video>
           </motion.div>
         )}
       </div>
@@ -445,7 +468,7 @@ export function ProgressionCelebrationHost() {
   const playRankPreview = useCallback(() => {
     if (!previewEvent) return;
     setXpEvent(null);
-    setRankEvent({ ...previewEvent, id: `${previewEvent.id}:${Date.now()}` });
+    publishProgressionEvent({ ...previewEvent, id: `${previewEvent.id}:${Date.now()}` });
   }, [previewEvent]);
 
   const resolved = useMemo(() => {

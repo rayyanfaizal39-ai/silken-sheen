@@ -28,6 +28,7 @@ import { SITE_URL } from "@/lib/seo";
 import { organizationSchema, educationalOrganizationSchema, websiteSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { isPublicAuthRoute } from "@/lib/onboarding-routing";
+import { VisitorAnalytics } from "@/components/VisitorAnalytics";
 
 function NotFoundComponent() {
   // The 404 view has no file-based route of its own, so it can't set its
@@ -247,6 +248,7 @@ function RootComponent() {
       <JsonLd data={educationalOrganizationSchema()} />
       <JsonLd data={websiteSchema()} />
       <AuthProvider>
+        <VisitorAnalytics />
         <SignInModalProvider>
           <CikguProvider>
             <AppBootGate>

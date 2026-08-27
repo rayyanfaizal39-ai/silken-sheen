@@ -1,6 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { AcademyLogo } from "@/components/AcademyLogo";
 import { seoMeta } from "@/lib/seo";
+import { trackVisitorEvent } from "@/lib/visitor-analytics";
 
 const VIDEO_URL = "https://www.youtube-nocookie.com/embed/grEPzS-Xbec?rel=0";
 
@@ -79,6 +80,9 @@ function ExploreAcademyPage() {
         <div className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-10">
           <Link
             to="/login"
+            onClick={() =>
+              void trackVisitorEvent("start_learning_clicked", { placement: "explore_page" })
+            }
             className="inline-flex min-h-12 w-full max-w-sm items-center justify-center rounded-full bg-gradient-to-r from-[#6366f1] via-[#7c3aed] to-[#9333ea] px-6 py-3 text-center text-base font-bold text-white shadow-[0_16px_40px_-12px_rgba(124,58,237,0.8)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_20px_46px_-12px_rgba(124,58,237,0.92)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ddd6fe] focus-visible:ring-offset-4 focus-visible:ring-offset-[#09051f] active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none sm:w-auto sm:min-w-72"
           >
             Start Your Learning Adventure
