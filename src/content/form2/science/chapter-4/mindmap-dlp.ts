@@ -51,16 +51,16 @@ export const scienceF2C4MindMapDLP: MindNode = {
       children: [
         {
           id: "c2-1",
-          label: "1st Line: Skin & Mucous Membrane",
+          label: "1st Line: Skin & Mucous Membrane — NON-SPECIFIC defence",
           children: [
             { id: "c2-1-1", label: "Skin: tough layer, sweat & sebum kill microorganisms" },
             { id: "c2-1-2", label: "Mucous membrane: nasal hairs, mucus, tears, earwax" },
           ],
         },
-        { id: "c2-2", label: "2nd Line: Phagocytosis (white blood cells engulf pathogens)" },
+        { id: "c2-2", label: "2nd Line: Phagocytosis by white blood cells — NON-SPECIFIC defence" },
         {
           id: "c2-3",
-          label: "3rd Line: Immune System",
+          label: "3rd Line: Immune System (antibodies) — SPECIFIC defence",
           children: [
             { id: "c2-3-1", label: "Antigen: foreign substance that triggers antibody production" },
             { id: "c2-3-2", label: "Antibody: protein made by white blood cells in response" },
@@ -91,6 +91,16 @@ export const scienceF2C4MindMapDLP: MindNode = {
             { id: "c2-6-1", label: "Weakens: polluted air, pesticides, stress, excess sugar, smoking" },
             { id: "c2-6-2", label: "Strengthens: enough sleep, exercise, fresh air, no smoking, health checks" },
             { id: "c2-6-3", label: "Allergy: immune response to allergen (dust, pollen, food, medicines)" },
+          ],
+        },
+        {
+          id: "c2-7",
+          label: "Health, Immunisation & Society",
+          children: [
+            { id: "c2-7-1", label: "Controlled disease recurrence: leprosy, whooping cough, TB" },
+            { id: "c2-7-2", label: "Healthcare costs rise during an outbreak" },
+            { id: "c2-7-3", label: "Work quality affected; workforce & migration" },
+            { id: "c2-7-4", label: "Insurance purchase & family quality of life" },
           ],
         },
       ],

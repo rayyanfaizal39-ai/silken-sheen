@@ -33,6 +33,9 @@ import { useProgress } from "@/hooks/use-progress";
 import { AnnotatedImage } from "@/components/notes/blocks/AnnotatedImage";
 import { EcologicalTermsDiagram } from "@/components/notes/blocks/EcologicalTermsDiagram";
 import { EnzymeExplorer } from "@/components/notes/blocks/EnzymeExplorer";
+import { ImmuneResponseGraph } from "@/components/notes/blocks/ImmuneResponseGraph";
+import { DefenceLinesDiagram } from "@/components/notes/blocks/DefenceLinesDiagram";
+import { ImmunityMatrix } from "@/components/notes/blocks/ImmunityMatrix";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
 
 type Lang = "en" | "bm";
@@ -340,6 +343,30 @@ export function ScienceF2InteractiveNotesBlock({
               {section.ecologicalTerms.title}
             </h3>
             <EcologicalTermsDiagram block={section.ecologicalTerms} />
+          </div>
+        )}
+        {section.defenceLines && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.defenceLines.title}
+            </h3>
+            <DefenceLinesDiagram block={section.defenceLines} />
+          </div>
+        )}
+        {section.immunityMatrix && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.immunityMatrix.title}
+            </h3>
+            <ImmunityMatrix block={section.immunityMatrix} />
+          </div>
+        )}
+        {section.immuneResponseGraph && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.immuneResponseGraph.title}
+            </h3>
+            <ImmuneResponseGraph block={section.immuneResponseGraph} />
           </div>
         )}
         {section.enzymeExplorer && (
