@@ -108,7 +108,7 @@ export function Sej2Chapter7NotesBlock({
             <img
               src={regaliaEmpatNegeri}
               alt="Alat Kebesaran Diraja Empat Negeri"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <div className="grid gap-4 sm:grid-cols-2">
               {content.founding.sultanates.map((s) => (

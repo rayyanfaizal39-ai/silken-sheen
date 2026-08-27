@@ -179,7 +179,7 @@ export function Sej2Chapter6NotesBlock({
             <img
               src={pelabuhanRiau}
               alt="Pelabuhan Riau"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {content.goldenAge.tradeGoods.map((g) => (

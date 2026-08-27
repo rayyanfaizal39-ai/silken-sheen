@@ -7984,3 +7984,71 @@
     animation: none !important;
   }
 }
+
+/* ============================================================
+   Learner-facing instructional images inside Notes
+   ============================================================
+   Shared sizing for the plain <img> instructional figures used by the
+   Sejarah, Geography and Science Form 1 notes blocks. Without a cap these
+   render at the full notes-column width, and a tall aspect ratio then pushes
+   the figure past the viewport height — the same root cause fixed in code by
+   `learning-image.ts` for the annotated Science Form 2 figures.
+
+   Height is bounded by capping the rendered box and letting `width: auto`
+   keep the aspect ratio, so the frame always hugs the artwork instead of
+   letterboxing it. Scoped to this class only: logos, avatars, badges, subject
+   thumbnails, hero artwork, flip-card and galaxy-card images, the Cosmic
+   Companion and every UI icon are untouched.
+*/
+.notes-figure-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(42rem, 100%);
+  max-height: min(52vh, 470px);
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+/* Portrait artwork gets a tighter width so its height stays in budget. */
+.notes-figure-img--portrait {
+  max-width: min(28rem, 100%);
+  max-height: min(58vh, 540px);
+}
+
+/* Complex multi-stage diagrams may run a little wider. */
+.notes-figure-img--wide {
+  max-width: min(48.75rem, 100%);
+  max-height: min(55vh, 500px);
+}
+
+@media (max-width: 640px) {
+  .notes-figure-img,
+  .notes-figure-img--portrait,
+  .notes-figure-img--wide {
+    max-width: 100%;
+    max-height: 58vh;
+  }
+}
+
+/* Figure wrappers whose overlay markers are positioned against the box itself
+   (so the box cannot use `width: auto`) — cap the frame instead. */
+.notes-figure-frame {
+  max-width: min(48.75rem, 100%);
+  margin-inline: auto;
+}
+
+/* Callout annotations put label gutters either side of the artwork. A phone has
+   no room for them, so below `sm` the figure falls back to pins plus the legend
+   and the picture takes the whole frame; from `sm` up the gutters appear and
+   the frame widens to hold them without shrinking the picture. */
+@media (min-width: 640px) {
+  .callout-frame {
+    aspect-ratio: var(--callout-frame-aspect) !important;
+    max-width: var(--callout-frame-max-width) !important;
+  }
+  .callout-art {
+    left: 23%;
+    width: 54%;
+  }
+}

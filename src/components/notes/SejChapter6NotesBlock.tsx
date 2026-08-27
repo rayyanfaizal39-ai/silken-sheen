@@ -143,7 +143,7 @@ export function SejChapter6NotesBlock({
             <img
               src={polisTamadunYunani}
               alt="Polis dalam Tamadun Yunani"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <PolisPopulationBars
               items={content.polisConcept.famousPolis.map((p) => ({
@@ -206,7 +206,7 @@ export function SejChapter6NotesBlock({
             <img
               src={seniBinaTamadunRom}
               alt="Seni Bina Tamadun Rom"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <ChipRow heading="🏗️ Ciri Seni Bina" items={content.architecture.features} />
             <ArchBuildingCards buildings={content.architecture.buildings} />

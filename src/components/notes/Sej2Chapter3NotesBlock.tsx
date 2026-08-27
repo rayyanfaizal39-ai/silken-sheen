@@ -205,7 +205,7 @@ export function Sej2Chapter3NotesBlock({
             <img
               src={angkorWatBorobudur}
               alt="Angkor Wat dan Candi Borobudur"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <div className="grid gap-3.5 sm:grid-cols-2">
               {content.architecture.byKingdom.map((a) => (

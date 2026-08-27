@@ -262,7 +262,7 @@ export function Sej3Chapter8NotesBlock({
             <img
               src={diplomasiAbuBakar}
               alt="Diplomasi Sultan Abu Bakar Lawatan ke England"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <div className="grid gap-3.5 sm:grid-cols-3">
               {content.johorDiplomacy.actions.map((a) => (

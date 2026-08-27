@@ -1,12 +1,22 @@
 import { useRef, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChipRow } from "@/components/notes/blocks/ChipRow";
 import { FlipCardGrid } from "@/components/notes/blocks/FlipCard";
 import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectionChecklist";
 import { MatchingPairs } from "@/components/notes/blocks/MatchingPairs";
 import { Journey } from "@/components/notes/blocks/Journey";
+import { FoodWebDiagram } from "@/components/notes/blocks/FoodWebDiagram";
+import { PyramidDiagram } from "@/components/notes/blocks/PyramidDiagram";
+import { DigestiveSystemDiagram } from "@/components/notes/blocks/DigestiveSystemDiagram";
+import { ViskingExperimentDiagram } from "@/components/notes/blocks/ViskingExperimentDiagram";
+import { VillusDiagram } from "@/components/notes/blocks/VillusDiagram";
 import { PhScaleSlider } from "@/components/notes/blocks/PhScaleSlider";
 import { OhmsLawCalculator } from "@/components/notes/blocks/OhmsLawCalculator";
 import { ResistanceComparator } from "@/components/notes/blocks/ResistanceComparator";
@@ -20,12 +30,23 @@ import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive
 import type { ScienceF2InteractiveContent } from "@/content/form2/science/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
 import { useProgress } from "@/hooks/use-progress";
+import { AnnotatedImage } from "@/components/notes/blocks/AnnotatedImage";
+import { EcologicalTermsDiagram } from "@/components/notes/blocks/EcologicalTermsDiagram";
+import { EnzymeExplorer } from "@/components/notes/blocks/EnzymeExplorer";
+import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
 
 type Lang = "en" | "bm";
 
-function MiniQuiz({ item, lang }: { item: MiniQuizItem; lang: Lang }) {
+function MiniQuiz({
+  item,
+  lang,
+  onCorrect,
+}: {
+  item: MiniQuizItem;
+  lang: Lang;
+  onCorrect: () => void;
+}) {
   const [answer, setAnswer] = useState<number | boolean | null>(null);
-  const { addXp } = useProgress();
   const correct =
     answer !== null &&
     (item.type === "true-false" ? answer === item.answer : answer === item.answerIndex);
@@ -35,7 +56,7 @@ function MiniQuiz({ item, lang }: { item: MiniQuizItem; lang: Lang }) {
     setAnswer(value);
     const isCorrect =
       item.type === "true-false" ? value === item.answer : value === item.answerIndex;
-    if (isCorrect) addXp(15, "science");
+    if (isCorrect) onCorrect();
   }
 
   const options =
@@ -78,6 +99,19 @@ function MiniQuiz({ item, lang }: { item: MiniQuizItem; lang: Lang }) {
   );
 }
 
+const IMAGE_COPY = {
+  bm: {
+    enlarge: "Besarkan",
+    close: "Tutup",
+    hint: "Ketik mana-mana label pada rajah untuk melihat penerangannya.",
+  },
+  en: {
+    enlarge: "Enlarge",
+    close: "Close",
+    hint: "Tap any label on the diagram to see what it does.",
+  },
+} as const;
+
 export function ScienceF2InteractiveNotesBlock({
   id,
   content,
@@ -96,187 +130,533 @@ export function ScienceF2InteractiveNotesBlock({
   const { addXp } = useProgress();
   const rewarded = useRef(new Set<string>());
   const imageUrl = getNotesImageUrl(content.blogHighlight.imagePath);
+  const imageCopy = IMAGE_COPY[lang === "bm" ? "bm" : "en"];
   const awardOnce = (key: string, amount: number) => {
     if (rewarded.current.has(key)) return;
     rewarded.current.add(key);
     addXp(amount, "science");
   };
 
-  return (
-    <section id={id} data-lang={lang} className="mt-8 flex min-w-0 flex-col gap-9 animate-fade-up">
-      <div className="grid gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-4 sm:grid-cols-[140px_1fr] sm:items-center">
-        {imageUrl && <img src={imageUrl} alt={content.blogHighlight.title} className="h-36 w-full rounded-xl object-cover sm:h-24" loading="lazy" />}
-        <div className="min-w-0">
-          <h2 className="font-display text-base font-bold text-primary">{content.blogHighlight.title}</h2>
-          <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{content.blogHighlight.body}</p>
-        </div>
-      </div>
-      <ChipRow items={content.keywords} />
-
-      {content.sections.map((section) => (
-        <div key={section.number} className="flex min-w-0 flex-col gap-5">
-          <div className="flex items-start gap-3">
-            <span className="shrink-0 rounded-lg border border-primary/35 bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">{section.number}</span>
-            <h2 className="font-display text-xl font-bold leading-tight text-foreground">{section.title}</h2>
+  function renderSection(
+    section: ScienceF2InteractiveContent["sections"][number],
+    isLast: boolean,
+  ) {
+    return (
+      <div className="flex min-w-0 flex-col gap-5">
+        {section.cards && (
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {section.cards.map((card) => (
+              <article
+                key={card.title}
+                className="min-w-0 rounded-2xl border border-border bg-card/55 p-4"
+              >
+                <h3 className="font-display text-sm font-bold text-foreground">{card.title}</h3>
+                <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
+                  {card.body}
+                </p>
+                {card.detail && (
+                  <p className="mt-2 text-xs font-semibold text-primary">{card.detail}</p>
+                )}
+              </article>
+            ))}
           </div>
-          {section.intro && <p className="text-[13.5px] leading-relaxed text-muted-foreground">{section.intro}</p>}
-          {section.cards && (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {section.cards.map((card) => (
-                <article key={card.title} className="min-w-0 rounded-2xl border border-border bg-card/55 p-4">
-                  <h3 className="font-display text-sm font-bold text-foreground">{card.title}</h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{card.body}</p>
-                  {card.detail && <p className="mt-2 text-xs font-semibold text-primary">{card.detail}</p>}
-                </article>
-              ))}
-            </div>
-          )}
-          {section.flipCards && <FlipCardGrid items={section.flipCards} />}
-          {section.galaxyCards && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.galaxyCards.title}</h3>
-              <p className="mb-1 text-[13px] leading-relaxed text-muted-foreground">{section.galaxyCards.instruction}</p>
-              <GalaxyCardGrid cards={section.galaxyCards.cards} />
-            </div>
-          )}
-          {section.planets && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.planets.title}</h3>
-              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.planets.instruction}</p>
-              <PlanetSphereList planets={section.planets.planets} />
-            </div>
-          )}
-          {section.accordions && (
-            <Accordion type="single" collapsible>
-              {section.accordions.map((item, i) => (
-                <AccordionItem key={item.title} value={`${section.number}-${i}`}>
-                  <AccordionTrigger>{item.title}</AccordionTrigger>
-                  <AccordionContent className="text-[13px] leading-relaxed text-muted-foreground">{item.body}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          )}
-          {section.tabs && (
-            <Tabs defaultValue="tab-0">
-              <TabsList className="h-auto max-w-full flex-wrap justify-start">
-                {section.tabs.map((tab, i) => <TabsTrigger key={tab.title} value={`tab-${i}`}>{tab.title}</TabsTrigger>)}
-              </TabsList>
+        )}
+        {section.flipCards && <FlipCardGrid items={section.flipCards} />}
+        {section.galaxyCards && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.galaxyCards.title}
+            </h3>
+            <p className="mb-1 text-[13px] leading-relaxed text-muted-foreground">
+              {section.galaxyCards.instruction}
+            </p>
+            <GalaxyCardGrid cards={section.galaxyCards.cards} />
+          </div>
+        )}
+        {section.planets && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.planets.title}
+            </h3>
+            <p className="text-[13px] leading-relaxed text-muted-foreground">
+              {section.planets.instruction}
+            </p>
+            <PlanetSphereList planets={section.planets.planets} />
+          </div>
+        )}
+        {section.accordions && (
+          <Accordion type="single" collapsible>
+            {section.accordions.map((item, i) => (
+              <AccordionItem key={item.title} value={`${section.number}-${i}`}>
+                <AccordionTrigger>{item.title}</AccordionTrigger>
+                <AccordionContent className="text-[13px] leading-relaxed text-muted-foreground">
+                  {item.body}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        )}
+        {section.tabs && (
+          <Tabs defaultValue="tab-0">
+            <TabsList className="h-auto max-w-full flex-wrap justify-start">
               {section.tabs.map((tab, i) => (
-                <TabsContent key={tab.title} value={`tab-${i}`} className="text-[13.5px] leading-relaxed text-muted-foreground">
-                  {tab.body}
+                <TabsTrigger key={tab.title} value={`tab-${i}`}>
+                  {tab.title}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            {section.tabs.map((tab, i) => (
+              <TabsContent
+                key={tab.title}
+                value={`tab-${i}`}
+                className="text-[13.5px] leading-relaxed text-muted-foreground"
+              >
+                {tab.body}
+              </TabsContent>
+            ))}
+          </Tabs>
+        )}
+        {section.phSlider && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.phSlider.title}
+            </h3>
+            <p className="text-[13px] leading-relaxed text-muted-foreground">
+              {section.phSlider.instruction}
+            </p>
+            <PhScaleSlider
+              scale={section.phSlider.scale}
+              gradient={section.phSlider.gradient}
+              unitLabel={section.phSlider.unitLabel}
+              initialValue={section.phSlider.initialValue}
+            />
+          </div>
+        )}
+        {section.calculators?.map((calc, i) => (
+          <div key={`${section.number}-calc-${i}`}>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
+            <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
+            {calc.type === "ohms-law" ? (
+              <OhmsLawCalculator lang={lang} />
+            ) : calc.type === "resistance-comparator" ? (
+              <ResistanceComparator
+                lang={lang}
+                defaultR1={calc.defaultR1}
+                defaultR2={calc.defaultR2}
+              />
+            ) : calc.type === "au-light-year" ? (
+              <AuLightYearCalculator defaultKm={calc.defaultKm} />
+            ) : (
+              <TwoFieldCalculator
+                fieldA={calc.fieldA}
+                fieldB={calc.fieldB}
+                operation={calc.operation}
+                resultLabel={calc.resultLabel}
+                resultUnit={calc.resultUnit}
+              />
+            )}
+          </div>
+        ))}
+        {section.buoyancy && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.buoyancy.title}
+            </h3>
+            <p className="text-[13px] leading-relaxed text-muted-foreground">
+              {section.buoyancy.instruction}
+            </p>
+            <BuoyancySimulator materials={section.buoyancy.materials} lang={lang} />
+          </div>
+        )}
+        {section.waveVisualizer && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.waveVisualizer.title}
+            </h3>
+            <p className="text-[13px] leading-relaxed text-muted-foreground">
+              {section.waveVisualizer.instruction}
+            </p>
+            <WaveVisualizer lang={lang} />
+          </div>
+        )}
+        {section.foodWeb && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.foodWeb.title}
+            </h3>
+            <FoodWebDiagram block={section.foodWeb} />
+          </div>
+        )}
+        {section.pyramid && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.pyramid.title}
+            </h3>
+            <PyramidDiagram block={section.pyramid} />
+          </div>
+        )}
+        {section.digestiveSystem && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.digestiveSystem.title}
+            </h3>
+            <DigestiveSystemDiagram
+              block={section.digestiveSystem}
+              enlargeLabel={imageCopy.enlarge}
+              closeLabel={imageCopy.close}
+              hintLabel={imageCopy.hint}
+            />
+          </div>
+        )}
+        {section.viskingExperiment && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.viskingExperiment.title}
+            </h3>
+            <ViskingExperimentDiagram
+              block={section.viskingExperiment}
+              enlargeLabel={imageCopy.enlarge}
+              closeLabel={imageCopy.close}
+              hintLabel={imageCopy.hint}
+            />
+          </div>
+        )}
+        {section.villusDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.villusDiagram.title}
+            </h3>
+            <VillusDiagram
+              block={section.villusDiagram}
+              enlargeLabel={imageCopy.enlarge}
+              closeLabel={imageCopy.close}
+              hintLabel={imageCopy.hint}
+            />
+          </div>
+        )}
+        {section.ecologicalTerms && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.ecologicalTerms.title}
+            </h3>
+            <EcologicalTermsDiagram block={section.ecologicalTerms} />
+          </div>
+        )}
+        {section.enzymeExplorer && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.enzymeExplorer.title}
+            </h3>
+            <EnzymeExplorer block={section.enzymeExplorer} />
+          </div>
+        )}
+        {section.images?.map((image) => (
+          <AnnotatedImage
+            key={image.src}
+            src={image.src}
+            alt={image.alt}
+            size={image.size}
+            aspect={image.aspect}
+            caption={image.caption}
+            legendLabel={image.legendLabel}
+            annotationMode={image.annotationMode ?? "labels"}
+            annotations={image.annotations}
+            imageKey={image.imageKey}
+            enlargeLabel={imageCopy.enlarge}
+            closeLabel={imageCopy.close}
+            hintLabel={imageCopy.hint}
+          />
+        ))}
+        {section.adaptations && (
+          <div>
+            <h3 className="font-display mb-1 text-base font-bold text-foreground">
+              {section.adaptations.title}
+            </h3>
+            <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+              {section.adaptations.instruction}
+            </p>
+            <Tabs defaultValue={section.adaptations.cases[0]?.id}>
+              <TabsList className="h-auto max-w-full flex-wrap justify-start">
+                {section.adaptations.cases.map((item) => (
+                  <TabsTrigger key={item.id} value={item.id}>
+                    {item.habitat}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              {section.adaptations.cases.map((item) => (
+                <TabsContent key={item.id} value={item.id} className="flex flex-col gap-3">
+                  {item.imagePath && (
+                    <AnnotatedImage
+                      src={item.imagePath}
+                      alt={item.imageAlt ?? item.habitat}
+                      size={item.imageSize ?? "compact"}
+                      aspect={item.imageAspect ?? "16 / 9"}
+                      legendLabel={item.habitat}
+                      annotationMode={item.imageAnnotationMode ?? "callouts"}
+                      annotations={item.imageAnnotations ?? []}
+                      enlargeLabel={imageCopy.enlarge}
+                      closeLabel={imageCopy.close}
+                      hintLabel={imageCopy.hint}
+                    />
+                  )}
+                  <div className="rounded-xl border border-amber-400/30 bg-amber-500/10 p-3">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-amber-300">
+                      {section.adaptations!.labels.challenge}
+                    </p>
+                    <p className="mt-0.5 text-[13px] leading-relaxed text-foreground">
+                      {item.challenge}
+                    </p>
+                  </div>
+                  {item.organisms.map((organism) => (
+                    <div
+                      key={organism.name}
+                      className="rounded-xl border border-border bg-card/55 p-3"
+                    >
+                      <p className="font-display text-[13px] font-bold text-foreground">
+                        {organism.kind === "plant"
+                          ? section.adaptations!.labels.plant
+                          : section.adaptations!.labels.animal}{" "}
+                        · {organism.name}
+                      </p>
+                      <dl className="mt-2 flex flex-col gap-1.5">
+                        {(
+                          [
+                            [section.adaptations!.labels.adaptation, organism.adaptation],
+                            [section.adaptations!.labels.role, organism.role],
+                            [section.adaptations!.labels.benefit, organism.benefit],
+                          ] as const
+                        ).map(([label, value], i) => (
+                          <div key={label} className="flex items-start gap-2">
+                            <span className="mt-1 text-primary" aria-hidden="true">
+                              {i === 0 ? "•" : "→"}
+                            </span>
+                            <div className="min-w-0">
+                              <dt className="text-[10.5px] font-semibold uppercase tracking-wide text-muted-foreground/80">
+                                {label}
+                              </dt>
+                              <dd className="text-[12.5px] leading-relaxed text-foreground">
+                                {value}
+                              </dd>
+                            </div>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  ))}
                 </TabsContent>
               ))}
             </Tabs>
-          )}
-          {section.phSlider && (
+          </div>
+        )}
+        {section.causeEffect && (
+          <div>
+            <h3 className="font-display mb-1 text-base font-bold text-foreground">
+              {section.causeEffect.title}
+            </h3>
+            {section.causeEffect.instruction && (
+              <p className="mb-2.5 text-[12.5px] text-muted-foreground">
+                {section.causeEffect.instruction}
+              </p>
+            )}
+            <div className="flex flex-col gap-2.5">
+              {section.causeEffect.items.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-border bg-secondary/30 p-3"
+                >
+                  <p className="font-display text-[12.5px] font-bold text-foreground">
+                    {item.icon ? `${item.icon} ` : ""}
+                    {item.title}
+                  </p>
+                  <div className="mt-1.5 flex flex-wrap items-center gap-x-1.5 gap-y-1">
+                    {item.chain.map((step, i) => (
+                      <span key={step} className="flex items-center gap-1.5">
+                        {i > 0 && (
+                          <span className="text-primary" aria-hidden="true">
+                            →
+                          </span>
+                        )}
+                        <span className="text-[11.5px] leading-snug text-muted-foreground">
+                          {step}
+                        </span>
+                      </span>
+                    ))}
+                  </div>
+                  {item.note && (
+                    <p className="mt-2 text-[11.5px] font-semibold text-emerald-300">{item.note}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {section.matcher && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.matcher.title}
+            </h3>
+            <MatchingPairs
+              pairs={section.matcher.pairs}
+              instruction={section.matcher.instruction}
+              resetLabel={lang === "bm" ? "Set semula" : "Reset"}
+              onComplete={() => awardOnce(`match-${section.number}`, 10)}
+            />
+          </div>
+        )}
+        {section.sequence && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.sequence.title}
+            </h3>
+            {section.sequence.bannerImage && (
+              <img
+                src={getNotesImageUrl(section.sequence.bannerImage)}
+                alt={section.sequence.title}
+                className="mb-3 aspect-video w-full rounded-2xl object-cover"
+                loading="lazy"
+              />
+            )}
+            <Journey
+              steps={section.sequence.steps}
+              instruction={section.sequence.instruction}
+              lang={lang}
+            />
+          </div>
+        )}
+        {section.comparison && (
+          <div>
+            <h3 className="font-display mb-3 text-base font-bold text-foreground">
+              {section.comparison.title}
+            </h3>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {section.comparison.columns.map((column) => (
+                <article
+                  key={column.title}
+                  className="rounded-2xl border border-border bg-gradient-to-br from-primary/10 to-accent/5 p-4"
+                >
+                  <h4 className="font-display font-bold text-foreground">{column.title}</h4>
+                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
+                    {column.body}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
+        <div>
+          <h3 className="font-display mb-2 text-base font-bold text-foreground">
+            {lang === "bm"
+              ? `Semak diri — ${section.number}`
+              : `Check yourself — ${section.number}`}
+          </h3>
+          <Accordion type="single" collapsible>
+            {section.checks.map((item, i) => (
+              <AccordionItem key={item.question} value={`check-${section.number}-${i}`}>
+                <AccordionTrigger className="text-[13.5px]">
+                  {i + 1}. {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-[13px] text-muted-foreground">
+                  {item.hint}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+
+        {isLast && (
+          <>
             <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.phSlider.title}</h3>
-              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.phSlider.instruction}</p>
-              <PhScaleSlider
-                scale={section.phSlider.scale}
-                gradient={section.phSlider.gradient}
-                unitLabel={section.phSlider.unitLabel}
-                initialValue={section.phSlider.initialValue}
+              <h2 className="font-display mb-3 text-xl font-bold text-foreground">
+                {lang === "bm" ? "Refleksi Kendiri" : "Self-Reflection"}
+              </h2>
+              <SelfReflectionChecklist
+                items={content.reflectionItems}
+                storageKey={
+                  storageKey ? `${storageKey}:sci-f2-c${content.chapter}-reflection` : undefined
+                }
+                onAllComplete={() => awardOnce("reflection", 10)}
               />
             </div>
-          )}
-          {section.calculators?.map((calc, i) => (
-            <div key={`${section.number}-calc-${i}`}>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
-              <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
-              {calc.type === "ohms-law" ? (
-                <OhmsLawCalculator lang={lang} />
-              ) : calc.type === "resistance-comparator" ? (
-                <ResistanceComparator lang={lang} defaultR1={calc.defaultR1} defaultR2={calc.defaultR2} />
-              ) : calc.type === "au-light-year" ? (
-                <AuLightYearCalculator defaultKm={calc.defaultKm} />
-              ) : (
-                <TwoFieldCalculator
-                  fieldA={calc.fieldA}
-                  fieldB={calc.fieldB}
-                  operation={calc.operation}
-                  resultLabel={calc.resultLabel}
-                  resultUnit={calc.resultUnit}
-                />
-              )}
-            </div>
-          ))}
-          {section.buoyancy && (
             <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.buoyancy.title}</h3>
-              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.buoyancy.instruction}</p>
-              <BuoyancySimulator materials={section.buoyancy.materials} lang={lang} />
-            </div>
-          )}
-          {section.waveVisualizer && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.waveVisualizer.title}</h3>
-              <p className="text-[13px] leading-relaxed text-muted-foreground">{section.waveVisualizer.instruction}</p>
-              <WaveVisualizer lang={lang} />
-            </div>
-          )}
-          {section.matcher && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.matcher.title}</h3>
-              <MatchingPairs pairs={section.matcher.pairs} instruction={section.matcher.instruction} onComplete={() => awardOnce(`match-${section.number}`, 10)} />
-            </div>
-          )}
-          {section.sequence && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.sequence.title}</h3>
-              {section.sequence.bannerImage && (
-                <img
-                  src={getNotesImageUrl(section.sequence.bannerImage)}
-                  alt={section.sequence.title}
-                  className="mb-3 aspect-video w-full rounded-2xl object-cover"
-                  loading="lazy"
-                />
-              )}
-              <Journey steps={section.sequence.steps} instruction={section.sequence.instruction} />
-            </div>
-          )}
-          {section.comparison && (
-            <div>
-              <h3 className="font-display mb-3 text-base font-bold text-foreground">{section.comparison.title}</h3>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {section.comparison.columns.map((column) => (
-                  <article key={column.title} className="rounded-2xl border border-border bg-gradient-to-br from-primary/10 to-accent/5 p-4">
-                    <h4 className="font-display font-bold text-foreground">{column.title}</h4>
-                    <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{column.body}</p>
-                  </article>
+              <h2 className="font-display mb-3 text-xl font-bold text-foreground">
+                {lang === "bm" ? "Kuiz Pantas" : "Quick Quiz"}
+              </h2>
+              <div className="flex flex-col gap-3">
+                {content.miniQuiz.map((item, i) => (
+                  <MiniQuiz
+                    key={i}
+                    item={item}
+                    lang={lang}
+                    onCorrect={() => awardOnce(`mini-quiz-${i}`, 15)}
+                  />
                 ))}
               </div>
             </div>
-          )}
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">{lang === "bm" ? `Semak diri — ${section.number}` : `Check yourself — ${section.number}`}</h3>
-            <Accordion type="single" collapsible>
-              {section.checks.map((item, i) => (
-                <AccordionItem key={item.question} value={`check-${section.number}-${i}`}>
-                  <AccordionTrigger className="text-[13.5px]">{i + 1}. {item.question}</AccordionTrigger>
-                  <AccordionContent className="text-[13px] text-muted-foreground">{item.hint}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      ))}
+            {onMarkRead && (
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  disabled={isRead}
+                  onClick={onMarkRead}
+                  className={`inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isRead ? "bg-emerald-500/20 text-emerald-200" : "bg-gradient-to-r from-primary to-accent text-white hover:scale-105 active:scale-[0.98]"}`}
+                >
+                  <CheckCircle2 className="h-4 w-4" />{" "}
+                  {isRead
+                    ? lang === "bm"
+                      ? "Selesai ditanda"
+                      : "Marked as read"
+                    : lang === "bm"
+                      ? `Tandakan Bab ${content.chapter} Selesai`
+                      : `Mark Chapter ${content.chapter} as Read`}
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    );
+  }
 
-      <div>
-        <h2 className="font-display mb-3 text-xl font-bold text-foreground">{lang === "bm" ? "Refleksi Kendiri" : "Self-Reflection"}</h2>
-        <SelfReflectionChecklist items={content.reflectionItems} storageKey={storageKey ? `${storageKey}:sci-f2-c${content.chapter}-reflection` : undefined} onAllComplete={() => awardOnce("reflection", 10)} />
-      </div>
-      <div>
-        <h2 className="font-display mb-3 text-xl font-bold text-foreground">{lang === "bm" ? "Kuiz Pantas" : "Quick Quiz"}</h2>
-        <div className="flex flex-col gap-3">{content.miniQuiz.map((item, i) => <MiniQuiz key={i} item={item} lang={lang} />)}</div>
-      </div>
-      {onMarkRead && (
-        <div className="flex justify-center">
-          <button type="button" disabled={isRead} onClick={onMarkRead} className={`inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-transform duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isRead ? "bg-emerald-500/20 text-emerald-200" : "bg-gradient-to-r from-primary to-accent text-white hover:scale-105 active:scale-[0.98]"}`}>
-            <CheckCircle2 className="h-4 w-4" /> {isRead ? (lang === "bm" ? "Selesai ditanda" : "Marked as read") : lang === "bm" ? `Tandakan Bab ${content.chapter} Selesai` : `Mark Chapter ${content.chapter} as Read`}
-          </button>
+  const sections: ScienceNotesSection[] = content.sections.map((section, index) => ({
+    // `number` is a Standard Pembelajaran reference, not a unique UX-section id — several
+    // sections can legitimately share one SP number, so the React/nav key is index-based.
+    key: `sec-${index}`,
+    eyebrow: section.number,
+    label: section.title,
+    title: section.title,
+    description: section.intro,
+    content: renderSection(section, index === content.sections.length - 1),
+  }));
+
+  return (
+    <ScienceSectionedNotesShell
+      id={id}
+      lang={lang}
+      storageKey={storageKey}
+      intro={
+        <div className="mb-6 flex min-w-0 flex-col gap-5">
+          <div className="grid gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-4 sm:grid-cols-[140px_1fr] sm:items-center">
+            {imageUrl && (
+              <img
+                src={imageUrl}
+                alt={content.blogHighlight.title}
+                className="h-36 w-full rounded-xl object-cover sm:h-24"
+                loading="lazy"
+              />
+            )}
+            <div className="min-w-0">
+              <h2 className="font-display text-base font-bold text-primary">
+                {content.blogHighlight.title}
+              </h2>
+              <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
+                {content.blogHighlight.body}
+              </p>
+            </div>
+          </div>
+          <ChipRow items={content.keywords} />
         </div>
-      )}
-    </section>
+      }
+      sections={sections}
+    />
   );
 }

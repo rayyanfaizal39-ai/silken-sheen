@@ -146,7 +146,7 @@ export function Sej3Chapter1NotesBlock({
             <img
               src={kemakmuranPelabuhan}
               alt="Kemakmuran Pelabuhan Sebelum Penjajahan"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <div className="flex flex-wrap justify-center gap-4">
               {content.prosperity.economicSystem.currency.map((c) => (

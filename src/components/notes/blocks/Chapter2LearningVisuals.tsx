@@ -88,7 +88,7 @@ function LearningVisual({
   const selected = items.find((item) => item.id === selectedId);
 
   return (
-    <figure className="overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 shadow-sm">
+    <figure className="notes-figure-frame overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 shadow-sm">
       <div className="relative isolate">
         <img
           src={src}
@@ -329,7 +329,7 @@ export function AnimalPlantCellVisual({ content, lang }: { content: Chapter2Cont
   };
 
   return (
-    <figure className="overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 shadow-sm">
+    <figure className="notes-figure-frame overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 shadow-sm">
       <div className="relative hidden aspect-video w-full overflow-hidden md:block">
         <img
           src={animalPlantCellImage}

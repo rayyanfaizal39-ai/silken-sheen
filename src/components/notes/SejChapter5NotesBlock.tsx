@@ -111,7 +111,7 @@ export function SejChapter5NotesBlock({
             <img
               src={empatTamadunAwalDunia}
               alt="Empat Tamadun Awal Dunia"
-              className="mx-auto block w-full max-w-2xl rounded-2xl border border-border"
+              className="notes-figure-img rounded-2xl border border-border"
             />
             <CivilizationProfileCards civilizations={content.civilizations} />
           </div>

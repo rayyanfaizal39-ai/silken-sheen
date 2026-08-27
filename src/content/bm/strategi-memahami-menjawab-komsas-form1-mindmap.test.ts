@@ -77,7 +77,7 @@ describe("Bahasa Melayu Form 1 Strategi Memahami dan Menjawab KOMSAS mind map", 
     expect(chapter).not.toHaveProperty("video");
   });
 
-  it("keeps the strategy isolated to Form 1 with Asal Padi as its next KOMSAS topic", () => {
+  it("keeps KOMSAS isolated to Form 1 with disabled previous and next navigation", () => {
     const form1Topics = getRegisteredSubjectChapters("bm", undefined, "Form 1").filter(
       (topic) => topic.categoryLabel === "KOMSAS",
     );

@@ -361,8 +361,8 @@ export const scienceF2C2FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     lang: "dlp",
-    front: "Compare the energy pyramid concept with linear energy flow in a food chain.",
-    back: "Linear energy flow: energy moves from producer to consumers sequentially. Energy pyramid: visual representation that usable energy decreases at each higher trophic level.",
+    front: "[Extra] Compare the energy pyramid concept with linear energy flow in a food chain.",
+    back: "Linear energy flow: energy moves from producer to consumers sequentially. Energy pyramid: visual representation that usable energy decreases at each higher trophic level. Note: 'energy pyramid' isn't a required term for this chapter — it just helps visualise the same idea.",
   },
 
   // Deck 3: Exam (Cards 41-60)
@@ -427,7 +427,7 @@ export const scienceF2C2FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 2",
     lang: "dlp",
     front: "[Common Mistake] Is energy recycled like nutrients?",
-    back: "No. Energy flows in one direction and is lost as heat/faeces at every trophic level; only nutrients are recycled.",
+    back: "No. Energy flows one way: at every level it is lost as heat through respiration and movement, and in consumers also through faeces (undigested food). Producers have no faecal loss. Only nutrients are recycled.",
   },
   {
     id: "sci-f2-c2-dlp-f48",
@@ -534,7 +534,7 @@ export const scienceF2C2FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     lang: "dlp",
-    front: "What hypothesis was tested in Experiment 2.1 about woodlice?",
+    front: "In the woodlice lab investigation, what hypothesis was tested?",
     back: "Woodlice gather in medium temperature, dark and damp/humid places — showing temperature, light and humidity influence organism distribution.",
   },
   {

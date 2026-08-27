@@ -1,0 +1,105 @@
+import { describe, expect, it } from "vitest";
+import { scienceF2C1InteractiveBM } from "./chapter-1/interactive-bm";
+import { scienceF2C1InteractiveDLP } from "./chapter-1/interactive-dlp";
+import { scienceF2C1QuizzesBM } from "./chapter-1/quizzes-bm";
+import { scienceF2C1QuizzesDLP } from "./chapter-1/quizzes-dlp";
+import { scienceF2C1FlashcardsBM } from "./chapter-1/flashcards-bm";
+import { scienceF2C1FlashcardsDLP } from "./chapter-1/flashcards-dlp";
+import { scienceF2C1MindMapBM } from "./chapter-1/mindmap-bm";
+import { scienceF2C1MindMapDLP } from "./chapter-1/mindmap-dlp";
+import { scienceF2C2InteractiveBM } from "./chapter-2/interactive-bm";
+import { scienceF2C2InteractiveDLP } from "./chapter-2/interactive-dlp";
+import { scienceF2C2QuizzesBM } from "./chapter-2/quizzes-bm";
+import { scienceF2C2QuizzesDLP } from "./chapter-2/quizzes-dlp";
+import { scienceF2C2FlashcardsBM } from "./chapter-2/flashcards-bm";
+import { scienceF2C2FlashcardsDLP } from "./chapter-2/flashcards-dlp";
+import { scienceF2C2MindMapBM } from "./chapter-2/mindmap-bm";
+import { scienceF2C2MindMapDLP } from "./chapter-2/mindmap-dlp";
+import { scienceF2C3InteractiveBM } from "./chapter-3/interactive-bm";
+import { scienceF2C3InteractiveDLP } from "./chapter-3/interactive-dlp";
+import { scienceF2C3QuizzesBM } from "./chapter-3/quizzes-bm";
+import { scienceF2C3QuizzesDLP } from "./chapter-3/quizzes-dlp";
+import { scienceF2C3FlashcardsBM } from "./chapter-3/flashcards-bm";
+import { scienceF2C3FlashcardsDLP } from "./chapter-3/flashcards-dlp";
+import { scienceF2C3MindMapBM } from "./chapter-3/mindmap-bm";
+import { scienceF2C3MindMapDLP } from "./chapter-3/mindmap-dlp";
+
+/**
+ * Guards against curriculum/audit/textbook metadata leaking into learner-facing Form 2
+ * Science Chapter 1-3 content — see SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md. These are
+ * live, student-facing data files (registered in src/content/registry.ts), not the dead
+ * notes-{bm,dlp}.ts legacy files, which are intentionally excluded.
+ */
+
+const LIVE_SURFACES: Record<string, unknown> = {
+  "ch1 interactive bm": scienceF2C1InteractiveBM,
+  "ch1 interactive dlp": scienceF2C1InteractiveDLP,
+  "ch1 quizzes bm": scienceF2C1QuizzesBM,
+  "ch1 quizzes dlp": scienceF2C1QuizzesDLP,
+  "ch1 flashcards bm": scienceF2C1FlashcardsBM,
+  "ch1 flashcards dlp": scienceF2C1FlashcardsDLP,
+  "ch1 mindmap bm": scienceF2C1MindMapBM,
+  "ch1 mindmap dlp": scienceF2C1MindMapDLP,
+  "ch2 interactive bm": scienceF2C2InteractiveBM,
+  "ch2 interactive dlp": scienceF2C2InteractiveDLP,
+  "ch2 quizzes bm": scienceF2C2QuizzesBM,
+  "ch2 quizzes dlp": scienceF2C2QuizzesDLP,
+  "ch2 flashcards bm": scienceF2C2FlashcardsBM,
+  "ch2 flashcards dlp": scienceF2C2FlashcardsDLP,
+  "ch2 mindmap bm": scienceF2C2MindMapBM,
+  "ch2 mindmap dlp": scienceF2C2MindMapDLP,
+  "ch3 interactive bm": scienceF2C3InteractiveBM,
+  "ch3 interactive dlp": scienceF2C3InteractiveDLP,
+  "ch3 quizzes bm": scienceF2C3QuizzesBM,
+  "ch3 quizzes dlp": scienceF2C3QuizzesDLP,
+  "ch3 flashcards bm": scienceF2C3FlashcardsBM,
+  "ch3 flashcards dlp": scienceF2C3FlashcardsDLP,
+  "ch3 mindmap bm": scienceF2C3MindMapBM,
+  "ch3 mindmap dlp": scienceF2C3MindMapDLP,
+};
+
+const FORBIDDEN_PATTERNS: [string, RegExp][] = [
+  ["literal DSKP mention", /DSKP/],
+  ["KSSM DSKP", /KSSM DSKP/i],
+  ["Standard Kandungan", /Standard Kandungan/i],
+  ["Standard Pembelajaran", /Standard Pembelajaran/i],
+  ["textbook citation (BM)", /buku teks (menyatakan|hanya)/i],
+  ["textbook citation (EN)", /the textbook (states|says)/i],
+  ["numbered textbook figure", /Rajah \d/],
+  ["numbered textbook figure (EN)", /\bFigure \d/],
+  ["numbered textbook experiment (BM)", /Eksperimen \d\.\d/],
+  ["numbered textbook experiment (EN)", /Experiment \d\.\d/],
+  ["numbered textbook activity (BM)", /Aktiviti \d\.\d/],
+  ["numbered textbook activity (EN)", /\bActivity \d\.\d/],
+  ["printed-page reference", /printed page/i],
+  ["official-answer reference", /official answer/i],
+  ["errata reference", /errata/i],
+  ["audit reference", /\baudit\b/i],
+  ["remediation reference", /remediation/i],
+  ["release-gate reference", /release gate/i],
+  ["source-supported framing", /source-supported/i],
+  ["source-aligned framing", /source-aligned/i],
+  ["binding-scope framing", /binding scope/i],
+  ["skop DSKP framing", /skop DSKP/i],
+  ["'not core' scope-justification", /not core (DSKP|scope|requirement)/i],
+  ["'bukan skop teras' scope-justification", /bukan (skop )?teras/i],
+  ["'outside scope' framing", /outside (the )?(DSKP )?scope/i],
+  ["'core requirement' framing", /core (DSKP )?requirement/i],
+  ["mandatory-outcome framing", /mandatory outcome/i],
+  ["reviewer-note bracket", /\[Nota KBAT|\[KBAT note/],
+  ["bracketed 'not a textbook quotation' note", /not a textbook quotation/i],
+];
+
+describe("Form 2 Science Chapters 1-3 — learner-facing content carries no curriculum/audit metadata", () => {
+  for (const [surfaceName, content] of Object.entries(LIVE_SURFACES)) {
+    it(`${surfaceName}: no forbidden curriculum/audit/textbook-meta wording`, () => {
+      const text = JSON.stringify(content);
+      for (const [label, pattern] of FORBIDDEN_PATTERNS) {
+        expect(
+          pattern.test(text),
+          `${surfaceName} contains ${label}: ${text.match(pattern)?.[0]}`,
+        ).toBe(false);
+      }
+    });
+  }
+});

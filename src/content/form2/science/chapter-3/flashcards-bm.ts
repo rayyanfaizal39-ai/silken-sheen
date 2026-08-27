@@ -44,8 +44,8 @@ export const scienceF2C3FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 3",
     lang: "bm",
-    front: "Apakah Kwashiorkor?",
-    back: "Penyakit akibat kekurangan protein, biasanya berlaku pada kanak-kanak berumur 1-3 tahun.",
+    front: "Apakah kesan kekurangan teruk protein pada kanak-kanak yang membesar?",
+    back: "Pertumbuhan terbantut dan otot tidak berkembang dengan baik, kerana protein diperlukan untuk pertumbuhan dan pembaikan tisu.",
   },
   {
     id: "sci-f2-c3-bm-f6",
@@ -227,7 +227,7 @@ export const scienceF2C3FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 3",
     lang: "bm",
     front: "Apakah peranan perut dalam pencernaan?",
-    back: "Merembeskan protease dan asid hidroklorik; asid hidroklorik mengaktifkan protease dan membunuh bakteria; protein dicerna kepada polipeptida; makanan menjadi kimus.",
+    back: "Merembeskan protease dan asid hidroklorik; asid hidroklorik mengaktifkan protease dan membunuh bakteria; protein dicerna kepada polipeptida; makanan menjadi kim.",
   },
   {
     id: "sci-f2-c3-bm-f26",
@@ -299,7 +299,7 @@ export const scienceF2C3FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 3",
     lang: "bm",
     front: "Mengapakah hempedu BUKAN sejenis enzim?",
-    back: "Hempedu hanya mengemulsikan lemak kepada titisan kecil dan meneutralkan asid kimus; ia tidak memecahkan ikatan kimia lemak seperti enzim.",
+    back: "Hempedu hanya mengemulsikan lemak kepada titisan kecil dan meneutralkan asid dalam kim; ia tidak memecahkan ikatan kimia lemak seperti enzim.",
   },
   {
     id: "sci-f2-c3-bm-f34",
@@ -307,8 +307,8 @@ export const scienceF2C3FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 3",
     lang: "bm",
-    front: "Apakah kumpulan makanan di tapak piramid makanan Malaysia, dan berapa sajian sehari?",
-    back: "Nasi, mi, roti, bijirin dan ubi-ubian; 4-8 sajian sehari.",
+    front: "Apakah kumpulan makanan di tapak Piramid Makanan Malaysia 2020, dan berapa sajian sehari?",
+    back: "Sayur-sayuran (sekurang-kurangnya 3 sajian sehari) dan buah-buahan (2 sajian sehari). Kumpulan nasi/bijirin/ubi-ubian (3-5 sajian sehari) diletakkan di aras atasnya.",
   },
   {
     id: "sci-f2-c3-bm-f35",
@@ -317,7 +317,7 @@ export const scienceF2C3FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 3",
     lang: "bm",
     front: "Berapa sajian sayur-sayuran dan buah-buahan dicadangkan sehari?",
-    back: "Sayur-sayuran: 3 sajian sehari. Buah-buahan: 2 sajian sehari.",
+    back: "Sayur-sayuran: sekurang-kurangnya 3 sajian sehari. Buah-buahan: 2 sajian sehari.",
   },
   {
     id: "sci-f2-c3-bm-f36",
