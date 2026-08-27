@@ -170,7 +170,7 @@ export const scienceF2C6FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "dlp",
-    front: "What is the function of the burette and pipette in Activity 6.5?",
+    front: "What is the function of the burette and pipette in an acid-alkali titration?",
     back: "The burette is filled with hydrochloric acid; the pipette transfers sodium hydroxide solution into the conical flask.",
   },
   {
@@ -179,7 +179,7 @@ export const scienceF2C6FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "dlp",
-    front: "What indicator is used in Activity 6.5 and how do you know neutralisation is complete?",
+    front: "What indicator is used in an acid-alkali titration and how do you know neutralisation is complete?",
     back: "Phenolphthalein is used; neutralisation is complete when the solution changes from pink to colourless.",
   },
 
@@ -253,7 +253,7 @@ export const scienceF2C6FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "dlp",
-    front: "Why does magnesium not react with alkali in Activity 6.1?",
+    front: "Why does magnesium not react with alkali in the acid and alkali properties test?",
     back: "Because alkalis do not produce a reaction with metals, unlike acids which react to produce hydrogen gas.",
   },
   {
@@ -361,7 +361,7 @@ export const scienceF2C6FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "dlp",
-    front: "Compare the taste test with the corrosiveness test on acids and alkalis in Activity 6.1.",
+    front: "Compare the taste test with the corrosiveness test on acids and alkalis in the acid and alkali properties test.",
     back: "The taste test uses lime juice (sour) and bitter gourd juice (bitter). The corrosiveness test uses concentrated hydrochloric acid / sodium hydroxide solution on filter paper.",
   },
 
@@ -381,7 +381,7 @@ export const scienceF2C6FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "dlp",
-    front: "[KBAT] In the titration of Activity 6.5, the solution remains pink even after acid has been added. What is the conclusion?",
+    front: "[KBAT] In the titration of acid-alkali titration, the solution remains pink even after acid has been added. What is the conclusion?",
     back: "The amount of acid added is still insufficient to neutralise all the alkali in the conical flask.",
   },
   {
@@ -462,7 +462,7 @@ export const scienceF2C6FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "dlp",
-    front: "List the five tests for properties of acids and alkalis in Activity 6.1.",
+    front: "List the five tests for properties of acids and alkalis in the acid and alkali properties test.",
     back: "pH value (pH paper), taste, corrosiveness, effect on blue/red litmus, reaction with metals.",
   },
   {
@@ -516,7 +516,7 @@ export const scienceF2C6FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "dlp",
-    front: "Name the apparatus used in Activity 6.5 for titration.",
+    front: "Name the apparatus used in an acid-alkali titration for titration.",
     back: "Burette, pipette, conical flask and phenolphthalein.",
   },
   {

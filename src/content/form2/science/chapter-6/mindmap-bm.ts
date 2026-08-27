@@ -38,10 +38,11 @@ export const scienceF2C6MindMapBM: MindNode = {
         },
         {
           id: "c1-4",
-          label: "Petunjuk (Indikator)",
+          label: "Penunjuk (Indikator)",
           children: [
             { id: "c1-4-1", label: "Bahan pewarna/campuran pewarna yang menukar warna mengikut bahan diuji" },
             { id: "c1-4-2", label: "Digunakan untuk tentukan neutral, berasid atau beralkali" },
+            { id: "c1-tool-meter", label: "Meter pH: bacaan nilai pH berangka yang tepat" },
           ],
         },
         {
@@ -55,8 +56,19 @@ export const scienceF2C6MindMapBM: MindNode = {
           ],
         },
         {
+          id: "c1-strength",
+          label: "Kekuatan Asid dan Alkali",
+          children: [
+            { id: "c1-strength-1", label: "Dibandingkan pada kepekatan yang sama" },
+            { id: "c1-strength-2", label: "Asid kuat: asid hidroklorik (pH ~1)" },
+            { id: "c1-strength-3", label: "Asid lemah: asid etanoik (pH ~3) — asid dalam cuka" },
+            { id: "c1-strength-4", label: "Alkali kuat: larutan natrium hidroksida (pH ~13)" },
+            { id: "c1-strength-5", label: "Alkali lemah: larutan ammonia (pH ~11)" },
+          ],
+        },
+        {
           id: "c1-6",
-          label: "Aktiviti 6.1: Menguji Sifat Asid & Alkali",
+          label: "Menguji Sifat Asid dan Alkali",
           children: [
             { id: "c1-6-1", label: "Nilai pH menggunakan kertas pH" },
             { id: "c1-6-2", label: "Rasa: jus limau (masam) dan jus peria (pahit)" },
@@ -80,10 +92,10 @@ export const scienceF2C6MindMapBM: MindNode = {
         },
         {
           id: "c1-8",
-          label: "Jadual Perubahan Warna Petunjuk",
+          label: "Jadual Perubahan Warna Penunjuk",
           children: [
             { id: "c1-8-1", label: "Fenolftalein: Asid/Neutral = tidak berwarna; Alkali = merah jambu" },
-            { id: "c1-8-2", label: "Petunjuk sejagat: Asid = merah; Neutral = hijau; Alkali = biru" },
+            { id: "c1-8-2", label: "Penunjuk semesta: Asid = merah; Neutral = hijau; Alkali = biru" },
             { id: "c1-8-3", label: "Metil jingga: Asid = merah; Neutral/Alkali = kuning" },
             { id: "c1-8-4", label: "Kertas litmus biru: Asid = merah; Neutral/Alkali = biru" },
             { id: "c1-8-5", label: "Kertas litmus merah: Asid/Neutral = merah; Alkali = biru" },
@@ -96,7 +108,7 @@ export const scienceF2C6MindMapBM: MindNode = {
             { id: "c1-9-1", label: "Asid, Alkali, Nilai pH" },
             { id: "c1-9-2", label: "Kekakisan (corrosiveness)" },
             { id: "c1-9-3", label: "Kertas litmus biru dan merah" },
-            { id: "c1-9-4", label: "Petunjuk sejagat (universal indicator)" },
+            { id: "c1-9-4", label: "Penunjuk semesta (universal indicator)" },
             { id: "c1-9-5", label: "Fenolftalein, Skala pH" },
           ],
         },
@@ -121,7 +133,7 @@ export const scienceF2C6MindMapBM: MindNode = {
           children: [
             { id: "c1-11-1", label: "Asid: pH<7, masam, mengakis, litmus biru→merah, hasilkan hidrogen dengan logam" },
             { id: "c1-11-2", label: "Alkali: pH>7, pahit, mengakis, litmus merah→biru" },
-            { id: "c1-11-3", label: "Kekuatan diukur dengan skala pH (0-14) menggunakan petunjuk" },
+            { id: "c1-11-3", label: "Kekuatan diukur dengan skala pH (0-14) menggunakan penunjuk" },
             { id: "c1-11-4", label: "Digunakan meluas dalam pertanian, perindustrian, perubatan" },
           ],
         },
@@ -152,11 +164,11 @@ export const scienceF2C6MindMapBM: MindNode = {
         },
         {
           id: "c2-3",
-          label: "Aktiviti 6.5: Pentitratan",
+          label: "Pentitratan Asid-Alkali",
           children: [
             { id: "c2-3-1", label: "Buret diisi dengan asid hidroklorik" },
             { id: "c2-3-2", label: "Pipet memindahkan larutan natrium hidroksida ke dalam kelalang kon" },
-            { id: "c2-3-3", label: "Fenolftalein digunakan sebagai petunjuk" },
+            { id: "c2-3-3", label: "Fenolftalein digunakan sebagai penunjuk" },
             { id: "c2-3-4", label: "Larutan bertukar daripada merah jambu kepada tidak berwarna" },
             { id: "c2-3-5", label: "Apabila tidak berwarna → peneutralan telah selesai" },
           ],
@@ -183,7 +195,7 @@ export const scienceF2C6MindMapBM: MindNode = {
           id: "c2-6",
           label: "Aplikasi dalam Pertanian & Perindustrian",
           children: [
-            { id: "c2-6-1", label: "Tanah berasid dirawat dengan kapur terhidrat (slaked lime) yang beralkali untuk tumbuhan tumbuh baik" },
+            { id: "c2-6-1", label: "Tanah berasid dirawat dengan kapur mati (slaked lime) yang beralkali untuk tumbuhan tumbuh baik" },
             { id: "c2-6-2", label: "Pelembut fabrik (berasid) mengurangkan pH fabrik yang jadi beralkali selepas dibasuh detergen" },
             { id: "c2-6-3", label: "Sisa kimia berasid kilang dirawat dengan alkali sebelum dilepaskan ke sungai" },
           ],

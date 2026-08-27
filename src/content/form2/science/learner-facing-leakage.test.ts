@@ -39,10 +39,18 @@ import { scienceF2C5FlashcardsBM } from "./chapter-5/flashcards-bm";
 import { scienceF2C5FlashcardsDLP } from "./chapter-5/flashcards-dlp";
 import { scienceF2C5MindMapBM } from "./chapter-5/mindmap-bm";
 import { scienceF2C5MindMapDLP } from "./chapter-5/mindmap-dlp";
+import { scienceF2C6InteractiveBM } from "./chapter-6/interactive-bm";
+import { scienceF2C6InteractiveDLP } from "./chapter-6/interactive-dlp";
+import { scienceF2C6QuizzesBM } from "./chapter-6/quizzes-bm";
+import { scienceF2C6QuizzesDLP } from "./chapter-6/quizzes-dlp";
+import { scienceF2C6FlashcardsBM } from "./chapter-6/flashcards-bm";
+import { scienceF2C6FlashcardsDLP } from "./chapter-6/flashcards-dlp";
+import { scienceF2C6MindMapBM } from "./chapter-6/mindmap-bm";
+import { scienceF2C6MindMapDLP } from "./chapter-6/mindmap-dlp";
 
 /**
  * Guards against curriculum/audit/textbook metadata leaking into learner-facing Form 2
- * Science Chapter 1-5 content — see SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md. These are
+ * Science Chapter 1-6 content — see SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md. These are
  * live, student-facing data files (registered in src/content/registry.ts), not the dead
  * notes-{bm,dlp}.ts legacy files, which are intentionally excluded.
  */
@@ -88,6 +96,14 @@ const LIVE_SURFACES: Record<string, unknown> = {
   "ch5 flashcards dlp": scienceF2C5FlashcardsDLP,
   "ch5 mindmap bm": scienceF2C5MindMapBM,
   "ch5 mindmap dlp": scienceF2C5MindMapDLP,
+  "ch6 interactive bm": scienceF2C6InteractiveBM,
+  "ch6 interactive dlp": scienceF2C6InteractiveDLP,
+  "ch6 quizzes bm": scienceF2C6QuizzesBM,
+  "ch6 quizzes dlp": scienceF2C6QuizzesDLP,
+  "ch6 flashcards bm": scienceF2C6FlashcardsBM,
+  "ch6 flashcards dlp": scienceF2C6FlashcardsDLP,
+  "ch6 mindmap bm": scienceF2C6MindMapBM,
+  "ch6 mindmap dlp": scienceF2C6MindMapDLP,
 };
 
 const FORBIDDEN_PATTERNS: [string, RegExp][] = [
@@ -125,7 +141,7 @@ const FORBIDDEN_PATTERNS: [string, RegExp][] = [
   ["bracketed 'not a textbook quotation' note", /not a textbook quotation/i],
 ];
 
-describe("Form 2 Science Chapters 1-5 — learner-facing content carries no curriculum/audit metadata", () => {
+describe("Form 2 Science Chapters 1-6 — learner-facing content carries no curriculum/audit metadata", () => {
   for (const [surfaceName, content] of Object.entries(LIVE_SURFACES)) {
     it(`${surfaceName}: no forbidden curriculum/audit/textbook-meta wording`, () => {
       const text = JSON.stringify(content);

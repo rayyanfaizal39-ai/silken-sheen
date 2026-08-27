@@ -646,6 +646,115 @@ export type WaterTreatmentFlowBlock = {
   hint: string;
 };
 
+/**
+ * One row of an indicator colour table.
+ *
+ * `acid` / `neutral` / `alkali` are the colour NAMES a learner reads; the
+ * matching `*Swatch` values are CSS colours used only to tint the cell, so the
+ * table can be read either by word or at a glance. A swatch is never the sole
+ * carrier of meaning — the word always appears.
+ */
+export type IndicatorRow = {
+  id: string;
+  name: string;
+  acid: string;
+  neutral: string;
+  alkali: string;
+  acidSwatch: string;
+  neutralSwatch: string;
+  alkaliSwatch: string;
+  /** Shown when the row is selected. */
+  note: string;
+};
+
+export type IndicatorTableBlock = {
+  title: string;
+  instruction?: string;
+  indicatorLabel: string;
+  acidLabel: string;
+  neutralLabel: string;
+  alkaliLabel: string;
+  rows: IndicatorRow[];
+  hint: string;
+};
+
+/** One of the four dry / aqueous panels. */
+export type DryAqueousPanel = {
+  id: string;
+  /** e.g. "Asid etanoik glasial" */
+  substance: string;
+  /** Whether water is present — drives the water drop and the litmus result. */
+  withWater: boolean;
+  /** "blue" or "red" litmus paper being tested. */
+  litmus: "blue" | "red";
+  /** Colour the paper ends up: same as `litmus` when unchanged. */
+  result: "blue" | "red";
+  resultText: string;
+  note: string;
+};
+
+export type DryVsAqueousBlock = {
+  title: string;
+  instruction?: string;
+  withoutWaterLabel: string;
+  withWaterLabel: string;
+  acidColumnLabel: string;
+  alkaliColumnLabel: string;
+  /** The single sentence the whole schematic exists to make land. */
+  keyMessage: string;
+  panels: DryAqueousPanel[];
+  hint: string;
+};
+
+/** A clickable part of the titration schematic. */
+export type TitrationLabel = {
+  id: "burette" | "acid" | "flask" | "indicator" | "endpoint";
+  label: string;
+  note: string;
+};
+
+export type TitrationSchematicBlock = {
+  title: string;
+  instruction?: string;
+  labels: TitrationLabel[];
+  /** Colour-change caption, e.g. "Merah jambu → tidak berwarna". */
+  endpointCaption: string;
+  hint: string;
+};
+
+/** One substance in a strong-vs-weak comparison. */
+export type StrengthEntry = {
+  id: string;
+  name: string;
+  /** Approximate pH at the stated concentration. */
+  ph: string;
+  strength: "strong" | "weak";
+  kind: "acid" | "alkali";
+  note: string;
+};
+
+/**
+ * Strong vs weak acids and alkalis compared at equal concentration.
+ *
+ * The equal-concentration condition is a required field rather than prose,
+ * because it is the whole reason the comparison means anything: without it,
+ * a pH difference could just as easily be a concentration difference.
+ */
+export type StrengthComparisonBlock = {
+  title: string;
+  instruction?: string;
+  /** Stated prominently above the pairs. */
+  conditionLabel: string;
+  condition: string;
+  strongLabel: string;
+  weakLabel: string;
+  acidGroupLabel: string;
+  alkaliGroupLabel: string;
+  entries: StrengthEntry[];
+  keyPoint: string;
+  hint: string;
+};
+
 export type ScienceInteractiveSection = {
   number: string;
   title: string;
@@ -680,6 +789,10 @@ export type ScienceInteractiveSection = {
   electrolysisDiagram?: ElectrolysisDiagramBlock;
   mixtureComparison?: MixtureComparisonBlock;
   waterTreatmentFlow?: WaterTreatmentFlowBlock;
+  indicatorTable?: IndicatorTableBlock;
+  dryVsAqueous?: DryVsAqueousBlock;
+  titrationSchematic?: TitrationSchematicBlock;
+  strengthComparison?: StrengthComparisonBlock;
   /** Standalone annotated reference illustrations for this section. */
   images?: AnnotatedImageBlock[];
   matcher?: {

@@ -44,6 +44,10 @@ import { CapillaryDiagram } from "@/components/notes/blocks/CapillaryDiagram";
 import { ElectrolysisDiagram } from "@/components/notes/blocks/ElectrolysisDiagram";
 import { MixtureComparison } from "@/components/notes/blocks/MixtureComparison";
 import { WaterTreatmentFlow } from "@/components/notes/blocks/WaterTreatmentFlow";
+import { IndicatorTable } from "@/components/notes/blocks/IndicatorTable";
+import { DryVsAqueous } from "@/components/notes/blocks/DryVsAqueous";
+import { TitrationSchematic } from "@/components/notes/blocks/TitrationSchematic";
+import { StrengthComparison } from "@/components/notes/blocks/StrengthComparison";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
 
 type Lang = "en" | "bm";
@@ -447,6 +451,38 @@ export function ScienceF2InteractiveNotesBlock({
               {section.methodCards.title}
             </h3>
             <MethodCards block={section.methodCards} />
+          </div>
+        )}
+        {section.indicatorTable && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.indicatorTable.title}
+            </h3>
+            <IndicatorTable block={section.indicatorTable} />
+          </div>
+        )}
+        {section.dryVsAqueous && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.dryVsAqueous.title}
+            </h3>
+            <DryVsAqueous block={section.dryVsAqueous} />
+          </div>
+        )}
+        {section.titrationSchematic && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.titrationSchematic.title}
+            </h3>
+            <TitrationSchematic block={section.titrationSchematic} />
+          </div>
+        )}
+        {section.strengthComparison && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.strengthComparison.title}
+            </h3>
+            <StrengthComparison block={section.strengthComparison} />
           </div>
         )}
         {section.images?.map((image) => (

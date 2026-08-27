@@ -53,7 +53,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "Apakah maksud petunjuk (indikator)?",
+    front: "Apakah maksud penunjuk (indikator)?",
     back: "Bahan pewarna atau campuran pewarna berbeza yang menukar warna berdasarkan bahan yang diuji, untuk menentukan sama ada bahan itu neutral, berasid atau beralkali.",
   },
   {
@@ -116,7 +116,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "Apakah warna petunjuk sejagat dalam asid, neutral dan alkali?",
+    front: "Apakah warna penunjuk semesta dalam asid, neutral dan alkali?",
     back: "Asid: merah. Neutral: hijau. Alkali: biru.",
   },
   {
@@ -170,7 +170,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "Apakah fungsi buret dan pipet dalam Aktiviti 6.5?",
+    front: "Apakah fungsi buret dan pipet dalam pentitratan asid-alkali?",
     back: "Buret diisi dengan asid hidroklorik; pipet memindahkan larutan natrium hidroksida ke dalam kelalang kon.",
   },
   {
@@ -179,7 +179,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "Apakah petunjuk yang digunakan dalam Aktiviti 6.5 dan bagaimana mengetahui peneutralan selesai?",
+    front: "Apakah penunjuk yang digunakan dalam pentitratan asid-alkali dan bagaimana takat akhir dikenal pasti?",
     back: "Fenolftalein digunakan; peneutralan selesai apabila larutan bertukar daripada merah jambu kepada tidak berwarna.",
   },
 
@@ -244,8 +244,8 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "Bandingkan kelima-lima petunjuk dari segi warna dalam keadaan neutral.",
-    back: "Fenolftalein: tidak berwarna. Petunjuk sejagat: hijau. Metil jingga: kuning. Litmus biru: biru. Litmus merah: merah.",
+    front: "Bandingkan kelima-lima penunjuk dari segi warna dalam keadaan neutral.",
+    back: "Fenolftalein: tidak berwarna. Penunjuk semesta: hijau. Metil jingga: kuning. Litmus biru: biru. Litmus merah: merah.",
   },
   {
     id: "sci-f2-c6-bm-f28",
@@ -253,7 +253,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "Mengapakah magnesium tidak bertindak balas dengan alkali dalam Aktiviti 6.1?",
+    front: "Mengapakah magnesium tidak bertindak balas dengan alkali dalam ujian sifat asid dan alkali?",
     back: "Kerana alkali tidak menghasilkan tindak balas dengan logam, berbeza dengan asid yang bertindak balas menghasilkan gas hidrogen.",
   },
   {
@@ -262,8 +262,8 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "Bagaimanakah kapur terhidrat membantu tanah yang berasid?",
-    back: "Kapur terhidrat bersifat alkali; ia meneutralkan keasidan tanah supaya tumbuhan dapat tumbuh dengan baik.",
+    front: "Bagaimanakah kapur mati membantu tanah yang berasid?",
+    back: "Kapur mati bersifat alkali; ia meneutralkan keasidan tanah supaya tumbuhan dapat tumbuh dengan baik.",
   },
   {
     id: "sci-f2-c6-bm-f30",
@@ -335,7 +335,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 6",
     lang: "bm",
     front: "Namakan dua contoh aplikasi peneutralan dalam pertanian dan perindustrian.",
-    back: "Merawat tanah berasid dengan kapur terhidrat; merawat sisa kilang berasid dengan alkali sebelum dilepaskan ke sungai.",
+    back: "Merawat tanah berasid dengan kapur mati; merawat sisa kilang berasid dengan alkali sebelum dilepaskan ke sungai.",
   },
   {
     id: "sci-f2-c6-bm-f38",
@@ -361,7 +361,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "Bandingkan ujian rasa dengan ujian kekakisan ke atas asid dan alkali dalam Aktiviti 6.1.",
+    front: "Bandingkan ujian rasa dengan ujian kekakisan ke atas asid dan alkali dalam ujian sifat asid dan alkali.",
     back: "Ujian rasa menggunakan jus limau (masam) dan jus peria (pahit). Ujian kekakisan menggunakan asid hidroklorik tumpat / natrium hidroksida tumpat di atas kertas turas.",
   },
 
@@ -373,7 +373,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 6",
     lang: "bm",
     front: "[KBAT] Tanah ladang terlalu berasid sehingga tanaman tidak subur. Apakah bahan yang sesuai ditambah?",
-    back: "Kapur terhidrat (slaked lime), kerana ia beralkali dan akan meneutralkan keasidan tanah.",
+    back: "Kapur mati (slaked lime), kerana ia beralkali dan akan meneutralkan keasidan tanah.",
   },
   {
     id: "sci-f2-c6-bm-f42",
@@ -381,7 +381,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "[KBAT] Dalam pentitratan Aktiviti 6.5, larutan kekal merah jambu walaupun asid telah ditambah. Apakah kesimpulannya?",
+    front: "[KBAT] Dalam pentitratan pentitratan asid-alkali, larutan kekal merah jambu walaupun asid telah ditambah. Apakah kesimpulannya?",
     back: "Jumlah asid yang ditambah masih belum cukup untuk meneutralkan kesemua alkali dalam kelalang kon.",
   },
   {
@@ -417,7 +417,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "[Tip Peperiksaan] Bagaimana menjawab soalan 'nyatakan petunjuk yang sesuai untuk pentitratan' dengan markah penuh?",
+    front: "[Tip Peperiksaan] Bagaimana menjawab soalan 'nyatakan penunjuk yang sesuai untuk pentitratan' dengan markah penuh?",
     back: "Nyatakan fenolftalein dan terangkan perubahan warna (merah jambu kepada tidak berwarna) sebagai tanda peneutralan lengkap.",
   },
   {
@@ -462,7 +462,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "Senaraikan kelima-lima ujian sifat asid dan alkali dalam Aktiviti 6.1.",
+    front: "Senaraikan kelima-lima ujian sifat asid dan alkali dalam ujian sifat asid dan alkali.",
     back: "Nilai pH (kertas pH), rasa, kekakisan, kesan pada litmus biru/merah, tindak balas dengan logam.",
   },
   {
@@ -516,7 +516,7 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     lang: "bm",
-    front: "Namakan peralatan yang digunakan dalam Aktiviti 6.5 untuk pentitratan.",
+    front: "Namakan peralatan yang digunakan dalam pentitratan asid-alkali untuk pentitratan.",
     back: "Buret, pipet, kelalang kon dan fenolftalein.",
   },
   {
@@ -544,6 +544,6 @@ export const scienceF2C6FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 6",
     lang: "bm",
     front: "Ringkaskan Bab 6 dalam satu ayat.",
-    back: "Asid dan alkali mempunyai sifat berbeza yang diukur melalui skala pH dan petunjuk, serta bertindak balas semasa peneutralan untuk menghasilkan garam dan air dengan pelbagai aplikasi dalam kehidupan harian.",
+    back: "Asid dan alkali mempunyai sifat berbeza yang diukur melalui skala pH dan penunjuk, serta bertindak balas semasa peneutralan untuk menghasilkan garam dan air dengan pelbagai aplikasi dalam kehidupan harian.",
   },
 ];
