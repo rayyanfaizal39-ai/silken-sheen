@@ -5,12 +5,12 @@
 // giving both real, non-zero counts on first render).
 export const CONTENT_STATS = {
   totalSubjects: 6,
-  totalChapters: 290,
+  totalChapters: 291,
   publishedNotes: 200,
   publishedQuizzes: 154,
   publishedFlashcards: 166,
-  publishedMindmaps: 271,
-  missingContent: 140,
+  publishedMindmaps: 272,
+  missingContent: 141,
 } as const;
 
 export type SubjectFormSummary = { form: "Form 1" | "Form 2" | "Form 3"; chapterCount: number };
@@ -22,7 +22,7 @@ export const SUBJECT_FORM_SUMMARY: Record<string, SubjectFormSummary[]> = {
   "bm": [
     {
       "form": "Form 1",
-      "chapterCount": 39
+      "chapterCount": 40
     },
     {
       "form": "Form 2",
