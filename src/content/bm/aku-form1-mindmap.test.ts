@@ -81,6 +81,7 @@ describe("Bahasa Melayu Form 1 Aku mind map", () => {
       title,
       "Kunci Bahasa",
       "Hadiah",
+      "Kuih Bakul Limau Mandarin",
     ]);
 
     const chapter = getChapter("bm", title, undefined, "Form 1");
@@ -114,6 +115,7 @@ describe("Bahasa Melayu Form 1 Aku mind map", () => {
       title,
       "Kunci Bahasa",
       "Hadiah",
+      "Kuih Bakul Limau Mandarin",
     ]);
     expect(topics[index - 1]?.key).toBe("Oren");
     expect(topics[index + 1]?.key).toBe("Kunci Bahasa");

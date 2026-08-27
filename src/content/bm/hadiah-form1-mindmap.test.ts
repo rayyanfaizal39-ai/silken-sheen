@@ -22,6 +22,7 @@ const expectedTopics = [
   "Aku",
   "Kunci Bahasa",
   title,
+  "Kuih Bakul Limau Mandarin",
 ];
 const expectedBranches = [
   "Sinopsis",
@@ -85,7 +86,7 @@ describe("Bahasa Melayu Form 1 Hadiah mind map", () => {
     const index = topics.findIndex((topic) => topic.key === title);
     expect(topics.map((topic) => topic.key)).toEqual(expectedTopics);
     expect(topics[index - 1]?.key).toBe("Kunci Bahasa");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Kuih Bakul Limau Mandarin");
   });
 
   it("uses the prescribed identity and fifteen title-only first-level branches", () => {

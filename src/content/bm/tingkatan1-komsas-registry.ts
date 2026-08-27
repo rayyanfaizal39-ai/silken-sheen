@@ -4,6 +4,7 @@ import { bahasaMelayuTingkatan1AsalPadiMindMap } from "@/content/bm/asal-padi-fo
 import { bahasaMelayuTingkatan1KunciBahasaMindMap } from "@/content/bm/kunci-bahasa-form1-mindmap";
 import { bahasaMelayuTingkatan1HadiahMindMap } from "@/content/bm/hadiah-form1-mindmap";
 import { bahasaMelayuTingkatan1OrenMindMap } from "@/content/bm/oren-form1-mindmap";
+import { bahasaMelayuTingkatan1KuihBakulLimauMandarinMindMap } from "@/content/bm/kuih-bakul-limau-mandarin-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiKomsasMindMap } from "@/content/bm/strategi-memahami-menjawab-komsas-form1-mindmap";
 
 export const bahasaMelayuTingkatan1KomsasRegistry = [
@@ -89,6 +90,20 @@ export const bahasaMelayuTingkatan1KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1HadiahMindMap,
       title: "Hadiah",
+    },
+  },
+  {
+    id: "bm-f1-kuih-bakul-limau-mandarin-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Kuih Bakul Limau Mandarin",
+    title: "Kuih Bakul Limau Mandarin",
+    description:
+      "Cerpen tentang konflik sebuah keluarga yang berpunca daripada kepercayaan khurafat dan sikap ego sebelum kasih sayang serta kebenaran menyatukan mereka semula menjelang Tahun Baharu Cina.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan1KuihBakulLimauMandarinMindMap,
+      title: "Kuih Bakul Limau Mandarin",
     },
   },
 ] as const satisfies readonly ChapterContent[];
