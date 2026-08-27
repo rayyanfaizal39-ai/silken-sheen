@@ -1,4 +1,5 @@
 import type { ChapterContent } from "@/content/types";
+import { bahasaMelayuTingkatan1AkuMindMap } from "@/content/bm/aku-form1-mindmap";
 import { bahasaMelayuTingkatan1AsalPadiMindMap } from "@/content/bm/asal-padi-form1-mindmap";
 import { bahasaMelayuTingkatan1OrenMindMap } from "@/content/bm/oren-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiKomsasMindMap } from "@/content/bm/strategi-memahami-menjawab-komsas-form1-mindmap";
@@ -44,6 +45,20 @@ export const bahasaMelayuTingkatan1KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1OrenMindMap,
       title: "Oren",
+    },
+  },
+  {
+    id: "bm-f1-aku-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Aku",
+    title: "Aku",
+    description:
+      "Sajak mengetengahkan semangat seseorang yang berani menghadapi cabaran dan terus berjuang untuk mencapai matlamat.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan1AkuMindMap,
+      title: "Aku",
     },
   },
 ] as const satisfies readonly ChapterContent[];

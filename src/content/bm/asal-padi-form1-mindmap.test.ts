@@ -49,10 +49,12 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 1 Asal Padi mind map", () => {
-  it("registers exactly the two requested interactive Form 1 KOMSAS topics", () => {
+  it("preserves the ordered interactive Form 1 KOMSAS topics", () => {
     expect(bahasaMelayuTingkatan1KomsasRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Memahami dan Menjawab KOMSAS",
       title,
+      "Oren",
+      "Aku",
     ]);
     const chapter = getChapter("bm", title, undefined, "Form 1");
     expect(chapter).toMatchObject({
@@ -78,9 +80,9 @@ describe("Bahasa Melayu Form 1 Asal Padi mind map", () => {
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = topics.findIndex((topic) => topic.key === title);
-    expect(topics).toHaveLength(2);
+    expect(topics).toHaveLength(4);
     expect(topics[index - 1]?.key).toBe("Strategi Memahami dan Menjawab KOMSAS");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Oren");
     expect(getChapter("bm", title, undefined, "Form 2")).toBeUndefined();
     expect(getChapter("bm", title, undefined, "Form 3")).toBeUndefined();
   });
