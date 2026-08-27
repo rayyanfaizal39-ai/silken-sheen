@@ -15,8 +15,8 @@ function branch(id: string, label: string, children: MindNode[]): MindNode {
   return node(id, label, undefined, children);
 }
 
-function evidence(id: string, label: string, summary: string): MindNode {
-  return branch(id, label, [node(`${id}-bukti`, "Bukti Peristiwa", summary)]);
+function evidence(id: string, label: string, proof: string): MindNode {
+  return branch(id, label, [node(`${id}-bukti`, "Bukti Peristiwa", proof)]);
 }
 
 export const bahasaMelayuTingkatan1AsalPadiMindMap: MindNode = {
@@ -29,159 +29,112 @@ export const bahasaMelayuTingkatan1AsalPadiMindMap: MindNode = {
       node(
         "sinopsis-identiti",
         "Identiti Karya",
-        "Asal Padi ialah prosa tradisional dalam Antologi Kuingin Berterima Kasih. Nama pengarang tidak dinyatakan dalam sumber yang ditetapkan.",
+        "Asal Padi ialah prosa tradisional dalam antologi Kuingin Berterima Kasih. Teks ini tidak diberikan nama pengarang.",
       ),
-      branch("sinopsis-permulaan", "Permulaan", [
+      node(
+        "sinopsis-permulaan",
+        "1. Permulaan",
+        "Si Bongsu dan Si Sulung ialah dua beradik yatim piatu. Harta keluarga mereka telah diambil orang sehingga mereka hidup susah. Mereka masih menjaga kolam ikan peninggalan keluarga sebagai sumber kehidupan, manakala Si Sulung mempunyai kecacatan pada kakinya.",
+      ),
+      node(
+        "sinopsis-wanita",
+        "2. Pertemuan dengan Wanita Kayangan",
+        "Pada suatu hari, Si Bongsu melihat tujuh orang wanita mandi di kolam. Apabila mereka kembali ke kayangan, Si Bongsu mengikuti mereka sehingga tiba di sana.",
+      ),
+      node(
+        "sinopsis-penemuan",
+        "3. Penemuan Padi",
+        "Di kayangan, Si Bongsu melihat kawasan tanaman yang berkilauan lalu mengetahui bahawa tanaman itu ialah padi. Setelah menikmati makanan daripada padi, dia ingin membawa benihnya ke bumi.",
+      ),
+      node(
+        "sinopsis-cubaan",
+        "4. Percubaan Pertama",
+        "Si Bongsu cuba menyembunyikan padi di dalam mulutnya, tetapi perbuatannya diketahui oleh empunya padi. Dalam kejadian itu, tumitnya terluka.",
+      ),
+      node(
+        "sinopsis-menjaga",
+        "5. Menjaga Padi",
+        "Si Bongsu kemudian tinggal di kayangan dan bekerja menjaga padi. Walaupun pernah gagal, dia terus memikirkan cara untuk membawa padi ke bumi.",
+      ),
+      node(
+        "sinopsis-helah",
+        "6. Helah Si Bongsu",
+        "Si Bongsu menyembunyikan beberapa butir padi di dalam luka pada tumitnya. Empunya padi memeriksanya sebelum dia pulang, tetapi padi itu tidak ditemukan.",
+      ),
+      node(
+        "sinopsis-bumi",
+        "7. Padi di Bumi",
+        "Si Bongsu kembali ke bumi lalu menanam padi yang dibawanya. Padi itu tumbuh dengan baik. Selepas padi berkembang di bumi, padi di kayangan kehilangan daya hidup sebagaimana diceritakan dalam teks.",
+      ),
+      branch("sinopsis-burung", "8. Burung Pipit dan Burung Tekuri", [
         node(
-          "sinopsis-permulaan-keluarga",
-          "Dua Beradik",
-          "Si Bongsu dan Si Sulung ialah dua beradik yang telah kehilangan ibu bapa. Harta peninggalan keluarga mereka diambil orang sehingga mereka hidup dalam kesusahan.",
-        ),
-        node(
-          "sinopsis-permulaan-kolam",
-          "Kolam Peninggalan Keluarga",
-          "Mereka masih mempunyai kolam ikan peninggalan keluarga yang dijaga sebagai sumber kehidupan. Si Sulung mempunyai kecacatan pada kakinya.",
-        ),
-      ]),
-      branch("sinopsis-wanita", "Pertemuan dengan Wanita Kayangan", [
-        node(
-          "sinopsis-wanita-kolam",
-          "Tujuh Wanita",
-          "Pada suatu hari, Si Bongsu melihat tujuh orang wanita mandi di kolam.",
-        ),
-        node(
-          "sinopsis-wanita-ikut",
-          "Mengikuti ke Kayangan",
-          "Wanita-wanita itu kemudian kembali ke kayangan. Si Bongsu mengikuti mereka sehingga tiba di sana.",
-        ),
-      ]),
-      branch("sinopsis-penemuan", "Penemuan Padi", [
-        node(
-          "sinopsis-penemuan-tanaman",
-          "Tanaman Berkilauan",
-          "Di kayangan, Si Bongsu melihat kawasan tanaman yang berkilauan dan mengetahui bahawa tanaman itu ialah padi.",
-        ),
-        node(
-          "sinopsis-penemuan-makanan",
-          "Makanan daripada Padi",
-          "Si Bongsu menikmati makanan yang diperbuat daripada padi lalu ingin membawa benih tersebut pulang ke bumi.",
-        ),
-      ]),
-      branch("sinopsis-cubaan", "Percubaan Pertama", [
-        node(
-          "sinopsis-cubaan-mulut",
-          "Padi di Dalam Mulut",
-          "Si Bongsu cuba menyembunyikan padi di dalam mulutnya, tetapi percubaan itu diketahui oleh empunya padi.",
-        ),
-        node(
-          "sinopsis-cubaan-tumit",
-          "Tumit Terluka",
-          "Dalam kejadian tersebut, tumit Si Bongsu terluka.",
-        ),
-      ]),
-      branch("sinopsis-menjaga", "Menjaga Padi", [
-        node(
-          "sinopsis-menjaga-kerja",
-          "Bekerja di Kayangan",
-          "Si Bongsu kemudiannya tinggal di kayangan dan bekerja menjaga padi.",
-        ),
-        node(
-          "sinopsis-menjaga-usaha",
-          "Terus Mencari Jalan",
-          "Walaupun pernah gagal, dia terus memikirkan cara untuk membawa padi ke bumi.",
-        ),
-      ]),
-      branch("sinopsis-helah", "Helah Si Bongsu", [
-        node(
-          "sinopsis-helah-luka",
-          "Padi di Dalam Luka",
-          "Si Bongsu menyembunyikan beberapa butir padi di dalam luka pada tumitnya.",
-        ),
-        node(
-          "sinopsis-helah-periksa",
-          "Pemeriksaan",
-          "Empunya padi memeriksanya sebelum dia pulang, tetapi padi tersebut tidak ditemukan.",
-        ),
-      ]),
-      branch("sinopsis-bumi", "Padi di Bumi", [
-        node(
-          "sinopsis-bumi-tanam",
-          "Berjaya Ditanam",
-          "Si Bongsu kembali ke bumi dan menanam padi yang dibawanya. Padi tersebut tumbuh dengan baik.",
-        ),
-        node(
-          "sinopsis-bumi-kayangan",
-          "Perubahan di Kayangan",
-          "Selepas padi berkembang di bumi, padi di kayangan mengalami perubahan dan kehilangan daya hidup sebagaimana diceritakan dalam teks.",
-        ),
-      ]),
-      branch("sinopsis-burung", "Burung Pipit dan Tekuri", [
-        node(
-          "sinopsis-burung-siasat",
+          "sinopsis-burung-siasatan",
           "Penyiasatan",
-          "Burung Pipit dan Burung Tekuri terlibat dalam penyiasatan tentang kewujudan padi di bumi.",
+          "Burung pipit dan burung tekuri terlibat dalam penyiasatan tentang kewujudan padi di bumi.",
         ),
         node(
           "sinopsis-burung-pipit",
           "Tindakan Burung Pipit",
-          "Burung Pipit tidak menjalankan amanah penyiasatan dengan jujur.",
+          "Burung pipit tidak menjalankan amanah penyiasatan dengan jujur.",
         ),
         node(
           "sinopsis-burung-tekuri",
           "Tindak Balas Burung Tekuri",
-          "Burung Tekuri menjalankan tanggungjawab dengan jujur dan menjadi perbandingan kepada Burung Pipit.",
+          "Burung tekuri memberikan tindak balas yang jujur dan melaksanakan amanah dengan betul.",
         ),
         node(
           "sinopsis-burung-akibat",
           "Akibat",
-          "Perbezaan sikap kedua-dua burung menegaskan bahawa ketidakjujuran membawa akibat, sedangkan amanah dan kejujuran perlu dipelihara.",
+          "Peristiwa itu memperlihatkan akibat sikap tidak jujur serta perbezaannya dengan sikap amanah.",
         ),
       ]),
     ]),
     branch("tema", "Tema", [
-      evidence(
-        "tema-bijaksana",
-        "Kebijaksanaan dalam Menyelesaikan Masalah",
-        "Si Bongsu menggunakan akal dengan menyembunyikan padi di dalam luka pada tumitnya supaya benih itu dapat dibawa ke bumi. Keberanian dan kegigihannya mengembangkan tema ini tanpa menjadi tema utama yang bersaing.",
-      ),
-      node(
-        "tema-jawapan",
-        "Jawapan Murid",
-        "Tema prosa tradisional Asal Padi ialah kebijaksanaan dalam menyelesaikan masalah. Hal ini dapat dilihat melalui tindakan Si Bongsu yang mencari helah untuk membawa padi dari kayangan ke bumi.",
-      ),
+      branch("tema-utama", "Kebijaksanaan dalam Menyelesaikan Masalah", [
+        node(
+          "tema-utama-huraian",
+          "Huraian",
+          "Si Bongsu menggunakan akal untuk mencari jalan membawa padi dari kayangan ke bumi setelah percubaan awalnya gagal. Keberanian dan kegigihannya mengembangkan tema utama ini.",
+        ),
+        node(
+          "tema-utama-bukti",
+          "Bukti Peristiwa",
+          "Si Bongsu menyembunyikan padi di dalam luka pada tumitnya supaya benih itu dapat dibawa ke bumi.",
+        ),
+        node(
+          "tema-utama-jawapan",
+          "Jawapan Murid",
+          "Tema prosa tradisional Asal Padi ialah kebijaksanaan dalam menyelesaikan masalah. Hal ini dapat dilihat melalui tindakan Si Bongsu yang mencari helah untuk membawa padi dari kayangan ke bumi.",
+        ),
+      ]),
     ]),
     branch("persoalan", "Persoalan", [
       evidence(
-        "persoalan-penyelesaian",
+        "persoalan-bijak",
         "Kebijaksanaan Mencari Penyelesaian",
-        "Si Bongsu mencari cara lain selepas percubaan pertamanya membawa padi gagal.",
+        "Si Bongsu mencari cara lain selepas percubaan pertamanya menyembunyikan padi di dalam mulut gagal.",
       ),
       evidence(
-        "persoalan-risiko",
+        "persoalan-berani",
         "Keberanian Menghadapi Risiko",
-        "Si Bongsu berani mengambil tindakan untuk mendapatkan padi dan membawanya ke bumi.",
+        "Si Bongsu berani pergi ke kayangan dan mengambil risiko untuk mendapatkan padi.",
       ),
       evidence(
         "persoalan-gigih",
         "Kegigihan Mendapatkan Sesuatu yang Diingini",
-        "Si Bongsu tidak berputus asa dalam usahanya mendapatkan padi walaupun percubaan awalnya gagal.",
-      ),
-      evidence(
-        "persoalan-budi",
-        "Kepentingan Budi Pekerti dan Kesopanan",
-        "Interaksi Si Bongsu dengan orang kayangan menunjukkan bahawa hubungan dengan orang lain perlu disertai budi pekerti yang baik.",
+        "Si Bongsu tidak berputus asa, malah terus memikirkan helah untuk membawa padi ke bumi.",
       ),
       evidence(
         "persoalan-amanah",
         "Amanah dan Kejujuran",
-        "Perbezaan tindakan Burung Pipit dan Burung Tekuri menunjukkan kepentingan melaksanakan amanah dengan jujur.",
+        "Episod burung pipit dan burung tekuri memperlihatkan perbezaan antara sikap tidak jujur dengan pelaksanaan amanah secara betul.",
       ),
     ]),
     branch("watak", "Watak", [
       node(
         "watak-bongsu",
         "Si Bongsu — Watak Utama",
-        "Adik kepada Si Sulung, anak yatim piatu yang hidup dalam kesusahan, pergi ke kayangan dan membawa padi ke bumi.",
+        "Adik kepada Si Sulung, anak yatim piatu yang hidup susah, pergi ke kayangan dan membawa padi ke bumi.",
       ),
       node(
         "watak-sulung",
@@ -196,39 +149,34 @@ export const bahasaMelayuTingkatan1AsalPadiMindMap: MindNode = {
       node(
         "watak-pipit",
         "Burung Pipit",
-        "Terlibat dalam penyiasatan tentang padi di bumi dan menjadi watak perbandingan yang tidak menjalankan amanah dengan jujur.",
+        "Burung yang terlibat dalam penyiasatan tentang padi di bumi dan tidak menjalankan amanah dengan jujur.",
       ),
       node(
         "watak-tekuri",
         "Burung Tekuri",
-        "Terlibat dalam penyiasatan tentang padi di bumi dan menjadi watak yang jujur serta amanah.",
+        "Burung yang terlibat dalam episod penyiasatan dan menjadi perbandingan melalui sikap jujur serta amanah.",
       ),
     ]),
     branch("perwatakan", "Perwatakan", [
       evidence(
-        "perwatakan-bongsu-bijak",
+        "perwatakan-bijak",
         "Si Bongsu — Bijaksana",
         "Dia mendapat idea menyembunyikan padi di dalam luka pada tumitnya.",
       ),
       evidence(
-        "perwatakan-bongsu-gigih",
-        "Si Bongsu — Gigih / Tidak Mudah Berputus Asa",
+        "perwatakan-gigih",
+        "Si Bongsu — Gigih",
         "Dia terus berusaha mendapatkan padi walaupun percubaan awalnya gagal.",
       ),
       evidence(
-        "perwatakan-bongsu-berani",
+        "perwatakan-berani",
         "Si Bongsu — Berani",
         "Dia berani mengambil risiko dalam usahanya membawa padi ke bumi.",
       ),
       evidence(
-        "perwatakan-bongsu-rajin",
+        "perwatakan-rajin",
         "Si Bongsu — Rajin",
         "Dia bekerja menjaga dan mengawasi padi semasa berada di kayangan.",
-      ),
-      evidence(
-        "perwatakan-sulung-tabah",
-        "Si Sulung — Tabah",
-        "Dia meneruskan kehidupan yang susah bersama Si Bongsu walaupun mempunyai kecacatan pada kaki.",
       ),
       evidence(
         "perwatakan-empunya-hati-hati",
@@ -237,18 +185,18 @@ export const bahasaMelayuTingkatan1AsalPadiMindMap: MindNode = {
       ),
       evidence(
         "perwatakan-empunya-baik",
-        "Empunya Padi — Bertimbang Rasa",
-        "Si Bongsu diberi makanan dan diterima untuk tinggal serta menjaga padi di kayangan.",
+        "Empunya Padi — Baik Hati",
+        "Si Bongsu diberi makanan daripada padi dan kemudian diterima untuk tinggal serta menjaga padi di kayangan.",
       ),
       evidence(
         "perwatakan-pipit",
         "Burung Pipit — Tidak Jujur",
-        "Burung Pipit tidak menjalankan amanah penyiasatan dengan baik.",
+        "Burung pipit tidak menjalankan amanah penyiasatan dengan baik.",
       ),
       evidence(
         "perwatakan-tekuri",
         "Burung Tekuri — Amanah dan Jujur",
-        "Burung Tekuri menjalankan tanggungjawab penyiasatan dengan jujur.",
+        "Burung tekuri melaksanakan amanah penyiasatan dengan betul.",
       ),
     ]),
     branch("plot", "Plot", [
@@ -260,22 +208,22 @@ export const bahasaMelayuTingkatan1AsalPadiMindMap: MindNode = {
       node(
         "plot-perkembangan",
         "Perkembangan",
-        "Si Bongsu mengikuti tujuh wanita ke kayangan lalu menemukan padi.",
+        "Si Bongsu mengikuti tujuh orang wanita ke kayangan lalu menemukan padi.",
       ),
       node(
         "plot-perumitan",
         "Perumitan",
-        "Si Bongsu mahu membawa padi ke bumi, tetapi dihalang. Percubaan pertamanya gagal dan tumitnya terluka.",
+        "Si Bongsu mahu membawa padi ke bumi tetapi dihalang. Percubaan pertamanya menyembunyikan padi di dalam mulut gagal dan tumitnya terluka.",
       ),
       node(
         "plot-klimaks",
         "Klimaks",
-        "Si Bongsu menemukan cara yang berjaya untuk menyembunyikan padi di dalam luka pada tumitnya dan membawanya dari kayangan.",
+        "Si Bongsu menemukan cara yang berjaya, iaitu menyembunyikan padi di dalam luka pada tumitnya sebelum pulang ke bumi.",
       ),
       node(
         "plot-peleraian",
         "Peleraian",
-        "Padi ditanam dan tumbuh di bumi. Akibat terhadap padi di kayangan serta episod Burung Pipit dan Burung Tekuri menyusul sebagaimana diceritakan dalam teks.",
+        "Padi ditanam dan berkembang di bumi. Cerita diteruskan dengan akibat terhadap padi di kayangan serta episod burung pipit dan burung tekuri.",
       ),
     ]),
     branch("teknik-plot", "Teknik Plot", [
@@ -284,7 +232,7 @@ export const bahasaMelayuTingkatan1AsalPadiMindMap: MindNode = {
         node(
           "teknik-dialog-contoh",
           "Contoh Peristiwa",
-          "Percakapan Si Bongsu dengan orang kayangan menggerakkan peristiwa ketika dia mengenali padi dan berurusan dengan empunya padi. Tiada petikan langsung direka.",
+          "Interaksi Si Bongsu dengan orang kayangan tentang makanan dan padi disampaikan melalui percakapan. Contoh ini diparafrasa tanpa mereka-reka petikan tepat.",
         ),
       ]),
       branch("teknik-pemerian", "Pemerian", [
@@ -296,7 +244,7 @@ export const bahasaMelayuTingkatan1AsalPadiMindMap: MindNode = {
         node(
           "teknik-pemerian-contoh",
           "Contoh Peristiwa",
-          "Keadaan hidup dua beradik, kecacatan kaki Si Sulung dan kawasan tanaman di kayangan diterangkan oleh pencerita.",
+          "Pencerita memerikan kesusahan dua beradik, keadaan kaki Si Sulung dan tanaman berkilauan di kayangan.",
         ),
       ]),
     ]),
@@ -304,56 +252,61 @@ export const bahasaMelayuTingkatan1AsalPadiMindMap: MindNode = {
       evidence(
         "latar-tempat-bumi",
         "Bumi",
-        "Si Bongsu dan Si Sulung tinggal di bumi; padi kemudiannya ditanam dan berkembang di sini.",
+        "Si Bongsu dan Si Sulung tinggal di bumi; Si Bongsu akhirnya menanam padi di situ.",
       ),
       evidence(
         "latar-tempat-kolam",
         "Kolam Ikan",
-        "Kolam menjadi sumber kehidupan dua beradik dan tempat Si Bongsu melihat tujuh wanita mandi.",
+        "Kolam menjadi sumber kehidupan dua beradik dan tempat Si Bongsu melihat tujuh orang wanita mandi.",
       ),
       evidence(
         "latar-tempat-kayangan",
         "Kayangan",
-        "Si Bongsu mengikuti tujuh wanita ke kayangan lalu menemukan padi di sana.",
+        "Si Bongsu mengikuti wanita-wanita itu ke kayangan dan mengenali padi di sana.",
       ),
       evidence(
         "latar-tempat-dusun",
         "Kawasan / Dusun Padi",
-        "Padi ditanam dan dijaga di kawasan tanaman di kayangan; Si Bongsu bekerja menjaganya.",
+        "Padi tumbuh dan dijaga di kawasan tanaman di kayangan.",
       ),
     ]),
     branch("latar-masa", "Latar Masa", [
       evidence(
         "latar-masa-suatu-hari",
         "Suatu Hari",
-        "Pada suatu hari, Si Bongsu melihat tujuh wanita mandi di kolam.",
+        "Si Bongsu melihat tujuh orang wanita mandi di kolam pada suatu hari.",
       ),
       evidence(
-        "latar-masa-tempoh",
-        "Tempoh di Kayangan",
-        "Si Bongsu tinggal di kayangan untuk suatu tempoh dan bekerja menjaga padi sebelum pulang ke bumi.",
+        "latar-masa-kayangan",
+        "Tempoh Si Bongsu di Kayangan",
+        "Si Bongsu tinggal dan bekerja menjaga padi sambil memikirkan cara untuk membawanya ke bumi.",
+      ),
+      evidence(
+        "latar-masa-selepas",
+        "Selepas Kembali ke Bumi",
+        "Si Bongsu menanam padi dan tanaman itu berkembang di bumi.",
       ),
     ]),
     branch("latar-masyarakat", "Latar Masyarakat", [
       evidence(
         "latar-masyarakat-gigih",
         "Masyarakat yang Gigih Berusaha",
-        "Si Bongsu terus mencari jalan mendapatkan padi walaupun percubaan awalnya gagal.",
+        "Diwakili oleh Si Bongsu yang terus berusaha mendapatkan padi selepas gagal.",
       ),
       evidence(
         "latar-masyarakat-kayangan",
         "Masyarakat Kayangan",
-        "Masyarakat ini memiliki dan mengusahakan padi sebelum tanaman tersebut sampai ke bumi.",
+        "Masyarakat ini memiliki dan mengusahakan padi sebelum tanaman itu sampai ke bumi.",
       ),
       evidence(
         "latar-masyarakat-hak",
         "Masyarakat yang Menjaga Hak dan Harta",
-        "Empunya padi mengawal tanaman dan memeriksa Si Bongsu sebelum dia pulang.",
+        "Empunya padi mengawal padi dan memeriksa Si Bongsu sebelum dia pulang.",
       ),
       evidence(
         "latar-masyarakat-bijak",
         "Masyarakat yang Menggunakan Kebijaksanaan",
-        "Si Bongsu menggunakan akal untuk menyelesaikan masalah membawa benih padi ke bumi.",
+        "Diwakili oleh Si Bongsu yang mencari helah selepas percubaan pertamanya gagal.",
       ),
     ]),
     branch("gaya-bahasa", "Gaya Bahasa", [
@@ -365,34 +318,27 @@ export const bahasaMelayuTingkatan1AsalPadiMindMap: MindNode = {
         ),
         node(
           "gaya-simile-contoh",
-          "Contoh Sumber-Selamat",
-          "Kaki Si Sulung digambarkan melalui perbandingan dengan kaki itik. Contoh diparafrasa dan bukan petikan panjang daripada teks.",
+          "Contoh Selamat",
+          "Kaki Si Sulung diperihalkan dengan perbandingan seperti kaki itik. Contoh diparafrasa dan bukan petikan panjang daripada teks.",
         ),
       ]),
       branch("gaya-sinkope", "Sinkope", [
         node(
           "gaya-sinkope-maksud",
           "Maksud",
-          "Pemendekan bentuk kata dalam percakapan atau dialog.",
+          "Pemendekan perkataan dalam pertuturan atau dialog untuk menimbulkan kesan bahasa lisan.",
         ),
         node(
-          "gaya-sinkope-panduan",
-          "Cara Mengenal Pasti",
-          "Kenal pasti kata yang dipendekkan dalam dialog dan nyatakan bentuk penuhnya. Contoh tepat tidak direka tanpa petikan sumber.",
+          "gaya-sinkope-bukti",
+          "Penggunaan dalam Teks",
+          "Bentuk kata yang dipendekkan hadir dalam dialog teks. Rujuk perkataan sebenar dalam naskhah sebelum menyalin contoh tepat.",
         ),
       ]),
-      branch("gaya-kata-ganda", "Kata Ganda", [
-        node(
-          "gaya-kata-ganda-maksud",
-          "Maksud",
-          "Pengulangan seluruh atau sebahagian kata untuk membawa maksud tertentu, termasuk jamak.",
-        ),
-        node(
-          "gaya-kata-ganda-panduan",
-          "Cara Mengenal Pasti",
-          "Cari bentuk kata yang diulang dalam teks dan jelaskan fungsinya. Contoh yang tidak disahkan tidak ditambah.",
-        ),
-      ]),
+      node(
+        "gaya-amaran",
+        "Semak Sebelum Menjawab",
+        "Jangan mendakwa kata ganda, peribahasa atau bahasa kiasan tertentu wujud tanpa menyemak perkataan sebenar dalam teks.",
+      ),
     ]),
     branch("nilai", "Nilai", [
       evidence(
@@ -403,213 +349,202 @@ export const bahasaMelayuTingkatan1AsalPadiMindMap: MindNode = {
       evidence(
         "nilai-rajin",
         "Kerajinan",
-        "Si Bongsu bekerja menjaga dan mengawasi padi ketika berada di kayangan.",
+        "Si Bongsu bekerja menjaga padi semasa tinggal di kayangan.",
       ),
       evidence(
         "nilai-gigih",
         "Kegigihan",
-        "Si Bongsu terus berusaha mendapatkan padi selepas percubaan pertamanya gagal.",
+        "Si Bongsu terus mencuba selepas percubaan awalnya gagal.",
       ),
       evidence(
         "nilai-berani",
         "Keberanian",
-        "Si Bongsu berani menghadapi risiko ketika berusaha membawa padi ke bumi.",
-      ),
-      evidence(
-        "nilai-sopan",
-        "Kesopanan / Budi Bahasa",
-        "Interaksi Si Bongsu dengan orang kayangan menunjukkan kepentingan berbudi bahasa dalam perhubungan.",
+        "Si Bongsu berani pergi ke kayangan dan mengambil risiko untuk membawa padi ke bumi.",
       ),
       evidence(
         "nilai-amanah",
-        "Amanah / Kejujuran",
-        "Burung Tekuri menjalankan amanah dengan jujur, berbeza dengan Burung Pipit.",
+        "Amanah dan Kejujuran",
+        "Burung tekuri melaksanakan amanah dengan jujur, berbeza daripada tindakan burung pipit.",
       ),
     ]),
     branch("pengajaran", "Pengajaran", [
       evidence(
         "pengajaran-bijak",
         "Kita Hendaklah Bijak Menyelesaikan Masalah",
-        "Si Bongsu mencari helah yang berjaya selepas percubaan awalnya membawa padi gagal.",
+        "Si Bongsu memikirkan strategi baharu untuk membawa padi selepas percubaan pertamanya gagal.",
       ),
       evidence(
         "pengajaran-gigih",
         "Kita Hendaklah Gigih Berusaha",
-        "Si Bongsu terus mencuba walaupun menghadapi halangan.",
+        "Si Bongsu tidak berputus asa walaupun menghadapi halangan.",
       ),
       evidence(
         "pengajaran-rajin",
         "Kita Hendaklah Rajin",
-        "Si Bongsu bekerja menjaga padi semasa berada di kayangan.",
+        "Si Bongsu menjalankan kerja menjaga padi ketika berada di kayangan.",
       ),
       evidence(
-        "pengajaran-sopan",
-        "Kita Hendaklah Bersopan Santun",
-        "Hubungan Si Bongsu dengan orang kayangan memperlihatkan kepentingan budi bahasa.",
+        "pengajaran-berani",
+        "Kita Hendaklah Berani Menghadapi Cabaran",
+        "Si Bongsu berani pergi ke kayangan dan berusaha mendapatkan padi.",
       ),
       evidence(
         "pengajaran-amanah",
         "Kita Hendaklah Bersikap Amanah dan Jujur",
-        "Episod Burung Pipit dan Burung Tekuri menunjukkan perbezaan serta akibat antara tidak amanah dengan jujur.",
+        "Episod burung pipit dan burung tekuri menunjukkan perbezaan antara kegagalan menjaga amanah dengan tindakan yang jujur.",
       ),
     ]),
     branch("peristiwa", "Peristiwa Penting", [
-      branch("peristiwa-garis-masa", "Garis Masa Cerita", [
-        node(
-          "peristiwa-1",
-          "1. Dua Beradik Hidup Susah",
-          "Si Bongsu dan Si Sulung hidup dalam kesusahan selepas kehilangan ibu bapa dan harta keluarga.",
-        ),
-        node(
-          "peristiwa-2",
-          "2. Melihat Tujuh Wanita",
-          "Si Bongsu melihat tujuh wanita mandi di kolam ikan.",
-        ),
-        node(
-          "peristiwa-3",
-          "3. Sampai ke Kayangan",
-          "Si Bongsu mengikuti mereka sehingga tiba di kayangan.",
-        ),
-        node(
-          "peristiwa-4",
-          "4. Mengenali Padi",
-          "Si Bongsu mengetahui bahawa tanaman berkilauan itu ialah padi dan menikmati makanan daripadanya.",
-        ),
-        node(
-          "peristiwa-5",
-          "5. Percubaan Pertama Gagal",
-          "Percubaan menyembunyikan padi di dalam mulut diketahui oleh empunya padi.",
-        ),
-        node(
-          "peristiwa-6",
-          "6. Tumit Terluka",
-          "Tumit Si Bongsu terluka dalam kejadian percubaan pertama.",
-        ),
-        node(
-          "peristiwa-7",
-          "7. Menjaga Padi",
-          "Si Bongsu tinggal dan bekerja menjaga padi di kayangan.",
-        ),
-        node(
-          "peristiwa-8",
-          "8. Padi di Luka Tumit",
-          "Dia menyembunyikan beberapa butir padi di dalam luka pada tumitnya.",
-        ),
-        node(
-          "peristiwa-9",
-          "9. Pulang ke Bumi",
-          "Si Bongsu melepasi pemeriksaan dan berjaya pulang ke bumi.",
-        ),
-        node("peristiwa-10", "10. Padi Berkembang", "Padi ditanam dan tumbuh dengan baik di bumi."),
-        node(
-          "peristiwa-11",
-          "11. Padi di Kayangan",
-          "Padi di kayangan mengalami perubahan dan kehilangan daya hidup setelah padi berkembang di bumi.",
-        ),
-        node(
-          "peristiwa-12",
-          "12. Pipit dan Tekuri",
-          "Kedua-dua burung terlibat dalam penyiasatan yang menegaskan perbezaan antara tidak jujur dengan amanah.",
-        ),
-      ]),
-      branch("peristiwa-ingatan", "ASAL PADI DALAM 6 LANGKAH", [
-        node("peristiwa-ingatan-susah", "SUSAH"),
-        node("peristiwa-ingatan-kayangan", "KAYANGAN"),
-        node("peristiwa-ingatan-kenal", "KENAL PADI"),
-        node("peristiwa-ingatan-akal", "CARI AKAL"),
-        node("peristiwa-ingatan-bawa", "BAWA KE BUMI"),
-        node("peristiwa-ingatan-berkembang", "PADI BERKEMBANG"),
-      ]),
-      node("peristiwa-ingatan-bongsu", "SI BONGSU", "BIJAK + GIGIH + BERANI + RAJIN"),
+      node(
+        "peristiwa-1",
+        "1. Dua Beradik Hidup Susah",
+        "Si Bongsu dan Si Sulung kehilangan ibu bapa serta harta keluarga mereka diambil orang.",
+      ),
+      node(
+        "peristiwa-2",
+        "2. Tujuh Wanita di Kolam",
+        "Si Bongsu melihat tujuh orang wanita mandi di kolam ikan.",
+      ),
+      node(
+        "peristiwa-3",
+        "3. Sampai ke Kayangan",
+        "Si Bongsu mengikuti mereka sehingga tiba di kayangan.",
+      ),
+      node(
+        "peristiwa-4",
+        "4. Mengenali Padi",
+        "Si Bongsu mengetahui bahawa tanaman berkilauan itu ialah padi.",
+      ),
+      node(
+        "peristiwa-5",
+        "5. Percubaan Pertama Gagal",
+        "Padi yang disembunyikan di dalam mulutnya diketahui oleh empunya padi.",
+      ),
+      node("peristiwa-6", "6. Tumit Terluka", "Tumit Si Bongsu terluka dalam kejadian tersebut."),
+      node(
+        "peristiwa-7",
+        "7. Menjaga Padi",
+        "Si Bongsu tinggal dan bekerja menjaga padi di kayangan.",
+      ),
+      node(
+        "peristiwa-8",
+        "8. Padi pada Luka Tumit",
+        "Dia menyembunyikan beberapa butir padi di dalam luka pada tumitnya.",
+      ),
+      node(
+        "peristiwa-9",
+        "9. Pulang ke Bumi",
+        "Pemeriksaan empunya padi tidak menemukan benih itu lalu Si Bongsu berjaya pulang.",
+      ),
+      node(
+        "peristiwa-10",
+        "10. Padi Berkembang",
+        "Si Bongsu menanam padi dan tanaman itu tumbuh dengan baik di bumi.",
+      ),
+      node(
+        "peristiwa-11",
+        "11. Padi di Kayangan",
+        "Selepas padi berkembang di bumi, padi di kayangan kehilangan daya hidup sebagaimana diceritakan dalam teks.",
+      ),
+      node(
+        "peristiwa-12",
+        "12. Burung Pipit dan Tekuri",
+        "Penyiasatan tentang padi di bumi memperlihatkan perbezaan antara sikap tidak jujur dengan sikap amanah.",
+      ),
     ]),
     branch("teknik-menjawab", "Teknik Menjawab", [
-      node(
-        "jawab-tema",
-        "Tema",
-        "TEMA + peristiwa sokongan ringkas. Nyatakan kebijaksanaan menyelesaikan masalah dan kaitkan dengan helah Si Bongsu.",
-      ),
+      node("jawab-tema", "Tema", "Tulis TEMA + satu peristiwa sokongan yang ringkas."),
       node(
         "jawab-persoalan",
         "Persoalan",
-        "PERSOALAN + BUKTI. Pilih satu idea sampingan dan satu peristiwa yang menyokongnya.",
+        "Tulis PERSOALAN + BUKTI yang benar-benar menyokongnya.",
       ),
       node(
         "jawab-perwatakan",
         "Perwatakan",
-        "WATAK + SIFAT + PERISTIWA. Contoh struktur: “Si Bongsu seorang yang bijaksana kerana...”",
+        "Gunakan WATAK + SIFAT + PERISTIWA, contohnya: “Si Bongsu seorang yang bijaksana kerana...”",
       ),
-      node("jawab-nilai", "Nilai", "NILAI + PERISTIWA yang benar-benar menunjukkan nilai itu."),
+      node("jawab-nilai", "Nilai", "Tulis NILAI + PERISTIWA yang menunjukkan nilai itu."),
       node(
         "jawab-pengajaran",
         "Pengajaran",
-        "Mulakan dengan “Kita hendaklah...” dan nyatakan pedoman yang sesuai dengan peristiwa.",
+        "Mulakan dengan “Kita hendaklah...” kemudian kaitkan pedoman dengan peristiwa yang sesuai.",
       ),
       node(
         "jawab-latar",
         "Latar",
-        "JENIS LATAR + TEMPAT / MASYARAKAT / MASA + PERISTIWA. Jangan gunakan lokasi sebagai latar masyarakat.",
+        "Nyatakan JENIS LATAR + TEMPAT / MASYARAKAT / MASA + PERISTIWA.",
       ),
       node(
         "jawab-plot",
         "Plot",
-        "PERINGKAT + PERISTIWA. Pilih kejadian yang tepat bagi tahap plot yang ditanya.",
+        "Nyatakan PERINGKAT PLOT + PERISTIWA yang berlaku pada peringkat tersebut.",
       ),
       node(
         "jawab-fokus",
-        "Jawab dengan Fokus",
-        "Jangan ceritakan semula seluruh karya apabila satu peristiwa sudah cukup sebagai bukti.",
+        "Jawab Secara Fokus",
+        "Satu peristiwa yang tepat biasanya mencukupi; jangan ceritakan semula seluruh cerita.",
       ),
+      branch("ingatan-enam", "ASAL PADI DALAM 6 LANGKAH", [
+        node("ingatan-enam-susah", "1. SUSAH"),
+        node("ingatan-enam-kayangan", "2. KAYANGAN"),
+        node("ingatan-enam-kenal", "3. KENAL PADI"),
+        node("ingatan-enam-akal", "4. CARI AKAL"),
+        node("ingatan-enam-bawa", "5. BAWA KE BUMI"),
+        node("ingatan-enam-berkembang", "6. PADI BERKEMBANG"),
+      ]),
+      node("ingatan-bongsu", "SI BONGSU", "BIJAK + GIGIH + BERANI + RAJIN"),
     ]),
     branch("kesalahan", "Kesalahan Lazim", [
       node(
         "kesalahan-tema-sinopsis",
         "Tema = Sinopsis",
-        "SALAH: menceritakan semula seluruh cerita apabila soalan meminta idea utama.",
+        "Salah: menceritakan semula seluruh cerita apabila soalan hanya meminta tema.",
       ),
       node(
         "kesalahan-persoalan-tema",
         "Persoalan = Tema",
-        "SALAH: tidak membezakan idea utama daripada idea sampingan.",
+        "Salah: tidak membezakan idea utama dengan idea sampingan.",
       ),
       node(
         "kesalahan-watak-perwatakan",
         "Watak = Perwatakan",
-        "SALAH: “Perwatakan ialah Si Bongsu.” BETUL: “Si Bongsu seorang yang bijaksana.”",
+        "Salah: “Perwatakan ialah Si Bongsu.” Betul: “Si Bongsu seorang yang bijaksana.”",
       ),
       node(
-        "kesalahan-tanpa-bukti",
+        "kesalahan-bukti-tiada",
         "Perwatakan Tanpa Bukti",
-        "Sifat diberikan tanpa peristiwa yang menyokongnya.",
+        "Sifat dinyatakan tanpa peristiwa yang menyokongnya.",
       ),
       node(
         "kesalahan-nilai-pengajaran",
         "Nilai = Pengajaran",
-        "NILAI ialah sifat atau amalan, manakala PENGAJARAN ialah nasihat atau pedoman.",
+        "Nilai ialah sifat atau amalan, manakala pengajaran ialah pedoman berbentuk tindakan.",
       ),
       node(
         "kesalahan-latar",
         "Latar Tempat = Latar Masyarakat",
-        "SALAH: lokasi fizikal digunakan sebagai ciri masyarakat.",
+        "Lokasi fizikal tidak boleh digunakan sebagai ciri masyarakat.",
       ),
       node(
         "kesalahan-bukti",
         "Bukti Salah",
-        "Peristiwa yang dipilih tidak menyokong sifat, nilai atau idea yang diberikan.",
+        "Peristiwa yang dipilih tidak menyokong sifat atau nilai yang dinyatakan.",
       ),
       node(
         "kesalahan-panjang",
         "Cerita Semula Terlalu Panjang",
-        "Jawapan hilang fokus kerana terlalu banyak peristiwa yang tidak diperlukan.",
+        "Jawapan hilang fokus kerana seluruh jalan cerita dihuraikan.",
       ),
       node(
         "kesalahan-reka",
         "Fakta Direka",
-        "Watak, peristiwa, gaya bahasa atau butiran yang tiada dalam teks ditambah.",
+        "Watak atau peristiwa yang tiada dalam teks ditambahkan.",
       ),
       node(
         "kesalahan-versi",
         "Campur Versi Cerita",
-        "Jangan gunakan butiran daripada versi serantau atau cerita rakyat Asal Padi yang lain jika butiran itu tidak terdapat dalam teks KOMSAS yang ditetapkan.",
+        "Jangan gunakan butiran daripada versi serantau lain tentang Asal Padi jika butiran itu tidak terdapat dalam teks KOMSAS yang ditetapkan.",
       ),
     ]),
   ],

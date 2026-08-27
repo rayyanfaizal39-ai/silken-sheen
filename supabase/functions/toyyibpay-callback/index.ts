@@ -209,7 +209,21 @@ Deno.serve(async (request) => {
       : processResult.data;
     if (!processed?.invoice_id) throw new Error("Invoice processing returned no invoice");
 
-    await ensureInvoiceAssets(admin, processed.invoice_id);
+    try {
+      await ensureInvoiceAssets(admin, processed.invoice_id);
+    } catch (assetError) {
+      // The payment and invoice are already committed. Asset delivery is
+      // repairable from Account & Billing and must not invalidate payment.
+      console.error(
+        JSON.stringify({
+          scope: "billing",
+          event: "invoice_asset_delivery_deferred",
+          paymentId: payment.id,
+          invoiceId: processed.invoice_id,
+          error: assetError instanceof Error ? assetError.message : String(assetError),
+        }),
+      );
+    }
     console.info(
       JSON.stringify({
         scope: "billing",

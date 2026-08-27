@@ -9,21 +9,24 @@ interface NavItem {
   label: string;
   active?: boolean;
   to?:
+    | "/admin"
     | "/admin/cikgu-intel"
     | "/admin/content-library"
     | "/admin/content/quiz-importer"
     | "/admin/users"
-    | "/admin/reports";
+    | "/admin/reports"
+    | "/admin/traffic";
 }
 
 const NAV: { group: string; items: NavItem[] }[] = [
   {
     group: "Overview",
     items: [
-      { icon: "▣", label: "Dashboard", active: true },
+      { icon: "▣", label: "Dashboard", to: "/admin" },
       { icon: "👥", label: "Users", to: "/admin/users" },
       { icon: "💳", label: "Payments" },
       { icon: "📝", label: "Quiz activity" },
+      { icon: "◉", label: "Visitor traffic", to: "/admin/traffic" },
       { icon: "📊", label: "Reports", to: "/admin/reports" },
     ],
   },

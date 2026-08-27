@@ -48,13 +48,16 @@ function branchText(label: string): string {
     .join(" ");
 }
 
-describe("Bahasa Melayu Form 1 Asal Padi KOMSAS mind map", () => {
-  it("registers exactly the two requested interactive KOMSAS topics in order", () => {
+describe("Bahasa Melayu Form 1 Asal Padi mind map", () => {
+  it("preserves the ordered interactive Form 1 KOMSAS topics", () => {
     expect(bahasaMelayuTingkatan1KomsasRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Strategi Memahami dan Menjawab KOMSAS",
       title,
+      "Oren",
+      "Aku",
+      "Kunci Bahasa",
+      "Hadiah",
     ]);
-
     const chapter = getChapter("bm", title, undefined, "Form 1");
     expect(chapter).toMatchObject({
       id: "bm-f1-asal-padi-mindmap",
@@ -65,10 +68,7 @@ describe("Bahasa Melayu Form 1 Asal Padi KOMSAS mind map", () => {
       description:
         "Kisah Si Bongsu yang berusaha membawa padi dari kayangan ke bumi melalui keberanian, kebijaksanaan dan kegigihannya.",
       categoryLabel: "KOMSAS",
-      mindMap: {
-        data: bahasaMelayuTingkatan1AsalPadiMindMap,
-        title,
-      },
+      mindMap: { data: bahasaMelayuTingkatan1AsalPadiMindMap, title },
     });
     expect(hasResourceContent("bm", "Form 1", title, "mindMap")).toBe(true);
     expect(chapter).not.toHaveProperty("notes");
@@ -77,19 +77,19 @@ describe("Bahasa Melayu Form 1 Asal Padi KOMSAS mind map", () => {
     expect(chapter).not.toHaveProperty("video");
   });
 
-  it("keeps the topic isolated to Form 1 KOMSAS with the requested navigation", () => {
+  it("keeps Asal Padi isolated to Form 1 and within KOMSAS navigation", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 1").filter(
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = topics.findIndex((topic) => topic.key === title);
-    expect(topics).toHaveLength(2);
+    expect(topics).toHaveLength(6);
     expect(topics[index - 1]?.key).toBe("Strategi Memahami dan Menjawab KOMSAS");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Oren");
     expect(getChapter("bm", title, undefined, "Form 2")).toBeUndefined();
     expect(getChapter("bm", title, undefined, "Form 3")).toBeUndefined();
   });
 
-  it("uses the exact root identity and title-only first-level hierarchy", () => {
+  it("uses the exact root and title-only first-level hierarchy", () => {
     expect(bahasaMelayuTingkatan1AsalPadiMindMap).toMatchObject({
       id: "bm-f1-asal-padi-root",
       label: "ASAL PADI",
@@ -105,42 +105,40 @@ describe("Bahasa Melayu Form 1 Asal Padi KOMSAS mind map", () => {
     });
   });
 
-  it("contains the prescribed identity, story sequence, analysis and memory map", () => {
-    expect(branchText("Sinopsis")).toContain("Antologi Kuingin Berterima Kasih");
+  it("contains the prescribed identity and source-safe literary analysis", () => {
+    expect(branchText("Sinopsis")).toContain("Kuingin Berterima Kasih");
     expect(branchText("Sinopsis")).toContain("tujuh orang wanita");
     expect(branchText("Sinopsis")).toContain("luka pada tumitnya");
-    expect(branchText("Sinopsis")).toContain("Burung Pipit");
-    expect(branchText("Sinopsis")).toContain("Burung Tekuri");
+    expect(branchText("Sinopsis")).toContain("Burung Pipit dan Burung Tekuri");
     expect(branchText("Tema")).toContain("Kebijaksanaan dalam Menyelesaikan Masalah");
     expect(branchText("Watak")).toContain("Si Bongsu — Watak Utama");
     expect(branchText("Perwatakan")).toContain("Bukti Peristiwa");
-    expect(branchText("Plot")).toContain("Klimaks");
-    expect(branchText("Gaya Bahasa")).toContain("kaki itik");
-    expect(branchText("Peristiwa Penting")).toContain("ASAL PADI DALAM 6 LANGKAH");
-    expect(branchText("Peristiwa Penting")).toContain("BIJAK + GIGIH + BERANI + RAJIN");
+    expect(branchText("Gaya Bahasa")).toContain("seperti kaki itik");
+    expect(branchText("Gaya Bahasa")).toContain("Jangan mendakwa kata ganda");
+    expect(branchText("Teknik Menjawab")).toContain("ASAL PADI DALAM 6 LANGKAH");
     expect(branchText("Kesalahan Lazim")).toContain("Campur Versi Cerita");
   });
 
-  it("does not add an author, future KOMSAS works or unsupported plot techniques", () => {
+  it("does not invent an author or mix in the alternate Puteri Padi tale", () => {
     const allText = collectNodes(bahasaMelayuTingkatan1AsalPadiMindMap)
       .map((item) => `${item.label} ${item.summary ?? ""}`)
       .join(" ");
-    expect(allText).not.toMatch(/Oren|Hadiah|imbas kembali|imbas muka/i);
-    expect(allText).not.toMatch(/karya (?:oleh|karangan)\s+[A-Z]/i);
-    expect(bahasaMelayuTingkatan1KomsasRegistry.map((topic) => topic.chapterKey)).not.toContain(
-      "Oren",
+    expect(allText).not.toMatch(/pengarang\s*:/i);
+    expect(allText).not.toMatch(
+      /Puteri Padi|kampung yang dilanda kebuluran|wanita berpakaian serba kuning/i,
     );
+    expect(allText).not.toMatch(/imbas kembali|imbas muka/i);
   });
 
-  it("supports full expansion with unique, non-overlapping desktop nodes", () => {
+  it("supports complete expansion with unique, non-overlapping desktop nodes", () => {
     const nodes = collectNodes(bahasaMelayuTingkatan1AsalPadiMindMap);
     expect(new Set(nodes.map((item) => item.id)).size).toBe(nodes.length);
     expect(getVisibleMindNodes(bahasaMelayuTingkatan1AsalPadiMindMap, new Set())).toHaveLength(1);
-
     const expanded = getExpandableMindNodeIds(bahasaMelayuTingkatan1AsalPadiMindMap);
     expect(getVisibleMindNodes(bahasaMelayuTingkatan1AsalPadiMindMap, expanded)).toHaveLength(
       nodes.length,
     );
+
     const positions = Array.from(
       calculateMindMapLayout(bahasaMelayuTingkatan1AsalPadiMindMap, expanded).positions.values(),
     );
@@ -170,6 +168,6 @@ describe("Bahasa Melayu Form 1 Asal Padi KOMSAS mind map", () => {
     expect(markup).toContain('aria-expanded="false"');
     expect(markup).toContain("ASAL PADI");
     expect(markup).toContain("Peristiwa Penting");
-    expect(markup).not.toContain("Dua Beradik Hidup Susah");
+    expect(markup).not.toContain("Kuingin Berterima Kasih");
   });
 });

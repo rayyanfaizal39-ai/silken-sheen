@@ -4,6 +4,7 @@ import planet from "@/assets/landing-cinematic/planet.webp";
 import rocket from "@/assets/landing-cinematic/rocket.webp";
 import { CinematicAuthCta } from "./CinematicAuthActions";
 import { useCinematicMotion } from "./cinematicMotionContext";
+import { trackVisitorEvent } from "@/lib/visitor-analytics";
 
 /** Screen-space heading (deg) of the rocket PNG's nose at rotation 0, measured
  *  from the artwork's nose→exhaust axis so the aim maths has a real offset. */
@@ -271,6 +272,7 @@ export default function HeroScene() {
             href="/explore-academy"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => void trackVisitorEvent("explore_clicked", { placement: "hero" })}
           >
             Explore AcadeMY
           </a>

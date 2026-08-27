@@ -14,8 +14,21 @@ import {
   removePendingGeographyF3Progress,
   sanitizeRemovedGeographyF3Progress,
 } from "@/lib/removed-content-progress";
-import { RANKS, getRank, getNextRank, getRankProgress, type SpaceRank } from "@/data/rankAssets";
-import { DEFAULT_PROFILE_AVATAR_ID, type ProfileAvatarId } from "@/data/profile-avatars";
+import {
+  RANKS,
+  getRank,
+  getNextRank,
+  getRankProgress,
+  type SpaceRank,
+} from "@/data/rankAssets";
+import {
+  DEFAULT_PROFILE_AVATAR_ID,
+  type ProfileAvatarId,
+} from "@/data/profile-avatars";
+import {
+  createXpProgressionEvent,
+  publishProgressionEvent,
+} from "@/lib/progression-events";
 
 export {
   RANKS,
@@ -917,6 +930,8 @@ export function useProgress() {
   /** Compares XP before/after an update and raises transient celebration events. Does not touch persisted state. */
   const detectProgressionEvents = useCallback((prev: Progress, next: Progress) => {
     if (next.xp === prev.xp) return;
+
+    publishProgressionEvent(createXpProgressionEvent(prev.xp, next.xp));
 
     const rankUp = getRankUpTransition(prev.xp, next.xp);
     if (rankUp) {

@@ -11,7 +11,7 @@ export const Route = createFileRoute("/privacy")({
   component: PrivacyPage,
 });
 
-const EFFECTIVE_DATE = "28 June 2026";
+const EFFECTIVE_DATE = "16 August 2026";
 
 function PrivacyPage() {
   return (
@@ -61,8 +61,15 @@ function PrivacyPage() {
             </li>
             <li>
               <strong className="text-white/85">Local device storage.</strong> When you are not
-              signed in, study progress is stored only in your browser's local storage on your
-              own device.
+              signed in, learning progress remains in your browser's local storage on your own
+              device.
+            </li>
+            <li>
+              <strong className="text-white/85">Visitor analytics.</strong> We assign a random
+              browser identifier and record pages visited, sessions, Explore interactions,
+              device-size category, referral domain, and campaign tags. This lets us understand
+              usage and retention before and after sign-in. We do not store names, email
+              addresses, full referral URLs, or raw IP addresses in these analytics events.
             </li>
           </ul>
         </section>
@@ -98,6 +105,7 @@ function PrivacyPage() {
             <li>To show you a leaderboard rank.</li>
             <li>To generate optional parent/guardian progress reports, when configured.</li>
             <li>To operate, maintain, and improve the Service.</li>
+            <li>To measure anonymous traffic, feature use, conversion, and visitor retention.</li>
           </ul>
         </section>
 
@@ -139,6 +147,7 @@ function PrivacyPage() {
           <h2 className="mb-2 font-display text-lg font-bold text-white">7. Your choices</h2>
           <ul className="ml-5 list-disc space-y-1.5">
             <li>You can use AcadeMY without signing in; progress is then kept only on your device.</li>
+            <li>You can reset the anonymous visitor identifier by clearing this site's browser storage.</li>
             <li>You can sign out at any time from the sidebar.</li>
             <li>You can request access to, correction of, or deletion of your data by contacting us.</li>
           </ul>

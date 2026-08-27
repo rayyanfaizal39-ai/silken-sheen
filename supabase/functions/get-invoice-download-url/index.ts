@@ -1,4 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2.108.1";
+import { resolveInvoiceLegalDetails } from "../_shared/invoice-brand.ts";
+import { generateInvoicePdf } from "../_shared/invoice-pdf.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -50,7 +52,7 @@ Deno.serve(async (request) => {
 
     const invoiceResult = await authenticated
       .from("invoices")
-      .select("id, user_id, invoice_number, pdf_storage_path")
+      .select("*")
       .eq("id", body.invoiceId)
       .eq("user_id", user.id)
       .maybeSingle();
@@ -58,16 +60,37 @@ Deno.serve(async (request) => {
     if (!invoiceResult.data) {
       return response({ error: "Invoice is not available" }, 404);
     }
-    if (!invoiceResult.data.pdf_storage_path) {
-      return response({ error: "Invoice PDF is not ready" }, 409);
-    }
-
     const admin = createClient(supabaseUrl, serviceRoleKey, {
       auth: { persistSession: false, autoRefreshToken: false },
     });
+    let storagePath = invoiceResult.data.pdf_storage_path as string | null;
+    if (!storagePath) {
+      const invoice = {
+        ...invoiceResult.data,
+        subtotal: Number(invoiceResult.data.subtotal),
+        tax: Number(invoiceResult.data.tax),
+        total: Number(invoiceResult.data.total),
+      };
+      const pdf = await generateInvoicePdf(
+        invoice,
+        resolveInvoiceLegalDetails((name) => Deno.env.get(name)),
+      );
+      storagePath = `${user.id}/${invoice.invoice_number}.pdf`;
+      const upload = await admin.storage.from("invoices").upload(storagePath, pdf, {
+        contentType: "application/pdf",
+        upsert: true,
+      });
+      if (upload.error) throw upload.error;
+      const update = await admin
+        .from("invoices")
+        .update({ pdf_storage_path: storagePath })
+        .eq("id", invoice.id)
+        .eq("user_id", user.id);
+      if (update.error) throw update.error;
+    }
     const signed = await admin.storage
       .from("invoices")
-      .createSignedUrl(invoiceResult.data.pdf_storage_path, 60, {
+      .createSignedUrl(storagePath, 60, {
         download: `${invoiceResult.data.invoice_number}.pdf`,
       });
     if (signed.error) throw signed.error;

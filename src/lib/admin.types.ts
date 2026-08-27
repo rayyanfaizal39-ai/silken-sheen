@@ -276,3 +276,29 @@ export interface ReportsData {
   premium_insights: ReportsPremiumInsights;
   charts: ReportsCharts;
 }
+
+export interface VisitorRetentionPoint {
+  eligible: number;
+  retained: number;
+  rate: number | null;
+}
+
+export interface VisitorAnalyticsData {
+  days: number;
+  unique_visitors: number;
+  sessions: number;
+  page_views: number;
+  returning_visitors: number;
+  explore_visitors: number;
+  login_visitors: number;
+  authenticated_visitors: number;
+  retention: Record<"day_1" | "day_7" | "day_30", VisitorRetentionPoint>;
+  daily: Array<{
+    day: string;
+    visitors: number;
+    sessions: number;
+    page_views: number;
+    explore_visitors: number;
+  }>;
+  top_paths: Array<{ path: string; views: number; visitors: number }>;
+}
