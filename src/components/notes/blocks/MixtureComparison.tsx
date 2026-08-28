@@ -1,5 +1,11 @@
 import { useState } from "react";
 import type { MixtureComparisonBlock, MixtureKind } from "@/content/form2/science/interactive-types";
+import type { ImageAnnotation } from "./AnnotatedImage";
+import {
+  InteractiveBadge,
+  InteractiveFigureCard,
+  mergeConcepts,
+} from "./InteractiveFigureCard";
 
 /**
  * Solution, suspension and colloid compared by the two tests that actually
@@ -53,17 +59,61 @@ function Beaker({ kind, selected }: { kind: MixtureKind; selected: boolean }) {
   );
 }
 
-export function MixtureComparison({ block }: { block: MixtureComparisonBlock }) {
+export function MixtureComparison({
+  block,
+  lang,
+}: {
+  block: MixtureComparisonBlock;
+  lang?: string;
+}) {
+  // Approved artwork replaces the three drawn beakers. The comparison table
+  // that sat beside them is not lost: every field becomes a labelled fact in
+  // the figure's explanation panel, using this block's own localised labels.
+  if (block.image) {
+    const concepts: ImageAnnotation[] = block.kinds.map((kind) => {
+      const point = block.image!.points.find((p) => p.id === kind.id);
+      return {
+        id: kind.id,
+        label: kind.name,
+        note: kind.note,
+        x: point?.x,
+        y: point?.y,
+        w: point?.w,
+        h: point?.h,
+        facts: [
+          { label: block.appearanceLabel, value: kind.appearance },
+          { label: block.filtrationLabel, value: kind.filtration },
+          { label: block.exampleLabel, value: kind.example },
+        ],
+      };
+    });
+    const withExtras = mergeConcepts(concepts, block.image.extra);
+    return (
+      <InteractiveFigureCard
+        lang={lang}
+        instruction={block.instruction}
+        prompt={block.hint}
+        concepts={withExtras}
+        image={{
+          src: block.image.src,
+          alt: block.image.alt,
+          size: block.image.size ?? "wide",
+          aspect: block.image.aspect ?? "3 / 2",
+          caption: block.image.caption,
+          legendLabel: block.image.legendLabel ?? block.title,
+          annotationMode: block.image.annotationMode ?? "regions",
+          imageKey: block.image.imageKey,
+        }}
+      />
+    );
+  }
+
   const [active, setActive] = useState<string | null>(null);
   const activeKind = block.kinds.find((k) => k.id === active) ?? null;
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
-      {block.instruction && (
-        <p className="mb-2.5 text-[13px] leading-relaxed text-muted-foreground">
-          {block.instruction}
-        </p>
-      )}
+      <InteractiveBadge lang={lang} instruction={block.instruction} className="mb-2.5" />
 
       <div className="grid gap-2.5 sm:grid-cols-3">
         {block.kinds.map((kind) => {
@@ -74,7 +124,7 @@ export function MixtureComparison({ block }: { block: MixtureComparisonBlock }) 
               type="button"
               aria-pressed={isActive}
               onClick={() => setActive(isActive ? null : kind.id)}
-              className={`flex flex-col rounded-xl border px-2.5 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+              className={`flex cursor-pointer flex-col rounded-xl border-2 px-2.5 py-2 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                 isActive
                   ? "border-primary bg-primary/10"
                   : "border-border bg-card/55 hover:border-primary"

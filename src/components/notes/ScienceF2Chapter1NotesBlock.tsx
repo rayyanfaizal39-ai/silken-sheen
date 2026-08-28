@@ -12,6 +12,8 @@ import { ChipRow } from "@/components/notes/blocks/ChipRow";
 import { FlipCardGrid } from "@/components/notes/blocks/FlipCard";
 import { ClassificationTree } from "@/components/notes/blocks/ClassificationTree";
 import { AnnotatedImage } from "@/components/notes/blocks/AnnotatedImage";
+import { InteractiveFigureCard } from "@/components/notes/blocks/InteractiveFigureCard";
+import { figureCopy } from "@/components/notes/blocks/figure-copy";
 import { DichotomousStarMap } from "@/components/notes/blocks/DichotomousStarMap";
 import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectionChecklist";
 import type {
@@ -288,32 +290,39 @@ function MiniQuizCard({
 
 function Figure({ block, lang }: { block?: AnnotatedImageBlock; lang: Lang }) {
   if (!block) return null;
-  const copy =
-    lang === "bm"
-      ? {
-          enlarge: "Besarkan",
-          close: "Tutup",
-          hint: "Ketik mana-mana label pada rajah untuk melihat penerangannya.",
-        }
-      : {
-          enlarge: "Enlarge",
-          close: "Close",
-          hint: "Tap any label on the diagram to see what it does.",
-        };
+  const copy = figureCopy(lang);
+  const image = {
+    src: block.src,
+    alt: block.alt,
+    size: block.size,
+    aspect: block.aspect,
+    caption: block.caption,
+    legendLabel: block.legendLabel,
+    annotationMode: block.annotationMode ?? ("labels" as const),
+    imageKey: block.imageKey,
+  };
+
+  // A figure whose labels explain something is interactive, and says so. One
+  // with nothing to reveal stays a plain bounded image with its enlarge control.
+  const interactive = block.annotations.some((annotation) => annotation.note);
+  if (!interactive) {
+    return (
+      <AnnotatedImage
+        {...image}
+        annotations={block.annotations}
+        enlargeLabel={copy.enlarge}
+        closeLabel={copy.close}
+        hintLabel={copy.prompt}
+      />
+    );
+  }
+
   return (
-    <AnnotatedImage
-      src={block.src}
-      alt={block.alt}
-      size={block.size}
-      aspect={block.aspect}
-      caption={block.caption}
-      legendLabel={block.legendLabel}
-      annotationMode={block.annotationMode ?? "labels"}
-      annotations={block.annotations}
-      imageKey={block.imageKey}
-      enlargeLabel={copy.enlarge}
-      closeLabel={copy.close}
-      hintLabel={copy.hint}
+    <InteractiveFigureCard
+      lang={lang}
+      concepts={block.annotations}
+      showControls={false}
+      image={image}
     />
   );
 }

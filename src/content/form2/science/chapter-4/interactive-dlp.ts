@@ -1,5 +1,8 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch4-kesihatan-manusia.png";
+import transmissionRoutesImg from "@/assets/notes/form2-science/chapter-4/chapter4_infectious_disease_transmission.webp";
+import vectorPathogenDiseaseImg from "@/assets/notes/form2-science/chapter-4/chapter4_vector_pathogen_disease.webp";
+import bodyDefenceImg from "@/assets/notes/form2-science/chapter-4/chapter4_three_lines_body_defence.webp";
 
 export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 4,
@@ -96,6 +99,56 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
           body: "A housefly landing on waste picks up pathogens on its legs and body. It then transfers those pathogens onto food, and the pathogens enter the body of whoever eats the contaminated food.",
         },
       ],
+      images: [
+        {
+          src: transmissionRoutesImg,
+          alt: "Four routes by which infectious diseases spread: through the air, through water, through contact and through vectors.",
+          size: "wide",
+          aspect: "4 / 3",
+          legendLabel: "The four routes of transmission",
+          annotationMode: "regions",
+          caption:
+            "Each route is already named on the artwork. Pick one to see how it carries a pathogen to a new host.",
+          annotations: [
+            {
+              id: "air",
+              label: "Air",
+              note: "Pathogens are carried by droplets of saliva or by dust, and are breathed in by the next host.",
+              x: 26,
+              y: 28,
+              w: 44,
+              h: 40,
+            },
+            {
+              id: "water",
+              label: "Water",
+              note: "Pathogens spread through water contaminated by faeces or sewage, and infect a person who drinks it.",
+              x: 74,
+              y: 28,
+              w: 44,
+              h: 40,
+            },
+            {
+              id: "contact",
+              label: "Contact",
+              note: "Infection spreads by touching infected skin, or by wearing a patient's clothing or sharing personal items.",
+              x: 26,
+              y: 71,
+              w: 44,
+              h: 40,
+            },
+            {
+              id: "vector",
+              label: "Vector",
+              note: "Animals such as the mosquito and the rat carry a pathogen from one host to a new host.",
+              x: 74,
+              y: 71,
+              w: 44,
+              h: 40,
+            },
+          ],
+        },
+      ],
       checks: [
         {
           question: "State three ways infectious diseases are spread.",
@@ -154,6 +207,47 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
           },
         ],
       },
+      images: [
+        {
+          src: vectorPathogenDiseaseImg,
+          alt: "Three chains showing a vector carrying a pathogen that causes a disease: Aedes mosquito to dengue virus to dengue; rat to Leptospira bacteria to leptospirosis; housefly or cockroach to Salmonella typhi to typhoid.",
+          size: "wide",
+          aspect: "4 / 3",
+          legendLabel: "Vector, pathogen and disease",
+          annotationMode: "regions",
+          caption:
+            "Read each row left to right. The vector only carries; the pathogen is what causes the disease.",
+          annotations: [
+            {
+              id: "vector",
+              label: "Vector",
+              note: "The animal that carries the pathogen to a new host — the Aedes mosquito, the rat, the housefly or the cockroach. It does not cause the disease itself.",
+              x: 19,
+              y: 55,
+              w: 24,
+              h: 78,
+            },
+            {
+              id: "pathogen",
+              label: "Pathogen",
+              note: "The disease-causing microorganism the vector carries — dengue virus, Leptospira bacteria, Salmonella typhi.",
+              x: 49,
+              y: 55,
+              w: 22,
+              h: 78,
+            },
+            {
+              id: "disease",
+              label: "Disease",
+              note: "The condition that results once the pathogen infects the body — dengue fever, leptospirosis, typhoid.",
+              x: 80,
+              y: 55,
+              w: 24,
+              h: 78,
+            },
+          ],
+        },
+      ],
       checks: [
         {
           question: "What is the difference between a pathogen and a vector?",
@@ -215,6 +309,19 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       intro:
         "Pathogens enter the body through the respiratory system, the digestive system, the excretory system and the skin. The body blocks them with three lines of defence that act one after another.",
       defenceLines: {
+        image: {
+          src: bodyDefenceImg,
+          alt: "The three lines of body defence: skin and mucous membrane, phagocytosis by a white blood cell, and antibodies produced by lymphocytes.",
+          size: "wide",
+          aspect: "4 / 3",
+          annotationMode: "regions",
+          legendLabel: "The three lines of defence",
+          points: [
+            { id: "pertama", x: 19, y: 48, w: 32, h: 78 },
+            { id: "kedua", x: 51, y: 48, w: 30, h: 78 },
+            { id: "ketiga", x: 82, y: 48, w: 30, h: 78 },
+          ],
+        },
         title: "Follow a pathogen through each line",
         instruction:
           "The first two lines attack any pathogen at all. The third targets one particular antigen only.",
