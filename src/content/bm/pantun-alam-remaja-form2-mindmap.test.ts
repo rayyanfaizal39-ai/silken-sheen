@@ -45,8 +45,8 @@ function branchText(label: string): string {
 }
 
 describe("Bahasa Melayu Form 2 Pantun Alam Remaja mind map", () => {
-  it("creates the Form 2 KOMSAS registry and registers the topic exactly once", () => {
-    expect(bahasaMelayuTingkatan2KomsasRegistry.map((topic) => topic.chapterKey)).toEqual([title]);
+  it("keeps the topic first in the growing Form 2 KOMSAS registry", () => {
+    expect(bahasaMelayuTingkatan2KomsasRegistry[0]?.chapterKey).toBe(title);
     expect(
       bahasaMelayuTingkatan2KomsasRegistry.filter((topic) => topic.chapterKey === title),
     ).toHaveLength(1);
@@ -66,14 +66,14 @@ describe("Bahasa Melayu Form 2 Pantun Alam Remaja mind map", () => {
     expect(getChapter("bm", title, undefined, "Form 3")).toBeUndefined();
   });
 
-  it("starts the Form 2 KOMSAS sequence with registry-driven navigation", () => {
+  it("starts the Form 2 KOMSAS sequence with registry-driven next navigation", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 2").filter(
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = topics.findIndex((topic) => topic.key === title);
-    expect(topics.map((topic) => topic.key)).toEqual([title]);
+    expect(topics.map((topic) => topic.key)).toEqual([title, "Pantun Kiasan"]);
     expect(topics[index - 1]).toBeUndefined();
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Pantun Kiasan");
   });
 
   it("uses the prescribed identity and twelve title-only first-level branches", () => {
