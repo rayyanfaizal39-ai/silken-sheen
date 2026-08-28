@@ -8,6 +8,7 @@ import { bahasaMelayuTingkatan1KuihBakulLimauMandarinMindMap } from "@/content/b
 import { bahasaMelayuTingkatan1HadiahDramaMindMap } from "@/content/bm/hadiah-drama-form1-mindmap";
 import { bahasaMelayuTingkatan1KitaUmpamaSehelaiDaunMindMap } from "@/content/bm/kita-umpama-sehelai-daun-form1-mindmap";
 import { bahasaMelayuTingkatan1PantunDuaKeratNasihatMindMap } from "@/content/bm/pantun-dua-kerat-nasihat-form1-mindmap";
+import { bahasaMelayuTingkatan1SyairPohonBuluhMindMap } from "@/content/bm/syair-pohon-buluh-form1-mindmap";
 import { bahasaMelayuTingkatan1StrategiKomsasMindMap } from "@/content/bm/strategi-memahami-menjawab-komsas-form1-mindmap";
 
 export const bahasaMelayuTingkatan1KomsasRegistry = [
@@ -149,6 +150,20 @@ export const bahasaMelayuTingkatan1KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan1PantunDuaKeratNasihatMindMap,
       title: "Pantun Dua Kerat (Nasihat)",
+    },
+  },
+  {
+    id: "bm-f1-syair-pohon-buluh-mindmap",
+    subjectId: "bm",
+    form: "Form 1",
+    chapterKey: "Syair Pohon Buluh",
+    title: "Syair Pohon Buluh",
+    description:
+      "Syair yang menggunakan pohon buluh sebagai gambaran masyarakat yang hidup bersatu padu, bermuafakat, menjaga persaudaraan dan bertanggungjawab memelihara keamanan.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan1SyairPohonBuluhMindMap,
+      title: "Syair Pohon Buluh",
     },
   },
 ] as const satisfies readonly ChapterContent[];
