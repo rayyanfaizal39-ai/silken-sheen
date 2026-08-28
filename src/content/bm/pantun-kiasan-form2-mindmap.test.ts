@@ -51,6 +51,7 @@ describe("Bahasa Melayu Form 2 Pantun Kiasan mind map", () => {
     expect(bahasaMelayuTingkatan2KomsasRegistry.map((topic) => topic.chapterKey)).toEqual([
       "Pantun Alam Remaja",
       title,
+      "Pantun Budi",
     ]);
     expect(
       bahasaMelayuTingkatan2KomsasRegistry.filter((topic) => topic.chapterKey === title),
@@ -71,14 +72,14 @@ describe("Bahasa Melayu Form 2 Pantun Kiasan mind map", () => {
     expect(getChapter("bm", title, undefined, "Form 3")).toBeUndefined();
   });
 
-  it("uses registry-driven previous navigation and ends the current sequence", () => {
+  it("uses registry-driven previous and next navigation", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 2").filter(
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = topics.findIndex((topic) => topic.key === title);
-    expect(topics.map((topic) => topic.key)).toEqual(["Pantun Alam Remaja", title]);
+    expect(topics.map((topic) => topic.key)).toEqual(["Pantun Alam Remaja", title, "Pantun Budi"]);
     expect(topics[index - 1]?.key).toBe("Pantun Alam Remaja");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Pantun Budi");
   });
 
   it("uses the prescribed identity and fourteen title-only first-level branches", () => {

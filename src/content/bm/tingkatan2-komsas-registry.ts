@@ -1,5 +1,6 @@
 import type { ChapterContent } from "@/content/types";
 import { bahasaMelayuTingkatan2PantunAlamRemajaMindMap } from "@/content/bm/pantun-alam-remaja-form2-mindmap";
+import { bahasaMelayuTingkatan2PantunBudiMindMap } from "@/content/bm/pantun-budi-form2-mindmap";
 import { bahasaMelayuTingkatan2PantunKiasanMindMap } from "@/content/bm/pantun-kiasan-form2-mindmap";
 
 export const bahasaMelayuTingkatan2KomsasRegistry = [
@@ -29,6 +30,20 @@ export const bahasaMelayuTingkatan2KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2PantunKiasanMindMap,
       title: "Pantun Kiasan",
+    },
+  },
+  {
+    id: "bm-f2-pantun-budi-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Pantun Budi",
+    title: "Pantun Budi",
+    description:
+      "Pantun yang menekankan kepentingan budi bahasa, mengenang jasa, menjaga tutur kata dan memelihara kemuliaan diri serta bangsa.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2PantunBudiMindMap,
+      title: "Pantun Budi",
     },
   },
 ] as const satisfies readonly ChapterContent[];

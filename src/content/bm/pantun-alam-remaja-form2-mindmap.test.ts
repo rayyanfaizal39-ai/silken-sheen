@@ -71,7 +71,7 @@ describe("Bahasa Melayu Form 2 Pantun Alam Remaja mind map", () => {
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = topics.findIndex((topic) => topic.key === title);
-    expect(topics.map((topic) => topic.key)).toEqual([title, "Pantun Kiasan"]);
+    expect(topics.map((topic) => topic.key)).toEqual([title, "Pantun Kiasan", "Pantun Budi"]);
     expect(topics[index - 1]).toBeUndefined();
     expect(topics[index + 1]?.key).toBe("Pantun Kiasan");
   });
