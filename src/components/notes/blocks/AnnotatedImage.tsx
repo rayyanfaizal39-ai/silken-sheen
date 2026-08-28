@@ -32,11 +32,37 @@ export type ImageAnnotation = {
   label: string;
   /** Optional one-line detail revealed when the annotation is activated. */
   note?: string;
-  /** Horizontal position as a percentage of image width. */
-  x: number;
+  /** Optional emoji shown beside the label on its button and in the panel. */
+  icon?: string;
+  /**
+   * Extra labelled facts shown under the note in the explanation panel — used
+   * where a concept was previously taught by a small table, so folding that
+   * table into the figure loses none of it.
+   */
+  facts?: { label: string; value: string }[];
+  /**
+   * Horizontal position as a percentage of image width. Omit — together with
+   * `y` — for a concept the artwork does not depict: it then appears in the
+   * control row and the explanation panel, but draws nothing on the picture.
+   */
+  x?: number;
   /** Vertical position as a percentage of image height. */
-  y: number;
+  y?: number;
+  /**
+   * `regions` mode only — size of the invisible hit area, as a percentage of
+   * image width / height, centred on `x` / `y`. Percentages so the area tracks
+   * its structure at every rendered size, including inside the enlarge overlay.
+   */
+  w?: number;
+  h?: number;
 };
+
+/** An annotation that has a place on the artwork, so it can be drawn. */
+export type PlacedAnnotation = ImageAnnotation & { x: number; y: number };
+
+export function isPlaced(item: ImageAnnotation): item is PlacedAnnotation {
+  return typeof item.x === "number" && typeof item.y === "number";
+}
 
 export type AnnotatedImageProps = {
   /** Bundled asset URL (a `src/assets` import) or notes-bucket object path. */
@@ -54,6 +80,9 @@ export type AnnotatedImageProps = {
    *               label in place
    *  - `clean`    nothing on the artwork, names listed beneath — for
    *               observational visuals the student is meant to classify
+   *  - `regions`  invisible hit areas over artwork that already prints its own
+   *               labels; picking one highlights that area instead of adding a
+   *               second, competing label
    */
   annotationMode?: AnnotationMode;
   /**
@@ -77,6 +106,18 @@ export type AnnotatedImageProps = {
   closeLabel?: string;
   /** Localised prompt shown in the explanation panel before anything is picked. */
   hintLabel?: string;
+  /**
+   * Controlled selection. Pass both to let a parent own which concept is
+   * active — `InteractiveFigureCard` does this so its buttons and the regions
+   * on the artwork are always the same selection. Omit both to keep the
+   * figure self-contained, as chapters 1-3 do.
+   */
+  active?: string | null;
+  onActiveChange?: (next: string | null) => void;
+  /** Suppress the built-in legend — the parent is rendering the controls. */
+  hideLegend?: boolean;
+  /** Suppress the built-in explanation panel — the parent is rendering it. */
+  hidePanel?: boolean;
   className?: string;
 };
 
@@ -115,16 +156,27 @@ export function AnnotatedImage({
   enlargeLabel = "Enlarge",
   closeLabel = "Close",
   hintLabel,
+  active: controlledActive,
+  onActiveChange,
+  hideLegend = false,
+  hidePanel = false,
   className,
 }: AnnotatedImageProps) {
-  const [active, setActive] = useState<string | null>(null);
+  const [uncontrolledActive, setUncontrolledActive] = useState<string | null>(null);
   const [zoomed, setZoomed] = useState(false);
+  const isControlled = controlledActive !== undefined;
+  const active = isControlled ? controlledActive : uncontrolledActive;
+  const setActive = (next: string | null) => {
+    if (!isControlled) setUncontrolledActive(next);
+    onActiveChange?.(next);
+  };
   const baseId = useId();
   const url = getNotesImageUrl(src);
 
   const isCallout = annotationMode === "callouts";
   const isNumbers = annotationMode === "numbers";
   const isClean = annotationMode === "clean";
+  const isRegions = annotationMode === "regions";
   const wantsLabels = annotationMode === "labels" || annotationMode === "hybrid";
 
   // Direct labels stay on the artwork only while there is room for them. Past
@@ -132,22 +184,25 @@ export function AnnotatedImage({
   // there, so those figures also render pins plus the legend and let CSS pick:
   // the rich treatment from `sm` up, pins below it. Deciding this in CSS rather
   // than by measuring keeps the fallback correct before hydration.
+  // A concept with no coordinates is control-only: it never draws on the
+  // artwork, and must not be counted when deciding whether labels would collide.
+  const placed = annotations.filter(isPlaced);
   const artRatio = parseAspectRatio(aspect);
   // Gutters need horizontal room a phone does not have, and direct labels only
   // survive while they still fit side by side once the artwork is phone-sized.
   const needsSmallScreenFallback =
     isCallout ||
-    (wantsLabels && (annotations.length > 5 || labelsCollideWhenSmall(annotations, artRatio)));
+    (wantsLabels && (placed.length > 5 || labelsCollideWhenSmall(placed, artRatio)));
   const richVisibility = needsSmallScreenFallback ? "hidden sm:block" : "";
   const pinVisibility = needsSmallScreenFallback ? "sm:hidden" : "";
 
   const showPins = isNumbers || needsSmallScreenFallback;
   const showLegend =
-    isNumbers || isClean || annotationMode === "hybrid" || needsSmallScreenFallback;
-  // A `clean` or `hybrid` legend is the point, so it shows at every width; a
-  // fallback legend only accompanies the small-screen pins.
+    isNumbers || isClean || isRegions || annotationMode === "hybrid" || needsSmallScreenFallback;
+  // A `clean`, `regions` or `hybrid` legend is the point, so it shows at every
+  // width; a fallback legend only accompanies the small-screen pins.
   const legendVisibility =
-    isNumbers || isClean || annotationMode === "hybrid" ? "" : pinVisibility;
+    isNumbers || isClean || isRegions || annotationMode === "hybrid" ? "" : pinVisibility;
 
   const activeAnnotation = annotations.find((a) => a.id === active) ?? null;
   const resolvedSize = size ?? defaultLearningImageSize(aspect);
@@ -159,7 +214,7 @@ export function AnnotatedImage({
   // ratio is the artwork's ratio divided by the share the artwork occupies.
   const frameAspect = isCallout ? String(artRatio / (CALLOUT_ART / 100)) : aspect;
 
-  const callouts = isCallout ? layoutCallouts(annotations) : [];
+  const callouts = isCallout ? layoutCallouts(placed) : [];
 
   if (!url) return null;
 
@@ -248,8 +303,41 @@ export function AnnotatedImage({
             );
           })}
 
+        {/* Invisible hit areas over artwork that already prints its own labels.
+            Nothing is painted until a region is picked; then only a ring, so a
+            professionally labelled figure never gains a competing label set. */}
+        {isRegions &&
+          placed.map((item) => {
+            const isActive = active === item.id;
+            const width = item.w ?? 24;
+            const height = item.h ?? 24;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                aria-label={item.label}
+                aria-pressed={isActive}
+                aria-describedby={`${baseId}-explanation`}
+                // Click and focus only. A region that also cleared on mouse-leave
+                // wiped a selection the moment the pointer crossed the artwork,
+                // which is exactly the state the explanation panel must keep.
+                onClick={() => setActive(isActive ? null : item.id)}
+                onFocus={() => setActive(item.id)}
+                className={`absolute z-10 cursor-pointer rounded-xl border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  isActive ? "border-primary bg-primary/12" : "border-transparent hover:border-primary/60"
+                }`}
+                style={{
+                  left: `${Math.max(0, item.x - width / 2)}%`,
+                  top: `${Math.max(0, item.y - height / 2)}%`,
+                  width: `${width}%`,
+                  height: `${height}%`,
+                }}
+              />
+            );
+          })}
+
         {/* Direct labels and the small-screen pin fallback. */}
-        {annotations.map((item, index) => {
+        {placed.map((item, index) => {
           const isActive = active === item.id;
           // Anchor a marker by its nearest edge when it sits close to the frame
           // border, so a long wrapped label can never spill outside the image.
@@ -337,36 +425,58 @@ export function AnnotatedImage({
         </button>
       </div>
 
-      {showLegend && annotations.length > 0 && (
+      {showLegend && !hideLegend && annotations.length > 0 && (
         <ol
           aria-label={legendLabel ?? alt}
           className={`m-0 grid list-none grid-cols-1 gap-x-3 gap-y-0.5 p-0 sm:grid-cols-2 lg:grid-cols-3 ${legendVisibility}`}
         >
           {annotations.map((item, index) => {
             const isActive = active === item.id;
-            return (
-              <li
-                key={item.id}
-                id={`${baseId}-legend-${item.id}`}
-                className={`flex items-start gap-1.5 rounded-lg px-1.5 py-0.5 text-[11.5px] leading-snug transition-colors ${
-                  isActive ? "bg-primary/12 text-foreground" : "text-muted-foreground"
+            const marker = (
+              <span
+                aria-hidden="true"
+                className={`mt-[1px] inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] font-bold tabular-nums ${
+                  isClean || isRegions ? "text-primary" : ""
+                } ${
+                  isActive && !isClean && !isRegions
+                    ? "bg-primary text-primary-foreground"
+                    : isClean || isRegions
+                      ? ""
+                      : "bg-secondary text-muted-foreground"
                 }`}
               >
-                <span
-                  aria-hidden="true"
-                  className={`mt-[1px] inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] font-bold tabular-nums ${
-                    isClean ? "text-primary" : ""
-                  } ${
-                    isActive && !isClean
-                      ? "bg-primary text-primary-foreground"
-                      : isClean
-                        ? ""
-                        : "bg-secondary text-muted-foreground"
-                  }`}
-                >
-                  {isClean ? "·" : index + 1}
-                </span>
-                <span className="min-w-0">{item.label}</span>
+                {isClean || isRegions ? "·" : index + 1}
+              </span>
+            );
+            const rowClass = `flex items-start gap-1.5 rounded-lg px-1.5 py-0.5 text-[11.5px] leading-snug transition-colors ${
+              isActive ? "bg-primary/12 text-foreground" : "text-muted-foreground"
+            }`;
+
+            // A legend row is a real control wherever it has something to
+            // reveal — an entry that looked clickable but produced nothing was
+            // the dead affordance this pass set out to remove. In `regions`
+            // mode it is also the primary control, since the areas on the
+            // artwork carry no text of their own.
+            const interactive = isRegions || Boolean(item.note);
+            return (
+              <li key={item.id} id={`${baseId}-legend-${item.id}`} className="min-w-0">
+                {interactive ? (
+                  <button
+                    type="button"
+                    aria-pressed={isActive}
+                    onClick={() => setActive(isActive ? null : item.id)}
+                    onFocus={() => setActive(item.id)}
+                    className={`${rowClass} w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary`}
+                  >
+                    {marker}
+                    <span className="min-w-0">{item.label}</span>
+                  </button>
+                ) : (
+                  <span className={rowClass}>
+                    {marker}
+                    <span className="min-w-0">{item.label}</span>
+                  </span>
+                )}
               </li>
             );
           })}
@@ -376,8 +486,9 @@ export function AnnotatedImage({
       {/* One explanation panel per figure, always in the same place and always
           reserving its space, so picking a label never shifts the page and no
           label can look interactive while producing nothing. */}
-      {annotations.length > 0 && (
+      {annotations.length > 0 && !hidePanel && (
         <p
+          id={`${baseId}-explanation`}
           aria-live="polite"
           className={`min-h-[2.5rem] rounded-xl border px-3 py-1.5 text-[12px] leading-relaxed ${
             activeAnnotation

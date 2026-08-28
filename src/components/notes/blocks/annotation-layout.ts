@@ -1,4 +1,4 @@
-import type { ImageAnnotation } from "./AnnotatedImage";
+import type { PlacedAnnotation } from "./AnnotatedImage";
 
 /**
  * How an instructional image names its parts.
@@ -17,7 +17,16 @@ export type AnnotationMode =
    * For observational visuals where the student is meant to look and classify —
    * printing every answer on the picture would remove the activity.
    */
-  | "clean";
+  | "clean"
+  /**
+   * Invisible tap/click areas over artwork that **already carries its own
+   * printed labels**. Nothing is drawn on top until a region is picked, and
+   * then only a highlight ring — so professionally labelled artwork is never
+   * defaced with a second set of chips or numbered pins. The names sit in a
+   * clickable list beneath, which is also the phone and keyboard reading
+   * surface.
+   */
+  | "regions";
 
 /** Share of the frame width taken by ONE callout gutter. */
 export const CALLOUT_GUTTER = 23;
@@ -25,7 +34,7 @@ export const CALLOUT_GUTTER = 23;
 export const CALLOUT_ART = 100 - CALLOUT_GUTTER * 2;
 
 export type PlacedCallout = {
-  annotation: ImageAnnotation;
+  annotation: PlacedAnnotation;
   side: "left" | "right";
   /** Vertical position of the label, as a percentage of frame height. */
   labelY: number;
@@ -41,8 +50,8 @@ export type PlacedCallout = {
  * Runs as a pure function of the authored coordinates — no DOM measurement — so
  * the layout is identical on the server, before hydration, and at every width.
  */
-export function layoutCallouts(annotations: ImageAnnotation[]): PlacedCallout[] {
-  const sides: Record<"left" | "right", ImageAnnotation[]> = { left: [], right: [] };
+export function layoutCallouts(annotations: PlacedAnnotation[]): PlacedCallout[] {
+  const sides: Record<"left" | "right", PlacedAnnotation[]> = { left: [], right: [] };
   for (const annotation of annotations) {
     sides[annotation.x < 50 ? "left" : "right"].push(annotation);
   }

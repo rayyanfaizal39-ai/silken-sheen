@@ -61,7 +61,7 @@ export function MiniExperiment({ block }: { block: MiniExperimentBlock }) {
               type="button"
               aria-pressed={isActive}
               onClick={() => setActiveId(p.id)}
-              className={`min-h-[36px] rounded-full border px-3 py-1.5 text-[11.5px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+              className={`min-h-11 cursor-pointer rounded-full border-2 px-3 py-1.5 text-[11.5px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                 isActive
                   ? "border-primary bg-primary text-primary-foreground"
                   : "border-border bg-card/55 text-muted-foreground hover:border-primary"

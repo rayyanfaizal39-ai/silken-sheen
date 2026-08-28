@@ -1,5 +1,11 @@
 import { useState } from "react";
 import type { DefenceLinesBlock } from "@/content/form2/science/interactive-types";
+import type { ImageAnnotation } from "./AnnotatedImage";
+import {
+  InteractiveBadge,
+  InteractiveFigureCard,
+  mergeConcepts,
+} from "./InteractiveFigureCard";
 
 /**
  * The body's three lines of defence, drawn as a pathogen meeting each barrier
@@ -10,7 +16,57 @@ import type { DefenceLinesBlock } from "@/content/form2/science/interactive-type
  * (specific). That split is drawn explicitly because it is what students are
  * asked to compare, and it was the piece missing from the earlier notes.
  */
-export function DefenceLinesDiagram({ block }: { block: DefenceLinesBlock }) {
+export function DefenceLinesDiagram({
+  block,
+  lang,
+}: {
+  block: DefenceLinesBlock;
+  lang?: string;
+}) {
+  // Approved artwork replaces the drawn card row. The non-specific / specific
+  // grouping the cards carried is kept as a labelled fact on each concept, so
+  // the comparison students are asked to make survives the swap.
+  if (block.image) {
+    const concepts: ImageAnnotation[] = block.lines.map((line) => {
+      const point = block.image!.points.find((p) => p.id === line.id);
+      return {
+        id: line.id,
+        label: line.name,
+        note: line.note,
+        x: point?.x,
+        y: point?.y,
+        w: point?.w,
+        h: point?.h,
+        facts: [
+          {
+            label:
+              line.group === "non-specific" ? block.nonSpecificLabel : block.specificLabel,
+            value: line.parts,
+          },
+        ],
+      };
+    });
+    const withExtras = mergeConcepts(concepts, block.image.extra);
+    return (
+      <InteractiveFigureCard
+        lang={lang}
+        instruction={block.instruction}
+        prompt={block.hint}
+        concepts={withExtras}
+        image={{
+          src: block.image.src,
+          alt: block.image.alt,
+          size: block.image.size ?? "wide",
+          aspect: block.image.aspect ?? "4 / 3",
+          caption: block.image.caption,
+          legendLabel: block.image.legendLabel ?? block.title,
+          annotationMode: block.image.annotationMode ?? "regions",
+          imageKey: block.image.imageKey,
+        }}
+      />
+    );
+  }
+
   const [active, setActive] = useState<string | null>(null);
   const activeLine = block.lines.find((l) => l.id === active) ?? null;
 
@@ -27,10 +83,10 @@ export function DefenceLinesDiagram({ block }: { block: DefenceLinesBlock }) {
         onClick={() => setActive(isActive ? null : line.id)}
         onMouseEnter={() => setActive(line.id)}
         onFocus={() => setActive(line.id)}
-        className={`flex min-w-0 flex-1 flex-col items-start gap-1 rounded-xl border p-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+        className={`flex min-h-11 min-w-0 flex-1 cursor-pointer flex-col items-start gap-1 rounded-xl border-2 p-2.5 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
           isActive
-            ? "border-primary bg-primary/12"
-            : "border-border bg-card/55 hover:border-primary/60"
+            ? "border-primary bg-primary/15 shadow-md"
+            : "border-primary/40 bg-card hover:-translate-y-px hover:border-primary hover:bg-primary/10 hover:shadow-md"
         }`}
       >
         <span className="flex items-center gap-1.5">
@@ -49,9 +105,7 @@ export function DefenceLinesDiagram({ block }: { block: DefenceLinesBlock }) {
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
-      {block.instruction && (
-        <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">{block.instruction}</p>
-      )}
+      <InteractiveBadge lang={lang} instruction={block.instruction} className="mb-2.5" />
 
       <div className="mb-2 flex items-center gap-2">
         <span className="rounded-lg border border-rose-400/40 bg-rose-500/10 px-2 py-1 text-[11.5px] font-semibold text-rose-200">

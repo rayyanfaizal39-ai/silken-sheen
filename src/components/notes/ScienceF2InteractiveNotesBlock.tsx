@@ -31,6 +31,7 @@ import type { ScienceF2InteractiveContent } from "@/content/form2/science/intera
 import { getNotesImageUrl } from "@/lib/notes-images";
 import { useProgress } from "@/hooks/use-progress";
 import { AnnotatedImage } from "@/components/notes/blocks/AnnotatedImage";
+import { InteractiveFigureCard } from "@/components/notes/blocks/InteractiveFigureCard";
 import { EcologicalTermsDiagram } from "@/components/notes/blocks/EcologicalTermsDiagram";
 import { EnzymeExplorer } from "@/components/notes/blocks/EnzymeExplorer";
 import { ImmuneResponseGraph } from "@/components/notes/blocks/ImmuneResponseGraph";
@@ -317,6 +318,7 @@ export function ScienceF2InteractiveNotesBlock({
             </h3>
             <DigestiveSystemDiagram
               block={section.digestiveSystem}
+              lang={lang}
               enlargeLabel={imageCopy.enlarge}
               closeLabel={imageCopy.close}
               hintLabel={imageCopy.hint}
@@ -330,6 +332,7 @@ export function ScienceF2InteractiveNotesBlock({
             </h3>
             <ViskingExperimentDiagram
               block={section.viskingExperiment}
+              lang={lang}
               enlargeLabel={imageCopy.enlarge}
               closeLabel={imageCopy.close}
               hintLabel={imageCopy.hint}
@@ -343,6 +346,7 @@ export function ScienceF2InteractiveNotesBlock({
             </h3>
             <VillusDiagram
               block={section.villusDiagram}
+              lang={lang}
               enlargeLabel={imageCopy.enlarge}
               closeLabel={imageCopy.close}
               hintLabel={imageCopy.hint}
@@ -362,7 +366,7 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.defenceLines.title}
             </h3>
-            <DefenceLinesDiagram block={section.defenceLines} />
+            <DefenceLinesDiagram block={section.defenceLines} lang={lang} />
           </div>
         )}
         {section.immunityMatrix && (
@@ -402,7 +406,7 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.capillaryDiagram.title}
             </h3>
-            <CapillaryDiagram block={section.capillaryDiagram} />
+            <CapillaryDiagram block={section.capillaryDiagram} lang={lang} />
           </div>
         )}
         {section.electrolysisDiagram && (
@@ -410,7 +414,7 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.electrolysisDiagram.title}
             </h3>
-            <ElectrolysisDiagram block={section.electrolysisDiagram} />
+            <ElectrolysisDiagram block={section.electrolysisDiagram} lang={lang} />
           </div>
         )}
         {section.mixtureComparison && (
@@ -418,7 +422,7 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.mixtureComparison.title}
             </h3>
-            <MixtureComparison block={section.mixtureComparison} />
+            <MixtureComparison block={section.mixtureComparison} lang={lang} />
           </div>
         )}
         {section.miniExperiment && (
@@ -442,7 +446,7 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.waterTreatmentFlow.title}
             </h3>
-            <WaterTreatmentFlow block={section.waterTreatmentFlow} />
+            <WaterTreatmentFlow block={section.waterTreatmentFlow} lang={lang} />
           </div>
         )}
         {section.methodCards && (
@@ -466,7 +470,7 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.dryVsAqueous.title}
             </h3>
-            <DryVsAqueous block={section.dryVsAqueous} />
+            <DryVsAqueous block={section.dryVsAqueous} lang={lang} />
           </div>
         )}
         {section.titrationSchematic && (
@@ -474,7 +478,7 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.titrationSchematic.title}
             </h3>
-            <TitrationSchematic block={section.titrationSchematic} />
+            <TitrationSchematic block={section.titrationSchematic} lang={lang} />
           </div>
         )}
         {section.strengthComparison && (
@@ -485,23 +489,41 @@ export function ScienceF2InteractiveNotesBlock({
             <StrengthComparison block={section.strengthComparison} />
           </div>
         )}
-        {section.images?.map((image) => (
-          <AnnotatedImage
-            key={image.src}
-            src={image.src}
-            alt={image.alt}
-            size={image.size}
-            aspect={image.aspect}
-            caption={image.caption}
-            legendLabel={image.legendLabel}
-            annotationMode={image.annotationMode ?? "labels"}
-            annotations={image.annotations}
-            imageKey={image.imageKey}
-            enlargeLabel={imageCopy.enlarge}
-            closeLabel={imageCopy.close}
-            hintLabel={imageCopy.hint}
-          />
-        ))}
+        {section.images?.map((image) =>
+          image.annotations.length > 0 ? (
+            <InteractiveFigureCard
+              key={image.src}
+              lang={lang}
+              concepts={image.annotations}
+              image={{
+                src: image.src,
+                alt: image.alt,
+                size: image.size,
+                aspect: image.aspect,
+                caption: image.caption,
+                legendLabel: image.legendLabel,
+                annotationMode: image.annotationMode ?? "labels",
+                imageKey: image.imageKey,
+              }}
+            />
+          ) : (
+            <AnnotatedImage
+              key={image.src}
+              src={image.src}
+              alt={image.alt}
+              size={image.size}
+              aspect={image.aspect}
+              caption={image.caption}
+              legendLabel={image.legendLabel}
+              annotationMode={image.annotationMode ?? "labels"}
+              annotations={image.annotations}
+              imageKey={image.imageKey}
+              enlargeLabel={imageCopy.enlarge}
+              closeLabel={imageCopy.close}
+              hintLabel={imageCopy.hint}
+            />
+          ),
+        )}
         {section.adaptations && (
           <div>
             <h3 className="font-display mb-1 text-base font-bold text-foreground">

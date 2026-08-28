@@ -1,5 +1,12 @@
 import { useState } from "react";
 import type { ElectrolysisDiagramBlock } from "@/content/form2/science/interactive-types";
+import type { ImageAnnotation } from "./AnnotatedImage";
+import {
+  conceptButtonClass,
+  InteractiveBadge,
+  InteractiveFigureCard,
+  mergeConcepts,
+} from "./InteractiveFigureCard";
 
 /**
  * Electrolysis of water, drawn so the 2:1 ratio is measurable off the picture
@@ -14,7 +21,44 @@ const GAS_TOP = 44;
 const H_COLUMN = 60;
 const O_COLUMN = H_COLUMN / 2;
 
-export function ElectrolysisDiagram({ block }: { block: ElectrolysisDiagramBlock }) {
+export function ElectrolysisDiagram({ block, lang }: { block: ElectrolysisDiagramBlock; lang?: string }) {
+  // Approved artwork replaces the schematic outright — the two never appear
+  // together, and every label below is this block's own verified data.
+  if (block.image) {
+    const concepts: ImageAnnotation[] = block.labels.map((item) => {
+      const point = block.image!.points.find((p) => p.id === item.id);
+      return {
+        id: item.id,
+        label: item.label,
+        note: item.note,
+        x: point?.x,
+        y: point?.y,
+        w: point?.w,
+        h: point?.h,
+      };
+    });
+    const withExtras = mergeConcepts(concepts, block.image.extra);
+    return (
+      <InteractiveFigureCard
+        lang={lang}
+        instruction={block.instruction}
+        prompt={block.hint}
+        concepts={withExtras}
+        image={{
+          src: block.image.src,
+          alt: block.image.alt,
+          size: block.image.size ?? "wide",
+          aspect: block.image.aspect ?? "3 / 2",
+          caption: block.image.caption,
+          legendLabel: block.image.legendLabel ?? block.title,
+          annotationMode: block.image.annotationMode ?? "regions",
+          imageKey: block.image.imageKey,
+        }}
+      />
+    );
+  }
+
+
   const [active, setActive] = useState<string | null>(null);
   const activeLabel = block.labels.find((l) => l.id === active) ?? null;
 
@@ -26,11 +70,7 @@ export function ElectrolysisDiagram({ block }: { block: ElectrolysisDiagramBlock
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
-      {block.instruction && (
-        <p className="mb-2.5 text-[13px] leading-relaxed text-muted-foreground">
-          {block.instruction}
-        </p>
-      )}
+      <InteractiveBadge lang={lang} instruction={block.instruction} className="mb-2.5" />
 
       <div className="overflow-x-auto">
         <svg
@@ -167,11 +207,7 @@ export function ElectrolysisDiagram({ block }: { block: ElectrolysisDiagramBlock
               onClick={() => setActive(isActive ? null : label.id)}
               onMouseEnter={() => setActive(label.id)}
               onFocus={() => setActive(label.id)}
-              className={`min-h-[36px] rounded-full border px-3 py-1.5 text-[11.5px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                isActive
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border bg-card/55 text-muted-foreground hover:border-primary"
-              }`}
+              className={conceptButtonClass(isActive)}
             >
               {label.label}
             </button>

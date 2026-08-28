@@ -1,5 +1,22 @@
 import { useState } from "react";
 import type { DryAqueousPanel, DryVsAqueousBlock } from "@/content/form2/science/interactive-types";
+import type { ImageAnnotation } from "./AnnotatedImage";
+import {
+  conceptButtonClass,
+  InteractiveBadge,
+  InteractiveFigureCard,
+  mergeConcepts,
+} from "./InteractiveFigureCard";
+
+/**
+ * "Acid" / "Alkali" on their own, taken from the column headings the block
+ * already carries ("Acid — tested with blue litmus paper"). Composing the
+ * button labels from existing localised strings means BM and DLP both read
+ * naturally without a single new content string.
+ */
+function groupWord(columnLabel: string): string {
+  return columnLabel.split("—")[0].trim();
+}
 
 const PAPER: Record<"blue" | "red", string> = {
   blue: "#4a7fd4",
@@ -54,7 +71,54 @@ function Panel({ panel, selected }: { panel: DryAqueousPanel; selected: boolean 
   );
 }
 
-export function DryVsAqueous({ block }: { block: DryVsAqueousBlock }) {
+export function DryVsAqueous({
+  block,
+  lang,
+}: {
+  block: DryVsAqueousBlock;
+  lang?: string;
+}) {
+  // Approved artwork replaces the four drawn panels. Each case keeps its own
+  // verified explanation; the button label is composed from the block's own
+  // column and water headings.
+  if (block.image) {
+    const concepts: ImageAnnotation[] = block.panels.map((panel) => {
+      const point = block.image!.points.find((p) => p.id === panel.id);
+      const group = groupWord(
+        panel.id.startsWith("acid") ? block.acidColumnLabel : block.alkaliColumnLabel,
+      );
+      const water = panel.withWater ? block.withWaterLabel : block.withoutWaterLabel;
+      return {
+        id: panel.id,
+        label: `${group}: ${water.toLocaleLowerCase()}`,
+        note: panel.note,
+        x: point?.x,
+        y: point?.y,
+        w: point?.w,
+        h: point?.h,
+      };
+    });
+    const withExtras = mergeConcepts(concepts, block.image.extra);
+    return (
+      <InteractiveFigureCard
+        lang={lang}
+        instruction={block.instruction}
+        prompt={block.hint}
+        concepts={withExtras}
+        image={{
+          src: block.image.src,
+          alt: block.image.alt,
+          size: block.image.size ?? "wide",
+          aspect: block.image.aspect ?? "3 / 2",
+          caption: block.image.caption ?? block.keyMessage,
+          legendLabel: block.image.legendLabel ?? block.title,
+          annotationMode: block.image.annotationMode ?? "regions",
+          imageKey: block.image.imageKey,
+        }}
+      />
+    );
+  }
+
   const [activeId, setActiveId] = useState<string | null>(null);
   const active = block.panels.find((p) => p.id === activeId) ?? null;
 
@@ -73,8 +137,10 @@ export function DryVsAqueous({ block }: { block: DryVsAqueousBlock }) {
               type="button"
               aria-pressed={isActive}
               onClick={() => setActiveId(isActive ? null : p.id)}
-              className={`flex flex-col rounded-xl border px-2 py-1.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                isActive ? "border-primary bg-primary/10" : "border-border bg-card/55 hover:border-primary"
+              className={`flex min-h-11 cursor-pointer flex-col rounded-xl border-2 px-2 py-1.5 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                isActive
+                  ? "border-primary bg-primary/15 shadow-md"
+                  : "border-primary/40 bg-card hover:-translate-y-px hover:border-primary hover:bg-primary/10 hover:shadow-md"
               }`}
             >
               <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
@@ -94,11 +160,7 @@ export function DryVsAqueous({ block }: { block: DryVsAqueousBlock }) {
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
-      {block.instruction && (
-        <p className="mb-2.5 text-[13px] leading-relaxed text-muted-foreground">
-          {block.instruction}
-        </p>
-      )}
+      <InteractiveBadge lang={lang} instruction={block.instruction} className="mb-2.5" />
 
       <div className="grid gap-3 sm:grid-cols-2">
         {group(block.acidColumnLabel, acids)}

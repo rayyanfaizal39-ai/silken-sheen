@@ -8105,3 +8105,44 @@
     width: 54%;
   }
 }
+
+/* ── Interactive figure attention cue ─────────────────────────────────────────
+   An instructional figure whose controls sit below the artwork is easy to scroll
+   straight past. The first time one enters the viewport it plays a single, short
+   cue — the badge swells once and the first concept button glows once — and then
+   never again for that figure. Deliberately one-shot: a looping cue competes
+   with reading. */
+@keyframes figure-cue-badge {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.09);
+  }
+}
+
+@keyframes figure-cue-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0);
+  }
+  40% {
+    box-shadow: 0 0 0 5px hsl(var(--primary) / 0.28);
+  }
+}
+
+.figure-cue-badge {
+  animation: figure-cue-badge 1000ms cubic-bezier(0.34, 1.4, 0.64, 1) 1 both;
+}
+
+.figure-cue-glow {
+  animation: figure-cue-glow 1100ms ease-out 1 both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .figure-cue-badge,
+  .figure-cue-glow {
+    animation: none;
+  }
+}

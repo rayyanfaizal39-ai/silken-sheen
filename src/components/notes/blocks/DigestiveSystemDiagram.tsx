@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import type { DigestiveSystemBlock } from "@/content/form2/science/interactive-types";
+import { InteractiveBadge } from "./InteractiveFigureCard";
 import { AnnotatedImage, type ImageAnnotation } from "./AnnotatedImage";
 
 /**
@@ -18,11 +19,13 @@ export function DigestiveSystemDiagram({
   enlargeLabel,
   closeLabel,
   hintLabel,
+  lang,
 }: {
   block: DigestiveSystemBlock;
   enlargeLabel?: string;
   closeLabel?: string;
   hintLabel?: string;
+  lang?: string;
 }) {
   const [active, setActive] = useState<string | null>(null);
   const tract = useMemo(() => block.organs.filter((o) => o.kind === "tract"), [block.organs]);
@@ -67,9 +70,7 @@ export function DigestiveSystemDiagram({
     ];
     return (
       <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-4">
-        <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
-          {block.instruction}
-        </p>
+        <InteractiveBadge lang={lang} instruction={block.instruction} className="mb-3" />
         <AnnotatedImage
           src={block.image.src}
           alt={block.image.alt}

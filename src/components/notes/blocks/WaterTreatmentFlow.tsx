@@ -1,5 +1,12 @@
 import { useState } from "react";
 import type { WaterTreatmentFlowBlock } from "@/content/form2/science/interactive-types";
+import type { ImageAnnotation } from "./AnnotatedImage";
+import {
+  conceptButtonClass,
+  InteractiveBadge,
+  InteractiveFigureCard,
+  mergeConcepts,
+} from "./InteractiveFigureCard";
 
 /**
  * The water-supply system as a clickable flow rather than a passive picture.
@@ -9,17 +16,60 @@ import type { WaterTreatmentFlowBlock } from "@/content/form2/science/interactiv
  * direction. Arrows are drawn as separate elements between chips so a wrapped
  * row never leaves a dangling arrow at the end of a line.
  */
-export function WaterTreatmentFlow({ block }: { block: WaterTreatmentFlowBlock }) {
+export function WaterTreatmentFlow({
+  block,
+  lang,
+}: {
+  block: WaterTreatmentFlowBlock;
+  lang?: string;
+}) {
+  // Approved artwork replaces the chip flow. Every stage stays a button in the
+  // authored order — including the two the artwork does not depict, which keep
+  // their explanation without drawing a region on the picture.
+  if (block.image) {
+    const concepts: ImageAnnotation[] = block.stages.map((stage) => {
+      const point = block.image!.points.find((p) => p.id === stage.id);
+      return {
+        id: stage.id,
+        label: stage.name,
+        icon: stage.icon,
+        note: stage.fn,
+        x: point?.x,
+        y: point?.y,
+        w: point?.w,
+        h: point?.h,
+        facts: stage.chemical
+          ? [{ label: block.chemicalLabel, value: stage.chemical }]
+          : undefined,
+      };
+    });
+    const withExtras = mergeConcepts(concepts, block.image.extra);
+    return (
+      <InteractiveFigureCard
+        lang={lang}
+        instruction={block.instruction}
+        prompt={block.hint}
+        concepts={withExtras}
+        image={{
+          src: block.image.src,
+          alt: block.image.alt,
+          size: block.image.size ?? "wide",
+          aspect: block.image.aspect ?? "2 / 1",
+          caption: block.image.caption,
+          legendLabel: block.image.legendLabel ?? block.title,
+          annotationMode: block.image.annotationMode ?? "regions",
+          imageKey: block.image.imageKey,
+        }}
+      />
+    );
+  }
+
   const [activeId, setActiveId] = useState<string | null>(null);
   const activeStage = block.stages.find((s) => s.id === activeId) ?? null;
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
-      {block.instruction && (
-        <p className="mb-2.5 text-[13px] leading-relaxed text-muted-foreground">
-          {block.instruction}
-        </p>
-      )}
+      <InteractiveBadge lang={lang} instruction={block.instruction} className="mb-2.5" />
 
       <ol className="flex flex-wrap items-stretch gap-1">
         {block.stages.map((stage, i) => {
@@ -30,11 +80,7 @@ export function WaterTreatmentFlow({ block }: { block: WaterTreatmentFlowBlock }
                 type="button"
                 aria-pressed={isActive}
                 onClick={() => setActiveId(isActive ? null : stage.id)}
-                className={`flex min-h-[36px] items-center gap-1 rounded-lg border px-2.5 py-1.5 text-[11.5px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                  isActive
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-card/55 text-foreground hover:border-primary"
-                }`}
+                className={conceptButtonClass(isActive)}
               >
                 <span
                   className={`text-[9.5px] font-bold ${

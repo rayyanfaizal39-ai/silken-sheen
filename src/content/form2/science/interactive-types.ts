@@ -1,5 +1,6 @@
 import type { AnnotationMode } from "@/components/notes/blocks/annotation-layout";
 import type { LearningImageSize } from "@/components/notes/blocks/learning-image";
+import type { ImageAnnotation } from "@/components/notes/blocks/AnnotatedImage";
 import type { FlipCardItem, MiniQuizItem } from "./chapter-1/interactive-types";
 
 export type ScienceInteractiveCard = {
@@ -227,7 +228,7 @@ export type AnnotatedImageBlock = {
   annotationMode?: AnnotationMode;
   /** Key pinned inside the artwork, e.g. what each arrow colour represents. */
   imageKey?: { color: string; label: string }[];
-  annotations: { id: string; label: string; note?: string; x: number; y: number }[];
+  annotations: ImageAnnotation[];
 };
 
 /**
@@ -246,10 +247,23 @@ export type DiagramImage = {
   annotationMode?: AnnotationMode;
   /** Key pinned inside the artwork, e.g. what each arrow colour represents. */
   imageKey?: { color: string; label: string }[];
-  /** Maps an existing item id in the block to a position on the artwork. */
-  points: { id: string; x: number; y: number }[];
+  /**
+   * Maps an existing item id in the block to a position on the artwork.
+   * `w` / `h` size the hit area in `regions` mode; omit them elsewhere.
+   */
+  points: { id: string; x: number; y: number; w?: number; h?: number }[];
   /** Extra markers for parts of the artwork the block data does not already name. */
-  extra?: { id: string; label: string; note?: string; x: number; y: number }[];
+  extra?: {
+    id: string;
+    label: string;
+    note?: string;
+    x: number;
+    y: number;
+    w?: number;
+    h?: number;
+    /** Place this extra straight after the concept with this id. */
+    insertAfter?: string;
+  }[];
 };
 
 /**
@@ -314,6 +328,13 @@ export type DefenceLine = {
 export type DefenceLinesBlock = {
   title: string;
   instruction?: string;
+  /**
+   * Approved instructional artwork for the three lines. When present it
+   * REPLACES the drawn card row — the two are never stacked — and each line
+   * becomes a concept button carrying its own note and its specific /
+   * non-specific grouping.
+   */
+  image?: DiagramImage;
   pathogenLabel: string;
   nonSpecificLabel: string;
   specificLabel: string;
@@ -576,6 +597,12 @@ export type CapillaryLabel = {
 export type CapillaryDiagramBlock = {
   title: string;
   instruction?: string;
+  /**
+   * Approved instructional artwork for cohesion / adhesion / capillary action. When present it REPLACES
+   * this block's schematic drawing entirely — the two are never stacked —
+   * and the block's own labels become the figure's concept buttons.
+   */
+  image?: DiagramImage;
   labels: CapillaryLabel[];
   /** Caption under the tube, e.g. "Air bergerak dari akar ke daun". */
   caption: string;
@@ -592,6 +619,12 @@ export type ElectrolysisLabel = {
 export type ElectrolysisDiagramBlock = {
   title: string;
   instruction?: string;
+  /**
+   * Approved instructional artwork for the electrodes and the two gases. When present it REPLACES
+   * this block's schematic drawing entirely — the two are never stacked —
+   * and the block's own labels become the figure's concept buttons.
+   */
+  image?: DiagramImage;
   labels: ElectrolysisLabel[];
   /** The volume-ratio caption, e.g. "Isi padu hidrogen : oksigen = 2 : 1". */
   ratioCaption: string;
@@ -619,6 +652,12 @@ export type MixtureKind = {
 export type MixtureComparisonBlock = {
   title: string;
   instruction?: string;
+  /**
+   * Approved instructional artwork for solution / suspension / colloid. When present it REPLACES
+   * this block's schematic drawing entirely — the two are never stacked —
+   * and the block's own labels become the figure's concept buttons.
+   */
+  image?: DiagramImage;
   appearanceLabel: string;
   lightLabel: string;
   filtrationLabel: string;
@@ -641,6 +680,12 @@ export type TreatmentStage = {
 export type WaterTreatmentFlowBlock = {
   title: string;
   instruction?: string;
+  /**
+   * Approved instructional artwork for the treatment stages. When present it REPLACES
+   * this block's schematic drawing entirely — the two are never stacked —
+   * and the block's own labels become the figure's concept buttons.
+   */
+  image?: DiagramImage;
   stages: TreatmentStage[];
   chemicalLabel: string;
   hint: string;
@@ -696,6 +741,12 @@ export type DryAqueousPanel = {
 export type DryVsAqueousBlock = {
   title: string;
   instruction?: string;
+  /**
+   * Approved instructional artwork for the four dry / aqueous cases. When
+   * present it REPLACES the drawn panels — the two are never stacked — and each
+   * case becomes a concept button carrying its own note.
+   */
+  image?: DiagramImage;
   withoutWaterLabel: string;
   withWaterLabel: string;
   acidColumnLabel: string;
@@ -716,6 +767,12 @@ export type TitrationLabel = {
 export type TitrationSchematicBlock = {
   title: string;
   instruction?: string;
+  /**
+   * Approved instructional artwork for the titration apparatus and end point. When present it REPLACES
+   * this block's schematic drawing entirely — the two are never stacked —
+   * and the block's own labels become the figure's concept buttons.
+   */
+  image?: DiagramImage;
   labels: TitrationLabel[];
   /** Colour-change caption, e.g. "Merah jambu → tidak berwarna". */
   endpointCaption: string;

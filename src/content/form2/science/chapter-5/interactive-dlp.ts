@@ -1,5 +1,11 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch5-air-larutan.png";
+import capillaryActionImg from "@/assets/notes/form2-science/chapter-5/chapter5_capillary_action.webp";
+import electrolysisImg from "@/assets/notes/form2-science/chapter-5/chapter5_electrolysis_of_water.webp";
+import evaporationFactorsImg from "@/assets/notes/form2-science/chapter-5/chapter5_evaporation_factors.webp";
+import mixtureTypesImg from "@/assets/notes/form2-science/chapter-5/chapter5_solution_suspension_colloid.webp";
+import concentrationTypesImg from "@/assets/notes/form2-science/chapter-5/chapter5_dilute_concentrated_saturated.webp";
+import waterTreatmentImg from "@/assets/notes/form2-science/chapter-5/chapter5_water_treatment_system.webp";
 
 /**
  * English rendering of "kadar keterlarutan".
@@ -86,6 +92,20 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
         },
       ],
       capillaryDiagram: {
+        image: {
+          src: capillaryActionImg,
+          alt: "Water rising up a narrow plant tube, with cohesion between water molecules and adhesion between water and the tube wall.",
+          size: "wide",
+          aspect: "3 / 2",
+          annotationMode: "regions",
+          legendLabel: "Cohesion, adhesion and capillary action",
+          caption: "Water travels from roots to leaves through fine xylem vessels",
+          points: [
+            { id: "cohesion", x: 18, y: 40, w: 24, h: 38 },
+            { id: "adhesion", x: 77, y: 40, w: 24, h: 38 },
+            { id: "capillary", x: 46, y: 52, w: 20, h: 92 },
+          ],
+        },
         title: "💧 The two forces that lift water",
         instruction: "Tap each force to see only its arrows and read what it means.",
         caption: "Water travels from roots to leaves through fine xylem vessels",
@@ -135,6 +155,32 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
         },
       ],
       electrolysisDiagram: {
+        image: {
+          src: electrolysisImg,
+          alt: "Electrolysis of acidified water: hydrogen collecting over the cathode and oxygen over the anode, in a volume ratio of two to one.",
+          size: "wide",
+          aspect: "3 / 2",
+          annotationMode: "regions",
+          legendLabel: "Electrolysis of water",
+          caption: "Volume of hydrogen : oxygen = 2 : 1",
+          points: [
+            { id: "cathode", x: 20, y: 60, w: 34, h: 17 },
+            { id: "anode", x: 72, y: 60, w: 32, h: 17 },
+            { id: "hydrogen", x: 24, y: 27, w: 32, h: 32 },
+            { id: "oxygen", x: 65, y: 27, w: 25, h: 32 },
+          ],
+          extra: [
+            {
+              id: "ratio",
+              label: "Gas volume ratio 2 : 1",
+              note: "Twice as much hydrogen as oxygen, because every water molecule (H\u2082O) holds two hydrogen atoms to one oxygen atom.",
+              x: 89,
+              y: 31,
+              w: 20,
+              h: 23,
+            },
+          ],
+        },
         title: "⚡ Electrolysis of water",
         instruction: "Tap any part to find out what it does. Compare the heights of the two gas columns.",
         ratioCaption: "Volume of hydrogen : oxygen = 2 : 1",
@@ -311,6 +357,18 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
           },
         ],
       },
+      images: [
+        {
+          src: evaporationFactorsImg,
+          alt: "Four factors that speed up evaporation: lower humidity, higher temperature, a larger surface area and greater air movement.",
+          size: "wide",
+          aspect: "3 / 2",
+          legendLabel: "Factors affecting the rate of evaporation",
+          caption:
+            "All four panels reach the same result — faster evaporation — for four different reasons.",
+          annotations: [],
+        },
+      ],
       checks: [
         {
           question: "Why do we feel cool right after sweating?",
@@ -404,6 +462,18 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
             "That is why heating a saturated solution lets it dissolve more solute — it is no longer saturated at the new temperature.",
         },
       ],
+      images: [
+        {
+          src: concentrationTypesImg,
+          alt: "Three beakers comparing a dilute solution, a concentrated solution and a saturated solution with excess undissolved solute at the bottom.",
+          size: "wide",
+          aspect: "3 / 2",
+          legendLabel: "Dilute, concentrated and saturated",
+          caption:
+            "Only the saturated beaker holds solute that will not dissolve — the limit for that temperature has been reached.",
+          annotations: [],
+        },
+      ],
       checks: [
         {
           question:
@@ -418,6 +488,19 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       intro:
         "Not every mixture is a solution. Two simple tests — shining a torch through it, and filtering it through filter paper — are enough to tell these three kinds of mixture apart.",
       mixtureComparison: {
+        image: {
+          src: mixtureTypesImg,
+          alt: "A solution, a suspension and a colloid compared, with a torch beam passing through each one.",
+          size: "wide",
+          aspect: "3 / 2",
+          annotationMode: "regions",
+          legendLabel: "Solution, suspension and colloid",
+          points: [
+            { id: "solution", x: 17, y: 45, w: 31, h: 86 },
+            { id: "suspension", x: 49, y: 45, w: 32, h: 86 },
+            { id: "colloid", x: 82, y: 45, w: 31, h: 86 },
+          ],
+        },
         title: "🔦 Test with light and filtration",
         instruction: "Tap any mixture to read its full set of characteristics.",
         appearanceLabel: "Appearance",
@@ -677,6 +760,23 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       intro:
         "Water collected from sources such as rivers and rainfall is channelled to a water treatment plant to be treated before it is sent on to consumers. Bacteria, algae and mineral substances are among the things removed in the process.",
       waterTreatmentFlow: {
+        image: {
+          src: waterTreatmentImg,
+          alt: "The seven stages of a water treatment system in order: screening, oxidation, coagulation, sedimentation, filtration, chlorination and fluoridation, ending in treated water.",
+          size: "wide",
+          aspect: "2 / 1",
+          annotationMode: "regions",
+          legendLabel: "The seven treatment stages",
+          points: [
+            { id: "screening", x: 7, y: 48, w: 13, h: 64 },
+            { id: "oxidation", x: 19, y: 48, w: 12, h: 64 },
+            { id: "coagulation", x: 33, y: 48, w: 14, h: 64 },
+            { id: "sedimentation", x: 46, y: 48, w: 13, h: 64 },
+            { id: "filtration", x: 59, y: 48, w: 13, h: 64 },
+            { id: "chlorination", x: 78, y: 48, w: 24, h: 64 },
+            { id: "homes", x: 95, y: 48, w: 10, h: 64 },
+          ],
+        },
         title: "🚰 The journey of water from river to tap",
         instruction: "Tap any stage to see what it does. The order matters.",
         chemicalLabel: "Substance added",

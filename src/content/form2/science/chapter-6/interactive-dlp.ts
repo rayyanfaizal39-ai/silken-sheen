@@ -1,5 +1,10 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch6-asid-alkali.png";
+import whyWaterMattersImg from "@/assets/notes/form2-science/chapter-6/why-water-matters-acids-alkalis.webp";
+import acidMetalTestImg from "@/assets/notes/form2-science/chapter-6/chapter6_acid_metal_hydrogen_test.webp";
+import phTestingImg from "@/assets/notes/form2-science/chapter-6/chapter6_ph_testing_methods.webp";
+import titrationImg from "@/assets/notes/form2-science/chapter-6/chapter6_acid_alkali_titration.webp";
+import usesOfAcidsAlkalisImg from "@/assets/notes/form2-science/chapter-6/chapter6_uses_of_acids_and_alkalis.webp";
 
 export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 6,
@@ -56,6 +61,20 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       intro:
         "This may be surprising: a substance can be an acid and yet not behave like one. Acids and alkalis only show their properties when water is present. Compare the four cases below.",
       dryVsAqueous: {
+        image: {
+          src: whyWaterMattersImg,
+          alt: "Four-panel comparison showing that acids and alkalis show their characteristic properties only in the presence of water.",
+          size: "wide",
+          aspect: "3 / 2",
+          annotationMode: "regions",
+          legendLabel: "Without water versus with water",
+          points: [
+            { id: "acid-dry", x: 14.2, y: 53, w: 22.5, h: 58 },
+            { id: "acid-wet", x: 37.3, y: 53, w: 22.5, h: 58 },
+            { id: "alkali-dry", x: 63, y: 53, w: 22.5, h: 58 },
+            { id: "alkali-wet", x: 86.1, y: 53, w: 22.5, h: 58 },
+          ],
+        },
         title: "💧 Without water versus with water",
         instruction: "Tap any case to read what happens and why.",
         withoutWaterLabel: "Without water",
@@ -152,6 +171,18 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
           title: "The hydrogen gas test",
           body: "When an acid reacts with a metal such as magnesium or zinc, hydrogen gas is produced. A lit splinter makes a 'pop' sound when brought near hydrogen gas.",
           detail: "Alkalis do not give this reaction with metals.",
+        },
+      ],
+      images: [
+        {
+          src: acidMetalTestImg,
+          alt: "Magnesium ribbon reacting with acid in a test tube to give off hydrogen gas, and the lit splint test in which the hydrogen burns with a pop sound.",
+          size: "wide",
+          aspect: "3 / 2",
+          legendLabel: "Acid and a suitable metal, and the hydrogen test",
+          caption:
+            "Magnesium is used here because it is a suitable reactive metal — not every metal reacts with an acid this way.",
+          annotations: [],
         },
       ],
       checks: [
@@ -270,6 +301,18 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
           },
         ],
       },
+      images: [
+        {
+          src: phTestingImg,
+          alt: "Three ways of testing pH: litmus paper for acid or alkali, universal indicator paper for an approximate pH, and a pH meter for a numerical reading.",
+          size: "wide",
+          aspect: "3 / 2",
+          legendLabel: "Three ways of testing pH",
+          caption:
+            "The three methods answer progressively more precise questions, from acid-or-alkali to an exact pH value.",
+          annotations: [],
+        },
+      ],
       checks: [
         {
           question: "What is the advantage of universal indicator over litmus paper?",
@@ -407,6 +450,47 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
           detail: "Burning fuel in industrial areas can lower the pH of rainwater.",
         },
       ],
+      images: [
+        {
+          src: usesOfAcidsAlkalisImg,
+          alt: "Uses of acids and alkalis at home, in agriculture and in industry, with each item labelled as an acid or an alkali.",
+          size: "wide",
+          aspect: "3 / 2",
+          legendLabel: "Where acids and alkalis are used",
+          annotationMode: "regions",
+          caption:
+            "Every item is already labelled ACID or ALKALI on the artwork. Pick a column to see what it covers.",
+          annotations: [
+            {
+              id: "rumah",
+              label: "At home",
+              note: "Vinegar and fizzy drinks are acidic; soap and antacid tablets are alkaline.",
+              x: 17,
+              y: 44,
+              w: 31,
+              h: 84,
+            },
+            {
+              id: "pertanian",
+              label: "In agriculture",
+              note: "Fertiliser is produced and used on crop fields, and slaked lime is added to soil that is too acidic.",
+              x: 48,
+              y: 44,
+              w: 32,
+              h: 84,
+            },
+            {
+              id: "industri",
+              label: "In industry",
+              note: "Sulfuric acid is used in car batteries, sodium hydroxide in detergent manufacture, and alkali to treat acidic industrial waste.",
+              x: 82,
+              y: 44,
+              w: 33,
+              h: 84,
+            },
+          ],
+        },
+      ],
       checks: [
         {
           question:
@@ -442,6 +526,34 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
         },
       ],
       titrationSchematic: {
+        image: {
+          src: titrationImg,
+          alt: "An acid-alkali titration: acid in a burette added drop by drop into a conical flask of alkali and phenolphthalein, which turns from pink to colourless at the end point.",
+          size: "wide",
+          aspect: "3 / 2",
+          annotationMode: "regions",
+          legendLabel: "Titration apparatus and the end point",
+          caption: "End point: pink \u2192 colourless",
+          points: [
+            { id: "burette", x: 31, y: 16, w: 17, h: 13 },
+            { id: "acid", x: 31, y: 27, w: 17, h: 12 },
+            { id: "flask", x: 33, y: 60, w: 26, h: 10 },
+            { id: "indicator", x: 33, y: 72.5, w: 28, h: 14 },
+            { id: "endpoint", x: 71.5, y: 49, w: 43, h: 54 },
+          ],
+          extra: [
+            {
+              id: "stopcock",
+              insertAfter: "acid",
+              label: "Stopcock",
+              note: "Controls the flow, so the acid can be released drop by drop.",
+              x: 33,
+              y: 42,
+              w: 22,
+              h: 9,
+            },
+          ],
+        },
         title: "🧪 Acid-alkali titration",
         instruction: "Tap any part to find out what it does.",
         endpointCaption: "End point: pink → colourless",

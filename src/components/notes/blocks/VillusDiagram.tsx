@@ -1,4 +1,5 @@
 import type { VillusDiagramBlock } from "@/content/form2/science/interactive-types";
+import { InteractiveBadge } from "./InteractiveFigureCard";
 import { AnnotatedImage, type ImageAnnotation } from "./AnnotatedImage";
 
 /**
@@ -12,11 +13,13 @@ export function VillusDiagram({
   enlargeLabel,
   closeLabel,
   hintLabel,
+  lang,
 }: {
   block: VillusDiagramBlock;
   enlargeLabel?: string;
   closeLabel?: string;
   hintLabel?: string;
+  lang?: string;
 }) {
   const image = block.image;
   const imageAnnotations: ImageAnnotation[] = image
@@ -41,7 +44,7 @@ export function VillusDiagram({
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-4">
-      <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">{block.instruction}</p>
+      <InteractiveBadge lang={lang} instruction={block.instruction} className="mb-3" />
 
       {image ? (
         <AnnotatedImage
