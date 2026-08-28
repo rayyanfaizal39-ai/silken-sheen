@@ -5,18 +5,21 @@ import {
 } from "./bm-mindmap-categories";
 
 describe("Bahasa Melayu mind-map categories", () => {
-  it("adds KOMSAS only after the existing Form 1 categories", () => {
-    expect(getBahasaMelayuMindMapCategories("Form 1")).toEqual([
-      "Tatabahasa",
-      "Peribahasa",
-      "Penulisan",
-      "Pemahaman",
-      "KOMSAS",
-    ]);
-  });
+  it.each(["Form 1", "Form 2"] as const)(
+    "adds KOMSAS after the existing categories for %s",
+    (form) => {
+      expect(getBahasaMelayuMindMapCategories(form)).toEqual([
+        "Tatabahasa",
+        "Peribahasa",
+        "Penulisan",
+        "Pemahaman",
+        "KOMSAS",
+      ]);
+    },
+  );
 
-  it.each(["Form 2", "Form 3"] as const)("keeps KOMSAS out of %s", (form) => {
-    expect(getBahasaMelayuMindMapCategories(form)).toEqual([
+  it("keeps KOMSAS out of Form 3", () => {
+    expect(getBahasaMelayuMindMapCategories("Form 3")).toEqual([
       "Tatabahasa",
       "Peribahasa",
       "Penulisan",

@@ -27,5 +27,7 @@ export const BAHASA_MELAYU_CATEGORY_DETAILS: Partial<
 export function getBahasaMelayuMindMapCategories(
   form: Form,
 ): readonly BahasaMelayuMindMapCategory[] {
-  return form === "Form 1" ? [...COMPLETE_CATEGORIES, "KOMSAS"] : COMPLETE_CATEGORIES;
+  return form === "Form 1" || form === "Form 2"
+    ? [...COMPLETE_CATEGORIES, "KOMSAS"]
+    : COMPLETE_CATEGORIES;
 }

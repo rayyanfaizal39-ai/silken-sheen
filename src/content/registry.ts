@@ -314,6 +314,7 @@ import { bahasaMelayuForm1MengeditMenyemakKaranganMindMap } from "@/content/bm/m
 import { bahasaMelayuTingkatan1PemahamanRegistry } from "@/content/bm/tingkatan1-pemahaman-registry";
 import { bahasaMelayuTingkatan1KomsasRegistry } from "@/content/bm/tingkatan1-komsas-registry";
 import { bahasaMelayuTingkatan2PemahamanRegistry } from "@/content/bm/tingkatan2-pemahaman-registry";
+import { bahasaMelayuTingkatan2KomsasRegistry } from "@/content/bm/tingkatan2-komsas-registry";
 import { bahasaMelayuTingkatan3PemahamanRegistry } from "@/content/bm/tingkatan3-pemahaman-registry";
 
 // Mathematics F1 mind maps (BM)
@@ -2992,6 +2993,7 @@ export const chapters: ChapterContent[] = [
     },
   },
   ...bahasaMelayuTingkatan2PemahamanRegistry,
+  ...bahasaMelayuTingkatan2KomsasRegistry,
   {
     id: "bm-f2-mengembangkan-isi-karangan-mindmap",
     subjectId: "bm",
