@@ -4,6 +4,7 @@ import { bahasaMelayuTingkatan2PantunBudiMindMap } from "@/content/bm/pantun-bud
 import { bahasaMelayuTingkatan2PantunKiasanMindMap } from "@/content/bm/pantun-kiasan-form2-mindmap";
 import { bahasaMelayuTingkatan2PantunKasihSayangMindMap } from "@/content/bm/pantun-kasih-sayang-form2-mindmap";
 import { bahasaMelayuTingkatan2PantunNasihatMindMap } from "@/content/bm/pantun-nasihat-form2-mindmap";
+import { bahasaMelayuTingkatan2SyairNasihatMindMap } from "@/content/bm/syair-nasihat-form2-mindmap";
 
 export const bahasaMelayuTingkatan2KomsasRegistry = [
   {
@@ -74,6 +75,20 @@ export const bahasaMelayuTingkatan2KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2PantunKasihSayangMindMap,
       title: "Pantun Kasih Sayang",
+    },
+  },
+  {
+    id: "bm-f2-syair-nasihat-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
+    title: "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
+    description:
+      "Syair berbentuk nasihat seorang bapa kepada anaknya tentang tanggungjawab sebagai pemimpin, keadilan, amanah, ilmu dan kebijaksanaan dalam menjalankan pemerintahan.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2SyairNasihatMindMap,
+      title: "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
     },
   },
 ] as const satisfies readonly ChapterContent[];

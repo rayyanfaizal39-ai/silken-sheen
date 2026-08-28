@@ -51,6 +51,8 @@ describe("Bahasa Melayu Form 2 Pantun Nasihat mind map", () => {
       "Pantun Kiasan",
       "Pantun Budi",
       title,
+      "Pantun Kasih Sayang",
+      "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
     ]);
     expect(
       bahasaMelayuTingkatan2KomsasRegistry.filter((topic) => topic.chapterKey === title),
@@ -71,7 +73,7 @@ describe("Bahasa Melayu Form 2 Pantun Nasihat mind map", () => {
     expect(getChapter("bm", title, undefined, "Form 3")).toBeUndefined();
   });
 
-  it("ends the current Form 2 KOMSAS sequence with registry-driven navigation", () => {
+  it("uses registry-driven previous and next navigation", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 2").filter(
       (topic) => topic.categoryLabel === "KOMSAS",
     );
@@ -81,9 +83,11 @@ describe("Bahasa Melayu Form 2 Pantun Nasihat mind map", () => {
       "Pantun Kiasan",
       "Pantun Budi",
       title,
+      "Pantun Kasih Sayang",
+      "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
     ]);
     expect(topics[index - 1]?.key).toBe("Pantun Budi");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Pantun Kasih Sayang");
   });
 
   it("uses the prescribed identity and twelve title-only first-level branches", () => {

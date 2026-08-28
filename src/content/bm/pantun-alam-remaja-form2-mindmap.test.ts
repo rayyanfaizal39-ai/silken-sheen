@@ -76,6 +76,8 @@ describe("Bahasa Melayu Form 2 Pantun Alam Remaja mind map", () => {
       "Pantun Kiasan",
       "Pantun Budi",
       "Pantun Nasihat",
+      "Pantun Kasih Sayang",
+      "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
     ]);
     expect(topics[index - 1]).toBeUndefined();
     expect(topics[index + 1]?.key).toBe("Pantun Kiasan");
