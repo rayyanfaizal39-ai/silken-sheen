@@ -5,6 +5,7 @@ import { bahasaMelayuTingkatan2PantunKiasanMindMap } from "@/content/bm/pantun-k
 import { bahasaMelayuTingkatan2PantunKasihSayangMindMap } from "@/content/bm/pantun-kasih-sayang-form2-mindmap";
 import { bahasaMelayuTingkatan2PantunNasihatMindMap } from "@/content/bm/pantun-nasihat-form2-mindmap";
 import { bahasaMelayuTingkatan2SyairNasihatMindMap } from "@/content/bm/syair-nasihat-form2-mindmap";
+import { bahasaMelayuTingkatan2DalamPersekitaranKataKataMindMap } from "@/content/bm/dalam-persekitaran-kata-kata-form2-mindmap";
 
 export const bahasaMelayuTingkatan2KomsasRegistry = [
   {
@@ -89,6 +90,20 @@ export const bahasaMelayuTingkatan2KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2SyairNasihatMindMap,
       title: "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
+    },
+  },
+  {
+    id: "bm-f2-dalam-persekitaran-kata-kata-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Dalam Persekitaran Kata-kata",
+    title: "Dalam Persekitaran Kata-kata",
+    description:
+      "Sajak yang mengangkat bahasa sebagai anugerah Tuhan yang membolehkan manusia berfikir, menyampaikan ilmu, memahami alam dan membina tamadun dari satu zaman ke zaman yang lain.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2DalamPersekitaranKataKataMindMap,
+      title: "Dalam Persekitaran Kata-kata",
     },
   },
 ] as const satisfies readonly ChapterContent[];
