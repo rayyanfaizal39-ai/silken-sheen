@@ -52,6 +52,7 @@ describe("Bahasa Melayu Form 2 Pantun Kiasan mind map", () => {
       "Pantun Alam Remaja",
       title,
       "Pantun Budi",
+      "Pantun Nasihat",
     ]);
     expect(
       bahasaMelayuTingkatan2KomsasRegistry.filter((topic) => topic.chapterKey === title),
@@ -77,7 +78,12 @@ describe("Bahasa Melayu Form 2 Pantun Kiasan mind map", () => {
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = topics.findIndex((topic) => topic.key === title);
-    expect(topics.map((topic) => topic.key)).toEqual(["Pantun Alam Remaja", title, "Pantun Budi"]);
+    expect(topics.map((topic) => topic.key)).toEqual([
+      "Pantun Alam Remaja",
+      title,
+      "Pantun Budi",
+      "Pantun Nasihat",
+    ]);
     expect(topics[index - 1]?.key).toBe("Pantun Alam Remaja");
     expect(topics[index + 1]?.key).toBe("Pantun Budi");
   });
