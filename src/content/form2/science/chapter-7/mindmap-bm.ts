@@ -101,6 +101,9 @@ export const scienceF2C7MindMapBM: MindNode = {
             { id: "c1-4-2", label: "Bahagian atas awan bercas positif; bahagian bawah bercas negatif" },
             { id: "c1-4-3", label: "Kilat terhasil akibat tarikan antara cas positif di bumi & cas negatif di awan" },
             { id: "c1-4-4", label: "Konduktor kilat dipasang di bangunan untuk menyalurkan cas elektrik ke tanah, melindungi bangunan" },
+            { id: "c1-4-humid", label: "Cuaca kering: cas lebih mudah terkumpul; wap air menghalang pengumpulan cas" },
+            { id: "c1-4-petrol", label: "Keselamatan mengisi petrol: cas dialirkan ke bumi supaya tiada percikan menyalakan wap" },
+            { id: "c1-4-faraday", label: "Sangkar Faraday: badan logam mengalirkan cas di luar — berlindung di dalam kenderaan" },
           ],
         },
         {
@@ -110,6 +113,7 @@ export const scienceF2C7MindMapBM: MindNode = {
             { id: "c1-5-1", label: "Kadar aliran cas elektrik melalui konduktor" },
             { id: "c1-5-2", label: "Pesongan penunjuk galvanometer menunjukkan aliran arus elektrik" },
             { id: "c1-5-3", label: "Diukur menggunakan ammeter (unit SI: ampere, A)" },
+            { id: "c1-meter-a", label: "Disambung secara BERSIRI dengan komponen yang diukur" },
           ],
         },
         {
@@ -118,6 +122,7 @@ export const scienceF2C7MindMapBM: MindNode = {
           children: [
             { id: "c1-6-1", label: "Beza keupayaan antara dua titik" },
             { id: "c1-6-2", label: "Diukur dalam volt (V) menggunakan voltmeter" },
+            { id: "c1-meter-v", label: "Disambung secara SELARI merentasi komponen yang diukur" },
           ],
         },
         {
@@ -138,7 +143,7 @@ export const scienceF2C7MindMapBM: MindNode = {
             { id: "c1-8-2", label: "Formula: V = IR; I = V/R; R = V/I" },
             {
               id: "c1-8-3",
-              label: "Eksperimen 7.1",
+              label: "Menyiasat Hukum Ohm",
               children: [
                 { id: "c1-8-3-1", label: "Semakin tinggi rintangan (panjang wayar nikrom bertambah) → semakin kecil arus" },
                 { id: "c1-8-3-2", label: "Semakin tinggi voltan (bilangan sel kering bertambah) → semakin besar arus" },
@@ -307,7 +312,7 @@ export const scienceF2C7MindMapBM: MindNode = {
           label: "Aktiviti & Contoh",
           children: [
             { id: "c2-4-1", label: "Lampu hiasan menyala semua kecuali satu → menunjukkan litar selari" },
-            { id: "c2-4-2", label: "Aktiviti 7.7 & 7.8: mentol M dan N — mengukur arus & voltan dalam litar bersiri dan selari menggunakan ammeter dan voltmeter" },
+            { id: "c2-4-2", label: "Mengukur arus dan voltan dalam litar bersiri dan selari menggunakan ammeter dan voltmeter" },
           ],
         },
         {
@@ -357,6 +362,7 @@ export const scienceF2C7MindMapBM: MindNode = {
           label: "Medan Magnet",
           children: [
             { id: "c3-3-1", label: "Kawasan sekeliling magnet yang mempunyai daya magnet" },
+            { id: "c3-3-neutral", label: "Titik neutral (X): titik antara dua kutub sama jenis yang tiada medan magnet" },
             {
               id: "c3-3-2",
               label: "Ciri-ciri garis medan magnet",
@@ -397,7 +403,7 @@ export const scienceF2C7MindMapBM: MindNode = {
         },
         {
           id: "c3-5",
-          label: "Eksperimen 7.2 — Faktor Kekuatan Medan Magnet",
+          label: "Faktor Kekuatan Medan Magnet",
           children: [
             { id: "c3-5-1", label: "Faktor 1 — Arus: semakin besar arus, semakin kuat medan magnet (diukur melalui bilangan pin yang ditarik oleh rod besi)" },
             { id: "c3-5-2", label: "Faktor 2 — Bilangan lilitan gegelung: semakin banyak lilitan, semakin kuat medan magnet" },

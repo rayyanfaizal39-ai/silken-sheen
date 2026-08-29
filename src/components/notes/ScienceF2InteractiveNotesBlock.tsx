@@ -49,6 +49,11 @@ import { IndicatorTable } from "@/components/notes/blocks/IndicatorTable";
 import { DryVsAqueous } from "@/components/notes/blocks/DryVsAqueous";
 import { TitrationSchematic } from "@/components/notes/blocks/TitrationSchematic";
 import { StrengthComparison } from "@/components/notes/blocks/StrengthComparison";
+import { CircuitMeterDiagram } from "@/components/notes/blocks/CircuitMeterDiagram";
+import { SeriesParallelSchematic } from "@/components/notes/blocks/SeriesParallelSchematic";
+import { MagnetFieldDiagram } from "@/components/notes/blocks/MagnetFieldDiagram";
+import { CurrentFieldPatterns } from "@/components/notes/blocks/CurrentFieldPatterns";
+import { ApparatusDiagram } from "@/components/notes/blocks/ApparatusDiagram";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
 
 type Lang = "en" | "bm";
@@ -487,6 +492,46 @@ export function ScienceF2InteractiveNotesBlock({
               {section.strengthComparison.title}
             </h3>
             <StrengthComparison block={section.strengthComparison} />
+          </div>
+        )}
+        {section.circuitMeterDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.circuitMeterDiagram.title}
+            </h3>
+            <CircuitMeterDiagram block={section.circuitMeterDiagram} lang={lang} />
+          </div>
+        )}
+        {section.seriesParallel && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.seriesParallel.title}
+            </h3>
+            <SeriesParallelSchematic block={section.seriesParallel} lang={lang} />
+          </div>
+        )}
+        {section.magnetFieldDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.magnetFieldDiagram.title}
+            </h3>
+            <MagnetFieldDiagram block={section.magnetFieldDiagram} lang={lang} />
+          </div>
+        )}
+        {section.currentFieldPatterns && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.currentFieldPatterns.title}
+            </h3>
+            <CurrentFieldPatterns block={section.currentFieldPatterns} lang={lang} />
+          </div>
+        )}
+        {section.apparatusDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.apparatusDiagram.title}
+            </h3>
+            <ApparatusDiagram block={section.apparatusDiagram} lang={lang} />
           </div>
         )}
         {section.images?.map((image) =>

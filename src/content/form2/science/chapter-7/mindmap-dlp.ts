@@ -101,6 +101,9 @@ export const scienceF2C7MindMapDLP: MindNode = {
             { id: "c1-4-2", label: "Upper part of cloud positively charged; bottom part negatively charged" },
             { id: "c1-4-3", label: "Lightning results from attraction between positive charges on ground & negative charges in clouds" },
             { id: "c1-4-4", label: "Lightning conductor installed on buildings provides a path for charges to flow into ground, protecting the building" },
+            { id: "c1-4-humid", label: "Dry weather: charge builds up more easily; water vapour prevents accumulation" },
+            { id: "c1-4-petrol", label: "Refuelling safety: charge conducted to earth so no spark ignites the vapour" },
+            { id: "c1-4-faraday", label: "Faraday cage: metal body conducts charge around the outside — shelter inside a vehicle" },
           ],
         },
         {
@@ -110,6 +113,7 @@ export const scienceF2C7MindMapDLP: MindNode = {
             { id: "c1-5-1", label: "Rate of flow of electric charges through a conductor" },
             { id: "c1-5-2", label: "Deflection of galvanometer pointer indicates flow of electric current" },
             { id: "c1-5-3", label: "Measured using an ammeter (S.I. unit: ampere, A)" },
+            { id: "c1-meter-a", label: "Connected IN SERIES with the component being measured" },
           ],
         },
         {
@@ -118,6 +122,7 @@ export const scienceF2C7MindMapDLP: MindNode = {
           children: [
             { id: "c1-6-1", label: "Potential difference between two points" },
             { id: "c1-6-2", label: "Measured in volt (V) using a voltmeter" },
+            { id: "c1-meter-v", label: "Connected IN PARALLEL across the component being measured" },
           ],
         },
         {
@@ -138,7 +143,7 @@ export const scienceF2C7MindMapDLP: MindNode = {
             { id: "c1-8-2", label: "Formula: V = IR; I = V/R; R = V/I" },
             {
               id: "c1-8-3",
-              label: "Experiment 7.1",
+              label: "Investigating Ohm's Law",
               children: [
                 { id: "c1-8-3-1", label: "Higher resistance (increasing length of nichrome wire) → smaller current flow" },
                 { id: "c1-8-3-2", label: "Higher voltage (increasing number of dry cells) → larger current flow" },
@@ -307,7 +312,7 @@ export const scienceF2C7MindMapDLP: MindNode = {
           label: "Activities & Examples",
           children: [
             { id: "c2-4-1", label: "Decorative lights all light up except one → shows parallel circuit" },
-            { id: "c2-4-2", label: "Activities 7.7 & 7.8: bulbs M and N — measure current & voltage in series and parallel circuits using ammeter and voltmeter" },
+            { id: "c2-4-2", label: "Measuring current and voltage in series and parallel circuits using an ammeter and voltmeter" },
           ],
         },
         {
@@ -357,6 +362,7 @@ export const scienceF2C7MindMapDLP: MindNode = {
           label: "Magnetic Field",
           children: [
             { id: "c3-3-1", label: "Area around the magnet with magnetic force" },
+            { id: "c3-3-neutral", label: "Neutral point (X): a point between two like poles with no magnetic field" },
             {
               id: "c3-3-2",
               label: "Characteristics of magnetic field lines",
@@ -397,7 +403,7 @@ export const scienceF2C7MindMapDLP: MindNode = {
         },
         {
           id: "c3-5",
-          label: "Experiment 7.2 — Factors Affecting Magnetic Field Strength",
+          label: "Factors Affecting Magnetic Field Strength",
           children: [
             { id: "c3-5-1", label: "Factor 1 — Current: larger current → stronger magnetic field (measured by number of pins attracted by iron rod)" },
             { id: "c3-5-2", label: "Factor 2 — Number of turns of coil: more turns → stronger magnetic field" },
