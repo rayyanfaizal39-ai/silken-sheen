@@ -21,6 +21,15 @@ export type FigureCopy = {
   prompt: string;
   /** Accessible name for the row of concept buttons. */
   controlsLabel: string;
+  /**
+   * Pole letters drawn on magnet figures. BM uses Utara/Selatan, DLP North/South,
+   * so the south pole is "S" in both languages and only the north pole differs.
+   */
+  poleNorth: string;
+  poleSouth: string;
+  /** Spoken pole names, for the accessible label on each drawn letter. */
+  poleNorthName: string;
+  poleSouthName: string;
 };
 
 const COPY: Record<FigureLang, FigureCopy> = {
@@ -31,6 +40,10 @@ const COPY: Record<FigureLang, FigureCopy> = {
     instruction: "Tekan konsep untuk meneroka.",
     prompt: "Tekan konsep di atas untuk melihat penerangannya.",
     controlsLabel: "Konsep dalam rajah ini",
+    poleNorth: "U",
+    poleSouth: "S",
+    poleNorthName: "Kutub utara",
+    poleSouthName: "Kutub selatan",
   },
   en: {
     enlarge: "Enlarge",
@@ -39,6 +52,10 @@ const COPY: Record<FigureLang, FigureCopy> = {
     instruction: "Tap a concept to explore.",
     prompt: "Tap a concept above to see what it does.",
     controlsLabel: "Concepts in this figure",
+    poleNorth: "N",
+    poleSouth: "S",
+    poleNorthName: "North pole",
+    poleSouthName: "South pole",
   },
 };
 

@@ -47,10 +47,18 @@ import { scienceF2C6FlashcardsBM } from "./chapter-6/flashcards-bm";
 import { scienceF2C6FlashcardsDLP } from "./chapter-6/flashcards-dlp";
 import { scienceF2C6MindMapBM } from "./chapter-6/mindmap-bm";
 import { scienceF2C6MindMapDLP } from "./chapter-6/mindmap-dlp";
+import { scienceF2C7InteractiveBM } from "./chapter-7/interactive-bm";
+import { scienceF2C7InteractiveDLP } from "./chapter-7/interactive-dlp";
+import { scienceF2C7QuizzesBM } from "./chapter-7/quizzes-bm";
+import { scienceF2C7QuizzesDLP } from "./chapter-7/quizzes-dlp";
+import { scienceF2C7FlashcardsBM } from "./chapter-7/flashcards-bm";
+import { scienceF2C7FlashcardsDLP } from "./chapter-7/flashcards-dlp";
+import { scienceF2C7MindMapBM } from "./chapter-7/mindmap-bm";
+import { scienceF2C7MindMapDLP } from "./chapter-7/mindmap-dlp";
 
 /**
  * Guards against curriculum/audit/textbook metadata leaking into learner-facing Form 2
- * Science Chapter 1-6 content — see SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md. These are
+ * Science Chapter 1-7 content — see SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md. These are
  * live, student-facing data files (registered in src/content/registry.ts), not the dead
  * notes-{bm,dlp}.ts legacy files, which are intentionally excluded.
  */
@@ -104,6 +112,14 @@ const LIVE_SURFACES: Record<string, unknown> = {
   "ch6 flashcards dlp": scienceF2C6FlashcardsDLP,
   "ch6 mindmap bm": scienceF2C6MindMapBM,
   "ch6 mindmap dlp": scienceF2C6MindMapDLP,
+  "ch7 interactive bm": scienceF2C7InteractiveBM,
+  "ch7 interactive dlp": scienceF2C7InteractiveDLP,
+  "ch7 quizzes bm": scienceF2C7QuizzesBM,
+  "ch7 quizzes dlp": scienceF2C7QuizzesDLP,
+  "ch7 flashcards bm": scienceF2C7FlashcardsBM,
+  "ch7 flashcards dlp": scienceF2C7FlashcardsDLP,
+  "ch7 mindmap bm": scienceF2C7MindMapBM,
+  "ch7 mindmap dlp": scienceF2C7MindMapDLP,
 };
 
 const FORBIDDEN_PATTERNS: [string, RegExp][] = [
@@ -118,7 +134,9 @@ const FORBIDDEN_PATTERNS: [string, RegExp][] = [
   ["numbered textbook experiment (BM)", /Eksperimen \d\.\d/],
   ["numbered textbook experiment (EN)", /Experiment \d\.\d/],
   ["numbered textbook activity (BM)", /Aktiviti \d\.\d/],
-  ["numbered textbook activity (EN)", /\bActivity \d\.\d/],
+  // Plural included: Chapter 7 previously carried "Activities 7.7 & 7.8", which a
+  // singular-only pattern silently missed.
+  ["numbered textbook activity (EN)", /\bActivit(y|ies) \d\.\d/],
   ["printed-page reference", /printed page/i],
   ["official-answer reference", /official answer/i],
   ["errata reference", /errata/i],
@@ -141,7 +159,7 @@ const FORBIDDEN_PATTERNS: [string, RegExp][] = [
   ["bracketed 'not a textbook quotation' note", /not a textbook quotation/i],
 ];
 
-describe("Form 2 Science Chapters 1-6 — learner-facing content carries no curriculum/audit metadata", () => {
+describe("Form 2 Science Chapters 1-7 — learner-facing content carries no curriculum/audit metadata", () => {
   for (const [surfaceName, content] of Object.entries(LIVE_SURFACES)) {
     it(`${surfaceName}: no forbidden curriculum/audit/textbook-meta wording`, () => {
       const text = JSON.stringify(content);

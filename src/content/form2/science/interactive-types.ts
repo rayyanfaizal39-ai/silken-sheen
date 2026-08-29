@@ -812,6 +812,119 @@ export type StrengthComparisonBlock = {
   hint: string;
 };
 
+/** A clickable part of the meter-placement circuit schematic. */
+export type CircuitMeterLabel = {
+  id: "cell" | "switch" | "bulb" | "ammeter" | "voltmeter";
+  label: string;
+  note: string;
+};
+
+/**
+ * The one diagram that settles how each meter joins a circuit.
+ *
+ * Drawn rather than described because the whole teaching point is topological:
+ * the ammeter sits *in* the loop, the voltmeter sits *across* a component on
+ * its own branch. A sentence can be misremembered; a picture of the branch
+ * cannot be, provided the branch is actually drawn as a branch.
+ */
+export type CircuitMeterDiagramBlock = {
+  title: string;
+  instruction?: string;
+  labels: CircuitMeterLabel[];
+  /** e.g. "Ammeter — bersiri · Voltmeter — selari". */
+  ruleCaption: string;
+  hint: string;
+};
+
+/** One side of the series/parallel comparison. */
+export type CircuitKind = {
+  id: "series" | "parallel";
+  name: string;
+  /** "Satu laluan" / "One path" etc. */
+  pathSummary: string;
+  currentRule: string;
+  voltageRule: string;
+  resistanceRule: string;
+  advantage: string;
+  disadvantage: string;
+  note: string;
+};
+
+export type SeriesParallelBlock = {
+  title: string;
+  instruction?: string;
+  currentLabel: string;
+  voltageLabel: string;
+  resistanceLabel: string;
+  advantageLabel: string;
+  disadvantageLabel: string;
+  kinds: CircuitKind[];
+  hint: string;
+};
+
+/** One selectable feature of the magnet-field schematic. */
+export type MagnetFieldFeature = {
+  id: "direction" | "density" | "no-cross" | "neutral";
+  label: string;
+  note: string;
+};
+
+/** A magnet whose field pattern the learner can switch to. */
+export type MagnetShape = {
+  id: "bar" | "horseshoe" | "magnadur" | "like-poles";
+  name: string;
+  note: string;
+};
+
+export type MagnetFieldDiagramBlock = {
+  title: string;
+  instruction?: string;
+  shapeLabel: string;
+  featureLabel: string;
+  shapes: MagnetShape[];
+  features: MagnetFieldFeature[];
+  hint: string;
+};
+
+/** One conductor shape in the current-carrying field-pattern schematic. */
+export type ConductorPattern = {
+  id: "straight" | "loop" | "solenoid";
+  name: string;
+  /** What the pattern looks like. */
+  pattern: string;
+  /** How the direction is found. */
+  direction: string;
+  note: string;
+};
+
+export type CurrentFieldPatternsBlock = {
+  title: string;
+  instruction?: string;
+  patternLabel: string;
+  directionLabel: string;
+  /** The distinction the source makes: reversing current flips direction, not pattern. */
+  keyPoint: string;
+  /** Right-hand grip rule, stated current -> field. */
+  gripRule: { title: string; steps: string[] };
+  conductors: ConductorPattern[];
+  hint: string;
+};
+
+/** A clickable part of the electromagnet experiment apparatus. */
+export type ApparatusPart = {
+  id: string;
+  label: string;
+  note: string;
+};
+
+export type ApparatusDiagramBlock = {
+  title: string;
+  instruction?: string;
+  parts: ApparatusPart[];
+  caption: string;
+  hint: string;
+};
+
 export type ScienceInteractiveSection = {
   number: string;
   title: string;
@@ -850,6 +963,11 @@ export type ScienceInteractiveSection = {
   dryVsAqueous?: DryVsAqueousBlock;
   titrationSchematic?: TitrationSchematicBlock;
   strengthComparison?: StrengthComparisonBlock;
+  circuitMeterDiagram?: CircuitMeterDiagramBlock;
+  seriesParallel?: SeriesParallelBlock;
+  magnetFieldDiagram?: MagnetFieldDiagramBlock;
+  currentFieldPatterns?: CurrentFieldPatternsBlock;
+  apparatusDiagram?: ApparatusDiagramBlock;
   /** Standalone annotated reference illustrations for this section. */
   images?: AnnotatedImageBlock[];
   matcher?: {

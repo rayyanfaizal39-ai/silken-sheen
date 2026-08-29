@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Sparkles, MousePointerClick } from "lucide-react";
 import { AnnotatedImage, type AnnotatedImageProps, type ImageAnnotation } from "./AnnotatedImage";
-import { figureCopy } from "./figure-copy";
+import { figureCopy, type FigureCopy } from "./figure-copy";
 
 /**
  * One learning unit: an instructional image, the concepts it teaches as real
@@ -57,6 +57,50 @@ export type InteractiveFigureCardProps = {
  * so it reads as an action rather than a metadata pill, with a selected state
  * that cannot be mistaken for anything else.
  */
+/**
+ * One pole letter drawn on a magnet. The letter is language-dependent (BM
+ * Utara -> "U", DLP North -> "N"; south is "S" either way), so every view takes
+ * it from figureCopy rather than hardcoding a character. The spoken name is
+ * given separately so a screen reader never has to read out a bare letter.
+ */
+export function PoleLabel({
+  x,
+  y,
+  pole,
+  copy,
+  fontSize = 11,
+  className,
+  fill,
+  textAnchor = "middle",
+}: {
+  x: number;
+  y: number;
+  pole: "north" | "south";
+  copy: FigureCopy;
+  fontSize?: number;
+  className?: string;
+  fill?: string;
+  textAnchor?: "start" | "middle" | "end";
+}) {
+  const letter = pole === "north" ? copy.poleNorth : copy.poleSouth;
+  const name = pole === "north" ? copy.poleNorthName : copy.poleSouthName;
+  return (
+    <text
+      x={x}
+      y={y}
+      textAnchor={textAnchor}
+      fontSize={fontSize}
+      fontWeight="bold"
+      fill={fill}
+      className={className}
+      role="img"
+      aria-label={name}
+    >
+      {letter}
+    </text>
+  );
+}
+
 export function conceptButtonClass(isActive: boolean, extra = ""): string {
   return [
     "inline-flex min-h-11 cursor-pointer items-center justify-center gap-1.5 rounded-xl border-2 px-3 py-2",
