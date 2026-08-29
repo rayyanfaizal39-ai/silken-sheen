@@ -6,6 +6,7 @@ import { bahasaMelayuTingkatan2PantunKasihSayangMindMap } from "@/content/bm/pan
 import { bahasaMelayuTingkatan2PantunNasihatMindMap } from "@/content/bm/pantun-nasihat-form2-mindmap";
 import { bahasaMelayuTingkatan2SyairNasihatMindMap } from "@/content/bm/syair-nasihat-form2-mindmap";
 import { bahasaMelayuTingkatan2DalamPersekitaranKataKataMindMap } from "@/content/bm/dalam-persekitaran-kata-kata-form2-mindmap";
+import { bahasaMelayuTingkatan2RotiMindMap } from "@/content/bm/roti-form2-mindmap";
 
 export const bahasaMelayuTingkatan2KomsasRegistry = [
   {
@@ -104,6 +105,20 @@ export const bahasaMelayuTingkatan2KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2DalamPersekitaranKataKataMindMap,
       title: "Dalam Persekitaran Kata-kata",
+    },
+  },
+  {
+    id: "bm-f2-roti-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Roti",
+    title: "Roti",
+    description:
+      "Sajak yang menghubungkan nikmat makanan dengan kesyukuran, keimanan dan tanggungjawab golongan berkecukupan terhadap golongan miskin yang masih lapar.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2RotiMindMap,
+      title: "Roti",
     },
   },
 ] as const satisfies readonly ChapterContent[];
