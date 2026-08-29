@@ -19,6 +19,8 @@ import { ZoneExplorer } from "@/components/notes/blocks/ZoneExplorer";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
 import type { ScienceF3InteractiveContent } from "@/content/form3/science/interactive-types";
 import { useProgress } from "@/hooks/use-progress";
+import { ScienceF3Chapter6VisualNotesBlock } from "./ScienceF3Chapter6VisualNotesBlock";
+import { ScienceF3Chapter5VisualNotesBlock } from "./ScienceF3Chapter5VisualNotesBlock";
 
 type Lang = "en" | "bm";
 
@@ -99,6 +101,32 @@ export function ScienceF3InteractiveNotesBlock({
     rewarded.current.add(key);
     addXp(amount, "science");
   };
+
+  if (content.chapter === 5) {
+    return (
+      <ScienceF3Chapter5VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 6) {
+    return (
+      <ScienceF3Chapter6VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
 
   return (
     <section id={id} data-lang={lang} className="mt-8 flex min-w-0 flex-col gap-9 animate-fade-up">
