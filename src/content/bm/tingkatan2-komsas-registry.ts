@@ -7,6 +7,7 @@ import { bahasaMelayuTingkatan2PantunNasihatMindMap } from "@/content/bm/pantun-
 import { bahasaMelayuTingkatan2SyairNasihatMindMap } from "@/content/bm/syair-nasihat-form2-mindmap";
 import { bahasaMelayuTingkatan2DalamPersekitaranKataKataMindMap } from "@/content/bm/dalam-persekitaran-kata-kata-form2-mindmap";
 import { bahasaMelayuTingkatan2RotiMindMap } from "@/content/bm/roti-form2-mindmap";
+import { bahasaMelayuTingkatan2KucariDamaiDiSiniMindMap } from "@/content/bm/kucari-damai-di-sini-form2-mindmap";
 
 export const bahasaMelayuTingkatan2KomsasRegistry = [
   {
@@ -119,6 +120,20 @@ export const bahasaMelayuTingkatan2KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2RotiMindMap,
       title: "Roti",
+    },
+  },
+  {
+    id: "bm-f2-kucari-damai-di-sini-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kucari Damai di Sini",
+    title: "Kucari Damai di Sini",
+    description:
+      "Sajak yang mengungkap pencarian kedamaian melalui kemerdekaan, persaudaraan, kasih sayang, jati diri dan semangat patriotik demi keharmonian negara serta generasi masa hadapan.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2KucariDamaiDiSiniMindMap,
+      title: "Kucari Damai di Sini",
     },
   },
 ] as const satisfies readonly ChapterContent[];

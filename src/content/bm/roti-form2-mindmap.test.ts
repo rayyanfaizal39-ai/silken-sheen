@@ -24,6 +24,7 @@ const expectedTopics = [
   "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
   "Dalam Persekitaran Kata-kata",
   title,
+  "Kucari Damai di Sini",
 ];
 const expectedBranches = [
   "Maksud Rangkap",
@@ -74,14 +75,14 @@ describe("Bahasa Melayu Form 2 Roti mind map", () => {
     expect(getChapter("bm", title, undefined, "Form 3")).toBeUndefined();
   });
 
-  it("uses registry-driven previous navigation and ends the current sequence", () => {
+  it("uses registry-driven previous and next navigation", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 2").filter(
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = topics.findIndex((topic) => topic.key === title);
     expect(topics.map((topic) => topic.key)).toEqual(expectedTopics);
     expect(topics[index - 1]?.key).toBe("Dalam Persekitaran Kata-kata");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Kucari Damai di Sini");
   });
 
   it("uses the prescribed identity and thirteen title-only first-level branches", () => {
