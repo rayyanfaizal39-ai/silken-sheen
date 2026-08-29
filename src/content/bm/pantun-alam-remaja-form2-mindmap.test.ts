@@ -81,6 +81,7 @@ describe("Bahasa Melayu Form 2 Pantun Alam Remaja mind map", () => {
       "Dalam Persekitaran Kata-kata",
       "Roti",
       "Kucari Damai di Sini",
+      "Pada Sekuntum Mawar",
     ]);
     expect(topics[index - 1]).toBeUndefined();
     expect(topics[index + 1]?.key).toBe("Pantun Kiasan");

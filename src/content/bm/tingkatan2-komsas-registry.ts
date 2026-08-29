@@ -8,6 +8,7 @@ import { bahasaMelayuTingkatan2SyairNasihatMindMap } from "@/content/bm/syair-na
 import { bahasaMelayuTingkatan2DalamPersekitaranKataKataMindMap } from "@/content/bm/dalam-persekitaran-kata-kata-form2-mindmap";
 import { bahasaMelayuTingkatan2RotiMindMap } from "@/content/bm/roti-form2-mindmap";
 import { bahasaMelayuTingkatan2KucariDamaiDiSiniMindMap } from "@/content/bm/kucari-damai-di-sini-form2-mindmap";
+import { bahasaMelayuTingkatan2PadaSekuntumMawarMindMap } from "@/content/bm/pada-sekuntum-mawar-form2-mindmap";
 
 export const bahasaMelayuTingkatan2KomsasRegistry = [
   {
@@ -134,6 +135,20 @@ export const bahasaMelayuTingkatan2KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2KucariDamaiDiSiniMindMap,
       title: "Kucari Damai di Sini",
+    },
+  },
+  {
+    id: "bm-f2-pada-sekuntum-mawar-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Pada Sekuntum Mawar",
+    title: "Pada Sekuntum Mawar",
+    description:
+      "Sajak yang menggunakan bunga mawar sebagai perlambangan seorang gadis untuk menyampaikan kepentingan menjaga maruah, harga diri dan keimanan serta menggambarkan kesedihan seorang ibu apabila masa depan anaknya terjejas.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2PadaSekuntumMawarMindMap,
+      title: "Pada Sekuntum Mawar",
     },
   },
 ] as const satisfies readonly ChapterContent[];
