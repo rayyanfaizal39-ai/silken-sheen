@@ -51,6 +51,9 @@ describe("Bahasa Melayu Form 2 Pantun Budi mind map", () => {
       "Pantun Kiasan",
       title,
       "Pantun Nasihat",
+      "Pantun Kasih Sayang",
+      "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
+      "Dalam Persekitaran Kata-kata",
     ]);
     expect(
       bahasaMelayuTingkatan2KomsasRegistry.filter((topic) => topic.chapterKey === title),
@@ -81,6 +84,9 @@ describe("Bahasa Melayu Form 2 Pantun Budi mind map", () => {
       "Pantun Kiasan",
       title,
       "Pantun Nasihat",
+      "Pantun Kasih Sayang",
+      "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
+      "Dalam Persekitaran Kata-kata",
     ]);
     expect(topics[index - 1]?.key).toBe("Pantun Kiasan");
     expect(topics[index + 1]?.key).toBe("Pantun Nasihat");
