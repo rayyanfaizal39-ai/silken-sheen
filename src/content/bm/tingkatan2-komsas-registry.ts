@@ -9,6 +9,8 @@ import { bahasaMelayuTingkatan2DalamPersekitaranKataKataMindMap } from "@/conten
 import { bahasaMelayuTingkatan2RotiMindMap } from "@/content/bm/roti-form2-mindmap";
 import { bahasaMelayuTingkatan2KucariDamaiDiSiniMindMap } from "@/content/bm/kucari-damai-di-sini-form2-mindmap";
 import { bahasaMelayuTingkatan2PadaSekuntumMawarMindMap } from "@/content/bm/pada-sekuntum-mawar-form2-mindmap";
+import { bahasaMelayuTingkatan2PelandukMengajarMemerangMindMap } from "@/content/bm/pelanduk-mengajar-memerang-form2-mindmap";
+import { bahasaMelayuTingkatan2BanjirDiMataEmakMindMap } from "@/content/bm/banjir-di-mata-emak-form2-mindmap";
 
 export const bahasaMelayuTingkatan2KomsasRegistry = [
   {
@@ -149,6 +151,34 @@ export const bahasaMelayuTingkatan2KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2PadaSekuntumMawarMindMap,
       title: "Pada Sekuntum Mawar",
+    },
+  },
+  {
+    id: "bm-f2-pelanduk-mengajar-memerang-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Pelanduk Mengajar Memerang",
+    title: "Pelanduk Mengajar Memerang",
+    description:
+      "Kisah Syah Alam di Rimba, Sang Memerang dan pengadilan Nabi Allah Sulaiman yang mengajar bahawa penganiayaan, ketamakan dan tindakan tanpa pertimbangan boleh membawa akibat, manakala sesuatu perkara hendaklah disiasat dengan adil sebelum keputusan dibuat.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2PelandukMengajarMemerangMindMap,
+      title: "Pelanduk Mengajar Memerang",
+    },
+  },
+  {
+    id: "bm-f2-banjir-di-mata-emak-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Banjir di Mata Emak",
+    title: "Banjir di Mata Emak",
+    description:
+      "Cerpen yang mengetengahkan kasih sayang, keprihatinan dan tanggungjawab terhadap ibu bapa melalui pertemuan seorang pencerita dengan Mak Piah yang menghadapi banjir serta merindui perhatian anak-anaknya.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2BanjirDiMataEmakMindMap,
+      title: "Banjir di Mata Emak",
     },
   },
 ] as const satisfies readonly ChapterContent[];
