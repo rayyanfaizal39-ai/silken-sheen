@@ -21,6 +21,7 @@ import type { ScienceF3InteractiveContent } from "@/content/form3/science/intera
 import { useProgress } from "@/hooks/use-progress";
 import { ScienceF3Chapter6VisualNotesBlock } from "./ScienceF3Chapter6VisualNotesBlock";
 import { ScienceF3Chapter5VisualNotesBlock } from "./ScienceF3Chapter5VisualNotesBlock";
+import { ScienceF3Chapter4VisualNotesBlock } from "./ScienceF3Chapter4VisualNotesBlock";
 
 type Lang = "en" | "bm";
 
@@ -101,6 +102,19 @@ export function ScienceF3InteractiveNotesBlock({
     rewarded.current.add(key);
     addXp(amount, "science");
   };
+
+  if (content.chapter === 4) {
+    return (
+      <ScienceF3Chapter4VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
 
   if (content.chapter === 5) {
     return (
