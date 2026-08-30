@@ -20,6 +20,10 @@ import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive
 import type { ScienceF3InteractiveContent } from "@/content/form3/science/interactive-types";
 import { useProgress } from "@/hooks/use-progress";
 import { ScienceF3Chapter6VisualNotesBlock } from "./ScienceF3Chapter6VisualNotesBlock";
+import { ScienceF3Chapter7VisualNotesBlock } from "./ScienceF3Chapter7VisualNotesBlock";
+import { ScienceF3Chapter8VisualNotesBlock } from "./ScienceF3Chapter8VisualNotesBlock";
+import { ScienceF3Chapter9VisualNotesBlock } from "./ScienceF3Chapter9VisualNotesBlock";
+import { ScienceF3Chapter10VisualNotesBlock } from "./ScienceF3Chapter10VisualNotesBlock";
 import { ScienceF3Chapter5VisualNotesBlock } from "./ScienceF3Chapter5VisualNotesBlock";
 import { ScienceF3Chapter4VisualNotesBlock } from "./ScienceF3Chapter4VisualNotesBlock";
 import { ScienceF3Chapter3VisualNotesBlock } from "./ScienceF3Chapter3VisualNotesBlock";
@@ -174,6 +178,58 @@ export function ScienceF3InteractiveNotesBlock({
   if (content.chapter === 6) {
     return (
       <ScienceF3Chapter6VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 7) {
+    return (
+      <ScienceF3Chapter7VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 8) {
+    return (
+      <ScienceF3Chapter8VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 9) {
+    return (
+      <ScienceF3Chapter9VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 10) {
+    return (
+      <ScienceF3Chapter10VisualNotesBlock
         id={id}
         content={content}
         lang={lang}
