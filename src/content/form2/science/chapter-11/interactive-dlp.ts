@@ -3,7 +3,6 @@ import chapterImage from "@/assets/science/form2/ch11-bintang-galaksi.png";
 import spiralImg from "@/assets/notes/form2-science/chapter-11/spiral.png";
 import ellipticalImg from "@/assets/notes/form2-science/chapter-11/elliptical.png";
 import irregularImg from "@/assets/notes/form2-science/chapter-11/irregular.png";
-import nebulaImg from "@/assets/notes/form2-science/chapter-11/nebula.png";
 
 const STAR_GRADIENT = "linear-gradient(90deg,#ff4d4d,#ff9d4d,#ffe14d,#fff6d9,#ffffff,#cfe0ff,#4d7cfe)";
 
@@ -11,124 +10,245 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 11,
   blogHighlight: {
     title: "Science Blog — Supernova Explosions",
-    body: "A supernova — the explosive death of a massive star — releases 100 times more light energy than our entire Sun. The last one visible to the naked eye was detected in 1987, even though the explosion itself happened around 400 years earlier — the light just took that long to reach us.",
+    body: "A supernova is an extremely powerful explosion of a large star. Each explosion produces more than 100 times the light energy the Sun has released throughout its 10-billion-year existence. The last supernova happened about 400 years ago but was only detected in 1987.",
     imagePath: chapterImage,
   },
   keywords: [
     "Galaxy",
     "The Milky Way",
     "Nebula",
-    "Stars",
+    "Star",
     "Solar system",
-    "Protostar",
     "Red giant",
-    "White dwarf",
+    "Supergiant",
     "Supernova",
+    "White dwarf",
     "Neutron star",
     "Black hole",
   ],
   sections: [
     {
       number: "11.1",
-      title: "Galaxies in the Universe",
+      title: "Galaxies and the Universe",
       intro:
-        "The universe consists of every existing thing around us — so vast that millions of galaxies exist within it. A galaxy is a massive collection of millions (often billions) of stars, held together with gas and dust by gravity. Astronomy and technology such as the Hubble Space Telescope (launched 24th April 1990, powerful enough to see a coin from 725 km away) have raised our awareness of just how vast the universe is. The Milky Way — a medium-large spiral galaxy that houses our solar system near the edge of one of its spiral arms — consists of roughly 200 billion stars, and the Sun is just one of them.",
-      accordions: [
-        { title: "🌍 Earth", body: "Our home planet — smaller than a speck of dust compared to the universe as a whole." },
-        { title: "☀️ Solar System", body: "The Sun plus 8 orbiting planets, including Earth." },
-        { title: "🌌 The Milky Way", body: "A single galaxy containing roughly 200 billion stars — our solar system is just one tiny part of it." },
-        { title: "✨ A cluster of galaxies", body: "Groups of galaxies bound together by gravity — the Milky Way is part of one such group." },
-        { title: "♾️ The Universe", body: "Everything that exists — millions of galaxy clusters, with no observed end." },
+        "The universe consists of everything that exists around us, and there are millions of galaxies within it. A galaxy is a collection of bodies made up of millions of stars together with gas and dust. Galaxies exist in several shapes: spiral galaxies, elliptical galaxies and irregular galaxies. Astronomy carried out with technology such as telescopes has made us aware of the beauty and vastness of the universe.",
+      cards: [
+        {
+          title: "🔭 Technology helps us study space",
+          body: "The Hubble Space Telescope was launched on 24 April 1990. It is so powerful that it can see a coin lying 725 km away from it.",
+        },
       ],
       galaxyCards: {
-        title: "🌀 Three main galaxy shapes",
-        instruction: "Galaxies come in many forms. Look at the three main shapes and their examples.",
+        title: "🌀 Three types of galaxy",
+        instruction: "Look at the three types of galaxy and an example of each.",
         cards: [
-          { id: "spiral", image: spiralImg, name: "Spiral Galaxy", example: "e.g. Andromeda, the Milky Way" },
-          { id: "elliptical", image: ellipticalImg, name: "Elliptical Galaxy", example: "e.g. Ursa Major, Messier 87" },
-          { id: "irregular", image: irregularImg, name: "Irregular Galaxy", example: "e.g. the Small and Large Magellanic Clouds" },
+          { id: "spiral", image: spiralImg, name: "Spiral galaxy", example: "Examples: Andromeda and the Milky Way" },
+          { id: "elliptical", image: ellipticalImg, name: "Elliptical galaxy", example: "Examples: Ursa Major and Messier 87" },
+          { id: "irregular", image: irregularImg, name: "Irregular galaxy", example: "Examples: the Small and Large Magellanic Clouds" },
         ],
       },
       checks: [
-        { question: "What galaxy type is the Milky Way?", hint: "A spiral galaxy — like Andromeda, one of its closest neighbours." },
+        {
+          question: "What is a galaxy?",
+          hint: "A galaxy is a collection of bodies made up of millions of stars together with gas and dust.",
+        },
+        {
+          question: "Name the three types of galaxy and give one example of each.",
+          hint: "Spiral (Andromeda, the Milky Way); elliptical (Ursa Major, Messier 87); irregular (the Small and Large Magellanic Clouds).",
+        },
       ],
     },
     {
-      number: "11.2",
-      title: "The Life and Character of Stars",
+      number: "11.1",
+      title: "The Milky Way, the Solar System's Location and Relative Scale",
       intro:
-        "Stars are massive glowing balls of gas that generate their own light and heat through nuclear reactions. Stars can be classified based on five characteristics: colour, temperature, size, brightness and distance from Earth. Every star also goes through its own life cycle — from birth inside a nebula to death as a white dwarf, neutron star or black hole, depending on its original size (the Nebular Hypothesis).",
+        "Our solar system lies inside the Milky Way galaxy. The Milky Way is a medium-sized spiral galaxy, and our solar system sits at the edge of one of its spiral arms. The Milky Way contains roughly 200 billion stars, and the Sun is one of them.",
+      milkyWayLocator: {
+        title: "🌌 Where the solar system sits in the Milky Way",
+        galaxyLabel: "The Milky Way galaxy",
+        solarSystemLabel: "Solar system",
+        centreLabel: "Galactic centre",
+        armLabel: "at the edge of one spiral arm",
+        facts: [
+          "The Milky Way is a medium-sized spiral galaxy.",
+          "Our solar system sits at the edge of one of the Milky Way's spiral arms.",
+          "The Milky Way contains roughly 200 billion stars, and the Sun is one of them.",
+        ],
+        caption: "Our solar system is not at the galactic centre — it lies out at the edge of a spiral arm.",
+        hint: "The diagram is not drawn to scale.",
+      },
+      cosmicScale: {
+        title: "🪐 Comparing relative sizes",
+        instruction: "Tap each level to see what it contains.",
+        tiers: [
+          { id: "bumi", label: "Earth", note: "The planet we live on. Earth is smaller than a speck of dust when compared with the universe." },
+          { id: "sistem-suria", label: "Solar system", note: "Eight planets orbiting the Sun, including Earth." },
+          { id: "bima-sakti", label: "The Milky Way galaxy", note: "The galaxy that holds our solar system, together with roughly 200 billion stars." },
+          { id: "kumpulan", label: "Group of galaxies", note: "Several galaxies lying near one another." },
+          { id: "gugusan", label: "Cluster of galaxies", note: "A still larger collection of galaxy groups." },
+          { id: "alam-semesta", label: "The universe", note: "Everything that exists. We cannot see where it ends." },
+        ],
+        notToScaleLabel: "Diagram not drawn to scale",
+        caption: "Each level is contained within the next one.",
+        hint: "This ordering shows what contains what, not real size ratios.",
+      },
+      checks: [
+        {
+          question: "Where is our solar system located within the Milky Way galaxy?",
+          hint: "At the edge of one of the Milky Way's spiral arms — not at the galactic centre.",
+        },
+        {
+          question: "Put these in order of what contains what: Earth, the universe, the solar system, the Milky Way galaxy.",
+          hint: "Earth → solar system → the Milky Way galaxy → group of galaxies → cluster of galaxies → the universe.",
+        },
+      ],
+    },
+    {
+      number: "11.1",
+      title: "The Life Cycle of Stars",
+      intro:
+        "Stars are born from a nebula. A nebula is a vast cloud made up of dust and gases such as hydrogen and helium. Strong gravitational attraction pulls the gas and dust particles together into a clump that contracts and compresses into a core. When the temperature and pressure in the core become very high, a nuclear reaction takes place and hydrogen gas is converted into helium, releasing a great deal of heat and light energy. The core shines and a star is born.",
+      accordions: [
+        {
+          title: "☁️ The birth of a star",
+          body: "Gases and dust particles in a nebula are pulled together by strong gravitational attraction to form a clump. The clump contracts and compresses until it becomes very dense and forms a core. When the temperature and pressure in the core become very high, a nuclear reaction takes place and hydrogen gas is converted into helium. The core shines and a star is born — a newly born star is known as a young star.",
+        },
+        {
+          title: "🔴 The death of a star",
+          body: "The large amount of heat generated warms the star's outermost layer until the hydrogen in that layer begins to burn and the star expands. At this stage the star is red and is called a red giant. If the red giant is not very large, a white dwarf forms. If the red giant is very large, it contracts rapidly and produces a huge explosion called a supernova, forming a neutron star. If the original star was very large indeed, the supernova explosion forms a black hole.",
+        },
+        {
+          title: "⚫ What is a black hole?",
+          body: "A black hole is a region that does not allow any matter to escape from it, including light.",
+        },
+      ],
+      stellarLifecycle: {
+        title: "⭐ The life cycle of a star",
+        instruction: "Tap each type of star to follow its pathway.",
+        originLabel: "Nebula",
+        originNote: "Every star begins from a nebula.",
+        branches: [
+          {
+            id: "medium",
+            label: "Medium-sized star",
+            stages: ["Medium-sized star", "Red giant", "White dwarf"],
+            note: "A medium-sized star such as the Sun becomes a red giant, and because that red giant is not very large it ends as a white dwarf. This pathway does not pass through a supernova.",
+          },
+          {
+            id: "large",
+            label: "Large star",
+            stages: ["Large star", "Red giant", "Supergiant", "Supernova", "Neutron star"],
+            note: "A large star becomes a red giant and then a supergiant. Because that red giant is very large, it contracts rapidly and explodes as a supernova, forming a neutron star.",
+          },
+          {
+            id: "superlarge",
+            label: "Very large star",
+            stages: ["Very large star", "Red giant", "Supergiant", "Supernova", "Black hole"],
+            note: "For a star that was originally very large indeed, the supernova explosion forms a black hole rather than a neutron star.",
+          },
+        ],
+        outcomeLabel: "Final stage",
+        caption: "Every star begins from a nebula, but what follows depends on the size of that star.",
+        hint: "Notice that only large and very large stars pass through a supernova. Medium-sized stars do not explode.",
+      },
+      checks: [
+        {
+          question: "What determines whether a star ends as a white dwarf, a neutron star or a black hole?",
+          hint: "The size of the star. Medium-sized stars become white dwarfs; large stars form neutron stars after a supernova; very large stars form black holes.",
+        },
+        {
+          question: "The Sun is a medium-sized star. Will the Sun become a black hole?",
+          hint: "No. A medium-sized star passes through the red giant stage and ends as a white dwarf — that pathway passes through neither a supernova nor a black hole.",
+        },
+      ],
+    },
+    {
+      number: "11.1",
+      title: "Characteristics of Stars",
+      intro:
+        "If you look at the night sky, some stars appear bright and others appear dim. Stars can be classified by five characteristics: temperature, size, distance, colour and brightness. In general, a star's colour follows its surface temperature, running from lower temperatures to higher ones.",
       cards: [
         {
-          title: "Colour and temperature",
-          body: "A star's colour reveals its surface temperature. Classification (K): Red (<3,500), Orange (3,500–5,000), Yellow (5,000–6,000, the Sun's range), Yellowish-white (6,000–7,500), White (7,500–11,000), Bluish-white (11,000–25,000), Blue (>25,000).",
+          title: "🌡️ Colour and temperature",
+          body: "A star's colour shows its surface temperature. Red stars are the coolest, while blue stars are the hottest.",
         },
         {
-          title: "Star size",
-          body: "Really big stars are called supergiant stars; big stars are called giant stars; really small ones are called dwarf stars — though even dwarf stars are still far bigger than any planet.",
+          title: "📏 Size",
+          body: "A very large star is called a supergiant star, a large star is called a giant star, and a very small star is called a dwarf star.",
         },
         {
-          title: "Brightness and distance",
-          body: "The brightness of a star depends on its size, distance and surface temperature. The brightest stars in the night sky are Sirius and Rigel.",
-          detail: "Dato' Dr. Sheikh Muszaphar Shukor — the first Malaysian in outer space, 10th October 2007.",
+          title: "✨ Brightness and distance",
+          body: "The observed brightness of a star depends on its size, its distance from Earth and its surface temperature. The brightest stars in the sky are Sirius and Rigel.",
         },
       ],
-      sequence: {
-        title: "⭐ Follow a star's life story",
-        instruction: "Stars are born from nebulae — massive clouds of gas and dust. Step through how one becomes a star, and how it eventually dies.",
-        bannerImage: nebulaImg,
-        steps: [
-          { title: "Nebula", body: "A vast cloud of gas and dust. Gravity pulls it into a spinning, shrinking globe.", detail: "☁️" },
-          { title: "Protostar", body: "The compressing core gets hot and dense enough to start glowing — a young star is born.", detail: "🌟" },
-          { title: "Main-sequence star", body: "The star settles into a stable phase, fusing hydrogen into helium — this is where our Sun is right now.", detail: "☀️" },
-          { title: "Red giant", body: "As hydrogen runs low, the outer layer heats and expands, turning the star red and huge.", detail: "🔴" },
-          { title: "Final stage", body: "Small/medium stars quietly become a white dwarf. Massive stars explode as a supernova — leaving a neutron star, or for super-massive stars, a black hole where not even light can escape.", detail: "⚡" },
-        ],
-      },
       phSlider: {
-        title: "🌈 A star's colour reveals its temperature",
-        instruction: "Drag to see how colour maps to surface temperature — the same principle as a blacksmith reading metal colour to judge heat.",
+        title: "🌈 Star colour and temperature scale",
+        instruction: "Drag to see how a star's colour relates to its surface temperature.",
         gradient: STAR_GRADIENT,
         unitLabel: "",
-        initialValue: 2,
+        ariaLabel: "Star colour and temperature scale",
+        tickLabels: ["Red", "Orange", "Yellow", "Yellow-white", "White", "Blue-white", "Blue"],
+        initialValue: 0,
         scale: [
-          { value: 0, name: "Red", description: "Below 3,500 K — the coolest visible stars." },
-          { value: 1, name: "Orange", description: "3,500–5,000 K." },
-          { value: 2, name: "Yellow", description: "5,000–6,000 K — this is the Sun's range." },
-          { value: 3, name: "Yellowish-white", description: "6,000–7,500 K." },
-          { value: 4, name: "White", description: "7,500–11,000 K." },
-          { value: 5, name: "Bluish-white", description: "11,000–25,000 K." },
-          { value: 6, name: "Blue", description: "Above 25,000 K — the hottest stars of all." },
+          { value: 0, name: "Red", description: "Less than 3 500 K — the coolest stars." },
+          { value: 1, name: "Orange", description: "3 500 – 5 000 K." },
+          { value: 2, name: "Yellow", description: "5 000 – 6 000 K." },
+          { value: 3, name: "Yellow-white", description: "6 000 – 7 500 K." },
+          { value: 4, name: "White", description: "7 500 – 11 000 K." },
+          { value: 5, name: "Blue-white", description: "11 000 – 25 000 K." },
+          { value: 6, name: "Blue", description: "Above 25 000 K — the hottest stars." },
         ],
       },
-      flipCards: [
-        { id: "dwarf", icon: "🔴", label: "Dwarf", fact: "The smallest class of star — still far bigger than any planet." },
-        { id: "giant", icon: "🟠", label: "Giant", fact: "Much larger than dwarf stars, often late in their life cycle." },
-        { id: "supergiant", icon: "🔵", label: "Supergiant", fact: "The largest stars known — enormous even compared to giants." },
-      ],
+      starSizeCompare: {
+        title: "⭕ Comparing star sizes",
+        sizes: [
+          { id: "super", label: "Supergiant", relative: 1, note: "A very large star." },
+          { id: "raksasa", label: "Giant", relative: 0.5, note: "A large star." },
+          { id: "kerdil", label: "Dwarf", relative: 0.16, note: "A very small star." },
+        ],
+        caption: "Diagram not drawn to scale",
+        hint: "Note that dwarf here is a size category. A white dwarf is the final stage in the life cycle of a medium-sized star.",
+      },
       checks: [
-        { question: "What determines whether a dying star becomes a white dwarf or a black hole?", hint: "The original star's mass — smaller stars become white dwarfs; super-massive stars collapse into black holes after a supernova." },
-        { question: "A star appears bluish-white. Is it hotter or cooler than a red star?", hint: "Much hotter — blue and bluish-white stars sit at the highest end of the temperature scale, above 11,000 K." },
+        {
+          question: "One star appears blue and another appears red. Which one is hotter?",
+          hint: "The blue star. Blue stars are above 25 000 K while red stars are below 3 500 K.",
+        },
+        {
+          question: "What three factors determine the observed brightness of a star seen from Earth?",
+          hint: "The star's size, its distance from Earth, and its surface temperature.",
+        },
       ],
     },
   ],
   reflectionItems: [
-    "I can communicate the characteristics of objects in space.",
-    "I can compare star characteristics, including the Sun, and relate them to Earth-based observation.",
+    "I can state what a galaxy is and name three types of galaxy with examples.",
+    "I can state where the solar system is located within the Milky Way galaxy.",
+    "I can order Earth, the solar system, the Milky Way galaxy and the universe by what contains what.",
+    "I can explain how a star is born from a nebula.",
+    "I can distinguish the life-cycle pathways of medium-sized, large and very large stars.",
+    "I can classify stars by temperature, size, distance, colour and brightness.",
   ],
   miniQuiz: [
     {
       type: "true-false",
-      question: "True or false: The Sun is the biggest, brightest star in the universe.",
+      question: "True or false: The Sun is the largest and brightest star in the universe.",
       answer: false,
-      explanation: "It just looks that way because it's so much closer to us — many stars in the universe are far bigger and brighter than the Sun.",
+      explanation: "The Sun only appears that way because it is far closer to Earth. A star's observed brightness depends on its size, its distance from Earth and its surface temperature.",
     },
     {
       type: "multiple-choice",
       question: "What are stars formed from?",
-      options: ["Asteroids", "Nebulae", "Black holes", "Comets"],
+      options: ["Asteroids", "A nebula", "Black holes", "Comets"],
       answerIndex: 1,
-      explanation: "Nebulae — huge clouds of gas and dust that collapse under gravity to form a protostar, and eventually a star.",
+      explanation: "A nebula is a vast cloud made up of dust and gases such as hydrogen and helium. Gravity compresses it until a star is born.",
+    },
+    {
+      type: "multiple-choice",
+      question: "A medium-sized star such as the Sun will end as what?",
+      options: ["A black hole", "A neutron star", "A white dwarf", "A supernova"],
+      answerIndex: 2,
+      explanation: "A medium-sized star becomes a red giant, and because that red giant is not very large it ends as a white dwarf. This pathway does not pass through a supernova.",
     },
   ],
 };

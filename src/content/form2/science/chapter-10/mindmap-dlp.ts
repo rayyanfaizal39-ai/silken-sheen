@@ -24,7 +24,7 @@ export const scienceF2C10MindMapDLP: MindNode = {
             { id: "c1-2-1", label: "Sound cannot propagate through a vacuum (an area without air)" },
             {
               id: "c1-2-2",
-              label: "Activity 10.1",
+              label: "Vacuum jar demonstration",
               children: [
                 { id: "c1-2-2-1", label: "An alarm clock is placed inside a bell jar" },
                 { id: "c1-2-2-2", label: "Air is sucked out using a vacuum pump" },
@@ -143,7 +143,7 @@ export const scienceF2C10MindMapDLP: MindNode = {
         },
         {
           id: "c2-4",
-          label: "Activity 10.2 — C.R.O. and Audio Signal Generator",
+          label: "C.R.O. and audio signal generator investigation",
           children: [
             { id: "c2-4-1", label: "Apparatus: Cathode Ray Oscilloscope (C.R.O.) and audio signal generator" },
             { id: "c2-4-2", label: "Increasing output power → amplitude increases → louder sound" },
@@ -159,7 +159,7 @@ export const scienceF2C10MindMapDLP: MindNode = {
             { id: "c2-5-3", label: "Frequency of ambulance siren decreases as the ambulance moves away from a stationary observer" },
             {
               id: "c2-5-4",
-              label: "Activity 10.4 — Air Horn",
+              label: "Moving air-horn demonstration",
               children: [
                 { id: "c2-5-4-1", label: "Apparatus: air horn used to study the Doppler effect" },
                 { id: "c2-5-4-2", label: "Pitch heard by observer changes while the air horn passes by" },
@@ -257,7 +257,7 @@ export const scienceF2C10MindMapDLP: MindNode = {
           label: "Devices to Overcome Human Hearing Limitations",
           children: [
             { id: "c3-6-1", label: "Stethoscope — helps doctors listen to a patient's heartbeat" },
-            { id: "c3-6-2", label: "Megaphone — amplifies the voice so it can be heard from a distance" },
+            { id: "c3-6-2", label: "Loudspeaker — makes a voice louder so it can be heard from a distance" },
             { id: "c3-6-3", label: "Hearing aid — amplifies sound entering the ear" },
           ],
         },
@@ -278,7 +278,8 @@ export const scienceF2C10MindMapDLP: MindNode = {
           children: [
             { id: "c3-8-1", label: "Reflection of sound from hard surfaces produces echo" },
             { id: "c3-8-2", label: "Ultrasound (>20,000 Hz) is used in sonar — shipping, medical, fisheries" },
-            { id: "c3-8-3", label: "Humans: limit of hearing 20 Hz–20,000 Hz, lower than some animals; devices such as stethoscopes, megaphones and hearing aids overcome this limitation" },
+            { id: "c3-8-3", label: "Human hearing limit 20 Hz–20,000 Hz; some animals can hear far higher frequencies" },
+            { id: "c3-8-4", label: "Stethoscopes, hearing aids and loudspeakers amplify or channel sound that is too weak or too far away — they do not widen the human hearing frequency range" },
           ],
         },
       ],

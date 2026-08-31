@@ -10,11 +10,25 @@ export function PhScaleSlider({
   initialValue = 7,
   gradient,
   unitLabel = "pH",
+  ariaLabel = "pH scale",
+  tickLabels,
 }: {
   scale: PhScalePoint[];
   initialValue?: number;
   gradient?: string;
   unitLabel?: string;
+  /**
+   * Accessible name for the track. Defaults to the pH wording this block was
+   * built for; any other subject must pass its own, since a star chart
+   * announcing itself as a pH scale is simply wrong.
+   */
+  ariaLabel?: string;
+  /**
+   * Labels under the track. Defaults to the raw scale values, which are
+   * meaningful only when the value IS the quantity being read (pH). Elsewhere
+   * the numbers are array indices and must be replaced with real labels.
+   */
+  tickLabels?: string[];
 }) {
   const min = scale[0]?.value ?? 0;
   const max = scale[scale.length - 1]?.value ?? 14;
@@ -51,7 +65,8 @@ export function PhScaleSlider({
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={value}
-        aria-label="pH scale"
+        aria-label={ariaLabel}
+        aria-valuetext={current?.name}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onKeyDown={(e) => {
@@ -66,9 +81,11 @@ export function PhScaleSlider({
           style={{ left: `${pct}%` }}
         />
       </div>
-      <div className="mt-1.5 flex justify-between px-0.5 text-[10.5px] text-muted-foreground">
-        {scale.map((point) => (
-          <span key={point.value}>{point.value}</span>
+      <div className="mt-1.5 flex justify-between gap-0.5 px-0.5 text-[10.5px] leading-tight text-muted-foreground">
+        {scale.map((point, i) => (
+          <span key={point.value} className="min-w-0 flex-1 text-center [overflow-wrap:anywhere]">
+            {tickLabels?.[i] ?? point.value}
+          </span>
         ))}
       </div>
       {current && (

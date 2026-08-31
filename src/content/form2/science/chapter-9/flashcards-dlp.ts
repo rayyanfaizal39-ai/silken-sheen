@@ -208,7 +208,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "How does Activity 9.1 demonstrate conduction?",
+    front: "How does the copper-rod demonstration show conduction?",
     back: "Thumbtacks held by wax on a copper rod fall off in sequence when one end of the rod is heated, showing heat flows along the rod.",
   },
   {
@@ -217,7 +217,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "How does Activity 9.1 demonstrate convection in liquid?",
+    front: "How does the heat-transfer demonstration demonstrate convection in liquid?",
     back: "A potassium permanganate crystal moves upward in a beaker of heated water, showing a convection current.",
   },
   {
@@ -226,7 +226,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "How does Activity 9.1 demonstrate convection in gas?",
+    front: "How does the heat-transfer demonstration demonstrate convection in gas?",
     back: "Smoke moves due to the movement of hot and cold air in a beaker, showing a convection current of air.",
   },
   {
@@ -235,7 +235,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "How does Activity 9.1 demonstrate radiation?",
+    front: "How does the heat-transfer demonstration demonstrate radiation?",
     back: "Heat can still be felt even when air is removed from a bell jar (vacuum), showing radiation does not require a medium.",
   },
   {
@@ -271,7 +271,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "How does Activity 9.4 demonstrate expansion and contraction of a solid?",
+    front: "How does the expansion and contraction demonstration demonstrate expansion and contraction of a solid?",
     back: "A heated metal bar expands and cannot fit into a gauge, but contracts again when cooled.",
   },
   {
@@ -280,7 +280,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "How does Activity 9.4 demonstrate expansion and contraction of a liquid?",
+    front: "How does the expansion and contraction demonstration demonstrate expansion and contraction of a liquid?",
     back: "The coloured water level in a glass tube rises when a conical flask is placed in hot water, and falls when placed in ice.",
   },
   {
@@ -289,7 +289,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "How does Activity 9.4 demonstrate expansion and contraction of a gas?",
+    front: "How does the expansion and contraction demonstration demonstrate expansion and contraction of a gas?",
     back: "A balloon attached to a conical flask expands with hot water and contracts with ice.",
   },
   {
@@ -307,7 +307,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "What is the result of Experiment 9.2 Part A (heat absorber)?",
+    front: "What is the result of the heat-absorption investigation?",
     back: "Can K (black) shows a greater increase in temperature compared to can J (white), proving dark surfaces absorb heat better.",
   },
   {
@@ -316,7 +316,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "What is the result of Experiment 9.2 Part B (heat radiator)?",
+    front: "What is the result of the dark-versus-light surface investigation Part B (heat radiator)?",
     back: "Can K (black) shows a greater decrease in temperature compared to can J (white), proving dark surfaces radiate heat better.",
   },
   {
@@ -325,7 +325,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "Compare cotton/felt with aluminium foil in Experiment 9.1.",
+    front: "Compare cotton/felt with aluminium foil in the heat-insulator investigation.",
     back: "Cotton and felt: good heat insulators (maintain the temperature of hot water). Aluminium foil: a heat conductor.",
   },
   {
@@ -362,7 +362,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 9",
     lang: "dlp",
     front: "How does a bimetallic strip function in a fire alarm?",
-    back: "The copper strip expands faster than the steel strip when exposed to heat, causing the strip to bend towards the contact point and complete the circuit.",
+    back: "The copper strip expands faster than the iron strip when exposed to heat, causing the strip to bend towards the contact point and complete the circuit.",
   },
 
   // Deck 3: Exam (Cards 41-60)
@@ -400,7 +400,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 9",
     lang: "dlp",
     front: "[KBAT] How does a bimetallic strip ring a fire alarm?",
-    back: "The copper strip expands faster than the steel strip when exposed to fire heat, bending towards the contact point and completing the electrical circuit.",
+    back: "The copper strip expands faster than the iron strip when exposed to fire heat, bending towards the contact point and completing the electrical circuit.",
   },
   {
     id: "sci-f2-c9-dlp-f45",
@@ -408,7 +408,7 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "[KBAT] Why does the black can show a greater temperature change in Experiment 9.2?",
+    front: "[KBAT] Why does the black can show a greater temperature change in that surface investigation?",
     back: "Dark and dull surfaces are better heat absorbers and radiators compared to white and shiny surfaces.",
   },
   {
@@ -507,8 +507,8 @@ export const scienceF2C9FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "dlp",
-    front: "[KBAT] Why is roasted chicken wrapped in aluminium foil in an oven?",
-    back: "To help retain/reflect heat around the food so it cooks evenly.",
+    front: "[KBAT] What feature of a thermos flask wall helps keep hot water hot?",
+    back: "A shiny surface. A shiny surface is a poor emitter of heat, so heat is lost more slowly from the hot water inside.",
   },
   {
     id: "sci-f2-c9-dlp-f57",

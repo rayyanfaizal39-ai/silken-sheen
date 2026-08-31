@@ -30,6 +30,18 @@ export type PhSliderBlock = {
   /** Prefix shown before the value in the readout, e.g. "pH". Omit to show just the name/description. */
   unitLabel?: string;
   initialValue?: number;
+  /**
+   * Accessible name for the track. Defaults to "pH scale" so the chemistry
+   * chapters that introduced this block keep their wording; any other subject
+   * must supply its own, because "pH scale" is nonsense on a star chart.
+   */
+  ariaLabel?: string;
+  /**
+   * Labels drawn beneath the track, one per scale point. Defaults to the raw
+   * `value` numbers, which only mean something when the value IS the quantity
+   * (as with pH). Elsewhere the indices are meaningless and must be replaced.
+   */
+  tickLabels?: string[];
 };
 
 export type CalculatorBlock =
@@ -925,6 +937,369 @@ export type ApparatusDiagramBlock = {
   hint: string;
 };
 
+/** One worked example on the force-arrow figure (SP: force has magnitude, direction, point of application). */
+export type ForceExample = {
+  id: string;
+  label: string;
+  /** What the arrow represents, e.g. "10 N". */
+  magnitude: string;
+  /** Where the force is applied, in learner words. */
+  applicationPoint: string;
+  note: string;
+};
+
+export type ForceDiagramBlock = {
+  title: string;
+  instruction?: string;
+  /** Labels for the three properties an arrow encodes. */
+  magnitudeLabel: string;
+  directionLabel: string;
+  applicationLabel: string;
+  examples: ForceExample[];
+  caption: string;
+  hint: string;
+};
+
+/** Spring-balance buoyancy schematic: real weight, apparent weight, and the difference. */
+export type BuoyancySchematicBlock = {
+  title: string;
+  instruction?: string;
+  realWeightLabel: string;
+  apparentWeightLabel: string;
+  buoyantForceLabel: string;
+  formula: string;
+  /** Sample readings used only to label the drawing; not experiment results. */
+  realWeight: string;
+  apparentWeight: string;
+  buoyantForce: string;
+  /** The two equilibrium states, kept separate so floating is never stated as F > W. */
+  floatingNote: string;
+  sinkingNote: string;
+  caption: string;
+  hint: string;
+};
+
+/** One lever class, with the order of fulcrum / load / effort along the bar. */
+export type LeverClass = {
+  id: "first" | "second" | "third";
+  name: string;
+  /** Which of fulcrum | load | effort sits in the middle. */
+  middle: "fulcrum" | "load" | "effort";
+  examples: string;
+  note: string;
+};
+
+export type LeverClassesBlock = {
+  title: string;
+  instruction?: string;
+  fulcrumLabel: string;
+  loadLabel: string;
+  effortLabel: string;
+  classes: LeverClass[];
+  /** Load x load distance = Effort x effort distance. */
+  formula: string;
+  workedExample: { title: string; given: string; working: string; answer: string };
+  hint: string;
+};
+
+export type MomentDiagramBlock = {
+  title: string;
+  instruction?: string;
+  formula: string;
+  pivotLabel: string;
+  forceLabel: string;
+  distanceLabel: string;
+  /** Why the distance must be measured perpendicular to the force. */
+  perpendicularNote: string;
+  situations: { id: string; label: string; note: string }[];
+  caption: string;
+  hint: string;
+};
+
+export type GasParticlesBlock = {
+  title: string;
+  instruction?: string;
+  /** Particle count is fixed across states -- only volume or temperature changes. */
+  particleCount: number;
+  states: { id: "normal" | "compressed" | "heated"; label: string; note: string }[];
+  caption: string;
+  hint: string;
+};
+
+export type DepthPressureBlock = {
+  title: string;
+  instruction?: string;
+  /** Depth labels top -> bottom; jet length grows with depth. */
+  levels: { id: string; label: string; note: string }[];
+  applications: { id: string; label: string; note: string }[];
+  caption: string;
+  hint: string;
+};
+
+export type AltitudePressureBlock = {
+  title: string;
+  instruction?: string;
+  /** Fixed molecule count; only their distribution with height carries meaning. */
+  particleCount: number;
+  airAboveLabel: string;
+  levels: { id: "summit" | "foot"; label: string; note: string }[];
+  caption: string;
+  hint: string;
+};
+
+/** Conduction: energy passed along a fixed lattice, particles never migrate. */
+export type ConductionDiagramBlock = {
+  title: string;
+  instruction?: string;
+  /** Particle count is fixed; only vibration amplitude changes along the bar. */
+  particleCount: number;
+  hotLabel: string;
+  coldLabel: string;
+  /** The point learners get wrong: energy travels, particles stay put. */
+  mechanismNote: string;
+  stages: { id: string; label: string; note: string }[];
+  caption: string;
+  hint: string;
+};
+
+/** Convection loop and radiation-through-vacuum, the two non-solid transfer modes. */
+export type ConvectionRadiationBlock = {
+  title: string;
+  instruction?: string;
+  modes: {
+    id: "convection" | "radiation";
+    label: string;
+    note: string;
+    /** Density chain for convection; medium statement for radiation. */
+    detail: string;
+  }[];
+  warmLabel: string;
+  coolLabel: string;
+  caption: string;
+  hint: string;
+};
+
+/** Sea and land breeze. Arrow directions are derived from which side is warmer. */
+export type BreezeDiagramBlock = {
+  title: string;
+  instruction?: string;
+  breezes: {
+    id: "sea" | "land";
+    label: string;
+    /** Which surface is the warmer one at this time of day. */
+    warmerSide: "land" | "sea";
+    timeOfDay: string;
+    note: string;
+  }[];
+  landLabel: string;
+  seaLabel: string;
+  risesLabel: string;
+  caption: string;
+  hint: string;
+};
+
+/** Expansion and contraction across the three states. */
+export type ExpansionParticlesBlock = {
+  title: string;
+  instruction?: string;
+  states: { id: "solid" | "liquid" | "gas"; label: string; note: string }[];
+  heatedLabel: string;
+  cooledLabel: string;
+  /** Guards the misconception the standard warns about. */
+  misconceptionNote: string;
+  caption: string;
+  hint: string;
+};
+
+/** Bimetallic strip in a fire-alarm circuit. */
+export type BimetallicStripBlock = {
+  title: string;
+  instruction?: string;
+  /** The metal that expands more, drawn on the outside of the bend. */
+  fasterMetal: string;
+  slowerMetal: string;
+  states: { id: "room" | "heated"; label: string; note: string }[];
+  contactLabel: string;
+  alarmLabel: string;
+  caption: string;
+  hint: string;
+};
+
+/** Dark/dull versus white/shiny, absorption and emission kept separate. */
+export type SurfaceComparisonBlock = {
+  title: string;
+  instruction?: string;
+  modes: { id: "absorb" | "emit"; label: string; note: string }[];
+  darkLabel: string;
+  shinyLabel: string;
+  betterLabel: string;
+  poorerLabel: string;
+  caption: string;
+  hint: string;
+};
+
+/**
+ * Sound through the three states of matter.
+ *
+ * `speedRank` drives the visual ordering so a state can never be drawn with a
+ * particle spacing that contradicts the speed the source assigns it.
+ */
+export type SoundMediaBlock = {
+  title: string;
+  instruction?: string;
+  states: {
+    id: "solid" | "liquid" | "gas";
+    label: string;
+    /** 1 = fastest. Textbook p.227: solid > liquid > gas. */
+    speedRank: 1 | 2 | 3;
+    speedLabel: string;
+    note: string;
+  }[];
+  caption: string;
+  hint: string;
+};
+
+/** Echo: outgoing sound, a hard reflecting surface, and the returning sound. */
+export type EchoDiagramBlock = {
+  title: string;
+  instruction?: string;
+  sourceLabel: string;
+  surfaceLabel: string;
+  outgoingLabel: string;
+  reflectedLabel: string;
+  places: string[];
+  caption: string;
+  hint: string;
+};
+
+/**
+ * Doppler wavefronts around a moving source.
+ *
+ * Wavefront geometry is computed from the source's motion rather than authored,
+ * so the compressed-ahead / spread-behind relationship cannot be drawn backwards.
+ */
+export type DopplerWavefrontsBlock = {
+  title: string;
+  instruction?: string;
+  /** Which observer's experience is being explained right now. */
+  observers: {
+    id: "ahead" | "behind";
+    label: string;
+    /** Whether the observed frequency rises or falls for this observer. */
+    effect: "higher" | "lower";
+    note: string;
+  }[];
+  sourceLabel: string;
+  emittedNote: string;
+  caption: string;
+  hint: string;
+};
+
+/** Sonar and bat echolocation — both must show an outgoing and a returning pulse. */
+export type EcholocationBlock = {
+  title: string;
+  instruction?: string;
+  modes: {
+    id: "sonar" | "bat";
+    label: string;
+    /** The medium the pulse actually travels through. */
+    medium: "water" | "air";
+    emitterLabel: string;
+    targetLabel: string;
+    note: string;
+  }[];
+  outgoingLabel: string;
+  returningLabel: string;
+  caption: string;
+  hint: string;
+};
+
+/** Hearing ranges on a logarithmic frequency scale. */
+export type HearingRangeBlock = {
+  title: string;
+  instruction?: string;
+  /** Exact source values only — never adjusted for visual spacing. */
+  entries: {
+    id: string;
+    label: string;
+    minHz: number;
+    maxHz: number;
+    /** Marks the human row so it can be used as the reference band. */
+    human?: boolean;
+  }[];
+  ultrasoundLabel: string;
+  caption: string;
+  hint: string;
+};
+
+/**
+ * The life cycle of a star, as three diverging pathways.
+ *
+ * The shape is deliberately a list of branches rather than a list of steps: the
+ * source figure (Rajah 11.1) forks at the star's size and never rejoins, so a
+ * step list would be the wrong data structure and would invite exactly the
+ * single-chain reading this block exists to prevent.
+ */
+export type StellarLifecycleBlock = {
+  title: string;
+  instruction?: string;
+  /** The common origin every branch grows from. */
+  originLabel: string;
+  originNote: string;
+  branches: {
+    id: "medium" | "large" | "superlarge";
+    /** The star category that opens this branch, in the source's own wording. */
+    label: string;
+    /** Stage labels in order, ending at the branch's final outcome. */
+    stages: string[];
+    note: string;
+  }[];
+  outcomeLabel: string;
+  caption: string;
+  hint: string;
+};
+
+/**
+ * Conceptual nesting from Earth out to the universe.
+ *
+ * Each tier simply contains the previous one. Radii are fixed presentation
+ * values, never derived from real sizes — the source figure is itself labelled
+ * "Gambar tidak mengikut skala", and pretending otherwise would teach a false
+ * proportion.
+ */
+export type CosmicScaleBlock = {
+  title: string;
+  instruction?: string;
+  /** Innermost first. */
+  tiers: { id: string; label: string; note: string }[];
+  notToScaleLabel: string;
+  caption: string;
+  hint: string;
+};
+
+/** Where the Solar System sits inside the Milky Way. */
+export type MilkyWayLocatorBlock = {
+  title: string;
+  instruction?: string;
+  galaxyLabel: string;
+  solarSystemLabel: string;
+  centreLabel: string;
+  armLabel: string;
+  facts: string[];
+  caption: string;
+  hint: string;
+};
+
+/** Relative sizes of the source's three star-size categories. */
+export type StarSizeCompareBlock = {
+  title: string;
+  instruction?: string;
+  /** Largest first; `relative` is a drawing ratio, not a measured value. */
+  sizes: { id: string; label: string; relative: number; note: string }[];
+  caption: string;
+  hint: string;
+};
+
 export type ScienceInteractiveSection = {
   number: string;
   title: string;
@@ -968,6 +1343,29 @@ export type ScienceInteractiveSection = {
   magnetFieldDiagram?: MagnetFieldDiagramBlock;
   currentFieldPatterns?: CurrentFieldPatternsBlock;
   apparatusDiagram?: ApparatusDiagramBlock;
+  forceDiagram?: ForceDiagramBlock;
+  buoyancySchematic?: BuoyancySchematicBlock;
+  leverClasses?: LeverClassesBlock;
+  momentDiagram?: MomentDiagramBlock;
+  gasParticles?: GasParticlesBlock;
+  depthPressure?: DepthPressureBlock;
+  pressureApparatus?: ApparatusDiagramBlock;
+  altitudePressure?: AltitudePressureBlock;
+  conductionDiagram?: ConductionDiagramBlock;
+  convectionRadiation?: ConvectionRadiationBlock;
+  breezeDiagram?: BreezeDiagramBlock;
+  expansionParticles?: ExpansionParticlesBlock;
+  bimetallicStrip?: BimetallicStripBlock;
+  surfaceComparison?: SurfaceComparisonBlock;
+  soundMedia?: SoundMediaBlock;
+  echoDiagram?: EchoDiagramBlock;
+  dopplerWavefronts?: DopplerWavefrontsBlock;
+  echolocation?: EcholocationBlock;
+  hearingRange?: HearingRangeBlock;
+  stellarLifecycle?: StellarLifecycleBlock;
+  cosmicScale?: CosmicScaleBlock;
+  milkyWayLocator?: MilkyWayLocatorBlock;
+  starSizeCompare?: StarSizeCompareBlock;
   /** Standalone annotated reference illustrations for this section. */
   images?: AnnotatedImageBlock[];
   matcher?: {

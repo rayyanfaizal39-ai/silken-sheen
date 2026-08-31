@@ -18,7 +18,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "Mengapakah daya ialah kuantiti vektor?",
-    back: "Kerana daya mempunyai magnitud dan arah, serta titik tindakan.",
+    back: "Kerana daya mempunyai magnitud dan arah, serta titik aplikasi.",
   },
   {
     id: "sci-f2-c8-bm-f3",
@@ -26,7 +26,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     lang: "bm",
-    front: "Apakah maksud titik tindakan (point of application)?",
+    front: "Apakah maksud titik aplikasi (point of application)?",
     back: "Kawasan di mana daya yang dikenakan tertumpu.",
   },
   {
@@ -54,7 +54,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "Apakah alat yang digunakan untuk mengukur daya?",
-    back: "Penimbang spring (spring balance), berdasarkan prinsip pengembangan spring.",
+    back: "Neraca spring (spring balance), berdasarkan prinsip pengembangan spring.",
   },
   {
     id: "sci-f2-c8-bm-f7",
@@ -171,7 +171,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "Apakah formula bagi momen daya dan unitnya?",
-    back: "Momen daya = Daya (N) × Jarak berserenjang daripada pangsi kepada daya (m); unit newton meter (N m).",
+    back: "Momen daya = Daya (N) × Jarak tegak dari pangsi ke daya (m); unit newton meter (N m).",
   },
   {
     id: "sci-f2-c8-bm-f20",
@@ -218,7 +218,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "Bandingkan ketumpatan objek yang terapung dan tenggelam berbanding cecair.",
-    back: "Terapung: objek kurang tumpat daripada cecair (F > W). Tenggelam: objek lebih tumpat daripada cecair (F < W).",
+    back: "Terapung: objek kurang tumpat daripada cecair, dan semasa terapung pegun daya apungan sama dengan berat (F = W). Tenggelam: objek lebih tumpat daripada cecair, dan daya apungan kurang daripada berat (F < W).",
   },
   {
     id: "sci-f2-c8-bm-f25",
@@ -236,7 +236,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "Apakah faktor yang mempengaruhi momen daya?",
-    back: "Magnitud daya yang dikenakan dan jarak berserenjang daripada pangsi kepada daya.",
+    back: "Magnitud daya yang dikenakan dan jarak tegak dari pangsi ke daya.",
   },
   {
     id: "sci-f2-c8-bm-f27",
@@ -308,7 +308,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "Apakah maksud tekanan atmosfera dan bagaimana ia berubah dengan altitud?",
-    back: "Tekanan yang dikenakan oleh atmosfera ke atas Bumi dan objek di atasnya; berkurang apabila altitud meningkat kerana tarikan graviti lebih lemah.",
+    back: "Tekanan yang dikenakan oleh atmosfera ke atas Bumi dan objek di atasnya; berkurang apabila altitud meningkat kerana semakin sedikit udara berada di atas kita.",
   },
   {
     id: "sci-f2-c8-bm-f35",
@@ -326,7 +326,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "Berikan contoh aplikasi konsep tekanan udara/atmosfera dalam kehidupan harian.",
-    back: "Tukul kebawa (plunger), bola Magdeburg, penyedut minuman, sifon, picagari dan pembersih vakum.",
+    back: "Pam sedut (plunger), hemisfera Magdeburg, penyedut minuman, sifon, picagari dan pembersih vakum.",
   },
   {
     id: "sci-f2-c8-bm-f37",
@@ -445,7 +445,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "[KBAT] Mengapakah tekanan atmosfera berkurang apabila altitud meningkat?",
-    back: "Tarikan graviti yang lebih lemah pada altitud tinggi menjadikan udara kurang tumpat dan mengembang dengan lebih mudah.",
+    back: "Pada altitud yang tinggi, lebih sedikit udara berada di atas kita, jadi berat lajur udara yang menekan ke bawah lebih kecil dan tekanan atmosfera lebih rendah.",
   },
   {
     id: "sci-f2-c8-bm-f50",
@@ -472,7 +472,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "[Tip Peperiksaan] Bagaimana menjawab soalan pengiraan momen daya dengan markah penuh?",
-    back: "Tuliskan formula Momen daya = Daya × Jarak berserenjang, gantikan nilai dengan unit yang betul, dan nyatakan unit jawapan (N m).",
+    back: "Tuliskan formula Momen daya = Daya × Jarak tegak, gantikan nilai dengan unit yang betul, dan nyatakan unit jawapan (N m).",
   },
   {
     id: "sci-f2-c8-bm-f53",
@@ -490,7 +490,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "[Kesilapan Lazim] Adakah momen daya hanya bergantung kepada magnitud daya?",
-    back: "Tidak. Momen daya bergantung kepada magnitud daya DAN jarak berserenjang daripada pangsi kepada daya.",
+    back: "Tidak. Momen daya bergantung kepada magnitud daya DAN jarak tegak dari pangsi ke daya.",
   },
   {
     id: "sci-f2-c8-bm-f55",
@@ -544,6 +544,6 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "Ringkaskan peta konsep Bab 8 dalam satu ayat.",
-    back: "Daya (vektor dengan magnitud, arah, titik tindakan) mempunyai pelbagai jenis dan kesan, termasuk daya keapungan, momen daya pada tuil, dan tekanan (gas, atmosfera, cecair).",
+    back: "Daya (vektor dengan magnitud, arah, titik aplikasi) mempunyai pelbagai jenis dan kesan, termasuk daya keapungan, momen daya pada tuil, dan tekanan (gas, atmosfera, cecair).",
   },
 ];

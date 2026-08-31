@@ -60,7 +60,7 @@ export const scienceF2C8MindMapDLP: MindNode = {
         },
         {
           id: "c1-6",
-          label: "Activity 8.1",
+          label: "Showing that different types of force exist",
           children: [
             { id: "c1-6-1", label: "Ball thrown into air falls back down — gravitational force" },
             { id: "c1-6-2", label: "Wooden block harder to push on sandpaper than table — frictional force" },
@@ -218,7 +218,7 @@ export const scienceF2C8MindMapDLP: MindNode = {
           label: "Atmospheric Pressure",
           children: [
             { id: "c2-9-1", label: "Pressure exerted by atmosphere on Earth's surface and objects on it" },
-            { id: "c2-9-2", label: "Decreases as altitude increases — weaker gravity, less dense air, expands more easily" },
+            { id: "c2-9-2", label: "Decreases as altitude increases — less air above, so the air column weighs less" },
             { id: "c2-9-3", label: "Applications: plunger, Magdeburg hemispheres, drinking straw, syphon, syringe, vacuum cleaner" },
             { id: "c2-9-4", label: "Condensed milk can with two holes — milk flows smoothly as inside/outside pressure equalises" },
           ],

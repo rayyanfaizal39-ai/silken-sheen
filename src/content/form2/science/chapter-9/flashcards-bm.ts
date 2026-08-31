@@ -208,7 +208,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Bagaimanakah Aktiviti 9.1 menunjukkan konduksi?",
+    front: "Bagaimanakah demonstrasi rod kuprum menunjukkan konduksi?",
     back: "Paku tekan yang ditampung dengan lilin pada rod kuprum jatuh secara berurutan apabila satu hujung rod dipanaskan, menunjukkan haba mengalir melalui rod.",
   },
   {
@@ -217,7 +217,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Bagaimanakah Aktiviti 9.1 menunjukkan perolakan dalam cecair?",
+    front: "Bagaimanakah demonstrasi hablur kalium permanganat menunjukkan perolakan dalam cecair?",
     back: "Hablur kalium permanganat bergerak ke atas dalam bikar air yang dipanaskan, menunjukkan arus perolakan.",
   },
   {
@@ -226,7 +226,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Bagaimanakah Aktiviti 9.1 menunjukkan perolakan dalam gas?",
+    front: "Bagaimanakah demonstrasi colok berbara menunjukkan perolakan dalam gas?",
     back: "Asap bergerak akibat pergerakan udara panas dan sejuk dalam bikar, menunjukkan arus perolakan udara.",
   },
   {
@@ -235,7 +235,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Bagaimanakah Aktiviti 9.1 menunjukkan sinaran?",
+    front: "Bagaimanakah demonstrasi balang vakum menunjukkan sinaran?",
     back: "Haba masih dapat dirasakan walaupun udara dikeluarkan daripada balang loceng (vakum), menunjukkan sinaran tidak memerlukan medium.",
   },
   {
@@ -271,7 +271,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Bagaimanakah Aktiviti 9.4 menunjukkan pengembangan dan pengecutan pepejal?",
+    front: "Bagaimanakah demonstrasi pengembangan menunjukkan pengembangan dan pengecutan pepejal?",
     back: "Rod logam yang dipanaskan mengembang dan tidak dapat dimasukkan ke dalam tolok, tetapi mengecut semula apabila disejukkan.",
   },
   {
@@ -280,7 +280,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Bagaimanakah Aktiviti 9.4 menunjukkan pengembangan dan pengecutan cecair?",
+    front: "Bagaimanakah demonstrasi pengembangan menunjukkan pengembangan dan pengecutan cecair?",
     back: "Paras air berwarna dalam tiub kaca meningkat apabila kelalang kon direndam dalam air panas, dan menurun apabila direndam dalam ais.",
   },
   {
@@ -289,7 +289,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Bagaimanakah Aktiviti 9.4 menunjukkan pengembangan dan pengecutan gas?",
+    front: "Bagaimanakah demonstrasi pengembangan menunjukkan pengembangan dan pengecutan gas?",
     back: "Belon yang dikenakan udara panas mengembang, dan mengecut apabila dikenakan ais.",
   },
   {
@@ -298,8 +298,8 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Bandingkan permukaan gelap/kasar dengan permukaan putih/berkilat.",
-    back: "Permukaan gelap dan kasar: penyerap dan pembebas haba yang lebih baik. Permukaan putih dan berkilat: penyerap dan pembebas haba yang lebih lemah.",
+    front: "Bandingkan permukaan gelap/kusam dengan permukaan putih/berkilat.",
+    back: "Permukaan gelap dan kusam: penyerap dan pembebas haba yang lebih baik. Permukaan putih dan berkilat: penyerap dan pembebas haba yang lebih lemah.",
   },
   {
     id: "sci-f2-c9-bm-f34",
@@ -307,7 +307,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Apakah keputusan Eksperimen 9.2 Bahagian A (penyerap haba)?",
+    front: "Apakah keputusan penyiasatan penyerapan haba?",
     back: "Tin K (hitam) menunjukkan peningkatan suhu yang lebih besar berbanding tin J (putih), membuktikan permukaan gelap lebih baik menyerap haba.",
   },
   {
@@ -316,7 +316,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Apakah keputusan Eksperimen 9.2 Bahagian B (pembebas haba)?",
+    front: "Apakah keputusan penyiasatan pembebasan haba?",
     back: "Tin K (hitam) menunjukkan penurunan suhu yang lebih besar berbanding tin J (putih), membuktikan permukaan gelap lebih baik membebaskan haba.",
   },
   {
@@ -325,7 +325,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "Bandingkan kapas/felt dengan kerajang aluminium dalam Eksperimen 9.1.",
+    front: "Bandingkan kapas/felt dengan kerajang aluminium dalam penyiasatan penebat haba.",
     back: "Kapas dan felt: penebat haba yang baik (mengekalkan suhu air panas). Kerajang aluminium: konduktor haba.",
   },
   {
@@ -362,7 +362,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 9",
     lang: "bm",
     front: "Bagaimanakah jalur dwilogam berfungsi dalam penggera kebakaran?",
-    back: "Jalur kuprum mengembang lebih cepat berbanding jalur keluli apabila terdedah kepada haba, menyebabkan jalur melentur ke arah titik sentuhan dan melengkapkan litar.",
+    back: "Jalur kuprum mengembang lebih cepat berbanding jalur besi apabila terdedah kepada haba, menyebabkan jalur melentur ke arah titik sentuhan dan melengkapkan litar.",
   },
 
   // Deck 3: Peperiksaan (Cards 41-60)
@@ -400,7 +400,7 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 9",
     lang: "bm",
     front: "[KBAT] Bagaimanakah jalur dwilogam membunyikan penggera kebakaran?",
-    back: "Jalur kuprum mengembang lebih cepat daripada jalur keluli apabila terdedah haba kebakaran, melentur ke arah titik sentuhan dan melengkapkan litar elektrik.",
+    back: "Jalur kuprum mengembang lebih cepat daripada jalur besi apabila terdedah haba kebakaran, melentur ke arah titik sentuhan dan melengkapkan litar elektrik.",
   },
   {
     id: "sci-f2-c9-bm-f45",
@@ -408,8 +408,8 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "[KBAT] Mengapakah tin hitam menunjukkan perubahan suhu yang lebih besar dalam Eksperimen 9.2?",
-    back: "Permukaan gelap dan kasar adalah penyerap dan pembebas haba yang lebih baik berbanding permukaan putih dan berkilat.",
+    front: "[KBAT] Mengapakah tin hitam menunjukkan perubahan suhu yang lebih besar dalam penyiasatan permukaan itu?",
+    back: "Permukaan gelap dan kusam adalah penyerap dan pembebas haba yang lebih baik berbanding permukaan putih dan berkilat.",
   },
   {
     id: "sci-f2-c9-bm-f46",
@@ -507,8 +507,8 @@ export const scienceF2C9FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     lang: "bm",
-    front: "[KBAT] Mengapakah ayam panggang dibalut kerajang aluminium dalam ketuhar?",
-    back: "Untuk membantu mengekalkan/memantulkan haba di sekeliling makanan supaya ia masak secara sekata.",
+    front: "[KBAT] Apakah ciri permukaan dinding kelalang termos yang membantu mengekalkan suhu air panas?",
+    back: "Permukaan yang berkilat. Permukaan berkilat ialah pembebas haba yang kurang baik, jadi haba lebih lambat hilang daripada air panas di dalamnya.",
   },
   {
     id: "sci-f2-c9-bm-f57",

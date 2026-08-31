@@ -22,7 +22,7 @@ export const scienceF2C8MindMapBM: MindNode = {
           children: [
             { id: "c1-2-1", label: "Kuantiti vektor — ada magnitud dan arah" },
             { id: "c1-2-2", label: "Magnitud — kuantiti/nilai sesuatu pengukuran" },
-            { id: "c1-2-3", label: "Titik tindakan (point of application) — kawasan tumpuan daya yang dikenakan" },
+            { id: "c1-2-3", label: "Titik aplikasi (point of application) — kawasan tumpuan daya yang dikenakan" },
           ],
         },
         {
@@ -32,7 +32,7 @@ export const scienceF2C8MindMapBM: MindNode = {
             { id: "c1-3-1", label: "Unit SI: newton (N)" },
             { id: "c1-3-2", label: "Berat = daya graviti yang bertindak ke atas objek" },
             { id: "c1-3-3", label: "100 g → 1 N; oleh itu 1 kg → 10 N" },
-            { id: "c1-3-4", label: "Diukur dengan penimbang spring (spring balance)" },
+            { id: "c1-3-4", label: "Diukur dengan neraca spring (spring balance)" },
             { id: "c1-3-5", label: "Prinsip operasi: pengembangan spring" },
           ],
         },
@@ -60,7 +60,7 @@ export const scienceF2C8MindMapBM: MindNode = {
         },
         {
           id: "c1-6",
-          label: "Aktiviti 8.1",
+          label: "Menunjukkan kewujudan pelbagai jenis daya",
           children: [
             { id: "c1-6-1", label: "Bola dilontar ke udara jatuh semula — daya graviti" },
             { id: "c1-6-2", label: "Blok kayu lebih sukar ditolak atas kertas pasir berbanding meja — daya geseran" },
@@ -74,7 +74,7 @@ export const scienceF2C8MindMapBM: MindNode = {
           children: [
             { id: "c1-7-1", label: "Daya, Daya graviti, Daya geseran, Daya normal" },
             { id: "c1-7-2", label: "Daya kenyal, Daya keapungan, Magnitud" },
-            { id: "c1-7-3", label: "Newton (N), Penimbang spring, Tindakan-tindak balas" },
+            { id: "c1-7-3", label: "Newton (N), Neraca spring, Tindakan-tindak balas" },
           ],
         },
         {
@@ -100,7 +100,7 @@ export const scienceF2C8MindMapBM: MindNode = {
           id: "c1-10",
           label: "Ringkasan Subtopik",
           children: [
-            { id: "c1-10-1", label: "Daya = tarikan/tolakan dengan magnitud, arah, titik tindakan; diukur dalam N menggunakan penimbang spring" },
+            { id: "c1-10-1", label: "Daya = tarikan/tolakan dengan magnitud, arah, titik aplikasi; diukur dalam N menggunakan neraca spring" },
             { id: "c1-10-2", label: "Jenis: graviti, geseran, normal, kenyal, keapungan" },
             { id: "c1-10-3", label: "Setiap tindakan ada tindak balas sama magnitud, arah bertentangan" },
           ],
@@ -169,9 +169,9 @@ export const scienceF2C8MindMapBM: MindNode = {
           children: [
             { id: "c2-5-1", label: "Kesan putaran daya bertindak ke atas objek pada titik tetap (pangsi/fulkrum)" },
             { id: "c2-5-2", label: "Membolehkan kerja dilakukan dengan mudah" },
-            { id: "c2-5-3", label: "Bergantung kepada daya dikenakan & jarak berserenjang fulkrum-daya" },
-            { id: "c2-5-4", label: "Formula: Momen daya = Daya (N) × Jarak berserenjang daripada pangsi (m); unit N m" },
-            { id: "c2-5-5", label: "Momen daya meningkat jika magnitud daya meningkat ATAU jarak berserenjang meningkat" },
+            { id: "c2-5-3", label: "Bergantung kepada daya dikenakan & jarak tegak fulkrum-daya" },
+            { id: "c2-5-4", label: "Formula: Momen daya = Daya (N) × Jarak tegak dari pangsi (m); unit N m" },
+            { id: "c2-5-5", label: "Momen daya meningkat jika magnitud daya meningkat ATAU jarak tegak meningkat" },
             { id: "c2-5-6", label: "Prinsip momen tuil: Beban (N) × Jarak beban-fulkrum (m) = Daya kuasa (N) × Jarak daya kuasa-fulkrum (m)" },
             { id: "c2-5-7", label: "Contoh 1: Daya 50 N pada jarak 0.2 m → Momen daya = 50 × 0.2 = 10 N m (mengetatkan nat)" },
             { id: "c2-5-8", label: "Contoh 2: Daya 10 N dengan sudu 0.15 m → Momen daya = 10 × 0.15 = 1.5 N m (membuka penutup tin)" },
@@ -218,8 +218,8 @@ export const scienceF2C8MindMapBM: MindNode = {
           label: "Tekanan Atmosfera",
           children: [
             { id: "c2-9-1", label: "Tekanan oleh atmosfera ke atas permukaan Bumi dan objek di atasnya" },
-            { id: "c2-9-2", label: "Berkurang apabila altitud meningkat — graviti lebih lemah, udara kurang tumpat, mengembang lebih mudah" },
-            { id: "c2-9-3", label: "Contoh aplikasi: tukul kebawa (plunger), bola Magdeburg, penyedut minuman, sifon, picagari, pembersih vakum" },
+            { id: "c2-9-2", label: "Berkurang apabila altitud meningkat — kurang udara di atas, jadi berat lajur udara lebih kecil" },
+            { id: "c2-9-3", label: "Contoh aplikasi: pam sedut (plunger), hemisfera Magdeburg, penyedut minuman, sifon, picagari, pembersih vakum" },
             { id: "c2-9-4", label: "Tin susu pekat 2 lubang — susu mengalir lancar kerana tekanan dalam & luar sama" },
           ],
         },
@@ -248,7 +248,7 @@ export const scienceF2C8MindMapBM: MindNode = {
           children: [
             { id: "c2-12-1", label: "Daya boleh menggerakkan, menghentikan, mengubah kelajuan/arah, mengubah bentuk/saiz objek" },
             { id: "c2-12-2", label: "Daya keapungan menentukan terapung/tenggelam berdasarkan ketumpatan berbanding cecair" },
-            { id: "c2-12-3", label: "Tuil (3 kelas) guna momen daya (Daya × Jarak berserenjang) untuk memudahkan kerja" },
+            { id: "c2-12-3", label: "Tuil (3 kelas) guna momen daya (Daya × Jarak tegak) untuk memudahkan kerja" },
             { id: "c2-12-4", label: "Tekanan (Daya/Luas) — meliputi tekanan gas, atmosfera, dan cecair" },
           ],
         },

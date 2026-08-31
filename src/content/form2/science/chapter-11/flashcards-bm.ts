@@ -45,7 +45,7 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 11",
     lang: "bm",
     front: "Namakan tiga jenis bentuk galaksi.",
-    back: "Galaksi pilin, galaksi elips, galaksi tidak sekata.",
+    back: "Galaksi berpilin, galaksi elips, galaksi tidak seragam.",
   },
   {
     id: "sci-f2-c11-bm-f6",
@@ -53,7 +53,7 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Berikan contoh galaksi pilin.",
+    front: "Berikan contoh galaksi berpilin.",
     back: "Andromeda dan Bima Sakti.",
   },
   {
@@ -63,7 +63,7 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 11",
     lang: "bm",
     front: "Berikan contoh galaksi elips.",
-    back: "Ursa Major dan Messier 87.",
+    back: "Ursa Mayor dan Messier 87.",
   },
   {
     id: "sci-f2-c11-bm-f8",
@@ -71,7 +71,7 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Berikan contoh galaksi tidak sekata.",
+    front: "Berikan contoh galaksi tidak seragam.",
     back: "Awan Magellan Kecil dan Awan Magellan Besar.",
   },
   {
@@ -107,8 +107,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Apakah maksud protobintang?",
-    back: "Peringkat awal pembentukan bintang akibat graviti merintihkan nebula sebelum tindak balas nuklear bermula.",
+    front: "Bagaimanakah sebuah bintang dilahirkan daripada nebula?",
+    back: "Daya tarikan graviti menarik gas dan zarah debu membentuk gumpalan yang mengecut serta termampat menjadi satu teras. Apabila suhu dan tekanan dalam teras terlalu tinggi, tindak balas nuklear menukarkan gas hidrogen kepada helium, teras menyinar dan satu bintang dilahirkan.",
   },
   {
     id: "sci-f2-c11-bm-f13",
@@ -144,7 +144,7 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 11",
     lang: "bm",
     front: "Namakan tiga kategori saiz bintang.",
-    back: "Bintang supergergasi (sangat besar), bintang gergasi (besar), bintang kerdil (sangat kecil).",
+    back: "Bintang super raksasa (sangat besar), bintang raksasa (besar), bintang kerdil (sangat kecil).",
   },
   {
     id: "sci-f2-c11-bm-f17",
@@ -161,7 +161,7 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Apakah yang dimaksudkan dengan gergasi merah dalam kitaran hidup bintang?",
+    front: "Apakah yang dimaksudkan dengan raksasa merah dalam kitaran hidup bintang?",
     back: "Peringkat bintang membesar dan menjadi sangat cerah selepas bahan api hidrogennya berkurangan.",
   },
   {
@@ -199,8 +199,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Bandingkan galaksi pilin dengan galaksi tidak sekata dari segi bentuk.",
-    back: "Galaksi pilin mempunyai bentuk dan lengan jelas (contoh: Bima Sakti). Galaksi tidak sekata tidak mempunyai bentuk tetap (contoh: Awan Magellan).",
+    front: "Bandingkan galaksi berpilin dengan galaksi tidak seragam dari segi bentuk.",
+    back: "Galaksi berpilin mempunyai bentuk dan lengan jelas (contoh: Bima Sakti). Galaksi tidak seragam tidak mempunyai bentuk tetap (contoh: Awan Magellan).",
   },
   {
     id: "sci-f2-c11-bm-f23",
@@ -217,8 +217,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Bandingkan bintang supergergasi dengan bintang kerdil.",
-    back: "Supergergasi: bintang yang sangat besar saiznya. Kerdil: bintang yang sangat kecil saiznya.",
+    front: "Bandingkan bintang super raksasa dengan bintang kerdil.",
+    back: "Super raksasa: bintang yang sangat besar saiznya. Kerdil: bintang yang sangat kecil saiznya.",
   },
   {
     id: "sci-f2-c11-bm-f25",
@@ -235,8 +235,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Susunkan peringkat kitaran hidup bintang secara ringkas.",
-    back: "Nebula → Protobintang → Gergasi merah → Kerdil putih / Bintang neutron / Lohong hitam (bergantung pada saiz asal).",
+    front: "Nyatakan tiga laluan kitar hidup bintang.",
+    back: "Bintang bersaiz sederhana → raksasa merah → kerdil putih. Bintang besar → raksasa merah → super raksasa → supernova → bintang neutron. Bintang super besar → raksasa merah → super raksasa → supernova → lohong hitam.",
   },
   {
     id: "sci-f2-c11-bm-f27",
@@ -244,8 +244,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Apakah perbezaan hasil akhir kitaran hidup bintang bersaiz kecil/sederhana dengan bintang besar/supergergasi?",
-    back: "Bintang kecil/sederhana biasanya berakhir sebagai kerdil putih. Bintang besar/supergergasi berakhir sebagai bintang neutron atau lohong hitam.",
+    front: "Apakah perbezaan hasil akhir kitaran hidup bintang bersaiz kecil/sederhana dengan bintang besar/super raksasa?",
+    back: "Bintang kecil/sederhana biasanya berakhir sebagai kerdil putih. Bintang besar/super raksasa berakhir sebagai bintang neutron atau lohong hitam.",
   },
   {
     id: "sci-f2-c11-bm-f28",
@@ -316,8 +316,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Bandingkan nebula dengan protobintang.",
-    back: "Nebula: awan gas dan debu sebelum proses graviti bermula. Protobintang: peringkat awal selepas nebula runtuh akibat graviti, sebelum tindak balas nuklear bermula.",
+    front: "Apakah nebula dan apakah kandungannya?",
+    back: "Nebula ialah awan besar yang terdiri daripada debu dan gas-gas seperti hidrogen dan helium. Semua bintang dilahirkan daripada nebula.",
   },
   {
     id: "sci-f2-c11-bm-f36",
@@ -334,8 +334,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Bandingkan galaksi elips dengan galaksi pilin dari segi contoh.",
-    back: "Galaksi elips: Ursa Major dan Messier 87. Galaksi pilin: Andromeda dan Bima Sakti.",
+    front: "Bandingkan galaksi elips dengan galaksi berpilin dari segi contoh.",
+    back: "Galaksi elips: Ursa Mayor dan Messier 87. Galaksi berpilin: Andromeda dan Bima Sakti.",
   },
   {
     id: "sci-f2-c11-bm-f38",
@@ -361,8 +361,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "Bandingkan bintang gergasi merah dengan bintang kerdil putih dari segi kedudukan dalam kitaran hidup.",
-    back: "Gergasi merah: peringkat pertengahan apabila bintang membesar dan menjadi cerah. Kerdil putih: peringkat akhir bagi bintang bersaiz kecil/sederhana selepas mati.",
+    front: "Bandingkan bintang raksasa merah dengan bintang kerdil putih dari segi kedudukan dalam kitaran hidup.",
+    back: "Raksasa merah: peringkat pertengahan apabila bintang membesar dan menjadi cerah. Kerdil putih: peringkat akhir bagi bintang bersaiz kecil/sederhana selepas mati.",
   },
 
   // Deck 3: Peperiksaan (Cards 41-60)
@@ -381,7 +381,7 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "[KBAT] Mengapakah bintang supergergasi cenderung mati sebagai bintang neutron atau lohong hitam, bukan kerdil putih?",
+    front: "[KBAT] Mengapakah bintang super raksasa cenderung mati sebagai bintang neutron atau lohong hitam, bukan kerdil putih?",
     back: "Kerana jisim asalnya yang sangat besar menyebabkan runtuhan graviti yang lebih kuat selepas bahan api nuklearnya kehabisan, berbeza dengan bintang bersaiz kecil/sederhana.",
   },
   {
@@ -399,7 +399,7 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "[KBAT] Bintang R bersaiz supergergasi dan bintang S bersaiz kerdil, dengan suhu dan jarak sama. Bintang manakah lebih cerah?",
+    front: "[KBAT] Bintang R bersaiz super raksasa dan bintang S bersaiz kerdil, dengan suhu dan jarak sama. Bintang manakah lebih cerah?",
     back: "Bintang R, kerana saiz yang lebih besar menyumbang kepada kecerahan yang lebih besar apabila suhu dan jarak adalah sama.",
   },
   {
@@ -408,8 +408,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "[Kesilapan Lazim] Adakah semua galaksi mempunyai bentuk pilin seperti Bima Sakti?",
-    back: "Tidak. Terdapat juga galaksi elips (contoh: Messier 87) dan galaksi tidak sekata (contoh: Awan Magellan) yang tidak berbentuk pilin.",
+    front: "[Kesilapan Lazim] Adakah semua galaksi mempunyai bentuk berpilin seperti Bima Sakti?",
+    back: "Tidak. Terdapat juga galaksi elips (contoh: Messier 87) dan galaksi tidak seragam (contoh: Awan Magellan) yang tidak berbentuk berpilin.",
   },
   {
     id: "sci-f2-c11-bm-f46",
@@ -444,8 +444,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "[KBAT] Susunkan dengan betul: Gergasi merah, Nebula, Protobintang, Kerdil putih/bintang neutron/lohong hitam.",
-    back: "Nebula → Protobintang → Gergasi merah → Kerdil putih/bintang neutron/lohong hitam.",
+    front: "[KBAT] Mengapakah Matahari tidak akan menjadi lohong hitam?",
+    back: "Matahari ialah bintang bersaiz sederhana. Laluannya ialah raksasa merah kemudian kerdil putih, dan laluan itu tidak melalui supernova. Hanya bintang super besar membentuk lohong hitam selepas letupan supernova.",
   },
   {
     id: "sci-f2-c11-bm-f50",
@@ -489,8 +489,8 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "bm",
-    front: "[KBAT] Apakah perbezaan struktur utama antara galaksi pilin dan galaksi tidak sekata?",
-    back: "Galaksi pilin mempunyai bentuk dan lengan berstruktur jelas; galaksi tidak sekata tidak mempunyai bentuk atau struktur yang tetap.",
+    front: "[KBAT] Apakah perbezaan struktur utama antara galaksi berpilin dan galaksi tidak seragam?",
+    back: "Galaksi berpilin mempunyai bentuk dan lengan berstruktur jelas; galaksi tidak seragam tidak mempunyai bentuk atau struktur yang tetap.",
   },
   {
     id: "sci-f2-c11-bm-f55",
@@ -517,7 +517,7 @@ export const scienceF2C11FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 11",
     lang: "bm",
     front: "[Kesilapan Lazim] Adakah semua bintang besar akan menjadi lohong hitam selepas mati?",
-    back: "Tidak semestinya. Bintang besar/supergergasi boleh berakhir sebagai bintang neutron ATAU lohong hitam, bergantung pada jisim asalnya.",
+    back: "Tidak semestinya. Bintang besar/super raksasa boleh berakhir sebagai bintang neutron ATAU lohong hitam, bergantung pada jisim asalnya.",
   },
   {
     id: "sci-f2-c11-bm-f58",

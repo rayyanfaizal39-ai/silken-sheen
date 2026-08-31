@@ -107,8 +107,8 @@ export const scienceF2C11FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "dlp",
-    front: "What is the meaning of a protostar?",
-    back: "The early stage of star formation due to gravity compressing the nebula before nuclear reactions begin.",
+    front: "How is a star born from a nebula?",
+    back: "Gravitational attraction pulls gas and dust particles into a clump that contracts and compresses into a core. When the temperature and pressure in the core become very high, a nuclear reaction converts hydrogen gas into helium, the core shines and a star is born.",
   },
   {
     id: "sci-f2-c11-dlp-f13",
@@ -235,8 +235,8 @@ export const scienceF2C11FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "dlp",
-    front: "Arrange the stages of a star's life cycle briefly.",
-    back: "Nebula → Protostar → Red giant → White dwarf / Neutron star / Black hole (depending on original size).",
+    front: "State the three life-cycle pathways of a star.",
+    back: "Medium-sized star → red giant → white dwarf. Large star → red giant → supergiant → supernova → neutron star. Very large star → red giant → supergiant → supernova → black hole.",
   },
   {
     id: "sci-f2-c11-dlp-f27",
@@ -316,8 +316,8 @@ export const scienceF2C11FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "dlp",
-    front: "Compare a nebula with a protostar.",
-    back: "Nebula: a cloud of gas and dust before gravity begins acting. Protostar: the early stage after the nebula collapses due to gravity, before nuclear reactions begin.",
+    front: "What is a nebula and what is it made of?",
+    back: "A nebula is a vast cloud made up of dust and gases such as hydrogen and helium. Every star is born from a nebula.",
   },
   {
     id: "sci-f2-c11-dlp-f36",
@@ -444,8 +444,8 @@ export const scienceF2C11FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 11",
     lang: "dlp",
-    front: "[KBAT] Arrange correctly: Red giant, Nebula, Protostar, White dwarf/neutron star/black hole.",
-    back: "Nebula → Protostar → Red giant → White dwarf/neutron star/black hole.",
+    front: "[KBAT] Why will the Sun not become a black hole?",
+    back: "The Sun is a medium-sized star. Its pathway is red giant then white dwarf, and that pathway does not pass through a supernova. Only very large stars form black holes after a supernova explosion.",
   },
   {
     id: "sci-f2-c11-dlp-f50",

@@ -99,7 +99,7 @@ export const scienceF2C9MindMapBM: MindNode = {
         },
         {
           id: "c2-5",
-          label: "Aktiviti 9.1 (Demonstrasi 3 Kaedah)",
+          label: "Demonstrasi tiga kaedah pemindahan haba",
           children: [
             { id: "c2-5-1", label: "Konduksi: paku tekan jatuh berurutan apabila rod kuprum dipanaskan" },
             { id: "c2-5-2", label: "Perolakan dalam cecair: hablur kalium permanganat bergerak ke atas dalam bikar dipanaskan" },
@@ -121,7 +121,7 @@ export const scienceF2C9MindMapBM: MindNode = {
           children: [
             { id: "c2-7-1", label: "Konduktor haba: bahan membenarkan aliran haba (cth: merkuri, logam)" },
             { id: "c2-7-2", label: "Penebat haba: bahan menghalang aliran haba (cth: gentian kaca, polistirena, kayu)" },
-            { id: "c2-7-3", label: "Eksperimen 9.1: kapas & felt = penebat haba baik (kekal suhu air panas); kerajang aluminium = konduktor haba" },
+            { id: "c2-7-3", label: "Penyiasatan penebat haba: kapas & felt = penebat haba baik (kekal suhu air panas); kerajang aluminium = konduktor haba" },
           ],
         },
         {
@@ -167,7 +167,7 @@ export const scienceF2C9MindMapBM: MindNode = {
           children: [
             { id: "c2-11-1", label: "Aiskrim pada suhu bilik menyerap haba dan cair" },
             { id: "c2-11-2", label: "Periuk elektrik: gegelung pemanas di bawah — air dipanaskan melalui arus perolakan" },
-            { id: "c2-11-3", label: "Ayam panggang dibalut kerajang aluminium dalam ketuhar" },
+            { id: "c2-11-3", label: "Kelalang termos: dinding berkilat melambatkan pembebasan haba" },
             { id: "c2-11-4", label: "Bekas polistirena untuk simpan ketulan ais" },
             { id: "c2-11-5", label: "Selimut tebal cuaca sejuk — penebat haba badan" },
           ],
@@ -215,7 +215,7 @@ export const scienceF2C9MindMapBM: MindNode = {
         },
         {
           id: "c3-4",
-          label: "Aktiviti 9.4 (Demonstrasi)",
+          label: "Demonstrasi pengembangan dan pengecutan",
           children: [
             { id: "c3-4-1", label: "Pepejal: rod logam dipanaskan mengembang, tak masuk tolok; mengecut semula bila disejukkan" },
             { id: "c3-4-2", label: "Cecair: paras air berwarna dalam tiub kaca naik bila kelalang dalam air panas, turun bila dalam ais" },
@@ -245,7 +245,7 @@ export const scienceF2C9MindMapBM: MindNode = {
               children: [
                 { id: "c3-6-4-1", label: "Dua jenis logam berbeza, kadar pengembangan/pengecutan berbeza" },
                 { id: "c3-6-4-2", label: "Digunakan dalam sistem penggera kebakaran" },
-                { id: "c3-6-4-3", label: "Haba kebakaran: jalur kuprum mengembang lebih cepat daripada jalur keluli → jalur melentur ke titik sentuhan → litar lengkap → penggera berbunyi" },
+                { id: "c3-6-4-3", label: "Haba kebakaran: jalur kuprum mengembang lebih cepat daripada jalur besi → jalur melentur ke titik sentuhan → litar lengkap → penggera berbunyi" },
               ],
             },
             { id: "c3-6-5", label: "Penyelesaian masalah harian: penutup botol ketat dilonggarkan dengan air panas (logam mengembang); bola ping pong kemek dibaiki dengan air panas (udara di dalam mengembang)" },
@@ -291,13 +291,13 @@ export const scienceF2C9MindMapBM: MindNode = {
           children: [
             { id: "c4-2-1", label: "Objek menyerap haba → suhu meningkat" },
             { id: "c4-2-2", label: "Objek membebaskan haba → suhu menurun" },
-            { id: "c4-2-3", label: "Permukaan gelap & kasar (dull): penyerap & pembebas haba lebih baik" },
+            { id: "c4-2-3", label: "Permukaan gelap & kusam: penyerap & pembebas haba lebih baik" },
             { id: "c4-2-4", label: "Permukaan putih & berkilat: penyerap & pembebas haba lebih lemah" },
           ],
         },
         {
           id: "c4-3",
-          label: "Eksperimen 9.2",
+          label: "penyiasatan permukaan gelap dan cerah",
           children: [
             { id: "c4-3-1", label: "Bahagian A — Penyerap haba: tin putih (J) vs tin hitam (K) berdekatan penunu Bunsen → tin K (hitam) suhu naik lebih besar (penyerap lebih baik)" },
             { id: "c4-3-2", label: "Bahagian B — Pembebas haba: kedua-dua tin diisi air panas → tin K (hitam) suhu turun lebih besar (pembebas lebih baik)" },
@@ -336,7 +336,7 @@ export const scienceF2C9MindMapBM: MindNode = {
           label: "Ringkasan Subtopik",
           children: [
             { id: "c4-7-1", label: "Penyerapan/pembebasan haba bergantung jenis & warna permukaan" },
-            { id: "c4-7-2", label: "Gelap & kasar > putih & berkilat (untuk serap & bebas haba)" },
+            { id: "c4-7-2", label: "Gelap & kusam > putih & berkilat (untuk serap & bebas haba)" },
             { id: "c4-7-3", label: "Aplikasi: pakaian, kelalang termos, tangki bahan api, Konsep Bangunan Hijau" },
           ],
         },
