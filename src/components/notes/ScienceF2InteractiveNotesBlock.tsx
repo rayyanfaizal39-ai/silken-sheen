@@ -78,6 +78,11 @@ import { StarSizeCompare } from "@/components/notes/blocks/StarSizeCompare";
 import { CurrentFieldPatterns } from "@/components/notes/blocks/CurrentFieldPatterns";
 import { ApparatusDiagram } from "@/components/notes/blocks/ApparatusDiagram";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
+import {
+  Chapter8ContextFigure,
+  CHAPTER8_HOTSPOT_GEOMETRY,
+  CHAPTER8_SECTION_FIGURES,
+} from "./chapter8/Chapter8ContextFigure";
 
 type Lang = "en" | "bm";
 
@@ -184,10 +189,37 @@ export function ScienceF2InteractiveNotesBlock({
   function renderSection(
     section: ScienceF2InteractiveContent["sections"][number],
     isLast: boolean,
+    sectionIndex: number,
   ) {
+    const isChapter8 = content.chapter === 8;
+    const chapter8Figure = isChapter8 ? CHAPTER8_SECTION_FIGURES[sectionIndex] : undefined;
+    const depictedIds = chapter8Figure
+      ? new Set(CHAPTER8_HOTSPOT_GEOMETRY[chapter8Figure].map((point) => point.id))
+      : new Set<string>();
+    const unpicturedFlipCards = isChapter8
+      ? (section.flipCards ?? []).filter((item) => !depictedIds.has(item.id))
+      : [];
     return (
       <div className="flex min-w-0 flex-col gap-5">
-        {section.cards && (
+        {chapter8Figure && (
+          <Chapter8ContextFigure kind={chapter8Figure} section={section} lang={lang} />
+        )}
+        {unpicturedFlipCards.length > 0 && (
+          <details className="group border-l-2 border-primary/35 pl-4">
+            <summary className="min-h-11 cursor-pointer py-3 text-[13px] font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+              {lang === "bm" ? "Konsep lain yang perlu diingati" : "Other concepts to remember"}
+            </summary>
+            <dl className="flex flex-col gap-3 pb-2">
+              {unpicturedFlipCards.map((item) => (
+                <div key={item.id}>
+                  <dt className="text-[13px] font-bold text-foreground">{item.label}</dt>
+                  <dd className="mt-0.5 text-[13px] leading-relaxed text-muted-foreground">{item.fact}</dd>
+                </div>
+              ))}
+            </dl>
+          </details>
+        )}
+        {section.cards && !isChapter8 && (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {section.cards.map((card) => (
               <article
@@ -205,7 +237,7 @@ export function ScienceF2InteractiveNotesBlock({
             ))}
           </div>
         )}
-        {section.flipCards && <FlipCardGrid items={section.flipCards} />}
+        {section.flipCards && !isChapter8 && <FlipCardGrid items={section.flipCards} />}
         {section.galaxyCards && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -278,7 +310,7 @@ export function ScienceF2InteractiveNotesBlock({
             />
           </div>
         )}
-        {section.calculators?.map((calc, i) => (
+        {!isChapter8 && section.calculators?.map((calc, i) => (
           <div key={`${section.number}-calc-${i}`}>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
             <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
@@ -304,7 +336,7 @@ export function ScienceF2InteractiveNotesBlock({
             )}
           </div>
         ))}
-        {section.buoyancy && (
+        {section.buoyancy && !isChapter8 && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.buoyancy.title}
@@ -504,7 +536,7 @@ export function ScienceF2InteractiveNotesBlock({
             <DepthPressure block={section.depthPressure} lang={lang} />
           </div>
         )}
-        {section.pressureApparatus && (
+        {section.pressureApparatus && !isChapter8 && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.pressureApparatus.title}
@@ -512,7 +544,7 @@ export function ScienceF2InteractiveNotesBlock({
             <PressureApparatus block={section.pressureApparatus} lang={lang} />
           </div>
         )}
-        {section.altitudePressure && (
+        {section.altitudePressure && !isChapter8 && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.altitudePressure.title}
@@ -640,14 +672,61 @@ export function ScienceF2InteractiveNotesBlock({
             <StarSizeCompare block={section.starSizeCompare} lang={lang} />
           </div>
         )}
-        {section.miniExperiment && (
-          <div>
+        {isChapter8 && section.buoyancy && (
+          <div className="border-t border-border/70 pt-5">
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
-              {section.miniExperiment.title}
+              {section.buoyancy.title}
             </h3>
-            <MiniExperiment block={section.miniExperiment} />
+            <p className="text-[13px] leading-relaxed text-muted-foreground">
+              {section.buoyancy.instruction}
+            </p>
+            <BuoyancySimulator materials={section.buoyancy.materials} lang={lang} />
           </div>
         )}
+        {isChapter8 && section.cards && (
+          <details className="group border-t border-border/70 pt-2">
+            <summary className="min-h-11 cursor-pointer py-3 text-[13px] font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+              {lang === "bm" ? "Kembangkan penerangan dan contoh" : "Expand explanation and examples"}
+            </summary>
+            <div className="flex flex-col gap-4 pb-2">
+              {section.cards.map((card) => (
+                <article key={card.title} className="border-l-2 border-primary/30 pl-3">
+                  <h3 className="text-[13px] font-bold text-foreground">{card.title}</h3>
+                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{card.body}</p>
+                  {card.detail && <p className="mt-1.5 text-[12px] font-semibold text-primary">{card.detail}</p>}
+                </article>
+              ))}
+            </div>
+          </details>
+        )}
+        {isChapter8 && section.calculators?.map((calc, i) => (
+          <div key={`${section.number}-ch8-calc-${i}`} className="border-t border-border/70 pt-5">
+            <p className="font-display mb-3 text-center text-[14px] font-bold text-primary">{calc.instruction.split(".")[0]}</p>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
+            <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
+            {calc.type === "two-field" && (
+              <TwoFieldCalculator fieldA={calc.fieldA} fieldB={calc.fieldB} operation={calc.operation} resultLabel={calc.resultLabel} resultUnit={calc.resultUnit} lang={lang} />
+            )}
+          </div>
+        ))}
+        {section.miniExperiment && (isChapter8 ? (
+          <Accordion type="single" collapsible className="border-t border-border/70 pt-2">
+            <AccordionItem value="chapter-8-pressure-investigation">
+              <AccordionTrigger className="min-h-12 text-left text-[14px] font-bold">
+                {lang === "bm" ? "Cuba penyiasatan" : "Try the investigation"}
+              </AccordionTrigger>
+              <AccordionContent className="flex flex-col gap-4 pt-2">
+                {section.pressureApparatus && <PressureApparatus block={section.pressureApparatus} lang={lang} />}
+                <MiniExperiment block={section.miniExperiment} />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        ) : (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.miniExperiment.title}</h3>
+            <MiniExperiment block={section.miniExperiment} />
+          </div>
+        ))}
         {section.comparisonMatrix && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -1037,7 +1116,7 @@ export function ScienceF2InteractiveNotesBlock({
     label: section.title,
     title: section.title,
     description: section.intro,
-    content: renderSection(section, index === content.sections.length - 1),
+    content: renderSection(section, index === content.sections.length - 1, index),
   }));
 
   return (
