@@ -6,6 +6,11 @@ import { bahasaMelayuTingkatan2PantunKasihSayangMindMap } from "@/content/bm/pan
 import { bahasaMelayuTingkatan2PantunNasihatMindMap } from "@/content/bm/pantun-nasihat-form2-mindmap";
 import { bahasaMelayuTingkatan2SyairNasihatMindMap } from "@/content/bm/syair-nasihat-form2-mindmap";
 import { bahasaMelayuTingkatan2DalamPersekitaranKataKataMindMap } from "@/content/bm/dalam-persekitaran-kata-kata-form2-mindmap";
+import { bahasaMelayuTingkatan2RotiMindMap } from "@/content/bm/roti-form2-mindmap";
+import { bahasaMelayuTingkatan2KucariDamaiDiSiniMindMap } from "@/content/bm/kucari-damai-di-sini-form2-mindmap";
+import { bahasaMelayuTingkatan2PadaSekuntumMawarMindMap } from "@/content/bm/pada-sekuntum-mawar-form2-mindmap";
+import { bahasaMelayuTingkatan2PelandukMengajarMemerangMindMap } from "@/content/bm/pelanduk-mengajar-memerang-form2-mindmap";
+import { bahasaMelayuTingkatan2BanjirDiMataEmakMindMap } from "@/content/bm/banjir-di-mata-emak-form2-mindmap";
 
 export const bahasaMelayuTingkatan2KomsasRegistry = [
   {
@@ -104,6 +109,76 @@ export const bahasaMelayuTingkatan2KomsasRegistry = [
     mindMap: {
       data: bahasaMelayuTingkatan2DalamPersekitaranKataKataMindMap,
       title: "Dalam Persekitaran Kata-kata",
+    },
+  },
+  {
+    id: "bm-f2-roti-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Roti",
+    title: "Roti",
+    description:
+      "Sajak yang menghubungkan nikmat makanan dengan kesyukuran, keimanan dan tanggungjawab golongan berkecukupan terhadap golongan miskin yang masih lapar.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2RotiMindMap,
+      title: "Roti",
+    },
+  },
+  {
+    id: "bm-f2-kucari-damai-di-sini-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Kucari Damai di Sini",
+    title: "Kucari Damai di Sini",
+    description:
+      "Sajak yang mengungkap pencarian kedamaian melalui kemerdekaan, persaudaraan, kasih sayang, jati diri dan semangat patriotik demi keharmonian negara serta generasi masa hadapan.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2KucariDamaiDiSiniMindMap,
+      title: "Kucari Damai di Sini",
+    },
+  },
+  {
+    id: "bm-f2-pada-sekuntum-mawar-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Pada Sekuntum Mawar",
+    title: "Pada Sekuntum Mawar",
+    description:
+      "Sajak yang menggunakan bunga mawar sebagai perlambangan seorang gadis untuk menyampaikan kepentingan menjaga maruah, harga diri dan keimanan serta menggambarkan kesedihan seorang ibu apabila masa depan anaknya terjejas.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2PadaSekuntumMawarMindMap,
+      title: "Pada Sekuntum Mawar",
+    },
+  },
+  {
+    id: "bm-f2-pelanduk-mengajar-memerang-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Pelanduk Mengajar Memerang",
+    title: "Pelanduk Mengajar Memerang",
+    description:
+      "Kisah Syah Alam di Rimba, Sang Memerang dan pengadilan Nabi Allah Sulaiman yang mengajar bahawa penganiayaan, ketamakan dan tindakan tanpa pertimbangan boleh membawa akibat, manakala sesuatu perkara hendaklah disiasat dengan adil sebelum keputusan dibuat.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2PelandukMengajarMemerangMindMap,
+      title: "Pelanduk Mengajar Memerang",
+    },
+  },
+  {
+    id: "bm-f2-banjir-di-mata-emak-mindmap",
+    subjectId: "bm",
+    form: "Form 2",
+    chapterKey: "Banjir di Mata Emak",
+    title: "Banjir di Mata Emak",
+    description:
+      "Cerpen yang mengetengahkan kasih sayang, keprihatinan dan tanggungjawab terhadap ibu bapa melalui pertemuan seorang pencerita dengan Mak Piah yang menghadapi banjir serta merindui perhatian anak-anaknya.",
+    categoryLabel: "KOMSAS",
+    mindMap: {
+      data: bahasaMelayuTingkatan2BanjirDiMataEmakMindMap,
+      title: "Banjir di Mata Emak",
     },
   },
 ] as const satisfies readonly ChapterContent[];

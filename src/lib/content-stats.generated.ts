@@ -5,102 +5,252 @@
 // giving both real, non-zero counts on first render).
 export const CONTENT_STATS = {
   totalSubjects: 6,
-  totalChapters: 302,
+  totalChapters: 307,
   publishedNotes: 200,
   publishedQuizzes: 154,
   publishedFlashcards: 166,
-  publishedMindmaps: 283,
-  missingContent: 152,
+  publishedMindmaps: 288,
+  missingContent: 157,
 } as const;
 
-export type SubjectFormSummary = { form: "Form 1" | "Form 2" | "Form 3"; chapterCount: number };
+export type SubjectFormSummary = {
+  form: "Form 1" | "Form 2" | "Form 3";
+  chapterCount: number;
+  notesChapters: number;
+  mindMapChapters: number;
+  resources: Record<"notes" | "quiz" | "flashcards" | "mindMap", boolean>;
+};
 
-// Per-subject Form 1/2/3 chapter counts, safe to import synchronously during
+// Per-subject Form 1/2/3 counts and availability, safe to import synchronously during
 // SSR/initial render (unlike @/content/registry's getSubjectFormStats, which
 // pulls in the full multi-MB curriculum registry).
 export const SUBJECT_FORM_SUMMARY: Record<string, SubjectFormSummary[]> = {
   "bm": [
     {
       "form": "Form 1",
-      "chapterCount": 44
+      "chapterCount": 44,
+      "notesChapters": 0,
+      "mindMapChapters": 37,
+      "resources": {
+        "notes": false,
+        "quiz": false,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 2",
-      "chapterCount": 40
+      "chapterCount": 45,
+      "notesChapters": 0,
+      "mindMapChapters": 37,
+      "resources": {
+        "notes": false,
+        "quiz": false,
+        "flashcards": false,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 3",
-      "chapterCount": 18
+      "chapterCount": 18,
+      "notesChapters": 0,
+      "mindMapChapters": 18,
+      "resources": {
+        "notes": false,
+        "quiz": false,
+        "flashcards": false,
+        "mindMap": true
+      }
     }
   ],
   "english": [
     {
       "form": "Form 1",
-      "chapterCount": 2
+      "chapterCount": 2,
+      "notesChapters": 2,
+      "mindMapChapters": 2,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 2",
-      "chapterCount": 2
+      "chapterCount": 2,
+      "notesChapters": 2,
+      "mindMapChapters": 2,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 3",
-      "chapterCount": 2
+      "chapterCount": 2,
+      "notesChapters": 2,
+      "mindMapChapters": 2,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     }
   ],
   "math": [
     {
       "form": "Form 1",
-      "chapterCount": 13
+      "chapterCount": 13,
+      "notesChapters": 13,
+      "mindMapChapters": 13,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 2",
-      "chapterCount": 13
+      "chapterCount": 13,
+      "notesChapters": 13,
+      "mindMapChapters": 13,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 3",
-      "chapterCount": 9
+      "chapterCount": 9,
+      "notesChapters": 9,
+      "mindMapChapters": 9,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     }
   ],
   "science": [
     {
       "form": "Form 1",
-      "chapterCount": 9
+      "chapterCount": 9,
+      "notesChapters": 9,
+      "mindMapChapters": 9,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 2",
-      "chapterCount": 13
+      "chapterCount": 13,
+      "notesChapters": 13,
+      "mindMapChapters": 13,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 3",
-      "chapterCount": 10
+      "chapterCount": 10,
+      "notesChapters": 10,
+      "mindMapChapters": 10,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     }
   ],
   "sejarah": [
     {
       "form": "Form 1",
-      "chapterCount": 8
+      "chapterCount": 8,
+      "notesChapters": 8,
+      "mindMapChapters": 8,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 2",
-      "chapterCount": 10
+      "chapterCount": 10,
+      "notesChapters": 10,
+      "mindMapChapters": 6,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 3",
-      "chapterCount": 8
+      "chapterCount": 8,
+      "notesChapters": 8,
+      "mindMapChapters": 8,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     }
   ],
   "geography": [
     {
       "form": "Form 1",
-      "chapterCount": 13
+      "chapterCount": 13,
+      "notesChapters": 13,
+      "mindMapChapters": 13,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 2",
-      "chapterCount": 10
+      "chapterCount": 10,
+      "notesChapters": 10,
+      "mindMapChapters": 10,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     },
     {
       "form": "Form 3",
-      "chapterCount": 11
+      "chapterCount": 11,
+      "notesChapters": 11,
+      "mindMapChapters": 11,
+      "resources": {
+        "notes": true,
+        "quiz": true,
+        "flashcards": true,
+        "mindMap": true
+      }
     }
   ]
 };

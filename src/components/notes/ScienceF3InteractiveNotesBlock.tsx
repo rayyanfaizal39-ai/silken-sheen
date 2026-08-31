@@ -19,6 +19,16 @@ import { ZoneExplorer } from "@/components/notes/blocks/ZoneExplorer";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
 import type { ScienceF3InteractiveContent } from "@/content/form3/science/interactive-types";
 import { useProgress } from "@/hooks/use-progress";
+import { ScienceF3Chapter6VisualNotesBlock } from "./ScienceF3Chapter6VisualNotesBlock";
+import { ScienceF3Chapter7VisualNotesBlock } from "./ScienceF3Chapter7VisualNotesBlock";
+import { ScienceF3Chapter8VisualNotesBlock } from "./ScienceF3Chapter8VisualNotesBlock";
+import { ScienceF3Chapter9VisualNotesBlock } from "./ScienceF3Chapter9VisualNotesBlock";
+import { ScienceF3Chapter10VisualNotesBlock } from "./ScienceF3Chapter10VisualNotesBlock";
+import { ScienceF3Chapter5VisualNotesBlock } from "./ScienceF3Chapter5VisualNotesBlock";
+import { ScienceF3Chapter4VisualNotesBlock } from "./ScienceF3Chapter4VisualNotesBlock";
+import { ScienceF3Chapter3VisualNotesBlock } from "./ScienceF3Chapter3VisualNotesBlock";
+import { ScienceF3Chapter2VisualNotesBlock } from "./ScienceF3Chapter2VisualNotesBlock";
+import { ScienceF3Chapter1VisualNotesBlock } from "./ScienceF3Chapter1VisualNotesBlock";
 
 type Lang = "en" | "bm";
 
@@ -99,6 +109,136 @@ export function ScienceF3InteractiveNotesBlock({
     rewarded.current.add(key);
     addXp(amount, "science");
   };
+
+  if (content.chapter === 1) {
+    return (
+      <ScienceF3Chapter1VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 2) {
+    return (
+      <ScienceF3Chapter2VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 3) {
+    return (
+      <ScienceF3Chapter3VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 4) {
+    return (
+      <ScienceF3Chapter4VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 5) {
+    return (
+      <ScienceF3Chapter5VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 6) {
+    return (
+      <ScienceF3Chapter6VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 7) {
+    return (
+      <ScienceF3Chapter7VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 8) {
+    return (
+      <ScienceF3Chapter8VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 9) {
+    return (
+      <ScienceF3Chapter9VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
+
+  if (content.chapter === 10) {
+    return (
+      <ScienceF3Chapter10VisualNotesBlock
+        id={id}
+        content={content}
+        lang={lang}
+        storageKey={storageKey}
+        isRead={isRead}
+        onMarkRead={onMarkRead}
+      />
+    );
+  }
 
   return (
     <section id={id} data-lang={lang} className="mt-8 flex min-w-0 flex-col gap-9 animate-fade-up">

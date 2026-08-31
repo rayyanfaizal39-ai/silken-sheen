@@ -30,7 +30,13 @@
 import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
-import { chapters, getSubjectFormStats, type FormStat } from "../src/content/registry";
+import {
+  chapters,
+  getSubjectFormStats,
+  hasFormResourceContent,
+  type FormStat,
+  type ResourceType,
+} from "../src/content/registry";
 import { getChapterFeatures } from "../src/content/types";
 import { subjects } from "../src/data/subjects-meta";
 
@@ -53,15 +59,35 @@ for (const chapter of chapters) {
   }
 }
 
-// Per-subject/per-form chapter counts only — deliberately excludes any real
-// notes/quiz/flashcard/mindmap content so this stays a "small counts" module,
+// Per-subject/per-form counts and availability only — deliberately excludes
+// all real notes/quiz/flashcard/mindmap content so this stays a small summary,
 // not a second copy of the registry.
-type FormSummary = { form: FormStat["form"]; chapterCount: number };
+type FormSummary = {
+  form: FormStat["form"];
+  chapterCount: number;
+  notesChapters: number;
+  mindMapChapters: number;
+  resources: Record<ResourceType, boolean>;
+};
+const resourceTypes: ResourceType[] = ["notes", "quiz", "flashcards", "mindMap"];
+const bilingualSubjects = new Set(["science", "math"]);
 const subjectFormSummary: Record<string, FormSummary[]> = {};
 for (const subject of subjects) {
   subjectFormSummary[subject.id] = getSubjectFormStats(subject.id).map((stat) => ({
     form: stat.form,
     chapterCount: stat.chapterCount,
+    notesChapters: stat.notesChapters,
+    mindMapChapters: stat.mindMapChapters,
+    resources: Object.fromEntries(
+      resourceTypes.map((resourceType) => [
+        resourceType,
+        bilingualSubjects.has(subject.id)
+          ? (["bm", "dlp"] as const).some((lang) =>
+              hasFormResourceContent(subject.id, stat.form, resourceType, lang),
+            )
+          : hasFormResourceContent(subject.id, stat.form, resourceType),
+      ]),
+    ) as Record<ResourceType, boolean>,
   }));
 }
 
@@ -81,9 +107,15 @@ export const CONTENT_STATS = {
   missingContent: ${missingContent},
 } as const;
 
-export type SubjectFormSummary = { form: "Form 1" | "Form 2" | "Form 3"; chapterCount: number };
+export type SubjectFormSummary = {
+  form: "Form 1" | "Form 2" | "Form 3";
+  chapterCount: number;
+  notesChapters: number;
+  mindMapChapters: number;
+  resources: Record<"notes" | "quiz" | "flashcards" | "mindMap", boolean>;
+};
 
-// Per-subject Form 1/2/3 chapter counts, safe to import synchronously during
+// Per-subject Form 1/2/3 counts and availability, safe to import synchronously during
 // SSR/initial render (unlike @/content/registry's getSubjectFormStats, which
 // pulls in the full multi-MB curriculum registry).
 export const SUBJECT_FORM_SUMMARY: Record<string, SubjectFormSummary[]> = ${JSON.stringify(

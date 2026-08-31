@@ -23,6 +23,11 @@ const expectedTopics = [
   "Pantun Kasih Sayang",
   title,
   "Dalam Persekitaran Kata-kata",
+  "Roti",
+  "Kucari Damai di Sini",
+  "Pada Sekuntum Mawar",
+  "Pelanduk Mengajar Memerang",
+  "Banjir di Mata Emak",
 ];
 const expectedBranches = [
   "Maksud Rangkap",

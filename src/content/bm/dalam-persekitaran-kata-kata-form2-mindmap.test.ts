@@ -23,6 +23,11 @@ const expectedTopics = [
   "Pantun Kasih Sayang",
   "Syair Nasihat (Penghujung Thamarat al-Muhimmah)",
   title,
+  "Roti",
+  "Kucari Damai di Sini",
+  "Pada Sekuntum Mawar",
+  "Pelanduk Mengajar Memerang",
+  "Banjir di Mata Emak",
 ];
 const expectedBranches = [
   "Maksud Bahagian",
@@ -76,14 +81,14 @@ describe("Bahasa Melayu Form 2 Dalam Persekitaran Kata-kata mind map", () => {
     expect(getChapter("bm", title, undefined, "Form 3")).toBeUndefined();
   });
 
-  it("uses registry-driven previous navigation and ends the current sequence", () => {
+  it("uses registry-driven previous and next navigation", () => {
     const topics = getRegisteredSubjectChapters("bm", undefined, "Form 2").filter(
       (topic) => topic.categoryLabel === "KOMSAS",
     );
     const index = topics.findIndex((topic) => topic.key === title);
     expect(topics.map((topic) => topic.key)).toEqual(expectedTopics);
     expect(topics[index - 1]?.key).toBe("Syair Nasihat (Penghujung Thamarat al-Muhimmah)");
-    expect(topics[index + 1]).toBeUndefined();
+    expect(topics[index + 1]?.key).toBe("Roti");
   });
 
   it("uses the prescribed identity and fourteen title-only first-level branches", () => {
