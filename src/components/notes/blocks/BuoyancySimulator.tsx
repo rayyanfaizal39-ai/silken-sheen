@@ -13,14 +13,33 @@ export function BuoyancySimulator({
 
   return (
     <div className="mt-3 flex flex-wrap items-center gap-5">
-      <div className="relative h-36 w-36 shrink-0 overflow-hidden rounded-b-2xl border-2 border-accent/40 bg-gradient-to-b from-transparent from-30% to-accent/30">
+      {/* A tank of water, so where the material ends up is the answer being shown:
+          floating sits astride the surface, sinking rests on the bottom. */}
+      <svg
+        viewBox="0 0 120 140"
+        className="h-36 w-36 shrink-0"
+        role="img"
+        aria-label={
+          active
+            ? `${active.label} — ${floats ? (lang === "bm" ? "terapung" : "floats") : lang === "bm" ? "tenggelam" : "sinks"}`
+            : lang === "bm"
+              ? "Tangki air"
+              : "Water tank"
+        }
+        data-state={active ? (floats ? "floats" : "sinks") : "empty"}
+      >
+        <rect x={9} y={46} width={102} height={83} className="fill-sky-400/25" />
+        <line x1={9} y1={46} x2={111} y2={46} className="stroke-sky-300/80" strokeWidth="2" />
+        <path d="M8,10 L8,130 L112,130 L112,10" fill="none" className="stroke-accent/60" strokeWidth="2.5" />
         {active && (
-          <div
-            className="absolute left-1/2 h-9 w-9 -translate-x-1/2 rounded-lg bg-gradient-to-br from-primary to-accent transition-[top] duration-1000 ease-in-out"
-            style={{ top: floats ? "8%" : "72%" }}
-          />
+          <g
+            className="transition-transform duration-1000 ease-in-out"
+            style={{ transform: `translateY(${floats ? 0 : 68}px)` }}
+          >
+            <rect x={43} y={33} width={34} height={26} rx="3" className="fill-primary stroke-accent" strokeWidth="2" />
+          </g>
         )}
-      </div>
+      </svg>
       <div className="min-w-[180px] flex-1 text-[13px] text-muted-foreground">
         {active ? (
           <>

@@ -504,14 +504,27 @@ export function ScienceF2InteractiveNotesBlock({
             <BuoyancySchematic block={section.buoyancySchematic} lang={lang} />
           </div>
         )}
-        {section.leverClasses && (
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">
-              {section.leverClasses.title}
-            </h3>
-            <LeverClasses block={section.leverClasses} lang={lang} />
-          </div>
-        )}
+        {section.leverClasses &&
+          (isChapter8 ? (
+            /* The contextual figure above already marks F, L and E on real levers,
+               so the schematic is kept as the follow-up rather than teaching the
+               same three classes twice at the same weight. */
+            <details className="group border-t border-border/70 pt-2">
+              <summary className="min-h-11 cursor-pointer py-3 text-[13px] font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                {section.leverClasses.title}
+              </summary>
+              <div className="pb-2">
+                <LeverClasses block={section.leverClasses} lang={lang} />
+              </div>
+            </details>
+          ) : (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                {section.leverClasses.title}
+              </h3>
+              <LeverClasses block={section.leverClasses} lang={lang} />
+            </div>
+          ))}
         {section.momentDiagram && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">

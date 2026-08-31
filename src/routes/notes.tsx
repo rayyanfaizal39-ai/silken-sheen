@@ -168,6 +168,7 @@ import geographyArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 10_5
 import bmArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_15 AM.png";
 import englishArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_47 AM.png";
 import scienceArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_08 AM.png";
+import scienceF2Chapter8Artwork from "@/assets/science/form2/ch8-daya-gerakan.png";
 import sejarahArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_37 AM.png";
 import mathArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_02_06 AM.png";
 import { seoMeta, breadcrumbJsonLd, courseJsonLd } from "@/lib/seo";
@@ -262,6 +263,11 @@ const F2_SCIENCE_INTERACTIVE_META: Record<
 > = {
   2: { modules: 11, minutes: 26, experiments: 1, difficulty: "Core" },
   3: { modules: 13, minutes: 30, experiments: 2, difficulty: "Core" },
+  // `modules` must equal the chapter's section count, because the section rail
+  // above the hero renders one step per section. Chapter 8 has 11 sections and
+  // one investigation (8.2.5), so it was reading the placeholder default's 10
+  // and disagreeing with its own rail.
+  8: { modules: 11, minutes: 26, experiments: 1, difficulty: "Core" },
 };
 
 // Form 3 Science Chapters 1-3 reuse the Lab Telemetry hero's Form-1-indexed
@@ -404,7 +410,12 @@ function NotesPage() {
   const isSejarahChapter = subject === "sejarah" && !!activeChapterKey;
   const activeChapterProgress = activeChapterKey ? (notesProgress[activeChapterKey] ?? 0) : 0;
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
-  const chapterArtwork = subject ? getSubjectArtwork(subject) : null;
+  const chapterArtwork =
+    subject === "science" && form === "Form 2" && activeChapterKey === "Chapter 8"
+      ? scienceF2Chapter8Artwork
+      : subject
+        ? getSubjectArtwork(subject)
+        : null;
 
   const measuredScrollPct = useNotesReadingTracker({
     contentRef: notesContentRef,

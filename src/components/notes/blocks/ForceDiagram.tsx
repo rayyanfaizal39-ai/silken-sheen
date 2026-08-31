@@ -27,8 +27,8 @@ const VIEWS = {
   },
   nail: {
     /** Tail sits on the hammer claw gripping the nail; the arrow runs upward. */
-    tailX: 214,
-    tailY: 104,
+    tailX: 213,
+    tailY: 96,
     deg: -90,
     newtons: 15,
   },
@@ -88,11 +88,17 @@ export function ForceDiagram({ block, lang }: { block: ForceDiagramBlock; lang?:
             </>
           ) : (
             <>
-              {/* wood block with the nail standing in it */}
-              <rect x={168} y={104} width={96} height={28} className="fill-primary/15 stroke-primary/60" strokeWidth="2" />
-              <line x1={214} y1={104} x2={214} y2={62} className="stroke-muted-foreground" strokeWidth="3" />
-              {/* hammer claw gripping the nail head -- the point of application */}
-              <path d="M204,104 L214,96 L224,104" fill="none" className="stroke-amber-300" strokeWidth="3" />
+              {/* wood block, with the nail part way out of it */}
+              <rect x={150} y={104} width={130} height={28} className="fill-primary/15 stroke-primary/60" strokeWidth="2" />
+              {/* the nail: shaft still in the wood, flat head standing above it */}
+              <line x1={214} y1={91} x2={214} y2={126} className="stroke-muted-foreground" strokeWidth="3.5" />
+              <rect x={206} y={86} width={16} height={5} rx="1" className="fill-muted-foreground" />
+              {/* the hammer sits to the left so the force arrow above the nail stays clear */}
+              <line x1={172} y1={68} x2={122} y2={34} className="stroke-amber-700/70" strokeWidth="6" strokeLinecap="round" />
+              <rect x={166} y={62} width={34} height={24} rx="4" className="fill-primary/25 stroke-primary/70" strokeWidth="2" />
+              {/* the claw, reaching under the nail head -- this is the point of application */}
+              <path d="M194,84 Q206,92 209,97" fill="none" className="stroke-amber-300" strokeWidth="3" strokeLinecap="round" />
+              <path d="M202,84 Q212,90 215,97" fill="none" className="stroke-amber-300" strokeWidth="3" strokeLinecap="round" />
             </>
           )}
 

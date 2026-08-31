@@ -32,38 +32,144 @@ export const CHAPTER8_VISUAL_ASSETS: Record<Chapter8FigureKind, string> = {
   atmosphere: "/science/form2/chapter-8/07_atmospheric_pressure_altitude.png",
 };
 
+/**
+ * Hit regions as percentages of the artwork, measured from the shipped images.
+ *
+ * Every asset is 1672x941 (16:9) and is drawn with `object-contain` inside an
+ * `aspect-video` box, so there is no letterboxing and these percentages map
+ * straight onto the rendered pixels at any width.
+ *
+ * The values hug the painted subject. They used to run ~88% of the frame height
+ * on artwork whose panels only occupy ~65-73%, which is what made the selection
+ * highlight look like a broken hitbox floating past the edge of the picture.
+ */
 export const CHAPTER8_HOTSPOT_GEOMETRY: Record<Chapter8FigureKind, Pick<Hotspot, "id" | "x" | "y" | "w" | "h">[]> = {
+  // four portrait cards, x 1.8-24.4 / 26.1-49.0 / 51.3-74.2 / 75.9-98.9, y 12.5-85.9
   types: [
-    { id: "gravitational", x: 12.5, y: 50, w: 23, h: 88 },
-    { id: "frictional", x: 37.5, y: 50, w: 23, h: 88 },
-    { id: "elastic", x: 62.5, y: 50, w: 23, h: 88 },
-    { id: "magnetic", x: 87.5, y: 50, w: 23, h: 88 },
+    { id: "gravitational", x: 13.1, y: 49.2, w: 22.6, h: 73.4 },
+    { id: "frictional", x: 37.5, y: 49.2, w: 22.9, h: 73.4 },
+    { id: "elastic", x: 62.8, y: 49.2, w: 22.9, h: 73.4 },
+    { id: "magnetic", x: 87.4, y: 49.2, w: 23, h: 73.4 },
   ],
-  "action-reaction": [{ id: "pair", x: 50, y: 49, w: 25, h: 45 }],
+  // the contact region between the two skaters' hands
+  "action-reaction": [{ id: "pair", x: 49.8, y: 41, w: 16, h: 15 }],
   effects: [
-    { id: "moves", x: 25, y: 25, w: 47, h: 45 },
-    { id: "stops", x: 75, y: 25, w: 47, h: 45 },
-    { id: "speed", x: 25, y: 75, w: 47, h: 45 },
-    { id: "direction", x: 75, y: 75, w: 47, h: 45 },
+    { id: "moves", x: 25.9, y: 27.0, w: 47, h: 43 },
+    { id: "stops", x: 74.9, y: 27.0, w: 47, h: 43 },
+    { id: "speed", x: 25.9, y: 72.5, w: 47, h: 43 },
+    { id: "direction", x: 74.9, y: 72.5, w: 47, h: 43 },
   ],
+  // three landscape cards, y 17.9-82.4
   buoyancy: [
-    { id: "boat", x: 17, y: 51, w: 31, h: 84 },
-    { id: "jacket", x: 50, y: 51, w: 31, h: 84 },
-    { id: "log-anchor", x: 83, y: 51, w: 31, h: 84 },
+    { id: "boat", x: 17.6, y: 50.1, w: 32.3, h: 64.5 },
+    { id: "jacket", x: 50.4, y: 50.1, w: 31.4, h: 64.5 },
+    { id: "log-anchor", x: 83.5, y: 50.1, w: 32.1, h: 64.5 },
   ],
   levers: [
-    { id: "first", x: 17, y: 51, w: 31, h: 84 },
-    { id: "second", x: 50, y: 51, w: 31, h: 84 },
-    { id: "third", x: 83, y: 51, w: 31, h: 84 },
+    { id: "first", x: 17.6, y: 50.1, w: 32.3, h: 64.5 },
+    { id: "second", x: 50.4, y: 50.1, w: 31.4, h: 64.5 },
+    { id: "third", x: 83.5, y: 50.1, w: 32.1, h: 64.5 },
   ],
   pressure: [
-    { id: "heel", x: 25, y: 52, w: 47, h: 86 },
-    { id: "shoe", x: 75, y: 52, w: 47, h: 86 },
+    { id: "heel", x: 25.7, y: 49.6, w: 46, h: 82 },
+    { id: "shoe", x: 74.5, y: 49.6, w: 46, h: 82 },
   ],
+  // measured on the hikers themselves — the summit box used to sit above the climber
   atmosphere: [
-    { id: "foot", x: 20, y: 79, w: 22, h: 34 },
-    { id: "summit", x: 57, y: 14, w: 18, h: 26 },
+    { id: "foot", x: 21.6, y: 86.5, w: 13, h: 19 },
+    { id: "summit", x: 57.9, y: 27.4, w: 11, h: 13 },
   ],
+};
+
+/** Figures whose hit region really is a drawn panel, so a hairline edge reads as deliberate. */
+const PANEL_KINDS = new Set<Chapter8FigureKind>(["types", "effects", "buoyancy", "levers", "pressure"]);
+
+/**
+ * F / L / E marker positions, measured on 03_levers_everyday_life.png.
+ *
+ * Percentages of the artwork, so they stay pinned to the object at every width.
+ * Second class is the one that must be unambiguous: the wheel is the fulcrum,
+ * the tray contents are the load between it and the effort, and the effort is
+ * where the hands grip the handles.
+ */
+export type LeverClassId = "first" | "second" | "third";
+type LeverMarker = { t: "F" | "L" | "E"; x: number; y: number };
+
+/**
+ * The single source of truth for every visual part of a selected lever class.
+ * A class id resolves to its contextual scene and to the exact F/L/E markers
+ * drawn over that scene; the button, panel and explanation all consume this
+ * same object below.
+ */
+export const CHAPTER8_LEVER_STATES: Record<
+  LeverClassId,
+  { id: LeverClassId; scene: "seesaw" | "wheelbarrow" | "fishing-rod"; markers: LeverMarker[] }
+> = {
+  first: {
+    id: "first",
+    scene: "seesaw",
+    // pivot bolt centre; girl raised (load); boy pressing down (effort)
+    markers: [
+      { t: "F", x: 17.1, y: 59.5 },
+      { t: "L", x: 8.3, y: 51.3 },
+      { t: "E", x: 26.8, y: 62.0 },
+    ],
+  },
+  second: {
+    id: "second",
+    scene: "wheelbarrow",
+    // wheel axle, soil in the tray, hands on the handles
+    markers: [
+      { t: "F", x: 58.8, y: 70.8 },
+      { t: "L", x: 54.5, y: 56.5 },
+      { t: "E", x: 41.8, y: 48.5 },
+    ],
+  },
+  third: {
+    id: "third",
+    scene: "fishing-rod",
+    // existing validated interpretation: rod butt, forward hand, fish
+    markers: [
+      { t: "F", x: 73.4, y: 54.5 },
+      { t: "E", x: 76.0, y: 47.5 },
+      { t: "L", x: 93.8, y: 66.5 },
+    ],
+  },
+};
+
+export const CHAPTER8_LEVER_MARKERS: Record<string, LeverMarker[]> = {
+  first: CHAPTER8_LEVER_STATES.first.markers,
+  second: CHAPTER8_LEVER_STATES.second.markers,
+  third: CHAPTER8_LEVER_STATES.third.markers,
+};
+
+function isLeverClassId(value: string | null): value is LeverClassId {
+  return value === "first" || value === "second" || value === "third";
+}
+
+/**
+ * The action–reaction pair, as one list so the two arrows can only ever be drawn
+ * together: each leaves a skater's palm, they share a line, they are equal in
+ * length, and they point opposite ways.
+ */
+export const ACTION_REACTION_ARROWS = [
+  { id: "left", x1: 49.8, x2: 43.8, y: 41 },
+  { id: "right", x1: 50.2, x2: 56.2, y: 41 },
+] as const;
+
+/** Moves the two existing raster halves together at render time; no new art. */
+export const ACTION_REACTION_CONTACT_SHIFT = 6.2;
+
+export const ATMOSPHERE_HAZE_GEOMETRY = {
+  foot: { x: 21.6, top: 2, bottom: 78, width: 25 },
+  summit: { x: 57.9, top: 2, bottom: 22, width: 17 },
+} as const;
+
+/** Panel bounds used to assert markers never spill into a neighbouring scene. */
+export const CHAPTER8_LEVER_PANELS: Record<string, { x0: number; x1: number }> = {
+  first: { x0: 1.5, x1: 33.8 },
+  second: { x0: 34.7, x1: 66.1 },
+  third: { x0: 67.5, x1: 99.6 },
 };
 
 const UI = {
@@ -73,7 +179,7 @@ const UI = {
     controls: "Concepts in the figure",
     alt: {
       types: "Four everyday scenes showing gravitational, frictional, elastic and magnetic forces.",
-      "action-reaction": "Two students on roller skates moving apart after pushing one another.",
+      "action-reaction": "Two students on roller skates pressing their palms together at the centre.",
       effects: "Four scenes showing a force starting motion, stopping motion, changing speed and changing direction.",
       buoyancy: "A boat, a person in a life jacket, and a floating log above a sinking anchor.",
       levers: "A seesaw, wheelbarrow and fishing rod used as levers in everyday life.",
@@ -85,6 +191,12 @@ const UI = {
     jacket: "The life jacket adds buoyant support and helps the person remain afloat.",
     anchor: "The log floats while the anchor sinks because floating or sinking depends on the balance of forces and density, not on mass alone.",
     heel: "Small contact area", shoe: "Large contact area",
+    heelNote: "The narrow heel presses on a small contact area, so the same weight produces a greater pressure on the ground.",
+    shoeNote: "The broad sole spreads the same weight over a large contact area, so the pressure on the ground is lower.",
+    // Figure chrome for the skater photo. The validated force statement is taken
+    // from the section intro; this only says what the picture shows.
+    pairLabel: "Action–reaction force pair",
+    pairNote: "Each student exerts a force on the other, and the two forces act on different students.",
   },
   bm: {
     instruction: "Interaktif — Tekan konsep untuk meneroka.",
@@ -92,7 +204,7 @@ const UI = {
     controls: "Konsep dalam rajah",
     alt: {
       types: "Empat situasi harian yang menunjukkan daya graviti, geseran, kenyal dan magnet.",
-      "action-reaction": "Dua murid berkasut roda bergerak menjauhi satu sama lain selepas saling menolak.",
+      "action-reaction": "Dua murid berkasut roda menekan tapak tangan mereka bersama-sama di tengah.",
       effects: "Empat situasi yang menunjukkan daya memulakan gerakan, menghentikan gerakan, mengubah kelajuan dan mengubah arah.",
       buoyancy: "Sebuah bot, seorang memakai jaket keselamatan, dan kayu terapung di atas sauh yang tenggelam.",
       levers: "Jongkang-jongket, kereta sorong dan joran yang digunakan sebagai tuas dalam kehidupan harian.",
@@ -104,14 +216,15 @@ const UI = {
     jacket: "Jaket keselamatan menambah sokongan apungan dan membantu seseorang kekal terapung.",
     anchor: "Kayu terapung manakala sauh tenggelam kerana terapung atau tenggelam bergantung pada keseimbangan daya dan ketumpatan, bukan jisim semata-mata.",
     heel: "Luas sentuhan kecil", shoe: "Luas sentuhan besar",
+    heelNote: "Tumit yang kecil menekan pada luas sentuhan yang kecil, jadi berat yang sama menghasilkan tekanan yang lebih besar pada tanah.",
+    shoeNote: "Tapak yang lebar menyebarkan berat yang sama pada luas sentuhan yang besar, jadi tekanan pada tanah menjadi lebih rendah.",
+    pairLabel: "Pasangan daya tindakan–tindak balas",
+    pairNote: "Setiap murid mengenakan daya pada murid yang satu lagi, dan kedua-dua daya itu bertindak pada murid yang berbeza.",
   },
 } as const;
 
-function titleFrom(note: string, fallback: string) {
-  return note.split(/[.—–]/)[0]?.trim() || fallback;
-}
-
-function concepts(kind: Chapter8FigureKind, section: ScienceInteractiveSection, lang: Lang): Hotspot[] {
+/** Exported so the label/note wiring can be asserted without driving the UI. */
+export function chapter8Concepts(kind: Chapter8FigureKind, section: ScienceInteractiveSection, lang: Lang): Hotspot[] {
   const copy = UI[lang];
   const geometry = CHAPTER8_HOTSPOT_GEOMETRY[kind];
   const withGeometry = (items: Omit<Hotspot, "x" | "y" | "w" | "h">[]) =>
@@ -133,8 +246,16 @@ function concepts(kind: Chapter8FigureKind, section: ScienceInteractiveSection, 
     })));
   }
   if (kind === "action-reaction") {
-    const trolley = section.accordions?.[2];
-    return withGeometry([{ id: "pair", label: trolley?.title.replace(/^\S+\s*/, "") ?? section.title, note: trolley?.body ?? section.intro ?? "" }]);
+    // The picture shows two skaters, so it is described with the section's own
+    // general statement plus what the scene shows. The trolley example keeps its
+    // own place in the accordions below and is not borrowed for this image —
+    // it also carries an equal-distance claim that does not follow from equal
+    // and opposite forces alone.
+    return withGeometry([{
+      id: "pair",
+      label: copy.pairLabel,
+      note: `${copy.pairNote} ${section.intro ?? ""}`.trim(),
+    }]);
   }
   if (kind === "buoyancy") {
     const block = section.buoyancySchematic!;
@@ -148,73 +269,255 @@ function concepts(kind: Chapter8FigureKind, section: ScienceInteractiveSection, 
     return withGeometry((section.leverClasses?.classes ?? []).map((item) => ({ id: item.id, label: item.name, note: `${item.note} ${item.examples}` })));
   }
   if (kind === "pressure") {
-    const cards = section.cards ?? [];
+    // The explanation describes the shoes the learner is actually looking at.
+    // The section's own apparatus and investigation blocks stay below.
     return withGeometry([
-      { id: "heel", label: copy.heel, note: cards[0]?.body ?? section.intro },
-      { id: "shoe", label: copy.shoe, note: cards[1]?.body ?? section.intro },
+      { id: "heel", label: copy.heel, note: copy.heelNote },
+      { id: "shoe", label: copy.shoe, note: copy.shoeNote },
     ]);
   }
   const levels = section.altitudePressure?.levels ?? [];
   return withGeometry(levels.map((item) => ({ id: item.id, label: item.label, note: item.note })));
 }
 
+/**
+ * The science drawn on top of the photograph once a concept is chosen.
+ *
+ * Every overlay uses `preserveAspectRatio="none"` so its 0-100 coordinates are
+ * literally percentages of the frame. The lever markers are HTML rather than SVG
+ * for the same reason: an SVG square viewBox inside a 16:9 box is letterboxed by
+ * default, which is what threw the old F/L/E labels off their objects.
+ */
 function ScientificOverlay({ kind, active }: { kind: Chapter8FigureKind; active: string | null }) {
   if (!active) return null;
+
   if (kind === "action-reaction") {
+    // Both arrows appear together, equal length, pointing away from the hands.
     return (
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
-        <defs><marker id="ch8-arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="currentColor" /></marker></defs>
-        <g className="text-amber-300" stroke="currentColor" strokeWidth="1.2" markerEnd="url(#ch8-arrow)">
-          <line x1="45" y1="42" x2="27" y2="42" /><line x1="55" y1="42" x2="73" y2="42" />
+        <defs>
+          <marker id="ch8-arrow" markerUnits="userSpaceOnUse" markerWidth="1.8" markerHeight="1.8" refX="1.55" refY="0.9" orient="auto">
+            <path d="M0,0 L1.8,0.9 L0,1.8 Z" fill="currentColor" />
+          </marker>
+        </defs>
+        <g className="text-amber-300" stroke="currentColor" strokeWidth="0.35" strokeLinecap="round" markerEnd="url(#ch8-arrow)">
+          {ACTION_REACTION_ARROWS.map((arrow) => (
+            <line key={arrow.id} data-arrow={arrow.id} x1={arrow.x1} y1={arrow.y} x2={arrow.x2} y2={arrow.y} />
+          ))}
         </g>
       </svg>
     );
   }
+
   if (kind === "pressure") {
+    // Mark the ground contact itself: a short strip under the heel, a wide one
+    // under the sole.
     const heel = active === "heel";
-    return <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true"><line x1={heel ? 29 : 63} y1="87" x2={heel ? 34 : 89} y2="87" className="stroke-amber-300" strokeWidth={heel ? 2.4 : 3.2} strokeLinecap="round" /><path d={heel ? "M31,81 L31,91" : "M66,81 L66,91 M86,81 L86,91"} className="stroke-white" strokeWidth="0.7" /></svg>;
+    return (
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
+        <line
+          data-contact={heel ? "small" : "large"}
+          x1={heel ? 18.4 : 59.4} y1={heel ? 74.5 : 70.5} x2={heel ? 20.6 : 88.4} y2={heel ? 74.5 : 70.5}
+          className="stroke-amber-300" strokeWidth={heel ? 2.6 : 3.4} strokeLinecap="round"
+        />
+      </svg>
+    );
   }
+
   if (kind === "atmosphere") {
+    // Soft, feathered atmospheric haze above the chosen hiker. The curved path,
+    // transparent end stops and blur deliberately avoid any UI-container edge.
     const summit = active === "summit";
-    return <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true"><rect x={summit ? 54 : 15} y="3" width={summit ? 7 : 10} height={summit ? 12 : 76} rx="2" className="fill-sky-300/25 stroke-sky-200" strokeWidth="0.7" /><path d={summit ? "M57.5,4 L57.5,14" : "M20,4 L20,78"} className="stroke-white/80" strokeWidth="0.8" strokeDasharray="2 2" /></svg>;
+    const geometry = ATMOSPHERE_HAZE_GEOMETRY[summit ? "summit" : "foot"];
+    const { x, top, bottom, width } = geometry;
+    const hazePath = [
+      `M ${x} ${top}`,
+      `C ${x - width * 0.42} ${top + 7}, ${x - width * 0.5} ${bottom - 12}, ${x - width * 0.32} ${bottom}`,
+      `C ${x - width * 0.12} ${bottom + 2}, ${x + width * 0.12} ${bottom + 2}, ${x + width * 0.32} ${bottom}`,
+      `C ${x + width * 0.5} ${bottom - 12}, ${x + width * 0.42} ${top + 7}, ${x} ${top} Z`,
+    ].join(" ");
+    return (
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
+        <defs>
+          <linearGradient id="ch8-air-haze" gradientUnits="userSpaceOnUse" x1={x} y1={top} x2={x} y2={bottom}>
+            <stop offset="0%" stopColor="rgb(186,230,253)" stopOpacity="0" />
+            <stop offset="24%" stopColor="rgb(224,242,254)" stopOpacity="0.28" />
+            <stop offset="72%" stopColor="rgb(186,230,253)" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="rgb(224,242,254)" stopOpacity="0.1" />
+          </linearGradient>
+          <filter id="ch8-air-feather" x="-45%" y="-15%" width="190%" height="130%">
+            <feGaussianBlur stdDeviation="2.8" />
+          </filter>
+        </defs>
+        <path
+          data-air-haze={summit ? "summit" : "foot"}
+          d={hazePath}
+          fill="url(#ch8-air-haze)"
+          filter="url(#ch8-air-feather)"
+        />
+      </svg>
+    );
   }
-  if (kind === "levers") {
-    const labels: Record<string, { x: number; y: number; t: string }[]> = {
-      first: [{ x: 17, y: 70, t: "F" }, { x: 29, y: 44, t: "L" }, { x: 7, y: 46, t: "E" }],
-      second: [{ x: 39, y: 75, t: "F" }, { x: 52, y: 53, t: "L" }, { x: 64, y: 56, t: "E" }],
-      third: [{ x: 71, y: 66, t: "F" }, { x: 91, y: 73, t: "L" }, { x: 77, y: 52, t: "E" }],
-    };
-    return <svg viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 h-full w-full" role="img" aria-label="F, L and E markers">{(labels[active] ?? []).map((p) => <g key={p.t} transform={`translate(${p.x} ${p.y})`}><circle r="3.5" className="fill-slate-950/90 stroke-amber-300" strokeWidth="0.8" /><text textAnchor="middle" dominantBaseline="central" fontSize="4.2" fontWeight="800" className="fill-white">{p.t}</text></g>)}</svg>;
-  }
+
   if (kind === "types" && active === "gravitational") {
-    return <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true"><path d="M13,29 L13,55" className="stroke-amber-300" strokeWidth="1.2" /><path d="M10.8,52 L13,57 L15.2,52 Z" className="fill-amber-300" /></svg>;
+    return (
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
+        <path d="M13,46 L13,64" className="stroke-amber-300" strokeWidth="1.2" />
+        <path d="M10.8,61 L13,66 L15.2,61 Z" className="fill-amber-300" />
+      </svg>
+    );
   }
+
   return null;
 }
 
-export function Chapter8ContextFigure({ kind, section, lang }: { kind: Chapter8FigureKind; section: ScienceInteractiveSection; lang: Lang }) {
-  const [active, setActive] = useState<string | null>(null);
+function Chapter8Artwork({ kind, alt }: { kind: Chapter8FigureKind; alt: string }) {
+  if (kind !== "action-reaction") {
+    return (
+      <img
+        src={CHAPTER8_VISUAL_ASSETS[kind]}
+        alt={alt}
+        width="1672"
+        height="941"
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-contain"
+      />
+    );
+  }
+
+  const src = CHAPTER8_VISUAL_ASSETS["action-reaction"];
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      role="img"
+      aria-label={alt}
+      data-action-reaction-contact-image
+      className="absolute inset-0 h-full w-full"
+    >
+      <defs>
+        <clipPath id="ch8-skater-left"><rect x="0" y="0" width="50" height="100" /></clipPath>
+        <clipPath id="ch8-skater-right"><rect x="50" y="0" width="50" height="100" /></clipPath>
+      </defs>
+      <image href={src} x="0" y="0" width="100" height="100" preserveAspectRatio="none" />
+      <image
+        data-skater-half="left"
+        href={src}
+        x={ACTION_REACTION_CONTACT_SHIFT}
+        y="0"
+        width="100"
+        height="100"
+        preserveAspectRatio="none"
+        clipPath="url(#ch8-skater-left)"
+      />
+      <image
+        data-skater-half="right"
+        href={src}
+        x={-ACTION_REACTION_CONTACT_SHIFT}
+        y="0"
+        width="100"
+        height="100"
+        preserveAspectRatio="none"
+        clipPath="url(#ch8-skater-right)"
+      />
+    </svg>
+  );
+}
+
+/** F / L / E markers, positioned in percentages so they never drift off the object. */
+function LeverMarkers({ state }: { state: (typeof CHAPTER8_LEVER_STATES)[LeverClassId] | null }) {
+  if (!state) return null;
+  return (
+    <div className="pointer-events-none absolute inset-0" role="img" aria-label="F, L and E markers">
+      {state.markers.map((point) => (
+        <span
+          key={point.t}
+          data-lever-marker={point.t}
+          data-lever-class={state.id}
+          /* 22px below sm: on the wheelbarrow the fulcrum and load markers are
+             only ~31px apart at 390, so a 26px badge left almost no gap. */
+          className="absolute flex h-[22px] w-[22px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-amber-300 bg-slate-950/90 text-[11px] font-extrabold leading-none text-white shadow-[0_2px_8px_rgba(2,8,23,0.55)] sm:h-7 sm:w-7 sm:text-sm"
+          style={{ left: `${point.x}%`, top: `${point.y}%` }}
+        >
+          {point.t}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+export function Chapter8ContextFigure({
+  kind,
+  section,
+  lang,
+  initialSelection = null,
+}: {
+  kind: Chapter8FigureKind;
+  section: ScienceInteractiveSection;
+  lang: Lang;
+  initialSelection?: string | null;
+}) {
+  const [active, setActive] = useState<string | null>(initialSelection);
   const [cue, setCue] = useState(true);
   useEffect(() => { const timer = window.setTimeout(() => setCue(false), 1200); return () => window.clearTimeout(timer); }, []);
   const copy = UI[lang];
-  const items = useMemo(() => concepts(kind, section, lang), [kind, section, lang]);
-  const selected = items.find((item) => item.id === active) ?? null;
+  const items = useMemo(() => chapter8Concepts(kind, section, lang), [kind, section, lang]);
+  const leverState = kind === "levers" && isLeverClassId(active) ? CHAPTER8_LEVER_STATES[active] : null;
+  const selected = items.find((item) => item.id === (leverState?.id ?? active)) ?? null;
+  const selectedId = selected?.id ?? null;
+  const selectedGeometry = selected;
 
   return (
     <figure data-ch8-figure={kind} className="ch8-figure m-0 mx-auto w-full max-w-[840px] rounded-[1.4rem] border border-sky-300/20 bg-gradient-to-b from-slate-800/80 to-slate-950/65 p-2.5 shadow-[0_24px_70px_rgba(2,8,23,0.24)] sm:p-4">
       <figcaption className="mb-3 flex items-center gap-2 text-[12.5px] font-medium text-slate-200"><Sparkles className="h-4 w-4 text-amber-300" aria-hidden="true" />{copy.instruction}</figcaption>
       <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-slate-900">
-        <img src={CHAPTER8_VISUAL_ASSETS[kind]} alt={copy.alt[kind]} width="1672" height="941" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-contain" />
-        <ScientificOverlay kind={kind} active={active} />
+        <Chapter8Artwork kind={kind} alt={copy.alt[kind]} />
+
+        {/* Selection is a soft glow pinned to the subject — never a filled hitbox. */}
+        {selectedGeometry && (
+          <span
+            aria-hidden="true"
+            data-ch8-selection={selectedGeometry.id}
+            data-lever-panel={leverState?.scene}
+            className={`pointer-events-none absolute rounded-2xl shadow-[0_0_30px_8px_rgba(252,211,77,0.16)] ${
+              PANEL_KINDS.has(kind) ? "ring-1 ring-amber-300/70" : ""
+            }`}
+            style={{
+              left: `${selectedGeometry.x - selectedGeometry.w / 2}%`,
+              top: `${selectedGeometry.y - selectedGeometry.h / 2}%`,
+              width: `${selectedGeometry.w}%`,
+              height: `${selectedGeometry.h}%`,
+            }}
+          />
+        )}
+
+        <ScientificOverlay kind={kind} active={selectedId} />
+        {kind === "levers" && <LeverMarkers state={leverState} />}
+
         {items.map((item, index) => {
-          const on = active === item.id;
-          return <button key={item.id} type="button" aria-label={item.label} aria-pressed={on} onClick={() => setActive(on ? null : item.id)} className={`ch8-image-hotspot absolute rounded-2xl border-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/90 ${on ? "border-amber-300 bg-amber-300/10 shadow-[inset_0_0_0_2px_rgba(255,255,255,.45)]" : "border-white/0 bg-transparent hover:border-white/70"} ${cue && index === 0 ? "ch8-hotspot-cue" : ""}`} style={{ left: `${item.x - item.w / 2}%`, top: `${item.y - item.h / 2}%`, width: `${item.w}%`, height: `${item.h}%` }} />;
+          const on = selectedId === item.id;
+          return (
+            <button
+              key={item.id}
+              type="button"
+              data-ch8-hotspot={item.id}
+              aria-label={item.label}
+              aria-pressed={on}
+              onClick={() => setActive(on ? null : item.id)}
+              /* The hit region itself paints nothing: no border, no background,
+                 no hover box. Keyboard users still get a focus ring, and it is
+                 sized to the subject rather than to a floating rectangle. */
+              className={`ch8-image-hotspot absolute rounded-2xl border-0 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${cue && index === 0 ? "ch8-hotspot-cue" : ""}`}
+              style={{ left: `${item.x - item.w / 2}%`, top: `${item.y - item.h / 2}%`, width: `${item.w}%`, height: `${item.h}%` }}
+            />
+          );
         })}
       </div>
       <div role="group" aria-label={copy.controls} className="mt-3 flex flex-wrap gap-2">
-        {items.map((item) => <button key={item.id} type="button" aria-pressed={active === item.id} onClick={() => setActive(active === item.id ? null : item.id)} className={`min-h-11 flex-auto rounded-full border px-3 py-2 text-[12px] font-semibold transition-[transform,background-color,border-color] duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:flex-none ${active === item.id ? "border-amber-300 bg-amber-300 text-slate-950" : "border-white/20 bg-white/5 text-slate-100 hover:border-white/45 hover:bg-white/10"}`}>{item.label}</button>)}
+        {items.map((item) => <button key={item.id} type="button" data-ch8-control={item.id} data-lever-button={kind === "levers" ? CHAPTER8_LEVER_STATES[item.id as LeverClassId]?.scene : undefined} aria-pressed={selectedId === item.id} onClick={() => setActive(selectedId === item.id ? null : item.id)} className={`min-h-11 flex-auto rounded-full border px-3 py-2 text-[12px] font-semibold transition-[transform,background-color,border-color] duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:flex-none ${selectedId === item.id ? "border-amber-300 bg-amber-300 text-slate-950" : "border-white/20 bg-white/5 text-slate-100 hover:border-white/45 hover:bg-white/10"}`}>{item.label}</button>)}
       </div>
-      <div aria-live="polite" className={`mt-3 min-h-[4.5rem] border-l-2 px-3 py-2 ${selected ? "border-amber-300 bg-amber-300/8" : "border-sky-300/35 bg-white/[0.025]"}`}>
+      <div aria-live="polite" data-lever-explanation-class={leverState?.id} className={`mt-3 min-h-[4.5rem] border-l-2 px-3 py-2 ${selected ? "border-amber-300 bg-amber-300/8" : "border-sky-300/35 bg-white/[0.025]"}`}>
         {selected ? <><p className="text-[13px] font-bold text-amber-200">{selected.label}</p><p className="mt-1 text-[13px] leading-relaxed text-slate-100">{selected.note}</p></> : <p className="flex items-center gap-2 text-[13px] leading-relaxed text-slate-300"><MousePointerClick className="h-4 w-4 shrink-0" aria-hidden="true" />{copy.prompt}</p>}
       </div>
     </figure>
