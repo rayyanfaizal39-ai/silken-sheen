@@ -99,7 +99,7 @@ export const scienceF2C9MindMapDLP: MindNode = {
         },
         {
           id: "c2-5",
-          label: "Activity 9.1 (Demonstrating the 3 Methods)",
+          label: "the heat-transfer demonstration (Demonstrating the 3 Methods)",
           children: [
             { id: "c2-5-1", label: "Conduction: thumbtacks fall off in sequence when copper rod is heated" },
             { id: "c2-5-2", label: "Convection in liquid: potassium permanganate crystal moves upward in heated beaker" },
@@ -121,7 +121,7 @@ export const scienceF2C9MindMapDLP: MindNode = {
           children: [
             { id: "c2-7-1", label: "Heat conductor: material allows heat flow (e.g. mercury, metal)" },
             { id: "c2-7-2", label: "Heat insulator: material prevents heat flow (e.g. fibreglass, polystyrene, wood)" },
-            { id: "c2-7-3", label: "Experiment 9.1: cotton & felt = good heat insulators (maintain hot water temperature); aluminium foil = heat conductor" },
+            { id: "c2-7-3", label: "Heat-insulator investigation: cotton & felt = good heat insulators (maintain hot water temperature); aluminium foil = heat conductor" },
           ],
         },
         {
@@ -167,7 +167,7 @@ export const scienceF2C9MindMapDLP: MindNode = {
           children: [
             { id: "c2-11-1", label: "Ice cream at room temperature absorbs heat and melts" },
             { id: "c2-11-2", label: "Electric kettle: heating coil at bottom — water heated via convection" },
-            { id: "c2-11-3", label: "Roasted chicken wrapped in aluminium foil in oven" },
+            { id: "c2-11-3", label: "Thermos flask: shiny walls slow down heat emission" },
             { id: "c2-11-4", label: "Polystyrene container used to store ice cubes" },
             { id: "c2-11-5", label: "Thick blanket in cold weather — heat insulator for body heat" },
           ],
@@ -215,7 +215,7 @@ export const scienceF2C9MindMapDLP: MindNode = {
         },
         {
           id: "c3-4",
-          label: "Activity 9.4 (Demonstration)",
+          label: "Demonstration of expansion and contraction",
           children: [
             { id: "c3-4-1", label: "Solid: heated metal bar expands, cannot fit into gauge; contracts again when cooled" },
             { id: "c3-4-2", label: "Liquid: coloured water level in glass tube rises in hot water, falls in ice" },
@@ -245,7 +245,7 @@ export const scienceF2C9MindMapDLP: MindNode = {
               children: [
                 { id: "c3-6-4-1", label: "Two different metal strips, different rates of expansion/contraction" },
                 { id: "c3-6-4-2", label: "Used in fire alarm systems" },
-                { id: "c3-6-4-3", label: "Heat from fire: copper strip expands faster than steel strip → strip bends towards contact point → completes circuit → alarm rings" },
+                { id: "c3-6-4-3", label: "Heat from fire: copper strip expands faster than iron strip → strip bends towards contact point → completes circuit → alarm rings" },
               ],
             },
             { id: "c3-6-5", label: "Solving daily problems: tight bottle lid loosened with hot water (metal expands); dented table tennis ball fixed with hot water (air inside expands)" },
@@ -297,7 +297,7 @@ export const scienceF2C9MindMapDLP: MindNode = {
         },
         {
           id: "c4-3",
-          label: "Experiment 9.2",
+          label: "the dark-versus-light surface investigation",
           children: [
             { id: "c4-3-1", label: "Part A — Heat absorber: white can (J) vs black can (K) near Bunsen burner → can K (black) temperature rises more (better absorber)" },
             { id: "c4-3-2", label: "Part B — Heat radiator: both cans filled with hot water → can K (black) temperature falls more (better radiator)" },

@@ -151,7 +151,7 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Because the amplitude of the alarm clock becomes zero",
     ],
     answerIndex: 1,
-    explanation: "Activity 10.1 shows sound cannot propagate through a vacuum because it requires a medium, even though the alarm clock is still vibrating inside the jar.",
+    explanation: "The vacuum jar demonstration shows sound cannot propagate through a vacuum because it requires a medium, even though the alarm clock is still vibrating inside the jar.",
   },
   {
     id: "sci-f2-c10-dlp-q12",
@@ -194,7 +194,7 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "In Activity 10.2 using a C.R.O. and an audio signal generator, what is the effect of increasing output power?",
+    question: "In the investigation using a C.R.O. and an audio signal generator, what is the effect of increasing output power?",
     options: [
       "Increases the amplitude of the wave, making the sound louder",
       "Increases the frequency of the wave, making the pitch higher",
@@ -211,7 +211,7 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "In Activity 10.2 using a C.R.O. and an audio signal generator, what is the effect of increasing frequency?",
+    question: "In the investigation using a C.R.O. and an audio signal generator, what is the effect of increasing frequency?",
     options: [
       "Increases the amplitude of the wave",
       "Increases the frequency of the wave, making the pitch higher",
@@ -246,8 +246,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 10",
     lang: "dlp",
     question: "What happens to the frequency of an ambulance siren heard by a stationary observer when the ambulance approaches them?",
-    options: ["The frequency increases", "The frequency decreases", "The frequency stays the same", "The frequency becomes zero"],
-    answerIndex: 0,
+    options: ["The frequency becomes zero", "The frequency decreases", "The frequency stays the same", "The frequency increases"],
+    answerIndex: 3,
     explanation: "The frequency of an ambulance siren heard by an observer increases when the ambulance approaches the stationary observer, according to the Doppler effect.",
   },
   {
@@ -271,12 +271,12 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Sonar technology is used in the shipping industry to...",
     options: [
-      "Detect underwater objects",
+      "Clean seawater",
       "Generate electricity",
       "Measure the temperature of seawater",
-      "Clean seawater",
+      "Detect underwater objects",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation: "Sonar is a sound reflection technology used in the shipping industry to detect underwater objects, and is also used in medical and fisheries sectors.",
   },
   {
@@ -312,9 +312,9 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "A doctor uses a device to listen to a patient's heartbeat more clearly. What device is used, and how does it work?",
     options: [
-      "Megaphone — amplifies the voice to be heard from a distance",
+      "Loudspeaker — makes a voice louder so it can be heard from a distance",
       "Stethoscope — helps the doctor hear the patient's heartbeat by channelling and amplifying the sound",
-      "Hearing aid — amplifies sound entering the ear of the general public",
+      "Hearing aid — amplifies the sound entering the ear",
       "Sonar — detects objects underwater",
     ],
     answerIndex: 1,
@@ -347,11 +347,11 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question: "A recording studio engineer lines the walls with sound-absorbing material. What is the main purpose of this, and why is it effective?",
     options: [
       "To increase the amplitude of sound so recordings are louder",
-      "To reduce echo and produce high-quality recordings, because soft and rough surfaces absorb sound well",
-      "To convert sound into ultrasound",
       "To increase the frequency of the recorded sound",
+      "To convert sound into ultrasound",
+      "To reduce echo and produce high-quality recordings, because soft and rough surfaces absorb sound well",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation: "Sound-absorbing materials (soft and rough) reduce the reflection of sound that causes echo, producing high-quality sound recordings.",
   },
   {
@@ -364,11 +364,11 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question: "A stationary observer hears an ambulance siren whose frequency increases, then decreases after the ambulance passes by. What is the most accurate explanation for this phenomenon?",
     options: [
       "The amplitude of the siren sound changes suddenly",
-      "The Doppler effect — frequency increases as the ambulance approaches and decreases as it moves away from the observer",
       "The siren sound is reflected by the road surface",
+      "The Doppler effect — frequency increases as the ambulance approaches and decreases as it moves away from the observer",
       "The frequency of the siren sound is always constant but the observer's ear changes",
     ],
-    answerIndex: 1,
+    answerIndex: 2,
     explanation: "This is a classic example of the Doppler effect, where the frequency of sound heard by a stationary observer changes due to the relative movement of the sound source (ambulance).",
   },
   {
@@ -381,11 +381,11 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question: "Why doesn't a person carrying a sound source (e.g. an air horn) feel a change in pitch while moving, unlike a stationary observer?",
     options: [
       "Because the air horn does not produce any sound",
-      "Because there is no relative movement between the sound source and the person carrying it, unlike the stationary observer who experiences relative movement towards the source",
-      "Because the person's ears are deaf",
       "Because the air horn only produces ultrasound",
+      "Because the person's ears are deaf",
+      "Because there is no relative movement between the sound source and the person carrying it, unlike the stationary observer who experiences relative movement towards the source",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation: "The Doppler effect depends on relative movement between the sound source and the observer; the person carrying the source experiences no relative movement with respect to the source itself.",
   },
   {
@@ -398,11 +398,11 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question: "Bats use ultrasound to navigate in the dark. How does this principle relate to the sonar technology used by humans?",
     options: [
       "Both use light to detect objects",
-      "Both use the reflection of sound waves (ultrasound) to detect the position or distance of objects",
       "They are not related at all",
+      "Both use the reflection of sound waves (ultrasound) to detect the position or distance of objects",
       "Bats use magnetism, while sonar uses sound",
     ],
-    answerIndex: 1,
+    answerIndex: 2,
     explanation: "Both bat echolocation and sonar technology use the principle of sound/ultrasound wave reflection to detect the position, distance or objects around them.",
   },
   {
@@ -415,11 +415,11 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question: "A student claims 'humans can hear all types of sound including ultrasound'. Is this claim accurate? Why?",
     options: [
       "Accurate, because human ears are very sensitive",
-      "Not accurate, because ultrasound has a frequency of more than 20,000 Hz which exceeds the limit of human hearing (20 Hz–20,000 Hz)",
-      "Accurate, because ultrasound is only used by animals",
       "Not accurate, because humans cannot hear any sound at all",
+      "Accurate, because ultrasound is only used by animals",
+      "Not accurate, because ultrasound has a frequency of more than 20,000 Hz which exceeds the limit of human hearing (20 Hz–20,000 Hz)",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation: "The claim is not accurate because the limit of human hearing is 20 Hz to 20,000 Hz, while ultrasound has a frequency of more than 20,000 Hz and cannot be heard by humans.",
   },
   {
@@ -431,12 +431,12 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Doctors use ultrasound to scan the condition of a foetus in the womb (sonogram). Why is ultrasound suitable for this purpose compared to ordinary sound?",
     options: [
-      "Because ultrasound has a high frequency that allows precise reflection from internal body structures without exposing the patient to hazards such as X-rays",
-      "Because ultrasound is louder than ordinary sound",
       "Because ultrasound can be heard by the foetus for communication purposes",
+      "Because ultrasound is louder than ordinary sound",
+      "Because ultrasound has a high frequency that allows precise reflection from internal body structures without exposing the patient to hazards such as X-rays",
       "Because ultrasound does not need a medium to propagate",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation: "Ultrasound is used in sonograms because its high-frequency properties allow precise reflection from internal body structures, using a method considered safer than other techniques.",
   },
   {
@@ -448,12 +448,12 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Why does the human hearing range become narrower with age, and what are the implications for the need for hearing aids?",
     options: [
-      "Because human ears lose sensitivity to certain sound frequencies with age, causing some elderly people to need hearing aids to amplify sound entering the ear",
+      "Because the amplitude of all sounds in the world decreases over time",
       "Because elderly people no longer produce sound waves",
       "Because the air around elderly people becomes a vacuum",
-      "Because the amplitude of all sounds in the world decreases over time",
+      "Because human ears lose sensitivity to certain sound frequencies with age, causing some elderly people to need hearing aids to amplify sound entering the ear",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation: "The human hearing range narrows with age due to loss of ear sensitivity to certain sound frequencies; hearing aids help amplify sound entering the ear to overcome this limitation.",
   },
 ];

@@ -21,10 +21,10 @@ export const scienceF2C10MindMapBM: MindNode = {
           id: "c1-2",
           label: "Bunyi Memerlukan Medium",
           children: [
-            { id: "c1-2-1", label: "Bunyi tidak dapat merebak melalui vakum (kawasan tanpa udara)" },
+            { id: "c1-2-1", label: "Bunyi tidak dapat merambat melalui vakum (kawasan tanpa udara)" },
             {
               id: "c1-2-2",
-              label: "Aktiviti 10.1",
+              label: "Demonstrasi balang vakum",
               children: [
                 { id: "c1-2-2-1", label: "Loceng penggera diletakkan dalam balang loceng" },
                 { id: "c1-2-2-2", label: "Udara dikeluarkan menggunakan pam vakum" },
@@ -76,7 +76,7 @@ export const scienceF2C10MindMapBM: MindNode = {
           label: "Aktiviti Kekuatan Bunyi pada Bekas Plastik",
           children: [
             { id: "c1-6-1", label: "Telinga diletakkan pada bekas plastik berisi udara, air dan tepung secara berasingan" },
-            { id: "c1-6-2", label: "Pemerhatian: kekuatan/kelantangan bunyi berbeza mengikut medium dalam bekas" },
+            { id: "c1-6-2", label: "Pemerhatian: kekuatan/kenyaringan bunyi berbeza mengikut medium dalam bekas" },
           ],
         },
         {
@@ -96,15 +96,15 @@ export const scienceF2C10MindMapBM: MindNode = {
           id: "c1-8",
           label: "Contoh Aplikasi",
           children: [
-            { id: "c1-8-1", label: "Bunyi enjin kapal terbang didengar kerana bunyi merebak melalui udara" },
-            { id: "c1-8-2", label: "Dinding dewan panggung wayang dilapisi papan lembut nipis untuk menyerap bunyi dan mengurangkan gaung" },
+            { id: "c1-8-1", label: "Bunyi enjin kapal terbang didengar kerana bunyi merambat melalui udara" },
+            { id: "c1-8-2", label: "Dinding dewan panggung wayang dilapisi papan lembut nipis untuk menyerap bunyi dan mengurangkan gema" },
           ],
         },
         {
           id: "c1-9",
           label: "Ringkasan Subtopik",
           children: [
-            { id: "c1-9-1", label: "Bunyi = tenaga akibat getaran, memerlukan medium (pepejal/cecair/gas), tidak boleh merebak dalam vakum" },
+            { id: "c1-9-1", label: "Bunyi = tenaga akibat getaran, memerlukan medium (pepejal/cecair/gas), tidak boleh merambat dalam vakum" },
             { id: "c1-9-2", label: "Kelajuan bunyi: pepejal > cecair > gas, bergantung kerapatan susunan zarah" },
             { id: "c1-9-3", label: "Bunyi boleh dipantul (permukaan keras & licin) atau diserap (permukaan lembut & kasar)" },
           ],
@@ -113,19 +113,19 @@ export const scienceF2C10MindMapBM: MindNode = {
     },
     {
       id: "c2",
-      label: "10.2 Kelantangan dan Kelaraban Bunyi",
+      label: "10.2 Kenyaringan dan Kelangsingan Bunyi",
       children: [
         {
           id: "c2-1",
           label: "Pengenalan",
           children: [
-            { id: "c2-1-1", label: "Telinga dapat membezakan bunyi kerana bunyi mempunyai kekuatan dan kelaraban berbeza" },
+            { id: "c2-1-1", label: "Telinga dapat membezakan bunyi kerana bunyi mempunyai kekuatan dan kelangsingan berbeza" },
             { id: "c2-1-2", label: "Frekuensi diukur dalam unit hertz (Hz)" },
           ],
         },
         {
           id: "c2-2",
-          label: "Kelantangan Bunyi (Loudness)",
+          label: "Kenyaringan Bunyi (Loudness)",
           children: [
             { id: "c2-2-1", label: "Bergantung kepada amplitud gelombang bunyi" },
             { id: "c2-2-2", label: "Semakin besar amplitud, semakin kuat/lantang bunyi" },
@@ -134,20 +134,20 @@ export const scienceF2C10MindMapBM: MindNode = {
         },
         {
           id: "c2-3",
-          label: "Kelaraban Bunyi (Pitch)",
+          label: "Kelangsingan Bunyi (Pitch)",
           children: [
             { id: "c2-3-1", label: "Bergantung kepada frekuensi gelombang bunyi" },
-            { id: "c2-3-2", label: "Semakin tinggi frekuensi, semakin tinggi kelaraban bunyi" },
+            { id: "c2-3-2", label: "Semakin tinggi frekuensi, semakin tinggi kelangsingan bunyi" },
             { id: "c2-3-3", label: "Contoh: lembu mengeluarkan bunyi berfrekuensi rendah; tikus mengeluarkan bunyi berfrekuensi tinggi" },
           ],
         },
         {
           id: "c2-4",
-          label: "Aktiviti 10.2 — C.R.O. dan Penjana Isyarat Audio",
+          label: "Penyiasatan O.S.K. dan penjana isyarat audio",
           children: [
-            { id: "c2-4-1", label: "Radas: Osiloskop Sinar Katod (C.R.O.) dan penjana isyarat audio" },
+            { id: "c2-4-1", label: "Radas: Osiloskop Sinar Katod (O.S.K.) dan penjana isyarat audio" },
             { id: "c2-4-2", label: "Peningkatan kuasa output → amplitud meningkat → bunyi lebih lantang" },
-            { id: "c2-4-3", label: "Peningkatan frekuensi → frekuensi gelombang meningkat → kelaraban bunyi lebih tinggi" },
+            { id: "c2-4-3", label: "Peningkatan frekuensi → frekuensi gelombang meningkat → kelangsingan bunyi lebih tinggi" },
           ],
         },
         {
@@ -159,22 +159,22 @@ export const scienceF2C10MindMapBM: MindNode = {
             { id: "c2-5-3", label: "Frekuensi siren ambulans menurun apabila ambulans bergerak jauh daripada pemerhati yang pegun" },
             {
               id: "c2-5-4",
-              label: "Aktiviti 10.4 — Hon Udara",
+              label: "Demonstrasi hon udara bergerak",
               children: [
                 { id: "c2-5-4-1", label: "Radas: hon udara digunakan untuk mengkaji kesan Doppler" },
-                { id: "c2-5-4-2", label: "Kelaraban bunyi yang didengar pemerhati berubah semasa hon bergerak melepasinya" },
-                { id: "c2-5-4-3", label: "Orang yang membawa sumber bunyi tidak merasakan perubahan kelaraban tersebut" },
+                { id: "c2-5-4-2", label: "Kelangsingan bunyi yang didengar pemerhati berubah semasa hon bergerak melepasinya" },
+                { id: "c2-5-4-3", label: "Orang yang membawa sumber bunyi tidak merasakan perubahan kelangsingan tersebut" },
               ],
             },
-            { id: "c2-5-5", label: "Contoh: kelaraban siren kenderaan kecemasan berubah semasa mendekati dan menjauhi pemerhati" },
+            { id: "c2-5-5", label: "Contoh: kelangsingan siren kenderaan kecemasan berubah semasa mendekati dan menjauhi pemerhati" },
           ],
         },
         {
           id: "c2-6",
           label: "Kata Kunci",
           children: [
-            { id: "c2-6-1", label: "Kelantangan (loudness)" },
-            { id: "c2-6-2", label: "Kelaraban (pitch)" },
+            { id: "c2-6-1", label: "Kenyaringan (loudness)" },
+            { id: "c2-6-2", label: "Kelangsingan (pitch)" },
             { id: "c2-6-3", label: "Amplitud" },
             { id: "c2-6-4", label: "Frekuensi" },
             { id: "c2-6-5", label: "Hertz (Hz)" },
@@ -185,7 +185,7 @@ export const scienceF2C10MindMapBM: MindNode = {
           id: "c2-7",
           label: "Ringkasan Subtopik",
           children: [
-            { id: "c2-7-1", label: "Kelantangan ditentukan oleh amplitud; kelaraban ditentukan oleh frekuensi (Hz)" },
+            { id: "c2-7-1", label: "Kenyaringan ditentukan oleh amplitud; kelangsingan ditentukan oleh frekuensi (Hz)" },
             { id: "c2-7-2", label: "Kesan Doppler menjelaskan perubahan frekuensi akibat pergerakan relatif sumber bunyi dan pemerhati" },
           ],
         },
@@ -199,19 +199,19 @@ export const scienceF2C10MindMapBM: MindNode = {
           id: "c3-1",
           label: "Pengenalan",
           children: [
-            { id: "c3-1-1", label: "Pantulan gelombang bunyi (dipelajari dalam 10.1) menghasilkan fenomena gegaran (echo)" },
+            { id: "c3-1-1", label: "Pantulan gelombang bunyi (dipelajari dalam 10.1) menghasilkan fenomena gema (echo)" },
             { id: "c3-1-2", label: "Pantulan gelombang bunyi juga digunakan dalam pelbagai peranti dan sektor" },
           ],
         },
         {
           id: "c3-2",
-          label: "Gegaran (Echo)",
+          label: "Gema (Echo)",
           children: [
             { id: "c3-2-1", label: "Terhasil apabila gelombang bunyi dipantulkan daripada permukaan keras kepada pendengar" },
             { id: "c3-2-2", label: "Berbunyi sama seperti bunyi asal tetapi mengambil sedikit masa untuk sampai ke telinga" },
             { id: "c3-2-3", label: "Boleh didengar di: dewan tertutup, bilik kosong, gua, terowong, gaung" },
-            { id: "c3-2-4", label: "Gegaran berulang dalam gua — disebabkan pantulan bunyi berulang-ulang antara permukaan keras gua" },
-            { id: "c3-2-5", label: "Contoh: bilik rakaman dilapisi bahan penyerap bunyi untuk mengurangkan gegaran dan menghasilkan rakaman berkualiti tinggi" },
+            { id: "c3-2-4", label: "Gema berulang dalam gua — disebabkan pantulan bunyi berulang-ulang antara permukaan keras gua" },
+            { id: "c3-2-5", label: "Contoh: bilik rakaman dilapisi bahan penyerap bunyi untuk mengurangkan gema dan menghasilkan rakaman berkualiti tinggi" },
           ],
         },
         {
@@ -257,15 +257,15 @@ export const scienceF2C10MindMapBM: MindNode = {
           label: "Peranti Mengatasi Had Pendengaran Manusia",
           children: [
             { id: "c3-6-1", label: "Stetoskop — membantu doktor mendengar denyutan jantung pesakit" },
-            { id: "c3-6-2", label: "Megafon — memperkuatkan suara supaya boleh didengar dari jauh" },
-            { id: "c3-6-3", label: "Alat bantu dengar — memperkuatkan bunyi yang memasuki telinga" },
+            { id: "c3-6-2", label: "Pembesar suara — menjadikan suara lebih kuat supaya dapat didengar dari jauh" },
+            { id: "c3-6-3", label: "Alat bantu pendengaran — memperkuatkan bunyi yang memasuki telinga" },
           ],
         },
         {
           id: "c3-7",
           label: "Kata Kunci",
           children: [
-            { id: "c3-7-1", label: "Gegaran (echo)" },
+            { id: "c3-7-1", label: "Gema (echo)" },
             { id: "c3-7-2", label: "Ultrabunyi" },
             { id: "c3-7-3", label: "Sonar" },
             { id: "c3-7-4", label: "Had pendengaran" },
@@ -276,9 +276,10 @@ export const scienceF2C10MindMapBM: MindNode = {
           id: "c3-8",
           label: "Ringkasan Subtopik",
           children: [
-            { id: "c3-8-1", label: "Pantulan bunyi daripada permukaan keras menghasilkan gegaran" },
+            { id: "c3-8-1", label: "Pantulan bunyi daripada permukaan keras menghasilkan gema" },
             { id: "c3-8-2", label: "Ultrabunyi (>20,000 Hz) digunakan dalam sonar — perkapalan, perubatan, perikanan" },
-            { id: "c3-8-3", label: "Manusia: had pendengaran 20 Hz–20,000 Hz, lebih rendah daripada sesetengah haiwan; peranti seperti stetoskop, megafon dan alat bantu dengar mengatasi had ini" },
+            { id: "c3-8-3", label: "Had pendengaran manusia 20 Hz–20,000 Hz; sesetengah haiwan boleh mendengar frekuensi yang jauh lebih tinggi" },
+            { id: "c3-8-4", label: "Stetoskop, alat bantu pendengaran dan pembesar suara menguatkan atau menyalurkan bunyi yang terlalu lemah atau jauh — bukan meluaskan julat frekuensi pendengaran manusia" },
           ],
         },
       ],

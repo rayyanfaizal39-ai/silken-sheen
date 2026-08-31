@@ -98,7 +98,7 @@ export const scienceF2C10FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "dlp",
-    front: "What devices are used in Activity 10.2 to study amplitude and frequency of sound?",
+    front: "What devices are used to study amplitude and frequency of sound?",
     back: "Cathode Ray Oscilloscope (C.R.O.) and an audio signal generator.",
   },
   {
@@ -162,7 +162,7 @@ export const scienceF2C10FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 10",
     lang: "dlp",
     front: "Name three devices used to overcome the limitations of human hearing.",
-    back: "Stethoscopes, megaphones, hearing aids.",
+    back: "Stethoscopes, hearing aids, loudspeakers.",
   },
   {
     id: "sci-f2-c10-dlp-f19",
@@ -307,7 +307,7 @@ export const scienceF2C10FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "dlp",
-    front: "How does a megaphone work?",
+    front: "How does a loudspeaker work?",
     back: "It amplifies the voice so it can be heard from a distance.",
   },
   {
@@ -334,7 +334,7 @@ export const scienceF2C10FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "dlp",
-    front: "What does Activity 10.1 prove?",
+    front: "What does the vacuum jar demonstration show?",
     back: "The sound of an alarm clock cannot be heard after air is sucked out of a bell jar — proving sound needs a medium.",
   },
   {
@@ -343,7 +343,7 @@ export const scienceF2C10FlashcardsDLP: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "dlp",
-    front: "What does Activity 10.4 study?",
+    front: "What does the moving air-horn demonstration study?",
     back: "The Doppler effect using an air horn — the pitch heard by an observer changes while the horn passes by.",
   },
   {

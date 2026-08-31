@@ -17,8 +17,8 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Apakah yang diperlukan oleh bunyi untuk merebak?",
-    back: "Medium (pepejal, cecair atau gas) — bunyi tidak dapat merebak melalui vakum.",
+    front: "Apakah yang diperlukan oleh bunyi untuk merambat?",
+    back: "Medium (pepejal, cecair atau gas) — bunyi tidak dapat merambat melalui vakum.",
   },
   {
     id: "sci-f2-c10-bm-f3",
@@ -35,7 +35,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Dalam medium apakah bunyi merebak paling cepat?",
+    front: "Dalam medium apakah bunyi merambat paling cepat?",
     back: "Pepejal, kerana zarah pepejal tersusun rapat antara satu sama lain.",
   },
   {
@@ -44,7 +44,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Dalam medium apakah bunyi merebak paling perlahan?",
+    front: "Dalam medium apakah bunyi merambat paling perlahan?",
     back: "Gas, kerana zarah gas tersusun jauh antara satu sama lain.",
   },
   {
@@ -71,7 +71,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Apakah yang menentukan kelantangan bunyi?",
+    front: "Apakah yang menentukan kenyaringan bunyi?",
     back: "Amplitud gelombang bunyi — semakin besar amplitud, semakin kuat bunyi.",
   },
   {
@@ -80,8 +80,8 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Apakah yang menentukan kelaraban (pitch) bunyi?",
-    back: "Frekuensi gelombang bunyi — semakin tinggi frekuensi, semakin tinggi kelaraban.",
+    front: "Apakah yang menentukan kelangsingan (pitch) bunyi?",
+    back: "Frekuensi gelombang bunyi — semakin tinggi frekuensi, semakin tinggi kelangsingan.",
   },
   {
     id: "sci-f2-c10-bm-f10",
@@ -98,8 +98,8 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Apakah peranti yang digunakan dalam Aktiviti 10.2 untuk mengkaji amplitud dan frekuensi bunyi?",
-    back: "Osiloskop Sinar Katod (C.R.O.) dan penjana isyarat audio.",
+    front: "Apakah peranti yang digunakan untuk mengkaji amplitud dan frekuensi bunyi?",
+    back: "Osiloskop Sinar Katod (O.S.K.) dan penjana isyarat audio.",
   },
   {
     id: "sci-f2-c10-bm-f12",
@@ -116,7 +116,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Apakah maksud gegaran (echo)?",
+    front: "Apakah maksud gema (echo)?",
     back: "Bunyi yang terhasil apabila gelombang bunyi dipantulkan daripada permukaan keras kepada pendengar.",
   },
   {
@@ -162,7 +162,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 10",
     lang: "bm",
     front: "Namakan tiga peranti yang digunakan untuk mengatasi had pendengaran manusia.",
-    back: "Stetoskop, megafon, alat bantu dengar.",
+    back: "Stetoskop, alat bantu pendengaran, pembesar suara.",
   },
   {
     id: "sci-f2-c10-bm-f19",
@@ -208,8 +208,8 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Bandingkan kelantangan dengan kelaraban bunyi.",
-    back: "Kelantangan bergantung kepada amplitud; kelaraban bergantung kepada frekuensi.",
+    front: "Bandingkan kenyaringan dengan kelangsingan bunyi.",
+    back: "Kenyaringan bergantung kepada amplitud; kelangsingan bergantung kepada frekuensi.",
   },
   {
     id: "sci-f2-c10-bm-f24",
@@ -227,7 +227,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 10",
     lang: "bm",
     front: "Apakah kesan peningkatan frekuensi pada penjana isyarat audio?",
-    back: "Meningkatkan frekuensi gelombang, menjadikan kelaraban bunyi lebih tinggi.",
+    back: "Meningkatkan frekuensi gelombang, menjadikan kelangsingan bunyi lebih tinggi.",
   },
   {
     id: "sci-f2-c10-bm-f26",
@@ -253,7 +253,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Bandingkan tempat-tempat di mana gegaran boleh didengar.",
+    front: "Bandingkan tempat-tempat di mana gema boleh didengar.",
     back: "Dewan tertutup, bilik kosong, gua, terowong dan gaung — kesemuanya mempunyai permukaan keras yang memantulkan bunyi.",
   },
   {
@@ -307,8 +307,8 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Bagaimanakah megafon berfungsi?",
-    back: "Memperkuatkan suara supaya boleh didengar dari jauh.",
+    front: "Bagaimanakah pembesar suara berfungsi?",
+    back: "Menjadikan suara lebih kuat supaya dapat didengar dari jauh.",
   },
   {
     id: "sci-f2-c10-bm-f35",
@@ -316,7 +316,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Bagaimanakah alat bantu dengar berfungsi?",
+    front: "Bagaimanakah alat bantu pendengaran berfungsi?",
     back: "Memperkuatkan bunyi yang memasuki telinga.",
   },
   {
@@ -334,7 +334,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Apakah Aktiviti 10.1 buktikan?",
+    front: "Apakah yang ditunjukkan oleh demonstrasi balang vakum?",
     back: "Bunyi loceng penggera tidak dapat didengar selepas udara dikeluarkan daripada balang loceng — membuktikan bunyi memerlukan medium.",
   },
   {
@@ -343,8 +343,8 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "Apakah Aktiviti 10.4 kaji?",
-    back: "Kesan Doppler menggunakan hon udara — kelaraban bunyi yang didengar pemerhati berubah semasa hon bergerak melepasinya.",
+    front: "Apakah yang dikaji oleh demonstrasi hon udara yang bergerak?",
+    back: "Kesan Doppler menggunakan hon udara — kelangsingan bunyi yang didengar pemerhati berubah semasa hon bergerak melepasinya.",
   },
   {
     id: "sci-f2-c10-bm-f39",
@@ -362,7 +362,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 10",
     lang: "bm",
     front: "Mengapakah dewan panggung wayang dilapisi papan lembut?",
-    back: "Untuk menyerap bunyi dan mengurangkan gaung (gegaran berlebihan) dalam dewan.",
+    back: "Untuk menyerap bunyi dan mengurangkan gema (gema berlebihan) dalam dewan.",
   },
 
   // Deck 3: Peperiksaan (Cards 41-60)
@@ -372,7 +372,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "[KBAT] Mengapakah bunyi siren ambulans berubah kelaraban semasa lalu di hadapan pemerhati pegun?",
+    front: "[KBAT] Mengapakah bunyi siren ambulans berubah kelangsingan semasa lalu di hadapan pemerhati pegun?",
     back: "Disebabkan kesan Doppler — frekuensi meningkat semasa mendekati dan menurun semasa menjauhi pemerhati akibat pergerakan relatif sumber bunyi.",
   },
   {
@@ -381,7 +381,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "[KBAT] Mengapakah orang yang membawa hon udara tidak rasa perubahan kelaraban semasa bergerak?",
+    front: "[KBAT] Mengapakah orang yang membawa hon udara tidak rasa perubahan kelangsingan semasa bergerak?",
     back: "Kerana tiada pergerakan relatif antara orang itu dan sumber bunyi yang dibawanya sendiri.",
   },
   {
@@ -391,7 +391,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 10",
     lang: "bm",
     front: "[KBAT] Mengapakah jurutera bilik rakaman melapisi dinding dengan bahan penyerap bunyi?",
-    back: "Untuk mengurangkan gegaran dan menghasilkan rakaman bunyi berkualiti tinggi, kerana permukaan lembut dan kasar menyerap bunyi dengan baik.",
+    back: "Untuk mengurangkan gema dan menghasilkan rakaman bunyi berkualiti tinggi, kerana permukaan lembut dan kasar menyerap bunyi dengan baik.",
   },
   {
     id: "sci-f2-c10-bm-f44",
@@ -417,8 +417,8 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "[Kesilapan Lazim] Adakah bunyi dapat merebak dalam vakum jika sumber bunyi masih bergetar?",
-    back: "Tidak. Bunyi tetap tidak dapat merebak dalam vakum kerana ia memerlukan medium (zarah) untuk memindahkan getaran, walaupun sumber masih bergetar.",
+    front: "[Kesilapan Lazim] Adakah bunyi dapat merambat dalam vakum jika sumber bunyi masih bergetar?",
+    back: "Tidak. Bunyi tetap tidak dapat merambat dalam vakum kerana ia memerlukan medium (zarah) untuk memindahkan getaran, walaupun sumber masih bergetar.",
   },
   {
     id: "sci-f2-c10-bm-f47",
@@ -426,8 +426,8 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "[Kesilapan Lazim] Adakah kelantangan dan kelaraban bunyi perkara yang sama?",
-    back: "Tidak. Kelantangan bergantung kepada amplitud, manakala kelaraban bergantung kepada frekuensi — kedua-duanya ciri berbeza.",
+    front: "[Kesilapan Lazim] Adakah kenyaringan dan kelangsingan bunyi perkara yang sama?",
+    back: "Tidak. Kenyaringan bergantung kepada amplitud, manakala kelangsingan bergantung kepada frekuensi — kedua-duanya ciri berbeza.",
   },
   {
     id: "sci-f2-c10-bm-f48",
@@ -444,7 +444,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "[Tip Peperiksaan] Bagaimana menjawab soalan 'jelaskan mengapa bunyi merebak lebih cepat dalam pepejal'?",
+    front: "[Tip Peperiksaan] Bagaimana menjawab soalan 'jelaskan mengapa bunyi merambat lebih cepat dalam pepejal'?",
     back: "Nyatakan: zarah pepejal tersusun rapat antara satu sama lain, jadi getaran daripada satu zarah segera menyebabkan zarah berdekatan turut bergetar.",
   },
   {
@@ -471,7 +471,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "[KBAT] Mengapakah gegaran berulang dapat didengar dalam gua tetapi tidak dalam bilik berkarpet?",
+    front: "[KBAT] Mengapakah gema berulang dapat didengar dalam gua tetapi tidak dalam bilik berkarpet?",
     back: "Gua mempunyai permukaan keras yang memantulkan bunyi berulang-ulang; bilik berkarpet menyerap bunyi (permukaan lembut), mengurangkan pantulan.",
   },
   {
@@ -489,7 +489,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "[KBAT] Jika seseorang ingin mengurangkan gaung dalam sebuah dewan, apakah bahan yang patut digunakan dan mengapa?",
+    front: "[KBAT] Jika seseorang ingin mengurangkan gema dalam sebuah dewan, apakah bahan yang patut digunakan dan mengapa?",
     back: "Bahan lembut dan kasar (seperti papan lembut atau karpet) kerana ia menyerap bunyi dengan baik, mengurangkan pantulan berulang yang menyebabkan gaung.",
   },
   {
@@ -499,7 +499,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 10",
     lang: "bm",
     front: "Apakah perbezaan antara bunyi lengkingan tikus dan lenguhan lembu?",
-    back: "Lengkingan tikus berfrekuensi tinggi (kelaraban tinggi); lenguhan lembu berfrekuensi rendah (kelaraban rendah).",
+    back: "Lengkingan tikus berfrekuensi tinggi (kelangsingan tinggi); lenguhan lembu berfrekuensi rendah (kelangsingan rendah).",
   },
   {
     id: "sci-f2-c10-bm-f56",
@@ -508,7 +508,7 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 10",
     lang: "bm",
     front: "[KBAT] Bagaimanakah cara menekan kekunci piano mempengaruhi bunyi yang dihasilkan?",
-    back: "Cara menekan kekunci menentukan amplitud getaran, sekali gus menentukan kekuatan (kelantangan) bunyi yang dihasilkan.",
+    back: "Cara menekan kekunci menentukan amplitud getaran, sekali gus menentukan kekuatan (kenyaringan) bunyi yang dihasilkan.",
   },
   {
     id: "sci-f2-c10-bm-f57",
@@ -525,8 +525,8 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "[Kesilapan Lazim] Bolehkah gegaran terhasil daripada permukaan lembut seperti karpet?",
-    back: "Tidak biasanya. Gegaran biasanya terhasil daripada pantulan bunyi pada permukaan keras; permukaan lembut menyerap bunyi dan mengurangkan gegaran.",
+    front: "[Kesilapan Lazim] Bolehkah gema terhasil daripada permukaan lembut seperti karpet?",
+    back: "Tidak biasanya. Gema biasanya terhasil daripada pantulan bunyi pada permukaan keras; permukaan lembut menyerap bunyi dan mengurangkan gema.",
   },
   {
     id: "sci-f2-c10-bm-f59",
@@ -534,8 +534,8 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     lang: "bm",
-    front: "[KBAT] Apakah yang akan berlaku kepada kelaraban bunyi jika frekuensi gelombang bunyi digandakan?",
-    back: "Kelaraban bunyi akan menjadi lebih tinggi, kerana kelaraban berkadar terus dengan frekuensi gelombang bunyi.",
+    front: "[KBAT] Apakah yang akan berlaku kepada kelangsingan bunyi jika frekuensi gelombang bunyi digandakan?",
+    back: "Kelangsingan bunyi akan menjadi lebih tinggi, kerana kelangsingan berkadar terus dengan frekuensi gelombang bunyi.",
   },
   {
     id: "sci-f2-c10-bm-f60",
@@ -544,6 +544,6 @@ export const scienceF2C10FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 10",
     lang: "bm",
     front: "Ringkaskan peta konsep Bab 10 dalam satu ayat.",
-    back: "Gelombang bunyi merebak melalui medium dan mempunyai ciri kelantangan (amplitud) serta kelaraban (frekuensi), dengan fenomena seperti kesan Doppler, gegaran, ultrabunyi dan sonar sebagai aplikasi pantulan bunyi.",
+    back: "Gelombang bunyi merambat melalui medium dan mempunyai ciri kenyaringan (amplitud) serta kelangsingan (frekuensi), dengan fenomena seperti kesan Doppler, gema, ultrabunyi dan sonar sebagai aplikasi pantulan bunyi.",
   },
 ];

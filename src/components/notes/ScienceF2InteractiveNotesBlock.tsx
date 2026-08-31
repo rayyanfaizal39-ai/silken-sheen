@@ -52,6 +52,29 @@ import { StrengthComparison } from "@/components/notes/blocks/StrengthComparison
 import { CircuitMeterDiagram } from "@/components/notes/blocks/CircuitMeterDiagram";
 import { SeriesParallelSchematic } from "@/components/notes/blocks/SeriesParallelSchematic";
 import { MagnetFieldDiagram } from "@/components/notes/blocks/MagnetFieldDiagram";
+import { ForceDiagram } from "@/components/notes/blocks/ForceDiagram";
+import { BuoyancySchematic } from "@/components/notes/blocks/BuoyancySchematic";
+import { LeverClasses } from "@/components/notes/blocks/LeverClasses";
+import { MomentDiagram } from "@/components/notes/blocks/MomentDiagram";
+import { GasParticles } from "@/components/notes/blocks/GasParticles";
+import { DepthPressure } from "@/components/notes/blocks/DepthPressure";
+import { PressureApparatus } from "@/components/notes/blocks/PressureApparatus";
+import { AltitudePressure } from "@/components/notes/blocks/AltitudePressure";
+import { ConductionDiagram } from "@/components/notes/blocks/ConductionDiagram";
+import { ConvectionRadiation } from "@/components/notes/blocks/ConvectionRadiation";
+import { BreezeDiagram } from "@/components/notes/blocks/BreezeDiagram";
+import { ExpansionParticles } from "@/components/notes/blocks/ExpansionParticles";
+import { BimetallicStrip } from "@/components/notes/blocks/BimetallicStrip";
+import { SurfaceComparison } from "@/components/notes/blocks/SurfaceComparison";
+import { SoundMediaDiagram } from "@/components/notes/blocks/SoundMediaDiagram";
+import { EchoDiagram } from "@/components/notes/blocks/EchoDiagram";
+import { DopplerWavefronts } from "@/components/notes/blocks/DopplerWavefronts";
+import { EcholocationDiagram } from "@/components/notes/blocks/EcholocationDiagram";
+import { HearingRangeChart } from "@/components/notes/blocks/HearingRangeChart";
+import { StellarLifecycle } from "@/components/notes/blocks/StellarLifecycle";
+import { CosmicScale } from "@/components/notes/blocks/CosmicScale";
+import { MilkyWayLocator } from "@/components/notes/blocks/MilkyWayLocator";
+import { StarSizeCompare } from "@/components/notes/blocks/StarSizeCompare";
 import { CurrentFieldPatterns } from "@/components/notes/blocks/CurrentFieldPatterns";
 import { ApparatusDiagram } from "@/components/notes/blocks/ApparatusDiagram";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
@@ -250,6 +273,8 @@ export function ScienceF2InteractiveNotesBlock({
               gradient={section.phSlider.gradient}
               unitLabel={section.phSlider.unitLabel}
               initialValue={section.phSlider.initialValue}
+              ariaLabel={section.phSlider.ariaLabel}
+              tickLabels={section.phSlider.tickLabels}
             />
           </div>
         )}
@@ -274,6 +299,7 @@ export function ScienceF2InteractiveNotesBlock({
                 operation={calc.operation}
                 resultLabel={calc.resultLabel}
                 resultUnit={calc.resultUnit}
+                lang={lang}
               />
             )}
           </div>
@@ -428,6 +454,190 @@ export function ScienceF2InteractiveNotesBlock({
               {section.mixtureComparison.title}
             </h3>
             <MixtureComparison block={section.mixtureComparison} lang={lang} />
+          </div>
+        )}
+        {section.forceDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.forceDiagram.title}
+            </h3>
+            <ForceDiagram block={section.forceDiagram} lang={lang} />
+          </div>
+        )}
+        {section.buoyancySchematic && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.buoyancySchematic.title}
+            </h3>
+            <BuoyancySchematic block={section.buoyancySchematic} lang={lang} />
+          </div>
+        )}
+        {section.leverClasses && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.leverClasses.title}
+            </h3>
+            <LeverClasses block={section.leverClasses} lang={lang} />
+          </div>
+        )}
+        {section.momentDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.momentDiagram.title}
+            </h3>
+            <MomentDiagram block={section.momentDiagram} lang={lang} />
+          </div>
+        )}
+        {section.gasParticles && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.gasParticles.title}
+            </h3>
+            <GasParticles block={section.gasParticles} lang={lang} />
+          </div>
+        )}
+        {section.depthPressure && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.depthPressure.title}
+            </h3>
+            <DepthPressure block={section.depthPressure} lang={lang} />
+          </div>
+        )}
+        {section.pressureApparatus && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.pressureApparatus.title}
+            </h3>
+            <PressureApparatus block={section.pressureApparatus} lang={lang} />
+          </div>
+        )}
+        {section.altitudePressure && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.altitudePressure.title}
+            </h3>
+            <AltitudePressure block={section.altitudePressure} lang={lang} />
+          </div>
+        )}
+        {section.conductionDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.conductionDiagram.title}
+            </h3>
+            <ConductionDiagram block={section.conductionDiagram} lang={lang} />
+          </div>
+        )}
+        {section.convectionRadiation && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.convectionRadiation.title}
+            </h3>
+            <ConvectionRadiation block={section.convectionRadiation} lang={lang} />
+          </div>
+        )}
+        {section.breezeDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.breezeDiagram.title}
+            </h3>
+            <BreezeDiagram block={section.breezeDiagram} lang={lang} />
+          </div>
+        )}
+        {section.expansionParticles && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.expansionParticles.title}
+            </h3>
+            <ExpansionParticles block={section.expansionParticles} lang={lang} />
+          </div>
+        )}
+        {section.bimetallicStrip && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.bimetallicStrip.title}
+            </h3>
+            <BimetallicStrip block={section.bimetallicStrip} lang={lang} />
+          </div>
+        )}
+        {section.surfaceComparison && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.surfaceComparison.title}
+            </h3>
+            <SurfaceComparison block={section.surfaceComparison} lang={lang} />
+          </div>
+        )}
+        {section.soundMedia && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.soundMedia.title}
+            </h3>
+            <SoundMediaDiagram block={section.soundMedia} lang={lang} />
+          </div>
+        )}
+        {section.echoDiagram && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.echoDiagram.title}
+            </h3>
+            <EchoDiagram block={section.echoDiagram} lang={lang} />
+          </div>
+        )}
+        {section.dopplerWavefronts && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.dopplerWavefronts.title}
+            </h3>
+            <DopplerWavefronts block={section.dopplerWavefronts} lang={lang} />
+          </div>
+        )}
+        {section.echolocation && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.echolocation.title}
+            </h3>
+            <EcholocationDiagram block={section.echolocation} lang={lang} />
+          </div>
+        )}
+        {section.hearingRange && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.hearingRange.title}
+            </h3>
+            <HearingRangeChart block={section.hearingRange} lang={lang} />
+          </div>
+        )}
+        {section.stellarLifecycle && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.stellarLifecycle.title}
+            </h3>
+            <StellarLifecycle block={section.stellarLifecycle} lang={lang} />
+          </div>
+        )}
+        {section.cosmicScale && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.cosmicScale.title}
+            </h3>
+            <CosmicScale block={section.cosmicScale} lang={lang} />
+          </div>
+        )}
+        {section.milkyWayLocator && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.milkyWayLocator.title}
+            </h3>
+            <MilkyWayLocator block={section.milkyWayLocator} lang={lang} />
+          </div>
+        )}
+        {section.starSizeCompare && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.starSizeCompare.title}
+            </h3>
+            <StarSizeCompare block={section.starSizeCompare} lang={lang} />
           </div>
         )}
         {section.miniExperiment && (

@@ -218,7 +218,7 @@ export const scienceF2C8FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     front: "Compare density of objects that float versus submerge in a liquid.",
-    back: "Floating: object less dense than liquid (F > W). Submerging: object more dense than liquid (F < W).",
+    back: "Floating: the object is less dense than the liquid, and while floating at rest the buoyant force equals the weight (F = W). Sinking: the object is denser than the liquid, and the buoyant force is less than the weight (F < W).",
   },
   {
     id: "sci-f2-c8-dlp-f25",
@@ -308,7 +308,7 @@ export const scienceF2C8FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     front: "What is atmospheric pressure and how does it change with altitude?",
-    back: "The pressure exerted by the atmosphere on the Earth and objects on it; decreases as altitude increases due to weaker gravitational attraction.",
+    back: "The pressure exerted by the atmosphere on the Earth and objects on it; decreases as altitude increases because there is less air above you.",
   },
   {
     id: "sci-f2-c8-dlp-f35",
@@ -445,7 +445,7 @@ export const scienceF2C8FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     front: "[KBAT] Why does atmospheric pressure decrease as altitude increases?",
-    back: "Weaker gravitational attraction at higher altitudes makes air less dense and able to expand more easily.",
+    back: "At higher altitudes there is less air above you, so the weight of the air column pressing down is smaller and the atmospheric pressure is lower.",
   },
   {
     id: "sci-f2-c8-dlp-f50",

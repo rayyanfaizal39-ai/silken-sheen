@@ -55,10 +55,42 @@ import { scienceF2C7FlashcardsBM } from "./chapter-7/flashcards-bm";
 import { scienceF2C7FlashcardsDLP } from "./chapter-7/flashcards-dlp";
 import { scienceF2C7MindMapBM } from "./chapter-7/mindmap-bm";
 import { scienceF2C7MindMapDLP } from "./chapter-7/mindmap-dlp";
+import { scienceF2C8InteractiveBM } from "./chapter-8/interactive-bm";
+import { scienceF2C8InteractiveDLP } from "./chapter-8/interactive-dlp";
+import { scienceF2C8QuizzesBM } from "./chapter-8/quizzes-bm";
+import { scienceF2C8QuizzesDLP } from "./chapter-8/quizzes-dlp";
+import { scienceF2C8FlashcardsBM } from "./chapter-8/flashcards-bm";
+import { scienceF2C8FlashcardsDLP } from "./chapter-8/flashcards-dlp";
+import { scienceF2C8MindMapBM } from "./chapter-8/mindmap-bm";
+import { scienceF2C8MindMapDLP } from "./chapter-8/mindmap-dlp";
+import { scienceF2C9InteractiveBM } from "./chapter-9/interactive-bm";
+import { scienceF2C9InteractiveDLP } from "./chapter-9/interactive-dlp";
+import { scienceF2C9QuizzesBM } from "./chapter-9/quizzes-bm";
+import { scienceF2C9QuizzesDLP } from "./chapter-9/quizzes-dlp";
+import { scienceF2C9FlashcardsBM } from "./chapter-9/flashcards-bm";
+import { scienceF2C9FlashcardsDLP } from "./chapter-9/flashcards-dlp";
+import { scienceF2C9MindMapBM } from "./chapter-9/mindmap-bm";
+import { scienceF2C9MindMapDLP } from "./chapter-9/mindmap-dlp";
+import { scienceF2C10InteractiveBM } from "./chapter-10/interactive-bm";
+import { scienceF2C10InteractiveDLP } from "./chapter-10/interactive-dlp";
+import { scienceF2C10QuizzesBM } from "./chapter-10/quizzes-bm";
+import { scienceF2C10QuizzesDLP } from "./chapter-10/quizzes-dlp";
+import { scienceF2C10FlashcardsBM } from "./chapter-10/flashcards-bm";
+import { scienceF2C10FlashcardsDLP } from "./chapter-10/flashcards-dlp";
+import { scienceF2C10MindMapBM } from "./chapter-10/mindmap-bm";
+import { scienceF2C10MindMapDLP } from "./chapter-10/mindmap-dlp";
+import { scienceF2C11InteractiveBM } from "./chapter-11/interactive-bm";
+import { scienceF2C11InteractiveDLP } from "./chapter-11/interactive-dlp";
+import { scienceF2C11QuizzesBM } from "./chapter-11/quizzes-bm";
+import { scienceF2C11QuizzesDLP } from "./chapter-11/quizzes-dlp";
+import { scienceF2C11FlashcardsBM } from "./chapter-11/flashcards-bm";
+import { scienceF2C11FlashcardsDLP } from "./chapter-11/flashcards-dlp";
+import { scienceF2C11MindMapBM } from "./chapter-11/mindmap-bm";
+import { scienceF2C11MindMapDLP } from "./chapter-11/mindmap-dlp";
 
 /**
  * Guards against curriculum/audit/textbook metadata leaking into learner-facing Form 2
- * Science Chapter 1-7 content — see SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md. These are
+ * Science Chapter 1-11 content — see SCIENCE_F2_CH01_03_LEARNER_FACING_QA_AUDIT.md. These are
  * live, student-facing data files (registered in src/content/registry.ts), not the dead
  * notes-{bm,dlp}.ts legacy files, which are intentionally excluded.
  */
@@ -120,6 +152,38 @@ const LIVE_SURFACES: Record<string, unknown> = {
   "ch7 flashcards dlp": scienceF2C7FlashcardsDLP,
   "ch7 mindmap bm": scienceF2C7MindMapBM,
   "ch7 mindmap dlp": scienceF2C7MindMapDLP,
+  "ch8 interactive bm": scienceF2C8InteractiveBM,
+  "ch8 interactive dlp": scienceF2C8InteractiveDLP,
+  "ch8 quizzes bm": scienceF2C8QuizzesBM,
+  "ch8 quizzes dlp": scienceF2C8QuizzesDLP,
+  "ch8 flashcards bm": scienceF2C8FlashcardsBM,
+  "ch8 flashcards dlp": scienceF2C8FlashcardsDLP,
+  "ch8 mindmap bm": scienceF2C8MindMapBM,
+  "ch8 mindmap dlp": scienceF2C8MindMapDLP,
+  "ch9 interactive bm": scienceF2C9InteractiveBM,
+  "ch9 interactive dlp": scienceF2C9InteractiveDLP,
+  "ch9 quizzes bm": scienceF2C9QuizzesBM,
+  "ch9 quizzes dlp": scienceF2C9QuizzesDLP,
+  "ch9 flashcards bm": scienceF2C9FlashcardsBM,
+  "ch9 flashcards dlp": scienceF2C9FlashcardsDLP,
+  "ch9 mindmap bm": scienceF2C9MindMapBM,
+  "ch9 mindmap dlp": scienceF2C9MindMapDLP,
+  "ch10 interactive bm": scienceF2C10InteractiveBM,
+  "ch10 interactive dlp": scienceF2C10InteractiveDLP,
+  "ch10 quizzes bm": scienceF2C10QuizzesBM,
+  "ch10 quizzes dlp": scienceF2C10QuizzesDLP,
+  "ch10 flashcards bm": scienceF2C10FlashcardsBM,
+  "ch10 flashcards dlp": scienceF2C10FlashcardsDLP,
+  "ch10 mindmap bm": scienceF2C10MindMapBM,
+  "ch10 mindmap dlp": scienceF2C10MindMapDLP,
+  "ch11 interactive bm": scienceF2C11InteractiveBM,
+  "ch11 interactive dlp": scienceF2C11InteractiveDLP,
+  "ch11 quizzes bm": scienceF2C11QuizzesBM,
+  "ch11 quizzes dlp": scienceF2C11QuizzesDLP,
+  "ch11 flashcards bm": scienceF2C11FlashcardsBM,
+  "ch11 flashcards dlp": scienceF2C11FlashcardsDLP,
+  "ch11 mindmap bm": scienceF2C11MindMapBM,
+  "ch11 mindmap dlp": scienceF2C11MindMapDLP,
 };
 
 const FORBIDDEN_PATTERNS: [string, RegExp][] = [
