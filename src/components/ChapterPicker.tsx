@@ -17,6 +17,7 @@ import { getChapterFeatures } from "@/content/types";
 import { AcademyPanel, AcademySectionHeader, SubjectPlanetButton } from "@/components/AcademyPage";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
 import { cleanLearningLabel, cleanLearningTitle } from "@/lib/clean-learning-title";
+import { SUBJECT_FORM_SUMMARY, type SubjectFormSummary } from "@/lib/content-stats.generated";
 
 // Subject accent colors — must stay in sync with AcademyPage subjectPlanetStyles
 const SUBJECT_COLORS: Record<string, { color: string; glow: string; from: string; to: string }> = {
@@ -142,7 +143,9 @@ function hasCustomFormResourceContent(subjectId: string, form: Form, mode: Learn
 // Real per-form stat line shown under a Ready badge — never a generic
 // placeholder. Quiz and flashcard forms intentionally use availability-only
 // copy so pre-activity cards never announce content quantities.
-function formStatLabel(mode: LearningMode, stat: FormStat, isReady: boolean): string {
+type FormCardStat = Pick<FormStat, "chapterCount" | "notesChapters" | "mindMapChapters">;
+
+function formStatLabel(mode: LearningMode, stat: FormCardStat, isReady: boolean): string {
   if (!isReady) return "Coming Soon";
 
   if (mode === "quizzes" || mode === "flashcards") {
@@ -170,6 +173,7 @@ export function FormGrid({
   const accent = getSubjectAccent(subjectId);
   const registry = useContentRegistry();
   const formStats = registry ? registry.getSubjectFormStats(subjectId) : [];
+  const generatedFormStats = SUBJECT_FORM_SUMMARY[subjectId] ?? [];
   const hideFormProgressText = subjectId === "bm" && mode === "mindmaps";
 
   return (
@@ -199,11 +203,14 @@ export function FormGrid({
 
       <div className="grid items-stretch gap-4 sm:grid-cols-3">
         {FORM_CARDS.map((item, index) => {
+          const resourceType = resourceTypeForMode(mode);
+          const generatedStat = generatedFormStats.find((stat) => stat.form === item.form);
           const isReady =
-            (!!registry &&
-              registry.hasFormResourceContent(subjectId, item.form, resourceTypeForMode(mode))) ||
+            (generatedStat?.resources[resourceType] ?? false) ||
+            (!!registry && registry.hasFormResourceContent(subjectId, item.form, resourceType)) ||
             hasCustomFormResourceContent(subjectId, item.form, mode);
-          const stat = formStats.find((s) => s.form === item.form);
+          const stat: FormCardStat | SubjectFormSummary | undefined =
+            formStats.find((s) => s.form === item.form) ?? generatedStat;
           const statLabel = stat ? formStatLabel(mode, stat, isReady) : item.description;
           return (
             <button

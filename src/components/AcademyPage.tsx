@@ -219,7 +219,13 @@ function getSubjectFormSummary(subjectId: string): SubjectFormSummary[] {
   // Subject not present in the generated summary (shouldn't happen for a
   // real subject id) — still show Form 1/2/3 consistently rather than
   // rendering nothing.
-  return ALL_FORMS.map((form) => ({ form, chapterCount: 0 }));
+  return ALL_FORMS.map((form) => ({
+    form,
+    chapterCount: 0,
+    notesChapters: 0,
+    mindMapChapters: 0,
+    resources: { notes: false, quiz: false, flashcards: false, mindMap: false },
+  }));
 }
 
 function FormChapterPills({
