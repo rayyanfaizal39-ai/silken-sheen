@@ -67,9 +67,9 @@ import { Sej3Chapter6NotesBlock } from "@/components/notes/Sej3Chapter6NotesBloc
 import { Sej3Chapter7NotesBlock } from "@/components/notes/Sej3Chapter7NotesBlock";
 import { Sej3Chapter8NotesBlock } from "@/components/notes/Sej3Chapter8NotesBlock";
 import { ScienceF1Chapter1VisualNotesBlock as Chapter1NotesBlock } from "@/components/notes/ScienceF1Chapter1VisualNotesBlock";
-import { Chapter2NotesBlock } from "@/components/notes/Chapter2NotesBlock";
-import { Chapter3NotesBlock } from "@/components/notes/Chapter3NotesBlock";
-import { Chapter4NotesBlock } from "@/components/notes/Chapter4NotesBlock";
+import { ScienceF1Chapter2VisualNotesBlock as Chapter2NotesBlock } from "@/components/notes/ScienceF1Chapter2VisualNotesBlock";
+import { ScienceF1Chapter3VisualNotesBlock as Chapter3NotesBlock } from "@/components/notes/ScienceF1Chapter3VisualNotesBlock";
+import { ScienceF1Chapter4VisualNotesBlock as Chapter4NotesBlock } from "@/components/notes/ScienceF1Chapter4VisualNotesBlock";
 import { Chapter5NotesBlock } from "@/components/notes/Chapter5NotesBlock";
 import { Chapter6NotesBlock } from "@/components/notes/Chapter6NotesBlock";
 import { Chapter8NotesBlock } from "@/components/notes/Chapter8NotesBlock";
