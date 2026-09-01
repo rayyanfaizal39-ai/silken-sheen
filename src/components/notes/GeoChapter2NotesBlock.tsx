@@ -5,7 +5,6 @@ import {
   ChevronDown,
   CircleDot,
   Database,
-  Grid3X3,
   Lightbulb,
   LocateFixed,
   Map,
@@ -191,7 +190,10 @@ function GlobeDiagram({
   lines: Geo2Content["latitude"]["mainLines"];
 }) {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-full border-2 border-cyan-300/40 bg-[radial-gradient(circle_at_35%_30%,rgba(103,232,249,.25),rgba(14,116,144,.12)_45%,rgba(2,6,23,.7)_75%)] shadow-[0_0_45px_rgba(34,211,238,.12)]">
+    <div
+      aria-label={mode === "latitud" ? "Glob latitud" : "Glob longitud"}
+      className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-full border-2 border-cyan-300/40 bg-[radial-gradient(circle_at_35%_30%,rgba(103,232,249,.25),rgba(14,116,144,.12)_45%,rgba(2,6,23,.7)_75%)] shadow-[0_0_45px_rgba(34,211,238,.12)]"
+    >
       {mode === "latitud" ? (
         <>
           {[18, 30, 40, 50, 60, 70, 82].map((top, index) => (
@@ -242,7 +244,10 @@ function CoordinateGrid({
   longitude: string;
 }) {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-sm rounded-2xl border border-cyan-300/25 bg-[linear-gradient(rgba(103,232,249,.16)_1px,transparent_1px),linear-gradient(90deg,rgba(103,232,249,.16)_1px,transparent_1px)] bg-[size:20%_20%]">
+    <div
+      aria-label={`Grid koordinat titik ${point}`}
+      className="relative mx-auto aspect-square w-full max-w-sm rounded-2xl border border-cyan-300/25 bg-[linear-gradient(rgba(103,232,249,.16)_1px,transparent_1px),linear-gradient(90deg,rgba(103,232,249,.16)_1px,transparent_1px)] bg-[size:20%_20%]"
+    >
       <span className="absolute left-2 top-1/2 -translate-y-1/2 -rotate-90 font-mono text-xs font-black text-cyan-200">
         LATITUD {latitude}
       </span>
@@ -254,6 +259,55 @@ function CoordinateGrid({
         <span className="rounded-full bg-amber-300/15 px-2 py-1 text-xs font-black text-amber-100">
           Titik {point}
         </span>
+      </div>
+    </div>
+  );
+}
+
+function AtlasInterpolationDiagram() {
+  const divisions = Array.from({ length: 5 }, (_, index) => index);
+
+  return (
+    <div
+      aria-label="Anggaran koordinat atlas titik P"
+      className="mx-auto w-full max-w-md rounded-2xl border border-amber-300/20 bg-slate-950/45 p-5"
+    >
+      <p className="text-center text-xs font-black uppercase tracking-[.16em] text-amber-200">
+        Bahagikan sela kepada bahagian sekata
+      </p>
+      <div className="mt-6">
+        <div className="flex justify-between font-mono text-xs font-bold text-cyan-200">
+          <span>0°U</span>
+          <span>5°U</span>
+        </div>
+        <div className="mt-2 grid grid-cols-5 gap-1" aria-hidden="true">
+          {divisions.map((division) => (
+            <span
+              key={`latitud-${division}`}
+              className={`h-8 rounded border ${division === 3 ? "border-amber-300 bg-amber-300/20" : "border-cyan-200/25 bg-cyan-300/[0.06]"}`}
+            />
+          ))}
+        </div>
+        <p className="mt-2 text-center font-mono text-sm font-black text-amber-200">4°U</p>
+      </div>
+      <div className="mt-6">
+        <div className="flex justify-between font-mono text-xs font-bold text-emerald-200">
+          <span>100°T</span>
+          <span>105°T</span>
+        </div>
+        <div className="mt-2 grid grid-cols-5 gap-1" aria-hidden="true">
+          {divisions.map((division) => (
+            <span
+              key={`longitud-${division}`}
+              className={`h-8 rounded border ${division === 1 ? "border-amber-300 bg-amber-300/20" : "border-emerald-200/25 bg-emerald-300/[0.06]"}`}
+            />
+          ))}
+        </div>
+        <p className="mt-2 text-center font-mono text-sm font-black text-amber-200">102°T</p>
+      </div>
+      <div className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-amber-300/10 p-3 text-amber-100">
+        <MapPin className="h-5 w-5" aria-hidden="true" />
+        <span className="font-mono text-sm font-black">Titik P = 4°U 102°T</span>
       </div>
     </div>
   );
@@ -271,14 +325,8 @@ export function GeoChapter2NotesBlock({
   isRead?: boolean;
   onMarkRead?: () => void;
 }) {
-  const [referenceMode, setReferenceMode] = useState(0);
   const [practice, setPractice] = useState(0);
-  const [earthLine, setEarthLine] = useState(0);
   const [technology, setTechnology] = useState(0);
-  const referenceData =
-    referenceMode === 0
-      ? { referencePoint: "Siti", positions: content.relativePosition.classroomExamples }
-      : content.relativePosition.fieldExample;
   const practiceData = content.relativePosition.classroomPractice[practice];
 
   return (
@@ -362,15 +410,15 @@ export function GeoChapter2NotesBlock({
 
         <section className="space-y-6">
           <SectionHeading section={sections[1]} />
-          <Tabs
-            labels={["Dalam kelas · Siti", "Di lapangan · Masjid"]}
-            selected={referenceMode}
-            onSelect={setReferenceMode}
-          />
-          <div role="tabpanel">
+          <div>
+            <h3 className="mb-2 font-bold text-white">Contoh di lapangan</h3>
+            <p className="mb-5 text-sm leading-6 text-slate-300">
+              Gunakan mercu tanda yang jelas sebagai titik rujukan untuk menerangkan kedudukan
+              tempat di sekelilingnya.
+            </p>
             <RelativePositionMap
-              reference={referenceData.referencePoint}
-              positions={referenceData.positions}
+              reference={content.relativePosition.fieldExample.referencePoint}
+              positions={content.relativePosition.fieldExample.positions}
             />
           </div>
           <div>
@@ -433,49 +481,31 @@ export function GeoChapter2NotesBlock({
 
         <section className="space-y-6">
           <SectionHeading section={sections[3]} />
-          <Tabs labels={["Latitud", "Longitud"]} selected={earthLine} onSelect={setEarthLine} />
-          <div className="grid items-center gap-7 lg:grid-cols-2" role="tabpanel">
-            <GlobeDiagram
-              mode={earthLine === 0 ? "latitud" : "longitud"}
-              lines={content.latitude.mainLines}
-            />
-            {earthLine === 0 ? (
+          <div className="grid items-center gap-7 lg:grid-cols-2">
+            <GlobeDiagram mode="longitud" lines={content.latitude.mainLines} />
+            <div className="space-y-4">
               <Panel>
-                <h3 className="font-bold text-white">Latitud</h3>
+                <h3 className="font-bold text-white">Longitud</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-300">
-                  {content.latitude.definition}
-                </p>
-                <p className="mt-3 text-sm leading-7 text-slate-300">
-                  Mengukur kedudukan dari 0° hingga 90°U atau 90°S.
+                  {content.longitude.definition}
                 </p>
               </Panel>
-            ) : (
-              <div className="space-y-4">
-                <Panel>
-                  <h3 className="font-bold text-white">Longitud</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-300">
-                    {content.longitude.definition}
-                  </p>
-                </Panel>
-                <Panel className="border-amber-300/20">
-                  <h3 className="font-bold text-amber-200">Garisan Meridian Pangkal · 0°</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    {content.longitude.primeMeridian}
-                  </p>
-                </Panel>
-                <Panel className="border-violet-300/20">
-                  <h3 className="font-bold text-violet-200">
-                    Garisan Tarikh Antarabangsa · 180°T/B
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    {content.longitude.internationalDateLine}
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    {content.longitude.dateLineTimeNote}
-                  </p>
-                </Panel>
-              </div>
-            )}
+              <Panel className="border-amber-300/20">
+                <h3 className="font-bold text-amber-200">Garisan Meridian Pangkal · 0°</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">
+                  {content.longitude.primeMeridian}
+                </p>
+              </Panel>
+              <Panel className="border-violet-300/20">
+                <h3 className="font-bold text-violet-200">Garisan Tarikh Antarabangsa · 180°T/B</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">
+                  {content.longitude.internationalDateLine}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">
+                  {content.longitude.dateLineTimeNote}
+                </p>
+              </Panel>
+            </div>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             <Panel>
@@ -514,7 +544,7 @@ export function GeoChapter2NotesBlock({
           <SectionHeading section={sections[5]} />
           <StepFlow steps={content.readingCoordinates.atlasEstimationSteps} />
           <div className="grid items-center gap-6 lg:grid-cols-2">
-            <CoordinateGrid point="P" latitude="4°U" longitude="102°T" />
+            <AtlasInterpolationDiagram />
             <Panel className="border-amber-300/20">
               <ScanLine className="h-7 w-7 text-amber-300" />
               <h3 className="mt-3 font-bold text-white">Contoh anggaran atlas</h3>
@@ -572,22 +602,6 @@ export function GeoChapter2NotesBlock({
               </div>
             </div>
           </Panel>
-          <div className="grid gap-4 md:grid-cols-2">
-            <Panel>
-              <Satellite className="h-7 w-7 text-cyan-300" />
-              <h3 className="mt-3 font-bold text-white">GPS menjawab “Di mana?”</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                Empat atau lebih satelit membantu penerima mengira koordinat dengan tepat.
-              </p>
-            </Panel>
-            <Panel>
-              <Grid3X3 className="h-7 w-7 text-emerald-300" />
-              <h3 className="mt-3 font-bold text-white">GIS menjawab “Apakah polanya?”</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                Lapisan data spatial dikumpul, dikemas kini, dianalisis dan dipersembahkan.
-              </p>
-            </Panel>
-          </div>
           <Panel className="border-amber-300/20">
             <div className="flex items-start gap-3">
               <CircleDot className="mt-1 h-5 w-5 shrink-0 text-amber-300" />

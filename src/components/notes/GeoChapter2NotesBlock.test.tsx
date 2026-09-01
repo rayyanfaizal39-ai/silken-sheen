@@ -22,5 +22,14 @@ describe("GeoChapter2NotesBlock", () => {
     expect(html).toContain("Sistem Kedudukan Global");
     expect(html).toContain("GIS digunakan untuk mengurus");
     expect(html).toContain('id="geography-notes-content"');
+
+    const occurrences = (value: string) => html.split(value).length - 1;
+    expect(occurrences('aria-label="Kedudukan relatif dengan Siti sebagai titik rujukan"')).toBe(1);
+    expect(occurrences('aria-label="Glob latitud"')).toBe(1);
+    expect(occurrences('aria-label="Glob longitud"')).toBe(1);
+    expect(occurrences('aria-label="Grid koordinat titik A"')).toBe(1);
+    expect(occurrences('aria-label="Anggaran koordinat atlas titik P"')).toBe(1);
+    expect(html).not.toContain("GPS menjawab");
+    expect(html).not.toContain("GIS menjawab");
   });
 });
