@@ -205,10 +205,10 @@ export function ScienceF2InteractiveNotesBlock({
           <Chapter8ContextFigure kind={chapter8Figure} section={section} lang={lang} />
         )}
         {unpicturedFlipCards.length > 0 && (
-          <details className="group border-l-2 border-primary/35 pl-4">
-            <summary className="min-h-11 cursor-pointer py-3 text-[13px] font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          <div className="border-l-2 border-primary/35 pl-4">
+            <h3 className="py-2 text-[13px] font-semibold text-primary">
               {lang === "bm" ? "Konsep lain yang perlu diingati" : "Other concepts to remember"}
-            </summary>
+            </h3>
             <dl className="flex flex-col gap-3 pb-2">
               {unpicturedFlipCards.map((item) => (
                 <div key={item.id}>
@@ -217,7 +217,7 @@ export function ScienceF2InteractiveNotesBlock({
                 </div>
               ))}
             </dl>
-          </details>
+          </div>
         )}
         {section.cards && !isChapter8 && (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -504,27 +504,18 @@ export function ScienceF2InteractiveNotesBlock({
             <BuoyancySchematic block={section.buoyancySchematic} lang={lang} />
           </div>
         )}
-        {section.leverClasses &&
-          (isChapter8 ? (
-            /* The contextual figure above already marks F, L and E on real levers,
-               so the schematic is kept as the follow-up rather than teaching the
-               same three classes twice at the same weight. */
-            <details className="group border-t border-border/70 pt-2">
-              <summary className="min-h-11 cursor-pointer py-3 text-[13px] font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                {section.leverClasses.title}
-              </summary>
-              <div className="pb-2">
-                <LeverClasses block={section.leverClasses} lang={lang} />
-              </div>
-            </details>
-          ) : (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">
-                {section.leverClasses.title}
-              </h3>
-              <LeverClasses block={section.leverClasses} lang={lang} />
-            </div>
-          ))}
+        {/* Chapter 8 teaches the lever classes on the contextual photograph, which
+            marks F, L and E on real objects and states the same explanation. The
+            abstract schematic would repeat it without adding precision, so it is
+            dropped from rendering here rather than hidden behind a control. */}
+        {section.leverClasses && !isChapter8 && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.leverClasses.title}
+            </h3>
+            <LeverClasses block={section.leverClasses} lang={lang} />
+          </div>
+        )}
         {section.momentDiagram && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -697,10 +688,7 @@ export function ScienceF2InteractiveNotesBlock({
           </div>
         )}
         {isChapter8 && section.cards && (
-          <details className="group border-t border-border/70 pt-2">
-            <summary className="min-h-11 cursor-pointer py-3 text-[13px] font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-              {lang === "bm" ? "Kembangkan penerangan dan contoh" : "Expand explanation and examples"}
-            </summary>
+          <div className="border-t border-border/70 pt-2">
             <div className="flex flex-col gap-4 pb-2">
               {section.cards.map((card) => (
                 <article key={card.title} className="border-l-2 border-primary/30 pl-3">
@@ -710,7 +698,7 @@ export function ScienceF2InteractiveNotesBlock({
                 </article>
               ))}
             </div>
-          </details>
+          </div>
         )}
         {isChapter8 && section.calculators?.map((calc, i) => (
           <div key={`${section.number}-ch8-calc-${i}`} className="border-t border-border/70 pt-5">
