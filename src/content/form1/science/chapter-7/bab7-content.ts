@@ -5,14 +5,14 @@
 // This is content data only — no presentation markup. Components read from this.
 
 export interface CompositionGasEntry {
-  color: string;       // hex, matches donut segment
+  color: string; // hex, matches donut segment
   name: string;
   percentage: string;
 }
 
 export interface RevealCard {
   chipLabel: string;
-  accent: 'violet' | 'amber' | 'blue';
+  accent: "violet" | "amber" | "blue";
   body: string;
 }
 
@@ -93,7 +93,7 @@ export interface SourceCard {
 
 export interface EffectCategory {
   heading: string;
-  category: 'health' | 'buildings' | 'plants' | 'climate';
+  category: "health" | "buildings" | "plants" | "climate";
   items: string[];
 }
 
@@ -105,7 +105,7 @@ export interface PreventCategory {
 export interface ApiRow {
   range: string;
   label: string;
-  severity: 'good' | 'moderate' | 'unhealthy' | 'veryUnhealthy' | 'hazardous';
+  severity: "good" | "moderate" | "unhealthy" | "veryUnhealthy" | "hazardous";
 }
 
 export interface Bab7Content {
@@ -127,86 +127,95 @@ export interface Bab7Content {
 const en: Bab7Content = {
   hook: {
     title: "Why this matters",
-    body: "Every breath you take is only ~21% oxygen — that's why astronauts, divers, and even candles all depend on getting that ratio exactly right. This chapter shows you how air actually works, why fires behave the way they do, and how pollution throws all of it off balance."
+    body: "Every breath you take is only ~21% oxygen — that's why astronauts, divers, and even candles all depend on getting that ratio exactly right. This chapter shows you how air actually works, why fires behave the way they do, and how pollution throws all of it off balance.",
   },
   composition: {
     legend: [
       { color: "#4fb0ff", name: "Nitrogen", percentage: "78%" },
       { color: "#8b6bff", name: "Oxygen", percentage: "21%" },
       { color: "#fbbf5a", name: "Carbon dioxide", percentage: "0.03%" },
-      { color: "#4ade80", name: "Inert gases & others", percentage: "0.97%" }
+      { color: "#4ade80", name: "Inert gases & others", percentage: "0.97%" },
     ],
     reveals: [
       {
         chipLabel: "💡 Formal definition",
         accent: "violet",
-        body: "Air is a mixture of gases that surrounds the Earth. Other components — water vapour, dust and microorganisms — are also present in small, variable amounts depending on place and time (e.g. more water vapour in forests or after rain)."
+        body: "Air is a mixture of gases that surrounds the Earth. Other components — water vapour, dust and microorganisms — are also present in small, variable amounts depending on place and time (e.g. more water vapour in forests or after rain).",
       },
       {
-        chipLabel: "🧪 What's inside \"inert gases\"?",
+        chipLabel: '🧪 What\'s inside "inert gases"?',
         accent: "amber",
-        body: "Helium, Neon, Argon, Krypton and Xenon — five separate gases grouped together because they rarely react. Each has its own specific job later in this chapter."
+        body: "Helium, Neon, Argon, Krypton and Xenon — five separate gases grouped together because they rarely react. Each has its own specific job later in this chapter.",
       },
       {
         chipLabel: "🔬 Mixture or compound?",
         accent: "blue",
-        body: "Air is a mixture, not a compound — because its gases can be separated by a physical method called fractional distillation (separating a liquid mixture into fractions with different boiling points, through boiling and condensation)."
-      }
-    ]
+        body: "Air is a mixture, not a compound — because its gases can be separated by a physical method called fractional distillation (separating a liquid mixture into fractions with different boiling points, through boiling and condensation).",
+      },
+    ],
   },
   experiment: {
     aim: "To determine the percentage of oxygen in the air",
     steps: [
-      { emoji: "🕯️", caption: "A lit candle is placed inside an upturned gas jar (marked into 5 equal parts), standing in water" },
+      {
+        emoji: "🕯️",
+        caption:
+          "A lit candle is placed inside an upturned gas jar (marked into 5 equal parts), standing in water",
+      },
       { emoji: "💨", caption: "The candle burns for a while, then goes out on its own" },
-      { emoji: "📈", caption: "Water rises into the jar as it cools" }
+      { emoji: "📈", caption: "Water rises into the jar as it cools" },
     ],
     predictQuestion: "Quick check — before you scroll, predict: how far does the water rise?",
     predictOptions: [
       { label: "About half (2.5/5 parts)", correct: false },
       { label: "About a fifth (1/5 parts)", correct: true },
-      { label: "Almost all (4.5/5 parts)", correct: false }
+      { label: "Almost all (4.5/5 parts)", correct: false },
     ],
-    predictFeedback: "Right — water rises to 1/5 of the gas jar. That's proof: oxygen was used up during combustion, and it makes up roughly 20% of air."
+    predictFeedback:
+      "Right — water rises to 1/5 of the gas jar. That's proof: oxygen was used up during combustion, and it makes up roughly 20% of air.",
   },
   uses: {
     tabs: [
       {
-        symbol: "O₂", name: "Oxygen",
+        symbol: "O₂",
+        name: "Oxygen",
         uses: [
           { icon: "🫁", label: "Respiration" },
           { icon: "🚀", label: "Rocket engines", sub: "combustion at high altitude" },
           { icon: "⚡", label: "Welding & steel cutting" },
-          { icon: "🧪", label: "Compound preparation" }
-        ]
+          { icon: "🧪", label: "Compound preparation" },
+        ],
       },
       {
-        symbol: "CO₂", name: "Carbon dioxide",
+        symbol: "CO₂",
+        name: "Carbon dioxide",
         uses: [
           { icon: "🌿", label: "Photosynthesis" },
           { icon: "🥤", label: "Carbonated drinks" },
           { icon: "🧯", label: "Fire extinguishers" },
-          { icon: "🔄", label: "Carbon cycle" }
-        ]
+          { icon: "🔄", label: "Carbon cycle" },
+        ],
       },
       {
-        symbol: "N₂", name: "Nitrogen",
+        symbol: "N₂",
+        name: "Nitrogen",
         uses: [
           { icon: "🧪", label: "Nitric acid & ammonia", sub: "fertiliser production" },
           { icon: "🔄", label: "Nitrogen cycle" },
-          { icon: "❄️", label: "Liquid nitrogen", sub: "cooling agent" }
-        ]
+          { icon: "❄️", label: "Liquid nitrogen", sub: "cooling agent" },
+        ],
       },
       {
-        symbol: "◆", name: "Inert gases",
+        symbol: "◆",
+        name: "Inert gases",
         uses: [
           { icon: "🎈", label: "Helium", sub: "hot air & weather balloons" },
           { icon: "💡", label: "Neon", sub: "advertising lights" },
           { icon: "💡", label: "Argon", sub: "light bulbs" },
-          { icon: "◇", label: "Krypton & Xenon", sub: "present in air as inert gases" }
-        ]
-      }
-    ]
+          { icon: "◇", label: "Krypton & Xenon", sub: "present in air as inert gases" },
+        ],
+      },
+    ],
   },
   cycles: {
     carbonCycle: {
@@ -216,38 +225,63 @@ const en: Bab7Content = {
         "Animals eat plants and obtain carbon from them",
         "Dead plants & animals decompose (bacteria/fungi), releasing CO₂",
         "Burning fossil fuels (coal, petrol) releases CO₂",
-        "Respiration releases CO₂ — balanced again by photosynthesis"
-      ]
+        "Respiration releases CO₂ — balanced again by photosynthesis",
+      ],
     },
     oxygenCycle: {
       heading: "Oxygen Cycle",
       steps: [
         "Respiration, rusting, combustion & decomposition all use O₂",
         "Photosynthesis is the only process that releases O₂ back",
-        "This constant give-and-take keeps oxygen levels stable"
-      ]
+        "This constant give-and-take keeps oxygen levels stable",
+      ],
     },
     balanceActions: [
       "Prohibit illegal logging",
       "Reforestation",
       "Don't burn forests",
       "Avoid excessive pesticides",
-      "Prevent excess vehicle smoke"
-    ]
+      "Prevent excess vehicle smoke",
+    ],
   },
   combustion: {
-    definition: "Combustion is the reaction that occurs when a substance is heated in the presence of oxygen, producing heat energy and light energy.",
+    definition:
+      "Combustion is the reaction that occurs when a substance is heated in the presence of oxygen, producing heat energy and light energy.",
     triangle: { heat: "Heat", oxygen: "Oxygen", fuel: "Fuel" },
     methods: [
-      { icon: "🧊", heading: "Cooling", body: "Spray water or a layer of CO₂ onto the burning surface to remove heat" },
-      { icon: "🛑", heading: "Covering", body: "Cut off oxygen using a fire blanket, wet sack, mud, sand, soil or foam" },
-      { icon: "📦", heading: "Reducing fuel", body: "Separate burning material, keep unburnt material away, cut off gas/oil supply" }
+      {
+        icon: "🧊",
+        heading: "Cooling",
+        body: "Spray water or a layer of CO₂ onto the burning surface to remove heat",
+      },
+      {
+        icon: "🛑",
+        heading: "Covering",
+        body: "Cut off oxygen using a fire blanket, wet sack, mud, sand, soil or foam",
+      },
+      {
+        icon: "📦",
+        heading: "Reducing fuel",
+        body: "Separate burning material, keep unburnt material away, cut off gas/oil supply",
+      },
     ],
     extinguisherTable: [
       { material: "Solid", examples: "Wood, cloth, paper", extinguishers: ["Water", "Dry powder"] },
-      { material: "Liquid", examples: "Oil, varnish, paint", extinguishers: ["Foam", "Dry powder", "CO₂"] },
-      { material: "Gas", examples: "Propane, acetylene, methane", extinguishers: ["Foam", "Dry powder", "CO₂"] },
-      { material: "Metal", examples: "Potassium, sodium, magnesium, calcium", extinguishers: ["Dry powder", "Dry sand"] }
+      {
+        material: "Liquid",
+        examples: "Oil, varnish, paint",
+        extinguishers: ["Foam", "Dry powder", "CO₂"],
+      },
+      {
+        material: "Gas",
+        examples: "Propane, acetylene, methane",
+        extinguishers: ["Foam", "Dry powder", "CO₂"],
+      },
+      {
+        material: "Metal",
+        examples: "Potassium, sodium, magnesium, calcium",
+        extinguishers: ["Dry powder", "Dry sand"],
+      },
     ],
     safetyChecklist: [
       "Keep flammable substances away from fire",
@@ -255,53 +289,63 @@ const en: Bab7Content = {
       "Always be aware of electrical appliances",
       "Never discard burning cigarette butts",
       "Install a fire alarm / smoke detector",
-      "Don't overload a single electrical socket"
-    ]
+      "Don't overload a single electrical socket",
+    ],
   },
   pollutionSources: [
-    { from: "Vehicle exhaust & factories", pollutants: ["Smoke", "Soot", "CO", "SO₂", "NO₂", "Lead"] },
+    {
+      from: "Vehicle exhaust & factories",
+      pollutants: ["Smoke", "Soot", "CO", "SO₂", "NO₂", "Lead"],
+    },
     { from: "Open burning, cigarettes, forest fires", pollutants: ["Dust", "Soot", "Smoke"] },
     { from: "Construction, asbestos factories, quarries", pollutants: ["Dust", "Soot"] },
     { from: "Nuclear power plants", pollutants: ["Radioactive materials"] },
-    { from: "Agriculture & plantation activity", pollutants: ["Aerosol spray", "Chemical fertiliser"] },
-    { from: "A/C, fridges, aerosol sprays, electronics factories", pollutants: ["CFC"] }
+    {
+      from: "Agriculture & plantation activity",
+      pollutants: ["Aerosol spray", "Chemical fertiliser"],
+    },
+    { from: "A/C, fridges, aerosol sprays, electronics factories", pollutants: ["CFC"] },
   ],
   pollutionEffects: [
     {
-      heading: "Health", category: "health",
+      heading: "Health",
+      category: "health",
       items: [
         "Smoke & dust — breathing problems",
         "Sulfur dioxide — respiratory problems",
         "Carbon monoxide — headache, mental retardation, death",
         "Asbestos particles — lung cancer",
-        "Lead particles — intellectual disability in children & babies"
-      ]
+        "Lead particles — intellectual disability in children & babies",
+      ],
     },
     {
-      heading: "Buildings & Infrastructure", category: "buildings",
+      heading: "Buildings & Infrastructure",
+      category: "buildings",
       items: [
         "Dust & soot stain buildings",
         "Acid rain corrodes concrete & limestone",
-        "Acid rain speeds up iron rusting"
-      ]
+        "Acid rain speeds up iron rusting",
+      ],
     },
     {
-      heading: "Plants & Animals", category: "plants",
+      heading: "Plants & Animals",
+      category: "plants",
       items: [
         "Acid rain makes soil acidic & less fertile",
         "Acid rain makes water acidic — unsuitable for aquatic life",
-        "Smoke & haze reduce sunlight — slows photosynthesis"
-      ]
+        "Smoke & haze reduce sunlight — slows photosynthesis",
+      ],
     },
     {
-      heading: "Climate", category: "climate",
+      heading: "Climate",
+      category: "climate",
       items: [
         "Smoke from factories, vehicles & burning → haze",
         "Excess CO₂ → greenhouse effect",
         "Excess CFC → thinning ozone layer",
-        "SO₂ & NO₂ → acid rain"
-      ]
-    }
+        "SO₂ & NO₂ → acid rain",
+      ],
+    },
   ],
   prevention: [
     {
@@ -310,8 +354,8 @@ const en: Bab7Content = {
         "Fine smokers in restricted areas",
         "Fine open burning",
         "Fine vehicles emitting excess smoke",
-        "Prohibit factories in housing areas"
-      ]
+        "Prohibit factories in housing areas",
+      ],
     },
     {
       heading: "Education",
@@ -319,8 +363,8 @@ const en: Bab7Content = {
         "Teach students the effects & prevention of pollution",
         "Anti-smoking campaigns",
         "Encourage walking / cycling",
-        "Encourage public transport / carpooling"
-      ]
+        "Encourage public transport / carpooling",
+      ],
     },
     {
       heading: "Science & Technology",
@@ -329,16 +373,16 @@ const en: Bab7Content = {
         "HCFC instead of CFC in refrigerators",
         "Install filters in factory chimneys",
         "Catalytic converters on vehicles",
-        "Biological pest control instead of pesticides"
-      ]
-    }
+        "Biological pest control instead of pesticides",
+      ],
+    },
   ],
   api: [
     { range: "0–50", label: "Good", severity: "good" },
     { range: "51–100", label: "Moderate", severity: "moderate" },
     { range: "101–200", label: "Unhealthy", severity: "unhealthy" },
     { range: "201–300", label: "Very Unhealthy", severity: "veryUnhealthy" },
-    { range: ">300", label: "Hazardous", severity: "hazardous" }
+    { range: ">300", label: "Hazardous", severity: "hazardous" },
   ],
   keyExamFacts: [
     "Nitrogen is the largest part of air, at 78%",
@@ -348,101 +392,127 @@ const en: Bab7Content = {
     "Carbon monoxide reduces oxygen carried in the blood",
     "SO₂ and NO₂ both contribute to acid rain",
     "Excess CO₂ causes the greenhouse effect; excess CFC thins the ozone layer",
-    "Hybrid vehicles & catalytic converters reduce air pollution"
+    "Hybrid vehicles & catalytic converters reduce air pollution",
   ],
   keyTerms: [
-    "Air", "Atmosphere", "Nitrogen", "Oxygen", "Carbon dioxide", "Inert gas",
-    "Fractional distillation", "Carbon cycle", "Oxygen cycle", "Photosynthesis",
-    "Respiration", "Combustion", "Fire triangle", "Fire extinguisher",
-    "Air pollution", "Air Pollutant Index", "Acid rain", "Greenhouse effect",
-    "Ozone layer", "CFC", "Catalytic converter"
+    "Air",
+    "Atmosphere",
+    "Nitrogen",
+    "Oxygen",
+    "Carbon dioxide",
+    "Inert gas",
+    "Fractional distillation",
+    "Carbon cycle",
+    "Oxygen cycle",
+    "Photosynthesis",
+    "Respiration",
+    "Combustion",
+    "Fire triangle",
+    "Fire extinguisher",
+    "Air pollution",
+    "Air Pollutant Index",
+    "Acid rain",
+    "Greenhouse effect",
+    "Ozone layer",
+    "CFC",
+    "Catalytic converter",
   ],
-  chapterSummary: "Chapter 7 covers the composition of air and why air is a mixture, the importance of each gas, the carbon and oxygen cycles that keep them balanced, how combustion and fire safety work, and the sources, effects, and control of air pollution — including the Air Pollutant Index used to monitor it."
+  chapterSummary:
+    "Chapter 7 covers the composition of air and why air is a mixture, the importance of each gas, the carbon and oxygen cycles that keep them balanced, how combustion and fire safety work, and the sources, effects, and control of air pollution — including the Air Pollutant Index used to monitor it.",
 };
 
 const bm: Bab7Content = {
   hook: {
     title: "Kenapa ini penting",
-    body: "Setiap nafas yang anda ambil hanya mengandungi kira-kira 21% oksigen — itulah sebabnya angkasawan, penyelam, malah lilin juga bergantung pada nisbah ini. Bab ini menunjukkan bagaimana udara sebenarnya berfungsi, mengapa api berkelakuan sedemikian, dan bagaimana pencemaran mengganggu keseimbangan ini."
+    body: "Setiap nafas yang anda ambil hanya mengandungi kira-kira 21% oksigen — itulah sebabnya angkasawan, penyelam, malah lilin juga bergantung pada nisbah ini. Bab ini menunjukkan bagaimana udara sebenarnya berfungsi, mengapa api berkelakuan sedemikian, dan bagaimana pencemaran mengganggu keseimbangan ini.",
   },
   composition: {
     legend: [
       { color: "#4fb0ff", name: "Nitrogen", percentage: "78%" },
       { color: "#8b6bff", name: "Oksigen", percentage: "21%" },
       { color: "#fbbf5a", name: "Karbon dioksida", percentage: "0.03%" },
-      { color: "#4ade80", name: "Gas nadir & bahan lain", percentage: "0.97%" }
+      { color: "#4ade80", name: "Gas nadir & bahan lain", percentage: "0.97%" },
     ],
     reveals: [
       {
         chipLabel: "💡 Definisi rasmi",
         accent: "violet",
-        body: "Udara ialah campuran gas yang mengelilingi Bumi. Komponen lain — wap air, habuk dan mikroorganisma — turut wujud dalam kuantiti kecil yang berubah mengikut tempat dan masa (cth: wap air lebih banyak di hutan atau selepas hujan)."
+        body: "Udara ialah campuran gas yang mengelilingi Bumi. Komponen lain — wap air, habuk dan mikroorganisma — turut wujud dalam kuantiti kecil yang berubah mengikut tempat dan masa (cth: wap air lebih banyak di hutan atau selepas hujan).",
       },
       {
-        chipLabel: "🧪 Apa yang ada dalam \"gas nadir\"?",
+        chipLabel: '🧪 Apa yang ada dalam "gas nadir"?',
         accent: "amber",
-        body: "Helium, Neon, Argon, Kripton dan Xenon — lima gas berasingan yang dikumpulkan kerana jarang bertindak balas. Setiap satu mempunyai kegunaan tersendiri nanti dalam bab ini."
+        body: "Helium, Neon, Argon, Kripton dan Xenon — lima gas berasingan yang dikumpulkan kerana jarang bertindak balas. Setiap satu mempunyai kegunaan tersendiri nanti dalam bab ini.",
       },
       {
         chipLabel: "🔬 Campuran atau sebatian?",
         accent: "blue",
-        body: "Udara ialah campuran, bukan sebatian — kerana komponennya boleh diasingkan melalui kaedah fizikal iaitu penyulingan berperingkat (mengasingkan campuran kepada pecahan berlainan takat didih, melalui pendidihan dan kondensasi)."
-      }
-    ]
+        body: "Udara ialah campuran, bukan sebatian — kerana komponennya boleh diasingkan melalui kaedah fizikal iaitu penyulingan berperingkat (mengasingkan campuran kepada pecahan berlainan takat didih, melalui pendidihan dan kondensasi).",
+      },
+    ],
   },
   experiment: {
     aim: "Menentukan peratusan oksigen dalam udara",
     steps: [
-      { emoji: "🕯️", caption: "Lilin yang menyala diletakkan di dalam balang gas terbalik (ditanda 5 bahagian sama), berdiri di dalam air" },
+      {
+        emoji: "🕯️",
+        caption:
+          "Lilin yang menyala diletakkan di dalam balang gas terbalik (ditanda 5 bahagian sama), berdiri di dalam air",
+      },
       { emoji: "💨", caption: "Lilin terbakar seketika, kemudian terpadam dengan sendirinya" },
-      { emoji: "📈", caption: "Air naik ke dalam balang apabila menyejuk" }
+      { emoji: "📈", caption: "Air naik ke dalam balang apabila menyejuk" },
     ],
     predictQuestion: "Semak cepat — sebelum menatal, ramalkan: berapa jauh air akan naik?",
     predictOptions: [
       { label: "Kira-kira separuh (2.5/5 bahagian)", correct: false },
       { label: "Kira-kira satu perlima (1/5 bahagian)", correct: true },
-      { label: "Hampir semua (4.5/5 bahagian)", correct: false }
+      { label: "Hampir semua (4.5/5 bahagian)", correct: false },
     ],
-    predictFeedback: "Betul — air naik ke 1/5 balang gas. Ini membuktikan oksigen telah digunakan semasa pembakaran, dan ia merangkumi kira-kira 20% udara."
+    predictFeedback:
+      "Betul — air naik ke 1/5 balang gas. Ini membuktikan oksigen telah digunakan semasa pembakaran, dan ia merangkumi kira-kira 20% udara.",
   },
   uses: {
     tabs: [
       {
-        symbol: "O₂", name: "Oksigen",
+        symbol: "O₂",
+        name: "Oksigen",
         uses: [
           { icon: "🫁", label: "Pernafasan" },
           { icon: "🚀", label: "Enjin roket", sub: "pembakaran pada altitud tinggi" },
           { icon: "⚡", label: "Kimpalan & pemotongan keluli" },
-          { icon: "🧪", label: "Penyediaan sebatian" }
-        ]
+          { icon: "🧪", label: "Penyediaan sebatian" },
+        ],
       },
       {
-        symbol: "CO₂", name: "Karbon dioksida",
+        symbol: "CO₂",
+        name: "Karbon dioksida",
         uses: [
           { icon: "🌿", label: "Fotosintesis" },
           { icon: "🥤", label: "Minuman berkarbonat" },
           { icon: "🧯", label: "Alat pemadam api" },
-          { icon: "🔄", label: "Kitar karbon" }
-        ]
+          { icon: "🔄", label: "Kitar karbon" },
+        ],
       },
       {
-        symbol: "N₂", name: "Nitrogen",
+        symbol: "N₂",
+        name: "Nitrogen",
         uses: [
           { icon: "🧪", label: "Asid nitrik & ammonia", sub: "penghasilan baja" },
           { icon: "🔄", label: "Kitar nitrogen" },
-          { icon: "❄️", label: "Nitrogen cecair", sub: "agen penyejuk" }
-        ]
+          { icon: "❄️", label: "Nitrogen cecair", sub: "agen penyejuk" },
+        ],
       },
       {
-        symbol: "◆", name: "Gas nadir",
+        symbol: "◆",
+        name: "Gas nadir",
         uses: [
           { icon: "🎈", label: "Helium", sub: "belon udara & belon kaji cuaca" },
           { icon: "💡", label: "Neon", sub: "lampu iklan" },
           { icon: "💡", label: "Argon", sub: "mentol lampu" },
-          { icon: "◇", label: "Kripton & Xenon", sub: "wujud dalam udara sebagai gas nadir" }
-        ]
-      }
-    ]
+          { icon: "◇", label: "Kripton & Xenon", sub: "wujud dalam udara sebagai gas nadir" },
+        ],
+      },
+    ],
   },
   cycles: {
     carbonCycle: {
@@ -452,38 +522,67 @@ const bm: Bab7Content = {
         "Haiwan memakan tumbuhan dan memperoleh karbon daripadanya",
         "Tumbuhan & haiwan mati akan mereput (bakteria/kulat), membebaskan CO₂",
         "Pembakaran bahan api fosil (arang batu, petroleum) membebaskan CO₂",
-        "Respirasi membebaskan CO₂ — diseimbangkan semula oleh fotosintesis"
-      ]
+        "Respirasi membebaskan CO₂ — diseimbangkan semula oleh fotosintesis",
+      ],
     },
     oxygenCycle: {
       heading: "Kitar Oksigen",
       steps: [
         "Respirasi, pengaratan, pembakaran & pereputan semuanya menggunakan O₂",
         "Fotosintesis satu-satunya proses yang membebaskan semula O₂",
-        "Pertukaran berterusan ini mengekalkan kandungan oksigen"
-      ]
+        "Pertukaran berterusan ini mengekalkan kandungan oksigen",
+      ],
     },
     balanceActions: [
       "Larang pembalakan haram",
       "Program penghutanan semula",
       "Elak pembakaran hutan",
       "Elak penggunaan racun serangga berlebihan",
-      "Elak asap kenderaan berlebihan"
-    ]
+      "Elak asap kenderaan berlebihan",
+    ],
   },
   combustion: {
-    definition: "Pembakaran ialah tindak balas yang berlaku apabila sesuatu bahan dipanaskan dengan kehadiran oksigen, menghasilkan tenaga haba dan tenaga cahaya.",
+    definition:
+      "Pembakaran ialah tindak balas yang berlaku apabila sesuatu bahan dipanaskan dengan kehadiran oksigen, menghasilkan tenaga haba dan tenaga cahaya.",
     triangle: { heat: "Haba", oxygen: "Oksigen", fuel: "Bahan api" },
     methods: [
-      { icon: "🧊", heading: "Mendinginkan", body: "Semburkan air atau lapisan CO₂ pada permukaan terbakar untuk menyingkirkan haba" },
-      { icon: "🛑", heading: "Menyelimuti", body: "Putuskan bekalan oksigen menggunakan selimut api, karung basah, lumpur, pasir, tanah atau busa" },
-      { icon: "📦", heading: "Mengurangkan bahan api", body: "Asingkan bahan terbakar, jauhkan bahan belum terbakar, tutup bekalan gas/minyak" }
+      {
+        icon: "🧊",
+        heading: "Mendinginkan",
+        body: "Semburkan air atau lapisan CO₂ pada permukaan terbakar untuk menyingkirkan haba",
+      },
+      {
+        icon: "🛑",
+        heading: "Menyelimuti",
+        body: "Putuskan bekalan oksigen menggunakan selimut api, karung basah, lumpur, pasir, tanah atau busa",
+      },
+      {
+        icon: "📦",
+        heading: "Mengurangkan bahan api",
+        body: "Asingkan bahan terbakar, jauhkan bahan belum terbakar, tutup bekalan gas/minyak",
+      },
     ],
     extinguisherTable: [
-      { material: "Pepejal", examples: "Kayu, kain, kertas", extinguishers: ["Air", "Serbuk kering"] },
-      { material: "Cecair", examples: "Minyak, varnis, cat", extinguishers: ["Busa", "Serbuk kering", "CO₂"] },
-      { material: "Gas", examples: "Propana, asetilena, metana", extinguishers: ["Busa", "Serbuk kering", "CO₂"] },
-      { material: "Logam", examples: "Kalium, natrium, magnesium, kalsium", extinguishers: ["Serbuk kering", "Pasir kering"] }
+      {
+        material: "Pepejal",
+        examples: "Kayu, kain, kertas",
+        extinguishers: ["Air", "Serbuk kering"],
+      },
+      {
+        material: "Cecair",
+        examples: "Minyak, varnis, cat",
+        extinguishers: ["Busa", "Serbuk kering", "CO₂"],
+      },
+      {
+        material: "Gas",
+        examples: "Propana, asetilena, metana",
+        extinguishers: ["Busa", "Serbuk kering", "CO₂"],
+      },
+      {
+        material: "Logam",
+        examples: "Kalium, natrium, magnesium, kalsium",
+        extinguishers: ["Serbuk kering", "Pasir kering"],
+      },
     ],
     safetyChecklist: [
       "Jauhkan bahan mudah terbakar daripada api",
@@ -491,53 +590,63 @@ const bm: Bab7Content = {
       "Sentiasa peka terhadap barangan elektrik",
       "Jangan buang puntung rokok yang masih menyala",
       "Pasang penggera kebakaran / pengesan asap",
-      "Jangan letak terlalu banyak beban pada satu sumber elektrik"
-    ]
+      "Jangan letak terlalu banyak beban pada satu sumber elektrik",
+    ],
   },
   pollutionSources: [
-    { from: "Ekzos kenderaan & kilang", pollutants: ["Asap", "Jelaga", "CO", "SO₂", "NO₂", "Plumbum"] },
+    {
+      from: "Ekzos kenderaan & kilang",
+      pollutants: ["Asap", "Jelaga", "CO", "SO₂", "NO₂", "Plumbum"],
+    },
     { from: "Pembakaran terbuka, rokok, kebakaran hutan", pollutants: ["Habuk", "Jelaga", "Asap"] },
     { from: "Tapak pembinaan, kilang asbestos, kuari batu kapur", pollutants: ["Habuk", "Jelaga"] },
     { from: "Loji kuasa nuklear", pollutants: ["Bahan radioaktif"] },
     { from: "Aktiviti pertanian & perladangan", pollutants: ["Semburan aerosol", "Baja kimia"] },
-    { from: "Penyaman udara, peti sejuk, semburan aerosol, kilang elektronik", pollutants: ["CFC"] }
+    {
+      from: "Penyaman udara, peti sejuk, semburan aerosol, kilang elektronik",
+      pollutants: ["CFC"],
+    },
   ],
   pollutionEffects: [
     {
-      heading: "Kesihatan", category: "health",
+      heading: "Kesihatan",
+      category: "health",
       items: [
         "Asap & habuk — masalah kesesakan nafas",
         "Sulfur dioksida — penyakit salur pernafasan",
         "Karbon monoksida — sakit kepala, kerencatan akal, maut",
         "Zarah asbestos — kanser peparu",
-        "Zarah plumbum — kerencatan akal kanak-kanak & bayi"
-      ]
+        "Zarah plumbum — kerencatan akal kanak-kanak & bayi",
+      ],
     },
     {
-      heading: "Bangunan & Infrastruktur", category: "buildings",
+      heading: "Bangunan & Infrastruktur",
+      category: "buildings",
       items: [
         "Habuk & jelaga mengotorkan bangunan",
         "Hujan asid mengakis konkrit & batu kapur",
-        "Hujan asid mempercepat pengaratan besi"
-      ]
+        "Hujan asid mempercepat pengaratan besi",
+      ],
     },
     {
-      heading: "Tumbuhan & Haiwan", category: "plants",
+      heading: "Tumbuhan & Haiwan",
+      category: "plants",
       items: [
         "Hujan asid menjadikan tanah berasid & kurang subur",
         "Hujan asid menjadikan air berasid — tidak sesuai untuk hidupan akuatik",
-        "Asap & jerebu mengurangkan cahaya matahari — melambatkan fotosintesis"
-      ]
+        "Asap & jerebu mengurangkan cahaya matahari — melambatkan fotosintesis",
+      ],
     },
     {
-      heading: "Iklim", category: "climate",
+      heading: "Iklim",
+      category: "climate",
       items: [
         "Asap kilang, kenderaan & pembakaran → jerebu",
         "CO₂ berlebihan → kesan rumah hijau",
         "CFC berlebihan → penipisan lapisan ozon",
-        "SO₂ & NO₂ → hujan asid"
-      ]
-    }
+        "SO₂ & NO₂ → hujan asid",
+      ],
+    },
   ],
   prevention: [
     {
@@ -546,8 +655,8 @@ const bm: Bab7Content = {
         "Denda perokok di kawasan larangan",
         "Denda pembakaran terbuka",
         "Denda kenderaan yang mengeluarkan asap berlebihan",
-        "Larang kilang dibina di kawasan perumahan"
-      ]
+        "Larang kilang dibina di kawasan perumahan",
+      ],
     },
     {
       heading: "Pendidikan",
@@ -555,8 +664,8 @@ const bm: Bab7Content = {
         "Didik pelajar tentang kesan & pencegahan pencemaran",
         "Program antimerokok",
         "Galakan berjalan kaki / berbasikal",
-        "Galakan pengangkutan awam / kongsi kereta"
-      ]
+        "Galakan pengangkutan awam / kongsi kereta",
+      ],
     },
     {
       heading: "Sains & Teknologi",
@@ -565,16 +674,16 @@ const bm: Bab7Content = {
         "HCFC menggantikan CFC dalam peti sejuk",
         "Pasang penapis di cerobong kilang",
         "Penukar bermangkin pada kenderaan",
-        "Kawalan biologi menggantikan pestisid"
-      ]
-    }
+        "Kawalan biologi menggantikan pestisid",
+      ],
+    },
   ],
   api: [
     { range: "0–50", label: "Baik", severity: "good" },
     { range: "51–100", label: "Sederhana", severity: "moderate" },
     { range: "101–200", label: "Tidak sihat", severity: "unhealthy" },
     { range: "201–300", label: "Sangat tidak sihat", severity: "veryUnhealthy" },
-    { range: ">300", label: "Berbahaya", severity: "hazardous" }
+    { range: ">300", label: "Berbahaya", severity: "hazardous" },
   ],
   keyExamFacts: [
     "Nitrogen adalah komponen terbesar udara, iaitu 78%",
@@ -584,17 +693,159 @@ const bm: Bab7Content = {
     "Karbon monoksida mengurangkan oksigen dalam darah",
     "SO₂ dan NO₂ kedua-duanya menyebabkan hujan asid",
     "CO₂ berlebihan menyebabkan kesan rumah hijau; CFC berlebihan menipiskan lapisan ozon",
-    "Kenderaan hibrid & penukar bermangkin mengurangkan pencemaran udara"
+    "Kenderaan hibrid & penukar bermangkin mengurangkan pencemaran udara",
   ],
   keyTerms: [
-    "Udara", "Atmosfera", "Nitrogen", "Oksigen", "Karbon dioksida", "Gas nadir",
-    "Penyulingan berperingkat", "Kitar karbon", "Kitar oksigen", "Fotosintesis",
-    "Respirasi", "Pembakaran", "Segi tiga api", "Alat pemadam api",
-    "Pencemaran udara", "Indeks Pencemaran Udara", "Hujan asid", "Kesan rumah hijau",
-    "Lapisan ozon", "CFC", "Penukar bermangkin"
+    "Udara",
+    "Atmosfera",
+    "Nitrogen",
+    "Oksigen",
+    "Karbon dioksida",
+    "Gas nadir",
+    "Penyulingan berperingkat",
+    "Kitar karbon",
+    "Kitar oksigen",
+    "Fotosintesis",
+    "Respirasi",
+    "Pembakaran",
+    "Segi tiga api",
+    "Alat pemadam api",
+    "Pencemaran udara",
+    "Indeks Pencemaran Udara",
+    "Hujan asid",
+    "Kesan rumah hijau",
+    "Lapisan ozon",
+    "CFC",
+    "Penukar bermangkin",
   ],
-  chapterSummary: "Bab 7 merangkumi komposisi udara dan sebab udara ialah campuran, kepentingan setiap gas, kitar karbon dan oksigen yang mengekalkan keseimbangan, cara pembakaran dan keselamatan kebakaran berfungsi, serta punca, kesan dan kawalan pencemaran udara — termasuk Indeks Pencemaran Udara."
+  chapterSummary:
+    "Bab 7 merangkumi komposisi udara dan sebab udara ialah campuran, kepentingan setiap gas, kitar karbon dan oksigen yang mengekalkan keseimbangan, cara pembakaran dan keselamatan kebakaran berfungsi, serta punca, kesan dan kawalan pencemaran udara — termasuk Indeks Pencemaran Udara.",
 };
 
 export const bab7Content = { en, bm };
+
+export interface Bab7Supplement {
+  combustionExperiments: {
+    factor: string;
+    procedure: string;
+    observation: string;
+    conclusion: string;
+  }[];
+  fireWarnings: string[];
+  pollutionDefinition: string;
+  activeRecall: { question: string; answer: string }[];
+}
+
+const supplementEn: Bab7Supplement = {
+  combustionExperiments: [
+    {
+      factor: "Fuel",
+      procedure: "Heat a glass rod, wood, candle, and stone over a Bunsen flame using tongs.",
+      observation: "Wood and candle burn; the glass rod and stone do not.",
+      conclusion: "A combustible fuel is required for combustion.",
+    },
+    {
+      factor: "Oxygen",
+      procedure:
+        "Cover one of two burning candles with an inverted gas jar; leave the other exposed.",
+      observation:
+        "The covered candle goes out quickly while the exposed candle continues burning.",
+      conclusion: "Oxygen supports and is required for combustion.",
+    },
+    {
+      factor: "Heat",
+      procedure:
+        "Cool one matchstick in a refrigerator and keep another at room temperature, then strike both.",
+      observation:
+        "The room-temperature match lights immediately; the cold match initially fails to ignite.",
+      conclusion: "The fuel must receive enough heat to reach its ignition point.",
+    },
+  ],
+  fireWarnings: [
+    "Never use water on an oil fire. Water sinks below the less-dense oil and can make hot oil splash and spread the fire; use foam instead.",
+    "Never use water on an electrical fire because water conducts electricity. Use dry powder or carbon dioxide.",
+  ],
+  pollutionDefinition:
+    "Air pollution is the introduction of harmful chemicals, particulate matter, or biological contaminants into the atmosphere, causing discomfort, disease, or environmental damage.",
+  activeRecall: [
+    {
+      question: "Why are sodium and potassium kept under paraffin oil?",
+      answer:
+        "The oil isolates these highly reactive metals from oxygen and moisture in air, preventing rapid reactions, fire, or explosion.",
+    },
+    {
+      question: "Which extinguisher should be used for an electrical fire, and why not water?",
+      answer:
+        "Use dry powder or carbon dioxide. Water conducts electricity and could electrocute the operator or damage the circuit.",
+    },
+    {
+      question: "How does logging raise atmospheric carbon dioxide, and what can result?",
+      answer:
+        "Logging removes plants that absorb carbon dioxide during photosynthesis. Carbon dioxide then accumulates, strengthening the greenhouse effect and global warming.",
+    },
+    {
+      question: "Why can cave explorers use a burning torch as well as an electric torch?",
+      answer:
+        "A flame needs oxygen. If oxygen falls to an unsafe level, the flame flickers or goes out and provides an early warning.",
+    },
+  ],
+};
+
+const supplementBm: Bab7Supplement = {
+  combustionExperiments: [
+    {
+      factor: "Bahan api",
+      procedure:
+        "Panaskan rod kaca, kayu, lilin, dan batu di atas nyalaan penunu Bunsen menggunakan penyepit.",
+      observation: "Kayu dan lilin terbakar; rod kaca dan batu tidak terbakar.",
+      conclusion: "Bahan api yang boleh terbakar diperlukan untuk pembakaran.",
+    },
+    {
+      factor: "Oksigen",
+      procedure:
+        "Tutup satu daripada dua lilin bernyala dengan balang gas terbalik; biarkan satu lagi terdedah.",
+      observation: "Lilin yang ditutup cepat terpadam manakala lilin yang terdedah terus menyala.",
+      conclusion: "Oksigen menyokong dan diperlukan untuk pembakaran.",
+    },
+    {
+      factor: "Haba",
+      procedure:
+        "Sejukkan satu batang mancis di dalam peti sejuk dan simpan satu lagi pada suhu bilik, kemudian nyalakan kedua-duanya.",
+      observation:
+        "Mancis suhu bilik menyala serta-merta; mancis sejuk gagal menyala pada mulanya.",
+      conclusion: "Bahan api mesti menerima haba yang cukup untuk mencapai takat pencucuhan.",
+    },
+  ],
+  fireWarnings: [
+    "Jangan gunakan air pada kebakaran minyak. Air tenggelam di bawah minyak yang kurang tumpat lalu boleh menyebabkan minyak panas terpercik dan api merebak; gunakan busa.",
+    "Jangan gunakan air pada kebakaran elektrik kerana air mengkonduksi elektrik. Gunakan serbuk kering atau karbon dioksida.",
+  ],
+  pollutionDefinition:
+    "Pencemaran udara ialah kemasukan bahan kimia, zarah, atau bahan cemar biologi yang berbahaya ke atmosfera sehingga menyebabkan ketidakselesaan, penyakit, atau kerosakan alam sekitar.",
+  activeRecall: [
+    {
+      question: "Mengapakah natrium dan kalium disimpan di bawah minyak parafin?",
+      answer:
+        "Minyak mengasingkan logam yang sangat reaktif ini daripada oksigen dan kelembapan udara, lalu mencegah tindak balas pantas, kebakaran, atau letupan.",
+    },
+    {
+      question: "Apakah pemadam yang sesuai untuk kebakaran elektrik, dan mengapa bukan air?",
+      answer:
+        "Gunakan serbuk kering atau karbon dioksida. Air mengkonduksi elektrik dan boleh menyebabkan renjatan kepada pengguna atau merosakkan litar.",
+    },
+    {
+      question:
+        "Bagaimanakah pembalakan meningkatkan karbon dioksida atmosfera, dan apakah kesannya?",
+      answer:
+        "Pembalakan mengurangkan tumbuhan yang menyerap karbon dioksida semasa fotosintesis. Karbon dioksida terkumpul lalu menguatkan kesan rumah hijau dan pemanasan global.",
+    },
+    {
+      question: "Mengapakah peneroka gua boleh membawa obor bernyala selain lampu elektrik?",
+      answer:
+        "Nyalaan memerlukan oksigen. Jika oksigen turun ke aras tidak selamat, nyalaan berkelip atau terpadam lalu memberi amaran awal.",
+    },
+  ],
+};
+
+export const bab7Supplement = { en: supplementEn, bm: supplementBm };
 export default bab7Content;

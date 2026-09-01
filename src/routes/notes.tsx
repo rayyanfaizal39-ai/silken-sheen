@@ -26,7 +26,7 @@ import { NotesBlock, type NotesAccordionSection } from "@/components/notes/Notes
 import { NotesSummaryHeroGate } from "@/components/notes/NotesSummaryHeroGate";
 import { SejarahChapterHero } from "@/components/notes/SejarahChapterHero";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
-import { Bab7NotesBlock } from "@/components/notes/Bab7NotesBlock";
+import { ScienceF1Chapter7VisualNotesBlock as Bab7NotesBlock } from "@/components/notes/ScienceF1Chapter7VisualNotesBlock";
 import { GeoChapter1NotesBlock } from "@/components/notes/GeoChapter1NotesBlock";
 import { GeoChapter2NotesBlock } from "@/components/notes/GeoChapter2NotesBlock";
 import { GeoChapter3NotesBlock } from "@/components/notes/GeoChapter3NotesBlock";
