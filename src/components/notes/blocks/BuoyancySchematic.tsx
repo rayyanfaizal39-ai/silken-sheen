@@ -48,6 +48,56 @@ function VerticalArrow({
   );
 }
 
+/** First number in a reading such as "10 N", so the pointer can sit where the scale says. */
+export function readingValue(text: string) {
+  const match = /-?\d+(?:[.,]\d+)?/.exec(text ?? "");
+  return match ? Number(match[0].replace(",", ".")) : null;
+}
+
+const SCALE_TOP = 32;
+const SCALE_BOTTOM = 80;
+
+/**
+ * A spring balance drawn as the instrument it is: hanging ring, graduated body,
+ * pointer and hook. The pointer is placed from the reading the content supplies,
+ * so a smaller reading sits higher up the scale rather than being decorative.
+ */
+function SpringBalance({ x, reading, fraction }: { x: number; reading: string; fraction: number }) {
+  const pointerY = SCALE_TOP + fraction * (SCALE_BOTTOM - SCALE_TOP);
+  return (
+    <g data-spring-balance={reading}>
+      {/* ring to hang it from */}
+      <circle cx={x} cy={22} r="5" fill="none" className="stroke-muted-foreground" strokeWidth="2" />
+      {/* graduated body */}
+      <rect x={x - 14} y={28} width={28} height={56} rx="4" className="fill-secondary stroke-border" strokeWidth="1.5" />
+      {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+        <line
+          key={i}
+          x1={x - 13}
+          y1={SCALE_TOP + i * 8}
+          x2={x - (i % 2 === 0 ? 5 : 9)}
+          y2={SCALE_TOP + i * 8}
+          className="stroke-border"
+          strokeWidth="1"
+        />
+      ))}
+      {/* pointer at the reading */}
+      <line x1={x - 13} y1={pointerY} x2={x + 13} y2={pointerY} className="stroke-rose-400" strokeWidth="2" />
+      <text x={x + 17} y={pointerY + 4} fontSize="11" fontWeight="bold" className="fill-emerald-300">
+        {reading}
+      </text>
+      {/* hook carrying the object */}
+      <line x1={x} y1={84} x2={x} y2={89} className="stroke-muted-foreground" strokeWidth="2" />
+      <path
+        d={`M${x - 4},89 a4,4 0 1,0 8,0 a4,4 0 0,1 -8,0`}
+        fill="none"
+        className="stroke-muted-foreground"
+        strokeWidth="2"
+      />
+    </g>
+  );
+}
+
 export function BuoyancySchematic({ block, lang }: { block: BuoyancySchematicBlock; lang?: string }) {
   const [view, setView] = useState<ViewId>("measure");
   const copy = figureCopy(lang);
@@ -57,6 +107,12 @@ export function BuoyancySchematic({ block, lang }: { block: BuoyancySchematicBlo
     { id: "floating", label: block.floatingNote.split(/[.—-]/)[0].trim() },
     { id: "sinking", label: block.sinkingNote.split(/[.—-]/)[0].trim() },
   ];
+
+  // The in-air reading is the larger one, so it anchors the bottom of the scale.
+  const air = readingValue(block.realWeight);
+  const water = readingValue(block.apparentWeight);
+  const airFraction = 1;
+  const waterFraction = air && water && air > 0 ? Math.max(0.08, Math.min(1, water / air)) : 0.6;
 
   const note =
     view === "measure" ? block.formula : view === "floating" ? block.floatingNote : block.sinkingNote;
@@ -88,36 +144,25 @@ export function BuoyancySchematic({ block, lang }: { block: BuoyancySchematicBlo
         >
           {view === "measure" ? (
             <>
-              {/* A: in air */}
-              <text x={78} y={16} textAnchor="middle" fontSize="10" fontWeight="bold" className="fill-muted-foreground">
+              {/* A: the object hanging in air */}
+              <text x={78} y={12} textAnchor="middle" fontSize="10" fontWeight="bold" className="fill-muted-foreground">
                 {block.realWeightLabel}
               </text>
-              <line x1={78} y1={24} x2={78} y2={52} className="stroke-muted-foreground" strokeWidth="2" />
-              <rect x={62} y={52} width={32} height={40} rx="3" className="fill-primary/20 stroke-primary/70" strokeWidth="2" />
-              <line x1={78} y1={92} x2={78} y2={110} className="stroke-muted-foreground" strokeWidth="2" />
-              <rect x={60} y={110} width={36} height={26} rx="4" className="fill-secondary stroke-border" strokeWidth="1.5" />
-              <text x={78} y={127} textAnchor="middle" fontSize="11" fontWeight="bold" className="fill-emerald-300">
-                {block.realWeight}
-              </text>
+              <SpringBalance x={78} reading={block.realWeight} fraction={airFraction} />
+              <rect x={62} y={94} width={32} height={32} rx="3" className="fill-primary/20 stroke-primary/70" strokeWidth="2" />
 
-              {/* B: submerged */}
-              <text x={226} y={16} textAnchor="middle" fontSize="10" fontWeight="bold" className="fill-muted-foreground">
+              {/* B: the same object, now hanging in water */}
+              <text x={226} y={12} textAnchor="middle" fontSize="10" fontWeight="bold" className="fill-muted-foreground">
                 {block.apparentWeightLabel}
               </text>
-              <line x1={226} y1={24} x2={226} y2={52} className="stroke-muted-foreground" strokeWidth="2" />
-              {/* beaker of water */}
-              <path d="M186,58 L186,150 L266,150 L266,58" fill="none" className="stroke-border" strokeWidth="2" />
-              <rect x={187} y={74} width={78} height={75} className="fill-sky-400/20" />
-              <line x1={187} y1={74} x2={265} y2={74} className="stroke-sky-300/70" strokeWidth="1.5" />
-              <rect x={210} y={86} width={32} height={40} rx="3" className="fill-primary/20 stroke-primary/70" strokeWidth="2" />
-              <line x1={226} y1={52} x2={226} y2={86} className="stroke-muted-foreground" strokeWidth="2" />
-              <rect x={208} y={26} width={36} height={26} rx="4" className="fill-secondary stroke-border" strokeWidth="1.5" />
-              <text x={226} y={43} textAnchor="middle" fontSize="11" fontWeight="bold" className="fill-emerald-300">
-                {block.apparentWeight}
-              </text>
+              <path d="M186,72 L186,158 L266,158 L266,72" fill="none" className="stroke-border" strokeWidth="2" />
+              <rect x={187} y={88} width={78} height={69} className="fill-sky-400/20" />
+              <line x1={187} y1={88} x2={265} y2={88} className="stroke-sky-300/70" strokeWidth="1.5" />
+              <SpringBalance x={226} reading={block.apparentWeight} fraction={waterFraction} />
+              <rect x={210} y={94} width={32} height={32} rx="3" className="fill-primary/20 stroke-primary/70" strokeWidth="2" />
 
-              {/* the difference */}
-              <text x={152} y={168} textAnchor="middle" fontSize="11" fontWeight="bold" className="fill-amber-300">
+              {/* the difference between the two readings */}
+              <text x={152} y={174} textAnchor="middle" fontSize="11" fontWeight="bold" className="fill-amber-300">
                 {block.buoyantForce}
               </text>
             </>
