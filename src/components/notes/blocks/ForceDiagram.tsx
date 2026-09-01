@@ -2,54 +2,73 @@ import { useState } from "react";
 import type { ForceDiagramBlock } from "@/content/form2/science/interactive-types";
 import { conceptButtonClass, InteractiveBadge } from "./InteractiveFigureCard";
 import { figureCopy } from "./figure-copy";
+import { ArrowHead, Chapter8PhotoFigure } from "@/components/notes/chapter8/Chapter8PhotoFigure";
+import type { Chapter8ImageKey } from "@/components/notes/chapter8/chapter8-assets";
 
 /**
- * A force drawn as an arrow, which is the thing the syllabus actually asks for:
- * length carries magnitude, the head carries direction, and the tail sits on the
- * point of application.
+ * A force drawn as an arrow over the real scene, which is what the syllabus asks
+ * for: length carries magnitude, the head carries direction, and the tail sits on
+ * the point of application.
  *
- * Both examples point in the direction the source shows -- the box is pushed to
- * the right, the nail is pulled up out of the wood -- so switching example moves
- * the arrow rather than redrawing it, and the tail always lands on the labelled
- * contact point. Arrow length is derived from the magnitude so a bigger force is
- * never drawn shorter than a smaller one.
+ * The photograph carries recognition; the arrow carries the science. Both are
+ * drawn in the artwork's own pixel space (1672x941) rather than in percentages,
+ * because percentages stretch x and y by different amounts and would skew the
+ * arrowheads and distort the nail's direction.
  */
 
-/** Geometry per example, in the SVG user space below. */
-const VIEWS = {
+type ViewId = "box" | "nail";
+
+const VIEWS: Record<ViewId, {
+  image: Chapter8ImageKey;
+  /** Point of application, in artwork pixels. */
+  tail: [number, number];
+  /** Unit direction the force acts along. */
+  dir: [number, number];
+  newtons: number;
+  /** Where the magnitude label sits relative to the arrow. */
+  label: [number, number];
+}> = {
+  // hand pressing the left face of the carton
   box: {
-    /** Tail sits on the hand/box contact face; the arrow runs to the right. */
-    tailX: 96,
-    tailY: 96,
-    deg: 0,
-    /** Newtons, used only to scale the drawn length. */
+    image: "pushBox",
+    tail: [707, 545],
+    dir: [1, 0],
     newtons: 10,
+    label: [820, 512],
   },
+  // claw gripping the nail just under its head; the force acts along the nail
   nail: {
-    /** Tail sits on the hammer claw gripping the nail; the arrow runs upward. */
-    tailX: 213,
-    tailY: 96,
-    deg: -90,
+    image: "hammerNail",
+    tail: [777, 540],
+    dir: [0.168, -0.986],
     newtons: 15,
+    label: [872, 360],
   },
-} as const;
+};
 
-/** Longest arrow on the figure, in user units, for the largest magnitude shown. */
-const MAX_LEN = 78;
-const MAX_N = 15;
-
-function arrowLength(newtons: number) {
-  // Proportional, with a floor so a small force is still clearly an arrow.
-  return Math.max(30, (newtons / MAX_N) * MAX_LEN);
-}
+/** Pixels of arrow per newton, so a bigger force is never drawn shorter. */
+const PX_PER_NEWTON = 22;
 
 export function ForceDiagram({ block, lang }: { block: ForceDiagramBlock; lang?: string }) {
   const [active, setActive] = useState(block.examples[0]?.id ?? "box");
   const copy = figureCopy(lang);
 
   const example = block.examples.find((e) => e.id === active) ?? block.examples[0];
-  const view = VIEWS[(active as keyof typeof VIEWS) in VIEWS ? (active as keyof typeof VIEWS) : "box"];
-  const len = arrowLength(view.newtons);
+  const view = VIEWS[(active as ViewId) in VIEWS ? (active as ViewId) : "box"];
+  const len = view.newtons * PX_PER_NEWTON;
+  const [tx, ty] = view.tail;
+  const [dx, dy] = view.dir;
+  const tipX = tx + dx * len;
+  const tipY = ty + dy * len;
+
+  const alt =
+    active === "nail"
+      ? lang === "bm"
+        ? "Tukul mencabut paku dari sekeping kayu."
+        : "A hammer pulling a nail out of a plank of wood."
+      : lang === "bm"
+        ? "Seorang murid menolak sebuah kotak besar di atas lantai."
+        : "A student pushing a large box along the floor.";
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
@@ -69,71 +88,45 @@ export function ForceDiagram({ block, lang }: { block: ForceDiagramBlock; lang?:
         ))}
       </div>
 
-      <div className="overflow-x-auto">
-        <svg
-          viewBox="0 0 320 170"
-          className="mx-auto h-auto w-full min-w-[290px] max-w-[430px]"
-          role="img"
-          aria-label={example?.label ?? block.title}
+      <Chapter8PhotoFigure image={view.image} alt={alt} space="pixel" priority>
+        <ArrowHead id="ch8-force-arrow" className="fill-emerald-300" />
+        {/* the arrow: tail = point of application, length = magnitude, head = direction */}
+        <line
+          data-force-arrow={active}
+          x1={tx}
+          y1={ty}
+          x2={tipX}
+          y2={tipY}
+          className="stroke-emerald-300"
+          strokeWidth="9"
+          strokeLinecap="round"
+          markerEnd="url(#ch8-force-arrow)"
+        />
+        {/* the tail dot marks the point of application unambiguously */}
+        <circle data-application-point={active} cx={tx} cy={ty} r="13" className="fill-amber-300" />
+        <circle cx={tx} cy={ty} r="21" fill="none" className="stroke-amber-300/70" strokeWidth="3" />
+        <text
+          x={view.label[0]}
+          y={view.label[1]}
+          textAnchor="middle"
+          fontSize="42"
+          fontWeight="bold"
+          className="fill-emerald-200"
+          stroke="rgba(2,8,23,0.75)"
+          strokeWidth="7"
+          paintOrder="stroke"
         >
-          {/* ground line */}
-          <line x1={16} y1={132} x2={304} y2={132} className="stroke-muted-foreground/50" strokeWidth="1.5" />
-
-          {active === "box" ? (
-            <>
-              {/* the box being pushed */}
-              <rect x={100} y={72} width={64} height={60} className="fill-primary/15 stroke-primary/60" strokeWidth="2" />
-              {/* the hand contact face -- this is the point of application */}
-              <line x1={96} y1={72} x2={96} y2={132} className="stroke-amber-300" strokeWidth="3" />
-            </>
-          ) : (
-            <>
-              {/* wood block, with the nail part way out of it */}
-              <rect x={150} y={104} width={130} height={28} className="fill-primary/15 stroke-primary/60" strokeWidth="2" />
-              {/* the nail: shaft still in the wood, flat head standing above it */}
-              <line x1={214} y1={91} x2={214} y2={126} className="stroke-muted-foreground" strokeWidth="3.5" />
-              <rect x={206} y={86} width={16} height={5} rx="1" className="fill-muted-foreground" />
-              {/* the hammer sits to the left so the force arrow above the nail stays clear */}
-              <line x1={172} y1={68} x2={122} y2={34} className="stroke-amber-700/70" strokeWidth="6" strokeLinecap="round" />
-              <rect x={166} y={62} width={34} height={24} rx="4" className="fill-primary/25 stroke-primary/70" strokeWidth="2" />
-              {/* the claw, reaching under the nail head -- this is the point of application */}
-              <path d="M194,84 Q206,92 209,97" fill="none" className="stroke-amber-300" strokeWidth="3" strokeLinecap="round" />
-              <path d="M202,84 Q212,90 215,97" fill="none" className="stroke-amber-300" strokeWidth="3" strokeLinecap="round" />
-            </>
-          )}
-
-          {/* the force arrow: tail = point of application, length = magnitude, head = direction */}
-          <g transform={`translate(${view.tailX} ${view.tailY}) rotate(${view.deg})`}>
-            <line x1={0} y1={0} x2={len} y2={0} className="stroke-emerald-300" strokeWidth="3" />
-            <path d="M-5,-4 L5,0 L-5,4 Z" transform={`translate(${len} 0)`} className="fill-emerald-300" />
-          </g>
-          {/* the tail dot marks the point of application unambiguously */}
-          <circle cx={view.tailX} cy={view.tailY} r="4" className="fill-amber-300" />
-
-          {/* labels for the three properties */}
-          <text
-            x={view.tailX + (view.deg === 0 ? len / 2 : 16)}
-            y={view.deg === 0 ? view.tailY - 12 : view.tailY - len / 2}
-            textAnchor="middle"
-            fontSize="11"
-            fontWeight="bold"
-            className="fill-emerald-300"
-          >
-            {example?.magnitude}
-          </text>
-          <text x={16} y={20} fontSize="10" className="fill-muted-foreground">
-            {block.magnitudeLabel}
-          </text>
-          <text x={16} y={34} fontSize="10" className="fill-muted-foreground">
-            {block.directionLabel}
-          </text>
-          <text x={16} y={48} fontSize="10" className="fill-amber-300">
-            {block.applicationLabel}
-          </text>
-        </svg>
-      </div>
+          {example?.magnitude}
+        </text>
+      </Chapter8PhotoFigure>
 
       <p className="mt-1 text-center text-[11.5px] italic text-muted-foreground">{block.caption}</p>
+
+      <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11.5px] text-muted-foreground">
+        <li>{block.magnitudeLabel}</li>
+        <li>{block.directionLabel}</li>
+        <li className="text-amber-300">{block.applicationLabel}</li>
+      </ul>
 
       <p
         aria-live="polite"

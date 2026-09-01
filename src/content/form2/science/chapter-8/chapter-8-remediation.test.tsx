@@ -209,10 +209,13 @@ describe("Chapter 8 — force diagram (SP 8.1.2 requires one)", () => {
     it(`${lang} force diagram renders an arrow for each example`, () => {
       const block = findSection(content, (s) => !!s.forceDiagram)!.forceDiagram!;
       const markup = renderToStaticMarkup(<ForceDiagram block={block} lang={lang === "dlp" ? "en" : "bm"} />);
-      // one arrowhead path plus the tail dot marking the point of application
-      expect(markup).toMatch(/M-5,-4 L5,0 L-5,4 Z/);
+      // The scene is now the supplied artwork and the arrow is drawn over it:
+      // a marker arrowhead for direction, and a tail dot on the point of
+      // application. (Previously an inline path and a rotate() transform.)
+      expect(markup).toMatch(/marker-end="url\(#/);
+      expect(markup).toMatch(/data-force-arrow=/);
+      expect(markup).toMatch(/data-application-point=/);
       expect(markup).toMatch(/<circle/);
-      expect(markup).toMatch(/rotate\(/);
     });
   }
 

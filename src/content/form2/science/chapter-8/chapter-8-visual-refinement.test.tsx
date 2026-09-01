@@ -1,4 +1,5 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
@@ -7,9 +8,9 @@ import {
   CHAPTER8_LEVER_PANELS,
   CHAPTER8_LEVER_STATES,
   CHAPTER8_SECTION_FIGURES,
+  CHAPTER8_FIGURE_VARIANTS,
   CHAPTER8_VISUAL_ASSETS,
   ACTION_REACTION_ARROWS,
-  ACTION_REACTION_CONTACT_SHIFT,
   ATMOSPHERE_HAZE_GEOMETRY,
   Chapter8ContextFigure,
   chapter8Concepts,
@@ -22,6 +23,12 @@ import { BuoyancySimulator } from "@/components/notes/blocks/BuoyancySimulator";
 import { GasParticles } from "@/components/notes/blocks/GasParticles";
 import { ForceDiagram } from "@/components/notes/blocks/ForceDiagram";
 import { DepthPressure } from "@/components/notes/blocks/DepthPressure";
+import { MomentDiagram } from "@/components/notes/blocks/MomentDiagram";
+import { CHAPTER8_IMAGES, CHAPTER8_IMAGE_LIST } from "@/components/notes/chapter8/chapter8-assets";
+import {
+  CHAPTER8_FIGURE_WIDTH,
+  chapter8FigureVariant,
+} from "@/components/notes/chapter8/Chapter8PhotoFigure";
 import { scienceF2C8InteractiveBM } from "./interactive-bm";
 import { scienceF2C8InteractiveDLP } from "./interactive-dlp";
 import type {
@@ -118,13 +125,13 @@ describe("Chapter 8 · hit regions sit on the artwork", () => {
 
   it("keeps the approved artwork and adds no new raster image", () => {
     expect(Object.values(CHAPTER8_VISUAL_ASSETS).sort()).toEqual([
-      "/science/form2/chapter-8/01_effects_of_force.png",
-      "/science/form2/chapter-8/02_buoyancy_everyday_life.png",
-      "/science/form2/chapter-8/03_levers_everyday_life.png",
-      "/science/form2/chapter-8/04_pressure_contact_area.png",
-      "/science/form2/chapter-8/05_types_of_forces.png",
-      "/science/form2/chapter-8/06_action_reaction.png",
-      "/science/form2/chapter-8/07_atmospheric_pressure_altitude.png",
+      "/science/form2/chapter-8/01_effects_of_force.webp",
+      "/science/form2/chapter-8/02_buoyancy_everyday_life.webp",
+      "/science/form2/chapter-8/03_levers_everyday_life.webp",
+      "/science/form2/chapter-8/04_pressure_contact_area.webp",
+      "/science/form2/chapter-8/05_types_of_forces.webp",
+      "/science/form2/chapter-8/06_action_reaction_palms_touching.webp",
+      "/science/form2/chapter-8/07_atmospheric_pressure_altitude.webp",
     ]);
   });
 });
@@ -257,10 +264,11 @@ describe("Chapter 8 · the action-reaction figure describes its own picture", ()
         initialSelection="pair"
       />,
     );
-    expect(ACTION_REACTION_CONTACT_SHIFT).toBeGreaterThan(0);
-    expect(markup).toContain("data-action-reaction-contact-image");
-    expect(markup).toContain('data-skater-half="left"');
-    expect(markup).toContain('data-skater-half="right"');
+    // The supplied pack ships artwork that already shows the palms in contact,
+    // so the figure is one plain image rather than a shifted composite.
+    expect(markup).toContain("06_action_reaction_palms_touching.webp");
+    expect(markup).not.toContain("data-skater-half");
+    // both arrows appear together on selection
     expect(markup.match(/data-arrow=/g)).toHaveLength(2);
   });
 });
@@ -363,7 +371,7 @@ describe("Chapter 8 · buoyancy figures", () => {
       const markup = renderToStaticMarkup(
         <BuoyancySchematic block={block as never} lang={lang === "bm" ? "bm" : "en"} />,
       );
-      expect(markup).toContain("data-spring-balance");
+      expect(markup).toContain(CHAPTER8_IMAGES.springBalance);
       expect(markup).toContain(block.realWeight);
       expect(markup).toContain(block.apparentWeight);
       expect(markup).toContain(block.buoyantForce);
@@ -378,10 +386,11 @@ describe("Chapter 8 · buoyancy figures", () => {
     const section = sectionWith(scienceF2C8InteractiveBM, "buoyancy");
     const block = blockFrom<{ materials: BuoyancyMaterial[] }>(section, "buoyancy");
     const markup = renderToStaticMarkup(<BuoyancySimulator materials={block.materials} lang="bm" />);
-    expect(markup).toContain('data-state="empty"');
-    // the tank, its water and its surface line are drawn before anything is picked
+    // This is the density interaction, which stays a drawn animated tank. The
+    // floating/sinking artwork belongs to the buoyant-force figure instead.
     expect(markup).toContain("<svg");
-    expect(markup).toContain("fill-sky-400/25");
+    expect(markup).toContain('data-state="empty"');
+    expect(markup).not.toContain(CHAPTER8_IMAGES.floating);
     // the density values are content and must survive untouched
     expect(block.materials.length).toBeGreaterThan(0);
     for (const m of block.materials) expect(Number.isFinite(m.density)).toBe(true);
@@ -391,13 +400,15 @@ describe("Chapter 8 · buoyancy figures", () => {
 describe("Chapter 8 · point of application", () => {
   it("puts the force arrow's tail on the hammer claw gripping the nail", () => {
     const source = readFileSync("src/components/notes/blocks/ForceDiagram.tsx", "utf8");
-    // the nail example draws a nail, a claw and a hammer rather than a chevron
-    expect(source).toMatch(/the claw, reaching under the nail head/);
-    const nail = /nail: \{([\s\S]*?)\}/.exec(source)![1];
-    const tailY = Number(/tailY: ([\d.]+)/.exec(nail)![1]);
-    // the claw grips just under the nail head at y 96; the wood surface is 104
-    expect(tailY).toBeLessThan(104);
-    expect(/deg: (-?\d+)/.exec(nail)![1]).toBe("-90");
+    // the accepted hammer artwork carries the scene; the overlay carries the force
+    expect(source).toContain('image: "hammerNail"');
+    const nail = /nail: \{([\s\S]*?)\n  \},/.exec(source)![1];
+    const tail = /tail: \[(\d+), (\d+)\]/.exec(nail)!;
+    const dir = /dir: \[(-?[\d.]+), (-?[\d.]+)\]/.exec(nail)!;
+    // the claw grips the nail head at ~(777, 540); the wood surface is ~y 790
+    expect(Number(tail[2])).toBeLessThan(790);
+    // and the force pulls the nail upward, out of the wood
+    expect(Number(dir[2])).toBeLessThan(0);
     const markup = renderToStaticMarkup(
       <ForceDiagram
         block={blockFrom(sectionWith(scienceF2C8InteractiveBM, "forceDiagram"), "forceDiagram") as never}
@@ -524,7 +535,302 @@ describe("Chapter 8 · the action-reaction arrows are drawn as a pair", () => {
     expect(left.x1).toBeLessThan(right.x1);
     // short vectors at the hand contact, not movement arrows spanning the scene
     expect(Math.abs(left.x2 - left.x1)).toBeLessThanOrEqual(6);
-    expect(left.x1).toBeCloseTo(50, 0);
-    expect(right.x1).toBeCloseTo(50, 0);
+    // anchored to the palm contact measured on the artwork, so this cannot
+    // drift if the scene is ever re-shot at a different centre
+    const contact = CHAPTER8_HOTSPOT_GEOMETRY["action-reaction"][0].x;
+    expect(Math.abs(left.x1 - contact)).toBeLessThanOrEqual(1);
+    expect(Math.abs(right.x1 - contact)).toBeLessThanOrEqual(1);
+  });
+});
+
+describe("Chapter 8 · final visual pack — WebP production assets", () => {
+  const DIR = "public/science/form2/chapter-8";
+
+  it("ships all 16 production images as WebP", () => {
+    expect(CHAPTER8_IMAGE_LIST).toHaveLength(16);
+    for (const url of CHAPTER8_IMAGE_LIST) {
+      expect(url.endsWith(".webp"), url).toBe(true);
+      const file = path.join(DIR, path.basename(url));
+      expect(existsSync(file), "missing asset: " + file).toBe(true);
+      // a truncated or empty file would still "exist"
+      expect(statSync(file).size, url).toBeGreaterThan(10000);
+    }
+  });
+
+  it("declares each of the sixteen images exactly once", () => {
+    expect(new Set(CHAPTER8_IMAGE_LIST).size).toBe(16);
+  });
+
+  it("serves no Chapter 8 PNG from the production asset path", () => {
+    const pngs = readdirSync(DIR).filter((f) => f.toLowerCase().endsWith(".png"));
+    expect(pngs, "obsolete PNGs still shipped: " + pngs.join(", ")).toEqual([]);
+  });
+
+  it("references no Chapter 8 .png anywhere in the app", () => {
+    const offenders: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) walk(full);
+        else if (/\.tsx?$/.test(entry.name)) {
+          const text = readFileSync(full, "utf8");
+          if (/chapter-8\/[^"'`]*\.png/.test(text)) offenders.push(full);
+        }
+      }
+    };
+    walk("src");
+    expect(offenders).toEqual([]);
+  });
+});
+
+describe("Chapter 8 · final visual pack — figures use the supplied artwork", () => {
+  it("uses the real palms-touching image, with no raster shift hack", () => {
+    const source = readFileSync("src/components/notes/chapter8/Chapter8ContextFigure.tsx", "utf8");
+    expect(CHAPTER8_VISUAL_ASSETS["action-reaction"]).toBe(CHAPTER8_IMAGES.actionReaction);
+    expect(source).not.toContain("ACTION_REACTION_CONTACT_SHIFT");
+    expect(source).not.toContain("data-skater-half");
+    expect(source).not.toContain("clipPath");
+  });
+
+  it("maps each force example to its own supplied scene", () => {
+    const source = readFileSync("src/components/notes/blocks/ForceDiagram.tsx", "utf8");
+    expect(source).toContain('image: "pushBox"');
+    expect(source).toContain('image: "hammerNail"');
+    const markup = renderToStaticMarkup(
+      <ForceDiagram
+        block={blockFrom(sectionWith(scienceF2C8InteractiveBM, "forceDiagram"), "forceDiagram") as never}
+        lang="bm"
+      />,
+    );
+    // the box example is first, so its artwork and application point render
+    expect(markup).toContain(CHAPTER8_IMAGES.pushBox);
+    expect(markup).toContain("data-application-point");
+    expect(markup).toContain("data-force-arrow");
+  });
+
+  it("measures buoyant force on the supplied spring-balance photo", () => {
+    for (const [lang, content] of LANGS) {
+      const block = blockFrom<{ realWeight: string; apparentWeight: string; buoyantForce: string }>(
+        sectionWith(content, "buoyancySchematic"),
+        "buoyancySchematic",
+      );
+      const markup = renderToStaticMarkup(
+        <BuoyancySchematic block={block as never} lang={lang === "bm" ? "bm" : "en"} />,
+      );
+      expect(markup).toContain(CHAPTER8_IMAGES.springBalance);
+      // readings stay as SVG text, never baked into the raster
+      expect(markup).toContain('data-reading="air"');
+      expect(markup).toContain('data-reading="water"');
+      expect(markup).toContain(block.realWeight);
+      expect(markup).toContain(block.apparentWeight);
+      expect(block.realWeight).toMatch(/10\s*N/);
+      expect(block.apparentWeight).toMatch(/6\s*N/);
+      expect(block.buoyantForce).toMatch(/4\s*N/);
+    }
+  });
+
+  it("keeps the buoyant-force scenes out of the density selector", () => {
+    const block = blockFrom<{ materials: BuoyancyMaterial[] }>(
+      sectionWith(scienceF2C8InteractiveBM, "buoyancy"),
+      "buoyancy",
+    );
+    const markup = renderToStaticMarkup(<BuoyancySimulator materials={block.materials} lang="bm" />);
+    // floating/sinking artwork belongs to the buoyant-force figure, not here
+    expect(markup).not.toContain(CHAPTER8_IMAGES.floating);
+    expect(markup).not.toContain(CHAPTER8_IMAGES.sinking);
+    expect(markup).toContain("<svg");
+    for (const m of block.materials) expect(Number.isFinite(m.density)).toBe(true);
+  });
+
+  it("maps each moment situation to its own supplied scene", () => {
+    const source = readFileSync("src/components/notes/blocks/MomentDiagram.tsx", "utf8");
+    expect(source).toContain('"momentDoor"');
+    expect(source).toContain('"momentSpanner"');
+    expect(source).toContain("CHAPTER8_IMAGES.momentAngle");
+    const markup = renderToStaticMarkup(
+      <MomentDiagram
+        block={blockFrom(sectionWith(scienceF2C8InteractiveBM, "momentDiagram"), "momentDiagram") as never}
+        lang="bm"
+      />,
+    );
+    // door is first: pivot, perpendicular distance and force all overlay the photo
+    expect(markup).toContain(CHAPTER8_IMAGES.momentDoor);
+    expect(markup).toContain("data-perpendicular");
+    expect(markup).toContain("data-force");
+    expect(markup).toContain("data-right-angle");
+  });
+
+  it("orders the liquid-pressure jets shallow < middle < deep", () => {
+    const block = blockFrom<{ levels: { id: string; label: string }[] }>(
+      sectionWith(scienceF2C8InteractiveBM, "depthPressure"),
+      "depthPressure",
+    );
+    const markup = renderToStaticMarkup(<DepthPressure block={block as never} lang="bm" />);
+    expect(markup).toContain(CHAPTER8_IMAGES.liquidPressure);
+    // one SVG jet per outlet, drawn rather than baked into the artwork
+    const jets = markup.match(/data-jet="/g) ?? [];
+    expect(jets).toHaveLength(block.levels.length);
+
+    // reach must increase with depth, derived from the shipped outlet geometry
+    const source = readFileSync("src/components/notes/blocks/DepthPressure.tsx", "utf8");
+    const surface = Number(/const SURFACE_Y = (\d+);/.exec(source)![1]);
+    const outlets = [...source.matchAll(/\{ y: (\d+) \}/g)].map((m) => Number(m[1]));
+    expect(outlets).toHaveLength(3);
+    const reaches = outlets.map((y) => Math.sqrt(y - surface));
+    expect(reaches[0]).toBeLessThan(reaches[1]);
+    expect(reaches[1]).toBeLessThan(reaches[2]);
+  });
+});
+
+describe("Chapter 8 · no essential teaching content is hidden", () => {
+  it("renders no expand/collapse control in the Chapter 8 lesson flow", () => {
+    const source = readFileSync("src/components/notes/ScienceF2InteractiveNotesBlock.tsx", "utf8");
+    expect(source).not.toContain("<details");
+    expect(source).not.toContain("Expand explanation");
+    expect(source).not.toContain("Kembangkan penerangan");
+  });
+
+  it("drops the duplicate lever schematic for Chapter 8 only", () => {
+    const source = readFileSync("src/components/notes/ScienceF2InteractiveNotesBlock.tsx", "utf8");
+    expect(source).toContain("section.leverClasses && !isChapter8");
+  });
+});
+
+describe("Chapter 8 · buoyant force and density are separate interactions", () => {
+  const schematicSource = readFileSync("src/components/notes/blocks/BuoyancySchematic.tsx", "utf8");
+  const simulatorSource = readFileSync("src/components/notes/blocks/BuoyancySimulator.tsx", "utf8");
+
+  it("gives the buoyant-force figure all three supplied scenes", () => {
+    // measuring renders on mount; the other two are asserted from the mapping
+    for (const [lang, content] of LANGS) {
+      const markup = renderToStaticMarkup(
+        <BuoyancySchematic
+          block={blockFrom(sectionWith(content, "buoyancySchematic"), "buoyancySchematic") as never}
+          lang={lang === "bm" ? "bm" : "en"}
+        />,
+      );
+      expect(markup, lang).toContain(CHAPTER8_IMAGES.springBalance);
+    }
+    expect(schematicSource).toContain('image={view === "floating" ? "floating" : "sinking"}');
+  });
+
+  it("draws floating as equilibrium and sinking as weight greater than buoyancy", () => {
+    const floating = /floating: \{ up: (\d+), down: (\d+) \}/.exec(schematicSource)!;
+    const sinking = /sinking: \{ up: (\d+), down: (\d+) \}/.exec(schematicSource)!;
+    // a floating object is in equilibrium: F = W
+    expect(Number(floating[1])).toBe(Number(floating[2]));
+    // a sinking object has weight greater than the buoyant force
+    expect(Number(sinking[2])).toBeGreaterThan(Number(sinking[1]));
+  });
+
+  it("keeps the density selector free of the buoyant-force artwork", () => {
+    const block = blockFrom<{ materials: BuoyancyMaterial[] }>(
+      sectionWith(scienceF2C8InteractiveBM, "buoyancy"),
+      "buoyancy",
+    );
+    const markup = renderToStaticMarkup(<BuoyancySimulator materials={block.materials} lang="bm" />);
+    for (const forbidden of [CHAPTER8_IMAGES.floating, CHAPTER8_IMAGES.sinking]) {
+      expect(markup, forbidden).not.toContain(forbidden);
+      expect(simulatorSource, forbidden).not.toContain(forbidden);
+    }
+    // it stays an interactive drawing, not a raster swap
+    expect(simulatorSource).not.toContain("Chapter8PhotoFigure");
+    expect(markup).toContain("<svg");
+  });
+
+  it("keeps every density material control and its approved value", () => {
+    for (const [lang, content] of LANGS) {
+      const block = blockFrom<{ materials: BuoyancyMaterial[] }>(
+        sectionWith(content, "buoyancy"),
+        "buoyancy",
+      );
+      const markup = renderToStaticMarkup(
+        <BuoyancySimulator materials={block.materials} lang={lang === "bm" ? "bm" : "en"} />,
+      );
+      const buttons = markup.match(/<button/g) ?? [];
+      expect(buttons.length, lang).toBe(block.materials.length);
+      for (const m of block.materials) {
+        expect(markup, `${lang} ${m.id}`).toContain(m.label);
+        expect(markup, `${lang} ${m.id} density`).toContain(String(m.density));
+      }
+    }
+  });
+
+  it("still classifies each approved material against water", () => {
+    const block = blockFrom<{ materials: BuoyancyMaterial[] }>(
+      sectionWith(scienceF2C8InteractiveBM, "buoyancy"),
+      "buoyancy",
+    );
+    // the densities are frozen content; this pins them and the float/sink rule
+    const byId = Object.fromEntries(block.materials.map((m) => [m.id, m.density]));
+    for (const [id, density] of Object.entries(byId)) {
+      expect(Number.isFinite(density), id).toBe(true);
+    }
+    expect(block.materials.some((m) => m.density < 1.0)).toBe(true);
+    expect(block.materials.some((m) => m.density > 1.0)).toBe(true);
+    // and the visual reports which state it is in, so selection is observable
+    expect(simulatorSource).toContain("data-state");
+    expect(simulatorSource).toContain("density < 1.0");
+    expect(simulatorSource).toContain("transition-transform");
+  });
+
+  it("starts the density visual empty and keeps it interactive", () => {
+    const block = blockFrom<{ materials: BuoyancyMaterial[] }>(
+      sectionWith(scienceF2C8InteractiveBM, "buoyancy"),
+      "buoyancy",
+    );
+    const markup = renderToStaticMarkup(<BuoyancySimulator materials={block.materials} lang="bm" />);
+    expect(markup).toContain('data-state="empty"');
+  });
+});
+
+describe("Chapter 8 · contextual artwork is sized to support the lesson", () => {
+  it("caps every figure's display width without touching the assets", () => {
+    expect(CHAPTER8_FIGURE_WIDTH.single).toBeLessThanOrEqual(600);
+    expect(CHAPTER8_FIGURE_WIDTH.wide).toBeLessThanOrEqual(660);
+    expect(CHAPTER8_FIGURE_WIDTH.single).toBeLessThan(CHAPTER8_FIGURE_WIDTH.wide);
+    // at 16:9 these caps land inside the intended 340-380px visual height
+    for (const w of Object.values(CHAPTER8_FIGURE_WIDTH)) {
+      const height = (w * 9) / 16;
+      expect(height).toBeLessThanOrEqual(380);
+    }
+  });
+
+  it("gives multi-panel scenes the wider cap and single scenes the narrower one", () => {
+    expect(CHAPTER8_FIGURE_VARIANTS.types).toBe("wide");
+    expect(CHAPTER8_FIGURE_VARIANTS.effects).toBe("wide");
+    expect(CHAPTER8_FIGURE_VARIANTS.levers).toBe("wide");
+    expect(CHAPTER8_FIGURE_VARIANTS.buoyancy).toBe("wide");
+    expect(CHAPTER8_FIGURE_VARIANTS["action-reaction"]).toBe("single");
+    expect(CHAPTER8_FIGURE_VARIANTS.atmosphere).toBe("single");
+    // the simple single-object scenes the spec names
+    for (const key of ["pushBox", "hammerNail", "floating", "sinking", "momentDoor", "momentSpanner", "momentAngle"] as const) {
+      expect(chapter8FigureVariant(key), key).toBe("single");
+    }
+  });
+
+  it("renders the cap as a max-width so mobile stays full width", () => {
+    const markup = renderToStaticMarkup(
+      <Chapter8ContextFigure
+        kind="levers"
+        section={sectionFor(scienceF2C8InteractiveBM, "levers")}
+        lang="bm"
+      />,
+    );
+    // w-full with a max-width cap: full width on mobile, capped on desktop
+    expect(markup).toMatch(/max-width:\s*660px/);
+    expect(markup).toContain("w-full");
+    expect(markup).toContain("mx-auto");
+    expect(markup).toContain("aspect-video");
+    expect(markup).toContain('data-ch8-figure-variant="wide"');
+  });
+
+  it("keeps the overlay inside the image box so it tracks the picture", () => {
+    const source = readFileSync("src/components/notes/chapter8/Chapter8PhotoFigure.tsx", "utf8");
+    // the wrapper is the positioning context and carries the cap
+    expect(source).toContain("relative mx-auto aspect-video w-full");
+    expect(source).toContain("CHAPTER8_FIGURE_WIDTH[chapter8FigureVariant(image)]");
+    // and the svg overlay is pinned to that same box
+    expect(source).toContain("pointer-events-none absolute inset-0 h-full w-full");
   });
 });

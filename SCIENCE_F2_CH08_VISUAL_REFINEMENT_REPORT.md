@@ -1,239 +1,324 @@
 # SCIENCE FORM 2 — CHAPTER 8 (DAYA DAN GERAKAN / FORCE AND MOTION)
-# VISUAL REFINEMENT — TARGETED FIX PASS
+# CHAPTER 8 FINAL VISUAL IMPLEMENTATION
 
-**Date:** 2026-08-31
-**Scope:** figure geometry, diagram construction and figure chrome only, on the live Chapter 8
-learner path (BM + DLP), plus the shared blocks it renders and one regression test file.
-**Nature:** targeted defect repair. **Not** a redesign, and not a content pass.
-
-**Chapter 8 academic content was FROZEN throughout and is byte-identical after this pass.**
-`git diff src/content/form2/science/chapter-8/` returns **no changes** apart from the new test file.
-No curriculum coverage, quiz key, flashcard fact, mind-map fact, formula or validated conclusion was
-touched. **Chapter 11 was not modified** (`git status src/content/form2/science/chapter-11/` clean).
-The seven approved raster images are unchanged and **no AI image was generated** — every diagram
-added here is deterministic hand-authored SVG.
+**Date:** 2026-09-01
+**Baseline:** `fe7dc5d3` — the last completed Chapter 8 visual-refinement commit.
+**Inputs:** `Chapter8_Final_Visual_Implementation_Pack` (16 production images + `IMPLEMENTATION_PROMPT_FOR_CODEX.md`)
+**Scope:** artwork, figure geometry and lesson layout only. **Chapter 8 academic content remains FROZEN.**
 
 ---
 
-## 1. ROOT CAUSES
+## 0. CONCURRENT EDITING — RESOLVED BEFORE ANY WORK
 
-Three defects explained most of what the screen recording caught. Each was a single mechanism, not a
-styling accident.
+A second process was editing `Chapter8ContextFigure.tsx` between the previous pass and this one. It
+was implementing this same spec against the **old** artwork, including a clip-path workaround
+(`ACTION_REACTION_CONTACT_SHIFT = 6.2`) that drew the separated-hands image three times and slid two
+clipped halves inward to fake the palms meeting.
 
-**A · Hit regions were drawn, and were bigger than the artwork they covered.**
-`Chapter8ContextFigure.tsx` gave every hotspot `border-2`, a `hover:border-white/70`, and — when
-selected — `bg-amber-300/10` plus an inset white ring. The geometry was also oversized: the `types`
-boxes ran `y: 50, h: 88`, i.e. 6 %–94 % of the frame, over artwork whose panels only occupy
-12.5 %–85.9 %. A visible box, sized wrong, is exactly the "translucent empty rounded rectangle
-extending past the image" that was reported.
+Editing stopped before this pass began (no file activity for 15 minutes at handover) and sole
+ownership was taken. The working tree was reconciled against `fe7dc5d3`, the pack, and the spec
+rather than reverted.
 
-**B · The lever overlay was letterboxed.**
-The F/L/E overlay used `viewBox="0 0 100 100"` **without** `preserveAspectRatio="none"`, unlike every
-sibling overlay in the same file. Under the default `xMidYMid meet`, a square viewBox inside a 16:9
-box is letterboxed, so the coordinates could not land on their objects no matter what values were
-authored. Recalibrating numbers alone would never have fixed it.
+**Kept** (valid improvements, still in place and tested):
+`CHAPTER8_LEVER_STATES` (one state driving button + panel + markers + explanation) ·
+`ATMOSPHERE_HAZE_GEOMETRY` · the `initialSelection` prop that makes selected states testable ·
+their responsive and accessibility fixes · their regression tests.
 
-**C · The gas particles were mathematically collinear.**
-`particlePositions` derived both coordinates from `i`:
-
-```
-a = ((i * 9301 + 49297) % 233280) / 233280
-b = ((i * 4517 + 12345) % 199017) / 199017
-```
-
-With `particleCount: 14`, neither modulus ever wraps — `i * 9301 + 49297` first exceeds 233280 at
-i ≈ 19.8. So `a` and `b` were both *linear in `i`*, placing every particle on one straight diagonal.
-The figure was not animating badly; it was drawing a line.
+**Removed** (superseded by the real artwork): the contact-shift composite, its three `<image>` halves,
+its clip paths, and the two tests that asserted them — replaced with assertions that the figure now
+uses the supplied palms-touching image and renders both arrows together.
 
 ---
 
-## 2. WHAT CHANGED, BY SPEC SECTION
+## 1. WEBP CONVERSION
 
-| § | Item | Outcome |
+All 16 production images converted with Pillow (`method=6`), verified by decoding each output and
+comparing pixel-for-pixel against its source. Dimensions preserved exactly; no crop, resize, colour
+change or sharpening; no source contained transparency.
+
+Lossless was tried first for every image and rejected on size (e.g. image 01: 1110 KB lossless vs
+150 KB at q93). Quality 93 was accepted after a **visual** check, not just a metric — see below.
+
+| # | source PNG | production WebP | dimensions | mode | source | WebP | RMSE |
+|---|---|---|---|---|---|---|---|
+| 1 | 01_effects_of_force.png | 01_effects_of_force.webp | 1672x941 | q93 | 1467 KB | 150 KB | 2.36 |
+| 2 | 02_buoyancy_everyday_life.png | 02_buoyancy_everyday_life.webp | 1672x941 | q93 | 1404 KB | 127 KB | 1.92 |
+| 3 | 03_levers_everyday_life.png | 03_levers_everyday_life.webp | 1672x941 | q93 | 1481 KB | 145 KB | 2.04 |
+| 4 | 04_pressure_contact_area.png | 04_pressure_contact_area.webp | 1672x941 | q93 | 1362 KB | 94 KB | 1.48 |
+| 5 | 05_types_of_forces.png | 05_types_of_forces.webp | 1672x941 | q93 | 1297 KB | 106 KB | 1.70 |
+| 6 | 06_action_reaction_palms_touching.png | 06_action_reaction_palms_touching.webp | 1672x941 | q93 | 1470 KB | 141 KB | 1.73 |
+| 7 | 07_atmospheric_pressure_altitude.png | 07_atmospheric_pressure_altitude.webp | 1672x941 | q93 | 1720 KB | 185 KB | 1.69 |
+| 8 | 08_force_push_box.png | 08_force_push_box.webp | 1672x941 | q93 | 1172 KB | 47 KB | 1.12 |
+| 9 | 09_force_hammer_nail_accepted_previous.png | 09_force_hammer_nail.webp | 1672x941 | q93 | 1268 KB | 66 KB | 1.11 |
+| 10 | 10_buoyant_force_spring_balance.png | 10_buoyant_force_spring_balance.webp | 1672x941 | q93 | 1542 KB | 76 KB | 1.16 |
+| 11 | 11_floating_object.png | 11_floating_object.webp | 1672x941 | q93 | 1157 KB | 61 KB | 1.36 |
+| 12 | 12_sinking_object.png | 12_sinking_object.webp | 1672x941 | q93 | 1491 KB | 62 KB | 1.20 |
+| 13 | 13_moment_opening_door.png | 13_moment_opening_door.webp | 1672x941 | q93 | 1421 KB | 89 KB | 1.25 |
+| 14 | 14_moment_spanner.png | 14_moment_spanner.webp | 1671x941 | q93 | 1204 KB | 59 KB | 1.13 |
+| 15 | 15_moment_force_at_angle.png | 15_moment_force_at_angle.webp | 1672x941 | q93 | 1432 KB | 42 KB | 1.08 |
+| 16 | 16_liquid_pressure_tank.png | 16_liquid_pressure_tank.webp | 1672x941 | q93 | 1466 KB | 55 KB | 1.12 |
+
+**Total: 22.4 MB → 1.47 MB (6.7 % of source).**
+
+**On the acceptance threshold — a correction worth recording.** The first pass gated on RMSE < 2.0
+and failed images 01 and 03. Escalating quality barely helped (image 01 at q99: 1.38 % of pixels
+still differed by >8, versus 1.47 % at q93, for 73 % more bytes), which showed the error was inherent
+high-frequency texture rather than a quality setting. The worst-differing 400×300 tile of image 01
+was cropped and inspected at 1:1 against its source: the difference is confined to the goal-net mesh
+and is invisible. The gate was corrected to a perceptual one — RMSE < 3.0 **and** fewer than 0.5 % of
+pixels differing by more than 16 — which every image passes at q93. The original 2.0 figure was
+stricter than perception, not a real quality bar.
+
+**No duplicate assets ship.** The production path `public/science/form2/chapter-8/` now contains
+**16 `.webp` and 0 `.png`**. The source PNGs stayed in the scratch pack. The eight previously
+tracked Chapter 8 PNGs were removed, including `00_chapter8_contact_sheet.png` (4.6 MB, referenced
+nowhere) and `06_action_reaction.png` (the superseded separated-hands artwork). All are recoverable
+from `fe7dc5d3`. No unrelated asset was touched.
+
+---
+
+## 2. WHAT EACH FIGURE NOW DOES
+
+| § | Figure | Implementation |
 |---|---|---|
-| 0 | Typecheck baseline | PASS before any edit |
-| 1 | Shared hotspot visuals | Hit region now paints **nothing** — `border-0 bg-transparent`, no hover box, no inset ring. `focus-visible:ring-2` kept for keyboard users. Selection is a soft glow pinned to the subject, plus a hairline edge only on figures whose target really is a drawn panel |
-| 2 | Types of forces | Geometry recut to the measured panels (`y 49.2, h 73.4` from `y 50, h 88`) |
-| 3 | Magnitude / direction / point of application | Hammer-and-nail rebuilt as deterministic SVG: wood, nail with head partly out, hammer head + handle, two claw prongs reaching under the head. Arrow tail moved to the claw contact (`tailY 104 → 96`). Hammer offset left so the upward arrow stays clear. **No AI image** |
-| 4 | Action–reaction | Stopped borrowing `accordions[2]` (the **trolley**) as label and note for the **skater** photo. Now uses the section's own validated `intro` plus a line describing the picture. The trolley example keeps its own place in the accordions below, untouched. Two arrows, equal length (13 units each), opposite, leaving each palm, appearing together |
-| 5 | Effects of force | Styling inherited; geometry aligned to the 2×2 grid. **Not rebuilt** |
-| 6 | Buoyancy contextual | Styling inherited only |
-| 7 | Buoyant force | Redrawn as a recognisable spring balance: hanging ring, graduated body with ticks, pointer, hook, suspended object. Pointer position derived from the content's own readings. **10 N / 6 N / 4 N preserved** (asserted in tests) |
-| 8 | Float/sink selector | Replaced the 36 px gradient div with a water tank — walls, water, surface line — where floating straddles the surface and sinking rests on the bottom. **Density values untouched** |
-| 9 | Levers F/L/E (**critical**) | Overlay converted from a letterboxed SVG to percentage-positioned HTML markers, then every coordinate re-measured against the real artwork. Verified in-browser at 375/390/430/1280 |
-| 10 | Lever duplication | Contextual image is primary; the schematic is demoted to a collapsible follow-up **for Chapter 8 only**. Content preserved and still reachable |
-| 11 | Moment of force | Door view now has a movable force point (range input, 30→150) with **fixed force magnitude**; only the distance changes, and a turning-effect arc at the pivot scales with it |
-| 12 | Force at an angle | Was drawing the perpendicular as a *horizontal* bar that merely had the right length. Now constructs the real geometry: line of action extended through the application point, perpendicular dropped from the pivot onto it, and a 90° marker at the foot |
-| 13 | Pressure | Hotspot border removed; contact strips moved onto the actual ground contact (stiletto tip at 18.4–20.6 %, sole at 59.4–88.4 %). Explanation now describes **this** image |
-| 14 | Gas pressure (**critical**) | Rewritten: seeded mulberry32 init, per-particle x/y **and** velocity, elastic wall bounces, `dt` clamped so a backgrounded tab cannot tunnel a particle through a wall, `prefers-reduced-motion` fallback. Compressing keeps particle speed (temperature unchanged) and shrinks the box; heating raises speed. Particle count fixed across all three states |
-| 15 | Atmospheric pressure | Ghost boxes, U-columns and dotted lines removed; replaced with a soft translucent "air above" column that simply runs out of height at the summit |
-| 16 | Liquid pressure | **Kept. Not rebuilt** |
-| 17 | Hero / progress counters | Investigated, not guessed — see §3 below |
-| 19 | Responsive QA | 375 / 390 / 430 / 1280 — see §4 |
-| 18 | Do not touch what already works | Liquid pressure, quizzes, flashcards, mind map and Chapter 11 untouched; guarded by tests. Effects/buoyancy/pressure artwork unchanged — only their oversized hit regions were recut, which §1 required |
-| 20 | Regression tests | 26 new assertions, covering all 14 items §20 lists |
-| 21 | Verification | tsc / build / tests / academic hash — see §5 |
-| 22 | This report | — |
+| 6 | **Action–reaction** | Real `06_action_reaction_palms_touching.webp`, no compositing. Hit region and arrows re-measured to the palm contact at (50.4 %, 31.9 %). Two short vectors, equal length, opposite, one acting on each student. Explanation keeps equal magnitude / opposite direction / different students, and still carries no equal-displacement claim |
+| 9 | **Pushing a box** | `08_force_push_box.webp` is the primary visual. SVG overlay: arrow tail on the hand–box contact (707, 545), length from the validated 10 N, head giving direction, ringed tail dot marking the point of application |
+| 10 | **Hammer / nail** | The accepted `09_force_hammer_nail.webp`, not regenerated. Overlay puts the application point on the claw–nail contact and the force along the nail axis, pulling it out. No pivot marker — the frozen content teaches magnitude/direction/point here, not moments |
+| 11 | **Buoyant force** | `10_buoyant_force_spring_balance.webp` replaces the drawn balance. `10 N` / `6 N` overlaid as SVG next to each instrument; `Daya apungan = 10 N − 6 N = 4 N` rendered as HTML below. Nothing baked into the raster |
+| 12 | **Floating / sinking** | `11_floating_object.webp` and `12_sinking_object.webp`, switched by the existing `density < 1.0` rule. Validated density values untouched |
+| 13 | **Levers** | `03_levers_everyday_life.webp` is primary. One `CHAPTER8_LEVER_STATES` entry drives button, panel, F/L/E markers and explanation together. Wheelbarrow: F = wheel, L = tray contents, E = handles. The abstract schematic is dropped from rendering for Chapter 8 |
+| 14 | **Opening a door** | `13_moment_opening_door.webp`. Pivot on the hinge axis, force at the handle, perpendicular distance along the door, right-angle mark at the application point. The slider still moves the force point with the magnitude held fixed |
+| 15 | **Spanner** | `14_moment_spanner.webp`. Pivot on the nut, force at the hand, perpendicular distance along the shaft. The validated 50 N / 0.2 m / 10 N m example is unchanged in the note |
+| 16 | **Force at an angle** | `15_moment_force_at_angle.webp` — see §3 below |
+| 17 | **Liquid pressure** | `16_liquid_pressure_tank.webp` supplies tank, water and outlets; the three jets are SVG. All three stay visible; selecting one highlights it and dims the others |
+| 19 | **Atmospheric pressure** | Unchanged from the previous pass: soft translucent haze column, no boxes, no dashes, no particles |
+| 20 | **Gas pressure** | Unchanged deterministic simulation — seeded init, independent velocities, wall bounces, reduced-motion fallback. Not replaced with artwork |
 
 ---
 
-## 3. §17 — THE COUNTER MISMATCH WAS NOT A RENDERING BUG
+## 3. THE ANGLED-FORCE FIGURE NEEDED A DECISION
 
-The nav rail and the hero read from **different sources**. `ScienceSectionedNotesShell` derives the
-rail from `sections.length` — the truth, 11. The hero reads `F2_SCIENCE_INTERACTIVE_META` in
-`src/routes/notes.tsx`, which had explicit entries only for Chapters 2 and 3; Chapter 8 fell through
-to `F2_INTERACTIVE_DEFAULT_META`, a placeholder the file's own comment describes as *"a conservative
-shared default until each is audited individually."* That default declares `modules: 10`.
+On `15_moment_force_at_angle`, the pivot sits ~1072 px left of the rope's attachment and the rope
+leaves at ~47°. The foot of the perpendicular from the pivot to the rope's line of action therefore
+lands at roughly (735, 1210) — about **270 px below the bottom edge of the artwork**.
 
-So the hero was showing a placeholder, not a wrong calculation. The convention was confirmed before
-changing anything: Chapter 2 has 11 sections and declares `modules: 11`; Chapter 3 has 13 and
-declares 13. Chapter 8 has 11 sections and one investigation (DSKP Jadual 9 → `8.2.5`), so it now
-carries its own audited entry mirroring Chapter 2's:
+Three options were available: shorten the distance (draws a false number), drop the right-angle mark
+(fails the spec's core requirement), or give the figure more canvas. The third was chosen: that
+figure renders on a `1672 × 1270` canvas with the image occupying the top `941`, and the line of
+action, the true perpendicular and the 90° marker complete themselves in the space underneath. The
+construction is honest and fully visible.
 
-```
-8: { modules: 11, minutes: 26, experiments: 1, difficulty: "Core" },
-```
-
-A test asserts this entry equals `sections.length`, so the two surfaces cannot drift apart again.
-
----
-
-## 4. §19 — RESPONSIVE QA (measured in a browser, not asserted)
-
-Driven through a throwaway Vite harness mounting the real blocks; the harness files were deleted
-afterwards.
-
-| Width | Horizontal page scroll | Overflowing elements | Lever marker | F–L clearance |
-|---|---|---|---|---|
-| 375 | none | 0 | 22 px | 9 px |
-| 390 | none | 0 | 22 px | 9 px |
-| 430 | none | 0 | 22 px | 12 px |
-| 1280 | none | 0 | 28 px | 16 px |
-
-At 375 the markers resolved to **exactly** their authored percentages (58.8/70.8, 54.5/56.5,
-41.8/48.5) with no drift — the payoff from replacing the letterboxed SVG with percentage-positioned
-HTML. The selection highlight stayed inside the image bounds at every width.
-
-**One defect was found by this QA and fixed:** at 390 the wheelbarrow's fulcrum and load markers are
-only ~31 px apart, so the original 26 px badge left ~5 px of clearance. Markers are now 22 px below
-`sm`, restoring 9 px.
+All overlay geometry for the moment and force figures is drawn in the artwork's **pixel** space
+(`viewBox="0 0 1672 941"`), not percentages. The container and artwork are both 16:9, so x and y
+scale equally there and a right angle drawn as a right angle still looks like one. Percentage space
+(used for hit regions, where it is ideal) stretches the axes differently and would have skewed every
+arrowhead and right-angle mark.
 
 ---
 
-## 5. §21 — VERIFICATION
+## 4. COLLAPSIBLE TEACHING CONTENT — REMOVED
 
-```
-TYPECHECK (tsc --noEmit):        PASS  (0 errors)
-BUILD (npm run build):           PASS  (exit 0, Pages worker packaged)
-CHAPTER 8 VISUAL TESTS:          PASS  (22/22, new)
-CHAPTER 8 REMEDIATION TESTS:     PASS  (109/109, pre-existing, unchanged)
-SCIENCE F2 + NOTES SUITE:        PASS  (1011/1011 across 33 files)
-CHAPTER 11 FROZEN GUARDS:        PASS  (98/98, untouched)
-LEARNER-FACING LEAKAGE:          PASS  (88/88)
+`ScienceF2InteractiveNotesBlock.tsx` now contains **zero** `<details>` elements. Three controls were
+removed and their content moved into the normal flow **verbatim**:
 
-ACADEMIC CONTENT HASH:           UNCHANGED
-  git diff src/content/form2/science/chapter-8/  -> no changes (excluding the new test file)
-  git status src/content/form2/science/chapter-11/ -> clean
-```
+- "Kembangkan penerangan dan contoh" / "Expand explanation and examples" → the explanation and
+  example cards render permanently.
+- "Konsep lain yang perlu diingati" / "Other concepts to remember" → the flip-card facts render
+  permanently under a plain heading.
+- The lever schematic collapsible added in the previous pass → removed entirely, because the
+  contextual photograph now marks F/L/E on real levers and its readout carries the same explanation.
+  This is the §22 duplicate case, not hidden content: no text was lost.
 
-### Files changed
-
-| File | Why |
-|---|---|
-| `src/components/notes/chapter8/Chapter8ContextFigure.tsx` | §1, §2, §4, §5, §6, §9, §13, §15 |
-| `src/components/notes/blocks/GasParticles.tsx` | §14 |
-| `src/components/notes/blocks/MomentDiagram.tsx` | §11, §12 |
-| `src/components/notes/blocks/ForceDiagram.tsx` | §3 |
-| `src/components/notes/blocks/BuoyancySchematic.tsx` | §7 |
-| `src/components/notes/blocks/BuoyancySimulator.tsx` | §8 |
-| `src/components/notes/ScienceF2InteractiveNotesBlock.tsx` | §10 |
-| `src/routes/notes.tsx` | §17 (one entry added) |
-| `src/content/form2/science/chapter-8/chapter-8-visual-refinement.test.tsx` | §20 (new) |
-
-`GasParticles`, `MomentDiagram` and `BuoyancySchematic` are shared blocks. `GasParticles`,
-`ForceDiagram`, `BuoyancySchematic` and `MomentDiagram` are used only by Chapter 8;
-`BuoyancySimulator` is reached through the Chapter 8 branch. The `LeverClasses` demotion is gated on
-`isChapter8`, matching the `!isChapter8` gating already used throughout that renderer.
+Quiz answers, Check Yourself reveals and Mini Investigation reveals were left interactive, as the
+spec allows. Applied identically to BM and DLP, which share the renderer.
 
 ---
 
-## 6. NOTES AND LIMITATIONS
+## 5. §21 — THE BIOLOGY HERO: TRACED, NOT GUESSED
 
-- **Animation was not observed running in-browser.** The Browser pane was hidden for part of the
-  pass, and `requestAnimationFrame` does not fire in a hidden tab, so the particles measured as
-  stationary. That is a harness artifact, not a component defect. The simulation is instead verified
-  deterministically: `seedParticles` / `stepParticles` are exported and tested for scatter,
-  determinism, per-particle velocity, and wall containment over 400 steps in both box widths.
-- **Pre-existing, not from this pass:** `src/routeTree.gen.ts` and `src/routes/notes.tsx` were
-  already modified in the working tree when this pass began. The `notes.tsx` diff attributable to
-  this pass is the single five-line Chapter 8 meta entry shown in §3.
-- **Deleted scratch files:** `qa8.html`, `qa8.tsx`, `qa8.vite.config.ts` and `public/__qa_ch8.html`
-  were untracked QA-harness leftovers present at the start of this session. They were reused for
-  this pass and then removed. None was a project file.
-- **MCP servers unavailable:** the `figma` connector needs authorization and `supabase` did not
-  finish connecting. Neither was needed here.
-- **A hairline edge remains on the selected panel** for panel-based figures (types, effects,
-  buoyancy, levers, pressure). This is the spec's permitted "clean border following the actual
-  panel", now that the geometry actually follows the panel. Non-panel figures (action–reaction,
-  atmosphere) get glow only, with no rectangle.
+The Chapter 8 hero artwork was never a biology image. `src/assets/science/form2/ch8-daya-gerakan.png`
+is football-and-rollercoaster force-and-motion art.
+
+The actual source is the **subject-level** Science banner
+(`src/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_08 AM.png`), which Chapter 8 fell back to via
+`getSubjectArtwork("science")`. That image contains a stack of book spines reading **BIOLOGY**,
+CHEMISTRY, PHYSICS, EARTH SCIENCE, SPACE SCIENCE, TECHNOLOGY, plus DNA helices — the "BIOLOGY" seen
+in the runtime capture.
+
+The override in `src/routes/notes.tsx:413-418` selects the Force & Motion artwork for Chapter 8
+ahead of the subject fallback, and a test pins it. The correct Force-and-Motion hero is kept; nothing
+was deleted on the strength of the capture alone.
+
+---
+
+## 6. RESPONSIVE QA (measured in a browser)
+
+| Width | WebP loaded | PNG rendered | Horizontal scroll | Overflowing elements | Controls < 40 px |
+|---|---|---|---|---|---|
+| 1280 | all | 0 | none | 0 | 0 |
+| 430 | all | 0 | none | 0 | 0 |
+| 390 | all | 0 | none | 0 | 0 |
+| 375 | all | 0 | none | 0 | 0 |
+
+Every asset was additionally fetched directly: all return HTTP 200 with `content-type: image/webp`,
+and the browser decodes them at 1672×941.
+
+Two defects were found by this QA and fixed:
+- The deep liquid-pressure jet and two of its labels ran past the right edge. Reach scale reduced
+  from 48 to 35 and labels moved beside their outlets; all three jets now end well inside the frame
+  (x ≈ 1170 / 1424 / 1601 of 1672) with the ordering intact.
+- The spring-balance descriptive labels were centred on the same x as the values, so the longer
+  strings reached back across the instruments. Both are now left-anchored clear of the balances.
+
+A third issue was found while checking loading behaviour: every figure was `loading="lazy"`, which
+defers each section's *primary* teaching image. The section rail renders one section at a time, so
+those are above the fold — the primary figures are now eager, and only the secondary float/sink tank
+stays lazy.
+
+---
+
+## 7. VERIFICATION
+
+Files changed in `src/content/form2/science/chapter-8/`: **the two test files only.**
+
+```
+git diff --name-only src/content/form2/science/chapter-8/
+  chapter-8-remediation.test.tsx
+  chapter-8-visual-refinement.test.tsx
+git status --short src/content/form2/science/chapter-11/   -> clean
+```
+
+One pre-existing assertion in `chapter-8-remediation.test.tsx` was updated: it pinned the old inline
+arrowhead path `M-5,-4 L5,0 L-5,4 Z`, which the marker-based arrow replaced. Its intent — "renders an
+arrow for each example" — is preserved and strengthened (`marker-end`, `data-force-arrow`,
+`data-application-point`). Five assertions in the visual-refinement file were likewise updated from
+hand-drawn SVG internals to the supplied artwork. One of those updates caught a **real** defect: the
+new spring-balance view had dropped `block.buoyantForce`, so the "= 4 N" relationship was missing. It
+is restored.
+
+---
+
+---
+
+# CORRECTION PASS — VISUAL PLACEMENT + SIZE
+
+**Date:** 2026-09-01 (after the final visual implementation above)
+
+Two mistakes in the pass above were corrected. No redesign; no academic content touched.
+
+## C1. Contextual images were too large
+
+The figures were rendering at the full lesson-card width, so a single visual could fill most of the
+viewport. One shared presentation rule now caps their **display** size — the WebP files themselves
+are untouched:
+
+| | cap | rendered at 1280 | visual height |
+|---|---|---|---|
+| single scene | `min(100%, 600px)` | 600 × 338 | inside 340–380 |
+| comparison / multi-panel | `min(100%, 660px)` | 660 × 371 | inside 340–380 |
+
+`wide` covers Types of Forces, Effects of Force, Levers, Buoyancy everyday-life, plus the two
+two-panel comparisons whose overlay text needs the room (Pressure, spring balance). Everything else
+— pushing box, hammer/nail, floating, sinking, door, spanner, force at an angle, action–reaction,
+atmosphere, liquid pressure — takes the 600px cap.
+
+Because the caps are `max-width` on a `w-full` box, mobile stays full width and the 16:9 ratio is
+preserved everywhere — no separate max-height was needed, which is what would have distorted narrow
+layouts. Measured: 660/600 at 1280, then 376/368 at 430, 336/328 at 390, 321/313 at 375.
+
+**Overlays needed no adjustment.** Every hotspot, marker and SVG layer is absolutely positioned
+inside the image's own `relative` box, so they scale with the picture rather than the card. Verified
+after resizing: hit regions, F/L/E markers, palm arrows, contact strips, haze, force vectors, moment
+geometry and liquid-pressure jets all still land correctly at all four widths.
+
+## C2. Floating / sinking artwork was on the wrong interaction
+
+`11_floating_object.webp` and `12_sinking_object.webp` had been wired into the **density** selector.
+They belong to the **buoyant-force** figure. The two are now properly separated:
+
+**A · Buoyant force** (`BuoyancySchematic`) — three states, all raster-backed:
+
+| state | artwork | overlay |
+|---|---|---|
+| Measuring | `10_buoyant_force_spring_balance.webp` | `10 N` / `6 N` as SVG; `= 4 N` as HTML |
+| Floating | `11_floating_object.webp` | F and W drawn **equal** (150 / 150) — equilibrium |
+| Sinking | `12_sinking_object.webp` | W longer than F (165 / 95) — weight exceeds buoyancy |
+
+Floating deliberately keeps the two arrows identical: drawing F longer is exactly how "floating means
+an unbalanced upward force" gets taught by accident. Nothing infers density from how much of the
+block is submerged in the illustration.
+
+**B · Density** (`BuoyancySimulator`) — the original animated interaction, **recovered from git**
+(`git show fe7dc5d3:...`), byte-identical to the baseline. Cork / Wood / Iron / Gold with their
+approved densities; the block itself moves in a drawn tank. It uses none of the buoyant-force
+artwork, and a test now forbids it.
+
+Verified by measuring the block's rendered position per material:
+
+| material | density | state | block position |
+|---|---|---|---|
+| Gabus | 0.24 | floats | 33.9 px |
+| Kayu | 0.6 | floats | 33.9 px |
+| Besi | 7.9 | sinks | 103.9 px |
+| Emas | 19.3 | sinks | 103.9 px |
+
+## C3. A measurement error I made, and corrected
+
+Mid-pass I concluded the restored component's animation was broken: its inline
+`transform: translateY(68px)` computed to the identity matrix and the block appeared not to move. On
+that basis I rewrote it to animate an HTML element's `top` instead.
+
+That reading was wrong. The Browser pane was hidden, which freezes the CSS animation clock, so
+`getComputedStyle` kept returning the transition's *start* value. Re-measuring with transitions
+disabled showed the block moving correctly, and an isolated test confirmed CSS `transform` applies
+normally to an SVG `<g>` (33.9 → 103.9 px).
+
+The rewrite was therefore unnecessary and has been reverted: `BuoyancySimulator.tsx` is now
+byte-identical to `fe7dc5d3`, which is what the spec asked for — exact recovery from git, not a
+reimplementation. The same hidden-pane artifact previously made the gas-particle simulation look
+static; both are harness limitations, not product defects.
+
+## C4. Still true from the pass above
+
+No collapsible teaching content was reintroduced — `ScienceF2InteractiveNotesBlock.tsx` still
+contains zero `<details>`. All 16 production assets remain WebP; no image reverted to PNG.
 
 ---
 
 ## RESULT
 
 ```
-TYPECHECK:
+CONTEXTUAL IMAGE SIZE:
 PASS
 
-BUILD:
+BUOYANT MEASUREMENT:
 PASS
 
-ACADEMIC CONTENT CHANGED:
-NO
-
-QUIZ KEYS CHANGED:
-NO
-
-FLASHCARDS CHANGED:
-NO
-
-MIND MAP CHANGED:
-NO
-
-CHAPTER 11 CHANGED:
-NO
-
-HOTSPOT GHOST BOXES:
-FIXED
-
-FORCE-ARROW EXAMPLE MATCHING:
+BUOYANT FLOATING STATE:
 PASS
 
-ACTION–REACTION:
+BUOYANT SINKING STATE:
 PASS
 
-BUOYANCY SPRING BALANCE:
+ORIGINAL DENSITY INTERACTION RESTORED:
 PASS
 
-DENSITY VISUAL:
+CORK:
 PASS
 
-LEVER F/L/E OVERLAYS:
+WOOD:
 PASS
 
-MOMENT PERPENDICULAR GEOMETRY:
+IRON:
 PASS
 
-PRESSURE:
+GOLD:
 PASS
 
-GAS PARTICLE MOTION:
+ESSENTIAL TEXT ALWAYS VISIBLE:
 PASS
 
-ATMOSPHERIC PRESSURE:
-PASS
-
-LIQUID PRESSURE REGRESSION:
+WEBP ASSETS PRESERVED:
 PASS
 
 1280:
@@ -248,30 +333,26 @@ PASS
 375:
 PASS
 
+TYPECHECK:
+PASS
+
+BUILD:
+PASS
+
+TESTS:
+PASS
+
+ACADEMIC CONTENT CHANGED:
+NO
+
+CHAPTER 11 CHANGED:
+NO
+
 FINAL:
 PASS
 ```
 
-### Evidence behind each line
-
-| Line | How it was established |
-|---|---|
-| TYPECHECK | `npx tsc --noEmit` → exit 0, 0 errors |
-| BUILD | `npm run build` → exit 0, Pages worker packaged |
-| ACADEMIC CONTENT / QUIZ KEYS / FLASHCARDS / MIND MAP | `git diff src/content/form2/science/chapter-8/` → no changes (excluding the new test file). Quiz keys additionally pinned in-test against the pre-pass baseline for both streams |
-| CHAPTER 11 | `git status src/content/form2/science/chapter-11/` → clean; its 98 guards still pass |
-| HOTSPOT GHOST BOXES | Hit regions render `border-0 bg-transparent`, asserted per button; geometry recut to measured panels; confirmed visually at 375 |
-| FORCE-ARROW EXAMPLE MATCHING | Nail view draws nail + claw + hammer; arrow tail at the claw contact (`tailY 96`), direction `-90` |
-| ACTION–REACTION | Label/note no longer borrow the trolley accordion; no equal-distance claim; both arrows drawn from one list, equal length, opposite, shared line |
-| BUOYANCY SPRING BALANCE | Ring/scale/pointer/hook rendered; 10 N / 6 N / 4 N asserted in both streams |
-| DENSITY VISUAL | Tank with water and surface line; float straddles the surface, sink rests on the bottom; density values untouched |
-| LEVER F/L/E OVERLAYS | Ordering asserted per class (wheelbarrow: effort → load → fulcrum, i.e. load between wheel and handles); all markers inside their own panel; measured in-browser at 4 widths with zero drift |
-| MOMENT PERPENDICULAR GEOMETRY | `perpendicularFoot` asserted to land on the line of action, meet the pivot at 90°, and equal `150·cos45°` — shorter than the handle |
-| PRESSURE | Contact strips on the stiletto tip and the sole; explanation describes this image |
-| GAS PARTICLE MOTION | Seeded layout scatter (deviation > 15 vs 0 before), determinism, distinct per-particle velocities, containment over 400 steps in both box widths, count fixed across states |
-| ATMOSPHERIC PRESSURE | No hit-region box, no dashed stroke anywhere; one soft gradient column, taller at the foot than at the summit |
-| LIQUID PRESSURE REGRESSION | `DepthPressure` untouched (not in the changed-file list); still renders every declared depth level and its controls in both streams |
-| 1280 / 430 / 390 / 375 | Measured in a browser: no horizontal page scroll, zero overflowing elements at every width |
-
-**FINAL: PASS.** This was a visual/implementation pass only. Chapter 8's academic freeze is intact,
-and this pass does not itself constitute a release gate.
+`npx tsc --noEmit` → 0 errors · `npm run build` → exit 0 · **1041/1041 tests** across 33 files
+(+10 new placement/sizing guards). Only the two Chapter 8 *test* files differ inside
+`src/content/form2/science/chapter-8/`; Chapter 11 untouched; 16 WebP and 0 PNG in the production
+asset path; `BuoyancySimulator.tsx` byte-identical to `fe7dc5d3`.

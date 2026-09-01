@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { MousePointerClick, Sparkles } from "lucide-react";
 import type { ScienceInteractiveSection } from "@/content/form2/science/interactive-types";
+import { CHAPTER8_IMAGES } from "./chapter8-assets";
+import { CHAPTER8_FIGURE_WIDTH, type Chapter8FigureVariant } from "./Chapter8PhotoFigure";
 
 type Lang = "en" | "bm";
 export type Chapter8FigureKind =
@@ -23,13 +25,13 @@ type Hotspot = {
 };
 
 export const CHAPTER8_VISUAL_ASSETS: Record<Chapter8FigureKind, string> = {
-  effects: "/science/form2/chapter-8/01_effects_of_force.png",
-  buoyancy: "/science/form2/chapter-8/02_buoyancy_everyday_life.png",
-  levers: "/science/form2/chapter-8/03_levers_everyday_life.png",
-  pressure: "/science/form2/chapter-8/04_pressure_contact_area.png",
-  types: "/science/form2/chapter-8/05_types_of_forces.png",
-  "action-reaction": "/science/form2/chapter-8/06_action_reaction.png",
-  atmosphere: "/science/form2/chapter-8/07_atmospheric_pressure_altitude.png",
+  effects: CHAPTER8_IMAGES.effects,
+  buoyancy: CHAPTER8_IMAGES.buoyancy,
+  levers: CHAPTER8_IMAGES.levers,
+  pressure: CHAPTER8_IMAGES.pressure,
+  types: CHAPTER8_IMAGES.types,
+  "action-reaction": CHAPTER8_IMAGES.actionReaction,
+  atmosphere: CHAPTER8_IMAGES.atmosphere,
 };
 
 /**
@@ -52,7 +54,7 @@ export const CHAPTER8_HOTSPOT_GEOMETRY: Record<Chapter8FigureKind, Pick<Hotspot,
     { id: "magnetic", x: 87.4, y: 49.2, w: 23, h: 73.4 },
   ],
   // the contact region between the two skaters' hands
-  "action-reaction": [{ id: "pair", x: 49.8, y: 41, w: 16, h: 15 }],
+  "action-reaction": [{ id: "pair", x: 50.4, y: 31.9, w: 13, h: 15 }],
   effects: [
     { id: "moves", x: 25.9, y: 27.0, w: 47, h: 43 },
     { id: "stops", x: 74.9, y: 27.0, w: 47, h: 43 },
@@ -79,6 +81,21 @@ export const CHAPTER8_HOTSPOT_GEOMETRY: Record<Chapter8FigureKind, Pick<Hotspot,
     { id: "foot", x: 21.6, y: 86.5, w: 13, h: 19 },
     { id: "summit", x: 57.9, y: 27.4, w: 11, h: 13 },
   ],
+};
+
+/**
+ * Display width per figure. Multi-panel scenes get the wider cap because their
+ * panels have to stay readable; single scenes are held narrower so the picture
+ * does not dominate the lesson card.
+ */
+export const CHAPTER8_FIGURE_VARIANTS: Record<Chapter8FigureKind, Chapter8FigureVariant> = {
+  types: "wide",
+  effects: "wide",
+  levers: "wide",
+  buoyancy: "wide",
+  pressure: "wide",
+  "action-reaction": "single",
+  atmosphere: "single",
 };
 
 /** Figures whose hit region really is a drawn panel, so a hairline edge reads as deliberate. */
@@ -153,12 +170,9 @@ function isLeverClassId(value: string | null): value is LeverClassId {
  * length, and they point opposite ways.
  */
 export const ACTION_REACTION_ARROWS = [
-  { id: "left", x1: 49.8, x2: 43.8, y: 41 },
-  { id: "right", x1: 50.2, x2: 56.2, y: 41 },
+  { id: "left", x1: 49.9, x2: 43.9, y: 31.9 },
+  { id: "right", x1: 50.9, x2: 56.9, y: 31.9 },
 ] as const;
-
-/** Moves the two existing raster halves together at render time; no new art. */
-export const ACTION_REACTION_CONTACT_SHIFT = 6.2;
 
 export const ATMOSPHERE_HAZE_GEOMETRY = {
   foot: { x: 21.6, top: 2, bottom: 78, width: 25 },
@@ -371,57 +385,26 @@ function ScientificOverlay({ kind, active }: { kind: Chapter8FigureKind; active:
   return null;
 }
 
+/**
+ * Every figure is a single raster drawn edge to edge.
+ *
+ * The action–reaction scene used to be composited from three copies of the old
+ * separated-hands artwork, with two clipped halves slid inward to fake the palms
+ * meeting. The supplied pack now includes artwork that already shows the moment
+ * of contact, so that composite is gone and this is a plain image again.
+ */
 function Chapter8Artwork({ kind, alt }: { kind: Chapter8FigureKind; alt: string }) {
-  if (kind !== "action-reaction") {
-    return (
-      <img
-        src={CHAPTER8_VISUAL_ASSETS[kind]}
-        alt={alt}
-        width="1672"
-        height="941"
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-contain"
-      />
-    );
-  }
-
-  const src = CHAPTER8_VISUAL_ASSETS["action-reaction"];
   return (
-    <svg
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-      role="img"
-      aria-label={alt}
-      data-action-reaction-contact-image
-      className="absolute inset-0 h-full w-full"
-    >
-      <defs>
-        <clipPath id="ch8-skater-left"><rect x="0" y="0" width="50" height="100" /></clipPath>
-        <clipPath id="ch8-skater-right"><rect x="50" y="0" width="50" height="100" /></clipPath>
-      </defs>
-      <image href={src} x="0" y="0" width="100" height="100" preserveAspectRatio="none" />
-      <image
-        data-skater-half="left"
-        href={src}
-        x={ACTION_REACTION_CONTACT_SHIFT}
-        y="0"
-        width="100"
-        height="100"
-        preserveAspectRatio="none"
-        clipPath="url(#ch8-skater-left)"
-      />
-      <image
-        data-skater-half="right"
-        href={src}
-        x={-ACTION_REACTION_CONTACT_SHIFT}
-        y="0"
-        width="100"
-        height="100"
-        preserveAspectRatio="none"
-        clipPath="url(#ch8-skater-right)"
-      />
-    </svg>
+    <img
+      src={CHAPTER8_VISUAL_ASSETS[kind]}
+      alt={alt}
+      width="1672"
+      height="941"
+      /* the section's primary teaching visual, so it is not deferred */
+      loading="eager"
+      decoding="async"
+      className="absolute inset-0 h-full w-full object-contain"
+    />
   );
 }
 
@@ -471,7 +454,14 @@ export function Chapter8ContextFigure({
   return (
     <figure data-ch8-figure={kind} className="ch8-figure m-0 mx-auto w-full max-w-[840px] rounded-[1.4rem] border border-sky-300/20 bg-gradient-to-b from-slate-800/80 to-slate-950/65 p-2.5 shadow-[0_24px_70px_rgba(2,8,23,0.24)] sm:p-4">
       <figcaption className="mb-3 flex items-center gap-2 text-[12.5px] font-medium text-slate-200"><Sparkles className="h-4 w-4 text-amber-300" aria-hidden="true" />{copy.instruction}</figcaption>
-      <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-slate-900">
+      {/* Capped and centred so the artwork supports the lesson instead of
+          filling the viewport. Hotspots and overlays are positioned inside this
+          same box, so they follow the picture at any display size. */}
+      <div
+        className="relative mx-auto aspect-video w-full overflow-hidden rounded-2xl bg-slate-900"
+        style={{ maxWidth: `${CHAPTER8_FIGURE_WIDTH[CHAPTER8_FIGURE_VARIANTS[kind]]}px` }}
+        data-ch8-figure-variant={CHAPTER8_FIGURE_VARIANTS[kind]}
+      >
         <Chapter8Artwork kind={kind} alt={copy.alt[kind]} />
 
         {/* Selection is a soft glow pinned to the subject — never a filled hitbox. */}
