@@ -72,7 +72,7 @@ import { ScienceF1Chapter3VisualNotesBlock as Chapter3NotesBlock } from "@/compo
 import { ScienceF1Chapter4VisualNotesBlock as Chapter4NotesBlock } from "@/components/notes/ScienceF1Chapter4VisualNotesBlock";
 import { ScienceF1Chapter5VisualNotesBlock as Chapter5NotesBlock } from "@/components/notes/ScienceF1Chapter5VisualNotesBlock";
 import { ScienceF1Chapter6VisualNotesBlock as Chapter6NotesBlock } from "@/components/notes/ScienceF1Chapter6VisualNotesBlock";
-import { Chapter8NotesBlock } from "@/components/notes/Chapter8NotesBlock";
+import { ScienceF1Chapter8VisualNotesBlock as Chapter8NotesBlock } from "@/components/notes/ScienceF1Chapter8VisualNotesBlock";
 import { Chapter9NotesBlock } from "@/components/notes/Chapter9NotesBlock";
 import { MathF1Chapter1NotesBlock } from "@/components/notes/MathF1Chapter1NotesBlock";
 import { MathF1Chapter2NotesBlock } from "@/components/notes/MathF1Chapter2NotesBlock";
