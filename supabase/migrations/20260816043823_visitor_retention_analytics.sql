@@ -154,7 +154,7 @@ as $$
     'returning_visitors', (
       select count(*) from (
         select visitor_id from visitor_days group by visitor_id having count(*) > 1
-      ) returning
+      ) returning_visitor_rows
     ),
     'explore_visitors', (
       select count(distinct visitor_id) from window_events

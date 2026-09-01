@@ -71,51 +71,116 @@ export interface Chapter8Content {
 const en: Chapter8Content = {
   hook: {
     title: "Why this matters",
-    body: "Why does the sky turn red at sunset? Why does a straight pencil look bent in water? Why can a submarine see the surface? Every one of these everyday mysteries has a precise, drawable explanation — and this chapter gives you the ray diagrams to prove it."
+    body: "Why does the sky turn red at sunset? Why does a straight pencil look bent in water? Why can a submarine see the surface? Every one of these everyday mysteries has a precise, drawable explanation — and this chapter gives you the ray diagrams to prove it.",
   },
   mirrors: {
     realVsVirtual: {
       real: "An image that forms on a screen",
-      virtual: "An image that cannot be formed on a screen — our reflection forms behind the mirror, not on its surface, so a plane mirror always produces a virtual image"
+      virtual:
+        "An image that cannot be formed on a screen — our reflection forms behind the mirror, not on its surface, so a plane mirror always produces a virtual image",
     },
-    planeMirrorCharacteristics: ["Upright", "Laterally inverted", "Same size as the object", "Virtual", "Same distance behind the mirror as the object is in front"],
+    planeMirrorCharacteristics: [
+      "Upright",
+      "Laterally inverted",
+      "Same size as the object",
+      "Virtual",
+      "Same distance behind the mirror as the object is in front",
+    ],
     mirrorTypes: [
-      { name: "Plane mirror", imageCharacteristics: ["Upright, virtual, same size, laterally inverted"], uses: ["Helps a dancer correct movement", "Makes a living room look spacious", "Used in periscopes and kaleidoscopes"] },
-      { name: "Concave mirror", imageCharacteristics: ["Magnifies the image, makes it look bigger and closer"], uses: ["Applying makeup (magnified image)", "Dentists viewing patients' teeth"] },
-      { name: "Convex mirror", imageCharacteristics: ["Wider field of view, smaller image"], uses: ["Safety feature at dangerous road corners", "Supermarket theft prevention", "Fitted on bicycles to see behind"] }
+      {
+        name: "Plane mirror",
+        imageCharacteristics: ["Upright, virtual, same size, laterally inverted"],
+        uses: [
+          "Helps a dancer correct movement",
+          "Makes a living room look spacious",
+          "Used in periscopes and kaleidoscopes",
+        ],
+      },
+      {
+        name: "Concave mirror",
+        imageCharacteristics: ["Magnifies the image, makes it look bigger and closer"],
+        uses: ["Applying makeup (magnified image)", "Dentists viewing patients' teeth"],
+      },
+      {
+        name: "Convex mirror",
+        imageCharacteristics: ["Wider field of view, smaller image"],
+        uses: [
+          "Safety feature at dangerous road corners",
+          "Supermarket theft prevention",
+          "Fitted on bicycles to see behind",
+        ],
+      },
     ],
     lawOfReflection: {
-      statement: ["The incident ray, reflected ray, and normal line all lie on the same plane", "The angle of incidence (i) is equal to the angle of reflection (r)"],
-      keyEquation: "i = r"
+      statement: [
+        "The incident ray, reflected ray, and normal line all lie on the same plane",
+        "The angle of incidence (i) is equal to the angle of reflection (r)",
+      ],
+      keyEquation: "i = r",
     },
     opticalInstruments: [
-      { name: "Periscope", howItWorks: "Uses two mirrors angled at 45°. Light from the sea surface hits the top mirror and reflects down to a second mirror, then into the observer's eye — used in submarines" },
-      { name: "Kaleidoscope", howItWorks: "Uses three mirror strips joined into a triangular prism. Repeated reflection of objects inside creates more images than actual objects, forming patterns" }
-    ]
+      {
+        name: "Periscope",
+        howItWorks:
+          "Uses two mirrors angled at 45°. Light from the sea surface hits the top mirror and reflects down to a second mirror, then into the observer's eye — used in submarines",
+      },
+      {
+        name: "Kaleidoscope",
+        howItWorks:
+          "Uses three mirror strips joined into a triangular prism. Repeated reflection of objects inside creates more images than actual objects, forming patterns",
+      },
+    ],
   },
   propertiesOfLight: {
-    facts: ["The speed of light is 3.0 × 10⁸ m/s — much faster than sound, which is why we see lightning before we hear thunder", "Light travels in straight lines"],
-    shadowFormation: ["Light travels in straight lines", "An opaque object blocks light from passing through it", "A shadow forms behind the opaque object where light is blocked"]
+    facts: [
+      "The speed of light is 3.0 × 10⁸ m/s — much faster than sound, which is why we see lightning before we hear thunder",
+      "Light travels in straight lines",
+    ],
+    shadowFormation: [
+      "Light travels in straight lines",
+      "An opaque object blocks light from passing through it",
+      "A shadow forms behind the opaque object where light is blocked",
+    ],
   },
   refraction: {
-    definition: "Refraction of light is the change in direction of light as it travels through two mediums of different densities.",
+    definition:
+      "Refraction of light is the change in direction of light as it travels through two mediums of different densities.",
     cases: [
-      { scenario: "Light moves from a more dense medium (water) to a less dense medium (air)", behavior: "The light ray is refracted away from the normal" },
-      { scenario: "Light moves from a less dense medium (air) to a more dense medium (water)", behavior: "The light ray is refracted towards the normal" },
-      { scenario: "Incident ray is parallel to the normal (either direction)", behavior: "The light ray is not refracted at all — it continues straight through" }
+      {
+        scenario: "Light moves from a more dense medium (water) to a less dense medium (air)",
+        behavior: "The light ray is refracted away from the normal",
+      },
+      {
+        scenario: "Light moves from a less dense medium (air) to a more dense medium (water)",
+        behavior: "The light ray is refracted towards the normal",
+      },
+      {
+        scenario: "Incident ray is parallel to the normal (either direction)",
+        behavior: "The light ray is not refracted at all — it continues straight through",
+      },
     ],
-    dailyLifeExamples: ["A fish in a pond appears much closer to the surface than its actual location", "A pencil looks bent in a glass of water", "A swimming pool appears shallower than it actually is"]
+    dailyLifeExamples: [
+      "A fish in a pond appears much closer to the surface than its actual location",
+      "A pencil looks bent in a glass of water",
+      "A swimming pool appears shallower than it actually is",
+    ],
   },
   dispersion: {
-    definition: "Dispersion is the separation of white light into its component colours as it passes through a medium like a glass prism, because each colour travels at a different speed and bends at a different angle.",
+    definition:
+      "Dispersion is the separation of white light into its component colours as it passes through a medium like a glass prism, because each colour travels at a different speed and bends at a different angle.",
     spectrumOrder: ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"],
-    speedFact: "Red light has the highest speed and is refracted the least. Violet light has the lowest speed and is refracted the most.",
-    rainbowFormation: "When sunlight enters rain droplets in the sky, white light is refracted and dispersed into seven colours, forming a rainbow."
+    speedFact:
+      "Red light has the highest speed and is refracted the least. Violet light has the lowest speed and is refracted the most.",
+    rainbowFormation:
+      "When sunlight enters rain droplets in the sky, white light is refracted and dispersed into seven colours, forming a rainbow.",
   },
   scattering: {
-    definition: "Scattering of light occurs when light is reflected in all directions by clouds or particles in the air.",
-    middayExplanation: "During midday, blue light is scattered the most in all directions by tiny particles in the atmosphere, making the sky look blue.",
-    sunsetExplanation: "During sunset, the sun is at the horizon, so light travels through more atmosphere. Red and orange light are scattered less and reach your eyes directly, while blue light scatters away — making the sky look reddish."
+    definition:
+      "Scattering of light occurs when light is reflected in all directions by clouds or particles in the air.",
+    middayExplanation:
+      "During midday, blue light is scattered the most in all directions by tiny particles in the atmosphere, making the sky look blue.",
+    sunsetExplanation:
+      "During sunset, the sun is at the horizon, so light travels through more atmosphere. Red and orange light are scattered less and reach your eyes directly, while blue light scatters away — making the sky look reddish.",
   },
   colorAdditionSubtraction: {
     primaryColors: ["Red", "Blue", "Green"],
@@ -123,15 +188,16 @@ const en: Chapter8Content = {
     additionFormula: [
       { color1: "Red", color2: "Blue", result: "Magenta" },
       { color1: "Red", color2: "Green", result: "Yellow" },
-      { color1: "Blue", color2: "Green", result: "Cyan" }
+      { color1: "Blue", color2: "Green", result: "Cyan" },
     ],
     allThreeMixed: "Red + Blue + Green = White",
-    subtractionPrinciple: "The colour of an opaque object depends on which colour of light it reflects into our eyes — that colour is reflected, and all other colours are absorbed by the object.",
+    subtractionPrinciple:
+      "The colour of an opaque object depends on which colour of light it reflects into our eyes — that colour is reflected, and all other colours are absorbed by the object.",
     subtractionExamples: [
       { object: "Banana", reflects: "Yellow light", absorbs: "All other colours" },
       { object: "Strawberry", reflects: "Red light", absorbs: "All other colours" },
-      { object: "Leaf", reflects: "Green light", absorbs: "All other colours" }
-    ]
+      { object: "Leaf", reflects: "Green light", absorbs: "All other colours" },
+    ],
   },
   keyExamFacts: [
     "A plane mirror produces a virtual, upright, laterally inverted image of the same size, at the same distance behind the mirror as the object is in front",
@@ -141,65 +207,148 @@ const en: Chapter8Content = {
     "White light disperses into red, orange, yellow, green, blue, indigo, violet — red bends least, violet bends most",
     "Scattering explains why the sky is blue at midday and reddish at sunset",
     "Red, blue and green are primary colours; mixing any two produces magenta, yellow, or cyan; all three make white",
-    "An opaque object's colour is the colour of light it reflects — all other colours are absorbed"
+    "An opaque object's colour is the colour of light it reflects — all other colours are absorbed",
   ],
   keyTerms: [
-    "Real image", "Virtual image", "Plane mirror", "Concave mirror", "Convex mirror",
-    "Law of Reflection", "Angle of incidence", "Angle of reflection", "Periscope",
-    "Kaleidoscope", "Refraction", "Normal line", "Dispersion", "Spectrum",
-    "Scattering", "Primary colour", "Secondary colour", "Addition of light", "Subtraction of light"
+    "Real image",
+    "Virtual image",
+    "Plane mirror",
+    "Concave mirror",
+    "Convex mirror",
+    "Law of Reflection",
+    "Angle of incidence",
+    "Angle of reflection",
+    "Periscope",
+    "Kaleidoscope",
+    "Refraction",
+    "Normal line",
+    "Dispersion",
+    "Spectrum",
+    "Scattering",
+    "Primary colour",
+    "Secondary colour",
+    "Addition of light",
+    "Subtraction of light",
   ],
-  chapterSummary: "Chapter 8 explains how light behaves through mirrors, refraction, dispersion, scattering, and colour mixing — covering the characteristics of images in plane, concave and convex mirrors, the Law of Reflection, how refraction bends light between different-density mediums, how dispersion splits white light into a spectrum, why scattering makes the sky blue or red, and how primary colours combine or get absorbed to produce every colour we see."
+  chapterSummary:
+    "Chapter 8 explains how light behaves through mirrors, refraction, dispersion, scattering, and colour mixing — covering the characteristics of images in plane, concave and convex mirrors, the Law of Reflection, how refraction bends light between different-density mediums, how dispersion splits white light into a spectrum, why scattering makes the sky blue or red, and how primary colours combine or get absorbed to produce every colour we see.",
 };
 
 const bm: Chapter8Content = {
   hook: {
     title: "Kenapa ini penting",
-    body: "Kenapa langit bertukar merah waktu matahari terbenam? Kenapa pensel yang lurus kelihatan bengkok di dalam air? Bagaimana kapal selam dapat melihat permukaan laut? Setiap misteri harian ini mempunyai penjelasan yang tepat dan boleh dilukis — dan bab ini memberi anda gambar rajah sinar untuk membuktikannya."
+    body: "Kenapa langit bertukar merah waktu matahari terbenam? Kenapa pensel yang lurus kelihatan bengkok di dalam air? Bagaimana kapal selam dapat melihat permukaan laut? Setiap misteri harian ini mempunyai penjelasan yang tepat dan boleh dilukis — dan bab ini memberi anda gambar rajah sinar untuk membuktikannya.",
   },
   mirrors: {
     realVsVirtual: {
       real: "Imej yang terbentuk pada skrin",
-      virtual: "Imej yang tidak dapat dibentuk pada skrin — pantulan kita terbentuk di belakang cermin, bukan pada permukaannya, jadi cermin satah sentiasa menghasilkan imej maya"
+      virtual:
+        "Imej yang tidak dapat dibentuk pada skrin — pantulan kita terbentuk di belakang cermin, bukan pada permukaannya, jadi cermin satah sentiasa menghasilkan imej maya",
     },
-    planeMirrorCharacteristics: ["Tegak", "Berbalik sisi", "Sama saiz dengan objek", "Maya", "Jarak di belakang cermin sama dengan jarak objek di hadapan"],
+    planeMirrorCharacteristics: [
+      "Tegak",
+      "Berbalik sisi",
+      "Sama saiz dengan objek",
+      "Maya",
+      "Jarak di belakang cermin sama dengan jarak objek di hadapan",
+    ],
     mirrorTypes: [
-      { name: "Cermin satah", imageCharacteristics: ["Tegak, maya, sama saiz, berbalik sisi"], uses: ["Membantu penari membetulkan pergerakan", "Menjadikan ruang tamu kelihatan luas", "Digunakan dalam periskop dan kaleidoskop"] },
-      { name: "Cermin cekung", imageCharacteristics: ["Membesarkan imej, menjadikannya kelihatan lebih besar dan dekat"], uses: ["Menyapu solek (imej dibesarkan)", "Doktor gigi melihat gigi pesakit"] },
-      { name: "Cermin cembung", imageCharacteristics: ["Medan pandangan lebih luas, imej lebih kecil"], uses: ["Ciri keselamatan di selekoh jalan berbahaya", "Pencegahan kecurian di pasar raya", "Dipasang pada basikal untuk melihat ke belakang"] }
+      {
+        name: "Cermin satah",
+        imageCharacteristics: ["Tegak, maya, sama saiz, berbalik sisi"],
+        uses: [
+          "Membantu penari membetulkan pergerakan",
+          "Menjadikan ruang tamu kelihatan luas",
+          "Digunakan dalam periskop dan kaleidoskop",
+        ],
+      },
+      {
+        name: "Cermin cekung",
+        imageCharacteristics: ["Membesarkan imej, menjadikannya kelihatan lebih besar dan dekat"],
+        uses: ["Menyapu solek (imej dibesarkan)", "Doktor gigi melihat gigi pesakit"],
+      },
+      {
+        name: "Cermin cembung",
+        imageCharacteristics: ["Medan pandangan lebih luas, imej lebih kecil"],
+        uses: [
+          "Ciri keselamatan di selekoh jalan berbahaya",
+          "Pencegahan kecurian di pasar raya",
+          "Dipasang pada basikal untuk melihat ke belakang",
+        ],
+      },
     ],
     lawOfReflection: {
-      statement: ["Sinar tuju, sinar pantulan, dan garis normal semuanya terletak pada satah yang sama", "Sudut tuju (i) adalah sama dengan sudut pantulan (r)"],
-      keyEquation: "i = r"
+      statement: [
+        "Sinar tuju, sinar pantulan, dan garis normal semuanya terletak pada satah yang sama",
+        "Sudut tuju (i) adalah sama dengan sudut pantulan (r)",
+      ],
+      keyEquation: "i = r",
     },
     opticalInstruments: [
-      { name: "Periskop", howItWorks: "Menggunakan dua cermin bersudut 45°. Cahaya dari permukaan laut mengenai cermin atas dan terpantul turun ke cermin kedua, kemudian ke mata pemerhati — digunakan dalam kapal selam" },
-      { name: "Kaleidoskop", howItWorks: "Menggunakan tiga jalur cermin digabungkan membentuk prisma segi tiga. Pantulan berulang objek di dalamnya mencipta lebih banyak imej daripada objek sebenar, membentuk corak" }
-    ]
+      {
+        name: "Periskop",
+        howItWorks:
+          "Menggunakan dua cermin bersudut 45°. Cahaya dari permukaan laut mengenai cermin atas dan terpantul turun ke cermin kedua, kemudian ke mata pemerhati — digunakan dalam kapal selam",
+      },
+      {
+        name: "Kaleidoskop",
+        howItWorks:
+          "Menggunakan tiga jalur cermin digabungkan membentuk prisma segi tiga. Pantulan berulang objek di dalamnya mencipta lebih banyak imej daripada objek sebenar, membentuk corak",
+      },
+    ],
   },
   propertiesOfLight: {
-    facts: ["Kelajuan cahaya ialah 3.0 × 10⁸ m/s — jauh lebih laju daripada bunyi, itulah sebabnya kita melihat kilat sebelum mendengar guruh", "Cahaya bergerak dalam garis lurus"],
-    shadowFormation: ["Cahaya bergerak dalam garis lurus", "Objek legap menghalang cahaya daripada menembusinya", "Bayang-bayang terbentuk di belakang objek legap di mana cahaya dihalang"]
+    facts: [
+      "Kelajuan cahaya ialah 3.0 × 10⁸ m/s — jauh lebih laju daripada bunyi, itulah sebabnya kita melihat kilat sebelum mendengar guruh",
+      "Cahaya bergerak dalam garis lurus",
+    ],
+    shadowFormation: [
+      "Cahaya bergerak dalam garis lurus",
+      "Objek legap menghalang cahaya daripada menembusinya",
+      "Bayang-bayang terbentuk di belakang objek legap di mana cahaya dihalang",
+    ],
   },
   refraction: {
-    definition: "Pembiasan cahaya ialah perubahan arah cahaya semasa ia bergerak melalui dua medium yang berbeza ketumpatan.",
+    definition:
+      "Pembiasan cahaya ialah perubahan arah cahaya semasa ia bergerak melalui dua medium yang berbeza ketumpatan.",
     cases: [
-      { scenario: "Cahaya bergerak daripada medium lebih tumpat (air) ke medium kurang tumpat (udara)", behavior: "Sinar cahaya dibiaskan menjauhi garis normal" },
-      { scenario: "Cahaya bergerak daripada medium kurang tumpat (udara) ke medium lebih tumpat (air)", behavior: "Sinar cahaya dibiaskan mendekati garis normal" },
-      { scenario: "Sinar tuju selari dengan garis normal (mana-mana arah)", behavior: "Sinar cahaya tidak dibiaskan langsung — ia terus lurus" }
+      {
+        scenario:
+          "Cahaya bergerak daripada medium lebih tumpat (air) ke medium kurang tumpat (udara)",
+        behavior: "Sinar cahaya dibiaskan menjauhi garis normal",
+      },
+      {
+        scenario:
+          "Cahaya bergerak daripada medium kurang tumpat (udara) ke medium lebih tumpat (air)",
+        behavior: "Sinar cahaya dibiaskan mendekati garis normal",
+      },
+      {
+        scenario: "Sinar tuju selari dengan garis normal (mana-mana arah)",
+        behavior: "Sinar cahaya tidak dibiaskan langsung — ia terus lurus",
+      },
     ],
-    dailyLifeExamples: ["Ikan dalam kolam kelihatan lebih dekat dengan permukaan berbanding lokasi sebenar", "Pensel kelihatan bengkok dalam segelas air", "Kolam renang kelihatan cetek berbanding kedalaman sebenar"]
+    dailyLifeExamples: [
+      "Ikan dalam kolam kelihatan lebih dekat dengan permukaan berbanding lokasi sebenar",
+      "Pensel kelihatan bengkok dalam segelas air",
+      "Kolam renang kelihatan cetek berbanding kedalaman sebenar",
+    ],
   },
   dispersion: {
-    definition: "Serakan cahaya ialah pemisahan cahaya putih kepada komponen warnanya semasa melalui medium seperti prisma kaca, kerana setiap warna bergerak pada kelajuan berbeza dan membias pada sudut berbeza.",
+    definition:
+      "Serakan cahaya ialah pemisahan cahaya putih kepada komponen warnanya semasa melalui medium seperti prisma kaca, kerana setiap warna bergerak pada kelajuan berbeza dan membias pada sudut berbeza.",
     spectrumOrder: ["Merah", "Jingga", "Kuning", "Hijau", "Biru", "Nila", "Ungu"],
-    speedFact: "Cahaya merah mempunyai kelajuan tertinggi dan dibiaskan paling sedikit. Cahaya ungu mempunyai kelajuan terendah dan dibiaskan paling banyak.",
-    rainbowFormation: "Apabila cahaya matahari memasuki titisan hujan di langit, cahaya putih dibiaskan dan diserakkan kepada tujuh warna, membentuk pelangi."
+    speedFact:
+      "Cahaya merah mempunyai kelajuan tertinggi dan dibiaskan paling sedikit. Cahaya ungu mempunyai kelajuan terendah dan dibiaskan paling banyak.",
+    rainbowFormation:
+      "Apabila cahaya matahari memasuki titisan hujan di langit, cahaya putih dibiaskan dan diserakkan kepada tujuh warna, membentuk pelangi.",
   },
   scattering: {
-    definition: "Penyerakan cahaya berlaku apabila cahaya dipantulkan ke semua arah oleh awan atau zarah di udara.",
-    middayExplanation: "Pada waktu tengah hari, cahaya biru diserakkan paling banyak ke semua arah oleh zarah halus dalam atmosfera, menjadikan langit kelihatan biru.",
-    sunsetExplanation: "Pada waktu matahari terbenam, matahari berada di ufuk, jadi cahaya melalui lebih banyak atmosfera. Cahaya merah dan jingga kurang diserakkan dan sampai terus ke mata anda, manakala cahaya biru diserakkan — menjadikan langit kelihatan kemerahan."
+    definition:
+      "Penyerakan cahaya berlaku apabila cahaya dipantulkan ke semua arah oleh awan atau zarah di udara.",
+    middayExplanation:
+      "Pada waktu tengah hari, cahaya biru diserakkan paling banyak ke semua arah oleh zarah halus dalam atmosfera, menjadikan langit kelihatan biru.",
+    sunsetExplanation:
+      "Pada waktu matahari terbenam, matahari berada di ufuk, jadi cahaya melalui lebih banyak atmosfera. Cahaya merah dan jingga kurang diserakkan dan sampai terus ke mata anda, manakala cahaya biru diserakkan — menjadikan langit kelihatan kemerahan.",
   },
   colorAdditionSubtraction: {
     primaryColors: ["Merah", "Biru", "Hijau"],
@@ -207,15 +356,16 @@ const bm: Chapter8Content = {
     additionFormula: [
       { color1: "Merah", color2: "Biru", result: "Magenta" },
       { color1: "Merah", color2: "Hijau", result: "Kuning" },
-      { color1: "Biru", color2: "Hijau", result: "Sian" }
+      { color1: "Biru", color2: "Hijau", result: "Sian" },
     ],
     allThreeMixed: "Merah + Biru + Hijau = Putih",
-    subtractionPrinciple: "Warna objek legap bergantung pada warna cahaya yang dipantulkan ke mata kita — warna itu dipantulkan, dan semua warna lain diserap oleh objek.",
+    subtractionPrinciple:
+      "Warna objek legap bergantung pada warna cahaya yang dipantulkan ke mata kita — warna itu dipantulkan, dan semua warna lain diserap oleh objek.",
     subtractionExamples: [
       { object: "Pisang", reflects: "Cahaya kuning", absorbs: "Semua warna lain" },
       { object: "Strawberi", reflects: "Cahaya merah", absorbs: "Semua warna lain" },
-      { object: "Daun", reflects: "Cahaya hijau", absorbs: "Semua warna lain" }
-    ]
+      { object: "Daun", reflects: "Cahaya hijau", absorbs: "Semua warna lain" },
+    ],
   },
   keyExamFacts: [
     "Cermin satah menghasilkan imej maya, tegak, berbalik sisi, sama saiz, pada jarak yang sama di belakang cermin seperti objek di hadapan",
@@ -225,16 +375,298 @@ const bm: Chapter8Content = {
     "Cahaya putih terserak kepada merah, jingga, kuning, hijau, biru, nila, ungu — merah membias paling sedikit, ungu paling banyak",
     "Penyerakan menjelaskan kenapa langit biru pada tengah hari dan kemerahan waktu matahari terbenam",
     "Merah, biru dan hijau ialah warna primer; mencampur mana-mana dua menghasilkan magenta, kuning, atau sian; ketiga-tiganya menghasilkan putih",
-    "Warna objek legap ialah warna cahaya yang dipantulkannya — semua warna lain diserap"
+    "Warna objek legap ialah warna cahaya yang dipantulkannya — semua warna lain diserap",
   ],
   keyTerms: [
-    "Imej nyata", "Imej maya", "Cermin satah", "Cermin cekung", "Cermin cembung",
-    "Hukum Pantulan", "Sudut tuju", "Sudut pantulan", "Periskop",
-    "Kaleidoskop", "Pembiasan", "Garis normal", "Serakan cahaya", "Spektrum",
-    "Penyerakan cahaya", "Warna primer", "Warna sekunder", "Penambahan cahaya", "Penolakan cahaya"
+    "Imej nyata",
+    "Imej maya",
+    "Cermin satah",
+    "Cermin cekung",
+    "Cermin cembung",
+    "Hukum Pantulan",
+    "Sudut tuju",
+    "Sudut pantulan",
+    "Periskop",
+    "Kaleidoskop",
+    "Pembiasan",
+    "Garis normal",
+    "Serakan cahaya",
+    "Spektrum",
+    "Penyerakan cahaya",
+    "Warna primer",
+    "Warna sekunder",
+    "Penambahan cahaya",
+    "Penolakan cahaya",
   ],
-  chapterSummary: "Bab 8 menerangkan bagaimana cahaya berkelakuan melalui cermin, pembiasan, serakan, penyerakan, dan percampuran warna — merangkumi ciri-ciri imej dalam cermin satah, cekung dan cembung, Hukum Pantulan, cara pembiasan membengkokkan cahaya antara medium berlainan ketumpatan, cara serakan memisahkan cahaya putih kepada spektrum, sebab penyerakan menjadikan langit biru atau merah, dan cara warna primer bergabung atau diserap untuk menghasilkan setiap warna yang kita lihat."
+  chapterSummary:
+    "Bab 8 menerangkan bagaimana cahaya berkelakuan melalui cermin, pembiasan, serakan, penyerakan, dan percampuran warna — merangkumi ciri-ciri imej dalam cermin satah, cekung dan cembung, Hukum Pantulan, cara pembiasan membengkokkan cahaya antara medium berlainan ketumpatan, cara serakan memisahkan cahaya putih kepada spektrum, sebab penyerakan menjadikan langit biru atau merah, dan cara warna primer bergabung atau diserap untuk menghasilkan setiap warna yang kita lihat.",
 };
 
 export const chapter8Content = { en, bm };
+
+export interface Chapter8Supplement {
+  realVirtualActivity: string[];
+  opticalHistory: { name: string; principle: string }[];
+  reflectionExperiment: string[];
+  lateralInversion: string;
+  refractionRules: { passage: string; bend: string; speed: string; angle: string }[];
+  refractionExperiment: string[];
+  fishTip: string;
+  dispersionExperiments: { part: string; setup: string; result: string }[];
+  scatteringExperiment: string[];
+  objectColourRows: { object: string; incident: string; reflected: string; absorbed: string }[];
+  filters: { type: string; rule: string; examples: string[] }[];
+  filterMatrix: { first: string; second: string; result: string; reason: string }[];
+  activeRecall: { question: string; answer: string }[];
+}
+
+const supplementEn: Chapter8Supplement = {
+  realVirtualActivity: [
+    "Project a candle image through a pinhole onto white cardboard: the image forms on the screen, so it is real.",
+    "Observe a student in a plane mirror: the image appears behind the glass but cannot be projected onto cardboard, so it is virtual.",
+  ],
+  opticalHistory: [
+    {
+      name: "Sundial",
+      principle:
+        "Straight-line travel of light and the changing shadow of an opaque gnomon indicate time.",
+    },
+    {
+      name: "Shadow puppets (wayang kulit)",
+      principle:
+        "Opaque puppets block light travelling in straight lines and cast outlines on a screen.",
+    },
+  ],
+  reflectionExperiment: [
+    "Direct one narrow ray from a ray box towards a plane mirror on white paper.",
+    "Draw the normal perpendicular to the mirror and measure i and r at 10°, 20°, 30°, 40°, and 50°.",
+    "For every reading, the angle of reflection equals the angle of incidence; the hypothesis i = r is accepted.",
+  ],
+  lateralInversion:
+    "AMBULANCE is written backwards so lateral inversion in a driver's rear-view mirror reverses it into readable text immediately.",
+  refractionRules: [
+    {
+      passage: "Less dense → more dense",
+      bend: "Towards the normal",
+      speed: "Decreases",
+      angle: "i > r",
+    },
+    {
+      passage: "More dense → less dense",
+      bend: "Away from the normal",
+      speed: "Increases",
+      angle: "i < r",
+    },
+    {
+      passage: "Along the normal (i = 0°)",
+      bend: "No change of direction",
+      speed: "Changes",
+      angle: "Straight through",
+    },
+  ],
+  refractionExperiment: [
+    "Trace a glass block on white paper and direct a single ray into it.",
+    "Mark the entrance and exit points, remove the block, then connect the points to trace the internal path.",
+    "The ray bends towards the normal on entering glass and away from the normal on returning to air.",
+  ],
+  fishTip:
+    "A fish appears shallower than its actual position because light bends away from the normal when leaving water. Aim below the visible image.",
+  dispersionExperiments: [
+    {
+      part: "Glass prism",
+      setup: "Shine a narrow white beam through a prism onto a white screen in a dark room.",
+      result: "A sharp ROYGBIV spectrum forms; red bends least and violet bends most.",
+    },
+    {
+      part: "Rainbow",
+      setup:
+        "Shine a pinhole torch beam onto an inclined plane mirror in a half-filled basin of water.",
+      result: "Refraction and dispersion cast a rainbow spectrum onto white paper.",
+    },
+  ],
+  scatteringExperiment: [
+    "Shine a ray-box beam through a beaker of water towards a white screen in a dark room.",
+    "Add and stir a little milk powder; its particles model atmospheric particles.",
+    "From the side the liquid looks bluish, while the transmitted light on the screen looks reddish-orange.",
+  ],
+  objectColourRows: [
+    { object: "Green leaf", incident: "White", reflected: "Green", absorbed: "Red and blue" },
+    {
+      object: "Yellow banana",
+      incident: "White",
+      reflected: "Yellow (red + green)",
+      absorbed: "Blue",
+    },
+    { object: "White object", incident: "White", reflected: "All colours", absorbed: "None" },
+    { object: "Black object", incident: "White", reflected: "No light", absorbed: "All colours" },
+  ],
+  filters: [
+    {
+      type: "Primary filters",
+      rule: "Transmit only their own colour and absorb all others.",
+      examples: ["Red passes red", "Green passes green", "Blue passes blue"],
+    },
+    {
+      type: "Secondary filters",
+      rule: "Transmit their own colour and the two primary colours that form it.",
+      examples: [
+        "Yellow passes yellow, red, green",
+        "Magenta passes magenta, red, blue",
+        "Cyan passes cyan, blue, green",
+      ],
+    },
+  ],
+  filterMatrix: [
+    { first: "Red", second: "Yellow", result: "Red", reason: "Red passes through both filters." },
+    { first: "Red", second: "Magenta", result: "Red", reason: "Red passes through both filters." },
+    { first: "Red", second: "Cyan", result: "Black", reason: "Cyan absorbs the red light." },
+    { first: "Blue", second: "Yellow", result: "Black", reason: "Yellow absorbs the blue light." },
+  ],
+  activeRecall: [
+    {
+      question: "A red road sign is illuminated only by green light. What colour does it appear?",
+      answer:
+        "Black. The red object can only reflect red light; it absorbs the available green light.",
+    },
+    {
+      question: "Why does a deep swimming pool look shallower than it really is?",
+      answer:
+        "Light leaving water bends away from the normal. The brain traces the rays backwards in straight lines, locating a virtual image above the real pool floor.",
+    },
+  ],
+};
+
+const supplementBm: Chapter8Supplement = {
+  realVirtualActivity: [
+    "Tayangkan imej lilin melalui lubang jarum pada kadbod putih: imej terbentuk pada skrin, maka imej itu nyata.",
+    "Perhatikan murid dalam cermin satah: imej kelihatan di belakang kaca tetapi tidak boleh ditayangkan pada kadbod, maka imej itu maya.",
+  ],
+  opticalHistory: [
+    {
+      name: "Jam matahari",
+      principle:
+        "Perambatan cahaya secara lurus dan perubahan bayang gnomon legap menunjukkan waktu.",
+    },
+    {
+      name: "Wayang kulit",
+      principle:
+        "Patung legap menghalang cahaya yang bergerak lurus lalu menghasilkan bentuk gelap pada skrin.",
+    },
+  ],
+  reflectionExperiment: [
+    "Halakan satu sinar sempit daripada kotak sinar ke arah cermin satah di atas kertas putih.",
+    "Lukis garis normal yang serenjang dengan cermin dan ukur i serta r pada 10°, 20°, 30°, 40°, dan 50°.",
+    "Bagi setiap bacaan, sudut pantulan sama dengan sudut tuju; hipotesis i = r diterima.",
+  ],
+  lateralInversion:
+    "AMBULANS ditulis secara terbalik supaya pembalikan sisi dalam cermin pandang belakang pemandu menukarkannya kepada tulisan yang dapat dibaca serta-merta.",
+  refractionRules: [
+    {
+      passage: "Kurang tumpat → lebih tumpat",
+      bend: "Mendekati normal",
+      speed: "Berkurang",
+      angle: "i > r",
+    },
+    {
+      passage: "Lebih tumpat → kurang tumpat",
+      bend: "Menjauhi normal",
+      speed: "Bertambah",
+      angle: "i < r",
+    },
+    {
+      passage: "Sepanjang normal (i = 0°)",
+      bend: "Tiada perubahan arah",
+      speed: "Berubah",
+      angle: "Bergerak lurus",
+    },
+  ],
+  refractionExperiment: [
+    "Surih blok kaca pada kertas putih dan halakan satu sinar ke dalamnya.",
+    "Tandakan titik masuk dan keluar, alihkan blok, kemudian sambungkan titik untuk menyurih laluan di dalam blok.",
+    "Sinar membengkok mendekati normal apabila memasuki kaca dan menjauhi normal apabila kembali ke udara.",
+  ],
+  fishTip:
+    "Ikan kelihatan lebih cetek daripada kedudukan sebenar kerana cahaya membengkok menjauhi normal apabila keluar dari air. Halakan lembing di bawah imej yang kelihatan.",
+  dispersionExperiments: [
+    {
+      part: "Prisma kaca",
+      setup: "Halakan sinar putih sempit melalui prisma ke skrin putih di dalam bilik gelap.",
+      result: "Spektrum MUJHHBIU terbentuk; merah membias paling sedikit dan ungu paling banyak.",
+    },
+    {
+      part: "Pelangi",
+      setup:
+        "Halakan cahaya lampu suluh berlubang jarum pada cermin satah condong di dalam besen berisi separuh air.",
+      result: "Pembiasan dan serakan menghasilkan spektrum pelangi pada kertas putih.",
+    },
+  ],
+  scatteringExperiment: [
+    "Halakan sinar daripada kotak sinar melalui bikar berisi air ke arah skrin putih di dalam bilik gelap.",
+    "Tambah dan kacau sedikit susu tepung; zarah susu mewakili zarah atmosfera.",
+    "Dari sisi, cecair kelihatan kebiruan, manakala cahaya pada skrin kelihatan merah jingga.",
+  ],
+  objectColourRows: [
+    { object: "Daun hijau", incident: "Putih", reflected: "Hijau", absorbed: "Merah dan biru" },
+    {
+      object: "Pisang kuning",
+      incident: "Putih",
+      reflected: "Kuning (merah + hijau)",
+      absorbed: "Biru",
+    },
+    { object: "Objek putih", incident: "Putih", reflected: "Semua warna", absorbed: "Tiada" },
+    {
+      object: "Objek hitam",
+      incident: "Putih",
+      reflected: "Tiada cahaya",
+      absorbed: "Semua warna",
+    },
+  ],
+  filters: [
+    {
+      type: "Penapis primer",
+      rule: "Membenarkan hanya warna sendiri melaluinya dan menyerap semua warna lain.",
+      examples: ["Merah melalukan merah", "Hijau melalukan hijau", "Biru melalukan biru"],
+    },
+    {
+      type: "Penapis sekunder",
+      rule: "Melalukan warna sendiri dan dua warna primer yang membentuknya.",
+      examples: [
+        "Kuning melalukan kuning, merah, hijau",
+        "Magenta melalukan magenta, merah, biru",
+        "Sian melalukan sian, biru, hijau",
+      ],
+    },
+  ],
+  filterMatrix: [
+    {
+      first: "Merah",
+      second: "Kuning",
+      result: "Merah",
+      reason: "Merah melalui kedua-dua penapis.",
+    },
+    {
+      first: "Merah",
+      second: "Magenta",
+      result: "Merah",
+      reason: "Merah melalui kedua-dua penapis.",
+    },
+    { first: "Merah", second: "Sian", result: "Hitam", reason: "Sian menyerap cahaya merah." },
+    { first: "Biru", second: "Kuning", result: "Hitam", reason: "Kuning menyerap cahaya biru." },
+  ],
+  activeRecall: [
+    {
+      question:
+        "Papan tanda jalan berwarna merah disinari cahaya hijau sahaja. Apakah warna yang kelihatan?",
+      answer:
+        "Hitam. Objek merah hanya boleh memantulkan cahaya merah; cahaya hijau yang ada diserap.",
+    },
+    {
+      question: "Mengapakah kolam renang yang dalam kelihatan lebih cetek?",
+      answer:
+        "Cahaya yang keluar dari air membengkok menjauhi normal. Otak menyurih sinar itu ke belakang secara lurus lalu meletakkan imej maya di atas dasar sebenar.",
+    },
+  ],
+};
+
+export const chapter8Supplement = { en: supplementEn, bm: supplementBm };
 export default chapter8Content;

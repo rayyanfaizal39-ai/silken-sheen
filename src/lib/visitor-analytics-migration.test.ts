@@ -26,4 +26,9 @@ describe("visitor analytics migration security", () => {
       "revoke all on function public.get_visitor_analytics(integer) from public, anon",
     );
   });
+
+  it("does not use PostgreSQL's returning keyword as a relation alias", () => {
+    expect(migration).toContain(") returning_visitor_rows");
+    expect(migration).not.toMatch(/\)\s+returning\s*\n/);
+  });
 });

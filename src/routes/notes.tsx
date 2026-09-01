@@ -26,7 +26,7 @@ import { NotesBlock, type NotesAccordionSection } from "@/components/notes/Notes
 import { NotesSummaryHeroGate } from "@/components/notes/NotesSummaryHeroGate";
 import { SejarahChapterHero } from "@/components/notes/SejarahChapterHero";
 import { EnglishNotesBlock } from "@/components/notes/EnglishNotesBlock";
-import { Bab7NotesBlock } from "@/components/notes/Bab7NotesBlock";
+import { ScienceF1Chapter7VisualNotesBlock as Bab7NotesBlock } from "@/components/notes/ScienceF1Chapter7VisualNotesBlock";
 import { GeoChapter1NotesBlock } from "@/components/notes/GeoChapter1NotesBlock";
 import { GeoChapter2NotesBlock } from "@/components/notes/GeoChapter2NotesBlock";
 import { GeoChapter3NotesBlock } from "@/components/notes/GeoChapter3NotesBlock";
@@ -70,10 +70,10 @@ import { ScienceF1Chapter1VisualNotesBlock as Chapter1NotesBlock } from "@/compo
 import { ScienceF1Chapter2VisualNotesBlock as Chapter2NotesBlock } from "@/components/notes/ScienceF1Chapter2VisualNotesBlock";
 import { ScienceF1Chapter3VisualNotesBlock as Chapter3NotesBlock } from "@/components/notes/ScienceF1Chapter3VisualNotesBlock";
 import { ScienceF1Chapter4VisualNotesBlock as Chapter4NotesBlock } from "@/components/notes/ScienceF1Chapter4VisualNotesBlock";
-import { Chapter5NotesBlock } from "@/components/notes/Chapter5NotesBlock";
-import { Chapter6NotesBlock } from "@/components/notes/Chapter6NotesBlock";
-import { Chapter8NotesBlock } from "@/components/notes/Chapter8NotesBlock";
-import { Chapter9NotesBlock } from "@/components/notes/Chapter9NotesBlock";
+import { ScienceF1Chapter5VisualNotesBlock as Chapter5NotesBlock } from "@/components/notes/ScienceF1Chapter5VisualNotesBlock";
+import { ScienceF1Chapter6VisualNotesBlock as Chapter6NotesBlock } from "@/components/notes/ScienceF1Chapter6VisualNotesBlock";
+import { ScienceF1Chapter8VisualNotesBlock as Chapter8NotesBlock } from "@/components/notes/ScienceF1Chapter8VisualNotesBlock";
+import { ScienceF1Chapter9VisualNotesBlock as Chapter9NotesBlock } from "@/components/notes/ScienceF1Chapter9VisualNotesBlock";
 import { MathF1Chapter1NotesBlock } from "@/components/notes/MathF1Chapter1NotesBlock";
 import { MathF1Chapter2NotesBlock } from "@/components/notes/MathF1Chapter2NotesBlock";
 import { MathF1Chapter3NotesBlock } from "@/components/notes/MathF1Chapter3NotesBlock";
