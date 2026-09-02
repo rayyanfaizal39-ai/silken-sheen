@@ -1,11 +1,9 @@
-// geo13-content.ts
-// Source-verified content for Geography Form 1, Bab 13 — Sisa Domestik (Domestic Waste)
-// Sourced from T1_BT_GEO_-_GEOGRAFI.pdf (pages 144-155)
+// Source-grounded content for Geography Form 1, Bab 13 — Sisa Domestik.
 // Geography has no official DLP/English textbook — BM only.
 // Content data only — no presentation markup.
 
 export interface WasteCategory {
-  category: 'organik' | 'bukan organik';
+  category: "organik" | "bukan organik";
   definition: string;
   source: string;
   examples: string[];
@@ -24,13 +22,14 @@ export interface MitigationMeasure {
 
 export interface Geo13Content {
   hook: { title: string; body: string };
+  headlineStat: { value: string; label: string; period: string };
   overview: string;
   wasteCategories: WasteCategory[];
   solidWasteExamples: string[];
   liquidWasteExamples: string[];
   effects: WasteEffect[];
   mitigationMeasures: MitigationMeasure[];
-  threeR: { name: string; description: string }[];
+  threeR: { name: string; description: string; examples: string[] }[];
   keyExamFacts: string[];
   keyTerms: string[];
   chapterSummary: string;
@@ -38,71 +37,155 @@ export interface Geo13Content {
 
 export const geo13Content: Geo13Content = {
   hook: {
-    title: "Kenapa ini penting",
-    body: "Setiap hari, isi rumah anda menghasilkan sisa yang berakhir di suatu tempat — sama ada diuraikan semula jadi, atau bertahan bertahun-tahun di tapak pelupusan. Bab ini menunjukkan perbezaan antara sisa yang boleh diuraikan dan yang tidak, serta kesan sebenar apabila sisa ini tidak diurus dengan baik."
+    title: "Sisa rumah, kesan seluruh bandar",
+    body: "Sisa domestik bermula daripada aktiviti harian di rumah. Apabila tidak diurus dengan baik, sampah yang kecil boleh mencemarkan air dan udara, menyebarkan penyakit, menyumbat saliran serta meningkatkan kos penyelenggaraan.",
   },
-  overview: "Sisa domestik terdiri daripada pepejal dan cecair yang boleh dikategorikan sebagai bahan organik dan bahan bukan organik. Sisa domestik di Malaysia dikenali sebagai sisa yang terhasil daripada kawasan perumahan.",
+  headlineStat: {
+    value: "33,000",
+    label: "tan metrik sisa domestik sehari di Malaysia",
+    period: "Perangkaan setakat Januari 2016",
+  },
+  overview:
+    "Sisa domestik ialah sisa pepejal dan sisa cecair yang terhasil dari kawasan perumahan. Sisa ini boleh dikelaskan mengikut kandungan kepada bahan organik dan bahan bukan organik.",
   wasteCategories: [
-    { category: "organik", definition: "Boleh diuraikan dan dilupuskan", source: "Dihasilkan daripada sumber haiwan dan tumbuhan", examples: ["Sisa makanan", "Sisa kebun", "Kertas"] },
-    { category: "bukan organik", definition: "Sukar diuraikan dan dilupuskan", source: "Dihasilkan daripada sumber mineral", examples: ["Tin", "Plastik", "Besi buruk", "Kaca"] }
+    {
+      category: "organik",
+      definition: "Boleh diuraikan dan dilupuskan secara semula jadi.",
+      source: "Dihasilkan daripada sumber haiwan dan tumbuhan.",
+      examples: ["Sisa makanan", "Sisa kebun", "Kertas"],
+    },
+    {
+      category: "bukan organik",
+      definition: "Sukar diuraikan dan dilupuskan secara semula jadi.",
+      source: "Dihasilkan daripada sumber mineral seperti logam dan petroleum.",
+      examples: ["Besi buruk", "Plastik", "Tin", "Kaca"],
+    },
   ],
-  solidWasteExamples: ["Sisa makanan", "Plastik", "Kertas", "Logam", "Perabot", "Lampin pakai buang"],
-  liquidWasteExamples: ["Minyak masak", "Kumbahan"],
+  solidWasteExamples: [
+    "Sisa makanan",
+    "Kertas",
+    "Plastik",
+    "Logam",
+    "Perabot",
+    "Lampin pakai buang",
+  ],
+  liquidWasteExamples: ["Kumbahan", "Minyak masak"],
   effects: [
     {
-      effect: "Pencemaran",
+      effect: "Pencemaran Alam Sekitar",
       details: [
-        "Pencemaran air — sumber air terutamanya sungai tercemar apabila sampah dibuang ke kawasan sumber air",
-        "Pencemaran udara — disebabkan pembakaran sisa domestik di tapak pelupusan sampah",
-        "Pencemaran bau — timbunan sisa domestik yang tidak diurus dengan baik"
-      ]
+        "Pencemaran air berlaku apabila sampah dibuang terus ke dalam sungai atau sumber air.",
+        "Pencemaran udara berlaku akibat pembakaran terbuka sisa domestik di tapak pelupusan.",
+        "Pencemaran bau terhasil daripada timbunan sisa yang tidak diurus dengan baik.",
+      ],
     },
     {
       effect: "Wabak Penyakit",
       details: [
-        "Sisa pembuangan sampah secara langsung menjadi tempat penularan wabak penyakit yang disebarkan oleh haiwan seperti tikus, lipas dan lalat",
-        "Contoh: taun, demam denggi, malaria, zika, rotavirus"
-      ]
-    },
-    {
-      effect: "Peningkatan Kos Penyelenggaraan",
-      details: [
-        "Peningkatan jumlah sisa domestik meningkatkan kos penyelenggaraan diuruskan pihak berkuasa tempatan (PBT)",
-        "Kos melibatkan penyelenggaraan tapak pelupusan, baik pulih kemusnahan, perawatan air tercemar, gaji pekerja pembersihan"
-      ]
+        "Timbunan sampah menjadi tempat pembiakan tikus, lipas dan lalat yang membawa penyakit.",
+        "Penyakit yang boleh menular termasuk taun, demam denggi, malaria, rotavirus dan virus zika.",
+      ],
     },
     {
       effect: "Banjir Kilat",
       details: [
-        "Sikap tidak bertanggungjawab membuang sisa domestik ke dalam longkang, parit dan sungai menyebabkan aliran air tersekat",
-        "Apabila hujan lebat, jumlah air meningkat mendadak sehingga menyebabkan banjir kilat"
-      ]
-    }
+        "Sisa yang dibuang ke dalam longkang, parit dan sungai menyumbat serta menyekat aliran air.",
+        "Semasa hujan lebat, saliran tidak mampu menampung peningkatan air lalu mencetuskan banjir kilat.",
+      ],
+    },
+    {
+      effect: "Peningkatan Kos Penyelenggaraan",
+      details: [
+        "Pertambahan sisa meningkatkan beban kewangan Pihak Berkuasa Tempatan (PBT).",
+        "Kos meliputi pengurusan tapak pelupusan, baik pulih infrastruktur, rawatan air tercemar dan gaji pekerja pembersihan.",
+      ],
+    },
   ],
   mitigationMeasures: [
-    { step: 1, name: "Amalan 3R", details: ["Kurangkan (Reduce), guna semula (Reuse), kitar semula (Recycle)"] },
-    { step: 2, name: "Penggunaan Teknologi Terkini", details: ["Loji Waste to Energy (WtE) — mengurangkan sisa dihantar ke tapak pelupusan sehingga 85%, dan mengurangkan pencemaran bau", "Penciptaan pinggan daripada ubi kayu menggantikan pinggan polistirena"] },
-    { step: 3, name: "Penguatkuasaan Undang-undang", details: ["PBT mengenakan denda dan hukuman lebih berat untuk kesedaran masyarakat", "Akta Pengurusan Sisa Pepejal dan Pembersihan Awam 2007 (Akta 672) dan Akta 673"] }
+    {
+      step: 1,
+      name: "Amalan 3R",
+      details: [
+        "Reduce mengurangkan penggunaan bahan yang menghasilkan sampah.",
+        "Reuse menggunakan semula atau mendermakan barangan yang masih elok.",
+        "Recycle memproses barangan terbuang menjadi barangan baharu.",
+      ],
+    },
+    {
+      step: 2,
+      name: "Penggunaan Teknologi Terkini",
+      details: [
+        "Loji Waste to Energy (WtE) membakar sisa dan menukarkannya kepada tenaga elektrik.",
+        "WtE mampu mengurangkan sisa ke tapak pelupusan sehingga 85% serta mengurangkan pencemaran bau.",
+        "Pinggan biodegradasi daripada ubi kayu boleh menggantikan polistirena yang sukar diurai.",
+      ],
+    },
+    {
+      step: 3,
+      name: "Penguatkuasaan Undang-undang",
+      details: [
+        "Pengurusan sisa pepejal dilaksanakan secara lebih sistematik melalui peruntukan undang-undang.",
+        "Akta Pengurusan Sisa Pepejal dan Pembersihan Awam 2007 (Akta 672).",
+        "Akta Perbadanan Pengurusan Sisa Pepejal dan Pembersihan Awam 2007 (Akta 673).",
+      ],
+    },
+    {
+      step: 4,
+      name: "Kempen Kesedaran",
+      details: [
+        "Agensi kerajaan, badan bukan kerajaan (NGO) dan PBT menyebarkan kesedaran melalui media sosial.",
+        "Contoh: Kempen Kesedaran Alam Sekitar, Kempen 3R dan Kempen Cintai Sungai Kita oleh Jabatan Alam Sekitar (JAS).",
+      ],
+    },
+    {
+      step: 5,
+      name: "Pendidikan",
+      details: [
+        "Nilai murni penjagaan alam sekitar dipupuk sejak peringkat awal persekolahan.",
+        "Geografi dan Sains membina keprihatinan murid, manakala aktiviti kitar semula membentuk amalan sebenar di sekolah.",
+      ],
+    },
   ],
   threeR: [
-    { name: "Kurangkan (Reduce)", description: "Mengurangkan apa-apa yang boleh menyebabkan sampah, seperti penggunaan beg plastik dan bekas polistirena" },
-    { name: "Guna Semula (Reuse)", description: "Menggunakan semula bekas minuman, surat khabar, majalah, atau mendermakan buku-buku dan pakaian" },
-    { name: "Kitar Semula (Recycle)", description: "Menghasilkan barangan baharu daripada barangan terbuang, seperti kraf tangan dan baja kompos" }
+    {
+      name: "Reduce · Kurangkan",
+      description: "Kurangkan penggunaan bahan yang akhirnya menjadi sampah.",
+      examples: ["Beg plastik", "Bekas polistirena"],
+    },
+    {
+      name: "Reuse · Guna Semula",
+      description: "Gunakan semula atau salurkan barangan yang masih boleh digunakan.",
+      examples: ["Bekas minuman", "Akhbar dan majalah", "Buku dan pakaian"],
+    },
+    {
+      name: "Recycle · Kitar Semula",
+      description: "Proses bahan terbuang untuk menghasilkan barangan baharu.",
+      examples: ["Kraf tangan", "Baja kompos daripada sisa makanan"],
+    },
   ],
   keyExamFacts: [
-    "Sisa domestik dikategorikan sebagai bahan organik (boleh diuraikan, dari haiwan/tumbuhan) dan bukan organik (sukar diuraikan, dari mineral)",
-    "Sisa domestik terdiri daripada sisa pepejal (makanan, plastik, kertas, logam, perabot) dan sisa cecair (minyak masak, kumbahan)",
-    "4 kesan pembuangan sisa domestik: pencemaran (air/udara/bau), wabak penyakit, peningkatan kos penyelenggaraan, banjir kilat",
-    "Amalan 3R: Kurangkan (Reduce), Guna Semula (Reuse), Kitar Semula (Recycle)",
-    "Loji Waste to Energy (WtE) mampu mengurangkan sisa ke tapak pelupusan sehingga 85%",
-    "Akta Pengurusan Sisa Pepejal dan Pembersihan Awam 2007 (Akta 672) menguruskan sisa domestik secara sistematik"
+    "Sisa domestik ialah sisa pepejal dan cecair yang terhasil dari kawasan perumahan.",
+    "Bahan organik boleh diuraikan secara semula jadi dan berasal daripada haiwan atau tumbuhan.",
+    "Bahan bukan organik sukar diuraikan dan berasal daripada mineral seperti logam dan petroleum.",
+    "Empat kesan utama ialah pencemaran, wabak penyakit, banjir kilat dan peningkatan kos penyelenggaraan.",
+    "Amalan 3R ialah Reduce, Reuse dan Recycle.",
+    "Loji Waste to Energy boleh mengurangkan sisa ke tapak pelupusan sehingga 85%.",
+    "Lima langkah pengurangan ialah 3R, teknologi, undang-undang, kempen kesedaran dan pendidikan.",
   ],
   keyTerms: [
-    "Sisa domestik", "Bahan organik", "Bahan bukan organik", "Sisa pepejal", "Sisa cecair",
-    "Mineral", "Amalan 3R", "Kurangkan", "Guna semula", "Kitar semula",
-    "Waste to Energy (WtE)", "Pihak Berkuasa Tempatan (PBT)", "Penularan"
+    "Sisa domestik",
+    "Bahan organik",
+    "Bahan bukan organik",
+    "Sisa pepejal",
+    "Sisa cecair",
+    "Amalan 3R",
+    "Waste to Energy (WtE)",
+    "Biodegradasi",
+    "Pihak Berkuasa Tempatan (PBT)",
+    "Jabatan Alam Sekitar (JAS)",
   ],
-  chapterSummary: "Bab 13 mengklasifikasikan sisa domestik kepada bahan organik dan bukan organik, serta sisa pepejal dan cecair. Bab ini merangkumi 4 kesan pembuangan sisa domestik yang tidak diurus (pencemaran, wabak penyakit, kos penyelenggaraan, banjir kilat), dan 3 langkah mengurangkan kesannya — amalan 3R, teknologi terkini (WtE), dan penguatkuasaan undang-undang."
+  chapterSummary:
+    "Bab 13 menerangkan sisa domestik dari kawasan perumahan melalui dua cara pengelasan: bahan organik atau bukan organik, serta sisa pepejal atau cecair. Pembuangan yang tidak terkawal menyebabkan pencemaran, wabak penyakit, banjir kilat dan kos penyelenggaraan meningkat. Kesannya boleh dikurangkan melalui amalan 3R, teknologi terkini, penguatkuasaan undang-undang, kempen kesedaran dan pendidikan.",
 };
 
 export default geo13Content;
