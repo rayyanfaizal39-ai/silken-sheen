@@ -54,7 +54,7 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "bm",
     front: "Berapakah julat saiz meteoroid?",
-    back: "Daripada 10 m hingga 1 m.",
+    back: "Daripada 10 μm hingga 1 m.",
   },
   {
     id: "sci-f2-c13-bm-f7",
@@ -209,7 +209,7 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "bm",
     front: "Bandingkan saiz meteoroid dengan saiz asteroid.",
-    back: "Meteoroid: 10 m hingga 1 m. Asteroid: 1 m hingga 1,000 km — asteroid jauh lebih besar.",
+    back: "Meteoroid: 10 μm hingga 1 m. Asteroid: 1 m hingga 1,000 km — asteroid jauh lebih besar.",
   },
   {
     id: "sci-f2-c13-bm-f24",
@@ -463,7 +463,7 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "bm",
     front: "Berikan tiga ciri umum meteoroid.",
-    back: "Bersaiz 10 m hingga 1 m, terdiri daripada batu dan logam, suhu permukaan kira-kira 0°C.",
+    back: "Bersaiz 10 μm hingga 1 m, terdiri daripada batu dan logam, suhu permukaan kira-kira 0°C.",
   },
   {
     id: "sci-f2-c13-bm-f52",

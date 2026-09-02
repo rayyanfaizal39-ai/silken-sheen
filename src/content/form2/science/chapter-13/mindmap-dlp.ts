@@ -25,14 +25,23 @@ export const scienceF2C13MindMapDLP: MindNode = {
               id: "c1-2-2",
               label: "Characteristics of a Meteoroid",
               children: [
-                { id: "c1-2-2-1", label: "Appears in various sizes, from 10 m to 1 m" },
+                { id: "c1-2-2-1", label: "Appears in various sizes, from 10 μm to 1 m" },
                 { id: "c1-2-2-2", label: "Made up of stones and metals such as iron and nickel" },
                 { id: "c1-2-2-3", label: "Originates from fragments of asteroids and comets" },
                 { id: "c1-2-2-4", label: "Surface temperature in outer space is about 0°C" },
                 { id: "c1-2-2-5", label: "Travels at varying speeds; fastest meteoroid at 42 km s⁻¹" },
               ],
             },
-            { id: "c1-2-3", label: "Movement of a Meteoroid (see diagram in textbook)" },
+            {
+              id: "c1-2-3",
+              label: "Movement of a Meteoroid",
+              children: [
+                { id: "c1-2-3-1", label: "Moves freely in space — not on its own orbit around the Sun" },
+                { id: "c1-2-3-2", label: "Influenced by the gravitational pull of planets, moons and other objects around it" },
+                { id: "c1-2-3-3", label: "Its small size and mass make it more easily influenced by a small gravitational pull" },
+                { id: "c1-2-3-4", label: "Stages: meteoroid → meteor → meteor shower → meteorite" },
+              ],
+            },
           ],
         },
         {
@@ -53,7 +62,16 @@ export const scienceF2C13MindMapDLP: MindNode = {
                 { id: "c1-3-2-7", label: "Also known as small planets" },
               ],
             },
-            { id: "c1-3-3", label: "Movement of an Asteroid (see diagram in textbook)" },
+            {
+              id: "c1-3-3",
+              label: "Movement of an Asteroid",
+              children: [
+                { id: "c1-3-3-1", label: "Moves at an average speed of 25 km s⁻¹" },
+                { id: "c1-3-3-2", label: "Most asteroids are within the asteroid belt" },
+                { id: "c1-3-3-3", label: "A collision can occur at the point of intersection or along the path near Earth's orbit and the asteroid's orbit" },
+                { id: "c1-3-3-4", label: "A collision with a large asteroid can cause the destruction of life on Earth" },
+              ],
+            },
             {
               id: "c1-3-4",
               label: "Asteroid Orbits Outside the Asteroid Belt",
@@ -83,7 +101,16 @@ export const scienceF2C13MindMapDLP: MindNode = {
                 { id: "c1-4-2-6", label: "Average speed range of 10 km s⁻¹ to 70 km s⁻¹" },
               ],
             },
-            { id: "c1-4-3", label: "Movement of a Comet — tail always points away from the Sun (see diagram in textbook)" },
+            {
+              id: "c1-4-3",
+              label: "Movement of a Comet",
+              children: [
+                { id: "c1-4-3-1", label: "As it approaches the Sun, the comet speeds up, melts and appears to have a long tail" },
+                { id: "c1-4-3-2", label: "A comet's tail is always facing away from the Sun because of the solar wind blowing from the Sun" },
+                { id: "c1-4-3-3", label: "The strong gravitational pull of the outer planets can push a comet out of its orbit" },
+                { id: "c1-4-3-4", label: "A comet that leaves its orbit risks colliding with the Earth at high speed" },
+              ],
+            },
             {
               id: "c1-4-4",
               label: "Origin of Comets",

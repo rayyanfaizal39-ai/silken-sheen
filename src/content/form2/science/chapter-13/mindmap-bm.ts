@@ -25,14 +25,23 @@ export const scienceF2C13MindMapBM: MindNode = {
               id: "c1-2-2",
               label: "Ciri-ciri Meteoroid",
               children: [
-                { id: "c1-2-2-1", label: "Bersaiz pelbagai, daripada 10 m hingga 1 m" },
+                { id: "c1-2-2-1", label: "Bersaiz pelbagai, daripada 10 μm hingga 1 m" },
                 { id: "c1-2-2-2", label: "Terdiri daripada batu dan logam seperti besi dan nikel" },
                 { id: "c1-2-2-3", label: "Berasal daripada serpihan asteroid dan komet" },
                 { id: "c1-2-2-4", label: "Suhu permukaan di angkasa lepas kira-kira 0°C" },
                 { id: "c1-2-2-5", label: "Bergerak pada kelajuan berbeza-beza; paling pantas 42 km s⁻¹" },
               ],
             },
-            { id: "c1-2-3", label: "Pergerakan Meteoroid (rujuk gambar rajah dalam buku teks)" },
+            {
+              id: "c1-2-3",
+              label: "Pergerakan Meteoroid",
+              children: [
+                { id: "c1-2-3-1", label: "Bergerak secara bebas di angkasa — bukan mengikut orbitnya sendiri mengelilingi Matahari" },
+                { id: "c1-2-3-2", label: "Dipengaruhi daya tarikan graviti planet, bulan dan objek lain di sekelilingnya" },
+                { id: "c1-2-3-3", label: "Saiz dan jisim yang kecil menyebabkannya lebih mudah dipengaruhi daya graviti yang kecil" },
+                { id: "c1-2-3-4", label: "Peringkat: meteoroid → meteor → pancuran meteor → meteorit" },
+              ],
+            },
           ],
         },
         {
@@ -53,7 +62,16 @@ export const scienceF2C13MindMapBM: MindNode = {
                 { id: "c1-3-2-7", label: "Dikenali juga sebagai \"planet kecil\"" },
               ],
             },
-            { id: "c1-3-3", label: "Pergerakan Asteroid (rujuk gambar rajah dalam buku teks)" },
+            {
+              id: "c1-3-3",
+              label: "Pergerakan Asteroid",
+              children: [
+                { id: "c1-3-3-1", label: "Bergerak dengan kelajuan purata 25 km s⁻¹" },
+                { id: "c1-3-3-2", label: "Kebanyakan asteroid berada di dalam lingkaran asteroid" },
+                { id: "c1-3-3-3", label: "Perlanggaran boleh berlaku pada titik persilangan atau lintasan berhampiran orbit Bumi dan orbit asteroid" },
+                { id: "c1-3-3-4", label: "Perlanggaran dengan asteroid bersaiz besar boleh menyebabkan kemusnahan hidupan di Bumi" },
+              ],
+            },
             {
               id: "c1-3-4",
               label: "Orbit Asteroid di Luar Lingkaran Asteroid",
@@ -83,7 +101,16 @@ export const scienceF2C13MindMapBM: MindNode = {
                 { id: "c1-4-2-6", label: "Kelajuan purata 10 km s⁻¹ hingga 70 km s⁻¹" },
               ],
             },
-            { id: "c1-4-3", label: "Pergerakan Komet — ekor sentiasa menghala bertentangan Matahari (rujuk gambar rajah dalam buku teks)" },
+            {
+              id: "c1-4-3",
+              label: "Pergerakan Komet",
+              children: [
+                { id: "c1-4-3-1", label: "Apabila menghampiri Matahari, komet semakin laju, mencair dan kelihatan seperti berekor panjang" },
+                { id: "c1-4-3-2", label: "Ekor komet sentiasa dalam keadaan menjauhi Matahari disebabkan tiupan angin suria dari Matahari" },
+                { id: "c1-4-3-3", label: "Tarikan graviti planet luar yang kuat menyebabkan komet mudah terkeluar dari orbitnya" },
+                { id: "c1-4-3-4", label: "Komet yang terkeluar dari orbit berisiko untuk berlanggar dengan Bumi dalam kelajuan yang tinggi" },
+              ],
+            },
             {
               id: "c1-4-4",
               label: "Asal Komet",
