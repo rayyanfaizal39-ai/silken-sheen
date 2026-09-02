@@ -34,7 +34,7 @@ export const scienceF2C12MindMapBM: MindNode = {
               label: "Tahun Cahaya (ly)",
               children: [
                 { id: "c1-2-2-1", label: "Jarak yang dilalui cahaya dalam masa satu tahun" },
-                { id: "c1-2-2-2", label: "Kelajuan cahaya = 300,000 km saat⁻¹" },
+                { id: "c1-2-2-2", label: "Halaju cahaya = 300 000 km setiap saat" },
                 { id: "c1-2-2-3", label: "1 tahun cahaya = 9.5 × 10¹² km" },
               ],
             },
@@ -139,7 +139,7 @@ export const scienceF2C12MindMapBM: MindNode = {
                 { id: "c1-3-6-2", label: "Planet kedua terbesar; dikelaskan \"gas gergasi\"" },
                 { id: "c1-3-6-3", label: "Sistem cincin kebanyakan terdiri daripada ais" },
                 { id: "c1-3-6-4", label: "62 bulan; Titan (terbesar) lebih besar daripada Utarid" },
-                { id: "c1-3-6-5", label: "Graviti tidak setinggi Bumi walaupun jisim tinggi (ketumpatan rendah)" },
+                { id: "c1-3-6-5", label: "Graviti 10.44 m s⁻² — tidak terlalu tinggi berbanding Bumi (9.8 m s⁻²) kerana ketumpatannya rendah walaupun jisimnya tinggi" },
               ],
             },
             {
@@ -151,7 +151,7 @@ export const scienceF2C12MindMapBM: MindNode = {
                 { id: "c1-3-7-3", label: "Sistem cincin lebih nipis & gelap daripada Zuhal" },
                 { id: "c1-3-7-4", label: "Paksi putaran hampir selari dengan orbitnya — berputar di sisinya" },
                 { id: "c1-3-7-5", label: "Mengambil 84 tahun untuk mengorbit Matahari" },
-                { id: "c1-3-7-6", label: "Graviti tidak setinggi Bumi walaupun jisim tinggi (ketumpatan rendah)" },
+                { id: "c1-3-7-6", label: "Graviti 8.69 m s⁻² — lebih rendah daripada Bumi (9.8 m s⁻²) kerana ketumpatannya rendah walaupun jisimnya tinggi" },
               ],
             },
             {
@@ -161,14 +161,14 @@ export const scienceF2C12MindMapBM: MindNode = {
                 { id: "c1-3-8-1", label: "Jarak dari Matahari ~4,497 juta km" },
                 { id: "c1-3-8-2", label: "Planet kelapan; dikelaskan \"gas gergasi\"" },
                 { id: "c1-3-8-3", label: "Mengambil hampir 165 tahun (164.8 tahun) untuk mengorbit Matahari — paling lama" },
-                { id: "c1-3-8-4", label: "Graviti tidak setinggi Bumi walaupun jisim tinggi (ketumpatan rendah)" },
+                { id: "c1-3-8-4", label: "Graviti 11.15 m s⁻² — tidak terlalu tinggi berbanding Bumi (9.8 m s⁻²) kerana ketumpatannya rendah walaupun jisimnya tinggi" },
               ],
             },
           ],
         },
         {
           id: "c1-4",
-          label: "Hubungan & Corak Antara Planet",
+          label: "Hubungan Antara Ciri Planet (termasuk anomali)",
           children: [
             {
               id: "c1-4-1",
@@ -177,6 +177,7 @@ export const scienceF2C12MindMapBM: MindNode = {
                 { id: "c1-4-1-1", label: "Teori: lebih hampir Matahari = lebih panas, tetapi realiti lebih kompleks" },
                 { id: "c1-4-1-2", label: "Tanpa atmosfera (Utarid): sisi cerah amat panas, sisi gelap amat sejuk" },
                 { id: "c1-4-1-3", label: "Kesan rumah hijau (Zuhrah, Bumi): atmosfera memerangkap haba" },
+                { id: "c1-4-1-6", label: "ANOMALI: Zuhrah paling panas walaupun Utarid lebih hampir Matahari" },
                 { id: "c1-4-1-4", label: "Marikh: tekanan rendah → kesan minimum pada suhu" },
                 { id: "c1-4-1-5", label: "Gergasi gas (Musytari, Zuhal, Uranus, Neptun): permukaan gas, suhu amat rendah" },
               ],
@@ -190,7 +191,7 @@ export const scienceF2C12MindMapBM: MindNode = {
                 { id: "c1-4-2-3", label: "Utarid & Marikh: graviti lebih rendah (jisim lebih rendah)" },
                 { id: "c1-4-2-4", label: "Zuhrah: graviti hampir sama Bumi (jisim hampir sama)" },
                 { id: "c1-4-2-5", label: "Musytari: graviti lebih tinggi (jisim amat tinggi walau ketumpatan rendah)" },
-                { id: "c1-4-2-6", label: "Zuhal, Uranus, Neptun: graviti tak setinggi Bumi (ketumpatan rendah walau jisim tinggi)" },
+                { id: "c1-4-2-6", label: "Zuhal, Uranus, Neptun: graviti tidak terlalu tinggi berbanding Bumi (ketumpatan rendah walau jisim tinggi)" },
               ],
             },
             {
@@ -239,12 +240,15 @@ export const scienceF2C12MindMapBM: MindNode = {
         },
         {
           id: "c1-7",
-          label: "Situasi Hipotesis — Jika Bumi Berputar Lebih Perlahan/Berhenti",
+          label: "Situasi Hipotetikal Sistem Suria",
           children: [
             { id: "c1-7-1", label: "Tempoh siang/malam lebih panjang di bahagian Bumi berbeza" },
             { id: "c1-7-2", label: "Lebih banyak kawasan gurun di bahagian menghadap Matahari" },
             { id: "c1-7-3", label: "Perubahan air pasang dan air surut" },
             { id: "c1-7-4", label: "Suhu menurun di kawasan tidak menerima cahaya matahari" },
+            { id: "c1-7-5", label: "Mengapakah terdapat planet yang mempunyai dua bulan atau lebih? — taakul daripada data satelit" },
+            { id: "c1-7-6", label: "Jika berada di Bulan, bagaimanakah rupa bentuk Bumi? — Bumi 4 kali saiz Bulan" },
+            { id: "c1-7-7", label: "Adakah Bumi kelihatan mempunyai fasa dari Bulan? — soalan untuk dibincangkan" },
           ],
         },
         {
@@ -257,11 +261,11 @@ export const scienceF2C12MindMapBM: MindNode = {
               id: "c1-8-3",
               label: "Diukur berdasarkan 6 kawasan",
               children: [
-                { id: "c1-8-3-1", label: "Kawasan rawatan sisa karbon dioksida" },
-                { id: "c1-8-3-2", label: "Kawasan pembinaan" },
+                { id: "c1-8-3-1", label: "Jejak karbon" },
+                { id: "c1-8-3-2", label: "Kawasan binaan" },
                 { id: "c1-8-3-3", label: "Hutan" },
                 { id: "c1-8-3-4", label: "Kawasan pertanian" },
-                { id: "c1-8-3-5", label: "Kawasan ladang" },
+                { id: "c1-8-3-5", label: "Kawasan penternakan" },
                 { id: "c1-8-3-6", label: "Kawasan perikanan" },
               ],
             },

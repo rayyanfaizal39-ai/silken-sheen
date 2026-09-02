@@ -30,6 +30,14 @@ export type FigureCopy = {
   /** Spoken pole names, for the accessible label on each drawn letter. */
   poleNorthName: string;
   poleSouthName: string;
+  /** Label above the km input on the A.U. / light-year converter. */
+  /** Row-header label for the planet column in a comparison table. */
+  planetColumn: string;
+  distanceKm: string;
+  /** Readout placeholder before a usable distance is entered. */
+  enterDistance: string;
+  /** Input placeholder showing an example distance. */
+  distanceExample: string;
 };
 
 const COPY: Record<FigureLang, FigureCopy> = {
@@ -44,6 +52,10 @@ const COPY: Record<FigureLang, FigureCopy> = {
     poleSouth: "S",
     poleNorthName: "Kutub utara",
     poleSouthName: "Kutub selatan",
+    planetColumn: "Planet",
+    distanceKm: "Jarak (km)",
+    enterDistance: "Masukkan jarak",
+    distanceExample: "cth. 227900000",
   },
   en: {
     enlarge: "Enlarge",
@@ -56,6 +68,10 @@ const COPY: Record<FigureLang, FigureCopy> = {
     poleSouth: "S",
     poleNorthName: "North pole",
     poleSouthName: "South pole",
+    planetColumn: "Planet",
+    distanceKm: "Distance (km)",
+    enterDistance: "Enter a distance",
+    distanceExample: "e.g. 227900000",
   },
 };
 

@@ -115,6 +115,33 @@ export type PlanetSphere = {
   facts: { label: string; value: string }[];
 };
 
+/**
+ * One characteristic compared across every planet, from Jadual 12.2.
+ *
+ * `values` is positional and must line up with `planets`. Keeping one
+ * characteristic on screen at a time is what makes a ten-row, eight-column
+ * table usable on a phone.
+ */
+export type PlanetComparisonCharacteristic = {
+  id: string;
+  label: string;
+  /** Shown once in the header instead of repeated on every value. */
+  unit?: string;
+  values: string[];
+  /** The comparison the row is meant to make, in one line. */
+  note?: string;
+};
+
+export type PlanetComparisonBlock = {
+  title: string;
+  instruction: string;
+  /** Planet names in order from the Sun; column order for every characteristic. */
+  planets: string[];
+  /** Name of the reference planet, highlighted so every row reads "vs Earth". */
+  earth: string;
+  characteristics: PlanetComparisonCharacteristic[];
+};
+
 export type PlanetSpheresBlock = {
   title: string;
   instruction: string;
@@ -1314,6 +1341,7 @@ export type ScienceInteractiveSection = {
   waveVisualizer?: WaveVisualizerBlock;
   galaxyCards?: GalaxyCardsBlock;
   planets?: PlanetSpheresBlock;
+  planetComparison?: PlanetComparisonBlock;
   foodWeb?: FoodWebBlock;
   causeEffect?: CauseEffectBlock;
   adaptations?: AdaptationBlock;

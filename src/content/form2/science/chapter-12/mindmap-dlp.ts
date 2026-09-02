@@ -34,7 +34,7 @@ export const scienceF2C12MindMapDLP: MindNode = {
               label: "Light Years (ly)",
               children: [
                 { id: "c1-2-2-1", label: "Distance travelled by light in one year" },
-                { id: "c1-2-2-2", label: "Speed of light = 300,000 km per second" },
+                { id: "c1-2-2-2", label: "Velocity of light = 300 000 km every second" },
                 { id: "c1-2-2-3", label: "1 light year = 9.5 × 10¹² km" },
               ],
             },
@@ -139,7 +139,7 @@ export const scienceF2C12MindMapDLP: MindNode = {
                 { id: "c1-3-6-2", label: "Second largest planet; classified as a \"giant gas\" planet" },
                 { id: "c1-3-6-3", label: "Ring system mostly comprising ice" },
                 { id: "c1-3-6-4", label: "62 moons; Titan (biggest moon) is bigger than Mercury" },
-                { id: "c1-3-6-5", label: "Gravity not as high as Earth's despite high mass (low density)" },
+                { id: "c1-3-6-5", label: "Gravity 10.44 m s⁻² — not much higher than Earth's (9.8 m s⁻²) because its density is low despite its high mass" },
               ],
             },
             {
@@ -151,7 +151,7 @@ export const scienceF2C12MindMapDLP: MindNode = {
                 { id: "c1-3-7-3", label: "Ring system similar to Saturn's but thinner and darker" },
                 { id: "c1-3-7-4", label: "Axis of rotation tilted, almost parallel to orbit — rotates on its side" },
                 { id: "c1-3-7-5", label: "Takes 84 years to orbit the Sun" },
-                { id: "c1-3-7-6", label: "Gravity not as high as Earth's despite high mass (low density)" },
+                { id: "c1-3-7-6", label: "Gravity 8.69 m s⁻² — lower than Earth's (9.8 m s⁻²) because its density is low despite its high mass" },
               ],
             },
             {
@@ -161,14 +161,14 @@ export const scienceF2C12MindMapDLP: MindNode = {
                 { id: "c1-3-8-1", label: "Distance from the Sun ~4,497 million km" },
                 { id: "c1-3-8-2", label: "Eighth planet; also classified as a \"giant gas\" planet" },
                 { id: "c1-3-8-3", label: "Takes almost 165 years (164.8 years) to orbit the Sun — longest" },
-                { id: "c1-3-8-4", label: "Gravity not as high as Earth's despite high mass (low density)" },
+                { id: "c1-3-8-4", label: "Gravity 11.15 m s⁻² — not much higher than Earth's (9.8 m s⁻²) because its density is low despite its high mass" },
               ],
             },
           ],
         },
         {
           id: "c1-4",
-          label: "Relationships & Patterns Between Planets",
+          label: "Relationships Between Planetary Characteristics (including anomalies)",
           children: [
             {
               id: "c1-4-1",
@@ -177,6 +177,7 @@ export const scienceF2C12MindMapDLP: MindNode = {
                 { id: "c1-4-1-1", label: "Theory: closer to Sun = hotter, but reality is more complex" },
                 { id: "c1-4-1-2", label: "No atmosphere (Mercury): sunlit side extremely hot, dark side extremely cold" },
                 { id: "c1-4-1-3", label: "Greenhouse effect (Venus, Earth): atmosphere traps heat" },
+                { id: "c1-4-1-6", label: "ANOMALY: Venus is hottest even though Mercury is closer to the Sun" },
                 { id: "c1-4-1-4", label: "Mars: low pressure → minimal effect on surface temperature" },
                 { id: "c1-4-1-5", label: "Giant gas planets (Jupiter, Saturn, Uranus, Neptune): gas surfaces, very low temperature" },
               ],
@@ -190,7 +191,7 @@ export const scienceF2C12MindMapDLP: MindNode = {
                 { id: "c1-4-2-3", label: "Mercury & Mars: lower gravity (lower mass)" },
                 { id: "c1-4-2-4", label: "Venus: gravity almost same as Earth (similar mass)" },
                 { id: "c1-4-2-5", label: "Jupiter: much higher gravity (extremely high mass despite low density)" },
-                { id: "c1-4-2-6", label: "Saturn, Uranus, Neptune: gravity not as high as Earth's (low density despite high mass)" },
+                { id: "c1-4-2-6", label: "Saturn, Uranus, Neptune: gravity not much higher than Earth's (low density despite high mass)" },
               ],
             },
             {
@@ -239,12 +240,15 @@ export const scienceF2C12MindMapDLP: MindNode = {
         },
         {
           id: "c1-7",
-          label: "Hypothetical Situation — If Earth's Rotation Slows Down/Stops",
+          label: "Hypothetical Solar System Situations",
           children: [
             { id: "c1-7-1", label: "Longer day/night duration in different parts of the Earth" },
             { id: "c1-7-2", label: "More desert areas in parts facing the Sun" },
             { id: "c1-7-3", label: "Change in high and low tides" },
             { id: "c1-7-4", label: "Temperature drops in areas that do not receive sunlight" },
+            { id: "c1-7-5", label: "Why do some planets have two or more moons? — reason from the satellite data" },
+            { id: "c1-7-6", label: "If you were on the Moon, what would Earth look like? — Earth is 4 times the Moon's size" },
+            { id: "c1-7-7", label: "Would Earth appear to have phases from the Moon? — a question to discuss" },
           ],
         },
         {
@@ -257,12 +261,12 @@ export const scienceF2C12MindMapDLP: MindNode = {
               id: "c1-8-3",
               label: "Measured across 6 areas",
               children: [
-                { id: "c1-8-3-1", label: "Carbon dioxide waste treatment areas" },
-                { id: "c1-8-3-2", label: "Construction areas" },
-                { id: "c1-8-3-3", label: "Forests" },
-                { id: "c1-8-3-4", label: "Agricultural areas" },
-                { id: "c1-8-3-5", label: "Farming areas" },
-                { id: "c1-8-3-6", label: "Fishing areas" },
+                { id: "c1-8-3-1", label: "Carbon footprint" },
+                { id: "c1-8-3-2", label: "Built-up land" },
+                { id: "c1-8-3-3", label: "Forest" },
+                { id: "c1-8-3-4", label: "Cropland" },
+                { id: "c1-8-3-5", label: "Grazing land" },
+                { id: "c1-8-3-6", label: "Fishing grounds" },
               ],
             },
             { id: "c1-8-4", label: "If footprint exceeds Earth's ability to renew → Earth depleted of resources" },

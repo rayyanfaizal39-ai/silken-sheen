@@ -25,6 +25,7 @@ import { BuoyancySimulator } from "@/components/notes/blocks/BuoyancySimulator";
 import { WaveVisualizer } from "@/components/notes/blocks/WaveVisualizer";
 import { GalaxyCardGrid } from "@/components/notes/blocks/GalaxyCardGrid";
 import { PlanetSphereList } from "@/components/notes/blocks/PlanetSphereList";
+import { PlanetComparisonTable } from "@/components/notes/blocks/PlanetComparisonTable";
 import { AuLightYearCalculator } from "@/components/notes/blocks/AuLightYearCalculator";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
 import type { ScienceF2InteractiveContent } from "@/content/form2/science/interactive-types";
@@ -249,6 +250,14 @@ export function ScienceF2InteractiveNotesBlock({
             <GalaxyCardGrid cards={section.galaxyCards.cards} />
           </div>
         )}
+        {section.planetComparison && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.planetComparison.title}
+            </h3>
+            <PlanetComparisonTable block={section.planetComparison} lang={lang} />
+          </div>
+        )}
         {section.planets && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -323,7 +332,7 @@ export function ScienceF2InteractiveNotesBlock({
                 defaultR2={calc.defaultR2}
               />
             ) : calc.type === "au-light-year" ? (
-              <AuLightYearCalculator defaultKm={calc.defaultKm} />
+              <AuLightYearCalculator defaultKm={calc.defaultKm} lang={lang} />
             ) : (
               <TwoFieldCalculator
                 fieldA={calc.fieldA}
