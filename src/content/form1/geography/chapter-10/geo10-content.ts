@@ -1,13 +1,7 @@
-// geo10-content.ts
-// Source-verified content for Geography Form 1, Bab 10 — Bentuk Muka Bumi dan Saliran di Asia Tenggara
-// Sourced from T1_BT_GEO_-_GEOGRAFI.pdf (pages 108-119)
-// Geography has no official DLP/English textbook — BM only.
-// Content data only — no presentation markup.
-
 export interface Country {
   name: string;
   capital: string;
-  region: 'tanah besar' | 'kepulauan';
+  region: "tanah besar" | "kepulauan";
 }
 
 export interface Volcano {
@@ -38,7 +32,7 @@ export interface Geo10Content {
   landforms: {
     coastline: { note: string; seas: string[]; shelfNote: string };
     lowlands: { note: string; examples: string[] };
-    highlands: { note: string; ranges: string[] };
+    highlands: { note: string; ranges: string[]; plateaus: string[] };
     volcanoes: Volcano[];
   };
   majorRivers: RiverFact[];
@@ -50,15 +44,23 @@ export interface Geo10Content {
 
 export const geo10Content: Geo10Content = {
   hook: {
-    title: "Kenapa ini penting",
-    body: "Malaysia bukan sahaja berkongsi sempadan dengan jiran serantau — ia berkongsi banjaran gunung yang sama, dikelilingi lautan yang sama, dan bergantung pada sungai yang mengalir merentasi beberapa negara sekaligus. Bab ini meletakkan Malaysia dalam konteks Asia Tenggara yang lebih luas."
+    title: "Satu rantau, pelbagai landskap",
+    body: "Asia Tenggara berkongsi banjaran, laut dan sungai yang merentasi sempadan. Bentuk muka bumi dan saliran ini menentukan lokasi petempatan serta kegiatan ekonomi penduduknya.",
   },
   overview: {
-    location: "Asia Tenggara terletak di bahagian tenggara Benua Asia, antara latitud 11°S hingga 28°U dan longitud 93°T hingga 135°T.",
+    location:
+      "Asia Tenggara terletak di tenggara Benua Asia, antara latitud 11°S hingga 28°U dan longitud 93°T hingga 135°T.",
     totalCountries: 11,
-    totalArea: "4,506,600 km persegi",
-    mainlandCountries: ["Malaysia (Semenanjung Malaysia)", "Myanmar", "Thailand", "Kemboja", "Laos", "Vietnam"],
-    maritimeCountries: ["Malaysia (Sabah dan Sarawak)", "Singapura", "Brunei Darussalam", "Indonesia", "Timor Leste", "Filipina"]
+    totalArea: "4 506 600 km²",
+    mainlandCountries: ["Malaysia", "Myanmar", "Thailand", "Kemboja", "Laos", "Vietnam"],
+    maritimeCountries: [
+      "Malaysia",
+      "Singapura",
+      "Brunei Darussalam",
+      "Indonesia",
+      "Timor Leste",
+      "Filipina",
+    ],
   },
   countries: [
     { name: "Malaysia", capital: "Kuala Lumpur", region: "tanah besar" },
@@ -68,57 +70,120 @@ export const geo10Content: Geo10Content = {
     { name: "Vietnam", capital: "Hanoi", region: "tanah besar" },
     { name: "Kemboja", capital: "Phnom Penh", region: "tanah besar" },
     { name: "Singapura", capital: "Singapura", region: "kepulauan" },
-    { name: "Brunei Darussalam", capital: "Bandar Seri Begawan", region: "kepulauan" },
+    {
+      name: "Brunei Darussalam",
+      capital: "Bandar Seri Begawan",
+      region: "kepulauan",
+    },
     { name: "Indonesia", capital: "Jakarta", region: "kepulauan" },
     { name: "Filipina", capital: "Manila", region: "kepulauan" },
-    { name: "Timor Leste", capital: "Dili", region: "kepulauan" }
+    { name: "Timor Leste", capital: "Dili", region: "kepulauan" },
   ],
   landforms: {
     coastline: {
-      note: "Semua negara di Asia Tenggara mempunyai pinggir laut kecuali Laos.",
+      note: "Semua negara Asia Tenggara mempunyai pinggir laut kecuali Laos, sebuah negara daratan tanpa pantai.",
       seas: ["Laut Andaman", "Laut China Selatan", "Laut Jawa", "Laut Sulawesi", "Laut Sulu"],
-      shelfNote: "Pinggir laut di Asia Tenggara cetek dan dikenali sebagai pentas benua."
+      shelfNote:
+        "Kebanyakan pinggir lautnya cetek dan membentuk pentas benua seperti Pentas Sunda.",
     },
     lowlands: {
-      note: "Tanah pamah banyak terdapat di delta dan lembah sungai — subur dan sesuai untuk pertanian seperti penanaman padi. Kawasan ini berpenduduk padat kerana petempatan dan jaringan perhubungan mudah dibina.",
-      examples: ["Delta Sungai Mekong (Vietnam)", "Delta Sungai Irrawaddy (Myanmar)", "Lembah Menam Chao Phraya (Thailand)"]
+      note: "Tanah pamah di delta dan lembah sungai rata, subur serta diliputi tanih mendapan. Pertanian, petempatan dan jaringan pengangkutan mudah dibangunkan.",
+      examples: [
+        "Delta Sungai Mekong (Vietnam)",
+        "Delta Sungai Irrawaddy (Myanmar)",
+        "Lembah Menam Chao Phraya (Thailand)",
+      ],
     },
     highlands: {
-      note: "Tanah tinggi terdiri daripada banjaran gunung lipat muda (terbentuk sejak 35 juta tahun) dan banjaran gunung lipat tua (terbentuk sejak 200 juta tahun). Banjaran tinggi berpunca dari Banjaran Himalaya di utara dan menganjur bermula di Banjaran Arakan Yoma (Myanmar).",
-      ranges: ["Banjaran Arakan Yoma (Myanmar)", "Banjaran Annam (Vietnam)", "Banjaran Bilauktaung (Thailand)", "Banjaran Crocker (Malaysia)"]
+      note: "Tanah tinggi terdiri daripada gunung lipat muda yang terbentuk sejak 35 juta tahun dan gunung lipat tua sejak 200 juta tahun. Banjarannya berpunca dari Himalaya dan menganjur ke Asia Tenggara melalui Arakan Yoma.",
+      ranges: [
+        "Banjaran Arakan Yoma (Myanmar)",
+        "Banjaran Annam (Vietnam)",
+        "Banjaran Crocker (Malaysia)",
+      ],
+      plateaus: ["Dataran Tinggi Korat (Thailand)", "Dataran Tinggi Shan (Myanmar)"],
     },
     volcanoes: [
-      { name: "Gunung Merapi", country: "Indonesia" },
-      { name: "Gunung Kerinci", country: "Indonesia" },
-      { name: "Gunung Krakatau", country: "Indonesia" },
-      { name: "Gunung Mayon", country: "Filipina" },
-      { name: "Gunung Pinatubo", country: "Filipina" }
-    ]
+      { name: "Gunung Pinatubo", country: "Filipina" },
+      { name: "Danau Toba", country: "Indonesia" },
+    ],
   },
   majorRivers: [
-    { name: "Sungai Mekong", facts: ["Sungai terpanjang di Asia Tenggara (4,880 km)", "Berpunca dari Dataran Tibet, mengalir melalui Yunan (China), Myanmar, Thailand, Laos, Kemboja, berakhir di Vietnam", "Lebih 90 juta penduduk bergantung hidup padanya, terutama pesawah padi", "Lebih 140,000 km persegi padi sawah ditanam di lembangannya"] },
-    { name: "Sungai Irrawaddy", facts: ["Sungai terpenting dan terpanjang di Myanmar (2,293 km)", "Mengalir dari utara ke selatan, berakhir di Laut Andaman", "Jalan perhubungan dan pengangkutan; sumber air dan protein", "Delta Irrawaddy sesuai untuk penanaman padi"] },
-    { name: "Menam Chao Phraya", facts: ["Sungai terpenting dan terpanjang di Thailand (372 km)", "Mengalir dari utara Thailand ke Teluk Siam", "Lembahnya kaya tanih aluvium subur untuk padi", "Bangkok terkenal dengan pasar terapung, digelar 'Venice Timur'", "'Menam' dalam bahasa Thai bermaksud sungai"] }
+    {
+      name: "Sungai Mekong",
+      facts: [
+        "Sungai terpanjang di Asia Tenggara, kira-kira 4 880 km",
+        "Berpunca dari Dataran Tibet dan mengalir melalui Yunan, Myanmar, Thailand, Laos, Kemboja sebelum berakhir di Vietnam",
+        "Menyokong lebih 90 juta penduduk dan lebih 140 000 km² kawasan padi sawah",
+        "Kaya dengan sumber ikan air tawar",
+      ],
+    },
+    {
+      name: "Menam Chao Phraya",
+      facts: [
+        "Sistem sungai dan terusan yang penting di Thailand",
+        "Menjadi jalan pengangkutan dan pusat perniagaan",
+        "Terkenal dengan kegiatan pasar terapung",
+      ],
+    },
+    {
+      name: "Sungai Irrawaddy",
+      facts: [
+        "Sungai utama di Myanmar",
+        "Penting untuk pengangkutan, pertanian dan petempatan",
+        "Deltanya subur dan sesuai untuk penanaman padi",
+      ],
+    },
   ],
   majorLakes: [
-    { name: "Tonle Sap", facts: ["Terletak di barat Kemboja", "Tasik air tawar semula jadi terbesar di Asia Tenggara (2,569 km persegi)", "Membekalkan sumber air domestik penduduk Kemboja", "Perikanan air tawar — kegiatan ekonomi terpenting sepanjang tahun", "Pada musim kemarau, tasik menjadi cetek dan kegiatan perikanan lebih giat", "'Tonle' dalam bahasa Kemboja bermaksud tasik"] },
-    { name: "Danau Toba", facts: ["Terletak di Sumatera Utara, Indonesia", "Tasik vulkanik yang terbentuk akibat ledakan gunung berapi 73,000-75,000 tahun lalu", "Saiz: 100 km panjang, 30 km lebar, kedalaman kira-kira 500 m", "Tasik vulkanik paling dalam di dunia", "Pulau Samosir di tengah tasik terbentuk akibat pergerakan magma", "'Danau' dalam bahasa Indonesia bermaksud tasik"] }
+    {
+      name: "Tonle Sap",
+      facts: [
+        "Tasik semula jadi terbesar di Kemboja",
+        "Semasa monsun, air Sungai Mekong mengalir masuk dan meluaskan tasik sehingga kira-kira 10 000 km²",
+        "Kawasan perikanan air tawar utama dan destinasi pelancongan",
+      ],
+    },
+    {
+      name: "Danau Toba",
+      facts: [
+        "Terletak di Sumatera, Indonesia",
+        "Tasik vulkanik atau tasik kawah yang terbentuk akibat letusan gunung berapi purba",
+        "Destinasi pelancongan bertaraf dunia",
+      ],
+    },
+    {
+      name: "Tasik Kenyir",
+      facts: [
+        "Terletak di Malaysia",
+        "Tasik buatan manusia terbesar di Malaysia",
+        "Dibina untuk penjanaan kuasa hidroelektrik dan pelancongan",
+      ],
+    },
   ],
   keyExamFacts: [
-    "Terdapat 11 buah negara di Asia Tenggara, terbahagi kepada Tanah Besar dan Kepulauan Asia Tenggara",
-    "Laos ialah satu-satunya negara Asia Tenggara yang tiada pinggir laut",
-    "Kebanyakan gunung berapi di Asia Tenggara terdapat di Indonesia dan Filipina",
-    "Sungai Mekong (4,880 km) ialah sungai terpanjang di Asia Tenggara, mengalir melalui 6 negara/wilayah",
-    "Tonle Sap ialah tasik air tawar semula jadi terbesar di Asia Tenggara",
-    "Danau Toba ialah tasik vulkanik paling dalam di dunia, terbentuk akibat letusan gunung berapi purba",
-    "Gunung lipat muda terbentuk sejak 35 juta tahun; gunung lipat tua sejak 200 juta tahun"
+    "Asia Tenggara mempunyai 11 negara dan berkeluasan 4 506 600 km²",
+    "Laos ialah satu-satunya negara Asia Tenggara tanpa pinggir laut",
+    "Empat bentuk muka bumi utama ialah tanah tinggi, tanah pamah, pinggir laut dan gunung berapi",
+    "Gunung berapi tertumpu di Indonesia dan Filipina",
+    "Sungai Mekong ialah sungai terpanjang di Asia Tenggara, kira-kira 4 880 km",
+    "Tonle Sap boleh meluas sehingga kira-kira 10 000 km² pada musim monsun",
+    "Danau Toba ialah tasik vulkanik; Tasik Kenyir ialah tasik buatan manusia",
   ],
   keyTerms: [
-    "Tanah Besar Asia Tenggara", "Kepulauan Asia Tenggara", "Pentas benua",
-    "Gunung lipat muda", "Gunung lipat tua", "Terusan", "Vulkanik", "Lembangan",
-    "Barangan pukal", "Delta"
+    "Tanah Besar Asia Tenggara",
+    "Kepulauan Asia Tenggara",
+    "Pentas benua",
+    "Gunung lipat muda",
+    "Gunung lipat tua",
+    "Delta",
+    "Lembah sungai",
+    "Vulkanik",
+    "Terusan",
+    "Hidroelektrik",
   ],
-  chapterSummary: "Bab 10 memperkenalkan 11 negara Asia Tenggara (Tanah Besar dan Kepulauan) beserta ibu negara masing-masing, bentuk muka bumi (pinggir laut, tanah pamah, tanah tinggi, gunung berapi), dan sungai serta tasik utama serantau — termasuk Sungai Mekong yang terpanjang dan Danau Toba, tasik vulkanik paling dalam di dunia."
+  chapterSummary:
+    "Bab 10 memperkenalkan 11 negara Asia Tenggara, empat bentuk muka bumi utama serta sungai dan tasik penting serantau. Bentuk muka bumi dan saliran mempengaruhi pertanian, petempatan, pengangkutan, perikanan, penjanaan tenaga dan pelancongan.",
 };
 
 export default geo10Content;
