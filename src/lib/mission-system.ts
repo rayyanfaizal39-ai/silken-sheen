@@ -1,5 +1,6 @@
 /* eslint-disable no-empty -- Mission sync remains functional when browser storage is unavailable. */
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { canPersistProgress } from "@/lib/guest-mode";
 import { getLocalDateKey } from "@/lib/local-date";
 
 export const DAILY_OBJECTIVE_REWARD_XP = 100;
@@ -492,7 +493,8 @@ export async function recordMissionActivity(input: {
   const {
     data: { session },
   } = await supabase.auth.getSession();
-  if (!session?.user.id) throw new Error("Authentication required.");
+  if (!session?.user.id || !canPersistProgress(session.user.id))
+    throw new Error("Authentication required.");
   const pending: PendingMissionActivity = {
     userId: session.user.id,
     activity: input.activity,
@@ -522,6 +524,11 @@ export async function claimMissionReward(input: {
   dateKey?: string;
 }): Promise<MissionSystemState> {
   if (!isSupabaseConfigured) throw new Error("Mission claims are unavailable.");
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  if (!session?.user.id || !canPersistProgress(session.user.id))
+    throw new Error("Authentication required.");
   const { data, error } = await supabase.rpc("claim_mission_reward", {
     p_claim_kind: input.kind,
     p_mission_id: input.missionId ?? null,

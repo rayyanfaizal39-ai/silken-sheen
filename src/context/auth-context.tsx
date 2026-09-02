@@ -10,6 +10,7 @@ import {
 import type { User, Session } from "@supabase/supabase-js";
 import { useRouterState } from "@tanstack/react-router";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { clearGuestMode } from "@/lib/guest-mode";
 import { beginLoadingTask } from "@/lib/loading-store";
 import {
   getExplorerProfile,
@@ -126,6 +127,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         else console.info("[Auth] Initial session check completed", { hasSession: !!s });
         setSession(s);
         setUser(s?.user ? supabaseUserToAuthUser(s.user) : null);
+        if (s?.user) clearGuestMode();
       })
       .catch((error: unknown) => {
         if (!active) return;
@@ -148,6 +150,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (prev?.id === nextId) return prev;
         return s?.user ? supabaseUserToAuthUser(s.user) : null;
       });
+      if (s?.user) clearGuestMode();
       finishBoot();
     });
 

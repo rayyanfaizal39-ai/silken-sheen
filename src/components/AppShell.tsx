@@ -54,6 +54,7 @@ import {
   shouldRedirectToLogin,
   shouldRedirectToOnboarding,
 } from "@/lib/onboarding-routing";
+import { isGuestMode } from "@/lib/guest-mode";
 
 const ProfileSummaryDialog = lazy(() =>
   import("@/components/profile/ProfileSummaryDialog").then((module) => ({
@@ -247,14 +248,21 @@ function SidebarBottom() {
           </button>
         </div>
       ) : isConfigured && !hideSignIn ? (
-        <button
-          type="button"
-          onClick={() => openSignIn()}
-          className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/[0.09] bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/50 transition-colors hover:bg-white/[0.08] hover:text-white"
-        >
-          <LogIn className="h-3.5 w-3.5" />
-          Sign in to sync progress
-        </button>
+        <div className="space-y-1.5">
+          {isGuestMode() && (
+            <p className="px-1 text-[10px] font-semibold text-white/40">
+              Guest mode — progress is not saved.
+            </p>
+          )}
+          <button
+            type="button"
+            onClick={() => openSignIn()}
+            className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/[0.09] bg-white/[0.04] px-3 py-2.5 text-xs font-semibold text-white/50 transition-colors hover:bg-white/[0.08] hover:text-white"
+          >
+            <LogIn className="h-3.5 w-3.5" />
+            Sign in to save your progress
+          </button>
+        </div>
       ) : null}
 
       {/* Live rank chip */}
@@ -321,7 +329,8 @@ export function AppShell({ children }: { children: ReactNode }) {
     Boolean(user) &&
     shouldRedirectToOnboarding(pathname, onboardingRequired);
   const redirectToLogin =
-    !isRankUpDevelopmentPreview && shouldRedirectToLogin(pathname, loading, Boolean(user));
+    !isRankUpDevelopmentPreview &&
+    shouldRedirectToLogin(pathname, loading, Boolean(user), isGuestMode());
 
   useEffect(() => {
     if (redirectToOnboarding) {
