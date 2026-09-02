@@ -132,6 +132,70 @@ export type PlanetComparisonCharacteristic = {
   note?: string;
 };
 
+/** Rajah 13.2 — the four stages of a meteoroid's journey, named by where it is. */
+export type MeteoroidEntryStage = {
+  id: string;
+  label: string;
+  body: string;
+};
+
+export type MeteoroidEntryBlock = {
+  title: string;
+  instruction: string;
+  figureLabel: string;
+  spaceLabel: string;
+  atmosphereLabel: string;
+  groundLabel: string;
+  stages: MeteoroidEntryStage[];
+};
+
+/** Rajah 13.3 — an asteroid orbit that reaches outside the belt. */
+export type AsteroidCrossingOrbit = {
+  id: string;
+  label: string;
+  rx: number;
+  ry: number;
+  offsetX: number;
+  rotate: number;
+};
+
+/** Gambar foto 13.1 + Rajah 13.3 — the belt, and the orbits that cross Earth's. */
+export type AsteroidBeltBlock = {
+  title: string;
+  instruction: string;
+  beltFigureLabel: string;
+  crossingFigureLabel: string;
+  beltToggleLabel: string;
+  crossingToggleLabel: string;
+  sunLabel: string;
+  venusLabel: string;
+  earthLabel: string;
+  marsLabel: string;
+  jupiterLabel: string;
+  beltLabel: string;
+  beltBody: string;
+  crossingBody: string;
+  crossingOrbits: AsteroidCrossingOrbit[];
+  scaleNote: string;
+};
+
+/** Rajah 13.4 — comet orbit, speed near and far from the Sun, tail direction. */
+export type CometOrbitBlock = {
+  title: string;
+  instruction: string;
+  figureLabel: string;
+  positionLabel: string;
+  sunLabel: string;
+  nearSunLabel: string;
+  farSunLabel: string;
+  nearSpeedLabel: string;
+  farSpeedLabel: string;
+  nearBody: string;
+  farBody: string;
+  tailRule: string;
+  scaleNote: string;
+};
+
 export type PlanetComparisonBlock = {
   title: string;
   instruction: string;
@@ -1342,6 +1406,9 @@ export type ScienceInteractiveSection = {
   galaxyCards?: GalaxyCardsBlock;
   planets?: PlanetSpheresBlock;
   planetComparison?: PlanetComparisonBlock;
+  meteoroidEntry?: MeteoroidEntryBlock;
+  asteroidBelt?: AsteroidBeltBlock;
+  cometOrbit?: CometOrbitBlock;
   foodWeb?: FoodWebBlock;
   causeEffect?: CauseEffectBlock;
   adaptations?: AdaptationBlock;

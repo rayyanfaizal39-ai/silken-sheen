@@ -54,7 +54,7 @@ export const scienceF2C13FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     front: "What is the size range of a meteoroid?",
-    back: "From 10 m to 1 m.",
+    back: "From 10 μm to 1 m.",
   },
   {
     id: "sci-f2-c13-dlp-f7",
@@ -209,7 +209,7 @@ export const scienceF2C13FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     front: "Compare the size of a meteoroid with the size of an asteroid.",
-    back: "Meteoroid: 10 m to 1 m. Asteroid: 1 m to 1,000 km — asteroids are far larger.",
+    back: "Meteoroid: 10 μm to 1 m. Asteroid: 1 m to 1,000 km — asteroids are far larger.",
   },
   {
     id: "sci-f2-c13-dlp-f24",
@@ -463,7 +463,7 @@ export const scienceF2C13FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     front: "Give three general characteristics of a meteoroid.",
-    back: "Sized 10 m to 1 m, made of rock and metal, surface temperature about 0°C.",
+    back: "Sized 10 μm to 1 m, made of rock and metal, surface temperature about 0°C.",
   },
   {
     id: "sci-f2-c13-dlp-f52",
