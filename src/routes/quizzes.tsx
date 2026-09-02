@@ -15927,7 +15927,7 @@ interface ShuffledQuestion {
   form?: Form;
   chapter?: string;
   lang?: MathQuizLang;
-  set?: MathObjectiveId;
+  set?: string;
   visualKey?: string;
   image?: string;
 }
@@ -15964,6 +15964,7 @@ function QuizzesPage() {
   const [form, setForm] = useState<FormFilter>(initialSearch.form as FormFilter);
   const [formWasChosen, setFormWasChosen] = useState(initialSearch.hasForm);
   const [diff, setDiff] = useState<"All" | Difficulty>("All");
+  const [scienceQuizSet, setScienceQuizSet] = useState<"A" | "B">("A");
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
@@ -15999,7 +16000,7 @@ function QuizzesPage() {
   const [streakBonusXpEarned, setStreakBonusXpEarned] = useState(0);
   const [attemptStartXp, setAttemptStartXp] = useState(progress.xp);
   const quizStreak = useQuizStreak(
-    `${subject ?? "picker"}:${form}:${chapter ?? "none"}:${mathObjectiveId ?? "regular"}:${englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "none"}`,
+    `${subject ?? "picker"}:${form}:${chapter ?? "none"}:${mathObjectiveId ?? "regular"}:${subject === "science" && form === "Form 3" ? scienceQuizSet : (englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "none")}`,
   );
   const confirmStreakAnswer = quizStreak.confirmAnswer;
 
@@ -16050,21 +16051,35 @@ function QuizzesPage() {
     subject && chapter ? subjectChaptersForForm.find((c) => c.key === chapter) : null;
   const missingChapter = !!(subject && chapter && !chapterMeta);
 
-  const pool = useMemo(() => {
+  const chapterQuizQuestions = useMemo(() => {
     if (!subject || !chapter || !registry) return [];
-    const loadedQuestions = registry.getChapterQuizQuestions(
+    return registry.getChapterQuizQuestions(
       subject,
       form,
       chapter,
       isBilingualSubject ? (scienceLang ?? undefined) : undefined,
     );
-    const filteredQuestions = loadedQuestions.filter((q) => {
+  }, [subject, chapter, form, scienceLang, isBilingualSubject, registry]);
+
+  const availableScienceQuizSets = useMemo(
+    () =>
+      subject === "science" && form === "Form 3"
+        ? (["A", "B"] as const).filter((set) =>
+            chapterQuizQuestions.some((question) => question.set === set),
+          )
+        : [],
+    [subject, form, chapterQuizQuestions],
+  );
+
+  const pool = useMemo(() => {
+    const filteredQuestions = chapterQuizQuestions.filter((q) => {
+      if (availableScienceQuizSets.length > 0 && q.set !== scienceQuizSet) return false;
       if (subject !== "sejarah" && diff !== "All" && q.difficulty !== diff) return false;
       return true;
     });
 
     return filteredQuestions;
-  }, [subject, chapter, form, diff, scienceLang, isBilingualSubject, registry]);
+  }, [chapterQuizQuestions, availableScienceQuizSets, scienceQuizSet, subject, diff]);
   const hasSelectedChapterQuiz =
     !!subject &&
     !!chapter &&
@@ -16377,9 +16392,10 @@ function QuizzesPage() {
         correct: true,
         xpAwarded: reward.streakBonusXp,
       });
-      const messages = subject === "science" && scienceLang
-        ? SCIENCE_QUIZ_FEEDBACK[scienceLang].correct
-        : CORRECT_MSGS;
+      const messages =
+        subject === "science" && scienceLang
+          ? SCIENCE_QUIZ_FEEDBACK[scienceLang].correct
+          : CORRECT_MSGS;
       setFeedback({
         kind: "correct",
         msg: messages[Math.floor(Math.random() * messages.length)],
@@ -16390,9 +16406,10 @@ function QuizzesPage() {
         questionId: `regular:${subject}:${chapter}:${idx}`,
         correct: false,
       });
-      const messages = subject === "science" && scienceLang
-        ? SCIENCE_QUIZ_FEEDBACK[scienceLang].wrong
-        : WRONG_MSGS;
+      const messages =
+        subject === "science" && scienceLang
+          ? SCIENCE_QUIZ_FEEDBACK[scienceLang].wrong
+          : WRONG_MSGS;
       setFeedback({
         kind: "wrong",
         msg: messages[Math.floor(Math.random() * messages.length)],
@@ -17102,6 +17119,7 @@ function QuizzesPage() {
         resourceType="quiz"
         onSelectChapter={(key) => {
           setChapter(key);
+          setScienceQuizSet("A");
           updateQuizSearch({ chapter: key });
           reset();
         }}
@@ -17303,6 +17321,7 @@ function QuizzesPage() {
           resourceType="quiz"
           onSelectChapter={(key) => {
             setChapter(key);
+            setScienceQuizSet("A");
             updateQuizSearch({ chapter: key });
             reset();
           }}
@@ -17484,6 +17503,9 @@ function QuizzesPage() {
           form={form}
           chapterKey={chapter}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+          quizSets={availableScienceQuizSets}
+          selectedQuizSet={scienceQuizSet}
+          onSelectQuizSet={setScienceQuizSet}
           onBack={() => {
             setChapter(null);
             updateQuizSearch({ chapter: null });
@@ -17595,9 +17617,7 @@ function QuizzesPage() {
           {pool.length === 0 || !shuffledPool || shuffledPool.length === 0 ? (
             <div className="text-center py-20 glass rounded-2xl">
               <p className="text-muted-foreground">
-                {subject === "math"
-                  ? "Quizzes Coming Soon"
-                  : regularQuizCopy.noQuestions}
+                {subject === "math" ? "Quizzes Coming Soon" : regularQuizCopy.noQuestions}
               </p>
             </div>
           ) : done ? (
@@ -17715,8 +17735,8 @@ function QuizzesPage() {
                       />
                     </div>
                     <p className="mt-3 text-xs text-white/45">
-                      {regularQuizCopy.lifetimeXp} {attemptStartXp.toLocaleString()} → {progress.xp.toLocaleString()}{" "}
-                      XP
+                      {regularQuizCopy.lifetimeXp} {attemptStartXp.toLocaleString()} →{" "}
+                      {progress.xp.toLocaleString()} XP
                     </p>
                   </div>
 
@@ -18043,16 +18063,24 @@ function QuestionXpFeedback({ feedback, bm = false }: { feedback: QuizFeedback; 
       </div>
       {reward && (
         <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1 text-xs sm:flex sm:flex-wrap sm:items-center sm:gap-3">
-          <span>+{reward.baseXp} {bm ? "XP Asas" : "Base XP"}</span>
-          <span aria-label={`${bm ? "Bonus Kepantasan tambah" : "Speed Bonus plus"} ${reward.timerBonusXp} XP`}>
+          <span>
+            +{reward.baseXp} {bm ? "XP Asas" : "Base XP"}
+          </span>
+          <span
+            aria-label={`${bm ? "Bonus Kepantasan tambah" : "Speed Bonus plus"} ${reward.timerBonusXp} XP`}
+          >
             <Zap className="mr-1 inline h-3.5 w-3.5 text-amber-300" aria-hidden="true" />+
             {reward.timerBonusXp} {bm ? "Bonus Kepantasan" : "Speed Bonus"}
           </span>
-          <span aria-label={`${bm ? "Bonus Turutan Betul tambah" : "Correct Streak Bonus plus"} ${reward.streakBonusXp} XP`}>
+          <span
+            aria-label={`${bm ? "Bonus Turutan Betul tambah" : "Correct Streak Bonus plus"} ${reward.streakBonusXp} XP`}
+          >
             <Flame className="mr-1 inline h-3.5 w-3.5 text-orange-400" aria-hidden="true" />+
             {reward.streakBonusXp} {bm ? "Bonus Turutan" : "Streak Bonus"}
           </span>
-          <strong className="text-[#FBBF24]">{bm ? "JUMLAH" : "TOTAL"} +{reward.totalQuestionXp} XP</strong>
+          <strong className="text-[#FBBF24]">
+            {bm ? "JUMLAH" : "TOTAL"} +{reward.totalQuestionXp} XP
+          </strong>
         </div>
       )}
       {feedback.streakReset && (
@@ -18071,6 +18099,9 @@ function QuizSettingsScreen({
   form,
   chapterKey,
   scienceLang,
+  quizSets = [],
+  selectedQuizSet,
+  onSelectQuizSet,
   onBack,
   onStart,
 }: {
@@ -18078,6 +18109,9 @@ function QuizSettingsScreen({
   form: FormFilter;
   chapterKey: string;
   scienceLang?: "bm" | "dlp";
+  quizSets?: readonly ("A" | "B")[];
+  selectedQuizSet?: "A" | "B";
+  onSelectQuizSet?: (set: "A" | "B") => void;
   onBack: () => void;
   onStart: (pref: { mode: TimerMode; seconds: number }) => void;
 }) {
@@ -18112,6 +18146,34 @@ function QuizSettingsScreen({
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">Shorter timer = bigger Speed Bonus.</p>
         </div>
+
+        {quizSets.length > 0 && selectedQuizSet && onSelectQuizSet && (
+          <div className="mb-8">
+            <p className="mb-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+              {scienceLang === "bm" ? "Pilih set kuiz" : "Choose a quiz set"}
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              {quizSets.map((set) => (
+                <button
+                  key={set}
+                  type="button"
+                  onClick={() => onSelectQuizSet(set)}
+                  aria-pressed={selectedQuizSet === set}
+                  className={`rounded-2xl border px-5 py-4 text-center font-display text-lg font-bold transition-all ${
+                    selectedQuizSet === set
+                      ? "border-primary bg-gradient-to-r from-primary/25 to-accent/25 text-white shadow-[0_0_24px_oklch(0.63_0.22_295_/_0.28)]"
+                      : "border-white/10 bg-white/5 text-muted-foreground hover:border-primary/40 hover:bg-white/10"
+                  }`}
+                >
+                  {scienceLang === "bm" ? `Set ${set}` : `Set ${set}`}
+                  <span className="mt-1 block text-xs font-medium text-muted-foreground">
+                    25 {scienceLang === "bm" ? "soalan" : "questions"}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="grid sm:grid-cols-2 gap-4">
           {/* With Timer */}

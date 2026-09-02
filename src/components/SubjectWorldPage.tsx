@@ -11,6 +11,7 @@ import {
 import { ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { SubjectWorldArt } from "@/components/SubjectWorldArt";
 import { cleanLearningTitle } from "@/lib/clean-learning-title";
+import { GEOGRAPHY_F1_CHAPTER_ARTWORK } from "@/lib/geography-f1-chapter-artwork";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -302,26 +303,6 @@ const LOCATIONS: Record<string, Record<string, string>> = {
     "Bab 2": "Kata Adjektif Daerah",
   },
 };
-
-// ─── Geography Form 1 chapter card backgrounds ───────────────────────────────
-// Drop cropped chapter images into src/assets/geography/form1/ named
-// "ch{N}-anything.ext" (see the README in that folder) — picked up
-// automatically, no further code changes needed.
-const geographyF1BgModules = import.meta.glob<{ default: string }>(
-  "/src/assets/geography/form1/*.{png,jpg,jpeg,webp}",
-  { eager: true },
-);
-
-const GEOGRAPHY_F1_BACKGROUNDS: Record<string, string> = (() => {
-  const map: Record<string, string> = {};
-  for (const [path, mod] of Object.entries(geographyF1BgModules)) {
-    const filename = path.split("/").pop() ?? "";
-    const match = filename.match(/^ch(\d{1,2})-/i);
-    if (!match) continue;
-    map[`Chapter ${match[1]}`] = mod.default;
-  }
-  return map;
-})();
 
 // ─── Geography Form 2 chapter card backgrounds ───────────────────────────────
 // Drop cropped chapter images into src/assets/geography/form2/ named
@@ -869,7 +850,7 @@ function LocationCard({
           : undefined;
   const bgImage =
     subjectId === "geography" && form === "Form 1"
-      ? GEOGRAPHY_F1_BACKGROUNDS[chapter.key]
+      ? GEOGRAPHY_F1_CHAPTER_ARTWORK[chapter.key]
       : subjectId === "geography" && form === "Form 2"
         ? GEOGRAPHY_F2_BACKGROUNDS[chapter.key]
         : subjectId === "geography" && form === "Form 3"

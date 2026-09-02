@@ -347,12 +347,14 @@ export interface ScienceNotesSubsection {
   /** 4-step Understanding / Devising a Plan / Implementing / Reflection problem-solving flow. */
   problemSolvingFlow?: ProblemSolvingFlow;
   /** A number line diagram, or labeled real-world examples used by the chapter 1 layout. */
-  numberLine?: NumberLineVisual | {
-    examples: {
-      value: string;
-      meaning: string;
-    }[];
-  };
+  numberLine?:
+    | NumberLineVisual
+    | {
+        examples: {
+          value: string;
+          meaning: string;
+        }[];
+      };
   /** Factor tree + repeated-division ladder pair for prime factorisation. */
   factorVisual?: FactorVisual;
 
@@ -3200,6 +3202,7 @@ export interface QuizQuestion {
   difficulty: Difficulty;
   chapter?: string;
   lang?: "bm" | "dlp";
+  set?: string;
   question: string;
   options: string[];
   answerIndex: number;
@@ -3341,7 +3344,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Which warning symbol identifies a radioactive material?",
     options: ["Irritant", "Radioactive", "Flammable", "Corrosive"],
     answerIndex: 1,
-    explanation: "The radioactive warning symbol is used for materials such as uranium and plutonium.",
+    explanation:
+      "The radioactive warning symbol is used for materials such as uranium and plutonium.",
   },
   {
     id: "sci-f1-c1-dlp-q9",
@@ -3377,9 +3381,15 @@ export const quizzes: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Which pairing of apparatus and function is correct?",
-    options: ["Beaker — collects gas", "Gas jar — measures a fixed liquid volume", "Burette — measures liquid volume accurately", "Pipette — heats chemicals"],
+    options: [
+      "Beaker — collects gas",
+      "Gas jar — measures a fixed liquid volume",
+      "Burette — measures liquid volume accurately",
+      "Pipette — heats chemicals",
+    ],
     answerIndex: 2,
-    explanation: "The textbook states that a burette measures liquid volume accurately, while a pipette measures a fixed liquid volume.",
+    explanation:
+      "The textbook states that a burette measures liquid volume accurately, while a pipette measures a fixed liquid volume.",
   },
   {
     id: "sci-f1-c1-dlp-q12",
@@ -3618,7 +3628,8 @@ export const quizzes: QuizQuestion[] = [
       "Collect data → construct hypothesis → identify problem → write report",
     ],
     answerIndex: 0,
-    explanation: "The textbook sequence begins by identifying the problem, constructing a hypothesis, controlling variables and planning the experiment.",
+    explanation:
+      "The textbook sequence begins by identifying the problem, constructing a hypothesis, controlling variables and planning the experiment.",
   },
   {
     id: "sci-f1-c1-dlp-q28",
@@ -3627,7 +3638,8 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Medium",
-    question: "Which science process skill gives a rational explanation of a pattern in collected data?",
+    question:
+      "Which science process skill gives a rational explanation of a pattern in collected data?",
     options: [
       "Classifying",
       "Interpreting data",
@@ -3635,7 +3647,8 @@ export const quizzes: QuizQuestion[] = [
       "Using space-time relationships",
     ],
     answerIndex: 1,
-    explanation: "The DSKP defines interpreting data as giving a rational explanation of objects, events or patterns from collected data.",
+    explanation:
+      "The DSKP defines interpreting data as giving a rational explanation of objects, events or patterns from collected data.",
   },
   {
     id: "sci-f1-c1-dlp-q29",
@@ -3644,7 +3657,8 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Medium",
-    question: "Which action best demonstrates scientific attitudes and noble values during an investigation?",
+    question:
+      "Which action best demonstrates scientific attitudes and noble values during an investigation?",
     options: [
       "Changing an inconvenient reading",
       "Recording every reading honestly and protecting the group and environment",
@@ -3652,7 +3666,8 @@ export const quizzes: QuizQuestion[] = [
       "Copying another group's conclusion without checking the data",
     ],
     answerIndex: 1,
-    explanation: "The chapter emphasises honesty and accuracy in recording data and responsibility for personal safety, friends and the environment.",
+    explanation:
+      "The chapter emphasises honesty and accuracy in recording data and responsibility for personal safety, friends and the environment.",
   },
   {
     id: "sci-f1-c1-dlp-q30",
@@ -3815,9 +3830,15 @@ export const quizzes: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Padanan radas dengan fungsi yang manakah betul?",
-    options: ["Bikar — mengumpul gas", "Balang gas — menyukat isi padu cecair yang tetap", "Buret — menyukat isi padu cecair dengan tepat", "Pipet — memanaskan bahan kimia"],
+    options: [
+      "Bikar — mengumpul gas",
+      "Balang gas — menyukat isi padu cecair yang tetap",
+      "Buret — menyukat isi padu cecair dengan tepat",
+      "Pipet — memanaskan bahan kimia",
+    ],
     answerIndex: 2,
-    explanation: "Buku teks menyatakan bahawa buret menyukat isi padu cecair dengan tepat, manakala pipet menyukat isi padu cecair yang tetap.",
+    explanation:
+      "Buku teks menyatakan bahawa buret menyukat isi padu cecair dengan tepat, manakala pipet menyukat isi padu cecair yang tetap.",
   },
   {
     id: "sci-f1-c1-bm-q12",
@@ -4012,8 +4033,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question:
-      "Bagaimanakah cara mengurangkan ralat paralaks semasa membaca silinder penyukat?",
+    question: "Bagaimanakah cara mengurangkan ralat paralaks semasa membaca silinder penyukat?",
     options: [
       "Lihat skala dari atas",
       "Lihat skala dari sebarang sudut",
@@ -4057,7 +4077,8 @@ export const quizzes: QuizQuestion[] = [
       "Mengumpul data → membina hipotesis → mengenal pasti masalah → menulis laporan",
     ],
     answerIndex: 0,
-    explanation: "Urutan buku teks bermula dengan mengenal pasti masalah, membina hipotesis, mengawal pemboleh ubah dan merancang eksperimen.",
+    explanation:
+      "Urutan buku teks bermula dengan mengenal pasti masalah, membina hipotesis, mengawal pemboleh ubah dan merancang eksperimen.",
   },
   {
     id: "sci-f1-c1-bm-q28",
@@ -4066,7 +4087,8 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Medium",
-    question: "Kemahiran proses sains manakah memberikan penerangan rasional tentang pola daripada data yang dikumpulkan?",
+    question:
+      "Kemahiran proses sains manakah memberikan penerangan rasional tentang pola daripada data yang dikumpulkan?",
     options: [
       "Mengelaskan",
       "Mentafsir data",
@@ -4074,7 +4096,8 @@ export const quizzes: QuizQuestion[] = [
       "Menggunakan perhubungan ruang dan masa",
     ],
     answerIndex: 1,
-    explanation: "DSKP mentakrifkan mentafsir data sebagai memberi penerangan rasional tentang objek, peristiwa atau pola daripada data yang dikumpulkan.",
+    explanation:
+      "DSKP mentakrifkan mentafsir data sebagai memberi penerangan rasional tentang objek, peristiwa atau pola daripada data yang dikumpulkan.",
   },
   {
     id: "sci-f1-c1-bm-q29",
@@ -4083,7 +4106,8 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Medium",
-    question: "Tindakan manakah paling jelas menunjukkan sikap saintifik dan nilai murni semasa penyiasatan?",
+    question:
+      "Tindakan manakah paling jelas menunjukkan sikap saintifik dan nilai murni semasa penyiasatan?",
     options: [
       "Mengubah bacaan yang menyukarkan kesimpulan",
       "Merekod setiap bacaan dengan jujur serta menjaga keselamatan kumpulan dan alam sekitar",
@@ -4091,7 +4115,8 @@ export const quizzes: QuizQuestion[] = [
       "Menyalin kesimpulan kumpulan lain tanpa menyemak data",
     ],
     answerIndex: 1,
-    explanation: "Bab ini menekankan kejujuran dan ketepatan merekod data serta tanggungjawab terhadap keselamatan diri, rakan dan alam sekitar.",
+    explanation:
+      "Bab ini menekankan kejujuran dan ketepatan merekod data serta tanggungjawab terhadap keselamatan diri, rakan dan alam sekitar.",
   },
   {
     id: "sci-f1-c1-bm-q30",
@@ -7908,7 +7933,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Easy",
     question: "Apakah tiga aspek yang digunakan untuk menjelaskan konsep Alam Melayu?",
-    options: ["Geografi, bahasa dan budaya", "Ekonomi, politik dan sosial", "Pertanian, perdagangan dan agama", "Seni bina, muzik dan tarian"],
+    options: [
+      "Geografi, bahasa dan budaya",
+      "Ekonomi, politik dan sosial",
+      "Pertanian, perdagangan dan agama",
+      "Seni bina, muzik dan tarian",
+    ],
     answerIndex: 0,
     explanation: "Konsep Alam Melayu dapat dilihat dari aspek geografi, bahasa dan budaya.",
   },
@@ -7919,7 +7949,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Easy",
     question: "Apakah yang dirangkumi oleh Alam Melayu dari aspek geografi?",
-    options: ["Gugusan kepulauan dan tanah besar di Asia Tenggara", "Hanya Semenanjung Tanah Melayu", "Seluruh benua Asia", "Kawasan Eropah dan Afrika"],
+    options: [
+      "Gugusan kepulauan dan tanah besar di Asia Tenggara",
+      "Hanya Semenanjung Tanah Melayu",
+      "Seluruh benua Asia",
+      "Kawasan Eropah dan Afrika",
+    ],
     answerIndex: 0,
     explanation: "Alam Melayu merangkumi gugusan kepulauan dan tanah besar di Asia Tenggara.",
   },
@@ -7929,10 +7964,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Siapakah tokoh yang berpandangan Alam Melayu meliputi Madagaskar, Tanah Melayu, Taiwan, Papua New Guinea, Australia dan New Zealand?",
-    options: ["Nik Hassan Shuhaimi Nik Abdul Rahman", "Abdul Hadi Haji Hassan", "Ismail Hussein", "Alfred Russel Wallace"],
+    question:
+      "Siapakah tokoh yang berpandangan Alam Melayu meliputi Madagaskar, Tanah Melayu, Taiwan, Papua New Guinea, Australia dan New Zealand?",
+    options: [
+      "Nik Hassan Shuhaimi Nik Abdul Rahman",
+      "Abdul Hadi Haji Hassan",
+      "Ismail Hussein",
+      "Alfred Russel Wallace",
+    ],
     answerIndex: 0,
-    explanation: "Nik Hassan Shuhaimi Nik Abdul Rahman berpandangan Alam Melayu meliputi kawasan tersebut.",
+    explanation:
+      "Nik Hassan Shuhaimi Nik Abdul Rahman berpandangan Alam Melayu meliputi kawasan tersebut.",
   },
   {
     id: "sej-f2-c1-q4",
@@ -7973,7 +8015,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Pada tahun berapakah UNESCO menggantikan istilah Melayu-Polinesia dengan Austronesia?",
+    question:
+      "Pada tahun berapakah UNESCO menggantikan istilah Melayu-Polinesia dengan Austronesia?",
     options: ["1972", "1955", "1981", "1965"],
     answerIndex: 0,
     explanation: "UNESCO menggantikan istilah tersebut pada tahun 1972.",
@@ -7984,10 +8027,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Siapakah tokoh yang menyatakan budaya Alam Melayu menunjukkan persamaan dalam kesenian, adat dan nilai masyarakat?",
+    question:
+      "Siapakah tokoh yang menyatakan budaya Alam Melayu menunjukkan persamaan dalam kesenian, adat dan nilai masyarakat?",
     options: ["A. Aziz Deraman", "Asmah Haji Omar", "Sutan Takdir Alisjahbana", "Ding Choo Ming"],
     answerIndex: 0,
-    explanation: "Menurut A. Aziz Deraman, budaya Alam Melayu menunjukkan persamaan dalam kesenian, adat dan nilai masyarakat.",
+    explanation:
+      "Menurut A. Aziz Deraman, budaya Alam Melayu menunjukkan persamaan dalam kesenian, adat dan nilai masyarakat.",
   },
   {
     id: "sej-f2-c1-q9",
@@ -8119,7 +8164,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Siapakah pengasas Kerajaan Srivijaya?",
     options: ["Dapunta Hyang Sri Jayanasa", "Jayavarman II", "Raden Wijaya", "Chu-Lien"],
     answerIndex: 0,
-    explanation: "Kerajaan Srivijaya diasaskan oleh Dapunta Hyang Sri Jayanasa pada tahun 683 Masihi.",
+    explanation:
+      "Kerajaan Srivijaya diasaskan oleh Dapunta Hyang Sri Jayanasa pada tahun 683 Masihi.",
   },
   {
     id: "sej-f2-c1-q21",
@@ -8150,7 +8196,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Easy",
     question: "Di manakah lokasi Kerajaan Kedah Tua?",
-    options: ["Sungai Mas dan Sungai Bujang", "Lembah Sungai Mekong", "Lembah Sungai Musi", "Pantai Barat Tengah Tanah Melayu"],
+    options: [
+      "Sungai Mas dan Sungai Bujang",
+      "Lembah Sungai Mekong",
+      "Lembah Sungai Musi",
+      "Pantai Barat Tengah Tanah Melayu",
+    ],
     answerIndex: 0,
     explanation: "Kerajaan Kedah Tua terletak di Sungai Mas dan Sungai Bujang.",
   },
@@ -8161,9 +8212,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Easy",
     question: "Apakah faktor kemasyhuran Kerajaan Gangga Negara?",
-    options: ["Kaya dengan emas dan bijih timah", "Menjadi pusat pengajian agama Buddha terbesar", "Menguasai Selat Melaka dan Selat Sunda", "Membina 102 buah hospital"],
+    options: [
+      "Kaya dengan emas dan bijih timah",
+      "Menjadi pusat pengajian agama Buddha terbesar",
+      "Menguasai Selat Melaka dan Selat Sunda",
+      "Membina 102 buah hospital",
+    ],
     answerIndex: 0,
-    explanation: "Gangga Negara menjadi pusat pelabuhan penting yang kaya dengan emas dan bijih timah.",
+    explanation:
+      "Gangga Negara menjadi pusat pelabuhan penting yang kaya dengan emas dan bijih timah.",
   },
   {
     id: "sej-f2-c1-q25",
@@ -8174,7 +8231,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Kerajaan luar manakah yang sezaman dengan Kerajaan Funan pada abad pertama?",
     options: ["Empayar Rom", "Dinasti Tang", "Kerajaan Chola", "Empayar Mongol"],
     answerIndex: 0,
-    explanation: "Funan muncul sezaman dengan Empayar Rom, Empayar Parsi, Empayar Kushan dan Dinasti Han pada abad pertama.",
+    explanation:
+      "Funan muncul sezaman dengan Empayar Rom, Empayar Parsi, Empayar Kushan dan Dinasti Han pada abad pertama.",
   },
   {
     id: "sej-f2-c1-q26",
@@ -8183,9 +8241,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Easy",
     question: "Apakah tujuan utusan Srivijaya dihantar ke China?",
-    options: ["Mendapatkan pengiktirafan, memperkukuh perdagangan dan mengukuhkan persahabatan", "Memohon bantuan ketenteraan menentang Dai Viet", "Memulihkan hubungan selepas peperangan", "Menjalinkan hubungan persahabatan sahaja"],
+    options: [
+      "Mendapatkan pengiktirafan, memperkukuh perdagangan dan mengukuhkan persahabatan",
+      "Memohon bantuan ketenteraan menentang Dai Viet",
+      "Memulihkan hubungan selepas peperangan",
+      "Menjalinkan hubungan persahabatan sahaja",
+    ],
     answerIndex: 0,
-    explanation: "Srivijaya menghantar utusan ke China untuk mendapatkan pengiktirafan, memperkukuh perdagangan dan mengukuhkan persahabatan.",
+    explanation:
+      "Srivijaya menghantar utusan ke China untuk mendapatkan pengiktirafan, memperkukuh perdagangan dan mengukuhkan persahabatan.",
   },
   {
     id: "sej-f2-c1-q27",
@@ -8194,9 +8258,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Easy",
     question: "Agama Buddha tersebar ke Alam Melayu melalui peranan siapa?",
-    options: ["Maharaja Asoka dan sami Buddha", "Golongan Brahmin", "Pedagang dan pendakwah Islam", "Tentera Chola"],
+    options: [
+      "Maharaja Asoka dan sami Buddha",
+      "Golongan Brahmin",
+      "Pedagang dan pendakwah Islam",
+      "Tentera Chola",
+    ],
     answerIndex: 0,
-    explanation: "Agama Buddha tersebar melalui peranan Maharaja Asoka dan sami Buddha yang dihantar ke Alam Melayu.",
+    explanation:
+      "Agama Buddha tersebar melalui peranan Maharaja Asoka dan sami Buddha yang dihantar ke Alam Melayu.",
   },
   {
     id: "sej-f2-c1-q28",
@@ -8204,10 +8274,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Antara berikut, yang manakah merupakan pelabuhan penting Alam Melayu dalam perdagangan antarabangsa?",
+    question:
+      "Antara berikut, yang manakah merupakan pelabuhan penting Alam Melayu dalam perdagangan antarabangsa?",
     options: ["Oc Eo", "Hariharalaya", "Kota Trowulan", "Indrapura"],
     answerIndex: 0,
-    explanation: "Pelabuhan penting Alam Melayu yang terlibat dalam perdagangan antarabangsa ialah Oc Eo, Kedah Tua, Palembang dan Tuban.",
+    explanation:
+      "Pelabuhan penting Alam Melayu yang terlibat dalam perdagangan antarabangsa ialah Oc Eo, Kedah Tua, Palembang dan Tuban.",
   },
   {
     id: "sej-f2-c1-q29",
@@ -8216,9 +8288,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Easy",
     question: "Apakah tujuan hubungan diplomatik kerajaan Alam Melayu dengan kerajaan luar?",
-    options: ["Mengukuhkan kedudukan kerajaan, membuka jalan perdagangan dan menjalin persahabatan", "Menghapuskan kegiatan perdagangan kerajaan luar", "Menutup pelabuhan antarabangsa", "Menghalang penyebaran agama"],
+    options: [
+      "Mengukuhkan kedudukan kerajaan, membuka jalan perdagangan dan menjalin persahabatan",
+      "Menghapuskan kegiatan perdagangan kerajaan luar",
+      "Menutup pelabuhan antarabangsa",
+      "Menghalang penyebaran agama",
+    ],
     answerIndex: 0,
-    explanation: "Hubungan diplomatik bertujuan mengukuhkan kedudukan kerajaan, membuka jalan perdagangan dan menjalin persahabatan.",
+    explanation:
+      "Hubungan diplomatik bertujuan mengukuhkan kedudukan kerajaan, membuka jalan perdagangan dan menjalin persahabatan.",
   },
   {
     id: "sej-f2-c1-q30",
@@ -8226,7 +8304,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Kerajaan luar manakah yang sezaman dengan Champa, Srivijaya dan Angkor pada abad kesembilan?",
+    question:
+      "Kerajaan luar manakah yang sezaman dengan Champa, Srivijaya dan Angkor pada abad kesembilan?",
     options: ["Kerajaan Chola", "Empayar Rom", "Kesultanan Delhi", "Kerajaan Turki Uthmaniyah"],
     answerIndex: 0,
     explanation: "Champa, Srivijaya dan Angkor sezaman dengan Kerajaan Chola pada abad kesembilan.",
@@ -8283,7 +8362,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Easy",
-    question: "Kerajaan manakah yang menggunakan gelaran Rajadhiraja dan mengaitkan raja dengan Dewa Siva?",
+    question:
+      "Kerajaan manakah yang menggunakan gelaran Rajadhiraja dan mengaitkan raja dengan Dewa Siva?",
     options: ["Majapahit", "Champa", "Kedah Tua", "Gangga Nagara"],
     answerIndex: 1,
     explanation: "Raja Champa menggunakan gelaran Rajadhiraja dan dikaitkan dengan Dewa Siva.",
@@ -8339,9 +8419,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question: "Apakah tanggungjawab raja Gangga Nagara?",
-    options: ["Membina baray", "Menjaga keselamatan dan memajukan perdagangan", "Mengutip sarang burung", "Menanam bunga cengkih"],
+    options: [
+      "Membina baray",
+      "Menjaga keselamatan dan memajukan perdagangan",
+      "Mengutip sarang burung",
+      "Menanam bunga cengkih",
+    ],
     answerIndex: 1,
-    explanation: "Raja Gangga Nagara berperanan memajukan perdagangan dan bertanggungjawab terhadap keselamatan.",
+    explanation:
+      "Raja Gangga Nagara berperanan memajukan perdagangan dan bertanggungjawab terhadap keselamatan.",
   },
   {
     id: "sej-f2-c2-q11",
@@ -8427,7 +8513,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question: "Apakah barang dagangan kerajaan Funan?",
-    options: ["Beras, emas, perak dan gading gajah", "Damar, kapur barus, kayu cendana dan gaharu", "Emas, bijih timah dan rempah-ratus", "Garam, gula, minyak dan mi beras"],
+    options: [
+      "Beras, emas, perak dan gading gajah",
+      "Damar, kapur barus, kayu cendana dan gaharu",
+      "Emas, bijih timah dan rempah-ratus",
+      "Garam, gula, minyak dan mi beras",
+    ],
     answerIndex: 1,
     explanation: "Funan memperdagangkan damar, kapur barus, kayu cendana dan gaharu.",
   },
@@ -8449,7 +8540,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question: "Apakah kesan perkembangan perdagangan kepada masyarakat Alam Melayu?",
-    options: ["Menghapuskan pelabuhan", "Menghentikan pertanian", "Menutup laluan laut", "Pembuatan kapal berkembang"],
+    options: [
+      "Menghapuskan pelabuhan",
+      "Menghentikan pertanian",
+      "Menutup laluan laut",
+      "Pembuatan kapal berkembang",
+    ],
     answerIndex: 3,
     explanation: "Perdagangan menyebabkan pembuatan kapal berkembang dan ilmu pelayaran dikuasai.",
   },
@@ -8460,7 +8556,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question: "Apakah kegunaan gaharu?",
-    options: ["Bahan pewangi dan perubatan", "Barang perhiasan", "Bahan makanan laut", "Membuat mi beras"],
+    options: [
+      "Bahan pewangi dan perubatan",
+      "Barang perhiasan",
+      "Bahan makanan laut",
+      "Membuat mi beras",
+    ],
     answerIndex: 0,
     explanation: "Gaharu digunakan sebagai bahan pewangi dan perubatan.",
   },
@@ -8482,7 +8583,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question: "Apakah kegunaan rotan?",
-    options: ["Bahan pewangi", "Barang perhiasan", "Bahan binaan dan barang kraf tangan", "Bahan membuat garam"],
+    options: [
+      "Bahan pewangi",
+      "Barang perhiasan",
+      "Bahan binaan dan barang kraf tangan",
+      "Bahan membuat garam",
+    ],
     answerIndex: 2,
     explanation: "Rotan digunakan sebagai bahan binaan dan barang kraf tangan.",
   },
@@ -8493,7 +8599,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question: "Di manakah kapur barus banyak ditemukan?",
-    options: ["Hue dan Indrapura", "Maluku dan Pulau Banda", "Palembang dan Hulu Musi", "Sumatera dan Borneo"],
+    options: [
+      "Hue dan Indrapura",
+      "Maluku dan Pulau Banda",
+      "Palembang dan Hulu Musi",
+      "Sumatera dan Borneo",
+    ],
     answerIndex: 3,
     explanation: "Kapur barus banyak ditemukan di Sumatera dan Borneo.",
   },
@@ -8526,9 +8637,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question: "Apakah hasil perlombongan masyarakat kerajaan Alam Melayu?",
-    options: ["Gaharu, rotan dan damar", "Padi, pisang dan tebu", "Emas, perak dan bijih besi", "Gamat, rumpai laut dan mutiara"],
+    options: [
+      "Gaharu, rotan dan damar",
+      "Padi, pisang dan tebu",
+      "Emas, perak dan bijih besi",
+      "Gamat, rumpai laut dan mutiara",
+    ],
     answerIndex: 2,
-    explanation: "Masyarakat kerajaan Alam Melayu menjalankan perlombongan emas, perak dan bijih besi.",
+    explanation:
+      "Masyarakat kerajaan Alam Melayu menjalankan perlombongan emas, perak dan bijih besi.",
   },
   {
     id: "sej-f2-c2-q28",
@@ -15451,7 +15568,8 @@ export const quizzes: QuizQuestion[] = [
       "The last sentence of the passage",
     ],
     answerIndex: 1,
-    explanation: "The main idea is the central message — what the whole passage is MOSTLY about. It covers all paragraphs, not just one section.",
+    explanation:
+      "The main idea is the central message — what the whole passage is MOSTLY about. It covers all paragraphs, not just one section.",
   },
   {
     id: "eng-f1-c3-q2",
@@ -15459,7 +15577,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Easy",
-    question: "Read this: 'Despite heavy rain, hundreds of people queued at the pasar malam.' What can you INFER?",
+    question:
+      "Read this: 'Despite heavy rain, hundreds of people queued at the pasar malam.' What can you INFER?",
     options: [
       "The weather was perfect for shopping",
       "People were very eager to visit the night market",
@@ -15467,7 +15586,8 @@ export const quizzes: QuizQuestion[] = [
       "People were afraid of getting wet",
     ],
     answerIndex: 1,
-    explanation: "Inference = reading between the lines. 'Despite heavy rain' shows the rain did NOT stop them. 'Hundreds queued' shows strong motivation. So we can infer people were very eager to visit.",
+    explanation:
+      "Inference = reading between the lines. 'Despite heavy rain' shows the rain did NOT stop them. 'Hundreds queued' shows strong motivation. So we can infer people were very eager to visit.",
   },
   {
     id: "eng-f1-c3-q3",
@@ -15483,7 +15603,8 @@ export const quizzes: QuizQuestion[] = [
       "Nasi lemak is better than roti canai.",
     ],
     answerIndex: 2,
-    explanation: "A FACT can be proven true with evidence. Malaysia's independence date (31 August 1957) is a historical fact recorded in official documents. The other options are opinions — personal views that vary from person to person.",
+    explanation:
+      "A FACT can be proven true with evidence. Malaysia's independence date (31 August 1957) is a historical fact recorded in official documents. The other options are opinions — personal views that vary from person to person.",
   },
   {
     id: "eng-f1-c3-q4",
@@ -15499,7 +15620,8 @@ export const quizzes: QuizQuestion[] = [
       "Memorising every detail in the text",
     ],
     answerIndex: 2,
-    explanation: "SKIMMING = reading quickly for the GENERAL idea. You read headings, first sentences, and key words — not every word. Use it at the start of a comprehension passage to understand the topic.",
+    explanation:
+      "SKIMMING = reading quickly for the GENERAL idea. You read headings, first sentences, and key words — not every word. Use it at the start of a comprehension passage to understand the topic.",
   },
   {
     id: "eng-f1-c3-q5",
@@ -15507,10 +15629,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Easy",
-    question: "In an exam, you need to find when Merdeka Day was celebrated. Which skill should you use?",
+    question:
+      "In an exam, you need to find when Merdeka Day was celebrated. Which skill should you use?",
     options: ["Skimming", "Scanning", "Inferring", "Predicting"],
     answerIndex: 1,
-    explanation: "SCANNING = searching for SPECIFIC information quickly (dates, names, numbers). You know what you're looking for, so you move your eyes fast until you spot it. Skimming is for general ideas, not specific details.",
+    explanation:
+      "SCANNING = searching for SPECIFIC information quickly (dates, names, numbers). You know what you're looking for, so you move your eyes fast until you spot it. Skimming is for general ideas, not specific details.",
   },
   {
     id: "eng-f1-c3-q6",
@@ -15526,7 +15650,8 @@ export const quizzes: QuizQuestion[] = [
       "Hiking is the best outdoor activity for teenagers.",
     ],
     answerIndex: 3,
-    explanation: "'Hiking is the BEST outdoor activity' is an OPINION — 'best' is a judgment word and different people have different preferences. Opinions use words like: think, believe, should, best, worst, probably.",
+    explanation:
+      "'Hiking is the BEST outdoor activity' is an OPINION — 'best' is a judgment word and different people have different preferences. Opinions use words like: think, believe, should, best, worst, probably.",
   },
   {
     id: "eng-f1-c3-q7",
@@ -15534,10 +15659,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "The text says: 'The FAMISHED children devoured their meal in minutes.' What does FAMISHED mean?",
+    question:
+      "The text says: 'The FAMISHED children devoured their meal in minutes.' What does FAMISHED mean?",
     options: ["Full", "Extremely hungry", "Tired and sleepy", "Very happy"],
     answerIndex: 1,
-    explanation: "CONTEXT CLUE: 'devoured their meal in minutes' shows they ate very quickly and eagerly — which only happens when you're very hungry. 'Famished' = extremely hungry. Always look at surrounding words to decode unfamiliar vocabulary!",
+    explanation:
+      "CONTEXT CLUE: 'devoured their meal in minutes' shows they ate very quickly and eagerly — which only happens when you're very hungry. 'Famished' = extremely hungry. Always look at surrounding words to decode unfamiliar vocabulary!",
   },
   {
     id: "eng-f1-c3-q8",
@@ -15553,7 +15680,8 @@ export const quizzes: QuizQuestion[] = [
       "Questions at the end of the comprehension",
     ],
     answerIndex: 1,
-    explanation: "Supporting details are the EVIDENCE for the main idea — facts, examples, statistics, reasons, and descriptions that develop and prove the central point. Think of the main idea as a roof held up by supporting detail pillars.",
+    explanation:
+      "Supporting details are the EVIDENCE for the main idea — facts, examples, statistics, reasons, and descriptions that develop and prove the central point. Think of the main idea as a roof held up by supporting detail pillars.",
   },
   {
     id: "eng-f1-c3-q9",
@@ -15569,7 +15697,8 @@ export const quizzes: QuizQuestion[] = [
       "During the middle of reading the passage",
     ],
     answerIndex: 2,
-    explanation: "Pro tip: Always read the QUESTIONS FIRST! This tells you exactly what information to search for while reading. You'll read more efficiently and find answers faster — a key strategy for scoring higher in comprehension.",
+    explanation:
+      "Pro tip: Always read the QUESTIONS FIRST! This tells you exactly what information to search for while reading. You'll read more efficiently and find answers faster — a key strategy for scoring higher in comprehension.",
   },
   {
     id: "eng-f1-c3-q10",
@@ -15577,7 +15706,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Hard",
-    question: "A passage about Taman Negara says: 'Rare hornbills have not been spotted there in three years.' What does this most likely suggest?",
+    question:
+      "A passage about Taman Negara says: 'Rare hornbills have not been spotted there in three years.' What does this most likely suggest?",
     options: [
       "Hornbills have migrated to another forest",
       "The forest environment may have been disturbed or threatened",
@@ -15585,7 +15715,8 @@ export const quizzes: QuizQuestion[] = [
       "Three years is not long enough to worry about",
     ],
     answerIndex: 1,
-    explanation: "INFERENCE question: The absence of rare animals for 3 years is unusual and suggests something has changed in their habitat. The most logical inference is that the forest environment has been disturbed — perhaps from deforestation, pollution, or human activity.",
+    explanation:
+      "INFERENCE question: The absence of rare animals for 3 years is unusual and suggests something has changed in their habitat. The most logical inference is that the forest environment has been disturbed — perhaps from deforestation, pollution, or human activity.",
   },
   // Chapter 4: Writing
   {
@@ -15602,7 +15733,8 @@ export const quizzes: QuizQuestion[] = [
       "This essay is about what happened on my school trip last month.",
     ],
     answerIndex: 2,
-    explanation: "Great essays grab the reader's attention IMMEDIATELY. Option C uses action ('engine roared'), vivid language ('unforgettable adventure'), and creates excitement. Options A and D are formulaic and boring. Option B is too vague.",
+    explanation:
+      "Great essays grab the reader's attention IMMEDIATELY. Option C uses action ('engine roared'), vivid language ('unforgettable adventure'), and creates excitement. Options A and D are formulaic and boring. Option B is too vague.",
   },
   {
     id: "eng-f1-c4-q2",
@@ -15613,7 +15745,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Which ending should a FORMAL letter use when you KNOW the recipient's name?",
     options: ["Yours faithfully,", "Yours sincerely,", "Best wishes,", "Your friend,"],
     answerIndex: 1,
-    explanation: "'Yours sincerely' = when you KNOW the person's name (Dear Mr. Hassan, → Yours sincerely). 'Yours faithfully' = when you DON'T know the name (Dear Sir/Madam, → Yours faithfully). 'Best wishes' and 'Your friend' are informal sign-offs.",
+    explanation:
+      "'Yours sincerely' = when you KNOW the person's name (Dear Mr. Hassan, → Yours sincerely). 'Yours faithfully' = when you DON'T know the name (Dear Sir/Madam, → Yours faithfully). 'Best wishes' and 'Your friend' are informal sign-offs.",
   },
   {
     id: "eng-f1-c4-q3",
@@ -15629,7 +15762,8 @@ export const quizzes: QuizQuestion[] = [
       "Topic, Expression, Essay, Linking words",
     ],
     answerIndex: 1,
-    explanation: "TEEL = Topic sentence (state the main idea) → Evidence/Example (prove it) → Explanation (why it matters) → Link (connect to next point). This structure makes every paragraph clear, logical, and well-developed.",
+    explanation:
+      "TEEL = Topic sentence (state the main idea) → Evidence/Example (prove it) → Explanation (why it matters) → Link (connect to next point). This structure makes every paragraph clear, logical, and well-developed.",
   },
   {
     id: "eng-f1-c4-q4",
@@ -15640,7 +15774,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Which word is BEST to use in a formal letter instead of 'I want'?",
     options: ["I really want", "I totally need", "I would like to", "I gotta have"],
     answerIndex: 2,
-    explanation: "'I would like to' is polite and formal. In formal writing: use 'I would like to' (not 'I want'), 'I am writing to' (not 'I'm writing'), 'do not' (not 'don't'). Avoid contractions and casual expressions in formal letters.",
+    explanation:
+      "'I would like to' is polite and formal. In formal writing: use 'I would like to' (not 'I want'), 'I am writing to' (not 'I'm writing'), 'do not' (not 'don't'). Avoid contractions and casual expressions in formal letters.",
   },
   {
     id: "eng-f1-c4-q5",
@@ -15656,7 +15791,8 @@ export const quizzes: QuizQuestion[] = [
       "I do not like durian.",
     ],
     answerIndex: 2,
-    explanation: "Sensory language engages the reader's senses (sight, sound, smell, taste, touch). Option C uses 'pungent' (smell), 'distinctive' (quality), and creates an image ('drifted through the entire market'). This is what makes writing vivid and memorable!",
+    explanation:
+      "Sensory language engages the reader's senses (sight, sound, smell, taste, touch). Option C uses 'pungent' (smell), 'distinctive' (quality), and creates an image ('drifted through the entire market'). This is what makes writing vivid and memorable!",
   },
   {
     id: "eng-f1-c4-q6",
@@ -15672,7 +15808,8 @@ export const quizzes: QuizQuestion[] = [
       "She walked to school in a slow way.",
     ],
     answerIndex: 1,
-    explanation: "'Trudged wearily' replaces 'walked slowly' with a powerful verb + adverb. 'Heavy bag dragging at her shoulders' adds a vivid detail. Strong writing uses specific verbs (trudged, strolled, marched) instead of 'walked + adverb'.",
+    explanation:
+      "'Trudged wearily' replaces 'walked slowly' with a powerful verb + adverb. 'Heavy bag dragging at her shoulders' adds a vivid detail. Strong writing uses specific verbs (trudged, strolled, marched) instead of 'walked + adverb'.",
   },
   {
     id: "eng-f1-c4-q7",
@@ -15683,7 +15820,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Which linking word BEST fits: 'I studied hard. ___, I still failed the test.'",
     options: ["Therefore", "Furthermore", "However", "As a result"],
     answerIndex: 2,
-    explanation: "'However' shows CONTRAST — the unexpected result (failing despite studying hard). 'Therefore' and 'As a result' show expected consequences. 'Furthermore' adds information. Key: match the linking word to the RELATIONSHIP between the two ideas.",
+    explanation:
+      "'However' shows CONTRAST — the unexpected result (failing despite studying hard). 'Therefore' and 'As a result' show expected consequences. 'Furthermore' adds information. Key: match the linking word to the RELATIONSHIP between the two ideas.",
   },
   {
     id: "eng-f1-c4-q8",
@@ -15699,7 +15837,8 @@ export const quizzes: QuizQuestion[] = [
       "The word 'writing' is wrong",
     ],
     answerIndex: 1,
-    explanation: "CORRECTED: 'Dear Mr. Lim, I am writing to apply for the position.' Errors fixed: 'mr.' → 'Mr.' (title capitalised), 'lim' → 'Lim' (proper noun), comma after 'Lim', 'i' → 'I' (always capital), full stop at end.",
+    explanation:
+      "CORRECTED: 'Dear Mr. Lim, I am writing to apply for the position.' Errors fixed: 'mr.' → 'Mr.' (title capitalised), 'lim' → 'Lim' (proper noun), comma after 'Lim', 'i' → 'I' (always capital), full stop at end.",
   },
   {
     id: "eng-f1-c4-q9",
@@ -15715,7 +15854,8 @@ export const quizzes: QuizQuestion[] = [
       "End with 'Yours faithfully,'",
     ],
     answerIndex: 1,
-    explanation: "INFORMAL writing uses contractions (I'm, don't, can't), casual vocabulary (awesome, cool, amazing), and friendly tone. FORMAL writing avoids contractions (I am, do not, cannot) and uses professional language. Know your audience!",
+    explanation:
+      "INFORMAL writing uses contractions (I'm, don't, can't), casual vocabulary (awesome, cool, amazing), and friendly tone. FORMAL writing avoids contractions (I am, do not, cannot) and uses professional language. Know your audience!",
   },
   {
     id: "eng-f1-c4-q10",
@@ -15723,7 +15863,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "A student wrote: 'The festival was nice. There was food. Many people came. It was fun.' What is the MAIN weakness?",
+    question:
+      "A student wrote: 'The festival was nice. There was food. Many people came. It was fun.' What is the MAIN weakness?",
     options: [
       "The sentences are too long",
       "The essay has too many paragraphs",
@@ -15731,19 +15872,13 @@ export const quizzes: QuizQuestion[] = [
       "The student used too many adjectives",
     ],
     answerIndex: 2,
-    explanation: "The main weaknesses: (1) Weak vocabulary — 'nice', 'fun' instead of 'vibrant', 'exhilarating'. (2) Short, choppy sentences with no variety. (3) No linking words to connect ideas. Improved: 'The colourful festival was an exhilarating experience. Moreover, the variety of delicious food attracted enormous crowds.'",
+    explanation:
+      "The main weaknesses: (1) Weak vocabulary — 'nice', 'fun' instead of 'vibrant', 'exhilarating'. (2) Short, choppy sentences with no variety. (3) No linking words to connect ideas. Improved: 'The colourful festival was an exhilarating experience. Moreover, the variety of delicious food attracted enormous crowds.'",
   },
   ...scienceF2C1QuizzesBM,
   ...scienceF2C1QuizzesDLP,
   ...mathF2C1QuizzesBM,
   ...mathF2C1QuizzesDLP,
-
-
-
-
-
-
-
 
   ...mathF2C2QuizzesBM,
   ...mathF2C2QuizzesDLP,
@@ -15842,7 +15977,8 @@ export const quizzes: QuizQuestion[] = [
       "Sudut antara dua arah mata angin",
     ],
     answerIndex: 0,
-    explanation: "Skala ialah nisbah jarak di atas peta berbanding dengan jarak sebenar di permukaan bumi.",
+    explanation:
+      "Skala ialah nisbah jarak di atas peta berbanding dengan jarak sebenar di permukaan bumi.",
   },
   {
     id: "geo-f2-c1-q2",
@@ -15869,7 +16005,8 @@ export const quizzes: QuizQuestion[] = [
     question: "'1 cm mewakili 1 km' merupakan contoh skala jenis apa?",
     options: ["Skala penyata", "Skala lurus", "Pecahan wakilan", "Skala relatif"],
     answerIndex: 0,
-    explanation: "Skala penyata dinyatakan dalam bentuk ayat pernyataan seperti '1 cm mewakili 1 km'.",
+    explanation:
+      "Skala penyata dinyatakan dalam bentuk ayat pernyataan seperti '1 cm mewakili 1 km'.",
   },
   {
     id: "geo-f2-c1-q4",
@@ -15896,7 +16033,8 @@ export const quizzes: QuizQuestion[] = [
       "Satu jadual nombor",
     ],
     answerIndex: 0,
-    explanation: "Skala lurus berbentuk satu garisan lurus yang dibahagikan kepada beberapa bahagian yang sama saiz.",
+    explanation:
+      "Skala lurus berbentuk satu garisan lurus yang dibahagikan kepada beberapa bahagian yang sama saiz.",
   },
   {
     id: "geo-f2-c1-q6",
@@ -15912,7 +16050,8 @@ export const quizzes: QuizQuestion[] = [
       "Boleh digunakan tanpa unit ukuran",
     ],
     answerIndex: 0,
-    explanation: "Skala lurus kekal tepat walaupun peta diperbesar/diperkecil kerana garisan skala turut berubah mengikut kadar yang sama.",
+    explanation:
+      "Skala lurus kekal tepat walaupun peta diperbesar/diperkecil kerana garisan skala turut berubah mengikut kadar yang sama.",
   },
   {
     id: "geo-f2-c1-q7",
@@ -15931,10 +16070,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Jika skala peta ialah 1 : 100 000, berapakah jarak sebenar (dalam cm) yang diwakili oleh 1 cm di atas peta?",
+    question:
+      "Jika skala peta ialah 1 : 100 000, berapakah jarak sebenar (dalam cm) yang diwakili oleh 1 cm di atas peta?",
     options: ["100 000 cm", "1 000 cm", "10 000 cm", "1 cm"],
     answerIndex: 0,
-    explanation: "Pecahan wakilan 1:100 000 bermakna 1 cm di atas peta mewakili 100 000 cm di permukaan bumi.",
+    explanation:
+      "Pecahan wakilan 1:100 000 bermakna 1 cm di atas peta mewakili 100 000 cm di permukaan bumi.",
   },
 
   // 1.2 Jarak (Q9-16)
@@ -15952,7 +16093,8 @@ export const quizzes: QuizQuestion[] = [
       "Jarak yang berubah mengikut jenis pengangkutan",
     ],
     answerIndex: 0,
-    explanation: "Jarak mutlak ialah jarak yang diukur dalam unit ukuran seperti meter atau kilometer dan nilainya tetap.",
+    explanation:
+      "Jarak mutlak ialah jarak yang diukur dalam unit ukuran seperti meter atau kilometer dan nilainya tetap.",
   },
   {
     id: "geo-f2-c1-q10",
@@ -15968,7 +16110,8 @@ export const quizzes: QuizQuestion[] = [
       "Jarak yang diukur dalam unit kilometer sahaja",
     ],
     answerIndex: 0,
-    explanation: "Jarak relatif diukur berdasarkan masa, kos atau jenis pengangkutan yang digunakan dan boleh berubah.",
+    explanation:
+      "Jarak relatif diukur berdasarkan masa, kos atau jenis pengangkutan yang digunakan dan boleh berubah.",
   },
   {
     id: "geo-f2-c1-q11",
@@ -15979,7 +16122,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Yusrate tinggal 2.5 km dari sekolah. Apakah jenis jarak yang dimaksudkan?",
     options: ["Jarak mutlak", "Jarak relatif", "Jarak anggaran", "Jarak peta"],
     answerIndex: 0,
-    explanation: "Ukuran 2.5 km dalam unit kilometer ialah contoh jarak mutlak kerana nilainya tetap.",
+    explanation:
+      "Ukuran 2.5 km dalam unit kilometer ialah contoh jarak mutlak kerana nilainya tetap.",
   },
   {
     id: "geo-f2-c1-q12",
@@ -15987,10 +16131,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Medium",
-    question: "Aiman mengambil masa 10 minit menaiki bas ke sekolah berbanding 20 minit berjalan kaki. Apakah jenis jarak yang ditunjukkan?",
-    options: ["Jarak relatif berdasarkan masa", "Jarak mutlak", "Jarak relatif berdasarkan kos", "Jarak topografi"],
+    question:
+      "Aiman mengambil masa 10 minit menaiki bas ke sekolah berbanding 20 minit berjalan kaki. Apakah jenis jarak yang ditunjukkan?",
+    options: [
+      "Jarak relatif berdasarkan masa",
+      "Jarak mutlak",
+      "Jarak relatif berdasarkan kos",
+      "Jarak topografi",
+    ],
     answerIndex: 0,
-    explanation: "Perbandingan tempoh masa perjalanan (10 minit vs 20 minit) ialah contoh jarak relatif berdasarkan masa.",
+    explanation:
+      "Perbandingan tempoh masa perjalanan (10 minit vs 20 minit) ialah contoh jarak relatif berdasarkan masa.",
   },
   {
     id: "geo-f2-c1-q13",
@@ -15998,7 +16149,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Medium",
-    question: "Tambang teksi RM16.00 berbanding tambang bas RM5.00 untuk destinasi yang sama menunjukkan jarak relatif berdasarkan apa?",
+    question:
+      "Tambang teksi RM16.00 berbanding tambang bas RM5.00 untuk destinasi yang sama menunjukkan jarak relatif berdasarkan apa?",
     options: ["Kos", "Masa", "Jenis pengangkutan sahaja", "Unit ukuran"],
     answerIndex: 0,
     explanation: "Perbandingan tambang/perbelanjaan menunjukkan jarak relatif berdasarkan kos.",
@@ -16017,7 +16169,8 @@ export const quizzes: QuizQuestion[] = [
       "Jarak mutlak tidak mempunyai unit, jarak relatif mempunyai unit",
     ],
     answerIndex: 0,
-    explanation: "Jarak mutlak bernilai tetap (unit m/km), manakala jarak relatif berubah mengikut masa, kos atau pengangkutan.",
+    explanation:
+      "Jarak mutlak bernilai tetap (unit m/km), manakala jarak relatif berubah mengikut masa, kos atau pengangkutan.",
   },
   {
     id: "geo-f2-c1-q15",
@@ -16025,7 +16178,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Medium",
-    question: "Mengapakah dua tempat dengan jarak mutlak yang sama boleh mempunyai jarak relatif yang berbeza?",
+    question:
+      "Mengapakah dua tempat dengan jarak mutlak yang sama boleh mempunyai jarak relatif yang berbeza?",
     options: [
       "Kerana jenis pengangkutan, keadaan jalan raya dan kos tambang berbeza",
       "Kerana jarak mutlak sentiasa berubah",
@@ -16033,7 +16187,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana kedua-dua tempat berada di benua berbeza",
     ],
     answerIndex: 0,
-    explanation: "Jarak relatif boleh berbeza walaupun jarak mutlak sama kerana faktor pengangkutan, jalan raya dan kos yang berbeza.",
+    explanation:
+      "Jarak relatif boleh berbeza walaupun jarak mutlak sama kerana faktor pengangkutan, jalan raya dan kos yang berbeza.",
   },
   {
     id: "geo-f2-c1-q16",
@@ -16041,10 +16196,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Medium",
-    question: "Seorang pelajar memilih menaiki bas kerana lebih murah walaupun mengambil masa lebih lama. Konsep geografi manakah yang berkaitan?",
+    question:
+      "Seorang pelajar memilih menaiki bas kerana lebih murah walaupun mengambil masa lebih lama. Konsep geografi manakah yang berkaitan?",
     options: ["Jarak relatif", "Jarak mutlak", "Skala peta", "Pecahan wakilan"],
     answerIndex: 0,
-    explanation: "Pemilihan berdasarkan kos dan masa perjalanan adalah aplikasi konsep jarak relatif dalam kehidupan harian.",
+    explanation:
+      "Pemilihan berdasarkan kos dan masa perjalanan adalah aplikasi konsep jarak relatif dalam kehidupan harian.",
   },
 
   // 1.3 Menentukan Jarak Sebenar Menggunakan Skala (Q17-23)
@@ -16055,7 +16212,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Medium",
     question: "Apakah alat yang digunakan untuk mengukur jarak lurus di atas peta?",
-    options: ["Pembaris, jangka tolok dan jalur kertas", "Benang sahaja", "Kompas magnetik", "Jangka sudut"],
+    options: [
+      "Pembaris, jangka tolok dan jalur kertas",
+      "Benang sahaja",
+      "Kompas magnetik",
+      "Jangka sudut",
+    ],
     answerIndex: 0,
     explanation: "Jarak lurus diukur menggunakan pembaris, jangka tolok atau jalur kertas.",
   },
@@ -16068,7 +16230,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah alat yang sesuai untuk mengukur jarak melengkung seperti sungai berliku?",
     options: ["Benang dan jalur kertas", "Jangka tolok sahaja", "Kompas magnetik", "Jangka sudut"],
     answerIndex: 0,
-    explanation: "Jarak melengkung diukur menggunakan benang atau jalur kertas yang dilenturkan mengikut lengkok sebelum direntangkan dan diukur.",
+    explanation:
+      "Jarak melengkung diukur menggunakan benang atau jalur kertas yang dilenturkan mengikut lengkok sebelum direntangkan dan diukur.",
   },
   {
     id: "geo-f2-c1-q19",
@@ -16076,7 +16239,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Medium",
-    question: "Jarak di antara dua tempat di atas peta ialah 11 cm dan skala peta ialah 1 cm mewakili 1 km. Berapakah jarak sebenar?",
+    question:
+      "Jarak di antara dua tempat di atas peta ialah 11 cm dan skala peta ialah 1 cm mewakili 1 km. Berapakah jarak sebenar?",
     options: ["11 km", "1.1 km", "110 km", "0.11 km"],
     answerIndex: 0,
     explanation: "Jarak Sebenar = Jarak di Peta × Skala = 11 cm × 1 km = 11 km.",
@@ -16087,7 +16251,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Medium",
-    question: "Jangka tolok dipindahkan sebanyak 6 bahagian pada skala lurus, setiap bahagian mewakili 2 km. Berapakah jarak sebenar?",
+    question:
+      "Jangka tolok dipindahkan sebanyak 6 bahagian pada skala lurus, setiap bahagian mewakili 2 km. Berapakah jarak sebenar?",
     options: ["12 km", "6 km", "8 km", "3 km"],
     answerIndex: 0,
     explanation: "Jarak Sebenar = Bilangan Bahagian × Nilai Setiap Bahagian = 6 × 2 km = 12 km.",
@@ -16098,10 +16263,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Hard",
-    question: "Benang yang direntangkan sepanjang lengkok Sungai Jernih diukur sepanjang 8 cm. Skala peta ialah 1:100 000. Berapakah jarak sebenar sungai tersebut?",
+    question:
+      "Benang yang direntangkan sepanjang lengkok Sungai Jernih diukur sepanjang 8 cm. Skala peta ialah 1:100 000. Berapakah jarak sebenar sungai tersebut?",
     options: ["8 km", "80 km", "0.8 km", "800 km"],
     answerIndex: 0,
-    explanation: "Skala 1:100 000 bersamaan 1 cm mewakili 1 km, maka Jarak Sebenar = 8 cm × 1 km = 8 km.",
+    explanation:
+      "Skala 1:100 000 bersamaan 1 cm mewakili 1 km, maka Jarak Sebenar = 8 cm × 1 km = 8 km.",
   },
   {
     id: "geo-f2-c1-q22",
@@ -16109,7 +16276,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Hard",
-    question: "Apakah kesilapan yang paling kerap menyebabkan murid hilang markah semasa mengukur jarak melengkung menggunakan benang?",
+    question:
+      "Apakah kesilapan yang paling kerap menyebabkan murid hilang markah semasa mengukur jarak melengkung menggunakan benang?",
     options: [
       "Tidak merentangkan benang secara lurus sepenuhnya sebelum diukur",
       "Menggunakan pembaris untuk mengukur jarak lurus",
@@ -16117,7 +16285,8 @@ export const quizzes: QuizQuestion[] = [
       "Menukar unit kepada kilometer",
     ],
     answerIndex: 0,
-    explanation: "Jika benang tidak direntang lurus sepenuhnya, bacaan jarak melengkung menjadi terkurang anggaran daripada nilai sebenar.",
+    explanation:
+      "Jika benang tidak direntang lurus sepenuhnya, bacaan jarak melengkung menjadi terkurang anggaran daripada nilai sebenar.",
   },
   {
     id: "geo-f2-c1-q23",
@@ -16125,7 +16294,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Hard",
-    question: "Semasa memindahkan jangka tolok daripada peta ke garis skala lurus, apakah yang perlu dijaga oleh murid?",
+    question:
+      "Semasa memindahkan jangka tolok daripada peta ke garis skala lurus, apakah yang perlu dijaga oleh murid?",
     options: [
       "Bukaan jangka tolok tidak boleh berubah",
       "Jangka tolok perlu dibuka seluas mungkin",
@@ -16133,7 +16303,8 @@ export const quizzes: QuizQuestion[] = [
       "Bukaan jangka tolok perlu digandakan dua kali",
     ],
     answerIndex: 0,
-    explanation: "Bukaan jangka tolok mesti dikekalkan supaya bacaan jarak pada garis skala lurus kekal tepat.",
+    explanation:
+      "Bukaan jangka tolok mesti dikekalkan supaya bacaan jarak pada garis skala lurus kekal tepat.",
   },
 
   // 1.4 Menentukan Jarak Sebenar Berpandukan Skala pada Peta (Q24-30)
@@ -16159,7 +16330,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Hard",
-    question: "Jarak lurus di antara rumah Khairul dengan balai polis ialah 9 cm di atas peta dengan skala 1 cm mewakili 1 km. Berapakah jarak sebenar?",
+    question:
+      "Jarak lurus di antara rumah Khairul dengan balai polis ialah 9 cm di atas peta dengan skala 1 cm mewakili 1 km. Berapakah jarak sebenar?",
     options: ["9 km", "0.9 km", "90 km", "19 km"],
     answerIndex: 0,
     explanation: "Jarak Sebenar = 9 cm × 1 km = 9 km.",
@@ -16170,7 +16342,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Hard",
-    question: "Apakah langkah pertama yang perlu dilakukan sebelum mengukur jarak sebenar berpandukan skala pada peta?",
+    question:
+      "Apakah langkah pertama yang perlu dilakukan sebelum mengukur jarak sebenar berpandukan skala pada peta?",
     options: [
       "Kenal pasti dan tandakan kedua-dua lokasi di atas peta",
       "Tukar semua unit kepada meter",
@@ -16178,7 +16351,8 @@ export const quizzes: QuizQuestion[] = [
       "Kira jumlah penduduk di kawasan tersebut",
     ],
     answerIndex: 0,
-    explanation: "Langkah pertama ialah mengenal pasti dan menandakan kedua-dua lokasi yang ingin diukur di atas peta.",
+    explanation:
+      "Langkah pertama ialah mengenal pasti dan menandakan kedua-dua lokasi yang ingin diukur di atas peta.",
   },
   {
     id: "geo-f2-c1-q27",
@@ -16186,7 +16360,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Hard",
-    question: "Jika skala peta diberikan sebagai pecahan wakilan 1:100 000, apakah langkah yang disarankan sebelum membuat pengiraan jarak sebenar?",
+    question:
+      "Jika skala peta diberikan sebagai pecahan wakilan 1:100 000, apakah langkah yang disarankan sebelum membuat pengiraan jarak sebenar?",
     options: [
       "Tukarkan kepada skala penyata (1 cm mewakili 1 km) dahulu",
       "Tukarkan kepada skala lurus dahulu",
@@ -16194,7 +16369,8 @@ export const quizzes: QuizQuestion[] = [
       "Darabkan terus tanpa menukar unit",
     ],
     answerIndex: 0,
-    explanation: "Pecahan wakilan perlu ditukar kepada skala penyata dahulu supaya unit lebih mudah diuruskan semasa pengiraan.",
+    explanation:
+      "Pecahan wakilan perlu ditukar kepada skala penyata dahulu supaya unit lebih mudah diuruskan semasa pengiraan.",
   },
   {
     id: "geo-f2-c1-q28",
@@ -16202,10 +16378,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Hard",
-    question: "Sebuah peta mempunyai skala 1:50 000. Berapakah jarak sebenar (dalam km) jika jarak di peta ialah 4 cm?",
+    question:
+      "Sebuah peta mempunyai skala 1:50 000. Berapakah jarak sebenar (dalam km) jika jarak di peta ialah 4 cm?",
     options: ["2 km", "4 km", "0.5 km", "20 km"],
     answerIndex: 0,
-    explanation: "Skala 1:50 000 bermakna 1 cm mewakili 0.5 km (50 000 cm = 0.5 km), maka 4 cm × 0.5 km = 2 km.",
+    explanation:
+      "Skala 1:50 000 bermakna 1 cm mewakili 0.5 km (50 000 cm = 0.5 km), maka 4 cm × 0.5 km = 2 km.",
   },
   {
     id: "geo-f2-c1-q29",
@@ -16213,7 +16391,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Hard",
-    question: "Dua orang murid mengukur jarak sebenar di antara sekolah dan masjid menggunakan skala yang sama tetapi mendapat jawapan berbeza. Apakah kemungkinan punca kesilapan yang paling tepat?",
+    question:
+      "Dua orang murid mengukur jarak sebenar di antara sekolah dan masjid menggunakan skala yang sama tetapi mendapat jawapan berbeza. Apakah kemungkinan punca kesilapan yang paling tepat?",
     options: [
       "Kesilapan mengukur jarak di atas peta atau tersilap menukar unit",
       "Sekolah dan masjid bertukar kedudukan",
@@ -16221,7 +16400,8 @@ export const quizzes: QuizQuestion[] = [
       "Jarak relatif kedua-dua murid berbeza",
     ],
     answerIndex: 0,
-    explanation: "Jawapan berbeza biasanya disebabkan oleh kesilapan teknik pengukuran jarak di peta atau kesilapan penukaran unit semasa pengiraan.",
+    explanation:
+      "Jawapan berbeza biasanya disebabkan oleh kesilapan teknik pengukuran jarak di peta atau kesilapan penukaran unit semasa pengiraan.",
   },
   {
     id: "geo-f2-c1-q30",
@@ -16229,7 +16409,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Hard",
-    question: "Mengapakah kemahiran menentukan jarak sebenar berpandukan skala penting sebelum mempelajari Peta Topografi (Bab 2)?",
+    question:
+      "Mengapakah kemahiran menentukan jarak sebenar berpandukan skala penting sebelum mempelajari Peta Topografi (Bab 2)?",
     options: [
       "Kerana peta topografi menggunakan skala dan jarak untuk mentafsir ciri muka bumi sebenar",
       "Kerana peta topografi tidak memerlukan sebarang skala",
@@ -16237,7 +16418,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana jarak sebenar tidak digunakan dalam peta topografi",
     ],
     answerIndex: 0,
-    explanation: "Peta topografi memerlukan kemahiran skala dan jarak sebagai asas untuk mentafsir jarak sebenar ciri-ciri muka bumi yang dipetakan.",
+    explanation:
+      "Peta topografi memerlukan kemahiran skala dan jarak sebagai asas untuk mentafsir jarak sebenar ciri-ciri muka bumi yang dipetakan.",
   },
 
   // Geography Form 2 Chapter 2 - Peta Topografi
@@ -16256,7 +16438,8 @@ export const quizzes: QuizQuestion[] = [
       "Peta yang tidak memerlukan skala",
     ],
     answerIndex: 0,
-    explanation: "Peta topografi ialah peta yang menunjukkan keadaan bentuk muka bumi sesebuah kawasan dan mempunyai garisan grid secara melintang dan menegak.",
+    explanation:
+      "Peta topografi ialah peta yang menunjukkan keadaan bentuk muka bumi sesebuah kawasan dan mempunyai garisan grid secara melintang dan menegak.",
   },
   {
     id: "geo-f2-c2-q2",
@@ -16272,7 +16455,8 @@ export const quizzes: QuizQuestion[] = [
       "Skala, arah dan iklim",
     ],
     answerIndex: 0,
-    explanation: "Peta topografi perlu mempunyai tajuk peta, petunjuk dan skala — sama seperti elemen wajib pada peta lakar.",
+    explanation:
+      "Peta topografi perlu mempunyai tajuk peta, petunjuk dan skala — sama seperti elemen wajib pada peta lakar.",
   },
   {
     id: "geo-f2-c2-q3",
@@ -16288,7 +16472,8 @@ export const quizzes: QuizQuestion[] = [
       "Ciri penduduk dan ciri bahasa",
     ],
     answerIndex: 0,
-    explanation: "Peta topografi ialah peta yang menggambarkan ciri pandang darat fizikal dan ciri pandang darat budaya sesuatu kawasan.",
+    explanation:
+      "Peta topografi ialah peta yang menggambarkan ciri pandang darat fizikal dan ciri pandang darat budaya sesuatu kawasan.",
   },
   {
     id: "geo-f2-c2-q4",
@@ -16304,7 +16489,8 @@ export const quizzes: QuizQuestion[] = [
       "Sempadan sesuatu kawasan",
     ],
     answerIndex: 0,
-    explanation: "Topografi bermaksud bentuk muka bumi sesuatu kawasan, menjadi asas nama 'peta topografi'.",
+    explanation:
+      "Topografi bermaksud bentuk muka bumi sesuatu kawasan, menjadi asas nama 'peta topografi'.",
   },
   {
     id: "geo-f2-c2-q5",
@@ -16313,9 +16499,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question: "Peta topografi dilukis menggunakan...",
-    options: ["Skala dan simbol-simbol tertentu", "Anggaran kasar tanpa skala", "Gambar foto udara sahaja", "Lakaran bebas tanpa petunjuk"],
+    options: [
+      "Skala dan simbol-simbol tertentu",
+      "Anggaran kasar tanpa skala",
+      "Gambar foto udara sahaja",
+      "Lakaran bebas tanpa petunjuk",
+    ],
     answerIndex: 0,
-    explanation: "Peta topografi dilukis menggunakan skala dan simbol-simbol tertentu untuk mewakili ciri sebenar di permukaan bumi.",
+    explanation:
+      "Peta topografi dilukis menggunakan skala dan simbol-simbol tertentu untuk mewakili ciri sebenar di permukaan bumi.",
   },
   {
     id: "geo-f2-c2-q6",
@@ -16331,7 +16523,8 @@ export const quizzes: QuizQuestion[] = [
       "Peta topografi hanya digunakan untuk navigasi laut",
     ],
     answerIndex: 0,
-    explanation: "Ciri unik peta topografi ialah ia mempunyai garisan grid yang dilukis secara melintang dan menegak.",
+    explanation:
+      "Ciri unik peta topografi ialah ia mempunyai garisan grid yang dilukis secara melintang dan menegak.",
   },
 
   // 2.2 Garisan Timuran dan Garisan Utaraan (Q7-12)
@@ -16393,7 +16586,8 @@ export const quizzes: QuizQuestion[] = [
       "Hanya garisan timuran perlu dibaca",
     ],
     answerIndex: 0,
-    explanation: "Peraturan bacaan rujukan grid ialah 'baca timuran dahulu, baca utaraan kemudian' (read right, then up).",
+    explanation:
+      "Peraturan bacaan rujukan grid ialah 'baca timuran dahulu, baca utaraan kemudian' (read right, then up).",
   },
   {
     id: "geo-f2-c2-q12",
@@ -16404,7 +16598,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Garisan timuran dan garisan utaraan bersama-sama membentuk apa pada peta topografi?",
     options: ["Garisan grid", "Garisan kontur", "Garisan sempadan", "Garisan pantai"],
     answerIndex: 0,
-    explanation: "Garisan timuran dan garisan utaraan ialah dua jenis garisan grid dalam peta topografi.",
+    explanation:
+      "Garisan timuran dan garisan utaraan ialah dua jenis garisan grid dalam peta topografi.",
   },
 
   // 2.3 Rujukan Grid (Q13-18)
@@ -16422,7 +16617,8 @@ export const quizzes: QuizQuestion[] = [
       "Skala yang digunakan dalam peta",
     ],
     answerIndex: 0,
-    explanation: "Rujukan grid ialah kombinasi antara nilai garisan timuran dengan nilai garisan utaraan pada titik persilangan.",
+    explanation:
+      "Rujukan grid ialah kombinasi antara nilai garisan timuran dengan nilai garisan utaraan pada titik persilangan.",
   },
   {
     id: "geo-f2-c2-q14",
@@ -16438,7 +16634,8 @@ export const quizzes: QuizQuestion[] = [
       "Ketinggian sesuatu gunung",
     ],
     answerIndex: 0,
-    explanation: "Rujukan grid 4 angka sesuai digunakan untuk kawasan luas seperti kawasan hutan, pertanian dan perlombongan.",
+    explanation:
+      "Rujukan grid 4 angka sesuai digunakan untuk kawasan luas seperti kawasan hutan, pertanian dan perlombongan.",
   },
   {
     id: "geo-f2-c2-q15",
@@ -16454,7 +16651,8 @@ export const quizzes: QuizQuestion[] = [
       "Benua di dunia",
     ],
     answerIndex: 0,
-    explanation: "Rujukan grid 6 angka digunakan untuk menentukan kedudukan objek atau objek kecil yang spesifik seperti sekolah, masjid dan kilang.",
+    explanation:
+      "Rujukan grid 6 angka digunakan untuk menentukan kedudukan objek atau objek kecil yang spesifik seperti sekolah, masjid dan kilang.",
   },
   {
     id: "geo-f2-c2-q16",
@@ -16462,10 +16660,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Hard",
-    question: "Kg. Raya terletak dalam segi empat grid dengan garisan timuran 31 dan garisan utaraan 53. Apakah rujukan grid 4 angka Kg. Raya?",
+    question:
+      "Kg. Raya terletak dalam segi empat grid dengan garisan timuran 31 dan garisan utaraan 53. Apakah rujukan grid 4 angka Kg. Raya?",
     options: ["RG 3153", "RG 5331", "RG 3531", "RG 1533"],
     answerIndex: 0,
-    explanation: "Nilai garisan timuran (31) dibaca dahulu, diikuti nilai garisan utaraan (53), menghasilkan RG 3153.",
+    explanation:
+      "Nilai garisan timuran (31) dibaca dahulu, diikuti nilai garisan utaraan (53), menghasilkan RG 3153.",
   },
   {
     id: "geo-f2-c2-q17",
@@ -16473,10 +16673,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Hard",
-    question: "Kedudukan kilang dalam grid 3153 menghasilkan nilai garisan timuran 314 dan garisan utaraan 533. Apakah rujukan grid 6 angka kilang tersebut?",
+    question:
+      "Kedudukan kilang dalam grid 3153 menghasilkan nilai garisan timuran 314 dan garisan utaraan 533. Apakah rujukan grid 6 angka kilang tersebut?",
     options: ["RG 314533", "RG 533314", "RG 314314", "RG 533533"],
     answerIndex: 0,
-    explanation: "Nilai garisan timuran (314) dibaca dahulu, diikuti nilai garisan utaraan (533), menghasilkan RG 314533.",
+    explanation:
+      "Nilai garisan timuran (314) dibaca dahulu, diikuti nilai garisan utaraan (533), menghasilkan RG 314533.",
   },
   {
     id: "geo-f2-c2-q18",
@@ -16484,7 +16686,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Hard",
-    question: "Mengapakah rujukan grid 6 angka memerlukan pembahagian jarak antara dua garisan grid kepada 10 bahagian?",
+    question:
+      "Mengapakah rujukan grid 6 angka memerlukan pembahagian jarak antara dua garisan grid kepada 10 bahagian?",
     options: [
       "Untuk menentukan kedudukan objek secara lebih spesifik dan tepat",
       "Untuk memendekkan jarak sebenar di atas peta",
@@ -16492,7 +16695,8 @@ export const quizzes: QuizQuestion[] = [
       "Untuk mengurangkan bilangan simbol pada peta",
     ],
     answerIndex: 0,
-    explanation: "Pembahagian 10 bahagian membolehkan kedudukan objek ditentukan secara lebih spesifik berbanding rujukan grid 4 angka.",
+    explanation:
+      "Pembahagian 10 bahagian membolehkan kedudukan objek ditentukan secara lebih spesifik berbanding rujukan grid 4 angka.",
   },
 
   // 2.4 Ciri Pandang Darat Fizikal dan Ciri Pandang Darat Budaya (Q19-24)
@@ -16510,7 +16714,8 @@ export const quizzes: QuizQuestion[] = [
       "Sistem pentadbiran sesuatu negara",
     ],
     answerIndex: 0,
-    explanation: "Ciri pandang darat fizikal merujuk pelbagai bentuk muka bumi semula jadi seperti saliran dan tumbuh-tumbuhan semula jadi.",
+    explanation:
+      "Ciri pandang darat fizikal merujuk pelbagai bentuk muka bumi semula jadi seperti saliran dan tumbuh-tumbuhan semula jadi.",
   },
   {
     id: "geo-f2-c2-q20",
@@ -16526,7 +16731,8 @@ export const quizzes: QuizQuestion[] = [
       "Sistem sungai dan tasik semula jadi",
     ],
     answerIndex: 0,
-    explanation: "Ciri pandang darat budaya merujuk ciri buatan manusia seperti guna tanah, kegiatan ekonomi, petempatan, kemudahan sosial serta pengangkutan dan perhubungan.",
+    explanation:
+      "Ciri pandang darat budaya merujuk ciri buatan manusia seperti guna tanah, kegiatan ekonomi, petempatan, kemudahan sosial serta pengangkutan dan perhubungan.",
   },
   {
     id: "geo-f2-c2-q21",
@@ -16534,7 +16740,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Hard",
-    question: "Kawasan tanah pamah yang subur biasanya menggalakkan kewujudan ciri pandang darat budaya apa?",
+    question:
+      "Kawasan tanah pamah yang subur biasanya menggalakkan kewujudan ciri pandang darat budaya apa?",
     options: [
       "Pertanian padi sawah dan petempatan bandar",
       "Kuasa hidroelektrik sahaja",
@@ -16542,7 +16749,8 @@ export const quizzes: QuizQuestion[] = [
       "Pelabuhan perikanan laut dalam",
     ],
     answerIndex: 0,
-    explanation: "Tanah pamah subur sesuai untuk pertanian padi sawah dan menggalakkan petempatan serta pembangunan bandar.",
+    explanation:
+      "Tanah pamah subur sesuai untuk pertanian padi sawah dan menggalakkan petempatan serta pembangunan bandar.",
   },
   {
     id: "geo-f2-c2-q22",
@@ -16558,7 +16766,8 @@ export const quizzes: QuizQuestion[] = [
       "Perlombongan minyak luar pesisir",
     ],
     answerIndex: 0,
-    explanation: "Tanah tinggi sesuai untuk tanaman teh dan sayur-sayuran hawa sederhana kerana suhunya yang lebih sejuk.",
+    explanation:
+      "Tanah tinggi sesuai untuk tanaman teh dan sayur-sayuran hawa sederhana kerana suhunya yang lebih sejuk.",
   },
   {
     id: "geo-f2-c2-q23",
@@ -16567,9 +16776,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Hard",
     question: "Manakah berikut adalah contoh simbol ciri pandang darat budaya?",
-    options: ["Jalan raya dan masjid", "Sungai dan hutan", "Bukit dan paya bakau", "Rumput dan tasik"],
+    options: [
+      "Jalan raya dan masjid",
+      "Sungai dan hutan",
+      "Bukit dan paya bakau",
+      "Rumput dan tasik",
+    ],
     answerIndex: 0,
-    explanation: "Jalan raya dan masjid ialah ciri buatan manusia (ciri pandang darat budaya), berbeza daripada ciri fizikal semula jadi.",
+    explanation:
+      "Jalan raya dan masjid ialah ciri buatan manusia (ciri pandang darat budaya), berbeza daripada ciri fizikal semula jadi.",
   },
   {
     id: "geo-f2-c2-q24",
@@ -16577,10 +16792,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Hard",
-    question: "Badan kerajaan manakah yang bertanggungjawab menerbitkan peta topografi rasmi Malaysia?",
-    options: ["Jabatan Ukur dan Pemetaan Malaysia (JUPEM)", "Jabatan Meteorologi Malaysia", "Jabatan Pengangkutan Jalan", "Jabatan Perangkaan Malaysia"],
+    question:
+      "Badan kerajaan manakah yang bertanggungjawab menerbitkan peta topografi rasmi Malaysia?",
+    options: [
+      "Jabatan Ukur dan Pemetaan Malaysia (JUPEM)",
+      "Jabatan Meteorologi Malaysia",
+      "Jabatan Pengangkutan Jalan",
+      "Jabatan Perangkaan Malaysia",
+    ],
     answerIndex: 0,
-    explanation: "JUPEM (Jabatan Ukur dan Pemetaan Malaysia) berfungsi menerbitkan peta topografi rasmi negara.",
+    explanation:
+      "JUPEM (Jabatan Ukur dan Pemetaan Malaysia) berfungsi menerbitkan peta topografi rasmi negara.",
   },
 
   // 2.5 Mentafsir Peta Topografi (Q25-30)
@@ -16598,7 +16820,8 @@ export const quizzes: QuizQuestion[] = [
       "Menentukan sempadan antara dua negeri",
     ],
     answerIndex: 0,
-    explanation: "Mentafsir peta topografi bermaksud mengenal pasti dan menghubungkaitkan ciri pandang darat fizikal dengan ciri pandang darat budaya berdasarkan maklumat pada peta.",
+    explanation:
+      "Mentafsir peta topografi bermaksud mengenal pasti dan menghubungkaitkan ciri pandang darat fizikal dengan ciri pandang darat budaya berdasarkan maklumat pada peta.",
   },
   {
     id: "geo-f2-c2-q26",
@@ -16614,7 +16837,8 @@ export const quizzes: QuizQuestion[] = [
       "Lukis semula peta mengikut skala baharu",
     ],
     answerIndex: 0,
-    explanation: "Langkah pertama mentafsir peta topografi ialah memerhatikan peta secara keseluruhan untuk mendapatkan gambaran umum kawasan kajian.",
+    explanation:
+      "Langkah pertama mentafsir peta topografi ialah memerhatikan peta secara keseluruhan untuk mendapatkan gambaran umum kawasan kajian.",
   },
   {
     id: "geo-f2-c2-q27",
@@ -16622,7 +16846,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Hard",
-    question: "Selepas mengenal pasti ciri fizikal dan ciri budaya pada peta, apakah langkah seterusnya?",
+    question:
+      "Selepas mengenal pasti ciri fizikal dan ciri budaya pada peta, apakah langkah seterusnya?",
     options: [
       "Kaitkan ciri pandang darat fizikal dengan ciri pandang darat budaya",
       "Tukar skala peta kepada pecahan wakilan",
@@ -16630,7 +16855,8 @@ export const quizzes: QuizQuestion[] = [
       "Lukis bingkai peta yang baharu",
     ],
     answerIndex: 0,
-    explanation: "Selepas mengenal pasti kedua-dua ciri, langkah seterusnya adalah mengaitkan ciri pandang darat fizikal dengan ciri pandang darat budaya.",
+    explanation:
+      "Selepas mengenal pasti kedua-dua ciri, langkah seterusnya adalah mengaitkan ciri pandang darat fizikal dengan ciri pandang darat budaya.",
   },
   {
     id: "geo-f2-c2-q28",
@@ -16638,7 +16864,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Hard",
-    question: "Dalam tafsiran peta Jertih, padi sawah ditanam berhampiran Sungai Nering. Apakah hubung kait yang ditunjukkan?",
+    question:
+      "Dalam tafsiran peta Jertih, padi sawah ditanam berhampiran Sungai Nering. Apakah hubung kait yang ditunjukkan?",
     options: [
       "Tanah pamah subur berhampiran sungai sesuai untuk pertanian padi sawah",
       "Sungai tidak mempengaruhi jenis tanaman",
@@ -16646,7 +16873,8 @@ export const quizzes: QuizQuestion[] = [
       "Sungai Nering menghalang aktiviti pertanian",
     ],
     answerIndex: 0,
-    explanation: "Tafsiran menunjukkan tanah pamah yang subur berhampiran sungai sesuai untuk penanaman padi sawah — bukti hubung kait ciri fizikal dengan ciri budaya.",
+    explanation:
+      "Tafsiran menunjukkan tanah pamah yang subur berhampiran sungai sesuai untuk penanaman padi sawah — bukti hubung kait ciri fizikal dengan ciri budaya.",
   },
   {
     id: "geo-f2-c2-q29",
@@ -16654,7 +16882,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Hard",
-    question: "Apakah yang perlu disertakan dalam jawapan untuk mendapat markah penuh bagi soalan tafsiran peta topografi?",
+    question:
+      "Apakah yang perlu disertakan dalam jawapan untuk mendapat markah penuh bagi soalan tafsiran peta topografi?",
     options: [
       "Nama ciri, kedudukan/rujukan grid (jika berkaitan), dan hubung kait antara ciri fizikal dengan budaya",
       "Hanya nama ciri pandang darat sahaja",
@@ -16662,7 +16891,8 @@ export const quizzes: QuizQuestion[] = [
       "Lukisan semula peta secara penuh",
     ],
     answerIndex: 0,
-    explanation: "Jawapan markah penuh perlu menyatakan nama ciri, kedudukan/rujukan grid, dan hubung kait antara ciri fizikal dengan ciri budaya.",
+    explanation:
+      "Jawapan markah penuh perlu menyatakan nama ciri, kedudukan/rujukan grid, dan hubung kait antara ciri fizikal dengan ciri budaya.",
   },
   {
     id: "geo-f2-c2-q30",
@@ -16670,7 +16900,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Hard",
-    question: "Mengapakah kemahiran mentafsir peta topografi penting dalam kehidupan harian dan perancangan pembangunan?",
+    question:
+      "Mengapakah kemahiran mentafsir peta topografi penting dalam kehidupan harian dan perancangan pembangunan?",
     options: [
       "Kerana ia membantu memahami hubungan antara bentuk muka bumi dengan aktiviti manusia untuk perancangan guna tanah yang sesuai",
       "Kerana ia hanya digunakan dalam peperiksaan sekolah",
@@ -16678,7 +16909,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana ia hanya relevan kepada ahli geografi profesional",
     ],
     answerIndex: 0,
-    explanation: "Kemahiran mentafsir peta topografi membantu memahami hubungan bentuk muka bumi dengan aktiviti manusia, penting untuk perancangan guna tanah dan pembangunan yang sesuai.",
+    explanation:
+      "Kemahiran mentafsir peta topografi membantu memahami hubungan bentuk muka bumi dengan aktiviti manusia, penting untuk perancangan guna tanah dan pembangunan yang sesuai.",
   },
 
   // Geography Form 2 Chapter 3 - Pengaruh Pergerakan Bumi terhadap Cuaca dan Iklim
@@ -16690,9 +16922,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Easy",
     question: "Apakah dua cara pergerakan Bumi?",
-    options: ["Putaran Bumi dan peredaran Bumi", "Putaran Bumi dan graviti Bumi", "Orbit Bumi dan paksi Bumi", "Ekuinoks dan solstis"],
+    options: [
+      "Putaran Bumi dan peredaran Bumi",
+      "Putaran Bumi dan graviti Bumi",
+      "Orbit Bumi dan paksi Bumi",
+      "Ekuinoks dan solstis",
+    ],
     answerIndex: 0,
-    explanation: "Pergerakan Bumi terdiri daripada dua cara, iaitu putaran Bumi dan peredaran Bumi.",
+    explanation:
+      "Pergerakan Bumi terdiri daripada dua cara, iaitu putaran Bumi dan peredaran Bumi.",
   },
   {
     id: "geo-f2-c3-q2",
@@ -16708,7 +16946,8 @@ export const quizzes: QuizQuestion[] = [
       "Kelajuan putaran sesuatu planet",
     ],
     answerIndex: 0,
-    explanation: "Orbit ialah laluan yang dilalui oleh sesuatu planet dan satelit dalam pergerakan mengelilingi Matahari.",
+    explanation:
+      "Orbit ialah laluan yang dilalui oleh sesuatu planet dan satelit dalam pergerakan mengelilingi Matahari.",
   },
   {
     id: "geo-f2-c3-q3",
@@ -16784,7 +17023,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah satelit semula jadi Bumi yang beredar mengelilingi Bumi?",
     options: ["Bulan", "Matahari", "Marikh", "Zuhrah"],
     answerIndex: 0,
-    explanation: "Bulan ialah satelit semula jadi Bumi yang beredar mengelilingi Bumi mengikut orbitnya sendiri.",
+    explanation:
+      "Bulan ialah satelit semula jadi Bumi yang beredar mengelilingi Bumi mengikut orbitnya sendiri.",
   },
   {
     id: "geo-f2-c3-q9",
@@ -16800,7 +17040,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana ia hanya digunakan oleh ahli astronomi",
     ],
     answerIndex: 0,
-    explanation: "Pergerakan Bumi menjadi asas memahami corak cuaca harian dan corak iklim tahunan yang mempengaruhi pertanian, perayaan dan kehidupan manusia.",
+    explanation:
+      "Pergerakan Bumi menjadi asas memahami corak cuaca harian dan corak iklim tahunan yang mempengaruhi pertanian, perayaan dan kehidupan manusia.",
   },
   {
     id: "geo-f2-c3-q10",
@@ -16808,7 +17049,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Apakah hubungan antara Bumi dan Matahari yang menghasilkan kesan terhadap cuaca dan iklim?",
+    question:
+      "Apakah hubungan antara Bumi dan Matahari yang menghasilkan kesan terhadap cuaca dan iklim?",
     options: [
       "Putaran dan peredaran Bumi mengelilingi Matahari",
       "Jarak Bumi dengan Bulan sahaja",
@@ -16816,7 +17058,8 @@ export const quizzes: QuizQuestion[] = [
       "Warna permukaan Bumi",
     ],
     answerIndex: 0,
-    explanation: "Putaran dan peredaran Bumi mengelilingi Matahari menghasilkan pelbagai kesan terhadap cuaca dan iklim Bumi.",
+    explanation:
+      "Putaran dan peredaran Bumi mengelilingi Matahari menghasilkan pelbagai kesan terhadap cuaca dan iklim Bumi.",
   },
 
   // 3.2 Putaran Bumi (Q11-20)
@@ -16829,7 +17072,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Berapakah sudut kecondongan paksi Bumi?",
     options: ["23½°", "45°", "90°", "15°"],
     answerIndex: 0,
-    explanation: "Bumi berputar pada paksinya yang mempunyai kecondongan sudut 23½° pada satah ekliptika.",
+    explanation:
+      "Bumi berputar pada paksinya yang mempunyai kecondongan sudut 23½° pada satah ekliptika.",
   },
   {
     id: "geo-f2-c3-q12",
@@ -16840,7 +17084,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Ke arah manakah putaran Bumi berlaku?",
     options: ["Barat ke timur", "Timur ke barat", "Utara ke selatan", "Selatan ke utara"],
     answerIndex: 0,
-    explanation: "Putaran Bumi adalah dari arah barat ke timur, atau mengikut arah lawan pusingan jam.",
+    explanation:
+      "Putaran Bumi adalah dari arah barat ke timur, atau mengikut arah lawan pusingan jam.",
   },
   {
     id: "geo-f2-c3-q13",
@@ -16856,7 +17101,8 @@ export const quizzes: QuizQuestion[] = [
       "Kecondongan paksi Bumi semasa peredaran",
     ],
     answerIndex: 0,
-    explanation: "Bahagian Bumi yang menghadap cahaya Matahari mengalami siang, manakala bahagian yang tidak menerima cahaya Matahari mengalami malam, akibat putaran Bumi.",
+    explanation:
+      "Bahagian Bumi yang menghadap cahaya Matahari mengalami siang, manakala bahagian yang tidak menerima cahaya Matahari mengalami malam, akibat putaran Bumi.",
   },
   {
     id: "geo-f2-c3-q14",
@@ -16867,7 +17113,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Setiap berapa darjah longitud bersamaan dengan 1 jam perbezaan waktu?",
     options: ["15°", "30°", "45°", "10°"],
     answerIndex: 0,
-    explanation: "Bumi berputar sebanyak 15° longitud setiap jam, maka setiap 15° longitud bersamaan dengan 1 jam perbezaan waktu.",
+    explanation:
+      "Bumi berputar sebanyak 15° longitud setiap jam, maka setiap 15° longitud bersamaan dengan 1 jam perbezaan waktu.",
   },
   {
     id: "geo-f2-c3-q15",
@@ -16875,10 +17122,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 3",
     difficulty: "Hard",
-    question: "London (0°) menunjukkan waktu 11.30 malam Rabu. Tokyo (135° Timur) akan menunjukkan waktu...",
+    question:
+      "London (0°) menunjukkan waktu 11.30 malam Rabu. Tokyo (135° Timur) akan menunjukkan waktu...",
     options: ["8.30 pagi, Khamis", "8.30 pagi, Rabu", "11.30 malam, Khamis", "2.30 pagi, Rabu"],
     answerIndex: 0,
-    explanation: "Tokyo berada 135° ke timur London, iaitu 9 jam lebih awal (135° ÷ 15° = 9 jam), menjadikan waktu di Tokyo 8.30 pagi, Khamis.",
+    explanation:
+      "Tokyo berada 135° ke timur London, iaitu 9 jam lebih awal (135° ÷ 15° = 9 jam), menjadikan waktu di Tokyo 8.30 pagi, Khamis.",
   },
   {
     id: "geo-f2-c3-q16",
@@ -16887,9 +17136,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Hard",
     question: "Apakah yang menyebabkan pembiasan arah angin lazim di seluruh dunia?",
-    options: ["Daya Koriolis akibat putaran Bumi", "Daya graviti Bulan", "Kecondongan paksi Bumi semasa peredaran", "Tarikan graviti Matahari"],
+    options: [
+      "Daya Koriolis akibat putaran Bumi",
+      "Daya graviti Bulan",
+      "Kecondongan paksi Bumi semasa peredaran",
+      "Tarikan graviti Matahari",
+    ],
     answerIndex: 0,
-    explanation: "Putaran Bumi dari barat ke timur menyebabkan kewujudan Daya Koriolis yang membiaskan arah angin lazim.",
+    explanation:
+      "Putaran Bumi dari barat ke timur menyebabkan kewujudan Daya Koriolis yang membiaskan arah angin lazim.",
   },
   {
     id: "geo-f2-c3-q17",
@@ -16900,7 +17155,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Di hemisfera utara, angin dibiaskan ke arah manakah daripada arah tujuannya?",
     options: ["Kanan", "Kiri", "Atas", "Bawah"],
     answerIndex: 0,
-    explanation: "Di hemisfera utara, angin dibiaskan ke kanan daripada arah tujuannya akibat Daya Koriolis.",
+    explanation:
+      "Di hemisfera utara, angin dibiaskan ke kanan daripada arah tujuannya akibat Daya Koriolis.",
   },
   {
     id: "geo-f2-c3-q18",
@@ -16911,7 +17167,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Di hemisfera selatan, angin dibiaskan ke arah manakah daripada arah asalnya?",
     options: ["Kiri", "Kanan", "Atas", "Bawah"],
     answerIndex: 0,
-    explanation: "Di hemisfera selatan, angin dibiaskan ke kiri daripada arah asalnya akibat Daya Koriolis.",
+    explanation:
+      "Di hemisfera selatan, angin dibiaskan ke kiri daripada arah asalnya akibat Daya Koriolis.",
   },
   {
     id: "geo-f2-c3-q19",
@@ -16927,7 +17184,8 @@ export const quizzes: QuizQuestion[] = [
       "Pembiasan angin akibat Daya Koriolis",
     ],
     answerIndex: 0,
-    explanation: "Pasang surut air laut disebabkan oleh tarikan graviti Bulan dan Matahari terhadap jasad air di Bumi.",
+    explanation:
+      "Pasang surut air laut disebabkan oleh tarikan graviti Bulan dan Matahari terhadap jasad air di Bumi.",
   },
   {
     id: "geo-f2-c3-q20",
@@ -16936,7 +17194,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Hard",
     question: "Manakah berikut BUKAN kesan putaran Bumi?",
-    options: ["Kejadian empat musim", "Kejadian siang dan malam", "Perbezaan waktu tempatan", "Pembiasan angin lazim"],
+    options: [
+      "Kejadian empat musim",
+      "Kejadian siang dan malam",
+      "Perbezaan waktu tempatan",
+      "Pembiasan angin lazim",
+    ],
     answerIndex: 0,
     explanation: "Kejadian empat musim disebabkan oleh PEREDARAN Bumi, bukan putaran Bumi.",
   },
@@ -16949,9 +17212,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Hard",
     question: "Apakah kedudukan Bumi yang dikenali sebagai perihelion?",
-    options: ["Kedudukan Bumi paling hampir dengan Matahari", "Kedudukan Bumi paling jauh daripada Matahari", "Kedudukan Bumi tegak di Khatulistiwa", "Kedudukan Bumi tegak di Garisan Sartan"],
+    options: [
+      "Kedudukan Bumi paling hampir dengan Matahari",
+      "Kedudukan Bumi paling jauh daripada Matahari",
+      "Kedudukan Bumi tegak di Khatulistiwa",
+      "Kedudukan Bumi tegak di Garisan Sartan",
+    ],
     answerIndex: 0,
-    explanation: "Perihelion ialah kedudukan Bumi paling hampir dengan Matahari, berlaku pada bulan Januari.",
+    explanation:
+      "Perihelion ialah kedudukan Bumi paling hampir dengan Matahari, berlaku pada bulan Januari.",
   },
   {
     id: "geo-f2-c3-q22",
@@ -16962,7 +17231,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Pada bulan manakah aphelion (kedudukan Bumi paling jauh daripada Matahari) berlaku?",
     options: ["Julai", "Januari", "Mac", "September"],
     answerIndex: 0,
-    explanation: "Aphelion berlaku pada bulan Julai apabila Bumi berada paling jauh daripada Matahari (kira-kira 152 juta km).",
+    explanation:
+      "Aphelion berlaku pada bulan Julai apabila Bumi berada paling jauh daripada Matahari (kira-kira 152 juta km).",
   },
   {
     id: "geo-f2-c3-q23",
@@ -16973,7 +17243,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Pada Ekuinoks Musim Bunga (21 Mac), di manakah Matahari tegak hari tegak?",
     options: ["Garisan Khatulistiwa", "Garisan Sartan", "Garisan Jadi", "Kutub Utara"],
     answerIndex: 0,
-    explanation: "Pada Ekuinoks Musim Bunga (21 Mac), Matahari tegak hari tegak di atas Garisan Khatulistiwa.",
+    explanation:
+      "Pada Ekuinoks Musim Bunga (21 Mac), Matahari tegak hari tegak di atas Garisan Khatulistiwa.",
   },
   {
     id: "geo-f2-c3-q24",
@@ -16982,9 +17253,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Hard",
     question: "Pada Solstis Musim Panas (21 Jun), Kutub Utara mengalami...",
-    options: ["24 jam siang", "24 jam malam", "12 jam siang dan 12 jam malam", "Tidak mengalami sebarang cahaya Matahari"],
+    options: [
+      "24 jam siang",
+      "24 jam malam",
+      "12 jam siang dan 12 jam malam",
+      "Tidak mengalami sebarang cahaya Matahari",
+    ],
     answerIndex: 0,
-    explanation: "Pada Solstis Musim Panas (21 Jun), Kutub Utara mengalami 24 jam siang, manakala Kutub Selatan mengalami 24 jam malam.",
+    explanation:
+      "Pada Solstis Musim Panas (21 Jun), Kutub Utara mengalami 24 jam siang, manakala Kutub Selatan mengalami 24 jam malam.",
   },
   {
     id: "geo-f2-c3-q25",
@@ -16995,7 +17272,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Pada Solstis Musim Sejuk (22 Disember), di manakah Matahari tegak hari tegak?",
     options: ["Garisan Jadi", "Garisan Sartan", "Garisan Khatulistiwa", "Kutub Selatan"],
     answerIndex: 0,
-    explanation: "Pada Solstis Musim Sejuk (22 Disember), Matahari tegak hari tegak di atas Garisan Jadi (23½° Selatan).",
+    explanation:
+      "Pada Solstis Musim Sejuk (22 Disember), Matahari tegak hari tegak di atas Garisan Jadi (23½° Selatan).",
   },
   {
     id: "geo-f2-c3-q26",
@@ -17006,7 +17284,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Semasa hemisfera utara mengalami musim panas, hemisfera selatan mengalami musim...",
     options: ["Sejuk", "Panas", "Bunga", "Luruh"],
     answerIndex: 0,
-    explanation: "Apabila hemisfera utara mengalami musim panas (Jun-Ogos), hemisfera selatan mengalami musim sejuk pada masa yang sama.",
+    explanation:
+      "Apabila hemisfera utara mengalami musim panas (Jun-Ogos), hemisfera selatan mengalami musim sejuk pada masa yang sama.",
   },
   {
     id: "geo-f2-c3-q27",
@@ -17022,7 +17301,8 @@ export const quizzes: QuizQuestion[] = [
       "Bulan bergerak terlalu hampir dengan Matahari",
     ],
     answerIndex: 0,
-    explanation: "Gerhana bulan berlaku apabila Matahari, Bumi dan Bulan berada dalam satu garis lurus dan Bumi melindungi cahaya Matahari daripada terpancar ke Bulan.",
+    explanation:
+      "Gerhana bulan berlaku apabila Matahari, Bumi dan Bulan berada dalam satu garis lurus dan Bumi melindungi cahaya Matahari daripada terpancar ke Bulan.",
   },
   {
     id: "geo-f2-c3-q28",
@@ -17038,7 +17318,8 @@ export const quizzes: QuizQuestion[] = [
       "Bumi berhenti berputar pada paksinya",
     ],
     answerIndex: 0,
-    explanation: "Gerhana matahari berlaku apabila kedudukan Bulan menghalang cahaya Matahari daripada terpancar ke Bumi.",
+    explanation:
+      "Gerhana matahari berlaku apabila kedudukan Bulan menghalang cahaya Matahari daripada terpancar ke Bumi.",
   },
   {
     id: "geo-f2-c3-q29",
@@ -17054,7 +17335,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana Matahari menghalang pandangan ke seluruh Bumi",
     ],
     answerIndex: 0,
-    explanation: "Gerhana matahari hanya kelihatan di kawasan tertentu kerana saiz Bulan yang lebih kecil daripada Bumi hanya dapat menghasilkan bayang-bayang (umbra/penumbra) pada sebahagian kecil permukaan Bumi.",
+    explanation:
+      "Gerhana matahari hanya kelihatan di kawasan tertentu kerana saiz Bulan yang lebih kecil daripada Bumi hanya dapat menghasilkan bayang-bayang (umbra/penumbra) pada sebahagian kecil permukaan Bumi.",
   },
   {
     id: "geo-f2-c3-q30",
@@ -17062,7 +17344,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 3",
     difficulty: "Hard",
-    question: "Suhu di Kuala Lumpur, Singapura dan Jakarta meningkat sehingga 36°C selepas ekuinoks Mac 2016. Apakah punca sebenar peningkatan suhu ini menurut ahli sains?",
+    question:
+      "Suhu di Kuala Lumpur, Singapura dan Jakarta meningkat sehingga 36°C selepas ekuinoks Mac 2016. Apakah punca sebenar peningkatan suhu ini menurut ahli sains?",
     options: [
       "Perubahan iklim global, bukan disebabkan secara langsung oleh fenomena ekuinoks",
       "Fenomena ekuinoks itu sendiri secara langsung",
@@ -17070,7 +17353,8 @@ export const quizzes: QuizQuestion[] = [
       "Peningkatan kelajuan putaran Bumi",
     ],
     answerIndex: 0,
-    explanation: "Ahli sains berpendapat peningkatan suhu ketika itu lebih disebabkan oleh perubahan iklim global, bukan disebabkan secara langsung oleh fenomena ekuinoks.",
+    explanation:
+      "Ahli sains berpendapat peningkatan suhu ketika itu lebih disebabkan oleh perubahan iklim global, bukan disebabkan secara langsung oleh fenomena ekuinoks.",
   },
 
   // Geography Form 2 Chapter 4 - Cuaca dan Iklim di Malaysia
@@ -17100,7 +17384,8 @@ export const quizzes: QuizQuestion[] = [
       "Suhu maksimum pada satu hari",
     ],
     answerIndex: 0,
-    explanation: "Iklim ialah purata suhu, hujan, tekanan udara dan angin sesuatu tempat selama 30 tahun.",
+    explanation:
+      "Iklim ialah purata suhu, hujan, tekanan udara dan angin sesuatu tempat selama 30 tahun.",
   },
   {
     id: "geo-f2-c4-q3",
@@ -17120,7 +17405,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Easy",
     question: "Berapakah jumlah hujan tahunan Malaysia secara umum?",
-    options: ["Melebihi 2 600 mm", "Kurang daripada 500 mm", "Melebihi 10 000 mm", "Antara 800 mm hingga 1 000 mm"],
+    options: [
+      "Melebihi 2 600 mm",
+      "Kurang daripada 500 mm",
+      "Melebihi 10 000 mm",
+      "Antara 800 mm hingga 1 000 mm",
+    ],
     answerIndex: 0,
     explanation: "Jumlah hujan tahunan Malaysia melebihi 2 600 mm.",
   },
@@ -17131,7 +17421,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Easy",
     question: "Apakah dua jenis hujan utama yang dibincangkan dalam topik iklim Malaysia?",
-    options: ["Hujan perolakan dan hujan bukit", "Hujan asid dan hujan perolakan", "Hujan monsun dan hujan asid", "Hujan bukit dan hujan salji"],
+    options: [
+      "Hujan perolakan dan hujan bukit",
+      "Hujan asid dan hujan perolakan",
+      "Hujan monsun dan hujan asid",
+      "Hujan bukit dan hujan salji",
+    ],
     answerIndex: 0,
     explanation: "Dua jenis hujan utama di Malaysia ialah hujan perolakan dan hujan bukit.",
   },
@@ -17142,7 +17437,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Medium",
     question: "Bilakah Angin Monsun Timur Laut bertiup?",
-    options: ["November hingga Mac", "Mei hingga September", "Januari hingga Jun", "Ogos hingga Disember"],
+    options: [
+      "November hingga Mac",
+      "Mei hingga September",
+      "Januari hingga Jun",
+      "Ogos hingga Disember",
+    ],
     answerIndex: 0,
     explanation: "Angin Monsun Timur Laut bertiup dari awal bulan November hingga Mac.",
   },
@@ -17153,9 +17453,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Medium",
     question: "Bilakah Angin Monsun Barat Daya bertiup?",
-    options: ["Pertengahan Mei hingga akhir September", "November hingga Mac", "Januari hingga April", "Oktober hingga Disember"],
+    options: [
+      "Pertengahan Mei hingga akhir September",
+      "November hingga Mac",
+      "Januari hingga April",
+      "Oktober hingga Disember",
+    ],
     answerIndex: 0,
-    explanation: "Angin Monsun Barat Daya bertiup dari pertengahan bulan Mei hingga akhir bulan September.",
+    explanation:
+      "Angin Monsun Barat Daya bertiup dari pertengahan bulan Mei hingga akhir bulan September.",
   },
   {
     id: "geo-f2-c4-q8",
@@ -17163,7 +17469,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Mengapakah nelayan di pantai barat Semenanjung Malaysia dapat menangkap ikan sepanjang tahun?",
+    question:
+      "Mengapakah nelayan di pantai barat Semenanjung Malaysia dapat menangkap ikan sepanjang tahun?",
     options: [
       "Kerana kawasan perairan Selat Melaka terlindung daripada angin kencang oleh Banjaran Titiwangsa dan tanah tinggi Sumatera",
       "Kerana pantai barat tidak menerima sebarang angin monsun",
@@ -17171,7 +17478,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana pantai barat tidak mengalami hujan",
     ],
     answerIndex: 0,
-    explanation: "Selat Melaka terlindung daripada angin kencang Monsun Timur Laut oleh Banjaran Titiwangsa dan Monsun Barat Daya oleh tanah tinggi Sumatera.",
+    explanation:
+      "Selat Melaka terlindung daripada angin kencang Monsun Timur Laut oleh Banjaran Titiwangsa dan Monsun Barat Daya oleh tanah tinggi Sumatera.",
   },
 
   // 4.2 Pengaruh Cuaca dan Iklim terhadap Kegiatan Manusia di Malaysia (Q9-16)
@@ -17182,9 +17490,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Medium",
     question: "Di manakah kawasan pertanian utama bagi tanaman padi di Malaysia?",
-    options: ["Dataran Kedah-Perlis dan Dataran Kelantan", "Cameron Highlands dan Kundasang", "Kuching dan Sri Aman", "Segi Tiga Jengka dan Lahad Datu"],
+    options: [
+      "Dataran Kedah-Perlis dan Dataran Kelantan",
+      "Cameron Highlands dan Kundasang",
+      "Kuching dan Sri Aman",
+      "Segi Tiga Jengka dan Lahad Datu",
+    ],
     answerIndex: 0,
-    explanation: "Kawasan pertanian utama padi di Malaysia ialah Dataran Kedah-Perlis dan Dataran Kelantan.",
+    explanation:
+      "Kawasan pertanian utama padi di Malaysia ialah Dataran Kedah-Perlis dan Dataran Kelantan.",
   },
   {
     id: "geo-f2-c4-q10",
@@ -17193,9 +17507,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Medium",
     question: "Di manakah kawasan pertanian utama bagi lada hitam di Malaysia?",
-    options: ["Sekitar Kuching dan Sri Aman (Sarawak)", "Dataran Kedah-Perlis", "Segi Tiga Jengka (Pahang)", "Cameron Highlands (Pahang)"],
+    options: [
+      "Sekitar Kuching dan Sri Aman (Sarawak)",
+      "Dataran Kedah-Perlis",
+      "Segi Tiga Jengka (Pahang)",
+      "Cameron Highlands (Pahang)",
+    ],
     answerIndex: 0,
-    explanation: "Kawasan pertanian utama lada hitam di Malaysia ialah sekitar Kuching dan Sri Aman, Sarawak.",
+    explanation:
+      "Kawasan pertanian utama lada hitam di Malaysia ialah sekitar Kuching dan Sri Aman, Sarawak.",
   },
   {
     id: "geo-f2-c4-q11",
@@ -17203,7 +17523,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Mengapakah Cameron Highlands sesuai untuk penanaman teh dan sayur-sayuran hawa sederhana?",
+    question:
+      "Mengapakah Cameron Highlands sesuai untuk penanaman teh dan sayur-sayuran hawa sederhana?",
     options: [
       "Kerana suhu di tanah tinggi antara 18°C hingga 21°C, sesuai untuk tanaman hawa sederhana",
       "Kerana tanah tinggi mempunyai hujan paling sedikit di Malaysia",
@@ -17211,7 +17532,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana tanah tinggi lebih hampir dengan laut",
     ],
     answerIndex: 0,
-    explanation: "Kawasan tanah tinggi seperti Cameron Highlands mengalami suhu antara 18°C hingga 21°C yang sesuai untuk tanaman hawa sederhana seperti teh.",
+    explanation:
+      "Kawasan tanah tinggi seperti Cameron Highlands mengalami suhu antara 18°C hingga 21°C yang sesuai untuk tanaman hawa sederhana seperti teh.",
   },
   {
     id: "geo-f2-c4-q12",
@@ -17227,7 +17549,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana kayu balak menjadi terlalu kering",
     ],
     answerIndex: 0,
-    explanation: "Aktiviti pembalakan sukar dijalankan pada musim tengkujuh kerana jalan menjadi licin dan terdedah kepada bahaya tanah runtuh.",
+    explanation:
+      "Aktiviti pembalakan sukar dijalankan pada musim tengkujuh kerana jalan menjadi licin dan terdedah kepada bahaya tanah runtuh.",
   },
   {
     id: "geo-f2-c4-q13",
@@ -17235,7 +17558,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Apakah aktiviti yang dilakukan oleh nelayan pantai timur Semenanjung semasa musim tengkujuh?",
+    question:
+      "Apakah aktiviti yang dilakukan oleh nelayan pantai timur Semenanjung semasa musim tengkujuh?",
     options: [
       "Membaiki jala dan pukat yang rosak",
       "Menangkap ikan seperti biasa di Laut China Selatan",
@@ -17243,7 +17567,8 @@ export const quizzes: QuizQuestion[] = [
       "Menutup perniagaan sepenuhnya",
     ],
     answerIndex: 0,
-    explanation: "Semasa musim tengkujuh, nelayan pantai timur Semenanjung tidak dapat turun ke laut dan melakukan aktiviti lain seperti membaiki jala dan pukat yang rosak.",
+    explanation:
+      "Semasa musim tengkujuh, nelayan pantai timur Semenanjung tidak dapat turun ke laut dan melakukan aktiviti lain seperti membaiki jala dan pukat yang rosak.",
   },
   {
     id: "geo-f2-c4-q14",
@@ -17251,10 +17576,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Apakah julat suhu air laut yang menggalakkan pertumbuhan batu karang dan aktiviti menyelam skuba di Malaysia?",
+    question:
+      "Apakah julat suhu air laut yang menggalakkan pertumbuhan batu karang dan aktiviti menyelam skuba di Malaysia?",
     options: ["24°C hingga 30°C", "10°C hingga 15°C", "35°C hingga 40°C", "0°C hingga 5°C"],
     answerIndex: 0,
-    explanation: "Suhu air laut antara 24°C hingga 30°C menggalakkan pertumbuhan batu karang dan aktiviti menyelam skuba.",
+    explanation:
+      "Suhu air laut antara 24°C hingga 30°C menggalakkan pertumbuhan batu karang dan aktiviti menyelam skuba.",
   },
   {
     id: "geo-f2-c4-q15",
@@ -17263,9 +17590,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Hard",
     question: "Namakan satu kawasan peranginan pantai/pulau yang disebut dalam buku teks.",
-    options: ["Pulau Sipadan (Sabah)", "Cameron Highlands (Pahang)", "Kundasang (Sabah)", "Bukit Larut (Perak)"],
+    options: [
+      "Pulau Sipadan (Sabah)",
+      "Cameron Highlands (Pahang)",
+      "Kundasang (Sabah)",
+      "Bukit Larut (Perak)",
+    ],
     answerIndex: 0,
-    explanation: "Pulau Sipadan (Sabah) ialah salah satu kawasan peranginan pantai/pulau yang disebut dalam buku teks, selain Pantai Damai (Sarawak) dan Pulau Redang (Terengganu).",
+    explanation:
+      "Pulau Sipadan (Sabah) ialah salah satu kawasan peranginan pantai/pulau yang disebut dalam buku teks, selain Pantai Damai (Sarawak) dan Pulau Redang (Terengganu).",
   },
   {
     id: "geo-f2-c4-q16",
@@ -17273,10 +17606,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Apakah kegiatan ekonomi yang TIDAK dapat dijalankan semasa musim hujan menurut buku teks?",
-    options: ["Kerja menoreh getah", "Penangkapan ikan di pantai barat", "Pelancongan di tanah tinggi", "Penanaman padi"],
+    question:
+      "Apakah kegiatan ekonomi yang TIDAK dapat dijalankan semasa musim hujan menurut buku teks?",
+    options: [
+      "Kerja menoreh getah",
+      "Penangkapan ikan di pantai barat",
+      "Pelancongan di tanah tinggi",
+      "Penanaman padi",
+    ],
     answerIndex: 0,
-    explanation: "Kerja menoreh getah tidak dapat dijalankan semasa musim hujan kerana lebar getah akan dicairkan oleh air hujan.",
+    explanation:
+      "Kerja menoreh getah tidak dapat dijalankan semasa musim hujan kerana lebar getah akan dicairkan oleh air hujan.",
   },
 
   // 4.3 Kesan Kegiatan Manusia terhadap Cuaca dan Iklim di Malaysia (Q17-23)
@@ -17294,7 +17634,8 @@ export const quizzes: QuizQuestion[] = [
       "Proses penyejatan air di permukaan bumi",
     ],
     answerIndex: 0,
-    explanation: "Kesan rumah hijau merujuk fenomena peningkatan suhu bumi akibat banyak haba yang terperangkap dalam atmosfera bumi.",
+    explanation:
+      "Kesan rumah hijau merujuk fenomena peningkatan suhu bumi akibat banyak haba yang terperangkap dalam atmosfera bumi.",
   },
   {
     id: "geo-f2-c4-q18",
@@ -17305,7 +17646,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Manakah berikut BUKAN gas rumah hijau?",
     options: ["Oksigen (O₂)", "Karbon dioksida (CO₂)", "Metana (CH₄)", "Nitrus oksida (N₂O)"],
     answerIndex: 0,
-    explanation: "Gas rumah hijau merangkumi karbon dioksida, metana, klorofluorokarbon dan nitrus oksida — bukan oksigen.",
+    explanation:
+      "Gas rumah hijau merangkumi karbon dioksida, metana, klorofluorokarbon dan nitrus oksida — bukan oksigen.",
   },
   {
     id: "geo-f2-c4-q19",
@@ -17321,7 +17663,8 @@ export const quizzes: QuizQuestion[] = [
       "Fenomena banjir kilat di kawasan bandar",
     ],
     answerIndex: 0,
-    explanation: "Pulau haba merujuk fenomena suhu kawasan tepu bina di dalam bandar lebih panas berbanding kawasan di sekitarnya.",
+    explanation:
+      "Pulau haba merujuk fenomena suhu kawasan tepu bina di dalam bandar lebih panas berbanding kawasan di sekitarnya.",
   },
   {
     id: "geo-f2-c4-q20",
@@ -17337,7 +17680,8 @@ export const quizzes: QuizQuestion[] = [
       "Kadar evaporasi yang terlalu tinggi di kawasan bandar",
     ],
     answerIndex: 0,
-    explanation: "Bangunan konkrit dan permukaan bertutup menyerap dan menyimpan banyak bahang matahari, menjadi salah satu punca pulau haba.",
+    explanation:
+      "Bangunan konkrit dan permukaan bertutup menyerap dan menyimpan banyak bahang matahari, menjadi salah satu punca pulau haba.",
   },
   {
     id: "geo-f2-c4-q21",
@@ -17346,9 +17690,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Hard",
     question: "Apakah nilai pH yang menentukan sesuatu hujan dikategorikan sebagai hujan asid?",
-    options: ["Kurang daripada 5.6", "Lebih daripada 7.0", "Sama dengan 7.0", "Lebih daripada 10.0"],
+    options: [
+      "Kurang daripada 5.6",
+      "Lebih daripada 7.0",
+      "Sama dengan 7.0",
+      "Lebih daripada 10.0",
+    ],
     answerIndex: 0,
-    explanation: "Hujan asid ialah hujan yang mengandungi kandungan asid lemah dengan nilai pH kurang daripada 5.6.",
+    explanation:
+      "Hujan asid ialah hujan yang mengandungi kandungan asid lemah dengan nilai pH kurang daripada 5.6.",
   },
   {
     id: "geo-f2-c4-q22",
@@ -17364,7 +17714,8 @@ export const quizzes: QuizQuestion[] = [
       "Fenomena laut Pasifik yang menjadi panas",
     ],
     answerIndex: 0,
-    explanation: "Jerebu disebabkan oleh zarah-zarah halus yang tidak nampak oleh mata kasar terampai di atmosfera dalam kepekatan yang tinggi.",
+    explanation:
+      "Jerebu disebabkan oleh zarah-zarah halus yang tidak nampak oleh mata kasar terampai di atmosfera dalam kepekatan yang tinggi.",
   },
   {
     id: "geo-f2-c4-q23",
@@ -17373,9 +17724,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Hard",
     question: "Apakah salah satu kesan jerebu yang dinyatakan dalam buku teks?",
-    options: ["Mengurangkan jarak penglihatan", "Meningkatkan hasil pertanian", "Meningkatkan kualiti udara", "Mengurangkan suhu bumi"],
+    options: [
+      "Mengurangkan jarak penglihatan",
+      "Meningkatkan hasil pertanian",
+      "Meningkatkan kualiti udara",
+      "Mengurangkan suhu bumi",
+    ],
     answerIndex: 0,
-    explanation: "Antara kesan jerebu ialah mengurangkan jarak penglihatan, mengganggu pertumbuhan tanaman, masalah kesihatan dan menjejaskan aktiviti pengangkutan.",
+    explanation:
+      "Antara kesan jerebu ialah mengurangkan jarak penglihatan, mengganggu pertumbuhan tanaman, masalah kesihatan dan menjejaskan aktiviti pengangkutan.",
   },
 
   // 4.4 Perubahan Cuaca dan Iklim di Malaysia (Q24-30)
@@ -17393,7 +17750,8 @@ export const quizzes: QuizQuestion[] = [
       "Penurunan paras air laut secara global",
     ],
     answerIndex: 0,
-    explanation: "Fenomena El Nino dikaitkan dengan pemanasan suhu permukaan air Lautan Pasifik yang luar biasa sehingga menyebabkan perubahan tekanan udara dan pola tiupan angin.",
+    explanation:
+      "Fenomena El Nino dikaitkan dengan pemanasan suhu permukaan air Lautan Pasifik yang luar biasa sehingga menyebabkan perubahan tekanan udara dan pola tiupan angin.",
   },
   {
     id: "geo-f2-c4-q25",
@@ -17404,7 +17762,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah kesan utama El Nino terhadap Malaysia?",
     options: ["Kemarau", "Banjir besar", "Peningkatan hujan salji", "Gerhana matahari"],
     answerIndex: 0,
-    explanation: "Semasa El Nino, kawasan Asia Pasifik termasuk Malaysia mengalami keadaan kemarau akibat gangguan tiupan angin Timuran.",
+    explanation:
+      "Semasa El Nino, kawasan Asia Pasifik termasuk Malaysia mengalami keadaan kemarau akibat gangguan tiupan angin Timuran.",
   },
   {
     id: "geo-f2-c4-q26",
@@ -17420,7 +17779,8 @@ export const quizzes: QuizQuestion[] = [
       "Fenomena pembentukan jerebu di kawasan bandar",
     ],
     answerIndex: 0,
-    explanation: "La Nina ialah gejala gangguan iklim yang disebabkan oleh penurunan suhu permukaan laut di kawasan tengah dan timur Lautan Pasifik.",
+    explanation:
+      "La Nina ialah gejala gangguan iklim yang disebabkan oleh penurunan suhu permukaan laut di kawasan tengah dan timur Lautan Pasifik.",
   },
   {
     id: "geo-f2-c4-q27",
@@ -17428,10 +17788,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Negeri manakah di Malaysia yang paling terjejas oleh La Nina ketika Monsun Timur Laut?",
-    options: ["Pantai timur Semenanjung, Sabah dan Sarawak", "Pantai barat Semenanjung sahaja", "Wilayah Persekutuan Kuala Lumpur sahaja", "Seluruh negara secara sama rata"],
+    question:
+      "Negeri manakah di Malaysia yang paling terjejas oleh La Nina ketika Monsun Timur Laut?",
+    options: [
+      "Pantai timur Semenanjung, Sabah dan Sarawak",
+      "Pantai barat Semenanjung sahaja",
+      "Wilayah Persekutuan Kuala Lumpur sahaja",
+      "Seluruh negara secara sama rata",
+    ],
     answerIndex: 0,
-    explanation: "Di Malaysia, La Nina biasanya memberi kesan kepada negeri di pantai timur Semenanjung Malaysia, Sabah dan Sarawak, terutamanya ketika Monsun Timur Laut.",
+    explanation:
+      "Di Malaysia, La Nina biasanya memberi kesan kepada negeri di pantai timur Semenanjung Malaysia, Sabah dan Sarawak, terutamanya ketika Monsun Timur Laut.",
   },
   {
     id: "geo-f2-c4-q28",
@@ -17439,7 +17806,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Pada tahun manakah Malaysia mengalami banjir besar akibat kesan La Nina menurut buku teks?",
+    question:
+      "Pada tahun manakah Malaysia mengalami banjir besar akibat kesan La Nina menurut buku teks?",
     options: ["2014", "2010", "2018", "2005"],
     answerIndex: 0,
     explanation: "Kesan La Nina menyebabkan kejadian banjir besar di Malaysia pada tahun 2014.",
@@ -17453,7 +17821,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Dalam Bahasa Sepanyol, apakah maksud 'El Nino'?",
     options: ["Anak lelaki", "Anak gadis", "Lautan panas", "Ribut besar"],
     answerIndex: 0,
-    explanation: "El Nino dalam Bahasa Sepanyol bermaksud 'anak lelaki', manakala La Nina bermaksud 'anak gadis'.",
+    explanation:
+      "El Nino dalam Bahasa Sepanyol bermaksud 'anak lelaki', manakala La Nina bermaksud 'anak gadis'.",
   },
   {
     id: "geo-f2-c4-q30",
@@ -17461,7 +17830,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Berdasarkan graf min suhu dan hujan bulanan Malaysia, mengapakah julat suhu Malaysia digambarkan sebagai kecil sepanjang tahun?",
+    question:
+      "Berdasarkan graf min suhu dan hujan bulanan Malaysia, mengapakah julat suhu Malaysia digambarkan sebagai kecil sepanjang tahun?",
     options: [
       "Kerana Malaysia mengalami iklim Khatulistiwa yang menerima sudut tegak Matahari yang hampir sama sepanjang tahun",
       "Kerana Malaysia terletak jauh daripada Garisan Khatulistiwa",
@@ -17469,7 +17839,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana Malaysia tidak menerima sebarang hujan sepanjang tahun",
     ],
     answerIndex: 0,
-    explanation: "Kedudukan Malaysia yang berhampiran Garisan Khatulistiwa menyebabkan sudut tegak Matahari hampir sama sepanjang tahun, menghasilkan julat suhu tahunan yang kecil.",
+    explanation:
+      "Kedudukan Malaysia yang berhampiran Garisan Khatulistiwa menyebabkan sudut tegak Matahari hampir sama sepanjang tahun, menghasilkan julat suhu tahunan yang kecil.",
   },
   {
     id: "geo-f2-c5-q1",
@@ -17477,10 +17848,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Easy",
-    question: "Apakah lebuh raya yang menghubungkan Bukit Kayu Hitam, Kedah dengan Johor Bahru, Johor?",
-    options: ["Lebuhraya Utara-Selatan", "Lebuhraya Timur-Barat", "Lebuhraya Pantai Timur", "Lebuhraya Pan Borneo"],
+    question:
+      "Apakah lebuh raya yang menghubungkan Bukit Kayu Hitam, Kedah dengan Johor Bahru, Johor?",
+    options: [
+      "Lebuhraya Utara-Selatan",
+      "Lebuhraya Timur-Barat",
+      "Lebuhraya Pantai Timur",
+      "Lebuhraya Pan Borneo",
+    ],
     answerIndex: 0,
-    explanation: "Lebuhraya Utara-Selatan menghubungkan Bukit Kayu Hitam, Kedah ke Johor Bahru, Johor, dan merupakan lebuh raya terpanjang di Malaysia.",
+    explanation:
+      "Lebuhraya Utara-Selatan menghubungkan Bukit Kayu Hitam, Kedah ke Johor Bahru, Johor, dan merupakan lebuh raya terpanjang di Malaysia.",
   },
   {
     id: "geo-f2-c5-q2",
@@ -17491,7 +17869,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Berapakah jarak Lebuhraya Utara-Selatan, lebuh raya terpanjang di Malaysia?",
     options: ["847.7 km", "747.7 km", "947.7 km", "647.7 km"],
     answerIndex: 0,
-    explanation: "Lebuhraya Utara-Selatan mempunyai jarak 847.7 km, menjadikannya lebuh raya terpanjang di Malaysia.",
+    explanation:
+      "Lebuhraya Utara-Selatan mempunyai jarak 847.7 km, menjadikannya lebuh raya terpanjang di Malaysia.",
   },
   {
     id: "geo-f2-c5-q3",
@@ -17500,9 +17879,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Easy",
     question: "Di manakah landasan kereta api pertama di Malaysia dibina?",
-    options: ["Port Weld ke Bukit Berapit", "Padang Besar ke Johor Bahru", "Tumpat ke Gemas", "Tanjung Aru ke Tenom"],
+    options: [
+      "Port Weld ke Bukit Berapit",
+      "Padang Besar ke Johor Bahru",
+      "Tumpat ke Gemas",
+      "Tanjung Aru ke Tenom",
+    ],
     answerIndex: 0,
-    explanation: "Landasan kereta api pertama di Malaysia sepanjang 13 km dibina oleh Syarikat Perlombongan Bijih Timah dari Port Weld ke Bukit Berapit pada tahun 1885.",
+    explanation:
+      "Landasan kereta api pertama di Malaysia sepanjang 13 km dibina oleh Syarikat Perlombongan Bijih Timah dari Port Weld ke Bukit Berapit pada tahun 1885.",
   },
   {
     id: "geo-f2-c5-q4",
@@ -17513,7 +17898,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Pada tahun berapakah landasan kereta api pertama di Malaysia dibuka?",
     options: ["1885", "1895", "1905", "1875"],
     answerIndex: 0,
-    explanation: "Landasan kereta api pertama yang sepanjang 13 km itu telah dibuka pada tahun 1885.",
+    explanation:
+      "Landasan kereta api pertama yang sepanjang 13 km itu telah dibuka pada tahun 1885.",
   },
   {
     id: "geo-f2-c5-q5",
@@ -17522,9 +17908,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Easy",
     question: "Manakah antara berikut BUKAN lapangan terbang antarabangsa di Malaysia?",
-    options: ["Lapangan Terbang Antarabangsa Sepang Kecil", "Lapangan Terbang Antarabangsa Langkawi", "Lapangan Terbang Antarabangsa Senai", "Lapangan Terbang Antarabangsa Kuching"],
+    options: [
+      "Lapangan Terbang Antarabangsa Sepang Kecil",
+      "Lapangan Terbang Antarabangsa Langkawi",
+      "Lapangan Terbang Antarabangsa Senai",
+      "Lapangan Terbang Antarabangsa Kuching",
+    ],
     answerIndex: 0,
-    explanation: "Antara lapangan terbang antarabangsa Malaysia ialah Langkawi, Pulau Pinang, KLIA, klia2, Senai, Kota Kinabalu dan Kuching. 'Sepang Kecil' bukan nama sebenar.",
+    explanation:
+      "Antara lapangan terbang antarabangsa Malaysia ialah Langkawi, Pulau Pinang, KLIA, klia2, Senai, Kota Kinabalu dan Kuching. 'Sepang Kecil' bukan nama sebenar.",
   },
   {
     id: "geo-f2-c5-q6",
@@ -17535,7 +17927,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Berapakah jumlah lapangan terbang antarabangsa yang dimiliki oleh Malaysia?",
     options: ["6", "16", "18", "8"],
     answerIndex: 0,
-    explanation: "Malaysia mempunyai 6 lapangan terbang antarabangsa, 16 lapangan terbang domestik dan 18 padang terbang.",
+    explanation:
+      "Malaysia mempunyai 6 lapangan terbang antarabangsa, 16 lapangan terbang domestik dan 18 padang terbang.",
   },
   {
     id: "geo-f2-c5-q7",
@@ -17544,9 +17937,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Easy",
     question: "Pelabuhan manakah yang dikenali sebagai Pusat Muatan Negara?",
-    options: ["Pelabuhan Klang", "Pelabuhan Kuantan", "Pelabuhan Bintulu", "Pelabuhan Pulau Pinang"],
+    options: [
+      "Pelabuhan Klang",
+      "Pelabuhan Kuantan",
+      "Pelabuhan Bintulu",
+      "Pelabuhan Pulau Pinang",
+    ],
     answerIndex: 0,
-    explanation: "Pelabuhan Klang dikenali sebagai Pusat Muatan Negara dan terdiri daripada terminal Northport dan Westport.",
+    explanation:
+      "Pelabuhan Klang dikenali sebagai Pusat Muatan Negara dan terdiri daripada terminal Northport dan Westport.",
   },
   {
     id: "geo-f2-c5-q8",
@@ -17555,9 +17954,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Easy",
     question: "Pelabuhan manakah yang merupakan terminal kontena paling canggih di Malaysia?",
-    options: ["Pelabuhan Tanjung Pelepas", "Pelabuhan Klang", "Pelabuhan Kuantan", "Pelabuhan Bintulu"],
+    options: [
+      "Pelabuhan Tanjung Pelepas",
+      "Pelabuhan Klang",
+      "Pelabuhan Kuantan",
+      "Pelabuhan Bintulu",
+    ],
     answerIndex: 0,
-    explanation: "Pelabuhan Tanjung Pelepas merupakan terminal kontena paling canggih di Malaysia dan mendapat pengiktirafan Port/Terminal of the Year 2017.",
+    explanation:
+      "Pelabuhan Tanjung Pelepas merupakan terminal kontena paling canggih di Malaysia dan mendapat pengiktirafan Port/Terminal of the Year 2017.",
   },
   {
     id: "geo-f2-c5-q9",
@@ -17568,7 +17973,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Manakah antara berikut termasuk dalam pengangkutan awam darat (jalan raya)?",
     options: ["Bas, teksi, e-panggilan", "LRT, MRT, ETS", "Feri, bot ekspres", "Kapal terbang"],
     answerIndex: 0,
-    explanation: "Pengangkutan awam darat jenis jalan raya merangkumi bas, teksi dan e-panggilan (e-hailing).",
+    explanation:
+      "Pengangkutan awam darat jenis jalan raya merangkumi bas, teksi dan e-panggilan (e-hailing).",
   },
   {
     id: "geo-f2-c5-q10",
@@ -17584,7 +17990,8 @@ export const quizzes: QuizQuestion[] = [
       "Sistem pengangkutan air antara pulau",
     ],
     answerIndex: 0,
-    explanation: "e-panggilan bermaksud proses menempah atau memesan kereta, teksi, limosin atau pengangkutan awam yang lain melalui komputer atau peranti bergerak.",
+    explanation:
+      "e-panggilan bermaksud proses menempah atau memesan kereta, teksi, limosin atau pengangkutan awam yang lain melalui komputer atau peranti bergerak.",
   },
   {
     id: "geo-f2-c5-q11",
@@ -17592,7 +17999,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Mengapakah jaringan jalan raya di Sabah dan Sarawak lebih tertumpu di sepanjang pantai?",
+    question:
+      "Mengapakah jaringan jalan raya di Sabah dan Sarawak lebih tertumpu di sepanjang pantai?",
     options: [
       "Kawasan pedalaman bertanah tinggi dan berhutan tebal menyukarkan pembinaan jalan raya",
       "Kerajaan tidak membenarkan pembinaan jalan raya di pedalaman",
@@ -17600,7 +18008,8 @@ export const quizzes: QuizQuestion[] = [
       "Kawasan pantai mempunyai tanah yang lebih subur",
     ],
     answerIndex: 0,
-    explanation: "Kawasan pedalaman Sabah dan Sarawak yang bertanah tinggi dan berhutan tebal menyukarkan pembinaan jalan raya, sehingga jaringan jalan raya lebih tertumpu di sepanjang pantai.",
+    explanation:
+      "Kawasan pedalaman Sabah dan Sarawak yang bertanah tinggi dan berhutan tebal menyukarkan pembinaan jalan raya, sehingga jaringan jalan raya lebih tertumpu di sepanjang pantai.",
   },
   {
     id: "geo-f2-c5-q12",
@@ -17609,9 +18018,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question: "Siapakah yang menguruskan landasan kereta api di Sabah?",
-    options: ["Jabatan Keretapi Negeri Sabah", "Keretapi Tanah Melayu Berhad (KTMB)", "Prasarana Malaysia Berhad", "PLUS Berhad"],
+    options: [
+      "Jabatan Keretapi Negeri Sabah",
+      "Keretapi Tanah Melayu Berhad (KTMB)",
+      "Prasarana Malaysia Berhad",
+      "PLUS Berhad",
+    ],
     answerIndex: 0,
-    explanation: "Landasan kereta api di Sabah diuruskan oleh Jabatan Keretapi Negeri Sabah, manakala di Semenanjung Malaysia oleh KTMB.",
+    explanation:
+      "Landasan kereta api di Sabah diuruskan oleh Jabatan Keretapi Negeri Sabah, manakala di Semenanjung Malaysia oleh KTMB.",
   },
   {
     id: "geo-f2-c5-q13",
@@ -17627,7 +18042,8 @@ export const quizzes: QuizQuestion[] = [
       "Mengendalikan kargo berbahaya sahaja",
     ],
     answerIndex: 0,
-    explanation: "Pelabuhan Bintulu merupakan laluan tunggal eksport utama negara, iaitu gas asli cecair (LNG).",
+    explanation:
+      "Pelabuhan Bintulu merupakan laluan tunggal eksport utama negara, iaitu gas asli cecair (LNG).",
   },
   {
     id: "geo-f2-c5-q14",
@@ -17635,10 +18051,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Pelabuhan Kontena Teluk Sepanggar mengendalikan kira-kira berapa peratus eksport-import kontena bagi seluruh Sabah?",
+    question:
+      "Pelabuhan Kontena Teluk Sepanggar mengendalikan kira-kira berapa peratus eksport-import kontena bagi seluruh Sabah?",
     options: ["70 peratus", "50 peratus", "90 peratus", "30 peratus"],
     answerIndex: 0,
-    explanation: "Pelabuhan Kontena Teluk Sepanggar mengendalikan hampir 70 peratus eksport-import kontena bagi seluruh Sabah.",
+    explanation:
+      "Pelabuhan Kontena Teluk Sepanggar mengendalikan hampir 70 peratus eksport-import kontena bagi seluruh Sabah.",
   },
   {
     id: "geo-f2-c5-q15",
@@ -17647,9 +18065,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question: "Manakah pasangan yang BETUL antara pengangkutan awam dengan medium pengangkutannya?",
-    options: ["MRT - rel bersepadu", "Bot ekspres - rel bersepadu", "ETS - udara", "Feri - rel bersepadu"],
+    options: [
+      "MRT - rel bersepadu",
+      "Bot ekspres - rel bersepadu",
+      "ETS - udara",
+      "Feri - rel bersepadu",
+    ],
     answerIndex: 0,
-    explanation: "MRT (Transit Aliran Massa) termasuk dalam kategori rel bersepadu, sama seperti LRT, Monorel, KTM Komuter, KLIA Ekspres dan ETS.",
+    explanation:
+      "MRT (Transit Aliran Massa) termasuk dalam kategori rel bersepadu, sama seperti LRT, Monorel, KTM Komuter, KLIA Ekspres dan ETS.",
   },
   {
     id: "geo-f2-c5-q16",
@@ -17657,7 +18081,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Mengapakah pembinaan jaringan pengangkutan di kawasan lembangan sungai menelan kos yang tinggi?",
+    question:
+      "Mengapakah pembinaan jaringan pengangkutan di kawasan lembangan sungai menelan kos yang tinggi?",
     options: [
       "Kerana kawasan berpaya perlu ditambak dan dibina jambatan",
       "Kerana kawasan tersebut mempunyai tanah yang terlalu keras",
@@ -17665,7 +18090,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana tidak terdapat sumber bahan binaan berhampiran",
     ],
     answerIndex: 0,
-    explanation: "Pembinaan jaringan pengangkutan di kawasan lembangan sungai (berpaya) menelan kos yang tinggi kerana perlu ditambak dan dibina jambatan.",
+    explanation:
+      "Pembinaan jaringan pengangkutan di kawasan lembangan sungai (berpaya) menelan kos yang tinggi kerana perlu ditambak dan dibina jambatan.",
   },
   {
     id: "geo-f2-c5-q17",
@@ -17681,7 +18107,8 @@ export const quizzes: QuizQuestion[] = [
       "Khusus untuk pelabuhan kontena",
     ],
     answerIndex: 0,
-    explanation: "Terowong SMART (Stormwater Management and Road Tunnel) boleh berfungsi sebagai saliran air banjir dan laluan kenderaan.",
+    explanation:
+      "Terowong SMART (Stormwater Management and Road Tunnel) boleh berfungsi sebagai saliran air banjir dan laluan kenderaan.",
   },
   {
     id: "geo-f2-c5-q18",
@@ -17690,9 +18117,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question: "Badan manakah yang bertanggungjawab terhadap pengangkutan awam darat di Malaysia?",
-    options: ["Suruhanjaya Pengangkutan Awam Darat (SPAD)", "Jabatan Alam Sekitar Malaysia", "Jabatan Meteorologi Malaysia", "Kementerian Kesihatan Malaysia"],
+    options: [
+      "Suruhanjaya Pengangkutan Awam Darat (SPAD)",
+      "Jabatan Alam Sekitar Malaysia",
+      "Jabatan Meteorologi Malaysia",
+      "Kementerian Kesihatan Malaysia",
+    ],
     answerIndex: 0,
-    explanation: "Suruhanjaya Pengangkutan Awam Darat (SPAD) bertanggungjawab terhadap pengangkutan awam darat di Malaysia.",
+    explanation:
+      "Suruhanjaya Pengangkutan Awam Darat (SPAD) bertanggungjawab terhadap pengangkutan awam darat di Malaysia.",
   },
   {
     id: "geo-f2-c5-q19",
@@ -17708,7 +18141,8 @@ export const quizzes: QuizQuestion[] = [
       "Mengurangkan kadar hujan tahunan",
     ],
     answerIndex: 0,
-    explanation: "Pengangkutan udara menggalakkan integrasi nasional kerana menghubungkan Semenanjung Malaysia dengan Sarawak dan Sabah dengan lebih pantas.",
+    explanation:
+      "Pengangkutan udara menggalakkan integrasi nasional kerana menghubungkan Semenanjung Malaysia dengan Sarawak dan Sabah dengan lebih pantas.",
   },
   {
     id: "geo-f2-c5-q20",
@@ -17716,7 +18150,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah salah satu kepentingan pengangkutan air bagi negara seperti Sarawak dan Sabah?",
+    question:
+      "Apakah salah satu kepentingan pengangkutan air bagi negara seperti Sarawak dan Sabah?",
     options: [
       "Menghubungkan kawasan pedalaman seperti Sungai Rajang dan Sungai Kinabatangan",
       "Mengurangkan keperluan terhadap lapangan terbang",
@@ -17724,7 +18159,8 @@ export const quizzes: QuizQuestion[] = [
       "Menghapuskan keperluan pelabuhan",
     ],
     answerIndex: 0,
-    explanation: "Pengangkutan air penting untuk menghubungkan kawasan pedalaman seperti melalui Sungai Rajang (Sarawak) dan Sungai Kinabatangan (Sabah).",
+    explanation:
+      "Pengangkutan air penting untuk menghubungkan kawasan pedalaman seperti melalui Sungai Rajang (Sarawak) dan Sungai Kinabatangan (Sabah).",
   },
   {
     id: "geo-f2-c5-q21",
@@ -17732,7 +18168,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Mengapakah dasar penswastaan oleh kerajaan seperti pembinaan Lebuhraya Utara-Selatan oleh PLUS Berhad dianggap penting bagi jaringan pengangkutan negara?",
+    question:
+      "Mengapakah dasar penswastaan oleh kerajaan seperti pembinaan Lebuhraya Utara-Selatan oleh PLUS Berhad dianggap penting bagi jaringan pengangkutan negara?",
     options: [
       "Ia membolehkan pelaksanaan dan penyelenggaraan projek besar tanpa membebankan sepenuhnya perbelanjaan kerajaan",
       "Ia menghapuskan keperluan kerajaan untuk merancang sebarang infrastruktur",
@@ -17740,7 +18177,8 @@ export const quizzes: QuizQuestion[] = [
       "Ia hanya memberi manfaat kepada syarikat swasta tanpa faedah kepada rakyat",
     ],
     answerIndex: 0,
-    explanation: "Dasar penswastaan seperti pembinaan Lebuhraya Utara-Selatan oleh PLUS Berhad membolehkan pembiayaan dan penyelenggaraan infrastruktur besar dilaksanakan secara lebih efisien, meningkatkan kemajuan pengangkutan negara.",
+    explanation:
+      "Dasar penswastaan seperti pembinaan Lebuhraya Utara-Selatan oleh PLUS Berhad membolehkan pembiayaan dan penyelenggaraan infrastruktur besar dilaksanakan secara lebih efisien, meningkatkan kemajuan pengangkutan negara.",
   },
   {
     id: "geo-f2-c5-q22",
@@ -17748,7 +18186,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Berdasarkan projek East Coast Rail Line (ECRL), apakah kesan utama jangkaan terhadap pembangunan wilayah pantai timur Semenanjung Malaysia?",
+    question:
+      "Berdasarkan projek East Coast Rail Line (ECRL), apakah kesan utama jangkaan terhadap pembangunan wilayah pantai timur Semenanjung Malaysia?",
     options: [
       "Mempertingkatkan darjah ketersampaian dan menggalakkan pembangunan ekonomi wilayah pantai timur",
       "Mengurangkan jumlah penduduk di kawasan pantai timur",
@@ -17756,7 +18195,8 @@ export const quizzes: QuizQuestion[] = [
       "Menjadikan kawasan pantai timur kurang terhubung dengan Lembah Klang",
     ],
     answerIndex: 0,
-    explanation: "ECRL yang menghubungkan Lembah Klang ke pantai timur Semenanjung Malaysia dijangka mempertingkatkan darjah ketersampaian dan menggalakkan pembangunan ekonomi di wilayah pantai timur.",
+    explanation:
+      "ECRL yang menghubungkan Lembah Klang ke pantai timur Semenanjung Malaysia dijangka mempertingkatkan darjah ketersampaian dan menggalakkan pembangunan ekonomi di wilayah pantai timur.",
   },
   {
     id: "geo-f2-c5-q23",
@@ -17764,7 +18204,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Mengapakah kawasan seperti Lembah Klang, Georgetown dan Ipoh mempunyai jaringan pengangkutan yang padat?",
+    question:
+      "Mengapakah kawasan seperti Lembah Klang, Georgetown dan Ipoh mempunyai jaringan pengangkutan yang padat?",
     options: [
       "Kawasan tersebut giat dengan kegiatan ekonomi seperti perniagaan, perdagangan, perindustrian dan perlombongan",
       "Kawasan tersebut mempunyai bentuk muka bumi yang rata sepenuhnya tanpa sebarang halangan",
@@ -17772,7 +18213,8 @@ export const quizzes: QuizQuestion[] = [
       "Kawasan tersebut terletak jauh daripada sebarang aktiviti ekonomi",
     ],
     answerIndex: 0,
-    explanation: "Kawasan yang giat dengan kegiatan ekonomi seperti perniagaan, perdagangan, perindustrian dan perlombongan, seperti Lembah Klang, Georgetown dan Ipoh, mempunyai jaringan pengangkutan yang padat.",
+    explanation:
+      "Kawasan yang giat dengan kegiatan ekonomi seperti perniagaan, perdagangan, perindustrian dan perlombongan, seperti Lembah Klang, Georgetown dan Ipoh, mempunyai jaringan pengangkutan yang padat.",
   },
   {
     id: "geo-f2-c5-q24",
@@ -17780,7 +18222,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Apakah perbezaan utama antara faktor dan kepentingan jaringan pengangkutan dalam konteks bab ini?",
+    question:
+      "Apakah perbezaan utama antara faktor dan kepentingan jaringan pengangkutan dalam konteks bab ini?",
     options: [
       "Faktor menjelaskan sebab jaringan pengangkutan dibina, manakala kepentingan menjelaskan kesan selepas ia wujud",
       "Faktor dan kepentingan adalah perkara yang sama dan boleh ditukar ganti",
@@ -17788,7 +18231,8 @@ export const quizzes: QuizQuestion[] = [
       "Faktor tidak mempunyai kaitan dengan kepentingan pengangkutan",
     ],
     answerIndex: 0,
-    explanation: "Faktor (seperti bentuk muka bumi, dasar kerajaan) menjelaskan SEBAB jaringan pengangkutan dibina di sesuatu kawasan, manakala kepentingan menjelaskan KESAN/FAEDAH selepas jaringan pengangkutan itu wujud.",
+    explanation:
+      "Faktor (seperti bentuk muka bumi, dasar kerajaan) menjelaskan SEBAB jaringan pengangkutan dibina di sesuatu kawasan, manakala kepentingan menjelaskan KESAN/FAEDAH selepas jaringan pengangkutan itu wujud.",
   },
   {
     id: "geo-f2-c5-q25",
@@ -17796,7 +18240,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Bagaimanakah amalan berkongsi kereta dapat menyumbang kepada sistem pengangkutan yang lestari?",
+    question:
+      "Bagaimanakah amalan berkongsi kereta dapat menyumbang kepada sistem pengangkutan yang lestari?",
     options: [
       "Mengurangkan bilangan kenderaan di jalan raya dan pembebasan gas karbon monoksida ke udara",
       "Meningkatkan bilangan kenderaan persendirian di jalan raya",
@@ -17804,7 +18249,8 @@ export const quizzes: QuizQuestion[] = [
       "Menggalakkan penggunaan kenderaan persendirian secara individu",
     ],
     answerIndex: 0,
-    explanation: "Berkongsi kereta mengurangkan bilangan kenderaan di jalan raya dan secara langsung mengurangkan pembebasan gas karbon monoksida ke udara, menyumbang kepada kelestarian alam sekitar.",
+    explanation:
+      "Berkongsi kereta mengurangkan bilangan kenderaan di jalan raya dan secara langsung mengurangkan pembebasan gas karbon monoksida ke udara, menyumbang kepada kelestarian alam sekitar.",
   },
   {
     id: "geo-f2-c5-q26",
@@ -17812,7 +18258,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Mengapakah pengangkutan awam dikatakan dapat mewujudkan peluang pekerjaan kepada penduduk tempatan?",
+    question:
+      "Mengapakah pengangkutan awam dikatakan dapat mewujudkan peluang pekerjaan kepada penduduk tempatan?",
     options: [
       "Perkhidmatan teksi, bas dan rel bersepadu memerlukan tenaga kerja seperti pemandu dan operator yang diambil daripada penduduk tempatan",
       "Pengangkutan awam menghapuskan keperluan terhadap tenaga kerja manusia",
@@ -17820,7 +18267,8 @@ export const quizzes: QuizQuestion[] = [
       "Pengangkutan awam tidak memerlukan sebarang tenaga kerja manusia",
     ],
     answerIndex: 0,
-    explanation: "Perkhidmatan teksi, bas dan rel bersepadu memerlukan tenaga kerja seperti pemandu, operator dan kakitangan penyelenggaraan, yang menawarkan peluang pekerjaan kepada penduduk tempatan.",
+    explanation:
+      "Perkhidmatan teksi, bas dan rel bersepadu memerlukan tenaga kerja seperti pemandu, operator dan kakitangan penyelenggaraan, yang menawarkan peluang pekerjaan kepada penduduk tempatan.",
   },
   {
     id: "geo-f2-c5-q27",
@@ -17828,7 +18276,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Berdasarkan peta jaringan pengangkutan Malaysia, mengapakah Stesen Kereta Api Gemas penting dalam sistem landasan kereta api Semenanjung Malaysia?",
+    question:
+      "Berdasarkan peta jaringan pengangkutan Malaysia, mengapakah Stesen Kereta Api Gemas penting dalam sistem landasan kereta api Semenanjung Malaysia?",
     options: [
       "Ia merupakan stesen persimpangan antara landasan pantai timur dan pantai barat Semenanjung Malaysia",
       "Ia merupakan satu-satunya stesen kereta api di Semenanjung Malaysia",
@@ -17836,7 +18285,8 @@ export const quizzes: QuizQuestion[] = [
       "Ia hanya digunakan untuk mengangkut barangan pertanian",
     ],
     answerIndex: 0,
-    explanation: "Stesen Kereta Api Gemas penting kerana ia merupakan stesen persimpangan yang menghubungkan landasan dari pantai timur (Tumpat) dengan landasan utama pantai barat (Padang Besar-Johor Bahru).",
+    explanation:
+      "Stesen Kereta Api Gemas penting kerana ia merupakan stesen persimpangan yang menghubungkan landasan dari pantai timur (Tumpat) dengan landasan utama pantai barat (Padang Besar-Johor Bahru).",
   },
   {
     id: "geo-f2-c5-q28",
@@ -17844,7 +18294,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Mengapakah pinggir laut yang terlindung dan dalam sesuai dijadikan lokasi pelabuhan?",
+    question:
+      "Mengapakah pinggir laut yang terlindung dan dalam sesuai dijadikan lokasi pelabuhan?",
     options: [
       "Kawasan tersebut dapat melindungi kapal daripada ombak besar dan membolehkan kapal besar berlabuh dengan selamat",
       "Kawasan tersebut paling sesuai untuk penanaman padi sawah",
@@ -17852,7 +18303,8 @@ export const quizzes: QuizQuestion[] = [
       "Kawasan tersebut mempunyai suhu paling sejuk di Malaysia",
     ],
     answerIndex: 0,
-    explanation: "Pinggir laut yang terlindung dan dalam sesuai dijadikan pelabuhan kerana keadaannya melindungi kapal daripada ombak besar dan membolehkan kapal besar berlabuh dengan selamat untuk aktiviti pemunggahan kargo.",
+    explanation:
+      "Pinggir laut yang terlindung dan dalam sesuai dijadikan pelabuhan kerana keadaannya melindungi kapal daripada ombak besar dan membolehkan kapal besar berlabuh dengan selamat untuk aktiviti pemunggahan kargo.",
   },
   {
     id: "geo-f2-c5-q29",
@@ -17860,7 +18312,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Apakah implikasi jangka panjang sekiranya amalan pengangkutan lestari seperti penggunaan kereta elektrik tidak digalakkan secara meluas di Malaysia?",
+    question:
+      "Apakah implikasi jangka panjang sekiranya amalan pengangkutan lestari seperti penggunaan kereta elektrik tidak digalakkan secara meluas di Malaysia?",
     options: [
       "Peningkatan pelepasan gas karbon monoksida yang boleh menjejaskan kualiti udara dan kesihatan penduduk",
       "Pengurangan automatik dalam bilangan kenderaan di jalan raya",
@@ -17868,7 +18321,8 @@ export const quizzes: QuizQuestion[] = [
       "Pengurangan kos bahan api secara automatik",
     ],
     answerIndex: 0,
-    explanation: "Tanpa galakan terhadap amalan pengangkutan lestari seperti kereta elektrik, pelepasan gas karbon monoksida akan terus meningkat dan menjejaskan kualiti udara serta kesihatan penduduk dalam jangka panjang.",
+    explanation:
+      "Tanpa galakan terhadap amalan pengangkutan lestari seperti kereta elektrik, pelepasan gas karbon monoksida akan terus meningkat dan menjejaskan kualiti udara serta kesihatan penduduk dalam jangka panjang.",
   },
   {
     id: "geo-f2-c5-q30",
@@ -17876,7 +18330,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Berdasarkan keseluruhan Bab 5, bagaimanakah hubungan antara kemajuan teknologi dan kelestarian sistem pengangkutan dapat dirumuskan?",
+    question:
+      "Berdasarkan keseluruhan Bab 5, bagaimanakah hubungan antara kemajuan teknologi dan kelestarian sistem pengangkutan dapat dirumuskan?",
     options: [
       "Kemajuan teknologi seperti terowong SMART dan jambatan moden membolehkan jaringan pengangkutan yang lebih cekap, namun kelestarian perlu dijaga melalui amalan seperti kereta elektrik dan pengangkutan awam",
       "Kemajuan teknologi tidak mempunyai kaitan dengan kelestarian alam sekitar",
@@ -17884,7 +18339,8 @@ export const quizzes: QuizQuestion[] = [
       "Kemajuan teknologi sentiasa bercanggah dengan usaha pemeliharaan alam sekitar",
     ],
     answerIndex: 0,
-    explanation: "Kemajuan teknologi (seperti Terowong SMART dan jambatan moden) meningkatkan kecekapan jaringan pengangkutan, tetapi kelestarian jangka panjang masih perlu dijaga melalui amalan pengangkutan lestari seperti kereta elektrik/hibrid dan penggunaan pengangkutan awam.",
+    explanation:
+      "Kemajuan teknologi (seperti Terowong SMART dan jambatan moden) meningkatkan kecekapan jaringan pengangkutan, tetapi kelestarian jangka panjang masih perlu dijaga melalui amalan pengangkutan lestari seperti kereta elektrik/hibrid dan penggunaan pengangkutan awam.",
   },
   {
     id: "geo-f2-c6-q1",
@@ -17900,7 +18356,8 @@ export const quizzes: QuizQuestion[] = [
       "Kaedah pengukuran jarak sebenar di permukaan bumi",
     ],
     answerIndex: 0,
-    explanation: "Telekomunikasi berasal daripada 'tele' (sangat jauh) dan 'komunikasi' (proses menghantar informasi), iaitu interaksi yang melibatkan jarak yang jauh antara penyampai dan penerima.",
+    explanation:
+      "Telekomunikasi berasal daripada 'tele' (sangat jauh) dan 'komunikasi' (proses menghantar informasi), iaitu interaksi yang melibatkan jarak yang jauh antara penyampai dan penerima.",
   },
   {
     id: "geo-f2-c6-q2",
@@ -17911,7 +18368,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Pihak manakah yang memperkenalkan telegraf di Tanah Melayu pada tahun 1876?",
     options: ["British", "Jepun", "Portugis", "Belanda"],
     answerIndex: 0,
-    explanation: "Telegraf diperkenalkan oleh pihak British pada tahun 1876 untuk urusan pentadbiran di Tanah Melayu.",
+    explanation:
+      "Telegraf diperkenalkan oleh pihak British pada tahun 1876 untuk urusan pentadbiran di Tanah Melayu.",
   },
   {
     id: "geo-f2-c6-q3",
@@ -17933,7 +18391,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Manakah antara berikut tergolong sebagai alat telekomunikasi MODEN?",
     options: ["Telefon pintar", "Telegraf", "Mesin teleks", "Mesin faks"],
     answerIndex: 0,
-    explanation: "Telefon pintar tergolong sebagai alat telekomunikasi moden, manakala telegraf, mesin teleks dan mesin faks adalah alat tradisional.",
+    explanation:
+      "Telefon pintar tergolong sebagai alat telekomunikasi moden, manakala telegraf, mesin teleks dan mesin faks adalah alat tradisional.",
   },
   {
     id: "geo-f2-c6-q5",
@@ -17942,7 +18401,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Easy",
     question: "Apakah maksud GPS?",
-    options: ["Sistem Penentududukan Sejagat", "Sistem Pengangkutan Sejagat", "Sistem Pendidikan Sejagat", "Sistem Perkomputeran Sejagat"],
+    options: [
+      "Sistem Penentududukan Sejagat",
+      "Sistem Pengangkutan Sejagat",
+      "Sistem Pendidikan Sejagat",
+      "Sistem Perkomputeran Sejagat",
+    ],
     answerIndex: 0,
     explanation: "GPS bermaksud Sistem Penentududukan Sejagat (Global Positioning System).",
   },
@@ -17966,7 +18430,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Di manakah stesen satelit bumi pertama Malaysia dibina?",
     options: ["Kuantan, Pahang", "Cyberjaya, Selangor", "Alor Gajah, Melaka", "Labuan"],
     answerIndex: 0,
-    explanation: "Stesen satelit bumi pertama Malaysia dibina di Kuantan, Pahang, pada 6 April 1970.",
+    explanation:
+      "Stesen satelit bumi pertama Malaysia dibina di Kuantan, Pahang, pada 6 April 1970.",
   },
   {
     id: "geo-f2-c6-q8",
@@ -17986,9 +18451,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Easy",
     question: "Apakah singkatan MSC dan di manakah ia berpusat?",
-    options: ["Koridor Raya Multimedia, berpusat di Cyberjaya", "Majlis Sains dan Cyber, berpusat di Kuala Lumpur", "Maklumat Sistem Cuaca, berpusat di Kuantan", "Majlis Sukan Cyberjaya, berpusat di Labuan"],
+    options: [
+      "Koridor Raya Multimedia, berpusat di Cyberjaya",
+      "Majlis Sains dan Cyber, berpusat di Kuala Lumpur",
+      "Maklumat Sistem Cuaca, berpusat di Kuantan",
+      "Majlis Sukan Cyberjaya, berpusat di Labuan",
+    ],
     answerIndex: 0,
-    explanation: "MSC (Koridor Raya Multimedia) merupakan kawasan yang berpusat di Cyberjaya, Selangor, untuk menarik syarikat berteknologi tinggi.",
+    explanation:
+      "MSC (Koridor Raya Multimedia) merupakan kawasan yang berpusat di Cyberjaya, Selangor, untuk menarik syarikat berteknologi tinggi.",
   },
   {
     id: "geo-f2-c6-q10",
@@ -17996,7 +18467,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Easy",
-    question: "Badan manakah yang bertanggungjawab terhadap industri komunikasi dan multimedia di Malaysia?",
+    question:
+      "Badan manakah yang bertanggungjawab terhadap industri komunikasi dan multimedia di Malaysia?",
     options: [
       "Suruhanjaya Komunikasi dan Multimedia Malaysia (SKMM)",
       "Suruhanjaya Pengangkutan Awam Darat (SPAD)",
@@ -18004,7 +18476,8 @@ export const quizzes: QuizQuestion[] = [
       "Jabatan Alam Sekitar Malaysia",
     ],
     answerIndex: 0,
-    explanation: "SKMM (Suruhanjaya Komunikasi dan Multimedia Malaysia) ditubuhkan menurut Akta SKMM 1998 sebagai badan pengawal selia industri komunikasi dan multimedia di Malaysia.",
+    explanation:
+      "SKMM (Suruhanjaya Komunikasi dan Multimedia Malaysia) ditubuhkan menurut Akta SKMM 1998 sebagai badan pengawal selia industri komunikasi dan multimedia di Malaysia.",
   },
   {
     id: "geo-f2-c6-q11",
@@ -18020,7 +18493,8 @@ export const quizzes: QuizQuestion[] = [
       "Telefon bimbit biasa memerlukan capaian internet untuk berfungsi",
     ],
     answerIndex: 0,
-    explanation: "Telefon pintar ialah telefon bimbit yang memiliki ciri pengkomputeran seperti GPS, kamera digital, Bluetooth, internet dan aplikasi media sosial berbanding telefon bimbit biasa.",
+    explanation:
+      "Telefon pintar ialah telefon bimbit yang memiliki ciri pengkomputeran seperti GPS, kamera digital, Bluetooth, internet dan aplikasi media sosial berbanding telefon bimbit biasa.",
   },
   {
     id: "geo-f2-c6-q12",
@@ -18036,7 +18510,8 @@ export const quizzes: QuizQuestion[] = [
       "Pengangkutan kargo, pelancongan dan pertanian",
     ],
     answerIndex: 0,
-    explanation: "TiungSAT-1 mempunyai tiga misi utama: pencerapan bumi, uji kaji saintifik Cosmic Ray Energy Disposition Experiment (CEDEX), dan aplikasi komunikasi.",
+    explanation:
+      "TiungSAT-1 mempunyai tiga misi utama: pencerapan bumi, uji kaji saintifik Cosmic Ray Energy Disposition Experiment (CEDEX), dan aplikasi komunikasi.",
   },
   {
     id: "geo-f2-c6-q13",
@@ -18052,7 +18527,8 @@ export const quizzes: QuizQuestion[] = [
       "Hanya digunakan dalam sistem perbankan negara",
     ],
     answerIndex: 0,
-    explanation: "Kabel fiber optik berkapasiti tinggi kerana diperbuat daripada serat kaca atau plastik halus, digunakan untuk menyalur maklumat dan data dalam jumlah dan jarak yang besar.",
+    explanation:
+      "Kabel fiber optik berkapasiti tinggi kerana diperbuat daripada serat kaca atau plastik halus, digunakan untuk menyalur maklumat dan data dalam jumlah dan jarak yang besar.",
   },
   {
     id: "geo-f2-c6-q14",
@@ -18068,7 +18544,8 @@ export const quizzes: QuizQuestion[] = [
       "Mengawal selia jenayah siber negara",
     ],
     answerIndex: 0,
-    explanation: "Telekom Malaysia (TM) memainkan peranan penting dalam menyediakan teknologi telefon talian tetap dan memajukan industri telekomunikasi negara.",
+    explanation:
+      "Telekom Malaysia (TM) memainkan peranan penting dalam menyediakan teknologi telefon talian tetap dan memajukan industri telekomunikasi negara.",
   },
   {
     id: "geo-f2-c6-q15",
@@ -18079,7 +18556,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Berapakah peratus capaian jalur lebar rumah di Malaysia setakat tahun 2016?",
     options: ["76.8 peratus", "50.0 peratus", "90.5 peratus", "60.2 peratus"],
     answerIndex: 0,
-    explanation: "Menurut Timbalan Menteri Komunikasi dan Multimedia, sehingga tahun 2016, capaian jalur lebar rumah di seluruh negara telah mencapai 76.8 peratus.",
+    explanation:
+      "Menurut Timbalan Menteri Komunikasi dan Multimedia, sehingga tahun 2016, capaian jalur lebar rumah di seluruh negara telah mencapai 76.8 peratus.",
   },
   {
     id: "geo-f2-c6-q16",
@@ -18087,7 +18565,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Bagaimanakah telekomunikasi membantu meningkatkan integrasi dan perpaduan rakyat Malaysia?",
+    question:
+      "Bagaimanakah telekomunikasi membantu meningkatkan integrasi dan perpaduan rakyat Malaysia?",
     options: [
       "Membolehkan rakyat berhubung dengan mudah tanpa mengira jarak, mengeratkan silaturahim antara kaum dan wilayah",
       "Mengurangkan keperluan terhadap jalan raya dan pengangkutan",
@@ -18095,7 +18574,8 @@ export const quizzes: QuizQuestion[] = [
       "Menghapuskan keperluan terhadap mesyuarat secara fizikal",
     ],
     answerIndex: 0,
-    explanation: "Telekomunikasi membolehkan rakyat berhubung dengan mudah tanpa mengira jarak, sekali gus mengeratkan silaturahim dan meningkatkan integrasi serta perpaduan dalam kalangan rakyat.",
+    explanation:
+      "Telekomunikasi membolehkan rakyat berhubung dengan mudah tanpa mengira jarak, sekali gus mengeratkan silaturahim dan meningkatkan integrasi serta perpaduan dalam kalangan rakyat.",
   },
   {
     id: "geo-f2-c6-q17",
@@ -18111,7 +18591,8 @@ export const quizzes: QuizQuestion[] = [
       "Mengurangkan kelajuan transaksi kewangan",
     ],
     answerIndex: 0,
-    explanation: "Telekomunikasi membolehkan urusan kewangan dan perkhidmatan perbankan dijalankan melalui talian internet, memudahkan rakyat mengurus wang di seluruh dunia dengan mudah dan lancar.",
+    explanation:
+      "Telekomunikasi membolehkan urusan kewangan dan perkhidmatan perbankan dijalankan melalui talian internet, memudahkan rakyat mengurus wang di seluruh dunia dengan mudah dan lancar.",
   },
   {
     id: "geo-f2-c6-q18",
@@ -18120,9 +18601,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Medium",
     question: "Apakah maksud e-kerajaan?",
-    options: ["Urusan kerajaan melalui rangkaian internet", "Urusan perniagaan secara fizikal di pejabat kerajaan", "Sistem pengangkutan kerajaan", "Sistem percetakan dokumen kerajaan"],
+    options: [
+      "Urusan kerajaan melalui rangkaian internet",
+      "Urusan perniagaan secara fizikal di pejabat kerajaan",
+      "Sistem pengangkutan kerajaan",
+      "Sistem percetakan dokumen kerajaan",
+    ],
     answerIndex: 0,
-    explanation: "e-kerajaan bermaksud urusan kerajaan yang dijalankan melalui rangkaian internet, membolehkan rakyat berurusan dengan agensi kerajaan secara lebih mudah dan cepat.",
+    explanation:
+      "e-kerajaan bermaksud urusan kerajaan yang dijalankan melalui rangkaian internet, membolehkan rakyat berurusan dengan agensi kerajaan secara lebih mudah dan cepat.",
   },
   {
     id: "geo-f2-c6-q19",
@@ -18130,7 +18617,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Manakah antara berikut adalah kesan NEGATIF telekomunikasi terhadap pembangunan negara?",
+    question:
+      "Manakah antara berikut adalah kesan NEGATIF telekomunikasi terhadap pembangunan negara?",
     options: [
       "Penyebaran maklumat berunsur keganasan dan hasutan",
       "Telesidang interaktif maya",
@@ -18138,7 +18626,8 @@ export const quizzes: QuizQuestion[] = [
       "Peluang pekerjaan dalam sektor ICT",
     ],
     answerIndex: 0,
-    explanation: "Penyebaran maklumat berunsur keganasan, hasutan dan khabar angin merupakan kesan negatif telekomunikasi terhadap pembangunan negara.",
+    explanation:
+      "Penyebaran maklumat berunsur keganasan, hasutan dan khabar angin merupakan kesan negatif telekomunikasi terhadap pembangunan negara.",
   },
   {
     id: "geo-f2-c6-q20",
@@ -18154,7 +18643,8 @@ export const quizzes: QuizQuestion[] = [
       "Memuat naik gambar peribadi ke media sosial",
     ],
     answerIndex: 0,
-    explanation: "Plagiat bermaksud mencedok hasil karya atau tulisan orang lain dan mengiktirafnya sebagai karya sendiri.",
+    explanation:
+      "Plagiat bermaksud mencedok hasil karya atau tulisan orang lain dan mengiktirafnya sebagai karya sendiri.",
   },
   {
     id: "geo-f2-c6-q21",
@@ -18162,7 +18652,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Mengapakah pelancaran satelit MEASAT dianggap penting dalam pembangunan industri penyiaran negara?",
+    question:
+      "Mengapakah pelancaran satelit MEASAT dianggap penting dalam pembangunan industri penyiaran negara?",
     options: [
       "Ia membolehkan penubuhan sistem televisyen satelit pertama negara (ASTRO) yang menawarkan ratusan saluran TV dan radio",
       "Ia menggantikan keseluruhan keperluan terhadap kabel fiber optik",
@@ -18170,7 +18661,8 @@ export const quizzes: QuizQuestion[] = [
       "Ia mengurangkan keperluan terhadap telefon pintar",
     ],
     answerIndex: 0,
-    explanation: "Pelancaran satelit MEASAT membolehkan penubuhan ASTRO, sistem televisyen satelit pertama Malaysia yang sehingga 2014 menawarkan 185 saluran TV dan 20 saluran radio, memantapkan penerimaan maklumat rakyat.",
+    explanation:
+      "Pelancaran satelit MEASAT membolehkan penubuhan ASTRO, sistem televisyen satelit pertama Malaysia yang sehingga 2014 menawarkan 185 saluran TV dan 20 saluran radio, memantapkan penerimaan maklumat rakyat.",
   },
   {
     id: "geo-f2-c6-q22",
@@ -18178,7 +18670,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Bagaimanakah penubuhan Koridor Raya Multimedia (MSC) menyumbang kepada pembangunan ekonomi digital negara?",
+    question:
+      "Bagaimanakah penubuhan Koridor Raya Multimedia (MSC) menyumbang kepada pembangunan ekonomi digital negara?",
     options: [
       "Menarik syarikat berteknologi tinggi dengan pengecualian cukai dan kemudahan lain, memajukan industri ICT tempatan",
       "Menghapuskan keperluan terhadap pelaburan asing dalam sektor teknologi",
@@ -18186,7 +18679,8 @@ export const quizzes: QuizQuestion[] = [
       "Hanya tertumpu kepada sektor pertanian dan perladangan",
     ],
     answerIndex: 0,
-    explanation: "MSC menarik syarikat berteknologi tinggi dengan menawarkan pengecualian cukai dan kemudahan lain, yang secara langsung memajukan industri ICT tempatan dan ekonomi digital negara.",
+    explanation:
+      "MSC menarik syarikat berteknologi tinggi dengan menawarkan pengecualian cukai dan kemudahan lain, yang secara langsung memajukan industri ICT tempatan dan ekonomi digital negara.",
   },
   {
     id: "geo-f2-c6-q23",
@@ -18194,7 +18688,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Apakah kesan jangka panjang sekiranya capaian jalur lebar di kawasan luar bandar tidak ditambah baik?",
+    question:
+      "Apakah kesan jangka panjang sekiranya capaian jalur lebar di kawasan luar bandar tidak ditambah baik?",
     options: [
       "Jurang digital antara bandar dan luar bandar akan terus melebar, menjejaskan akses pendidikan dan peluang ekonomi penduduk luar bandar",
       "Capaian jalur lebar di bandar akan turut terjejas secara automatik",
@@ -18202,7 +18697,8 @@ export const quizzes: QuizQuestion[] = [
       "Akan meningkatkan kualiti pendidikan luar bandar secara automatik",
     ],
     answerIndex: 0,
-    explanation: "Sekiranya capaian jalur lebar luar bandar tidak ditambah baik, jurang digital antara bandar dan luar bandar akan melebar, menjejaskan akses pendidikan dan peluang ekonomi penduduk luar bandar.",
+    explanation:
+      "Sekiranya capaian jalur lebar luar bandar tidak ditambah baik, jurang digital antara bandar dan luar bandar akan melebar, menjejaskan akses pendidikan dan peluang ekonomi penduduk luar bandar.",
   },
   {
     id: "geo-f2-c6-q24",
@@ -18210,7 +18706,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Mengapakah perkhidmatan telekesihatan dianggap salah satu kesan positif telekomunikasi yang paling signifikan terhadap penduduk luar bandar?",
+    question:
+      "Mengapakah perkhidmatan telekesihatan dianggap salah satu kesan positif telekomunikasi yang paling signifikan terhadap penduduk luar bandar?",
     options: [
       "Membolehkan pesakit diperiksa oleh doktor pakar secara jarak jauh tanpa perlu mengembara jauh ke bandar besar",
       "Menggantikan keseluruhan keperluan terhadap hospital dan klinik",
@@ -18218,7 +18715,8 @@ export const quizzes: QuizQuestion[] = [
       "Mengurangkan kualiti rawatan perubatan berbanding kaedah tradisional",
     ],
     answerIndex: 0,
-    explanation: "Telekesihatan membolehkan pesakit di kawasan luar bandar atau pedalaman diperiksa oleh doktor pakar secara jarak jauh menggunakan teknologi komunikasi, tanpa perlu mengembara jauh.",
+    explanation:
+      "Telekesihatan membolehkan pesakit di kawasan luar bandar atau pedalaman diperiksa oleh doktor pakar secara jarak jauh menggunakan teknologi komunikasi, tanpa perlu mengembara jauh.",
   },
   {
     id: "geo-f2-c6-q25",
@@ -18226,7 +18724,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Bagaimanakah Akta Komunikasi dan Multimedia 1998 (Seksyen 211 dan 233) membantu mengawal penggunaan alat telekomunikasi di Malaysia?",
+    question:
+      "Bagaimanakah Akta Komunikasi dan Multimedia 1998 (Seksyen 211 dan 233) membantu mengawal penggunaan alat telekomunikasi di Malaysia?",
     options: [
       "Membolehkan tindakan diambil terhadap aduan berkaitan kandungan jelik dan penggunaan tidak wajar rangkaian",
       "Membenarkan sesiapa sahaja menyebarkan sebarang kandungan tanpa sekatan",
@@ -18234,7 +18733,8 @@ export const quizzes: QuizQuestion[] = [
       "Menghapuskan keperluan terhadap SKMM sebagai badan pengawal selia",
     ],
     answerIndex: 0,
-    explanation: "Seksyen 211 melarang pemberian kandungan jelik, manakala Seksyen 233 melarang penggunaan tidak wajar kemudahan rangkaian, membolehkan tindakan diambil terhadap aduan berkaitan.",
+    explanation:
+      "Seksyen 211 melarang pemberian kandungan jelik, manakala Seksyen 233 melarang penggunaan tidak wajar kemudahan rangkaian, membolehkan tindakan diambil terhadap aduan berkaitan.",
   },
   {
     id: "geo-f2-c6-q26",
@@ -18242,7 +18742,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Mengapakah penyebaran maklumat tidak tepat di media sosial dianggap salah satu cabaran utama era telekomunikasi moden?",
+    question:
+      "Mengapakah penyebaran maklumat tidak tepat di media sosial dianggap salah satu cabaran utama era telekomunikasi moden?",
     options: [
       "Kelajuan penyebaran maklumat membolehkan khabar angin tular dengan cepat sebelum kesahihannya dapat disahkan",
       "Maklumat di internet sentiasa disahkan secara automatik oleh sistem",
@@ -18250,7 +18751,8 @@ export const quizzes: QuizQuestion[] = [
       "Media sosial tidak membenarkan sebarang perkongsian maklumat",
     ],
     answerIndex: 0,
-    explanation: "Kelajuan dan keluasan capaian telekomunikasi moden membolehkan maklumat tidak tepat atau khabar angin tular dengan pantas sebelum kesahihannya dapat disahkan, menimbulkan kekeliruan dalam masyarakat.",
+    explanation:
+      "Kelajuan dan keluasan capaian telekomunikasi moden membolehkan maklumat tidak tepat atau khabar angin tular dengan pantas sebelum kesahihannya dapat disahkan, menimbulkan kekeliruan dalam masyarakat.",
   },
   {
     id: "geo-f2-c6-q27",
@@ -18258,7 +18760,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Apakah langkah yang paling sesuai untuk mengelakkan plagiat dalam penggunaan alat telekomunikasi?",
+    question:
+      "Apakah langkah yang paling sesuai untuk mengelakkan plagiat dalam penggunaan alat telekomunikasi?",
     options: [
       "Menghargai hasil karya orang lain dan memberikan pengiktirafan yang sewajarnya apabila menggunakan maklumat daripada sumber lain",
       "Menggunakan semula kandungan orang lain tanpa mencatat sumbernya",
@@ -18266,7 +18769,8 @@ export const quizzes: QuizQuestion[] = [
       "Menyebarkan maklumat tanpa menyemak ketepatan sumber",
     ],
     answerIndex: 0,
-    explanation: "Etika penggunaan alat telekomunikasi memerlukan kita menghargai hasil karya orang lain dan memberikan pengiktirafan sewajarnya untuk mengelakkan plagiat.",
+    explanation:
+      "Etika penggunaan alat telekomunikasi memerlukan kita menghargai hasil karya orang lain dan memberikan pengiktirafan sewajarnya untuk mengelakkan plagiat.",
   },
   {
     id: "geo-f2-c6-q28",
@@ -18274,7 +18778,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Berdasarkan keseluruhan Bab 6, bagaimanakah hubungan antara kemajuan telekomunikasi dengan keperluan etika digital dapat dirumuskan?",
+    question:
+      "Berdasarkan keseluruhan Bab 6, bagaimanakah hubungan antara kemajuan telekomunikasi dengan keperluan etika digital dapat dirumuskan?",
     options: [
       "Kemajuan telekomunikasi membawa banyak manfaat, tetapi tanpa etika dan undang-undang yang sewajarnya, ia juga berisiko disalahgunakan untuk tujuan negatif",
       "Etika digital tidak diperlukan sekiranya teknologi telekomunikasi semakin maju",
@@ -18282,7 +18787,8 @@ export const quizzes: QuizQuestion[] = [
       "Etika digital hanya relevan kepada syarikat telekomunikasi, bukan pengguna individu",
     ],
     answerIndex: 0,
-    explanation: "Kemajuan telekomunikasi membawa banyak manfaat (kesan positif), tetapi tanpa etika penggunaan dan penguatkuasaan undang-undang seperti Akta Komunikasi dan Multimedia 1998, ia berisiko disalahgunakan, menyebabkan kesan negatif seperti jenayah siber dan penyebaran maklumat tidak benar.",
+    explanation:
+      "Kemajuan telekomunikasi membawa banyak manfaat (kesan positif), tetapi tanpa etika penggunaan dan penguatkuasaan undang-undang seperti Akta Komunikasi dan Multimedia 1998, ia berisiko disalahgunakan, menyebabkan kesan negatif seperti jenayah siber dan penyebaran maklumat tidak benar.",
   },
   {
     id: "geo-f2-c6-q29",
@@ -18290,7 +18796,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Mengapakah SKMM perlu terus memantau penyalahgunaan Internet dalam kalangan masyarakat walaupun Akta Komunikasi dan Multimedia 1998 telah wujud?",
+    question:
+      "Mengapakah SKMM perlu terus memantau penyalahgunaan Internet dalam kalangan masyarakat walaupun Akta Komunikasi dan Multimedia 1998 telah wujud?",
     options: [
       "Kerana teknologi dan corak penyalahgunaan internet sentiasa berubah, memerlukan pemantauan dan penguatkuasaan berterusan",
       "Kerana Akta tersebut tidak lagi sah digunakan",
@@ -18298,7 +18805,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana SKMM tidak mempunyai sebarang kuasa undang-undang",
     ],
     answerIndex: 0,
-    explanation: "Teknologi dan corak penyalahgunaan internet sentiasa berubah seiring kemajuan teknologi, justeru SKMM perlu memantau dan menguatkuasakan undang-undang secara berterusan bagi menangani masalah yang masih berleluasa.",
+    explanation:
+      "Teknologi dan corak penyalahgunaan internet sentiasa berubah seiring kemajuan teknologi, justeru SKMM perlu memantau dan menguatkuasakan undang-undang secara berterusan bagi menangani masalah yang masih berleluasa.",
   },
   {
     id: "geo-f2-c6-q30",
@@ -18306,7 +18814,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Berdasarkan evolusi alat telekomunikasi daripada telegraf (1876) kepada telefon pintar 4G, apakah corak perubahan utama yang dapat dirumuskan?",
+    question:
+      "Berdasarkan evolusi alat telekomunikasi daripada telegraf (1876) kepada telefon pintar 4G, apakah corak perubahan utama yang dapat dirumuskan?",
     options: [
       "Peralihan daripada komunikasi satu hala dan jarak terhad kepada komunikasi dua hala yang pantas, sejagat dan multifungsi",
       "Tidak terdapat sebarang perubahan ketara dalam fungsi alat telekomunikasi",
@@ -18314,7 +18823,8 @@ export const quizzes: QuizQuestion[] = [
       "Alat tradisional lebih canggih berbanding alat moden",
     ],
     answerIndex: 0,
-    explanation: "Evolusi daripada telegraf kepada telefon pintar menunjukkan peralihan daripada komunikasi satu hala dan terhad jarak kepada komunikasi dua hala yang pantas, sejagat dan multifungsi (suara, teks, video, internet, aplikasi).",
+    explanation:
+      "Evolusi daripada telegraf kepada telefon pintar menunjukkan peralihan daripada komunikasi satu hala dan terhad jarak kepada komunikasi dua hala yang pantas, sejagat dan multifungsi (suara, teks, video, internet, aplikasi).",
   },
   {
     id: "geo-f2-c7-q1",
@@ -18325,7 +18835,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Berapakah jumlah zon iklim yang terdapat di Benua Asia?",
     options: ["4 zon", "2 zon", "6 zon", "9 zon"],
     answerIndex: 0,
-    explanation: "Benua Asia boleh dibahagikan kepada empat zon iklim, iaitu zon sejuk, zon sejuk sederhana, zon panas sederhana dan zon panas.",
+    explanation:
+      "Benua Asia boleh dibahagikan kepada empat zon iklim, iaitu zon sejuk, zon sejuk sederhana, zon panas sederhana dan zon panas.",
   },
   {
     id: "geo-f2-c7-q2",
@@ -18345,9 +18856,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Easy",
     question: "Negara manakah yang mengalami iklim Khatulistiwa?",
-    options: ["Malaysia, Singapura, Brunei Darussalam", "Turki, Lubnan, Syria", "Rusia (selatan), Mongolia", "Arab Saudi, Iraq, Oman"],
+    options: [
+      "Malaysia, Singapura, Brunei Darussalam",
+      "Turki, Lubnan, Syria",
+      "Rusia (selatan), Mongolia",
+      "Arab Saudi, Iraq, Oman",
+    ],
     answerIndex: 0,
-    explanation: "Iklim Khatulistiwa dialami oleh Malaysia, Singapura dan Brunei Darussalam dengan ciri panas dan lembap sepanjang tahun.",
+    explanation:
+      "Iklim Khatulistiwa dialami oleh Malaysia, Singapura dan Brunei Darussalam dengan ciri panas dan lembap sepanjang tahun.",
   },
   {
     id: "geo-f2-c7-q4",
@@ -18356,9 +18873,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Easy",
     question: "Manakah antara berikut adalah ciri iklim Gurun Panas?",
-    options: ["Panas dan kering sepanjang tahun", "Sejuk dan lembap sepanjang tahun", "Panas dan lembap sepanjang tahun", "Sejuk dan kering sepanjang tahun"],
+    options: [
+      "Panas dan kering sepanjang tahun",
+      "Sejuk dan lembap sepanjang tahun",
+      "Panas dan lembap sepanjang tahun",
+      "Sejuk dan kering sepanjang tahun",
+    ],
     answerIndex: 0,
-    explanation: "Iklim Gurun Panas merupakan iklim yang panas dan kering sepanjang tahun, dengan hujan tahunan kurang daripada 250 mm.",
+    explanation:
+      "Iklim Gurun Panas merupakan iklim yang panas dan kering sepanjang tahun, dengan hujan tahunan kurang daripada 250 mm.",
   },
   {
     id: "geo-f2-c7-q5",
@@ -18367,9 +18890,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Easy",
     question: "Di manakah kawasan utama yang mengalami iklim Tundra?",
-    options: ["Pantai utara Siberia, Rusia", "Gurun Arab", "Lembah Sungai Yangtze, China", "Hokkaido, Jepun"],
+    options: [
+      "Pantai utara Siberia, Rusia",
+      "Gurun Arab",
+      "Lembah Sungai Yangtze, China",
+      "Hokkaido, Jepun",
+    ],
     answerIndex: 0,
-    explanation: "Iklim Tundra dialami di kawasan sepanjang pantai utara Asia, terutamanya pantai utara Siberia yang terletak dalam lingkungan Garisan Artik.",
+    explanation:
+      "Iklim Tundra dialami di kawasan sepanjang pantai utara Asia, terutamanya pantai utara Siberia yang terletak dalam lingkungan Garisan Artik.",
   },
   {
     id: "geo-f2-c7-q6",
@@ -18378,9 +18907,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Easy",
     question: "Apakah kegiatan ekonomi utama penduduk yang mengalami iklim Tundra?",
-    options: ["Perikanan dan pemburuan", "Pertanian padi sawah", "Penternakan unta", "Pembalakan hutan tropika"],
+    options: [
+      "Perikanan dan pemburuan",
+      "Pertanian padi sawah",
+      "Penternakan unta",
+      "Pembalakan hutan tropika",
+    ],
     answerIndex: 0,
-    explanation: "Penduduk di kawasan iklim Tundra menjalankan kegiatan perikanan dan pemburuan kerana musim tumbuh tanaman yang terlalu singkat.",
+    explanation:
+      "Penduduk di kawasan iklim Tundra menjalankan kegiatan perikanan dan pemburuan kerana musim tumbuh tanaman yang terlalu singkat.",
   },
   {
     id: "geo-f2-c7-q7",
@@ -18388,10 +18923,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Easy",
-    question: "Tanaman utama apakah yang ditanam di kawasan beriklim China seperti Lembah Sungai Yangtze?",
+    question:
+      "Tanaman utama apakah yang ditanam di kawasan beriklim China seperti Lembah Sungai Yangtze?",
     options: ["Padi", "Pokok kurma", "Gandum sahaja", "Tembakau"],
     answerIndex: 0,
-    explanation: "Padi ditanam secara meluas di kawasan lembah Sungai Yangtze yang beriklim China kerana suhu musim panas dan hujan tahunan yang tinggi sesuai untuk penanaman padi.",
+    explanation:
+      "Padi ditanam secara meluas di kawasan lembah Sungai Yangtze yang beriklim China kerana suhu musim panas dan hujan tahunan yang tinggi sesuai untuk penanaman padi.",
   },
   {
     id: "geo-f2-c7-q8",
@@ -18400,9 +18937,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Easy",
     question: "Apakah maksud oasis?",
-    options: ["Kawasan yang subur dan mempunyai air di padang pasir", "Kawasan tanah tinggi yang sejuk", "Sejenis tumbuhan tahan kemarau", "Sejenis ternakan di Gurun Arab"],
+    options: [
+      "Kawasan yang subur dan mempunyai air di padang pasir",
+      "Kawasan tanah tinggi yang sejuk",
+      "Sejenis tumbuhan tahan kemarau",
+      "Sejenis ternakan di Gurun Arab",
+    ],
     answerIndex: 0,
-    explanation: "Oasis bermaksud kawasan yang subur dan mempunyai air di padang pasir, menjadi lokasi utama penanaman pokok kurma di Gurun Panas.",
+    explanation:
+      "Oasis bermaksud kawasan yang subur dan mempunyai air di padang pasir, menjadi lokasi utama penanaman pokok kurma di Gurun Panas.",
   },
   {
     id: "geo-f2-c7-q9",
@@ -18411,9 +18954,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Easy",
     question: "Manakah antara berikut BUKAN jenis iklim yang terdapat di Benua Asia?",
-    options: ["Iklim Mediterranean Tinggi", "Iklim Tundra", "Iklim Khatulistiwa", "Iklim Gurun Panas"],
+    options: [
+      "Iklim Mediterranean Tinggi",
+      "Iklim Tundra",
+      "Iklim Khatulistiwa",
+      "Iklim Gurun Panas",
+    ],
     answerIndex: 0,
-    explanation: "Sembilan jenis iklim di Asia ialah Tundra, Siberia, Laurentia, Mediterranean, Steppe, China, Khatulistiwa, Gurun Panas dan Monsun Tropika. 'Iklim Mediterranean Tinggi' bukan nama sebenar dalam buku teks.",
+    explanation:
+      "Sembilan jenis iklim di Asia ialah Tundra, Siberia, Laurentia, Mediterranean, Steppe, China, Khatulistiwa, Gurun Panas dan Monsun Tropika. 'Iklim Mediterranean Tinggi' bukan nama sebenar dalam buku teks.",
   },
   {
     id: "geo-f2-c7-q10",
@@ -18424,7 +18973,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah haiwan yang diternak secara meluas di kawasan beriklim Gurun Panas?",
     options: ["Unta", "Salmon", "Walrus", "Beruang kutub"],
     answerIndex: 0,
-    explanation: "Unta, kambing, biri-biri dan lembu diternak di kawasan beriklim Gurun Panas untuk mendapatkan daging, susu, kulit dan bulu.",
+    explanation:
+      "Unta, kambing, biri-biri dan lembu diternak di kawasan beriklim Gurun Panas untuk mendapatkan daging, susu, kulit dan bulu.",
   },
   {
     id: "geo-f2-c7-q11",
@@ -18440,7 +18990,8 @@ export const quizzes: QuizQuestion[] = [
       "Iklim Monsun Tropika menerima hujan yang lebih sedikit berbanding iklim Gurun Panas",
     ],
     answerIndex: 0,
-    explanation: "Iklim Khatulistiwa panas dan lembap sepanjang tahun tanpa musim kering yang nyata, manakala iklim Monsun Tropika mengalami musim kering dan musim lembap yang jelas.",
+    explanation:
+      "Iklim Khatulistiwa panas dan lembap sepanjang tahun tanpa musim kering yang nyata, manakala iklim Monsun Tropika mengalami musim kering dan musim lembap yang jelas.",
   },
   {
     id: "geo-f2-c7-q12",
@@ -18451,7 +19002,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Berapakah julat suhu tahunan iklim Tundra?",
     options: ["42°C", "20°C", "10°C", "60°C"],
     answerIndex: 0,
-    explanation: "Julat suhu tahunan iklim Tundra ialah 42°C, hasil daripada suhu musim panas yang sederhana sejuk (<10°C) dan suhu musim sejuk yang sangat sejuk (-32°C hingga -55°C).",
+    explanation:
+      "Julat suhu tahunan iklim Tundra ialah 42°C, hasil daripada suhu musim panas yang sederhana sejuk (<10°C) dan suhu musim sejuk yang sangat sejuk (-32°C hingga -55°C).",
   },
   {
     id: "geo-f2-c7-q13",
@@ -18459,7 +19011,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Mengapakah hujan di kawasan beriklim China kebanyakannya turun dalam bentuk hujan siklon?",
+    question:
+      "Mengapakah hujan di kawasan beriklim China kebanyakannya turun dalam bentuk hujan siklon?",
     options: [
       "Kerana udara lembap dari Lautan Pasifik bergerak ke kawasan udara yang lebih sejuk dan membentuk awan hujan",
       "Kerana kawasan tersebut terletak berhampiran Garisan Khatulistiwa",
@@ -18467,7 +19020,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana kawasan tersebut sentiasa diliputi salji sepanjang tahun",
     ],
     answerIndex: 0,
-    explanation: "Hujan siklon di kawasan beriklim China disebabkan oleh udara lembap yang bergerak ke kawasan udara yang lebih sejuk, membentuk awan hujan lebat.",
+    explanation:
+      "Hujan siklon di kawasan beriklim China disebabkan oleh udara lembap yang bergerak ke kawasan udara yang lebih sejuk, membentuk awan hujan lebat.",
   },
   {
     id: "geo-f2-c7-q14",
@@ -18475,7 +19029,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Mengapakah suhu siang di Gurun Panas boleh mencecah 40°C sedangkan suhu malam boleh jatuh ke 5°C?",
+    question:
+      "Mengapakah suhu siang di Gurun Panas boleh mencecah 40°C sedangkan suhu malam boleh jatuh ke 5°C?",
     options: [
       "Kekurangan litupan awan menyebabkan pancaran matahari terus ke bumi pada siang, dan haba dengan cepat dibalikkan ke atmosfera pada waktu malam",
       "Kawasan tersebut menerima hujan lebat pada waktu malam",
@@ -18483,7 +19038,8 @@ export const quizzes: QuizQuestion[] = [
       "Kawasan tersebut terletak berhampiran laut yang sejuk",
     ],
     answerIndex: 0,
-    explanation: "Kekurangan litupan awan di Gurun Panas menyebabkan pancaran matahari terus sampai ke permukaan bumi pada waktu siang (panas), dan haba dengan cepat dibalikkan ke atmosfera pada waktu malam (sejuk) kerana langit tidak berawan.",
+    explanation:
+      "Kekurangan litupan awan di Gurun Panas menyebabkan pancaran matahari terus sampai ke permukaan bumi pada waktu siang (panas), dan haba dengan cepat dibalikkan ke atmosfera pada waktu malam (sejuk) kerana langit tidak berawan.",
   },
   {
     id: "geo-f2-c7-q15",
@@ -18491,10 +19047,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah kegiatan ekonomi utama yang dijalankan di kawasan beriklim Laurentia seperti Hokkaido, Jepun?",
-    options: ["Pertanian dan perikanan", "Penternakan unta", "Pembalakan hutan tropika", "Perlombongan bijih timah"],
+    question:
+      "Apakah kegiatan ekonomi utama yang dijalankan di kawasan beriklim Laurentia seperti Hokkaido, Jepun?",
+    options: [
+      "Pertanian dan perikanan",
+      "Penternakan unta",
+      "Pembalakan hutan tropika",
+      "Perlombongan bijih timah",
+    ],
     answerIndex: 0,
-    explanation: "Kawasan beriklim Laurentia seperti Hokkaido, Jepun menjalankan kegiatan pertanian (sayur-sayuran, buah-buahan) dan perikanan kerana perairan Lautan Pasifik kaya dengan hasil laut.",
+    explanation:
+      "Kawasan beriklim Laurentia seperti Hokkaido, Jepun menjalankan kegiatan pertanian (sayur-sayuran, buah-buahan) dan perikanan kerana perairan Lautan Pasifik kaya dengan hasil laut.",
   },
   {
     id: "geo-f2-c7-q16",
@@ -18502,10 +19065,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Di manakah tempat paling sejuk di Benua Asia, menurut World Meteorological Organization?",
+    question:
+      "Di manakah tempat paling sejuk di Benua Asia, menurut World Meteorological Organization?",
     options: ["Oymyakon, Rusia", "Vostok, Antartika", "Gurun Arab", "Lembah Sungai Yangtze"],
     answerIndex: 0,
-    explanation: "Oymyakon (Rusia) merupakan tempat paling sejuk di Benua Asia dengan suhu yang dilaporkan mencecah -67.7°C, berbeza dengan Vostok yang terletak di Antartika (paling sejuk di dunia).",
+    explanation:
+      "Oymyakon (Rusia) merupakan tempat paling sejuk di Benua Asia dengan suhu yang dilaporkan mencecah -67.7°C, berbeza dengan Vostok yang terletak di Antartika (paling sejuk di dunia).",
   },
   {
     id: "geo-f2-c7-q17",
@@ -18513,7 +19078,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Bagaimanakah penduduk Eskimo di Siberia memburu pada musim panas berbanding musim sejuk?",
+    question:
+      "Bagaimanakah penduduk Eskimo di Siberia memburu pada musim panas berbanding musim sejuk?",
     options: [
       "Musim sejuk memburu walrus dan serigala, manakala musim panas memburu beruang kutub",
       "Musim panas memburu ikan paus sahaja",
@@ -18521,7 +19087,8 @@ export const quizzes: QuizQuestion[] = [
       "Musim panas memburu unta dan kambing",
     ],
     answerIndex: 0,
-    explanation: "Penduduk Eskimo di Siberia memburu walrus (singa laut) dan serigala menggunakan harpoon pada musim sejuk, manakala memburu beruang kutub pada musim panas.",
+    explanation:
+      "Penduduk Eskimo di Siberia memburu walrus (singa laut) dan serigala menggunakan harpoon pada musim sejuk, manakala memburu beruang kutub pada musim panas.",
   },
   {
     id: "geo-f2-c7-q18",
@@ -18537,7 +19104,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana oasis terletak jauh daripada penempatan manusia",
     ],
     answerIndex: 0,
-    explanation: "Pertanian di Gurun Panas tertumpu di kawasan oasis kerana ia merupakan kawasan subur yang mempunyai bekalan air yang mencukupi, berbeza dengan kawasan padang pasir yang gersang.",
+    explanation:
+      "Pertanian di Gurun Panas tertumpu di kawasan oasis kerana ia merupakan kawasan subur yang mempunyai bekalan air yang mencukupi, berbeza dengan kawasan padang pasir yang gersang.",
   },
   {
     id: "geo-f2-c7-q19",
@@ -18545,10 +19113,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Berdasarkan jadual ciri iklim, manakah antara berikut mempunyai hujan tahunan TERTINGGI?",
+    question:
+      "Berdasarkan jadual ciri iklim, manakah antara berikut mempunyai hujan tahunan TERTINGGI?",
     options: ["Iklim Khatulistiwa", "Iklim Tundra", "Iklim Gurun Panas", "Iklim Steppe"],
     answerIndex: 0,
-    explanation: "Iklim Khatulistiwa menerima hujan tahunan melebihi 2 600 mm, jauh lebih tinggi berbanding iklim Tundra (250-300mm), Gurun Panas (kurang 250mm) dan Steppe (500mm).",
+    explanation:
+      "Iklim Khatulistiwa menerima hujan tahunan melebihi 2 600 mm, jauh lebih tinggi berbanding iklim Tundra (250-300mm), Gurun Panas (kurang 250mm) dan Steppe (500mm).",
   },
   {
     id: "geo-f2-c7-q20",
@@ -18556,7 +19126,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah sebab kawasan China (selatan), Hong Kong dan Taiwan sering mengalami ribut taufan pada akhir musim panas?",
+    question:
+      "Apakah sebab kawasan China (selatan), Hong Kong dan Taiwan sering mengalami ribut taufan pada akhir musim panas?",
     options: [
       "Siklon tropika terbentuk di kawasan perairan tropika Lautan Pasifik dan bertiup ke kawasan tersebut",
       "Angin Monsun Barat Laut yang kering bertiup dari darat",
@@ -18564,7 +19135,8 @@ export const quizzes: QuizQuestion[] = [
       "Hujan salji yang lebat menyebabkan ribut",
     ],
     answerIndex: 0,
-    explanation: "Pada akhir musim panas, China (selatan), Hong Kong dan Taiwan mengalami ribut taufan kerana siklon tropika yang terbentuk di kawasan perairan tropika bertiup dari Lautan Pasifik.",
+    explanation:
+      "Pada akhir musim panas, China (selatan), Hong Kong dan Taiwan mengalami ribut taufan kerana siklon tropika yang terbentuk di kawasan perairan tropika bertiup dari Lautan Pasifik.",
   },
   {
     id: "geo-f2-c7-q21",
@@ -18572,7 +19144,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Berdasarkan jadual ciri iklim Asia, mengapakah iklim Siberia dianggap lebih sederhana berbanding iklim Tundra walaupun kedua-duanya tergolong dalam zon sejuk?",
+    question:
+      "Berdasarkan jadual ciri iklim Asia, mengapakah iklim Siberia dianggap lebih sederhana berbanding iklim Tundra walaupun kedua-duanya tergolong dalam zon sejuk?",
     options: [
       "Iklim Siberia mempunyai suhu musim panas yang lebih tinggi (15°C-20°C) berbanding Tundra (<10°C) dan menerima hujan tahunan yang lebih banyak (kira-kira 500mm berbanding 250-300mm)",
       "Iklim Siberia terletak lebih jauh daripada Garisan Artik berbanding Tundra",
@@ -18580,7 +19153,8 @@ export const quizzes: QuizQuestion[] = [
       "Iklim Siberia menerima hujan yang lebih sedikit berbanding Tundra",
     ],
     answerIndex: 0,
-    explanation: "Iklim Siberia mempunyai suhu musim panas yang lebih tinggi (15°C-20°C berbanding <10°C bagi Tundra) dan menerima hujan tahunan yang lebih banyak (kira-kira 500mm berbanding 250-300mm), menjadikannya lebih sederhana berbanding Tundra.",
+    explanation:
+      "Iklim Siberia mempunyai suhu musim panas yang lebih tinggi (15°C-20°C berbanding <10°C bagi Tundra) dan menerima hujan tahunan yang lebih banyak (kira-kira 500mm berbanding 250-300mm), menjadikannya lebih sederhana berbanding Tundra.",
   },
   {
     id: "geo-f2-c7-q22",
@@ -18588,7 +19162,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Mengapakah kegiatan pertanian lebih pelbagai di kawasan beriklim China berbanding kawasan beriklim Tundra?",
+    question:
+      "Mengapakah kegiatan pertanian lebih pelbagai di kawasan beriklim China berbanding kawasan beriklim Tundra?",
     options: [
       "Kawasan beriklim China mempunyai empat musim dengan suhu dan hujan yang lebih sesuai untuk pertumbuhan tanaman sepanjang tahun, manakala Tundra hanya mempunyai musim tumbuh yang sangat singkat",
       "Kawasan beriklim Tundra mempunyai tanah yang lebih subur",
@@ -18596,7 +19171,8 @@ export const quizzes: QuizQuestion[] = [
       "Kawasan beriklim Tundra menerima lebih banyak hujan berbanding China",
     ],
     answerIndex: 0,
-    explanation: "Kawasan beriklim China mempunyai empat musim dengan suhu sederhana panas dan hujan tahunan yang tinggi (508-1520mm) sesuai untuk pelbagai tanaman seperti padi dan gandum, manakala Tundra hanya mempunyai musim panas yang sangat singkat (Mei-Ogos) yang menyukarkan pertanian.",
+    explanation:
+      "Kawasan beriklim China mempunyai empat musim dengan suhu sederhana panas dan hujan tahunan yang tinggi (508-1520mm) sesuai untuk pelbagai tanaman seperti padi dan gandum, manakala Tundra hanya mempunyai musim panas yang sangat singkat (Mei-Ogos) yang menyukarkan pertanian.",
   },
   {
     id: "geo-f2-c7-q23",
@@ -18604,7 +19180,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Berdasarkan ciri iklim Gurun Panas, mengapakah penternakan unta lebih sesuai berbanding penternakan lembu tenusu secara meluas di kawasan tersebut?",
+    question:
+      "Berdasarkan ciri iklim Gurun Panas, mengapakah penternakan unta lebih sesuai berbanding penternakan lembu tenusu secara meluas di kawasan tersebut?",
     options: [
       "Unta lebih tahan kepada keadaan kering dan kekurangan air berbanding lembu tenusu yang memerlukan rumput segar dan air yang banyak",
       "Unta menghasilkan lebih banyak susu berbanding lembu dalam semua keadaan",
@@ -18612,7 +19189,8 @@ export const quizzes: QuizQuestion[] = [
       "Unta hanya boleh hidup di kawasan bersalji",
     ],
     answerIndex: 0,
-    explanation: "Unta lebih tahan kepada keadaan kering dan kekurangan air berbanding lembu tenusu, menjadikannya lebih sesuai diternak secara meluas di kawasan Gurun Panas yang menerima hujan tahunan kurang daripada 250mm.",
+    explanation:
+      "Unta lebih tahan kepada keadaan kering dan kekurangan air berbanding lembu tenusu, menjadikannya lebih sesuai diternak secara meluas di kawasan Gurun Panas yang menerima hujan tahunan kurang daripada 250mm.",
   },
   {
     id: "geo-f2-c7-q24",
@@ -18620,7 +19198,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Berdasarkan graf iklim, bagaimanakah seseorang murid dapat membezakan iklim Khatulistiwa daripada iklim Monsun Tropika hanya dengan melihat corak hujan bulanan?",
+    question:
+      "Berdasarkan graf iklim, bagaimanakah seseorang murid dapat membezakan iklim Khatulistiwa daripada iklim Monsun Tropika hanya dengan melihat corak hujan bulanan?",
     options: [
       "Iklim Khatulistiwa menunjukkan taburan hujan yang agak sekata sepanjang 12 bulan, manakala iklim Monsun Tropika menunjukkan perbezaan jelas antara bulan-bulan kering dan bulan-bulan lembap",
       "Kedua-dua iklim menunjukkan corak graf yang serupa sepenuhnya",
@@ -18628,7 +19207,8 @@ export const quizzes: QuizQuestion[] = [
       "Iklim Khatulistiwa hanya menerima hujan pada satu bulan sahaja dalam setahun",
     ],
     answerIndex: 0,
-    explanation: "Pada graf iklim, iklim Khatulistiwa menunjukkan taburan hujan yang agak sekata sepanjang tahun (tiada musim kering ketara), manakala iklim Monsun Tropika menunjukkan perbezaan jelas antara musim kering dan musim lembap.",
+    explanation:
+      "Pada graf iklim, iklim Khatulistiwa menunjukkan taburan hujan yang agak sekata sepanjang tahun (tiada musim kering ketara), manakala iklim Monsun Tropika menunjukkan perbezaan jelas antara musim kering dan musim lembap.",
   },
   {
     id: "geo-f2-c7-q25",
@@ -18636,7 +19216,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Mengapakah julat suhu HARIAN di Gurun Panas lebih signifikan untuk dikaji berbanding julat suhu TAHUNAN dalam konteks kehidupan penduduk?",
+    question:
+      "Mengapakah julat suhu HARIAN di Gurun Panas lebih signifikan untuk dikaji berbanding julat suhu TAHUNAN dalam konteks kehidupan penduduk?",
     options: [
       "Perubahan suhu harian yang melampau (40°C siang ke 5°C malam) memberi kesan lebih segera kepada keselesaan dan aktiviti harian penduduk berbanding perubahan suhu antara musim",
       "Julat suhu tahunan di Gurun Panas adalah lebih besar daripada julat suhu harian",
@@ -18644,7 +19225,8 @@ export const quizzes: QuizQuestion[] = [
       "Julat suhu harian tidak memberi sebarang kesan kepada kehidupan manusia",
     ],
     answerIndex: 0,
-    explanation: "Julat suhu harian yang melampau (40°C pada siang berbanding 5°C pada malam) memberi kesan lebih segera dan langsung kepada keselesaan serta aktiviti harian penduduk berbanding perubahan suhu yang lebih perlahan antara musim.",
+    explanation:
+      "Julat suhu harian yang melampau (40°C pada siang berbanding 5°C pada malam) memberi kesan lebih segera dan langsung kepada keselesaan serta aktiviti harian penduduk berbanding perubahan suhu yang lebih perlahan antara musim.",
   },
   {
     id: "geo-f2-c7-q26",
@@ -18652,7 +19234,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Bagaimanakah kedudukan latitud sesuatu kawasan di Asia berkait rapat dengan jenis iklim yang dialaminya?",
+    question:
+      "Bagaimanakah kedudukan latitud sesuatu kawasan di Asia berkait rapat dengan jenis iklim yang dialaminya?",
     options: [
       "Kawasan berhampiran Khatulistiwa (latitud rendah) mengalami iklim panas seperti Khatulistiwa, manakala kawasan jauh dari Khatulistiwa (latitud tinggi) mengalami iklim sejuk seperti Tundra",
       "Latitud tidak mempunyai sebarang kaitan dengan jenis iklim sesuatu kawasan",
@@ -18660,7 +19243,8 @@ export const quizzes: QuizQuestion[] = [
       "Kawasan latitud tinggi sentiasa lebih panas berbanding kawasan latitud rendah",
     ],
     answerIndex: 0,
-    explanation: "Kedudukan latitud mempengaruhi sudut tegak Matahari yang diterima sesuatu kawasan — kawasan berhampiran Khatulistiwa (latitud rendah) menerima lebih banyak haba (iklim panas), manakala kawasan jauh dari Khatulistiwa (latitud tinggi) menerima kurang haba (iklim sejuk).",
+    explanation:
+      "Kedudukan latitud mempengaruhi sudut tegak Matahari yang diterima sesuatu kawasan — kawasan berhampiran Khatulistiwa (latitud rendah) menerima lebih banyak haba (iklim panas), manakala kawasan jauh dari Khatulistiwa (latitud tinggi) menerima kurang haba (iklim sejuk).",
   },
   {
     id: "geo-f2-c7-q27",
@@ -18668,7 +19252,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Mengapakah kegiatan perikanan di kawasan beriklim Laurentia seperti Hokkaido dianggap lebih konsisten sepanjang tahun berbanding kegiatan pertanian di kawasan yang sama?",
+    question:
+      "Mengapakah kegiatan perikanan di kawasan beriklim Laurentia seperti Hokkaido dianggap lebih konsisten sepanjang tahun berbanding kegiatan pertanian di kawasan yang sama?",
     options: [
       "Perairan Lautan Pasifik tidak terjejas oleh musim sejuk yang panjang seperti tanah pertanian yang memerlukan suhu sederhana untuk pertumbuhan tanaman",
       "Pertanian boleh dijalankan sepanjang tahun tanpa sebarang kekangan musim",
@@ -18676,7 +19261,8 @@ export const quizzes: QuizQuestion[] = [
       "Kedua-dua kegiatan terjejas sama teruk oleh musim sejuk",
     ],
     answerIndex: 0,
-    explanation: "Perikanan di perairan Lautan Pasifik dapat dijalankan sepanjang tempoh kerana laluan ikan dan plankton yang kaya, manakala pertanian terhad kepada musim panas yang sederhana sahaja untuk pertumbuhan tanaman.",
+    explanation:
+      "Perikanan di perairan Lautan Pasifik dapat dijalankan sepanjang tempoh kerana laluan ikan dan plankton yang kaya, manakala pertanian terhad kepada musim panas yang sederhana sahaja untuk pertumbuhan tanaman.",
   },
   {
     id: "geo-f2-c7-q28",
@@ -18684,7 +19270,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Berdasarkan keseluruhan Bab 7, bagaimanakah hubungan antara kepelbagaian iklim di Asia dengan kepelbagaian kegiatan ekonomi penduduknya dapat dirumuskan?",
+    question:
+      "Berdasarkan keseluruhan Bab 7, bagaimanakah hubungan antara kepelbagaian iklim di Asia dengan kepelbagaian kegiatan ekonomi penduduknya dapat dirumuskan?",
     options: [
       "Setiap jenis iklim membentuk persekitaran fizikal yang unik (suhu, hujan, musim) yang menentukan jenis kegiatan ekonomi yang paling sesuai dijalankan oleh penduduk di kawasan tersebut",
       "Kegiatan ekonomi penduduk Asia tidak dipengaruhi oleh iklim sama sekali",
@@ -18692,7 +19279,8 @@ export const quizzes: QuizQuestion[] = [
       "Iklim hanya mempengaruhi kegiatan pertanian, tidak kegiatan ekonomi lain",
     ],
     answerIndex: 0,
-    explanation: "Setiap jenis iklim (Tundra, Laurentia, China, Gurun Panas, dll.) membentuk persekitaran fizikal yang unik dari segi suhu, hujan dan musim, yang secara langsung menentukan jenis kegiatan ekonomi (perikanan, pertanian, penternakan) yang paling sesuai dijalankan oleh penduduk tempatan.",
+    explanation:
+      "Setiap jenis iklim (Tundra, Laurentia, China, Gurun Panas, dll.) membentuk persekitaran fizikal yang unik dari segi suhu, hujan dan musim, yang secara langsung menentukan jenis kegiatan ekonomi (perikanan, pertanian, penternakan) yang paling sesuai dijalankan oleh penduduk tempatan.",
   },
   {
     id: "geo-f2-c7-q29",
@@ -18700,7 +19288,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Mengapakah penternakan ayam dan khinzir lebih tertumpu di kawasan tertentu di China seperti Shandong, berbanding diternak secara sekata di seluruh negara?",
+    question:
+      "Mengapakah penternakan ayam dan khinzir lebih tertumpu di kawasan tertentu di China seperti Shandong, berbanding diternak secara sekata di seluruh negara?",
     options: [
       "Kawasan tersebut mempunyai suhu sederhana dan sumber makanan ternakan yang sesuai, serta kemudahan infrastruktur yang menyokong industri penternakan berskala besar",
       "Kerajaan China melarang penternakan di kawasan lain",
@@ -18708,7 +19297,8 @@ export const quizzes: QuizQuestion[] = [
       "Ayam dan khinzir tidak boleh diternak di kawasan beriklim panas",
     ],
     answerIndex: 0,
-    explanation: "Kawasan tertumpu seperti Shandong mempunyai gabungan suhu sederhana, sumber makanan ternakan dan infrastruktur yang menyokong, menjadikannya lebih sesuai untuk penternakan ayam dan khinzir berskala besar berbanding kawasan lain.",
+    explanation:
+      "Kawasan tertumpu seperti Shandong mempunyai gabungan suhu sederhana, sumber makanan ternakan dan infrastruktur yang menyokong, menjadikannya lebih sesuai untuk penternakan ayam dan khinzir berskala besar berbanding kawasan lain.",
   },
   {
     id: "geo-f2-c7-q30",
@@ -18716,7 +19306,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Berdasarkan perbandingan kesembilan jenis iklim di Asia, apakah kesimpulan yang paling tepat tentang hubungan antara jumlah hujan tahunan dengan jenis kegiatan ekonomi utama sesuatu kawasan?",
+    question:
+      "Berdasarkan perbandingan kesembilan jenis iklim di Asia, apakah kesimpulan yang paling tepat tentang hubungan antara jumlah hujan tahunan dengan jenis kegiatan ekonomi utama sesuatu kawasan?",
     options: [
       "Kawasan dengan hujan tahunan tinggi (seperti iklim Khatulistiwa dan China) cenderung menjalankan pertanian tanaman yang memerlukan banyak air seperti padi, manakala kawasan dengan hujan rendah (seperti Gurun Panas) lebih tertumpu kepada penternakan haiwan tahan kemarau",
       "Jumlah hujan tahunan tidak mempunyai sebarang kaitan dengan jenis kegiatan ekonomi",
@@ -18724,7 +19315,8 @@ export const quizzes: QuizQuestion[] = [
       "Kawasan dengan hujan rendah sentiasa lebih maju dari segi pertanian berbanding kawasan hujan tinggi",
     ],
     answerIndex: 0,
-    explanation: "Kawasan dengan hujan tahunan tinggi seperti iklim Khatulistiwa dan China sesuai untuk tanaman seperti padi yang memerlukan banyak air, manakala kawasan kering seperti Gurun Panas lebih bergantung kepada penternakan haiwan tahan kemarau seperti unta dan kambing.",
+    explanation:
+      "Kawasan dengan hujan tahunan tinggi seperti iklim Khatulistiwa dan China sesuai untuk tanaman seperti padi yang memerlukan banyak air, manakala kawasan kering seperti Gurun Panas lebih bergantung kepada penternakan haiwan tahan kemarau seperti unta dan kambing.",
   },
   {
     id: "geo-f2-c8-q1",
@@ -18733,9 +19325,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Easy",
     question: "Apakah tiga jenis pengangkutan utama di Asia?",
-    options: ["Darat, udara dan air", "Darat, awam dan persendirian", "Udara, awam dan luar bandar", "Air, awam dan antarabangsa"],
+    options: [
+      "Darat, udara dan air",
+      "Darat, awam dan persendirian",
+      "Udara, awam dan luar bandar",
+      "Air, awam dan antarabangsa",
+    ],
     answerIndex: 0,
-    explanation: "Tiga jenis pengangkutan utama yang dibincangkan dalam Bab 8 ialah pengangkutan darat, pengangkutan udara dan pengangkutan air.",
+    explanation:
+      "Tiga jenis pengangkutan utama yang dibincangkan dalam Bab 8 ialah pengangkutan darat, pengangkutan udara dan pengangkutan air.",
   },
   {
     id: "geo-f2-c8-q2",
@@ -18746,7 +19344,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Negara manakah yang mempunyai jaringan landasan kereta api terbanyak di Asia?",
     options: ["India", "China", "Jepun", "Rusia"],
     answerIndex: 0,
-    explanation: "India mempunyai jaringan landasan kereta api terbanyak di Asia, sepanjang 66 687 km.",
+    explanation:
+      "India mempunyai jaringan landasan kereta api terbanyak di Asia, sepanjang 66 687 km.",
   },
   {
     id: "geo-f2-c8-q3",
@@ -18754,10 +19353,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Easy",
-    question: "Lapangan terbang manakah yang dikenali sebagai tersibuk di dunia dari segi bilangan penumpang (2016)?",
-    options: ["Lapangan Terbang Antarabangsa Dubai", "Lapangan Terbang Antarabangsa Changi", "Lapangan Terbang Antarabangsa Kuala Lumpur", "Lapangan Terbang Antarabangsa Tokyo"],
+    question:
+      "Lapangan terbang manakah yang dikenali sebagai tersibuk di dunia dari segi bilangan penumpang (2016)?",
+    options: [
+      "Lapangan Terbang Antarabangsa Dubai",
+      "Lapangan Terbang Antarabangsa Changi",
+      "Lapangan Terbang Antarabangsa Kuala Lumpur",
+      "Lapangan Terbang Antarabangsa Tokyo",
+    ],
     answerIndex: 0,
-    explanation: "Lapangan Terbang Antarabangsa Dubai merupakan lapangan terbang yang tersibuk di dunia dan mengendalikan 83.6 juta penumpang pada tahun 2016.",
+    explanation:
+      "Lapangan Terbang Antarabangsa Dubai merupakan lapangan terbang yang tersibuk di dunia dan mengendalikan 83.6 juta penumpang pada tahun 2016.",
   },
   {
     id: "geo-f2-c8-q4",
@@ -18766,9 +19372,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Easy",
     question: "Lapangan terbang manakah yang dikenali sebagai lapangan terbang terbaik di dunia?",
-    options: ["Lapangan Terbang Antarabangsa Changi", "Lapangan Terbang Antarabangsa Dubai", "Lapangan Terbang Antarabangsa Chengdu", "Lapangan Terbang Antarabangsa Hong Kong"],
+    options: [
+      "Lapangan Terbang Antarabangsa Changi",
+      "Lapangan Terbang Antarabangsa Dubai",
+      "Lapangan Terbang Antarabangsa Chengdu",
+      "Lapangan Terbang Antarabangsa Hong Kong",
+    ],
     answerIndex: 0,
-    explanation: "Lapangan Terbang Antarabangsa Changi di Singapura dikenali sebagai lapangan terbang terbaik di dunia dan mengendalikan 58.7 juta penumpang (2016).",
+    explanation:
+      "Lapangan Terbang Antarabangsa Changi di Singapura dikenali sebagai lapangan terbang terbaik di dunia dan mengendalikan 58.7 juta penumpang (2016).",
   },
   {
     id: "geo-f2-c8-q5",
@@ -18776,10 +19388,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Easy",
-    question: "Pelabuhan manakah yang mengendalikan kira-kira 55 peratus jumlah kontena di pelabuhan-pelabuhan utama India?",
-    options: ["Pelabuhan Jawaharlal", "Pelabuhan Tokyo", "Pelabuhan Hong Kong", "Pelabuhan Singapura"],
+    question:
+      "Pelabuhan manakah yang mengendalikan kira-kira 55 peratus jumlah kontena di pelabuhan-pelabuhan utama India?",
+    options: [
+      "Pelabuhan Jawaharlal",
+      "Pelabuhan Tokyo",
+      "Pelabuhan Hong Kong",
+      "Pelabuhan Singapura",
+    ],
     answerIndex: 0,
-    explanation: "Pelabuhan Jawaharlal di India ialah pelabuhan kontena terbesar yang mengendalikan kira-kira 55 peratus daripada jumlah kontena di pelabuhan-pelabuhan utama negara itu.",
+    explanation:
+      "Pelabuhan Jawaharlal di India ialah pelabuhan kontena terbesar yang mengendalikan kira-kira 55 peratus daripada jumlah kontena di pelabuhan-pelabuhan utama negara itu.",
   },
   {
     id: "geo-f2-c8-q6",
@@ -18787,10 +19406,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Easy",
-    question: "Berapakah bilangan kapal kontena yang mampu ditampung oleh Pelabuhan Singapura pada satu-satu masa?",
-    options: ["Kira-kira 1 000 kapal", "Kira-kira 500 kapal", "Kira-kira 2 000 kapal", "Kira-kira 300 kapal"],
+    question:
+      "Berapakah bilangan kapal kontena yang mampu ditampung oleh Pelabuhan Singapura pada satu-satu masa?",
+    options: [
+      "Kira-kira 1 000 kapal",
+      "Kira-kira 500 kapal",
+      "Kira-kira 2 000 kapal",
+      "Kira-kira 300 kapal",
+    ],
     answerIndex: 0,
-    explanation: "Pelabuhan Singapura mampu menampung kira-kira 1 000 kapal kontena pada satu-satu masa.",
+    explanation:
+      "Pelabuhan Singapura mampu menampung kira-kira 1 000 kapal kontena pada satu-satu masa.",
   },
   {
     id: "geo-f2-c8-q7",
@@ -18801,7 +19427,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama kereta api berkelajuan tinggi di Jepun?",
     options: ["Shinkansen", "KTX", "Maglev Shanghai", "Trans-Siberia"],
     answerIndex: 0,
-    explanation: "Shinkansen ialah kereta api berkelajuan tinggi (bullet train) di Jepun yang dianggap antara yang paling cekap dan efisien di dunia.",
+    explanation:
+      "Shinkansen ialah kereta api berkelajuan tinggi (bullet train) di Jepun yang dianggap antara yang paling cekap dan efisien di dunia.",
   },
   {
     id: "geo-f2-c8-q8",
@@ -18812,7 +19439,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah nama kereta api berkelajuan tinggi di Korea Selatan?",
     options: ["KTX", "Shinkansen", "ECRL", "ETS"],
     answerIndex: 0,
-    explanation: "KTX (Kereta Api Berkelajuan Tinggi) ialah sistem kereta api berkelajuan tinggi di Korea Selatan yang mencatat rekod kelajuan 603 km/j pada April 2015.",
+    explanation:
+      "KTX (Kereta Api Berkelajuan Tinggi) ialah sistem kereta api berkelajuan tinggi di Korea Selatan yang mencatat rekod kelajuan 603 km/j pada April 2015.",
   },
   {
     id: "geo-f2-c8-q9",
@@ -18821,9 +19449,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Easy",
     question: "Manakah antara berikut adalah kesan pengangkutan terhadap masyarakat?",
-    options: ["Memendekkan masa perjalanan", "Pencemaran minyak di laut", "Kemusnahan hutan", "Pencemaran bunyi"],
+    options: [
+      "Memendekkan masa perjalanan",
+      "Pencemaran minyak di laut",
+      "Kemusnahan hutan",
+      "Pencemaran bunyi",
+    ],
     answerIndex: 0,
-    explanation: "Memendekkan masa perjalanan merupakan salah satu kesan pengangkutan terhadap masyarakat, selain meningkatkan taraf hidup dan integrasi.",
+    explanation:
+      "Memendekkan masa perjalanan merupakan salah satu kesan pengangkutan terhadap masyarakat, selain meningkatkan taraf hidup dan integrasi.",
   },
   {
     id: "geo-f2-c8-q10",
@@ -18832,9 +19466,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Easy",
     question: "Manakah antara berikut adalah kesan NEGATIF pengangkutan terhadap alam sekitar?",
-    options: ["Kemusnahan hutan akibat pembinaan jalan raya", "Mengurangkan pencemaran udara", "Meningkatkan taraf hidup penduduk", "Mewujudkan hab perdagangan"],
+    options: [
+      "Kemusnahan hutan akibat pembinaan jalan raya",
+      "Mengurangkan pencemaran udara",
+      "Meningkatkan taraf hidup penduduk",
+      "Mewujudkan hab perdagangan",
+    ],
     answerIndex: 0,
-    explanation: "Kemusnahan hutan akibat pembinaan jalan raya, jaringan kereta api dan lapangan terbang merupakan kesan negatif pengangkutan terhadap alam sekitar.",
+    explanation:
+      "Kemusnahan hutan akibat pembinaan jalan raya, jaringan kereta api dan lapangan terbang merupakan kesan negatif pengangkutan terhadap alam sekitar.",
   },
   {
     id: "geo-f2-c8-q11",
@@ -18842,7 +19482,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Mengapakah Lapangan Terbang Antarabangsa Hong Kong dianggap unik berbanding lapangan terbang lain di Asia?",
+    question:
+      "Mengapakah Lapangan Terbang Antarabangsa Hong Kong dianggap unik berbanding lapangan terbang lain di Asia?",
     options: [
       "Tapaknya wujud akibat penambakan laut",
       "Ia merupakan lapangan terbang pertama di dunia",
@@ -18850,7 +19491,8 @@ export const quizzes: QuizQuestion[] = [
       "Ia terletak di kawasan tanah tinggi",
     ],
     answerIndex: 0,
-    explanation: "Lapangan Terbang Antarabangsa Hong Kong adalah unik kerana tapaknya wujud akibat penambakan laut, berbeza dengan kebanyakan lapangan terbang lain.",
+    explanation:
+      "Lapangan Terbang Antarabangsa Hong Kong adalah unik kerana tapaknya wujud akibat penambakan laut, berbeza dengan kebanyakan lapangan terbang lain.",
   },
   {
     id: "geo-f2-c8-q12",
@@ -18861,7 +19503,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Berapakah jumlah penumpang yang menggunakan Shinkansen di Jepun setiap hari?",
     options: ["445 000 penumpang", "83 600 penumpang", "66 687 penumpang", "320 000 penumpang"],
     answerIndex: 0,
-    explanation: "Shinkansen di Jepun mengangkut sebanyak 445 000 penumpang sehari dan telah berkhidmat selama lebih 30 tahun.",
+    explanation:
+      "Shinkansen di Jepun mengangkut sebanyak 445 000 penumpang sehari dan telah berkhidmat selama lebih 30 tahun.",
   },
   {
     id: "geo-f2-c8-q13",
@@ -18872,7 +19515,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah rekod kelajuan yang dicatatkan oleh KTX Korea Selatan pada April 2015?",
     options: ["603 km/j", "320 km/j", "350 km/j", "450 km/j"],
     answerIndex: 0,
-    explanation: "Pada April 2015, kereta api berkelajuan tinggi KTX Korea Selatan mencatat rekod kelajuan sehingga 603 km sejam, walaupun kelajuan operasi biasanya 350 km/j.",
+    explanation:
+      "Pada April 2015, kereta api berkelajuan tinggi KTX Korea Selatan mencatat rekod kelajuan sehingga 603 km sejam, walaupun kelajuan operasi biasanya 350 km/j.",
   },
   {
     id: "geo-f2-c8-q14",
@@ -18880,10 +19524,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah sistem teknologi yang akan digunakan oleh projek Chuo Shinkansen di Jepun pada masa depan?",
-    options: ["Superconducting Maglev System", "Sistem rel diesel konvensional", "Sistem kabel fiber optik", "Sistem satelit MEASAT"],
+    question:
+      "Apakah sistem teknologi yang akan digunakan oleh projek Chuo Shinkansen di Jepun pada masa depan?",
+    options: [
+      "Superconducting Maglev System",
+      "Sistem rel diesel konvensional",
+      "Sistem kabel fiber optik",
+      "Sistem satelit MEASAT",
+    ],
     answerIndex: 0,
-    explanation: "Chuo Shinkansen ialah projek kereta api berkelajuan tinggi masa depan Jepun yang menggunakan Superconducting Maglev System, iaitu daya elektromagnet untuk mengangkat dan menggerakkan kereta api.",
+    explanation:
+      "Chuo Shinkansen ialah projek kereta api berkelajuan tinggi masa depan Jepun yang menggunakan Superconducting Maglev System, iaitu daya elektromagnet untuk mengangkat dan menggerakkan kereta api.",
   },
   {
     id: "geo-f2-c8-q15",
@@ -18892,9 +19543,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Medium",
     question: "Apakah kelajuan operasi landasan kereta api berkelajuan tinggi Beijing-Shanghai?",
-    options: ["250 km/j hingga 300 km/j", "350 km/j hingga 400 km/j", "100 km/j hingga 150 km/j", "500 km/j hingga 600 km/j"],
+    options: [
+      "250 km/j hingga 300 km/j",
+      "350 km/j hingga 400 km/j",
+      "100 km/j hingga 150 km/j",
+      "500 km/j hingga 600 km/j",
+    ],
     answerIndex: 0,
-    explanation: "Landasan kereta api berkelajuan tinggi Beijing-Shanghai beroperasi pada kelajuan 250 km/j hingga 300 km/j, memendekkan masa perjalanan antara dua bandar tersebut.",
+    explanation:
+      "Landasan kereta api berkelajuan tinggi Beijing-Shanghai beroperasi pada kelajuan 250 km/j hingga 300 km/j, memendekkan masa perjalanan antara dua bandar tersebut.",
   },
   {
     id: "geo-f2-c8-q16",
@@ -18902,7 +19559,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Bagaimanakah kemajuan pengangkutan menyumbang kepada perkembangan bandar sebagai hab perdagangan?",
+    question:
+      "Bagaimanakah kemajuan pengangkutan menyumbang kepada perkembangan bandar sebagai hab perdagangan?",
     options: [
       "Memudahkan pergerakan barangan dan penumpang yang menarik pelaburan dan aktiviti perniagaan ke bandar tersebut",
       "Mengurangkan jumlah penduduk yang berhijrah ke bandar",
@@ -18910,7 +19568,8 @@ export const quizzes: QuizQuestion[] = [
       "Menghadkan pergerakan barangan ke kawasan luar bandar sahaja",
     ],
     answerIndex: 0,
-    explanation: "Kemajuan pengangkutan memudahkan pergerakan barangan dan penumpang, menarik pelaburan dan aktiviti perniagaan, menjadikan bandar seperti Tokyo, Kyoto, Nagoya dan Osaka sebagai hab perdagangan.",
+    explanation:
+      "Kemajuan pengangkutan memudahkan pergerakan barangan dan penumpang, menarik pelaburan dan aktiviti perniagaan, menjadikan bandar seperti Tokyo, Kyoto, Nagoya dan Osaka sebagai hab perdagangan.",
   },
   {
     id: "geo-f2-c8-q17",
@@ -18918,10 +19577,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah contoh pembinaan pusat pelancongan bertaraf antarabangsa yang disebut dalam buku teks berkaitan kesan ekonomi pengangkutan?",
-    options: ["Burj Al Arab di Dubai", "Menara Petronas di Kuala Lumpur", "Tembok Besar China", "Angkor Wat di Kemboja"],
+    question:
+      "Apakah contoh pembinaan pusat pelancongan bertaraf antarabangsa yang disebut dalam buku teks berkaitan kesan ekonomi pengangkutan?",
+    options: [
+      "Burj Al Arab di Dubai",
+      "Menara Petronas di Kuala Lumpur",
+      "Tembok Besar China",
+      "Angkor Wat di Kemboja",
+    ],
     answerIndex: 0,
-    explanation: "Pembinaan pusat rekreasi dan hotel bertaraf antarabangsa seperti Burj Al Arab di Dubai merupakan salah satu kesan ekonomi positif kemajuan pengangkutan.",
+    explanation:
+      "Pembinaan pusat rekreasi dan hotel bertaraf antarabangsa seperti Burj Al Arab di Dubai merupakan salah satu kesan ekonomi positif kemajuan pengangkutan.",
   },
   {
     id: "geo-f2-c8-q18",
@@ -18929,7 +19595,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Mengapakah kereta api berkelajuan tinggi dianggap memberi kesan positif terhadap alam sekitar?",
+    question:
+      "Mengapakah kereta api berkelajuan tinggi dianggap memberi kesan positif terhadap alam sekitar?",
     options: [
       "Mengurangkan pencemaran udara berbanding penggunaan kenderaan persendirian secara meluas",
       "Tidak memerlukan sebarang sumber tenaga untuk beroperasi",
@@ -18937,7 +19604,8 @@ export const quizzes: QuizQuestion[] = [
       "Menghapuskan keperluan terhadap pengangkutan lain sepenuhnya",
     ],
     answerIndex: 0,
-    explanation: "Kereta api berkelajuan tinggi mengurangkan pencemaran udara berbanding penggunaan kenderaan persendirian secara meluas, menjadikannya lebih mesra alam sekitar.",
+    explanation:
+      "Kereta api berkelajuan tinggi mengurangkan pencemaran udara berbanding penggunaan kenderaan persendirian secara meluas, menjadikannya lebih mesra alam sekitar.",
   },
   {
     id: "geo-f2-c8-q19",
@@ -18945,7 +19613,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah kesan negatif pembinaan jaringan pengangkutan seperti jalan raya dan landasan kereta api terhadap kawasan tadahan air?",
+    question:
+      "Apakah kesan negatif pembinaan jaringan pengangkutan seperti jalan raya dan landasan kereta api terhadap kawasan tadahan air?",
     options: [
       "Kemusnahan hutan akibat pembinaan infrastruktur menjejaskan kawasan tadahan air",
       "Meningkatkan jumlah air tadahan secara automatik",
@@ -18953,7 +19622,8 @@ export const quizzes: QuizQuestion[] = [
       "Menghapuskan keperluan terhadap kawasan tadahan air",
     ],
     answerIndex: 0,
-    explanation: "Pembinaan jalan raya, jaringan kereta api dan lapangan terbang boleh menyebabkan kemusnahan hutan yang menjejaskan kawasan tadahan air sekitarnya.",
+    explanation:
+      "Pembinaan jalan raya, jaringan kereta api dan lapangan terbang boleh menyebabkan kemusnahan hutan yang menjejaskan kawasan tadahan air sekitarnya.",
   },
   {
     id: "geo-f2-c8-q20",
@@ -18961,7 +19631,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Berdasarkan peta jaringan pengangkutan Asia, mengapakah negara seperti India memerlukan jaringan landasan kereta api yang sangat panjang (66 687 km)?",
+    question:
+      "Berdasarkan peta jaringan pengangkutan Asia, mengapakah negara seperti India memerlukan jaringan landasan kereta api yang sangat panjang (66 687 km)?",
     options: [
       "Untuk menghubungkan kawasan yang luas dan berpenduduk padat di seluruh negara bagi memudahkan mobiliti dan perdagangan",
       "Kerana India tidak mempunyai sebarang jenis pengangkutan lain",
@@ -18969,7 +19640,8 @@ export const quizzes: QuizQuestion[] = [
       "Kerana kerajaan India melarang penggunaan jalan raya",
     ],
     answerIndex: 0,
-    explanation: "India memerlukan jaringan landasan kereta api yang panjang untuk menghubungkan kawasan yang luas dan berpenduduk padat di seluruh negara, memudahkan mobiliti penduduk dan perdagangan domestik.",
+    explanation:
+      "India memerlukan jaringan landasan kereta api yang panjang untuk menghubungkan kawasan yang luas dan berpenduduk padat di seluruh negara, memudahkan mobiliti penduduk dan perdagangan domestik.",
   },
   {
     id: "geo-f2-c8-q21",
@@ -18977,7 +19649,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Mengapakah Shinkansen (Jepun) dianggap antara sistem kereta api paling cekap dan efisien di dunia walaupun kelajuan operasinya (320 km/j) lebih rendah berbanding rekod KTX Korea Selatan (603 km/j)?",
+    question:
+      "Mengapakah Shinkansen (Jepun) dianggap antara sistem kereta api paling cekap dan efisien di dunia walaupun kelajuan operasinya (320 km/j) lebih rendah berbanding rekod KTX Korea Selatan (603 km/j)?",
     options: [
       "Kecekapan Shinkansen diukur bukan hanya dari kelajuan tetapi juga keselamatan, kekerapan perkhidmatan dan jumlah penumpang harian yang tinggi (445 000 penumpang) secara konsisten",
       "Shinkansen sebenarnya lebih laju daripada KTX dalam semua keadaan",
@@ -18985,7 +19658,8 @@ export const quizzes: QuizQuestion[] = [
       "KTX tidak pernah mencapai sebarang rekod kelajuan yang signifikan",
     ],
     answerIndex: 0,
-    explanation: "Kecekapan Shinkansen diukur secara holistik — termasuk keselamatan tinggi, kekerapan perkhidmatan dan keupayaan mengangkut 445 000 penumpang sehari secara konsisten selama lebih 30 tahun, bukan semata-mata kelajuan rekod seperti KTX.",
+    explanation:
+      "Kecekapan Shinkansen diukur secara holistik — termasuk keselamatan tinggi, kekerapan perkhidmatan dan keupayaan mengangkut 445 000 penumpang sehari secara konsisten selama lebih 30 tahun, bukan semata-mata kelajuan rekod seperti KTX.",
   },
   {
     id: "geo-f2-c8-q22",
@@ -18993,7 +19667,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Berdasarkan konsep Superconducting Maglev System yang akan digunakan dalam Chuo Shinkansen, bagaimanakah teknologi ini berbeza secara asas daripada sistem kereta api konvensional?",
+    question:
+      "Berdasarkan konsep Superconducting Maglev System yang akan digunakan dalam Chuo Shinkansen, bagaimanakah teknologi ini berbeza secara asas daripada sistem kereta api konvensional?",
     options: [
       "Maglev menggunakan daya elektromagnet untuk mengangkat kereta api tanpa sentuhan terus dengan landasan, berbeza dengan kereta api konvensional yang bergerak melalui roda di atas landasan",
       "Maglev menggunakan bahan api fosil sebagai sumber tenaga utama",
@@ -19001,7 +19676,8 @@ export const quizzes: QuizQuestion[] = [
       "Maglev adalah teknologi yang sama sepenuhnya dengan kereta api konvensional, hanya namanya berbeza",
     ],
     answerIndex: 0,
-    explanation: "Sistem Maglev (Magnetic Levitation) menggunakan daya elektromagnet untuk mengangkat kereta api supaya tidak bersentuhan terus dengan landasan, mengurangkan geseran dan membolehkan kelajuan yang lebih tinggi berbanding sistem konvensional yang bergerak melalui roda di atas landasan.",
+    explanation:
+      "Sistem Maglev (Magnetic Levitation) menggunakan daya elektromagnet untuk mengangkat kereta api supaya tidak bersentuhan terus dengan landasan, mengurangkan geseran dan membolehkan kelajuan yang lebih tinggi berbanding sistem konvensional yang bergerak melalui roda di atas landasan.",
   },
   {
     id: "geo-f2-c8-q23",
@@ -19009,7 +19685,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Mengapakah pembangunan lapangan terbang seperti Changi (Singapura) dan Dubai dianggap strategik bagi pertumbuhan ekonomi negara masing-masing, walaupun kedua-duanya tidak mempunyai banyak sumber asli?",
+    question:
+      "Mengapakah pembangunan lapangan terbang seperti Changi (Singapura) dan Dubai dianggap strategik bagi pertumbuhan ekonomi negara masing-masing, walaupun kedua-duanya tidak mempunyai banyak sumber asli?",
     options: [
       "Lapangan terbang yang cekap menjadikan negara tersebut sebagai hab serantau untuk perdagangan, pelancongan dan perkhidmatan, menggantikan kekurangan sumber asli dengan kekuatan logistik dan perkhidmatan",
       "Lapangan terbang tidak memberi sebarang kesan kepada ekonomi negara tanpa sumber asli",
@@ -19017,7 +19694,8 @@ export const quizzes: QuizQuestion[] = [
       "Lapangan terbang hanya penting untuk negara yang mempunyai sumber asli yang banyak",
     ],
     answerIndex: 0,
-    explanation: "Singapura dan Dubai menggunakan kecekapan lapangan terbang mereka sebagai strategi ekonomi untuk menjadi hab serantau bagi perdagangan, pelancongan dan perkhidmatan, mengimbangi kekurangan sumber asli semula jadi dengan kekuatan logistik dan perkhidmatan.",
+    explanation:
+      "Singapura dan Dubai menggunakan kecekapan lapangan terbang mereka sebagai strategi ekonomi untuk menjadi hab serantau bagi perdagangan, pelancongan dan perkhidmatan, mengimbangi kekurangan sumber asli semula jadi dengan kekuatan logistik dan perkhidmatan.",
   },
   {
     id: "geo-f2-c8-q24",
@@ -19025,7 +19703,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Berdasarkan jadual kesan pengangkutan, bagaimanakah hubungan antara kesan positif dan kesan negatif terhadap alam sekitar dapat dirumuskan secara KBAT?",
+    question:
+      "Berdasarkan jadual kesan pengangkutan, bagaimanakah hubungan antara kesan positif dan kesan negatif terhadap alam sekitar dapat dirumuskan secara KBAT?",
     options: [
       "Kemajuan pengangkutan moden seperti kereta api elektrik dapat mengurangkan pencemaran udara, tetapi pembinaan infrastruktur baharu (landasan, lapangan terbang) berisiko menyebabkan kemusnahan hutan dan pencemaran lain jika tidak dirancang secara mampan",
       "Semua jenis pengangkutan memberi kesan negatif yang sama tanpa sebarang manfaat alam sekitar",
@@ -19033,7 +19712,8 @@ export const quizzes: QuizQuestion[] = [
       "Pembinaan infrastruktur pengangkutan sentiasa memberi kesan positif sahaja terhadap alam sekitar",
     ],
     answerIndex: 0,
-    explanation: "Kemajuan pengangkutan moden seperti kereta api elektrik dapat mengurangkan pencemaran udara (kesan positif), tetapi proses pembinaan infrastruktur baharu seperti landasan dan lapangan terbang berisiko menyebabkan kemusnahan hutan dan pencemaran lain (kesan negatif) jika tidak dirancang secara mampan.",
+    explanation:
+      "Kemajuan pengangkutan moden seperti kereta api elektrik dapat mengurangkan pencemaran udara (kesan positif), tetapi proses pembinaan infrastruktur baharu seperti landasan dan lapangan terbang berisiko menyebabkan kemusnahan hutan dan pencemaran lain (kesan negatif) jika tidak dirancang secara mampan.",
   },
   {
     id: "geo-f2-c8-q25",
@@ -19041,7 +19721,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Mengapakah peningkatan darjah ketersampaian akibat kemajuan pengangkutan dianggap penting untuk integrasi serantau di Asia?",
+    question:
+      "Mengapakah peningkatan darjah ketersampaian akibat kemajuan pengangkutan dianggap penting untuk integrasi serantau di Asia?",
     options: [
       "Ketersampaian yang lebih baik membolehkan penduduk dan barangan bergerak dengan lebih mudah antara negara, mengukuhkan hubungan ekonomi dan sosial serantau",
       "Ketersampaian tidak mempunyai sebarang kaitan dengan integrasi serantau",
@@ -19049,7 +19730,8 @@ export const quizzes: QuizQuestion[] = [
       "Peningkatan ketersampaian hanya memberi manfaat kepada satu negara sahaja",
     ],
     answerIndex: 0,
-    explanation: "Peningkatan darjah ketersampaian membolehkan pergerakan penduduk dan barangan yang lebih mudah antara negara, secara langsung mengukuhkan hubungan ekonomi, sosial dan integrasi serantau di Asia.",
+    explanation:
+      "Peningkatan darjah ketersampaian membolehkan pergerakan penduduk dan barangan yang lebih mudah antara negara, secara langsung mengukuhkan hubungan ekonomi, sosial dan integrasi serantau di Asia.",
   },
   {
     id: "geo-f2-c8-q26",
@@ -19057,7 +19739,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Berdasarkan perbandingan antara Pelabuhan Jawaharlal (India) dan Pelabuhan Singapura, apakah faktor utama yang membezakan peranan strategik kedua-dua pelabuhan ini?",
+    question:
+      "Berdasarkan perbandingan antara Pelabuhan Jawaharlal (India) dan Pelabuhan Singapura, apakah faktor utama yang membezakan peranan strategik kedua-dua pelabuhan ini?",
     options: [
       "Pelabuhan Jawaharlal lebih tertumpu kepada keperluan domestik India (55% kontena negara), manakala Pelabuhan Singapura berfungsi sebagai hab transit serantau dengan kapasiti tinggi (1000 kapal serentak)",
       "Kedua-dua pelabuhan mempunyai fungsi yang sama sepenuhnya tanpa sebarang perbezaan",
@@ -19065,7 +19748,8 @@ export const quizzes: QuizQuestion[] = [
       "Pelabuhan Singapura tidak mengendalikan sebarang kontena",
     ],
     answerIndex: 0,
-    explanation: "Pelabuhan Jawaharlal lebih tertumpu kepada keperluan domestik India dengan mengendalikan 55% jumlah kontena negara, manakala Pelabuhan Singapura berfungsi sebagai hab transit serantau strategik dengan kapasiti tinggi untuk menampung kira-kira 1000 kapal kontena serentak.",
+    explanation:
+      "Pelabuhan Jawaharlal lebih tertumpu kepada keperluan domestik India dengan mengendalikan 55% jumlah kontena negara, manakala Pelabuhan Singapura berfungsi sebagai hab transit serantau strategik dengan kapasiti tinggi untuk menampung kira-kira 1000 kapal kontena serentak.",
   },
   {
     id: "geo-f2-c8-q27",
@@ -19073,7 +19757,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Pada pendapat anda, mengapakah kereta api berkelajuan tinggi dianggap pengangkutan yang paling sesuai untuk menghubungkan negara-negara di Asia pada masa hadapan berbanding pengangkutan udara?",
+    question:
+      "Pada pendapat anda, mengapakah kereta api berkelajuan tinggi dianggap pengangkutan yang paling sesuai untuk menghubungkan negara-negara di Asia pada masa hadapan berbanding pengangkutan udara?",
     options: [
       "Kereta api berkelajuan tinggi menawarkan kos operasi yang lebih rendah dalam jangka panjang dan kesan alam sekitar yang lebih rendah berbanding penerbangan jarak pendek-sederhana",
       "Kereta api berkelajuan tinggi tidak memerlukan sebarang infrastruktur untuk beroperasi",
@@ -19081,7 +19766,8 @@ export const quizzes: QuizQuestion[] = [
       "Kereta api berkelajuan tinggi tidak boleh menghubungkan negara yang berbeza",
     ],
     answerIndex: 0,
-    explanation: "Kereta api berkelajuan tinggi sering dianggap lebih sesuai untuk jarak sederhana antara negara berdekatan kerana kos operasi jangka panjang yang lebih rendah dan kesan alam sekitar yang lebih rendah berbanding penerbangan jarak pendek-sederhana, walaupun jawapan murid perlu disokong dengan alasan yang logik.",
+    explanation:
+      "Kereta api berkelajuan tinggi sering dianggap lebih sesuai untuk jarak sederhana antara negara berdekatan kerana kos operasi jangka panjang yang lebih rendah dan kesan alam sekitar yang lebih rendah berbanding penerbangan jarak pendek-sederhana, walaupun jawapan murid perlu disokong dengan alasan yang logik.",
   },
   {
     id: "geo-f2-c8-q28",
@@ -19089,7 +19775,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Bagaimanakah kemajuan pengangkutan di Asia menyumbang kepada pertukaran mata wang asing sesebuah negara?",
+    question:
+      "Bagaimanakah kemajuan pengangkutan di Asia menyumbang kepada pertukaran mata wang asing sesebuah negara?",
     options: [
       "Peningkatan jumlah pelancong dan pedagang antarabangsa yang menggunakan kemudahan pengangkutan meningkatkan aliran mata wang asing melalui perbelanjaan dan urusan perdagangan",
       "Pertukaran mata wang asing tidak berkaitan dengan kemajuan pengangkutan",
@@ -19097,7 +19784,8 @@ export const quizzes: QuizQuestion[] = [
       "Pertukaran mata wang asing hanya berlaku melalui bank tanpa kaitan pengangkutan",
     ],
     answerIndex: 0,
-    explanation: "Kemajuan pengangkutan memudahkan kemasukan pelancong dan pedagang antarabangsa, yang secara langsung meningkatkan aliran mata wang asing melalui perbelanjaan pelancongan dan urusan perdagangan antarabangsa.",
+    explanation:
+      "Kemajuan pengangkutan memudahkan kemasukan pelancong dan pedagang antarabangsa, yang secara langsung meningkatkan aliran mata wang asing melalui perbelanjaan pelancongan dan urusan perdagangan antarabangsa.",
   },
   {
     id: "geo-f2-c8-q29",
@@ -19105,7 +19793,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Berdasarkan keseluruhan Bab 8, bagaimanakah hubungan antara jenis pengangkutan, kemajuan teknologi dan kesan terhadap pembangunan serantau di Asia dapat dirumuskan?",
+    question:
+      "Berdasarkan keseluruhan Bab 8, bagaimanakah hubungan antara jenis pengangkutan, kemajuan teknologi dan kesan terhadap pembangunan serantau di Asia dapat dirumuskan?",
     options: [
       "Jenis pengangkutan asas (darat, udara, air) menyediakan rangka asas mobiliti, kemajuan teknologi (Shinkansen, KTX, Maglev) meningkatkan kecekapan rangka tersebut, dan kedua-duanya secara bersama memberi kesan kepada masyarakat, ekonomi dan alam sekitar serantau",
       "Jenis pengangkutan dan kemajuan teknologi tidak mempunyai sebarang kaitan dengan pembangunan serantau",
@@ -19113,7 +19802,8 @@ export const quizzes: QuizQuestion[] = [
       "Kesan terhadap pembangunan serantau hanya bergantung kepada faktor politik, bukan pengangkutan",
     ],
     answerIndex: 0,
-    explanation: "Jenis pengangkutan asas (darat, udara, air) menyediakan rangka mobiliti asas, kemajuan teknologi seperti Shinkansen dan KTX meningkatkan kecekapan rangka tersebut, dan secara bersama kedua-duanya memberi kesan menyeluruh kepada masyarakat, ekonomi dan alam sekitar di rantau Asia.",
+    explanation:
+      "Jenis pengangkutan asas (darat, udara, air) menyediakan rangka mobiliti asas, kemajuan teknologi seperti Shinkansen dan KTX meningkatkan kecekapan rangka tersebut, dan secara bersama kedua-duanya memberi kesan menyeluruh kepada masyarakat, ekonomi dan alam sekitar di rantau Asia.",
   },
   {
     id: "geo-f2-c8-q30",
@@ -19121,7 +19811,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Berdasarkan peta jaringan landasan kereta api, lapangan terbang dan pelabuhan utama Asia, apakah ciri umum yang dapat diperhatikan tentang lokasi infrastruktur pengangkutan utama ini?",
+    question:
+      "Berdasarkan peta jaringan landasan kereta api, lapangan terbang dan pelabuhan utama Asia, apakah ciri umum yang dapat diperhatikan tentang lokasi infrastruktur pengangkutan utama ini?",
     options: [
       "Infrastruktur pengangkutan utama sering tertumpu di kawasan berpenduduk padat dan pusat ekonomi utama negara, seperti bandar besar dan kawasan pantai yang strategik untuk perdagangan",
       "Infrastruktur pengangkutan utama sentiasa terletak di kawasan pedalaman yang terpencil",
@@ -19129,7 +19820,8 @@ export const quizzes: QuizQuestion[] = [
       "Semua infrastruktur pengangkutan utama terletak di kawasan beriklim sejuk sahaja",
     ],
     answerIndex: 0,
-    explanation: "Infrastruktur pengangkutan utama seperti landasan kereta api, lapangan terbang dan pelabuhan sering tertumpu di kawasan berpenduduk padat dan pusat ekonomi utama negara, terutamanya bandar besar dan kawasan pantai yang strategik untuk perdagangan dan mobiliti penduduk.",
+    explanation:
+      "Infrastruktur pengangkutan utama seperti landasan kereta api, lapangan terbang dan pelabuhan sering tertumpu di kawasan berpenduduk padat dan pusat ekonomi utama negara, terutamanya bandar besar dan kawasan pantai yang strategik untuk perdagangan dan mobiliti penduduk.",
   },
   {
     id: "geo-f2-c9-q1",
@@ -19145,7 +19837,8 @@ export const quizzes: QuizQuestion[] = [
       "Pengurangan gas rumah hijau di atmosfera",
     ],
     answerIndex: 0,
-    explanation: "Pemanasan global ialah peningkatan suhu atmosfera bumi secara berterusan akibat daripada kesan rumah hijau yang melibatkan pertambahan gas karbon dioksida, CFC dan bahan pencemar lain.",
+    explanation:
+      "Pemanasan global ialah peningkatan suhu atmosfera bumi secara berterusan akibat daripada kesan rumah hijau yang melibatkan pertambahan gas karbon dioksida, CFC dan bahan pencemar lain.",
   },
   {
     id: "geo-f2-c9-q2",
@@ -19153,10 +19846,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Easy",
-    question: "Manakah antara berikut adalah dua gas rumah hijau utama yang disebut dalam maksud pemanasan global?",
-    options: ["Karbon dioksida dan CFC", "Oksigen dan hidrogen", "Nitrogen dan argon", "Wap air dan ozon sahaja"],
+    question:
+      "Manakah antara berikut adalah dua gas rumah hijau utama yang disebut dalam maksud pemanasan global?",
+    options: [
+      "Karbon dioksida dan CFC",
+      "Oksigen dan hidrogen",
+      "Nitrogen dan argon",
+      "Wap air dan ozon sahaja",
+    ],
     answerIndex: 0,
-    explanation: "Pemanasan global melibatkan pertambahan gas karbon dioksida (CO2) dan klorofluorokarbon (CFC) serta bahan pencemar lain di atmosfera.",
+    explanation:
+      "Pemanasan global melibatkan pertambahan gas karbon dioksida (CO2) dan klorofluorokarbon (CFC) serta bahan pencemar lain di atmosfera.",
   },
   {
     id: "geo-f2-c9-q3",
@@ -19167,7 +19867,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Tahun manakah mencatatkan suhu permukaan tertinggi sejak rekod bermula 1980?",
     options: ["2016", "1997", "2010", "1992"],
     answerIndex: 0,
-    explanation: "Tahun 2016 mencatatkan suhu permukaan yang tertinggi sejak penyimpanan rekod bermula tahun 1980, dengan peningkatan kira-kira 1.1°C (Sumber: NASA, 2017).",
+    explanation:
+      "Tahun 2016 mencatatkan suhu permukaan yang tertinggi sejak penyimpanan rekod bermula tahun 1980, dengan peningkatan kira-kira 1.1°C (Sumber: NASA, 2017).",
   },
   {
     id: "geo-f2-c9-q4",
@@ -19175,10 +19876,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Easy",
-    question: "Manakah antara berikut tergolong dalam faktor AKTIVITI MANUSIA yang menyebabkan pemanasan global?",
-    options: ["Penyahutanan (penebangan hutan)", "Letusan gunung berapi", "Kebakaran hutan secara semula jadi", "Penerimaan pancaran matahari berlebihan"],
+    question:
+      "Manakah antara berikut tergolong dalam faktor AKTIVITI MANUSIA yang menyebabkan pemanasan global?",
+    options: [
+      "Penyahutanan (penebangan hutan)",
+      "Letusan gunung berapi",
+      "Kebakaran hutan secara semula jadi",
+      "Penerimaan pancaran matahari berlebihan",
+    ],
     answerIndex: 0,
-    explanation: "Penyahutanan (penebangan hutan secara besar-besaran untuk pertanian, petempatan dan perindustrian) merupakan faktor aktiviti manusia yang menyumbang kepada pemanasan global.",
+    explanation:
+      "Penyahutanan (penebangan hutan secara besar-besaran untuk pertanian, petempatan dan perindustrian) merupakan faktor aktiviti manusia yang menyumbang kepada pemanasan global.",
   },
   {
     id: "geo-f2-c9-q5",
@@ -19186,10 +19894,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Easy",
-    question: "Manakah antara berikut tergolong dalam faktor SEMULA JADI yang menyebabkan pemanasan global?",
-    options: ["Letusan gunung berapi", "Penyahutanan", "Pembakaran bahan api fosil", "Aktiviti perindustrian"],
+    question:
+      "Manakah antara berikut tergolong dalam faktor SEMULA JADI yang menyebabkan pemanasan global?",
+    options: [
+      "Letusan gunung berapi",
+      "Penyahutanan",
+      "Pembakaran bahan api fosil",
+      "Aktiviti perindustrian",
+    ],
     answerIndex: 0,
-    explanation: "Letusan gunung berapi merupakan faktor semula jadi yang menyumbang kepada pemanasan global kerana mengeluarkan banyak debu dan gas seperti SO2 dan CO ke atmosfera.",
+    explanation:
+      "Letusan gunung berapi merupakan faktor semula jadi yang menyumbang kepada pemanasan global kerana mengeluarkan banyak debu dan gas seperti SO2 dan CO ke atmosfera.",
   },
   {
     id: "geo-f2-c9-q6",
@@ -19198,9 +19913,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 9",
     difficulty: "Easy",
     question: "Apakah jenis gas yang dilepaskan oleh aktiviti pertanian dan penternakan?",
-    options: ["Metana dan nitrus oksida", "Karbon dioksida sahaja", "Oksigen dan hidrogen", "Argon dan neon"],
+    options: [
+      "Metana dan nitrus oksida",
+      "Karbon dioksida sahaja",
+      "Oksigen dan hidrogen",
+      "Argon dan neon",
+    ],
     answerIndex: 0,
-    explanation: "Menurut Jadual 9.1, aktiviti pertanian melepaskan gas metana dan nitrus oksida sebagai sumber gas rumah hijau.",
+    explanation:
+      "Menurut Jadual 9.1, aktiviti pertanian melepaskan gas metana dan nitrus oksida sebagai sumber gas rumah hijau.",
   },
   {
     id: "geo-f2-c9-q7",
@@ -19209,9 +19930,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 9",
     difficulty: "Easy",
     question: "Manakah antara berikut adalah KESAN pemanasan global?",
-    options: ["Peningkatan aras laut", "Pembakaran bahan api fosil", "Penyahutanan", "Aktiviti perindustrian"],
+    options: [
+      "Peningkatan aras laut",
+      "Pembakaran bahan api fosil",
+      "Penyahutanan",
+      "Aktiviti perindustrian",
+    ],
     answerIndex: 0,
-    explanation: "Peningkatan aras laut merupakan salah satu KESAN pemanasan global, berbeza dengan pembakaran bahan api fosil, penyahutanan dan perindustrian yang merupakan PUNCA/FAKTOR.",
+    explanation:
+      "Peningkatan aras laut merupakan salah satu KESAN pemanasan global, berbeza dengan pembakaran bahan api fosil, penyahutanan dan perindustrian yang merupakan PUNCA/FAKTOR.",
   },
   {
     id: "geo-f2-c9-q8",
@@ -19219,10 +19946,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Easy",
-    question: "Di manakah contoh sebenar pencairan lapisan ais akibat pemanasan global yang disebut dalam buku teks?",
+    question:
+      "Di manakah contoh sebenar pencairan lapisan ais akibat pemanasan global yang disebut dalam buku teks?",
     options: ["Greenland", "Sahara", "Antartika sahaja", "Kutub Selatan sahaja"],
     answerIndex: 0,
-    explanation: "Buku teks menyatakan contoh pencairan lapisan ais di Greenland sebagai kesan peningkatan aras laut akibat pemanasan global (Sumber: NASA, 2013).",
+    explanation:
+      "Buku teks menyatakan contoh pencairan lapisan ais di Greenland sebagai kesan peningkatan aras laut akibat pemanasan global (Sumber: NASA, 2013).",
   },
   {
     id: "geo-f2-c9-q9",
@@ -19230,10 +19959,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Easy",
-    question: "Negara manakah mengalami banjir besar yang terburuk pada tahun 2010 dan menjejaskan kira-kira 20 juta penduduk?",
+    question:
+      "Negara manakah mengalami banjir besar yang terburuk pada tahun 2010 dan menjejaskan kira-kira 20 juta penduduk?",
     options: ["Pakistan", "India", "China", "Bangladesh"],
     answerIndex: 0,
-    explanation: "Pakistan mengalami kejadian banjir besar yang terburuk pada tahun 2010, menjejaskan kira-kira 20 juta penduduk (Sumber: Encyclopaedia Britannica, 2015).",
+    explanation:
+      "Pakistan mengalami kejadian banjir besar yang terburuk pada tahun 2010, menjejaskan kira-kira 20 juta penduduk (Sumber: Encyclopaedia Britannica, 2015).",
   },
   {
     id: "geo-f2-c9-q10",
@@ -19242,9 +19973,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 9",
     difficulty: "Easy",
     question: "Apakah maksud Amalan 5R?",
-    options: ["Rethink, Repair, Reuse, Reduce, Recycle", "Read, Repeat, Reset, Reduce, Replace", "Reuse, Repair, Refill, Renew, Reset", "Recycle, Repair, Reset, Renew, Read"],
+    options: [
+      "Rethink, Repair, Reuse, Reduce, Recycle",
+      "Read, Repeat, Reset, Reduce, Replace",
+      "Reuse, Repair, Refill, Renew, Reset",
+      "Recycle, Repair, Reset, Renew, Read",
+    ],
     answerIndex: 0,
-    explanation: "Amalan 5R bermaksud Rethink (memikir semula), Repair (membaiki), Reuse (menggunakan semula), Reduce (mengurangkan) dan Recycle (mengitar semula).",
+    explanation:
+      "Amalan 5R bermaksud Rethink (memikir semula), Repair (membaiki), Reuse (menggunakan semula), Reduce (mengurangkan) dan Recycle (mengitar semula).",
   },
   {
     id: "geo-f2-c9-q11",
@@ -19252,7 +19989,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Medium",
-    question: "Berdasarkan Rajah 9.1, bagaimanakah proses penyerapan menyumbang kepada peningkatan suhu bumi?",
+    question:
+      "Berdasarkan Rajah 9.1, bagaimanakah proses penyerapan menyumbang kepada peningkatan suhu bumi?",
     options: [
       "Sebahagian besar haba diserap daripada pancaran matahari dan terperangkap dalam lapisan atmosfera oleh gas rumah hijau",
       "Semua haba dipantulkan semula ke angkasa tanpa diserap",
@@ -19260,7 +19998,8 @@ export const quizzes: QuizQuestion[] = [
       "Proses penyerapan tidak mempunyai kaitan dengan suhu bumi",
     ],
     answerIndex: 0,
-    explanation: "Proses penyerapan menyebabkan sebahagian besar haba daripada pancaran matahari diserap dan terperangkap dalam lapisan atmosfera oleh molekul gas rumah hijau, meningkatkan suhu bumi.",
+    explanation:
+      "Proses penyerapan menyebabkan sebahagian besar haba daripada pancaran matahari diserap dan terperangkap dalam lapisan atmosfera oleh molekul gas rumah hijau, meningkatkan suhu bumi.",
   },
   {
     id: "geo-f2-c9-q12",
@@ -19268,10 +20007,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Medium",
-    question: "Berdasarkan Jadual 9.1, jenis gas apakah yang dilepaskan oleh aktiviti perindustrian?",
-    options: ["Karbon dioksida, nitrogen dioksida dan CFC", "Metana sahaja", "Oksigen dan nitrogen", "Hidrogen dan helium"],
+    question:
+      "Berdasarkan Jadual 9.1, jenis gas apakah yang dilepaskan oleh aktiviti perindustrian?",
+    options: [
+      "Karbon dioksida, nitrogen dioksida dan CFC",
+      "Metana sahaja",
+      "Oksigen dan nitrogen",
+      "Hidrogen dan helium",
+    ],
     answerIndex: 0,
-    explanation: "Aktiviti perindustrian melepaskan karbon dioksida, nitrogen dioksida dan CFC sebagai sumber gas rumah hijau, menurut Jadual 9.1 dalam buku teks.",
+    explanation:
+      "Aktiviti perindustrian melepaskan karbon dioksida, nitrogen dioksida dan CFC sebagai sumber gas rumah hijau, menurut Jadual 9.1 dalam buku teks.",
   },
   {
     id: "geo-f2-c9-q13",
@@ -19287,7 +20033,8 @@ export const quizzes: QuizQuestion[] = [
       "Peningkatan bilangan hujan tahunan secara global",
     ],
     answerIndex: 0,
-    explanation: "Kemerosotan sumber makanan berpunca daripada air laut yang menjadi panas dan mengganggu ekosistem marin, serta banjir yang memusnahkan kawasan pertanian dan menjadikan tanah tandus.",
+    explanation:
+      "Kemerosotan sumber makanan berpunca daripada air laut yang menjadi panas dan mengganggu ekosistem marin, serta banjir yang memusnahkan kawasan pertanian dan menjadikan tanah tandus.",
   },
   {
     id: "geo-f2-c9-q14",
@@ -19295,7 +20042,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Medium",
-    question: "Apakah kesan gelombang panas yang berlaku di Rusia pada tahun 2010-2011, menurut buku teks?",
+    question:
+      "Apakah kesan gelombang panas yang berlaku di Rusia pada tahun 2010-2011, menurut buku teks?",
     options: [
       "Memusnahkan tanaman bijirin dan memberi kesan kepada negara-negara di Afrika Utara",
       "Meningkatkan hasil tanaman bijirin secara mendadak",
@@ -19303,7 +20051,8 @@ export const quizzes: QuizQuestion[] = [
       "Hanya menjejaskan kawasan bandar di Rusia",
     ],
     answerIndex: 0,
-    explanation: "Gelombang panas di Rusia pada tahun 2010-2011 memusnahkan tanaman bijirin dan memberi kesan kepada negara-negara di Afrika Utara (Sumber: BBC News, 2016).",
+    explanation:
+      "Gelombang panas di Rusia pada tahun 2010-2011 memusnahkan tanaman bijirin dan memberi kesan kepada negara-negara di Afrika Utara (Sumber: BBC News, 2016).",
   },
   {
     id: "geo-f2-c9-q15",
@@ -19311,10 +20060,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Medium",
-    question: "Apakah kesan kesihatan yang dikaitkan dengan gelombang haba akibat pemanasan global?",
-    options: ["Strok haba dan dehidrasi", "Selesema biasa", "Kekurangan vitamin C", "Alahan makanan"],
+    question:
+      "Apakah kesan kesihatan yang dikaitkan dengan gelombang haba akibat pemanasan global?",
+    options: [
+      "Strok haba dan dehidrasi",
+      "Selesema biasa",
+      "Kekurangan vitamin C",
+      "Alahan makanan",
+    ],
     answerIndex: 0,
-    explanation: "Gelombang haba berisiko menyebabkan strok haba dan dehidrasi, seperti kes kematian 135 orang di India pada April 2016 akibat cuaca panas melampau.",
+    explanation:
+      "Gelombang haba berisiko menyebabkan strok haba dan dehidrasi, seperti kes kematian 135 orang di India pada April 2016 akibat cuaca panas melampau.",
   },
   {
     id: "geo-f2-c9-q16",
@@ -19330,7 +20086,8 @@ export const quizzes: QuizQuestion[] = [
       "Perjanjian perdagangan bebas antara negara Asia",
     ],
     answerIndex: 0,
-    explanation: "Protokol Kyoto 1997 adalah perjanjian antarabangsa yang mengikat secara langkah jangka panjang cara mengurangkan pencemaran udara di kalangan negara-negara penanda tangan (Sumber: UNFCCC, 2014).",
+    explanation:
+      "Protokol Kyoto 1997 adalah perjanjian antarabangsa yang mengikat secara langkah jangka panjang cara mengurangkan pencemaran udara di kalangan negara-negara penanda tangan (Sumber: UNFCCC, 2014).",
   },
   {
     id: "geo-f2-c9-q17",
@@ -19338,10 +20095,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Medium",
-    question: "Apakah contoh penggunaan tenaga mesra alam untuk mengurangkan kesan pemanasan global?",
-    options: ["Tenaga angin dan suria", "Penggunaan petrol secara meluas", "Pembakaran arang batu", "Penggunaan gas asli secara berlebihan"],
+    question:
+      "Apakah contoh penggunaan tenaga mesra alam untuk mengurangkan kesan pemanasan global?",
+    options: [
+      "Tenaga angin dan suria",
+      "Penggunaan petrol secara meluas",
+      "Pembakaran arang batu",
+      "Penggunaan gas asli secara berlebihan",
+    ],
     answerIndex: 0,
-    explanation: "Penggunaan tenaga mesra alam seperti tenaga angin dan suria dapat menggantikan bahan api fosil seperti petrol dalam usaha mengurangkan kesan pemanasan global.",
+    explanation:
+      "Penggunaan tenaga mesra alam seperti tenaga angin dan suria dapat menggantikan bahan api fosil seperti petrol dalam usaha mengurangkan kesan pemanasan global.",
   },
   {
     id: "geo-f2-c9-q18",
@@ -19349,10 +20113,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Medium",
-    question: "Apakah akta Malaysia yang berkaitan dengan kawalan alam sekitar yang disebut dalam buku teks?",
-    options: ["Akta Kualiti Alam Sekeliling (Pindaan) 2012", "Akta Pendidikan 1996", "Akta Bank Negara 1958", "Akta Pengangkutan Awam Darat"],
+    question:
+      "Apakah akta Malaysia yang berkaitan dengan kawalan alam sekitar yang disebut dalam buku teks?",
+    options: [
+      "Akta Kualiti Alam Sekeliling (Pindaan) 2012",
+      "Akta Pendidikan 1996",
+      "Akta Bank Negara 1958",
+      "Akta Pengangkutan Awam Darat",
+    ],
     answerIndex: 0,
-    explanation: "Akta Kualiti Alam Sekeliling (Pindaan) 2012 merupakan salah satu undang-undang yang dikuatkuasakan untuk mengawal aktiviti yang menyumbang kepada pemanasan global di Malaysia.",
+    explanation:
+      "Akta Kualiti Alam Sekeliling (Pindaan) 2012 merupakan salah satu undang-undang yang dikuatkuasakan untuk mengawal aktiviti yang menyumbang kepada pemanasan global di Malaysia.",
   },
   {
     id: "geo-f2-c9-q19",
@@ -19368,7 +20139,8 @@ export const quizzes: QuizQuestion[] = [
       "Tidak memberi sebarang kesan kepada kesedaran masyarakat",
     ],
     answerIndex: 0,
-    explanation: "Pendidikan alam sekitar yang diserap di peringkat sekolah dan komuniti dapat meningkatkan kesedaran awam tentang isu pemanasan global secara jangka panjang.",
+    explanation:
+      "Pendidikan alam sekitar yang diserap di peringkat sekolah dan komuniti dapat meningkatkan kesedaran awam tentang isu pemanasan global secara jangka panjang.",
   },
   {
     id: "geo-f2-c9-q20",
@@ -19376,7 +20148,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Medium",
-    question: "Berdasarkan graf peningkatan suhu global, apakah maksud peningkatan suhu kira-kira 1.1°C pada tahun 2016 berbanding tahun 1980?",
+    question:
+      "Berdasarkan graf peningkatan suhu global, apakah maksud peningkatan suhu kira-kira 1.1°C pada tahun 2016 berbanding tahun 1980?",
     options: [
       "Suhu purata permukaan bumi pada tahun 2016 adalah lebih panas kira-kira 1.1°C berbanding suhu rekod yang bermula pada tahun 1980",
       "Suhu bumi menurun sebanyak 1.1°C dari tahun 1980 ke 2016",
@@ -19384,7 +20157,8 @@ export const quizzes: QuizQuestion[] = [
       "Peningkatan 1.1°C hanya berlaku di kawasan kutub sahaja",
     ],
     answerIndex: 0,
-    explanation: "Peningkatan suhu kira-kira 1.1°C menunjukkan suhu purata permukaan bumi pada tahun 2016 adalah lebih panas berbanding rekod suhu yang bermula pada tahun 1980, mengesahkan trend pemanasan global.",
+    explanation:
+      "Peningkatan suhu kira-kira 1.1°C menunjukkan suhu purata permukaan bumi pada tahun 2016 adalah lebih panas berbanding rekod suhu yang bermula pada tahun 1980, mengesahkan trend pemanasan global.",
   },
   {
     id: "geo-f2-c9-q21",
@@ -19392,7 +20166,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Hard",
-    question: "Mengapakah kesan rumah hijau dan pemanasan global sering dikelirukan oleh murid, walaupun kedua-duanya adalah konsep yang berbeza?",
+    question:
+      "Mengapakah kesan rumah hijau dan pemanasan global sering dikelirukan oleh murid, walaupun kedua-duanya adalah konsep yang berbeza?",
     options: [
       "Kesan rumah hijau ialah proses semula jadi yang sememangnya wujud, manakala pemanasan global adalah kesan apabila kesan rumah hijau menjadi berlebihan akibat aktiviti manusia",
       "Kedua-dua konsep ini sebenarnya sama dan boleh ditukar ganti sepenuhnya",
@@ -19400,7 +20175,8 @@ export const quizzes: QuizQuestion[] = [
       "Pemanasan global tidak mempunyai kaitan dengan gas rumah hijau",
     ],
     answerIndex: 0,
-    explanation: "Kesan rumah hijau ialah proses semula jadi haba terperangkap dalam atmosfera yang sememangnya diperlukan untuk kehidupan, manakala pemanasan global adalah KESAN apabila proses ini menjadi berlebihan akibat pertambahan gas rumah hijau daripada aktiviti manusia.",
+    explanation:
+      "Kesan rumah hijau ialah proses semula jadi haba terperangkap dalam atmosfera yang sememangnya diperlukan untuk kehidupan, manakala pemanasan global adalah KESAN apabila proses ini menjadi berlebihan akibat pertambahan gas rumah hijau daripada aktiviti manusia.",
   },
   {
     id: "geo-f2-c9-q22",
@@ -19408,7 +20184,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Hard",
-    question: "Berdasarkan Jadual 9.1, mengapakah aktiviti perindustrian dianggap menyumbang lebih banyak jenis gas rumah hijau berbanding aktiviti pertanian?",
+    question:
+      "Berdasarkan Jadual 9.1, mengapakah aktiviti perindustrian dianggap menyumbang lebih banyak jenis gas rumah hijau berbanding aktiviti pertanian?",
     options: [
       "Perindustrian melepaskan pelbagai jenis gas (CO2, NO2, CFC) hasil daripada proses pembakaran dan pengeluaran kimia, manakala pertanian hanya melepaskan metana dan nitrus oksida",
       "Pertanian melepaskan lebih banyak jenis gas berbanding perindustrian",
@@ -19416,7 +20193,8 @@ export const quizzes: QuizQuestion[] = [
       "Perindustrian tidak melepaskan sebarang gas rumah hijau",
     ],
     answerIndex: 0,
-    explanation: "Menurut Jadual 9.1, aktiviti perindustrian melepaskan tiga jenis gas (karbon dioksida, nitrogen dioksida dan CFC) hasil proses pembakaran dan pengeluaran kimia yang kompleks, berbanding pertanian yang hanya melepaskan metana dan nitrus oksida.",
+    explanation:
+      "Menurut Jadual 9.1, aktiviti perindustrian melepaskan tiga jenis gas (karbon dioksida, nitrogen dioksida dan CFC) hasil proses pembakaran dan pengeluaran kimia yang kompleks, berbanding pertanian yang hanya melepaskan metana dan nitrus oksida.",
   },
   {
     id: "geo-f2-c9-q23",
@@ -19424,7 +20202,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Hard",
-    question: "Bagaimanakah peningkatan aras laut akibat pencairan ais di kutub dapat membawa kepada kesan berganda terhadap kemerosotan sumber makanan?",
+    question:
+      "Bagaimanakah peningkatan aras laut akibat pencairan ais di kutub dapat membawa kepada kesan berganda terhadap kemerosotan sumber makanan?",
     options: [
       "Peningkatan aras laut menyebabkan banjir yang memusnahkan kawasan pertanian pantai dan menjadikan tanah tandus, secara langsung mengurangkan pengeluaran makanan",
       "Peningkatan aras laut tidak mempunyai sebarang kaitan dengan sumber makanan",
@@ -19432,7 +20211,8 @@ export const quizzes: QuizQuestion[] = [
       "Peningkatan aras laut secara automatik meningkatkan hasil pertanian",
     ],
     answerIndex: 0,
-    explanation: "Peningkatan aras laut akibat pencairan ais di kutub dapat menyebabkan banjir di kawasan pantai yang memusnahkan kawasan pertanian dan menjadikan tanah tandus serta tidak sesuai untuk pertanian, secara langsung menyumbang kepada kemerosotan sumber makanan.",
+    explanation:
+      "Peningkatan aras laut akibat pencairan ais di kutub dapat menyebabkan banjir di kawasan pantai yang memusnahkan kawasan pertanian dan menjadikan tanah tandus serta tidak sesuai untuk pertanian, secara langsung menyumbang kepada kemerosotan sumber makanan.",
   },
   {
     id: "geo-f2-c9-q24",
@@ -19440,7 +20220,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Hard",
-    question: "Mengapakah kerjasama antarabangsa seperti Protokol Kyoto dan Persidangan Paris dianggap penting berbanding langkah individu sahaja dalam menangani pemanasan global?",
+    question:
+      "Mengapakah kerjasama antarabangsa seperti Protokol Kyoto dan Persidangan Paris dianggap penting berbanding langkah individu sahaja dalam menangani pemanasan global?",
     options: [
       "Pemanasan global adalah isu sejagat yang memerlukan komitmen serentak daripada banyak negara untuk mengurangkan pelepasan gas rumah hijau secara berkesan, kerana usaha satu negara sahaja tidak mencukupi",
       "Langkah individu sebenarnya lebih berkesan berbanding kerjasama antarabangsa",
@@ -19448,7 +20229,8 @@ export const quizzes: QuizQuestion[] = [
       "Pemanasan global hanya menjejaskan satu negara pada satu masa",
     ],
     answerIndex: 0,
-    explanation: "Pemanasan global adalah isu sejagat yang melibatkan pelepasan gas rumah hijau daripada seluruh dunia, justeru memerlukan komitmen serentak melalui kerjasama antarabangsa seperti Protokol Kyoto dan Persidangan Paris untuk hasil yang berkesan, berbanding usaha satu negara atau individu sahaja.",
+    explanation:
+      "Pemanasan global adalah isu sejagat yang melibatkan pelepasan gas rumah hijau daripada seluruh dunia, justeru memerlukan komitmen serentak melalui kerjasama antarabangsa seperti Protokol Kyoto dan Persidangan Paris untuk hasil yang berkesan, berbanding usaha satu negara atau individu sahaja.",
   },
   {
     id: "geo-f2-c9-q25",
@@ -19456,7 +20238,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Hard",
-    question: "Berdasarkan kajian kes banjir besar Pakistan 2010, bagaimanakah satu kejadian gangguan cuaca boleh memberi kesan berganda kepada masyarakat?",
+    question:
+      "Berdasarkan kajian kes banjir besar Pakistan 2010, bagaimanakah satu kejadian gangguan cuaca boleh memberi kesan berganda kepada masyarakat?",
     options: [
       "Banjir besar tidak hanya menjejaskan nyawa dan harta benda secara langsung, tetapi juga memusnahkan kawasan pertanian dan infrastruktur, menjejaskan kira-kira 20 juta penduduk secara meluas",
       "Banjir hanya memberi kesan kepada satu aspek kehidupan sahaja",
@@ -19464,7 +20247,8 @@ export const quizzes: QuizQuestion[] = [
       "Banjir besar hanya menjejaskan kawasan bandar, tidak luar bandar",
     ],
     answerIndex: 0,
-    explanation: "Banjir besar Pakistan 2010 menunjukkan kesan berganda — selain mengancam nyawa secara langsung, ia juga memusnahkan kawasan pertanian dan infrastruktur, menyebabkan kira-kira 20 juta penduduk terjejas secara meluas dari segi sosial dan ekonomi.",
+    explanation:
+      "Banjir besar Pakistan 2010 menunjukkan kesan berganda — selain mengancam nyawa secara langsung, ia juga memusnahkan kawasan pertanian dan infrastruktur, menyebabkan kira-kira 20 juta penduduk terjejas secara meluas dari segi sosial dan ekonomi.",
   },
   {
     id: "geo-f2-c9-q26",
@@ -19472,7 +20256,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Hard",
-    question: "Pada pendapat anda, mengapakah Amalan 5R dianggap sebagai langkah paling mudah dilaksanakan oleh individu berbanding kerjasama antarabangsa?",
+    question:
+      "Pada pendapat anda, mengapakah Amalan 5R dianggap sebagai langkah paling mudah dilaksanakan oleh individu berbanding kerjasama antarabangsa?",
     options: [
       "Amalan 5R boleh dipraktikkan secara harian oleh setiap individu tanpa memerlukan kuasa membuat dasar negara atau perjanjian antara kerajaan",
       "Amalan 5R memerlukan kelulusan daripada PBB sebelum dilaksanakan",
@@ -19480,7 +20265,8 @@ export const quizzes: QuizQuestion[] = [
       "Amalan 5R tidak memberi sebarang kesan terhadap pemanasan global",
     ],
     answerIndex: 0,
-    explanation: "Amalan 5R (Rethink, Repair, Reuse, Reduce, Recycle) boleh dipraktikkan secara harian oleh setiap individu dalam kehidupan seharian tanpa memerlukan kuasa membuat dasar negara, berbeza dengan kerjasama antarabangsa yang memerlukan perjanjian formal antara kerajaan.",
+    explanation:
+      "Amalan 5R (Rethink, Repair, Reuse, Reduce, Recycle) boleh dipraktikkan secara harian oleh setiap individu dalam kehidupan seharian tanpa memerlukan kuasa membuat dasar negara, berbeza dengan kerjasama antarabangsa yang memerlukan perjanjian formal antara kerajaan.",
   },
   {
     id: "geo-f2-c9-q27",
@@ -19488,7 +20274,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Hard",
-    question: "Bagaimanakah penguatkuasaan undang-undang seperti Akta Perhutanan Negara 1984 dapat mengurangkan kesan pemanasan global secara tidak langsung?",
+    question:
+      "Bagaimanakah penguatkuasaan undang-undang seperti Akta Perhutanan Negara 1984 dapat mengurangkan kesan pemanasan global secara tidak langsung?",
     options: [
       "Mengawal aktiviti penebangan hutan secara haram, sekali gus mengekalkan kawasan hutan yang berfungsi menyerap karbon dioksida",
       "Akta tersebut tidak mempunyai kaitan dengan pemanasan global",
@@ -19496,7 +20283,8 @@ export const quizzes: QuizQuestion[] = [
       "Akta tersebut menggalakkan penebangan hutan secara meluas",
     ],
     answerIndex: 0,
-    explanation: "Akta Perhutanan Negara 1984 mengawal aktiviti penebangan hutan secara haram, membantu mengekalkan kawasan hutan yang berfungsi sebagai penyerap karbon dioksida semula jadi, secara tidak langsung mengurangkan kesan pemanasan global.",
+    explanation:
+      "Akta Perhutanan Negara 1984 mengawal aktiviti penebangan hutan secara haram, membantu mengekalkan kawasan hutan yang berfungsi sebagai penyerap karbon dioksida semula jadi, secara tidak langsung mengurangkan kesan pemanasan global.",
   },
   {
     id: "geo-f2-c9-q28",
@@ -19504,7 +20292,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Hard",
-    question: "Berdasarkan keseluruhan Bab 9, bagaimanakah hubungan antara punca, proses dan kesan pemanasan global dapat dirumuskan secara KBAT?",
+    question:
+      "Berdasarkan keseluruhan Bab 9, bagaimanakah hubungan antara punca, proses dan kesan pemanasan global dapat dirumuskan secara KBAT?",
     options: [
       "Aktiviti manusia dan semula jadi melepaskan gas rumah hijau yang terperangkap dalam atmosfera (proses kesan rumah hijau berlebihan), menyebabkan peningkatan suhu bumi (pemanasan global) yang seterusnya membawa kepada kesan seperti peningkatan aras laut dan gangguan cuaca",
       "Punca, proses dan kesan pemanasan global tidak mempunyai sebarang hubungan logik",
@@ -19512,7 +20301,8 @@ export const quizzes: QuizQuestion[] = [
       "Proses kesan rumah hijau hanya berlaku selepas kesan pemanasan global muncul",
     ],
     answerIndex: 0,
-    explanation: "Rangkaian logik Bab 9: aktiviti manusia dan semula jadi (PUNCA) melepaskan gas rumah hijau yang terperangkap dalam atmosfera (PROSES kesan rumah hijau berlebihan), menyebabkan peningkatan suhu bumi (PEMANASAN GLOBAL), yang seterusnya membawa kepada KESAN seperti peningkatan aras laut, gangguan cuaca, kemerosotan sumber makanan dan masalah kesihatan.",
+    explanation:
+      "Rangkaian logik Bab 9: aktiviti manusia dan semula jadi (PUNCA) melepaskan gas rumah hijau yang terperangkap dalam atmosfera (PROSES kesan rumah hijau berlebihan), menyebabkan peningkatan suhu bumi (PEMANASAN GLOBAL), yang seterusnya membawa kepada KESAN seperti peningkatan aras laut, gangguan cuaca, kemerosotan sumber makanan dan masalah kesihatan.",
   },
   {
     id: "geo-f2-c9-q29",
@@ -19520,7 +20310,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Hard",
-    question: "Mengapakah negara membangun seperti yang terjejas dalam gelombang panas Afrika Utara (2010-2011) lebih terdedah kepada kesan pemanasan global berbanding negara maju?",
+    question:
+      "Mengapakah negara membangun seperti yang terjejas dalam gelombang panas Afrika Utara (2010-2011) lebih terdedah kepada kesan pemanasan global berbanding negara maju?",
     options: [
       "Negara membangun sering mempunyai kapasiti kewangan dan teknologi yang terhad untuk menyesuaikan diri atau pulih daripada bencana berkaitan iklim",
       "Negara membangun tidak terjejas oleh pemanasan global sama sekali",
@@ -19528,7 +20319,8 @@ export const quizzes: QuizQuestion[] = [
       "Kesan pemanasan global hanya tertumpu di negara tropika",
     ],
     answerIndex: 0,
-    explanation: "Negara membangun seperti di Afrika Utara sering mempunyai kapasiti kewangan dan teknologi yang terhad untuk menyesuaikan diri atau pulih dengan pantas daripada bencana berkaitan iklim seperti kemusnahan tanaman akibat gelombang panas, menjadikan mereka lebih terdedah kepada kesan jangka panjang berbanding negara maju.",
+    explanation:
+      "Negara membangun seperti di Afrika Utara sering mempunyai kapasiti kewangan dan teknologi yang terhad untuk menyesuaikan diri atau pulih dengan pantas daripada bencana berkaitan iklim seperti kemusnahan tanaman akibat gelombang panas, menjadikan mereka lebih terdedah kepada kesan jangka panjang berbanding negara maju.",
   },
   {
     id: "geo-f2-c9-q30",
@@ -19536,7 +20328,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 9",
     difficulty: "Hard",
-    question: "Adakah kesan pemanasan global dialami di Malaysia? Berdasarkan konsep yang dipelajari, apakah justifikasi yang paling tepat?",
+    question:
+      "Adakah kesan pemanasan global dialami di Malaysia? Berdasarkan konsep yang dipelajari, apakah justifikasi yang paling tepat?",
     options: [
       "Ya, kerana Malaysia juga terdedah kepada gangguan cuaca seperti banjir kilat dan peningkatan suhu yang merupakan kesan global, bukan terhad kepada satu negara sahaja",
       "Tidak, kerana pemanasan global hanya berlaku di kawasan kutub",
@@ -19544,7 +20337,8 @@ export const quizzes: QuizQuestion[] = [
       "Ya, tetapi hanya kesan positif tanpa sebarang kesan negatif",
     ],
     answerIndex: 0,
-    explanation: "Pemanasan global adalah isu global yang memberi kesan kepada semua negara termasuk Malaysia, seperti peningkatan suhu, gangguan cuaca (banjir kilat, ribut) dan potensi kesan kesihatan, kerana atmosfera bumi adalah sistem bersepadu tanpa sempadan negara.",
+    explanation:
+      "Pemanasan global adalah isu global yang memberi kesan kepada semua negara termasuk Malaysia, seperti peningkatan suhu, gangguan cuaca (banjir kilat, ribut) dan potensi kesan kesihatan, kerana atmosfera bumi adalah sistem bersepadu tanpa sempadan negara.",
   },
   {
     id: "geo-f2-c10-q1",
@@ -19560,7 +20354,8 @@ export const quizzes: QuizQuestion[] = [
       "Teknologi yang tidak memerlukan sumber tenaga untuk berfungsi",
     ],
     answerIndex: 0,
-    explanation: "Teknologi hijau merujuk pembangunan produk, peralatan dan sistem untuk memelihara dan memulihara alam sekitar serta sumber semula jadi.",
+    explanation:
+      "Teknologi hijau merujuk pembangunan produk, peralatan dan sistem untuk memelihara dan memulihara alam sekitar serta sumber semula jadi.",
   },
   {
     id: "geo-f2-c10-q2",
@@ -19569,9 +20364,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 10",
     difficulty: "Easy",
     question: "Manakah antara berikut adalah salah satu matlamat teknologi hijau?",
-    options: ["Melindungi ekosistem semula jadi", "Meningkatkan penggunaan bahan api fosil", "Mengurangkan kitar semula", "Meningkatkan pembebasan gas rumah hijau"],
+    options: [
+      "Melindungi ekosistem semula jadi",
+      "Meningkatkan penggunaan bahan api fosil",
+      "Mengurangkan kitar semula",
+      "Meningkatkan pembebasan gas rumah hijau",
+    ],
     answerIndex: 0,
-    explanation: "Salah satu matlamat teknologi hijau adalah melindungi ekosistem semula jadi, selain meningkatkan taraf kesihatan, mengurangkan impak negatif dan menjadi alternatif ekonomi.",
+    explanation:
+      "Salah satu matlamat teknologi hijau adalah melindungi ekosistem semula jadi, selain meningkatkan taraf kesihatan, mengurangkan impak negatif dan menjadi alternatif ekonomi.",
   },
   {
     id: "geo-f2-c10-q3",
@@ -19580,9 +20381,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 10",
     difficulty: "Easy",
     question: "Manakah antara berikut BUKAN ciri produk teknologi hijau?",
-    options: ["Kadar pembebasan gas rumah hijau yang tinggi", "Boleh dikitar semula", "Menjimatkan tenaga", "Selamat digunakan"],
+    options: [
+      "Kadar pembebasan gas rumah hijau yang tinggi",
+      "Boleh dikitar semula",
+      "Menjimatkan tenaga",
+      "Selamat digunakan",
+    ],
     answerIndex: 0,
-    explanation: "Produk teknologi hijau mempunyai kadar pembebasan gas rumah hijau yang RENDAH atau tiada, bukan tinggi.",
+    explanation:
+      "Produk teknologi hijau mempunyai kadar pembebasan gas rumah hijau yang RENDAH atau tiada, bukan tinggi.",
   },
   {
     id: "geo-f2-c10-q4",
@@ -19590,10 +20397,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Easy",
-    question: "Berapakah jumlah teras utama yang digunakan untuk mengkategorikan produk teknologi hijau?",
+    question:
+      "Berapakah jumlah teras utama yang digunakan untuk mengkategorikan produk teknologi hijau?",
     options: ["4 teras", "2 teras", "6 teras", "8 teras"],
     answerIndex: 0,
-    explanation: "Produk teknologi hijau dibahagikan kepada empat teras utama, iaitu tenaga, ekonomi, alam sekitar dan sosial.",
+    explanation:
+      "Produk teknologi hijau dibahagikan kepada empat teras utama, iaitu tenaga, ekonomi, alam sekitar dan sosial.",
   },
   {
     id: "geo-f2-c10-q5",
@@ -19604,7 +20413,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Manakah antara berikut adalah contoh teknologi hijau dalam teras TENAGA?",
     options: ["Kereta hibrid", "Industri fotovolta", "Baja kompos", "Pengangkutan awam"],
     answerIndex: 0,
-    explanation: "Kereta hibrid, biodiesel, kereta elektrik dan kenderaan gas asli (NGV) tergolong dalam teras tenaga teknologi hijau.",
+    explanation:
+      "Kereta hibrid, biodiesel, kereta elektrik dan kenderaan gas asli (NGV) tergolong dalam teras tenaga teknologi hijau.",
   },
   {
     id: "geo-f2-c10-q6",
@@ -19615,7 +20425,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Manakah antara berikut adalah contoh teknologi hijau dalam teras EKONOMI?",
     options: ["Industri fotovolta", "Kereta elektrik", "Baja kompos", "Bekas makanan mesra alam"],
     answerIndex: 0,
-    explanation: "Industri fotovolta tergolong dalam teras ekonomi kerana meningkatkan pembangunan ekonomi negara melalui penggunaan teknologi canggih.",
+    explanation:
+      "Industri fotovolta tergolong dalam teras ekonomi kerana meningkatkan pembangunan ekonomi negara melalui penggunaan teknologi canggih.",
   },
   {
     id: "geo-f2-c10-q7",
@@ -19624,7 +20435,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 10",
     difficulty: "Easy",
     question: "Apakah maksud biodegradasi?",
-    options: ["Proses pereputan bahan organik secara semula jadi", "Proses pembuatan bahan plastik", "Proses pembakaran sisa pepejal", "Proses penjanaan tenaga elektrik"],
+    options: [
+      "Proses pereputan bahan organik secara semula jadi",
+      "Proses pembuatan bahan plastik",
+      "Proses pembakaran sisa pepejal",
+      "Proses penjanaan tenaga elektrik",
+    ],
     answerIndex: 0,
     explanation: "Biodegradasi ialah proses pereputan bahan organik secara semula jadi.",
   },
@@ -19642,7 +20458,8 @@ export const quizzes: QuizQuestion[] = [
       "Sistem perparitan untuk kawasan bandar",
     ],
     answerIndex: 0,
-    explanation: "Fotovolta ialah sel yang terdapat dalam panel tenaga suria yang berfungsi menukar cahaya matahari kepada tenaga elektrik dan tidak memerlukan bateri secara berasingan.",
+    explanation:
+      "Fotovolta ialah sel yang terdapat dalam panel tenaga suria yang berfungsi menukar cahaya matahari kepada tenaga elektrik dan tidak memerlukan bateri secara berasingan.",
   },
   {
     id: "geo-f2-c10-q9",
@@ -19651,9 +20468,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 10",
     difficulty: "Easy",
     question: "Apakah bangunan hijau yang disebut dalam buku teks terletak di Putrajaya?",
-    options: ["Bangunan Berlian Suruhanjaya Tenaga Malaysia", "Menara Kuala Lumpur", "Stadium Bukit Jalil", "Istana Negara"],
+    options: [
+      "Bangunan Berlian Suruhanjaya Tenaga Malaysia",
+      "Menara Kuala Lumpur",
+      "Stadium Bukit Jalil",
+      "Istana Negara",
+    ],
     answerIndex: 0,
-    explanation: "Bangunan Berlian Suruhanjaya Tenaga Malaysia di Putrajaya merupakan contoh bangunan hijau yang disebut dalam buku teks.",
+    explanation:
+      "Bangunan Berlian Suruhanjaya Tenaga Malaysia di Putrajaya merupakan contoh bangunan hijau yang disebut dalam buku teks.",
   },
   {
     id: "geo-f2-c10-q10",
@@ -19661,10 +20484,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Easy",
-    question: "Berapakah suhu penyaman udara minimum yang disyorkan dalam amalan penjimatan tenaga?",
+    question:
+      "Berapakah suhu penyaman udara minimum yang disyorkan dalam amalan penjimatan tenaga?",
     options: ["24°C", "18°C", "30°C", "16°C"],
     answerIndex: 0,
-    explanation: "Salah satu amalan penjimatan tenaga ialah menetapkan suhu penyaman udara minimum pada 24°C.",
+    explanation:
+      "Salah satu amalan penjimatan tenaga ialah menetapkan suhu penyaman udara minimum pada 24°C.",
   },
   {
     id: "geo-f2-c10-q11",
@@ -19680,7 +20505,8 @@ export const quizzes: QuizQuestion[] = [
       "Pembangunan lestari hanya tertumpu kepada keperluan semasa sahaja",
     ],
     answerIndex: 0,
-    explanation: "Konsep pembangunan lestari memastikan keperluan semasa dipenuhi tanpa menjejaskan keperluan generasi masa depan, selaras dengan tanggungjawab memastikan generasi akan datang dapat menikmati kualiti hidup yang sama atau lebih baik.",
+    explanation:
+      "Konsep pembangunan lestari memastikan keperluan semasa dipenuhi tanpa menjejaskan keperluan generasi masa depan, selaras dengan tanggungjawab memastikan generasi akan datang dapat menikmati kualiti hidup yang sama atau lebih baik.",
   },
   {
     id: "geo-f2-c10-q12",
@@ -19688,7 +20514,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Medium",
-    question: "Berdasarkan teras teknologi hijau, mengapakah bekas makanan mesra alam dan pengangkutan awam dikategorikan dalam teras SOSIAL?",
+    question:
+      "Berdasarkan teras teknologi hijau, mengapakah bekas makanan mesra alam dan pengangkutan awam dikategorikan dalam teras SOSIAL?",
     options: [
       "Kedua-duanya mempertingkatkan kualiti hidup rakyat secara langsung dalam kehidupan harian",
       "Kedua-duanya menyumbang terus kepada KDNK negara",
@@ -19696,7 +20523,8 @@ export const quizzes: QuizQuestion[] = [
       "Kedua-duanya tidak mempunyai kaitan dengan alam sekitar",
     ],
     answerIndex: 0,
-    explanation: "Bekas makanan mesra alam dan pengangkutan awam dikategorikan dalam teras sosial kerana kedua-duanya mempertingkatkan kualiti hidup rakyat secara langsung dalam kehidupan harian.",
+    explanation:
+      "Bekas makanan mesra alam dan pengangkutan awam dikategorikan dalam teras sosial kerana kedua-duanya mempertingkatkan kualiti hidup rakyat secara langsung dalam kehidupan harian.",
   },
   {
     id: "geo-f2-c10-q13",
@@ -19704,7 +20532,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Medium",
-    question: "Apakah kepentingan ekonomi penggunaan teknologi hijau yang dinyatakan dalam buku teks?",
+    question:
+      "Apakah kepentingan ekonomi penggunaan teknologi hijau yang dinyatakan dalam buku teks?",
     options: [
       "Mengurangkan kos operasi dan meningkatkan nilai aset serta keuntungan",
       "Meningkatkan kos operasi secara berterusan",
@@ -19712,7 +20541,8 @@ export const quizzes: QuizQuestion[] = [
       "Menghadkan peluang mengeksport produk",
     ],
     answerIndex: 0,
-    explanation: "Kepentingan ekonomi teknologi hijau termasuk mengurangkan kos operasi, meningkatkan nilai aset dan keuntungan, meningkatkan produktiviti dan kepuasan pekerja, serta meneroka peluang mengeksport produk.",
+    explanation:
+      "Kepentingan ekonomi teknologi hijau termasuk mengurangkan kos operasi, meningkatkan nilai aset dan keuntungan, meningkatkan produktiviti dan kepuasan pekerja, serta meneroka peluang mengeksport produk.",
   },
   {
     id: "geo-f2-c10-q14",
@@ -19720,10 +20550,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Medium",
-    question: "Berapakah peratus pengurangan intensiti karbon yang dicapai Malaysia sehingga tahun 2013, dan apakah sasaran menjelang 2020?",
-    options: ["Lebih 23%; sasaran 40% menjelang 2020", "Lebih 50%; sasaran 70% menjelang 2020", "Lebih 10%; sasaran 20% menjelang 2020", "Lebih 5%; sasaran 15% menjelang 2020"],
+    question:
+      "Berapakah peratus pengurangan intensiti karbon yang dicapai Malaysia sehingga tahun 2013, dan apakah sasaran menjelang 2020?",
+    options: [
+      "Lebih 23%; sasaran 40% menjelang 2020",
+      "Lebih 50%; sasaran 70% menjelang 2020",
+      "Lebih 10%; sasaran 20% menjelang 2020",
+      "Lebih 5%; sasaran 15% menjelang 2020",
+    ],
     answerIndex: 0,
-    explanation: "Sehingga tahun 2013, Malaysia berjaya mengurangkan intensiti karbon lebih daripada 23 peratus, dengan sasaran menurunkan lagi intensiti karbon sehingga 40 peratus menjelang tahun 2020.",
+    explanation:
+      "Sehingga tahun 2013, Malaysia berjaya mengurangkan intensiti karbon lebih daripada 23 peratus, dengan sasaran menurunkan lagi intensiti karbon sehingga 40 peratus menjelang tahun 2020.",
   },
   {
     id: "geo-f2-c10-q15",
@@ -19739,7 +20576,8 @@ export const quizzes: QuizQuestion[] = [
       "Bangunan yang khusus untuk penyimpanan bahan kimia",
     ],
     answerIndex: 0,
-    explanation: "Bangunan PTM adalah bangunan berkonsepkan penggunaan tenaga yang rendah, mesra alam dan dilengkapi sistem bersepadu fotovolta (BIPV).",
+    explanation:
+      "Bangunan PTM adalah bangunan berkonsepkan penggunaan tenaga yang rendah, mesra alam dan dilengkapi sistem bersepadu fotovolta (BIPV).",
   },
   {
     id: "geo-f2-c10-q16",
@@ -19755,7 +20593,8 @@ export const quizzes: QuizQuestion[] = [
       "Amalan membeli kenderaan baharu setiap tahun",
     ],
     answerIndex: 0,
-    explanation: "Park and ride ialah amalan pengangkutan jenis perkongsian untuk mengurangkan kesesakan jalan raya, salah satu amalan teknologi hijau dalam aspek pengangkutan.",
+    explanation:
+      "Park and ride ialah amalan pengangkutan jenis perkongsian untuk mengurangkan kesesakan jalan raya, salah satu amalan teknologi hijau dalam aspek pengangkutan.",
   },
   {
     id: "geo-f2-c10-q17",
@@ -19771,7 +20610,8 @@ export const quizzes: QuizQuestion[] = [
       "Memulihara bermaksud memusnahkan sumber semula jadi",
     ],
     answerIndex: 0,
-    explanation: "Memelihara bermaksud menjaga dengan baik dan melindungi, manakala memulihara bermaksud memulihkan serta menjaga dengan rapi — kedua-dua konsep berbeza tetapi berkaitan dalam usaha menjaga alam sekitar.",
+    explanation:
+      "Memelihara bermaksud menjaga dengan baik dan melindungi, manakala memulihara bermaksud memulihkan serta menjaga dengan rapi — kedua-dua konsep berbeza tetapi berkaitan dalam usaha menjaga alam sekitar.",
   },
   {
     id: "geo-f2-c10-q18",
@@ -19787,7 +20627,8 @@ export const quizzes: QuizQuestion[] = [
       "Mengawal harga barangan import di Malaysia",
     ],
     answerIndex: 0,
-    explanation: "MyHijau mempromosikan semua produk dan perkhidmatan yang mempunyai ciri-ciri mesra alam yang telah ditetapkan oleh Kementerian Tenaga, Teknologi Hijau dan Air.",
+    explanation:
+      "MyHijau mempromosikan semua produk dan perkhidmatan yang mempunyai ciri-ciri mesra alam yang telah ditetapkan oleh Kementerian Tenaga, Teknologi Hijau dan Air.",
   },
   {
     id: "geo-f2-c10-q19",
@@ -19803,7 +20644,8 @@ export const quizzes: QuizQuestion[] = [
       "Membuang air sisa terus ke saluran perparitan tanpa rawatan",
     ],
     answerIndex: 0,
-    explanation: "Menadah air hujan untuk digunakan semula bagi mencuci halaman rumah atau menyiram tumbuhan merupakan salah satu amalan penjimatan air berkonsepkan teknologi hijau.",
+    explanation:
+      "Menadah air hujan untuk digunakan semula bagi mencuci halaman rumah atau menyiram tumbuhan merupakan salah satu amalan penjimatan air berkonsepkan teknologi hijau.",
   },
   {
     id: "geo-f2-c10-q20",
@@ -19811,7 +20653,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Medium",
-    question: "Bagaimanakah penjanaan tenaga seperti angin, air dan solar menyumbang kepada matlamat teknologi hijau?",
+    question:
+      "Bagaimanakah penjanaan tenaga seperti angin, air dan solar menyumbang kepada matlamat teknologi hijau?",
     options: [
       "Mengurangkan kebergantungan kepada tenaga yang tidak boleh diperbaharui dan mempromosikan kecekapan guna tenaga negara",
       "Meningkatkan kebergantungan kepada bahan api fosil",
@@ -19819,7 +20662,8 @@ export const quizzes: QuizQuestion[] = [
       "Hanya boleh digunakan di kawasan bandar besar",
     ],
     answerIndex: 0,
-    explanation: "Penjanaan tenaga daripada sumber semula jadi seperti angin, air dan solar mengurangkan kebergantungan kepada tenaga yang tidak boleh diperbaharui dan mempromosikan kecekapan guna tenaga negara yang selamat dan mesra pengguna.",
+    explanation:
+      "Penjanaan tenaga daripada sumber semula jadi seperti angin, air dan solar mengurangkan kebergantungan kepada tenaga yang tidak boleh diperbaharui dan mempromosikan kecekapan guna tenaga negara yang selamat dan mesra pengguna.",
   },
   {
     id: "geo-f2-c10-q21",
@@ -19827,7 +20671,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Hard",
-    question: "Mengapakah ciri 'boleh dikitar semula' dianggap sebagai salah satu kriteria paling penting dalam menentukan sesuatu produk sebagai teknologi hijau?",
+    question:
+      "Mengapakah ciri 'boleh dikitar semula' dianggap sebagai salah satu kriteria paling penting dalam menentukan sesuatu produk sebagai teknologi hijau?",
     options: [
       "Kebolehan dikitar semula secara langsung mengurangkan jumlah sisa pepejal dan permintaan terhadap sumber bahan mentah baharu, menyokong kelestarian jangka panjang",
       "Kebolehan dikitar semula tidak mempunyai kaitan dengan kelestarian alam sekitar",
@@ -19835,7 +20680,8 @@ export const quizzes: QuizQuestion[] = [
       "Kebolehan dikitar semula hanya penting untuk produk plastik sahaja",
     ],
     answerIndex: 0,
-    explanation: "Ciri 'boleh dikitar semula' penting kerana ia secara langsung mengurangkan jumlah sisa pepejal yang dihantar ke tapak pelupusan dan mengurangkan permintaan terhadap sumber bahan mentah baharu, menyokong matlamat kelestarian jangka panjang teknologi hijau.",
+    explanation:
+      "Ciri 'boleh dikitar semula' penting kerana ia secara langsung mengurangkan jumlah sisa pepejal yang dihantar ke tapak pelupusan dan mengurangkan permintaan terhadap sumber bahan mentah baharu, menyokong matlamat kelestarian jangka panjang teknologi hijau.",
   },
   {
     id: "geo-f2-c10-q22",
@@ -19843,7 +20689,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Hard",
-    question: "Berdasarkan empat teras teknologi hijau, bagaimanakah teras EKONOMI dan teras ALAM SEKITAR saling melengkapi dalam konteks pembangunan negara?",
+    question:
+      "Berdasarkan empat teras teknologi hijau, bagaimanakah teras EKONOMI dan teras ALAM SEKITAR saling melengkapi dalam konteks pembangunan negara?",
     options: [
       "Teras ekonomi (seperti industri fotovolta) menjana pendapatan negara sambil menggunakan teknologi yang meminimumkan kesan kepada alam sekitar, mewujudkan pembangunan yang lestari",
       "Kedua-dua teras ini sentiasa bercanggah dan tidak boleh berfungsi serentak",
@@ -19851,7 +20698,8 @@ export const quizzes: QuizQuestion[] = [
       "Teras alam sekitar tidak mempunyai sebarang kaitan dengan pembangunan ekonomi negara",
     ],
     answerIndex: 0,
-    explanation: "Teras ekonomi (seperti industri fotovolta) dan teras alam sekitar saling melengkapi kerana teknologi hijau membolehkan penjanaan pendapatan negara sambil meminimumkan kesan negatif kepada alam sekitar, mewujudkan model pembangunan yang lestari.",
+    explanation:
+      "Teras ekonomi (seperti industri fotovolta) dan teras alam sekitar saling melengkapi kerana teknologi hijau membolehkan penjanaan pendapatan negara sambil meminimumkan kesan negatif kepada alam sekitar, mewujudkan model pembangunan yang lestari.",
   },
   {
     id: "geo-f2-c10-q23",
@@ -19859,7 +20707,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Hard",
-    question: "Mengapakah pengurangan intensiti karbon Malaysia (>23% sehingga 2013, sasaran 40% menjelang 2020) dianggap sebagai komitmen yang signifikan dalam konteks global?",
+    question:
+      "Mengapakah pengurangan intensiti karbon Malaysia (>23% sehingga 2013, sasaran 40% menjelang 2020) dianggap sebagai komitmen yang signifikan dalam konteks global?",
     options: [
       "Ia menunjukkan usaha berterusan dan terukur Malaysia dalam memenuhi komitmen antarabangsa untuk mengurangkan kesan pemanasan global melalui teknologi hijau",
       "Sasaran tersebut tidak mempunyai kaitan dengan komitmen antarabangsa",
@@ -19867,7 +20716,8 @@ export const quizzes: QuizQuestion[] = [
       "Malaysia adalah satu-satunya negara yang menetapkan sasaran sedemikian",
     ],
     answerIndex: 0,
-    explanation: "Pencapaian dan sasaran pengurangan intensiti karbon Malaysia menunjukkan usaha berterusan dan terukur dalam memenuhi komitmen antarabangsa (seperti yang dibentangkan di Sidang Kemuncak Iklim PBB) untuk mengurangkan kesan pemanasan global melalui teknologi hijau.",
+    explanation:
+      "Pencapaian dan sasaran pengurangan intensiti karbon Malaysia menunjukkan usaha berterusan dan terukur dalam memenuhi komitmen antarabangsa (seperti yang dibentangkan di Sidang Kemuncak Iklim PBB) untuk mengurangkan kesan pemanasan global melalui teknologi hijau.",
   },
   {
     id: "geo-f2-c10-q24",
@@ -19875,7 +20725,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Hard",
-    question: "Bagaimanakah amalan teknologi hijau di sekolah seperti penjimatan tenaga dan pengurangan sisa dapat membentuk tabiat lestari jangka panjang dalam kalangan murid?",
+    question:
+      "Bagaimanakah amalan teknologi hijau di sekolah seperti penjimatan tenaga dan pengurangan sisa dapat membentuk tabiat lestari jangka panjang dalam kalangan murid?",
     options: [
       "Amalan harian yang konsisten membentuk kebiasaan yang akan diteruskan oleh murid dalam kehidupan dewasa dan persekitaran kerja kelak",
       "Amalan di sekolah tidak memberi sebarang kesan jangka panjang kepada tabiat murid",
@@ -19883,7 +20734,8 @@ export const quizzes: QuizQuestion[] = [
       "Murid tidak dapat mengaplikasikan amalan tersebut di luar sekolah",
     ],
     answerIndex: 0,
-    explanation: "Amalan teknologi hijau yang konsisten di sekolah seperti penjimatan tenaga dan pengurangan sisa membentuk kebiasaan dan kesedaran yang akan diteruskan oleh murid dalam kehidupan dewasa dan persekitaran kerja kelak, mewujudkan kesan jangka panjang.",
+    explanation:
+      "Amalan teknologi hijau yang konsisten di sekolah seperti penjimatan tenaga dan pengurangan sisa membentuk kebiasaan dan kesedaran yang akan diteruskan oleh murid dalam kehidupan dewasa dan persekitaran kerja kelak, mewujudkan kesan jangka panjang.",
   },
   {
     id: "geo-f2-c10-q25",
@@ -19891,7 +20743,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Hard",
-    question: "Mengapakah industri fotovolta dianggap mempunyai potensi besar untuk menyumbang kepada Keluaran Dalam Negara Kasar (KDNK) Malaysia?",
+    question:
+      "Mengapakah industri fotovolta dianggap mempunyai potensi besar untuk menyumbang kepada Keluaran Dalam Negara Kasar (KDNK) Malaysia?",
     options: [
       "Ia menggabungkan permintaan global yang meningkat terhadap tenaga boleh diperbaharui dengan keupayaan negara dalam pembuatan teknologi tinggi",
       "Industri fotovolta tidak mempunyai sebarang kaitan dengan ekonomi negara",
@@ -19899,7 +20752,8 @@ export const quizzes: QuizQuestion[] = [
       "Fotovolta hanya digunakan untuk kegunaan peribadi tanpa nilai komersial",
     ],
     answerIndex: 0,
-    explanation: "Industri fotovolta mempunyai potensi besar menyumbang kepada KDNK kerana ia menggabungkan permintaan global yang meningkat terhadap tenaga boleh diperbaharui dengan keupayaan negara dalam pembuatan dan eksport teknologi tinggi.",
+    explanation:
+      "Industri fotovolta mempunyai potensi besar menyumbang kepada KDNK kerana ia menggabungkan permintaan global yang meningkat terhadap tenaga boleh diperbaharui dengan keupayaan negara dalam pembuatan dan eksport teknologi tinggi.",
   },
   {
     id: "geo-f2-c10-q26",
@@ -19907,7 +20761,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Hard",
-    question: "Bagaimanakah penggunaan teknologi hijau dapat meminimumkan kesan terhadap manusia dan alam sekitar secara serentak?",
+    question:
+      "Bagaimanakah penggunaan teknologi hijau dapat meminimumkan kesan terhadap manusia dan alam sekitar secara serentak?",
     options: [
       "Melalui ciri-ciri seperti kecekapan tenaga, kadar pembebasan gas rumah hijau yang rendah dan penggunaan sumber boleh diperbaharui, yang secara langsung mengurangkan kesan negatif kepada kedua-dua aspek",
       "Teknologi hijau hanya memberi manfaat kepada alam sekitar, tidak kepada manusia",
@@ -19915,7 +20770,8 @@ export const quizzes: QuizQuestion[] = [
       "Teknologi hijau tidak dapat memberi manfaat kepada mana-mana aspek secara serentak",
     ],
     answerIndex: 0,
-    explanation: "Teknologi hijau meminimumkan kesan terhadap manusia dan alam sekitar secara serentak melalui ciri-ciri seperti kecekapan tenaga, kadar pembebasan gas rumah hijau yang rendah dan penggunaan sumber boleh diperbaharui, yang menguntungkan kedua-dua aspek tanpa mengorbankan salah satu.",
+    explanation:
+      "Teknologi hijau meminimumkan kesan terhadap manusia dan alam sekitar secara serentak melalui ciri-ciri seperti kecekapan tenaga, kadar pembebasan gas rumah hijau yang rendah dan penggunaan sumber boleh diperbaharui, yang menguntungkan kedua-dua aspek tanpa mengorbankan salah satu.",
   },
   {
     id: "geo-f2-c10-q27",
@@ -19923,7 +20779,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Hard",
-    question: "Pada pendapat anda, apakah cabaran utama dalam merealisasikan Dasar Teknologi Hijau secara meluas di Malaysia?",
+    question:
+      "Pada pendapat anda, apakah cabaran utama dalam merealisasikan Dasar Teknologi Hijau secara meluas di Malaysia?",
     options: [
       "Kos pelaburan awal yang tinggi bagi teknologi hijau berbanding teknologi konvensional, walaupun penjimatan jangka panjang lebih besar",
       "Tidak terdapat sebarang cabaran dalam melaksanakan Dasar Teknologi Hijau",
@@ -19931,7 +20788,8 @@ export const quizzes: QuizQuestion[] = [
       "Dasar Teknologi Hijau tidak memerlukan sebarang sokongan masyarakat",
     ],
     answerIndex: 0,
-    explanation: "Salah satu cabaran utama dalam merealisasikan Dasar Teknologi Hijau secara meluas ialah kos pelaburan awal yang tinggi bagi teknologi hijau (contoh: panel solar, kenderaan elektrik) berbanding teknologi konvensional, walaupun penjimatan jangka panjang biasanya lebih besar.",
+    explanation:
+      "Salah satu cabaran utama dalam merealisasikan Dasar Teknologi Hijau secara meluas ialah kos pelaburan awal yang tinggi bagi teknologi hijau (contoh: panel solar, kenderaan elektrik) berbanding teknologi konvensional, walaupun penjimatan jangka panjang biasanya lebih besar.",
   },
   {
     id: "geo-f2-c10-q28",
@@ -19939,7 +20797,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Hard",
-    question: "Berdasarkan keseluruhan Bab 10, bagaimanakah hubungan antara konsep, ciri-ciri, contoh dan kepentingan teknologi hijau dapat dirumuskan secara KBAT?",
+    question:
+      "Berdasarkan keseluruhan Bab 10, bagaimanakah hubungan antara konsep, ciri-ciri, contoh dan kepentingan teknologi hijau dapat dirumuskan secara KBAT?",
     options: [
       "Konsep teknologi hijau menetapkan matlamat asas (memelihara alam sekitar), ciri-ciri menentukan kriteria produk yang layak, contoh menunjukkan aplikasi sebenar mengikut empat teras, dan kepentingan membuktikan manfaat nyata kepada sosial dan ekonomi",
       "Konsep, ciri-ciri, contoh dan kepentingan teknologi hijau adalah perkara yang tidak berkaitan antara satu sama lain",
@@ -19947,7 +20806,8 @@ export const quizzes: QuizQuestion[] = [
       "Ciri-ciri produk teknologi hijau tidak mempunyai kaitan dengan contoh sebenar yang dibincangkan",
     ],
     answerIndex: 0,
-    explanation: "Rangkaian logik Bab 10: konsep teknologi hijau menetapkan matlamat asas (memelihara dan memulihara alam sekitar), ciri-ciri menentukan kriteria khusus produk yang layak digolongkan sebagai teknologi hijau, contoh menunjukkan aplikasi sebenar mengikut empat teras (tenaga, ekonomi, alam sekitar, sosial), dan kepentingan membuktikan manfaat nyata kepada masyarakat dan ekonomi negara.",
+    explanation:
+      "Rangkaian logik Bab 10: konsep teknologi hijau menetapkan matlamat asas (memelihara dan memulihara alam sekitar), ciri-ciri menentukan kriteria khusus produk yang layak digolongkan sebagai teknologi hijau, contoh menunjukkan aplikasi sebenar mengikut empat teras (tenaga, ekonomi, alam sekitar, sosial), dan kepentingan membuktikan manfaat nyata kepada masyarakat dan ekonomi negara.",
   },
   {
     id: "geo-f2-c10-q29",
@@ -19955,7 +20815,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Hard",
-    question: "Bagaimanakah amalan teknologi hijau di rumah dan di tempat kerja dapat menyumbang secara kolektif kepada pencapaian sasaran nasional pengurangan intensiti karbon?",
+    question:
+      "Bagaimanakah amalan teknologi hijau di rumah dan di tempat kerja dapat menyumbang secara kolektif kepada pencapaian sasaran nasional pengurangan intensiti karbon?",
     options: [
       "Akumulasi pengurangan penggunaan tenaga dan sisa daripada amalan individu secara meluas dapat menyumbang kepada pengurangan intensiti karbon keseluruhan negara",
       "Amalan individu tidak memberi sebarang kesan kepada sasaran nasional",
@@ -19963,7 +20824,8 @@ export const quizzes: QuizQuestion[] = [
       "Amalan di rumah dan tempat kerja hanya relevan untuk isu kesihatan, bukan karbon",
     ],
     answerIndex: 0,
-    explanation: "Apabila diamalkan secara meluas oleh ramai individu, akumulasi pengurangan penggunaan tenaga, air dan sisa di rumah serta tempat kerja dapat menyumbang secara kolektif kepada pengurangan intensiti karbon keseluruhan negara, menyokong sasaran nasional seperti 40% menjelang 2020.",
+    explanation:
+      "Apabila diamalkan secara meluas oleh ramai individu, akumulasi pengurangan penggunaan tenaga, air dan sisa di rumah serta tempat kerja dapat menyumbang secara kolektif kepada pengurangan intensiti karbon keseluruhan negara, menyokong sasaran nasional seperti 40% menjelang 2020.",
   },
   {
     id: "geo-f2-c10-q30",
@@ -19971,7 +20833,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 10",
     difficulty: "Hard",
-    question: "Pada pendapat anda, apakah cabaran utama yang dihadapi masyarakat untuk mempraktikkan Dasar Teknologi Hijau secara berterusan dalam kehidupan seharian?",
+    question:
+      "Pada pendapat anda, apakah cabaran utama yang dihadapi masyarakat untuk mempraktikkan Dasar Teknologi Hijau secara berterusan dalam kehidupan seharian?",
     options: [
       "Kekurangan kesedaran dan kos peralihan kepada produk/amalan teknologi hijau yang kadangkala lebih tinggi berbanding kebiasaan sedia ada",
       "Tidak terdapat sebarang cabaran dalam mempraktikkan teknologi hijau",
@@ -19979,7 +20842,8 @@ export const quizzes: QuizQuestion[] = [
       "Masyarakat tidak memerlukan sebarang pendidikan untuk mempraktikkan teknologi hijau",
     ],
     answerIndex: 0,
-    explanation: "Cabaran utama termasuk kekurangan kesedaran tentang kepentingan teknologi hijau dan kos peralihan (contoh: membeli kereta hibrid, memasang panel solar) yang kadangkala lebih tinggi berbanding kebiasaan sedia ada, memerlukan pendidikan alam sekitar dan insentif berterusan.",
+    explanation:
+      "Cabaran utama termasuk kekurangan kesedaran tentang kepentingan teknologi hijau dan kos peralihan (contoh: membeli kereta hibrid, memasang panel solar) yang kadangkala lebih tinggi berbanding kebiasaan sedia ada, memerlukan pendidikan alam sekitar dan insentif berterusan.",
   },
 ];
 export interface Flashcard {
@@ -21159,7 +22023,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Tokoh manakah yang menyatakan Dunia Melayu meliputi Malaysia, Indonesia, Brunei, Singapura, selatan Thailand dan Filipina?",
+    front:
+      "Tokoh manakah yang menyatakan Dunia Melayu meliputi Malaysia, Indonesia, Brunei, Singapura, selatan Thailand dan Filipina?",
     back: "Ding Choo Ming.",
   },
   {
@@ -21523,7 +22388,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Kerajaan Alam Melayu manakah yang sezaman dengan Empayar Byzantine pada abad kesembilan?",
+    front:
+      "Kerajaan Alam Melayu manakah yang sezaman dengan Empayar Byzantine pada abad kesembilan?",
     back: "Srivijaya.",
   },
   {
@@ -25323,7 +26189,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Apabila menghadap Matahari terbit sambil mendepakan tangan, ke arah manakah tangan kiri anda menunjuk?",
+    front:
+      "Apabila menghadap Matahari terbit sambil mendepakan tangan, ke arah manakah tangan kiri anda menunjuk?",
     back: "Tangan kiri anda menunjuk ke arah Utara.",
   },
   {
@@ -25331,7 +26198,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Apabila menghadap Matahari terbit sambil mendepakan tangan, ke arah manakah tangan kanan anda menunjuk?",
+    front:
+      "Apabila menghadap Matahari terbit sambil mendepakan tangan, ke arah manakah tangan kanan anda menunjuk?",
     back: "Tangan kanan anda menunjuk ke arah Selatan.",
   },
   {
@@ -25363,7 +26231,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Di atas permukaan yang bagaimanakah kompas perlu diletakkan untuk memperoleh bacaan yang tepat?",
+    front:
+      "Di atas permukaan yang bagaimanakah kompas perlu diletakkan untuk memperoleh bacaan yang tepat?",
     back: "Kompas perlu diletakkan di atas permukaan rata.",
   },
   {
@@ -25467,7 +26336,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Jika seseorang berpusing 180° daripada menghadap Utara, apakah arah mata angin utama yang akan dihadapinya?",
+    front:
+      "Jika seseorang berpusing 180° daripada menghadap Utara, apakah arah mata angin utama yang akan dihadapinya?",
     back: "Dia akan menghadap Selatan.",
   },
   {
@@ -25523,7 +26393,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Titik A terletak pada bearing sudutan 90° dari Titik B. Apakah arah Titik A dari Titik B?",
+    front:
+      "Titik A terletak pada bearing sudutan 90° dari Titik B. Apakah arah Titik A dari Titik B?",
     back: "Titik A berada di sebelah Timur Titik B.",
   },
   {
@@ -25547,7 +26418,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Jika anda menghadap Utara dan berpusing 90° ke kanan, apakah arah yang akan anda hadapi?",
+    front:
+      "Jika anda menghadap Utara dan berpusing 90° ke kanan, apakah arah yang akan anda hadapi?",
     back: "Anda akan menghadap Timur.",
   },
   {
@@ -25571,7 +26443,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Jika anda berdiri menghadap Timur, apakah arah yang berada tepat di sebelah kanan anda?",
+    front:
+      "Jika anda berdiri menghadap Timur, apakah arah yang berada tepat di sebelah kanan anda?",
     back: "Arah yang berada tepat di sebelah kanan anda ialah Selatan.",
   },
   {
@@ -25603,7 +26476,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Jika bearing sudutan sekolah dari rumah ialah 315°, di arah mata angin perantaraan manakah sekolah itu terletak?",
+    front:
+      "Jika bearing sudutan sekolah dari rumah ialah 315°, di arah mata angin perantaraan manakah sekolah itu terletak?",
     back: "Sekolah itu terletak di arah Barat Laut dari rumah.",
   },
   {
@@ -25619,7 +26493,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Jika anda menghadap bearing sudutan 225°, apakah arah yang berada tepat di belakang anda?",
+    front:
+      "Jika anda menghadap bearing sudutan 225°, apakah arah yang berada tepat di belakang anda?",
     back: "Bearing sudutan 225° ialah Barat Daya. Arah yang berada tepat di belakangnya ialah Timur Laut.",
   },
   {
@@ -25627,7 +26502,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Bagaimanakah bearing sudutan yang melebihi 180° boleh diukur menggunakan jangka sudut separuh bulatan piawai?",
+    front:
+      "Bagaimanakah bearing sudutan yang melebihi 180° boleh diukur menggunakan jangka sudut separuh bulatan piawai?",
     back: "Kenal pasti garis Selatan 180° terlebih dahulu. Ukur sudut tambahan melebihi 180° mengikut arah pusingan jam, kemudian tambahkan sudut itu kepada 180°.",
   },
   {
@@ -25635,7 +26511,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Seorang pengembara menghadap Timur lalu berpusing 225° mengikut arah pusingan jam. Apakah arah baharu pengembara itu?",
+    front:
+      "Seorang pengembara menghadap Timur lalu berpusing 225° mengikut arah pusingan jam. Apakah arah baharu pengembara itu?",
     back: "Pengembara itu akan menghadap Barat Laut, yang mempunyai bearing sudutan 315°.",
   },
   {
@@ -25643,7 +26520,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Mengapakah kompas secara umumnya lebih tepat berbanding dengan penggunaan Matahari untuk menentukan arah?",
+    front:
+      "Mengapakah kompas secara umumnya lebih tepat berbanding dengan penggunaan Matahari untuk menentukan arah?",
     back: "Kompas memberikan arah yang lebih tepat dan boleh digunakan apabila Matahari tidak kelihatan, seperti pada waktu malam atau ketika cuaca mendung.",
   },
   {
@@ -25651,7 +26529,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Semasa mengukur bearing sudutan Titik X dari Titik Y, di manakah pusat jangka sudut mesti diletakkan?",
+    front:
+      "Semasa mengukur bearing sudutan Titik X dari Titik Y, di manakah pusat jangka sudut mesti diletakkan?",
     back: "Pusat jangka sudut mesti diletakkan pada Titik Y kerana Titik Y ialah titik rujukan.",
   },
   {
@@ -25683,7 +26562,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Jika anda menghadap Matahari terbenam dan berpusing 90° ke kiri, apakah arah yang akan anda hadapi?",
+    front:
+      "Jika anda menghadap Matahari terbenam dan berpusing 90° ke kiri, apakah arah yang akan anda hadapi?",
     back: "Anda akan menghadap Selatan.",
   },
   {
@@ -25699,7 +26579,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Apakah yang perlu dilakukan sebelum mengukur bearing sudutan di antara dua titik pada peta lakar?",
+    front:
+      "Apakah yang perlu dilakukan sebelum mengukur bearing sudutan di antara dua titik pada peta lakar?",
     back: "Sambungkan kedua-dua titik dengan garis lurus dan kenal pasti titik yang menjadi titik rujukan.",
   },
   {
@@ -25723,7 +26604,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Seorang murid menghadap Selatan lalu berpusing 135° melawan arah pusingan jam. Apakah arah yang dihadapinya sekarang?",
+    front:
+      "Seorang murid menghadap Selatan lalu berpusing 135° melawan arah pusingan jam. Apakah arah yang dihadapinya sekarang?",
     back: "Murid itu kini menghadap Timur Laut.",
   },
   {
@@ -25731,7 +26613,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Seorang murid mencatatkan bearing sudutan 400°. Terangkan mengapa nilai ini bukan bearing sudutan piawai yang sah.",
+    front:
+      "Seorang murid mencatatkan bearing sudutan 400°. Terangkan mengapa nilai ini bukan bearing sudutan piawai yang sah.",
     back: "Bearing sudutan piawai tidak boleh melebihi 360° kerana 360° mewakili satu bulatan lengkap.",
   },
   {
@@ -25747,7 +26630,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 1",
-    front: "Anda berada di Titik A dan Titik B terletak tepat di sebelah Utara anda. Berapakah bearing sudutan Titik A dari Titik B?",
+    front:
+      "Anda berada di Titik A dan Titik B terletak tepat di sebelah Utara anda. Berapakah bearing sudutan Titik A dari Titik B?",
     back: "Dari Titik B, Titik A terletak tepat di sebelah Selatan. Oleh itu, bearing sudutannya ialah 180°.",
   },
   // Geografi Form 1 Chapter 2 - Kedudukan
@@ -31620,13 +32504,6 @@ export const flashcards: Flashcard[] = [
   ...mathF2C1FlashcardsBM,
   ...mathF2C1FlashcardsDLP,
 
-
-
-
-
-
-
-
   ...mathF2C2FlashcardsBM,
   ...mathF2C2FlashcardsDLP,
   ...mathF2C3FlashcardsBM,
@@ -31917,7 +32794,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Mengapakah jarak relatif dianggap lebih praktikal berbanding jarak mutlak dalam kehidupan harian?",
+    front:
+      "Mengapakah jarak relatif dianggap lebih praktikal berbanding jarak mutlak dalam kehidupan harian?",
     back: "Kerana jarak relatif lebih relevan kepada pengalaman sebenar pengguna jalan raya seperti masa dan kos perjalanan.",
   },
   {
@@ -31925,7 +32803,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Berikan satu sebab dua tempat dengan jarak mutlak sama boleh mempunyai jarak relatif berbeza.",
+    front:
+      "Berikan satu sebab dua tempat dengan jarak mutlak sama boleh mempunyai jarak relatif berbeza.",
     back: "Faktor jenis pengangkutan, keadaan jalan raya dan kos tambang yang berbeza.",
   },
   {
@@ -31933,7 +32812,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Seorang pelajar memilih bas kerana tambangnya RM5.00 berbanding teksi RM16.00. Apakah konsep jarak yang ditunjukkan?",
+    front:
+      "Seorang pelajar memilih bas kerana tambangnya RM5.00 berbanding teksi RM16.00. Apakah konsep jarak yang ditunjukkan?",
     back: "Jarak relatif berdasarkan kos.",
   },
   {
@@ -31941,7 +32821,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Seorang pelajar mengambil masa 10 minit menaiki teksi berbanding 30 minit berjalan kaki. Apakah konsep jarak yang ditunjukkan?",
+    front:
+      "Seorang pelajar mengambil masa 10 minit menaiki teksi berbanding 30 minit berjalan kaki. Apakah konsep jarak yang ditunjukkan?",
     back: "Jarak relatif berdasarkan masa.",
   },
   {
@@ -31957,7 +32838,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Mengapakah bukaan jangka tolok perlu dikekalkan semasa memindahkannya ke garis skala lurus?",
+    front:
+      "Mengapakah bukaan jangka tolok perlu dikekalkan semasa memindahkannya ke garis skala lurus?",
     back: "Supaya bacaan jarak sebenar pada garis skala lurus kekal tepat tanpa sebarang ralat.",
   },
   {
@@ -31989,7 +32871,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Jangka tolok dipindahkan sebanyak 6 bahagian skala lurus, setiap bahagian 2 km. Apakah jarak sebenar?",
+    front:
+      "Jangka tolok dipindahkan sebanyak 6 bahagian skala lurus, setiap bahagian 2 km. Apakah jarak sebenar?",
     back: "12 km (6 × 2 km).",
   },
   {
@@ -31997,7 +32880,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Jarak lurus di peta antara rumah Khairul dan balai polis ialah 9 cm, skala 1 cm mewakili 1 km. Apakah jarak sebenar?",
+    front:
+      "Jarak lurus di peta antara rumah Khairul dan balai polis ialah 9 cm, skala 1 cm mewakili 1 km. Apakah jarak sebenar?",
     back: "9 km (9 cm × 1 km).",
   },
   {
@@ -32021,7 +32905,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Mengapakah formula perlu dituliskan sebelum menggantikan nombor semasa menjawab soalan pengiraan?",
+    front:
+      "Mengapakah formula perlu dituliskan sebelum menggantikan nombor semasa menjawab soalan pengiraan?",
     back: "Kerana markah method kerap diberikan untuk penulisan formula yang betul walaupun jawapan akhir tersilap.",
   },
   {
@@ -32039,7 +32924,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Sebuah peta berskala 1:50 000. Berapakah jarak sebenar (km) jika jarak di peta ialah 4 cm?",
+    front:
+      "Sebuah peta berskala 1:50 000. Berapakah jarak sebenar (km) jika jarak di peta ialah 4 cm?",
     back: "2 km (1:50 000 = 1 cm mewakili 0.5 km; 4 cm × 0.5 km = 2 km).",
   },
   {
@@ -32071,7 +32957,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah istilah yang menerangkan perbandingan ukuran atau kadar antara dua kuantiti dalam konteks skala?",
+    front:
+      "Apakah istilah yang menerangkan perbandingan ukuran atau kadar antara dua kuantiti dalam konteks skala?",
     back: "Nisbah.",
   },
   {
@@ -32079,7 +32966,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Seorang murid berkata jarak rumahnya ke sekolah 'jauh' kerana mengambil masa 1 jam menaiki bas berhenti-henti, walaupun jarak mutlaknya hanya 5 km. Apakah konsep yang sedang dijelaskannya?",
+    front:
+      "Seorang murid berkata jarak rumahnya ke sekolah 'jauh' kerana mengambil masa 1 jam menaiki bas berhenti-henti, walaupun jarak mutlaknya hanya 5 km. Apakah konsep yang sedang dijelaskannya?",
     back: "Jarak relatif berdasarkan masa — perasaan jauh/dekat bergantung kepada tempoh perjalanan, bukan jarak mutlak semata-mata.",
   },
   {
@@ -32087,7 +32975,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Dua pelancong merancang perjalanan ke destinasi yang sama tetapi memilih laluan berlainan kerana kos tol. Apakah konsep geografi yang mereka pertimbangkan?",
+    front:
+      "Dua pelancong merancang perjalanan ke destinasi yang sama tetapi memilih laluan berlainan kerana kos tol. Apakah konsep geografi yang mereka pertimbangkan?",
     back: "Jarak relatif berdasarkan kos.",
   },
   {
@@ -32095,7 +32984,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Mengapakah peta GPS moden lebih banyak memaparkan jarak relatif (masa tiba) berbanding jarak mutlak?",
+    front:
+      "Mengapakah peta GPS moden lebih banyak memaparkan jarak relatif (masa tiba) berbanding jarak mutlak?",
     back: "Kerana jarak relatif (anggaran masa) lebih berguna kepada pengguna untuk merancang perjalanan harian secara praktikal.",
   },
   {
@@ -32111,7 +33001,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah kesan jika seseorang menggunakan jarak relatif sahaja tanpa mengetahui jarak mutlak sebenar?",
+    front:
+      "Apakah kesan jika seseorang menggunakan jarak relatif sahaja tanpa mengetahui jarak mutlak sebenar?",
     back: "Anggaran jarak mungkin tidak konsisten dan tidak sesuai untuk tujuan rekod atau perbandingan saintifik yang tepat.",
   },
   {
@@ -32119,7 +33010,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Benang yang direntang sepanjang lengkok sungai diukur 8 cm pada peta berskala 1:100 000. Apakah jarak sebenar sungai itu?",
+    front:
+      "Benang yang direntang sepanjang lengkok sungai diukur 8 cm pada peta berskala 1:100 000. Apakah jarak sebenar sungai itu?",
     back: "8 km (8 cm × 1 km, kerana 1:100 000 = 1 cm mewakili 1 km).",
   },
   {
@@ -32127,7 +33019,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Mengapakah jawapan pengiraan jarak sebenar tanpa unit km akan kehilangan markah dalam peperiksaan?",
+    front:
+      "Mengapakah jawapan pengiraan jarak sebenar tanpa unit km akan kehilangan markah dalam peperiksaan?",
     back: "Kerana jarak sebenar mesti dinyatakan dengan unit yang betul (km), bukan hanya nombor atau unit cm dari peta.",
   },
   {
@@ -32135,7 +33028,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Bagaimanakah anda mengesahkan ketepatan ukuran jarak melengkung selepas menggunakan benang?",
+    front:
+      "Bagaimanakah anda mengesahkan ketepatan ukuran jarak melengkung selepas menggunakan benang?",
     back: "Dengan memastikan benang direntang lurus sepenuhnya tanpa kedut sebelum diukur dengan pembaris.",
   },
   {
@@ -32143,7 +33037,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Jika dua peta yang berlainan skala menunjukkan jarak peta yang sama (cm) bagi dua laluan berbeza, adakah jarak sebenarnya sama? Jelaskan.",
+    front:
+      "Jika dua peta yang berlainan skala menunjukkan jarak peta yang sama (cm) bagi dua laluan berbeza, adakah jarak sebenarnya sama? Jelaskan.",
     back: "Tidak semestinya sama, kerana jarak sebenar bergantung kepada nilai skala setiap peta, bukan hanya jarak di atas peta.",
   },
   {
@@ -32151,7 +33046,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah strategi terbaik untuk mengelakkan kesilapan unit semasa menjawab soalan pengiraan skala dan jarak?",
+    front:
+      "Apakah strategi terbaik untuk mengelakkan kesilapan unit semasa menjawab soalan pengiraan skala dan jarak?",
     back: "Sentiasa semak unit skala (cm, m atau km) sebelum mengira dan tukarkan unit yang konsisten sebelum menulis jawapan akhir.",
   },
   {
@@ -32159,7 +33055,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Jarak di atas peta antara dua bandar ialah 15 cm pada skala 1:200 000. Apakah jarak sebenar?",
+    front:
+      "Jarak di atas peta antara dua bandar ialah 15 cm pada skala 1:200 000. Apakah jarak sebenar?",
     back: "30 km (1:200 000 = 1 cm mewakili 2 km; 15 cm × 2 km = 30 km).",
   },
   {
@@ -32167,7 +33064,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Mengapakah pelukis peta memilih skala yang lebih kecil (contoh 1:250 000) untuk memetakan kawasan yang sangat luas?",
+    front:
+      "Mengapakah pelukis peta memilih skala yang lebih kecil (contoh 1:250 000) untuk memetakan kawasan yang sangat luas?",
     back: "Kerana skala yang lebih kecil membolehkan kawasan yang lebih luas dimuatkan dalam saiz peta yang terhad.",
   },
   {
@@ -32175,7 +33073,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Berikan satu sebab kemahiran mengukur jarak sebenar penting dalam perancangan pembangunan infrastruktur.",
+    front:
+      "Berikan satu sebab kemahiran mengukur jarak sebenar penting dalam perancangan pembangunan infrastruktur.",
     back: "Kerana jurutera dan perancang perlu mengetahui jarak sebenar bagi jalan, jambatan atau saliran sebelum kerja pembinaan dijalankan.",
   },
   {
@@ -32183,7 +33082,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Nyatakan satu sebab soalan KBAT dalam topik ini sering meminta murid membandingkan dua kaedah pengukuran jarak.",
+    front:
+      "Nyatakan satu sebab soalan KBAT dalam topik ini sering meminta murid membandingkan dua kaedah pengukuran jarak.",
     back: "Untuk menguji kefahaman murid tentang kesesuaian setiap alat (pembaris, jangka tolok, benang, jalur kertas) mengikut bentuk laluan (lurus atau melengkung).",
   },
   {
@@ -32372,7 +33272,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Bagaimanakah garisan timuran dan garisan utaraan membantu menentukan kedudukan sesuatu tempat?",
+    front:
+      "Bagaimanakah garisan timuran dan garisan utaraan membantu menentukan kedudukan sesuatu tempat?",
     back: "Persilangan antara nilai garisan timuran dan garisan utaraan pada titik tertentu menghasilkan rujukan grid bagi kedudukan tempat itu.",
   },
   {
@@ -32388,7 +33289,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Mengapakah rujukan grid 4 angka tidak sesuai untuk menentukan kedudukan sebuah sekolah secara tepat?",
+    front:
+      "Mengapakah rujukan grid 4 angka tidak sesuai untuk menentukan kedudukan sebuah sekolah secara tepat?",
     back: "Kerana rujukan grid 4 angka hanya menentukan kedudukan dalam satu segi empat grid yang luas, bukan kedudukan objek yang spesifik.",
   },
   {
@@ -32404,7 +33306,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Mengapakah tanah pamah subur sering dikaitkan dengan petempatan padat dan pertanian padi sawah?",
+    front:
+      "Mengapakah tanah pamah subur sering dikaitkan dengan petempatan padat dan pertanian padi sawah?",
     back: "Kerana tanah pamah yang rata dan subur memudahkan pembinaan infrastruktur serta sesuai untuk sistem pengairan pertanian.",
   },
   {
@@ -32412,7 +33315,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Mengapakah kawasan tanah tinggi sesuai untuk tanaman teh tetapi tidak sesuai untuk padi sawah?",
+    front:
+      "Mengapakah kawasan tanah tinggi sesuai untuk tanaman teh tetapi tidak sesuai untuk padi sawah?",
     back: "Kerana suhu yang lebih sejuk di tanah tinggi sesuai untuk tanaman hawa sederhana seperti teh, berbeza dengan keperluan padi sawah yang memerlukan tanah pamah berair.",
   },
   {
@@ -32420,7 +33324,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Bagaimanakah ciri pandang darat fizikal mempengaruhi kewujudan ciri pandang darat budaya di kawasan pinggir laut?",
+    front:
+      "Bagaimanakah ciri pandang darat fizikal mempengaruhi kewujudan ciri pandang darat budaya di kawasan pinggir laut?",
     back: "Pinggir laut yang sesuai untuk pelabuhan akan menggalakkan kewujudan kegiatan perikanan dan pelancongan sebagai ciri budaya.",
   },
   {
@@ -32428,7 +33333,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Apakah hubungan antara sistem saliran dengan kewujudan jeti dan pangkalan bot sebagai ciri budaya?",
+    front:
+      "Apakah hubungan antara sistem saliran dengan kewujudan jeti dan pangkalan bot sebagai ciri budaya?",
     back: "Sungai atau saliran yang boleh dilayari menggalakkan pembinaan jeti dan pangkalan bot untuk pengangkutan air.",
   },
   {
@@ -32444,7 +33350,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Apakah langkah kedua selepas memerhatikan peta topografi secara keseluruhan semasa mentafsir peta?",
+    front:
+      "Apakah langkah kedua selepas memerhatikan peta topografi secara keseluruhan semasa mentafsir peta?",
     back: "Mengenal pasti ciri pandang darat fizikal dan ciri pandang darat budaya yang terdapat dalam peta.",
   },
   {
@@ -32452,7 +33359,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Selepas mengenal pasti ciri fizikal dan budaya, apakah langkah seterusnya dalam mentafsir peta?",
+    front:
+      "Selepas mengenal pasti ciri fizikal dan budaya, apakah langkah seterusnya dalam mentafsir peta?",
     back: "Mengaitkan ciri pandang darat fizikal dengan ciri pandang darat budaya.",
   },
   {
@@ -32468,7 +33376,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Dalam contoh tafsiran Peta Jertih, mengapakah padi sawah ditanam berhampiran Sungai Nering?",
+    front:
+      "Dalam contoh tafsiran Peta Jertih, mengapakah padi sawah ditanam berhampiran Sungai Nering?",
     back: "Kerana tanah pamah berhampiran sungai subur dan mempunyai bekalan air yang mencukupi untuk pertanian padi sawah.",
   },
   {
@@ -32476,7 +33385,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Apakah corak petempatan yang biasanya terbentuk di sekitar kawasan tanah pamah dan sungai?",
+    front:
+      "Apakah corak petempatan yang biasanya terbentuk di sekitar kawasan tanah pamah dan sungai?",
     back: "Corak petempatan berkelompok dan berjajar.",
   },
   {
@@ -32500,7 +33410,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Bagaimanakah kemahiran skala (Bab 1) digunakan semula dalam pembacaan peta topografi (Bab 2)?",
+    front:
+      "Bagaimanakah kemahiran skala (Bab 1) digunakan semula dalam pembacaan peta topografi (Bab 2)?",
     back: "Skala peta topografi digunakan untuk mengira jarak sebenar antara dua ciri pandang darat yang dikenal pasti pada peta.",
   },
   {
@@ -32508,7 +33419,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Mengapakah petunjuk peta perlu dirujuk sebelum mengenal pasti sebarang simbol pada peta topografi?",
+    front:
+      "Mengapakah petunjuk peta perlu dirujuk sebelum mengenal pasti sebarang simbol pada peta topografi?",
     back: "Kerana setiap simbol mewakili ciri pandang darat yang berbeza, dan tafsiran yang salah akan berlaku jika petunjuk tidak dirujuk dengan betul.",
   },
   {
@@ -32516,7 +33428,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Apakah perbezaan antara menyenaraikan simbol semata-mata dengan mentafsir peta topografi sepenuhnya?",
+    front:
+      "Apakah perbezaan antara menyenaraikan simbol semata-mata dengan mentafsir peta topografi sepenuhnya?",
     back: "Mentafsir memerlukan murid mengaitkan ciri fizikal dengan ciri budaya serta memberi bukti, bukan sekadar menyenaraikan nama simbol.",
   },
 
@@ -32526,7 +33439,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Kg. Raya berada pada garisan timuran 31 dan garisan utaraan 53. Apakah rujukan grid 4 angka Kg. Raya?",
+    front:
+      "Kg. Raya berada pada garisan timuran 31 dan garisan utaraan 53. Apakah rujukan grid 4 angka Kg. Raya?",
     back: "RG 3153.",
   },
   {
@@ -32534,7 +33448,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Kilang berada dalam grid 3153 dengan bacaan 10 bahagian menghasilkan timuran 314 dan utaraan 533. Apakah rujukan grid 6 angka kilang itu?",
+    front:
+      "Kilang berada dalam grid 3153 dengan bacaan 10 bahagian menghasilkan timuran 314 dan utaraan 533. Apakah rujukan grid 6 angka kilang itu?",
     back: "RG 314533.",
   },
   {
@@ -32542,7 +33457,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Sekolah terletak pada garisan timuran 42 dan garisan utaraan 65 (rujukan grid 4 angka). Apakah rujukan gridnya?",
+    front:
+      "Sekolah terletak pada garisan timuran 42 dan garisan utaraan 65 (rujukan grid 4 angka). Apakah rujukan gridnya?",
     back: "RG 4265.",
   },
   {
@@ -32550,7 +33466,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Jika satu objek mempunyai rujukan grid 6 angka RG 215748, apakah nilai garisan timuran dan garisan utaraannya secara berasingan?",
+    front:
+      "Jika satu objek mempunyai rujukan grid 6 angka RG 215748, apakah nilai garisan timuran dan garisan utaraannya secara berasingan?",
     back: "Garisan timuran ialah 215 dan garisan utaraan ialah 748.",
   },
   {
@@ -32558,7 +33475,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Seorang murid menulis rujukan grid sebagai RG 5331 untuk Kg. Raya, tetapi jawapan sebenar ialah RG 3153. Apakah kesilapan murid itu?",
+    front:
+      "Seorang murid menulis rujukan grid sebagai RG 5331 untuk Kg. Raya, tetapi jawapan sebenar ialah RG 3153. Apakah kesilapan murid itu?",
     back: "Murid tersilap menulis nilai garisan utaraan dahulu sebelum garisan timuran — urutan bacaan yang betul ialah timuran dahulu, utaraan kemudian.",
   },
   {
@@ -32566,7 +33484,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Sebuah peta topografi menunjukkan kawasan tanah pamah dipenuhi simbol padi sawah dan petempatan berjajar di tepi sungai. Apakah tafsiran yang tepat?",
+    front:
+      "Sebuah peta topografi menunjukkan kawasan tanah pamah dipenuhi simbol padi sawah dan petempatan berjajar di tepi sungai. Apakah tafsiran yang tepat?",
     back: "Tanah pamah yang subur berhampiran sungai digunakan untuk pertanian padi sawah, dan petempatan terbentuk secara berjajar mengikut aliran sungai untuk kemudahan sumber air dan pengangkutan.",
   },
   {
@@ -32574,7 +33493,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Soalan peperiksaan meminta murid menyatakan hubung kait antara tanah tinggi dengan kuasa hidroelektrik. Apakah jawapan yang tepat?",
+    front:
+      "Soalan peperiksaan meminta murid menyatakan hubung kait antara tanah tinggi dengan kuasa hidroelektrik. Apakah jawapan yang tepat?",
     back: "Tanah tinggi mempunyai aliran sungai yang deras akibat cerun yang tinggi, sesuai untuk membina empangan dan menjana kuasa hidroelektrik.",
   },
   {
@@ -32582,7 +33502,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Apakah tiga perkara yang perlu disertakan untuk mendapat markah penuh bagi soalan tafsiran peta topografi?",
+    front:
+      "Apakah tiga perkara yang perlu disertakan untuk mendapat markah penuh bagi soalan tafsiran peta topografi?",
     back: "Nama ciri pandang darat, kedudukan/rujukan grid (jika berkaitan), dan hubung kait antara ciri fizikal dengan ciri budaya.",
   },
   {
@@ -32590,7 +33511,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Mengapakah soalan KBAT sering meminta murid membandingkan dua kawasan berbeza dalam peta topografi yang sama?",
+    front:
+      "Mengapakah soalan KBAT sering meminta murid membandingkan dua kawasan berbeza dalam peta topografi yang sama?",
     back: "Untuk menguji kefahaman murid tentang sebab dua kawasan mempunyai ciri budaya yang berbeza akibat perbezaan ciri fizikal masing-masing.",
   },
   {
@@ -32598,7 +33520,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Seorang murid hanya menulis 'ada sungai dan ada jalan raya' sebagai jawapan tafsiran. Mengapakah jawapan ini tidak mendapat markah penuh?",
+    front:
+      "Seorang murid hanya menulis 'ada sungai dan ada jalan raya' sebagai jawapan tafsiran. Mengapakah jawapan ini tidak mendapat markah penuh?",
     back: "Kerana jawapan hanya menyenaraikan simbol tanpa mengaitkan ciri fizikal (sungai) dengan ciri budaya (jalan raya) atau memberi bukti rujukan grid.",
   },
   {
@@ -32614,7 +33537,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Dua tempat mempunyai rujukan grid 4 angka yang sama tetapi rujukan grid 6 angka berbeza. Apakah maksudnya?",
+    front:
+      "Dua tempat mempunyai rujukan grid 4 angka yang sama tetapi rujukan grid 6 angka berbeza. Apakah maksudnya?",
     back: "Kedua-dua tempat berada dalam segi empat grid yang sama (kawasan luas yang sama) tetapi pada kedudukan spesifik yang berbeza di dalam segi empat grid itu.",
   },
   {
@@ -32622,7 +33546,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Mengapakah peta topografi perlu digunakan bersama kemahiran skala (Bab 1) untuk menjawab soalan jarak sebenar antara dua ciri pandang darat?",
+    front:
+      "Mengapakah peta topografi perlu digunakan bersama kemahiran skala (Bab 1) untuk menjawab soalan jarak sebenar antara dua ciri pandang darat?",
     back: "Kerana selepas mengenal pasti kedudukan dua ciri melalui rujukan grid, jarak di antara mereka di atas peta perlu didarab dengan skala untuk mendapatkan jarak sebenar.",
   },
   {
@@ -32630,7 +33555,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Sebuah kawasan menunjukkan ciri fizikal 'paya bakau' di pinggir laut. Apakah ciri budaya yang berkemungkinan besar wujud berdekatan?",
+    front:
+      "Sebuah kawasan menunjukkan ciri fizikal 'paya bakau' di pinggir laut. Apakah ciri budaya yang berkemungkinan besar wujud berdekatan?",
     back: "Aktiviti perikanan dan pembinaan jeti atau pangkalan bot, kerana paya bakau di pinggir laut sesuai untuk ekosistem perikanan pantai.",
   },
   {
@@ -32638,7 +33564,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Apakah strategi terbaik untuk mengelakkan kesilapan menterbalikkan urutan timuran dan utaraan dalam peperiksaan?",
+    front:
+      "Apakah strategi terbaik untuk mengelakkan kesilapan menterbalikkan urutan timuran dan utaraan dalam peperiksaan?",
     back: "Hafal mnemonik 'Right then Up' dan amalkan menulis nilai garisan timuran dengan segera sebaik sahaja dikenal pasti, sebelum mencari nilai utaraan.",
   },
   {
@@ -32646,7 +33573,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Peta topografi menunjukkan banyak simbol sekolah, balai polis dan pejabat pos berkelompok di satu kawasan. Apakah jenis ciri pandang darat ini dan apakah implikasinya?",
+    front:
+      "Peta topografi menunjukkan banyak simbol sekolah, balai polis dan pejabat pos berkelompok di satu kawasan. Apakah jenis ciri pandang darat ini dan apakah implikasinya?",
     back: "Ini adalah ciri pandang darat budaya (kemudahan sosial) yang menunjukkan kawasan tersebut merupakan pusat petempatan atau bandar kecil yang berkembang.",
   },
   {
@@ -32654,7 +33582,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Bagaimanakah seorang perancang bandar menggunakan kemahiran mentafsir peta topografi sebelum membina kawasan perumahan baharu?",
+    front:
+      "Bagaimanakah seorang perancang bandar menggunakan kemahiran mentafsir peta topografi sebelum membina kawasan perumahan baharu?",
     back: "Perancang akan mengenal pasti ciri fizikal sesuai (tanah pamah, bukan kawasan banjir) dan mengelakkan ciri fizikal yang menghadkan pembinaan (cerun tinggi, paya), bagi memastikan pembangunan yang selamat dan mampan.",
   },
   {
@@ -32662,7 +33591,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Apakah perbezaan ketepatan antara menggunakan rujukan grid 4 angka berbanding 6 angka untuk merancang lokasi pembinaan sekolah baharu?",
+    front:
+      "Apakah perbezaan ketepatan antara menggunakan rujukan grid 4 angka berbanding 6 angka untuk merancang lokasi pembinaan sekolah baharu?",
     back: "Rujukan grid 6 angka memberikan ketepatan lokasi yang lebih spesifik berbanding 4 angka, yang penting untuk perancangan pembinaan yang tepat seperti lokasi sekolah.",
   },
   {
@@ -32670,7 +33600,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Nyatakan satu sebab soalan tafsiran peta topografi sering menggabungkan kemahiran skala, rujukan grid dan ciri pandang darat dalam satu soalan panjang.",
+    front:
+      "Nyatakan satu sebab soalan tafsiran peta topografi sering menggabungkan kemahiran skala, rujukan grid dan ciri pandang darat dalam satu soalan panjang.",
     back: "Untuk menguji kefahaman holistik murid terhadap keseluruhan Bab 1 dan Bab 2 secara bersepadu, bukan hanya satu kemahiran secara berasingan.",
   },
   {
@@ -32678,7 +33609,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 2",
-    front: "Rumuskan dalam satu ayat bagaimana ciri pandang darat fizikal dan ciri pandang darat budaya saling berkait dalam mentafsir peta topografi.",
+    front:
+      "Rumuskan dalam satu ayat bagaimana ciri pandang darat fizikal dan ciri pandang darat budaya saling berkait dalam mentafsir peta topografi.",
     back: "Ciri pandang darat fizikal sesuatu kawasan menentukan jenis dan corak ciri pandang darat budaya yang terbentuk, dan tafsiran peta topografi yang lengkap perlu mengaitkan kedua-duanya dengan bukti daripada peta.",
   },
 
@@ -32867,7 +33799,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Mengapakah kawasan yang lebih ke timur mempunyai waktu yang lebih awal berbanding kawasan di sebelah barat?",
+    front:
+      "Mengapakah kawasan yang lebih ke timur mempunyai waktu yang lebih awal berbanding kawasan di sebelah barat?",
     back: "Kerana Bumi berputar dari barat ke timur, sehingga kawasan di timur menerima cahaya Matahari dan memasuki waktu baharu lebih dahulu.",
   },
   {
@@ -32891,7 +33824,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Mengapakah kecondongan paksi Bumi (23½°) penting dalam menentukan kejadian empat musim?",
+    front:
+      "Mengapakah kecondongan paksi Bumi (23½°) penting dalam menentukan kejadian empat musim?",
     back: "Kecondongan paksi menyebabkan kedudukan Matahari tegak hari tegak berubah-ubah sepanjang peredaran Bumi, menghasilkan empat musim yang berbeza.",
   },
   {
@@ -32907,7 +33841,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Bagaimanakah musim di hemisfera utara dan hemisfera selatan berkait pada masa yang sama?",
+    front:
+      "Bagaimanakah musim di hemisfera utara dan hemisfera selatan berkait pada masa yang sama?",
     back: "Apabila hemisfera utara mengalami musim panas, hemisfera selatan mengalami musim sejuk pada masa yang sama (dan sebaliknya).",
   },
   {
@@ -32915,7 +33850,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Bagaimanakah susunan Matahari, Bumi dan Bulan berbeza antara gerhana bulan dengan gerhana matahari?",
+    front:
+      "Bagaimanakah susunan Matahari, Bumi dan Bulan berbeza antara gerhana bulan dengan gerhana matahari?",
     back: "Gerhana bulan: Matahari-Bumi-Bulan segaris. Gerhana matahari: Matahari-Bulan-Bumi segaris.",
   },
   {
@@ -32923,7 +33859,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Mengapakah gerhana matahari hanya kelihatan di kawasan tertentu sahaja, berbeza dengan gerhana bulan?",
+    front:
+      "Mengapakah gerhana matahari hanya kelihatan di kawasan tertentu sahaja, berbeza dengan gerhana bulan?",
     back: "Kerana saiz Bulan lebih kecil daripada Bumi, bayang-bayangnya (umbra/penumbra) hanya merangkumi sebahagian kecil permukaan Bumi.",
   },
   {
@@ -32931,7 +33868,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Apakah hubungan antara perihelion, aphelion dengan jarak Bumi-Matahari sepanjang tahun?",
+    front:
+      "Apakah hubungan antara perihelion, aphelion dengan jarak Bumi-Matahari sepanjang tahun?",
     back: "Jarak Bumi-Matahari berubah sepanjang orbit elips Bumi — paling hampir (perihelion, Januari) dan paling jauh (aphelion, Julai).",
   },
   {
@@ -32947,7 +33885,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Mengapakah Kutub Utara mengalami 24 jam siang semasa Solstis Musim Panas tetapi 24 jam malam semasa Solstis Musim Sejuk?",
+    front:
+      "Mengapakah Kutub Utara mengalami 24 jam siang semasa Solstis Musim Panas tetapi 24 jam malam semasa Solstis Musim Sejuk?",
     back: "Kecondongan paksi Bumi menyebabkan Kutub Utara menghadap terus ke Matahari semasa musim panas (24 jam siang) tetapi membelakangkan Matahari semasa musim sejuk (24 jam malam).",
   },
   {
@@ -32963,7 +33902,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Bagaimanakah fenomena ekuinoks dikaitkan secara salah dengan perubahan iklim oleh sesetengah pihak?",
+    front:
+      "Bagaimanakah fenomena ekuinoks dikaitkan secara salah dengan perubahan iklim oleh sesetengah pihak?",
     back: "Sesetengah pihak membuat spekulasi bahawa kenaikan suhu ketika ekuinoks Mac 2016 disebabkan oleh ekuinoks itu sendiri, sedangkan ahli sains mengaitkannya dengan perubahan iklim global.",
   },
   {
@@ -33003,7 +33943,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Bagaimanakah kedua-dua kesan putaran dan peredaran Bumi berbeza dari segi tempoh kejadian?",
+    front:
+      "Bagaimanakah kedua-dua kesan putaran dan peredaran Bumi berbeza dari segi tempoh kejadian?",
     back: "Kesan putaran Bumi (siang/malam, waktu tempatan, angin, pasang surut) berlaku dalam kitaran harian; kesan peredaran Bumi (musim, gerhana) berlaku dalam kitaran tahunan yang lebih panjang.",
   },
 
@@ -33021,7 +33962,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Dua bandar mempunyai perbezaan longitud 60°. Berapakah perbezaan waktu antara kedua-dua bandar tersebut?",
+    front:
+      "Dua bandar mempunyai perbezaan longitud 60°. Berapakah perbezaan waktu antara kedua-dua bandar tersebut?",
     back: "4 jam (60° ÷ 15° = 4 jam).",
   },
   {
@@ -33029,7 +33971,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Seorang murid menyatakan satu putaran Bumi mengambil masa 365 hari. Apakah kesilapan murid ini?",
+    front:
+      "Seorang murid menyatakan satu putaran Bumi mengambil masa 365 hari. Apakah kesilapan murid ini?",
     back: "Murid tersilap — satu putaran Bumi mengambil masa 24 jam (sehari); 365¼ hari adalah tempoh peredaran Bumi, bukan putaran.",
   },
   {
@@ -33037,7 +33980,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Seorang murid menyatakan ekuinoks berlaku di Garisan Sartan. Apakah pembetulan yang tepat?",
+    front:
+      "Seorang murid menyatakan ekuinoks berlaku di Garisan Sartan. Apakah pembetulan yang tepat?",
     back: "Ekuinoks berlaku di Garisan KHATULISTIWA, bukan Garisan Sartan; Garisan Sartan dikaitkan dengan Solstis Musim Panas.",
   },
   {
@@ -33053,7 +33997,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Rajah menunjukkan Matahari tegak hari tegak di atas Garisan Jadi. Apakah tarikh dan musim yang berkaitan di hemisfera utara?",
+    front:
+      "Rajah menunjukkan Matahari tegak hari tegak di atas Garisan Jadi. Apakah tarikh dan musim yang berkaitan di hemisfera utara?",
     back: "22 Disember — Solstis Musim Sejuk; hemisfera utara mengalami musim sejuk.",
   },
   {
@@ -33061,7 +34006,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Soalan KBAT: Mengapakah negara khatulistiwa seperti Malaysia tidak mengalami empat musim seperti Jepun?",
+    front:
+      "Soalan KBAT: Mengapakah negara khatulistiwa seperti Malaysia tidak mengalami empat musim seperti Jepun?",
     back: "Kerana Malaysia terletak berhampiran Garisan Khatulistiwa di mana sudut tegak Matahari tidak berubah secara ketara sepanjang tahun, berbeza dengan negara beriklim sederhana yang menerima kesan kecondongan paksi Bumi secara nyata.",
   },
   {
@@ -33069,7 +34015,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Bagaimanakah anda membezakan gerhana bulan separa dengan gerhana matahari separa dalam soalan rajah?",
+    front:
+      "Bagaimanakah anda membezakan gerhana bulan separa dengan gerhana matahari separa dalam soalan rajah?",
     back: "Gerhana bulan separa: Bulan sebahagiannya tertutup bayang Bumi (susunan Matahari-Bumi-Bulan). Gerhana matahari separa: Matahari sebahagiannya tertutup oleh Bulan dilihat dari zon penumbra (susunan Matahari-Bulan-Bumi).",
   },
   {
@@ -33077,7 +34024,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Apakah jawapan tepat untuk soalan: 'Nyatakan SATU kesan putaran Bumi dan SATU kesan peredaran Bumi'?",
+    front:
+      "Apakah jawapan tepat untuk soalan: 'Nyatakan SATU kesan putaran Bumi dan SATU kesan peredaran Bumi'?",
     back: "Kesan putaran Bumi: kejadian siang dan malam (atau pembiasan angin/pasang surut/waktu tempatan). Kesan peredaran Bumi: kejadian empat musim (atau fenomena gerhana).",
   },
   {
@@ -33085,7 +34033,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Mengapakah gerhana matahari penuh hanya berlaku sekali setiap 18 bulan di sesuatu tempat di Bumi?",
+    front:
+      "Mengapakah gerhana matahari penuh hanya berlaku sekali setiap 18 bulan di sesuatu tempat di Bumi?",
     back: "Kerana kedudukan tepat Matahari, Bulan dan Bumi dalam satu garis lurus yang menghasilkan gerhana penuh di lokasi tertentu adalah jarang dan bergantung kepada kitaran orbit Bulan dan Bumi.",
   },
   {
@@ -33109,7 +34058,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Wajib Hafal: Padankan setiap tarikh dengan fenomena yang betul — 21 Mac, 21 Jun, 23 September, 22 Disember.",
+    front:
+      "Wajib Hafal: Padankan setiap tarikh dengan fenomena yang betul — 21 Mac, 21 Jun, 23 September, 22 Disember.",
     back: "21 Mac: Ekuinoks Musim Bunga. 21 Jun: Solstis Musim Panas. 23 September: Ekuinoks Musim Luruh. 22 Disember: Solstis Musim Sejuk.",
   },
   {
@@ -33117,7 +34067,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Soalan struktur meminta murid menjelaskan kesan peredaran Bumi terhadap iklim. Apakah struktur jawapan yang baik?",
+    front:
+      "Soalan struktur meminta murid menjelaskan kesan peredaran Bumi terhadap iklim. Apakah struktur jawapan yang baik?",
     back: "Nyatakan kesan (contoh: empat musim) → terangkan punca (kecondongan paksi + peredaran mengelilingi Matahari) → beri contoh tarikh/kedudukan (ekuinoks/solstis) sebagai bukti.",
   },
   {
@@ -33125,7 +34076,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Apakah teknik terbaik menjawab soalan objektif yang membezakan kesan putaran dengan kesan peredaran?",
+    front:
+      "Apakah teknik terbaik menjawab soalan objektif yang membezakan kesan putaran dengan kesan peredaran?",
     back: "Ingat 'Putaran = Harian' (siang/malam, waktu, angin, pasang surut) dan 'Peredaran = Tahunan' (musim, gerhana) sebagai kunci pembezaan pantas.",
   },
   {
@@ -33133,7 +34085,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Sebuah rajah menunjukkan Bumi dengan Kutub Utara condong ke arah Matahari. Apakah solstis yang ditunjukkan dan musim di hemisfera utara?",
+    front:
+      "Sebuah rajah menunjukkan Bumi dengan Kutub Utara condong ke arah Matahari. Apakah solstis yang ditunjukkan dan musim di hemisfera utara?",
     back: "Solstis Musim Panas (21 Jun); hemisfera utara mengalami musim panas.",
   },
   {
@@ -33149,7 +34102,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Mengapakah pengetahuan tentang waktu tempatan penting untuk industri penerbangan antarabangsa?",
+    front:
+      "Mengapakah pengetahuan tentang waktu tempatan penting untuk industri penerbangan antarabangsa?",
     back: "Kerana jadual penerbangan perlu mengambil kira perbezaan waktu tempatan antara destinasi berlepas dan destinasi tiba berdasarkan perbezaan longitud.",
   },
   {
@@ -33157,7 +34111,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Nyatakan satu sebab soalan peperiksaan sering menggabungkan rajah putaran dan peredaran Bumi dalam satu set soalan.",
+    front:
+      "Nyatakan satu sebab soalan peperiksaan sering menggabungkan rajah putaran dan peredaran Bumi dalam satu set soalan.",
     back: "Untuk menguji kefahaman holistik murid tentang kedua-dua jenis pergerakan Bumi serta keupayaan membezakan kesan masing-masing secara tepat.",
   },
   {
@@ -33165,7 +34120,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 3",
-    front: "Rumuskan dalam satu ayat bagaimana pergerakan Bumi mempengaruhi cuaca dan iklim Bumi secara keseluruhan.",
+    front:
+      "Rumuskan dalam satu ayat bagaimana pergerakan Bumi mempengaruhi cuaca dan iklim Bumi secara keseluruhan.",
     back: "Putaran Bumi menghasilkan kesan cuaca harian (siang/malam, angin, pasang surut, waktu tempatan), manakala peredaran Bumi menghasilkan kesan iklim tahunan (empat musim dan gerhana) akibat kecondongan paksi Bumi yang berterusan.",
   },
 
@@ -33386,7 +34342,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Mengapakah nelayan pantai timur Semenanjung tidak dapat ke laut semasa musim tengkujuh, berbeza dengan nelayan pantai barat?",
+    front:
+      "Mengapakah nelayan pantai timur Semenanjung tidak dapat ke laut semasa musim tengkujuh, berbeza dengan nelayan pantai barat?",
     back: "Kerana Laut China Selatan di pantai timur menjadi bergelora semasa Monsun Timur Laut, manakala Selat Melaka di pantai barat terlindung oleh banjaran gunung.",
   },
   {
@@ -33450,7 +34407,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Apakah perbezaan antara kesan rumah hijau secara semula jadi dengan kesan rumah hijau akibat aktiviti manusia?",
+    front:
+      "Apakah perbezaan antara kesan rumah hijau secara semula jadi dengan kesan rumah hijau akibat aktiviti manusia?",
     back: "Kesan rumah hijau semula jadi penting untuk mengekalkan suhu bumi yang sesuai untuk hidupan; aktiviti manusia meningkatkan pelepasan gas rumah hijau secara berlebihan sehingga menyebabkan pemanasan global.",
   },
   {
@@ -33474,7 +34432,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Bagaimanakah letusan gunung berapi di negara jiran boleh menyebabkan jerebu di Malaysia?",
+    front:
+      "Bagaimanakah letusan gunung berapi di negara jiran boleh menyebabkan jerebu di Malaysia?",
     back: "Zarah halus daripada letusan gunung berapi terbawa angin merentasi sempadan dan terampai di atmosfera Malaysia, membentuk jerebu.",
   },
   {
@@ -33500,7 +34459,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Min suhu tahunan Malaysia 2016 ialah 27.8°C. Apakah formula yang digunakan untuk mengira nilai ini?",
+    front:
+      "Min suhu tahunan Malaysia 2016 ialah 27.8°C. Apakah formula yang digunakan untuk mengira nilai ini?",
     back: "Min suhu tahunan = Jumlah suhu 12 bulan ÷ 12.",
   },
   {
@@ -33508,7 +34468,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Sebuah graf menunjukkan suhu bulanan tertinggi 29.1°C dan terendah 26.9°C. Apakah julat suhu tahunannya?",
+    front:
+      "Sebuah graf menunjukkan suhu bulanan tertinggi 29.1°C dan terendah 26.9°C. Apakah julat suhu tahunannya?",
     back: "2.2°C (29.1°C − 26.9°C).",
   },
   {
@@ -33516,7 +34477,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Soalan KBAT: Mengapakah kerajaan perlu memantau Indeks Pencemaran Udara (IPU) semasa musim jerebu?",
+    front:
+      "Soalan KBAT: Mengapakah kerajaan perlu memantau Indeks Pencemaran Udara (IPU) semasa musim jerebu?",
     back: "Untuk memastikan tindakan awal seperti penutupan sekolah atau nasihat kesihatan dapat dibuat sebelum tahap pencemaran mencapai paras bahaya kepada penduduk.",
   },
   {
@@ -33524,7 +34486,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Seorang murid menyatakan kesan rumah hijau hanya berlaku akibat aktiviti manusia. Apakah pembetulan yang tepat?",
+    front:
+      "Seorang murid menyatakan kesan rumah hijau hanya berlaku akibat aktiviti manusia. Apakah pembetulan yang tepat?",
     back: "Kesan rumah hijau ialah proses semula jadi yang penting untuk kehidupan; aktiviti manusia menyebabkan kesan rumah hijau menjadi BERLEBIHAN sehingga mengakibatkan pemanasan global.",
   },
   {
@@ -33548,7 +34511,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Soalan struktur meminta murid membezakan El Nino dan La Nina. Apakah struktur jawapan yang baik?",
+    front:
+      "Soalan struktur meminta murid membezakan El Nino dan La Nina. Apakah struktur jawapan yang baik?",
     back: "Nyatakan perubahan suhu laut Pasifik bagi setiap fenomena → terangkan kesan terhadap angin/awan → nyatakan kesan akhir di Malaysia (kemarau bagi El Nino, banjir bagi La Nina).",
   },
   {
@@ -33556,7 +34520,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Soalan KBAT: Cadangkan satu langkah bagi perancang bandar untuk mengurangkan kesan pulau haba.",
+    front:
+      "Soalan KBAT: Cadangkan satu langkah bagi perancang bandar untuk mengurangkan kesan pulau haba.",
     back: "Menambah kawasan hijau (taman/pokok) di bandar untuk meningkatkan proses perpeluhan dan evaporasi yang dapat menyederhanakan suhu persekitaran.",
   },
   {
@@ -33564,7 +34529,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Mengapakah negeri pantai timur Semenanjung Malaysia lebih terjejas oleh La Nina berbanding pantai barat?",
+    front:
+      "Mengapakah negeri pantai timur Semenanjung Malaysia lebih terjejas oleh La Nina berbanding pantai barat?",
     back: "Kerana pantai timur secara langsung menerima kesan Monsun Timur Laut yang dipertingkatkan oleh La Nina, manakala pantai barat terlindung oleh banjaran gunung.",
   },
   {
@@ -33572,7 +34538,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Apakah teknik terbaik untuk menjawab soalan objektif yang membezakan punca hujan asid dengan punca jerebu?",
+    front:
+      "Apakah teknik terbaik untuk menjawab soalan objektif yang membezakan punca hujan asid dengan punca jerebu?",
     back: "Ingat: hujan asid berkait dengan GAS terlarut dalam air (sulfur dioksida, karbon dioksida); jerebu berkait dengan ZARAH halus terampai di udara.",
   },
   {
@@ -33580,7 +34547,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Berdasarkan graf hujan bulanan, bulan manakah biasanya mencatatkan hujan tertinggi di Malaysia secara umum?",
+    front:
+      "Berdasarkan graf hujan bulanan, bulan manakah biasanya mencatatkan hujan tertinggi di Malaysia secara umum?",
     back: "Bulan peralihan monsun, iaitu sekitar akhir Mac-awal Mei dan Oktober-pertengahan November.",
   },
   {
@@ -33588,7 +34556,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Soalan KBAT: Bagaimanakah pemanasan global dapat memburukkan lagi kesan El Nino di Malaysia pada masa depan?",
+    front:
+      "Soalan KBAT: Bagaimanakah pemanasan global dapat memburukkan lagi kesan El Nino di Malaysia pada masa depan?",
     back: "Peningkatan suhu global secara keseluruhan boleh memperkuat tempoh dan keterukan kemarau yang dialami semasa El Nino berlaku.",
   },
   {
@@ -33596,7 +34565,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Apakah aplikasi sebenar kemahiran mentafsir graf suhu-hujan dalam kehidupan harian petani?",
+    front:
+      "Apakah aplikasi sebenar kemahiran mentafsir graf suhu-hujan dalam kehidupan harian petani?",
     back: "Petani menggunakan corak suhu dan hujan untuk merancang musim menanam dan menuai bagi mengelakkan kerosakan tanaman akibat cuaca buruk.",
   },
   {
@@ -33604,7 +34574,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Wajib Hafal: Apakah dua fenomena utama yang dibincangkan dalam topik Perubahan Cuaca dan Iklim di Malaysia?",
+    front:
+      "Wajib Hafal: Apakah dua fenomena utama yang dibincangkan dalam topik Perubahan Cuaca dan Iklim di Malaysia?",
     back: "Fenomena El Nino dan fenomena La Nina.",
   },
   {
@@ -33612,7 +34583,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Soalan KBAT: Mengapakah industri pelancongan pantai lebih terjejas berbanding industri pelancongan tanah tinggi semasa musim tengkujuh?",
+    front:
+      "Soalan KBAT: Mengapakah industri pelancongan pantai lebih terjejas berbanding industri pelancongan tanah tinggi semasa musim tengkujuh?",
     back: "Kerana laut yang bergelora dan hujan lebat semasa musim tengkujuh menjejaskan aktiviti pantai (renang, menyelam), manakala tanah tinggi kurang terjejas oleh ombak laut.",
   },
   {
@@ -33620,7 +34592,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Apakah perkaitan antara kepekatan zarah dalam Indeks Pencemaran Udara (IPU) dengan tindakan kerajaan?",
+    front:
+      "Apakah perkaitan antara kepekatan zarah dalam Indeks Pencemaran Udara (IPU) dengan tindakan kerajaan?",
     back: "Apabila IPU mencatatkan paras tidak sihat atau bahaya, kerajaan boleh mengambil tindakan seperti menutup sekolah dan menasihatkan penduduk mengelakkan aktiviti luar.",
   },
   {
@@ -33628,7 +34601,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Soalan KBAT: Mengapakah kawasan pertanian seperti Cameron Highlands berisiko terjejas oleh pulau haba berbanding kawasan pertanian pamah?",
+    front:
+      "Soalan KBAT: Mengapakah kawasan pertanian seperti Cameron Highlands berisiko terjejas oleh pulau haba berbanding kawasan pertanian pamah?",
     back: "Sebenarnya kawasan tanah tinggi seperti Cameron Highlands KURANG berisiko kerana pulau haba berlaku di kawasan bandar tepu bina, bukan di kawasan pertanian terbuka yang masih mempunyai banyak tumbuh-tumbuhan.",
   },
   {
@@ -33636,7 +34610,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Apakah langkah mitigasi yang sesuai bagi mengurangkan pelepasan gas rumah hijau daripada sektor pengangkutan?",
+    front:
+      "Apakah langkah mitigasi yang sesuai bagi mengurangkan pelepasan gas rumah hijau daripada sektor pengangkutan?",
     back: "Menggalakkan penggunaan kenderaan elektrik, pengangkutan awam dan mengurangkan pembakaran bahan api fosil oleh kenderaan persendirian.",
   },
   {
@@ -33644,7 +34619,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Nyatakan satu sebab soalan peperiksaan sering menggabungkan graf suhu-hujan dengan peta angin monsun dalam satu set soalan Bab 4.",
+    front:
+      "Nyatakan satu sebab soalan peperiksaan sering menggabungkan graf suhu-hujan dengan peta angin monsun dalam satu set soalan Bab 4.",
     back: "Untuk menguji kefahaman holistik murid tentang hubungan antara ciri iklim (suhu, hujan, angin) dengan kesannya terhadap kegiatan manusia di Malaysia.",
   },
   {
@@ -33652,7 +34628,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 4",
-    front: "Rumuskan dalam satu ayat hubungan dua hala antara cuaca/iklim dengan kegiatan manusia di Malaysia.",
+    front:
+      "Rumuskan dalam satu ayat hubungan dua hala antara cuaca/iklim dengan kegiatan manusia di Malaysia.",
     back: "Iklim Khatulistiwa Malaysia mempengaruhi kegiatan manusia seperti pertanian dan perikanan, manakala kegiatan manusia seperti pembakaran dan pembandaran turut memberi kesan kepada cuaca dan iklim melalui fenomena seperti kesan rumah hijau, pulau haba, hujan asid dan jerebu.",
   },
   {
@@ -33676,7 +34653,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Apakah lebuh raya yang menghubungkan kawasan pedalaman dengan bandar-bandar di Sabah dan Sarawak?",
+    front:
+      "Apakah lebuh raya yang menghubungkan kawasan pedalaman dengan bandar-bandar di Sabah dan Sarawak?",
     back: "Lebuhraya Pan Borneo.",
   },
   {
@@ -33700,7 +34678,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Berapakah bilangan lapangan terbang antarabangsa, domestik dan padang terbang di Malaysia?",
+    front:
+      "Berapakah bilangan lapangan terbang antarabangsa, domestik dan padang terbang di Malaysia?",
     back: "6 lapangan terbang antarabangsa, 16 lapangan terbang domestik dan 18 padang terbang.",
   },
   {
@@ -33820,7 +34799,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Mengapakah jaringan jalan raya di Sabah dan Sarawak lebih tertumpu di sepanjang pantai?",
+    front:
+      "Mengapakah jaringan jalan raya di Sabah dan Sarawak lebih tertumpu di sepanjang pantai?",
     back: "Kerana kawasan pedalaman bertanah tinggi dan berhutan tebal menyukarkan pembinaan jalan raya.",
   },
   {
@@ -33876,7 +34856,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Mengapakah kawasan seperti Lembah Klang, Georgetown dan Ipoh mempunyai jaringan pengangkutan yang padat?",
+    front:
+      "Mengapakah kawasan seperti Lembah Klang, Georgetown dan Ipoh mempunyai jaringan pengangkutan yang padat?",
     back: "Kerana kawasan tersebut giat dengan kegiatan ekonomi seperti perniagaan, perdagangan, perindustrian dan perlombongan.",
   },
   {
@@ -33908,7 +34889,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Bagaimanakah pengangkutan air membantu kawasan pedalaman seperti Sungai Rajang dan Sungai Kinabatangan?",
+    front:
+      "Bagaimanakah pengangkutan air membantu kawasan pedalaman seperti Sungai Rajang dan Sungai Kinabatangan?",
     back: "Mengangkut penumpang dan barangan ke destinasi yang tidak dapat dicapai melalui jalan raya, menghubungkan kawasan pedalaman dengan bandar.",
   },
   {
@@ -33980,7 +34962,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "KBAT: Mengapakah pembinaan ECRL dianggap projek strategik bagi pembangunan wilayah pantai timur?",
+    front:
+      "KBAT: Mengapakah pembinaan ECRL dianggap projek strategik bagi pembangunan wilayah pantai timur?",
     back: "ECRL menghubungkan Lembah Klang dengan pantai timur, mempertingkatkan darjah ketersampaian dan menggalakkan pembangunan ekonomi serta peluang pekerjaan di wilayah pantai timur.",
   },
   {
@@ -33988,7 +34971,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "KBAT: Bagaimanakah dasar kerajaan seperti NKRA membantu menambah baik pengangkutan awam bandar?",
+    front:
+      "KBAT: Bagaimanakah dasar kerajaan seperti NKRA membantu menambah baik pengangkutan awam bandar?",
     back: "NKRA (Bidang Keberhasilan Utama Negara) menetapkan sasaran khusus untuk menambah baik kualiti dan liputan pengangkutan awam bandar, mendorong pelaburan infrastruktur.",
   },
   {
@@ -33996,7 +34980,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "KBAT: Apakah kesan jangka panjang sekiranya kemajuan teknologi pengangkutan tidak diimbangi dengan amalan lestari?",
+    front:
+      "KBAT: Apakah kesan jangka panjang sekiranya kemajuan teknologi pengangkutan tidak diimbangi dengan amalan lestari?",
     back: "Jaringan pengangkutan yang cekap tetapi tidak lestari akan meningkatkan pelepasan gas pencemar, menjejaskan kualiti udara dan kesihatan penduduk dalam jangka panjang.",
   },
   {
@@ -34004,7 +34989,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "KBAT: Mengapakah Stesen Sentral Kuala Lumpur dianggap penting dalam sistem rel bersepadu negara?",
+    front:
+      "KBAT: Mengapakah Stesen Sentral Kuala Lumpur dianggap penting dalam sistem rel bersepadu negara?",
     back: "Ia menjadi pusat pengangkutan rel bersepadu Kuala Lumpur yang menghubungkan pelbagai perkhidmatan rel seperti LRT, KLIA Ekspres, KTM Komuter dan ERL dalam satu lokasi strategik.",
   },
   {
@@ -34044,7 +35030,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Fakta Wajib Hafal: Apakah peratus eksport-import kontena Sabah yang dikendalikan Pelabuhan Kontena Teluk Sepanggar?",
+    front:
+      "Fakta Wajib Hafal: Apakah peratus eksport-import kontena Sabah yang dikendalikan Pelabuhan Kontena Teluk Sepanggar?",
     back: "Hampir 70 peratus.",
   },
   {
@@ -34052,7 +35039,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Fakta Wajib Hafal: Apakah pengiktirafan yang diterima Pelabuhan Tanjung Pelepas pada 2017?",
+    front:
+      "Fakta Wajib Hafal: Apakah pengiktirafan yang diterima Pelabuhan Tanjung Pelepas pada 2017?",
     back: "Port/Terminal of the Year daripada Global Ports Forum.",
   },
   {
@@ -34068,7 +35056,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Soalan Sering Diuji: Senaraikan 4 faktor mempengaruhi jaringan pengangkutan mengikut urutan dalam buku teks.",
+    front:
+      "Soalan Sering Diuji: Senaraikan 4 faktor mempengaruhi jaringan pengangkutan mengikut urutan dalam buku teks.",
     back: "Bentuk muka bumi, kemajuan teknologi, dasar kerajaan, kegiatan ekonomi.",
   },
   {
@@ -34084,7 +35073,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Aplikasi: Sekiranya anda merancang lokasi pelabuhan baharu, apakah ciri muka bumi yang perlu dipertimbangkan?",
+    front:
+      "Aplikasi: Sekiranya anda merancang lokasi pelabuhan baharu, apakah ciri muka bumi yang perlu dipertimbangkan?",
     back: "Kawasan pinggir laut yang terlindung dan dalam, supaya kapal besar dapat berlabuh dengan selamat tanpa terjejas ombak besar.",
   },
   {
@@ -34092,7 +35082,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Aplikasi: Sekiranya sebuah bandar mengalami kesesakan lalu lintas yang serius, apakah amalan pengangkutan lestari yang boleh dicadangkan?",
+    front:
+      "Aplikasi: Sekiranya sebuah bandar mengalami kesesakan lalu lintas yang serius, apakah amalan pengangkutan lestari yang boleh dicadangkan?",
     back: "Menggalakkan penggunaan pengangkutan awam, berkongsi kereta, dan penggunaan kereta elektrik/hibrid untuk mengurangkan bilangan kenderaan persendirian.",
   },
   {
@@ -34100,7 +35091,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Aplikasi: Mengapakah kawasan pedalaman Sabah dan Sarawak lebih bergantung kepada pengangkutan air dan udara berbanding jalan raya?",
+    front:
+      "Aplikasi: Mengapakah kawasan pedalaman Sabah dan Sarawak lebih bergantung kepada pengangkutan air dan udara berbanding jalan raya?",
     back: "Kerana bentuk muka bumi berhutan tebal dan bertanah tinggi menyukarkan pembinaan jalan raya, menjadikan sungai dan lapangan terbang kecil sebagai laluan utama.",
   },
   {
@@ -34108,7 +35100,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Aplikasi: Apakah kaitan antara kemajuan jaringan pengangkutan dengan pembangunan koridor ekonomi seperti ECER, SCORE dan SDC?",
+    front:
+      "Aplikasi: Apakah kaitan antara kemajuan jaringan pengangkutan dengan pembangunan koridor ekonomi seperti ECER, SCORE dan SDC?",
     back: "Jaringan pengangkutan yang baik mempertingkatkan ketersampaian dan menggalakkan pelaburan serta pembangunan ekonomi di wilayah koridor tersebut.",
   },
   {
@@ -34116,7 +35109,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "KBAT: Nilaikan kebaikan dan kelemahan dasar penswastaan dalam pembangunan jaringan pengangkutan negara.",
+    front:
+      "KBAT: Nilaikan kebaikan dan kelemahan dasar penswastaan dalam pembangunan jaringan pengangkutan negara.",
     back: "Kebaikan: pembiayaan dan penyelenggaraan lebih efisien serta projek dapat dilaksanakan lebih pantas. Kelemahan: pengguna mungkin perlu membayar tol/tambang yang lebih tinggi.",
   },
   {
@@ -34124,7 +35118,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "KBAT: Cadangkan satu langkah untuk menggalakkan lebih ramai rakyat Malaysia mengamalkan pengangkutan lestari.",
+    front:
+      "KBAT: Cadangkan satu langkah untuk menggalakkan lebih ramai rakyat Malaysia mengamalkan pengangkutan lestari.",
     back: "Contohnya, menyediakan subsidi atau insentif cukai bagi pembelian kereta elektrik/hibrid, serta menambah baik liputan dan kekerapan perkhidmatan pengangkutan awam.",
   },
   {
@@ -34132,7 +35127,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 5",
-    front: "Rumuskan dalam satu ayat kepentingan jaringan pengangkutan terhadap pembangunan negara Malaysia.",
+    front:
+      "Rumuskan dalam satu ayat kepentingan jaringan pengangkutan terhadap pembangunan negara Malaysia.",
     back: "Jaringan pengangkutan darat, udara dan air yang cekap menyumbang kepada integrasi nasional, pembangunan ekonomi wilayah dan peluang pekerjaan, namun perlu diimbangi dengan amalan pengangkutan lestari bagi memelihara alam sekitar.",
   },
   {
@@ -34292,7 +35288,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "Apakah Akta yang melindungi pengguna telekomunikasi daripada kandungan jelik di Malaysia?",
+    front:
+      "Apakah Akta yang melindungi pengguna telekomunikasi daripada kandungan jelik di Malaysia?",
     back: "Akta Komunikasi dan Multimedia 1998.",
   },
   {
@@ -34404,7 +35401,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "Mengapakah kita perlu mengelakkan mendedahkan hal peribadi dan kata laluan kepada umum?",
+    front:
+      "Mengapakah kita perlu mengelakkan mendedahkan hal peribadi dan kata laluan kepada umum?",
     back: "Untuk mengelakkan penyalahgunaan maklumat peribadi dan jenayah siber seperti kecurian identiti.",
   },
   {
@@ -34468,7 +35466,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "KBAT: Apakah kesan jangka panjang sekiranya jurang digital bandar-luar bandar tidak dirapatkan?",
+    front:
+      "KBAT: Apakah kesan jangka panjang sekiranya jurang digital bandar-luar bandar tidak dirapatkan?",
     back: "Penduduk luar bandar akan ketinggalan dalam akses pendidikan, peluang ekonomi dan e-perkhidmatan, melebarkan jurang pembangunan wilayah.",
   },
   {
@@ -34484,7 +35483,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "KBAT: Mengapakah penguatkuasaan undang-undang seperti Akta Komunikasi dan Multimedia 1998 perlu dikemas kini secara berkala?",
+    front:
+      "KBAT: Mengapakah penguatkuasaan undang-undang seperti Akta Komunikasi dan Multimedia 1998 perlu dikemas kini secara berkala?",
     back: "Kerana teknologi dan corak penyalahgunaan internet sentiasa berubah, undang-undang perlu relevan dengan ancaman siber terkini.",
   },
   {
@@ -34492,7 +35492,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "KBAT: Bandingkan kesan positif dan negatif penggunaan media sosial dalam konteks telekomunikasi.",
+    front:
+      "KBAT: Bandingkan kesan positif dan negatif penggunaan media sosial dalam konteks telekomunikasi.",
     back: "Positif: mengeratkan silaturahim dan menyebarkan maklumat pantas. Negatif: berisiko menyebarkan maklumat tidak tepat dan kandungan jelik jika tidak digunakan secara beretika.",
   },
   {
@@ -34500,7 +35501,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "Fakta Wajib Hafal: Bilakah telegraf, telefon talian tetap dan telefon bimbit masing-masing diperkenalkan?",
+    front:
+      "Fakta Wajib Hafal: Bilakah telegraf, telefon talian tetap dan telefon bimbit masing-masing diperkenalkan?",
     back: "Telegraf: 1876. Telefon talian tetap: 1891. Telefon bimbit: 1980-an.",
   },
   {
@@ -34548,7 +35550,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "Soalan Sering Diuji: Senaraikan kronologi pelancaran satelit MEASAT mengikut buku teks.",
+    front:
+      "Soalan Sering Diuji: Senaraikan kronologi pelancaran satelit MEASAT mengikut buku teks.",
     back: "MEASAT-1 (1996), MEASAT-2 (1996), MEASAT-3 (2006), MEASAT-3a (2009), MEASAT-3b (2014).",
   },
   {
@@ -34556,7 +35559,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "Soalan Sering Diuji: Apakah perbezaan antara alat telekomunikasi tradisional dan moden?",
+    front:
+      "Soalan Sering Diuji: Apakah perbezaan antara alat telekomunikasi tradisional dan moden?",
     back: "Tradisional (telegraf, telefon talian tetap, teleks, faks) digunakan sebelum era digital; moden (telefon bimbit, telefon pintar) menggunakan teknologi tanpa wayar dan digital.",
   },
   {
@@ -34564,7 +35568,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "Aplikasi: Sekiranya sebuah sekolah pedalaman tidak mempunyai capaian jalur lebar yang baik, apakah kesannya terhadap peluang pendidikan murid?",
+    front:
+      "Aplikasi: Sekiranya sebuah sekolah pedalaman tidak mempunyai capaian jalur lebar yang baik, apakah kesannya terhadap peluang pendidikan murid?",
     back: "Murid tidak dapat memanfaatkan e-pembelajaran dan multimedia interaktif, menjejaskan akses kepada bahan pembelajaran berbanding murid di bandar.",
   },
   {
@@ -34572,7 +35577,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "Aplikasi: Bagaimanakah seorang peniaga kecil boleh memanfaatkan telekomunikasi untuk mengembangkan perniagaannya?",
+    front:
+      "Aplikasi: Bagaimanakah seorang peniaga kecil boleh memanfaatkan telekomunikasi untuk mengembangkan perniagaannya?",
     back: "Menggunakan e-dagang dan media sosial untuk memasarkan produk secara atas talian kepada pelanggan yang lebih luas tanpa kehadiran fizikal.",
   },
   {
@@ -34580,7 +35586,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "Aplikasi: Apakah tindakan yang wajar diambil sekiranya anda menerima maklumat yang mencurigakan melalui media sosial?",
+    front:
+      "Aplikasi: Apakah tindakan yang wajar diambil sekiranya anda menerima maklumat yang mencurigakan melalui media sosial?",
     back: "Mengesahkan kesahihan maklumat tersebut sebelum berkongsi, dan melaporkan kepada SKMM sekiranya kandungan tersebut melanggar undang-undang.",
   },
   {
@@ -34596,7 +35603,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "KBAT: Nilaikan sama ada kemajuan telekomunikasi membawa lebih banyak manfaat berbanding risiko kepada masyarakat Malaysia.",
+    front:
+      "KBAT: Nilaikan sama ada kemajuan telekomunikasi membawa lebih banyak manfaat berbanding risiko kepada masyarakat Malaysia.",
     back: "Secara keseluruhan manfaat (pendidikan, ekonomi, kesihatan, pentadbiran) mengatasi risiko, asalkan diimbangi dengan etika penggunaan dan penguatkuasaan undang-undang yang berkesan.",
   },
   {
@@ -34604,7 +35612,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "KBAT: Cadangkan satu langkah untuk SKMM menangani penyalahgunaan Internet yang masih berleluasa.",
+    front:
+      "KBAT: Cadangkan satu langkah untuk SKMM menangani penyalahgunaan Internet yang masih berleluasa.",
     back: "Contohnya, meningkatkan kempen kesedaran awam tentang etika digital dan memperkukuh kerjasama dengan platform media sosial untuk mengesan kandungan jelik dengan lebih pantas.",
   },
   {
@@ -34612,7 +35621,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 6",
-    front: "Rumuskan dalam satu ayat kepentingan telekomunikasi terhadap pembangunan negara Malaysia.",
+    front:
+      "Rumuskan dalam satu ayat kepentingan telekomunikasi terhadap pembangunan negara Malaysia.",
     back: "Telekomunikasi mempercepatkan pembangunan ekonomi, pendidikan dan pentadbiran negara melalui pelbagai kemudahan seperti e-dagang dan e-kerajaan, tetapi memerlukan penggunaan beretika dan penguatkuasaan undang-undang untuk mengelakkan kesan negatif seperti jenayah siber.",
   },
   {
@@ -34860,7 +35870,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Mengapakah Oymyakon (Rusia) dan Vostok (Antartika) sering dikelirukan oleh murid?",
+    front:
+      "KBAT: Mengapakah Oymyakon (Rusia) dan Vostok (Antartika) sering dikelirukan oleh murid?",
     back: "Kedua-duanya merupakan tempat paling sejuk, tetapi Oymyakon di Benua Asia (-67.7°C) manakala Vostok di Antartika (-89.2°C, paling sejuk di dunia).",
   },
   {
@@ -34868,7 +35879,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Bagaimanakah seseorang dapat membezakan iklim Khatulistiwa dan Monsun Tropika melalui graf hujan?",
+    front:
+      "KBAT: Bagaimanakah seseorang dapat membezakan iklim Khatulistiwa dan Monsun Tropika melalui graf hujan?",
     back: "Khatulistiwa menunjukkan taburan hujan sekata sepanjang tahun; Monsun Tropika menunjukkan perbezaan jelas antara bulan kering dan bulan lembap.",
   },
   {
@@ -34876,7 +35888,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Mengapakah penternakan ayam dan khinzir di China tertumpu di kawasan tertentu seperti Shandong?",
+    front:
+      "KBAT: Mengapakah penternakan ayam dan khinzir di China tertumpu di kawasan tertentu seperti Shandong?",
     back: "Kawasan tersebut mempunyai gabungan suhu sederhana, sumber makanan ternakan dan infrastruktur yang menyokong penternakan berskala besar.",
   },
   {
@@ -34884,7 +35897,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Apakah kesan ribut taufan terhadap China (selatan), Hong Kong dan Taiwan pada akhir musim panas?",
+    front:
+      "KBAT: Apakah kesan ribut taufan terhadap China (selatan), Hong Kong dan Taiwan pada akhir musim panas?",
     back: "Siklon tropika dari Lautan Pasifik membawa ribut ganas yang boleh merosakkan tanaman, harta benda dan mengganggu aktiviti harian.",
   },
   {
@@ -34892,7 +35906,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Bagaimanakah kepelbagaian iklim Asia membentuk kepelbagaian kegiatan ekonomi penduduknya?",
+    front:
+      "KBAT: Bagaimanakah kepelbagaian iklim Asia membentuk kepelbagaian kegiatan ekonomi penduduknya?",
     back: "Setiap iklim membentuk persekitaran fizikal unik (suhu, hujan, musim) yang menentukan jenis kegiatan ekonomi paling sesuai — perikanan/pemburuan di Tundra, pertanian/penternakan pelbagai di China, ternakan tahan kemarau di Gurun Panas.",
   },
   {
@@ -34900,7 +35915,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Mengapakah pertanian gandum dan teh di iklim Laurentia ditanam pada suhu 16°C hingga 18°C?",
+    front:
+      "KBAT: Mengapakah pertanian gandum dan teh di iklim Laurentia ditanam pada suhu 16°C hingga 18°C?",
     back: "Suhu sederhana panas tersebut paling sesuai untuk pertumbuhan optimum tanaman gandum dan teh tanpa tekanan haba berlebihan.",
   },
   {
@@ -34980,7 +35996,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "Aplikasi: Sekiranya anda seorang petani di Lembah Sungai Yangtze, bilakah masa paling sesuai untuk menanam padi?",
+    front:
+      "Aplikasi: Sekiranya anda seorang petani di Lembah Sungai Yangtze, bilakah masa paling sesuai untuk menanam padi?",
     back: "Pada musim hujan/musim panas apabila suhu sekitar 28°C dan hujan lebat, sesuai untuk pertumbuhan padi.",
   },
   {
@@ -34988,7 +36005,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "Aplikasi: Sekiranya anda merancang penempatan baharu di kawasan Gurun Arab, kawasan manakah yang paling sesuai?",
+    front:
+      "Aplikasi: Sekiranya anda merancang penempatan baharu di kawasan Gurun Arab, kawasan manakah yang paling sesuai?",
     back: "Kawasan oasis, kerana ia satu-satunya kawasan subur dengan bekalan air yang mencukupi untuk pertanian dan keperluan harian.",
   },
   {
@@ -34996,7 +36014,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "Aplikasi: Mengapakah seorang nelayan di Siberia hanya dapat menangkap ikan pada musim panas?",
+    front:
+      "Aplikasi: Mengapakah seorang nelayan di Siberia hanya dapat menangkap ikan pada musim panas?",
     back: "Musim sejuk yang panjang dan sejuk melampau (-32°C hingga -55°C) menyebabkan perairan membeku, menyukarkan aktiviti perikanan.",
   },
   {
@@ -35004,7 +36023,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "Aplikasi: Apakah cabaran utama yang dihadapi penternak unta di Gurun Panas berbanding penternak lembu di iklim China?",
+    front:
+      "Aplikasi: Apakah cabaran utama yang dihadapi penternak unta di Gurun Panas berbanding penternak lembu di iklim China?",
     back: "Kekurangan air dan rumput segar — penternak unta perlu bergantung kepada semak renek yang jarang berbanding rumput subur di kawasan beriklim China.",
   },
   {
@@ -35012,7 +36032,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "Aplikasi: Mengapakah pelancong perlu membawa pakaian sejuk dan panas sekiranya melawat Gurun Arab?",
+    front:
+      "Aplikasi: Mengapakah pelancong perlu membawa pakaian sejuk dan panas sekiranya melawat Gurun Arab?",
     back: "Kerana julat suhu harian yang besar — siang sangat panas (hingga 40°C) tetapi malam menjadi sejuk (hingga 5°C).",
   },
   {
@@ -35020,7 +36041,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Nilaikan sama ada iklim Khatulistiwa lebih sesuai untuk pertanian berbanding iklim Gurun Panas.",
+    front:
+      "KBAT: Nilaikan sama ada iklim Khatulistiwa lebih sesuai untuk pertanian berbanding iklim Gurun Panas.",
     back: "Ya, kerana hujan tahunan tinggi (>2600mm) dan suhu panas yang konsisten menggalakkan pertumbuhan tanaman sepanjang tahun tanpa kekangan air seperti di Gurun Panas.",
   },
   {
@@ -35028,7 +36050,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Cadangkan satu langkah penyesuaian bagi penduduk Tundra menghadapi musim sejuk yang panjang.",
+    front:
+      "KBAT: Cadangkan satu langkah penyesuaian bagi penduduk Tundra menghadapi musim sejuk yang panjang.",
     back: "Contohnya, menyimpan hasil buruan dan tangkapan ikan dalam bentuk kering/sejuk beku untuk simpanan makanan sepanjang musim sejuk yang panjang.",
   },
   {
@@ -35036,7 +36059,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Mengapakah sesetengah kawasan di China mengalami dua jenis iklim yang berbeza (Laurentia di utara, China di tengah/selatan)?",
+    front:
+      "KBAT: Mengapakah sesetengah kawasan di China mengalami dua jenis iklim yang berbeza (Laurentia di utara, China di tengah/selatan)?",
     back: "China mempunyai liputan latitud yang luas dari utara ke selatan, menyebabkan kawasan utara menerima kesan iklim sejuk sederhana, manakala kawasan selatan menerima kesan iklim panas sederhana.",
   },
   {
@@ -35044,7 +36068,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Bandingkan kesesuaian iklim Laurentia dan iklim China untuk kegiatan pertanian padi.",
+    front:
+      "KBAT: Bandingkan kesesuaian iklim Laurentia dan iklim China untuk kegiatan pertanian padi.",
     back: "Iklim China lebih sesuai kerana hujan tahunan lebih tinggi (508-1520mm) dan suhu musim panas lebih panas (28°C) berbanding Laurentia (500-1000mm, 20-27°C), menjadikannya lebih ideal untuk padi.",
   },
   {
@@ -35060,7 +36085,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "Soalan Sering Diuji: Apakah angin utama yang membawa hujan ke kawasan beriklim Laurentia?",
+    front:
+      "Soalan Sering Diuji: Apakah angin utama yang membawa hujan ke kawasan beriklim Laurentia?",
     back: "Angin Monsun Tenggara, yang membawa hujan maksimum pada musim panas.",
   },
   {
@@ -35068,7 +36094,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "Soalan Sering Diuji: Apakah angin utama yang bertiup di kawasan Gurun Panas dan kesannya?",
+    front:
+      "Soalan Sering Diuji: Apakah angin utama yang bertiup di kawasan Gurun Panas dan kesannya?",
     back: "Angin Timuran yang kering, bertiup dari kawasan darat dan tidak membawa hujan.",
   },
   {
@@ -35076,7 +36103,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Apakah implikasi pemanasan global terhadap kawasan beriklim Tundra pada masa depan?",
+    front:
+      "KBAT: Apakah implikasi pemanasan global terhadap kawasan beriklim Tundra pada masa depan?",
     back: "Peningkatan suhu global boleh mencairkan ais dan salji secara lebih meluas, menjejaskan habitat haiwan seperti walrus dan beruang kutub serta kegiatan pemburuan tradisional penduduk.",
   },
   {
@@ -35084,7 +36112,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "KBAT: Mengapakah kefahaman tentang jenis iklim penting untuk merancang kegiatan ekonomi sesuatu kawasan?",
+    front:
+      "KBAT: Mengapakah kefahaman tentang jenis iklim penting untuk merancang kegiatan ekonomi sesuatu kawasan?",
     back: "Kefahaman iklim membantu mengelakkan kegagalan pelaburan dalam kegiatan ekonomi yang tidak sesuai dengan persekitaran fizikal (cth: mengelak penanaman padi secara meluas di Gurun Panas).",
   },
   {
@@ -35092,7 +36121,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 7",
-    front: "Rumuskan dalam satu ayat hubungan antara kepelbagaian iklim Asia dengan kegiatan ekonomi penduduknya.",
+    front:
+      "Rumuskan dalam satu ayat hubungan antara kepelbagaian iklim Asia dengan kegiatan ekonomi penduduknya.",
     back: "Kepelbagaian sembilan jenis iklim di Asia, daripada Tundra yang sejuk kepada Gurun Panas yang panas, membentuk corak kegiatan ekonomi yang berbeza-beza seperti perikanan, pertanian dan penternakan mengikut kesesuaian persekitaran fizikal setempat.",
   },
   {
@@ -35276,7 +36306,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Mengapakah lapangan terbang seperti Changi dan Dubai dianggap strategik untuk ekonomi negara?",
+    front:
+      "Mengapakah lapangan terbang seperti Changi dan Dubai dianggap strategik untuk ekonomi negara?",
     back: "Menjadikan negara sebagai hab serantau untuk perdagangan, pelancongan dan perkhidmatan, mengimbangi kekurangan sumber asli.",
   },
   {
@@ -35284,7 +36315,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Bagaimanakah kemajuan pengangkutan menyumbang kepada pertumbuhan bandar sebagai hab perdagangan?",
+    front:
+      "Bagaimanakah kemajuan pengangkutan menyumbang kepada pertumbuhan bandar sebagai hab perdagangan?",
     back: "Memudahkan pergerakan barangan dan penumpang, menarik pelaburan dan aktiviti perniagaan ke bandar tersebut.",
   },
   {
@@ -35292,7 +36324,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Mengapakah kereta api berkelajuan tinggi dianggap memberi kesan positif terhadap alam sekitar?",
+    front:
+      "Mengapakah kereta api berkelajuan tinggi dianggap memberi kesan positif terhadap alam sekitar?",
     back: "Mengurangkan pencemaran udara berbanding penggunaan kenderaan persendirian secara meluas.",
   },
   {
@@ -35300,7 +36333,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Bagaimanakah pembinaan infrastruktur pengangkutan boleh menjejaskan kawasan tadahan air?",
+    front:
+      "Bagaimanakah pembinaan infrastruktur pengangkutan boleh menjejaskan kawasan tadahan air?",
     back: "Pembinaan jalan raya, landasan kereta api dan lapangan terbang boleh menyebabkan kemusnahan hutan yang menjejaskan kawasan tadahan air sekitarnya.",
   },
   {
@@ -35324,7 +36358,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Bagaimanakah kemajuan pengangkutan menyumbang kepada pertukaran mata wang asing negara?",
+    front:
+      "Bagaimanakah kemajuan pengangkutan menyumbang kepada pertukaran mata wang asing negara?",
     back: "Peningkatan jumlah pelancong dan pedagang antarabangsa yang menggunakan pengangkutan meningkatkan aliran mata wang asing melalui perbelanjaan dan perdagangan.",
   },
   {
@@ -35340,7 +36375,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "KBAT: Mengapakah Shinkansen dianggap antara sistem kereta api paling cekap walaupun bukan yang paling laju?",
+    front:
+      "KBAT: Mengapakah Shinkansen dianggap antara sistem kereta api paling cekap walaupun bukan yang paling laju?",
     back: "Kecekapan diukur secara holistik — keselamatan tinggi, kekerapan perkhidmatan dan keupayaan mengangkut 445 000 penumpang sehari secara konsisten selama lebih 30 tahun.",
   },
   {
@@ -35356,7 +36392,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "KBAT: Mengapakah negara tanpa banyak sumber asli seperti Singapura dan Dubai melabur besar dalam lapangan terbang?",
+    front:
+      "KBAT: Mengapakah negara tanpa banyak sumber asli seperti Singapura dan Dubai melabur besar dalam lapangan terbang?",
     back: "Untuk menjadi hab serantau bagi perdagangan, pelancongan dan perkhidmatan, mengimbangi kekurangan sumber asli dengan kekuatan logistik.",
   },
   {
@@ -35364,7 +36401,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "KBAT: Bagaimanakah kesan positif dan negatif pengangkutan terhadap alam sekitar dapat diimbangi?",
+    front:
+      "KBAT: Bagaimanakah kesan positif dan negatif pengangkutan terhadap alam sekitar dapat diimbangi?",
     back: "Menggunakan kereta api elektrik untuk kurangkan pencemaran udara, sambil merancang pembinaan infrastruktur baharu secara mampan untuk elak kemusnahan hutan.",
   },
   {
@@ -35372,7 +36410,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "KBAT: Mengapakah pembangunan lapangan terbang dan pelabuhan sering tertumpu di kawasan bandar besar dan pantai?",
+    front:
+      "KBAT: Mengapakah pembangunan lapangan terbang dan pelabuhan sering tertumpu di kawasan bandar besar dan pantai?",
     back: "Kawasan tersebut berpenduduk padat dan menjadi pusat ekonomi utama, strategik untuk perdagangan dan mobiliti penduduk.",
   },
   {
@@ -35404,7 +36443,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Soalan Sering Diuji: Senaraikan 3 lapangan terbang antarabangsa di China yang disebut dalam buku teks.",
+    front:
+      "Soalan Sering Diuji: Senaraikan 3 lapangan terbang antarabangsa di China yang disebut dalam buku teks.",
     back: "Chengdu (hab terbesar China tengah dan barat, 46.0 juta penumpang).",
   },
   {
@@ -35412,7 +36452,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Fakta Wajib Hafal: Berapakah bilangan penumpang Lapangan Terbang Antarabangsa Tokyo (2016)?",
+    front:
+      "Fakta Wajib Hafal: Berapakah bilangan penumpang Lapangan Terbang Antarabangsa Tokyo (2016)?",
     back: "Lebih daripada 80 juta penumpang (dua lapangan terbang utama di Greater Tokyo).",
   },
   {
@@ -35420,7 +36461,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Fakta Wajib Hafal: Berapakah bilangan penumpang Lapangan Terbang Antarabangsa Hong Kong (2016)?",
+    front:
+      "Fakta Wajib Hafal: Berapakah bilangan penumpang Lapangan Terbang Antarabangsa Hong Kong (2016)?",
     back: "70.5 juta penumpang.",
   },
   {
@@ -35428,7 +36470,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Fakta Wajib Hafal: Berapakah bilangan penumpang Lapangan Terbang Antarabangsa Moscow Domodedovo (2016)?",
+    front:
+      "Fakta Wajib Hafal: Berapakah bilangan penumpang Lapangan Terbang Antarabangsa Moscow Domodedovo (2016)?",
     back: "28.5 juta penumpang.",
   },
   {
@@ -35444,7 +36487,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Aplikasi: Sekiranya anda merancang perjalanan perniagaan dari Beijing ke Shanghai, kenapa kereta api berkelajuan tinggi menjadi pilihan baik?",
+    front:
+      "Aplikasi: Sekiranya anda merancang perjalanan perniagaan dari Beijing ke Shanghai, kenapa kereta api berkelajuan tinggi menjadi pilihan baik?",
     back: "Kelajuan 250-300 km/j memendekkan masa perjalanan dengan ketepatan masa yang lebih baik berbanding pengangkutan darat konvensional.",
   },
   {
@@ -35452,7 +36496,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Aplikasi: Mengapakah sebuah negara pulau kecil seperti Singapura memberi tumpuan besar kepada pelabuhan dan lapangan terbangnya?",
+    front:
+      "Aplikasi: Mengapakah sebuah negara pulau kecil seperti Singapura memberi tumpuan besar kepada pelabuhan dan lapangan terbangnya?",
     back: "Kekurangan sumber asli dan tanah menyebabkan negara bergantung kepada perdagangan dan perkhidmatan logistik sebagai penjana ekonomi utama.",
   },
   {
@@ -35460,7 +36505,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Aplikasi: Apakah kesan jangka panjang sekiranya sebuah bandar tidak melabur dalam jaringan pengangkutan moden?",
+    front:
+      "Aplikasi: Apakah kesan jangka panjang sekiranya sebuah bandar tidak melabur dalam jaringan pengangkutan moden?",
     back: "Bandar tersebut berisiko ketinggalan dari segi pelaburan, pelancongan dan perdagangan berbanding bandar lain yang mempunyai jaringan pengangkutan cekap.",
   },
   {
@@ -35468,7 +36514,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Aplikasi: Bagaimanakah sebuah syarikat logistik antarabangsa memanfaatkan Pelabuhan Singapura dalam operasinya?",
+    front:
+      "Aplikasi: Bagaimanakah sebuah syarikat logistik antarabangsa memanfaatkan Pelabuhan Singapura dalam operasinya?",
     back: "Menggunakan kapasiti tinggi pelabuhan (~1000 kapal serentak) sebagai hab transit untuk menyalurkan barangan ke pelbagai destinasi serantau dengan cekap.",
   },
   {
@@ -35476,7 +36523,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "KBAT: Nilaikan sama ada pelaburan dalam kereta api berkelajuan tinggi lebih bermanfaat berbanding lapangan terbang baharu bagi sesebuah negara Asia.",
+    front:
+      "KBAT: Nilaikan sama ada pelaburan dalam kereta api berkelajuan tinggi lebih bermanfaat berbanding lapangan terbang baharu bagi sesebuah negara Asia.",
     back: "Bergantung kepada jarak dan keperluan negara — kereta api lebih sesuai untuk perhubungan domestik/serantau jarak sederhana, manakala lapangan terbang penting untuk hubungan antarabangsa jarak jauh.",
   },
   {
@@ -35484,7 +36532,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "KBAT: Cadangkan satu langkah untuk mengurangkan kesan negatif kemusnahan hutan akibat pembinaan infrastruktur pengangkutan.",
+    front:
+      "KBAT: Cadangkan satu langkah untuk mengurangkan kesan negatif kemusnahan hutan akibat pembinaan infrastruktur pengangkutan.",
     back: "Contohnya, menjalankan kajian impak alam sekitar (EIA) yang teliti sebelum pembinaan dan menggalakkan pemuliharaan semula kawasan hutan yang terjejas.",
   },
   {
@@ -35492,7 +36541,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "KBAT: Pada pendapat anda, apakah jenis pengangkutan yang paling sesuai untuk menghubungkan negara-negara Asia pada masa hadapan?",
+    front:
+      "KBAT: Pada pendapat anda, apakah jenis pengangkutan yang paling sesuai untuk menghubungkan negara-negara Asia pada masa hadapan?",
     back: "Jawapan terbuka, contohnya kereta api berkelajuan tinggi kerana kos operasi jangka panjang yang lebih rendah dan kesan alam sekitar yang lebih kecil berbanding penerbangan jarak sederhana.",
   },
   {
@@ -35500,7 +36550,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Soalan Sering Diuji: Apakah perbezaan antara lapangan terbang 'tersibuk' dan 'terbaik' di dunia menurut buku teks?",
+    front:
+      "Soalan Sering Diuji: Apakah perbezaan antara lapangan terbang 'tersibuk' dan 'terbaik' di dunia menurut buku teks?",
     back: "Tersibuk (Dubai): jumlah penumpang tertinggi (83.6 juta). Terbaik (Changi): diiktiraf dari segi kualiti perkhidmatan dan kemudahan, bukan semata jumlah penumpang.",
   },
   {
@@ -35516,7 +36567,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Fakta Wajib Hafal: Apakah tiga aspek utama kesan pengangkutan yang dibincangkan dalam Bab 8?",
+    front:
+      "Fakta Wajib Hafal: Apakah tiga aspek utama kesan pengangkutan yang dibincangkan dalam Bab 8?",
     back: "Kesan terhadap masyarakat, kesan terhadap ekonomi, dan kesan terhadap alam sekitar.",
   },
   {
@@ -35524,7 +36576,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Fakta Wajib Hafal: Senaraikan bandar-bandar Jepun yang menjadi hab perdagangan akibat kemajuan pengangkutan.",
+    front:
+      "Fakta Wajib Hafal: Senaraikan bandar-bandar Jepun yang menjadi hab perdagangan akibat kemajuan pengangkutan.",
     back: "Tokyo, Kyoto, Nagoya dan Osaka.",
   },
   {
@@ -35532,7 +36585,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Mengapakah pembangunan rangkaian Shinkansen menghubungkan pulau-pulau utama Jepun penting?",
+    front:
+      "Mengapakah pembangunan rangkaian Shinkansen menghubungkan pulau-pulau utama Jepun penting?",
     back: "Menghubungkan Hokkaido, Honshu, Shikoku dan Kyushu, memudahkan mobiliti penduduk dan barangan antara pulau-pulau utama negara.",
   },
   {
@@ -35540,7 +36594,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Bagaimanakah kemajuan pengangkutan udara meningkatkan industri pelancongan serantau di Asia?",
+    front:
+      "Bagaimanakah kemajuan pengangkutan udara meningkatkan industri pelancongan serantau di Asia?",
     back: "Memudahkan kemasukan pelancong antarabangsa secara pantas ke destinasi pelancongan, meningkatkan perbelanjaan dan pendapatan pelancongan negara.",
   },
   {
@@ -35548,7 +36603,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "KBAT: Apakah cabaran utama yang dihadapi negara membangun di Asia dalam membangunkan infrastruktur pengangkutan berkelajuan tinggi?",
+    front:
+      "KBAT: Apakah cabaran utama yang dihadapi negara membangun di Asia dalam membangunkan infrastruktur pengangkutan berkelajuan tinggi?",
     back: "Kos pembinaan dan penyelenggaraan yang sangat tinggi berbanding sistem pengangkutan konvensional, memerlukan pelaburan modal besar dan teknologi canggih.",
   },
   {
@@ -35556,7 +36612,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "KBAT: Bagaimanakah kejayaan sistem pengangkutan Jepun, Korea Selatan dan China boleh menjadi rujukan bagi negara Asia lain?",
+    front:
+      "KBAT: Bagaimanakah kejayaan sistem pengangkutan Jepun, Korea Selatan dan China boleh menjadi rujukan bagi negara Asia lain?",
     back: "Menunjukkan kepentingan pelaburan jangka panjang dalam teknologi pengangkutan berkelajuan tinggi untuk merangsang pembangunan ekonomi dan integrasi serantau.",
   },
   {
@@ -35564,7 +36621,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "KBAT: Apakah kepentingan merancang jaringan pengangkutan secara bersepadu (darat, udara, air) bagi sesebuah negara?",
+    front:
+      "KBAT: Apakah kepentingan merancang jaringan pengangkutan secara bersepadu (darat, udara, air) bagi sesebuah negara?",
     back: "Memaksimumkan kecekapan mobiliti penduduk dan barangan dengan menggunakan kekuatan setiap jenis pengangkutan mengikut keperluan jarak dan jenis kargo.",
   },
   {
@@ -35572,7 +36630,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 8",
-    front: "Rumuskan dalam satu ayat kepentingan jenis dan kemajuan pengangkutan terhadap pembangunan Asia.",
+    front:
+      "Rumuskan dalam satu ayat kepentingan jenis dan kemajuan pengangkutan terhadap pembangunan Asia.",
     back: "Jenis pengangkutan darat, udara dan air yang disokong oleh kemajuan teknologi seperti Shinkansen dan KTX menyumbang kepada pembangunan ekonomi, integrasi serantau dan peningkatan taraf hidup, namun perlu diimbangi dengan pengurusan kesan alam sekitar yang mampan.",
   },
   {
@@ -35748,7 +36807,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Mengapakah perindustrian melepaskan lebih banyak jenis gas rumah hijau berbanding pertanian?",
+    front:
+      "Mengapakah perindustrian melepaskan lebih banyak jenis gas rumah hijau berbanding pertanian?",
     back: "Perindustrian melepaskan CO2, NO2 dan CFC hasil pembakaran dan pengeluaran kimia kompleks, berbanding pertanian yang hanya melepaskan metana dan nitrus oksida.",
   },
   {
@@ -35812,7 +36872,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Mengapakah negara membangun lebih terdedah kepada kesan pemanasan global berbanding negara maju?",
+    front:
+      "Mengapakah negara membangun lebih terdedah kepada kesan pemanasan global berbanding negara maju?",
     back: "Kapasiti kewangan dan teknologi yang terhad untuk menyesuaikan diri atau pulih daripada bencana berkaitan iklim.",
   },
   {
@@ -35836,7 +36897,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "KBAT: Mengapakah satu kejadian banjir besar boleh memberi kesan berganda kepada masyarakat?",
+    front:
+      "KBAT: Mengapakah satu kejadian banjir besar boleh memberi kesan berganda kepada masyarakat?",
     back: "Selain mengancam nyawa, ia memusnahkan pertanian dan infrastruktur, menjejaskan jutaan penduduk secara sosial dan ekonomi sekali gus.",
   },
   {
@@ -35852,7 +36914,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Soalan Sering Diuji: Senaraikan 5 akta Malaysia berkaitan alam sekitar yang disebut dalam buku teks.",
+    front:
+      "Soalan Sering Diuji: Senaraikan 5 akta Malaysia berkaitan alam sekitar yang disebut dalam buku teks.",
     back: "Akta Perlombongan Petroleum 1966, Akta Kerajaan Tempatan 1976, Akta Perhutanan Negara 1984, Akta Jalan Parit dan Bangunan (Pindaan) 2012, Akta Kualiti Alam Sekeliling (Pindaan) 2012.",
   },
   {
@@ -35860,7 +36923,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Soalan Sering Diuji: Apakah persidangan tentang alam sekitar yang dirujuk sebagai Sidang Kemuncak Bumi?",
+    front:
+      "Soalan Sering Diuji: Apakah persidangan tentang alam sekitar yang dirujuk sebagai Sidang Kemuncak Bumi?",
     back: "Persidangan Bangsa-Bangsa Bersatu tentang Alam Sekitar (UNCED), Rio de Janeiro, Brazil, 1992.",
   },
   {
@@ -35900,7 +36964,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Aplikasi: Sekiranya sekolah anda ingin mengurangkan sumbangan kepada pemanasan global, apakah 3 langkah mudah yang boleh dilaksanakan?",
+    front:
+      "Aplikasi: Sekiranya sekolah anda ingin mengurangkan sumbangan kepada pemanasan global, apakah 3 langkah mudah yang boleh dilaksanakan?",
     back: "Amalan kitar semula, menggunakan pengangkutan awam/berkongsi kenderaan ke sekolah, kempen bebas plastik.",
   },
   {
@@ -35908,7 +36973,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Aplikasi: Mengapakah sebuah kilang perlu mematuhi Akta Kualiti Alam Sekeliling sebelum melepaskan asap ke udara?",
+    front:
+      "Aplikasi: Mengapakah sebuah kilang perlu mematuhi Akta Kualiti Alam Sekeliling sebelum melepaskan asap ke udara?",
     back: "Untuk mengawal pelepasan gas rumah hijau dan bahan pencemar yang menyumbang kepada pemanasan global secara sah di sisi undang-undang.",
   },
   {
@@ -35916,7 +36982,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Aplikasi: Bagaimanakah seorang petani dapat menyesuaikan amalan pertanian untuk mengurangkan sumbangan kepada pemanasan global?",
+    front:
+      "Aplikasi: Bagaimanakah seorang petani dapat menyesuaikan amalan pertanian untuk mengurangkan sumbangan kepada pemanasan global?",
     back: "Mengurangkan penggunaan baja kimia dan racun serangga secara berlebihan, serta mengamalkan teknik pertanian mampan.",
   },
   {
@@ -35924,7 +36991,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Aplikasi: Apakah tindakan yang boleh diambil oleh sebuah negara pantai yang berisiko tinggi terhadap peningkatan aras laut?",
+    front:
+      "Aplikasi: Apakah tindakan yang boleh diambil oleh sebuah negara pantai yang berisiko tinggi terhadap peningkatan aras laut?",
     back: "Membina struktur pertahanan pantai, merancang petempatan jauh dari kawasan terjejas, dan mengamalkan langkah pengurangan gas rumah hijau secara aktif.",
   },
   {
@@ -35932,7 +37000,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "KBAT: Nilaikan keberkesanan Protokol Kyoto dalam mengatasi pemanasan global secara global.",
+    front:
+      "KBAT: Nilaikan keberkesanan Protokol Kyoto dalam mengatasi pemanasan global secara global.",
     back: "Memberi rangka kerja formal yang mengikat negara, tetapi keberkesanan bergantung kepada komitmen sebenar setiap negara penanda tangan untuk melaksanakannya.",
   },
   {
@@ -35940,7 +37009,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "KBAT: Cadangkan satu langkah inovatif untuk mengurangkan pemanasan global di kawasan bandar.",
+    front:
+      "KBAT: Cadangkan satu langkah inovatif untuk mengurangkan pemanasan global di kawasan bandar.",
     back: "Contohnya, menggalakkan pembinaan bangunan hijau (green building) yang menggunakan tenaga suria dan sistem kitar semula air.",
   },
   {
@@ -35956,7 +37026,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "KBAT: Mengapakah pendidikan alam sekitar dianggap pelaburan jangka panjang dalam menangani pemanasan global?",
+    front:
+      "KBAT: Mengapakah pendidikan alam sekitar dianggap pelaburan jangka panjang dalam menangani pemanasan global?",
     back: "Membentuk kesedaran dan tabiat lestari generasi muda yang akan berterusan sepanjang hayat, memberi kesan yang lebih mampan berbanding langkah jangka pendek.",
   },
   {
@@ -35964,7 +37035,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Soalan Sering Diuji: Apakah perbezaan antara faktor pemanasan global dan langkah mengurangkannya?",
+    front:
+      "Soalan Sering Diuji: Apakah perbezaan antara faktor pemanasan global dan langkah mengurangkannya?",
     back: "Faktor merujuk SEBAB pemanasan global berlaku (cth: pembakaran bahan api fosil); langkah merujuk TINDAKAN untuk mengurangkan kesannya (cth: Amalan 5R).",
   },
   {
@@ -35988,7 +37060,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Fakta Wajib Hafal: Bilakah Persidangan Bangsa-Bangsa Bersatu tentang Alam Sekitar (UNCED) diadakan?",
+    front:
+      "Fakta Wajib Hafal: Bilakah Persidangan Bangsa-Bangsa Bersatu tentang Alam Sekitar (UNCED) diadakan?",
     back: "Tahun 1992, di Rio de Janeiro, Brazil.",
   },
   {
@@ -35996,7 +37069,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "KBAT: Apakah risiko sekiranya negara-negara tidak mematuhi Protokol Kyoto atau Persidangan Paris?",
+    front:
+      "KBAT: Apakah risiko sekiranya negara-negara tidak mematuhi Protokol Kyoto atau Persidangan Paris?",
     back: "Pelepasan gas rumah hijau berterusan tanpa kawalan, mengakibatkan peningkatan suhu global yang lebih pantas dan kesan bencana yang lebih teruk.",
   },
   {
@@ -36004,7 +37078,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "KBAT: Bagaimanakah pemanasan global menghubungkan isu alam sekitar dengan isu ekonomi sesebuah negara?",
+    front:
+      "KBAT: Bagaimanakah pemanasan global menghubungkan isu alam sekitar dengan isu ekonomi sesebuah negara?",
     back: "Kerosakan pertanian dan infrastruktur akibat bencana berkaitan iklim membawa kerugian ekonomi yang besar serta menjejaskan mata pencarian penduduk.",
   },
   {
@@ -36012,7 +37087,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "KBAT: Mengapakah langkah mengurangkan pemanasan global perlu dilaksanakan di semua peringkat (individu, masyarakat, kerajaan, global)?",
+    front:
+      "KBAT: Mengapakah langkah mengurangkan pemanasan global perlu dilaksanakan di semua peringkat (individu, masyarakat, kerajaan, global)?",
     back: "Pemanasan global adalah isu kompleks yang memerlukan tindakan menyeluruh — usaha pada satu peringkat sahaja tidak mencukupi untuk hasil yang berkesan.",
   },
   {
@@ -36020,7 +37096,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Aplikasi: Bagaimanakah seorang murid dapat mengamalkan Amalan 5R dalam kehidupan seharian di sekolah?",
+    front:
+      "Aplikasi: Bagaimanakah seorang murid dapat mengamalkan Amalan 5R dalam kehidupan seharian di sekolah?",
     back: "Mengitar semula buku/kertas lama, mengurangkan penggunaan plastik sekali guna, menggunakan semula bekas makanan dan botol air.",
   },
   {
@@ -36028,7 +37105,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "Aplikasi: Apakah cabaran utama dalam melaksanakan langkah kerjasama antarabangsa seperti Protokol Kyoto?",
+    front:
+      "Aplikasi: Apakah cabaran utama dalam melaksanakan langkah kerjasama antarabangsa seperti Protokol Kyoto?",
     back: "Komitmen dan kepatuhan yang berbeza antara negara, terutamanya antara negara maju dan negara membangun, terhadap sasaran pengurangan gas rumah hijau.",
   },
   {
@@ -36036,7 +37114,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "KBAT: Nilaikan sama ada langkah penguatkuasaan undang-undang lebih berkesan berbanding pendidikan alam sekitar dalam jangka panjang.",
+    front:
+      "KBAT: Nilaikan sama ada langkah penguatkuasaan undang-undang lebih berkesan berbanding pendidikan alam sekitar dalam jangka panjang.",
     back: "Kedua-duanya saling melengkapi — undang-undang memberi kawalan segera, manakala pendidikan membentuk kesedaran dan tabiat lestari jangka panjang dalam masyarakat.",
   },
   {
@@ -36044,7 +37123,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 9",
-    front: "KBAT: Bagaimanakah seseorang dapat membezakan soalan yang meminta 'punca' dengan soalan yang meminta 'kesan' dalam peperiksaan?",
+    front:
+      "KBAT: Bagaimanakah seseorang dapat membezakan soalan yang meminta 'punca' dengan soalan yang meminta 'kesan' dalam peperiksaan?",
     back: "Soalan punca biasa menggunakan perkataan 'faktor', 'sebab' atau 'menyebabkan'; soalan kesan menggunakan perkataan 'akibat', 'impak' atau 'kesan terhadap'.",
   },
   {
@@ -36236,7 +37316,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "Bagaimanakah penjanaan tenaga angin, air dan solar menyumbang kepada matlamat teknologi hijau?",
+    front:
+      "Bagaimanakah penjanaan tenaga angin, air dan solar menyumbang kepada matlamat teknologi hijau?",
     back: "Mengurangkan kebergantungan kepada tenaga tidak boleh diperbaharui dan mempromosikan kecekapan guna tenaga negara.",
   },
   {
@@ -36284,7 +37365,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "Apakah hubungan antara amalan penjimatan tenaga di rumah dengan sasaran pengurangan intensiti karbon negara?",
+    front:
+      "Apakah hubungan antara amalan penjimatan tenaga di rumah dengan sasaran pengurangan intensiti karbon negara?",
     back: "Akumulasi amalan individu yang meluas dapat menyumbang kepada pengurangan intensiti karbon keseluruhan negara.",
   },
   {
@@ -36300,7 +37382,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Mengapakah ciri 'boleh dikitar semula' dianggap kriteria paling penting bagi teknologi hijau?",
+    front:
+      "KBAT: Mengapakah ciri 'boleh dikitar semula' dianggap kriteria paling penting bagi teknologi hijau?",
     back: "Ia secara langsung mengurangkan sisa pepejal dan permintaan bahan mentah baharu, menyokong kelestarian jangka panjang.",
   },
   {
@@ -36308,7 +37391,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Bagaimanakah teras Ekonomi dan Alam Sekitar saling melengkapi dalam pembangunan negara?",
+    front:
+      "KBAT: Bagaimanakah teras Ekonomi dan Alam Sekitar saling melengkapi dalam pembangunan negara?",
     back: "Industri fotovolta menjana pendapatan negara sambil meminimumkan kesan kepada alam sekitar, mewujudkan pembangunan lestari.",
   },
   {
@@ -36316,7 +37400,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Mengapakah pencapaian pengurangan intensiti karbon Malaysia dianggap komitmen signifikan dalam konteks global?",
+    front:
+      "KBAT: Mengapakah pencapaian pengurangan intensiti karbon Malaysia dianggap komitmen signifikan dalam konteks global?",
     back: "Menunjukkan usaha terukur memenuhi komitmen antarabangsa dalam Sidang Kemuncak Iklim PBB untuk mengurangkan kesan pemanasan global.",
   },
   {
@@ -36324,7 +37409,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Bagaimanakah amalan teknologi hijau di sekolah membentuk tabiat lestari jangka panjang murid?",
+    front:
+      "KBAT: Bagaimanakah amalan teknologi hijau di sekolah membentuk tabiat lestari jangka panjang murid?",
     back: "Amalan harian yang konsisten membentuk kebiasaan yang diteruskan dalam kehidupan dewasa dan persekitaran kerja kelak.",
   },
   {
@@ -36332,7 +37418,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Mengapakah industri fotovolta mempunyai potensi besar menyumbang kepada KDNK Malaysia?",
+    front:
+      "KBAT: Mengapakah industri fotovolta mempunyai potensi besar menyumbang kepada KDNK Malaysia?",
     back: "Menggabungkan permintaan global tenaga boleh diperbaharui dengan keupayaan negara dalam pembuatan dan eksport teknologi tinggi.",
   },
   {
@@ -36340,7 +37427,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Apakah cabaran utama merealisasikan Dasar Teknologi Hijau secara meluas di Malaysia?",
+    front:
+      "KBAT: Apakah cabaran utama merealisasikan Dasar Teknologi Hijau secara meluas di Malaysia?",
     back: "Kos pelaburan awal yang tinggi bagi teknologi hijau berbanding teknologi konvensional, walaupun penjimatan jangka panjang lebih besar.",
   },
   {
@@ -36364,7 +37452,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "Soalan Sering Diuji: Apakah 5 langkah memelihara dan memulihara alam sekitar menurut buku teks?",
+    front:
+      "Soalan Sering Diuji: Apakah 5 langkah memelihara dan memulihara alam sekitar menurut buku teks?",
     back: "Melindungi sumber semula jadi, tingkatkan kualiti udara/air, kurangkan pembuangan bahan boleh kitar semula, lindungi ekosistem, kurangkan gas karbon.",
   },
   {
@@ -36372,7 +37461,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "Fakta Wajib Hafal: Siapakah yang membentangkan pengurangan intensiti karbon Malaysia ketika Sidang Kemuncak Iklim PBB 2014?",
+    front:
+      "Fakta Wajib Hafal: Siapakah yang membentangkan pengurangan intensiti karbon Malaysia ketika Sidang Kemuncak Iklim PBB 2014?",
     back: "Datuk Seri Najib Tun Razak.",
   },
   {
@@ -36396,7 +37486,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "Aplikasi: Sekiranya sebuah rumah ingin mengamalkan teknologi hijau, apakah 3 langkah mudah penjimatan tenaga yang boleh dilaksanakan?",
+    front:
+      "Aplikasi: Sekiranya sebuah rumah ingin mengamalkan teknologi hijau, apakah 3 langkah mudah penjimatan tenaga yang boleh dilaksanakan?",
     back: "Gunakan pencahayaan semula jadi, cabut plag peralatan tidak digunakan, tetapkan suhu penyaman udara pada 24°C.",
   },
   {
@@ -36412,7 +37503,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "Aplikasi: Apakah amalan perolehan produk hijau yang boleh dilaksanakan oleh sebuah pejabat?",
+    front:
+      "Aplikasi: Apakah amalan perolehan produk hijau yang boleh dilaksanakan oleh sebuah pejabat?",
     back: "Gunakan kertas terkitar semula, galakkan kenderaan hibrid, beli bahan kimia biodegradasi untuk penyelenggaraan.",
   },
   {
@@ -36420,7 +37512,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "Aplikasi: Bagaimanakah seorang pelajar dapat mengamalkan pengangkutan mesra alam ke sekolah?",
+    front:
+      "Aplikasi: Bagaimanakah seorang pelajar dapat mengamalkan pengangkutan mesra alam ke sekolah?",
     back: "Menggunakan basikal atau berjalan kaki jika sesuai, atau mengamalkan park and ride bersama rakan.",
   },
   {
@@ -36436,7 +37529,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "Aplikasi: Bagaimanakah seorang pengguna dapat mengelakkan penggunaan plastik sekali guna dalam perkhidmatan makanan?",
+    front:
+      "Aplikasi: Bagaimanakah seorang pengguna dapat mengelakkan penggunaan plastik sekali guna dalam perkhidmatan makanan?",
     back: "Membawa bekas makanan sendiri dan mengelakkan penggunaan botol air plastik sekali guna.",
   },
   {
@@ -36444,7 +37538,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Nilaikan sama ada teknologi hijau lebih sesuai untuk negara membangun atau negara maju.",
+    front:
+      "KBAT: Nilaikan sama ada teknologi hijau lebih sesuai untuk negara membangun atau negara maju.",
     back: "Kedua-duanya memerlukannya, tetapi pelaksanaan mungkin berbeza mengikut kapasiti kewangan dan teknologi setiap negara.",
   },
   {
@@ -36452,7 +37547,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Cadangkan satu insentif kerajaan yang dapat menggalakkan penggunaan kenderaan elektrik secara meluas.",
+    front:
+      "KBAT: Cadangkan satu insentif kerajaan yang dapat menggalakkan penggunaan kenderaan elektrik secara meluas.",
     back: "Contohnya, pengecualian cukai import/eksais bagi kenderaan elektrik dan subsidi pembinaan stesen pengecasan.",
   },
   {
@@ -36460,7 +37556,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Bagaimanakah landskap (penanaman pokok) menyumbang kepada amalan teknologi hijau?",
+    front:
+      "KBAT: Bagaimanakah landskap (penanaman pokok) menyumbang kepada amalan teknologi hijau?",
     back: "Pokok menyerap karbon dioksida dan menyejukkan persekitaran secara semula jadi, melengkapi sistem perparitan yang berfungsi baik.",
   },
   {
@@ -36484,7 +37581,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "Fakta Wajib Hafal: Apakah kepentingan industri fotovolta kepada Keluaran Dalam Negara Kasar (KDNK)?",
+    front:
+      "Fakta Wajib Hafal: Apakah kepentingan industri fotovolta kepada Keluaran Dalam Negara Kasar (KDNK)?",
     back: "Menyumbang kepada pendapatan negara melalui pembuatan dan eksport teknologi tenaga suria.",
   },
   {
@@ -36492,7 +37590,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Apakah risiko sekiranya masyarakat tidak mengamalkan teknologi hijau dalam jangka panjang?",
+    front:
+      "KBAT: Apakah risiko sekiranya masyarakat tidak mengamalkan teknologi hijau dalam jangka panjang?",
     back: "Peningkatan sisa pepejal, pembaziran tenaga dan air, serta sumbangan berterusan kepada pemanasan global dan kemerosotan alam sekitar.",
   },
   {
@@ -36500,7 +37599,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Bagaimanakah pendidikan tentang teknologi hijau di peringkat sekolah dapat membantu negara mencapai sasaran 40% pengurangan intensiti karbon menjelang 2020?",
+    front:
+      "KBAT: Bagaimanakah pendidikan tentang teknologi hijau di peringkat sekolah dapat membantu negara mencapai sasaran 40% pengurangan intensiti karbon menjelang 2020?",
     back: "Membentuk generasi muda yang mengamalkan tabiat lestari secara berterusan, menyumbang kepada pengurangan kolektif intensiti karbon negara.",
   },
   {
@@ -36508,7 +37608,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Bandingkan kesan jangka pendek dan jangka panjang pelaburan dalam teknologi hijau.",
+    front:
+      "KBAT: Bandingkan kesan jangka pendek dan jangka panjang pelaburan dalam teknologi hijau.",
     back: "Jangka pendek: kos pelaburan awal tinggi. Jangka panjang: penjimatan kos operasi, peningkatan nilai aset dan manfaat alam sekitar yang lebih besar.",
   },
   {
@@ -36516,7 +37617,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Mengapakah kerjasama antara kerajaan, industri dan masyarakat penting dalam merealisasikan Dasar Teknologi Hijau?",
+    front:
+      "KBAT: Mengapakah kerjasama antara kerajaan, industri dan masyarakat penting dalam merealisasikan Dasar Teknologi Hijau?",
     back: "Setiap pihak memainkan peranan berbeza — kerajaan menetapkan dasar dan insentif, industri menghasilkan produk, masyarakat mengamalkannya dalam kehidupan harian.",
   },
   {
@@ -36524,7 +37626,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "geography",
     form: "Form 2",
     chapter: "Chapter 10",
-    front: "KBAT: Apakah pendapat anda tentang keberkesanan amalan 5R berbanding pembangunan teknologi hijau berskala besar (seperti bangunan hijau)?",
+    front:
+      "KBAT: Apakah pendapat anda tentang keberkesanan amalan 5R berbanding pembangunan teknologi hijau berskala besar (seperti bangunan hijau)?",
     back: "Kedua-duanya saling melengkapi — amalan individu (5R) mudah dilaksanakan serta merta, manakala teknologi berskala besar memberi kesan struktur jangka panjang yang lebih signifikan.",
   },
   {
@@ -36686,8 +37789,7 @@ export function getSubjectChapters(
       },
       {
         key: "Chapter 4",
-        label:
-          "Chapter 4: Agama, Kepercayaan dan Keunikan Warisan Masyarakat Kerajaan Alam Melayu",
+        label: "Chapter 4: Agama, Kepercayaan dan Keunikan Warisan Masyarakat Kerajaan Alam Melayu",
         available: true,
         subtopics: [
           "4.1 Agama dan Kepercayaan",

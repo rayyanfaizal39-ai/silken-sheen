@@ -16,19 +16,28 @@ describe("Science Form 3 quiz registration", () => {
       );
       expect(hasFormResourceContent("science", "Form 3", "quiz", lang)).toBe(true);
 
-      for (const chapter of chapters) {
+      for (const [chapterIndex, chapter] of chapters.entries()) {
         expect(chapter.available).toBe(true);
         expect(hasResourceContent("science", "Form 3", chapter.key, "quiz", lang)).toBe(true);
 
         const questions = getChapterQuizQuestions("science", "Form 3", chapter.key, lang);
-        expect(questions).toHaveLength(30);
-        expect(new Set(questions.map((question) => question.id))).toHaveLength(30);
+        const usesQuizSets = chapterIndex !== 5;
+        const expectedLength = usesQuizSets ? 50 : 30;
+        expect(questions).toHaveLength(expectedLength);
+        expect(new Set(questions.map((question) => question.id))).toHaveLength(expectedLength);
         expect(
           questions.reduce<Record<string, number>>((counts, question) => {
             counts[question.difficulty] = (counts[question.difficulty] ?? 0) + 1;
             return counts;
           }, {}),
-        ).toEqual({ Easy: 10, Medium: 10, Hard: 10 });
+        ).toEqual(
+          usesQuizSets ? { Easy: 16, Medium: 22, Hard: 12 } : { Easy: 10, Medium: 10, Hard: 10 },
+        );
+        if (usesQuizSets) {
+          expect(questions.filter((question) => question.set === "A")).toHaveLength(25);
+          expect(questions.filter((question) => question.set === "B")).toHaveLength(25);
+          expect(questions.every((question) => question.explanation?.trim())).toBe(true);
+        }
         expect(
           questions.every(
             (question) =>

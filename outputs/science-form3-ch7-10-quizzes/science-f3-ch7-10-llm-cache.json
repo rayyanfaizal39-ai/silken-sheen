@@ -1,0 +1,206 @@
+{
+  "c7-A-1": [
+    {
+      "question_number": 1,
+      "question_malay": "Antara aktiviti harian berikut, yang manakah melakukan **kerja** paling tinggi berdasarkan takrifan fizik KSSM?",
+      "question_english": "Which of the following daily activities performs the highest **work** based on the KSSM physics definition?",
+      "options_malay": [
+        "Menolak sebuah dinding konkrit yang tegar dengan daya 500 N selama 2 jam tanpa sebarang pergerakan.",
+        "Membawa sebuah kotak berat 10 kg sambil berjalan secara mendatar sejauh 10 m dengan laju malar.",
+        "Menarik sebuah laci meja sejauh 30 cm secara mendatar dengan daya geseran 5 N yang dimalarkan.",
+        "Mengangkat sebuah kotak berjisim 15 kg secara menegak dari lantai ke atas meja berketinggian 1.2 m (g = 10 m s⁻²)."
+      ],
+      "options_english": [
+        "Pushing a solid concrete wall with a force of 500 N for 2 hours without any movement.",
+        "Carrying a 10 kg box while walking horizontally for 10 m at a constant speed.",
+        "Pulling a drawer horizontally for 30 cm with a frictional force of 5 N.",
+        "Lifting a 15 kg box vertically from the floor to a table 1.2 m high (g = 10 m s⁻²)."
+      ],
+      "correct_answer": "D",
+      "explanation_malay": "Jawapan yang betul ialah D kerana kerja dilakukan apabila terdapat perpindahan. Dalam pilihan D, buruh mengangkat kotak 15 kg ke atas meja 1.2 m, yang mengakibatkan perpindahan. Pilihan lain tidak mengakibatkan perpindahan yang berarti tidak melakukan kerja.",
+      "explanation_english": "The correct answer is D because work is done when there is displacement. In option D, the worker lifts a 15 kg box vertically to a table 1.2 m high, which results in displacement. The other options do not result in displacement, meaning no work is done."
+    },
+    {
+      "question_number": 2,
+      "question_malay": "Satu unit S.I. bagi kerja ialah Joule (J). Antara berikut, takrifan manakah yang **paling tepat** bagi **1 Joule**?",
+      "question_english": "An S.I. unit for work is Joule (J). Which of the following is the **most accurate** definition of **1 Joule**?",
+      "options_malay": [
+        "Kerja yang dilakukan apabila daya 1 Newton menggerakkan objek sejauh 1 meter dalam arah daya tersebut.",
+        "Kerja yang dilakukan untuk memindahkan cas 1 Coulomb merentasi bezautara voltan 1 Volt dalam masa 1 saat.",
+        "Kadar penggunaan tenaga elektrik sebanyak 1 Watt oleh suatu perkakas elektrik dalam masa 1 jam.",
+        "Daya kinetik yang diperlukan untuk memecutkan objek berjisim 1 kilogram pada kadar 1 m s⁻²."
+      ],
+      "options_english": [
+        "The work done when a force of 1 Newton moves an object 1 meter in the direction of the force.",
+        "The work done to move 1 Coulomb of charge across a potential difference of 1 Volt in 1 second.",
+        "The rate of electrical energy usage by an electrical device being 1 Watt for 1 hour.",
+        "The kinetic energy required to accelerate an object of mass 1 kilogram at a rate of 1 m s⁻²."
+      ],
+      "correct_answer": "A",
+      "explanation_malay": "Jawapan yang betul ialah A kerana 1 Joule adalah kerja yang dilakukan apabila daya 1 Newton menggerakkan objek sejauh 1 meter dalam arah daya tersebut.",
+      "explanation_english": "The correct answer is A because 1 Joule is the work done when a force of 1 Newton moves an object 1 meter in the direction of the force."
+    },
+    {
+      "question_number": 3,
+      "question_malay": "Seorang buruh binaan mengangkat baldi berisi simen seberat 350 N secara menegak ke tingkat satu sebuah bangunan tinggi melalui sistem takal. Jika ketinggian tingkat satu tersebut ialah 8 m dari tanah, berapakah **kerja yang dilakukan** oleh buruh tersebut?",
+      "question_english": "A construction worker lifts a bucket of cement weighing 350 N vertically to the first floor of a building using a pulley system. If the height of the first floor is 8 m from the ground, what is the **work done** by the worker?",
+      "options_malay": [
+        "43.75 J",
+        "2,800 J",
+        "280 J",
+        "3,500 J"
+      ],
+      "options_english": [
+        "43.75 J",
+        "2,800 J",
+        "280 J",
+        "3,500 J"
+      ],
+      "correct_answer": "B",
+      "explanation_malay": "Jawapan yang betul ialah B kerana kerja yang dilakukan ialah 350 N × 8 m = 2,800 J.",
+      "explanation_english": "The correct answer is B because the work done is 350 N × 8 m = 2,800 J."
+    },
+    {
+      "question_number": 4,
+      "question_malay": "Rajah di bawah menunjukkan seorang murid perempuan menaiki tangga di hospital. *   Berat badan murid, m = 45 kg *   Tinggi tegak tangga, h = 4 m *   Masa yang diambil, t = 12 saat *   Pecutan graviti, g = 10 m s⁻² Hitungkan **kuasa yang dijana** oleh murid itu semasa mendaki tangga tersebut.",
+      "question_english": "The diagram below shows a female student climbing hospital stairs. *   Student's weight, m = 45 kg *   Vertical height of the stairs, h = 4 m *   Time taken, t = 12 seconds *   Acceleration due to gravity, g = 10 m s⁻² Calculate the **power generated** by the student while climbing the stairs.",
+      "options_malay": [
+        "150 W",
+        "180 W",
+        "18 W",
+        "1,800 W"
+      ],
+      "options_english": [
+        "150 W",
+        "180 W",
+        "18 W",
+        "1,800 W"
+      ],
+      "correct_answer": "A",
+      "explanation_malay": "Jawapan yang betul ialah A kerana kuasa yang dijana ialah (45 kg × 10 m s⁻² × 4 m) ÷ 12 saat = 150 W.",
+      "explanation_english": "The correct answer is A because the power generated is (45 kg × 10 m s⁻² × 4 m) ÷ 12 seconds = 150 W."
+    },
+    {
+      "question_number": 5,
+      "question_malay": "Sebuah kren elektromagnet mengangkat sebuah kontainer keluli seberat 40,000 N setinggi 15 m dalam masa 2 minit. Berapakah **kuasa kren** itu dalam unit **kilowatt (kW)**?",
+      "question_english": "An electromagnetic crane lifts a steel container weighing 40,000 N to a height of 15 m in 2 minutes. What is the **power of the crane** in **kilowatts (kW)**?",
+      "options_malay": [
+        "300 kW",
+        "5 kW",
+        "3 kW",
+        "50 kW"
+      ],
+      "options_english": [
+        "300 kW",
+        "5 kW",
+        "3 kW",
+        "50 kW"
+      ],
+      "correct_answer": "D",
+      "explanation_malay": "Jawapan yang betul ialah D kerana kuasa kren ialah (40,000 N × 15 m) ÷ (2 × 60 saat) = 50 kW.",
+      "explanation_english": "The correct answer is D because the power of the crane is (40,000 N × 15 m) ÷ (2 × 60 seconds) = 50 kW."
+    }
+  ],
+  "c7-A-6": [
+    {
+      "question_number": 6,
+      "question_malay": "Satu unit Kuasa sejarah yang sering digunakan dalam industri automotif ialah **Kuasa Kuda (horsepower, hp)**. Jika $1\\text{ hp}$ dianggarkan bersamaan dengan $746\\text{ Watt}$, berapakah nilai dalam unit Watt bagi sebuah enjin pam air pertanian yang mempunyai penarafan kuasa $2.5\\text{ hp}$?",
+      "question_english": "A historical unit of Power often used in the automotive industry is **horsepower (hp)**. If $1\\text{ hp}$ is estimated to be equal to $746\\text{ Watts}$, what is the value in Watts for an agricultural water pump engine rated at $2.5\\text{ hp}$?",
+      "options_malay": [
+        "$298.4\\text{ W}$",
+        "$1,\\!865\\text{ W}$",
+        "$1,\\!492\\text{ W}$",
+        "$1,\\!119\\text{ W}$"
+      ],
+      "options_english": [
+        "$298.4\\text{ W}$",
+        "$1,\\!865\\text{ W}$",
+        "$1,\\!492\\text{ W}$",
+        "$1,\\!119\\text{ W}$"
+      ],
+      "correct_answer": "B",
+      "explanation_malay": "Untuk mencari nilai dalam unit Watt, kita perlu mengalikan nilai $2.5\\text{ hp}$ dengan $746\\text{ Watt}$. Jadi, $2.5 \times 746 = 1,\\!865\\text{ W}$. Jadi, jawapan yang betul ialah $1,\\!865\\text{ W}$.",
+      "explanation_english": "To find the value in Watts, we need to multiply the value of $2.5\\text{ hp}$ by $746\\text{ Watts}$. So, $2.5 \times 746 = 1,\\!865\\text{ W}$. Therefore, the correct answer is $1,\\!865\\text{ W}$."
+    },
+    {
+      "question_number": 7,
+      "question_malay": "Semasa menjalankan **Aktiviti Inkuiri 7.1**, seorang murid mendapati bahawa menarik bongkah kayu secara mendatar di atas meja memerlukan daya yang berbeza berbanding mengangkat pemberat secara menegak ke atas. Antara pernyataan berikut, yang manakah menerangkan perbezaan fizikal ini dengan betul?",
+      "question_english": "While conducting **Inquiry Activity 7.1**, a student finds that pulling a wooden block horizontally on a table requires a different force compared to lifting a weight vertically. Which of the following statements correctly explains this physical difference?",
+      "options_malay": [
+        "Menarik bongkah kayu secara mendatar melakukan kerja menentang daya geseran meja, manakala mengangkat pemberat secara menegak melakukan kerja menentang daya tarikan graviti.",
+        "",
+        "",
+        ""
+      ],
+      "options_english": [
+        "Pulling a wooden block horizontally on a table does work against the table's friction, while lifting a weight vertically does work against the gravitational force.",
+        "",
+        "",
+        ""
+      ],
+      "correct_answer": "A",
+      "explanation_malay": "Menarik bongkah kayu secara mendatar memerlukan daya untuk melawan daya geseran meja, manakala mengangkat pemberat secara menegak memerlukan daya untuk melawan daya tarikan graviti. Jadi, jawapan yang betul ialah pernyataan pertama.",
+      "explanation_english": "Pulling a wooden block horizontally on a table requires force to overcome the table's friction, while lifting a weight vertically requires force to overcome the gravitational force. Therefore, the correct answer is the first statement."
+    },
+    {
+      "question_number": 8,
+      "question_malay": "Sebuah helikopter penyelamat mengangkat seorang mangsa banjir seberat $70\\text{ kg}$ secara menegak ke udara sejauh $20\\text{ m}$ dengan menggunakan sistem tali keluli. Berapakah **Tenaga Keupayaan Graviti** yang dikumpul oleh mangsa tersebut semasa berada di kedudukan tertinggi itu? ($g = 10\\text{ m s}^{-2}$)",
+      "question_english": "A rescue helicopter lifts a flood victim weighing $70\\text{ kg}$ vertically into the air for $20\\text{ m}$ using a steel wire system. What is the **Gravitational Potential Energy** accumulated by the victim at the highest position?",
+      "options_malay": [
+        "$1,\\!400\\text{ J}$",
+        "$35\\text{ J}$",
+        "$14,\\!000\\text{ J}$",
+        "$140\\text{ J}$"
+      ],
+      "options_english": [
+        "$1,\\!400\\text{ J}$",
+        "$35\\text{ J}$",
+        "$14,\\!000\\text{ J}$",
+        "$140\\text{ J}$"
+      ],
+      "correct_answer": "A",
+      "explanation_malay": "Tenaga Keupayaan Graviti dapat dihitung menggunakan formula $E_p = mgh$, di mana $m = 70\\text{ kg}$, $g = 10\\text{ m s}^{-2}$, dan $h = 20\\text{ m}$. Jadi, $E_p = 70 \times 10 \times 20 = 1,\\!400\\text{ J}$. Jadi, jawapan yang betul ialah $1,\\!400\\text{ J}$.",
+      "explanation_english": "Gravitational Potential Energy can be calculated using the formula $E_p = mgh$, where $m = 70\\text{ kg}$, $g = 10\\text{ m s}^{-2}$, and $h = 20\\text{ m}$. Therefore, $E_p = 70 \times 10 \times 20 = 1,\\!400\\text{ J}$. Thus, the correct answer is $1,\\!400\\text{ J}$."
+    },
+    {
+      "question_number": 9,
+      "question_malay": "Mesin penanam cerucuk (*pile-driver*) menggunakan prinsip **Tenaga Keupayaan Graviti** untuk menghentam cerucuk konkrit masuk ke dalam tanah bawah permukaan. Mengapakah tukul besi mesin itu perlu ditarik tinggi ke atas sebelum dilepaskan jatuh?",
+      "question_english": "A pile-driver machine uses the principle of **Gravitational Potential Energy** to drive concrete piles into the subsurface. Why must the iron hammer of the machine be pulled high up before being released to fall?",
+      "options_malay": [
+        "Untuk membolehkan tukul besi menolak daya tarikan graviti Bumi secara beransur-ansur semasa kejatuhan bebas.",
+        "Untuk memaksimumkan luas permukaan hentaman tukul konkrit supaya tekanan tanah berkurangan.",
+        "Untuk mengumpulkan Tenaga Keupayaan Graviti yang lebih besar supaya kerja hentaman cerucuk ke dalam tanah dapat ditingkatkan.",
+        "Untuk mengurangkan kehilangan tenaga sebagai haba dan bunyi ke persekitaran semasa kejatuhan bebas."
+      ],
+      "options_english": [
+        "To allow the iron hammer to gradually resist the gravitational force of the Earth during free fall.",
+        "To maximize the impact surface area of the concrete hammer to reduce ground pressure.",
+        "To collect more Gravitational Potential Energy so that the driving force of the concrete pile can be increased.",
+        "To reduce energy loss as heat and sound to the surroundings during free fall."
+      ],
+      "correct_answer": "C",
+      "explanation_malay": "Tukul besi perlu ditarik tinggi ke atas sebelum dilepaskan jatuh kerana ia membolehkan mesin mengumpulkan Tenaga Keupayaan Graviti yang lebih besar. Ini membolehkan kerja hentaman cerucuk ke dalam tanah ditingkatkan. Jadi, jawapan yang betul ialah pernyataan ketiga.",
+      "explanation_english": "The iron hammer must be pulled high up before being released to fall because it allows the machine to collect more Gravitational Potential Energy. This increases the driving force of the concrete pile. Therefore, the correct answer is the third statement."
+    },
+    {
+      "question_number": 10,
+      "question_malay": "Rajah di bawah menunjukkan seutas spring keluli yang dimampatkan oleh suatu daya luaran. *   Panjang asal spring, $l_0 = 15\\text{ cm}$ *   Panjang akhir spring setelah dimampatkan, $l_1 = 11\\text{ cm}$ *   Daya pemampatan maksima yang dikenakan, $F = 40\\text{ N}$ Hitungkan **Tenaga Keupayaan Kenyal** yang tersimpan di dalam spring yang termampat itu.",
+      "question_english": "The diagram below shows a steel spring compressed by an external force. *   Original length of the spring, $l_0 = 15\\text{ cm}$ *   Final length of the spring after compression, $l_1 = 11\\text{ cm}$ *   Maximum compression force applied, $F = 40\\text{ N}$ Calculate the **Elastic Potential Energy** stored in the compressed spring.",
+      "options_malay": [
+        "$0.8\\text{ J}$",
+        "$1.6\\text{ J}$",
+        "$80\\text{ J}$",
+        "$160\\text{ J}$"
+      ],
+      "options_english": [
+        "$0.8\\text{ J}$",
+        "$1.6\\text{ J}$",
+        "$80\\text{ J}$",
+        "$160\\text{ J}$"
+      ],
+      "correct_answer": "B",
+      "explanation_malay": "Panjang pemampatan spring ialah $l_0 - l_1 = 15\\text{ cm} - 11\\text{ cm} = 4\\text{ cm} = 0.04\\text{ m}$. Tenaga Keupayaan Kenyal dapat dihitung menggunakan formula $E_p = \frac{1}{2} kx^2$, di mana $k = \frac{F}{x} = \frac{40\\text{ N}}{0.04\\text{ m}} = 1000\\text{ N/m}$ dan $x = 0.04\\text{ m}$. Jadi, $E_p = \frac{1}{2} \times 1000 \times (0.04)^2 = 0.8\\text{ J}$. Jadi, jawapan yang betul ialah $1.6\\text{ J}$.",
+      "explanation_english": "The spring's compression length is $l_0 - l_1 = 15\\text{ cm} - 11\\text{ cm} = 4\\text{ cm} = 0.04\\text{ m}$. Elastic Potential Energy can be calculated using the formula $E_p = \frac{1}{2} kx^2$, where $k = \frac{F}{x} = \frac{40\\text{ N}}{0.04\\text{ m}} = 1000\\text{ N/m}$ and $x = 0.04\\text{ m}$. Therefore, $E_p = \frac{1}{2} \times 1000 \times (0.04)^2 = 0.8\\text{ J}$. Thus, the correct answer is $1.6\\text{ J}$."
+    }
+  ]
+}

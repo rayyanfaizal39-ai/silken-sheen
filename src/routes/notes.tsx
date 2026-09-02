@@ -14,6 +14,7 @@ import {
 import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
 import { useNotesProgressScope, useNotesReadingTracker } from "@/hooks/use-notes-reading-progress";
+import { getGeographyF1ChapterArtwork } from "@/lib/geography-f1-chapter-artwork";
 import { DailyQuote } from "@/components/DailyQuote";
 import { useProgress, chapterActivityKey } from "@/hooks/use-progress";
 import { getSejarahF1Subtopics, type Subtopic } from "@/data/sejarah-f1-subtopics";
@@ -245,6 +246,14 @@ function getSubjectArtwork(subjectId: string) {
   return SUBJECT_ARTWORK[subjectId] ?? null;
 }
 
+function getChapterArtwork(subjectId: string, form: Form, chapterKey: string) {
+  if (subjectId === "geography" && form === "Form 1") {
+    return getGeographyF1ChapterArtwork(chapterKey) ?? getSubjectArtwork(subjectId);
+  }
+
+  return getSubjectArtwork(subjectId);
+}
+
 // Form 2 Chapters 2-13 all share the sciF2InteractiveData shape and the same
 // reusable ScienceF2InteractiveNotesBlock renderer, but each needs its own
 // metaOverride (see F3_SCIENCE_LAB_META below) since their chapter numbers
@@ -413,8 +422,8 @@ function NotesPage() {
   const chapterArtwork =
     subject === "science" && form === "Form 2" && activeChapterKey === "Chapter 8"
       ? scienceF2Chapter8Artwork
-      : subject
-        ? getSubjectArtwork(subject)
+      : subject && activeChapterKey
+        ? getChapterArtwork(subject, form, activeChapterKey)
         : null;
 
   const measuredScrollPct = useNotesReadingTracker({
@@ -2413,7 +2422,12 @@ function SubtopicView({
           </span>
         </div>
 
-        {subj && <SubjectFeatureArtwork subjectId={subjectId} src={getSubjectArtwork(subjectId)} />}
+        {subj && (
+          <SubjectFeatureArtwork
+            subjectId={subjectId}
+            src={getChapterArtwork(subjectId, form, chapterKey)}
+          />
+        )}
         <ChapterContentTabs
           subjectId={subjectId}
           form={form}

@@ -43,6 +43,7 @@ export interface QuizQuestion {
   difficulty: Difficulty;
   chapter?: string;
   lang?: "bm" | "dlp";
+  set?: string;
   visualKey?: string;
   image?: string;
   question: string;
