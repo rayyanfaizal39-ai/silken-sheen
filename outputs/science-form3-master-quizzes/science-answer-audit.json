@@ -1,0 +1,1550 @@
+[
+  {
+    "chapter": 1,
+    "set": "A",
+    "issues": [
+      {
+        "q": 1,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The brain and spinal cord are the main components of the Central Nervous System (CNS)."
+      },
+      {
+        "q": 2,
+        "supplied_answer": "B",
+        "suggested_answer": "D",
+        "reason": "The correct number of spinal nerve pairs in the Peripheral Nervous System of humans is 31 pairs."
+      },
+      {
+        "q": 3,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "Sneezing is an action outside the control of the medulla oblongata."
+      },
+      {
+        "q": 4,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct time for an Olympic athlete's reaction is 0.100 seconds."
+      },
+      {
+        "q": 5,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct sequence of impulse flow during a controlled action such as answering a phone call is: Stimulus → Effector → Motor Nerve → Effector → Reaction."
+      },
+      {
+        "q": 6,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The main function of the pupil in human eyes is to monitor the amount of light entering the eye."
+      },
+      {
+        "q": 7,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The correct animal matching the pupil shape is a goat with a letter 'W' shaped pupil."
+      },
+      {
+        "q": 8,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The part of the eye most sensitive to light due to the highest density of photoreceptors is the yellow spot."
+      },
+      {
+        "q": 9,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The rod cells in the retina are very useful in low light conditions, as they are very sensitive to low light conditions."
+      },
+      {
+        "q": 10,
+        "supplied_answer": "D",
+        "suggested_answer": "A",
+        "reason": "The corneal function in the eye is to protect the outer layer of the sclera."
+      },
+      {
+        "q": 11,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The ligamentous support serves to keep the eye socket in place."
+      },
+      {
+        "q": 12,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The spot of blindness on the human eye is located in the area where the optic nerve exits the retina, forming the optic nerve."
+      },
+      {
+        "q": 13,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The structure of the ear that vibrates in accordance with the frequency of the sound wave that it carries in the mechanism of hearing is the tinnitus."
+      },
+      {
+        "q": 14,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The role of the three small bones (stapes) in the middle ear is to strengthen the sound vibration and transfer it to the window."
+      },
+      {
+        "q": 15,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The structure of the ear that contains bony structures and functions to convert vibrations into neural impulses is the half-round tube."
+      },
+      {
+        "q": 16,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The function of the Eustachian tube is to balance the air pressure in both ears."
+      },
+      {
+        "q": 17,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The ear segment that functions to maintain body balance but is NOT involved in the hearing mechanism is the half-round tube."
+      },
+      {
+        "q": 18,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct order of sound wave paths in the ear is: Cupping of the ear → Eustachian tube → Tympanic membrane → Round window → Cochlea."
+      },
+      {
+        "q": 19,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The human brain processes a reversed image that falls on the retina by reversing the image back to upright."
+      },
+      {
+        "q": 20,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct types of photoreceptor cells in the retina are sensitive to different colors of light, namely Red, Green, and Blue."
+      },
+      {
+        "q": 21,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The action that will be taken automatically without being noticed if someone is held by a sharp pin is the reflex arc monitoring the action to pull the leg with precision."
+      },
+      {
+        "q": 22,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "High temperature causes the skin receptors (effector) to send impulses through the spinal cord, not the optic nerve."
+      },
+      {
+        "q": 23,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The transparent lens that fills up the large space inside the eye to maintain the round shape of the eye is the cornea."
+      },
+      {
+        "q": 24,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The main monitoring center for handled actions such as answering exam papers is the brain."
+      },
+      {
+        "q": 25,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "If a person's medulla oblongata suffers from a very serious injury, they will experience breathing failure and the need for a ventilator to keep them alive."
+      }
+    ]
+  },
+  {
+    "chapter": 1,
+    "set": "B",
+    "issues": [
+      {
+        "q": 2,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 3,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 4,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 5,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 6,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 7,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 8,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 9,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 10,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 11,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 12,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 13,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 14,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 15,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 16,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 17,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 18,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 19,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 20,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 21,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 22,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 23,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 24,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 25,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      }
+    ]
+  },
+  {
+    "chapter": 2,
+    "set": "A",
+    "issues": [
+      {
+        "q": 1,
+        "supplied_answer": "B",
+        "suggested_answer": "D",
+        "reason": "The correct answer should be 'D' as the body's physiological response to hypoxia is to increase the production of red blood cells and red blood cells release hemoglobin, which binds more oxygen to hemoglobin, increasing oxygen transport."
+      },
+      {
+        "q": 2,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the air flow passage entering the human during the act of breathing follows the correct sequence: Nasal cavity → pharynx → trachea → bronchus → bronchioles → alveoli."
+      },
+      {
+        "q": 3,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the flexible ring structure shaped like 'C' that supports the human trachea is the epiglottis, which helps prevent food from entering the trachea during swallowing."
+      },
+      {
+        "q": 4,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the structure of the nasal cavity helps in cleaning air that is suctioned before being passed to the sinuses by covering the nasal cavity with fine hair and mucus that trap dust in the air."
+      },
+      {
+        "q": 5,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the epiglottis is wide open to allow air to enter the trachea while swallowing, not to close it."
+      },
+      {
+        "q": 6,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the intercostal muscles contract, the diaphragm flattens (goes up) during inhalation, not the other way around."
+      },
+      {
+        "q": 7,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the air pressure inside the lungs changes throughout the breathing process (exhalation) by decreasing as the thoracic cavity volume decreases, causing the air pressure inside the lungs to decrease and draw air in."
+      },
+      {
+        "q": 8,
+        "supplied_answer": "D",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the piece of wax in the lower part of the jar represents the trachea, not the diaphragm."
+      },
+      {
+        "q": 9,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the glass balloon's wall is a shield and cannot move up or down to represent the movement of the ribs, which is the physical weakness of the balang loceng in explaining the actual mechanism of human respiration."
+      },
+      {
+        "q": 10,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The correct answer should be 'C' as the thin air contains a higher percentage of oxygen than the rushing air, which is the reason for the candle to burn longer in a gas containing thin air compared to a gas containing rushing air."
+      },
+      {
+        "q": 11,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The correct answer should be 'C' as the limewater turns blue in color when air suction is continuously introduced into it, indicating high carbon dioxide concentration in the suction air."
+      },
+      {
+        "q": 12,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the alveolar wall is extremely thin, consisting of only one cell, which allows for the maximization of gas exchange through diffusion."
+      },
+      {
+        "q": 13,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the very important surface of the alveolar wall that allows for the diffusion of respiratory gases to occur before they penetrate the membrane of a single cell is the alveolar wall itself."
+      },
+      {
+        "q": 14,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer should be 'B' as the oxygen gas moves from alveolar spaces into blood capillaries through the process of quick reabsorption, which is the active reabsorption of oxygen by the blood capillaries."
+      },
+      {
+        "q": 15,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer should be 'B' as inside the capillary blood, oxygen gas will combine with the dark pigment hemoglobin to form a stable, bright red pigment known as oxygen hemoglobin."
+      },
+      {
+        "q": 16,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer should be 'B' as hemoglobin breaks down to release oxygen molecules to the cells in the body tissues when they reach areas with low oxygen concentration."
+      },
+      {
+        "q": 17,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The correct answer should be 'C' as the equation that describes the process of cellular respiration that occurs in the human body to generate energy is Glucose + Oxygen $."
+      },
+      {
+        "q": 18,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The correct answer should be 'C' as carbon monoxide gas contained in cigarette smoke and car exhaust fumes combines with hemoglobin to form carbaminohemoglobin, reducing the ability of blood to carry oxygen."
+      },
+      {
+        "q": 19,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer should be 'B' as the alveolar septum ruptures and erodes due to chemical tar, reducing the surface area for gas exchange, which is the pathology of emphysema."
+      },
+      {
+        "q": 20,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The correct answer should be 'A' as the presence of sulfur dioxide and nitrogen dioxide gases in the surrounding air that can exacerbate asthma and bronchitis patients is due to these gases condensing in the trachea and physically blocking the airway."
+      },
+      {
+        "q": 21,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The correct answer should be 'C' as the change in the color of the mask in the demonstration experiment of the effect of smoking on the lungs represents the accumulation of tar on the surface of the lung's inner wall."
+      },
+      {
+        "q": 22,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer should be 'B' as the adaptation on the frog's outer skin that allows for efficient gas exchange is the very thin, constantly moistened by mucus, and covered with dense capillaries underneath."
+      },
+      {
+        "q": 23,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer should be 'B' as the insect respiratory system consists of a series of thin air tubes that penetrate directly into the tissue without involving the blood-sucking system, which is the tracheal system."
+      },
+      {
+        "q": 24,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The correct answer should be 'C' as the carbon dioxide absorption mechanism in plant leaf stomata during midday to support photosynthesis is when carbon dioxide is used in photosynthesis, its concentration inside the cell becomes lower compared to the air space between cells, causing carbon dioxide from the atmosphere to diffuse in through the open stomata."
+      },
+      {
+        "q": 25,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer should be 'B' as the phenomenon of osmosis causes the stoma to be open during the afternoon when there is sunlight, which is due to water seeping into the guard cells through osmosis, causing the guard cells to become turgid and bulge outward."
+      }
+    ]
+  },
+  {
+    "chapter": 2,
+    "set": "B",
+    "issues": [
+      {
+        "q": 1,
+        "supplied_answer": "B",
+        "suggested_answer": "D",
+        "reason": "The short-term physiological response of the athlete's spleen due to low oxygen concentration at high altitudes is slow down the breakdown of oxyhemoglobin in the cells."
+      },
+      {
+        "q": 2,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The trachea is supported by C-shaped cartilage rings."
+      },
+      {
+        "q": 3,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The epiglottis falls downwards and closes the airway to prevent food from entering the respiratory tract."
+      },
+      {
+        "q": 4,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "During exhalation, intervertebral muscles relax, causing the wing bones to move downwards and inwards."
+      },
+      {
+        "q": 5,
+        "supplied_answer": "D",
+        "suggested_answer": "A",
+        "reason": "The rubber sheet is pulled downward, causing the glass tube to be sealed too tightly with a plug without any air gap."
+      },
+      {
+        "q": 6,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The final water level in the gas jar for exhaled air is lower compared to inhaled air after the candle extinguishes, indicating that breath air contains less oxygen than fresh air."
+      },
+      {
+        "q": 7,
+        "supplied_answer": "C",
+        "suggested_answer": "B",
+        "reason": "The sulfuric acid in Frog B becomes very quickly murky, proving that exhaled air contains a high concentration of carbon dioxide."
+      },
+      {
+        "q": 8,
+        "supplied_answer": "D",
+        "suggested_answer": "A",
+        "reason": "The primary physical principle driving this movement of respiratory gases is gas diffusion following the gradient of pressure (difference in pressure separation)."
+      },
+      {
+        "q": 9,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The unstable, bright red compound formed when oxygen diffuses into red blood cells is oxyhemoglobin."
+      },
+      {
+        "q": 10,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The body has a very low oxygen gas concentration due to cellular respiration, which is why the oxyhemoglobin formed in the lung capillaries dissociates again when it reaches the tissues or body cells."
+      },
+      {
+        "q": 11,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The simple chemical equation that correctly represents the process of cellular respiration is Glucose + Oxygen."
+      },
+      {
+        "q": 12,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The alveolar wall and the blood capillary wall have a thickness of only one cell layer, which facilitates and accelerates the rate of gas exchange respiration by reducing it."
+      },
+      {
+        "q": 13,
+        "supplied_answer": "A",
+        "suggested_answer": "B",
+        "reason": "The moisture of the alveolar wall is highly critical for allowing respiratory gas to penetrate first before diffusing through capillaries."
+      },
+      {
+        "q": 14,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "Carbon monoxide gas strongly binds hemoglobin to form stable carbinsulfate, reducing oxygen transport to body cells."
+      },
+      {
+        "q": 15,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The thin alveolar wall peels and dissolves, drastically reducing the gas exchange surface area."
+      },
+      {
+        "q": 16,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The white cotton wool at the end of the experiment indicates that the cigarette smoke contains tar that is burning."
+      },
+      {
+        "q": 17,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "Smoking contains gases such as sulfur dioxide and nitrogen dioxide."
+      },
+      {
+        "q": 18,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "A 'passive smoker' faces the same risk of respiratory deterioration as an active smoker because they inhale cigarette smoke from the environment, which is the same as an active smoker."
+      },
+      {
+        "q": 19,
+        "supplied_answer": "C",
+        "suggested_answer": "B",
+        "reason": "The parrot's skin is very thin, with a gas layer, it is constantly moistened by a mucous layer, and is equipped with a dense network of blood vessels underneath, which is an adaptation of the frog's skin to maximize the rate of gas diffusion."
+      },
+      {
+        "q": 20,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "With a large surface area and opposing blood flow with water flow, lamellae increase the efficiency of gas exchange in water."
+      },
+      {
+        "q": 21,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "Insects do not require a blood circulatory system to transport oxygen to their body cells because they have a tracheal system containing spiracles, trachea, and tracheoles."
+      },
+      {
+        "q": 22,
+        "supplied_answer": "D",
+        "suggested_answer": "A",
+        "reason": "Cellular respiration releases carbon dioxide while photosynthesis releases oxygen."
+      },
+      {
+        "q": 23,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The guard cells become swollen and bulging outward, causing the stoma to open."
+      },
+      {
+        "q": 24,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "Stomatal closure on an extremely hot day prevents excessive water loss through transpiration."
+      },
+      {
+        "q": 25,
+        "supplied_answer": "A",
+        "suggested_answer": "B",
+        "reason": "The deposition of haze, dust, and particulate matter on the surface of leaves blocks both the stomach, reduces gas exchange, and prevents sunlight from photosynthesis."
+      }
+    ]
+  },
+  {
+    "chapter": 3,
+    "set": "A",
+    "issues": [
+      {
+        "q": 1,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The question asks why unicellular organisms do not need a specialized transport system, and the correct answer is that they have a very large internal volume compared to their surface area, allowing rapid respiration through the cell membrane."
+      },
+      {
+        "q": 2,
+        "supplied_answer": "B",
+        "suggested_answer": "C",
+        "reason": "The correct answer is that a fish has 2 chambers (1 atrium, 1 ventricle) and experiences single blood circulation where blood flows through the heart once in a complete chamber."
+      },
+      {
+        "q": 3,
+        "supplied_answer": "B",
+        "suggested_answer": "C",
+        "reason": "The correct answer is that the heart has 4 chambers (1 atrium, 2 ventricles) with a thick septum separating oxygenated and deoxygenated blood."
+      },
+      {
+        "q": 4,
+        "supplied_answer": "B",
+        "suggested_answer": "C",
+        "reason": "The correct answer is that the incomplete septum in reptiles prevents blood from flowing into the pulmonary artery while they are diving in water, reducing the mixing between oxygenated blood and deoxygenated blood compared to amphibians."
+      },
+      {
+        "q": 5,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the primary evolutionary importance of a complete four-chambered heart in mammals and birds is to allow oxygen-rich blood to pass through the cells of the body without any mixing with deoxygenated blood, to support high metabolism (homeothermia)."
+      },
+      {
+        "q": 6,
+        "supplied_answer": "C",
+        "suggested_answer": "D",
+        "reason": "The correct answer is that the comparison between Ciri and Artery is accurate, as it shows the difference in the structure of blood vessels."
+      },
+      {
+        "q": 7,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the structural adaptation of capillaries to maximize the rate of respiratory gas exchange is that the capillary wall is very thin, consisting of only one layer of cells and not elastic or elastic."
+      },
+      {
+        "q": 8,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The correct answer is that the physiological explanation for the thicker muscular wall of the left ventricle compared to the right ventricle is that the left ventricle must generate strong pumping force to expel deoxygenated blood out to the entire body through the aorta (systemic circulation)."
+      },
+      {
+        "q": 9,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the specific mechanical function of the tricuspid and bicuspid valves in the human heart is to allow blood to flow only one time from the atrium to the ventricle, and prevent blood from flowing back to the atrium during ventricular contraction."
+      },
+      {
+        "q": 10,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the function of the semilunar valves in the human circulatory system is to ensure blood does not flow back into the ventricles when the ventricles contract."
+      },
+      {
+        "q": 11,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the Pulmonary Circulation pathway in the human circulatory system is: Right Ventricle -> Pulmonary Artery -> Pulmonary Vein -> Pulmonary Artery -> Right Atrium."
+      },
+      {
+        "q": 12,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the physiological meaning of systolic and diastolic readings is: Systolic is the maximum blood pressure in the arteries when the ventricles are empty, while diastolic is the minimum blood pressure in the ventricles when the ventricles are filling with blood."
+      },
+      {
+        "q": 13,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the comparison between the blood pressure of children and gold miners is physiologically accurate: Children have a lower blood pressure than gold miners due to their hearts being larger."
+      },
+      {
+        "q": 14,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the resulting distribution of blood components in a human blood sample separated using high-speed centrifugation is: Blood plasma (yellow liquid) is suspended in the upper part, approximately 55% of which is blood cells (red blood cells, white blood cells, platelets) are detected below, forming 45%."
+      },
+      {
+        "q": 15,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the structural characteristics of red blood cells that enable them to transport oxygen highly efficiently to body cells are: Has a double-layered cell without a nucleus at the mature stage, providing a large surface area for oxygen absorption and containing hemoglobin pigments."
+      },
+      {
+        "q": 16,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the accurate functions of white blood cells (leukocytes) and platelets (platelets) in maintaining homeostasis are: Option B"
+      },
+      {
+        "q": 17,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The correct answer is that the antigens and antibodies present in an individual with blood group AB are: Has both Antigen A and Antigen B; has no Antibody Anti-A or Anti-B in plasma."
+      },
+      {
+        "q": 18,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that what will happen if a patient with blood group A receives incompatible blood transfusion from a donor with blood group B is: The antibodies in the recipient's plasma will attack the antigen B on the red blood cells, causing hemolysis (blood clumping) that can lead to death."
+      },
+      {
+        "q": 19,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The correct answer is that individuals with blood group O are recognized as universal donors because their red blood cells do not contain Antigen A or Antigen B on their surface, it will not be attacked by antibodies in the recipient's plasma of any other blood group."
+      },
+      {
+        "q": 20,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that transpiration is an essential physical process in plants and is accurately defined as: Water loss from plants in the form of water vapor through stomatal cavities in leaves."
+      },
+      {
+        "q": 21,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The correct answer is that the primary difference between transpiration and guttation in terms of the physical plant structures involved is: Transpiration releases water vapor through stomata, while guttation releases water in the form of mist (sweat) through distinctive structures known as hydathodes on the leaf margins."
+      },
+      {
+        "q": 22,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the rate of transpiration is influenced by four environmental factors: High light condition, low humidity, high temperature, fast wind."
+      },
+      {
+        "q": 23,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the specific function of the Xylem tissue in the plant transport system is: Collecting water and dissolved minerals that are absorbed by roots, rising up to the leaves through the stem to carry out photosynthesis and provide mechanical support."
+      },
+      {
+        "q": 24,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that the primary role of the Phloem tissue in the vascular bundles of plant leaves, stems, and roots is: Sugars (products of photosynthesis in leaves) are transported to other parts of the plant, such as the stem, root, fruit, and growing tip (translocation)."
+      },
+      {
+        "q": 25,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The correct answer is that in a bark ringing experiment, the phloem ring is removed while the xylem is left intact, and the observation recorded after one month is: The upper part of the stem that was thrown away became swollen due to sucrose being blocked there, while the lower part was cut."
+      }
+    ]
+  },
+  {
+    "chapter": 3,
+    "set": "B",
+    "issues": [
+      {
+        "q": 1,
+        "supplied_answer": "D",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as all three organisms (Amoeba sp., Pleurococcus sp., and Mucor sp.) do not require a specialized transport system for essential substances and waste elimination."
+      },
+      {
+        "q": 2,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as complex multicellular organisms like humans and hibiscus plants do not require a specialized transport system due to their size and efficient absorption mechanisms."
+      },
+      {
+        "q": 3,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as Rana temporaria is associated with the circulatory circuit shown in the diagram."
+      },
+      {
+        "q": 4,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the main physiological disadvantage of the three-chambered heart structure compared to mammals is that it does not allow for efficient separation of oxygenated and deoxygenated blood."
+      },
+      {
+        "q": 5,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the functional significance of the thick muscular wall of the left ventricle is to allow deoxygenated blood to be stored before entering the aorta."
+      },
+      {
+        "q": 6,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the deoxygenated blood flows from the vena cava to the atrium, then to the ventricle, and finally to the pulmonary artery."
+      },
+      {
+        "q": 7,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the primary function of the bicuspid and tricuspid valves is to prevent oxygenated blood from mixing with deoxygenated blood in the septum area."
+      },
+      {
+        "q": 8,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as blood vessel X is a vein, carrying deoxygenated blood."
+      },
+      {
+        "q": 9,
+        "supplied_answer": "D",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as blood capillaries lack segmented muscle or valves and are constructed of only a single layer of cells due to the shortest possible distance for gas exchange."
+      },
+      {
+        "q": 10,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the pulmonary circulation is the circuit that carries deoxygenated blood from the heart to the lungs for gas exchange."
+      },
+      {
+        "q": 11,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the value of 80 mmHg represents diastolic pressure, i.e., pressure when the ventricular muscles of the heart relax."
+      },
+      {
+        "q": 12,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the male marathon athlete aged 25 years old who is actively training is expected to have the lowest resting pulse rate."
+      },
+      {
+        "q": 13,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the upper yellow liquid portion in a human blood sample is blood plasma, which makes up 55% of the total blood volume."
+      },
+      {
+        "q": 14,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the red blood cell is the only blood cell component that lacks a nucleus, is biconcave-shaped, and has a lifespan of only about 120 days."
+      },
+      {
+        "q": 15,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the platelets in the patient's blood are associated with the issue of difficulty clotting, resulting in prolonged bleeding."
+      },
+      {
+        "q": 16,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the antigen A is present on the surface of Ali's red blood cells and the antibody contained in his blood plasma is Anti-A."
+      },
+      {
+        "q": 17,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the anti-A antibodies in the recipient's plasma will attack and destroy the red blood cells of the donor carrying antigen A."
+      },
+      {
+        "q": 18,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the Kumpulan AB has no antibodies Anti-A or Anti-B in plasma, while the Kumpulan O has no any antigen A or B on its surface of red blood cells."
+      },
+      {
+        "q": 19,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as sodium citrate acts as an anticoagulant, preventing blood from clotting during storage."
+      },
+      {
+        "q": 20,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the process of Transpiration releases water in the form of vapor, while Guttation releases water in the form of water vapor."
+      },
+      {
+        "q": 21,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the increase in relative humidity of the surrounding air will decrease the transpiration rate of a potted balsam plant."
+      },
+      {
+        "q": 22,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the structures X and Y in the plant leaf cell are translocasi sukrosa, which is responsible for the transport of sucrose."
+      },
+      {
+        "q": 23,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as lignin provides mechanical support to plants to withstand negative water pressure without compromising."
+      },
+      {
+        "q": 24,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The correct answer is A, as the conclusion of this observation is that the phloem tissue is responsible for the transport of organic matter from the leaf to the lower part of the plant."
+      },
+      {
+        "q": 25,
+        "supplied_answer": "A",
+        "suggested_answer": "B",
+        "reason": "The correct answer is B, as the animal blood circulatory system is composed of arteries, veins, and capillaries, while the plant transport system is composed of xylem and phloem."
+      }
+    ]
+  },
+  {
+    "chapter": 4,
+    "set": "A",
+    "issues": [
+      {
+        "q": 1,
+        "supplied_answer": "C",
+        "suggested_answer": "D",
+        "reason": "Hematite is a natural elemental mineral in the Earth's crust."
+      },
+      {
+        "q": 2,
+        "supplied_answer": "A",
+        "suggested_answer": "D",
+        "reason": "The systematic name according to IUPAC rules is 'Tin(IV) oxide'."
+      },
+      {
+        "q": 3,
+        "supplied_answer": "B",
+        "suggested_answer": "D",
+        "reason": "The systematic name and combination of elements for galena is 'Lead(II) sulfide; Lead + Sulfur'."
+      },
+      {
+        "q": 4,
+        "supplied_answer": "C",
+        "suggested_answer": "D",
+        "reason": "Calcite or limestone consists of calcium carbonate, which is 'Calcium, Carbon, and Oxygen'."
+      },
+      {
+        "q": 5,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The observation on the limewater and the identity of the gas is 'Limewater turns cloudy; Carbon dioxide gas'."
+      },
+      {
+        "q": 6,
+        "supplied_answer": "A",
+        "suggested_answer": "D",
+        "reason": "The correct word equation for the reaction of calcium carbonate with dilute hydrochloric acid is 'Calcium carbonate + Hydrochloric acid -> Calcium chloride + Carbon dioxide'."
+      },
+      {
+        "q": 7,
+        "supplied_answer": "C",
+        "suggested_answer": "A",
+        "reason": "The residual solid product left in the boiling tube when calcium carbonate is heated strongly is 'Calcium metal'."
+      },
+      {
+        "q": 8,
+        "supplied_answer": "D",
+        "suggested_answer": "D",
+        "reason": "Bauxite is not a natural form of calcium carbonate found on Earth."
+      },
+      {
+        "q": 9,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The reactivity series of metals is constructed based on the vigor of the reaction of the metals reacting with hydrogen."
+      },
+      {
+        "q": 10,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "Iron (ferrum) reacts with oxygen in the air to form iron(III) oxide, not 'Only glows slowly and dimly'."
+      },
+      {
+        "q": 11,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The potassium manganate(VII) crystals placed at the end of the boiling tube acts as a reaction catalyst."
+      },
+      {
+        "q": 12,
+        "supplied_answer": "D",
+        "suggested_answer": "D",
+        "reason": "The porcelain dish containing metal powder is separated from the potassium manganate(VII) crystals using glass wool to prevent physical mixing during heating."
+      },
+      {
+        "q": 13,
+        "supplied_answer": "A",
+        "suggested_answer": "B",
+        "reason": "The metals in decreasing order of reactivity are 'Pb -> Fe -> Zn -> Al -> Mg -> Mg -> Al -> Fe -> Pb'."
+      },
+      {
+        "q": 14,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The position of carbon in the reactivity series of metals is 'Between Magnesium and Aluminium'."
+      },
+      {
+        "q": 15,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The reduction of zinc oxide by carbon is 'Zinc oxide + Carbon -> Zinc + Carbon dioxide'."
+      },
+      {
+        "q": 16,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The position of hydrogen in the series is 'Between Zinc and Iron'."
+      },
+      {
+        "q": 17,
+        "supplied_answer": "C",
+        "suggested_answer": "B",
+        "reason": "The function of the anhydrous calcium chloride solid placed in the glass tube is 'To absorb excess acidic gases'."
+      },
+      {
+        "q": 18,
+        "supplied_answer": "A",
+        "suggested_answer": "B",
+        "reason": "The correct complete reactivity series of metals (including carbon and hydrogen) is 'K -> Na -> Ca -> Mg -> Al -> Zn -> C -> H -> Fe -> Sn -> Pb -> Cu -> Ag -> Au'."
+      },
+      {
+        "q": 19,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The most suitable method used to extract aluminium metal from its ore is 'Reduction of metal oxide by carbon in a blast furnace'."
+      },
+      {
+        "q": 20,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The most economical industrial extraction method for both metals is 'Reduction of their metal oxides using carbon'."
+      },
+      {
+        "q": 21,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The mixture of primary raw materials fed through the top of the Blast Furnace for the extraction of iron is 'Iron ore + Coke + Limestone'."
+      },
+      {
+        "q": 22,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The primary reducing gas that reduces iron(III) oxide in the blast furnace is 'Reaction between carbon dioxide and hot coke'."
+      },
+      {
+        "q": 23,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The primary function of limestone is 'Adding additional oxygen; calcium oxide acts as a catalyst with iron oxide forming calcium ferric'."
+      },
+      {
+        "q": 24,
+        "supplied_answer": "B",
+        "suggested_answer": "A",
+        "reason": "The primary function of slag is 'Lowering the temperature; calcium carbonate acts as a catalyst with aragonite forming calcium carbonate'."
+      },
+      {
+        "q": 25,
+        "supplied_answer": "D",
+        "suggested_answer": "D",
+        "reason": "All of the above are negative impacts of poorly planned metal ore mining activities on the environment."
+      }
+    ]
+  },
+  {
+    "chapter": 4,
+    "set": "B",
+    "issues": [
+      {
+        "q": 1,
+        "supplied_answer": "C",
+        "suggested_answer": "D",
+        "reason": "Cassiterite is a naturally occurring mineral, but it is not a major metal ore in Malaysia."
+      },
+      {
+        "q": 2,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The systematic IUPAC name for cassiterite is tin(IV) oxide, not iron(III) oxide."
+      },
+      {
+        "q": 3,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The constituent elements of galena are lead and sulfur."
+      },
+      {
+        "q": 4,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The observation for the released gas when lime water is passed through calcium carbonate is that lime water turns cloudy."
+      },
+      {
+        "q": 5,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The solid residue left in the boiling tube after heating calcium carbonate powder strongly is calcium oxide."
+      },
+      {
+        "q": 6,
+        "supplied_answer": "D",
+        "suggested_answer": "D",
+        "reason": "Quartz and silica sand are not natural forms of calcium carbonate."
+      },
+      {
+        "q": 7,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The reason for the vigorous reaction of magnesium with oxygen is that magnesium is more reactive towards oxygen than iron."
+      },
+      {
+        "q": 8,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The chemical used as the oxygen-providing agent during the heating of metal powders is dilute hydrochloric acid."
+      },
+      {
+        "q": 9,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The primary function of glass wool placed inside the boiling tube is to absorb acidic toxic gases."
+      },
+      {
+        "q": 10,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The correct observation for the reaction of lead metal with oxygen is that it glows slowly and dimly."
+      },
+      {
+        "q": 11,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The metals arranged in increasing reactivity order are Pb -> Fe -> Zn -> Al -> Mg."
+      },
+      {
+        "q": 12,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The observation for the mixture of carbon powder and zinc oxide heated strongly is that mixed combustion with bright occurs, and carbon successfully reduces zinc oxide to zinc."
+      },
+      {
+        "q": 13,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The inference from the observation that carbon powder is heated with aluminium oxide and no reaction or glow is detected is that aluminium is more reactive than carbon."
+      },
+      {
+        "q": 14,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "Carbon is positioned between aluminium and zinc in the metal reactivity series."
+      },
+      {
+        "q": 15,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The observation when dry hydrogen gas is passed over strongly heated iron(III) oxide is that brown solid burns brightly and turns into shiny grey."
+      },
+      {
+        "q": 16,
+        "supplied_answer": "D",
+        "suggested_answer": "D",
+        "reason": "The pair of metal and metal oxide that will NOT produce any reaction when heated together is hydrogen + copper(II) oxide."
+      },
+      {
+        "q": 17,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The position of hydrogen in the metal reactivity series is between zinc and iron."
+      },
+      {
+        "q": 18,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The most suitable extraction method for metals located above carbon in the reactivity series is electrolysis of molten metal compounds."
+      },
+      {
+        "q": 19,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "Iron and tin metals are extracted from their ores in industrial plants primarily through the process of reduction of metal oxide by carbon in a blast furnace."
+      },
+      {
+        "q": 20,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The primary chemical materials fed from the top of the furnace in a Blast Furnace for iron extraction are coke and limestone."
+      },
+      {
+        "q": 21,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The gas produced and acts as the primary strong reducing agent to reduce iron ore into molten iron during the combustion of coke in a blast furnace is carbon monoxide."
+      },
+      {
+        "q": 22,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The function of calcium oxide in the formation of slag is to react with sand/silica impurities to form calcium silicate."
+      },
+      {
+        "q": 23,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The two liquids in the blast furnace are separated by the sinter being less porous than iron slag, so it floats on top of iron and is removed through different discharge channels."
+      },
+      {
+        "q": 24,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The industrial application of the slag collected from blast furnace waste is manufacturing cement and road construction base."
+      },
+      {
+        "q": 25,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "Unplanned metal mining activities can cause various environmental issues, including deforestation of forest habitat and waterway pollution caused by mine tailings."
+      }
+    ]
+  },
+  {
+    "chapter": 5,
+    "set": "A",
+    "issues": [
+      {
+        "q": 1,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 2,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 3,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 4,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 5,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 6,
+        "supplied_answer": "D",
+        "suggested_answer": "D",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 7,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 8,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 9,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 10,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 11,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 12,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 13,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 14,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 15,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 16,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 17,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 18,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 19,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 20,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 21,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 22,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 23,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 24,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 25,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The supplied answer is correct."
+      }
+    ]
+  },
+  {
+    "chapter": 5,
+    "set": "B",
+    "issues": [
+      {
+        "q": 2,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 3,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 4,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 5,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 6,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 7,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 8,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 9,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 10,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 11,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 12,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 13,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 14,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 15,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 16,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 17,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 18,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 19,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 20,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 21,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 22,
+        "supplied_answer": "C",
+        "suggested_answer": "C",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 23,
+        "supplied_answer": "B",
+        "suggested_answer": "B",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 24,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The supplied answer is correct."
+      },
+      {
+        "q": 25,
+        "supplied_answer": "A",
+        "suggested_answer": "A",
+        "reason": "The supplied answer is correct."
+      }
+    ]
+  }
+]

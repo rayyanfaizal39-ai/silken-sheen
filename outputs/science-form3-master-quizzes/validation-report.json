@@ -1,0 +1,53 @@
+{
+  "original_rows": 75,
+  "new_rows_added": 250,
+  "final_rows": 325,
+  "column_order_unchanged": true,
+  "original_rows_preserved": true,
+  "chapter_set_counts": {
+    "1": {
+      "A": 25,
+      "B": 25
+    },
+    "2": {
+      "A": 25,
+      "B": 25
+    },
+    "3": {
+      "A": 25,
+      "B": 25
+    },
+    "4": {
+      "A": 25,
+      "B": 25
+    },
+    "5": {
+      "A": 25,
+      "B": 25
+    }
+  },
+  "new_rows_validation": {
+    "missing_questions": 0,
+    "missing_option_a": 0,
+    "missing_option_b": 0,
+    "missing_option_c": 0,
+    "missing_option_d": 0,
+    "missing_correct_answer": 0,
+    "invalid_correct_answer": 0,
+    "missing_explanations": 0,
+    "duplicate_ids": "N/A — master schema has no ID column",
+    "duplicate_questions": 0,
+    "duplicate_question_details": [],
+    "incorrect_chapter_assignment": 0,
+    "incorrect_set_assignment": 0,
+    "incorrect_question_number": 0,
+    "missing_bm_fields": 0,
+    "missing_english_dlp_fields": 0
+  },
+  "preserved_legacy_blanks": {
+    "missing_english_options": 208,
+    "missing_correct_answer": 50,
+    "missing_explanation": 25
+  },
+  "validation": "PASS"
+}

@@ -1,9 +1,3 @@
-// geo11-content.ts
-// Source-verified content for Geography Form 1, Bab 11 — Penduduk dan Petempatan di Asia Tenggara
-// Sourced from T1_BT_GEO_-_GEOGRAFI.pdf (pages 120-131)
-// Geography has no official DLP/English textbook — BM only.
-// Content data only — no presentation markup.
-
 export interface CountryPopulation {
   country: string;
   population: string;
@@ -21,6 +15,13 @@ export interface UrbanFunction {
   examples: string[];
 }
 
+export interface CityProfile {
+  city: string;
+  country: string;
+  population: string;
+  facts: string[];
+}
+
 export interface Geo11Content {
   hook: { title: string; body: string };
   overview: {
@@ -28,10 +29,15 @@ export interface Geo11Content {
     totalPopulation: string;
     percentOfWorld: string;
     asOf: string;
+    regionArea: string;
   };
   populationByCountry: CountryPopulation[];
   densityCategories: DensityCategory[];
+  transmigration: { purpose: string; movement: string };
   urbanFunctions: UrbanFunction[];
+  cityProfiles: CityProfile[];
+  capitals: Array<{ country: string; capital: string }>;
+  urbanChallenges: { problems: string[]; solutions: string[] };
   keyExamFacts: string[];
   keyTerms: string[];
   chapterSummary: string;
@@ -39,14 +45,16 @@ export interface Geo11Content {
 
 export const geo11Content: Geo11Content = {
   hook: {
-    title: "Kenapa ini penting",
-    body: "Lebih 640 juta orang tinggal di Asia Tenggara — hampir 9% daripada seluruh populasi dunia. Tetapi seperti Malaysia, taburan ini tidak sekata. Bab ini menunjukkan corak yang sama merentasi seluruh rantau: bandar utama padat, pedalaman jarang, dan setiap bandar besar mempunyai peranannya sendiri."
+    title: "Penduduk membentuk bandar dan rantau",
+    body: "Lebih 640 juta orang tinggal di Asia Tenggara, tetapi mereka tidak tersebar secara sekata. Bentuk muka bumi, peluang ekonomi dan jaringan perhubungan menentukan kawasan tumpuan serta fungsi bandar utama.",
   },
   overview: {
-    definition: "Taburan penduduk merujuk kepada sebaran penduduk di sesuatu kawasan di muka bumi. Taburan penduduk di Asia Tenggara adalah berbeza-beza mengikut kawasan.",
+    definition:
+      "Taburan penduduk merujuk kepada sebaran penduduk di sesuatu kawasan. Taburan penduduk Asia Tenggara berbeza-beza mengikut lokasi.",
     totalPopulation: "Melebihi 640 juta orang",
-    percentOfWorld: "8.62% daripada keseluruhan populasi dunia",
-    asOf: "Jun 2016"
+    percentOfWorld: "8.62% daripada populasi dunia",
+    asOf: "Jun 2016",
+    regionArea: "4 506 600 km²",
   },
   populationByCountry: [
     { country: "Indonesia", population: "260,834,826" },
@@ -58,47 +66,176 @@ export const geo11Content: Geo11Content = {
     { country: "Kemboja", population: "15,850,684" },
     { country: "Laos", population: "6,929,312" },
     { country: "Singapura", population: "5,705,230" },
+    { country: "Timor Leste", population: "1,213,743" },
     { country: "Brunei Darussalam", population: "428,408" },
-    { country: "Timor Leste", population: "1,213,743" }
   ],
   densityCategories: [
     {
       category: "Padat",
-      reason: "Ibu negara dan bandar utama; sungai sebagai jalan perhubungan; delta dan lembah sungai yang subur; dataran pantai untuk perikanan",
-      examples: ["Pantai barat Semenanjung Malaysia", "Pulau Jawa (Indonesia)", "Bangkok (Thailand)"]
+      reason:
+        "Ibu negara, bandar raya utama, lembah dan delta sungai yang subur, dataran pantai serta kawasan berketersampaian tinggi.",
+      examples: [
+        "Pulau Jawa (Indonesia) — kira-kira 60% penduduk Indonesia",
+        "Pantai barat Semenanjung Malaysia",
+        "Bangkok, Manila dan Jakarta",
+        "Delta Mekong, Delta Irrawaddy dan Lembah Menam Chao Phraya",
+      ],
     },
     {
-      category: "Sederhana",
-      reason: "Kawasan pinggir bandar, kawasan bandar baharu, kawasan pertanian",
-      examples: ["Pantai timur Semenanjung Malaysia", "Pantai barat Sumatera (Indonesia)", "Pantai Arakan Yoma (Myanmar)", "Pinggir Sungai Mekong (Vietnam)"]
+      category: "Sederhana Padat",
+      reason:
+        "Kawasan pertanian, pinggir bandar, bandar baharu dan lembangan sungai yang kurang sesak.",
+      examples: [
+        "Pantai timur Semenanjung Malaysia",
+        "Pantai barat Sumatera (Indonesia)",
+        "Pantai Arakan Yoma (Myanmar)",
+        "Pinggir Sungai Mekong (Vietnam)",
+      ],
     },
     {
       category: "Jarang",
-      reason: "Kawasan pedalaman dengan perhubungan terhad; kawasan pergunungan dan banjaran; kawasan berpaya dan berhutan tebal",
-      examples: ["Pedalaman Sarawak dan Sabah (Malaysia)", "Kawasan paya Sumatera Timur (Indonesia)", "Banjaran Annam (Vietnam)"]
-    }
+      reason:
+        "Pedalaman, pergunungan, banjaran, kawasan berpaya dan hutan tebal dengan kemudahan perhubungan terhad.",
+      examples: [
+        "Pedalaman Sabah dan Sarawak (Malaysia)",
+        "Kawasan paya Sumatera Timur (Indonesia)",
+        "Banjaran Annam (Vietnam)",
+      ],
+    },
   ],
+  transmigration: {
+    purpose: "Mengurangkan kepadatan penduduk yang terlalu tinggi di Pulau Jawa.",
+    movement: "Memindahkan sebahagian penduduk ke pulau lain di Indonesia yang kurang padat.",
+  },
   urbanFunctions: [
-    { name: "Ibu Negara dan Pusat Pentadbiran", description: "Kebanyakan bandar utama di Asia Tenggara merupakan ibu negara dan berfungsi sebagai pusat pentadbiran", examples: ["Jakarta (Indonesia)", "Bangkok (Thailand)", "Manila (Filipina)"] },
-    { name: "Pusat Perdagangan", description: "Terdapat pusat perniagaan, gedung beli-belah dan aktiviti import dan eksport", examples: ["Bandung dan Surabaya (Indonesia)", "Johor Bahru (Johor)", "Orchard Road (Singapura)"] },
-    { name: "Pusat Pelancongan", description: "Bandar utama menjadi daya tarikan pelancong yang datang setiap tahun untuk menikmati panorama bandar", examples: ["Kuala Lumpur (Malaysia)", "Jakarta (Indonesia)", "Bangkok (Thailand)"] },
-    { name: "Pusat Perindustrian", description: "Perindustrian ialah sektor sekunder penting dalam pembangunan ekonomi negara; bandar utama menjadi pusat perindustrian", examples: ["Manila (Filipina) — pemasangan kenderaan bermotor dan besi keluli", "Bangkok (Thailand) — elektrik, elektronik, dan industri makanan"] },
-    { name: "Pusat Perhubungan dan Pengangkutan", description: "Bandar utama mempunyai rangkaian pengangkutan, Internet dan telekomunikasi yang lengkap", examples: ["Lapangan Terbang Antarabangsa Soekarno-Hatta, Jakarta (Indonesia)", "Lapangan Terbang Antarabangsa Kuala Lumpur (Malaysia)"] }
+    {
+      name: "Ibu Negara & Pusat Pentadbiran",
+      description: "Menjadi pusat pemerintahan dan pentadbiran kerajaan.",
+      examples: ["Jakarta", "Bangkok", "Manila", "Kuala Lumpur"],
+    },
+    {
+      name: "Pusat Perdagangan & Kewangan",
+      description: "Mengurus import, eksport, pelaburan dan perniagaan antarabangsa.",
+      examples: ["Singapura", "Jakarta", "Kuala Lumpur"],
+    },
+    {
+      name: "Pusat Perindustrian",
+      description:
+        "Menumpukan kegiatan pembuatan kerana infrastruktur dan tenaga kerja yang ramai.",
+      examples: [
+        "Manila — pemasangan kenderaan dan besi keluli",
+        "Bangkok — elektrik, elektronik dan makanan",
+        "Kuala Lumpur — perindustrian dan perdagangan",
+      ],
+    },
+    {
+      name: "Pusat Pelancongan",
+      description: "Menawarkan tarikan panorama, budaya dan sejarah.",
+      examples: ["Kuala Lumpur", "Jakarta", "Bangkok — Pasar Terapung"],
+    },
+    {
+      name: "Pusat Perhubungan & Pengangkutan",
+      description:
+        "Menjadi pintu masuk dan hab udara, laut serta darat dengan telekomunikasi lengkap.",
+      examples: ["KLIA (Malaysia)", "Lapangan Terbang Soekarno-Hatta (Jakarta)"],
+    },
   ],
+  cityProfiles: [
+    {
+      city: "Kuala Lumpur",
+      country: "Malaysia",
+      population: "1.76 juta",
+      facts: [
+        "Pertemuan Sungai Klang dan Sungai Gombak",
+        "Metropolitan terbesar di Malaysia",
+        "Pusat perindustrian, perdagangan, pendidikan dan ibu negara",
+      ],
+    },
+    {
+      city: "Jakarta",
+      country: "Indonesia",
+      population: "10.4 juta",
+      facts: [
+        "Muara Sungai Tjiliwung di Pulau Jawa",
+        "Metropolitan terbesar di Indonesia",
+        "Pusat ekonomi, pendidikan, perdagangan dan ibu negara",
+      ],
+    },
+    {
+      city: "Bangkok",
+      country: "Thailand",
+      population: "9.44 juta",
+      facts: [
+        "Timur tebing Menam Chao Phraya",
+        "Digelar Venice Timur",
+        "Ibu negara, pusat ekonomi dan pelabuhan",
+      ],
+    },
+    {
+      city: "Manila",
+      country: "Filipina",
+      population: "13.1 juta",
+      facts: [
+        "Timur Teluk Manila di Pulau Luzon",
+        "Bandar raya kosmopolitan",
+        "Pusat ekonomi utama dan ibu negara",
+      ],
+    },
+    {
+      city: "Singapura",
+      country: "Singapura",
+      population: "5.70 juta",
+      facts: [
+        "Selatan Semenanjung Malaysia, dipisahkan oleh Selat Tebrau",
+        "Metropolitan dan pelabuhan penting dunia",
+        "Pusat kewangan dan perdagangan antarabangsa",
+      ],
+    },
+  ],
+  capitals: [
+    { country: "Malaysia", capital: "Kuala Lumpur" },
+    { country: "Indonesia", capital: "Jakarta" },
+    { country: "Filipina", capital: "Manila" },
+    { country: "Thailand", capital: "Bangkok" },
+    { country: "Vietnam", capital: "Hanoi" },
+    { country: "Myanmar", capital: "Naypyidaw" },
+    { country: "Laos", capital: "Vientiane" },
+    { country: "Kemboja", capital: "Phnom Penh" },
+    { country: "Brunei Darussalam", capital: "Bandar Seri Begawan" },
+    { country: "Singapura", capital: "Bandar Raya Singapura" },
+    { country: "Timor Leste", capital: "Dili" },
+  ],
+  urbanChallenges: {
+    problems: ["Kekurangan tanah", "Kesesakan petempatan", "Masalah setinggan"],
+    solutions: [
+      "Membina petempatan terancang dan mampu milik",
+      "Menyediakan kemudahan asas yang lengkap",
+      "Memberi bantuan perumahan kepada penduduk setinggan",
+      "Membina bandar baharu untuk menyuraikan kepadatan",
+    ],
+  },
   keyExamFacts: [
-    "Penduduk Asia Tenggara dianggarkan melebihi 640 juta orang (Jun 2016), iaitu 8.62% populasi dunia",
-    "Indonesia mempunyai jumlah penduduk terbesar di Asia Tenggara; Brunei Darussalam terkecil",
-    "Taburan penduduk Asia Tenggara terbahagi kepada padat, sederhana, dan jarang",
-    "Kawasan padat biasanya di ibu negara, bandar utama, dan lembah sungai subur",
-    "Kawasan jarang biasanya di pedalaman, pergunungan, dan kawasan berpaya/berhutan tebal",
-    "Bandar utama di Asia Tenggara mempunyai 5 fungsi utama: pentadbiran, perdagangan, pelancongan, perindustrian, perhubungan/pengangkutan"
+    "Penduduk Asia Tenggara melebihi 640 juta orang pada Jun 2016",
+    "Indonesia mempunyai penduduk paling ramai; Brunei Darussalam paling sedikit",
+    "Pulau Jawa menempatkan kira-kira 60% penduduk Indonesia",
+    "Taburan penduduk terbahagi kepada padat, sederhana padat dan jarang",
+    "Lima fungsi bandar ialah pentadbiran, perdagangan dan kewangan, perindustrian, pelancongan serta perhubungan dan pengangkutan",
+    "Transmigrasi memindahkan penduduk Jawa ke pulau lain yang kurang padat",
   ],
   keyTerms: [
-    "Taburan penduduk", "Populasi", "Kepadatan padat", "Kepadatan sederhana",
-    "Kepadatan jarang", "Ibu negara", "Pusat pentadbiran", "Pusat perdagangan",
-    "Pusat pelancongan", "Pusat perindustrian", "Pusat perhubungan dan pengangkutan"
+    "Taburan penduduk",
+    "Populasi",
+    "Padat",
+    "Sederhana padat",
+    "Jarang",
+    "Transmigrasi",
+    "Bandar metropolitan",
+    "Bandar kosmopolitan",
+    "Setinggan",
+    "Bandar baharu",
   ],
-  chapterSummary: "Bab 11 merangkumi taburan penduduk Asia Tenggara (melebihi 640 juta orang, 8.62% populasi dunia), jumlah penduduk mengikut negara, tiga kategori kepadatan (padat, sederhana, jarang) dengan sebab dan contoh, serta lima fungsi utama bandar-bandar besar di Asia Tenggara — pentadbiran, perdagangan, pelancongan, perindustrian, dan perhubungan/pengangkutan."
+  chapterSummary:
+    "Bab 11 menerangkan taburan dan jumlah penduduk Asia Tenggara, tiga kategori tumpuan penduduk serta fungsi bandar utama. Profil bandar, ibu negara dan langkah mengatasi kesesakan menunjukkan hubungan antara pertumbuhan penduduk dengan pembangunan petempatan.",
 };
 
 export default geo11Content;
