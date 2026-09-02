@@ -1,11 +1,5 @@
-// geo9-content.ts
-// Source-verified content for Geography Form 1, Bab 9 — Petempatan di Malaysia
-// Sourced from T1_BT_GEO_-_GEOGRAFI.pdf (pages 96-107)
-// Geography has no official DLP/English textbook — BM only.
-// Content data only — no presentation markup.
-
 export interface SettlementType {
-  type: 'bandar' | 'luar bandar';
+  type: "bandar" | "luar bandar";
   populationThreshold: string;
   characteristics: string[];
 }
@@ -18,7 +12,7 @@ export interface SettlementPattern {
 
 export interface UrbanFunction {
   name: string;
-  category: 'ekonomi' | 'sosial' | 'kerajaan';
+  category: "ekonomi" | "sosial" | "kerajaan";
   description: string;
   examples: string[];
 }
@@ -35,6 +29,7 @@ export interface Geo9Content {
   settlementPatterns: SettlementPattern[];
   urbanFunctions: UrbanFunction[];
   ruralFunctions: RuralFunction[];
+  ruralDevelopment: { name: string; agency: string; vision: string };
   keyExamFacts: string[];
   keyTerms: string[];
   chapterSummary: string;
@@ -42,85 +37,186 @@ export interface Geo9Content {
 
 export const geo9Content: Geo9Content = {
   hook: {
-    title: "Kenapa ini penting",
-    body: "Kenapa sesetengah bandar dikenali sebagai bandar pelabuhan, sementara yang lain menjadi bandar teknologi maklumat atau bandar diraja? Bab ini menunjukkan bahawa setiap petempatan mempunyai fungsi tersendiri — dan cara ia disusun bergantung pada bentuk muka bumi dan ekonomi sekelilingnya."
+    title: "Petempatan berubah bersama penduduk",
+    body: "Pertambahan penduduk mengubah dan memperluas kawasan kediaman. Bab ini membantu kita mengenal jenis, pola dan fungsi petempatan yang membentuk ruang kehidupan di Malaysia.",
   },
-  overview: "Pertambahan jumlah penduduk pada setiap tahun menyebabkan berlakunya perubahan dan pertambahan kawasan kediaman atau petempatan. Petempatan di Malaysia terbahagi kepada dua jenis: petempatan bandar dan petempatan luar bandar.",
+  overview:
+    "Petempatan ialah kawasan kediaman manusia. Di Malaysia, petempatan dibahagikan kepada petempatan bandar dan petempatan luar bandar.",
   settlementTypes: [
     {
       type: "bandar",
-      populationThreshold: "Jumlah penduduk melebihi 10,000 orang",
+      populationThreshold: "Melebihi 10,000 orang",
       characteristics: [
-        "Mempunyai kemudahan asas yang pelbagai",
-        "Kawasan kediaman berciri moden",
-        "Kegiatan ekonomi: perindustrian, perniagaan, pembinaan, pentadbiran, perkhidmatan"
-      ]
+        "Kepadatan penduduk tinggi dengan bangunan komersial dan kediaman moden yang padat",
+        "Kemudahan perkhidmatan dan sosial lebih moden, lengkap dan maju",
+        "Kegiatan ekonomi: perindustrian, perniagaan, pelancongan, teknologi maklumat dan perkhidmatan",
+      ],
     },
     {
       type: "luar bandar",
-      populationThreshold: "Jumlah penduduk kurang daripada 10,000 orang",
+      populationThreshold: "Kurang daripada 10,000 orang",
       characteristics: [
-        "Kemudahan asas yang minimum",
-        "Kawasan kediaman sederhana dan berciri tradisional",
-        "Kegiatan ekonomi terhad: pertanian, penternakan, industri desa"
-      ]
-    }
+        "Kepadatan rendah dengan kediaman sederhana, berjarak dan berciri tradisional",
+        "Kemudahan perkhidmatan sosial pada tahap minimum",
+        "Kegiatan ekonomi primer: pertanian, penternakan, perlombongan dan industri desa",
+      ],
+    },
   ],
   settlementPatterns: [
     {
       name: "Berpusat",
-      description: ["Rumah atau bangunan dibina secara rapat di kawasan yang menjadi tumpuan penduduk", "Terdapat di kawasan persimpangan jalan raya atau taman perumahan", "Terdapat kemudahan pusat perniagaan, pelabuhan dan rumah ibadat"],
-      examples: ["Bandar Tun Razak, Kuala Lumpur"]
+      description: [
+        "Rumah atau bangunan rapat dan padat di kawasan tumpuan",
+        "Lazim di persimpangan jalan raya atau taman perumahan",
+        "Dilengkapi pusat perniagaan, pelabuhan, rumah ibadat dan kemudahan sosial",
+      ],
+      examples: ["Bandar Tun Razak (Kuala Lumpur)"],
     },
     {
       name: "Berkelompok",
-      description: ["Susun atur rumah secara berkelompok dan terancang di sesuatu kawasan"],
-      examples: ["Felda Trolak (Perak)", "Felda Air Tawar (Johor)", "Felda Sahabat (Sabah)"]
+      description: [
+        "Rumah dibina rapat tetapi tersusun dan terancang dalam satu kelompok",
+        "Lazim di rancangan pembangunan tanah persekutuan",
+      ],
+      examples: ["Felda Trolak (Perak)", "Felda Air Tawar (Johor)", "Felda Sahabat (Sabah)"],
     },
     {
       name: "Berjajar",
-      description: ["Rumah atau bangunan dibina di sepanjang jalan raya dan di tepi pantai", "Kelihatan tersusun secara deretan dan hampir seragam"],
-      examples: ["Sepanjang Sungai Rajang (Sarawak)", "Pesisir pantai Kuala Besut (Terengganu)"]
+      description: [
+        "Rumah membentuk barisan atau deretan yang hampir seragam",
+        "Terletak sepanjang jalan raya, tepi pantai atau tebing sungai",
+      ],
+      examples: ["Tebing Sungai Rajang (Sarawak)", "Pesisir Kuala Besut (Terengganu)"],
     },
     {
       name: "Berselerak",
-      description: ["Rumah dan bangunan dibina secara berselerak dan berjauhan antara satu sama lain", "Kelihatan bertaburan dan tidak seragam"],
-      examples: ["Bukit Tinggi (Pahang)", "Kundasang (Sabah)"]
-    }
+      description: [
+        "Rumah berjauhan, bertaburan dan tidak mempunyai susun atur seragam",
+        "Lazim di kawasan pertanian, kebun getah dan kebun sayur",
+      ],
+      examples: ["Bukit Tinggi (Pahang)", "Kundasang (Sabah)"],
+    },
   ],
   urbanFunctions: [
-    { name: "Bandar Pelancongan", category: "ekonomi", description: "Terkenal dengan pelbagai aktiviti pelancongan; menawarkan peluang pekerjaan dalam sektor peniagaan dan pelancongan", examples: ["Port Dickson (N.Sembilan)", "Bandaraya Melaka (Melaka)"] },
-    { name: "Bandar Pelabuhan", category: "ekonomi", description: "Melibatkan urusan import dan eksport; penduduk terlibat dalam sektor perkapalan dan penguatkuasaan maritim", examples: ["Pasir Gudang (Johor)", "Klang (Selangor)", "Georgetown (P.Pinang)", "Bintulu (Sarawak)", "Teluk Sepanggar (Sabah)"] },
-    { name: "Bandar Perlombongan", category: "ekonomi", description: "Berkembang akibat penerokaan sumber mineral; menawarkan peluang pekerjaan dalam perlombongan dan cari gali", examples: ["Bintulu (Sarawak)", "Kerteh (Terengganu) — perlombongan petroleum dan gas asli"] },
-    { name: "Bandar Perindustrian", category: "ekonomi", description: "Mempunyai pelbagai kegiatan industri; kebanyakan penduduk bekerja dalam pengeluaran, kejuruteraan dan teknikal", examples: ["Shah Alam (Selangor)", "Perai (P.Pinang)"] },
-    { name: "Bandar Teknologi Maklumat", category: "ekonomi", description: "Berperanan mengembangkan teknologi maklumat dan telekomunikasi (ICT)", examples: ["Cyberjaya (Selangor)", "Taman Teknologi Malaysia (Kuala Lumpur)"] },
-    { name: "Bandar Diraja", category: "sosial", description: "Bandar tempat terletaknya istana, kediaman rasmi sultan atau raja", examples: ["Pekan (Pahang)", "Kuala Kangsar (Perak)", "Arau (Perlis)"] },
-    { name: "Bandar Satelit", category: "sosial", description: "Berperanan sebagai bandar sokongan kepada bandar utama", examples: ["Petaling Jaya (Selangor)", "Senawang (N.Sembilan)"] },
-    { name: "Bandar Pendidikan", category: "sosial", description: "Terdapat institusi pendidikan tinggi menawarkan peluang pendidikan dan pekerjaan sebagai pensyarah", examples: ["Universiti Pendidikan Sultan Idris (UPSI), Tanjung Malim, Perak"] },
-    { name: "Bandar Pertahanan", category: "kerajaan", description: "Menempatkan pangkalan tentera yang menjadikan bandar berkembang sebagai kawasan petempatan lebih besar", examples: ["Lumut (Perak)", "Port Dickson (N.Sembilan)"] },
-    { name: "Bandar Sempadan", category: "kerajaan", description: "Berfungsi sebagai pintu keluar masuk negara; kegiatan pelancongan dan perdagangan yang rancak", examples: ["Rantau Panjang (Kelantan)", "Padang Besar (Perlis)"] },
-    { name: "Bandar Pentadbiran", category: "kerajaan", description: "Berfungsi sebagai ibu negeri, ibu negara atau pusat pentadbiran", examples: ["Putrajaya — Pusat Pentadbiran Kerajaan Persekutuan", "Kota Kinabalu, Kuantan, Kangar — ibu negeri"] }
+    {
+      name: "Bandar Perindustrian",
+      category: "ekonomi",
+      description:
+        "Pusat kilang dan pembuatan dengan pekerjaan pengeluaran, kejuruteraan dan teknikal.",
+      examples: ["Shah Alam (Selangor)", "Perai (Pulau Pinang)"],
+    },
+    {
+      name: "Bandar Pelancongan",
+      category: "ekonomi",
+      description:
+        "Tarikan semula jadi atau buatan menjana pekerjaan perniagaan, perhotelan dan pelancongan.",
+      examples: [],
+    },
+    {
+      name: "Bandar Satelit",
+      category: "ekonomi",
+      description:
+        "Bandar sokongan yang menampung limpahan penduduk dan industri dari bandar utama.",
+      examples: ["Petaling Jaya (Selangor)", "Senawang (Negeri Sembilan)"],
+    },
+    {
+      name: "Bandar Teknologi Maklumat",
+      category: "ekonomi",
+      description: "Pusat perkembangan teknologi maklumat dan telekomunikasi negara.",
+      examples: ["Cyberjaya (Selangor)", "Taman Teknologi Malaysia (Kuala Lumpur)"],
+    },
+    {
+      name: "Bandar Pelabuhan & Perlombongan",
+      category: "ekonomi",
+      description:
+        "Pusat perdagangan maritim antarabangsa serta penerokaan sumber mineral seperti petroleum dan gas asli.",
+      examples: [],
+    },
+    {
+      name: "Bandar Pendidikan",
+      category: "sosial",
+      description: "Hab atau pusat pengajian tinggi seperti universiti dan kolej antarabangsa.",
+      examples: [],
+    },
+    {
+      name: "Bandar Diraja",
+      category: "sosial",
+      description: "Menempatkan istana atau kediaman rasmi sultan atau raja.",
+      examples: ["Pekan (Pahang)", "Kuala Kangsar (Perak)", "Arau (Perlis)"],
+    },
+    {
+      name: "Bandar Pentadbiran",
+      category: "kerajaan",
+      description:
+        "Pusat pentadbiran negeri atau negara yang menempatkan kementerian dan perkhidmatan awam.",
+      examples: [
+        "Kuala Lumpur — ibu negara",
+        "Putrajaya — Pusat Pentadbiran Kerajaan Persekutuan",
+        "Kota Kinabalu, Kuantan dan Kangar — ibu negeri",
+      ],
+    },
+    {
+      name: "Bandar Sempadan",
+      category: "kerajaan",
+      description:
+        "Pintu keluar masuk negara dengan kawalan keselamatan, kastam dan perdagangan rentas sempadan.",
+      examples: ["Rantau Panjang (Kelantan)", "Padang Besar (Perlis)"],
+    },
   ],
   ruralFunctions: [
-    { category: "Ekonomi", points: ["Pertanian, penternakan, perlombongan dan industri desa", "Pertanian merangkumi penanaman padi, getah, kelapa sawit dan sayur-sayuran", "Penternakan lembu, kambing serta ikan air tawar", "Industri desa — kraftangan dan makanan"] },
-    { category: "Sosial", points: ["Kemudahan sosial seperti rumah ibadat, klinik kesihatan, perkhidmatan pos, bekalan air dan elektrik"] },
-    { category: "Kerajaan/Governan", points: ["Perkhidmatan pengurusan pentadbiran melalui pejabat penghulu, ketua kampung, tok batin, tuai rumah atau penggawa", "Balai raya berperanan sebagai pusat kegiatan kemasyarakatan"] }
+    {
+      category: "Ekonomi",
+      points: [
+        "Mengeluarkan makanan dan bahan mentah seperti padi, sayur-sayuran, getah, kelapa sawit dan kayu balak",
+        "Penternakan dan akuakultur membekalkan daging serta ikan air tawar",
+        "Petempatan nelayan membekalkan hasil laut",
+        "Industri desa atau IKS menghasilkan kraf tangan dan makanan tradisional; Kuala Kangsar terkenal dengan Labu Sayong",
+      ],
+    },
+    {
+      category: "Sosial",
+      points: [
+        "Kediaman tradisional dengan semangat kemasyarakatan yang kuat",
+        "Kemudahan asas termasuk sekolah rendah, klinik desa, rumah ibadat dan balai raya",
+      ],
+    },
+    {
+      category: "Kerajaan/Governan",
+      points: [
+        "Kebajikan dan urusan kampung diurus oleh penghulu, ketua kampung atau JKKK",
+        "Balai polis komuniti atau pondok polis membantu menjaga keselamatan tempatan",
+      ],
+    },
   ],
+  ruralDevelopment: {
+    name: "Pelan Induk Pembangunan Luar Bandar (PIPLB)",
+    agency: "Kementerian Kemajuan Luar Bandar dan Wilayah",
+    vision:
+      "Membangunkan ekonomi luar bandar yang berdaya maju, masyarakat sejahtera dan persekitaran lestari.",
+  },
   keyExamFacts: [
-    "Petempatan bandar: penduduk melebihi 10,000 orang; petempatan luar bandar: kurang daripada 10,000 orang",
-    "4 pola petempatan di Malaysia: berpusat, berkelompok, berjajar, berselerak",
-    "Fungsi petempatan merangkumi 3 aspek: ekonomi, sosial, kerajaan/governan",
-    "10 jenis bandar mengikut fungsi: pelancongan, pelabuhan, perlombongan, perindustrian, teknologi maklumat, diraja, satelit, pendidikan, pertahanan, sempadan, pentadbiran",
-    "Petempatan luar bandar menjalankan fungsi pentadbiran melalui penghulu, ketua kampung, tok batin, tuai rumah atau penggawa"
+    "Bandar mempunyai lebih 10,000 orang; luar bandar mempunyai kurang 10,000 orang",
+    "Empat pola petempatan ialah berpusat, berkelompok, berjajar dan berselerak",
+    "Fungsi petempatan merangkumi aspek ekonomi, sosial dan kerajaan atau governan",
+    "Bandar Satelit ialah fungsi ekonomi yang menyokong bandar utama",
+    "Pentadbiran luar bandar berlaku di peringkat akar umbi melalui penghulu, ketua kampung atau JKKK",
   ],
   keyTerms: [
-    "Petempatan bandar", "Petempatan luar bandar", "Pola petempatan", "Berpusat",
-    "Berkelompok", "Berjajar", "Berselerak", "Fungsi petempatan", "Bandar pelancongan",
-    "Bandar pelabuhan", "Bandar perlombongan", "Bandar perindustrian", "Bandar teknologi maklumat",
-    "Bandar diraja", "Bandar satelit", "Bandar pendidikan", "Bandar pertahanan",
-    "Bandar sempadan", "Bandar pentadbiran", "Penghulu", "Balai raya"
+    "Petempatan bandar",
+    "Petempatan luar bandar",
+    "Pola petempatan",
+    "Berpusat",
+    "Berkelompok",
+    "Berjajar",
+    "Berselerak",
+    "Fungsi ekonomi",
+    "Fungsi sosial",
+    "Fungsi governan",
+    "PIPLB",
+    "JKKK",
   ],
-  chapterSummary: "Bab 9 membezakan petempatan bandar dan luar bandar berdasarkan jumlah penduduk dan kemudahan, merangkumi 4 pola petempatan (berpusat, berkelompok, berjajar, berselerak) dengan contoh sebenar, serta fungsi petempatan bandar (10 jenis mengikut ekonomi, sosial, kerajaan) dan luar bandar (pertanian, penternakan, kemudahan sosial, pentadbiran tempatan)."
+  chapterSummary:
+    "Bab 9 membezakan petempatan bandar dan luar bandar berdasarkan jumlah penduduk, landskap, kemudahan dan kegiatan ekonomi. Empat pola petempatan ialah berpusat, berkelompok, berjajar dan berselerak. Setiap petempatan menjalankan fungsi ekonomi, sosial dan kerajaan atau governan yang saling melengkapi.",
 };
 
 export default geo9Content;
