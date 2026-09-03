@@ -871,11 +871,11 @@
     "question_malay": "Seseorang yang tidak merokok tetapi menyedut asap rokok daripada orang sekeliling dikenali sebagai:",
     "question_english": "A person who does not smoke but inhales second-hand smoke from people around them is known as:",
     "option_a_malay": "Perokok aktif",
-    "option_a_english": "Passive smoker",
+    "option_a_english": "Active smoker",
     "option_b_malay": "Perokok pasif",
     "option_b_english": "Passive smoker",
     "option_c_malay": "Perokok tegar",
-    "option_c_english": "Passive smoker",
+    "option_c_english": "Heavy smoker",
     "option_d_malay": "Perokok sosial",
     "option_d_english": "Social smoker",
     "correct_answer": "B",
@@ -904,8 +904,8 @@
     "set_letter": "A",
     "chapter_title": "Bab 2: Respirasi (Respiration) - Kuiz Set A",
     "question_number": 1,
-    "question_malay": "Apakah gerak balas fisiologi utama badan seorang atlet apabila diletakkan di dalam bilik latihan hipoksik (hypoxic) atau diletakkan di kawasan altitud tinggi?",
-    "question_english": "What are the main physiological responses of an athlete's body when placed in a hypoxic chamber or in a high-altitude area?",
+    "question_malay": "Apakah gerak balas utama badan seorang atlet apabila berlatih di kawasan tanah tinggi yang mempunyai kandungan oksigen lebih rendah?",
+    "question_english": "What is the body's main response when an athlete trains at high altitude, where less oxygen is available?",
     "option_a_malay": "Jantung berdegup lebih perlahan untuk mengurangkan penggunaan tenaga.",
     "option_a_english": "The heart beats slower to reduce energy usage.",
     "option_b_malay": "Sel darah merah dibebaskan dari limpa dan kadar penghasilan sel darah merah meningkat.",
@@ -915,7 +915,7 @@
     "option_d_malay": "Lebih banyak molekul karbon dioksida diikat pada hemoglobin untuk mengimbangi tekanan udara.",
     "option_d_english": "More molecules of carbon dioxide are bound to hemoglobin to balance the air pressure.",
     "correct_answer": "B",
-    "explanation": "Menurut Galeri Sains Bab 2, di kawasan altitud tinggi, kepekatan oksigen dalam udara adalah rendah. Tindak balas badan (respon fisiologi) terhadap kekurangan oksigen ini adalah dengan merangsang pembebasan sel darah merah yang tersimpan di dalam limpa, meningkatkan kadar penghasilan sel darah merah baharu, dan memudahkan penguraian oksihemoglobin untuk membebaskan oksigen ke sel badan."
+    "explanation": "Di kawasan tanah tinggi, kandungan oksigen lebih rendah. Limpa membebaskan sel darah merah yang disimpan dan badan meningkatkan penghasilan sel darah merah untuk membantu pengangkutan oksigen."
   },
   {
     "chapter_number": 2,
@@ -933,7 +933,7 @@
     "option_d_malay": "Rongga hidung → trakia → farinks → larinks → bronkus → alveolus → bronkiol",
     "option_d_english": "Nasal cavity → trachea → pharynx → larynx → bronchi → alveoli → bronchioles",
     "correct_answer": "B",
-    "explanation": "Berdasarkan Rajah 2.2 dalam buku teks, urutan laluan udara pernafasan semasa menyedut udara ialah: Lubang hidung → Rongga hidung → Farinks → Larinks → Trakia → Bronkus → Bronkiol → Alveolus."
+    "explanation": "Urutan laluan udara semasa menarik nafas ialah lubang hidung → rongga hidung → farinks → larinks → trakea → bronkus → bronkiol → alveolus."
   },
   {
     "chapter_number": 2,
@@ -1077,7 +1077,7 @@
     "option_d_malay": "Udara hembusan mengandungi lebih banyak habuk yang memadamkan api lilin.",
     "option_d_english": "Blown air contains more vapor that extinguishes the candle flame.",
     "correct_answer": "C",
-    "explanation": "Berdasarkan Eksperimen 2.1 (A), peratusan komposisi oksigen dalam udara sedutan adalah lebih tinggi (sekitar 21%) berbanding udara hembusan (sekitar 16%). Lilin memerlukan oksigen untuk pembakaran; oleh itu, lilin di dalam balang udara sedutan menyala lebih lama sebelum terpadam."
+    "explanation": "Udara sedutan mengandungi lebih banyak oksigen daripada udara hembusan. Oleh itu, lilin dalam udara sedutan menyala lebih lama sebelum terpadam."
   },
   {
     "chapter_number": 2,
@@ -1264,18 +1264,18 @@
     "set_letter": "A",
     "chapter_title": "Bab 2: Respirasi (Respiration) - Kuiz Set A",
     "question_number": 21,
-    "question_malay": "Dalam eksperimen demonstrasi kesan merokok terhadap paru-paru (Eksperimen 2.2), apakah yang diwakili oleh perubahan warna kapas menjadi perang di dalam tiub-U?",
-    "question_english": "In the demonstration experiment on the effects of smoking on the lungs (Experiment 2.2), what does the change in the color of the cotton from white to red in the U-tube represent?",
+    "question_malay": "Asap rokok disedut melalui kapas putih di dalam tiub-U. Kapas itu bertukar menjadi perang. Apakah yang ditunjukkan oleh perubahan ini?",
+    "question_english": "Cigarette smoke is drawn through white cotton wool in a U-tube. The cotton wool turns brown. What does this change show?",
     "option_a_malay": "Kehadiran gas berasid nitrogen dioksida yang melarut.",
-    "option_a_english": "The presence of nitrogen dioxide gas that dissolves.",
+    "option_a_english": "Acidic nitrogen dioxide gas has dissolved.",
     "option_b_malay": "Pembentukan karboksihemoglobin dalam paru-paru.",
-    "option_b_english": "Formation of carboxyhemoglobin in the lungs.",
+    "option_b_english": "Carboxyhaemoglobin has formed in the lungs.",
     "option_c_malay": "Pengendapan tar rokok yang melekit pada permukaan dinding paru-paru.",
-    "option_c_english": "Deposition of tobacco tar on the surface of the lung walls.",
+    "option_c_english": "Sticky cigarette tar has been deposited on the cotton wool.",
     "option_d_malay": "Kerosakan alveolus akibat suhu tinggi asap rokok.",
-    "option_d_english": "Alveolus damage due to high-temperature smoke.",
+    "option_d_english": "The alveoli have been damaged by the high temperature of the smoke.",
     "correct_answer": "C",
-    "explanation": "Tar rokok ialah bahan melekit berwarna perang yang terkandung dalam asap rokok. Dalam eksperimen model merokok, kapas putih mewakili alveolus paru-paru. Kapas bertukar menjadi perang menunjukkan pengumpulan tar rokok berasap pada tisu paru-paru yang boleh menyekat resapan gas dan merosakkan silia."
+    "explanation": "Tar ialah bahan perang dan melekit dalam asap rokok. Warna perang pada kapas menunjukkan bahawa tar daripada asap rokok telah mendap pada kapas."
   },
   {
     "chapter_number": 2,
@@ -1303,13 +1303,13 @@
     "question_malay": "Sistem respirasi serangga seperti belalang terdiri daripada tiub udara halus yang meresap terus ke sel tisu tanpa melibatkan sistem pengangkutan darah. Sistem ini dikenali sebagai:",
     "question_english": "The respiratory system of insects like grasshoppers consists of fine air tubes that penetrate continuously into the tissue cells without involving the blood transport system. This system is known as:",
     "option_a_malay": "Sistem filamen insang",
-    "option_a_english": "Tracheal system",
+    "option_a_english": "Gill filament system",
     "option_b_malay": "Sistem trakea",
     "option_b_english": "Tracheal system",
     "option_c_malay": "Sistem kulit luar lembap",
-    "option_c_english": "Externa moist skin system",
+    "option_c_english": "Moist skin system",
     "option_d_malay": "Sistem alveolus mikro",
-    "option_d_english": "Microalveolar system",
+    "option_d_english": "Alveolar system",
     "correct_answer": "B",
     "explanation": "Serangga bernafas menggunakan sistem trakea. Udara masuk melalui liang spirakel di abdomen, mengalir melalui trakea yang bercabang menjadi saluran yang sangat halus setebal satu sel dinamakan trakeol. Oksigen meresap terus dari trakeol ke dalam sel-sel badan serangga tanpa diangkut oleh darah."
   },
@@ -1354,8 +1354,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 2: Respirasi (Respiration) - Kuiz Set B",
     "question_number": 1,
-    "question_malay": "Atlet larian jarak jauh sering menjalani latihan intensif di kawasan pergunungan yang tinggi seperti Kundasang, Sabah. Antara berikut, yang manakah merupakan gerak balas fisiologi jangka pendek limpa (spleen) atlet tersebut akibat kepekatan oksigen yang rendah pada altitud tinggi?",
-    "question_english": "Long-distance runners often undergo intensive training in high-altitude mountain areas like Kundasang, Sabah. Which of the following is the short-term physiological response of the athlete's spleen due to the low oxygen concentration at high altitudes?",
+    "question_malay": "Atlet jarak jauh berlatih di kawasan tanah tinggi yang mempunyai kandungan oksigen lebih rendah. Apakah gerak balas jangka pendek limpa atlet itu?",
+    "question_english": "A long-distance athlete trains at high altitude, where less oxygen is available. What is the athlete's short-term spleen response?",
     "option_a_malay": "Mengecilkan saiz jantung untuk mengekalkan kecekapan mengepam.",
     "option_a_english": "Reducing the size of the heart to maintain efficient pumping.",
     "option_b_malay": "Membebaskan sel darah merah yang disimpan di dalamnya ke dalam aliran darah.",
@@ -1365,7 +1365,7 @@
     "option_d_malay": "Melambatkan penguraian oksihemoglobin di dalam sel-sel badan.",
     "option_d_english": "Slowing down the breakdown of oxyhaemoglobin in body cells.",
     "correct_answer": "B",
-    "explanation": "Menurut buku teks, kekurangan oksigen pada altitud tinggi merangsang badan atlet untuk bertindak balas secara fisiologi dengan membebaskan sel darah merah yang disimpan di dalam limpa bagi meningkatkan kapasiti pengangkutan oksigen ke sel-sel badan [45]. Hal ini meningkatkan kecekapan pernafasan atlet [45]."
+    "explanation": "Kekurangan oksigen di altitud tinggi merangsang limpa membebaskan sel darah merah yang disimpan. Hal ini meningkatkan pengangkutan oksigen ke sel badan."
   },
   {
     "chapter_number": 2,
@@ -1383,7 +1383,7 @@
     "option_d_malay": "Bronkiol",
     "option_d_english": "Bronchiole",
     "correct_answer": "C",
-    "explanation": "Trakia disokong oleh gelang rawan berbentuk 'C' (*C-shaped cartilage rings*) untuk mengelakkannya daripada runtuh atau kempis semasa penarikan nafas, sekali gus memastikan laluan udara sentiasa terbuka [46]."
+    "explanation": "Trakia disokong oleh gelang rawan berbentuk 'C' (*C-shaped cartilage rings*) untuk mengelakkannya daripada runtuh atau kempis semasa penarikan nafas, sekali gus memastikan laluan udara sentiasa terbuka."
   },
   {
     "chapter_number": 2,
@@ -1401,7 +1401,7 @@
     "option_d_malay": "Epiglotis mengendur untuk membolehkan udara dan makanan masuk ke dalam paru-paru secara serentak.",
     "option_d_english": "The epiglottis relaxes to allow air and food to enter the lungs simultaneously.",
     "correct_answer": "B",
-    "explanation": "Semasa menelan makanan, epiglotis jatuh ke bawah dan menutup trakea supaya makanan tidak masuk ke dalam saluran pernafasan, sebaliknya dipaksa mengalir terus ke dalam esofagus [48]. Semasa bernafas pula, epiglotis naik ke atas untuk membolehkan trakea terbuka [48]."
+    "explanation": "Semasa menelan makanan, epiglotis jatuh ke bawah dan menutup trakea supaya makanan tidak masuk ke dalam saluran pernafasan, sebaliknya dipaksa mengalir terus ke dalam esofagus. Semasa bernafas pula, epiglotis naik ke atas untuk membolehkan trakea terbuka."
   },
   {
     "chapter_number": 2,
@@ -1419,7 +1419,7 @@
     "option_d_malay": "Otot interkostal mengendur, menyebabkan sangkar rusuk ditarik ke atas secara pasif.",
     "option_d_english": "The internal intercostal muscles relax, causing the rib cage to be passively drawn upwards.",
     "correct_answer": "B",
-    "explanation": "Semasa menghembus nafas, otot interkostal mengendur dan sangkar rusuk bergerak ke bawah dan ke dalam [49]. Pada masa yang sama, otot diafragma juga mengendur untuk melengkung ke atas menjadi bentuk kubah semula [49]."
+    "explanation": "Semasa menghembus nafas, otot interkostal mengendur dan sangkar rusuk bergerak ke bawah dan ke dalam. Pada masa yang sama, otot diafragma juga mengendur untuk melengkung ke atas menjadi bentuk kubah semula."
   },
   {
     "chapter_number": 2,
@@ -1437,43 +1437,43 @@
     "option_d_malay": "Balang kaca ditutup terlalu ketat dengan penyumbat gabus tanpa sebarang liang udara.",
     "option_d_english": "The glass cylinder is sealed too tightly with a plug of reed without any air holes.",
     "correct_answer": "C",
-    "explanation": "Model balang kaca berfungsi berdasarkan perubahan isi padu dan tekanan di dalam balang [53]. Sekiranya balang kaca retak (*cracked glass jar*), kebocoran udara berlaku, menyebabkan tekanan udara di dalam balang tidak dapat diubah (sentiasa seimbang dengan tekanan atmosfera luar). Akibatnya, tiada udara luar dipaksa masuk untuk mengembangkan belon [53]."
+    "explanation": "Model balang kaca berfungsi berdasarkan perubahan isi padu dan tekanan di dalam balang. Sekiranya balang kaca retak (*cracked glass jar*), kebocoran udara berlaku, menyebabkan tekanan udara di dalam balang tidak dapat diubah (sentiasa seimbang dengan tekanan atmosfera luar). Akibatnya, tiada udara luar dipaksa masuk untuk mengembangkan belon."
   },
   {
     "chapter_number": 2,
     "set_letter": "B",
     "chapter_title": "Bab 2: Respirasi (Respiration) - Kuiz Set B",
     "question_number": 6,
-    "question_malay": "Dalam Eksperimen 2.1 (A) untuk menentukan peratusan oksigen dalam udara, aras akhir air di dalam balang gas bagi udara hembusan adalah lebih rendah berbanding udara sedutan selepas lilin padam. Apakah kesimpulan daripada pemerhatian ini?",
-    "question_english": "In Experiment 2.1 (A) to determine the percentage of oxygen in air, the final water level in the gas jar for exhaled air is lower compared to inhaled air after the candle extinguishes. What is the conclusion of this observation?",
+    "question_malay": "Dua lilin dinyalakan secara berasingan di dalam balang berisi udara sedutan dan udara hembusan. Selepas lilin padam, aras air naik lebih sedikit dalam balang udara hembusan. Apakah kesimpulannya?",
+    "question_english": "Two candles are lit separately in jars containing inhaled air and exhaled air. After the candles go out, the water level rises less in the jar of exhaled air. What is the conclusion?",
     "option_a_malay": "Udara hembusan tidak mempunyai sebarang kandungan gas oksigen.",
     "option_a_english": "Exhaled air does not contain any oxygen gas.",
     "option_b_malay": "Udara hembusan mempunyai peratusan oksigen yang lebih rendah daripada udara sedutan.",
-    "option_b_english": "Exhaled air has a lower percentage of oxygen than ambient air.",
+    "option_b_english": "Exhaled air has a lower percentage of oxygen than inhaled air.",
     "option_c_malay": "Kandungan karbon dioksida di dalam udara sedutan adalah lebih tinggi.",
-    "option_c_english": "The carbon dioxide content in ambient air is higher.",
+    "option_c_english": "Inhaled air has a higher carbon dioxide content than exhaled air.",
     "option_d_malay": "Lilin menghasilkan lebih banyak oksigen semasa dibakar di dalam udara hembusan.",
     "option_d_english": "Candles produce more oxygen when burned in exhaled air.",
     "correct_answer": "B",
-    "explanation": "Lilin membakar oksigen yang ada di dalam balang gas [50]. Air akan naik untuk menggantikan ruang oksigen yang telah digunakan [50]. Aras air naik lebih rendah dalam balang berisi udara hembusan kerana sebahagian besar oksigen telah diserap oleh paru-paru semasa bernafas, membuktikan udara hembusan mempunyai peratusan oksigen yang lebih rendah [52]."
+    "explanation": "A candle uses oxygen during combustion. The smaller rise in water level shows that exhaled air contains less oxygen than inhaled air."
   },
   {
     "chapter_number": 2,
     "set_letter": "B",
     "chapter_title": "Bab 2: Respirasi (Respiration) - Kuiz Set B",
     "question_number": 7,
-    "question_malay": "Dalam Eksperimen 2.1 (B), udara sedutan dan udara hembusan dialirkan ke dalam air kapur secara berasingan melalui Kelalang A dan Kelalang B. Apakah keputusan eksperimen yang membuktikan bahawa udara hembusan mengandungi kepekatan karbon dioksida yang tinggi?",
-    "question_english": "In Experiment 2.1 (B), inhaled air and exhaled air are bubbled into limewater separately through Flask A and Flask B. What is the experimental result that proves exhaled air contains a high concentration of carbon dioxide?",
+    "question_malay": "Udara sedutan dialirkan melalui air kapur dalam kelalang A, manakala udara hembusan dialirkan melalui air kapur dalam kelalang B. Pemerhatian manakah menunjukkan bahawa udara hembusan mengandungi lebih banyak karbon dioksida?",
+    "question_english": "Inhaled air is bubbled through limewater in flask A, while exhaled air is bubbled through limewater in flask B. Which observation shows that exhaled air contains more carbon dioxide?",
     "option_a_malay": "Air kapur di dalam Kelalang A berubah warna menjadi ungu.",
-    "option_a_english": "The lime water in Kelalang A changed color to purple.",
+    "option_a_english": "The limewater in flask A turns purple.",
     "option_b_malay": "Air kapur di dalam Kelalang B kekal jernih sepanjang eksperimen.",
-    "option_b_english": "The lime water in Kelalang B remained clear throughout the experiment.",
+    "option_b_english": "The limewater in flask B remains clear throughout.",
     "option_c_malay": "Air kapur di dalam Kelalang B menjadi keruh dengan sangat cepat.",
-    "option_c_english": "The lime water in Kelalang B became turbid very quickly.",
+    "option_c_english": "The limewater in flask B turns cloudy more quickly.",
     "option_d_malay": "Air kapur di dalam Kelalang A bertukar menjadi mendidih dan berasid.",
-    "option_d_english": "The lime water in Kelalang A boiled and produced gas.",
+    "option_d_english": "The limewater in flask A boils and becomes acidic.",
     "correct_answer": "C",
-    "explanation": "Kehadiran gas karbon dioksida yang tinggi bertindak balas secara kimia dengan kalsium hidroksida (air kapur) untuk menghasilkan mendakan putih kalsium karbonat yang tidak larut, menyebabkan air kapur menjadi sangat keruh [52]. Udara hembusan mengandungi kepekatan karbon dioksida yang jauh lebih tinggi daripada udara sedutan [51, 52]. #### Pergerakan dan Pertukaran Gas di Alveolus"
+    "explanation": "Carbon dioxide turns limewater cloudy. The limewater receiving exhaled air turns cloudy more quickly because exhaled air contains more carbon dioxide."
   },
   {
     "chapter_number": 2,
@@ -1491,7 +1491,7 @@
     "option_d_malay": "Proses resapan gas mengikut gradien kepekatan (perbezaan tekanan separa).",
     "option_d_english": "Gas absorption process follows concentration gradient (partial pressure difference).",
     "correct_answer": "D",
-    "explanation": "Pertukaran gas respirasi berlaku melalui proses resapan (*diffusion*) [54]. Gas sentiasa meresap dari kawasan yang berkepekatan tinggi (atau tekanan separa tinggi) ke kawasan yang berkepekatan rendah (atau tekanan separa rendah) secara pasif tanpa menggunakan tenaga [54, 68]."
+    "explanation": "Pertukaran gas respirasi berlaku melalui proses resapan (*diffusion*). Gas sentiasa meresap dari kawasan yang berkepekatan tinggi (atau tekanan separa tinggi) ke kawasan yang berkepekatan rendah (atau tekanan separa rendah) secara pasif tanpa menggunakan tenaga."
   },
   {
     "chapter_number": 2,
@@ -1509,7 +1509,7 @@
     "option_d_malay": "Karbonmonoksida-hemoglobin",
     "option_d_english": "Carbon monoxide-hemoglobin",
     "correct_answer": "B",
-    "explanation": "Oksigen bergabung secara kimia dengan hemoglobin (berwarna merah gelap) di dalam sel darah merah untuk membentuk oksihemoglobin yang merupakan sebatian tidak stabil dan berwarna merah cerah [55]."
+    "explanation": "Oksigen bergabung secara kimia dengan hemoglobin (berwarna merah gelap) di dalam sel darah merah untuk membentuk oksihemoglobin yang merupakan sebatian tidak stabil dan berwarna merah cerah."
   },
   {
     "chapter_number": 2,
@@ -1527,7 +1527,7 @@
     "option_d_malay": "Nilai pH darah di kawasan tisu badan adalah terlalu beralkali.",
     "option_d_english": "The pH value of blood in the body tissues is too alkaline.",
     "correct_answer": "B",
-    "explanation": "Oksihemoglobin ialah sebatian yang tidak stabil [55]. Apabila darah sampai ke kawasan tisu badan yang mempunyai kepekatan oksigen yang rendah (kerana digunakan secara berterusan untuk respirasi sel), oksihemoglobin terurai semula untuk membebaskan molekul oksigen ke dalam sel badan [55]."
+    "explanation": "Oksihemoglobin ialah sebatian yang tidak stabil. Apabila darah sampai ke kawasan tisu badan yang mempunyai kepekatan oksigen yang rendah (kerana digunakan secara berterusan untuk respirasi sel), oksihemoglobin terurai semula untuk membebaskan molekul oksigen ke dalam sel badan."
   },
   {
     "chapter_number": 2,
@@ -1545,7 +1545,7 @@
     "option_d_malay": "Karboksihemoglobin → Hemoglobin + Karbon monoksida",
     "option_d_english": "Carboxyhaemoglobin → Haemoglobin + Carbon monoxide",
     "correct_answer": "C",
-    "explanation": "Di dalam sel badan, oksigen meresap masuk dan digunakan untuk mengoksidakan glukosa bagi menghasilkan tenaga, dengan karbon dioksida serta air sebagai bahan sampingan melalui tindak balas: $ ext{Glukosa} + ext{Oksigen} ightarrow ext{Karbon Dioksida} + ext{Air} + ext{Tenaga}$ [55]."
+    "explanation": "Di dalam sel badan, oksigen meresap masuk dan digunakan untuk mengoksidakan glukosa bagi menghasilkan tenaga, dengan karbon dioksida serta air sebagai bahan sampingan melalui tindak balas: $ ext{Glukosa} + ext{Oksigen} ightarrow ext{Karbon Dioksida} + ext{Air} + ext{Tenaga}$."
   },
   {
     "chapter_number": 2,
@@ -1563,7 +1563,7 @@
     "option_d_malay": "Membolehkan kapilari menyerap molekul air secara osmosis terus dari atmosfera.",
     "option_d_english": "Allowing capillaries to continuously absorb water molecules from the atmosphere by osmosis.",
     "correct_answer": "B",
-    "explanation": "Struktur yang sangat nipis (setebal satu sel sahaja) mengurangkan jarak laluan gas respirasi, sekali gus memudahkan dan memaksimumkan kadar resapan gas antara alveolus dengan kapilari darah [56, 64]."
+    "explanation": "Struktur yang sangat nipis (setebal satu sel sahaja) mengurangkan jarak laluan gas respirasi, sekali gus memudahkan dan memaksimumkan kadar resapan gas antara alveolus dengan kapilari darah."
   },
   {
     "chapter_number": 2,
@@ -1581,7 +1581,7 @@
     "option_d_malay": "Melarutkan tar rokok yang masuk supaya tidak menyumbat bronkiol.",
     "option_d_english": "Dissolving the smoke inhaled to prevent it from blocking the bronchioles.",
     "correct_answer": "A",
-    "explanation": "Gas respirasi (oksigen dan karbon dioksida) mestilah melarut terlebih dahulu dalam lapisan air lembap di dinding alveolus sebelum ia dapat meresap merentasi membran sel yang telap gas [54, 56]. #### Kesihatan Sistem Respirasi"
+    "explanation": "Gas respirasi (oksigen dan karbon dioksida) mestilah melarut terlebih dahulu dalam lapisan air lembap di dinding alveolus sebelum ia dapat meresap merentasi membran sel yang telap gas. #### Kesihatan Sistem Respirasi"
   },
   {
     "chapter_number": 2,
@@ -1599,7 +1599,7 @@
     "option_d_malay": "Ia merangsang pembelahan sel-sel paru-paru secara tidak terkawal untuk membentuk tumor.",
     "option_d_english": "It stimulates uncontrolled cell division in the lung cells to form a tumor.",
     "correct_answer": "C",
-    "explanation": "Karbon monoksida meresap ke dalam darah dan bergabung dengan hemoglobin menghasilkan sebatian karboksihemoglobin yang sangat stabil [58]. Ini menyebabkan hemoglobin tidak dapat mengikat oksigen, mengurangkan kandungan oksigen dalam sel badan, dan boleh membawa maut akibat hipoksia tisu [58]."
+    "explanation": "Karbon monoksida meresap ke dalam darah dan bergabung dengan hemoglobin menghasilkan sebatian karboksihemoglobin yang sangat stabil. Ini menyebabkan hemoglobin tidak dapat mengikat oksigen, mengurangkan kandungan oksigen dalam sel badan, dan boleh membawa maut akibat hipoksia tisu."
   },
   {
     "chapter_number": 2,
@@ -1617,25 +1617,25 @@
     "option_d_malay": "Keradangan kronik pada dinding dalam bronkus yang menyekat aliran udara masuk.",
     "option_d_english": "Chronic inflammation of the inner bronchus walls that obstructs air intake.",
     "correct_answer": "B",
-    "explanation": "Emfisema disebabkan oleh kerosakan dinding alveolus oleh bahan toksik asap rokok [60]. Dinding alveolus pecah dan bergabung membentuk pundi udara yang lebih besar, tidak sekata, dan mempunyai luas permukaan yang jauh lebih kecil untuk pertukaran gas [60]. Akibatnya, pesakit mengalami sesak nafas kronik [60]."
+    "explanation": "Emfisema disebabkan oleh kerosakan dinding alveolus oleh bahan toksik asap rokok. Dinding alveolus pecah dan bergabung membentuk pundi udara yang lebih besar, tidak sekata, dan mempunyai luas permukaan yang jauh lebih kecil untuk pertukaran gas. Akibatnya, pesakit mengalami sesak nafas kronik."
   },
   {
     "chapter_number": 2,
     "set_letter": "B",
     "chapter_title": "Bab 2: Respirasi (Respiration) - Kuiz Set B",
     "question_number": 16,
-    "question_malay": "Dalam Eksperimen 2.2 (demonstrasi kesan merokok terhadap paru-paru), pam turas digunakan untuk menyedut asap rokok melalui radas. Apakah pemerhatian dan inferens bagi kapas putih pada akhir eksperimen tersebut?",
-    "question_english": "In Experiment 2.2 (demonstration of the effects of smoking on the lungs), a filter pump is used to draw cigarette smoke through the apparatus. What is the observation and inference of the white cotton wool at the end of the experiment?",
+    "question_malay": "Asap rokok disedut melalui kapas putih dengan menggunakan pam turas. Apakah pemerhatian dan kesimpulan yang betul?",
+    "question_english": "Cigarette smoke is drawn through white cotton wool using a filter pump. Which observation and conclusion are correct?",
     "option_a_malay": "Kapas bertukar menjadi merah, menunjukkan asap rokok mengandungi gas berasid.",
-    "option_a_english": "The cotton changes to red, indicating that cigarette smoke contains carbon monoxide gas.",
+    "option_a_english": "The cotton wool turns red, showing that cigarette smoke contains acidic gas.",
     "option_b_malay": "Kapas bertukar menjadi perang/hitam, menunjukkan asap rokok mengandungi tar rokok yang melekit.",
-    "option_b_english": "The cotton changes to grey/black, indicating that cigarette smoke contains nicotine which sticks to it.",
+    "option_b_english": "The cotton wool turns brown or black, showing that cigarette smoke contains sticky tar.",
     "option_c_malay": "Kapas kekal putih bersih, menunjukkan asap rokok ditapis sepenuhnya oleh air kapur.",
-    "option_c_english": "The cotton remains pure white, indicating that cigarette smoke is fully filtered by lime water.",
+    "option_c_english": "The cotton wool remains white, showing that limewater filters all cigarette smoke.",
     "option_d_malay": "Kapas menjadi basah dan cair, menunjukkan asap rokok membebaskan wap nitrogen dioksida.",
-    "option_d_english": "The cotton becomes wet and discolored, indicating that cigarette smoke releases nitrogen dioxide.",
+    "option_d_english": "The cotton wool becomes wet and dissolves, showing that cigarette smoke releases nitrogen dioxide vapour.",
     "correct_answer": "B",
-    "explanation": "Kapas putih bertindak sebagai analog tisu peparu [62]. Perubahan warna kapas kepada perang/hitam membuktikan kehadiran tar rokok (sisa aerosol melekit) di dalam asap rokok yang boleh mendap dan merosakkan tisu paru-paru dalam keadaan sebenar [63]."
+    "explanation": "The brown or black deposit on the cotton wool is sticky tar from cigarette smoke."
   },
   {
     "chapter_number": 2,
@@ -1653,7 +1653,7 @@
     "option_d_malay": "Gas karbon monoksida bertukar menjadi garam kalsium berasid apabila dilarutkan.",
     "option_d_english": "Carbon monoxide gas forms calcium sulfate salt when dissolved.",
     "correct_answer": "B",
-    "explanation": "Larutan litmus ungu bertukar menjadi merah apabila didedahkan kepada bahan berasid [63]. Ini membuktikan asap rokok mengandungi gas-gas berasid yang larut di dalam kelembapan saluran respirasi, merengsakannya dan menyebabkan radang [63]."
+    "explanation": "Larutan litmus ungu bertukar menjadi merah apabila didedahkan kepada bahan berasid. Ini membuktikan asap rokok mengandungi gas-gas berasid yang larut di dalam kelembapan saluran respirasi, merengsakannya dan menyebabkan radang."
   },
   {
     "chapter_number": 2,
@@ -1671,7 +1671,7 @@
     "option_d_malay": "Pekerja industri arang batu yang terdedah kepada habuk sulfur dioksida secara pasif.",
     "option_d_english": "Workers in the coal industry who are passively exposed to sulfur dioxide fumes.",
     "correct_answer": "B",
-    "explanation": "Perokok pasif ialah individu yang tidak merokok tetapi tersedut asap rokok daripada perokok aktif berhampirannya [62]. Mereka mempunyai risiko yang sama untuk menghidap penyakit pernafasan seperti asma, bronkitis, emfisema, dan kanser peparu [62, 63]. #### Adaptasi Sistem Respirasi Haiwan Lain"
+    "explanation": "Perokok pasif ialah individu yang tidak merokok tetapi tersedut asap rokok daripada perokok aktif berhampirannya. Mereka mempunyai risiko yang sama untuk menghidap penyakit pernafasan seperti asma, bronkitis, emfisema, dan kanser peparu. #### Adaptasi Sistem Respirasi Haiwan Lain"
   },
   {
     "chapter_number": 2,
@@ -1689,7 +1689,7 @@
     "option_d_malay": "Kulit katak mengandungi liang spirakel yang dikawal oleh injap otot.",
     "option_d_english": "Frogs' skin contains spiracle pores controlled by muscle fibers.",
     "correct_answer": "C",
-    "explanation": "Katak menyesuaikan kulitnya agar menjadi permukaan respirasi yang cekap dengan memastikan kulitnya sangat nipis, sentiasa lembap diselaputi mukus (untuk melarutkan gas), serta mempunyai kapilari darah yang padat di bawah kulit untuk mengangkut gas dengan cepat [64]."
+    "explanation": "Katak menyesuaikan kulitnya agar menjadi permukaan respirasi yang cekap dengan memastikan kulitnya sangat nipis, sentiasa lembap diselaputi mukus (untuk melarutkan gas), serta mempunyai kapilari darah yang padat di bawah kulit untuk mengangkut gas dengan cepat."
   },
   {
     "chapter_number": 2,
@@ -1707,7 +1707,7 @@
     "option_d_malay": "Dengan mengecilkan saiz kapilari darah bagi meningkatkan tekanan resapan gas.",
     "option_d_english": "By reducing the size of blood capillaries to increase gas diffusion pressure.",
     "correct_answer": "B",
-    "explanation": "Bilangan filamen dan lamela yang banyak menyediakan luas permukaan yang besar [65]. Selain itu, arah aliran air yang bertentangan dengan arah aliran darah (*counter-current flow*) memelihara gradien kepekatan oksigen yang tinggi di sepanjang lamela, membolehkan oksigen meresap masuk dengan sangat cekap [65]."
+    "explanation": "Bilangan filamen dan lamela yang banyak menyediakan luas permukaan yang besar. Selain itu, arah aliran air yang bertentangan dengan arah aliran darah (*counter-current flow*) memelihara gradien kepekatan oksigen yang tinggi di sepanjang lamela, membolehkan oksigen meresap masuk dengan sangat cekap."
   },
   {
     "chapter_number": 2,
@@ -1725,7 +1725,7 @@
     "option_d_malay": "Kapilari darah serangga digantikan oleh sistem salur limfa yang sangat berasid.",
     "option_d_english": "The insect blood capillaries are replaced by a highly acidic lymphatic circulation system.",
     "correct_answer": "B",
-    "explanation": "Sistem trakea serangga mempunyai cabang halus yang dipanggil trakeol [65]. Trakeol bersentuhan terus secara fizikal dengan sel-sel badan (seperti sel otot) [65]. Oleh itu, resapan oksigen berlaku secara terus dari trakeol ke dalam sel badan tanpa memerlukan pengangkutan oleh medium darah [65, 66]. #### Pertukaran Gas dalam Tumbuhan"
+    "explanation": "Sistem trakea serangga mempunyai cabang halus yang dipanggil trakeol. Trakeol bersentuhan terus secara fizikal dengan sel-sel badan (seperti sel otot). Oleh itu, resapan oksigen berlaku secara terus dari trakeol ke dalam sel badan tanpa memerlukan pengangkutan oleh medium darah. #### Pertukaran Gas dalam Tumbuhan"
   },
   {
     "chapter_number": 2,
@@ -1743,7 +1743,7 @@
     "option_d_malay": "Respirasi sel berlaku sepanjang masa (siang dan malam) manakala fotosintesis hanya berlaku pada waktu siang (dengan kehadiran cahaya).",
     "option_d_english": "Cell respiration occurs throughout the day and night while photosynthesis only occurs during the day (with the presence of light).",
     "correct_answer": "D",
-    "explanation": "Menurut buku teks, respirasi sel ialah proses metabolisme asas sel hidup yang berlaku sepanjang masa (siang dan malam) [67, 73]. Manakala fotosintesis ialah proses menghasilkan makanan menggunakan tenaga cahaya, jadi ia hanya boleh berlaku pada waktu siang dengan kehadiran cahaya sahaja [67, 73]."
+    "explanation": "Respirasi sel berlaku sepanjang masa, manakala fotosintesis memerlukan cahaya dan berlaku apabila cahaya mencukupi."
   },
   {
     "chapter_number": 2,
@@ -1761,7 +1761,7 @@
     "option_d_malay": "Tekanan osmosis di dalam sel pengawal menurun secara mendadak dan liang stoma mengecil.",
     "option_d_english": "Osmotic pressure inside the guard cells drops suddenly, causing the stoma aperture to shrink.",
     "correct_answer": "B",
-    "explanation": "Fotosintesis pada siang hari menghasilkan glukosa, meningkatkan tekanan osmosis sel pengawal [69]. Air meresap masuk secara osmosis, menyebabkan sel pengawal menjadi segah (*turgid*) [69, 70]. Oleh sebab dinding luar sel pengawal adalah nipis dan kenyal manakala dinding dalamnya adalah tebal dan kurang kenyal, sel pengawal membengkok ke luar dan menarik liang stoma terbuka [70]."
+    "explanation": "Fotosintesis pada siang hari menghasilkan glukosa, meningkatkan tekanan osmosis sel pengawal. Air meresap masuk secara osmosis, menyebabkan sel pengawal menjadi segah (*turgid*). Oleh sebab dinding luar sel pengawal adalah nipis dan kenyal manakala dinding dalamnya adalah tebal dan kurang kenyal, sel pengawal membengkok ke luar dan menarik liang stoma terbuka."
   },
   {
     "chapter_number": 2,
@@ -1779,7 +1779,7 @@
     "option_d_malay": "Untuk merangsang penguraian glukosa kepada kanji di dalam sel mesofil.",
     "option_d_english": "To stimulate the breakdown of glucose into pyruvate within the mesophyll cells.",
     "correct_answer": "C",
-    "explanation": "Suhu yang tinggi meningkatkan kadar transpirasi [69, 72]. Untuk mengelakkan tumbuhan layu atau mati akibat dehidrasi (kehilangan air berlebihan), sel pengawal kehilangan air secara osmosis, menjadi flasid, dan melurus kembali untuk menutup liang stoma bagi memelihara air di dalam tisu tumbuhan [69, 72]."
+    "explanation": "Suhu yang tinggi meningkatkan kadar transpirasi. Untuk mengelakkan tumbuhan layu atau mati akibat dehidrasi (kehilangan air berlebihan), sel pengawal kehilangan air secara osmosis, menjadi flasid, dan melurus kembali untuk menutup liang stoma bagi memelihara air di dalam tisu tumbuhan."
   },
   {
     "chapter_number": 2,
@@ -1797,7 +1797,7 @@
     "option_d_malay": "Ia menukarkan warna kloroplas daripada hijau kepada ungu pekat.",
     "option_d_english": "It changes the chloroplast color from green to dark purple.",
     "correct_answer": "A",
-    "explanation": "Zarah-zarah halus daripada jerebu, debu, atau habuk boleh terenap pada daun dan menyumbat liang stoma [70]. Ini menghalang pertukaran gas karbon dioksida dan oksigen [70]. Selain itu, lapisan debu menghalang penyerapan cahaya matahari, mengurangkan fotosintesis, dan membantutkan pertumbuhan tumbuhan [70]."
+    "explanation": "Zarah-zarah halus daripada jerebu, debu, atau habuk boleh terenap pada daun dan menyumbat liang stoma. Ini menghalang pertukaran gas karbon dioksida dan oksigen. Selain itu, lapisan debu menghalang penyerapan cahaya matahari, mengurangkan fotosintesis, dan membantutkan pertumbuhan tumbuhan."
   },
   {
     "chapter_number": 3,
@@ -1840,8 +1840,8 @@
     "set_letter": "A",
     "chapter_title": "Bab 3: Pengangkutan (Transportation) - Kuiz Set A",
     "question_number": 3,
-    "question_malay": "Rajah jantung katak menunjukkan terdapat tiga ruang. Apakah kesan fisiologi utama struktur ini terhadap kecekapan pengangkutan gas beroksigen?",
-    "question_english": "The three-chambered heart diagram of a frog has a specific physiological effect. What is its main effect on the efficiency of oxygenated gas transport?",
+    "question_malay": "Jantung katak mempunyai dua atrium dan satu ventrikel. Bagaimanakah susunan tiga ruang ini mempengaruhi pengangkutan darah beroksigen?",
+    "question_english": "A frog's heart has two atria and one ventricle. How does this three-chambered arrangement affect the transport of oxygenated blood?",
     "option_a_malay": "Memastikan darah beroksigen dan terdeoksigen terpisah sepenuhnya di dalam ventrikel.",
     "option_a_english": "Ensuring that oxygenated and deoxygenated blood are completely separated within the ventricles.",
     "option_b_malay": "Darah beroksigen dari atrium kiri dan darah terdeoksigen dari atrium kanan bercampur secara separa di dalam satu ventrikel tunggal sebelum dipam keluar.",
@@ -1851,7 +1851,7 @@
     "option_d_malay": "Darah terpaksa mengalir melalui kulit terlebih dahulu sebelum boleh memasuki atrium kiri.",
     "option_d_english": "Blood is forced to flow through the skin first before entering the left atrium.",
     "correct_answer": "B",
-    "explanation": "Jantung amfibia terdiri daripada 3 ruang (2 atrium, 1 ventrikel). Kehadiran hanya satu ventrikel tunggal menyebabkan darah beroksigen (dari ovari/peparu/kulit) dan darah terdeoksigen (dari tisu badan) bercampur secara separa di dalamnya sebelum dipam keluar ke seluruh badan dan peparu."
+    "explanation": "Jantung katak mempunyai dua atrium dan satu ventrikel. Oleh sebab hanya terdapat satu ventrikel, darah beroksigen dan darah terdeoksigen bercampur secara separa sebelum dipam keluar."
   },
   {
     "chapter_number": 3,
@@ -1930,25 +1930,25 @@
     "set_letter": "A",
     "chapter_title": "Bab 3: Pengangkutan (Transportation) - Kuiz Set A",
     "question_number": 8,
-    "question_malay": "Rajah keratan rentas jantung menunjukkan ventrikel kiri mempunyai dinding berotot yang jauh lebih tebal berbanding ventrikel kanan. Apakah penjelasan fisiologi bagi perbezaan struktur ini?",
-    "question_english": "A cross-section of the human heart shows that the left ventricle has a much thicker muscular wall than the right ventricle. What is the physiological explanation?",
+    "question_malay": "Ventrikel kiri mempunyai dinding berotot yang lebih tebal daripada ventrikel kanan. Mengapakah struktur ini diperlukan?",
+    "question_english": "The left ventricle has a thicker muscular wall than the right ventricle. Why is this structure needed?",
     "option_a_malay": "Ventrikel kiri perlu mengepam darah terdeoksigen ke peparu pada tekanan yang tinggi.",
     "option_a_english": "The left ventricle needs to pump deoxygenated blood to the lungs at high pressure.",
     "option_b_malay": "Ventrikel kiri mengandungi darah beroksigen yang mempunyai ketumpatan lebih tinggi daripada darah terdeoksigen.",
     "option_b_english": "The left ventricle contains oxygenated blood which has a higher density than deoxygenated blood.",
-    "option_c_malay": "Ventrikel kiri perlu menghasilkan daya mengecut yang kuat untuk mengepam darah beroksigen keluar ke seluruh bahagian badan melalui aorta (peredaran sistemik).",
-    "option_c_english": "The left ventricle needs to produce a strong ejection force to pump oxygenated blood throughout the body via the aorta (systemic circulation).",
+    "option_c_malay": "Ventrikel kiri perlu mengecut dengan kuat untuk mengepam darah beroksigen ke seluruh badan melalui aorta.",
+    "option_c_english": "The left ventricle must contract strongly to pump oxygenated blood throughout the body through the aorta.",
     "option_d_malay": "Ventrikel kiri bertindak sebagai pusat simpanan darah utama jantung semasa fasa diastolik.",
     "option_d_english": "The left ventricle acts as the main blood storage center of the heart during the diastolic phase.",
     "correct_answer": "C",
-    "explanation": "fisiologi bagi perbezaan struktur ini?\n*A cross-section of the human heart shows that the left ventricle has a much thicker muscular wall than the right ventricle. What is the physiological explanation?*\n\nA. Ventrikel kiri perlu mengepam darah terdeoksigen ke peparu pada tekanan yang tinggi.\nB. Ventrikel kiri mengandungi darah beroksigen yang mempunyai ketumpatan lebih tinggi daripada darah terdeoksigen.\nC. Ventrikel kiri perlu menghasilkan daya mengecut yang kuat untuk mengepam darah beroksigen keluar ke seluruh bahagian badan melalui aorta (peredaran sistemik).\nD. Ventrikel kiri bertindak sebagai pusat simpanan darah utama jantung semasa fasa diastolik.\n\n* Jawapan Betul: C\n* Penjelasan: Ventrikel kiri mempunyai dinding berotot yang paling tebal kerana ia bertanggungjawab mengepam darah beroksigen ke seluruh badan (kecuali peparu) merentasi laluan peredaran sistemik yang jauh dan berintangan tinggi. Sebaliknya, ventrikel kanan hanya mengepam darah pada jarak dekat ke peparu via peredaran pulmonari."
+    "explanation": "Ventrikel kiri berdinding tebal supaya dapat menghasilkan tekanan yang tinggi untuk mengepam darah ke seluruh badan. Ventrikel kanan hanya mengepam darah ke peparu."
   },
   {
     "chapter_number": 3,
     "set_letter": "A",
     "chapter_title": "Bab 3: Pengangkutan (Transportation) - Kuiz Set A",
     "question_number": 9,
-    "question_malay": "Apakah fungsi mekanikal spesifik bagi injap trikuspid dan injap bikuspid di dalam jantung manusia?",
+    "question_malay": "Apakah fungsi injap trikuspid dan injap bikuspid di dalam jantung manusia?",
     "question_english": "What is the specific mechanical function of the tricuspid and bicuspid valves in the human heart?",
     "option_a_malay": "Menolak darah masuk ke dalam aorta secara paksaan.",
     "option_a_english": "Forcing blood to enter the aorta.",
@@ -2002,7 +2002,7 @@
     "set_letter": "A",
     "chapter_title": "Bab 3: Pengangkutan (Transportation) - Kuiz Set A",
     "question_number": 12,
-    "question_malay": "Semasa mengukur tekanan darah menggunakan sfigmomanometer, bacaan klinikal yang biasa ditulis ialah 120/75 mmHg. Apakah maksud fisiologi bacaan tekanan sistolik (120 mmHg) dan tekanan diastolik (75 mmHg)?",
+    "question_malay": "Bacaan tekanan darah seseorang ialah 120/75 mmHg. Apakah maksud tekanan sistolik 120 mmHg dan tekanan diastolik 75 mmHg?",
     "question_english": "During blood pressure measurement using a sphygmomanometer, a typical reading is 120/75 mmHg. What is the physiological meaning of systolic and diastolic readings?",
     "option_a_malay": "Sistolik ialah tekanan semasa atrium mengecut, manakala diastolik ialah tekanan semasa ventrikel mengecut.",
     "option_a_english": "Systolic is the pressure during atrial contraction, while diastolic is the pressure during ventricular contraction.",
@@ -2020,7 +2020,7 @@
     "set_letter": "A",
     "chapter_title": "Bab 3: Pengangkutan (Transportation) - Kuiz Set A",
     "question_number": 13,
-    "question_malay": "Kadar denyutan nadi seseorang dipengaruhi oleh pelbagai faktor dalam kehidupan harian. Manakah antara perbandingan berikut adalah tepat berdasarkan konsep fisiologi yang dipelajari?",
+    "question_malay": "Kadar denyutan nadi dipengaruhi oleh beberapa faktor. Perbandingan manakah yang betul?",
     "question_english": "Pulse rate is influenced by various factors. Which of the following comparisons is physiologically accurate?",
     "option_a_malay": "Kanak-kanak mempunyai kadar denyutan nadi yang lebih rendah daripada warga emas kerana saiz jantung mereka lebih besar.",
     "option_a_english": "Children have a lower heart rate than the elderly because their hearts are larger in size.",
@@ -2236,16 +2236,16 @@
     "set_letter": "A",
     "chapter_title": "Bab 3: Pengangkutan (Transportation) - Kuiz Set A",
     "question_number": 25,
-    "question_malay": "Dalam eksperimen menyahsihkan satu gelang kulit luar batang kayu pokok bunga raya (Aktiviti 3.9), bahagian tisu floem telah dibuang manakala xilem dibiarkan utuh di bahagian dalam. Apakah pemerhatian yang akan direkodkan selepas tempoh sebulan?",
-    "question_english": "In a bark ringing experiment, the phloem ring is removed while the xylem is left intact. What observation will be recorded after one month?",
+    "question_malay": "Satu gelang kulit batang pokok bunga raya dibuang bersama tisu floemnya, tetapi xilem dibiarkan. Apakah pemerhatian selepas sebulan?",
+    "question_english": "A ring of bark and its phloem is removed from a hibiscus stem, while the xylem is left intact. What will be observed after one month?",
     "option_a_malay": "Pokok layu dan mati serta-merta kerana air gagal diangkut naik ke daun dari akar.",
     "option_a_english": "The leaves wilt and die immediately due to the failure to transport water from the roots to the leaves.",
-    "option_b_malay": "Bahagian batang di atas gelang yang dibuang menjadi bengkak kerana pengangkutan sukrosa terhalang di situ, manakala bahagian bawah mengecut.",
-    "option_b_english": "The upper part of the stem above the node swells due to the obstruction in the transport of sucrose, while the lower part becomes flaccid.",
+    "option_b_malay": "Bahagian batang di atas gelang membengkak kerana sukrosa terkumpul, manakala bahagian bawah gelang mengecut.",
+    "option_b_english": "The stem above the ring swells because sucrose accumulates there, while the part below the ring shrinks.",
     "option_c_malay": "Bahagian batang di bawah gelang menjadi bengkak kerana air bertumpu di situ secara graviti.",
-    "option_c_english": "The upper part of the stem below the node swells due to water accumulation there due to gravity.",
+    "option_c_english": "The stem below the ring swells because water accumulates there due to gravity.",
     "option_d_malay": "Tiada sebarang perubahan fizikal dikesan pada mana-mana bahagian pokok bunga raya tersebut.",
-    "option_d_english": "No physical changes are observed in any part of the Rafflesia plant stem.",
+    "option_d_english": "No physical change occurs in any part of the hibiscus stem.",
     "correct_answer": "B",
     "explanation": "Memandangkan kulit pokok di mana tisu floem berada telah dibuang, sukrosa yang dihasilkan oleh fotosintesis di daun tidak dapat diangkut turun ke akar melintasi kawasan gelang tersebut. Hal ini menyebabkan pengumpulan sukrosa berlaku di bahagian atas gelang, menyebabkan tisu bahagian atas membengkak. Akar akan kehabisan makanan secara perlahan-lahan."
   },
@@ -2290,16 +2290,16 @@
     "set_letter": "B",
     "chapter_title": "Bab 3: Pengangkutan (Transportation) - Kuiz Set B",
     "question_number": 3,
-    "question_malay": "Rajah di bawah menunjukkan sistem peredaran darah bagi seekor haiwan vertebrata:\n$$\\text{Sinus Venosus} \\rightarrow \\text{Atrium} \\rightarrow \\text{Ventrikel} \\rightarrow \\text{Arteri} \\rightarrow \\text{Kapilari Insang} \\rightarrow \\text{Aorta Dorsal} \\rightarrow \\text{Sistem Tisu} \\rightarrow \\text{Vena}$$\nHaiwan manakah yang dikaitkan dengan litar peredaran di atas?",
-    "question_english": "The diagram above shows the circulatory system of a vertebrate. Which animal is associated with this circulatory circuit?",
+    "question_malay": "Darah seekor vertebrata mengalir mengikut urutan sinus venosus → atrium → ventrikel → arteri → kapilari insang → aorta dorsal → tisu badan → vena. Haiwan manakah mempunyai sistem peredaran ini?",
+    "question_english": "A vertebrate's blood flows through the sinus venosus → atrium → ventricle → artery → gill capillaries → dorsal aorta → body tissues → vein. Which animal has this circulatory system?",
     "option_a_malay": "Katak",
-    "option_a_english": "Rana temporaria",
+    "option_a_english": "Frog",
     "option_b_malay": "Ikan Bawal",
-    "option_b_english": "Pampus argenteus",
+    "option_b_english": "Fish",
     "option_c_malay": "Cicak",
-    "option_c_english": "Hemidactylus frenatus",
+    "option_c_english": "Lizard",
     "option_d_malay": "Burung Pipit",
-    "option_d_english": "Passer montanus",
+    "option_d_english": "Sparrow",
     "correct_answer": "B",
     "explanation": "Sistem di atas menunjukkan sistem peredaran darah tunggal (*single circulatory system*) di mana darah mengalir menerusi jantung hanya sekali dalam satu peredaran lengkap. Jantung ikan hanya mempunyai 2 ruang (1 atrium dan 1 ventrikel). Darah terdeoksigen dari tisu dipam ke insang untuk pertukaran gas sebelum terus mengalir ke sel-sel badan lain tanpa kembali ke jantung terlebih dahulu."
   },
@@ -2416,8 +2416,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 3: Pengangkutan (Transportation) - Kuiz Set B",
     "question_number": 10,
-    "question_malay": "Rajah berikut menunjukkan sebahagian daripada litar peredaran darah manusia:\n$$\\text{Ventrikel Kanan} \\rightarrow \\text{Arteri Pulmonari} \\rightarrow \\text{Peparu} \\rightarrow \\text{Vena Pulmonari} \\rightarrow \\text{Atrium Kiri}$$\nApakah nama khusus bagi litar peredaran ini?",
-    "question_english": "What is the specific name of this circulatory circuit?",
+    "question_malay": "Darah mengalir dari ventrikel kanan melalui arteri pulmonari ke peparu, kemudian kembali melalui vena pulmonari ke atrium kiri. Apakah nama peredaran ini?",
+    "question_english": "Blood flows from the right ventricle through the pulmonary artery to the lungs, then returns through the pulmonary vein to the left atrium. What is this circulation called?",
     "option_a_malay": "Peredaran Sistemik",
     "option_a_english": "Systemic Circulation",
     "option_b_malay": "Peredaran Portal Hepatik",
@@ -2632,18 +2632,18 @@
     "set_letter": "B",
     "chapter_title": "Bab 3: Pengangkutan (Transportation) - Kuiz Set B",
     "question_number": 22,
-    "question_malay": "Rajah berikut menunjukkan keratin rentas sebatang daun tumbuhan eudikot:\n$$\\text{Kutikel} \\rightarrow \\text{Epidermis atas} \\rightarrow \\text{Sel Mesofil Palisad} \\rightarrow \\text{Berkas Vaskular (X dan Y)} \\rightarrow \\text{Epidermis bawah}$$\nDiberi $X$ terletak di bahagian atas berkas vaskular (menghadap epidermis atas) manakala $Y$ di bahagian bawah (menghadap epidermis bawah). Apakah struktur $X$ dan $Y$ serta fungsinya?",
-    "question_english": "The diagram shows the transverse section of a plant leaf epidermis:\n$$\\text{Cuticle} \\rightarrow \\text{Upper epidermis} \\rightarrow \\text{Palisade mesophyll cells} \\rightarrow \\text{Vascular bundle (X and Y)} \\rightarrow \\text{Lower epidermis}$$\nGiven that $X$ is located in the upper part of the vascular bundle (facing the upper epidermis) while $Y$ is in the lower part (facing the lower epidermis). What are the structures of $X$ and $Y$ and their functions?",
-    "option_a_malay": "$X$ ialah Floem (translocasi sukrosa); $Y$ ialah Xilem",
-    "option_a_english": "mengangkut air",
-    "option_b_malay": "$X$ ialah Xilem (mengangkut air); $Y$ ialah Floem",
-    "option_b_english": "translocasi sukrosa",
-    "option_c_malay": "$X$ ialah Parenkima (sokongan mekanikal); $Y$ ialah Kolenkima",
-    "option_c_english": "fotosintesis",
-    "option_d_malay": "$X$ ialah Xilem (fotosintesis); $Y$ ialah Floem",
-    "option_d_english": "respirasi sel",
+    "question_malay": "Dalam berkas vaskular daun eudikot, satu tisu terletak di bahagian atas dan satu lagi di bahagian bawah. Padanan kedudukan dan fungsi manakah yang betul?",
+    "question_english": "In the vascular bundle of a eudicot leaf, one tissue lies on the upper side and another on the lower side. Which pairing of position and function is correct?",
+    "option_a_malay": "Atas: floem yang mengangkut sukrosa; bawah: xilem yang mengangkut air",
+    "option_a_english": "Upper: phloem that transports sucrose; lower: xylem that transports water",
+    "option_b_malay": "Atas: xilem yang mengangkut air; bawah: floem yang mengangkut sukrosa",
+    "option_b_english": "Upper: xylem that transports water; lower: phloem that transports sucrose",
+    "option_c_malay": "Atas: parenkima yang mengangkut air; bawah: kolenkima yang mengangkut sukrosa",
+    "option_c_english": "Upper: parenchyma that transports water; lower: collenchyma that transports sucrose",
+    "option_d_malay": "Atas: xilem yang menjalankan fotosintesis; bawah: floem yang menjalankan respirasi",
+    "option_d_english": "Upper: xylem that carries out photosynthesis; lower: phloem that carries out respiration",
     "correct_answer": "B",
-    "explanation": "Di dalam berkas vaskular daun, Xilem terletak di bahagian atas (menghadap ke arah permukaan atas daun untuk menyalurkan air dan garam mineral yang diserap dari akar ke sel mesofil fotosintetik). Floem terletak di bahagian bawah berkas vaskular untuk mengangkut hasil fotosintesis (sucrose) dari daun ke bahagian tumbuhan yang lain (akar, pucuk, buah)."
+    "explanation": "Dalam berkas vaskular daun eudikot, xilem terletak di bahagian atas dan mengangkut air serta garam mineral. Floem terletak di bahagian bawah dan mengangkut sukrosa."
   },
   {
     "chapter_number": 3,
@@ -2668,8 +2668,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 3: Pengangkutan (Transportation) - Kuiz Set B",
     "question_number": 24,
-    "question_malay": "Dalam Aktiviti 3.9, kulit kayu sebatang tumbuhan berkayu telah dikikis secara gelang (ringing/bark stripping) untuk membuang tisu floemnya sahaja. Selepas beberapa minggu, didapati bahagian atas gelang tersebut membengkak manakala bahagian bawah gelang mengecut. Apakah kesimpulan daripada pemerhatian ini?",
-    "question_english": "In Activity 3.9, the bark of a woody plant was stripped in a ring shape to remove only its phloem tissue. After several weeks, the portion above the ring swelled while the portion below shrank. What is the conclusion of this observation?",
+    "question_malay": "Satu gelang kulit batang tumbuhan berkayu dibuang bersama floemnya. Selepas beberapa minggu, bahagian atas gelang membengkak manakala bahagian bawah mengecut. Apakah kesimpulannya?",
+    "question_english": "A ring of bark and phloem is removed from a woody plant stem. After several weeks, the part above the ring swells while the part below shrinks. What is the conclusion?",
     "option_a_malay": "Xilem mengangkut air dari akar ke atas daun.",
     "option_a_english": "Xylem transports water from the roots to the leaves.",
     "option_b_malay": "Floem mengangkut bahan makanan organik (sukrosa) dari daun ke bahagian bawah tumbuhan.",
@@ -2776,8 +2776,8 @@
     "set_letter": "A",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set A",
     "question_number": 5,
-    "question_malay": "Dalam Aktiviti 4.1, apabila asid hidroklorik cair ditambahkan kepada kalsium karbonat, gas yang dibebaskan dialirkan melalui air kapur. Apakah pemerhatian yang berlaku pada air kapur dan gas yang terhasil?",
-    "question_english": "In Activity 4.1, when dilute hydrochloric acid is added to calcium carbonate, the gas released is bubbled through limewater. What is the observation on the limewater and the identity of the gas?",
+    "question_malay": "Asid hidroklorik cair ditambahkan kepada kalsium karbonat. Gas yang terhasil dialirkan ke dalam air kapur. Apakah pemerhatian dan identiti gas itu?",
+    "question_english": "Dilute hydrochloric acid is added to calcium carbonate. The gas produced is bubbled through limewater. What is the observation and the identity of the gas?",
     "option_a_malay": "Air kapur kekal jernih; Gas hidrogen",
     "option_a_english": "Limewater remains clear; Hydrogen gas",
     "option_b_malay": "Air kapur menjadi keruh; Gas karbon dioksida",
@@ -2812,8 +2812,8 @@
     "set_letter": "A",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set A",
     "question_number": 7,
-    "question_malay": "Apabila kalsium karbonat dipanaskan dengan kuat dalam Aktiviti 4.1 (pemanasan kalsium karbonat), ia mengalami penguraian terma. Apakah produk pepejal baki yang tertinggal di dalam tabung didih?",
-    "question_english": "When calcium carbonate is heated strongly in Activity 4.1 (heating of calcium carbonate), it undergoes thermal decomposition. What is the residual solid product left in the boiling tube?",
+    "question_malay": "Kalsium karbonat dipanaskan dengan kuat lalu mengalami penguraian terma. Apakah pepejal yang tertinggal di dalam tabung didih?",
+    "question_english": "Calcium carbonate is heated strongly and undergoes thermal decomposition. Which solid remains in the boiling tube?",
     "option_a_malay": "Kalsium karbonat sahaja",
     "option_a_english": "Calcium carbonate only",
     "option_b_malay": "Kalsium logam",
@@ -2884,8 +2884,8 @@
     "set_letter": "A",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set A",
     "question_number": 11,
-    "question_malay": "Dalam Aktiviti 4.3 (mengkaji tindak balas pemanasan logam dengan oksigen), apakah fungsi utama serbuk hablur kalium manganat(VII) yang diletakkan di hujung tabung didih?",
-    "question_english": "In Activity 4.3 (studying the reaction of heating metals with oxygen), what is the primary function of the potassium manganate(VII) crystals placed at the end of the boiling tube?",
+    "question_malay": "Hablur kalium manganat(VII) dipanaskan di hujung tabung didih sebelum serbuk logam dipanaskan. Apakah fungsi hablur itu?",
+    "question_english": "Potassium manganate(VII) crystals are heated at one end of a boiling tube before a metal powder is heated. What is the function of the crystals?",
     "option_a_malay": "Bertindak sebagai mangkin tindak balas",
     "option_a_english": "Acts as a reaction catalyst",
     "option_b_malay": "Membekalkan gas oksigen apabila dipanaskan",
@@ -2938,8 +2938,8 @@
     "set_letter": "A",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set A",
     "question_number": 14,
-    "question_malay": "Dalam Aktiviti 4.4, campuran serbuk karbon dipanaskan bersama beberapa oksida logam. Karbon didapati boleh menurunkan zink oksida kepada zink, tetapi tidak boleh menurunkan aluminium oksida kepada aluminium. Di manakah kedudukan karbon dalam siri kereaktifan logam?",
-    "question_english": "In Activity 4.4, a mixture of carbon powder is heated with several metal oxides. Carbon is found to be able to reduce zinc oxide to zinc, but cannot reduce aluminium oxide to aluminium. Where is the position of carbon in the reactivity series of metals?",
+    "question_malay": "Karbon boleh menurunkan zink oksida kepada zink tetapi tidak boleh menurunkan aluminium oksida kepada aluminium. Di manakah kedudukan karbon dalam siri kereaktifan?",
+    "question_english": "Carbon can reduce zinc oxide to zinc but cannot reduce aluminium oxide to aluminium. Where is carbon placed in the reactivity series?",
     "option_a_malay": "Di antara Magnesium dan Aluminium",
     "option_a_english": "Between Magnesium and Aluminium",
     "option_b_malay": "Di antara Aluminium dan Zink",
@@ -2992,8 +2992,8 @@
     "set_letter": "A",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set A",
     "question_number": 17,
-    "question_malay": "Dalam Rajah 4.6, asid sulfurik cair ditindakbalaskan dengan zink untuk menjana gas hidrogen. Apakah fungsi pepejal kalsium klorida kontang yang diletakkan di dalam tiub kaca selepas penjanaan gas tersebut?",
-    "question_english": "In Figure 4.6, dilute sulfuric acid is reacted with zinc to generate hydrogen gas. What is the function of the anhydrous calcium chloride solid placed in the glass tube after the generation of the gas?",
+    "question_malay": "Gas hidrogen yang terhasil daripada tindak balas zink dengan asid sulfurik cair dialirkan melalui kalsium klorida kontang. Apakah fungsi kalsium klorida kontang?",
+    "question_english": "Hydrogen gas produced by reacting zinc with dilute sulfuric acid is passed through anhydrous calcium chloride. What is the function of the anhydrous calcium chloride?",
     "option_a_malay": "Sebagai pemangkin tindak balas",
     "option_a_english": "As a reaction catalyst",
     "option_b_malay": "Menyerap gas asid yang berlebihan",
@@ -3147,7 +3147,7 @@
     "option_d_malay": "Semua di atas",
     "option_d_english": "All of the above",
     "correct_answer": "D",
-    "explanation": "Silabus Sains Tingkatan 3 Bab 4 (Rajah 4.10) secara jelas membincangkan kesan negatif perlombongan terhadap alam sekitar termasuk hakisan tanah, pencemaran air oleh sisa batuan/logam, kemusnahan habitat flora dan fauna, serta pencemaran udara akibat pembakaran bahan api dan gas dari relau bagas."
+    "explanation": "Perlombongan yang tidak dirancang boleh menyebabkan hakisan tanah, pencemaran air dan udara, serta kemusnahan habitat."
   },
   {
     "chapter_number": 4,
@@ -3208,8 +3208,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set B",
     "question_number": 4,
-    "question_malay": "Dalam Aktiviti 4.1, kalsium karbonat ditambahkan dengan asid hidroklorik cair. Apakah pemerhatian bagi gas yang dibebaskan apabila dilalukan ke dalam air kapur?",
-    "question_english": "In Activity 4.1, calcium carbonate is added to dilute hydrochloric acid. What is the observation for the released gas when passed through lime water?",
+    "question_malay": "Kalsium karbonat bertindak balas dengan asid hidroklorik cair. Apakah pemerhatian apabila gas yang terhasil dialirkan ke dalam air kapur?",
+    "question_english": "Calcium carbonate reacts with dilute hydrochloric acid. What is observed when the gas produced is bubbled through limewater?",
     "option_a_malay": "Air kapur kekal jernih",
     "option_a_english": "Lime water remains clear",
     "option_b_malay": "Air kapur bertukar menjadi warna merah",
@@ -3280,8 +3280,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set B",
     "question_number": 8,
-    "question_malay": "Dalam Aktiviti 4.3 untuk membina siri kereaktifan logam, bahan kimia yang manakah digunakan sebagai ejen pembekal oksigen semasa pemanasan serbuk logam?",
-    "question_english": "In Activity 4.3 to construct the reactivity series of metals, which chemical is used as the oxygen-providing agent during the heating of metal powders?",
+    "question_malay": "Semasa serbuk logam dipanaskan untuk mengkaji kereaktifannya, bahan kimia manakah digunakan untuk membekalkan oksigen?",
+    "question_english": "When metal powders are heated to study their reactivity, which chemical is used to supply oxygen?",
     "option_a_malay": "Kalium manganat(VII)",
     "option_a_english": "Potassium manganate(VII)",
     "option_b_malay": "Kalsium karbonat",
@@ -3316,8 +3316,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set B",
     "question_number": 10,
-    "question_malay": "Logam plumbum dipanaskan dengan oksigen dalam Aktiviti 4.3. Apakah pemerhatian yang betul bagi tindak balas ini?",
-    "question_english": "Lead metal is heated with oxygen in Activity 4.3. What is the correct observation for this reaction?",
+    "question_malay": "Apakah pemerhatian apabila plumbum dipanaskan dalam oksigen?",
+    "question_english": "What is observed when lead is heated in oxygen?",
     "option_a_malay": "Terbakar dengan nyalaan sangat terang",
     "option_a_english": "Burns with a very bright flame",
     "option_b_malay": "Membara dengan cergas",
@@ -3352,8 +3352,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set B",
     "question_number": 12,
-    "question_malay": "Dalam eksperimen menentukan kedudukan karbon dalam siri kereaktifan (Aktiviti 4.4), campuran serbuk karbon dan zink oksida dipanaskan dengan kuat. Apakah pemerhatian dan inferensnya?",
-    "question_english": "In the experiment to determine the position of carbon in the reactivity series (Activity 4.4), a mixture of carbon powder and zinc oxide is heated strongly. What is the observation and its inference?",
+    "question_malay": "Campuran serbuk karbon dan zink oksida dipanaskan dengan kuat. Apakah pemerhatian dan kesimpulan yang betul?",
+    "question_english": "A mixture of carbon powder and zinc oxide is heated strongly. Which observation and conclusion are correct?",
     "option_a_malay": "Campuran membara dengan terang; Karbon berjaya menurunkan zink oksida kepada zink",
     "option_a_english": "Combustion is vigorous and bright; Carbon successfully reduces zinc oxide to zinc",
     "option_b_malay": "Tiada tindak balas berlaku; Karbon tidak dapat menurunkan zink oksida",
@@ -3388,8 +3388,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set B",
     "question_number": 14,
-    "question_malay": "Berdasarkan keputusan Aktiviti 4.4 dan tafsiran saintifik, di manakah kedudukan karbon diletakkan dalam siri kereaktifan logam?",
-    "question_english": "Based on the results of Activity 4.4 and scientific interpretation, where is carbon positioned in the metal reactivity series?",
+    "question_malay": "Karbon boleh menurunkan oksida zink, ferum dan plumbum, tetapi tidak boleh menurunkan aluminium oksida. Di manakah kedudukan karbon dalam siri kereaktifan?",
+    "question_english": "Carbon can reduce the oxides of zinc, iron and lead, but cannot reduce aluminium oxide. Where is carbon placed in the reactivity series?",
     "option_a_malay": "Di antara kalium dan natrium",
     "option_a_english": "Between potassium and sodium",
     "option_b_malay": "Di antara aluminium dan zink",
@@ -3406,8 +3406,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set B",
     "question_number": 15,
-    "question_malay": "Dalam eksperimen aliran gas hidrogen merentasi oksida logam (Rajah 4.6), gas hidrogen yang kering dilalukan ke atas ferum(III) oksida yang dipanaskan dengan kuat. Apakah pemerhatian yang berlaku?",
-    "question_english": "In the experiment of hydrogen gas flow over metal oxides (Figure 4.6), dry hydrogen gas is passed over strongly heated iron(III) oxide. What is the observation?",
+    "question_malay": "Gas hidrogen kering dialirkan ke atas ferum(III) oksida yang dipanaskan dengan kuat. Apakah pemerhatian yang berlaku?",
+    "question_english": "Dry hydrogen gas is passed over strongly heated iron(III) oxide. What is observed?",
     "option_a_malay": "Tiada sebarang tindak balas atau perubahan warna",
     "option_a_english": "No reaction or color change occurs",
     "option_b_malay": "Pepejal perang menyala dengan terang dan bertukar menjadi kelabu berkilat",
@@ -3442,8 +3442,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 4: Kereaktifan Logam (Reactivity of Metals) - Kuiz Set B",
     "question_number": 17,
-    "question_malay": "Di manakah kedudukan hidrogen diletakkan dalam siri kereaktifan logam berdasarkan keputusan kajian saintifik (Jadual 4.2)?",
-    "question_english": "Where is hydrogen positioned in the metal reactivity series based on the results of scientific studies (Table 4.2)?",
+    "question_malay": "Hidrogen boleh menurunkan ferum oksida tetapi tidak boleh menurunkan zink oksida. Di manakah kedudukan hidrogen dalam siri kereaktifan?",
+    "question_english": "Hydrogen can reduce iron oxide but cannot reduce zinc oxide. Where is hydrogen placed in the reactivity series?",
     "option_a_malay": "Di antara aluminium dan zink",
     "option_a_english": "Between aluminium and zinc",
     "option_b_malay": "Di antara magnesium dan aluminium",
@@ -3694,8 +3694,8 @@
     "set_letter": "A",
     "chapter_title": "Bab 5: Termokimia (Thermochemistry) - Kuiz Set A",
     "question_number": 6,
-    "question_malay": "Rajah di atas menunjukkan profil pemindahan tenaga semasa tindak balas kimia.\n[ Bahan tindak balas + Haba → Hasil tindak balas ]\nApakah jenis tindak balas ini dan apakah kesannya terhadap suhu persekitaran?",
-    "question_english": "The diagram above shows the energy transfer profile during a chemical reaction.\n[ Reactants + Heat -> Products ]\nWhat type of reaction is this and what is its effect on surrounding temperature?",
+    "question_malay": "Dalam suatu tindak balas, haba diserap daripada persekitaran untuk menukarkan bahan tindak balas kepada hasil tindak balas. Apakah jenis tindak balas itu dan apakah yang berlaku kepada suhu persekitaran?",
+    "question_english": "In a reaction, heat is absorbed from the surroundings to convert reactants into products. What type of reaction is this, and what happens to the temperature of the surroundings?",
     "option_a_malay": "Eksotermik; Suhu persekitaran meningkat.",
     "option_a_english": "Exothermic; Ambient temperature increases.",
     "option_b_malay": "Eksotermik; Suhu persekitaran menurun.",
@@ -3802,7 +3802,7 @@
     "set_letter": "A",
     "chapter_title": "Bab 5: Termokimia (Thermochemistry) - Kuiz Set A",
     "question_number": 12,
-    "question_malay": "Bagaimanakah pek sejuk segera membantu mengurangkan bengkak pada luka dari segi fisiologi?",
+    "question_malay": "Bagaimanakah pek sejuk segera membantu mengurangkan bengkak pada bahagian badan yang cedera?",
     "question_english": "How does an instant cold pack function physiologically to reduce wound swelling?",
     "option_a_malay": "Haba dibebaskan untuk mencairkan gumpalan darah di kapilari darah.",
     "option_a_english": "Heat is released to melt blood clots in capillaries.",
@@ -3849,7 +3849,7 @@
     "option_d_malay": "Magnesium",
     "option_d_english": "Magnesium",
     "correct_answer": "C",
-    "explanation": "Tindak balas termit melibatkan tindak balas antara ferum(III) oksida dengan serbuk aluminium:\n$$\text{Ferum(III) oksida} + \text{Aluminium}\nightarrow \text{Aluminium oksida} + \text{Ferum (Besi) + Haba}$$\nHaba ekstrem yang dibebaskan mencairkan besi (ferum) yang terhasil, membolehkannya mengalir dan mengisi rekahan landasan kereta api.\n*The thermite reaction involves reacting iron(III) oxide with aluminium powder to produce iron and aluminium oxide. The extreme heat released melts the produced iron (ferum), allowing it to flow and fill track fractures."
+    "explanation": "Tindak balas termit melibatkan tindak balas antara ferum(III) oksida dengan serbuk aluminium:\n$$\text{Ferum(III) oksida} + ext{Aluminium}\nightarrow ext{Aluminium oksida} + ext{Ferum (Besi) + Haba}$$\nHaba ekstrem yang dibebaskan mencairkan besi (ferum) yang terhasil, membolehkannya mengalir dan mengisi rekahan landasan kereta api.\n*The thermite reaction involves reacting iron(III) oxide with aluminium powder to produce iron and aluminium oxide. The extreme heat released melts the produced iron (ferum), allowing it to flow and fill track fractures."
   },
   {
     "chapter_number": 5,
@@ -3903,7 +3903,7 @@
     "option_d_malay": "$-49\text{ }^\\circ\text{C}$",
     "option_d_english": "$-49\\text{ }^\\circ\\text{C}$",
     "correct_answer": "B",
-    "explanation": "Perubahan suhu dikira sebagai:\n$$\\Delta\theta = \text{Suhu Akhir} - \text{Suhu Awal} = 21\text{ }^\\circ\text{C} - 28\text{ }^\\circ\text{C} = -7\text{ }^\\circ\text{C}$$\nTanda negatif ($-$) menunjukkan berlakunya penurunan suhu (penyerapan haba/endotermik).\n*Temperature change is calculated as Final Temperature minus Initial Temperature, yielding -7 °C. The negative sign represents a drop in temperature, signifying an endothermic reaction."
+    "explanation": "Perubahan suhu dikira sebagai:\n$$\\Delta\theta = ext{Suhu Akhir} - ext{Suhu Awal} = 21\text{ }^\\circ\text{C} - 28\text{ }^\\circ\text{C} = -7\text{ }^\\circ\text{C}$$\nTanda negatif ($-$) menunjukkan berlakunya penurunan suhu (penyerapan haba/endotermik).\n*Temperature change is calculated as Final Temperature minus Initial Temperature, yielding -7 °C. The negative sign represents a drop in temperature, signifying an endothermic reaction."
   },
   {
     "chapter_number": 5,
@@ -4018,8 +4018,8 @@
     "set_letter": "A",
     "chapter_title": "Bab 5: Termokimia (Thermochemistry) - Kuiz Set A",
     "question_number": 24,
-    "question_malay": "Penguraian kalsium karbonat (CaCO₃) apabila dipanaskan dengan kuat di dalam makmal, seperti ditunjukkan dalam Rajah 1, menghasilkan kalsium oksida (CaO) dan karbon dioksida (CO₂). Tindak balas ini dikelaskan sebagai...",
-    "question_english": "The decomposition of calcium carbonate ($CaCO_3$) when heated strongly in the laboratory (as shown in Figure 1) produces calcium oxide ($CaO$) and carbon dioxide ($CO_2$). This reaction is classified as...",
+    "question_malay": "Kalsium karbonat menghasilkan kalsium oksida dan karbon dioksida apabila dipanaskan dengan kuat. Bagaimanakah tindak balas ini dikelaskan?",
+    "question_english": "Calcium carbonate produces calcium oxide and carbon dioxide when heated strongly. How is this reaction classified?",
     "option_a_malay": "Eksotermik kerana ia membebaskan gas karbon dioksida.",
     "option_a_english": "Exothermic because it releases carbon dioxide gas.",
     "option_b_malay": "Endotermik kerana ia memerlukan bekalan tenaga haba berterusan dari penunu Bunsen untuk terurai.",
@@ -4072,8 +4072,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 5: Termokimia (Thermochemistry) - Kuiz Set B",
     "question_number": 2,
-    "question_malay": "Rajah profil tenaga bagi suatu tindak balas menunjukkan bahawa tenaga hasil tindak balas lebih rendah daripada tenaga bahan tindak balas. Apakah jenis tindak balas tersebut?",
-    "question_english": "An energy profile diagram of a reaction shows that the energy of the products is lower than the energy of the reactants. What type of reaction is this?",
+    "question_malay": "Tenaga hasil tindak balas lebih rendah daripada tenaga bahan tindak balas. Apakah jenis tindak balas tersebut?",
+    "question_english": "The products have less energy than the reactants. What type of reaction is this?",
     "option_a_malay": "Tindak balas endotermik kerana haba diserap daripada persekitaran.",
     "option_a_english": "Endothermic reaction due to heat absorption from the surroundings.",
     "option_b_malay": "Tindak balas eksotermik kerana haba dibebaskan ke persekitaran.",
@@ -4198,8 +4198,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 5: Termokimia (Thermochemistry) - Kuiz Set B",
     "question_number": 9,
-    "question_malay": "Semasa kalsium karbonat (CaCO₃) dipanaskan dengan kuat dalam Aktiviti 5.1, mengapakah pemanasan perlu dilakukan secara berterusan?",
-    "question_english": "During the strong heating of calcium carbonate ($CaCO_3$) in Activity 5.1, why must the heating be performed continuously?",
+    "question_malay": "Mengapakah kalsium karbonat perlu dipanaskan secara berterusan supaya terurai?",
+    "question_english": "Why must calcium carbonate be heated continuously for it to decompose?",
     "option_a_malay": "Kerana tindak balas pereputan terma adalah eksotermik dan memerlukan pemangkin haba.",
     "option_a_english": "Because the termite reaction is exothermic and requires a heat source.",
     "option_b_malay": "Kerana kalsium karbonat mengalami tindak balas endotermik yang memerlukan penyerapan haba yang berterusan daripada penunu Bunsen untuk mereput.",
@@ -4216,8 +4216,8 @@
     "set_letter": "B",
     "chapter_title": "Bab 5: Termokimia (Thermochemistry) - Kuiz Set B",
     "question_number": 10,
-    "question_malay": "Apakah gas yang dibebaskan apabila serbuk natrium hidrogen karbonat dilarutkan dalam asid hidroklorik cair dalam Aktiviti 5.1?",
-    "question_english": "What gas is released when sodium hydrogen carbonate powder is dissolved in dilute hydrochloric acid in Activity 5.1?",
+    "question_malay": "Apakah gas yang dibebaskan apabila natrium hidrogen karbonat bertindak balas dengan asid hidroklorik cair?",
+    "question_english": "Which gas is released when sodium hydrogen carbonate reacts with dilute hydrochloric acid?",
     "option_a_malay": "Gas Oksigen ($O_2$)",
     "option_a_english": "Oxygen Gas ($O_2$)",
     "option_b_malay": "Gas Nitrogen ($N_2$)",
@@ -4234,7 +4234,7 @@
     "set_letter": "B",
     "chapter_title": "Bab 5: Termokimia (Thermochemistry) - Kuiz Set B",
     "question_number": 11,
-    "question_malay": "Antara proses fisiologi berikut, yang manakah merupakan tindak balas eksotermik dalam organisma hidup?",
+    "question_malay": "Proses dalam organisma hidup yang manakah merupakan tindak balas eksotermik?",
     "question_english": "Which of the following physiological processes is an exothermic reaction inside living organisms?",
     "option_a_malay": "Proses fotosintesis tumbuhan hijau.",
     "option_a_english": "The process of photosynthesis in green plants.",

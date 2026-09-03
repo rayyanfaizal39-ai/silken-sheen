@@ -62,8 +62,8 @@
     },
     {
       "question_number": 4,
-      "question_malay": "Rajah di bawah menunjukkan seorang murid perempuan menaiki tangga di hospital. *   Berat badan murid, m = 45 kg *   Tinggi tegak tangga, h = 4 m *   Masa yang diambil, t = 12 saat *   Pecutan graviti, g = 10 m s⁻² Hitungkan **kuasa yang dijana** oleh murid itu semasa mendaki tangga tersebut.",
-      "question_english": "The diagram below shows a female student climbing hospital stairs. *   Student's weight, m = 45 kg *   Vertical height of the stairs, h = 4 m *   Time taken, t = 12 seconds *   Acceleration due to gravity, g = 10 m s⁻² Calculate the **power generated** by the student while climbing the stairs.",
+      "question_malay": "Seorang murid berjisim 45 kg menaiki tangga setinggi 4 m dalam masa 12 saat. Jika pecutan graviti ialah 10 m s⁻², berapakah kuasa yang dijana?",
+      "question_english": "A student of mass 45 kg climbs a 4 m staircase in 12 seconds. If gravitational acceleration is 10 m s⁻², what power is generated?",
       "options_malay": [
         "150 W",
         "180 W",
@@ -124,8 +124,8 @@
     },
     {
       "question_number": 7,
-      "question_malay": "Semasa menjalankan **Aktiviti Inkuiri 7.1**, seorang murid mendapati bahawa menarik bongkah kayu secara mendatar di atas meja memerlukan daya yang berbeza berbanding mengangkat pemberat secara menegak ke atas. Antara pernyataan berikut, yang manakah menerangkan perbezaan fizikal ini dengan betul?",
-      "question_english": "While conducting **Inquiry Activity 7.1**, a student finds that pulling a wooden block horizontally on a table requires a different force compared to lifting a weight vertically. Which of the following statements correctly explains this physical difference?",
+      "question_malay": "Seorang murid menarik bongkah kayu secara mendatar di atas meja dan mengangkat pemberat secara menegak. Pernyataan manakah menerangkan daya yang dilawan dalam kedua-dua keadaan?",
+      "question_english": "A student pulls a wooden block horizontally across a table and lifts a weight vertically. Which statement explains the force opposed in each situation?",
       "options_malay": [
         "Menarik bongkah kayu secara mendatar melakukan kerja menentang daya geseran meja, manakala mengangkat pemberat secara menegak melakukan kerja menentang daya tarikan graviti.",
         "",
@@ -133,10 +133,10 @@
         ""
       ],
       "options_english": [
-        "Pulling a wooden block horizontally on a table does work against the table's friction, while lifting a weight vertically does work against the gravitational force.",
-        "",
-        "",
-        ""
+        "Pulling the block opposes gravity, while lifting the weight opposes friction.",
+        "Pulling the block opposes friction, while lifting the weight opposes gravity.",
+        "No work is done in either situation because the force is perpendicular to the displacement.",
+        "Lifting the weight stores elastic potential energy, while pulling the block stores gravitational potential energy."
       ],
       "correct_answer": "A",
       "explanation_malay": "Menarik bongkah kayu secara mendatar memerlukan daya untuk melawan daya geseran meja, manakala mengangkat pemberat secara menegak memerlukan daya untuk melawan daya tarikan graviti. Jadi, jawapan yang betul ialah pernyataan pertama.",
@@ -184,8 +184,8 @@
     },
     {
       "question_number": 10,
-      "question_malay": "Rajah di bawah menunjukkan seutas spring keluli yang dimampatkan oleh suatu daya luaran. *   Panjang asal spring, $l_0 = 15\\text{ cm}$ *   Panjang akhir spring setelah dimampatkan, $l_1 = 11\\text{ cm}$ *   Daya pemampatan maksima yang dikenakan, $F = 40\\text{ N}$ Hitungkan **Tenaga Keupayaan Kenyal** yang tersimpan di dalam spring yang termampat itu.",
-      "question_english": "The diagram below shows a steel spring compressed by an external force. *   Original length of the spring, $l_0 = 15\\text{ cm}$ *   Final length of the spring after compression, $l_1 = 11\\text{ cm}$ *   Maximum compression force applied, $F = 40\\text{ N}$ Calculate the **Elastic Potential Energy** stored in the compressed spring.",
+      "question_malay": "Satu spring dipendekkan daripada 15 cm kepada 11 cm oleh daya maksimum 40 N. Berapakah tenaga keupayaan kenyal yang disimpan?",
+      "question_english": "A spring is shortened from 15 cm to 11 cm by a maximum force of 40 N. How much elastic potential energy is stored?",
       "options_malay": [
         "$0.8\\text{ J}$",
         "$1.6\\text{ J}$",
@@ -193,10 +193,10 @@
         "$160\\text{ J}$"
       ],
       "options_english": [
-        "$0.8\\text{ J}$",
-        "$1.6\\text{ J}$",
-        "$80\\text{ J}$",
-        "$160\\text{ J}$"
+        "0.8 J",
+        "1.6 J",
+        "80 J",
+        "160 J"
       ],
       "correct_answer": "B",
       "explanation_malay": "Panjang pemampatan spring ialah $l_0 - l_1 = 15\\text{ cm} - 11\\text{ cm} = 4\\text{ cm} = 0.04\\text{ m}$. Tenaga Keupayaan Kenyal dapat dihitung menggunakan formula $E_p = \frac{1}{2} kx^2$, di mana $k = \frac{F}{x} = \frac{40\\text{ N}}{0.04\\text{ m}} = 1000\\text{ N/m}$ dan $x = 0.04\\text{ m}$. Jadi, $E_p = \frac{1}{2} \times 1000 \times (0.04)^2 = 0.8\\text{ J}$. Jadi, jawapan yang betul ialah $1.6\\text{ J}$.",

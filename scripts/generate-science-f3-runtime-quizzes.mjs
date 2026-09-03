@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { assertPlainStudentText, toPlainStudentText } from "./plain-student-text.mjs";
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(scriptDirectory, "..");
@@ -42,6 +43,39 @@ const requiredColumns = [
   "correct_answer",
   "explanation",
 ];
+
+const forbiddenStandaloneReferencePatterns = [
+  /\b(?:buku teks|muka surat|textbook)\b/i,
+  /\[page\s*\d/i,
+  /\b(?:Rajah|Jadual|Figure|Diagram)\s+(?:\d+(?:\.\d+)?|di bawah|di atas|berikut|below|above)\b/i,
+  /\bTable\s+(?:\d+\.\d+\b(?!\s*m\b)|below|above)\b/i,
+  /\b(?:graf|gambar|graph|image)\s+(?:di bawah|di atas|berikut|below|above)\b/i,
+  /\b(?:Aktiviti|Eksperimen|Activity|Experiment)\s+(?:(?:Inkuiri|Inquiry)\s+)?\d+(?:\.\d+)?\b/i,
+  /\b(?:Galeri Sains|Science Gallery)\b/i,
+  /\b(?:soalan sebelumnya|soalan terdahulu|previous question)\b/i,
+];
+
+const unnecessarilyAdvancedPatterns = [
+  /sistem ayunan bandul ringkas tertutup/i,
+  /sesaran amplitud/i,
+  /interpretasi fizikal/i,
+  /lengkung parabola terbalik/i,
+  /mengikut persekitaran/i,
+  /graf perubahan tenaga melawan sesaran/i,
+  /closed simple pendulum system/i,
+  /physical interpretation/i,
+  /inverted parabolic/i,
+  /energy change against displacement/i,
+];
+
+function assertStandaloneQuizText(value, label) {
+  for (const pattern of forbiddenStandaloneReferencePatterns) {
+    assert(!pattern.test(value), `${label}: forbidden standalone reference (${pattern})`);
+  }
+  for (const pattern of unnecessarilyAdvancedPatterns) {
+    assert(!pattern.test(value), `${label}: unnecessarily advanced wording (${pattern})`);
+  }
+}
 
 function parseCsv(text) {
   const rows = [];
@@ -110,10 +144,12 @@ function runtimeQuestion(row, language) {
     lang: language,
     set: row.set_letter,
     difficulty: difficultyFor(questionNumber),
-    question: row[`question_${suffix}`],
-    options: ["a", "b", "c", "d"].map((letter) => row[`option_${letter}_${suffix}`]),
+    question: toPlainStudentText(row[`question_${suffix}`]),
+    options: ["a", "b", "c", "d"].map((letter) =>
+      toPlainStudentText(row[`option_${letter}_${suffix}`]),
+    ),
     answerIndex: row.correct_answer.charCodeAt(0) - 65,
-    explanation: row.explanation,
+    explanation: toPlainStudentText(row.explanation),
   };
 }
 
@@ -171,6 +207,34 @@ for (const chapter of generatedChapters) {
 
       for (const language of ["bm", "dlp"]) {
         const question = runtimeQuestion(row, language);
+        assertPlainStudentText(question.question, `${question.id} question`);
+        assertStandaloneQuizText(question.question, `${question.id} question`);
+        question.options.forEach((option, optionIndex) =>
+          assertPlainStudentText(option, `${question.id} option ${optionIndex + 1}`),
+        );
+        assertPlainStudentText(question.explanation, `${question.id} explanation`);
+        question.options.forEach((option, optionIndex) =>
+          assertStandaloneQuizText(option, `${question.id} option ${optionIndex + 1}`),
+        );
+        assertStandaloneQuizText(question.explanation, `${question.id} explanation`);
+        assert(
+          new Set(question.options.map((option) => option.trim().toLocaleLowerCase())).size === 4,
+          `${question.id}: answer options must be distinct`,
+        );
+        for (const symbol of ["X", "Y", "Z", "P", "Q"]) {
+          const symbolPattern = new RegExp(`(?<![A-Za-z0-9-])${symbol}(?![A-Za-z0-9-])`);
+          const optionUsesSymbol = question.options.some((option) =>
+            symbolPattern.test(
+              option
+                .replace(/['\"][XYZPQ]['\"]/g, "")
+                .replace(/\b[XYZPQ]-shaped\b/gi, ""),
+            ),
+          );
+          assert(
+            !optionUsesSymbol || symbolPattern.test(question.question),
+            `${question.id}: option uses undefined label ${symbol}`,
+          );
+        }
         assert(!seenIds.has(question.id), `Duplicate generated ID: ${question.id}`);
         assert(
           !seenQuestions[language].has(question.question),

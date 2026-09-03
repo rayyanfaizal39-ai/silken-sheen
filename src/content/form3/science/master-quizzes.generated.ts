@@ -1790,9 +1790,9 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "A person who does not smoke but inhales second-hand smoke from people around them is known as:",
         "options": [
+          "Active smoker",
           "Passive smoker",
-          "Passive smoker",
-          "Passive smoker",
+          "Heavy smoker",
           "Social smoker"
         ],
         "answerIndex": 1,
@@ -1828,7 +1828,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Apakah gerak balas fisiologi utama badan seorang atlet apabila diletakkan di dalam bilik latihan hipoksik (hypoxic) atau diletakkan di kawasan altitud tinggi?",
+        "question": "Apakah gerak balas utama badan seorang atlet apabila berlatih di kawasan tanah tinggi yang mempunyai kandungan oksigen lebih rendah?",
         "options": [
           "Jantung berdegup lebih perlahan untuk mengurangkan penggunaan tenaga.",
           "Sel darah merah dibebaskan dari limpa dan kadar penghasilan sel darah merah meningkat.",
@@ -1836,7 +1836,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Lebih banyak molekul karbon dioksida diikat pada hemoglobin untuk mengimbangi tekanan udara."
         ],
         "answerIndex": 1,
-        "explanation": "Menurut Galeri Sains Bab 2, di kawasan altitud tinggi, kepekatan oksigen dalam udara adalah rendah. Tindak balas badan (respon fisiologi) terhadap kekurangan oksigen ini adalah dengan merangsang pembebasan sel darah merah yang tersimpan di dalam limpa, meningkatkan kadar penghasilan sel darah merah baharu, dan memudahkan penguraian oksihemoglobin untuk membebaskan oksigen ke sel badan."
+        "explanation": "Di kawasan tanah tinggi, kandungan oksigen lebih rendah. Limpa membebaskan sel darah merah yang disimpan dan badan meningkatkan penghasilan sel darah merah untuk membantu pengangkutan oksigen."
       },
       {
         "id": "sci-f3-c2-set-a-bm-q2",
@@ -1854,7 +1854,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Rongga hidung → trakia → farinks → larinks → bronkus → alveolus → bronkiol"
         ],
         "answerIndex": 1,
-        "explanation": "Berdasarkan Rajah 2.2 dalam buku teks, urutan laluan udara pernafasan semasa menyedut udara ialah: Lubang hidung → Rongga hidung → Farinks → Larinks → Trakia → Bronkus → Bronkiol → Alveolus."
+        "explanation": "Urutan laluan udara semasa menarik nafas ialah lubang hidung → rongga hidung → farinks → larinks → trakea → bronkus → bronkiol → alveolus."
       },
       {
         "id": "sci-f3-c2-set-a-bm-q3",
@@ -1998,7 +1998,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Udara hembusan mengandungi lebih banyak habuk yang memadamkan api lilin."
         ],
         "answerIndex": 2,
-        "explanation": "Berdasarkan Eksperimen 2.1 (A), peratusan komposisi oksigen dalam udara sedutan adalah lebih tinggi (sekitar 21%) berbanding udara hembusan (sekitar 16%). Lilin memerlukan oksigen untuk pembakaran; oleh itu, lilin di dalam balang udara sedutan menyala lebih lama sebelum terpadam."
+        "explanation": "Udara sedutan mengandungi lebih banyak oksigen daripada udara hembusan. Oleh itu, lilin dalam udara sedutan menyala lebih lama sebelum terpadam."
       },
       {
         "id": "sci-f3-c2-set-a-bm-q11",
@@ -2188,7 +2188,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Dalam eksperimen demonstrasi kesan merokok terhadap paru-paru (Eksperimen 2.2), apakah yang diwakili oleh perubahan warna kapas menjadi perang di dalam tiub-U?",
+        "question": "Asap rokok disedut melalui kapas putih di dalam tiub-U. Kapas itu bertukar menjadi perang. Apakah yang ditunjukkan oleh perubahan ini?",
         "options": [
           "Kehadiran gas berasid nitrogen dioksida yang melarut.",
           "Pembentukan karboksihemoglobin dalam paru-paru.",
@@ -2196,7 +2196,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerosakan alveolus akibat suhu tinggi asap rokok."
         ],
         "answerIndex": 2,
-        "explanation": "Tar rokok ialah bahan melekit berwarna perang yang terkandung dalam asap rokok. Dalam eksperimen model merokok, kapas putih mewakili alveolus paru-paru. Kapas bertukar menjadi perang menunjukkan pengumpulan tar rokok berasap pada tisu paru-paru yang boleh menyekat resapan gas dan merosakkan silia."
+        "explanation": "Tar ialah bahan perang dan melekit dalam asap rokok. Warna perang pada kapas menunjukkan bahawa tar daripada asap rokok telah mendap pada kapas."
       },
       {
         "id": "sci-f3-c2-set-a-bm-q22",
@@ -2278,7 +2278,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Atlet larian jarak jauh sering menjalani latihan intensif di kawasan pergunungan yang tinggi seperti Kundasang, Sabah. Antara berikut, yang manakah merupakan gerak balas fisiologi jangka pendek limpa (spleen) atlet tersebut akibat kepekatan oksigen yang rendah pada altitud tinggi?",
+        "question": "Atlet jarak jauh berlatih di kawasan tanah tinggi yang mempunyai kandungan oksigen lebih rendah. Apakah gerak balas jangka pendek limpa atlet itu?",
         "options": [
           "Mengecilkan saiz jantung untuk mengekalkan kecekapan mengepam.",
           "Membebaskan sel darah merah yang disimpan di dalamnya ke dalam aliran darah.",
@@ -2286,7 +2286,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Melambatkan penguraian oksihemoglobin di dalam sel-sel badan."
         ],
         "answerIndex": 1,
-        "explanation": "Menurut buku teks, kekurangan oksigen pada altitud tinggi merangsang badan atlet untuk bertindak balas secara fisiologi dengan membebaskan sel darah merah yang disimpan di dalam limpa bagi meningkatkan kapasiti pengangkutan oksigen ke sel-sel badan [45]. Hal ini meningkatkan kecekapan pernafasan atlet [45]."
+        "explanation": "Kekurangan oksigen di altitud tinggi merangsang limpa membebaskan sel darah merah yang disimpan. Hal ini meningkatkan pengangkutan oksigen ke sel badan."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q2",
@@ -2304,7 +2304,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Bronkiol"
         ],
         "answerIndex": 2,
-        "explanation": "Trakia disokong oleh gelang rawan berbentuk 'C' (*C-shaped cartilage rings*) untuk mengelakkannya daripada runtuh atau kempis semasa penarikan nafas, sekali gus memastikan laluan udara sentiasa terbuka [46]."
+        "explanation": "Trakia disokong oleh gelang rawan berbentuk 'C' (C-shaped cartilage rings) untuk mengelakkannya daripada runtuh atau kempis semasa penarikan nafas, sekali gus memastikan laluan udara sentiasa terbuka."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q3",
@@ -2322,7 +2322,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Epiglotis mengendur untuk membolehkan udara dan makanan masuk ke dalam paru-paru secara serentak."
         ],
         "answerIndex": 1,
-        "explanation": "Semasa menelan makanan, epiglotis jatuh ke bawah dan menutup trakea supaya makanan tidak masuk ke dalam saluran pernafasan, sebaliknya dipaksa mengalir terus ke dalam esofagus [48]. Semasa bernafas pula, epiglotis naik ke atas untuk membolehkan trakea terbuka [48]."
+        "explanation": "Semasa menelan makanan, epiglotis jatuh ke bawah dan menutup trakea supaya makanan tidak masuk ke dalam saluran pernafasan, sebaliknya dipaksa mengalir terus ke dalam esofagus. Semasa bernafas pula, epiglotis naik ke atas untuk membolehkan trakea terbuka."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q4",
@@ -2340,7 +2340,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Otot interkostal mengendur, menyebabkan sangkar rusuk ditarik ke atas secara pasif."
         ],
         "answerIndex": 1,
-        "explanation": "Semasa menghembus nafas, otot interkostal mengendur dan sangkar rusuk bergerak ke bawah dan ke dalam [49]. Pada masa yang sama, otot diafragma juga mengendur untuk melengkung ke atas menjadi bentuk kubah semula [49]."
+        "explanation": "Semasa menghembus nafas, otot interkostal mengendur dan sangkar rusuk bergerak ke bawah dan ke dalam. Pada masa yang sama, otot diafragma juga mengendur untuk melengkung ke atas menjadi bentuk kubah semula."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q5",
@@ -2358,7 +2358,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Balang kaca ditutup terlalu ketat dengan penyumbat gabus tanpa sebarang liang udara."
         ],
         "answerIndex": 2,
-        "explanation": "Model balang kaca berfungsi berdasarkan perubahan isi padu dan tekanan di dalam balang [53]. Sekiranya balang kaca retak (*cracked glass jar*), kebocoran udara berlaku, menyebabkan tekanan udara di dalam balang tidak dapat diubah (sentiasa seimbang dengan tekanan atmosfera luar). Akibatnya, tiada udara luar dipaksa masuk untuk mengembangkan belon [53]."
+        "explanation": "Model balang kaca berfungsi berdasarkan perubahan isi padu dan tekanan di dalam balang. Sekiranya balang kaca retak (cracked glass jar), kebocoran udara berlaku, menyebabkan tekanan udara di dalam balang tidak dapat diubah (sentiasa seimbang dengan tekanan atmosfera luar). Akibatnya, tiada udara luar dipaksa masuk untuk mengembangkan belon."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q6",
@@ -2368,7 +2368,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Dalam Eksperimen 2.1 (A) untuk menentukan peratusan oksigen dalam udara, aras akhir air di dalam balang gas bagi udara hembusan adalah lebih rendah berbanding udara sedutan selepas lilin padam. Apakah kesimpulan daripada pemerhatian ini?",
+        "question": "Dua lilin dinyalakan secara berasingan di dalam balang berisi udara sedutan dan udara hembusan. Selepas lilin padam, aras air naik lebih sedikit dalam balang udara hembusan. Apakah kesimpulannya?",
         "options": [
           "Udara hembusan tidak mempunyai sebarang kandungan gas oksigen.",
           "Udara hembusan mempunyai peratusan oksigen yang lebih rendah daripada udara sedutan.",
@@ -2376,7 +2376,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Lilin menghasilkan lebih banyak oksigen semasa dibakar di dalam udara hembusan."
         ],
         "answerIndex": 1,
-        "explanation": "Lilin membakar oksigen yang ada di dalam balang gas [50]. Air akan naik untuk menggantikan ruang oksigen yang telah digunakan [50]. Aras air naik lebih rendah dalam balang berisi udara hembusan kerana sebahagian besar oksigen telah diserap oleh paru-paru semasa bernafas, membuktikan udara hembusan mempunyai peratusan oksigen yang lebih rendah [52]."
+        "explanation": "A candle uses oxygen during combustion. The smaller rise in water level shows that exhaled air contains less oxygen than inhaled air."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q7",
@@ -2386,7 +2386,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Dalam Eksperimen 2.1 (B), udara sedutan dan udara hembusan dialirkan ke dalam air kapur secara berasingan melalui Kelalang A dan Kelalang B. Apakah keputusan eksperimen yang membuktikan bahawa udara hembusan mengandungi kepekatan karbon dioksida yang tinggi?",
+        "question": "Udara sedutan dialirkan melalui air kapur dalam kelalang A, manakala udara hembusan dialirkan melalui air kapur dalam kelalang B. Pemerhatian manakah menunjukkan bahawa udara hembusan mengandungi lebih banyak karbon dioksida?",
         "options": [
           "Air kapur di dalam Kelalang A berubah warna menjadi ungu.",
           "Air kapur di dalam Kelalang B kekal jernih sepanjang eksperimen.",
@@ -2394,7 +2394,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Air kapur di dalam Kelalang A bertukar menjadi mendidih dan berasid."
         ],
         "answerIndex": 2,
-        "explanation": "Kehadiran gas karbon dioksida yang tinggi bertindak balas secara kimia dengan kalsium hidroksida (air kapur) untuk menghasilkan mendakan putih kalsium karbonat yang tidak larut, menyebabkan air kapur menjadi sangat keruh [52]. Udara hembusan mengandungi kepekatan karbon dioksida yang jauh lebih tinggi daripada udara sedutan [51, 52]. #### Pergerakan dan Pertukaran Gas di Alveolus"
+        "explanation": "Carbon dioxide turns limewater cloudy. The limewater receiving exhaled air turns cloudy more quickly because exhaled air contains more carbon dioxide."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q8",
@@ -2412,7 +2412,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Proses resapan gas mengikut gradien kepekatan (perbezaan tekanan separa)."
         ],
         "answerIndex": 3,
-        "explanation": "Pertukaran gas respirasi berlaku melalui proses resapan (*diffusion*) [54]. Gas sentiasa meresap dari kawasan yang berkepekatan tinggi (atau tekanan separa tinggi) ke kawasan yang berkepekatan rendah (atau tekanan separa rendah) secara pasif tanpa menggunakan tenaga [54, 68]."
+        "explanation": "Pertukaran gas respirasi berlaku melalui proses resapan (diffusion). Gas sentiasa meresap dari kawasan yang berkepekatan tinggi (atau tekanan separa tinggi) ke kawasan yang berkepekatan rendah (atau tekanan separa rendah) secara pasif tanpa menggunakan tenaga."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q9",
@@ -2430,7 +2430,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Karbonmonoksida-hemoglobin"
         ],
         "answerIndex": 1,
-        "explanation": "Oksigen bergabung secara kimia dengan hemoglobin (berwarna merah gelap) di dalam sel darah merah untuk membentuk oksihemoglobin yang merupakan sebatian tidak stabil dan berwarna merah cerah [55]."
+        "explanation": "Oksigen bergabung secara kimia dengan hemoglobin (berwarna merah gelap) di dalam sel darah merah untuk membentuk oksihemoglobin yang merupakan sebatian tidak stabil dan berwarna merah cerah."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q10",
@@ -2448,7 +2448,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Nilai pH darah di kawasan tisu badan adalah terlalu beralkali."
         ],
         "answerIndex": 1,
-        "explanation": "Oksihemoglobin ialah sebatian yang tidak stabil [55]. Apabila darah sampai ke kawasan tisu badan yang mempunyai kepekatan oksigen yang rendah (kerana digunakan secara berterusan untuk respirasi sel), oksihemoglobin terurai semula untuk membebaskan molekul oksigen ke dalam sel badan [55]."
+        "explanation": "Oksihemoglobin ialah sebatian yang tidak stabil. Apabila darah sampai ke kawasan tisu badan yang mempunyai kepekatan oksigen yang rendah (kerana digunakan secara berterusan untuk respirasi sel), oksihemoglobin terurai semula untuk membebaskan molekul oksigen ke dalam sel badan."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q11",
@@ -2466,7 +2466,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Karboksihemoglobin → Hemoglobin + Karbon monoksida"
         ],
         "answerIndex": 2,
-        "explanation": "Di dalam sel badan, oksigen meresap masuk dan digunakan untuk mengoksidakan glukosa bagi menghasilkan tenaga, dengan karbon dioksida serta air sebagai bahan sampingan melalui tindak balas: $ ext{Glukosa} + ext{Oksigen} ightarrow ext{Karbon Dioksida} + ext{Air} + ext{Tenaga}$ [55]."
+        "explanation": "Di dalam sel badan, oksigen meresap masuk dan digunakan untuk mengoksidakan glukosa bagi menghasilkan tenaga, dengan karbon dioksida serta air sebagai bahan sampingan melalui tindak balas: Glukosa + Oksigen → Karbon Dioksida + Air + Tenaga."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q12",
@@ -2484,7 +2484,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Membolehkan kapilari menyerap molekul air secara osmosis terus dari atmosfera."
         ],
         "answerIndex": 1,
-        "explanation": "Struktur yang sangat nipis (setebal satu sel sahaja) mengurangkan jarak laluan gas respirasi, sekali gus memudahkan dan memaksimumkan kadar resapan gas antara alveolus dengan kapilari darah [56, 64]."
+        "explanation": "Struktur yang sangat nipis (setebal satu sel sahaja) mengurangkan jarak laluan gas respirasi, sekali gus memudahkan dan memaksimumkan kadar resapan gas antara alveolus dengan kapilari darah."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q13",
@@ -2502,7 +2502,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Melarutkan tar rokok yang masuk supaya tidak menyumbat bronkiol."
         ],
         "answerIndex": 0,
-        "explanation": "Gas respirasi (oksigen dan karbon dioksida) mestilah melarut terlebih dahulu dalam lapisan air lembap di dinding alveolus sebelum ia dapat meresap merentasi membran sel yang telap gas [54, 56]. #### Kesihatan Sistem Respirasi"
+        "explanation": "Gas respirasi (oksigen dan karbon dioksida) mestilah melarut terlebih dahulu dalam lapisan air lembap di dinding alveolus sebelum ia dapat meresap merentasi membran sel yang telap gas. Kesihatan Sistem Respirasi"
       },
       {
         "id": "sci-f3-c2-set-b-bm-q14",
@@ -2520,7 +2520,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ia merangsang pembelahan sel-sel paru-paru secara tidak terkawal untuk membentuk tumor."
         ],
         "answerIndex": 2,
-        "explanation": "Karbon monoksida meresap ke dalam darah dan bergabung dengan hemoglobin menghasilkan sebatian karboksihemoglobin yang sangat stabil [58]. Ini menyebabkan hemoglobin tidak dapat mengikat oksigen, mengurangkan kandungan oksigen dalam sel badan, dan boleh membawa maut akibat hipoksia tisu [58]."
+        "explanation": "Karbon monoksida meresap ke dalam darah dan bergabung dengan hemoglobin menghasilkan sebatian karboksihemoglobin yang sangat stabil. Ini menyebabkan hemoglobin tidak dapat mengikat oksigen, mengurangkan kandungan oksigen dalam sel badan, dan boleh membawa maut akibat hipoksia tisu."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q15",
@@ -2538,7 +2538,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Keradangan kronik pada dinding dalam bronkus yang menyekat aliran udara masuk."
         ],
         "answerIndex": 1,
-        "explanation": "Emfisema disebabkan oleh kerosakan dinding alveolus oleh bahan toksik asap rokok [60]. Dinding alveolus pecah dan bergabung membentuk pundi udara yang lebih besar, tidak sekata, dan mempunyai luas permukaan yang jauh lebih kecil untuk pertukaran gas [60]. Akibatnya, pesakit mengalami sesak nafas kronik [60]."
+        "explanation": "Emfisema disebabkan oleh kerosakan dinding alveolus oleh bahan toksik asap rokok. Dinding alveolus pecah dan bergabung membentuk pundi udara yang lebih besar, tidak sekata, dan mempunyai luas permukaan yang jauh lebih kecil untuk pertukaran gas. Akibatnya, pesakit mengalami sesak nafas kronik."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q16",
@@ -2548,7 +2548,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Dalam Eksperimen 2.2 (demonstrasi kesan merokok terhadap paru-paru), pam turas digunakan untuk menyedut asap rokok melalui radas. Apakah pemerhatian dan inferens bagi kapas putih pada akhir eksperimen tersebut?",
+        "question": "Asap rokok disedut melalui kapas putih dengan menggunakan pam turas. Apakah pemerhatian dan kesimpulan yang betul?",
         "options": [
           "Kapas bertukar menjadi merah, menunjukkan asap rokok mengandungi gas berasid.",
           "Kapas bertukar menjadi perang/hitam, menunjukkan asap rokok mengandungi tar rokok yang melekit.",
@@ -2556,7 +2556,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kapas menjadi basah dan cair, menunjukkan asap rokok membebaskan wap nitrogen dioksida."
         ],
         "answerIndex": 1,
-        "explanation": "Kapas putih bertindak sebagai analog tisu peparu [62]. Perubahan warna kapas kepada perang/hitam membuktikan kehadiran tar rokok (sisa aerosol melekit) di dalam asap rokok yang boleh mendap dan merosakkan tisu paru-paru dalam keadaan sebenar [63]."
+        "explanation": "The brown or black deposit on the cotton wool is sticky tar from cigarette smoke."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q17",
@@ -2574,7 +2574,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Gas karbon monoksida bertukar menjadi garam kalsium berasid apabila dilarutkan."
         ],
         "answerIndex": 1,
-        "explanation": "Larutan litmus ungu bertukar menjadi merah apabila didedahkan kepada bahan berasid [63]. Ini membuktikan asap rokok mengandungi gas-gas berasid yang larut di dalam kelembapan saluran respirasi, merengsakannya dan menyebabkan radang [63]."
+        "explanation": "Larutan litmus ungu bertukar menjadi merah apabila didedahkan kepada bahan berasid. Ini membuktikan asap rokok mengandungi gas-gas berasid yang larut di dalam kelembapan saluran respirasi, merengsakannya dan menyebabkan radang."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q18",
@@ -2592,7 +2592,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pekerja industri arang batu yang terdedah kepada habuk sulfur dioksida secara pasif."
         ],
         "answerIndex": 1,
-        "explanation": "Perokok pasif ialah individu yang tidak merokok tetapi tersedut asap rokok daripada perokok aktif berhampirannya [62]. Mereka mempunyai risiko yang sama untuk menghidap penyakit pernafasan seperti asma, bronkitis, emfisema, dan kanser peparu [62, 63]. #### Adaptasi Sistem Respirasi Haiwan Lain"
+        "explanation": "Perokok pasif ialah individu yang tidak merokok tetapi tersedut asap rokok daripada perokok aktif berhampirannya. Mereka mempunyai risiko yang sama untuk menghidap penyakit pernafasan seperti asma, bronkitis, emfisema, dan kanser peparu. Adaptasi Sistem Respirasi Haiwan Lain"
       },
       {
         "id": "sci-f3-c2-set-b-bm-q19",
@@ -2610,7 +2610,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kulit katak mengandungi liang spirakel yang dikawal oleh injap otot."
         ],
         "answerIndex": 2,
-        "explanation": "Katak menyesuaikan kulitnya agar menjadi permukaan respirasi yang cekap dengan memastikan kulitnya sangat nipis, sentiasa lembap diselaputi mukus (untuk melarutkan gas), serta mempunyai kapilari darah yang padat di bawah kulit untuk mengangkut gas dengan cepat [64]."
+        "explanation": "Katak menyesuaikan kulitnya agar menjadi permukaan respirasi yang cekap dengan memastikan kulitnya sangat nipis, sentiasa lembap diselaputi mukus (untuk melarutkan gas), serta mempunyai kapilari darah yang padat di bawah kulit untuk mengangkut gas dengan cepat."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q20",
@@ -2628,7 +2628,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Dengan mengecilkan saiz kapilari darah bagi meningkatkan tekanan resapan gas."
         ],
         "answerIndex": 1,
-        "explanation": "Bilangan filamen dan lamela yang banyak menyediakan luas permukaan yang besar [65]. Selain itu, arah aliran air yang bertentangan dengan arah aliran darah (*counter-current flow*) memelihara gradien kepekatan oksigen yang tinggi di sepanjang lamela, membolehkan oksigen meresap masuk dengan sangat cekap [65]."
+        "explanation": "Bilangan filamen dan lamela yang banyak menyediakan luas permukaan yang besar. Selain itu, arah aliran air yang bertentangan dengan arah aliran darah (counter-current flow) memelihara gradien kepekatan oksigen yang tinggi di sepanjang lamela, membolehkan oksigen meresap masuk dengan sangat cekap."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q21",
@@ -2646,7 +2646,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kapilari darah serangga digantikan oleh sistem salur limfa yang sangat berasid."
         ],
         "answerIndex": 1,
-        "explanation": "Sistem trakea serangga mempunyai cabang halus yang dipanggil trakeol [65]. Trakeol bersentuhan terus secara fizikal dengan sel-sel badan (seperti sel otot) [65]. Oleh itu, resapan oksigen berlaku secara terus dari trakeol ke dalam sel badan tanpa memerlukan pengangkutan oleh medium darah [65, 66]. #### Pertukaran Gas dalam Tumbuhan"
+        "explanation": "Sistem trakea serangga mempunyai cabang halus yang dipanggil trakeol. Trakeol bersentuhan terus secara fizikal dengan sel-sel badan (seperti sel otot). Oleh itu, resapan oksigen berlaku secara terus dari trakeol ke dalam sel badan tanpa memerlukan pengangkutan oleh medium darah. Pertukaran Gas dalam Tumbuhan"
       },
       {
         "id": "sci-f3-c2-set-b-bm-q22",
@@ -2664,7 +2664,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Respirasi sel berlaku sepanjang masa (siang dan malam) manakala fotosintesis hanya berlaku pada waktu siang (dengan kehadiran cahaya)."
         ],
         "answerIndex": 3,
-        "explanation": "Menurut buku teks, respirasi sel ialah proses metabolisme asas sel hidup yang berlaku sepanjang masa (siang dan malam) [67, 73]. Manakala fotosintesis ialah proses menghasilkan makanan menggunakan tenaga cahaya, jadi ia hanya boleh berlaku pada waktu siang dengan kehadiran cahaya sahaja [67, 73]."
+        "explanation": "Respirasi sel berlaku sepanjang masa, manakala fotosintesis memerlukan cahaya dan berlaku apabila cahaya mencukupi."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q23",
@@ -2682,7 +2682,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tekanan osmosis di dalam sel pengawal menurun secara mendadak dan liang stoma mengecil."
         ],
         "answerIndex": 1,
-        "explanation": "Fotosintesis pada siang hari menghasilkan glukosa, meningkatkan tekanan osmosis sel pengawal [69]. Air meresap masuk secara osmosis, menyebabkan sel pengawal menjadi segah (*turgid*) [69, 70]. Oleh sebab dinding luar sel pengawal adalah nipis dan kenyal manakala dinding dalamnya adalah tebal dan kurang kenyal, sel pengawal membengkok ke luar dan menarik liang stoma terbuka [70]."
+        "explanation": "Fotosintesis pada siang hari menghasilkan glukosa, meningkatkan tekanan osmosis sel pengawal. Air meresap masuk secara osmosis, menyebabkan sel pengawal menjadi segah (turgid). Oleh sebab dinding luar sel pengawal adalah nipis dan kenyal manakala dinding dalamnya adalah tebal dan kurang kenyal, sel pengawal membengkok ke luar dan menarik liang stoma terbuka."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q24",
@@ -2700,7 +2700,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Untuk merangsang penguraian glukosa kepada kanji di dalam sel mesofil."
         ],
         "answerIndex": 2,
-        "explanation": "Suhu yang tinggi meningkatkan kadar transpirasi [69, 72]. Untuk mengelakkan tumbuhan layu atau mati akibat dehidrasi (kehilangan air berlebihan), sel pengawal kehilangan air secara osmosis, menjadi flasid, dan melurus kembali untuk menutup liang stoma bagi memelihara air di dalam tisu tumbuhan [69, 72]."
+        "explanation": "Suhu yang tinggi meningkatkan kadar transpirasi. Untuk mengelakkan tumbuhan layu atau mati akibat dehidrasi (kehilangan air berlebihan), sel pengawal kehilangan air secara osmosis, menjadi flasid, dan melurus kembali untuk menutup liang stoma bagi memelihara air di dalam tisu tumbuhan."
       },
       {
         "id": "sci-f3-c2-set-b-bm-q25",
@@ -2718,7 +2718,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ia menukarkan warna kloroplas daripada hijau kepada ungu pekat."
         ],
         "answerIndex": 0,
-        "explanation": "Zarah-zarah halus daripada jerebu, debu, atau habuk boleh terenap pada daun dan menyumbat liang stoma [70]. Ini menghalang pertukaran gas karbon dioksida dan oksigen [70]. Selain itu, lapisan debu menghalang penyerapan cahaya matahari, mengurangkan fotosintesis, dan membantutkan pertumbuhan tumbuhan [70]."
+        "explanation": "Zarah-zarah halus daripada jerebu, debu, atau habuk boleh terenap pada daun dan menyumbat liang stoma. Ini menghalang pertukaran gas karbon dioksida dan oksigen. Selain itu, lapisan debu menghalang penyerapan cahaya matahari, mengurangkan fotosintesis, dan membantutkan pertumbuhan tumbuhan."
       }
     ],
     "dlp": [
@@ -2730,7 +2730,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "What are the main physiological responses of an athlete's body when placed in a hypoxic chamber or in a high-altitude area?",
+        "question": "What is the body's main response when an athlete trains at high altitude, where less oxygen is available?",
         "options": [
           "The heart beats slower to reduce energy usage.",
           "Red blood cells are released from the spleen and the rate of red blood cell production increases.",
@@ -2738,7 +2738,7 @@ const scienceF3MasterQuizBanks: Partial<
           "More molecules of carbon dioxide are bound to hemoglobin to balance the air pressure."
         ],
         "answerIndex": 1,
-        "explanation": "Menurut Galeri Sains Bab 2, di kawasan altitud tinggi, kepekatan oksigen dalam udara adalah rendah. Tindak balas badan (respon fisiologi) terhadap kekurangan oksigen ini adalah dengan merangsang pembebasan sel darah merah yang tersimpan di dalam limpa, meningkatkan kadar penghasilan sel darah merah baharu, dan memudahkan penguraian oksihemoglobin untuk membebaskan oksigen ke sel badan."
+        "explanation": "Di kawasan tanah tinggi, kandungan oksigen lebih rendah. Limpa membebaskan sel darah merah yang disimpan dan badan meningkatkan penghasilan sel darah merah untuk membantu pengangkutan oksigen."
       },
       {
         "id": "sci-f3-c2-set-a-dlp-q2",
@@ -2756,7 +2756,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Nasal cavity → trachea → pharynx → larynx → bronchi → alveoli → bronchioles"
         ],
         "answerIndex": 1,
-        "explanation": "Berdasarkan Rajah 2.2 dalam buku teks, urutan laluan udara pernafasan semasa menyedut udara ialah: Lubang hidung → Rongga hidung → Farinks → Larinks → Trakia → Bronkus → Bronkiol → Alveolus."
+        "explanation": "Urutan laluan udara semasa menarik nafas ialah lubang hidung → rongga hidung → farinks → larinks → trakea → bronkus → bronkiol → alveolus."
       },
       {
         "id": "sci-f3-c2-set-a-dlp-q3",
@@ -2900,7 +2900,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Blown air contains more vapor that extinguishes the candle flame."
         ],
         "answerIndex": 2,
-        "explanation": "Berdasarkan Eksperimen 2.1 (A), peratusan komposisi oksigen dalam udara sedutan adalah lebih tinggi (sekitar 21%) berbanding udara hembusan (sekitar 16%). Lilin memerlukan oksigen untuk pembakaran; oleh itu, lilin di dalam balang udara sedutan menyala lebih lama sebelum terpadam."
+        "explanation": "Udara sedutan mengandungi lebih banyak oksigen daripada udara hembusan. Oleh itu, lilin dalam udara sedutan menyala lebih lama sebelum terpadam."
       },
       {
         "id": "sci-f3-c2-set-a-dlp-q11",
@@ -3090,15 +3090,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "In the demonstration experiment on the effects of smoking on the lungs (Experiment 2.2), what does the change in the color of the cotton from white to red in the U-tube represent?",
+        "question": "Cigarette smoke is drawn through white cotton wool in a U-tube. The cotton wool turns brown. What does this change show?",
         "options": [
-          "The presence of nitrogen dioxide gas that dissolves.",
-          "Formation of carboxyhemoglobin in the lungs.",
-          "Deposition of tobacco tar on the surface of the lung walls.",
-          "Alveolus damage due to high-temperature smoke."
+          "Acidic nitrogen dioxide gas has dissolved.",
+          "Carboxyhaemoglobin has formed in the lungs.",
+          "Sticky cigarette tar has been deposited on the cotton wool.",
+          "The alveoli have been damaged by the high temperature of the smoke."
         ],
         "answerIndex": 2,
-        "explanation": "Tar rokok ialah bahan melekit berwarna perang yang terkandung dalam asap rokok. Dalam eksperimen model merokok, kapas putih mewakili alveolus paru-paru. Kapas bertukar menjadi perang menunjukkan pengumpulan tar rokok berasap pada tisu paru-paru yang boleh menyekat resapan gas dan merosakkan silia."
+        "explanation": "Tar ialah bahan perang dan melekit dalam asap rokok. Warna perang pada kapas menunjukkan bahawa tar daripada asap rokok telah mendap pada kapas."
       },
       {
         "id": "sci-f3-c2-set-a-dlp-q22",
@@ -3128,10 +3128,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "The respiratory system of insects like grasshoppers consists of fine air tubes that penetrate continuously into the tissue cells without involving the blood transport system. This system is known as:",
         "options": [
+          "Gill filament system",
           "Tracheal system",
-          "Tracheal system",
-          "Externa moist skin system",
-          "Microalveolar system"
+          "Moist skin system",
+          "Alveolar system"
         ],
         "answerIndex": 1,
         "explanation": "Serangga bernafas menggunakan sistem trakea. Udara masuk melalui liang spirakel di abdomen, mengalir melalui trakea yang bercabang menjadi saluran yang sangat halus setebal satu sel dinamakan trakeol. Oksigen meresap terus dari trakeol ke dalam sel-sel badan serangga tanpa diangkut oleh darah."
@@ -3180,7 +3180,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Long-distance runners often undergo intensive training in high-altitude mountain areas like Kundasang, Sabah. Which of the following is the short-term physiological response of the athlete's spleen due to the low oxygen concentration at high altitudes?",
+        "question": "A long-distance athlete trains at high altitude, where less oxygen is available. What is the athlete's short-term spleen response?",
         "options": [
           "Reducing the size of the heart to maintain efficient pumping.",
           "Releasing stored red blood cells into the bloodstream.",
@@ -3188,7 +3188,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Slowing down the breakdown of oxyhaemoglobin in body cells."
         ],
         "answerIndex": 1,
-        "explanation": "Menurut buku teks, kekurangan oksigen pada altitud tinggi merangsang badan atlet untuk bertindak balas secara fisiologi dengan membebaskan sel darah merah yang disimpan di dalam limpa bagi meningkatkan kapasiti pengangkutan oksigen ke sel-sel badan [45]. Hal ini meningkatkan kecekapan pernafasan atlet [45]."
+        "explanation": "Kekurangan oksigen di altitud tinggi merangsang limpa membebaskan sel darah merah yang disimpan. Hal ini meningkatkan pengangkutan oksigen ke sel badan."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q2",
@@ -3206,7 +3206,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Bronchiole"
         ],
         "answerIndex": 2,
-        "explanation": "Trakia disokong oleh gelang rawan berbentuk 'C' (*C-shaped cartilage rings*) untuk mengelakkannya daripada runtuh atau kempis semasa penarikan nafas, sekali gus memastikan laluan udara sentiasa terbuka [46]."
+        "explanation": "Trakia disokong oleh gelang rawan berbentuk 'C' (C-shaped cartilage rings) untuk mengelakkannya daripada runtuh atau kempis semasa penarikan nafas, sekali gus memastikan laluan udara sentiasa terbuka."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q3",
@@ -3224,7 +3224,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The epiglottis relaxes to allow air and food to enter the lungs simultaneously."
         ],
         "answerIndex": 1,
-        "explanation": "Semasa menelan makanan, epiglotis jatuh ke bawah dan menutup trakea supaya makanan tidak masuk ke dalam saluran pernafasan, sebaliknya dipaksa mengalir terus ke dalam esofagus [48]. Semasa bernafas pula, epiglotis naik ke atas untuk membolehkan trakea terbuka [48]."
+        "explanation": "Semasa menelan makanan, epiglotis jatuh ke bawah dan menutup trakea supaya makanan tidak masuk ke dalam saluran pernafasan, sebaliknya dipaksa mengalir terus ke dalam esofagus. Semasa bernafas pula, epiglotis naik ke atas untuk membolehkan trakea terbuka."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q4",
@@ -3242,7 +3242,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The internal intercostal muscles relax, causing the rib cage to be passively drawn upwards."
         ],
         "answerIndex": 1,
-        "explanation": "Semasa menghembus nafas, otot interkostal mengendur dan sangkar rusuk bergerak ke bawah dan ke dalam [49]. Pada masa yang sama, otot diafragma juga mengendur untuk melengkung ke atas menjadi bentuk kubah semula [49]."
+        "explanation": "Semasa menghembus nafas, otot interkostal mengendur dan sangkar rusuk bergerak ke bawah dan ke dalam. Pada masa yang sama, otot diafragma juga mengendur untuk melengkung ke atas menjadi bentuk kubah semula."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q5",
@@ -3260,7 +3260,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The glass cylinder is sealed too tightly with a plug of reed without any air holes."
         ],
         "answerIndex": 2,
-        "explanation": "Model balang kaca berfungsi berdasarkan perubahan isi padu dan tekanan di dalam balang [53]. Sekiranya balang kaca retak (*cracked glass jar*), kebocoran udara berlaku, menyebabkan tekanan udara di dalam balang tidak dapat diubah (sentiasa seimbang dengan tekanan atmosfera luar). Akibatnya, tiada udara luar dipaksa masuk untuk mengembangkan belon [53]."
+        "explanation": "Model balang kaca berfungsi berdasarkan perubahan isi padu dan tekanan di dalam balang. Sekiranya balang kaca retak (cracked glass jar), kebocoran udara berlaku, menyebabkan tekanan udara di dalam balang tidak dapat diubah (sentiasa seimbang dengan tekanan atmosfera luar). Akibatnya, tiada udara luar dipaksa masuk untuk mengembangkan belon."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q6",
@@ -3270,15 +3270,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "In Experiment 2.1 (A) to determine the percentage of oxygen in air, the final water level in the gas jar for exhaled air is lower compared to inhaled air after the candle extinguishes. What is the conclusion of this observation?",
+        "question": "Two candles are lit separately in jars containing inhaled air and exhaled air. After the candles go out, the water level rises less in the jar of exhaled air. What is the conclusion?",
         "options": [
           "Exhaled air does not contain any oxygen gas.",
-          "Exhaled air has a lower percentage of oxygen than ambient air.",
-          "The carbon dioxide content in ambient air is higher.",
+          "Exhaled air has a lower percentage of oxygen than inhaled air.",
+          "Inhaled air has a higher carbon dioxide content than exhaled air.",
           "Candles produce more oxygen when burned in exhaled air."
         ],
         "answerIndex": 1,
-        "explanation": "Lilin membakar oksigen yang ada di dalam balang gas [50]. Air akan naik untuk menggantikan ruang oksigen yang telah digunakan [50]. Aras air naik lebih rendah dalam balang berisi udara hembusan kerana sebahagian besar oksigen telah diserap oleh paru-paru semasa bernafas, membuktikan udara hembusan mempunyai peratusan oksigen yang lebih rendah [52]."
+        "explanation": "A candle uses oxygen during combustion. The smaller rise in water level shows that exhaled air contains less oxygen than inhaled air."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q7",
@@ -3288,15 +3288,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "In Experiment 2.1 (B), inhaled air and exhaled air are bubbled into limewater separately through Flask A and Flask B. What is the experimental result that proves exhaled air contains a high concentration of carbon dioxide?",
+        "question": "Inhaled air is bubbled through limewater in flask A, while exhaled air is bubbled through limewater in flask B. Which observation shows that exhaled air contains more carbon dioxide?",
         "options": [
-          "The lime water in Kelalang A changed color to purple.",
-          "The lime water in Kelalang B remained clear throughout the experiment.",
-          "The lime water in Kelalang B became turbid very quickly.",
-          "The lime water in Kelalang A boiled and produced gas."
+          "The limewater in flask A turns purple.",
+          "The limewater in flask B remains clear throughout.",
+          "The limewater in flask B turns cloudy more quickly.",
+          "The limewater in flask A boils and becomes acidic."
         ],
         "answerIndex": 2,
-        "explanation": "Kehadiran gas karbon dioksida yang tinggi bertindak balas secara kimia dengan kalsium hidroksida (air kapur) untuk menghasilkan mendakan putih kalsium karbonat yang tidak larut, menyebabkan air kapur menjadi sangat keruh [52]. Udara hembusan mengandungi kepekatan karbon dioksida yang jauh lebih tinggi daripada udara sedutan [51, 52]. #### Pergerakan dan Pertukaran Gas di Alveolus"
+        "explanation": "Carbon dioxide turns limewater cloudy. The limewater receiving exhaled air turns cloudy more quickly because exhaled air contains more carbon dioxide."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q8",
@@ -3314,7 +3314,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Gas absorption process follows concentration gradient (partial pressure difference)."
         ],
         "answerIndex": 3,
-        "explanation": "Pertukaran gas respirasi berlaku melalui proses resapan (*diffusion*) [54]. Gas sentiasa meresap dari kawasan yang berkepekatan tinggi (atau tekanan separa tinggi) ke kawasan yang berkepekatan rendah (atau tekanan separa rendah) secara pasif tanpa menggunakan tenaga [54, 68]."
+        "explanation": "Pertukaran gas respirasi berlaku melalui proses resapan (diffusion). Gas sentiasa meresap dari kawasan yang berkepekatan tinggi (atau tekanan separa tinggi) ke kawasan yang berkepekatan rendah (atau tekanan separa rendah) secara pasif tanpa menggunakan tenaga."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q9",
@@ -3332,7 +3332,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Carbon monoxide-hemoglobin"
         ],
         "answerIndex": 1,
-        "explanation": "Oksigen bergabung secara kimia dengan hemoglobin (berwarna merah gelap) di dalam sel darah merah untuk membentuk oksihemoglobin yang merupakan sebatian tidak stabil dan berwarna merah cerah [55]."
+        "explanation": "Oksigen bergabung secara kimia dengan hemoglobin (berwarna merah gelap) di dalam sel darah merah untuk membentuk oksihemoglobin yang merupakan sebatian tidak stabil dan berwarna merah cerah."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q10",
@@ -3350,7 +3350,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The pH value of blood in the body tissues is too alkaline."
         ],
         "answerIndex": 1,
-        "explanation": "Oksihemoglobin ialah sebatian yang tidak stabil [55]. Apabila darah sampai ke kawasan tisu badan yang mempunyai kepekatan oksigen yang rendah (kerana digunakan secara berterusan untuk respirasi sel), oksihemoglobin terurai semula untuk membebaskan molekul oksigen ke dalam sel badan [55]."
+        "explanation": "Oksihemoglobin ialah sebatian yang tidak stabil. Apabila darah sampai ke kawasan tisu badan yang mempunyai kepekatan oksigen yang rendah (kerana digunakan secara berterusan untuk respirasi sel), oksihemoglobin terurai semula untuk membebaskan molekul oksigen ke dalam sel badan."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q11",
@@ -3368,7 +3368,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Carboxyhaemoglobin → Haemoglobin + Carbon monoxide"
         ],
         "answerIndex": 2,
-        "explanation": "Di dalam sel badan, oksigen meresap masuk dan digunakan untuk mengoksidakan glukosa bagi menghasilkan tenaga, dengan karbon dioksida serta air sebagai bahan sampingan melalui tindak balas: $ ext{Glukosa} + ext{Oksigen} ightarrow ext{Karbon Dioksida} + ext{Air} + ext{Tenaga}$ [55]."
+        "explanation": "Di dalam sel badan, oksigen meresap masuk dan digunakan untuk mengoksidakan glukosa bagi menghasilkan tenaga, dengan karbon dioksida serta air sebagai bahan sampingan melalui tindak balas: Glukosa + Oksigen → Karbon Dioksida + Air + Tenaga."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q12",
@@ -3386,7 +3386,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Allowing capillaries to continuously absorb water molecules from the atmosphere by osmosis."
         ],
         "answerIndex": 1,
-        "explanation": "Struktur yang sangat nipis (setebal satu sel sahaja) mengurangkan jarak laluan gas respirasi, sekali gus memudahkan dan memaksimumkan kadar resapan gas antara alveolus dengan kapilari darah [56, 64]."
+        "explanation": "Struktur yang sangat nipis (setebal satu sel sahaja) mengurangkan jarak laluan gas respirasi, sekali gus memudahkan dan memaksimumkan kadar resapan gas antara alveolus dengan kapilari darah."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q13",
@@ -3404,7 +3404,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Dissolving the smoke inhaled to prevent it from blocking the bronchioles."
         ],
         "answerIndex": 0,
-        "explanation": "Gas respirasi (oksigen dan karbon dioksida) mestilah melarut terlebih dahulu dalam lapisan air lembap di dinding alveolus sebelum ia dapat meresap merentasi membran sel yang telap gas [54, 56]. #### Kesihatan Sistem Respirasi"
+        "explanation": "Gas respirasi (oksigen dan karbon dioksida) mestilah melarut terlebih dahulu dalam lapisan air lembap di dinding alveolus sebelum ia dapat meresap merentasi membran sel yang telap gas. Kesihatan Sistem Respirasi"
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q14",
@@ -3422,7 +3422,7 @@ const scienceF3MasterQuizBanks: Partial<
           "It stimulates uncontrolled cell division in the lung cells to form a tumor."
         ],
         "answerIndex": 2,
-        "explanation": "Karbon monoksida meresap ke dalam darah dan bergabung dengan hemoglobin menghasilkan sebatian karboksihemoglobin yang sangat stabil [58]. Ini menyebabkan hemoglobin tidak dapat mengikat oksigen, mengurangkan kandungan oksigen dalam sel badan, dan boleh membawa maut akibat hipoksia tisu [58]."
+        "explanation": "Karbon monoksida meresap ke dalam darah dan bergabung dengan hemoglobin menghasilkan sebatian karboksihemoglobin yang sangat stabil. Ini menyebabkan hemoglobin tidak dapat mengikat oksigen, mengurangkan kandungan oksigen dalam sel badan, dan boleh membawa maut akibat hipoksia tisu."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q15",
@@ -3440,7 +3440,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Chronic inflammation of the inner bronchus walls that obstructs air intake."
         ],
         "answerIndex": 1,
-        "explanation": "Emfisema disebabkan oleh kerosakan dinding alveolus oleh bahan toksik asap rokok [60]. Dinding alveolus pecah dan bergabung membentuk pundi udara yang lebih besar, tidak sekata, dan mempunyai luas permukaan yang jauh lebih kecil untuk pertukaran gas [60]. Akibatnya, pesakit mengalami sesak nafas kronik [60]."
+        "explanation": "Emfisema disebabkan oleh kerosakan dinding alveolus oleh bahan toksik asap rokok. Dinding alveolus pecah dan bergabung membentuk pundi udara yang lebih besar, tidak sekata, dan mempunyai luas permukaan yang jauh lebih kecil untuk pertukaran gas. Akibatnya, pesakit mengalami sesak nafas kronik."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q16",
@@ -3450,15 +3450,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "In Experiment 2.2 (demonstration of the effects of smoking on the lungs), a filter pump is used to draw cigarette smoke through the apparatus. What is the observation and inference of the white cotton wool at the end of the experiment?",
+        "question": "Cigarette smoke is drawn through white cotton wool using a filter pump. Which observation and conclusion are correct?",
         "options": [
-          "The cotton changes to red, indicating that cigarette smoke contains carbon monoxide gas.",
-          "The cotton changes to grey/black, indicating that cigarette smoke contains nicotine which sticks to it.",
-          "The cotton remains pure white, indicating that cigarette smoke is fully filtered by lime water.",
-          "The cotton becomes wet and discolored, indicating that cigarette smoke releases nitrogen dioxide."
+          "The cotton wool turns red, showing that cigarette smoke contains acidic gas.",
+          "The cotton wool turns brown or black, showing that cigarette smoke contains sticky tar.",
+          "The cotton wool remains white, showing that limewater filters all cigarette smoke.",
+          "The cotton wool becomes wet and dissolves, showing that cigarette smoke releases nitrogen dioxide vapour."
         ],
         "answerIndex": 1,
-        "explanation": "Kapas putih bertindak sebagai analog tisu peparu [62]. Perubahan warna kapas kepada perang/hitam membuktikan kehadiran tar rokok (sisa aerosol melekit) di dalam asap rokok yang boleh mendap dan merosakkan tisu paru-paru dalam keadaan sebenar [63]."
+        "explanation": "The brown or black deposit on the cotton wool is sticky tar from cigarette smoke."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q17",
@@ -3476,7 +3476,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Carbon monoxide gas forms calcium sulfate salt when dissolved."
         ],
         "answerIndex": 1,
-        "explanation": "Larutan litmus ungu bertukar menjadi merah apabila didedahkan kepada bahan berasid [63]. Ini membuktikan asap rokok mengandungi gas-gas berasid yang larut di dalam kelembapan saluran respirasi, merengsakannya dan menyebabkan radang [63]."
+        "explanation": "Larutan litmus ungu bertukar menjadi merah apabila didedahkan kepada bahan berasid. Ini membuktikan asap rokok mengandungi gas-gas berasid yang larut di dalam kelembapan saluran respirasi, merengsakannya dan menyebabkan radang."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q18",
@@ -3494,7 +3494,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Workers in the coal industry who are passively exposed to sulfur dioxide fumes."
         ],
         "answerIndex": 1,
-        "explanation": "Perokok pasif ialah individu yang tidak merokok tetapi tersedut asap rokok daripada perokok aktif berhampirannya [62]. Mereka mempunyai risiko yang sama untuk menghidap penyakit pernafasan seperti asma, bronkitis, emfisema, dan kanser peparu [62, 63]. #### Adaptasi Sistem Respirasi Haiwan Lain"
+        "explanation": "Perokok pasif ialah individu yang tidak merokok tetapi tersedut asap rokok daripada perokok aktif berhampirannya. Mereka mempunyai risiko yang sama untuk menghidap penyakit pernafasan seperti asma, bronkitis, emfisema, dan kanser peparu. Adaptasi Sistem Respirasi Haiwan Lain"
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q19",
@@ -3512,7 +3512,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Frogs' skin contains spiracle pores controlled by muscle fibers."
         ],
         "answerIndex": 2,
-        "explanation": "Katak menyesuaikan kulitnya agar menjadi permukaan respirasi yang cekap dengan memastikan kulitnya sangat nipis, sentiasa lembap diselaputi mukus (untuk melarutkan gas), serta mempunyai kapilari darah yang padat di bawah kulit untuk mengangkut gas dengan cepat [64]."
+        "explanation": "Katak menyesuaikan kulitnya agar menjadi permukaan respirasi yang cekap dengan memastikan kulitnya sangat nipis, sentiasa lembap diselaputi mukus (untuk melarutkan gas), serta mempunyai kapilari darah yang padat di bawah kulit untuk mengangkut gas dengan cepat."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q20",
@@ -3530,7 +3530,7 @@ const scienceF3MasterQuizBanks: Partial<
           "By reducing the size of blood capillaries to increase gas diffusion pressure."
         ],
         "answerIndex": 1,
-        "explanation": "Bilangan filamen dan lamela yang banyak menyediakan luas permukaan yang besar [65]. Selain itu, arah aliran air yang bertentangan dengan arah aliran darah (*counter-current flow*) memelihara gradien kepekatan oksigen yang tinggi di sepanjang lamela, membolehkan oksigen meresap masuk dengan sangat cekap [65]."
+        "explanation": "Bilangan filamen dan lamela yang banyak menyediakan luas permukaan yang besar. Selain itu, arah aliran air yang bertentangan dengan arah aliran darah (counter-current flow) memelihara gradien kepekatan oksigen yang tinggi di sepanjang lamela, membolehkan oksigen meresap masuk dengan sangat cekap."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q21",
@@ -3548,7 +3548,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The insect blood capillaries are replaced by a highly acidic lymphatic circulation system."
         ],
         "answerIndex": 1,
-        "explanation": "Sistem trakea serangga mempunyai cabang halus yang dipanggil trakeol [65]. Trakeol bersentuhan terus secara fizikal dengan sel-sel badan (seperti sel otot) [65]. Oleh itu, resapan oksigen berlaku secara terus dari trakeol ke dalam sel badan tanpa memerlukan pengangkutan oleh medium darah [65, 66]. #### Pertukaran Gas dalam Tumbuhan"
+        "explanation": "Sistem trakea serangga mempunyai cabang halus yang dipanggil trakeol. Trakeol bersentuhan terus secara fizikal dengan sel-sel badan (seperti sel otot). Oleh itu, resapan oksigen berlaku secara terus dari trakeol ke dalam sel badan tanpa memerlukan pengangkutan oleh medium darah. Pertukaran Gas dalam Tumbuhan"
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q22",
@@ -3566,7 +3566,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Cell respiration occurs throughout the day and night while photosynthesis only occurs during the day (with the presence of light)."
         ],
         "answerIndex": 3,
-        "explanation": "Menurut buku teks, respirasi sel ialah proses metabolisme asas sel hidup yang berlaku sepanjang masa (siang dan malam) [67, 73]. Manakala fotosintesis ialah proses menghasilkan makanan menggunakan tenaga cahaya, jadi ia hanya boleh berlaku pada waktu siang dengan kehadiran cahaya sahaja [67, 73]."
+        "explanation": "Respirasi sel berlaku sepanjang masa, manakala fotosintesis memerlukan cahaya dan berlaku apabila cahaya mencukupi."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q23",
@@ -3584,7 +3584,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Osmotic pressure inside the guard cells drops suddenly, causing the stoma aperture to shrink."
         ],
         "answerIndex": 1,
-        "explanation": "Fotosintesis pada siang hari menghasilkan glukosa, meningkatkan tekanan osmosis sel pengawal [69]. Air meresap masuk secara osmosis, menyebabkan sel pengawal menjadi segah (*turgid*) [69, 70]. Oleh sebab dinding luar sel pengawal adalah nipis dan kenyal manakala dinding dalamnya adalah tebal dan kurang kenyal, sel pengawal membengkok ke luar dan menarik liang stoma terbuka [70]."
+        "explanation": "Fotosintesis pada siang hari menghasilkan glukosa, meningkatkan tekanan osmosis sel pengawal. Air meresap masuk secara osmosis, menyebabkan sel pengawal menjadi segah (turgid). Oleh sebab dinding luar sel pengawal adalah nipis dan kenyal manakala dinding dalamnya adalah tebal dan kurang kenyal, sel pengawal membengkok ke luar dan menarik liang stoma terbuka."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q24",
@@ -3602,7 +3602,7 @@ const scienceF3MasterQuizBanks: Partial<
           "To stimulate the breakdown of glucose into pyruvate within the mesophyll cells."
         ],
         "answerIndex": 2,
-        "explanation": "Suhu yang tinggi meningkatkan kadar transpirasi [69, 72]. Untuk mengelakkan tumbuhan layu atau mati akibat dehidrasi (kehilangan air berlebihan), sel pengawal kehilangan air secara osmosis, menjadi flasid, dan melurus kembali untuk menutup liang stoma bagi memelihara air di dalam tisu tumbuhan [69, 72]."
+        "explanation": "Suhu yang tinggi meningkatkan kadar transpirasi. Untuk mengelakkan tumbuhan layu atau mati akibat dehidrasi (kehilangan air berlebihan), sel pengawal kehilangan air secara osmosis, menjadi flasid, dan melurus kembali untuk menutup liang stoma bagi memelihara air di dalam tisu tumbuhan."
       },
       {
         "id": "sci-f3-c2-set-b-dlp-q25",
@@ -3620,7 +3620,7 @@ const scienceF3MasterQuizBanks: Partial<
           "It changes the chloroplast color from green to dark purple."
         ],
         "answerIndex": 0,
-        "explanation": "Zarah-zarah halus daripada jerebu, debu, atau habuk boleh terenap pada daun dan menyumbat liang stoma [70]. Ini menghalang pertukaran gas karbon dioksida dan oksigen [70]. Selain itu, lapisan debu menghalang penyerapan cahaya matahari, mengurangkan fotosintesis, dan membantutkan pertumbuhan tumbuhan [70]."
+        "explanation": "Zarah-zarah halus daripada jerebu, debu, atau habuk boleh terenap pada daun dan menyumbat liang stoma. Ini menghalang pertukaran gas karbon dioksida dan oksigen. Selain itu, lapisan debu menghalang penyerapan cahaya matahari, mengurangkan fotosintesis, dan membantutkan pertumbuhan tumbuhan."
       }
     ]
   },
@@ -3670,7 +3670,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Rajah jantung katak menunjukkan terdapat tiga ruang. Apakah kesan fisiologi utama struktur ini terhadap kecekapan pengangkutan gas beroksigen?",
+        "question": "Jantung katak mempunyai dua atrium dan satu ventrikel. Bagaimanakah susunan tiga ruang ini mempengaruhi pengangkutan darah beroksigen?",
         "options": [
           "Memastikan darah beroksigen dan terdeoksigen terpisah sepenuhnya di dalam ventrikel.",
           "Darah beroksigen dari atrium kiri dan darah terdeoksigen dari atrium kanan bercampur secara separa di dalam satu ventrikel tunggal sebelum dipam keluar.",
@@ -3678,7 +3678,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Darah terpaksa mengalir melalui kulit terlebih dahulu sebelum boleh memasuki atrium kiri."
         ],
         "answerIndex": 1,
-        "explanation": "Jantung amfibia terdiri daripada 3 ruang (2 atrium, 1 ventrikel). Kehadiran hanya satu ventrikel tunggal menyebabkan darah beroksigen (dari ovari/peparu/kulit) dan darah terdeoksigen (dari tisu badan) bercampur secara separa di dalamnya sebelum dipam keluar ke seluruh badan dan peparu."
+        "explanation": "Jantung katak mempunyai dua atrium dan satu ventrikel. Oleh sebab hanya terdapat satu ventrikel, darah beroksigen dan darah terdeoksigen bercampur secara separa sebelum dipam keluar."
       },
       {
         "id": "sci-f3-c3-set-a-bm-q4",
@@ -3760,15 +3760,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Rajah keratan rentas jantung menunjukkan ventrikel kiri mempunyai dinding berotot yang jauh lebih tebal berbanding ventrikel kanan. Apakah penjelasan fisiologi bagi perbezaan struktur ini?",
+        "question": "Ventrikel kiri mempunyai dinding berotot yang lebih tebal daripada ventrikel kanan. Mengapakah struktur ini diperlukan?",
         "options": [
           "Ventrikel kiri perlu mengepam darah terdeoksigen ke peparu pada tekanan yang tinggi.",
           "Ventrikel kiri mengandungi darah beroksigen yang mempunyai ketumpatan lebih tinggi daripada darah terdeoksigen.",
-          "Ventrikel kiri perlu menghasilkan daya mengecut yang kuat untuk mengepam darah beroksigen keluar ke seluruh bahagian badan melalui aorta (peredaran sistemik).",
+          "Ventrikel kiri perlu mengecut dengan kuat untuk mengepam darah beroksigen ke seluruh badan melalui aorta.",
           "Ventrikel kiri bertindak sebagai pusat simpanan darah utama jantung semasa fasa diastolik."
         ],
         "answerIndex": 2,
-        "explanation": "fisiologi bagi perbezaan struktur ini?\n*A cross-section of the human heart shows that the left ventricle has a much thicker muscular wall than the right ventricle. What is the physiological explanation?*\n\nA. Ventrikel kiri perlu mengepam darah terdeoksigen ke peparu pada tekanan yang tinggi.\nB. Ventrikel kiri mengandungi darah beroksigen yang mempunyai ketumpatan lebih tinggi daripada darah terdeoksigen.\nC. Ventrikel kiri perlu menghasilkan daya mengecut yang kuat untuk mengepam darah beroksigen keluar ke seluruh bahagian badan melalui aorta (peredaran sistemik).\nD. Ventrikel kiri bertindak sebagai pusat simpanan darah utama jantung semasa fasa diastolik.\n\n* Jawapan Betul: C\n* Penjelasan: Ventrikel kiri mempunyai dinding berotot yang paling tebal kerana ia bertanggungjawab mengepam darah beroksigen ke seluruh badan (kecuali peparu) merentasi laluan peredaran sistemik yang jauh dan berintangan tinggi. Sebaliknya, ventrikel kanan hanya mengepam darah pada jarak dekat ke peparu via peredaran pulmonari."
+        "explanation": "Ventrikel kiri berdinding tebal supaya dapat menghasilkan tekanan yang tinggi untuk mengepam darah ke seluruh badan. Ventrikel kanan hanya mengepam darah ke peparu."
       },
       {
         "id": "sci-f3-c3-set-a-bm-q9",
@@ -3778,7 +3778,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Apakah fungsi mekanikal spesifik bagi injap trikuspid dan injap bikuspid di dalam jantung manusia?",
+        "question": "Apakah fungsi injap trikuspid dan injap bikuspid di dalam jantung manusia?",
         "options": [
           "Menolak darah masuk ke dalam aorta secara paksaan.",
           "Membenarkan darah mengalir satu hala sahaja dari atrium ke ventrikel, dan menghalang darah daripada mengalir balik ke atrium semasa ventrikel mengecut.",
@@ -3832,7 +3832,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Semasa mengukur tekanan darah menggunakan sfigmomanometer, bacaan klinikal yang biasa ditulis ialah 120/75 mmHg. Apakah maksud fisiologi bacaan tekanan sistolik (120 mmHg) dan tekanan diastolik (75 mmHg)?",
+        "question": "Bacaan tekanan darah seseorang ialah 120/75 mmHg. Apakah maksud tekanan sistolik 120 mmHg dan tekanan diastolik 75 mmHg?",
         "options": [
           "Sistolik ialah tekanan semasa atrium mengecut, manakala diastolik ialah tekanan semasa ventrikel mengecut.",
           "Sistolik ialah tekanan darah maksimum di dalam arteri semasa ventrikel jantung mengecut, manakala diastolik ialah tekanan minimum semasa ventrikel mengendur untuk mengisi darah.",
@@ -3850,7 +3850,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Kadar denyutan nadi seseorang dipengaruhi oleh pelbagai faktor dalam kehidupan harian. Manakah antara perbandingan berikut adalah tepat berdasarkan konsep fisiologi yang dipelajari?",
+        "question": "Kadar denyutan nadi dipengaruhi oleh beberapa faktor. Perbandingan manakah yang betul?",
         "options": [
           "Kanak-kanak mempunyai kadar denyutan nadi yang lebih rendah daripada warga emas kerana saiz jantung mereka lebih besar.",
           "Perempuan dewasa mempunyai kadar denyutan nadi yang lebih tinggi daripada lelaki dewasa kerana saiz jantung perempuan adalah lebih kecil, memerlukan denyutan lebih kerap untuk mengepam isi padu darah yang sama.",
@@ -4066,10 +4066,10 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Dalam eksperimen menyahsihkan satu gelang kulit luar batang kayu pokok bunga raya (Aktiviti 3.9), bahagian tisu floem telah dibuang manakala xilem dibiarkan utuh di bahagian dalam. Apakah pemerhatian yang akan direkodkan selepas tempoh sebulan?",
+        "question": "Satu gelang kulit batang pokok bunga raya dibuang bersama tisu floemnya, tetapi xilem dibiarkan. Apakah pemerhatian selepas sebulan?",
         "options": [
           "Pokok layu dan mati serta-merta kerana air gagal diangkut naik ke daun dari akar.",
-          "Bahagian batang di atas gelang yang dibuang menjadi bengkak kerana pengangkutan sukrosa terhalang di situ, manakala bahagian bawah mengecut.",
+          "Bahagian batang di atas gelang membengkak kerana sukrosa terkumpul, manakala bahagian bawah gelang mengecut.",
           "Bahagian batang di bawah gelang menjadi bengkak kerana air bertumpu di situ secara graviti.",
           "Tiada sebarang perubahan fizikal dikesan pada mana-mana bahagian pokok bunga raya tersebut."
         ],
@@ -4092,7 +4092,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Semua di atas"
         ],
         "answerIndex": 3,
-        "explanation": "Organisma ringkas uniselular seperti *Amoeba sp.* dan tumbuhan ringkas seperti *Pleurococcus sp.* serta kulat ringkas seperti *Mucor sp.* mempunyai nisbah luas permukaan terhadap isi padu (JSTI/TSA:V) yang sangat besar. Disebabkan ini, proses resapan ringkas merentasi membran sel sudah mencukupi untuk memenuhi keperluan metabolik sel tanpa memerlukan sistem pengangkutan vaskular yang kompleks."
+        "explanation": "Organisma ringkas uniselular seperti Amoeba sp. dan tumbuhan ringkas seperti Pleurococcus sp. serta kulat ringkas seperti Mucor sp. mempunyai nisbah luas permukaan terhadap isi padu (JSTI/TSA:V) yang sangat besar. Disebabkan ini, proses resapan ringkas merentasi membran sel sudah mencukupi untuk memenuhi keperluan metabolik sel tanpa memerlukan sistem pengangkutan vaskular yang kompleks."
       },
       {
         "id": "sci-f3-c3-set-b-bm-q2",
@@ -4120,7 +4120,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Rajah di bawah menunjukkan sistem peredaran darah bagi seekor haiwan vertebrata:\n$$\\text{Sinus Venosus} \\rightarrow \\text{Atrium} \\rightarrow \\text{Ventrikel} \\rightarrow \\text{Arteri} \\rightarrow \\text{Kapilari Insang} \\rightarrow \\text{Aorta Dorsal} \\rightarrow \\text{Sistem Tisu} \\rightarrow \\text{Vena}$$\nHaiwan manakah yang dikaitkan dengan litar peredaran di atas?",
+        "question": "Darah seekor vertebrata mengalir mengikut urutan sinus venosus → atrium → ventrikel → arteri → kapilari insang → aorta dorsal → tisu badan → vena. Haiwan manakah mempunyai sistem peredaran ini?",
         "options": [
           "Katak",
           "Ikan Bawal",
@@ -4128,7 +4128,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Burung Pipit"
         ],
         "answerIndex": 1,
-        "explanation": "Sistem di atas menunjukkan sistem peredaran darah tunggal (*single circulatory system*) di mana darah mengalir menerusi jantung hanya sekali dalam satu peredaran lengkap. Jantung ikan hanya mempunyai 2 ruang (1 atrium dan 1 ventrikel). Darah terdeoksigen dari tisu dipam ke insang untuk pertukaran gas sebelum terus mengalir ke sel-sel badan lain tanpa kembali ke jantung terlebih dahulu."
+        "explanation": "Sistem di atas menunjukkan sistem peredaran darah tunggal (single circulatory system) di mana darah mengalir menerusi jantung hanya sekali dalam satu peredaran lengkap. Jantung ikan hanya mempunyai 2 ruang (1 atrium dan 1 ventrikel). Darah terdeoksigen dari tisu dipam ke insang untuk pertukaran gas sebelum terus mengalir ke sel-sel badan lain tanpa kembali ke jantung terlebih dahulu."
       },
       {
         "id": "sci-f3-c3-set-b-bm-q4",
@@ -4176,10 +4176,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "Antara laluan berikut, yang manakah menunjukkan aliran darah terdeoksigen yang betul di dalam jantung manusia?",
         "options": [
-          "Vena pulmonari $\\rightarrow$ Atrium kiri $\\rightarrow$ Injap bikuspid $\\rightarrow$ Ventrikel kiri",
-          "Vena kava $\\rightarrow$ Atrium kanan $\\rightarrow$ Injap trikuspid $\\rightarrow$ Ventrikel kanan",
-          "Aorta $\\rightarrow$ Atrium kanan $\\rightarrow$ Injap sabit $\\rightarrow$ Ventrikel kanan",
-          "Vena kava $\\rightarrow$ Atrium kiri $\\rightarrow$ Injap trikuspid $\\rightarrow$ Ventrikel kanan"
+          "Vena pulmonari → Atrium kiri → Injap bikuspid → Ventrikel kiri",
+          "Vena kava → Atrium kanan → Injap trikuspid → Ventrikel kanan",
+          "Aorta → Atrium kanan → Injap sabit → Ventrikel kanan",
+          "Vena kava → Atrium kiri → Injap trikuspid → Ventrikel kanan"
         ],
         "answerIndex": 1,
         "explanation": "Darah terdeoksigen dari seluruh tisu badan mengalir melalui vena kava superior dan inferior ke dalam atrium kanan. Apabila atrium kanan mengecut, darah ditolak merentasi injap trikuspid masuk ke dalam ventrikel kanan. Dari situ, darah dipam merentasi injap sabit ke dalam arteri pulmonari menuju ke peparu untuk menjalani pengoksigenan."
@@ -4210,7 +4210,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Seorang pelajar mendapati salur darah $X$ mempunyai ciri-ciri berikut:\n- Dinding yang nipis tetapi berotot dan elastik\n- Mempunyai lumen yang besar\n- Mempunyai injap di sepanjang salurnya\nApakah salur darah $X$ dan jenis darah yang lazimnya dibawa oleh salur darah ini?",
+        "question": "Seorang pelajar mendapati salur darah X mempunyai ciri-ciri berikut: - Dinding yang nipis tetapi berotot dan elastik - Mempunyai lumen yang besar - Mempunyai injap di sepanjang salurnya Apakah salur darah X dan jenis darah yang lazimnya dibawa oleh salur darah ini?",
         "options": [
           "Arteri; darah beroksigen",
           "Vena; darah terdeoksigen",
@@ -4246,7 +4246,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Rajah berikut menunjukkan sebahagian daripada litar peredaran darah manusia:\n$$\\text{Ventrikel Kanan} \\rightarrow \\text{Arteri Pulmonari} \\rightarrow \\text{Peparu} \\rightarrow \\text{Vena Pulmonari} \\rightarrow \\text{Atrium Kiri}$$\nApakah nama khusus bagi litar peredaran ini?",
+        "question": "Darah mengalir dari ventrikel kanan melalui arteri pulmonari ke peparu, kemudian kembali melalui vena pulmonari ke atrium kiri. Apakah nama peredaran ini?",
         "options": [
           "Peredaran Sistemik",
           "Peredaran Portal Hepatik",
@@ -4254,7 +4254,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Peredaran Koronari"
         ],
         "answerIndex": 2,
-        "explanation": "Peredaran darah manusia adalah peredaran ganda dua (*double circulation*), yang terdiri daripada peredaran pulmonari dan peredaran sistemik. Peredaran pulmonari ialah aliran darah terdeoksigen yang keluar dari ventrikel kanan ke peparu untuk melepaskan $CO_2$ dan mengikat $O_2$, lalu kembali sebagai darah beroksigen ke atrium kiri melalui vena pulmonari."
+        "explanation": "Peredaran darah manusia adalah peredaran ganda dua (double circulation), yang terdiri daripada peredaran pulmonari dan peredaran sistemik. Peredaran pulmonari ialah aliran darah terdeoksigen yang keluar dari ventrikel kanan ke peparu untuk melepaskan CO₂ dan mengikat O₂, lalu kembali sebagai darah beroksigen ke atrium kiri melalui vena pulmonari."
       },
       {
         "id": "sci-f3-c3-set-b-bm-q11",
@@ -4290,7 +4290,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Seorang lelaki berumur 65 tahun yang menghidap hipertensi kronik."
         ],
         "answerIndex": 2,
-        "explanation": "Atlet yang terlatih mempunyai otot jantung (miokardium) yang sangat kuat dan tebal, membolehkan isi padu strok (*stroke volume*) mereka menjadi besar. Ini bermakna jantung mereka boleh mengepam lebih banyak darah dalam satu denyutan tunggal, memenuhi keperluan oksigen badan dengan kadar denyutan nadi rehat yang lebih rendah (bradikardia fisiologi atlet, sering di bawah 60 bpm)."
+        "explanation": "Atlet yang terlatih mempunyai otot jantung (miokardium) yang sangat kuat dan tebal, membolehkan isi padu strok (stroke volume) mereka menjadi besar. Ini bermakna jantung mereka boleh mengepam lebih banyak darah dalam satu denyutan tunggal, memenuhi keperluan oksigen badan dengan kadar denyutan nadi rehat yang lebih rendah (bradikardia fisiologi atlet, sering di bawah 60 bpm)."
       },
       {
         "id": "sci-f3-c3-set-b-bm-q13",
@@ -4308,7 +4308,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Hemoglobin terlarut"
         ],
         "answerIndex": 2,
-        "explanation": "Darah terdiri daripada ampaian sel di dalam bendalir. Apabila dienapkan secara emparan, sel darah merah yang padat mendap di bawah (45%), sel darah putih dan platlet membentuk lapisan nipis tengah (*buffy coat* <1%), manakah cecair kuning lut sinar di atas ialah plasma darah (55%) yang mengandungi 90% air dan 10% bahan terlarut seperti nutrien, gas respirasi, protein plasma, enzim, hormon, dan bahan kumuh."
+        "explanation": "Darah terdiri daripada ampaian sel di dalam bendalir. Apabila dienapkan secara emparan, sel darah merah yang padat mendap di bawah (45%), sel darah putih dan platlet membentuk lapisan nipis tengah (buffy coat <1%), manakah cecair kuning lut sinar di atas ialah plasma darah (55%) yang mengandungi 90% air dan 10% bahan terlarut seperti nutrien, gas respirasi, protein plasma, enzim, hormon, dan bahan kumuh."
       },
       {
         "id": "sci-f3-c3-set-b-bm-q14",
@@ -4326,7 +4326,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sel stem hematopoietik"
         ],
         "answerIndex": 1,
-        "explanation": "Sel darah merah (eritrosit) tidak mempunyai nukleus apabila matang bagi membolehkan lebih banyak ruang untuk memuatkan molekul hemoglobin (pigmen pembawa oksigen). Bentuk dwicekung (*biconcave*) meningkatkan nisbah luas permukaan terhadap isi padu untuk resapan gas yang lebih pantas. Eritrosit dihasilkan di sumsum tulang dan dimusnahkan di limpa atau hati selepas ~120 hari."
+        "explanation": "Sel darah merah (eritrosit) tidak mempunyai nukleus apabila matang bagi membolehkan lebih banyak ruang untuk memuatkan molekul hemoglobin (pigmen pembawa oksigen). Bentuk dwicekung (biconcave) meningkatkan nisbah luas permukaan terhadap isi padu untuk resapan gas yang lebih pantas. Eritrosit dihasilkan di sumsum tulang dan dimusnahkan di limpa atau hati selepas ~120 hari."
       },
       {
         "id": "sci-f3-c3-set-b-bm-q15",
@@ -4344,7 +4344,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Albumin plasma"
         ],
         "answerIndex": 2,
-        "explanation": "Platlet (*platelets* atau trombosit) ialah serpihan sel mikro tanpa nukleus yang memainkan peranan kritikal dalam proses hemostasis (pembekuan darah). Apabila salur darah tercedera, platlet akan berkumpul di kawasan luka untuk membentuk palam platlet awal dan membebaskan faktor pembekuan bagi menukarkan fibrinogen larut kepada gentian fibrin tidak larut bagi memerangkap sel darah merah, menutup luka, dan menghentikan pendarahan."
+        "explanation": "Platlet (platelets atau trombosit) ialah serpihan sel mikro tanpa nukleus yang memainkan peranan kritikal dalam proses hemostasis (pembekuan darah). Apabila salur darah tercedera, platlet akan berkumpul di kawasan luka untuk membentuk palam platlet awal dan membebaskan faktor pembekuan bagi menukarkan fibrinogen larut kepada gentian fibrin tidak larut bagi memerangkap sel darah merah, menutup luka, dan menghentikan pendarahan."
       },
       {
         "id": "sci-f3-c3-set-b-bm-q16",
@@ -4413,10 +4413,10 @@ const scienceF3MasterQuizBanks: Partial<
           "Untuk memusnahkan sel darah putih penderma bagi mencegah jangkitan kuman.",
           "Bertindak sebagai antikoagulan (mencegah darah daripada membeku semasa penyimpanan).",
           "Meningkatkan keupayaan oksihemoglobin untuk mengikat lebih banyak gas nitrogen.",
-          "Mengekalkan suhu malar beg darah pada $4\\text{ }^\\circ\\text{C}$ tanpa memerlukan peti sejuk."
+          "Mengekalkan suhu malar beg darah pada 4 °C tanpa memerlukan peti sejuk."
         ],
         "answerIndex": 1,
-        "explanation": "Beg darah penderma dicampurkan dengan agen pengkelat kalsium seperti natrium sitrat (*sodium citrate*). Ion kalsium ($Ca^{2+}$) adalah komponen penting dalam lata pembekuan darah. Dengan mengikat kalsium, natrium sitrat menghalang pengaktifan lata pembekuan, memastikan darah kekal dalam keadaan cecair semasa disimpan di dalam peti sejuk bank darah pada suhu $4\\text{ }^\\circ\\text{C}$."
+        "explanation": "Beg darah penderma dicampurkan dengan agen pengkelat kalsium seperti natrium sitrat (sodium citrate). Ion kalsium (Ca²⁺) adalah komponen penting dalam lata pembekuan darah. Dengan mengikat kalsium, natrium sitrat menghalang pengaktifan lata pembekuan, memastikan darah kekal dalam keadaan cecair semasa disimpan di dalam peti sejuk bank darah pada suhu 4 °C."
       },
       {
         "id": "sci-f3-c3-set-b-bm-q20",
@@ -4448,7 +4448,7 @@ const scienceF3MasterQuizBanks: Partial<
         "options": [
           "Peningkatan keamatan cahaya matahari dari mendung ke terik.",
           "Peningkatan kelembapan relatif udara persekitaran.",
-          "Peningkatan suhu atmosfera persekitaran daripada $25\\text{ }^\\circ\\text{C}$ ke $35\\text{ }^\\circ\\text{C}$.",
+          "Peningkatan suhu atmosfera persekitaran daripada 25 °C ke 35 °C.",
           "Pergerakan udara yang lebih pantas akibat tiupan angin kuat."
         ],
         "answerIndex": 1,
@@ -4462,15 +4462,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Rajah berikut menunjukkan keratin rentas sebatang daun tumbuhan eudikot:\n$$\\text{Kutikel} \\rightarrow \\text{Epidermis atas} \\rightarrow \\text{Sel Mesofil Palisad} \\rightarrow \\text{Berkas Vaskular (X dan Y)} \\rightarrow \\text{Epidermis bawah}$$\nDiberi $X$ terletak di bahagian atas berkas vaskular (menghadap epidermis atas) manakala $Y$ di bahagian bawah (menghadap epidermis bawah). Apakah struktur $X$ dan $Y$ serta fungsinya?",
+        "question": "Dalam berkas vaskular daun eudikot, satu tisu terletak di bahagian atas dan satu lagi di bahagian bawah. Padanan kedudukan dan fungsi manakah yang betul?",
         "options": [
-          "$X$ ialah Floem (translocasi sukrosa); $Y$ ialah Xilem",
-          "$X$ ialah Xilem (mengangkut air); $Y$ ialah Floem",
-          "$X$ ialah Parenkima (sokongan mekanikal); $Y$ ialah Kolenkima",
-          "$X$ ialah Xilem (fotosintesis); $Y$ ialah Floem"
+          "Atas: floem yang mengangkut sukrosa; bawah: xilem yang mengangkut air",
+          "Atas: xilem yang mengangkut air; bawah: floem yang mengangkut sukrosa",
+          "Atas: parenkima yang mengangkut air; bawah: kolenkima yang mengangkut sukrosa",
+          "Atas: xilem yang menjalankan fotosintesis; bawah: floem yang menjalankan respirasi"
         ],
         "answerIndex": 1,
-        "explanation": "Di dalam berkas vaskular daun, Xilem terletak di bahagian atas (menghadap ke arah permukaan atas daun untuk menyalurkan air dan garam mineral yang diserap dari akar ke sel mesofil fotosintetik). Floem terletak di bahagian bawah berkas vaskular untuk mengangkut hasil fotosintesis (sucrose) dari daun ke bahagian tumbuhan yang lain (akar, pucuk, buah)."
+        "explanation": "Dalam berkas vaskular daun eudikot, xilem terletak di bahagian atas dan mengangkut air serta garam mineral. Floem terletak di bahagian bawah dan mengangkut sukrosa."
       },
       {
         "id": "sci-f3-c3-set-b-bm-q23",
@@ -4488,7 +4488,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Menarik bakteria tanah simbiotik bagi meningkatkan penyerapan nitrogen."
         ],
         "answerIndex": 2,
-        "explanation": "Salur xilem dibina daripada sel-sel mati yang memanjang hujung-ke-hujung tanpa sitoplasma bagi membentuk salur berongga berterusan. Dinding xilem ditebalkan dengan lignin (bercorak gegelang, pilin, atau tebal). Lignin sangat keras dan tegar, memberikan kekuatan mekanikal kepada batang tumbuhan dan menghalang salur xilem daripada kempis (*collapse*) akibat tarikan transpirasi yang menghasilkan tekanan tegangan negatif yang kuat semasa air ditarik ke atas."
+        "explanation": "Salur xilem dibina daripada sel-sel mati yang memanjang hujung-ke-hujung tanpa sitoplasma bagi membentuk salur berongga berterusan. Dinding xilem ditebalkan dengan lignin (bercorak gegelang, pilin, atau tebal). Lignin sangat keras dan tegar, memberikan kekuatan mekanikal kepada batang tumbuhan dan menghalang salur xilem daripada kempis (collapse) akibat tarikan transpirasi yang menghasilkan tekanan tegangan negatif yang kuat semasa air ditarik ke atas."
       },
       {
         "id": "sci-f3-c3-set-b-bm-q24",
@@ -4498,7 +4498,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Dalam Aktiviti 3.9, kulit kayu sebatang tumbuhan berkayu telah dikikis secara gelang (ringing/bark stripping) untuk membuang tisu floemnya sahaja. Selepas beberapa minggu, didapati bahagian atas gelang tersebut membengkak manakala bahagian bawah gelang mengecut. Apakah kesimpulan daripada pemerhatian ini?",
+        "question": "Satu gelang kulit batang tumbuhan berkayu dibuang bersama floemnya. Selepas beberapa minggu, bahagian atas gelang membengkak manakala bahagian bawah mengecut. Apakah kesimpulannya?",
         "options": [
           "Xilem mengangkut air dari akar ke atas daun.",
           "Floem mengangkut bahan makanan organik (sukrosa) dari daun ke bahagian bawah tumbuhan.",
@@ -4524,7 +4524,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Bahan Diangkut | Hanya mengangkut mineral terlarut | Hanya mengangkut gas oksigen sahaja"
         ],
         "answerIndex": 1,
-        "explanation": "Sistem peredaran darah haiwan ialah sistem tertutup bertiub yang mempunyai organ pengepam berotot yang khusus (iaitu jantung) untuk memacu cecair pengangkutan (darah). Sistem pengangkutan tumbuhan pula tidak mempunyai sebarang organ pam; aliran air dipacu secara pasif oleh tarikan transpirasi, tindakan kapilari, dan tekanan akar, manakala makanan dipacu secara translokasi aktif dari kawasan sumber (*source*) ke kawasan sink (*sink*)."
+        "explanation": "Sistem peredaran darah haiwan ialah sistem tertutup bertiub yang mempunyai organ pengepam berotot yang khusus (iaitu jantung) untuk memacu cecair pengangkutan (darah). Sistem pengangkutan tumbuhan pula tidak mempunyai sebarang organ pam; aliran air dipacu secara pasif oleh tarikan transpirasi, tindakan kapilari, dan tekanan akar, manakala makanan dipacu secara translokasi aktif dari kawasan sumber (source) ke kawasan sink (sink)."
       }
     ],
     "dlp": [
@@ -4572,7 +4572,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "The three-chambered heart diagram of a frog has a specific physiological effect. What is its main effect on the efficiency of oxygenated gas transport?",
+        "question": "A frog's heart has two atria and one ventricle. How does this three-chambered arrangement affect the transport of oxygenated blood?",
         "options": [
           "Ensuring that oxygenated and deoxygenated blood are completely separated within the ventricles.",
           "Oxygenated blood from the left atrium and deoxygenated blood from the right atrium mix partially within a single ventricle before being pumped out.",
@@ -4580,7 +4580,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Blood is forced to flow through the skin first before entering the left atrium."
         ],
         "answerIndex": 1,
-        "explanation": "Jantung amfibia terdiri daripada 3 ruang (2 atrium, 1 ventrikel). Kehadiran hanya satu ventrikel tunggal menyebabkan darah beroksigen (dari ovari/peparu/kulit) dan darah terdeoksigen (dari tisu badan) bercampur secara separa di dalamnya sebelum dipam keluar ke seluruh badan dan peparu."
+        "explanation": "Jantung katak mempunyai dua atrium dan satu ventrikel. Oleh sebab hanya terdapat satu ventrikel, darah beroksigen dan darah terdeoksigen bercampur secara separa sebelum dipam keluar."
       },
       {
         "id": "sci-f3-c3-set-a-dlp-q4",
@@ -4626,7 +4626,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Which of the following blood vessel characteristics comparison is accurate?\n| Ciri | Arteri (Artery) | Vena (Vein) |\n| :--- | :--- | :--- |\n| A | Dinding nipis dan kurang berotot | Dinding tebal, berotot dan sangat elastik |\n| B | Lumen kecil, tiada injap | Lumen besar, mempunyai injap |\n| C | Membawa darah pada tekanan tinggi | Membawa darah pada tekanan rendah, mempunyai injap |\n| D | Aliran darah dengan denyutan nadi perlahan | Aliran darah dengan denyutan nadi laju |",
+        "question": "Which of the following blood vessel characteristics comparison is accurate? | Ciri | Arteri (Artery) | Vena (Vein) | |:--- |:--- |:--- | | A | Dinding nipis dan kurang berotot | Dinding tebal, berotot dan sangat elastik | | B | Lumen kecil, tiada injap | Lumen besar, mempunyai injap | | C | Membawa darah pada tekanan tinggi | Membawa darah pada tekanan rendah, mempunyai injap | | D | Aliran darah dengan denyutan nadi perlahan | Aliran darah dengan denyutan nadi laju |",
         "options": [
           "Equivalent A",
           "Equivalent B",
@@ -4662,15 +4662,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "A cross-section of the human heart shows that the left ventricle has a much thicker muscular wall than the right ventricle. What is the physiological explanation?",
+        "question": "The left ventricle has a thicker muscular wall than the right ventricle. Why is this structure needed?",
         "options": [
           "The left ventricle needs to pump deoxygenated blood to the lungs at high pressure.",
           "The left ventricle contains oxygenated blood which has a higher density than deoxygenated blood.",
-          "The left ventricle needs to produce a strong ejection force to pump oxygenated blood throughout the body via the aorta (systemic circulation).",
+          "The left ventricle must contract strongly to pump oxygenated blood throughout the body through the aorta.",
           "The left ventricle acts as the main blood storage center of the heart during the diastolic phase."
         ],
         "answerIndex": 2,
-        "explanation": "fisiologi bagi perbezaan struktur ini?\n*A cross-section of the human heart shows that the left ventricle has a much thicker muscular wall than the right ventricle. What is the physiological explanation?*\n\nA. Ventrikel kiri perlu mengepam darah terdeoksigen ke peparu pada tekanan yang tinggi.\nB. Ventrikel kiri mengandungi darah beroksigen yang mempunyai ketumpatan lebih tinggi daripada darah terdeoksigen.\nC. Ventrikel kiri perlu menghasilkan daya mengecut yang kuat untuk mengepam darah beroksigen keluar ke seluruh bahagian badan melalui aorta (peredaran sistemik).\nD. Ventrikel kiri bertindak sebagai pusat simpanan darah utama jantung semasa fasa diastolik.\n\n* Jawapan Betul: C\n* Penjelasan: Ventrikel kiri mempunyai dinding berotot yang paling tebal kerana ia bertanggungjawab mengepam darah beroksigen ke seluruh badan (kecuali peparu) merentasi laluan peredaran sistemik yang jauh dan berintangan tinggi. Sebaliknya, ventrikel kanan hanya mengepam darah pada jarak dekat ke peparu via peredaran pulmonari."
+        "explanation": "Ventrikel kiri berdinding tebal supaya dapat menghasilkan tekanan yang tinggi untuk mengepam darah ke seluruh badan. Ventrikel kanan hanya mengepam darah ke peparu."
       },
       {
         "id": "sci-f3-c3-set-a-dlp-q9",
@@ -4968,12 +4968,12 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "In a bark ringing experiment, the phloem ring is removed while the xylem is left intact. What observation will be recorded after one month?",
+        "question": "A ring of bark and its phloem is removed from a hibiscus stem, while the xylem is left intact. What will be observed after one month?",
         "options": [
           "The leaves wilt and die immediately due to the failure to transport water from the roots to the leaves.",
-          "The upper part of the stem above the node swells due to the obstruction in the transport of sucrose, while the lower part becomes flaccid.",
-          "The upper part of the stem below the node swells due to water accumulation there due to gravity.",
-          "No physical changes are observed in any part of the Rafflesia plant stem."
+          "The stem above the ring swells because sucrose accumulates there, while the part below the ring shrinks.",
+          "The stem below the ring swells because water accumulates there due to gravity.",
+          "No physical change occurs in any part of the hibiscus stem."
         ],
         "answerIndex": 1,
         "explanation": "Memandangkan kulit pokok di mana tisu floem berada telah dibuang, sukrosa yang dihasilkan oleh fotosintesis di daun tidak dapat diangkut turun ke akar melintasi kawasan gelang tersebut. Hal ini menyebabkan pengumpulan sukrosa berlaku di bahagian atas gelang, menyebabkan tisu bahagian atas membengkak. Akar akan kehabisan makanan secara perlahan-lahan."
@@ -4994,7 +4994,7 @@ const scienceF3MasterQuizBanks: Partial<
           "All of the above"
         ],
         "answerIndex": 3,
-        "explanation": "Organisma ringkas uniselular seperti *Amoeba sp.* dan tumbuhan ringkas seperti *Pleurococcus sp.* serta kulat ringkas seperti *Mucor sp.* mempunyai nisbah luas permukaan terhadap isi padu (JSTI/TSA:V) yang sangat besar. Disebabkan ini, proses resapan ringkas merentasi membran sel sudah mencukupi untuk memenuhi keperluan metabolik sel tanpa memerlukan sistem pengangkutan vaskular yang kompleks."
+        "explanation": "Organisma ringkas uniselular seperti Amoeba sp. dan tumbuhan ringkas seperti Pleurococcus sp. serta kulat ringkas seperti Mucor sp. mempunyai nisbah luas permukaan terhadap isi padu (JSTI/TSA:V) yang sangat besar. Disebabkan ini, proses resapan ringkas merentasi membran sel sudah mencukupi untuk memenuhi keperluan metabolik sel tanpa memerlukan sistem pengangkutan vaskular yang kompleks."
       },
       {
         "id": "sci-f3-c3-set-b-dlp-q2",
@@ -5022,15 +5022,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "The diagram above shows the circulatory system of a vertebrate. Which animal is associated with this circulatory circuit?",
+        "question": "A vertebrate's blood flows through the sinus venosus → atrium → ventricle → artery → gill capillaries → dorsal aorta → body tissues → vein. Which animal has this circulatory system?",
         "options": [
-          "Rana temporaria",
-          "Pampus argenteus",
-          "Hemidactylus frenatus",
-          "Passer montanus"
+          "Frog",
+          "Fish",
+          "Lizard",
+          "Sparrow"
         ],
         "answerIndex": 1,
-        "explanation": "Sistem di atas menunjukkan sistem peredaran darah tunggal (*single circulatory system*) di mana darah mengalir menerusi jantung hanya sekali dalam satu peredaran lengkap. Jantung ikan hanya mempunyai 2 ruang (1 atrium dan 1 ventrikel). Darah terdeoksigen dari tisu dipam ke insang untuk pertukaran gas sebelum terus mengalir ke sel-sel badan lain tanpa kembali ke jantung terlebih dahulu."
+        "explanation": "Sistem di atas menunjukkan sistem peredaran darah tunggal (single circulatory system) di mana darah mengalir menerusi jantung hanya sekali dalam satu peredaran lengkap. Jantung ikan hanya mempunyai 2 ruang (1 atrium dan 1 ventrikel). Darah terdeoksigen dari tisu dipam ke insang untuk pertukaran gas sebelum terus mengalir ke sel-sel badan lain tanpa kembali ke jantung terlebih dahulu."
       },
       {
         "id": "sci-f3-c3-set-b-dlp-q4",
@@ -5078,10 +5078,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "Which of the following pathways shows the correct flow of deoxygenated blood within the human heart?",
         "options": [
-          "Pulmonary vein $\\rightarrow$ Left atrium $\\rightarrow$ Left mitral valve $\\rightarrow$ Left ventricle",
-          "Superior vena cava $\\rightarrow$ Right atrium $\\rightarrow$ Right tricuspid valve $\\rightarrow$ Right ventricle",
-          "Aorta $\\rightarrow$ Right atrium $\\rightarrow$ Right atrioventricular valve (or tricuspid valve) $\\rightarrow$ Right ventricle",
-          "Superior vena cava $\\rightarrow$ Left atrium $\\rightarrow$ Left tricuspid valve $\\rightarrow$ Right ventricle"
+          "Pulmonary vein → Left atrium → Left mitral valve → Left ventricle",
+          "Superior vena cava → Right atrium → Right tricuspid valve → Right ventricle",
+          "Aorta → Right atrium → Right atrioventricular valve (or tricuspid valve) → Right ventricle",
+          "Superior vena cava → Left atrium → Left tricuspid valve → Right ventricle"
         ],
         "answerIndex": 1,
         "explanation": "Darah terdeoksigen dari seluruh tisu badan mengalir melalui vena kava superior dan inferior ke dalam atrium kanan. Apabila atrium kanan mengecut, darah ditolak merentasi injap trikuspid masuk ke dalam ventrikel kanan. Dari situ, darah dipam merentasi injap sabit ke dalam arteri pulmonari menuju ke peparu untuk menjalani pengoksigenan."
@@ -5112,7 +5112,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "A student observed that blood vessel $X$ has the following characteristics:\n- Thin but muscular and elastic walls\n- Has a large lumen\n- Contains valves along its vessel\nWhat is blood vessel $X$ and the type of blood it typically carries?",
+        "question": "A student observed that blood vessel X has the following characteristics: - Thin but muscular and elastic walls - Has a large lumen - Contains valves along its vessel What is blood vessel X and the type of blood it typically carries?",
         "options": [
           "Artery; oxygenated blood",
           "Vein; deoxygenated blood",
@@ -5148,7 +5148,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "What is the specific name of this circulatory circuit?",
+        "question": "Blood flows from the right ventricle through the pulmonary artery to the lungs, then returns through the pulmonary vein to the left atrium. What is this circulation called?",
         "options": [
           "Systemic Circulation",
           "Hepatic Portal Circulation",
@@ -5156,7 +5156,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Coronary Circulation"
         ],
         "answerIndex": 2,
-        "explanation": "Peredaran darah manusia adalah peredaran ganda dua (*double circulation*), yang terdiri daripada peredaran pulmonari dan peredaran sistemik. Peredaran pulmonari ialah aliran darah terdeoksigen yang keluar dari ventrikel kanan ke peparu untuk melepaskan $CO_2$ dan mengikat $O_2$, lalu kembali sebagai darah beroksigen ke atrium kiri melalui vena pulmonari."
+        "explanation": "Peredaran darah manusia adalah peredaran ganda dua (double circulation), yang terdiri daripada peredaran pulmonari dan peredaran sistemik. Peredaran pulmonari ialah aliran darah terdeoksigen yang keluar dari ventrikel kanan ke peparu untuk melepaskan CO₂ dan mengikat O₂, lalu kembali sebagai darah beroksigen ke atrium kiri melalui vena pulmonari."
       },
       {
         "id": "sci-f3-c3-set-b-dlp-q11",
@@ -5192,7 +5192,7 @@ const scienceF3MasterQuizBanks: Partial<
           "A 65-year-old man with chronic hypertension."
         ],
         "answerIndex": 2,
-        "explanation": "Atlet yang terlatih mempunyai otot jantung (miokardium) yang sangat kuat dan tebal, membolehkan isi padu strok (*stroke volume*) mereka menjadi besar. Ini bermakna jantung mereka boleh mengepam lebih banyak darah dalam satu denyutan tunggal, memenuhi keperluan oksigen badan dengan kadar denyutan nadi rehat yang lebih rendah (bradikardia fisiologi atlet, sering di bawah 60 bpm)."
+        "explanation": "Atlet yang terlatih mempunyai otot jantung (miokardium) yang sangat kuat dan tebal, membolehkan isi padu strok (stroke volume) mereka menjadi besar. Ini bermakna jantung mereka boleh mengepam lebih banyak darah dalam satu denyutan tunggal, memenuhi keperluan oksigen badan dengan kadar denyutan nadi rehat yang lebih rendah (bradikardia fisiologi atlet, sering di bawah 60 bpm)."
       },
       {
         "id": "sci-f3-c3-set-b-dlp-q13",
@@ -5210,7 +5210,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Dissolved hemoglobin"
         ],
         "answerIndex": 2,
-        "explanation": "Darah terdiri daripada ampaian sel di dalam bendalir. Apabila dienapkan secara emparan, sel darah merah yang padat mendap di bawah (45%), sel darah putih dan platlet membentuk lapisan nipis tengah (*buffy coat* <1%), manakah cecair kuning lut sinar di atas ialah plasma darah (55%) yang mengandungi 90% air dan 10% bahan terlarut seperti nutrien, gas respirasi, protein plasma, enzim, hormon, dan bahan kumuh."
+        "explanation": "Darah terdiri daripada ampaian sel di dalam bendalir. Apabila dienapkan secara emparan, sel darah merah yang padat mendap di bawah (45%), sel darah putih dan platlet membentuk lapisan nipis tengah (buffy coat <1%), manakah cecair kuning lut sinar di atas ialah plasma darah (55%) yang mengandungi 90% air dan 10% bahan terlarut seperti nutrien, gas respirasi, protein plasma, enzim, hormon, dan bahan kumuh."
       },
       {
         "id": "sci-f3-c3-set-b-dlp-q14",
@@ -5228,7 +5228,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Hematopoietic stem cell"
         ],
         "answerIndex": 1,
-        "explanation": "Sel darah merah (eritrosit) tidak mempunyai nukleus apabila matang bagi membolehkan lebih banyak ruang untuk memuatkan molekul hemoglobin (pigmen pembawa oksigen). Bentuk dwicekung (*biconcave*) meningkatkan nisbah luas permukaan terhadap isi padu untuk resapan gas yang lebih pantas. Eritrosit dihasilkan di sumsum tulang dan dimusnahkan di limpa atau hati selepas ~120 hari."
+        "explanation": "Sel darah merah (eritrosit) tidak mempunyai nukleus apabila matang bagi membolehkan lebih banyak ruang untuk memuatkan molekul hemoglobin (pigmen pembawa oksigen). Bentuk dwicekung (biconcave) meningkatkan nisbah luas permukaan terhadap isi padu untuk resapan gas yang lebih pantas. Eritrosit dihasilkan di sumsum tulang dan dimusnahkan di limpa atau hati selepas ~120 hari."
       },
       {
         "id": "sci-f3-c3-set-b-dlp-q15",
@@ -5246,7 +5246,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Plasma albumin"
         ],
         "answerIndex": 2,
-        "explanation": "Platlet (*platelets* atau trombosit) ialah serpihan sel mikro tanpa nukleus yang memainkan peranan kritikal dalam proses hemostasis (pembekuan darah). Apabila salur darah tercedera, platlet akan berkumpul di kawasan luka untuk membentuk palam platlet awal dan membebaskan faktor pembekuan bagi menukarkan fibrinogen larut kepada gentian fibrin tidak larut bagi memerangkap sel darah merah, menutup luka, dan menghentikan pendarahan."
+        "explanation": "Platlet (platelets atau trombosit) ialah serpihan sel mikro tanpa nukleus yang memainkan peranan kritikal dalam proses hemostasis (pembekuan darah). Apabila salur darah tercedera, platlet akan berkumpul di kawasan luka untuk membentuk palam platlet awal dan membebaskan faktor pembekuan bagi menukarkan fibrinogen larut kepada gentian fibrin tidak larut bagi memerangkap sel darah merah, menutup luka, dan menghentikan pendarahan."
       },
       {
         "id": "sci-f3-c3-set-b-dlp-q16",
@@ -5318,7 +5318,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Maintains the blood bag at a constant temperature of 4 °C without refrigeration."
         ],
         "answerIndex": 1,
-        "explanation": "Beg darah penderma dicampurkan dengan agen pengkelat kalsium seperti natrium sitrat (*sodium citrate*). Ion kalsium ($Ca^{2+}$) adalah komponen penting dalam lata pembekuan darah. Dengan mengikat kalsium, natrium sitrat menghalang pengaktifan lata pembekuan, memastikan darah kekal dalam keadaan cecair semasa disimpan di dalam peti sejuk bank darah pada suhu $4\\text{ }^\\circ\\text{C}$."
+        "explanation": "Beg darah penderma dicampurkan dengan agen pengkelat kalsium seperti natrium sitrat (sodium citrate). Ion kalsium (Ca²⁺) adalah komponen penting dalam lata pembekuan darah. Dengan mengikat kalsium, natrium sitrat menghalang pengaktifan lata pembekuan, memastikan darah kekal dalam keadaan cecair semasa disimpan di dalam peti sejuk bank darah pada suhu 4 °C."
       },
       {
         "id": "sci-f3-c3-set-b-dlp-q20",
@@ -5364,15 +5364,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "The diagram shows the transverse section of a plant leaf epidermis:\n$$\\text{Cuticle} \\rightarrow \\text{Upper epidermis} \\rightarrow \\text{Palisade mesophyll cells} \\rightarrow \\text{Vascular bundle (X and Y)} \\rightarrow \\text{Lower epidermis}$$\nGiven that $X$ is located in the upper part of the vascular bundle (facing the upper epidermis) while $Y$ is in the lower part (facing the lower epidermis). What are the structures of $X$ and $Y$ and their functions?",
+        "question": "In the vascular bundle of a eudicot leaf, one tissue lies on the upper side and another on the lower side. Which pairing of position and function is correct?",
         "options": [
-          "mengangkut air",
-          "translocasi sukrosa",
-          "fotosintesis",
-          "respirasi sel"
+          "Upper: phloem that transports sucrose; lower: xylem that transports water",
+          "Upper: xylem that transports water; lower: phloem that transports sucrose",
+          "Upper: parenchyma that transports water; lower: collenchyma that transports sucrose",
+          "Upper: xylem that carries out photosynthesis; lower: phloem that carries out respiration"
         ],
         "answerIndex": 1,
-        "explanation": "Di dalam berkas vaskular daun, Xilem terletak di bahagian atas (menghadap ke arah permukaan atas daun untuk menyalurkan air dan garam mineral yang diserap dari akar ke sel mesofil fotosintetik). Floem terletak di bahagian bawah berkas vaskular untuk mengangkut hasil fotosintesis (sucrose) dari daun ke bahagian tumbuhan yang lain (akar, pucuk, buah)."
+        "explanation": "Dalam berkas vaskular daun eudikot, xilem terletak di bahagian atas dan mengangkut air serta garam mineral. Floem terletak di bahagian bawah dan mengangkut sukrosa."
       },
       {
         "id": "sci-f3-c3-set-b-dlp-q23",
@@ -5390,7 +5390,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Attract symbiotic soil bacteria to enhance nitrogen uptake."
         ],
         "answerIndex": 2,
-        "explanation": "Salur xilem dibina daripada sel-sel mati yang memanjang hujung-ke-hujung tanpa sitoplasma bagi membentuk salur berongga berterusan. Dinding xilem ditebalkan dengan lignin (bercorak gegelang, pilin, atau tebal). Lignin sangat keras dan tegar, memberikan kekuatan mekanikal kepada batang tumbuhan dan menghalang salur xilem daripada kempis (*collapse*) akibat tarikan transpirasi yang menghasilkan tekanan tegangan negatif yang kuat semasa air ditarik ke atas."
+        "explanation": "Salur xilem dibina daripada sel-sel mati yang memanjang hujung-ke-hujung tanpa sitoplasma bagi membentuk salur berongga berterusan. Dinding xilem ditebalkan dengan lignin (bercorak gegelang, pilin, atau tebal). Lignin sangat keras dan tegar, memberikan kekuatan mekanikal kepada batang tumbuhan dan menghalang salur xilem daripada kempis (collapse) akibat tarikan transpirasi yang menghasilkan tekanan tegangan negatif yang kuat semasa air ditarik ke atas."
       },
       {
         "id": "sci-f3-c3-set-b-dlp-q24",
@@ -5400,7 +5400,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "In Activity 3.9, the bark of a woody plant was stripped in a ring shape to remove only its phloem tissue. After several weeks, the portion above the ring swelled while the portion below shrank. What is the conclusion of this observation?",
+        "question": "A ring of bark and phloem is removed from a woody plant stem. After several weeks, the part above the ring swells while the part below shrinks. What is the conclusion?",
         "options": [
           "Xylem transports water from the roots to the leaves.",
           "Phloem transports organic food (sucrose) from the leaves to the lower parts of the plant.",
@@ -5418,7 +5418,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Which of the following statements shows a correct comparison between the animal blood circulatory system and the plant transport system?\n| Ciri (Feature) | Sistem Peredaran Darah Haiwan | Sistem Pengangkutan Tumbuhan |\n| :--- | :--- | :--- |",
+        "question": "Which of the following statements shows a correct comparison between the animal blood circulatory system and the plant transport system? | Ciri (Feature) | Sistem Peredaran Darah Haiwan | Sistem Pengangkutan Tumbuhan | |:--- |:--- |:--- |",
         "options": [
           "Conducting Tissue | Comprises xylem and phloem | Comprises arteries, veins, and capillaries",
           "Pumping Structure | The heart acts as a pump | No specific pumping structure",
@@ -5426,7 +5426,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Substance Transported | Only transports dissolved minerals | Only transports oxygen gas alone"
         ],
         "answerIndex": 1,
-        "explanation": "Sistem peredaran darah haiwan ialah sistem tertutup bertiub yang mempunyai organ pengepam berotot yang khusus (iaitu jantung) untuk memacu cecair pengangkutan (darah). Sistem pengangkutan tumbuhan pula tidak mempunyai sebarang organ pam; aliran air dipacu secara pasif oleh tarikan transpirasi, tindakan kapilari, dan tekanan akar, manakala makanan dipacu secara translokasi aktif dari kawasan sumber (*source*) ke kawasan sink (*sink*)."
+        "explanation": "Sistem peredaran darah haiwan ialah sistem tertutup bertiub yang mempunyai organ pengepam berotot yang khusus (iaitu jantung) untuk memacu cecair pengangkutan (darah). Sistem pengangkutan tumbuhan pula tidak mempunyai sebarang organ pam; aliran air dipacu secara pasif oleh tarikan transpirasi, tindakan kapilari, dan tekanan akar, manakala makanan dipacu secara translokasi aktif dari kawasan sumber (source) ke kawasan sink (sink)."
       }
     ]
   },
@@ -5512,7 +5512,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Dalam Aktiviti 4.1, apabila asid hidroklorik cair ditambahkan kepada kalsium karbonat, gas yang dibebaskan dialirkan melalui air kapur. Apakah pemerhatian yang berlaku pada air kapur dan gas yang terhasil?",
+        "question": "Asid hidroklorik cair ditambahkan kepada kalsium karbonat. Gas yang terhasil dialirkan ke dalam air kapur. Apakah pemerhatian dan identiti gas itu?",
         "options": [
           "Air kapur kekal jernih; Gas hidrogen",
           "Air kapur menjadi keruh; Gas karbon dioksida",
@@ -5548,7 +5548,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Apabila kalsium karbonat dipanaskan dengan kuat dalam Aktiviti 4.1 (pemanasan kalsium karbonat), ia mengalami penguraian terma. Apakah produk pepejal baki yang tertinggal di dalam tabung didih?",
+        "question": "Kalsium karbonat dipanaskan dengan kuat lalu mengalami penguraian terma. Apakah pepejal yang tertinggal di dalam tabung didih?",
         "options": [
           "Kalsium karbonat sahaja",
           "Kalsium logam",
@@ -5556,7 +5556,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kalsium klorida"
         ],
         "answerIndex": 2,
-        "explanation": "Pemanasan kuat kalsium karbonat menguraikan sebatian tersebut secara terma kepada kalsium oksida (pepejal putih baki) dan membebaskan gas karbon dioksida:\nKalsium karbonat -> Kalsium oksida + Karbon dioksida (melalui pemanasan)"
+        "explanation": "Pemanasan kuat kalsium karbonat menguraikan sebatian tersebut secara terma kepada kalsium oksida (pepejal putih baki) dan membebaskan gas karbon dioksida: Kalsium karbonat -> Kalsium oksida + Karbon dioksida (melalui pemanasan)"
       },
       {
         "id": "sci-f3-c4-set-a-bm-q8",
@@ -5620,7 +5620,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Dalam Aktiviti 4.3 (mengkaji tindak balas pemanasan logam dengan oksigen), apakah fungsi utama serbuk hablur kalium manganat(VII) yang diletakkan di hujung tabung didih?",
+        "question": "Hablur kalium manganat(VII) dipanaskan di hujung tabung didih sebelum serbuk logam dipanaskan. Apakah fungsi hablur itu?",
         "options": [
           "Bertindak sebagai mangkin tindak balas",
           "Membekalkan gas oksigen apabila dipanaskan",
@@ -5674,7 +5674,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Dalam Aktiviti 4.4, campuran serbuk karbon dipanaskan bersama beberapa oksida logam. Karbon didapati boleh menurunkan zink oksida kepada zink, tetapi tidak boleh menurunkan aluminium oksida kepada aluminium. Di manakah kedudukan karbon dalam siri kereaktifan logam?",
+        "question": "Karbon boleh menurunkan zink oksida kepada zink tetapi tidak boleh menurunkan aluminium oksida kepada aluminium. Di manakah kedudukan karbon dalam siri kereaktifan?",
         "options": [
           "Di antara Magnesium dan Aluminium",
           "Di antara Aluminium dan Zink",
@@ -5700,7 +5700,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Zink + Karbon dioksida -> Zink oksida + Karbon"
         ],
         "answerIndex": 1,
-        "explanation": "Apabila karbon bertindak balas dengan zink oksida pada suhu tinggi, ia menurunkan zink oksida kepada zink (logam bebas) dan menghasilkan gas karbon dioksida:\nZink oksida + Karbon -> Zink + Karbon dioksida"
+        "explanation": "Apabila karbon bertindak balas dengan zink oksida pada suhu tinggi, ia menurunkan zink oksida kepada zink (logam bebas) dan menghasilkan gas karbon dioksida: Zink oksida + Karbon -> Zink + Karbon dioksida"
       },
       {
         "id": "sci-f3-c4-set-a-bm-q16",
@@ -5728,7 +5728,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Dalam Rajah 4.6, asid sulfurik cair ditindakbalaskan dengan zink untuk menjana gas hidrogen. Apakah fungsi pepejal kalsium klorida kontang yang diletakkan di dalam tiub kaca selepas penjanaan gas tersebut?",
+        "question": "Gas hidrogen yang terhasil daripada tindak balas zink dengan asid sulfurik cair dialirkan melalui kalsium klorida kontang. Apakah fungsi kalsium klorida kontang?",
         "options": [
           "Sebagai pemangkin tindak balas",
           "Menyerap gas asid yang berlebihan",
@@ -5826,7 +5826,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pengoksidaan sisa sanga kalsium silikat"
         ],
         "answerIndex": 1,
-        "explanation": "Di dalam relau bagas, arang kok terbakar dahulu menghasilkan karbon dioksida. Karbon dioksida yang naik ke atas bertindak balas dengan arang kok panas yang selebihnya untuk menghasilkan gas karbon monoksida yang bertindak sebagai agen penurunan yang kuat:\nKarbon dioksida + Karbon -> Karbon monoksida"
+        "explanation": "Di dalam relau bagas, arang kok terbakar dahulu menghasilkan karbon dioksida. Karbon dioksida yang naik ke atas bertindak balas dengan arang kok panas yang selebihnya untuk menghasilkan gas karbon monoksida yang bertindak sebagai agen penurunan yang kuat: Karbon dioksida + Karbon -> Karbon monoksida"
       },
       {
         "id": "sci-f3-c4-set-a-bm-q23",
@@ -5844,7 +5844,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Menurunkan suhu relau; kalsium karbonat bertindak balas dengan arang kok membentuk kalsium karbida"
         ],
         "answerIndex": 1,
-        "explanation": "Batu kapur terurai membentuk kalsium oksida (CaO) yang bersifat bes. Kalsium oksida bertindak balas dengan bendasing berasid seperti silika/pasir (SiO2) membentuk kalsium silikat (CaSiO3) yang dikenali sebagai sanga (slag).\nKalsium oksida + Silikon dioksida -> Kalsium silikat"
+        "explanation": "Batu kapur terurai membentuk kalsium oksida (CaO) yang bersifat bes. Kalsium oksida bertindak balas dengan bendasing berasid seperti silika/pasir (SiO2) membentuk kalsium silikat (CaSiO3) yang dikenali sebagai sanga (slag). Kalsium oksida + Silikon dioksida -> Kalsium silikat"
       },
       {
         "id": "sci-f3-c4-set-a-bm-q24",
@@ -5880,7 +5880,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Semua di atas"
         ],
         "answerIndex": 3,
-        "explanation": "Silabus Sains Tingkatan 3 Bab 4 (Rajah 4.10) secara jelas membincangkan kesan negatif perlombongan terhadap alam sekitar termasuk hakisan tanah, pencemaran air oleh sisa batuan/logam, kemusnahan habitat flora dan fauna, serta pencemaran udara akibat pembakaran bahan api dan gas dari relau bagas."
+        "explanation": "Perlombongan yang tidak dirancang boleh menyebabkan hakisan tanah, pencemaran air dan udara, serta kemusnahan habitat."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q1",
@@ -5898,7 +5898,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kasiterit"
         ],
         "answerIndex": 2,
-        "explanation": "Mineral unsur wujud bebas semula jadi tanpa terikat secara kimia sebagai sebatian. Perak (Silver) dan Emas (Gold) adalah contoh mineral unsur dalam kerak Bumi. Bauksit, Hematit, dan Kasiterit merupakan mineral sebatian.\n*Translation:* Elemental minerals exist freely in nature without being chemically bonded as compounds. Silver and Gold are examples of elemental minerals in the Earth's crust. Bauxite, Hematite, and Cassiterite are compound minerals."
+        "explanation": "Mineral unsur wujud bebas semula jadi tanpa terikat secara kimia sebagai sebatian. Perak (Silver) dan Emas (Gold) adalah contoh mineral unsur dalam kerak Bumi. Bauksit, Hematit, dan Kasiterit merupakan mineral sebatian. Translation: Elemental minerals exist freely in nature without being chemically bonded as compounds. Silver and Gold are examples of elemental minerals in the Earth's crust. Bauxite, Hematite, and Cassiterite are compound minerals."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q2",
@@ -5916,7 +5916,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kalsium karbonat"
         ],
         "answerIndex": 1,
-        "explanation": "Kasiterit ialah sebatian semula jadi bagi stanum dan oksigen. Nama sistematiknya ialah Stanum(IV) oksida (Tin(IV) oxide), yang digunakan untuk mengekstrak logam timah.\n*Translation:* Cassiterite is a natural compound of tin and oxygen. Its systematic name is Tin(IV) oxide, which is used to extract tin metal."
+        "explanation": "Kasiterit ialah sebatian semula jadi bagi stanum dan oksigen. Nama sistematiknya ialah Stanum(IV) oksida (Tin(IV) oxide), yang digunakan untuk mengekstrak logam timah. Translation: Cassiterite is a natural compound of tin and oxygen. Its systematic name is Tin(IV) oxide, which is used to extract tin metal."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q3",
@@ -5934,7 +5934,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ferum dan sulfur"
         ],
         "answerIndex": 1,
-        "explanation": "Galena mempunyai nama sistematik Plumbum(II) sulfida (Lead(II) sulfide). Oleh itu, unsur-unsur yang membina sebatian ini ialah plumbum dan sulfur.\n*Translation:* Galena has the systematic name Lead(II) sulfide. Therefore, the elements that make up this compound are lead and sulfur."
+        "explanation": "Galena mempunyai nama sistematik Plumbum(II) sulfida (Lead(II) sulfide). Oleh itu, unsur-unsur yang membina sebatian ini ialah plumbum dan sulfur. Translation: Galena has the systematic name Lead(II) sulfide. Therefore, the elements that make up this compound are lead and sulfur."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q4",
@@ -5944,7 +5944,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Dalam Aktiviti 4.1, kalsium karbonat ditambahkan dengan asid hidroklorik cair. Apakah pemerhatian bagi gas yang dibebaskan apabila dilalukan ke dalam air kapur?",
+        "question": "Kalsium karbonat bertindak balas dengan asid hidroklorik cair. Apakah pemerhatian apabila gas yang terhasil dialirkan ke dalam air kapur?",
         "options": [
           "Air kapur kekal jernih",
           "Air kapur bertukar menjadi warna merah",
@@ -5952,7 +5952,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mendakan kuning terbentuk"
         ],
         "answerIndex": 2,
-        "explanation": "Tindak balas antara kalsium karbonat (limestone) dengan asid hidroklorik membebaskan gas karbon dioksida. Gas karbon dioksida meruap lalu mengeruhkan air kapur apabila dialirkan ke dalamnya.\n*Translation:* The reaction between calcium carbonate (limestone) and hydrochloric acid releases carbon dioxide gas. Carbon dioxide gas turns lime water cloudy when bubbled through it."
+        "explanation": "Tindak balas antara kalsium karbonat (limestone) dengan asid hidroklorik membebaskan gas karbon dioksida. Gas karbon dioksida meruap lalu mengeruhkan air kapur apabila dialirkan ke dalamnya. Translation: The reaction between calcium carbonate (limestone) and hydrochloric acid releases carbon dioxide gas. Carbon dioxide gas turns lime water cloudy when bubbled through it."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q5",
@@ -5970,7 +5970,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Karbon"
         ],
         "answerIndex": 1,
-        "explanation": "Apabila kalsium karbonat dipanaskan dengan kuat, ia mengalami penguraian terma untuk menghasilkan kalsium oksida (pepejal putih baki) dan membebaskan gas karbon dioksida.\n*Translation:* When calcium carbonate is heated strongly, it undergoes thermal decomposition to produce calcium oxide (white solid residue) and release carbon dioxide gas."
+        "explanation": "Apabila kalsium karbonat dipanaskan dengan kuat, ia mengalami penguraian terma untuk menghasilkan kalsium oksida (pepejal putih baki) dan membebaskan gas karbon dioksida. Translation: When calcium carbonate is heated strongly, it undergoes thermal decomposition to produce calcium oxide (white solid residue) and release carbon dioxide gas."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q6",
@@ -5988,7 +5988,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kuarza dan silika sand"
         ],
         "answerIndex": 3,
-        "explanation": "Kuarza dan pasir silika terdiri daripada silikon dioksida (silicon dioxide), bukan kalsium karbonat. Batu kapur, marmar, kalsit, kapur, terumbu karang, dan cangkang haiwan laut semuanya merupakan bentuk semula jadi kalsium karbonat.\n*Translation:* Quartz and silica sand consist of silicon dioxide, not calcium carbonate. Limestone, marble, calcite, chalk, coral reefs, and marine shells are all natural forms of calcium carbonate."
+        "explanation": "Kuarza dan pasir silika terdiri daripada silikon dioksida (silicon dioxide), bukan kalsium karbonat. Batu kapur, marmar, kalsit, kapur, terumbu karang, dan cangkang haiwan laut semuanya merupakan bentuk semula jadi kalsium karbonat. Translation: Quartz and silica sand consist of silicon dioxide, not calcium carbonate. Limestone, marble, calcite, chalk, coral reefs, and marine shells are all natural forms of calcium carbonate."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q7",
@@ -6006,7 +6006,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Besi tidak boleh bergabung dengan oksigen"
         ],
         "answerIndex": 1,
-        "explanation": "Kecergasan tindak balas logam dengan oksigen bergantung kepada kedudukan logam tersebut dalam siri kereaktifan logam. Magnesium terletak lebih tinggi daripada besi, menjadikannya lebih reaktif dan bertindak balas dengan lebih cergas.\n*Translation:* The vigor of the reaction of metals with oxygen depends on the position of the metal in the reactivity series of metals. Magnesium is located higher than iron, making it more reactive and causing it to react more vigorously."
+        "explanation": "Kecergasan tindak balas logam dengan oksigen bergantung kepada kedudukan logam tersebut dalam siri kereaktifan logam. Magnesium terletak lebih tinggi daripada besi, menjadikannya lebih reaktif dan bertindak balas dengan lebih cergas. Translation: The vigor of the reaction of metals with oxygen depends on the position of the metal in the reactivity series of metals. Magnesium is located higher than iron, making it more reactive and causing it to react more vigorously."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q8",
@@ -6016,7 +6016,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Dalam Aktiviti 4.3 untuk membina siri kereaktifan logam, bahan kimia yang manakah digunakan sebagai ejen pembekal oksigen semasa pemanasan serbuk logam?",
+        "question": "Semasa serbuk logam dipanaskan untuk mengkaji kereaktifannya, bahan kimia manakah digunakan untuk membekalkan oksigen?",
         "options": [
           "Kalium manganat(VII)",
           "Kalsium karbonat",
@@ -6024,7 +6024,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Anhidrus kalsium klorida"
         ],
         "answerIndex": 0,
-        "explanation": "Hablur kalium manganat(VII) dipanaskan di dalam tabung didih untuk membebaskan gas oksigen bagi bertindak balas dengan serbuk logam yang dipanaskan.\n*Translation:* Crystals of potassium manganate(VII) are heated in the boiling tube to release oxygen gas to react with the heated metal powder."
+        "explanation": "Hablur kalium manganat(VII) dipanaskan di dalam tabung didih untuk membebaskan gas oksigen bagi bertindak balas dengan serbuk logam yang dipanaskan. Translation: Crystals of potassium manganate(VII) are heated in the boiling tube to release oxygen gas to react with the heated metal powder."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q9",
@@ -6042,7 +6042,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mengesan perubahan suhu akhir"
         ],
         "answerIndex": 2,
-        "explanation": "Wul kaca bertindak sebagai penyumbat longgar untuk mengasingkan hablur kalium manganat(VII) (ejen pembekal oksigen) di bahagian hujung tabung didih daripada serbuk logam di bahagian tengah, bagi mengelakkan bahan-bahan tersebut bercampur secara fizikal sebelum pemanasan.\n*Translation:* Glass wool acts as a loose plug to separate potassium manganate(VII) crystals (the oxygen source) at the end of the boiling tube from the metal powder in the middle, preventing them from mixing physically before heating."
+        "explanation": "Wul kaca bertindak sebagai penyumbat longgar untuk mengasingkan hablur kalium manganat(VII) (ejen pembekal oksigen) di bahagian hujung tabung didih daripada serbuk logam di bahagian tengah, bagi mengelakkan bahan-bahan tersebut bercampur secara fizikal sebelum pemanasan. Translation: Glass wool acts as a loose plug to separate potassium manganate(VII) crystals (the oxygen source) at the end of the boiling tube from the metal powder in the middle, preventing them from mixing physically before heating."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q10",
@@ -6052,7 +6052,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Logam plumbum dipanaskan dengan oksigen dalam Aktiviti 4.3. Apakah pemerhatian yang betul bagi tindak balas ini?",
+        "question": "Apakah pemerhatian apabila plumbum dipanaskan dalam oksigen?",
         "options": [
           "Terbakar dengan nyalaan sangat terang",
           "Membara dengan cergas",
@@ -6060,7 +6060,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tiada sebarang perubahan warna atau haba"
         ],
         "answerIndex": 2,
-        "explanation": "Plumbum mempunyai kereaktifan yang sangat rendah terhadap oksigen berbanding magnesium, aluminium, dan zink. Ia hanya membara secara perlahan dan malap untuk menghasilkan plumbum(II) oksida (pepejal kuning semasa panas, putih semasa sejuk).\n*Translation:* Lead has a very low reactivity towards oxygen compared to magnesium, aluminium, and zinc. It only glows slowly and dimly to produce lead(II) oxide (solid yellow when hot, white when cold)."
+        "explanation": "Plumbum mempunyai kereaktifan yang sangat rendah terhadap oksigen berbanding magnesium, aluminium, dan zink. Ia hanya membara secara perlahan dan malap untuk menghasilkan plumbum(II) oksida (pepejal kuning semasa panas, putih semasa sejuk). Translation: Lead has a very low reactivity towards oxygen compared to magnesium, aluminium, and zinc. It only glows slowly and dimly to produce lead(II) oxide (solid yellow when hot, white when cold)."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q11",
@@ -6078,7 +6078,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pb -> Zn -> Fe -> Al -> Mg"
         ],
         "answerIndex": 1,
-        "explanation": "Mengikut siri kereaktifan logam, Pb (plumbum) adalah paling kurang reaktif antara pilihan tersebut, diikuti oleh Fe (besi), Zn (zink), Al (aluminium), dan Mg (magnesium) sebagai yang paling reaktif. Susunan tertib meningkat ialah Pb -> Fe -> Zn -> Al -> Mg.\n*Translation:* According to the reactivity series of metals, Pb (lead) is the least reactive among the choices, followed by Fe (iron), Zn (zinc), Al (aluminium), and Mg (magnesium) as the most reactive. The increasing order is Pb -> Fe -> Zn -> Al -> Mg."
+        "explanation": "Mengikut siri kereaktifan logam, Pb (plumbum) adalah paling kurang reaktif antara pilihan tersebut, diikuti oleh Fe (besi), Zn (zink), Al (aluminium), dan Mg (magnesium) sebagai yang paling reaktif. Susunan tertib meningkat ialah Pb -> Fe -> Zn -> Al -> Mg. Translation: According to the reactivity series of metals, Pb (lead) is the least reactive among the choices, followed by Fe (iron), Zn (zinc), Al (aluminium), and Mg (magnesium) as the most reactive. The increasing order is Pb -> Fe -> Zn -> Al -> Mg."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q12",
@@ -6088,7 +6088,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Dalam eksperimen menentukan kedudukan karbon dalam siri kereaktifan (Aktiviti 4.4), campuran serbuk karbon dan zink oksida dipanaskan dengan kuat. Apakah pemerhatian dan inferensnya?",
+        "question": "Campuran serbuk karbon dan zink oksida dipanaskan dengan kuat. Apakah pemerhatian dan kesimpulan yang betul?",
         "options": [
           "Campuran membara dengan terang; Karbon berjaya menurunkan zink oksida kepada zink",
           "Tiada tindak balas berlaku; Karbon tidak dapat menurunkan zink oksida",
@@ -6096,7 +6096,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Larutan bertukar menjadi warna biru; Kuprum dihasilkan"
         ],
         "answerIndex": 0,
-        "explanation": "Karbon terletak di atas zink dalam siri kereaktifan logam. Oleh itu, karbon lebih reaktif daripada zink dan dapat menurunkan zink oksida kepada logam zink, menghasilkan bara yang terang semasa pemanasan.\n*Translation:* Carbon is located above zinc in the metal reactivity series. Therefore, carbon is more reactive than zinc and can reduce zinc oxide to zinc metal, producing a bright glow during heating."
+        "explanation": "Karbon terletak di atas zink dalam siri kereaktifan logam. Oleh itu, karbon lebih reaktif daripada zink dan dapat menurunkan zink oksida kepada logam zink, menghasilkan bara yang terang semasa pemanasan. Translation: Carbon is located above zinc in the metal reactivity series. Therefore, carbon is more reactive than zinc and can reduce zinc oxide to zinc metal, producing a bright glow during heating."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q13",
@@ -6114,7 +6114,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Aluminium oksida ialah sejenis mineral unsur bebas"
         ],
         "answerIndex": 1,
-        "explanation": "Tiada tindak balas berlaku menunjukkan karbon gagal menyingkirkan oksigen daripada aluminium oksida. Hal ini bermakna aluminium adalah lebih reaktif daripada karbon, sekali gus meletakkan karbon di bawah aluminium dalam siri kereaktifan.\n*Translation:* No reaction occurs, indicating that carbon fails to remove oxygen from aluminium oxide. This means aluminium is more reactive than carbon, placing carbon below aluminium in the reactivity series."
+        "explanation": "Tiada tindak balas berlaku menunjukkan karbon gagal menyingkirkan oksigen daripada aluminium oksida. Hal ini bermakna aluminium adalah lebih reaktif daripada karbon, sekali gus meletakkan karbon di bawah aluminium dalam siri kereaktifan. Translation: No reaction occurs, indicating that carbon fails to remove oxygen from aluminium oxide. This means aluminium is more reactive than carbon, placing carbon below aluminium in the reactivity series."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q14",
@@ -6124,7 +6124,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Berdasarkan keputusan Aktiviti 4.4 dan tafsiran saintifik, di manakah kedudukan karbon diletakkan dalam siri kereaktifan logam?",
+        "question": "Karbon boleh menurunkan oksida zink, ferum dan plumbum, tetapi tidak boleh menurunkan aluminium oksida. Di manakah kedudukan karbon dalam siri kereaktifan?",
         "options": [
           "Di antara kalium dan natrium",
           "Di antara aluminium dan zink",
@@ -6132,7 +6132,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Di bawah plumbum"
         ],
         "answerIndex": 1,
-        "explanation": "Karbon dapat menurunkan zink oksida, ferum oksida, dan plumbum oksida, tetapi gagal menurunkan aluminium oksida. Oleh itu, karbon lebih reaktif daripada zink tetapi kurang reaktif daripada aluminium, meletakkannya di antara aluminium dan zink.\n*Translation:* Carbon can reduce zinc oxide, iron oxide, and lead oxide, but fails to reduce aluminium oxide. Therefore, carbon is more reactive than zinc but less reactive than aluminium, placing it between aluminium and zinc."
+        "explanation": "Karbon dapat menurunkan zink oksida, ferum oksida, dan plumbum oksida, tetapi gagal menurunkan aluminium oksida. Oleh itu, karbon lebih reaktif daripada zink tetapi kurang reaktif daripada aluminium, meletakkannya di antara aluminium dan zink. Translation: Carbon can reduce zinc oxide, iron oxide, and lead oxide, but fails to reduce aluminium oxide. Therefore, carbon is more reactive than zinc but less reactive than aluminium, placing it between aluminium and zinc."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q15",
@@ -6142,7 +6142,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Dalam eksperimen aliran gas hidrogen merentasi oksida logam (Rajah 4.6), gas hidrogen yang kering dilalukan ke atas ferum(III) oksida yang dipanaskan dengan kuat. Apakah pemerhatian yang berlaku?",
+        "question": "Gas hidrogen kering dialirkan ke atas ferum(III) oksida yang dipanaskan dengan kuat. Apakah pemerhatian yang berlaku?",
         "options": [
           "Tiada sebarang tindak balas atau perubahan warna",
           "Pepejal perang menyala dengan terang dan bertukar menjadi kelabu berkilat",
@@ -6150,7 +6150,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Campuran berasap tebal dan meletup"
         ],
         "answerIndex": 1,
-        "explanation": "Hidrogen adalah lebih reaktif daripada ferum. Hidrogen bertindak menurunkan ferum(III) oksida (perang) kepada logam besi (kelabu berkilat), membebaskan haba (membara dengan terang) dan menghasilkan wap air.\n*Translation:* Hydrogen is more reactive than iron. Hydrogen reduces iron(III) oxide (brown) to iron metal (shiny grey), releasing heat (glowing brightly) and producing water vapor."
+        "explanation": "Hidrogen adalah lebih reaktif daripada ferum. Hidrogen bertindak menurunkan ferum(III) oksida (perang) kepada logam besi (kelabu berkilat), membebaskan haba (membara dengan terang) dan menghasilkan wap air. Translation: Hydrogen is more reactive than iron. Hydrogen reduces iron(III) oxide (brown) to iron metal (shiny grey), releasing heat (glowing brightly) and producing water vapor."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q16",
@@ -6168,7 +6168,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Hidrogen + Kuprum(II) oksida"
         ],
         "answerIndex": 2,
-        "explanation": "Magnesium terletak di atas karbon dalam siri kereaktifan logam (magnesium lebih reaktif). Oleh itu, karbon tidak boleh menurunkan magnesium oksida dan tiada tindak balas berlaku. Bagi pilihan lain, karbon/hidrogen adalah lebih reaktif daripada plumbum, besi, dan kuprum, maka tindak balas penurunan berlaku.\n*Translation:* Magnesium is located above carbon in the reactivity series (magnesium is more reactive). Therefore, carbon cannot reduce magnesium oxide and no reaction occurs. For other choices, carbon/hydrogen is more reactive than lead, iron, and copper, so reduction reactions occur."
+        "explanation": "Magnesium terletak di atas karbon dalam siri kereaktifan logam (magnesium lebih reaktif). Oleh itu, karbon tidak boleh menurunkan magnesium oksida dan tiada tindak balas berlaku. Bagi pilihan lain, karbon/hidrogen adalah lebih reaktif daripada plumbum, besi, dan kuprum, maka tindak balas penurunan berlaku. Translation: Magnesium is located above carbon in the reactivity series (magnesium is more reactive). Therefore, carbon cannot reduce magnesium oxide and no reaction occurs. For other choices, carbon/hydrogen is more reactive than lead, iron, and copper, so reduction reactions occur."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q17",
@@ -6178,7 +6178,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Di manakah kedudukan hidrogen diletakkan dalam siri kereaktifan logam berdasarkan keputusan kajian saintifik (Jadual 4.2)?",
+        "question": "Hidrogen boleh menurunkan ferum oksida tetapi tidak boleh menurunkan zink oksida. Di manakah kedudukan hidrogen dalam siri kereaktifan?",
         "options": [
           "Di antara aluminium dan zink",
           "Di antara magnesium dan aluminium",
@@ -6186,7 +6186,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Di antara ferum dan plumbum"
         ],
         "answerIndex": 2,
-        "explanation": "Gas hidrogen dapat menurunkan oksida bagi besi, plumbum, dan kuprum, tetapi gagal menurunkan oksida bagi zink dan aluminium. Maka, hidrogen terletak di antara zink dan ferum.\n*Translation:* Hydrogen gas can reduce oxides of iron, lead, and copper, but fails to reduce oxides of zinc and aluminium. Thus, hydrogen is positioned between zinc and iron."
+        "explanation": "Gas hidrogen dapat menurunkan oksida bagi besi, plumbum, dan kuprum, tetapi gagal menurunkan oksida bagi zink dan aluminium. Maka, hidrogen terletak di antara zink dan ferum. Translation: Hydrogen gas can reduce oxides of iron, lead, and copper, but fails to reduce oxides of zinc and aluminium. Thus, hydrogen is positioned between zinc and iron."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q18",
@@ -6204,7 +6204,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pengekstrakan fizikal terus daripada kerak Bumi"
         ],
         "answerIndex": 1,
-        "explanation": "Logam yang sangat reaktif (di atas karbon) mengikat oksigen atau klorida dengan sangat kuat. Ikatan kimia ini tidak boleh dipecahkan oleh penurunan karbon, sebaliknya memerlukan tenaga elektrik yang tinggi melalui proses elektrolisis leburan untuk mengekstrak logam tersebut.\n*Translation:* Very reactive metals (above carbon) bind oxygen or chloride very strongly. These chemical bonds cannot be broken by carbon reduction; instead, they require high electrical energy through the electrolysis of molten compounds to extract the metal."
+        "explanation": "Logam yang sangat reaktif (di atas karbon) mengikat oksigen atau klorida dengan sangat kuat. Ikatan kimia ini tidak boleh dipecahkan oleh penurunan karbon, sebaliknya memerlukan tenaga elektrik yang tinggi melalui proses elektrolisis leburan untuk mengekstrak logam tersebut. Translation: Very reactive metals (above carbon) bind oxygen or chloride very strongly. These chemical bonds cannot be broken by carbon reduction; instead, they require high electrical energy through the electrolysis of molten compounds to extract the metal."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q19",
@@ -6222,7 +6222,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pemanasan terus tanpa karbon"
         ],
         "answerIndex": 1,
-        "explanation": "Besi dan timah terletak di bawah karbon dalam siri kereaktifan logam, menjadikan kaedah penurunan oksida logam oleh karbon (arang kok) di dalam relau bagas sebagai kaedah industri yang paling ekonomi dan cekap.\n*Translation:* Iron and tin are located below carbon in the metal reactivity series, making the reduction of metal oxides by carbon (coke) in a blast furnace the most economical and efficient industrial method."
+        "explanation": "Besi dan timah terletak di bawah karbon dalam siri kereaktifan logam, menjadikan kaedah penurunan oksida logam oleh karbon (arang kok) di dalam relau bagas sebagai kaedah industri yang paling ekonomi dan cekap. Translation: Iron and tin are located below carbon in the metal reactivity series, making the reduction of metal oxides by carbon (coke) in a blast furnace the most economical and efficient industrial method."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q20",
@@ -6240,7 +6240,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Gas karbon monoksida"
         ],
         "answerIndex": 1,
-        "explanation": "Pengekstrakan besi memerlukan bijih besi (hematit), arang kok (karbon) sebagai ejen penurunan dan bahan api, serta batu kapur (kalsium karbonat) untuk menyingkirkan bendasing berasid (seperti silika).\n*Translation:* Iron extraction requires iron ore (hematite), coke (carbon) as the reducing agent and fuel, and limestone (calcium carbonate) to remove acidic impurities (such as silica)."
+        "explanation": "Pengekstrakan besi memerlukan bijih besi (hematit), arang kok (karbon) sebagai ejen penurunan dan bahan api, serta batu kapur (kalsium karbonat) untuk menyingkirkan bendasing berasid (seperti silika). Translation: Iron extraction requires iron ore (hematite), coke (carbon) as the reducing agent and fuel, and limestone (calcium carbonate) to remove acidic impurities (such as silica)."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q21",
@@ -6258,7 +6258,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Wap air"
         ],
         "answerIndex": 1,
-        "explanation": "Karbon dioksida bertindak balas dengan arang kok yang panas untuk menghasilkan gas karbon monoksida (CO). Karbon monoksida ialah ejen penurunan utama yang menyingkirkan oksigen daripada ferum(III) oksida untuk menghasilkan leburan besi tulen.\n*Translation:* Carbon dioxide reacts with hot coke to produce carbon monoxide gas (CO). Carbon monoxide is the main reducing agent that removes oxygen from iron(III) oxide to produce pure molten iron."
+        "explanation": "Karbon dioksida bertindak balas dengan arang kok yang panas untuk menghasilkan gas karbon monoksida (CO). Karbon monoksida ialah ejen penurunan utama yang menyingkirkan oksigen daripada ferum(III) oksida untuk menghasilkan leburan besi tulen. Translation: Carbon dioxide reacts with hot coke to produce carbon monoxide gas (CO). Carbon monoxide is the main reducing agent that removes oxygen from iron(III) oxide to produce pure molten iron."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q22",
@@ -6276,7 +6276,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Menghalang gas karbon monoksida daripada terlepas"
         ],
         "answerIndex": 2,
-        "explanation": "Kalsium oksida (bes) bertindak balas dengan bendasing pasir silikon dioksida (asid) yang ada di dalam bijih besi untuk menghasilkan kalsium silikat, yang dikenali sebagai sanga (slag).\n*Translation:* Calcium oxide (base) reacts with silica/silicon dioxide impurities (acid) present in the iron ore to produce calcium silicate, which is known as slag."
+        "explanation": "Kalsium oksida (bes) bertindak balas dengan bendasing pasir silikon dioksida (asid) yang ada di dalam bijih besi untuk menghasilkan kalsium silikat, yang dikenali sebagai sanga (slag). Translation: Calcium oxide (base) reacts with silica/silicon dioxide impurities (acid) present in the iron ore to produce calcium silicate, which is known as slag."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q23",
@@ -6294,7 +6294,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kedua-dua cecair bercampur sebati dan membentuk aloi besi tuangan"
         ],
         "answerIndex": 0,
-        "explanation": "Sanga (kalsium silikat) mempunyai ketumpatan yang lebih rendah berbanding leburan besi. Oleh itu, sanga terapung di lapisan atas, memudahkan pengeluaran cecair besi dan cecair sanga dilakukan secara berasingan melalui paip keluar relau bagas masing-masing.\n*Translation:* Slag (calcium silicate) has a lower density compared to molten iron. Therefore, slag floats on the top layer, allowing molten iron and molten slag to be tapped out separately through their respective outlets."
+        "explanation": "Sanga (kalsium silikat) mempunyai ketumpatan yang lebih rendah berbanding leburan besi. Oleh itu, sanga terapung di lapisan atas, memudahkan pengeluaran cecair besi dan cecair sanga dilakukan secara berasingan melalui paip keluar relau bagas masing-masing. Translation: Slag (calcium silicate) has a lower density compared to molten iron. Therefore, slag floats on the top layer, allowing molten iron and molten slag to be tapped out separately through their respective outlets."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q24",
@@ -6312,7 +6312,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Penghasilan bateri litium-kobalt"
         ],
         "answerIndex": 1,
-        "explanation": "Sanga (slag) disejukkan dan dihancurkan untuk digunakan semula dalam industri pembinaan, terutamanya bagi pembuatan simen dan sebagai bahan asas dalam turapan jalan raya.\n*Translation:* Slag is cooled and crushed to be reused in the construction industry, particularly for manufacturing cement and as a base material in road pavement."
+        "explanation": "Sanga (slag) disejukkan dan dihancurkan untuk digunakan semula dalam industri pembinaan, terutamanya bagi pembuatan simen dan sebagai bahan asas dalam turapan jalan raya. Translation: Slag is cooled and crushed to be reused in the construction industry, particularly for manufacturing cement and as a base material in road pavement."
       },
       {
         "id": "sci-f3-c4-set-b-bm-q25",
@@ -6330,7 +6330,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Penurunan aras asid tanah"
         ],
         "answerIndex": 1,
-        "explanation": "Perlombongan menuntut penebangan hutan (kemusnahan habitat/biodiversiti) dan pencucian bijih logam menghasilkan kelodak tanah serta sisa kimia yang mencemari aliran air sungai terdekat, memusnahkan kehidupan akuatik (hidrosfera).\n*Translation:* Mining requires deforestation (habitat and biodiversity destruction), and washing metal ores produces silt and chemical wastes that pollute nearby rivers, destroying aquatic life (hydrosphere)."
+        "explanation": "Perlombongan menuntut penebangan hutan (kemusnahan habitat/biodiversiti) dan pencucian bijih logam menghasilkan kelodak tanah serta sisa kimia yang mencemari aliran air sungai terdekat, memusnahkan kehidupan akuatik (hidrosfera). Translation: Mining requires deforestation (habitat and biodiversity destruction), and washing metal ores produces silt and chemical wastes that pollute nearby rivers, destroying aquatic life (hydrosphere)."
       }
     ],
     "dlp": [
@@ -6414,7 +6414,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "In Activity 4.1, when dilute hydrochloric acid is added to calcium carbonate, the gas released is bubbled through limewater. What is the observation on the limewater and the identity of the gas?",
+        "question": "Dilute hydrochloric acid is added to calcium carbonate. The gas produced is bubbled through limewater. What is the observation and the identity of the gas?",
         "options": [
           "Limewater remains clear; Hydrogen gas",
           "Limewater turns cloudy; Carbon dioxide gas",
@@ -6450,7 +6450,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "When calcium carbonate is heated strongly in Activity 4.1 (heating of calcium carbonate), it undergoes thermal decomposition. What is the residual solid product left in the boiling tube?",
+        "question": "Calcium carbonate is heated strongly and undergoes thermal decomposition. Which solid remains in the boiling tube?",
         "options": [
           "Calcium carbonate only",
           "Calcium metal",
@@ -6458,7 +6458,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Calcium chloride"
         ],
         "answerIndex": 2,
-        "explanation": "Pemanasan kuat kalsium karbonat menguraikan sebatian tersebut secara terma kepada kalsium oksida (pepejal putih baki) dan membebaskan gas karbon dioksida:\nKalsium karbonat -> Kalsium oksida + Karbon dioksida (melalui pemanasan)"
+        "explanation": "Pemanasan kuat kalsium karbonat menguraikan sebatian tersebut secara terma kepada kalsium oksida (pepejal putih baki) dan membebaskan gas karbon dioksida: Kalsium karbonat -> Kalsium oksida + Karbon dioksida (melalui pemanasan)"
       },
       {
         "id": "sci-f3-c4-set-a-dlp-q8",
@@ -6522,7 +6522,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "In Activity 4.3 (studying the reaction of heating metals with oxygen), what is the primary function of the potassium manganate(VII) crystals placed at the end of the boiling tube?",
+        "question": "Potassium manganate(VII) crystals are heated at one end of a boiling tube before a metal powder is heated. What is the function of the crystals?",
         "options": [
           "Acts as a reaction catalyst",
           "Provides oxygen gas when heated",
@@ -6576,7 +6576,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "In Activity 4.4, a mixture of carbon powder is heated with several metal oxides. Carbon is found to be able to reduce zinc oxide to zinc, but cannot reduce aluminium oxide to aluminium. Where is the position of carbon in the reactivity series of metals?",
+        "question": "Carbon can reduce zinc oxide to zinc but cannot reduce aluminium oxide to aluminium. Where is carbon placed in the reactivity series?",
         "options": [
           "Between Magnesium and Aluminium",
           "Between Aluminium and Zinc",
@@ -6602,7 +6602,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Zinc + Carbon dioxide -> Zinc oxide + Carbon"
         ],
         "answerIndex": 1,
-        "explanation": "Apabila karbon bertindak balas dengan zink oksida pada suhu tinggi, ia menurunkan zink oksida kepada zink (logam bebas) dan menghasilkan gas karbon dioksida:\nZink oksida + Karbon -> Zink + Karbon dioksida"
+        "explanation": "Apabila karbon bertindak balas dengan zink oksida pada suhu tinggi, ia menurunkan zink oksida kepada zink (logam bebas) dan menghasilkan gas karbon dioksida: Zink oksida + Karbon -> Zink + Karbon dioksida"
       },
       {
         "id": "sci-f3-c4-set-a-dlp-q16",
@@ -6630,7 +6630,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "In Figure 4.6, dilute sulfuric acid is reacted with zinc to generate hydrogen gas. What is the function of the anhydrous calcium chloride solid placed in the glass tube after the generation of the gas?",
+        "question": "Hydrogen gas produced by reacting zinc with dilute sulfuric acid is passed through anhydrous calcium chloride. What is the function of the anhydrous calcium chloride?",
         "options": [
           "As a reaction catalyst",
           "To absorb excess acidic gases",
@@ -6728,7 +6728,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Oxidation of calcium silicate slag residue"
         ],
         "answerIndex": 1,
-        "explanation": "Di dalam relau bagas, arang kok terbakar dahulu menghasilkan karbon dioksida. Karbon dioksida yang naik ke atas bertindak balas dengan arang kok panas yang selebihnya untuk menghasilkan gas karbon monoksida yang bertindak sebagai agen penurunan yang kuat:\nKarbon dioksida + Karbon -> Karbon monoksida"
+        "explanation": "Di dalam relau bagas, arang kok terbakar dahulu menghasilkan karbon dioksida. Karbon dioksida yang naik ke atas bertindak balas dengan arang kok panas yang selebihnya untuk menghasilkan gas karbon monoksida yang bertindak sebagai agen penurunan yang kuat: Karbon dioksida + Karbon -> Karbon monoksida"
       },
       {
         "id": "sci-f3-c4-set-a-dlp-q23",
@@ -6746,7 +6746,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Lowering the slagging temperature; calcium carbonate reacts with coke to form calcium carbide"
         ],
         "answerIndex": 1,
-        "explanation": "Batu kapur terurai membentuk kalsium oksida (CaO) yang bersifat bes. Kalsium oksida bertindak balas dengan bendasing berasid seperti silika/pasir (SiO2) membentuk kalsium silikat (CaSiO3) yang dikenali sebagai sanga (slag).\nKalsium oksida + Silikon dioksida -> Kalsium silikat"
+        "explanation": "Batu kapur terurai membentuk kalsium oksida (CaO) yang bersifat bes. Kalsium oksida bertindak balas dengan bendasing berasid seperti silika/pasir (SiO2) membentuk kalsium silikat (CaSiO3) yang dikenali sebagai sanga (slag). Kalsium oksida + Silikon dioksida -> Kalsium silikat"
       },
       {
         "id": "sci-f3-c4-set-a-dlp-q24",
@@ -6782,7 +6782,7 @@ const scienceF3MasterQuizBanks: Partial<
           "All of the above"
         ],
         "answerIndex": 3,
-        "explanation": "Silabus Sains Tingkatan 3 Bab 4 (Rajah 4.10) secara jelas membincangkan kesan negatif perlombongan terhadap alam sekitar termasuk hakisan tanah, pencemaran air oleh sisa batuan/logam, kemusnahan habitat flora dan fauna, serta pencemaran udara akibat pembakaran bahan api dan gas dari relau bagas."
+        "explanation": "Perlombongan yang tidak dirancang boleh menyebabkan hakisan tanah, pencemaran air dan udara, serta kemusnahan habitat."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q1",
@@ -6800,7 +6800,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Cassiterite"
         ],
         "answerIndex": 2,
-        "explanation": "Mineral unsur wujud bebas semula jadi tanpa terikat secara kimia sebagai sebatian. Perak (Silver) dan Emas (Gold) adalah contoh mineral unsur dalam kerak Bumi. Bauksit, Hematit, dan Kasiterit merupakan mineral sebatian.\n*Translation:* Elemental minerals exist freely in nature without being chemically bonded as compounds. Silver and Gold are examples of elemental minerals in the Earth's crust. Bauxite, Hematite, and Cassiterite are compound minerals."
+        "explanation": "Mineral unsur wujud bebas semula jadi tanpa terikat secara kimia sebagai sebatian. Perak (Silver) dan Emas (Gold) adalah contoh mineral unsur dalam kerak Bumi. Bauksit, Hematit, dan Kasiterit merupakan mineral sebatian. Translation: Elemental minerals exist freely in nature without being chemically bonded as compounds. Silver and Gold are examples of elemental minerals in the Earth's crust. Bauxite, Hematite, and Cassiterite are compound minerals."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q2",
@@ -6818,7 +6818,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Calcium carbonate"
         ],
         "answerIndex": 1,
-        "explanation": "Kasiterit ialah sebatian semula jadi bagi stanum dan oksigen. Nama sistematiknya ialah Stanum(IV) oksida (Tin(IV) oxide), yang digunakan untuk mengekstrak logam timah.\n*Translation:* Cassiterite is a natural compound of tin and oxygen. Its systematic name is Tin(IV) oxide, which is used to extract tin metal."
+        "explanation": "Kasiterit ialah sebatian semula jadi bagi stanum dan oksigen. Nama sistematiknya ialah Stanum(IV) oksida (Tin(IV) oxide), yang digunakan untuk mengekstrak logam timah. Translation: Cassiterite is a natural compound of tin and oxygen. Its systematic name is Tin(IV) oxide, which is used to extract tin metal."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q3",
@@ -6836,7 +6836,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Iron and sulfur"
         ],
         "answerIndex": 1,
-        "explanation": "Galena mempunyai nama sistematik Plumbum(II) sulfida (Lead(II) sulfide). Oleh itu, unsur-unsur yang membina sebatian ini ialah plumbum dan sulfur.\n*Translation:* Galena has the systematic name Lead(II) sulfide. Therefore, the elements that make up this compound are lead and sulfur."
+        "explanation": "Galena mempunyai nama sistematik Plumbum(II) sulfida (Lead(II) sulfide). Oleh itu, unsur-unsur yang membina sebatian ini ialah plumbum dan sulfur. Translation: Galena has the systematic name Lead(II) sulfide. Therefore, the elements that make up this compound are lead and sulfur."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q4",
@@ -6846,7 +6846,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "In Activity 4.1, calcium carbonate is added to dilute hydrochloric acid. What is the observation for the released gas when passed through lime water?",
+        "question": "Calcium carbonate reacts with dilute hydrochloric acid. What is observed when the gas produced is bubbled through limewater?",
         "options": [
           "Lime water remains clear",
           "Lime water turns red",
@@ -6854,7 +6854,7 @@ const scienceF3MasterQuizBanks: Partial<
           "A yellow precipitate is formed"
         ],
         "answerIndex": 2,
-        "explanation": "Tindak balas antara kalsium karbonat (limestone) dengan asid hidroklorik membebaskan gas karbon dioksida. Gas karbon dioksida meruap lalu mengeruhkan air kapur apabila dialirkan ke dalamnya.\n*Translation:* The reaction between calcium carbonate (limestone) and hydrochloric acid releases carbon dioxide gas. Carbon dioxide gas turns lime water cloudy when bubbled through it."
+        "explanation": "Tindak balas antara kalsium karbonat (limestone) dengan asid hidroklorik membebaskan gas karbon dioksida. Gas karbon dioksida meruap lalu mengeruhkan air kapur apabila dialirkan ke dalamnya. Translation: The reaction between calcium carbonate (limestone) and hydrochloric acid releases carbon dioxide gas. Carbon dioxide gas turns lime water cloudy when bubbled through it."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q5",
@@ -6872,7 +6872,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Carbon"
         ],
         "answerIndex": 1,
-        "explanation": "Apabila kalsium karbonat dipanaskan dengan kuat, ia mengalami penguraian terma untuk menghasilkan kalsium oksida (pepejal putih baki) dan membebaskan gas karbon dioksida.\n*Translation:* When calcium carbonate is heated strongly, it undergoes thermal decomposition to produce calcium oxide (white solid residue) and release carbon dioxide gas."
+        "explanation": "Apabila kalsium karbonat dipanaskan dengan kuat, ia mengalami penguraian terma untuk menghasilkan kalsium oksida (pepejal putih baki) dan membebaskan gas karbon dioksida. Translation: When calcium carbonate is heated strongly, it undergoes thermal decomposition to produce calcium oxide (white solid residue) and release carbon dioxide gas."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q6",
@@ -6890,7 +6890,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Quartz and silica sand"
         ],
         "answerIndex": 3,
-        "explanation": "Kuarza dan pasir silika terdiri daripada silikon dioksida (silicon dioxide), bukan kalsium karbonat. Batu kapur, marmar, kalsit, kapur, terumbu karang, dan cangkang haiwan laut semuanya merupakan bentuk semula jadi kalsium karbonat.\n*Translation:* Quartz and silica sand consist of silicon dioxide, not calcium carbonate. Limestone, marble, calcite, chalk, coral reefs, and marine shells are all natural forms of calcium carbonate."
+        "explanation": "Kuarza dan pasir silika terdiri daripada silikon dioksida (silicon dioxide), bukan kalsium karbonat. Batu kapur, marmar, kalsit, kapur, terumbu karang, dan cangkang haiwan laut semuanya merupakan bentuk semula jadi kalsium karbonat. Translation: Quartz and silica sand consist of silicon dioxide, not calcium carbonate. Limestone, marble, calcite, chalk, coral reefs, and marine shells are all natural forms of calcium carbonate."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q7",
@@ -6908,7 +6908,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Iron cannot combine with oxygen"
         ],
         "answerIndex": 1,
-        "explanation": "Kecergasan tindak balas logam dengan oksigen bergantung kepada kedudukan logam tersebut dalam siri kereaktifan logam. Magnesium terletak lebih tinggi daripada besi, menjadikannya lebih reaktif dan bertindak balas dengan lebih cergas.\n*Translation:* The vigor of the reaction of metals with oxygen depends on the position of the metal in the reactivity series of metals. Magnesium is located higher than iron, making it more reactive and causing it to react more vigorously."
+        "explanation": "Kecergasan tindak balas logam dengan oksigen bergantung kepada kedudukan logam tersebut dalam siri kereaktifan logam. Magnesium terletak lebih tinggi daripada besi, menjadikannya lebih reaktif dan bertindak balas dengan lebih cergas. Translation: The vigor of the reaction of metals with oxygen depends on the position of the metal in the reactivity series of metals. Magnesium is located higher than iron, making it more reactive and causing it to react more vigorously."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q8",
@@ -6918,7 +6918,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "In Activity 4.3 to construct the reactivity series of metals, which chemical is used as the oxygen-providing agent during the heating of metal powders?",
+        "question": "When metal powders are heated to study their reactivity, which chemical is used to supply oxygen?",
         "options": [
           "Potassium manganate(VII)",
           "Calcium carbonate",
@@ -6926,7 +6926,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Anhydrous calcium chloride"
         ],
         "answerIndex": 0,
-        "explanation": "Hablur kalium manganat(VII) dipanaskan di dalam tabung didih untuk membebaskan gas oksigen bagi bertindak balas dengan serbuk logam yang dipanaskan.\n*Translation:* Crystals of potassium manganate(VII) are heated in the boiling tube to release oxygen gas to react with the heated metal powder."
+        "explanation": "Hablur kalium manganat(VII) dipanaskan di dalam tabung didih untuk membebaskan gas oksigen bagi bertindak balas dengan serbuk logam yang dipanaskan. Translation: Crystals of potassium manganate(VII) are heated in the boiling tube to release oxygen gas to react with the heated metal powder."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q9",
@@ -6944,7 +6944,7 @@ const scienceF3MasterQuizBanks: Partial<
           "To detect final temperature changes"
         ],
         "answerIndex": 2,
-        "explanation": "Wul kaca bertindak sebagai penyumbat longgar untuk mengasingkan hablur kalium manganat(VII) (ejen pembekal oksigen) di bahagian hujung tabung didih daripada serbuk logam di bahagian tengah, bagi mengelakkan bahan-bahan tersebut bercampur secara fizikal sebelum pemanasan.\n*Translation:* Glass wool acts as a loose plug to separate potassium manganate(VII) crystals (the oxygen source) at the end of the boiling tube from the metal powder in the middle, preventing them from mixing physically before heating."
+        "explanation": "Wul kaca bertindak sebagai penyumbat longgar untuk mengasingkan hablur kalium manganat(VII) (ejen pembekal oksigen) di bahagian hujung tabung didih daripada serbuk logam di bahagian tengah, bagi mengelakkan bahan-bahan tersebut bercampur secara fizikal sebelum pemanasan. Translation: Glass wool acts as a loose plug to separate potassium manganate(VII) crystals (the oxygen source) at the end of the boiling tube from the metal powder in the middle, preventing them from mixing physically before heating."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q10",
@@ -6954,7 +6954,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Lead metal is heated with oxygen in Activity 4.3. What is the correct observation for this reaction?",
+        "question": "What is observed when lead is heated in oxygen?",
         "options": [
           "Burns with a very bright flame",
           "Glows vigorously",
@@ -6962,7 +6962,7 @@ const scienceF3MasterQuizBanks: Partial<
           "No color or heat change at all"
         ],
         "answerIndex": 2,
-        "explanation": "Plumbum mempunyai kereaktifan yang sangat rendah terhadap oksigen berbanding magnesium, aluminium, dan zink. Ia hanya membara secara perlahan dan malap untuk menghasilkan plumbum(II) oksida (pepejal kuning semasa panas, putih semasa sejuk).\n*Translation:* Lead has a very low reactivity towards oxygen compared to magnesium, aluminium, and zinc. It only glows slowly and dimly to produce lead(II) oxide (solid yellow when hot, white when cold)."
+        "explanation": "Plumbum mempunyai kereaktifan yang sangat rendah terhadap oksigen berbanding magnesium, aluminium, dan zink. Ia hanya membara secara perlahan dan malap untuk menghasilkan plumbum(II) oksida (pepejal kuning semasa panas, putih semasa sejuk). Translation: Lead has a very low reactivity towards oxygen compared to magnesium, aluminium, and zinc. It only glows slowly and dimly to produce lead(II) oxide (solid yellow when hot, white when cold)."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q11",
@@ -6980,7 +6980,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pb -> Zn -> Fe -> Al -> Mg"
         ],
         "answerIndex": 1,
-        "explanation": "Mengikut siri kereaktifan logam, Pb (plumbum) adalah paling kurang reaktif antara pilihan tersebut, diikuti oleh Fe (besi), Zn (zink), Al (aluminium), dan Mg (magnesium) sebagai yang paling reaktif. Susunan tertib meningkat ialah Pb -> Fe -> Zn -> Al -> Mg.\n*Translation:* According to the reactivity series of metals, Pb (lead) is the least reactive among the choices, followed by Fe (iron), Zn (zinc), Al (aluminium), and Mg (magnesium) as the most reactive. The increasing order is Pb -> Fe -> Zn -> Al -> Mg."
+        "explanation": "Mengikut siri kereaktifan logam, Pb (plumbum) adalah paling kurang reaktif antara pilihan tersebut, diikuti oleh Fe (besi), Zn (zink), Al (aluminium), dan Mg (magnesium) sebagai yang paling reaktif. Susunan tertib meningkat ialah Pb -> Fe -> Zn -> Al -> Mg. Translation: According to the reactivity series of metals, Pb (lead) is the least reactive among the choices, followed by Fe (iron), Zn (zinc), Al (aluminium), and Mg (magnesium) as the most reactive. The increasing order is Pb -> Fe -> Zn -> Al -> Mg."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q12",
@@ -6990,7 +6990,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "In the experiment to determine the position of carbon in the reactivity series (Activity 4.4), a mixture of carbon powder and zinc oxide is heated strongly. What is the observation and its inference?",
+        "question": "A mixture of carbon powder and zinc oxide is heated strongly. Which observation and conclusion are correct?",
         "options": [
           "Combustion is vigorous and bright; Carbon successfully reduces zinc oxide to zinc",
           "No reaction occurs; Carbon cannot reduce zinc oxide",
@@ -6998,7 +6998,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The solution turns blue; Copper is produced"
         ],
         "answerIndex": 0,
-        "explanation": "Karbon terletak di atas zink dalam siri kereaktifan logam. Oleh itu, karbon lebih reaktif daripada zink dan dapat menurunkan zink oksida kepada logam zink, menghasilkan bara yang terang semasa pemanasan.\n*Translation:* Carbon is located above zinc in the metal reactivity series. Therefore, carbon is more reactive than zinc and can reduce zinc oxide to zinc metal, producing a bright glow during heating."
+        "explanation": "Karbon terletak di atas zink dalam siri kereaktifan logam. Oleh itu, karbon lebih reaktif daripada zink dan dapat menurunkan zink oksida kepada logam zink, menghasilkan bara yang terang semasa pemanasan. Translation: Carbon is located above zinc in the metal reactivity series. Therefore, carbon is more reactive than zinc and can reduce zinc oxide to zinc metal, producing a bright glow during heating."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q13",
@@ -7016,7 +7016,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Aluminium oxide is a free elemental mineral"
         ],
         "answerIndex": 1,
-        "explanation": "Tiada tindak balas berlaku menunjukkan karbon gagal menyingkirkan oksigen daripada aluminium oksida. Hal ini bermakna aluminium adalah lebih reaktif daripada karbon, sekali gus meletakkan karbon di bawah aluminium dalam siri kereaktifan.\n*Translation:* No reaction occurs, indicating that carbon fails to remove oxygen from aluminium oxide. This means aluminium is more reactive than carbon, placing carbon below aluminium in the reactivity series."
+        "explanation": "Tiada tindak balas berlaku menunjukkan karbon gagal menyingkirkan oksigen daripada aluminium oksida. Hal ini bermakna aluminium adalah lebih reaktif daripada karbon, sekali gus meletakkan karbon di bawah aluminium dalam siri kereaktifan. Translation: No reaction occurs, indicating that carbon fails to remove oxygen from aluminium oxide. This means aluminium is more reactive than carbon, placing carbon below aluminium in the reactivity series."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q14",
@@ -7026,7 +7026,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Based on the results of Activity 4.4 and scientific interpretation, where is carbon positioned in the metal reactivity series?",
+        "question": "Carbon can reduce the oxides of zinc, iron and lead, but cannot reduce aluminium oxide. Where is carbon placed in the reactivity series?",
         "options": [
           "Between potassium and sodium",
           "Between aluminium and zinc",
@@ -7034,7 +7034,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Below lead"
         ],
         "answerIndex": 1,
-        "explanation": "Karbon dapat menurunkan zink oksida, ferum oksida, dan plumbum oksida, tetapi gagal menurunkan aluminium oksida. Oleh itu, karbon lebih reaktif daripada zink tetapi kurang reaktif daripada aluminium, meletakkannya di antara aluminium dan zink.\n*Translation:* Carbon can reduce zinc oxide, iron oxide, and lead oxide, but fails to reduce aluminium oxide. Therefore, carbon is more reactive than zinc but less reactive than aluminium, placing it between aluminium and zinc."
+        "explanation": "Karbon dapat menurunkan zink oksida, ferum oksida, dan plumbum oksida, tetapi gagal menurunkan aluminium oksida. Oleh itu, karbon lebih reaktif daripada zink tetapi kurang reaktif daripada aluminium, meletakkannya di antara aluminium dan zink. Translation: Carbon can reduce zinc oxide, iron oxide, and lead oxide, but fails to reduce aluminium oxide. Therefore, carbon is more reactive than zinc but less reactive than aluminium, placing it between aluminium and zinc."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q15",
@@ -7044,7 +7044,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "In the experiment of hydrogen gas flow over metal oxides (Figure 4.6), dry hydrogen gas is passed over strongly heated iron(III) oxide. What is the observation?",
+        "question": "Dry hydrogen gas is passed over strongly heated iron(III) oxide. What is observed?",
         "options": [
           "No reaction or color change occurs",
           "Brown solid burns brightly and turns into shiny grey",
@@ -7052,7 +7052,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The mixture smokes heavily and explodes"
         ],
         "answerIndex": 1,
-        "explanation": "Hidrogen adalah lebih reaktif daripada ferum. Hidrogen bertindak menurunkan ferum(III) oksida (perang) kepada logam besi (kelabu berkilat), membebaskan haba (membara dengan terang) dan menghasilkan wap air.\n*Translation:* Hydrogen is more reactive than iron. Hydrogen reduces iron(III) oxide (brown) to iron metal (shiny grey), releasing heat (glowing brightly) and producing water vapor."
+        "explanation": "Hidrogen adalah lebih reaktif daripada ferum. Hidrogen bertindak menurunkan ferum(III) oksida (perang) kepada logam besi (kelabu berkilat), membebaskan haba (membara dengan terang) dan menghasilkan wap air. Translation: Hydrogen is more reactive than iron. Hydrogen reduces iron(III) oxide (brown) to iron metal (shiny grey), releasing heat (glowing brightly) and producing water vapor."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q16",
@@ -7070,7 +7070,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Hydrogen + Copper(II) oxide"
         ],
         "answerIndex": 2,
-        "explanation": "Magnesium terletak di atas karbon dalam siri kereaktifan logam (magnesium lebih reaktif). Oleh itu, karbon tidak boleh menurunkan magnesium oksida dan tiada tindak balas berlaku. Bagi pilihan lain, karbon/hidrogen adalah lebih reaktif daripada plumbum, besi, dan kuprum, maka tindak balas penurunan berlaku.\n*Translation:* Magnesium is located above carbon in the reactivity series (magnesium is more reactive). Therefore, carbon cannot reduce magnesium oxide and no reaction occurs. For other choices, carbon/hydrogen is more reactive than lead, iron, and copper, so reduction reactions occur."
+        "explanation": "Magnesium terletak di atas karbon dalam siri kereaktifan logam (magnesium lebih reaktif). Oleh itu, karbon tidak boleh menurunkan magnesium oksida dan tiada tindak balas berlaku. Bagi pilihan lain, karbon/hidrogen adalah lebih reaktif daripada plumbum, besi, dan kuprum, maka tindak balas penurunan berlaku. Translation: Magnesium is located above carbon in the reactivity series (magnesium is more reactive). Therefore, carbon cannot reduce magnesium oxide and no reaction occurs. For other choices, carbon/hydrogen is more reactive than lead, iron, and copper, so reduction reactions occur."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q17",
@@ -7080,7 +7080,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Where is hydrogen positioned in the metal reactivity series based on the results of scientific studies (Table 4.2)?",
+        "question": "Hydrogen can reduce iron oxide but cannot reduce zinc oxide. Where is hydrogen placed in the reactivity series?",
         "options": [
           "Between aluminium and zinc",
           "Between magnesium and aluminium",
@@ -7088,7 +7088,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Between iron and lead"
         ],
         "answerIndex": 2,
-        "explanation": "Gas hidrogen dapat menurunkan oksida bagi besi, plumbum, dan kuprum, tetapi gagal menurunkan oksida bagi zink dan aluminium. Maka, hidrogen terletak di antara zink dan ferum.\n*Translation:* Hydrogen gas can reduce oxides of iron, lead, and copper, but fails to reduce oxides of zinc and aluminium. Thus, hydrogen is positioned between zinc and iron."
+        "explanation": "Gas hidrogen dapat menurunkan oksida bagi besi, plumbum, dan kuprum, tetapi gagal menurunkan oksida bagi zink dan aluminium. Maka, hidrogen terletak di antara zink dan ferum. Translation: Hydrogen gas can reduce oxides of iron, lead, and copper, but fails to reduce oxides of zinc and aluminium. Thus, hydrogen is positioned between zinc and iron."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q18",
@@ -7106,7 +7106,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Direct physical mining from the Earth's crust"
         ],
         "answerIndex": 1,
-        "explanation": "Logam yang sangat reaktif (di atas karbon) mengikat oksigen atau klorida dengan sangat kuat. Ikatan kimia ini tidak boleh dipecahkan oleh penurunan karbon, sebaliknya memerlukan tenaga elektrik yang tinggi melalui proses elektrolisis leburan untuk mengekstrak logam tersebut.\n*Translation:* Very reactive metals (above carbon) bind oxygen or chloride very strongly. These chemical bonds cannot be broken by carbon reduction; instead, they require high electrical energy through the electrolysis of molten compounds to extract the metal."
+        "explanation": "Logam yang sangat reaktif (di atas karbon) mengikat oksigen atau klorida dengan sangat kuat. Ikatan kimia ini tidak boleh dipecahkan oleh penurunan karbon, sebaliknya memerlukan tenaga elektrik yang tinggi melalui proses elektrolisis leburan untuk mengekstrak logam tersebut. Translation: Very reactive metals (above carbon) bind oxygen or chloride very strongly. These chemical bonds cannot be broken by carbon reduction; instead, they require high electrical energy through the electrolysis of molten compounds to extract the metal."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q19",
@@ -7124,7 +7124,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Direct heating without carbon"
         ],
         "answerIndex": 1,
-        "explanation": "Besi dan timah terletak di bawah karbon dalam siri kereaktifan logam, menjadikan kaedah penurunan oksida logam oleh karbon (arang kok) di dalam relau bagas sebagai kaedah industri yang paling ekonomi dan cekap.\n*Translation:* Iron and tin are located below carbon in the metal reactivity series, making the reduction of metal oxides by carbon (coke) in a blast furnace the most economical and efficient industrial method."
+        "explanation": "Besi dan timah terletak di bawah karbon dalam siri kereaktifan logam, menjadikan kaedah penurunan oksida logam oleh karbon (arang kok) di dalam relau bagas sebagai kaedah industri yang paling ekonomi dan cekap. Translation: Iron and tin are located below carbon in the metal reactivity series, making the reduction of metal oxides by carbon (coke) in a blast furnace the most economical and efficient industrial method."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q20",
@@ -7142,7 +7142,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Carbon monoxide gas"
         ],
         "answerIndex": 1,
-        "explanation": "Pengekstrakan besi memerlukan bijih besi (hematit), arang kok (karbon) sebagai ejen penurunan dan bahan api, serta batu kapur (kalsium karbonat) untuk menyingkirkan bendasing berasid (seperti silika).\n*Translation:* Iron extraction requires iron ore (hematite), coke (carbon) as the reducing agent and fuel, and limestone (calcium carbonate) to remove acidic impurities (such as silica)."
+        "explanation": "Pengekstrakan besi memerlukan bijih besi (hematit), arang kok (karbon) sebagai ejen penurunan dan bahan api, serta batu kapur (kalsium karbonat) untuk menyingkirkan bendasing berasid (seperti silika). Translation: Iron extraction requires iron ore (hematite), coke (carbon) as the reducing agent and fuel, and limestone (calcium carbonate) to remove acidic impurities (such as silica)."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q21",
@@ -7160,7 +7160,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Water vapor"
         ],
         "answerIndex": 1,
-        "explanation": "Karbon dioksida bertindak balas dengan arang kok yang panas untuk menghasilkan gas karbon monoksida (CO). Karbon monoksida ialah ejen penurunan utama yang menyingkirkan oksigen daripada ferum(III) oksida untuk menghasilkan leburan besi tulen.\n*Translation:* Carbon dioxide reacts with hot coke to produce carbon monoxide gas (CO). Carbon monoxide is the main reducing agent that removes oxygen from iron(III) oxide to produce pure molten iron."
+        "explanation": "Karbon dioksida bertindak balas dengan arang kok yang panas untuk menghasilkan gas karbon monoksida (CO). Karbon monoksida ialah ejen penurunan utama yang menyingkirkan oksigen daripada ferum(III) oksida untuk menghasilkan leburan besi tulen. Translation: Carbon dioxide reacts with hot coke to produce carbon monoxide gas (CO). Carbon monoxide is the main reducing agent that removes oxygen from iron(III) oxide to produce pure molten iron."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q22",
@@ -7178,7 +7178,7 @@ const scienceF3MasterQuizBanks: Partial<
           "To prevent carbon monoxide gas from escaping"
         ],
         "answerIndex": 2,
-        "explanation": "Kalsium oksida (bes) bertindak balas dengan bendasing pasir silikon dioksida (asid) yang ada di dalam bijih besi untuk menghasilkan kalsium silikat, yang dikenali sebagai sanga (slag).\n*Translation:* Calcium oxide (base) reacts with silica/silicon dioxide impurities (acid) present in the iron ore to produce calcium silicate, which is known as slag."
+        "explanation": "Kalsium oksida (bes) bertindak balas dengan bendasing pasir silikon dioksida (asid) yang ada di dalam bijih besi untuk menghasilkan kalsium silikat, yang dikenali sebagai sanga (slag). Translation: Calcium oxide (base) reacts with silica/silicon dioxide impurities (acid) present in the iron ore to produce calcium silicate, which is known as slag."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q23",
@@ -7196,7 +7196,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The two liquids mix uniformly and form cast iron"
         ],
         "answerIndex": 0,
-        "explanation": "Sanga (kalsium silikat) mempunyai ketumpatan yang lebih rendah berbanding leburan besi. Oleh itu, sanga terapung di lapisan atas, memudahkan pengeluaran cecair besi dan cecair sanga dilakukan secara berasingan melalui paip keluar relau bagas masing-masing.\n*Translation:* Slag (calcium silicate) has a lower density compared to molten iron. Therefore, slag floats on the top layer, allowing molten iron and molten slag to be tapped out separately through their respective outlets."
+        "explanation": "Sanga (kalsium silikat) mempunyai ketumpatan yang lebih rendah berbanding leburan besi. Oleh itu, sanga terapung di lapisan atas, memudahkan pengeluaran cecair besi dan cecair sanga dilakukan secara berasingan melalui paip keluar relau bagas masing-masing. Translation: Slag (calcium silicate) has a lower density compared to molten iron. Therefore, slag floats on the top layer, allowing molten iron and molten slag to be tapped out separately through their respective outlets."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q24",
@@ -7214,7 +7214,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Production of lithium-cobalt batteries"
         ],
         "answerIndex": 1,
-        "explanation": "Sanga (slag) disejukkan dan dihancurkan untuk digunakan semula dalam industri pembinaan, terutamanya bagi pembuatan simen dan sebagai bahan asas dalam turapan jalan raya.\n*Translation:* Slag is cooled and crushed to be reused in the construction industry, particularly for manufacturing cement and as a base material in road pavement."
+        "explanation": "Sanga (slag) disejukkan dan dihancurkan untuk digunakan semula dalam industri pembinaan, terutamanya bagi pembuatan simen dan sebagai bahan asas dalam turapan jalan raya. Translation: Slag is cooled and crushed to be reused in the construction industry, particularly for manufacturing cement and as a base material in road pavement."
       },
       {
         "id": "sci-f3-c4-set-b-dlp-q25",
@@ -7232,7 +7232,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Decrease in soil acidity levels"
         ],
         "answerIndex": 1,
-        "explanation": "Perlombongan menuntut penebangan hutan (kemusnahan habitat/biodiversiti) dan pencucian bijih logam menghasilkan kelodak tanah serta sisa kimia yang mencemari aliran air sungai terdekat, memusnahkan kehidupan akuatik (hidrosfera).\n*Translation:* Mining requires deforestation (habitat and biodiversity destruction), and washing metal ores produces silt and chemical wastes that pollute nearby rivers, destroying aquatic life (hydrosphere)."
+        "explanation": "Perlombongan menuntut penebangan hutan (kemusnahan habitat/biodiversiti) dan pencucian bijih logam menghasilkan kelodak tanah serta sisa kimia yang mencemari aliran air sungai terdekat, memusnahkan kehidupan akuatik (hidrosfera). Translation: Mining requires deforestation (habitat and biodiversity destruction), and washing metal ores produces silt and chemical wastes that pollute nearby rivers, destroying aquatic life (hydrosphere)."
       }
     ]
   },
@@ -7254,7 +7254,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kajian tentang kekuatan asid dan alkali berdasarkan kepekatan ion hidrogen."
         ],
         "answerIndex": 1,
-        "explanation": "Termokimia ditakrifkan secara khusus sebagai bidang sains yang mengkaji perubahan tenaga haba (sama ada dibebaskan atau diserap) yang mengiringi tindak balas kimia.\n*Thermochemistry is specifically defined as the branch of science that studies the changes in heat energy (either released or absorbed) accompanying chemical reactions."
+        "explanation": "Termokimia ditakrifkan secara khusus sebagai bidang sains yang mengkaji perubahan tenaga haba (sama ada dibebaskan atau diserap) yang mengiringi tindak balas kimia. Thermochemistry is specifically defined as the branch of science that studies the changes in heat energy (either released or absorbed) accompanying chemical reactions."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q2",
@@ -7272,7 +7272,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Polistirena yang digunakan untuk menyalut bekas eksperimen."
         ],
         "answerIndex": 2,
-        "explanation": "Dalam termokimia, \"sistem\" (system) merujuk kepada campuran bahan tindak balas yang sedang mengalami perubahan kimia di dalam bekas, manakala \"persekitaran\" (surroundings) adalah semua benda di luar sistem seperti bikar, termometer, dan udara sekitar.\n*In thermochemistry, the \"system\" refers to the mixture of reactants undergoing chemical change inside the vessel, while the \"surroundings\" include everything outside the system, such as the beaker, thermometer, and surrounding air."
+        "explanation": "Dalam termokimia, \"sistem\" (system) merujuk kepada campuran bahan tindak balas yang sedang mengalami perubahan kimia di dalam bekas, manakala \"persekitaran\" (surroundings) adalah semua benda di luar sistem seperti bikar, termometer, dan udara sekitar. In thermochemistry, the \"system\" refers to the mixture of reactants undergoing chemical change inside the vessel, while the \"surroundings\" include everything outside the system, such as the beaker, thermometer, and surrounding air."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q3",
@@ -7290,7 +7290,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tenaga haba ditukarkan sepenuhnya kepada tenaga keupayaan kimia dalam hasil tindak balas."
         ],
         "answerIndex": 1,
-        "explanation": "Kenaikan suhu pada termometer (sebahagian daripada persekitaran) menunjukkan bahawa haba telah dibebaskan dari sistem ke persekitaran. Ini merupakan ciri utama tindak balas eksotermik.\n*An increase in temperature on the thermometer (part of the surroundings) indicates that heat has been released from the system to the surroundings, which is the key characteristic of an exothermic reaction."
+        "explanation": "Kenaikan suhu pada termometer (sebahagian daripada persekitaran) menunjukkan bahawa haba telah dibebaskan dari sistem ke persekitaran. Ini merupakan ciri utama tindak balas eksotermik. An increase in temperature on the thermometer (part of the surroundings) indicates that heat has been released from the system to the surroundings, which is the key characteristic of an exothermic reaction."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q4",
@@ -7308,7 +7308,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tiada kaitan antara tenaga kimia dengan pembebasan haba dalam tindak balas eksotermik."
         ],
         "answerIndex": 2,
-        "explanation": "Dalam tindak balas eksotermik, sistem membebaskan tenaga haba ke persekitaran kerana hasil tindak balas mengandungi tenaga kimia yang lebih rendah daripada bahan tindak balas asal. Lebihan tenaga kimia ini dibebaskan sebagai haba.\n*In an exothermic reaction, the system releases heat energy to the surroundings because the products contain less chemical potential energy than the original reactants. The excess chemical energy is emitted as heat."
+        "explanation": "Dalam tindak balas eksotermik, sistem membebaskan tenaga haba ke persekitaran kerana hasil tindak balas mengandungi tenaga kimia yang lebih rendah daripada bahan tindak balas asal. Lebihan tenaga kimia ini dibebaskan sebagai haba. In an exothermic reaction, the system releases heat energy to the surroundings because the products contain less chemical potential energy than the original reactants. The excess chemical energy is emitted as heat."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q5",
@@ -7326,7 +7326,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Respirasi sel dalam organisma hidup untuk menghasilkan tenaga."
         ],
         "answerIndex": 1,
-        "explanation": "Pelarutan amonium klorida di dalam air menyerap haba dari persekitaran, menyebabkan suhu air dan bekas menurun. Oleh itu, ia dikategorikan sebagai tindak balas endotermik.\n*Dissolving ammonium chloride in water absorbs heat from the surroundings, causing the temperature of the water and container to decrease. Hence, it is classified as an endothermic reaction."
+        "explanation": "Pelarutan amonium klorida di dalam air menyerap haba dari persekitaran, menyebabkan suhu air dan bekas menurun. Oleh itu, ia dikategorikan sebagai tindak balas endotermik. Dissolving ammonium chloride in water absorbs heat from the surroundings, causing the temperature of the water and container to decrease. Hence, it is classified as an endothermic reaction."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q6",
@@ -7336,7 +7336,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Rajah di atas menunjukkan profil pemindahan tenaga semasa tindak balas kimia.\n[ Bahan tindak balas + Haba → Hasil tindak balas ]\nApakah jenis tindak balas ini dan apakah kesannya terhadap suhu persekitaran?",
+        "question": "Dalam suatu tindak balas, haba diserap daripada persekitaran untuk menukarkan bahan tindak balas kepada hasil tindak balas. Apakah jenis tindak balas itu dan apakah yang berlaku kepada suhu persekitaran?",
         "options": [
           "Eksotermik; Suhu persekitaran meningkat.",
           "Eksotermik; Suhu persekitaran menurun.",
@@ -7344,7 +7344,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Endotermik; Suhu persekitaran menurun."
         ],
         "answerIndex": 3,
-        "explanation": "Tindak balas yang memerlukan input haba untuk mengubah bahan tindak balas kepada hasil tindak balas (Bahan Tindak Balas + Haba -> Hasil Tindak Balas) ialah tindak balas endotermik. Pengambilan haba dari luar menyebabkan suhu persekitaran menurun.\n*A reaction that requires heat input to convert reactants to products (Reactants + Heat -> Products) is an endothermic reaction. Absorbing heat from outside causes the surrounding temperature to fall."
+        "explanation": "Tindak balas yang memerlukan input haba untuk mengubah bahan tindak balas kepada hasil tindak balas (Bahan Tindak Balas + Haba -> Hasil Tindak Balas) ialah tindak balas endotermik. Pengambilan haba dari luar menyebabkan suhu persekitaran menurun. A reaction that requires heat input to convert reactants to products (Reactants + Heat -> Products) is an endothermic reaction. Absorbing heat from outside causes the surrounding temperature to fall."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q7",
@@ -7362,7 +7362,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Polistirena dapat mempercepatkan kadar resapan zarah pepejal di dalam larutan akues."
         ],
         "answerIndex": 1,
-        "explanation": "Untuk mengukur perubahan suhu persekitaran secara tepat, pemindahan haba antara campuran tindak balas dengan persekitaran luar bekas mesti diminimumkan. Cawan polistirena bertindak sebagai insulator yang mengehadkan kehilangan atau penyerapan haba luar.\n*To accurately measure surrounding temperature changes, heat transfer between the reaction mixture and the outer surroundings must be minimised. Polystyrene cups act as insulators that limit external heat loss or gain."
+        "explanation": "Untuk mengukur perubahan suhu persekitaran secara tepat, pemindahan haba antara campuran tindak balas dengan persekitaran luar bekas mesti diminimumkan. Cawan polistirena bertindak sebagai insulator yang mengehadkan kehilangan atau penyerapan haba luar. To accurately measure surrounding temperature changes, heat transfer between the reaction mixture and the outer surroundings must be minimised. Polystyrene cups act as insulators that limit external heat loss or gain."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q8",
@@ -7380,7 +7380,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tenaga kimia dalam bahan diukur menggunakan kalorimeter bom."
         ],
         "answerIndex": 0,
-        "explanation": "Definisi secara operasi (operational definition) menerangkan apa yang dilakukan dan apa yang diperhatikan secara langsung. Dalam kes eksotermik, pemerhatian langsungnya ialah kenaikan bacaan suhu pada termometer.\n*An operational definition describes what is done and what is directly observed. In the case of an exothermic reaction, the direct observation is the increase in the thermometer's temperature reading."
+        "explanation": "Definisi secara operasi (operational definition) menerangkan apa yang dilakukan dan apa yang diperhatikan secara langsung. Dalam kes eksotermik, pemerhatian langsungnya ialah kenaikan bacaan suhu pada termometer. An operational definition describes what is done and what is directly observed. In the case of an exothermic reaction, the direct observation is the increase in the thermometer's temperature reading."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q9",
@@ -7398,7 +7398,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerana suhu adunan meningkat dengan sendiri tanpa bantuan luar selepas yis aktif."
         ],
         "answerIndex": 1,
-        "explanation": "Semasa membakar kek atau roti, adunan mesti terus-menerus menyerap tenaga haba daripada persekitaran (ketuhar) untuk membolehkan tindak balas kimia memasak bahan-bahannya berlaku.\n*During baking, the batter must continuously absorb heat energy from the surroundings (the oven) to enable the chemical baking reactions of its ingredients to occur."
+        "explanation": "Semasa membakar kek atau roti, adunan mesti terus-menerus menyerap tenaga haba daripada persekitaran (ketuhar) untuk membolehkan tindak balas kimia memasak bahan-bahannya berlaku. During baking, the batter must continuously absorb heat energy from the surroundings (the oven) to enable the chemical baking reactions of its ingredients to occur."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q10",
@@ -7416,7 +7416,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pembentukan embun pada daun pada waktu pagi yang sejuk."
         ],
         "answerIndex": 2,
-        "explanation": "Respirasi sel ialah tindak balas pembakaran glukosa secara biokimia di dalam sel badan yang membebaskan tenaga haba dan ATP (eksotermik), manakala fotosintesis pula menyerap tenaga cahaya matahari (endotermik).\n*Cellular respiration is the biochemical oxidation of glucose inside body cells that releases heat energy and ATP (exothermic), whereas photosynthesis absorbs solar light energy (endothermic)."
+        "explanation": "Respirasi sel ialah tindak balas pembakaran glukosa secara biokimia di dalam sel badan yang membebaskan tenaga haba dan ATP (eksotermik), manakala fotosintesis pula menyerap tenaga cahaya matahari (endotermik). Cellular respiration is the biochemical oxidation of glucose inside body cells that releases heat energy and ATP (exothermic), whereas photosynthesis absorbs solar light energy (endothermic)."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q11",
@@ -7434,7 +7434,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ammonium klorida (NH4Cl)."
         ],
         "answerIndex": 2,
-        "explanation": "Kalsium klorida kontang (anhydrous calcium chloride) atau magnesium sulfat kontang melarut dalam air secara eksotermik yang sangat kuat, membebaskan haba yang mencukupi untuk melegakan kekejangan otot dengan meningkatkan aliran darah.\n*Anhydrous calcium chloride or anhydrous magnesium sulfate dissolves in water in a highly exothermic manner, releasing sufficient heat to relieve muscle cramps by increasing blood circulation."
+        "explanation": "Kalsium klorida kontang (anhydrous calcium chloride) atau magnesium sulfat kontang melarut dalam air secara eksotermik yang sangat kuat, membebaskan haba yang mencukupi untuk melegakan kekejangan otot dengan meningkatkan aliran darah. Anhydrous calcium chloride or anhydrous magnesium sulfate dissolves in water in a highly exothermic manner, releasing sufficient heat to relieve muscle cramps by increasing blood circulation."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q12",
@@ -7444,7 +7444,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Bagaimanakah pek sejuk segera membantu mengurangkan bengkak pada luka dari segi fisiologi?",
+        "question": "Bagaimanakah pek sejuk segera membantu mengurangkan bengkak pada bahagian badan yang cedera?",
         "options": [
           "Haba dibebaskan untuk mencairkan gumpalan darah di kapilari darah.",
           "Haba diserap daripada tisu badan, menyebabkan lumen kapilari darah mengecut untuk mengurangkan keradangan.",
@@ -7452,7 +7452,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ia menaikkan suhu sel badan untuk mempercepatkan proses mitosis sel kulit baru."
         ],
         "answerIndex": 1,
-        "explanation": "Pek sejuk segera menyerap haba secara endotermik daripada tisu badan yang bengkak/cedera. Kesan sejuk ini mengecutkan lumen kapilari darah (*vasoconstriction*), mengurangkan pengaliran darah ke kawasan tersebut, sekali gus meredakan bengkak, keradangan, dan pendarahan.\n*Instant cold packs absorb heat endothermically from swollen/injured body tissues. This cold effect constricts blood capillary lumens (vasoconstriction), reducing blood flow to the area, thereby mitigating swelling, inflammation, and bleeding."
+        "explanation": "Pek sejuk segera menyerap haba secara endotermik daripada tisu badan yang bengkak/cedera. Kesan sejuk ini mengecutkan lumen kapilari darah (vasoconstriction), mengurangkan pengaliran darah ke kawasan tersebut, sekali gus meredakan bengkak, keradangan, dan pendarahan. Instant cold packs absorb heat endothermically from swollen/injured body tissues. This cold effect constricts blood capillary lumens (vasoconstriction), reducing blood flow to the area, thereby mitigating swelling, inflammation, and bleeding."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q13",
@@ -7470,7 +7470,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mencucuk beg plastik luar menggunakan jarum untuk membiarkan udara luar masuk."
         ],
         "answerIndex": 1,
-        "explanation": "Untuk mengaktifkan pek DIY, beg plastik dalam yang nipis yang berisi air perlu dipecahkan dengan cara ditekan/diramas. Ini membolehkan air bercampur dan melarutkan amonium nitrat (tindak balas endotermik) dengan selamat tanpa kebocoran luar.\n*To activate the DIY pack, the thin inner plastic bag containing water must be ruptured by pressing/squeezing it. This allows water to mix with and dissolve the ammonium nitrate (endothermic reaction) safely without leaking externally."
+        "explanation": "Untuk mengaktifkan pek DIY, beg plastik dalam yang nipis yang berisi air perlu dipecahkan dengan cara ditekan/diramas. Ini membolehkan air bercampur dan melarutkan amonium nitrat (tindak balas endotermik) dengan selamat tanpa kebocoran luar. To activate the DIY pack, the thin inner plastic bag containing water must be ruptured by pressing/squeezing it. This allows water to mix with and dissolve the ammonium nitrate (endothermic reaction) safely without leaking externally."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q14",
@@ -7488,7 +7488,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Magnesium"
         ],
         "answerIndex": 2,
-        "explanation": "Tindak balas termit melibatkan tindak balas antara ferum(III) oksida dengan serbuk aluminium:\n$$\text{Ferum(III) oksida} + \text{Aluminium}\nightarrow \text{Aluminium oksida} + \text{Ferum (Besi) + Haba}$$\nHaba ekstrem yang dibebaskan mencairkan besi (ferum) yang terhasil, membolehkannya mengalir dan mengisi rekahan landasan kereta api.\n*The thermite reaction involves reacting iron(III) oxide with aluminium powder to produce iron and aluminium oxide. The extreme heat released melts the produced iron (ferum), allowing it to flow and fill track fractures."
+        "explanation": "Tindak balas termit melibatkan tindak balas antara ferum(III) oksida dengan serbuk aluminium: Ferum(III) oksida + Aluminium → Aluminium oksida + Ferum (Besi) + Haba Haba ekstrem yang dibebaskan mencairkan besi (ferum) yang terhasil, membolehkannya mengalir dan mengisi rekahan landasan kereta api. The thermite reaction involves reacting iron(III) oxide with aluminium powder to produce iron and aluminium oxide. The extreme heat released melts the produced iron (ferum), allowing it to flow and fill track fractures."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q15",
@@ -7506,7 +7506,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pepejal natrium hidroksida + air suling."
         ],
         "answerIndex": 1,
-        "explanation": "Tindak balas asid hidroklorik dengan natrium hidrogen karbonat (natrium bikarbonat) adalah endotermik. Ia menyerap haba dari persekitaran dan menyebabkan penurunan suhu yang ketara pada termometer, manakah pilihan A, C, dan D adalah eksotermik.\n*The reaction between hydrochloric acid and sodium hydrogen carbonate is endothermic, absorbing heat from surroundings and causing a notable temperature drop. Options A, C, and D are exothermic."
+        "explanation": "Tindak balas asid hidroklorik dengan natrium hidrogen karbonat (natrium bikarbonat) adalah endotermik. Ia menyerap haba dari persekitaran dan menyebabkan penurunan suhu yang ketara pada termometer, manakah pilihan A, C, dan D adalah eksotermik. The reaction between hydrochloric acid and sodium hydrogen carbonate is endothermic, absorbing heat from surroundings and causing a notable temperature drop. Options A, C, and D are exothermic."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q16",
@@ -7524,7 +7524,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pokok mati mengalami reputan secara endotermik yang membebaskan sulfur dioksida ke udara."
         ],
         "answerIndex": 1,
-        "explanation": "Fotosintesis tumbuhan adalah proses endotermik yang menyerap tenaga haba cahaya matahari serta gas rumah hijau utama, karbon dioksida ($CO_2$). Kemusnahan hutan mengurangkan kebolehan bumi menyerap haba dan gas $CO_2$ ini, menyebabkan peningkatan suhu atmosfera global.\n*Plant photosynthesis is an endothermic process that absorbs solar heat energy and carbon dioxide ($CO_2$), a key greenhouse gas. Deforestation reduces Earth's capacity to absorb heat and $CO_2$, intensifying global temperatures."
+        "explanation": "Fotosintesis tumbuhan adalah proses endotermik yang menyerap tenaga haba cahaya matahari serta gas rumah hijau utama, karbon dioksida (CO₂). Kemusnahan hutan mengurangkan kebolehan bumi menyerap haba dan gas CO₂ ini, menyebabkan peningkatan suhu atmosfera global. Plant photosynthesis is an endothermic process that absorbs solar heat energy and carbon dioxide (CO₂), a key greenhouse gas. Deforestation reduces Earth's capacity to absorb heat and CO₂, intensifying global temperatures."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q17",
@@ -7536,13 +7536,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "Dalam suatu eksperimen termokimia, suhu awal air ialah 28 °C. Selepas ammonium klorida dilarutkan, suhu akhir menjadi tetap pada 21 °C. Berapakah perubahan suhu (Δθ) bagi eksperimen ini?",
         "options": [
-          "$+7\text{ }^\\circ\text{C}$",
-          "$-7\text{ }^\\circ\text{C}$",
-          "$+49\text{ }^\\circ\text{C}$",
-          "$-49\text{ }^\\circ\text{C}$"
+          "+7 °C",
+          "-7 °C",
+          "+49 °C",
+          "-49 °C"
         ],
         "answerIndex": 1,
-        "explanation": "Perubahan suhu dikira sebagai:\n$$\\Delta\theta = \text{Suhu Akhir} - \text{Suhu Awal} = 21\text{ }^\\circ\text{C} - 28\text{ }^\\circ\text{C} = -7\text{ }^\\circ\text{C}$$\nTanda negatif ($-$) menunjukkan berlakunya penurunan suhu (penyerapan haba/endotermik).\n*Temperature change is calculated as Final Temperature minus Initial Temperature, yielding -7 °C. The negative sign represents a drop in temperature, signifying an endothermic reaction."
+        "explanation": "Perubahan suhu dikira sebagai: Δ heta = Suhu Akhir - Suhu Awal = 21 °C - 28 °C = -7 °C Tanda negatif (-) menunjukkan berlakunya penurunan suhu (penyerapan haba/endotermik). Temperature change is calculated as Final Temperature minus Initial Temperature, yielding -7 °C. The negative sign represents a drop in temperature, signifying an endothermic reaction."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q18",
@@ -7557,10 +7557,10 @@ const scienceF3MasterQuizBanks: Partial<
           "Suhu campuran tindak balas terus meningkat tanpa had secara eksponen.",
           "Suhu campuran menurun sehingga ia sama dengan suhu persekitaran luar.",
           "Semua tenaga kimia ditukarkan kepada tenaga mekanikal secara berterusan.",
-          "Suhu sifar mutlak ($0\text{ K}$) dicapai di dalam cawan polistirena."
+          "Suhu sifar mutlak (0 K) dicapai di dalam cawan polistirena."
         ],
         "answerIndex": 1,
-        "explanation": "Apabila tindak balas eksotermik selesai, pembebasan haba berhenti. Campuran yang panas akan memindahkan baki tenaga habanya secara beransur-ansur ke persekitaran luar sehingga ia mencapai suhu yang sama dengan suhu bilik sekeliling (keseimbangan terma).\n*When an exothermic reaction finishes, heat release stops. The hot mixture gradually transfers its remaining heat energy to the external surroundings until it matches the room temperature (thermal equilibrium)."
+        "explanation": "Apabila tindak balas eksotermik selesai, pembebasan haba berhenti. Campuran yang panas akan memindahkan baki tenaga habanya secara beransur-ansur ke persekitaran luar sehingga ia mencapai suhu yang sama dengan suhu bilik sekeliling (keseimbangan terma). When an exothermic reaction finishes, heat release stops. The hot mixture gradually transfers its remaining heat energy to the external surroundings until it matches the room temperature (thermal equilibrium)."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q19",
@@ -7578,7 +7578,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Oksigen gas"
         ],
         "answerIndex": 2,
-        "explanation": "Pembakaran bahan api fosil (seperti arang batu) membebaskan gas sulfur dioksida ($SO_2$) yang berasid. Gas ini melarut dalam air hujan untuk membentuk asid sulfurik cair (hujan asid) yang merosakkan tisu tumbuhan dan menyuburkan keasidan tanah secara merosakkan.\n*Burning fossil fuels (such as coal) releases acidic sulfur dioxide ($SO_2$) gas. This gas dissolves in rainwater to form dilute sulfuric acid (acid rain), destroying plant tissues and harmfully altering soil acidity."
+        "explanation": "Pembakaran bahan api fosil (seperti arang batu) membebaskan gas sulfur dioksida (SO₂) yang berasid. Gas ini melarut dalam air hujan untuk membentuk asid sulfurik cair (hujan asid) yang merosakkan tisu tumbuhan dan menyuburkan keasidan tanah secara merosakkan. Burning fossil fuels (such as coal) releases acidic sulfur dioxide (SO₂) gas. This gas dissolves in rainwater to form dilute sulfuric acid (acid rain), destroying plant tissues and harmfully altering soil acidity."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q20",
@@ -7590,13 +7590,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Tindak balas antara asid kuat dengan alkali kuat dikenali sebagai tindak balas peneutralan. Apakah jenis tindak balas ini dan apakah molekul utama yang terbentuk?",
         "options": [
-          "Endotermik; Molekul gas oksigen ($O_2$).",
+          "Endotermik; Molekul gas oksigen (O₂).",
           "Endotermik; Garam natrium bikarbonat.",
-          "Eksotermik; Molekul air ($H_2O$).",
-          "Eksotermik; Gas hidrogen ($H_2$)."
+          "Eksotermik; Molekul air (H₂O).",
+          "Eksotermik; Gas hidrogen (H₂)."
         ],
         "answerIndex": 2,
-        "explanation": "Peneutralan ($H^+ + OH^-\nightarrow H_2O$) adalah tindak balas eksotermik yang sentiasa membebaskan tenaga haba ke persekitaran semasa molekul air neutral terbentuk daripada gabungan ion asid dan alkali.\n*Neutralisation ($H^+ + OH^-\nightarrow H_2O$) is an exothermic reaction that always releases heat energy to surroundings as neutral water molecules form from acidic and alkaline ions."
+        "explanation": "Peneutralan (H⁺ + OH⁻ → H₂O) adalah tindak balas eksotermik yang sentiasa membebaskan tenaga haba ke persekitaran semasa molekul air neutral terbentuk daripada gabungan ion asid dan alkali. Neutralisation (H⁺ + OH⁻ → H₂O) is an exothermic reaction that always releases heat energy to surroundings as neutral water molecules form from acidic and alkaline ions."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q21",
@@ -7614,7 +7614,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerana suhu lilin menurun di bawah takat beku lilin lebur semasa menyala."
         ],
         "answerIndex": 1,
-        "explanation": "Pembakaran lilin (combustion of hydrocarbons) ialah tindak balas pengoksidaan yang membebaskan tenaga tenaga haba dan cahaya (eksotermik) ke persekitaran sekelilingnya secara aktif. Kenaikan suhu dikesan di sekitar api lilin.\n*Candle burning (combustion of hydrocarbons) is an oxidation reaction that actively releases heat and light energy (exothermic) to the surrounding surroundings, resulting in a temperature rise around the flame."
+        "explanation": "Pembakaran lilin (combustion of hydrocarbons) ialah tindak balas pengoksidaan yang membebaskan tenaga tenaga haba dan cahaya (eksotermik) ke persekitaran sekelilingnya secara aktif. Kenaikan suhu dikesan di sekitar api lilin. Candle burning (combustion of hydrocarbons) is an oxidation reaction that actively releases heat and light energy (exothermic) to the surrounding surroundings, resulting in a temperature rise around the flame."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q22",
@@ -7632,7 +7632,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Berat bikar didapati bertambah selepas bahan dilarutkan."
         ],
         "answerIndex": 1,
-        "explanation": "Definisi secara operasi bagi penyerapan haba (endotermik) ditunjukkan secara fizikal melalui kejatuhan/penurunan bacaan suhu pada termometer di dalam larutan tindak balas.\n*The operational definition of heat absorption (endothermic) is physically shown through the drop/decrease in the temperature reading on the thermometer inside the reaction solution."
+        "explanation": "Definisi secara operasi bagi penyerapan haba (endotermik) ditunjukkan secara fizikal melalui kejatuhan/penurunan bacaan suhu pada termometer di dalam larutan tindak balas. The operational definition of heat absorption (endothermic) is physically shown through the drop/decrease in the temperature reading on the thermometer inside the reaction solution."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q23",
@@ -7650,7 +7650,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Osmosis flasid sel pengawal yang menyerap haba dari tanah."
         ],
         "answerIndex": 2,
-        "explanation": "Pada waktu malam, tumbuhan tidak menjalankan fotosintesis (endotermik) kerana tiada cahaya matahari. Namun, tumbuhan terus-menerus menjalankan respirasi sel (eksotermik) sepanjang masa untuk membebaskan tenaga kehidupan dan haba.\n*At night, plants do not carry out photosynthesis (endothermic) due to the absence of sunlight. However, plants continuously perform cellular respiration (exothermic) all the time to release vital energy and heat."
+        "explanation": "Pada waktu malam, tumbuhan tidak menjalankan fotosintesis (endotermik) kerana tiada cahaya matahari. Namun, tumbuhan terus-menerus menjalankan respirasi sel (eksotermik) sepanjang masa untuk membebaskan tenaga kehidupan dan haba. At night, plants do not carry out photosynthesis (endothermic) due to the absence of sunlight. However, plants continuously perform cellular respiration (exothermic) all the time to release vital energy and heat."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q24",
@@ -7660,7 +7660,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Penguraian kalsium karbonat (CaCO₃) apabila dipanaskan dengan kuat di dalam makmal, seperti ditunjukkan dalam Rajah 1, menghasilkan kalsium oksida (CaO) dan karbon dioksida (CO₂). Tindak balas ini dikelaskan sebagai...",
+        "question": "Kalsium karbonat menghasilkan kalsium oksida dan karbon dioksida apabila dipanaskan dengan kuat. Bagaimanakah tindak balas ini dikelaskan?",
         "options": [
           "Eksotermik kerana ia membebaskan gas karbon dioksida.",
           "Endotermik kerana ia memerlukan bekalan tenaga haba berterusan dari penunu Bunsen untuk terurai.",
@@ -7668,7 +7668,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tindak balas pembakaran bergas yang menurunkan tekanan udara tabung uji."
         ],
         "answerIndex": 1,
-        "explanation": "Penguraian terma (thermal decomposition) bagi kalsium karbonat adalah tindak balas endotermik kerana bahan tindak balas mesti menyerap tenaga haba dari luar secara aktif untuk memutuskan ikatan kimia di dalamnya.\n*The thermal decomposition of calcium carbonate is an endothermic reaction because the reactant must actively absorb heat energy from an external source to break its chemical bonds."
+        "explanation": "Penguraian terma (thermal decomposition) bagi kalsium karbonat adalah tindak balas endotermik kerana bahan tindak balas mesti menyerap tenaga haba dari luar secara aktif untuk memutuskan ikatan kimia di dalamnya. The thermal decomposition of calcium carbonate is an endothermic reaction because the reactant must actively absorb heat energy from an external source to break its chemical bonds."
       },
       {
         "id": "sci-f3-c5-set-a-bm-q25",
@@ -7686,7 +7686,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tindak balas Terma Seimbang"
         ],
         "answerIndex": 0,
-        "explanation": "Tindak balas kimia atau fizikal yang berlaku tanpa sebarang perubahan bersih dalam tenaga haba atau suhu sistem dikenali sebagai proses atau tindak balas isoterma (isothermal).\n*A chemical or physical reaction that occurs without any net change in heat energy or system temperature is known as an isothermal process or reaction."
+        "explanation": "Tindak balas kimia atau fizikal yang berlaku tanpa sebarang perubahan bersih dalam tenaga haba atau suhu sistem dikenali sebagai proses atau tindak balas isoterma (isothermal). A chemical or physical reaction that occurs without any net change in heat energy or system temperature is known as an isothermal process or reaction."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q1",
@@ -7704,7 +7704,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sistem hanya mengandungi air manakala persekitaran mengandungi termometer dan bikar sahaja."
         ],
         "answerIndex": 1,
-        "explanation": "Dalam sains termokimia, sistem merujuk kepada bahan tindak balas di dalam bekas di mana tindak balas kimia berlaku, manakala semua benda di luar sistem tersebut (termometer, air, bikar, udara) diisytiharkan sebagai persekitaran.\n*In thermochemistry, the system refers to the reactants inside the container where the chemical reaction takes place, while everything outside that system (thermometer, water, beaker, air) is declared as the surroundings."
+        "explanation": "Dalam sains termokimia, sistem merujuk kepada bahan tindak balas di dalam bekas di mana tindak balas kimia berlaku, manakala semua benda di luar sistem tersebut (termometer, air, bikar, udara) diisytiharkan sebagai persekitaran. In thermochemistry, the system refers to the reactants inside the container where the chemical reaction takes place, while everything outside that system (thermometer, water, beaker, air) is declared as the surroundings."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q2",
@@ -7714,7 +7714,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Rajah profil tenaga bagi suatu tindak balas menunjukkan bahawa tenaga hasil tindak balas lebih rendah daripada tenaga bahan tindak balas. Apakah jenis tindak balas tersebut?",
+        "question": "Tenaga hasil tindak balas lebih rendah daripada tenaga bahan tindak balas. Apakah jenis tindak balas tersebut?",
         "options": [
           "Tindak balas endotermik kerana haba diserap daripada persekitaran.",
           "Tindak balas eksotermik kerana haba dibebaskan ke persekitaran.",
@@ -7722,7 +7722,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tindak balas peneutralan fizikal sahaja."
         ],
         "answerIndex": 1,
-        "explanation": "Apabila tenaga kimia produk adalah lebih rendah daripada bahan tindak balas, ini bermakna lebihan tenaga kimia tersebut telah dibebaskan ke persekitaran dalam bentuk tenaga haba. Tindak balas ini dikenali sebagai eksotermik.\n*When the chemical energy of the products is lower than that of the reactants, it means the excess chemical energy has been released to the surroundings as heat energy. This reaction is known as exothermic."
+        "explanation": "Apabila tenaga kimia produk adalah lebih rendah daripada bahan tindak balas, ini bermakna lebihan tenaga kimia tersebut telah dibebaskan ke persekitaran dalam bentuk tenaga haba. Tindak balas ini dikenali sebagai eksotermik. When the chemical energy of the products is lower than that of the reactants, it means the excess chemical energy has been released to the surroundings as heat energy. This reaction is known as exothermic."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q3",
@@ -7740,7 +7740,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerana pemutusan ikatan kimia membebaskan lebih banyak tenaga haba daripada pembentukan ikatan."
         ],
         "answerIndex": 0,
-        "explanation": "Tindak balas endotermik menyerap haba dari persekitaran. Tenaga haba yang diserap ini disimpan sebagai tenaga kimia di dalam ikatan produk, menyebabkan produk mempunyai kandungan tenaga yang lebih tinggi daripada bahan tindak balas asal.\n*Endothermic reactions absorb heat from the surroundings. This absorbed heat energy is stored as chemical energy in the bonds of the products, causing the products to have a higher energy content than the original reactants."
+        "explanation": "Tindak balas endotermik menyerap haba dari persekitaran. Tenaga haba yang diserap ini disimpan sebagai tenaga kimia di dalam ikatan produk, menyebabkan produk mempunyai kandungan tenaga yang lebih tinggi daripada bahan tindak balas asal. Endothermic reactions absorb heat from the surroundings. This absorbed heat energy is stored as chemical energy in the bonds of the products, causing the products to have a higher energy content than the original reactants."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q4",
@@ -7758,7 +7758,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ia menghasilkan gas karbon dioksida yang menyejukkan air."
         ],
         "answerIndex": 1,
-        "explanation": "Kelebapan atau penurunan suhu pada bekas eksperimen membuktikan bahawa proses pelarutan garam ammonium nitrat menyerap haba daripada molekul air di sekelilingnya (persekitaran). Ini merupakan proses endotermik.\n*A decrease in temperature on the experimental vessel proves that the dissolution of ammonium nitrate salt absorbs heat from the surrounding water molecules. This is an endothermic process."
+        "explanation": "Kelebapan atau penurunan suhu pada bekas eksperimen membuktikan bahawa proses pelarutan garam ammonium nitrat menyerap haba daripada molekul air di sekelilingnya (persekitaran). Ini merupakan proses endotermik. A decrease in temperature on the experimental vessel proves that the dissolution of ammonium nitrate salt absorbs heat from the surrounding water molecules. This is an endothermic process."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q5",
@@ -7776,7 +7776,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kenaikan mendadak dalam nilai pH campuran tindak balas."
         ],
         "answerIndex": 1,
-        "explanation": "Takrifan secara operasi (operational definition) merujuk kepada apa yang diperhatikan dan diukur secara fizikal. Di sini, kesan fizikal tindak balas endotermik dikaji melalui penurunan bacaan suhu pada termometer.\n*An operational definition refers to what is physically observed and measured. Here, the physical effect of the endothermic reaction is studied through the decrease in the temperature reading on the thermometer."
+        "explanation": "Takrifan secara operasi (operational definition) merujuk kepada apa yang diperhatikan dan diukur secara fizikal. Di sini, kesan fizikal tindak balas endotermik dikaji melalui penurunan bacaan suhu pada termometer. An operational definition refers to what is physically observed and measured. Here, the physical effect of the endothermic reaction is studied through the decrease in the temperature reading on the thermometer."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q6",
@@ -7788,13 +7788,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "Antara tindak balas berikut, yang manakah merupakan contoh tindak balas eksotermik?",
         "options": [
-          "Pereputan terma kalsium karbonat ($CaCO_3$).",
+          "Pereputan terma kalsium karbonat (CaCO₃).",
           "Tindak balas peneutralan asid hidroklorik dan natrium hidroksida.",
           "Fotosintesis oleh tumbuhan hijau pada waktu siang.",
           "Tindak balas antara asid etanoik dan natrium bikarbonat."
         ],
         "answerIndex": 1,
-        "explanation": "Tindak balas peneutralan antara asid kuat dan alkali kuat sentiasa membebaskan haba ke persekitaran (suhu air meningkat), yang merupakan ciri universal bagi tindak balas eksotermik.\n*Neutralisation reactions between a strong acid and a strong alkali always release heat to the surroundings (water temperature rises), which is a universal characteristic of exothermic reactions."
+        "explanation": "Tindak balas peneutralan antara asid kuat dan alkali kuat sentiasa membebaskan haba ke persekitaran (suhu air meningkat), yang merupakan ciri universal bagi tindak balas eksotermik. Neutralisation reactions between a strong acid and a strong alkali always release heat to the surroundings (water temperature rises), which is a universal characteristic of exothermic reactions."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q7",
@@ -7812,7 +7812,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Berlaku proses penyerapan gas oksigen dari udara sekitar yang meningkatkan suhu tiub."
         ],
         "answerIndex": 1,
-        "explanation": "Tindak balas antara logam aktif (seperti magnesium) dan asid cair menghasilkan gas hidrogen dan membebaskan tenaga haba yang besar ke persekitaran, menyebabkan dinding tabung uji menjadi panas (eksotermik).\n*The reaction between active metals (like magnesium) and dilute acids produces hydrogen gas and releases significant heat energy to the surroundings, making the walls of the test tube feel hot (exothermic)."
+        "explanation": "Tindak balas antara logam aktif (seperti magnesium) dan asid cair menghasilkan gas hidrogen dan membebaskan tenaga haba yang besar ke persekitaran, menyebabkan dinding tabung uji menjadi panas (eksotermik). The reaction between active metals (like magnesium) and dilute acids produces hydrogen gas and releases significant heat energy to the surroundings, making the walls of the test tube feel hot (exothermic)."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q8",
@@ -7830,7 +7830,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tenaga elektrik → Tenaga kimia"
         ],
         "answerIndex": 1,
-        "explanation": "Semasa pembakaran etanol (bahan api fosil/organik), tenaga kimia yang disimpan dalam ikatan kimia etanol ditukarkan kepada tenaga haba dan tenaga cahaya yang dibebaskan secara aktif ke persekitaran.\n*During the combustion of ethanol, chemical energy stored in the chemical bonds of ethanol is converted into heat energy and light energy released actively to the surroundings."
+        "explanation": "Semasa pembakaran etanol (bahan api fosil/organik), tenaga kimia yang disimpan dalam ikatan kimia etanol ditukarkan kepada tenaga haba dan tenaga cahaya yang dibebaskan secara aktif ke persekitaran. During the combustion of ethanol, chemical energy stored in the chemical bonds of ethanol is converted into heat energy and light energy released actively to the surroundings."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q9",
@@ -7840,7 +7840,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Semasa kalsium karbonat (CaCO₃) dipanaskan dengan kuat dalam Aktiviti 5.1, mengapakah pemanasan perlu dilakukan secara berterusan?",
+        "question": "Mengapakah kalsium karbonat perlu dipanaskan secara berterusan supaya terurai?",
         "options": [
           "Kerana tindak balas pereputan terma adalah eksotermik dan memerlukan pemangkin haba.",
           "Kerana kalsium karbonat mengalami tindak balas endotermik yang memerlukan penyerapan haba yang berterusan daripada penunu Bunsen untuk mereput.",
@@ -7848,7 +7848,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerana tindak balas tersebut menghasilkan gas oksigen yang mudah terbakar jika disejukkan."
         ],
         "answerIndex": 1,
-        "explanation": "Pereputan terma garam karbonat (seperti kalsium karbonat) ialah satu tindak balas endotermik tulen. Tindak balas ini memerlukan bekalan haba luaran yang berterusan untuk memutuskan ikatan kimia kalsium karbonat membentuk kalsium oksida ($CaO$) dan membebaskan gas karbon dioksida ($CO_2$).\n*Thermal decomposition of carbonate salts (such as calcium carbonate) is a purely endothermic reaction. It requires a continuous external heat supply to break chemical bonds in calcium carbonate to form calcium oxide and release carbon dioxide gas."
+        "explanation": "Pereputan terma garam karbonat (seperti kalsium karbonat) ialah satu tindak balas endotermik tulen. Tindak balas ini memerlukan bekalan haba luaran yang berterusan untuk memutuskan ikatan kimia kalsium karbonat membentuk kalsium oksida (CaO) dan membebaskan gas karbon dioksida (CO₂). Thermal decomposition of carbonate salts (such as calcium carbonate) is a purely endothermic reaction. It requires a continuous external heat supply to break chemical bonds in calcium carbonate to form calcium oxide and release carbon dioxide gas."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q10",
@@ -7858,15 +7858,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Apakah gas yang dibebaskan apabila serbuk natrium hidrogen karbonat dilarutkan dalam asid hidroklorik cair dalam Aktiviti 5.1?",
+        "question": "Apakah gas yang dibebaskan apabila natrium hidrogen karbonat bertindak balas dengan asid hidroklorik cair?",
         "options": [
-          "Gas Oksigen ($O_2$)",
-          "Gas Nitrogen ($N_2$)",
+          "Gas Oksigen (O₂)",
+          "Gas Nitrogen (N₂)",
           "Gas karbon dioksida (CO₂)",
           "Gas hidrogen (H₂)"
         ],
         "answerIndex": 2,
-        "explanation": "Tindak balas antara sebatian hidrogen karbonat (bikarbonat) dan asid cair sentiasa menghasilkan garam, air, dan membebaskan gas karbon dioksida. Pembebasan gas ini dikesan apabila gas dialirkan ke dalam air kapur dan menyebabkannya menjadi keruh (cloudy).\n*The reaction between hydrogen carbonate (bicarbonate) compounds and dilute acids always produces salt, water, and releases carbon dioxide gas. This release is detected when the gas is bubbled into limewater and turns it cloudy."
+        "explanation": "Tindak balas antara sebatian hidrogen karbonat (bikarbonat) dan asid cair sentiasa menghasilkan garam, air, dan membebaskan gas karbon dioksida. Pembebasan gas ini dikesan apabila gas dialirkan ke dalam air kapur dan menyebabkannya menjadi keruh (cloudy). The reaction between hydrogen carbonate (bicarbonate) compounds and dilute acids always produces salt, water, and releases carbon dioxide gas. This release is detected when the gas is bubbled into limewater and turns it cloudy."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q11",
@@ -7876,7 +7876,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Antara proses fisiologi berikut, yang manakah merupakan tindak balas eksotermik dalam organisma hidup?",
+        "question": "Proses dalam organisma hidup yang manakah merupakan tindak balas eksotermik?",
         "options": [
           "Proses fotosintesis tumbuhan hijau.",
           "Proses respirasi sel untuk menjana tenaga.",
@@ -7884,7 +7884,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pengangkutan aktif ion mineral merentasi membran."
         ],
         "answerIndex": 1,
-        "explanation": "Respirasi sel ialah satu proses pengoksidaan glukosa di dalam sel hidup yang membebaskan tenaga haba dan tenaga kimia (ATP) untuk kegunaan metabolisme badan, yang menjadikannya sejenis tindak balas eksotermik semula jadi.\n*Cellular respiration is a process of glucose oxidation inside living cells that releases heat energy and chemical energy (ATP) for body metabolic use, making it a natural exothermic reaction."
+        "explanation": "Respirasi sel ialah satu proses pengoksidaan glukosa di dalam sel hidup yang membebaskan tenaga haba dan tenaga kimia (ATP) untuk kegunaan metabolisme badan, yang menjadikannya sejenis tindak balas eksotermik semula jadi. Cellular respiration is a process of glucose oxidation inside living cells that releases heat energy and chemical energy (ATP) for body metabolic use, making it a natural exothermic reaction."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q12",
@@ -7902,7 +7902,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tindak balas pemendapan pepejal kanji."
         ],
         "answerIndex": 1,
-        "explanation": "Fotosintesis menyerap tenaga cahaya (sinaran matahari) secara aktif bagi menukar bahan mentah bertenaga rendah ($CO_2$ dan $H_2O$) menjadi molekul glukosa bertenaga tinggi. Ini merupakan proses penyerapan tenaga (endotermik).\n*Photosynthesis actively absorbs light energy (solar radiation) to convert low-energy raw materials ($CO_2$ and $H_2O$) into high-energy glucose molecules. This is an energy absorption process (endothermic)."
+        "explanation": "Fotosintesis menyerap tenaga cahaya (sinaran matahari) secara aktif bagi menukar bahan mentah bertenaga rendah (CO₂ dan H₂O) menjadi molekul glukosa bertenaga tinggi. Ini merupakan proses penyerapan tenaga (endotermik). Photosynthesis actively absorbs light energy (solar radiation) to convert low-energy raw materials (CO₂ and H₂O) into high-energy glucose molecules. This is an energy absorption process (endothermic)."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q13",
@@ -7920,7 +7920,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tindak balas fizikal bermagnet antara kereta api dengan rel keluli."
         ],
         "answerIndex": 1,
-        "explanation": "Reaksi termit melibatkan tindak balas penurunan ferum(III) oksida oleh serbuk aluminium. Tindak balas ini adalah sangat eksotermik, membebaskan haba yang mencukupi untuk meleburkan ferum yang dihasilkan (molten iron) bagi menyambung rekahan landasan kereta api secara kekal.\n*The thermite reaction involves the reduction of iron(III) oxide by aluminium powder. It is highly exothermic, releasing enough heat to produce molten iron used to weld railway track cracks permanently."
+        "explanation": "Reaksi termit melibatkan tindak balas penurunan ferum(III) oksida oleh serbuk aluminium. Tindak balas ini adalah sangat eksotermik, membebaskan haba yang mencukupi untuk meleburkan ferum yang dihasilkan (molten iron) bagi menyambung rekahan landasan kereta api secara kekal. The thermite reaction involves the reduction of iron(III) oxide by aluminium powder. It is highly exothermic, releasing enough heat to produce molten iron used to weld railway track cracks permanently."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q14",
@@ -7938,7 +7938,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kuprum(II) sulfat terhidrat; diaktifkan dengan mendedahkannya kepada cahaya matahari."
         ],
         "answerIndex": 2,
-        "explanation": "Pek panas segera mengandungi garam kontang seperti kalsium klorida kontang ($CaCl_2$) dan satu beg plastik air di dalamnya. Pengaktifan dilakukan dengan menekan pek untuk memecahkan beg air tersebut supaya garam melarut di dalam air secara eksotermik, membebaskan haba untuk melegakan kekejangan otot.\n*Instant hot packs contain anhydrous salts like anhydrous calcium chloride ($CaCl_2$) and an inner plastic bag of water. Activation is done by squeezing the pack to break the water bag so the salt dissolves exothermically in water, releasing heat to soothe muscle cramps."
+        "explanation": "Pek panas segera mengandungi garam kontang seperti kalsium klorida kontang (CaCl₂) dan satu beg plastik air di dalamnya. Pengaktifan dilakukan dengan menekan pek untuk memecahkan beg air tersebut supaya garam melarut di dalam air secara eksotermik, membebaskan haba untuk melegakan kekejangan otot. Instant hot packs contain anhydrous salts like anhydrous calcium chloride (CaCl₂) and an inner plastic bag of water. Activation is done by squeezing the pack to break the water bag so the salt dissolves exothermically in water, releasing heat to soothe muscle cramps."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q15",
@@ -7950,13 +7950,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "Pek sejuk segera yang digunakan di hospital untuk mengurangkan bengkak mengandungi bahan kimia penyerap haba. Apakah bahan tersebut?",
         "options": [
-          "Kalsium Klorida ($CaCl_2$)",
-          "Amonium Nitrat ($NH_4NO_3$)",
-          "Natrium Hidroksida ($NaOH$)",
-          "Magnesium Oksida ($MgO$)"
+          "Kalsium Klorida (CaCl₂)",
+          "Amonium Nitrat (NH₄NO₃)",
+          "Natrium Hidroksida (NaOH)",
+          "Magnesium Oksida (MgO)"
         ],
         "answerIndex": 1,
-        "explanation": "Pek sejuk segera menggunakan pepejal amonium nitrat ($NH_4NO_3$) yang diasingkan daripada air. Apabila beg air dipecahkan, amonium nitrat melarut di dalam air secara endotermik, menyerap haba dari kawasan luka bengkak dan memberikan kesan penyejukan.\n*Instant cold packs use solid ammonium nitrate ($NH_4NO_3$) isolated from water. When the water pouch is ruptured, ammonium nitrate dissolves in water endothermically, absorbing heat from the swollen wound and providing a cooling effect."
+        "explanation": "Pek sejuk segera menggunakan pepejal amonium nitrat (NH₄NO₃) yang diasingkan daripada air. Apabila beg air dipecahkan, amonium nitrat melarut di dalam air secara endotermik, menyerap haba dari kawasan luka bengkak dan memberikan kesan penyejukan. Instant cold packs use solid ammonium nitrate (NH₄NO₃) isolated from water. When the water pouch is ruptured, ammonium nitrate dissolves in water endothermically, absorbing heat from the swollen wound and providing a cooling effect."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q16",
@@ -7974,7 +7974,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Untuk bertindak sebagai gas pengembang bagi pek udara."
         ],
         "answerIndex": 1,
-        "explanation": "Kedua-dua pek panas dan sejuk segera beroperasi berasaskan pelarutan garam kimia kontang di dalam air. Untuk mengelakkan pelarutan pramatang semasa penyimpanan, air diisikan di dalam pundi kecil yang berasingan dan hanya dipecahkan dengan tekanan fizikal apabila bersedia digunakan.\n*Both instant hot and cold packs operate based on the dissolution of anhydrous chemical salts in water. To prevent premature dissolution during storage, water is sealed in a separate small pouch and is only ruptured with physical pressure when ready for use."
+        "explanation": "Kedua-dua pek panas dan sejuk segera beroperasi berasaskan pelarutan garam kimia kontang di dalam air. Untuk mengelakkan pelarutan pramatang semasa penyimpanan, air diisikan di dalam pundi kecil yang berasingan dan hanya dipecahkan dengan tekanan fizikal apabila bersedia digunakan. Both instant hot and cold packs operate based on the dissolution of anhydrous chemical salts in water. To prevent premature dissolution during storage, water is sealed in a separate small pouch and is only ruptured with physical pressure when ready for use."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q17",
@@ -7992,7 +7992,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Proses tersebut membebaskan tenaga kinetik daripada air tepung secara spontan."
         ],
         "answerIndex": 0,
-        "explanation": "Semasa membakar kek/roti, bahan penaik (seperti natrium hidrogen karbonat) menyerap haba dari ketuhar (endotermik) untuk mengalami pereputan terma, membebaskan gas karbon dioksida ($CO_2$). Gas yang terperangkap ini mengembang dan menghasilkan rongga udara yang menaikkan adunan.\n*When baking cake/bread, the baking powder (such as sodium hydrogen carbonate) absorbs heat from the oven (endothermic) to undergo thermal decomposition, releasing carbon dioxide gas. This trapped gas expands and creates air pockets that raise the batter."
+        "explanation": "Semasa membakar kek/roti, bahan penaik (seperti natrium hidrogen karbonat) menyerap haba dari ketuhar (endotermik) untuk mengalami pereputan terma, membebaskan gas karbon dioksida (CO₂). Gas yang terperangkap ini mengembang dan menghasilkan rongga udara yang menaikkan adunan. When baking cake/bread, the baking powder (such as sodium hydrogen carbonate) absorbs heat from the oven (endothermic) to undergo thermal decomposition, releasing carbon dioxide gas. This trapped gas expands and creates air pockets that raise the batter."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q18",
@@ -8010,7 +8010,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Endotermik kerana cahaya yang dihasilkan berwarna-warni mengikut penyerapan spektrum."
         ],
         "answerIndex": 1,
-        "explanation": "Sebarang tindak balas pembakaran (seperti letupan bunga api) adalah sangat eksotermik. Sebaik sahaja dinyalakan, tindak balas kimia bahan letupan membebaskan tenaga yang sangat tinggi ke persekitaran dalam pelbagai bentuk tenaga berguna dan tidak berguna (haba, cahaya, bunyi).\n*Any combustion reaction (such as a fireworks explosion) is highly exothermic. Once ignited, the chemical reaction of explosives releases very high energy to the surroundings in various forms of useful and non-useful energy (heat, light, sound)."
+        "explanation": "Sebarang tindak balas pembakaran (seperti letupan bunga api) adalah sangat eksotermik. Sebaik sahaja dinyalakan, tindak balas kimia bahan letupan membebaskan tenaga yang sangat tinggi ke persekitaran dalam pelbagai bentuk tenaga berguna dan tidak berguna (haba, cahaya, bunyi). Any combustion reaction (such as a fireworks explosion) is highly exothermic. Once ignited, the chemical reaction of explosives releases very high energy to the surroundings in various forms of useful and non-useful energy (heat, light, sound)."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q19",
@@ -8028,7 +8028,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pokok bertindak membebaskan gas nitrogen sejuk yang menurunkan suhu atmosfera secara fizikal."
         ],
         "answerIndex": 1,
-        "explanation": "Peningkatan litupan hutan (afforestation) meningkatkan kadar fotosintesis global. Fotosintesis adalah tindak balas endotermik yang menyerap gas rumah hijau ($CO_2$) dan radiasi solar untuk menukarkannya kepada biomas kayu (tenaga kimia). Ini secara langsung mengurangkan kesan perangkap haba di dalam atmosfera Bumi.\n*An increase in forest cover (afforestation) increases global photosynthesis. Photosynthesis is an endothermic reaction that absorbs greenhouse gas ($CO_2$) and solar radiation to convert them into wood biomass (chemical energy). This directly reduces heat-trapping effects in the Earth's atmosphere."
+        "explanation": "Peningkatan litupan hutan (afforestation) meningkatkan kadar fotosintesis global. Fotosintesis adalah tindak balas endotermik yang menyerap gas rumah hijau (CO₂) dan radiasi solar untuk menukarkannya kepada biomas kayu (tenaga kimia). Ini secara langsung mengurangkan kesan perangkap haba di dalam atmosfera Bumi. An increase in forest cover (afforestation) increases global photosynthesis. Photosynthesis is an endothermic reaction that absorbs greenhouse gas (CO₂) and solar radiation to convert them into wood biomass (chemical energy). This directly reduces heat-trapping effects in the Earth's atmosphere."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q20",
@@ -8046,7 +8046,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerana ia memantulkan tenaga cahaya solar ke permukaan Bumi secara berlebihan."
         ],
         "answerIndex": 1,
-        "explanation": "Gas $CO_2$ yang dibebaskan daripada tindak balas eksotermik pembakaran bahan api mempunyai keupayaan fizikal untuk menyerap radiasi terma inframerah yang dipantulkan dari permukaan Bumi. Tenaga haba ini terperangkap di dalam atmosfera, menyebabkan kenaikan suhu purata global (kesan rumah hijau).\n*$CO_2$ gas released from exothermic fuel combustion reactions has the physical capability to absorb thermal infrared radiation reflected from the Earth's surface. This heat energy is trapped inside the atmosphere, causing a rise in global average temperature (greenhouse effect)."
+        "explanation": "Gas CO₂ yang dibebaskan daripada tindak balas eksotermik pembakaran bahan api mempunyai keupayaan fizikal untuk menyerap radiasi terma inframerah yang dipantulkan dari permukaan Bumi. Tenaga haba ini terperangkap di dalam atmosfera, menyebabkan kenaikan suhu purata global (kesan rumah hijau). CO₂ gas released from exothermic fuel combustion reactions has the physical capability to absorb thermal infrared radiation reflected from the Earth's surface. This heat energy is trapped inside the atmosphere, causing a rise in global average temperature (greenhouse effect)."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q21",
@@ -8064,7 +8064,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tindak balas kimia endotermik yang menghasilkan gas hidrogen."
         ],
         "answerIndex": 1,
-        "explanation": "Melarut atau meleburnya ais adalah proses fizikal endotermik. Ais pepejal menyerap tenaga haba dari persekitaran (menyebabkan udara sekitar terasa sejuk) untuk mengatasi daya tarikan antara molekul air pepejal bagi bertukar menjadi air cecair.\n*Melting of ice is an endothermic physical process. Solid ice absorbs heat energy from the surroundings (making the surrounding air feel cooler) to overcome attractive forces between solid water molecules to change into liquid water."
+        "explanation": "Melarut atau meleburnya ais adalah proses fizikal endotermik. Ais pepejal menyerap tenaga haba dari persekitaran (menyebabkan udara sekitar terasa sejuk) untuk mengatasi daya tarikan antara molekul air pepejal bagi bertukar menjadi air cecair. Melting of ice is an endothermic physical process. Solid ice absorbs heat energy from the surroundings (making the surrounding air feel cooler) to overcome attractive forces between solid water molecules to change into liquid water."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q22",
@@ -8077,12 +8077,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Natrium karbonat pepejal (Na₂CO₃) dan natrium hidrogen karbonat (NaHCO₃) dilarutkan secara berasingan dalam cawan polistirena berisi air. Bagaimanakah pemerhatian suhu bagi kedua-dua proses pelarutan ini dibandingkan?",
         "options": [
           "Kedua-duanya mencatatkan kenaikan bacaan termometer yang sama.",
-          "Pelarutan $Na_2CO_3$ mencatatkan penurunan suhu (endotermik) manakala pelarutan $NaHCO_3$ mencatatkan kenaikan suhu (eksotermik).",
-          "Pelarutan $Na_2CO_3$ mencatatkan kenaikan suhu (eksotermik) manakala pelarutan $NaHCO_3$ mencatatkan penurunan suhu (endotermik).",
+          "Pelarutan Na₂CO₃ mencatatkan penurunan suhu (endotermik) manakala pelarutan NaHCO₃ mencatatkan kenaikan suhu (eksotermik).",
+          "Pelarutan Na₂CO₃ mencatatkan kenaikan suhu (eksotermik) manakala pelarutan NaHCO₃ mencatatkan penurunan suhu (endotermik).",
           "Kedua-duanya tidak menunjukkan sebarang perubahan suhu pada termometer."
         ],
         "answerIndex": 2,
-        "explanation": "Mengikut keputusan eksperimen standard Sains Form 3 KSSM, pelarutan natrium karbonat kontang di dalam air membebaskan haba (bacaan suhu meningkat/eksotermik), manakala pelarutan natrium hidrogen karbonat menyerap haba dari air (bacaan suhu menurun/endotermik).\n*According to standard KSSM Form 3 Science experimental results, the dissolution of anhydrous sodium carbonate in water releases heat (temperature reading increases/exothermic), while the dissolution of sodium hydrogen carbonate absorbs heat from water (temperature reading decreases/endothermic)."
+        "explanation": "Mengikut keputusan eksperimen standard Sains Form 3 KSSM, pelarutan natrium karbonat kontang di dalam air membebaskan haba (bacaan suhu meningkat/eksotermik), manakala pelarutan natrium hidrogen karbonat menyerap haba dari air (bacaan suhu menurun/endotermik). According to standard KSSM Form 3 Science experimental results, the dissolution of anhydrous sodium carbonate in water releases heat (temperature reading increases/exothermic), while the dissolution of sodium hydrogen carbonate absorbs heat from water (temperature reading decreases/endothermic)."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q23",
@@ -8100,7 +8100,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Polistirena dapat menapis pembebasan gas hidrogen bertoksik daripada keluar."
         ],
         "answerIndex": 1,
-        "explanation": "Untuk mengukur kuantiti haba tindak balas dengan tepat, pemindahan haba antara campuran tindak balas (sistem) dan udara sekeliling (persekitaran) mestilah disekat. Polistirena digunakan kerana ia merupakan konduktor haba yang sangat lemah (penebat baik) yang mengurangkan kehilangan haba.\n*To measure reaction heat accurately, heat transfer between the reaction mixture (system) and the surrounding air (surroundings) must be blocked. Polystyrene is used because it is a very poor heat conductor (good insulator) that reduces heat loss."
+        "explanation": "Untuk mengukur kuantiti haba tindak balas dengan tepat, pemindahan haba antara campuran tindak balas (sistem) dan udara sekeliling (persekitaran) mestilah disekat. Polistirena digunakan kerana ia merupakan konduktor haba yang sangat lemah (penebat baik) yang mengurangkan kehilangan haba. To measure reaction heat accurately, heat transfer between the reaction mixture (system) and the surrounding air (surroundings) must be blocked. Polystyrene is used because it is a very poor heat conductor (good insulator) that reduces heat loss."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q24",
@@ -8118,7 +8118,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Membalut lutut menggunakan pemanas termit industri."
         ],
         "answerIndex": 0,
-        "explanation": "Menurut Info Sains KSSM, pek sejuk segera digunakan untuk kecederaan bengkak akut dan pendarahan. Kesan penyejukan (endotermik) mengecutkan salur darah lumen bagi mengurangkan aliran darah ke tisu yang cedera, mengurangkan kesakitan, inflamasi, dan bengkak dengan berkesan. Pek panas segera digunakan kemudian untuk melegakan kekejangan otot yang tegang.\n*According to KSSM Science Info, instant cold packs are used for acute swelling injuries and bleeding. The cooling effect (endothermic) constricts blood vessels to reduce blood flow to the injured tissue, effectively reducing pain, inflammation, and swelling. Instant hot packs are used later to relieve tight muscle spasms."
+        "explanation": "Menurut Info Sains KSSM, pek sejuk segera digunakan untuk kecederaan bengkak akut dan pendarahan. Kesan penyejukan (endotermik) mengecutkan salur darah lumen bagi mengurangkan aliran darah ke tisu yang cedera, mengurangkan kesakitan, inflamasi, dan bengkak dengan berkesan. Pek panas segera digunakan kemudian untuk melegakan kekejangan otot yang tegang. According to KSSM Science Info, instant cold packs are used for acute swelling injuries and bleeding. The cooling effect (endothermic) constricts blood vessels to reduce blood flow to the injured tissue, effectively reducing pain, inflammation, and swelling. Instant hot packs are used later to relieve tight muscle spasms."
       },
       {
         "id": "sci-f3-c5-set-b-bm-q25",
@@ -8136,7 +8136,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Untuk mengurangkan pembentukan mendakan sulfur kuning di dalam bekas."
         ],
         "answerIndex": 1,
-        "explanation": "Proses pelarutan asid pekat di dalam air membebaskan kuantiti haba yang teramat besar (highly exothermic). Jika air dituang ke asid pekat, air yang sedikit di permukaan asid akan menyerap tenaga haba yang dilepaskan secara mendadak pada satu titik, lalu mendidih serta-merta dan memercikkan asid yang sangat mengakis ke luar. Melalui menuang asid perlahan-lahan ke dalam air yang banyak, air bertindak menyerap dan mengagihkan haba secara selamat tanpa pendidihan mendadak.\n*The process of dissolving concentrated acid in water releases an immense amount of heat (highly exothermic). If water is poured into concentrated acid, the small amount of water on the acid surface will absorb the released heat energy suddenly at one point, boiling instantly and splashing highly corrosive acid outward. By pouring acid slowly into a large volume of water, the water absorbs and distributes the heat safely without flash boiling."
+        "explanation": "Proses pelarutan asid pekat di dalam air membebaskan kuantiti haba yang teramat besar (highly exothermic). Jika air dituang ke asid pekat, air yang sedikit di permukaan asid akan menyerap tenaga haba yang dilepaskan secara mendadak pada satu titik, lalu mendidih serta-merta dan memercikkan asid yang sangat mengakis ke luar. Melalui menuang asid perlahan-lahan ke dalam air yang banyak, air bertindak menyerap dan mengagihkan haba secara selamat tanpa pendidihan mendadak. The process of dissolving concentrated acid in water releases an immense amount of heat (highly exothermic). If water is poured into concentrated acid, the small amount of water on the acid surface will absorb the released heat energy suddenly at one point, boiling instantly and splashing highly corrosive acid outward. By pouring acid slowly into a large volume of water, the water absorbs and distributes the heat safely without flash boiling."
       }
     ],
     "dlp": [
@@ -8156,7 +8156,7 @@ const scienceF3MasterQuizBanks: Partial<
           "A study on the strength of acids and bases based on hydrogen ion concentration."
         ],
         "answerIndex": 1,
-        "explanation": "Termokimia ditakrifkan secara khusus sebagai bidang sains yang mengkaji perubahan tenaga haba (sama ada dibebaskan atau diserap) yang mengiringi tindak balas kimia.\n*Thermochemistry is specifically defined as the branch of science that studies the changes in heat energy (either released or absorbed) accompanying chemical reactions."
+        "explanation": "Termokimia ditakrifkan secara khusus sebagai bidang sains yang mengkaji perubahan tenaga haba (sama ada dibebaskan atau diserap) yang mengiringi tindak balas kimia. Thermochemistry is specifically defined as the branch of science that studies the changes in heat energy (either released or absorbed) accompanying chemical reactions."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q2",
@@ -8174,7 +8174,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The polystyrene used to insulate the experimental container."
         ],
         "answerIndex": 2,
-        "explanation": "Dalam termokimia, \"sistem\" (system) merujuk kepada campuran bahan tindak balas yang sedang mengalami perubahan kimia di dalam bekas, manakala \"persekitaran\" (surroundings) adalah semua benda di luar sistem seperti bikar, termometer, dan udara sekitar.\n*In thermochemistry, the \"system\" refers to the mixture of reactants undergoing chemical change inside the vessel, while the \"surroundings\" include everything outside the system, such as the beaker, thermometer, and surrounding air."
+        "explanation": "Dalam termokimia, \"sistem\" (system) merujuk kepada campuran bahan tindak balas yang sedang mengalami perubahan kimia di dalam bekas, manakala \"persekitaran\" (surroundings) adalah semua benda di luar sistem seperti bikar, termometer, dan udara sekitar. In thermochemistry, the \"system\" refers to the mixture of reactants undergoing chemical change inside the vessel, while the \"surroundings\" include everything outside the system, such as the beaker, thermometer, and surrounding air."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q3",
@@ -8192,7 +8192,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Heat energy is completely converted into chemical potential energy in the products."
         ],
         "answerIndex": 1,
-        "explanation": "Kenaikan suhu pada termometer (sebahagian daripada persekitaran) menunjukkan bahawa haba telah dibebaskan dari sistem ke persekitaran. Ini merupakan ciri utama tindak balas eksotermik.\n*An increase in temperature on the thermometer (part of the surroundings) indicates that heat has been released from the system to the surroundings, which is the key characteristic of an exothermic reaction."
+        "explanation": "Kenaikan suhu pada termometer (sebahagian daripada persekitaran) menunjukkan bahawa haba telah dibebaskan dari sistem ke persekitaran. Ini merupakan ciri utama tindak balas eksotermik. An increase in temperature on the thermometer (part of the surroundings) indicates that heat has been released from the system to the surroundings, which is the key characteristic of an exothermic reaction."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q4",
@@ -8210,7 +8210,7 @@ const scienceF3MasterQuizBanks: Partial<
           "There is no correlation between chemical energy and heat release in exothermic reactions."
         ],
         "answerIndex": 2,
-        "explanation": "Dalam tindak balas eksotermik, sistem membebaskan tenaga haba ke persekitaran kerana hasil tindak balas mengandungi tenaga kimia yang lebih rendah daripada bahan tindak balas asal. Lebihan tenaga kimia ini dibebaskan sebagai haba.\n*In an exothermic reaction, the system releases heat energy to the surroundings because the products contain less chemical potential energy than the original reactants. The excess chemical energy is emitted as heat."
+        "explanation": "Dalam tindak balas eksotermik, sistem membebaskan tenaga haba ke persekitaran kerana hasil tindak balas mengandungi tenaga kimia yang lebih rendah daripada bahan tindak balas asal. Lebihan tenaga kimia ini dibebaskan sebagai haba. In an exothermic reaction, the system releases heat energy to the surroundings because the products contain less chemical potential energy than the original reactants. The excess chemical energy is emitted as heat."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q5",
@@ -8228,7 +8228,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Cell respiration in living organisms to produce energy."
         ],
         "answerIndex": 1,
-        "explanation": "Pelarutan amonium klorida di dalam air menyerap haba dari persekitaran, menyebabkan suhu air dan bekas menurun. Oleh itu, ia dikategorikan sebagai tindak balas endotermik.\n*Dissolving ammonium chloride in water absorbs heat from the surroundings, causing the temperature of the water and container to decrease. Hence, it is classified as an endothermic reaction."
+        "explanation": "Pelarutan amonium klorida di dalam air menyerap haba dari persekitaran, menyebabkan suhu air dan bekas menurun. Oleh itu, ia dikategorikan sebagai tindak balas endotermik. Dissolving ammonium chloride in water absorbs heat from the surroundings, causing the temperature of the water and container to decrease. Hence, it is classified as an endothermic reaction."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q6",
@@ -8238,7 +8238,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "The diagram above shows the energy transfer profile during a chemical reaction.\n[ Reactants + Heat -> Products ]\nWhat type of reaction is this and what is its effect on surrounding temperature?",
+        "question": "In a reaction, heat is absorbed from the surroundings to convert reactants into products. What type of reaction is this, and what happens to the temperature of the surroundings?",
         "options": [
           "Exothermic; Ambient temperature increases.",
           "Exothermic; Ambient temperature decreases.",
@@ -8246,7 +8246,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Endothermic; Ambient temperature decreases."
         ],
         "answerIndex": 3,
-        "explanation": "Tindak balas yang memerlukan input haba untuk mengubah bahan tindak balas kepada hasil tindak balas (Bahan Tindak Balas + Haba -> Hasil Tindak Balas) ialah tindak balas endotermik. Pengambilan haba dari luar menyebabkan suhu persekitaran menurun.\n*A reaction that requires heat input to convert reactants to products (Reactants + Heat -> Products) is an endothermic reaction. Absorbing heat from outside causes the surrounding temperature to fall."
+        "explanation": "Tindak balas yang memerlukan input haba untuk mengubah bahan tindak balas kepada hasil tindak balas (Bahan Tindak Balas + Haba -> Hasil Tindak Balas) ialah tindak balas endotermik. Pengambilan haba dari luar menyebabkan suhu persekitaran menurun. A reaction that requires heat input to convert reactants to products (Reactants + Heat -> Products) is an endothermic reaction. Absorbing heat from outside causes the surrounding temperature to fall."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q7",
@@ -8264,7 +8264,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Polystyrene can accelerate the rate of dissolution of solid particles in an aqueous solution."
         ],
         "answerIndex": 1,
-        "explanation": "Untuk mengukur perubahan suhu persekitaran secara tepat, pemindahan haba antara campuran tindak balas dengan persekitaran luar bekas mesti diminimumkan. Cawan polistirena bertindak sebagai insulator yang mengehadkan kehilangan atau penyerapan haba luar.\n*To accurately measure surrounding temperature changes, heat transfer between the reaction mixture and the outer surroundings must be minimised. Polystyrene cups act as insulators that limit external heat loss or gain."
+        "explanation": "Untuk mengukur perubahan suhu persekitaran secara tepat, pemindahan haba antara campuran tindak balas dengan persekitaran luar bekas mesti diminimumkan. Cawan polistirena bertindak sebagai insulator yang mengehadkan kehilangan atau penyerapan haba luar. To accurately measure surrounding temperature changes, heat transfer between the reaction mixture and the outer surroundings must be minimised. Polystyrene cups act as insulators that limit external heat loss or gain."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q8",
@@ -8282,7 +8282,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The chemical energy in the substance is measured using a bomb calorimeter."
         ],
         "answerIndex": 0,
-        "explanation": "Definisi secara operasi (operational definition) menerangkan apa yang dilakukan dan apa yang diperhatikan secara langsung. Dalam kes eksotermik, pemerhatian langsungnya ialah kenaikan bacaan suhu pada termometer.\n*An operational definition describes what is done and what is directly observed. In the case of an exothermic reaction, the direct observation is the increase in the thermometer's temperature reading."
+        "explanation": "Definisi secara operasi (operational definition) menerangkan apa yang dilakukan dan apa yang diperhatikan secara langsung. Dalam kes eksotermik, pemerhatian langsungnya ialah kenaikan bacaan suhu pada termometer. An operational definition describes what is done and what is directly observed. In the case of an exothermic reaction, the direct observation is the increase in the thermometer's temperature reading."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q9",
@@ -8300,7 +8300,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Because the mixture's temperature increases on its own without external assistance after the yeast becomes active."
         ],
         "answerIndex": 1,
-        "explanation": "Semasa membakar kek atau roti, adunan mesti terus-menerus menyerap tenaga haba daripada persekitaran (ketuhar) untuk membolehkan tindak balas kimia memasak bahan-bahannya berlaku.\n*During baking, the batter must continuously absorb heat energy from the surroundings (the oven) to enable the chemical baking reactions of its ingredients to occur."
+        "explanation": "Semasa membakar kek atau roti, adunan mesti terus-menerus menyerap tenaga haba daripada persekitaran (ketuhar) untuk membolehkan tindak balas kimia memasak bahan-bahannya berlaku. During baking, the batter must continuously absorb heat energy from the surroundings (the oven) to enable the chemical baking reactions of its ingredients to occur."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q10",
@@ -8318,7 +8318,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The formation of dew on leaves in the early cool morning."
         ],
         "answerIndex": 2,
-        "explanation": "Respirasi sel ialah tindak balas pembakaran glukosa secara biokimia di dalam sel badan yang membebaskan tenaga haba dan ATP (eksotermik), manakala fotosintesis pula menyerap tenaga cahaya matahari (endotermik).\n*Cellular respiration is the biochemical oxidation of glucose inside body cells that releases heat energy and ATP (exothermic), whereas photosynthesis absorbs solar light energy (endothermic)."
+        "explanation": "Respirasi sel ialah tindak balas pembakaran glukosa secara biokimia di dalam sel badan yang membebaskan tenaga haba dan ATP (eksotermik), manakala fotosintesis pula menyerap tenaga cahaya matahari (endotermik). Cellular respiration is the biochemical oxidation of glucose inside body cells that releases heat energy and ATP (exothermic), whereas photosynthesis absorbs solar light energy (endothermic)."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q11",
@@ -8336,7 +8336,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ammonium chloride (NH4Cl)."
         ],
         "answerIndex": 2,
-        "explanation": "Kalsium klorida kontang (anhydrous calcium chloride) atau magnesium sulfat kontang melarut dalam air secara eksotermik yang sangat kuat, membebaskan haba yang mencukupi untuk melegakan kekejangan otot dengan meningkatkan aliran darah.\n*Anhydrous calcium chloride or anhydrous magnesium sulfate dissolves in water in a highly exothermic manner, releasing sufficient heat to relieve muscle cramps by increasing blood circulation."
+        "explanation": "Kalsium klorida kontang (anhydrous calcium chloride) atau magnesium sulfat kontang melarut dalam air secara eksotermik yang sangat kuat, membebaskan haba yang mencukupi untuk melegakan kekejangan otot dengan meningkatkan aliran darah. Anhydrous calcium chloride or anhydrous magnesium sulfate dissolves in water in a highly exothermic manner, releasing sufficient heat to relieve muscle cramps by increasing blood circulation."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q12",
@@ -8354,7 +8354,7 @@ const scienceF3MasterQuizBanks: Partial<
           "It raises the body cell temperature to speed up the process of mitosis of new skin cells."
         ],
         "answerIndex": 1,
-        "explanation": "Pek sejuk segera menyerap haba secara endotermik daripada tisu badan yang bengkak/cedera. Kesan sejuk ini mengecutkan lumen kapilari darah (*vasoconstriction*), mengurangkan pengaliran darah ke kawasan tersebut, sekali gus meredakan bengkak, keradangan, dan pendarahan.\n*Instant cold packs absorb heat endothermically from swollen/injured body tissues. This cold effect constricts blood capillary lumens (vasoconstriction), reducing blood flow to the area, thereby mitigating swelling, inflammation, and bleeding."
+        "explanation": "Pek sejuk segera menyerap haba secara endotermik daripada tisu badan yang bengkak/cedera. Kesan sejuk ini mengecutkan lumen kapilari darah (vasoconstriction), mengurangkan pengaliran darah ke kawasan tersebut, sekali gus meredakan bengkak, keradangan, dan pendarahan. Instant cold packs absorb heat endothermically from swollen/injured body tissues. This cold effect constricts blood capillary lumens (vasoconstriction), reducing blood flow to the area, thereby mitigating swelling, inflammation, and bleeding."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q13",
@@ -8372,7 +8372,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Puncture the outer layer of the plastic bag with a needle to allow external air to enter."
         ],
         "answerIndex": 1,
-        "explanation": "Untuk mengaktifkan pek DIY, beg plastik dalam yang nipis yang berisi air perlu dipecahkan dengan cara ditekan/diramas. Ini membolehkan air bercampur dan melarutkan amonium nitrat (tindak balas endotermik) dengan selamat tanpa kebocoran luar.\n*To activate the DIY pack, the thin inner plastic bag containing water must be ruptured by pressing/squeezing it. This allows water to mix with and dissolve the ammonium nitrate (endothermic reaction) safely without leaking externally."
+        "explanation": "Untuk mengaktifkan pek DIY, beg plastik dalam yang nipis yang berisi air perlu dipecahkan dengan cara ditekan/diramas. Ini membolehkan air bercampur dan melarutkan amonium nitrat (tindak balas endotermik) dengan selamat tanpa kebocoran luar. To activate the DIY pack, the thin inner plastic bag containing water must be ruptured by pressing/squeezing it. This allows water to mix with and dissolve the ammonium nitrate (endothermic reaction) safely without leaking externally."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q14",
@@ -8390,7 +8390,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Magnesium"
         ],
         "answerIndex": 2,
-        "explanation": "Tindak balas termit melibatkan tindak balas antara ferum(III) oksida dengan serbuk aluminium:\n$$\text{Ferum(III) oksida} + \text{Aluminium}\nightarrow \text{Aluminium oksida} + \text{Ferum (Besi) + Haba}$$\nHaba ekstrem yang dibebaskan mencairkan besi (ferum) yang terhasil, membolehkannya mengalir dan mengisi rekahan landasan kereta api.\n*The thermite reaction involves reacting iron(III) oxide with aluminium powder to produce iron and aluminium oxide. The extreme heat released melts the produced iron (ferum), allowing it to flow and fill track fractures."
+        "explanation": "Tindak balas termit melibatkan tindak balas antara ferum(III) oksida dengan serbuk aluminium: Ferum(III) oksida + Aluminium → Aluminium oksida + Ferum (Besi) + Haba Haba ekstrem yang dibebaskan mencairkan besi (ferum) yang terhasil, membolehkannya mengalir dan mengisi rekahan landasan kereta api. The thermite reaction involves reacting iron(III) oxide with aluminium powder to produce iron and aluminium oxide. The extreme heat released melts the produced iron (ferum), allowing it to flow and fill track fractures."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q15",
@@ -8408,7 +8408,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Solid sodium hydroxide + distilled water."
         ],
         "answerIndex": 1,
-        "explanation": "Tindak balas asid hidroklorik dengan natrium hidrogen karbonat (natrium bikarbonat) adalah endotermik. Ia menyerap haba dari persekitaran dan menyebabkan penurunan suhu yang ketara pada termometer, manakah pilihan A, C, dan D adalah eksotermik.\n*The reaction between hydrochloric acid and sodium hydrogen carbonate is endothermic, absorbing heat from surroundings and causing a notable temperature drop. Options A, C, and D are exothermic."
+        "explanation": "Tindak balas asid hidroklorik dengan natrium hidrogen karbonat (natrium bikarbonat) adalah endotermik. Ia menyerap haba dari persekitaran dan menyebabkan penurunan suhu yang ketara pada termometer, manakah pilihan A, C, dan D adalah eksotermik. The reaction between hydrochloric acid and sodium hydrogen carbonate is endothermic, absorbing heat from surroundings and causing a notable temperature drop. Options A, C, and D are exothermic."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q16",
@@ -8426,7 +8426,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Dead trees undergo endothermic decomposition releasing sulfur dioxide into the air."
         ],
         "answerIndex": 1,
-        "explanation": "Fotosintesis tumbuhan adalah proses endotermik yang menyerap tenaga haba cahaya matahari serta gas rumah hijau utama, karbon dioksida ($CO_2$). Kemusnahan hutan mengurangkan kebolehan bumi menyerap haba dan gas $CO_2$ ini, menyebabkan peningkatan suhu atmosfera global.\n*Plant photosynthesis is an endothermic process that absorbs solar heat energy and carbon dioxide ($CO_2$), a key greenhouse gas. Deforestation reduces Earth's capacity to absorb heat and $CO_2$, intensifying global temperatures."
+        "explanation": "Fotosintesis tumbuhan adalah proses endotermik yang menyerap tenaga haba cahaya matahari serta gas rumah hijau utama, karbon dioksida (CO₂). Kemusnahan hutan mengurangkan kebolehan bumi menyerap haba dan gas CO₂ ini, menyebabkan peningkatan suhu atmosfera global. Plant photosynthesis is an endothermic process that absorbs solar heat energy and carbon dioxide (CO₂), a key greenhouse gas. Deforestation reduces Earth's capacity to absorb heat and CO₂, intensifying global temperatures."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q17",
@@ -8438,13 +8438,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "While conducting a thermochemistry experiment, a student found that the initial temperature of water was 28 °C. After dissolving ammonium chloride, the final temperature was stable at 21 °C. What is the temperature change (Δθ) for this experiment?",
         "options": [
-          "$+7\\text{ }^\\circ\\text{C}$",
-          "$-7\\text{ }^\\circ\\text{C}$",
-          "$+49\\text{ }^\\circ\\text{C}$",
-          "$-49\\text{ }^\\circ\\text{C}$"
+          "+7 °C",
+          "-7 °C",
+          "+49 °C",
+          "-49 °C"
         ],
         "answerIndex": 1,
-        "explanation": "Perubahan suhu dikira sebagai:\n$$\\Delta\theta = \text{Suhu Akhir} - \text{Suhu Awal} = 21\text{ }^\\circ\text{C} - 28\text{ }^\\circ\text{C} = -7\text{ }^\\circ\text{C}$$\nTanda negatif ($-$) menunjukkan berlakunya penurunan suhu (penyerapan haba/endotermik).\n*Temperature change is calculated as Final Temperature minus Initial Temperature, yielding -7 °C. The negative sign represents a drop in temperature, signifying an endothermic reaction."
+        "explanation": "Perubahan suhu dikira sebagai: Δ heta = Suhu Akhir - Suhu Awal = 21 °C - 28 °C = -7 °C Tanda negatif (-) menunjukkan berlakunya penurunan suhu (penyerapan haba/endotermik). Temperature change is calculated as Final Temperature minus Initial Temperature, yielding -7 °C. The negative sign represents a drop in temperature, signifying an endothermic reaction."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q18",
@@ -8459,10 +8459,10 @@ const scienceF3MasterQuizBanks: Partial<
           "The mixed reaction temperature continues to increase exponentially without limit.",
           "The mixed temperature decreases until it is equal to the external ambient temperature.",
           "All chemical energy is continuously converted to mechanical energy.",
-          "Absolute zero temperature ($0\text{ K}$) is achieved within the polystyrene cup."
+          "Absolute zero temperature (0 K) is achieved within the polystyrene cup."
         ],
         "answerIndex": 1,
-        "explanation": "Apabila tindak balas eksotermik selesai, pembebasan haba berhenti. Campuran yang panas akan memindahkan baki tenaga habanya secara beransur-ansur ke persekitaran luar sehingga ia mencapai suhu yang sama dengan suhu bilik sekeliling (keseimbangan terma).\n*When an exothermic reaction finishes, heat release stops. The hot mixture gradually transfers its remaining heat energy to the external surroundings until it matches the room temperature (thermal equilibrium)."
+        "explanation": "Apabila tindak balas eksotermik selesai, pembebasan haba berhenti. Campuran yang panas akan memindahkan baki tenaga habanya secara beransur-ansur ke persekitaran luar sehingga ia mencapai suhu yang sama dengan suhu bilik sekeliling (keseimbangan terma). When an exothermic reaction finishes, heat release stops. The hot mixture gradually transfers its remaining heat energy to the external surroundings until it matches the room temperature (thermal equilibrium)."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q19",
@@ -8480,7 +8480,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Oxygen gas"
         ],
         "answerIndex": 2,
-        "explanation": "Pembakaran bahan api fosil (seperti arang batu) membebaskan gas sulfur dioksida ($SO_2$) yang berasid. Gas ini melarut dalam air hujan untuk membentuk asid sulfurik cair (hujan asid) yang merosakkan tisu tumbuhan dan menyuburkan keasidan tanah secara merosakkan.\n*Burning fossil fuels (such as coal) releases acidic sulfur dioxide ($SO_2$) gas. This gas dissolves in rainwater to form dilute sulfuric acid (acid rain), destroying plant tissues and harmfully altering soil acidity."
+        "explanation": "Pembakaran bahan api fosil (seperti arang batu) membebaskan gas sulfur dioksida (SO₂) yang berasid. Gas ini melarut dalam air hujan untuk membentuk asid sulfurik cair (hujan asid) yang merosakkan tisu tumbuhan dan menyuburkan keasidan tanah secara merosakkan. Burning fossil fuels (such as coal) releases acidic sulfur dioxide (SO₂) gas. This gas dissolves in rainwater to form dilute sulfuric acid (acid rain), destroying plant tissues and harmfully altering soil acidity."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q20",
@@ -8492,13 +8492,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "The reaction between a strong acid and a strong alkali is known as a neutralisation reaction. What is the type of this reaction and the primary molecule formed?",
         "options": [
-          "Endothermic; Molecule of oxygen ($O_2$).",
+          "Endothermic; Molecule of oxygen (O₂).",
           "Endothermic; Sodium bicarbonate.",
-          "Exothermic; Molecule of water ($H_2O$).",
-          "Exothermic; Hydrogen gas ($H_2$)."
+          "Exothermic; Molecule of water (H₂O).",
+          "Exothermic; Hydrogen gas (H₂)."
         ],
         "answerIndex": 2,
-        "explanation": "Peneutralan ($H^+ + OH^-\nightarrow H_2O$) adalah tindak balas eksotermik yang sentiasa membebaskan tenaga haba ke persekitaran semasa molekul air neutral terbentuk daripada gabungan ion asid dan alkali.\n*Neutralisation ($H^+ + OH^-\nightarrow H_2O$) is an exothermic reaction that always releases heat energy to surroundings as neutral water molecules form from acidic and alkaline ions."
+        "explanation": "Peneutralan (H⁺ + OH⁻ → H₂O) adalah tindak balas eksotermik yang sentiasa membebaskan tenaga haba ke persekitaran semasa molekul air neutral terbentuk daripada gabungan ion asid dan alkali. Neutralisation (H⁺ + OH⁻ → H₂O) is an exothermic reaction that always releases heat energy to surroundings as neutral water molecules form from acidic and alkaline ions."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q21",
@@ -8516,7 +8516,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Because the candle's temperature drops below the melting point of the candle as it burns."
         ],
         "answerIndex": 1,
-        "explanation": "Pembakaran lilin (combustion of hydrocarbons) ialah tindak balas pengoksidaan yang membebaskan tenaga tenaga haba dan cahaya (eksotermik) ke persekitaran sekelilingnya secara aktif. Kenaikan suhu dikesan di sekitar api lilin.\n*Candle burning (combustion of hydrocarbons) is an oxidation reaction that actively releases heat and light energy (exothermic) to the surrounding surroundings, resulting in a temperature rise around the flame."
+        "explanation": "Pembakaran lilin (combustion of hydrocarbons) ialah tindak balas pengoksidaan yang membebaskan tenaga tenaga haba dan cahaya (eksotermik) ke persekitaran sekelilingnya secara aktif. Kenaikan suhu dikesan di sekitar api lilin. Candle burning (combustion of hydrocarbons) is an oxidation reaction that actively releases heat and light energy (exothermic) to the surrounding surroundings, resulting in a temperature rise around the flame."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q22",
@@ -8534,7 +8534,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The mass of the liquid is found to increase after the substance is dissolved."
         ],
         "answerIndex": 1,
-        "explanation": "Definisi secara operasi bagi penyerapan haba (endotermik) ditunjukkan secara fizikal melalui kejatuhan/penurunan bacaan suhu pada termometer di dalam larutan tindak balas.\n*The operational definition of heat absorption (endothermic) is physically shown through the drop/decrease in the temperature reading on the thermometer inside the reaction solution."
+        "explanation": "Definisi secara operasi bagi penyerapan haba (endotermik) ditunjukkan secara fizikal melalui kejatuhan/penurunan bacaan suhu pada termometer di dalam larutan tindak balas. The operational definition of heat absorption (endothermic) is physically shown through the drop/decrease in the temperature reading on the thermometer inside the reaction solution."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q23",
@@ -8552,7 +8552,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Osmosis in the guard cell that absorbs heat from the soil."
         ],
         "answerIndex": 2,
-        "explanation": "Pada waktu malam, tumbuhan tidak menjalankan fotosintesis (endotermik) kerana tiada cahaya matahari. Namun, tumbuhan terus-menerus menjalankan respirasi sel (eksotermik) sepanjang masa untuk membebaskan tenaga kehidupan dan haba.\n*At night, plants do not carry out photosynthesis (endothermic) due to the absence of sunlight. However, plants continuously perform cellular respiration (exothermic) all the time to release vital energy and heat."
+        "explanation": "Pada waktu malam, tumbuhan tidak menjalankan fotosintesis (endotermik) kerana tiada cahaya matahari. Namun, tumbuhan terus-menerus menjalankan respirasi sel (eksotermik) sepanjang masa untuk membebaskan tenaga kehidupan dan haba. At night, plants do not carry out photosynthesis (endothermic) due to the absence of sunlight. However, plants continuously perform cellular respiration (exothermic) all the time to release vital energy and heat."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q24",
@@ -8562,7 +8562,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "The decomposition of calcium carbonate ($CaCO_3$) when heated strongly in the laboratory (as shown in Figure 1) produces calcium oxide ($CaO$) and carbon dioxide ($CO_2$). This reaction is classified as...",
+        "question": "Calcium carbonate produces calcium oxide and carbon dioxide when heated strongly. How is this reaction classified?",
         "options": [
           "Exothermic because it releases carbon dioxide gas.",
           "Endothermic because it requires a continuous supply of heat from the Bunsen burner to decompose.",
@@ -8570,7 +8570,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Gas combustion reaction that lowers the test tube air pressure."
         ],
         "answerIndex": 1,
-        "explanation": "Penguraian terma (thermal decomposition) bagi kalsium karbonat adalah tindak balas endotermik kerana bahan tindak balas mesti menyerap tenaga haba dari luar secara aktif untuk memutuskan ikatan kimia di dalamnya.\n*The thermal decomposition of calcium carbonate is an endothermic reaction because the reactant must actively absorb heat energy from an external source to break its chemical bonds."
+        "explanation": "Penguraian terma (thermal decomposition) bagi kalsium karbonat adalah tindak balas endotermik kerana bahan tindak balas mesti menyerap tenaga haba dari luar secara aktif untuk memutuskan ikatan kimia di dalamnya. The thermal decomposition of calcium carbonate is an endothermic reaction because the reactant must actively absorb heat energy from an external source to break its chemical bonds."
       },
       {
         "id": "sci-f3-c5-set-a-dlp-q25",
@@ -8588,7 +8588,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Thermally Balanced Response"
         ],
         "answerIndex": 0,
-        "explanation": "Tindak balas kimia atau fizikal yang berlaku tanpa sebarang perubahan bersih dalam tenaga haba atau suhu sistem dikenali sebagai proses atau tindak balas isoterma (isothermal).\n*A chemical or physical reaction that occurs without any net change in heat energy or system temperature is known as an isothermal process or reaction."
+        "explanation": "Tindak balas kimia atau fizikal yang berlaku tanpa sebarang perubahan bersih dalam tenaga haba atau suhu sistem dikenali sebagai proses atau tindak balas isoterma (isothermal). A chemical or physical reaction that occurs without any net change in heat energy or system temperature is known as an isothermal process or reaction."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q1",
@@ -8606,7 +8606,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The system contains only water while the surroundings contain a thermometer and bubbles only."
         ],
         "answerIndex": 1,
-        "explanation": "Dalam sains termokimia, sistem merujuk kepada bahan tindak balas di dalam bekas di mana tindak balas kimia berlaku, manakala semua benda di luar sistem tersebut (termometer, air, bikar, udara) diisytiharkan sebagai persekitaran.\n*In thermochemistry, the system refers to the reactants inside the container where the chemical reaction takes place, while everything outside that system (thermometer, water, beaker, air) is declared as the surroundings."
+        "explanation": "Dalam sains termokimia, sistem merujuk kepada bahan tindak balas di dalam bekas di mana tindak balas kimia berlaku, manakala semua benda di luar sistem tersebut (termometer, air, bikar, udara) diisytiharkan sebagai persekitaran. In thermochemistry, the system refers to the reactants inside the container where the chemical reaction takes place, while everything outside that system (thermometer, water, beaker, air) is declared as the surroundings."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q2",
@@ -8616,7 +8616,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "An energy profile diagram of a reaction shows that the energy of the products is lower than the energy of the reactants. What type of reaction is this?",
+        "question": "The products have less energy than the reactants. What type of reaction is this?",
         "options": [
           "Endothermic reaction due to heat absorption from the surroundings.",
           "Exothermic reaction due to heat release to the surroundings.",
@@ -8624,7 +8624,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Physical neutralization reaction."
         ],
         "answerIndex": 1,
-        "explanation": "Apabila tenaga kimia produk adalah lebih rendah daripada bahan tindak balas, ini bermakna lebihan tenaga kimia tersebut telah dibebaskan ke persekitaran dalam bentuk tenaga haba. Tindak balas ini dikenali sebagai eksotermik.\n*When the chemical energy of the products is lower than that of the reactants, it means the excess chemical energy has been released to the surroundings as heat energy. This reaction is known as exothermic."
+        "explanation": "Apabila tenaga kimia produk adalah lebih rendah daripada bahan tindak balas, ini bermakna lebihan tenaga kimia tersebut telah dibebaskan ke persekitaran dalam bentuk tenaga haba. Tindak balas ini dikenali sebagai eksotermik. When the chemical energy of the products is lower than that of the reactants, it means the excess chemical energy has been released to the surroundings as heat energy. This reaction is known as exothermic."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q3",
@@ -8642,7 +8642,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Because the breaking of chemical bonds releases more heat energy than the formation of bonds."
         ],
         "answerIndex": 0,
-        "explanation": "Tindak balas endotermik menyerap haba dari persekitaran. Tenaga haba yang diserap ini disimpan sebagai tenaga kimia di dalam ikatan produk, menyebabkan produk mempunyai kandungan tenaga yang lebih tinggi daripada bahan tindak balas asal.\n*Endothermic reactions absorb heat from the surroundings. This absorbed heat energy is stored as chemical energy in the bonds of the products, causing the products to have a higher energy content than the original reactants."
+        "explanation": "Tindak balas endotermik menyerap haba dari persekitaran. Tenaga haba yang diserap ini disimpan sebagai tenaga kimia di dalam ikatan produk, menyebabkan produk mempunyai kandungan tenaga yang lebih tinggi daripada bahan tindak balas asal. Endothermic reactions absorb heat from the surroundings. This absorbed heat energy is stored as chemical energy in the bonds of the products, causing the products to have a higher energy content than the original reactants."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q4",
@@ -8652,7 +8652,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "When ammonium nitrate salt ($NH_4NO_3$) is dissolved in water, the temperature decreases. Which of the following is true about this dissolution?",
+        "question": "When ammonium nitrate salt (NH₄NO₃) is dissolved in water, the temperature decreases. Which of the following is true about this dissolution?",
         "options": [
           "It is an exothermic process because it releases heat energy.",
           "It is an endothermic process because it absorbs heat energy from the surroundings (water).",
@@ -8660,7 +8660,7 @@ const scienceF3MasterQuizBanks: Partial<
           "It produces carbon dioxide gas that cools the water."
         ],
         "answerIndex": 1,
-        "explanation": "Kelebapan atau penurunan suhu pada bekas eksperimen membuktikan bahawa proses pelarutan garam ammonium nitrat menyerap haba daripada molekul air di sekelilingnya (persekitaran). Ini merupakan proses endotermik.\n*A decrease in temperature on the experimental vessel proves that the dissolution of ammonium nitrate salt absorbs heat from the surrounding water molecules. This is an endothermic process."
+        "explanation": "Kelebapan atau penurunan suhu pada bekas eksperimen membuktikan bahawa proses pelarutan garam ammonium nitrat menyerap haba daripada molekul air di sekelilingnya (persekitaran). Ini merupakan proses endotermik. A decrease in temperature on the experimental vessel proves that the dissolution of ammonium nitrate salt absorbs heat from the surrounding water molecules. This is an endothermic process."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q5",
@@ -8678,7 +8678,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sudden increase in the pH value of the reaction mixture."
         ],
         "answerIndex": 1,
-        "explanation": "Takrifan secara operasi (operational definition) merujuk kepada apa yang diperhatikan dan diukur secara fizikal. Di sini, kesan fizikal tindak balas endotermik dikaji melalui penurunan bacaan suhu pada termometer.\n*An operational definition refers to what is physically observed and measured. Here, the physical effect of the endothermic reaction is studied through the decrease in the temperature reading on the thermometer."
+        "explanation": "Takrifan secara operasi (operational definition) merujuk kepada apa yang diperhatikan dan diukur secara fizikal. Di sini, kesan fizikal tindak balas endotermik dikaji melalui penurunan bacaan suhu pada termometer. An operational definition refers to what is physically observed and measured. Here, the physical effect of the endothermic reaction is studied through the decrease in the temperature reading on the thermometer."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q6",
@@ -8696,7 +8696,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Reaction between ethanoic acid and sodium bicarbonate."
         ],
         "answerIndex": 1,
-        "explanation": "Tindak balas peneutralan antara asid kuat dan alkali kuat sentiasa membebaskan haba ke persekitaran (suhu air meningkat), yang merupakan ciri universal bagi tindak balas eksotermik.\n*Neutralisation reactions between a strong acid and a strong alkali always release heat to the surroundings (water temperature rises), which is a universal characteristic of exothermic reactions."
+        "explanation": "Tindak balas peneutralan antara asid kuat dan alkali kuat sentiasa membebaskan haba ke persekitaran (suhu air meningkat), yang merupakan ciri universal bagi tindak balas eksotermik. Neutralisation reactions between a strong acid and a strong alkali always release heat to the surroundings (water temperature rises), which is a universal characteristic of exothermic reactions."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q7",
@@ -8714,7 +8714,7 @@ const scienceF3MasterQuizBanks: Partial<
           "There is a process of oxygen gas absorption from the surrounding air which increases the tube's temperature."
         ],
         "answerIndex": 1,
-        "explanation": "Tindak balas antara logam aktif (seperti magnesium) dan asid cair menghasilkan gas hidrogen dan membebaskan tenaga haba yang besar ke persekitaran, menyebabkan dinding tabung uji menjadi panas (eksotermik).\n*The reaction between active metals (like magnesium) and dilute acids produces hydrogen gas and releases significant heat energy to the surroundings, making the walls of the test tube feel hot (exothermic)."
+        "explanation": "Tindak balas antara logam aktif (seperti magnesium) dan asid cair menghasilkan gas hidrogen dan membebaskan tenaga haba yang besar ke persekitaran, menyebabkan dinding tabung uji menjadi panas (eksotermik). The reaction between active metals (like magnesium) and dilute acids produces hydrogen gas and releases significant heat energy to the surroundings, making the walls of the test tube feel hot (exothermic)."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q8",
@@ -8732,7 +8732,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Electrical energy → Chemical energy"
         ],
         "answerIndex": 1,
-        "explanation": "Semasa pembakaran etanol (bahan api fosil/organik), tenaga kimia yang disimpan dalam ikatan kimia etanol ditukarkan kepada tenaga haba dan tenaga cahaya yang dibebaskan secara aktif ke persekitaran.\n*During the combustion of ethanol, chemical energy stored in the chemical bonds of ethanol is converted into heat energy and light energy released actively to the surroundings."
+        "explanation": "Semasa pembakaran etanol (bahan api fosil/organik), tenaga kimia yang disimpan dalam ikatan kimia etanol ditukarkan kepada tenaga haba dan tenaga cahaya yang dibebaskan secara aktif ke persekitaran. During the combustion of ethanol, chemical energy stored in the chemical bonds of ethanol is converted into heat energy and light energy released actively to the surroundings."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q9",
@@ -8742,7 +8742,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "During the strong heating of calcium carbonate ($CaCO_3$) in Activity 5.1, why must the heating be performed continuously?",
+        "question": "Why must calcium carbonate be heated continuously for it to decompose?",
         "options": [
           "Because the termite reaction is exothermic and requires a heat source.",
           "Because calcium carbonate undergoes an endothermic reaction that requires continuous heat absorption from the Bunsen burner to decompose.",
@@ -8750,7 +8750,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Because the reaction produces flammable oxygen gas if cooled."
         ],
         "answerIndex": 1,
-        "explanation": "Pereputan terma garam karbonat (seperti kalsium karbonat) ialah satu tindak balas endotermik tulen. Tindak balas ini memerlukan bekalan haba luaran yang berterusan untuk memutuskan ikatan kimia kalsium karbonat membentuk kalsium oksida ($CaO$) dan membebaskan gas karbon dioksida ($CO_2$).\n*Thermal decomposition of carbonate salts (such as calcium carbonate) is a purely endothermic reaction. It requires a continuous external heat supply to break chemical bonds in calcium carbonate to form calcium oxide and release carbon dioxide gas."
+        "explanation": "Pereputan terma garam karbonat (seperti kalsium karbonat) ialah satu tindak balas endotermik tulen. Tindak balas ini memerlukan bekalan haba luaran yang berterusan untuk memutuskan ikatan kimia kalsium karbonat membentuk kalsium oksida (CaO) dan membebaskan gas karbon dioksida (CO₂). Thermal decomposition of carbonate salts (such as calcium carbonate) is a purely endothermic reaction. It requires a continuous external heat supply to break chemical bonds in calcium carbonate to form calcium oxide and release carbon dioxide gas."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q10",
@@ -8760,15 +8760,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "What gas is released when sodium hydrogen carbonate powder is dissolved in dilute hydrochloric acid in Activity 5.1?",
+        "question": "Which gas is released when sodium hydrogen carbonate reacts with dilute hydrochloric acid?",
         "options": [
-          "Oxygen Gas ($O_2$)",
-          "Nitrogen Gas ($N_2$)",
+          "Oxygen Gas (O₂)",
+          "Nitrogen Gas (N₂)",
           "Carbon dioxide gas (CO₂)",
           "Hydrogen gas (H₂)"
         ],
         "answerIndex": 2,
-        "explanation": "Tindak balas antara sebatian hidrogen karbonat (bikarbonat) dan asid cair sentiasa menghasilkan garam, air, dan membebaskan gas karbon dioksida. Pembebasan gas ini dikesan apabila gas dialirkan ke dalam air kapur dan menyebabkannya menjadi keruh (cloudy).\n*The reaction between hydrogen carbonate (bicarbonate) compounds and dilute acids always produces salt, water, and releases carbon dioxide gas. This release is detected when the gas is bubbled into limewater and turns it cloudy."
+        "explanation": "Tindak balas antara sebatian hidrogen karbonat (bikarbonat) dan asid cair sentiasa menghasilkan garam, air, dan membebaskan gas karbon dioksida. Pembebasan gas ini dikesan apabila gas dialirkan ke dalam air kapur dan menyebabkannya menjadi keruh (cloudy). The reaction between hydrogen carbonate (bicarbonate) compounds and dilute acids always produces salt, water, and releases carbon dioxide gas. This release is detected when the gas is bubbled into limewater and turns it cloudy."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q11",
@@ -8786,7 +8786,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Active transport of mineral ions across the membrane."
         ],
         "answerIndex": 1,
-        "explanation": "Respirasi sel ialah satu proses pengoksidaan glukosa di dalam sel hidup yang membebaskan tenaga haba dan tenaga kimia (ATP) untuk kegunaan metabolisme badan, yang menjadikannya sejenis tindak balas eksotermik semula jadi.\n*Cellular respiration is a process of glucose oxidation inside living cells that releases heat energy and chemical energy (ATP) for body metabolic use, making it a natural exothermic reaction."
+        "explanation": "Respirasi sel ialah satu proses pengoksidaan glukosa di dalam sel hidup yang membebaskan tenaga haba dan tenaga kimia (ATP) untuk kegunaan metabolisme badan, yang menjadikannya sejenis tindak balas eksotermik semula jadi. Cellular respiration is a process of glucose oxidation inside living cells that releases heat energy and chemical energy (ATP) for body metabolic use, making it a natural exothermic reaction."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q12",
@@ -8804,7 +8804,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Precipitation reaction of kanji solids."
         ],
         "answerIndex": 1,
-        "explanation": "Fotosintesis menyerap tenaga cahaya (sinaran matahari) secara aktif bagi menukar bahan mentah bertenaga rendah ($CO_2$ dan $H_2O$) menjadi molekul glukosa bertenaga tinggi. Ini merupakan proses penyerapan tenaga (endotermik).\n*Photosynthesis actively absorbs light energy (solar radiation) to convert low-energy raw materials ($CO_2$ and $H_2O$) into high-energy glucose molecules. This is an energy absorption process (endothermic)."
+        "explanation": "Fotosintesis menyerap tenaga cahaya (sinaran matahari) secara aktif bagi menukar bahan mentah bertenaga rendah (CO₂ dan H₂O) menjadi molekul glukosa bertenaga tinggi. Ini merupakan proses penyerapan tenaga (endotermik). Photosynthesis actively absorbs light energy (solar radiation) to convert low-energy raw materials (CO₂ and H₂O) into high-energy glucose molecules. This is an energy absorption process (endothermic)."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q13",
@@ -8822,7 +8822,7 @@ const scienceF3MasterQuizBanks: Partial<
           "A physical magnetic interaction between the train and the steel rail."
         ],
         "answerIndex": 1,
-        "explanation": "Reaksi termit melibatkan tindak balas penurunan ferum(III) oksida oleh serbuk aluminium. Tindak balas ini adalah sangat eksotermik, membebaskan haba yang mencukupi untuk meleburkan ferum yang dihasilkan (molten iron) bagi menyambung rekahan landasan kereta api secara kekal.\n*The thermite reaction involves the reduction of iron(III) oxide by aluminium powder. It is highly exothermic, releasing enough heat to produce molten iron used to weld railway track cracks permanently."
+        "explanation": "Reaksi termit melibatkan tindak balas penurunan ferum(III) oksida oleh serbuk aluminium. Tindak balas ini adalah sangat eksotermik, membebaskan haba yang mencukupi untuk meleburkan ferum yang dihasilkan (molten iron) bagi menyambung rekahan landasan kereta api secara kekal. The thermite reaction involves the reduction of iron(III) oxide by aluminium powder. It is highly exothermic, releasing enough heat to produce molten iron used to weld railway track cracks permanently."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q14",
@@ -8840,7 +8840,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Hydrated copper(II) sulfate; activated by exposing it to sunlight."
         ],
         "answerIndex": 2,
-        "explanation": "Pek panas segera mengandungi garam kontang seperti kalsium klorida kontang ($CaCl_2$) dan satu beg plastik air di dalamnya. Pengaktifan dilakukan dengan menekan pek untuk memecahkan beg air tersebut supaya garam melarut di dalam air secara eksotermik, membebaskan haba untuk melegakan kekejangan otot.\n*Instant hot packs contain anhydrous salts like anhydrous calcium chloride ($CaCl_2$) and an inner plastic bag of water. Activation is done by squeezing the pack to break the water bag so the salt dissolves exothermically in water, releasing heat to soothe muscle cramps."
+        "explanation": "Pek panas segera mengandungi garam kontang seperti kalsium klorida kontang (CaCl₂) dan satu beg plastik air di dalamnya. Pengaktifan dilakukan dengan menekan pek untuk memecahkan beg air tersebut supaya garam melarut di dalam air secara eksotermik, membebaskan haba untuk melegakan kekejangan otot. Instant hot packs contain anhydrous salts like anhydrous calcium chloride (CaCl₂) and an inner plastic bag of water. Activation is done by squeezing the pack to break the water bag so the salt dissolves exothermically in water, releasing heat to soothe muscle cramps."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q15",
@@ -8852,13 +8852,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "An instant cold pack used in hospitals to reduce swelling contains a heat-absorbing chemical. What is this substance?",
         "options": [
-          "Calcium Chloride ($CaCl_2$)",
-          "Ammonium Nitrate ($NH_4NO_3$)",
-          "Sodium Hydroxide ($NaOH$)",
-          "Magnesium Oxide ($MgO$)"
+          "Calcium Chloride (CaCl₂)",
+          "Ammonium Nitrate (NH₄NO₃)",
+          "Sodium Hydroxide (NaOH)",
+          "Magnesium Oxide (MgO)"
         ],
         "answerIndex": 1,
-        "explanation": "Pek sejuk segera menggunakan pepejal amonium nitrat ($NH_4NO_3$) yang diasingkan daripada air. Apabila beg air dipecahkan, amonium nitrat melarut di dalam air secara endotermik, menyerap haba dari kawasan luka bengkak dan memberikan kesan penyejukan.\n*Instant cold packs use solid ammonium nitrate ($NH_4NO_3$) isolated from water. When the water pouch is ruptured, ammonium nitrate dissolves in water endothermically, absorbing heat from the swollen wound and providing a cooling effect."
+        "explanation": "Pek sejuk segera menggunakan pepejal amonium nitrat (NH₄NO₃) yang diasingkan daripada air. Apabila beg air dipecahkan, amonium nitrat melarut di dalam air secara endotermik, menyerap haba dari kawasan luka bengkak dan memberikan kesan penyejukan. Instant cold packs use solid ammonium nitrate (NH₄NO₃) isolated from water. When the water pouch is ruptured, ammonium nitrate dissolves in water endothermically, absorbing heat from the swollen wound and providing a cooling effect."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q16",
@@ -8876,7 +8876,7 @@ const scienceF3MasterQuizBanks: Partial<
           "To act as a foaming gas for air pek."
         ],
         "answerIndex": 1,
-        "explanation": "Kedua-dua pek panas dan sejuk segera beroperasi berasaskan pelarutan garam kimia kontang di dalam air. Untuk mengelakkan pelarutan pramatang semasa penyimpanan, air diisikan di dalam pundi kecil yang berasingan dan hanya dipecahkan dengan tekanan fizikal apabila bersedia digunakan.\n*Both instant hot and cold packs operate based on the dissolution of anhydrous chemical salts in water. To prevent premature dissolution during storage, water is sealed in a separate small pouch and is only ruptured with physical pressure when ready for use."
+        "explanation": "Kedua-dua pek panas dan sejuk segera beroperasi berasaskan pelarutan garam kimia kontang di dalam air. Untuk mengelakkan pelarutan pramatang semasa penyimpanan, air diisikan di dalam pundi kecil yang berasingan dan hanya dipecahkan dengan tekanan fizikal apabila bersedia digunakan. Both instant hot and cold packs operate based on the dissolution of anhydrous chemical salts in water. To prevent premature dissolution during storage, water is sealed in a separate small pouch and is only ruptured with physical pressure when ready for use."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q17",
@@ -8894,7 +8894,7 @@ const scienceF3MasterQuizBanks: Partial<
           "This process releases kinetic energy from the flour water spontaneously."
         ],
         "answerIndex": 0,
-        "explanation": "Semasa membakar kek/roti, bahan penaik (seperti natrium hidrogen karbonat) menyerap haba dari ketuhar (endotermik) untuk mengalami pereputan terma, membebaskan gas karbon dioksida ($CO_2$). Gas yang terperangkap ini mengembang dan menghasilkan rongga udara yang menaikkan adunan.\n*When baking cake/bread, the baking powder (such as sodium hydrogen carbonate) absorbs heat from the oven (endothermic) to undergo thermal decomposition, releasing carbon dioxide gas. This trapped gas expands and creates air pockets that raise the batter."
+        "explanation": "Semasa membakar kek/roti, bahan penaik (seperti natrium hidrogen karbonat) menyerap haba dari ketuhar (endotermik) untuk mengalami pereputan terma, membebaskan gas karbon dioksida (CO₂). Gas yang terperangkap ini mengembang dan menghasilkan rongga udara yang menaikkan adunan. When baking cake/bread, the baking powder (such as sodium hydrogen carbonate) absorbs heat from the oven (endothermic) to undergo thermal decomposition, releasing carbon dioxide gas. This trapped gas expands and creates air pockets that raise the batter."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q18",
@@ -8912,7 +8912,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Endothermic as the generated light is multicolored following the absorption of the spectral range."
         ],
         "answerIndex": 1,
-        "explanation": "Sebarang tindak balas pembakaran (seperti letupan bunga api) adalah sangat eksotermik. Sebaik sahaja dinyalakan, tindak balas kimia bahan letupan membebaskan tenaga yang sangat tinggi ke persekitaran dalam pelbagai bentuk tenaga berguna dan tidak berguna (haba, cahaya, bunyi).\n*Any combustion reaction (such as a fireworks explosion) is highly exothermic. Once ignited, the chemical reaction of explosives releases very high energy to the surroundings in various forms of useful and non-useful energy (heat, light, sound)."
+        "explanation": "Sebarang tindak balas pembakaran (seperti letupan bunga api) adalah sangat eksotermik. Sebaik sahaja dinyalakan, tindak balas kimia bahan letupan membebaskan tenaga yang sangat tinggi ke persekitaran dalam pelbagai bentuk tenaga berguna dan tidak berguna (haba, cahaya, bunyi). Any combustion reaction (such as a fireworks explosion) is highly exothermic. Once ignited, the chemical reaction of explosives releases very high energy to the surroundings in various forms of useful and non-useful energy (heat, light, sound)."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q19",
@@ -8930,7 +8930,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Trees release cool nitrogen gas which physically lowers atmospheric temperature."
         ],
         "answerIndex": 1,
-        "explanation": "Peningkatan litupan hutan (afforestation) meningkatkan kadar fotosintesis global. Fotosintesis adalah tindak balas endotermik yang menyerap gas rumah hijau ($CO_2$) dan radiasi solar untuk menukarkannya kepada biomas kayu (tenaga kimia). Ini secara langsung mengurangkan kesan perangkap haba di dalam atmosfera Bumi.\n*An increase in forest cover (afforestation) increases global photosynthesis. Photosynthesis is an endothermic reaction that absorbs greenhouse gas ($CO_2$) and solar radiation to convert them into wood biomass (chemical energy). This directly reduces heat-trapping effects in the Earth's atmosphere."
+        "explanation": "Peningkatan litupan hutan (afforestation) meningkatkan kadar fotosintesis global. Fotosintesis adalah tindak balas endotermik yang menyerap gas rumah hijau (CO₂) dan radiasi solar untuk menukarkannya kepada biomas kayu (tenaga kimia). Ini secara langsung mengurangkan kesan perangkap haba di dalam atmosfera Bumi. An increase in forest cover (afforestation) increases global photosynthesis. Photosynthesis is an endothermic reaction that absorbs greenhouse gas (CO₂) and solar radiation to convert them into wood biomass (chemical energy). This directly reduces heat-trapping effects in the Earth's atmosphere."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q20",
@@ -8940,7 +8940,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Exothermic reactions contribute to global warming through fossil fuel combustion in industrial sectors. Why is the carbon dioxide ($CO_2$) gas from this combustion harmful?",
+        "question": "Exothermic reactions contribute to global warming through fossil fuel combustion in industrial sectors. Why is the carbon dioxide (CO₂) gas from this combustion harmful?",
         "options": [
           "Because it directly damages the ozone layer through acidic reactions.",
           "Because it acts as a greenhouse gas that absorbs and traps infrared radiation (heat) from being radiated back into space.",
@@ -8948,7 +8948,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Because it reflects solar energy back to the Earth's surface in excess."
         ],
         "answerIndex": 1,
-        "explanation": "Gas $CO_2$ yang dibebaskan daripada tindak balas eksotermik pembakaran bahan api mempunyai keupayaan fizikal untuk menyerap radiasi terma inframerah yang dipantulkan dari permukaan Bumi. Tenaga haba ini terperangkap di dalam atmosfera, menyebabkan kenaikan suhu purata global (kesan rumah hijau).\n*$CO_2$ gas released from exothermic fuel combustion reactions has the physical capability to absorb thermal infrared radiation reflected from the Earth's surface. This heat energy is trapped inside the atmosphere, causing a rise in global average temperature (greenhouse effect)."
+        "explanation": "Gas CO₂ yang dibebaskan daripada tindak balas eksotermik pembakaran bahan api mempunyai keupayaan fizikal untuk menyerap radiasi terma inframerah yang dipantulkan dari permukaan Bumi. Tenaga haba ini terperangkap di dalam atmosfera, menyebabkan kenaikan suhu purata global (kesan rumah hijau). CO₂ gas released from exothermic fuel combustion reactions has the physical capability to absorb thermal infrared radiation reflected from the Earth's surface. This heat energy is trapped inside the atmosphere, causing a rise in global average temperature (greenhouse effect)."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q21",
@@ -8966,7 +8966,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Endothermic chemical reaction producing hydrogen gas."
         ],
         "answerIndex": 1,
-        "explanation": "Melarut atau meleburnya ais adalah proses fizikal endotermik. Ais pepejal menyerap tenaga haba dari persekitaran (menyebabkan udara sekitar terasa sejuk) untuk mengatasi daya tarikan antara molekul air pepejal bagi bertukar menjadi air cecair.\n*Melting of ice is an endothermic physical process. Solid ice absorbs heat energy from the surroundings (making the surrounding air feel cooler) to overcome attractive forces between solid water molecules to change into liquid water."
+        "explanation": "Melarut atau meleburnya ais adalah proses fizikal endotermik. Ais pepejal menyerap tenaga haba dari persekitaran (menyebabkan udara sekitar terasa sejuk) untuk mengatasi daya tarikan antara molekul air pepejal bagi bertukar menjadi air cecair. Melting of ice is an endothermic physical process. Solid ice absorbs heat energy from the surroundings (making the surrounding air feel cooler) to overcome attractive forces between solid water molecules to change into liquid water."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q22",
@@ -8976,15 +8976,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Solid Sodium Carbonate ($Na_2CO_3$) and Sodium Hydrogen Carbonate ($NaHCO_3$) are dissolved separately in polystyrene cups filled with water. How do the temperature observations compare for these two dissolution processes?",
+        "question": "Solid Sodium Carbonate (Na₂CO₃) and Sodium Hydrogen Carbonate (NaHCO₃) are dissolved separately in polystyrene cups filled with water. How do the temperature observations compare for these two dissolution processes?",
         "options": [
           "Both recorded the same thermometer reading increase.",
-          "The dissolution of $Na_2CO_3$ recorded a decrease in temperature (endothermic) while the dissolution of $NaHCO_3$ recorded an increase in temperature (exothermic).",
-          "The dissolution of $Na_2CO_3$ recorded an increase in temperature (exothermic) while the dissolution of $NaHCO_3$ recorded a decrease in temperature (endothermic).",
+          "The dissolution of Na₂CO₃ recorded a decrease in temperature (endothermic) while the dissolution of NaHCO₃ recorded an increase in temperature (exothermic).",
+          "The dissolution of Na₂CO₃ recorded an increase in temperature (exothermic) while the dissolution of NaHCO₃ recorded a decrease in temperature (endothermic).",
           "Neither showed any temperature change on the thermometer."
         ],
         "answerIndex": 2,
-        "explanation": "Mengikut keputusan eksperimen standard Sains Form 3 KSSM, pelarutan natrium karbonat kontang di dalam air membebaskan haba (bacaan suhu meningkat/eksotermik), manakala pelarutan natrium hidrogen karbonat menyerap haba dari air (bacaan suhu menurun/endotermik).\n*According to standard KSSM Form 3 Science experimental results, the dissolution of anhydrous sodium carbonate in water releases heat (temperature reading increases/exothermic), while the dissolution of sodium hydrogen carbonate absorbs heat from water (temperature reading decreases/endothermic)."
+        "explanation": "Mengikut keputusan eksperimen standard Sains Form 3 KSSM, pelarutan natrium karbonat kontang di dalam air membebaskan haba (bacaan suhu meningkat/eksotermik), manakala pelarutan natrium hidrogen karbonat menyerap haba dari air (bacaan suhu menurun/endotermik). According to standard KSSM Form 3 Science experimental results, the dissolution of anhydrous sodium carbonate in water releases heat (temperature reading increases/exothermic), while the dissolution of sodium hydrogen carbonate absorbs heat from water (temperature reading decreases/endothermic)."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q23",
@@ -9002,7 +9002,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Polystyrene can filter the release of toxic hydrogen gas to prevent it from escaping."
         ],
         "answerIndex": 1,
-        "explanation": "Untuk mengukur kuantiti haba tindak balas dengan tepat, pemindahan haba antara campuran tindak balas (sistem) dan udara sekeliling (persekitaran) mestilah disekat. Polistirena digunakan kerana ia merupakan konduktor haba yang sangat lemah (penebat baik) yang mengurangkan kehilangan haba.\n*To measure reaction heat accurately, heat transfer between the reaction mixture (system) and the surrounding air (surroundings) must be blocked. Polystyrene is used because it is a very poor heat conductor (good insulator) that reduces heat loss."
+        "explanation": "Untuk mengukur kuantiti haba tindak balas dengan tepat, pemindahan haba antara campuran tindak balas (sistem) dan udara sekeliling (persekitaran) mestilah disekat. Polistirena digunakan kerana ia merupakan konduktor haba yang sangat lemah (penebat baik) yang mengurangkan kehilangan haba. To measure reaction heat accurately, heat transfer between the reaction mixture (system) and the surrounding air (surroundings) must be blocked. Polystyrene is used because it is a very poor heat conductor (good insulator) that reduces heat loss."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q24",
@@ -9020,7 +9020,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Wrap the knee with an industrial heater pad."
         ],
         "answerIndex": 0,
-        "explanation": "Menurut Info Sains KSSM, pek sejuk segera digunakan untuk kecederaan bengkak akut dan pendarahan. Kesan penyejukan (endotermik) mengecutkan salur darah lumen bagi mengurangkan aliran darah ke tisu yang cedera, mengurangkan kesakitan, inflamasi, dan bengkak dengan berkesan. Pek panas segera digunakan kemudian untuk melegakan kekejangan otot yang tegang.\n*According to KSSM Science Info, instant cold packs are used for acute swelling injuries and bleeding. The cooling effect (endothermic) constricts blood vessels to reduce blood flow to the injured tissue, effectively reducing pain, inflammation, and swelling. Instant hot packs are used later to relieve tight muscle spasms."
+        "explanation": "Menurut Info Sains KSSM, pek sejuk segera digunakan untuk kecederaan bengkak akut dan pendarahan. Kesan penyejukan (endotermik) mengecutkan salur darah lumen bagi mengurangkan aliran darah ke tisu yang cedera, mengurangkan kesakitan, inflamasi, dan bengkak dengan berkesan. Pek panas segera digunakan kemudian untuk melegakan kekejangan otot yang tegang. According to KSSM Science Info, instant cold packs are used for acute swelling injuries and bleeding. The cooling effect (endothermic) constricts blood vessels to reduce blood flow to the injured tissue, effectively reducing pain, inflammation, and swelling. Instant hot packs are used later to relieve tight muscle spasms."
       },
       {
         "id": "sci-f3-c5-set-b-dlp-q25",
@@ -9038,7 +9038,7 @@ const scienceF3MasterQuizBanks: Partial<
           "To reduce the formation of yellow sulfur precipitation in the vessel."
         ],
         "answerIndex": 1,
-        "explanation": "Proses pelarutan asid pekat di dalam air membebaskan kuantiti haba yang teramat besar (highly exothermic). Jika air dituang ke asid pekat, air yang sedikit di permukaan asid akan menyerap tenaga haba yang dilepaskan secara mendadak pada satu titik, lalu mendidih serta-merta dan memercikkan asid yang sangat mengakis ke luar. Melalui menuang asid perlahan-lahan ke dalam air yang banyak, air bertindak menyerap dan mengagihkan haba secara selamat tanpa pendidihan mendadak.\n*The process of dissolving concentrated acid in water releases an immense amount of heat (highly exothermic). If water is poured into concentrated acid, the small amount of water on the acid surface will absorb the released heat energy suddenly at one point, boiling instantly and splashing highly corrosive acid outward. By pouring acid slowly into a large volume of water, the water absorbs and distributes the heat safely without flash boiling."
+        "explanation": "Proses pelarutan asid pekat di dalam air membebaskan kuantiti haba yang teramat besar (highly exothermic). Jika air dituang ke asid pekat, air yang sedikit di permukaan asid akan menyerap tenaga haba yang dilepaskan secara mendadak pada satu titik, lalu mendidih serta-merta dan memercikkan asid yang sangat mengakis ke luar. Melalui menuang asid perlahan-lahan ke dalam air yang banyak, air bertindak menyerap dan mengagihkan haba secara selamat tanpa pendidihan mendadak. The process of dissolving concentrated acid in water releases an immense amount of heat (highly exothermic). If water is poured into concentrated acid, the small amount of water on the acid surface will absorb the released heat energy suddenly at one point, boiling instantly and splashing highly corrosive acid outward. By pouring acid slowly into a large volume of water, the water absorbs and distributes the heat safely without flash boiling."
       }
     ]
   },
@@ -9054,13 +9054,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "Antara aktiviti harian berikut, yang manakah melakukan kerja paling tinggi berdasarkan takrifan fizik KSSM?",
         "options": [
-          "Menolak sebuah dinding konkrit yang tegar dengan daya $500\\text{ N}$ selama 2 jam tanpa sebarang pergerakan.",
-          "Membawa sebuah kotak berat $10\\text{ kg}$ sambil berjalan secara mendatar sejauh $10\\text{ m}$ dengan laju malar.",
-          "Menarik sebuah laci meja sejauh $30\\text{ cm}$ secara mendatar dengan daya geseran $5\\text{ N}$ yang dimalarkan.",
-          "Mengangkat sebuah kotak berjisim $15\\text{ kg}$ secara menegak dari lantai ke atas meja berketinggian $1.2\\text{ m}$ ($g = 10\\text{ m s}^{-2}$)."
+          "Menolak sebuah dinding konkrit yang tegar dengan daya 500 N selama 2 jam tanpa sebarang pergerakan.",
+          "Membawa sebuah kotak berat 10 kg sambil berjalan secara mendatar sejauh 10 m dengan laju malar.",
+          "Menarik sebuah laci meja sejauh 30 cm secara mendatar dengan daya geseran 5 N yang dimalarkan.",
+          "Mengangkat sebuah kotak berjisim 15 kg secara menegak dari lantai ke atas meja berketinggian 1.2 m (g = 10 m s⁻²)."
         ],
         "answerIndex": 0,
-        "explanation": "Menolak dinding konkrit tanpa pergerakan memberi daya terus.\n*Pushing against a concrete wall without movement provides continuous force.*"
+        "explanation": "Menolak dinding konkrit tanpa pergerakan memberi daya terus. Pushing against a concrete wall without movement provides continuous force."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q2",
@@ -9075,10 +9075,10 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerja yang dilakukan apabila daya 1 Newton menggerakkan objek sejauh 1 meter dalam arah daya tersebut.",
           "Kerja yang dilakukan untuk memindahkan cas 1 Coulomb merentasi bezautara voltan 1 Volt dalam masa 1 saat.",
           "Kadar penggunaan tenaga elektrik sebanyak 1 Watt oleh suatu perkakas elektrik dalam masa 1 jam.",
-          "Daya kinetik yang diperlukan untuk memecutkan objek berjisim 1 kilogram pada kadar $1\\text{ m s}^{-2}$."
+          "Daya kinetik yang diperlukan untuk memecutkan objek berjisim 1 kilogram pada kadar 1 m s⁻²."
         ],
         "answerIndex": 0,
-        "explanation": "1 Joule ialah kerja yang dilakukan apabila 1 N menggerakkan objek 1 m.\n*1 Joule is the work done when 1 N moves an object 1 m.*"
+        "explanation": "1 Joule ialah kerja yang dilakukan apabila 1 N menggerakkan objek 1 m. 1 Joule is the work done when 1 N moves an object 1 m."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q3",
@@ -9088,15 +9088,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Seorang buruh binaan mengangkat baldi berisi simen seberat $350\\text{ N}$ secara menegak ke tingkat satu sebuah bangunan tinggi melalui sistem takal. Jika ketinggian tingkat satu tersebut ialah $8\\text{ m}$ dari tanah, berapakah kerja yang dilakukan oleh buruh tersebut?",
+        "question": "Seorang buruh binaan mengangkat baldi berisi simen seberat 350 N secara menegak ke tingkat satu sebuah bangunan tinggi melalui sistem takal. Jika ketinggian tingkat satu tersebut ialah 8 m dari tanah, berapakah kerja yang dilakukan oleh buruh tersebut?",
         "options": [
-          "$43.75\\text{ J}$",
-          "$2,\\!800\\text{ J}$",
-          "$280\\text{ J}$",
-          "$3,\\!500\\text{ J}$"
+          "43.75 J",
+          "2,800 J",
+          "280 J",
+          "3,500 J"
         ],
         "answerIndex": 3,
-        "explanation": "Kerja = 350 N × 8 m = 2,800 J.\n*Work = 350 N × 8 m = 2,800 J.*"
+        "explanation": "Kerja = 350 N × 8 m = 2,800 J. Work = 350 N × 8 m = 2,800 J."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q4",
@@ -9106,15 +9106,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Rajah di bawah menunjukkan seorang murid perempuan menaiki tangga di hospital. * Berat badan murid, $m = 45\\text{ kg}$ * Tinggi tegak tangga, $h = 4\\text{ m}$ * Masa yang diambil, $t = 12\\text{ saat}$ * Pecutan graviti, $g = 10\\text{ m s}^{-2}$ Hitungkan kuasa yang dijana oleh murid itu semasa mendaki tangga tersebut.",
+        "question": "Seorang murid berjisim 45 kg menaiki tangga setinggi 4 m dalam masa 12 saat. Jika pecutan graviti ialah 10 m s⁻², berapakah kuasa yang dijana?",
         "options": [
-          "$150\\text{ W}$",
-          "$180\\text{ W}$",
-          "$18\\text{ W}$",
-          "$1,\\!800\\text{ W}$"
+          "150 W",
+          "180 W",
+          "18 W",
+          "1,800 W"
         ],
-        "answerIndex": 1,
-        "explanation": "Kuasa = (45 kg × 10 m s⁻² × 4 m) / 12 s = 180 W.\n*Power = (45 kg × 10 m/s² × 4 m) / 12 s = 180 W.*"
+        "answerIndex": 0,
+        "explanation": "Kuasa = mgh ÷ t = (45 × 10 × 4) ÷ 12 = 150 W. Power = mgh ÷ t = (45 × 10 × 4) ÷ 12 = 150 W."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q5",
@@ -9124,15 +9124,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Sebuah kren elektromagnet mengangkat sebuah kontainer keluli seberat $40,\\!000\\text{ N}$ setinggi $15\\text{ m}$ dalam masa 2 minit. Berapakah kuasa kren itu dalam unit kilowatt (kW)?",
+        "question": "Sebuah kren elektromagnet mengangkat sebuah kontainer keluli seberat 40,000 N setinggi 15 m dalam masa 2 minit. Berapakah kuasa kren itu dalam unit kilowatt (kW)?",
         "options": [
-          "$300\\text{ kW}$",
-          "$5\\text{ kW}$",
-          "$3\\text{ kW}$",
-          "$50\\text{ kW}$"
+          "300 kW",
+          "5 kW",
+          "3 kW",
+          "50 kW"
         ],
         "answerIndex": 2,
-        "explanation": "Kuasa = 40,000 N × 15 m / (2 × 60 s) = 3 kW.\n*Power = 40,000 N × 15 m / (2 × 60 s) = 3 kW.*"
+        "explanation": "Kuasa = 40,000 N × 15 m / (2 × 60 s) = 3 kW. Power = 40,000 N × 15 m / (2 × 60 s) = 3 kW."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q6",
@@ -9142,15 +9142,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Satu unit Kuasa sejarah yang sering digunakan dalam industri automotif ialah Kuasa Kuda (horsepower, hp). Jika $1\\text{ hp}$ dianggarkan bersamaan dengan $746\\text{ Watt}$, berapakah nilai dalam unit Watt bagi sebuah enjin pam air pertanian yang mempunyai penarafan kuasa $2.5\\text{ hp}$?",
+        "question": "Satu unit Kuasa sejarah yang sering digunakan dalam industri automotif ialah Kuasa Kuda (horsepower, hp). Jika 1 hp dianggarkan bersamaan dengan 746 Watt, berapakah nilai dalam unit Watt bagi sebuah enjin pam air pertanian yang mempunyai penarafan kuasa 2.5 hp?",
         "options": [
-          "$298.4\\text{ W}$",
-          "$1,\\!865\\text{ W}$",
-          "$1,\\!492\\text{ W}$",
-          "$1,\\!119\\text{ W}$"
+          "298.4 W",
+          "1,865 W",
+          "1,492 W",
+          "1,119 W"
         ],
         "answerIndex": 1,
-        "explanation": "1.115 hp x 746 W = 1,865 W. Penarafan kuasa 2.5 hp menghasilkan 1,865 W.\n*1.115 hp x 746 W = 1,865 W. A 2.5 hp engine rating produces 1,865 W.*"
+        "explanation": "1.115 hp x 746 W = 1,865 W. Penarafan kuasa 2.5 hp menghasilkan 1,865 W. 1.115 hp x 746 W = 1,865 W. A 2.5 hp engine rating produces 1,865 W."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q7",
@@ -9160,7 +9160,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Semasa menjalankan Aktiviti Inkuiri 7.1, seorang murid mendapati bahawa menarik bongkah kayu secara mendatar di atas meja memerlukan daya yang berbeza berbanding mengangkat pemberat secara menegak ke atas. Antara pernyataan berikut, yang manakah menerangkan perbezaan fizikal ini dengan betul?",
+        "question": "Seorang murid menarik bongkah kayu secara mendatar di atas meja dan mengangkat pemberat secara menegak. Pernyataan manakah menerangkan daya yang dilawan dalam kedua-dua keadaan?",
         "options": [
           "Menarik bongkah kayu secara mendatar melakukan kerja menentang daya tarikan graviti Bumi, manakala mengangkat pemberat menentang daya geseran.",
           "Menarik bongkah kayu secara mendatar melakukan kerja menentang daya geseran meja, manakala mengangkat pemberat secara menegak melakukan kerja menentang daya tarikan graviti.",
@@ -9168,7 +9168,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mengangkat pemberat secara menegak memerlukan tenaga kinetik yang tinggi, manakala menarik secara mendatar mengumpul tenaga keupayaan kenyal."
         ],
         "answerIndex": 1,
-        "explanation": "Menarik bongkah kayu melakukan kerja menentang geseran, manakala mengangkat pemberat melakukan kerja menentang tarikan graviti.\n*Dragging the wood does work against friction, while lifting the weight does work against gravity.*"
+        "explanation": "Menarik bongkah kayu melakukan kerja menentang geseran, manakala mengangkat pemberat melakukan kerja menentang tarikan graviti. Dragging the wood does work against friction, while lifting the weight does work against gravity."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q8",
@@ -9178,15 +9178,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Sebuah helikopter penyelamat mengangkat seorang mangsa banjir seberat $70\\text{ kg}$ secara menegak ke udara sejauh $20\\text{ m}$ dengan menggunakan sistem tali keluli. Berapakah Tenaga Keupayaan Graviti yang dikumpul oleh mangsa tersebut semasa berada di kedudukan tertinggi itu? ($g = 10\\text{ m s}^{-2}$)",
+        "question": "Sebuah helikopter penyelamat mengangkat seorang mangsa banjir seberat 70 kg secara menegak ke udara sejauh 20 m dengan menggunakan sistem tali keluli. Berapakah Tenaga Keupayaan Graviti yang dikumpul oleh mangsa tersebut semasa berada di kedudukan tertinggi itu? (g = 10 m s⁻²)",
         "options": [
-          "$1,\\!400\\text{ J}$",
-          "$35\\text{ J}$",
-          "$14,\\!000\\text{ J}$",
-          "$140\\text{ J}$"
+          "1,400 J",
+          "35 J",
+          "14,000 J",
+          "140 J"
         ],
         "answerIndex": 0,
-        "explanation": "Tenaga Keupayaan Graviti = massa x g x ketinggian = 70 kg x 10 m s⁻² x 20 m = 1,400 J.\n*Gravitational Potential Energy = mass x g x height = 70 kg x 10 m/s² x 20 m = 1,400 J.*"
+        "explanation": "Tenaga Keupayaan Graviti = massa x g x ketinggian = 70 kg x 10 m s⁻² x 20 m = 1,400 J. Gravitational Potential Energy = mass x g x height = 70 kg x 10 m/s² x 20 m = 1,400 J."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q9",
@@ -9196,7 +9196,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Mesin penanam cerucuk (*pile-driver*) menggunakan prinsip Tenaga Keupayaan Graviti untuk menghentam cerucuk konkrit masuk ke dalam tanah bawah permukaan. Mengapakah tukul besi mesin itu perlu ditarik tinggi ke atas sebelum dilepaskan jatuh?",
+        "question": "Mesin penanam cerucuk (pile-driver) menggunakan prinsip Tenaga Keupayaan Graviti untuk menghentam cerucuk konkrit masuk ke dalam tanah bawah permukaan. Mengapakah tukul besi mesin itu perlu ditarik tinggi ke atas sebelum dilepaskan jatuh?",
         "options": [
           "Untuk membolehkan tukul besi menolak daya tarikan graviti Bumi secara beransur-ansur semasa kejatuhan bebas.",
           "Untuk memaksimumkan luas permukaan hentaman tukul konkrit supaya tekanan tanah berkurangan.",
@@ -9204,7 +9204,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Untuk mengurangkan kehilangan tenaga sebagai haba dan bunyi ke persekitaran semasa kejatuhan bebas."
         ],
         "answerIndex": 2,
-        "explanation": "Tarikan tinggi membolehkan tukul mengumpul Tenaga Keupayaan Graviti yang lebih besar.\n*Raising the iron rod allows it to store more gravitational potential energy.*"
+        "explanation": "Tarikan tinggi membolehkan tukul mengumpul Tenaga Keupayaan Graviti yang lebih besar. Raising the iron rod allows it to store more gravitational potential energy."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q10",
@@ -9214,15 +9214,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Rajah di bawah menunjukkan seutas spring keluli yang dimampatkan oleh suatu daya luaran. * Panjang asal spring, $l_0 = 15\\text{ cm}$ * Panjang akhir spring setelah dimampatkan, $l_1 = 11\\text{ cm}$ * Daya pemampatan maksima yang dikenakan, $F = 40\\text{ N}$ Hitungkan Tenaga Keupayaan Kenyal yang tersimpan di dalam spring yang termampat itu.",
+        "question": "Satu spring dipendekkan daripada 15 cm kepada 11 cm oleh daya maksimum 40 N. Berapakah tenaga keupayaan kenyal yang disimpan?",
         "options": [
-          "$0.8\\text{ J}$",
-          "$1.6\\text{ J}$",
-          "$80\\text{ J}$",
-          "$160\\text{ J}$"
+          "0.8 J",
+          "1.6 J",
+          "80 J",
+          "160 J"
         ],
         "answerIndex": 0,
-        "explanation": "Tenaga Keupayaan Kenyal = 1/2 x F x (l_0 - l_1)² = 1/2 x 40 N x (15 cm - 11 cm)² = 0.8 J.\n*Elastic Potential Energy = 1/2 x F x (l_0 - l_1)² = 1/2 x 40 N x (15 cm - 11 cm)² = 0.8 J.*"
+        "explanation": "Pemampatan = 4 cm = 0.04 m. Tenaga keupayaan kenyal = ½Fx = ½ × 40 × 0.04 = 0.8 J. Compression = 4 cm = 0.04 m. Elastic potential energy = ½Fx = ½ × 40 × 0.04 = 0.8 J."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q11",
@@ -9232,15 +9232,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Berdasarkan hukum fizik KSSM, Tenaga Keupayaan Kenyal juga boleh ditentukan secara grafik daripada luas di bawah graf bagi tindak balas spring tersebut. Apakah paksi-paksi yang terlibat dalam graf ini untuk menghasilkan bentuk segi tiga sudut tegak?",
+        "question": "Tenaga keupayaan kenyal spring boleh ditentukan daripada luas di bawah graf. Kuantiti manakah perlu ditunjukkan pada kedua-dua paksi graf itu?",
         "options": [
-          "Paksi menegak ialah Tenaga Keupayaan ($E_p$), paksi mengufuk ialah Masa ($t$).",
-          "Paksi menegak ialah Daya regangan ($F$), paksi mengufuk ialah Pemanjangan/Mampatan ($x$).",
-          "Paksi menegak ialah Pecutan ($g$), paksi mengufuk ialah Jisim spring ($m$).",
-          "Paksi menegak ialah Halaju ($v$), paksi mengufuk ialah Sesaran ($s$)."
+          "Paksi menegak ialah Tenaga Keupayaan (E_p), paksi mengufuk ialah Masa (t).",
+          "Paksi menegak ialah Daya regangan (F), paksi mengufuk ialah Pemanjangan/Mampatan (x).",
+          "Paksi menegak ialah Pecutan (g), paksi mengufuk ialah Jisim spring (m).",
+          "Paksi menegak ialah Halaju (v), paksi mengufuk ialah Sesaran (s)."
         ],
-        "answerIndex": 0,
-        "explanation": "Paksi menegak ialah Tenaga Keupayaan ($E_p$), paksi mengufuk ialah Masa ($t$).\n*Vertical axis is Potential Energy ($E_p$), horizontal axis is Time ($t$).*"
+        "answerIndex": 1,
+        "explanation": "Luas di bawah graf daya melawan pemanjangan atau pemampatan memberikan tenaga keupayaan kenyal. The area under a force against extension or compression graph gives the elastic potential energy."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q12",
@@ -9250,15 +9250,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Sebuah kereta api komersial yang mempunyai jisim luar biasa sebanyak $400\\,000\\text{ kg}$ bergerak laju di atas landasan landai dengan halaju seragam $360\\text{ km j}^{-1}$ ($100\\text{ m s}^{-1}$). Hitungkan Tenaga Kinetik yang dimiliki oleh kereta api tersebut semasa pergerakan pantas itu.",
+        "question": "Sebuah kereta api berjisim 400 000 kg bergerak pada halaju 100 m s⁻¹. Berapakah tenaga kinetiknya?",
         "options": [
-          "$2.0 \\times 10^9\\text{ J}$",
-          "$2.0 \\times 10^8\\text{ J}$",
-          "$2.0 \\times 10^7\\text{ J}$",
-          "$2.0 \\times 10^6\\text{ J}$"
+          "2.0 × 10⁹ J",
+          "2.0 × 10⁸ J",
+          "2.0 × 10⁷ J",
+          "2.0 × 10⁶ J"
         ],
         "answerIndex": 0,
-        "explanation": "Tenaga Kinetik ialah $2.0 \\times 10^9\\text{ J}$.\n*Kinetic energy is $2.0 \\times 10^9\text{ J}$.*"
+        "explanation": "Tenaga Kinetik ialah 2.0 × 10⁹ J. Kinetic energy is 2.0 × 10⁹ J."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q13",
@@ -9268,15 +9268,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Sebutir bebola keluli kecil berjisim $0.15\\text{ kg}$ dilepaskan dari puncak sebuah satah condong licin. Bebola itu mengalir turun sehingga mencapai Tenaga Kinetik sebanyak $3.0\\text{ J}$ di hujung bawah satah tersebut. Berapakah halaju bebola keluli itu di hujung bawah satah?",
+        "question": "Sebutir bebola keluli kecil berjisim 0.15 kg dilepaskan dari puncak sebuah satah condong licin. Bebola itu mengalir turun sehingga mencapai Tenaga Kinetik sebanyak 3.0 J di hujung bawah satah tersebut. Berapakah halaju bebola keluli itu di hujung bawah satah?",
         "options": [
-          "$40\\text{ m s}^{-1}$",
-          "$20\\text{ m s}^{-1}$",
-          "$6.32\\text{ m s}^{-1}$",
-          "$1.41\\text{ m s}^{-1}$"
+          "40 m s⁻¹",
+          "20 m s⁻¹",
+          "6.32 m s⁻¹",
+          "1.41 m s⁻¹"
         ],
         "answerIndex": 1,
-        "explanation": "Halaju bebola keluli ialah $20\text{ m s}^{-1}$.\n*The velocity of the marble is $20\text{ m s}^{-1}$.*"
+        "explanation": "Halaju bebola keluli ialah 20 m s⁻¹. The velocity of the marble is 20 m s⁻¹."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q14",
@@ -9286,15 +9286,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Di dalam makmal fizik, seorang murid sedang mengkaji pergerakan mikroskopik elektron yang mempunyai jisim yang sangat seni iaitu $9 \\times 10^{-31}\\text{ kg}$. Jika elektron tersebut memecut di dalam tiub vakum sehingga mencapai halaju $2 \\times 10^6\\text{ m s}^{-1}$, berapakah Tenaga Kinetik elektron tersebut?",
+        "question": "Sebuah elektron berjisim 9 × 10⁻³¹ kg bergerak pada halaju 2 × 10⁶ m s⁻¹. Berapakah tenaga kinetiknya?",
         "options": [
-          "$1.8 \\times 10^{-18}\\text{ J}$",
-          "$3.6 \\times 10^{-18}\\text{ J}$",
-          "$1.8 \\times 10^{-24}\\text{ J}$",
-          "$3.6 \\times 10^{-24}\\text{ J}$"
+          "1.8 × 10⁻¹⁸ J",
+          "3.6 × 10⁻¹⁸ J",
+          "1.8 × 10⁻²⁴ J",
+          "3.6 × 10⁻²⁴ J"
         ],
         "answerIndex": 1,
-        "explanation": "Tenaga Kinetik elektron ialah $3.6 \\times 10^{-18}\text{ J}$.\n*The kinetic energy of the electron is $3.6 \\times 10^{-18}\text{ J}$.*"
+        "explanation": "Tenaga Kinetik elektron ialah 3.6 × 10⁻¹⁸ J. The kinetic energy of the electron is 3.6 × 10⁻¹⁸ J."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q15",
@@ -9304,7 +9304,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Pernyataan berikut merupakan takrifan bagi satu prinsip fizikal yang sangat penting: > *\"Tenaga tidak boleh dicipta atau dimusnahkan, tetapi hanya boleh berubah-ubah bentuknya.\"* > *\"Energy cannot be created or destroyed, but can only change its forms.\"* Apakah nama prinsip fizikal ini?",
+        "question": "Pernyataan berikut merupakan takrifan bagi satu prinsip fizikal yang sangat penting: > \"Tenaga tidak boleh dicipta atau dimusnahkan, tetapi hanya boleh berubah-ubah bentuknya.\" > \"Energy cannot be created or destroyed, but can only change its forms.\" Apakah nama prinsip fizikal ini?",
         "options": [
           "Prinsip Keabadian Momentum",
           "Prinsip Keabadian Tenaga",
@@ -9312,7 +9312,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Hukum Termodinamik Sifar"
         ],
         "answerIndex": 1,
-        "explanation": "Nama prinsip fizikal ini ialah Prinsip Keabadian Tenaga.\n*The name of this physical principle is the Law of Conservation of Energy.*"
+        "explanation": "Nama prinsip fizikal ini ialah Prinsip Keabadian Tenaga. The name of this physical principle is the Law of Conservation of Energy."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q16",
@@ -9322,15 +9322,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Rajah di bawah menunjukkan seutas bandul ringkas (*simple pendulum*) yang sedang berayun secara bebas di dalam sebuah sistem tertutup (*closed system*). * Kedudukan $X$ dan $Z$: Amplitud tertinggi ayunan (kedudukan pegun seketika sebelum songsang arah). * Kedudukan $Y$: Kedudukan keseimbangan paling rendah (pusat trajektori). Antara pernyataan berikut, yang manakah menerangkan perubahan tenaga di kedudukan $Y$ dengan betul?",
+        "question": "Sebuah bandul berayun tanpa kehilangan tenaga. Apakah keadaan tenaga bandul ketika melalui kedudukan paling rendah?",
         "options": [
           "Tenaga Keupayaan Graviti adalah maksimum, manakala Tenaga Kinetik adalah sifar.",
           "Tenaga Keupayaan Graviti adalah minimum, manakala Tenaga Kinetik adalah maksimum.",
           "Tenaga Keupayaan Kenyal adalah maksimum, manakala Tenaga Kinetik adalah minimum.",
           "Kedua-dua Tenaga Keupayaan Graviti dan Tenaga Kinetik adalah sifar."
         ],
-        "answerIndex": 0,
-        "explanation": "Di kedudukan Y, tenaga keupayaan graviti sifar, manakala tenaga kinetik maksimum.\n*At position Y, gravitational potential energy is zero, while kinetic energy is maximum.*"
+        "answerIndex": 1,
+        "explanation": "Pada kedudukan paling rendah, tenaga keupayaan graviti adalah minimum dan tenaga kinetik adalah maksimum. At the lowest position, gravitational potential energy is minimum and kinetic energy is maximum."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q17",
@@ -9340,7 +9340,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Rajah di bawah menunjukkan ayunan spring berbeban (*oscillating loaded spring*) menegak antara kedudukan mampatan maksima ($X$), kedudukan keseimbangan ($Y$), dan kedudukan regangan maksima ($Z$) di dalam sistem tertutup. Antara pernyataan berikut, yang manakah menerangkan keadaan bentuk tenaga di kedudukan $X$ dengan betul?",
+        "question": "Satu beban berayun pada spring menegak tanpa kehilangan tenaga. Apakah keadaan tenaga apabila spring berada pada mampatan maksimum?",
         "options": [
           "Tenaga Keupayaan Kenyal adalah minimum, manakala Tenaga Kinetik adalah maksimum.",
           "Tenaga Keupayaan Kenyal adalah maksimum, manakala Tenaga Kinetik adalah sifar.",
@@ -9348,7 +9348,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Semua bentuk tenaga tersimpan dalam bentuk Tenaga Kimia yang beredar."
         ],
         "answerIndex": 1,
-        "explanation": "Di kedudukan X, tenaga keupayaan kenyal maksimum, manakala tenaga kinetik sifar.\n*At position X, elastic potential energy is maximum, while kinetic energy is zero.*"
+        "explanation": "Di kedudukan X, tenaga keupayaan kenyal maksimum, manakala tenaga kinetik sifar. At position X, elastic potential energy is maximum, while kinetic energy is zero."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q18",
@@ -9358,15 +9358,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Rajah 7.13 di dalam buku teks Sains Tingkatan 3 menunjukkan Graf Perubahan Tenaga melawan Sesaran bagi sistem ayunan bandul ringkas tertutup. Apakah interpretasi fizikal yang paling tepat daripada graf tersebut?",
+        "question": "Sebuah bandul berayun tanpa kehilangan tenaga. Apakah yang berlaku kepada tenaga kinetik, tenaga keupayaan graviti dan jumlah tenaga bandul semasa ayunan?",
         "options": [
-          "Lengkung parabola Tenaga Keupayaan dan lengkung parabola terbalik Tenaga Kinetik sentiasa menghasilkan jumlah tenaga yang berubah-ubah mengikut persekitaran.",
-          "Nilai Tenaga Kinetik sentiasa bernilai negatif di semua sesaran manakala Tenaga Keupayaan bernilai positif.",
-          "Hasil tambah Tenaga Keupayaan Graviti dan Tenaga Kinetik di sebarang kedudukan sesaran adalah malar, menghasilkan garis lurus mengufuk bagi jumlah tenaga keseluruhan.",
-          "Tenaga Keupayaan Graviti sentiasa berkadar terus dengan punca kuasa dua sesaran amplitud dari kedudukan pusat."
+          "Tenaga kinetik dan tenaga keupayaan graviti kedua-duanya sentiasa bertambah.",
+          "Tenaga kinetik sentiasa sifar, tetapi tenaga keupayaan graviti berubah.",
+          "Tenaga kinetik dan tenaga keupayaan graviti saling berubah, tetapi jumlah tenaga kekal malar.",
+          "Jumlah tenaga bertambah setiap kali bandul melalui kedudukan paling rendah."
         ],
         "answerIndex": 2,
-        "explanation": "Jumlah tenaga keseluruhan tetap, sehingga garis lurus mengufuk pada graf.\n*Total energy remains constant, resulting in a horizontal straight line on the graph.*"
+        "explanation": "Tenaga kinetik dan tenaga keupayaan graviti saling berubah, tetapi jumlah tenaga kekal malar. Kinetic and gravitational potential energy change from one to the other, but total energy remains constant."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q19",
@@ -9384,7 +9384,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tenaga keupayaan graviti bandul dipindahkan secara osmosis ke dinding bilik darjah."
         ],
         "answerIndex": 1,
-        "explanation": "Ketika berayun di dalam bilik, tenaga kinetik bandul hilang ke haba dan bunyi.\n*When swinging in a room, the pendulum's kinetic energy is lost to heat and sound.*"
+        "explanation": "Ketika berayun di dalam bilik, tenaga kinetik bandul hilang ke haba dan bunyi. When swinging in a room, the pendulum's kinetic energy is lost to heat and sound."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q20",
@@ -9394,15 +9394,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Rajah 7.14 menunjukkan sebuah pistol mainan (*toy spring-pistol*). * Panjang spring asal, $l_0 = 300\\text{ mm}$ * Spring dimampatkan sehingga panjang baharu menjadi $50\\text{ mm}$ oleh satu daya maksima $5\\text{ N}$. * Sebutir bebola plastik berjisim $50\\text{ g}$ ($0.05\\text{ kg}$) diletakkan di hadapan spring termampat itu. Dengan membuat anggapan tiada kehilangan tenaga ke persekitaran, hitungkan kelajuan maksimum bebola plastik tersebut sebaik sahaja pistol itu ditembak menegak ke luar.",
+        "question": "Spring sebuah pistol mainan dipendekkan daripada 300 mm kepada 50 mm oleh daya maksimum 5 N. Bebola plastik berjisim 0.05 kg diletakkan di hadapan spring. Jika semua tenaga keupayaan kenyal bertukar kepada tenaga kinetik, berapakah kelajuan bebola itu?",
         "options": [
-          "$25\\text{ m s}^{-1}$",
-          "$12.5\\text{ m s}^{-1}$",
-          "$5\\text{ m s}^{-1}$",
-          "$1.58\\text{ m s}^{-1}$"
+          "25 m s⁻¹",
+          "12.5 m s⁻¹",
+          "5 m s⁻¹",
+          "1.58 m s⁻¹"
         ],
-        "answerIndex": 1,
-        "explanation": "Hitungan menunjukkan kelajuan maksimum 12.5 m s⁻¹.\n*Calculation shows the maximum speed is 12.5 m s⁻¹.*"
+        "answerIndex": 2,
+        "explanation": "Pemampatan spring ialah 0.25 m. Tenaga keupayaan kenyal = ½ × 5 × 0.25 = 0.625 J. Oleh sebab ½mv² = 0.625 J, v = 5 m s⁻¹. The spring compression is 0.25 m, so ½Fx = 0.625 J. From ½mv² = 0.625 J, v = 5 m s⁻¹."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q21",
@@ -9412,15 +9412,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Sebutir sfera logam pepejal berjisim $2.0\\text{ kg}$ dilepaskan secara jatuh bebas (*free fall*) dari tebing tinggi berketinggian $2.5\\text{ m}$ dari permukaan tanah. Dengan mengabaikan rintangan udara, hitungkan Tenaga Kinetik maksimum sfera keluli tersebut sejurus sebelum ia menghentam tanah. ($g = 10\\text{ m s}^{-2}$)",
+        "question": "Sebutir sfera logam pepejal berjisim 2.0 kg dilepaskan secara jatuh bebas (free fall) dari tebing tinggi berketinggian 2.5 m dari permukaan tanah. Dengan mengabaikan rintangan udara, hitungkan Tenaga Kinetik maksimum sfera keluli tersebut sejurus sebelum ia menghentam tanah. (g = 10 m s⁻²)",
         "options": [
-          "$5\\text{ J}$",
-          "$50\\text{ J}$",
-          "$250\\text{ J}$",
-          "$500\\text{ J}$"
+          "5 J",
+          "50 J",
+          "250 J",
+          "500 J"
         ],
         "answerIndex": 1,
-        "explanation": "Tenaga Kinetik maksimum = 1/2 x 2.0 x (10 x 2.5)^2 = 50 J\n*Max Kinetic Energy = 1/2 x 2.0 x (10 x 2.5)^2 = 50 J*"
+        "explanation": "Tenaga Kinetik maksimum = 1/2 x 2.0 x (10 x 2.5)² = 50 J Max Kinetic Energy = 1/2 x 2.0 x (10 x 2.5)² = 50 J"
       },
       {
         "id": "sci-f3-c7-set-a-bm-q22",
@@ -9430,7 +9430,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Aktiviti menaiki tangga hospital sering kali digalakkan oleh doktor pakar berbanding menggunakan lif elektrik. Berdasarkan Galeri Sains Bab 7, manakah antara berikut merupakan manfaat fisiologi yang diperoleh daripada aktiviti memanjat tangga ini terhadap tubuh badan manusia?",
+        "question": "Antara berikut, yang manakah merupakan manfaat menaiki tangga secara berkala?",
         "options": [
           "Mengurangkan kadar ketumpatan tulang bagi mengelakkan arthritis.",
           "Meningkatkan luas permukaan paru-paru secara kekal untuk memudahkan proses resapan nitrogen.",
@@ -9438,7 +9438,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Menggalakkan pembentukan asid laktik dalam otot untuk meningkatkan kadar keimunan badan secara drastik."
         ],
         "answerIndex": 2,
-        "explanation": "Mengurangkan risiko penyakit jantung, kencing manis, dan kanser kolon, serta meningkatkan ketumpatan tulang.\n*Reduces risk of heart disease, diabetes, and colon cancer, and increases bone density.*"
+        "explanation": "Mengurangkan risiko penyakit jantung, kencing manis, dan kanser kolon, serta meningkatkan ketumpatan tulang. Reduces risk of heart disease, diabetes, and colon cancer, and increases bone density."
       },
       {
         "id": "sci-f3-c7-set-a-bm-q23",
@@ -9448,15 +9448,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Seorang atlet angkat berat berjisim $80\\text{ kg}$ mengangkat sepasang barbel seberat $1,\\!200\\text{ N}$ secara menegak ke atas kepalanya sejauh $2.1\\text{ m}$ dari lantai. Berapakah kerja yang dilakukan oleh atlet itu terhadap barbel tersebut?",
+        "question": "Seorang atlet angkat berat berjisim 80 kg mengangkat sepasang barbel seberat 1,200 N secara menegak ke atas kepalanya sejauh 2.1 m dari lantai. Berapakah kerja yang dilakukan oleh atlet itu terhadap barbel tersebut?",
         "options": [
-          "$1,\\!680\\text{ J}$",
-          "$2,\\!520\\text{ J}$",
-          "$4,\\!200\\text{ J}$",
-          "$2,\\!880\\text{ J}$"
+          "1,680 J",
+          "2,520 J",
+          "4,200 J",
+          "2,880 J"
         ],
         "answerIndex": 1,
-        "explanation": "Kerja = 1,200 x 2.1 = 2,520 J\n*Work = 1,200 x 2.1 = 2,520 J*"
+        "explanation": "Kerja = 1,200 x 2.1 = 2,520 J Work = 1,200 x 2.1 = 2,520 J"
       },
       {
         "id": "sci-f3-c7-set-a-bm-q24",
@@ -9466,15 +9466,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Seorang pemanah wanita menarik tali busur dengan daya maksimum $200\\text{ N}$ sejauh $0.4\\text{ m}$ ke belakang sebelum melepaskan anak panah tersebut. Hitungkan Tenaga Keupayaan Kenyal yang disimpan oleh tali busur yang teregang itu.",
+        "question": "Seorang pemanah wanita menarik tali busur dengan daya maksimum 200 N sejauh 0.4 m ke belakang sebelum melepaskan anak panah tersebut. Hitungkan Tenaga Keupayaan Kenyal yang disimpan oleh tali busur yang teregang itu.",
         "options": [
-          "$80\\text{ J}$",
-          "$40\\text{ J}$",
-          "$160\\text{ J}$",
-          "$400\\text{ J}$"
+          "80 J",
+          "40 J",
+          "160 J",
+          "400 J"
         ],
         "answerIndex": 0,
-        "explanation": "Tenaga Keupayaan Kenyal = 1/2 x 200 x 0.4^2 = 80 J\n*Potential Energy = 1/2 x 200 x 0.4^2 = 80 J*"
+        "explanation": "Tenaga Keupayaan Kenyal = 1/2 x 200 x 0.4² = 80 J Potential Energy = 1/2 x 200 x 0.4² = 80 J"
       },
       {
         "id": "sci-f3-c7-set-a-bm-q25",
@@ -9492,7 +9492,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tali busur bertindak sebagai konduktor cas elektrik yang menebalkan ion positif di udara sekeliling."
         ],
         "answerIndex": 0,
-        "explanation": "Kerja lesap menjadi haba dan bunyi, serta ketidaksempurnaan regangan busur.\n*Work is lost as heat and sound due to air resistance and bow stretching imperfections.*"
+        "explanation": "Kerja lesap menjadi haba dan bunyi, serta ketidaksempurnaan regangan busur. Work is lost as heat and sound due to air resistance and bow stretching imperfections."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q1",
@@ -9502,15 +9502,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Aktiviti menaiki tangga yang dipaparkan dalam Galeri Sains Bab 7 memberikan pelbagai faedah kesihatan yang signifikan kepada tubuh badan manusia. Antara faedah berikut, yang manakah TIDAK dinyatakan secara khusus sebagai faedah menaiki tangga?",
+        "question": "Antara berikut, yang manakah BUKAN manfaat kesihatan menaiki tangga secara berkala?",
         "options": [
           "Mengurangkan risiko penyakit osteoporosis dengan menghasilkan tulang yang sihat.",
-          "Meningkatkan kapasiti fungsi paru-paru dan kecekapan pengaliran darah.",
+          "Meningkatkan kecergasan peparu dan peredaran darah.",
           "Mengurangkan risiko mendapat beberapa penyakit kronik seperti penyakit kencing manis, hipertensi, dan kanser kolon.",
           "Menghasilkan sel-sel darah merah baharu secara langsung dalam limpa bagi mengelakkan anemia."
         ],
         "answerIndex": 3,
-        "explanation": "Menghasilkan sel-sel darah merah baharu tidak dinyatakan secara khusus.\n*Producing new red blood cells is not specifically mentioned as a benefit.*"
+        "explanation": "Menaiki tangga tidak menghasilkan sel darah merah baharu secara langsung di dalam limpa. Climbing stairs does not directly produce new red blood cells in the spleen."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q2",
@@ -9520,7 +9520,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Dua orang pelajar, Azmi dan Bob, masing-masing mempunyai berat badan yang sama iaitu $500\\text{ N}$. Mereka menaiki tangga setinggi $4\\text{ m}$ yang sama. Azmi mengambil masa $10\\text{ saat}$ manakala Bob mengambil masa $8\\text{ saat}$.\nPilih pernyataan yang paling tepat mengenai kerja dan kuasa yang dijana oleh mereka.",
+        "question": "Dua orang pelajar, Azmi dan Bob, masing-masing mempunyai berat badan yang sama iaitu 500 N. Mereka menaiki tangga setinggi 4 m yang sama. Azmi mengambil masa 10 saat manakala Bob mengambil masa 8 saat. Pilih pernyataan yang paling tepat mengenai kerja dan kuasa yang dijana oleh mereka.",
         "options": [
           "Bob melakukan kerja yang lebih banyak berbanding Azmi kerana mengambil masa yang lebih singkat.",
           "Azmi menjana kuasa yang lebih tinggi daripada Bob kerana dia mengambil masa yang lebih lama.",
@@ -9528,7 +9528,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Bob menjana kuasa yang lebih rendah daripada Azmi kerana dia menentang graviti dengan lebih cepat."
         ],
         "answerIndex": 2,
-        "explanation": "Kedua-dua melakukan kerja sama, tetapi Bob menjana kuasa yang lebih tinggi.\n*Both did the same work, but Bob generated more power.*"
+        "explanation": "Kedua-dua melakukan kerja sama, tetapi Bob menjana kuasa yang lebih tinggi. Both did the same work, but Bob generated more power."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q3",
@@ -9538,15 +9538,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Seseorang murid menolak sebuah meja berat dengan daya mendatar $50\\text{ N}$ di atas lantai kasar, tetapi meja tersebut tidak bergerak walaupun sedikit. Antara yang berikut, yang manakah menerangkan kerja dilakukan ke atas meja tersebut dari sudut fizik?",
+        "question": "Seseorang murid menolak sebuah meja berat dengan daya mendatar 50 N di atas lantai kasar, tetapi meja tersebut tidak bergerak walaupun sedikit. Antara yang berikut, yang manakah menerangkan kerja dilakukan ke atas meja tersebut dari sudut fizik?",
         "options": [
-          "Kerja sebanyak $50\\text{ J}$ telah dilakukan kerana murid tersebut telah mengerahkan daya yang besar.",
-          "Kerja yang dilakukan adalah sifar kerana tiada sesaran berlaku dalam arah daya ($s = 0$).",
+          "Kerja sebanyak 50 J telah dilakukan kerana murid tersebut telah mengerahkan daya yang besar.",
+          "Kerja yang dilakukan adalah sifar kerana tiada sesaran berlaku dalam arah daya (s = 0).",
           "Kerja adalah bernilai negatif kerana ditentang oleh daya geseran lantai kasar yang lebih tinggi.",
           "Kerja dilakukan adalah bersamaan dengan daya darab masa yang diambil untuk menolak meja tersebut."
         ],
         "answerIndex": 1,
-        "explanation": "Tiada sesaran, kerja yang dilakukan adalah sifar.\n*No displacement, work done is zero.*"
+        "explanation": "Tiada sesaran, kerja yang dilakukan adalah sifar. No displacement, work done is zero."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q4",
@@ -9556,15 +9556,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Seorang pekerja memindahkan kotak berisi buku seberat $150\\text{ N}$ secara mendatar di atas lantai licin sejauh $6\\text{ m}$, kemudian dia mengangkat kotak itu secara menegak setinggi $1.5\\text{ m}$ untuk diletakkan di atas sebuah rak tinggi. Berapakah jumlah kerja keseluruhan yang dilakukan oleh pekerja itu?",
+        "question": "Seorang pekerja memindahkan kotak berisi buku seberat 150 N secara mendatar di atas lantai licin sejauh 6 m, kemudian dia mengangkat kotak itu secara menegak setinggi 1.5 m untuk diletakkan di atas sebuah rak tinggi. Berapakah jumlah kerja keseluruhan yang dilakukan oleh pekerja itu?",
         "options": [
-          "$225\\text{ J}$",
-          "$1,\\!125\\text{ J}$",
-          "$900\\text{ J}$",
-          "$150\\text{ J}$"
+          "225 J",
+          "1,125 J",
+          "900 J",
+          "150 J"
         ],
         "answerIndex": 1,
-        "explanation": "Kerja mendatar $900\\text{ J}$, kerja angkat $225\\text{ J}$, jumlah kerja keseluruhan $1,\\!125\\text{ J}$.\n*Horizontal work $900\\text{ J}$, lifting work $225\\text{ J}$, total work $1,\\!125\\text{ J}$.*"
+        "explanation": "Kerja mendatar 900 J, kerja angkat 225 J, jumlah kerja keseluruhan 1,125 J. Horizontal work 900 J, lifting work 225 J, total work 1,125 J."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q5",
@@ -9574,15 +9574,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Sebuah enjin generator elektrik mempunyai label penarafan kuasa $4.5\\text{ hp}$ (kuasa kuda). Jika satu unit kuasa kuda tradisional ($1\\text{ hp}$) dianggarkan bersamaan dengan $746\\text{ W}$, berapakah kadar pemindahan tenaga generator tersebut dalam unit kilowatt (kW)?",
+        "question": "Sebuah enjin generator elektrik mempunyai label penarafan kuasa 4.5 hp (kuasa kuda). Jika satu unit kuasa kuda tradisional (1 hp) dianggarkan bersamaan dengan 746 W, berapakah kadar pemindahan tenaga generator tersebut dalam unit kilowatt (kW)?",
         "options": [
-          "$3.357\\text{ kW}$",
-          "$3,\\!357\\text{ kW}$",
-          "$165.7\\\\text{ kW}$",
-          "$0.165\\text{ kW}$"
+          "3.357 kW",
+          "3,357 kW",
+          "165.7 kW",
+          "0.165 kW"
         ],
         "answerIndex": 0,
-        "explanation": "4.5 hp = 4.5 x 746 W = 3.357 kW.\n*4.5 hp = 4.5 x 746 W = 3.357 kW.*"
+        "explanation": "4.5 hp = 4.5 x 746 W = 3.357 kW. 4.5 hp = 4.5 x 746 W = 3.357 kW."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q6",
@@ -9594,13 +9594,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "Momen daya dan Tenaga merupakan dua kuantiti fizik selain daripada Kerja yang dikaitkan dengan unit yang setara dalam fizik. Apakah unit setara yang dikongsi oleh kuantiti-kuantiti ini?",
         "options": [
-          "Watt (W) atau Joule per saat ($\\text{J s}^{-1}$)",
-          "Newton Meter ($\\text{N m}$) atau Joule (J)",
-          "Kilogram meter per saat persegi ($\\text{kg m s}^{-2}$)",
-          "Pascal (Pa) atau Newton per meter persegi ($\\text{N m}^{-2}$)"
+          "Watt (W) atau Joule per saat (J s⁻¹)",
+          "Newton Meter (N m) atau Joule (J)",
+          "Kilogram meter per saat persegi (kg m s⁻²)",
+          "Pascal (Pa) atau Newton per meter persegi (N m⁻²)"
         ],
         "answerIndex": 0,
-        "explanation": "Unit setara untuk semua 3 kuantiti ialah Watt (W) atau Joule per saat ($\text{J s}^{-1}$).\n*The equivalent unit for all three quantities is Watt (W) or Joules per second ($\text{J s}^{-1}$).*"
+        "explanation": "Unit setara untuk semua 3 kuantiti ialah Watt (W) atau Joule per saat (J s⁻¹). The equivalent unit for all three quantities is Watt (W) or Joules per second (J s⁻¹)."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q7",
@@ -9610,7 +9610,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Dalam Aktiviti Inkuiri 7.1, mengapakah benang yang halus dan kepingan kayu ditarik secara mendatar dengan kelajuan yang seragam semasa mengukur kerja menggunakan neraca spring?",
+        "question": "Dalam satu penyiasatan, bongkah kayu ditarik secara mendatar pada kelajuan tetap menggunakan neraca spring. Mengapakah kelajuan tetap digunakan?",
         "options": [
           "Untuk memastikan rintangan udara diabaikan sepenuhnya semasa penarikan.",
           "Untuk memastikan bacaan daya pada neraca spring adalah stabil dan hanya mengatasi daya geseran meja secara konsisten.",
@@ -9618,7 +9618,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Untuk meningkatkan kadar pecutan sifar bagi menghasilkan kuasa maksimum."
         ],
         "answerIndex": 1,
-        "explanation": "Benang halus dan kepingan kayu ditarik mendatar untuk memastikan bacaan daya stabil dan konsisten.\n*The smooth string and wooden disk are pulled horizontally to ensure a stable and consistent force reading.*"
+        "explanation": "Benang halus dan kepingan kayu ditarik mendatar untuk memastikan bacaan daya stabil dan konsisten. The smooth string and wooden disk are pulled horizontally to ensure a stable and consistent force reading."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q8",
@@ -9628,7 +9628,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Mesin penanam cerucuk (*pile-driver*) merupakan sebuah peralatan industri pembinaan yang mengaplikasikan prinsip Tenaga Keupayaan Graviti. Antara pernyataan berikut, yang manakah menerangkan konsep kerja mesin ini dengan tepat?",
+        "question": "Mesin penanam cerucuk (pile-driver) merupakan sebuah peralatan industri pembinaan yang mengaplikasikan prinsip Tenaga Keupayaan Graviti. Antara pernyataan berikut, yang manakah menerangkan konsep kerja mesin ini dengan tepat?",
         "options": [
           "Tukul besi yang berat ditolak ke bawah dengan enjin berkuasa tinggi untuk membakar lemak cerucuk.",
           "Tukul besi yang berat diangkat tinggi untuk menyimpan tenaga keupayaan graviti yang tinggi, yang kemudian ditukarkan kepada tenaga kinetik semasa dilepaskan untuk menolak cerucuk masuk ke dalam tanah.",
@@ -9636,7 +9636,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Cerucuk menolak tukul besi ke atas untuk memulihkan kestabilan terma bumi secara osmosis."
         ],
         "answerIndex": 1,
-        "explanation": "Tukul besi yang berat diangkat tinggi untuk menyimpan tenaga keupayaan graviti, kemudian ditukar kepada tenaga kinetik untuk menolak cerucuk.\n*The heavy iron pile is lifted high to store gravitational potential energy, which is then converted to kinetic energy to drive the pile into the ground.*"
+        "explanation": "Tukul besi yang berat diangkat tinggi untuk menyimpan tenaga keupayaan graviti, kemudian ditukar kepada tenaga kinetik untuk menolak cerucuk. The heavy iron pile is lifted high to store gravitational potential energy, which is then converted to kinetic energy to drive the pile into the ground."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q9",
@@ -9646,15 +9646,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Seorang pendaki yang berjisim $60\\text{ kg}$ mendaki gunung dari stesen tapak pada ketinggian $1,\\!500\\text{ m}$ ke puncak gunung pada ketinggian $2,\\!300\\text{ m}$ dari aras laut. Berapakah perubahan tenaga keupayaan graviti pendaki itu? (Anggap $g = 10\\text{ m s}^{-2}$)",
+        "question": "Seorang pendaki yang berjisim 60 kg mendaki gunung dari stesen tapak pada ketinggian 1,500 m ke puncak gunung pada ketinggian 2,300 m dari aras laut. Berapakah perubahan tenaga keupayaan graviti pendaki itu? (Anggap g = 10 m s⁻²)",
         "options": [
-          "$900,\\!000\\text{ J}$",
-          "$480,\\!000\\text{ J}$",
-          "$1,\\!380,\\!000\\text{ J}$",
-          "$80,\\!000\\text{ J}$"
+          "900,000 J",
+          "480,000 J",
+          "1,380,000 J",
+          "80,000 J"
         ],
         "answerIndex": 0,
-        "explanation": "Perubahan tenaga keupayaan graviti ialah $60 imes 10 imes (2300 - 1500) = 900,000\text{ J}$.\n*The change in gravitational potential energy is $60 imes 10 imes (2300 - 1500) = 900,000\text{ J}$.*"
+        "explanation": "Perubahan tenaga keupayaan graviti ialah 60 × 10 × (2300 - 1500) = 900,000 J. The change in gravitational potential energy is 60 × 10 × (2300 - 1500) = 900,000 J."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q10",
@@ -9672,7 +9672,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tenaga Haba Terbuang"
         ],
         "answerIndex": 2,
-        "explanation": "Kerja motor elektrik bersamaan dengan peningkatan tenaga keupayaan kenyal pada beban.\n*The work done by the electric motor is equal to the increase in elastic potential energy of the load.*"
+        "explanation": "Kerja motor elektrik bersamaan dengan peningkatan tenaga keupayaan kenyal pada beban. The work done by the electric motor is equal to the increase in elastic potential energy of the load."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q11",
@@ -9682,15 +9682,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Rajah di bawah menunjukkan sebatang spring keluli di dalam dawai kokot (*stapler*). * Panjang asal spring, $l_0 = 15\\text{ cm}$ * Apabila spring dimampatkan dengan daya terakhir $30\\text{ N}$, panjang spring menjadi $9\\text{ cm}$. Hitungkan Tenaga Keupayaan Kenyal yang disimpan di dalam spring termampat tersebut. *Calculate the Elastic Potential Energy stored in the compressed spring.*",
+        "question": "Spring di dalam alat pengokot dipendekkan daripada 15 cm kepada 9 cm oleh daya maksimum 30 N. Berapakah tenaga keupayaan kenyal yang disimpan?",
         "options": [
-          "$0.9\\text{ J}$",
-          "$90\\text{ J}$",
-          "$4.5\\text{ J}$",
-          "$1.8\\text{ J}$"
+          "0.9 J",
+          "90 J",
+          "4.5 J",
+          "1.8 J"
         ],
-        "answerIndex": 2,
-        "explanation": "Kita gunakan formula $E_p = \frac{1}{2}kx^2$. Dengan $k = \frac{30}{6} = 5\\text{ N/cm}$, $x = 6\\text{ cm}$. Jadi, $E_p = \frac{1}{2} imes 5 imes 6^2 = 4.5\\text{ J}$.\n*Using $E_p = \frac{1}{2}kx^2$, with $k = 5\\text{ N/cm}$ and $x = 6\\text{ cm}$, we get $E_p = 4.5\\text{ J}$.*"
+        "answerIndex": 0,
+        "explanation": "Pemampatan = 6 cm = 0.06 m. Tenaga keupayaan kenyal = ½Fx = ½ × 30 × 0.06 = 0.9 J. Compression = 6 cm = 0.06 m. Elastic potential energy = ½Fx = ½ × 30 × 0.06 = 0.9 J."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q12",
@@ -9700,15 +9700,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Mengapakah formula pengiraan Tenaga Keupayaan Kenyal mempunyai faktor separuh iaitu $\\frac{1}{2}Fx$, berbeza dengan kerja biasa $W = Fs$?",
+        "question": "Mengapakah formula pengiraan Tenaga Keupayaan Kenyal mempunyai faktor separuh iaitu 1/2Fx, berbeza dengan kerja biasa W = Fs?",
         "options": [
           "Kerana spring hanya mampat separuh jalan dan kemudian memantul kembali ke bentuk asal secara automatik.",
-          "Kerana daya regangan berubah secara linear dari sifar ($0\\text{ N}$) kepada daya maksimum ($F\\text{ N}$), menyebabkan nilai daya purata yang bertindak bersamaan dengan $\\frac{1}{2}F$.",
+          "Kerana daya regangan berubah secara linear dari sifar (0 N) kepada daya maksimum (F N), menyebabkan nilai daya purata yang bertindak bersamaan dengan 1/2F.",
           "Kerana sesaran spring sentiasa dibahagikan dengan dua bagi mendapatkan pemalar kekenyalan yang seragam.",
           "Formula tersebut mengambil kira rintangan udara yang mengurangkan separuh daripada kerja mekanikal spring."
         ],
         "answerIndex": 1,
-        "explanation": "Formula $\\frac{1}{2}Fx$ mengambil kira daya purata yang bertindak semasa pemanjangan spring.\n*The $\\frac{1}{2}Fx$ accounts for the average force acting during spring extension.*"
+        "explanation": "Formula 1/2Fx mengambil kira daya purata yang bertindak semasa pemanjangan spring. The 1/2Fx accounts for the average force acting during spring extension."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q13",
@@ -9718,15 +9718,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Secara grafik, bagaimanakah jumlah Tenaga Keupayaan Kenyal yang dikumpul oleh suatu spring kenyal ditentukan daripada data eksperimen?",
+        "question": "Bagaimanakah tenaga keupayaan kenyal spring ditentukan daripada graf daya melawan pemanjangan?",
         "options": [
-          "Kecerunan graf bagi graf Daya melawan Pemanjangan ($F-x$).",
-          "Pintasan-y bagi graf Pemanjangan melawan Daya ($x-F$).",
-          "Luas di bawah graf bagi graf Daya melawan Pemanjangan ($F-x$).",
-          "Kuasa dua nilai pintasan-x pada pakat sesaran spring."
+          "Kecerunan graf bagi graf Daya melawan Pemanjangan (F-x).",
+          "Pintasan-y bagi graf Pemanjangan melawan Daya (x-F).",
+          "Luas di bawah graf bagi graf Daya melawan Pemanjangan (F-x).",
+          "Kuasa dua nilai pintasan pada paksi pemanjangan."
         ],
         "answerIndex": 2,
-        "explanation": "Luas di bawah graf $F-x$ menunjukkan tenaga keupayaan kenyal yang dikumpul.\n*The area under the $F-x$ graph represents the elastic potential energy stored.*"
+        "explanation": "Luas di bawah graf F-x menunjukkan tenaga keupayaan kenyal yang dikumpul. The area under the F-x graph represents the elastic potential energy stored."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q14",
@@ -9736,15 +9736,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Sebuah spring dipanjangkan sebanyak $12\\text{ cm}$ daripada kedudukan keseimbangannya secara linear. Jika tenaga keupayaan kenyal yang disimpan di dalam spring tersebut ialah $1.44\\text{ J}$, berapakah daya regangan terakhir yang dikenakan ke atas spring tersebut?",
+        "question": "Sebuah spring dipanjangkan sebanyak 12 cm daripada kedudukan keseimbangannya secara linear. Jika tenaga keupayaan kenyal yang disimpan di dalam spring tersebut ialah 1.44 J, berapakah daya regangan terakhir yang dikenakan ke atas spring tersebut?",
         "options": [
-          "$12\\text{ N}$",
-          "$24\\text{ N}$",
-          "$1.2\\text{ N}$",
-          "$2.4\\text{ N}$"
+          "12 N",
+          "24 N",
+          "1.2 N",
+          "2.4 N"
         ],
         "answerIndex": 3,
-        "explanation": "Dengan $E_p = 1.44\\text{ J}$ dan $x = 12\\text{ cm} = 0.12\\text{ m}$, $k = \frac{1.44}{0.06} = 24\\text{ N/m}$. Daya terakhir $F = kx = 2.4\\text{ N}$.\n*Given $E_p = 1.44\\text{ J}$ and $x = 0.12\\text{ m}$, $k = 24\\text{ N/m}$. Thus, $F = 2.4\\text{ N}$.*"
+        "explanation": "Dengan E_p = 1.44 J dan x = 12 cm = 0.12 m, k = 1.44/0.06 = 24 N/m. Daya terakhir F = kx = 2.4 N. Given E_p = 1.44 J and x = 0.12 m, k = 24 N/m. Thus, F = 2.4 N."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q15",
@@ -9754,15 +9754,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Sebuah kereta api komuter berkelajuan tinggi yang berjisim $400,\\!000\\text{ kg}$ bergerak dengan halaju $288\\text{ km j}^{-1}$. Berapakah tenaga kinetik yang dimiliki oleh kereta api ini?",
+        "question": "Sebuah kereta api komuter berkelajuan tinggi yang berjisim 400,000 kg bergerak dengan halaju 288 km j⁻¹. Berapakah tenaga kinetik yang dimiliki oleh kereta api ini?",
         "options": [
-          "$1.28 \\times 10^9\\text{ J}$",
-          "$1.66 \\times 10^{10}\\text{ J}$",
-          "$1.28 \\times 10^8\\text{ J}$",
-          "$1.60 \\times 10^9\\text{ J}$"
+          "1.28 × 10⁹ J",
+          "1.66 × 10¹⁰ J",
+          "1.28 × 10⁸ J",
+          "1.60 × 10⁹ J"
         ],
         "answerIndex": 0,
-        "explanation": "Kelajuan $288\\text{ km j}^{-1} = 80\\text{ m s}^{-1}$. Tenaga kinetik $K = \frac{1}{2}mv^2 = 1.28 imes 10^9\\text{ J}$.\n*Velocity $288\\text{ km j}^{-1} = 80\\text{ m s}^{-1}$. Kinetic energy $K = \frac{1}{2}mv^2 = 1.28 imes 10^9\\text{ J}$.*"
+        "explanation": "Kelajuan 288 km j⁻¹ = 80 m s⁻¹. Tenaga kinetik K = 1/2mv² = 1.28 × 10⁹ J. Velocity 288 km j⁻¹ = 80 m s⁻¹. Kinetic energy K = 1/2mv² = 1.28 × 10⁹ J."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q16",
@@ -9772,15 +9772,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Dalam fizik partikel, sebuah elektron yang mempunyai jisim yang sangat kecil iaitu $9 \\times 10^{-31}\\text{ kg}$ didapati bergerak di dalam tiang pecutan zarah dengan halaju ultra-tinggi $2 \\times 10^6\\text{ m s}^{-1}$. Berapakah tenaga kinetik elektron tersebut?",
+        "question": "Di dalam tiub vakum, sebuah elektron berjisim 9 × 10⁻³¹ kg bergerak pada halaju 2 × 10⁶ m s⁻¹. Hitungkan tenaga kinetik elektron itu.",
         "options": [
-          "$1.8 \\times 10^{-18}\\text{ J}$",
-          "$1.8 \\times 10^{-24}\\text{ J}$",
-          "$3.6 \\times 10^{-18}\\text{ J}$",
-          "$3.6 \\times 10^{-24}\\text{ J}$"
+          "1.8 × 10⁻¹⁸ J",
+          "1.8 × 10⁻²⁴ J",
+          "3.6 × 10⁻¹⁸ J",
+          "3.6 × 10⁻²⁴ J"
         ],
         "answerIndex": 0,
-        "explanation": "Tenaga kinetik = 1/2 mv^2. 1/2 (9 × 10^-31)(2 × 10^6)^2 = 1.8 × 10^-18 J.\n*Kinetic energy = 1/2 mv^2. 1/2 (9 × 10^-31)(2 × 10^6)^2 = 1.8 × 10^-18 J.*"
+        "explanation": "Tenaga kinetik = 1/2 mv². 1/2 (9 × 10⁻31)(2 × 10⁶)² = 1.8 × 10⁻18 J. Kinetic energy = 1/2 mv². 1/2 (9 × 10⁻31)(2 × 10⁶)² = 1.8 × 10⁻18 J."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q17",
@@ -9790,15 +9790,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Sebutir bebola keluli berjisim $400\\text{ g}$ mempunyai tenaga kinetik sebanyak $1.8\\text{ J}$ semasa menggelongsor di atas landasan licin. Berapakah halaju bebola keluli tersebut?",
+        "question": "Sebutir bebola keluli berjisim 400 g mempunyai tenaga kinetik sebanyak 1.8 J semasa menggelongsor di atas landasan licin. Berapakah halaju bebola keluli tersebut?",
         "options": [
-          "$3\\text{ m s}^{-1}$",
-          "$9\\text{ m s}^{-1}$",
-          "$4.5\\text{ m s}^{-1}$",
-          "$1.5\\text{ m s}^{-1}$"
+          "3 m s⁻¹",
+          "9 m s⁻¹",
+          "4.5 m s⁻¹",
+          "1.5 m s⁻¹"
         ],
         "answerIndex": 1,
-        "explanation": "1.8 = 1/2 (0.4)v^2. v = 9 m s^-1.\n*1.8 = 1/2 (0.4)v^2. v = 9 m s^-1.*"
+        "explanation": "1.8 = 1/2 (0.4)v². v = 9 m s⁻1. 1.8 = 1/2 (0.4)v². v = 9 m s⁻1."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q18",
@@ -9808,7 +9808,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Rajah di bawah menunjukkan sistem ayunan sebuah bandul ringkas dalam suatu sistem tertutup.",
+        "question": "Sebuah bandul berada seketika di kedudukan tertinggi sebelum berayun semula. Apakah keadaan tenaganya pada ketika itu?",
         "options": [
           "Tenaga keupayaan graviti adalah maksimum, tenaga kinetik adalah sifar.",
           "Tenaga keupayaan graviti adalah minimum, tenaga kinetik adalah maksimum.",
@@ -9816,7 +9816,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tenaga mekanikal total adalah sifar kerana tiada sebarang rintangan udara."
         ],
         "answerIndex": 0,
-        "explanation": "Ketika di titik tertinggi, T.K. = 0 dan T.U. = maksimum.\n*At the highest point, kinetic energy = 0 and potential energy = maximum.*"
+        "explanation": "Ketika di titik tertinggi, T.K. = 0 dan T.U. = maksimum. At the highest point, kinetic energy = 0 and potential energy = maximum."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q19",
@@ -9826,15 +9826,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Bagi sistem ayunan spring berbeban dalam sistem tertutup (seperti Rajah 7.12), bagaimanakah keadaan tenaga keupayaan kenyal (T.U. kenyal) dan tenaga kinetik (T.K.) berubah apabila beban bergerak dari kedudukan Z (spring paling mampat di atas) ke kedudukan Y (keseimbangan)?",
+        "question": "Satu beban pada spring bergerak dari keadaan mampatan maksimum ke kedudukan keseimbangan. Bagaimanakah tenaga keupayaan kenyal dan tenaga kinetiknya berubah?",
         "options": [
           "T.U. kenyal bertambah, T.K. bertambah.",
           "T.U. kenyal berkurang, T.K. berkurang.",
           "T.U. kenyal bertambah, T.K. berkurang.",
           "T.U. kenyal berkurang, T.K. bertambah."
         ],
-        "answerIndex": 2,
-        "explanation": "Di kedudukan Z, T.U. maksimum, T.K. = 0. Di kedudukan Y, T.K. maksimum, T.U. = 0.\n*At position Z, potential energy is maximum, kinetic energy = 0. At position Y, kinetic energy is maximum, potential energy = 0.*"
+        "answerIndex": 3,
+        "explanation": "Dari mampatan maksimum ke kedudukan keseimbangan, tenaga keupayaan kenyal berkurang dan tenaga kinetik bertambah. From maximum compression to equilibrium, elastic potential energy decreases and kinetic energy increases."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q20",
@@ -9852,7 +9852,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kelembapan udara yang tinggi menyerap semua elektron kinetik ladung."
         ],
         "answerIndex": 1,
-        "explanation": "Rintangan udara dan geseran mekanikal mengubah tenaga mekanikal berguna kepada tenaga haba tidak berguna.\n*Air resistance and mechanical friction convert useful mechanical energy to non-useful heat energy.*"
+        "explanation": "Rintangan udara dan geseran mekanikal mengubah tenaga mekanikal berguna kepada tenaga haba tidak berguna. Air resistance and mechanical friction convert useful mechanical energy to non-useful heat energy."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q21",
@@ -9862,15 +9862,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Graf perubahan tenaga melawan sesaran bagi suatu sistem ayunan bandul ringkas dalam sistem tertutup ditunjukkan dalam Rajah 7.13(b). Apakah bentuk lengkungan bagi garis graf Tenaga Kinetik (T.K.) dan garis graf Jumlah Tenaga Keseluruhan?",
+        "question": "Semasa bandul bergerak dari kedudukan tertinggi ke kedudukan paling rendah tanpa kehilangan tenaga, apakah perubahan tenaga yang berlaku?",
         "options": [
-          "Graf T.K. berbentuk parabola cawan (parabolic bowl), manakala Jumlah Tenaga berbentuk parabola terbalik.",
-          "Graf T.K. berbentuk parabola terbalik (inverted parabolic bowl), manakala Jumlah Tenaga berbentuk satu garis lurus mengufuk yang malar.",
-          "Graf T.K. berbentuk satu garis lurus mengufuk yang malar, manakala Jumlah Tenaga berbentuk garis condong.",
-          "Graf T.K. berbentuk gelombang sinus (sinusoidal wave), manakala Jumlah Tenaga sentiasa naik menegak secara linear."
+          "Tenaga kinetik berkurang dan tenaga keupayaan graviti bertambah.",
+          "Tenaga kinetik bertambah dan tenaga keupayaan graviti berkurang, tetapi jumlah tenaga kekal malar.",
+          "Kedua-dua bentuk tenaga berkurang sehingga jumlah tenaga menjadi sifar.",
+          "Tenaga keupayaan graviti bertukar kepada tenaga kimia."
         ],
         "answerIndex": 1,
-        "explanation": "Graf T.K. terbalik, Jumlah Tenaga malar.\n*Kinetic energy graph is inverted, total energy is constant.*"
+        "explanation": "Tenaga keupayaan graviti berkurang dan bertukar kepada tenaga kinetik, manakala jumlah tenaga kekal malar. Gravitational potential energy decreases and changes into kinetic energy, while total energy remains constant."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q22",
@@ -9880,15 +9880,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Rajah di bawah menunjukkan sebuah landasan kereta api roller-coaster yang dianggap sebagai suatu sistem tertutup.",
+        "question": "Sebuah gerabak roller-coaster bergerak tanpa geseran dari puncak landasan ke titik paling rendah. Pernyataan manakah yang betul?",
         "options": [
-          "Tenaga kinetik gerabak di puncak A adalah maksimum manakala di titik O adalah minimum.",
-          "Tenaga keupayaan graviti gerabak di titik O adalah minimum, dan tenaga kinetiknya di titik C adalah lebih rendah daripada titik O.",
-          "Jumlah tenaga mekanikal keseluruhan di puncak A adalah lebih tinggi daripada jumlah tenaga mekanikal di titik terendah O.",
-          "Tenaga keupayaan kenyal gerabak diubah kepada tenaga elektrik di titik C secara osmosis."
+          "Tenaga kinetik paling tinggi di puncak dan paling rendah di titik terendah.",
+          "Tenaga keupayaan graviti dan tenaga kinetik kedua-duanya menjadi sifar di titik terendah.",
+          "Jumlah tenaga mekanikal berkurang apabila gerabak bergerak menuruni landasan.",
+          "Tenaga keupayaan graviti berkurang, tenaga kinetik bertambah dan jumlah tenaga mekanikal kekal malar."
         ],
-        "answerIndex": 2,
-        "explanation": "Tenaga kinetik di A maksimum, di O minimum. Jumlah tenaga di A lebih tinggi daripada O.\n*Kineti energy is maximum at A, minimum at O. Total energy at A is higher than at O.*"
+        "answerIndex": 3,
+        "explanation": "Tanpa geseran, tenaga keupayaan graviti bertukar kepada tenaga kinetik dan jumlah tenaga mekanikal kekal malar. Without friction, gravitational potential energy changes into kinetic energy and total mechanical energy remains constant."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q23",
@@ -9898,15 +9898,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Sebutir peluru mainan plastik berjisim $25\\text{ g}$ diletakkan di dalam sebuah pistol mainan berspring (seperti Rajah 7.14). Spring pistol tersebut mempunyai pemalar daya tertentu dan dimampatkan sebanyak $20\\text{ cm}$ oleh murid dengan daya terakhir $8\\text{ N}$.\nJika pistol ditembak mendatar, hitungkan kelajuan maksimum peluru plastik tersebut semasa meninggalkan muncung pistol. (Anggap sistem tertutup tanpa rintangan udara)",
+        "question": "Spring pistol mainan dimampatkan sejauh 20 cm oleh daya maksimum 8 N. Sebutir bebola plastik berjisim 0.025 kg diletakkan di hadapannya. Jika semua tenaga keupayaan kenyal bertukar kepada tenaga kinetik, berapakah kelajuan bebola itu?",
         "options": [
-          "$8\\text{ m s}^{-1}$",
-          "$64\\text{ m s}^{-1}$",
-          "$1.6\\text{ m s}^{-1}$",
-          "$4\\text{ m s}^{-1}$"
+          "8 m s⁻¹",
+          "64 m s⁻¹",
+          "1.6 m s⁻¹",
+          "4 m s⁻¹"
         ],
-        "answerIndex": 1,
-        "explanation": "Kelajuan maksimum 64 m s⁻¹.\n*Maximum speed is 64 m s⁻¹.*"
+        "answerIndex": 0,
+        "explanation": "Tenaga keupayaan kenyal = ½ × 8 × 0.20 = 0.8 J. Oleh sebab ½mv² = 0.8 J, v = 8 m s⁻¹. Elastic potential energy = ½ × 8 × 0.20 = 0.8 J. From ½mv² = 0.8 J, v = 8 m s⁻¹."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q24",
@@ -9916,15 +9916,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Sebiji guli keluli berjisim $100\\text{ g}$ dilepaskan dari ketinggian $5\\text{ m}$ dari atas tanah (jatuh bebas tanpa rintangan udara). Menggunakan konsep Keabadian Tenaga, berapakah kelajuan maksimum guli keluli tersebut sejurus sebelum ia menghentam permukaan tanah? ($g = 10\\text{ m s}^{-2}$)",
+        "question": "Sebiji guli keluli berjisim 100 g dilepaskan dari ketinggian 5 m dari atas tanah (jatuh bebas tanpa rintangan udara). Menggunakan konsep Keabadian Tenaga, berapakah kelajuan maksimum guli keluli tersebut sejurus sebelum ia menghentam permukaan tanah? (g = 10 m s⁻²)",
         "options": [
-          "$10\\text{ m s}^{-1}$",
-          "$100\\text{ m s}^{-1}$",
-          "$5\\text{ m s}^{-1}$",
-          "$50\\text{ m s}^{-1}$"
+          "10 m s⁻¹",
+          "100 m s⁻¹",
+          "5 m s⁻¹",
+          "50 m s⁻¹"
         ],
         "answerIndex": 0,
-        "explanation": "Kelajuan maksimum 10 m s⁻¹.\n*Maximum speed is 10 m s⁻¹.*"
+        "explanation": "Kelajuan maksimum 10 m s⁻¹. Maximum speed is 10 m s⁻¹."
       },
       {
         "id": "sci-f3-c7-set-b-bm-q25",
@@ -9942,7 +9942,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tenaga kinetik teraruh yang bertukar menjadi cas kation statik."
         ],
         "answerIndex": 1,
-        "explanation": "Tenaga terbuang dalam bentuk haba dan bunyi.\n*Energy is dissipated as heat and sound.*"
+        "explanation": "Tenaga terbuang dalam bentuk haba dan bunyi. Energy is dissipated as heat and sound."
       }
     ],
     "dlp": [
@@ -9962,7 +9962,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Lifting a box with a mass of 15 kg vertically from the ground to a table 1.2 m high (g = 10 m/s^(-2))."
         ],
         "answerIndex": 0,
-        "explanation": "Menolak dinding konkrit tanpa pergerakan memberi daya terus.\n*Pushing against a concrete wall without movement provides continuous force.*"
+        "explanation": "Menolak dinding konkrit tanpa pergerakan memberi daya terus. Pushing against a concrete wall without movement provides continuous force."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q2",
@@ -9980,7 +9980,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The kinetic force required to break an object with a mass of 1 kg at a rate of 1 m/s^(-2)."
         ],
         "answerIndex": 0,
-        "explanation": "1 Joule ialah kerja yang dilakukan apabila 1 N menggerakkan objek 1 m.\n*1 Joule is the work done when 1 N moves an object 1 m.*"
+        "explanation": "1 Joule ialah kerja yang dilakukan apabila 1 N menggerakkan objek 1 m. 1 Joule is the work done when 1 N moves an object 1 m."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q3",
@@ -9990,7 +9990,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "A construction worker lifts a bucket of cement weighing $350\\text{ N}$ vertically to the first floor of a building using a pulley system. If the height of the first floor is $8\\text{ m}$ from the ground, what is the work done by the worker?",
+        "question": "A construction worker lifts a bucket of cement weighing 350 N vertically to the first floor of a building using a pulley system. If the height of the first floor is 8 m from the ground, what is the work done by the worker?",
         "options": [
           "43.75 J",
           "2,800 J",
@@ -9998,7 +9998,7 @@ const scienceF3MasterQuizBanks: Partial<
           "3,500 J"
         ],
         "answerIndex": 3,
-        "explanation": "Kerja = 350 N × 8 m = 2,800 J.\n*Work = 350 N × 8 m = 2,800 J.*"
+        "explanation": "Kerja = 350 N × 8 m = 2,800 J. Work = 350 N × 8 m = 2,800 J."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q4",
@@ -10008,15 +10008,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "The diagram below shows a female student climbing hospital stairs. Calculate the power generated by the student while climbing the stairs.",
+        "question": "A student of mass 45 kg climbs a 4 m staircase in 12 seconds. If gravitational acceleration is 10 m s⁻², what power is generated?",
         "options": [
           "150 W",
           "180 W",
           "18 W",
           "1,800 W"
         ],
-        "answerIndex": 1,
-        "explanation": "Kuasa = (45 kg × 10 m s⁻² × 4 m) / 12 s = 180 W.\n*Power = (45 kg × 10 m/s² × 4 m) / 12 s = 180 W.*"
+        "answerIndex": 0,
+        "explanation": "Kuasa = mgh ÷ t = (45 × 10 × 4) ÷ 12 = 150 W. Power = mgh ÷ t = (45 × 10 × 4) ÷ 12 = 150 W."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q5",
@@ -10026,7 +10026,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "An electromagnetic crane lifts a steel container weighing $40,000\\text{ N}$ to a height of $15\\text{ m}$ in 2 minutes. What is the power of the crane in kilowatts (kW)?",
+        "question": "An electromagnetic crane lifts a steel container weighing 40,000 N to a height of 15 m in 2 minutes. What is the power of the crane in kilowatts (kW)?",
         "options": [
           "300 kW",
           "5 kW",
@@ -10034,7 +10034,7 @@ const scienceF3MasterQuizBanks: Partial<
           "50 kW"
         ],
         "answerIndex": 2,
-        "explanation": "Kuasa = 40,000 N × 15 m / (2 × 60 s) = 3 kW.\n*Power = 40,000 N × 15 m / (2 × 60 s) = 3 kW.*"
+        "explanation": "Kuasa = 40,000 N × 15 m / (2 × 60 s) = 3 kW. Power = 40,000 N × 15 m / (2 × 60 s) = 3 kW."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q6",
@@ -10044,7 +10044,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "A historical unit of Power often used in the automotive industry is horsepower (hp). If $1\\text{ hp}$ is estimated to be equal to $746\\text{ Watts}$, what is the value in Watts for an agricultural water pump engine rated at $2.5\\text{ hp}$?",
+        "question": "A historical unit of Power often used in the automotive industry is horsepower (hp). If 1 hp is estimated to be equal to 746 Watts, what is the value in Watts for an agricultural water pump engine rated at 2.5 hp?",
         "options": [
           "298.4 W",
           "1,865 W",
@@ -10052,7 +10052,7 @@ const scienceF3MasterQuizBanks: Partial<
           "1,119 W"
         ],
         "answerIndex": 1,
-        "explanation": "1.115 hp x 746 W = 1,865 W. Penarafan kuasa 2.5 hp menghasilkan 1,865 W.\n*1.115 hp x 746 W = 1,865 W. A 2.5 hp engine rating produces 1,865 W.*"
+        "explanation": "1.115 hp x 746 W = 1,865 W. Penarafan kuasa 2.5 hp menghasilkan 1,865 W. 1.115 hp x 746 W = 1,865 W. A 2.5 hp engine rating produces 1,865 W."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q7",
@@ -10062,15 +10062,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "While conducting Inquiry Activity 7.1, a student finds that pulling a wooden block horizontally on a table requires a different force compared to lifting a weight vertically. Which of the following statements correctly explains this physical difference?",
+        "question": "A student pulls a wooden block horizontally across a table and lifts a weight vertically. Which statement explains the force opposed in each situation?",
         "options": [
-          "Pulling a wooden block straightly doing work against the gravitational pull of the Earth, while lifting a heavy object against the pulling force.",
-          "Pulling a wooden block straightly doing work against the pulling force of the table, while lifting a heavy object vertically doing work against the gravitational pull.",
-          "Both activities do not produce any work because the force always remains perpendicular to the direction of the moving object.",
-          "Lifting a heavy object vertically requires high kinetic energy, while pulling straightly gathers power."
+          "Pulling the block opposes gravity, while lifting the weight opposes friction.",
+          "Pulling the block opposes friction, while lifting the weight opposes gravity.",
+          "No work is done in either situation because the force is perpendicular to the displacement.",
+          "Lifting the weight stores elastic potential energy, while pulling the block stores gravitational potential energy."
         ],
         "answerIndex": 1,
-        "explanation": "Menarik bongkah kayu melakukan kerja menentang geseran, manakala mengangkat pemberat melakukan kerja menentang tarikan graviti.\n*Dragging the wood does work against friction, while lifting the weight does work against gravity.*"
+        "explanation": "Menarik bongkah kayu melakukan kerja menentang geseran, manakala mengangkat pemberat melakukan kerja menentang tarikan graviti. Dragging the wood does work against friction, while lifting the weight does work against gravity."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q8",
@@ -10080,15 +10080,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "A rescue helicopter lifts a flood victim weighing $70\\text{ kg}$ vertically into the air for $20\\text{ m}$ using a steel wire system. What is the Gravitational Potential Energy accumulated by the victim at the highest position?",
+        "question": "A rescue helicopter lifts a flood victim weighing 70 kg vertically into the air for 20 m using a steel wire system. What is the Gravitational Potential Energy accumulated by the victim at the highest position?",
         "options": [
           "35 J",
           "1,400 J",
-          "$14,000\text{ joules}$",
-          "$140\text{ joules}$"
+          "14,000 joules",
+          "140 joules"
         ],
         "answerIndex": 0,
-        "explanation": "Tenaga Keupayaan Graviti = massa x g x ketinggian = 70 kg x 10 m s⁻² x 20 m = 1,400 J.\n*Gravitational Potential Energy = mass x g x height = 70 kg x 10 m/s² x 20 m = 1,400 J.*"
+        "explanation": "Tenaga Keupayaan Graviti = massa x g x ketinggian = 70 kg x 10 m s⁻² x 20 m = 1,400 J. Gravitational Potential Energy = mass x g x height = 70 kg x 10 m/s² x 20 m = 1,400 J."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q9",
@@ -10103,10 +10103,10 @@ const scienceF3MasterQuizBanks: Partial<
           "To allow iron sheet to resist gravitational pull of the Earth's gravity in a variable manner during free fall.",
           "To maximize the concrete sheet pile surface area to reduce soil pressure.",
           "To gather more gravitational power to improve the soil pressure in the concrete sheet pile.",
-          "$0.8\text{ joules}$"
+          "0.8 joules"
         ],
         "answerIndex": 2,
-        "explanation": "Tarikan tinggi membolehkan tukul mengumpul Tenaga Keupayaan Graviti yang lebih besar.\n*Raising the iron rod allows it to store more gravitational potential energy.*"
+        "explanation": "Tarikan tinggi membolehkan tukul mengumpul Tenaga Keupayaan Graviti yang lebih besar. Raising the iron rod allows it to store more gravitational potential energy."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q10",
@@ -10116,15 +10116,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "The diagram below shows a steel spring compressed by an external force. Calculate the Elastic Potential Energy stored in the compressed spring.",
+        "question": "A spring is shortened from 15 cm to 11 cm by a maximum force of 40 N. How much elastic potential energy is stored?",
         "options": [
-          "$1.6\text{ joules}$",
-          "$80\text{ joules}$",
-          "$160\text{ joules}$",
-          "The inclined plane is the power ($E_p$), the horizontal plane is the time ($t$)."
+          "0.8 J",
+          "1.6 J",
+          "80 J",
+          "160 J"
         ],
         "answerIndex": 0,
-        "explanation": "Tenaga Keupayaan Kenyal = 1/2 x F x (l_0 - l_1)² = 1/2 x 40 N x (15 cm - 11 cm)² = 0.8 J.\n*Elastic Potential Energy = 1/2 x F x (l_0 - l_1)² = 1/2 x 40 N x (15 cm - 11 cm)² = 0.8 J.*"
+        "explanation": "Pemampatan = 4 cm = 0.04 m. Tenaga keupayaan kenyal = ½Fx = ½ × 40 × 0.04 = 0.8 J. Compression = 4 cm = 0.04 m. Elastic potential energy = ½Fx = ½ × 40 × 0.04 = 0.8 J."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q11",
@@ -10134,15 +10134,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Based on KSSM physics laws, Elastic Potential Energy can also be graphically determined from the area under the graph of the spring's response. What axes are involved in this graph to produce a right-angled triangle shape?",
+        "question": "The elastic potential energy of a spring can be determined from the area under a graph. Which quantities should be shown on the two axes?",
         "options": [
-          "The inclined plane is the stretching force ($F$), the horizontal plane is the extension/force ($x$).",
-          "The inclined plane is the acceleration ($g$), the horizontal plane is the spring mass ($m$).",
-          "The inclined plane is the velocity ($v$), the horizontal plane is the distance ($s$).",
-          "$2.0 imes 10^9\text{ joules}$"
+          "Vertical axis: potential energy; horizontal axis: time",
+          "Vertical axis: force; horizontal axis: extension or compression",
+          "Vertical axis: acceleration; horizontal axis: spring mass",
+          "Vertical axis: velocity; horizontal axis: displacement"
         ],
-        "answerIndex": 0,
-        "explanation": "Paksi menegak ialah Tenaga Keupayaan ($E_p$), paksi mengufuk ialah Masa ($t$).\n*Vertical axis is Potential Energy ($E_p$), horizontal axis is Time ($t$).*"
+        "answerIndex": 1,
+        "explanation": "Luas di bawah graf daya melawan pemanjangan atau pemampatan memberikan tenaga keupayaan kenyal. The area under a force against extension or compression graph gives the elastic potential energy."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q12",
@@ -10152,15 +10152,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "A commercial train with an extraordinary mass of $400,000\\text{ kg}$ travels fast on a level track with a uniform velocity of $360\\text{ km j}^{-1}$ ($100\\text{ m s}^{-1}$). Calculate the Kinetic Energy possessed by the train during this rapid motion.",
+        "question": "A commercial train with an extraordinary mass of 400,000 kg travels fast on a level track with a uniform velocity of 360 km j⁻¹ (100 m s⁻¹). Calculate the Kinetic Energy possessed by the train during this rapid motion.",
         "options": [
-          "$2.0 imes 10^8\text{ joules}$",
-          "$2.0 imes 10^7\text{ joules}$",
-          "$2.0 imes 10^6\text{ joules}$",
-          "$40\text{ m s}^{-1}$"
+          "2.0 × 10⁸ joules",
+          "2.0 × 10⁷ joules",
+          "2.0 × 10⁶ joules",
+          "40 m s⁻¹"
         ],
         "answerIndex": 0,
-        "explanation": "Tenaga Kinetik ialah $2.0 \\times 10^9\\text{ J}$.\n*Kinetic energy is $2.0 \\times 10^9\text{ J}$.*"
+        "explanation": "Tenaga Kinetik ialah 2.0 × 10⁹ J. Kinetic energy is 2.0 × 10⁹ J."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q13",
@@ -10170,15 +10170,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "A small steel ball with a mass of $0.15\\text{ kg}$ is released from the top of a smooth inclined plane. The ball rolls down until it achieves a Kinetic Energy of $3.0\\text{ J}$ at the bottom. What is the velocity of the steel ball at the bottom of the plane?",
+        "question": "A small steel ball with a mass of 0.15 kg is released from the top of a smooth inclined plane. The ball rolls down until it achieves a Kinetic Energy of 3.0 J at the bottom. What is the velocity of the steel ball at the bottom of the plane?",
         "options": [
-          "$20\text{ m s}^{-1}$",
-          "$6.32\text{ m s}^{-1}$",
-          "$1.41\text{ m s}^{-1}$",
-          "$1.8 imes 10^{-18}\text{ joules}$"
+          "20 m s⁻¹",
+          "6.32 m s⁻¹",
+          "1.41 m s⁻¹",
+          "1.8 × 10⁻¹⁸ joules"
         ],
         "answerIndex": 1,
-        "explanation": "Halaju bebola keluli ialah $20\text{ m s}^{-1}$.\n*The velocity of the marble is $20\text{ m s}^{-1}$.*"
+        "explanation": "Halaju bebola keluli ialah 20 m s⁻¹. The velocity of the marble is 20 m s⁻¹."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q14",
@@ -10188,15 +10188,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "In a physics lab, a student is studying the microscopic movement of an electron which has an extremely tiny mass of $9 \\times 10^{-31}\\text{ kg}$. If the electron accelerates in a vacuum tube until it reaches a velocity of $2 \\times 10^6\\text{ m s}^{-1}$, what is the Kinetic Energy of the electron?",
+        "question": "In a physics lab, a student is studying the microscopic movement of an electron which has an extremely tiny mass of 9 × 10⁻³¹ kg. If the electron accelerates in a vacuum tube until it reaches a velocity of 2 × 10⁶ m s⁻¹, what is the Kinetic Energy of the electron?",
         "options": [
-          "$3.6 imes 10^{-18}\text{ joules}$",
-          "$1.8 imes 10^{-24}\text{ joules}$",
-          "$3.6 imes 10^{-24}\text{ joules}$",
+          "3.6 × 10⁻¹⁸ joules",
+          "1.8 × 10⁻²⁴ joules",
+          "3.6 × 10⁻²⁴ joules",
           "Gravitational power is maximum, kinetic power is zero."
         ],
         "answerIndex": 1,
-        "explanation": "Tenaga Kinetik elektron ialah $3.6 \\times 10^{-18}\text{ J}$.\n*The kinetic energy of the electron is $3.6 \\times 10^{-18}\text{ J}$.*"
+        "explanation": "Tenaga Kinetik elektron ialah 3.6 × 10⁻¹⁸ J. The kinetic energy of the electron is 3.6 × 10⁻¹⁸ J."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q15",
@@ -10214,7 +10214,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Zeroth Law of Thermodynamics"
         ],
         "answerIndex": 1,
-        "explanation": "Nama prinsip fizikal ini ialah Prinsip Keabadian Tenaga.\n*The name of this physical principle is the Law of Conservation of Energy.*"
+        "explanation": "Nama prinsip fizikal ini ialah Prinsip Keabadian Tenaga. The name of this physical principle is the Law of Conservation of Energy."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q16",
@@ -10224,15 +10224,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "The diagram below shows a simple pendulum oscillating freely in a closed system. Which of the following statements correctly explains the energy changes at position $Y$?",
+        "question": "A pendulum swings without losing energy. What is the energy state of the pendulum as it passes through its lowest position?",
         "options": [
-          "Gravitational power is minimum, kinetic power is maximum.",
-          "Stretching power is maximum, kinetic power is minimum.",
-          "Both gravitational power and kinetic power are zero.",
-          "Translation of the question:"
+          "Gravitational potential energy is maximum and kinetic energy is zero.",
+          "Gravitational potential energy is minimum and kinetic energy is maximum.",
+          "Elastic potential energy is maximum and kinetic energy is minimum.",
+          "Both gravitational potential energy and kinetic energy are zero."
         ],
-        "answerIndex": 0,
-        "explanation": "Di kedudukan Y, tenaga keupayaan graviti sifar, manakala tenaga kinetik maksimum.\n*At position Y, gravitational potential energy is zero, while kinetic energy is maximum.*"
+        "answerIndex": 1,
+        "explanation": "Pada kedudukan paling rendah, tenaga keupayaan graviti adalah minimum dan tenaga kinetik adalah maksimum. At the lowest position, gravitational potential energy is minimum and kinetic energy is maximum."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q17",
@@ -10242,15 +10242,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "The diagram below shows the oscillation of a vertical loaded spring between maximum compression ($X$), equilibrium ($Y$), and maximum extension ($Z$) in a closed system. Which of the following statements correctly describes the forms of energy at position $X$?",
+        "question": "A load oscillates on a vertical spring without losing energy. What is the energy state when the spring is at maximum compression?",
         "options": [
-          "The Power of Action is minimum, while the Kinetic Power is maximum.",
-          "The Kinetic Power is maximum, while the Kinetic Power is zero.",
-          "The Kinetic Power is maximum, while the Gravitational Power is maximum.",
-          "All forms of power are stored in the form of Chemical Power that circulates."
+          "Elastic potential energy is minimum and kinetic energy is maximum.",
+          "Elastic potential energy is maximum and kinetic energy is zero.",
+          "Kinetic energy and gravitational potential energy are both maximum.",
+          "All the energy is stored as chemical energy."
         ],
         "answerIndex": 1,
-        "explanation": "Di kedudukan X, tenaga keupayaan kenyal maksimum, manakala tenaga kinetik sifar.\n*At position X, elastic potential energy is maximum, while kinetic energy is zero.*"
+        "explanation": "Di kedudukan X, tenaga keupayaan kenyal maksimum, manakala tenaga kinetik sifar. At position X, elastic potential energy is maximum, while kinetic energy is zero."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q18",
@@ -10260,15 +10260,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Figure 7.13 in the Science Form 3 textbook shows the Graph of Energy Change against Displacement for a closed simple pendulum system. What is the most accurate physical interpretation of this graph?",
+        "question": "A pendulum swings without losing energy. What happens to its kinetic energy, gravitational potential energy and total energy during the swing?",
         "options": [
-          "The parabolic curve of the Power Action and the inverted parabolic curve of the Kinetic Power always produce a changing power amount that varies with the surroundings.",
-          "The Kinetic Power is always negative in all situations, while the Power Action is positive.",
-          "The sum of the Kinetic Power and the Kinetic Power is always zero, producing a straight line for the total power amount.",
-          "The Gravitational Power is always circulating with the amplitude of the power amount of the center point."
+          "Kinetic energy and gravitational potential energy both increase continuously.",
+          "Kinetic energy is always zero, while gravitational potential energy changes.",
+          "Kinetic energy and gravitational potential energy change from one to the other, but the total energy remains constant.",
+          "The total energy increases whenever the pendulum passes through its lowest position."
         ],
         "answerIndex": 2,
-        "explanation": "Jumlah tenaga keseluruhan tetap, sehingga garis lurus mengufuk pada graf.\n*Total energy remains constant, resulting in a horizontal straight line on the graph.*"
+        "explanation": "Tenaga kinetik dan tenaga keupayaan graviti saling berubah, tetapi jumlah tenaga kekal malar. Kinetic and gravitational potential energy change from one to the other, but total energy remains constant."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q19",
@@ -10286,7 +10286,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The Gravitational Power of the pendulum ball is moved in osmosis to the bottom of the cabinet."
         ],
         "answerIndex": 1,
-        "explanation": "Ketika berayun di dalam bilik, tenaga kinetik bandul hilang ke haba dan bunyi.\n*When swinging in a room, the pendulum's kinetic energy is lost to heat and sound.*"
+        "explanation": "Ketika berayun di dalam bilik, tenaga kinetik bandul hilang ke haba dan bunyi. When swinging in a room, the pendulum's kinetic energy is lost to heat and sound."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q20",
@@ -10296,15 +10296,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Figure 7.14 shows a toy spring-pistol. Assuming no energy loss to the surroundings, calculate the maximum velocity of the plastic ball as soon as it is shot vertically outwards.",
+        "question": "A toy gun spring is shortened from 300 mm to 50 mm by a maximum force of 5 N. A 0.05 kg plastic ball is placed in front of the spring. If all elastic potential energy changes to kinetic energy, what is the ball's speed?",
         "options": [
           "25 m/s",
           "12.5 m/s",
           "5 m/s",
           "1.58 m/s"
         ],
-        "answerIndex": 1,
-        "explanation": "Hitungan menunjukkan kelajuan maksimum 12.5 m s⁻¹.\n*Calculation shows the maximum speed is 12.5 m s⁻¹.*"
+        "answerIndex": 2,
+        "explanation": "Pemampatan spring ialah 0.25 m. Tenaga keupayaan kenyal = ½ × 5 × 0.25 = 0.625 J. Oleh sebab ½mv² = 0.625 J, v = 5 m s⁻¹. The spring compression is 0.25 m, so ½Fx = 0.625 J. From ½mv² = 0.625 J, v = 5 m s⁻¹."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q21",
@@ -10314,7 +10314,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "A solid metal sphere of mass $2.0\\text{ kg}$ is released in free fall from a cliff of height $2.5\\text{ m}$ from the ground. Ignoring air resistance, calculate the maximum Kinetic Energy of the sphere just before hitting the ground.",
+        "question": "A solid metal sphere of mass 2.0 kg is released in free fall from a cliff of height 2.5 m from the ground. Ignoring air resistance, calculate the maximum Kinetic Energy of the sphere just before hitting the ground.",
         "options": [
           "5 J",
           "50 J",
@@ -10322,7 +10322,7 @@ const scienceF3MasterQuizBanks: Partial<
           "500 J"
         ],
         "answerIndex": 1,
-        "explanation": "Tenaga Kinetik maksimum = 1/2 x 2.0 x (10 x 2.5)^2 = 50 J\n*Max Kinetic Energy = 1/2 x 2.0 x (10 x 2.5)^2 = 50 J*"
+        "explanation": "Tenaga Kinetik maksimum = 1/2 x 2.0 x (10 x 2.5)² = 50 J Max Kinetic Energy = 1/2 x 2.0 x (10 x 2.5)² = 50 J"
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q22",
@@ -10332,7 +10332,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Climbing hospital stairs is often encouraged by specialist doctors rather than using an electric elevator. Based on the Science Gallery of Chapter 7, which of the following is a physiological benefit derived from climbing stairs for the human body?",
+        "question": "Which of the following is a benefit of climbing stairs regularly?",
         "options": [
           "Reducing bone density to prevent arthritis.",
           "Increasing the surface area of the lungs permanently to facilitate nitrogen absorption.",
@@ -10340,7 +10340,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Encouraging the formation of lactate in muscles to increase the body's immune power dramatically."
         ],
         "answerIndex": 2,
-        "explanation": "Mengurangkan risiko penyakit jantung, kencing manis, dan kanser kolon, serta meningkatkan ketumpatan tulang.\n*Reduces risk of heart disease, diabetes, and colon cancer, and increases bone density.*"
+        "explanation": "Mengurangkan risiko penyakit jantung, kencing manis, dan kanser kolon, serta meningkatkan ketumpatan tulang. Reduces risk of heart disease, diabetes, and colon cancer, and increases bone density."
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q23",
@@ -10350,7 +10350,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "A weightlifter weighing $80\\text{ kg}$ lifts a barbell weighing $1,200\\text{ N}$ vertically above his head for $2.1\\text{ m}$ from the floor. How much work is done by the weightlifter on the barbell?",
+        "question": "A weightlifter weighing 80 kg lifts a barbell weighing 1,200 N vertically above his head for 2.1 m from the floor. How much work is done by the weightlifter on the barbell?",
         "options": [
           "1,680 J",
           "2,520 J",
@@ -10358,7 +10358,7 @@ const scienceF3MasterQuizBanks: Partial<
           "2,880 J"
         ],
         "answerIndex": 1,
-        "explanation": "Kerja = 1,200 x 2.1 = 2,520 J\n*Work = 1,200 x 2.1 = 2,520 J*"
+        "explanation": "Kerja = 1,200 x 2.1 = 2,520 J Work = 1,200 x 2.1 = 2,520 J"
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q24",
@@ -10368,7 +10368,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "A female archer pulls a bowstring with a maximum force of $200\\text{ N}$ for $0.4\\text{ m}$ backwards before releasing the arrow. Calculate the Elastic Potential Energy stored by the stretched bowstring.",
+        "question": "A female archer pulls a bowstring with a maximum force of 200 N for 0.4 m backwards before releasing the arrow. Calculate the Elastic Potential Energy stored by the stretched bowstring.",
         "options": [
           "80 J",
           "40 J",
@@ -10376,7 +10376,7 @@ const scienceF3MasterQuizBanks: Partial<
           "400 Joule"
         ],
         "answerIndex": 0,
-        "explanation": "Tenaga Keupayaan Kenyal = 1/2 x 200 x 0.4^2 = 80 J\n*Potential Energy = 1/2 x 200 x 0.4^2 = 80 J*"
+        "explanation": "Tenaga Keupayaan Kenyal = 1/2 x 200 x 0.4² = 80 J Potential Energy = 1/2 x 200 x 0.4² = 80 J"
       },
       {
         "id": "sci-f3-c7-set-a-dlp-q25",
@@ -10394,7 +10394,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Because the string acts as a conductor of electricity that strengthens positive ions in the air surrounding."
         ],
         "answerIndex": 0,
-        "explanation": "Kerja lesap menjadi haba dan bunyi, serta ketidaksempurnaan regangan busur.\n*Work is lost as heat and sound due to air resistance and bow stretching imperfections.*"
+        "explanation": "Kerja lesap menjadi haba dan bunyi, serta ketidaksempurnaan regangan busur. Work is lost as heat and sound due to air resistance and bow stretching imperfections."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q1",
@@ -10404,15 +10404,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "The stair-climbing activity displayed in the Chapter 7 Science Gallery provides various significant health benefits to the human body. Which of the following is NOT specifically stated as a benefit of climbing stairs?",
+        "question": "Which of the following is NOT a health benefit of climbing stairs regularly?",
         "options": [
           "Reducing the risk of osteoporosis by producing bones that are healthy.",
-          "Improving the lung capacity and the blood circulation's efficiency.",
+          "Improving lung fitness and blood circulation.",
           "Reducing the risk of some chronic diseases such as diabetes, hypertension, and colon cancer.",
-          "Producing new red blood cells directly in the limpa to prevent anemia."
+          "Producing new red blood cells directly in the spleen to prevent anaemia."
         ],
         "answerIndex": 3,
-        "explanation": "Menghasilkan sel-sel darah merah baharu tidak dinyatakan secara khusus.\n*Producing new red blood cells is not specifically mentioned as a benefit.*"
+        "explanation": "Menaiki tangga tidak menghasilkan sel darah merah baharu secara langsung di dalam limpa. Climbing stairs does not directly produce new red blood cells in the spleen."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q2",
@@ -10422,7 +10422,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Two students, Azmi and Bob, each have the same weight of $500\\text{ N}$. They climb the same staircase of $4\\text{ m}$ height. Azmi takes $10\\text{ seconds}$ while Bob takes $8\\text{ seconds}$. Choose the most accurate statement regarding their work done and power generated.",
+        "question": "Two students, Azmi and Bob, each have the same weight of 500 N. They climb the same staircase of 4 m height. Azmi takes 10 seconds while Bob takes 8 seconds. Choose the most accurate statement regarding their work done and power generated.",
         "options": [
           "Bob does more work than Azmi because he takes less time.",
           "Azmi has more power than Bob because he takes more time.",
@@ -10430,7 +10430,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Bob has less power than Azmi because he moves faster against gravity."
         ],
         "answerIndex": 2,
-        "explanation": "Kedua-dua melakukan kerja sama, tetapi Bob menjana kuasa yang lebih tinggi.\n*Both did the same work, but Bob generated more power.*"
+        "explanation": "Kedua-dua melakukan kerja sama, tetapi Bob menjana kuasa yang lebih tinggi. Both did the same work, but Bob generated more power."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q3",
@@ -10440,7 +10440,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "A student pushes a heavy table with a horizontal force of $50\\text{ N}$ on a rough floor, but the table does not move even a bit. Which of the following explains the work done on the table from a physics perspective?",
+        "question": "A student pushes a heavy table with a horizontal force of 50 N on a rough floor, but the table does not move even a bit. Which of the following explains the work done on the table from a physics perspective?",
         "options": [
           "50 Joule",
           "1,125 Joule",
@@ -10448,7 +10448,7 @@ const scienceF3MasterQuizBanks: Partial<
           "150 Joule"
         ],
         "answerIndex": 1,
-        "explanation": "Tiada sesaran, kerja yang dilakukan adalah sifar.\n*No displacement, work done is zero.*"
+        "explanation": "Tiada sesaran, kerja yang dilakukan adalah sifar. No displacement, work done is zero."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q4",
@@ -10458,7 +10458,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "A worker moves a box of books weighing $150\\text{ N}$ horizontally on a smooth floor for $6\\text{ m}$, then lifts the box vertically for $1.5\\text{ m}$ to place it on a high shelf. What is the total work done by the worker?",
+        "question": "A worker moves a box of books weighing 150 N horizontally on a smooth floor for 6 m, then lifts the box vertically for 1.5 m to place it on a high shelf. What is the total work done by the worker?",
         "options": [
           "3.357 kW",
           "3,357 kW",
@@ -10466,7 +10466,7 @@ const scienceF3MasterQuizBanks: Partial<
           "0.165 kW"
         ],
         "answerIndex": 1,
-        "explanation": "Kerja mendatar $900\\text{ J}$, kerja angkat $225\\text{ J}$, jumlah kerja keseluruhan $1,\\!125\\text{ J}$.\n*Horizontal work $900\\text{ J}$, lifting work $225\\text{ J}$, total work $1,\\!125\\text{ J}$.*"
+        "explanation": "Kerja mendatar 900 J, kerja angkat 225 J, jumlah kerja keseluruhan 1,125 J. Horizontal work 900 J, lifting work 225 J, total work 1,125 J."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q5",
@@ -10476,15 +10476,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "An electrical generator engine has a power rating label of $4.5\\text{ hp}$ (horsepower). If one traditional unit of horsepower ($1\\text{ hp}$) is estimated to be equal to $746\\text{ W}$, what is the energy transfer rate of the generator in kilowatts (kW)?",
+        "question": "An electrical generator engine has a power rating label of 4.5 hp (horsepower). If one traditional unit of horsepower (1 hp) is estimated to be equal to 746 W, what is the energy transfer rate of the generator in kilowatts (kW)?",
         "options": [
-          "Watt (W) or Joule per second ($\text{J s}^{-1}$)",
-          "Newton Meter ($\text{N m}$) or Joule (J)",
-          "Kilogram meter per second squared ($\text{kg m s}^{-2}$)",
-          "Pascal (Pa) or Newton per meter squared ($\text{N m}^{-2}$)"
+          "Watt (W) or Joule per second (J s⁻¹)",
+          "Newton Meter (N m) or Joule (J)",
+          "Kilogram meter per second squared (kg m s⁻²)",
+          "Pascal (Pa) or Newton per meter squared (N m⁻²)"
         ],
         "answerIndex": 0,
-        "explanation": "4.5 hp = 4.5 x 746 W = 3.357 kW.\n*4.5 hp = 4.5 x 746 W = 3.357 kW.*"
+        "explanation": "4.5 hp = 4.5 x 746 W = 3.357 kW. 4.5 hp = 4.5 x 746 W = 3.357 kW."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q6",
@@ -10502,7 +10502,7 @@ const scienceF3MasterQuizBanks: Partial<
           "150 Joule"
         ],
         "answerIndex": 0,
-        "explanation": "Unit setara untuk semua 3 kuantiti ialah Watt (W) atau Joule per saat ($\text{J s}^{-1}$).\n*The equivalent unit for all three quantities is Watt (W) or Joules per second ($\text{J s}^{-1}$).*"
+        "explanation": "Unit setara untuk semua 3 kuantiti ialah Watt (W) atau Joule per saat (J s⁻¹). The equivalent unit for all three quantities is Watt (W) or Joules per second (J s⁻¹)."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q7",
@@ -10512,15 +10512,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "In Inquiry Activity 7.1, why are the fine thread and wooden block pulled horizontally with a uniform speed when measuring work using a spring balance?",
+        "question": "In an investigation, a wooden block is pulled horizontally at constant speed using a spring balance. Why is a constant speed used?",
         "options": [
           "To ensure that air resistance is completely ignored throughout the lift.",
-          "To ensure that the reading of the spring balance spring constant is stable and only the spring constant of the table's weight is consistently overcome.",
+          "To obtain a stable force reading while overcoming friction consistently.",
           "To gather maximum frictional power within this wooden block.",
           "To increase the power factor of zero to generate maximum power."
         ],
         "answerIndex": 1,
-        "explanation": "Benang halus dan kepingan kayu ditarik mendatar untuk memastikan bacaan daya stabil dan konsisten.\n*The smooth string and wooden disk are pulled horizontally to ensure a stable and consistent force reading.*"
+        "explanation": "Benang halus dan kepingan kayu ditarik mendatar untuk memastikan bacaan daya stabil dan konsisten. The smooth string and wooden disk are pulled horizontally to ensure a stable and consistent force reading."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q8",
@@ -10538,7 +10538,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Iron prevents the iron from falling upward to restore the earth's stability through osmosis."
         ],
         "answerIndex": 1,
-        "explanation": "Tukul besi yang berat diangkat tinggi untuk menyimpan tenaga keupayaan graviti, kemudian ditukar kepada tenaga kinetik untuk menolak cerucuk.\n*The heavy iron pile is lifted high to store gravitational potential energy, which is then converted to kinetic energy to drive the pile into the ground.*"
+        "explanation": "Tukul besi yang berat diangkat tinggi untuk menyimpan tenaga keupayaan graviti, kemudian ditukar kepada tenaga kinetik untuk menolak cerucuk. The heavy iron pile is lifted high to store gravitational potential energy, which is then converted to kinetic energy to drive the pile into the ground."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q9",
@@ -10548,15 +10548,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "A climber of mass $60\\text{ kg}$ climbs a mountain from a base station at an altitude of $1,500\\text{ m}$ to the mountain peak at an altitude of $2,300\\text{ m}$ above sea level. What is the change in gravitational potential energy of the climber? (Assume $g = 10\\text{ m s}^{-2}$)",
+        "question": "A climber of mass 60 kg climbs a mountain from a base station at an altitude of 1,500 m to the mountain peak at an altitude of 2,300 m above sea level. What is the change in gravitational potential energy of the climber? (Assume g = 10 m s⁻²)",
         "options": [
-          "$900,\\!000\\text{ J}$",
-          "$480,\\!000\\text{ J}$",
-          "$1,\\!380,\\!000\\text{ J}$",
-          "$80,\\!000\\text{ J}$"
+          "900,000 J",
+          "480,000 J",
+          "1,380,000 J",
+          "80,000 J"
         ],
         "answerIndex": 0,
-        "explanation": "Perubahan tenaga keupayaan graviti ialah $60 imes 10 imes (2300 - 1500) = 900,000\text{ J}$.\n*The change in gravitational potential energy is $60 imes 10 imes (2300 - 1500) = 900,000\text{ J}$.*"
+        "explanation": "Perubahan tenaga keupayaan graviti ialah 60 × 10 × (2300 - 1500) = 900,000 J. The change in gravitational potential energy is 60 × 10 × (2300 - 1500) = 900,000 J."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q10",
@@ -10574,7 +10574,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Waste power"
         ],
         "answerIndex": 2,
-        "explanation": "Kerja motor elektrik bersamaan dengan peningkatan tenaga keupayaan kenyal pada beban.\n*The work done by the electric motor is equal to the increase in elastic potential energy of the load.*"
+        "explanation": "Kerja motor elektrik bersamaan dengan peningkatan tenaga keupayaan kenyal pada beban. The work done by the electric motor is equal to the increase in elastic potential energy of the load."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q11",
@@ -10584,15 +10584,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "The diagram below shows a steel spring inside a stapler.",
+        "question": "A spring in a stapler is shortened from 15 cm to 9 cm by a maximum force of 30 N. How much elastic potential energy is stored?",
         "options": [
-          "$0.9\\text{ J}$",
-          "$90\\text{ J}$",
-          "$4.5\\text{ J}$",
-          "$1.8\\text{ J}$"
+          "0.9 J",
+          "90 J",
+          "4.5 J",
+          "1.8 J"
         ],
-        "answerIndex": 2,
-        "explanation": "Kita gunakan formula $E_p = \frac{1}{2}kx^2$. Dengan $k = \frac{30}{6} = 5\\text{ N/cm}$, $x = 6\\text{ cm}$. Jadi, $E_p = \frac{1}{2} imes 5 imes 6^2 = 4.5\\text{ J}$.\n*Using $E_p = \frac{1}{2}kx^2$, with $k = 5\\text{ N/cm}$ and $x = 6\\text{ cm}$, we get $E_p = 4.5\\text{ J}$.*"
+        "answerIndex": 0,
+        "explanation": "Pemampatan = 6 cm = 0.06 m. Tenaga keupayaan kenyal = ½Fx = ½ × 30 × 0.06 = 0.9 J. Compression = 6 cm = 0.06 m. Elastic potential energy = ½Fx = ½ × 30 × 0.06 = 0.9 J."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q12",
@@ -10602,15 +10602,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Why does the formula for Elastic Potential Energy contain a half factor $\\frac{1}{2}Fx$, unlike normal work $W = Fs$?",
+        "question": "Why does the formula for Elastic Potential Energy contain a half factor 1/2Fx, unlike normal work W = Fs?",
         "options": [
           "Because the spring only compresses halfway and then automatically returns to its original form.",
-          "Because the spring's elasticity changes linearly from zero ($0\\text{ N}$) to maximum ($F\\text{ N}$), the average force acting on it is in accordance with $\\frac{1}{2}F$.",
+          "Because the spring's elasticity changes linearly from zero (0 N) to maximum (F N), the average force acting on it is in accordance with 1/2F.",
           "Because the spring's spring constant is always divided by two to obtain uniform elasticity.",
           "That formula takes into account the reduced air resistance that is half of the mechanical spring's work."
         ],
         "answerIndex": 1,
-        "explanation": "Formula $\\frac{1}{2}Fx$ mengambil kira daya purata yang bertindak semasa pemanjangan spring.\n*The $\\frac{1}{2}Fx$ accounts for the average force acting during spring extension.*"
+        "explanation": "Formula 1/2Fx mengambil kira daya purata yang bertindak semasa pemanjangan spring. The 1/2Fx accounts for the average force acting during spring extension."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q13",
@@ -10620,15 +10620,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Graphically, how is the total Elastic Potential Energy accumulated by an elastic spring determined from experimental data?",
+        "question": "How is the elastic potential energy of a spring determined from a force against extension graph?",
         "options": [
-          "The slope of the force against extension graph ($F-x$).",
-          "The intersection point of the extension against force graph ($x-F$).",
-          "The area under the force against extension graph ($F-x$).",
+          "The slope of the force against extension graph (F-x).",
+          "The intersection point of the extension against force graph (x-F).",
+          "The area under the force against extension graph (F-x).",
           "The square of the intersection points on the spring's extension."
         ],
         "answerIndex": 2,
-        "explanation": "Luas di bawah graf $F-x$ menunjukkan tenaga keupayaan kenyal yang dikumpul.\n*The area under the $F-x$ graph represents the elastic potential energy stored.*"
+        "explanation": "Luas di bawah graf F-x menunjukkan tenaga keupayaan kenyal yang dikumpul. The area under the F-x graph represents the elastic potential energy stored."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q14",
@@ -10638,15 +10638,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "A spring is stretched by $12\\text{ cm}$ from its equilibrium position linearly. If the elastic potential energy stored in the spring is $1.44\\text{ J}$, what is the final stretching force exerted on the spring?",
+        "question": "A spring is stretched by 12 cm from its equilibrium position linearly. If the elastic potential energy stored in the spring is 1.44 J, what is the final stretching force exerted on the spring?",
         "options": [
-          "$12\\text{ N}$",
-          "$24\\text{ N}$",
-          "$1.2 ext{ N}$",
-          "$2.4 ext{ N}$"
+          "12 N",
+          "24 N",
+          "1.2 N",
+          "2.4 N"
         ],
         "answerIndex": 3,
-        "explanation": "Dengan $E_p = 1.44\\text{ J}$ dan $x = 12\\text{ cm} = 0.12\\text{ m}$, $k = \frac{1.44}{0.06} = 24\\text{ N/m}$. Daya terakhir $F = kx = 2.4\\text{ N}$.\n*Given $E_p = 1.44\\text{ J}$ and $x = 0.12\\text{ m}$, $k = 24\\text{ N/m}$. Thus, $F = 2.4\\text{ N}$.*"
+        "explanation": "Dengan E_p = 1.44 J dan x = 12 cm = 0.12 m, k = 1.44/0.06 = 24 N/m. Daya terakhir F = kx = 2.4 N. Given E_p = 1.44 J and x = 0.12 m, k = 24 N/m. Thus, F = 2.4 N."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q15",
@@ -10656,15 +10656,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "A high-speed commuter train of mass $400,000\\text{ kg}$ travels at a velocity of $288\\text{ km j}^{-1}$. What is the kinetic energy possessed by this train?",
+        "question": "A high-speed commuter train of mass 400,000 kg travels at a velocity of 288 km j⁻¹. What is the kinetic energy possessed by this train?",
         "options": [
-          "$1.28 imes 10^9 ext{ J}$",
-          "$1.66 imes 10^{10} ext{ J}$",
-          "$1.28 imes 10^8 ext{ J}$",
-          "$1.60 imes 10^9 ext{ J}$"
+          "1.28 × 10⁹ J",
+          "1.66 × 10¹⁰ J",
+          "1.28 × 10⁸ J",
+          "1.60 × 10⁹ J"
         ],
         "answerIndex": 0,
-        "explanation": "Kelajuan $288\\text{ km j}^{-1} = 80\\text{ m s}^{-1}$. Tenaga kinetik $K = \frac{1}{2}mv^2 = 1.28 imes 10^9\\text{ J}$.\n*Velocity $288\\text{ km j}^{-1} = 80\\text{ m s}^{-1}$. Kinetic energy $K = \frac{1}{2}mv^2 = 1.28 imes 10^9\\text{ J}$.*"
+        "explanation": "Kelajuan 288 km j⁻¹ = 80 m s⁻¹. Tenaga kinetik K = 1/2mv² = 1.28 × 10⁹ J. Velocity 288 km j⁻¹ = 80 m s⁻¹. Kinetic energy K = 1/2mv² = 1.28 × 10⁹ J."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q16",
@@ -10674,15 +10674,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "In particle physics, an electron with a very small mass of $9 \\times 10^{-31}\\text{ kg}$ is found moving inside a particle accelerator column at an ultra-high velocity of $2 \\times 10^6\\text{ m s}^{-1}$. What is the kinetic energy of the electron?",
+        "question": "In a vacuum tube, an electron of mass 9 × 10⁻³¹ kg moves at 2 × 10⁶ m s⁻¹. Calculate its kinetic energy.",
         "options": [
-          "$1.8 imes 10^{-18} ext{ J}$",
-          "$1.8 imes 10^{-24} ext{ J}$",
-          "$3.6 imes 10^{-18} ext{ J}$",
-          "$3.6 imes 10^{-24} ext{ J}$"
+          "1.8 × 10⁻¹⁸ J",
+          "1.8 × 10⁻²⁴ J",
+          "3.6 × 10⁻¹⁸ J",
+          "3.6 × 10⁻²⁴ J"
         ],
         "answerIndex": 0,
-        "explanation": "Tenaga kinetik = 1/2 mv^2. 1/2 (9 × 10^-31)(2 × 10^6)^2 = 1.8 × 10^-18 J.\n*Kinetic energy = 1/2 mv^2. 1/2 (9 × 10^-31)(2 × 10^6)^2 = 1.8 × 10^-18 J.*"
+        "explanation": "Tenaga kinetik = 1/2 mv². 1/2 (9 × 10⁻31)(2 × 10⁶)² = 1.8 × 10⁻18 J. Kinetic energy = 1/2 mv². 1/2 (9 × 10⁻31)(2 × 10⁶)² = 1.8 × 10⁻18 J."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q17",
@@ -10692,15 +10692,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "A steel ball bearing of mass $400\\text{ g}$ has a kinetic energy of $1.8\\text{ J}$ while sliding on a smooth track. What is the velocity of the steel ball?",
+        "question": "A steel ball bearing of mass 400 g has a kinetic energy of 1.8 J while sliding on a smooth track. What is the velocity of the steel ball?",
         "options": [
-          "$3 ext{ m s}^{-1}$",
-          "$9 ext{ m s}^{-1}$",
-          "$4.5 ext{ m s}^{-1}$",
-          "$1.5 ext{ m s}^{-1}$"
+          "3 m s⁻¹",
+          "9 m s⁻¹",
+          "4.5 m s⁻¹",
+          "1.5 m s⁻¹"
         ],
         "answerIndex": 1,
-        "explanation": "1.8 = 1/2 (0.4)v^2. v = 9 m s^-1.\n*1.8 = 1/2 (0.4)v^2. v = 9 m s^-1.*"
+        "explanation": "1.8 = 1/2 (0.4)v². v = 9 m s⁻1. 1.8 = 1/2 (0.4)v². v = 9 m s⁻1."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q18",
@@ -10710,7 +10710,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "The diagram below shows the oscillation system of a simple pendulum in a closed system.*\n\n```\n X . . Z\n \\ /\n \\ /\n O (Keseimbangan / Equilibrium)\n```\n\nAntara pernyataan berikut, yang manakah paling tepat menerangkan keadaan tenaga ladung di kedudukan terendah, O?\n*Which of the following statements most accurately explains the energy state of the bob at the lowest position, O?",
+        "question": "A pendulum is momentarily at its highest position before swinging back. What is its energy state at that instant?",
         "options": [
           "Gravitational power is maximum, kinetic power is zero.",
           "Gravitational power is minimum, kinetic power is maximum.",
@@ -10718,7 +10718,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Total mechanical power is zero because there is no air resistance."
         ],
         "answerIndex": 0,
-        "explanation": "Ketika di titik tertinggi, T.K. = 0 dan T.U. = maksimum.\n*At the highest point, kinetic energy = 0 and potential energy = maximum.*"
+        "explanation": "Ketika di titik tertinggi, T.K. = 0 dan T.U. = maksimum. At the highest point, kinetic energy = 0 and potential energy = maximum."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q19",
@@ -10728,15 +10728,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "For a loaded spring oscillation system in a closed system (as in Diagram 7.12), how do the elastic potential energy (EPE) and kinetic energy (KE) states change as the load moves from position Z (most compressed at the top) to position Y (equilibrium)?",
+        "question": "A load on a spring moves from maximum compression to its equilibrium position. How do its elastic potential energy and kinetic energy change?",
         "options": [
-          "T.U. becomes softer, T.K. becomes larger.",
-          "T.U. becomes softer, T.K. becomes smaller.",
-          "T.U. becomes softer, T.K. becomes larger.",
-          "T.U. becomes softer, T.K. becomes larger."
+          "Elastic potential energy increases; kinetic energy increases.",
+          "Elastic potential energy decreases; kinetic energy decreases.",
+          "Elastic potential energy increases; kinetic energy decreases.",
+          "Elastic potential energy decreases; kinetic energy increases."
         ],
-        "answerIndex": 2,
-        "explanation": "Di kedudukan Z, T.U. maksimum, T.K. = 0. Di kedudukan Y, T.K. maksimum, T.U. = 0.\n*At position Z, potential energy is maximum, kinetic energy = 0. At position Y, kinetic energy is maximum, potential energy = 0.*"
+        "answerIndex": 3,
+        "explanation": "Dari mampatan maksimum ke kedudukan keseimbangan, tenaga keupayaan kenyal berkurang dan tenaga kinetik bertambah. From maximum compression to equilibrium, elastic potential energy decreases and kinetic energy increases."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q20",
@@ -10754,7 +10754,7 @@ const scienceF3MasterQuizBanks: Partial<
           "High air humidity absorbs all the kinetic electrons in the tube."
         ],
         "answerIndex": 1,
-        "explanation": "Rintangan udara dan geseran mekanikal mengubah tenaga mekanikal berguna kepada tenaga haba tidak berguna.\n*Air resistance and mechanical friction convert useful mechanical energy to non-useful heat energy.*"
+        "explanation": "Rintangan udara dan geseran mekanikal mengubah tenaga mekanikal berguna kepada tenaga haba tidak berguna. Air resistance and mechanical friction convert useful mechanical energy to non-useful heat energy."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q21",
@@ -10764,15 +10764,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "The energy change against displacement graph for a simple pendulum oscillation system in a closed system is shown in Diagram 7.13(b). What is the curve shape for the Kinetic Energy (KE) graph and the Total Energy graph line?",
+        "question": "As a pendulum moves from its highest position to its lowest position without losing energy, what energy change occurs?",
         "options": [
-          "The graph of T.K. is a parabolic bowl (inverted parabolic bowl), while the graph of the amount of power is a parabolic curve.",
-          "The graph of T.K. is an inverted parabolic bowl (inverted parabolic bowl), while the graph of the amount of power is a straight line going outwards.",
-          "The graph of T.K. is a straight line going outwards, while the graph of the amount of power is a straight line curving.",
-          "The graph of T.K. is a sinusoidal wave (sinusoidal wave), while the graph of the amount of power is always rising linearly."
+          "Kinetic energy decreases and gravitational potential energy increases.",
+          "Kinetic energy increases and gravitational potential energy decreases, while total energy remains constant.",
+          "Both forms of energy decrease until the total energy becomes zero.",
+          "Gravitational potential energy changes into chemical energy."
         ],
         "answerIndex": 1,
-        "explanation": "Graf T.K. terbalik, Jumlah Tenaga malar.\n*Kinetic energy graph is inverted, total energy is constant.*"
+        "explanation": "Tenaga keupayaan graviti berkurang dan bertukar kepada tenaga kinetik, manakala jumlah tenaga kekal malar. Gravitational potential energy decreases and changes into kinetic energy, while total energy remains constant."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q22",
@@ -10782,15 +10782,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "The diagram below shows a roller-coaster track considered as a closed system.*\n\n```\n A (Puncak / Peak)\n _._\n / \\ C (Puncak Rendah / Lower Peak)\n / \\__._\n / \\\n/___________O (Titik Terendah / Lowest Point)\n```\n\nAntara pernyataan berikut, yang manakah mematuhi Prinsip Keabadian Tenaga apabila gerabak roller-coaster bergerak tanpa geseran?\n*Which of the following statements complies with the Principle of Conservation of Energy when the roller-coaster car moves without friction?",
+        "question": "A roller-coaster car moves without friction from the top of a track to its lowest point. Which statement is correct?",
         "options": [
-          "The kinetic energy of the rocket at the peak A is maximum while at point O it is minimum.",
-          "The gravitational power at point O is minimum, and the kinetic power at point C is less than at point O.",
-          "The total mechanical power at the peak A is greater than the total mechanical power at the lowest point O.",
-          "The power of the mechanical power of the rocket is converted into electrical power at point C through osmosis."
+          "Kinetic energy is highest at the top and lowest at the lowest point.",
+          "Gravitational potential energy and kinetic energy both become zero at the lowest point.",
+          "Total mechanical energy decreases as the car moves down the track.",
+          "Gravitational potential energy decreases, kinetic energy increases and total mechanical energy remains constant."
         ],
-        "answerIndex": 2,
-        "explanation": "Tenaga kinetik di A maksimum, di O minimum. Jumlah tenaga di A lebih tinggi daripada O.\n*Kineti energy is maximum at A, minimum at O. Total energy at A is higher than at O.*"
+        "answerIndex": 3,
+        "explanation": "Tanpa geseran, tenaga keupayaan graviti bertukar kepada tenaga kinetik dan jumlah tenaga mekanikal kekal malar. Without friction, gravitational potential energy changes into kinetic energy and total mechanical energy remains constant."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q23",
@@ -10800,15 +10800,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "A plastic toy bullet of mass $25\\text{ g}$ is placed inside a spring-loaded toy pistol (as in Diagram 7.14). The pistol spring is compressed by $20\\text{ cm}$ with a final force of $8\\text{ N}$. If the pistol is shot horizontally, calculate the maximum speed of the plastic bullet leaving the muzzle. (Assume a closed system with no air resistance)",
+        "question": "A toy gun spring is compressed by 20 cm with a maximum force of 8 N. A 0.025 kg plastic ball is placed in front of it. If all elastic potential energy changes to kinetic energy, what is the ball's speed?",
         "options": [
           "8 m/s",
           "64 m/s",
           "1.6 m/s",
           "4 m/s"
         ],
-        "answerIndex": 1,
-        "explanation": "Kelajuan maksimum 64 m s⁻¹.\n*Maximum speed is 64 m s⁻¹.*"
+        "answerIndex": 0,
+        "explanation": "Tenaga keupayaan kenyal = ½ × 8 × 0.20 = 0.8 J. Oleh sebab ½mv² = 0.8 J, v = 8 m s⁻¹. Elastic potential energy = ½ × 8 × 0.20 = 0.8 J. From ½mv² = 0.8 J, v = 8 m s⁻¹."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q24",
@@ -10818,7 +10818,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "A steel marble of mass $100\\text{ g}$ is released from a height of $5\\text{ m}$ above the ground (free fall with no air resistance). Using the Conservation of Energy concept, what is the maximum speed of the steel marble just before it hits the ground? ($g = 10\\text{ m s}^{-2}$)",
+        "question": "A steel marble of mass 100 g is released from a height of 5 m above the ground (free fall with no air resistance). Using the Conservation of Energy concept, what is the maximum speed of the steel marble just before it hits the ground? (g = 10 m s⁻²)",
         "options": [
           "10 m/s",
           "100 m/s",
@@ -10826,7 +10826,7 @@ const scienceF3MasterQuizBanks: Partial<
           "50 m/s"
         ],
         "answerIndex": 0,
-        "explanation": "Kelajuan maksimum 10 m s⁻¹.\n*Maximum speed is 10 m s⁻¹.*"
+        "explanation": "Kelajuan maksimum 10 m s⁻¹. Maximum speed is 10 m s⁻¹."
       },
       {
         "id": "sci-f3-c7-set-b-dlp-q25",
@@ -10844,7 +10844,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kinetic power that is converted into static ion."
         ],
         "answerIndex": 1,
-        "explanation": "Tenaga terbuang dalam bentuk haba dan bunyi.\n*Energy is dissipated as heat and sound.*"
+        "explanation": "Tenaga terbuang dalam bentuk haba dan bunyi. Energy is dissipated as heat and sound."
       }
     ]
   },
@@ -10866,7 +10866,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Payung yang dilapisi dengan bahan aluminium nipis setebal 3 mm adalah memadai untuk menghalang sinaran gama daripada CME."
         ],
         "answerIndex": 1,
-        "explanation": "CME membebaskan sinar gama yang berkuasa, yang hanya boleh diadang dengan payung plumbum tebal, walaupun tidak praktikal.\n*CME releases powerful gamma rays, which can only be effectively shielded by thick lead shields, though impractical due to lead's weight and toxicity.*"
+        "explanation": "CME membebaskan sinar gama yang berkuasa, yang hanya boleh diadang dengan payung plumbum tebal, walaupun tidak praktikal. CME releases powerful gamma rays, which can only be effectively shielded by thick lead shields, though impractical due to lead's weight and toxicity."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q2",
@@ -10878,13 +10878,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "Sejarah penemuan keradioaktifan melibatkan beberapa tokoh sains yang menemui fenomena penting secara tidak sengaja. Padanan manakah yang betul bagi tokoh dan pencapaian sejarahnya yang pertama?",
         "options": [
-          "Antoine Henri Becquerel $\\rightarrow$ Menemukan polonium dan radium daripada bijih picblend.",
-          "Marie Curie $\\rightarrow$ Menemukan sinar-X secara tidak sengaja semasa mengkaji tiub sinar katod.",
-          "Wilhelm Roentgen $\\rightarrow$ Menemukan sinar-X secara tidak sengaja yang didapati boleh menembusi tisu lembut dan menghitamkan plat fotografi.",
-          "Pierre Curie $\\rightarrow$ Orang pertama yang mengasaskan unit Becquerel (Bq) sebagai unit S.I. bagi keradioaktifan."
+          "Antoine Henri Becquerel → Menemukan polonium dan radium daripada bijih picblend.",
+          "Marie Curie → Menemukan sinar-X secara tidak sengaja semasa mengkaji tiub sinar katod.",
+          "Wilhelm Roentgen → Menemukan sinar-X secara tidak sengaja yang didapati boleh menembusi tisu lembut dan menghitamkan plat fotografi.",
+          "Pierre Curie → Orang pertama yang mengasaskan unit Becquerel (Bq) sebagai unit S.I. bagi keradioaktifan."
         ],
         "answerIndex": 2,
-        "explanation": "Wilhelm Roentgen menemui sinar-X secara tidak sengaja semasa mengkaji tiub sinar katod.\n*Wilhelm Roentgen accidentally discovered X-rays while studying cathode ray tubes.*"
+        "explanation": "Wilhelm Roentgen menemui sinar-X secara tidak sengaja semasa mengkaji tiub sinar katod. Wilhelm Roentgen accidentally discovered X-rays while studying cathode ray tubes."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q3",
@@ -10902,7 +10902,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Dengan melihat percikan cahaya nampak yang dipancarkan secara berterusan oleh unsur radium."
         ],
         "answerIndex": 1,
-        "explanation": "Becquerel mengesan pancaran radioaktif secara tidak sengaja melalui kesan penghitaman plat fotografi yang disimpan di laci gelap.\n*Becquerel accidentally discovered radioactivity by observing the darkroom-kept photographic plate exposed to uranium.*"
+        "explanation": "Becquerel mengesan pancaran radioaktif secara tidak sengaja melalui kesan penghitaman plat fotografi yang disimpan di laci gelap. Becquerel accidentally discovered radioactivity by observing the darkroom-kept photographic plate exposed to uranium."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q4",
@@ -10920,7 +10920,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kobalt-60 dan Sesium-137"
         ],
         "answerIndex": 2,
-        "explanation": "Marie dan Pierre Curie mengekstrak polonium dan radium daripada bijih picblend.\n*Marie and Pierre Curie extracted polonium and radium from pitchblende ore.*"
+        "explanation": "Marie dan Pierre Curie mengekstrak polonium dan radium daripada bijih picblend. Marie and Pierre Curie extracted polonium and radium from pitchblende ore."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q5",
@@ -10938,7 +10938,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pembebasan elektron daripada permukaan logam apabila ia disinari oleh gelombang elektromagnet yang berfrekuensi tinggi."
         ],
         "answerIndex": 1,
-        "explanation": "Keradioaktifan adalah proses perebutan nukleus yang tidak stabil dengan memancarkan sinaran radioaktif untuk menjadi lebih stabil.\n*Radioactivity is the spontaneous decay of an unstable nucleus by emitting radiation to become more stable.*"
+        "explanation": "Keradioaktifan adalah proses perebutan nukleus yang tidak stabil dengan memancarkan sinaran radioaktif untuk menjadi lebih stabil. Radioactivity is the spontaneous decay of an unstable nucleus by emitting radiation to become more stable."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q6",
@@ -10948,7 +10948,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Rajah pereputan spontan bagi Uranium-238 menunjukkan pembebasan zarah alfa ($\\alpha$). $$\\text{Uranium-238} \\rightarrow \\text{Torium-234} + \\text{Zarah }\\alpha$$ Antara berikut, yang manakah menerangkan sifat bagi zarah alfa yang dibebaskan tersebut dengan betul?",
+        "question": "Uranium-238 mereput kepada torium-234 sambil membebaskan zarah alfa. Pernyataan manakah menerangkan zarah alfa dengan betul?",
         "options": [
           "Merupakan elektron berkelajuan tinggi yang berasal dari petala luar atom.",
           "Merupakan gelombang elektromagnet berfrekuensi sangat tinggi yang tidak mempunyai cas elektrik.",
@@ -10956,7 +10956,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Merupakan zarah neutral yang mempunyai jisim yang sama dengan atom hidrogen."
         ],
         "answerIndex": 2,
-        "explanation": "Zarah alfa adalah nukleus helium dengan 2 proton dan 2 neutron, membawa cas positif.\n*Alpha particle is a helium nucleus with 2 protons and 2 neutrons, carrying a positive charge.*"
+        "explanation": "Zarah alfa adalah nukleus helium dengan 2 proton dan 2 neutron, membawa cas positif. Alpha particle is a helium nucleus with 2 protons and 2 neutrons, carrying a positive charge."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q7",
@@ -10966,15 +10966,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Dalam satu siri pereputan nuklear, Torium-234 mereput secara spontan kepada Protaktinium-234 dengan memancarkan sejenis sinaran radioaktif. $$\\text{Torium-234 (90p, 144n)} \\rightarrow \\text{Protaktinium-234 (91p, 143n)} + \\text{Sinaran X}$$ Apakah sinaran X yang dibebaskan dalam pereputan ini?",
+        "question": "Dalam satu siri pereputan nuklear, Torium-234 mereput secara spontan kepada Protaktinium-234 dengan memancarkan sejenis sinaran radioaktif. Torium-234 (90p, 144n) → Protaktinium-234 (91p, 143n) + Sinaran X Apakah sinaran X yang dibebaskan dalam pereputan ini?",
         "options": [
-          "Zarah alfa ($\\alpha$) yang membawa cas positif.",
-          "Zarah beta ($\\beta$) yang merupakan elektron berhalaju tinggi yang terhasil apabila satu neutron dalam nukleus bertukar kepada proton.",
-          "Sinar gama ($\\gamma$) yang menyebabkan tiada perubahan pada bilangan proton dan neutron.",
+          "Zarah alfa (α) yang membawa cas positif.",
+          "Zarah beta (β) yang merupakan elektron berhalaju tinggi yang terhasil apabila satu neutron dalam nukleus bertukar kepada proton.",
+          "Sinar gama (γ) yang menyebabkan tiada perubahan pada bilangan proton dan neutron.",
           "Sinar-X yang dihasilkan daripada pengujaan elektron pada petala atom."
         ],
         "answerIndex": 1,
-        "explanation": "Sinaran X yang dibebaskan ialah zarah beta yang merupakan elektron berhalaju tinggi.\n*The emitted radiation is beta particle, a high-speed electron.*"
+        "explanation": "Sinaran X yang dibebaskan ialah zarah beta yang merupakan elektron berhalaju tinggi. The emitted radiation is beta particle, a high-speed electron."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q8",
@@ -10984,15 +10984,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Satu nukleus Kobalt-60\\* yang berada dalam keadaan teruja (tidak stabil) mengalami pereputan radioaktif untuk mencapai keadaan Kobalt-60 yang lebih stabil. $$\\text{Kobalt-60*} \\rightarrow \\text{Kobalt-60} + \\text{Sinaran Y}$$ Apakah ciri utama bagi sinaran Y yang dibebaskan dalam proses ini?",
+        "question": "Satu nukleus Kobalt-60 yang berada dalam keadaan teruja (tidak stabil) mengalami pereputan radioaktif untuk mencapai keadaan Kobalt-60 yang lebih stabil. Kobalt-60 → Kobalt-60 + Sinaran Y Apakah ciri utama bagi sinaran Y yang dibebaskan dalam proses ini?",
         "options": [
           "Ia membawa cas positif dan dipesongkan oleh medan magnet ke arah atas.",
-          "Ia merupakan sinar gama ($\\gamma$) yang berupa gelombang elektromagnet berfrekuensi tinggi, tidak membawa sebarang cas, dan tidak mengubah bilangan proton atau neutron dalam nukleus.",
+          "Ia merupakan sinar gama (γ) yang berupa gelombang elektromagnet berfrekuensi tinggi, tidak membawa sebarang cas, dan tidak mengubah bilangan proton atau neutron dalam nukleus.",
           "Ia mempunyai kuasa pengionan yang sangat tinggi sehingga boleh diadang sepenuhnya oleh sehelai kertas.",
           "Ia terdiri daripada aliran zarah elektron yang dipesongkan dengan kuat oleh medan elektrik ke arah plat positif."
         ],
         "answerIndex": 1,
-        "explanation": "Sinaran Y ialah sinar gama yang tidak membawa sebarang cas dan tidak mengubah bilangan proton atau neutron.\n*Y radiation is gamma ray, which carries no charge and does not change the number of protons or neutrons.*"
+        "explanation": "Sinaran Y ialah sinar gama yang tidak membawa sebarang cas dan tidak mengubah bilangan proton atau neutron. Y radiation is gamma ray, which carries no charge and does not change the number of protons or neutrons."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q9",
@@ -11002,15 +11002,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Kadar pereputan atau keaktifan suatu bahan radioaktif diukur dalam unit Curie (Ci) atau unit S.I. Becquerel (Bq). Sekiranya suatu sampel radioaktif mencatatkan keaktifan sebanyak $2.0\\text{ Ci}$, berapakah nilai keaktifan tersebut dalam unit Becquerel (Bq)?",
+        "question": "Kadar pereputan atau keaktifan suatu bahan radioaktif diukur dalam unit Curie (Ci) atau unit S.I. Becquerel (Bq). Sekiranya suatu sampel radioaktif mencatatkan keaktifan sebanyak 2.0 Ci, berapakah nilai keaktifan tersebut dalam unit Becquerel (Bq)?",
         "options": [
-          "$2.0\\text{ Bq}$",
-          "$7.4 \\times 10^{10}\\text{ Bq}$",
-          "$3.7 \\times 10^{10}\\text{ Bq}$",
-          "$1.85 \\times 10^{10}\\text{ Bq}$"
+          "2.0 Bq",
+          "7.4 × 10¹⁰ Bq",
+          "3.7 × 10¹⁰ Bq",
+          "1.85 × 10¹⁰ Bq"
         ],
         "answerIndex": 1,
-        "explanation": "2.0 Ci sama dengan 7.4 x 10^10 Bq.\n*2.0 Ci equals 7.4 x 10^10 Bq.*"
+        "explanation": "2.0 Ci sama dengan 7.4 x 10¹0 Bq. 2.0 Ci equals 7.4 x 10¹0 Bq."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q10",
@@ -11020,7 +11020,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Separuh hayat ($T_{\\frac{1}{2}}$) merupakan parameter penting dalam mengkaji kadar reputan radioaktif. Antara pernyataan berikut, yang manakah mendefinisikan maksud separuh hayat dengan paling tepat?",
+        "question": "Separuh hayat (T_(1/2)) merupakan parameter penting dalam mengkaji kadar reputan radioaktif. Antara pernyataan berikut, yang manakah mendefinisikan maksud separuh hayat dengan paling tepat?",
         "options": [
           "Separuh daripada jumlah masa yang diambil oleh suatu unsur radioaktif untuk mereput sepenuhnya dari alam sekitar.",
           "Tempoh masa yang diambil untuk bilangan nukleus yang belum mereput berkurang menjadi setengah daripada nilai asalnya.",
@@ -11028,7 +11028,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kadar purata pereputan atom radioaktif dalam masa 1 jam pada suhu bilik."
         ],
         "answerIndex": 1,
-        "explanation": "Separuh hayat ialah tempoh masa yang diambil untuk bilangan nukleus yang belum mereput berkurang menjadi setengah daripada nilai asalnya.\n*Half-life is the period of time for the number of undecayed nuclei to reduce to half of its original value.*"
+        "explanation": "Separuh hayat ialah tempoh masa yang diambil untuk bilangan nukleus yang belum mereput berkurang menjadi setengah daripada nilai asalnya. Half-life is the period of time for the number of undecayed nuclei to reduce to half of its original value."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q11",
@@ -11038,15 +11038,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Satu sampel radioaktif Protaktinium-234 (Pa-234) yang disimpan di dalam makmal mempunyai separuh hayat, $T_{\\frac{1}{2}}$ selama $5.2\\text{ jam}$. Jika jisim asal sampel Pa-234 tersebut ialah $80\\text{ g}$, berapakah jisim Pa-234 yang belum mereput (tertinggal) selepas $20.8\\text{ jam}$?",
+        "question": "Satu sampel radioaktif Protaktinium-234 (Pa-234) yang disimpan di dalam makmal mempunyai separuh hayat, T_(1/2) selama 5.2 jam. Jika jisim asal sampel Pa-234 tersebut ialah 80 g, berapakah jisim Pa-234 yang belum mereput (tertinggal) selepas 20.8 jam?",
         "options": [
-          "$40\\text{ g}$",
-          "$10\\text{ g}$",
-          "$5\\text{ g}$",
-          "$2.5\\text{ g}$"
+          "40 g",
+          "10 g",
+          "5 g",
+          "2.5 g"
         ],
-        "answerIndex": 0,
-        "explanation": "Jisim Pa-234 yang tinggal selepas 20.8 jam ialah 40 g. Kita perlu mengira 2 separuh hayat, yang setara dengan 10.4 jam, dan 20.8/10.4 = 2 kali separuh hayat, menjadikan jisim tinggal 40 g.\n*The remaining Pa-234 after 20.8 hours is 40 g. We need to calculate 2 half-lives, which is 10.4 hours, and 20.8/10.4 = 2 times the half-life, making the remaining mass 40 g.*"
+        "answerIndex": 2,
+        "explanation": "20.8 jam bersamaan empat separuh hayat. Jisim yang tinggal ialah 80 ÷ 2⁴ = 5 g. 20.8 hours is four half-lives, so the remaining mass is 80 ÷ 2⁴ = 5 g."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q12",
@@ -11056,15 +11056,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Graf di bawah menunjukkan lengkung keaktifan melawan masa bagi sejenis bahan radioaktif P. * Keaktifan pada masa $t = 0\\text{ s}$ ialah $800\\text{ Bq}$. * Keaktifan berkurang secara eksponen mengikut masa. Bagaimanakah kaedah yang betul untuk menentukan separuh hayat bahan radioaktif P secara grafik?",
+        "question": "Keaktifan awal suatu bahan radioaktif ialah 800 Bq dan berkurang mengikut masa. Bagaimanakah separuh hayat ditentukan daripada graf keaktifan melawan masa?",
         "options": [
           "Cari masa yang sepadan dengan nilai keaktifan sifar pada paksi-X.",
-          "Cari nilai $400\\text{ Bq}$ (iaitu $\\frac{1}{2} \\times 800\\text{ Bq}$) pada paksi-Y, gerakkan garisan mengufuk ke lengkung graf, dan baca nilai masa yang sepadan pada paksi-X.",
+          "Cari nilai 400 Bq (iaitu 1/2 × 800 Bq) pada paksi-Y, gerakkan garisan mengufuk ke lengkung graf, dan baca nilai masa yang sepadan pada paksi-X.",
           "Baca nilai keaktifan pada minit yang pertama lalu bahagikan dengan 2.",
-          "Ambil nilai masa maksimum pada paksi-X lalu darabkan dengan faktor $\\frac{1}{2}$."
+          "Ambil nilai masa maksimum pada paksi-X lalu darabkan dengan faktor 1/2."
         ],
         "answerIndex": 1,
-        "explanation": "Cari nilai 400 Bq pada paksi-Y, gerakkan garisan mengufuk ke lengkung graf, dan baca nilai masa yang sepadan pada paksi-X untuk menentukan separuh hayat.\n*Find the 400 Bq value on the Y-axis, draw a horizontal line to the curve, and read the corresponding time value on the X-axis to determine the half-life.*"
+        "explanation": "Cari nilai 400 Bq pada paksi-Y, gerakkan garisan mengufuk ke lengkung graf, dan baca nilai masa yang sepadan pada paksi-X untuk menentukan separuh hayat. Find the 400 Bq value on the Y-axis, draw a horizontal line to the curve, and read the corresponding time value on the X-axis to determine the half-life."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q13",
@@ -11082,7 +11082,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerana semua atom mempunyai saiz dan jisim yang sama tanpa mengira jenis unsur."
         ],
         "answerIndex": 1,
-        "explanation": "Teori Dalton dianggap tidak tepat kerana atom terdiri daripada zarah subatom yang lebih kecil iaitu proton, neutron, dan elektron.\n*Dalton's theory is considered incorrect because atoms are composed of smaller subatomic particles, namely protons, neutrons, and electrons.*"
+        "explanation": "Teori Dalton dianggap tidak tepat kerana atom terdiri daripada zarah subatom yang lebih kecil iaitu proton, neutron, dan elektron. Dalton's theory is considered incorrect because atoms are composed of smaller subatomic particles, namely protons, neutrons, and electrons."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q14",
@@ -11092,15 +11092,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Atom neutral boleh membentuk ion positif (kation). Bagaimanakah suatu atom natrium ($\\text{Na}$) yang neutral bertukar menjadi ion natrium ($\\text{Na}^+$)?",
+        "question": "Atom neutral boleh membentuk ion positif (kation). Bagaimanakah suatu atom natrium (Na) yang neutral bertukar menjadi ion natrium (Na⁺)?",
         "options": [
-          "Dengan menerima satu proton tambahan ke dalam nukleusnya, menjadikan cas bersih $+1$.",
-          "Dengan menderma (kehilangan) 1 elektron daripada petala luar, menyebabkan bilangan proton (11p, cas +11) melebihi bilangan elektron (10e, cas -10) dengan cas bersih $+1$.",
+          "Dengan menerima satu proton tambahan ke dalam nukleusnya, menjadikan cas bersih +1.",
+          "Dengan menderma (kehilangan) 1 elektron daripada petala luar, menyebabkan bilangan proton (11p, cas +11) melebihi bilangan elektron (10e, cas -10) dengan cas bersih +1.",
           "Dengan membebaskan satu neutron dari nukleus secara spontan melalui pereputan alfa.",
           "Dengan berkongsi sepasang elektron secara kovalen bersama atom klorin."
         ],
         "answerIndex": 1,
-        "explanation": "Atom natrium bertukar menjadi ion natrium (+1) dengan menderma 1 elektron daripada petala luar.\n*Neutral sodium atom becomes sodium ion (+1) by losing one electron from the outer shell.*"
+        "explanation": "Atom natrium bertukar menjadi ion natrium (+1) dengan menderma 1 elektron daripada petala luar. Neutral sodium atom becomes sodium ion (+1) by losing one electron from the outer shell."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q15",
@@ -11110,15 +11110,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Sebutan ion negatif (anion) merujuk kepada zarah subatom yang bercas negatif bersih. Jadual di bawah menunjukkan pembentukan ion klorida, $\\text{Cl}^-$ daripada atom klorin yang neutral. * Atom Klorin ($\\text{Cl}$): 17 proton, 18 neutron, 17 elektron. * Ion Klorida ($\\text{Cl}^-$): 17 proton, 18 neutron, 18 elektron. Apakah mekanisma yang menyebabkan pembentukan cas bersih $-1$ pada ion klorida tersebut?",
+        "question": "Atom klorin mempunyai 17 proton dan 17 elektron. Ion klorida mempunyai 17 proton dan 18 elektron. Bagaimanakah ion bercas -1 itu terbentuk?",
         "options": [
           "Atom klorin menderma satu proton dari nukleus kepada atom lain.",
-          "Atom klorin menerima (memperoleh) 1 elektron tambahan, menyebabkan bilangan elektron (18, cas -18) melebihi bilangan proton (17, cas +17) dengan beza cas $-1$.",
+          "Atom klorin menerima (memperoleh) 1 elektron tambahan, menyebabkan bilangan elektron (18, cas -18) melebihi bilangan proton (17, cas +17) dengan beza cas -1.",
           "Atom klorin mengalami pereputan beta spontan yang mengubah neutron menjadi elektron.",
           "Nukleus atom klorin menarik cas positif keluar dari persekitaran secara osmosis."
         ],
         "answerIndex": 1,
-        "explanation": "Ion klorida terbentuk apabila atom klorin menerima 1 elektron tambahan, menjadikan bilangan elektron melebihi bilangan proton dengan beza cas -1.\n*Chloride ion is formed when the chlorine atom accepts an additional electron, making the number of electrons exceed the number of protons by a charge difference of -1.*"
+        "explanation": "Ion klorida terbentuk apabila atom klorin menerima 1 elektron tambahan, menjadikan bilangan elektron melebihi bilangan proton dengan beza cas -1. Chloride ion is formed when the chlorine atom accepts an additional electron, making the number of electrons exceed the number of protons by a charge difference of -1."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q16",
@@ -11136,7 +11136,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sinar Inframerah, Cahaya Nampak, Sinar Gama."
         ],
         "answerIndex": 2,
-        "explanation": "Sinar ultraungu, sinar-X, dan sinar gama dikelaskan sebagai sinaran mengion.\n*Ultraviolet, X-rays, and gamma rays are classified as ionizing radiation.*"
+        "explanation": "Sinar ultraungu, sinar-X, dan sinar gama dikelaskan sebagai sinaran mengion. Ultraviolet, X-rays, and gamma rays are classified as ionizing radiation."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q17",
@@ -11146,7 +11146,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Tiga jenis sinaran mengion semula jadi ($\\alpha, \\beta, \\gamma$) mempunyai sifat pengionan yang sangat berbeza. Mengapakah sinar alfa ($\\alpha$) mempunyai kuasa pengionan yang paling tinggi berbanding sinar beta dan sinar gama?",
+        "question": "Tiga jenis sinaran mengion semula jadi (α, β, γ) mempunyai sifat pengionan yang sangat berbeza. Mengapakah sinar alfa (α) mempunyai kuasa pengionan yang paling tinggi berbanding sinar beta dan sinar gama?",
         "options": [
           "Kerana sinar alfa mempunyai halaju yang sama dengan kelajuan cahaya nampak.",
           "Kerana zarah alfa mempunyai saiz zarah yang paling besar (jisim tinggi) dan membawa cas positif (+2), yang memudahkan perlanggaran fizikal dan pemindahan tenaga untuk membebaskan elektron dari molekul udara.",
@@ -11154,7 +11154,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerana ia merupakan gelombang elektromagnet dengan panjang gelombang paling pendek."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar alfa mempunyai saiz zarah yang paling besar dan membawa cas positif (+2), yang memudahkan perlanggaran fizikal dan pemindahan tenaga.\n*Alpha rays have the largest particle size and a +2 charge, making it easier for physical penetration and energy transfer.*"
+        "explanation": "Sinar alfa mempunyai saiz zarah yang paling besar dan membawa cas positif (+2), yang memudahkan perlanggaran fizikal dan pemindahan tenaga. Alpha rays have the largest particle size and a +2 charge, making it easier for physical penetration and energy transfer."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q18",
@@ -11164,15 +11164,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Rajah menunjukkan satu eksperimen mengkaji kuasa penembusan bagi tiga jenis sinaran radioaktif melalui tiga jenis adangan fizikal yang berbeza ketebalan. * Adangan 1: Sehelai kertas nipis. * Adangan 2: Kepingan aluminium setebal $3\\text{ mm}$. * Adangan 3: Blok plumbum tebal ($10\\text{ cm}$) atau konkrit tebal. Antara padanan berikut, yang manakah menunjukkan had adangan maksimum yang betul bagi sinar alfa, beta, dan gama?",
+        "question": "Tiga pengadang yang diuji ialah kertas nipis, aluminium setebal 3 mm dan plumbum setebal 10 cm. Padanan manakah menunjukkan pengadang yang sesuai bagi sinar alfa, beta dan gama?",
         "options": [
-          "Alfa $\\rightarrow$ Diadang oleh blok plumbum tebal; Beta $\\rightarrow$ Diadang oleh kertas; Gama $\\rightarrow$ Diadang oleh aluminium.",
-          "Alfa $\\rightarrow$ Diadang oleh aluminium; Beta $\\rightarrow$ Diadang oleh plumbum; Gama $\\rightarrow$ Diadang oleh kertas.",
-          "Alfa $\\rightarrow$ Diadang oleh sehelai kertas; Beta $\\rightarrow$ Diadang oleh kepingan aluminium $3\\text{ mm}$; Gama $\\rightarrow$ Diadang oleh plumbum setebal $10\\text{ cm}$ atau konkrit tebal.",
+          "Alfa → Diadang oleh blok plumbum tebal; Beta → Diadang oleh kertas; Gama → Diadang oleh aluminium.",
+          "Alfa → Diadang oleh aluminium; Beta → Diadang oleh plumbum; Gama → Diadang oleh kertas.",
+          "Alfa → Diadang oleh sehelai kertas; Beta → Diadang oleh kepingan aluminium 3 mm; Gama → Diadang oleh plumbum setebal 10 cm atau konkrit tebal.",
           "Ketiga-tiga sinaran diadang sepenuhnya oleh sehelai kertas kerana ketumpatannya adalah sama."
         ],
         "answerIndex": 2,
-        "explanation": "Sinar alfa diadang oleh kertas, beta oleh aluminium 3 mm, dan gama oleh plumbum 10 cm atau konkrit tebal.\n*Alpha rays are stopped by a piece of paper, beta rays by 3 mm of aluminum, and gamma rays by 10 cm of lead or thick concrete.*"
+        "explanation": "Sinar alfa diadang oleh kertas, beta oleh aluminium 3 mm, dan gama oleh plumbum 10 cm atau konkrit tebal. Alpha rays are stopped by a piece of paper, beta rays by 3 mm of aluminum, and gamma rays by 10 cm of lead or thick concrete."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q19",
@@ -11182,7 +11182,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Rajah di bawah menunjukkan corak pemesongan tiga jenis sinaran radioaktif apabila melintasi suatu medan elektrik di antara dua plat logam bercas bertentangan (plat positif di bawah, plat negatif di atas). Antara berikut, pernyataan manakah yang menerangkan corak pemesongan tersebut dengan betul?",
+        "question": "Sinar alfa, beta dan gama melalui medan elektrik antara plat positif di bawah dan plat negatif di atas. Pernyataan manakah tentang pesongan sinaran itu yang betul?",
         "options": [
           "Sinar alfa dipesongkan ke plat positif kerana ia bercas negatif, manakala beta ke plat negatif.",
           "Sinar beta dipesongkan ke arah plat positif kerana membawa cas negatif, dengan sudut pesongan yang besar disebabkan jisim elektron yang sangat ringan.",
@@ -11190,7 +11190,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sinar alfa dan beta bergerak lurus tanpa dipesongkan kerana kedua-duanya bersifat neutral."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar beta dipesongkan ke plat positif kerana membawa cas negatif, dengan sudut pesongan yang besar disebabkan jisim elektron yang sangat ringan.\n*Beta rays are deflected towards the positive plate because they carry a negative charge, with a large deflection angle due to their very light mass.*"
+        "explanation": "Sinar beta dipesongkan ke plat positif kerana membawa cas negatif, dengan sudut pesongan yang besar disebabkan jisim elektron yang sangat ringan. Beta rays are deflected towards the positive plate because they carry a negative charge, with a large deflection angle due to their very light mass."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q20",
@@ -11202,13 +11202,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Kuantiti sinaran latar belakang yang diserap oleh tisu tubuh manusia diukur sebagai dos sinaran. Apakah takrifan fizikal bagi 1 Sievert (1 Sv) sebagai unit dos penyerapan sinaran latar belakang?",
         "options": [
-          "Kadar pereputan sebanyak $3.7 \\times 10^{10}$ atom radioaktif dalam masa 1 saat.",
+          "Kadar pereputan sebanyak 3.7 × 10¹⁰ atom radioaktif dalam masa 1 saat.",
           "1 Joule tenaga sinaran mengion yang diserap oleh 1 kilogram tisu hidup.",
           "Jumlah zarah alfa yang dilepaskan oleh 1 gram radium dalam masa 1 jam.",
           "Kadar penembusan sinar gama merentasi kepingan plumbum setebal 1 meter."
         ],
         "answerIndex": 1,
-        "explanation": "1 Sievert adalah unit dos penyerapan sinaran mengion yang menyatakan 1 Joule tenaga sinaran mengion yang diserap oleh 1 kilogram tisu hidup.\n*1 Sievert is a unit of absorbed radiation dose that represents 1 Joule of ionizing radiation energy absorbed by 1 kilogram of living tissue.*"
+        "explanation": "1 Sievert adalah unit dos penyerapan sinaran mengion yang menyatakan 1 Joule tenaga sinaran mengion yang diserap oleh 1 kilogram tisu hidup. 1 Sievert is a unit of absorbed radiation dose that represents 1 Joule of ionizing radiation energy absorbed by 1 kilogram of living tissue."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q21",
@@ -11220,13 +11220,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Dos sinaran latar belakang persekitaran boleh diukur dengan mudah menggunakan alat pembilang Geiger. Seseorang individu dianggap menerima dos sinaran latar belakang harian yang selamat dan normal sekiranya kadar dos yang dikesan adalah:",
         "options": [
-          "Melebihi $10\\text{ Sv/j}$ di mana-mana kawasan kediaman.",
-          "Kurang daripada $0.2\\ \\mu\\text{Sv/j}$ (atau bersamaan dengan $1.752\\text{ mSv/tahun}$).",
-          "Sentiasa sifar mutlak ($0.00\\ \\mu\\text{Sv/j}$) tanpa sebarang sinaran dikesan.",
-          "Berada di antara $1\\text{ Sv/j}$ hingga $5\\text{ Sv/j}$ bagi kawasan sekolah."
+          "Melebihi 10 Sv/j di mana-mana kawasan kediaman.",
+          "Kurang daripada 0.2 μSv/j (atau bersamaan dengan 1.752 mSv/tahun).",
+          "Sentiasa sifar mutlak (0.00 μSv/j) tanpa sebarang sinaran dikesan.",
+          "Berada di antara 1 Sv/j hingga 5 Sv/j bagi kawasan sekolah."
         ],
         "answerIndex": 1,
-        "explanation": "Kadar dos sinaran latar belakang harian yang selamat adalah kurang daripada 0.2 μSv/j (1.752 mSv/tahun).\n*The safe daily background radiation dose rate is less than 0.2 μSv/j (1.752 mSv/year).*"
+        "explanation": "Kadar dos sinaran latar belakang harian yang selamat adalah kurang daripada 0.2 μSv/j (1.752 mSv/tahun). The safe daily background radiation dose rate is less than 0.2 μSv/j (1.752 mSv/year)."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q22",
@@ -11236,15 +11236,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Rajah di bawah menunjukkan anggaran kadar dos sinaran mengion daripada pelbagai aktiviti harian atau persekitaran. * *Penerbangan komersial*: $0.003\\text{ mSv/jam}$ akibat altitud tinggi. * *Merokok*: $55\\text{ mSv/batang rokok}$ akibat pemendapan bahan radioaktif polonium dalam asap rokok. * *Ujian Sinar-X*: $5.5\\text{ mSv/ujian medical}$. Mengapakah krew penerbangan komersial (juruterbang dan pramugari) mempunyai had masa maksimum bekerja yang ketat di udara setahun?",
+        "question": "Mengapakah tempoh kerja tahunan krew penerbangan di udara perlu dihadkan?",
         "options": [
           "Kerana mereka bekerja dalam persekitaran yang mempunyai tekanan atmosfera yang sangat tinggi yang boleh merosakkan gegendang telinga.",
-          "Kerana pada altitud penerbangan yang sangat tinggi, pendedahan terhadap sinaran kosmik bertenaga tinggi dari angkasa lepas meningkat secara signifikan, menyebabkan dos terkumpul mereka boleh melebihi had selamat.",
+          "Pada altitud tinggi, pendedahan kepada sinaran kosmik meningkat dan dos terkumpul boleh melebihi had selamat.",
           "Kerana gas karbon monoksida daripada asap enjin jet terkumpul di dalam kabin penerbangan.",
           "Kerana mereka terdedah kepada dos jerebu dan habuk dari awan secara berterusan."
         ],
         "answerIndex": 1,
-        "explanation": "Krew penerbangan komersial mempunyai had masa maksimum kerana pendedahan terhadap sinaran kosmik bertenaga tinggi dari angkasa lepas meningkat di altitud tinggi.\n*Crew members of commercial flights have strict maximum working hours because the exposure to high-energy cosmic rays from space increases at high altitudes.*"
+        "explanation": "Krew penerbangan komersial mempunyai had masa maksimum kerana pendedahan terhadap sinaran kosmik bertenaga tinggi dari angkasa lepas meningkat di altitud tinggi. Crew members of commercial flights have strict maximum working hours because the exposure to high-energy cosmic rays from space increases at high altitudes."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q23",
@@ -11257,12 +11257,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Dalam bidang arkeologi dan geokronologi, usia fosil purba atau artifak kayu yang telah mati boleh ditentukan menggunakan kaedah pentarikhan Karbon-14. Antara berikut, yang manakah menerangkan mekanisme kaedah ini dengan betul?",
         "options": [
           "Fosil purba membiaskan sinar gama mengikut ketebalan cincin tahunan sel kayu.",
-          "Apabila organisma mati, pengambilan karbon terhenti dan kandungan Karbon-14 (C-14) yang radioaktif di dalam tisu mula mereput secara spontan dengan memancarkan sinar beta ($\\beta$) mengikut separuh hayatnya yang bernilai $5,\\!700\\text{ tahun}$.",
+          "Apabila organisma mati, pengambilan karbon terhenti dan kandungan Karbon-14 (C-14) yang radioaktif di dalam tisu mula mereput secara spontan dengan memancarkan sinar beta (β) mengikut separuh hayatnya yang bernilai 5,700 tahun.",
           "Karbon-12 menyerap haba persekitaran dan bertukar menjadi Karbon-14 yang stabil secara kimia.",
           "Usia fosil diukur berdasarkan kadar resapan molekul air merentasi dinding sel fosil yang mereput."
         ],
         "answerIndex": 1,
-        "explanation": "Usia fosil purba ditentukan dengan pentarikan Karbon-14, di mana kandungan Karbon-14 yang radioaktif di dalam tisu mula mereput secara spontan.\n*The age of ancient fossils is determined by Carbon-14 dating, where the radioactive Carbon-14 in the tissue decays spontaneously.*"
+        "explanation": "Usia fosil purba ditentukan dengan pentarikan Karbon-14, di mana kandungan Karbon-14 yang radioaktif di dalam tisu mula mereput secara spontan. The age of ancient fossils is determined by Carbon-14 dating, where the radioactive Carbon-14 in the tissue decays spontaneously."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q24",
@@ -11272,7 +11272,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Dalam sektor perindustrian, sinar beta ($\\beta$) digunakan secara meluas dalam sistem kawalan ketebalan kepingan logam secara automatik. Mengapakah sinar beta dipilih dalam aplikasi ini, bukannya sinar alfa atau sinar gama?",
+        "question": "Dalam sektor perindustrian, sinar beta (β) digunakan secara meluas dalam sistem kawalan ketebalan kepingan logam secara automatik. Mengapakah sinar beta dipilih dalam aplikasi ini, bukannya sinar alfa atau sinar gama?",
         "options": [
           "Kerana sinar beta mempunyai kuasa pengionan tertinggi yang boleh mengubah struktur kristal kepingan logam secara kekal.",
           "Kerana sinar beta mempunyai kuasa penembusan sederhana yang sangat peka (sensitif) terhadap perubahan kecil pada ketebalan kepingan logam nipis, manakala alfa diadang sepenuhnya oleh kepingan logam dan gama menembusi logam tanpa sebarang perubahan bacaan yang ketara.",
@@ -11280,7 +11280,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerana sinar beta tidak berbahaya dan boleh dikendalikan dengan tangan tanpa perlindungan plumbum."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar beta dipilih kerana ia mempunyai penembusan yang peka terhadap perubahan ketebalan logam nipis, membolehkan pengawalan ketebalan yang tepat.\n*Beta rays are chosen because they have a sensitive penetration that can detect small changes in thin metal sheets, allowing precise thickness control.*"
+        "explanation": "Sinar beta dipilih kerana ia mempunyai penembusan yang peka terhadap perubahan ketebalan logam nipis, membolehkan pengawalan ketebalan yang tepat. Beta rays are chosen because they have a sensitive penetration that can detect small changes in thin metal sheets, allowing precise thickness control."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q25",
@@ -11292,13 +11292,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Aplikasi sinaran radioaktif amat luas merentasi pelbagai bidang. Antara padanan berikut, yang manakah paling tepat menghubungkan radioisotop dengan fungsi klinikal / kegunaannya?",
         "options": [
-          "Natrium-24 (Na-24) $\\rightarrow$ Digunakan oleh ahli arkeologi untuk menentukan usia fosil tulang dinosaur.",
-          "Sesium-137 (Cs-137) atau Kobalt-60 (Co-60) $\\rightarrow$ Memancarkan sinar gama bertenaga tinggi untuk membunuh sel-sel kanser dalam radioterapi.",
-          "Iodin-131 (I-131) $\\rightarrow$ Digunakan sebagai penjejaj dalam baja untuk mengkaji kadar penyerapan baja oleh akar tumbuhan.",
-          "Teknetium-99 (Tc-99) $\\rightarrow$ Digunakan untuk menstabilkan ketebalan kepingan logam di kilang gelekan keluli."
+          "Natrium-24 (Na-24) → Digunakan oleh ahli arkeologi untuk menentukan usia fosil tulang dinosaur.",
+          "Sesium-137 (Cs-137) atau Kobalt-60 (Co-60) → Memancarkan sinar gama bertenaga tinggi untuk membunuh sel-sel kanser dalam radioterapi.",
+          "Iodin-131 (I-131) → Digunakan sebagai penjejaj dalam baja untuk mengkaji kadar penyerapan baja oleh akar tumbuhan.",
+          "Teknetium-99 (Tc-99) → Digunakan untuk menstabilkan ketebalan kepingan logam di kilang gelekan keluli."
         ],
         "answerIndex": 1,
-        "explanation": "Sesium-137 atau Kobalt-60 memancarkan sinar gama bertenaga tinggi untuk pengobatan kanser.\n*Sodium-137 or Cobalt-60 emit high-energy gamma rays for cancer treatment.*"
+        "explanation": "Sesium-137 atau Kobalt-60 memancarkan sinar gama bertenaga tinggi untuk pengobatan kanser. Sodium-137 or Cobalt-60 emit high-energy gamma rays for cancer treatment."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q1",
@@ -11308,15 +11308,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Seorang juruterbang syarikat penerbangan komersial bekerja di udara selama 600 jam setahun. Jika purata kadar dos sinaran kosmik di altitud penerbangan tersebut ialah $0.003\\text{ mSv/jam}$ manakala kadar sinaran latar belakang purata di darat ialah $0.8\\text{ mSv/tahun}$, berapakah anggaran jumlah dos tahunan yang diterima oleh juruterbang itu?",
+        "question": "Seorang juruterbang berada di udara selama 600 jam setahun. Jika kadar dos sinaran kosmik pada altitud penerbangan ialah 0.003 mSv sejam, berapakah dos yang diterima semasa penerbangan dalam setahun?",
         "options": [
-          "$1.0\\text{ mSv/tahun}$",
-          "$1.8\\text{ mSv/tahun}$",
-          "$2.6\\text{ mSv/tahun}$",
-          "$3.8\\text{ mSv/tahun}$"
+          "1.0 mSv/tahun",
+          "1.8 mSv/tahun",
+          "2.6 mSv/tahun",
+          "3.8 mSv/tahun"
         ],
         "answerIndex": 1,
-        "explanation": "Kadar sinaran kosmik dikalikan jam terbang, ditambah sinaran latar belakang: 0.003 × 600 + 0.8 = 1.8 mSv/tahun.\n*Calculate cosmic radiation dose for flight time, then add background radiation: 0.003 × 600 + 0.8 = 1.8 mSv/year.*"
+        "explanation": "Kadar sinaran kosmik dikalikan jam terbang, ditambah sinaran latar belakang: 0.003 × 600 + 0.8 = 1.8 mSv/tahun. Calculate cosmic radiation dose for flight time, then add background radiation: 0.003 × 600 + 0.8 = 1.8 mSv/year."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q2",
@@ -11334,7 +11334,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Bijih picblend menghasilkan zarah bercas positif yang boleh menarik elektron dari udara neutral."
         ],
         "answerIndex": 1,
-        "explanation": "Plat fotografi di dalam laci gelap menghitamkan kerana uranium membebaskan pancaran spontan.\n*The photographic plate darkened in the dark drawer due to spontaneous radiation from uranium.*"
+        "explanation": "Plat fotografi di dalam laci gelap menghitamkan kerana uranium membebaskan pancaran spontan. The photographic plate darkened in the dark drawer due to spontaneous radiation from uranium."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q3",
@@ -11352,7 +11352,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Keupayaan unsur polonium untuk menghasilkan haba yang ekstrem secara berterusan."
         ],
         "answerIndex": 1,
-        "explanation": "Curie menggunakan keupayaan pancaran menembusi plumbum tebal untuk membuktikan keradioaktifan.\n*Curie used the ability of radiation to penetrate thick lead to prove radioactivity.*"
+        "explanation": "Curie menggunakan keupayaan pancaran menembusi plumbum tebal untuk membuktikan keradioaktifan. Curie used the ability of radiation to penetrate thick lead to prove radioactivity."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q4",
@@ -11362,7 +11362,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Apabila sebuah nukleus Uranium-238 yang mempunyai 92 proton dan 146 neutron mengalami pereputan alfa (\\(\\alpha\\)), ia menghasilkan nukleus Torium-234. Antara berikut, manakah kombinasi bilangan proton dan neutron bagi Torium-234 serta zarah yang dibebaskan yang betul?",
+        "question": "Apabila sebuah nukleus Uranium-238 yang mempunyai 92 proton dan 146 neutron mengalami pereputan alfa (\\(α\\)), ia menghasilkan nukleus Torium-234. Antara berikut, manakah kombinasi bilangan proton dan neutron bagi Torium-234 serta zarah yang dibebaskan yang betul?",
         "options": [
           "Torium-234 (90p, 144n); Zarah alfa (2p, 2n)",
           "Torium-234 (91p, 143n); Zarah beta (elektron)",
@@ -11370,7 +11370,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Torium-234 (92p, 144n); Sinar gama (gelombang)"
         ],
         "answerIndex": 0,
-        "explanation": "Pereputan alfa mengurangkan 2 proton dan 2 neutron, menghasilkan Torium-234 (90p, 144n) dan zarah alfa (2p, 2n).\n*Alpha decay reduces 2 protons and 2 neutrons, producing Thorium-234 (90p, 144n) and an alpha particle (2p, 2n).*"
+        "explanation": "Pereputan alfa mengurangkan 2 proton dan 2 neutron, menghasilkan Torium-234 (90p, 144n) dan zarah alfa (2p, 2n). Alpha decay reduces 2 protons and 2 neutrons, producing Thorium-234 (90p, 144n) and an alpha particle (2p, 2n)."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q5",
@@ -11380,7 +11380,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Semasa proses pereputan beta (\\(\\beta\\)), sebuah nukleus Torium-234 (90 proton, 144 neutron) mereput secara spontan kepada Protaktinium-234 (91 proton, 143 neutron). Antara berikut, huraian manakah yang paling tepat menerangkan perubahan nukleus ini secara subatom?",
+        "question": "Semasa proses pereputan beta (\\(β\\)), sebuah nukleus Torium-234 (90 proton, 144 neutron) mereput secara spontan kepada Protaktinium-234 (91 proton, 143 neutron). Antara berikut, huraian manakah yang paling tepat menerangkan perubahan nukleus ini secara subatom?",
         "options": [
           "Dua proton dan dua neutron dikeluarkan secara serentak dari nukleus Torium.",
           "Satu elektron mengorbit ditarik masuk ke dalam nukleus untuk bergabung dengan proton.",
@@ -11388,7 +11388,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Nukleus membebaskan lebihan tenaga mekanikal dalam bentuk gelombang elektromagnet berfrekuensi tinggi."
         ],
         "answerIndex": 2,
-        "explanation": "Neutron bertukar menjadi proton dan mengeluarkan elektron berhalaju tinggi.\n*A neutron turns into a proton and emits a high-speed electron.*"
+        "explanation": "Neutron bertukar menjadi proton dan mengeluarkan elektron berhalaju tinggi. A neutron turns into a proton and emits a high-speed electron."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q6",
@@ -11398,7 +11398,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Nukleus Kobalt-60\\* yang tidak stabil membebaskan tenaga yang tinggi semasa pereputan gama (\\(\\gamma\\)) untuk membentuk Kobalt-60 yang stabil. Mengapakah bilangan proton dan neutron di dalam Kobalt-60 kekal tidak berubah selepas pereputan tersebut?",
+        "question": "Nukleus Kobalt-60 yang tidak stabil membebaskan tenaga yang tinggi semasa pereputan gama (\\(γ\\)) untuk membentuk Kobalt-60 yang stabil. Mengapakah bilangan proton dan neutron di dalam Kobalt-60 kekal tidak berubah selepas pereputan tersebut?",
         "options": [
           "Sinar gama merupakan zarah neutral yang tidak mempunyai jisim atau cas elektrik.",
           "Sinar gama merupakan gelombang elektromagnet berfrekuensi tinggi yang hanya membawa keluar tenaga lebihan dari nukleus.",
@@ -11406,7 +11406,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tenaga gama diserap semula secara serta-merta oleh neutron untuk mengekalkan keseimbangan nukleus."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar gama hanya membawa keluar tenaga lebihan dari nukleus tanpa mengubah nukleon.\n*Gamma rays only carry away excess energy from the nucleus without changing the number of nucleons.*"
+        "explanation": "Sinar gama hanya membawa keluar tenaga lebihan dari nukleus tanpa mengubah nukleon. Gamma rays only carry away excess energy from the nucleus without changing the number of nucleons."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q7",
@@ -11416,15 +11416,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Satu unit pengukuran tradisional bagi keradioaktifan ialah Curie (Ci), manakah unit S.I. bagi keaktifan radioaktif ialah Becquerel (Bq). Jika satu sampel Kobalt-60 di hospital mempunyai nilai keaktifan sebanyak $0.05\\text{ Ci}$, berapakah nilai keaktifan ini dalam unit Becquerel (Bq)?",
+        "question": "Satu unit pengukuran tradisional bagi keradioaktifan ialah Curie (Ci), manakah unit S.I. bagi keaktifan radioaktif ialah Becquerel (Bq). Jika satu sampel Kobalt-60 di hospital mempunyai nilai keaktifan sebanyak 0.05 Ci, berapakah nilai keaktifan ini dalam unit Becquerel (Bq)?",
         "options": [
-          "$1.85 \\times 10^8\\text{ Bq}$",
-          "$1.85 \\times 10^9\\text{ Bq}$",
-          "$7.40 \\times 10^8\\text{ Bq}$",
-          "$7.40 \\times 10^{11}\\text{ Bq}$"
+          "1.85 × 10⁸ Bq",
+          "1.85 × 10⁹ Bq",
+          "7.40 × 10⁸ Bq",
+          "7.40 × 10¹¹ Bq"
         ],
         "answerIndex": 1,
-        "explanation": "0.05 Ci = 1.85 × 10^9 Bq.\n*0.05 Ci = 1.85 × 10^9 Bq.*"
+        "explanation": "0.05 Ci = 1.85 × 10⁹ Bq. 0.05 Ci = 1.85 × 10⁹ Bq."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q8",
@@ -11434,15 +11434,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Bahan radioaktif X mempunyai separuh hayat, $T_{\\frac{1}{2}} = 8\\text{ hari}$. Jika jisim sisa bahan radioaktif X yang tertinggal selepas 32 hari ialah $2.5\\text{ g}$, berapakah jisim asal bagi sampel bahan X tersebut pada hari pertama ($t=0$)?",
+        "question": "Bahan radioaktif X mempunyai separuh hayat, T_(1/2) = 8 hari. Jika jisim sisa bahan radioaktif X yang tertinggal selepas 32 hari ialah 2.5 g, berapakah jisim asal bagi sampel bahan X tersebut pada hari pertama (t=0)?",
         "options": [
-          "$10\\text{ g}$",
-          "$20\\text{ g}$",
-          "$40\\text{ g}$",
-          "$80\\text{ g}$"
+          "10 g",
+          "20 g",
+          "40 g",
+          "80 g"
         ],
         "answerIndex": 3,
-        "explanation": "Jisim asal 80 g, kerana 2.5 g = 1/16 jisim asal (4 separuh hayat).\n*The original mass was 80 g, as 2.5 g is 1/16 of the original mass (4 half-lives).*"
+        "explanation": "Jisim asal 80 g, kerana 2.5 g = 1/16 jisim asal (4 separuh hayat). The original mass was 80 g, as 2.5 g is 1/16 of the original mass (4 half-lives)."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q9",
@@ -11452,7 +11452,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Jadual di bawah menunjukkan data keaktifan bahan radioaktif Y yang direkodkan bagi setiap selang masa 5 jam. | Masa (jam) / *Time (hours)* | 0 | 5 | 10 | 15 | 20 | | :--- | :--- | :--- | :--- | :--- | :--- | | Keaktifan (Bq) / *Activity (Bq)* | 640 | 450 | 320 | 225 | 160 | Berdasarkan jadual di atas, berapakah nilai separuh hayat bagi bahan radioaktif Y?",
+        "question": "Keaktifan suatu bahan radioaktif ialah 640 Bq pada jam ke-0,450 Bq pada jam ke-5,320 Bq pada jam ke-10,225 Bq pada jam ke-15 dan 160 Bq pada jam ke-20. Berapakah separuh hayat bahan itu?",
         "options": [
           "5 jam",
           "10 jam",
@@ -11460,7 +11460,7 @@ const scienceF3MasterQuizBanks: Partial<
           "20 jam"
         ],
         "answerIndex": 1,
-        "explanation": "Separuh hayat 10 jam, kerana 320 Bq = 1/4 keaktifan asal (2 separuh hayat).\n*The half-life is 10 hours, as 320 Bq is 1/4 of the original activity (2 half-lives).*"
+        "explanation": "Separuh hayat 10 jam, kerana 320 Bq = 1/4 keaktifan asal (2 separuh hayat). The half-life is 10 hours, as 320 Bq is 1/4 of the original activity (2 half-lives)."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q10",
@@ -11478,7 +11478,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Atom neutral boleh dibahagi secara fizikal kepada beberapa atom molekul gas hidrogen sahaja melalui pemanasan."
         ],
         "answerIndex": 1,
-        "explanation": "Atom neutral mempunyai nukleus dengan proton dan neutron, serta elektron mengorbit di luar nukleus.\n*A neutral atom has a nucleus containing protons and neutrons, with electrons orbiting outside the nucleus.*"
+        "explanation": "Atom neutral mempunyai nukleus dengan proton dan neutron, serta elektron mengorbit di luar nukleus. A neutral atom has a nucleus containing protons and neutrons, with electrons orbiting outside the nucleus."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q11",
@@ -11488,7 +11488,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Jadual di bawah menunjukkan pembentukan sejenis ion daripada atom neutral klorin. | Zarah Subatom / *Subatomic particle* | Atom Klorin (Cl) | Ion Klorida (\\(\\text{Cl}^-\\)) | | :--- | :---: | :---: | | Neutron | 18 | 18 | | Proton | 17 | 17 | | Elektron | 17 | 18 | | Cas Bersih / *Net Charge* | 0 | -1 | Mengapakah nilai cas bersih bagi ion klorida berubah menjadi -1?",
+        "question": "Atom klorin mempunyai 17 proton dan 17 elektron, manakala ion klorida mempunyai 17 proton dan 18 elektron. Mengapakah ion klorida bercas -1?",
         "options": [
           "Atom klorin menderma satu proton keluar dari nukleus.",
           "Atom klorin menerima satu elektron bermuatan negatif ke dalam orbitnya.",
@@ -11496,7 +11496,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Satu elektron di dalam orbit bertukar menjadi neutron."
         ],
         "answerIndex": 1,
-        "explanation": "Atom klorin menerima satu elektron bermuatan negatif ke dalam orbitnya.\n*Atom chlorine accepts a negatively charged electron into its orbit.*"
+        "explanation": "Atom klorin menerima satu elektron bermuatan negatif ke dalam orbitnya. Atom chlorine accepts a negatively charged electron into its orbit."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q12",
@@ -11506,7 +11506,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Suatu atom neutral Bromin (Br) mempunyai bilangan proton sebanyak 35 dan bilangan neutron sebanyak 45. Apabila atom ini membentuk ion bromida (\\(\\text{Br}^-\\)), berapakah bilangan elektron dan cas bersih bagi ion tersebut?",
+        "question": "Suatu atom neutral Bromin (Br) mempunyai bilangan proton sebanyak 35 dan bilangan neutron sebanyak 45. Apabila atom ini membentuk ion bromida (\\(Br⁻\\)), berapakah bilangan elektron dan cas bersih bagi ion tersebut?",
         "options": [
           "35 elektron; cas +1",
           "36 elektron; cas -1",
@@ -11514,7 +11514,7 @@ const scienceF3MasterQuizBanks: Partial<
           "36 elektron; cas +1"
         ],
         "answerIndex": 1,
-        "explanation": "36 elektron; cas -1\n*36 electrons; charge -1*"
+        "explanation": "36 elektron; cas -1 36 electrons; charge -1"
       },
       {
         "id": "sci-f3-c8-set-b-bm-q13",
@@ -11532,7 +11532,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sinar inframerah, Sinar-X, Sinar ultraungu"
         ],
         "answerIndex": 2,
-        "explanation": "Sinar ultraungu, Sinar-X, Sinar gama\n*Ultraviolet, X-rays, Gamma rays*"
+        "explanation": "Sinar ultraungu, Sinar-X, Sinar gama Ultraviolet, X-rays, Gamma rays"
       },
       {
         "id": "sci-f3-c8-set-b-bm-q14",
@@ -11542,7 +11542,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Sinar alfa (\\(\\alpha\\)) mempunyai kuasa pengionan yang paling tinggi berbanding sinar beta (\\(\\beta\\)) dan sinar gama (\\(\\gamma\\)). Antara faktor berikut, yang manakah menerangkan fenomena ini dengan betul?",
+        "question": "Sinar alfa (\\(α\\)) mempunyai kuasa pengionan yang paling tinggi berbanding sinar beta (\\(β\\)) dan sinar gama (\\(γ\\)). Antara faktor berikut, yang manakah menerangkan fenomena ini dengan betul?",
         "options": [
           "Zarah alfa mempunyai kelajuan yang sangat tinggi menyamai kelajuan cahaya.",
           "Zarah alfa mempunyai saiz zarah yang paling besar dan cas positif (+2) yang memudahkan perlanggaran dengan molekul udara.",
@@ -11550,7 +11550,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kuasa penembusan zarah alfa yang sangat tinggi membolehkannya menembusi dinding plumbum dengan mudah."
         ],
         "answerIndex": 1,
-        "explanation": "Zarah alfa mempunyai saiz zarah yang paling besar dan cas positif (+2) yang memudahkan perlanggaran dengan molekul udara.\n*Alpha particle has the largest particle size and positive charge (+2) that easily interacts with air molecules.*"
+        "explanation": "Zarah alfa mempunyai saiz zarah yang paling besar dan cas positif (+2) yang memudahkan perlanggaran dengan molekul udara. Alpha particle has the largest particle size and positive charge (+2) that easily interacts with air molecules."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q15",
@@ -11560,7 +11560,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Sebuah makmal penyelidikan nuklear mengkaji kuasa penembusan tiga jenis sinaran radioaktif. Hasil eksperimen menunjukkan keputusan berikut: * Sinaran K: Dihalang sepenuhnya oleh sehelai kertas nipis. * Sinaran L: Menembusi kertas tetapi dihalang sepenuhnya oleh kepingan aluminium setebal 3 mm. * Sinaran M: Menembusi kertas dan aluminium, tetapi dihalang oleh plumbum setebal 10 cm. Kenal pasti jenis sinaran K, L, dan M yang betul.",
+        "question": "Sebuah makmal penyelidikan nuklear mengkaji kuasa penembusan tiga jenis sinaran radioaktif. Hasil eksperimen menunjukkan keputusan berikut: Sinaran K: Dihalang sepenuhnya oleh sehelai kertas nipis. Sinaran L: Menembusi kertas tetapi dihalang sepenuhnya oleh kepingan aluminium setebal 3 mm. Sinaran M: Menembusi kertas dan aluminium, tetapi dihalang oleh plumbum setebal 10 cm. Kenal pasti jenis sinaran K, L, dan M yang betul.",
         "options": [
           "K = Beta, L = Alfa, M = Gama",
           "K = Alfa, L = Gama, M = Beta",
@@ -11568,7 +11568,7 @@ const scienceF3MasterQuizBanks: Partial<
           "K = Gama, L = Beta, M = Alfa"
         ],
         "answerIndex": 1,
-        "explanation": "K = Alfa, L = Gama, M = Beta\n*K = Alpha, L = Gamma, M = Beta*"
+        "explanation": "K = Alfa, L = Gama, M = Beta K = Alpha, L = Gamma, M = Beta"
       },
       {
         "id": "sci-f3-c8-set-b-bm-q16",
@@ -11578,15 +11578,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Rajah di bawah menunjukkan pesongan tiga jenis sinaran radioaktif di dalam sebuah medan elektrik. * Pancaran P: Dipesongkan dengan sudut kecil ke arah plat negatif. * Pancaran Q: Bergerak lurus tanpa sebarang pemesongan. * Pancaran R: Dipesongkan dengan sudut yang besar ke arah plat positif. Mengapakah sudut pesongan bagi Pancaran R adalah lebih besar berbanding Pancaran P?",
+        "question": "Dalam medan elektrik, sinar alfa terpesong sedikit ke arah plat negatif, sinar gama bergerak lurus dan sinar beta terpesong dengan lebih besar ke arah plat positif. Mengapakah pesongan sinar beta lebih besar daripada sinar alfa?",
         "options": [
-          "Pancaran R ialah sinar gama yang tidak mempunyai jisim atau cas elektrik.",
-          "Pancaran R terdiri daripada zarah beta (elektron) yang mempunyai jisim yang sangat ringan berbanding zarah alfa (Pancaran P) yang berat.",
-          "Plat positif mempunyai tarikan elektrik yang lebih kuat berbanding plat negatif.",
-          "Pancaran R dipengaruhi oleh rintangan udara yang sangat rendah semasa melintasi medan elektrik."
+          "Sinar beta ialah sinar gama yang tidak mempunyai jisim atau cas.",
+          "Zarah beta mempunyai jisim yang jauh lebih kecil daripada zarah alfa.",
+          "Plat positif mempunyai tarikan elektrik yang lebih kuat daripada plat negatif.",
+          "Sinar beta mengalami rintangan udara yang lebih rendah dalam medan elektrik."
         ],
         "answerIndex": 1,
-        "explanation": "Pancaran R terdiri daripada zarah beta (elektron) yang ringan berbanding zarah alfa (Pancaran P).\n*Pancaran R consists of beta particles (electrons) which are much lighter than alpha particles (Pancaran P).*"
+        "explanation": "Zarah beta jauh lebih ringan daripada zarah alfa, maka sinar beta dipesongkan dengan lebih besar. Beta particles are much lighter than alpha particles, so beta radiation is deflected more."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q17",
@@ -11604,7 +11604,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Bergerak lurus tanpa pemesongan"
         ],
         "answerIndex": 1,
-        "explanation": "Dipesongkan masuk ke dalam kertas.\n*Pulled into the page.*"
+        "explanation": "Dipesongkan masuk ke dalam kertas. Pulled into the page."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q18",
@@ -11622,7 +11622,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sisa radioaktif berbahaya yang dihasilkan daripada aktiviti stesen jana kuasa nuklear tempatan."
         ],
         "answerIndex": 2,
-        "explanation": "Sinaran bertenaga tinggi yang dihasilkan di luar Sistem Suria atau galaksi lain yang merentasi angkasa lepas ke Bumi.\n*High-energy rays produced outside the Solar System or from other galaxies that penetrate space to reach Earth.*"
+        "explanation": "Sinaran bertenaga tinggi yang dihasilkan di luar Sistem Suria atau galaksi lain yang merentasi angkasa lepas ke Bumi. High-energy rays produced outside the Solar System or from other galaxies that penetrate space to reach Earth."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q19",
@@ -11632,15 +11632,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Kadar dos sinaran latar belakang persekitaran diukur menggunakan alat pembilang Geiger. Dos yang kurang daripada $0.2\\ \\mu\\text{Sv/j}$ dianggap aras normal yang selamat bagi tubuh manusia. Berapakah nilai dos tahunan yang sepadan dengan aras selamat ini?",
+        "question": "Kadar dos sinaran latar belakang persekitaran diukur menggunakan alat pembilang Geiger. Dos yang kurang daripada 0.2 μSv/j dianggap aras normal yang selamat bagi tubuh manusia. Berapakah nilai dos tahunan yang sepadan dengan aras selamat ini?",
         "options": [
-          "$0.35\\text{ mSv/tahun}$",
-          "$1.00\\text{ mSv/tahun}$",
-          "$1.752\\text{ mSv/tahun}$",
-          "$5.50\\text{ mSv/tahun}$"
+          "0.35 mSv/tahun",
+          "1.00 mSv/tahun",
+          "1.752 mSv/tahun",
+          "5.50 mSv/tahun"
         ],
         "answerIndex": 2,
-        "explanation": "1.752 mSv/tahun.\n*1.752 mSv/year.*"
+        "explanation": "1.752 mSv/tahun. 1.752 mSv/year."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q20",
@@ -11650,7 +11650,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Mengikut data klinikal pendedahan sinaran radioaktif (Aktiviti 8.4), penyerapan dos sinaran yang terlampau tinggi mendatangkan kesan kesihatan yang sangat parah. Antara padanan dos sinaran dan kesan klinikal berikut, yang manakah salah?",
+        "question": "Padanan dos sinaran dengan kesan kesihatan yang manakah salah?",
         "options": [
           "Dos > 10 Sv: Menyebabkan kematian sel secara meluas dan membawa maut dalam beberapa minggu.",
           "Dos 1 Sv hingga 10 Sv: Menyebabkan penyakit radiasi akut (muntah-muntah, gugur rambut drastik, leukemia).",
@@ -11658,7 +11658,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Dos < 0.1 Sv: Membawa maut serta-merta akibat kegagalan organ jantung berfungsi."
         ],
         "answerIndex": 3,
-        "explanation": "Dos < 0.1 Sv: Tidak membawa maut serta-merta, tetapi risiko menghidap penyakit kanser meningkat.\n*Dos < 0.1 Sv: Does not cause immediate death, but increases the risk of cancer over time.*"
+        "explanation": "Dos < 0.1 Sv: Tidak membawa maut serta-merta, tetapi risiko menghidap penyakit kanser meningkat. Dos < 0.1 Sv: Does not cause immediate death, but increases the risk of cancer over time."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q21",
@@ -11676,7 +11676,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Proses pembusukan meningkatkan separuh hayat Karbon-14 sehingga mencapai sejuta tahun."
         ],
         "answerIndex": 1,
-        "explanation": "Pengambilan Karbon-14 berhenti selepas organisma mati, dan Karbon-14 yang sedia ada mereput secara spontan.\n*After an organism dies, carbon-14 uptake stops, and the existing carbon-14 decays spontaneously.*"
+        "explanation": "Pengambilan Karbon-14 berhenti selepas organisma mati, dan Karbon-14 yang sedia ada mereput secara spontan. After an organism dies, carbon-14 uptake stops, and the existing carbon-14 decays spontaneously."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q22",
@@ -11686,7 +11686,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Dalam bidang perindustrian, sinar beta (\\(\\beta\\)) digunakan dalam sistem kawalan ketebalan kepingan logam secara automatik. Mengapakah sinar alfa (\\(\\alpha\\)) dan sinar gama (\\(\\gamma\\)) tidak sesuai digunakan untuk tujuan ini?",
+        "question": "Dalam bidang perindustrian, sinar beta (\\(β\\)) digunakan dalam sistem kawalan ketebalan kepingan logam secara automatik. Mengapakah sinar alfa (\\(α\\)) dan sinar gama (\\(γ\\)) tidak sesuai digunakan untuk tujuan ini?",
         "options": [
           "Sinar alfa terlalu bertenaga tinggi, manakala sinar gama diserap sepenuhnya oleh kepingan logam nipis.",
           "Sinar alfa dihalang sepenuhnya oleh kepingan logam nipis (tiada bacaan dikesan), manakala sinar gama menembusi logam tanpa sebarang perubahan bacaan yang sensitif.",
@@ -11694,7 +11694,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sinar beta adalah satu-satunya sinaran yang boleh bergerak dalam orbit bulatan mengelilingi penggelek logam."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar alfa dihalang oleh logam nipis, manakala sinar gama menembusi tanpa perubahan bacaan.\n*Alpha rays are stopped by thin metal sheets, while gamma rays pass through without changing the reading.*"
+        "explanation": "Sinar alfa dihalang oleh logam nipis, manakala sinar gama menembusi tanpa perubahan bacaan. Alpha rays are stopped by thin metal sheets, while gamma rays pass through without changing the reading."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q23",
@@ -11712,7 +11712,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mempercepatkan kadar fotosintesis tumbuhan pada waktu malam tanpa bantuan cahaya."
         ],
         "answerIndex": 2,
-        "explanation": "P-32 digunakan untuk mengesan penyerapan fosfat oleh akar tumbuhan.\n*P-32 is used to trace the uptake of phosphate by plant roots.*"
+        "explanation": "P-32 digunakan untuk mengesan penyerapan fosfat oleh akar tumbuhan. P-32 is used to trace the uptake of phosphate by plant roots."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q24",
@@ -11730,7 +11730,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Logo MyOrganic"
         ],
         "answerIndex": 2,
-        "explanation": "Logo Radura wajib dilekatkan pada makanan yang diperparah dengan sinar gama.\n*The Radura logo must be placed on food irradiated with gamma rays.*"
+        "explanation": "Logo Radura wajib dilekatkan pada makanan yang diperparah dengan sinar gama. The Radura logo must be placed on food irradiated with gamma rays."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q25",
@@ -11748,7 +11748,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Berperanan sebagai kunci keselamatan elektronik untuk membuka pintu bilik stor simpanan plumbum."
         ],
         "answerIndex": 1,
-        "explanation": "Lencana Sinaran mengandungi filem sensitif untuk mengesan dos sinaran.\n*The dosimeter contains sensitive film to measure radiation dose.*"
+        "explanation": "Lencana Sinaran mengandungi filem sensitif untuk mengesan dos sinaran. The dosimeter contains sensitive film to measure radiation dose."
       }
     ],
     "dlp": [
@@ -11768,7 +11768,7 @@ const scienceF3MasterQuizBanks: Partial<
           "A 3 mm thick lead umbrella is sufficient to block CME radiation."
         ],
         "answerIndex": 1,
-        "explanation": "CME membebaskan sinar gama yang berkuasa, yang hanya boleh diadang dengan payung plumbum tebal, walaupun tidak praktikal.\n*CME releases powerful gamma rays, which can only be effectively shielded by thick lead shields, though impractical due to lead's weight and toxicity.*"
+        "explanation": "CME membebaskan sinar gama yang berkuasa, yang hanya boleh diadang dengan payung plumbum tebal, walaupun tidak praktikal. CME releases powerful gamma rays, which can only be effectively shielded by thick lead shields, though impractical due to lead's weight and toxicity."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q2",
@@ -11780,13 +11780,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "The history of radioactivity discovery involves several scientific figures who discovered key phenomena accidentally. Which pairing is correct for the scientist and their first historical milestone?",
         "options": [
-          "Antoine Henri Becquerel $\\rightarrow$ Found polonium and radium from pitchblende.",
-          "Marie Curie $\\rightarrow$ Found X-rays accidentally while studying cathode rays.",
-          "Wilhelm Roentgen $\\rightarrow$ Found X-rays accidentally that can penetrate thin paper and turn black on photographic plates.",
-          "Pierre Curie $\\rightarrow$ The first to establish the unit Becquerel (Bq) as a unit of SI for radioactivity."
+          "Antoine Henri Becquerel → Found polonium and radium from pitchblende.",
+          "Marie Curie → Found X-rays accidentally while studying cathode rays.",
+          "Wilhelm Roentgen → Found X-rays accidentally that can penetrate thin paper and turn black on photographic plates.",
+          "Pierre Curie → The first to establish the unit Becquerel (Bq) as a unit of SI for radioactivity."
         ],
         "answerIndex": 2,
-        "explanation": "Wilhelm Roentgen menemui sinar-X secara tidak sengaja semasa mengkaji tiub sinar katod.\n*Wilhelm Roentgen accidentally discovered X-rays while studying cathode ray tubes.*"
+        "explanation": "Wilhelm Roentgen menemui sinar-X secara tidak sengaja semasa mengkaji tiub sinar katod. Wilhelm Roentgen accidentally discovered X-rays while studying cathode ray tubes."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q3",
@@ -11804,7 +11804,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Seeing the continuous emission of light from radium."
         ],
         "answerIndex": 1,
-        "explanation": "Becquerel mengesan pancaran radioaktif secara tidak sengaja melalui kesan penghitaman plat fotografi yang disimpan di laci gelap.\n*Becquerel accidentally discovered radioactivity by observing the darkroom-kept photographic plate exposed to uranium.*"
+        "explanation": "Becquerel mengesan pancaran radioaktif secara tidak sengaja melalui kesan penghitaman plat fotografi yang disimpan di laci gelap. Becquerel accidentally discovered radioactivity by observing the darkroom-kept photographic plate exposed to uranium."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q4",
@@ -11818,11 +11818,11 @@ const scienceF3MasterQuizBanks: Partial<
         "options": [
           "Uranium-238 and Torium-234",
           "Carbon-14 and Radon-222",
-          "*Polonium dan Radium*",
+          "Polonium dan Radium",
           "Kobalt-60 dan Seseh-137"
         ],
         "answerIndex": 2,
-        "explanation": "Marie dan Pierre Curie mengekstrak polonium dan radium daripada bijih picblend.\n*Marie and Pierre Curie extracted polonium and radium from pitchblende ore.*"
+        "explanation": "Marie dan Pierre Curie mengekstrak polonium dan radium daripada bijih picblend. Marie and Pierre Curie extracted polonium and radium from pitchblende ore."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q5",
@@ -11840,7 +11840,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Masa yang diambil untuk suatu zarah beta untuk menembusi separuh daripada ketebalan adangan plumbum."
         ],
         "answerIndex": 1,
-        "explanation": "Keradioaktifan adalah proses perebutan nukleus yang tidak stabil dengan memancarkan sinaran radioaktif untuk menjadi lebih stabil.\n*Radioactivity is the spontaneous decay of an unstable nucleus by emitting radiation to become more stable.*"
+        "explanation": "Keradioaktifan adalah proses perebutan nukleus yang tidak stabil dengan memancarkan sinaran radioaktif untuk menjadi lebih stabil. Radioactivity is the spontaneous decay of an unstable nucleus by emitting radiation to become more stable."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q6",
@@ -11850,15 +11850,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "The spontaneous decay diagram of Uranium-238 shows the emission of an alpha ($\\alpha$) particle. Which of the following correctly describes the properties of the emitted alpha particle?",
+        "question": "Uranium-238 decays into thorium-234 and releases an alpha particle. Which statement correctly describes the alpha particle?",
         "options": [
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum."
+          "It is a high-speed electron from an outer electron shell.",
+          "It is a very high-frequency electromagnetic wave with no electric charge.",
+          "It is a helium nucleus made of two protons and two neutrons, with a charge of +2.",
+          "It is a neutral particle with the same mass as a hydrogen atom."
         ],
         "answerIndex": 2,
-        "explanation": "Zarah alfa adalah nukleus helium dengan 2 proton dan 2 neutron, membawa cas positif.\n*Alpha particle is a helium nucleus with 2 protons and 2 neutrons, carrying a positive charge.*"
+        "explanation": "Zarah alfa adalah nukleus helium dengan 2 proton dan 2 neutron, membawa cas positif. Alpha particle is a helium nucleus with 2 protons and 2 neutrons, carrying a positive charge."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q7",
@@ -11870,13 +11870,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "In a series of nuclear decays, Thorium-234 spontaneously decays into Protactinium-234 by emitting a type of radioactive radiation. What is radiation X released in this decay?",
         "options": [
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum."
+          "An alpha particle with a positive charge.",
+          "A beta particle, which is a high-speed electron produced when a neutron changes into a proton.",
+          "Gamma radiation, which causes no change in the number of protons or neutrons.",
+          "An X-ray produced by the excitation of electrons in an atomic shell."
         ],
         "answerIndex": 1,
-        "explanation": "Sinaran X yang dibebaskan ialah zarah beta yang merupakan elektron berhalaju tinggi.\n*The emitted radiation is beta particle, a high-speed electron.*"
+        "explanation": "Sinaran X yang dibebaskan ialah zarah beta yang merupakan elektron berhalaju tinggi. The emitted radiation is beta particle, a high-speed electron."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q8",
@@ -11886,15 +11886,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "An excited (unstable) Cobalt-60* nucleus undergoes radioactive decay to reach a more stable Cobalt-60 state. What is the main characteristic of radiation Y released in this process?",
+        "question": "An excited (unstable) Cobalt-60 nucleus undergoes radioactive decay to reach a more stable Cobalt-60 state. What is the main characteristic of radiation Y released in this process?",
         "options": [
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum."
+          "It has a positive charge and bends towards the negative plate in an electric field.",
+          "It is gamma radiation, a high-frequency electromagnetic wave with no charge that does not change the number of protons or neutrons.",
+          "It has very high ionising power and is completely stopped by paper.",
+          "It is a stream of electrons that bends strongly towards the positive plate in an electric field."
         ],
         "answerIndex": 1,
-        "explanation": "Sinaran Y ialah sinar gama yang tidak membawa sebarang cas dan tidak mengubah bilangan proton atau neutron.\n*Y radiation is gamma ray, which carries no charge and does not change the number of protons or neutrons.*"
+        "explanation": "Sinaran Y ialah sinar gama yang tidak membawa sebarang cas dan tidak mengubah bilangan proton atau neutron. Y radiation is gamma ray, which carries no charge and does not change the number of protons or neutrons."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q9",
@@ -11904,15 +11904,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "The decay rate or activity of a radioactive substance is measured in Curie (Ci) or S.I. unit Becquerel (Bq). If a radioactive sample records an activity of $2.0\\text{ Ci}$, what is its activity value in Becquerel (Bq)?",
+        "question": "The decay rate or activity of a radioactive substance is measured in Curie (Ci) or S.I. unit Becquerel (Bq). If a radioactive sample records an activity of 2.0 Ci, what is its activity value in Becquerel (Bq)?",
         "options": [
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum."
+          "2.0 Bq",
+          "7.4 × 10¹⁰ Bq",
+          "3.7 × 10¹⁰ Bq",
+          "1.85 × 10¹⁰ Bq"
         ],
         "answerIndex": 1,
-        "explanation": "2.0 Ci sama dengan 7.4 x 10^10 Bq.\n*2.0 Ci equals 7.4 x 10^10 Bq.*"
+        "explanation": "2.0 Ci sama dengan 7.4 x 10¹0 Bq. 2.0 Ci equals 7.4 x 10¹0 Bq."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q10",
@@ -11922,15 +11922,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Half-life ($T_{\\frac{1}{2}}$) is an important parameter in studying the rate of radioactive decay. Which of the following statements defines the meaning of half-life most accurately?",
+        "question": "Half-life (T_(1/2)) is an important parameter in studying the rate of radioactive decay. Which of the following statements defines the meaning of half-life most accurately?",
         "options": [
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum."
+          "Half of the time required for a radioactive substance to decay completely.",
+          "The time taken for the number of undecayed nuclei to fall to half its original value.",
+          "The time taken by an alpha particle to penetrate half the thickness of a lead barrier.",
+          "The average number of atoms that decay in one hour at room temperature."
         ],
         "answerIndex": 1,
-        "explanation": "Separuh hayat ialah tempoh masa yang diambil untuk bilangan nukleus yang belum mereput berkurang menjadi setengah daripada nilai asalnya.\n*Half-life is the period of time for the number of undecayed nuclei to reduce to half of its original value.*"
+        "explanation": "Separuh hayat ialah tempoh masa yang diambil untuk bilangan nukleus yang belum mereput berkurang menjadi setengah daripada nilai asalnya. Half-life is the period of time for the number of undecayed nuclei to reduce to half of its original value."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q11",
@@ -11940,15 +11940,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "A radioactive sample of Protactinium-234 (Pa-234) kept in a laboratory has a half-life, $T_{\\frac{1}{2}}$ of $5.2\\text{ hours}$. If the original mass of the Pa-234 sample is $80\\text{ g}$, what is the mass of Pa-234 that has not decayed (remains) after $20.8\\text{ hours}$?",
+        "question": "A radioactive sample of Protactinium-234 (Pa-234) kept in a laboratory has a half-life, T_(1/2) of 5.2 hours. If the original mass of the Pa-234 sample is 80 g, what is the mass of Pa-234 that has not decayed (remains) after 20.8 hours?",
         "options": [
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "*$5\\text{ g}$*",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum."
+          "40 g",
+          "10 g",
+          "5 g",
+          "2.5 g"
         ],
-        "answerIndex": 0,
-        "explanation": "Jisim Pa-234 yang tinggal selepas 20.8 jam ialah 40 g. Kita perlu mengira 2 separuh hayat, yang setara dengan 10.4 jam, dan 20.8/10.4 = 2 kali separuh hayat, menjadikan jisim tinggal 40 g.\n*The remaining Pa-234 after 20.8 hours is 40 g. We need to calculate 2 half-lives, which is 10.4 hours, and 20.8/10.4 = 2 times the half-life, making the remaining mass 40 g.*"
+        "answerIndex": 2,
+        "explanation": "20.8 jam bersamaan empat separuh hayat. Jisim yang tinggal ialah 80 ÷ 2⁴ = 5 g. 20.8 hours is four half-lives, so the remaining mass is 80 ÷ 2⁴ = 5 g."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q12",
@@ -11958,15 +11958,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "The graph below shows the curve of activity against time for a radioactive substance P. What is the correct method to determine the half-life of the radioactive substance P graphically?",
+        "question": "The initial activity of a radioactive substance is 800 Bq and decreases over time. How is its half-life determined from an activity-against-time graph?",
         "options": [
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah gamma untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Read the first minute's activity value and divide by 2.",
-          "Take the maximum value on the X-axis and multiply by the factor $\frac{1}{2}$."
+          "Find the time at which the activity reaches zero.",
+          "Locate 400 Bq on the activity axis, move across to the curve, then read the corresponding time.",
+          "Read the activity after one minute and divide it by two.",
+          "Take half of the maximum time shown on the time axis."
         ],
         "answerIndex": 1,
-        "explanation": "Cari nilai 400 Bq pada paksi-Y, gerakkan garisan mengufuk ke lengkung graf, dan baca nilai masa yang sepadan pada paksi-X untuk menentukan separuh hayat.\n*Find the 400 Bq value on the Y-axis, draw a horizontal line to the curve, and read the corresponding time value on the X-axis to determine the half-life.*"
+        "explanation": "Cari nilai 400 Bq pada paksi-Y, gerakkan garisan mengufuk ke lengkung graf, dan baca nilai masa yang sepadan pada paksi-X untuk menentukan separuh hayat. Find the 400 Bq value on the Y-axis, draw a horizontal line to the curve, and read the corresponding time value on the X-axis to determine the half-life."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q13",
@@ -11984,7 +11984,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Because all atoms have the same size and mass without considering the type of element."
         ],
         "answerIndex": 1,
-        "explanation": "Teori Dalton dianggap tidak tepat kerana atom terdiri daripada zarah subatom yang lebih kecil iaitu proton, neutron, dan elektron.\n*Dalton's theory is considered incorrect because atoms are composed of smaller subatomic particles, namely protons, neutrons, and electrons.*"
+        "explanation": "Teori Dalton dianggap tidak tepat kerana atom terdiri daripada zarah subatom yang lebih kecil iaitu proton, neutron, dan elektron. Dalton's theory is considered incorrect because atoms are composed of smaller subatomic particles, namely protons, neutrons, and electrons."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q14",
@@ -11994,15 +11994,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "A neutral atom can form a positive ion (cation). How does a neutral sodium atom ($\\text{Na}$) transform into a sodium ion ($\\text{Na}^+$)?",
+        "question": "A neutral atom can form a positive ion (cation). How does a neutral sodium atom (Na) transform into a sodium ion (Na⁺)?",
         "options": [
-          "With the addition of one proton to the nucleus, making the bare charge $+1$.",
-          "With the loss of one electron from the outer shell, causing the number of protons (11p, bare charge $+11$) to exceed the number of electrons (10e, bare charge $-10$) with bare charge $+1$.",
+          "With the addition of one proton to the nucleus, making the bare charge +1.",
+          "With the loss of one electron from the outer shell, causing the number of protons (11p, bare charge +11) to exceed the number of electrons (10e, bare charge -10) with bare charge +1.",
           "With the spontaneous emission of a neutron from the nucleus.",
           "With the sharing of two electrons covalently with chlorine atoms."
         ],
         "answerIndex": 1,
-        "explanation": "Atom natrium bertukar menjadi ion natrium (+1) dengan menderma 1 elektron daripada petala luar.\n*Neutral sodium atom becomes sodium ion (+1) by losing one electron from the outer shell.*"
+        "explanation": "Atom natrium bertukar menjadi ion natrium (+1) dengan menderma 1 elektron daripada petala luar. Neutral sodium atom becomes sodium ion (+1) by losing one electron from the outer shell."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q15",
@@ -12012,15 +12012,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "The term negative ion (anion) refers to a subatomic particle with a net negative charge. The table below shows the formation of chloride ion, $\\text{Cl}^-$ from a neutral chlorine atom. What is the mechanism that causes the formation of the net $-1$ charge on the chloride ion?",
+        "question": "A chlorine atom has 17 protons and 17 electrons. A chloride ion has 17 protons and 18 electrons. How is the ion with a -1 charge formed?",
         "options": [
           "Chlorine atoms lose a proton from the nucleus to another atom.",
-          "Chlorine atoms receive (obtain) 1 additional electron, causing the number of electrons (18, bare charge $-18$) to exceed the number of protons (17, bare charge $+17$) with a difference of $-1$.",
+          "Chlorine atoms receive (obtain) 1 additional electron, causing the number of electrons (18, bare charge -18) to exceed the number of protons (17, bare charge +17) with a difference of -1.",
           "Chlorine atoms experience spontaneous beta decay, changing a neutron into an electron.",
           "The nucleus of a chlorine atom attracts a positive charge out of the field through osmosis."
         ],
         "answerIndex": 1,
-        "explanation": "Ion klorida terbentuk apabila atom klorin menerima 1 elektron tambahan, menjadikan bilangan elektron melebihi bilangan proton dengan beza cas -1.\n*Chloride ion is formed when the chlorine atom accepts an additional electron, making the number of electrons exceed the number of protons by a charge difference of -1.*"
+        "explanation": "Ion klorida terbentuk apabila atom klorin menerima 1 elektron tambahan, menjadikan bilangan elektron melebihi bilangan proton dengan beza cas -1. Chloride ion is formed when the chlorine atom accepts an additional electron, making the number of electrons exceed the number of protons by a charge difference of -1."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q16",
@@ -12038,7 +12038,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Infrared light, visible light, gamma rays."
         ],
         "answerIndex": 2,
-        "explanation": "Sinar ultraungu, sinar-X, dan sinar gama dikelaskan sebagai sinaran mengion.\n*Ultraviolet, X-rays, and gamma rays are classified as ionizing radiation.*"
+        "explanation": "Sinar ultraungu, sinar-X, dan sinar gama dikelaskan sebagai sinaran mengion. Ultraviolet, X-rays, and gamma rays are classified as ionizing radiation."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q17",
@@ -12048,7 +12048,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Three types of natural ionising radiation ($\\alpha, \\beta, \\gamma$) have vastly different ionising powers. Why does alpha radiation ($\\alpha$) have the highest ionising power compared to beta and gamma radiation?",
+        "question": "Three types of natural ionising radiation (α, β, γ) have vastly different ionising powers. Why does alpha radiation (α) have the highest ionising power compared to beta and gamma radiation?",
         "options": [
           "Because alpha rays have the same energy as the speed of visible light.",
           "Because alpha particles have the largest (high mass) atomic radius and carry a positive charge (+2), making it easier to violate physical laws and transfer energy to release electrons from air molecules.",
@@ -12056,7 +12056,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Because it is an electromagnetic wave with the shortest wavelength."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar alfa mempunyai saiz zarah yang paling besar dan membawa cas positif (+2), yang memudahkan perlanggaran fizikal dan pemindahan tenaga.\n*Alpha rays have the largest particle size and a +2 charge, making it easier for physical penetration and energy transfer.*"
+        "explanation": "Sinar alfa mempunyai saiz zarah yang paling besar dan membawa cas positif (+2), yang memudahkan perlanggaran fizikal dan pemindahan tenaga. Alpha rays have the largest particle size and a +2 charge, making it easier for physical penetration and energy transfer."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q18",
@@ -12066,15 +12066,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "The diagram shows an experiment studying the penetration power of three types of radioactive radiation through three different types of physical barriers with varying thicknesses. Which of the following pairings correctly shows the maximum barrier limit for alpha, beta, and gamma radiation?",
+        "question": "Three barriers are tested: thin paper, 3 mm aluminium and 10 cm lead. Which option correctly matches a suitable barrier to alpha, beta and gamma radiation?",
         "options": [
-          "Alpha $\rightarrow$ Admitted by a thick block of lead; Beta $\rightarrow$ Admitted by paper; Gamma $\rightarrow$ Admitted by aluminum.",
-          "Alpha $\rightarrow$ Admitted by aluminum; Beta $\rightarrow$ Admitted by lead; Gamma $\rightarrow$ Admitted by paper.",
-          "Alpha $\rightarrow$ Admitted by a piece of paper; Beta $\rightarrow$ Admitted by a 3 mm aluminum piece; Gamma $\rightarrow$ Admitted by a lead sheet 10 cm thick or concrete thick.",
-          "The three rays are admitted entirely by a piece of paper because their spacing is the same."
+          "Alpha: thick lead; beta: paper; gamma: aluminium",
+          "Alpha: aluminium; beta: lead; gamma: paper",
+          "Alpha: paper; beta: 3 mm aluminium; gamma: 10 cm lead or thick concrete",
+          "All three types are completely stopped by paper."
         ],
         "answerIndex": 2,
-        "explanation": "Sinar alfa diadang oleh kertas, beta oleh aluminium 3 mm, dan gama oleh plumbum 10 cm atau konkrit tebal.\n*Alpha rays are stopped by a piece of paper, beta rays by 3 mm of aluminum, and gamma rays by 10 cm of lead or thick concrete.*"
+        "explanation": "Sinar alfa diadang oleh kertas, beta oleh aluminium 3 mm, dan gama oleh plumbum 10 cm atau konkrit tebal. Alpha rays are stopped by a piece of paper, beta rays by 3 mm of aluminum, and gamma rays by 10 cm of lead or thick concrete."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q19",
@@ -12084,15 +12084,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "The diagram below shows the deflection pattern of three types of radioactive radiation when passing through an electric field between two oppositely charged metal plates (positive plate at the bottom, negative plate at the top). Which of the following statements correctly explains the deflection pattern?",
+        "question": "Alpha, beta and gamma radiation pass through an electric field between a positive plate below and a negative plate above. Which statement about their deflection is correct?",
         "options": [
-          "Alpha rays are removed from the positive plate because they have a negative charge, while beta rays are removed from the negative plate because they carry a negative charge, with the angle of deflection being large due to the extremely light mass of electrons.",
-          "Gamma rays are removed from the negative plate because they are attracted by the strong gravitational pull of the Earth.",
-          "Alpha rays and beta rays move in a straight line without being admitted because both are neutral.",
-          "Alpha rays are admitted onto the positive plate because they have a negative charge, while beta rays are admitted onto the negative plate because they carry a negative charge, with the angle of deflection being large due to the extremely light mass of electrons."
+          "Alpha radiation bends towards the positive plate because it is negatively charged.",
+          "Beta radiation bends strongly towards the positive plate because it is negatively charged and has a very small mass.",
+          "Gamma radiation bends towards the negative plate because of Earth's gravity.",
+          "Alpha and beta radiation travel straight because both are neutral."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar beta dipesongkan ke plat positif kerana membawa cas negatif, dengan sudut pesongan yang besar disebabkan jisim elektron yang sangat ringan.\n*Beta rays are deflected towards the positive plate because they carry a negative charge, with a large deflection angle due to their very light mass.*"
+        "explanation": "Sinar beta dipesongkan ke plat positif kerana membawa cas negatif, dengan sudut pesongan yang besar disebabkan jisim elektron yang sangat ringan. Beta rays are deflected towards the positive plate because they carry a negative charge, with a large deflection angle due to their very light mass."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q20",
@@ -12104,13 +12104,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "The quantity of background radiation absorbed by human body tissue is measured as a radiation dose. What is the physical definition of 1 Sievert (1 Sv) as the unit of background radiation dose absorption?",
         "options": [
-          "The radioactive decay of 3.7 x 10^10 radioactive atoms in 1 second.",
+          "The radioactive decay of 3.7 x 10¹0 radioactive atoms in 1 second.",
           "1 Joule of ionizing radiation absorbed by 1 kilogram of living tissue.",
           "The amount of alpha particles released by 1 gram of radium in 1 hour.",
           "The intensity of gamma radiation penetrating a 1-meter-thick lead sheet."
         ],
         "answerIndex": 1,
-        "explanation": "1 Sievert adalah unit dos penyerapan sinaran mengion yang menyatakan 1 Joule tenaga sinaran mengion yang diserap oleh 1 kilogram tisu hidup.\n*1 Sievert is a unit of absorbed radiation dose that represents 1 Joule of ionizing radiation energy absorbed by 1 kilogram of living tissue.*"
+        "explanation": "1 Sievert adalah unit dos penyerapan sinaran mengion yang menyatakan 1 Joule tenaga sinaran mengion yang diserap oleh 1 kilogram tisu hidup. 1 Sievert is a unit of absorbed radiation dose that represents 1 Joule of ionizing radiation energy absorbed by 1 kilogram of living tissue."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q21",
@@ -12128,7 +12128,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Between 1 Sv/j and 5 Sv/j for school areas."
         ],
         "answerIndex": 1,
-        "explanation": "Kadar dos sinaran latar belakang harian yang selamat adalah kurang daripada 0.2 μSv/j (1.752 mSv/tahun).\n*The safe daily background radiation dose rate is less than 0.2 μSv/j (1.752 mSv/year).*"
+        "explanation": "Kadar dos sinaran latar belakang harian yang selamat adalah kurang daripada 0.2 μSv/j (1.752 mSv/tahun). The safe daily background radiation dose rate is less than 0.2 μSv/j (1.752 mSv/year)."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q22",
@@ -12138,15 +12138,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "The diagram below shows the estimated ionising radiation dose rate from various daily activities or environments. Why do commercial flight crews (pilots and flight attendants) have strict maximum annual working hours limits in the air?",
+        "question": "Why must the annual flying hours of flight crews be limited?",
         "options": [
           "Because they work in an environment with extremely high atmospheric pressure that can damage the eardrum.",
-          "Because at very high altitudes, the radiation from cosmic rays with high energy in space increases significantly, causing the accumulated dose to exceed safety limits.",
+          "At high altitude, exposure to cosmic radiation increases and the accumulated dose may exceed safe limits.",
           "Carbon monoxide gas from jet engine exhaust accumulates in the cabin.",
           "They are exposed to radiation and harm from dust continuously."
         ],
         "answerIndex": 1,
-        "explanation": "Krew penerbangan komersial mempunyai had masa maksimum kerana pendedahan terhadap sinaran kosmik bertenaga tinggi dari angkasa lepas meningkat di altitud tinggi.\n*Crew members of commercial flights have strict maximum working hours because the exposure to high-energy cosmic rays from space increases at high altitudes.*"
+        "explanation": "Krew penerbangan komersial mempunyai had masa maksimum kerana pendedahan terhadap sinaran kosmik bertenaga tinggi dari angkasa lepas meningkat di altitud tinggi. Crew members of commercial flights have strict maximum working hours because the exposure to high-energy cosmic rays from space increases at high altitudes."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q23",
@@ -12164,7 +12164,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The age of fossils is measured by the amount of dissolved molecules of water passing through the fossil's cell membrane."
         ],
         "answerIndex": 1,
-        "explanation": "Usia fosil purba ditentukan dengan pentarikan Karbon-14, di mana kandungan Karbon-14 yang radioaktif di dalam tisu mula mereput secara spontan.\n*The age of ancient fossils is determined by Carbon-14 dating, where the radioactive Carbon-14 in the tissue decays spontaneously.*"
+        "explanation": "Usia fosil purba ditentukan dengan pentarikan Karbon-14, di mana kandungan Karbon-14 yang radioaktif di dalam tisu mula mereput secara spontan. The age of ancient fossils is determined by Carbon-14 dating, where the radioactive Carbon-14 in the tissue decays spontaneously."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q24",
@@ -12174,15 +12174,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "In the industrial sector, beta radiation ($\\beta$) is widely used in automatic metal sheet thickness control systems. Why is beta radiation chosen for this application instead of alpha or gamma radiation?",
+        "question": "In the industrial sector, beta radiation (β) is widely used in automatic metal sheet thickness control systems. Why is beta radiation chosen for this application instead of alpha or gamma radiation?",
         "options": [
-          "Sodium-24 ($^{24}$Na) is used by archaeologists to determine the age of fossil bones.",
+          "Sodium-24 (²⁴Na) is used by archaeologists to determine the age of fossil bones.",
           "Cesium-137 (Cs-137) or Cobalt-60 (Co-60) emits high-energy gamma rays to kill cancer cells in radiotherapy.",
-          "Iodine-131 ($^{131}$I) is used as a tracer in metal to measure the amount of metal absorbed by plant roots.",
-          "Technetium-99 ($^{99}$Tc) is used to stabilize the thickness of metal sheets in a kiln."
+          "Iodine-131 (¹³¹I) is used as a tracer in metal to measure the amount of metal absorbed by plant roots.",
+          "Technetium-99 (⁹⁹Tc) is used to stabilize the thickness of metal sheets in a kiln."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar beta dipilih kerana ia mempunyai penembusan yang peka terhadap perubahan ketebalan logam nipis, membolehkan pengawalan ketebalan yang tepat.\n*Beta rays are chosen because they have a sensitive penetration that can detect small changes in thin metal sheets, allowing precise thickness control.*"
+        "explanation": "Sinar beta dipilih kerana ia mempunyai penembusan yang peka terhadap perubahan ketebalan logam nipis, membolehkan pengawalan ketebalan yang tepat. Beta rays are chosen because they have a sensitive penetration that can detect small changes in thin metal sheets, allowing precise thickness control."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q25",
@@ -12200,7 +12200,7 @@ const scienceF3MasterQuizBanks: Partial<
           "3.8 mSv/year"
         ],
         "answerIndex": 1,
-        "explanation": "Sesium-137 atau Kobalt-60 memancarkan sinar gama bertenaga tinggi untuk pengobatan kanser.\n*Sodium-137 or Cobalt-60 emit high-energy gamma rays for cancer treatment.*"
+        "explanation": "Sesium-137 atau Kobalt-60 memancarkan sinar gama bertenaga tinggi untuk pengobatan kanser. Sodium-137 or Cobalt-60 emit high-energy gamma rays for cancer treatment."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q1",
@@ -12210,15 +12210,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "A commercial airline pilot works in the air for 600 hours per year. If the average cosmic radiation dose rate at that flight altitude is $0.003\\text{ mSv/hour}$ while the average background radiation rate on land is $0.8\\text{ mSv/year}$, what is the estimated total annual dose received by the pilot?",
+        "question": "A pilot spends 600 hours in the air each year. If the cosmic-radiation dose rate at flight altitude is 0.003 mSv per hour, what dose is received during flights in one year?",
         "options": [
-          "The cathode ray tube emits a green light beam that penetrates a black sheet.",
-          "Uranium decay produces a spontaneous blackening of the film in the dark cabinet.",
-          "Uranium decay produces a spontaneous blackening of the film in the dark cabinet.",
-          "Uranium decay produces a spontaneous blackening of the film in the dark cabinet."
+          "1.0 mSv per year",
+          "1.8 mSv per year",
+          "2.6 mSv per year",
+          "3.8 mSv per year"
         ],
         "answerIndex": 1,
-        "explanation": "Kadar sinaran kosmik dikalikan jam terbang, ditambah sinaran latar belakang: 0.003 × 600 + 0.8 = 1.8 mSv/tahun.\n*Calculate cosmic radiation dose for flight time, then add background radiation: 0.003 × 600 + 0.8 = 1.8 mSv/year.*"
+        "explanation": "Kadar sinaran kosmik dikalikan jam terbang, ditambah sinaran latar belakang: 0.003 × 600 + 0.8 = 1.8 mSv/tahun. Calculate cosmic radiation dose for flight time, then add background radiation: 0.003 × 600 + 0.8 = 1.8 mSv/year."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q2",
@@ -12230,13 +12230,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "In 1896, Antoine Henri Becquerel discovered radioactivity by accident. Which of the following was the main observation in his experiment that led to this discovery?",
         "options": [
-          "Uranium decay produces a spontaneous blackening of the film in the dark cabinet.",
-          "Uranium decay produces a spontaneous blackening of the film in the dark cabinet.",
-          "A gold-coated electroscope rapidly discharges when brought close to fire.",
-          "Picblend ore produces positive ions that can attract electrons from neutral air."
+          "A cathode-ray tube produced a green beam that penetrated black paper.",
+          "A uranium compound emitted radiation that darkened a photographic plate kept in a dark drawer.",
+          "A charged gold-leaf electroscope discharged rapidly when placed near a flame.",
+          "Pitchblende produced positive particles that attracted electrons from neutral air."
         ],
         "answerIndex": 1,
-        "explanation": "Plat fotografi di dalam laci gelap menghitamkan kerana uranium membebaskan pancaran spontan.\n*The photographic plate darkened in the dark drawer due to spontaneous radiation from uranium.*"
+        "explanation": "Plat fotografi di dalam laci gelap menghitamkan kerana uranium membebaskan pancaran spontan. The photographic plate darkened in the dark drawer due to spontaneous radiation from uranium."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q3",
@@ -12254,7 +12254,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The ability of polonium to continuously produce extremely high radiation."
         ],
         "answerIndex": 1,
-        "explanation": "Curie menggunakan keupayaan pancaran menembusi plumbum tebal untuk membuktikan keradioaktifan.\n*Curie used the ability of radiation to penetrate thick lead to prove radioactivity.*"
+        "explanation": "Curie menggunakan keupayaan pancaran menembusi plumbum tebal untuk membuktikan keradioaktifan. Curie used the ability of radiation to penetrate thick lead to prove radioactivity."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q4",
@@ -12264,7 +12264,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "When a Uranium-238 nucleus having 92 protons and 146 neutrons undergoes alpha (\\(\\alpha\\)) decay, it produces a Thorium-234 nucleus. Which of the following is the correct combination of the number of protons and neutrons for Thorium-234 and the released particle?",
+        "question": "When a Uranium-238 nucleus having 92 protons and 146 neutrons undergoes alpha (\\(α\\)) decay, it produces a Thorium-234 nucleus. Which of the following is the correct combination of the number of protons and neutrons for Thorium-234 and the released particle?",
         "options": [
           "Thorium-234 (90p, 144n); Alpha particle (2p, 2n)",
           "Thorium-234 (91p, 143n); Beta particle (electron)",
@@ -12272,7 +12272,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Thorium-234 (92p, 144n); Gamma ray (wave)"
         ],
         "answerIndex": 0,
-        "explanation": "Pereputan alfa mengurangkan 2 proton dan 2 neutron, menghasilkan Torium-234 (90p, 144n) dan zarah alfa (2p, 2n).\n*Alpha decay reduces 2 protons and 2 neutrons, producing Thorium-234 (90p, 144n) and an alpha particle (2p, 2n).*"
+        "explanation": "Pereputan alfa mengurangkan 2 proton dan 2 neutron, menghasilkan Torium-234 (90p, 144n) dan zarah alfa (2p, 2n). Alpha decay reduces 2 protons and 2 neutrons, producing Thorium-234 (90p, 144n) and an alpha particle (2p, 2n)."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q5",
@@ -12282,7 +12282,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "During beta (\\(\\beta\\)) decay, a Thorium-234 nucleus (90 protons, 144 neutrons) decays spontaneously into Protactinium-234 (91 protons, 143 neutrons). Which of the following is the most accurate description of this nuclear change subatomically?",
+        "question": "During beta (\\(β\\)) decay, a Thorium-234 nucleus (90 protons, 144 neutrons) decays spontaneously into Protactinium-234 (91 protons, 143 neutrons). Which of the following is the most accurate description of this nuclear change subatomically?",
         "options": [
           "Two protons and two neutrons are simultaneously expelled from the nucleus of Thorium.",
           "One electron orbits and is drawn into the nucleus to join a proton.",
@@ -12290,7 +12290,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The nucleus releases more mechanical energy in the form of high-frequency electromagnetic waves."
         ],
         "answerIndex": 2,
-        "explanation": "Neutron bertukar menjadi proton dan mengeluarkan elektron berhalaju tinggi.\n*A neutron turns into a proton and emits a high-speed electron.*"
+        "explanation": "Neutron bertukar menjadi proton dan mengeluarkan elektron berhalaju tinggi. A neutron turns into a proton and emits a high-speed electron."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q6",
@@ -12300,7 +12300,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "An unstable Cobalt-60\\* nucleus releases high energy during gamma (\\(\\gamma\\)) decay to form stable Cobalt-60. Why do the number of protons and neutrons in Cobalt-60 remain unchanged after the decay?",
+        "question": "An unstable Cobalt-60 nucleus releases high energy during gamma (\\(γ\\)) decay to form stable Cobalt-60. Why do the number of protons and neutrons in Cobalt-60 remain unchanged after the decay?",
         "options": [
           "Gamma rays are neutral particles without electric charge or electrical cas.",
           "Gamma rays are high-frequency electromagnetic waves that only carry more energy than the nucleus.",
@@ -12308,7 +12308,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Gamma rays are absorbed back into the neutron to maintain the nucleus balance."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar gama hanya membawa keluar tenaga lebihan dari nukleus tanpa mengubah nukleon.\n*Gamma rays only carry away excess energy from the nucleus without changing the number of nucleons.*"
+        "explanation": "Sinar gama hanya membawa keluar tenaga lebihan dari nukleus tanpa mengubah nukleon. Gamma rays only carry away excess energy from the nucleus without changing the number of nucleons."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q7",
@@ -12318,15 +12318,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "A traditional unit of radioactivity is Curie (Ci), while the S.I. unit for radioactive activity is Becquerel (Bq). If a Cobalt-60 sample in a hospital has an activity of $0.05\\text{ Ci}$, what is this activity value in Becquerel (Bq)? (Given $1\\text{ Ci} = 3.7 \\times 10^{10}\\text{ Bq}$)",
+        "question": "A traditional unit of radioactivity is Curie (Ci), while the S.I. unit for radioactive activity is Becquerel (Bq). If a Cobalt-60 sample in a hospital has an activity of 0.05 Ci, what is this activity value in Becquerel (Bq)? (Given 1 Ci = 3.7 × 10¹⁰ Bq)",
         "options": [
-          "$1.85 imes 10^8\text{ Bq}$",
-          "$1.85 imes 10^9\text{ Bq}$",
-          "$7.40 imes 10^8\text{ Bq}$",
-          "$7.40 imes 10^{11}\text{ Bq}$"
+          "1.85 × 10⁸ Bq",
+          "1.85 × 10⁹ Bq",
+          "7.40 × 10⁸ Bq",
+          "7.40 × 10¹¹ Bq"
         ],
         "answerIndex": 1,
-        "explanation": "0.05 Ci = 1.85 × 10^9 Bq.\n*0.05 Ci = 1.85 × 10^9 Bq.*"
+        "explanation": "0.05 Ci = 1.85 × 10⁹ Bq. 0.05 Ci = 1.85 × 10⁹ Bq."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q8",
@@ -12336,15 +12336,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Radioactive substance X has a half-life, $T_{\\frac{1}{2}} = 8\\text{ days}$. If the remaining mass of radioactive substance X after 32 days is $2.5\\text{ g}$, what was the original mass of sample X on the first day ($t=0$)?",
+        "question": "Radioactive substance X has a half-life, T_(1/2) = 8 days. If the remaining mass of radioactive substance X after 32 days is 2.5 g, what was the original mass of sample X on the first day (t=0)?",
         "options": [
-          "$10\text{ g}$",
-          "$20\text{ g}$",
-          "$40\text{ g}$",
-          "$80\text{ g}$"
+          "10 g",
+          "20 g",
+          "40 g",
+          "80 g"
         ],
         "answerIndex": 3,
-        "explanation": "Jisim asal 80 g, kerana 2.5 g = 1/16 jisim asal (4 separuh hayat).\n*The original mass was 80 g, as 2.5 g is 1/16 of the original mass (4 half-lives).*"
+        "explanation": "Jisim asal 80 g, kerana 2.5 g = 1/16 jisim asal (4 separuh hayat). The original mass was 80 g, as 2.5 g is 1/16 of the original mass (4 half-lives)."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q9",
@@ -12354,7 +12354,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "The table below shows the activity data of radioactive substance Y recorded at every 5-hour interval. Based on the table above, what is the half-life value for radioactive substance Y?",
+        "question": "A radioactive substance has activities of 640 Bq at 0 hours, 450 Bq at 5 hours, 320 Bq at 10 hours, 225 Bq at 15 hours and 160 Bq at 20 hours. What is its half-life?",
         "options": [
           "5 hours",
           "10 hours",
@@ -12362,7 +12362,7 @@ const scienceF3MasterQuizBanks: Partial<
           "20 hours"
         ],
         "answerIndex": 1,
-        "explanation": "Separuh hayat 10 jam, kerana 320 Bq = 1/4 keaktifan asal (2 separuh hayat).\n*The half-life is 10 hours, as 320 Bq is 1/4 of the original activity (2 half-lives).*"
+        "explanation": "Separuh hayat 10 jam, kerana 320 Bq = 1/4 keaktifan asal (2 separuh hayat). The half-life is 10 hours, as 320 Bq is 1/4 of the original activity (2 half-lives)."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q10",
@@ -12380,7 +12380,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The neutral atom can be physically divided into a single molecule of hydrogen gas through heating."
         ],
         "answerIndex": 1,
-        "explanation": "Atom neutral mempunyai nukleus dengan proton dan neutron, serta elektron mengorbit di luar nukleus.\n*A neutral atom has a nucleus containing protons and neutrons, with electrons orbiting outside the nucleus.*"
+        "explanation": "Atom neutral mempunyai nukleus dengan proton dan neutron, serta elektron mengorbit di luar nukleus. A neutral atom has a nucleus containing protons and neutrons, with electrons orbiting outside the nucleus."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q11",
@@ -12390,7 +12390,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "The table below shows the formation of an ion from a neutral chlorine atom. Why does the net charge of the chloride ion change to -1?",
+        "question": "A chlorine atom has 17 protons and 17 electrons, while a chloride ion has 17 protons and 18 electrons. Why does the chloride ion have a -1 charge?",
         "options": [
           "The chlorine atom ejects one proton from the nucleus.",
           "The chlorine atom receives one negatively charged electron into its orbit.",
@@ -12398,7 +12398,7 @@ const scienceF3MasterQuizBanks: Partial<
           "One electron in the orbit changes into a neutron."
         ],
         "answerIndex": 1,
-        "explanation": "Atom klorin menerima satu elektron bermuatan negatif ke dalam orbitnya.\n*Atom chlorine accepts a negatively charged electron into its orbit.*"
+        "explanation": "Atom klorin menerima satu elektron bermuatan negatif ke dalam orbitnya. Atom chlorine accepts a negatively charged electron into its orbit."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q12",
@@ -12408,7 +12408,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "A neutral Bromine (Br) atom has a proton number of 35 and neutron number of 45. When this atom forms a bromide ion (\\(\\text{Br}^-\\)), what is the number of electrons and the net charge of the ion?",
+        "question": "A neutral Bromine (Br) atom has a proton number of 35 and neutron number of 45. When this atom forms a bromide ion (\\(Br⁻\\)), what is the number of electrons and the net charge of the ion?",
         "options": [
           "35 electrons; cas +1",
           "36 electrons; cas -1",
@@ -12416,7 +12416,7 @@ const scienceF3MasterQuizBanks: Partial<
           "36 electrons; cas +1"
         ],
         "answerIndex": 1,
-        "explanation": "36 elektron; cas -1\n*36 electrons; charge -1*"
+        "explanation": "36 elektron; cas -1 36 electrons; charge -1"
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q13",
@@ -12434,7 +12434,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Infrared light, X-rays, Ultraviolet light"
         ],
         "answerIndex": 2,
-        "explanation": "Sinar ultraungu, Sinar-X, Sinar gama\n*Ultraviolet, X-rays, Gamma rays*"
+        "explanation": "Sinar ultraungu, Sinar-X, Sinar gama Ultraviolet, X-rays, Gamma rays"
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q14",
@@ -12444,7 +12444,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Alpha radiation (\\(\\alpha\\)) has the highest ionising power compared to beta (\\(\\beta\\)) and gamma (\\(\\gamma\\)) radiation. Which of the following factors correctly explains this phenomenon?",
+        "question": "Alpha radiation (\\(α\\)) has the highest ionising power compared to beta (\\(β\\)) and gamma (\\(γ\\)) radiation. Which of the following factors correctly explains this phenomenon?",
         "options": [
           "The speed of alpha particle is very high, equal to the speed of light.",
           "The alpha particle has the largest and positive charge (+2) of cas, making it easier to violate the molecular air.",
@@ -12452,7 +12452,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The extremely high penetration power of the alpha particle allows it to easily penetrate the lead wall."
         ],
         "answerIndex": 1,
-        "explanation": "Zarah alfa mempunyai saiz zarah yang paling besar dan cas positif (+2) yang memudahkan perlanggaran dengan molekul udara.\n*Alpha particle has the largest particle size and positive charge (+2) that easily interacts with air molecules.*"
+        "explanation": "Zarah alfa mempunyai saiz zarah yang paling besar dan cas positif (+2) yang memudahkan perlanggaran dengan molekul udara. Alpha particle has the largest particle size and positive charge (+2) that easily interacts with air molecules."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q15",
@@ -12470,7 +12470,7 @@ const scienceF3MasterQuizBanks: Partial<
           "K = Gamma, L = Beta, M = Alpha"
         ],
         "answerIndex": 1,
-        "explanation": "K = Alfa, L = Gama, M = Beta\n*K = Alpha, L = Gamma, M = Beta*"
+        "explanation": "K = Alfa, L = Gama, M = Beta K = Alpha, L = Gamma, M = Beta"
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q16",
@@ -12480,15 +12480,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "The diagram below shows the deflection of three types of radioactive radiation inside an electric field. Why is the deflection angle for Radiation R larger compared to Radiation P?",
+        "question": "In an electric field, alpha radiation bends slightly towards the negative plate, gamma travels straight and beta bends more towards the positive plate. Why does beta radiation bend more than alpha radiation?",
         "options": [
-          "The pancard is gamma rays without any electric charge or electric charge.",
-          "The pancard consists of beta rays (electrons) with a very light mass compared to alpha rays (Pancard P) that are heavy.",
-          "Positive plates have a stronger electric attraction compared to negative plates.",
-          "The pancard is influenced by the very low resistance of the air during the passage through the electric field."
+          "Beta radiation is gamma radiation and has no mass or charge.",
+          "Beta particles are much lighter than alpha particles.",
+          "The positive plate has a stronger attraction than the negative plate.",
+          "Beta radiation experiences less air resistance in the electric field."
         ],
         "answerIndex": 1,
-        "explanation": "Pancaran R terdiri daripada zarah beta (elektron) yang ringan berbanding zarah alfa (Pancaran P).\n*Pancaran R consists of beta particles (electrons) which are much lighter than alpha particles (Pancaran P).*"
+        "explanation": "Zarah beta jauh lebih ringan daripada zarah alfa, maka sinar beta dipesongkan dengan lebih besar. Beta particles are much lighter than alpha particles, so beta radiation is deflected more."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q17",
@@ -12506,7 +12506,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Moves straight without deflection"
         ],
         "answerIndex": 1,
-        "explanation": "Dipesongkan masuk ke dalam kertas.\n*Pulled into the page.*"
+        "explanation": "Dipesongkan masuk ke dalam kertas. Pulled into the page."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q18",
@@ -12524,7 +12524,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Radioactive waste produced from the activities of nuclear power stations in the local area."
         ],
         "answerIndex": 2,
-        "explanation": "Sinaran bertenaga tinggi yang dihasilkan di luar Sistem Suria atau galaksi lain yang merentasi angkasa lepas ke Bumi.\n*High-energy rays produced outside the Solar System or from other galaxies that penetrate space to reach Earth.*"
+        "explanation": "Sinaran bertenaga tinggi yang dihasilkan di luar Sistem Suria atau galaksi lain yang merentasi angkasa lepas ke Bumi. High-energy rays produced outside the Solar System or from other galaxies that penetrate space to reach Earth."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q19",
@@ -12534,15 +12534,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "The environmental background radiation dose rate is measured using a Geiger counter. A dose of less than $0.2\\ \\mu\\text{Sv/h}$ is considered a normal, safe level for the human body. What is the annual dose value equivalent to this safe level?",
+        "question": "The environmental background radiation dose rate is measured using a Geiger counter. A dose of less than 0.2 μSv/h is considered a normal, safe level for the human body. What is the annual dose value equivalent to this safe level?",
         "options": [
-          "$0.35\text{ mSv/year}$",
-          "$1.00\text{ mSv/year}$",
-          "$1.752\text{ mSv/tahun}$",
-          "$5.50\text{ mSv/tahun}$"
+          "0.35 mSv/year",
+          "1.00 mSv/year",
+          "1.752 mSv/tahun",
+          "5.50 mSv/tahun"
         ],
         "answerIndex": 2,
-        "explanation": "1.752 mSv/tahun.\n*1.752 mSv/year.*"
+        "explanation": "1.752 mSv/tahun. 1.752 mSv/year."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q20",
@@ -12552,15 +12552,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "According to clinical data of radioactive exposure (Activity 8.4), absorption of extremely high radiation doses causes severe health effects. Which of the following matches of radiation dose and clinical effect is wrong?",
+        "question": "Which pairing of radiation dose and health effect is incorrect?",
         "options": [
-          "Dos > 10 Sv: Menyebabkan kematian sel secara meluas dan membawa maut dalam beberapa minggu.",
-          "Dos 1 Sv hingga 10 Sv: Menyebabkan penyakit radiasi akut (muntah-muntah, gugur rambut drastik, leukemia).",
-          "Dos 0.1 Sv hingga 1 Sv: Risiko menghidap penyakit kanser meningkat secara beransur-ansur mengikut masa.",
-          "Dos < 0.1 Sv: Membawa maut serta-merta akibat kegagalan organ jantung berfungsi."
+          "Dose above 10 Sv: widespread cell death and death within weeks",
+          "Dose from 1 Sv to 10 Sv: acute radiation sickness, vomiting, hair loss and leukaemia",
+          "Dose from 0.1 Sv to 1 Sv: cancer risk increases over time",
+          "Dose below 0.1 Sv: immediate death from heart failure"
         ],
         "answerIndex": 3,
-        "explanation": "Dos < 0.1 Sv: Tidak membawa maut serta-merta, tetapi risiko menghidap penyakit kanser meningkat.\n*Dos < 0.1 Sv: Does not cause immediate death, but increases the risk of cancer over time.*"
+        "explanation": "Dos < 0.1 Sv: Tidak membawa maut serta-merta, tetapi risiko menghidap penyakit kanser meningkat. Dos < 0.1 Sv: Does not cause immediate death, but increases the risk of cancer over time."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q21",
@@ -12578,7 +12578,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Proses pembusukan meningkatkan separuh hayat Karbon-14 sehingga mencapai sejuta tahun."
         ],
         "answerIndex": 1,
-        "explanation": "Pengambilan Karbon-14 berhenti selepas organisma mati, dan Karbon-14 yang sedia ada mereput secara spontan.\n*After an organism dies, carbon-14 uptake stops, and the existing carbon-14 decays spontaneously.*"
+        "explanation": "Pengambilan Karbon-14 berhenti selepas organisma mati, dan Karbon-14 yang sedia ada mereput secara spontan. After an organism dies, carbon-14 uptake stops, and the existing carbon-14 decays spontaneously."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q22",
@@ -12588,7 +12588,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "In the industrial sector, beta (\\(\\beta\\)) radiation is used in automatic sheet metal thickness control systems. Why are alpha (\\(\\alpha\\)) and gamma (\\(\\gamma\\)) radiation unsuitable for this purpose?",
+        "question": "In the industrial sector, beta (\\(β\\)) radiation is used in automatic sheet metal thickness control systems. Why are alpha (\\(α\\)) and gamma (\\(γ\\)) radiation unsuitable for this purpose?",
         "options": [
           "Sinar alfa terlalu bertenaga tinggi, manakala sinar gama diserap sepenuhnya oleh kepingan logam nipis.",
           "Sinar alfa dihalang sepenuhnya oleh kepingan logam nipis (tiada bacaan dikesan), manakala sinar gama menembusi logam tanpa sebarang perubahan bacaan yang sensitif.",
@@ -12596,7 +12596,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sinar beta adalah satu-satunya sinaran yang boleh bergerak dalam orbit bulatan mengelilingi penggelek logam."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar alfa dihalang oleh logam nipis, manakala sinar gama menembusi tanpa perubahan bacaan.\n*Alpha rays are stopped by thin metal sheets, while gamma rays pass through without changing the reading.*"
+        "explanation": "Sinar alfa dihalang oleh logam nipis, manakala sinar gama menembusi tanpa perubahan bacaan. Alpha rays are stopped by thin metal sheets, while gamma rays pass through without changing the reading."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q23",
@@ -12614,7 +12614,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mempercepatan kadar fotosintesis tumbuhan pada waktu malam tanpa bantuan cahaya."
         ],
         "answerIndex": 2,
-        "explanation": "P-32 digunakan untuk mengesan penyerapan fosfat oleh akar tumbuhan.\n*P-32 is used to trace the uptake of phosphate by plant roots.*"
+        "explanation": "P-32 digunakan untuk mengesan penyerapan fosfat oleh akar tumbuhan. P-32 is used to trace the uptake of phosphate by plant roots."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q24",
@@ -12632,7 +12632,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Logo MyOrganic"
         ],
         "answerIndex": 2,
-        "explanation": "Logo Radura wajib dilekatkan pada makanan yang diperparah dengan sinar gama.\n*The Radura logo must be placed on food irradiated with gamma rays.*"
+        "explanation": "Logo Radura wajib dilekatkan pada makanan yang diperparah dengan sinar gama. The Radura logo must be placed on food irradiated with gamma rays."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q25",
@@ -12650,7 +12650,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Berperanan sebagai kunci keselamatan elektronik untuk membuka pintu bilik stor simpanan plumbum."
         ],
         "answerIndex": 1,
-        "explanation": "Lencana Sinaran mengandungi filem sensitif untuk mengesan dos sinaran.\n*The dosimeter contains sensitive film to measure radiation dose.*"
+        "explanation": "Lencana Sinaran mengandungi filem sensitif untuk mengesan dos sinaran. The dosimeter contains sensitive film to measure radiation dose."
       }
     ]
   },
@@ -12672,7 +12672,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Meteorologi dan ramalan banjir"
         ],
         "answerIndex": 1,
-        "explanation": "Pertahanan negara mendapat manfaat langsung daripada satelit.\n*National defense directly benefits from the satellite.*"
+        "explanation": "Pertahanan negara mendapat manfaat langsung daripada satelit. National defense directly benefits from the satellite."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q2",
@@ -12682,7 +12682,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Pada 6 September 2017, sebuah peristiwa cuaca angkasa lepas yang ekstrem telah dikesan berlaku di permukaan Matahari pada jam 8.02 pagi. Apakah jenis letusan suria spesifik yang direkodkan pada waktu tersebut?",
+        "question": "Pada 6 September 2017, satu letusan kuat berlaku di permukaan Matahari pada jam 8.02 pagi. Apakah jenis dan kelas letusan itu?",
         "options": [
           "Nyalaan suria kelas X9.3",
           "Lentingan jisim korona (CME) kelas M5.2",
@@ -12690,7 +12690,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ribut suria kelas C3.1"
         ],
         "answerIndex": 0,
-        "explanation": "Nyalaan suria kelas X9.3 direkodkan pada waktu tersebut.\n*Solar flare class X9.3 was recorded at that time.*"
+        "explanation": "Nyalaan suria kelas X9.3 direkodkan pada waktu tersebut. Solar flare class X9.3 was recorded at that time."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q3",
@@ -12708,7 +12708,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Helium dan Argon"
         ],
         "answerIndex": 2,
-        "explanation": "Hidrogen dan Helium membentuk hampir keseluruhan jisim bebola gas.\n*Hydrogen and Helium form almost the entire mass of the solar wind.*"
+        "explanation": "Hidrogen dan Helium membentuk hampir keseluruhan jisim bebola gas. Hydrogen and Helium form almost the entire mass of the solar wind."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q4",
@@ -12726,7 +12726,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Zon perolakan → Zon radiasi → Teras"
         ],
         "answerIndex": 0,
-        "explanation": "Teras → Zon perolakan → Zon radiasi adalah susunan lapisan dalaman Matahari.\n*Core → Convection zone → Radiative zone is the inner layers of the Sun.*"
+        "explanation": "Teras → Zon perolakan → Zon radiasi adalah susunan lapisan dalaman Matahari. Core → Convection zone → Radiative zone is the inner layers of the Sun."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q5",
@@ -12744,7 +12744,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kromosfera → Fotosfera → Korona"
         ],
         "answerIndex": 0,
-        "explanation": "Fotosfera → Kromosfera → Korona ialah urutan lapisan atmosfera Matahari.\n*Photosphere → Chromosphere → Corona is the order of the Sun's atmospheric layers.*"
+        "explanation": "Fotosfera → Kromosfera → Korona ialah urutan lapisan atmosfera Matahari. Photosphere → Chromosphere → Corona is the order of the Sun's atmospheric layers."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q6",
@@ -12754,7 +12754,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Tindak balas pelakuran nuklear (*nuclear fusion*) merupakan sumber tenaga utama bagi Matahari yang memancarkan haba dan cahaya ke seluruh Sistem Suria. Di manakah lokasi spesifik berlakunya proses fizik ini?",
+        "question": "Pelakuran nuklear ialah sumber utama tenaga Matahari. Di bahagian manakah proses ini berlaku?",
         "options": [
           "Fotosfera",
           "Zon Perolakan",
@@ -12762,7 +12762,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Korona"
         ],
         "answerIndex": 1,
-        "explanation": "Proses pelakuran nuklear berlaku di Zon Perolakan.\n*Nuclear fusion occurs in the Photosphere.*"
+        "explanation": "Proses pelakuran nuklear berlaku di Zon Perolakan. Nuclear fusion occurs in the Photosphere."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q7",
@@ -12780,7 +12780,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Korona"
         ],
         "answerIndex": 3,
-        "explanation": "Lingkaran cahaya putih kebiruan adalah Korona yang menghasilkan fenomena visual ini semasa gerhana matahari penuh.\n*The white-blue ring of light is the Corona responsible for this visual phenomenon during a total solar eclipse.*"
+        "explanation": "Lingkaran cahaya putih kebiruan adalah Korona yang menghasilkan fenomena visual ini semasa gerhana matahari penuh. The white-blue ring of light is the Corona responsible for this visual phenomenon during a total solar eclipse."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q8",
@@ -12798,7 +12798,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Hentaman meteorit berskala kecil ke atas fotosfera"
         ],
         "answerIndex": 1,
-        "explanation": "Granulasi pada fotosfera disebabkan oleh bahagian atas arus perolakan plasma yang sangat panas dari zon perolakan.\n*The granulation on the photosphere is caused by the upper part of the hot plasma convection from the photosphere zone.*"
+        "explanation": "Granulasi pada fotosfera disebabkan oleh bahagian atas arus perolakan plasma yang sangat panas dari zon perolakan. The granulation on the photosphere is caused by the upper part of the hot plasma convection from the photosphere zone."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q9",
@@ -12810,13 +12810,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "Berapakah diameter purata bagi satu sel granul pada permukaan fotosfera Matahari dan berapakah suhu plasma panas tersebut?",
         "options": [
-          "Kurang daripada 1,000 km ; 5,800 °C",
-          "Lebih daripada 10,000 km ; 15,000,000 °C",
-          "Sekitar 100,000 km ; 1,000,000 °C",
-          "Kurang daripada 100 km ; 2,500 °C"
+          "Kurang daripada 1,000 km; 5,800 °C",
+          "Lebih daripada 10,000 km; 15,000,000 °C",
+          "Sekitar 100,000 km; 1,000,000 °C",
+          "Kurang daripada 100 km; 2,500 °C"
         ],
         "answerIndex": 0,
-        "explanation": "Diameter purata sel granul kurang daripada 1,000 km dan suhu plasma panasnya 5,800 °C.\n*The average diameter of a granule is less than 1,000 km and its hot plasma temperature is 5,800 °C.*"
+        "explanation": "Diameter purata sel granul kurang daripada 1,000 km dan suhu plasma panasnya 5,800 °C. The average diameter of a granule is less than 1,000 km and its hot plasma temperature is 5,800 °C."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q10",
@@ -12826,7 +12826,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Tompok Matahari (*sunspots*) merupakan kawasan fotosfera yang kelihatan gelap apabila dicerap dari Bumi. Mengapakah kawasan ini kelihatan gelap berbanding kawasan sekitarnya?",
+        "question": "Tompok Matahari (sunspots) merupakan kawasan fotosfera yang kelihatan gelap apabila dicerap dari Bumi. Mengapakah kawasan ini kelihatan gelap berbanding kawasan sekitarnya?",
         "options": [
           "Kawasan tersebut ditutupi oleh awan gas hidrogen yang sangat sejuk",
           "Suhunya lebih rendah daripada suhu granul di sekelilingnya",
@@ -12834,7 +12834,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kawasan tersebut mengalami gerhana mikro akibat orbit asteroid yang dekat"
         ],
         "answerIndex": 1,
-        "explanation": "Tompok Matahari kelihatan gelap kerana suhunya lebih rendah daripada suhu granul di sekelilingnya.\n*Sunspots appear dark because their temperature is lower than that of the surrounding granules.*"
+        "explanation": "Tompok Matahari kelihatan gelap kerana suhunya lebih rendah daripada suhu granul di sekelilingnya. Sunspots appear dark because their temperature is lower than that of the surrounding granules."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q11",
@@ -12844,7 +12844,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Kemunculan dan kelenyapan tompok Matahari berlaku secara berkala mengikut kitaran tertentu. Berapakah tempoh masa satu kitaran suria (*solar cycle*) yang lengkap?",
+        "question": "Kemunculan dan kelenyapan tompok Matahari berlaku secara berkala mengikut kitaran tertentu. Berapakah tempoh masa satu kitaran suria (solar cycle) yang lengkap?",
         "options": [
           "5 tahun",
           "11 tahun",
@@ -12852,7 +12852,7 @@ const scienceF3MasterQuizBanks: Partial<
           "11 bulan"
         ],
         "answerIndex": 1,
-        "explanation": "Tempoh satu kitaran suria ialah 11 tahun.\n*The solar cycle lasts approximately 11 years.*"
+        "explanation": "Tempoh satu kitaran suria ialah 11 tahun. The solar cycle lasts approximately 11 years."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q12",
@@ -12870,7 +12870,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Hanya berlaku secara berasingan di kawasan kutub atmosfera korona"
         ],
         "answerIndex": 1,
-        "explanation": "Semarak suria berbentuk gelungan gas menyala yang besar dan boleh kekal selama beberapa hari hingga beberapa bulan.\n*Solar prominences are large, glowing gas loops that can last for days to several months.*"
+        "explanation": "Semarak suria berbentuk gelungan gas menyala yang besar dan boleh kekal selama beberapa hari hingga beberapa bulan. Solar prominences are large, glowing gas loops that can last for days to several months."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q13",
@@ -12888,7 +12888,7 @@ const scienceF3MasterQuizBanks: Partial<
           "300,000 km/s"
         ],
         "answerIndex": 2,
-        "explanation": "Kelajuan pelepasan jasad semarak suria ialah antara 600 km/s hingga melebihi 1,000 km/s.\n*The speed of material ejected by a strong solar prominence ranges from 600 km/s to over 1,000 km/s.*"
+        "explanation": "Kelajuan pelepasan jasad semarak suria ialah antara 600 km/s hingga melebihi 1,000 km/s. The speed of material ejected by a strong solar prominence ranges from 600 km/s to over 1,000 km/s."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q14",
@@ -12898,15 +12898,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Sebuah stesen pencerapan mengesan kejadian nyalaan suria (*solar flare*) yang kuat di permukaan Matahari. Berapakah anggaran masa yang diambil oleh pancaran cahaya (radiasi) dan zarah gas bercas daripada nyalaan tersebut untuk sampai ke Bumi?",
+        "question": "Sebuah stesen pencerapan mengesan kejadian nyalaan suria (solar flare) yang kuat di permukaan Matahari. Berapakah anggaran masa yang diambil oleh pancaran cahaya (radiasi) dan zarah gas bercas daripada nyalaan tersebut untuk sampai ke Bumi?",
         "options": [
-          "Cahaya: 8 minit ; Zarah bercas: beberapa puluh minit",
-          "Cahaya: 3 hari ; Zarah bercas: 8 minit",
-          "Cahaya: 8 saat ; Zarah bercas: 3 hari",
-          "Cahaya: beberapa puluh minit ; Zarah bercas: 3 hari"
+          "Cahaya: 8 minit; Zarah bercas: beberapa puluh minit",
+          "Cahaya: 3 hari; Zarah bercas: 8 minit",
+          "Cahaya: 8 saat; Zarah bercas: 3 hari",
+          "Cahaya: beberapa puluh minit; Zarah bercas: 3 hari"
         ],
         "answerIndex": 0,
-        "explanation": "Pancaran cahaya dari nyalaan suria mengambil masa 8 minit untuk sampai ke Bumi, manakala zarah bercas mengambil beberapa puluh minit.\n*Solar flare radiation takes about 8 minutes to reach Earth, while the ejected particles take several minutes.*"
+        "explanation": "Pancaran cahaya dari nyalaan suria mengambil masa 8 minit untuk sampai ke Bumi, manakala zarah bercas mengambil beberapa puluh minit. Solar flare radiation takes about 8 minutes to reach Earth, while the ejected particles take several minutes."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q15",
@@ -12924,7 +12924,7 @@ const scienceF3MasterQuizBanks: Partial<
           "11 tahun"
         ],
         "answerIndex": 2,
-        "explanation": "CME biasanya mengambil masa 3 hari untuk sampai ke atmosfera Bumi.\n*A CME typically takes about 3 days to reach Earth's atmosphere.*"
+        "explanation": "CME biasanya mengambil masa 3 hari untuk sampai ke atmosfera Bumi. A CME typically takes about 3 days to reach Earth's atmosphere."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q16",
@@ -12942,7 +12942,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kitaran suria"
         ],
         "answerIndex": 0,
-        "explanation": "Angin suria adalah aliran plasma yang membawa medan magnet.\n*Solar wind is the supersonic stream carrying the magnetic field.*"
+        "explanation": "Angin suria adalah aliran plasma yang membawa medan magnet. Solar wind is the supersonic stream carrying the magnetic field."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q17",
@@ -12960,7 +12960,7 @@ const scienceF3MasterQuizBanks: Partial<
           "1,000 km/s hingga 3,000 km/s"
         ],
         "answerIndex": 1,
-        "explanation": "Kelajuan angin suria antara 250 km/s hingga 750 km/s.\n*Solar wind speed ranges from 250 km/s to 750 km/s.*"
+        "explanation": "Kelajuan angin suria antara 250 km/s hingga 750 km/s. Solar wind speed ranges from 250 km/s to 750 km/s."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q18",
@@ -12978,7 +12978,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Debu angkasa, mikrometeorit, dan atom helium neutral"
         ],
         "answerIndex": 1,
-        "explanation": "Plasma angin suria terkandung elektron, proton, dan zarah alfa.\n*Solar wind plasma contains electrons, protons, and alpha particles.*"
+        "explanation": "Plasma angin suria terkandung elektron, proton, dan zarah alfa. Solar wind plasma contains electrons, protons, and alpha particles."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q19",
@@ -12996,7 +12996,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Putaran Bumi pada paksi kecondongan 23.5°"
         ],
         "answerIndex": 1,
-        "explanation": "Perubahan dinamik magnetosfera disebabkan oleh interaksi angin suria yang berubah-ubah.\n*Dynamic changes in the magnetosphere are caused by varying solar wind interactions.*"
+        "explanation": "Perubahan dinamik magnetosfera disebabkan oleh interaksi angin suria yang berubah-ubah. Dynamic changes in the magnetosphere are caused by varying solar wind interactions."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q20",
@@ -13006,7 +13006,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Magnetosfera Bumi sering kali diistilahkan sebagai \"perisai biologi\" (*biological shield*) bagi hidupan di planet ini. Antara berikut, yang manakah merupakan kepentingan utama magnetosfera?",
+        "question": "Magnetosfera Bumi sering kali diistilahkan sebagai \"perisai biologi\" (biological shield) bagi hidupan di planet ini. Antara berikut, yang manakah merupakan kepentingan utama magnetosfera?",
         "options": [
           "Melindungi hidupan daripada radiasi berbahaya dan menghalang angin suria daripada menghakis atmosfera Bumi",
           "Menapis cahaya ultraungu sepenuhnya bagi mengekalkan kestabilan suhu lautan",
@@ -13014,7 +13014,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Menjana arus elektrik semula jadi untuk membekalkan tenaga kepada migrasi haiwan"
         ],
         "answerIndex": 0,
-        "explanation": "Magnetosfera melindungi Bumi daripada radiasi berbahaya dan menghalang angin suria.\n*The magnetosphere shields Earth from harmful radiation and solar wind.*"
+        "explanation": "Magnetosfera melindungi Bumi daripada radiasi berbahaya dan menghalang angin suria. The magnetosphere shields Earth from harmful radiation and solar wind."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q21",
@@ -13032,7 +13032,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Granul fotosfera dan kitaran suria 11 tahun"
         ],
         "answerIndex": 1,
-        "explanation": "Lentingan jisim korona (CME) dan semarak suria berlaku di angkasa lepas.\n*Solar coronal mass ejections (CME) and solar flares occur in space.*"
+        "explanation": "Lentingan jisim korona (CME) dan semarak suria berlaku di angkasa lepas. Solar coronal mass ejections (CME) and solar flares occur in space."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q22",
@@ -13042,7 +13042,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Semasa berlakunya ribut geomagnet (*geomagnetic storm*) yang kuat akibat lentingan jisim korona (CME), sistem talian penghantaran kuasa elektrik di Bumi boleh mengalami kegagalan teruk (blackout). Bagaimanakah ribut geomagnet ini merosakkan infrastruktur elektrik tersebut?",
+        "question": "Semasa berlakunya ribut geomagnet (geomagnetic storm) yang kuat akibat lentingan jisim korona (CME), sistem talian penghantaran kuasa elektrik di Bumi boleh mengalami kegagalan teruk (blackout). Bagaimanakah ribut geomagnet ini merosakkan infrastruktur elektrik tersebut?",
         "options": [
           "Melalui pemanasan terus kabel pencawang elektrik oleh radiasi sinar gama",
           "Mencetuskan arus aruhan geomagnetik (GIC) yang sangat tinggi sehingga membakar transformer utama",
@@ -13050,7 +13050,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mengionkan gas helium di dalam talian kabel bawah tanah"
         ],
         "answerIndex": 1,
-        "explanation": "Arus aruhan geomagnetik yang sangat tinggi mencetuskan kegagalan talian penghantaran kuasa.\n*High geomagnetic currents can cause power transmission system failures.*"
+        "explanation": "Arus aruhan geomagnetik yang sangat tinggi mencetuskan kegagalan talian penghantaran kuasa. High geomagnetic currents can cause power transmission system failures."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q23",
@@ -13068,7 +13068,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Menyebabkan air laut bergelora sehingga menjejaskan bacaan altitud kapal"
         ],
         "answerIndex": 1,
-        "explanation": "Pesan GPS terganggu semasa lapisan ionosfera terganggu.\n*GPS signals are disrupted during ionosphere disturbances.*"
+        "explanation": "Pesan GPS terganggu semasa lapisan ionosfera terganggu. GPS signals are disrupted during ionosphere disturbances."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q24",
@@ -13078,7 +13078,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Ahli sains solar (*solar scientists*) menggunakan pelbagai data aktiviti suria untuk membuat ramalan cuaca angkasa lepas. Antara berikut, hubungan korelasi manakah yang paling tepat digunakan dalam analisis ramalan tersebut?",
+        "question": "Maklumat aktiviti suria digunakan untuk meramal cuaca angkasa. Hubungan manakah yang betul?",
         "options": [
           "Semakin berkurang bilangan tompok Matahari, semakin tinggi kadar kejadian lentingan jisim korona (CME)",
           "Semakin meningkat bilangan tompok Matahari (solar maximum), semakin meningkat kekerapan nyalaan suria dan CME",
@@ -13086,7 +13086,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kitaran suria 11 tahun berhenti sepenuhnya apabila tiada tompok Matahari kelihatan"
         ],
         "answerIndex": 1,
-        "explanation": "Kekerapan nyalaan suria dan CME meningkat semasa tompok Matahari maksimum.\n*Solar flare and CME frequency increases during solar maximum.*"
+        "explanation": "Kekerapan nyalaan suria dan CME meningkat semasa tompok Matahari maksimum. Solar flare and CME frequency increases during solar maximum."
       },
       {
         "id": "sci-f3-c9-set-a-bm-q25",
@@ -13104,7 +13104,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Pelepasan gas neon dari kerak Bumi di kawasan magnetotail"
         ],
         "answerIndex": 2,
-        "explanation": "Zarah bercas dari nyalaan suria bertindak balas dengan gas atmosfera Bumi menghasilkan cahaya aurora.\n*Solar wind particles react with Earth's atmospheric gases to produce aurora.*"
+        "explanation": "Zarah bercas dari nyalaan suria bertindak balas dengan gas atmosfera Bumi menghasilkan cahaya aurora. Solar wind particles react with Earth's atmospheric gases to produce aurora."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q1",
@@ -13114,7 +13114,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Satelit RazakSAT-2 merupakan salah satu pencapaian sains tempatan yang terkemuka di Malaysia. Apakah peranan utama satelit ini yang digariskan di dalam buku teks?",
+        "question": "Apakah tujuan utama satelit RazakSAT-2?",
         "options": [
           "Mengukur dan memantau suhu lautan global untuk ramalan perubahan iklim.",
           "Digunakan sebagai satelit ketenteraan dalam bidang pertahanan negara.",
@@ -13122,7 +13122,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Meramal cuaca tempatan harian dan keamatan taburan hujan tahunan."
         ],
         "answerIndex": 0,
-        "explanation": "Satelit RazakSAT-2 digunakan untuk mengukur dan memantau suhu lautan global.\n*RazakSAT-2 satellite is used to measure and monitor global sea surface temperature.*"
+        "explanation": "Satelit RazakSAT-2 digunakan untuk mengukur dan memantau suhu lautan global. RazakSAT-2 satellite is used to measure and monitor global sea surface temperature."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q2",
@@ -13140,7 +13140,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Angin Suria Supersonik Kelas X20"
         ],
         "answerIndex": 2,
-        "explanation": "Letusan aktiviti suria pada 6 September 2017 adalah Nyalaan Suria Kelas X9.3.\n*The solar activity eruption on September 6, 2017, was a Solar Flare Class X9.3.*"
+        "explanation": "Letusan aktiviti suria pada 6 September 2017 adalah Nyalaan Suria Kelas X9.3. The solar activity eruption on September 6, 2017, was a Solar Flare Class X9.3."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q3",
@@ -13150,7 +13150,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Suhu atmosfera fotosfera adalah sekitar $5,800\\,^{\\circ}\\text{C}$. Antara berikut, apakah unsur gas kimia utama yang membentuk hampir keseluruhan komposisi jisim Matahari?",
+        "question": "Suhu atmosfera fotosfera adalah sekitar 5,800 ^(°)C. Antara berikut, apakah unsur gas kimia utama yang membentuk hampir keseluruhan komposisi jisim Matahari?",
         "options": [
           "Karbon Dioksida dan Nitrogen",
           "Hidrogen dan Helium",
@@ -13158,7 +13158,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Helium dan Neon"
         ],
         "answerIndex": 1,
-        "explanation": "Hidrogen dan Helium membentuk hampir keseluruhan komposisi jisim Matahari.\n*Hydrogen and Helium form almost the entire composition of the Sun's mass.*"
+        "explanation": "Hidrogen dan Helium membentuk hampir keseluruhan komposisi jisim Matahari. Hydrogen and Helium form almost the entire composition of the Sun's mass."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q4",
@@ -13176,7 +13176,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Fotosfera (Photosphere)"
         ],
         "answerIndex": 2,
-        "explanation": "Teras (Core) terletak di bahagian paling pusat dan merupakan tapak pelakuran nuklear.\n*The Core is the innermost layer and is the site of nuclear fusion.*"
+        "explanation": "Teras (Core) terletak di bahagian paling pusat dan merupakan tapak pelakuran nuklear. The Core is the innermost layer and is the site of nuclear fusion."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q5",
@@ -13194,7 +13194,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Korona (Corona)"
         ],
         "answerIndex": 1,
-        "explanation": "Fenomena permukaan fotosfera yang berbutir-butir halus adalah Granul.\n*The granular appearance of the photosphere is called Granules.*"
+        "explanation": "Fenomena permukaan fotosfera yang berbutir-butir halus adalah Granul. The granular appearance of the photosphere is called Granules."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q6",
@@ -13206,13 +13206,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "Granul mewakili bahagian atas bagi arus perolakan plasma yang sangat panas pada fotosfera. Berapakah diameter purata bagi satu sel granul?",
         "options": [
-          "Sekitar $100\\text{ m}$",
-          "Kurang daripada $100\\text{ km}$",
-          "Sekitar $1,000\\text{ km}$",
-          "Melebihi $10,000\\text{ km}$"
+          "Sekitar 100 m",
+          "Kurang daripada 100 km",
+          "Sekitar 1,000 km",
+          "Melebihi 10,000 km"
         ],
         "answerIndex": 1,
-        "explanation": "Diameter purata sel granul kurang daripada 100 km kerana granul adalah kawasan kecil yang panas.\n*The average diameter of a granule is less than 100 km because granules are small, hot regions.*"
+        "explanation": "Diameter purata sel granul kurang daripada 100 km kerana granul adalah kawasan kecil yang panas. The average diameter of a granule is less than 100 km because granules are small, hot regions."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q7",
@@ -13230,7 +13230,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Berada di bawah bayang-bayang komet yang sedang mengorbit sangat rapat dengan Fotosfera."
         ],
         "answerIndex": 1,
-        "explanation": "Tompok Matahari kelihatan gelap kerana suhunya lebih rendah berbanding granul sekitarnya.\n*Sunspots appear dark because their temperature is lower than that of the surrounding granules.*"
+        "explanation": "Tompok Matahari kelihatan gelap kerana suhunya lebih rendah berbanding granul sekitarnya. Sunspots appear dark because their temperature is lower than that of the surrounding granules."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q8",
@@ -13248,7 +13248,7 @@ const scienceF3MasterQuizBanks: Partial<
           "76 tahun"
         ],
         "answerIndex": 1,
-        "explanation": "Jangka masa satu Kitaran Suria lengkap ialah 11 tahun.\n*The complete solar cycle lasts 11 years.*"
+        "explanation": "Jangka masa satu Kitaran Suria lengkap ialah 11 tahun. The complete solar cycle lasts 11 years."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q9",
@@ -13258,7 +13258,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Rajah di bawah menunjukkan gelungan gas menyala yang sangat besar di sebelah atas Tompok Matahari dan boleh mencapai ketinggian beratus-ratus ribu kilometer. Apakah nama fenomena letusan gas melengkung tersebut?",
+        "question": "Satu gelungan gas menyala yang sangat besar terbentuk di atas tompok Matahari dan boleh mencapai ketinggian beratus-ratus ribu kilometer. Apakah nama fenomena ini?",
         "options": [
           "Lentingan Jisim Korona (CME)",
           "Nyalaan Suria (Solar Flare)",
@@ -13266,7 +13266,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Angin Suria (Solar Wind)"
         ],
         "answerIndex": 2,
-        "explanation": "Fenomena letusan gas melengkung tersebut dinamakan Semarak Suria atau Prominen.\n*The phenomenon of the curved gas eruption is called a Solar Prominence.*"
+        "explanation": "Fenomena letusan gas melengkung tersebut dinamakan Semarak Suria atau Prominen. The phenomenon of the curved gas eruption is called a Solar Prominence."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q10",
@@ -13278,13 +13278,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "Sebuah Semarak Suria (Prominen) yang sangat kuat mempunyai keupayaan dinamik untuk melemparkan jasad keluar dari tarikan graviti Matahari ke angkasa lepas. Berapakah kelajuan jasad yang dilemparkan ini?",
         "options": [
-          "Antara $10\\text{ km/s}$ hingga $50\\text{ km/s}$",
-          "Antara $250\\text{ km/s}$ hingga $750\\text{ km/s}$",
-          "Antara $600\\text{ km/s}$ hingga melebihi $1,000\\text{ km/s}$",
-          "Bersamaan dengan kelajuan cahaya, $300,000\\text{ km/s}$"
+          "Antara 10 km/s hingga 50 km/s",
+          "Antara 250 km/s hingga 750 km/s",
+          "Antara 600 km/s hingga melebihi 1,000 km/s",
+          "Bersamaan dengan kelajuan cahaya, 300,000 km/s"
         ],
         "answerIndex": 1,
-        "explanation": "Kelajuan jasad yang dilemparkan oleh Semarak Suria antara 250 km/s hingga 750 km/s.\n*The speed of the body ejected by a strong Solar Prominence ranges from 250 km/s to 750 km/s.*"
+        "explanation": "Kelajuan jasad yang dilemparkan oleh Semarak Suria antara 250 km/s hingga 750 km/s. The speed of the body ejected by a strong Solar Prominence ranges from 250 km/s to 750 km/s."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q11",
@@ -13302,7 +13302,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Cahaya mengambil masa beberapa puluh minit, manakala zarah bercas mengambil masa 3 hari."
         ],
         "answerIndex": 1,
-        "explanation": "Cahaya mengambil masa 8 minit, manakala zarah bercas mengambil masa beberapa puluh minit.\n*Light takes 8 minutes, while the gas particles take several hours.*"
+        "explanation": "Cahaya mengambil masa 8 minit, manakala zarah bercas mengambil masa beberapa puluh minit. Light takes 8 minutes, while the gas particles take several hours."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q12",
@@ -13320,7 +13320,7 @@ const scienceF3MasterQuizBanks: Partial<
           "11 tahun (11 years)"
         ],
         "answerIndex": 1,
-        "explanation": "Beberapa puluh minit.\n*Several hours.*"
+        "explanation": "Beberapa puluh minit. Several hours."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q13",
@@ -13338,7 +13338,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Gas karbon dioksida pepejal yang membeku."
         ],
         "answerIndex": 2,
-        "explanation": "Medan magnet antara planet (interplanetary magnetic field).\n*Interplanetary magnetic field.*"
+        "explanation": "Medan magnet antara planet (interplanetary magnetic field). Interplanetary magnetic field."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q14",
@@ -13350,13 +13350,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "Zarah plasma dalam Angin Suria bergerak merentasi angkasa lepas pada kelajuan supersonik yang sangat tinggi. Berapakah julat kelajuan angin suria ini?",
         "options": [
-          "$10\\text{ km/s}$ hingga $50\\text{ km/s}$",
-          "$100\\text{ km/s}$ hingga $200\\text{ km/s}$",
-          "$250\\text{ km/s}$ hingga $750\\text{ km/s}$",
-          "$1,000\\text{ km/s}$ hingga $5,000\\text{ km/s}$"
+          "10 km/s hingga 50 km/s",
+          "100 km/s hingga 200 km/s",
+          "250 km/s hingga 750 km/s",
+          "1,000 km/s hingga 5,000 km/s"
         ],
         "answerIndex": 2,
-        "explanation": "$250\\text{ km/s}$ hingga $750\\text{ km/s}$.\n*$250\text{ km/s}$ to $750\text{ km/s}$.*"
+        "explanation": "250 km/s hingga 750 km/s. 250 km/s to 750 km/s."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q15",
@@ -13374,7 +13374,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Lingkaran cahaya aurora yang wujud secara kekal di atmosfera kawasan khatulistiwa Bumi."
         ],
         "answerIndex": 1,
-        "explanation": "Ruang dalam angkasa lepas yang meliputi Bumi di mana medan magnet di dalamnya merupakan gabungan medan magnet Bumi dan medan magnet antara planet.\n*The region in space surrounding the Earth where the magnetic field is a combination of Earth's magnetic field and the interplanetary magnetic field.*"
+        "explanation": "Ruang dalam angkasa lepas yang meliputi Bumi di mana medan magnet di dalamnya merupakan gabungan medan magnet Bumi dan medan magnet antara planet. The region in space surrounding the Earth where the magnetic field is a combination of Earth's magnetic field and the interplanetary magnetic field."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q16",
@@ -13386,13 +13386,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "Corak garisan medan magnet bagi magnetosfera Bumi adalah tidak tetap dan sentiasa berubah-ubah. Apakah faktor utama yang menyebabkan rupa bentuk magnetosfera ini mengalami perubahan dinamik?",
         "options": [
-          "Putaran paksi Bumi yang condong sebanyak $23.5^{\\circ}$.",
+          "Putaran paksi Bumi yang condong sebanyak 23.5^(°).",
           "Perubahan bilangan komet yang mengorbit di luar Sistem Suria.",
           "Interaksi dinamik dengan kelajuan dan ketumpatan Angin Suria yang tidak malar.",
           "Perubahan arus pasang surut air laut di kawasan lautan dalam Bumi."
         ],
         "answerIndex": 2,
-        "explanation": "Interaksi dengan Angin Suria yang tidak malar menyebabkan perubahan dinamik magnetosfera.\n*Interactions with variable solar wind cause dynamic changes in the magnetosphere.*"
+        "explanation": "Interaksi dengan Angin Suria yang tidak malar menyebabkan perubahan dinamik magnetosfera. Interactions with variable solar wind cause dynamic changes in the magnetosphere."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q17",
@@ -13402,15 +13402,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Rajah di bawah menunjukkan bentuk magnetosfera Bumi yang dihimpit oleh Angin Suria. Bagaimanakah angin suria mengubah rupa bentuk magnetosfera pada bahagian menghadap Matahari (*dayward side*) dan bahagian terlindung daripada Matahari (*nightward side*)?",
+        "question": "Angin suria menekan magnetosfera Bumi. Bagaimanakah bentuk magnetosfera berubah pada bahagian yang menghadap Matahari dan bahagian yang membelakangi Matahari?",
         "options": [
-          "Memanjangkan bahagian dayward dan menghimpit bahagian nightward membentuk ekor magnet.",
-          "Menghimpit bahagian dayward dan memanjangkan bahagian nightward membentuk ekor magnet (magnetotail).",
-          "Menghimpit kedua-dua belah bahagian secara simetri membentuk bulatan sfera sempurna.",
-          "Memanjangkan kedua-dua belah bahagian membentuk lingkaran elips yang meluas."
+          "Bahagian menghadap Matahari memanjang dan bahagian membelakangi Matahari termampat.",
+          "Bahagian menghadap Matahari termampat dan bahagian membelakangi Matahari memanjang membentuk ekor magnet.",
+          "Kedua-dua bahagian termampat secara sama rata menjadi sfera.",
+          "Kedua-dua bahagian memanjang menjadi elips."
         ],
         "answerIndex": 1,
-        "explanation": "Angin suria menghimpit dayward dan memanjangkan nightward membentuk ekor magnet.\n*Solar wind compresses the dayward side and stretches the nightward side, forming the magnetotail.*"
+        "explanation": "Angin suria menghimpit dayward dan memanjangkan nightward membentuk ekor magnet. Solar wind compresses the dayward side and stretches the nightward side, forming the magnetotail."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q18",
@@ -13420,15 +13420,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Magnetosfera Bumi sering dirujuk sebagai perisai biologi (*biological shield*) bagi planet kita. Antara berikut, yang manakah merupakan kepentingan utama Magnetosfera Bumi untuk kelangsungan hidupan dan teknologi?",
+        "question": "Magnetosfera Bumi sering dirujuk sebagai perisai biologi (biological shield) bagi planet kita. Antara berikut, yang manakah merupakan kepentingan utama Magnetosfera Bumi untuk kelangsungan hidupan dan teknologi?",
         "options": [
           "Memastikan atmosfera Bumi sentiasa kaya dengan gas nitrogen dan menghalang fotosintesis tumbuhan daripada terhenti.",
           "Memesongkan dan menghalang zarah bercas angin suria daripada merosakkan telekomunikasi, GPS, serta mengikis atmosfera Bumi.",
-          "Mengekalkan tarikan graviti Bumi agar kekal malar pada nilai $10\\text{ m s}^{-2}$ di semua kawasan altitud.",
+          "Mengekalkan tarikan graviti Bumi agar kekal malar pada nilai 10 m s⁻² di semua kawasan altitud.",
           "Memantulkan semua sinar inframerah Matahari bagi mengekalkan suhu purata permukaan Bumi pada paras beku."
         ],
         "answerIndex": 1,
-        "explanation": "Magnetosfera membantu melindungi teknologi dan telekomunikasi daripada zarah bercas angin suria.\n*The magnetosphere protects technology and telecommunications from solar wind particles.*"
+        "explanation": "Magnetosfera membantu melindungi teknologi dan telekomunikasi daripada zarah bercas angin suria. The magnetosphere protects technology and telecommunications from solar wind particles."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q19",
@@ -13446,7 +13446,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Halangan Optik (Optical Illusion)"
         ],
         "answerIndex": 1,
-        "explanation": "Interaksi ini menyebabkan aurora, cahaya kutub berwarna-warni.\n*This interaction causes aurora, colorful polar lights.*"
+        "explanation": "Interaksi ini menyebabkan aurora, cahaya kutub berwarna-warni. This interaction causes aurora, colorful polar lights."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q20",
@@ -13464,7 +13464,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Fenomena permukaan Matahari menghasilkan gelombang tidak mengion, manakala fenomena angkasa lepas menghasilkan gelombang bunyi."
         ],
         "answerIndex": 1,
-        "explanation": "Fenomena permukaan Matahari berlaku di Matahari, manakala fenomena angkasa lepas berlaku di angkasa.\n*Solar phenomena occur on the Sun, while space phenomena occur in space.*"
+        "explanation": "Fenomena permukaan Matahari berlaku di Matahari, manakala fenomena angkasa lepas berlaku di angkasa. Solar phenomena occur on the Sun, while space phenomena occur in space."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q21",
@@ -13482,7 +13482,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Menukarkan isyarat gelombang elektromagnet radio menjadi gelombang bunyi ultrasonik secara automatik."
         ],
         "answerIndex": 1,
-        "explanation": "Lapisan ionosfera terganggu, menyebabkan penyerapan atau gangguan teruk pada isyarat gelombang radio HF.\n*The ionosphere is disrupted, causing severe absorption or disruption of HF radio signals.*"
+        "explanation": "Lapisan ionosfera terganggu, menyebabkan penyerapan atau gangguan teruk pada isyarat gelombang radio HF. The ionosphere is disrupted, causing severe absorption or disruption of HF radio signals."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q22",
@@ -13500,7 +13500,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Penyerapan gas oksigen dari talian kabel elektrik yang menyebabkan litar pintas vakum terjadi."
         ],
         "answerIndex": 1,
-        "explanation": "Pencetusan arus aruhan geomagnetik yang sangat tinggi di kabel grid menyebabkan kerosakan.\n*High geomagnetic induced currents in the power grid cables cause damage.*"
+        "explanation": "Pencetusan arus aruhan geomagnetik yang sangat tinggi di kabel grid menyebabkan kerosakan. High geomagnetic induced currents in the power grid cables cause damage."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q23",
@@ -13512,13 +13512,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Seorang juruterbang penerbangan komersial dan anak kapal didedahkan kepada risiko dos sinaran kosmik yang lebih tinggi berbanding manusia di daratan. Apakah langkah pengurusan keselamatan yang diambil bagi krew penerbangan ini?",
         "options": [
-          "Diwajibkan memakai pakaian yang dilapisi plumbum tebal seberat $50\\text{ kg}$ semasa mengendalikan pesawat.",
+          "Diwajibkan memakai pakaian yang dilapisi plumbum tebal seberat 50 kg semasa mengendalikan pesawat.",
           "Dilarang menerbangkan pesawat melintasi kawasan lautan dalam yang mempunyai kepekatan ozon rendah.",
           "Mengehadkan jumlah waktu bekerja (penerbangan) bulanan atau tahunan di udara.",
           "Melakukan pemeriksaan sinar-X perubatan harian sebelum memulakan tugasan penerbangan."
         ],
         "answerIndex": 2,
-        "explanation": "Kurangkan jumlah waktu bekerja di udara untuk mengurangkan risiko dos sinaran kosmik.\n*Reduce flight time to minimize cosmic ray exposure risk.*"
+        "explanation": "Kurangkan jumlah waktu bekerja di udara untuk mengurangkan risiko dos sinaran kosmik. Reduce flight time to minimize cosmic ray exposure risk."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q24",
@@ -13528,15 +13528,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Seorang ahli sains solar (*solar scientist*) menganalisis hubungan korelasi antara aktiviti permukaan Matahari dengan intensiti cuaca angkasa lepas. Apakah kesimpulan yang dapat dibuat daripada analisis bilangan Tompok Matahari?",
+        "question": "Apakah hubungan antara bilangan tompok Matahari dengan aktiviti suria?",
         "options": [
           "Bilangan tompok Matahari yang tinggi (solar maximum) menandakan cuaca angkasa lepas berada pada fasa paling tenang dan selamat.",
-          "Peningkatan bilangan tompok Matahari berkorelasi secara langsung dengan peningkatan kekerapan CME, nyalaan suria, dan kelajuan angin suria.",
+          "Semakin banyak tompok Matahari, semakin kerap nyalaan suria dan lentingan jisim korona berlaku.",
           "Bilangan tompok Matahari adalah malar dan langsung tidak mempunyai hubungan dengan cuaca angkasa lepas.",
           "Kemunculan banyak tompok Matahari mengurangkan kekuatan medan magnet magnetosfera Bumi secara drastik."
         ],
         "answerIndex": 1,
-        "explanation": "Bilangan tompok Matahari yang meningkat berkorelasi dengan aktiviti suria yang lebih aktif.\n*Increased sunspot numbers correlate with more active solar activity.*"
+        "explanation": "Bilangan tompok Matahari yang meningkat berkorelasi dengan aktiviti suria yang lebih aktif. Increased sunspot numbers correlate with more active solar activity."
       },
       {
         "id": "sci-f3-c9-set-b-bm-q25",
@@ -13554,7 +13554,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Teras (Core)"
         ],
         "answerIndex": 1,
-        "explanation": "Lapisan kromosfera terlihat semasa gerhana matahari penuh.\n*The chromosphere is visible during a total solar eclipse.*"
+        "explanation": "Lapisan kromosfera terlihat semasa gerhana matahari penuh. The chromosphere is visible during a total solar eclipse."
       }
     ],
     "dlp": [
@@ -13574,7 +13574,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Meteorology and flood forecasting"
         ],
         "answerIndex": 1,
-        "explanation": "Pertahanan negara mendapat manfaat langsung daripada satelit.\n*National defense directly benefits from the satellite.*"
+        "explanation": "Pertahanan negara mendapat manfaat langsung daripada satelit. National defense directly benefits from the satellite."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q2",
@@ -13592,7 +13592,7 @@ const scienceF3MasterQuizBanks: Partial<
           "C3.1 class solar storm"
         ],
         "answerIndex": 0,
-        "explanation": "Nyalaan suria kelas X9.3 direkodkan pada waktu tersebut.\n*Solar flare class X9.3 was recorded at that time.*"
+        "explanation": "Nyalaan suria kelas X9.3 direkodkan pada waktu tersebut. Solar flare class X9.3 was recorded at that time."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q3",
@@ -13610,7 +13610,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Helium and Argon"
         ],
         "answerIndex": 2,
-        "explanation": "Hidrogen dan Helium membentuk hampir keseluruhan jisim bebola gas.\n*Hydrogen and Helium form almost the entire mass of the solar wind.*"
+        "explanation": "Hidrogen dan Helium membentuk hampir keseluruhan jisim bebola gas. Hydrogen and Helium form almost the entire mass of the solar wind."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q4",
@@ -13628,7 +13628,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Convection zone → Radiation zone → Core"
         ],
         "answerIndex": 0,
-        "explanation": "Teras → Zon perolakan → Zon radiasi adalah susunan lapisan dalaman Matahari.\n*Core → Convection zone → Radiative zone is the inner layers of the Sun.*"
+        "explanation": "Teras → Zon perolakan → Zon radiasi adalah susunan lapisan dalaman Matahari. Core → Convection zone → Radiative zone is the inner layers of the Sun."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q5",
@@ -13646,7 +13646,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Chromosphere → Photosphere → Corona"
         ],
         "answerIndex": 0,
-        "explanation": "Fotosfera → Kromosfera → Korona ialah urutan lapisan atmosfera Matahari.\n*Photosphere → Chromosphere → Corona is the order of the Sun's atmospheric layers.*"
+        "explanation": "Fotosfera → Kromosfera → Korona ialah urutan lapisan atmosfera Matahari. Photosphere → Chromosphere → Corona is the order of the Sun's atmospheric layers."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q6",
@@ -13664,7 +13664,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Corona"
         ],
         "answerIndex": 1,
-        "explanation": "Proses pelakuran nuklear berlaku di Zon Perolakan.\n*Nuclear fusion occurs in the Photosphere.*"
+        "explanation": "Proses pelakuran nuklear berlaku di Zon Perolakan. Nuclear fusion occurs in the Photosphere."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q7",
@@ -13682,7 +13682,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Corona"
         ],
         "answerIndex": 3,
-        "explanation": "Lingkaran cahaya putih kebiruan adalah Korona yang menghasilkan fenomena visual ini semasa gerhana matahari penuh.\n*The white-blue ring of light is the Corona responsible for this visual phenomenon during a total solar eclipse.*"
+        "explanation": "Lingkaran cahaya putih kebiruan adalah Korona yang menghasilkan fenomena visual ini semasa gerhana matahari penuh. The white-blue ring of light is the Corona responsible for this visual phenomenon during a total solar eclipse."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q8",
@@ -13700,7 +13700,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Small-scale meteorite impacts onto the photosphere"
         ],
         "answerIndex": 1,
-        "explanation": "Granulasi pada fotosfera disebabkan oleh bahagian atas arus perolakan plasma yang sangat panas dari zon perolakan.\n*The granulation on the photosphere is caused by the upper part of the hot plasma convection from the photosphere zone.*"
+        "explanation": "Granulasi pada fotosfera disebabkan oleh bahagian atas arus perolakan plasma yang sangat panas dari zon perolakan. The granulation on the photosphere is caused by the upper part of the hot plasma convection from the photosphere zone."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q9",
@@ -13712,13 +13712,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "What is the average diameter of a granule cell on the surface of the Sun's photosphere and what is the temperature of its hot plasma?",
         "options": [
-          "Less than 1,000 km ; 5,800 °C",
-          "More than 10,000 km ; 15,000,000 °C",
-          "Around 100,000 km ; 1,000,000 °C",
-          "Less than 100 km ; 2,500 °C"
+          "Less than 1,000 km; 5,800 °C",
+          "More than 10,000 km; 15,000,000 °C",
+          "Around 100,000 km; 1,000,000 °C",
+          "Less than 100 km; 2,500 °C"
         ],
         "answerIndex": 0,
-        "explanation": "Diameter purata sel granul kurang daripada 1,000 km dan suhu plasma panasnya 5,800 °C.\n*The average diameter of a granule is less than 1,000 km and its hot plasma temperature is 5,800 °C.*"
+        "explanation": "Diameter purata sel granul kurang daripada 1,000 km dan suhu plasma panasnya 5,800 °C. The average diameter of a granule is less than 1,000 km and its hot plasma temperature is 5,800 °C."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q10",
@@ -13736,7 +13736,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The areas undergo micro-eclipses due to near-orbit asteroids"
         ],
         "answerIndex": 1,
-        "explanation": "Tompok Matahari kelihatan gelap kerana suhunya lebih rendah daripada suhu granul di sekelilingnya.\n*Sunspots appear dark because their temperature is lower than that of the surrounding granules.*"
+        "explanation": "Tompok Matahari kelihatan gelap kerana suhunya lebih rendah daripada suhu granul di sekelilingnya. Sunspots appear dark because their temperature is lower than that of the surrounding granules."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q11",
@@ -13754,7 +13754,7 @@ const scienceF3MasterQuizBanks: Partial<
           "11 months"
         ],
         "answerIndex": 1,
-        "explanation": "Tempoh satu kitaran suria ialah 11 tahun.\n*The solar cycle lasts approximately 11 years.*"
+        "explanation": "Tempoh satu kitaran suria ialah 11 tahun. The solar cycle lasts approximately 11 years."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q12",
@@ -13772,7 +13772,7 @@ const scienceF3MasterQuizBanks: Partial<
           "It only occurs isolatedly in the polar regions of the coronal atmosphere"
         ],
         "answerIndex": 1,
-        "explanation": "Semarak suria berbentuk gelungan gas menyala yang besar dan boleh kekal selama beberapa hari hingga beberapa bulan.\n*Solar prominences are large, glowing gas loops that can last for days to several months.*"
+        "explanation": "Semarak suria berbentuk gelungan gas menyala yang besar dan boleh kekal selama beberapa hari hingga beberapa bulan. Solar prominences are large, glowing gas loops that can last for days to several months."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q13",
@@ -13790,7 +13790,7 @@ const scienceF3MasterQuizBanks: Partial<
           "300,000 km/s"
         ],
         "answerIndex": 2,
-        "explanation": "Kelajuan pelepasan jasad semarak suria ialah antara 600 km/s hingga melebihi 1,000 km/s.\n*The speed of material ejected by a strong solar prominence ranges from 600 km/s to over 1,000 km/s.*"
+        "explanation": "Kelajuan pelepasan jasad semarak suria ialah antara 600 km/s hingga melebihi 1,000 km/s. The speed of material ejected by a strong solar prominence ranges from 600 km/s to over 1,000 km/s."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q14",
@@ -13802,13 +13802,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "An observatory station detects a powerful solar flare on the surface of the Sun. What is the estimated time taken for the light emission (radiation) and the charged gas particles from that flare to reach Earth?",
         "options": [
-          "Light: 8 minutes ; Charged particles: several tens of minutes",
-          "Light: 3 days ; Charged particles: 8 minutes",
-          "D. Cahaya: beberapa puluh minit ; Zarah bercas: 3 hari / *Light: several tens of minutes ; Charged particles: 3 days",
-          "Light: several tens of minutes ; Charged particles: 3 days"
+          "Light: 8 minutes; Charged particles: several tens of minutes",
+          "Light: 3 days; Charged particles: 8 minutes",
+          "D. Cahaya: beberapa puluh minit; Zarah bercas: 3 hari / Light: several tens of minutes; Charged particles: 3 days",
+          "Light: several tens of minutes; Charged particles: 3 days"
         ],
         "answerIndex": 0,
-        "explanation": "Pancaran cahaya dari nyalaan suria mengambil masa 8 minit untuk sampai ke Bumi, manakala zarah bercas mengambil beberapa puluh minit.\n*Solar flare radiation takes about 8 minutes to reach Earth, while the ejected particles take several minutes.*"
+        "explanation": "Pancaran cahaya dari nyalaan suria mengambil masa 8 minit untuk sampai ke Bumi, manakala zarah bercas mengambil beberapa puluh minit. Solar flare radiation takes about 8 minutes to reach Earth, while the ejected particles take several minutes."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q15",
@@ -13826,7 +13826,7 @@ const scienceF3MasterQuizBanks: Partial<
           "11 years"
         ],
         "answerIndex": 2,
-        "explanation": "CME biasanya mengambil masa 3 hari untuk sampai ke atmosfera Bumi.\n*A CME typically takes about 3 days to reach Earth's atmosphere.*"
+        "explanation": "CME biasanya mengambil masa 3 hari untuk sampai ke atmosfera Bumi. A CME typically takes about 3 days to reach Earth's atmosphere."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q16",
@@ -13844,7 +13844,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Solar cycle"
         ],
         "answerIndex": 0,
-        "explanation": "Angin suria adalah aliran plasma yang membawa medan magnet.\n*Solar wind is the supersonic stream carrying the magnetic field.*"
+        "explanation": "Angin suria adalah aliran plasma yang membawa medan magnet. Solar wind is the supersonic stream carrying the magnetic field."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q17",
@@ -13862,7 +13862,7 @@ const scienceF3MasterQuizBanks: Partial<
           "1,000 km/s to 3,000 km/s"
         ],
         "answerIndex": 1,
-        "explanation": "Kelajuan angin suria antara 250 km/s hingga 750 km/s.\n*Solar wind speed ranges from 250 km/s to 750 km/s.*"
+        "explanation": "Kelajuan angin suria antara 250 km/s hingga 750 km/s. Solar wind speed ranges from 250 km/s to 750 km/s."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q18",
@@ -13880,7 +13880,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Space dust, micrometeorites, and neutral helium atoms"
         ],
         "answerIndex": 1,
-        "explanation": "Plasma angin suria terkandung elektron, proton, dan zarah alfa.\n*Solar wind plasma contains electrons, protons, and alpha particles.*"
+        "explanation": "Plasma angin suria terkandung elektron, proton, dan zarah alfa. Solar wind plasma contains electrons, protons, and alpha particles."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q19",
@@ -13898,7 +13898,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The rotation of Earth on its 23.5° axial tilt"
         ],
         "answerIndex": 1,
-        "explanation": "Perubahan dinamik magnetosfera disebabkan oleh interaksi angin suria yang berubah-ubah.\n*Dynamic changes in the magnetosphere are caused by varying solar wind interactions.*"
+        "explanation": "Perubahan dinamik magnetosfera disebabkan oleh interaksi angin suria yang berubah-ubah. Dynamic changes in the magnetosphere are caused by varying solar wind interactions."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q20",
@@ -13916,7 +13916,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Generating natural electric currents to power animal migration"
         ],
         "answerIndex": 0,
-        "explanation": "Magnetosfera melindungi Bumi daripada radiasi berbahaya dan menghalang angin suria.\n*The magnetosphere shields Earth from harmful radiation and solar wind.*"
+        "explanation": "Magnetosfera melindungi Bumi daripada radiasi berbahaya dan menghalang angin suria. The magnetosphere shields Earth from harmful radiation and solar wind."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q21",
@@ -13934,7 +13934,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Photospheric granules and the 11-year solar cycle"
         ],
         "answerIndex": 1,
-        "explanation": "Lentingan jisim korona (CME) dan semarak suria berlaku di angkasa lepas.\n*Solar coronal mass ejections (CME) and solar flares occur in space.*"
+        "explanation": "Lentingan jisim korona (CME) dan semarak suria berlaku di angkasa lepas. Solar coronal mass ejections (CME) and solar flares occur in space."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q22",
@@ -13952,7 +13952,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ionizing helium gas inside underground cable lines"
         ],
         "answerIndex": 1,
-        "explanation": "Arus aruhan geomagnetik yang sangat tinggi mencetuskan kegagalan talian penghantaran kuasa.\n*High geomagnetic currents can cause power transmission system failures.*"
+        "explanation": "Arus aruhan geomagnetik yang sangat tinggi mencetuskan kegagalan talian penghantaran kuasa. High geomagnetic currents can cause power transmission system failures."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q23",
@@ -13970,7 +13970,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Causing turbulent sea waters that affect ships' altitude readings"
         ],
         "answerIndex": 1,
-        "explanation": "Pesan GPS terganggu semasa lapisan ionosfera terganggu.\n*GPS signals are disrupted during ionosphere disturbances.*"
+        "explanation": "Pesan GPS terganggu semasa lapisan ionosfera terganggu. GPS signals are disrupted during ionosphere disturbances."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q24",
@@ -13988,7 +13988,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The 11-year solar cycle stops completely when no sunspots are visible"
         ],
         "answerIndex": 1,
-        "explanation": "Kekerapan nyalaan suria dan CME meningkat semasa tompok Matahari maksimum.\n*Solar flare and CME frequency increases during solar maximum.*"
+        "explanation": "Kekerapan nyalaan suria dan CME meningkat semasa tompok Matahari maksimum. Solar flare and CME frequency increases during solar maximum."
       },
       {
         "id": "sci-f3-c9-set-a-dlp-q25",
@@ -14006,7 +14006,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The release of neon gas from Earth's crust in the magnetotail region"
         ],
         "answerIndex": 2,
-        "explanation": "Zarah bercas dari nyalaan suria bertindak balas dengan gas atmosfera Bumi menghasilkan cahaya aurora.\n*Solar wind particles react with Earth's atmospheric gases to produce aurora.*"
+        "explanation": "Zarah bercas dari nyalaan suria bertindak balas dengan gas atmosfera Bumi menghasilkan cahaya aurora. Solar wind particles react with Earth's atmospheric gases to produce aurora."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q1",
@@ -14016,7 +14016,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "RazakSAT-2 satellite is one of the prominent local scientific achievements in Malaysia. What is its primary role outlined in the textbook?",
+        "question": "What is the main purpose of the RazakSAT-2 satellite?",
         "options": [
           "Mengukur dan memantau suhu lautan global untuk ramalan perubahan iklim.",
           "Digunakan sebagai satelit ketenteraan dalam bidang pertahanan negara.",
@@ -14024,7 +14024,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Meramal cuaca tempatan harian dan keamatan taburan hujan tahunan."
         ],
         "answerIndex": 0,
-        "explanation": "Satelit RazakSAT-2 digunakan untuk mengukur dan memantau suhu lautan global.\n*RazakSAT-2 satellite is used to measure and monitor global sea surface temperature.*"
+        "explanation": "Satelit RazakSAT-2 digunakan untuk mengukur dan memantau suhu lautan global. RazakSAT-2 satellite is used to measure and monitor global sea surface temperature."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q2",
@@ -14042,7 +14042,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Supersonik (Angin Suria)"
         ],
         "answerIndex": 2,
-        "explanation": "Letusan aktiviti suria pada 6 September 2017 adalah Nyalaan Suria Kelas X9.3.\n*The solar activity eruption on September 6, 2017, was a Solar Flare Class X9.3.*"
+        "explanation": "Letusan aktiviti suria pada 6 September 2017 adalah Nyalaan Suria Kelas X9.3. The solar activity eruption on September 6, 2017, was a Solar Flare Class X9.3."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q3",
@@ -14052,7 +14052,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "The temperature of the photosphere atmosphere is about $5,800\\,^{\\circ}\\text{C}$. Which of the following are the primary chemical gas elements that form almost the entire mass composition of the Sun?",
+        "question": "The temperature of the photosphere atmosphere is about 5,800 ^(°)C. Which of the following are the primary chemical gas elements that form almost the entire mass composition of the Sun?",
         "options": [
           "Carbon Dioxide and Nitrogen",
           "Hydrogen and Helium",
@@ -14060,7 +14060,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Helium and Neon"
         ],
         "answerIndex": 1,
-        "explanation": "Hidrogen dan Helium membentuk hampir keseluruhan komposisi jisim Matahari.\n*Hydrogen and Helium form almost the entire composition of the Sun's mass.*"
+        "explanation": "Hidrogen dan Helium membentuk hampir keseluruhan komposisi jisim Matahari. Hydrogen and Helium form almost the entire composition of the Sun's mass."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q4",
@@ -14078,7 +14078,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Photosphere (Fotosfera)"
         ],
         "answerIndex": 2,
-        "explanation": "Teras (Core) terletak di bahagian paling pusat dan merupakan tapak pelakuran nuklear.\n*The Core is the innermost layer and is the site of nuclear fusion.*"
+        "explanation": "Teras (Core) terletak di bahagian paling pusat dan merupakan tapak pelakuran nuklear. The Core is the innermost layer and is the site of nuclear fusion."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q5",
@@ -14096,7 +14096,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Corona (Korona)"
         ],
         "answerIndex": 1,
-        "explanation": "Fenomena permukaan fotosfera yang berbutir-butir halus adalah Granul.\n*The granular appearance of the photosphere is called Granules.*"
+        "explanation": "Fenomena permukaan fotosfera yang berbutir-butir halus adalah Granul. The granular appearance of the photosphere is called Granules."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q6",
@@ -14114,7 +14114,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Above 10,000 km"
         ],
         "answerIndex": 1,
-        "explanation": "Diameter purata sel granul kurang daripada 100 km kerana granul adalah kawasan kecil yang panas.\n*The average diameter of a granule is less than 100 km because granules are small, hot regions.*"
+        "explanation": "Diameter purata sel granul kurang daripada 100 km kerana granul adalah kawasan kecil yang panas. The average diameter of a granule is less than 100 km because granules are small, hot regions."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q7",
@@ -14132,7 +14132,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Below the comet's tail orbiting very closely with the Photosphere."
         ],
         "answerIndex": 1,
-        "explanation": "Tompok Matahari kelihatan gelap kerana suhunya lebih rendah berbanding granul sekitarnya.\n*Sunspots appear dark because their temperature is lower than that of the surrounding granules.*"
+        "explanation": "Tompok Matahari kelihatan gelap kerana suhunya lebih rendah berbanding granul sekitarnya. Sunspots appear dark because their temperature is lower than that of the surrounding granules."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q8",
@@ -14150,7 +14150,7 @@ const scienceF3MasterQuizBanks: Partial<
           "76 years"
         ],
         "answerIndex": 1,
-        "explanation": "Jangka masa satu Kitaran Suria lengkap ialah 11 tahun.\n*The complete solar cycle lasts 11 years.*"
+        "explanation": "Jangka masa satu Kitaran Suria lengkap ialah 11 tahun. The complete solar cycle lasts 11 years."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q9",
@@ -14160,7 +14160,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "The diagram below shows a massive loop of glowing gas above a sunspot that can reach heights of hundreds of thousands of kilometers. What is the name of this curved gas eruption phenomenon?",
+        "question": "A massive loop of glowing gas forms above a sunspot and can reach hundreds of thousands of kilometres in height. What is this phenomenon called?",
         "options": [
           "Corona M5.4 (Lentingan Jisim Korona Kelas M5.4)",
           "Solar Flare (Nyalaan Suria Kelas X9.3)",
@@ -14168,7 +14168,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Solar Wind (Solar Wind)"
         ],
         "answerIndex": 2,
-        "explanation": "Fenomena letusan gas melengkung tersebut dinamakan Semarak Suria atau Prominen.\n*The phenomenon of the curved gas eruption is called a Solar Prominence.*"
+        "explanation": "Fenomena letusan gas melengkung tersebut dinamakan Semarak Suria atau Prominen. The phenomenon of the curved gas eruption is called a Solar Prominence."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q10",
@@ -14180,13 +14180,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "A very powerful solar prominence has the dynamic ability to eject matter out of the Sun's gravitational pull into space. What is the speed of this ejected matter?",
         "options": [
-          "Between $10\text{ km/s}$ and $50\text{ km/s}$",
-          "Between $250\text{ km/s}$ and $750\text{ km/s}$",
-          "Between $600\text{ km/s}$ and exceed $1,000\text{ km/s}$",
-          "Along with the speed of light, $300,000\text{ km/s}$"
+          "Between 10 km/s and 50 km/s",
+          "Between 250 km/s and 750 km/s",
+          "Between 600 km/s and exceed 1,000 km/s",
+          "Along with the speed of light, 300,000 km/s"
         ],
         "answerIndex": 1,
-        "explanation": "Kelajuan jasad yang dilemparkan oleh Semarak Suria antara 250 km/s hingga 750 km/s.\n*The speed of the body ejected by a strong Solar Prominence ranges from 250 km/s to 750 km/s.*"
+        "explanation": "Kelajuan jasad yang dilemparkan oleh Semarak Suria antara 250 km/s hingga 750 km/s. The speed of the body ejected by a strong Solar Prominence ranges from 250 km/s to 750 km/s."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q11",
@@ -14204,7 +14204,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Light takes 30 minutes, while the zodiac takes 3 days."
         ],
         "answerIndex": 1,
-        "explanation": "Cahaya mengambil masa 8 minit, manakala zarah bercas mengambil masa beberapa puluh minit.\n*Light takes 8 minutes, while the gas particles take several hours.*"
+        "explanation": "Cahaya mengambil masa 8 minit, manakala zarah bercas mengambil masa beberapa puluh minit. Light takes 8 minutes, while the gas particles take several hours."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q12",
@@ -14222,7 +14222,7 @@ const scienceF3MasterQuizBanks: Partial<
           "11 years (11 years)"
         ],
         "answerIndex": 1,
-        "explanation": "Beberapa puluh minit.\n*Several hours.*"
+        "explanation": "Beberapa puluh minit. Several hours."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q13",
@@ -14240,7 +14240,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Frozen carbon dioxide gas."
         ],
         "answerIndex": 2,
-        "explanation": "Medan magnet antara planet (interplanetary magnetic field).\n*Interplanetary magnetic field.*"
+        "explanation": "Medan magnet antara planet (interplanetary magnetic field). Interplanetary magnetic field."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q14",
@@ -14252,13 +14252,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "The plasma particles in Solar Wind travel across space at very high supersonic speeds. What is the speed range of this solar wind?",
         "options": [
-          "$10\text{ km/s}$ to $50\text{ km/s}$",
-          "$100\text{ km/s}$ to $200\text{ km/s}$",
-          "$250\text{ km/s}$ to $750\text{ km/s}$",
-          "$1,000\text{ km/s}$ to $5,000\text{ km/s}$"
+          "10 km/s to 50 km/s",
+          "100 km/s to 200 km/s",
+          "250 km/s to 750 km/s",
+          "1,000 km/s to 5,000 km/s"
         ],
         "answerIndex": 2,
-        "explanation": "$250\\text{ km/s}$ hingga $750\\text{ km/s}$.\n*$250\text{ km/s}$ to $750\text{ km/s}$.*"
+        "explanation": "250 km/s hingga 750 km/s. 250 km/s to 750 km/s."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q15",
@@ -14276,7 +14276,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Persistent aurora ring in the Earth's atmosphere."
         ],
         "answerIndex": 1,
-        "explanation": "Ruang dalam angkasa lepas yang meliputi Bumi di mana medan magnet di dalamnya merupakan gabungan medan magnet Bumi dan medan magnet antara planet.\n*The region in space surrounding the Earth where the magnetic field is a combination of Earth's magnetic field and the interplanetary magnetic field.*"
+        "explanation": "Ruang dalam angkasa lepas yang meliputi Bumi di mana medan magnet di dalamnya merupakan gabungan medan magnet Bumi dan medan magnet antara planet. The region in space surrounding the Earth where the magnetic field is a combination of Earth's magnetic field and the interplanetary magnetic field."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q16",
@@ -14288,13 +14288,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "The magnetic field line pattern of Earth's magnetosphere is non-constant and constantly changing. What is the primary factor that causes this dynamic change in the shape of the magnetosphere?",
         "options": [
-          "The Earth's rotation tilt of $23.5^{\\circ}$.",
+          "The Earth's rotation tilt of 23.5^(°).",
           "Change in the number of comets orbiting outside the Solar System.",
           "Dynamic interaction with the speed and density of the Solar Wind that is not chaotic.",
           "Changes in the tidal currents of the sea in the Earth's ocean area."
         ],
         "answerIndex": 2,
-        "explanation": "Interaksi dengan Angin Suria yang tidak malar menyebabkan perubahan dinamik magnetosfera.\n*Interactions with variable solar wind cause dynamic changes in the magnetosphere.*"
+        "explanation": "Interaksi dengan Angin Suria yang tidak malar menyebabkan perubahan dinamik magnetosfera. Interactions with variable solar wind cause dynamic changes in the magnetosphere."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q17",
@@ -14304,15 +14304,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "The diagram below shows the shape of Earth's magnetosphere compressed by the Solar Wind. How does the solar wind deform the shape of the magnetosphere on the dayward side and the nightward side?",
+        "question": "The solar wind presses against Earth's magnetosphere. How does its shape change on the side facing the Sun and the side facing away from the Sun?",
         "options": [
-          "Lengthening the dayward part and squeezing the nightward part to form a magnet tail.",
-          "The dayward and nightward parts are compressed and extended to form a magnet tail (magnetotail).",
-          "The two halves are symmetrically compressed to form a perfect sphere.",
-          "The two halves are extended to form an expanding ellipse."
+          "The side facing the Sun stretches and the side facing away from the Sun is compressed.",
+          "The side facing the Sun is compressed and the side facing away from the Sun stretches to form a magnetotail.",
+          "Both sides are compressed equally into a sphere.",
+          "Both sides stretch into an ellipse."
         ],
         "answerIndex": 1,
-        "explanation": "Angin suria menghimpit dayward dan memanjangkan nightward membentuk ekor magnet.\n*Solar wind compresses the dayward side and stretches the nightward side, forming the magnetotail.*"
+        "explanation": "Angin suria menghimpit dayward dan memanjangkan nightward membentuk ekor magnet. Solar wind compresses the dayward side and stretches the nightward side, forming the magnetotail."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q18",
@@ -14326,11 +14326,11 @@ const scienceF3MasterQuizBanks: Partial<
         "options": [
           "Ensuring the Earth's atmosphere is always rich in nitrogen gas and preventing photosynthesis from stopping.",
           "Blocking and preventing the solar wind from disrupting telecommunications, GPS, and damaging the Earth's atmosphere.",
-          "Maintaining the Earth's gravitational pull so that it remains constant at $10 ext{ m s}^{-2}$ in all altitude areas.",
+          "Maintaining the Earth's gravitational pull so that it remains constant at 10 m s⁻² in all altitude areas.",
           "The Rainbow of the Gargantuan (Giant Rainbow)"
         ],
         "answerIndex": 1,
-        "explanation": "Magnetosfera membantu melindungi teknologi dan telekomunikasi daripada zarah bercas angin suria.\n*The magnetosphere protects technology and telecommunications from solar wind particles.*"
+        "explanation": "Magnetosfera membantu melindungi teknologi dan telekomunikasi daripada zarah bercas angin suria. The magnetosphere protects technology and telecommunications from solar wind particles."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q19",
@@ -14348,7 +14348,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Solar phenomena occur in the photosphere, while space phenomena occur in the solar corona."
         ],
         "answerIndex": 1,
-        "explanation": "Interaksi ini menyebabkan aurora, cahaya kutub berwarna-warni.\n*This interaction causes aurora, colorful polar lights.*"
+        "explanation": "Interaksi ini menyebabkan aurora, cahaya kutub berwarna-warni. This interaction causes aurora, colorful polar lights."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q20",
@@ -14366,7 +14366,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Solar flares absorb and burn the physical antennas of radio transmitters on Earth continuously."
         ],
         "answerIndex": 1,
-        "explanation": "Fenomena permukaan Matahari berlaku di Matahari, manakala fenomena angkasa lepas berlaku di angkasa.\n*Solar phenomena occur on the Sun, while space phenomena occur in space.*"
+        "explanation": "Fenomena permukaan Matahari berlaku di Matahari, manakala fenomena angkasa lepas berlaku di angkasa. Solar phenomena occur on the Sun, while space phenomena occur in space."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q21",
@@ -14384,7 +14384,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The physical fireball of the sun falling directly hits the transformer of the Earth's ionosphere."
         ],
         "answerIndex": 1,
-        "explanation": "Lapisan ionosfera terganggu, menyebabkan penyerapan atau gangguan teruk pada isyarat gelombang radio HF.\n*The ionosphere is disrupted, causing severe absorption or disruption of HF radio signals.*"
+        "explanation": "Lapisan ionosfera terganggu, menyebabkan penyerapan atau gangguan teruk pada isyarat gelombang radio HF. The ionosphere is disrupted, causing severe absorption or disruption of HF radio signals."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q22",
@@ -14402,7 +14402,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Prohibited from flying over areas with low ozone concentration."
         ],
         "answerIndex": 1,
-        "explanation": "Pencetusan arus aruhan geomagnetik yang sangat tinggi di kabel grid menyebabkan kerosakan.\n*High geomagnetic induced currents in the power grid cables cause damage.*"
+        "explanation": "Pencetusan arus aruhan geomagnetik yang sangat tinggi di kabel grid menyebabkan kerosakan. High geomagnetic induced currents in the power grid cables cause damage."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q23",
@@ -14420,7 +14420,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The increase in the number of solar maxima is directly correlated with the increase in CMEs, sunspots, and wind speeds."
         ],
         "answerIndex": 2,
-        "explanation": "Kurangkan jumlah waktu bekerja di udara untuk mengurangkan risiko dos sinaran kosmik.\n*Reduce flight time to minimize cosmic ray exposure risk.*"
+        "explanation": "Kurangkan jumlah waktu bekerja di udara untuk mengurangkan risiko dos sinaran kosmik. Reduce flight time to minimize cosmic ray exposure risk."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q24",
@@ -14438,7 +14438,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The appearance of many sunspots drastically reduced the strength of the Earth's magnetosphere field."
         ],
         "answerIndex": 1,
-        "explanation": "Bilangan tompok Matahari yang meningkat berkorelasi dengan aktiviti suria yang lebih aktif.\n*Increased sunspot numbers correlate with more active solar activity.*"
+        "explanation": "Bilangan tompok Matahari yang meningkat berkorelasi dengan aktiviti suria yang lebih aktif. Increased sunspot numbers correlate with more active solar activity."
       },
       {
         "id": "sci-f3-c9-set-b-dlp-q25",
@@ -14456,7 +14456,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The core (core)"
         ],
         "answerIndex": 1,
-        "explanation": "Lapisan kromosfera terlihat semasa gerhana matahari penuh.\n*The chromosphere is visible during a total solar eclipse.*"
+        "explanation": "Lapisan kromosfera terlihat semasa gerhana matahari penuh. The chromosphere is visible during a total solar eclipse."
       }
     ]
   },
@@ -14478,7 +14478,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Bumi berada pada salah satu titik fokus sepunya bagi orbit elips semua planet yang beredar mengelilinginya."
         ],
         "answerIndex": 3,
-        "explanation": "Bumi berada pada salah satu titik fokus sepunya bagi orbit elips semua planet yang beredar mengelilinginya.\n*Bumi is located at one of the common foci of the elliptical orbits of all the planets that orbit around it.*"
+        "explanation": "Bumi berada pada salah satu titik fokus sepunya bagi orbit elips semua planet yang beredar mengelilinginya. Bumi is located at one of the common foci of the elliptical orbits of all the planets that orbit around it."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q2",
@@ -14496,7 +14496,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Beliau menemui kawah di Bulan menggunakan teleskop pertama yang dibina secara manual."
         ],
         "answerIndex": 2,
-        "explanation": "Beliau mengasaskan model heliosentrik di mana Matahari berada di pusat dan Bumi serta planet lain beredar dalam orbit membulat.\n*He proposed a heliocentric model where the Sun is at the center and the Earth and other planets orbit in circular paths.*"
+        "explanation": "Beliau mengasaskan model heliosentrik di mana Matahari berada di pusat dan Bumi serta planet lain beredar dalam orbit membulat. He proposed a heliocentric model where the Sun is at the center and the Earth and other planets orbit in circular paths."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q3",
@@ -14514,7 +14514,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mengisytiharkan bahawa Matahari berputar pada paksinya manakala planet-planet lain adalah pegun."
         ],
         "answerIndex": 0,
-        "explanation": "Menggantikan orbit membulat planet dengan orbit berbentuk elips mengikut Hukum Kepler.\n*Replacing the circular orbits of planets with elliptical orbits according to Kepler's laws.*"
+        "explanation": "Menggantikan orbit membulat planet dengan orbit berbentuk elips mengikut Hukum Kepler. Replacing the circular orbits of planets with elliptical orbits according to Kepler's laws."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q4",
@@ -14532,7 +14532,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kedua-dua model diasaskan menggunakan data penderiaan jauh teleskop angkasa lepas. (Both models were founded using space telescope remote sensing data.)"
         ],
         "answerIndex": 1,
-        "explanation": "Kedua-dua model dikelaskan sebagai model heliosentrik dengan Matahari berada di pusat Sistem Suria.\n*Both models are classified as heliocentric models with the Sun at the center of the Solar System.*"
+        "explanation": "Kedua-dua model dikelaskan sebagai model heliosentrik dengan Matahari berada di pusat Sistem Suria. Both models are classified as heliocentric models with the Sun at the center of the Solar System."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q5",
@@ -14550,7 +14550,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Rusia (Russia)"
         ],
         "answerIndex": 2,
-        "explanation": "China (China)\n*China (China)*"
+        "explanation": "China (China) China (China)"
       },
       {
         "id": "sci-f3-c10-set-a-bm-q6",
@@ -14568,7 +14568,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ia merupakan kuar angkasa pertama yang dihantar keluar dari Sistem Suria."
         ],
         "answerIndex": 1,
-        "explanation": "Karena ia adalah satelit buatan manusia pertama yang berjaya dihantar mengorbit Bumi.\n*Because it was the first successful artificial satellite to orbit the Earth.*"
+        "explanation": "Karena ia adalah satelit buatan manusia pertama yang berjaya dihantar mengorbit Bumi. Because it was the first successful artificial satellite to orbit the Earth."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q7",
@@ -14586,7 +14586,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sheikh Muszaphar Shukor"
         ],
         "answerIndex": 1,
-        "explanation": "Yuri Gagarin adalah manusia pertama yang berjaya dihantar ke angkasa lepas dan mengorbit Bumi.\n*Yuri Gagarin was the first human to successfully orbit the Earth in space.*"
+        "explanation": "Yuri Gagarin adalah manusia pertama yang berjaya dihantar ke angkasa lepas dan mengorbit Bumi. Yuri Gagarin was the first human to successfully orbit the Earth in space."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q8",
@@ -14604,7 +14604,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Vostok 1"
         ],
         "answerIndex": 0,
-        "explanation": "Misi Apollo 11 dikelola oleh NASA yang berjaya mendaratkan manusia pertama di Bulan.\n*The Apollo 11 mission, managed by NASA, successfully landed the first humans on the Moon.*"
+        "explanation": "Misi Apollo 11 dikelola oleh NASA yang berjaya mendaratkan manusia pertama di Bulan. The Apollo 11 mission, managed by NASA, successfully landed the first humans on the Moon."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q9",
@@ -14622,7 +14622,7 @@ const scienceF3MasterQuizBanks: Partial<
           "TiungSAT-1"
         ],
         "answerIndex": 2,
-        "explanation": "Pioneer 10 ialah kuar angkasa pertama yang berjaya dihantar untuk menghampiri Musytari.\n*Pioneer 10 was the first space probe to successfully reach and photograph Jupiter.*"
+        "explanation": "Pioneer 10 ialah kuar angkasa pertama yang berjaya dihantar untuk menghampiri Musytari. Pioneer 10 was the first space probe to successfully reach and photograph Jupiter."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q10",
@@ -14640,7 +14640,7 @@ const scienceF3MasterQuizBanks: Partial<
           "RazakSAT-2"
         ],
         "answerIndex": 0,
-        "explanation": "RazakSAT ialah mikrosatelit pertama Malaysia yang dilancarkan pada tahun 2000.\n*RazakSAT was Malaysia's first microsatellite launched in 2000.*"
+        "explanation": "RazakSAT ialah mikrosatelit pertama Malaysia yang dilancarkan pada tahun 2000. RazakSAT was Malaysia's first microsatellite launched in 2000."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q11",
@@ -14658,7 +14658,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ia diletakkan di orbit kutub (polar orbit) untuk memantau keadaan ais di Antartika."
         ],
         "answerIndex": 1,
-        "explanation": "RazakSAT berada di orbit dekat Khatulistiwa, membolehkan pengekangan yang terus di atas Malaysia.\n*RazakSAT is in a near-equatorial orbit, allowing continuous coverage over Malaysia.*"
+        "explanation": "RazakSAT berada di orbit dekat Khatulistiwa, membolehkan pengekangan yang terus di atas Malaysia. RazakSAT is in a near-equatorial orbit, allowing continuous coverage over Malaysia."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q12",
@@ -14676,7 +14676,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Antoine Henri Becquerel"
         ],
         "answerIndex": 1,
-        "explanation": "Galileo Galilei menggunakan teleskop untuk pertama kali dalam astronomi.\n*Galileo Galilei was the first to use a telescope for astronomical studies.*"
+        "explanation": "Galileo Galilei menggunakan teleskop untuk pertama kali dalam astronomi. Galileo Galilei was the first to use a telescope for astronomical studies."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q13",
@@ -14694,7 +14694,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Memancarkan cahaya nampak dari cermin cembung gergasi untuk menerangi asteroid."
         ],
         "answerIndex": 2,
-        "explanation": "Teleskop Spitzer mengesan radiasi inframerah untuk objek yang sangat sejuk.\n*The Spitzer Space Telescope detects infrared radiation from very cold objects.*"
+        "explanation": "Teleskop Spitzer mengesan radiasi inframerah untuk objek yang sangat sejuk. The Spitzer Space Telescope detects infrared radiation from very cold objects."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q14",
@@ -14712,7 +14712,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kedua-duanya diletakkan di dasar laut tebal untuk mengelakkan rintangan udara."
         ],
         "answerIndex": 1,
-        "explanation": "Hubble fokus pada cahaya nampak, manakala Spitzer fokus pada inframerah.\n*Hubble focuses on visible light, while Spitzer focuses on infrared.*"
+        "explanation": "Hubble fokus pada cahaya nampak, manakala Spitzer fokus pada inframerah. Hubble focuses on visible light, while Spitzer focuses on infrared."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q15",
@@ -14730,7 +14730,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Memantulkan isyarat komunikasi telefon selular di seluruh pelosok dunia."
         ],
         "answerIndex": 1,
-        "explanation": "Roket digunakan untuk menghantar alat-alat ke angkasa lepas.\n*Rockets are used to launch equipment into space.*"
+        "explanation": "Roket digunakan untuk menghantar alat-alat ke angkasa lepas. Rockets are used to launch equipment into space."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q16",
@@ -14748,7 +14748,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Menyebabkan pemanasan global akibat pembebasan gas helium."
         ],
         "answerIndex": 1,
-        "explanation": "Roket boleh digunakan sebagai senjata pemusnah besar-besaran dengan membawa peluru berpandu nuklear/tentera.\n*Rockets can be misused as large-scale weapons carrying guided nuclear/ military warheads.*"
+        "explanation": "Roket boleh digunakan sebagai senjata pemusnah besar-besaran dengan membawa peluru berpandu nuklear/tentera. Rockets can be misused as large-scale weapons carrying guided nuclear/ military warheads."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q17",
@@ -14766,7 +14766,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kuar angkasa hanya dikawal oleh isyarat radio dari Bulan secara langsung."
         ],
         "answerIndex": 1,
-        "explanation": "Kuar angkasa tidak dihantar bersama-sama dengan angkasawan kerana kuar angkasa dihantar ke destinasi yang sangat jauh untuk tempoh jangka masa yang amat panjang (puluhan tahun) tanpa jaminan perjalanan pulang.\n*Space probes are not sent with astronauts because they are sent to very distant destinations for extremely long periods (decades) without a return journey guarantee.*"
+        "explanation": "Kuar angkasa tidak dihantar bersama-sama dengan angkasawan kerana kuar angkasa dihantar ke destinasi yang sangat jauh untuk tempoh jangka masa yang amat panjang (puluhan tahun) tanpa jaminan perjalanan pulang. Space probes are not sent with astronauts because they are sent to very distant destinations for extremely long periods (decades) without a return journey guarantee."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q18",
@@ -14784,7 +14784,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mengurangkan kesan ribut suria ke atas lapisan magnetosfera Bumi."
         ],
         "answerIndex": 2,
-        "explanation": "Satelit buatan manusia mengorbit Bumi digunakan untuk mengambil gambar permukaan Bumi untuk pertahanan, telekomunikasi, dan navigasi.\n*Man-made satellites orbiting the Earth are used to take aerial images of the Earth's surface for defense, telecommunications, and navigation.*"
+        "explanation": "Satelit buatan manusia mengorbit Bumi digunakan untuk mengambil gambar permukaan Bumi untuk pertahanan, telekomunikasi, dan navigasi. Man-made satellites orbiting the Earth are used to take aerial images of the Earth's surface for defense, telecommunications, and navigation."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q19",
@@ -14802,7 +14802,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Menghasilkan tenaga suria dan menghantarnya terus ke pencawang elektrik Bumi."
         ],
         "answerIndex": 1,
-        "explanation": "Stesen Angkasa Antarabangsa menyediakan ruang makmal di angkasa lepas bagi angkasawan untuk menjalankan penyelidikan saintifik dalam keadaan mikro-graviti.\n*The International Space Station provides a micro-gravity environment for astronauts to conduct scientific research in space.*"
+        "explanation": "Stesen Angkasa Antarabangsa menyediakan ruang makmal di angkasa lepas bagi angkasawan untuk menjalankan penyelidikan saintifik dalam keadaan mikro-graviti. The International Space Station provides a micro-gravity environment for astronauts to conduct scientific research in space."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q20",
@@ -14820,7 +14820,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Penghantaran isyarat televisyen berdefinisi tinggi dari stesen pemancar ke rumah."
         ],
         "answerIndex": 1,
-        "explanation": "Teknologi penderiaan jauh adalah kaedah mengumpul dan merekodkan maklumat atau data tentang sesuatu objek dari jarak jauh tanpa sentuhan fizikal terus, menggunakan sensor pada satelit atau pesawat.\n*Remote sensing is the method of collecting and recording information or data about an object from a distance without physical contact, using sensors on satellites or aircraft.*"
+        "explanation": "Teknologi penderiaan jauh adalah kaedah mengumpul dan merekodkan maklumat atau data tentang sesuatu objek dari jarak jauh tanpa sentuhan fizikal terus, menggunakan sensor pada satelit atau pesawat. Remote sensing is the method of collecting and recording information or data about an object from a distance without physical contact, using sensors on satellites or aircraft."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q21",
@@ -14838,7 +14838,7 @@ const scienceF3MasterQuizBanks: Partial<
           "MIMA"
         ],
         "answerIndex": 0,
-        "explanation": "MACRES bertanggungjawab sepenuhnya dalam projek penderiaan jauh di Malaysia.\n*MACRES is fully responsible for remote sensing projects in Malaysia.*"
+        "explanation": "MACRES bertanggungjawab sepenuhnya dalam projek penderiaan jauh di Malaysia. MACRES is fully responsible for remote sensing projects in Malaysia."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q22",
@@ -14856,7 +14856,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mengubah struktur genetik benih padi secara aruhan mutasi sinaran."
         ],
         "answerIndex": 1,
-        "explanation": "Penderiaan jauh membantu pertanian melalui pengesan dan pemetaan tanaman.\n*Remote sensing aids agriculture by monitoring and mapping crops.*"
+        "explanation": "Penderiaan jauh membantu pertanian melalui pengesan dan pemetaan tanaman. Remote sensing aids agriculture by monitoring and mapping crops."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q23",
@@ -14874,7 +14874,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Memancarkan gelombang radio untuk memanaskan tubuh mangsa yang kesejukan."
         ],
         "answerIndex": 1,
-        "explanation": "Gambar aerial membantu menentukan lokasi banjir dan mengenal pasti kawasan selamat.\n*Aerial imagery helps determine flood locations and identify safe areas.*"
+        "explanation": "Gambar aerial membantu menentukan lokasi banjir dan mengenal pasti kawasan selamat. Aerial imagery helps determine flood locations and identify safe areas."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q24",
@@ -14892,7 +14892,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mengawal aliran magma gunung berapi daripada meletus."
         ],
         "answerIndex": 1,
-        "explanation": "Penderiaan jauh membantu memeta bentuk Bumi dan menganalisis struktur geologi.\n*Remote sensing helps map Earth's surface and analyze geological structures.*"
+        "explanation": "Penderiaan jauh membantu memeta bentuk Bumi dan menganalisis struktur geologi. Remote sensing helps map Earth's surface and analyze geological structures."
       },
       {
         "id": "sci-f3-c10-set-a-bm-q25",
@@ -14910,7 +14910,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mengurangkan kadar hakisan tanah di kawasan kubu ketenteraan sempadan. (Reducing soil erosion rates at border military fortresses.)"
         ],
         "answerIndex": 1,
-        "explanation": "Agensi Keselamatan menggunakan penderiaan jauh untuk mengesan aktiviti musuh.\n*The Security Agency uses remote sensing to monitor enemy activities.*"
+        "explanation": "Agensi Keselamatan menggunakan penderiaan jauh untuk mengesan aktiviti musuh. The Security Agency uses remote sensing to monitor enemy activities."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q1",
@@ -14928,7 +14928,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Bumi berada di pusat orbit manakala semua jasad angkasa adalah pegun tanpa sebarang pergerakan relatif."
         ],
         "answerIndex": 1,
-        "explanation": "Bumi berada di pusat Sistem Suria manakala Matahari, Bulan, dan planet-planet lain mengelilinginya dalam orbit yang membulat.\n*B: The Earth is at the center of the Solar System, while the Sun, Moon, and other planets orbit it in nearly circular paths.*"
+        "explanation": "Bumi berada di pusat Sistem Suria manakala Matahari, Bulan, dan planet-planet lain mengelilinginya dalam orbit yang membulat. B: The Earth is at the center of the Solar System, while the Sun, Moon, and other planets orbit it in nearly circular paths."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q2",
@@ -14946,7 +14946,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Orbit Copernicus meletakkan Bumi di pusat orbit manakala orbit Kepler meletakkan Matahari di salah satu titik fokus elips."
         ],
         "answerIndex": 1,
-        "explanation": "Orbit Copernicus adalah bulat sempurna manakala orbit Kepler adalah elips.\n*B: Copernican orbits are perfect circles, while Keplerian orbits are ellipses.*"
+        "explanation": "Orbit Copernicus adalah bulat sempurna manakala orbit Kepler adalah elips. B: Copernican orbits are perfect circles, while Keplerian orbits are ellipses."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q3",
@@ -14959,12 +14959,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Sains moden membuktikan Teori Geosentrik Ptolemy adalah salah. Walau bagaimanapun, apakah persamaan struktur yang masih dikongsi antara model Ptolemy dengan model heliosentrik Copernicus?",
         "options": [
           "Kedua-dua model menganggap Bumi berputar pada paksinya sendiri dalam masa 24 jam.",
-          "Kedua-dua model menggunakan bentuk orbit membulat (*circular orbits*) bagi pergerakan jasad yang mengelilingi pusat Sistem Suria.",
+          "Kedua-dua model menggunakan bentuk orbit membulat (circular orbits) bagi pergerakan jasad yang mengelilingi pusat Sistem Suria.",
           "Kedua-dua model meletakkan Matahari sebagai jasad pegun di pusat Sistem Suria.",
           "Kedua-dua model menolak konsep bahawa bulan mengelilingi Bumi secara terus."
         ],
         "answerIndex": 0,
-        "explanation": "Kedua-dua model menganggap Bumi berputar pada paksinya sendiri dalam masa 24 jam.\n*A: Both models assume the Earth rotates on its axis in 24 hours.*"
+        "explanation": "Kedua-dua model menganggap Bumi berputar pada paksinya sendiri dalam masa 24 jam. A: Both models assume the Earth rotates on its axis in 24 hours."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q4",
@@ -14974,7 +14974,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Garis masa sejarah mencatatkan pelbagai mercu tanda (*milestones*) dalam teknologi angkasa lepas. Antara padanan tahun dengan peristiwa sejarah berikut, yang manakah salah?",
+        "question": "Garis masa sejarah mencatatkan pelbagai mercu tanda (milestones) dalam teknologi angkasa lepas. Antara padanan tahun dengan peristiwa sejarah berikut, yang manakah salah?",
         "options": [
           "1957: Peluncuran satelit buatan manusia pertama, Sputnik 1 oleh USSR.",
           "1961: Yuri Gagarin menjadi manusia pertama di orbit Bumi menaiki Vostok 1.",
@@ -14982,7 +14982,7 @@ const scienceF3MasterQuizBanks: Partial<
           "2000: Satelit RazakSAT diluncurkan sebagai satelit telekomunikasi pertama Malaysia."
         ],
         "answerIndex": 3,
-        "explanation": "2000: Satelit RazakSAT diluncurkan sebagai satelit telekomunikasi pertama Malaysia adalah salah.\n*D: The launch of RazakSAT in 2000 as Malaysia's first communication satellite is incorrect.*"
+        "explanation": "2000: Satelit RazakSAT diluncurkan sebagai satelit telekomunikasi pertama Malaysia adalah salah. D: The launch of RazakSAT in 2000 as Malaysia's first communication satellite is incorrect."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q5",
@@ -15000,7 +15000,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Orbitnya adalah elips sangat tinggi untuk membolehkan ia keluar dari tarikan graviti Bumi sepenuhnya."
         ],
         "answerIndex": 1,
-        "explanation": "Ia diletakkan pada Orbit Dekat Khatulistiwa (NEEq) untuk memberikan liputan pengimejan yang kerap bagi kawasan tropika.\n*B: It is placed in a Near Equatorial Orbit (NEEq) to provide frequent imaging coverage of tropical regions.*"
+        "explanation": "Ia diletakkan pada Orbit Dekat Khatulistiwa (NEEq) untuk memberikan liputan pengimejan yang kerap bagi kawasan tropika. B: It is placed in a Near Equatorial Orbit (NEEq) to provide frequent imaging coverage of tropical regions."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q6",
@@ -15012,13 +15012,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Easy",
         "question": "Satelit penderiaan jauh pertama Malaysia, TiungSAT-1, diluncurkan pada tahun 2000. Apakah perbezaan utama dari segi klasifikasi fizikal antara TiungSAT-1 dan RazakSAT?",
         "options": [
-          "TiungSAT-1 dikelaskan sebagai mikrosatelit (*microsatellite*) dengan berat yang sangat kecil, manakala RazakSAT ialah satelit penderiaan jauh bersaiz penuh yang lebih berat.",
+          "TiungSAT-1 dikelaskan sebagai mikrosatelit (microsatellite) dengan berat yang sangat kecil, manakala RazakSAT ialah satelit penderiaan jauh bersaiz penuh yang lebih berat.",
           "TiungSAT-1 mengorbit Bulan manakala RazakSAT mengorbit Bumi.",
           "TiungSAT-1 menggunakan enjin nuklear manakala RazakSAT digerakkan oleh bahan api cecair kimia.",
           "TiungSAT-1 ialah satelit ketenteraan yang membawa senjata manakala RazakSAT ialah satelit cuaca awam."
         ],
         "answerIndex": 0,
-        "explanation": "TiungSAT-1 lebih kecil dan lebih ringan, manakala RazakSAT lebih besar dan lebih berat.\n*TiungSAT-1 is smaller and lighter, while RazakSAT is larger and heavier.*"
+        "explanation": "TiungSAT-1 lebih kecil dan lebih ringan, manakala RazakSAT lebih besar dan lebih berat. TiungSAT-1 is smaller and lighter, while RazakSAT is larger and heavier."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q7",
@@ -15036,7 +15036,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Untuk mengelakkan kerosakan fizikal akibat rintangan angin kencang di permukaan Bumi."
         ],
         "answerIndex": 1,
-        "explanation": "Teleskop di orbit luar atmosfera mengelakkan gangguan daripada atmosfera Bumi.\n*Telescopes in outer space avoid interference from Earth's atmosphere.*"
+        "explanation": "Teleskop di orbit luar atmosfera mengelakkan gangguan daripada atmosfera Bumi. Telescopes in outer space avoid interference from Earth's atmosphere."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q8",
@@ -15054,7 +15054,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Memesongkan laluan asteroid berbahaya daripada menghampiri atmosfera Bumi."
         ],
         "answerIndex": 0,
-        "explanation": "Sinaran inframerah boleh melalui awan debu dan membolehkan penjelajahan objek yang terselubung.\n*Infrared waves can penetrate dust clouds and allow the exploration of hidden objects.*"
+        "explanation": "Sinaran inframerah boleh melalui awan debu dan membolehkan penjelajahan objek yang terselubung. Infrared waves can penetrate dust clouds and allow the exploration of hidden objects."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q9",
@@ -15072,7 +15072,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Meluncurkan kuar angkasa Voyager menggunakan roket untuk mengkaji planet luar."
         ],
         "answerIndex": 1,
-        "explanation": "Peluru berpandu balistik nuklear adalah contoh penyalahgunaan roket.\n*Nuclear-tipped guided ballistic missiles are an example of rocket misuse.*"
+        "explanation": "Peluru berpandu balistik nuklear adalah contoh penyalahgunaan roket. Nuclear-tipped guided ballistic missiles are an example of rocket misuse."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q10",
@@ -15082,15 +15082,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Kuar angkasa (*space probe*) dihantar ke angkasa lepas untuk mengumpul data saintifik tentang planet-planet yang jauh. Apakah sumber tenaga utama yang membolehkan kuar angkasa beroperasi secara berterusan selama berpuluh-puluh tahun di kawasan angkasa lepas yang sangat sejuk?",
+        "question": "Kuar angkasa (space probe) dihantar ke angkasa lepas untuk mengumpul data saintifik tentang planet-planet yang jauh. Apakah sumber tenaga utama yang membolehkan kuar angkasa beroperasi secara berterusan selama berpuluh-puluh tahun di kawasan angkasa lepas yang sangat sejuk?",
         "options": [
           "Bahan api cecair petroleum yang diisi di dalam tangki simpanan khas kuar angkasa.",
           "Pembakaran berterusan serbuk arang kok yang diletakkan di dalam reaktor mikro kuar angkasa.",
-          "Panel sel suria (*solar panels*) untuk planet berhampiran Matahari, dan bateri nuklear penjana termoelektrik radioisotop bagi planet luar yang jauh daripada Matahari.",
+          "Panel sel suria (solar panels) untuk planet berhampiran Matahari, dan bateri nuklear penjana termoelektrik radioisotop bagi planet luar yang jauh daripada Matahari.",
           "Tenaga kinetik yang dijana daripada putaran roda magnetosfera kuar angkasa itu sendiri."
         ],
         "answerIndex": 2,
-        "explanation": "Panel suria dan bateri nuklear membolehkan kuar angkasa beroperasi lama di angkasa.\n*Solar panels and radioisotope thermoelectric generators allow space probes to operate for long periods in space.*"
+        "explanation": "Panel suria dan bateri nuklear membolehkan kuar angkasa beroperasi lama di angkasa. Solar panels and radioisotope thermoelectric generators allow space probes to operate for long periods in space."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q11",
@@ -15108,7 +15108,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kerana robot mempunyai keupayaan untuk melarutkan diri di dalam atmosfera gas Musytari tanpa musnah."
         ],
         "answerIndex": 2,
-        "explanation": "Masa perjalanan panjang, radiasi kosmik berbahaya, dan keadaan ekstrem tidak sesuai untuk manusia.\n*Long travel time, dangerous cosmic radiation, and extreme conditions are not suitable for humans.*"
+        "explanation": "Masa perjalanan panjang, radiasi kosmik berbahaya, dan keadaan ekstrem tidak sesuai untuk manusia. Long travel time, dangerous cosmic radiation, and extreme conditions are not suitable for humans."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q12",
@@ -15126,7 +15126,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Tekanan mekanikal angin suria akan mengubah bentuk fizikal kuar menjadi gas helium tulen."
         ],
         "answerIndex": 1,
-        "explanation": "Zarah bercas dan ribut radiasi akan merosakkan peralatan elektronik.\n*High-speed particles and radiation storms will damage electronic equipment.*"
+        "explanation": "Zarah bercas dan ribut radiasi akan merosakkan peralatan elektronik. High-speed particles and radiation storms will damage electronic equipment."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q13",
@@ -15144,7 +15144,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kehadiran sinaran ultraungu (UV) kosmik secara langsung yang mempercepatkan kadar mutasi genetik tumbuhan padi."
         ],
         "answerIndex": 1,
-        "explanation": "Mikrograviti membolehkan kajian tanpa tarikan graviti normal.\n*Microgravity allows studies without normal gravitational pull.*"
+        "explanation": "Mikrograviti membolehkan kajian tanpa tarikan graviti normal. Microgravity allows studies without normal gravitational pull."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q14",
@@ -15162,7 +15162,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Alat pengesan radioaktif yang digunakan untuk mengira dos sinaran latar belakang di dalam makmal nuklear."
         ],
         "answerIndex": 1,
-        "explanation": "Mengumpul maklumat permukaan Bumi dari jauh menggunakan sensor satelit.\n*Collecting surface information from afar using satellite sensors.*"
+        "explanation": "Mengumpul maklumat permukaan Bumi dari jauh menggunakan sensor satelit. Collecting surface information from afar using satellite sensors."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q15",
@@ -15180,7 +15180,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Meningkatkan kadar fotosintesis tanaman dengan memantulkan cahaya matahari tambahan melalui cermin satelit gergasi."
         ],
         "answerIndex": 1,
-        "explanation": "Mempantau klorofil, mengesan penyakit, dan meramal hasil tanaman.\n*Monitor chlorophyll, detect diseases, and predict crop yields.*"
+        "explanation": "Mempantau klorofil, mengesan penyakit, dan meramal hasil tanaman. Monitor chlorophyll, detect diseases, and predict crop yields."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q16",
@@ -15198,7 +15198,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mengubah komposisi batuan granit menjadi logam emas melalui penembusan radiasi elektromagnet."
         ],
         "answerIndex": 1,
-        "explanation": "Teknologi penderiaan jauh membantu mengesan dan memetakan struktur bentuk muka Bumi, serta mengenalpasti kawasan yang berpotensi untuk cari gali.\n*Remote sensing technology helps in identifying and mapping the Earth's surface structures, and locating potential areas for exploration.*"
+        "explanation": "Teknologi penderiaan jauh membantu mengesan dan memetakan struktur bentuk muka Bumi, serta mengenalpasti kawasan yang berpotensi untuk cari gali. Remote sensing technology helps in identifying and mapping the Earth's surface structures, and locating potential areas for exploration."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q17",
@@ -15211,12 +15211,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Semasa berlakunya bencana alam seperti banjir besar, bagaimanakah data penderiaan jauh (remote sensing) dapat membantu pihak penyelamat dalam bidang Pengurusan Bencana?",
         "options": [
           "Membina benteng penghalang air banjir secara automatik menggunakan teknologi pancaran gelombang mikro.",
-          "Menyediakan peta kawasan banjir secara masa nyata (*real-time*) untuk mengenalpasti kawasan penempatan yang terjejas, menentukan laluan penyelamatan yang selamat, dan mengesan pusat pemindahan sementara (PPS) yang sesuai.",
+          "Menyediakan peta kawasan banjir secara masa nyata (real-time) untuk mengenalpasti kawasan penempatan yang terjejas, menentukan laluan penyelamatan yang selamat, dan mengesan pusat pemindahan sementara (PPS) yang sesuai.",
           "Menghilangkan air banjir secara serta-merta melalui proses penyejatan haba satelit yang intensif.",
           "Menghantar isyarat denyutan jantung mangsa yang tenggelam di bawah air secara terus ke telefon bimbit penyelamat."
         ],
         "answerIndex": 1,
-        "explanation": "Satelit memberikan peta kawasan banjir secara real-time untuk menentukan laluan penyelamatan dan penempatan yang terjejas.\n*Satellite data provides real-time flood maps to determine safe evacuation routes and affected areas.*"
+        "explanation": "Satelit memberikan peta kawasan banjir secara real-time untuk menentukan laluan penyelamatan dan penempatan yang terjejas. Satellite data provides real-time flood maps to determine safe evacuation routes and affected areas."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q18",
@@ -15231,10 +15231,10 @@ const scienceF3MasterQuizBanks: Partial<
           "Melancarkan misil peledak untuk memusnahkan satelit cuaca milik negara-negara jiran.",
           "Mengesan ujian nuklear haram bawah tanah di seluruh dunia, memantau pergerakan tentera atau aset musuh di sempadan, dan mengesan pencerobohan ruang udara serta perairan negara.",
           "Mengawal minda pasukan tentera musuh menggunakan isyarat elektromagnet frekuensi ultra tinggi.",
-          "Memancarkan perisai halimunan (*force field*) untuk melindungi pangkalan tentera darat daripada serangan bom udara."
+          "Memancarkan perisai halimunan (force field) untuk melindungi pangkalan tentera darat daripada serangan bom udara."
         ],
         "answerIndex": 1,
-        "explanation": "Penderiaan jauh digunakan untuk mengesan pergerakan tentera musuh dan pencerobohan ruang udara serta perairan negara.\n*Remote sensing is used to monitor enemy military movements and air and sea intrusions.*"
+        "explanation": "Penderiaan jauh digunakan untuk mengesan pergerakan tentera musuh dan pencerobohan ruang udara serta perairan negara. Remote sensing is used to monitor enemy military movements and air and sea intrusions."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q19",
@@ -15244,7 +15244,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Satelit MEASAT-3 milik Malaysia diletakkan di orbit geopegun. Apakah maksud orbit geopegun (*geostationary orbit*) dan mengapakah ciri ini sangat penting bagi satelit telekomunikasi?",
+        "question": "Satelit MEASAT-3 milik Malaysia diletakkan di orbit geopegun. Apakah maksud orbit geopegun (geostationary orbit) dan mengapakah ciri ini sangat penting bagi satelit telekomunikasi?",
         "options": [
           "Satelit berada pada ketinggian yang sangat rendah dan bergerak lebih cepat daripada putaran Bumi untuk melawat semua negara.",
           "Satelit mengorbit Bumi pada kelajuan yang sama dengan kadar putaran paksi Bumi, menyebabkannya kelihatan sentiasa pegun di atas titik rujukan yang sama di permukaan Bumi untuk memastikan sambungan isyarat TV/internet tidak terputus.",
@@ -15252,7 +15252,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Orbit satelit berbentuk elips melampau yang membolehkan ia melintasi kutub utara setiap 12 jam sekali."
         ],
         "answerIndex": 1,
-        "explanation": "Orbit geopegun membolehkan satelit bergerak dengan kelajuan yang sama dengan Bumi, sehingga kelihatan sentiasa di atas titik yang sama.\n*A geostationary orbit allows the satellite to match Earth's rotational speed, appearing stationary over a fixed point.*"
+        "explanation": "Orbit geopegun membolehkan satelit bergerak dengan kelajuan yang sama dengan Bumi, sehingga kelihatan sentiasa di atas titik yang sama. A geostationary orbit allows the satellite to match Earth's rotational speed, appearing stationary over a fixed point."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q20",
@@ -15270,7 +15270,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Mengharamkan sebarang penggunaan alat GPS di dalam kenderaan awam atas faktor keselamatan privasi data."
         ],
         "answerIndex": 1,
-        "explanation": "MACRES menyelaraskan dan memproses data penderiaan jauh untuk menyokong pengurusan pertanian, perancangan bandar, dan keselamatan pertahanan.\n*MACRES coordinates and processes remote sensing data to support agricultural management, urban planning, and defense safety.*"
+        "explanation": "MACRES menyelaraskan dan memproses data penderiaan jauh untuk menyokong pengurusan pertanian, perancangan bandar, dan keselamatan pertahanan. MACRES coordinates and processes remote sensing data to support agricultural management, urban planning, and defense safety."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q21",
@@ -15288,7 +15288,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Claudius Ptolemy"
         ],
         "answerIndex": 2,
-        "explanation": "Galileo Galilei menggunakan teleskop untuk memerhatikan langit.\n*Galileo Galilei was the first to use a telescope to observe the sky.*"
+        "explanation": "Galileo Galilei menggunakan teleskop untuk memerhatikan langit. Galileo Galilei was the first to use a telescope to observe the sky."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q22",
@@ -15306,7 +15306,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Ia merupakan teleskop radio pertama yang mengesan gelombang radio kosmik galaktik."
         ],
         "answerIndex": 1,
-        "explanation": "Sputnik 1 memulakan era penerokaan angkasa lepas.\n*Sputnik 1 initiated the era of space exploration.*"
+        "explanation": "Sputnik 1 memulakan era penerokaan angkasa lepas. Sputnik 1 initiated the era of space exploration."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q23",
@@ -15319,12 +15319,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Sistem Navigasi GPS (Global Positioning System) yang ada di dalam telefon bimbit pintar bergantung sepenuhnya kepada satelit angkasa lepas. Bagaimanakah isyarat satelit ini bertindak balas dengan alat penerima di Bumi?",
         "options": [
           "Satelit memancarkan sinar gama bertenaga tinggi untuk memanaskan cip litar telefon bimbit mangsa.",
-          "Satelit memancarkan gelombang mikro (*microwave signals*) yang membawa data masa dan kedudukan yang dikoordinasikan secara triangulasi oleh sekurang-kurangnya 4 buah satelit GPS untuk menentukan koordinat geografi pengguna secara tepat.",
+          "Satelit memancarkan gelombang mikro (microwave signals) yang membawa data masa dan kedudukan yang dikoordinasikan secara triangulasi oleh sekurang-kurangnya 4 buah satelit GPS untuk menentukan koordinat geografi pengguna secara tepat.",
           "Telefon bimbit memancarkan gas nitrogen ringan ke angkasa untuk menarik perhatian sensor satelit.",
           "Satelit mengukur suhu permukaan badan pengguna melalui sistem kamera terma inframerah optik."
         ],
         "answerIndex": 1,
-        "explanation": "Satelit mengirim gelombang mikro untuk menentukan lokasi pengguna.\n*Satellites send microwave signals to determine the user's location.*"
+        "explanation": "Satelit mengirim gelombang mikro untuk menentukan lokasi pengguna. Satellites send microwave signals to determine the user's location."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q24",
@@ -15342,7 +15342,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Buzz Aldrin"
         ],
         "answerIndex": 1,
-        "explanation": "Yuri Gagarin menaiki Vostok 1 dan menjadi manusia pertama mengorbit Bumi.\n*Yuri Gagarin was the first human to orbit the Earth in Vostok 1.*"
+        "explanation": "Yuri Gagarin menaiki Vostok 1 dan menjadi manusia pertama mengorbit Bumi. Yuri Gagarin was the first human to orbit the Earth in Vostok 1."
       },
       {
         "id": "sci-f3-c10-set-b-bm-q25",
@@ -15355,12 +15355,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Teleskop jenis Teleskop Radio diletakkan di Bumi untuk mengumpul maklumat astronomi. Bagaimanakah fungsi teleskop radio ini membezakannya daripada teleskop optik biasa?",
         "options": [
           "Ia memancarkan isyarat siaran radio komersial ke seluruh Sistem Suria untuk berkomunikasi dengan robot Marikh.",
-          "Ia tidak mengumpul cahaya nampak (*visible light*), sebaliknya mengesan dan merekodkan gelombang radio frekuensi tinggi yang dipancarkan secara semula jadi oleh jasad angkasa lepas seperti bintang neutron, pulsar, dan lohong hitam.",
+          "Ia tidak mengumpul cahaya nampak (visible light), sebaliknya mengesan dan merekodkan gelombang radio frekuensi tinggi yang dipancarkan secara semula jadi oleh jasad angkasa lepas seperti bintang neutron, pulsar, dan lohong hitam.",
           "Ia memanaskan atmosfera Bumi untuk mengurangkan kadar pembentukan jerebu di kawasan bandar.",
           "Ia menggunakan cermin cembung dan kanta tebal untuk membesarkan imej optik objek angkasa sejauh 100 kali ganda."
         ],
         "answerIndex": 1,
-        "explanation": "Teleskop radio tidak menggunakan cahaya nampak, tetapi gelombang radio.\n*Radio telescopes do not use visible light, but radio waves.*"
+        "explanation": "Teleskop radio tidak menggunakan cahaya nampak, tetapi gelombang radio. Radio telescopes do not use visible light, but radio waves."
       }
     ],
     "dlp": [
@@ -15372,7 +15372,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "*Fokus Silibus: *Model Sistem Suria Ptolemy Which of the following statements explains the main feature of the Solar System model built by the Greek astronomer, Claudius Ptolemy?",
+        "question": "Fokus Silibus: Model Sistem Suria Ptolemy Which of the following statements explains the main feature of the Solar System model built by the Greek astronomer, Claudius Ptolemy?",
         "options": [
           "The Sun is at the center of the Solar System and the Earth orbits it in an elliptical orbit.",
           "The Earth is at the center of the Solar System while the Sun and other planets orbit it in circular orbits.",
@@ -15380,7 +15380,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The Earth is at one of the common focal points of the elliptical orbits of all planets orbiting around it."
         ],
         "answerIndex": 3,
-        "explanation": "Bumi berada pada salah satu titik fokus sepunya bagi orbit elips semua planet yang beredar mengelilinginya.\n*Bumi is located at one of the common foci of the elliptical orbits of all the planets that orbit around it.*"
+        "explanation": "Bumi berada pada salah satu titik fokus sepunya bagi orbit elips semua planet yang beredar mengelilinginya. Bumi is located at one of the common foci of the elliptical orbits of all the planets that orbit around it."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q2",
@@ -15390,7 +15390,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "*Fokus Silibus: *Sumbangan Nicolaus Copernicus How did Nicolaus Copernicus change astronomical understanding of the Solar System's structure in the 16th century?",
+        "question": "Fokus Silibus: Sumbangan Nicolaus Copernicus How did Nicolaus Copernicus change astronomical understanding of the Solar System's structure in the 16th century?",
         "options": [
           "He proved that the Earth is spherical using shadows during lunar eclipses.",
           "He proposed a heliocentric model with the Sun at the center and planets orbiting in elliptical orbits.",
@@ -15398,7 +15398,7 @@ const scienceF3MasterQuizBanks: Partial<
           "He discovered craters on the Moon using a manually built first telescope."
         ],
         "answerIndex": 2,
-        "explanation": "Beliau mengasaskan model heliosentrik di mana Matahari berada di pusat dan Bumi serta planet lain beredar dalam orbit membulat.\n*He proposed a heliocentric model where the Sun is at the center and the Earth and other planets orbit in circular paths.*"
+        "explanation": "Beliau mengasaskan model heliosentrik di mana Matahari berada di pusat dan Bumi serta planet lain beredar dalam orbit membulat. He proposed a heliocentric model where the Sun is at the center and the Earth and other planets orbit in circular paths."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q3",
@@ -15408,7 +15408,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "*Fokus Silibus: *Hukum Kepler & Pengemaskinian Model Johannes Kepler updated Copernicus's heliocentric model. What revolutionary modification did he introduce?",
+        "question": "Fokus Silibus: Hukum Kepler & Pengemaskinian Model Johannes Kepler updated Copernicus's heliocentric model. What revolutionary modification did he introduce?",
         "options": [
           "Replacing the circular orbits of planets with elliptical orbits according to Kepler's Law.",
           "Placing the Earth back at the center of the Solar System with the moon orbiting in elliptical orbits.",
@@ -15416,7 +15416,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Declaring that the Sun rotates on its axis while other planets are stationary."
         ],
         "answerIndex": 0,
-        "explanation": "Menggantikan orbit membulat planet dengan orbit berbentuk elips mengikut Hukum Kepler.\n*Replacing the circular orbits of planets with elliptical orbits according to Kepler's laws.*"
+        "explanation": "Menggantikan orbit membulat planet dengan orbit berbentuk elips mengikut Hukum Kepler. Replacing the circular orbits of planets with elliptical orbits according to Kepler's laws."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q4",
@@ -15426,7 +15426,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "*Fokus Silibus: *Sains Komparatif Model Sistem Suria Which of the following is the single similarity of the Solar System Models proposed by Nicolaus Copernicus and Johannes Kepler?",
+        "question": "Fokus Silibus: Sains Komparatif Model Sistem Suria Which of the following is the single similarity of the Solar System Models proposed by Nicolaus Copernicus and Johannes Kepler?",
         "options": [
           "Both models assumed the planetary orbits were perfectly circular.",
           "Both models are classified as heliocentric models with the Sun at the center of the Solar System.",
@@ -15434,7 +15434,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Both models were founded using space telescope remote sensing data."
         ],
         "answerIndex": 1,
-        "explanation": "Kedua-dua model dikelaskan sebagai model heliosentrik dengan Matahari berada di pusat Sistem Suria.\n*Both models are classified as heliocentric models with the Sun at the center of the Solar System.*"
+        "explanation": "Kedua-dua model dikelaskan sebagai model heliosentrik dengan Matahari berada di pusat Sistem Suria. Both models are classified as heliocentric models with the Sun at the center of the Solar System."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q5",
@@ -15444,7 +15444,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "*Fokus Silibus: *Sejarah Awal: Roket Serbuk Bedil The early history of rocket technology development began as early as the 11th century. Which country first invented gunpowder and used these primitive rockets in battles?",
+        "question": "Fokus Silibus: Sejarah Awal: Roket Serbuk Bedil The early history of rocket technology development began as early as the 11th century. Which country first invented gunpowder and used these primitive rockets in battles?",
         "options": [
           "Arabia (Arabia)",
           "Greece (Greece)",
@@ -15452,7 +15452,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Russia (Russia)"
         ],
         "answerIndex": 2,
-        "explanation": "China (China)\n*China (China)*"
+        "explanation": "China (China) China (China)"
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q6",
@@ -15462,7 +15462,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "*Fokus Silibus: *Milestone: Sputnik 1 (1957) Why is the launch of the Sputnik 1 satellite by the Soviet Union (Russia) on October 4, 1957 considered the most historical event in space exploration?",
+        "question": "Fokus Silibus: Milestone: Sputnik 1 (1957) Why is the launch of the Sputnik 1 satellite by the Soviet Union (Russia) on October 4, 1957 considered the most historical event in space exploration?",
         "options": [
           "It carried the first human astronaut across outer space.",
           "It was the first human-made artificial satellite successfully sent to orbit Earth.",
@@ -15470,7 +15470,7 @@ const scienceF3MasterQuizBanks: Partial<
           "It was the first space probe sent out of the Solar System."
         ],
         "answerIndex": 1,
-        "explanation": "Karena ia adalah satelit buatan manusia pertama yang berjaya dihantar mengorbit Bumi.\n*Because it was the first successful artificial satellite to orbit the Earth.*"
+        "explanation": "Karena ia adalah satelit buatan manusia pertama yang berjaya dihantar mengorbit Bumi. Because it was the first successful artificial satellite to orbit the Earth."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q7",
@@ -15480,7 +15480,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "*Fokus Silibus: *Milestone: Manusia Pertama di Angkasa (1961) Who was the first human in world civilization history successfully sent into space and orbited the Earth inside the Vostok 1 spacecraft in 1961?",
+        "question": "Fokus Silibus: Milestone: Manusia Pertama di Angkasa (1961) Who was the first human in world civilization history successfully sent into space and orbited the Earth inside the Vostok 1 spacecraft in 1961?",
         "options": [
           "Neil Armstrong",
           "Yuri Gagarin",
@@ -15488,7 +15488,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sheikh Muszaphar Shukor"
         ],
         "answerIndex": 1,
-        "explanation": "Yuri Gagarin adalah manusia pertama yang berjaya dihantar ke angkasa lepas dan mengorbit Bumi.\n*Yuri Gagarin was the first human to successfully orbit the Earth in space.*"
+        "explanation": "Yuri Gagarin adalah manusia pertama yang berjaya dihantar ke angkasa lepas dan mengorbit Bumi. Yuri Gagarin was the first human to successfully orbit the Earth in space."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q8",
@@ -15498,7 +15498,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "*Fokus Silibus: *Milestone: Apollo 11 (1969) Which space mission managed by NASA (United States) successfully landed the first humans on the Moon's surface on July 20, 1969?",
+        "question": "Fokus Silibus: Milestone: Apollo 11 (1969) Which space mission managed by NASA (United States) successfully landed the first humans on the Moon's surface on July 20, 1969?",
         "options": [
           "Apollo 11",
           "Pioneer 10",
@@ -15506,7 +15506,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Vostok 1"
         ],
         "answerIndex": 0,
-        "explanation": "Misi Apollo 11 dikelola oleh NASA yang berjaya mendaratkan manusia pertama di Bulan.\n*The Apollo 11 mission, managed by NASA, successfully landed the first humans on the Moon.*"
+        "explanation": "Misi Apollo 11 dikelola oleh NASA yang berjaya mendaratkan manusia pertama di Bulan. The Apollo 11 mission, managed by NASA, successfully landed the first humans on the Moon."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q9",
@@ -15516,7 +15516,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Milestone: Pioneer 10 (1973) A space probe is a robotic device sent deep into the Solar System. Which of the following was the first space probe successfully sent to closely approach and photograph Jupiter in 1973?",
+        "question": "Fokus Silibus: Milestone: Pioneer 10 (1973) A space probe is a robotic device sent deep into the Solar System. Which of the following was the first space probe successfully sent to closely approach and photograph Jupiter in 1973?",
         "options": [
           "Sputnik 1",
           "RazakSAT",
@@ -15524,7 +15524,7 @@ const scienceF3MasterQuizBanks: Partial<
           "TiungSAT-1"
         ],
         "answerIndex": 2,
-        "explanation": "Pioneer 10 ialah kuar angkasa pertama yang berjaya dihantar untuk menghampiri Musytari.\n*Pioneer 10 was the first space probe to successfully reach and photograph Jupiter.*"
+        "explanation": "Pioneer 10 ialah kuar angkasa pertama yang berjaya dihantar untuk menghampiri Musytari. Pioneer 10 was the first space probe to successfully reach and photograph Jupiter."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q10",
@@ -15534,7 +15534,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Satelit Tempatan Malaysia: TiungSAT-1 (2000) Malaysia took active steps in space technology by launching the nation's first microsatellite in the year 2000. What was the name of this microsatellite?",
+        "question": "Fokus Silibus: Satelit Tempatan Malaysia: TiungSAT-1 (2000) Malaysia took active steps in space technology by launching the nation's first microsatellite in the year 2000. What was the name of this microsatellite?",
         "options": [
           "RazakSAT",
           "TiungSAT-1",
@@ -15542,7 +15542,7 @@ const scienceF3MasterQuizBanks: Partial<
           "RazakSAT-2"
         ],
         "answerIndex": 0,
-        "explanation": "RazakSAT ialah mikrosatelit pertama Malaysia yang dilancarkan pada tahun 2000.\n*RazakSAT was Malaysia's first microsatellite launched in 2000.*"
+        "explanation": "RazakSAT ialah mikrosatelit pertama Malaysia yang dilancarkan pada tahun 2000. RazakSAT was Malaysia's first microsatellite launched in 2000."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q11",
@@ -15552,7 +15552,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Milestone Malaysia: RazakSAT (2009) In 2009, Malaysia launched the RazakSAT satellite. What was the main advantage of RazakSAT's orbit compared to other Earth observation satellites?",
+        "question": "Fokus Silibus: Milestone Malaysia: RazakSAT (2009) In 2009, Malaysia launched the RazakSAT satellite. What was the main advantage of RazakSAT's orbit compared to other Earth observation satellites?",
         "options": [
           "It orbits in a geostationary orbit allowing it to always remain above Kuala Lumpur.",
           "Near Equatorial Orbit, NEEq) untuk memaksimumkan kekerapan liputan imej Malaysia. (It was placed in a Near Equatorial Orbit, NEEq, to maximize the imaging frequency of Malaysia.",
@@ -15560,7 +15560,7 @@ const scienceF3MasterQuizBanks: Partial<
           "It was placed in a polar orbit to monitor ice conditions in Antarctica."
         ],
         "answerIndex": 1,
-        "explanation": "RazakSAT berada di orbit dekat Khatulistiwa, membolehkan pengekangan yang terus di atas Malaysia.\n*RazakSAT is in a near-equatorial orbit, allowing continuous coverage over Malaysia.*"
+        "explanation": "RazakSAT berada di orbit dekat Khatulistiwa, membolehkan pengekangan yang terus di atas Malaysia. RazakSAT is in a near-equatorial orbit, allowing continuous coverage over Malaysia."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q12",
@@ -15570,7 +15570,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Teknologi Teleskop Awal hingga Moden The earliest technological equipment used in space exploration from Earth's surface was the telescope. Who was the first person to use a telescope for astronomical studies?",
+        "question": "Fokus Silibus: Teknologi Teleskop Awal hingga Moden The earliest technological equipment used in space exploration from Earth's surface was the telescope. Who was the first person to use a telescope for astronomical studies?",
         "options": [
           "Nicolaus Copernicus",
           "Galileo Galilei",
@@ -15578,7 +15578,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Antoine Henri Becquerel"
         ],
         "answerIndex": 1,
-        "explanation": "Galileo Galilei menggunakan teleskop untuk pertama kali dalam astronomi.\n*Galileo Galilei was the first to use a telescope for astronomical studies.*"
+        "explanation": "Galileo Galilei menggunakan teleskop untuk pertama kali dalam astronomi. Galileo Galilei was the first to use a telescope for astronomical studies."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q13",
@@ -15588,7 +15588,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Teleskop Angkasa Lepas Spitzer The Spitzer Space Telescope is placed in orbit outside Earth's atmosphere. What is the main function or physical advantage of the Spitzer telescope in detecting celestial objects?",
+        "question": "Fokus Silibus: Teleskop Angkasa Lepas Spitzer The Spitzer Space Telescope is placed in orbit outside Earth's atmosphere. What is the main function or physical advantage of the Spitzer telescope in detecting celestial objects?",
         "options": [
           "Using high-powered X-rays to penetrate gas planets.",
           "Detecting alpha and beta radioactive radiation from supernova explosions.",
@@ -15596,7 +15596,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Emitting visible light from a giant convex mirror to illuminate asteroids."
         ],
         "answerIndex": 2,
-        "explanation": "Teleskop Spitzer mengesan radiasi inframerah untuk objek yang sangat sejuk.\n*The Spitzer Space Telescope detects infrared radiation from very cold objects.*"
+        "explanation": "Teleskop Spitzer mengesan radiasi inframerah untuk objek yang sangat sejuk. The Spitzer Space Telescope detects infrared radiation from very cold objects."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q14",
@@ -15606,7 +15606,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Teleskop Hubble vs Spitzer Which of the following distinguishes the Hubble Space Telescope from the Spitzer Space Telescope in terms of gas observation spectrum?",
+        "question": "Fokus Silibus: Teleskop Hubble vs Spitzer Which of the following distinguishes the Hubble Space Telescope from the Spitzer Space Telescope in terms of gas observation spectrum?",
         "options": [
           "Hubble detects microwaves while Spitzer detects ultraviolet waves.",
           "Hubble observes mostly in the visible light spectrum while Spitzer observes in the infrared spectrum.",
@@ -15614,7 +15614,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Both are placed in the deep sea bed to avoid air resistance."
         ],
         "answerIndex": 1,
-        "explanation": "Hubble fokus pada cahaya nampak, manakala Spitzer fokus pada inframerah.\n*Hubble focuses on visible light, while Spitzer focuses on infrared.*"
+        "explanation": "Hubble fokus pada cahaya nampak, manakala Spitzer fokus pada inframerah. Hubble focuses on visible light, while Spitzer focuses on infrared."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q15",
@@ -15624,7 +15624,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Teknologi Roket & Kegunaannya In space exploration, what physical role does a rocket play?",
+        "question": "Fokus Silibus: Teknologi Roket & Kegunaannya In space exploration, what physical role does a rocket play?",
         "options": [
           "As a microgravity research laboratory where astronauts live for a year.",
           "As a transport vehicle (launch vehicle) to send astronauts, satellites, telescopes, and space probes into outer space.",
@@ -15632,7 +15632,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Reflecting cellular telephone communication signals around the world."
         ],
         "answerIndex": 1,
-        "explanation": "Roket digunakan untuk menghantar alat-alat ke angkasa lepas.\n*Rockets are used to launch equipment into space.*"
+        "explanation": "Roket digunakan untuk menghantar alat-alat ke angkasa lepas. Rockets are used to launch equipment into space."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q16",
@@ -15642,7 +15642,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Penyalahgunaan Roket Rocket technology brings many benefits to science. However, how can rockets be abused in daily human life?",
+        "question": "Fokus Silibus: Penyalahgunaan Roket Rocket technology brings many benefits to science. However, how can rockets be abused in daily human life?",
         "options": [
           "Used as global weather spying satellites without permission.",
           "Used as a weapon of mass destruction by carrying military/nuclear missiles.",
@@ -15650,7 +15650,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Causing global warming due to the release of helium gas."
         ],
         "answerIndex": 1,
-        "explanation": "Roket boleh digunakan sebagai senjata pemusnah besar-besaran dengan membawa peluru berpandu nuklear/tentera.\n*Rockets can be misused as large-scale weapons carrying guided nuclear/ military warheads.*"
+        "explanation": "Roket boleh digunakan sebagai senjata pemusnah besar-besaran dengan membawa peluru berpandu nuklear/tentera. Rockets can be misused as large-scale weapons carrying guided nuclear/ military warheads."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q17",
@@ -15660,7 +15660,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Kuar Angkasa (Space Probe) Why are space probes not sent with astronauts (humans) inside them?",
+        "question": "Fokus Silibus: Kuar Angkasa (Space Probe) Why are space probes not sent with astronauts (humans) inside them?",
         "options": [
           "Space probes do not have solar radiation-proof walls.",
           "Because space probes are sent to extremely distant destinations for a very long duration (decades) without any guarantee of a return trip.",
@@ -15668,7 +15668,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Space probes are only controlled by radio signals directly from the Moon."
         ],
         "answerIndex": 1,
-        "explanation": "Kuar angkasa tidak dihantar bersama-sama dengan angkasawan kerana kuar angkasa dihantar ke destinasi yang sangat jauh untuk tempoh jangka masa yang amat panjang (puluhan tahun) tanpa jaminan perjalanan pulang.\n*Space probes are not sent with astronauts because they are sent to very distant destinations for extremely long periods (decades) without a return journey guarantee.*"
+        "explanation": "Kuar angkasa tidak dihantar bersama-sama dengan angkasawan kerana kuar angkasa dihantar ke destinasi yang sangat jauh untuk tempoh jangka masa yang amat panjang (puluhan tahun) tanpa jaminan perjalanan pulang. Space probes are not sent with astronauts because they are sent to very distant destinations for extremely long periods (decades) without a return journey guarantee."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q18",
@@ -15678,7 +15678,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Satelit Buatan Manusia What is the main function of human-made artificial satellites placed in orbit around the Earth at a specific altitude?",
+        "question": "Fokus Silibus: Satelit Buatan Manusia What is the main function of human-made artificial satellites placed in orbit around the Earth at a specific altitude?",
         "options": [
           "Testing Kepler's Law using organic chemical reactions.",
           "Providing a permanent habitat for astronauts to conduct long-term research.",
@@ -15686,7 +15686,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Reducing the effects of solar storms on Earth's magnetosphere layer."
         ],
         "answerIndex": 2,
-        "explanation": "Satelit buatan manusia mengorbit Bumi digunakan untuk mengambil gambar permukaan Bumi untuk pertahanan, telekomunikasi, dan navigasi.\n*Man-made satellites orbiting the Earth are used to take aerial images of the Earth's surface for defense, telecommunications, and navigation.*"
+        "explanation": "Satelit buatan manusia mengorbit Bumi digunakan untuk mengambil gambar permukaan Bumi untuk pertahanan, telekomunikasi, dan navigasi. Man-made satellites orbiting the Earth are used to take aerial images of the Earth's surface for defense, telecommunications, and navigation."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q19",
@@ -15696,7 +15696,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "*Fokus Silibus: *Stesen Angkasa Lepas (Space Station) The International Space Station (ISS) is the largest human-made structure in space. What is the main function of the ISS?",
+        "question": "Fokus Silibus: Stesen Angkasa Lepas (Space Station) The International Space Station (ISS) is the largest human-made structure in space. What is the main function of the ISS?",
         "options": [
           "Burning radioactive waste from Earth's nuclear plants.",
           "Providing a laboratory space in space to allow astronauts to conduct scientific research in microgravity conditions.",
@@ -15704,7 +15704,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Generating solar energy and transmitting it directly to Earth's electrical substations."
         ],
         "answerIndex": 1,
-        "explanation": "Stesen Angkasa Antarabangsa menyediakan ruang makmal di angkasa lepas bagi angkasawan untuk menjalankan penyelidikan saintifik dalam keadaan mikro-graviti.\n*The International Space Station provides a micro-gravity environment for astronauts to conduct scientific research in space.*"
+        "explanation": "Stesen Angkasa Antarabangsa menyediakan ruang makmal di angkasa lepas bagi angkasawan untuk menjalankan penyelidikan saintifik dalam keadaan mikro-graviti. The International Space Station provides a micro-gravity environment for astronauts to conduct scientific research in space."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q20",
@@ -15714,7 +15714,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "*Fokus Silibus: *Definisi Penderiaan Jauh (Remote Sensing) What is meant by remote sensing technology in the context of Earth science studies?",
+        "question": "Fokus Silibus: Definisi Penderiaan Jauh (Remote Sensing) What is meant by remote sensing technology in the context of Earth science studies?",
         "options": [
           "Method of mining minerals at the seabed using remote-controlled submarines.",
           "Method of collecting and recording information or data about an object from a distance without direct physical contact, using sensors on satellites or aircraft.",
@@ -15722,7 +15722,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Transmission of high-definition television signals from transmitter stations to homes."
         ],
         "answerIndex": 1,
-        "explanation": "Teknologi penderiaan jauh adalah kaedah mengumpul dan merekodkan maklumat atau data tentang sesuatu objek dari jarak jauh tanpa sentuhan fizikal terus, menggunakan sensor pada satelit atau pesawat.\n*Remote sensing is the method of collecting and recording information or data about an object from a distance without physical contact, using sensors on satellites or aircraft.*"
+        "explanation": "Teknologi penderiaan jauh adalah kaedah mengumpul dan merekodkan maklumat atau data tentang sesuatu objek dari jarak jauh tanpa sentuhan fizikal terus, menggunakan sensor pada satelit atau pesawat. Remote sensing is the method of collecting and recording information or data about an object from a distance without physical contact, using sensors on satellites or aircraft."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q21",
@@ -15732,7 +15732,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "*Fokus Silibus: *Agensi Remote Sensing Malaysia (MACRES) Which agency in Malaysia is fully responsible for coordinating, implementing, and managing national-level remote sensing projects?",
+        "question": "Fokus Silibus: Agensi Remote Sensing Malaysia (MACRES) Which agency in Malaysia is fully responsible for coordinating, implementing, and managing national-level remote sensing projects?",
         "options": [
           "Malaysian Remote Sensing Agency.",
           "National Aeronautics and Space Administration",
@@ -15740,7 +15740,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Maritime Institute of Malaysia"
         ],
         "answerIndex": 0,
-        "explanation": "MACRES bertanggungjawab sepenuhnya dalam projek penderiaan jauh di Malaysia.\n*MACRES is fully responsible for remote sensing projects in Malaysia.*"
+        "explanation": "MACRES bertanggungjawab sepenuhnya dalam projek penderiaan jauh di Malaysia. MACRES is fully responsible for remote sensing projects in Malaysia."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q22",
@@ -15750,7 +15750,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "*Fokus Silibus: *Remote Sensing: Aplikasi Pertanian How is remote sensing technology used to help increase productivity in the agricultural sector of Malaysia?",
+        "question": "Fokus Silibus: Remote Sensing: Aplikasi Pertanian How is remote sensing technology used to help increase productivity in the agricultural sector of Malaysia?",
         "options": [
           "Supplying crop irrigation water automatically through underground pipes.",
           "Detecting and mapping crop types, monitoring crop health conditions, and predicting crop yield.",
@@ -15758,7 +15758,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Altering the genetic structure of paddy seeds via radiation-induced mutation."
         ],
         "answerIndex": 1,
-        "explanation": "Penderiaan jauh membantu pertanian melalui pengesan dan pemetaan tanaman.\n*Remote sensing aids agriculture by monitoring and mapping crops.*"
+        "explanation": "Penderiaan jauh membantu pertanian melalui pengesan dan pemetaan tanaman. Remote sensing aids agriculture by monitoring and mapping crops."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q23",
@@ -15768,7 +15768,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "*Fokus Silibus: *Remote Sensing: Pengurusan Bencana During a major flood disaster, how can aerial imagery data from remote sensing save victims' lives?",
+        "question": "Fokus Silibus: Remote Sensing: Pengurusan Bencana During a major flood disaster, how can aerial imagery data from remote sensing save victims' lives?",
         "options": [
           "Drying up floodwaters by focusing Solar heat on the affected areas.",
           "Used to precisely determine the locations hit by floods and identify high safe areas for victim evacuation.",
@@ -15776,7 +15776,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Emitting radio waves to heat up the cold bodies of victims."
         ],
         "answerIndex": 1,
-        "explanation": "Gambar aerial membantu menentukan lokasi banjir dan mengenal pasti kawasan selamat.\n*Aerial imagery helps determine flood locations and identify safe areas.*"
+        "explanation": "Gambar aerial membantu menentukan lokasi banjir dan mengenal pasti kawasan selamat. Aerial imagery helps determine flood locations and identify safe areas."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q24",
@@ -15786,7 +15786,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "*Fokus Silibus: *Remote Sensing: Geologi & Sumber Asli What is the main contribution of remote sensing technology in the geology and natural resources exploration sector?",
+        "question": "Fokus Silibus: Remote Sensing: Geologi & Sumber Asli What is the main contribution of remote sensing technology in the geology and natural resources exploration sector?",
         "options": [
           "Extracting petroleum from deep-sea oil wells using solar energy.",
           "Mapping Earth's landforms, analyzing geological structures, and exploring potential areas for oil and mineral extraction.",
@@ -15794,7 +15794,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Controlling volcanic magma flow from erupting."
         ],
         "answerIndex": 1,
-        "explanation": "Penderiaan jauh membantu memeta bentuk Bumi dan menganalisis struktur geologi.\n*Remote sensing helps map Earth's surface and analyze geological structures.*"
+        "explanation": "Penderiaan jauh membantu memeta bentuk Bumi dan menganalisis struktur geologi. Remote sensing helps map Earth's surface and analyze geological structures."
       },
       {
         "id": "sci-f3-c10-set-a-dlp-q25",
@@ -15804,7 +15804,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "*Fokus Silibus: *Remote Sensing: Pertahanan & Keselamatan How do Security Agencies use remote sensing to preserve a nation's sovereignty?",
+        "question": "Fokus Silibus: Remote Sensing: Pertahanan & Keselamatan How do Security Agencies use remote sensing to preserve a nation's sovereignty?",
         "options": [
           "Installing power grid network cables at thick forest borders.",
           "Continuously detecting enemy intrusions from air, land, and sea, as well as detecting illegal nuclear testing activities.",
@@ -15812,7 +15812,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Reducing soil erosion rates at border military fortresses."
         ],
         "answerIndex": 1,
-        "explanation": "Agensi Keselamatan menggunakan penderiaan jauh untuk mengesan aktiviti musuh.\n*The Security Agency uses remote sensing to monitor enemy activities.*"
+        "explanation": "Agensi Keselamatan menggunakan penderiaan jauh untuk mengesan aktiviti musuh. The Security Agency uses remote sensing to monitor enemy activities."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q1",
@@ -15830,7 +15830,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The Earth is at the center of the orbit while all celestial bodies are stationary without any relative motion."
         ],
         "answerIndex": 1,
-        "explanation": "Bumi berada di pusat Sistem Suria manakala Matahari, Bulan, dan planet-planet lain mengelilinginya dalam orbit yang membulat.\n*B: The Earth is at the center of the Solar System, while the Sun, Moon, and other planets orbit it in nearly circular paths.*"
+        "explanation": "Bumi berada di pusat Sistem Suria manakala Matahari, Bulan, dan planet-planet lain mengelilinginya dalam orbit yang membulat. B: The Earth is at the center of the Solar System, while the Sun, Moon, and other planets orbit it in nearly circular paths."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q2",
@@ -15848,7 +15848,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Copernicus's orbit places the Earth at the center of the orbit while Kepler's orbit places the Sun at one of the focal points of the ellipse."
         ],
         "answerIndex": 1,
-        "explanation": "Orbit Copernicus adalah bulat sempurna manakala orbit Kepler adalah elips.\n*B: Copernican orbits are perfect circles, while Keplerian orbits are ellipses.*"
+        "explanation": "Orbit Copernicus adalah bulat sempurna manakala orbit Kepler adalah elips. B: Copernican orbits are perfect circles, while Keplerian orbits are ellipses."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q3",
@@ -15866,7 +15866,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Both models reject the concept that the moon orbits the Earth directly."
         ],
         "answerIndex": 0,
-        "explanation": "Kedua-dua model menganggap Bumi berputar pada paksinya sendiri dalam masa 24 jam.\n*A: Both models assume the Earth rotates on its axis in 24 hours.*"
+        "explanation": "Kedua-dua model menganggap Bumi berputar pada paksinya sendiri dalam masa 24 jam. A: Both models assume the Earth rotates on its axis in 24 hours."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q4",
@@ -15884,7 +15884,7 @@ const scienceF3MasterQuizBanks: Partial<
           "2000: RazakSAT is launched as Malaysia's first telecommunication satellite."
         ],
         "answerIndex": 3,
-        "explanation": "2000: Satelit RazakSAT diluncurkan sebagai satelit telekomunikasi pertama Malaysia adalah salah.\n*D: The launch of RazakSAT in 2000 as Malaysia's first communication satellite is incorrect.*"
+        "explanation": "2000: Satelit RazakSAT diluncurkan sebagai satelit telekomunikasi pertama Malaysia adalah salah. D: The launch of RazakSAT in 2000 as Malaysia's first communication satellite is incorrect."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q5",
@@ -15902,7 +15902,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Its orbit is highly elliptical to allow it to escape Earth's gravity completely."
         ],
         "answerIndex": 1,
-        "explanation": "Ia diletakkan pada Orbit Dekat Khatulistiwa (NEEq) untuk memberikan liputan pengimejan yang kerap bagi kawasan tropika.\n*B: It is placed in a Near Equatorial Orbit (NEEq) to provide frequent imaging coverage of tropical regions.*"
+        "explanation": "Ia diletakkan pada Orbit Dekat Khatulistiwa (NEEq) untuk memberikan liputan pengimejan yang kerap bagi kawasan tropika. B: It is placed in a Near Equatorial Orbit (NEEq) to provide frequent imaging coverage of tropical regions."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q6",
@@ -15920,7 +15920,7 @@ const scienceF3MasterQuizBanks: Partial<
           "TiungSAT-1 is a military weapon-carrying satellite while RazakSAT is a civil weather satellite."
         ],
         "answerIndex": 0,
-        "explanation": "TiungSAT-1 lebih kecil dan lebih ringan, manakala RazakSAT lebih besar dan lebih berat.\n*TiungSAT-1 is smaller and lighter, while RazakSAT is larger and heavier.*"
+        "explanation": "TiungSAT-1 lebih kecil dan lebih ringan, manakala RazakSAT lebih besar dan lebih berat. TiungSAT-1 is smaller and lighter, while RazakSAT is larger and heavier."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q7",
@@ -15938,7 +15938,7 @@ const scienceF3MasterQuizBanks: Partial<
           "To avoid physical damage due to strong wind resistance on the Earth's surface."
         ],
         "answerIndex": 1,
-        "explanation": "Teleskop di orbit luar atmosfera mengelakkan gangguan daripada atmosfera Bumi.\n*Telescopes in outer space avoid interference from Earth's atmosphere.*"
+        "explanation": "Teleskop di orbit luar atmosfera mengelakkan gangguan daripada atmosfera Bumi. Telescopes in outer space avoid interference from Earth's atmosphere."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q8",
@@ -15956,7 +15956,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Deflects the paths of dangerous asteroids from approaching Earth's atmosphere."
         ],
         "answerIndex": 0,
-        "explanation": "Sinaran inframerah boleh melalui awan debu dan membolehkan penjelajahan objek yang terselubung.\n*Infrared waves can penetrate dust clouds and allow the exploration of hidden objects.*"
+        "explanation": "Sinaran inframerah boleh melalui awan debu dan membolehkan penjelajahan objek yang terselubung. Infrared waves can penetrate dust clouds and allow the exploration of hidden objects."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q9",
@@ -15974,7 +15974,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Launching Voyager space probes using rockets to study outer planets."
         ],
         "answerIndex": 1,
-        "explanation": "Peluru berpandu balistik nuklear adalah contoh penyalahgunaan roket.\n*Nuclear-tipped guided ballistic missiles are an example of rocket misuse.*"
+        "explanation": "Peluru berpandu balistik nuklear adalah contoh penyalahgunaan roket. Nuclear-tipped guided ballistic missiles are an example of rocket misuse."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q10",
@@ -15992,7 +15992,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Kinetic energy generated from the rotation of the magnetosphere wheels of the space probe itself."
         ],
         "answerIndex": 2,
-        "explanation": "Panel suria dan bateri nuklear membolehkan kuar angkasa beroperasi lama di angkasa.\n*Solar panels and radioisotope thermoelectric generators allow space probes to operate for long periods in space.*"
+        "explanation": "Panel suria dan bateri nuklear membolehkan kuar angkasa beroperasi lama di angkasa. Solar panels and radioisotope thermoelectric generators allow space probes to operate for long periods in space."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q11",
@@ -16010,7 +16010,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Because robots have the ability to dissolve inside Jupiter's gas atmosphere without being destroyed."
         ],
         "answerIndex": 2,
-        "explanation": "Masa perjalanan panjang, radiasi kosmik berbahaya, dan keadaan ekstrem tidak sesuai untuk manusia.\n*Long travel time, dangerous cosmic radiation, and extreme conditions are not suitable for humans.*"
+        "explanation": "Masa perjalanan panjang, radiasi kosmik berbahaya, dan keadaan ekstrem tidak sesuai untuk manusia. Long travel time, dangerous cosmic radiation, and extreme conditions are not suitable for humans."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q12",
@@ -16028,7 +16028,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The mechanical pressure of the solar wind will change the physical shape of the probe into pure helium gas."
         ],
         "answerIndex": 1,
-        "explanation": "Zarah bercas dan ribut radiasi akan merosakkan peralatan elektronik.\n*High-speed particles and radiation storms will damage electronic equipment.*"
+        "explanation": "Zarah bercas dan ribut radiasi akan merosakkan peralatan elektronik. High-speed particles and radiation storms will damage electronic equipment."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q13",
@@ -16046,7 +16046,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The presence of direct cosmic ultraviolet (UV) radiation which accelerates the rate of genetic mutation in paddy plants."
         ],
         "answerIndex": 1,
-        "explanation": "Mikrograviti membolehkan kajian tanpa tarikan graviti normal.\n*Microgravity allows studies without normal gravitational pull.*"
+        "explanation": "Mikrograviti membolehkan kajian tanpa tarikan graviti normal. Microgravity allows studies without normal gravitational pull."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q14",
@@ -16064,7 +16064,7 @@ const scienceF3MasterQuizBanks: Partial<
           "A radioactive detector used to calculate background radiation doses inside nuclear laboratories."
         ],
         "answerIndex": 1,
-        "explanation": "Mengumpul maklumat permukaan Bumi dari jauh menggunakan sensor satelit.\n*Collecting surface information from afar using satellite sensors.*"
+        "explanation": "Mengumpul maklumat permukaan Bumi dari jauh menggunakan sensor satelit. Collecting surface information from afar using satellite sensors."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q15",
@@ -16082,7 +16082,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Increasing crop photosynthesis rates by reflecting additional sunlight via giant satellite mirrors."
         ],
         "answerIndex": 1,
-        "explanation": "Mempantau klorofil, mengesan penyakit, dan meramal hasil tanaman.\n*Monitor chlorophyll, detect diseases, and predict crop yields.*"
+        "explanation": "Mempantau klorofil, mengesan penyakit, dan meramal hasil tanaman. Monitor chlorophyll, detect diseases, and predict crop yields."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q16",
@@ -16100,7 +16100,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Changing granite rock compositions into gold metal via electromagnetic radiation penetration."
         ],
         "answerIndex": 1,
-        "explanation": "Teknologi penderiaan jauh membantu mengesan dan memetakan struktur bentuk muka Bumi, serta mengenalpasti kawasan yang berpotensi untuk cari gali.\n*Remote sensing technology helps in identifying and mapping the Earth's surface structures, and locating potential areas for exploration.*"
+        "explanation": "Teknologi penderiaan jauh membantu mengesan dan memetakan struktur bentuk muka Bumi, serta mengenalpasti kawasan yang berpotensi untuk cari gali. Remote sensing technology helps in identifying and mapping the Earth's surface structures, and locating potential areas for exploration."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q17",
@@ -16118,7 +16118,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Sending the heart rate signals of submerged victims directly to rescue teams' mobile phones."
         ],
         "answerIndex": 1,
-        "explanation": "Satelit memberikan peta kawasan banjir secara real-time untuk menentukan laluan penyelamatan dan penempatan yang terjejas.\n*Satellite data provides real-time flood maps to determine safe evacuation routes and affected areas.*"
+        "explanation": "Satelit memberikan peta kawasan banjir secara real-time untuk menentukan laluan penyelamatan dan penempatan yang terjejas. Satellite data provides real-time flood maps to determine safe evacuation routes and affected areas."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q18",
@@ -16136,7 +16136,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Beaming an invisible force field to protect army bases from aerial bomb attacks."
         ],
         "answerIndex": 1,
-        "explanation": "Penderiaan jauh digunakan untuk mengesan pergerakan tentera musuh dan pencerobohan ruang udara serta perairan negara.\n*Remote sensing is used to monitor enemy military movements and air and sea intrusions.*"
+        "explanation": "Penderiaan jauh digunakan untuk mengesan pergerakan tentera musuh dan pencerobohan ruang udara serta perairan negara. Remote sensing is used to monitor enemy military movements and air and sea intrusions."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q19",
@@ -16154,7 +16154,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The satellite's orbit is highly elliptical, allowing it to cross the north pole once every 12 hours."
         ],
         "answerIndex": 1,
-        "explanation": "Orbit geopegun membolehkan satelit bergerak dengan kelajuan yang sama dengan Bumi, sehingga kelihatan sentiasa di atas titik yang sama.\n*A geostationary orbit allows the satellite to match Earth's rotational speed, appearing stationary over a fixed point.*"
+        "explanation": "Orbit geopegun membolehkan satelit bergerak dengan kelajuan yang sama dengan Bumi, sehingga kelihatan sentiasa di atas titik yang sama. A geostationary orbit allows the satellite to match Earth's rotational speed, appearing stationary over a fixed point."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q20",
@@ -16172,7 +16172,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Banning any usage of GPS devices in public vehicles due to data privacy security reasons."
         ],
         "answerIndex": 1,
-        "explanation": "MACRES menyelaraskan dan memproses data penderiaan jauh untuk menyokong pengurusan pertanian, perancangan bandar, dan keselamatan pertahanan.\n*MACRES coordinates and processes remote sensing data to support agricultural management, urban planning, and defense safety.*"
+        "explanation": "MACRES menyelaraskan dan memproses data penderiaan jauh untuk menyokong pengurusan pertanian, perancangan bandar, dan keselamatan pertahanan. MACRES coordinates and processes remote sensing data to support agricultural management, urban planning, and defense safety."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q21",
@@ -16190,7 +16190,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Claudius Ptolemy."
         ],
         "answerIndex": 2,
-        "explanation": "Galileo Galilei menggunakan teleskop untuk memerhatikan langit.\n*Galileo Galilei was the first to use a telescope to observe the sky.*"
+        "explanation": "Galileo Galilei menggunakan teleskop untuk memerhatikan langit. Galileo Galilei was the first to use a telescope to observe the sky."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q22",
@@ -16208,7 +16208,7 @@ const scienceF3MasterQuizBanks: Partial<
           "It was the first radio telescope to detect galactic cosmic radio waves."
         ],
         "answerIndex": 1,
-        "explanation": "Sputnik 1 memulakan era penerokaan angkasa lepas.\n*Sputnik 1 initiated the era of space exploration.*"
+        "explanation": "Sputnik 1 memulakan era penerokaan angkasa lepas. Sputnik 1 initiated the era of space exploration."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q23",
@@ -16226,7 +16226,7 @@ const scienceF3MasterQuizBanks: Partial<
           "The satellite measures the user's body surface temperature via optical infrared thermal camera systems."
         ],
         "answerIndex": 1,
-        "explanation": "Satelit mengirim gelombang mikro untuk menentukan lokasi pengguna.\n*Satellites send microwave signals to determine the user's location.*"
+        "explanation": "Satelit mengirim gelombang mikro untuk menentukan lokasi pengguna. Satellites send microwave signals to determine the user's location."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q24",
@@ -16244,7 +16244,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Buzz Aldrin."
         ],
         "answerIndex": 1,
-        "explanation": "Yuri Gagarin menaiki Vostok 1 dan menjadi manusia pertama mengorbit Bumi.\n*Yuri Gagarin was the first human to orbit the Earth in Vostok 1.*"
+        "explanation": "Yuri Gagarin menaiki Vostok 1 dan menjadi manusia pertama mengorbit Bumi. Yuri Gagarin was the first human to orbit the Earth in Vostok 1."
       },
       {
         "id": "sci-f3-c10-set-b-dlp-q25",
@@ -16262,7 +16262,7 @@ const scienceF3MasterQuizBanks: Partial<
           "It uses convex mirrors and thick lenses to magnify optical images of celestial objects by 100 times."
         ],
         "answerIndex": 1,
-        "explanation": "Teleskop radio tidak menggunakan cahaya nampak, tetapi gelombang radio.\n*Radio telescopes do not use visible light, but radio waves.*"
+        "explanation": "Teleskop radio tidak menggunakan cahaya nampak, tetapi gelombang radio. Radio telescopes do not use visible light, but radio waves."
       }
     ]
   }

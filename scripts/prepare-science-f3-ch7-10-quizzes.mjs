@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { assertPlainStudentText, toPlainStudentText } from "./plain-student-text.mjs";
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(scriptDirectory, "..");
@@ -249,24 +250,30 @@ for (let chapter = 7; chapter <= 10; chapter += 1) {
           row.options_malay.every(Boolean) && row.options_english.every(Boolean),
           `${label}: blank option`,
         );
-        completedRows.push({
+        const completedRow = {
           chapter_number: chapter,
           set_letter: set,
           chapter_title: row.chapter_title,
           question_number: row.question_number,
-          question_malay: row.question_malay,
-          question_english: row.question_english,
-          option_a_malay: row.options_malay[0],
-          option_a_english: row.options_english[0],
-          option_b_malay: row.options_malay[1],
-          option_b_english: row.options_english[1],
-          option_c_malay: row.options_malay[2],
-          option_c_english: row.options_english[2],
-          option_d_malay: row.options_malay[3],
-          option_d_english: row.options_english[3],
+          question_malay: toPlainStudentText(row.question_malay),
+          question_english: toPlainStudentText(row.question_english),
+          option_a_malay: toPlainStudentText(row.options_malay[0]),
+          option_a_english: toPlainStudentText(row.options_english[0]),
+          option_b_malay: toPlainStudentText(row.options_malay[1]),
+          option_b_english: toPlainStudentText(row.options_english[1]),
+          option_c_malay: toPlainStudentText(row.options_malay[2]),
+          option_c_english: toPlainStudentText(row.options_english[2]),
+          option_d_malay: toPlainStudentText(row.options_malay[3]),
+          option_d_english: toPlainStudentText(row.options_english[3]),
           correct_answer: solution.correct_answer,
-          explanation: `${clean(solution.explanation_malay)}\n*${clean(solution.explanation_english)}*`,
-        });
+          explanation: toPlainStudentText(
+            `${clean(solution.explanation_malay)} ${clean(solution.explanation_english)}`,
+          ),
+        };
+        for (const [field, value] of Object.entries(completedRow)) {
+          if (typeof value === "string") assertPlainStudentText(value, `${label} ${field}`);
+        }
+        completedRows.push(completedRow);
       });
       console.log(`Solved Chapter ${chapter} Set ${set} questions ${offset + 1}-${offset + 5}`);
     }
