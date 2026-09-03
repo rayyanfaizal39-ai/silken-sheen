@@ -14,7 +14,16 @@
  * the picture, at every viewport, with no measurement and no layout shift.
  */
 
-export type LearningImageSize = "compact" | "standard" | "wide" | "portrait";
+export type LearningImageSize =
+  | "compact"
+  | "standard"
+  | "wide"
+  | "portrait"
+  /** Contextual artwork — see the second group in LEARNING_IMAGE_VARIANTS. */
+  | "scene"
+  | "sceneTall"
+  | "panel"
+  | "pair";
 
 type Variant = {
   /** Hard ceiling on rendered width, in px. */
@@ -36,6 +45,28 @@ export const LEARNING_IMAGE_VARIANTS: Record<LearningImageSize, Variant> = {
   wide: { maxWidth: 780, heightBudget: "min(55vh, 500px)" },
   /** Tall anatomy. Width-constrained hard, because height follows width. */
   portrait: { maxWidth: 460, heightBudget: "min(58vh, 540px)" },
+
+  // --- Contextual artwork ----------------------------------------------
+  // A second, tighter group for photographic/illustrated scenes that give a
+  // concept its everyday context. They sit *beside* a precise diagram rather
+  // than replacing it, so they must stay visibly smaller than the diagram
+  // variants above — a recognition picture should never be the biggest thing
+  // in the lesson. The numbers are the Chapter 8 display caps generalised
+  // (see Chapter8PhotoFigure): 600px lands a 16:9 scene at ~338px tall and
+  // 660px at ~371px, inside the intended 340-380px visual-height band.
+
+  /** One scene or object, 16:9-ish. */
+  scene: { maxWidth: 600, heightBudget: "min(40vh, 350px)" },
+  /**
+   * A near-square contextual scene. A 4:3 picture under `scene` would be held
+   * to ~467px by the width cap and read as an afterthought, so it gets its own
+   * cap; the height budget still binds first, at ~507 x 380.
+   */
+  sceneTall: { maxWidth: 560, heightBudget: "min(46vh, 380px)" },
+  /** A comparison or multi-panel scene that needs the extra width to read. */
+  panel: { maxWidth: 660, heightBudget: "min(44vh, 380px)" },
+  /** One half of a matched pair shown side by side on desktop. */
+  pair: { maxWidth: 460, heightBudget: "min(34vh, 300px)" },
 };
 
 /** Parses `"3 / 4"`, `"16/9"` or `"1.5"` into a width ÷ height number. */

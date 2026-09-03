@@ -31,7 +31,10 @@ import { AsteroidBeltFigure } from "@/components/notes/blocks/AsteroidBeltFigure
 import { CometOrbitFigure } from "@/components/notes/blocks/CometOrbitFigure";
 import { AuLightYearCalculator } from "@/components/notes/blocks/AuLightYearCalculator";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
-import type { ScienceF2InteractiveContent } from "@/content/form2/science/interactive-types";
+import type {
+  AnnotatedImageBlock,
+  ScienceF2InteractiveContent,
+} from "@/content/form2/science/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
 import { useProgress } from "@/hooks/use-progress";
 import { AnnotatedImage } from "@/components/notes/blocks/AnnotatedImage";
@@ -190,6 +193,49 @@ export function ScienceF2InteractiveNotesBlock({
     addXp(amount, "science");
   };
 
+  /**
+   * The one way a chapter-authored figure reaches the page, whichever slot it
+   * was authored in. A figure that names concepts becomes an interactive card;
+   * one that only sets the scene renders as the plain bounded figure.
+   */
+  function renderFigure(image: AnnotatedImageBlock) {
+    return image.annotations.length > 0 ? (
+      <InteractiveFigureCard
+        key={image.src}
+        lang={lang}
+        concepts={image.annotations}
+        image={{
+          src: image.src,
+          alt: image.alt,
+          size: image.size,
+          aspect: image.aspect,
+          caption: image.caption,
+          legendLabel: image.legendLabel,
+          annotationMode: image.annotationMode ?? "labels",
+          imageKey: image.imageKey,
+          priority: image.priority,
+        }}
+      />
+    ) : (
+      <AnnotatedImage
+        key={image.src}
+        src={image.src}
+        alt={image.alt}
+        size={image.size}
+        aspect={image.aspect}
+        caption={image.caption}
+        legendLabel={image.legendLabel}
+        annotationMode={image.annotationMode ?? "labels"}
+        annotations={image.annotations}
+        imageKey={image.imageKey}
+        priority={image.priority}
+        enlargeLabel={imageCopy.enlarge}
+        closeLabel={imageCopy.close}
+        hintLabel={imageCopy.hint}
+      />
+    );
+  }
+
   function renderSection(
     section: ScienceF2InteractiveContent["sections"][number],
     isLast: boolean,
@@ -207,6 +253,15 @@ export function ScienceF2InteractiveNotesBlock({
       <div className="flex min-w-0 flex-col gap-5">
         {chapter8Figure && (
           <Chapter8ContextFigure kind={chapter8Figure} section={section} lang={lang} />
+        )}
+        {section.contextImages?.map(renderFigure)}
+        {section.contextImagePair && section.contextImagePair.length > 0 && (
+          // A matched pair reads as one figure, so the two share a row from
+          // `sm` up and stack on a phone. Each half keeps its own caption,
+          // alt text and enlarge control.
+          <div className="grid gap-3 sm:grid-cols-2" data-figure-pair="">
+            {section.contextImagePair.map(renderFigure)}
+          </div>
         )}
         {unpicturedFlipCards.length > 0 && (
           <div className="border-l-2 border-primary/35 pl-4">
@@ -860,41 +915,7 @@ export function ScienceF2InteractiveNotesBlock({
             <ApparatusDiagram block={section.apparatusDiagram} lang={lang} />
           </div>
         )}
-        {section.images?.map((image) =>
-          image.annotations.length > 0 ? (
-            <InteractiveFigureCard
-              key={image.src}
-              lang={lang}
-              concepts={image.annotations}
-              image={{
-                src: image.src,
-                alt: image.alt,
-                size: image.size,
-                aspect: image.aspect,
-                caption: image.caption,
-                legendLabel: image.legendLabel,
-                annotationMode: image.annotationMode ?? "labels",
-                imageKey: image.imageKey,
-              }}
-            />
-          ) : (
-            <AnnotatedImage
-              key={image.src}
-              src={image.src}
-              alt={image.alt}
-              size={image.size}
-              aspect={image.aspect}
-              caption={image.caption}
-              legendLabel={image.legendLabel}
-              annotationMode={image.annotationMode ?? "labels"}
-              annotations={image.annotations}
-              imageKey={image.imageKey}
-              enlargeLabel={imageCopy.enlarge}
-              closeLabel={imageCopy.close}
-              hintLabel={imageCopy.hint}
-            />
-          ),
-        )}
+        {section.images?.map(renderFigure)}
         {section.adaptations && (
           <div>
             <h3 className="font-display mb-1 text-base font-bold text-foreground">

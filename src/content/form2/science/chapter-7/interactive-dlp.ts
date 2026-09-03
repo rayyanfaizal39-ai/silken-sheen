@@ -1,4 +1,5 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
+import { SCIENCE_F2_CH7_IMAGES, SCIENCE_F2_VISUAL_ASPECT } from "../visual-assets";
 import chapterImage from "@/assets/science/form2/ch7-keelektrikan-kemagnetan.png";
 
 export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
@@ -66,6 +67,18 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Electrostatic Charges",
       intro:
         "All matter contains positive charges (protons) and negative charges (electrons). When two different materials are rubbed together, only electrons transfer — protons do not move. An object that gains electrons becomes negatively charged; one that loses electrons becomes positively charged; one with equal numbers of protons and electrons is neutral.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.chargeTransfer,
+          alt: "Two panels. Before rubbing, a balloon and a cloth each carry equal numbers of positive and negative charges. After rubbing, arrows show electrons moving from the cloth to the balloon, leaving the balloon negatively charged and the cloth positively charged.",
+          caption:
+            "Only electrons move, and they move from the cloth to the balloon. The protons stay where they are.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "Attraction and repulsion",
@@ -89,6 +102,18 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Electrostatics in Daily Life",
       intro:
         "Electrostatic charge is not just a laboratory effect. It explains lightning, the small shock you feel on a door handle, and several important safety measures.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.dailyLife,
+          alt: "Four night-time scenes. Lightning strikes the ground from a cloud carrying positive charge above and negative charge below. A lightning conductor on a building carries the charge down into the earth. A spark appears at the nozzle while a car is being refuelled. Lightning travels over the metal body of a car, around the person sitting inside.",
+          caption:
+            "Lightning, the lightning conductor, refuelling safety and the metal-bodied car — the four situations explained below.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       accordions: [
         {
           title: "⚡ How lightning happens",
@@ -163,6 +188,18 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Current, Voltage and Resistance",
       intro:
         "Three electrical quantities to know, each with its own symbol, unit and measuring instrument. What gets tested most is not only what each instrument measures, but how it is connected into the circuit.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.meterPlacement,
+          alt: "Two circuits built from the same cell and lit bulb. In the left circuit an ammeter marked A sits in the main loop, so the same wire runs through it and the bulb. In the right circuit a voltmeter marked V sits on its own branch, connected across the two ends of the bulb.",
+          caption:
+            "The ammeter sits in the main loop; the voltmeter sits on its own branch across the bulb.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "Current, I",
@@ -386,6 +423,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
           {
             id: "neutral",
             label: "Neutral point (X)",
+            requiresShape: "like-poles",
             note: "The magnetic field between two like poles produces a point with no magnetic field at all. This is called the neutral point, marked X.",
           },
         ],
@@ -428,6 +466,11 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
             pattern: "concentric circles around the wire, spaced further apart further from the wire",
             direction: "found using the right-hand grip rule.",
             note: "A straight wire produces magnetic field lines in the shape of concentric circles.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.straightWireApparatus,
+              alt: "A vertical copper wire passing through the centre of a horizontal board, with eight plotting compasses arranged in a ring around it.",
+              caption: "The apparatus used to show the magnetic field around a straight current-carrying wire.",
+            },
           },
           {
             id: "loop",
@@ -435,6 +478,11 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
             pattern: "concentric circles around each side of the wire, combining at the centre of the loop",
             direction: "found using the right-hand grip rule on any part of the wire.",
             note: "The fields from the two sides of the loop combine at the centre, making the field there stronger.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.circularLoopApparatus,
+              alt: "A single circular copper loop held upright on a laboratory stand, its two ends clamped to the terminals beneath it.",
+              caption: "The apparatus used to show the magnetic field of a current-carrying circular loop.",
+            },
           },
           {
             id: "solenoid",
@@ -443,6 +491,11 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
             direction:
               "current flowing anticlockwise at one end makes that end a north pole; current flowing clockwise makes it a south pole.",
             note: "A solenoid is a long coil. Its field outside resembles that of a bar magnet.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.solenoidApparatus,
+              alt: "An air-core solenoid: copper wire wound into about eleven evenly spaced turns, held horizontally on a stand, with its hollow centre visible.",
+              caption: "The apparatus used to show the magnetic field of a current-carrying solenoid.",
+            },
           },
         ],
       },
@@ -468,6 +521,18 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Electromagnet Strength and Its Uses",
       intro:
         "Two factors change the strength of an electromagnet. Rather than taking the answers on trust, investigate both the way it is done in the laboratory — with a hypothesis, variables and observations.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.electromagnetUses,
+          alt: "Four uses of an electromagnet. An electric bell, where a coil pulls an arm so the striker hits the gong. A magnetic door lock holding a door shut. A scrapyard crane lifting steel beams on a large round electromagnet. An iron nail wrapped in coiled wire and connected to a cell, picking up paper clips.",
+          caption:
+            "Electric bell, magnetic door lock, scrapyard lifting magnet, and the coil-and-nail electromagnet built in the laboratory.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       miniExperiment: {
         title: "🔬 Investigation: factors affecting magnetic field strength",
         aim: "To study the factors that affect the magnetic field strength of an electromagnet.",

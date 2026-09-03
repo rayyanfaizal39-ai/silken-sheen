@@ -324,6 +324,8 @@ export type AnnotatedImageBlock = {
   aspect?: string;
   caption?: string;
   legendLabel?: string;
+  /** Load eagerly — for a figure that leads its section, so is above the fold. */
+  priority?: boolean;
   /**
    * How the parts are named. Prefer `labels` or `callouts` so a student reads
    * the diagram in one pass; `numbers` is a last resort for very dense artwork.
@@ -970,6 +972,15 @@ export type MagnetFieldFeature = {
   id: "direction" | "density" | "no-cross" | "neutral";
   label: string;
   note: string;
+  /**
+   * The magnet arrangement this feature can only be shown on. A neutral point
+   * exists between two LIKE poles and nowhere else, so its explanation must
+   * never appear beside a bar or horseshoe magnet: picking such a feature
+   * switches the diagram to the arrangement that has it, and switching away
+   * from that arrangement clears the feature. Omit for a property every
+   * arrangement demonstrates.
+   */
+  requiresShape?: MagnetShape["id"];
 };
 
 /** A magnet whose field pattern the learner can switch to. */
@@ -998,6 +1009,14 @@ export type ConductorPattern = {
   /** How the direction is found. */
   direction: string;
   note: string;
+  /**
+   * The apparatus photograph this conductor is taught on. `src` comes from
+   * `visual-assets.ts` so BM and DLP cannot drift onto different files — the
+   * artwork carries no text at all, and the words below it are the only thing
+   * that differs between the two languages. The teaching arrows, field lines
+   * and pole letters are not in the picture: they are drawn over it.
+   */
+  image: { src: string; alt: string; caption?: string };
 };
 
 export type CurrentFieldPatternsBlock = {
@@ -1461,6 +1480,22 @@ export type ScienceInteractiveSection = {
   cosmicScale?: CosmicScaleBlock;
   milkyWayLocator?: MilkyWayLocatorBlock;
   starSizeCompare?: StarSizeCompareBlock;
+  /**
+   * Contextual artwork rendered at the TOP of the section, before its teaching
+   * cards and before any precise diagram.
+   *
+   * This is the "recognise it, then understand it" slot: a student meets the
+   * everyday scene first and the mechanism second. `images` below is the
+   * opposite slot — a reference figure that only makes sense once the section
+   * has explained itself — so a section may legitimately use both.
+   */
+  contextImages?: AnnotatedImageBlock[];
+  /**
+   * Two matched contextual figures that only teach as a comparison — day
+   * versus night, before versus after. Side by side from `sm` up, stacked on a
+   * phone. Rendered in the same leading position as `contextImages`.
+   */
+  contextImagePair?: AnnotatedImageBlock[];
   /** Standalone annotated reference illustrations for this section. */
   images?: AnnotatedImageBlock[];
   matcher?: {

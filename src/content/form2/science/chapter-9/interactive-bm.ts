@@ -1,4 +1,8 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
+import {
+  SCIENCE_F2_CH9_IMAGES,
+  SCIENCE_F2_VISUAL_ASPECT,
+} from "../visual-assets";
 import chapterImage from "@/assets/science/form2/ch9-haba.png";
 
 export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
@@ -82,6 +86,18 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
       title: "Perolakan dan Sinaran",
       intro:
         "Haba juga boleh mengalir tanpa melalui pepejal. Dalam bendalir, perolakan membawa haba melalui pergerakan bendalir itu sendiri. Sinaran pula tidak memerlukan sebarang medium — inilah satu-satunya cara haba boleh merambat menerusi ruang kosong.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.kitchenHeatTransfer,
+          alt: "Pemandangan dapur: sebuah periuk logam dengan senduk kayu berdiri di dalamnya diletakkan di atas dapur gas yang menyala, air mendidih di dalam periuk dan wap naik daripadanya, dan sebelah tangan diangkat di udara bersebelahan periuk tanpa menyentuhnya.",
+          caption:
+            "Satu dapur, tiga cara: haba merambat melalui periuk logam secara konduksi, beredar melalui air mendidih secara perolakan, dan sampai ke tangan yang diangkat secara sinaran.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       convectionRadiation: {
         title: "🌀 Dua cara haba mengalir tanpa pepejal",
         instruction: "Tekan setiap cara untuk melihat bagaimana haba bergerak.",
@@ -116,6 +132,28 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
       title: "Bayu Laut dan Bayu Darat",
       intro:
         "Pembentukan bayu laut dan bayu darat merupakan contoh perolakan yang berlaku secara semula jadi. Kuncinya ialah darat memanas dan menyejuk dengan lebih cepat berbanding laut.",
+      contextImagePair: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.seaBreeze,
+          alt: "Kawasan pantai pada tengah hari yang cerah. Laut berada di sebelah kiri, pantai berpasir dan daratan hijau berpokok di sebelah kanan, di bawah matahari yang tinggi.",
+          caption:
+            "Waktu siang — Matahari memanaskan darat lebih cepat daripada laut.",
+          size: "pair",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+        {
+          src: SCIENCE_F2_CH9_IMAGES.landBreeze,
+          alt: "Kawasan pantai yang sama pada waktu malam di bawah bulan penuh. Laut berada di sebelah kiri, pantai dan daratan di sebelah kanan, kedua-duanya diterangi cahaya bulan sahaja.",
+          caption:
+            "Waktu malam — darat menyejuk lebih cepat daripada laut.",
+          size: "pair",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       breezeDiagram: {
         title: "🌬️ Bayu laut dan bayu darat",
         instruction: "Tekan setiap bayu untuk melihat arah pergerakan udara.",
@@ -151,6 +189,18 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
       title: "Konduktor dan Penebat Haba",
       intro:
         "Bahan yang boleh mengalirkan haba dengan mudah dikenali sebagai konduktor haba. Bahan yang boleh menghalang atau melambatkan pengaliran haba pula dikenali sebagai penebat haba.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.conductorInsulator,
+          alt: "Dua bikar jernih berisi air panas yang serupa diletakkan bersebelahan. Sebatang sudu logam berdiri di dalam bikar kiri; sebatang sudu kayu yang sama bentuk dan saiz berdiri di dalam bikar kanan.",
+          caption:
+            "Air panas yang sama dan bentuk sudu yang sama dalam kedua-dua bikar — hanya bahannya yang berbeza.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "🔥 Konduktor haba",
@@ -208,6 +258,18 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
       title: "Kegunaan Pengembangan dan Pengecutan",
       intro:
         "Prinsip pengembangan dan pengecutan jirim digunakan — dan perlu diambil kira — dalam banyak keadaan harian.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.bimetallicAlarm,
+          alt: "Litar penggera kebakaran: sebuah sel, jalur dwilogam yang diskrukan pada satu hujung dengan lapisan kuprum di atas lapisan besi, penunu spirit yang menyala di bawah jalur itu, skru sentuh dan sebuah loceng. Jalur itu masih lurus dan tidak menyentuh skru sentuh.",
+          caption:
+            "Jalur dilukis lurus dan tidak menyentuh skru sentuh, jadi litar masih terbuka dan loceng belum berbunyi.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       bimetallicStrip: {
         title: "🔔 Jalur dwilogam dalam penggera kebakaran",
         instruction: "Tekan setiap keadaan untuk melihat kelakuan jalur itu.",
@@ -280,6 +342,18 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
       title: "Konsep Bangunan Hijau",
       intro:
         "Konsep Bangunan Hijau ialah idea yang dijana untuk mengurangkan kesan pembangunan yang pesat terhadap alam sekitar dan kesihatan manusia. Konsep haba yang anda pelajari dalam bab ini digunakan secara langsung: sebuah rumah hijau direka supaya tenaga yang diperlukan untuk menyejukkan atau memanaskannya dapat dikurangkan.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.greenBuilding,
+          alt: "Sebuah rumah tropika bertiang dengan bumbung yang menjulur luas, panel solar pada satu cerun bumbung, penebat yang dipadatkan di bawah bumbung, tingkap bidai dan tingkap awning pada setiap dinding, kipas siling di dalamnya, serta pokok dan tumbuhan peneduh di sekelilingnya.",
+          caption:
+            "Penebat bumbung, teduhan, pengudaraan semula jadi dan panel solar — idea haba dalam bab ini, dibina ke dalam satu rumah.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       tabs: [
         {
           title: "⚡ Kecekapan tenaga",

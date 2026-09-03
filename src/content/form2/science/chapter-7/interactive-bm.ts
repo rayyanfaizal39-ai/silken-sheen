@@ -1,4 +1,5 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
+import { SCIENCE_F2_CH7_IMAGES, SCIENCE_F2_VISUAL_ASPECT } from "../visual-assets";
 import chapterImage from "@/assets/science/form2/ch7-keelektrikan-kemagnetan.png";
 
 export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
@@ -66,6 +67,18 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Cas Elektrostatik",
       intro:
         "Semua jirim mengandungi cas positif (proton) dan cas negatif (elektron). Apabila dua bahan berbeza digosokkan, hanya elektron berpindah — proton tidak bergerak. Objek yang memperoleh elektron menjadi bercas negatif; objek yang kehilangan elektron menjadi bercas positif; objek dengan bilangan proton dan elektron yang sama adalah neutral.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.chargeTransfer,
+          alt: "Dua panel. Sebelum digosok, belon dan kain masing-masing membawa bilangan cas positif dan cas negatif yang sama. Selepas digosok, anak panah menunjukkan elektron berpindah daripada kain ke belon, menjadikan belon bercas negatif dan kain bercas positif.",
+          caption:
+            "Hanya elektron yang berpindah, dan ia berpindah daripada kain ke belon. Proton kekal di tempatnya.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "Tarikan dan tolakan",
@@ -89,6 +102,18 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Elektrostatik dalam Kehidupan Harian",
       intro:
         "Cas elektrostatik bukan sekadar kesan makmal. Ia menerangkan kilat, renjatan kecil yang anda rasa pada tombol pintu, dan beberapa langkah keselamatan penting.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.dailyLife,
+          alt: "Empat pemandangan waktu malam. Kilat memanah tanah daripada awan yang membawa cas positif di bahagian atas dan cas negatif di bahagian bawah. Konduktor kilat pada sebuah bangunan mengalirkan cas turun ke bumi. Percikan api muncul pada muncung semasa sebuah kereta diisi petrol. Kilat mengalir pada badan logam kereta, mengelilingi orang yang duduk di dalamnya.",
+          caption:
+            "Kilat, konduktor kilat, keselamatan semasa mengisi petrol dan kereta berbadan logam — empat situasi yang diterangkan di bawah.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       accordions: [
         {
           title: "⚡ Kejadian kilat",
@@ -163,6 +188,18 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Arus, Voltan dan Rintangan",
       intro:
         "Tiga kuantiti elektrik yang perlu anda kenali, setiap satu dengan simbol, unit dan alat pengukurnya sendiri. Yang paling kerap diuji bukan sahaja apa yang diukur oleh setiap alat, tetapi bagaimana alat itu disambungkan ke dalam litar.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.meterPlacement,
+          alt: "Dua litar yang dibina daripada sel dan mentol menyala yang sama. Dalam litar kiri, ammeter bertanda A berada dalam gelung utama, jadi wayar yang sama melaluinya dan melalui mentol. Dalam litar kanan, voltmeter bertanda V berada pada cabangnya sendiri, disambung merentasi dua hujung mentol.",
+          caption:
+            "Ammeter berada dalam gelung utama; voltmeter berada pada cabangnya sendiri merentasi mentol.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "Arus, I",
@@ -386,6 +423,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
           {
             id: "neutral",
             label: "Titik neutral (X)",
+            requiresShape: "like-poles",
             note: "Medan magnet di antara dua kutub yang sama jenis menghasilkan satu titik yang tidak mempunyai sebarang medan magnet. Titik ini disebut titik neutral, ditandakan X.",
           },
         ],
@@ -428,6 +466,11 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
             pattern: "bulatan sepusat mengelilingi dawai, semakin renggang semakin jauh dari dawai",
             direction: "ditentukan dengan petua genggaman tangan kanan.",
             note: "Dawai lurus menghasilkan garisan medan magnet yang berbentuk bulatan sepusat.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.straightWireApparatus,
+              alt: "Dawai kuprum tegak menembusi pusat sebuah papan mendatar, dengan lapan kompas plot disusun membentuk bulatan di sekelilingnya.",
+              caption: "Radas yang digunakan untuk menunjukkan medan magnet di sekeliling dawai lurus yang mengalirkan arus.",
+            },
           },
           {
             id: "loop",
@@ -435,6 +478,11 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
             pattern: "bulatan sepusat mengelilingi setiap bahagian dawai, bergabung di tengah gelung",
             direction: "ditentukan dengan petua genggaman tangan kanan pada mana-mana bahagian dawai.",
             note: "Medan magnet daripada kedua-dua belah gelung bergabung di tengah, menjadikan medan di situ lebih kuat.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.circularLoopApparatus,
+              alt: "Satu gelung kuprum berbentuk bulat dipasang tegak pada kaki retort, kedua-dua hujungnya diapit pada terminal di bawahnya.",
+              caption: "Radas yang digunakan untuk menunjukkan medan magnet gelung bulat yang mengalirkan arus.",
+            },
           },
           {
             id: "solenoid",
@@ -443,6 +491,11 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
             direction:
               "arus yang mengalir mengikut lawan arah jam pada satu hujung menjadikan hujung itu kutub utara; arus mengikut arah jam menjadikannya kutub selatan.",
             note: "Solenoid ialah gegelung panjang. Medan magnetnya di luar menyerupai medan sebatang magnet bar.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.solenoidApparatus,
+              alt: "Solenoid teras udara: dawai kuprum digulung menjadi kira-kira sebelas lilitan yang sama jarak, dipasang mendatar pada kaki retort, dengan pusatnya yang berongga kelihatan.",
+              caption: "Radas yang digunakan untuk menunjukkan medan magnet solenoid yang mengalirkan arus.",
+            },
           },
         ],
       },
@@ -468,6 +521,18 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Kekuatan Elektromagnet dan Kegunaannya",
       intro:
         "Dua faktor mengubah kekuatan sesuatu elektromagnet. Daripada menerima jawapannya begitu sahaja, siasat kedua-duanya seperti yang dilakukan di dalam makmal — dengan hipotesis, pemboleh ubah dan pemerhatian.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.electromagnetUses,
+          alt: "Empat kegunaan elektromagnet. Loceng elektrik, di mana gegelung menarik lengan supaya pemukul mengetuk loceng. Kunci pintu magnet yang menahan pintu tertutup. Kren di tapak besi buruk mengangkat rasuk keluli dengan elektromagnet bulat yang besar. Paku besi yang dililit dawai bergegelung dan disambung kepada sel, menarik klip kertas.",
+          caption:
+            "Loceng elektrik, kunci pintu magnet, magnet pengangkat besi buruk, dan elektromagnet gegelung-dan-paku yang dibina di makmal.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       miniExperiment: {
         title: "🔬 Penyiasatan: faktor yang mempengaruhi kekuatan medan magnet",
         aim: "Mengkaji faktor-faktor yang mempengaruhi kekuatan medan magnet sesuatu elektromagnet.",

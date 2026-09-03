@@ -1,4 +1,8 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
+import {
+  SCIENCE_F2_CH10_IMAGES,
+  SCIENCE_F2_VISUAL_ASPECT,
+} from "../visual-assets";
 import chapterImage from "@/assets/science/form2/ch10-gelombang-bunyi.png";
 
 export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
@@ -28,6 +32,30 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Sound Production and Propagation",
       intro:
         "Sound is a form of energy produced by vibration. When an object vibrates, the particles around it vibrate too and collide with neighbouring particles. The vibration is passed from one particle to the next as a wave until it reaches a listener's ear. Because a sound wave has to be passed along by particles, sound needs a medium to propagate and cannot travel through a vacuum.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.tuningFork,
+          alt: "A tuning fork clamped upright on a stand, with the tip of one prong dipped into a shallow dish of water. The water splashes and ripples where the prong touches it. A rubber-headed striker lies on the bench beside it.",
+          caption:
+            "The fork's vibration is far too fast to see — but the water it touches shows it.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
+      images: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.bellJar,
+          alt: "An electric bell hanging from a stand inside a sealed glass bell jar on a laboratory bench. A tube runs from the base of the jar to a vacuum pump standing beside it.",
+          caption:
+            "As the pump removes the air, the ringing grows fainter. The bell is still vibrating — there are simply fewer particles left to carry the sound out.",
+          size: "sceneTall",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.upright,
+          priority: false,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "🗣️ Vocal cords",
@@ -72,6 +100,18 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Reflection, Absorption and Speed of Sound",
       intro:
         "When a sound wave strikes the surface of an object, part of it is reflected and part of it is absorbed. How much is reflected or absorbed depends on the type of surface. Sound waves also propagate at different speeds in different media, depending on how closely the particles of that medium are packed together.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.reflectionAbsorption,
+          alt: "Two rooms of the same size, each with a loudspeaker on a stand facing the far wall. The left room's wall is bare, hard and smooth; the right room's wall is covered with thick soft fabric panels.",
+          caption:
+            "The same loudspeaker in front of two different walls: hard and smooth on the left, soft and padded on the right.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       tabs: [
         {
           title: "Hard & smooth surfaces",
@@ -210,6 +250,18 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Sound from Musical Instruments",
       intro:
         "Musical instruments such as the piano, recorder, gendang, drum and guitar all produce sound through vibration. By changing how an instrument is played, a musician can change the loudness and the pitch of the sound separately. Notice that these two characteristics are controlled by different things.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.instruments,
+          alt: "Four instruments side by side: an acoustic guitar, an upright piano with its front panel removed so the strings and hammers are visible, a drum, and a recorder.",
+          caption:
+            "Every one of these makes its sound by vibrating — the guitar and piano strings, the drum membrane, and the air inside the recorder.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       tabs: [
         {
           title: "Guitar — plucked harder",
@@ -244,6 +296,18 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Echo and the Doppler Effect",
       intro:
         "The reflection of sound waves produces phenomena we meet every day. An echo is produced when a sound wave is reflected back to the listener from a hard surface. The Doppler effect happens when there is relative movement between a sound source and an observer.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.echoCave,
+          alt: "A boy standing just inside the mouth of a large rocky cave, hands cupped around his mouth as he shouts toward the far rock wall.",
+          caption:
+            "A shout, a hard rock wall some distance away, and a moment's wait — the conditions an echo needs.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       echoDiagram: {
         title: "🔁 How an echo is produced",
         sourceLabel: "Listener",
@@ -295,6 +359,18 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Sonar, Sonogram and Echolocation",
       intro:
         "Ultrasound is a sound wave with a frequency greater than 20 000 Hz. Ultrasound cannot be heard by humans but can be heard by animals such as bats. The reflection of ultrasound waves is used across several sectors, because the reflected sound carries information about whatever it struck.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.sonarEcholocation,
+          alt: "Two panels. On the left, a boat on the sea surface with a fish swimming in the clear water below it. On the right, a bat flying at the mouth of a cave at night, with a small moth in the air ahead of it.",
+          caption:
+            "Two everyday users of reflected sound: sonar sent down through water from a boat, and a bat's ultrasound sent out through air.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       echolocation: {
         title: "📡 Sending out and receiving back",
         instruction: "Tap each application to see the path of the sound sent out and the sound reflected back.",

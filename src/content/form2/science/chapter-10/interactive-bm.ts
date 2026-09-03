@@ -1,4 +1,8 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
+import {
+  SCIENCE_F2_CH10_IMAGES,
+  SCIENCE_F2_VISUAL_ASPECT,
+} from "../visual-assets";
 import chapterImage from "@/assets/science/form2/ch10-gelombang-bunyi.png";
 
 export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
@@ -28,6 +32,30 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       title: "Penghasilan dan Perambatan Bunyi",
       intro:
         "Bunyi ialah satu bentuk tenaga yang dihasilkan oleh getaran. Apabila sesuatu objek bergetar, zarah-zarah di sekelilingnya turut bergetar dan berlanggar dengan zarah bersebelahan. Getaran ini dipindahkan dari satu zarah ke zarah lain dalam bentuk gelombang sehingga sampai ke telinga pendengar. Kerana gelombang bunyi perlu dipindahkan melalui zarah, bunyi memerlukan medium untuk merambat dan tidak dapat merambat melalui vakum.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.tuningFork,
+          alt: "Tala bunyi dijepit tegak pada kaki retort, dengan hujung salah satu cabangnya dicelup ke dalam piring cetek berisi air. Air memercik dan beriak di tempat cabang itu menyentuhnya. Pengetuk berkepala getah terletak di atas meja di sebelahnya.",
+          caption:
+            "Getaran tala bunyi terlalu pantas untuk dilihat — tetapi air yang disentuhnya menunjukkannya.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
+      images: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.bellJar,
+          alt: "Sebuah loceng elektrik tergantung pada kaki di dalam balang kaca yang tertutup rapat di atas meja makmal. Sebatang tiub menyambungkan dasar balang itu kepada pam vakum di sebelahnya.",
+          caption:
+            "Semakin banyak udara dikeluarkan oleh pam, semakin perlahan bunyi deringan. Loceng masih bergetar — cuma zarah yang tinggal untuk membawa bunyi keluar semakin sedikit.",
+          size: "sceneTall",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.upright,
+          priority: false,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "🗣️ Peti suara",
@@ -72,6 +100,18 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       title: "Pantulan, Penyerapan dan Kelajuan Bunyi",
       intro:
         "Apabila gelombang bunyi terkena permukaan sesuatu objek, sebahagiannya dipantulkan dan sebahagiannya diserap. Jumlah bunyi yang dipantul atau diserap bergantung pada jenis permukaan itu. Selain itu, gelombang bunyi merambat pada kelajuan yang berbeza di dalam medium yang berbeza, bergantung pada seberapa rapat zarah-zarah medium itu tersusun.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.reflectionAbsorption,
+          alt: "Dua bilik yang sama saiz, setiap satu dengan pembesar suara di atas kaki menghadap dinding di hujung bilik. Dinding bilik kiri kosong, keras dan licin; dinding bilik kanan dilitupi panel kain lembut yang tebal.",
+          caption:
+            "Pembesar suara yang sama di hadapan dua jenis dinding: keras dan licin di sebelah kiri, lembut dan bertebat di sebelah kanan.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       tabs: [
         {
           title: "Permukaan keras & licin",
@@ -210,6 +250,18 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       title: "Bunyi daripada Alat Muzik",
       intro:
         "Alat muzik seperti piano, rekorder, gendang, drum dan gitar menghasilkan bunyi melalui getaran. Dengan mengubah cara alat itu dimainkan, pemuzik boleh mengubah kenyaringan dan kelangsingan bunyi secara berasingan. Perhatikan bahawa kedua-dua ciri ini dikawal oleh perkara yang berbeza.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.instruments,
+          alt: "Empat alat muzik bersebelahan: gitar akustik, piano tegak dengan panel hadapannya dibuka supaya tali dan tukulnya kelihatan, sebuah drum, dan sebatang rekorder.",
+          caption:
+            "Setiap satu menghasilkan bunyinya melalui getaran — tali gitar dan tali piano, membran drum, dan udara di dalam rekorder.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       tabs: [
         {
           title: "Gitar — dipetik lebih kuat",
@@ -244,6 +296,18 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       title: "Gema dan Kesan Doppler",
       intro:
         "Pantulan gelombang bunyi menghasilkan fenomena yang boleh kita alami setiap hari. Gema terhasil apabila gelombang bunyi dipantulkan kembali kepada pendengar daripada suatu permukaan yang keras. Kesan Doppler pula berlaku apabila terdapat pergerakan relatif antara sumber bunyi dengan pemerhati.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.echoCave,
+          alt: "Seorang budak lelaki berdiri di mulut sebuah gua batu yang besar, dengan kedua-dua tangannya dikuputkan di sekeliling mulut sambil menjerit ke arah dinding batu di hujung sana.",
+          caption:
+            "Satu jeritan, dinding batu keras yang agak jauh, dan tempoh menunggu yang singkat — inilah syarat yang diperlukan untuk gema.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       echoDiagram: {
         title: "🔁 Bagaimana gema terhasil",
         sourceLabel: "Pendengar",
@@ -295,6 +359,18 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       title: "Sonar, Sonogram dan Ekolokasi",
       intro:
         "Ultrabunyi ialah gelombang bunyi yang berfrekuensi lebih daripada 20 000 Hz. Ultrabunyi tidak dapat didengar oleh manusia tetapi boleh didengar oleh haiwan seperti kelawar. Pantulan gelombang ultrabunyi digunakan dalam pelbagai sektor kerana bunyi yang dipantulkan itu membawa maklumat tentang objek yang dikenainya.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH10_IMAGES.sonarEcholocation,
+          alt: "Dua panel. Di sebelah kiri, sebuah bot di permukaan laut dengan seekor ikan berenang di dalam air jernih di bawahnya. Di sebelah kanan, seekor kelawar terbang di mulut gua pada waktu malam, dengan seekor rama-rama kecil di udara di hadapannya.",
+          caption:
+            "Dua pengguna harian bunyi terpantul: sonar yang dihantar turun menerusi air dari sebuah bot, dan ultrabunyi kelawar yang dihantar menerusi udara.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       echolocation: {
         title: "📡 Menghantar dan menerima semula",
         instruction: "Tekan setiap aplikasi untuk melihat laluan bunyi yang dihantar dan yang dipantulkan.",

@@ -1,4 +1,8 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
+import {
+  SCIENCE_F2_CH9_IMAGES,
+  SCIENCE_F2_VISUAL_ASPECT,
+} from "../visual-assets";
 import chapterImage from "@/assets/science/form2/ch9-haba.png";
 
 export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
@@ -82,6 +86,18 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Convection and Radiation",
       intro:
         "Heat can also flow without passing through a solid. In fluids, convection carries heat through the movement of the fluid itself. Radiation needs no medium at all — it is the only way heat can travel through empty space.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.kitchenHeatTransfer,
+          alt: "A kitchen scene: a metal saucepan with a wooden spoon standing in it sits on a lit gas burner, water boils inside the pan and steam rises from it, and a hand is held up in the air beside the pan without touching it.",
+          caption:
+            "One kitchen, three modes: heat travels through the metal pan by conduction, circulates through the boiling water by convection, and reaches the raised hand by radiation.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       convectionRadiation: {
         title: "🌀 Two ways heat flows without a solid",
         instruction: "Tap each method to see how the heat moves.",
@@ -116,6 +132,28 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Sea Breeze and Land Breeze",
       intro:
         "Sea breezes and land breezes are examples of convection happening in nature. The key is that land heats up and cools down faster than the sea.",
+      contextImagePair: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.seaBreeze,
+          alt: "A coastline in the middle of a bright, sunny day. The sea is on the left, a sandy beach and green land with trees on the right, under a high sun.",
+          caption:
+            "Daytime — the Sun heats the land faster than the sea.",
+          size: "pair",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+        {
+          src: SCIENCE_F2_CH9_IMAGES.landBreeze,
+          alt: "The same coastline at night under a full moon. The sea is on the left, the beach and land on the right, both lit only by moonlight.",
+          caption:
+            "Night — the land cools faster than the sea.",
+          size: "pair",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       breezeDiagram: {
         title: "🌬️ Sea breeze and land breeze",
         instruction: "Tap each breeze to see the direction the air moves.",
@@ -151,6 +189,18 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Heat Conductors and Heat Insulators",
       intro:
         "A material that lets heat flow through it easily is known as a heat conductor. A material that prevents or slows down the flow of heat is known as a heat insulator.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.conductorInsulator,
+          alt: "Two identical clear beakers of hot water standing side by side. A metal spoon stands in the left beaker; a wooden spoon of the same shape and size stands in the right beaker.",
+          caption:
+            "The same hot water and the same spoon shape in both beakers — only the material is different.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "🔥 Heat conductor",
@@ -208,6 +258,18 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Uses of Expansion and Contraction",
       intro:
         "The principle of expansion and contraction is used — and must be allowed for — in many everyday situations.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.bimetallicAlarm,
+          alt: "A fire-alarm circuit: a cell, a bimetallic strip bolted down at one end with a copper layer above an iron layer, a lit spirit burner under the strip, a contact screw and a bell. The strip is still straight and is not touching the contact screw.",
+          caption:
+            "The strip is drawn straight and clear of the contact screw, so the circuit is still open and the bell is silent.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       bimetallicStrip: {
         title: "🔔 The bimetallic strip in a fire alarm",
         instruction: "Tap each state to see how the strip behaves.",
@@ -280,6 +342,18 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       title: "The Green Building Concept",
       intro:
         "The Green Building Concept is an idea developed to reduce the impact of rapid development on the environment and on human health. The heat concepts in this chapter are used directly: a green home is designed so that the energy needed to cool or heat it is reduced.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.greenBuilding,
+          alt: "A raised tropical house with a wide overhanging roof, solar panels on one roof slope, insulation packed under the roof, louvred and awning windows on every wall, a ceiling fan inside, and shade trees and plants around it.",
+          caption:
+            "Roof insulation, shading, natural ventilation and solar panels — the heat ideas of this chapter, built into one home.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       tabs: [
         {
           title: "⚡ Energy efficiency",

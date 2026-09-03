@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
+import { MagnetFieldDiagram } from "@/components/notes/blocks/MagnetFieldDiagram";
 import {
   BAR_FIELD_ARCS,
   BAR_MAGNET_POLES,
   BAR_MAGNET_RECT,
-  MagnetFieldDiagram,
-} from "@/components/notes/blocks/MagnetFieldDiagram";
+} from "@/components/notes/blocks/ch7-field-geometry";
 import { ohmsLawResult } from "@/components/notes/blocks/OhmsLawCalculator";
 import { CurrentFieldPatterns } from "@/components/notes/blocks/CurrentFieldPatterns";
 import { scienceF2C7InteractiveBM } from "./interactive-bm";
@@ -459,27 +459,32 @@ describe("N-01 — bar magnet external field direction", () => {
   });
 
   it("every external arrowhead points from the north pole toward the south pole", () => {
-    expect(BAR_FIELD_ARCS).toHaveLength(4);
+    expect(BAR_FIELD_ARCS.length).toBeGreaterThanOrEqual(4);
     for (const arc of BAR_FIELD_ARCS) {
-      const h = heading(arc.deg);
-      // Horizontal at the arc midpoint, and heading the way S lies from N.
-      expect(Math.abs(h.y), `arc ${arc.d} is not horizontal at its arrowhead`).toBeLessThan(1e-6);
+      const h = heading(arc.arrow.deg);
+      // The arrowhead sits at the line's midpoint, out where the field runs
+      // parallel to the magnet, so it is very nearly horizontal and heads the
+      // way S lies from N.
+      expect(Math.abs(h.y), `arc is not horizontal at its arrowhead`).toBeLessThan(0.2);
       expect(
         Math.sign(h.x),
-        `arc ${arc.d} points away from the south pole (deg=${arc.deg})`,
+        `an arc points away from the south pole (deg=${arc.arrow.deg})`,
       ).toBe(Math.sign(southCentre - northCentre));
     }
   });
 
   it("the arcs below the magnet point the same way as the arcs above it", () => {
     const magnetMidY = BAR_MAGNET_RECT.y + BAR_MAGNET_RECT.h / 2;
-    const above = BAR_FIELD_ARCS.filter((a) => a.a[1] < magnetMidY);
-    const below = BAR_FIELD_ARCS.filter((a) => a.a[1] > magnetMidY);
+    const above = BAR_FIELD_ARCS.filter((a) => a.arrow.y < magnetMidY);
+    const below = BAR_FIELD_ARCS.filter((a) => a.arrow.y > magnetMidY);
     expect(above.length, "expected arcs drawn above the magnet").toBeGreaterThan(0);
     expect(below.length, "expected arcs drawn below the magnet").toBeGreaterThan(0);
     // The loop under the magnet is not a mirror image — it still runs N -> S.
     for (const arc of below) {
-      expect(arc.deg, "a lower arc regressed to the reversed direction").toBe(above[0].deg);
+      expect(
+        Math.sign(Math.cos((arc.arrow.deg * Math.PI) / 180)),
+        "a lower arc regressed to the reversed direction",
+      ).toBe(Math.sign(Math.cos((above[0].arrow.deg * Math.PI) / 180)));
     }
   });
 
@@ -507,9 +512,11 @@ describe("N-01 — bar magnet external field direction", () => {
       const rotations = [...markup.matchAll(/rotate\((-?[\d.]+)\)/g)].map((m) => Number(m[1]));
       expect(rotations.length, `${lang} rendered no arrowheads`).toBe(BAR_FIELD_ARCS.length);
       for (const deg of rotations) {
-        expect(deg % 360, `${lang} rendered an arrow pointing back toward the north pole`).not.toBe(180);
+        expect(
+          Math.cos((deg * Math.PI) / 180),
+          `${lang} rendered an arrow pointing back toward the north pole`,
+        ).toBeGreaterThan(0);
       }
-      expect(new Set(rotations).size, `${lang} arrows disagree with each other`).toBe(1);
     });
 
     it(`${lang} caption and drawing agree on the field direction`, () => {
@@ -755,7 +762,7 @@ describe("N-04 — magnet pole label localization", () => {
       const rotations = [...markup.matchAll(/rotate\((-?[\d.]+)\)/g)].map((m) => Number(m[1]));
       expect(rotations.length, `${stream} arrowhead count changed`).toBe(BAR_FIELD_ARCS.length);
       for (const deg of rotations) {
-        expect(deg % 360, `${stream} arrow direction regressed`).not.toBe(180);
+        expect(Math.cos((deg * Math.PI) / 180), `${stream} arrow direction regressed`).toBeGreaterThan(0);
       }
     }
   });

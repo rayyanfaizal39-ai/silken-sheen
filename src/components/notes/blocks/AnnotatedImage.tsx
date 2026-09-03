@@ -94,6 +94,12 @@ export type AnnotatedImageProps = {
   aspect?: string;
   /** Optional short caption rendered under the image. */
   caption?: string;
+  /**
+   * Load eagerly. The sectioned notes shell renders one section at a time, so
+   * a section's leading figure is always above the fold — deferring it just
+   * shows the reader an empty reserved box. Everything else stays lazy.
+   */
+  priority?: boolean;
   /** Accessible name for the legend list. */
   legendLabel?: string;
   /**
@@ -151,6 +157,7 @@ export function AnnotatedImage({
   size,
   aspect = "3 / 2",
   caption,
+  priority = false,
   legendLabel,
   imageKey,
   enlargeLabel = "Enlarge",
@@ -238,7 +245,7 @@ export function AnnotatedImage({
         <img
           src={url}
           alt={alt}
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
           decoding="async"
           className={`absolute inset-y-0 left-0 h-full w-full object-contain ${
             isCallout ? "callout-art" : ""
