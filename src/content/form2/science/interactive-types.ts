@@ -1172,6 +1172,16 @@ export type ConductionDiagramBlock = {
   hint: string;
 };
 
+/**
+ * The photograph a Chapter 9 figure teaches on.
+ *
+ * Chapter 9's artwork was approved before this visual pass and is not to be
+ * regenerated, so these blocks draw their teaching layer over it instead of
+ * replacing it. `src` comes from `visual-assets.ts` so BM and DLP cannot drift
+ * onto different files; the artwork carries no text, and the words below it are
+ * the only thing that differs between the two languages.
+ */
+export type HeatFigureImage = { src: string; alt: string; caption?: string };
 /** Convection loop and radiation-through-vacuum, the two non-solid transfer modes. */
 export type ConvectionRadiationBlock = {
   title: string;
@@ -1187,6 +1197,8 @@ export type ConvectionRadiationBlock = {
   coolLabel: string;
   caption: string;
   hint: string;
+  /** The kitchen scene the two modes are drawn on. */
+  image: HeatFigureImage;
 };
 
 /** Sea and land breeze. Arrow directions are derived from which side is warmer. */
@@ -1200,6 +1212,8 @@ export type BreezeDiagramBlock = {
     warmerSide: "land" | "sea";
     timeOfDay: string;
     note: string;
+    /** The coastline at this time of day — the surface the airflow is drawn on. */
+    image: HeatFigureImage;
   }[];
   landLabel: string;
   seaLabel: string;
@@ -1231,8 +1245,13 @@ export type BimetallicStripBlock = {
   states: { id: "room" | "heated"; label: string; note: string }[];
   contactLabel: string;
   alarmLabel: string;
+  /** Shown on the figure when the circuit is complete and when it is not. */
+  circuitClosedLabel: string;
+  circuitOpenLabel: string;
   caption: string;
   hint: string;
+  /** The fire-alarm apparatus the two states are drawn on. */
+  image: HeatFigureImage;
 };
 
 /** Dark/dull versus white/shiny, absorption and emission kept separate. */
@@ -1246,6 +1265,8 @@ export type SurfaceComparisonBlock = {
   poorerLabel: string;
   caption: string;
   hint: string;
+  /** The two-can comparison the absorption and emission arrows are drawn on. */
+  image: HeatFigureImage;
 };
 
 /**
@@ -1515,11 +1536,31 @@ export type ScienceInteractiveSection = {
     columns: ScienceInteractiveCard[];
   };
   checks: { question: string; hint: string }[];
+  /**
+   * Visible heading for this section's Check-yourself list, replacing the
+   * default "Check yourself — <number>".
+   *
+   * Several sections legitimately share one Standard Pembelajaran number, so
+   * the default heading can appear twice in a chapter and read as a numbering
+   * mistake. This overrides the WORDS only — `number` is the curriculum
+   * reference and is never renumbered to make a heading unique.
+   */
+  checksTitle?: string;
 };
 
 export type ScienceF2InteractiveContent = {
   chapter: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
-  blogHighlight: { title: string; body: string; imagePath: string };
+  blogHighlight: {
+    title: string;
+    body: string;
+    imagePath: string;
+    /**
+     * What the enrichment picture shows, per language. Falls back to the card
+     * title, which describes the story rather than the image — fine while the
+     * artwork was generic chapter decoration, not once it depicts something.
+     */
+    imageAlt?: string;
+  };
   keywords: string[];
   sections: ScienceInteractiveSection[];
   reflectionItems: string[];

@@ -1094,9 +1094,10 @@ export function ScienceF2InteractiveNotesBlock({
         )}
         <div>
           <h3 className="font-display mb-2 text-base font-bold text-foreground">
-            {lang === "bm"
-              ? `Semak diri — ${section.number}`
-              : `Check yourself — ${section.number}`}
+            {section.checksTitle ??
+              (lang === "bm"
+                ? `Semak diri — ${section.number}`
+                : `Check yourself — ${section.number}`)}
           </h3>
           <Accordion type="single" collapsible>
             {section.checks.map((item, i) => (
@@ -1188,7 +1189,7 @@ export function ScienceF2InteractiveNotesBlock({
             {imageUrl && (
               <img
                 src={imageUrl}
-                alt={content.blogHighlight.title}
+                alt={content.blogHighlight.imageAlt ?? content.blogHighlight.title}
                 className="h-36 w-full rounded-xl object-cover sm:h-24"
                 loading="lazy"
               />

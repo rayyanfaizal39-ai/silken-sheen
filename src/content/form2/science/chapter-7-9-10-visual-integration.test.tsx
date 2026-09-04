@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { createElement } from "react";
-import { existsSync, statSync } from "node:fs";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { resolve } from "node:path";
 import { ScienceF2InteractiveNotesBlock } from "@/components/notes/ScienceF2InteractiveNotesBlock";
 import {
@@ -32,7 +32,7 @@ import { scienceF2C13InteractiveBM } from "./chapter-13/interactive-bm";
  * 9 and 10 — see SCIENCE_F2_CH07_CH09_CH10_VISUAL_IMPLEMENTATION_CHANGELOG.md.
  *
  * Unlike the Chapters 4-6 pack, none of this artwork carries baked-in text, so
- * BM and DLP ship the SAME nineteen files and every label, caption and alt
+ * BM and DLP ship the SAME twenty-four files and every label, caption and alt
  * string comes from chapter content. The parity assertions below are what stop
  * that drifting: the two languages must reference identical files in identical
  * sections, with different words.
@@ -54,6 +54,20 @@ const CH7_CONTEXT_ASSETS: string[] = [
   SCIENCE_F2_CH7_IMAGES.electromagnetUses,
 ];
 const CH9_ASSETS: string[] = Object.values(SCIENCE_F2_CH9_IMAGES);
+
+/**
+ * Chapter 9's figures rendered through `AnnotatedImage`, which is what this
+ * file is about. Its other files either lead the chapter page (the hero) or
+ * are the base a deterministic SVG teaching layer is drawn on; both are
+ * different components with different rules, and are guarded by
+ * chapter-9/chapter-9-heat-visuals.test.tsx.
+ */
+const CH9_CONTEXT_ASSETS: string[] = [
+  SCIENCE_F2_CH9_IMAGES.heatVsTemperature,
+  SCIENCE_F2_CH9_IMAGES.conductorInsulator,
+  SCIENCE_F2_CH9_IMAGES.expansionUses,
+  SCIENCE_F2_CH9_IMAGES.greenBuilding,
+];
 const CH10_ASSETS: string[] = Object.values(SCIENCE_F2_CH10_IMAGES);
 
 const PUBLIC_ROOT = resolve(process.cwd(), "public");
@@ -136,7 +150,7 @@ const CHAPTERS: {
   },
   {
     name: "chapter 9",
-    expected: CH9_ASSETS,
+    expected: CH9_CONTEXT_ASSETS,
     bm: scienceF2C9InteractiveBM,
     dlp: scienceF2C9InteractiveDLP,
   },
@@ -157,9 +171,9 @@ const EVERY_VIEW: [string, ScienceF2InteractiveContent, "bm" | "en"][] = CHAPTER
 );
 
 describe("Science F2 Ch7/9/10 — assets on disk", () => {
-  it("ships exactly nineteen files", () => {
-    expect(SCIENCE_F2_VISUAL_ASSETS).toHaveLength(19);
-    expect(new Set(SCIENCE_F2_VISUAL_ASSETS).size).toBe(19);
+  it("ships exactly twenty-four files", () => {
+    expect(SCIENCE_F2_VISUAL_ASSETS).toHaveLength(24);
+    expect(new Set(SCIENCE_F2_VISUAL_ASSETS).size).toBe(24);
   });
 
   it.each(SCIENCE_F2_VISUAL_ASSETS)("%s exists and is not empty", (src) => {
@@ -213,11 +227,15 @@ describe("Science F2 Ch7/9/10 — placement", () => {
     expect(place(bm)).toEqual(place(dlp));
   });
 
-  it("keeps the sea-breeze and land-breeze figures as one matched pair", () => {
+  it("keeps the sea-breeze and land-breeze photographs, one per breeze", () => {
+    // They used to sit above the breeze figure as a static pair, beside a
+    // schematic that mirrored them. Each is now the surface its own breeze is
+    // taught on, so the pair slot is empty and the photographs live in the
+    // figure — same two files, same order, one fewer thing to reconcile.
     for (const content of [scienceF2C9InteractiveBM, scienceF2C9InteractiveDLP]) {
-      const pairs = content.sections.filter((section) => section.contextImagePair?.length);
-      expect(pairs).toHaveLength(1);
-      expect(pairs[0].contextImagePair?.map((image) => image.src)).toEqual([
+      expect(content.sections.filter((section) => section.contextImagePair?.length)).toHaveLength(0);
+      const breeze = content.sections.find((section) => section.breezeDiagram)!.breezeDiagram!;
+      expect(breeze.breezes.map((b) => b.image.src)).toEqual([
         SCIENCE_F2_CH9_IMAGES.seaBreeze,
         SCIENCE_F2_CH9_IMAGES.landBreeze,
       ]);
@@ -280,8 +298,15 @@ describe("Science F2 Ch7/9/10 — figure authoring", () => {
   it.each(EVERY_VIEW)("%s adds no marker over the artwork", (_name, content) => {
     // These are recognition visuals sitting beside a precise diagram, not
     // labelled figures. A hotspot here would be a second, competing label set.
+    // The one exception is the green building, where the picture IS the
+    // lesson — every feature it names is a thing to find on the house — so it
+    // is the figure being pointed at rather than one sitting beside a diagram.
     for (const figure of figuresOf(content)) {
-      expect(figure.annotations).toEqual([]);
+      if (figure.src === SCIENCE_F2_CH9_IMAGES.greenBuilding) {
+        expect(figure.annotations.length).toBeGreaterThan(0);
+        continue;
+      }
+      expect(figure.annotations, figure.src).toEqual([]);
     }
   });
 
@@ -337,9 +362,15 @@ describe("Science F2 Ch7/9/10 — rendering", () => {
     }
   });
 
-  it("stacks the breeze pair on a phone and pairs it from sm up", () => {
-    const markup = markupOf(scienceF2C9InteractiveDLP, "en");
-    expect(markup).toContain('data-figure-pair=""');
-    expect(markup).toContain("grid gap-3 sm:grid-cols-2");
+  it("still offers the paired layout, unused now that each breeze owns its photograph", () => {
+    // The layout is kept for the next matched pair a chapter needs; what
+    // changed is that Chapter 9 no longer has one to render.
+    const source = readFileSync(
+      resolve(process.cwd(), "src/components/notes/ScienceF2InteractiveNotesBlock.tsx"),
+      "utf8",
+    );
+    expect(source).toContain('data-figure-pair=""');
+    expect(source).toContain("grid gap-3 sm:grid-cols-2");
+    expect(markupOf(scienceF2C9InteractiveDLP, "en")).not.toContain('data-figure-pair=""');
   });
 });

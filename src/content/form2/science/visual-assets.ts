@@ -38,6 +38,17 @@ export const SCIENCE_F2_CH9_IMAGES = {
   bimetallicAlarm: `${DIR}/chapter-9/09_04_bimetallic_fire_alarm.webp`,
   conductorInsulator: `${DIR}/chapter-9/09_05_conductor_vs_insulator.webp`,
   kitchenHeatTransfer: `${DIR}/chapter-9/09_06_conduction_convection_radiation_kitchen.webp`,
+  /**
+   * The Chapter 9 visual pass. `heatHero` leads the chapter page; the rest are
+   * either contextual scenes or the base a deterministic SVG teaching layer is
+   * drawn on (see `ch9-heat-geometry.ts`). None carries baked-in text, so both
+   * languages use the same file.
+   */
+  heatHero: `${DIR}/chapter-9/09_07_heat_chapter_hero.webp`,
+  heatVsTemperature: `${DIR}/chapter-9/09_08_heat_vs_temperature.webp`,
+  polarBear: `${DIR}/chapter-9/09_09_polar_bear_insulation.webp`,
+  expansionUses: `${DIR}/chapter-9/09_10_expansion_contraction_applications.webp`,
+  absorptionEmission: `${DIR}/chapter-9/09_11_heat_absorption_emission_black_vs_shiny.webp`,
 } as const;
 
 export const SCIENCE_F2_CH10_IMAGES = {

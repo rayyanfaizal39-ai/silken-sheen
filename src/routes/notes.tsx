@@ -170,6 +170,7 @@ import bmArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_15 AM
 import englishArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_00_47 AM.png";
 import scienceArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_08 AM.png";
 import scienceF2Chapter8Artwork from "@/assets/science/form2/ch8-daya-gerakan.png";
+import { SCIENCE_F2_CH9_IMAGES } from "@/content/form2/science/visual-assets";
 import sejarahArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_01_37 AM.png";
 import mathArtwork from "@/assets/subjects/ChatGPT Image Jun 27, 2026, 11_02_06 AM.png";
 import { seoMeta, breadcrumbJsonLd, courseJsonLd } from "@/lib/seo";
@@ -298,7 +299,20 @@ const F3_SCIENCE_LAB_META: Record<
   10: { modules: 8, minutes: 18, experiments: 2, difficulty: "Core" },
 };
 
-function SubjectFeatureArtwork({ subjectId, src }: { subjectId: string; src: string | null }) {
+function SubjectFeatureArtwork({
+  subjectId,
+  src,
+  whole = false,
+}: {
+  subjectId: string;
+  src: string | null;
+  /**
+   * Show the whole picture instead of a cropped banner strip. For artwork
+   * drawn for one chapter, where the bottom of the frame carries part of what
+   * the picture is teaching and a centre crop would cut it off.
+   */
+  whole?: boolean;
+}) {
   if (!src) return null;
 
   const subjectName = subjects.find((item) => item.id === subjectId)?.name ?? subjectId;
@@ -309,7 +323,11 @@ function SubjectFeatureArtwork({ subjectId, src }: { subjectId: string; src: str
       <img
         src={src}
         alt={`${subjectName} chapter artwork`}
-        className="relative block h-32 w-full object-cover object-center sm:h-40"
+        className={
+          whole
+            ? "relative mx-auto block max-h-[340px] w-full object-contain"
+            : "relative block h-32 w-full object-cover object-center sm:h-40"
+        }
         loading="lazy"
       />
     </div>
@@ -422,9 +440,18 @@ function NotesPage() {
   const chapterArtwork =
     subject === "science" && form === "Form 2" && activeChapterKey === "Chapter 8"
       ? scienceF2Chapter8Artwork
-      : subject && activeChapterKey
-        ? getChapterArtwork(subject, form, activeChapterKey)
-        : null;
+      : subject === "science" && form === "Form 2" && activeChapterKey === "Chapter 9"
+        ? SCIENCE_F2_CH9_IMAGES.heatHero
+        : subject && activeChapterKey
+          ? getChapterArtwork(subject, form, activeChapterKey)
+          : null;
+  /**
+   * A chapter hero drawn for one chapter is composed for its frame, so it is
+   * shown whole rather than cropped to the shared banner strip. The generic
+   * per-subject artwork is decorative and keeps the banner treatment.
+   */
+  const chapterArtworkIsWhole =
+    subject === "science" && form === "Form 2" && activeChapterKey === "Chapter 9";
 
   const measuredScrollPct = useNotesReadingTracker({
     contentRef: notesContentRef,
@@ -849,7 +876,7 @@ function NotesPage() {
             />
 
             {subject && chapterArtwork && !isSejarahChapter && (
-              <SubjectFeatureArtwork subjectId={subject} src={chapterArtwork} />
+              <SubjectFeatureArtwork subjectId={subject} src={chapterArtwork} whole={chapterArtworkIsWhole} />
             )}
             {isSejarahChapter && (
               <SejarahChapterHero
