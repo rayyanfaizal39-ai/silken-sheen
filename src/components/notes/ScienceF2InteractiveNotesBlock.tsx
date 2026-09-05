@@ -8,6 +8,11 @@ import {
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChipRow } from "@/components/notes/blocks/ChipRow";
+import {
+  ScienceEmphasis,
+  ScienceRemember,
+  ScienceQuickExplanation,
+} from "@/components/notes/blocks/ScienceEmphasis";
 import { FlipCardGrid } from "@/components/notes/blocks/FlipCard";
 import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectionChecklist";
 import { MatchingPairs } from "@/components/notes/blocks/MatchingPairs";
@@ -287,7 +292,7 @@ export function ScienceF2InteractiveNotesBlock({
               >
                 <h3 className="font-display text-sm font-bold text-foreground">{card.title}</h3>
                 <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
-                  {card.body}
+                  <ScienceEmphasis text={card.body} />
                 </p>
                 {card.detail && (
                   <p className="mt-2 text-xs font-semibold text-primary">{card.detail}</p>
@@ -357,7 +362,7 @@ export function ScienceF2InteractiveNotesBlock({
               <AccordionItem key={item.title} value={`${section.number}-${i}`}>
                 <AccordionTrigger>{item.title}</AccordionTrigger>
                 <AccordionContent className="text-[13px] leading-relaxed text-muted-foreground">
-                  {item.body}
+                  <ScienceEmphasis text={item.body} />
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -378,7 +383,7 @@ export function ScienceF2InteractiveNotesBlock({
                 value={`tab-${i}`}
                 className="text-[13.5px] leading-relaxed text-muted-foreground"
               >
-                {tab.body}
+                <ScienceEmphasis text={tab.body} />
               </TabsContent>
             ))}
           </Tabs>
@@ -784,7 +789,9 @@ export function ScienceF2InteractiveNotesBlock({
               {section.cards.map((card) => (
                 <article key={card.title} className="border-l-2 border-primary/30 pl-3">
                   <h3 className="text-[13px] font-bold text-foreground">{card.title}</h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{card.body}</p>
+                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
+                    <ScienceEmphasis text={card.body} />
+                  </p>
                   {card.detail && <p className="mt-1.5 text-[12px] font-semibold text-primary">{card.detail}</p>}
                 </article>
               ))}
@@ -953,7 +960,7 @@ export function ScienceF2InteractiveNotesBlock({
                       {section.adaptations!.labels.challenge}
                     </p>
                     <p className="mt-0.5 text-[13px] leading-relaxed text-foreground">
-                      {item.challenge}
+                      <ScienceEmphasis text={item.challenge} />
                     </p>
                   </div>
                   {item.organisms.map((organism) => (
@@ -984,7 +991,7 @@ export function ScienceF2InteractiveNotesBlock({
                                 {label}
                               </dt>
                               <dd className="text-[12.5px] leading-relaxed text-foreground">
-                                {value}
+                                <ScienceEmphasis text={value} />
                               </dd>
                             </div>
                           </div>
@@ -1032,7 +1039,9 @@ export function ScienceF2InteractiveNotesBlock({
                     ))}
                   </div>
                   {item.note && (
-                    <p className="mt-2 text-[11.5px] font-semibold text-emerald-300">{item.note}</p>
+                    <p className="mt-2 text-[11.5px] font-semibold text-emerald-300">
+                      <ScienceEmphasis text={item.note} />
+                    </p>
                   )}
                 </div>
               ))}
@@ -1085,11 +1094,19 @@ export function ScienceF2InteractiveNotesBlock({
                 >
                   <h4 className="font-display font-bold text-foreground">{column.title}</h4>
                   <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
-                    {column.body}
+                    <ScienceEmphasis text={column.body} />
                   </p>
                 </article>
               ))}
             </div>
+          </div>
+        )}
+        {(section.remember || section.quickExplanation) && (
+          <div className="flex flex-col gap-2.5">
+            {section.remember && <ScienceRemember lang={lang} text={section.remember} />}
+            {section.quickExplanation && (
+              <ScienceQuickExplanation lang={lang} text={section.quickExplanation} />
+            )}
           </div>
         )}
         <div>
@@ -1199,7 +1216,7 @@ export function ScienceF2InteractiveNotesBlock({
                 {content.blogHighlight.title}
               </h2>
               <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
-                {content.blogHighlight.body}
+                <ScienceEmphasis text={content.blogHighlight.body} />
               </p>
             </div>
           </div>

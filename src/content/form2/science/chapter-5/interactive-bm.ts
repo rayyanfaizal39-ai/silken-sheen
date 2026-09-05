@@ -5,7 +5,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 5,
   blogHighlight: {
     title: "Blog Sains — Laut Mati",
-    body: "Terletak kira-kira 430.5 meter di bawah paras laut, Laut Mati adalah titik paling rendah di Bumi. Kerana ia dikepung sepenuhnya oleh tanah, air yang mengalir daripada Sungai Jordan sejat dengan cepat dan meninggalkan garamnya — menjadikan air begitu tumpat sehingga orang boleh terapung di permukaannya tanpa berusaha.",
+    body: "Terletak kira-kira **430.5 meter di bawah paras laut**, Laut Mati adalah titik paling rendah di Bumi. Kerana ia dikepung sepenuhnya oleh tanah, air yang mengalir daripada Sungai Jordan sejat dengan cepat dan meninggalkan garamnya — menjadikan air **begitu tumpat** sehingga orang boleh terapung di permukaannya tanpa berusaha.",
     imagePath: chapterImage,
   },
   keywords: [
@@ -31,20 +31,20 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.1",
       title: "Sifat Fizik Air",
       intro:
-        "Air tulen tidak berwarna, tidak berbau dan tidak berasa, serta kekal sebagai cecair pada suhu bilik. Ia mendidih pada tepat 100°C, membeku pada 0°C, dan mempunyai ketumpatan 1 g cm⁻³. Nilai tetap ini sebenarnya digunakan untuk menguji sama ada air mengandungi bendasing, kerana bendasing mengubah nilai-nilai ini.",
+        "Air tulen **tidak berwarna, tidak berbau dan tidak berasa**, serta kekal sebagai cecair pada suhu bilik. Ia mendidih pada tepat 100°C, membeku pada 0°C, dan mempunyai ketumpatan 1 g cm⁻³. Nilai tetap ini sebenarnya digunakan untuk menguji sama ada air mengandungi bendasing, kerana bendasing mengubah nilai-nilai ini.",
       cards: [
         {
           title: "Empat nilai tetap air tulen",
-          body: "Takat didih 100°C, takat beku 0°C, tiada warna, dan ketumpatan 1 g cm⁻³. Kesemuanya diukur pada air yang benar-benar tulen.",
+          body: "Takat didih **100°C**, takat beku **0°C**, tiada warna, dan ketumpatan **1 g cm⁻³**. Kesemuanya diukur pada air yang benar-benar tulen.",
           detail: "Sebarang perubahan pada nilai-nilai ini menunjukkan kehadiran bendasing terlarut.",
         },
         {
           title: "Peleburan & Pembekuan",
-          body: "Peleburan menukar ais pepejal kepada air cecair dengan menyerap haba. Pembekuan menukar air cecair kepada ais pepejal dengan membebaskan haba.",
+          body: "Peleburan menukar ais pepejal kepada air cecair dengan **menyerap haba**. Pembekuan menukar air cecair kepada ais pepejal dengan membebaskan haba.",
         },
         {
           title: "Penyejatan/Pendidihan & Kondensasi",
-          body: "Penyejatan/pendidihan menukar air cecair kepada wap air dengan menyerap haba. Kondensasi menukar wap air kembali kepada cecair dengan membebaskan haba.",
+          body: "Penyejatan/pendidihan menukar air cecair kepada wap air dengan menyerap haba. Kondensasi menukar wap air kembali kepada cecair dengan **membebaskan haba**.",
         },
       ],
       checks: [
@@ -59,14 +59,16 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       title: "Tegangan Permukaan dan Tindakan Kapilari",
       intro:
         "Molekul air menarik antara satu sama lain, dan juga menarik permukaan lain yang disentuhnya. Dua daya inilah yang menerangkan mengapa serangga boleh berehat di atas air, dan bagaimana air naik dari akar ke daun tanpa sebarang pam.",
+      quickExplanation:
+        "Secara umum, daya tarikan antara **molekul yang sama** dipanggil daya lekitan, manakala daya tarikan antara **molekul yang berbeza** dipanggil daya lekatan.",
       cards: [
         {
           title: "Tegangan permukaan yang tinggi",
-          body: "Daya lekitan antara molekul air cukup kuat pada permukaan sehingga permukaan itu berkelakuan seperti kulit nipis. Serangga ringan seperti ayak-ayak boleh berehat di atasnya tanpa tenggelam.",
+          body: "**Daya lekitan** antara molekul air cukup kuat pada permukaan sehingga permukaan itu berkelakuan seperti kulit nipis. Serangga ringan seperti ayak-ayak boleh berehat di atasnya tanpa tenggelam.",
         },
         {
           title: "Air naik ke pucuk pokok",
-          body: "Di dalam salur xilem yang sangat halus, daya lekatan menarik air ke atas dinding salur, sementara daya lekitan menarik molekul air yang lain mengikutinya. Kesan gabungan ini menaikkan air dari akar hingga ke daun.",
+          body: "Di dalam salur xilem yang sangat halus, **daya lekatan** menarik air ke atas dinding salur, sementara daya lekitan menarik molekul air yang lain mengikutinya. Kesan gabungan ini menaikkan air dari akar hingga ke daun.",
         },
       ],
       capillaryDiagram: {
@@ -103,11 +105,11 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.1",
       title: "Bendasing dan Elektrolisis Air",
       intro:
-        "Air ialah sebatian — dua atom hidrogen bergabung dengan satu atom oksigen, H₂O. Elektrolisis memisahkannya semula, dan isi padu gas yang terkumpul membuktikan nisbah itu. Bendasing terlarut pula mengubah takat lebur dan takat didih air.",
+        "Air ialah **sebatian** — dua atom hidrogen bergabung dengan satu atom oksigen, **H₂O**. Elektrolisis memisahkannya semula, dan isi padu gas yang terkumpul membuktikan nisbah itu. Bendasing terlarut pula mengubah takat lebur dan takat didih air.",
       cards: [
         {
           title: "Mengapa sup masin mendidih lebih lambat",
-          body: "Bendasing terlarut mengubah takat lebur dan takat didih air — garam menurunkan takat lebur ais tetapi meningkatkan takat didih air. Itulah sebabnya periuk air biasa mendidih lebih cepat daripada periuk yang mengandungi garam atau stok sup terlarut.",
+          body: "Bendasing terlarut mengubah takat lebur dan takat didih air — garam **menurunkan takat lebur ais** tetapi **meningkatkan takat didih air**. Itulah sebabnya periuk air biasa mendidih lebih cepat daripada periuk yang mengandungi garam atau stok sup terlarut.",
           detail: "Rasa, bau dan warna air juga boleh berubah dengan kehadiran bendasing — air laut berasa masin kerana garam terlarut di dalamnya.",
         },
         {
@@ -155,7 +157,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.1",
       title: "Penyejatan Air",
       intro:
-        "Penyejatan berlaku di permukaan air dan menukarkan air menjadi wap air. Ia boleh berlaku pada sebarang suhu, kerana molekul air di permukaan mempunyai tenaga kinetik yang lebih tinggi dan dapat terlepas ke udara. Empat faktor mempengaruhi kadar penyejatan.",
+        "Penyejatan berlaku di permukaan air dan menukarkan air menjadi wap air. Ia **boleh berlaku pada sebarang suhu**, kerana molekul air di permukaan mempunyai **tenaga kinetik yang lebih tinggi** dan dapat terlepas ke udara. Empat faktor mempengaruhi kadar penyejatan.",
       flipCards: [
         {
           id: "humidity",
@@ -308,7 +310,9 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.2",
       title: "Zat Terlarut, Pelarut dan Larutan",
       intro:
-        "Apabila gula larut dalam air, gula ialah zat terlarut (bahan yang larut), air ialah pelarut (cecair yang melarutkan), dan air gula ialah larutan yang terbentuk bersama. Daripada tiga istilah ini datang satu lagi yang sering dikelirukan — keterlarutan.",
+        "Apabila gula larut dalam air, gula ialah **zat terlarut** (bahan yang larut), air ialah **pelarut** (cecair yang melarutkan), dan air gula ialah **larutan** yang terbentuk bersama. Daripada tiga istilah ini datang satu lagi yang sering dikelirukan — keterlarutan.",
+      remember:
+        "**Keterlarutan** suatu bahan ialah kuantiti maksimum zat terlarut yang dapat larut di dalam 100 ml pelarut pada suhu yang tertentu.",
       cards: [
         {
           title: "Keterlarutan",
@@ -373,12 +377,12 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "Tepu",
-          body: "Zat terlarut berlebihan ditambah — tiada lagi yang larut, dan lebihannya membentuk mendakan di dasar.",
+          body: "Zat terlarut berlebihan ditambah — tiada lagi yang larut, dan lebihannya membentuk **mendakan** di dasar.",
           detail: "Tidak boleh larutkan lebih",
         },
         {
           title: "Suhu boleh mengubah had itu sendiri",
-          body: "Perhatikan bahawa keterlarutan sentiasa dinyatakan pada suhu yang tertentu. Sebabnya: apabila suhu berubah, kuantiti maksimum yang boleh larut turut berubah. Bagi kebanyakan zat terlarut pepejal seperti garam dan gula, lebih banyak dapat larut pada suhu yang lebih tinggi.",
+          body: "Perhatikan bahawa keterlarutan sentiasa dinyatakan pada **suhu yang tertentu**. Sebabnya: apabila suhu berubah, kuantiti maksimum yang boleh larut turut berubah. Bagi kebanyakan zat terlarut pepejal seperti garam dan gula, lebih banyak dapat larut pada suhu yang lebih tinggi.",
           detail:
             "Itulah sebabnya larutan tepu yang dipanaskan boleh melarutkan lebih banyak zat terlarut lagi — ia tidak lagi tepu pada suhu yang baharu itu.",
         },
@@ -395,7 +399,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.2",
       title: "Larutan, Ampaian dan Koloid",
       intro:
-        "Tidak semua campuran ialah larutan. Dua ujian mudah — menyinar lampu suluh menembusinya, dan menapisnya melalui kertas turas — sudah cukup untuk membezakan ketiga-tiga jenis campuran ini.",
+        "Tidak semua campuran ialah larutan. Dua ujian mudah — **menyinar lampu suluh menembusinya**, dan **menapisnya melalui kertas turas** — sudah cukup untuk membezakan ketiga-tiga jenis campuran ini.",
       mixtureComparison: {
         title: "🔦 Uji dengan cahaya dan penurasan",
         instruction: "Tekan mana-mana campuran untuk membaca ciri penuhnya.",
@@ -562,15 +566,15 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.2",
       title: "Pelarut Semesta dan Pelarut Bukan Air",
       intro:
-        "Air dikenali sebagai pelarut semesta kerana keupayaannya melarutkan hampir semua bahan sama ada pepejal, cecair ataupun gas. Bagi bahan yang tidak larut dalam air, pelarut bukan air yang berasaskan karbon digunakan sebagai gantinya.",
+        "Air dikenali sebagai **pelarut semesta** kerana keupayaannya melarutkan hampir semua bahan sama ada pepejal, cecair ataupun gas. Bagi bahan yang tidak larut dalam air, pelarut bukan air yang berasaskan karbon digunakan sebagai gantinya.",
       cards: [
         {
           title: "Air sebagai pelarut semesta",
-          body: "Air digunakan sebagai pelarut secara domestik dan juga sebagai bahan mentah dalam industri pembuatan, pertanian dan perubatan — daripada baja yang larut dan diserap oleh akar tumbuhan, kepada detergen dalam proses pembersihan, hinggalah kepada penghasilan minuman ringan.",
+          body: "Air digunakan sebagai pelarut secara domestik dan juga sebagai **bahan mentah dalam industri pembuatan, pertanian dan perubatan** — daripada baja yang larut dan diserap oleh akar tumbuhan, kepada detergen dalam proses pembersihan, hinggalah kepada penghasilan minuman ringan.",
         },
         {
           title: "Kendalikan dengan cermat",
-          body: "Sifat pelarut bukan air yang mudah meruap menyebabkan pelarut ini digunakan secara meluas dalam penyediaan bahan semburan seperti cat, minyak wangi dan racun serangga. Pelarut bukan air perlu dikendalikan dengan cermat kerana ia membahayakan kesihatan manusia.",
+          body: "Sifat pelarut bukan air yang **mudah meruap** menyebabkan pelarut ini digunakan secara meluas dalam penyediaan bahan semburan seperti cat, minyak wangi dan racun serangga. Pelarut bukan air perlu dikendalikan dengan cermat kerana ia **membahayakan kesihatan manusia**.",
         },
       ],
       tabs: [
@@ -594,7 +598,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.3",
       title: "Kaedah Pembersihan Air",
       intro:
-        "Air meliputi dua pertiga permukaan Bumi, tetapi kebanyakannya mengandungi bendasing, mikroorganisma dan bahan terlarut yang menjadikannya tidak selamat terus daripada sumber. Pembersihan air membuang bau, rasa, warna, mikroorganisma dan bahan terlarut supaya ia boleh digunakan dengan selamat.",
+        "Air meliputi **dua pertiga permukaan Bumi**, tetapi kebanyakannya mengandungi bendasing, mikroorganisma dan bahan terlarut yang menjadikannya tidak selamat terus daripada sumber. Pembersihan air membuang **bau, rasa, warna, mikroorganisma dan bahan terlarut** supaya ia boleh digunakan dengan selamat.",
       comparisonMatrix: {
         title: "🧪 Kaedah manakah melakukan apa?",
         instruction: "Tekan mana-mana kaedah untuk membaca penjelasan penuhnya.",
@@ -642,7 +646,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Apakah maksud penulenan?",
-          body: "Penulenan bermaksud menghasilkan air tulen — air yang bebas daripada bendasing terampai, bahan terlarut dan mikroorganisma sekali gus. Ia adalah matlamat akhir, bukan satu langkah yang berasingan.",
+          body: "Penulenan bermaksud menghasilkan air tulen — air yang bebas daripada **bendasing terampai, bahan terlarut dan mikroorganisma** sekali gus. Ia adalah matlamat akhir, bukan satu langkah yang berasingan.",
           detail:
             "Lihat lajur terakhir di atas: daripada empat kaedah itu, hanya penyulingan mencapai penulenan. Pendidihan, penurasan dan pengklorinan membersihkan air, tetapi tidak menulenkannya.",
         },
@@ -659,7 +663,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.3",
       title: "Sistem Pembekalan Air",
       intro:
-        "Air yang dikumpul daripada sumber seperti sungai dan air hujan disalurkan ke loji pembersihan air untuk dirawat sebelum dihantar kepada pengguna. Bakteria, alga dan bahan mineral adalah antara bahan yang disingkirkan dalam proses ini.",
+        "Air yang dikumpul daripada sumber seperti sungai dan air hujan disalurkan ke **loji pembersihan air** untuk dirawat sebelum dihantar kepada pengguna. **Bakteria, alga dan bahan mineral** adalah antara bahan yang disingkirkan dalam proses ini.",
       waterTreatmentFlow: {
         title: "🚰 Perjalanan air dari sungai ke paip",
         instruction: "Tekan mana-mana peringkat untuk melihat fungsinya. Urutannya penting.",
@@ -731,7 +735,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.3",
       title: "Bekalan Air Alternatif dan Kelestarian Air",
       intro:
-        "Sesetengah negara yang mengalami kekurangan sumber air menggunakan cara alternatif untuk mendapatkan bekalan air. Pada masa yang sama, menjaga air yang sedia ada adalah tanggungjawab setiap individu.",
+        "Sesetengah negara yang mengalami **kekurangan sumber air** menggunakan **cara alternatif** untuk mendapatkan bekalan air. Pada masa yang sama, menjaga air yang sedia ada adalah tanggungjawab setiap individu.",
       methodCards: {
         title: "🌍 Tiga cara mendapatkan bekalan air",
         instruction:
@@ -769,17 +773,17 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Air yang selamat diminum",
-          body: "Air yang selamat diminum mestilah bebas daripada mikroorganisma berbahaya, bahan kimia beracun dan bendasing. Itulah sebabnya air dirawat di loji sebelum sampai ke rumah.",
+          body: "Air yang **selamat diminum** mestilah bebas daripada mikroorganisma berbahaya, bahan kimia beracun dan bendasing. Itulah sebabnya air dirawat di loji sebelum sampai ke rumah.",
         },
         {
           title: "Apabila air tercemar: Teluk Minamata",
-          body: "Di Teluk Minamata, Jepun, sisa yang mengandungi merkuri dilepaskan ke dalam air laut. Merkuri itu terkumpul di dalam ikan dan kerang, dan penduduk yang memakannya mengalami keracunan merkuri yang teruk — merosakkan sistem saraf dan menyebabkan kecacatan kekal.",
+          body: "Di **Teluk Minamata, Jepun**, sisa yang mengandungi merkuri dilepaskan ke dalam air laut. Merkuri itu terkumpul di dalam ikan dan kerang, dan penduduk yang memakannya mengalami **keracunan merkuri yang teruk** — merosakkan sistem saraf dan menyebabkan kecacatan kekal.",
           detail:
             "Kesnya menunjukkan bahawa bahan beracun yang masuk ke dalam air tidak hilang begitu sahaja — ia berpindah melalui rantai makanan dan akhirnya sampai kepada manusia. Mencegah pencemaran jauh lebih mudah daripada membersihkannya kemudian.",
         },
         {
           title: "Audit air di rumah anda",
-          body: "Audit air bermaksud merekodkan berapa banyak air digunakan di rumah atau sekolah, aktiviti demi aktiviti — mandi, membasuh, menyiram dan sebagainya.",
+          body: "**Audit air** bermaksud merekodkan berapa banyak air digunakan di rumah atau sekolah, aktiviti demi aktiviti — mandi, membasuh, menyiram dan sebagainya.",
           detail:
             "Setelah anda tahu ke mana air itu pergi, anda boleh mengenal pasti pembaziran dan mencadangkan langkah penjimatan — membaiki paip bocor, menutup pili semasa memberus gigi, atau mengumpul air hujan untuk menyiram pokok.",
         },

@@ -5,7 +5,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 8,
   blogHighlight: {
     title: "Blog Sains — Daya Ada di Mana-Mana",
-    body: "Berjalan, mengunyah, menendang bola, menarik tali dalam tarik tali — semua ini adalah daya yang bertindak. Anda tidak dapat melihatnya, tetapi anda sentiasa dapat merasai kesannya.",
+    body: "Berjalan, mengunyah, menendang bola, menarik tali dalam tarik tali — semua ini adalah daya yang bertindak. Anda **tidak dapat melihatnya**, tetapi anda sentiasa dapat **merasai kesannya**.",
     imagePath: chapterImage,
   },
   keywords: [
@@ -32,7 +32,9 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.1",
       title: "Jenis-jenis Daya",
       intro:
-        "Daya ialah tarikan atau tolakan yang dikenakan ke atas sesuatu objek. Daya tidak dapat dilihat, tetapi kesannya sentiasa boleh diperhatikan. Hampir semua aktiviti harian melibatkan daya — membuka tin makanan, menekan suis, membuka pintu. Tekan setiap jenis daya di bawah untuk mengenalinya.",
+        "Daya ialah **tarikan atau tolakan** yang dikenakan ke atas sesuatu objek. Daya tidak dapat dilihat, tetapi kesannya sentiasa boleh diperhatikan. Hampir semua aktiviti harian melibatkan daya — membuka tin makanan, menekan suis, membuka pintu. Tekan setiap jenis daya di bawah untuk mengenalinya.",
+      remember:
+        "Daya ialah tarikan atau tolakan yang dikenakan ke atas sesuatu objek — walaupun tidak dapat dilihat, kesannya sentiasa boleh diperhatikan.",
       flipCards: [
         { id: "gravitational", icon: "🌍", label: "Daya graviti", fact: "Menarik setiap objek ke arah pusat Bumi — yang membawa bola yang dilontar jatuh semula." },
         { id: "weight", icon: "⚖️", label: "Berat", fact: "Daya tarikan graviti yang bertindak ke atas jisim sesuatu objek." },
@@ -50,7 +52,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.1",
       title: "Magnitud, Arah dan Titik Aplikasi",
       intro:
-        "Daya ialah kuantiti vektor: setiap daya mempunyai magnitud (kekuatan), arah, dan titik aplikasi (tempat tepat daya itu dikenakan). Kerana itu daya dilukis sebagai anak panah — panjang anak panah menunjukkan magnitud, mata anak panah menunjukkan arah, dan pangkalnya terletak pada titik aplikasi.",
+        "Daya ialah **kuantiti vektor**: setiap daya mempunyai magnitud (kekuatan), arah, dan **titik aplikasi (tempat tepat daya itu dikenakan)**. Kerana itu daya dilukis sebagai anak panah — panjang anak panah menunjukkan magnitud, mata anak panah menunjukkan arah, dan pangkalnya terletak pada titik aplikasi.",
       forceDiagram: {
         title: "➡️ Melukis daya sebagai anak panah",
         instruction: "Tekan setiap contoh untuk melihat di mana daya itu dikenakan.",
@@ -79,12 +81,12 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Mengukur daya",
-          body: "Daya diukur dengan neraca spring, yang beroperasi berdasarkan prinsip pemanjangan spring. Kekuatan daya dibaca daripada skala pada neraca itu.",
+          body: "Daya diukur dengan **neraca spring**, yang beroperasi berdasarkan **prinsip pemanjangan spring**. Kekuatan daya dibaca daripada skala pada neraca itu.",
           detail: "Neraca spring juga digunakan untuk mengukur berat jasad dan daya geseran.",
         },
         {
           title: "Unit daya",
-          body: "Unit S.I. bagi daya ialah newton (N). Di Bumi, objek berjisim 100 g mempunyai berat 1 N — jadi objek berjisim 1 kg mempunyai berat 10 N.",
+          body: "Unit S.I. bagi daya ialah **newton (N)**. Di Bumi, objek berjisim 100 g mempunyai berat 1 N — jadi objek berjisim 1 kg mempunyai berat 10 N.",
         },
       ],
       checks: [
@@ -96,19 +98,19 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.1",
       title: "Daya Tindakan dan Daya Tindak Balas",
       intro:
-        "Bagi setiap daya tindakan, wujud satu daya tindak balas yang sama magnitud tetapi bertentangan arah. Tiga situasi di bawah menunjukkan pasangan daya ini dengan jelas.",
+        "Bagi setiap daya tindakan, wujud satu daya tindak balas yang **sama magnitud tetapi bertentangan arah**. Tiga situasi di bawah menunjukkan pasangan daya ini dengan jelas.",
       accordions: [
         {
           title: "📖 Jasad yang kekal di atas meja",
-          body: "Berat buku (daya tindakan) menarik ke bawah. Pada masa yang sama, daya normal meja (daya tindak balas) menolak ke atas dengan magnitud yang sama. Buku kekal pegun kerana kedua-dua magnitud itu sama.",
+          body: "Berat buku (daya tindakan) menarik ke bawah. Pada masa yang sama, **daya normal meja (daya tindak balas)** menolak ke atas dengan magnitud yang sama. Buku kekal pegun kerana kedua-dua magnitud itu sama.",
         },
         {
           title: "🪵 Jasad yang terapung di atas air",
-          body: "Berat bongkah (daya tindakan) menarik ke bawah. Daya apungan (daya tindak balas) menolak ke atas dengan magnitud yang sama. Objek itu terapung kerana kedua-dua magnitud itu sama.",
+          body: "Berat bongkah (daya tindakan) menarik ke bawah. **Daya apungan (daya tindak balas)** menolak ke atas dengan magnitud yang sama. Objek itu terapung kerana kedua-dua magnitud itu sama.",
         },
         {
           title: "🚃 Dua troli yang dilepaskan",
-          body: "Troli pertama mengenakan daya kenyal pada troli kedua — itulah daya tindakan. Pada masa yang sama, troli kedua mengenakan daya yang sama magnitud tetapi bertentangan arah pada troli pertama — itulah daya tindak balas. Selepas dilepaskan, kedua-dua troli bergerak ke arah bertentangan dengan jarak yang sama.",
+          body: "Troli pertama mengenakan daya kenyal pada troli kedua — itulah **daya tindakan**. Pada masa yang sama, troli kedua mengenakan daya yang sama magnitud tetapi bertentangan arah pada troli pertama — itulah **daya tindak balas**. Selepas dilepaskan, kedua-dua troli bergerak ke arah bertentangan dengan jarak yang sama.",
         },
       ],
       checks: [
@@ -120,7 +122,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Kesan Daya",
       intro:
-        "Daya tidak dapat dilihat secara langsung, tetapi kesannya sentiasa dapat dikesan. Terdapat lima kesan utama tindakan daya.",
+        "Daya tidak dapat dilihat secara langsung, tetapi kesannya sentiasa dapat dikesan. Terdapat **lima kesan utama** tindakan daya.",
       flipCards: [
         { id: "moves", icon: "▶️", label: "Menggerakkan objek pegun", fact: "Tolak kereta mainan yang diam dan ia mula bergerak." },
         { id: "stops", icon: "⏹️", label: "Menghentikan objek bergerak", fact: "Daya dari arah bertentangan memberhentikan kereta mainan yang sedang bergerak." },
@@ -137,7 +139,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Keapungan dan Ketumpatan",
       intro:
-        "Daya apungan ialah tujahan ke atas yang dikenakan oleh cecair terhadap objek di dalamnya. Daya apungan boleh ditentukan dengan neraca spring, dengan membandingkan berat objek di udara dengan beratnya semasa terendam.",
+        "Daya apungan ialah **tujahan ke atas** yang dikenakan oleh cecair terhadap objek di dalamnya. Daya apungan boleh ditentukan dengan neraca spring, dengan membandingkan berat objek di udara dengan beratnya semasa terendam.",
       buoyancySchematic: {
         title: "🌊 Menentukan daya apungan dengan neraca spring",
         instruction: "Tekan setiap keadaan untuk melihat daya yang bertindak.",
@@ -166,11 +168,11 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Ketumpatan menentukan terapung atau tenggelam",
-          body: "Objek yang kurang tumpat daripada cecair akan terapung; objek yang lebih tumpat daripada cecair akan tenggelam. Gabus (0.24 g cm⁻³) terapung di atas air (1.0 g cm⁻³), manakala besi (7.9 g cm⁻³) tenggelam.",
+          body: "Objek yang **kurang tumpat daripada cecair akan terapung**; objek yang **lebih tumpat daripada cecair akan tenggelam**. Gabus (0.24 g cm⁻³) terapung di atas air (1.0 g cm⁻³), manakala besi (7.9 g cm⁻³) tenggelam.",
         },
         {
           title: "Garisan Plimsoll",
-          body: "Kapal kargo ditandakan dengan garisan Plimsoll untuk tujuan keselamatan. Ketumpatan air laut berbeza mengikut suhu dan kepekatan garam di tempat yang berlainan, jadi aras selamat kapal itu turut berbeza.",
+          body: "Kapal kargo ditandakan dengan **garisan Plimsoll** untuk tujuan keselamatan. Ketumpatan air laut berbeza mengikut suhu dan kepekatan garam di tempat yang berlainan, jadi aras selamat kapal itu turut berbeza.",
           detail: "Tanda pada garisan Plimsoll: TF (air tawar tropika), F (air tawar), T (air laut tropika), S (lautan musim panas), W (lautan musim sejuk) dan WNA (musim sejuk Atlantik Utara).",
         },
       ],
@@ -183,7 +185,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Tuas",
       intro:
-        "Tuas ialah sebuah palang yang berputar pada satu titik yang tetap. Tuas terdiri daripada tiga bahagian: fulkrum (titik sokongan yang tetap), beban (objek yang hendak digerakkan) dan daya (tolakan atau tarikan yang dikenakan pada palang). Tuas membolehkan kita melakukan kerja dengan lebih mudah, selalunya dengan daya yang lebih kecil.",
+        "Tuas ialah sebuah **palang yang berputar pada satu titik yang tetap**. Tuas terdiri daripada tiga bahagian: fulkrum (titik sokongan yang tetap), beban (objek yang hendak digerakkan) dan daya (tolakan atau tarikan yang dikenakan pada palang). Tuas membolehkan kita melakukan kerja dengan lebih mudah, selalunya dengan daya yang lebih kecil.",
       leverClasses: {
         title: "⚖️ Tiga kelas tuas",
         instruction: "Tekan setiap kelas untuk melihat kedudukan fulkrum, beban dan daya.",
@@ -240,7 +242,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Momen Daya",
       intro:
-        "Daya yang dikenakan pada suatu objek boleh memutarkan objek itu pada satu titik tetap yang dipanggil pangsi atau fulkrum. Kesan putaran yang dihasilkan itu disebut momen daya.",
+        "Daya yang dikenakan pada suatu objek boleh memutarkan objek itu pada satu titik tetap yang dipanggil **pangsi atau fulkrum**. Kesan putaran yang dihasilkan itu disebut **momen daya**.",
       momentDiagram: {
         title: "🔩 Momen daya dan jarak tegak",
         instruction: "Tekan setiap situasi untuk melihat jarak yang digunakan dalam pengiraan.",
@@ -290,7 +292,9 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Tekanan",
       intro:
-        "Anda boleh menekan paku tekan ke dalam papan, tetapi tidak boleh menekan syiling ke dalam papan walaupun menggunakan daya yang sama. Sebabnya ialah tekanan: tekanan ditakrifkan sebagai daya per unit luas permukaan, dengan arah daya berserenjang dengan permukaan itu. Unit S.I. bagi tekanan ialah pascal (Pa); 1 Pa bersamaan dengan 1 newton per meter persegi (N m⁻²).",
+        "Anda boleh menekan paku tekan ke dalam papan, tetapi tidak boleh menekan syiling ke dalam papan walaupun menggunakan daya yang sama. Sebabnya ialah tekanan: tekanan ditakrifkan sebagai **daya per unit luas permukaan**, dengan arah daya berserenjang dengan permukaan itu. Unit S.I. bagi tekanan ialah pascal (Pa); 1 Pa bersamaan dengan 1 newton per meter persegi (N m⁻²).",
+      remember:
+        "Tekanan ditakrifkan sebagai daya per unit luas permukaan, dengan arah daya berserenjang dengan permukaan itu. Unit S.I. bagi tekanan ialah pascal (Pa).",
       pressureApparatus: {
         title: "🧪 Susunan radas penyiasatan",
         instruction: "Tekan setiap bahagian radas untuk mengetahui fungsinya.",
@@ -375,7 +379,9 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Tekanan Gas",
       intro:
-        "Teori kinetik gas menyatakan bahawa molekul-molekul udara sentiasa bergerak secara rawak dan berlanggar dengan dinding bekasnya. Perlanggaran ini menghasilkan daya yang menolak pada dinding bekas — daya per unit luas inilah yang dikenali sebagai tekanan udara.",
+        "**Teori kinetik gas** menyatakan bahawa molekul-molekul udara sentiasa bergerak secara rawak dan berlanggar dengan dinding bekasnya. Perlanggaran ini menghasilkan daya yang menolak pada dinding bekas — daya per unit luas inilah yang dikenali sebagai **tekanan udara**.",
+      quickExplanation:
+        "Belon mengembang apabila ditiup kerana tekanan udara di dalamnya menolak dindingnya ke luar, dan mengempis apabila udara dilepaskan kerana tekanan itu berkurang.",
       gasParticles: {
         title: "💨 Apa yang mengubah tekanan gas",
         instruction: "Tekan setiap keadaan untuk melihat kesannya ke atas perlanggaran.",
@@ -409,11 +415,11 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Tekanan Atmosfera",
       intro:
-        "Tekanan atmosfera ialah tekanan yang dikenakan oleh atmosfera ke atas permukaan Bumi dan semua jasad di Bumi. Gunakan istilah dengan betul: tekanan udara ialah tekanan yang dikenakan oleh udara secara umum, manakala tekanan atmosfera merujuk khusus kepada tekanan yang dikenakan oleh atmosfera Bumi.",
+        "Tekanan atmosfera ialah **tekanan yang dikenakan oleh atmosfera ke atas permukaan Bumi dan semua jasad di Bumi**. Gunakan istilah dengan betul: tekanan udara ialah tekanan yang dikenakan oleh udara secara umum, manakala tekanan atmosfera merujuk khusus kepada tekanan yang dikenakan oleh atmosfera Bumi.",
       cards: [
         {
           title: "Altitud dan tekanan atmosfera",
-          body: "Tekanan atmosfera berkurang apabila altitud meningkat. Semakin tinggi kedudukan kita, semakin sedikit udara yang berada di atas kita, jadi berat lajur udara yang menekan ke bawah menjadi lebih kecil dan tekanan atmosfera menjadi lebih rendah. Di kaki gunung, lebih banyak molekul udara berada di atas kita, jadi tekanannya lebih tinggi.",
+          body: "**Tekanan atmosfera berkurang apabila altitud meningkat.** Semakin tinggi kedudukan kita, semakin sedikit udara yang berada di atas kita, jadi berat lajur udara yang menekan ke bawah menjadi lebih kecil dan tekanan atmosfera menjadi lebih rendah. Di kaki gunung, lebih banyak molekul udara berada di atas kita, jadi tekanannya lebih tinggi.",
           detail: "Puncak gunung yang tinggi seperti Gunung Everest ialah kawasan dengan tekanan atmosfera yang sangat rendah.",
         },
       ],
@@ -432,11 +438,11 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🥤 Penyedut minuman",
-          body: "Apabila udara di dalam penyedut disedut keluar, ruang di dalamnya menjadi bertekanan rendah. Tekanan udara yang lebih tinggi di luar — iaitu tekanan atmosfera — menolak air masuk ke dalam penyedut dan naik ke mulut. Bukan penyedut itu yang 'menyedut' air naik.",
+          body: "Apabila udara di dalam penyedut disedut keluar, ruang di dalamnya menjadi bertekanan rendah. Tekanan udara yang lebih tinggi di luar — iaitu tekanan atmosfera — **menolak air masuk ke dalam penyedut** dan naik ke mulut. Bukan penyedut itu yang 'menyedut' air naik.",
         },
         {
           title: "🔵 Hemisfera Magdeburg",
-          body: "Apabila udara di dalam hemisfera dipam keluar sehingga ruang di dalamnya menjadi vakum, tekanan di dalamnya menjadi sifar. Kedua-dua hemisfera sukar dipisahkan kerana tekanan atmosfera di luar mengenakan daya yang sangat besar ke atasnya.",
+          body: "Apabila udara di dalam hemisfera dipam keluar sehingga ruang di dalamnya menjadi vakum, tekanan di dalamnya menjadi sifar. Kedua-dua hemisfera sukar dipisahkan kerana **tekanan atmosfera di luar mengenakan daya yang sangat besar** ke atasnya.",
         },
         {
           title: "🚿 Pam sedut",
@@ -444,7 +450,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "💧 Sifon",
-          body: "Hujung tiub yang satu diletakkan lebih rendah supaya air mengalir keluar. Air yang mengalir keluar menyebabkan tekanan di dalam tiub menjadi rendah, dan tekanan atmosfera menolak air masuk ke dalam tiub — menyebabkan air mengalir keluar secara berterusan.",
+          body: "Hujung tiub yang satu diletakkan lebih rendah supaya air mengalir keluar. Air yang mengalir keluar menyebabkan tekanan di dalam tiub menjadi rendah, dan tekanan atmosfera menolak air masuk ke dalam tiub — menyebabkan air **mengalir keluar secara berterusan**.",
         },
         {
           title: "💉 Picagari",
@@ -464,7 +470,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Tekanan Cecair",
       intro:
-        "Tekanan dalam cecair bertambah apabila kedalaman bertambah. Seorang penyelam mengalami tekanan kerana berat air yang bertindak ke atas badannya, dan tekanan itu meningkat semakin dalam dia menyelam.",
+        "**Tekanan dalam cecair bertambah apabila kedalaman bertambah.** Seorang penyelam mengalami tekanan kerana berat air yang bertindak ke atas badannya, dan tekanan itu meningkat semakin dalam dia menyelam.",
       depthPressure: {
         title: "🌊 Kedalaman dan tekanan cecair",
         instruction: "Tekan setiap kedudukan lubang untuk membandingkan tekanannya.",

@@ -24,6 +24,11 @@ import { getNotesImageUrl } from "@/lib/notes-images";
 import type { AnnotatedImageBlock } from "@/content/form2/science/interactive-types";
 import { useProgress } from "@/hooks/use-progress";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
+import {
+  ScienceEmphasis,
+  ScienceRemember,
+  ScienceQuickExplanation,
+} from "@/components/notes/blocks/ScienceEmphasis";
 
 type Lang = "en" | "bm";
 
@@ -37,11 +42,15 @@ const COPY: Record<
     plantSection: string;
     sectionLabels: string[];
     biodiversityIntro: string;
+    /** 💡 Quick Explanation — the textbook's own "Did you know" aside about Malaysia's megabiodiversity status. */
+    megabiodiversityQuickExplanation: string;
     habitatsIntro: string;
     importanceIntro: string;
     keepingAliveIntro: string;
     legalHead: string;
     legalBody: string;
+    /** 🧠 Remember — the textbook's core rule on legal protection for endemic/threatened species. */
+    actRemember: string;
     habitatHead: string;
     habitatBody: string;
     recoveryHead: string;
@@ -78,6 +87,8 @@ const COPY: Record<
     sectionLabels: ["Biodiversity", "Management", "Animals", "Plants", "Dichotomous key"],
     biodiversityIntro:
       "Biodiversity is the variety of organisms on Earth — microorganisms, animals and plants — and it exists because habitats and climates differ so much, from deserts to polar regions to soil to the sea. Organisms living in different habitats have evolved different characteristics that let them survive and thrive there independently. Biodiversity also includes genetic diversity: the variation within a single species, caused by differences in the genes of individual organisms. Malaysia's hot, humid equatorial climate makes it an especially rich habitat for life, which is why it is recognised as one of the world's 12 megabiodiversity countries.",
+    megabiodiversityQuickExplanation:
+      "Did you know that our country, Malaysia, is one of the **12 megabiodiversity countries** in the world? Malaysia's equatorial climate makes it an especially suitable habitat for many kinds of organisms.",
     habitatsIntro:
       "Tap a habitat below to see how its climate shapes the organisms that live there.",
     importanceIntro: "Six reasons biodiversity underpins everyday life — tap each to expand.",
@@ -86,6 +97,8 @@ const COPY: Record<
     legalHead: "⚖️ Legal protection",
     legalBody:
       "The Wildlife Protection Act 1972 bans the killing or trade of endemic and endangered species.",
+    actRemember:
+      "The **Wildlife Protection Act 1972** bans the killing or trade of endemic and threatened species in Malaysia.",
     habitatHead: "🏞️ Protected habitats",
     habitatBody:
       "National parks, marine parks, forest reserves and wildlife sanctuaries give species room to live undisturbed.",
@@ -126,6 +139,8 @@ const COPY: Record<
     sectionLabels: ["Biodiversiti", "Pengurusan", "Haiwan", "Tumbuhan", "Kekunci dikotomi"],
     biodiversityIntro:
       "Biodiversiti ialah kepelbagaian organisma di Bumi — mikroorganisma, haiwan dan tumbuhan — dan ia wujud kerana habitat serta iklim yang jauh berbeza, daripada gurun, kawasan kutub, tanah hinggalah laut. Organisma yang hidup dalam habitat berlainan mempunyai ciri-ciri berbeza yang membolehkan mereka menyesuaikan diri dan terus hidup secara berdikari di situ. Biodiversiti turut merangkumi kepelbagaian genetik: variasi dalam sesuatu spesies yang sama, disebabkan oleh perbezaan pada gen setiap organisma. Iklim khatulistiwa Malaysia yang panas dan lembap menjadikannya habitat yang sangat kaya dengan hidupan, itulah sebabnya Malaysia diiktiraf sebagai salah satu daripada 12 negara megabiodiversiti di dunia.",
+    megabiodiversityQuickExplanation:
+      "Tahukah anda negara kita, Malaysia merupakan salah satu daripada **12 buah negara megabiodiversiti** di dunia? Keadaan di Malaysia yang beriklim khatulistiwa menjadikannya habitat yang sangat sesuai bagi pelbagai jenis organisma.",
     habitatsIntro:
       "Ketik satu habitat di bawah untuk melihat cara iklimnya membentuk organisma yang hidup di situ.",
     importanceIntro: "Enam sebab biodiversiti menyokong kehidupan harian — ketik untuk kembangkan.",
@@ -134,6 +149,8 @@ const COPY: Record<
     legalHead: "⚖️ Perlindungan undang-undang",
     legalBody:
       "Akta Perlindungan Hidupan Liar 1972 mengharamkan pembunuhan atau perdagangan spesies endemik dan terancam.",
+    actRemember:
+      "**Akta Perlindungan Hidupan Liar 1972** mengharamkan pembunuhan atau perdagangan spesies endemik dan terancam di Malaysia.",
     habitatHead: "🏞️ Habitat terlindung",
     habitatBody:
       "Taman negara, taman laut, hutan simpan dan suaka hidupan liar memberi ruang kepada spesies untuk hidup tanpa gangguan.",
@@ -204,7 +221,7 @@ function KeywordGlossary({
         <div className="mt-3 rounded-xl border border-primary/30 bg-primary/5 p-3.5">
           <p className="font-display text-[13px] font-bold text-foreground">{open.term}</p>
           <p className="mt-1 text-[12.5px] leading-relaxed text-muted-foreground">
-            {open.definition}
+            <ScienceEmphasis text={open.definition} />
           </p>
         </div>
       )}
@@ -373,6 +390,7 @@ export function ScienceF2Chapter1NotesBlock({
       description: t.biodiversityIntro,
       content: (
         <div className="flex flex-col gap-5">
+          <ScienceQuickExplanation lang={lang} text={t.megabiodiversityQuickExplanation} />
           <div>
             <p className="mb-3 text-[13.5px] text-muted-foreground">{t.habitatsIntro}</p>
             <FlipCardGrid items={content.habitats} />
@@ -438,22 +456,23 @@ export function ScienceF2Chapter1NotesBlock({
             <AccordionItem value="legal">
               <AccordionTrigger>{t.legalHead}</AccordionTrigger>
               <AccordionContent className="text-[13px] text-muted-foreground">
-                {t.legalBody}
+                <ScienceEmphasis text={t.legalBody} />
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="habitat">
               <AccordionTrigger>{t.habitatHead}</AccordionTrigger>
               <AccordionContent className="text-[13px] text-muted-foreground">
-                {t.habitatBody}
+                <ScienceEmphasis text={t.habitatBody} />
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="recovery">
               <AccordionTrigger>{t.recoveryHead}</AccordionTrigger>
               <AccordionContent className="text-[13px] text-muted-foreground">
-                {t.recoveryBody}
+                <ScienceEmphasis text={t.recoveryBody} />
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+          <ScienceRemember lang={lang} text={t.actRemember} />
           <Tabs defaultValue={content.conservationMethods[0]?.id}>
             <TabsList>
               {content.conservationMethods.map((method) => (
@@ -468,7 +487,7 @@ export function ScienceF2Chapter1NotesBlock({
                 value={method.id}
                 className="text-[13.5px] text-muted-foreground"
               >
-                {method.description}
+                <ScienceEmphasis text={method.description} />
               </TabsContent>
             ))}
           </Tabs>
@@ -485,7 +504,7 @@ export function ScienceF2Chapter1NotesBlock({
               {content.speciesConcepts.map((concept) => (
                 <TabsContent key={concept.id} value={concept.id}>
                   <p className="text-[13px] leading-relaxed text-muted-foreground">
-                    {concept.definition}
+                    <ScienceEmphasis text={concept.definition} />
                   </p>
                   <div className="mt-2.5">
                     <ChipRow items={concept.examples} tone="green" />
@@ -495,7 +514,7 @@ export function ScienceF2Chapter1NotesBlock({
             </Tabs>
             <div className="mt-3 rounded-xl border border-nova-yellow/30 bg-nova-yellow/10 p-3">
               <p className="text-[12px] leading-relaxed text-nova-yellow">
-                <b>{t.speciesCautionLabel}</b> {content.speciesCaution}
+                <b>{t.speciesCautionLabel}</b> <ScienceEmphasis text={content.speciesCaution} />
               </p>
             </div>
           </div>
@@ -518,7 +537,9 @@ export function ScienceF2Chapter1NotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {t.whySortHead}
             </h3>
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.whySortBody}</p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              <ScienceEmphasis text={t.whySortBody} />
+            </p>
           </div>
           <Figure block={content.classificationImages?.animalOverview} lang={lang} />
           <div>
@@ -544,7 +565,7 @@ export function ScienceF2Chapter1NotesBlock({
             {t.plantTreeHead}
           </h3>
           <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
-            {t.plantTreeIntro}
+            <ScienceEmphasis text={t.plantTreeIntro} />
           </p>
           <div className="mb-4">
             <Figure block={content.classificationImages?.plantGroups} lang={lang} />

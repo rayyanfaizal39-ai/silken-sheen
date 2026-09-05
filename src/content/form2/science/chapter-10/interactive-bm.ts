@@ -9,7 +9,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 10,
   blogHighlight: {
     title: "Blog Sains — Kilat dan Guruh",
-    body: "Kilat dan guruh sebenarnya berlaku pada saat yang sama — tetapi cahaya sampai ke mata anda jauh lebih pantas berbanding bunyi sampai ke telinga anda, itulah sebabnya anda sentiasa melihat kilat dahulu sebelum mendengar dentuman guruh.",
+    body: "Kilat dan guruh sebenarnya **berlaku pada saat yang sama** — tetapi **cahaya sampai ke mata anda jauh lebih pantas berbanding bunyi** sampai ke telinga anda, itulah sebabnya anda sentiasa melihat kilat dahulu sebelum mendengar dentuman guruh.",
     imagePath: chapterImage,
   },
   keywords: [
@@ -31,7 +31,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       number: "10.1",
       title: "Penghasilan dan Perambatan Bunyi",
       intro:
-        "Bunyi ialah satu bentuk tenaga yang dihasilkan oleh getaran. Apabila sesuatu objek bergetar, zarah-zarah di sekelilingnya turut bergetar dan berlanggar dengan zarah bersebelahan. Getaran ini dipindahkan dari satu zarah ke zarah lain dalam bentuk gelombang sehingga sampai ke telinga pendengar. Kerana gelombang bunyi perlu dipindahkan melalui zarah, bunyi memerlukan medium untuk merambat dan tidak dapat merambat melalui vakum.",
+        "Bunyi ialah **satu bentuk tenaga yang dihasilkan oleh getaran**. Apabila sesuatu objek bergetar, zarah-zarah di sekelilingnya turut bergetar dan berlanggar dengan zarah bersebelahan. Getaran ini dipindahkan dari satu zarah ke zarah lain dalam bentuk gelombang sehingga sampai ke telinga pendengar. Kerana gelombang bunyi perlu dipindahkan melalui zarah, bunyi **memerlukan medium untuk merambat dan tidak dapat merambat melalui vakum**.",
       contextImages: [
         {
           src: SCIENCE_F2_CH10_IMAGES.tuningFork,
@@ -59,7 +59,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🗣️ Peti suara",
-          body: "Sentuh bahagian luar tekak anda semasa bercakap — anda dapat merasai peti suara bergetar. Getaran itulah yang menghasilkan suara anda.",
+          body: "Sentuh bahagian luar tekak anda semasa bercakap — anda dapat merasai **peti suara bergetar**. Getaran itulah yang menghasilkan suara anda.",
         },
         {
           title: "🎸 Tali alat muzik",
@@ -71,17 +71,17 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "🔔 Loceng",
-          body: "Permukaan logam loceng bergetar apabila dipukul, lalu menggetarkan zarah udara berhampirannya.",
+          body: "Permukaan logam loceng bergetar apabila dipukul, lalu **menggetarkan zarah udara berhampirannya**.",
         },
       ],
       accordions: [
         {
           title: "Demonstrasi balang vakum",
-          body: "Sebuah jam loceng yang sedang berbunyi diletakkan di dalam balang kaca, kemudian udara di dalam balang disedut keluar dengan pam vakum. Semakin banyak udara dikeluarkan, semakin perlahan bunyi loceng kedengaran walaupun jam itu masih bergetar. Ini menunjukkan bunyi memerlukan medium untuk merambat.",
+          body: "Sebuah jam loceng yang sedang berbunyi diletakkan di dalam balang kaca, kemudian udara di dalam balang disedut keluar dengan pam vakum. **Semakin banyak udara dikeluarkan, semakin perlahan bunyi loceng kedengaran walaupun jam itu masih bergetar.** Ini menunjukkan bunyi memerlukan medium untuk merambat.",
         },
         {
           title: "Mengapa tiada bunyi di angkasa lepas",
-          body: "Angkasa lepas ialah vakum — tiada zarah untuk memindahkan getaran. Itulah sebabnya angkasawan berkomunikasi menggunakan gelombang radio, bukan dengan bercakap terus antara satu sama lain.",
+          body: "Angkasa lepas ialah vakum — **tiada zarah untuk memindahkan getaran**. Itulah sebabnya angkasawan berkomunikasi menggunakan gelombang radio, bukan dengan bercakap terus antara satu sama lain.",
         },
       ],
       checks: [
@@ -99,7 +99,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       number: "10.1",
       title: "Pantulan, Penyerapan dan Kelajuan Bunyi",
       intro:
-        "Apabila gelombang bunyi terkena permukaan sesuatu objek, sebahagiannya dipantulkan dan sebahagiannya diserap. Jumlah bunyi yang dipantul atau diserap bergantung pada jenis permukaan itu. Selain itu, gelombang bunyi merambat pada kelajuan yang berbeza di dalam medium yang berbeza, bergantung pada seberapa rapat zarah-zarah medium itu tersusun.",
+        "Apabila gelombang bunyi terkena permukaan sesuatu objek, **sebahagiannya dipantulkan dan sebahagiannya diserap**. Jumlah bunyi yang dipantul atau diserap bergantung pada jenis permukaan itu. Selain itu, gelombang bunyi **merambat pada kelajuan yang berbeza di dalam medium yang berbeza**, bergantung pada seberapa rapat zarah-zarah medium itu tersusun.",
       contextImages: [
         {
           src: SCIENCE_F2_CH10_IMAGES.reflectionAbsorption,
@@ -115,11 +115,11 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       tabs: [
         {
           title: "Permukaan keras & licin",
-          body: "Permukaan yang keras dan licin memantulkan bunyi dengan baik. Contohnya jubin marmar dan dinding kosong.",
+          body: "Permukaan yang **keras dan licin memantulkan bunyi dengan baik**. Contohnya jubin marmar dan dinding kosong.",
         },
         {
           title: "Permukaan lembut & kasar",
-          body: "Permukaan yang lembut dan kasar menyerap bunyi dengan baik. Contohnya permaidani dan papan gabus. Itulah sebabnya dinding pawagam dilapisi papan lembut yang nipis — untuk menyerap bunyi supaya dialog dan muzik kekal jelas.",
+          body: "Permukaan yang **lembut dan kasar menyerap bunyi dengan baik**. Contohnya permaidani dan papan gabus. Itulah sebabnya **dinding pawagam dilapisi papan lembut yang nipis** — untuk menyerap bunyi supaya dialog dan muzik kekal jelas.",
         },
       ],
       soundMedia: {
@@ -154,7 +154,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "Demonstrasi bekas plastik — apa yang sebenarnya dibandingkan",
-          body: "Dalam demonstrasi ini, telinga dilekapkan pada bekas plastik yang berisi udara, air dan tepung secara berasingan sambil sebuah jam loceng dibunyikan. Yang dibandingkan ialah kekuatan bunyi yang didengar melalui setiap bekas. Perhatikan bahawa demonstrasi ini membandingkan kekuatan bunyi, bukan mengukur kelajuan bunyi. Kelajuan bunyi dalam medium yang berbeza dipelajari secara berasingan melalui susunan zarah seperti di atas.",
+          body: "Dalam demonstrasi ini, telinga dilekapkan pada bekas plastik yang berisi udara, air dan tepung secara berasingan sambil sebuah jam loceng dibunyikan. Yang dibandingkan ialah kekuatan bunyi yang didengar melalui setiap bekas. Perhatikan bahawa demonstrasi ini **membandingkan kekuatan bunyi, bukan mengukur kelajuan bunyi**. Kelajuan bunyi dalam medium yang berbeza dipelajari secara berasingan melalui susunan zarah seperti di atas.",
         },
       ],
       checks: [
@@ -172,25 +172,27 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       number: "10.2",
       title: "Frekuensi, Amplitud dan O.S.K.",
       intro:
-        "Frekuensi ialah bilangan getaran lengkap dalam masa satu saat, dan diukur dalam unit hertz (Hz). Amplitud pula ialah sesaran maksimum gelombang daripada kedudukan keseimbangan. Kedua-dua ciri ini boleh dilihat pada skrin Osiloskop Sinar Katod (O.S.K.) apabila penjana isyarat audio disambungkan kepada pembesar suara dan O.S.K.",
+        "Frekuensi ialah **bilangan getaran lengkap dalam masa satu saat**, dan diukur dalam unit hertz (Hz). Amplitud pula ialah **sesaran maksimum gelombang daripada kedudukan keseimbangan**. Kedua-dua ciri ini boleh dilihat pada skrin Osiloskop Sinar Katod (O.S.K.) apabila penjana isyarat audio disambungkan kepada pembesar suara dan O.S.K.",
+      remember:
+        "Frekuensi ialah bilangan getaran lengkap dalam masa satu saat, diukur dalam hertz (Hz). Amplitud ialah sesaran maksimum gelombang daripada kedudukan keseimbangan.",
       cards: [
         {
           title: "📐 Amplitud",
-          body: "Sesaran maksimum gelombang daripada kedudukan keseimbangan — iaitu ketinggian puncak gelombang diukur dari garis tengah.",
+          body: "Sesaran maksimum gelombang daripada kedudukan keseimbangan — iaitu **ketinggian puncak gelombang diukur dari garis tengah**.",
         },
         {
           title: "🔁 Frekuensi",
-          body: "Bilangan getaran lengkap dalam masa satu saat. Unitnya ialah hertz (Hz).",
+          body: "Bilangan getaran lengkap dalam masa satu saat. **Unitnya ialah hertz (Hz).**",
         },
       ],
       tabs: [
         {
           title: "Membaca amplitud pada O.S.K.",
-          body: "Semakin tinggi gelombang pada skrin O.S.K., semakin besar amplitud getaran, dan semakin nyaring bunyi yang dihasilkan oleh pembesar suara.",
+          body: "Semakin tinggi gelombang pada skrin O.S.K., **semakin besar amplitud getaran, dan semakin nyaring bunyi yang dihasilkan** oleh pembesar suara.",
         },
         {
           title: "Membaca frekuensi pada O.S.K.",
-          body: "Semakin banyak gelombang lengkap yang muncul dalam selang masa yang sama pada skrin O.S.K., semakin tinggi frekuensi, dan semakin tinggi kelangsingan bunyi.",
+          body: "Semakin banyak gelombang lengkap yang muncul dalam selang masa yang sama pada skrin O.S.K., **semakin tinggi frekuensi, dan semakin tinggi kelangsingan bunyi**.",
         },
       ],
       waveVisualizer: {
@@ -213,25 +215,25 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       number: "10.2",
       title: "Kenyaringan dan Kelangsingan Bunyi",
       intro:
-        "Telinga kita dapat membezakan bunyi kerana setiap bunyi mempunyai kenyaringan dan kelangsingan yang berbeza. Kenyaringan bunyi bergantung pada amplitud gelombang bunyi, manakala kelangsingan bunyi bergantung pada frekuensi gelombang bunyi.",
+        "Telinga kita dapat membezakan bunyi kerana setiap bunyi mempunyai kenyaringan dan kelangsingan yang berbeza. **Kenyaringan bunyi bergantung pada amplitud gelombang bunyi**, manakala **kelangsingan bunyi bergantung pada frekuensi gelombang bunyi**.",
       cards: [
         {
           title: "🔊 Kenyaringan bergantung pada amplitud",
-          body: "Semakin besar amplitud getaran, semakin nyaring bunyi yang dihasilkan. Semakin kecil amplitud, semakin perlahan bunyi itu.",
+          body: "Semakin besar amplitud getaran, semakin nyaring bunyi yang dihasilkan. **Semakin kecil amplitud, semakin perlahan bunyi itu.**",
         },
         {
           title: "🎵 Kelangsingan bergantung pada frekuensi",
-          body: "Semakin tinggi frekuensi getaran, semakin tinggi kelangsingan bunyi. Semakin rendah frekuensi, semakin rendah kelangsingan.",
+          body: "Semakin tinggi frekuensi getaran, semakin tinggi kelangsingan bunyi. **Semakin rendah frekuensi, semakin rendah kelangsingan.**",
         },
       ],
       tabs: [
         {
           title: "Frekuensi rendah",
-          body: "Bunyi lembu melenguh ialah bunyi berfrekuensi rendah, jadi kelangsingannya rendah.",
+          body: "Bunyi lembu melenguh ialah **bunyi berfrekuensi rendah**, jadi kelangsingannya rendah.",
         },
         {
           title: "Frekuensi tinggi",
-          body: "Bunyi tikus mendecit ialah bunyi berfrekuensi tinggi, jadi kelangsingannya tinggi.",
+          body: "Bunyi tikus mendecit ialah **bunyi berfrekuensi tinggi**, jadi kelangsingannya tinggi.",
         },
       ],
       checks: [
@@ -249,7 +251,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       number: "10.2",
       title: "Bunyi daripada Alat Muzik",
       intro:
-        "Alat muzik seperti piano, rekorder, gendang, drum dan gitar menghasilkan bunyi melalui getaran. Dengan mengubah cara alat itu dimainkan, pemuzik boleh mengubah kenyaringan dan kelangsingan bunyi secara berasingan. Perhatikan bahawa kedua-dua ciri ini dikawal oleh perkara yang berbeza.",
+        "Alat muzik seperti piano, rekorder, gendang, drum dan gitar menghasilkan bunyi melalui getaran. Dengan mengubah cara alat itu dimainkan, pemuzik boleh **mengubah kenyaringan dan kelangsingan bunyi secara berasingan**. Perhatikan bahawa kedua-dua ciri ini dikawal oleh perkara yang berbeza.",
       contextImages: [
         {
           src: SCIENCE_F2_CH10_IMAGES.instruments,
@@ -265,11 +267,11 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       tabs: [
         {
           title: "Gitar — dipetik lebih kuat",
-          body: "Memetik tali gitar dengan lebih kuat menghasilkan getaran beramplitud lebih besar, jadi bunyi menjadi lebih nyaring. Kelangsingan bunyi tidak berubah — nada yang dimainkan tetap sama.",
+          body: "Memetik tali gitar dengan lebih kuat menghasilkan getaran beramplitud lebih besar, jadi bunyi menjadi lebih nyaring. **Kelangsingan bunyi tidak berubah** — nada yang dimainkan tetap sama.",
         },
         {
           title: "Gitar — tali diketatkan",
-          body: "Mengetatkan tali gitar menyebabkan tali bergetar pada frekuensi yang lebih tinggi, jadi kelangsingan bunyi menjadi lebih tinggi. Ini berbeza sama sekali daripada memetik lebih kuat.",
+          body: "Mengetatkan tali gitar **menyebabkan tali bergetar pada frekuensi yang lebih tinggi**, jadi kelangsingan bunyi menjadi lebih tinggi. Ini berbeza sama sekali daripada memetik lebih kuat.",
         },
         {
           title: "Piano",
@@ -277,7 +279,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "Rekorder, gendang dan drum",
-          body: "Meniup rekorder dengan lebih kuat atau memukul gendang dan drum dengan lebih kuat menghasilkan amplitud getaran yang lebih besar, jadi bunyinya lebih nyaring. Saiz dan ketegangan membran drum pula mempengaruhi frekuensi getaran, iaitu kelangsingannya.",
+          body: "Meniup rekorder dengan lebih kuat atau memukul gendang dan drum dengan lebih kuat menghasilkan amplitud getaran yang lebih besar, jadi bunyinya lebih nyaring. **Saiz dan ketegangan membran drum** pula mempengaruhi frekuensi getaran, iaitu kelangsingannya.",
         },
       ],
       checks: [
@@ -295,7 +297,9 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       number: "10.3",
       title: "Gema dan Kesan Doppler",
       intro:
-        "Pantulan gelombang bunyi menghasilkan fenomena yang boleh kita alami setiap hari. Gema terhasil apabila gelombang bunyi dipantulkan kembali kepada pendengar daripada suatu permukaan yang keras. Kesan Doppler pula berlaku apabila terdapat pergerakan relatif antara sumber bunyi dengan pemerhati.",
+        "Pantulan gelombang bunyi menghasilkan fenomena yang boleh kita alami setiap hari. Gema terhasil apabila **gelombang bunyi dipantulkan kembali kepada pendengar daripada suatu permukaan yang keras**. Kesan Doppler pula berlaku apabila terdapat **pergerakan relatif antara sumber bunyi dengan pemerhati**.",
+      quickExplanation:
+        "Sumber bunyi seperti siren ambulans sebenarnya memancarkan bunyi pada frekuensi yang tetap sepanjang masa — frekuensi yang berubah ialah yang diterima oleh pemerhati akibat pergerakan relatif, bukan bunyi yang dipancarkan itu sendiri.",
       contextImages: [
         {
           src: SCIENCE_F2_CH10_IMAGES.echoCave,
@@ -358,7 +362,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       number: "10.3",
       title: "Sonar, Sonogram dan Ekolokasi",
       intro:
-        "Ultrabunyi ialah gelombang bunyi yang berfrekuensi lebih daripada 20 000 Hz. Ultrabunyi tidak dapat didengar oleh manusia tetapi boleh didengar oleh haiwan seperti kelawar. Pantulan gelombang ultrabunyi digunakan dalam pelbagai sektor kerana bunyi yang dipantulkan itu membawa maklumat tentang objek yang dikenainya.",
+        "Ultrabunyi ialah gelombang bunyi yang **berfrekuensi lebih daripada 20 000 Hz**. Ultrabunyi **tidak dapat didengar oleh manusia tetapi boleh didengar oleh haiwan seperti kelawar**. Pantulan gelombang ultrabunyi digunakan dalam pelbagai sektor kerana bunyi yang dipantulkan itu membawa maklumat tentang objek yang dikenainya.",
       contextImages: [
         {
           src: SCIENCE_F2_CH10_IMAGES.sonarEcholocation,
@@ -400,15 +404,15 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🚢 Sektor perkapalan",
-          body: "Sonar digunakan untuk mengesan objek di bawah air.",
+          body: "Sonar digunakan untuk **mengesan objek di bawah air**.",
         },
         {
           title: "🎣 Sektor perikanan",
-          body: "Sonar membantu mengesan kumpulan ikan di bawah permukaan laut.",
+          body: "Sonar membantu **mengesan kumpulan ikan** di bawah permukaan laut.",
         },
         {
           title: "🏥 Sektor perubatan",
-          body: "Sonogram menggunakan pantulan ultrabunyi untuk menghasilkan imej bahagian dalam badan, contohnya mengimbas keadaan fetus di dalam kandungan.",
+          body: "Sonogram menggunakan pantulan ultrabunyi untuk menghasilkan imej bahagian dalam badan, contohnya **mengimbas keadaan fetus di dalam kandungan**.",
         },
       ],
       checks: [
@@ -426,7 +430,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       number: "10.3",
       title: "Had Pendengaran Manusia dan Haiwan",
       intro:
-        "Telinga manusia hanya dapat mengesan bunyi dalam julat frekuensi tertentu. Frekuensi bunyi yang dapat dikesan oleh telinga manusia terhad kepada julat 20 Hz hingga 20 000 Hz. Julat ini semakin berkurang apabila usia meningkat kerana telinga menjadi kurang sensitif terhadap frekuensi bunyi. Haiwan pula mempunyai had pendengarannya yang tersendiri, dan sesetengahnya jauh melebihi julat manusia.",
+        "Telinga manusia hanya dapat mengesan bunyi dalam julat frekuensi tertentu. Frekuensi bunyi yang dapat dikesan oleh telinga manusia **terhad kepada julat 20 Hz hingga 20 000 Hz**. Julat ini **semakin berkurang apabila usia meningkat** kerana telinga menjadi kurang sensitif terhadap frekuensi bunyi. Haiwan pula mempunyai had pendengarannya yang tersendiri, dan sesetengahnya jauh melebihi julat manusia.",
       hearingRange: {
         title: "📊 Julat pendengaran manusia dan haiwan",
         entries: [
@@ -456,25 +460,25 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
       number: "10.3",
       title: "Mengatasi Had Pendengaran Manusia",
       intro:
-        "Deria pendengaran manusia yang terhad menyebabkan kita tidak dapat mendengar bunyi yang terlalu lemah atau terlalu jauh. Untuk mengatasi masalah ini, kita menggunakan peralatan khas yang menguatkan atau menyalurkan bunyi supaya bunyi itu cukup kuat untuk didengar.",
+        "Deria pendengaran manusia yang terhad menyebabkan kita **tidak dapat mendengar bunyi yang terlalu lemah atau terlalu jauh**. Untuk mengatasi masalah ini, kita menggunakan peralatan khas yang menguatkan atau menyalurkan bunyi supaya bunyi itu cukup kuat untuk didengar.",
       cards: [
         {
           title: "🩺 Stetoskop",
-          body: "Stetoskop menyalurkan dan menguatkan bunyi denyutan jantung pesakit terus ke telinga doktor, supaya bunyi yang terlalu lemah itu dapat didengar dengan jelas.",
+          body: "Stetoskop **menyalurkan dan menguatkan bunyi** denyutan jantung pesakit terus ke telinga doktor, supaya bunyi yang terlalu lemah itu dapat didengar dengan jelas.",
         },
         {
           title: "👂 Alat bantu pendengaran",
-          body: "Alat bantu pendengaran menguatkan bunyi yang memasuki telinga, membantu orang yang mengalami masalah pendengaran mendengar dengan lebih jelas.",
+          body: "Alat bantu pendengaran **menguatkan bunyi yang memasuki telinga**, membantu orang yang mengalami masalah pendengaran mendengar dengan lebih jelas.",
         },
         {
           title: "📢 Pembesar suara",
-          body: "Pembesar suara menjadikan suara lebih kuat supaya dapat didengar dari jarak yang jauh.",
+          body: "Pembesar suara **menjadikan suara lebih kuat** supaya dapat didengar dari jarak yang jauh.",
         },
       ],
       accordions: [
         {
           title: "Apa yang peranti ini benar-benar lakukan",
-          body: "Peranti ini menguatkan atau menyalurkan bunyi supaya bunyi yang terlalu lemah atau terlalu jauh dapat didengar. Peranti ini tidak meluaskan julat frekuensi pendengaran manusia. Julat biologi telinga manusia kekal 20 Hz hingga 20 000 Hz — alat bantu pendengaran tidak membolehkan manusia mendengar ultrabunyi.",
+          body: "Peranti ini menguatkan atau menyalurkan bunyi supaya bunyi yang terlalu lemah atau terlalu jauh dapat didengar. Peranti ini **tidak meluaskan julat frekuensi pendengaran manusia**. Julat biologi telinga manusia kekal 20 Hz hingga 20 000 Hz — alat bantu pendengaran tidak membolehkan manusia mendengar ultrabunyi.",
         },
       ],
       checks: [

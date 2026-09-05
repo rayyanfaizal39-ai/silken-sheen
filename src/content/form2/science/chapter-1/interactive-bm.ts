@@ -139,11 +139,11 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
     },
     {
       term: "Vertebrata",
-      definition: "Haiwan yang mempunyai tulang belakang: ikan, amfibia, reptilia, burung atau mamalia.",
+      definition: "Haiwan yang **mempunyai tulang belakang**: ikan, amfibia, reptilia, burung atau mamalia.",
     },
     {
       term: "Invertebrata",
-      definition: "Haiwan yang tiada tulang belakang, contohnya serangga, cacing, labah-labah.",
+      definition: "Haiwan yang **tiada tulang belakang**, contohnya serangga, cacing, labah-labah.",
     },
     {
       term: "Mamalia",
@@ -240,12 +240,12 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
       id: "in-situ",
       label: "In situ",
       description:
-        "Memelihara sesuatu spesies di dalam habitat semula jadinya — contohnya taman negara, hutan simpan kekal dan taman laut.",
+        "Memelihara sesuatu spesies **di dalam habitat semula jadinya** — contohnya taman negara, hutan simpan kekal dan taman laut.",
     },
     {
       id: "ex-situ",
       label: "Ex situ",
-      description: "Memelihara sesuatu spesies di luar habitat semula jadinya — contohnya zoo dan taman botani.",
+      description: "Memelihara sesuatu spesies **di luar habitat semula jadinya** — contohnya zoo dan taman botani.",
     },
   ],
   humanImpact: [
@@ -284,7 +284,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
       id: "endemic",
       label: "Spesies endemik",
       definition:
-        "Spesies yang hidup berkelompok di habitat yang terhad di sesebuah lokasi tertentu sahaja — tidak ditemui secara semula jadi di tempat lain. Endemik memberitahu kita tentang LOKASI.",
+        "Spesies yang hidup berkelompok di habitat yang terhad di sesebuah lokasi tertentu sahaja — tidak ditemui secara semula jadi di tempat lain. **Endemik** memberitahu kita tentang LOKASI.",
       examples: [
         "🌸 Bunga rafflesia",
         "🪤 Periuk kera (Nepenthes rajah)",
@@ -297,7 +297,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
       id: "threatened",
       label: "Spesies terancam",
       definition:
-        "Spesies yang bilangannya semakin berkurang sehingga berisiko pupus. Terancam memberitahu kita tentang RISIKO KEPUPUSAN, bukan lokasi. Akta Perlindungan Hidupan Liar 1972 mengharamkan pembunuhan dan pemerdagangannya.",
+        "Spesies yang bilangannya semakin berkurang sehingga berisiko pupus. **Terancam** memberitahu kita tentang RISIKO KEPUPUSAN, bukan lokasi. Akta Perlindungan Hidupan Liar 1972 mengharamkan pembunuhan dan pemerdagangannya.",
       examples: ["🐅 Harimau Malaya", "🐢 Penyu belimbing", "🐘 Gajah pygmy Borneo", "🦜 Burung enggang"],
     },
   ],
@@ -418,7 +418,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
       id: "flower",
       label: "Berbunga",
       detail:
-        "Setiap biji membawa kotiledon — makanan simpanan permulaannya. Satu kotiledon = monokotiledon. Sepasang = dikotiledon.",
+        "Setiap biji membawa **kotiledon** — makanan simpanan permulaannya. Satu kotiledon = **monokotiledon**. Sepasang = **dikotiledon**.",
     },
   ],
   cotyledonCompare: [

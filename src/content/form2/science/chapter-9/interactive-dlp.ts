@@ -8,7 +8,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 9,
   blogHighlight: {
     title: "Science Blog — The Hidden Polar Bear",
-    body: "Infrared cameras detect the heat radiated by animals — but a polar bear traps heat so effectively beneath its fur and fat that it is almost invisible to thermal imaging, even in a freezing habitat.",
+    body: "Infrared cameras detect the heat radiated by animals — but a polar bear **traps heat so effectively beneath its fur and fat** that it is almost invisible to thermal imaging, even in a freezing habitat.",
     imagePath: SCIENCE_F2_CH9_IMAGES.polarBear,
     imageAlt: "A polar bear standing on sea ice at night, with a thermal-imaging cut-away showing the heat trapped inside its body while its fur stays cold.",
   },
@@ -33,7 +33,9 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.1",
       title: "Heat and Temperature",
       intro:
-        "Heat is a form of energy that flows from a region of higher temperature to a region of lower temperature. Temperature is the measure of the degree of hotness or coldness of an object. The two are related, but they are not the same thing — two beakers of water at the same temperature can hold very different quantities of heat, depending on how much water there is.",
+        "Heat is **a form of energy** that flows from a region of higher temperature to a region of lower temperature. Temperature is **the measure of the degree of hotness or coldness of an object**. The two are related, but they are not the same thing — two beakers of water at the same temperature can hold very different quantities of heat, depending on how much water there is.",
+      remember:
+        "Heat is a form of energy measured in joules (J); temperature is the degree of hotness or coldness measured in °C or K. The two are related, but they are not the same thing.",
       contextImages: [
         {
           src: SCIENCE_F2_CH9_IMAGES.heatVsTemperature,
@@ -50,17 +52,17 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🔥 Heat",
-          body: "A form of energy. The quantity of heat depends on the type of substance, the quantity of substance and the temperature.",
+          body: "A form of energy. The quantity of heat depends on **the type of substance, the quantity of substance and the temperature**.",
           detail: "Measured in joules (J).",
         },
         {
           title: "🌡️ Temperature",
-          body: "The degree of hotness or coldness of an object. Temperature depends on the degree of movement of the particles within the substance.",
+          body: "The degree of hotness or coldness of an object. Temperature depends on **the degree of movement of the particles within the substance**.",
           detail: "Measured in degrees Celsius (°C) or kelvin (K).",
         },
         {
           title: "⚖️ Thermal equilibrium",
-          body: "When two objects are in contact, heat energy is transferred from the object at the higher temperature to the object at the lower temperature. When the heat transfer between them becomes zero, the two objects are in thermal equilibrium and share the same temperature.",
+          body: "When two objects are in contact, heat energy is transferred from the object at the higher temperature to the object at the lower temperature. When **the heat transfer between them becomes zero**, the two objects are in **thermal equilibrium** and share the same temperature.",
         },
       ],
       checks: [
@@ -72,7 +74,9 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.2",
       title: "Conduction",
       intro:
-        "Conduction is the flow of heat from a hot region to a cold region through a solid medium. Particles that receive heat energy vibrate faster and collide with their neighbouring particles more often, transferring that energy throughout the medium.",
+        "Conduction is **the flow of heat from a hot region to a cold region through a solid medium**. Particles that receive heat energy vibrate faster and collide with their neighbouring particles more often, transferring that energy throughout the medium.",
+      quickExplanation:
+        "What travels along a conducting material is energy, not particles — each particle simply vibrates in place and passes energy on to its neighbour.",
       conductionDiagram: {
         title: "🔗 How heat travels through a solid",
         instruction: "Tap each stage to watch the energy travel along the rod.",
@@ -98,7 +102,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.2",
       title: "Convection and Radiation",
       intro:
-        "Heat can also flow without passing through a solid. In fluids, convection carries heat through the movement of the fluid itself. Radiation needs no medium at all — it is the only way heat can travel through empty space.",
+        "Heat can also flow without passing through a solid. In fluids, convection **carries heat through the movement of the fluid itself**. Radiation needs no medium at all — it is **the only way heat can travel through empty space**.",
       convectionRadiation: {
         title: "🌀 Two ways heat flows without a solid",
         instruction: "Tap each method to see how the heat moves.",
@@ -138,7 +142,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.2",
       title: "Sea Breeze and Land Breeze",
       intro:
-        "Sea breezes and land breezes are examples of convection happening in nature. The key is that land heats up and cools down faster than the sea.",
+        "Sea breezes and land breezes are **examples of convection happening in nature**. The key is that **land heats up and cools down faster than the sea**.",
       breezeDiagram: {
         title: "🌬️ Sea breeze and land breeze",
         instruction: "Tap each breeze to see the direction the air moves.",
@@ -185,7 +189,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.2",
       title: "Heat Conductors and Heat Insulators",
       intro:
-        "A material that lets heat flow through it easily is known as a heat conductor. A material that prevents or slows down the flow of heat is known as a heat insulator.",
+        "A material that **lets heat flow through it easily** is known as a heat conductor. A material that **prevents or slows down the flow of heat** is known as a heat insulator.",
       contextImages: [
         {
           src: SCIENCE_F2_CH9_IMAGES.conductorInsulator,
@@ -201,12 +205,12 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🔥 Heat conductor",
-          body: "A material that allows heat to flow through it easily. Metals such as copper, aluminium and iron are good heat conductors.",
+          body: "A material that allows heat to flow through it easily. Metals such as **copper, aluminium and iron** are good heat conductors.",
           detail: "Examples: the metal base of a pan, the metal sole plate of an iron.",
         },
         {
           title: "🧊 Heat insulator",
-          body: "A material that prevents or slows down the flow of heat. Wood, cotton, felt, fibreglass and polystyrene are good heat insulators.",
+          body: "A material that prevents or slows down the flow of heat. **Wood, cotton, felt, fibreglass and polystyrene** are good heat insulators.",
           detail: "Examples: oven gloves, the walls of an ice box, wooden handles on kitchen utensils.",
         },
       ],
@@ -229,7 +233,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.3",
       title: "Expansion and Contraction of Matter",
       intro:
-        "When matter is heated, its particles gain energy, move or vibrate faster, and the spacing between the particles increases — so the matter expands. When cooled, the particles move more slowly, the spacing decreases, and the matter contracts. This happens in solids, liquids and gases.",
+        "When matter is heated, its particles gain energy, move or vibrate faster, and **the spacing between the particles increases** — so the matter expands. When cooled, the particles move more slowly, **the spacing decreases**, and the matter contracts. This happens in solids, liquids and gases.",
       expansionParticles: {
         title: "🌡️ Particles during heating and cooling",
         instruction: "Pick a state of matter, then tap heated or cooled.",
@@ -293,11 +297,11 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🌡️ Mercury thermometers",
-          body: "Mercury expands and contracts uniformly as the temperature changes, and it detects changes in temperature quickly. The height of the mercury column in the tube is what is used to measure temperature.",
+          body: "Mercury **expands and contracts uniformly** as the temperature changes, and it **detects changes in temperature quickly**. The height of the mercury column in the tube is what is used to measure temperature.",
           detail: "Remember: a thermometer measures temperature, not heat.",
         },
-        { title: "🚂 Gaps in railway tracks", body: "Small gaps are left between sections of rail so the track can expand on a hot day without buckling or lifting." },
-        { title: "🌉 Rollers on steel bridges", body: "One end of the bridge rests on rollers so the whole structure can expand and contract safely as the temperature changes." },
+        { title: "🚂 Gaps in railway tracks", body: "Small gaps are left between sections of rail so the track can **expand on a hot day without buckling or lifting**." },
+        { title: "🌉 Rollers on steel bridges", body: "One end of the bridge rests on rollers so the whole structure can **expand and contract safely** as the temperature changes." },
       ],
       checks: [
         { question: "In a fire-alarm bimetallic strip, which metal expands faster, and which way does the strip bend?", hint: "Copper expands faster than iron, so the strip bends toward the contact screw and completes the circuit." },
@@ -308,7 +312,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.4",
       title: "Heat Absorption and Emission",
       intro:
-        "The ability of an object to absorb and emit heat depends on the type and colour of its surface. When an object absorbs heat, its temperature rises; when an object emits heat, its temperature falls. Dark, dull surfaces are better absorbers and better emitters of heat than light, shiny surfaces.",
+        "The ability of an object to absorb and emit heat depends on the type and colour of its surface. When an object absorbs heat, its temperature rises; when an object emits heat, its temperature falls. **Dark, dull surfaces are better absorbers and better emitters of heat** than light, shiny surfaces.",
       surfaceComparison: {
         title: "⬛⬜ Dark surfaces compared with shiny surfaces",
         instruction: "Tap to switch between absorbing heat and emitting heat.",
@@ -340,7 +344,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Everyday uses",
-          body: "Fuel tanker lorries are painted in light colours such as white or silver. Light colours do not absorb much heat, so evaporation of the fuel is reduced.",
+          body: "Fuel tanker lorries are painted in light colours such as white or silver. **Light colours do not absorb much heat**, so evaporation of the fuel is reduced.",
           detail: "Conversely, solar water heaters use dark-coloured panels so they absorb as much of the Sun's heat as possible.",
         },
       ],
@@ -353,7 +357,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.4",
       title: "The Green Building Concept",
       intro:
-        "The Green Building Concept is an idea developed to reduce the impact of rapid development on the environment and on human health. The heat concepts in this chapter are used directly: a green home is designed so that the energy needed to cool or heat it is reduced.",
+        "The Green Building Concept is an idea developed to **reduce the impact of rapid development on the environment and on human health**. The heat concepts in this chapter are used directly: a green home is designed so that the energy needed to cool or heat it is reduced.",
       contextImages: [
         {
           src: SCIENCE_F2_CH9_IMAGES.greenBuilding,
@@ -412,19 +416,19 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       tabs: [
         {
           title: "⚡ Energy efficiency",
-          body: "A green building has high energy efficiency, for example through the use of solar energy or other renewable energy. Heat insulation in the walls and roof reduces heat flowing in, so less energy is needed for air conditioning.",
+          body: "A green building has **high energy efficiency**, for example through the use of solar energy or other renewable energy. Heat insulation in the walls and roof reduces heat flowing in, so less energy is needed for air conditioning.",
         },
         {
           title: "💧 Water efficiency",
-          body: "Good water-flow systems, including rainwater harvesting and water recycling, reduce the use of clean water.",
+          body: "**Good water-flow systems**, including rainwater harvesting and water recycling, reduce the use of clean water.",
         },
         {
           title: "🏗️ Site and building materials",
-          body: "A sustainable construction site and the use of recycled building materials reduce the impact on the environment. Light-coloured roofs and walls reflect more of the Sun's heat.",
+          body: "A sustainable construction site and the use of **recycled building materials** reduce the impact on the environment. Light-coloured roofs and walls reflect more of the Sun's heat.",
         },
         {
           title: "💡 Air circulation and innovation",
-          body: "Good natural air-circulation and lighting systems let convection currents carry warm air out without fans or air conditioning. Design innovations like these make a home comfortable using far less energy.",
+          body: "**Good natural air-circulation and lighting systems** let convection currents carry warm air out without fans or air conditioning. Design innovations like these make a home comfortable using far less energy.",
         },
       ],
       checksTitle: "Green Building — quick check",

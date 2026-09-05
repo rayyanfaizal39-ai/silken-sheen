@@ -10,7 +10,7 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 11,
   blogHighlight: {
     title: "Science Blog — Supernova Explosions",
-    body: "A supernova is an extremely powerful explosion of a large star. Each explosion produces more than 100 times the light energy the Sun has released throughout its 10-billion-year existence. The last supernova happened about 400 years ago but was only detected in 1987.",
+    body: "A **supernova** is an extremely powerful explosion of a large star. Each explosion produces more than 100 times the light energy the Sun has released throughout its 10-billion-year existence. The last supernova happened about 400 years ago but was only detected in 1987.",
     imagePath: chapterImage,
   },
   keywords: [
@@ -31,11 +31,11 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
       number: "11.1",
       title: "Galaxies and the Universe",
       intro:
-        "The universe consists of everything that exists around us, and there are millions of galaxies within it. A galaxy is a collection of bodies made up of millions of stars together with gas and dust. Galaxies exist in several shapes: spiral galaxies, elliptical galaxies and irregular galaxies. Astronomy carried out with technology such as telescopes has made us aware of the beauty and vastness of the universe.",
+        "The universe consists of everything that exists around us, and there are millions of galaxies within it. A **galaxy** is a collection of bodies made up of millions of stars together with gas and dust. Galaxies exist in several shapes: spiral galaxies, elliptical galaxies and irregular galaxies. Astronomy carried out with technology such as telescopes has made us aware of the beauty and vastness of the universe.",
       cards: [
         {
           title: "🔭 Technology helps us study space",
-          body: "The Hubble Space Telescope was launched on 24 April 1990. It is so powerful that it can see a coin lying 725 km away from it.",
+          body: "The Hubble Space Telescope was launched on 24 April 1990. It is so powerful that it can see a coin lying **725 km** away from it.",
         },
       ],
       galaxyCards: {
@@ -62,7 +62,7 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
       number: "11.1",
       title: "The Milky Way, the Solar System's Location and Relative Scale",
       intro:
-        "Our solar system lies inside the Milky Way galaxy. The Milky Way is a medium-sized spiral galaxy, and our solar system sits at the edge of one of its spiral arms. The Milky Way contains roughly 200 billion stars, and the Sun is one of them.",
+        "Our solar system lies inside the **Milky Way** galaxy. The Milky Way is a medium-sized spiral galaxy, and our solar system sits at the edge of one of its spiral arms. The Milky Way contains roughly **200 billion stars**, and the Sun is one of them.",
       milkyWayLocator: {
         title: "🌌 Where the solar system sits in the Milky Way",
         galaxyLabel: "The Milky Way galaxy",
@@ -107,19 +107,19 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
       number: "11.1",
       title: "The Life Cycle of Stars",
       intro:
-        "Stars are born from a nebula. A nebula is a vast cloud made up of dust and gases such as hydrogen and helium. Strong gravitational attraction pulls the gas and dust particles together into a clump that contracts and compresses into a core. When the temperature and pressure in the core become very high, a nuclear reaction takes place and hydrogen gas is converted into helium, releasing a great deal of heat and light energy. The core shines and a star is born.",
+        "Stars are born from a nebula. A **nebula** is a vast cloud made up of dust and gases such as hydrogen and helium. Strong gravitational attraction pulls the gas and dust particles together into a clump that contracts and compresses into a core. When the temperature and pressure in the core become very high, a nuclear reaction takes place and hydrogen gas is converted into helium, releasing a great deal of heat and light energy. The core shines and a star is born.",
       accordions: [
         {
           title: "☁️ The birth of a star",
-          body: "Gases and dust particles in a nebula are pulled together by strong gravitational attraction to form a clump. The clump contracts and compresses until it becomes very dense and forms a core. When the temperature and pressure in the core become very high, a nuclear reaction takes place and hydrogen gas is converted into helium. The core shines and a star is born — a newly born star is known as a young star.",
+          body: "Gases and dust particles in a nebula are pulled together by strong gravitational attraction to form a clump. The clump contracts and compresses until it becomes very dense and forms a core. When the temperature and pressure in the core become very high, a nuclear reaction takes place and hydrogen gas is converted into helium. The core shines and a star is born — a newly born star is known as a **young star**.",
         },
         {
           title: "🔴 The death of a star",
-          body: "The large amount of heat generated warms the star's outermost layer until the hydrogen in that layer begins to burn and the star expands. At this stage the star is red and is called a red giant. If the red giant is not very large, a white dwarf forms. If the red giant is very large, it contracts rapidly and produces a huge explosion called a supernova, forming a neutron star. If the original star was very large indeed, the supernova explosion forms a black hole.",
+          body: "The large amount of heat generated warms the star's outermost layer until the hydrogen in that layer begins to burn and the star expands. At this stage the star is red and is called a **red giant**. If the red giant is not very large, a **white dwarf** forms. If the red giant is very large, it contracts rapidly and produces a huge explosion called a supernova, forming a **neutron star**. If the original star was very large indeed, the supernova explosion forms a **black hole**.",
         },
         {
           title: "⚫ What is a black hole?",
-          body: "A black hole is a region that does not allow any matter to escape from it, including light.",
+          body: "A black hole is a region that **does not allow any matter to escape from it, including light**.",
         },
       ],
       stellarLifecycle: {
@@ -151,6 +151,8 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
         caption: "Every star begins from a nebula, but what follows depends on the size of that star.",
         hint: "Notice that only large and very large stars pass through a supernova. Medium-sized stars do not explode.",
       },
+      remember:
+        "The original size of a star determines its final life-cycle stage: a medium-sized star ends as a white dwarf, while large and very large stars pass through a supernova before becoming a neutron star or a black hole.",
       checks: [
         {
           question: "What determines whether a star ends as a white dwarf, a neutron star or a black hole?",
@@ -166,19 +168,19 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
       number: "11.1",
       title: "Characteristics of Stars",
       intro:
-        "If you look at the night sky, some stars appear bright and others appear dim. Stars can be classified by five characteristics: temperature, size, distance, colour and brightness. In general, a star's colour follows its surface temperature, running from lower temperatures to higher ones.",
+        "If you look at the night sky, some stars appear bright and others appear dim. Stars can be classified by five characteristics: **temperature, size, distance, colour and brightness**. In general, a star's colour follows its surface temperature, running from lower temperatures to higher ones.",
       cards: [
         {
           title: "🌡️ Colour and temperature",
-          body: "A star's colour shows its surface temperature. Red stars are the coolest, while blue stars are the hottest.",
+          body: "A star's colour shows its surface temperature. Red stars are **the coolest**, while blue stars are **the hottest**.",
         },
         {
           title: "📏 Size",
-          body: "A very large star is called a supergiant star, a large star is called a giant star, and a very small star is called a dwarf star.",
+          body: "A very large star is called a **supergiant star**, a large star is called a **giant star**, and a very small star is called a **dwarf star**.",
         },
         {
           title: "✨ Brightness and distance",
-          body: "The observed brightness of a star depends on its size, its distance from Earth and its surface temperature. The brightest stars in the sky are Sirius and Rigel.",
+          body: "The observed brightness of a star depends on its size, its distance from Earth and its surface temperature. The brightest stars in the sky are **Sirius and Rigel**.",
         },
       ],
       phSlider: {
@@ -209,6 +211,8 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
         caption: "Diagram not drawn to scale",
         hint: "Note that dwarf here is a size category. A white dwarf is the final stage in the life cycle of a medium-sized star.",
       },
+      quickExplanation:
+        "Dwarf here is a star-size category, different from a white dwarf, which is the final stage in the life cycle of a medium-sized star.",
       checks: [
         {
           question: "One star appears blue and another appears red. Which one is hotter?",

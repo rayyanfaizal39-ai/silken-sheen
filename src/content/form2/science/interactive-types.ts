@@ -1535,6 +1535,18 @@ export type ScienceInteractiveSection = {
     title: string;
     columns: ScienceInteractiveCard[];
   };
+  /**
+   * Compact "🧠 Ingat / Remember" callout for a core textbook definition or
+   * rule worth pausing on. Rendered via `ScienceRemember`. May carry its own
+   * `**markers**` for the specific term it defines.
+   */
+  remember?: string;
+  /**
+   * Compact "💡 Penjelasan Ringkas / Quick Explanation" callout for a short,
+   * textbook-backed clarifier. Rendered via `ScienceQuickExplanation`. May
+   * carry its own `**markers**`.
+   */
+  quickExplanation?: string;
   checks: { question: string; hint: string }[];
   /**
    * Visible heading for this section's Check-yourself list, replacing the

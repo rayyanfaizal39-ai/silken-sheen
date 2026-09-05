@@ -32,22 +32,22 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Penyakit berjangkit",
-            body: "Boleh berpindah daripada seorang individu kepada individu lain. Berlaku akibat jangkitan patogen, sama ada secara langsung atau melalui medium dan vektor. Contoh: tuberkulosis, selesema, kurap, panau, kencing tikus, demam denggi, malaria dan Zika.",
+            body: "**Boleh berpindah daripada seorang individu kepada individu lain.** Berlaku akibat jangkitan patogen, sama ada secara langsung atau melalui medium dan vektor. Contoh: tuberkulosis, selesema, kurap, panau, kencing tikus, demam denggi, malaria dan Zika.",
           },
           {
             title: "Penyakit tidak berjangkit",
-            body: "Tidak berpindah daripada seorang individu kepada individu lain. Berlaku akibat faktor genetik atau gaya hidup. Contoh: kanser, hipertensi, diabetes, asma dan penyakit kardiovaskular.",
+            body: "**Tidak berpindah daripada seorang individu kepada individu lain.** Berlaku akibat faktor genetik atau gaya hidup. Contoh: kanser, hipertensi, diabetes, asma dan penyakit kardiovaskular.",
           },
         ],
       },
       cards: [
         {
           title: "Apakah patogen?",
-          body: "Patogen ialah organisma yang menyebabkan penyakit. Contohnya semua virus, sesetengah bakteria, protozoa, kulat dan cacing.",
+          body: "Patogen ialah organisma yang menyebabkan penyakit. Contohnya **semua virus, sesetengah bakteria, protozoa, kulat dan cacing**.",
         },
         {
           title: "Bukan semua mikroorganisma memudaratkan",
-          body: "Ada bakteria dalam usus besar yang bertindak pada sisa makanan dan menghasilkan vitamin K serta vitamin B12 yang berguna kepada badan.",
+          body: "Ada bakteria dalam usus besar yang bertindak pada sisa makanan dan menghasilkan **vitamin K serta vitamin B12** yang berguna kepada badan.",
         },
       ],
       checks: [
@@ -71,25 +71,25 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "💨 Melalui udara",
-          body: "Patogen dibawa oleh titisan air liur atau habuk. Terdapat dua cara jangkitan bawaan udara, iaitu jangkitan titisan dan jangkitan habuk. Contoh penyakit: tuberkulosis, selesema, SARS, Influenza A (H1N1) dan cacar air. Pencegahan: tutup mulut dan hidung semasa bersin, batuk atau menguap; jangan meludah di merata tempat; elakkan tempat yang penuh sesak; pastikan tempat tinggal cukup cahaya kerana sinar ultraungu boleh membunuh sesetengah mikroorganisma.",
+          body: "Patogen dibawa oleh **titisan air liur atau habuk**. Terdapat dua cara jangkitan bawaan udara, iaitu jangkitan titisan dan jangkitan habuk. Contoh penyakit: tuberkulosis, selesema, SARS, Influenza A (H1N1) dan cacar air. Pencegahan: tutup mulut dan hidung semasa bersin, batuk atau menguap; jangan meludah di merata tempat; elakkan tempat yang penuh sesak; pastikan tempat tinggal cukup cahaya kerana sinar ultraungu boleh membunuh sesetengah mikroorganisma.",
         },
         {
           title: "💧 Melalui air",
-          body: "Berlaku di kawasan yang tiada bekalan air terawat dan sistem sanitasi yang sempurna. Tinja yang mengandungi patogen boleh mencemarkan sungai, dan seseorang dijangkiti apabila terminum air tercemar. Contoh penyakit: taun (kolera), demam kepialu dan disentri ameba. Pencegahan: didihkan air minuman, campurkan klorin di dalam sistem bekalan air dan kolam renang, bina tandas bersistem sanitasi sempurna, dan cuci tangan dengan sabun selepas menggunakan tandas.",
+          body: "Berlaku di kawasan yang tiada bekalan air terawat dan sistem sanitasi yang sempurna. **Tinja yang mengandungi patogen** boleh mencemarkan sungai, dan seseorang dijangkiti apabila terminum air tercemar. Contoh penyakit: taun (kolera), demam kepialu dan disentri ameba. Pencegahan: didihkan air minuman, campurkan klorin di dalam sistem bekalan air dan kolam renang, bina tandas bersistem sanitasi sempurna, dan cuci tangan dengan sabun selepas menggunakan tandas.",
         },
         {
           title: "🤝 Melalui sentuhan",
-          body: "Berlaku apabila tersentuh kulit yang telah dijangkiti atau memakai pakaian pesakit. Contoh penyakit: kurap dan panau — kedua-duanya disebabkan oleh kulat. Sifilis dan gonorea pula berjangkit melalui hubungan seks kerana patogennya terdapat di dalam air mani dan bendalir faraj. Virus HIV yang menyebabkan AIDS boleh merebak melalui hubungan seks, darah dan perkongsian jarum suntikan. Pencegahan: jaga kebersihan diri dan jangan berkongsi pakaian atau barang peribadi.",
+          body: "Berlaku apabila tersentuh kulit yang telah dijangkiti atau memakai pakaian pesakit. Contoh penyakit: kurap dan panau — kedua-duanya disebabkan oleh kulat. Sifilis dan gonorea pula berjangkit melalui hubungan seks kerana patogennya terdapat di dalam air mani dan bendalir faraj. Virus HIV yang menyebabkan AIDS boleh merebak melalui **hubungan seks, darah dan perkongsian jarum suntikan**. Pencegahan: jaga kebersihan diri dan jangan berkongsi pakaian atau barang peribadi.",
         },
         {
           title: "🦟 Melalui vektor",
-          body: "Sesetengah patogen menggunakan haiwan untuk berpindah daripada satu hos kepada hos yang baharu. Contoh penyakit: kencing tikus (leptospirosis), demam denggi, malaria, Zika dan Chikungunya. Pencegahan: hapuskan tempat pembiakan vektor, gunakan kelambu atau ubat nyamuk, dan pakai pakaian yang menutup kulit.",
+          body: "Sesetengah patogen menggunakan haiwan untuk **berpindah daripada satu hos kepada hos yang baharu**. Contoh penyakit: kencing tikus (leptospirosis), demam denggi, malaria, Zika dan Chikungunya. Pencegahan: hapuskan tempat pembiakan vektor, gunakan kelambu atau ubat nyamuk, dan pakai pakaian yang menutup kulit.",
         },
       ],
       cards: [
         {
           title: "Bagaimana nyamuk menyebarkan penyakit",
-          body: "Nyamuk yang mempunyai patogen di dalam kelenjar air liurnya menghisap darah orang yang belum dijangkiti. Air liur nyamuk dikeluarkan semasa menghisap darah untuk mencegah pembekuan darah, dan patogen masuk bersamanya. Nyamuk lain yang menggigit mangsa yang telah dijangkiti akan menyebarkan jangkitan kepada mangsa seterusnya.",
+          body: "Nyamuk yang mempunyai **patogen di dalam kelenjar air liurnya** menghisap darah orang yang belum dijangkiti. Air liur nyamuk dikeluarkan semasa menghisap darah untuk mencegah pembekuan darah, dan patogen masuk bersamanya. Nyamuk lain yang menggigit mangsa yang telah dijangkiti akan menyebarkan jangkitan kepada mangsa seterusnya.",
         },
         {
           title: "Bagaimana lalat menyebarkan penyakit",
@@ -121,11 +121,11 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "🐀 Vektor",
-          body: "Haiwan yang memindahkan patogen daripada satu hos kepada hos yang baharu. Vektor sendiri bukan penyebab penyakit. Contoh: nyamuk Aedes, lipas, lalat, tikus.",
+          body: "Haiwan yang memindahkan patogen daripada satu hos kepada hos yang baharu. **Vektor sendiri bukan penyebab penyakit.** Contoh: nyamuk Aedes, lipas, lalat, tikus.",
         },
         {
           title: "🤒 Penyakit",
-          body: "Keadaan yang terhasil apabila patogen menjangkiti badan. Contoh: demam denggi, kepialu, malaria, leptospirosis.",
+          body: "**Keadaan yang terhasil apabila patogen menjangkiti badan.** Contoh: demam denggi, kepialu, malaria, leptospirosis.",
         },
       ],
       matcher: {
@@ -154,6 +154,8 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
           },
         ],
       },
+      remember:
+        "Patogen menyebabkan penyakit; vektor hanya membawa patogen itu daripada satu hos ke hos yang lain — vektor sendiri bukan punca penyakit; penyakit ialah keadaan yang terhasil apabila patogen menjangkiti badan.",
       checks: [
         {
           question: "Apakah perbezaan antara patogen dan vektor?",
@@ -193,7 +195,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "⚠️ Jangan keliru",
-          body: "Kawalan vektor seperti pengasapan dan pemusnahan tempat pembiakan tergolong dalam peringkat TERTIER, bukan peringkat primer. Peringkat primer memberi tumpuan kepada kebersihan dan imunisasi sebelum sebarang jangkitan berlaku.",
+          body: "Kawalan vektor seperti pengasapan dan pemusnahan tempat pembiakan tergolong dalam **peringkat TERTIER, bukan peringkat primer**. Peringkat primer memberi tumpuan kepada kebersihan dan imunisasi sebelum sebarang jangkitan berlaku.",
         },
       ],
       checks: [
@@ -250,7 +252,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Tidak spesifik lawan spesifik",
-          body: "Pertahanan tidak spesifik (barisan pertama dan kedua) menyerang patogen secara menyeluruh tanpa mengira jenisnya. Pertahanan spesifik (barisan ketiga) menyerang satu patogen tertentu secara khusus melalui antibodi yang sepadan.",
+          body: "Pertahanan tidak spesifik (barisan pertama dan kedua) **menyerang patogen secara menyeluruh** tanpa mengira jenisnya. Pertahanan spesifik (barisan ketiga) **menyerang satu patogen tertentu secara khusus** melalui antibodi yang sepadan.",
         },
       ],
       checks: [
@@ -274,15 +276,15 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Antigen",
-          body: "Jasad asing atau bahan yang bukan daripada badan sendiri yang merangsang penghasilan antibodi. Antigen terdapat pada patogen, molekul toksin dan sel darah daripada kumpulan darah yang lain.",
+          body: "Jasad asing atau bahan yang bukan daripada badan sendiri yang **merangsang penghasilan antibodi**. Antigen terdapat pada patogen, molekul toksin dan sel darah daripada kumpulan darah yang lain.",
         },
         {
           title: "Antibodi",
-          body: "Protein yang dihasilkan oleh sel darah putih ke dalam aliran darah sebagai gerak balas terhadap antigen.",
+          body: "Protein yang dihasilkan oleh sel darah putih ke dalam aliran darah sebagai **gerak balas terhadap antigen**.",
         },
         {
           title: "Keimunan",
-          body: "Keupayaan sistem badan melawan sesuatu patogen sebelum badan dijangkiti patogen tersebut.",
+          body: "Keupayaan sistem badan melawan sesuatu patogen **sebelum badan dijangkiti** patogen tersebut.",
         },
       ],
       causeEffect: {
@@ -297,7 +299,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
               "Sel darah putih dirangsang",
               "Antibodi khusus dihasilkan",
             ],
-            note: "Antibodi yang terhasil sepadan dengan antigen tersebut sahaja.",
+            note: "Antibodi yang terhasil **sepadan dengan antigen tersebut sahaja**.",
           },
           {
             icon: "🛡️",
@@ -311,6 +313,8 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
           },
         ],
       },
+      quickExplanation:
+        "Urutannya: antigen (bahan asing) merangsang → antibodi (protein) dihasilkan → keimunan (keupayaan melawan) tercapai. Setiap antibodi sepadan dengan satu antigen sahaja.",
       checks: [
         {
           question: "Apakah perbezaan utama antara antigen dan antibodi?",
@@ -332,11 +336,11 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Apakah kandungan vaksin?",
-          body: "Vaksin mengandungi antigen yang diperoleh daripada sebahagian atau keseluruhan struktur virus atau bakteria yang telah dilemahkan atau dimatikan.",
+          body: "Vaksin mengandungi antigen yang diperoleh daripada sebahagian atau keseluruhan struktur virus atau bakteria yang telah **dilemahkan atau dimatikan**.",
         },
         {
           title: "Bagaimana vaksin berfungsi?",
-          body: "Antigen di dalam vaksin merangsang sistem imun tubuh untuk membentuk keimunan terhadap jangkitan penyakit tertentu — tanpa menyebabkan penyakit itu sendiri.",
+          body: "Antigen di dalam vaksin **merangsang sistem imun tubuh** untuk membentuk keimunan terhadap jangkitan penyakit tertentu — tanpa menyebabkan penyakit itu sendiri.",
         },
         {
           title: "Mengapa beberapa jenis vaksin?",
@@ -354,7 +358,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "🔁 Mengapa ada dos ulangan (booster)?",
-          body: "Sesetengah vaksin diberikan lebih daripada sekali. Pendedahan berulang kepada antigen yang sama menghasilkan tindak balas antibodi yang lebih tinggi dan lebih cepat, jadi perlindungan menjadi lebih kukuh dan bertahan lebih lama.",
+          body: "Sesetengah vaksin diberikan lebih daripada sekali. Pendedahan berulang kepada antigen yang sama menghasilkan **tindak balas antibodi yang lebih tinggi dan lebih cepat**, jadi perlindungan menjadi lebih kukuh dan bertahan lebih lama.",
         },
       ],
       checks: [
@@ -426,7 +430,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Apakah antiserum?",
-          body: "Antiserum ialah darah cecair jernih yang mengandungi antibodi untuk mencegah penyakit. Ia disuntik terus kepada pesakit supaya antibodi sedia ada dapat bertindak dengan segera.",
+          body: "Antiserum ialah darah cecair jernih yang mengandungi **antibodi untuk mencegah penyakit**. Ia disuntik terus kepada pesakit supaya antibodi sedia ada dapat bertindak dengan segera.",
         },
       ],
       checks: [
@@ -481,7 +485,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Mengapa ini penting",
-          body: "Corak ini menerangkan mengapa sesetengah vaksin memerlukan lebih daripada satu dos: setiap dos tambahan mengulangi pendedahan kepada antigen yang sama dan mengangkat perlindungan ke aras yang lebih tinggi.",
+          body: "Corak ini menerangkan mengapa sesetengah vaksin **memerlukan lebih daripada satu dos**: setiap dos tambahan mengulangi pendedahan kepada antigen yang sama dan mengangkat perlindungan ke aras yang lebih tinggi.",
         },
       ],
       checks: [
@@ -506,7 +510,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🥗 Pemakanan",
-          body: "Makan makanan seimbang termasuk sayur-sayuran dan buah-buahan tempatan. Elakkan pengambilan gula secara berlebihan kerana ia melemahkan sistem keimunan.",
+          body: "Makan makanan seimbang termasuk sayur-sayuran dan buah-buahan tempatan. **Elakkan pengambilan gula secara berlebihan** kerana ia melemahkan sistem keimunan.",
         },
         {
           title: "🏃 Aktiviti fizikal",
@@ -522,11 +526,11 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Punca sistem keimunan menjadi lemah",
-            body: "Terdedah kepada pencemaran udara; terdedah kepada pestisid; mengalami tekanan perasaan; pengambilan gula secara berlebihan.",
+            body: "Terdedah kepada pencemaran udara; terdedah kepada pestisid; **mengalami tekanan perasaan**; pengambilan gula secara berlebihan.",
           },
           {
             title: "Amalan yang menguatkan sistem keimunan",
-            body: "Mendapat rehat dan tidur yang mencukupi; tidak merokok dan tidak terdedah kepada asap rokok; beriadah dan menghirup udara segar; melakukan pemeriksaan kesihatan secara berkala.",
+            body: "**Mendapat rehat dan tidur yang mencukupi**; tidak merokok dan tidak terdedah kepada asap rokok; beriadah dan menghirup udara segar; melakukan pemeriksaan kesihatan secara berkala.",
           },
         ],
       },
@@ -566,7 +570,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
               "Lebih sedikit orang boleh dijangkiti",
               "Penyakit seperti kusta, batuk kokol dan tibi lebih terkawal",
             ],
-            note: "Imunisasi membantu MENGAWAL pengulangan penyakit dan mengurangkan risiko penularan.",
+            note: "Imunisasi membantu **MENGAWAL pengulangan penyakit** dan mengurangkan risiko penularan.",
           },
           {
             icon: "💰",

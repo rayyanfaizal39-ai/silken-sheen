@@ -35,22 +35,22 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Infectious disease",
-            body: "Can pass from one individual to another. Caused by infection with a pathogen, either directly or through a medium and a vector. Examples: tuberculosis, the common cold, ringworm, tinea versicolor, leptospirosis, dengue fever, malaria and Zika.",
+            body: "**Can pass from one individual to another.** Caused by infection with a pathogen, either directly or through a medium and a vector. Examples: tuberculosis, the common cold, ringworm, tinea versicolor, leptospirosis, dengue fever, malaria and Zika.",
           },
           {
             title: "Non-infectious disease",
-            body: "Does not pass from one individual to another. Caused by genetic factors or lifestyle. Examples: cancer, hypertension, diabetes, asthma and cardiovascular disease.",
+            body: "**Does not pass from one individual to another.** Caused by genetic factors or lifestyle. Examples: cancer, hypertension, diabetes, asthma and cardiovascular disease.",
           },
         ],
       },
       cards: [
         {
           title: "What is a pathogen?",
-          body: "A pathogen is an organism that causes disease — all viruses, some bacteria, protozoa, fungi and worms.",
+          body: "A pathogen is an organism that causes disease — **all viruses, some bacteria, protozoa, fungi and worms**.",
         },
         {
           title: "Not every microorganism is harmful",
-          body: "Some bacteria in the large intestine act on food remains and produce vitamin K and vitamin B12, which the body can use.",
+          body: "Some bacteria in the large intestine act on food remains and produce **vitamin K and vitamin B12**, which the body can use.",
         },
       ],
       checks: [
@@ -74,25 +74,25 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "💨 Through the air",
-          body: "Pathogens are carried by droplets of saliva or by dust. There are two forms of airborne infection: droplet infection and dust infection. Example diseases: tuberculosis, the common cold, SARS, Influenza A (H1N1) and chickenpox. Prevention: cover the mouth and nose when sneezing, coughing or yawning; do not spit in public places; avoid crowded places; keep living spaces well lit, since ultraviolet rays can kill some airborne microorganisms.",
+          body: "Pathogens are carried by **droplets of saliva or by dust**. There are two forms of airborne infection: droplet infection and dust infection. Example diseases: tuberculosis, the common cold, SARS, Influenza A (H1N1) and chickenpox. Prevention: cover the mouth and nose when sneezing, coughing or yawning; do not spit in public places; avoid crowded places; keep living spaces well lit, since ultraviolet rays can kill some airborne microorganisms.",
         },
         {
           title: "💧 Through water",
-          body: "Common where there is no treated water supply and no proper sanitation. Faeces containing pathogens can contaminate a river, and a person becomes infected by drinking the contaminated water. Example diseases: cholera, typhoid fever and amoebic dysentery. Prevention: boil drinking water thoroughly, add chlorine to water supplies and swimming pools, build toilets with proper sanitation, and wash hands with soap after using the toilet.",
+          body: "Common where there is no treated water supply and no proper sanitation. **Faeces containing pathogens** can contaminate a river, and a person becomes infected by drinking the contaminated water. Example diseases: cholera, typhoid fever and amoebic dysentery. Prevention: boil drinking water thoroughly, add chlorine to water supplies and swimming pools, build toilets with proper sanitation, and wash hands with soap after using the toilet.",
         },
         {
           title: "🤝 Through contact",
-          body: "Happens when infected skin is touched or a patient's clothing is worn. Example diseases: ringworm and tinea versicolor — both caused by fungi. Syphilis and gonorrhoea spread through sexual contact because their pathogens are present in semen and vaginal fluid. HIV, which causes AIDS, can spread through sexual contact, blood and shared needles. Prevention: keep clean and never share clothing or personal items.",
+          body: "Happens when infected skin is touched or a patient's clothing is worn. Example diseases: ringworm and tinea versicolor — both caused by fungi. Syphilis and gonorrhoea spread through sexual contact because their pathogens are present in semen and vaginal fluid. HIV, which causes AIDS, can spread through **sexual contact, blood and shared needles**. Prevention: keep clean and never share clothing or personal items.",
         },
         {
           title: "🦟 Through vectors",
-          body: "Some pathogens use animals to move from one host to a new host. Example diseases: leptospirosis, dengue fever, malaria, Zika and Chikungunya. Prevention: destroy vector breeding sites, use mosquito nets or repellent, and wear clothing that covers the skin.",
+          body: "Some pathogens use animals to **move from one host to a new host**. Example diseases: leptospirosis, dengue fever, malaria, Zika and Chikungunya. Prevention: destroy vector breeding sites, use mosquito nets or repellent, and wear clothing that covers the skin.",
         },
       ],
       cards: [
         {
           title: "How mosquitoes spread disease",
-          body: "A mosquito carrying a pathogen in its salivary glands bites an uninfected person. Its saliva is released while feeding to stop the blood clotting, and the pathogen enters with it. Another mosquito biting an infected person then carries the infection on to the next victim.",
+          body: "A mosquito carrying **a pathogen in its salivary glands** bites an uninfected person. Its saliva is released while feeding to stop the blood clotting, and the pathogen enters with it. Another mosquito biting an infected person then carries the infection on to the next victim.",
         },
         {
           title: "How houseflies spread disease",
@@ -174,11 +174,11 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "🐀 Vector",
-          body: "An animal that carries a pathogen from one host to a new host. The vector itself does not cause the disease. Examples: Aedes mosquito, cockroach, housefly, rat.",
+          body: "An animal that carries a pathogen from one host to a new host. **The vector itself does not cause the disease.** Examples: Aedes mosquito, cockroach, housefly, rat.",
         },
         {
           title: "🤒 Disease",
-          body: "The condition that results once a pathogen infects the body. Examples: dengue fever, typhoid, malaria, leptospirosis.",
+          body: "**The condition that results once a pathogen infects the body.** Examples: dengue fever, typhoid, malaria, leptospirosis.",
         },
       ],
       matcher: {
@@ -248,6 +248,8 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
           ],
         },
       ],
+      remember:
+        "A pathogen causes a disease; a vector only carries that pathogen from one host to another — the vector itself does not cause the disease; a disease is the condition that results once a pathogen infects the body.",
       checks: [
         {
           question: "What is the difference between a pathogen and a vector?",
@@ -287,7 +289,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "⚠️ A common mix-up",
-          body: "Vector control such as fogging and destroying breeding sites belongs to the TERTIARY level, not the primary level. The primary level focuses on cleanliness and immunisation before any infection happens.",
+          body: "Vector control such as fogging and destroying breeding sites belongs to the **TERTIARY level, not the primary level**. The primary level focuses on cleanliness and immunisation before any infection happens.",
         },
       ],
       checks: [
@@ -356,7 +358,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Non-specific versus specific",
-          body: "Non-specific defence (the first and second lines) attacks pathogens generally, whatever their type. Specific defence (the third line) attacks one particular pathogen using the matching antibody.",
+          body: "Non-specific defence (the first and second lines) **attacks pathogens generally**, whatever their type. Specific defence (the third line) **attacks one particular pathogen** using the matching antibody.",
         },
       ],
       checks: [
@@ -380,15 +382,15 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Antigen",
-          body: "A foreign body or substance not belonging to the body itself that stimulates the production of antibodies. Antigens are found on pathogens, on toxin molecules and on blood cells from a different blood group.",
+          body: "A foreign body or substance not belonging to the body itself that **stimulates the production of antibodies**. Antigens are found on pathogens, on toxin molecules and on blood cells from a different blood group.",
         },
         {
           title: "Antibody",
-          body: "A protein produced by white blood cells into the bloodstream in response to an antigen.",
+          body: "A protein produced by white blood cells into the bloodstream in **response to an antigen**.",
         },
         {
           title: "Immunity",
-          body: "The ability of the body's system to fight a pathogen before the body becomes infected by that pathogen.",
+          body: "The ability of the body's system to fight a pathogen **before the body becomes infected** by that pathogen.",
         },
       ],
       causeEffect: {
@@ -403,7 +405,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
               "White blood cells are stimulated",
               "Specific antibodies are produced",
             ],
-            note: "The antibody produced matches that antigen and no other.",
+            note: "The antibody produced **matches that antigen and no other**.",
           },
           {
             icon: "🛡️",
@@ -417,6 +419,8 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
           },
         ],
       },
+      quickExplanation:
+        "The sequence: an antigen (foreign substance) stimulates → antibodies (protein) are produced → immunity (ability to fight) is reached. Each antibody matches only one antigen.",
       checks: [
         {
           question: "What is the main difference between an antigen and an antibody?",
@@ -438,11 +442,11 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "What is in a vaccine?",
-          body: "A vaccine contains antigens obtained from part or all of the structure of a virus or bacterium that has been weakened or killed.",
+          body: "A vaccine contains antigens obtained from part or all of the structure of a virus or bacterium that has been **weakened or killed**.",
         },
         {
           title: "How does a vaccine work?",
-          body: "The antigen in the vaccine stimulates the body's immune system to build immunity against that particular infection — without causing the disease itself.",
+          body: "The antigen in the vaccine **stimulates the body's immune system** to build immunity against that particular infection — without causing the disease itself.",
         },
         {
           title: "Why several different vaccines?",
@@ -460,7 +464,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "🔁 Why are booster doses needed?",
-          body: "Some vaccines are given more than once. Repeated exposure to the same antigen produces a higher and faster antibody response, so protection becomes stronger and lasts longer.",
+          body: "Some vaccines are given more than once. Repeated exposure to the same antigen produces **a higher and faster antibody response**, so protection becomes stronger and lasts longer.",
         },
       ],
       checks: [
@@ -532,7 +536,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "What is an antiserum?",
-          body: "An antiserum is the clear liquid part of blood containing antibodies that prevent disease. It is injected straight into a patient so ready-made antibodies can act immediately.",
+          body: "An antiserum is the clear liquid part of blood containing **antibodies that prevent disease**. It is injected straight into a patient so ready-made antibodies can act immediately.",
         },
       ],
       checks: [
@@ -587,7 +591,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Why this matters",
-          body: "This pattern explains why some vaccines need more than one dose: each extra dose repeats the exposure to the same antigen and lifts protection to a higher level.",
+          body: "This pattern explains why some vaccines **need more than one dose**: each extra dose repeats the exposure to the same antigen and lifts protection to a higher level.",
         },
       ],
       checks: [
@@ -612,7 +616,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🥗 Nutrition",
-          body: "Eat balanced meals including local vegetables and fruit. Avoid taking sugar in excess, since it weakens the immune system.",
+          body: "Eat balanced meals including local vegetables and fruit. **Avoid taking sugar in excess**, since it weakens the immune system.",
         },
         {
           title: "🏃 Physical activity",
@@ -628,11 +632,11 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Causes of a weakened immune system",
-            body: "Exposure to air pollution; exposure to pesticides; emotional stress; taking sugar in excess.",
+            body: "Exposure to air pollution; exposure to pesticides; **emotional stress**; taking sugar in excess.",
           },
           {
             title: "Practices that strengthen the immune system",
-            body: "Getting enough rest and sleep; not smoking and avoiding cigarette smoke; exercising outdoors and breathing fresh air; going for periodic health checks.",
+            body: "**Getting enough rest and sleep**; not smoking and avoiding cigarette smoke; exercising outdoors and breathing fresh air; going for periodic health checks.",
           },
         ],
       },
@@ -672,7 +676,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
               "Fewer people can be infected",
               "Diseases such as leprosy, whooping cough and tuberculosis stay better controlled",
             ],
-            note: "Immunisation helps CONTROL the recurrence of disease and reduces the risk of spread.",
+            note: "Immunisation helps **CONTROL the recurrence of disease** and reduces the risk of spread.",
           },
           {
             icon: "💰",

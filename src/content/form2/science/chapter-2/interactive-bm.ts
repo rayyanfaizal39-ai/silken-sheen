@@ -36,27 +36,27 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Pengeluar",
-          body: "Tumbuhan hijau membuat makanan sendiri melalui fotosintesis. Semua rantai makanan bermula di sini.",
+          body: "Tumbuhan hijau **membuat makanan sendiri** melalui fotosintesis. Semua rantai makanan bermula di sini.",
           detail: "Aras trofik pertama",
         },
         {
           title: "Pengguna primer",
-          body: "Haiwan herbivor dan omnivor yang memakan pengeluar. Contoh: beluncas, siput, belalang.",
+          body: "Haiwan herbivor dan omnivor yang **memakan pengeluar**. Contoh: beluncas, siput, belalang.",
           detail: "Memakan pengeluar",
         },
         {
           title: "Pengguna sekunder (karnivor primer)",
-          body: "Haiwan omnivor dan karnivor yang memakan pengguna primer. Kerana ia karnivor yang pertama dalam rantai itu, ia dipanggil karnivor primer. Contoh: burung raja udang.",
+          body: "Haiwan omnivor dan karnivor yang memakan pengguna primer. Kerana ia karnivor yang pertama dalam rantai itu, ia **dipanggil karnivor primer**. Contoh: burung raja udang.",
           detail: "Karnivor primer",
         },
         {
           title: "Pengguna tertier (karnivor sekunder)",
-          body: "Karnivor yang memakan pengguna sekunder, biasanya bersaiz lebih besar. Kerana ia karnivor yang kedua dalam rantai itu, ia dipanggil karnivor sekunder. Contoh: musang, ular.",
+          body: "Karnivor yang memakan pengguna sekunder, **biasanya bersaiz lebih besar**. Kerana ia karnivor yang kedua dalam rantai itu, ia dipanggil karnivor sekunder. Contoh: musang, ular.",
           detail: "Karnivor sekunder",
         },
         {
           title: "Pengurai",
-          body: "Bakteria dan kulat menguraikan organisma mati serta bahan buangan kepada nutrien ringkas. Hubungan ini dipanggil saprofitisme.",
+          body: "Bakteria dan kulat menguraikan organisma mati serta bahan buangan kepada nutrien ringkas. Hubungan ini dipanggil **saprofitisme**.",
           detail: "Nutrien dikitar semula",
         },
       ],
@@ -81,7 +81,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.1.2",
       title: "Rantai Makanan dan Siratan Makanan",
       intro:
-        "Rantai makanan menunjukkan satu laluan pemakanan yang lurus. Siratan makanan pula ialah gabungan beberapa rantai makanan yang saling berkait dalam satu ekosistem yang sama.",
+        "Rantai makanan menunjukkan satu laluan pemakanan yang lurus. Siratan makanan pula ialah **gabungan beberapa rantai makanan** yang saling berkait dalam satu ekosistem yang sama.",
       sequence: {
         title: "Rantai makanan: satu laluan lurus",
         instruction: "Ikuti aliran tenaga daripada pengeluar kepada pengguna teratas.",
@@ -127,12 +127,12 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Tenaga mengalir sehala",
-          body: "Tenaga tidak dikitar semula seperti nutrien. Pada setiap aras, sebahagian tenaga digunakan untuk bergerak dan menjalankan proses hidup seperti respirasi, lalu terbebas sebagai haba.",
+          body: "Tenaga tidak dikitar semula seperti nutrien. Pada setiap aras, sebahagian tenaga digunakan untuk bergerak dan menjalankan proses hidup seperti respirasi, lalu **terbebas sebagai haba**.",
           detail: "Sebab itu rantai makanan pendek",
         },
         {
           title: "Kehilangan tambahan pada pengguna",
-          body: "Pengguna turut kehilangan tenaga melalui makanan yang tidak tercerna, iaitu tinja. Pengeluar tidak mengalami kehilangan jenis ini kerana ia membuat makanannya sendiri.",
+          body: "Pengguna turut kehilangan tenaga melalui **makanan yang tidak tercerna, iaitu tinja**. Pengeluar tidak mengalami kehilangan jenis ini kerana ia membuat makanannya sendiri.",
           detail: "Khusus kepada haiwan",
         },
       ],
@@ -182,21 +182,21 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         },
       ],
       intro:
-        "Berbeza dengan tenaga, karbon dan oksigen dikitar berterusan antara organisma dengan persekitaran. Kedua-dua kitar ini saling berhubung melalui fotosintesis dan respirasi.",
+        "Berbeza dengan tenaga, karbon dan oksigen **dikitar berterusan** antara organisma dengan persekitaran. Kedua-dua kitar ini saling berhubung melalui fotosintesis dan respirasi.",
       tabs: [
         {
           title: "Kitar karbon",
-          body: "Fotosintesis menyerap karbon dioksida daripada udara. Karbon berpindah kepada haiwan melalui pemakanan. Respirasi, pereputan oleh pengurai dan pembakaran mengembalikan karbon dioksida ke atmosfera.",
+          body: "Fotosintesis menyerap karbon dioksida daripada udara. Karbon berpindah kepada haiwan melalui pemakanan. **Respirasi, pereputan oleh pengurai dan pembakaran** mengembalikan karbon dioksida ke atmosfera.",
         },
         {
           title: "Kitar oksigen",
-          body: "Fotosintesis oleh tumbuhan hijau membebaskan oksigen ke udara. Respirasi haiwan dan tumbuhan, pereputan oleh pengurai serta pembakaran menggunakan oksigen itu semula.",
+          body: "Fotosintesis oleh tumbuhan hijau membebaskan oksigen ke udara. **Respirasi haiwan dan tumbuhan, pereputan oleh pengurai serta pembakaran** menggunakan oksigen itu semula.",
         },
       ],
       cards: [
         {
           title: "Peranan tumbuhan hijau",
-          body: "Fotosintesis menyerap karbon dioksida dan membebaskan oksigen, lalu mengekalkan keseimbangan kandungan kedua-dua gas ini di dalam udara.",
+          body: "Fotosintesis menyerap karbon dioksida dan membebaskan oksigen, lalu **mengekalkan keseimbangan kandungan** kedua-dua gas ini di dalam udara.",
         },
         {
           title: "Peranan haiwan dan tumbuhan",
@@ -204,7 +204,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "Peranan pengurai",
-          body: "Bakteria dan kulat menguraikan organisma mati menggunakan oksigen lalu membebaskan karbon dioksida, sambil melepaskan nutrien kembali ke tanah.",
+          body: "Bakteria dan kulat menguraikan organisma mati **menggunakan oksigen** lalu membebaskan karbon dioksida, sambil melepaskan nutrien kembali ke tanah.",
         },
       ],
       checks: [
@@ -245,7 +245,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         },
       ],
       intro:
-        "Air bergerak berterusan antara Bumi dengan atmosfera. Benda hidup bukan sekadar menggunakan air — ia turut membantu memacu dan mengawal kitar air itu sendiri.",
+        "Air bergerak berterusan antara Bumi dengan atmosfera. Benda hidup bukan sekadar menggunakan air — ia turut **membantu memacu dan mengawal kitar air itu sendiri**.",
       tabs: [
         {
           title: "Proses fizikal",
@@ -253,7 +253,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "Peranan benda hidup",
-          body: "Akar tumbuhan menyerap air dari tanah dan daun membebaskannya semula melalui transpirasi. Haiwan pula membebaskan wap air melalui respirasi, perpeluhan dan perkumuhan. Kesemua proses ini menambah kandungan wap air di atmosfera.",
+          body: "Akar tumbuhan menyerap air dari tanah dan daun membebaskannya semula melalui transpirasi. Haiwan pula membebaskan wap air melalui **respirasi, perpeluhan dan perkumuhan**. Kesemua proses ini menambah kandungan wap air di atmosfera.",
         },
       ],
       causeEffect: {
@@ -320,7 +320,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
               "Kurang CO₂ diserap dan kurang air dikembalikan ke atmosfera",
               "Kitar karbon dan kitar air terganggu",
             ],
-            note: "Penyelesaian: menanam semula pokok dan memperketat undang-undang perhutanan.",
+            note: "Penyelesaian: **menanam semula pokok** dan memperketat undang-undang perhutanan.",
           },
           {
             icon: "🏭",
@@ -331,7 +331,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
               "Kandungan CO₂ atmosfera meningkat",
               "Kesan rumah hijau menjadi lebih kuat",
             ],
-            note: "Penyelesaian: menggunakan pengangkutan awam dan tenaga yang lebih bersih.",
+            note: "Penyelesaian: **menggunakan pengangkutan awam** dan tenaga yang lebih bersih.",
           },
           {
             icon: "💧",
@@ -342,7 +342,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
               "Kurang air tersedia untuk tumbuhan dan haiwan",
               "Kitar air terganggu dan sumber ekosistem berkurang",
             ],
-            note: "Penyelesaian: menjimatkan air, menyimpan air hujan dan mewujudkan sistem pertanian yang terancang.",
+            note: "Penyelesaian: menjimatkan air, **menyimpan air hujan** dan mewujudkan sistem pertanian yang terancang.",
           },
         ],
       },
@@ -404,26 +404,28 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         },
         note: "Kesilapan lazim: menyusun spesies → populasi → komuniti → habitat → ekosistem sebagai satu tangga. Habitat ialah tempat, bukan aras organisasi.",
       },
+      remember:
+        "Spesies → populasi → komuniti ialah aras organisasi hidupan yang semakin besar. Habitat ialah tempat tinggal, bukan aras organisasi — ekosistem terbentuk apabila komuniti berinteraksi dengan persekitaran bukan hidupnya.",
       cards: [
         {
           title: "Spesies",
-          body: "Sekumpulan organisma yang mempunyai ciri-ciri serupa dan boleh saling membiak untuk menghasilkan anak.",
+          body: "Sekumpulan organisma yang mempunyai ciri-ciri **serupa dan boleh saling membiak** untuk menghasilkan anak.",
         },
         {
           title: "Populasi",
-          body: "Sekumpulan organisma daripada spesies yang sama dan hidup di habitat yang sama. Contoh: satu populasi pepatung di kolam.",
+          body: "Sekumpulan organisma daripada **spesies yang sama** dan hidup di habitat yang sama. Contoh: satu populasi pepatung di kolam.",
         },
         {
           title: "Komuniti",
-          body: "Beberapa populasi organisma yang berbeza, hidup bersama dalam satu habitat dan saling berinteraksi.",
+          body: "Beberapa populasi organisma yang berbeza, hidup bersama dalam satu habitat dan **saling berinteraksi**.",
         },
         {
           title: "Habitat",
-          body: "Persekitaran atau tempat tinggal semula jadi bagi sesuatu organisma. Contoh: kolam, hutan, tanah.",
+          body: "**Persekitaran atau tempat tinggal** semula jadi bagi sesuatu organisma. Contoh: kolam, hutan, tanah.",
         },
         {
           title: "Ekosistem",
-          body: "Beberapa komuniti yang tinggal bersama dalam satu habitat dan saling berinteraksi, termasuk komponen bukan hidup seperti air, udara dan tanah.",
+          body: "Beberapa komuniti yang tinggal bersama dalam satu habitat dan saling berinteraksi, **termasuk komponen bukan hidup** seperti air, udara dan tanah.",
         },
       ],
       comparison: {
@@ -431,7 +433,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Apa yang menjadikannya seimbang",
-            body: "Organisma saling bersandaran antara satu sama lain dan dengan komponen bukan hidup (air, cahaya, udara, tanah). Ekosistem dikatakan seimbang apabila kesemuanya berada dalam keadaan harmoni tanpa gangguan luar.",
+            body: "Organisma saling bersandaran antara satu sama lain dan dengan komponen bukan hidup (air, cahaya, udara, tanah). Ekosistem dikatakan seimbang apabila kesemuanya berada dalam **keadaan harmoni tanpa gangguan luar**.",
           },
           {
             title: "Ekosistem semula jadi dan buatan manusia",
@@ -474,7 +476,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
             id: "tropika",
             habitat: "Tropika",
             challenge:
-              "Hujan lebat dan cahaya matahari berlimpah sepanjang tahun. Pokok tinggi berebut cahaya, tanah cepat lembap dan tepu air.",
+              "**Hujan lebat dan cahaya matahari berlimpah sepanjang tahun.** Pokok tinggi berebut cahaya, tanah cepat lembap dan tepu air.",
             imagePath: tropicalImage,
             imageAnnotationMode: "callouts",
             imageSize: "compact",
@@ -509,7 +511,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
             id: "gurun",
             habitat: "Gurun",
             challenge:
-              "Siang yang panas melampau, malam yang sejuk, dan hujan yang sangat sedikit. Kehilangan air adalah ancaman utama.",
+              "Siang yang **panas melampau**, malam yang sejuk, dan hujan yang sangat sedikit. Kehilangan air adalah ancaman utama.",
             imagePath: desertImage,
             imageAnnotationMode: "callouts",
             imageSize: "compact",
@@ -546,7 +548,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
             id: "tundra",
             habitat: "Tundra",
             challenge:
-              "Musim sejuk yang panjang dan suhu amat rendah, musim panas yang singkat, tanah beku dan angin kencang di dataran tanpa pokok.",
+              "**Musim sejuk yang panjang** dan suhu amat rendah, musim panas yang singkat, tanah beku dan angin kencang di dataran tanpa pokok.",
             imagePath: tundraImage,
             imageAnnotationMode: "callouts",
             imageSize: "compact",
@@ -603,27 +605,27 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.3.3",
       title: "Interaksi antara Organisma",
       intro:
-        "Interaksi antara organisma terdiri daripada simbiosis (mutualisme, komensalisme, parasitisme), mangsa-pemangsa dan persaingan.",
+        "Interaksi antara organisma terdiri daripada **simbiosis** (mutualisme, komensalisme, parasitisme), mangsa-pemangsa dan persaingan.",
       cards: [
         {
           title: "Mutualisme",
-          body: "Kedua-dua organisma untung. Contoh: buran melindungi ikan badut daripada pemangsa; ikan badut membersihkan buran dan memberi nutrien daripada sisa makanannya.",
+          body: "**Kedua-dua organisma untung.** Contoh: buran melindungi ikan badut daripada pemangsa; ikan badut membersihkan buran dan memberi nutrien daripada sisa makanannya.",
         },
         {
           title: "Komensalisme",
-          body: "Satu organisma (komensal) untung; yang satu lagi tidak terjejas. Contoh: ikan remora melekat pada jerung dan makan sisa makanannya, tanpa memudaratkan jerung.",
+          body: "Satu organisma (komensal) untung; yang satu lagi **tidak terjejas**. Contoh: ikan remora melekat pada jerung dan makan sisa makanannya, tanpa memudaratkan jerung.",
         },
         {
           title: "Parasitisme",
-          body: "Satu organisma (parasit) untung; perumah rugi. Contoh: cacing pita hidup dalam usus manusia dan menyerap nutrien daripada perumahnya.",
+          body: "Satu organisma (parasit) untung; **perumah rugi**. Contoh: cacing pita hidup dalam usus manusia dan menyerap nutrien daripada perumahnya.",
         },
         {
           title: "Mangsa–pemangsa",
-          body: "Satu organisma (pemangsa) memburu dan memakan organisma lain (mangsa). Contoh: burung hantu memburu dan memakan tikus.",
+          body: "Satu organisma (pemangsa) **memburu dan memakan** organisma lain (mangsa). Contoh: burung hantu memburu dan memakan tikus.",
         },
         {
           title: "Persaingan",
-          body: "Organisma dalam habitat yang sama bersaing untuk keperluan asas yang terhad seperti cahaya, ruang, air, makanan atau pasangan. Ia boleh berlaku sesama spesies mahupun antara spesies berlainan.",
+          body: "Organisma dalam habitat yang sama bersaing untuk keperluan asas yang terhad seperti **cahaya, ruang, air, makanan atau pasangan**. Ia boleh berlaku sesama spesies mahupun antara spesies berlainan.",
         },
       ],
       matcher: {
@@ -640,15 +642,15 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🦉 Kawalan biologi — mengaplikasi interaksi dalam kehidupan harian",
-          body: "Kawalan biologi menggunakan pemangsa, parasit atau patogen semula jadi untuk mengurangkan bilangan perosak. Di Malaysia: burung hantu mengawal tikus di ladang kelapa sawit, ikan gapi memakan jentik-jentik, kumbang kura-kura memakan afid, itik memakan siput di sawah padi, dan Bacillus thuringiensis mengawal kumbang tanduk.",
+          body: "Kawalan biologi menggunakan **pemangsa, parasit atau patogen semula jadi** untuk mengurangkan bilangan perosak. Di Malaysia: burung hantu mengawal tikus di ladang kelapa sawit, ikan gapi memakan jentik-jentik, kumbang kura-kura memakan afid, itik memakan siput di sawah padi, dan Bacillus thuringiensis mengawal kumbang tanduk.",
         },
         {
           title: "⚖️ Kebaikan berbanding kawalan kimia",
-          body: "Kawalan biologi lebih mesra alam kerana tidak menggunakan pestisid atau bahan kimia. Ia biasanya lebih murah dan tidak menjejaskan kesihatan manusia.",
+          body: "Kawalan biologi lebih mesra alam kerana **tidak menggunakan pestisid atau bahan kimia**. Ia biasanya lebih murah dan tidak menjejaskan kesihatan manusia.",
         },
         {
           title: "⏳ Kesan jangka panjang yang perlu dipertimbangkan",
-          body: "Kawalan biologi mengambil masa yang lebih lama sebelum kesannya kelihatan. Keseimbangan ekosistem juga mungkin terganggu kerana spesies baharu diperkenalkan ke dalam ekosistem tersebut — spesies itu sendiri boleh menjadi masalah jika populasinya tidak terkawal.",
+          body: "Kawalan biologi **mengambil masa yang lebih lama** sebelum kesannya kelihatan. Keseimbangan ekosistem juga mungkin terganggu kerana spesies baharu diperkenalkan ke dalam ekosistem tersebut — spesies itu sendiri boleh menjadi masalah jika populasinya tidak terkawal.",
         },
       ],
       checks: [
@@ -681,7 +683,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
               "Ramai individu mati atau lemah",
               "Saiz populasi menurun",
             ],
-            note: "Contoh: selesema burung di kawasan ternakan ayam; penyakit mozek tembakau di ladang tembakau.",
+            note: "Contoh: **selesema burung** di kawasan ternakan ayam; penyakit mozek tembakau di ladang tembakau.",
           },
           {
             icon: "🦁",
@@ -691,7 +693,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
               "Lebih banyak mangsa dimakan",
               "Saiz populasi mangsa berkurang",
             ],
-            note: "Contoh: populasi kuda belang berkurang dengan kehadiran singa di savana.",
+            note: "Contoh: populasi kuda belang berkurang dengan **kehadiran singa** di savana.",
           },
           {
             icon: "🎋",
@@ -701,7 +703,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
               "Organisma kelaparan atau berpindah",
               "Populasi terancam kepupusan",
             ],
-            note: "Contoh: panda bergantung pada buluh; sebaliknya sisa makanan yang banyak menaikkan populasi burung gagak di Malaysia.",
+            note: "Contoh: panda bergantung pada buluh; sebaliknya **sisa makanan yang banyak** menaikkan populasi burung gagak di Malaysia.",
           },
           {
             icon: "☀️",
@@ -714,6 +716,8 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
           },
         ],
       },
+      quickExplanation:
+        "Faktor-faktor ini boleh menaikkan ATAU menurunkan saiz populasi — contohnya sumber makanan yang berkurang menurunkan populasi (panda dan buluh), tetapi sisa makanan yang banyak menaikkan populasi burung gagak.",
       checks: [
         {
           question: "Namakan empat faktor yang mempengaruhi saiz populasi.",
@@ -745,7 +749,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
               "Pengguna yang bergantung padanya kehilangan makanan",
               "Keseluruhan siratan makanan terjejas",
             ],
-            note: "Padi ialah tanaman yang memerlukan banyak air, jadi ia terjejas terlebih dahulu.",
+            note: "Padi ialah tanaman yang **memerlukan banyak air**, jadi ia terjejas terlebih dahulu.",
           },
           {
             icon: "🕊️",
@@ -788,17 +792,17 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.4.1",
       title: "Peranan Manusia dalam Mengekalkan Keseimbangan Alam",
       intro:
-        "Manusia memerlukan ekosistem yang stabil dan produktif demi kelestarian hidup — daripadanya kita memperoleh makanan, air bersih, udara yang selamat, bahan mentah dan ubat-ubatan. Apabila ekosistem terganggu, sumber-sumber ini turut terjejas, jadi manusia bertanggungjawab memulihara keseimbangan alam.",
+        "Manusia memerlukan ekosistem yang stabil dan produktif demi kelestarian hidup — daripadanya kita memperoleh makanan, air bersih, udara yang selamat, bahan mentah dan ubat-ubatan. Apabila ekosistem terganggu, sumber-sumber ini turut terjejas, jadi manusia **bertanggungjawab memulihara keseimbangan alam**.",
       comparison: {
         title: "Kos aktiviti manusia terhadap alam",
         columns: [
           {
             title: "Tekanan manusia",
-            body: "Penebangan hutan menyebabkan kepupusan spesies, hakisan tanah dan kesan rumah hijau. Perindustrian mencemarkan udara, air dan tanah serta menyebabkan hujan asid. Pertanian yang tidak lestari mencemarkan air dan menghilangkan mineral tanah. Pembuangan sampah sarap menyebabkan pencemaran, bau busuk dan banjir kilat.",
+            body: "Penebangan hutan menyebabkan **kepupusan spesies, hakisan tanah dan kesan rumah hijau**. Perindustrian mencemarkan udara, air dan tanah serta menyebabkan hujan asid. Pertanian yang tidak lestari mencemarkan air dan menghilangkan mineral tanah. Pembuangan sampah sarap menyebabkan pencemaran, bau busuk dan banjir kilat.",
           },
           {
             title: "Memulihkan keseimbangan",
-            body: "Menguatkuasakan undang-undang (rondaan hutan dan sekatan jalan raya oleh Jabatan Perhutanan), meningkatkan kesedaran orang awam, mengamalkan 5R, dan menggunakan kaedah kawalan biologi dalam pertanian.",
+            body: "**Menguatkuasakan undang-undang** (rondaan hutan dan sekatan jalan raya oleh Jabatan Perhutanan), meningkatkan kesedaran orang awam, mengamalkan 5R, dan menggunakan kaedah kawalan biologi dalam pertanian.",
           },
         ],
       },

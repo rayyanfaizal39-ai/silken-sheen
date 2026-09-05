@@ -43,17 +43,17 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Karbohidrat",
-          body: "Sumber tenaga utama badan (makanan ruji). Contoh: kanji (simpanan dalam tumbuhan), glikogen (simpanan dalam haiwan). Sumber: nasi, roti, kentang, pisang, madu.",
+          body: "**Sumber tenaga utama badan** (makanan ruji). Contoh: kanji (simpanan dalam tumbuhan), glikogen (simpanan dalam haiwan). Sumber: nasi, roti, kentang, pisang, madu.",
         },
         {
           title: "Protein",
-          body: "Untuk pertumbuhan dan pembaikan tisu badan, serta mensintesis enzim, hormon dan antibodi. Dicernakan kepada asid amino. Sumber: ikan, ayam, telur, kekacang, daging, susu.",
+          body: "Untuk **pertumbuhan dan pembaikan tisu badan**, serta mensintesis enzim, hormon dan antibodi. Dicernakan kepada asid amino. Sumber: ikan, ayam, telur, kekacang, daging, susu.",
           detail:
             "Pengetahuan Tambahan: kekurangan teruk protein dikaitkan dengan Kwasyiorkor (kanak-kanak 1–3 tahun).",
         },
         {
           title: "Lemak",
-          body: "Simpanan tenaga paling pekat — membekalkan kira-kira 2× tenaga karbohidrat/protein bagi setiap gram. Melindungi organ badan dan menjadi penebat haba. Sumber: mentega, minyak masak, kacang tanah.",
+          body: "**Simpanan tenaga paling pekat** — membekalkan kira-kira 2× tenaga karbohidrat/protein bagi setiap gram. Melindungi organ badan dan menjadi penebat haba. Sumber: mentega, minyak masak, kacang tanah.",
         },
         {
           title: "Vitamin",
@@ -65,7 +65,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "Pelawas",
-          body: "Selulosa yang tidak dapat dicerna oleh sistem pencernaan; merangsang peristalsis dan mencegah sembelit. Sumber: bijirin, buah-buahan, sayur-sayuran.",
+          body: "Selulosa yang tidak dapat dicerna oleh sistem pencernaan; **merangsang peristalsis dan mencegah sembelit**. Sumber: bijirin, buah-buahan, sayur-sayuran.",
         },
         {
           title: "Air",
@@ -145,11 +145,11 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Larut air",
-            body: "Vitamin B dan C. Diperoleh secara berterusan daripada makanan kerana tidak disimpan lama dalam badan.",
+            body: "Vitamin B dan C. **Diperoleh secara berterusan daripada makanan** kerana tidak disimpan lama dalam badan.",
           },
           {
             title: "Larut lemak",
-            body: "Vitamin A, D, E dan K. Diangkut dan disimpan bersama lemak dalam badan.",
+            body: "Vitamin A, D, E dan K. **Diangkut dan disimpan bersama lemak** dalam badan.",
           },
         ],
       },
@@ -186,19 +186,19 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🧪 Bagaimana ujian makanan berfungsi?",
-          body: "Setiap ujian menggunakan reagen khusus yang bertindak balas dengan nutrien tertentu sahaja dan menghasilkan perubahan warna atau mendakan yang boleh diperhatikan — inilah 'keputusan positif' yang menunjukkan nutrien itu wujud dalam sampel.",
+          body: "Setiap ujian menggunakan **reagen khusus** yang bertindak balas dengan nutrien tertentu sahaja dan menghasilkan perubahan warna atau mendakan yang boleh diperhatikan — inilah 'keputusan positif' yang menunjukkan nutrien itu wujud dalam sampel.",
         },
         {
           title: "Ujian kanji dan gula",
-          body: "Kanji: tambah larutan iodin terus pada sampel pada suhu bilik — warna bertukar kepada biru kehitaman jika positif. Gula penurun: tambah larutan Benedict, kemudian PANASKAN dalam mandi air — warna bertukar daripada biru kepada hijau/kuning/mendakan merah bata jika positif.",
+          body: "Kanji: tambah larutan iodin terus pada sampel pada suhu bilik — warna bertukar kepada **biru kehitaman** jika positif. Gula penurun: tambah larutan Benedict, kemudian PANASKAN dalam mandi air — warna bertukar daripada biru kepada hijau/kuning/mendakan merah bata jika positif.",
         },
         {
           title: "Ujian protein dan lemak",
-          body: "Protein: tambah reagen Millon, kemudian panaskan dalam mandi air — mendakan/warna merah bata menunjukkan keputusan positif. Lemak: campurkan sampel dengan etanol, kemudian tuang ke dalam air — emulsi putih melekit/berkabus terbentuk jika positif.",
+          body: "Protein: tambah reagen Millon, kemudian panaskan dalam mandi air — mendakan/warna merah bata menunjukkan keputusan positif. Lemak: campurkan sampel dengan etanol, kemudian tuang ke dalam air — **emulsi putih melekit/berkabus** terbentuk jika positif.",
         },
         {
           title: "⚠️ Langkah berjaga-jaga",
-          body: "Etanol mudah terbakar, jadi pemanasan bagi ujian Benedict dan Millon dijalankan dalam mandi air, bukan nyalaan api terus.",
+          body: "Etanol **mudah terbakar**, jadi pemanasan bagi ujian Benedict dan Millon dijalankan dalam mandi air, bukan nyalaan api terus.",
         },
       ],
       matcher: {
@@ -295,7 +295,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "Pekerjaan",
-          body: "Petani, buruh dan nelayan memerlukan lebih banyak tenaga kerana kerja berat, berbanding pekerja pejabat seperti guru.",
+          body: "Petani, buruh dan nelayan memerlukan lebih banyak tenaga kerana **kerja berat**, berbanding pekerja pejabat seperti guru.",
         },
         {
           title: "Iklim",
@@ -327,11 +327,11 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Lemak",
-            body: "37 kJ/g (9 kcal/g) — lebih dua kali ketumpatan tenaga protein atau karbohidrat.",
+            body: "**37 kJ/g (9 kcal/g)** — lebih dua kali ketumpatan tenaga protein atau karbohidrat.",
           },
           {
             title: "Protein dan karbohidrat",
-            body: "Setiap satu membekalkan kira-kira 17 kJ/g (4 kcal/g).",
+            body: "Setiap satu membekalkan kira-kira **17 kJ/g (4 kcal/g)**.",
           },
         ],
       },
@@ -378,7 +378,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
               "Berat badan berlebihan / obesiti",
               "Risiko kencing manis, tekanan darah tinggi dan kolesterol tinggi",
             ],
-            note: "Alternatif sihat: kurangkan gula, garam dan minyak; tambah sayur-sayuran dan buah-buahan.",
+            note: "Alternatif sihat: **kurangkan gula, garam dan minyak**; tambah sayur-sayuran dan buah-buahan.",
           },
           {
             icon: "🛋️",
@@ -389,7 +389,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
               "Simpanan lemak badan meningkat",
               "Risiko penyakit jantung",
             ],
-            note: "Alternatif sihat: bersenam secara berkala setiap minggu.",
+            note: "Alternatif sihat: **bersenam secara berkala** setiap minggu.",
           },
           {
             icon: "🚬",
@@ -575,18 +575,18 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Pencernaan fizikal",
-            body: "Berlaku di dalam mulut sahaja. Melibatkan pemecahan makanan secara mekanikal (pengunyahan). TIDAK melibatkan enzim.",
+            body: "Berlaku di dalam mulut sahaja. Melibatkan pemecahan makanan secara mekanikal (pengunyahan). **TIDAK melibatkan enzim**.",
           },
           {
             title: "Pencernaan kimia",
-            body: "Berlaku di dalam mulut, perut, duodenum dan usus. Melibatkan bantuan enzim untuk memecahkan molekul kompleks kepada molekul kecil dan larut.",
+            body: "Berlaku di dalam mulut, perut, duodenum dan usus. **Melibatkan bantuan enzim** untuk memecahkan molekul kompleks kepada molekul kecil dan larut.",
           },
         ],
       },
       accordions: [
         {
           title: "Apakah enzim?",
-          body: "Enzim ialah bahan di dalam badan yang menggalakkan tindak balas kimia dalam sistem pencernaan. Enzim diperbuat daripada protein — tanpa enzim, pencernaan berlaku pada kadar yang sangat perlahan.",
+          body: "Enzim ialah bahan di dalam badan yang **menggalakkan tindak balas kimia** dalam sistem pencernaan. Enzim diperbuat daripada protein — tanpa enzim, pencernaan berlaku pada kadar yang sangat perlahan.",
         },
       ],
       checks: [
@@ -716,13 +716,15 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🧂 Asid Hidroklorik (HCl)",
-          body: "Dirembeskan oleh dinding perut bersama protease. Dua fungsi utama: mengaktifkan protease dan membunuh bakteria dalam makanan yang masuk ke dalam perut.",
+          body: "Dirembeskan oleh dinding perut bersama protease. Dua fungsi utama: **mengaktifkan protease dan membunuh bakteria** dalam makanan yang masuk ke dalam perut.",
         },
         {
           title: "➕ Tahukah Anda: Maltase",
           body: "Usus kecil turut merembeskan maltase, yang mencerna maltosa → glukosa, melengkapkan laluan karbohidrat: kanji → maltosa → glukosa. Maltase adalah butiran tambahan — anda tidak perlu menghafalnya seperti tiga enzim utama di atas.",
         },
       ],
+      remember:
+        "Tiga enzim pencernaan utama: amilase (kanji → maltosa), protease (protein → asid amino) dan lipase (lemak → asid lemak + gliserol). Setiap satu mencerna substrat yang berbeza.",
       checks: [
         {
           question:
@@ -742,11 +744,11 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Banyak vilus",
-          body: "Berjuta-juta unjuran halus menambahkan luas permukaan penyerapan.",
+          body: "Berjuta-juta unjuran halus **menambahkan luas permukaan** penyerapan.",
         },
         {
           title: "Dinding setebal satu sel",
-          body: "Dinding vilus sangat nipis, mewujudkan jarak resapan yang pendek.",
+          body: "Dinding vilus sangat nipis, mewujudkan **jarak resapan yang pendek**.",
         },
         {
           title: "Permukaan berlipat-lipat",
@@ -827,11 +829,11 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "🔍 Pemerhatian & Inferens",
-          body: "Tabung didih P (kanji): ujian iodin dan Benedict pada air suling kekal negatif pada akhir eksperimen — molekul kanji terlalu besar untuk menembusi tiub Visking. Tabung didih Q (glukosa): ujian Benedict pada air suling menjadi positif (mendakan merah bata) selepas 30 minit — molekul glukosa cukup kecil untuk meresap keluar melalui tiub Visking.",
+          body: "Tabung didih P (kanji): ujian iodin dan Benedict pada air suling kekal negatif pada akhir eksperimen — **molekul kanji terlalu besar** untuk menembusi tiub Visking. Tabung didih Q (glukosa): ujian Benedict pada air suling menjadi positif (mendakan merah bata) selepas 30 minit — **molekul glukosa cukup kecil** untuk meresap keluar melalui tiub Visking.",
         },
         {
           title: "💡 Kesimpulan",
-          body: "Tiub Visking berfungsi seperti model dinding usus kecil: molekul kecil dan larut seperti glukosa boleh meresap melaluinya, tetapi molekul besar seperti kanji tidak boleh.",
+          body: "Tiub Visking berfungsi seperti model dinding usus kecil: molekul kecil dan larut seperti glukosa boleh meresap melaluinya, tetapi **molekul besar seperti kanji tidak boleh**.",
         },
       ],
       viskingExperiment: {
@@ -915,17 +917,17 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
               "Oksigen bertindak balas dengan glukosa di dalam sel",
               "Respirasi → tenaga",
             ],
-            note: "Ketiga-tiga sistem bekerjasama supaya sel badan menerima nutrien dan oksigen serentak.",
+            note: "**Ketiga-tiga sistem bekerjasama** supaya sel badan menerima nutrien dan oksigen serentak.",
           },
         ],
       },
       comparison: {
         title: "Asimilasi — penggunaan hasil akhir pencernaan",
         columns: [
-          { title: "Glukosa", body: "Digunakan untuk menghasilkan tenaga melalui respirasi." },
+          { title: "Glukosa", body: "Digunakan untuk **menghasilkan tenaga** melalui respirasi." },
           {
             title: "Asid amino, asid lemak & gliserol",
-            body: "Asid amino membentuk komponen sel baharu. Asid lemak dan gliserol bergabung membentuk lemak — penebat haba dan pelindung organ dalaman.",
+            body: "Asid amino **membentuk komponen sel baharu**. Asid lemak dan gliserol bergabung membentuk lemak — penebat haba dan pelindung organ dalaman.",
           },
         ],
       },
@@ -952,7 +954,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "Tinja",
-          body: "Baki pepejal (serat, sisa rembesan salur pencernaan, sel mati, air) yang tidak diserap atau dicerna.",
+          body: "**Baki pepejal** (serat, sisa rembesan salur pencernaan, sel mati, air) yang tidak diserap atau dicerna.",
         },
         { title: "Rektum", body: "Menyimpan tinja sementara sebelum disingkirkan." },
         { title: "Dubur", body: "Tinja disingkirkan daripada badan melalui proses penyahtinjaan." },
@@ -968,7 +970,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
               "Pergerakan tinja menjadi perlahan dan keras",
               "Sembelit",
             ],
-            note: "Cara elak: makan cukup serat (buah-buahan, sayur-sayuran, bijirin) dan air (sekurang-kurangnya 2 liter sehari).",
+            note: "Cara elak: makan **cukup serat** (buah-buahan, sayur-sayuran, bijirin) dan air (sekurang-kurangnya 2 liter sehari).",
           },
         ],
       },

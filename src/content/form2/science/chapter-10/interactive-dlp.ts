@@ -9,7 +9,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 10,
   blogHighlight: {
     title: "Science Blog — Lightning and Thunder",
-    body: "Lightning and thunder actually happen at the same instant — but light reaches your eyes far faster than sound reaches your ears, which is why you always see the flash before you hear the rumble.",
+    body: "Lightning and thunder actually **happen at the same instant** — but **light reaches your eyes far faster than sound** reaches your ears, which is why you always see the flash before you hear the rumble.",
     imagePath: chapterImage,
   },
   keywords: [
@@ -31,7 +31,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       number: "10.1",
       title: "Sound Production and Propagation",
       intro:
-        "Sound is a form of energy produced by vibration. When an object vibrates, the particles around it vibrate too and collide with neighbouring particles. The vibration is passed from one particle to the next as a wave until it reaches a listener's ear. Because a sound wave has to be passed along by particles, sound needs a medium to propagate and cannot travel through a vacuum.",
+        "Sound is **a form of energy produced by vibration**. When an object vibrates, the particles around it vibrate too and collide with neighbouring particles. The vibration is passed from one particle to the next as a wave until it reaches a listener's ear. Because a sound wave has to be passed along by particles, sound **needs a medium to propagate and cannot travel through a vacuum**.",
       contextImages: [
         {
           src: SCIENCE_F2_CH10_IMAGES.tuningFork,
@@ -59,7 +59,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🗣️ Vocal cords",
-          body: "Touch the outside of your throat while speaking — you can feel your vocal cords vibrating. That vibration is what produces your voice.",
+          body: "Touch the outside of your throat while speaking — you can feel **your vocal cords vibrating**. That vibration is what produces your voice.",
         },
         {
           title: "🎸 Instrument strings",
@@ -71,17 +71,17 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "🔔 A bell",
-          body: "The metal surface of a bell vibrates when struck, setting the nearby air particles vibrating.",
+          body: "The metal surface of a bell vibrates when struck, **setting the nearby air particles vibrating**.",
         },
       ],
       accordions: [
         {
           title: "The vacuum jar demonstration",
-          body: "A ringing alarm clock is placed inside a glass jar, then the air in the jar is pumped out with a vacuum pump. The more air is removed, the fainter the ringing becomes, even though the clock is still vibrating. This shows that sound needs a medium to propagate.",
+          body: "A ringing alarm clock is placed inside a glass jar, then the air in the jar is pumped out with a vacuum pump. **The more air is removed, the fainter the ringing becomes, even though the clock is still vibrating.** This shows that sound needs a medium to propagate.",
         },
         {
           title: "Why there is no sound in space",
-          body: "Space is a vacuum — there are no particles to pass the vibration along. That is why astronauts communicate using radio waves rather than by speaking directly to one another.",
+          body: "Space is a vacuum — **there are no particles to pass the vibration along**. That is why astronauts communicate using radio waves rather than by speaking directly to one another.",
         },
       ],
       checks: [
@@ -99,7 +99,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       number: "10.1",
       title: "Reflection, Absorption and Speed of Sound",
       intro:
-        "When a sound wave strikes the surface of an object, part of it is reflected and part of it is absorbed. How much is reflected or absorbed depends on the type of surface. Sound waves also propagate at different speeds in different media, depending on how closely the particles of that medium are packed together.",
+        "When a sound wave strikes the surface of an object, **part of it is reflected and part of it is absorbed**. How much is reflected or absorbed depends on the type of surface. Sound waves also **propagate at different speeds in different media**, depending on how closely the particles of that medium are packed together.",
       contextImages: [
         {
           src: SCIENCE_F2_CH10_IMAGES.reflectionAbsorption,
@@ -115,11 +115,11 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       tabs: [
         {
           title: "Hard & smooth surfaces",
-          body: "Hard, smooth surfaces reflect sound well. Marble tiles and bare walls are examples.",
+          body: "**Hard, smooth surfaces reflect sound well.** Marble tiles and bare walls are examples.",
         },
         {
           title: "Soft & rough surfaces",
-          body: "Soft, rough surfaces absorb sound well. Carpet and cork board are examples. That is why cinema walls are lined with thin soft board — to absorb sound so dialogue and music stay clear.",
+          body: "**Soft, rough surfaces absorb sound well.** Carpet and cork board are examples. That is why **cinema walls are lined with thin soft board** — to absorb sound so dialogue and music stay clear.",
         },
       ],
       soundMedia: {
@@ -154,7 +154,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "The plastic container demonstration — what it actually compares",
-          body: "In this demonstration, an ear is placed against plastic containers filled separately with air, water and flour while an alarm clock is sounded. What is compared is the loudness of the sound heard through each container. Note that this demonstration compares loudness — it does not measure the speed of sound. The speed of sound in different media is learned separately, from particle arrangement as shown above.",
+          body: "In this demonstration, an ear is placed against plastic containers filled separately with air, water and flour while an alarm clock is sounded. What is compared is the loudness of the sound heard through each container. Note that this demonstration **compares loudness — it does not measure the speed of sound**. The speed of sound in different media is learned separately, from particle arrangement as shown above.",
         },
       ],
       checks: [
@@ -172,25 +172,27 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       number: "10.2",
       title: "Frequency, Amplitude and the Oscilloscope",
       intro:
-        "Frequency is the number of complete vibrations in one second, and it is measured in hertz (Hz). Amplitude is the maximum displacement of the wave from the equilibrium position. Both properties can be seen on the screen of a cathode-ray oscilloscope (C.R.O.) when an audio signal generator is connected to a loudspeaker and the oscilloscope.",
+        "Frequency is **the number of complete vibrations in one second**, and it is measured in hertz (Hz). Amplitude is **the maximum displacement of the wave from the equilibrium position**. Both properties can be seen on the screen of a cathode-ray oscilloscope (C.R.O.) when an audio signal generator is connected to a loudspeaker and the oscilloscope.",
+      remember:
+        "Frequency is the number of complete vibrations in one second, measured in hertz (Hz). Amplitude is the maximum displacement of the wave from the equilibrium position.",
       cards: [
         {
           title: "📐 Amplitude",
-          body: "The maximum displacement of the wave from the equilibrium position — the height of the wave crest measured from the centre line.",
+          body: "The maximum displacement of the wave from the equilibrium position — **the height of the wave crest measured from the centre line**.",
         },
         {
           title: "🔁 Frequency",
-          body: "The number of complete vibrations in one second. Its unit is the hertz (Hz).",
+          body: "The number of complete vibrations in one second. **Its unit is the hertz (Hz).**",
         },
       ],
       tabs: [
         {
           title: "Reading amplitude on the C.R.O.",
-          body: "The taller the wave on the oscilloscope screen, the greater the amplitude of vibration, and the louder the sound produced by the loudspeaker.",
+          body: "The taller the wave on the oscilloscope screen, **the greater the amplitude of vibration, and the louder the sound produced**.",
         },
         {
           title: "Reading frequency on the C.R.O.",
-          body: "The more complete waves that appear within the same time interval on the oscilloscope screen, the higher the frequency, and the higher the pitch of the sound.",
+          body: "The more complete waves that appear within the same time interval on the oscilloscope screen, **the higher the frequency, and the higher the pitch of the sound**.",
         },
       ],
       waveVisualizer: {
@@ -213,25 +215,25 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       number: "10.2",
       title: "Loudness and Pitch of Sound",
       intro:
-        "Our ears can tell sounds apart because every sound has its own loudness and pitch. The loudness of a sound depends on the amplitude of the sound wave, while the pitch of a sound depends on the frequency of the sound wave.",
+        "Our ears can tell sounds apart because every sound has its own loudness and pitch. **The loudness of a sound depends on the amplitude of the sound wave**, while **the pitch of a sound depends on the frequency of the sound wave**.",
       cards: [
         {
           title: "🔊 Loudness depends on amplitude",
-          body: "The greater the amplitude of vibration, the louder the sound produced. The smaller the amplitude, the softer the sound.",
+          body: "The greater the amplitude of vibration, the louder the sound produced. **The smaller the amplitude, the softer the sound.**",
         },
         {
           title: "🎵 Pitch depends on frequency",
-          body: "The higher the frequency of vibration, the higher the pitch of the sound. The lower the frequency, the lower the pitch.",
+          body: "The higher the frequency of vibration, the higher the pitch of the sound. **The lower the frequency, the lower the pitch.**",
         },
       ],
       tabs: [
         {
           title: "Low frequency",
-          body: "A cow's moo is a low-frequency sound, so its pitch is low.",
+          body: "A cow's moo is **a low-frequency sound**, so its pitch is low.",
         },
         {
           title: "High frequency",
-          body: "A rat's squeak is a high-frequency sound, so its pitch is high.",
+          body: "A rat's squeak is **a high-frequency sound**, so its pitch is high.",
         },
       ],
       checks: [
@@ -249,7 +251,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       number: "10.2",
       title: "Sound from Musical Instruments",
       intro:
-        "Musical instruments such as the piano, recorder, gendang, drum and guitar all produce sound through vibration. By changing how an instrument is played, a musician can change the loudness and the pitch of the sound separately. Notice that these two characteristics are controlled by different things.",
+        "Musical instruments such as the piano, recorder, gendang, drum and guitar all produce sound through vibration. By changing how an instrument is played, a musician can **change the loudness and the pitch of the sound separately**. Notice that these two characteristics are controlled by different things.",
       contextImages: [
         {
           src: SCIENCE_F2_CH10_IMAGES.instruments,
@@ -265,11 +267,11 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       tabs: [
         {
           title: "Guitar — plucked harder",
-          body: "Plucking a guitar string harder produces a vibration with a greater amplitude, so the sound becomes louder. The pitch does not change — the note being played stays the same.",
+          body: "Plucking a guitar string harder produces a vibration with a greater amplitude, so the sound becomes louder. **The pitch does not change** — the note being played stays the same.",
         },
         {
           title: "Guitar — string tightened",
-          body: "Tightening a guitar string makes it vibrate at a higher frequency, so the pitch of the sound becomes higher. This is entirely different from plucking harder.",
+          body: "Tightening a guitar string **makes it vibrate at a higher frequency**, so the pitch of the sound becomes higher. This is entirely different from plucking harder.",
         },
         {
           title: "Piano",
@@ -277,7 +279,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "Recorder, gendang and drum",
-          body: "Blowing a recorder harder, or striking a gendang or drum harder, produces a greater amplitude of vibration, so the sound is louder. The size and tension of a drum membrane affect the frequency of vibration, which is its pitch.",
+          body: "Blowing a recorder harder, or striking a gendang or drum harder, produces a greater amplitude of vibration, so the sound is louder. **The size and tension of a drum membrane** affect the frequency of vibration, which is its pitch.",
         },
       ],
       checks: [
@@ -295,7 +297,9 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       number: "10.3",
       title: "Echo and the Doppler Effect",
       intro:
-        "The reflection of sound waves produces phenomena we meet every day. An echo is produced when a sound wave is reflected back to the listener from a hard surface. The Doppler effect happens when there is relative movement between a sound source and an observer.",
+        "The reflection of sound waves produces phenomena we meet every day. An echo is produced when **a sound wave is reflected back to the listener from a hard surface**. The Doppler effect happens when there is **relative movement between a sound source and an observer**.",
+      quickExplanation:
+        "A sound source such as an ambulance siren actually emits sound at a steady frequency the whole time — what changes is the frequency received by the observer because of relative motion, not the sound being emitted.",
       contextImages: [
         {
           src: SCIENCE_F2_CH10_IMAGES.echoCave,
@@ -358,7 +362,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       number: "10.3",
       title: "Sonar, Sonogram and Echolocation",
       intro:
-        "Ultrasound is a sound wave with a frequency greater than 20 000 Hz. Ultrasound cannot be heard by humans but can be heard by animals such as bats. The reflection of ultrasound waves is used across several sectors, because the reflected sound carries information about whatever it struck.",
+        "Ultrasound is a sound wave with **a frequency greater than 20 000 Hz**. Ultrasound **cannot be heard by humans but can be heard by animals such as bats**. The reflection of ultrasound waves is used across several sectors, because the reflected sound carries information about whatever it struck.",
       contextImages: [
         {
           src: SCIENCE_F2_CH10_IMAGES.sonarEcholocation,
@@ -400,15 +404,15 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🚢 Shipping sector",
-          body: "Sonar is used to detect objects under water.",
+          body: "Sonar is used to **detect objects under water**.",
         },
         {
           title: "🎣 Fisheries sector",
-          body: "Sonar helps locate schools of fish below the surface of the sea.",
+          body: "Sonar helps **locate schools of fish** below the surface of the sea.",
         },
         {
           title: "🏥 Medical sector",
-          body: "A sonogram uses reflected ultrasound to produce images of the inside of the body, for example scanning a foetus in the womb.",
+          body: "A sonogram uses reflected ultrasound to produce images of the inside of the body, for example **scanning a foetus in the womb**.",
         },
       ],
       checks: [
@@ -426,7 +430,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       number: "10.3",
       title: "Human and Animal Hearing Limits",
       intro:
-        "The human ear can only detect sound within a certain frequency range. The frequency of sound that the human ear can detect is limited to the range 20 Hz to 20 000 Hz. This range narrows as we grow older, because the ear becomes less sensitive to sound frequencies. Animals have their own hearing limits, and some reach far beyond the human range.",
+        "The human ear can only detect sound within a certain frequency range. The frequency of sound that the human ear can detect is **limited to the range 20 Hz to 20 000 Hz**. This range **narrows as we grow older**, because the ear becomes less sensitive to sound frequencies. Animals have their own hearing limits, and some reach far beyond the human range.",
       hearingRange: {
         title: "📊 Human and animal hearing ranges",
         entries: [
@@ -456,25 +460,25 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
       number: "10.3",
       title: "Overcoming Human Hearing Limitations",
       intro:
-        "Because human hearing is limited, we cannot hear sounds that are too weak or too far away. To overcome this, we use special devices that amplify or channel sound so that it becomes strong enough to hear.",
+        "Because human hearing is limited, we **cannot hear sounds that are too weak or too far away**. To overcome this, we use special devices that amplify or channel sound so that it becomes strong enough to hear.",
       cards: [
         {
           title: "🩺 Stethoscope",
-          body: "A stethoscope channels and amplifies the sound of a patient's heartbeat directly to the doctor's ears, so a sound that is too weak can be heard clearly.",
+          body: "A stethoscope **channels and amplifies the sound** of a patient's heartbeat directly to the doctor's ears, so a sound that is too weak can be heard clearly.",
         },
         {
           title: "👂 Hearing aid",
-          body: "A hearing aid amplifies the sound entering the ear, helping a person with hearing difficulty hear more clearly.",
+          body: "A hearing aid **amplifies the sound entering the ear**, helping a person with hearing difficulty hear more clearly.",
         },
         {
           title: "📢 Loudspeaker",
-          body: "A loudspeaker makes a voice louder so that it can be heard from a distance.",
+          body: "A loudspeaker **makes a voice louder** so that it can be heard from a distance.",
         },
       ],
       accordions: [
         {
           title: "What these devices actually do",
-          body: "These devices amplify or channel sound so that a sound which is too weak or too far away becomes audible. They do not widen the human hearing frequency range. The biological range of the human ear remains 20 Hz to 20 000 Hz — a hearing aid does not let a human hear ultrasound.",
+          body: "These devices amplify or channel sound so that a sound which is too weak or too far away becomes audible. They **do not widen the human hearing frequency range**. The biological range of the human ear remains 20 Hz to 20 000 Hz — a hearing aid does not let a human hear ultrasound.",
         },
       ],
       checks: [

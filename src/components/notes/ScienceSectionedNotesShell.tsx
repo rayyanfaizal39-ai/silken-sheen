@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 import { ResearchModuleMeta } from "@/components/science/ScienceDiscoveryChrome";
+import { ScienceEmphasis } from "@/components/notes/blocks/ScienceEmphasis";
 
 type Lang = "en" | "bm";
 
@@ -100,7 +101,7 @@ export function ScienceSectionedNotesShell({
         <ResearchModuleMeta index={current} total={total} title={active.title} lang={lang} />
         {active.description ? (
           <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">
-            {active.description}
+            <ScienceEmphasis text={active.description} />
           </p>
         ) : (
           <div className="mb-6" />

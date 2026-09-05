@@ -139,11 +139,11 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
     },
     {
       term: "Vertebrate",
-      definition: "An animal with a backbone: fish, amphibians, reptiles, birds or mammals.",
+      definition: "An animal **with a backbone**: fish, amphibians, reptiles, birds or mammals.",
     },
     {
       term: "Invertebrate",
-      definition: "An animal without a backbone, e.g. insects, worms, spiders.",
+      definition: "An animal **without a backbone**, e.g. insects, worms, spiders.",
     },
     {
       term: "Mammal",
@@ -240,12 +240,12 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
       id: "in-situ",
       label: "In situ",
       description:
-        "Conserves a species inside its own natural habitat — think national parks, permanent forest reserves and marine parks.",
+        "Conserves a species **inside its own natural habitat** — think national parks, permanent forest reserves and marine parks.",
     },
     {
       id: "ex-situ",
       label: "Ex situ",
-      description: "Conserves a species outside its natural habitat — think zoos and botanical gardens.",
+      description: "Conserves a species **outside its natural habitat** — think zoos and botanical gardens.",
     },
   ],
   humanImpact: [
@@ -284,7 +284,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
       id: "endemic",
       label: "Endemic species",
       definition:
-        "A species that lives only within a restricted habitat in one specific location — found nowhere else naturally. Endemic tells you about LOCATION.",
+        "A species that lives only within a restricted habitat in one specific location — found nowhere else naturally. **Endemic** tells you about LOCATION.",
       examples: [
         "🌸 Rafflesia",
         "🪤 Pitcher plant (Nepenthes rajah)",
@@ -297,7 +297,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
       id: "threatened",
       label: "Threatened species",
       definition:
-        "A species whose numbers are falling so far that it risks extinction. Threatened tells you about RISK OF EXTINCTION, not location. The Wildlife Protection Act 1972 bans killing or trading them.",
+        "A species whose numbers are falling so far that it risks extinction. **Threatened** tells you about RISK OF EXTINCTION, not location. The Wildlife Protection Act 1972 bans killing or trading them.",
       examples: ["🐅 Malayan tiger", "🐢 Leatherback turtle", "🐘 Borneo pygmy elephant", "🦜 Hornbill"],
     },
   ],
@@ -418,7 +418,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
       id: "flower",
       label: "Flowering",
       detail:
-        "Every seed carries a cotyledon — its stored starter food. One cotyledon = monocotyledon. A pair = dicotyledon.",
+        "Every seed carries a **cotyledon** — its stored starter food. One cotyledon = **monocotyledon**. A pair = **dicotyledon**.",
     },
   ],
   cotyledonCompare: [

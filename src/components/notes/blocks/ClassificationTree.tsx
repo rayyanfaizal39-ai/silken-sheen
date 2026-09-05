@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { ClassificationBranch, CompareColumn } from "@/content/form2/science/chapter-1/interactive-types";
+import { ScienceEmphasis } from "./ScienceEmphasis";
 
 function VertebrateGroupTabs({ groups }: { groups: NonNullable<ClassificationBranch["vertebrateGroups"]> }) {
   const [active, setActive] = useState(0);
@@ -49,7 +50,9 @@ function BranchDetail({ branch }: { branch: ClassificationBranch }) {
   return (
     <div className="mt-3 rounded-xl border border-border bg-secondary/30 p-3.5 text-left">
       {branch.detail && (
-        <p className="text-[13px] leading-relaxed text-muted-foreground">{branch.detail}</p>
+        <p className="text-[13px] leading-relaxed text-muted-foreground">
+          <ScienceEmphasis text={branch.detail} />
+        </p>
       )}
       {branch.chips && (
         <div className="flex flex-wrap gap-1.5">

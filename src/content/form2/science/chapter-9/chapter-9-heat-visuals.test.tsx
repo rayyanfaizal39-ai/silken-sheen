@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { existsSync, readFileSync, statSync } from "node:fs";
@@ -95,7 +96,7 @@ function particleSvg(markup: string): string {
 
 /** Renders a two-state figure with the named state selected. */
 function renderState<B extends { [k: string]: unknown }>(
-  Component: (props: { block: B; lang?: string }) => JSX.Element,
+  Component: (props: { block: B; lang?: string }) => ReactElement,
   block: B,
   listKey: string,
   id: string,
@@ -451,8 +452,9 @@ describe("Ch9 particle model — spacing changes, particles do not", () => {
     );
     const markup = particleSvg(renderState(ExpansionParticles, block, "states", "gas", "en"));
     const view = markup.match(/viewBox="0 0 (\d+) (\d+)"/)!;
-    // Read the container's own `width`, not the `stroke-width` that follows it.
-    const attrs = markup.match(/<rect ([^>]*?)\/>/)![1];
+    // Read the container's own `width`, not the `stroke-width` that follows it:
+    // the lookbehind for a space is what tells the two apart.
+    const attrs = markup.match(/<rect ([^>]*)>/)![1];
     const chamberWidth = Number(/(?:^| )width="([\d.]+)"/.exec(attrs)![1]);
     const coverage = chamberWidth / Number(view[1]);
     expect(coverage, "the chamber uses less than half the canvas width").toBeGreaterThan(0.6);
