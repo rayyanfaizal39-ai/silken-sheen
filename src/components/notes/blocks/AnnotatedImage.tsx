@@ -17,6 +17,8 @@ import {
   layoutCallouts,
   type AnnotationMode,
 } from "./annotation-layout";
+import { SpotlightOverlay } from "./SpotlightOverlay";
+import { spotlightBounds, type SpotlightShape, type SpotlightPulseGroup } from "./spotlight-shapes";
 
 /**
  * One annotated point on the image.
@@ -55,6 +57,41 @@ export type ImageAnnotation = {
    */
   w?: number;
   h?: number;
+  /**
+   * `spotlight` mode only — one or more shapes, in artwork percentages, that
+   * stay bright while the rest of the picture dims. Multiple shapes let one
+   * concept ("population") light up several discrete organisms at once rather
+   * than one rectangle that can only ever grow or shrink. Omit (or pass an
+   * empty array) for a concept that IS the whole picture — it renders at full
+   * brightness with no dimming at all.
+   */
+  spotlightShapes?: SpotlightShape[];
+  /**
+   * `spotlight` mode only — short phrase in a floating callout drawn directly
+   * on the artwork next to the shape. Falls back to `label`. Keep it to a
+   * few words — the fuller definition still belongs in `note`, read from the
+   * explanation panel below.
+   */
+  spotlightCaption?: string;
+  /**
+   * `spotlight` mode only — tints the revealed area this CSS colour instead
+   * of just removing the dim, e.g. a translucent blue wash over a habitat's
+   * boundary so the PLACE itself reads as highlighted, not just brighter.
+   */
+  spotlightTint?: string;
+  /**
+   * `spotlight` mode only — draws one soft unifying wash behind several
+   * shapes so a group reads as one group rather than several unrelated spots.
+   */
+  spotlightGroupHalo?: boolean;
+  /**
+   * `spotlight` mode only — for a concept that dims nothing (typically the
+   * one with no `spotlightShapes`, e.g. "ecosystem"): briefly sweeps two
+   * colour groups across the artwork — living vs. non-living, say — before
+   * settling back into the plain full-colour picture. Also draws a persistent
+   * soft glow around the whole frame while this concept stays selected.
+   */
+  spotlightPulseGroups?: SpotlightPulseGroup[];
 };
 
 /** An annotation that has a place on the artwork, so it can be drawn. */
@@ -184,6 +221,7 @@ export function AnnotatedImage({
   const isNumbers = annotationMode === "numbers";
   const isClean = annotationMode === "clean";
   const isRegions = annotationMode === "regions";
+  const isSpotlight = annotationMode === "spotlight";
   const wantsLabels = annotationMode === "labels" || annotationMode === "hybrid";
 
   // Direct labels stay on the artwork only while there is room for them. Past
@@ -205,13 +243,66 @@ export function AnnotatedImage({
 
   const showPins = isNumbers || needsSmallScreenFallback;
   const showLegend =
-    isNumbers || isClean || isRegions || annotationMode === "hybrid" || needsSmallScreenFallback;
-  // A `clean`, `regions` or `hybrid` legend is the point, so it shows at every
-  // width; a fallback legend only accompanies the small-screen pins.
+    isNumbers ||
+    isClean ||
+    isRegions ||
+    isSpotlight ||
+    annotationMode === "hybrid" ||
+    needsSmallScreenFallback;
+  // A `clean`, `regions`, `spotlight` or `hybrid` legend is the point, so it
+  // shows at every width; a fallback legend only accompanies the small-screen
+  // pins.
   const legendVisibility =
-    isNumbers || isClean || isRegions || annotationMode === "hybrid" ? "" : pinVisibility;
+    isNumbers || isClean || isRegions || isSpotlight || annotationMode === "hybrid"
+      ? ""
+      : pinVisibility;
 
   const activeAnnotation = annotations.find((a) => a.id === active) ?? null;
+  const spotlightShapes = activeAnnotation?.spotlightShapes ?? [];
+  const spotlightMaskId = `${baseId}-spotlight-mask`;
+  const spotlightCalloutStyle: React.CSSProperties | undefined = isSpotlight
+    ? (() => {
+        if (spotlightShapes.length > 0) {
+          const { minX, minY, maxX, maxY } = spotlightBounds(spotlightShapes);
+          const cx = Math.min(94, Math.max(6, (minX + maxX) / 2));
+          // A group spanning most of the artwork's height (community's whole
+          // living cast, habitat's near-full-height pond boundary) has no
+          // single edge worth hugging — snugging to its top or bottom edge
+          // pushes the callout to the very rim of the frame and clips it, so
+          // it gets a plain top-banner spot instead.
+          if (maxY - minY > 50) {
+            return { left: "50%", top: "4%", transform: "translate(-50%, 0)" };
+          }
+          const roomAbove = minY;
+          const roomBelow = 100 - maxY;
+          return roomBelow >= roomAbove
+            ? { left: `${cx}%`, top: `${Math.min(92, maxY + 3)}%`, transform: "translate(-50%, 0)" }
+            : { left: `${cx}%`, top: `${Math.max(3, minY - 3)}%`, transform: "translate(-50%, -100%)" };
+        }
+        return { left: "50%", top: "4%", transform: "translate(-50%, 0)" };
+      })()
+    : undefined;
+  const spotlightLayer = isSpotlight ? (
+    <>
+      <SpotlightOverlay
+        maskId={spotlightMaskId}
+        shapes={spotlightShapes}
+        tint={activeAnnotation?.spotlightTint}
+        groupHalo={activeAnnotation?.spotlightGroupHalo}
+        pulseGroups={activeAnnotation?.spotlightPulseGroups}
+        wholeGlow={Boolean(activeAnnotation?.spotlightPulseGroups?.length)}
+      />
+      {activeAnnotation && (
+        <div
+          key={activeAnnotation.id}
+          className="spotlight-callout pointer-events-none absolute z-10 max-w-[80%] whitespace-normal rounded-full bg-primary px-3 py-1.5 text-center text-[11px] font-bold leading-tight text-primary-foreground shadow-[0_4px_16px_rgba(0,0,0,0.45)] sm:text-[12.5px]"
+          style={spotlightCalloutStyle}
+        >
+          {activeAnnotation.spotlightCaption ?? activeAnnotation.label}
+        </div>
+      )}
+    </>
+  ) : null;
   const resolvedSize = size ?? defaultLearningImageSize(aspect);
   const artMaxWidth = learningImageMaxWidth(resolvedSize, aspect);
   // In callout mode the gutters sit outside the picture, so the frame is wider
@@ -251,6 +342,8 @@ export function AnnotatedImage({
             isCallout ? "callout-art" : ""
           }`}
         />
+
+        {spotlightLayer}
 
         {/* Leader lines, drawn under the labels. Percentage coordinates keep
             every line locked to its structure at any rendered width. */}
@@ -318,6 +411,15 @@ export function AnnotatedImage({
             const isActive = active === item.id;
             const width = item.w ?? 24;
             const height = item.h ?? 24;
+            // Smaller regions sit above larger ones. Regions legitimately nest —
+            // a pond's dragonflies are inside its community, which is inside the
+            // pond, which is inside the ecosystem — and with one shared z-index
+            // the outermost region is drawn last and swallows every click meant
+            // for the ones within it, leaving them reachable only by keyboard.
+            const area = width * height;
+            const enclosing = placed.filter(
+              (other) => (other.w ?? 24) * (other.h ?? 24) > area,
+            ).length;
             return (
               <button
                 key={item.id}
@@ -330,7 +432,7 @@ export function AnnotatedImage({
                 // which is exactly the state the explanation panel must keep.
                 onClick={() => setActive(isActive ? null : item.id)}
                 onFocus={() => setActive(item.id)}
-                className={`absolute z-10 cursor-pointer rounded-xl border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                className={`absolute cursor-pointer rounded-xl border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                   isActive ? "border-primary bg-primary/12" : "border-transparent hover:border-primary/60"
                 }`}
                 style={{
@@ -338,6 +440,8 @@ export function AnnotatedImage({
                   top: `${Math.max(0, item.y - height / 2)}%`,
                   width: `${width}%`,
                   height: `${height}%`,
+                  // Base 10, as before; the rank stays below the enlarge control at z-20.
+                  zIndex: 10 + enclosing,
                 }}
               />
             );
@@ -527,6 +631,7 @@ export function AnnotatedImage({
         alt={alt}
         title={legendLabel ?? alt}
         closeLabel={closeLabel}
+        overlay={spotlightLayer}
       />
     </figure>
   );

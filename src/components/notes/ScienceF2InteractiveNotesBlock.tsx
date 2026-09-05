@@ -45,6 +45,8 @@ import { useProgress } from "@/hooks/use-progress";
 import { AnnotatedImage } from "@/components/notes/blocks/AnnotatedImage";
 import { InteractiveFigureCard } from "@/components/notes/blocks/InteractiveFigureCard";
 import { EcologicalTermsDiagram } from "@/components/notes/blocks/EcologicalTermsDiagram";
+import { ConceptTree } from "@/components/notes/blocks/ConceptTree";
+import { ImpactTable } from "@/components/notes/blocks/ImpactTable";
 import { EnzymeExplorer } from "@/components/notes/blocks/EnzymeExplorer";
 import { ImmuneResponseGraph } from "@/components/notes/blocks/ImmuneResponseGraph";
 import { DefenceLinesDiagram } from "@/components/notes/blocks/DefenceLinesDiagram";
@@ -259,7 +261,24 @@ export function ScienceF2InteractiveNotesBlock({
         {chapter8Figure && (
           <Chapter8ContextFigure kind={chapter8Figure} section={section} lang={lang} />
         )}
+        {section.standardTitle && (
+          // Which numbered part of the chapter this is. The shell prints only
+          // the section's own title, so without this a learner reading
+          // "Producers, Consumers and Decomposers" cannot see that they are
+          // inside 2.1 Energy Flow in an Ecosystem.
+          <p className="-mt-1 text-[11.5px] font-semibold uppercase tracking-wide text-primary">
+            {section.standardTitle}
+          </p>
+        )}
         {section.contextImages?.map(renderFigure)}
+        {section.contextImageSet && section.contextImageSet.length > 0 && (
+          // One set, one footprint each: three across from `sm`, stacked on a
+          // phone. Every member keeps its own caption, alt text and enlarge
+          // control.
+          <div className="grid gap-3 sm:grid-cols-3" data-figure-set="">
+            {section.contextImageSet.map(renderFigure)}
+          </div>
+        )}
         {section.contextImagePair && section.contextImagePair.length > 0 && (
           // A matched pair reads as one figure, so the two share a row from
           // `sm` up and stack on a phone. Each half keeps its own caption,
@@ -281,6 +300,32 @@ export function ScienceF2InteractiveNotesBlock({
                 </div>
               ))}
             </dl>
+          </div>
+        )}
+        {section.conceptTree && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.conceptTree.title}
+            </h3>
+            {section.conceptTree.instruction && (
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                {section.conceptTree.instruction}
+              </p>
+            )}
+            <ConceptTree block={section.conceptTree} />
+          </div>
+        )}
+        {section.impactTable && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.impactTable.title}
+            </h3>
+            {section.impactTable.instruction && (
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                {section.impactTable.instruction}
+              </p>
+            )}
+            <ImpactTable block={section.impactTable} />
           </div>
         )}
         {section.cards && !isChapter8 && (

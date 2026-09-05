@@ -36,28 +36,38 @@ function allStrings(content: ScienceF2InteractiveContent): [string, string][] {
 /** The exact set of terms each stream is expected to have marked (order-independent). */
 const EXPECTED: Record<string, string[]> = {
   BM: [
-    "membuat makanan sendiri",
+    "Matahari",
+    "tenaga kimia",
+    "rantai makanan dan siratan makanan",
+    "menghasilkan makanan sendiri melalui fotosintesis",
+    "herbivor dan omnivor",
     "memakan pengeluar",
-    "dipanggil karnivor primer",
-    "biasanya bersaiz lebih besar",
+    "pengguna primer",
+    "karnivor sekunder",
+    "pengguna sekunder",
+    "menguraikan haiwan dan tumbuhan mati",
+    "bahan yang lebih ringkas atau nutrien",
     "saprofitisme",
     "gabungan beberapa rantai makanan",
     "terbebas sebagai haba",
     "makanan yang tidak tercerna, iaitu tinja",
+    "membantu memacu dan mengawal kitar air itu sendiri",
+    "respirasi, penyahtinjaan dan perkumuhan",
+    "perpeluhan dan urinasi",
     "dikitar berterusan",
     "Respirasi, pereputan oleh pengurai dan pembakaran",
     "Respirasi haiwan dan tumbuhan, pereputan oleh pengurai serta pembakaran",
     "mengekalkan keseimbangan kandungan",
     "menggunakan oksigen",
-    "membantu memacu dan mengawal kitar air itu sendiri",
-    "respirasi, perpeluhan dan perkumuhan",
     "menanam semula pokok",
     "menggunakan pengangkutan awam",
     "menyimpan air hujan",
-    "serupa dan boleh saling membiak",
+    "ciri-ciri sepunya",
+    "membiak untuk menghasilkan anak",
     "spesies yang sama",
-    "saling berinteraksi",
-    "Persekitaran atau tempat tinggal",
+    "beberapa populasi organisma yang berlainan",
+    "berinteraksi antara satu sama lain",
+    "persekitaran semula jadi atau tempat tinggal",
     "termasuk komponen bukan hidup",
     "keadaan harmoni tanpa gangguan luar",
     "Hujan lebat dan cahaya matahari berlimpah sepanjang tahun.",
@@ -67,8 +77,6 @@ const EXPECTED: Record<string, string[]> = {
     "Kedua-dua organisma untung.",
     "tidak terjejas",
     "perumah rugi",
-    "memburu dan memakan",
-    "cahaya, ruang, air, makanan atau pasangan",
     "pemangsa, parasit atau patogen semula jadi",
     "tidak menggunakan pestisid atau bahan kimia",
     "mengambil masa yang lebih lama",
@@ -77,32 +85,44 @@ const EXPECTED: Record<string, string[]> = {
     "sisa makanan yang banyak",
     "memerlukan banyak air",
     "bertanggungjawab memulihara keseimbangan alam",
-    "kepupusan spesies, hakisan tanah dan kesan rumah hijau",
-    "Menguatkuasakan undang-undang",
+    "mengawal aktiviti pembalakan haram",
+    "menghargai keseimbangan alam sekitar",
+    "menggunakannya untuk tujuan lain",
+    "pemangsa semula jadi yang sesuai",
   ],
   DLP: [
-    "make their own food",
+    "the Sun",
+    "chemical energy",
+    "food chains and food webs",
+    "produces its own food through photosynthesis",
+    "herbivores and omnivores",
     "eat producers",
-    "called a primary carnivore",
-    "usually larger in size",
+    "primary consumer",
+    "secondary carnivore",
+    "secondary consumer",
+    "breaks down dead animals and plants",
+    "simpler materials or nutrients",
     "saprophytism",
     "several interconnected food chains",
     "released as heat",
     "undigested food, that is, faeces",
+    "drive and regulate the water cycle itself",
+    "respiration, defecation and excretion",
+    "sweating and urination",
     "cycled continuously",
     "Respiration, decay by decomposers and combustion",
     "Respiration by animals and plants, decay by decomposers and combustion",
     "keeping the balance",
     "using oxygen",
-    "drive and regulate the water cycle itself",
-    "respiration, sweating and excretion",
     "replant trees",
     "use public transport",
     "harvest rainwater",
-    "similar characteristics that can interbreed",
+    "common characteristics",
+    "reproduce to breed offspring",
     "the same species",
-    "interacting with one another",
-    "natural surroundings or dwelling place",
+    "a few populations of different organisms",
+    "interact with one another",
+    "natural surroundings or home",
     "including non-living components",
     "in harmony without outside disturbance",
     "Heavy rainfall and abundant sunshine all year.",
@@ -112,8 +132,6 @@ const EXPECTED: Record<string, string[]> = {
     "Both organisms benefit.",
     "unaffected",
     "the host is harmed",
-    "hunts and eats",
-    "light, space, water, food or mates",
     "a natural predator, parasite or pathogen",
     "uses no pesticides or chemicals",
     "takes longer",
@@ -122,24 +140,28 @@ const EXPECTED: Record<string, string[]> = {
     "plentiful food waste",
     "needs a great deal of water",
     "are responsible for conserving nature's balance",
-    "species extinction, soil erosion and the greenhouse effect",
-    "Enforce the law",
+    "control illegal and unregulated logging",
+    "appreciate the balance of the environment",
+    "repurposing what is left",
+    "suitable natural predators",
   ],
 };
 
 /** Field path -> the exact original wording (before markers were added). */
 const ORIGINALS: Record<string, Record<string, string>> = {
   BM: {
+    "content.sections[0].intro":
+      "Sumber tenaga dalam semua ekosistem berasal dari Matahari. Tumbuhan hijau menukarkan tenaga cahaya daripada Matahari kepada tenaga kimia melalui fotosintesis. Tenaga kimia itu dipindahkan kepada pengguna primer, kemudian pengguna sekunder dan pengguna tertier melalui rantai makanan dan siratan makanan.",
     "content.sections[0].cards[0].body":
-      "Tumbuhan hijau membuat makanan sendiri melalui fotosintesis. Semua rantai makanan bermula di sini.",
+      "Pengeluar ialah organisma yang menghasilkan makanan sendiri melalui fotosintesis. Tumbuhan merupakan pengeluar.",
     "content.sections[0].cards[1].body":
-      "Haiwan herbivor dan omnivor yang memakan pengeluar. Contoh: beluncas, siput, belalang.",
+      "Pengguna ialah organisma yang memakan organisma lain. Pengguna primer ialah haiwan herbivor dan omnivor yang memakan pengeluar.",
     "content.sections[0].cards[2].body":
-      "Haiwan omnivor dan karnivor yang memakan pengguna primer. Kerana ia karnivor yang pertama dalam rantai itu, ia dipanggil karnivor primer. Contoh: burung raja udang.",
+      "Pengguna sekunder ialah haiwan omnivor atau karnivor yang memakan pengguna primer. Kerana ia karnivor yang pertama dalam rantai itu, ia juga dipanggil karnivor primer.",
     "content.sections[0].cards[3].body":
-      "Karnivor yang memakan pengguna sekunder, biasanya bersaiz lebih besar. Kerana ia karnivor yang kedua dalam rantai itu, ia dipanggil karnivor sekunder. Contoh: musang, ular.",
+      "Pengguna tertier ialah karnivor sekunder yang memakan pengguna sekunder. Ia biasanya bersaiz lebih besar.",
     "content.sections[0].cards[4].body":
-      "Bakteria dan kulat menguraikan organisma mati serta bahan buangan kepada nutrien ringkas. Hubungan ini dipanggil saprofitisme.",
+      "Pengurai ialah organisma yang menguraikan haiwan dan tumbuhan mati kepada bahan yang lebih ringkas atau nutrien. Hubungan ini dikenali sebagai saprofitisme.",
     "content.sections[1].intro":
       "Rantai makanan menunjukkan satu laluan pemakanan yang lurus. Siratan makanan pula ialah gabungan beberapa rantai makanan yang saling berkait dalam satu ekosistem yang sama.",
     "content.sections[1].cards[0].body":
@@ -147,19 +169,21 @@ const ORIGINALS: Record<string, Record<string, string>> = {
     "content.sections[1].cards[1].body":
       "Pengguna turut kehilangan tenaga melalui makanan yang tidak tercerna, iaitu tinja. Pengeluar tidak mengalami kehilangan jenis ini kerana ia membuat makanannya sendiri.",
     "content.sections[2].intro":
-      "Berbeza dengan tenaga, karbon dan oksigen dikitar berterusan antara organisma dengan persekitaran. Kedua-dua kitar ini saling berhubung melalui fotosintesis dan respirasi.",
-    "content.sections[2].tabs[0].body":
-      "Fotosintesis menyerap karbon dioksida daripada udara. Karbon berpindah kepada haiwan melalui pemakanan. Respirasi, pereputan oleh pengurai dan pembakaran mengembalikan karbon dioksida ke atmosfera.",
-    "content.sections[2].tabs[1].body":
-      "Fotosintesis oleh tumbuhan hijau membebaskan oksigen ke udara. Respirasi haiwan dan tumbuhan, pereputan oleh pengurai serta pembakaran menggunakan oksigen itu semula.",
-    "content.sections[2].cards[0].body":
-      "Fotosintesis menyerap karbon dioksida dan membebaskan oksigen, lalu mengekalkan keseimbangan kandungan kedua-dua gas ini di dalam udara.",
-    "content.sections[2].cards[2].body":
-      "Bakteria dan kulat menguraikan organisma mati menggunakan oksigen lalu membebaskan karbon dioksida, sambil melepaskan nutrien kembali ke tanah.",
-    "content.sections[3].intro":
       "Air bergerak berterusan antara Bumi dengan atmosfera. Benda hidup bukan sekadar menggunakan air — ia turut membantu memacu dan mengawal kitar air itu sendiri.",
+    "content.sections[2].tabs[1].body":
+      "Akar tumbuhan menyerap air dari tanah dan daun membebaskannya semula melalui transpirasi. Haiwan pula mengembalikan air melalui respirasi, penyahtinjaan dan perkumuhan. Kesemua proses ini mengembalikan air kepada persekitaran.",
+    "content.sections[2].cards[0].body":
+      "Haiwan turut mengembalikan air kepada persekitaran: respirasi membebaskan wap air, penyahtinjaan mengembalikan air bersama tinja, dan perkumuhan membebaskannya melalui perpeluhan dan urinasi.",
+    "content.sections[3].intro":
+      "Berbeza dengan tenaga, karbon dan oksigen dikitar berterusan antara organisma dengan persekitaran. Kedua-dua kitar ini saling berhubung melalui fotosintesis dan respirasi.",
+    "content.sections[3].tabs[0].body":
+      "Fotosintesis menyerap karbon dioksida daripada udara. Karbon berpindah kepada haiwan melalui pemakanan. Respirasi, pereputan oleh pengurai dan pembakaran mengembalikan karbon dioksida ke atmosfera.",
     "content.sections[3].tabs[1].body":
-      "Akar tumbuhan menyerap air dari tanah dan daun membebaskannya semula melalui transpirasi. Haiwan pula membebaskan wap air melalui respirasi, perpeluhan dan perkumuhan. Kesemua proses ini menambah kandungan wap air di atmosfera.",
+      "Fotosintesis oleh tumbuhan hijau membebaskan oksigen ke udara. Respirasi haiwan dan tumbuhan, pereputan oleh pengurai serta pembakaran menggunakan oksigen itu semula.",
+    "content.sections[3].cards[0].body":
+      "Fotosintesis menyerap karbon dioksida dan membebaskan oksigen, lalu mengekalkan keseimbangan kandungan kedua-dua gas ini di dalam udara.",
+    "content.sections[3].cards[2].body":
+      "Bakteria dan kulat menguraikan organisma mati menggunakan oksigen lalu membebaskan karbon dioksida, sambil melepaskan nutrien kembali ke tanah.",
     "content.sections[4].causeEffect.items[0].note":
       "Penyelesaian: menanam semula pokok dan memperketat undang-undang perhutanan.",
     "content.sections[4].causeEffect.items[1].note":
@@ -167,15 +191,15 @@ const ORIGINALS: Record<string, Record<string, string>> = {
     "content.sections[4].causeEffect.items[2].note":
       "Penyelesaian: menjimatkan air, menyimpan air hujan dan mewujudkan sistem pertanian yang terancang.",
     "content.sections[5].cards[0].body":
-      "Sekumpulan organisma yang mempunyai ciri-ciri serupa dan boleh saling membiak untuk menghasilkan anak.",
+      "Spesies ialah sekumpulan organisma yang mempunyai ciri-ciri sepunya dan boleh membiak untuk menghasilkan anak.",
     "content.sections[5].cards[1].body":
-      "Sekumpulan organisma daripada spesies yang sama dan hidup di habitat yang sama. Contoh: satu populasi pepatung di kolam.",
+      "Populasi ialah sekumpulan organisma daripada spesies yang sama yang hidup dalam habitat yang sama. Contoh: satu populasi pepatung di kolam.",
     "content.sections[5].cards[2].body":
-      "Beberapa populasi organisma yang berbeza, hidup bersama dalam satu habitat dan saling berinteraksi.",
+      "Komuniti ialah beberapa populasi organisma yang berlainan yang hidup bersama-sama dalam satu habitat dan berinteraksi antara satu sama lain.",
     "content.sections[5].cards[3].body":
-      "Persekitaran atau tempat tinggal semula jadi bagi sesuatu organisma. Contoh: kolam, hutan, tanah.",
+      "Habitat ialah persekitaran semula jadi atau tempat tinggal sesuatu organisma. Contoh: kolam, hutan, tanah.",
     "content.sections[5].cards[4].body":
-      "Beberapa komuniti yang tinggal bersama dalam satu habitat dan saling berinteraksi, termasuk komponen bukan hidup seperti air, udara dan tanah.",
+      "Ekosistem ialah komuniti hidupan yang berinteraksi antara satu sama lain dalam satu habitat, termasuk komponen bukan hidup seperti air, udara dan tanah.",
     "content.sections[5].comparison.columns[0].body":
       "Organisma saling bersandaran antara satu sama lain dan dengan komponen bukan hidup (air, cahaya, udara, tanah). Ekosistem dikatakan seimbang apabila kesemuanya berada dalam keadaan harmoni tanpa gangguan luar.",
     "content.sections[6].adaptations.cases[0].challenge":
@@ -191,11 +215,7 @@ const ORIGINALS: Record<string, Record<string, string>> = {
     "content.sections[7].cards[1].body":
       "Satu organisma (komensal) untung; yang satu lagi tidak terjejas. Contoh: ikan remora melekat pada jerung dan makan sisa makanannya, tanpa memudaratkan jerung.",
     "content.sections[7].cards[2].body":
-      "Satu organisma (parasit) untung; perumah rugi. Contoh: cacing pita hidup dalam usus manusia dan menyerap nutrien daripada perumahnya.",
-    "content.sections[7].cards[3].body":
-      "Satu organisma (pemangsa) memburu dan memakan organisma lain (mangsa). Contoh: burung hantu memburu dan memakan tikus.",
-    "content.sections[7].cards[4].body":
-      "Organisma dalam habitat yang sama bersaing untuk keperluan asas yang terhad seperti cahaya, ruang, air, makanan atau pasangan. Ia boleh berlaku sesama spesies mahupun antara spesies berlainan.",
+      "Satu organisma (parasit) untung; perumah rugi. Contoh: cacing pita hidup dalam usus manusia dan menyerap nutrien melalui permukaan badannya.",
     "content.sections[7].accordions[0].body":
       "Kawalan biologi menggunakan pemangsa, parasit atau patogen semula jadi untuk mengurangkan bilangan perosak. Di Malaysia: burung hantu mengawal tikus di ladang kelapa sawit, ikan gapi memakan jentik-jentik, kumbang kura-kura memakan afid, itik memakan siput di sawah padi, dan Bacillus thuringiensis mengawal kumbang tanduk.",
     "content.sections[7].accordions[1].body":
@@ -212,22 +232,28 @@ const ORIGINALS: Record<string, Record<string, string>> = {
       "Padi ialah tanaman yang memerlukan banyak air, jadi ia terjejas terlebih dahulu.",
     "content.sections[10].intro":
       "Manusia memerlukan ekosistem yang stabil dan produktif demi kelestarian hidup — daripadanya kita memperoleh makanan, air bersih, udara yang selamat, bahan mentah dan ubat-ubatan. Apabila ekosistem terganggu, sumber-sumber ini turut terjejas, jadi manusia bertanggungjawab memulihara keseimbangan alam.",
-    "content.sections[10].comparison.columns[0].body":
-      "Penebangan hutan menyebabkan kepupusan spesies, hakisan tanah dan kesan rumah hijau. Perindustrian mencemarkan udara, air dan tanah serta menyebabkan hujan asid. Pertanian yang tidak lestari mencemarkan air dan menghilangkan mineral tanah. Pembuangan sampah sarap menyebabkan pencemaran, bau busuk dan banjir kilat.",
-    "content.sections[10].comparison.columns[1].body":
-      "Menguatkuasakan undang-undang (rondaan hutan dan sekatan jalan raya oleh Jabatan Perhutanan), meningkatkan kesedaran orang awam, mengamalkan 5R, dan menggunakan kaedah kawalan biologi dalam pertanian.",
+    "content.sections[10].cards[0].body":
+      "Undang-undang melindungi hutan dan mengawal aktiviti pembalakan haram. Jabatan Perhutanan menjalankan rondaan hutan dan sekatan jalan raya.",
+    "content.sections[10].cards[1].body":
+      "Pendidikan dan media massa membantu orang ramai menghargai keseimbangan alam sekitar dan bertindak menjaganya.",
+    "content.sections[10].cards[2].body":
+      "Kurangkan sisa dengan menolak bahan yang tidak sesuai, mengurangkan penggunaan, mengguna semula, mengitar semula dan menggunakannya untuk tujuan lain.",
+    "content.sections[10].cards[3].body":
+      "Kurangkan penggunaan racun perosak dengan menggunakan pemangsa semula jadi yang sesuai dalam pertanian.",
   },
   DLP: {
+    "content.sections[0].intro":
+      "The source of energy in all ecosystems originates from the Sun. Green plants convert light energy from the Sun into chemical energy through photosynthesis. The chemical energy is transferred to primary consumers, then to secondary consumers and tertiary consumers through food chains and food webs.",
     "content.sections[0].cards[0].body":
-      "Green plants make their own food through photosynthesis. Every food chain begins here.",
+      "A producer is an organism that produces its own food through photosynthesis. Most plants are producers.",
     "content.sections[0].cards[1].body":
-      "Herbivores and omnivores that eat producers. Examples: caterpillar, snail, grasshopper.",
+      "A consumer is an organism that eats another organism. Primary consumers are herbivores and omnivores that eat producers.",
     "content.sections[0].cards[2].body":
-      "Omnivores and carnivores that eat primary consumers. Because it is the first carnivore in that chain, it is called a primary carnivore. Example: kingfisher.",
+      "A secondary consumer is an omnivore or carnivore that eats a primary consumer. Because it is the first carnivore in that chain, it is also called a primary carnivore.",
     "content.sections[0].cards[3].body":
-      "A carnivore that eats secondary consumers, usually larger in size. Because it is the second carnivore in that chain, it is called a secondary carnivore. Examples: civet, snake.",
+      "A tertiary consumer is a secondary carnivore that eats a secondary consumer. It is usually larger in size.",
     "content.sections[0].cards[4].body":
-      "Bacteria and fungi break dead organisms and waste down into simple nutrients. This relationship is called saprophytism.",
+      "A decomposer is an organism that breaks down dead animals and plants into simpler materials or nutrients. This interaction is known as saprophytism.",
     "content.sections[1].intro":
       "A food chain shows one straight feeding pathway. A food web is several interconnected food chains within the same ecosystem.",
     "content.sections[1].cards[0].body":
@@ -235,19 +261,21 @@ const ORIGINALS: Record<string, Record<string, string>> = {
     "content.sections[1].cards[1].body":
       "Consumers also lose energy in undigested food, that is, faeces. Producers do not have this kind of loss because they make their own food.",
     "content.sections[2].intro":
-      "Unlike energy, carbon and oxygen are cycled continuously between organisms and the environment. The two cycles are linked through photosynthesis and respiration.",
-    "content.sections[2].tabs[0].body":
-      "Photosynthesis absorbs carbon dioxide from the air. Carbon passes to animals through feeding. Respiration, decay by decomposers and combustion return carbon dioxide to the atmosphere.",
-    "content.sections[2].tabs[1].body":
-      "Photosynthesis by green plants releases oxygen into the air. Respiration by animals and plants, decay by decomposers and combustion use that oxygen again.",
-    "content.sections[2].cards[0].body":
-      "Photosynthesis absorbs carbon dioxide and releases oxygen, keeping the balance of both gases in the air.",
-    "content.sections[2].cards[2].body":
-      "Bacteria and fungi break down dead organisms using oxygen and releasing carbon dioxide, while returning nutrients to the soil.",
-    "content.sections[3].intro":
       "Water moves continuously between Earth and the atmosphere. Living things do not merely use water — they help drive and regulate the water cycle itself.",
+    "content.sections[2].tabs[1].body":
+      "Plant roots absorb water from the soil and leaves release it again through transpiration. Animals return water through respiration, defecation and excretion. All of these return water to the environment.",
+    "content.sections[2].cards[0].body":
+      "Animals also return water to the environment: respiration releases water vapour, defecation returns water in faeces, and excretion releases it through sweating and urination.",
+    "content.sections[3].intro":
+      "Unlike energy, carbon and oxygen are cycled continuously between organisms and the environment. The two cycles are linked through photosynthesis and respiration.",
+    "content.sections[3].tabs[0].body":
+      "Photosynthesis absorbs carbon dioxide from the air. Carbon passes to animals through feeding. Respiration, decay by decomposers and combustion return carbon dioxide to the atmosphere.",
     "content.sections[3].tabs[1].body":
-      "Plant roots absorb water from the soil and leaves release it again through transpiration. Animals release water vapour through respiration, sweating and excretion. All of these add water vapour to the atmosphere.",
+      "Photosynthesis by green plants releases oxygen into the air. Respiration by animals and plants, decay by decomposers and combustion use that oxygen again.",
+    "content.sections[3].cards[0].body":
+      "Photosynthesis absorbs carbon dioxide and releases oxygen, keeping the balance of both gases in the air.",
+    "content.sections[3].cards[2].body":
+      "Bacteria and fungi break down dead organisms using oxygen and releasing carbon dioxide, while returning nutrients to the soil.",
     "content.sections[4].causeEffect.items[0].note":
       "Solution: replant trees and tighten forestry law enforcement.",
     "content.sections[4].causeEffect.items[1].note":
@@ -255,15 +283,15 @@ const ORIGINALS: Record<string, Record<string, string>> = {
     "content.sections[4].causeEffect.items[2].note":
       "Solution: conserve water, harvest rainwater and set up planned agricultural systems.",
     "content.sections[5].cards[0].body":
-      "A group of organisms with similar characteristics that can interbreed to produce offspring.",
+      "A species is a group of organisms that have common characteristics and can reproduce to breed offspring.",
     "content.sections[5].cards[1].body":
-      "A group of organisms of the same species living in the same habitat. Example: one population of dragonflies in a pond.",
+      "A population is a group of organisms of the same species that live in the same habitat. Example: one population of dragonflies in a pond.",
     "content.sections[5].cards[2].body":
-      "Several different populations of organisms living together in one habitat and interacting with one another.",
+      "A community is a few populations of different organisms that live together in one habitat and interact with one another.",
     "content.sections[5].cards[3].body":
-      "The natural surroundings or dwelling place of an organism. Examples: a pond, a forest, the soil.",
+      "A habitat is the natural surroundings or home of an organism. Examples: a pond, a forest, the soil.",
     "content.sections[5].cards[4].body":
-      "Several communities living together in one habitat and interacting with one another, including non-living components such as water, air and soil.",
+      "An ecosystem is a living community interacting with one another in one habitat, including non-living components such as water, air and soil.",
     "content.sections[5].comparison.columns[0].body":
       "Organisms depend on one another and on non-living components (water, light, air, soil). An ecosystem is said to be balanced when all of these are in harmony without outside disturbance.",
     "content.sections[6].adaptations.cases[0].challenge":
@@ -279,11 +307,7 @@ const ORIGINALS: Record<string, Record<string, string>> = {
     "content.sections[7].cards[1].body":
       "One organism (the commensal) benefits; the other is unaffected. Example: the remora attaches to a shark and eats its food scraps without harming the shark.",
     "content.sections[7].cards[2].body":
-      "One organism (the parasite) benefits; the host is harmed. Example: a tapeworm lives in the human intestine and absorbs nutrients from its host.",
-    "content.sections[7].cards[3].body":
-      "One organism (the predator) hunts and eats another (the prey). Example: an owl hunts and eats rats.",
-    "content.sections[7].cards[4].body":
-      "Organisms in the same habitat compete for a limited supply of basic needs such as light, space, water, food or mates. It can occur within one species or between different species.",
+      "One organism (the parasite) benefits; the host is harmed. Example: a tapeworm lives in the human intestine and absorbs nutrients across its body surface.",
     "content.sections[7].accordions[0].body":
       "Biological control uses a natural predator, parasite or pathogen to reduce the number of pests. In Malaysia: owls control rats in oil palm estates, guppies eat mosquito larvae, ladybirds eat aphids, ducks eat snails in paddy fields, and Bacillus thuringiensis controls rhinoceros beetles.",
     "content.sections[7].accordions[1].body":
@@ -300,12 +324,17 @@ const ORIGINALS: Record<string, Record<string, string>> = {
       "Paddy is a crop that needs a great deal of water, so it is affected first.",
     "content.sections[10].intro":
       "Humans need a stable and productive ecosystem for sustainable living — it is where our food, clean water, safe air, raw materials and medicines come from. When an ecosystem is disturbed those resources suffer too, so humans are responsible for conserving nature's balance.",
-    "content.sections[10].comparison.columns[0].body":
-      "Deforestation causes species extinction, soil erosion and the greenhouse effect. Industry pollutes air, water and soil and causes acid rain. Unsustainable agriculture pollutes water and strips minerals from the soil. Dumping rubbish causes pollution, foul smells and flash floods.",
-    "content.sections[10].comparison.columns[1].body":
-      "Enforce the law (forest patrols and roadblocks by the Forestry Department), raise public awareness, practise the 5Rs, and use biological control in agriculture.",
+    "content.sections[10].cards[0].body":
+      "Laws protect forests and control illegal and unregulated logging. The Forestry Department runs forest patrols and roadblocks.",
+    "content.sections[10].cards[1].body":
+      "Education and the mass media help people appreciate the balance of the environment and act to protect it.",
+    "content.sections[10].cards[2].body":
+      "Reduce waste by refusing unsuitable materials, reducing use, reusing, recycling and repurposing what is left.",
+    "content.sections[10].cards[3].body":
+      "Cut pesticide use by putting suitable natural predators to work in agriculture instead.",
   },
 };
+
 
 /** Only these field-path suffixes are wired to render through ScienceEmphasis. */
 const ALLOWED_FIELD = /\.(body|intro|note|challenge|adaptation|role|benefit|remember|quickExplanation)(\[\d+\])?$/;

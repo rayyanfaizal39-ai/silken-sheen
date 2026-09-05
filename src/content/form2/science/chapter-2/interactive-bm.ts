@@ -5,6 +5,17 @@ import desertImage from "@/assets/notes/form2-science/chapter-2/chapter2_desert_
 import tundraImage from "@/assets/notes/form2-science/chapter-2/chapter2_tundra_adaptation.webp";
 import carbonOxygenCycleImage from "@/assets/notes/form2-science/chapter-2/chapter2_carbon_oxygen_cycle.webp";
 import waterCycleImage from "@/assets/notes/form2-science/chapter-2/chapter2_water_cycle.webp";
+import pondEcosystemImage from "@/assets/notes/form2-science/chapter-2/chapter2_pond_ecosystem.webp";
+import mutualismImage from "@/assets/notes/form2-science/chapter-2/chapter2_mutualism_clownfish_anemone.webp";
+import commensalismImage from "@/assets/notes/form2-science/chapter-2/chapter2_commensalism_remora_shark.webp";
+import parasitismImage from "@/assets/notes/form2-science/chapter-2/chapter2_parasitism_tapeworm_intestine.webp";
+import {
+  POND_HERO_DRAGONFLY,
+  POND_ALL_DRAGONFLIES,
+  POND_COMMUNITY_SHAPES,
+  POND_HABITAT_SHAPE,
+  POND_NON_LIVING_SHAPES,
+} from "./pond-ecosystem-spotlight";
 
 export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 2,
@@ -31,33 +42,34 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.1.1",
       title: "Pengeluar, Pengguna dan Pengurai",
+      standardTitle: "2.1 Aliran Tenaga dalam Ekosistem",
       intro:
-        "Tenaga memasuki hampir semua ekosistem sebagai cahaya matahari. Pengeluar memerangkapnya melalui fotosintesis, pengguna memperolehnya melalui pemakanan, dan pengurai mengembalikan nutrien kepada persekitaran.",
+        "Sumber tenaga dalam semua ekosistem berasal dari **Matahari**. Tumbuhan hijau menukarkan tenaga cahaya daripada Matahari kepada **tenaga kimia** melalui fotosintesis. Tenaga kimia itu dipindahkan kepada pengguna primer, kemudian pengguna sekunder dan pengguna tertier melalui **rantai makanan dan siratan makanan**.",
       cards: [
         {
           title: "Pengeluar",
-          body: "Tumbuhan hijau **membuat makanan sendiri** melalui fotosintesis. Semua rantai makanan bermula di sini.",
-          detail: "Aras trofik pertama",
+          body: "Pengeluar ialah organisma yang **menghasilkan makanan sendiri melalui fotosintesis**. Tumbuhan merupakan pengeluar.",
+          detail: "Aras trofik pertama — semua rantai makanan bermula di sini",
         },
         {
           title: "Pengguna primer",
-          body: "Haiwan herbivor dan omnivor yang **memakan pengeluar**. Contoh: beluncas, siput, belalang.",
-          detail: "Memakan pengeluar",
+          body: "Pengguna ialah organisma yang memakan organisma lain. Pengguna primer ialah haiwan **herbivor dan omnivor** yang **memakan pengeluar**.",
+          detail: "Contoh: beluncas, siput, belalang",
         },
         {
           title: "Pengguna sekunder (karnivor primer)",
-          body: "Haiwan omnivor dan karnivor yang memakan pengguna primer. Kerana ia karnivor yang pertama dalam rantai itu, ia **dipanggil karnivor primer**. Contoh: burung raja udang.",
-          detail: "Karnivor primer",
+          body: "Pengguna sekunder ialah haiwan omnivor atau karnivor yang memakan **pengguna primer**. Kerana ia karnivor yang pertama dalam rantai itu, ia juga dipanggil karnivor primer.",
+          detail: "Karnivor primer — contoh: burung raja udang",
         },
         {
           title: "Pengguna tertier (karnivor sekunder)",
-          body: "Karnivor yang memakan pengguna sekunder, **biasanya bersaiz lebih besar**. Kerana ia karnivor yang kedua dalam rantai itu, ia dipanggil karnivor sekunder. Contoh: musang, ular.",
-          detail: "Karnivor sekunder",
+          body: "Pengguna tertier ialah **karnivor sekunder** yang memakan **pengguna sekunder**. Ia biasanya bersaiz lebih besar.",
+          detail: "Karnivor sekunder — contoh: musang, ular",
         },
         {
           title: "Pengurai",
-          body: "Bakteria dan kulat menguraikan organisma mati serta bahan buangan kepada nutrien ringkas. Hubungan ini dipanggil **saprofitisme**.",
-          detail: "Nutrien dikitar semula",
+          body: "Pengurai ialah organisma yang **menguraikan haiwan dan tumbuhan mati** kepada **bahan yang lebih ringkas atau nutrien**. Hubungan ini dikenali sebagai **saprofitisme**.",
+          detail: "Bakteria dan kulat — nutrien dikembalikan kepada persekitaran",
         },
       ],
       checks: [
@@ -80,6 +92,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.1.2",
       title: "Rantai Makanan dan Siratan Makanan",
+      standardTitle: "2.1 Aliran Tenaga dalam Ekosistem",
       intro:
         "Rantai makanan menunjukkan satu laluan pemakanan yang lurus. Siratan makanan pula ialah **gabungan beberapa rantai makanan** yang saling berkait dalam satu ekosistem yang sama.",
       sequence: {
@@ -152,10 +165,113 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       ],
     },
 
+    // ───────────────────────────────────────────── SP 2.2.2
+    {
+      number: "2.2.2",
+      title: "Kitar Air",
+      standardTitle: "2.2 Kitar Nutrien dalam Ekosistem",
+      images: [
+        {
+          src: waterCycleImage,
+          annotationMode: "hybrid",
+          size: "wide",
+          alt: "Pemandangan pantai yang menunjukkan air bergerak daripada laut ke awan, turun sebagai hujan, mengalir di permukaan, meresap ke dalam tanah dan diserap oleh akar pokok, dengan seekor rusa minum di tebing.",
+          aspect: "16 / 9",
+          legendLabel: "Proses dalam kitar air",
+          caption: "Ketik setiap nombor untuk melihat proses yang berlaku di bahagian itu.",
+          annotations: [
+            { id: "evaporation", label: "Penyejatan", x: 15, y: 56, note: "Haba matahari menukarkan air laut kepada wap air." },
+            { id: "condensation", label: "Kondensasi", x: 29, y: 30, note: "Wap air menyejuk di udara tinggi dan membentuk awan." },
+            { id: "precipitation", label: "Hujan", x: 50, y: 38, note: "Titisan air dalam awan menjadi cukup berat lalu jatuh sebagai hujan." },
+            { id: "runoff", label: "Larian permukaan", x: 52, y: 71, note: "Air hujan mengalir di atas permukaan tanah kembali ke sungai dan laut." },
+            { id: "infiltration", label: "Resapan", x: 91, y: 66, note: "Sebahagian air hujan meresap masuk ke dalam tanah." },
+            { id: "groundwater", label: "Air bawah tanah", x: 44, y: 93, note: "Air tersimpan di dalam lapisan tanah dan batuan." },
+            { id: "root-uptake", label: "Penyerapan oleh akar", x: 80, y: 52, note: "Akar menyerap air dari dalam tanah." },
+            { id: "transpiration", label: "Transpirasi", x: 80, y: 12, note: "Air keluar sebagai wap melalui daun." },
+            {
+              id: "animals",
+              label: "Haiwan mengembalikan air",
+              x: 37,
+              y: 55,
+              note: "Haiwan minum air, kemudian mengembalikannya kepada persekitaran melalui tiga proses.",
+              facts: [
+                { label: "Respirasi", value: "Wap air dihembus keluar semasa bernafas." },
+                { label: "Penyahtinjaan", value: "Air keluar bersama tinja." },
+                { label: "Perkumuhan", value: "Air keluar sebagai urin dan peluh." },
+              ],
+            },
+          ],
+        },
+      ],
+      intro:
+        "Air bergerak berterusan antara Bumi dengan atmosfera. Benda hidup bukan sekadar menggunakan air — ia turut **membantu memacu dan mengawal kitar air itu sendiri**.",
+      tabs: [
+        {
+          title: "Proses fizikal",
+          body: "Penyejatan menaikkan wap air ke atmosfera; kondensasi membentuk awan; kerpasan (hujan) mengembalikan air ke Bumi, lalu meresap ke dalam tanah atau mengalir di permukaan.",
+        },
+        {
+          title: "Peranan benda hidup",
+          body: "Akar tumbuhan menyerap air dari tanah dan daun membebaskannya semula melalui transpirasi. Haiwan pula mengembalikan air melalui **respirasi, penyahtinjaan dan perkumuhan**. Kesemua proses ini mengembalikan air kepada persekitaran.",
+        },
+      ],
+      cards: [
+        {
+          title: "Peranan haiwan dalam kitar air",
+          body: "Haiwan turut mengembalikan air kepada persekitaran: respirasi membebaskan wap air, penyahtinjaan mengembalikan air bersama tinja, dan perkumuhan membebaskannya melalui **perpeluhan dan urinasi**.",
+          detail: "Respirasi · penyahtinjaan · perkumuhan",
+        },
+      ],
+      causeEffect: {
+        title: "Mengapa tumbuhan penting kepada kitar air",
+        instruction: "Setiap peranan menyumbang kepada kitar air dengan cara yang berbeza.",
+        items: [
+          {
+            icon: "🌿",
+            title: "Transpirasi",
+            chain: [
+              "Akar menyerap air dari tanah",
+              "Daun membebaskan wap air",
+              "Kandungan wap air di atmosfera meningkat",
+            ],
+          },
+          {
+            icon: "🌱",
+            title: "Akar mencengkam tanah",
+            chain: [
+              "Akar mengikat struktur tanah",
+              "Aliran air bawah tanah menjadi perlahan",
+              "Hakisan tanah dapat dielakkan",
+            ],
+          },
+          {
+            icon: "🍂",
+            title: "Daun gugur menutup tanah",
+            chain: [
+              "Sarap daun melitupi permukaan tanah",
+              "Kadar penyejatan air berkurang",
+              "Tanah tidak cepat menjadi kering",
+            ],
+          },
+        ],
+      },
+      checks: [
+        {
+          question: "Berikan dua proses perubahan jirim yang berlaku dalam kitar air.",
+          hint: "Penyejatan (cecair → gas) dan kondensasi (gas → cecair).",
+        },
+        {
+          question: "Wajarkan mengapa hutan yang ditebang boleh menjejaskan kitar air.",
+          hint: "Kurang pokok bermakna kurang transpirasi, akar tidak lagi mencengkam tanah, dan sarap daun berkurang — air kurang dikembalikan ke atmosfera dan hakisan meningkat.",
+        },
+      ],
+    },
+
     // ───────────────────────────────────────────── SP 2.2.1
     {
       number: "2.2.1",
       title: "Kitar Karbon dan Kitar Oksigen",
+      standardTitle: "2.2 Kitar Nutrien dalam Ekosistem",
       images: [
         {
           src: carbonOxygenCycleImage,
@@ -214,89 +330,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           question: "Bagaimanakah kitar karbon dan kitar oksigen saling berhubung?",
-          hint: "Fotosintesis menyerap CO₂ dan membebaskan O₂; respirasi dan pereputan melakukan yang sebaliknya.",
-        },
-      ],
-    },
-
-    // ───────────────────────────────────────────── SP 2.2.2
-    {
-      number: "2.2.2",
-      title: "Kitar Air",
-      images: [
-        {
-          src: waterCycleImage,
-          annotationMode: "hybrid",
-          size: "wide",
-          alt: "Pemandangan pantai yang menunjukkan air bergerak daripada laut ke awan, turun sebagai hujan, mengalir di permukaan, meresap ke dalam tanah dan diserap oleh akar pokok.",
-          aspect: "16 / 9",
-          legendLabel: "Proses dalam kitar air",
-          caption: "Ketik setiap nombor untuk melihat proses yang berlaku di bahagian itu.",
-          annotations: [
-            { id: "evaporation", label: "Penyejatan", x: 15, y: 56, note: "Haba matahari menukarkan air laut kepada wap air." },
-            { id: "condensation", label: "Kondensasi", x: 29, y: 30, note: "Wap air menyejuk di udara tinggi dan membentuk awan." },
-            { id: "precipitation", label: "Hujan", x: 50, y: 38, note: "Titisan air dalam awan menjadi cukup berat lalu jatuh sebagai hujan." },
-            { id: "runoff", label: "Larian permukaan", x: 52, y: 71, note: "Air hujan mengalir di atas permukaan tanah kembali ke sungai dan laut." },
-            { id: "infiltration", label: "Resapan", x: 91, y: 66, note: "Sebahagian air hujan meresap masuk ke dalam tanah." },
-            { id: "groundwater", label: "Air bawah tanah", x: 44, y: 93, note: "Air tersimpan di dalam lapisan tanah dan batuan." },
-            { id: "root-uptake", label: "Penyerapan oleh akar", x: 80, y: 52, note: "Akar menyerap air dari dalam tanah." },
-            { id: "transpiration", label: "Transpirasi", x: 80, y: 12, note: "Air keluar sebagai wap melalui daun." },
-          ],
-        },
-      ],
-      intro:
-        "Air bergerak berterusan antara Bumi dengan atmosfera. Benda hidup bukan sekadar menggunakan air — ia turut **membantu memacu dan mengawal kitar air itu sendiri**.",
-      tabs: [
-        {
-          title: "Proses fizikal",
-          body: "Penyejatan menaikkan wap air ke atmosfera; kondensasi membentuk awan; kerpasan (hujan) mengembalikan air ke Bumi, lalu meresap ke dalam tanah atau mengalir di permukaan.",
-        },
-        {
-          title: "Peranan benda hidup",
-          body: "Akar tumbuhan menyerap air dari tanah dan daun membebaskannya semula melalui transpirasi. Haiwan pula membebaskan wap air melalui **respirasi, perpeluhan dan perkumuhan**. Kesemua proses ini menambah kandungan wap air di atmosfera.",
-        },
-      ],
-      causeEffect: {
-        title: "Mengapa tumbuhan penting kepada kitar air",
-        instruction: "Setiap peranan menyumbang kepada kitar air dengan cara yang berbeza.",
-        items: [
-          {
-            icon: "🌿",
-            title: "Transpirasi",
-            chain: [
-              "Akar menyerap air dari tanah",
-              "Daun membebaskan wap air",
-              "Kandungan wap air di atmosfera meningkat",
-            ],
-          },
-          {
-            icon: "🌱",
-            title: "Akar mencengkam tanah",
-            chain: [
-              "Akar mengikat struktur tanah",
-              "Aliran air bawah tanah menjadi perlahan",
-              "Hakisan tanah dapat dielakkan",
-            ],
-          },
-          {
-            icon: "🍂",
-            title: "Daun gugur menutup tanah",
-            chain: [
-              "Sarap daun melitupi permukaan tanah",
-              "Kadar penyejatan air berkurang",
-              "Tanah tidak cepat menjadi kering",
-            ],
-          },
-        ],
-      },
-      checks: [
-        {
-          question: "Berikan dua proses perubahan jirim yang berlaku dalam kitar air.",
-          hint: "Penyejatan (cecair → gas) dan kondensasi (gas → cecair).",
-        },
-        {
-          question: "Wajarkan mengapa hutan yang ditebang boleh menjejaskan kitar air.",
-          hint: "Kurang pokok bermakna kurang transpirasi, akar tidak lagi mencengkam tanah, dan sarap daun berkurang — air kurang dikembalikan ke atmosfera dan hakisan meningkat.",
+          hint: "Fotosintesis menyerap karbon dioksida dan membebaskan oksigen; respirasi dan pereputan melakukan yang sebaliknya.",
         },
       ],
     },
@@ -305,6 +339,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.2.3",
       title: "Gangguan Kitar Nutrien",
+      standardTitle: "2.2 Kitar Nutrien dalam Ekosistem",
       intro:
         "Tiga aktiviti manusia berikut mengganggu kitar nutrien. Bagi setiap satu, kesan boleh dikesan dan langkah penyelesaian boleh diambil.",
       causeEffect: {
@@ -368,8 +403,63 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.3.1",
       title: "Saling Bersandaran dan Istilah Ekologi",
+      standardTitle: "2.3 Saling Bersandaran dan Interaksi antara Organisma dan antara Organisma dengan Persekitaran",
       intro:
         "Sebelum mengkaji interaksi, kenali lima istilah asas ekologi. Spesies, populasi dan komuniti ialah aras organisasi hidupan; habitat pula ialah tempat, bukan aras.",
+      contextImages: [
+        {
+          src: pondEcosystemImage,
+          annotationMode: "spotlight",
+          size: "wide",
+          alt: "Keratan rentas sebuah kolam: pepatung di udara, tumbuhan air dan buluh di tebing, siput, berudu, ikan dan jentik-jentik di dalam air, serta tanah di dasar kolam.",
+          aspect: "3 / 2",
+          legendLabel: "Istilah ekologi dalam satu kolam",
+          caption: "Pilih satu istilah untuk melihat bahagian kolam yang dimaksudkan.",
+          annotations: [
+            {
+              id: "species",
+              label: "Spesies",
+              note: "Semua pepatung ini mempunyai ciri-ciri sepunya dan boleh membiak sesama sendiri untuk menghasilkan anak — itulah satu spesies.",
+              spotlightCaption: "Satu jenis organisma",
+              spotlightShapes: POND_HERO_DRAGONFLY,
+            },
+            {
+              id: "population",
+              label: "Populasi",
+              note: "Pepatung daripada spesies yang sama yang hidup di kolam ini. Populasi menambah satu syarat kepada spesies: habitat yang sama.",
+              spotlightCaption: "Spesies yang sama hidup bersama",
+              spotlightShapes: POND_ALL_DRAGONFLIES,
+              spotlightGroupHalo: true,
+            },
+            {
+              id: "community",
+              label: "Komuniti",
+              note: "Semua populasi hidupan di kolam ini — pepatung, ikan, berudu, siput, jentik-jentik dan tumbuhan air — yang hidup bersama dan saling berinteraksi.",
+              spotlightCaption: "Populasi berlainan hidup bersama",
+              spotlightShapes: POND_COMMUNITY_SHAPES,
+              spotlightGroupHalo: true,
+            },
+            {
+              id: "habitat",
+              label: "Habitat",
+              note: "Kolam itu sendiri: persekitaran semula jadi atau tempat tinggal bagi organisma tersebut.",
+              spotlightCaption: "Tempat tinggal semula jadi organisma",
+              spotlightShapes: POND_HABITAT_SHAPE,
+              spotlightTint: "var(--primary)",
+            },
+            {
+              id: "ecosystem",
+              label: "Ekosistem",
+              note: "Seluruh kolam: komuniti hidupan bersama komponen bukan hidup — air, udara, cahaya matahari dan tanah — yang berinteraksi sebagai satu unit.",
+              spotlightCaption: "Komponen hidup + bukan hidup bersama",
+              spotlightPulseGroups: [
+                { shapes: POND_COMMUNITY_SHAPES, tone: "a" },
+                { shapes: POND_NON_LIVING_SHAPES, tone: "b" },
+              ],
+            },
+          ],
+        },
+      ],
       ecologicalTerms: {
         title: "Bagaimana istilah ini berkaitan",
         instruction:
@@ -379,7 +469,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         ecosystemLabel: "Bagaimana ekosistem terbentuk",
         species: {
           term: "Spesies",
-          definition: "Organisma serupa yang boleh saling membiak.",
+          definition: "Organisma yang mempunyai ciri-ciri sepunya dan boleh membiak untuk menghasilkan anak.",
         },
         population: {
           term: "Populasi",
@@ -409,23 +499,23 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Spesies",
-          body: "Sekumpulan organisma yang mempunyai ciri-ciri **serupa dan boleh saling membiak** untuk menghasilkan anak.",
+          body: "Spesies ialah sekumpulan organisma yang mempunyai **ciri-ciri sepunya** dan boleh **membiak untuk menghasilkan anak**.",
         },
         {
           title: "Populasi",
-          body: "Sekumpulan organisma daripada **spesies yang sama** dan hidup di habitat yang sama. Contoh: satu populasi pepatung di kolam.",
+          body: "Populasi ialah sekumpulan organisma daripada **spesies yang sama** yang hidup dalam habitat yang sama. Contoh: satu populasi pepatung di kolam.",
         },
         {
           title: "Komuniti",
-          body: "Beberapa populasi organisma yang berbeza, hidup bersama dalam satu habitat dan **saling berinteraksi**.",
+          body: "Komuniti ialah **beberapa populasi organisma yang berlainan** yang hidup bersama-sama dalam satu habitat dan **berinteraksi antara satu sama lain**.",
         },
         {
           title: "Habitat",
-          body: "**Persekitaran atau tempat tinggal** semula jadi bagi sesuatu organisma. Contoh: kolam, hutan, tanah.",
+          body: "Habitat ialah **persekitaran semula jadi atau tempat tinggal** sesuatu organisma. Contoh: kolam, hutan, tanah.",
         },
         {
           title: "Ekosistem",
-          body: "Beberapa komuniti yang tinggal bersama dalam satu habitat dan saling berinteraksi, **termasuk komponen bukan hidup** seperti air, udara dan tanah.",
+          body: "Ekosistem ialah komuniti hidupan yang berinteraksi antara satu sama lain dalam satu habitat, **termasuk komponen bukan hidup** seperti air, udara dan tanah.",
         },
       ],
       comparison: {
@@ -457,6 +547,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.3.2",
       title: "Penyesuaian Hidupan",
+      standardTitle: "2.3 Saling Bersandaran dan Interaksi antara Organisma dan antara Organisma dengan Persekitaran",
       intro:
         "Setiap habitat mengenakan cabaran yang berbeza. Penyesuaian ialah ciri badan atau tingkah laku yang membolehkan organisma mengatasi cabaran itu — tanpanya, organisma tidak dapat bermandiri di habitat tersebut.",
       adaptations: {
@@ -588,6 +679,12 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
           detail: "Contoh penyiasatan makmal",
         },
       ],
+      accordions: [
+        {
+          title: "ℹ️ Info tambahan — keadaan setiap habitat",
+          body: "Kawasan tropika menerima hujan yang tinggi dan cahaya matahari sepanjang tahun. Kawasan gurun mengalami keadaan yang sangat panas dan kering. Kawasan tundra mengalami musim sejuk yang panjang dan musim panas yang singkat. Penyesuaian membantu hidupan terus hidup dalam keadaan habitatnya.",
+        },
+      ],
       checks: [
         {
           question: "Wajarkan mengapa penyesuaian penting kepada sesuatu organisma.",
@@ -604,8 +701,73 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.3.3",
       title: "Interaksi antara Organisma",
+      standardTitle: "2.3 Saling Bersandaran dan Interaksi antara Organisma dan antara Organisma dengan Persekitaran",
       intro:
         "Interaksi antara organisma terdiri daripada **simbiosis** (mutualisme, komensalisme, parasitisme), mangsa-pemangsa dan persaingan.",
+      conceptTree: {
+        title: "Bagaimana interaksi ini dikelaskan",
+        instruction:
+          "Simbiosis mempunyai tiga jenis. Mangsa–pemangsa dan persaingan ialah interaksi yang berasingan, bukan jenis simbiosis.",
+        root: {
+          id: "interaction",
+          label: "Interaksi antara organisma",
+          icon: "🔗",
+          children: [
+            {
+              id: "symbiosis",
+              label: "Simbiosis",
+              icon: "🤝",
+              note: "Hubungan rapat antara dua organisma daripada spesies yang berlainan.",
+              children: [
+                { id: "mutualism", label: "Mutualisme", note: "Kedua-dua organisma untung." },
+                { id: "commensalism", label: "Komensalisme", note: "Satu untung; satu lagi tidak terjejas." },
+                { id: "parasitism", label: "Parasitisme", note: "Satu untung; satu lagi rugi." },
+              ],
+            },
+            {
+              id: "predation",
+              label: "Mangsa–pemangsa",
+              icon: "🦉",
+              note: "Satu organisma memburu dan memakan organisma lain.",
+            },
+            {
+              id: "competition",
+              label: "Persaingan",
+              icon: "⚔️",
+              note: "Organisma bersaing untuk keperluan asas yang sama dan terhad.",
+            },
+          ],
+        },
+      },
+      contextImageSet: [
+        {
+          src: mutualismImage,
+          size: "pair",
+          aspect: "16 / 9",
+          alt: "Dua ekor ikan badut berteduh dalam tentakel buran di terumbu karang.",
+          caption:
+            "Mutualisme — kedua-dua organisma untung. Buran melindungi ikan badut; ikan badut membersihkan buran dan membawa nutrien kepadanya.",
+          annotations: [],
+        },
+        {
+          src: commensalismImage,
+          size: "pair",
+          aspect: "16 / 9",
+          alt: "Seekor ikan remora melekat di bawah ikan jerung yang sedang berenang, memakan sisa makanan yang hanyut.",
+          caption:
+            "Komensalisme — ikan remora untung; ikan jerung tidak dimudaratkan dan tidak juga untung.",
+          annotations: [],
+        },
+        {
+          src: parasitismImage,
+          size: "pair",
+          aspect: "16 / 9",
+          alt: "Keratan badan manusia dengan pandangan besar cacing pita di dalam usus, menyerap nutrien melalui permukaan badannya.",
+          caption:
+            "Parasitisme — cacing pita untung dan perumah manusia rugi. Cacing pita menyerap nutrien melalui permukaan badannya.",
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "Mutualisme",
@@ -617,17 +779,37 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "Parasitisme",
-          body: "Satu organisma (parasit) untung; **perumah rugi**. Contoh: cacing pita hidup dalam usus manusia dan menyerap nutrien daripada perumahnya.",
-        },
-        {
-          title: "Mangsa–pemangsa",
-          body: "Satu organisma (pemangsa) **memburu dan memakan** organisma lain (mangsa). Contoh: burung hantu memburu dan memakan tikus.",
-        },
-        {
-          title: "Persaingan",
-          body: "Organisma dalam habitat yang sama bersaing untuk keperluan asas yang terhad seperti **cahaya, ruang, air, makanan atau pasangan**. Ia boleh berlaku sesama spesies mahupun antara spesies berlainan.",
+          body: "Satu organisma (parasit) untung; **perumah rugi**. Contoh: cacing pita hidup dalam usus manusia dan menyerap nutrien melalui permukaan badannya.",
         },
       ],
+      conceptContrast: {
+        title: "Dua interaksi yang bukan simbiosis",
+        left: {
+          id: "predation",
+          term: "Mangsa–pemangsa",
+          question: "SIAPA memakan siapa?",
+          definition: "Satu organisma (pemangsa) memburu dan memakan organisma lain (mangsa).",
+          examples: [
+            "Burung hantu memburu dan memakan tikus",
+            "Bilangan mangsa dan pemangsa saling mempengaruhi",
+          ],
+          icon: "🦉",
+        },
+        right: {
+          id: "competition",
+          term: "Persaingan",
+          question: "SIAPA mendapat sumber yang terhad?",
+          definition:
+            "Organisma dalam habitat yang sama bersaing untuk keperluan asas yang terhad seperti cahaya, ruang, air, makanan atau pasangan.",
+          examples: [
+            "Tumbuhan bersaing untuk cahaya, air dan ruang",
+            "Berlaku sesama spesies mahupun antara spesies berlainan",
+          ],
+          icon: "⚔️",
+        },
+        keyPoint:
+          "Kedua-duanya bukan simbiosis: organisma yang terlibat tidak hidup bersama dalam hubungan rapat yang berpanjangan.",
+      },
       matcher: {
         title: "Padankan interaksi",
         instruction: "Pilih interaksi di kiri, kemudian contoh yang betul.",
@@ -669,6 +851,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.3.4",
       title: "Faktor yang Mempengaruhi Saiz Populasi",
+      standardTitle: "2.3 Saling Bersandaran dan Interaksi antara Organisma dan antara Organisma dengan Persekitaran",
       intro:
         "Saiz populasi tidak kekal. Empat faktor berikut boleh menaikkan atau menurunkannya dalam sesuatu ekosistem.",
       causeEffect: {
@@ -734,6 +917,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.3.5",
       title: "Perubahan dalam Ekosistem",
+      standardTitle: "2.3 Saling Bersandaran dan Interaksi antara Organisma dan antara Organisma dengan Persekitaran",
       intro:
         "Perubahan dalam ekosistem mengubah sumber yang ada dan mengganggu keseimbangan antara populasi. Ramalkan kesannya dengan mengikut rantaian di bawah.",
       causeEffect: {
@@ -791,27 +975,75 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "2.4.1",
       title: "Peranan Manusia dalam Mengekalkan Keseimbangan Alam",
+      standardTitle: "2.4 Peranan Manusia dalam Mengekalkan Keseimbangan Alam",
       intro:
         "Manusia memerlukan ekosistem yang stabil dan produktif demi kelestarian hidup — daripadanya kita memperoleh makanan, air bersih, udara yang selamat, bahan mentah dan ubat-ubatan. Apabila ekosistem terganggu, sumber-sumber ini turut terjejas, jadi manusia **bertanggungjawab memulihara keseimbangan alam**.",
-      comparison: {
-        title: "Kos aktiviti manusia terhadap alam",
-        columns: [
+      impactTable: {
+        title: "Jadual 2.1 — Kesan aktiviti manusia terhadap alam",
+        instruction: "Setiap aktiviti membawa kesannya sendiri kepada keseimbangan alam.",
+        causeLabel: "Aktiviti",
+        effectLabel: "Kesan",
+        rows: [
           {
-            title: "Tekanan manusia",
-            body: "Penebangan hutan menyebabkan **kepupusan spesies, hakisan tanah dan kesan rumah hijau**. Perindustrian mencemarkan udara, air dan tanah serta menyebabkan hujan asid. Pertanian yang tidak lestari mencemarkan air dan menghilangkan mineral tanah. Pembuangan sampah sarap menyebabkan pencemaran, bau busuk dan banjir kilat.",
+            id: "deforestation",
+            icon: "🪓",
+            cause: "Penebangan hutan",
+            effects: ["Kepupusan spesies flora dan fauna", "Hakisan tanah", "Kesan rumah hijau"],
           },
           {
-            title: "Memulihkan keseimbangan",
-            body: "**Menguatkuasakan undang-undang** (rondaan hutan dan sekatan jalan raya oleh Jabatan Perhutanan), meningkatkan kesedaran orang awam, mengamalkan 5R, dan menggunakan kaedah kawalan biologi dalam pertanian.",
+            id: "industry",
+            icon: "🏭",
+            cause: "Perindustrian",
+            effects: ["Pencemaran udara, air dan tanah", "Hujan asid", "Kesan rumah hijau"],
+          },
+          {
+            id: "agriculture",
+            icon: "🌾",
+            cause: "Pertanian",
+            effects: [
+              "Pencemaran air akibat penggunaan pestisid dan baja secara berlebihan",
+              "Tanah kehilangan mineral akibat aktiviti pertanian yang tidak lestari",
+            ],
+          },
+          {
+            id: "waste",
+            icon: "🗑️",
+            cause: "Pembuangan sampah sarap",
+            effects: [
+              "Pencemaran air dan tanah",
+              "Bau busuk akibat pereputan sisa pepejal organik",
+              "Banjir kilat",
+            ],
           },
         ],
       },
       cards: [
-        { title: "Refuse (Tolak)", body: "Elakkan menggunakan bahan yang tidak dapat dikitar semula." },
-        { title: "Reduce (Kurangkan)", body: "Kurangkan jumlah bahan yang digunakan." },
-        { title: "Reuse (Guna semula)", body: "Gunakan semula sesuatu bahan." },
-        { title: "Recycle (Kitar semula)", body: "Proses bahan buangan menjadi bahan baharu." },
-        { title: "Repurpose (Guna untuk tujuan lain)", body: "Berikan bahan lama satu fungsi yang baharu." },
+        {
+          title: "Menguatkuasakan undang-undang",
+          body: "Undang-undang melindungi hutan dan **mengawal aktiviti pembalakan haram**. Jabatan Perhutanan menjalankan rondaan hutan dan sekatan jalan raya.",
+          detail: "Langkah 1",
+        },
+        {
+          title: "Meningkatkan kesedaran orang awam",
+          body: "Pendidikan dan media massa membantu orang ramai **menghargai keseimbangan alam sekitar** dan bertindak menjaganya.",
+          detail: "Langkah 2",
+        },
+        {
+          title: "Mengamalkan 5R",
+          body: "Kurangkan sisa dengan menolak bahan yang tidak sesuai, mengurangkan penggunaan, mengguna semula, mengitar semula dan **menggunakannya untuk tujuan lain**.",
+          detail: "Refuse · Reduce · Reuse · Recycle · Repurpose",
+        },
+        {
+          title: "Menggunakan kaedah kawalan biologi",
+          body: "Kurangkan penggunaan racun perosak dengan menggunakan **pemangsa semula jadi yang sesuai** dalam pertanian.",
+          detail: "Langkah 4",
+        },
+      ],
+      accordions: [
+        {
+          title: "♻️ 5R dengan lebih lanjut",
+          body: "Refuse (Tolak): elakkan menggunakan bahan yang tidak dapat dikitar semula. Reduce (Kurangkan): kurangkan jumlah bahan yang digunakan. Reuse (Guna semula): gunakan semula sesuatu bahan. Recycle (Kitar semula): proses bahan buangan menjadi bahan baharu. Repurpose (Guna untuk tujuan lain): berikan bahan lama satu fungsi yang baharu.",
+        },
       ],
       checks: [
         {

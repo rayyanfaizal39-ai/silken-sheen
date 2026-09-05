@@ -26,7 +26,16 @@ export type AnnotationMode =
    * clickable list beneath, which is also the phone and keyboard reading
    * surface.
    */
-  | "regions";
+  | "regions"
+  /**
+   * Like `regions`, but the picked concept is shown by strongly dimming
+   * everything else on the artwork rather than by a border on one rectangle.
+   * For artwork where the concepts genuinely overlap or nest (one dragonfly
+   * vs. all of them vs. every living thing vs. the whole scene) a shared
+   * border weight cannot tell those states apart; full-image dimming with a
+   * glowing cutout can. See `ImageAnnotation`'s `spotlight*` fields.
+   */
+  | "spotlight";
 
 /** Share of the frame width taken by ONE callout gutter. */
 export const CALLOUT_GUTTER = 23;

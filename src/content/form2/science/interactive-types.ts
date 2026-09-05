@@ -481,6 +481,57 @@ export type EcologicalTerm = {
  * Ecological terms, drawn as three separate relationships rather than one
  * ladder: habitat is a place, not a level of organisation.
  */
+/**
+ * One node of a shallow classification tree.
+ *
+ * `children` exists so a chapter can state that a branch has sub-types WITHOUT
+ * flattening them into siblings of the other branches — the mistake this block
+ * was added to stop: mutualism, commensalism and parasitism are kinds of
+ * symbiosis, while prey-predator and competition are not, and a flat row of
+ * five cards silently teaches that all five sit at the same level.
+ */
+export type ConceptTreeNode = {
+  id: string;
+  label: string;
+  /** One short line saying what this node is. */
+  note?: string;
+  icon?: string;
+  children?: ConceptTreeNode[];
+};
+
+/** A classification a learner must be able to see, not just read in prose. */
+export type ConceptTreeBlock = {
+  title: string;
+  instruction?: string;
+  root: ConceptTreeNode;
+};
+
+/** One cause and everything it leads to — a row of an impact table. */
+export type ImpactRow = {
+  id: string;
+  icon?: string;
+  /** The activity or event, e.g. "Deforestation". */
+  cause: string;
+  /** Its consequences, one fact per entry. Never a single run-on sentence. */
+  effects: string[];
+};
+
+/**
+ * A "this activity → these effects" table. A real table from `sm` up, where the
+ * shared column heading is what makes the rows comparable, and stacked cards on
+ * a phone, where a two-column table would either overflow or shrink past
+ * reading size.
+ */
+export type ImpactTableBlock = {
+  title: string;
+  instruction?: string;
+  /** Heading over the activity column. */
+  causeLabel: string;
+  /** Heading over the effects column. */
+  effectLabel: string;
+  rows: ImpactRow[];
+};
+
 export type EcologicalTermsBlock = {
   title: string;
   instruction?: string;
@@ -1434,6 +1485,16 @@ export type StarSizeCompareBlock = {
 export type ScienceInteractiveSection = {
   number: string;
   title: string;
+  /**
+   * The Standard Kandungan this section sits under, in the textbook's own
+   * words, e.g. "2.1 Energy Flow in an Ecosystem".
+   *
+   * The shell shows only the section's own title, so a learner deep in
+   * "Producers, Consumers and Decomposers" had no way to see which numbered
+   * part of the chapter they were in. Repeat it on every section of the same
+   * standard; the shared heading is the point.
+   */
+  standardTitle?: string;
   intro?: string;
   cards?: ScienceInteractiveCard[];
   flipCards?: FlipCardItem[];
@@ -1457,6 +1518,8 @@ export type ScienceInteractiveSection = {
   viskingExperiment?: ViskingExperimentBlock;
   villusDiagram?: VillusDiagramBlock;
   ecologicalTerms?: EcologicalTermsBlock;
+  conceptTree?: ConceptTreeBlock;
+  impactTable?: ImpactTableBlock;
   enzymeExplorer?: EnzymeExplorerBlock;
   immuneResponseGraph?: ImmuneResponseGraphBlock;
   defenceLines?: DefenceLinesBlock;
@@ -1517,6 +1580,13 @@ export type ScienceInteractiveSection = {
    * phone. Rendered in the same leading position as `contextImages`.
    */
   contextImagePair?: AnnotatedImageBlock[];
+  /**
+   * Three or more matched contextual figures that only teach as one set — the
+   * three kinds of symbiosis, say. Same footprint and aspect for every member,
+   * so no single picture reads as the important one; each keeps its own
+   * caption, which is where the language-specific definition lives.
+   */
+  contextImageSet?: AnnotatedImageBlock[];
   /** Standalone annotated reference illustrations for this section. */
   images?: AnnotatedImageBlock[];
   matcher?: {
