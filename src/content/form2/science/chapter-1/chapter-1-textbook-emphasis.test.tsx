@@ -168,13 +168,13 @@ describe("Chapter 1 — the textbook's emphasis, and only that", () => {
       Terancam:
         "Spesies yang bilangannya semakin berkurang sehingga berisiko pupus. Terancam memberitahu kita tentang RISIKO KEPUPUSAN, bukan lokasi. Akta Perlindungan Hidupan Liar 1972 mengharamkan pembunuhan dan pemerdagangannya.",
       kotiledon:
-        "Setiap biji membawa kotiledon — makanan simpanan permulaannya. Satu kotiledon = monokotiledon. Sepasang = dikotiledon.",
+        "Tumbuhan berbunga menghasilkan bunga yang kemudiannya menjadi buah yang mengandungi biji benih. Biji benih mempunyai kotiledon — makanan simpanan yang digunakan semasa percambahan. Satu kotiledon = monokotiledon. Dua kotiledon (sepasang) = dikotiledon.",
       Endemic:
         "A species that lives only within a restricted habitat in one specific location — found nowhere else naturally. Endemic tells you about LOCATION.",
       Threatened:
         "A species whose numbers are falling so far that it risks extinction. Threatened tells you about RISK OF EXTINCTION, not location. The Wildlife Protection Act 1972 bans killing or trading them.",
       cotyledon:
-        "Every seed carries a cotyledon — its stored starter food. One cotyledon = monocotyledon. A pair = dicotyledon.",
+        "Flowering plants produce flowers which become fruits containing seeds. Every seed has a cotyledon — stored food used during germination. One cotyledon = monocotyledon. A pair = dicotyledon.",
     };
     for (const [, text] of allStrings(content)) {
       if (!text.includes("**")) continue;
@@ -263,7 +263,7 @@ describe("Chapter 1 — Remember / Quick Explanation callouts", () => {
     const enMarkup = renderToStaticMarkup(
       <ScienceF2Chapter1NotesBlock content={scienceF2C1InteractiveDLP} lang="en" />,
     );
-    expect(bmMarkup).toContain("12 buah negara megabiodiversiti");
+    expect(bmMarkup).toContain("12 negara mega biodiversiti");
     expect(bmMarkup).toContain("Penjelasan Ringkas");
     expect(enMarkup).toContain("12 megabiodiversity countries");
     expect(enMarkup).toContain("Quick Explanation");
@@ -288,8 +288,8 @@ describe("Chapter 1 — Remember / Quick Explanation callouts", () => {
     const originals = [
       "The **Wildlife Protection Act 1972** bans the killing or trade of endemic and threatened species in Malaysia.",
       "**Akta Perlindungan Hidupan Liar 1972** mengharamkan pembunuhan atau perdagangan spesies endemik dan terancam di Malaysia.",
-      "Did you know that our country, Malaysia, is one of the **12 megabiodiversity countries** in the world? Malaysia's equatorial climate makes it an especially suitable habitat for many kinds of organisms.",
-      "Tahukah anda negara kita, Malaysia merupakan salah satu daripada **12 buah negara megabiodiversiti** di dunia? Keadaan di Malaysia yang beriklim khatulistiwa menjadikannya habitat yang sangat sesuai bagi pelbagai jenis organisma.",
+      "Malaysia is one of the **12 megabiodiversity countries** in the world — its hot, humid equatorial climate makes it an especially suitable habitat for many kinds of organisms.",
+      "Malaysia merupakan salah satu daripada **12 negara mega biodiversiti** di dunia — iklim khatulistiwa yang panas dan lembap menjadikannya habitat yang sangat sesuai bagi pelbagai jenis organisma.",
     ];
     for (const original of originals) {
       expect(file, `missing or altered: ${stripEmphasis(original)}`).toContain(original);

@@ -80,7 +80,7 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     question: "Haiwan tanpa tulang belakang dikenali sebagai...",
-    options: ["Vertebrata", "Invertebrata", "Homeoterma", "Poikiloterma"],
+    options: ["Vertebrata", "Invertebrata", "Homoioterma", "Poikiloterma"],
     answerIndex: 1,
     explanation: "Invertebrata ialah haiwan yang tidak mempunyai tulang belakang.",
   },
@@ -104,7 +104,7 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     question: "Organisma yang suhu badannya berubah mengikut suhu persekitaran dipanggil...",
-    options: ["Homeoterma", "Poikiloterma", "Invertebrata", "Vertebrata"],
+    options: ["Homoioterma", "Poikiloterma", "Invertebrata", "Vertebrata"],
     answerIndex: 1,
     explanation: "Poikiloterma ialah organisma yang suhu badannya berubah mengikut suhu persekitaran.",
   },
@@ -197,7 +197,7 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Mengapakah burung dikategorikan sebagai homeoterma walaupun ia bertelur?",
+    question: "Mengapakah burung dikategorikan sebagai homoioterma walaupun ia bertelur?",
     options: [
       "Kerana telur burung tidak bercengkerang",
       "Kerana suhu badan burung malar dan tidak dipengaruhi suhu persekitaran",
@@ -205,7 +205,7 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
       "Kerana burung mengalami persenyawaan luaran",
     ],
     answerIndex: 1,
-    explanation: "Homeoterma ditentukan oleh sama ada suhu badan malar (tetap), bukan oleh cara pembiakan. Burung mengekalkan suhu badan yang tetap menggunakan bulu.",
+    explanation: "Homoioterma ditentukan oleh sama ada suhu badan malar (tetap), bukan oleh cara pembiakan. Burung mengekalkan suhu badan yang tetap menggunakan bulu.",
   },
   {
     id: "sci-f2-c1-bm-q16",
@@ -295,11 +295,11 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     question:
-      "Satu kekunci dikotomi memberikan kuplet: 1(a) Poikiloterma → ke 2, 1(b) Homeoterma → ke 3; 3(a) Tidak berbulu pelepah → Singa, 3(b) Berbulu pelepah → Ayam. Seekor haiwan X ialah homeoterma dan mempunyai bulu pelepah. Apakah haiwan X?",
+      "Satu kekunci dikotomi memberikan kuplet: 1(a) Poikiloterma → ke 2, 1(b) Homoioterma → ke 3; 3(a) Tidak berbulu pelepah → Singa, 3(b) Berbulu pelepah → Ayam. Seekor haiwan X ialah homoioterma dan mempunyai bulu pelepah. Apakah haiwan X?",
     options: ["Singa", "Ayam", "Ular", "Katak"],
     answerIndex: 1,
     explanation:
-      "Mengikut laluan kuplet: homeoterma → ke 3 → berbulu pelepah → Ayam. Perhatikan istilah 'bulu pelepah': mamalia seperti singa juga dilitupi bulu dan rambut, tetapi hanya burung yang mempunyai bulu pelepah.",
+      "Mengikut laluan kuplet: homoioterma → ke 3 → berbulu pelepah → Ayam. Perhatikan istilah 'bulu pelepah': mamalia seperti singa juga dilitupi bulu dan rambut, tetapi hanya burung yang mempunyai bulu pelepah.",
   },
   {
     id: "sci-f2-c1-bm-q22",

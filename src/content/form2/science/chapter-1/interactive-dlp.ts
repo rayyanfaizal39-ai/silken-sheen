@@ -204,7 +204,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
   importance: [
     {
       icon: "🍚",
-      title: "Food source",
+      title: "Sources of food",
       description: "Animals and plants supply the food humans rely on daily.",
     },
     {
@@ -214,7 +214,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
     },
     {
       icon: "🏕️",
-      title: "Recreation",
+      title: "Recreational places",
       description: "Biodiversity-rich areas become parks and eco-tourism destinations.",
     },
     {
@@ -224,7 +224,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
     },
     {
       icon: "🪵",
-      title: "Raw materials",
+      title: "Raw materials for industries",
       description: "Timber, bamboo and rattan build furniture, instruments and homes.",
     },
     {
@@ -305,8 +305,8 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
     "Endemic and threatened are NOT the same thing. A species can be endemic only, threatened only, or both at once — the Malayan tiger, for example, is endemic and also threatened.",
   checkYourself11: [
     {
-      question: "What is biodiversity, in your own words?",
-      hint: "Think: microorganisms + animals + plants + the habitats and genes that make each one different.",
+      question: "What is biodiversity?",
+      hint: "The diversity of organisms, whether microorganisms, animals or plants.",
     },
     {
       question: "How does biodiversity support the economy?",
@@ -354,10 +354,11 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
           name: "Fish",
           traits: [
             "Poikilothermic",
-            "Hard, slimy scales",
-            "Fins and a tail",
-            "Breathes through gills",
-            "Lays eggs, external fertilisation",
+            "Covered in hard and slimy scales",
+            "Have fins and a tail",
+            "Breathe through gills",
+            "Lay eggs",
+            "Undergo external fertilisation",
           ],
           examples: ["Grouper", "Clownfish", "Eel"],
         },
@@ -365,10 +366,12 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
           name: "Amphibians",
           traits: [
             "Poikilothermic",
-            "Lives on land and water",
+            "Live on land and in water",
             "Moist skin",
-            "Young breathe via gills, adults via lungs + skin",
-            "Jelly-like eggs, no shell",
+            "Young amphibians breathe through gills",
+            "Adult amphibians breathe using their lungs and moist skin",
+            "Jelly-like eggs without a shell",
+            "Undergo external fertilisation",
           ],
           examples: ["Frog", "Toad", "Salamander"],
         },
@@ -387,9 +390,11 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
           name: "Birds",
           traits: [
             "Homeothermic",
-            "Feathers for warmth",
-            "Breathes through lungs",
-            "Wings, scaly feet",
+            "Have feathers",
+            "Breathe through lungs",
+            "Have wings",
+            "A pair of scaly feet",
+            "Undergo internal fertilisation",
             "Hard-shelled eggs",
           ],
           examples: ["Owl", "Kingfisher", "Duck"],
@@ -418,7 +423,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
       id: "flower",
       label: "Flowering",
       detail:
-        "Every seed carries a **cotyledon** — its stored starter food. One cotyledon = **monocotyledon**. A pair = **dicotyledon**.",
+        "Flowering plants produce flowers which become fruits containing seeds. Every seed has a **cotyledon** — stored food used during germination. One cotyledon = **monocotyledon**. A pair = **dicotyledon**.",
     },
   ],
   cotyledonCompare: [
@@ -450,7 +455,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
   checkYourself12: [
     {
       question: "Sort: eagle, frog, cobra, goldfish, tiger — by vertebrate group.",
-      hint: "Match each to Birds / Amphibians / Reptiles / Fish / Mammals using breathing method and skin covering.",
+      hint: "Eagle → Bird. Frog → Amphibian. Cobra → Reptile. Goldfish → Fish. Tiger → Mammal.",
     },
     {
       question: "One similarity + three differences: sunflower vs paddy plant.",
@@ -465,7 +470,7 @@ export const scienceF2C1InteractiveDLP: SciF2C1Content = {
     "I can explain biodiversity and why it matters.",
     "I can justify why biodiversity needs to be actively managed.",
     "I can sort organisms using a dichotomous key.",
-    "I can describe the major taxonomy groups.",
+    "I can classify organisms into their major groups based on their characteristics.",
   ],
   miniQuiz: [
     {

@@ -42,9 +42,15 @@ const COPY: Record<
     plantSection: string;
     sectionLabels: string[];
     biodiversityIntro: string;
+    whatIsBiodiversityHead: string;
+    biodiversityDefinition: string;
+    megabiodiversityHead: string;
     /** 💡 Quick Explanation — the textbook's own "Did you know" aside about Malaysia's megabiodiversity status. */
     megabiodiversityQuickExplanation: string;
+    whyBiodiversityHead: string;
+    whyBiodiversityBody: string;
     habitatsIntro: string;
+    importanceHead: string;
     importanceIntro: string;
     keepingAliveIntro: string;
     legalHead: string;
@@ -65,10 +71,16 @@ const COPY: Record<
     revealHint: string;
     whySortHead: string;
     whySortBody: string;
+    thermoHead: string;
+    poikilothermDef: string;
+    homeothermDef: string;
     animalTreeHead: string;
     animalTreeIntro: string;
     plantTreeHead: string;
     plantTreeIntro: string;
+    vascularHead: string;
+    nonVascularDef: string;
+    vascularDef: string;
     starMapHead: string;
     starMapIntro: string;
     chapterMapHead: string;
@@ -81,16 +93,24 @@ const COPY: Record<
   en: {
     section11: "1.1 Diversity of Organisms",
     section12: "1.2 Classification of Organisms",
-    managementSection: "Effective Biodiversity Management",
+    managementSection: "Methods to Preserve and Conserve Biodiversity",
     animalSection: "1.2 Classification of Organisms — Animals",
     plantSection: "1.2 Classification of Organisms — Plants",
     sectionLabels: ["Biodiversity", "Management", "Animals", "Plants", "Dichotomous key"],
     biodiversityIntro:
-      "Biodiversity is the variety of organisms on Earth — microorganisms, animals and plants — and it exists because habitats and climates differ so much, from deserts to polar regions to soil to the sea. Organisms living in different habitats have evolved different characteristics that let them survive and thrive there independently. Biodiversity also includes genetic diversity: the variation within a single species, caused by differences in the genes of individual organisms. Malaysia's hot, humid equatorial climate makes it an especially rich habitat for life, which is why it is recognised as one of the world's 12 megabiodiversity countries.",
+      "Biodiversity is the variety of living things on Earth. Here's what it means, where Malaysia fits in, and why it matters.",
+    whatIsBiodiversityHead: "What is Biodiversity?",
+    biodiversityDefinition:
+      "The diversity of organisms, whether microorganisms, animals or plants, is known as biodiversity.",
+    megabiodiversityHead: "Malaysia: A Megabiodiversity Country",
     megabiodiversityQuickExplanation:
-      "Did you know that our country, Malaysia, is one of the **12 megabiodiversity countries** in the world? Malaysia's equatorial climate makes it an especially suitable habitat for many kinds of organisms.",
+      "Malaysia is one of the **12 megabiodiversity countries** in the world — its hot, humid equatorial climate makes it an especially suitable habitat for many kinds of organisms.",
+    whyBiodiversityHead: "Why Biodiversity Exists",
+    whyBiodiversityBody:
+      "Biodiversity exists because habitats and climates differ so much — from deserts to polar regions to soil to the sea. Organisms in each habitat have evolved different characteristics that let them survive there.",
     habitatsIntro:
       "Tap a habitat below to see how its climate shapes the organisms that live there.",
+    importanceHead: "Importance of Biodiversity",
     importanceIntro: "Six reasons biodiversity underpins everyday life — tap each to expand.",
     keepingAliveIntro:
       "Deforestation for timber and development puts biodiversity at risk. Malaysia manages this through law, protected space, and active breeding programmes.",
@@ -113,14 +133,23 @@ const COPY: Record<
     glossaryHint: "Tap any term to read its meaning.",
     checkYourself: "Check yourself",
     revealHint: "Reveal hint",
-    whySortHead: "Why sort living things at all?",
+    whySortHead: "Why classify living things?",
     whySortBody:
-      "You just met dozens of organisms in the habitats above — classification is how biologists make sense of that variety. Animals and plants are sorted into smaller and smaller groups based on traits they share and traits that set them apart, so an unfamiliar organism can be identified quickly and consistently. Animals split first into invertebrates (no backbone) and vertebrates (with a backbone), and vertebrates split further into fish, amphibians, reptiles, birds and mammals. Plants split first into non-flowering and flowering plants, and flowering plants split further into monocotyledons and dicotyledons.",
+      "Organisms are classified into groups based on characteristics they share and characteristics that set them apart, so they are easier to identify and study. Organisms → Animals → Plants — animals split into invertebrates and vertebrates, and plants split into non-flowering and flowering plants.",
+    thermoHead: "🌡️ Poikilotherm vs Homeotherm",
+    poikilothermDef:
+      "**Poikilotherm**: An organism whose body temperature changes according to the surrounding temperature.",
+    homeothermDef:
+      "**Homeotherm**: An animal whose body temperature remains constant and is not influenced by the surrounding temperature.",
     animalTreeHead: "Animal Kingdom — build the tree yourself",
     animalTreeIntro: "Start at the top and choose a branch to explore each group.",
     plantTreeHead: "Plant Kingdom",
     plantTreeIntro:
-      "Plants are classified as non-flowering or flowering. Non-flowering plants reproduce with spores or cones and include mosses (non-vascular, no internal tubes to carry water), ferns and conifers (both vascular, with true roots, stems and leaves). Flowering plants produce flowers that develop into fruit containing seeds, and each seed's cotyledon count tells you which group it belongs to: one cotyledon means monocotyledon (fibrous roots, parallel leaf veins, e.g. paddy and maize), two cotyledons means dicotyledon (a tap root, net-like leaf veins, e.g. tomato and durian).",
+      "Plants are classified as non-flowering or flowering plants. Tap a branch below to explore each group.",
+    vascularHead: "🌱 Vascular vs Non-vascular Plants",
+    nonVascularDef: "**Non-vascular plants**: Simple and small plants without a vascular system.",
+    vascularDef:
+      "**Vascular plants**: Plants with a vascular system that transports water and food throughout the plant. They also have true roots, stems and leaves.",
     starMapHead: "⭐ Use a dichotomous key — Star Map",
     starMapIntro:
       "A dichotomous key sorts organisms with a chain of either/or questions. Answer each one to narrow the sky down to a single organism.",
@@ -133,16 +162,24 @@ const COPY: Record<
   bm: {
     section11: "1.1 Kepelbagaian Organisma",
     section12: "1.2 Klasifikasi Organisma",
-    managementSection: "Pengurusan Biodiversiti yang Berkesan",
+    managementSection: "Kaedah Memelihara dan Memulihara Biodiversiti",
     animalSection: "1.2 Klasifikasi Organisma — Haiwan",
     plantSection: "1.2 Klasifikasi Organisma — Tumbuhan",
     sectionLabels: ["Biodiversiti", "Pengurusan", "Haiwan", "Tumbuhan", "Kekunci dikotomi"],
     biodiversityIntro:
-      "Biodiversiti ialah kepelbagaian organisma di Bumi — mikroorganisma, haiwan dan tumbuhan — dan ia wujud kerana habitat serta iklim yang jauh berbeza, daripada gurun, kawasan kutub, tanah hinggalah laut. Organisma yang hidup dalam habitat berlainan mempunyai ciri-ciri berbeza yang membolehkan mereka menyesuaikan diri dan terus hidup secara berdikari di situ. Biodiversiti turut merangkumi kepelbagaian genetik: variasi dalam sesuatu spesies yang sama, disebabkan oleh perbezaan pada gen setiap organisma. Iklim khatulistiwa Malaysia yang panas dan lembap menjadikannya habitat yang sangat kaya dengan hidupan, itulah sebabnya Malaysia diiktiraf sebagai salah satu daripada 12 negara megabiodiversiti di dunia.",
+      "Biodiversiti ialah kepelbagaian hidupan di Bumi. Berikut ialah maksudnya, kedudukan Malaysia, dan sebab ia penting.",
+    whatIsBiodiversityHead: "Apakah Biodiversiti?",
+    biodiversityDefinition:
+      "Kepelbagaian organisma sama ada mikroorganisma, haiwan atau tumbuhan dikenali sebagai biodiversiti.",
+    megabiodiversityHead: "Malaysia: Negara Mega Biodiversiti",
     megabiodiversityQuickExplanation:
-      "Tahukah anda negara kita, Malaysia merupakan salah satu daripada **12 buah negara megabiodiversiti** di dunia? Keadaan di Malaysia yang beriklim khatulistiwa menjadikannya habitat yang sangat sesuai bagi pelbagai jenis organisma.",
+      "Malaysia merupakan salah satu daripada **12 negara mega biodiversiti** di dunia — iklim khatulistiwa yang panas dan lembap menjadikannya habitat yang sangat sesuai bagi pelbagai jenis organisma.",
+    whyBiodiversityHead: "Bagaimanakah Biodiversiti Wujud?",
+    whyBiodiversityBody:
+      "Biodiversiti wujud kerana habitat dan iklim yang jauh berbeza — daripada gurun, kawasan kutub, tanah hinggalah laut. Organisma dalam setiap habitat mempunyai ciri berbeza yang membolehkan mereka terus hidup di situ.",
     habitatsIntro:
       "Ketik satu habitat di bawah untuk melihat cara iklimnya membentuk organisma yang hidup di situ.",
+    importanceHead: "Kepentingan Biodiversiti",
     importanceIntro: "Enam sebab biodiversiti menyokong kehidupan harian — ketik untuk kembangkan.",
     keepingAliveIntro:
       "Penebangan hutan untuk balak dan pembangunan meletakkan biodiversiti dalam risiko. Malaysia menguruskannya melalui undang-undang, kawasan perlindungan, dan program pembiakan aktif.",
@@ -167,12 +204,22 @@ const COPY: Record<
     revealHint: "Dedahkan panduan",
     whySortHead: "Mengapa perlu mengelaskan hidupan?",
     whySortBody:
-      "Anda baru sahaja bertemu berpuluh-puluh organisma dalam habitat di atas — klasifikasi ialah cara ahli biologi memahami kepelbagaian itu. Haiwan dan tumbuhan dikumpulkan kepada set yang lebih kecil berdasarkan ciri yang dikongsi dan ciri yang membezakan, supaya organisma yang tidak dikenali dapat dikenal pasti dengan cepat dan konsisten. Haiwan mula-mula dibahagikan kepada invertebrata (tiada tulang belakang) dan vertebrata (ada tulang belakang), dan vertebrata dibahagikan lagi kepada ikan, amfibia, reptilia, burung dan mamalia. Tumbuhan pula mula-mula dibahagikan kepada tumbuhan tidak berbunga dan tumbuhan berbunga, dan tumbuhan berbunga dibahagikan lagi kepada monokotiledon dan dikotiledon.",
+      "Organisma dikelaskan kepada kumpulan berdasarkan ciri yang dikongsi dan ciri yang membezakan, supaya lebih mudah dikenal pasti dan dikaji. Organisma → Haiwan → Tumbuhan — haiwan dibahagikan kepada invertebrata dan vertebrata, manakala tumbuhan dibahagikan kepada tumbuhan tidak berbunga dan tumbuhan berbunga.",
+    thermoHead: "🌡️ Poikiloterma lwn Homoioterma",
+    poikilothermDef:
+      "**Poikiloterma**: Organisma yang mempunyai suhu badan yang berubah-ubah mengikut suhu persekitaran.",
+    homeothermDef:
+      "**Homoioterma**: Haiwan yang mempunyai suhu badan yang malar dan bebas daripada pengaruh suhu persekitaran.",
     animalTreeHead: "Kerajaan Haiwan — bina pokok anda sendiri",
     animalTreeIntro: "Mula dari atas dan pilih cabang untuk meneroka setiap kumpulan.",
     plantTreeHead: "Kerajaan Tumbuhan",
     plantTreeIntro:
-      "Tumbuhan diklasifikasikan sebagai tidak berbunga atau berbunga. Tumbuhan tidak berbunga membiak melalui spora atau kon, termasuk lumut (tidak berpembuluh, tiada saluran dalaman untuk mengangkut air) serta paku pakis dan konifer (kedua-duanya berpembuluh, mempunyai akar, batang dan daun yang sebenar). Tumbuhan berbunga menghasilkan bunga yang berkembang menjadi buah berisi biji benih, dan bilangan kotiledon pada biji benih menentukan kumpulannya: satu kotiledon bermaksud monokotiledon (akar serabut, daun berurat selari, contoh padi dan jagung), dua kotiledon bermaksud dikotiledon (akar tunjang, daun berurat jaring, contoh tomato dan durian).",
+      "Tumbuhan diklasifikasikan sebagai tidak berbunga atau berbunga. Ketik cabang di bawah untuk meneroka setiap kumpulan.",
+    vascularHead: "🌱 Tumbuhan Vaskular lwn Tidak Vaskular",
+    nonVascularDef:
+      "**Tumbuhan tidak vaskular**: Tumbuhan ringkas dan kecil yang tidak mempunyai sistem vaskular (tidak berpembuluh).",
+    vascularDef:
+      "**Tumbuhan vaskular**: Tumbuhan yang mempunyai sistem vaskular (berpembuluh) untuk mengangkut air dan makanan ke seluruh tumbuhan. Tumbuhan ini juga mempunyai akar, batang dan daun sebenar.",
     starMapHead: "⭐ Guna kekunci dikotomi — Peta Bintang",
     starMapIntro:
       "Kekunci dikotomi mengelaskan organisma melalui satu siri kuplet — setiap kuplet menawarkan dua ciri berpasangan. Pilih ciri yang betul pada setiap langkah untuk mengecilkan langit kepada satu organisma sahaja.",
@@ -183,6 +230,30 @@ const COPY: Record<
     markedRead: "Selesai ditanda ✓",
   },
 };
+
+/** A compact "Science Info" callout pairing two contrasting definitions — e.g. poikilotherm vs
+ *  homeotherm, or vascular vs non-vascular — so a term is explained before it's used elsewhere. */
+function ScienceInfoPair({
+  head,
+  first,
+  second,
+}: {
+  head: string;
+  first: string;
+  second: string;
+}) {
+  return (
+    <div className="rounded-xl border border-primary/25 bg-primary/5 p-3.5">
+      <p className="font-display mb-2 text-[13px] font-bold text-foreground">{head}</p>
+      <p className="text-[12.5px] leading-relaxed text-muted-foreground">
+        <ScienceEmphasis text={first} />
+      </p>
+      <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
+        <ScienceEmphasis text={second} />
+      </p>
+    </div>
+  );
+}
 
 function KeywordGlossary({
   items,
@@ -390,12 +461,32 @@ export function ScienceF2Chapter1NotesBlock({
       description: t.biodiversityIntro,
       content: (
         <div className="flex flex-col gap-5">
-          <ScienceQuickExplanation lang={lang} text={t.megabiodiversityQuickExplanation} />
           <div>
-            <p className="mb-3 text-[13.5px] text-muted-foreground">{t.habitatsIntro}</p>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {t.whatIsBiodiversityHead}
+            </h3>
+            <ScienceRemember lang={lang} text={t.biodiversityDefinition} />
+          </div>
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {t.megabiodiversityHead}
+            </h3>
+            <ScienceQuickExplanation lang={lang} text={t.megabiodiversityQuickExplanation} />
+          </div>
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {t.whyBiodiversityHead}
+            </h3>
+            <p className="mb-3 text-[13.5px] leading-relaxed text-muted-foreground">
+              {t.whyBiodiversityBody}
+            </p>
+            <p className="mb-3 text-[13px] text-muted-foreground">{t.habitatsIntro}</p>
             <FlipCardGrid items={content.habitats} />
           </div>
           <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {t.importanceHead}
+            </h3>
             <p className="mb-3 text-[13.5px] text-muted-foreground">{t.importanceIntro}</p>
             <IconCardGrid
               items={content.importance.map((item) => ({
@@ -542,6 +633,11 @@ export function ScienceF2Chapter1NotesBlock({
             </p>
           </div>
           <Figure block={content.classificationImages?.animalOverview} lang={lang} />
+          <ScienceInfoPair
+            head={t.thermoHead}
+            first={t.poikilothermDef}
+            second={t.homeothermDef}
+          />
           <div>
             <h3 className="font-display mb-1 text-base font-bold text-foreground">
               {t.animalTreeHead}
@@ -569,6 +665,9 @@ export function ScienceF2Chapter1NotesBlock({
           </p>
           <div className="mb-4">
             <Figure block={content.classificationImages?.plantGroups} lang={lang} />
+          </div>
+          <div className="mb-4">
+            <ScienceInfoPair head={t.vascularHead} first={t.nonVascularDef} second={t.vascularDef} />
           </div>
           <ClassificationTree
             branches={content.plantBranches}

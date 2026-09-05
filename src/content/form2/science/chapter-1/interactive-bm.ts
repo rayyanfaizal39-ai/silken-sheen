@@ -12,7 +12,7 @@ import keyOrganismSetImg from "@/assets/notes/form2-science/chapter-1/chapter1_d
 
 const dichotomousKeyBM: DichotomousQuestion = {
   type: "question",
-  question: "Adakah ia poikiloterma (berdarah sejuk) atau homeoterma (berdarah panas)?",
+  question: "Adakah ia poikiloterma (berdarah sejuk) atau homoioterma (berdarah panas)?",
   choices: [
     {
       label: "Poikiloterma",
@@ -36,7 +36,7 @@ const dichotomousKeyBM: DichotomousQuestion = {
       },
     },
     {
-      label: "Homeoterma",
+      label: "Homoioterma",
       next: {
         type: "question",
         question: "Adakah badannya dilitupi bulu pelepah, atau tidak berbulu pelepah?",
@@ -214,7 +214,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
     },
     {
       icon: "🏕️",
-      title: "Rekreasi",
+      title: "Tempat rekreasi",
       description: "Kawasan yang kaya dengan biodiversiti menjadi taman dan destinasi eko-pelancongan.",
     },
     {
@@ -224,7 +224,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
     },
     {
       icon: "🪵",
-      title: "Bahan mentah",
+      title: "Bahan mentah untuk industri",
       description: "Balak, buluh dan rotan membina perabot, alat muzik dan bangunan.",
     },
     {
@@ -305,8 +305,8 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
     "Endemik dan terancam BUKAN perkara yang sama. Sesuatu spesies boleh endemik sahaja, terancam sahaja, atau kedua-duanya sekali — contohnya harimau Malaya yang endemik dan juga terancam.",
   checkYourself11: [
     {
-      question: "Apakah maksud biodiversiti, mengikut kata-kata anda sendiri?",
-      hint: "Fikirkan: mikroorganisma + haiwan + tumbuhan + habitat dan gen yang membezakan setiap satu.",
+      question: "Apakah biodiversiti?",
+      hint: "Kepelbagaian organisma sama ada mikroorganisma, haiwan atau tumbuhan.",
     },
     {
       question: "Bagaimanakah biodiversiti menyokong ekonomi?",
@@ -354,10 +354,11 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
           name: "Ikan",
           traits: [
             "Poikiloterma",
-            "Sisik keras dan berlendir",
-            "Sirip dan ekor",
+            "Badan dilitupi sisik keras yang berlendir",
+            "Mempunyai sirip dan ekor",
             "Bernafas melalui insang",
-            "Bertelur, persenyawaan luaran",
+            "Bertelur",
+            "Melakukan persenyawaan luar",
           ],
           examples: ["Kerapu", "Ikan badut", "Belut"],
         },
@@ -365,10 +366,12 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
           name: "Amfibia",
           traits: [
             "Poikiloterma",
-            "Hidup di darat dan air",
+            "Hidup di darat dan di air",
             "Kulit lembap",
-            "Anak bernafas melalui insang, dewasa melalui peparu + kulit",
+            "Amfibia muda bernafas melalui insang",
+            "Amfibia dewasa bernafas menggunakan peparu dan kulit lembap",
             "Telur seperti jeli, tiada cengkerang",
+            "Melakukan persenyawaan luar",
           ],
           examples: ["Katak", "Kodok", "Salamander"],
         },
@@ -386,10 +389,12 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
         {
           name: "Burung",
           traits: [
-            "Homeoterma",
-            "Bulu pelepah untuk mengekalkan suhu badan",
+            "Homoioterma",
+            "Mempunyai bulu pelepah",
             "Bernafas melalui peparu",
-            "Sayap, kaki bersisik",
+            "Mempunyai sayap",
+            "Sepasang kaki bersisik",
+            "Melakukan persenyawaan dalam",
             "Telur bercengkerang keras",
           ],
           examples: ["Burung hantu", "Burung raja udang", "Itik"],
@@ -397,7 +402,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
         {
           name: "Mamalia",
           traits: [
-            "Homeoterma",
+            "Homoioterma",
             "Badan dilitupi bulu dan rambut (bukan bulu pelepah)",
             "Bernafas melalui peparu",
             "Persenyawaan dalaman",
@@ -412,13 +417,13 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
     {
       id: "nonflower",
       label: "Tidak berbunga",
-      chips: ["Lumut — spora, tidak berpembuluh", "Paku pakis — spora, berpembuluh", "Konifer — kon, berpembuluh"],
+      chips: ["Lumut — spora, tidak vaskular", "Paku pakis — spora, vaskular", "Konifer — kon, vaskular"],
     },
     {
       id: "flower",
       label: "Berbunga",
       detail:
-        "Setiap biji membawa **kotiledon** — makanan simpanan permulaannya. Satu kotiledon = **monokotiledon**. Sepasang = **dikotiledon**.",
+        "Tumbuhan berbunga menghasilkan bunga yang kemudiannya menjadi buah yang mengandungi biji benih. Biji benih mempunyai **kotiledon** — makanan simpanan yang digunakan semasa percambahan. Satu kotiledon = **monokotiledon**. Dua kotiledon (sepasang) = **dikotiledon**.",
     },
   ],
   cotyledonCompare: [
@@ -450,7 +455,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
   checkYourself12: [
     {
       question: "Susunkan: helang, katak, kobra, ikan emas, harimau — mengikut kumpulan vertebrata.",
-      hint: "Padankan setiap satu dengan Burung / Amfibia / Reptilia / Ikan / Mamalia berdasarkan cara bernafas dan salutan kulit.",
+      hint: "Helang → Burung. Katak → Amfibia. Kobra → Reptilia. Ikan emas → Ikan. Harimau → Mamalia.",
     },
     {
       question: "Satu persamaan + tiga perbezaan: bunga matahari lwn pokok padi.",
@@ -465,7 +470,7 @@ export const scienceF2C1InteractiveBM: SciF2C1Content = {
     "Saya boleh menerangkan biodiversiti dan kepentingannya.",
     "Saya boleh menjustifikasikan mengapa biodiversiti perlu diurus secara aktif.",
     "Saya boleh mengelaskan organisma menggunakan kekunci dikotomi.",
-    "Saya boleh menerangkan kumpulan taksonomi utama.",
+    "Saya boleh mengelaskan organisma kepada kumpulan utama berdasarkan ciri-cirinya.",
   ],
   miniQuiz: [
     {

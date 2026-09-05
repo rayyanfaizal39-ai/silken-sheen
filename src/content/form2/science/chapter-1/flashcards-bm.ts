@@ -125,7 +125,7 @@ export const scienceF2C1FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     lang: "bm",
-    front: "Apakah maksud homeoterma?",
+    front: "Apakah maksud homoioterma?",
     back: "Haiwan yang suhu badannya malar (tetap) dan tidak dipengaruhi suhu persekitaran.",
   },
   {
@@ -326,7 +326,7 @@ export const scienceF2C1FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Apakah perbezaan reptilia dan burung dari segi suhu badan?",
-    back: "Reptilia: poikiloterma (suhu berubah). Burung: homeoterma (suhu tetap).",
+    back: "Reptilia: poikiloterma (suhu berubah). Burung: homoioterma (suhu tetap).",
   },
   {
     id: "sci-f2-c1-bm-f37",
@@ -362,7 +362,7 @@ export const scienceF2C1FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "Bagaimana kekunci dikotomi haiwan dan tumbuhan berbeza pada langkah pertama?",
-    back: "Haiwan: bermula dengan poikiloterma/homeoterma. Tumbuhan: bermula dengan tidak berbunga/berbunga.",
+    back: "Haiwan: bermula dengan poikiloterma/homoioterma. Tumbuhan: bermula dengan tidak berbunga/berbunga.",
   },
 
   // Deck 3: Peperiksaan (Cards 41-60)
@@ -427,7 +427,7 @@ export const scienceF2C1FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 1",
     lang: "bm",
     front: "[Kesilapan Lazim] Adakah burung poikiloterma kerana ia bertelur?",
-    back: "Tidak. Burung adalah homeoterma (suhu badan tetap) walaupun bertelur — jenis pembiakan tidak menentukan poikiloterma/homeoterma.",
+    back: "Tidak. Burung adalah homoioterma (suhu badan tetap) walaupun bertelur — jenis pembiakan tidak menentukan poikiloterma/homoioterma.",
   },
   {
     id: "sci-f2-c1-bm-f48",
