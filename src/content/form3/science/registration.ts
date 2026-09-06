@@ -44,8 +44,6 @@ import { scienceF3C5FlashcardsBM } from "./chapter-5/flashcards-bm";
 import { scienceF3C5FlashcardsDLP } from "./chapter-5/flashcards-dlp";
 import { scienceF3C6NotesBM } from "./chapter-6/notes-bm";
 import { scienceF3C6NotesDLP } from "./chapter-6/notes-dlp";
-import { scienceF3C6QuizzesBM } from "./chapter-6/quizzes-bm";
-import { scienceF3C6QuizzesDLP } from "./chapter-6/quizzes-dlp";
 import { scienceF3C6FlashcardsBM } from "./chapter-6/flashcards-bm";
 import { scienceF3C6FlashcardsDLP } from "./chapter-6/flashcards-dlp";
 import { scienceF3C7NotesBM } from "./chapter-7/notes-bm";
@@ -84,7 +82,7 @@ const quizzes = [
   [getScienceF3MasterQuizzes(3, "bm"), getScienceF3MasterQuizzes(3, "dlp")],
   [getScienceF3MasterQuizzes(4, "bm"), getScienceF3MasterQuizzes(4, "dlp")],
   [getScienceF3MasterQuizzes(5, "bm"), getScienceF3MasterQuizzes(5, "dlp")],
-  [scienceF3C6QuizzesBM, scienceF3C6QuizzesDLP],
+  [getScienceF3MasterQuizzes(6, "bm"), getScienceF3MasterQuizzes(6, "dlp")],
   [getScienceF3MasterQuizzes(7, "bm"), getScienceF3MasterQuizzes(7, "dlp")],
   [getScienceF3MasterQuizzes(8, "bm"), getScienceF3MasterQuizzes(8, "dlp")],
   [getScienceF3MasterQuizzes(9, "bm"), getScienceF3MasterQuizzes(9, "dlp")],
