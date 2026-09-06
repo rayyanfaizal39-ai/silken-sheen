@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { ClassificationBranch, CompareColumn } from "@/content/form2/science/chapter-1/interactive-types";
+import { ScienceEmphasis } from "./ScienceEmphasis";
 
 function VertebrateGroupTabs({ groups }: { groups: NonNullable<ClassificationBranch["vertebrateGroups"]> }) {
   const [active, setActive] = useState(0);
@@ -13,10 +14,11 @@ function VertebrateGroupTabs({ groups }: { groups: NonNullable<ClassificationBra
             key={g.name}
             type="button"
             onClick={() => setActive(i)}
-            className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors ${
+            aria-pressed={i === active}
+            className={`cursor-pointer rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
               i === active
                 ? "border-transparent bg-gradient-to-r from-primary to-accent text-white"
-                : "border-border bg-secondary/40 text-muted-foreground"
+                : "border-border bg-secondary/40 text-muted-foreground hover:border-primary/50 hover:bg-primary/10 hover:text-foreground"
             }`}
           >
             {g.name}
@@ -49,7 +51,9 @@ function BranchDetail({ branch }: { branch: ClassificationBranch }) {
   return (
     <div className="mt-3 rounded-xl border border-border bg-secondary/30 p-3.5 text-left">
       {branch.detail && (
-        <p className="text-[13px] leading-relaxed text-muted-foreground">{branch.detail}</p>
+        <p className="text-[13px] leading-relaxed text-muted-foreground">
+          <ScienceEmphasis text={branch.detail} />
+        </p>
       )}
       {branch.chips && (
         <div className="flex flex-wrap gap-1.5">
@@ -143,10 +147,11 @@ export function ClassificationTree({
                   setSelectedId(next);
                   if (next) onSelect?.(branch.id);
                 }}
-                className={`w-full rounded-xl border px-4 py-2.5 text-sm font-semibold transition-colors ${
+                aria-pressed={isSelected}
+                className={`w-full cursor-pointer rounded-xl border px-4 py-2.5 text-sm font-semibold shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                   isSelected
-                    ? "border-primary bg-primary/15 text-foreground"
-                    : "border-border bg-secondary/40 text-muted-foreground"
+                    ? "border-primary bg-primary/15 text-foreground shadow-primary/10"
+                    : "border-border bg-secondary/40 text-muted-foreground hover:border-primary/50 hover:bg-primary/10 hover:text-foreground"
                 }`}
               >
                 {branch.label}

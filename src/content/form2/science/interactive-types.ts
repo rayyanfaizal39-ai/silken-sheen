@@ -324,6 +324,8 @@ export type AnnotatedImageBlock = {
   aspect?: string;
   caption?: string;
   legendLabel?: string;
+  /** Load eagerly — for a figure that leads its section, so is above the fold. */
+  priority?: boolean;
   /**
    * How the parts are named. Prefer `labels` or `callouts` so a student reads
    * the diagram in one pass; `numbers` is a last resort for very dense artwork.
@@ -479,6 +481,57 @@ export type EcologicalTerm = {
  * Ecological terms, drawn as three separate relationships rather than one
  * ladder: habitat is a place, not a level of organisation.
  */
+/**
+ * One node of a shallow classification tree.
+ *
+ * `children` exists so a chapter can state that a branch has sub-types WITHOUT
+ * flattening them into siblings of the other branches — the mistake this block
+ * was added to stop: mutualism, commensalism and parasitism are kinds of
+ * symbiosis, while prey-predator and competition are not, and a flat row of
+ * five cards silently teaches that all five sit at the same level.
+ */
+export type ConceptTreeNode = {
+  id: string;
+  label: string;
+  /** One short line saying what this node is. */
+  note?: string;
+  icon?: string;
+  children?: ConceptTreeNode[];
+};
+
+/** A classification a learner must be able to see, not just read in prose. */
+export type ConceptTreeBlock = {
+  title: string;
+  instruction?: string;
+  root: ConceptTreeNode;
+};
+
+/** One cause and everything it leads to — a row of an impact table. */
+export type ImpactRow = {
+  id: string;
+  icon?: string;
+  /** The activity or event, e.g. "Deforestation". */
+  cause: string;
+  /** Its consequences, one fact per entry. Never a single run-on sentence. */
+  effects: string[];
+};
+
+/**
+ * A "this activity → these effects" table. A real table from `sm` up, where the
+ * shared column heading is what makes the rows comparable, and stacked cards on
+ * a phone, where a two-column table would either overflow or shrink past
+ * reading size.
+ */
+export type ImpactTableBlock = {
+  title: string;
+  instruction?: string;
+  /** Heading over the activity column. */
+  causeLabel: string;
+  /** Heading over the effects column. */
+  effectLabel: string;
+  rows: ImpactRow[];
+};
+
 export type EcologicalTermsBlock = {
   title: string;
   instruction?: string;
@@ -970,6 +1023,15 @@ export type MagnetFieldFeature = {
   id: "direction" | "density" | "no-cross" | "neutral";
   label: string;
   note: string;
+  /**
+   * The magnet arrangement this feature can only be shown on. A neutral point
+   * exists between two LIKE poles and nowhere else, so its explanation must
+   * never appear beside a bar or horseshoe magnet: picking such a feature
+   * switches the diagram to the arrangement that has it, and switching away
+   * from that arrangement clears the feature. Omit for a property every
+   * arrangement demonstrates.
+   */
+  requiresShape?: MagnetShape["id"];
 };
 
 /** A magnet whose field pattern the learner can switch to. */
@@ -998,6 +1060,14 @@ export type ConductorPattern = {
   /** How the direction is found. */
   direction: string;
   note: string;
+  /**
+   * The apparatus photograph this conductor is taught on. `src` comes from
+   * `visual-assets.ts` so BM and DLP cannot drift onto different files — the
+   * artwork carries no text at all, and the words below it are the only thing
+   * that differs between the two languages. The teaching arrows, field lines
+   * and pole letters are not in the picture: they are drawn over it.
+   */
+  image: { src: string; alt: string; caption?: string };
 };
 
 export type CurrentFieldPatternsBlock = {
@@ -1153,6 +1223,16 @@ export type ConductionDiagramBlock = {
   hint: string;
 };
 
+/**
+ * The photograph a Chapter 9 figure teaches on.
+ *
+ * Chapter 9's artwork was approved before this visual pass and is not to be
+ * regenerated, so these blocks draw their teaching layer over it instead of
+ * replacing it. `src` comes from `visual-assets.ts` so BM and DLP cannot drift
+ * onto different files; the artwork carries no text, and the words below it are
+ * the only thing that differs between the two languages.
+ */
+export type HeatFigureImage = { src: string; alt: string; caption?: string };
 /** Convection loop and radiation-through-vacuum, the two non-solid transfer modes. */
 export type ConvectionRadiationBlock = {
   title: string;
@@ -1168,6 +1248,8 @@ export type ConvectionRadiationBlock = {
   coolLabel: string;
   caption: string;
   hint: string;
+  /** The kitchen scene the two modes are drawn on. */
+  image: HeatFigureImage;
 };
 
 /** Sea and land breeze. Arrow directions are derived from which side is warmer. */
@@ -1181,6 +1263,8 @@ export type BreezeDiagramBlock = {
     warmerSide: "land" | "sea";
     timeOfDay: string;
     note: string;
+    /** The coastline at this time of day — the surface the airflow is drawn on. */
+    image: HeatFigureImage;
   }[];
   landLabel: string;
   seaLabel: string;
@@ -1212,8 +1296,13 @@ export type BimetallicStripBlock = {
   states: { id: "room" | "heated"; label: string; note: string }[];
   contactLabel: string;
   alarmLabel: string;
+  /** Shown on the figure when the circuit is complete and when it is not. */
+  circuitClosedLabel: string;
+  circuitOpenLabel: string;
   caption: string;
   hint: string;
+  /** The fire-alarm apparatus the two states are drawn on. */
+  image: HeatFigureImage;
 };
 
 /** Dark/dull versus white/shiny, absorption and emission kept separate. */
@@ -1227,6 +1316,8 @@ export type SurfaceComparisonBlock = {
   poorerLabel: string;
   caption: string;
   hint: string;
+  /** The two-can comparison the absorption and emission arrows are drawn on. */
+  image: HeatFigureImage;
 };
 
 /**
@@ -1394,6 +1485,16 @@ export type StarSizeCompareBlock = {
 export type ScienceInteractiveSection = {
   number: string;
   title: string;
+  /**
+   * The Standard Kandungan this section sits under, in the textbook's own
+   * words, e.g. "2.1 Energy Flow in an Ecosystem".
+   *
+   * The shell shows only the section's own title, so a learner deep in
+   * "Producers, Consumers and Decomposers" had no way to see which numbered
+   * part of the chapter they were in. Repeat it on every section of the same
+   * standard; the shared heading is the point.
+   */
+  standardTitle?: string;
   intro?: string;
   cards?: ScienceInteractiveCard[];
   flipCards?: FlipCardItem[];
@@ -1417,6 +1518,8 @@ export type ScienceInteractiveSection = {
   viskingExperiment?: ViskingExperimentBlock;
   villusDiagram?: VillusDiagramBlock;
   ecologicalTerms?: EcologicalTermsBlock;
+  conceptTree?: ConceptTreeBlock;
+  impactTable?: ImpactTableBlock;
   enzymeExplorer?: EnzymeExplorerBlock;
   immuneResponseGraph?: ImmuneResponseGraphBlock;
   defenceLines?: DefenceLinesBlock;
@@ -1461,6 +1564,29 @@ export type ScienceInteractiveSection = {
   cosmicScale?: CosmicScaleBlock;
   milkyWayLocator?: MilkyWayLocatorBlock;
   starSizeCompare?: StarSizeCompareBlock;
+  /**
+   * Contextual artwork rendered at the TOP of the section, before its teaching
+   * cards and before any precise diagram.
+   *
+   * This is the "recognise it, then understand it" slot: a student meets the
+   * everyday scene first and the mechanism second. `images` below is the
+   * opposite slot — a reference figure that only makes sense once the section
+   * has explained itself — so a section may legitimately use both.
+   */
+  contextImages?: AnnotatedImageBlock[];
+  /**
+   * Two matched contextual figures that only teach as a comparison — day
+   * versus night, before versus after. Side by side from `sm` up, stacked on a
+   * phone. Rendered in the same leading position as `contextImages`.
+   */
+  contextImagePair?: AnnotatedImageBlock[];
+  /**
+   * Three or more matched contextual figures that only teach as one set — the
+   * three kinds of symbiosis, say. Same footprint and aspect for every member,
+   * so no single picture reads as the important one; each keeps its own
+   * caption, which is where the language-specific definition lives.
+   */
+  contextImageSet?: AnnotatedImageBlock[];
   /** Standalone annotated reference illustrations for this section. */
   images?: AnnotatedImageBlock[];
   matcher?: {
@@ -1479,12 +1605,44 @@ export type ScienceInteractiveSection = {
     title: string;
     columns: ScienceInteractiveCard[];
   };
+  /**
+   * Compact "🧠 Ingat / Remember" callout for a core textbook definition or
+   * rule worth pausing on. Rendered via `ScienceRemember`. May carry its own
+   * `**markers**` for the specific term it defines.
+   */
+  remember?: string;
+  /**
+   * Compact "💡 Penjelasan Ringkas / Quick Explanation" callout for a short,
+   * textbook-backed clarifier. Rendered via `ScienceQuickExplanation`. May
+   * carry its own `**markers**`.
+   */
+  quickExplanation?: string;
   checks: { question: string; hint: string }[];
+  /**
+   * Visible heading for this section's Check-yourself list, replacing the
+   * default "Check yourself — <number>".
+   *
+   * Several sections legitimately share one Standard Pembelajaran number, so
+   * the default heading can appear twice in a chapter and read as a numbering
+   * mistake. This overrides the WORDS only — `number` is the curriculum
+   * reference and is never renumbered to make a heading unique.
+   */
+  checksTitle?: string;
 };
 
 export type ScienceF2InteractiveContent = {
   chapter: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
-  blogHighlight: { title: string; body: string; imagePath: string };
+  blogHighlight: {
+    title: string;
+    body: string;
+    imagePath: string;
+    /**
+     * What the enrichment picture shows, per language. Falls back to the card
+     * title, which describes the story rather than the image — fine while the
+     * artwork was generic chapter decoration, not once it depicts something.
+     */
+    imageAlt?: string;
+  };
   keywords: string[];
   sections: ScienceInteractiveSection[];
   reflectionItems: string[];

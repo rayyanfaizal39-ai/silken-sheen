@@ -27,7 +27,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 5,
   blogHighlight: {
     title: "Science Blog — The Dead Sea",
-    body: "Sitting about 430.5 metres below sea level, the Dead Sea is the lowest point on Earth. Because it is completely enclosed by land, water flowing in from the Jordan River evaporates quickly and leaves its salt behind — making the water so dense that people can float on its surface without effort.",
+    body: "Sitting about **430.5 metres below sea level**, the Dead Sea is the lowest point on Earth. Because it is completely enclosed by land, water flowing in from the Jordan River evaporates quickly and leaves its salt behind — making the water **so dense** that people can float on its surface without effort.",
     imagePath: chapterImage,
   },
   keywords: [
@@ -53,20 +53,20 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.1",
       title: "Physical Characteristics of Water",
       intro:
-        "Pure water is colourless, odourless and tasteless, and stays liquid at room temperature. It boils at exactly 100°C, freezes at 0°C, and has a density of 1 g cm⁻³. These fixed values are actually how we test whether water contains impurities, since impurities shift them.",
+        "Pure water is **colourless, odourless and tasteless**, and stays liquid at room temperature. It boils at exactly 100°C, freezes at 0°C, and has a density of 1 g cm⁻³. These fixed values are actually how we test whether water contains impurities, since impurities shift them.",
       cards: [
         {
           title: "Four fixed values of pure water",
-          body: "Boiling point 100°C, freezing point 0°C, no colour, and a density of 1 g cm⁻³. All of them are measured on water that is genuinely pure.",
+          body: "Boiling point **100°C**, freezing point **0°C**, no colour, and a density of **1 g cm⁻³**. All of them are measured on water that is genuinely pure.",
           detail: "Any change in these values points to dissolved impurities being present.",
         },
         {
           title: "Melting & Freezing",
-          body: "Melting turns solid ice into liquid water by absorbing heat. Freezing turns liquid water into solid ice by releasing heat.",
+          body: "Melting turns solid ice into liquid water by **absorbing heat**. Freezing turns liquid water into solid ice by releasing heat.",
         },
         {
           title: "Evaporation/Boiling & Condensation",
-          body: "Evaporation/boiling turns liquid water into water vapour by absorbing heat. Condensation turns water vapour back into liquid by releasing heat.",
+          body: "Evaporation/boiling turns liquid water into water vapour by absorbing heat. Condensation turns water vapour back into liquid by **releasing heat**.",
         },
       ],
       checks: [
@@ -81,14 +81,16 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Surface Tension and Capillary Action",
       intro:
         "Water molecules attract one another, and they also attract other surfaces they touch. These two forces explain why insects can rest on water, and how water climbs from roots to leaves with no pump at all.",
+      quickExplanation:
+        "In general, the attraction between **the same kind of molecule** is called cohesive force, while the attraction between **different molecules** is called adhesive force.",
       cards: [
         {
           title: "High surface tension",
-          body: "The cohesive force between water molecules is strong enough at the surface that the surface behaves like a thin skin. Light insects such as pond skaters can rest on top without sinking.",
+          body: "The **cohesive force** between water molecules is strong enough at the surface that the surface behaves like a thin skin. Light insects such as pond skaters can rest on top without sinking.",
         },
         {
           title: "Water reaches the treetops",
-          body: "Inside very fine xylem vessels, the adhesive force pulls water up along the vessel wall, while the cohesive force drags the next water molecules along behind it. Together they lift water from the roots all the way to the leaves.",
+          body: "Inside very fine xylem vessels, the **adhesive force** pulls water up along the vessel wall, while the cohesive force drags the next water molecules along behind it. Together they lift water from the roots all the way to the leaves.",
         },
       ],
       capillaryDiagram: {
@@ -139,11 +141,11 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.1",
       title: "Impurities and Electrolysis of Water",
       intro:
-        "Water is a compound — two hydrogen atoms joined to one oxygen atom, H₂O. Electrolysis splits it apart again, and the volumes of gas collected prove that ratio. Dissolved impurities, meanwhile, shift the melting and boiling points of water.",
+        "Water is a **compound** — two hydrogen atoms joined to one oxygen atom, **H₂O**. Electrolysis splits it apart again, and the volumes of gas collected prove that ratio. Dissolved impurities, meanwhile, shift the melting and boiling points of water.",
       cards: [
         {
           title: "Why salty soup boils more slowly",
-          body: "Dissolved impurities change the melting and boiling points of water — salt lowers the melting point of ice but raises the boiling point of water. That is why a pot of plain water boils faster than one holding salt or dissolved soup stock.",
+          body: "Dissolved impurities change the melting and boiling points of water — salt **lowers the melting point of ice** but **raises the boiling point of water**. That is why a pot of plain water boils faster than one holding salt or dissolved soup stock.",
           detail:
             "Taste, smell and colour can also change with impurities present — seawater tastes salty because of the salt dissolved in it.",
         },
@@ -219,7 +221,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.1",
       title: "Evaporation of Water",
       intro:
-        "Evaporation happens at the surface of water and turns water into water vapour. It can occur at any temperature, because water molecules at the surface have higher kinetic energy and can escape into the air. Four factors affect the rate of evaporation.",
+        "Evaporation happens at the surface of water and turns water into water vapour. It can **occur at any temperature**, because water molecules at the surface have **higher kinetic energy** and can escape into the air. Four factors affect the rate of evaporation.",
       flipCards: [
         {
           id: "humidity",
@@ -387,7 +389,9 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.2",
       title: "Solute, Solvent and Solution",
       intro:
-        "When sugar dissolves in water, sugar is the solute (the substance that dissolves), water is the solvent (the liquid doing the dissolving), and sugar water is the solution they form together. From these three terms comes another one that is often confused — solubility.",
+        "When sugar dissolves in water, sugar is the **solute** (the substance that dissolves), water is the **solvent** (the liquid doing the dissolving), and sugar water is the **solution** they form together. From these three terms comes another one that is often confused — solubility.",
+      remember:
+        "**Solubility** of a solute is the maximum amount of solute that can dissolve in 100 ml of solvent at a specific temperature.",
       cards: [
         {
           title: "Solubility",
@@ -452,12 +456,12 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "Saturated",
-          body: "Excess solute has been added — no more will dissolve, and the excess forms a precipitate at the bottom.",
+          body: "Excess solute has been added — no more will dissolve, and the excess forms a **precipitate** at the bottom.",
           detail: "Cannot dissolve more",
         },
         {
           title: "Temperature can move the limit itself",
-          body: "Notice that solubility is always stated at a specified temperature. Here is why: when the temperature changes, the maximum amount that can dissolve changes too. For most solid solutes such as salt and sugar, more can dissolve at a higher temperature.",
+          body: "Notice that solubility is always stated at **a specified temperature**. Here is why: when the temperature changes, the maximum amount that can dissolve changes too. For most solid solutes such as salt and sugar, more can dissolve at a higher temperature.",
           detail:
             "That is why heating a saturated solution lets it dissolve more solute — it is no longer saturated at the new temperature.",
         },
@@ -486,7 +490,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.2",
       title: "Solution, Suspension and Colloid",
       intro:
-        "Not every mixture is a solution. Two simple tests — shining a torch through it, and filtering it through filter paper — are enough to tell these three kinds of mixture apart.",
+        "Not every mixture is a solution. Two simple tests — **shining a torch through it**, and **filtering it through filter paper** — are enough to tell these three kinds of mixture apart.",
       mixtureComparison: {
         image: {
           src: mixtureTypesImg,
@@ -662,15 +666,15 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.2",
       title: "Universal Solvent and Non-Water Solvents",
       intro:
-        "Water is known as the universal solvent because of its ability to dissolve almost every substance, whether solid, liquid or gas. For substances that will not dissolve in water, carbon-based non-water solvents are used instead.",
+        "Water is known as the **universal solvent** because of its ability to dissolve almost every substance, whether solid, liquid or gas. For substances that will not dissolve in water, carbon-based non-water solvents are used instead.",
       cards: [
         {
           title: "Water as the universal solvent",
-          body: "Water is used as a solvent domestically and also as a raw material in the manufacturing, agricultural and medical industries — from fertiliser dissolving and being absorbed by plant roots, to detergent in the cleaning process, to the production of soft drinks.",
+          body: "Water is used as a solvent domestically and also as a **raw material in the manufacturing, agricultural and medical industries** — from fertiliser dissolving and being absorbed by plant roots, to detergent in the cleaning process, to the production of soft drinks.",
         },
         {
           title: "Handle with care",
-          body: "Because non-water solvents evaporate readily, they are widely used in preparing spray products such as paint, perfume and insecticide. Non-water solvents must be handled carefully because they are hazardous to human health.",
+          body: "Because non-water solvents **evaporate readily**, they are widely used in preparing spray products such as paint, perfume and insecticide. Non-water solvents must be handled carefully because they are **hazardous to human health**.",
         },
       ],
       tabs: [
@@ -694,7 +698,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.3",
       title: "Water Purification Methods",
       intro:
-        "Water covers two-thirds of the Earth's surface, but most of it holds impurities, microorganisms and dissolved substances that make it unsafe straight from the source. Purifying water removes smell, taste, colour, microorganisms and dissolved substances so it can be used safely.",
+        "Water covers **two-thirds of the Earth's surface**, but most of it holds impurities, microorganisms and dissolved substances that make it unsafe straight from the source. Purifying water removes **smell, taste, colour, microorganisms and dissolved substances** so it can be used safely.",
       comparisonMatrix: {
         title: "🧪 Which method does what?",
         instruction: "Tap any method to read its full explanation.",
@@ -742,7 +746,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "What does purification mean?",
-          body: "Purification means producing pure water — water free of suspended impurities, dissolved substances and microorganisms all at once. It is the end goal, not a separate step of its own.",
+          body: "Purification means producing pure water — water free of **suspended impurities, dissolved substances and microorganisms** all at once. It is the end goal, not a separate step of its own.",
           detail:
             "Look at the last column above: of those four methods, only distillation achieves purification. Boiling, filtration and chlorination clean water, but they do not purify it.",
         },
@@ -758,7 +762,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.3",
       title: "Water Supply System",
       intro:
-        "Water collected from sources such as rivers and rainfall is channelled to a water treatment plant to be treated before it is sent on to consumers. Bacteria, algae and mineral substances are among the things removed in the process.",
+        "Water collected from sources such as rivers and rainfall is channelled to a **water treatment plant** to be treated before it is sent on to consumers. **Bacteria, algae and mineral substances** are among the things removed in the process.",
       waterTreatmentFlow: {
         image: {
           src: waterTreatmentImg,
@@ -847,7 +851,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.3",
       title: "Alternative Water Supplies and Water Sustainability",
       intro:
-        "Some countries short of water resources use alternative ways of obtaining a water supply. At the same time, looking after the water we already have is every individual's responsibility.",
+        "Some countries **short of water resources** use **alternative ways** of obtaining a water supply. At the same time, looking after the water we already have is every individual's responsibility.",
       methodCards: {
         title: "🌍 Three ways of obtaining a water supply",
         instruction: "Each method answers the same three questions, so you can compare them.",
@@ -884,17 +888,17 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Water that is safe to drink",
-          body: "Water that is safe to drink must be free of harmful microorganisms, toxic chemicals and impurities. That is why water is treated at a plant before it reaches homes.",
+          body: "Water that is **safe to drink** must be free of harmful microorganisms, toxic chemicals and impurities. That is why water is treated at a plant before it reaches homes.",
         },
         {
           title: "When water is polluted: Minamata Bay",
-          body: "At Minamata Bay in Japan, waste containing mercury was released into the seawater. The mercury built up in fish and shellfish, and residents who ate them suffered severe mercury poisoning — damaging the nervous system and causing permanent disability.",
+          body: "At **Minamata Bay in Japan**, waste containing mercury was released into the seawater. The mercury built up in fish and shellfish, and residents who ate them suffered **severe mercury poisoning** — damaging the nervous system and causing permanent disability.",
           detail:
             "The case shows that toxic substances entering water do not simply disappear — they move through the food chain and eventually reach people. Preventing pollution is far easier than cleaning it up afterwards.",
         },
         {
           title: "A water audit at home",
-          body: "A water audit means recording how much water is used at home or at school, activity by activity — bathing, washing, watering the garden and so on.",
+          body: "A **water audit** means recording how much water is used at home or at school, activity by activity — bathing, washing, watering the garden and so on.",
           detail:
             "Once you know where the water goes, you can identify wastage and suggest ways to save — fixing a leaking pipe, turning off the tap while brushing your teeth, or collecting rainwater for the plants.",
         },

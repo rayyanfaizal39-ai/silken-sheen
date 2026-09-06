@@ -4,6 +4,7 @@ import { Sparkles, Shield, Zap, Star, ArrowLeft, AlertCircle } from "lucide-reac
 import { useAuth } from "@/context/auth-context";
 import { seoMeta } from "@/lib/seo";
 import { AcademyLogo } from "@/components/AcademyLogo";
+import { enableGuestMode } from "@/lib/guest-mode";
 
 export const Route = createFileRoute("/login")({
   head: () =>
@@ -636,7 +637,8 @@ function LoginPage() {
             <p className="mt-5 text-center text-xs text-white/30 leading-relaxed">
               Already browsing without an account?{" "}
               <Link
-                to="/"
+                to="/home"
+                onClick={() => enableGuestMode()}
                 className="text-white/50 hover:text-white/80 underline underline-offset-2 transition-colors"
               >
                 Continue as guest

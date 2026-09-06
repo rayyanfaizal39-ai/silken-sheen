@@ -1,4 +1,5 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
+import { SCIENCE_F2_CH7_IMAGES, SCIENCE_F2_VISUAL_ASPECT } from "../visual-assets";
 import chapterImage from "@/assets/science/form2/ch7-keelektrikan-kemagnetan.png";
 
 export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
@@ -30,7 +31,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       number: "7.1",
       title: "Energy",
       intro:
-        "Energy means the ability to do work, and its S.I. unit is the joule (J). Energy cannot be created or destroyed — it only changes from one form into another. Two ideas here are easily confused: a form of energy and a source of energy are not the same thing.",
+        "Energy means **the ability to do work**, and its S.I. unit is the **joule (J)**. Energy **cannot be created or destroyed** — it only changes from one form into another. Two ideas here are easily confused: a form of energy and a source of energy are not the same thing.",
       cards: [
         {
           title: "Form versus source",
@@ -66,14 +67,26 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Electrostatic Charges",
       intro:
         "All matter contains positive charges (protons) and negative charges (electrons). When two different materials are rubbed together, only electrons transfer — protons do not move. An object that gains electrons becomes negatively charged; one that loses electrons becomes positively charged; one with equal numbers of protons and electrons is neutral.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.chargeTransfer,
+          alt: "Two panels. Before rubbing, a balloon and a cloth each carry equal numbers of positive and negative charges. After rubbing, arrows show electrons moving from the cloth to the balloon, leaving the balloon negatively charged and the cloth positively charged.",
+          caption:
+            "Only electrons move, and they move from the cloth to the balloon. The protons stay where they are.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "Attraction and repulsion",
-          body: "Like charges repel each other. Unlike charges attract each other. This is why a comb that has been rubbed can pick up small pieces of paper.",
+          body: "**Like charges repel each other.** **Unlike charges attract each other.** This is why a comb that has been rubbed can pick up small pieces of paper.",
         },
         {
           title: "Detecting electrostatic charge",
-          body: "An electroscope is the instrument used to detect the presence of electric charge on an object. Its gold leaf diverges because like charges repel one another.",
+          body: "An electroscope is the **instrument used to detect the presence of electric charge** on an object. Its gold leaf diverges because like charges repel one another.",
           detail: "The further the gold leaf diverges, the greater the quantity of charge collected.",
         },
       ],
@@ -89,14 +102,26 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Electrostatics in Daily Life",
       intro:
         "Electrostatic charge is not just a laboratory effect. It explains lightning, the small shock you feel on a door handle, and several important safety measures.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.dailyLife,
+          alt: "Four night-time scenes. Lightning strikes the ground from a cloud carrying positive charge above and negative charge below. A lightning conductor on a building carries the charge down into the earth. A spark appears at the nozzle while a car is being refuelled. Lightning travels over the metal body of a car, around the person sitting inside.",
+          caption:
+            "Lightning, the lightning conductor, refuelling safety and the metal-bodied car — the four situations explained below.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       accordions: [
         {
           title: "⚡ How lightning happens",
-          body: "Friction between clouds and the air charges the clouds with electric charges. Lightning occurs because of the attraction between the positive charge on the Earth and the negative charge on the cloud.",
+          body: "**Friction between clouds and the air** charges the clouds with electric charges. Lightning occurs because of the **attraction between the positive charge on the Earth and the negative charge on the cloud**.",
         },
         {
           title: "🏢 Lightning conductor",
-          body: "A lightning conductor is fitted to a building to provide a path for the electric charge from lightning to pass into the Earth. This protects the building from being struck.",
+          body: "A lightning conductor is fitted to a building to **provide a path for the electric charge from lightning to pass into the Earth**. This protects the building from being struck.",
         },
         {
           title: "👕 Dry weather and choice of clothing",
@@ -133,17 +158,17 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "➕ ➡️ ➖ Conventional current",
-          body: "The direction of conventional current is from the positive terminal to the negative terminal.",
+          body: "The direction of conventional current is **from the positive terminal to the negative terminal**.",
           detail: "This is the direction used in every circuit and rule you learn.",
         },
         {
           title: "➖ ➡️ ➕ Electron movement",
-          body: "Electrons actually move from the negative terminal to the positive terminal.",
+          body: "Electrons actually move **from the negative terminal to the positive terminal**.",
           detail: "These two directions are opposite — make sure you know which one is being asked for.",
         },
         {
           title: "Proving that flowing charge makes current",
-          body: "Charge from a Van de Graaff generator connected to an earthed galvanometer makes the galvanometer needle deflect — showing that flowing charge produces an electric current.",
+          body: "Charge from a Van de Graaff generator connected to an earthed galvanometer makes the **galvanometer needle deflect** — showing that **flowing charge produces an electric current**.",
           detail: "A galvanometer is used to detect small electric currents.",
         },
       ],
@@ -163,20 +188,32 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Current, Voltage and Resistance",
       intro:
         "Three electrical quantities to know, each with its own symbol, unit and measuring instrument. What gets tested most is not only what each instrument measures, but how it is connected into the circuit.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.meterPlacement,
+          alt: "Two circuits built from the same cell and lit bulb. In the left circuit an ammeter marked A sits in the main loop, so the same wire runs through it and the bulb. In the right circuit a voltmeter marked V sits on its own branch, connected across the two ends of the bulb.",
+          caption:
+            "The ammeter sits in the main loop; the voltmeter sits on its own branch across the bulb.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "Current, I",
-          body: "The rate of flow of electric charge through a conductor.",
+          body: "**The rate of flow of electric charge through a conductor.**",
           detail: "Unit: ampere (A) · Instrument: ammeter · Connection: in series",
         },
         {
           title: "Voltage, V",
-          body: "The potential difference between two points in a circuit.",
+          body: "**The potential difference between two points in a circuit.**",
           detail: "Unit: volt (V) · Instrument: voltmeter · Connection: in parallel",
         },
         {
           title: "Resistance, R",
-          body: "A conductor's ability to oppose the flow of current. A fixed resistor has a resistance that cannot be adjusted, while a rheostat (variable resistor) can be adjusted.",
+          body: "**A conductor's ability to oppose the flow of current.** A fixed resistor has a resistance that cannot be adjusted, while **a rheostat (variable resistor) can be adjusted**.",
           detail: "Unit: ohm (Ω)",
         },
       ],
@@ -229,6 +266,8 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Ohm's Law",
       intro:
         "Ohm's Law states that the electric current flowing through a conductor is directly proportional to the voltage across the two ends of that conductor, provided the temperature and other physical conditions stay constant. The relationship is written as V = IR.",
+      remember:
+        "**Ohm's Law**: The current flowing through a conductor is directly proportional to the voltage across it, provided the temperature and other physical conditions stay constant. Written as V = IR.",
       cards: [
         {
           title: "V = IR",
@@ -237,7 +276,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "What happens as resistance increases",
-          body: "At a constant voltage, the current flowing decreases as the resistance increases. Increasing the length of a wire increases its resistance, which reduces the current.",
+          body: "At a constant voltage, **the current flowing decreases as the resistance increases**. Increasing the length of a wire increases its resistance, which reduces the current.",
         },
       ],
       calculators: [
@@ -260,7 +299,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       number: "7.2",
       title: "Series and Parallel Circuits",
       intro:
-        "A series circuit connects components one after another in a single path. A parallel circuit splits into separate branches. That difference changes how current, voltage and resistance behave.",
+        "A series circuit connects components one after another in **a single path**. A parallel circuit **splits into separate branches**. That difference changes how current, voltage and resistance behave.",
       seriesParallel: {
         title: "🔀 One path versus several branches",
         instruction: "Tap either circuit to see its advantages and disadvantages.",
@@ -311,7 +350,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🏠 Wiring at home",
-          body: "Household electrical wiring uses parallel circuits so that every appliance receives the same voltage from the supply, and each appliance can be switched on or off without affecting the others.",
+          body: "Household electrical wiring uses parallel circuits so that every appliance receives **the same voltage from the supply**, and each appliance can be switched on or off without affecting the others.",
         },
       ],
       checks: [
@@ -332,7 +371,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       number: "7.3",
       title: "Properties of Magnets and Magnetic Fields",
       intro:
-        "Magnets occur naturally as lodestone, but most magnets used today are made from materials such as iron, steel, cobalt and nickel. The region around a magnet where its magnetic force can be felt is called the magnetic field.",
+        "Magnets occur naturally as lodestone, but most magnets used today are made from materials such as **iron, steel, cobalt and nickel**. The region around a magnet where its magnetic force can be felt is called the **magnetic field**.",
       flipCards: [
         { id: "attracts", icon: "🧲", label: "Attracts magnetic materials", fact: "Iron, steel, cobalt and nickel are attracted to it." },
         { id: "poles", icon: "🔴🔵", label: "Has poles", fact: "Every magnet has a north pole and a south pole." },
@@ -386,6 +425,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
           {
             id: "neutral",
             label: "Neutral point (X)",
+            requiresShape: "like-poles",
             note: "The magnetic field between two like poles produces a point with no magnetic field at all. This is called the neutral point, marked X.",
           },
         ],
@@ -405,7 +445,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       number: "7.3",
       title: "Electromagnets and Field Patterns",
       intro:
-        "An electromagnet is a temporary magnet — it only produces a magnetic field while a current flows. The direction of the field produced is set by the direction of the current, and the pattern of the field depends on the shape of the conductor.",
+        "An electromagnet is **a temporary magnet** — it only produces a magnetic field while a current flows. The direction of the field produced is **set by the direction of the current**, and the pattern of the field **depends on the shape of the conductor**.",
       currentFieldPatterns: {
         title: "🌀 Magnetic fields from an electric current",
         instruction: "Choose a conductor shape, then reverse the current to see what changes.",
@@ -428,6 +468,11 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
             pattern: "concentric circles around the wire, spaced further apart further from the wire",
             direction: "found using the right-hand grip rule.",
             note: "A straight wire produces magnetic field lines in the shape of concentric circles.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.straightWireApparatus,
+              alt: "A vertical copper wire passing through the centre of a horizontal board, with eight plotting compasses arranged in a ring around it.",
+              caption: "The apparatus used to show the magnetic field around a straight current-carrying wire.",
+            },
           },
           {
             id: "loop",
@@ -435,6 +480,11 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
             pattern: "concentric circles around each side of the wire, combining at the centre of the loop",
             direction: "found using the right-hand grip rule on any part of the wire.",
             note: "The fields from the two sides of the loop combine at the centre, making the field there stronger.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.circularLoopApparatus,
+              alt: "A single circular copper loop held upright on a laboratory stand, its two ends clamped to the terminals beneath it.",
+              caption: "The apparatus used to show the magnetic field of a current-carrying circular loop.",
+            },
           },
           {
             id: "solenoid",
@@ -443,13 +493,18 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
             direction:
               "current flowing anticlockwise at one end makes that end a north pole; current flowing clockwise makes it a south pole.",
             note: "A solenoid is a long coil. Its field outside resembles that of a bar magnet.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.solenoidApparatus,
+              alt: "An air-core solenoid: copper wire wound into about eleven evenly spaced turns, held horizontally on a stand, with its hollow centre visible.",
+              caption: "The apparatus used to show the magnetic field of a current-carrying solenoid.",
+            },
           },
         ],
       },
       cards: [
         {
           title: "Field strength and distance",
-          body: "The strength of a magnetic field decreases as you move further from the centre of the conductor. This is different from the factors that change the strength of the electromagnet itself — distance changes the strength you measure, not the strength produced.",
+          body: "**The strength of a magnetic field decreases as you move further from the centre of the conductor.** This is different from the factors that change the strength of the electromagnet itself — distance changes the strength you measure, not the strength produced.",
         },
       ],
       checks: [
@@ -468,6 +523,18 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Electromagnet Strength and Its Uses",
       intro:
         "Two factors change the strength of an electromagnet. Rather than taking the answers on trust, investigate both the way it is done in the laboratory — with a hypothesis, variables and observations.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.electromagnetUses,
+          alt: "Four uses of an electromagnet. An electric bell, where a coil pulls an arm so the striker hits the gong. A magnetic door lock holding a door shut. A scrapyard crane lifting steel beams on a large round electromagnet. An iron nail wrapped in coiled wire and connected to a cell, picking up paper clips.",
+          caption:
+            "Electric bell, magnetic door lock, scrapyard lifting magnet, and the coil-and-nail electromagnet built in the laboratory.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       miniExperiment: {
         title: "🔬 Investigation: factors affecting magnetic field strength",
         aim: "To study the factors that affect the magnetic field strength of an electromagnet.",
@@ -554,11 +621,11 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🧭 Uses of magnets",
-          body: "A compass needle uses a freely suspended magnet to show the direction of the poles. Credit and debit cards store information on a magnetic strip.",
+          body: "A compass needle uses a freely suspended magnet to **show the direction of the poles**. Credit and debit cards **store information on a magnetic strip**.",
         },
         {
           title: "🔔 Uses of electromagnets",
-          body: "An electric bell uses an electromagnet to move its striker repeatedly. A magnetic door lock uses an electromagnet to lock a door automatically — and because it is an electromagnet, the lock releases when the current is switched off.",
+          body: "An electric bell uses an **electromagnet to move its striker** repeatedly. A magnetic door lock uses an electromagnet to **lock a door automatically** — and because it is an electromagnet, the lock releases when the current is switched off.",
         },
       ],
       checks: [

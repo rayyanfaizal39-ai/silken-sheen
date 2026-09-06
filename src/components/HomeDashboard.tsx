@@ -27,6 +27,7 @@ import { useAuth } from "@/context/auth-context";
 import { useMemo, useState, type CSSProperties } from "react";
 import { useEffect } from "react";
 import { useSignInModal } from "@/context/sign-in-modal";
+import { isGuestMode } from "@/lib/guest-mode";
 import { Avatar } from "@/components/Avatar";
 import { RankBadge } from "@/components/RankBadge";
 import {
@@ -488,6 +489,8 @@ function HeroRankCard() {
 export function HomeDashboard() {
   const { progress } = useProgress();
   const { user } = useAuth();
+  const { open: openSignIn } = useSignInModal();
+  const guestMode = !user && isGuestMode();
   const rank = getRank(progress.xp);
   const streakUrgent = useStreakUrgent(progress.lastActive, progress.streak);
   const dueCount = getDueCount(progress.cardMastery);
@@ -524,6 +527,20 @@ export function HomeDashboard() {
 
   return (
     <section className="px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10 space-y-6">
+      {guestMode && (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-amber-400/25 bg-amber-400/[0.08] px-4 py-3 text-sm text-amber-100">
+          <span className="font-semibold">
+            Guest mode — your progress, XP, and streaks are not being saved.
+          </span>
+          <button
+            type="button"
+            onClick={() => openSignIn()}
+            className="rounded-xl bg-amber-400/20 px-3 py-1.5 text-xs font-bold text-amber-50 transition-colors hover:bg-amber-400/30"
+          >
+            Sign in to save progress
+          </button>
+        </div>
+      )}
       {/* ════════════════════════════════════════════════════════════
           HERO — Universe gateway
           ════════════════════════════════════════════════════════════ */}

@@ -176,7 +176,7 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 12,
   blogHighlight: {
     title: "Blog Sains — Planet ke-9 yang Mungkin Wujud",
-    body: "Pada awal 2016, ahli astronomi mengesan tanda-tanda kemungkinan wujudnya sebuah planet baharu dalam sistem suria kita — dianggarkan berjisim kira-kira 10 kali jisim Bumi. Penemuan ini masih lagi dalam peringkat kajian, bukan penemuan yang disahkan.",
+    body: "Pada awal 2016, ahli astronomi mengesan tanda-tanda kemungkinan wujudnya sebuah planet baharu dalam sistem suria kita — dianggarkan berjisim **kira-kira 10 kali jisim Bumi**. Penemuan ini masih lagi dalam peringkat kajian, bukan penemuan yang disahkan.",
     imagePath: chapterImage,
   },
   keywords: ["Sistem suria", "Unit Astronomi (A.U.)", "Tahun cahaya", "Planet", "Satelit semula jadi", "Jejak ekologi"],
@@ -185,21 +185,21 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
       number: "12.1",
       title: "Jarak dalam Sistem Suria",
       intro:
-        "Sistem suria terdiri daripada lapan planet yang mengorbit Matahari, termasuk Bumi. Jarak planet-planet dari Matahari adalah sangat besar, jadi unit astronomi dan tahun cahaya digunakan untuk mengukur jarak relatif planet itu dari Matahari. Pada tahun 2006, Pluto tidak lagi dikenali sebagai planet dalam sistem suria, sebaliknya dikenali sebagai planet kerdil.",
+        "Sistem suria terdiri daripada lapan planet yang mengorbit Matahari, termasuk Bumi. Jarak planet-planet dari Matahari adalah sangat besar, jadi **unit astronomi dan tahun cahaya** digunakan untuk mengukur jarak relatif planet itu dari Matahari. Pada tahun 2006, Pluto tidak lagi dikenali sebagai planet dalam sistem suria, sebaliknya dikenali sebagai **planet kerdil**.",
       cards: [
         {
           title: "📏 Unit Astronomi (A.U.)",
-          body: "Jarak purata di antara Bumi dengan Matahari, iaitu kira-kira 93 juta batu atau 150 juta kilometer. 1 A.U. = 1.5 × 10⁸ km.",
+          body: "Jarak purata di antara Bumi dengan Matahari, iaitu kira-kira 93 juta batu atau 150 juta kilometer. **1 A.U. = 1.5 × 10⁸ km**.",
           detail: "Jarak dalam A.U. = Jarak dalam km ÷ (1.5 × 10⁸ km)",
         },
         {
           title: "💫 Tahun Cahaya (ly)",
-          body: "Tahun cahaya ialah satu unit JARAK, bukan unit masa — iaitu jarak yang ditempuh cahaya dalam masa setahun. Cahaya bergerak pada halaju 300 000 km setiap saat, maka cahaya boleh bergerak sejauh 9.5 × 10¹² km dalam setahun.",
+          body: "Tahun cahaya ialah **satu unit JARAK, bukan unit masa** — iaitu jarak yang ditempuh cahaya dalam masa setahun. Cahaya bergerak pada halaju 300 000 km setiap saat, maka cahaya boleh bergerak sejauh 9.5 × 10¹² km dalam setahun.",
           detail: "Jarak dalam ly = Jarak dalam km ÷ (9.5 × 10¹² km)",
         },
         {
           title: "🧭 Contoh daripada buku teks",
-          body: "Zuhal berada pada jarak 1.43 × 10⁹ km dari Matahari. Jarak itu bersamaan 9.5 A.U. atau 1.51 × 10⁻⁴ tahun cahaya. Jarak Bumi dari Matahari, 1.5 × 10⁸ km, bersamaan 1.0 A.U. atau 1.58 × 10⁻⁵ tahun cahaya.",
+          body: "Zuhal berada pada jarak 1.43 × 10⁹ km dari Matahari. Jarak itu bersamaan **9.5 A.U.** atau 1.51 × 10⁻⁴ tahun cahaya. Jarak Bumi dari Matahari, 1.5 × 10⁸ km, bersamaan 1.0 A.U. atau 1.58 × 10⁻⁵ tahun cahaya.",
         },
       ],
       calculators: [
@@ -382,19 +382,19 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
       number: "12.1",
       title: "Hubungan antara Ciri Planet",
       intro:
-        "Ciri-ciri planet berkait antara satu sama lain. Secara teorinya, planet yang berada lebih dekat dengan Matahari menerima lebih banyak haba, tetapi situasi sebenar adalah lebih kompleks — dan beberapa anomali wujud.",
+        "Ciri-ciri planet berkait antara satu sama lain. Secara teorinya, **planet yang berada lebih dekat dengan Matahari menerima lebih banyak haba**, tetapi situasi sebenar adalah lebih kompleks — dan beberapa anomali wujud.",
       accordions: [
         {
           title: "☿️ Utarid — planet tanpa atmosfera",
-          body: "Sinaran Matahari terus sampai ke permukaannya, menyebabkan bahagian yang menghadap Matahari sangat panas, iaitu melebihi 427 °C. Bahagian yang gelap pula sangat sejuk, iaitu suhu boleh menurun sehingga −173 °C.",
+          body: "Sinaran Matahari terus sampai ke permukaannya, menyebabkan bahagian yang menghadap Matahari sangat panas, iaitu melebihi **427 °C**. Bahagian yang gelap pula sangat sejuk, iaitu suhu boleh menurun sehingga **−173 °C**.",
         },
         {
           title: "♀️ Zuhrah — anomali suhu",
-          body: "Zuhrah mempunyai awan tebal yang memantulkan sinaran Matahari, tetapi lapisan atmosferanya yang kebanyakannya karbon dioksida menyebabkan kesan rumah hijau. Banyak haba diperangkap, jadi suhu permukaan boleh mencapai 462 °C — lebih panas daripada Utarid walaupun Zuhrah lebih jauh dari Matahari.",
+          body: "Zuhrah mempunyai awan tebal yang memantulkan sinaran Matahari, tetapi lapisan atmosferanya yang kebanyakannya karbon dioksida menyebabkan **kesan rumah hijau**. Banyak haba diperangkap, jadi suhu permukaan boleh mencapai 462 °C — **lebih panas daripada Utarid walaupun Zuhrah lebih jauh dari Matahari**.",
         },
         {
           title: "♂️ Marikh — atmosfera bertekanan rendah",
-          body: "Walaupun mempunyai atmosfera, tekanan permukaannya sangat rendah berbanding Bumi (kurang daripada 1/100 tekanan Bumi), jadi kesannya pada suhu permukaan adalah sedikit. Suhu boleh berbeza antara −143 °C hingga 35 °C.",
+          body: "Walaupun mempunyai atmosfera, tekanan permukaannya sangat rendah berbanding Bumi (**kurang daripada 1/100 tekanan Bumi**), jadi kesannya pada suhu permukaan adalah sedikit. Suhu boleh berbeza antara −143 °C hingga 35 °C.",
         },
         {
           title: "🪐 Planet gergasi bergas",
@@ -405,27 +405,27 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
         {
           title: "Ketumpatan dan tarikan graviti",
           body:
-            "Tarikan graviti di permukaan sesuatu planet bergantung pada jisim dan ketumpatan planet itu. Tarikan graviti Utarid dan Marikh lebih rendah daripada Bumi kerana jisim planet yang rendah. Tarikan graviti Zuhrah hampir sama dengan Bumi kerana jisimnya hampir sama. Tarikan graviti Musytari sangat tinggi berbanding Bumi kerana jisimnya yang sangat tinggi walaupun ketumpatannya sangat rendah. Walaupun Zuhal, Uranus dan Neptun mempunyai jisim yang sangat tinggi, tarikan graviti planet-planet ini tidak terlalu tinggi berbanding Bumi kerana planet gergasi bergas mempunyai ketumpatan yang rendah.",
+            "Tarikan graviti di permukaan sesuatu planet **bergantung pada jisim dan ketumpatan planet itu**. Tarikan graviti Utarid dan Marikh lebih rendah daripada Bumi kerana jisim planet yang rendah. Tarikan graviti Zuhrah hampir sama dengan Bumi kerana jisimnya hampir sama. Tarikan graviti Musytari sangat tinggi berbanding Bumi kerana jisimnya yang sangat tinggi walaupun ketumpatannya sangat rendah. Walaupun Zuhal, Uranus dan Neptun mempunyai jisim yang sangat tinggi, tarikan graviti planet-planet ini tidak terlalu tinggi berbanding Bumi kerana planet gergasi bergas mempunyai ketumpatan yang rendah.",
           detail: "Tarikan graviti Bumi ialah 9.8 m s⁻².",
         },
         {
           title: "Jarak, masa dan kelajuan",
           body:
-            "Semakin jauh sebuah planet dari Matahari, semakin banyak masa diperlukan untuk mengelilingi Matahari dalam satu orbit. Utarid paling dekat dengan Matahari, maka ia mengambil masa 88 hari sahaja untuk satu orbit. Neptun, planet yang paling jauh, mengambil masa 164.8 tahun.",
+            "**Semakin jauh sebuah planet dari Matahari, semakin banyak masa diperlukan untuk mengelilingi Matahari dalam satu orbit.** Utarid paling dekat dengan Matahari, maka ia mengambil masa 88 hari sahaja untuk satu orbit. Neptun, planet yang paling jauh, mengambil masa 164.8 tahun.",
         },
       ],
       tabs: [
         {
           title: "Kebanyakan planet",
-          body: "Berputar dari barat ke timur. Kerana Bumi berputar dari barat ke timur, kita melihat Matahari terbit di timur dan terbenam di barat.",
+          body: "Berputar dari barat ke timur. Kerana Bumi berputar dari barat ke timur, kita melihat **Matahari terbit di timur dan terbenam di barat**.",
         },
         {
           title: "Zuhrah",
-          body: "Berputar dari timur ke barat — arah bertentangan dengan Bumi. Hal ini bermakna di Zuhrah, Matahari akan terbit dari barat.",
+          body: "Berputar dari timur ke barat — arah bertentangan dengan Bumi. Hal ini bermakna di Zuhrah, **Matahari akan terbit dari barat**.",
         },
         {
           title: "Uranus",
-          body: "Berputar pada sisinya — paksi putarannya condong hampir selari dengan orbitnya yang mengelilingi Matahari.",
+          body: "Berputar pada sisinya — **paksi putarannya condong hampir selari dengan orbitnya** yang mengelilingi Matahari.",
         },
       ],
       checks: [
@@ -448,19 +448,19 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
         {
           title: "🌗 Jika Bumi berputar perlahan atau berhenti berputar",
           body:
-            "Putaran Bumi pada paksinya menyebabkan berlakunya kejadian siang dan malam serta pasang surut air laut. Jika Bumi berputar perlahan atau berhenti berputar: waktu siang dan malam menjadi panjang di dua bahagian Bumi yang berbeza; kawasan gurun bertambah pada bahagian Bumi yang menghadap Matahari; waktu berlaku pasang surut air berubah; dan suhu pada bahagian Bumi yang tidak disinari Matahari akan menjadi sangat dingin.",
+            "**Putaran Bumi pada paksinya menyebabkan berlakunya kejadian siang dan malam serta pasang surut air laut.** Jika Bumi berputar perlahan atau berhenti berputar: waktu siang dan malam menjadi panjang di dua bahagian Bumi yang berbeza; kawasan gurun bertambah pada bahagian Bumi yang menghadap Matahari; waktu berlaku pasang surut air berubah; dan suhu pada bahagian Bumi yang tidak disinari Matahari akan menjadi sangat dingin.",
         },
       ],
       accordions: [
         {
           title: "🌙 Mengapakah terdapat planet yang mempunyai dua bulan atau lebih?",
           body:
-            "Bincangkan berdasarkan data dalam jadual perbandingan. Satelit semula jadi ialah jasad yang mengelilingi planet dengan orbitnya sendiri. Utarid dan Zuhrah tidak mempunyai satelit semula jadi, Bumi mempunyai satu, Marikh dua (Phobos dan Deimos), manakala Musytari 67, Zuhal 62, Uranus 27 dan Neptun 14. Perhatikan hubungan antara bilangan satelit dengan saiz, jisim dan tarikan graviti planet itu, kemudian nyatakan penaakulan anda.",
+            "Bincangkan berdasarkan data dalam jadual perbandingan. Satelit semula jadi ialah **jasad yang mengelilingi planet dengan orbitnya sendiri**. Utarid dan Zuhrah tidak mempunyai satelit semula jadi, Bumi mempunyai satu, Marikh dua (Phobos dan Deimos), manakala Musytari 67, Zuhal 62, Uranus 27 dan Neptun 14. Perhatikan hubungan antara bilangan satelit dengan saiz, jisim dan tarikan graviti planet itu, kemudian nyatakan penaakulan anda.",
         },
         {
           title: "🌍 Jika anda berada di Bulan, bagaimanakah rupa bentuk Bumi?",
           body:
-            "Gunakan maklumat berikut untuk menaakul. Bulan berputar pada paksinya dan pada masa yang sama beredar mengelilingi Bumi pada orbitnya. Tempoh masa putaran Bulan pada paksinya dan peredarannya mengelilingi Bumi adalah sama, iaitu lebih kurang 27 hari. Oleh itu, permukaan Bulan yang sama akan menghadap ke arah Bumi pada setiap masa. Saiz Bumi pula adalah empat kali ganda berbanding saiz Bulan.",
+            "Gunakan maklumat berikut untuk menaakul. Bulan berputar pada paksinya dan pada masa yang sama beredar mengelilingi Bumi pada orbitnya. Tempoh masa putaran Bulan pada paksinya dan peredarannya mengelilingi Bumi adalah sama, iaitu **lebih kurang 27 hari**. Oleh itu, **permukaan Bulan yang sama akan menghadap ke arah Bumi pada setiap masa**. Saiz Bumi pula adalah empat kali ganda berbanding saiz Bulan.",
         },
         {
           title: "🌗 Adakah Bumi kelihatan mempunyai fasa jika dilihat dari Bulan?",
@@ -479,7 +479,7 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
       number: "12.1",
       title: "Bumi sebagai Planet untuk Kehidupan",
       intro:
-        "Setakat ini, Bumi merupakan satu-satunya planet yang mempunyai hidupan. Bumi dapat menampung hidupan akibat beberapa faktor seperti kehadiran air, sumber mineral, suhu permukaan dan kandungan atmosferanya.",
+        "Setakat ini, **Bumi merupakan satu-satunya planet yang mempunyai hidupan**. Bumi dapat menampung hidupan akibat beberapa faktor seperti kehadiran air, sumber mineral, suhu permukaan dan kandungan atmosferanya.",
       flipCards: [
         { id: "gravity", icon: "⚖️", label: "Tarikan graviti", fact: "Mempunyai tarikan graviti yang menarik objek di Bumi supaya tidak melayang ke angkasa lepas." },
         { id: "water", icon: "💧", label: "Kandungan air", fact: "Mempunyai kandungan air yang banyak untuk semua keperluan hidupan." },
@@ -492,13 +492,13 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
         {
           title: "🌱 Jejak ekologi",
           body:
-            "Jejak ekologi ialah ukuran kemampuan air dan tanah menyediakan sumber yang diperlukan oleh manusia (makanan, minuman, kediaman dan lain-lain) serta kemampuan Bumi untuk menyerap semua bahan buangan manusia lalu menghasilkan semula sumber sesudah mereka menggunakannya.",
+            "**Jejak ekologi** ialah ukuran kemampuan air dan tanah menyediakan sumber yang diperlukan oleh manusia (makanan, minuman, kediaman dan lain-lain) serta kemampuan Bumi untuk menyerap semua bahan buangan manusia lalu menghasilkan semula sumber sesudah mereka menggunakannya.",
           detail: "Jejak ekologi berbeza daripada sebuah negara dengan negara yang lain.",
         },
         {
           title: "⚠️ Apabila jejak ekologi terlalu besar",
           body:
-            "Jika jejak ekologi melebihi kemampuan Bumi untuk memperbaharui sumber, Bumi akan kehabisan sumber. Sebagai pengguna yang berhemah, setiap individu berperanan menguruskan alam dan mengurangkan jejak ekologi masing-masing.",
+            "**Jika jejak ekologi melebihi kemampuan Bumi untuk memperbaharui sumber, Bumi akan kehabisan sumber.** Sebagai pengguna yang berhemah, setiap individu berperanan menguruskan alam dan mengurangkan jejak ekologi masing-masing.",
         },
       ],
       accordions: [

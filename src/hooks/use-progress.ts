@@ -1,6 +1,7 @@
 /* eslint-disable no-empty -- Storage failures intentionally fall back to in-memory progress. */
 import { useEffect, useState, useCallback, useRef } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { canPersistProgress } from "@/lib/guest-mode";
 import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
 import { recordDailyFlashcardReview } from "@/lib/daily-mission-progress";
 import { getLocalDateKey } from "@/lib/local-date";
@@ -720,7 +721,7 @@ async function loadFromSupabase(userId: string): Promise<Progress | null> {
 }
 
 async function saveToSupabase(userId: string, p: Progress): Promise<void> {
-  if (!isSupabaseConfigured) return;
+  if (!isSupabaseConfigured || !canPersistProgress(userId)) return;
   try {
     await supabase
       .from("user_progress")
@@ -757,7 +758,7 @@ async function insertQuizHistoryRow(result: {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) return;
+    if (!user || !canPersistProgress(user.id)) return;
 
     const { data: subscription, error: subscriptionError } = await supabase
       .from("subscriptions")
@@ -980,7 +981,7 @@ export function useProgress() {
   // Debounced sync to Supabase after every progress change
   const scheduleSync = useCallback((p: Progress) => {
     const userId = sharedUserId;
-    if (!isSupabaseConfigured || !userId) return;
+    if (!isSupabaseConfigured || !userId || !canPersistProgress(userId)) return;
     if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
     syncTimerRef.current = setTimeout(() => {
       void saveToSupabase(userId, p);

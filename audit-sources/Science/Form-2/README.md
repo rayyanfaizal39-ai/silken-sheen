@@ -24,12 +24,20 @@ Verified correction / errata reference associated with Sains Tingkatan 2.
 
 Provenance limitations for the errata must remain documented. It must not override the DSKP or textbook unless the correction is clearly applicable.
 
+### Textbook-DLP.pdf
+
+Dual Language Programme (DLP) Science Form 2  
+Kementerian Pendidikan Malaysia  
+KSSM
+
+English-medium counterpart to Textbook.pdf, used as the authoritative source for
+emphasis/highlighting decisions in DLP-stream notes. Content structure mirrors
+Textbook.pdf (same chapters/subtopics), translated for the DLP stream.
+
 ## Authority Order
 
-1. DSKP.pdf
-2. Textbook.pdf
-3. Errata.pdf
-4. AcadeMY production content
+BM stream: DSKP.pdf → Textbook.pdf → Errata.pdf → AcadeMY production content
+DLP stream: DSKP.pdf → Textbook-DLP.pdf → AcadeMY production content
 
 ## Purpose
 

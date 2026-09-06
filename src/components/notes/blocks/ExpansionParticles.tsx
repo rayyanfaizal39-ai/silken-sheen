@@ -13,8 +13,8 @@ import { figureCopy } from "./figure-copy";
  * misconception the standard warns against.
  */
 
-/** One radius for every particle in every state. Never varies. */
-const PARTICLE_R = 5;
+/** One radius for every particle in every state and temperature. Never varies. */
+export const PARTICLE_R = 8;
 
 const GRID: Record<string, { cols: number; rows: number }> = {
   solid: { cols: 5, rows: 3 },
@@ -23,7 +23,29 @@ const GRID: Record<string, { cols: number; rows: number }> = {
 };
 
 /** Base spacing per state, then scaled by temperature. */
-const BASE_GAP: Record<string, number> = { solid: 17, liquid: 21, gas: 30 };
+export const BASE_GAP: Record<string, number> = { solid: 27, liquid: 34, gas: 46 };
+/** How much further apart heating pushes the particles. */
+export const HEATED_SCALE = 1.28;
+/** Clearance between the outermost particles and the container wall. */
+const PAD_X = 26;
+const PAD_Y = 24;
+
+/**
+ * The canvas is sized once, to the largest the chamber ever gets — a heated
+ * gas — and every state is then drawn centred inside it.
+ *
+ * Two things follow, and both are the point of the figure. The chamber
+ * visibly grows and shrinks as the learner switches between heated and
+ * cooled, because the frame it sits in does not move with it. And the canvas
+ * hugs that largest case instead of leaving most of the card empty, so the
+ * particles are large enough on a phone to see that they are not changing
+ * size — which is the misconception this figure exists to prevent.
+ */
+const MAX_GAP = Math.max(...Object.values(BASE_GAP)) * HEATED_SCALE;
+const VIEW = {
+  w: Math.round((3 * MAX_GAP) / 2 + PAD_X + 8) * 2,
+  h: Math.round(MAX_GAP + PAD_Y + 8) * 2,
+};
 
 export function ExpansionParticles({ block, lang }: { block: ExpansionParticlesBlock; lang?: string }) {
   const [state, setState] = useState<"solid" | "liquid" | "gas">((block.states[0]?.id as "solid") ?? "solid");
@@ -32,9 +54,9 @@ export function ExpansionParticles({ block, lang }: { block: ExpansionParticlesB
 
   const active = block.states.find((s) => s.id === state) ?? block.states[0];
   const grid = GRID[state] ?? GRID.solid;
-  const gap = (BASE_GAP[state] ?? 17) * (heated ? 1.28 : 1);
-  const cx = 160;
-  const cy = 76;
+  const gap = (BASE_GAP[state] ?? BASE_GAP.solid) * (heated ? HEATED_SCALE : 1);
+  const cx = VIEW.w / 2;
+  const cy = VIEW.h / 2;
 
   const particles: { x: number; y: number }[] = [];
   for (let r = 0; r < grid.rows; r++) {
@@ -46,8 +68,8 @@ export function ExpansionParticles({ block, lang }: { block: ExpansionParticlesB
     }
   }
   // Container grows with the particle spread, so "the object expands" is visible.
-  const halfW = ((grid.cols - 1) * gap) / 2 + 18;
-  const halfH = ((grid.rows - 1) * gap) / 2 + 16;
+  const halfW = ((grid.cols - 1) * gap) / 2 + PAD_X;
+  const halfH = ((grid.rows - 1) * gap) / 2 + PAD_Y;
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
@@ -75,10 +97,10 @@ export function ExpansionParticles({ block, lang }: { block: ExpansionParticlesB
         </button>
       </div>
 
-      <div className="overflow-x-auto">
+      <div>
         <svg
-          viewBox="0 0 320 150"
-          className="mx-auto h-auto w-full min-w-[290px] max-w-[430px]"
+          viewBox={`0 0 ${VIEW.w} ${VIEW.h}`}
+          className="mx-auto h-auto w-full max-w-[430px]"
           role="img"
           aria-label={`${active?.label ?? block.title} — ${heated ? block.heatedLabel : block.cooledLabel}`}
         >
@@ -90,18 +112,18 @@ export function ExpansionParticles({ block, lang }: { block: ExpansionParticlesB
             rx="4"
             fill="none"
             className={heated ? "stroke-rose-300" : "stroke-sky-300"}
-            strokeWidth="2.4"
+            strokeWidth="3.2"
           />
           {particles.map((p, i) => (
             <g key={i}>
               {/* motion marks grow with temperature; the particle does not */}
               <line
-                x1={p.x - (heated ? 6 : 3)}
+                x1={p.x - (heated ? 17 : 10)}
                 y1={p.y}
-                x2={p.x + (heated ? 6 : 3)}
+                x2={p.x + (heated ? 17 : 10)}
                 y2={p.y}
                 className={heated ? "stroke-rose-300/60" : "stroke-sky-300/50"}
-                strokeWidth="1.2"
+                strokeWidth="2.6"
               />
               <circle cx={p.x} cy={p.y} r={PARTICLE_R} className={heated ? "fill-rose-300" : "fill-sky-300"} />
             </g>

@@ -1,3 +1,4 @@
+import type * as React from "react";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 
@@ -16,6 +17,7 @@ export function LearningImageLightbox({
   alt,
   title,
   closeLabel,
+  overlay,
 }: {
   open: boolean;
   onOpenChange: (next: boolean) => void;
@@ -23,6 +25,13 @@ export function LearningImageLightbox({
   alt: string;
   title: string;
   closeLabel: string;
+  /**
+   * Drawn over the enlarged image in a wrapper sized to match it exactly, so
+   * a figure with an active selection (a `spotlight` dim + glow, say) keeps
+   * showing that same state at full size instead of resetting to the plain
+   * picture the moment a learner taps Enlarge.
+   */
+  overlay?: React.ReactNode;
 }) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -34,11 +43,14 @@ export function LearningImageLightbox({
         >
           <Dialog.Title className="sr-only">{title}</Dialog.Title>
 
-          <img
-            src={src}
-            alt={alt}
-            className="max-h-[calc(100vh-5rem)] max-w-full rounded-xl object-contain shadow-2xl"
-          />
+          <div className="relative inline-block max-h-[calc(100vh-5rem)] max-w-full">
+            <img
+              src={src}
+              alt={alt}
+              className="block max-h-[calc(100vh-5rem)] max-w-full rounded-xl object-contain shadow-2xl"
+            />
+            {overlay}
+          </div>
 
           <Dialog.Close
             className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-slate-900/80 px-4 py-2 text-[13px] font-semibold text-white transition-colors hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"

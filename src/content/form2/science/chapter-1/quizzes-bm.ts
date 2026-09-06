@@ -38,10 +38,17 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Pada tarikh berapakah Hari Biodiversiti Sedunia disambut?",
-    options: ["5 Jun", "22 Mei", "1 Mac", "16 September"],
+    question:
+      "Biodiversiti wujud antara lain kerana organisma hidup dalam habitat dan iklim yang berbeza. Mengapakah keadaan ini boleh menghasilkan kepelbagaian organisma?",
+    options: [
+      "Semua organisma mempunyai ciri yang sama",
+      "Organisma mempunyai ciri yang membantu mereka hidup dalam keadaan persekitaran yang berbeza",
+      "Iklim menghalang organisma daripada menyesuaikan diri",
+      "Setiap habitat mengandungi organisma yang sama",
+    ],
     answerIndex: 1,
-    explanation: "Hari Biodiversiti Sedunia (International Day for Biological Diversity) disambut pada 22 Mei setiap tahun.",
+    explanation:
+      "Habitat dan iklim yang berbeza menggalakkan ciri dan penyesuaian yang berbeza, lalu menyumbang kepada biodiversiti.",
   },
   {
     id: "sci-f2-c1-bm-q4",
@@ -50,15 +57,16 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Akta manakah yang mengharamkan pembunuhan atau perdagangan haiwan dan tumbuhan endemik serta terancam di Malaysia?",
+    question: "Mengapakah pengurusan biodiversiti yang berkesan penting?",
     options: [
-      "Akta Alam Sekitar 1974",
-      "Akta Perlindungan Hidupan Liar 1972",
-      "Akta Hutan Negara 1984",
-      "Akta Taman Negara 1980",
+      "Untuk menambahkan bilangan bangunan dalam habitat semula jadi",
+      "Untuk mengelakkan kehilangan spesies dan mengekalkan ekosistem yang sihat",
+      "Untuk menghapuskan semua pemangsa daripada ekosistem",
+      "Untuk memastikan hanya spesies yang mempunyai nilai ekonomi terus hidup",
     ],
     answerIndex: 1,
-    explanation: "Akta Perlindungan Hidupan Liar 1972 mengharamkan pembunuhan atau perdagangan haiwan dan tumbuhan endemik serta terancam.",
+    explanation:
+      "Pengurusan biodiversiti yang berkesan mengelakkan kehilangan spesies dan membantu mengekalkan ekosistem yang seimbang serta sihat.",
   },
   {
     id: "sci-f2-c1-bm-q5",
@@ -67,10 +75,16 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Antara berikut, yang manakah contoh spesies endemik di Malaysia?",
-    options: ["Kucing", "Anjing", "Bunga rafflesia", "Lembu"],
-    answerIndex: 2,
-    explanation: "Bunga rafflesia ialah contoh spesies endemik di Malaysia, selain periuk kera, penyu belimbing, harimau Malaya dan gajah Borneo.",
+    question: "Sesuatu spesies dikatakan endemik di sesuatu kawasan. Apakah maksudnya?",
+    options: [
+      "Spesies itu secara semula jadi hanya terdapat di kawasan geografi tertentu",
+      "Spesies itu boleh hidup di semua habitat di dunia",
+      "Spesies itu semestinya telah pupus",
+      "Spesies itu mesti dipelihara hanya dalam kurungan",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Spesies endemik ialah spesies yang secara semula jadi hanya terdapat di sesuatu kawasan geografi tertentu dan tiada di tempat lain.",
   },
   {
     id: "sci-f2-c1-bm-q6",
@@ -79,10 +93,12 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Haiwan tanpa tulang belakang dikenali sebagai...",
-    options: ["Vertebrata", "Invertebrata", "Homeoterma", "Poikiloterma"],
+    question:
+      "Seekor haiwan tidak mempunyai tulang belakang serta mempunyai badan bersegmen dan rangka luar. Haiwan itu tergolong dalam kumpulan yang mana?",
+    options: ["Vertebrata", "Invertebrata", "Mamalia", "Amfibia"],
     answerIndex: 1,
-    explanation: "Invertebrata ialah haiwan yang tidak mempunyai tulang belakang.",
+    explanation:
+      "Haiwan tanpa tulang belakang, berbadan bersegmen dan mempunyai rangka luar dikelaskan sebagai invertebrata.",
   },
   {
     id: "sci-f2-c1-bm-q7",
@@ -91,10 +107,17 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Berapa kumpulan utama vertebrata yang dipelajari dalam bab ini?",
-    options: ["3", "4", "5", "6"],
-    answerIndex: 2,
-    explanation: "Lima kumpulan vertebrata ialah ikan, amfibia, reptilia, burung dan mamalia.",
+    question:
+      "Sebuah hutan mempunyai tumbuhan yang digunakan untuk menghasilkan ubat, kayu dan makanan. Pernyataan manakah paling tepat menunjukkan kepentingan biodiversiti?",
+    options: [
+      "Biodiversiti membekalkan sumber biologi yang berguna",
+      "Biodiversiti menghalang semua persaingan antara organisma",
+      "Biodiversiti menghapuskan keperluan pemuliharaan",
+      "Biodiversiti menyebabkan semua organisma menggunakan sumber yang sama",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Biodiversiti penting kerana ia membekalkan sumber biologi yang berguna seperti ubat-ubatan, kayu dan makanan.",
   },
   {
     id: "sci-f2-c1-bm-q8",
@@ -104,7 +127,7 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     question: "Organisma yang suhu badannya berubah mengikut suhu persekitaran dipanggil...",
-    options: ["Homeoterma", "Poikiloterma", "Invertebrata", "Vertebrata"],
+    options: ["Homoioterma", "Poikiloterma", "Invertebrata", "Vertebrata"],
     answerIndex: 1,
     explanation: "Poikiloterma ialah organisma yang suhu badannya berubah mengikut suhu persekitaran.",
   },
@@ -127,10 +150,11 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Biji benih dengan satu kotiledon dikenali sebagai...",
-    options: ["Dikotiledon", "Monokotiledon", "Konifer", "Spora"],
-    answerIndex: 1,
-    explanation: "Biji benih dengan satu kotiledon dipanggil monokotiledon, contohnya padi dan jagung.",
+    question: "Tumbuhan X mempunyai satu kotiledon, akar serabut dan urat daun selari. Bagaimanakah Tumbuhan X dikelaskan?",
+    options: ["Lumut", "Paku-pakis", "Monokotiledon", "Dikotiledon"],
+    answerIndex: 2,
+    explanation:
+      "Satu kotiledon, akar serabut dan urat daun selari semuanya merupakan ciri monokotiledon.",
   },
   {
     id: "sci-f2-c1-bm-q11",
@@ -173,10 +197,16 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Berapa pasang kaki yang dimiliki oleh serangga seperti semut dan rama-rama?",
-    options: ["Dua pasang", "Tiga pasang", "Empat pasang", "Lima pasang"],
-    answerIndex: 1,
-    explanation: "Serangga seperti semut, rama-rama dan lipas mempunyai tiga pasang kaki.",
+    question: "Perbandingan urat daun yang manakah betul?",
+    options: [
+      "Monokotiledon: urat selari; Dikotiledon: urat jejala",
+      "Monokotiledon: urat jejala; Dikotiledon: urat selari",
+      "Kedua-duanya hanya mempunyai urat selari",
+      "Kedua-duanya hanya mempunyai urat jejala",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Monokotiledon mempunyai urat daun selari, manakala dikotiledon mempunyai urat daun berjejala (seperti jaringan).",
   },
   {
     id: "sci-f2-c1-bm-q14",
@@ -197,7 +227,7 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Mengapakah burung dikategorikan sebagai homeoterma walaupun ia bertelur?",
+    question: "Mengapakah burung dikategorikan sebagai homoioterma walaupun ia bertelur?",
     options: [
       "Kerana telur burung tidak bercengkerang",
       "Kerana suhu badan burung malar dan tidak dipengaruhi suhu persekitaran",
@@ -205,7 +235,7 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
       "Kerana burung mengalami persenyawaan luaran",
     ],
     answerIndex: 1,
-    explanation: "Homeoterma ditentukan oleh sama ada suhu badan malar (tetap), bukan oleh cara pembiakan. Burung mengekalkan suhu badan yang tetap menggunakan bulu.",
+    explanation: "Homoioterma ditentukan oleh sama ada suhu badan malar (tetap), bukan oleh cara pembiakan. Burung mengekalkan suhu badan yang tetap menggunakan bulu.",
   },
   {
     id: "sci-f2-c1-bm-q16",
@@ -248,15 +278,17 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Dalam kekunci dikotomi, apakah yang dimaksudkan dengan 'kuplet'?",
+    question:
+      "Kilang-kilang melepaskan sisa yang tidak dirawat ke dalam sungai selama beberapa tahun. Kesan manakah paling mungkin mengurangkan biodiversiti dalam sungai itu?",
     options: [
-      "Satu organisma tunggal yang dikaji",
-      "Dua penyataan ciri yang membahagikan organisma kepada dua pilihan",
-      "Jumlah keseluruhan organisma dalam satu kumpulan",
-      "Nama saintifik bagi sesuatu organisma",
+      "Lebih banyak spesies ikan akan muncul di sungai itu",
+      "Organisma akuatik mati atau berpindah, mengurangkan kepelbagaian spesies dalam sungai itu",
+      "Air menjadi lebih jernih dan sihat untuk organisma",
+      "Persaingan antara spesies hilang sepenuhnya",
     ],
     answerIndex: 1,
-    explanation: "Kuplet ialah dua penyataan yang menggambarkan ciri-ciri organisma, membahagikannya kepada pilihan (a) atau (b).",
+    explanation:
+      "Sisa yang tidak dirawat mencemarkan air, menyebabkan organisma akuatik mati atau berpindah, sekali gus mengurangkan kepelbagaian spesies di sungai itu.",
   },
   {
     id: "sci-f2-c1-bm-q19",
@@ -295,11 +327,16 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     question:
-      "Satu kekunci dikotomi memberikan kuplet: 1(a) Poikiloterma → ke 2, 1(b) Homeoterma → ke 3; 3(a) Tidak berbulu pelepah → Singa, 3(b) Berbulu pelepah → Ayam. Seekor haiwan X ialah homeoterma dan mempunyai bulu pelepah. Apakah haiwan X?",
-    options: ["Singa", "Ayam", "Ular", "Katak"],
+      "Populasi seekor haiwan endemik semakin berkurang kerana habitat hutannya sedang dimusnahkan. Tindakan manakah merupakan strategi pengurusan biodiversiti yang paling berkesan?",
+    options: [
+      "Menangkap semua individu dan menyimpannya secara kekal dalam kurungan",
+      "Melindungi habitat semula jadi dan mengawal aktiviti yang mengancam populasinya",
+      "Memperkenalkan beberapa spesies lain yang tidak berkaitan ke habitat tersebut",
+      "Membenarkan pembangunan diteruskan tanpa memantau populasinya",
+    ],
     answerIndex: 1,
     explanation:
-      "Mengikut laluan kuplet: homeoterma → ke 3 → berbulu pelepah → Ayam. Perhatikan istilah 'bulu pelepah': mamalia seperti singa juga dilitupi bulu dan rambut, tetapi hanya burung yang mempunyai bulu pelepah.",
+      "Melindungi habitat semula jadi dan mengawal aktiviti yang mengancam sesuatu populasi ialah cara paling berkesan untuk mengelakkan spesies endemik daripada terus berkurangan.",
   },
   {
     id: "sci-f2-c1-bm-q22",
@@ -339,11 +376,16 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 1",
     lang: "bm",
-    question:
-      "Kekunci dikotomi tumbuhan: 1(a) Tidak berbunga → ke 2, 1(b) Berbunga → ke 3; 2(a) Tidak berpembuluh → Marchantia sp., 2(b) Berpembuluh → ke 4; 4(a) Tidak menghasilkan biji benih → Paku pakis, 4(b) Menghasilkan biji benih → Gnetum sp. Sebatang tumbuhan Y tidak berbunga, berpembuluh dan menghasilkan biji benih. Apakah tumbuhan Y?",
-    options: ["Marchantia sp.", "Paku pakis", "Gnetum sp.", "Pokok jagung"],
-    answerIndex: 2,
-    explanation: "Laluan: tidak berbunga → ke 2 → berpembuluh → ke 4 → menghasilkan biji benih → Gnetum sp.",
+    question: "Gabungan manakah membandingkan monokotiledon dengan dikotiledon dengan betul?",
+    options: [
+      "Monokotiledon: akar tunjang dan urat jejala; Dikotiledon: akar serabut dan urat selari",
+      "Monokotiledon: akar serabut dan urat selari; Dikotiledon: akar tunjang dan urat jejala",
+      "Kedua-duanya mempunyai akar serabut dan urat selari",
+      "Kedua-duanya mempunyai akar tunjang dan urat jejala",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Monokotiledon mempunyai akar serabut dan urat daun selari, manakala dikotiledon mempunyai akar tunjang dan urat daun berjejala.",
   },
   {
     id: "sci-f2-c1-bm-q25",
@@ -432,14 +474,16 @@ export const scienceF2C1QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 1",
     lang: "bm",
-    question: "Mengapakah penting untuk membina kekunci dikotomi dengan tepat dua pilihan (a) dan (b) bagi setiap kuplet, bukan tiga atau lebih?",
+    question:
+      "Satu spesies yang jarang ditemui semakin berkurang akibat kemusnahan habitat dan pemburuan haram. Pelan manakah paling berkesan untuk memulihara spesies itu dalam jangka panjang?",
     options: [
-      "Kerana peraturan ini hanya untuk memudahkan ingatan murid tanpa sebab saintifik",
-      "Kerana sistem dikotomi bermaksud 'pembahagian kepada dua', supaya setiap langkah klasifikasi tetap sistematik dan tidak mengelirukan",
-      "Kerana hanya dua organisma boleh wujud dalam dunia ini",
-      "Kerana kekunci dengan tiga pilihan tidak boleh dilukis di atas kertas",
+      "Melindungi habitatnya, menguatkuasakan undang-undang hidupan liar dan menjalankan program pembiakan apabila perlu",
+      "Melindungi beberapa individu sahaja tetapi membenarkan habitat terus dimusnahkan",
+      "Menghentikan semua penyelidikan saintifik terhadap spesies itu",
+      "Memindahkan semua individu secara kekal ke zoo bandar",
     ],
-    answerIndex: 1,
-    explanation: "Perkataan 'dikotomi' bermaksud pembahagian kepada dua bahagian; struktur ini memastikan setiap langkah klasifikasi konsisten, sistematik dan tidak mengelirukan apabila mengenal pasti organisma.",
+    answerIndex: 0,
+    explanation:
+      "Pemuliharaan jangka panjang yang berkesan menggabungkan perlindungan habitat, penguatkuasaan undang-undang terhadap pemburuan haram, dan program pembiakan apabila perlu.",
   },
 ];

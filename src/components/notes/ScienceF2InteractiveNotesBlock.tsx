@@ -8,6 +8,11 @@ import {
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChipRow } from "@/components/notes/blocks/ChipRow";
+import {
+  ScienceEmphasis,
+  ScienceRemember,
+  ScienceQuickExplanation,
+} from "@/components/notes/blocks/ScienceEmphasis";
 import { FlipCardGrid } from "@/components/notes/blocks/FlipCard";
 import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectionChecklist";
 import { MatchingPairs } from "@/components/notes/blocks/MatchingPairs";
@@ -31,12 +36,17 @@ import { AsteroidBeltFigure } from "@/components/notes/blocks/AsteroidBeltFigure
 import { CometOrbitFigure } from "@/components/notes/blocks/CometOrbitFigure";
 import { AuLightYearCalculator } from "@/components/notes/blocks/AuLightYearCalculator";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
-import type { ScienceF2InteractiveContent } from "@/content/form2/science/interactive-types";
+import type {
+  AnnotatedImageBlock,
+  ScienceF2InteractiveContent,
+} from "@/content/form2/science/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
 import { useProgress } from "@/hooks/use-progress";
 import { AnnotatedImage } from "@/components/notes/blocks/AnnotatedImage";
 import { InteractiveFigureCard } from "@/components/notes/blocks/InteractiveFigureCard";
 import { EcologicalTermsDiagram } from "@/components/notes/blocks/EcologicalTermsDiagram";
+import { ConceptTree } from "@/components/notes/blocks/ConceptTree";
+import { ImpactTable } from "@/components/notes/blocks/ImpactTable";
 import { EnzymeExplorer } from "@/components/notes/blocks/EnzymeExplorer";
 import { ImmuneResponseGraph } from "@/components/notes/blocks/ImmuneResponseGraph";
 import { DefenceLinesDiagram } from "@/components/notes/blocks/DefenceLinesDiagram";
@@ -190,6 +200,49 @@ export function ScienceF2InteractiveNotesBlock({
     addXp(amount, "science");
   };
 
+  /**
+   * The one way a chapter-authored figure reaches the page, whichever slot it
+   * was authored in. A figure that names concepts becomes an interactive card;
+   * one that only sets the scene renders as the plain bounded figure.
+   */
+  function renderFigure(image: AnnotatedImageBlock) {
+    return image.annotations.length > 0 ? (
+      <InteractiveFigureCard
+        key={image.src}
+        lang={lang}
+        concepts={image.annotations}
+        image={{
+          src: image.src,
+          alt: image.alt,
+          size: image.size,
+          aspect: image.aspect,
+          caption: image.caption,
+          legendLabel: image.legendLabel,
+          annotationMode: image.annotationMode ?? "labels",
+          imageKey: image.imageKey,
+          priority: image.priority,
+        }}
+      />
+    ) : (
+      <AnnotatedImage
+        key={image.src}
+        src={image.src}
+        alt={image.alt}
+        size={image.size}
+        aspect={image.aspect}
+        caption={image.caption}
+        legendLabel={image.legendLabel}
+        annotationMode={image.annotationMode ?? "labels"}
+        annotations={image.annotations}
+        imageKey={image.imageKey}
+        priority={image.priority}
+        enlargeLabel={imageCopy.enlarge}
+        closeLabel={imageCopy.close}
+        hintLabel={imageCopy.hint}
+      />
+    );
+  }
+
   function renderSection(
     section: ScienceF2InteractiveContent["sections"][number],
     isLast: boolean,
@@ -208,6 +261,32 @@ export function ScienceF2InteractiveNotesBlock({
         {chapter8Figure && (
           <Chapter8ContextFigure kind={chapter8Figure} section={section} lang={lang} />
         )}
+        {section.standardTitle && (
+          // Which numbered part of the chapter this is. The shell prints only
+          // the section's own title, so without this a learner reading
+          // "Producers, Consumers and Decomposers" cannot see that they are
+          // inside 2.1 Energy Flow in an Ecosystem.
+          <p className="-mt-1 text-[11.5px] font-semibold uppercase tracking-wide text-primary">
+            {section.standardTitle}
+          </p>
+        )}
+        {section.contextImages?.map(renderFigure)}
+        {section.contextImageSet && section.contextImageSet.length > 0 && (
+          // One set, one footprint each: three across from `sm`, stacked on a
+          // phone. Every member keeps its own caption, alt text and enlarge
+          // control.
+          <div className="grid gap-3 sm:grid-cols-3" data-figure-set="">
+            {section.contextImageSet.map(renderFigure)}
+          </div>
+        )}
+        {section.contextImagePair && section.contextImagePair.length > 0 && (
+          // A matched pair reads as one figure, so the two share a row from
+          // `sm` up and stack on a phone. Each half keeps its own caption,
+          // alt text and enlarge control.
+          <div className="grid gap-3 sm:grid-cols-2" data-figure-pair="">
+            {section.contextImagePair.map(renderFigure)}
+          </div>
+        )}
         {unpicturedFlipCards.length > 0 && (
           <div className="border-l-2 border-primary/35 pl-4">
             <h3 className="py-2 text-[13px] font-semibold text-primary">
@@ -223,6 +302,32 @@ export function ScienceF2InteractiveNotesBlock({
             </dl>
           </div>
         )}
+        {section.conceptTree && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.conceptTree.title}
+            </h3>
+            {section.conceptTree.instruction && (
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                {section.conceptTree.instruction}
+              </p>
+            )}
+            <ConceptTree block={section.conceptTree} />
+          </div>
+        )}
+        {section.impactTable && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.impactTable.title}
+            </h3>
+            {section.impactTable.instruction && (
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                {section.impactTable.instruction}
+              </p>
+            )}
+            <ImpactTable block={section.impactTable} />
+          </div>
+        )}
         {section.cards && !isChapter8 && (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {section.cards.map((card) => (
@@ -232,7 +337,7 @@ export function ScienceF2InteractiveNotesBlock({
               >
                 <h3 className="font-display text-sm font-bold text-foreground">{card.title}</h3>
                 <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
-                  {card.body}
+                  <ScienceEmphasis text={card.body} />
                 </p>
                 {card.detail && (
                   <p className="mt-2 text-xs font-semibold text-primary">{card.detail}</p>
@@ -302,7 +407,7 @@ export function ScienceF2InteractiveNotesBlock({
               <AccordionItem key={item.title} value={`${section.number}-${i}`}>
                 <AccordionTrigger>{item.title}</AccordionTrigger>
                 <AccordionContent className="text-[13px] leading-relaxed text-muted-foreground">
-                  {item.body}
+                  <ScienceEmphasis text={item.body} />
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -323,7 +428,7 @@ export function ScienceF2InteractiveNotesBlock({
                 value={`tab-${i}`}
                 className="text-[13.5px] leading-relaxed text-muted-foreground"
               >
-                {tab.body}
+                <ScienceEmphasis text={tab.body} />
               </TabsContent>
             ))}
           </Tabs>
@@ -729,7 +834,9 @@ export function ScienceF2InteractiveNotesBlock({
               {section.cards.map((card) => (
                 <article key={card.title} className="border-l-2 border-primary/30 pl-3">
                   <h3 className="text-[13px] font-bold text-foreground">{card.title}</h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{card.body}</p>
+                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
+                    <ScienceEmphasis text={card.body} />
+                  </p>
                   {card.detail && <p className="mt-1.5 text-[12px] font-semibold text-primary">{card.detail}</p>}
                 </article>
               ))}
@@ -860,41 +967,7 @@ export function ScienceF2InteractiveNotesBlock({
             <ApparatusDiagram block={section.apparatusDiagram} lang={lang} />
           </div>
         )}
-        {section.images?.map((image) =>
-          image.annotations.length > 0 ? (
-            <InteractiveFigureCard
-              key={image.src}
-              lang={lang}
-              concepts={image.annotations}
-              image={{
-                src: image.src,
-                alt: image.alt,
-                size: image.size,
-                aspect: image.aspect,
-                caption: image.caption,
-                legendLabel: image.legendLabel,
-                annotationMode: image.annotationMode ?? "labels",
-                imageKey: image.imageKey,
-              }}
-            />
-          ) : (
-            <AnnotatedImage
-              key={image.src}
-              src={image.src}
-              alt={image.alt}
-              size={image.size}
-              aspect={image.aspect}
-              caption={image.caption}
-              legendLabel={image.legendLabel}
-              annotationMode={image.annotationMode ?? "labels"}
-              annotations={image.annotations}
-              imageKey={image.imageKey}
-              enlargeLabel={imageCopy.enlarge}
-              closeLabel={imageCopy.close}
-              hintLabel={imageCopy.hint}
-            />
-          ),
-        )}
+        {section.images?.map(renderFigure)}
         {section.adaptations && (
           <div>
             <h3 className="font-display mb-1 text-base font-bold text-foreground">
@@ -932,7 +1005,7 @@ export function ScienceF2InteractiveNotesBlock({
                       {section.adaptations!.labels.challenge}
                     </p>
                     <p className="mt-0.5 text-[13px] leading-relaxed text-foreground">
-                      {item.challenge}
+                      <ScienceEmphasis text={item.challenge} />
                     </p>
                   </div>
                   {item.organisms.map((organism) => (
@@ -963,7 +1036,7 @@ export function ScienceF2InteractiveNotesBlock({
                                 {label}
                               </dt>
                               <dd className="text-[12.5px] leading-relaxed text-foreground">
-                                {value}
+                                <ScienceEmphasis text={value} />
                               </dd>
                             </div>
                           </div>
@@ -1011,7 +1084,9 @@ export function ScienceF2InteractiveNotesBlock({
                     ))}
                   </div>
                   {item.note && (
-                    <p className="mt-2 text-[11.5px] font-semibold text-emerald-300">{item.note}</p>
+                    <p className="mt-2 text-[11.5px] font-semibold text-emerald-300">
+                      <ScienceEmphasis text={item.note} />
+                    </p>
                   )}
                 </div>
               ))}
@@ -1064,18 +1139,27 @@ export function ScienceF2InteractiveNotesBlock({
                 >
                   <h4 className="font-display font-bold text-foreground">{column.title}</h4>
                   <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
-                    {column.body}
+                    <ScienceEmphasis text={column.body} />
                   </p>
                 </article>
               ))}
             </div>
           </div>
         )}
+        {(section.remember || section.quickExplanation) && (
+          <div className="flex flex-col gap-2.5">
+            {section.remember && <ScienceRemember lang={lang} text={section.remember} />}
+            {section.quickExplanation && (
+              <ScienceQuickExplanation lang={lang} text={section.quickExplanation} />
+            )}
+          </div>
+        )}
         <div>
           <h3 className="font-display mb-2 text-base font-bold text-foreground">
-            {lang === "bm"
-              ? `Semak diri — ${section.number}`
-              : `Check yourself — ${section.number}`}
+            {section.checksTitle ??
+              (lang === "bm"
+                ? `Semak diri — ${section.number}`
+                : `Check yourself — ${section.number}`)}
           </h3>
           <Accordion type="single" collapsible>
             {section.checks.map((item, i) => (
@@ -1167,7 +1251,7 @@ export function ScienceF2InteractiveNotesBlock({
             {imageUrl && (
               <img
                 src={imageUrl}
-                alt={content.blogHighlight.title}
+                alt={content.blogHighlight.imageAlt ?? content.blogHighlight.title}
                 className="h-36 w-full rounded-xl object-cover sm:h-24"
                 loading="lazy"
               />
@@ -1177,7 +1261,7 @@ export function ScienceF2InteractiveNotesBlock({
                 {content.blogHighlight.title}
               </h2>
               <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
-                {content.blogHighlight.body}
+                <ScienceEmphasis text={content.blogHighlight.body} />
               </p>
             </div>
           </div>

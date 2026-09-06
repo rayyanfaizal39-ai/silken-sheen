@@ -52,6 +52,8 @@ import {
 import { AcademyPageShell, NotesSubjectCard, type SubjectPlanetId } from "@/components/AcademyPage";
 import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
+import { useSignInModal } from "@/context/sign-in-modal";
+import { isGuestMode } from "@/lib/guest-mode";
 import { seoMeta } from "@/lib/seo";
 import {
   completeJourneyUnlock,
@@ -215,6 +217,8 @@ function DashboardPage() {
   const { progress } = useProgress();
   const { user } = useAuth();
   const { openCikgu } = useCikgu();
+  const { open: openSignIn } = useSignInModal();
+  const guestMode = !user && isGuestMode();
   const rank = getRank(progress.xp);
   const nextRank = getNextRank(progress.xp);
   const rankPct = getRankProgress(progress.xp);
@@ -266,6 +270,21 @@ function DashboardPage() {
   return (
     <AcademyPageShell className="max-w-none">
       <CosmicDashboardBackdrop />
+
+      {guestMode && (
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-amber-400/25 bg-amber-400/[0.08] px-4 py-3 text-sm text-amber-100">
+          <span className="font-semibold">
+            Guest mode — progress shown below is not saved or synced.
+          </span>
+          <button
+            type="button"
+            onClick={() => openSignIn()}
+            className="rounded-xl bg-amber-400/20 px-3 py-1.5 text-xs font-bold text-amber-50 transition-colors hover:bg-amber-400/30"
+          >
+            Sign in to save progress
+          </button>
+        </div>
+      )}
 
       {/* ── Slim header — greeting / streak / CTA ─────────────────────── */}
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">

@@ -107,7 +107,7 @@ export function conceptButtonClass(isActive: boolean, extra = ""): string {
     "text-[12.5px] font-semibold leading-tight transition-all",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     isActive
-      ? "border-primary bg-primary text-primary-foreground shadow-md"
+      ? "border-primary bg-primary text-primary-foreground shadow-md ring-2 ring-primary/45 ring-offset-2 ring-offset-background"
       : "border-primary/40 bg-card text-foreground hover:-translate-y-px hover:border-primary hover:bg-primary/10 hover:shadow-md",
     extra,
   ]
@@ -196,7 +196,7 @@ export function InteractiveBadge({
         <Sparkles className="h-3 w-3" aria-hidden="true" />
         {copy.badge}
       </span>
-      <span className="text-[12.5px] font-medium leading-snug text-foreground/85">
+      <span className="text-[12.5px] font-semibold leading-snug text-foreground/95">
         {instruction ?? copy.instruction}
       </span>
     </div>

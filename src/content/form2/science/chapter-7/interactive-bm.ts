@@ -1,4 +1,5 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
+import { SCIENCE_F2_CH7_IMAGES, SCIENCE_F2_VISUAL_ASPECT } from "../visual-assets";
 import chapterImage from "@/assets/science/form2/ch7-keelektrikan-kemagnetan.png";
 
 export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
@@ -30,7 +31,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       number: "7.1",
       title: "Tenaga",
       intro:
-        "Tenaga bermaksud kemampuan untuk melakukan kerja, dan unit S.I.-nya ialah joule (J). Tenaga tidak boleh dicipta atau dimusnahkan — ia hanya bertukar daripada satu bentuk kepada bentuk yang lain. Dua idea di sini mudah dikelirukan: bentuk tenaga dan sumber tenaga bukan perkara yang sama.",
+        "Tenaga bermaksud **kemampuan untuk melakukan kerja**, dan unit S.I.-nya ialah **joule (J)**. Tenaga **tidak boleh dicipta atau dimusnahkan** — ia hanya bertukar daripada satu bentuk kepada bentuk yang lain. Dua idea di sini mudah dikelirukan: bentuk tenaga dan sumber tenaga bukan perkara yang sama.",
       cards: [
         {
           title: "Bentuk berbanding sumber",
@@ -66,14 +67,26 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Cas Elektrostatik",
       intro:
         "Semua jirim mengandungi cas positif (proton) dan cas negatif (elektron). Apabila dua bahan berbeza digosokkan, hanya elektron berpindah — proton tidak bergerak. Objek yang memperoleh elektron menjadi bercas negatif; objek yang kehilangan elektron menjadi bercas positif; objek dengan bilangan proton dan elektron yang sama adalah neutral.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.chargeTransfer,
+          alt: "Dua panel. Sebelum digosok, belon dan kain masing-masing membawa bilangan cas positif dan cas negatif yang sama. Selepas digosok, anak panah menunjukkan elektron berpindah daripada kain ke belon, menjadikan belon bercas negatif dan kain bercas positif.",
+          caption:
+            "Hanya elektron yang berpindah, dan ia berpindah daripada kain ke belon. Proton kekal di tempatnya.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "Tarikan dan tolakan",
-          body: "Cas yang sama jenis saling menolak. Cas yang berlainan jenis saling menarik. Inilah sebabnya sikat yang telah digosok boleh menarik cebisan kertas kecil.",
+          body: "**Cas yang sama jenis saling menolak.** **Cas yang berlainan jenis saling menarik.** Inilah sebabnya sikat yang telah digosok boleh menarik cebisan kertas kecil.",
         },
         {
           title: "Mengesan cas elektrostatik",
-          body: "Elektroskop ialah alat yang digunakan untuk mengesan kewujudan cas elektrik pada suatu objek. Kerajang emasnya mencapah kerana cas yang sama saling menolak.",
+          body: "Elektroskop ialah **alat yang digunakan untuk mengesan kewujudan cas elektrik** pada suatu objek. Kerajang emasnya mencapah kerana cas yang sama saling menolak.",
           detail: "Semakin jauh pencapahan kerajang emas, semakin banyak kuantiti cas yang terkumpul.",
         },
       ],
@@ -89,14 +102,26 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Elektrostatik dalam Kehidupan Harian",
       intro:
         "Cas elektrostatik bukan sekadar kesan makmal. Ia menerangkan kilat, renjatan kecil yang anda rasa pada tombol pintu, dan beberapa langkah keselamatan penting.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.dailyLife,
+          alt: "Empat pemandangan waktu malam. Kilat memanah tanah daripada awan yang membawa cas positif di bahagian atas dan cas negatif di bahagian bawah. Konduktor kilat pada sebuah bangunan mengalirkan cas turun ke bumi. Percikan api muncul pada muncung semasa sebuah kereta diisi petrol. Kilat mengalir pada badan logam kereta, mengelilingi orang yang duduk di dalamnya.",
+          caption:
+            "Kilat, konduktor kilat, keselamatan semasa mengisi petrol dan kereta berbadan logam — empat situasi yang diterangkan di bawah.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       accordions: [
         {
           title: "⚡ Kejadian kilat",
-          body: "Geseran antara awan dan udara menyebabkan awan dicas dengan cas elektrik. Kilat berlaku kerana daya tarikan antara cas positif pada Bumi dan cas negatif pada awan.",
+          body: "**Geseran antara awan dan udara** menyebabkan awan dicas dengan cas elektrik. Kilat berlaku kerana **daya tarikan antara cas positif pada Bumi dan cas negatif pada awan**.",
         },
         {
           title: "🏢 Konduktor kilat",
-          body: "Konduktor kilat dipasang pada bangunan untuk menyediakan satu lintasan bagi cas elektrik daripada kilat masuk ke dalam Bumi. Cara ini melindungi bangunan daripada disambar kilat.",
+          body: "Konduktor kilat dipasang pada bangunan untuk **menyediakan satu lintasan bagi cas elektrik daripada kilat masuk ke dalam Bumi**. Cara ini melindungi bangunan daripada disambar kilat.",
         },
         {
           title: "👕 Cuaca kering dan pemilihan pakaian",
@@ -133,17 +158,17 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "➕ ➡️ ➖ Arus konvensional",
-          body: "Arah aliran arus konvensional ialah dari terminal positif ke terminal negatif.",
+          body: "Arah aliran arus konvensional ialah **dari terminal positif ke terminal negatif**.",
           detail: "Inilah arah yang digunakan dalam semua litar dan petua yang anda pelajari.",
         },
         {
           title: "➖ ➡️ ➕ Pergerakan elektron",
-          body: "Elektron sebenarnya bergerak dari terminal negatif ke terminal positif.",
+          body: "Elektron sebenarnya bergerak **dari terminal negatif ke terminal positif**.",
           detail: "Kedua-dua arah ini bertentangan — pastikan anda tahu yang mana satu ditanya.",
         },
         {
           title: "Membuktikan cas mengalir",
-          body: "Cas daripada penjana Van de Graaff yang disambungkan kepada galvanometer yang dibumikan akan menyebabkan jarum galvanometer memesong — menunjukkan bahawa cas yang mengalir menghasilkan arus elektrik.",
+          body: "Cas daripada penjana Van de Graaff yang disambungkan kepada galvanometer yang dibumikan akan menyebabkan **jarum galvanometer memesong** — menunjukkan bahawa **cas yang mengalir menghasilkan arus elektrik**.",
           detail: "Galvanometer digunakan untuk mengesan arus elektrik yang kecil.",
         },
       ],
@@ -163,20 +188,32 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Arus, Voltan dan Rintangan",
       intro:
         "Tiga kuantiti elektrik yang perlu anda kenali, setiap satu dengan simbol, unit dan alat pengukurnya sendiri. Yang paling kerap diuji bukan sahaja apa yang diukur oleh setiap alat, tetapi bagaimana alat itu disambungkan ke dalam litar.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.meterPlacement,
+          alt: "Dua litar yang dibina daripada sel dan mentol menyala yang sama. Dalam litar kiri, ammeter bertanda A berada dalam gelung utama, jadi wayar yang sama melaluinya dan melalui mentol. Dalam litar kanan, voltmeter bertanda V berada pada cabangnya sendiri, disambung merentasi dua hujung mentol.",
+          caption:
+            "Ammeter berada dalam gelung utama; voltmeter berada pada cabangnya sendiri merentasi mentol.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "Arus, I",
-          body: "Kadar aliran cas elektrik melalui konduktor.",
+          body: "**Kadar aliran cas elektrik melalui konduktor.**",
           detail: "Unit: ampere (A) · Alat: ammeter · Sambungan: bersiri",
         },
         {
           title: "Voltan, V",
-          body: "Beza keupayaan antara dua titik dalam litar.",
+          body: "**Beza keupayaan antara dua titik dalam litar.**",
           detail: "Unit: volt (V) · Alat: voltmeter · Sambungan: selari",
         },
         {
           title: "Rintangan, R",
-          body: "Keupayaan konduktor untuk merintangi aliran arus. Perintang tetap mempunyai rintangan yang tidak boleh diselaraskan, manakala reostat (perintang berubah) boleh diselaraskan.",
+          body: "**Keupayaan konduktor untuk merintangi aliran arus.** Perintang tetap mempunyai rintangan yang tidak boleh diselaraskan, manakala **reostat (perintang berubah) boleh diselaraskan**.",
           detail: "Unit: ohm (Ω)",
         },
       ],
@@ -229,6 +266,8 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Hukum Ohm",
       intro:
         "Hukum Ohm menyatakan bahawa arus elektrik yang mengalir melalui suatu konduktor adalah berkadar terus dengan voltan yang merentasi dua hujung konduktor itu, dengan syarat suhu dan keadaan fizik lain adalah tetap. Hubungan ini ditulis sebagai V = IR.",
+      remember:
+        "**Hukum Ohm**: Arus elektrik yang mengalir melalui suatu konduktor berkadar terus dengan voltan merentasinya, dengan syarat suhu dan keadaan fizik lain tetap. Ditulis sebagai V = IR.",
       cards: [
         {
           title: "V = IR",
@@ -237,7 +276,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "Apa yang berlaku apabila rintangan bertambah",
-          body: "Pada voltan yang tetap, arus yang mengalir berkurang apabila rintangan bertambah. Menambah panjang dawai meningkatkan rintangannya, lalu mengurangkan arus.",
+          body: "Pada voltan yang tetap, **arus yang mengalir berkurang apabila rintangan bertambah**. Menambah panjang dawai meningkatkan rintangannya, lalu mengurangkan arus.",
         },
       ],
       calculators: [
@@ -260,7 +299,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       number: "7.2",
       title: "Litar Bersiri dan Litar Selari",
       intro:
-        "Litar bersiri menyambungkan komponen secara berturutan dalam satu laluan tunggal. Litar selari pula terbahagi kepada beberapa cabang berasingan. Perbezaan itu mengubah cara arus, voltan dan rintangan berkelakuan.",
+        "Litar bersiri menyambungkan komponen secara berturutan dalam **satu laluan tunggal**. Litar selari pula terbahagi kepada **beberapa cabang berasingan**. Perbezaan itu mengubah cara arus, voltan dan rintangan berkelakuan.",
       seriesParallel: {
         title: "🔀 Satu laluan berbanding beberapa cabang",
         instruction: "Tekan mana-mana litar untuk melihat kelebihan dan kekurangannya.",
@@ -311,7 +350,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🏠 Pendawaian di rumah",
-          body: "Pendawaian elektrik di rumah menggunakan litar selari supaya setiap alat menerima voltan yang sama daripada bekalan, dan setiap alat boleh dihidupkan atau dimatikan tanpa menjejaskan yang lain.",
+          body: "Pendawaian elektrik di rumah menggunakan litar selari supaya setiap alat menerima **voltan yang sama daripada bekalan**, dan setiap alat boleh dihidupkan atau dimatikan tanpa menjejaskan yang lain.",
         },
       ],
       checks: [
@@ -332,7 +371,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       number: "7.3",
       title: "Sifat Magnet dan Medan Magnet",
       intro:
-        "Magnet boleh wujud secara semula jadi sebagai batu magnet, tetapi kebanyakan magnet yang digunakan hari ini diperbuat daripada bahan seperti besi, keluli, kobalt dan nikel. Kawasan di sekitar magnet yang wujud kesan daya oleh magnet dikenali sebagai medan magnet.",
+        "Magnet boleh wujud secara semula jadi sebagai batu magnet, tetapi kebanyakan magnet yang digunakan hari ini diperbuat daripada bahan seperti **besi, keluli, kobalt dan nikel**. Kawasan di sekitar magnet yang wujud kesan daya oleh magnet dikenali sebagai **medan magnet**.",
       flipCards: [
         { id: "attracts", icon: "🧲", label: "Menarik bahan magnet", fact: "Besi, keluli, kobalt dan nikel tertarik kepadanya." },
         { id: "poles", icon: "🔴🔵", label: "Berkutub", fact: "Setiap magnet mempunyai kutub utara dan kutub selatan." },
@@ -386,6 +425,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
           {
             id: "neutral",
             label: "Titik neutral (X)",
+            requiresShape: "like-poles",
             note: "Medan magnet di antara dua kutub yang sama jenis menghasilkan satu titik yang tidak mempunyai sebarang medan magnet. Titik ini disebut titik neutral, ditandakan X.",
           },
         ],
@@ -405,7 +445,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       number: "7.3",
       title: "Elektromagnet dan Corak Medan Magnet",
       intro:
-        "Elektromagnet ialah magnet sementara — ia hanya menghasilkan medan magnet semasa arus mengalir. Arah medan magnet yang terhasil ditentukan oleh arah arus elektrik, dan corak medannya bergantung pada bentuk konduktor yang digunakan.",
+        "Elektromagnet ialah **magnet sementara** — ia hanya menghasilkan medan magnet semasa arus mengalir. Arah medan magnet yang terhasil **ditentukan oleh arah arus elektrik**, dan corak medannya **bergantung pada bentuk konduktor yang digunakan**.",
       currentFieldPatterns: {
         title: "🌀 Medan magnet daripada arus elektrik",
         instruction: "Pilih bentuk konduktor, kemudian songsangkan arus untuk melihat apa yang berubah.",
@@ -428,6 +468,11 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
             pattern: "bulatan sepusat mengelilingi dawai, semakin renggang semakin jauh dari dawai",
             direction: "ditentukan dengan petua genggaman tangan kanan.",
             note: "Dawai lurus menghasilkan garisan medan magnet yang berbentuk bulatan sepusat.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.straightWireApparatus,
+              alt: "Dawai kuprum tegak menembusi pusat sebuah papan mendatar, dengan lapan kompas plot disusun membentuk bulatan di sekelilingnya.",
+              caption: "Radas yang digunakan untuk menunjukkan medan magnet di sekeliling dawai lurus yang mengalirkan arus.",
+            },
           },
           {
             id: "loop",
@@ -435,6 +480,11 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
             pattern: "bulatan sepusat mengelilingi setiap bahagian dawai, bergabung di tengah gelung",
             direction: "ditentukan dengan petua genggaman tangan kanan pada mana-mana bahagian dawai.",
             note: "Medan magnet daripada kedua-dua belah gelung bergabung di tengah, menjadikan medan di situ lebih kuat.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.circularLoopApparatus,
+              alt: "Satu gelung kuprum berbentuk bulat dipasang tegak pada kaki retort, kedua-dua hujungnya diapit pada terminal di bawahnya.",
+              caption: "Radas yang digunakan untuk menunjukkan medan magnet gelung bulat yang mengalirkan arus.",
+            },
           },
           {
             id: "solenoid",
@@ -443,13 +493,18 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
             direction:
               "arus yang mengalir mengikut lawan arah jam pada satu hujung menjadikan hujung itu kutub utara; arus mengikut arah jam menjadikannya kutub selatan.",
             note: "Solenoid ialah gegelung panjang. Medan magnetnya di luar menyerupai medan sebatang magnet bar.",
+            image: {
+              src: SCIENCE_F2_CH7_IMAGES.solenoidApparatus,
+              alt: "Solenoid teras udara: dawai kuprum digulung menjadi kira-kira sebelas lilitan yang sama jarak, dipasang mendatar pada kaki retort, dengan pusatnya yang berongga kelihatan.",
+              caption: "Radas yang digunakan untuk menunjukkan medan magnet solenoid yang mengalirkan arus.",
+            },
           },
         ],
       },
       cards: [
         {
           title: "Kekuatan medan dan jarak",
-          body: "Kekuatan medan magnet berkurang apabila menjauhi pusat konduktor. Ini berbeza daripada faktor yang mengubah kekuatan elektromagnet itu sendiri — jarak mengubah kekuatan yang anda ukur, bukan kekuatan yang dihasilkan.",
+          body: "**Kekuatan medan magnet berkurang apabila menjauhi pusat konduktor.** Ini berbeza daripada faktor yang mengubah kekuatan elektromagnet itu sendiri — jarak mengubah kekuatan yang anda ukur, bukan kekuatan yang dihasilkan.",
         },
       ],
       checks: [
@@ -468,6 +523,18 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Kekuatan Elektromagnet dan Kegunaannya",
       intro:
         "Dua faktor mengubah kekuatan sesuatu elektromagnet. Daripada menerima jawapannya begitu sahaja, siasat kedua-duanya seperti yang dilakukan di dalam makmal — dengan hipotesis, pemboleh ubah dan pemerhatian.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH7_IMAGES.electromagnetUses,
+          alt: "Empat kegunaan elektromagnet. Loceng elektrik, di mana gegelung menarik lengan supaya pemukul mengetuk loceng. Kunci pintu magnet yang menahan pintu tertutup. Kren di tapak besi buruk mengangkat rasuk keluli dengan elektromagnet bulat yang besar. Paku besi yang dililit dawai bergegelung dan disambung kepada sel, menarik klip kertas.",
+          caption:
+            "Loceng elektrik, kunci pintu magnet, magnet pengangkat besi buruk, dan elektromagnet gegelung-dan-paku yang dibina di makmal.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       miniExperiment: {
         title: "🔬 Penyiasatan: faktor yang mempengaruhi kekuatan medan magnet",
         aim: "Mengkaji faktor-faktor yang mempengaruhi kekuatan medan magnet sesuatu elektromagnet.",
@@ -554,11 +621,11 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🧭 Kegunaan magnet",
-          body: "Jarum kompas menggunakan magnet yang digantung bebas untuk menunjukkan arah kutub. Kad kredit dan kad debit menyimpan maklumat pada jalur bermagnet.",
+          body: "Jarum kompas menggunakan magnet yang digantung bebas untuk **menunjukkan arah kutub**. Kad kredit dan kad debit **menyimpan maklumat pada jalur bermagnet**.",
         },
         {
           title: "🔔 Kegunaan elektromagnet",
-          body: "Loceng elektrik menggunakan elektromagnet untuk menggerakkan pemukulnya berulang kali. Kunci bermagnet pada pintu menggunakan elektromagnet untuk mengunci pintu secara automatik — dan kerana ia elektromagnet, kuncinya terlepas apabila arus dimatikan.",
+          body: "Loceng elektrik menggunakan **elektromagnet untuk menggerakkan pemukulnya** berulang kali. Kunci bermagnet pada pintu menggunakan elektromagnet untuk **mengunci pintu secara automatik** — dan kerana ia elektromagnet, kuncinya terlepas apabila arus dimatikan.",
         },
       ],
       checks: [

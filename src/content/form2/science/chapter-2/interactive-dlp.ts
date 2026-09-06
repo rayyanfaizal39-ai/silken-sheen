@@ -5,6 +5,17 @@ import desertImage from "@/assets/notes/form2-science/chapter-2/chapter2_desert_
 import tundraImage from "@/assets/notes/form2-science/chapter-2/chapter2_tundra_adaptation.webp";
 import carbonOxygenCycleImage from "@/assets/notes/form2-science/chapter-2/chapter2_carbon_oxygen_cycle.webp";
 import waterCycleImage from "@/assets/notes/form2-science/chapter-2/chapter2_water_cycle.webp";
+import pondEcosystemImage from "@/assets/notes/form2-science/chapter-2/chapter2_pond_ecosystem.webp";
+import mutualismImage from "@/assets/notes/form2-science/chapter-2/chapter2_mutualism_clownfish_anemone.webp";
+import commensalismImage from "@/assets/notes/form2-science/chapter-2/chapter2_commensalism_remora_shark.webp";
+import parasitismImage from "@/assets/notes/form2-science/chapter-2/chapter2_parasitism_tapeworm_intestine.webp";
+import {
+  POND_HERO_DRAGONFLY,
+  POND_ALL_DRAGONFLIES,
+  POND_COMMUNITY_SHAPES,
+  POND_HABITAT_SHAPE,
+  POND_NON_LIVING_SHAPES,
+} from "./pond-ecosystem-spotlight";
 
 export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 2,
@@ -31,33 +42,34 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.1.1",
       title: "Producers, Consumers and Decomposers",
+      standardTitle: "2.1 Energy Flow in an Ecosystem",
       intro:
-        "Energy enters almost every ecosystem as sunlight. Producers trap it through photosynthesis, consumers obtain it by feeding, and decomposers return nutrients to the environment.",
+        "The source of energy in all ecosystems originates from **the Sun**. Green plants convert light energy from the Sun into **chemical energy** through photosynthesis. The chemical energy is transferred to primary consumers, then to secondary consumers and tertiary consumers through **food chains and food webs**.",
       cards: [
         {
           title: "Producer",
-          body: "Green plants make their own food through photosynthesis. Every food chain begins here.",
-          detail: "First trophic level",
+          body: "A producer is an organism that **produces its own food through photosynthesis**. Most plants are producers.",
+          detail: "First trophic level — every food chain begins here",
         },
         {
           title: "Primary consumer",
-          body: "Herbivores and omnivores that eat producers. Examples: caterpillar, snail, grasshopper.",
-          detail: "Eats producers",
+          body: "A consumer is an organism that eats another organism. Primary consumers are **herbivores and omnivores** that **eat producers**.",
+          detail: "Examples: caterpillar, snail, grasshopper",
         },
         {
           title: "Secondary consumer (primary carnivore)",
-          body: "Omnivores and carnivores that eat primary consumers. Because it is the first carnivore in that chain, it is called a primary carnivore. Example: kingfisher.",
-          detail: "Primary carnivore",
+          body: "A secondary consumer is an omnivore or carnivore that eats a **primary consumer**. Because it is the first carnivore in that chain, it is also called a primary carnivore.",
+          detail: "Primary carnivore — example: kingfisher",
         },
         {
           title: "Tertiary consumer (secondary carnivore)",
-          body: "A carnivore that eats secondary consumers, usually larger in size. Because it is the second carnivore in that chain, it is called a secondary carnivore. Examples: civet, snake.",
-          detail: "Secondary carnivore",
+          body: "A tertiary consumer is a **secondary carnivore** that eats a **secondary consumer**. It is usually larger in size.",
+          detail: "Secondary carnivore — examples: civet, snake",
         },
         {
           title: "Decomposer",
-          body: "Bacteria and fungi break dead organisms and waste down into simple nutrients. This relationship is called saprophytism.",
-          detail: "Nutrients recycled",
+          body: "A decomposer is an organism that **breaks down dead animals and plants** into **simpler materials or nutrients**. This interaction is known as **saprophytism**.",
+          detail: "Bacteria and fungi — nutrients returned to the environment",
         },
       ],
       checks: [
@@ -80,8 +92,9 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.1.2",
       title: "Food Chains and Food Webs",
+      standardTitle: "2.1 Energy Flow in an Ecosystem",
       intro:
-        "A food chain shows one straight feeding pathway. A food web is several interconnected food chains within the same ecosystem.",
+        "A food chain shows one straight feeding pathway. A food web is **several interconnected food chains** within the same ecosystem.",
       sequence: {
         title: "Food chain: one straight pathway",
         instruction: "Follow the energy from the producer up to the top consumer.",
@@ -127,12 +140,12 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Energy flows one way",
-          body: "Energy is not recycled the way nutrients are. At every level some energy is used for movement and life processes such as respiration, and is released as heat.",
+          body: "Energy is not recycled the way nutrients are. At every level some energy is used for movement and life processes such as respiration, and is **released as heat**.",
           detail: "This is why food chains are short",
         },
         {
           title: "An extra loss in consumers",
-          body: "Consumers also lose energy in undigested food, that is, faeces. Producers do not have this kind of loss because they make their own food.",
+          body: "Consumers also lose energy in **undigested food, that is, faeces**. Producers do not have this kind of loss because they make their own food.",
           detail: "Specific to animals",
         },
       ],
@@ -152,83 +165,17 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       ],
     },
 
-    // ───────────────────────────────────────────── SP 2.2.1
-    {
-      number: "2.2.1",
-      title: "The Carbon and Oxygen Cycles",
-      images: [
-        {
-          src: carbonOxygenCycleImage,
-          imageKey: [
-            { color: "#ef4444", label: "Red arrow = releasing carbon dioxide" },
-            { color: "#3b82f6", label: "Blue arrow = releasing oxygen" },
-          ],
-          annotationMode: "hybrid",
-          size: "wide",
-          alt: "A woodland scene showing carbon dioxide and oxygen moving between the sun, a tree, a grazing deer, decomposers in the soil and a fire.",
-          aspect: "3 / 2",
-          legendLabel: "Parts of the carbon and oxygen cycles",
-          caption: "Tap each number to see the process happening at that point.",
-          annotations: [
-            { id: "sunlight", label: "Sunlight", x: 10, y: 27, note: "The energy source that drives photosynthesis." },
-            { id: "photosynthesis", label: "Photosynthesis", x: 19, y: 47, note: "The tree takes in carbon dioxide and releases oxygen." },
-            { id: "carbon-dioxide", label: "Carbon dioxide", x: 50, y: 20, note: "Taken in by green plants and returned by respiration, decomposition and combustion." },
-            { id: "oxygen", label: "Oxygen", x: 63, y: 22, note: "Released by photosynthesis and used in respiration." },
-            { id: "feeding", label: "Feeding", x: 47, y: 63, note: "Carbon passes from plants to animals through food." },
-            { id: "respiration", label: "Respiration", x: 60, y: 52, note: "Animals and plants release carbon dioxide." },
-            { id: "decomposition", label: "Decomposition", x: 64, y: 82, note: "Decomposers break down dead remains and release carbon dioxide." },
-            { id: "combustion", label: "Combustion", x: 88, y: 66, note: "Burning fuel releases carbon dioxide into the air." },
-          ],
-        },
-      ],
-      intro:
-        "Unlike energy, carbon and oxygen are cycled continuously between organisms and the environment. The two cycles are linked through photosynthesis and respiration.",
-      tabs: [
-        {
-          title: "Carbon cycle",
-          body: "Photosynthesis absorbs carbon dioxide from the air. Carbon passes to animals through feeding. Respiration, decay by decomposers and combustion return carbon dioxide to the atmosphere.",
-        },
-        {
-          title: "Oxygen cycle",
-          body: "Photosynthesis by green plants releases oxygen into the air. Respiration by animals and plants, decay by decomposers and combustion use that oxygen again.",
-        },
-      ],
-      cards: [
-        {
-          title: "Role of green plants",
-          body: "Photosynthesis absorbs carbon dioxide and releases oxygen, keeping the balance of both gases in the air.",
-        },
-        {
-          title: "Role of animals and plants",
-          body: "Respiration uses oxygen and releases carbon dioxide — this happens in animals and in plants.",
-        },
-        {
-          title: "Role of decomposers",
-          body: "Bacteria and fungi break down dead organisms using oxygen and releasing carbon dioxide, while returning nutrients to the soil.",
-        },
-      ],
-      checks: [
-        {
-          question: "Name three processes that return carbon dioxide to the atmosphere.",
-          hint: "Respiration, decay (decomposition) and combustion.",
-        },
-        {
-          question: "How are the carbon and oxygen cycles linked?",
-          hint: "Photosynthesis absorbs CO₂ and releases O₂; respiration and decay do the opposite.",
-        },
-      ],
-    },
-
     // ───────────────────────────────────────────── SP 2.2.2
     {
       number: "2.2.2",
       title: "The Water Cycle",
+      standardTitle: "2.2 Nutrient Cycle in an Ecosystem",
       images: [
         {
           src: waterCycleImage,
           annotationMode: "hybrid",
           size: "wide",
-          alt: "A coastal scene showing water moving from the sea into cloud, falling as rain, running over the land, soaking into the soil and being taken up by tree roots.",
+          alt: "A coastal scene showing water moving from the sea into cloud, falling as rain, running over the land, soaking into the soil and being taken up by tree roots, with a deer drinking at the bank.",
           aspect: "16 / 9",
           legendLabel: "Processes in the water cycle",
           caption: "Tap each number to see the process happening at that point.",
@@ -241,11 +188,23 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
             { id: "groundwater", label: "Groundwater", x: 44, y: 93, note: "Water held within layers of soil and rock." },
             { id: "root-uptake", label: "Root uptake", x: 80, y: 52, note: "Roots absorb water from the soil." },
             { id: "transpiration", label: "Transpiration", x: 80, y: 12, note: "Water leaves the plant as vapour through the leaves." },
+            {
+              id: "animals",
+              label: "Animals return water",
+              x: 37,
+              y: 55,
+              note: "An animal drinks water, then returns it to the environment through three processes.",
+              facts: [
+                { label: "Respiration", value: "Water vapour is breathed out." },
+                { label: "Defecation", value: "Water leaves the body in faeces." },
+                { label: "Excretion", value: "Water leaves as urine and sweat." },
+              ],
+            },
           ],
         },
       ],
       intro:
-        "Water moves continuously between Earth and the atmosphere. Living things do not merely use water — they help drive and regulate the water cycle itself.",
+        "Water moves continuously between Earth and the atmosphere. Living things do not merely use water — they help **drive and regulate the water cycle itself**.",
       tabs: [
         {
           title: "Physical processes",
@@ -253,7 +212,14 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "Role of living things",
-          body: "Plant roots absorb water from the soil and leaves release it again through transpiration. Animals release water vapour through respiration, sweating and excretion. All of these add water vapour to the atmosphere.",
+          body: "Plant roots absorb water from the soil and leaves release it again through transpiration. Animals return water through **respiration, defecation and excretion**. All of these return water to the environment.",
+        },
+      ],
+      cards: [
+        {
+          title: "The role of animals in the water cycle",
+          body: "Animals also return water to the environment: respiration releases water vapour, defecation returns water in faeces, and excretion releases it through **sweating and urination**.",
+          detail: "Respiration · defecation · excretion",
         },
       ],
       causeEffect: {
@@ -301,10 +267,79 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       ],
     },
 
+    // ───────────────────────────────────────────── SP 2.2.1
+    {
+      number: "2.2.1",
+      title: "The Carbon and Oxygen Cycles",
+      standardTitle: "2.2 Nutrient Cycle in an Ecosystem",
+      images: [
+        {
+          src: carbonOxygenCycleImage,
+          imageKey: [
+            { color: "#ef4444", label: "Red arrow = releasing carbon dioxide" },
+            { color: "#3b82f6", label: "Blue arrow = releasing oxygen" },
+          ],
+          annotationMode: "hybrid",
+          size: "wide",
+          alt: "A woodland scene showing carbon dioxide and oxygen moving between the sun, a tree, a grazing deer, decomposers in the soil and a fire.",
+          aspect: "3 / 2",
+          legendLabel: "Parts of the carbon and oxygen cycles",
+          caption: "Tap each number to see the process happening at that point.",
+          annotations: [
+            { id: "sunlight", label: "Sunlight", x: 10, y: 27, note: "The energy source that drives photosynthesis." },
+            { id: "photosynthesis", label: "Photosynthesis", x: 19, y: 47, note: "The tree takes in carbon dioxide and releases oxygen." },
+            { id: "carbon-dioxide", label: "Carbon dioxide", x: 50, y: 20, note: "Taken in by green plants and returned by respiration, decomposition and combustion." },
+            { id: "oxygen", label: "Oxygen", x: 63, y: 22, note: "Released by photosynthesis and used in respiration." },
+            { id: "feeding", label: "Feeding", x: 47, y: 63, note: "Carbon passes from plants to animals through food." },
+            { id: "respiration", label: "Respiration", x: 60, y: 52, note: "Animals and plants release carbon dioxide." },
+            { id: "decomposition", label: "Decomposition", x: 64, y: 82, note: "Decomposers break down dead remains and release carbon dioxide." },
+            { id: "combustion", label: "Combustion", x: 88, y: 66, note: "Burning fuel releases carbon dioxide into the air." },
+          ],
+        },
+      ],
+      intro:
+        "Unlike energy, carbon and oxygen are **cycled continuously** between organisms and the environment. The two cycles are linked through photosynthesis and respiration.",
+      tabs: [
+        {
+          title: "Carbon cycle",
+          body: "Photosynthesis absorbs carbon dioxide from the air. Carbon passes to animals through feeding. **Respiration, decay by decomposers and combustion** return carbon dioxide to the atmosphere.",
+        },
+        {
+          title: "Oxygen cycle",
+          body: "Photosynthesis by green plants releases oxygen into the air. **Respiration by animals and plants, decay by decomposers and combustion** use that oxygen again.",
+        },
+      ],
+      cards: [
+        {
+          title: "Role of green plants",
+          body: "Photosynthesis absorbs carbon dioxide and releases oxygen, **keeping the balance** of both gases in the air.",
+        },
+        {
+          title: "Role of animals and plants",
+          body: "Respiration uses oxygen and releases carbon dioxide — this happens in animals and in plants.",
+        },
+        {
+          title: "Role of decomposers",
+          body: "Bacteria and fungi break down dead organisms **using oxygen** and releasing carbon dioxide, while returning nutrients to the soil.",
+        },
+      ],
+      checks: [
+        {
+          question: "Name three processes that return carbon dioxide to the atmosphere.",
+          hint: "Respiration, decay (decomposition) and combustion.",
+        },
+        {
+          question: "How are the carbon and oxygen cycles linked?",
+          hint: "Photosynthesis absorbs carbon dioxide and releases oxygen; respiration and decay do the opposite.",
+        },
+      ],
+    },
+
     // ───────────────────────────────────────────── SP 2.2.3
     {
       number: "2.2.3",
       title: "Disruptions to the Nutrient Cycle",
+      standardTitle: "2.2 Nutrient Cycle in an Ecosystem",
       intro:
         "The three human activities below disrupt the nutrient cycle. For each one the effect can be traced and a solution can be applied.",
       causeEffect: {
@@ -313,14 +348,14 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
         items: [
           {
             icon: "🪓",
-            title: "Uncontrolled deforestation",
+            title: "Unrestricted logging",
             chain: [
               "The number of trees falls",
               "Photosynthesis and transpiration decrease",
               "Less CO₂ is absorbed and less water returns to the atmosphere",
               "The carbon cycle and water cycle are disrupted",
             ],
-            note: "Solution: replant trees and tighten forestry law enforcement.",
+            note: "Solution: **replant trees** and tighten forestry law enforcement.",
           },
           {
             icon: "🏭",
@@ -331,18 +366,18 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
               "Atmospheric CO₂ rises",
               "The greenhouse effect becomes stronger",
             ],
-            note: "Solution: use public transport and cleaner energy sources.",
+            note: "Solution: **use public transport** and cleaner energy sources.",
           },
           {
             icon: "💧",
-            title: "Excessive use of water (agricultural and domestic)",
+            title: "Overconsumption of water resources (agricultural and domestic)",
             chain: [
               "Water is drawn off excessively for irrigation and daily use",
               "Groundwater, river and lake stores fall",
               "Less water is available for plants and animals",
               "The water cycle is disrupted and ecosystem resources shrink",
             ],
-            note: "Solution: conserve water, harvest rainwater and set up planned agricultural systems.",
+            note: "Solution: conserve water, **harvest rainwater** and set up planned agricultural systems.",
           },
         ],
       },
@@ -355,7 +390,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       checks: [
         {
           question: "Name three human activities that disrupt the nutrient cycle.",
-          hint: "Uncontrolled deforestation, burning fossil fuels, and excessive use of water for agriculture and domestic purposes.",
+          hint: "Unrestricted logging, burning of fossil fuels, and overconsumption of water resources for agriculture and domestic purposes.",
         },
         {
           question: "Suggest two steps to conserve water.",
@@ -368,8 +403,63 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.3.1",
       title: "Interdependence and Ecological Terms",
+      standardTitle: "2.3 Interdependence and Interaction among Organisms, and between Organisms and the Environment",
       intro:
         "Before studying interactions, learn the five basic ecological terms. Species, population and community are levels of living organisation; a habitat is a place, not a level.",
+      contextImages: [
+        {
+          src: pondEcosystemImage,
+          annotationMode: "spotlight",
+          size: "wide",
+          alt: "A cross-section of a pond: dragonflies in the air, water plants and reeds at the bank, snails, tadpoles, fish and mosquito larvae in the water, and soil on the pond bed.",
+          aspect: "3 / 2",
+          legendLabel: "Ecological terms in one pond",
+          caption: "Choose a term to see the part of the pond it names.",
+          annotations: [
+            {
+              id: "species",
+              label: "Species",
+              note: "These dragonflies share common characteristics and can reproduce with one another to breed offspring — that makes them one species.",
+              spotlightCaption: "One organism type",
+              spotlightShapes: POND_HERO_DRAGONFLY,
+            },
+            {
+              id: "population",
+              label: "Population",
+              note: "The dragonflies of that species living in this pond. A population adds one condition to a species: the same habitat.",
+              spotlightCaption: "Same species living together",
+              spotlightShapes: POND_ALL_DRAGONFLIES,
+              spotlightGroupHalo: true,
+            },
+            {
+              id: "community",
+              label: "Community",
+              note: "Every living population in this pond — dragonflies, fish, tadpoles, snails, mosquito larvae and water plants — living together and interacting.",
+              spotlightCaption: "Different populations living together",
+              spotlightShapes: POND_COMMUNITY_SHAPES,
+              spotlightGroupHalo: true,
+            },
+            {
+              id: "habitat",
+              label: "Habitat",
+              note: "The pond itself: the natural surroundings or home of those organisms.",
+              spotlightCaption: "The natural home of organisms",
+              spotlightShapes: POND_HABITAT_SHAPE,
+              spotlightTint: "var(--primary)",
+            },
+            {
+              id: "ecosystem",
+              label: "Ecosystem",
+              note: "The whole pond: the living community together with the non-living components — water, air, sunlight and soil — interacting as one unit.",
+              spotlightCaption: "Living + non-living components together",
+              spotlightPulseGroups: [
+                { shapes: POND_COMMUNITY_SHAPES, tone: "a" },
+                { shapes: POND_NON_LIVING_SHAPES, tone: "b" },
+              ],
+            },
+          ],
+        },
+      ],
       ecologicalTerms: {
         title: "How these terms relate",
         instruction:
@@ -379,7 +469,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
         ecosystemLabel: "How an ecosystem forms",
         species: {
           term: "Species",
-          definition: "Similar organisms that can interbreed with one another.",
+          definition: "Organisms with common characteristics that can reproduce to breed offspring.",
         },
         population: {
           term: "Population",
@@ -404,26 +494,28 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
         },
         note: "A common mistake: listing species → population → community → habitat → ecosystem as a single ladder. A habitat is a place, not a level of organisation.",
       },
+      remember:
+        "Species → population → community are levels of living organisation, each larger than the last. A habitat is a place to live, not a level of organisation — an ecosystem forms when a community interacts with its non-living surroundings.",
       cards: [
         {
           title: "Species",
-          body: "A group of organisms with similar characteristics that can interbreed to produce offspring.",
+          body: "A species is a group of organisms that have **common characteristics** and can **reproduce to breed offspring**.",
         },
         {
           title: "Population",
-          body: "A group of organisms of the same species living in the same habitat. Example: one population of dragonflies in a pond.",
+          body: "A population is a group of organisms of **the same species** that live in the same habitat. Example: one population of dragonflies in a pond.",
         },
         {
           title: "Community",
-          body: "Several different populations of organisms living together in one habitat and interacting with one another.",
+          body: "A community is **a few populations of different organisms** that live together in one habitat and **interact with one another**.",
         },
         {
           title: "Habitat",
-          body: "The natural surroundings or dwelling place of an organism. Examples: a pond, a forest, the soil.",
+          body: "A habitat is the **natural surroundings or home** of an organism. Examples: a pond, a forest, the soil.",
         },
         {
           title: "Ecosystem",
-          body: "Several communities living together in one habitat and interacting with one another, including non-living components such as water, air and soil.",
+          body: "An ecosystem is a living community interacting with one another in one habitat, **including non-living components** such as water, air and soil.",
         },
       ],
       comparison: {
@@ -431,7 +523,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "What makes it balanced",
-            body: "Organisms depend on one another and on non-living components (water, light, air, soil). An ecosystem is said to be balanced when all of these are in harmony without outside disturbance.",
+            body: "Organisms depend on one another and on non-living components (water, light, air, soil). An ecosystem is said to be balanced when all of these are **in harmony without outside disturbance**.",
           },
           {
             title: "Natural and man-made ecosystems",
@@ -455,6 +547,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.3.2",
       title: "Adaptation of Living Things",
+      standardTitle: "2.3 Interdependence and Interaction among Organisms, and between Organisms and the Environment",
       intro:
         "Every habitat imposes a different challenge. An adaptation is a body feature or behaviour that lets an organism overcome that challenge — without it, the organism could not survive there.",
       adaptations: {
@@ -474,7 +567,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
             id: "tropical",
             habitat: "Tropical",
             challenge:
-              "Heavy rainfall and abundant sunshine all year. Tall trees compete for light, and the soil is constantly damp and waterlogged.",
+              "**Heavy rainfall and abundant sunshine all year.** Tall trees compete for light, and the soil is constantly damp and waterlogged.",
             imagePath: tropicalImage,
             imageAnnotationMode: "callouts",
             imageSize: "compact",
@@ -509,7 +602,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
             id: "desert",
             habitat: "Desert",
             challenge:
-              "Extremely hot days, cold nights and very little rain. Water loss is the main threat.",
+              "**Extremely hot days**, cold nights and very little rain. Water loss is the main threat.",
             imagePath: desertImage,
             imageAnnotationMode: "callouts",
             imageSize: "compact",
@@ -546,7 +639,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
             id: "tundra",
             habitat: "Tundra",
             challenge:
-              "A long winter with very low temperatures, a short summer, frozen ground and strong winds across a treeless plain.",
+              "**A long winter with very low temperatures**, a short summer, frozen ground and strong winds across a treeless plain.",
             imagePath: tundraImage,
             imageAnnotationMode: "callouts",
             imageSize: "compact",
@@ -586,6 +679,12 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
           detail: "Example lab investigation",
         },
       ],
+      accordions: [
+        {
+          title: "ℹ️ Additional info — what each habitat is like",
+          body: "Tropical areas receive high rainfall and sunlight throughout the year. Desert areas experience extremely hot and dry conditions. Tundra areas experience long winters and short summers. Adaptation helps organisms survive the conditions of their habitat.",
+        },
+      ],
       checks: [
         {
           question: "Justify why adaptation matters to an organism.",
@@ -602,30 +701,115 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.3.3",
       title: "Interactions Between Organisms",
+      standardTitle: "2.3 Interdependence and Interaction among Organisms, and between Organisms and the Environment",
       intro:
-        "Interactions between organisms consist of symbiosis (mutualism, commensalism, parasitism), predator–prey and competition.",
+        "Interactions between organisms consist of **symbiosis** (mutualism, commensalism, parasitism), predator–prey and competition.",
+      conceptTree: {
+        title: "How these interactions are classified",
+        instruction:
+          "Symbiosis has three types. Prey–predator and competition are separate interactions, not kinds of symbiosis.",
+        root: {
+          id: "interaction",
+          label: "Interaction between organisms",
+          icon: "🔗",
+          children: [
+            {
+              id: "symbiosis",
+              label: "Symbiosis",
+              icon: "🤝",
+              note: "A close relationship between two organisms of different species.",
+              children: [
+                { id: "mutualism", label: "Mutualism", note: "Both organisms benefit." },
+                { id: "commensalism", label: "Commensalism", note: "One benefits; the other is unaffected." },
+                { id: "parasitism", label: "Parasitism", note: "One benefits; the other is harmed." },
+              ],
+            },
+            {
+              id: "predation",
+              label: "Prey–predator",
+              icon: "🦉",
+              note: "One organism hunts and eats another.",
+            },
+            {
+              id: "competition",
+              label: "Competition",
+              icon: "⚔️",
+              note: "Organisms compete for the same limited basic needs.",
+            },
+          ],
+        },
+      },
+      contextImageSet: [
+        {
+          src: mutualismImage,
+          size: "pair",
+          aspect: "16 / 9",
+          alt: "Two clownfish sheltering among the tentacles of a sea anemone on a coral reef.",
+          caption:
+            "Mutualism — both organisms benefit. The anemone shelters the clownfish; the clownfish cleans the anemone and brings it nutrients.",
+          annotations: [],
+        },
+        {
+          src: commensalismImage,
+          size: "pair",
+          aspect: "16 / 9",
+          alt: "A remora attached beneath a swimming shark, feeding on scraps drifting from the shark's meal.",
+          caption:
+            "Commensalism — the remora benefits; the shark is neither harmed nor helped.",
+          annotations: [],
+        },
+        {
+          src: parasitismImage,
+          size: "pair",
+          aspect: "16 / 9",
+          alt: "A cut-away of a human abdomen with an enlarged view of a tapeworm inside the intestine, absorbing nutrients through its body surface.",
+          caption:
+            "Parasitism — the tapeworm benefits and the human host is harmed. The tapeworm absorbs nutrients across its body surface.",
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "Mutualism",
-          body: "Both organisms benefit. Example: the sea anemone shelters the clownfish from predators; the clownfish cleans the anemone and supplies nutrients from its food scraps.",
+          body: "**Both organisms benefit.** Example: the sea anemone shelters the clownfish from predators; the clownfish cleans the anemone and supplies nutrients from its food scraps.",
         },
         {
           title: "Commensalism",
-          body: "One organism (the commensal) benefits; the other is unaffected. Example: the remora attaches to a shark and eats its food scraps without harming the shark.",
+          body: "One organism (the commensal) benefits; the other is **unaffected**. Example: the remora attaches to a shark and eats its food scraps without harming the shark.",
         },
         {
           title: "Parasitism",
-          body: "One organism (the parasite) benefits; the host is harmed. Example: a tapeworm lives in the human intestine and absorbs nutrients from its host.",
-        },
-        {
-          title: "Predator–prey",
-          body: "One organism (the predator) hunts and eats another (the prey). Example: an owl hunts and eats rats.",
-        },
-        {
-          title: "Competition",
-          body: "Organisms in the same habitat compete for a limited supply of basic needs such as light, space, water, food or mates. It can occur within one species or between different species.",
+          body: "One organism (the parasite) benefits; **the host is harmed**. Example: a tapeworm lives in the human intestine and absorbs nutrients across its body surface.",
         },
       ],
+      conceptContrast: {
+        title: "Two interactions that are not symbiosis",
+        left: {
+          id: "predation",
+          term: "Prey–predator",
+          question: "WHO eats whom?",
+          definition: "One organism (the predator) hunts and eats another organism (the prey).",
+          examples: [
+            "An owl hunts and eats rats",
+            "Predator and prey numbers affect each other",
+          ],
+          icon: "🦉",
+        },
+        right: {
+          id: "competition",
+          term: "Competition",
+          question: "WHO gets the limited resource?",
+          definition:
+            "Organisms in the same habitat compete for a limited supply of basic needs such as light, space, water, food or mates.",
+          examples: [
+            "Plants compete for light, water and space",
+            "It happens within one species and between species",
+          ],
+          icon: "⚔️",
+        },
+        keyPoint:
+          "Neither is symbiosis: the organisms involved do not live together in a close, lasting relationship.",
+      },
       matcher: {
         title: "Match the interaction",
         instruction: "Choose an interaction on the left, then its correct example.",
@@ -640,15 +824,15 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🦉 Biological control — applying interactions in daily life",
-          body: "Biological control uses a natural predator, parasite or pathogen to reduce the number of pests. In Malaysia: owls control rats in oil palm estates, guppies eat mosquito larvae, ladybirds eat aphids, ducks eat snails in paddy fields, and Bacillus thuringiensis controls rhinoceros beetles.",
+          body: "Biological control uses **a natural predator, parasite or pathogen** to reduce the number of pests. In Malaysia: owls control rats in oil palm estates, guppies eat mosquito larvae, ladybirds eat aphids, ducks eat snails in paddy fields, and Bacillus thuringiensis controls rhinoceros beetles.",
         },
         {
           title: "⚖️ Advantages over chemical control",
-          body: "Biological control is more environmentally friendly because it uses no pesticides or chemicals. It is usually cheaper and it does not harm human health.",
+          body: "Biological control is more environmentally friendly because it **uses no pesticides or chemicals**. It is usually cheaper and it does not harm human health.",
         },
         {
           title: "⏳ Long-term effects to consider",
-          body: "Biological control takes longer before its effect is visible. The balance of the ecosystem may also be disturbed because a new species is introduced into it — that species can itself become a problem if its population is not controlled.",
+          body: "Biological control **takes longer** before its effect is visible. The balance of the ecosystem may also be disturbed because a new species is introduced into it — that species can itself become a problem if its population is not controlled.",
         },
       ],
       checks: [
@@ -667,6 +851,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.3.4",
       title: "Factors Affecting Population Size",
+      standardTitle: "2.3 Interdependence and Interaction among Organisms, and between Organisms and the Environment",
       intro:
         "Population size does not stay constant. The four factors below can raise or lower it within an ecosystem.",
       causeEffect: {
@@ -681,7 +866,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
               "Many individuals die or weaken",
               "Population size falls",
             ],
-            note: "Examples: bird flu in poultry farms; tobacco mosaic disease in tobacco plantations.",
+            note: "Examples: **bird flu** in poultry farms; tobacco mosaic disease in tobacco plantations.",
           },
           {
             icon: "🦁",
@@ -691,7 +876,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
               "More prey are eaten",
               "The prey population falls",
             ],
-            note: "Example: the zebra population falls where lions are present in the savanna.",
+            note: "Example: the zebra population falls where **lions are present** in the savanna.",
           },
           {
             icon: "🎋",
@@ -701,7 +886,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
               "Organisms starve or move away",
               "The population is threatened with extinction",
             ],
-            note: "Example: pandas depend on bamboo; conversely, plentiful food waste has raised the crow population in Malaysia.",
+            note: "Example: pandas depend on bamboo; conversely, **plentiful food waste** has raised the crow population in Malaysia.",
           },
           {
             icon: "☀️",
@@ -714,6 +899,8 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
           },
         ],
       },
+      quickExplanation:
+        "These factors can raise OR lower population size — for example a shrinking food source lowers population (pandas and bamboo), but plentiful food waste raises the crow population.",
       checks: [
         {
           question: "Name the four factors that affect population size.",
@@ -730,6 +917,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.3.5",
       title: "Changes in an Ecosystem",
+      standardTitle: "2.3 Interdependence and Interaction among Organisms, and between Organisms and the Environment",
       intro:
         "Changes in an ecosystem alter the resources available and disturb the balance between populations. Predict the effects by following the chains below.",
       causeEffect: {
@@ -738,14 +926,14 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
         items: [
           {
             icon: "💧",
-            title: "Shortage of water supply",
+            title: "Limited water supply",
             chain: [
               "A prolonged drought hits the paddy field",
               "Paddy (the producer) declines through lack of water",
               "Consumers that depend on it lose their food",
               "The whole food web is affected",
             ],
-            note: "Paddy is a crop that needs a great deal of water, so it is affected first.",
+            note: "Paddy is a crop that **needs a great deal of water**, so it is affected first.",
           },
           {
             icon: "🕊️",
@@ -787,27 +975,75 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "2.4.1",
       title: "The Role of Humans in Maintaining a Balanced Nature",
+      standardTitle: "2.4 Role of Humans in Maintaining a Balanced Nature",
       intro:
-        "Humans need a stable and productive ecosystem for sustainable living — it is where our food, clean water, safe air, raw materials and medicines come from. When an ecosystem is disturbed those resources suffer too, so humans are responsible for conserving nature's balance.",
-      comparison: {
-        title: "The cost of human activity to nature",
-        columns: [
+        "Humans need a stable and productive ecosystem for sustainable living — it is where our food, clean water, safe air, raw materials and medicines come from. When an ecosystem is disturbed those resources suffer too, so humans **are responsible for conserving nature's balance**.",
+      impactTable: {
+        title: "Table 2.1 — Effects of human activity on nature",
+        instruction: "Each activity carries its own effects on the balance of nature.",
+        causeLabel: "Human activity",
+        effectLabel: "Effects",
+        rows: [
           {
-            title: "Human pressure",
-            body: "Deforestation causes species extinction, soil erosion and the greenhouse effect. Industry pollutes air, water and soil and causes acid rain. Unsustainable agriculture pollutes water and strips minerals from the soil. Dumping rubbish causes pollution, foul smells and flash floods.",
+            id: "deforestation",
+            icon: "🪓",
+            cause: "Deforestation",
+            effects: ["Extinction of flora and fauna species", "Soil erosion", "Greenhouse effect"],
           },
           {
-            title: "Restoring the balance",
-            body: "Enforce the law (forest patrols and roadblocks by the Forestry Department), raise public awareness, practise the 5Rs, and use biological control in agriculture.",
+            id: "industry",
+            icon: "🏭",
+            cause: "Industrialisation",
+            effects: ["Air, water and soil pollution", "Acid rain", "Greenhouse effect"],
+          },
+          {
+            id: "agriculture",
+            icon: "🌾",
+            cause: "Agriculture",
+            effects: [
+              "Water pollution due to excessive use of pesticides and fertilisers",
+              "Soil loses minerals due to unsustainable agricultural activities",
+            ],
+          },
+          {
+            id: "waste",
+            icon: "🗑️",
+            cause: "Waste disposal",
+            effects: [
+              "Water and soil pollution",
+              "Foul smell due to decomposition of organic solid waste",
+              "Flash floods",
+            ],
           },
         ],
       },
       cards: [
-        { title: "Refuse", body: "Avoid using materials that cannot be recycled." },
-        { title: "Reduce", body: "Cut down the amount of material used." },
-        { title: "Reuse", body: "Use an item again." },
-        { title: "Recycle", body: "Process waste into new material." },
-        { title: "Repurpose", body: "Give an old material a new function." },
+        {
+          title: "Enforce laws",
+          body: "Laws protect forests and **control illegal and unregulated logging**. The Forestry Department runs forest patrols and roadblocks.",
+          detail: "Step 1",
+        },
+        {
+          title: "Increase public awareness",
+          body: "Education and the mass media help people **appreciate the balance of the environment** and act to protect it.",
+          detail: "Step 2",
+        },
+        {
+          title: "Practise the 5Rs",
+          body: "Reduce waste by refusing unsuitable materials, reducing use, reusing, recycling and **repurposing what is left**.",
+          detail: "Refuse · Reduce · Reuse · Recycle · Repurpose",
+        },
+        {
+          title: "Use biological control",
+          body: "Cut pesticide use by putting **suitable natural predators** to work in agriculture instead.",
+          detail: "Step 4",
+        },
+      ],
+      accordions: [
+        {
+          title: "♻️ The 5Rs in full",
+          body: "Refuse: avoid using materials that cannot be recycled. Reduce: cut down the amount of material used. Reuse: use an item again. Recycle: process waste into new material. Repurpose: give an old material a new function.",
+        },
       ],
       checks: [
         {

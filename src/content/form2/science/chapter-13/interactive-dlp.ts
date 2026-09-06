@@ -5,7 +5,7 @@ export const scienceF2C13InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 13,
   blogHighlight: {
     title: "Science Blog — The Largest Meteorite on Earth",
-    body: "The Hoba Meteorite, discovered in Namibia in 1920, is the largest ever found — fallen roughly 80,000 years ago. Its flat shape may have slowed its impact enough that it never even formed a crater.",
+    body: "The Hoba Meteorite, discovered in Namibia in 1920, **is the largest ever found** — fallen roughly 80,000 years ago. Its flat shape may have slowed its impact enough that **it never even formed a crater**.",
     imagePath: chapterImage,
   },
   keywords: ["Meteoroid", "Meteor", "Meteorite", "Asteroid", "Comet", "Asteroid belt", "Kuiper belt", "Oort cloud"],
@@ -14,34 +14,34 @@ export const scienceF2C13InteractiveDLP: ScienceF2InteractiveContent = {
       number: "13.1",
       title: "Meteoroids, Asteroids and Comets",
       intro:
-        "Besides galaxies, stars and planets, our solar system is also full of smaller wandering objects — meteoroids, asteroids and comets. All three differ in size, composition, and how they move around the Sun.",
+        "Besides galaxies, stars and planets, our solar system is also full of smaller wandering objects — meteoroids, asteroids and comets. All three differ in **size, composition, and how they move around the Sun**.",
       cards: [
         {
           title: "🪨 Meteoroid",
-          body: "A small floating piece of stone and metal drifting through space, originating from fragments of asteroids and comets. Sizes range from 10 μm to 1 m, made of iron and nickel, with a surface temperature around 0°C. The fastest ones travel at 42 km/s.",
+          body: "A small floating piece of stone and metal drifting through space, **originating from fragments of asteroids and comets**. Sizes range from 10 μm to 1 m, made of iron and nickel, with a surface temperature around 0°C. The fastest ones travel at **42 km/s**.",
         },
         {
           title: "🪐 Asteroid",
-          body: "A larger rocky/metal body — 1 m to 1,000 km — orbiting the Sun on its own path. Cold, around -73°C, moving at an average 25 km/s. Most live in the asteroid belt between Mars and Jupiter.",
+          body: "A larger rocky/metal body — 1 m to 1,000 km — **orbiting the Sun on its own path**. Cold, around -73°C, moving at an average 25 km/s. Most live in **the asteroid belt between Mars and Jupiter**.",
           detail: "Large asteroids such as Ceres, Pallas, Juno and Vesta are also known as 'small planets'.",
         },
         {
           title: "☄️ Comet",
-          body: "A mixture of ice, gas and frozen dust with a head and a long tail — the tail alone can stretch up to 150,000,000 km. Comets orbit the Sun on elliptical paths at 10-70 km/s.",
+          body: "A mixture of ice, gas and frozen dust with a head and a long tail — the tail alone can stretch up to **150,000,000 km**. Comets orbit the Sun on **elliptical paths** at 10-70 km/s.",
         },
       ],
       accordions: [
         {
           title: "Why comet tails always point away from the Sun",
-          body: "As a comet nears the Sun, it heats up and starts to melt, releasing gas and dust. Solar wind — a constant stream of particles blowing outward from the Sun — pushes that released material into a tail that always points away from the Sun, no matter which direction the comet itself is travelling.",
+          body: "As a comet nears the Sun, it heats up and starts to melt, releasing gas and dust. **Solar wind** — a constant stream of particles blowing outward from the Sun — pushes that released material into a tail that always points away from the Sun, **no matter which direction the comet itself is travelling**.",
         },
         {
           title: "When orbits collide with Earth's",
-          body: "Most asteroids stay safely in the asteroid belt — but some, like those in the Apollo, Amor and Aten orbit groups, cross close to or intersect Earth's orbit, creating a real (if rare) collision risk. Comets can also slip out of their orbit under a giant planet's gravity, sending them on a risky new path. Many scientists believe a roughly 10 km-wide asteroid impact contributed to the extinction of the dinosaurs — evidence found in rock layers worldwide points to a massive collision.",
+          body: "Most asteroids stay safely in the asteroid belt — but some, like those in **the Apollo, Amor and Aten orbit groups**, cross close to or intersect Earth's orbit, creating a real (if rare) collision risk. Comets can also slip out of their orbit under a giant planet's gravity, sending them on a risky new path. Many scientists believe **a roughly 10 km-wide asteroid impact contributed to the extinction of the dinosaurs** — evidence found in rock layers worldwide points to a massive collision.",
         },
         {
           title: "Watching the skies",
-          body: "Scientists continuously track near-Earth asteroids. If one poses a real risk, options include altering its course or, in extreme scenarios, destroying it before impact.",
+          body: "Scientists continuously track near-Earth asteroids. If one poses a real risk, options include **altering its course** or, in extreme scenarios, **destroying it before impact**.",
         },
       ],
       meteoroidEntry: {
@@ -111,6 +111,8 @@ export const scienceF2C13InteractiveDLP: ScienceF2InteractiveContent = {
         tailRule: "A comet's tail is always in a position facing away from the Sun because of the solar wind blowing from the Sun.",
         scaleNote: "Diagram is not to true scale.",
       },
+      remember:
+        "The same object changes name depending on its location: a meteoroid in outer space, a meteor once it burns up in Earth's atmosphere, and a meteorite if it survives to reach Earth's surface.",
       checks: [
         { question: "Nicol sees a bright streak of light cross the sky, then it vanishes. What did she see?", hint: "A meteor — a meteoroid burning up from friction as it passes through Earth's atmosphere." },
         { question: "Between a meteor and a meteorite, which would you find in a museum?", hint: "A meteorite — usually a meteor burns up before reaching Earth, but some do reach it. A meteor that reaches Earth is what we call a meteorite, and only a meteorite can be put on display in a museum." },

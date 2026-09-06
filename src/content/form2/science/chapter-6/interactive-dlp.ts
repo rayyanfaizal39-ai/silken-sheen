@@ -36,15 +36,15 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       number: "6.1",
       title: "Acids and Alkalis",
       intro:
-        "The word \"acid\" comes from the Latin acidus, meaning sour. \"Alkali\" comes from the Arabic al-qali, meaning ashes of plants. A substance containing acid is called an acidic substance; a substance containing alkali is called an alkaline substance.",
+        "The word \"acid\" comes from the Latin acidus, **meaning sour**. \"Alkali\" comes from the Arabic al-qali, **meaning ashes of plants**. A substance containing acid is called an acidic substance; a substance containing alkali is called an alkaline substance.",
       cards: [
         {
           title: "Acidic substances",
-          body: "Substances that contain acid. Many are in the kitchen — apples and coffee are acidic substances, and so are vinegar and lime juice.",
+          body: "Substances that contain acid. Many are in the kitchen — **apples and coffee** are acidic substances, and so are vinegar and lime juice.",
         },
         {
           title: "Alkaline substances",
-          body: "Substances that contain alkali. Baking soda is an alkaline substance, and so are soap and dishwashing liquid.",
+          body: "Substances that contain alkali. **Baking soda** is an alkaline substance, and so are soap and dishwashing liquid.",
         },
       ],
       checks: [
@@ -60,6 +60,8 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Why Water Matters",
       intro:
         "This may be surprising: a substance can be an acid and yet not behave like one. Acids and alkalis only show their properties when water is present. Compare the four cases below.",
+      remember:
+        "Acids and alkalis only show their properties in **the presence of water**.",
       dryVsAqueous: {
         image: {
           src: whyWaterMattersImg,
@@ -169,7 +171,7 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "The hydrogen gas test",
-          body: "When an acid reacts with a metal such as magnesium or zinc, hydrogen gas is produced. A lit splinter makes a 'pop' sound when brought near hydrogen gas.",
+          body: "When an acid **reacts with a metal such as magnesium or zinc**, **hydrogen gas is produced**. A lit splinter makes a 'pop' sound when brought near hydrogen gas.",
           detail: "Alkalis do not give this reaction with metals.",
         },
       ],
@@ -201,7 +203,7 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       number: "6.1",
       title: "Indicators and Measuring pH",
       intro:
-        "An indicator is a colouring that changes colour according to the substance being tested. Different indicators tell you different things — some only tell you acid or alkali, others give you a pH value.",
+        "An indicator is **a colouring that changes colour** according to the substance being tested. Different indicators tell you different things — some only tell you acid or alkali, others give you a pH value.",
       indicatorTable: {
         title: "🎨 Indicator colour changes",
         instruction: "Tap an indicator's name to find out when it is most useful.",
@@ -329,7 +331,7 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       number: "6.1",
       title: "The pH Scale",
       intro:
-        "The pH scale shows how acidic or alkaline a solution is. Its values range from 0 to 14, with pH 7 as neutral. The lower the pH value, the more acidic the solution; the higher the pH value, the more alkaline.",
+        "The pH scale shows how acidic or alkaline a solution is. Its values range from **0 to 14**, with **pH 7 as neutral**. The lower the pH value, the more acidic the solution; the higher the pH value, the more alkaline.",
       phSlider: {
         title: "🌈 The pH scale — drag to explore",
         instruction: "Every substance sits somewhere on a 0–14 scale. Drag the marker to see what lives at each pH.",
@@ -368,7 +370,7 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       number: "6.1",
       title: "Strength of Acids and Alkalis",
       intro:
-        "The pH value tells you how acidic a solution is — but to compare the strength of the substances themselves, we have to compare them fairly, at the same concentration.",
+        "The pH value tells you how acidic a solution is — but to compare the strength of the substances themselves, we have to compare them fairly, at **the same concentration**.",
       strengthComparison: {
         title: "💪 Strong versus weak",
         instruction: "Tap any substance to find out why.",
@@ -437,16 +439,16 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🏠 At home",
-          body: "Acids: vinegar in cooking, fizzy drinks (carbonic acid), pickles (tartaric acid). Alkalis: bath soap (potassium hydroxide), dishwashing liquid, antacid pills (magnesium hydroxide).",
+          body: "Acids: **vinegar in cooking**, fizzy drinks (carbonic acid), pickles (tartaric acid). Alkalis: bath soap (potassium hydroxide), dishwashing liquid, antacid pills (**magnesium hydroxide**).",
         },
         {
           title: "🌾 In agriculture",
-          body: "Ammonia solution is used to produce fertiliser to help crops grow. Alkaline slaked lime is spread to treat soil that has become too acidic, so that crops can grow well.",
+          body: "**Ammonia solution** is used to produce fertiliser to help crops grow. Alkaline **slaked lime** is spread to treat soil that has become too acidic, so that crops can grow well.",
           detail: "Rising soil acidity harms crop growth.",
         },
         {
           title: "🏭 In industry",
-          body: "Sulphuric acid is used in car batteries. Sodium hydroxide is used to make detergents. Alkalis are also used to treat acidic factory waste before it is released into rivers.",
+          body: "**Sulphuric acid** is used in car batteries. Sodium hydroxide is used to make detergents. Alkalis are also used to **treat acidic factory waste** before it is released into rivers.",
           detail: "Burning fuel in industrial areas can lower the pH of rainwater.",
         },
       ],
@@ -509,20 +511,20 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "The neutralisation equation",
-          body: "Acid + Alkali → Salt + Water",
+          body: "**Acid + Alkali → Salt + Water**",
           detail: "Different acids and alkalis produce different kinds of salt.",
         },
         {
           title: "Hydrochloric acid + Sodium hydroxide",
-          body: "Produces sodium chloride and water.",
+          body: "Produces **sodium chloride** and water.",
         },
         {
           title: "Sulphuric acid + Potassium hydroxide",
-          body: "Produces potassium sulphate and water.",
+          body: "Produces **potassium sulphate** and water.",
         },
         {
           title: "Nitric acid + Sodium hydroxide",
-          body: "Produces sodium nitrate and water.",
+          body: "Produces **sodium nitrate** and water.",
         },
       ],
       titrationSchematic: {
@@ -607,27 +609,27 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🦷 Toothpaste",
-          body: "Bacteria in the mouth produce acid that erodes teeth. Toothpaste contains an alkaline substance that neutralises that acid, helping to prevent dental caries.",
+          body: "Bacteria in the mouth produce acid that erodes teeth. Toothpaste contains an **alkaline substance that neutralises that acid**, helping to prevent **dental caries**.",
         },
         {
           title: "🧺 Fabric softener",
-          body: "Detergent powder leaves fabric alkaline after washing. Fabric softener is acidic, so it lowers the pH of the fabric by neutralising that alkaline residue — leaving the fabric soft.",
+          body: "Detergent powder leaves fabric alkaline after washing. Fabric softener **is acidic**, so it **lowers the pH of the fabric** by neutralising that alkaline residue — leaving the fabric soft.",
         },
         {
           title: "💇 Shampoo and hair conditioner",
-          body: "Healthy hair is slightly acidic, but shampoo is usually slightly alkaline. A mildly acidic conditioner neutralises the shampoo residue on the hair, leaving it soft and healthy.",
+          body: "Healthy hair is **slightly acidic**, but shampoo is usually **slightly alkaline**. A mildly acidic conditioner neutralises the shampoo residue on the hair, leaving it soft and healthy.",
         },
         {
           title: "🧴 Face care",
-          body: "An alkaline face cleanser leaves facial skin dry. An acidic toner is therefore used to neutralise the skin again.",
+          body: "An **alkaline face cleanser** leaves facial skin dry. An **acidic toner** is therefore used to neutralise the skin again.",
         },
         {
           title: "🌾 Controlling soil pH",
-          body: "Acidic soil can be treated by spreading alkaline slaked lime, so that crops can grow well.",
+          body: "Acidic soil can be treated by spreading **alkaline slaked lime**, so that crops can grow well.",
         },
         {
           title: "🏭 Treating industrial waste",
-          body: "Acidic waste from factories is treated with alkalis before being released into rivers, so that it does not harm aquatic life.",
+          body: "**Acidic waste from factories is treated with alkalis** before being released into rivers, so that it does not harm aquatic life.",
         },
       ],
       checks: [

@@ -31,15 +31,15 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       number: "6.1",
       title: "Asid dan Alkali",
       intro:
-        "Perkataan \"asid\" berasal daripada perkataan Latin acidus, bermaksud masam. Perkataan \"alkali\" berasal daripada perkataan Arab al-qali, bermaksud abu tumbuhan. Bahan yang mengandungi asid dipanggil bahan berasid; bahan yang mengandungi alkali dipanggil bahan beralkali.",
+        "Perkataan \"asid\" berasal daripada perkataan Latin acidus, **bermaksud masam**. Perkataan \"alkali\" berasal daripada perkataan Arab al-qali, **bermaksud abu tumbuhan**. Bahan yang mengandungi asid dipanggil bahan berasid; bahan yang mengandungi alkali dipanggil bahan beralkali.",
       cards: [
         {
           title: "Bahan berasid",
-          body: "Bahan yang mengandungi asid. Banyak terdapat di dapur — epal dan kopi ialah bahan berasid, begitu juga cuka dan jus limau.",
+          body: "Bahan yang mengandungi asid. Banyak terdapat di dapur — **epal dan kopi** ialah bahan berasid, begitu juga cuka dan jus limau.",
         },
         {
           title: "Bahan beralkali",
-          body: "Bahan yang mengandungi alkali. Soda penaik ialah bahan beralkali, begitu juga sabun dan pencuci pinggan.",
+          body: "Bahan yang mengandungi alkali. **Soda penaik** ialah bahan beralkali, begitu juga sabun dan pencuci pinggan.",
         },
       ],
       checks: [
@@ -54,6 +54,8 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       title: "Peranan Air",
       intro:
         "Ini mungkin mengejutkan: sesuatu bahan boleh menjadi asid tetapi tidak berkelakuan seperti asid. Asid dan alkali hanya menunjukkan sifatnya apabila air hadir. Bandingkan keempat-empat keadaan di bawah.",
+      remember:
+        "Asid dan alkali hanya menunjukkan sifatnya dengan **kehadiran air**.",
       dryVsAqueous: {
         title: "💧 Tanpa air berbanding dengan air",
         instruction: "Tekan mana-mana keadaan untuk membaca apa yang berlaku dan mengapa.",
@@ -151,7 +153,7 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Ujian gas hidrogen",
-          body: "Apabila asid bertindak balas dengan logam seperti magnesium atau zink, gas hidrogen terhasil. Kayu uji menyala menghasilkan bunyi 'pop' apabila didekatkan kepada gas hidrogen.",
+          body: "Apabila asid **bertindak balas dengan logam** seperti magnesium atau zink, **gas hidrogen terhasil**. Kayu uji menyala menghasilkan bunyi 'pop' apabila didekatkan kepada gas hidrogen.",
           detail: "Alkali tidak menghasilkan tindak balas ini dengan logam.",
         },
       ],
@@ -171,7 +173,7 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       number: "6.1",
       title: "Penunjuk dan Cara Mengukur pH",
       intro:
-        "Penunjuk ialah bahan pewarna yang menukar warna mengikut bahan yang diujinya. Penunjuk yang berbeza memberitahu anda perkara yang berbeza — sesetengahnya hanya memberitahu asid atau alkali, sesetengahnya memberikan nilai pH.",
+        "Penunjuk ialah **bahan pewarna yang menukar warna** mengikut bahan yang diujinya. Penunjuk yang berbeza memberitahu anda perkara yang berbeza — sesetengahnya hanya memberitahu asid atau alkali, sesetengahnya memberikan nilai pH.",
       indicatorTable: {
         title: "🎨 Perubahan warna penunjuk",
         instruction: "Tekan nama penunjuk untuk mengetahui bila ia paling berguna.",
@@ -287,7 +289,7 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       number: "6.1",
       title: "Skala pH",
       intro:
-        "Skala pH menunjukkan sejauh mana sesuatu larutan itu berasid atau beralkali. Julat nilainya adalah antara 0 hingga 14, dengan pH 7 sebagai neutral. Semakin rendah nilai pH, semakin berasid larutan itu; semakin tinggi nilai pH, semakin beralkali.",
+        "Skala pH menunjukkan sejauh mana sesuatu larutan itu berasid atau beralkali. Julat nilainya adalah antara **0 hingga 14**, dengan **pH 7 sebagai neutral**. Semakin rendah nilai pH, semakin berasid larutan itu; semakin tinggi nilai pH, semakin beralkali.",
       phSlider: {
         title: "🌈 Skala pH — seret untuk meneroka",
         instruction:
@@ -326,7 +328,7 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       number: "6.1",
       title: "Kekuatan Asid dan Alkali",
       intro:
-        "Nilai pH memberitahu sejauh mana sesuatu larutan itu berasid — tetapi untuk membandingkan kekuatan bahan itu sendiri, kita perlu membandingkannya secara adil, iaitu pada kepekatan yang sama.",
+        "Nilai pH memberitahu sejauh mana sesuatu larutan itu berasid — tetapi untuk membandingkan kekuatan bahan itu sendiri, kita perlu membandingkannya secara adil, iaitu pada **kepekatan yang sama**.",
       strengthComparison: {
         title: "💪 Kuat berbanding lemah",
         instruction: "Tekan mana-mana bahan untuk mengetahui sebabnya.",
@@ -395,16 +397,16 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "🏠 Di rumah",
-          body: "Asid: cuka dalam masakan, minuman bergas (asid karbonik), jeruk (asid tartarik). Alkali: sabun mandi (kalium hidroksida), pencuci pinggan, pil antasid (magnesium hidroksida).",
+          body: "Asid: **cuka dalam masakan**, minuman bergas (asid karbonik), jeruk (asid tartarik). Alkali: sabun mandi (kalium hidroksida), pencuci pinggan, pil antasid (**magnesium hidroksida**).",
         },
         {
           title: "🌾 Dalam pertanian",
-          body: "Larutan ammonia digunakan untuk menghasilkan baja bagi menyuburkan tanaman. Kapur mati yang beralkali ditaburkan untuk merawat tanah yang terlalu berasid supaya tanaman dapat tumbuh dengan subur.",
+          body: "**Larutan ammonia** digunakan untuk menghasilkan baja bagi menyuburkan tanaman. **Kapur mati** yang beralkali ditaburkan untuk merawat tanah yang terlalu berasid supaya tanaman dapat tumbuh dengan subur.",
           detail: "Keasidan tanah yang meningkat menjejaskan pertumbuhan tanaman.",
         },
         {
           title: "🏭 Dalam industri",
-          body: "Asid sulfurik digunakan di dalam bateri kereta. Natrium hidroksida digunakan untuk menghasilkan detergen. Alkali juga digunakan untuk merawat sisa kilang yang berasid sebelum ia dilepaskan ke sungai.",
+          body: "**Asid sulfurik** digunakan di dalam bateri kereta. Natrium hidroksida digunakan untuk menghasilkan detergen. Alkali juga digunakan untuk **merawat sisa kilang yang berasid** sebelum ia dilepaskan ke sungai.",
           detail: "Pembakaran bahan api di kawasan perindustrian boleh menurunkan nilai pH air hujan.",
         },
       ],
@@ -426,20 +428,20 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Persamaan peneutralan",
-          body: "Asid + Alkali → Garam + Air",
+          body: "**Asid + Alkali → Garam + Air**",
           detail: "Asid dan alkali yang berbeza menghasilkan jenis garam yang berbeza.",
         },
         {
           title: "Asid hidroklorik + Natrium hidroksida",
-          body: "Menghasilkan natrium klorida dan air.",
+          body: "Menghasilkan **natrium klorida** dan air.",
         },
         {
           title: "Asid sulfurik + Kalium hidroksida",
-          body: "Menghasilkan kalium sulfat dan air.",
+          body: "Menghasilkan **kalium sulfat** dan air.",
         },
         {
           title: "Asid nitrik + Natrium hidroksida",
-          body: "Menghasilkan natrium nitrat dan air.",
+          body: "Menghasilkan **natrium nitrat** dan air.",
         },
       ],
       titrationSchematic: {
@@ -496,27 +498,27 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🦷 Ubat gigi",
-          body: "Bakteria di dalam mulut menghasilkan asid yang mengakis gigi. Ubat gigi mengandungi bahan beralkali yang meneutralkan asid itu, membantu mencegah karies gigi.",
+          body: "Bakteria di dalam mulut menghasilkan asid yang mengakis gigi. Ubat gigi mengandungi **bahan beralkali yang meneutralkan asid itu**, membantu mencegah **karies gigi**.",
         },
         {
           title: "🧺 Pelembut fabrik",
-          body: "Serbuk pencuci menjadikan fabrik beralkali selepas dibasuh. Pelembut fabrik bersifat asid, jadi ia menurunkan nilai pH fabrik dengan meneutralkan baki beralkali itu — menjadikan fabrik lembut.",
+          body: "Serbuk pencuci menjadikan fabrik beralkali selepas dibasuh. Pelembut fabrik **bersifat asid**, jadi ia **menurunkan nilai pH fabrik** dengan meneutralkan baki beralkali itu — menjadikan fabrik lembut.",
         },
         {
           title: "💇 Syampu dan perapi rambut",
-          body: "Rambut yang sihat berada dalam keadaan sedikit berasid, tetapi syampu biasanya sedikit beralkali. Perapi rambut yang sedikit berasid meneutralkan baki syampu pada rambut, menjadikan rambut lembut dan sihat.",
+          body: "Rambut yang sihat berada dalam keadaan **sedikit berasid**, tetapi syampu biasanya **sedikit beralkali**. Perapi rambut yang sedikit berasid meneutralkan baki syampu pada rambut, menjadikan rambut lembut dan sihat.",
         },
         {
           title: "🧴 Penjagaan muka",
-          body: "Pembersih muka yang beralkali akan menjadikan kulit muka kering. Oleh itu, penyegar berasid digunakan untuk meneutralkan semula kulit muka.",
+          body: "**Pembersih muka yang beralkali** akan menjadikan kulit muka kering. Oleh itu, **penyegar berasid** digunakan untuk meneutralkan semula kulit muka.",
         },
         {
           title: "🌾 Mengawal pH tanah",
-          body: "Tanah yang berasid dapat dirawat dengan menabur kapur mati yang bersifat alkali, supaya tanaman dapat tumbuh dengan subur.",
+          body: "Tanah yang berasid dapat dirawat dengan menabur **kapur mati yang bersifat alkali**, supaya tanaman dapat tumbuh dengan subur.",
         },
         {
           title: "🏭 Merawat sisa industri",
-          body: "Bahan buangan berasid daripada kilang dirawat dengan alkali sebelum dibebaskan ke sungai, supaya ia tidak menjejaskan hidupan akuatik.",
+          body: "**Bahan buangan berasid daripada kilang dirawat dengan alkali** sebelum dibebaskan ke sungai, supaya ia tidak menjejaskan hidupan akuatik.",
         },
       ],
       checks: [

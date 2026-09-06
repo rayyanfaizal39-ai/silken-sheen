@@ -1,56 +1,73 @@
 import { useState } from "react";
-import type { MagnetFieldDiagramBlock } from "@/content/form2/science/interactive-types";
+import type {
+  MagnetFieldDiagramBlock,
+  MagnetFieldFeature,
+  MagnetShape,
+} from "@/content/form2/science/interactive-types";
 import { conceptButtonClass, InteractiveBadge, PoleLabel } from "./InteractiveFigureCard";
 import { figureCopy, type FigureCopy } from "./figure-copy";
+import {
+  BAR_FIELD_ARCS,
+  BAR_MAGNET_RECT,
+  LIKE_POLE_ARCS,
+  LIKE_POLES,
+  type FieldArrow,
+} from "./ch7-field-geometry";
 
 /**
  * Magnetic field patterns, with the field direction actually drawn.
  *
- * Field-line direction is the thing a diagram most easily gets wrong, so every
- * arrow here is generated from one rule — lines leave N and enter S outside the
- * magnet — rather than placed by hand per shape. The like-poles view exists to
- * show the neutral point, which cannot be shown at all on a single magnet.
+ * Both magnet-field views here are traced from the field of the poles they
+ * show rather than drawn by hand (see `ch7-field-geometry.ts`), because three
+ * of the four properties this diagram teaches are properties of streamlines and
+ * are simply true of a traced line: they never cross, they crowd where the
+ * field is strong and spread where it is weak, and none of them can pass
+ * through a neutral point. Hand-placed arcs got each of those only by care, and
+ * lost them at the first edit — the previous like-poles view ran lines together
+ * at the very point its caption called neutral.
  *
- * Lines are drawn as separate arcs that never intersect, because "field lines
- * never cross" is one of the properties the diagram is teaching.
+ * The like-poles view exists to show the neutral point, which cannot be shown
+ * at all on a single magnet — so the neutral-point explanation is bound to it,
+ * and the two can never be on screen apart.
  */
 
 const N_FILL = "#d4544a";
 const S_FILL = "#4a7fd4";
 
-/**
- * Bar-magnet geometry in the SVG user space used below, exported so the field
- * direction can be derived from the pole positions instead of being typed in
- * per arc. An arrowhead can then never disagree with the poles it is drawn
- * between, which is the one error this diagram must not make.
- */
-export const BAR_MAGNET_RECT = { x: 124, y: 64, w: 72, h: 22 } as const;
+/** Which magnet is drawn, and which of its properties is being explained. */
+export type MagnetSelection = { shape: MagnetShape["id"]; feature: string | null };
 
-/** Left half is the north pole, right half the south pole (BarMagnet, unflipped). */
-export const BAR_MAGNET_POLES = {
-  north: { x1: BAR_MAGNET_RECT.x, x2: BAR_MAGNET_RECT.x + BAR_MAGNET_RECT.w / 2 },
-  south: { x1: BAR_MAGNET_RECT.x + BAR_MAGNET_RECT.w / 2, x2: BAR_MAGNET_RECT.x + BAR_MAGNET_RECT.w },
-} as const;
-
-const poleCentre = (p: { x1: number; x2: number }) => (p.x1 + p.x2) / 2;
+export type MagnetPick =
+  | { pick: "shape"; id: MagnetShape["id"] }
+  | { pick: "feature"; id: string };
 
 /**
- * Outside a magnet, field lines run north -> south. Every external arc here is
- * horizontal at its midpoint, so the arrowhead there points along +x when the
- * south pole lies to the right of the north pole, and along -x otherwise.
- * This holds above and below the magnet alike: the loop below the magnet still
- * leaves N and enters S, so it is NOT the mirror of the loop above it.
+ * Resolves what tapping a control does, given what is already selected.
+ *
+ * Kept as a pure function rather than inline handlers because the invariant it
+ * enforces is the fix this diagram needed: a property that only one arrangement
+ * demonstrates must never be explained beside an arrangement that does not.
+ * Picking such a property therefore switches to the arrangement that has it,
+ * and switching arrangement drops it — so the picture on screen and the
+ * sentence underneath it are always the same claim. Tapping "Neutral point"
+ * beside a horseshoe magnet used to explain a neutral point the horseshoe does
+ * not have and the drawing did not show; here that state is unreachable, and a
+ * test can walk every combination and prove it.
  */
-export const EXTERNAL_FIELD_DEG =
-  poleCentre(BAR_MAGNET_POLES.south) > poleCentre(BAR_MAGNET_POLES.north) ? 0 : 180;
-
-/** Bar magnet: arcs from the N end round to the S end, both above and below. */
-export const BAR_FIELD_ARCS = [
-  { d: "M196,64 C236,20 84,20 124,64", a: [160, 30] as [number, number], deg: EXTERNAL_FIELD_DEG },
-  { d: "M196,64 C256,4 64,4 124,64", a: [160, 14] as [number, number], deg: EXTERNAL_FIELD_DEG },
-  { d: "M196,86 C236,130 84,130 124,86", a: [160, 120] as [number, number], deg: EXTERNAL_FIELD_DEG },
-  { d: "M196,86 C256,146 64,146 124,86", a: [160, 136] as [number, number], deg: EXTERNAL_FIELD_DEG },
-];
+export function magnetSelection(
+  features: MagnetFieldFeature[],
+  current: MagnetSelection,
+  action: MagnetPick,
+): MagnetSelection {
+  if (action.pick === "shape") {
+    const held = features.find((f) => f.id === current.feature);
+    const keep = !held?.requiresShape || held.requiresShape === action.id;
+    return { shape: action.id, feature: keep ? current.feature : null };
+  }
+  if (current.feature === action.id) return { ...current, feature: null };
+  const picked = features.find((f) => f.id === action.id);
+  return { shape: picked?.requiresShape ?? current.shape, feature: action.id };
+}
 
 function BarMagnet({
   x,
@@ -91,7 +108,7 @@ function BarMagnet({
 }
 
 /** Arrow head pointing along the tangent at (x,y), rotated by `deg`. */
-function Arrow({ x, y, deg, dim }: { x: number; y: number; deg: number; dim: boolean }) {
+function Arrow({ x, y, deg, dim }: FieldArrow & { dim: boolean }) {
   return (
     <path
       d="M-4,-3 L4,0 L-4,3 Z"
@@ -108,15 +125,28 @@ export function MagnetFieldDiagram({
   block: MagnetFieldDiagramBlock;
   lang?: string;
 }) {
-  const [shape, setShape] = useState(block.shapes[0]?.id ?? "bar");
-  const [feature, setFeature] = useState<string | null>(null);
+  const [selection, setSelection] = useState<MagnetSelection>({
+    shape: block.shapes[0]?.id ?? "bar",
+    feature: null,
+  });
+  const { shape, feature } = selection;
   const copy = figureCopy(lang);
+  const pick = (action: MagnetPick) =>
+    setSelection((current) => magnetSelection(block.features, current, action));
 
   const activeShape = block.shapes.find((s) => s.id === shape) ?? block.shapes[0];
   const activeFeature = block.features.find((f) => f.id === feature) ?? null;
 
-  const showNeutral = feature === "neutral";
-  const dimField = feature !== null && feature !== "direction" && feature !== "density" && feature !== "no-cross";
+  /**
+   * The neutral point is being explained right now, which by the rule above can
+   * only happen on the arrangement that has one. Its marker and the field lines
+   * behind it are styled from this, so the emphasis and the explanation cannot
+   * disagree.
+   */
+  const showNeutral = activeFeature?.requiresShape === shape;
+  // A property tied to one arrangement is about a place in the picture, not
+  // about the lines, so the lines step back while it is being explained.
+  const dimField = activeFeature?.requiresShape !== undefined;
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
@@ -129,7 +159,7 @@ export function MagnetFieldDiagram({
             key={s.id}
             type="button"
             aria-pressed={shape === s.id}
-            onClick={() => setShape(s.id)}
+            onClick={() => pick({ pick: "shape", id: s.id })}
             className={conceptButtonClass(shape === s.id)}
           >
             {s.name}
@@ -154,9 +184,25 @@ export function MagnetFieldDiagram({
                     className={dimField ? "stroke-muted-foreground/30" : "stroke-emerald-300/80"}
                     strokeWidth={feature === "density" ? 2 : 1.5}
                   />
-                  <Arrow x={arc.a[0]} y={arc.a[1]} deg={arc.deg} dim={dimField} />
+                  <Arrow {...arc.arrow} dim={dimField} />
                 </g>
               ))}
+              {/* Where the lines crowd. Highlighted only while the spacing
+                  property is selected, so it explains that property and does
+                  not decorate the other three. */}
+              {feature === "density" &&
+                [BAR_MAGNET_RECT.x, BAR_MAGNET_RECT.x + BAR_MAGNET_RECT.w].map((cx) => (
+                  <circle
+                    key={cx}
+                    cx={cx}
+                    cy={BAR_MAGNET_RECT.y + BAR_MAGNET_RECT.h / 2}
+                    r={17}
+                    fill="none"
+                    className="stroke-amber-300/80"
+                    strokeWidth="1.4"
+                    strokeDasharray="3 3"
+                  />
+                ))}
               <BarMagnet
                 x={BAR_MAGNET_RECT.x}
                 y={BAR_MAGNET_RECT.y}
@@ -223,57 +269,57 @@ export function MagnetFieldDiagram({
 
           {shape === "like-poles" && (
             <>
-              <BarMagnet x={40} y={64} w={72} h={22} copy={copy} />
-              <BarMagnet x={208} y={64} w={72} h={22} copy={copy} flip />
-              {/* both inner poles are S here, so the fields oppose and cancel between them */}
-              {[-26, -13, 13, 26].map((dy) => (
-                <g key={dy}>
+              {LIKE_POLE_ARCS.map((arc) => (
+                <g key={arc.d}>
                   <path
-                    d={`M112,${75 + dy * 0.35} C138,${75 + dy} 138,${75 + dy} 160,${75 + dy * 0.15}`}
+                    d={arc.d}
                     fill="none"
                     className={dimField ? "stroke-muted-foreground/30" : "stroke-emerald-300/70"}
                     strokeWidth="1.4"
                   />
-                  <path
-                    d={`M208,${75 + dy * 0.35} C182,${75 + dy} 182,${75 + dy} 160,${75 + dy * 0.15}`}
-                    fill="none"
-                    className={dimField ? "stroke-muted-foreground/30" : "stroke-emerald-300/70"}
-                    strokeWidth="1.4"
-                  />
+                  <Arrow {...arc.arrow} dim={dimField} />
                 </g>
               ))}
-              {/* the neutral point sits midway between the two like poles */}
-              <g>
+              <BarMagnet {...LIKE_POLES.left} copy={copy} />
+              <BarMagnet {...LIKE_POLES.right} copy={copy} flip />
+              {/* Both inner poles are south here, so the two fields oppose and
+                  cancel exactly midway between them. No traced line reaches
+                  this point, because the field there is zero. */}
+              <g role="img" aria-label={block.features.find((f) => f.requiresShape)?.label}>
                 <line
-                  x1={154}
-                  y1={69}
-                  x2={166}
-                  y2={81}
+                  x1={LIKE_POLES.neutral.x - 6}
+                  y1={LIKE_POLES.neutral.y - 6}
+                  x2={LIKE_POLES.neutral.x + 6}
+                  y2={LIKE_POLES.neutral.y + 6}
                   className={showNeutral ? "stroke-amber-300" : "stroke-amber-300/60"}
                   strokeWidth={showNeutral ? 3 : 2}
                 />
                 <line
-                  x1={166}
-                  y1={69}
-                  x2={154}
-                  y2={81}
+                  x1={LIKE_POLES.neutral.x + 6}
+                  y1={LIKE_POLES.neutral.y - 6}
+                  x2={LIKE_POLES.neutral.x - 6}
+                  y2={LIKE_POLES.neutral.y + 6}
                   className={showNeutral ? "stroke-amber-300" : "stroke-amber-300/60"}
                   strokeWidth={showNeutral ? 3 : 2}
                 />
                 {showNeutral && (
-                  <circle cx={160} cy={75} r="15" fill="none" className="stroke-amber-300" strokeWidth="1.6" />
+                  <circle
+                    cx={LIKE_POLES.neutral.x}
+                    cy={LIKE_POLES.neutral.y}
+                    r="16"
+                    fill="none"
+                    className="stroke-amber-300"
+                    strokeWidth="1.6"
+                  />
                 )}
               </g>
-              <text x={160} y={110} textAnchor="middle" fontSize="9" className="fill-amber-300">
-                X
-              </text>
             </>
           )}
         </svg>
       </div>
 
       {/* which property */}
-      <div className="mt-2 flex flex-wrap gap-1.5" role="group" aria-label={copy.controlsLabel}>
+      <div className="mt-2 flex flex-wrap gap-1.5" role="group" aria-label={block.featureLabel}>
         {block.features.map((f) => {
           const isActive = feature === f.id;
           return (
@@ -281,7 +327,7 @@ export function MagnetFieldDiagram({
               key={f.id}
               type="button"
               aria-pressed={isActive}
-              onClick={() => setFeature(isActive ? null : f.id)}
+              onClick={() => pick({ pick: "feature", id: f.id })}
               className={conceptButtonClass(isActive)}
             >
               {f.label}

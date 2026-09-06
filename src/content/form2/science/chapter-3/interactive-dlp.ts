@@ -43,17 +43,17 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Carbohydrate",
-          body: "The body's main energy source (staple food). Examples: starch (stored in plants), glycogen (stored in animals). Sources: rice, bread, potatoes, bananas, honey.",
+          body: "**The body's main energy source** (staple food). Examples: starch (stored in plants), glycogen (stored in animals). Sources: rice, bread, potatoes, bananas, honey.",
         },
         {
           title: "Protein",
-          body: "For growth and repair of body tissues, and to synthesise enzymes, hormones and antibodies. Digested into amino acids. Sources: fish, chicken, eggs, legumes, meat, milk.",
+          body: "For **growth and repair of body tissues**, and to synthesise enzymes, hormones and antibodies. Digested into amino acids. Sources: fish, chicken, eggs, legumes, meat, milk.",
           detail:
             "Additional Knowledge: severe protein deficiency is linked to Kwashiorkor (children aged 1–3).",
         },
         {
           title: "Fat",
-          body: "The most concentrated energy store — provides about 2× the energy of carbohydrate/protein per gram. Protects body organs and acts as a heat insulator. Sources: butter, cooking oil, groundnuts.",
+          body: "**The most concentrated energy store** — provides about 2× the energy of carbohydrate/protein per gram. Protects body organs and acts as a heat insulator. Sources: butter, cooking oil, groundnuts.",
         },
         {
           title: "Vitamin",
@@ -65,7 +65,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "Fibre",
-          body: "Cellulose that cannot be digested by the digestive system; stimulates peristalsis and prevents constipation. Sources: grains, fruits, vegetables.",
+          body: "Cellulose that cannot be digested by the digestive system; **stimulates peristalsis and prevents constipation**. Sources: grains, fruits, vegetables.",
         },
         {
           title: "Water",
@@ -145,11 +145,11 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Water-soluble",
-            body: "Vitamins B and C. Needed continuously from food because they are not stored for long in the body.",
+            body: "Vitamins B and C. **Needed continuously from food** because they are not stored for long in the body.",
           },
           {
             title: "Fat-soluble",
-            body: "Vitamins A, D, E and K. Transported and stored together with fat in the body.",
+            body: "Vitamins A, D, E and K. **Transported and stored together with fat** in the body.",
           },
         ],
       },
@@ -186,19 +186,19 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🧪 How do food tests work?",
-          body: "Each test uses a specific reagent that reacts only with a certain nutrient and produces an observable colour change or precipitate — this is the 'positive result' that shows the nutrient is present in the sample.",
+          body: "Each test uses a **specific reagent** that reacts only with a certain nutrient and produces an observable colour change or precipitate — this is the 'positive result' that shows the nutrient is present in the sample.",
         },
         {
           title: "Starch and sugar tests",
-          body: "Starch: add iodine solution directly to the sample at room temperature — the colour turns blue-black if positive. Reducing sugar: add Benedict's solution, then HEAT in a water bath — the colour changes from blue to green/yellow/brick-red precipitate if positive.",
+          body: "Starch: add iodine solution directly to the sample at room temperature — the colour turns **blue-black** if positive. Reducing sugar: add Benedict's solution, then HEAT in a water bath — the colour changes from blue to green/yellow/brick-red precipitate if positive.",
         },
         {
           title: "Protein and fat tests",
-          body: "Protein: add Millon's reagent, then heat in a water bath — a brick-red precipitate/colour shows a positive result. Fat: mix the sample with ethanol, then pour into water — a cloudy, milky-white emulsion forms if positive.",
+          body: "Protein: add Millon's reagent, then heat in a water bath — a brick-red precipitate/colour shows a positive result. Fat: mix the sample with ethanol, then pour into water — a **cloudy, milky-white emulsion** forms if positive.",
         },
         {
           title: "⚠️ Safety precaution",
-          body: "Ethanol is flammable, so heating for Benedict's and Millon's tests is done in a water bath, not over a direct flame.",
+          body: "Ethanol is **flammable**, so heating for Benedict's and Millon's tests is done in a water bath, not over a direct flame.",
         },
       ],
       matcher: {
@@ -295,7 +295,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "Occupation",
-          body: "Farmers, labourers and fishermen need more energy because of heavy work, compared with office workers such as teachers.",
+          body: "Farmers, labourers and fishermen need more energy because of **heavy work**, compared with office workers such as teachers.",
         },
         {
           title: "Climate",
@@ -327,9 +327,9 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Fat",
-            body: "37 kJ/g (9 kcal/g) — more than twice the energy density of protein or carbohydrate.",
+            body: "**37 kJ/g (9 kcal/g)** — more than twice the energy density of protein or carbohydrate.",
           },
-          { title: "Protein and carbohydrate", body: "Each provides about 17 kJ/g (4 kcal/g)." },
+          { title: "Protein and carbohydrate", body: "Each provides about **17 kJ/g (4 kcal/g)**." },
         ],
       },
       accordions: [
@@ -374,7 +374,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
               "Overweight / obesity",
               "Risk of diabetes, high blood pressure and high cholesterol",
             ],
-            note: "Healthier alternative: reduce sugar, salt and oil; add more fruits and vegetables.",
+            note: "Healthier alternative: **reduce sugar, salt and oil**; add more fruits and vegetables.",
           },
           {
             icon: "🛋️",
@@ -385,7 +385,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
               "Body fat stores increase",
               "Risk of heart disease",
             ],
-            note: "Healthier alternative: exercise regularly every week.",
+            note: "Healthier alternative: **exercise regularly** every week.",
           },
           {
             icon: "🚬",
@@ -571,18 +571,18 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Physical digestion",
-            body: "Occurs in the mouth only. Involves the mechanical breakdown of food (chewing). Does NOT involve enzymes.",
+            body: "Occurs in the mouth only. Involves the mechanical breakdown of food (chewing). **Does NOT involve enzymes**.",
           },
           {
             title: "Chemical digestion",
-            body: "Occurs in the mouth, stomach, duodenum and intestine. Involves enzymes that break complex molecules into small, soluble molecules.",
+            body: "Occurs in the mouth, stomach, duodenum and intestine. **Involves enzymes** that break complex molecules into small, soluble molecules.",
           },
         ],
       },
       accordions: [
         {
           title: "What is an enzyme?",
-          body: "An enzyme is a substance in the body that speeds up chemical reactions in the digestive system. Enzymes are made of protein — without enzymes, digestion occurs at a very slow rate.",
+          body: "An enzyme is a substance in the body that **speeds up chemical reactions** in the digestive system. Enzymes are made of protein — without enzymes, digestion occurs at a very slow rate.",
         },
       ],
       checks: [
@@ -712,13 +712,15 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🧂 Hydrochloric Acid (HCl)",
-          body: "Secreted by the stomach wall together with protease. Two main functions: activates protease and kills bacteria in food entering the stomach.",
+          body: "Secreted by the stomach wall together with protease. Two main functions: **activates protease and kills bacteria** in food entering the stomach.",
         },
         {
           title: "➕ Did You Know: Maltase",
           body: "The small intestine also secretes maltase, which digests maltose → glucose, completing the carbohydrate pathway: starch → maltose → glucose. Maltase is additional detail — you don't need to memorise it like the three main enzymes above.",
         },
       ],
+      remember:
+        "Three main digestive enzymes: amylase (starch → maltose), protease (protein → amino acids) and lipase (fat → fatty acids + glycerol). Each digests a different substrate.",
       checks: [
         {
           question: "Which organ secretes the protease that digests polypeptide into dipeptide?",
@@ -738,11 +740,11 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Many villi",
-          body: "Millions of tiny projections greatly increase the surface area for absorption.",
+          body: "Millions of tiny projections greatly **increase the surface area** for absorption.",
         },
         {
           title: "One-cell-thick wall",
-          body: "The villus wall is very thin, creating a short diffusion distance.",
+          body: "The villus wall is very thin, creating a **short diffusion distance**.",
         },
         {
           title: "Folded surface",
@@ -823,11 +825,11 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "🔍 Observations & Inference",
-          body: "Boiling tube P (starch): iodine and Benedict's tests on the water remain negative at the end of the experiment — starch molecules are too large to pass through the Visking tubing. Boiling tube Q (glucose): Benedict's test on the water turns positive (brick-red precipitate) after 30 minutes — glucose molecules are small enough to diffuse out through the Visking tubing.",
+          body: "Boiling tube P (starch): iodine and Benedict's tests on the water remain negative at the end of the experiment — **starch molecules are too large** to pass through the Visking tubing. Boiling tube Q (glucose): Benedict's test on the water turns positive (brick-red precipitate) after 30 minutes — **glucose molecules are small enough** to diffuse out through the Visking tubing.",
         },
         {
           title: "💡 Conclusion",
-          body: "Visking tubing acts as a model of the small intestine wall: small, soluble molecules like glucose can diffuse through it, but large molecules like starch cannot.",
+          body: "Visking tubing acts as a model of the small intestine wall: small, soluble molecules like glucose can diffuse through it, but **large molecules like starch cannot**.",
         },
       ],
       viskingExperiment: {
@@ -911,17 +913,17 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
               "Oxygen reacts with glucose inside cells",
               "Respiration → energy",
             ],
-            note: "The three systems work together so body cells receive nutrients and oxygen at the same time.",
+            note: "**The three systems work together** so body cells receive nutrients and oxygen at the same time.",
           },
         ],
       },
       comparison: {
         title: "Assimilation — using the end products of digestion",
         columns: [
-          { title: "Glucose", body: "Used to produce energy through respiration." },
+          { title: "Glucose", body: "Used to **produce energy** through respiration." },
           {
             title: "Amino acids, fatty acids & glycerol",
-            body: "Amino acids form new cell components. Fatty acids and glycerol combine to form fat — a heat insulator and organ protector.",
+            body: "Amino acids **form new cell components**. Fatty acids and glycerol combine to form fat — a heat insulator and organ protector.",
           },
         ],
       },
@@ -948,7 +950,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "Faeces",
-          body: "The solid waste (fibre, digestive tract secretions, dead cells, water) that is not absorbed or digested.",
+          body: "**The solid waste** (fibre, digestive tract secretions, dead cells, water) that is not absorbed or digested.",
         },
         { title: "Rectum", body: "Stores faeces temporarily before removal." },
         {
@@ -967,7 +969,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
               "Faeces movement becomes slow and hard",
               "Constipation",
             ],
-            note: "Prevention: eat enough fibre (fruits, vegetables, grains) and water (at least 2 litres a day).",
+            note: "Prevention: eat **enough fibre** (fruits, vegetables, grains) and water (at least 2 litres a day).",
           },
         ],
       },

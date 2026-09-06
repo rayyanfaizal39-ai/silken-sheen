@@ -175,7 +175,7 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 12,
   blogHighlight: {
     title: "Science Blog — A Possible 9th Planet",
-    body: "In early 2016, astronomers spotted signs of a possible new planet in our solar system — estimated at roughly 10 times Earth's mass. This finding is still at the research stage, not a confirmed discovery.",
+    body: "In early 2016, astronomers spotted signs of a possible new planet in our solar system — estimated at **roughly 10 times Earth's mass**. This finding is still at the research stage, not a confirmed discovery.",
     imagePath: chapterImage,
   },
   keywords: ["Solar system", "Astronomical Unit (A.U.)", "Light year", "Planet", "Natural satellite", "Ecological footprint"],
@@ -184,21 +184,21 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
       number: "12.1",
       title: "Distance in the Solar System",
       intro:
-        "The solar system consists of eight planets orbiting the Sun, including Earth. The distances of the planets from the Sun are very large, so astronomical units and light years are used to measure their relative distances from the Sun. In 2006, Pluto was no longer recognised as a planet in the solar system; it is now known as a dwarf planet.",
+        "The solar system consists of eight planets orbiting the Sun, including Earth. The distances of the planets from the Sun are very large, so **astronomical units and light years** are used to measure their relative distances from the Sun. In 2006, Pluto was no longer recognised as a planet in the solar system; it is now known as a **dwarf planet**.",
       cards: [
         {
           title: "📏 Astronomical Unit (A.U.)",
-          body: "The average distance between Earth and the Sun, which is about 93 million miles or 150 million kilometres. 1 A.U. = 1.5 × 10⁸ km.",
+          body: "The average distance between Earth and the Sun, which is about 93 million miles or 150 million kilometres. **1 A.U. = 1.5 × 10⁸ km**.",
           detail: "Distance in A.U. = Distance in km ÷ (1.5 × 10⁸ km)",
         },
         {
           title: "💫 Light Year (ly)",
-          body: "A light year is a unit of DISTANCE, not of time — it is the distance travelled by light in one year. Light travels at 300 000 km every second, so light can travel 9.5 × 10¹² km in a year.",
+          body: "A light year is **a unit of DISTANCE, not of time** — it is the distance travelled by light in one year. Light travels at 300 000 km every second, so light can travel 9.5 × 10¹² km in a year.",
           detail: "Distance in ly = Distance in km ÷ (9.5 × 10¹² km)",
         },
         {
           title: "🧭 Worked example from the textbook",
-          body: "Saturn is 1.43 × 10⁹ km from the Sun. That distance equals 9.5 A.U. or 1.51 × 10⁻⁴ light years. Earth's distance from the Sun, 1.5 × 10⁸ km, equals 1.0 A.U. or 1.58 × 10⁻⁵ light years.",
+          body: "Saturn is 1.43 × 10⁹ km from the Sun. That distance equals **9.5 A.U.** or 1.51 × 10⁻⁴ light years. Earth's distance from the Sun, 1.5 × 10⁸ km, equals 1.0 A.U. or 1.58 × 10⁻⁵ light years.",
         },
       ],
       calculators: [
@@ -381,19 +381,19 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
       number: "12.1",
       title: "Relationships between Planetary Characteristics",
       intro:
-        "The characteristics of the planets are related to one another. In theory a planet closer to the Sun receives more heat, but the real situation is more complex — and some anomalies exist.",
+        "The characteristics of the planets are related to one another. In theory **a planet closer to the Sun receives more heat**, but the real situation is more complex — and some anomalies exist.",
       accordions: [
         {
           title: "☿️ Mercury — a planet with no atmosphere",
-          body: "Sunlight reaches its surface directly, so the side facing the Sun is extremely hot, above 427 °C. The dark side is extremely cold, with temperatures falling to −173 °C.",
+          body: "Sunlight reaches its surface directly, so the side facing the Sun is extremely hot, above **427 °C**. The dark side is extremely cold, with temperatures falling to **−173 °C**.",
         },
         {
           title: "♀️ Venus — the temperature anomaly",
-          body: "Venus has thick clouds that reflect sunlight, but its atmosphere, mostly carbon dioxide, causes a greenhouse effect. A great deal of heat is trapped, so the surface temperature can reach 462 °C — hotter than Mercury even though Venus is farther from the Sun.",
+          body: "Venus has thick clouds that reflect sunlight, but its atmosphere, mostly carbon dioxide, causes a **greenhouse effect**. A great deal of heat is trapped, so the surface temperature can reach 462 °C — **hotter than Mercury even though Venus is farther from the Sun**.",
         },
         {
           title: "♂️ Mars — a low-pressure atmosphere",
-          body: "Although Mars has an atmosphere, its surface pressure is very low compared with Earth's (less than 1/100 of Earth's pressure), so it has little effect on surface temperature. Temperatures range between −143 °C and 35 °C.",
+          body: "Although Mars has an atmosphere, its surface pressure is very low compared with Earth's (**less than 1/100 of Earth's pressure**), so it has little effect on surface temperature. Temperatures range between −143 °C and 35 °C.",
         },
         {
           title: "🪐 The gas giants",
@@ -404,27 +404,27 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
         {
           title: "Density and gravitational attraction",
           body:
-            "The gravitational attraction at a planet's surface depends on the planet's mass and its density. The gravitational attraction of Mercury and Mars is lower than Earth's because their masses are low. Venus's gravitational attraction is close to Earth's because its mass is close to Earth's. Jupiter's gravitational attraction is very high compared with Earth's because its mass is very high, even though its density is very low. Although Saturn, Uranus and Neptune have very high masses, the gravitational attraction of these planets is not much higher than Earth's because gas giants have low density.",
+            "The gravitational attraction at a planet's surface **depends on the planet's mass and its density**. The gravitational attraction of Mercury and Mars is lower than Earth's because their masses are low. Venus's gravitational attraction is close to Earth's because its mass is close to Earth's. Jupiter's gravitational attraction is very high compared with Earth's because its mass is very high, even though its density is very low. Although Saturn, Uranus and Neptune have very high masses, the gravitational attraction of these planets is not much higher than Earth's because gas giants have low density.",
           detail: "Earth's gravitational attraction is 9.8 m s⁻².",
         },
         {
           title: "Distance, time and speed",
           body:
-            "The farther a planet is from the Sun, the more time it needs to travel once around the Sun in its orbit. Mercury is closest to the Sun, so it takes only 88 days for one orbit. Neptune, the farthest planet, takes 164.8 years.",
+            "**The farther a planet is from the Sun, the more time it needs to travel once around the Sun in its orbit.** Mercury is closest to the Sun, so it takes only 88 days for one orbit. Neptune, the farthest planet, takes 164.8 years.",
         },
       ],
       tabs: [
         {
           title: "Most planets",
-          body: "Rotate from west to east. Because Earth rotates from west to east, we see the Sun rise in the east and set in the west.",
+          body: "Rotate from west to east. Because Earth rotates from west to east, we see **the Sun rise in the east and set in the west**.",
         },
         {
           title: "Venus",
-          body: "Rotates from east to west — the opposite direction to Earth. This means that on Venus, the Sun would rise in the west.",
+          body: "Rotates from east to west — the opposite direction to Earth. This means that on Venus, **the Sun would rise in the west**.",
         },
         {
           title: "Uranus",
-          body: "Rotates on its side — its axis of rotation is tilted almost parallel to its orbit around the Sun.",
+          body: "Rotates on its side — **its axis of rotation is tilted almost parallel to its orbit around the Sun**.",
         },
       ],
       checks: [
@@ -447,19 +447,19 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
         {
           title: "🌗 If Earth rotated slowly or stopped rotating",
           body:
-            "Earth's rotation on its axis causes day and night and the tides. If Earth rotated slowly or stopped rotating: day and night would become long on two different parts of Earth; desert areas would increase on the part facing the Sun; the timing of the tides would change; and the temperature on the part of Earth not lit by the Sun would become very cold.",
+            "**Earth's rotation on its axis causes day and night and the tides.** If Earth rotated slowly or stopped rotating: day and night would become long on two different parts of Earth; desert areas would increase on the part facing the Sun; the timing of the tides would change; and the temperature on the part of Earth not lit by the Sun would become very cold.",
         },
       ],
       accordions: [
         {
           title: "🌙 Why do some planets have two or more moons?",
           body:
-            "Discuss this using the data in the comparison table. A natural satellite is a body that orbits a planet in its own orbit. Mercury and Venus have no natural satellites, Earth has one, Mars has two (Phobos and Deimos), while Jupiter has 67, Saturn 62, Uranus 27 and Neptune 14. Look for a relationship between the number of satellites and each planet's size, mass and gravitational attraction, then state your reasoning.",
+            "Discuss this using the data in the comparison table. A natural satellite is **a body that orbits a planet in its own orbit**. Mercury and Venus have no natural satellites, Earth has one, Mars has two (Phobos and Deimos), while Jupiter has 67, Saturn 62, Uranus 27 and Neptune 14. Look for a relationship between the number of satellites and each planet's size, mass and gravitational attraction, then state your reasoning.",
         },
         {
           title: "🌍 If you were on the Moon, what would Earth look like?",
           body:
-            "Use the following information to reason it out. The Moon rotates on its axis and at the same time revolves around Earth in its orbit. The time the Moon takes to rotate on its axis and to revolve around Earth is the same, about 27 days. Because of this, the same surface of the Moon always faces Earth. Earth is also four times the size of the Moon.",
+            "Use the following information to reason it out. The Moon rotates on its axis and at the same time revolves around Earth in its orbit. The time the Moon takes to rotate on its axis and to revolve around Earth is the same, **about 27 days**. Because of this, **the same surface of the Moon always faces Earth**. Earth is also four times the size of the Moon.",
         },
         {
           title: "🌗 Would Earth appear to have phases when viewed from the Moon?",
@@ -478,7 +478,7 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
       number: "12.1",
       title: "Earth as a Planet for Life",
       intro:
-        "So far, Earth is the only planet that has life. Earth can support life because of several factors such as the presence of water, mineral resources, surface temperature and the content of its atmosphere.",
+        "So far, **Earth is the only planet that has life**. Earth can support life because of several factors such as the presence of water, mineral resources, surface temperature and the content of its atmosphere.",
       flipCards: [
         { id: "gravity", icon: "⚖️", label: "Gravitational attraction", fact: "Has gravitational attraction that holds objects on Earth so they do not float off into space." },
         { id: "water", icon: "💧", label: "Water content", fact: "Has a large amount of water for all the needs of living things." },
@@ -491,13 +491,13 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
         {
           title: "🌱 Ecological footprint",
           body:
-            "The ecological footprint is a measure of the ability of water and land to provide the resources needed by humans (food, drink, shelter and others), together with Earth's ability to absorb all human waste and then regenerate those resources after they have been used.",
+            "**The ecological footprint** is a measure of the ability of water and land to provide the resources needed by humans (food, drink, shelter and others), together with Earth's ability to absorb all human waste and then regenerate those resources after they have been used.",
           detail: "The ecological footprint differs from one country to another.",
         },
         {
           title: "⚠️ When the ecological footprint is too large",
           body:
-            "If the ecological footprint exceeds Earth's ability to renew its resources, Earth will run out of resources. As responsible consumers, every individual has a role in managing the environment and reducing their own ecological footprint.",
+            "**If the ecological footprint exceeds Earth's ability to renew its resources, Earth will run out of resources.** As responsible consumers, every individual has a role in managing the environment and reducing their own ecological footprint.",
         },
       ],
       accordions: [

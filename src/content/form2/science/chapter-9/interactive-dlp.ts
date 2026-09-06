@@ -1,12 +1,16 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
-import chapterImage from "@/assets/science/form2/ch9-haba.png";
+import {
+  SCIENCE_F2_CH9_IMAGES,
+  SCIENCE_F2_VISUAL_ASPECT,
+} from "../visual-assets";
 
 export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 9,
   blogHighlight: {
     title: "Science Blog — The Hidden Polar Bear",
-    body: "Infrared cameras detect the heat radiated by animals — but a polar bear traps heat so effectively beneath its fur and fat that it is almost invisible to thermal imaging, even in a freezing habitat.",
-    imagePath: chapterImage,
+    body: "Infrared cameras detect the heat radiated by animals — but a polar bear **traps heat so effectively beneath its fur and fat** that it is almost invisible to thermal imaging, even in a freezing habitat.",
+    imagePath: SCIENCE_F2_CH9_IMAGES.polarBear,
+    imageAlt: "A polar bear standing on sea ice at night, with a thermal-imaging cut-away showing the heat trapped inside its body while its fur stays cold.",
   },
   keywords: [
     "Heat",
@@ -29,21 +33,36 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.1",
       title: "Heat and Temperature",
       intro:
-        "Heat is a form of energy that flows from a region of higher temperature to a region of lower temperature. Temperature is the measure of the degree of hotness or coldness of an object. The two are related, but they are not the same thing — two beakers of water at the same temperature can hold very different quantities of heat, depending on how much water there is.",
+        "Heat is **a form of energy** that flows from a region of higher temperature to a region of lower temperature. Temperature is **the measure of the degree of hotness or coldness of an object**. The two are related, but they are not the same thing — two beakers of water at the same temperature can hold very different quantities of heat, depending on how much water there is.",
+      remember:
+        "Heat is a form of energy measured in joules (J); temperature is the degree of hotness or coldness measured in °C or K. The two are related, but they are not the same thing.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.heatVsTemperature,
+          alt: "A small glass cup of very hot drink beside a large beaker of warmer water, each with its own thermometer. The thermometer beside the small cup reads high; the one beside the large beaker reads lower.",
+          caption:
+            "The small cup is at the higher temperature, but the large beaker holds far more water, and so far more heat.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
+
       cards: [
         {
           title: "🔥 Heat",
-          body: "A form of energy. The quantity of heat depends on the type of substance, the quantity of substance and the temperature.",
+          body: "A form of energy. The quantity of heat depends on **the type of substance, the quantity of substance and the temperature**.",
           detail: "Measured in joules (J).",
         },
         {
           title: "🌡️ Temperature",
-          body: "The degree of hotness or coldness of an object. Temperature depends on the degree of movement of the particles within the substance.",
+          body: "The degree of hotness or coldness of an object. Temperature depends on **the degree of movement of the particles within the substance**.",
           detail: "Measured in degrees Celsius (°C) or kelvin (K).",
         },
         {
           title: "⚖️ Thermal equilibrium",
-          body: "When two objects are in contact, heat energy is transferred from the object at the higher temperature to the object at the lower temperature. When the heat transfer between them becomes zero, the two objects are in thermal equilibrium and share the same temperature.",
+          body: "When two objects are in contact, heat energy is transferred from the object at the higher temperature to the object at the lower temperature. When **the heat transfer between them becomes zero**, the two objects are in **thermal equilibrium** and share the same temperature.",
         },
       ],
       checks: [
@@ -55,7 +74,9 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.2",
       title: "Conduction",
       intro:
-        "Conduction is the flow of heat from a hot region to a cold region through a solid medium. Particles that receive heat energy vibrate faster and collide with their neighbouring particles more often, transferring that energy throughout the medium.",
+        "Conduction is **the flow of heat from a hot region to a cold region through a solid medium**. Particles that receive heat energy vibrate faster and collide with their neighbouring particles more often, transferring that energy throughout the medium.",
+      quickExplanation:
+        "What travels along a conducting material is energy, not particles — each particle simply vibrates in place and passes energy on to its neighbour.",
       conductionDiagram: {
         title: "🔗 How heat travels through a solid",
         instruction: "Tap each stage to watch the energy travel along the rod.",
@@ -81,7 +102,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.2",
       title: "Convection and Radiation",
       intro:
-        "Heat can also flow without passing through a solid. In fluids, convection carries heat through the movement of the fluid itself. Radiation needs no medium at all — it is the only way heat can travel through empty space.",
+        "Heat can also flow without passing through a solid. In fluids, convection **carries heat through the movement of the fluid itself**. Radiation needs no medium at all — it is **the only way heat can travel through empty space**.",
       convectionRadiation: {
         title: "🌀 Two ways heat flows without a solid",
         instruction: "Tap each method to see how the heat moves.",
@@ -105,6 +126,12 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
         ],
         caption: "Convection needs a fluid; radiation needs nothing at all.",
         hint: "Pick a method to see its mechanism.",
+        image: {
+          src: SCIENCE_F2_CH9_IMAGES.kitchenHeatTransfer,
+          alt: "A kitchen scene: a metal saucepan with a wooden spoon standing in it sits on a lit gas burner, water boils inside the pan and steam rises from it, and a hand is held up in the air beside the pan without touching it.",
+          caption:
+            "One kitchen, three modes: heat travels through the metal pan by conduction, circulates through the boiling water by convection, and reaches the raised hand by radiation.",
+        },
       },
       checks: [
         { question: "Why is the heating coil in an electric kettle placed at the bottom?", hint: "Water heated at the bottom expands, becomes less dense and rises; cooler, denser water sinks to replace it, creating a convection current that heats the whole kettle." },
@@ -115,7 +142,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.2",
       title: "Sea Breeze and Land Breeze",
       intro:
-        "Sea breezes and land breezes are examples of convection happening in nature. The key is that land heats up and cools down faster than the sea.",
+        "Sea breezes and land breezes are **examples of convection happening in nature**. The key is that **land heats up and cools down faster than the sea**.",
       breezeDiagram: {
         title: "🌬️ Sea breeze and land breeze",
         instruction: "Tap each breeze to see the direction the air moves.",
@@ -127,6 +154,12 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
             id: "sea",
             label: "☀️ Sea breeze",
             warmerSide: "land",
+            image: {
+              src: SCIENCE_F2_CH9_IMAGES.seaBreeze,
+              alt: "A coastline in the middle of a bright, sunny day. The sea is on the left, a sandy beach and green land with trees on the right, under a high sun.",
+              caption:
+                "Daytime — the Sun heats the land faster than the sea, so the air above the land is the warmer air.",
+            },
             timeOfDay: "Daytime",
             note: "During the day, the Sun heats the land faster than the sea. Warm air over the land expands, becomes less dense and rises. Cooler, denser air moves in from the sea surface to replace it — this is the sea breeze.",
           },
@@ -134,6 +167,12 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
             id: "land",
             label: "🌙 Land breeze",
             warmerSide: "sea",
+            image: {
+              src: SCIENCE_F2_CH9_IMAGES.landBreeze,
+              alt: "The same coastline at night under a full moon. The sea is on the left, the beach and land on the right, both lit only by moonlight.",
+              caption:
+                "Night — the land cools faster than the sea, so the air above the sea is now the warmer air.",
+            },
             timeOfDay: "Night",
             note: "At night, the land cools down faster than the sea. The warmer air over the sea surface becomes less dense and rises. Cooler, denser air from the land moves out to the sea — this is the land breeze.",
           },
@@ -150,16 +189,28 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.2",
       title: "Heat Conductors and Heat Insulators",
       intro:
-        "A material that lets heat flow through it easily is known as a heat conductor. A material that prevents or slows down the flow of heat is known as a heat insulator.",
+        "A material that **lets heat flow through it easily** is known as a heat conductor. A material that **prevents or slows down the flow of heat** is known as a heat insulator.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.conductorInsulator,
+          alt: "Two identical clear beakers of hot water standing side by side. A metal spoon stands in the left beaker; a wooden spoon of the same shape and size stands in the right beaker.",
+          caption:
+            "The same hot water and the same spoon shape in both beakers — only the material is different.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
       cards: [
         {
           title: "🔥 Heat conductor",
-          body: "A material that allows heat to flow through it easily. Metals such as copper, aluminium and iron are good heat conductors.",
+          body: "A material that allows heat to flow through it easily. Metals such as **copper, aluminium and iron** are good heat conductors.",
           detail: "Examples: the metal base of a pan, the metal sole plate of an iron.",
         },
         {
           title: "🧊 Heat insulator",
-          body: "A material that prevents or slows down the flow of heat. Wood, cotton, felt, fibreglass and polystyrene are good heat insulators.",
+          body: "A material that prevents or slows down the flow of heat. **Wood, cotton, felt, fibreglass and polystyrene** are good heat insulators.",
           detail: "Examples: oven gloves, the walls of an ice box, wooden handles on kitchen utensils.",
         },
       ],
@@ -182,7 +233,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.3",
       title: "Expansion and Contraction of Matter",
       intro:
-        "When matter is heated, its particles gain energy, move or vibrate faster, and the spacing between the particles increases — so the matter expands. When cooled, the particles move more slowly, the spacing decreases, and the matter contracts. This happens in solids, liquids and gases.",
+        "When matter is heated, its particles gain energy, move or vibrate faster, and **the spacing between the particles increases** — so the matter expands. When cooled, the particles move more slowly, **the spacing decreases**, and the matter contracts. This happens in solids, liquids and gases.",
       expansionParticles: {
         title: "🌡️ Particles during heating and cooling",
         instruction: "Pick a state of matter, then tap heated or cooled.",
@@ -208,6 +259,19 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Uses of Expansion and Contraction",
       intro:
         "The principle of expansion and contraction is used — and must be allowed for — in many everyday situations.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.expansionUses,
+          alt: "Three panels. A small gap left between two lengths of railway rail on their sleepers. The end of a steel bridge deck resting on a roller bearing above a concrete pier. A liquid-in-glass thermometer with a red column rising from its bulb.",
+          caption:
+            "Three everyday allowances for expansion and contraction: the gap in a railway track, the roller under a bridge, and the liquid column in a thermometer.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotations: [],
+        },
+      ],
+
       bimetallicStrip: {
         title: "🔔 The bimetallic strip in a fire alarm",
         instruction: "Tap each state to see how the strip behaves.",
@@ -215,21 +279,29 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
         slowerMetal: "Iron",
         contactLabel: "Contact screw",
         alarmLabel: "Alarm",
+        circuitClosedLabel: "circuit complete",
+        circuitOpenLabel: "circuit open",
         states: [
           { id: "room", label: "Room temperature", note: "At room temperature the strip is straight and does not touch the contact screw. The circuit is incomplete, so the alarm does not sound." },
           { id: "heated", label: "Heated by fire", note: "When exposed to the heat of a fire, copper expands faster than iron. That difference makes the strip bend toward the contact screw, completing the circuit and sounding the alarm." },
         ],
         caption: "The metal that expands faster sits on the outside of the bend.",
         hint: "Pick a state to see how the strip behaves.",
+        image: {
+          src: SCIENCE_F2_CH9_IMAGES.bimetallicAlarm,
+          alt: "A fire-alarm circuit: a cell, a bimetallic strip bolted down at one end with a copper layer above an iron layer, a lit spirit burner under the strip, a contact screw and a bell.",
+          caption:
+            "The same apparatus in both states — only the strip, the contact and the bell change.",
+        },
       },
       accordions: [
         {
           title: "🌡️ Mercury thermometers",
-          body: "Mercury expands and contracts uniformly as the temperature changes, and it detects changes in temperature quickly. The height of the mercury column in the tube is what is used to measure temperature.",
+          body: "Mercury **expands and contracts uniformly** as the temperature changes, and it **detects changes in temperature quickly**. The height of the mercury column in the tube is what is used to measure temperature.",
           detail: "Remember: a thermometer measures temperature, not heat.",
         },
-        { title: "🚂 Gaps in railway tracks", body: "Small gaps are left between sections of rail so the track can expand on a hot day without buckling or lifting." },
-        { title: "🌉 Rollers on steel bridges", body: "One end of the bridge rests on rollers so the whole structure can expand and contract safely as the temperature changes." },
+        { title: "🚂 Gaps in railway tracks", body: "Small gaps are left between sections of rail so the track can **expand on a hot day without buckling or lifting**." },
+        { title: "🌉 Rollers on steel bridges", body: "One end of the bridge rests on rollers so the whole structure can **expand and contract safely** as the temperature changes." },
       ],
       checks: [
         { question: "In a fire-alarm bimetallic strip, which metal expands faster, and which way does the strip bend?", hint: "Copper expands faster than iron, so the strip bends toward the contact screw and completes the circuit." },
@@ -240,7 +312,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.4",
       title: "Heat Absorption and Emission",
       intro:
-        "The ability of an object to absorb and emit heat depends on the type and colour of its surface. When an object absorbs heat, its temperature rises; when an object emits heat, its temperature falls. Dark, dull surfaces are better absorbers and better emitters of heat than light, shiny surfaces.",
+        "The ability of an object to absorb and emit heat depends on the type and colour of its surface. When an object absorbs heat, its temperature rises; when an object emits heat, its temperature falls. **Dark, dull surfaces are better absorbers and better emitters of heat** than light, shiny surfaces.",
       surfaceComparison: {
         title: "⬛⬜ Dark surfaces compared with shiny surfaces",
         instruction: "Tap to switch between absorbing heat and emitting heat.",
@@ -262,11 +334,17 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
         ],
         caption: "The same surface can be both a good absorber and a good emitter.",
         hint: "Pick absorbing or emitting to compare the two surfaces.",
+        image: {
+          src: SCIENCE_F2_CH9_IMAGES.absorptionEmission,
+          alt: "Two identical cans of water standing the same distance from one heat source between them, each with a thermometer through its lid. The can on the left is matte black; the can on the right is shiny silver.",
+          caption:
+            "Identical cans, identical distance, one heat source — only the surface is different.",
+        },
       },
       cards: [
         {
           title: "Everyday uses",
-          body: "Fuel tanker lorries are painted in light colours such as white or silver. Light colours do not absorb much heat, so evaporation of the fuel is reduced.",
+          body: "Fuel tanker lorries are painted in light colours such as white or silver. **Light colours do not absorb much heat**, so evaporation of the fuel is reduced.",
           detail: "Conversely, solar water heaters use dark-coloured panels so they absorb as much of the Sun's heat as possible.",
         },
       ],
@@ -279,25 +357,81 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
       number: "9.4",
       title: "The Green Building Concept",
       intro:
-        "The Green Building Concept is an idea developed to reduce the impact of rapid development on the environment and on human health. The heat concepts in this chapter are used directly: a green home is designed so that the energy needed to cool or heat it is reduced.",
+        "The Green Building Concept is an idea developed to **reduce the impact of rapid development on the environment and on human health**. The heat concepts in this chapter are used directly: a green home is designed so that the energy needed to cool or heat it is reduced.",
+      contextImages: [
+        {
+          src: SCIENCE_F2_CH9_IMAGES.greenBuilding,
+          alt: "A raised tropical house with a wide overhanging roof, solar panels on one roof slope, insulation packed under the roof, louvred and awning windows on every wall, a ceiling fan inside, and shade trees and plants around it.",
+          caption:
+            "Roof insulation, shading, natural ventilation and solar panels — the heat ideas of this chapter, built into one home.",
+          size: "scene",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          priority: true,
+          annotationMode: "numbers",
+          annotations: [
+            {
+              id: "reflective-roof",
+              icon: "☀️",
+              label: "Light-coloured roof",
+              x: 45.5,
+              y: 25.5,
+              note: "A light, shiny roof is a poor absorber of heat, so less of the Sun's heat is absorbed into the building.",
+            },
+            {
+              id: "insulation",
+              icon: "🧊",
+              label: "Roof insulation",
+              x: 31.4,
+              y: 50.2,
+              note: "Insulation packed under the roof is a heat insulator. It slows the flow of heat from the hot roof into the rooms, so less energy is needed to cool them.",
+            },
+            {
+              id: "overhang",
+              icon: "🌤️",
+              label: "Roof overhang",
+              x: 17.9,
+              y: 59.5,
+              note: "The wide overhang keeps direct sunlight off the walls and windows below it, so less heat is absorbed through them.",
+            },
+            {
+              id: "ventilation",
+              icon: "🌬️",
+              label: "Louvred windows",
+              x: 44.3,
+              y: 65.9,
+              note: "Louvred windows on opposite walls let convection currents carry warm air out and cooler air in, without a fan or air conditioning.",
+            },
+            {
+              id: "trees",
+              icon: "🌳",
+              label: "Shade trees",
+              x: 86.7,
+              y: 21.3,
+              note: "Trees planted beside the house shade the roof and walls, so less of the Sun's heat reaches them in the first place.",
+            },
+          ],
+        },
+      ],
+
       tabs: [
         {
           title: "⚡ Energy efficiency",
-          body: "A green building has high energy efficiency, for example through the use of solar energy or other renewable energy. Heat insulation in the walls and roof reduces heat flowing in, so less energy is needed for air conditioning.",
+          body: "A green building has **high energy efficiency**, for example through the use of solar energy or other renewable energy. Heat insulation in the walls and roof reduces heat flowing in, so less energy is needed for air conditioning.",
         },
         {
           title: "💧 Water efficiency",
-          body: "Good water-flow systems, including rainwater harvesting and water recycling, reduce the use of clean water.",
+          body: "**Good water-flow systems**, including rainwater harvesting and water recycling, reduce the use of clean water.",
         },
         {
           title: "🏗️ Site and building materials",
-          body: "A sustainable construction site and the use of recycled building materials reduce the impact on the environment. Light-coloured roofs and walls reflect more of the Sun's heat.",
+          body: "A sustainable construction site and the use of **recycled building materials** reduce the impact on the environment. Light-coloured roofs and walls reflect more of the Sun's heat.",
         },
         {
           title: "💡 Air circulation and innovation",
-          body: "Good natural air-circulation and lighting systems let convection currents carry warm air out without fans or air conditioning. Design innovations like these make a home comfortable using far less energy.",
+          body: "**Good natural air-circulation and lighting systems** let convection currents carry warm air out without fans or air conditioning. Design innovations like these make a home comfortable using far less energy.",
         },
       ],
+      checksTitle: "Green Building — quick check",
       checks: [
         { question: "How does heat insulation in a roof reduce a home's energy use?", hint: "Insulation slows the flow of heat from the hot roof into the house, so less energy is needed to cool the space inside." },
         { question: "Why do light-coloured roofs and walls help keep a house cool?", hint: "Light, shiny surfaces are poor absorbers of heat, so less of the Sun's heat is absorbed into the building." },

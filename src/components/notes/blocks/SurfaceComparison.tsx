@@ -2,34 +2,43 @@ import { useState } from "react";
 import type { SurfaceComparisonBlock } from "@/content/form2/science/interactive-types";
 import { conceptButtonClass, InteractiveBadge } from "./InteractiveFigureCard";
 import { figureCopy } from "./figure-copy";
+import { ApparatusOverlayFigure } from "./ApparatusOverlayFigure";
+import {
+  CANS,
+  CH9_ART,
+  CH9_ART_ASPECT,
+  absorptionRays,
+  emissionRays,
+} from "./ch9-heat-geometry";
+import { CH9_COLOURS, FlowArrow, OverlayTag } from "./Ch9OverlayParts";
 
 /**
- * Dark/dull versus white/shiny, for absorption and emission.
+ * Dark and dull versus light and shiny, for absorption and emission.
  *
- * Absorption and emission are separate views rather than one merged picture,
+ * The base is the controlled experiment itself: two identical cans, one matte
+ * black and one shiny silver, each with a thermometer, and one heat source
+ * standing between them. The abstract pair of rectangles this replaces made the
+ * comparison look like a claim about colour; the apparatus makes it a
+ * measurement, and the thermometers are what is actually read.
+ *
+ * Absorption and emission stay separate views rather than one merged picture,
  * because collapsing them is how "dark absorbs better" quietly becomes the only
  * thing a learner remembers. In both views the dark can is the better performer,
- * and the arrow direction is the only thing that changes: inward for absorbing,
- * outward for emitting.
+ * and the direction of the arrows is what changes.
  */
-
-const CANS = [
-  { id: "dark", x: 104, dark: true },
-  { id: "shiny", x: 216, dark: false },
-] as const;
-const CAN = { y: 56, w: 46, h: 62 } as const;
-
 export function SurfaceComparison({ block, lang }: { block: SurfaceComparisonBlock; lang?: string }) {
   const [mode, setMode] = useState<"absorb" | "emit">((block.modes[0]?.id as "absorb") ?? "absorb");
   const copy = figureCopy(lang);
   const active = block.modes.find((m) => m.id === mode) ?? block.modes[0];
   const absorbing = mode === "absorb";
+  const rays = absorbing ? absorptionRays() : emissionRays();
+  const { dark, shiny, source } = CANS;
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
       <InteractiveBadge lang={lang} instruction={block.instruction} className="mb-2.5" />
 
-      <div className="mb-2 flex flex-wrap gap-1.5" role="group" aria-label={copy.controlsLabel}>
+      <div className="mb-2.5 flex flex-wrap gap-1.5" role="group" aria-label={copy.controlsLabel}>
         {block.modes.map((m) => (
           <button
             key={m.id}
@@ -43,62 +52,69 @@ export function SurfaceComparison({ block, lang }: { block: SurfaceComparisonBlo
         ))}
       </div>
 
-      <div className="overflow-x-auto">
-        <svg
-          viewBox="0 0 320 165"
-          className="mx-auto h-auto w-full min-w-[290px] max-w-[430px]"
-          role="img"
-          aria-label={active?.label ?? block.title}
-        >
-          {CANS.map((c) => {
-            // The dark can always performs better, in whichever direction applies.
-            const strong = c.dark;
-            const arrowCount = strong ? 3 : 1;
-            return (
-              <g key={c.id}>
-                <rect
-                  x={c.x - CAN.w / 2}
-                  y={CAN.y}
-                  width={CAN.w}
-                  height={CAN.h}
-                  rx="3"
-                  className={c.dark ? "fill-slate-800 stroke-slate-500" : "fill-slate-100 stroke-slate-400"}
-                  strokeWidth="2.5"
+      <ApparatusOverlayFigure
+        src={block.image.src}
+        alt={block.image.alt}
+        aspect={CH9_ART_ASPECT}
+        caption={block.image.caption}
+        priority
+        overlay={{
+          width: CH9_ART.width,
+          height: CH9_ART.height,
+          label: active?.label ?? block.title,
+          children: (
+            <>
+              {/* Emission is measured with both cans filled with hot water and no
+                  external source, so the heater is muted rather than left
+                  glowing beside a caption that says it is not being used. */}
+              {!absorbing && (
+                <ellipse
+                  cx={source.x}
+                  cy={source.y + 20}
+                  rx={190}
+                  ry={95}
+                  fill={CH9_COLOURS.outline}
+                  fillOpacity={0.62}
                 />
-                {/* thermometer poking out of each can */}
-                <line x1={c.x} y1={CAN.y - 18} x2={c.x} y2={CAN.y + 12} className="stroke-muted-foreground" strokeWidth="2.5" />
-                <circle cx={c.x} cy={CAN.y - 21} r="4" className={c.dark ? "fill-rose-300" : "fill-sky-300"} />
+              )}
 
-                {/* energy arrows: inward when absorbing, outward when emitting */}
-                {Array.from({ length: arrowCount }, (_, i) => {
-                  const y = CAN.y + 16 + i * 16;
-                  const outer = c.x - CAN.w / 2 - 30;
-                  const inner = c.x - CAN.w / 2 - 4;
-                  const from = absorbing ? outer : inner;
-                  const to = absorbing ? inner : outer;
-                  return (
-                    <g key={i} className={strong ? "text-amber-300" : "text-amber-300/45"}>
-                      <line x1={from} y1={y} x2={to} y2={y} stroke="currentColor" strokeWidth="2.4" />
-                      <path
-                        d="M-5,-4 L5,0 L-5,4 Z"
-                        transform={`translate(${to} ${y}) rotate(${to > from ? 0 : 180})`}
-                        fill="currentColor"
-                      />
-                    </g>
-                  );
-                })}
+              {rays.map((ray) => (
+                <FlowArrow
+                  key={ray.key}
+                  arrow={ray}
+                  colour={CH9_COLOURS.ray}
+                  width={ray.strong ? 10 : 8}
+                  opacity={ray.strong ? 1 : 0.5}
+                  head={ray.strong ? 1 : 0.8}
+                />
+              ))}
 
-                <text x={c.x} y={CAN.y + CAN.h + 18} textAnchor="middle" fontSize="9.5" fontWeight="bold" className={c.dark ? "fill-slate-300" : "fill-slate-400"}>
-                  {c.dark ? block.darkLabel : block.shinyLabel}
-                </text>
-                <text x={c.x} y={CAN.y + CAN.h + 32} textAnchor="middle" fontSize="9" fontWeight="bold" className={strong ? "fill-emerald-300" : "fill-muted-foreground"}>
-                  {strong ? block.betterLabel : block.poorerLabel}
-                </text>
-              </g>
-            );
-          })}
-        </svg>
-      </div>
+              {/* Which surface each can is, and how it performs in this mode. */}
+              {(
+                [
+                  [dark, block.darkLabel, block.betterLabel, true],
+                  [shiny, block.shinyLabel, block.poorerLabel, false],
+                ] as const
+              ).map(([can, name, verdict, strong]) => (
+                <g key={name}>
+                  <OverlayTag
+                    x={can.x + can.w / 2}
+                    y={can.y - 18}
+                    text={name}
+                    colour={strong ? CH9_COLOURS.ray : CH9_COLOURS.cool}
+                  />
+                  <OverlayTag
+                    x={can.x + can.w / 2}
+                    y={can.y + can.h + 74}
+                    text={verdict}
+                    colour={strong ? CH9_COLOURS.flow : CH9_COLOURS.cool}
+                  />
+                </g>
+              ))}
+            </>
+          ),
+        }}
+      />
 
       <p className="mt-1 text-center text-[11.5px] italic text-muted-foreground">{block.caption}</p>
 

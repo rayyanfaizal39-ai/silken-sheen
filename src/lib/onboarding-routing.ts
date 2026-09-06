@@ -56,6 +56,7 @@ export function shouldRedirectToLogin(
   pathname: string,
   authLoading: boolean,
   hasUser: boolean,
+  isGuest = false,
 ): boolean {
-  return !authLoading && !hasUser && STUDENT_PROTECTED_ROUTES.has(pathname);
+  return !authLoading && !hasUser && !isGuest && STUDENT_PROTECTED_ROUTES.has(pathname);
 }

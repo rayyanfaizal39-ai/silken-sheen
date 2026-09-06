@@ -43,6 +43,12 @@ describe("onboarding routing", () => {
     expect(shouldRedirectToLogin("/payment-return", false, false)).toBe(false);
   });
 
+  it("lets an active guest into student-protected routes without a session", () => {
+    expect(shouldRedirectToLogin("/home", false, false, true)).toBe(false);
+    expect(shouldRedirectToLogin("/profile", false, false, true)).toBe(false);
+    expect(shouldRedirectToLogin("/home", false, false, false)).toBe(true);
+  });
+
   it.each(["/login", "/forgot-password", "/auth/callback", "/auth/reset-password"])(
     "keeps Explorer Profile data out of public auth route %s",
     (pathname) => {

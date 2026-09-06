@@ -5,7 +5,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
   chapter: 8,
   blogHighlight: {
     title: "Science Blog — Force Is All Around Us",
-    body: "Walking, chewing, kicking a ball, pulling a rope in tug-of-war — all of these are forces at work. You cannot see a force, but you can always feel what it does.",
+    body: "Walking, chewing, kicking a ball, pulling a rope in tug-of-war — all of these are forces at work. **You cannot see a force**, but you can always **feel what it does**.",
     imagePath: chapterImage,
   },
   keywords: [
@@ -32,7 +32,9 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.1",
       title: "Types of Forces",
       intro:
-        "A force is a push or a pull acting on an object. A force cannot be seen, but its effects can always be observed. Almost every daily activity involves force — opening a can of food, pressing a switch, opening a door. Tap each type of force below to get to know it.",
+        "A force is a **push or a pull** acting on an object. A force cannot be seen, but its effects can always be observed. Almost every daily activity involves force — opening a can of food, pressing a switch, opening a door. Tap each type of force below to get to know it.",
+      remember:
+        "A force is a push or a pull acting on an object — even though it cannot be seen, its effects can always be observed.",
       flipCards: [
         { id: "gravitational", icon: "🌍", label: "Gravitational force", fact: "Pulls every object toward the centre of the Earth — which is what brings a thrown ball back down." },
         { id: "weight", icon: "⚖️", label: "Weight", fact: "The gravitational force acting on the mass of an object." },
@@ -50,7 +52,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.1",
       title: "Magnitude, Direction and Point of Application",
       intro:
-        "Force is a vector quantity: every force has a magnitude (how strong it is), a direction, and a point of application (exactly where the force acts). That is why a force is drawn as an arrow — the length of the arrow shows the magnitude, the arrowhead shows the direction, and the tail sits on the point of application.",
+        "Force is a **vector quantity**: every force has a magnitude (how strong it is), a direction, and a **point of application (exactly where the force acts)**. That is why a force is drawn as an arrow — the length of the arrow shows the magnitude, the arrowhead shows the direction, and the tail sits on the point of application.",
       forceDiagram: {
         title: "➡️ Drawing a force as an arrow",
         instruction: "Tap each example to see where the force is applied.",
@@ -79,12 +81,12 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Measuring force",
-          body: "Force is measured with a spring balance, which works on the principle of spring extension. The strength of the force is read from the scale on the balance.",
+          body: "Force is measured with a **spring balance**, which works on the **principle of spring extension**. The strength of the force is read from the scale on the balance.",
           detail: "A spring balance is also used to measure the weight of a body and frictional force.",
         },
         {
           title: "Unit of force",
-          body: "The S.I. unit of force is the newton (N). On Earth, an object with a mass of 100 g has a weight of 1 N — so an object with a mass of 1 kg has a weight of 10 N.",
+          body: "The S.I. unit of force is the **newton (N)**. On Earth, an object with a mass of 100 g has a weight of 1 N — so an object with a mass of 1 kg has a weight of 10 N.",
         },
       ],
       checks: [
@@ -96,19 +98,19 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.1",
       title: "Action and Reaction Forces",
       intro:
-        "For every action force there is a reaction force of equal magnitude acting in the opposite direction. The three situations below show these force pairs clearly.",
+        "For every action force there is a reaction force of **equal magnitude acting in the opposite direction**. The three situations below show these force pairs clearly.",
       accordions: [
         {
           title: "📖 A body resting on a table",
-          body: "The weight of the book (action force) pulls downward. At the same time, the normal force from the table (reaction force) pushes upward with equal magnitude. The book stays at rest because the two magnitudes are equal.",
+          body: "The weight of the book (action force) pulls downward. At the same time, the **normal force from the table (reaction force)** pushes upward with equal magnitude. The book stays at rest because the two magnitudes are equal.",
         },
         {
           title: "🪵 A body floating on water",
-          body: "The weight of the block (action force) pulls downward. The buoyant force (reaction force) pushes upward with equal magnitude. The object floats because the two magnitudes are equal.",
+          body: "The weight of the block (action force) pulls downward. The **buoyant force (reaction force)** pushes upward with equal magnitude. The object floats because the two magnitudes are equal.",
         },
         {
           title: "🚃 Two trolleys released",
-          body: "The first trolley exerts an elastic force on the second trolley — that is the action force. At the same time, the second trolley exerts a force of equal magnitude but in the opposite direction on the first trolley — that is the reaction force. Once released, both trolleys move in opposite directions through equal distances.",
+          body: "The first trolley exerts an elastic force on the second trolley — that is the **action force**. At the same time, the second trolley exerts a force of equal magnitude but in the opposite direction on the first trolley — that is the **reaction force**. Once released, both trolleys move in opposite directions through equal distances.",
         },
       ],
       checks: [
@@ -120,7 +122,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Effects of Force",
       intro:
-        "A force cannot be seen directly, but its effects can always be detected. There are five main effects of a force acting on an object.",
+        "A force cannot be seen directly, but its effects can always be detected. There are **five main effects** of a force acting on an object.",
       flipCards: [
         { id: "moves", icon: "▶️", label: "Moves a stationary object", fact: "Push a toy car at rest and it starts to move." },
         { id: "stops", icon: "⏹️", label: "Stops a moving object", fact: "A force from the opposite direction stops a moving toy car." },
@@ -137,7 +139,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Buoyancy and Density",
       intro:
-        "Buoyant force is the upthrust a liquid exerts on an object in it. Buoyant force can be determined with a spring balance, by comparing the weight of the object in air with its weight while submerged.",
+        "Buoyant force is the **upthrust** a liquid exerts on an object in it. Buoyant force can be determined with a spring balance, by comparing the weight of the object in air with its weight while submerged.",
       buoyancySchematic: {
         title: "🌊 Finding buoyant force with a spring balance",
         instruction: "Tap each state to see the forces acting.",
@@ -166,11 +168,11 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Density decides floating or sinking",
-          body: "An object less dense than the liquid floats; an object denser than the liquid sinks. Cork (0.24 g cm⁻³) floats on water (1.0 g cm⁻³), while iron (7.9 g cm⁻³) sinks.",
+          body: "An object **less dense than the liquid floats**; an object **denser than the liquid sinks**. Cork (0.24 g cm⁻³) floats on water (1.0 g cm⁻³), while iron (7.9 g cm⁻³) sinks.",
         },
         {
           title: "The Plimsoll Line",
-          body: "Cargo ships are marked with a Plimsoll line for safety. The density of sea water differs with temperature and salt concentration in different places, so the safe floating level of the ship differs too.",
+          body: "Cargo ships are marked with a **Plimsoll line** for safety. The density of sea water differs with temperature and salt concentration in different places, so the safe floating level of the ship differs too.",
           detail: "Marks on the Plimsoll line: TF (tropical fresh water), F (fresh water), T (tropical sea water), S (summer sea), W (winter sea) and WNA (winter North Atlantic).",
         },
       ],
@@ -183,7 +185,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Levers",
       intro:
-        "A lever is a bar that turns about one fixed point. A lever has three parts: the fulcrum (the fixed supporting point), the load (the object to be moved) and the effort (the push or pull applied to the bar). Levers let us do work more easily, often using a smaller force.",
+        "A lever is a **bar that turns about one fixed point**. A lever has three parts: the fulcrum (the fixed supporting point), the load (the object to be moved) and the effort (the push or pull applied to the bar). Levers let us do work more easily, often using a smaller force.",
       leverClasses: {
         title: "⚖️ The three classes of lever",
         instruction: "Tap each class to see where the fulcrum, load and effort sit.",
@@ -240,7 +242,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Moment of Force",
       intro:
-        "A force applied to an object can turn that object about a fixed point called the pivot or fulcrum. The turning effect produced is called the moment of force.",
+        "A force applied to an object can turn that object about a fixed point called the **pivot or fulcrum**. The turning effect produced is called the **moment of force**.",
       momentDiagram: {
         title: "🔩 Moment of force and perpendicular distance",
         instruction: "Tap each situation to see which distance goes into the calculation.",
@@ -290,7 +292,9 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Pressure",
       intro:
-        "You can press a drawing pin into a board, but you cannot press a coin into a board even using the same force. The reason is pressure: pressure is defined as force per unit surface area, with the force acting perpendicular to that surface. The S.I. unit of pressure is the pascal (Pa); 1 Pa is equal to 1 newton per square metre (N m⁻²).",
+        "You can press a drawing pin into a board, but you cannot press a coin into a board even using the same force. The reason is pressure: pressure is defined as **force per unit surface area**, with the force acting perpendicular to that surface. The S.I. unit of pressure is the pascal (Pa); 1 Pa is equal to 1 newton per square metre (N m⁻²).",
+      remember:
+        "Pressure is defined as force per unit surface area, with the force acting perpendicular to that surface. The S.I. unit of pressure is the pascal (Pa).",
       pressureApparatus: {
         title: "🧪 The investigation set-up",
         instruction: "Tap each part of the apparatus to see what it is for.",
@@ -375,7 +379,9 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Gas Pressure",
       intro:
-        "The kinetic theory of gases states that air molecules move randomly at all times and collide with the walls of their container. These collisions produce a force pushing on the container walls — and that force per unit area is what we call air pressure.",
+        "The **kinetic theory of gases** states that air molecules move randomly at all times and collide with the walls of their container. These collisions produce a force pushing on the container walls — and that force per unit area is what we call **air pressure**.",
+      quickExplanation:
+        "A balloon expands when blown up because the air pressure inside it pushes outward on its wall, and it deflates when the air is released because that pressure drops.",
       gasParticles: {
         title: "💨 What changes gas pressure",
         instruction: "Tap each state to see the effect on collisions.",
@@ -409,11 +415,11 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Atmospheric Pressure",
       intro:
-        "Atmospheric pressure is the pressure exerted by the atmosphere on the surface of the Earth and on all bodies on it. Use the terms correctly: air pressure is the pressure exerted by air in general, while atmospheric pressure refers specifically to the pressure exerted by the Earth's atmosphere.",
+        "Atmospheric pressure is **the pressure exerted by the atmosphere on the surface of the Earth and on all bodies on it**. Use the terms correctly: air pressure is the pressure exerted by air in general, while atmospheric pressure refers specifically to the pressure exerted by the Earth's atmosphere.",
       cards: [
         {
           title: "Altitude and atmospheric pressure",
-          body: "Atmospheric pressure decreases as altitude increases. The higher you are, the less air there is above you, so the weight of the column of air pressing down is smaller and the atmospheric pressure is lower. At the foot of a mountain there are more air molecules above you, so the pressure there is higher.",
+          body: "**Atmospheric pressure decreases as altitude increases.** The higher you are, the less air there is above you, so the weight of the column of air pressing down is smaller and the atmospheric pressure is lower. At the foot of a mountain there are more air molecules above you, so the pressure there is higher.",
           detail: "High mountain peaks such as Mount Everest are places of very low atmospheric pressure.",
         },
       ],
@@ -432,11 +438,11 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       accordions: [
         {
           title: "🥤 Drinking straw",
-          body: "When the air inside the straw is sucked out, the space inside becomes a region of low pressure. The higher air pressure outside — the atmospheric pressure — pushes the drink up into the straw and into your mouth. The straw does not 'suck' the drink upward by itself.",
+          body: "When the air inside the straw is sucked out, the space inside becomes a region of low pressure. The higher air pressure outside — the atmospheric pressure — **pushes the drink up into the straw** and into your mouth. The straw does not 'suck' the drink upward by itself.",
         },
         {
           title: "🔵 Magdeburg hemispheres",
-          body: "When the air inside the hemispheres is pumped out so that the space inside becomes a vacuum, the pressure inside becomes zero. The two hemispheres are very hard to pull apart because the atmospheric pressure outside exerts a very large force on them.",
+          body: "When the air inside the hemispheres is pumped out so that the space inside becomes a vacuum, the pressure inside becomes zero. The two hemispheres are very hard to pull apart because the **atmospheric pressure outside exerts a very large force** on them.",
         },
         {
           title: "🚿 Sink plunger",
@@ -444,7 +450,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "💧 Siphon",
-          body: "One end of the tube is placed lower so that water flows out of it. The water flowing out lowers the pressure inside the tube, and atmospheric pressure pushes water into the tube — making the water flow out continuously.",
+          body: "One end of the tube is placed lower so that water flows out of it. The water flowing out lowers the pressure inside the tube, and atmospheric pressure pushes water into the tube — making the water **flow out continuously**.",
         },
         {
           title: "💉 Syringe",
@@ -464,7 +470,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       number: "8.2",
       title: "Liquid Pressure",
       intro:
-        "Pressure in a liquid increases as depth increases. A diver feels pressure because of the weight of the water acting on their body, and that pressure grows the deeper they dive.",
+        "**Pressure in a liquid increases as depth increases.** A diver feels pressure because of the weight of the water acting on their body, and that pressure grows the deeper they dive.",
       depthPressure: {
         title: "🌊 Depth and liquid pressure",
         instruction: "Tap each hole position to compare the pressure there.",

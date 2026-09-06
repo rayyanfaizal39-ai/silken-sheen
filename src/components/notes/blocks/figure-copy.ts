@@ -30,6 +30,21 @@ export type FigureCopy = {
   /** Spoken pole names, for the accessible label on each drawn letter. */
   poleNorthName: string;
   poleSouthName: string;
+  /**
+   * Names for the two things every current-and-field overlay draws, used in the
+   * figure's colour key. They live here rather than in chapter content because
+   * the same two words caption every such figure, in either language, and a
+   * key that could drift between BM and DLP is a key that eventually does.
+   */
+  currentKey: string;
+  fieldKey: string;
+  /**
+   * Spoken names for the field-direction symbols — a dot for a field coming out
+   * of the page, a cross for one going into it. A screen reader must never be
+   * left to read out a bare dot.
+   */
+  fieldOutOfPage: string;
+  fieldIntoPage: string;
   /** Label above the km input on the A.U. / light-year converter. */
   /** Row-header label for the planet column in a comparison table. */
   planetColumn: string;
@@ -52,6 +67,10 @@ const COPY: Record<FigureLang, FigureCopy> = {
     poleSouth: "S",
     poleNorthName: "Kutub utara",
     poleSouthName: "Kutub selatan",
+    currentKey: "Arus",
+    fieldKey: "Medan magnet",
+    fieldOutOfPage: "Medan magnet keluar dari halaman",
+    fieldIntoPage: "Medan magnet masuk ke dalam halaman",
     planetColumn: "Planet",
     distanceKm: "Jarak (km)",
     enterDistance: "Masukkan jarak",
@@ -68,6 +87,10 @@ const COPY: Record<FigureLang, FigureCopy> = {
     poleSouth: "S",
     poleNorthName: "North pole",
     poleSouthName: "South pole",
+    currentKey: "Current",
+    fieldKey: "Magnetic field",
+    fieldOutOfPage: "Magnetic field out of the page",
+    fieldIntoPage: "Magnetic field into the page",
     planetColumn: "Planet",
     distanceKm: "Distance (km)",
     enterDistance: "Enter a distance",
