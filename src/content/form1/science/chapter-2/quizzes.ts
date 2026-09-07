@@ -22,15 +22,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.1",
     difficulty: "Easy",
     bm: {
-      question: "Apakah yang berlaku apabila sel normal terus membahagi tanpa kawalan?",
+      question: "Mengapakah sel dianggap sebagai unit asas bagi semua hidupan?",
       options: [
-        "Kanser boleh terbentuk",
-        "Fotosintesis berhenti",
-        "Sel menjadi organisma unisel",
-        "Respirasi sel tidak berlaku",
+        "Sel ialah unit terkecil yang dapat menjalankan proses kehidupan",
+        "Sel ialah struktur terkecil yang terdiri daripada beberapa tisu",
+        "Sel ialah struktur yang hanya terdapat dalam organisma multisel",
+        "Sel ialah bahagian organisma yang hanya menjalankan satu proses kehidupan",
       ],
       answerIndex: 0,
-      explanation: "Kanser terbentuk apabila sel normal membahagi secara berterusan tanpa kawalan.",
+      explanation: "Sel ialah unit asas hidupan kerana sel merupakan unit terkecil yang mampu menjalankan proses kehidupan.",
     },
     dlp: {
       question: "What may happen when normal cells continue to divide without control?",
@@ -118,11 +118,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.5",
     difficulty: "Easy",
     bm: {
-      question:
-        "Sel tumbuhan manakah meningkatkan luas permukaan untuk menyerap air dan nutrien dari tanah?",
-      options: ["Sel rerambut akar", "Sel pengawal", "Sel palisad", "Sel epidermis"],
+      question: "Sel tumbuhan manakah mempunyai unjuran yang meningkatkan luas permukaan untuk menyerap air dan garam mineral dari tanah?",
+      options: [
+        "Sel rerambut akar",
+        "Sel pengawal",
+        "Sel palisad",
+        "Sel epidermis daun",
+      ],
       answerIndex: 0,
-      explanation: "Sel rerambut akar yang banyak meningkatkan luas permukaan penyerapan.",
+      explanation: "Unjuran sel rerambut akar meningkatkan luas permukaan untuk menyerap air dan garam mineral dari tanah.",
     },
     dlp: {
       question: "Which plant cell increases surface area to absorb water and nutrients from soil?",
@@ -163,11 +167,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.2",
     difficulty: "Easy",
     bm: {
-      question: "Pewarna manakah digunakan pada sel pipi dalam penyediaan slaid buku teks?",
-      options: ["Larutan metilena biru", "Larutan iodin", "Etanol", "Kalium hidroksida"],
+      question: "Mengapakah spesimen yang hendak diperhatikan di bawah mikroskop perlu dibuat nipis?",
+      options: [
+        "Supaya cahaya dapat menembusi spesimen dan struktur sel dapat dilihat dengan jelas",
+        "Supaya spesimen membesarkan imej sel tanpa bantuan kanta",
+        "Supaya semua bahagian sel menyerap cahaya dan kelihatan gelap",
+        "Supaya sel dalam spesimen membahagi sebelum pemerhatian",
+      ],
       answerIndex: 0,
-      explanation:
-        "Larutan metilena biru mewarnai sel pipi supaya dapat diperhatikan dengan lebih jelas.",
+      explanation: "Spesimen yang nipis membolehkan cahaya menembusinya dengan lebih mudah, lalu struktur sel dapat diperhatikan dengan lebih jelas.",
     },
     dlp: {
       question: "Which stain is used for cheek cells in the textbook slide preparation?",
@@ -180,16 +188,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.2.1",
     difficulty: "Easy",
     bm: {
-      question: "Apakah hasil respirasi sel?",
+      question: "Mengapakah respirasi sel penting kepada organisma hidup?",
       options: [
-        "Karbon dioksida, air dan tenaga",
-        "Glukosa dan oksigen",
-        "Kanji dan klorofil",
-        "Cahaya dan air",
+        "Membebaskan tenaga daripada glukosa bagi menjalankan proses kehidupan",
+        "Menyimpan tenaga cahaya dengan membentuk glukosa",
+        "Menghasilkan glukosa daripada karbon dioksida dan air",
+        "Membekalkan oksigen melalui penguraian air",
       ],
       answerIndex: 0,
-      explanation:
-        "Respirasi sel menggunakan glukosa dan oksigen untuk menghasilkan karbon dioksida, air dan tenaga.",
+      explanation: "Respirasi sel membebaskan tenaga daripada glukosa. Tenaga ini diperlukan untuk menjalankan proses kehidupan.",
     },
     dlp: {
       question: "What are the products of cell respiration?",
@@ -255,12 +262,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.1",
     difficulty: "Medium",
     bm: {
-      question:
-        "Kulit yang luka membentuk sel baharu untuk menggantikan sel rosak. Proses apakah yang terlibat?",
-      options: ["Pembahagian sel", "Fotosintesis", "Perkumuhan", "Pertukaran gas"],
+      question: "Kulit yang luka membentuk sel baharu untuk menggantikan sel rosak. Proses apakah yang terlibat?",
+      options: [
+        "Pembahagian sel",
+        "Pembesaran sel sedia ada sahaja",
+        "Pengkhususan sel tanpa pembahagian",
+        "Penggabungan sel rosak",
+      ],
       answerIndex: 0,
-      explanation:
-        "Pembahagian sel membentuk sel baharu untuk pertumbuhan dan menggantikan sel yang rosak.",
+      explanation: "Pembahagian sel membentuk sel baharu untuk pertumbuhan dan menggantikan sel yang rosak.",
     },
     dlp: {
       question: "Damaged skin forms new cells to replace injured cells. Which process is involved?",
@@ -273,17 +283,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.3",
     difficulty: "Medium",
     bm: {
-      question:
-        "Satu rajah sel tumbuhan menunjukkan dinding sel tetapi tidak menunjukkan membran sel. Mengapakah rajah itu tidak lengkap?",
+      question: "Seorang murid memerhati sel epidermis bawang dan sel pipi manusia di bawah mikroskop. Struktur manakah yang dijangka terdapat pada sel bawang tetapi tidak pada sel pipi?",
       options: [
-        "Sel tumbuhan juga mempunyai membran sel",
-        "Membran sel hanya terdapat pada sel haiwan",
-        "Dinding sel menggantikan nukleus",
-        "Kloroplas mengawal pergerakan bahan",
+        "Dinding sel",
+        "Membran sel",
+        "Sitoplasma",
+        "Nukleus",
       ],
       answerIndex: 0,
-      explanation:
-        "Sel tumbuhan mempunyai dinding sel dan membran sel; membran mengawal pergerakan bahan ke dalam dan ke luar sel.",
+      explanation: "Sel tumbuhan mempunyai dinding sel, manakala sel haiwan tidak. Kedua-duanya mempunyai membran sel, sitoplasma dan nukleus.",
     },
     dlp: {
       question:
@@ -303,17 +311,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.4",
     difficulty: "Medium",
     bm: {
-      question:
-        "Mengapakah Euglena tidak wajar dilabel sebagai haiwan sahaja atau tumbuhan sahaja dalam ringkasan?",
+      question: "Amoeba hanya terdiri daripada satu sel. Bagaimanakah Amoeba dapat terus hidup walaupun hanya mempunyai satu sel?",
       options: [
-        "Euglena mempunyai ciri tumbuhan dan haiwan",
-        "Euglena ialah organisma multisel",
-        "Euglena tidak menjalankan proses hidup",
-        "Euglena ialah tisu",
+        "Sel tunggalnya menjalankan semua proses kehidupan",
+        "Sel tunggalnya menjalankan pembiakan tetapi tidak menjalankan respirasi",
+        "Sel tunggalnya memperoleh tenaga tanpa mengambil makanan",
+        "Sel tunggalnya menyimpan semua bahan kumuh tanpa menyingkirkannya",
       ],
       answerIndex: 0,
-      explanation:
-        "Buku teks menerangkan bahawa Euglena membuat makanan seperti tumbuhan dan bergerak seperti haiwan.",
+      explanation: "Dalam organisma unisel, satu sel menjalankan semua proses kehidupan seperti respirasi, pemakanan, perkumuhan, pertumbuhan dan pembiakan.",
     },
     dlp: {
       question:
@@ -335,14 +341,13 @@ const pairs: Chapter2QuizPair[] = [
     bm: {
       question: "Gabungan struktur dan fungsi manakah betul bagi sel darah merah?",
       options: [
-        "Cakera dwicekung — menambahkan luas permukaan untuk pengangkutan oksigen",
-        "Gentian panjang — menyerap air dari tanah",
-        "Klorofil — memusnahkan partikel asing",
-        "Stoma — membawa impuls",
+        "Cakera dwicekung - menambahkan luas permukaan untuk pengangkutan oksigen",
+        "Cakera dwicekung - memerangkap partikel asing untuk dimusnahkan",
+        "Gentian panjang - membawa impuls ke seluruh badan",
+        "Unjuran panjang - menyerap air dan garam mineral",
       ],
       answerIndex: 0,
-      explanation:
-        "Bentuk cakera dwicekung menambahkan luas permukaan sel darah merah, dan hemoglobin mengangkut oksigen.",
+      explanation: "Bentuk cakera dwicekung menambahkan luas permukaan sel darah merah, dan hemoglobin mengangkut oksigen.",
     },
     dlp: {
       question: "Which structure-function link is correct for a red blood cell?",
@@ -361,11 +366,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.6",
     difficulty: "Medium",
     bm: {
-      question: "Dalam laluan organisasi tumbuhan, apakah aras selepas tisu epidermis?",
-      options: ["Daun", "Sel epidermis", "Sistem pengangkutan", "Tumbuhan"],
+      question: "Perut dan usus kecil bekerjasama untuk mencerna makanan. Apakah aras organisasi yang diwakili oleh gabungan organ ini?",
+      options: [
+        "Sistem pencernaan",
+        "Tisu otot",
+        "Sel epitelium",
+        "Organisma",
+      ],
       answerIndex: 0,
-      explanation:
-        "Contoh buku teks ialah sel epidermis → tisu epidermis → daun → sistem pengangkutan → tumbuhan.",
+      explanation: "Beberapa organ yang bekerjasama menjalankan fungsi tertentu membentuk sistem. Perut dan usus kecil merupakan organ dalam sistem pencernaan.",
     },
     dlp: {
       question: "In the plant organisation pathway, which level follows epidermal tissue?",
@@ -381,14 +390,13 @@ const pairs: Chapter2QuizPair[] = [
     bm: {
       question: "Apakah perbezaan utama antara pernafasan dengan respirasi sel?",
       options: [
-        "Pernafasan ialah pertukaran gas; respirasi sel menguraikan glukosa untuk membebaskan tenaga",
-        "Kedua-duanya hanya berlaku dalam kloroplas",
-        "Pernafasan menghasilkan glukosa; respirasi sel menghasilkan cahaya",
-        "Respirasi sel hanya berlaku pada waktu siang",
+        "Pernafasan melibatkan pertukaran gas; respirasi sel menguraikan glukosa untuk membebaskan tenaga",
+        "Pernafasan menguraikan glukosa; respirasi sel menggerakkan udara masuk dan keluar dari peparu",
+        "Pernafasan hanya berlaku dalam sel tumbuhan; respirasi sel hanya berlaku dalam sel haiwan",
+        "Pernafasan menghasilkan glukosa; respirasi sel menyimpan tenaga cahaya",
       ],
       answerIndex: 0,
-      explanation:
-        "Pernafasan ialah pertukaran gas dengan persekitaran, manakala respirasi sel berlaku dalam sel hidup untuk membebaskan tenaga.",
+      explanation: "Pernafasan ialah pertukaran gas dengan persekitaran, manakala respirasi sel berlaku dalam sel hidup untuk membebaskan tenaga.",
     },
     dlp: {
       question: "What is the main difference between breathing and cell respiration?",
@@ -407,17 +415,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.2",
     difficulty: "Medium",
     bm: {
-      question:
-        "Selepas menutup spesimen dengan penutup kaca tanpa gelembung udara, apakah urutan pemerhatian yang betul?",
+      question: "Seorang murid memerhati tisu epidermis bawang dan melihat banyak sel yang tersusun rapat. Apakah yang menerangkan hubungan antara sel dengan tisu tersebut?",
       options: [
-        "Kanta objek kuasa rendah, kemudian kuasa tinggi",
-        "Kanta objek kuasa tinggi sahaja",
-        "Kuasa tinggi, kemudian keluarkan pewarna",
-        "Lukis sebelum melihat melalui mikroskop",
+        "Sel yang mempunyai struktur dan fungsi yang serupa membentuk tisu",
+        "Beberapa tisu bergabung untuk membentuk satu sel",
+        "Setiap sel merupakan satu sistem yang terdiri daripada beberapa organ",
+        "Tisu ialah satu sel besar yang mengandungi sel kecil",
       ],
       answerIndex: 0,
-      explanation:
-        "Slaid diperhatikan dengan kanta objek kuasa rendah dahulu, diikuti kanta objek kuasa tinggi. Jawapan digital ini tidak mengesahkan amali fizikal telah dilakukan.",
+      explanation: "Tisu ialah sekumpulan sel yang mempunyai struktur dan fungsi yang serupa serta bekerjasama menjalankan fungsi tertentu.",
     },
     dlp: {
       question:
@@ -437,16 +443,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.2.2",
     difficulty: "Medium",
     bm: {
-      question: "Dalam penyiasatan keperluan cahaya, apakah pemboleh ubah dimanipulasikan?",
+      question: "Sebahagian daun ditutup dengan kertas hitam dan sebahagian lagi menerima cahaya. Pokok telah dinyahkan kanji sebelum eksperimen dan mendapat air yang mencukupi. Selepas beberapa jam, hanya bahagian yang menerima cahaya memberikan ujian kanji positif. Apakah kesimpulan yang disokong?",
       options: [
-        "Kehadiran cahaya",
-        "Perubahan warna larutan iodin",
-        "Jenis tumbuhan",
-        "Kehadiran kanji selepas ujian",
+        "Cahaya diperlukan untuk fotosintesis",
+        "Cahaya diperlukan untuk daun menyerap air melalui akar",
+        "Kertas hitam membekalkan karbon dioksida kepada daun",
+        "Kanji terbentuk apabila cahaya dihalang",
       ],
       answerIndex: 0,
-      explanation:
-        "Kehadiran cahaya diubah; perubahan warna iodin ialah pemboleh ubah bergerak balas dan jenis tumbuhan dimalarkan.",
+      explanation: "Kanji dikesan hanya pada bahagian yang menerima cahaya. Perbandingan pada daun yang sama menyokong bahawa cahaya diperlukan untuk fotosintesis.",
     },
     dlp: {
       question: "In the investigation of the need for light, what is the manipulated variable?",
@@ -465,16 +470,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.2.3",
     difficulty: "Medium",
     bm: {
-      question: "Pernyataan manakah membezakan respirasi sel dengan fotosintesis dengan betul?",
+      question: "Pernyataan manakah membandingkan sel yang menjalankan respirasi sel dan fotosintesis dengan betul?",
       options: [
-        "Respirasi sentiasa berlaku; fotosintesis berlaku ketika ada cahaya",
-        "Kedua-duanya hanya berlaku ketika ada cahaya",
-        "Fotosintesis membebaskan tenaga; respirasi menyerap cahaya",
-        "Kedua-duanya berlaku dalam mitokondria",
+        "Respirasi sel berlaku dalam sel hidup tumbuhan dan haiwan; fotosintesis berlaku dalam sel yang mengandungi klorofil",
+        "Respirasi sel hanya berlaku dalam sel haiwan; fotosintesis berlaku dalam semua sel tumbuhan",
+        "Respirasi sel hanya berlaku dalam sel akar; fotosintesis berlaku dalam semua sel daun",
+        "Respirasi sel berlaku dalam sel yang mengandungi klorofil; fotosintesis berlaku dalam sel haiwan",
       ],
       answerIndex: 0,
-      explanation:
-        "Respirasi sel sentiasa berlaku, manakala fotosintesis memerlukan kehadiran cahaya.",
+      explanation: "Sel hidup tumbuhan dan haiwan menjalankan respirasi sel. Fotosintesis memerlukan klorofil, maka bukan semua sel tumbuhan menjalankan fotosintesis.",
     },
     dlp: {
       question: "Which statement correctly distinguishes cell respiration from photosynthesis?",
@@ -492,16 +496,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.2.4",
     difficulty: "Medium",
     bm: {
-      question: "Bagaimanakah kedua-dua proses saling melengkapi?",
+      question: "Bagaimanakah respirasi sel dan fotosintesis saling melengkapi?",
       options: [
         "Hasil satu proses menjadi bahan bagi proses yang satu lagi",
-        "Kedua-duanya hanya menghasilkan karbon dioksida",
-        "Kedua-duanya menggunakan cahaya sepanjang masa",
-        "Respirasi menghentikan fotosintesis",
+        "Kedua-dua proses menggunakan glukosa dan oksigen sebagai bahan",
+        "Kedua-dua proses menghasilkan karbon dioksida dan air sahaja",
+        "Kedua-dua proses menyerap cahaya untuk membentuk glukosa",
       ],
       answerIndex: 0,
-      explanation:
-        "Fotosintesis membekalkan glukosa dan oksigen untuk respirasi; respirasi membekalkan karbon dioksida dan air untuk fotosintesis.",
+      explanation: "Fotosintesis membekalkan glukosa dan oksigen untuk respirasi; respirasi membekalkan karbon dioksida dan air untuk fotosintesis.",
     },
     dlp: {
       question: "How do the two processes complement each other?",
@@ -520,17 +523,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.1",
     difficulty: "Hard",
     bm: {
-      question:
-        "Satu kumpulan sel terus membahagi walaupun sel baharu tidak diperlukan lalu membentuk suatu jisim. Apakah inferens terbaik?",
+      question: "Satu kumpulan sel terus membahagi walaupun sel baharu tidak diperlukan lalu membentuk suatu jisim. Apakah inferens terbaik?",
       options: [
         "Kawalan pembahagian sel telah terganggu dan tumor mungkin terbentuk",
-        "Sel sedang menjalankan fotosintesis normal",
-        "Organisma itu telah menjadi unisel",
-        "Mitokondria telah bertukar menjadi kloroplas",
+        "Sel sedang menggantikan sel rosak mengikut keperluan tisu",
+        "Sel hanya membesar tanpa pertambahan bilangan sel",
+        "Sel sedang membahagi secara terkawal untuk pertumbuhan normal",
       ],
       answerIndex: 0,
-      explanation:
-        "Pembahagian berterusan tanpa kawalan boleh menghasilkan jisim sel atau tumor dan dikaitkan dengan pembentukan kanser.",
+      explanation: "Pembahagian berterusan tanpa kawalan boleh menghasilkan jisim sel atau tumor dan dikaitkan dengan pembentukan kanser.",
     },
     dlp: {
       question:
@@ -550,17 +551,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.3",
     difficulty: "Hard",
     bm: {
-      question:
-        "Satu sel mempunyai dinding sel tetapi lapisan yang mengawal pergerakan bahan tidak dilabel. Struktur manakah perlu ditambah dan di manakah kedudukannya?",
+      question: "Satu sel masih mempunyai dinding sel yang utuh, tetapi tidak lagi dapat mengawal pergerakan bahan masuk dan keluar. Struktur manakah paling mungkin rosak dan mengapa?",
       options: [
-        "Membran sel, di sebelah dalam dinding sel",
-        "Kloroplas, di luar dinding sel",
-        "Nukleus, menggantikan dinding sel",
-        "Mitokondria, mengelilingi seluruh sel",
+        "Membran sel, kerana mengawal pergerakan bahan masuk dan keluar",
+        "Dinding sel, kerana mengawal semua bahan yang merentasinya",
+        "Nukleus, kerana menjadi laluan keluar masuk bahan pada permukaan sel",
+        "Kloroplas, kerana menapis bahan yang memasuki sel",
       ],
       answerIndex: 0,
-      explanation:
-        "Sel tumbuhan mempunyai membran sel di sebelah dalam dinding sel; membran itu mengawal pergerakan bahan.",
+      explanation: "Membran sel mengawal pergerakan bahan masuk dan keluar dari sel. Dinding sel memberikan sokongan dan bentuk tetap, tetapi tidak menggantikan fungsi membran sel.",
     },
     dlp: {
       question:
@@ -580,8 +579,7 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.1.5",
     difficulty: "Hard",
     bm: {
-      question:
-        "Sel X mempunyai gentian panjang, manakala sel Y mempunyai banyak unjuran yang menambahkan luas permukaan di tanah. Apakah X dan Y?",
+      question: "Sel X mempunyai gentian panjang untuk membawa impuls, manakala sel Y mempunyai unjuran panjang yang menambahkan luas permukaan penyerapan di tanah. Apakah X dan Y?",
       options: [
         "X sel saraf; Y sel rerambut akar",
         "X sel darah merah; Y sel pengawal",
@@ -589,8 +587,7 @@ const pairs: Chapter2QuizPair[] = [
         "X sel otot; Y sel pembiakan",
       ],
       answerIndex: 0,
-      explanation:
-        "Gentian panjang membolehkan sel saraf membawa impuls, manakala sel rerambut akar meningkatkan luas permukaan penyerapan.",
+      explanation: "Gentian panjang membolehkan sel saraf membawa impuls, manakala sel rerambut akar meningkatkan luas permukaan penyerapan.",
     },
     dlp: {
       question:
@@ -637,17 +634,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.2.2",
     difficulty: "Hard",
     bm: {
-      question:
-        "Selepas ujian kanji pada daun bervariegasi, hanya bahagian yang asalnya hijau bertukar biru tua. Apakah kesimpulan terbaik?",
+      question: "Selepas ujian kanji pada daun bervariegasi, hanya bahagian yang asalnya hijau bertukar biru tua. Apakah kesimpulan terbaik?",
       options: [
         "Klorofil diperlukan untuk fotosintesis",
-        "Oksigen menghalang fotosintesis",
-        "Kanji hanya wujud dalam akar",
-        "Bahagian bukan hijau menjalankan lebih banyak fotosintesis",
+        "Bahagian bukan hijau mengandungi lebih banyak kanji",
+        "Warna biru tua menunjukkan ketiadaan kanji",
+        "Semua bahagian daun menghasilkan kanji tanpa klorofil",
       ],
       answerIndex: 0,
-      explanation:
-        "Bahagian hijau mengandungi klorofil dan menunjukkan kanji; ini menyokong keperluan klorofil untuk fotosintesis.",
+      explanation: "Bahagian hijau mengandungi klorofil dan menunjukkan kanji; ini menyokong keperluan klorofil untuk fotosintesis.",
     },
     dlp: {
       question:
@@ -667,17 +662,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.2.2",
     difficulty: "Hard",
     bm: {
-      question:
-        "Dalam dua serkup kaca, kalium hidroksida hanya diletakkan dalam serkup A. Daun A kekal perang selepas ujian iodin, manakala daun B menjadi biru tua. Apakah inferensnya?",
+      question: "Dua pokok yang telah dinyahkan kanji diletakkan dalam serkup kaca A dan B dengan cahaya dan bekalan air yang sama. Kalium hidroksida yang menyerap karbon dioksida hanya diletakkan dalam A. Selepas beberapa jam, daun A kekal perang dalam ujian iodin, manakala daun B menjadi biru tua. Apakah inferensnya?",
       options: [
         "Karbon dioksida diperlukan untuk fotosintesis",
-        "Kalium hidroksida membekalkan kanji",
-        "Cahaya tidak diperlukan",
-        "Respirasi hanya berlaku dalam serkup B",
+        "Air sahaja mencukupi untuk menghasilkan kanji",
+        "Kehadiran karbon dioksida menghalang pembentukan kanji",
+        "Cahaya dan klorofil mencukupi untuk fotosintesis tanpa karbon dioksida",
       ],
       answerIndex: 0,
-      explanation:
-        "Kalium hidroksida menyerap karbon dioksida dalam serkup A; ketiadaan kanji menunjukkan karbon dioksida diperlukan.",
+      explanation: "Kalium hidroksida menyerap karbon dioksida dalam serkup A. Dengan cahaya dan bekalan air yang sama, perbezaan keputusan ujian kanji menyokong bahawa karbon dioksida diperlukan untuk fotosintesis.",
     },
     dlp: {
       question:
@@ -697,17 +690,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.2.3",
     difficulty: "Hard",
     bm: {
-      question:
-        "Proses P berlaku dalam mitokondria dan sentiasa berlaku. Proses Q berlaku dalam kloroplas ketika ada cahaya. Pernyataan manakah betul?",
+      question: "Proses P berlaku dalam mitokondria dan sentiasa berlaku. Proses Q berlaku dalam kloroplas ketika ada cahaya. Pernyataan manakah betul?",
       options: [
         "P menguraikan glukosa; Q mensintesis glukosa",
-        "P menyerap cahaya; Q membebaskan tenaga untuk semua proses hidup",
-        "P hanya pada haiwan; Q hanya pada manusia",
-        "P menghasilkan oksigen; Q menggunakan oksigen untuk menghasilkan karbon dioksida",
+        "P mensintesis glukosa; Q menguraikan glukosa",
+        "P dan Q kedua-duanya menguraikan glukosa",
+        "P dan Q kedua-duanya mensintesis glukosa",
       ],
       answerIndex: 0,
-      explanation:
-        "P ialah respirasi sel yang menguraikan glukosa; Q ialah fotosintesis yang mensintesis glukosa.",
+      explanation: "P ialah respirasi sel yang menguraikan glukosa; Q ialah fotosintesis yang mensintesis glukosa.",
     },
     dlp: {
       question:
@@ -757,17 +748,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.2.4",
     difficulty: "Hard",
     bm: {
-      question:
-        "Dalam sistem tertutup yang mengandungi tumbuhan hijau dan organisma lain, bahan manakah bergerak daripada fotosintesis untuk menyokong respirasi sel?",
+      question: "Seekor belalang memakan daun tumbuhan hijau. Bagaimanakah fotosintesis tumbuhan menyumbang kepada bekalan tenaga belalang?",
       options: [
-        "Glukosa dan oksigen",
-        "Karbon dioksida dan air",
-        "Kanji dan klorofil",
-        "Etanol dan iodin",
+        "Makanan yang terhasil daripada fotosintesis membekalkan glukosa untuk respirasi sel belalang",
+        "Klorofil daripada daun membolehkan semua sel belalang menjalankan fotosintesis",
+        "Karbon dioksida daripada fotosintesis menggantikan keperluan belalang terhadap makanan",
+        "Tenaga cahaya dipindahkan terus daripada daun kepada otot belalang tanpa respirasi sel",
       ],
       answerIndex: 0,
-      explanation:
-        "Fotosintesis menghasilkan glukosa dan oksigen yang digunakan dalam respirasi sel.",
+      explanation: "Tumbuhan menghasilkan glukosa melalui fotosintesis. Apabila belalang memakan tumbuhan, makanan yang dicerna membekalkan glukosa yang digunakan dalam respirasi sel untuk membebaskan tenaga.",
     },
     dlp: {
       question:
@@ -786,17 +775,15 @@ const pairs: Chapter2QuizPair[] = [
     sp: "2.2.4",
     difficulty: "Hard",
     bm: {
-      question:
-        "Jika semua karbon dioksida daripada respirasi disingkirkan daripada persekitaran tumbuhan, pautan pelengkap manakah terputus secara langsung?",
+      question: "Dalam satu kawasan, bilangan tumbuhan hijau berkurang dengan banyak sementara respirasi organisma terus berlaku. Jika faktor lain tidak berubah, apakah kesan terhadap pertukaran gas antara kedua-dua proses?",
       options: [
-        "Bekalan karbon dioksida kepada fotosintesis",
-        "Bekalan klorofil kepada respirasi",
-        "Pembentukan membran sel",
-        "Urutan sel kepada tisu",
+        "Kurang karbon dioksida digunakan dan kurang oksigen dibekalkan oleh fotosintesis",
+        "Lebih karbon dioksida digunakan dan lebih oksigen dibekalkan oleh fotosintesis",
+        "Kurang karbon dioksida digunakan tetapi lebih oksigen dibekalkan oleh fotosintesis",
+        "Lebih karbon dioksida digunakan tetapi kurang oksigen dibekalkan oleh fotosintesis",
       ],
       answerIndex: 0,
-      explanation:
-        "Karbon dioksida hasil respirasi ialah salah satu bahan yang digunakan dalam fotosintesis.",
+      explanation: "Fotosintesis menggunakan karbon dioksida dan membebaskan oksigen, manakala respirasi sel menggunakan oksigen dan membebaskan karbon dioksida. Pengurangan tumbuhan hijau mengurangkan sumbangan fotosintesis kepada pertukaran gas ini.",
     },
     dlp: {
       question:
