@@ -21,13 +21,18 @@ describe("ScienceF3Chapter1VisualNotesBlock", () => {
 
   it("renders the same learning journey in English", () => {
     const html = renderToStaticMarkup(createElement(ScienceF3Chapter1VisualNotesBlock, { content: scienceF3C1InteractiveDLP, lang: "en" }));
-    expect(html).toContain("Understand how a stimulus becomes a response");
+    expect(html).toContain("Stimuli and Responses");
+    expect(html).toContain("Human nervous system, stimuli and responses in humans, stimuli and responses in plants, and the importance of responses to stimuli in other animals.");
     expect(html).toContain("1.1 Human Nervous System");
-    expect(html).toContain("Trace an impulse");
+    expect(html).toContain("Structure of the Human Nervous System");
+    expect(html).toContain("1.2 Stimuli and Responses in Humans");
+    expect(html).toContain("1.3 Stimuli and Responses in Plants");
+    expect(html).toContain("1.4 Importance of Responses to Stimuli in Other Animals");
     expect(html).toContain("Activity 1.1");
     expect(html).toContain("Mechanism of sight");
     expect(html).toContain("Mechanism of hearing");
     expect(html).toContain("Phototropism");
     expect(html).toContain("Stereoscopic vision");
+    expect(html).not.toContain("Understand how a stimulus becomes a response");
   });
 });
