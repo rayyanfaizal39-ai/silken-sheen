@@ -1,10 +1,14 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch3-nutrisi.png";
 import digestiveSystemImg from "@/assets/notes/form2-science/chapter-3/chapter3_digestive_system.webp";
+import foodPyramidImg from "@/assets/notes/form2-science/chapter-3/science-f2-ch3-food-pyramid.webp";
 import foodTestsImg from "@/assets/notes/form2-science/chapter-3/chapter3_food_tests.webp";
 import villusImg from "@/assets/notes/form2-science/chapter-3/chapter3_villus_absorption.webp";
 import viskingImg from "@/assets/notes/form2-science/chapter-3/chapter3_visking_tubing.webp";
-import digestionPathwaysImg from "@/assets/notes/form2-science/chapter-3/chapter3_digestion_pathways.webp";
+import { DIGESTIVE_ORGAN_SHAPES } from "./digestive-system-spotlight";
+import { PYRAMID_HOTSPOTS } from "./pyramid-spotlight";
+import { VILLUS_SHAPES } from "./villus-spotlight";
+import { VISKING_SHAPES } from "./visking-spotlight";
 
 export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 3,
@@ -43,33 +47,98 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Karbohidrat",
-          body: "**Sumber tenaga utama badan** (makanan ruji). Contoh: kanji (simpanan dalam tumbuhan), glikogen (simpanan dalam haiwan). Sumber: nasi, roti, kentang, pisang, madu.",
+          body: "**Sumber tenaga utama badan** (makanan ruji).",
+          facts: [
+            { label: "Mengandungi", value: "Karbon, hidrogen dan oksigen" },
+            {
+              label: "Contoh & sumber",
+              value:
+                "Kanji (simpanan dalam tumbuhan), glikogen (simpanan dalam haiwan), selulosa (membentuk dinding sel tumbuhan). Sumber: nasi, roti, kentang, pisang, madu.",
+            },
+            { label: "Fungsi", value: "Membekalkan tenaga untuk aktiviti harian badan" },
+          ],
         },
         {
           title: "Protein",
-          body: "Untuk **pertumbuhan dan pembaikan tisu badan**, serta mensintesis enzim, hormon dan antibodi. Dicernakan kepada asid amino. Sumber: ikan, ayam, telur, kekacang, daging, susu.",
+          body: "Diperlukan untuk **pertumbuhan dan pembaikan tisu badan**.",
+          facts: [
+            { label: "Mengandungi", value: "Karbon, hidrogen, oksigen dan nitrogen" },
+            { label: "Contoh & sumber", value: "Ikan, ayam, telur, kekacang, daging, susu" },
+            {
+              label: "Fungsi",
+              value:
+                "Membaiki tisu rosak, menggantikan sel mati, dan membina enzim, hormon dan antibodi. Dicernakan kepada asid amino.",
+            },
+          ],
           detail:
             "Pengetahuan Tambahan: kekurangan teruk protein dikaitkan dengan Kwasyiorkor (kanak-kanak 1–3 tahun).",
         },
         {
           title: "Lemak",
-          body: "**Simpanan tenaga paling pekat** — membekalkan kira-kira 2× tenaga karbohidrat/protein bagi setiap gram. Melindungi organ badan dan menjadi penebat haba. Sumber: mentega, minyak masak, kacang tanah.",
+          body: "**Simpanan tenaga paling pekat** — kira-kira 2× tenaga karbohidrat/protein bagi setiap gram.",
+          facts: [
+            {
+              label: "Mengandungi",
+              value: "Karbon, hidrogen dan oksigen; terbentuk daripada gliserol dan asid lemak",
+            },
+            { label: "Contoh & sumber", value: "Mentega, minyak masak, kacang tanah" },
+            {
+              label: "Fungsi",
+              value:
+                "Melindungi organ badan, menjadi penebat haba di bawah kulit, dan mengangkut vitamin larut lemak A, D, E dan K",
+            },
+          ],
         },
         {
           title: "Vitamin",
-          body: "Sebatian organik yang diperlukan dalam kuantiti kecil untuk kesihatan; tidak membekalkan tenaga. Enam vitamin utama (A, B, C, D, E, K) — lihat seksyen seterusnya.",
+          body: "Sebatian organik yang tidak membekalkan tenaga, tetapi diperlukan dalam kuantiti kecil untuk mengekalkan kesihatan yang baik.",
+          facts: [
+            { label: "Ciri utama", value: "Larut air: B dan C. Larut lemak: A, D, E dan K." },
+            { label: "Contoh", value: "Enam vitamin utama: A, B, C, D, E dan K" },
+            {
+              label: "Fungsi",
+              value:
+                "Menyokong penglihatan, pembekuan darah, ketahanan terhadap jangkitan dan banyak lagi — setiap vitamin mempunyai peranan tersendiri",
+            },
+          ],
         },
         {
           title: "Mineral",
-          body: "Bahan bukan organik yang diperlukan dalam kuantiti kecil untuk mengawal atur proses badan. Enam mineral utama — lihat seksyen seterusnya.",
+          body: "Bahan bukan organik yang tidak membekalkan tenaga, tetapi diperlukan dalam kuantiti kecil untuk mengawal atur proses badan dan mengekalkan kesihatan.",
+          facts: [
+            { label: "Contoh", value: "Enam mineral utama: kalsium, natrium, besi, iodin, fosforus dan kalium" },
+            {
+              label: "Fungsi",
+              value:
+                "Membina tulang dan gigi yang kukuh, membentuk hemoglobin, menyokong saraf dan otot — setiap mineral mempunyai peranan tersendiri",
+            },
+          ],
         },
         {
           title: "Pelawas",
-          body: "Selulosa yang tidak dapat dicerna oleh sistem pencernaan; **merangsang peristalsis dan mencegah sembelit**. Sumber: bijirin, buah-buahan, sayur-sayuran.",
+          body: "Tidak dapat dicerna oleh sistem pencernaan.",
+          facts: [
+            { label: "Ciri utama", value: "Terutamanya selulosa daripada dinding sel tumbuhan" },
+            { label: "Contoh & sumber", value: "Bijirin, buah-buahan, sayur-sayuran" },
+            {
+              label: "Fungsi",
+              value:
+                "**Merangsang peristalsis** dan membantu makanan bergerak melalui salur pencernaan, membantu **mencegah sembelit**",
+            },
+          ],
         },
         {
           title: "Air",
-          body: "Pelarut kimia dan medium pengangkutan nutrien serta oksigen ke dalam sel; mengawal suhu badan. Cadangan: sekurang-kurangnya 2 liter sehari.",
+          body: "Sebatian penting yang mengandungi hidrogen dan oksigen.",
+          facts: [
+            { label: "Ciri utama", value: "Bertindak sebagai pelarut" },
+            { label: "Contoh & sumber", value: "Air minuman dan cecair — sekurang-kurangnya 2 liter sehari" },
+            {
+              label: "Fungsi",
+              value:
+                "Mengangkut nutrien dan oksigen ke dalam sel, membawa bahan buangan seperti urea dan garam, dan membantu mengawal suhu badan melalui peluh/penyejatan",
+            },
+          ],
         },
       ],
       checks: [
@@ -87,57 +156,111 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       number: "3.1.1",
       title: "Vitamin dan Mineral",
       intro:
-        "Terdapat enam vitamin utama dan enam mineral utama yang perlu anda kenali, bersama sumber, kepentingan dan kesan kekurangan masing-masing.",
-      cards: [
+        "Vitamin ialah sebatian organik yang tidak membekalkan tenaga tetapi diperlukan dalam kuantiti kecil untuk kesihatan yang baik. Mineral ialah bahan bukan organik yang tidak membekalkan tenaga tetapi diperlukan dalam kuantiti kecil untuk mengawal atur proses badan dan mengekalkan kesihatan.",
+      nutrientTables: [
         {
-          title: "Vitamin A",
-          body: "Sumber: susu, kuning telur, minyak ikan. Bantu penglihatan waktu malam & kesihatan kulit. Kekurangan: rabun senja, penyakit kulit.",
+          title: "Jadual 3.1: Vitamin",
+          instruction: "Enam vitamin yang perlu anda kenali, bersama sumber, kepentingan dan kesan kekurangan.",
+          nameLabel: "Vitamin",
+          sourceLabel: "Sumber",
+          importanceLabel: "Kepentingan",
+          deficiencyLabel: "Kesan kekurangan",
+          rows: [
+            {
+              id: "a",
+              name: "Vitamin A",
+              source: "Susu, kuning telur, minyak ikan",
+              importance: "Bantu penglihatan waktu malam dan mengekalkan kesihatan kulit",
+              deficiency: "Rabun senja, penyakit kulit",
+            },
+            {
+              id: "b",
+              name: "Vitamin B",
+              source: "Yis, hati, telur",
+              importance: "Mengekalkan fungsi sistem saraf dan pembentukan sel darah merah",
+              deficiency: "Beri-beri, anemia",
+            },
+            {
+              id: "c",
+              name: "Vitamin C",
+              source: "Buah-buahan, sayur-sayuran",
+              importance: "Melawan jangkitan dan mengekalkan kesihatan gusi dan mulut",
+              deficiency: "Skurvi (gusi berdarah)",
+            },
+            {
+              id: "d",
+              name: "Vitamin D",
+              source: "Mentega, telur, minyak ikan, cahaya matahari",
+              importance: "Membantu penyerapan kalsium untuk tulang dan gigi yang kukuh",
+              deficiency: "Riket, sakit gigi",
+            },
+            {
+              id: "e",
+              name: "Vitamin E",
+              source: "Bijirin, sayur-sayuran hijau",
+              importance: "Mengekalkan fungsi sistem pembiakan",
+              deficiency: "Kemandulan, keguguran fetus",
+            },
+            {
+              id: "k",
+              name: "Vitamin K",
+              source: "Susu, kuning telur, minyak ikan",
+              importance: "Mempercepatkan pembekuan darah",
+              deficiency: "Darah lambat membeku",
+            },
+          ],
         },
         {
-          title: "Vitamin B",
-          body: "Sumber: yis, hati, telur. Kekalkan fungsi sistem saraf & pembentukan sel darah merah. Kekurangan: beri-beri, anemia.",
-        },
-        {
-          title: "Vitamin C",
-          body: "Sumber: buah-buahan, sayur-sayuran. Lawan jangkitan penyakit & kekalkan kesihatan gusi/mulut. Kekurangan: skurvi (gusi berdarah).",
-        },
-        {
-          title: "Vitamin D",
-          body: "Sumber: mentega, telur, minyak ikan, cahaya matahari. Bantu penyerapan kalsium & kuatkan enamel gigi. Kekurangan: riket, sakit gigi.",
-        },
-        {
-          title: "Vitamin E",
-          body: "Sumber: bijirin, sayur-sayuran hijau. Kekalkan fungsi sistem pembiakan. Kekurangan: kemandulan, keguguran fetus.",
-        },
-        {
-          title: "Vitamin K",
-          body: "Sumber: susu, kuning telur, minyak ikan. Mempercepatkan proses pembekuan darah. Kekurangan: darah lambat membeku.",
-        },
-      ],
-      accordions: [
-        {
-          title: "Kalsium",
-          body: "Sumber: susu, ikan bilis, udang, sayur-sayuran hijau. Kepentingan: membantu pembekuan darah, menguatkan tulang dan gigi. Kekurangan: riket, osteoporosis.",
-        },
-        {
-          title: "Natrium",
-          body: "Sumber: garam, daging, telur. Kepentingan: memelihara fungsi sistem saraf. Kekurangan: kekejangan otot.",
-        },
-        {
-          title: "Besi (Ferum)",
-          body: "Sumber: hati, daging. Kepentingan: membina hemoglobin dalam darah. Kekurangan: anemia.",
-        },
-        {
-          title: "Iodin",
-          body: "Sumber: makanan laut, buah-buahan. Kepentingan: membantu fungsi kelenjar tiroid. Kekurangan: goiter.",
-        },
-        {
-          title: "Fosforus",
-          body: "Sumber: keju, daging, telur, sayur-sayuran. Kepentingan: menguatkan tulang/gigi, membentuk asid nukleik (DNA/RNA). Kekurangan: riket, gigi rapuh.",
-        },
-        {
-          title: "Kalium",
-          body: "Sumber: tumbuhan dan haiwan. Kepentingan: membantu pengecutan otot dan fungsi sistem saraf. Kekurangan: lumpuh, kekejangan otot.",
+          title: "Jadual 3.2: Mineral",
+          instruction: "Enam mineral yang perlu anda kenali, bersama sumber, kepentingan dan kesan kekurangan.",
+          nameLabel: "Mineral",
+          sourceLabel: "Sumber",
+          importanceLabel: "Kepentingan",
+          deficiencyLabel: "Kesan kekurangan",
+          rows: [
+            {
+              id: "calcium",
+              name: "Kalsium",
+              source: "Susu, ikan bilis, udang, sayur-sayuran hijau",
+              importance: "Membantu pembekuan darah; menguatkan tulang dan gigi",
+              deficiency: "Riket, osteoporosis",
+            },
+            {
+              id: "sodium",
+              name: "Natrium",
+              source: "Garam, daging, telur",
+              importance: "Memelihara fungsi sistem saraf dan keseimbangan air dalam badan",
+              deficiency: "Kekejangan otot",
+            },
+            {
+              id: "iron",
+              name: "Besi",
+              source: "Hati, daging",
+              importance: "Membina hemoglobin dalam darah",
+              deficiency: "Anemia",
+            },
+            {
+              id: "iodine",
+              name: "Iodin",
+              source: "Makanan laut, buah-buahan",
+              importance: "Membantu fungsi kelenjar tiroid",
+              deficiency: "Goiter",
+            },
+            {
+              id: "phosphorus",
+              name: "Fosforus",
+              source: "Keju, daging, telur, sayur-sayuran",
+              importance: "Menguatkan tulang/gigi; membentuk asid nukleik (DNA/RNA)",
+              deficiency: "Riket, gigi rapuh",
+            },
+            {
+              id: "potassium",
+              name: "Kalium",
+              source: "Tumbuhan dan haiwan",
+              importance: "Membantu pengecutan otot dan fungsi sistem saraf",
+              deficiency: "Lumpuh, kekejangan otot",
+            },
+          ],
         },
       ],
       comparison: {
@@ -230,56 +353,92 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       number: "3.2.1",
       title: "Gizi Seimbang & Piramid Makanan",
       intro:
-        "Gizi seimbang ialah pemakanan yang mengandungi semua kelas makanan dalam kuantiti yang betul, berpandukan Piramid Makanan Malaysia atau Model Pinggan Sihat.",
+        "Gizi seimbang ialah gizi yang mengandungi semua kelas makanan dalam kuantiti yang betul seperti yang diperlukan oleh badan, berpandukan piramid makanan.",
       pyramid: {
-        title: "Piramid Makanan Malaysia 2020",
-        instruction:
-          "Ketik setiap aras untuk melihat cadangan sajian harian. Aras tapak (paling lebar) ialah kumpulan yang perlu dimakan paling banyak. Piramid ini mempunyai 4 aras dan 5 kumpulan makanan utama.",
-        tiers: [
-          {
-            id: "base",
-            icon: "🥦",
-            groups: [
-              { label: "Sayur-sayuran", servings: "Sekurang-kurangnya 3 sajian sehari" },
-              { label: "Buah-buahan", servings: "2 sajian sehari" },
-            ],
-            note: "Kaya dengan vitamin, mineral dan pelawas — aras tapak Piramid Makanan Malaysia 2020.",
-          },
+        title: "Piramid Makanan",
+        instruction: "Tekan aras untuk melihat cadangan sajian.",
+        image: {
+          src: foodPyramidImg,
+          alt: "Piramid makanan KSSM: nasi, mi, roti, bijirin dan ubi-ubian pada aras tapak yang paling lebar; sayur-sayuran dan buah-buahan pada aras seterusnya; ikan, ayam, daging, telur, kekacang dan tenusu pada aras seterusnya; lemak, minyak, gula dan garam pada aras puncak yang paling sempit.",
+          aspect: "3 / 2",
+          size: "wide",
+        },
+        defaultRegionId: "grains",
+        regions: [
           {
             id: "grains",
-            icon: "🍚",
-            groups: [
-              {
-                label: "Nasi, bijirin lain, produk berasaskan bijirin penuh dan ubi-ubian",
-                servings: "3–5 sajian sehari",
-              },
-            ],
-            note: "Sumber tenaga utama; diletakkan pada aras kedua, di atas sayur-sayuran dan buah-buahan.",
+            label: "Nasi, mi, roti, bijirin lain dan ubi-ubian",
+            servings: "4–8 sajian sehari",
+            detailTitle: "Sumber tenaga utama",
+            note: "Membekalkan karbohidrat untuk tenaga. Kumpulan ini perlu diambil dalam bahagian yang paling banyak dalam gizi harian.",
+            polygon: PYRAMID_HOTSPOTS.grains,
           },
           {
-            id: "protein-dairy",
-            icon: "🍗",
-            groups: [
+            id: "vegetables",
+            label: "Sayur-sayuran",
+            servings: "3 sajian sehari",
+            detailTitle: "Vitamin dan pelawas",
+            note: "Kaya dengan vitamin, mineral dan pelawas yang membantu mengekalkan sistem penghadaman yang sihat.",
+            polygon: PYRAMID_HOTSPOTS.vegetables,
+          },
+          {
+            id: "fruits",
+            label: "Buah-buahan",
+            servings: "2 sajian sehari",
+            detailTitle: "Vitamin dan mineral",
+            note: "Sumber semula jadi vitamin dan mineral yang membantu badan kekal sihat.",
+            polygon: PYRAMID_HOTSPOTS.fruits,
+          },
+          {
+            id: "protein",
+            label: "Sumber protein",
+            items: [
               { label: "Ikan", servings: "1 sajian sehari" },
-              { label: "Ayam, telur atau daging", servings: "1–2 sajian sehari" },
-              { label: "Kekacang (legum)", servings: "1 sajian sehari" },
-              { label: "Susu dan produk tenusu", servings: "2 sajian sehari" },
+              { label: "Ayam / daging / telur", servings: "½–2 sajian sehari" },
+              { label: "Kekacang", servings: "½–1 sajian sehari" },
             ],
-            note: "Satu aras yang menggabungkan kumpulan protein dan tenusu — membekalkan protein untuk pertumbuhan/pembaikan tisu dan kalsium untuk tulang dan gigi.",
+            detailTitle: "Pertumbuhan dan pembaikan",
+            note: "Membina dan membaiki tisu badan, serta mengukuhkan tulang dan gigi.",
+            polygon: PYRAMID_HOTSPOTS.protein,
+          },
+          {
+            id: "dairy",
+            label: "Susu dan produk tenusu",
+            servings: "1–3 sajian sehari",
+            detailTitle: "Kalsium untuk tulang dan gigi",
+            note: "Sumber penting kalsium dan protein yang menyokong tulang dan gigi yang kukuh.",
+            polygon: PYRAMID_HOTSPOTS.dairy,
           },
           {
             id: "apex",
-            icon: "🧂",
-            groups: [{ label: "Lemak, minyak, gula dan garam", servings: "Hadkan pengambilan" }],
-            note: "Aras puncak — ambil dalam kuantiti paling kecil.",
+            label: "Lemak, minyak, gula dan garam",
+            servings: "Makan sedikit",
+            detailTitle: "Makan paling sedikit",
+            note: "Pengambilan lemak, gula dan garam berlebihan meningkatkan risiko obesiti dan masalah kesihatan lain.",
+            polygon: PYRAMID_HOTSPOTS.apex,
           },
         ],
-        baseNote:
-          "Air kosong: 6–8 gelas sehari (1 gelas = 250 ml) — asas kepada setiap piramid makanan.",
+        baseNote: "Minum sekurang-kurangnya 8 gelas air kosong sehari.",
         limitNote:
-          "Panduan tambahan semasa: selain menghadkan lemak, minyak, gula dan garam di puncak piramid, hadkan juga pengambilan makanan ultra-proses (makanan rapu). Ini tidak bermakna semua makanan diproses tidak sihat.",
-        sourceLabel: "Panduan semasa: Piramid Makanan Malaysia 2020 (KKM).",
+          "Makan lemak, minyak, gula dan garam sedikit sahaja — pengambilan berlebihan boleh menjejaskan kesihatan.",
+        sourceLabel: "Sumber: Buku teks Sains Tingkatan 2 KSSM — piramid makanan.",
       },
+      checks: [
+        {
+          question: "Apakah gizi seimbang?",
+          hint: "Gizi yang mengandungi semua kelas makanan dalam kuantiti yang betul seperti diperlukan oleh badan.",
+        },
+        {
+          question: "Aras manakah piramid makanan perlu dimakan paling banyak?",
+          hint: "Aras tapak — nasi, mi, roti, bijirin lain dan ubi-ubian.",
+        },
+      ],
+    },
+    {
+      number: "3.2.1",
+      title: "Faktor yang Mempengaruhi Keperluan Kalori",
+      intro:
+        "Setiap orang memerlukan kuantiti tenaga makanan yang berbeza setiap hari. Enam faktor mempengaruhi keperluan badan seseorang.",
       cards: [
         {
           title: "Umur",
@@ -294,7 +453,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
           body: "Orang bersaiz badan lebih besar memerlukan kuantiti makanan yang lebih banyak untuk tenaga yang lebih.",
         },
         {
-          title: "Pekerjaan",
+          title: "Jenis pekerjaan",
           body: "Petani, buruh dan nelayan memerlukan lebih banyak tenaga kerana **kerja berat**, berbanding pekerja pejabat seperti guru.",
         },
         {
@@ -309,17 +468,17 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       checks: [
         {
           question: "Apakah enam faktor yang mempengaruhi keperluan kalori seseorang?",
-          hint: "Umur, jantina, saiz badan, pekerjaan, iklim dan keadaan kesihatan.",
+          hint: "Umur, jantina, saiz badan, jenis pekerjaan, iklim dan keadaan kesihatan.",
         },
         {
           question: "Mengapakah nelayan memerlukan lebih tenaga berbanding guru?",
-          hint: "Pekerjaan nelayan melibatkan kerja fizikal yang lebih berat.",
+          hint: "Jenis pekerjaan nelayan melibatkan kerja fizikal yang lebih berat.",
         },
       ],
     },
     {
       number: "3.2.2",
-      title: "Nilai Kalori & Perancangan Diet",
+      title: "Nilai Kalori Makanan",
       intro:
         "Nilai kalori ialah jumlah tenaga yang dibebaskan apabila 1 g makanan dioksidakan dengan lengkap, diukur dalam kalori (kal) atau joule (J).",
       comparison: {
@@ -335,20 +494,20 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
           },
         ],
       },
+      calorieExample: {
+        title: "🧮 Contoh Pengiraan: Nilai Kalori Sarapan",
+        items: [
+          { id: "rice", food: "Nasi goreng", quantity: "1 pinggan", kcal: 640 },
+          { id: "banana", food: "Pisang", quantity: "2 biji", perUnitKcal: 60, multiplier: 2, kcal: 120 },
+          { id: "milk", food: "Susu", quantity: "1 gelas", kcal: 130 },
+        ],
+        totalLabel: "Jumlah",
+        note: "Jumlahkan nilai kalori bagi setiap makanan dalam hidangan. 1 kal = 4.2 J, dan 1 kkal = 4.2 kJ.",
+      },
       accordions: [
         {
-          title: "🧮 Contoh: Anggaran Nilai Kalori Sarapan",
-          body: "1 kalori (kal) = 4.2 joule (J). Contoh sarapan: nasi goreng 1 pinggan (330 g) = 640 kcal; pisang berangan 2 biji (120 g) = 120 kcal; susu 1 gelas (250 ml) = 130 kcal. Jumlah nilai kalori sarapan = 890 kcal.",
-        },
-        {
           title: "📋 Aktiviti: Merancang Gizi Seimbang Sehari",
-          body: "Sediakan menu sarapan, makan tengah hari dan makan malam untuk satu individu (contohnya buruh binaan, wanita hamil atau murid aktif bersukan). Tentukan kuantiti makanan bagi setiap menu, kemudian jumlahkan nilai kalori untuk satu hari. Faktor seperti pekerjaan, umur dan keadaan kesihatan menentukan sama ada menu itu sesuai.",
-        },
-      ],
-      cards: [
-        {
-          title: "Indeks Jisim Badan (BMI) — Pengetahuan Tambahan",
-          body: "BMI = Jisim (kg) ÷ [Ketinggian (m) × Ketinggian (m)]. Formula ini digunakan untuk menilai status jisim badan, tetapi ia bukan sesuatu yang wajib anda hafal untuk bab ini.",
+          body: "Sediakan menu sarapan, makan tengah hari dan makan malam untuk satu individu (contohnya buruh binaan, wanita hamil atau murid aktif bersukan). Tentukan kuantiti makanan bagi setiap menu, kemudian jumlahkan nilai kalori untuk satu hari. Faktor seperti jenis pekerjaan, umur dan keadaan kesihatan menentukan sama ada menu itu sesuai.",
         },
       ],
       checks: [
@@ -403,6 +562,15 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
           },
         ],
       },
+      cards: [
+        {
+          title: "Indeks Jisim Badan (BMI)",
+          body: "BMI membandingkan jisim badan dengan ketinggian, dan merupakan satu cara untuk menyemak sama ada jisim badan berada dalam julat yang sihat — sebahagian daripada usaha mengekalkan kesihatan yang baik.",
+          facts: [
+            { label: "Formula", value: "BMI = jisim (kg) ÷ [ketinggian (m) × ketinggian (m)]" },
+          ],
+        },
+      ],
       accordions: [
         {
           title: "📊 Konteks: Tinjauan Kesihatan dan Morbiditi Kebangsaan (NHMS) 2016",
@@ -418,150 +586,6 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         {
           question: "Apakah kaitan antara makanan diproses/rapu dengan obesiti?",
           hint: "Makanan ini tinggi kalori, gula, garam dan lemak, menyebabkan lebihan tenaga disimpan sebagai lemak badan.",
-        },
-      ],
-    },
-    {
-      number: "3.3.1",
-      title: "Sistem Pencernaan Manusia",
-      intro:
-        "Pencernaan ialah penguraian makanan yang kompleks atau besar kepada molekul yang lebih kecil, larut dan sedia diserap oleh badan.",
-      digestiveSystem: {
-        image: {
-          src: digestiveSystemImg,
-          annotationMode: "callouts",
-          size: "portrait",
-          alt: "Rajah sistem pencernaan manusia di dalam badan: mulut, esofagus, perut, hati, pundi hempedu, pankreas, duodenum, usus kecil, usus besar, rektum dan dubur.",
-          aspect: "3 / 4",
-          caption: "Ketik mana-mana nombor untuk melihat fungsi organ itu.",
-          points: [
-            { id: "mulut", x: 43, y: 19 },
-            { id: "esofagus", x: 49, y: 36 },
-            { id: "hati", x: 35, y: 47 },
-            { id: "perut", x: 59, y: 51 },
-            { id: "pundi-hempedu", x: 39, y: 55 },
-            { id: "pankreas", x: 60, y: 59 },
-            { id: "duodenum", x: 47, y: 61 },
-            { id: "usus-besar", x: 33, y: 71 },
-            { id: "usus-kecil", x: 53, y: 75 },
-            { id: "rektum", x: 51, y: 81 },
-            { id: "dubur", x: 49, y: 90 },
-          ],
-        },
-        title: "Struktur Sistem Pencernaan Manusia",
-        instruction:
-          "Ketik mana-mana organ untuk melihat fungsinya. Organ bulat membentuk salur pencernaan; organ segi empat ialah organ aksesori pencernaan yang bersambung ke duodenum.",
-        tractLabel: "Salur pencernaan",
-        accessoryLabel: "Organ Aksesori Pencernaan",
-        organs: [
-          {
-            id: "mulut",
-            label: "Mulut",
-            kind: "tract",
-            note: "Makanan dikunyah oleh gigi; air liur melembutkan makanan dan mula mencerna kanji.",
-          },
-          {
-            id: "esofagus",
-            label: "Esofagus",
-            kind: "tract",
-            note: "Tiub yang menyalurkan bolus ke perut melalui peristalsis.",
-          },
-          {
-            id: "perut",
-            label: "Perut",
-            kind: "tract",
-            note: "Mengadun makanan; merembeskan protease dan asid hidroklorik.",
-          },
-          {
-            id: "duodenum",
-            label: "Duodenum",
-            kind: "tract",
-            note: "Bahagian pertama usus kecil; menerima hempedu daripada pundi hempedu dan jus pankreas daripada pankreas.",
-          },
-          {
-            id: "usus-kecil",
-            label: "Usus kecil",
-            kind: "tract",
-            note: "Tempat pencernaan disempurnakan dan penyerapan nutrien berlaku melalui vilus.",
-          },
-          {
-            id: "usus-besar",
-            label: "Usus besar",
-            kind: "tract",
-            note: "Menyerap semula air dan garam mineral daripada baki makanan.",
-          },
-          {
-            id: "rektum",
-            label: "Rektum",
-            kind: "tract",
-            note: "Menyimpan tinja sementara sebelum disingkirkan.",
-          },
-          {
-            id: "dubur",
-            label: "Dubur",
-            kind: "tract",
-            note: "Tempat tinja disingkirkan daripada badan (penyahtinjaan).",
-          },
-          {
-            id: "hati",
-            label: "Hati",
-            kind: "accessory",
-            connectsTo: "duodenum",
-            note: "Menghasilkan hempedu (jus hempedu) yang disalurkan ke duodenum.",
-          },
-          {
-            id: "pundi-hempedu",
-            label: "Pundi hempedu",
-            kind: "accessory",
-            connectsTo: "duodenum",
-            note: "Menyimpan hempedu sebelum disalurkan ke duodenum.",
-          },
-          {
-            id: "pankreas",
-            label: "Pankreas",
-            kind: "accessory",
-            connectsTo: "duodenum",
-            note: "Menghasilkan jus pankreas yang mengandungi amilase, protease dan lipase.",
-          },
-        ],
-      },
-      sequence: {
-        title: "Ikuti aliran makanan",
-        instruction: "Bergerak mengikut urutan salur alimentari, daripada mulut hingga dubur.",
-        steps: [
-          {
-            title: "Mulut",
-            body: "Gigi mengunyah makanan. Amilase liur dalam air liur mula mencerna kanji kepada maltosa.",
-          },
-          { title: "Esofagus", body: "Peristalsis menolak bolus untuk masuk ke dalam perut." },
-          {
-            title: "Perut",
-            body: "Dinding perut merembeskan protease dan asid hidroklorik. Asid hidroklorik mengaktifkan protease dan membunuh bakteria. Protease mencerna protein kepada polipeptida sahaja pada tahap ini. Makanan menjadi separa cecair dipanggil kim.",
-          },
-          {
-            title: "Duodenum",
-            body: "Hati menghasilkan hempedu, disimpan di pundi hempedu; hempedu mengemulsikan lemak dan meneutralkan asid dalam kim. Pankreas merembeskan jus pankreas: amilase mencerna kanji→maltosa, protease mencerna polipeptida→dipeptida, lipase mencerna lemak→asid lemak dan gliserol.",
-          },
-          {
-            title: "Usus kecil",
-            body: "Usus kecil merembeskan protease (dipeptida→asid amino); vilus pada dindingnya menyerap nutrien ke dalam darah dan limfa.",
-          },
-          {
-            title: "Usus besar",
-            body: "Air dan garam mineral diserap semula ke dalam aliran darah.",
-          },
-          { title: "Rektum", body: "Tinja disimpan sementara sebelum disingkirkan." },
-          { title: "Dubur", body: "Tinja disingkirkan daripada badan melalui penyahtinjaan." },
-        ],
-      },
-      checks: [
-        {
-          question: "Apakah organ yang terletak antara perut dan usus kecil?",
-          hint: "Duodenum — bahagian pertama usus kecil.",
-        },
-        {
-          question: "Apakah fungsi pundi hempedu?",
-          hint: "Menyimpan hempedu sebelum disalurkan ke duodenum.",
         },
       ],
     },
@@ -599,132 +623,295 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
     },
     {
       number: "3.3.1",
-      title: "Enzim dan Pencernaan Kimia",
-      images: [
-        {
-          src: digestionPathwaysImg,
-          annotationMode: "labels",
-          size: "standard",
-          alt: "Tiga baris laluan pencernaan: karbohidrat, protein dan lemak, setiap satu bermula daripada makanan sehingga hasil akhir yang diserap.",
-          aspect: "3 / 2",
-          legendLabel: "Tiga laluan pencernaan",
-          caption:
-            "Gambaran keseluruhan ketiga-tiga kelas makanan. Ketik satu label untuk melihat laluan penuhnya, kemudian pilih enzim di bawah untuk butiran setiap tindak balas.",
-          annotations: [
-            { id: "carb", label: "Karbohidrat", x: 8, y: 8, note: "Kanji → Maltosa → Glukosa. Dicernakan oleh amilase, kemudian maltase." },
-            { id: "protein", label: "Protein", x: 8, y: 37, note: "Protein → Polipeptida → Dipeptida → Asid amino. Dicernakan oleh protease dalam tiga peringkat." },
-            { id: "fat", label: "Lemak", x: 8, y: 63, note: "Lemak → Asid lemak + Gliserol. Dicernakan oleh lipase selepas hempedu mengemulsikannya." },
+      title: "Sistem Pencernaan Manusia",
+      intro:
+        "Pencernaan ialah penguraian fizikal dan kimia makanan yang kompleks atau besar kepada molekul yang lebih kecil, larut dan boleh diserap oleh badan.",
+      digestiveSystem: {
+        image: {
+          src: digestiveSystemImg,
+          annotationMode: "spotlight",
+          size: "portrait",
+          alt: "Rajah sistem pencernaan manusia di dalam badan: mulut, kelenjar air liur, esofagus, perut, hati, pundi hempedu, pankreas, duodenum, usus kecil, usus besar, rektum dan dubur.",
+          aspect: "3 / 4",
+          caption: "Ketik satu peringkat aliran makanan di bawah untuk melihat apa yang berlaku di situ dan di manakah lokasinya di sini.",
+          points: [
+            {
+              id: "mulut",
+              x: 45,
+              y: 19,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES.mulut,
+              spotlightCaption: "Kunyahan + air liur mulakan pencernaan",
+            },
+            {
+              id: "kelenjar-air-liur",
+              x: 34,
+              y: 24,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES["kelenjar-air-liur"],
+              spotlightCaption: "Hasilkan air liur + amilase",
+            },
+            {
+              id: "esofagus",
+              x: 50,
+              y: 33,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES.esofagus,
+              spotlightCaption: "Menyalurkan makanan ke perut",
+            },
+            {
+              id: "hati",
+              x: 40,
+              y: 48,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES.hati,
+              spotlightCaption: "Menghasilkan hempedu",
+            },
+            {
+              id: "perut",
+              x: 61,
+              y: 51,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES.perut,
+              spotlightCaption: "Protease + asid → kim",
+            },
+            {
+              id: "pundi-hempedu",
+              x: 40,
+              y: 55,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES["pundi-hempedu"],
+              spotlightCaption: "Menyimpan hempedu",
+            },
+            {
+              id: "pankreas",
+              x: 57,
+              y: 59,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES.pankreas,
+              spotlightCaption: "Menghasilkan jus pankreas",
+            },
+            {
+              id: "duodenum",
+              x: 47,
+              y: 61,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES.duodenum,
+              spotlightCaption: "Hempedu + jus pankreas bercampur",
+            },
+            {
+              id: "usus-besar",
+              x: 33,
+              y: 71,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES["usus-besar"],
+              spotlightCaption: "Air diserap semula",
+            },
+            {
+              id: "usus-kecil",
+              x: 53,
+              y: 75,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES["usus-kecil"],
+              spotlightCaption: "Pencernaan selesai; nutrien diserap",
+            },
+            {
+              id: "rektum",
+              x: 51,
+              y: 81,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES.rektum,
+              spotlightCaption: "Menyimpan tinja",
+            },
+            {
+              id: "dubur",
+              x: 49,
+              y: 90,
+              spotlightShapes: DIGESTIVE_ORGAN_SHAPES.dubur,
+              spotlightCaption: "Tinja keluar daripada badan",
+            },
           ],
         },
-      ],
-      intro:
-        "Terdapat tiga enzim pencernaan utama yang perlu anda kenali: amilase, protease dan lipase. Setiap satu dirembeskan oleh lebih daripada satu organ dan bertindak pada substrat yang berbeza di setiap peringkat.",
-      enzymeExplorer: {
-        title: "Terokai setiap enzim",
+        title: "Struktur Sistem Pencernaan Manusia",
         instruction:
-          "Pilih satu enzim untuk melihat di mana ia dirembeskan, di mana ia bertindak, dan apa yang dicernakannya.",
-        enzymes: [
+          "Ketik satu peringkat aliran makanan untuk menyorot organ yang berkaitan dan melihat apa yang berlaku di situ. Hati, pundi hempedu dan pankreas semuanya menyalurkan bahan ke duodenum — lihat penjelasannya untuk peranan masing-masing.",
+        tractLabel: "Salur pencernaan",
+        accessoryLabel: "Organ Aksesori Pencernaan",
+        journey: [
+          "mulut",
+          "esofagus",
+          "perut",
+          "duodenum",
+          "usus-kecil",
+          "usus-besar",
+          "rektum",
+          "dubur",
+        ],
+        journeyTitle: "Ikuti aliran makanan",
+        journeyInstruction: "Ketik setiap peringkat mengikut urutan, daripada mulut hingga dubur.",
+        organs: [
           {
-            id: "amilase",
-            name: "Amilase",
-            accent: "#f59e0b",
-            summary: "Amilase mencernakan kanji kepada maltosa. Ia bertindak dua kali: di mulut dan di duodenum.",
-            stages: [
-              {
-                stageLabel: "Di dalam mulut",
-                enzymeLabel: "Amilase liur",
-                substrate: "Kanji",
-                product: "Maltosa",
-                sourceLabel: "Dirembeskan oleh",
-                source: "Kelenjar air liur",
-                siteLabel: "Bertindak di",
-                site: "Mulut",
-              },
-              {
-                stageLabel: "Di dalam duodenum",
-                enzymeLabel: "Amilase pankreas",
-                substrate: "Kanji yang tinggal",
-                product: "Maltosa",
-                sourceLabel: "Dirembeskan oleh",
-                source: "Pankreas",
-                siteLabel: "Bertindak di",
-                site: "Duodenum",
-              },
+            id: "mulut",
+            label: "Mulut",
+            kind: "tract",
+            note: "Makanan dikunyah dan dilembutkan oleh air liur; amilase liur mula mencerna kanji.",
+            points: [
+              "Makanan dikunyah oleh gigi.",
+              "Cebisan makanan dilembutkan oleh air liur.",
+              "Amilase liur memecahkan kanji kepada maltosa.",
             ],
-            note: "Pencernaan karbohidrat bermula di mulut — satu-satunya enzim yang bertindak di sana.",
           },
           {
-            id: "protease",
-            name: "Protease",
-            accent: "#a78bfa",
-            summary: "Protease mencernakan protein dalam tiga peringkat berasingan, setiap satu oleh organ yang berbeza.",
-            stages: [
-              {
-                stageLabel: "Peringkat 1 — di dalam perut",
-                enzymeLabel: "Protease perut",
-                substrate: "Protein",
-                product: "Polipeptida",
-                sourceLabel: "Dirembeskan oleh",
-                source: "Dinding perut",
-                siteLabel: "Bertindak di",
-                site: "Perut",
-              },
-              {
-                stageLabel: "Peringkat 2 — di dalam duodenum",
-                enzymeLabel: "Protease pankreas",
-                substrate: "Polipeptida",
-                product: "Dipeptida",
-                sourceLabel: "Dirembeskan oleh",
-                source: "Pankreas",
-                siteLabel: "Bertindak di",
-                site: "Duodenum",
-              },
-              {
-                stageLabel: "Peringkat 3 — di dalam usus kecil",
-                enzymeLabel: "Protease usus",
-                substrate: "Dipeptida",
-                product: "Asid amino",
-                sourceLabel: "Dirembeskan oleh",
-                source: "Usus kecil",
-                siteLabel: "Bertindak di",
-                site: "Usus kecil",
-              },
+            id: "esofagus",
+            label: "Esofagus",
+            kind: "tract",
+            note: "Peristalsis menolak bolus makanan ke perut.",
+            points: [
+              "Makanan yang memasuki esofagus dipanggil bolus.",
+              "Peristalsis dalam esofagus menolak bolus ke dalam perut.",
             ],
-            note: "Pencernaan protein bermula di perut, bukan di mulut. Asid amino ialah hasil akhir yang diserap.",
           },
           {
-            id: "lipase",
-            name: "Lipase",
-            accent: "#34d399",
-            summary: "Lipase mencernakan lemak kepada asid lemak dan gliserol. Hempedu mengemulsikan lemak dahulu supaya lipase dapat bertindak dengan lebih cepat.",
-            stages: [
-              {
-                stageLabel: "Di dalam duodenum dan usus kecil",
-                enzymeLabel: "Lipase",
-                substrate: "Lemak (titisan kecil)",
-                product: "Asid lemak + gliserol",
-                sourceLabel: "Dirembeskan oleh",
-                source: "Pankreas dan usus kecil",
-                siteLabel: "Bertindak di",
-                site: "Duodenum dan usus kecil",
-              },
+            id: "perut",
+            label: "Perut",
+            kind: "tract",
+            note: "Protease dan asid hidroklorik menukar makanan kepada kim.",
+            points: [
+              "Dinding perut merembeskan protease dan asid hidroklorik.",
+              "Asid hidroklorik mengaktifkan protease.",
+              "Asid hidroklorik membunuh bakteria dalam makanan.",
+              "Protease mencerna protein kepada polipeptida.",
+              "Makanan separa cecair di dalam perut dipanggil kim.",
             ],
-            note: "Hempedu bukan enzim. Ia hanya memecahkan lemak kepada titisan kecil supaya lipase mempunyai luas permukaan yang lebih besar untuk bertindak.",
+          },
+          {
+            id: "duodenum",
+            label: "Duodenum",
+            kind: "tract",
+            note: "Hempedu dan jus pankreas ditambah di sini.",
+            points: [
+              "Makanan memasuki bahagian pertama usus kecil, iaitu duodenum.",
+              "Hati menghasilkan hempedu.",
+              "Pundi hempedu menyimpan hempedu.",
+              "Hempedu mengemulsikan lemak kepada titisan kecil.",
+              "Hempedu meneutralkan asid dalam kim.",
+              "Pankreas menghasilkan jus pankreas.",
+              "Jus pankreas mengandungi amilase, protease dan lipase.",
+              "Amilase pankreas mencerna kanji kepada maltosa.",
+              "Protease pankreas mencerna polipeptida kepada dipeptida.",
+              "Lipase pankreas mencerna lemak kepada asid lemak dan gliserol.",
+            ],
+          },
+          {
+            id: "usus-kecil",
+            label: "Usus kecil",
+            kind: "tract",
+            note: "Pencernaan disempurnakan dan nutrien diserap.",
+            points: [
+              "Usus kecil menyempurnakan pencernaan.",
+              "Maltosa ditukar kepada glukosa oleh maltase.",
+              "Dipeptida ditukar kepada asid amino.",
+              "Lemak dicerna kepada asid lemak dan gliserol.",
+            ],
+          },
+          {
+            id: "usus-besar",
+            label: "Usus besar",
+            kind: "tract",
+            note: "Air dan garam mineral diserap semula.",
+            points: [
+              "Makanan tidak tercerna memasuki usus besar.",
+              "Air dan garam mineral diserap semula.",
+            ],
+          },
+          {
+            id: "rektum",
+            label: "Rektum",
+            kind: "tract",
+            note: "Tinja disimpan sementara sebelum disingkirkan.",
+            points: [
+              "Makanan tidak tercerna menjadi tinja.",
+              "Tinja disimpan sementara di dalam rektum.",
+            ],
+          },
+          {
+            id: "dubur",
+            label: "Dubur",
+            kind: "tract",
+            note: "Tinja disingkirkan daripada badan melalui dubur.",
+            points: ["Tinja disingkirkan daripada badan melalui dubur."],
+          },
+          {
+            id: "kelenjar-air-liur",
+            label: "Kelenjar air liur",
+            kind: "accessory",
+            connectsTo: "mulut",
+            note: "Merembeskan air liur yang mengandungi amilase liur, yang mula mencerna kanji kepada maltosa semasa makanan masih di dalam mulut.",
+          },
+          {
+            id: "hati",
+            label: "Hati",
+            kind: "accessory",
+            connectsTo: "duodenum",
+            note: "Menghasilkan hempedu, yang disalurkan ke duodenum untuk mengemulsikan lemak dan meneutralkan asid perut.",
+          },
+          {
+            id: "pundi-hempedu",
+            label: "Pundi hempedu",
+            kind: "accessory",
+            connectsTo: "duodenum",
+            note: "Menyimpan hempedu sebelum disalurkan ke duodenum.",
+          },
+          {
+            id: "pankreas",
+            label: "Pankreas",
+            kind: "accessory",
+            connectsTo: "duodenum",
+            note: "Menghasilkan jus pankreas yang mengandungi amilase, protease dan lipase, yang disalurkan ke duodenum.",
           },
         ],
       },
-      accordions: [
+      checks: [
         {
-          title: "🧂 Asid Hidroklorik (HCl)",
-          body: "Dirembeskan oleh dinding perut bersama protease. Dua fungsi utama: **mengaktifkan protease dan membunuh bakteria** dalam makanan yang masuk ke dalam perut.",
+          question: "Apakah organ yang terletak antara perut dan usus kecil?",
+          hint: "Duodenum — bahagian pertama usus kecil.",
         },
         {
-          title: "➕ Tahukah Anda: Maltase",
-          body: "Usus kecil turut merembeskan maltase, yang mencerna maltosa → glukosa, melengkapkan laluan karbohidrat: kanji → maltosa → glukosa. Maltase adalah butiran tambahan — anda tidak perlu menghafalnya seperti tiga enzim utama di atas.",
+          question: "Apakah fungsi pundi hempedu?",
+          hint: "Menyimpan hempedu sebelum disalurkan ke duodenum.",
         },
       ],
+    },
+    {
+      number: "3.3.1",
+      title: "Enzim dan Pencernaan Kimia",
+      intro:
+        "Tiga enzim pencernaan utama bertindak ke atas tiga kelas makanan. Setiap laluan di bawah menunjukkan substrat, enzim, dan organ yang terlibat, daripada makanan asal sehingga hasil akhir.",
+      reactionFlow: {
+        title: "Tiga laluan pencernaan",
+        instruction: "Setiap lajur menunjukkan laluan penuh satu kelas makanan sekali imbas — tiada tab, tiada yang tersembunyi.",
+        columns: [
+          {
+            id: "carb",
+            title: "Karbohidrat",
+            icon: "🍚",
+            steps: [
+              { substrate: "Kanji", enzyme: "Amilase", organs: "Kelenjar air liur + pankreas" },
+              { substrate: "Maltosa", enzyme: "Maltase", organs: "Usus kecil" },
+            ],
+            finalProduct: "Glukosa",
+          },
+          {
+            id: "protein",
+            title: "Protein",
+            icon: "🍗",
+            steps: [
+              { substrate: "Protein", enzyme: "Protease", organs: "Perut" },
+              { substrate: "Polipeptida", enzyme: "Protease", organs: "Pankreas" },
+              { substrate: "Dipeptida", enzyme: "Protease", organs: "Usus kecil" },
+            ],
+            finalProduct: "Asid amino",
+          },
+          {
+            id: "fat",
+            title: "Lemak",
+            icon: "🧈",
+            steps: [{ substrate: "Lemak", enzyme: "Lipase", organs: "Pankreas + usus kecil" }],
+            finalProduct: "Asid lemak + Gliserol",
+          },
+        ],
+      },
       remember:
-        "Tiga enzim pencernaan utama: amilase (kanji → maltosa), protease (protein → asid amino) dan lipase (lemak → asid lemak + gliserol). Setiap satu mencerna substrat yang berbeza.",
+        "Tiga enzim pencernaan utama: amilase (kanji → maltosa), protease (protein → polipeptida → dipeptida → asid amino) dan lipase (lemak → asid lemak + gliserol). Setiap satu mencerna substrat yang berbeza.",
       checks: [
         {
           question:
@@ -733,14 +920,15 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           question: "Apakah dua fungsi asid hidroklorik di dalam perut?",
-          hint: "Mengaktifkan protease dan membunuh bakteria.",
+          hint: "Mengaktifkan protease dan membunuh bakteria — lihat peringkat Perut di bawah Sistem Pencernaan Manusia.",
         },
       ],
     },
     {
       number: "3.4.1",
       title: "Penyerapan Hasil Pencernaan",
-      intro: "Usus kecil disesuaikan secara struktur untuk menyerap nutrien tercerna dengan cekap.",
+      intro:
+        "Vilus = bentuk tunggal / vili = bentuk jamak: dinding usus kecil mempunyai berjuta-juta unjuran halus seperti jari dipanggil vili, yang menambahkan luas permukaan untuk penyerapan makanan tercerna.",
       cards: [
         {
           title: "Banyak vilus",
@@ -762,19 +950,64 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       villusDiagram: {
         image: {
           src: villusImg,
-          annotationMode: "callouts",
+          annotationMode: "spotlight",
           size: "compact",
           alt: "Keratan rentas satu vilus pada dinding usus kecil, menunjukkan kapilari darah dan lakteal di dalamnya.",
           aspect: "4 / 3",
           caption: "Glukosa dan asid amino masuk ke kapilari darah; asid lemak dan gliserol masuk ke lakteal.",
           points: [
-            { id: "blood", x: 45, y: 62 },
-            { id: "lacteal", x: 50, y: 80 },
+            {
+              id: "blood",
+              x: 47,
+              y: 55,
+              spotlightShapes: VILLUS_SHAPES.blood,
+              spotlightCaption: "Glukosa + asid amino → darah",
+            },
+            {
+              id: "lacteal",
+              x: 50,
+              y: 55,
+              spotlightShapes: VILLUS_SHAPES.lacteal,
+              spotlightCaption: "Asid lemak + gliserol → limfa",
+            },
           ],
           extra: [
-            { id: "villus", label: "Vilus", x: 50, y: 13, note: "Unjuran halus seperti jari pada dinding usus kecil. Berjuta-juta vilus menambahkan luas permukaan untuk penyerapan." },
-            { id: "wall", label: "Dinding nipis", x: 62, y: 22, note: "Dinding vilus setebal satu sel sahaja. Jarak resapan yang pendek ini mempercepatkan penyerapan nutrien." },
-            { id: "lumen", label: "Lumen usus", x: 16, y: 25, note: "Ruang di dalam usus kecil tempat makanan tercerna berada sebelum diserap melalui dinding vilus." },
+            {
+              id: "villus",
+              label: "Vilus / Vili",
+              x: 50,
+              y: 13,
+              note: "Unjuran halus seperti jari pada dinding usus kecil. Berjuta-juta vili (bentuk jamak vilus) menambahkan luas permukaan untuk penyerapan.",
+              spotlightShapes: VILLUS_SHAPES.villus,
+              spotlightCaption: "Satu unjuran halus",
+            },
+            {
+              id: "wall",
+              label: "Dinding nipis",
+              x: 62,
+              y: 22,
+              note: "Dinding vilus setebal satu sel sahaja. Jarak resapan yang pendek ini mempercepatkan penyerapan nutrien.",
+              spotlightShapes: VILLUS_SHAPES.wall,
+              spotlightCaption: "Setebal satu sel sahaja",
+            },
+            {
+              id: "lumen",
+              label: "Lumen usus",
+              x: 16,
+              y: 25,
+              note: "Ruang di dalam usus kecil tempat makanan tercerna berada sebelum diserap melalui dinding vilus.",
+              spotlightShapes: VILLUS_SHAPES.lumen,
+              spotlightCaption: "Makanan tercerna menunggu di sini",
+            },
+            {
+              id: "absorption",
+              label: "Penyerapan nutrien",
+              x: 50,
+              y: 45,
+              note: "Molekul kecil hasil pencernaan menembusi dinding vilus yang nipis ke dalam kapilari darah atau lakteal — zarah besar yang tidak tercerna tidak dapat menembusinya.",
+              spotlightShapes: VILLUS_SHAPES.absorption,
+              spotlightCaption: "Molekul kecil menembusi dinding",
+            },
           ],
         },
         title: "Struktur vilus dan penyerapan",
@@ -792,7 +1025,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
           {
             id: "lacteal",
             label: "Lakteal",
-            destination: "Sistem limfa",
+            destination: "Sistem limfa, sebelum sampai ke peredaran darah",
             cargo: "Asid lemak dan gliserol",
           },
         ],
@@ -839,26 +1072,68 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       viskingExperiment: {
         image: {
           src: viskingImg,
-          annotationMode: "labels",
+          annotationMode: "spotlight",
           size: "compact",
           alt: "Dua tabung didih berisi air suling. Tiub Visking di dalam tabung kiri mengandungi kanji yang kekal di dalam; tiub di dalam tabung kanan mengandungi glukosa yang meresap keluar melalui membran.",
           aspect: "3 / 2",
           caption: "Kanji kekal di dalam tiub Visking. Glukosa meresap keluar melalui membran ke dalam air suling di sekelilingnya.",
           points: [
-            { id: "P", x: 30, y: 55 },
-            { id: "Q", x: 68, y: 55 },
+            {
+              id: "P",
+              x: 29,
+              y: 50,
+              spotlightShapes: VISKING_SHAPES.P,
+              spotlightCaption: "Kanji kekal di dalam — terlalu besar untuk menembusi",
+            },
+            {
+              id: "Q",
+              x: 68,
+              y: 50,
+              spotlightShapes: VISKING_SHAPES.Q,
+              spotlightCaption: "Glukosa meresap keluar",
+            },
           ],
           extra: [
-            { id: "tubing", label: "Tiub Visking", x: 30, y: 88, note: "Membran separa telap yang mewakili dinding usus kecil: hanya molekul kecil boleh menembusinya." },
-            { id: "water", label: "Air suling", x: 15, y: 24, note: "Air suling di luar tiub mewakili darah. Ujian makanan dijalankan pada air ini untuk mengesan apa yang telah meresap keluar." },
+            {
+              id: "tubing",
+              label: "Membran tiub Visking",
+              x: 48,
+              y: 88,
+              note: "Membran separa telap yang mewakili dinding usus kecil: hanya molekul kecil boleh menembusinya.",
+              spotlightShapes: VISKING_SHAPES.tubing,
+              spotlightCaption: "Membran separa telap",
+            },
+            {
+              id: "water",
+              label: "Air suling",
+              x: 15,
+              y: 24,
+              note: "Air suling di luar tiub mewakili darah. Ujian makanan dijalankan pada air ini untuk mengesan apa yang telah meresap keluar.",
+              spotlightShapes: VISKING_SHAPES.water,
+              spotlightCaption: "Ujian makanan dijalankan di sini",
+            },
+            {
+              id: "before",
+              label: "Sebelum (0 minit)",
+              x: 50,
+              y: 8,
+              note: "Pada permulaan, kedua-dua tiub hanya mengandungi bahan asalnya. Air di luar masih jernih — tiada ujian makanan akan positif lagi.",
+            },
+            {
+              id: "after",
+              label: "Selepas (30 minit)",
+              x: 50,
+              y: 8,
+              note: "Selepas 30 minit, air di luar tiub Q positif untuk glukosa (ujian Benedict bertukar merah bata). Air di luar tiub P kekal negatif — kanji tidak pernah menembusi membran.",
+            },
           ],
         },
         title: "Susunan radas eksperimen tiub Visking",
         instruction:
           "Kedua-dua tiub Visking direndam dalam air suling berasingan. Ujian makanan dijalankan pada air suling DI LUAR tiub, bukan pada kandungan di dalam tiub.",
         tubes: [
-          { id: "P", label: "Tabung didih P", contents: "Tiub Visking + ampaian kanji" },
-          { id: "Q", label: "Tabung didih Q", contents: "Tiub Visking + larutan glukosa" },
+          { id: "P", label: "Tiub kanji (P)", contents: "Tiub Visking + ampaian kanji" },
+          { id: "Q", label: "Tiub glukosa (Q)", contents: "Tiub Visking + larutan glukosa" },
         ],
         surroundLabel: "Kedua-dua tiub Visking direndam dalam air suling di dalam tabung didih.",
         testLabel:
@@ -885,50 +1160,33 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
       number: "3.4.2",
       title: "Asimilasi & Kerjasama Sistem",
       intro:
-        "Molekul yang diserap ke dalam vilus perlu sampai ke sel-sel badan — proses ini memerlukan kerjasama tiga sistem badan.",
-      causeEffect: {
-        title: "Kerjasama tiga sistem badan",
-        instruction:
-          "Setiap sistem menyumbang satu peranan supaya sel badan menerima nutrien dan oksigen.",
-        items: [
+        "Asimilasi ialah proses pengagihan hasil akhir pencernaan bagi kegunaan sel-sel badan. Untuk molekul ini sampai daripada vilus ke setiap sel, kerjasama tiga sistem badan diperlukan.",
+      systemFlow: {
+        title: "Bagaimana tiga sistem bekerjasama",
+        instruction: "Ikuti aliran daripada setiap sistem sehingga bagaimana sel badan menggunakan nutrien.",
+        systems: [
           {
             icon: "🍽️",
-            title: "Sistem pencernaan",
-            chain: [
-              "Memecahkan makanan besar/kompleks",
-              "Molekul kecil dan larut",
-              "Diserap ke dalam vilus",
-            ],
+            label: "Sistem pencernaan",
+            role: "Memecahkan makanan kepada nutrien kecil dan larut",
           },
           {
             icon: "🩸",
-            title: "Sistem peredaran darah",
-            chain: [
-              "Menerima nutrien daripada vilus",
-              "Mengangkut melalui darah",
-              "Sampai ke sel-sel badan",
-            ],
+            label: "Sistem peredaran darah",
+            role: "Mengangkut nutrien daripada vilus ke sel badan",
           },
           {
             icon: "🫁",
-            title: "Sistem respirasi",
-            chain: [
-              "Membekalkan oksigen",
-              "Oksigen bertindak balas dengan glukosa di dalam sel",
-              "Respirasi → tenaga",
-            ],
-            note: "**Ketiga-tiga sistem bekerjasama** supaya sel badan menerima nutrien dan oksigen serentak.",
+            label: "Sistem respirasi",
+            role: "Membekalkan oksigen yang diperlukan oleh sel badan",
           },
         ],
-      },
-      comparison: {
-        title: "Asimilasi — penggunaan hasil akhir pencernaan",
-        columns: [
-          { title: "Glukosa", body: "Digunakan untuk **menghasilkan tenaga** melalui respirasi." },
-          {
-            title: "Asid amino, asid lemak & gliserol",
-            body: "Asid amino **membentuk komponen sel baharu**. Asid lemak dan gliserol bergabung membentuk lemak — penebat haba dan pelindung organ dalaman.",
-          },
+        convergeLabel: "Sel badan",
+        convergeNote: "Menerima nutrien dan oksigen serentak.",
+        outcomes: [
+          { label: "Glukosa + oksigen", result: "→ respirasi → tenaga" },
+          { label: "Asid amino", result: "→ komponen sel baharu" },
+          { label: "Asid lemak + gliserol", result: "→ lemak simpanan: penebat haba + pelindung organ" },
         ],
       },
       checks: [
@@ -988,7 +1246,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
   ],
   reflectionItems: [
     "Saya boleh menyatakan fungsi dan sumber tujuh kelas makanan, termasuk vitamin dan mineral yang mandatori.",
-    "Saya boleh menerangkan Piramid Makanan Malaysia 2020 dan faktor yang mempengaruhi keperluan kalori.",
+    "Saya boleh menerangkan piramid makanan dan faktor yang mempengaruhi keperluan kalori.",
     "Saya boleh menganggar nilai kalori satu hidangan dan merancang gizi seimbang.",
     "Saya boleh menghuraikan kepentingan gizi seimbang, senaman dan gaya hidup sihat.",
     "Saya boleh menjejaki makanan melalui sistem pencernaan, termasuk peranan pankreas, hati dan pundi hempedu.",

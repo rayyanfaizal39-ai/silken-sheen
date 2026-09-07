@@ -576,7 +576,6 @@ export function AnnotatedImage({
                     type="button"
                     aria-pressed={isActive}
                     onClick={() => setActive(isActive ? null : item.id)}
-                    onFocus={() => setActive(item.id)}
                     className={`${rowClass} w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary`}
                   >
                     {marker}

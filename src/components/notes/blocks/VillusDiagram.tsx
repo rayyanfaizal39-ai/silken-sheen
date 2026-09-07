@@ -1,5 +1,6 @@
+import { useState } from "react";
 import type { VillusDiagramBlock } from "@/content/form2/science/interactive-types";
-import { InteractiveBadge } from "./InteractiveFigureCard";
+import { InteractiveBadge, conceptButtonClass } from "./InteractiveFigureCard";
 import { AnnotatedImage, type ImageAnnotation } from "./AnnotatedImage";
 
 /**
@@ -7,6 +8,12 @@ import { AnnotatedImage, type ImageAnnotation } from "./AnnotatedImage";
  * acids) and the lacteal/lymph route (fatty acids + glycerol) each get their
  * own arrow out of the finger-shaped projection, matching Rajah 3.16. Small
  * enough to sit under a single villus card, not a full-page figure.
+ *
+ * When the image is authored in `spotlight` mode, this component owns the
+ * active-concept state itself (rather than leaving it inside `AnnotatedImage`)
+ * so it can render a real button row under the diagram — the same
+ * `conceptButtonClass` pill used everywhere else in Science — instead of
+ * relying on button colour alone to say what changed.
  */
 export function VillusDiagram({
   block,
@@ -21,7 +28,9 @@ export function VillusDiagram({
   hintLabel?: string;
   lang?: string;
 }) {
+  const [active, setActive] = useState<string | null>(null);
   const image = block.image;
+  const isSpotlight = image?.annotationMode === "spotlight";
   const imageAnnotations: ImageAnnotation[] = image
     ? [
         ...image.points.flatMap((point) => {
@@ -34,6 +43,11 @@ export function VillusDiagram({
                   note: `${pathway.cargo} → ${pathway.destination}`,
                   x: point.x,
                   y: point.y,
+                  spotlightShapes: point.spotlightShapes,
+                  spotlightCaption: point.spotlightCaption,
+                  spotlightTint: point.spotlightTint,
+                  spotlightGroupHalo: point.spotlightGroupHalo,
+                  spotlightPulseGroups: point.spotlightPulseGroups,
                 },
               ]
             : [];
@@ -41,6 +55,7 @@ export function VillusDiagram({
         ...(image.extra ?? []),
       ]
     : [];
+  const selected = imageAnnotations.find((a) => a.id === active) ?? null;
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-4">
@@ -56,6 +71,10 @@ export function VillusDiagram({
           legendLabel={image.legendLabel ?? block.title}
           annotationMode={image.annotationMode ?? "callouts"}
           annotations={imageAnnotations}
+          active={isSpotlight ? active : undefined}
+          onActiveChange={isSpotlight ? setActive : undefined}
+          hideLegend={isSpotlight}
+          hidePanel={isSpotlight}
           enlargeLabel={enlargeLabel}
           closeLabel={closeLabel}
           hintLabel={hintLabel}
@@ -159,6 +178,47 @@ export function VillusDiagram({
           ))}
         </svg>
       </div>
+      )}
+
+      {isSpotlight && imageAnnotations.length > 0 && (
+        <div role="group" aria-label={image?.legendLabel ?? block.title} className="mt-3 flex flex-wrap gap-1.5">
+          {imageAnnotations.map((item) => {
+            const isActive = item.id === active;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setActive(isActive ? null : item.id)}
+                className={conceptButtonClass(isActive, "flex-auto sm:flex-none")}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {isSpotlight && (
+        <div
+          aria-live="polite"
+          className={`mt-2.5 min-h-[3rem] rounded-xl border px-3 py-2.5 transition-colors ${
+            selected ? "border-primary/35 bg-primary/8" : "border-border bg-secondary/30"
+          }`}
+        >
+          {selected ? (
+            <>
+              <p className="font-display text-[13px] font-bold text-primary">{selected.label}</p>
+              {selected.note && (
+                <p className="mt-1 text-[12.5px] leading-relaxed text-foreground">
+                  {selected.note}
+                </p>
+              )}
+            </>
+          ) : (
+            <p className="text-[12.5px] leading-relaxed text-muted-foreground">{hintLabel}</p>
+          )}
+        </div>
       )}
 
       <div className="mt-2 grid gap-2 sm:grid-cols-2">

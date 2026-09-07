@@ -14,7 +14,8 @@
  */
 export type SpotlightShape =
   | { id: string; kind: "ellipse"; cx: number; cy: number; rx: number; ry: number }
-  | { id: string; kind: "rect"; x: number; y: number; w: number; h: number; rx?: number };
+  | { id: string; kind: "rect"; x: number; y: number; w: number; h: number; rx?: number }
+  | { id: string; kind: "polygon"; points: string };
 
 /** One temporary colour group in the `spotlightPulseGroups` sweep (ecosystem). */
 export type SpotlightPulseGroup = {
@@ -34,11 +35,20 @@ export function spotlightBounds(shapes: SpotlightShape[]) {
       maxX = Math.max(maxX, shape.cx + shape.rx);
       minY = Math.min(minY, shape.cy - shape.ry);
       maxY = Math.max(maxY, shape.cy + shape.ry);
-    } else {
+    } else if (shape.kind === "rect") {
       minX = Math.min(minX, shape.x);
       maxX = Math.max(maxX, shape.x + shape.w);
       minY = Math.min(minY, shape.y);
       maxY = Math.max(maxY, shape.y + shape.h);
+    } else {
+      for (const pair of shape.points.trim().split(/\s+/)) {
+        const [px, py] = pair.split(",").map(Number);
+        if (Number.isNaN(px) || Number.isNaN(py)) continue;
+        minX = Math.min(minX, px);
+        maxX = Math.max(maxX, px);
+        minY = Math.min(minY, py);
+        maxY = Math.max(maxY, py);
+      }
     }
   }
   if (minX > maxX) return { minX: 0, minY: 0, maxX: 0, maxY: 0 };

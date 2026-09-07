@@ -8,6 +8,9 @@ function ShapeEl({
   if (shape.kind === "ellipse") {
     return <ellipse cx={shape.cx} cy={shape.cy} rx={shape.rx} ry={shape.ry} {...props} />;
   }
+  if (shape.kind === "polygon") {
+    return <polygon points={shape.points} {...(props as React.SVGProps<SVGPolygonElement>)} />;
+  }
   return (
     <rect
       x={shape.x}
