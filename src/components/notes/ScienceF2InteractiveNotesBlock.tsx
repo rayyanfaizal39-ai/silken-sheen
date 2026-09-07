@@ -20,6 +20,7 @@ import { Journey } from "@/components/notes/blocks/Journey";
 import { FoodWebDiagram } from "@/components/notes/blocks/FoodWebDiagram";
 import { PyramidDiagram } from "@/components/notes/blocks/PyramidDiagram";
 import { NutrientTable } from "@/components/notes/blocks/NutrientTable";
+import { DiseaseReferenceTable } from "@/components/notes/blocks/DiseaseReferenceTable";
 import { DigestiveSystemDiagram } from "@/components/notes/blocks/DigestiveSystemDiagram";
 import { ViskingExperimentDiagram } from "@/components/notes/blocks/ViskingExperimentDiagram";
 import { VillusDiagram } from "@/components/notes/blocks/VillusDiagram";
@@ -103,6 +104,26 @@ import {
 } from "./chapter8/Chapter8ContextFigure";
 
 type Lang = "en" | "bm";
+
+/**
+ * Renders one `Fact`'s value — a single emphasised line, or a real bullet
+ * list when the content is genuinely point-form (e.g. a disease's examples)
+ * rather than one comma-separated sentence.
+ */
+function FactValue({ value }: { value: string | string[] }) {
+  if (Array.isArray(value)) {
+    return (
+      <ul className="mt-0.5 list-disc space-y-0.5 pl-4">
+        {value.map((line) => (
+          <li key={line}>
+            <ScienceEmphasis text={line} />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  return <ScienceEmphasis text={value} />;
+}
 
 function MiniQuiz({
   item,
@@ -291,6 +312,29 @@ export function ScienceF2InteractiveNotesBlock({
             {section.contextImagePair.map(renderFigure)}
           </div>
         )}
+        {section.conceptSelector && (
+          <InteractiveFigureCard
+            lang={lang}
+            title={section.conceptSelector.title}
+            instruction={section.conceptSelector.instruction}
+            prompt={section.conceptSelector.prompt}
+            concepts={section.conceptSelector.concepts}
+            image={
+              section.conceptSelector.image
+                ? {
+                    src: section.conceptSelector.image.src,
+                    alt: section.conceptSelector.image.alt,
+                    size: section.conceptSelector.image.size ?? "wide",
+                    aspect: section.conceptSelector.image.aspect ?? "4 / 3",
+                    caption: section.conceptSelector.image.caption,
+                    legendLabel: section.conceptSelector.image.legendLabel,
+                    annotationMode: section.conceptSelector.image.annotationMode ?? "regions",
+                    imageKey: section.conceptSelector.image.imageKey,
+                  }
+                : undefined
+            }
+          />
+        )}
         {unpicturedFlipCards.length > 0 && (
           <div className="border-l-2 border-primary/35 pl-4">
             <h3 className="py-2 text-[13px] font-semibold text-primary">
@@ -300,7 +344,9 @@ export function ScienceF2InteractiveNotesBlock({
               {unpicturedFlipCards.map((item) => (
                 <div key={item.id}>
                   <dt className="text-[13px] font-bold text-foreground">{item.label}</dt>
-                  <dd className="mt-0.5 text-[13px] leading-relaxed text-muted-foreground">{item.fact}</dd>
+                  <dd className="mt-0.5 text-[13px] leading-relaxed text-muted-foreground">
+                    {item.fact}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -334,9 +380,7 @@ export function ScienceF2InteractiveNotesBlock({
         )}
         {section.nutrientTables?.map((table) => (
           <div key={table.title}>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">
-              {table.title}
-            </h3>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">{table.title}</h3>
             {table.instruction && (
               <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
                 {table.instruction}
@@ -364,7 +408,7 @@ export function ScienceF2InteractiveNotesBlock({
                           {fact.label}
                         </dt>
                         <dd className="mt-0.5 text-[12.5px] leading-snug text-muted-foreground">
-                          <ScienceEmphasis text={fact.value} />
+                          <FactValue value={fact.value} />
                         </dd>
                       </div>
                     ))}
@@ -375,6 +419,19 @@ export function ScienceF2InteractiveNotesBlock({
                 )}
               </article>
             ))}
+          </div>
+        )}
+        {section.diseaseReferenceTable && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.diseaseReferenceTable.title}
+            </h3>
+            {section.diseaseReferenceTable.instruction && (
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                {section.diseaseReferenceTable.instruction}
+              </p>
+            )}
+            <DiseaseReferenceTable block={section.diseaseReferenceTable} />
           </div>
         )}
         {section.flipCards && !isChapter8 && <FlipCardGrid items={section.flipCards} />}
@@ -438,7 +495,23 @@ export function ScienceF2InteractiveNotesBlock({
               <AccordionItem key={item.title} value={`${section.number}-${i}`}>
                 <AccordionTrigger>{item.title}</AccordionTrigger>
                 <AccordionContent className="text-[13px] leading-relaxed text-muted-foreground">
-                  <ScienceEmphasis text={item.body} />
+                  {item.body && <ScienceEmphasis text={item.body} />}
+                  {item.facts && item.facts.length > 0 && (
+                    <dl
+                      className={`flex flex-col gap-2 ${item.body ? "mt-2.5 border-t border-border/60 pt-2.5" : ""}`}
+                    >
+                      {item.facts.map((fact) => (
+                        <div key={fact.label}>
+                          <dt className="text-[10.5px] font-bold uppercase tracking-wide text-primary">
+                            {fact.label}
+                          </dt>
+                          <dd className="mt-0.5 text-[12.5px] leading-relaxed text-foreground/90">
+                            <FactValue value={fact.value} />
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -482,32 +555,37 @@ export function ScienceF2InteractiveNotesBlock({
             />
           </div>
         )}
-        {!isChapter8 && section.calculators?.map((calc, i) => (
-          <div key={`${section.number}-calc-${i}`}>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
-            <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
-            {calc.type === "ohms-law" ? (
-              <OhmsLawCalculator lang={lang} />
-            ) : calc.type === "resistance-comparator" ? (
-              <ResistanceComparator
-                lang={lang}
-                defaultR1={calc.defaultR1}
-                defaultR2={calc.defaultR2}
-              />
-            ) : calc.type === "au-light-year" ? (
-              <AuLightYearCalculator defaultKm={calc.defaultKm} lang={lang} />
-            ) : (
-              <TwoFieldCalculator
-                fieldA={calc.fieldA}
-                fieldB={calc.fieldB}
-                operation={calc.operation}
-                resultLabel={calc.resultLabel}
-                resultUnit={calc.resultUnit}
-                lang={lang}
-              />
-            )}
-          </div>
-        ))}
+        {!isChapter8 &&
+          section.calculators?.map((calc, i) => (
+            <div key={`${section.number}-calc-${i}`}>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                {calc.title}
+              </h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">
+                {calc.instruction}
+              </p>
+              {calc.type === "ohms-law" ? (
+                <OhmsLawCalculator lang={lang} />
+              ) : calc.type === "resistance-comparator" ? (
+                <ResistanceComparator
+                  lang={lang}
+                  defaultR1={calc.defaultR1}
+                  defaultR2={calc.defaultR2}
+                />
+              ) : calc.type === "au-light-year" ? (
+                <AuLightYearCalculator defaultKm={calc.defaultKm} lang={lang} />
+              ) : (
+                <TwoFieldCalculator
+                  fieldA={calc.fieldA}
+                  fieldB={calc.fieldB}
+                  operation={calc.operation}
+                  resultLabel={calc.resultLabel}
+                  resultUnit={calc.resultUnit}
+                  lang={lang}
+                />
+              )}
+            </div>
+          ))}
         {section.buoyancy && !isChapter8 && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -889,40 +967,61 @@ export function ScienceF2InteractiveNotesBlock({
                   <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
                     <ScienceEmphasis text={card.body} />
                   </p>
-                  {card.detail && <p className="mt-1.5 text-[12px] font-semibold text-primary">{card.detail}</p>}
+                  {card.detail && (
+                    <p className="mt-1.5 text-[12px] font-semibold text-primary">{card.detail}</p>
+                  )}
                 </article>
               ))}
             </div>
           </div>
         )}
-        {isChapter8 && section.calculators?.map((calc, i) => (
-          <div key={`${section.number}-ch8-calc-${i}`} className="border-t border-border/70 pt-5">
-            <p className="font-display mb-3 text-center text-[14px] font-bold text-primary">{calc.instruction.split(".")[0]}</p>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
-            <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
-            {calc.type === "two-field" && (
-              <TwoFieldCalculator fieldA={calc.fieldA} fieldB={calc.fieldB} operation={calc.operation} resultLabel={calc.resultLabel} resultUnit={calc.resultUnit} lang={lang} />
-            )}
-          </div>
-        ))}
-        {section.miniExperiment && (isChapter8 ? (
-          <Accordion type="single" collapsible className="border-t border-border/70 pt-2">
-            <AccordionItem value="chapter-8-pressure-investigation">
-              <AccordionTrigger className="min-h-12 text-left text-[14px] font-bold">
-                {lang === "bm" ? "Cuba penyiasatan" : "Try the investigation"}
-              </AccordionTrigger>
-              <AccordionContent className="flex flex-col gap-4 pt-2">
-                {section.pressureApparatus && <PressureApparatus block={section.pressureApparatus} lang={lang} />}
-                <MiniExperiment block={section.miniExperiment} />
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        ) : (
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.miniExperiment.title}</h3>
-            <MiniExperiment block={section.miniExperiment} />
-          </div>
-        ))}
+        {isChapter8 &&
+          section.calculators?.map((calc, i) => (
+            <div key={`${section.number}-ch8-calc-${i}`} className="border-t border-border/70 pt-5">
+              <p className="font-display mb-3 text-center text-[14px] font-bold text-primary">
+                {calc.instruction.split(".")[0]}
+              </p>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                {calc.title}
+              </h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">
+                {calc.instruction}
+              </p>
+              {calc.type === "two-field" && (
+                <TwoFieldCalculator
+                  fieldA={calc.fieldA}
+                  fieldB={calc.fieldB}
+                  operation={calc.operation}
+                  resultLabel={calc.resultLabel}
+                  resultUnit={calc.resultUnit}
+                  lang={lang}
+                />
+              )}
+            </div>
+          ))}
+        {section.miniExperiment &&
+          (isChapter8 ? (
+            <Accordion type="single" collapsible className="border-t border-border/70 pt-2">
+              <AccordionItem value="chapter-8-pressure-investigation">
+                <AccordionTrigger className="min-h-12 text-left text-[14px] font-bold">
+                  {lang === "bm" ? "Cuba penyiasatan" : "Try the investigation"}
+                </AccordionTrigger>
+                <AccordionContent className="flex flex-col gap-4 pt-2">
+                  {section.pressureApparatus && (
+                    <PressureApparatus block={section.pressureApparatus} lang={lang} />
+                  )}
+                  <MiniExperiment block={section.miniExperiment} />
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          ) : (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                {section.miniExperiment.title}
+              </h3>
+              <MiniExperiment block={section.miniExperiment} />
+            </div>
+          ))}
         {section.comparisonMatrix && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -1190,9 +1289,27 @@ export function ScienceF2InteractiveNotesBlock({
                   className="rounded-2xl border border-border bg-gradient-to-br from-primary/10 to-accent/5 p-4"
                 >
                   <h4 className="font-display font-bold text-foreground">{column.title}</h4>
-                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
-                    <ScienceEmphasis text={column.body} />
-                  </p>
+                  {column.body && (
+                    <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
+                      <ScienceEmphasis text={column.body} />
+                    </p>
+                  )}
+                  {column.facts && column.facts.length > 0 && (
+                    <dl
+                      className={`flex flex-col gap-2 ${column.body ? "mt-2.5 border-t border-border/60 pt-2.5" : "mt-2"}`}
+                    >
+                      {column.facts.map((fact) => (
+                        <div key={fact.label}>
+                          <dt className="text-[10.5px] font-bold uppercase tracking-wide text-primary">
+                            {fact.label}
+                          </dt>
+                          <dd className="mt-0.5 text-[12.5px] leading-relaxed text-foreground/90">
+                            <FactValue value={fact.value} />
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
                 </article>
               ))}
             </div>

@@ -1,8 +1,20 @@
 import type { AnnotationMode } from "@/components/notes/blocks/annotation-layout";
 import type { LearningImageSize } from "@/components/notes/blocks/learning-image";
 import type { ImageAnnotation } from "@/components/notes/blocks/AnnotatedImage";
-import type { SpotlightShape, SpotlightPulseGroup } from "@/components/notes/blocks/spotlight-shapes";
+import type {
+  SpotlightShape,
+  SpotlightPulseGroup,
+} from "@/components/notes/blocks/spotlight-shapes";
 import type { FlipCardItem, MiniQuizItem } from "./chapter-1/interactive-types";
+
+/**
+ * One labelled fact under a card/panel's main body. `value` is either a
+ * single line, or an array rendered as a real bullet list — use the array
+ * form for genuine point-form content (e.g. a disease's examples, or a
+ * defence line's textbook sub-points) rather than folding several items into
+ * one comma-separated sentence.
+ */
+export type Fact = { label: string; value: string | string[] };
 
 export type ScienceInteractiveCard = {
   title: string;
@@ -12,9 +24,9 @@ export type ScienceInteractiveCard = {
    * Short labelled facts under `body`, e.g. splitting a food class into what
    * it contains, its examples/sources and its function rather than one dense
    * paragraph. Rendered as a compact list, not prose — keep each `value` to
-   * one line.
+   * one line, or an array for a genuine bullet list.
    */
-  facts?: { label: string; value: string }[];
+  facts?: Fact[];
 };
 
 export type ScienceInteractiveMatcherPair = {
@@ -572,7 +584,18 @@ export type DefenceLine = {
   name: string;
   /** The structures or cells involved, e.g. "Kulit, membran mukus". */
   parts: string;
+  /**
+   * The one-sentence key idea shown immediately when this line is selected,
+   * e.g. "Stops pathogens entering the body." Read first, before `facts`, so a
+   * learner gets the point before the mechanism.
+   */
   note: string;
+  /**
+   * The deeper, textbook-faithful breakdown shown below `note` — e.g. the
+   * structures involved and how each one acts. Point form, never a second
+   * paragraph folded into `note`.
+   */
+  facts?: Fact[];
   group: "non-specific" | "specific";
 };
 
@@ -593,6 +616,37 @@ export type DefenceLinesBlock = {
   hint: string;
 };
 
+/** Figure fields for a `ConceptSelectorBlock` — everything `InteractiveFigureCard` needs except the concepts themselves. */
+export type ConceptFigureImage = {
+  src: string;
+  alt: string;
+  size?: LearningImageSize;
+  aspect?: string;
+  caption?: string;
+  legendLabel?: string;
+  annotationMode?: AnnotationMode;
+  imageKey?: { color: string; label: string }[];
+};
+
+/**
+ * A row of selectable concepts with one shared explanation panel — optionally
+ * led by an image whose regions match the same concepts.
+ *
+ * `image` is deliberately optional: a language with no approved artwork for
+ * this figure still gets the identical tap-a-concept-see-an-explanation
+ * interaction, just without a picture above the buttons. This is the "image
+ * first when we have one, buttons and panel always" shape several chapters
+ * need (e.g. the four disease-transmission routes), without forcing every
+ * language onto the same image.
+ */
+export type ConceptSelectorBlock = {
+  title?: string;
+  instruction?: string;
+  prompt?: string;
+  image?: ConceptFigureImage;
+  concepts: ImageAnnotation[];
+};
+
 /** One cell of the active/passive x natural/artificial immunity grid. */
 export type ImmunityCell = {
   id: string;
@@ -604,6 +658,13 @@ export type ImmunityCell = {
   /** How quickly it acts and how long it lasts. */
   duration: string;
   note: string;
+  /**
+   * Short caption under this cell's mini antibody-response chart, e.g. "Level
+   * rises further after a second infection." The chart shape itself is
+   * derived from `row` (active = two-stage rise, passive = decline) rather
+   * than authored per cell, so BM and DLP always draw the same curve.
+   */
+  graphNote: string;
 };
 
 export type ImmunityMatrixBlock = {
@@ -703,6 +764,34 @@ export type NutrientTableBlock = {
   importanceLabel: string;
   deficiencyLabel: string;
   rows: NutrientRow[];
+};
+
+/** One row of the disease / symptoms / pathogen / vector / way-of-infection reference table (KSSM Table 4.2). */
+export type DiseaseReferenceRow = {
+  id: string;
+  icon?: string;
+  disease: string;
+  /** Rendered as a bullet list — a disease's symptoms are never one comma-run sentence. */
+  symptoms: string[];
+  pathogen: string;
+  vector: string;
+  wayOfInfection: string;
+};
+
+/**
+ * The chapter's own disease reference table (KSSM Table 4.2) — disease,
+ * symptoms, pathogen, vector and way of infection, read across one row. A
+ * real `<table>` from `sm` up; one stacked card per disease on a phone.
+ */
+export type DiseaseReferenceTableBlock = {
+  title: string;
+  instruction?: string;
+  diseaseLabel: string;
+  symptomsLabel: string;
+  pathogenLabel: string;
+  vectorLabel: string;
+  wayOfInfectionLabel: string;
+  rows: DiseaseReferenceRow[];
 };
 
 export type EcologicalTermsBlock = {
@@ -1718,6 +1807,8 @@ export type ScienceInteractiveSection = {
   /** One or more named-nutrient reference tables — a section needing both a
    * vitamin and a mineral table (Table 3.1 + 3.2) renders two, in order. */
   nutrientTables?: NutrientTableBlock[];
+  diseaseReferenceTable?: DiseaseReferenceTableBlock;
+  conceptSelector?: ConceptSelectorBlock;
   enzymeExplorer?: EnzymeExplorerBlock;
   reactionFlow?: ReactionFlowBlock;
   systemFlow?: SystemFlowBlock;

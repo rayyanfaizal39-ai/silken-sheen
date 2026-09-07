@@ -75,17 +75,46 @@ function imagesOf(content: ScienceF2InteractiveContent): Figure[] {
   return content.sections.flatMap((section) => {
     const standalone: Figure[] = (section.images ?? []).map((image) => ({ ...image }));
 
+    if (section.conceptSelector?.image) {
+      standalone.push({
+        src: section.conceptSelector.image.src,
+        alt: section.conceptSelector.image.alt,
+        size: section.conceptSelector.image.size,
+        aspect: section.conceptSelector.image.aspect,
+        legendLabel: section.conceptSelector.image.legendLabel,
+        annotationMode: section.conceptSelector.image.annotationMode,
+        annotations: section.conceptSelector.concepts,
+      });
+    }
+
     const blocks = [
-      section.capillaryDiagram && { image: section.capillaryDiagram.image, items: section.capillaryDiagram.labels },
-      section.electrolysisDiagram && { image: section.electrolysisDiagram.image, items: section.electrolysisDiagram.labels },
-      section.titrationSchematic && { image: section.titrationSchematic.image, items: section.titrationSchematic.labels },
+      section.capillaryDiagram && {
+        image: section.capillaryDiagram.image,
+        items: section.capillaryDiagram.labels,
+      },
+      section.electrolysisDiagram && {
+        image: section.electrolysisDiagram.image,
+        items: section.electrolysisDiagram.labels,
+      },
+      section.titrationSchematic && {
+        image: section.titrationSchematic.image,
+        items: section.titrationSchematic.labels,
+      },
       section.mixtureComparison && {
         image: section.mixtureComparison.image,
-        items: section.mixtureComparison.kinds.map((k) => ({ id: k.id, label: k.name, note: k.note })),
+        items: section.mixtureComparison.kinds.map((k) => ({
+          id: k.id,
+          label: k.name,
+          note: k.note,
+        })),
       },
       section.waterTreatmentFlow && {
         image: section.waterTreatmentFlow.image,
-        items: section.waterTreatmentFlow.stages.map((s) => ({ id: s.id, label: s.name, note: s.fn })),
+        items: section.waterTreatmentFlow.stages.map((s) => ({
+          id: s.id,
+          label: s.name,
+          note: s.fn,
+        })),
       },
       section.defenceLines && {
         image: section.defenceLines.image,
@@ -99,7 +128,15 @@ function imagesOf(content: ScienceF2InteractiveContent): Figure[] {
       const annotations: ImageAnnotation[] = [
         ...entry.items.map((item) => {
           const point = image.points.find((p) => p.id === item.id);
-          return { id: item.id, label: item.label, note: item.note, x: point?.x, y: point?.y, w: point?.w, h: point?.h };
+          return {
+            id: item.id,
+            label: item.label,
+            note: item.note,
+            x: point?.x,
+            y: point?.y,
+            w: point?.w,
+            h: point?.h,
+          };
         }),
         ...(image.extra ?? []),
       ];
@@ -160,7 +197,9 @@ describe("locked image pack — assets", () => {
   });
 
   it("integrates exactly the 13 assets in the locked pack, each exactly once", () => {
-    const used = DLP.flatMap(([, content]) => imagesOf(content).map((image) => repoPathOf(image.src)));
+    const used = DLP.flatMap(([, content]) =>
+      imagesOf(content).map((image) => repoPathOf(image.src)),
+    );
     expect(used).toHaveLength(EXPECTED_ASSETS.length);
     expect(new Set(used).size).toBe(EXPECTED_ASSETS.length);
   });
@@ -184,14 +223,17 @@ describe("locked image pack — assets", () => {
     }
   });
 
-  it.each(DLP)("%s sizes every figure explicitly rather than filling the column", (_name, content) => {
-    for (const image of imagesOf(content)) {
-      expect(image.size, image.alt).toBeDefined();
-      // An aspect ratio reserves the box before the file loads, so a figure
-      // cannot shift the section as it arrives.
-      expect(image.aspect, image.alt).toBeDefined();
-    }
-  });
+  it.each(DLP)(
+    "%s sizes every figure explicitly rather than filling the column",
+    (_name, content) => {
+      for (const image of imagesOf(content)) {
+        expect(image.size, image.alt).toBeDefined();
+        // An aspect ratio reserves the box before the file loads, so a figure
+        // cannot shift the section as it arrives.
+        expect(image.aspect, image.alt).toBeDefined();
+      }
+    },
+  );
 });
 
 describe("locked image pack — hotspots", () => {

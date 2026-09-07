@@ -24,33 +24,70 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
     "Immunisation",
   ],
   sections: [
-    // ───────────────────────────────────────────── Disease types
+    // ───────────────────────────────────────────── 1. Infectious / non-infectious
     {
       number: "4.1",
       title: "Infectious and Non-Infectious Diseases",
       intro:
-        "A disease is an abnormal condition of the body or mind that causes discomfort, difficulty functioning or stress to a person. Diseases fall into two broad groups according to one simple question: can it pass to another person?",
+        "A disease is an abnormal condition of body or mind that causes discomfort, difficulty to function or stress to an individual.",
       comparison: {
         title: "Two groups of disease",
         columns: [
           {
-            title: "Infectious disease",
-            body: "**Can pass from one individual to another.** Caused by infection with a pathogen, either directly or through a medium and a vector. Examples: tuberculosis, the common cold, ringworm, tinea versicolor, leptospirosis, dengue fever, malaria and Zika.",
+            title: "🦠 Infectious disease",
+            body: "",
+            facts: [
+              {
+                label: "Definition",
+                value: "A disease that **can be transmitted** from one individual to another.",
+              },
+              {
+                label: "Cause",
+                value: "Caused by infection of pathogens directly, or through mediums and vectors.",
+              },
+              {
+                label: "Examples",
+                value: [
+                  "Tuberculosis",
+                  "Flu",
+                  "Ringworm",
+                  "Tinea",
+                  "Leptospirosis",
+                  "Dengue fever",
+                  "Malaria fever",
+                  "Zika fever",
+                ],
+              },
+            ],
           },
           {
-            title: "Non-infectious disease",
-            body: "**Does not pass from one individual to another.** Caused by genetic factors or lifestyle. Examples: cancer, hypertension, diabetes, asthma and cardiovascular disease.",
+            title: "🧬 Non-infectious disease",
+            body: "",
+            facts: [
+              {
+                label: "Definition",
+                value: "A disease that **cannot be transmitted** from one individual to another.",
+              },
+              {
+                label: "Cause",
+                value: "Caused by genetic factors or lifestyle.",
+              },
+              {
+                label: "Examples",
+                value: ["Cancer", "Hypertension", "Diabetes", "Asthma", "Cardiovascular disease"],
+              },
+            ],
           },
         ],
       },
       cards: [
         {
           title: "What is a pathogen?",
-          body: "A pathogen is an organism that causes disease — **all viruses, some bacteria, protozoa, fungi and worms**.",
+          body: "A pathogen is an organism that causes disease. Examples: **all viruses, some bacteria, protozoa, fungi and worms**.",
         },
         {
           title: "Not every microorganism is harmful",
-          body: "Some bacteria in the large intestine act on food remains and produce **vitamin K and vitamin B12**, which the body can use.",
+          body: "Some bacteria in the large intestine act on food residue and produce **vitamin K and vitamin B12**, which are absorbed by the body.",
         },
       ],
       checks: [
@@ -60,95 +97,123 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           question: "Give one example of a disease caused by a fungus.",
-          hint: "Ringworm or tinea versicolor — both spread by contact.",
+          hint: "Ringworm or tinea — both spread by contact.",
         },
       ],
     },
 
-    // ───────────────────────────────────────────── Transmission
+    // ───────────────────────────────────────────── 2. Transmission — image first
     {
       number: "4.1",
       title: "How Infectious Diseases Spread",
       intro:
-        "Pathogens move from one host to another along four main routes: air, water, contact and vectors. Tap each route to see example diseases and how to prevent them.",
-      accordions: [
-        {
-          title: "💨 Through the air",
-          body: "Pathogens are carried by **droplets of saliva or by dust**. There are two forms of airborne infection: droplet infection and dust infection. Example diseases: tuberculosis, the common cold, SARS, Influenza A (H1N1) and chickenpox. Prevention: cover the mouth and nose when sneezing, coughing or yawning; do not spit in public places; avoid crowded places; keep living spaces well lit, since ultraviolet rays can kill some airborne microorganisms.",
-        },
-        {
-          title: "💧 Through water",
-          body: "Common where there is no treated water supply and no proper sanitation. **Faeces containing pathogens** can contaminate a river, and a person becomes infected by drinking the contaminated water. Example diseases: cholera, typhoid fever and amoebic dysentery. Prevention: boil drinking water thoroughly, add chlorine to water supplies and swimming pools, build toilets with proper sanitation, and wash hands with soap after using the toilet.",
-        },
-        {
-          title: "🤝 Through contact",
-          body: "Happens when infected skin is touched or a patient's clothing is worn. Example diseases: ringworm and tinea versicolor — both caused by fungi. Syphilis and gonorrhoea spread through sexual contact because their pathogens are present in semen and vaginal fluid. HIV, which causes AIDS, can spread through **sexual contact, blood and shared needles**. Prevention: keep clean and never share clothing or personal items.",
-        },
-        {
-          title: "🦟 Through vectors",
-          body: "Some pathogens use animals to **move from one host to a new host**. Example diseases: leptospirosis, dengue fever, malaria, Zika and Chikungunya. Prevention: destroy vector breeding sites, use mosquito nets or repellent, and wear clothing that covers the skin.",
-        },
-      ],
-      cards: [
-        {
-          title: "How mosquitoes spread disease",
-          body: "A mosquito carrying **a pathogen in its salivary glands** bites an uninfected person. Its saliva is released while feeding to stop the blood clotting, and the pathogen enters with it. Another mosquito biting an infected person then carries the infection on to the next victim.",
-        },
-        {
-          title: "How houseflies spread disease",
-          body: "A housefly landing on waste picks up pathogens on its legs and body. It then transfers those pathogens onto food, and the pathogens enter the body of whoever eats the contaminated food.",
-        },
-      ],
-      images: [
-        {
+        "Pathogens move from one host to another along four main routes. Tap each route to see how it spreads, example diseases and how to prevent it.",
+      conceptSelector: {
+        instruction: "Tap a route to see how it spreads.",
+        prompt: "Tap any route above to see how it spreads.",
+        image: {
           src: transmissionRoutesImg,
           alt: "Four routes by which infectious diseases spread: through the air, through water, through contact and through vectors.",
           size: "wide",
           aspect: "4 / 3",
           legendLabel: "The four routes of transmission",
           annotationMode: "regions",
-          caption:
-            "Each route is already named on the artwork. Pick one to see how it carries a pathogen to a new host.",
-          annotations: [
-            {
-              id: "air",
-              label: "Air",
-              note: "Pathogens are carried by droplets of saliva or by dust, and are breathed in by the next host.",
-              x: 26,
-              y: 28,
-              w: 44,
-              h: 40,
-            },
-            {
-              id: "water",
-              label: "Water",
-              note: "Pathogens spread through water contaminated by faeces or sewage, and infect a person who drinks it.",
-              x: 74,
-              y: 28,
-              w: 44,
-              h: 40,
-            },
-            {
-              id: "contact",
-              label: "Contact",
-              note: "Infection spreads by touching infected skin, or by wearing a patient's clothing or sharing personal items.",
-              x: 26,
-              y: 71,
-              w: 44,
-              h: 40,
-            },
-            {
-              id: "vector",
-              label: "Vector",
-              note: "Animals such as the mosquito and the rat carry a pathogen from one host to a new host.",
-              x: 74,
-              y: 71,
-              w: 44,
-              h: 40,
-            },
-          ],
+          caption: "Each route is already named on the artwork. Tap one to see how it spreads.",
         },
-      ],
+        concepts: [
+          {
+            id: "air",
+            label: "Airborne diseases",
+            note: "Transmitted in two ways: droplet transmission and dust transmission.",
+            x: 26,
+            y: 28,
+            w: 44,
+            h: 40,
+            facts: [
+              {
+                label: "Examples",
+                value: ["Tuberculosis", "Flu", "SARS", "Influenza A (H1N1)", "Chicken pox"],
+              },
+              {
+                label: "Prevention",
+                value: [
+                  "Cover the mouth and nose when sneezing, coughing or yawning",
+                  "Do not spit everywhere",
+                  "Avoid crowded places",
+                  "Keep living spaces well lit — ultraviolet rays can kill some airborne microorganisms",
+                ],
+              },
+            ],
+          },
+          {
+            id: "water",
+            label: "Waterborne diseases",
+            note: "Common in areas with inadequate water supply and poor sanitation — faecal pathogens pollute the water, and a person is infected by drinking it.",
+            x: 74,
+            y: 28,
+            w: 44,
+            h: 40,
+            facts: [
+              { label: "Examples", value: ["Cholera", "Typhoid", "Amoebic dysentery"] },
+              {
+                label: "Prevention",
+                value: [
+                  "Add chlorine into swimming pools and water supply systems",
+                  "Build toilets with good sanitation",
+                  "Boil drinking water properly",
+                  "Wash hands with soap after using the toilet",
+                ],
+              },
+            ],
+          },
+          {
+            id: "contact",
+            label: "Diseases spread through contact",
+            note: "Happens when touching infected skin, or wearing the clothes of an infected person.",
+            x: 26,
+            y: 71,
+            w: 44,
+            h: 40,
+            facts: [
+              {
+                label: "Examples",
+                value: [
+                  "Ringworm and tinea (caused by fungi)",
+                  "Syphilis and gonorrhoea (sexual intercourse)",
+                  "HIV/AIDS (sexual intercourse, blood, shared needles)",
+                ],
+              },
+              {
+                label: "Prevention",
+                value: ["Keep clean", "Never share clothing or personal items"],
+              },
+            ],
+          },
+          {
+            id: "vector",
+            label: "Vector-borne diseases",
+            note: "Some pathogens are transmitted from one host to a new host through animals — these animals are called vectors.",
+            x: 74,
+            y: 71,
+            w: 44,
+            h: 40,
+            facts: [
+              {
+                label: "Examples",
+                value: ["Leptospirosis", "Dengue fever", "Malaria", "Zika", "Chikungunya"],
+              },
+              {
+                label: "Prevention",
+                value: [
+                  "Destroy vector breeding sites",
+                  "Use mosquito nets or repellent",
+                  "Wear clothing that covers the skin",
+                ],
+              },
+            ],
+          },
+        ],
+      },
       checks: [
         {
           question: "State three ways infectious diseases are spread.",
@@ -161,49 +226,87 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       ],
     },
 
-    // ───────────────────────────────────────────── Pathogen / vector / disease
+    // ───────────────────────────────────────────── 3. Vector-borne diseases
     {
       number: "4.1",
-      title: "Pathogens, Vectors and Diseases",
+      title: "Vector-Borne Diseases",
       intro:
-        "These three terms are easily confused. Separate them by asking: what CAUSES the disease, what CARRIES that cause, and what CONDITION results?",
+        "Separate these three terms by asking: what CAUSES the disease, what CARRIES that cause, and what CONDITION results?",
       cards: [
         {
           title: "🦠 Pathogen",
-          body: "An organism that causes disease — a virus, bacterium, protozoan, fungus or worm. Examples: dengue virus, the bacterium Salmonella typhi.",
+          body: "Organism that causes disease. Examples: dengue virus, the bacterium Salmonella typhi.",
         },
         {
           title: "🐀 Vector",
-          body: "An animal that carries a pathogen from one host to a new host. **The vector itself does not cause the disease.** Examples: Aedes mosquito, cockroach, housefly, rat.",
+          body: "Animal that transfers a pathogen from one host to another. Examples: Aedes mosquito, Anopheles mosquito, rat, cockroach, fly.",
         },
         {
           title: "🤒 Disease",
-          body: "**The condition that results once a pathogen infects the body.** Examples: dengue fever, typhoid, malaria, leptospirosis.",
+          body: "The condition resulting from infection. Examples: dengue fever, malaria, leptospirosis.",
         },
       ],
-      matcher: {
-        title: "Match each vector with the pathogen it carries",
-        instruction:
-          "Every pair here is VECTOR → PATHOGEN. Notice that a vector carries a pathogen, not the disease itself.",
-        pairs: [
-          { id: "lipas", label: "Cockroach", match: "Salmonella typhi" },
-          { id: "lalat", label: "Housefly", match: "Salmonella typhi" },
-          { id: "aedes-denggi", label: "Aedes mosquito", match: "Dengue virus" },
-          { id: "aedes-zika", label: "Aedes mosquito (Zika)", match: "Zika virus" },
-          { id: "anopheles", label: "Anopheles mosquito", match: "Plasmodium malariae" },
-          { id: "tikus", label: "Rat", match: "Leptospira sp. bacteria" },
-        ],
-      },
-      comparison: {
-        title: "From pathogen to disease",
-        columns: [
+      diseaseReferenceTable: {
+        title: "Disease, Symptoms, Pathogen, Vector and Way of Infection",
+        diseaseLabel: "Disease",
+        symptomsLabel: "Symptoms",
+        pathogenLabel: "Pathogen",
+        vectorLabel: "Vector",
+        wayOfInfectionLabel: "Way of Infection",
+        rows: [
           {
-            title: "Pathogen → disease",
-            body: "Plasmodium malariae → malaria. Dengue virus → dengue fever. Salmonella typhi → typhoid. Leptospira sp. → leptospirosis. Vibrio cholerae → cholera.",
+            id: "malaria",
+            icon: "🦟",
+            disease: "Malaria",
+            symptoms: ["Shivering", "Fever", "Sweating"],
+            pathogen: "Plasmodium malariae",
+            vector: "Female Anopheles mosquito",
+            wayOfInfection: "Mosquito bite",
           },
           {
-            title: "Symptoms commonly seen",
-            body: "Malaria: chills, fever and sweating. Dengue: joint pain, fever, headache and watery eyes. Zika: fever, rash, joint pain and conjunctivitis. Typhoid: fever, intestinal bleeding and a red rash.",
+            id: "cholera",
+            icon: "🪰",
+            disease: "Cholera",
+            symptoms: ["Diarrhoea", "Vomiting"],
+            pathogen: "Vibrio cholerae bacteria",
+            vector: "Fly",
+            wayOfInfection: "Contaminated food and water",
+          },
+          {
+            id: "dengue",
+            icon: "🦟",
+            disease: "Dengue",
+            symptoms: ["Joint pain", "Fever", "Headache", "Watery eyes"],
+            pathogen: "Dengue virus",
+            vector: "Aedes mosquito",
+            wayOfInfection: "Mosquito bite",
+          },
+          {
+            id: "zika",
+            icon: "🦟",
+            disease: "Zika",
+            symptoms: ["Fever", "Rashes", "Joint pain", "Conjunctivitis"],
+            pathogen: "Zika virus",
+            vector: "Aedes mosquito",
+            wayOfInfection: "Mosquito bite",
+          },
+          {
+            id: "typhoid",
+            icon: "🪳",
+            disease: "Typhoid",
+            symptoms: ["Fever", "Intestinal bleeding", "Red rashes"],
+            pathogen: "Salmonella typhi bacteria",
+            vector: "Cockroach, fly, rat",
+            wayOfInfection: "Contaminated food and water",
+          },
+          {
+            id: "leptospirosis",
+            icon: "🐀",
+            disease: "Leptospirosis",
+            symptoms: ["Fever", "Headache", "Muscle pain"],
+            pathogen: "Leptospira sp. bacteria",
+            vector: "Rat",
+            wayOfInfection: "Contaminated soil, food and water",
           },
         ],
       },
@@ -248,8 +351,30 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
           ],
         },
       ],
-      remember:
-        "A pathogen causes a disease; a vector only carries that pathogen from one host to another — the vector itself does not cause the disease; a disease is the condition that results once a pathogen infects the body.",
+      causeEffect: {
+        title: "How Do Vectors Spread Diseases?",
+        instruction: "Mosquitoes and flies are important vectors that spread infectious diseases.",
+        items: [
+          {
+            icon: "🦟",
+            title: "Mosquito",
+            chain: [
+              "A mosquito already carrying pathogens bites an uninfected person",
+              "Saliva (and the pathogen) enters during blood feeding",
+              "Infection spreads; another mosquito may transmit it onward",
+            ],
+          },
+          {
+            icon: "🪰",
+            title: "Fly",
+            chain: [
+              "A fly lands on dirt/waste and pathogens attach to its legs and body",
+              "The fly transfers pathogens onto food",
+              "The pathogen enters a person who eats the contaminated food",
+            ],
+          },
+        ],
+      },
       checks: [
         {
           question: "What is the difference between a pathogen and a vector?",
@@ -262,40 +387,67 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       ],
     },
 
-    // ───────────────────────────────────────────── Prevention
+    // ───────────────────────────────────────────── 4. Prevention
     {
       number: "4.1",
-      title: "Preventing Disease Transmission",
-      intro:
-        "Preventing infectious disease works at three levels. Each level acts at a different point in the course of a disease.",
+      title: "Preventing the Spread of Infectious Diseases",
+      intro: "Prevention of infectious diseases works at three stages.",
       sequence: {
-        title: "The three levels of prevention",
+        title: "The three stages of prevention",
         instruction: "Follow the order from before infection through to controlling spread.",
         steps: [
           {
-            title: "Primary level",
-            body: "Acts BEFORE disease occurs. Raises the level of health through personal, family and household cleanliness and proper sanitation. Raises the body's resistance through vaccination or immunisation of babies, children, pregnant women, food premises handlers, haj pilgrims and travellers.",
+            title: "Primary Stage",
+            body: "",
+            facts: [
+              {
+                label: "Improving health",
+                value: ["Personal and family hygiene", "Clean living environment and sanitation"],
+              },
+              {
+                label: "Strengthening body defence",
+                value: [
+                  "Vaccination / immunisation for babies, children, pregnant women, food premises operators, hajj pilgrims and travellers",
+                ],
+              },
+            ],
           },
           {
-            title: "Secondary level",
-            body: "Detects and acts EARLY. Periodic health checks and a healthy lifestyle such as breathing clean air and eating balanced meals. Breaks the chain of transmission through active and passive case detection — giving patients early treatment and isolating them from others.",
+            title: "Secondary Stage",
+            body: "",
+            facts: [
+              {
+                label: "What it does",
+                value: [
+                  "Frequent health check-ups",
+                  "Healthy lifestyle",
+                  "Active and passive case detection",
+                  "Early treatment",
+                  "Isolating infected patients",
+                ],
+              },
+            ],
           },
           {
-            title: "Tertiary level",
-            body: "Controls spread that is already happening. Controls the vector population by destroying breeding and sheltering sites, spraying to kill vectors, and enforcing the law by fining operators of unclean food premises. Protects the host by using mosquito nets or repellent and wearing thick clothing.",
+            title: "Tertiary Stage",
+            body: "",
+            facts: [
+              {
+                label: "Controlling vector populations",
+                value: ["Destroy breeding/hiding places", "Fogging", "Enforcement"],
+              },
+              {
+                label: "Protecting hosts",
+                value: ["Mosquito nets / coils", "Suitable protective clothing"],
+              },
+            ],
           },
         ],
       },
-      cards: [
-        {
-          title: "⚠️ A common mix-up",
-          body: "Vector control such as fogging and destroying breeding sites belongs to the **TERTIARY level, not the primary level**. The primary level focuses on cleanliness and immunisation before any infection happens.",
-        },
-      ],
       checks: [
         {
-          question: "At which level of prevention is fogging to kill mosquitoes carried out?",
-          hint: "The tertiary level — together with destroying breeding sites and protecting the host.",
+          question: "At which stage of prevention is fogging to kill mosquitoes carried out?",
+          hint: "The tertiary stage — together with destroying breeding sites and protecting the host.",
         },
         {
           question: "Why are haj pilgrims and food premises handlers encouraged to be immunised?",
@@ -304,12 +456,36 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       ],
     },
 
-    // ───────────────────────────────────────────── Body defence
+    // ───────────────────────────────────────────── 5. Body Defence
     {
       number: "4.2",
-      title: "The Three Lines of Body Defence",
+      title: "Body Defence",
       intro:
-        "Pathogens enter the body through the respiratory system, the digestive system, the excretory system and the skin. The body blocks them with three lines of defence that act one after another.",
+        "Pathogens enter the body through the respiratory system, digestive system, excretory system and skin. Our body has three lines of defence to destroy pathogens before and after they enter the body.",
+      cards: [
+        {
+          title: "Non-Specific Defence",
+          body: "**Attacks any pathogen**, whatever its type.",
+          facts: [{ label: "Lines", value: "First and second lines of defence" }],
+        },
+        {
+          title: "Specific Defence",
+          body: "**Attacks one particular pathogen**, using a matching antibody.",
+          facts: [{ label: "Line", value: "Third line of defence" }],
+        },
+        {
+          title: "Antigen",
+          body: "A foreign substance that comes from outside the body and **induces the production of antibodies**. Examples: pathogens, toxin molecules, blood cells from other blood groups.",
+        },
+        {
+          title: "Antibody",
+          body: "A protein produced by white blood cells into the bloodstream in **response to an antigen**.",
+        },
+        {
+          title: "Immunity",
+          body: "The ability of the body's system to **resist pathogens before it is infected**.",
+        },
+      ],
       defenceLines: {
         image: {
           src: bodyDefenceImg,
@@ -324,9 +500,8 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
             { id: "ketiga", x: 82, y: 48, w: 30, h: 78 },
           ],
         },
-        title: "Follow a pathogen through each line",
-        instruction:
-          "The first two lines attack any pathogen at all. The third targets one particular antigen only.",
+        title: "Tap each line to see how it works",
+        instruction: "Tap any line of defence to see what it does.",
         pathogenLabel: "Pathogen",
         nonSpecificLabel: "Non-specific defence",
         specificLabel: "Specific defence",
@@ -334,139 +509,139 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
         lines: [
           {
             id: "pertama",
-            name: "First line of defence",
+            name: "First Line",
             parts: "Skin and mucous membrane",
             group: "non-specific",
-            note: "Stops pathogens entering the body. The skin is a tough layer that is hard to penetrate; the sweat and sebum it secretes contain chemicals that destroy microorganisms. The mucous membrane lines the digestive and respiratory tracts — nose hairs filter microorganisms and mucus traps them. Ear wax, tears and vaginal secretions also act as antiseptics.",
+            note: "Prevents pathogens from entering the body.",
+            facts: [
+              {
+                label: "Skin",
+                value: [
+                  "Tough layer, difficult for microorganisms to penetrate",
+                  "Microorganisms enter through wounds/injuries",
+                  "Sweat and sebum contain chemicals that kill microorganisms",
+                ],
+              },
+              {
+                label: "Mucous Membrane",
+                value: [
+                  "Lines the digestive and respiratory tracts",
+                  "Nasal hairs filter microorganisms",
+                  "Mucus traps microorganisms",
+                  "Earwax, tears and vaginal secretions act as antiseptics",
+                ],
+              },
+            ],
           },
           {
             id: "kedua",
-            name: "Second line of defence",
-            parts: "White blood cells — phagocytosis",
+            name: "Second Line",
+            parts: "Phagocytosis by white blood cells",
             group: "non-specific",
-            note: "Pathogens that get past the first line enter the blood system. There, white blood cells act by phagocytosis, engulfing and digesting the pathogen using enzymes.",
+            note: "Fights pathogens through phagocytosis.",
+            facts: [
+              {
+                label: "How it works",
+                value: [
+                  "White blood cells engulf pathogens",
+                  "Pathogens are digested using enzymes",
+                ],
+              },
+            ],
           },
           {
             id: "ketiga",
-            name: "Third line of defence",
-            parts: "The immune system — antibody production",
+            name: "Third Line",
+            parts: "Antibody production by the immune system",
             group: "specific",
-            note: "Pathogens that get past the second line meet the body's immune system. White blood cells produce antibodies specific to that pathogen's antigen. The antibodies attach to the pathogen so it cannot enter host cells, and cause the pathogens to clump together so they are destroyed more easily.",
+            note: "Specific defence using antibodies.",
+            facts: [
+              {
+                label: "How it works",
+                value: [
+                  "White blood cells produce antibodies in response to antigens",
+                  "Antibodies attach to pathogens",
+                  "Prevent pathogens entering host cells",
+                  "Cause pathogens to clump together",
+                ],
+              },
+            ],
           },
         ],
       },
-      cards: [
-        {
-          title: "Non-specific versus specific",
-          body: "Non-specific defence (the first and second lines) **attacks pathogens generally**, whatever their type. Specific defence (the third line) **attacks one particular pathogen** using the matching antibody.",
-        },
-      ],
       checks: [
         {
           question: "If someone has a cut on their skin, which defence is affected?",
-          hint: "The first line of defence — microorganisms can only get through the skin where there is a wound or injury.",
+          hint: "The first line — microorganisms can only get through the skin where there is a wound or injury.",
         },
-        {
-          question: "What is similar and what is different about specific and non-specific defence?",
-          hint: "Both work to prevent infection. Specific defence attacks a particular pathogen; non-specific defence attacks pathogens generally.",
-        },
-      ],
-    },
-
-    // ───────────────────────────────────────────── Antigen / antibody / immunity
-    {
-      number: "4.2",
-      title: "Antigen, Antibody and Immunity",
-      intro:
-        "These three terms work together in the third line of defence. Learn what each one means before looking at how they connect.",
-      cards: [
-        {
-          title: "Antigen",
-          body: "A foreign body or substance not belonging to the body itself that **stimulates the production of antibodies**. Antigens are found on pathogens, on toxin molecules and on blood cells from a different blood group.",
-        },
-        {
-          title: "Antibody",
-          body: "A protein produced by white blood cells into the bloodstream in **response to an antigen**.",
-        },
-        {
-          title: "Immunity",
-          body: "The ability of the body's system to fight a pathogen **before the body becomes infected** by that pathogen.",
-        },
-      ],
-      causeEffect: {
-        title: "How the three connect",
-        instruction: "Read from left to right.",
-        items: [
-          {
-            icon: "🦠",
-            title: "An antigen enters the body",
-            chain: [
-              "The antigen on the pathogen is detected",
-              "White blood cells are stimulated",
-              "Specific antibodies are produced",
-            ],
-            note: "The antibody produced **matches that antigen and no other**.",
-          },
-          {
-            icon: "🛡️",
-            title: "Antibodies act on the pathogen",
-            chain: [
-              "Antibodies attach to the pathogen",
-              "The pathogen cannot enter host cells",
-              "Pathogens clump together and are destroyed more easily",
-            ],
-            note: "This is immunity — the body's ability to fight that pathogen.",
-          },
-        ],
-      },
-      quickExplanation:
-        "The sequence: an antigen (foreign substance) stimulates → antibodies (protein) are produced → immunity (ability to fight) is reached. Each antibody matches only one antigen.",
-      checks: [
         {
           question: "What is the main difference between an antigen and an antibody?",
           hint: "An antigen is the foreign substance that stimulates; an antibody is the protein white blood cells produce in response.",
         },
-        {
-          question: "Where can antigens be found?",
-          hint: "On pathogens, on toxin molecules and on blood cells from a different blood group.",
-        },
       ],
     },
 
-    // ───────────────────────────────────────────── Immunisation
+    // ───────────────────────────────────────────── 6. Immunisation
     {
       number: "4.2",
-      title: "Immunisation",
+      title: "Importance of Immunisation",
       intro:
-        "Immunisation is an effort to give babies, children and adults active resistance to particular diseases by introducing a vaccine.",
+        "Immunisation is an effort to stimulate the body's defence against infections in babies, children and adults by injecting vaccines.",
       cards: [
         {
           title: "What is in a vaccine?",
-          body: "A vaccine contains antigens obtained from part or all of the structure of a virus or bacterium that has been **weakened or killed**.",
+          body: "A vaccine contains antigens obtained from a part or the whole structure of a virus/bacterium that has been **weakened or killed**.",
         },
         {
           title: "How does a vaccine work?",
-          body: "The antigen in the vaccine **stimulates the body's immune system** to build immunity against that particular infection — without causing the disease itself.",
+          body: "Antigens in the vaccine **stimulate the body's immune system**, forming immunity against certain infections — without causing the actual disease.",
         },
         {
           title: "Why several different vaccines?",
-          body: "Each vaccine builds immunity against a different disease, so a baby receives several different vaccines according to a schedule.",
+          body: "A baby needs to be injected with several types of vaccines according to the Malaysian vaccination schedule.",
         },
         {
           title: "Are vaccines safe?",
-          body: "Yes. Vaccines used by the Ministry of Health Malaysia are assessed against international standards before use.",
+          body: "Yes. Vaccines used by the Ministry of Health Malaysia have been evaluated according to international standards, including for babies and children.",
         },
       ],
       accordions: [
         {
-          title: "💉 Examples from the Malaysian immunisation schedule",
-          body: "BCG protects against tuberculosis. Hepatitis B is given in three doses. DTaP combines diphtheria, tetanus and pertussis. Polio (IPV) protects against polio. MMR protects against measles, mumps and rubella. HPV is given to girls aged 13. You do not need to memorise the whole schedule — understand that each vaccine is timed by age so protection is built before the risk of infection rises.",
+          title: "💉 Vaccination schedule in Malaysia (selected vaccines)",
+          body: "",
+          facts: [
+            { label: "BCG", value: "Protection against Tuberculosis." },
+            {
+              label: "DTaP",
+              value: "Combination of Diphtheria, Tetanus and Pertussis (whooping cough).",
+            },
+            { label: "Hib", value: "Haemophilus influenzae type B." },
+            { label: "IPV", value: "Inactivated Polio Vaccine — protects against Polio." },
+            { label: "MMR", value: "Combination of Measles, Mumps and Rubella." },
+            { label: "HPV", value: "Given only to girls aged 13." },
+            { label: "Hepatitis B", value: "Given starting at birth, in multiple doses." },
+          ],
         },
         {
           title: "🔁 Why are booster doses needed?",
           body: "Some vaccines are given more than once. Repeated exposure to the same antigen produces **a higher and faster antibody response**, so protection becomes stronger and lasts longer.",
         },
       ],
+      causeEffect: {
+        title: "Why immunisation matters to society, not just the individual",
+        instruction: "Follow the chain of effects from one immunised child.",
+        items: [
+          {
+            icon: "🛡️",
+            title: "Immunisation is widespread among the population",
+            chain: [
+              "Fewer people can be infected",
+              "Diseases such as leprosy, whooping cough and tuberculosis stay better controlled",
+            ],
+            note: "Immunisation helps **CONTROL the recurrence of disease** and reduces the risk of spreading it to others.",
+          },
+        ],
+      },
       checks: [
         {
           question: "What does a vaccine contain?",
@@ -479,16 +654,25 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       ],
     },
 
-    // ───────────────────────────────────────────── Active / passive
+    // ───────────────────────────────────────────── 7. Active and passive immunity
     {
       number: "4.2",
       title: "Active and Passive Immunity",
       intro:
-        "Active immunity means the body produces its own antibodies when stimulated by an antigen. Passive immunity means the body receives antibodies from an outside source. Both can be acquired naturally or artificially.",
+        "Two questions decide the type of immunity: does the body make its own antibodies, and how were those antibodies acquired?",
+      cards: [
+        {
+          title: "🛡️ Active Immunity",
+          body: "The body produces **its own antibodies**.",
+        },
+        {
+          title: "💉 Passive Immunity",
+          body: "The body receives **antibodies from an outside source**.",
+        },
+      ],
       immunityMatrix: {
         title: "The four types of immunity",
-        instruction:
-          "Two questions decide the type: does the body make its own antibodies, and how were those antibodies acquired?",
+        instruction: "Tap any box to see the details of that type of immunity.",
         activeLabel: "Active",
         passiveLabel: "Passive",
         naturalLabel: "Natural",
@@ -499,46 +683,48 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
             id: "aktif-semula-jadi",
             row: "active",
             column: "natural",
-            name: "Natural active immunity",
-            source: "After recovering from a disease",
+            name: "Natural Active Immunity",
+            source: "After recovering from an infection",
             duration: "Long-lasting",
-            note: "Formed after a person recovers from an attack of the disease. The body produces its own antibodies, and the immunity lasts long after the infection.",
+            note: "Occurs when a person recovers from an infection — antibodies build up during the infection and last long after.",
+            graphNote:
+              "Antibody level rises slowly after the first infection, then rises higher and faster after a second infection by the same pathogen.",
           },
           {
             id: "aktif-buatan",
             row: "active",
             column: "artificial",
-            name: "Artificial active immunity",
+            name: "Artificial Active Immunity",
             source: "Through a vaccine injection",
             duration: "Long-lasting",
-            note: "Formed when a vaccine containing dead or weakened pathogens is introduced into the body and the immune system responds by producing antibodies. The immunity is long-lasting.",
+            note: "Occurs when a vaccine containing a dead/weakened pathogen is injected; the immune system responds by producing its own antibodies.",
+            graphNote:
+              "Antibody level rises after the first vaccine dose, then rises higher and faster after a booster dose.",
           },
           {
             id: "pasif-semula-jadi",
             row: "passive",
             column: "natural",
-            name: "Natural passive immunity",
-            source: "Antibodies from the mother",
-            duration: "Temporary and short",
-            note: "Formed when a child receives antibodies from breast milk or from the mother's blood across the placenta. The immunity is temporary and short, lasting the first few months after birth.",
+            name: "Natural Passive Immunity",
+            source: "Antibodies from the mother, via placenta/breast milk",
+            duration: "Temporary and short-lived",
+            note: "Baby receives antibodies from breast milk or from the mother's blood across the placenta. Lasts only the first few months after birth.",
+            graphNote:
+              "Antibody level is highest at birth, then falls gradually over the following months.",
           },
           {
             id: "pasif-buatan",
             row: "passive",
             column: "artificial",
-            name: "Artificial passive immunity",
-            source: "Through an antiserum injection",
-            duration: "Immediate but temporary",
-            note: "Formed when an antiserum is injected into a patient. The antiserum fights the disease pathogen without disturbing the patient's own immune system. The immunity is immediate and temporary.",
+            name: "Artificial Passive Immunity",
+            source: "An antiserum injection",
+            duration: "Fast-acting but temporary",
+            note: "An antiserum (a clear liquid containing antibodies) is injected into the patient's body; it fights pathogens without interrupting the patient's own immune system.",
+            graphNote:
+              "Antibody level is high right after the injection, then falls because the body does not replace these antibodies.",
           },
         ],
       },
-      cards: [
-        {
-          title: "What is an antiserum?",
-          body: "An antiserum is the clear liquid part of blood containing **antibodies that prevent disease**. It is injected straight into a patient so ready-made antibodies can act immediately.",
-        },
-      ],
       checks: [
         {
           question: "Why is passive immunity always temporary?",
@@ -551,68 +737,12 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
       ],
     },
 
-    // ───────────────────────────────────────────── Response graph
-    {
-      number: "4.2",
-      title: "Primary and Secondary Immune Response",
-      intro:
-        "When the body meets the same antigen a second time, its response is completely different from the first. This is why repeated immunisation strengthens protection.",
-      immuneResponseGraph: {
-        title: "Antibody concentration after a first and a second exposure",
-        instruction:
-          "Look at how high and how fast each curve rises. Tap a label below the graph for an explanation.",
-        xAxisLabel: "Time (weeks)",
-        yAxisLabel: "Antibody concentration in blood (%)",
-        immuneLevelLabel: "Immunity level",
-        hint: "Tap any label to see what that part of the graph means.",
-        items: [
-          {
-            id: "first",
-            label: "First exposure",
-            note: "The first time the antigen enters the body. The body needs time to recognise it and start producing antibodies.",
-          },
-          {
-            id: "primary",
-            label: "Primary response",
-            note: "The first-time response — slow and low. The antibodies produced do not reach the immunity level, so a person can still fall ill.",
-          },
-          {
-            id: "second",
-            label: "Second exposure",
-            note: "The SAME antigen enters the body again, either through re-infection or through a further vaccine dose.",
-          },
-          {
-            id: "secondary",
-            label: "Secondary response",
-            note: "The second-time response — far faster and much higher. Antibodies rise above the immunity level, so immunity is achieved and the body is protected.",
-          },
-        ],
-      },
-      cards: [
-        {
-          title: "Why this matters",
-          body: "This pattern explains why some vaccines **need more than one dose**: each extra dose repeats the exposure to the same antigen and lifts protection to a higher level.",
-        },
-      ],
-      checks: [
-        {
-          question:
-            "A graph shows antibody concentration rising sharply after a second exposure. What does it represent?",
-          hint: "The secondary response — a faster, stronger reaction to the same antigen.",
-        },
-        {
-          question: "Why can a person still fall ill after a first exposure?",
-          hint: "The primary response is slow and low; antibodies do not reach the immunity level in time.",
-        },
-      ],
-    },
-
-    // ───────────────────────────────────────────── Strong immunity
+    // ───────────────────────────────────────────── 8. Strong immune system
     {
       number: "4.2",
       title: "Maintaining a Strong Immune System",
       intro:
-        "When there is an imbalance in the body or too many toxins, the immune system becomes weak. Daily habits in the three areas below decide whether your immunity is strengthened or weakened.",
+        "The immune system becomes weak when there is an imbalance in the body or too much toxin exposure.",
       cards: [
         {
           title: "🥗 Nutrition",
@@ -620,7 +750,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "🏃 Physical activity",
-          body: "Exercising outdoors and breathing fresh air strengthen the immune system. Regular physical activity helps the body work better.",
+          body: "Exercising and inhaling fresh air strengthen the immune system.",
         },
         {
           title: "🌿 Lifestyle",
@@ -632,24 +762,24 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
         columns: [
           {
             title: "Causes of a weakened immune system",
-            body: "Exposure to air pollution; exposure to pesticides; **emotional stress**; taking sugar in excess.",
+            body: "Exposure to polluted air; exposure to pesticides; **stress**; excessive intake of sugar; smoking.",
           },
           {
             title: "Practices that strengthen the immune system",
-            body: "**Getting enough rest and sleep**; not smoking and avoiding cigarette smoke; exercising outdoors and breathing fresh air; going for periodic health checks.",
+            body: "**Getting enough sleep and rest**; exercising and inhaling fresh air; not smoking and avoiding cigarette smoke; periodic health examinations.",
           },
         ],
       },
       accordions: [
         {
           title: "⭐ Enrichment — allergies",
-          body: "An allergy is a reaction of the body's immune system to an allergen in the environment that is normally harmless to someone without that allergy. Examples of allergens: dust mites, animal fur, dust, pollen, spores, foods such as seafood, milk and eggs, animal stings and certain medicines.",
+          body: "An allergy is the response of the body's immune system to an allergen — a substance that is usually harmless to most people. Examples of allergens: mites, animal hair, dust, pollen, spores, food (seafood, milk, eggs), animal stings and some medicines.",
         },
       ],
       checks: [
         {
           question: "Suggest two practices that weaken a person's immune system.",
-          hint: "Any two of: exposure to air pollution or pesticides, emotional stress, and taking sugar in excess.",
+          hint: "Any two of: exposure to polluted air or pesticides, stress, and taking sugar in excess.",
         },
         {
           question: "How does enough sleep help the immune system?",
@@ -657,87 +787,19 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
         },
       ],
     },
-
-    // ───────────────────────────────────────────── Social impact
-    {
-      number: "4.2",
-      title: "Health, Immunisation and Society",
-      intro:
-        "One person's health is not a purely private matter. A person's level of health and immunisation has knock-on effects for the family, society, the economy and the country.",
-      causeEffect: {
-        title: "The chain of effects",
-        instruction: "Follow each chain from its cause through to its effect on the country.",
-        items: [
-          {
-            icon: "🛡️",
-            title: "Controlled recurrence of disease",
-            chain: [
-              "Immunisation is widespread among the population",
-              "Fewer people can be infected",
-              "Diseases such as leprosy, whooping cough and tuberculosis stay better controlled",
-            ],
-            note: "Immunisation helps **CONTROL the recurrence of disease** and reduces the risk of spread.",
-          },
-          {
-            icon: "💰",
-            title: "Healthcare costs",
-            chain: [
-              "Fewer cases of infection",
-              "Less need for treatment and hospital admission",
-              "Healthcare costs for families and the country do not climb",
-            ],
-          },
-          {
-            icon: "🏭",
-            title: "Work quality and the workforce",
-            chain: [
-              "Workers fall ill less often",
-              "Fewer working days are lost",
-              "Productivity and quality of work are protected",
-            ],
-            note: "A prolonged outbreak can affect the workforce and lead to worker migration issues.",
-          },
-          {
-            icon: "📋",
-            title: "Insurance and quality of life",
-            chain: [
-              "Lower health risk",
-              "Medical and insurance spending stays more manageable",
-              "Families enjoy a better quality of life",
-            ],
-          },
-        ],
-      },
-      cards: [
-        {
-          title: "📊 Try it yourself",
-          body: "Collect statistics on infectious diseases in Malaysia from the Ministry of Health portal. Discuss which diseases are most common, their causes and how they are handled, then suggest steps to address them.",
-        },
-      ],
-      checks: [
-        {
-          question:
-            "How does immunising one child benefit society, not just that child?",
-          hint: "A protected child is not easily infected and does not pass the pathogen on, so spread within the community stays better controlled.",
-        },
-        {
-          question: "State two economic effects of an outbreak of infectious disease.",
-          hint: "Healthcare costs rise and quality of work suffers as workers fall ill.",
-        },
-      ],
-    },
   ],
   reflectionItems: [
     "I can tell infectious and non-infectious diseases apart and give examples.",
-    "I can explain the four ways infectious diseases spread.",
-    "I can tell a pathogen, a vector and a disease apart.",
-    "I can describe the three levels of disease prevention.",
-    "I can describe the three lines of body defence and tell specific from non-specific defence.",
+    "I can explain how infectious diseases are spread.",
+    "I can tell a vector apart from a pathogen and the disease that results.",
+    "I can compare the three stages of disease prevention.",
+    "I can tell non-specific and specific defence apart.",
     "I can define antigen, antibody and immunity.",
-    "I can explain why immunisation matters and what a vaccine contains.",
+    "I can explain the three lines of body defence.",
+    "I can justify the importance of immunisation.",
     "I can tell active and passive immunity apart.",
-    "I can read a primary and secondary immune response graph.",
-    "I can link individual health to the family, society, the economy and the country.",
+    "I can explain the four types of immunity.",
+    "I can justify practices towards a strong immune system.",
   ],
   miniQuiz: [
     {
@@ -748,11 +810,11 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
     },
     {
       type: "multiple-choice",
-      question: "At which level of prevention is vector population control carried out?",
-      options: ["Primary level", "Secondary level", "Tertiary level", "Before immunisation"],
+      question: "At which stage of prevention is vector population control carried out?",
+      options: ["Primary stage", "Secondary stage", "Tertiary stage", "Before immunisation"],
       answerIndex: 2,
       explanation:
-        "The tertiary level covers vector population control and host protection such as using mosquito nets.",
+        "The tertiary stage covers vector population control and host protection such as using mosquito nets.",
     },
     {
       type: "multiple-choice",

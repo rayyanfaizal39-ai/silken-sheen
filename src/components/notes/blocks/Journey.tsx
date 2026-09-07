@@ -11,7 +11,12 @@ export function Journey({
   instruction,
   lang = "en",
 }: {
-  steps: { title: string; body: string; detail?: string }[];
+  steps: {
+    title: string;
+    body: string;
+    detail?: string;
+    facts?: { label: string; value: string | string[] }[];
+  }[];
   instruction: string;
   /** Defaults to English so existing callers keep their current chrome. */
   lang?: "en" | "bm";
@@ -42,15 +47,58 @@ export function Journey({
       </div>
       <div className="min-h-28 rounded-xl border border-border bg-card/70 p-4">
         <h4 className="font-display font-bold text-foreground">{steps[current].title}</h4>
-        <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{steps[current].body}</p>
-        {steps[current].detail && <p className="mt-2 text-xs font-semibold text-primary">{steps[current].detail}</p>}
+        {steps[current].body && (
+          <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
+            {steps[current].body}
+          </p>
+        )}
+        {steps[current].facts && steps[current].facts!.length > 0 && (
+          <dl
+            className={`flex flex-col gap-1.5 ${steps[current].body ? "mt-2.5 border-t border-border/60 pt-2.5" : "mt-1"}`}
+          >
+            {steps[current].facts!.map((fact) => (
+              <div key={fact.label}>
+                <dt className="text-[10.5px] font-bold uppercase tracking-wide text-primary">
+                  {fact.label}
+                </dt>
+                {Array.isArray(fact.value) ? (
+                  <dd className="mt-0.5 text-[12.5px] leading-relaxed text-foreground/90">
+                    <ul className="list-disc space-y-0.5 pl-4">
+                      {fact.value.map((line) => (
+                        <li key={line}>{line}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                ) : (
+                  <dd className="mt-0.5 text-[12.5px] leading-relaxed text-foreground/90">
+                    {fact.value}
+                  </dd>
+                )}
+              </div>
+            ))}
+          </dl>
+        )}
+        {steps[current].detail && (
+          <p className="mt-2 text-xs font-semibold text-primary">{steps[current].detail}</p>
+        )}
       </div>
       <div className="mt-3 flex justify-between gap-3">
-        <button type="button" disabled={current === 0} onClick={() => setCurrent((v) => v - 1)} className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-xs font-semibold text-primary disabled:opacity-30">
+        <button
+          type="button"
+          disabled={current === 0}
+          onClick={() => setCurrent((v) => v - 1)}
+          className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-xs font-semibold text-primary disabled:opacity-30"
+        >
           <ArrowLeft className="h-4 w-4" /> {current === 0 ? t.start : steps[current - 1].title}
         </button>
-        <button type="button" disabled={current === steps.length - 1} onClick={() => setCurrent((v) => v + 1)} className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-right text-xs font-semibold text-primary disabled:opacity-30">
-          {current === steps.length - 1 ? t.complete : steps[current + 1].title} <ArrowRight className="h-4 w-4" />
+        <button
+          type="button"
+          disabled={current === steps.length - 1}
+          onClick={() => setCurrent((v) => v + 1)}
+          className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-right text-xs font-semibold text-primary disabled:opacity-30"
+        >
+          {current === steps.length - 1 ? t.complete : steps[current + 1].title}{" "}
+          <ArrowRight className="h-4 w-4" />
         </button>
       </div>
     </div>

@@ -38,7 +38,12 @@ export type InteractiveFigureCardProps = {
    * control, and a second row of buttons below would only repeat them.
    */
   showControls?: boolean;
-  image: Omit<
+  /**
+   * Omit when no approved artwork exists for this language: the badge, concept
+   * buttons and explanation panel still render — the same interaction, just
+   * without a picture leading it.
+   */
+  image?: Omit<
     AnnotatedImageProps,
     | "annotations"
     | "active"
@@ -223,60 +228,51 @@ export function InteractiveFigureCard({
       ref={cueRef}
       className={`rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5 ${className ?? ""}`}
     >
-      {title && (
-        <h3 className="font-display mb-2 text-base font-bold text-foreground">{title}</h3>
-      )}
+      {title && <h3 className="font-display mb-2 text-base font-bold text-foreground">{title}</h3>}
 
       {/* The affordance, stated rather than implied. */}
-      <InteractiveBadge
-        lang={lang}
-        instruction={instruction}
-        cued={cued}
-        className="mb-2.5"
-      />
+      <InteractiveBadge lang={lang} instruction={instruction} cued={cued} className="mb-2.5" />
 
-      <AnnotatedImage
-        {...image}
-        annotations={concepts}
-        active={active}
-        onActiveChange={setActive}
-        hideLegend={showControls}
-        hidePanel
-        enlargeLabel={copy.enlarge}
-        closeLabel={copy.close}
-      />
+      {image && (
+        <AnnotatedImage
+          {...image}
+          annotations={concepts}
+          active={active}
+          onActiveChange={setActive}
+          hideLegend={showControls}
+          hidePanel
+          enlargeLabel={copy.enlarge}
+          closeLabel={copy.close}
+        />
+      )}
 
       {/* Controls sit immediately under the artwork, so image, buttons and
           explanation read as one unit rather than three separate things. */}
       {showControls && (
-      <div
-        role="group"
-        aria-label={copy.controlsLabel}
-        className="mt-3 flex flex-wrap gap-1.5"
-      >
-        {concepts.map((concept, index) => {
-          const isActive = concept.id === active;
-          return (
-            <button
-              key={concept.id}
-              type="button"
-              aria-pressed={isActive}
-              onClick={() => setActive(isActive ? null : concept.id)}
-              className={conceptButtonClass(
-                isActive,
-                `flex-auto sm:flex-none ${cued && index === 0 && !isActive ? "figure-cue-glow" : ""}`,
-              )}
-            >
-              {concept.icon && (
-                <span aria-hidden="true" className="text-[13px]">
-                  {concept.icon}
-                </span>
-              )}
-              {concept.label}
-            </button>
-          );
-        })}
-      </div>
+        <div role="group" aria-label={copy.controlsLabel} className="mt-3 flex flex-wrap gap-1.5">
+          {concepts.map((concept, index) => {
+            const isActive = concept.id === active;
+            return (
+              <button
+                key={concept.id}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setActive(isActive ? null : concept.id)}
+                className={conceptButtonClass(
+                  isActive,
+                  `flex-auto sm:flex-none ${cued && index === 0 && !isActive ? "figure-cue-glow" : ""}`,
+                )}
+              >
+                {concept.icon && (
+                  <span aria-hidden="true" className="text-[13px]">
+                    {concept.icon}
+                  </span>
+                )}
+                {concept.label}
+              </button>
+            );
+          })}
+        </div>
       )}
 
       {/* One panel, always in the same place and always reserving its space, so
@@ -297,11 +293,21 @@ export function InteractiveFigureCard({
               <p className="mt-1 text-[12.5px] leading-relaxed text-foreground">{selected.note}</p>
             )}
             {selected.facts && selected.facts.length > 0 && (
-              <dl className="mt-1.5 flex flex-col gap-0.5">
+              <dl className="mt-1.5 flex flex-col gap-1">
                 {selected.facts.map((fact) => (
-                  <div key={fact.label} className="flex flex-wrap gap-x-1.5 text-[12px] leading-snug">
+                  <div key={fact.label} className="text-[12px] leading-snug">
                     <dt className="font-semibold text-muted-foreground">{fact.label}:</dt>
-                    <dd className="m-0 min-w-0 text-foreground">{fact.value}</dd>
+                    {Array.isArray(fact.value) ? (
+                      <dd className="m-0 mt-0.5 min-w-0 text-foreground">
+                        <ul className="list-disc space-y-0.5 pl-4">
+                          {fact.value.map((line) => (
+                            <li key={line}>{line}</li>
+                          ))}
+                        </ul>
+                      </dd>
+                    ) : (
+                      <dd className="m-0 inline min-w-0 text-foreground"> {fact.value}</dd>
+                    )}
                   </div>
                 ))}
               </dl>

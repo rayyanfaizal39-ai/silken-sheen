@@ -157,8 +157,8 @@ function occurrences(haystack: string, needle: string): number {
 
 /** Every approved WebP a chapter renders, by bundled filename. */
 function assetFilenames(markup: string): string[] {
-  return [...markup.matchAll(/src="([^"]*chapter[1-6][^"]*\.webp[^"]*)"/g)].map((m) =>
-    m[1].split("/").pop()!.split("?")[0],
+  return [...markup.matchAll(/src="([^"]*chapter[1-6][^"]*\.webp[^"]*)"/g)].map(
+    (m) => m[1].split("/").pop()!.split("?")[0],
   );
 }
 
@@ -193,7 +193,10 @@ describe("duplicate visual cleanup", () => {
       const content = bm();
       const section = content.sections.find((s) => block(s));
       expect(section).toBeDefined();
-      expect(block(section!)!.image, "BM must not carry the English-labelled artwork").toBeUndefined();
+      expect(
+        block(section!)!.image,
+        "BM must not carry the English-labelled artwork",
+      ).toBeUndefined();
 
       const markup = renderToStaticMarkup(
         createElement(ScienceF2InteractiveNotesBlock, {
@@ -251,7 +254,7 @@ describe("interactive figure affordance", () => {
     if (!markup.includes(">Interaktif<")) return; // chapter has no figure card
     expect(markup, "English badge must not leak onto a BM page").not.toContain(">Interactive<");
     expect(markup).not.toContain("Tap a concept");
-    expect(markup).not.toContain("aria-label=\"Enlarge");
+    expect(markup).not.toContain('aria-label="Enlarge');
   });
 
   it.each(CHAPTERS)("$name gives every concept button something to say", ({ dlp }) => {
@@ -271,11 +274,19 @@ describe("interactive figure affordance", () => {
         },
         section.mixtureComparison && {
           image: section.mixtureComparison.image,
-          items: section.mixtureComparison.kinds.map((k) => ({ id: k.id, label: k.name, note: k.note })),
+          items: section.mixtureComparison.kinds.map((k) => ({
+            id: k.id,
+            label: k.name,
+            note: k.note,
+          })),
         },
         section.waterTreatmentFlow && {
           image: section.waterTreatmentFlow.image,
-          items: section.waterTreatmentFlow.stages.map((s) => ({ id: s.id, label: s.name, note: s.fn })),
+          items: section.waterTreatmentFlow.stages.map((s) => ({
+            id: s.id,
+            label: s.name,
+            note: s.fn,
+          })),
         },
         section.defenceLines && {
           image: section.defenceLines.image,
@@ -293,14 +304,19 @@ describe("interactive figure affordance", () => {
 
       for (const group of groups) {
         if (!group?.image) continue;
-        const ids = [...group.items.map((i) => i.id), ...(group.image.extra ?? []).map((e) => e.id)];
+        const ids = [
+          ...group.items.map((i) => i.id),
+          ...(group.image.extra ?? []).map((e) => e.id),
+        ];
         expect(new Set(ids).size, "concept ids are unique within a figure").toBe(ids.length);
         for (const item of group.items) {
           expect(item.note?.trim().length ?? 0, `${item.id} has an explanation`).toBeGreaterThan(0);
           expect(item.label.trim().length, `${item.id} has a label`).toBeGreaterThan(0);
         }
         for (const extra of group.image.extra ?? []) {
-          expect(extra.note?.trim().length ?? 0, `${extra.id} has an explanation`).toBeGreaterThan(0);
+          expect(extra.note?.trim().length ?? 0, `${extra.id} has an explanation`).toBeGreaterThan(
+            0,
+          );
         }
         // Every point maps to a concept that actually exists.
         for (const point of group.image.points) {
@@ -393,14 +409,25 @@ describe("why water matters — visual replacement", () => {
     ]);
     for (const panel of block.panels) {
       expect(panel.note.trim().length, panel.id).toBeGreaterThan(0);
-      expect(block.image!.points.map((p) => p.id), panel.id).toContain(panel.id);
+      expect(
+        block.image!.points.map((p) => p.id),
+        panel.id,
+      ).toContain(panel.id);
     }
   });
 
   it("labels the four buttons from the chapter's own localised strings", () => {
     for (const [content, lang, expected] of [
-      [scienceF2C6InteractiveDLP, "en", ["Acid: without water", "Acid: with water", "Alkali: without water", "Alkali: with water"]],
-      [scienceF2C6InteractiveBM, "bm", ["Asid: tanpa air", "Asid: dengan air", "Alkali: tanpa air", "Alkali: dengan air"]],
+      [
+        scienceF2C6InteractiveDLP,
+        "en",
+        ["Acid: without water", "Acid: with water", "Alkali: without water", "Alkali: with water"],
+      ],
+      [
+        scienceF2C6InteractiveBM,
+        "bm",
+        ["Asid: tanpa air", "Asid: dengan air", "Alkali: tanpa air", "Alkali: dengan air"],
+      ],
     ] as const) {
       const dry = content.sections.find((s) => s.dryVsAqueous)!.dryVsAqueous!;
       const composed = dry.panels.map((panel) => {
@@ -439,17 +466,22 @@ describe("why water matters — visual replacement", () => {
 });
 
 describe("preserved interactions", () => {
-  it("chapter 4 still renders the primary and secondary immune response graph", () => {
-    const section = scienceF2C4InteractiveDLP.sections.find((s) => s.immuneResponseGraph);
-    expect(section, "immune response graph section").toBeDefined();
+  // Chapter 4's human-audit correction pass removed the standalone primary /
+  // secondary immune-response graph module — the DSKP-scoped concept now
+  // lives only inside the active-immunity cells of the four-type matrix, each
+  // with its own small trend chart, rather than as its own lesson.
+  it("chapter 4 has no standalone immune response graph, and folds the concept into the immunity matrix instead", () => {
+    expect(scienceF2C4InteractiveDLP.sections.some((s) => s.immuneResponseGraph)).toBe(false);
+    const section = scienceF2C4InteractiveDLP.sections.find((s) => s.immunityMatrix);
+    expect(section, "immunity matrix section").toBeDefined();
     const markup = renderToStaticMarkup(
       createElement(ScienceF2InteractiveNotesBlock, {
         content: { ...scienceF2C4InteractiveDLP, sections: [section!] },
         lang: "en" as const,
       }),
     );
-    expect(markup).toContain(html(section!.immuneResponseGraph!.title));
-    // ...and no second visual was added beside it.
+    // The matrix's own per-cell trend chart renders (an inline SVG, not a file asset).
+    expect(markup).toContain("<svg");
     expect(assetFilenames(markup)).toEqual([]);
   });
 
@@ -457,7 +489,10 @@ describe("preserved interactions", () => {
     ["pH slider", (s: ScienceF2InteractiveContent["sections"][number]) => s.phSlider],
     ["indicator table", (s: ScienceF2InteractiveContent["sections"][number]) => s.indicatorTable],
     ["dry versus aqueous", (s: ScienceF2InteractiveContent["sections"][number]) => s.dryVsAqueous],
-    ["strong versus weak", (s: ScienceF2InteractiveContent["sections"][number]) => s.strengthComparison],
+    [
+      "strong versus weak",
+      (s: ScienceF2InteractiveContent["sections"][number]) => s.strengthComparison,
+    ],
   ])("chapter 6 preserves its %s interaction", (_name, pick) => {
     for (const content of [scienceF2C6InteractiveBM, scienceF2C6InteractiveDLP]) {
       expect(content.sections.some((section) => pick(section))).toBe(true);

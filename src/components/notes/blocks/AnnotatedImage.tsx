@@ -39,9 +39,11 @@ export type ImageAnnotation = {
   /**
    * Extra labelled facts shown under the note in the explanation panel — used
    * where a concept was previously taught by a small table, so folding that
-   * table into the figure loses none of it.
+   * table into the figure loses none of it. `value` may be an array to render
+   * a real bullet list (e.g. a route's list of example diseases) instead of
+   * one comma-separated line.
    */
-  facts?: { label: string; value: string }[];
+  facts?: { label: string; value: string | string[] }[];
   /**
    * Horizontal position as a percentage of image width. Omit — together with
    * `y` — for a concept the artwork does not depict: it then appears in the
@@ -236,8 +238,7 @@ export function AnnotatedImage({
   // Gutters need horizontal room a phone does not have, and direct labels only
   // survive while they still fit side by side once the artwork is phone-sized.
   const needsSmallScreenFallback =
-    isCallout ||
-    (wantsLabels && (placed.length > 5 || labelsCollideWhenSmall(placed, artRatio)));
+    isCallout || (wantsLabels && (placed.length > 5 || labelsCollideWhenSmall(placed, artRatio)));
   const richVisibility = needsSmallScreenFallback ? "hidden sm:block" : "";
   const pinVisibility = needsSmallScreenFallback ? "sm:hidden" : "";
 
@@ -277,7 +278,11 @@ export function AnnotatedImage({
           const roomBelow = 100 - maxY;
           return roomBelow >= roomAbove
             ? { left: `${cx}%`, top: `${Math.min(92, maxY + 3)}%`, transform: "translate(-50%, 0)" }
-            : { left: `${cx}%`, top: `${Math.max(3, minY - 3)}%`, transform: "translate(-50%, -100%)" };
+            : {
+                left: `${cx}%`,
+                top: `${Math.max(3, minY - 3)}%`,
+                transform: "translate(-50%, -100%)",
+              };
         }
         return { left: "50%", top: "4%", transform: "translate(-50%, 0)" };
       })()
@@ -354,7 +359,8 @@ export function AnnotatedImage({
           >
             {callouts.map(({ annotation, side, labelY, anchorX, anchorY }) => {
               const isActive = active === annotation.id;
-              const startX = side === "left" ? `${CALLOUT_GUTTER - 1}%` : `${100 - CALLOUT_GUTTER + 1}%`;
+              const startX =
+                side === "left" ? `${CALLOUT_GUTTER - 1}%` : `${100 - CALLOUT_GUTTER + 1}%`;
               return (
                 <g key={annotation.id}>
                   <line
@@ -433,7 +439,9 @@ export function AnnotatedImage({
                 onClick={() => setActive(isActive ? null : item.id)}
                 onFocus={() => setActive(item.id)}
                 className={`absolute cursor-pointer rounded-xl border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                  isActive ? "border-primary bg-primary/12" : "border-transparent hover:border-primary/60"
+                  isActive
+                    ? "border-primary bg-primary/12"
+                    : "border-transparent hover:border-primary/60"
                 }`}
                 style={{
                   left: `${Math.max(0, item.x - width / 2)}%`,
