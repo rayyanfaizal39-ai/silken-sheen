@@ -33,15 +33,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Sel ialah unit asas hidupan kerana sel merupakan unit terkecil yang mampu menjalankan proses kehidupan.",
     },
     dlp: {
-      question: "What may happen when normal cells continue to divide without control?",
+      question: "Why is the cell considered the basic unit of life?",
       options: [
-        "Cancer may form",
-        "Photosynthesis stops",
-        "The cell becomes a unicellular organism",
-        "Cell respiration cannot occur",
+        "It is the smallest unit that can carry out life processes",
+        "It is the smallest structure made up of several tissues",
+        "It is a structure found only in multicellular organisms",
+        "It is a part of an organism that carries out only one life process",
       ],
       answerIndex: 0,
-      explanation: "Cancer forms when normal cells continue to divide without control.",
+      explanation: "A cell is the smallest structural and functional unit capable of carrying out life processes.",
     },
   },
   {
@@ -129,10 +129,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Unjuran sel rerambut akar meningkatkan luas permukaan untuk menyerap air dan garam mineral dari tanah.",
     },
     dlp: {
-      question: "Which plant cell increases surface area to absorb water and nutrients from soil?",
-      options: ["Root hair cell", "Guard cell", "Palisade cell", "Epidermal cell"],
+      question: "Which plant cell has a projection that increases its surface area for absorbing water and mineral salts from soil?",
+      options: [
+        "Root hair cell",
+        "Guard cell",
+        "Palisade cell",
+        "Leaf epidermal cell",
+      ],
       answerIndex: 0,
-      explanation: "Numerous root hair cells increase the surface area for absorption.",
+      explanation: "The projection of a root hair cell increases its surface area for absorbing water and mineral salts from soil.",
     },
   },
   {
@@ -178,10 +183,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Spesimen yang nipis membolehkan cahaya menembusinya dengan lebih mudah, lalu struktur sel dapat diperhatikan dengan lebih jelas.",
     },
     dlp: {
-      question: "Which stain is used for cheek cells in the textbook slide preparation?",
-      options: ["Methylene blue solution", "Iodine solution", "Ethanol", "Potassium hydroxide"],
+      question: "Why should a specimen placed on a microscope slide be thin?",
+      options: [
+        "So that light can pass through the specimen and its cell structures can be seen clearly",
+        "So that the specimen magnifies the cells without the help of lenses",
+        "So that all parts of the cells absorb light and appear dark",
+        "So that the cells divide before they are observed",
+      ],
       answerIndex: 0,
-      explanation: "Methylene blue stains cheek cells so they can be observed more clearly.",
+      explanation: "A thin specimen allows enough light to pass through for its structures to be observed clearly.",
     },
   },
   {
@@ -199,16 +209,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Respirasi sel membebaskan tenaga daripada glukosa. Tenaga ini diperlukan untuk menjalankan proses kehidupan.",
     },
     dlp: {
-      question: "What are the products of cell respiration?",
+      question: "Why is cellular respiration important to cells?",
       options: [
-        "Carbon dioxide, water and energy",
-        "Glucose and oxygen",
-        "Starch and chlorophyll",
-        "Light and water",
+        "It releases energy from glucose for cellular activities",
+        "It stores light energy by forming glucose",
+        "It produces glucose from carbon dioxide and water",
+        "It supplies oxygen by breaking down water",
       ],
       answerIndex: 0,
-      explanation:
-        "Cell respiration uses glucose and oxygen to produce carbon dioxide, water and energy.",
+      explanation: "Cellular respiration releases energy from glucose so cells can carry out their activities.",
     },
   },
   {
@@ -274,7 +283,12 @@ const pairs: Chapter2QuizPair[] = [
     },
     dlp: {
       question: "Damaged skin forms new cells to replace injured cells. Which process is involved?",
-      options: ["Cell division", "Photosynthesis", "Excretion", "Gas exchange"],
+      options: [
+        "Cell division",
+        "Enlargement of existing cells only",
+        "Cell specialisation without division",
+        "Fusion of damaged cells",
+      ],
       answerIndex: 0,
       explanation: "Cell division forms new cells for growth and to replace damaged cells.",
     },
@@ -294,17 +308,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Sel tumbuhan mempunyai dinding sel, manakala sel haiwan tidak. Kedua-duanya mempunyai membran sel, sitoplasma dan nukleus.",
     },
     dlp: {
-      question:
-        "A plant-cell diagram shows a cell wall but no cell membrane. Why is it incomplete?",
+      question: "A student observes onion epidermal cells and human cheek cells under a microscope. Which structure is expected in the onion cells but not in the cheek cells?",
       options: [
-        "Plant cells also have a cell membrane",
-        "Only animal cells have a cell membrane",
-        "The cell wall replaces the nucleus",
-        "Chloroplasts control movement of substances",
+        "Cell wall",
+        "Cell membrane",
+        "Cytoplasm",
+        "Nucleus",
       ],
       answerIndex: 0,
-      explanation:
-        "Plant cells have both a cell wall and a cell membrane; the membrane controls movement into and out of the cell.",
+      explanation: "Plant cells have a cell wall, while animal cells do not. Both onion epidermal cells and human cheek cells have a cell membrane, cytoplasm and a nucleus.",
     },
   },
   {
@@ -322,17 +334,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Dalam organisma unisel, satu sel menjalankan semua proses kehidupan seperti respirasi, pemakanan, perkumuhan, pertumbuhan dan pembiakan.",
     },
     dlp: {
-      question:
-        "Why should Euglena not be labelled only as an animal or only as a plant in a summary?",
+      question: "How can a unicellular organism such as Amoeba survive with only one cell?",
       options: [
-        "It has both plant and animal characteristics",
-        "It is multicellular",
-        "It carries out no life processes",
-        "It is a tissue",
+        "Its single cell performs all the life processes needed for survival",
+        "Its single cell reproduces but does not carry out respiration",
+        "Its single cell obtains energy without taking in food",
+        "Its single cell stores all waste products without removing them",
       ],
       answerIndex: 0,
-      explanation:
-        "The textbook describes Euglena as making food like a plant and moving like an animal.",
+      explanation: "In a unicellular organism, one cell carries out all essential life processes, including respiration, nutrition, excretion, growth and reproduction.",
     },
   },
   {
@@ -352,14 +362,13 @@ const pairs: Chapter2QuizPair[] = [
     dlp: {
       question: "Which structure-function link is correct for a red blood cell?",
       options: [
-        "Biconcave disc — increases surface area for oxygen transport",
-        "Long fibres — absorb water from soil",
-        "Chlorophyll — destroys foreign particles",
-        "Stoma — carries impulses",
+        "Biconcave disc - increases surface area for oxygen transport",
+        "Biconcave disc - traps foreign particles for destruction",
+        "Long fibres - carry impulses throughout the body",
+        "Long projection - absorbs water and mineral salts",
       ],
       answerIndex: 0,
-      explanation:
-        "The biconcave disc increases red-blood-cell surface area, and haemoglobin transports oxygen.",
+      explanation: "The biconcave disc increases red-blood-cell surface area, and haemoglobin transports oxygen.",
     },
   },
   {
@@ -377,11 +386,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Beberapa organ yang bekerjasama menjalankan fungsi tertentu membentuk sistem. Perut dan usus kecil merupakan organ dalam sistem pencernaan.",
     },
     dlp: {
-      question: "In the plant organisation pathway, which level follows epidermal tissue?",
-      options: ["Leaf", "Epidermal cell", "Transport system", "Plant"],
+      question: "The stomach and small intestine work together to digest food. Which level of organisation does this group of organs represent?",
+      options: [
+        "Digestive system",
+        "Muscle tissue",
+        "Epithelial cell",
+        "Organism",
+      ],
       answerIndex: 0,
-      explanation:
-        "The textbook example is epidermal cell → epidermal tissue → leaf → transport system → plant.",
+      explanation: "Several organs working together to carry out a particular function form a system. The stomach and small intestine are organs in the digestive system.",
     },
   },
   {
@@ -401,14 +414,13 @@ const pairs: Chapter2QuizPair[] = [
     dlp: {
       question: "What is the main difference between breathing and cell respiration?",
       options: [
-        "Breathing exchanges gases; cell respiration breaks down glucose to release energy",
-        "Both occur only in chloroplasts",
-        "Breathing produces glucose; cell respiration produces light",
-        "Cell respiration occurs only in daytime",
+        "Breathing involves gas exchange; cell respiration breaks down glucose to release energy",
+        "Breathing breaks down glucose; cell respiration moves air into and out of the lungs",
+        "Breathing occurs only in plant cells; cell respiration occurs only in animal cells",
+        "Breathing produces glucose; cell respiration stores light energy",
       ],
       answerIndex: 0,
-      explanation:
-        "Breathing exchanges gases with the environment, while cell respiration occurs in living cells to release energy.",
+      explanation: "Breathing exchanges gases with the environment, while cell respiration occurs in living cells to release energy.",
     },
   },
   {
@@ -426,17 +438,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Tisu ialah sekumpulan sel yang mempunyai struktur dan fungsi yang serupa serta bekerjasama menjalankan fungsi tertentu.",
     },
     dlp: {
-      question:
-        "After lowering the cover slip without trapping air bubbles, what is the correct observation sequence?",
+      question: "A student observes onion epidermal tissue and sees many closely packed cells. Which statement explains the relationship between these cells and the tissue?",
       options: [
-        "Low-power objective, then high-power objective",
-        "High-power objective only",
-        "High power, then remove the stain",
-        "Draw before looking through the microscope",
+        "Cells with similar structures and functions form a tissue",
+        "Several tissues combine to form a single cell",
+        "Each cell is a system made up of several organs",
+        "A tissue is one large cell containing smaller cells",
       ],
       answerIndex: 0,
-      explanation:
-        "Observe with the low-power objective first, followed by the high-power objective. This digital answer does not confirm physical practical completion.",
+      explanation: "A tissue consists of groups of similar cells that work together to carry out a particular function.",
     },
   },
   {
@@ -454,16 +464,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Kanji dikesan hanya pada bahagian yang menerima cahaya. Perbandingan pada daun yang sama menyokong bahawa cahaya diperlukan untuk fotosintesis.",
     },
     dlp: {
-      question: "In the investigation of the need for light, what is the manipulated variable?",
+      question: "Part of a leaf is covered with black paper while the rest receives light. The plant was destarched before the experiment and receives enough water. After several hours, only the exposed part tests positive for starch. Which conclusion is supported?",
       options: [
-        "Presence of light",
-        "Iodine colour change",
-        "Type of plant",
-        "Presence of starch after testing",
+        "Light is needed for photosynthesis",
+        "Light is needed for the plant to absorb water through its roots",
+        "Black paper supplies carbon dioxide to the leaf",
+        "Starch forms when light is blocked",
       ],
       answerIndex: 0,
-      explanation:
-        "The presence of light is changed; iodine colour change responds, and plant type is kept constant.",
+      explanation: "Starch is detected only in the part that receives light. Comparing parts of the same leaf supports the conclusion that light is needed for photosynthesis.",
     },
   },
   {
@@ -481,15 +490,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Sel hidup tumbuhan dan haiwan menjalankan respirasi sel. Fotosintesis memerlukan klorofil, maka bukan semua sel tumbuhan menjalankan fotosintesis.",
     },
     dlp: {
-      question: "Which statement correctly distinguishes cell respiration from photosynthesis?",
+      question: "Which statement correctly compares the cells that carry out cell respiration and photosynthesis?",
       options: [
-        "Respiration occurs at all times; photosynthesis occurs when light is present",
-        "Both occur only when light is present",
-        "Photosynthesis releases energy; respiration absorbs light",
-        "Both occur in mitochondria",
+        "Cell respiration occurs in living plant and animal cells; photosynthesis occurs in cells containing chlorophyll",
+        "Cell respiration occurs only in animal cells; photosynthesis occurs in all plant cells",
+        "Cell respiration occurs only in root cells; photosynthesis occurs in all leaf cells",
+        "Cell respiration occurs in cells containing chlorophyll; photosynthesis occurs in animal cells",
       ],
       answerIndex: 0,
-      explanation: "Cell respiration occurs at all times, while photosynthesis requires light.",
+      explanation: "Living plant and animal cells carry out cell respiration. Photosynthesis requires chlorophyll, so not all plant cells carry out photosynthesis.",
     },
   },
   {
@@ -507,16 +516,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Fotosintesis membekalkan glukosa dan oksigen untuk respirasi; respirasi membekalkan karbon dioksida dan air untuk fotosintesis.",
     },
     dlp: {
-      question: "How do the two processes complement each other?",
+      question: "How do cell respiration and photosynthesis complement each other?",
       options: [
         "The products of one become materials for the other",
-        "Both produce only carbon dioxide",
-        "Both use light at all times",
-        "Respiration stops photosynthesis",
+        "Both processes use glucose and oxygen as their materials",
+        "Both processes produce only carbon dioxide and water",
+        "Both processes absorb light to form glucose",
       ],
       answerIndex: 0,
-      explanation:
-        "Photosynthesis supplies glucose and oxygen for respiration; respiration supplies carbon dioxide and water for photosynthesis.",
+      explanation: "Photosynthesis supplies glucose and oxygen for respiration; respiration supplies carbon dioxide and water for photosynthesis.",
     },
   },
   {
@@ -534,17 +542,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Pembahagian berterusan tanpa kawalan boleh menghasilkan jisim sel atau tumor dan dikaitkan dengan pembentukan kanser.",
     },
     dlp: {
-      question:
-        "A group of cells keeps dividing when new cells are not needed and forms a mass. What is the best inference?",
+      question: "A group of cells keeps dividing when new cells are not needed and forms a mass. What is the best inference?",
       options: [
         "Control of cell division has failed and a tumour may form",
-        "The cells are carrying out normal photosynthesis",
-        "The organism has become unicellular",
-        "Mitochondria have changed into chloroplasts",
+        "The cells are replacing damaged cells according to the needs of the tissue",
+        "The cells are only enlarging without an increase in cell number",
+        "The cells are dividing in a controlled way for normal growth",
       ],
       answerIndex: 0,
-      explanation:
-        "Continued uncontrolled division can form a mass of cells or tumour and is associated with cancer formation.",
+      explanation: "Continued uncontrolled division can form a mass of cells or tumour and is associated with cancer formation.",
     },
   },
   {
@@ -562,17 +568,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Membran sel mengawal pergerakan bahan masuk dan keluar dari sel. Dinding sel memberikan sokongan dan bentuk tetap, tetapi tidak menggantikan fungsi membran sel.",
     },
     dlp: {
-      question:
-        "A cell has a cell wall, but the layer controlling substance movement is unlabelled. What should be added and where?",
+      question: "A cell still has an intact cell wall but can no longer control the movement of substances into and out of it. Which structure is most likely damaged, and why?",
       options: [
-        "Cell membrane, just inside the cell wall",
-        "Chloroplast, outside the cell wall",
-        "Nucleus, replacing the cell wall",
-        "Mitochondria, surrounding the whole cell",
+        "Cell membrane, because it controls the movement of substances into and out of the cell",
+        "Cell wall, because it controls all substances passing through it",
+        "Nucleus, because it provides the passage for substances at the cell surface",
+        "Chloroplast, because it filters substances entering the cell",
       ],
       answerIndex: 0,
-      explanation:
-        "A plant cell has a cell membrane just inside its cell wall; the membrane controls substance movement.",
+      explanation: "The cell membrane controls the movement of substances into and out of the cell. The cell wall provides support and a fixed shape but does not replace the function of the cell membrane.",
     },
   },
   {
@@ -590,8 +594,7 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Gentian panjang membolehkan sel saraf membawa impuls, manakala sel rerambut akar meningkatkan luas permukaan penyerapan.",
     },
     dlp: {
-      question:
-        "Cell X has long fibres, while cell Y has numerous projections that increase surface area in soil. What are X and Y?",
+      question: "Cell X has long fibres for carrying impulses, while cell Y has a long projection that increases its surface area for absorption in soil. What are X and Y?",
       options: [
         "X nerve cell; Y root hair cell",
         "X red blood cell; Y guard cell",
@@ -599,8 +602,7 @@ const pairs: Chapter2QuizPair[] = [
         "X muscle cell; Y reproductive cell",
       ],
       answerIndex: 0,
-      explanation:
-        "Long fibres let a nerve cell carry impulses, while root hair cells increase absorption surface area.",
+      explanation: "Long fibres let a nerve cell carry impulses, while root hair cells increase absorption surface area.",
     },
   },
   {
@@ -645,17 +647,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Bahagian hijau mengandungi klorofil dan menunjukkan kanji; ini menyokong keperluan klorofil untuk fotosintesis.",
     },
     dlp: {
-      question:
-        "After a starch test on a variegated leaf, only the originally green areas turn dark blue. What is the best conclusion?",
+      question: "After a starch test on a variegated leaf, only the originally green areas turn dark blue. What is the best conclusion?",
       options: [
         "Chlorophyll is required for photosynthesis",
-        "Oxygen prevents photosynthesis",
-        "Starch occurs only in roots",
-        "Non-green areas photosynthesise more",
+        "The non-green areas contain more starch",
+        "A dark blue colour indicates the absence of starch",
+        "All parts of the leaf produce starch without chlorophyll",
       ],
       answerIndex: 0,
-      explanation:
-        "Green areas contain chlorophyll and show starch, supporting the need for chlorophyll in photosynthesis.",
+      explanation: "Green areas contain chlorophyll and show starch, supporting the need for chlorophyll in photosynthesis.",
     },
   },
   {
@@ -673,17 +673,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Kalium hidroksida menyerap karbon dioksida dalam serkup A. Dengan cahaya dan bekalan air yang sama, perbezaan keputusan ujian kanji menyokong bahawa karbon dioksida diperlukan untuk fotosintesis.",
     },
     dlp: {
-      question:
-        "Potassium hydroxide is placed only in bell jar A. Leaf A stays brown after the iodine test, while leaf B turns dark blue. What can be inferred?",
+      question: "Two destarched plants are placed in bell jars A and B with the same light conditions and water supply. Potassium hydroxide, which absorbs carbon dioxide, is placed only in A. After several hours, leaf A stays brown in the iodine test, while leaf B turns dark blue. What can be inferred?",
       options: [
         "Carbon dioxide is required for photosynthesis",
-        "Potassium hydroxide supplies starch",
-        "Light is not required",
-        "Respiration occurs only in jar B",
+        "Water alone is sufficient to produce starch",
+        "The presence of carbon dioxide prevents starch formation",
+        "Light and chlorophyll are sufficient for photosynthesis without carbon dioxide",
       ],
       answerIndex: 0,
-      explanation:
-        "Potassium hydroxide absorbs carbon dioxide in jar A; the absence of starch shows carbon dioxide is required.",
+      explanation: "Potassium hydroxide absorbs carbon dioxide in bell jar A. With the same light conditions and water supply, the different starch-test results support the conclusion that carbon dioxide is required for photosynthesis.",
     },
   },
   {
@@ -701,17 +699,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "P ialah respirasi sel yang menguraikan glukosa; Q ialah fotosintesis yang mensintesis glukosa.",
     },
     dlp: {
-      question:
-        "Process P occurs in mitochondria at all times. Process Q occurs in chloroplasts when light is present. Which statement is correct?",
+      question: "Process P occurs in mitochondria at all times. Process Q occurs in chloroplasts when light is present. Which statement is correct?",
       options: [
         "P breaks down glucose; Q synthesises glucose",
-        "P absorbs light; Q releases energy for all life processes",
-        "P occurs only in animals; Q only in humans",
-        "P produces oxygen; Q uses oxygen to make carbon dioxide",
+        "P synthesises glucose; Q breaks down glucose",
+        "Both P and Q break down glucose",
+        "Both P and Q synthesise glucose",
       ],
       answerIndex: 0,
-      explanation:
-        "P is cell respiration, which breaks down glucose; Q is photosynthesis, which synthesises glucose.",
+      explanation: "P is cell respiration, which breaks down glucose; Q is photosynthesis, which synthesises glucose.",
     },
   },
   {
@@ -759,16 +755,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Tumbuhan menghasilkan glukosa melalui fotosintesis. Apabila belalang memakan tumbuhan, makanan yang dicerna membekalkan glukosa yang digunakan dalam respirasi sel untuk membebaskan tenaga.",
     },
     dlp: {
-      question:
-        "In a closed system containing a green plant and other organisms, which materials move from photosynthesis to support cell respiration?",
+      question: "A grasshopper eats the leaves of a green plant. How does photosynthesis in the plant contribute to the grasshopper's energy supply?",
       options: [
-        "Glucose and oxygen",
-        "Carbon dioxide and water",
-        "Starch and chlorophyll",
-        "Ethanol and iodine",
+        "Food produced by photosynthesis supplies glucose for cell respiration in the grasshopper",
+        "Chlorophyll from the leaves allows all the grasshopper's cells to carry out photosynthesis",
+        "Carbon dioxide from photosynthesis replaces the grasshopper's need for food",
+        "Light energy passes directly from the leaves to the grasshopper's muscles without cell respiration",
       ],
       answerIndex: 0,
-      explanation: "Photosynthesis produces glucose and oxygen used in cell respiration.",
+      explanation: "Plants produce glucose through photosynthesis. When a grasshopper eats plant material, digestion supplies glucose that is used in cell respiration to release energy.",
     },
   },
   {
@@ -786,17 +781,15 @@ const pairs: Chapter2QuizPair[] = [
       explanation: "Fotosintesis menggunakan karbon dioksida dan membebaskan oksigen, manakala respirasi sel menggunakan oksigen dan membebaskan karbon dioksida. Pengurangan tumbuhan hijau mengurangkan sumbangan fotosintesis kepada pertukaran gas ini.",
     },
     dlp: {
-      question:
-        "If all carbon dioxide from respiration is removed from a plant's environment, which complementary link is directly broken?",
+      question: "The number of green plants in an area decreases greatly while organisms continue to respire. If other factors remain unchanged, how does this affect gas exchange between the two processes?",
       options: [
-        "The supply of carbon dioxide to photosynthesis",
-        "The supply of chlorophyll to respiration",
-        "The formation of cell membranes",
-        "The sequence from cell to tissue",
+        "Less carbon dioxide is used and less oxygen is supplied by photosynthesis",
+        "More carbon dioxide is used and more oxygen is supplied by photosynthesis",
+        "Less carbon dioxide is used but more oxygen is supplied by photosynthesis",
+        "More carbon dioxide is used but less oxygen is supplied by photosynthesis",
       ],
       answerIndex: 0,
-      explanation:
-        "Carbon dioxide produced by respiration is one of the materials used in photosynthesis.",
+      explanation: "Photosynthesis uses carbon dioxide and releases oxygen, while cell respiration uses oxygen and releases carbon dioxide. Fewer green plants reduce the contribution of photosynthesis to this gas exchange.",
     },
   },
 ];
