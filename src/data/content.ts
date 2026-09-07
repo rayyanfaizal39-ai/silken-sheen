@@ -4168,11 +4168,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     question:
-      "Perkataan 'sejarah' berasal daripada perkataan Arab, 'syajaratun'. Apakah maksud perkataan tersebut?",
-    options: ["Batu", "Hikayat", "Sungai", "Pokok"],
-    answerIndex: 3,
+      "Apakah pengertian sejarah secara umum?",
+    options: ["Peristiwa yang dijangka berlaku berdasarkan ramalan", "Peristiwa yang berlaku pada masa lalu", "Kisah rekaan yang menggunakan latar masa lalu", "Rancangan masyarakat untuk masa hadapan"],
+    answerIndex: 1,
     explanation:
-      "Perkataan 'sejarah' berasal daripada bahasa Arab 'syajaratun' yang bermaksud pokok. Ini menggambarkan sejarah seperti pokok yang mempunyai akar, batang, dan cabang — melambangkan kesinambungan peristiwa dari masa lalu hingga kini.",
+      "Secara umum, sejarah merujuk kepada peristiwa yang berlaku pada masa lalu dan dikaji berdasarkan bukti.",
   },
   {
     id: "sej-f1-c1-q2",
@@ -4180,16 +4180,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     question:
-      "Dalam bahasa Melayu, istilah 'tambo' digunakan untuk merujuk kepada sejarah. Apakah maksud 'tambo'?",
-    options: [
-      "Undang-undang bertulis",
-      "Kajian saintifik",
-      "Riwayat dahulu kala",
-      "Ramalan masa depan",
-    ],
-    answerIndex: 2,
+      "Mengapakah sejarawan perlu menggunakan bukti ketika mengkaji sesuatu peristiwa masa lalu?",
+    options: ["Supaya penulisan sejarah berdasarkan maklumat yang boleh disahkan", "Supaya semua sejarawan mesti menghasilkan tafsiran yang sama", "Supaya hanya sumber yang menyokong pendapat awal digunakan", "Supaya kesimpulan boleh dibuat tanpa menilai kesahihan sumber"],
+    answerIndex: 0,
     explanation:
-      "'Tambo' dalam bahasa Melayu merujuk kepada riwayat atau kisah dahulu kala. Ia digunakan dalam masyarakat Melayu tradisional untuk menceritakan peristiwa lampau secara lisan atau bertulis.",
+      "Bukti membantu sejarawan menghasilkan penulisan yang berasaskan sumber dan dapat dipertanggungjawabkan.",
   },
   {
     id: "sej-f1-c1-q3",
@@ -4197,11 +4192,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     question:
-      "Perkataan 'history' dalam bahasa Inggeris berasal daripada bahasa Yunani, 'Historia'. Apakah maksud 'Historia'?",
-    options: ["Penulisan kreatif", "Penyelidikan", "Penceritaan semula", "Kenangan lama"],
-    answerIndex: 1,
+      "Mengapakah sejarawan wajar menggunakan sumber primer dan sumber sekunder dalam penyelidikan?",
+    options: ["Untuk membandingkan maklumat dan mengukuhkan bukti", "Untuk menerima semua maklumat tanpa menyemak percanggahan", "Untuk memilih sumber sekunder sahaja apabila sumber primer tersedia", "Untuk menganggap sumber yang paling baharu sentiasa paling tepat"],
+    answerIndex: 0,
     explanation:
-      "'Historia' dalam bahasa Yunani bermaksud penyelidikan atau inkuiri. Ini menunjukkan bahawa sejarah bukan sekadar cerita, tetapi merupakan satu proses penyelidikan yang sistematik tentang peristiwa masa lalu.",
+      "Sumber primer memberikan bukti asal, manakala sumber sekunder membantu mendapatkan maklumat tambahan dan membuat perbandingan dapatan.",
   },
   {
     id: "sej-f1-c1-q4",
@@ -4244,16 +4239,11 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Apakah yang dimaksudkan dengan 'kronologi' dalam konteks kajian sejarah?",
-    options: [
-      "Kajian tentang fosil dan artifak",
-      "Rentetan peristiwa mengikut urutan masa",
-      "Kajian tentang lokasi peristiwa",
-      "Senarai nama-nama sejarawan",
-    ],
-    answerIndex: 1,
+    question: "Seorang murid menyusun peristiwa daripada yang paling awal hingga yang paling akhir. Kemahiran sejarah apakah yang sedang digunakan?",
+    options: ["Kronologi", "Tafsiran", "Perbandingan sumber", "Pengesahan sumber"],
+    answerIndex: 0,
     explanation:
-      "Kronologi bermaksud penyusunan peristiwa mengikut urutan masa yang betul, dari yang paling awal hingga yang terkini. Ia penting dalam sejarah untuk memahami sebab dan akibat sesuatu peristiwa.",
+      "Kronologi ialah susunan peristiwa mengikut urutan masa.",
   },
   {
     id: "sej-f1-c1-q8",
@@ -4338,48 +4328,33 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Mengapakah surat khabar dianggap sebagai sumber sekunder?",
-    options: [
-      "Kerana ia disimpan di arkib",
-      "Kerana ia ditulis pada masa peristiwa berlaku",
-      "Kerana maklumatnya telah diolah dan diterbitkan",
-      "Kerana ia menggunakan bahasa moden",
-    ],
-    answerIndex: 2,
+    question: "Mengapakah ensiklopedia dikategorikan sebagai sumber sekunder?",
+    options: ["Kandungannya telah diolah dan diterbitkan berdasarkan sumber lain", "Kandungannya ialah catatan asal seorang saksi semasa peristiwa berlaku", "Kandungannya merupakan rekod temu bual yang belum diolah", "Kandungannya terdiri daripada surat asal tanpa huraian penyusun"],
+    answerIndex: 0,
     explanation:
-      "Surat khabar dianggap sumber sekunder kerana maklumat di dalamnya telah melalui proses penyuntingan, pengolahan, dan penerbitan oleh editor dan wartawan sebelum sampai kepada pembaca.",
+      "Sumber sekunder merupakan bahan yang telah diolah dan diterbitkan kepada umum.",
   },
   {
     id: "sej-f1-c1-q15",
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Langkah pertama dalam kaedah bertulis untuk mendapatkan maklumat sejarah ialah...",
-    options: [
-      "Menganalisis sumber",
-      "Menyimpan sumber di arkib",
-      "Mengenal pasti sumber",
-      "Menggunakan peralatan makmal",
-    ],
-    answerIndex: 2,
+    question: "Seorang penyelidik ingin mengkaji surat rasmi, fail kerajaan dan catatan harian lama. Kaedah penyelidikan manakah paling sesuai?",
+    options: ["Kaedah lisan", "Kaedah bertulis", "Kaedah arkeologi", "Kaedah arkeologi bawah air"],
+    answerIndex: 1,
     explanation:
-      "Langkah pertama dalam kaedah bertulis ialah mengenal pasti sumber yang berkaitan. Selepas itu barulah sumber dikumpul, disahkan, dianalisis, dan akhirnya digunakan untuk menulis sejarah.",
+      "Kaedah bertulis digunakan untuk mengkaji maklumat yang dipahat atau ditulis dalam pelbagai sumber.",
   },
   {
     id: "sej-f1-c1-q16",
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Apakah yang dimaksudkan dengan kaedah lisan dalam penyelidikan sejarah?",
-    options: [
-      "Mengkaji tulisan pada dinding gua",
-      "Mendapatkan maklumat melalui temubual",
-      "Mencari bahan di perpustakaan",
-      "Melakukan aktiviti gali cari",
-    ],
-    answerIndex: 1,
+    question: "Seorang murid ingin mendapatkan maklumat tentang pengalaman seorang bekas tentera yang menyaksikan sendiri sesuatu peristiwa. Kaedah manakah paling sesuai?",
+    options: ["Menemu bual bekas tentera melalui kaedah lisan", "Menggali tapak perkhemahan melalui kaedah arkeologi", "Menganalisis surat rasmi tanpa menemu bual bekas tentera", "Mengkaji buku rujukan tanpa mendapatkan keterangan bekas tentera"],
+    answerIndex: 0,
     explanation:
-      "Kaedah lisan melibatkan pengumpulan maklumat sejarah melalui temubual dengan individu yang terlibat atau menyaksikan sesuatu peristiwa. Ia penting untuk merekod pengalaman dan memori orang yang masih hidup.",
+      "Kaedah lisan memperoleh maklumat melalui temu bual dengan orang sumber yang mempunyai pengalaman atau pemerhatian sendiri.",
   },
   {
     id: "sej-f1-c1-q17",
@@ -4387,16 +4362,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     question:
-      "Dalam kaedah lisan, apakah risiko yang mungkin berlaku terhadap maklumat yang diberikan oleh tokoh?",
-    options: [
-      "Tokoh enggan bercakap",
-      "Rakaman audio rosak",
-      "Wujud unsur tokok tambah",
-      "Maklumat terlalu banyak",
-    ],
-    answerIndex: 2,
+      "Mengapakah maklumat daripada temu bual wajar dibandingkan dengan sumber bertulis?",
+    options: ["Untuk menilai dan mengesahkan fakta yang diperoleh", "Untuk menerima sumber bertulis secara automatik apabila terdapat percanggahan", "Untuk menganggap ingatan saksi sentiasa lebih tepat daripada dokumen", "Untuk menyingkirkan keterangan lisan tanpa menilai kandungannya"],
+    answerIndex: 0,
     explanation:
-      "Risiko utama kaedah lisan ialah wujudnya unsur tokok tambah, iaitu maklumat yang dilebih-lebihkan atau ditambah atas sebab ingatan yang lemah atau keinginan untuk menonjolkan diri. Ini boleh menjejaskan ketepatan fakta sejarah.",
+      "Dalam kaedah lisan, fakta daripada rakaman perlu dinilai dan dibandingkan dengan sumber bertulis.",
   },
   {
     id: "sej-f1-c1-q18",
@@ -4404,11 +4374,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     question:
-      "Kaedah arkeologi merupakan kaedah mendapatkan maklumat daripada bahan tinggalan sejarah secara...",
-    options: ["Tradisional", "Spontan", "Saintifik", "Sastera"],
-    answerIndex: 2,
+      "Seorang penyelidik ingin mengkaji tembikar dan binaan batu yang tertimbus di sebuah tapak penempatan lama di daratan. Kaedah manakah paling sesuai?",
+    options: ["Kaedah arkeologi", "Kaedah lisan", "Kaedah bertulis", "Kaedah arkeologi bawah air"],
+    answerIndex: 0,
     explanation:
-      "Kaedah arkeologi menggunakan pendekatan saintifik untuk mengkaji bahan tinggalan sejarah. Ini termasuk penggunaan teknologi moden seperti ujian karbon radioaktif (carbon dating) untuk menentukan usia sesuatu penemuan.",
+      "Kaedah arkeologi menggunakan pendekatan saintifik untuk mengkaji bahan tinggalan melalui aktiviti seperti ekskavasi.",
   },
   {
     id: "sej-f1-c1-q19",
@@ -4443,16 +4413,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     question:
-      "Mengapakah wujud perbezaan tafsiran dalam kalangan ahli sejarah terhadap sesuatu peristiwa yang sama?",
-    options: [
-      "Kekurangan bahan rujukan",
-      "Perbezaan pandangan dan ideologi",
-      "Fakta sejarah yang sentiasa berubah",
-      "Sengaja ingin menimbulkan konflik",
-    ],
-    answerIndex: 1,
+      "Mengapakah dua orang sejarawan boleh menghasilkan tafsiran yang berbeza terhadap peristiwa yang sama?",
+    options: ["Mereka mungkin memilih sumber, pandangan, ideologi atau tujuan penulisan yang berbeza", "Bukti membolehkan setiap sejarawan mengabaikan fakta yang tidak disukainya", "Tafsiran sejarah tidak perlu merujuk kepada sumber yang boleh disemak", "Setiap sejarawan diwajibkan menolak tafsiran sejarawan terdahulu"],
+    answerIndex: 0,
     explanation:
-      "Perbezaan tafsiran berlaku kerana setiap sejarawan mempunyai pandangan, latar belakang, dan ideologi yang berbeza. Faktor seperti kebangsaan, agama, dan politik boleh mempengaruhi cara seseorang sejarawan mentafsir sesuatu peristiwa.",
+      "Perbezaan sumber, pandangan, ideologi dan tujuan penulisan boleh menghasilkan tafsiran yang berbeza.",
   },
   {
     id: "sej-f1-c1-q22",
@@ -4464,23 +4429,18 @@ export const quizzes: QuizQuestion[] = [
     options: ["Pejuang tanah air", "Penjenayah", "Pemerhati politik", "Pengikut penjajah"],
     answerIndex: 0,
     explanation:
-      "Tok Janggut bangkit menentang penjajah British di Kelantan pada tahun 1915. Sejarawan Barat melihat beliau sebagai pemberontak kerana menentang pemerintahan mereka, tetapi sejarawan tempatan memandang beliau sebagai pejuang tanah air yang mempertahankan kedaulatan negara.",
+      "Peristiwa penentangan boleh ditafsir secara berbeza: sebagai pemberontakan dari sudut pihak penjajah atau perjuangan tanah air dari sudut penduduk tempatan. Tafsiran perlu dinilai berdasarkan sumber dan konteks peristiwa.",
   },
   {
     id: "sej-f1-c1-q23",
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Apakah kepentingan utama mempelajari sejarah dalam kehidupan kita?",
-    options: [
-      "Mengambil iktibar dan pengajaran",
-      "Untuk mengetahui masa depan dengan tepat",
-      "Supaya boleh menjadi ahli politik",
-      "Mencari harta karun peninggalan lama",
-    ],
+    question: "Bagaimanakah mempelajari sejarah dapat membantu seseorang membuat keputusan pada masa hadapan?",
+    options: ["Dengan mengambil iktibar daripada kejayaan dan kesilapan masa lalu", "Dengan menganggap peristiwa lampau pasti berulang dengan cara yang sama", "Dengan menggunakan keputusan lampau tanpa menilai keadaan semasa", "Dengan menghafal tarikh tanpa meneliti sebab dan akibat peristiwa"],
     answerIndex: 0,
     explanation:
-      "Kepentingan utama mempelajari sejarah ialah untuk mengambil iktibar dan pengajaran daripada peristiwa masa lalu. Dengan memahami kesilapan dan kejayaan lampau, kita dapat membuat keputusan yang lebih baik pada masa kini dan akan datang.",
+      "Sejarah memberikan teladan dan iktibar supaya kita dapat bertindak dengan lebih bijak dan berhati-hati.",
   },
   {
     id: "sej-f1-c1-q24",
@@ -4489,12 +4449,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question:
       "Mempelajari sejarah dapat memupuk semangat patriotisme. Apakah yang dimaksudkan dengan patriotisme?",
-    options: [
-      "Semangat cinta akan negara",
-      "Keinginan untuk berhijrah ke luar negara",
-      "Sifat mementingkan diri sendiri",
-      "Semangat ingin menjajah negara lain",
-    ],
+    options: ["Semangat cinta akan negara", "Semangat mengutamakan kepentingan kelompok sendiri", "Keinginan meluaskan kuasa negara melalui penjajahan", "Sikap menganggap budaya bangsa lain tidak bernilai"],
     answerIndex: 0,
     explanation:
       "Patriotisme bermaksud semangat cinta dan taat setia terhadap negara sendiri. Dengan mempelajari sejarah perjuangan nenek moyang, kita akan lebih menghargai kemerdekaan dan berasa bangga sebagai rakyat Malaysia.",
@@ -4520,11 +4475,11 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Pentafsiran sejarah yang objektif memerlukan penggunaan sumber yang...",
-    options: ["Satu sahaja", "Tidak sahih", "Pelbagai", "Sedikit"],
-    answerIndex: 2,
+    question: "Apakah yang sepatutnya menjadi matlamat utama seorang sejarawan ketika mentafsir sesuatu peristiwa?",
+    options: ["Menghasilkan tafsiran yang objektif berdasarkan bukti", "Memilih hanya sumber yang menyokong pendapat sendiri", "Mengabaikan sumber yang bercanggah", "Mengutamakan cerita yang menarik walaupun bukti tidak menyokongnya"],
+    answerIndex: 0,
     explanation:
-      "Pentafsiran sejarah yang objektif memerlukan penggunaan pelbagai sumber untuk memastikan maklumat yang diperoleh adalah menyeluruh dan tidak berat sebelah. Bergantung pada satu sumber sahaja boleh menghasilkan gambaran yang tidak lengkap atau mengelirukan.",
+      "Walaupun tafsiran boleh berbeza, sejarawan perlu berusaha menghasilkan penerangan yang objektif dan tepat berdasarkan sumber.",
   },
   {
     id: "sej-f1-c1-q27",
@@ -4533,7 +4488,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question:
       "Seorang pelajar ingin mengkaji sejarah keluarganya melalui gambar-gambar lama dan sijil kelahiran. Bahan-bahan ini dikategorikan sebagai...",
-    options: ["Sumber khayalan", "Sumber sekunder", "Sumber primer", "Sumber lisan"],
+    options: ["Sumber sekunder", "Sumber lisan", "Sumber primer", "Sumber arkeologi"],
     answerIndex: 2,
     explanation:
       "Gambar lama dan sijil kelahiran adalah sumber primer kerana ia merupakan dokumen asli yang dihasilkan pada masa peristiwa berlaku. Bahan-bahan ini belum ditafsir atau diolah oleh pihak lain.",
@@ -4543,16 +4498,11 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Apakah yang dimaksudkan dengan 'tambo' dalam kamus sejarah?",
-    options: [
-      "Tempat menyimpan buku",
-      "Kisah riwayat dahulu kala",
-      "Satu kaedah gali cari",
-      "Alat muzik tradisional",
-    ],
-    answerIndex: 1,
+    question: "Mengapakah pemeliharaan warisan sejarah penting kepada generasi akan datang?",
+    options: ["Supaya mereka dapat memahami identiti, asal usul dan sejarah negara", "Supaya nilai komersial menjadi satu-satunya ukuran kepentingan warisan", "Supaya warisan hanya dapat dikaji oleh pakar sejarah", "Supaya warisan dapat menggantikan semua sumber sejarah yang lain"],
+    answerIndex: 0,
     explanation:
-      "'Tambo' merujuk kepada kisah atau riwayat dahulu kala dalam tradisi Melayu. Ia merupakan salah satu cara masyarakat Melayu tradisional merakam dan menyampaikan sejarah mereka secara lisan atau bertulis.",
+      "Warisan membantu generasi seterusnya memahami identiti, asal usul dan perkembangan negara serta menyemai rasa cinta akan negara.",
   },
   {
     id: "sej-f1-c1-q29",
@@ -4561,12 +4511,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question:
       "Sejarah membolehkan kita mengenal asal-usul. Siapakah yang perlu kita kenali melalui sejarah?",
-    options: [
-      "Hanya pemimpin dunia",
-      "Pelancong asing",
-      "Keluarga, bangsa dan negara",
-      "Hanya musuh negara",
-    ],
+    options: ["Pemimpin negara sahaja", "Masyarakat luar negara sahaja", "Keluarga, bangsa dan negara", "Tokoh yang terkenal sahaja"],
     answerIndex: 2,
     explanation:
       "Melalui sejarah, kita dapat mengenal asal-usul keluarga, bangsa, dan negara kita. Pengetahuan ini penting untuk membina identiti diri dan rasa kebanggaan terhadap warisan budaya kita.",
@@ -4578,12 +4523,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question:
       "Kemahiran pemikiran sejarah membolehkan kita membuat penilaian kritis. Apakah kepentingan penilaian ini?",
-    options: [
-      "Mengesahkan kebenaran sesuatu peristiwa",
-      "Menulis cerita fiksyen yang menarik",
-      "Untuk menyalahkan orang lain atas peristiwa lampau",
-      "Untuk menolak semua fakta dari Barat",
-    ],
+    options: ["Menilai kesahihan sumber dan membezakan fakta daripada pendapat", "Menerima dakwaan yang paling kerap diulang tanpa menyemak sumber", "Memilih pendapat yang paling popular walaupun bukti bercanggah", "Menolak sumber berdasarkan asal penulis tanpa menilai kandungannya"],
     answerIndex: 0,
     explanation:
       "Penilaian kritis dalam sejarah penting untuk mengesahkan kebenaran sesuatu peristiwa. Dengan berfikir secara kritis, kita dapat membezakan fakta daripada pendapat, menilai kesahihan sumber, dan membuat kesimpulan yang tepat berdasarkan bukti yang ada.",
