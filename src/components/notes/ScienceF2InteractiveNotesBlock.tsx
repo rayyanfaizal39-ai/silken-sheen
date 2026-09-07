@@ -19,6 +19,7 @@ import { MatchingPairs } from "@/components/notes/blocks/MatchingPairs";
 import { Journey } from "@/components/notes/blocks/Journey";
 import { FoodWebDiagram } from "@/components/notes/blocks/FoodWebDiagram";
 import { PyramidDiagram } from "@/components/notes/blocks/PyramidDiagram";
+import { NutrientTable } from "@/components/notes/blocks/NutrientTable";
 import { DigestiveSystemDiagram } from "@/components/notes/blocks/DigestiveSystemDiagram";
 import { ViskingExperimentDiagram } from "@/components/notes/blocks/ViskingExperimentDiagram";
 import { VillusDiagram } from "@/components/notes/blocks/VillusDiagram";
@@ -48,6 +49,9 @@ import { EcologicalTermsDiagram } from "@/components/notes/blocks/EcologicalTerm
 import { ConceptTree } from "@/components/notes/blocks/ConceptTree";
 import { ImpactTable } from "@/components/notes/blocks/ImpactTable";
 import { EnzymeExplorer } from "@/components/notes/blocks/EnzymeExplorer";
+import { EnzymeReactionFlow } from "@/components/notes/blocks/EnzymeReactionFlow";
+import { SystemFlowDiagram } from "@/components/notes/blocks/SystemFlowDiagram";
+import { CalorieWorkedExample } from "@/components/notes/blocks/CalorieWorkedExample";
 import { ImmuneResponseGraph } from "@/components/notes/blocks/ImmuneResponseGraph";
 import { DefenceLinesDiagram } from "@/components/notes/blocks/DefenceLinesDiagram";
 import { ImmunityMatrix } from "@/components/notes/blocks/ImmunityMatrix";
@@ -328,6 +332,19 @@ export function ScienceF2InteractiveNotesBlock({
             <ImpactTable block={section.impactTable} />
           </div>
         )}
+        {section.nutrientTables?.map((table) => (
+          <div key={table.title}>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {table.title}
+            </h3>
+            {table.instruction && (
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                {table.instruction}
+              </p>
+            )}
+            <NutrientTable block={table} />
+          </div>
+        ))}
         {section.cards && !isChapter8 && (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {section.cards.map((card) => (
@@ -339,6 +356,20 @@ export function ScienceF2InteractiveNotesBlock({
                 <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
                   <ScienceEmphasis text={card.body} />
                 </p>
+                {card.facts && card.facts.length > 0 && (
+                  <dl className="mt-2.5 flex flex-col gap-1.5 border-t border-border/60 pt-2.5">
+                    {card.facts.map((fact) => (
+                      <div key={fact.label}>
+                        <dt className="text-[10px] font-semibold uppercase tracking-wide text-primary">
+                          {fact.label}
+                        </dt>
+                        <dd className="mt-0.5 text-[12.5px] leading-snug text-muted-foreground">
+                          <ScienceEmphasis text={fact.value} />
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
                 {card.detail && (
                   <p className="mt-2 text-xs font-semibold text-primary">{card.detail}</p>
                 )}
@@ -512,7 +543,11 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.pyramid.title}
             </h3>
-            <PyramidDiagram block={section.pyramid} />
+            <PyramidDiagram
+              block={section.pyramid}
+              enlargeLabel={imageCopy.enlarge}
+              closeLabel={imageCopy.close}
+            />
           </div>
         )}
         {section.digestiveSystem && (
@@ -597,6 +632,23 @@ export function ScienceF2InteractiveNotesBlock({
             <EnzymeExplorer block={section.enzymeExplorer} />
           </div>
         )}
+        {section.reactionFlow && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.reactionFlow.title}
+            </h3>
+            <EnzymeReactionFlow block={section.reactionFlow} />
+          </div>
+        )}
+        {section.systemFlow && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.systemFlow.title}
+            </h3>
+            <SystemFlowDiagram block={section.systemFlow} />
+          </div>
+        )}
+        {section.calorieExample && <CalorieWorkedExample block={section.calorieExample} />}
         {section.conceptContrast && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">

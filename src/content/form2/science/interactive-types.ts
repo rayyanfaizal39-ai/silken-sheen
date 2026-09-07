@@ -1,12 +1,20 @@
 import type { AnnotationMode } from "@/components/notes/blocks/annotation-layout";
 import type { LearningImageSize } from "@/components/notes/blocks/learning-image";
 import type { ImageAnnotation } from "@/components/notes/blocks/AnnotatedImage";
+import type { SpotlightShape, SpotlightPulseGroup } from "@/components/notes/blocks/spotlight-shapes";
 import type { FlipCardItem, MiniQuizItem } from "./chapter-1/interactive-types";
 
 export type ScienceInteractiveCard = {
   title: string;
   body: string;
   detail?: string;
+  /**
+   * Short labelled facts under `body`, e.g. splitting a food class into what
+   * it contains, its examples/sources and its function rather than one dense
+   * paragraph. Rendered as a compact list, not prose — keep each `value` to
+   * one line.
+   */
+  facts?: { label: string; value: string }[];
 };
 
 export type ScienceInteractiveMatcherPair = {
@@ -294,19 +302,53 @@ export type AdaptationBlock = {
   cases: AdaptationCase[];
 };
 
-/** One tier of a food/nutrition pyramid, base first. A tier can hold more than one food group
- * (e.g. vegetables + fruit sharing the base) so the diagram can separate groups without adding
- * a visual level. */
-export type PyramidGroup = {
+/** One food item within a region that itself needs its own serving guidance
+ * (e.g. protein's fish / chicken-meat-eggs / nuts each carry a different
+ * textbook serving count) — rendered as a small stacked sub-list instead of
+ * one collapsed "1–2 servings" line. */
+export type PyramidGroupItem = {
   label: string;
-  servings?: string;
+  servings: string;
 };
 
-export type PyramidTier = {
+/**
+ * One selectable region of the food-pyramid illustration — a real food group
+ * with its own serving guidance, a short teaching explanation, and the SVG hit
+ * area/highlight shape that places it on the artwork. The illustration itself
+ * is a single shared, text-free image (see `PyramidBlock.image`); every label
+ * and number a learner reads comes from here, not from pixels baked into the
+ * picture, so BM and DLP can share one asset.
+ */
+export type PyramidRegion = {
+  /** Stable id, also used as the React key and the `active` selection value. */
   id: string;
-  groups: PyramidGroup[];
+  /** Display label, e.g. "Vegetables" — shown in the detail card and as the accessible name of its hotspot. */
+  label: string;
+  /** Single serving line. Omit when `items` is set — the per-item servings replace one shared count. */
+  servings?: string;
+  /** When a region's guidance splits by food (protein's fish vs. meat vs. nuts), list each with its own count instead of one shared `servings` line. */
+  items?: PyramidGroupItem[];
+  /** Short heading for the detail card — what this group IS or does (e.g. "Main energy source"), distinct from the label already shown. */
+  detailTitle: string;
+  /** One or two sentences on why this group matters — teaches something the pyramid face doesn't already show, not a repeat of its serving counts. */
   note: string;
-  icon?: string;
+  /**
+   * The hotspot's shape, as an SVG `points` string in 0–100 percentages of the
+   * artwork's width/height (matching the image's own aspect ratio) — both the
+   * clickable hit area and the highlighted/dimmed silhouette when selected.
+   */
+  polygon: string;
+};
+
+/** The shared, text-free pyramid illustration. One asset serves both BM and DLP. */
+export type PyramidImageBlock = {
+  /** Bundled asset URL (a `src/assets` import). */
+  src: string;
+  alt: string;
+  /** Intrinsic aspect ratio, e.g. "3 / 2" — must match the artwork exactly so percentage hotspots stay aligned at every size. */
+  aspect: string;
+  /** Rendered footprint. Omit to derive one from the aspect ratio. */
+  size?: LearningImageSize;
 };
 
 /**
@@ -355,8 +397,21 @@ export type DiagramImage = {
   /**
    * Maps an existing item id in the block to a position on the artwork.
    * `w` / `h` size the hit area in `regions` mode; omit them elsewhere.
+   * The `spotlight*` fields are read only in `annotationMode: "spotlight"` —
+   * see `ImageAnnotation` for what each does.
    */
-  points: { id: string; x: number; y: number; w?: number; h?: number }[];
+  points: {
+    id: string;
+    x: number;
+    y: number;
+    w?: number;
+    h?: number;
+    spotlightShapes?: SpotlightShape[];
+    spotlightCaption?: string;
+    spotlightTint?: string;
+    spotlightGroupHalo?: boolean;
+    spotlightPulseGroups?: SpotlightPulseGroup[];
+  }[];
   /** Extra markers for parts of the artwork the block data does not already name. */
   extra?: {
     id: string;
@@ -368,6 +423,11 @@ export type DiagramImage = {
     h?: number;
     /** Place this extra straight after the concept with this id. */
     insertAfter?: string;
+    spotlightShapes?: SpotlightShape[];
+    spotlightCaption?: string;
+    spotlightTint?: string;
+    spotlightGroupHalo?: boolean;
+    spotlightPulseGroups?: SpotlightPulseGroup[];
   }[];
 };
 
@@ -405,6 +465,92 @@ export type EnzymeExplorerBlock = {
   title: string;
   instruction?: string;
   enzymes: EnzymeEntry[];
+};
+
+/** One substrate -> product arrow in a reaction pathway, e.g. "Starch -> Maltose" via amylase. */
+export type ReactionStep = {
+  substrate: string;
+  enzyme: string;
+  /** Where this enzyme is secreted/acts, kept to a short phrase, e.g. "Salivary glands + pancreas". */
+  organs: string;
+};
+
+/** One food class's full digestion pathway, read top to bottom in one glance. */
+export type ReactionColumn = {
+  id: string;
+  title: string;
+  icon?: string;
+  steps: ReactionStep[];
+  /** The final absorbed product, e.g. "Glucose" or "Amino acid". */
+  finalProduct: string;
+};
+
+/**
+ * The three digestion pathways (carbohydrate/protein/fat) as parallel static
+ * columns — substrate, enzyme, product, with the secreting organ named under
+ * each arrow. Deliberately NOT tabbed: the whole point is that a learner sees
+ * all three pathways, and how they differ in length, in one glance (textbook
+ * page 64's own layout), rather than clicking between them and losing the
+ * comparison.
+ */
+export type ReactionFlowBlock = {
+  title: string;
+  instruction?: string;
+  columns: ReactionColumn[];
+};
+
+/** One body system's contribution in the assimilation flow, e.g. "Digestive system". */
+export type SystemFlowStage = {
+  icon?: string;
+  label: string;
+  role: string;
+};
+
+/** One outcome of assimilation once nutrients reach body cells, e.g. glucose -> energy. */
+export type SystemFlowOutcome = {
+  label: string;
+  result: string;
+};
+
+/**
+ * The three-system-cooperation diagram: three systems feed into one
+ * convergence point (body cells), which then fans out into the outcomes each
+ * absorbed nutrient is used for. A single visual funnel-in/fan-out shape,
+ * rather than an unrelated row of cards, is what actually shows that the
+ * systems *cooperate* rather than just each doing their own separate thing.
+ */
+export type SystemFlowBlock = {
+  title: string;
+  instruction?: string;
+  systems: SystemFlowStage[];
+  convergeLabel: string;
+  convergeNote?: string;
+  outcomes: SystemFlowOutcome[];
+};
+
+/** One line item in a worked calorific-value calculation. */
+export type CalorieLineItem = {
+  id: string;
+  food: string;
+  quantity: string;
+  /** When a per-unit value is given (e.g. "60 kcal each x 2"), shown as the multiplication itself. */
+  perUnitKcal?: number;
+  multiplier?: number;
+  kcal: number;
+};
+
+/**
+ * A worked "food + quantity -> kcal, then total" calculation, rendered as a
+ * real running sum rather than a sentence — SP 3.2.2 explicitly requires
+ * learners to be able to estimate a meal's calorific value, which a prose
+ * paragraph does not visibly demonstrate how to do.
+ */
+export type CalorieWorkedExampleBlock = {
+  title: string;
+  instruction?: string;
+  items: CalorieLineItem[];
+  totalLabel: string;
+  note?: string;
 };
 
 /** One curve or marker on the antibody-response graph. */
@@ -532,6 +678,33 @@ export type ImpactTableBlock = {
   rows: ImpactRow[];
 };
 
+/** One row of a vitamin or mineral reference table (KSSM Table 3.1 / 3.2). */
+export type NutrientRow = {
+  id: string;
+  /** e.g. "Vitamin A" / "Calcium". */
+  name: string;
+  icon?: string;
+  source: string;
+  importance: string;
+  deficiency: string;
+};
+
+/**
+ * A real reference table (a `<table>` from `sm` up, one card per row on a
+ * phone) for a fixed set of named nutrients — the textbook's own Table 3.1
+ * (vitamins) and Table 3.2 (minerals) shape. Generic so any chapter with a
+ * "name / source / importance / deficiency" nutrient table can reuse it.
+ */
+export type NutrientTableBlock = {
+  title: string;
+  instruction?: string;
+  nameLabel: string;
+  sourceLabel: string;
+  importanceLabel: string;
+  deficiencyLabel: string;
+  rows: NutrientRow[];
+};
+
 export type EcologicalTermsBlock = {
   title: string;
   instruction?: string;
@@ -551,8 +724,12 @@ export type EcologicalTermsBlock = {
 export type PyramidBlock = {
   title: string;
   instruction: string;
-  /** Base tier first, apex last. */
-  tiers: PyramidTier[];
+  /** The shared text-free illustration. */
+  image: PyramidImageBlock;
+  /** Exactly six selectable regions: grains, vegetables, fruits, protein, dairy, apex. */
+  regions: PyramidRegion[];
+  /** Which `regions[].id` is selected on first load — the base/grains tier, per the pyramid's own teaching intent (eat the most of the widest tier). */
+  defaultRegionId: string;
   /** Footnote shown below the pyramid, e.g. daily water guidance. */
   baseNote?: string;
   /** Footnote for the apex — e.g. guidance to limit ultra-processed foods. */
@@ -566,7 +743,15 @@ export type PyramidBlock = {
 export type DigestiveOrgan = {
   id: string;
   label: string;
+  /** Short one-line summary. Always populated, even when `points` gives the full detail,
+   * so nothing depends on `points` for a bare minimum explanation. */
   note?: string;
+  /**
+   * The textbook's own point-form facts for this organ, e.g. each bullet under
+   * "Duodenum". Rendered as a real list rather than folded into one paragraph
+   * — a wall of prose is exactly what SP 3.3.1's own textbook page avoids.
+   */
+  points?: string[];
   kind: "tract" | "accessory";
   /** For accessory organs: the tract organ id it connects to. */
   connectsTo?: string;
@@ -580,6 +765,16 @@ export type DigestiveSystemBlock = {
   accessoryLabel: string;
   /** When present the anatomical illustration replaces the schematic drawing. */
   image?: DiagramImage;
+  /**
+   * Ordered organ ids (mouth → ... → anus) rendered as a row of stage buttons
+   * directly under the diagram. Picking a stage drives the SAME active-organ
+   * state as tapping the diagram itself — the same highlight, the same note
+   * panel — so "the journey of food" is the diagram's own organ order read
+   * out loud, not a second, disconnected stepper.
+   */
+  journey?: string[];
+  journeyTitle?: string;
+  journeyInstruction?: string;
 };
 
 export type ViskingTube = {
@@ -1520,7 +1715,13 @@ export type ScienceInteractiveSection = {
   ecologicalTerms?: EcologicalTermsBlock;
   conceptTree?: ConceptTreeBlock;
   impactTable?: ImpactTableBlock;
+  /** One or more named-nutrient reference tables — a section needing both a
+   * vitamin and a mineral table (Table 3.1 + 3.2) renders two, in order. */
+  nutrientTables?: NutrientTableBlock[];
   enzymeExplorer?: EnzymeExplorerBlock;
+  reactionFlow?: ReactionFlowBlock;
+  systemFlow?: SystemFlowBlock;
+  calorieExample?: CalorieWorkedExampleBlock;
   immuneResponseGraph?: ImmuneResponseGraphBlock;
   defenceLines?: DefenceLinesBlock;
   immunityMatrix?: ImmunityMatrixBlock;
