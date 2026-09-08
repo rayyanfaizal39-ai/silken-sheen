@@ -5756,11 +5756,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah gelaran bagi kawasan subur di sekitar Sungai Tigris dan Euphrates?",
-    options: ["Delta Nil", "Bulan Sabit Subur", "Tanah Tinggi Anatolia", "Padang Gobi"],
-    answerIndex: 1,
+    question: "Bagaimanakah masyarakat Sumer mengatasi cabaran pengaliran air sungai untuk kegiatan pertanian?",
+    options: ["Membina sistem pengairan", "Menggunakan tanah pertanian hanya apabila banjir berlaku", "Mengalihkan petempatan ke kawasan tanpa sumber air", "Menyekat seluruh aliran sungai tanpa saluran ke ladang"],
+    answerIndex: 0,
     explanation:
-      "Kawasan ini digelar 'Bulan Sabit Subur' kerana bentuknya seperti bulan sabit dan tanahnya sangat subur untuk pertanian.",
+      "Masyarakat Sumer membina sistem pengairan untuk mengawal pengaliran air Sungai Tigris dan Euphrates serta menyokong pertanian.",
   },
   {
     id: "sej-f1-c5-q3",
@@ -5785,11 +5785,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Berapa banyak undang-undang yang terkandung dalam Kod Hammurabi?",
-    options: ["100 undang-undang", "200 undang-undang", "282 undang-undang", "350 undang-undang"],
-    answerIndex: 2,
+    question: "Apakah kepentingan Kod Undang-undang Hammurabi kepada Tamadun Mesopotamia?",
+    options: ["Membantu mengatur kehidupan masyarakat melalui peraturan dan undang-undang", "Membolehkan setiap penduduk menentukan hukuman sendiri", "Menggantikan pentadbiran dengan urusan perdagangan sahaja", "Mengecualikan semua urusan perdagangan daripada peraturan"],
+    answerIndex: 0,
     explanation:
-      "Kod Hammurabi mengandungi 282 undang-undang yang merangkumi pelbagai aspek kehidupan termasuk perdagangan, kecurian, dan perkahwinan.",
+      "Kod Hammurabi merangkumi perkara seperti perdagangan, kecurian, denda dan hukuman serta membantu mewujudkan aturan dalam masyarakat.",
   },
   {
     id: "sej-f1-c5-q5",
@@ -5810,11 +5810,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah nama karya sastera tertua di dunia yang ditulis dalam tulisan Kuneiform?",
-    options: ["Iliad", "Odyssey", "Epik Gilgamesh", "Mahabharata"],
+    question: "Apakah yang ditunjukkan oleh penghasilan Epik Gilgamesh dalam tulisan Kuneiform di Mesopotamia?",
+    options: ["Tulisan hanya digunakan untuk mengira hasil pertanian", "Kegiatan sastera menggantikan semua urusan pentadbiran", "Tulisan digunakan untuk merakam cerita dan pemikiran masyarakat", "Masyarakat Mesopotamia tidak mempunyai tradisi kesenian"],
     answerIndex: 2,
     explanation:
-      "Epik Gilgamesh ditulis dalam tulisan Kuneiform dan menceritakan tentang penerokaan, persahabatan, dan pencarian kehidupan abadi.",
+      "Epik Gilgamesh ialah karya sastera Mesopotamia yang dirakam dalam tulisan Kuneiform. Karya ini menunjukkan sumbangan tulisan kepada kesusasteraan dan pemikiran masyarakat.",
   },
   {
     id: "sej-f1-c5-q7",
@@ -5822,16 +5822,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Siapakah Herodotus dan apakah sumbangannya berkaitan Mesir?",
-    options: [
-      "Raja Mesir yang membina Piramid",
-      "Sejarawan Greek yang menggelar Mesir sebagai 'Hadiah Sungai Nil'",
-      "Pendeta Mesir yang mencipta Hieroglif",
-      "Pembina Ziggurat pertama",
-    ],
-    answerIndex: 1,
+    question: "Mengapakah Sungai Nil penting kepada perkembangan Tamadun Mesir Purba?",
+    options: ["Menyokong pertanian, pengangkutan dan kegiatan perdagangan", "Menjadikan pertanian tidak memerlukan pengurusan air", "Menghalang hubungan perdagangan antara petempatan", "Membolehkan penduduk memperoleh makanan tanpa bertani"],
+    answerIndex: 0,
     explanation:
-      "Herodotus ialah sejarawan Greek purba yang menulis tentang Mesir dan menggelarnya 'Hadiah Sungai Nil' kerana kesuburannya bergantung sepenuhnya kepada sungai tersebut.",
+      "Sungai Nil merupakan sumber penting bagi pertanian dan juga digunakan sebagai laluan pengangkutan serta perdagangan.",
   },
   {
     id: "sej-f1-c5-q8",
@@ -5856,16 +5851,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah peranan Wazir dalam Tamadun Mesir Purba?",
-    options: [
-      "Ketua tentera dalam peperangan",
-      "Mengurus birokrasi, kutip cukai, dan pastikan undang-undang dipatuhi",
-      "Ketua upacara keagamaan",
-      "Pengurus sistem pengairan",
-    ],
-    answerIndex: 1,
+    question: "Apakah kesimpulan yang boleh dibuat apabila Firaun menghantar tentera untuk melindungi pedagang daripada ancaman?",
+    options: ["Pemerintah memainkan peranan dalam menjamin keamanan dan perkembangan ekonomi", "Keselamatan pedagang tidak berkaitan dengan kegiatan ekonomi", "Penggunaan tentera menyebabkan perdagangan tidak memerlukan pentadbiran", "Perdagangan hanya berkembang apabila pemerintah tidak terlibat"],
+    answerIndex: 0,
     explanation:
-      "Wazir adalah jawatan tertinggi selepas Firaun, bertanggungjawab menguruskan keseluruhan pentadbiran negara.",
+      "Keselamatan membolehkan perdagangan berjalan dengan lebih lancar dan membantu mewujudkan kestabilan ekonomi.",
   },
   {
     id: "sej-f1-c5-q10",
@@ -5890,16 +5880,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah sumbangan proses mumia kepada ilmu perubatan?",
-    options: [
-      "Penciptaan ubat antibiotik",
-      "Penguasaan anatomi, pembedahan, dan ubat herba",
-      "Penciptaan alat pembedahan moden",
-      "Penemuan sistem darah",
-    ],
-    answerIndex: 1,
+    question: "Apakah yang menunjukkan kemajuan ilmu dalam Tamadun Mesir Purba?",
+    options: ["Kemajuan matematik, geometri, perubatan dan penciptaan papirus", "Penghasilan tulisan Kuneiform pada kepingan tanah liat", "Penggunaan tulang ramalan dan tulisan piktograf Huang He", "Penghasilan meterai Indus dan bandar berasaskan grid"],
+    answerIndex: 0,
     explanation:
-      "Melalui proses mengawet mayat, doktor Mesir purba memahami struktur dalaman tubuh manusia dengan sangat baik.",
+      "Mesir Purba mencapai kemajuan dalam matematik, geometri, perubatan, astronomi serta penggunaan papirus untuk penulisan.",
   },
   {
     id: "sej-f1-c5-q12",
@@ -5907,16 +5892,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Namakan dua bandar utama Tamadun Indus.",
-    options: [
-      "Ur dan Uruk",
-      "Babylon dan Nineveh",
-      "Mohenjo-Daro dan Harappa",
-      "Thebes dan Memphis",
-    ],
-    answerIndex: 2,
+    question: "Penggunaan ukuran batu-bata yang seragam dan sistem sukatan yang tepat dalam Tamadun Indus menunjukkan kemajuan dalam",
+    options: ["pengukuran, teknologi dan perancangan", "kepercayaan tentang kuasa ketuhanan pemerintah", "kesusasteraan dan penceritaan epik", "peperangan dan peluasan wilayah"],
+    answerIndex: 0,
     explanation:
-      "Mohenjo-Daro dan Harappa adalah bandar-bandar besar Tamadun Indus yang menunjukkan perancangan bandar yang sangat maju.",
+      "Tamadun Indus berkembang di lembah Sungai Indus. Ukuran batu bata dan sukatan yang seragam menunjukkan kemajuan pengukuran serta membantu pembinaan bandar yang terancang.",
   },
   {
     id: "sej-f1-c5-q13",
@@ -5941,16 +5921,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Mengapakah sistem sanitasi Tamadun Indus dianggap luar biasa?",
-    options: [
-      "Kerana menggunakan paip besi",
-      "Kerana ia sistem perparitan tertutup paling awal di dunia",
-      "Kerana menggunakan teknologi elektrik",
-      "Kerana dibina dari bahan kaca",
-    ],
-    answerIndex: 1,
+    question: "Apakah yang dapat disimpulkan daripada kewujudan sistem pembetungan yang terancang dalam Tamadun Indus?",
+    options: ["Masyarakat memberikan perhatian kepada perancangan bandar dan kebersihan", "Masyarakat mengutamakan monumen tanpa mengurus air buangan", "Penduduk menyalurkan semua air buangan ke jalan raya terbuka", "Kemudahan bandar dibina tanpa penyelarasan antara kawasan"],
+    answerIndex: 0,
     explanation:
-      "Setiap rumah di Mohenjo-Daro dan Harappa disambungkan kepada sistem longkang tertutup yang canggih, jauh mendahului tamadun lain.",
+      "Sistem saliran dan pembetungan menunjukkan kemajuan kejuruteraan serta perhatian terhadap pengurusan bandar.",
   },
   {
     id: "sej-f1-c5-q15",
@@ -5958,16 +5933,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah The Great Bath dalam Tamadun Indus?",
-    options: [
-      "Sungai utama bandar Mohenjo-Daro",
-      "Kolam mandi awam untuk upacara pembersihan diri",
-      "Takungan air minuman bandar",
-      "Tempat beternak ikan",
-    ],
-    answerIndex: 1,
+    question: "Pasangan manakah yang betul?",
+    options: ["Mesopotamia — Zigurat; Mesir Purba — Piramid", "Mesopotamia — Piramid; Indus — Zigurat", "Huang He — Piramid; Mesir Purba — Kolam Mandi Besar", "Indus — Taman Tergantung Babylon; Huang He — Sfinks"],
+    answerIndex: 0,
     explanation:
-      "The Great Bath dianggap sebagai kolam renang awam tertua di dunia dan digunakan untuk ritual keagamaan.",
+      "Zigurat merupakan binaan penting Mesopotamia, manakala piramid sangat berkait dengan Tamadun Mesir Purba.",
   },
   {
     id: "sej-f1-c5-q16",
@@ -6026,16 +5996,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah Tulang Sula (Oracle Bones) dalam Tamadun Huang He?",
-    options: [
-      "Senjata perang yang diperbuat dari tulang",
-      "Tulang yang digunakan untuk meramal masa depan melalui retakan akibat dibakar",
-      "Alat muzik tradisional",
-      "Peralatan pertanian",
-    ],
-    answerIndex: 1,
+    question: "Penemuan barangan gangsa, tulisan piktograf dan hasil tembikar menunjukkan Tamadun Huang He maju dalam bidang",
+    options: ["teknologi, penulisan dan kesenian", "pengairan, pertanian dan penternakan", "ketenteraan, percukaian dan perdagangan", "pelayaran, perubatan dan pembetungan"],
+    answerIndex: 0,
     explanation:
-      "Pendeta mengukir soalan pada tulang binatang atau tempurung penyu, kemudian membakarnya dan menafsir retakan sebagai jawapan tuhan.",
+      "Tamadun Huang He menghasilkan barangan gangsa, tulisan berasaskan piktograf serta pelbagai hasil kesenian.",
   },
   {
     id: "sej-f1-c5-q20",
@@ -6043,16 +6008,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah hubungan antara Tulang Sula dengan perkembangan tulisan China?",
-    options: [
-      "Tidak ada hubungan langsung",
-      "Tulang Sula menjadi asal usul tulisan Ideogram China",
-      "Tulang Sula digantikan dengan tulisan Kuneiform",
-      "Tulang Sula hanya digunakan untuk seni",
-    ],
+    question: "Apakah kepentingan inskripsi pada tulang ramalan kepada kajian Tamadun Huang He?",
+    options: ["Membuktikan bahawa semua penduduk menggunakan tulisan Kuneiform", "Memberikan bukti tentang tulisan awal dan amalan kepercayaan masyarakat", "Menunjukkan bahawa tulisan hanya muncul selepas tamadun itu berakhir", "Membuktikan bahawa tulang digunakan sebagai mata wang"],
     answerIndex: 1,
     explanation:
-      "Simbol-simbol yang diukir pada Tulang Sula berkembang menjadi sistem tulisan Ideogram (aksara China) yang kita kenali hari ini.",
+      "Inskripsi pada tulang ramalan memberikan bukti tulisan awal China serta perkara yang dirujuk dalam amalan ramalan dan kepercayaan masyarakat Huang He.",
   },
   {
     id: "sej-f1-c5-q21",
@@ -6074,11 +6034,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question:
-      "Tamadun manakah yang terkenal dengan perancangan bandar dan sistem kebersihan yang paling maju?",
+      "Ahli arkeologi menemui bandar dengan jalan bersusun grid, kemudahan paip dan sistem pembetungan terancang. Antara empat tamadun awal, tamadun manakah paling berkait dengan gabungan ciri ini?",
     options: ["Mesopotamia", "Mesir Purba", "Tamadun Indus", "Huang He"],
     answerIndex: 2,
     explanation:
-      "Tamadun Indus unik kerana fokusnya pada kesejahteraan awam berbanding tamadun lain yang lebih fokus kepada monumen agama atau pentadbiran.",
+      "Gabungan jalan bersusun grid, kemudahan air dan pembetungan merupakan ciri penting bandar Tamadun Indus seperti Mohenjo-Daro dan Harappa.",
   },
   {
     id: "sej-f1-c5-q23",
@@ -6128,16 +6088,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question:
-      "Sumbangan tamadun Mesopotamia manakah yang masih digunakan dalam kehidupan harian kita?",
-    options: [
-      "Sistem tulisan Hieroglif",
-      "Teknik pembinaan Piramid",
-      "Sistem masa 60 saat dan 60 minit",
-      "Teknik pembuatan sutera",
-    ],
-    answerIndex: 2,
+      "Apakah kesimpulan terbaik apabila Tamadun Mesopotamia, Mesir Purba, Indus dan Huang He mempunyai pencapaian yang berbeza tetapi semuanya berkembang di lembah sungai?",
+    options: ["Alam sekitar mempengaruhi perkembangan tamadun, tetapi masyarakat menghasilkan penyelesaian dan inovasi yang berbeza", "Persekitaran lembah sungai menghasilkan sistem pentadbiran yang serupa sepenuhnya", "Semua masyarakat menggunakan teknologi yang sama tanpa inovasi tersendiri", "Perbezaan pencapaian menunjukkan bahawa sungai tidak menyokong pertanian"],
+    answerIndex: 0,
     explanation:
-      "Setiap kali kita melihat jam, kita menggunakan warisan Tamadun Mesopotamia melalui Sistem 60 mereka.",
+      "Persekitaran lembah sungai menyediakan asas perkembangan, tetapi setiap masyarakat menghasilkan ciri dan sumbangan tersendiri.",
   },
   {
     id: "sej-f1-c5-q27",
@@ -6179,16 +6134,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah kepentingan mempelajari tamadun awal dunia kepada pelajar Malaysia?",
-    options: [
-      "Untuk menghafal tarikh-tarikh penting sahaja",
-      "Untuk memahami asal usul kemajuan manusia dan mengambil iktibar",
-      "Untuk belajar bahasa-bahasa kuno",
-      "Untuk mengetahui lokasi-lokasi geografi",
-    ],
-    answerIndex: 1,
+    question: "Apakah persamaan utama sumbangan empat tamadun awal kepada kehidupan manusia hari ini?",
+    options: ["Mereka membangunkan idea dan teknologi yang menjadi asas kepada perkembangan masyarakat seterusnya", "Semua kaedah pentadbiran dan teknologi mereka digunakan tanpa perubahan", "Sumbangan mereka terbatas kepada pembinaan makam pemerintah", "Teknologi moden berkembang tanpa kaitan dengan pengetahuan terdahulu"],
+    answerIndex: 0,
     explanation:
-      "Memahami tamadun awal membantu kita menghargai perkembangan manusia, mengambil iktibar daripada kekuatan dan kelemahan mereka.",
+      "Sistem pemerintahan, perancangan bandar, teknologi, tulisan, matematik dan pelbagai inovasi tamadun awal menjadi asas kepada perkembangan kehidupan manusia.",
   },
   {
     id: "sej-f1-c5-q30",
@@ -6197,16 +6147,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question:
-      "Golongan manakah yang menduduki lapisan tertinggi dalam struktur sosial tamadun awal?",
-    options: [
-      "Pedagang dan artisan",
-      "Petani dan nelayan",
-      "Raja, bangsawan, dan pendeta",
-      "Hamba dan buruh",
-    ],
-    answerIndex: 2,
+      "Apakah pengajaran yang boleh diambil daripada peranan sungai dalam perkembangan tamadun awal?",
+    options: ["Sumber sungai perlu dihargai, dipelihara dan digunakan secara bertanggungjawab", "Penggunaan sungai boleh diutamakan tanpa menilai kesan terhadap penduduk hilir", "Sungai hanya perlu dipelihara jika mempunyai monumen purba", "Kemajuan teknologi menghapuskan keperluan menjaga sumber air"],
+    answerIndex: 0,
     explanation:
-      "Raja, bangsawan, dan pendeta menduduki lapisan teratas piramid sosial kerana mereka memegang kuasa politik, ekonomi, dan agama.",
+      "Sungai memainkan peranan besar dalam kehidupan manusia sejak tamadun awal, maka pemeliharaan sumber air kekal penting.",
   },
   //  Sejarah Form 1 Chapter 6 - Peningkatan Tamadun Yunani Dan Rom
   {
