@@ -4922,16 +4922,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Zaman Batu terbahagi kepada tiga tahap. Namakan tahap-tahap tersebut.",
-    options: [
-      "Paleolitik, Neolitik, dan Logam",
-      "Mesolitik, Neolitik, dan Logam",
-      "Paleolitik, Mesolitik, dan Neolitik",
-      "Paleolitik, Mesolitik, dan Logam",
-    ],
-    answerIndex: 2,
+    question: "Urutan manakah yang betul bagi perkembangan Zaman Prasejarah?",
+    options: ["Paleolitik → Mesolitik → Neolitik → Logam", "Neolitik → Paleolitik → Logam → Mesolitik", "Logam → Mesolitik → Paleolitik → Neolitik", "Mesolitik → Logam → Neolitik → Paleolitik"],
+    answerIndex: 0,
     explanation:
-      "Pembahagian ini dibuat berdasarkan perkembangan teknologi peralatan batu yang digunakan oleh manusia pada waktu itu.",
+      "Zaman Batu merangkumi Paleolitik, Mesolitik dan Neolitik sebelum perkembangan kepada Zaman Logam.",
   },
   {
     id: "sej-f1-c3-q3",
@@ -4948,7 +4943,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 2,
     explanation:
-      "Manusia pada waktu ini belum mempunyai kemahiran untuk mencanang atau menghaluskan alat batu mereka.",
+      "Peralatan batu Paleolitik umumnya ringkas dan kasar berbanding alat Neolitik yang lebih halus. Alat batu dibuat dengan memecahkan dan menyerpihkan batu mengikut kegunaannya.",
   },
   {
     id: "sej-f1-c3-q4",
@@ -4990,11 +4985,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Namakan lokasi Zaman Paleolitik yang paling penting di Perak.",
-    options: ["Gua Cha", "Bukit Tengkorak", "Kota Tampan, Lenggong", "Sungai Lang"],
+    question: "Penemuan bengkel peralatan batu di Kota Tampan, Lenggong memberikan bukti tentang kegiatan apakah?",
+    options: ["Penghasilan alat gangsa", "Penulisan rekod perdagangan", "Pembuatan peralatan batu", "Pembinaan sistem pengairan moden"],
     answerIndex: 2,
     explanation:
-      "Kota Tampan merupakan sebuah bengkel membuat peralatan batu yang membuktikan kewujudan manusia Paleolitik di Tanah Melayu.",
+      "Tinggalan bengkel dan peralatan batu di Kota Tampan memberikan bukti kegiatan pembuatan alat oleh masyarakat Paleolitik.",
   },
   {
     id: "sej-f1-c3-q7",
@@ -5048,16 +5043,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Di manakah lokasi Zaman Neolitik di Sabah yang terkenal dengan pembuatan tembikar?",
-    options: [
-      "Gua Cha, Kelantan",
-      "Kota Tampan, Perak",
-      "Gua Niah, Sarawak",
-      "Bukit Tengkorak, Semporna",
-    ],
-    answerIndex: 3,
+    question: "Mengapakah sistem barter berkembang apabila kegiatan ekonomi manusia semakin maju?",
+    options: ["Masyarakat mempunyai lebihan hasil dan barangan yang boleh ditukarkan dengan barangan lain", "Masyarakat menghasilkan semua keperluan sendiri tanpa lebihan", "Masyarakat berhenti membuat barangan apabila pertanian berkembang", "Masyarakat hanya membayar barangan dengan mata wang"],
+    answerIndex: 0,
     explanation:
-      "Tapak ini merupakan salah satu tapak pembuatan tembikar prasejarah yang terbesar di Asia Tenggara.",
+      "Pertanian, penternakan dan pengkhususan kerja menghasilkan barangan yang boleh dipertukarkan melalui sistem barter.",
   },
   {
     id: "sej-f1-c3-q11",
@@ -5077,11 +5067,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Apakah nama penemuan rangka manusia tertua dan terlengkap di Malaysia?",
-    options: ["Java Man", "Peking Man", "Perak Man", "Sarawak Man"],
-    answerIndex: 2,
+    question: "Apakah yang dibuktikan oleh penemuan tapak dan artifak Zaman Prasejarah di Malaysia?",
+    options: ["Manusia telah menetap di negara kita sejak puluhan ribu tahun dahulu", "Masyarakat di negara kita hanya muncul selepas sistem tulisan diperkenalkan", "Semua masyarakat Prasejarah di negara kita mempunyai teknologi yang sama", "Setiap artifak di negara kita semestinya dibawa dari luar"],
+    answerIndex: 0,
     explanation:
-      "Rangka ini ditemui di Gua Gunung Runtuh, Lenggong, Perak, dan bertarikh sekitar 10,000 ke 11,000 tahun dahulu.",
+      "Penemuan tapak, artifak dan tinggalan manusia membuktikan kewujudan masyarakat Prasejarah di negara kita sejak puluhan ribu tahun dahulu.",
   },
   {
     id: "sej-f1-c3-q13",
@@ -5106,16 +5096,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Mengapakah manusia Zaman Logam membina bandar dan kota?",
-    options: [
-      "Kerana arahan daripada ketua mereka",
-      "Kerana ingin melindungi diri daripada binatang buas",
-      "Kerana populasi semakin bertambah dan organisasi sosial semakin kompleks",
-      "Kerana kawasan pertanian semakin luas",
-    ],
-    answerIndex: 2,
+    question: "Mengapakah organisasi sosial menjadi lebih tersusun pada Zaman Neolitik dan Zaman Logam?",
+    options: ["Kehidupan menetap dan masyarakat yang semakin kompleks memerlukan kepimpinan dan aturan", "Kehidupan menetap menyebabkan setiap keluarga tidak lagi berhubung", "Pengeluaran makanan menghapuskan keperluan pembahagian kerja", "Perkembangan pertukangan menyebabkan masyarakat tidak lagi memerlukan aturan"],
+    answerIndex: 0,
     explanation:
-      "Kehidupan yang menetap dalam tempoh lama membawa kepada pembentukan petempatan besar yang tersusun.",
+      "Kehidupan menetap membawa kepada pembentukan ketua, pembahagian sosial dan kemudian sistem pentadbiran yang lebih tersusun.",
   },
   {
     id: "sej-f1-c3-q15",
@@ -5149,7 +5134,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Manusia Neolitik telah belajar teknik mencanang dan mengasah batu untuk dijadikan kapak atau alat menggali.",
+      "Manusia Neolitik menggunakan teknik mengasah dan menggilap batu untuk menghasilkan alat yang lebih halus dan sesuai untuk pelbagai kegunaan.",
   },
   {
     id: "sej-f1-c3-q17",
@@ -5157,11 +5142,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Di manakah letaknya Gua Chauvet yang terkenal dengan lukisan gua prasejarah?",
-    options: ["Sepanyol", "Britain", "Turki", "Perancis"],
-    answerIndex: 3,
+    question: "Penemuan sisa kerang, tulang binatang dan bekas pembakaran di sebuah tapak arkeologi dapat membantu ahli sejarah mengetahui",
+    options: ["kegiatan dan cara hidup manusia di kawasan tersebut", "nama dan salasilah setiap penduduk kawasan tersebut", "bahasa pertuturan yang digunakan oleh setiap keluarga", "tarikh tepat setiap peristiwa yang berlaku di situ"],
+    answerIndex: 0,
     explanation:
-      "Lukisan di gua ini menggambarkan aktiviti memburu binatang dan merupakan bukti kesenian manusia Zaman Paleolitik.",
+      "Ekofak seperti sisa makanan, arang, debunga dan tulang dapat memberikan petunjuk tentang kegiatan manusia pada masa lalu.",
   },
   {
     id: "sej-f1-c3-q18",
@@ -5169,16 +5154,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Apakah bukti bahawa manusia prasejarah menghormati orang yang telah mati?",
-    options: [
-      "Membina monumen batu besar",
-      "Melukis gambar di dinding gua",
-      "Penemuan mayat yang dikebumikan bersama barangan berharga",
-      "Membuat tembikar yang cantik",
-    ],
-    answerIndex: 2,
+    question: "Apakah yang dapat disimpulkan daripada penemuan pelbagai bentuk pengebumian dan budaya megalit di Malaysia?",
+    options: ["Masyarakat Prasejarah mempunyai kepercayaan dan memberikan penghormatan kepada orang mati", "Semua masyarakat Prasejarah mempunyai ritual yang sama", "Tapak pengebumian berfungsi sebagai pusat pertukaran barang sahaja", "Batu megalit digunakan semata-mata untuk menghasilkan makanan"],
+    answerIndex: 0,
     explanation:
-      "Upacara pengebumian yang tersusun menunjukkan mereka percaya kepada kehidupan selepas mati.",
+      "Ideofak, amalan pengebumian dan budaya megalit memberikan bukti tentang kepercayaan serta ritual masyarakat Prasejarah.",
   },
   {
     id: "sej-f1-c3-q19",
@@ -5186,11 +5166,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Namakan tapak pengebumian Zaman Neolitik yang utama di Kelantan.",
-    options: ["Gua Niah", "Gua Cha", "Gua Kecil", "Gua Gunung Runtuh"],
-    answerIndex: 1,
+    question: "Mengapakah masyarakat Zaman Paleolitik hidup secara nomad?",
+    options: ["Mereka perlu berpindah untuk mendapatkan makanan dan sumber alam", "Mereka perlu mengurus ladang tanaman yang kekal sepanjang tahun", "Mereka berpindah untuk mengutip hasil pertanian komersial", "Mereka perlu mentadbir bandar yang dihubungkan oleh jalan raya"],
+    answerIndex: 0,
     explanation:
-      "Banyak rangka manusia dan tembikar ditemui di sini, menjadikannya tapak arkeologi yang sangat penting.",
+      "Masyarakat Paleolitik bergantung pada sumber alam seperti hasil hutan dan binatang buruan, menyebabkan mereka sering berpindah.",
   },
   {
     id: "sej-f1-c3-q20",
@@ -5249,11 +5229,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Di manakah lokasi penemuan manusia prasejarah tertua di Sarawak?",
-    options: ["Gua Cha", "Kota Tampan", "Gua Niah", "Bukit Tengkorak"],
-    answerIndex: 2,
+    question: "Apakah yang dimaksudkan dengan kesinambungan sumbangan Zaman Prasejarah kepada kehidupan manusia hari ini?",
+    options: ["Kegiatan dan kemahiran yang bermula pada Zaman Prasejarah terus berkembang dalam bentuk yang lebih maju", "Semua alat dan cara kerja masa kini kekal sama seperti dahulu", "Kegiatan moden berkembang tanpa hubungan dengan kemahiran masa lalu", "Kemahiran lama terhenti sepenuhnya apabila teknologi baharu muncul"],
+    answerIndex: 0,
     explanation:
-      "Penemuan rangka manusia di sini membuktikan manusia telah mendiami pulau Borneo sejak ribuan tahun dahulu.",
+      "Pertanian, penternakan, pembuatan alat, tembikar, seni dan binaan menunjukkan kesinambungan daripada kegiatan masyarakat Prasejarah kepada kehidupan moden.",
   },
   {
     id: "sej-f1-c3-q24",
@@ -5261,15 +5241,10 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Apakah jenis kesenian yang dihasilkan oleh manusia Zaman Logam?",
-    options: [
-      "Lukisan di dinding gua",
-      "Corak geometrik pada tembikar sahaja",
-      "Corak hiasan pada peralatan gangsa dan seni bina batu besar",
-      "Ukiran pada pokok-pokok besar",
-    ],
+    question: "Penemuan corak hiasan pada peralatan gangsa memberikan bukti tentang aspek apakah dalam kehidupan masyarakat Zaman Logam?",
+    options: ["Sistem tulisan untuk merekod undang-undang", "Penggunaan mata wang untuk semua urusan", "Kreativiti dan kesenian dalam pembuatan peralatan", "Penghapusan kegiatan pertukangan dalam masyarakat"],
     answerIndex: 2,
-    explanation: "Kesenian mereka lebih fokus kepada estetika pada barangan harian dan monumen.",
+    explanation: "Corak hiasan pada peralatan gangsa menunjukkan kreativiti dan kemahiran seni masyarakat Zaman Logam.",
   },
   {
     id: "sej-f1-c3-q25",
@@ -5277,16 +5252,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Apakah peranan cerita rakyat dalam mengkaji sejarah prasejarah?",
-    options: [
-      "Menggantikan sepenuhnya bukti arkeologi",
-      "Memberi petunjuk tentang lokasi tapak lama",
-      "Membuktikan kewujudan sistem tulisan awal",
-      "Menjelaskan teknologi Zaman Logam",
-    ],
-    answerIndex: 1,
+    question: "Bagaimanakah ahli arkeologi mengetahui bahawa manusia pernah tinggal di sesuatu kawasan pada Zaman Prasejarah?",
+    options: ["Melalui penemuan artifak, ekofak dan tinggalan manusia", "Dengan menganggap setiap gua pernah didiami tanpa bukti", "Dengan menggunakan nama moden sesuatu tempat sebagai bukti tunggal", "Dengan menerima cerita fiksyen tentang tapak itu tanpa semakan"],
+    answerIndex: 0,
     explanation:
-      "Walaupun prasejarah dikaji melalui arkeologi, cerita rakyat kadangkala memberi petunjuk tentang lokasi tapak lama.",
+      "Lokasi Zaman Prasejarah dikenal pasti melalui bukti arkeologi seperti artifak, ekofak dan tinggalan manusia.",
   },
   {
     id: "sej-f1-c3-q26",
@@ -5294,11 +5264,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Zaman manakah yang menyaksikan permulaan aktiviti pelayaran?",
-    options: ["Zaman Paleolitik", "Zaman Mesolitik", "Zaman Neolitik", "Zaman Logam"],
-    answerIndex: 3,
+    question: "Perubahan manakah menunjukkan perkembangan kegiatan ekonomi masyarakat Prasejarah di Malaysia?",
+    options: ["Daripada memburu dan memungut hasil hutan kepada pertanian serta perdagangan pertukaran barang", "Daripada pertanian kepada bergantung sepenuhnya pada hasil hutan", "Daripada penghasilan alat kepada tidak menggunakan peralatan", "Daripada pertukaran barang kepada ketiadaan hubungan antara petempatan"],
+    answerIndex: 0,
     explanation:
-      "Kemajuan dalam teknologi membolehkan manusia membina perahu untuk berdagang ke kawasan yang lebih jauh melalui laut.",
+      "Bukti arkeologi menunjukkan perkembangan daripada kegiatan sara diri kepada penanaman padi dan seterusnya perdagangan melalui sistem pertukaran barang.",
   },
   {
     id: "sej-f1-c3-q27",
@@ -5339,11 +5309,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Di manakah lokasi 'Catal Huyuk' yang merupakan petempatan awal Neolitik?",
-    options: ["Perancis", "China", "Britain", "Turki"],
-    answerIndex: 3,
+    question: "Apakah perubahan ekonomi yang paling penting pada Zaman Neolitik?",
+    options: ["Manusia mula menghasilkan makanan melalui pertanian dan penternakan", "Manusia bergantung sepenuhnya pada hasil hutan tanpa bercucuk tanam", "Manusia menghentikan semua kegiatan memburu sebaik sahaja pertanian bermula", "Manusia memperoleh semua makanan melalui perdagangan tanpa menghasilkannya"],
+    answerIndex: 0,
     explanation:
-      "Catal Huyuk terkenal kerana rumah-rumahnya dibina rapat-rapat tanpa jalan raya, dan orang masuk melalui bumbung.",
+      "Pada Zaman Neolitik, manusia berubah daripada hanya menggunakan sumber alam kepada menghasilkan makanan sendiri.",
   },
   {
     id: "sej-f1-c3-q30",
@@ -5352,12 +5322,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Medium",
     question: "Mengapakah kita perlu memelihara tapak arkeologi prasejarah?",
-    options: [
-      "Untuk menarik pelancong asing sahaja",
-      "Untuk mencari harta karun peninggalan lama",
-      "Untuk mengekalkan bukti sejarah tamadun manusia bagi kajian generasi akan datang",
-      "Untuk membuktikan Malaysia lebih maju daripada negara lain",
-    ],
+    options: ["Untuk mengutamakan jualan artifak kepada pengumpul", "Untuk membina kemudahan pelancongan tanpa mengekalkan tinggalan asal", "Untuk mengekalkan bukti sejarah manusia bagi kajian generasi akan datang", "Untuk menyimpan artifak tanpa merekod tempat penemuannya"],
     answerIndex: 2,
     explanation:
       "Tapak arkeologi adalah khazanah negara yang tidak boleh diganti jika dimusnahkan.",
