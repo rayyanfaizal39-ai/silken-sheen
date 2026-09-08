@@ -72,13 +72,6 @@ const REPLACED = [
     schematicMarker: 'viewBox="0 0 110 74"',
   },
   {
-    concept: "water treatment system",
-    chapter: () => scienceF2C5InteractiveDLP,
-    bm: () => scienceF2C5InteractiveBM,
-    block: (s: ScienceF2InteractiveContent["sections"][number]) => s.waterTreatmentFlow,
-    schematicMarker: '<ol class="flex flex-wrap items-stretch gap-1"',
-  },
-  {
     concept: "acid-alkali titration",
     chapter: () => scienceF2C6InteractiveDLP,
     bm: () => scienceF2C6InteractiveBM,
@@ -342,14 +335,47 @@ describe("interactive figure affordance", () => {
     expect(markup).toContain("min-h-11");
   });
 
-  it("water treatment keeps the two stages the artwork does not depict", () => {
+  // The water-treatment journey artwork is text-free, so — unlike the other
+  // REPLACED concepts above — it now ships to BOTH languages from one shared
+  // WebP, and BM no longer falls back to the drawn schematic for this concept.
+  it.each([
+    ["dlp", () => scienceF2C5InteractiveDLP, "en"] as const,
+    ["bm", () => scienceF2C5InteractiveBM, "bm"] as const,
+  ])(
+    "water treatment system (%s) renders the shared artwork, not the old schematic",
+    (_name, getContent, lang) => {
+      const content = getContent();
+      const section = content.sections.find((s) => s.waterTreatmentFlow);
+      expect(section, "section carrying the block").toBeDefined();
+
+      const flow = section!.waterTreatmentFlow!;
+      expect(flow.image, "shared artwork attached to the block").toBeDefined();
+
+      const markup = renderToStaticMarkup(
+        createElement(ScienceF2InteractiveNotesBlock, {
+          content: { ...content, sections: [section!] },
+          lang,
+        }),
+      );
+
+      expect(markup).toContain(flow.image!.src.split("?")[0]);
+      expect(markup, "old schematic must not render beside the artwork").not.toContain(
+        '<ol class="flex flex-wrap items-stretch gap-1"',
+      );
+    },
+  );
+
+  // Reservoir and "to homes" were removed as interactive stages entirely (the
+  // human-audit fix keeps them as visual endpoints only), so every remaining
+  // stage is now depicted with its own on-image label — none are control-only.
+  it("water treatment depicts every one of its six stages on the artwork", () => {
     const section = scienceF2C5InteractiveDLP.sections.find((s) => s.waterTreatmentFlow)!;
     const flow = section.waterTreatmentFlow!;
     const depicted = new Set(flow.image!.points.map((p) => p.id));
     const undepicted = flow.stages.filter((stage) => !depicted.has(stage.id));
 
-    // They are control-only, but they must still be taught.
-    expect(undepicted.map((s) => s.id)).toEqual(["reservoir"]);
+    expect(undepicted).toEqual([]);
+    expect(flow.stages.map((s) => s.id)).toEqual([...depicted]);
     const markup = renderToStaticMarkup(
       createElement(ScienceF2InteractiveNotesBlock, {
         content: { ...scienceF2C5InteractiveDLP, sections: [section] },

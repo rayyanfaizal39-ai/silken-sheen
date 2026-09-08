@@ -33,6 +33,13 @@ export type InteractiveFigureCardProps = {
   /** The concepts. Any with `x`/`y` also become a region on the artwork. */
   concepts: ImageAnnotation[];
   /**
+   * Seeds the selection so the card opens with one concept already active,
+   * instead of the usual neutral "tap to explore" prompt — for a figure like
+   * a stage-by-stage process where showing nothing selected reads as broken
+   * rather than as an invitation.
+   */
+  initialActive?: string | null;
+  /**
    * Render the row of concept buttons. Set false for artwork whose labels are
    * already drawn on the picture with leader lines — there the labels are the
    * control, and a second row of buttons below would only repeat them.
@@ -217,9 +224,10 @@ export function InteractiveFigureCard({
   showControls = true,
   image,
   className,
+  initialActive = null,
 }: InteractiveFigureCardProps) {
   const copy = figureCopy(lang);
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState<string | null>(initialActive);
   const [cued, cueRef] = useFirstViewCue();
   const selected = concepts.find((concept) => concept.id === active) ?? null;
 
