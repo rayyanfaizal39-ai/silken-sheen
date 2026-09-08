@@ -6585,16 +6585,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah faktor utama yang menjadikan Kerajaan Magadha sebuah kuasa yang unggul?",
-    options: [
-      "Kekuatan perdagangan maritim dan armada laut",
-      "Kedudukan strategik di Lembah Ganges serta sumber besi dan gajah",
-      "Perjanjian damai dengan kerajaan jiran",
-      "Sistem undang-undang yang canggih",
-    ],
+    question: "Bagaimanakah kedudukan Magadha di Lembah Ganges membantu kemunculannya sebagai kuasa penting?",
+    options: ["Membolehkannya menguasai semua laluan laut tanpa pelabuhan", "Membolehkannya mengawal laluan perdagangan utama", "Menjadikannya bebas daripada keperluan pentadbiran", "Menghapuskan semua persaingan dengan kerajaan jiran"],
     answerIndex: 1,
     explanation:
-      "Magadha mendapat kelebihan daripada tanah subur di Lembah Ganges, sungai sebagai pertahanan semula jadi, besi untuk senjata, dan gajah untuk tentera.",
+      "Kedudukan strategik Magadha di Lembah Ganges membantu kerajaan itu mengawal laluan perdagangan dan mengukuhkan kuasanya.",
   },
   {
     id: "sej-f1-c7-q3",
@@ -6614,11 +6609,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Siapakah penasihat terkenal yang membantu Chandragupta Maurya membina empayarnya?",
-    options: ["Bindusara", "Chanakya", "Asoka", "Konfusius"],
-    answerIndex: 1,
+    question: "Apakah perubahan penting yang berlaku selepas berakhirnya Tamadun Indus?",
+    options: ["Pusat perkembangan Tamadun India beralih ke Lembah Ganges", "Pusat perkembangan Tamadun India beralih ke Lembah Huang He", "Semua kerajaan kecil India disatukan sebelum pusat tamadun beralih", "Perkembangan kerajaan terhenti apabila Tamadun Indus berakhir"],
+    answerIndex: 0,
     explanation:
-      "Chanakya (juga dikenali sebagai Kautilya) adalah pakar strategi dan penasihat politik yang memainkan peranan penting dalam membantu Chandragupta Maurya mendirikan Dinasti Maurya.",
+      "Selepas Tamadun Indus, pusat perkembangan Tamadun India beralih ke Lembah Ganges dan menjadi asas kepada tahap perkembangan seterusnya.",
   },
   {
     id: "sej-f1-c7-q5",
@@ -6626,11 +6621,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Berapakah bilangan infantri dalam angkatan tentera Chandragupta Maurya?",
-    options: ["100,000 infantri", "300,000 infantri", "600,000 infantri", "1,000,000 infantri"],
-    answerIndex: 2,
+    question: "Antara berikut, yang manakah merupakan gabungan faktor penting perluasan kuasa dalam Tamadun India?",
+    options: ["Ketenteraan, dasar pemerintahan, sumber manusia, diplomasi keagamaan dan kewangan", "Ketenteraan dan kewangan tanpa pentadbiran wilayah", "Diplomasi keagamaan tanpa sokongan sumber manusia", "Sumber manusia tanpa dasar pemerintahan dan pembiayaan"],
+    answerIndex: 0,
     explanation:
-      "Chandragupta membina angkatan tentera yang luar biasa besar: 600,000 infantri, 30,000 kavalri, dan 9,000 gajah perang.",
+      "Perluasan kuasa bergantung pada beberapa faktor yang saling berkait, bukan kekuatan tentera semata-mata.",
   },
   {
     id: "sej-f1-c7-q6",
@@ -6638,16 +6633,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah sumbangan Bindusara kepada Dinasti Maurya?",
-    options: [
-      "Memeluk agama Buddha dan memperkenalkan Dharma",
-      "Meluaskan empayar ke selatan India hingga ke Mysore",
-      "Mendirikan Dinasti Maurya",
-      "Membina Tiang Asoka",
-    ],
-    answerIndex: 1,
+    question: "Apakah ciri utama perluasan kuasa secara fizikal?",
+    options: ["Menguasai wilayah lain melalui kekuatan dan menjadikannya sebahagian daripada empayar", "Menyebarkan agama tanpa menakluk wilayah", "Menghantar utusan untuk berkongsi ajaran keagamaan", "Menjalinkan hubungan persahabatan tanpa penguasaan kawasan"],
+    answerIndex: 0,
     explanation:
-      "Bindusara meneruskan dasar ayahnya, Chandragupta, dengan meluaskan empayar Maurya ke bahagian selatan India sehingga ke kawasan Mysore.",
+      "Perluasan fizikal melibatkan penguasaan wilayah lain sehingga membentuk kerajaan atau empayar yang lebih luas.",
   },
   {
     id: "sej-f1-c7-q7",
@@ -6655,16 +6645,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah peristiwa yang mengubah cara pemerintahan Raja Asoka?",
-    options: [
-      "Kemenangan dalam Perang Kalinga",
-      "Kehancuran dan kesengsaraan akibat Perang Kalinga (261 SM)",
-      "Serangan dari utara oleh Alexander the Great",
-      "Bencana alam yang menimpa empayarnya",
-    ],
-    answerIndex: 1,
+    question: "Mengapakah Perang Kalinga menjadi titik perubahan penting dalam pemerintahan Asoka?",
+    options: ["Kematian dan kemusnahan besar menyebabkan Asoka menilai semula dasar penaklukan secara ketenteraan", "Kemenangan itu menyebabkan Asoka meningkatkan penaklukan ketenteraan", "Kekalahan itu menyebabkan Asoka menyerahkan seluruh empayarnya", "Perang itu menyebabkan semua kegiatan keagamaan dihentikan"],
+    answerIndex: 0,
     explanation:
-      "Walaupun menang, Asoka tergugat melihat lebih 100,000 nyawa terkorban dan penderitaan rakyat dalam Perang Kalinga, mendorongnya meninggalkan perang dan memeluk Dharma.",
+      "Kesan kemanusiaan yang besar dalam Perang Kalinga menyebabkan Asoka menjadi lebih toleran dan bertanggungjawab.",
   },
   {
     id: "sej-f1-c7-q8",
@@ -6672,16 +6657,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Berapakah anggaran nyawa yang terkorban dalam Perang Kalinga?",
-    options: [
-      "Lebih 10,000 nyawa",
-      "Lebih 50,000 nyawa",
-      "Lebih 100,000 nyawa",
-      "Lebih 500,000 nyawa",
-    ],
-    answerIndex: 2,
+    question: "Mengapakah kewangan yang kukuh diperlukan dalam usaha perluasan kuasa?",
+    options: ["Membiayai pentadbiran dan kegiatan yang diperlukan untuk memperluas kerajaan", "Menggantikan keperluan pegawai yang mengurus wilayah", "Membolehkan wilayah ditadbir tanpa dasar pemerintahan", "Menjamin kemenangan tentera tanpa latihan dan kelengkapan"],
+    answerIndex: 0,
     explanation:
-      "Rekod sejarah menunjukkan lebih 100,000 nyawa terkorban dalam Perang Kalinga, angka yang mengejutkan Asoka dan mengubah pandangan hidupnya.",
+      "Perluasan kuasa memerlukan pembiayaan daripada perbendaharaan kerajaan.",
   },
   {
     id: "sej-f1-c7-q9",
@@ -6689,11 +6669,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Agama apakah yang dipeluk oleh Raja Asoka selepas Perang Kalinga?",
+    question: "Agama manakah yang diberi tumpuan oleh Asoka untuk disebarkan selepas Perang Kalinga?",
     options: ["Hindu", "Islam", "Buddha", "Kristian"],
     answerIndex: 2,
     explanation:
-      "Asoka memeluk agama Buddha selepas Perang Kalinga dan menjadi pengamal setianya, menyebarkan ajaran Buddha ke seluruh Asia.",
+      "Selepas Perang Kalinga, Asoka memberi tumpuan kepada penyebaran agama Buddha melalui pendekatan yang lebih aman dan berperikemanusiaan.",
   },
   {
     id: "sej-f1-c7-q10",
@@ -6701,16 +6681,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah yang terkandung dalam 'Tiang Asoka' (Edicts of Asoka)?",
-    options: [
-      "Rekod kemenangan ketenteraan Asoka",
-      "Panduan etika, toleransi agama, dan tanggungjawab sosial pemerintah",
-      "Senarai cukai yang perlu dibayar rakyat",
-      "Undang-undang perdagangan empayar",
-    ],
-    answerIndex: 1,
+    question: "Apakah tujuan utama Tiang Asoka diletakkan di kawasan strategik?",
+    options: ["Menyampaikan peraturan dan dasar pemerintahan kepada masyarakat", "Menghadkan pengetahuan tentang dasar kepada pegawai istana sahaja", "Menggantikan semua pegawai yang mentadbir wilayah", "Merekod kemenangan tentera tanpa menyampaikan peraturan"],
+    answerIndex: 0,
     explanation:
-      "Tiang Asoka mengandungi titah diraja yang menggariskan nilai moral, toleransi antara agama, dan tanggungjawab pemerintah terhadap kebajikan semua makhluk.",
+      "Peraturan dan undang-undang Asoka diukir pada tiang batu yang ditempatkan di kawasan strategik.",
   },
   {
     id: "sej-f1-c7-q11",
@@ -6718,16 +6693,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Namakan dua pendekatan perluasan kuasa yang digunakan dalam Tamadun India.",
-    options: [
-      "Perdagangan dan Diplomasi",
-      "Kekuatan Fizikal (Ketenteraan) dan Kemanusiaan (Dharma)",
-      "Perkahwinan Politik dan Perikatan",
-      "Seni Bina dan Teknologi",
-    ],
-    answerIndex: 1,
+    question: "Apakah perbezaan penting antara perluasan keagamaan dengan perluasan fizikal?",
+    options: ["Pengaruh keagamaan boleh tersebar merentas sempadan tanpa menakluk wilayah secara ketenteraan", "Perluasan keagamaan hanya berlaku selepas wilayah ditawan oleh tentera", "Perluasan fizikal tidak melibatkan penguasaan wilayah", "Kedua-duanya mesti menggunakan penaklukan ketenteraan"],
+    answerIndex: 0,
     explanation:
-      "Dinasti Maurya menggunakan dua pendekatan: Kekuatan Fizikal seperti dilakukan Chandragupta dan Bindusara, dan Kemanusiaan (Dharma) seperti yang diamalkan Asoka.",
+      "Penyebaran agama dan nilai boleh meluaskan pengaruh tanpa bergantung pada penguasaan wilayah secara fizikal.",
   },
   {
     id: "sej-f1-c7-q12",
@@ -6735,16 +6705,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah asas utama yang membina kekuatan Tamadun China?",
-    options: [
-      "Kekuatan tentera dan peluasan wilayah",
-      "Sistem meritokrasi melalui pendidikan dan peperiksaan awam",
-      "Perdagangan sutera dengan dunia luar",
-      "Pembinaan Tembok Besar China",
-    ],
-    answerIndex: 1,
+    question: "Apakah hubungan antara sistem pendidikan yang baik dengan pentadbiran negara dalam Tamadun China?",
+    options: ["Pendidikan melahirkan pegawai berilmu yang membantu pentadbiran menjadi lebih cekap", "Pendidikan membolehkan pentadbiran berjalan tanpa pegawai", "Pendidikan menjamin bahawa semua pelajar terus dilantik menjadi pemerintah", "Pendidikan hanya membantu peperiksaan tanpa kaitan dengan tugas pentadbiran"],
+    answerIndex: 0,
     explanation:
-      "Berbeza dengan tamadun lain, China membina kekuatan pentadbirannya melalui sistem meritokrasi — individu dilantik berdasarkan kemampuan, bukan keturunan.",
+      "Pendidikan yang teratur membantu melahirkan golongan terpelajar dan pentadbir yang bertanggungjawab.",
   },
   {
     id: "sej-f1-c7-q13",
@@ -6798,11 +6763,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Siapakah yang memulakan Sistem Peperiksaan Awam di China?",
-    options: ["Konfusius", "Maharaja Wu dari Dinasti Han", "Chandragupta Maurya", "Raja Asoka"],
-    answerIndex: 1,
+    question: "Bagaimanakah penyeragaman sistem tulisan membantu perkembangan pendidikan Tamadun China?",
+    options: ["Memudahkan penggunaan sistem tulisan yang sama dalam pembelajaran dan pentadbiran", "Menghendaki setiap wilayah menggunakan tulisan yang berbeza", "Menggantikan pembelajaran membaca dengan hafalan lisan sahaja", "Mengurangkan keperluan menyimpan rekod pentadbiran"],
+    answerIndex: 0,
     explanation:
-      "Sistem Peperiksaan Awam China yang berpengaruh dimulakan oleh Maharaja Wu dari Dinasti Han dan kemudiannya diperkukuh oleh dinasti-dinasti seterusnya.",
+      "Penyeragaman tulisan membantu menjadikan sistem pendidikan dan pentadbiran lebih tersusun.",
   },
   {
     id: "sej-f1-c7-q17",
@@ -6810,11 +6775,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Siapakah yang TIDAK dibenarkan menduduki Peperiksaan Awam China?",
-    options: ["Golongan petani", "Golongan pedagang", "Wanita", "Golongan artisan"],
-    answerIndex: 2,
+    question: "Apakah tiga tahap pendidikan dalam Tamadun China?",
+    options: ["Rendah, menengah dan tinggi", "Daerah, wilayah dan istana", "Keluarga, kampung dan empayar", "Awam, tentera dan perdagangan"],
+    answerIndex: 0,
     explanation:
-      "Walaupun sistem ini lebih terbuka daripada banyak sistem lain, wanita tetap dikecualikan — hanya lelaki sahaja yang layak menduduki peperiksaan awam China.",
+      "Sistem pendidikan China mempunyai tiga tahap, iaitu pendidikan rendah, menengah dan tinggi.",
   },
   {
     id: "sej-f1-c7-q18",
@@ -6822,16 +6787,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah hukuman bagi calon yang meniru dalam Peperiksaan Awam China?",
-    options: [
-      "Denda wang yang besar",
-      "Diharamkan menduduki peperiksaan seumur hidup",
-      "Hukuman mati",
-      "Pemenjaraan selama sepuluh tahun",
-    ],
-    answerIndex: 2,
+    question: "Mengapakah sistem peperiksaan perkhidmatan awam China dikawal dengan ketat?",
+    options: ["Untuk memastikan penilaian lebih adil dan mengurangkan penipuan", "Untuk memberikan markah berdasarkan kedudukan keluarga", "Untuk membolehkan pegawai meluluskan calon tanpa menilai jawapan", "Untuk menghapuskan keperluan calon menguasai ilmu"],
+    answerIndex: 0,
     explanation:
-      "Sistem peperiksaan China sangat ketat — hukuman mati dikenakan ke atas sesiapa yang meniru bagi memastikan integriti dan keadilan sistem.",
+      "Peraturan yang ketat bertujuan mencegah penipuan dan memastikan calon dinilai melalui sistem yang tersusun.",
   },
   {
     id: "sej-f1-c7-q19",
@@ -6839,16 +6799,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah ciri utama Peperiksaan Xiucai?",
-    options: [
-      "Diadakan di istana di hadapan Maharaja setiap tahun",
-      "Diadakan di peringkat daerah setiap dua tahun; lulus jadi pegawai rendah",
-      "Diadakan di ibu kota wilayah setiap tiga tahun",
-      "Hanya boleh diduduki oleh golongan bangsawan",
-    ],
-    answerIndex: 1,
+    question: "Mengapakah perkembangan pembuatan kertas membantu sistem pendidikan Tamadun China?",
+    options: ["Memudahkan bahan pembelajaran dan tulisan digunakan dengan lebih meluas", "Menggantikan keperluan guru dan sekolah", "Membolehkan pelajar belajar tanpa menguasai tulisan", "Menghapuskan keperluan menyimpan bahan pembelajaran"],
+    answerIndex: 0,
     explanation:
-      "Xiucai adalah peperiksaan pertama (peringkat paling rendah), diadakan di daerah setiap dua tahun. Calon yang berjaya layak menjadi pegawai rendah kerajaan.",
+      "Penggunaan kertas secara meluas membantu kegiatan pembelajaran dan penyimpanan maklumat.",
   },
   {
     id: "sej-f1-c7-q20",
@@ -6856,16 +6811,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah syarat untuk menduduki Peperiksaan Juren?",
-    options: [
-      "Mestilah dari keluarga bangsawan",
-      "Hanya calon yang telah lulus Xiucai sahaja yang layak",
-      "Terbuka kepada semua lelaki tanpa syarat",
-      "Mesti berumur lebih 30 tahun",
-    ],
-    answerIndex: 1,
+    question: "Seorang pelajar mempelajari cara mentafsir buku suci serta memahami etika, adat dan tanggungjawab kepada negara. Tahap pendidikan manakah yang paling sesuai?",
+    options: ["Pendidikan rendah", "Pendidikan menengah", "Pendidikan tinggi", "Latihan asas membaca"],
+    answerIndex: 2,
     explanation:
-      "Juren adalah peringkat kedua; hanya mereka yang telah lulus Xiucai layak mendudukiInspect peperiksaan ini di ibu kota wilayah setiap tiga tahun.",
+      "Pendidikan tinggi menekankan penterjemahan dan interpretasi buku suci serta aspek etika, adat dan tanggungjawab.",
   },
   {
     id: "sej-f1-c7-q21",
@@ -6873,16 +6823,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah keistimewaan calon yang lulus Peperiksaan Jinshi?",
-    options: [
-      "Dilantik sebagai tentera berpangkat tinggi",
-      "Dilantik menjadi pegawai tinggi istana dan dianggap cendekiawan negara yang paling mulia",
-      "Diberikan tanah percuma oleh Maharaja",
-      "Layak untuk menaja peperiksaan seterusnya",
-    ],
-    answerIndex: 1,
+    question: "Bagaimanakah pendidikan dapat meningkatkan taraf sosial seseorang dalam masyarakat China?",
+    options: ["Kejayaan dalam pendidikan dan peperiksaan boleh membuka peluang memasuki perkhidmatan kerajaan", "Setiap pelajar mendapat jawatan tanpa penilaian", "Pelajaran menggantikan semua syarat kemasukan perkhidmatan kerajaan", "Taraf sosial hanya ditentukan oleh kekayaan keluarga walaupun calon berjaya"],
+    answerIndex: 0,
     explanation:
-      "Jinshi adalah kemuncak sistem peperiksaan — calon yang lulus dianggap sebagai cendekiawan negara dan dilantik terus sebagai pegawai tinggi di istana.",
+      "Kejayaan dalam peperiksaan memberikan penghormatan dan peluang untuk memasuki pentadbiran kerajaan.",
   },
   {
     id: "sej-f1-c7-q22",
@@ -6890,16 +6835,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Berapa lamakah calon dikurung semasa menduduki peperiksaan tahap tinggi China?",
-    options: [
-      "Satu hari satu malam",
-      "Dua hari dua malam",
-      "Tiga hari tiga malam",
-      "Tujuh hari tujuh malam",
-    ],
-    answerIndex: 2,
+    question: "Mengapakah sumber manusia penting kepada sesebuah kerajaan yang ingin memperluas kuasa?",
+    options: ["Membolehkan kerajaan ditadbir dengan baik dan berkesan", "Membolehkan semua wilayah diurus tanpa pegawai", "Menggantikan keperluan kewangan bagi pentadbiran", "Menjamin wilayah baharu ditadbir tanpa latihan atau pembahagian tugas"],
+    answerIndex: 0,
     explanation:
-      "Bagi mengelakkan penipuan dan memastikan keadilan, calon dikurung dalam bilik kecil selama tiga hari tiga malam semasa menduduki peperiksaan tahap tinggi.",
+      "Sumber manusia yang mencukupi diperlukan untuk mengurus dan mentadbir wilayah kerajaan dengan berkesan.",
   },
   {
     id: "sej-f1-c7-q23",
@@ -6908,16 +6848,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Medium",
     question:
-      "Apakah perbezaan utama antara pendekatan Chandragupta Maurya dan Raja Asoka dalam mentadbir empayar?",
-    options: [
-      "Chandragupta menggunakan Dharma; Asoka menggunakan ketenteraan",
-      "Chandragupta menggunakan ketenteraan (fizikal); Asoka menggunakan Dharma (kemanusiaan)",
-      "Keduanya menggunakan kaedah yang sama",
-      "Chandragupta memerintah di selatan; Asoka di utara",
-    ],
+      "Apakah perbezaan pendekatan perluasan kuasa Chandragupta Maurya dengan Asoka selepas Perang Kalinga?",
+    options: ["Chandragupta mengutamakan penyebaran agama, manakala Asoka meningkatkan penaklukan", "Chandragupta menggunakan kekuatan ketenteraan, manakala Asoka mengutamakan penyebaran agama dan kemanusiaan", "Kedua-duanya mengutamakan penaklukan ketenteraan tanpa perubahan dasar", "Kedua-duanya menghapuskan pentadbiran wilayah untuk meluaskan pengaruh"],
     answerIndex: 1,
     explanation:
-      "Ini adalah perbezaan teras: Chandragupta membina empayar melalui kekuatan senjata, manakala Asoka (selepas Kalinga) memilih jalan Dharma dan moral untuk memerintah.",
+      "Chandragupta Maurya membina empayar melalui kekuatan ketenteraan. Selepas Kalinga, Asoka mengutamakan penyebaran agama Buddha dan pendekatan kemanusiaan.",
   },
   {
     id: "sej-f1-c7-q24",
@@ -6926,16 +6861,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Medium",
     question:
-      "Apakah yang membezakan sistem Peperiksaan Awam China daripada kebanyakan sistem pelantikan di zaman lain?",
-    options: [
-      "Ia hanya untuk golongan kaya dan bangsawan",
-      "Ia berdasarkan kemampuan dan ilmu (meritokrasi), bukan keturunan semata-mata",
-      "Ia ditentukan oleh undi rakyat",
-      "Ia berdasarkan kekuatan fizikal dan kemahiran perang",
-    ],
+      "Apakah prinsip pemilihan pegawai yang ditekankan melalui peperiksaan perkhidmatan awam China?",
+    options: ["Pemilihan berdasarkan kekayaan keluarga sahaja", "Pemilihan berdasarkan kemampuan dan ilmu yang dinilai melalui peperiksaan", "Pemilihan berdasarkan kekuatan fizikal dalam pertempuran", "Pemilihan berdasarkan undian semua penduduk"],
     answerIndex: 1,
     explanation:
-      "Keunikan sistem China adalah meritokrasi — mana-mana lelaki, tanpa mengira latar belakang keluarga, boleh maju berdasarkan kebolehan dan pengetahuannya.",
+      "Peperiksaan menekankan penilaian ilmu dan kemampuan calon bagi perkhidmatan kerajaan. Prinsip ini tidak bermaksud semua anggota masyarakat mempunyai akses atau peluang yang sama.",
   },
   {
     id: "sej-f1-c7-q25",
@@ -6969,7 +6899,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Asoka mengajar kita bahawa kuasa yang paling kekal adalah kuasa yang diasaskan pada keadilan dan kebajikan, bukan sekadar ketakutan atau kekuatan.",
+      "Perubahan dasar Asoka selepas Kalinga memberikan pengajaran tentang pentingnya keamanan, toleransi, keadilan dan kebajikan rakyat dalam pemerintahan.",
   },
   {
     id: "sej-f1-c7-q27",
@@ -6977,16 +6907,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Apakah warisan terpenting Tamadun China kepada dunia moden?",
-    options: [
-      "Rekabentuk Tembok Besar sebagai landmark pelancongan",
-      "Sistem peperiksaan awam menjadi model perkhidmatan awam moden; Konfusianisme mempengaruhi nilai Asia Timur",
-      "Teknologi pembuatan kertas untuk tujuan seni",
-      "Seni masakan China yang terkenal di seluruh dunia",
-    ],
-    answerIndex: 1,
+    question: "Mengapakah pendidikan boleh dianggap sebagai agen perubahan kepada sesebuah negara?",
+    options: ["Pendidikan membangunkan ilmu, kemahiran dan sumber manusia yang diperlukan untuk kemajuan", "Pendidikan hanya diperlukan untuk memperoleh gelaran tanpa menggunakan ilmu", "Pendidikan menjamin kemajuan tanpa usaha atau perancangan negara", "Pendidikan hanya memberi manfaat kepada golongan pemerintah"],
+    answerIndex: 0,
     explanation:
-      "Sistem peperiksaan awam berasaskan merit menjadi inspirasi kepada sistem perkhidmatan awam moden, manakala nilai Konfusianisme kekal relevan dalam masyarakat Asia sehingga kini.",
+      "Sistem pendidikan yang berkualiti membantu melahirkan individu berilmu dan berkebolehan yang dapat menyumbang kepada pembangunan negara.",
   },
   {
     id: "sej-f1-c7-q28",
@@ -6994,16 +6919,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Mengapakah Tiang Asoka dianggap sebagai sumbangan penting dalam sejarah?",
-    options: [
-      "Ia menunjukkan kehebatan kejuruteraan batu India purba",
-      "Ia merekodkan undang-undang perdagangan empayar Maurya",
-      "Ia membuktikan bahawa pemerintah boleh menyebarkan nilai moral dan etika kepada rakyat secara terbuka",
-      "Ia menandakan sempadan wilayah empayar Maurya",
-    ],
-    answerIndex: 2,
+    question: "Apakah yang dimaksudkan dengan perluasan kuasa?",
+    options: ["Usaha kerajaan memperluas pengaruh dan menguasai kawasan lain", "Usaha mengurangkan wilayah di bawah pentadbiran kerajaan", "Tindakan menyerahkan semua kuasa kepada kerajaan jiran", "Usaha mengasingkan kerajaan daripada semua hubungan luar"],
+    answerIndex: 0,
     explanation:
-      "Tiang Asoka adalah contoh terawal seorang pemerintah menggunakan media awam untuk menyebarkan nilai kemanusiaan, etika, dan tanggungjawab sosial kepada rakyatnya.",
+      "Perluasan kuasa ialah usaha sesebuah kerajaan atau pemerintah untuk menguasai serta memperluas pengaruh.",
   },
   {
     id: "sej-f1-c7-q29",
@@ -7028,16 +6948,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Mengapakah adalah penting bagi kita mempelajari Tamadun India dan China?",
-    options: [
-      "Kerana kedua-duanya adalah tamadun paling kaya dalam sejarah",
-      "Kerana nilai kepimpinan beretika, pendidikan, dan meritokrasi yang mereka warisi masih relevan dalam membina masyarakat maju hari ini",
-      "Kerana teknologi ketenteraan mereka masih digunakan sekarang",
-      "Kerana bahasa mereka adalah bahasa paling popular di dunia",
-    ],
-    answerIndex: 1,
+    question: "Apakah perbezaan utama peningkatan yang ditekankan bagi Tamadun India dan Tamadun China dalam Bab 7?",
+    options: ["India menonjol dalam perluasan kuasa, manakala China menonjol dalam perkembangan pendidikan", "India menonjol dalam pendidikan, manakala China dalam perluasan kuasa", "India dan China hanya menumpukan perkembangan perdagangan", "India dan China hanya menumpukan pembinaan monumen"],
+    answerIndex: 0,
     explanation:
-      "Tamadun India mengajar kepimpinan beretika melalui Dharma, manakala China mengajar bahawa ilmu dan meritokrasi adalah teras kemajuan — dua nilai yang sangat relevan hingga kini.",
+      "KSSM Bab 7 menggunakan perluasan kuasa India dan sistem pendidikan China sebagai dua contoh utama peningkatan tamadun.",
   },
   // Sejarah Form 1 Chapter 8 - Tamadun Islam Dan Sumbangannya
 
