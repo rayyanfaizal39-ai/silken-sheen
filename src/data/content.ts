@@ -6962,16 +6962,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah maksud sebenar 'Zaman Jahiliah'?",
-    options: [
-      "Zaman kemakmuran ekonomi Arab",
-      "Zaman kejahilan dari segi moral dan akidah, sebelum Islam",
-      "Zaman perang besar antara empayar",
-      "Zaman di mana Arab tidak mengenali tulisan",
-    ],
-    answerIndex: 1,
+    question: "Menurut buku teks, mengapakah zaman sebelum kedatangan Islam di Semenanjung Tanah Arab dikenali sebagai Zaman Jahiliah?",
+    options: ["Masyarakat tidak mempunyai nabi dan kitab suci sebagai petunjuk", "Masyarakat tidak pernah menjalankan perdagangan", "Masyarakat tidak mempunyai sebarang bentuk pentadbiran", "Semua penduduk hidup secara nomad tanpa petempatan"],
+    answerIndex: 0,
     explanation:
-      "Jahiliah bukan sekadar 'bodoh' dari segi intelek, tetapi merujuk kepada kegelapan moral dan spiritual sebelum cahaya Islam menerangi Tanah Arab.",
+      "Masyarakat ketika itu tidak mempunyai nabi dan kitab suci sebagai petunjuk, lalu zaman tersebut dikenali sebagai Zaman Jahiliah.",
   },
   {
     id: "sej-f1-c8-q2",
@@ -6980,15 +6975,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Medium",
     question: "Apakah sistem sosial utama masyarakat Arab Jahiliah?",
-    options: [
-      "Sistem feudal beraja",
-      "Sistem kabilah dengan semangat asabiyah",
-      "Sistem demokrasi langsung",
-      "Sistem oligarki golongan kaya",
-    ],
+    options: ["Sistem feudal beraja", "Sistem kabilah dengan semangat assabiyah", "Sistem demokrasi langsung", "Sistem oligarki golongan kaya"],
     answerIndex: 1,
     explanation:
-      "Asabiyah (kesetiaan buta kepada kabilah) menyebabkan masyarakat Arab terpecah-pecah dan tidak dapat bersatu di bawah satu pemerintahan.",
+      "Masyarakat Arab hidup dalam kabilah yang berasaskan keturunan. Semangat assabiyah yang keterlaluan boleh menyebabkan persengketaan antara kabilah.",
   },
   {
     id: "sej-f1-c8-q3",
@@ -6996,16 +6986,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah yang dibuktikan oleh Perang al-Basus yang berlangsung 40 tahun?",
-    options: [
-      "Kehebatan tentera Arab",
-      "Isu kecil boleh mencetuskan konflik panjang akibat ketiadaan undang-undang pusat",
-      "Kekuatan sistem kabilah",
-      "Kemakmuran ekonomi Arab Jahiliah",
-    ],
-    answerIndex: 1,
+    question: "Mengapakah bandar seperti Makkah, Madinah dan Taif dapat berkembang dalam kegiatan ekonomi?",
+    options: ["Kedudukannya strategik untuk kegiatan perdagangan dan pertanian", "Ketiga-tiganya merupakan pelabuhan laut utama", "Ketiga-tiganya terpisah daripada laluan perdagangan", "Semua penduduknya bergantung pada kegiatan memburu sahaja"],
+    answerIndex: 0,
     explanation:
-      "Perang al-Basus bermula kerana isu yang remeh tetapi berlarutan 40 tahun — bukti bahawa tanpa undang-undang yang adil, konflik tidak dapat diselesaikan.",
+      "Kedudukan strategik membantu perkembangan kegiatan ekonomi dan hubungan antara masyarakat.",
   },
   {
     id: "sej-f1-c8-q4",
@@ -7013,11 +6998,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Di manakah Nabi Muhammad SAW menerima wahyu pertama?",
-    options: ["Masjid al-Haram", "Bukit Safa", "Gua Hira", "Madinah"],
-    answerIndex: 2,
+    question: "Apakah kepentingan turunnya wahyu pertama kepada Nabi Muhammad SAW?",
+    options: ["Menandakan bermulanya perkembangan Tamadun Islam", "Menandakan permulaan pemerintahan Khulafa al-Rasyidin", "Menandakan pembentukan kerajaan Bani Abbasiyah", "Menandakan penggubalan Piagam Madinah"],
+    answerIndex: 0,
     explanation:
-      "Wahyu pertama Surah al-Alaq diturunkan di Gua Hira pada tahun 610 M, menandakan bermulanya era Islam.",
+      "Turunnya wahyu pertama menjadi titik penting kemunculan Islam dan perkembangan tamadun baharu.",
   },
   {
     id: "sej-f1-c8-q5",
@@ -7025,16 +7010,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Mengapakah perintah 'Iqra'' dianggap sebagai Revolusi Ilmu?",
-    options: [
-      "Kerana ia adalah ayat al-Quran yang terpanjang",
-      "Kerana ia meletakkan ilmu sebagai asas tamadun dan menggalakkan pencarian kebenaran melalui bukti",
-      "Kerana ia mengharamkan syair Arab",
-      "Kerana ia pertama kali ditulis dalam bahasa Arab",
-    ],
+    question: "Mengapakah perintah membaca dalam wahyu pertama penting kepada perkembangan Tamadun Islam?",
+    options: ["Membolehkan masyarakat memperoleh ilmu tanpa belajar", "Menekankan pembacaan sebagai asas ilmu pengetahuan dan kemajuan", "Menggantikan semua kegiatan perdagangan dengan kegiatan penulisan", "Mengehadkan ilmu kepada hafalan tanpa pembelajaran"],
     answerIndex: 1,
     explanation:
-      "Sebelum Islam, Arab bergantung kepada tradisi lisan. 'Iqra'' merevolusikan pendekatan ini dengan menggalakkan pendokumentasian dan kajian ilmiah.",
+      "Wahyu pertama bermula dengan perintah membaca. Buku teks menekankan membaca dan menulis sebagai asas ilmu pengetahuan untuk melahirkan tamadun.",
   },
   {
     id: "sej-f1-c8-q6",
@@ -7042,16 +7022,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Mengapakah pembesar Quraisy menentang dakwah Nabi Muhammad SAW di Bukit Safa?",
-    options: [
-      "Kerana mereka tidak faham bahasa Arab",
-      "Kerana isu agama semata-mata",
-      "Kerana bimbang Islam akan menggugat sistem kasta dan perniagaan berhala mereka",
-      "Kerana mereka ingin mengekalkan demokrasi",
-    ],
-    answerIndex: 2,
+    question: "Mengapakah kesyumulan Islam membantu agama Islam diterima oleh masyarakat?",
+    options: ["Islam menyeimbangkan keperluan rohani dan kehidupan dunia", "Islam menumpukan pembangunan fizikal tanpa pendidikan akhlak", "Islam memisahkan kegiatan ekonomi daripada nilai keadilan", "Islam mengehadkan ilmu kepada satu bidang kehidupan sahaja"],
+    answerIndex: 0,
     explanation:
-      "Penentangan Quraisy sangat berkait dengan kepentingan ekonomi — perniagaan berhala di Kaabah adalah sumber pendapatan utama mereka yang terancam oleh ajaran Islam.",
+      "Islam menekankan keseimbangan pembangunan rohani dan jasmani serta membimbing kehidupan masyarakat secara menyeluruh.",
   },
   {
     id: "sej-f1-c8-q7",
@@ -7059,16 +7034,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah Piagam Madinah?",
-    options: [
-      "Perjanjian perdamaian antara Islam dan Rom",
-      "Perlembagaan bertulis pertama yang menyatukan Muslim, Yahudi, dan kaum lain di Madinah",
-      "Senarai undang-undang perang Islam",
-      "Perjanjian perdagangan antara Mekah dan Madinah",
-    ],
-    answerIndex: 1,
+    question: "Apakah kepentingan Piagam Madinah dalam kepimpinan Nabi Muhammad SAW?",
+    options: ["Membantu mewujudkan pentadbiran yang teratur serta hubungan aman antara masyarakat", "Menghadkan tanggungjawab mempertahankan Madinah kepada satu kaum sahaja", "Mengecualikan urusan masyarakat daripada aturan bersama", "Menyusun pentadbiran tanpa mengambil kira hubungan antara kaum"],
+    answerIndex: 0,
     explanation:
-      "Piagam Madinah adalah dokumen perlembagaan pertama dalam sejarah yang mengiktiraf hak pelbagai kaum dan agama dalam satu negara.",
+      "Piagam Madinah membantu mewujudkan kestabilan politik, perpaduan dan kehidupan yang aman antara masyarakat.",
   },
   {
     id: "sej-f1-c8-q8",
@@ -7076,16 +7046,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah konsep 'Ummah' yang diperkenalkan oleh Piagam Madinah?",
-    options: [
-      "Komuniti Islam sahaja",
-      "Komuniti yang melampaui batas kaum — semua warga bertanggungjawab mempertahankan negara bersama",
-      "Pasukan tentera Islam",
-      "Majlis penasihat maharaja",
-    ],
-    answerIndex: 1,
+    question: "Apakah tujuan utama konsep ummah dalam Tamadun Islam?",
+    options: ["Menyatukan masyarakat supaya bekerjasama membangunkan negara", "Menyusun tanggungjawab masyarakat berdasarkan keutamaan keturunan sahaja", "Mengutamakan kepentingan kabilah melebihi kepentingan bersama", "Mengehadkan kerjasama kepada anggota keluarga pemerintah"],
+    answerIndex: 0,
     explanation:
-      "Ummah dalam Piagam Madinah merangkumi semua penduduk Madinah tanpa mengira agama — inovasi politik yang jauh mendahului zamannya.",
+      "Konsep ummah membentuk masyarakat yang bekerjasama dan mempunyai tanggungjawab bersama.",
   },
   {
     id: "sej-f1-c8-q9",
@@ -7093,16 +7058,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah Sistem Syura dan apakah nilainya?",
-    options: [
-      "Sistem cukai Islam",
-      "Sistem permesyuaratan untuk membuat keputusan — mencerminkan demokrasi Islam dan menghargai pandangan semua pihak",
-      "Sistem pendidikan Islam",
-      "Sistem perundangan hudud",
-    ],
-    answerIndex: 1,
+    question: "Sebuah kerajaan membuat keputusan penting melalui perbincangan bersama sebelum tindakan diambil. Prinsip ini paling hampir dengan",
+    options: ["syura", "pewarisan kuasa", "pemerintahan mutlak", "persaingan kabilah"],
+    answerIndex: 0,
     explanation:
-      "Syura menunjukkan bahawa Nabi Muhammad SAW tidak memerintah sebagai diktator — baginda mendengar dan menghargai pandangan sahabat dalam urusan keduniaan.",
+      "Syura ialah proses perundingan untuk mencapai keputusan secara bersama.",
   },
   {
     id: "sej-f1-c8-q10",
@@ -7110,16 +7070,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Berikan contoh Nabi Muhammad SAW mengamalkan Syura dalam hal ketenteraan.",
-    options: [
-      "Perang Badar",
-      "Perang Khandak — mendengar cadangan Salman al-Farisi untuk membina parit",
-      "Perang Uhud",
-      "Pembukaan Mekah",
-    ],
-    answerIndex: 1,
+    question: "Apakah yang dapat dipelajari daripada strategi Nabi Muhammad SAW ketika pembukaan semula Kota Makkah?",
+    options: ["Perancangan dan pembahagian tugas penting dalam mencapai matlamat", "Jumlah tentera menjamin kejayaan tanpa perancangan", "Pembahagian tugas menghapuskan keperluan penyelarasan", "Pemimpin perlu menolak semua pandangan anggota pasukannya"],
+    answerIndex: 0,
     explanation:
-      "Cadangan membina parit (khandak) datang daripada Salman al-Farisi dan diterima oleh Nabi — contoh terbaik syura menghasilkan strategi yang berjaya.",
+      "Strategi yang terancang dan pembahagian pasukan menunjukkan kebijaksanaan dalam kepimpinan.",
   },
   {
     id: "sej-f1-c8-q11",
@@ -7127,16 +7082,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah institusi Baitulmal?",
-    options: [
-      "Masjid pertama dalam Islam",
-      "Pusat pengurusan kewangan negara Islam yang menguruskan zakat, kharaj, dan jizyah",
-      "Sekolah agama Islam",
-      "Mahkamah syariah Islam",
-    ],
-    answerIndex: 1,
+    question: "Apakah fungsi utama Baitulmal dalam Tamadun Islam?",
+    options: ["Mengurus kewangan dan sumber negara untuk kepentingan masyarakat dan pembangunan", "Mengurus keuntungan perniagaan persendirian pemerintah sahaja", "Mengehadkan semua hasil negara kepada perbelanjaan istana", "Menyimpan hasil negara tanpa membiayai keperluan masyarakat"],
+    answerIndex: 0,
     explanation:
-      "Baitulmal adalah institusi kewangan negara yang memastikan pengagihan kekayaan yang adil — berfungsi seperti sistem keselamatan sosial moden.",
+      "Baitulmal berfungsi sebagai perbendaharaan negara. Sumbernya termasuk zakat, sedekah dan hasil negara yang diurus untuk pembangunan serta keperluan masyarakat.",
   },
   {
     id: "sej-f1-c8-q12",
@@ -7144,16 +7094,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Bagaimanakah institusi Baitulmal membantu mengurangkan kemiskinan?",
-    options: [
-      "Dengan memberikan pinjaman berbunga kepada rakyat",
-      "Zakat mengalirkan kekayaan daripada golongan kaya kepada asnaf, meningkatkan kuasa beli rakyat jelata",
-      "Dengan mengenakan cukai tinggi kepada pedagang",
-      "Dengan mengharamkan semua aktiviti perdagangan",
-    ],
-    answerIndex: 1,
+    question: "Apakah perubahan sosial penting yang dibawa oleh Tamadun Islam terhadap wanita?",
+    options: ["Wanita mendapat penghormatan serta peluang dalam pendidikan dan kegiatan masyarakat", "Peluang ilmu dikhususkan kepada kaum lelaki sahaja", "Kedudukan wanita dinilai berdasarkan kekayaan keluarganya sahaja", "Wanita diasingkan daripada semua kegiatan masyarakat"],
+    answerIndex: 0,
     explanation:
-      "Zakat memastikan kekayaan tidak terkumpul hanya dalam kalangan orang kaya — ia adalah mekanisme pengagihan semula kekayaan yang sistematik.",
+      "Islam mengangkat martabat wanita dan membuka ruang kepada pendidikan serta penyertaan dalam masyarakat.",
   },
   {
     id: "sej-f1-c8-q13",
@@ -7161,16 +7106,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah Jizyah dan mengapakah ia dianggap adil?",
-    options: [
-      "Cukai perang yang dikenakan kepada musuh",
-      "Cukai perlindungan bukan Islam sebagai ganti kewajipan tentera yang diwajibkan ke atas Muslim",
-      "Cukai pertanian tahunan",
-      "Cukai perdagangan untuk pedagang asing",
-    ],
-    answerIndex: 1,
+    question: "Apakah kesimpulan terbaik tentang perkembangan Tamadun Islam selepas zaman Nabi Muhammad SAW?",
+    options: ["Islam terus berkembang melalui Khulafa al-Rasyidin dan kerajaan Islam berikutnya", "Perkembangan Islam terhenti selepas kewafatan Nabi Muhammad SAW", "Kerajaan Islam berikutnya hanya berkembang di Makkah dan Madinah", "Perkembangan kerajaan Islam tidak disertai kegiatan ilmu"],
+    answerIndex: 0,
     explanation:
-      "Jizyah adalah pertukaran yang adil — bukan Islam mendapat perlindungan tanpa perlu berperang, manakala Muslim menanggung kewajipan pertahanan.",
+      "Penyebaran diteruskan oleh Khulafa al-Rasyidin, Bani Umaiyah, Bani Abbasiyah dan Turki Uthmaniyah hingga ke kawasan di Asia, Afrika dan Eropah. Perkembangan ilmu turut memperkaya tamadun.",
   },
   {
     id: "sej-f1-c8-q14",
@@ -7178,16 +7118,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah dua elemen utama dalam seni bina Islam?",
-    options: [
-      "Patung dan lukisan dinding",
-      "Corak geometri (arabes) dan kaligrafi ayat al-Quran",
-      "Kolum Yunani dan kubah Rom",
-      "Piramid dan obelisk",
-    ],
+    question: "Apakah contoh unsur hiasan yang digunakan dalam seni bina Islam?",
+    options: ["Rekod percukaian dan senarai hasil perdagangan", "Motif geometri dan kaligrafi", "Pelan ketenteraan dan sempadan wilayah", "Jadual tanaman dan sukatan hasil"],
     answerIndex: 1,
     explanation:
-      "Geometri dan kaligrafi digunakan sebagai alternatif kepada penggambaran makhluk bernyawa yang dilarang dalam Islam.",
+      "Motif geometri, kaligrafi dan ukiran merupakan antara unsur estetika seni bina Islam yang memperindah bangunan dan mewujudkan ketenangan.",
   },
   {
     id: "sej-f1-c8-q15",
@@ -7196,16 +7131,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Medium",
     question:
-      "Mengapakah Islam menggunakan corak geometri dalam seni bina, bukannya patung atau gambar manusia?",
-    options: [
-      "Kerana teknik membuat patung belum diketahui",
-      "Untuk mengelakkan unsur pemujaan (syirik) terhadap gambar atau patung",
-      "Kerana corak geometri lebih murah",
-      "Kerana pengaruh seni bina Rom",
-    ],
-    answerIndex: 1,
+      "Mengapakah seni bina masjid di China boleh mempunyai unsur yang menyerupai seni bina tradisional China?",
+    options: ["Seni bina Islam boleh menyesuaikan unsur tempatan selagi fungsi dan identitinya dikekalkan", "Semua masjid mesti menyalin satu reka bentuk tanpa perubahan", "Budaya tempatan tidak boleh mempengaruhi sebarang unsur bangunan", "Penggunaan unsur tempatan menyebabkan bangunan kehilangan semua fungsi masjid"],
+    answerIndex: 0,
     explanation:
-      "Larangan menggambarkan makhluk bernyawa dalam seni bina keagamaan adalah untuk mengelakkan penyembahan berhala yang menjadi amalan Jahiliah.",
+      "Seni bina Islam berkembang dengan menyesuaikan unsur estetika dan budaya tempatan di pelbagai wilayah.",
   },
   {
     id: "sej-f1-c8-q16",
@@ -7213,16 +7143,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah makna simbolik corak geometri dalam seni bina Islam?",
-    options: [
-      "Melambangkan kekuatan empayar Islam",
-      "Melambangkan infiniti dan keagungan Allah yang tidak terbatas",
-      "Melambangkan bilangan sahabat Nabi",
-      "Melambangkan peta wilayah Islam",
-    ],
-    answerIndex: 1,
+    question: "Mengapakah warisan seni bina Islam wajar dipelihara untuk generasi seterusnya?",
+    options: ["Binaan menggabungkan fungsi, keindahan, teknologi dan identiti masyarakat", "Nilainya hanya bergantung pada harga bahan binaan", "Bangunan lama tidak lagi mempunyai nilai pendidikan", "Pemeliharaan hanya perlu jika bangunan masih menjadi pusat pemerintahan"],
+    answerIndex: 0,
     explanation:
-      "Corak geometri yang berterusan tanpa titik permulaan atau akhir melambangkan sifat Allah yang kekal abadi dan keagungan-Nya yang tidak terbatas.",
+      "Kubah, menara, pintu melengkung dan hiasan menunjukkan gabungan fungsi, teknologi serta keindahan seni bina Islam. Pemeliharaan bangunan membolehkan generasi seterusnya menghayati warisan ini.",
   },
   {
     id: "sej-f1-c8-q17",
@@ -7230,16 +7155,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah fungsi kejuruteraan kubah dalam masjid selain estetik?",
-    options: [
-      "Sebagai tempat menyimpan kitab suci",
-      "Memantulkan suara imam agar didengari jemaah yang ramai — sistem akustik semula jadi",
-      "Melindungi jemaah daripada hujan sahaja",
-      "Sebagai menara azan",
-    ],
+    question: "Sebuah masjid di kawasan panas dan lembap mempunyai banyak tingkap. Apakah tujuan praktikal reka bentuk ini?",
+    options: ["Menjadikan ruang dalaman lebih gelap", "Membantu pengudaraan dan penyejukan ruang dalaman", "Menggantikan semua sokongan struktur bumbung", "Menentukan arah kiblat melalui bilangan tingkap"],
     answerIndex: 1,
     explanation:
-      "Kubah masjid direka dengan teliti untuk memantulkan suara — ini adalah kejuruteraan akustik yang canggih sebelum adanya teknologi pembesar suara.",
+      "Buku teks menggunakan Masjid Tengkera di Melaka sebagai contoh penyesuaian kepada iklim panas dan lembap. Tingkap yang banyak membantu pengudaraan dan penyejukan.",
   },
   {
     id: "sej-f1-c8-q18",
@@ -7247,16 +7167,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Siapakah al-Khawarizmi dan apakah sumbangannya kepada sains?",
-    options: [
-      "Ahli falsafah yang memperkenalkan demokrasi Islam",
-      "Pengasas algebra; namanya menjadi asal kata 'algorithm'",
-      "Doktor yang menulis buku perubatan pertama",
-      "Arkitek yang mereka bentuk Masjid al-Haram",
-    ],
+    question: "Apakah bidang ilmu yang dikembangkan melalui karya algebra al-Khawarizmi?",
+    options: ["Perubatan", "Matematik", "Geografi", "Astronomi"],
     answerIndex: 1,
     explanation:
-      "Al-Khawarizmi adalah matematik agung Islam yang karyanya dalam algebra merevolusikan matematik dunia dan menjadi asas kepada sains komputer moden.",
+      "Al-Khawarizmi memberikan sumbangan penting dalam algebra. Karyanya diterjemahkan dan digunakan sebagai teks pembelajaran di universiti Barat.",
   },
   {
     id: "sej-f1-c8-q19",
@@ -7264,16 +7179,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Siapakah Ibn Sina dan apakah karya agungnya?",
-    options: [
-      "Ilmuwan optik; menulis tentang cahaya dan penglihatan",
-      "Doktor Islam; 'Al-Qanun fi al-Tibb' (Canon of Medicine) digunakan di Eropah berabad-abad",
-      "Ahli matematik; mencipta algebra",
-      "Ahli astronomi; memetakan bintang-bintang",
-    ],
+    question: "Apakah sumbangan Ibn Sina melalui karya al-Qanun fi al-Tib?",
+    options: ["Menghuraikan teori cahaya dan penglihatan", "Mengembangkan pengetahuan dalam bidang perubatan", "Memperkenalkan kaedah algebra", "Menghasilkan peta laluan pelayaran"],
     answerIndex: 1,
     explanation:
-      "Ibn Sina digelar 'Bapa Perubatan Moden'. Karyanya Al-Qanun menjadi teks perubatan standard di universiti Eropah sehingga abad ke-17.",
+      "Ibn Sina ialah tokoh perubatan yang terkenal dengan al-Qanun fi al-Tib. Karyanya turut mempengaruhi perkembangan ilmu di Barat.",
   },
   {
     id: "sej-f1-c8-q20",
@@ -7281,16 +7191,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah sumbangan Ibn al-Haytham kepada sains?",
-    options: [
-      "Mencipta algebra dan trigonometri",
-      "Pengasas ilmu optik — membuktikan mata menerima cahaya, bukan memancarkannya",
-      "Menulis ensiklopedia perubatan pertama",
-      "Memetakan laluan perdagangan Islam",
-    ],
-    answerIndex: 1,
+    question: "Mengapakah penyelidikan saintifik penting dalam perkembangan Tamadun Islam?",
+    options: ["Membantu menghasilkan kemajuan dalam bidang seperti perubatan, astronomi, pertanian dan teknologi", "Menjadikan ilmu tidak perlu diuji atau dikembangkan", "Mengehadkan pembelajaran kepada penyalinan tanpa penelitian", "Memisahkan semua bidang ilmu daripada keperluan masyarakat"],
+    answerIndex: 0,
     explanation:
-      "Ibn al-Haytham merevolusikan pemahaman manusia tentang cahaya dan penglihatan melalui eksperimen saintifik — metodologi yang menjadi asas sains moden.",
+      "Penyelidikan saintifik membantu Tamadun Islam mencapai kemajuan dalam pelbagai bidang ilmu dan kehidupan.",
   },
   {
     id: "sej-f1-c8-q21",
@@ -7298,16 +7203,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah persamaan antara Piagam Madinah dan perlembagaan negara moden?",
-    options: [
-      "Kedua-duanya ditulis dalam bahasa yang sama",
-      "Kedua-duanya adalah kontrak sosial yang mengiktiraf hak pelbagai kaum dan menetapkan tanggungjawab bersama",
-      "Kedua-duanya mengharamkan kebebasan beragama",
-      "Kedua-duanya dibuat oleh badan ketenteraan",
-    ],
-    answerIndex: 1,
+    question: "Apakah yang menunjukkan sikap toleransi dalam pentadbiran Madinah?",
+    options: ["Masyarakat bukan Islam diberikan kebebasan mengamalkan agama dan adat mereka", "Hak menjalankan kegiatan ekonomi dihadkan kepada satu kaum", "Adat semua kelompok digantikan tanpa mengambil kira perbezaan", "Urusan masyarakat diselesaikan tanpa aturan bersama"],
+    answerIndex: 0,
     explanation:
-      "Piagam Madinah mendahului konsep perlembagaan moden dengan menetapkan hak, tanggungjawab, dan perlindungan untuk semua kaum tanpa mengira agama.",
+      "Pentadbiran Madinah mengiktiraf kehidupan bersama serta kebebasan masyarakat bukan Islam mengamalkan agama dan adat mereka.",
   },
   {
     id: "sej-f1-c8-q22",
@@ -7315,16 +7215,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Bagaimanakah Islam mengubah sistem ekonomi Jahiliah yang tidak adil?",
-    options: [
-      "Dengan memperkenalkan sistem riba yang lebih teratur",
-      "Mengharamkan riba, mewajibkan zakat, dan menghapuskan penipuan dalam perdagangan",
-      "Dengan mengenakan cukai tinggi kepada semua pedagang",
-      "Dengan mengharamkan semua aktiviti perdagangan",
-    ],
+    question: "Seorang pedagang mahu mengamalkan prinsip ekonomi Islam. Tindakan manakah paling sesuai?",
+    options: ["Memberikan pinjaman yang membebankan untuk menambah keuntungan", "Menggunakan timbangan yang tepat, mencari rezeki halal dan mengelakkan riba", "Menyembunyikan kecacatan barang untuk mengekalkan harga", "Mengurangkan sukatan barang tanpa pengetahuan pembeli"],
     answerIndex: 1,
     explanation:
-      "Islam merevolusikan ekonomi Arab — daripada sistem eksploitasi Jahiliah kepada sistem perdagangan beretika yang mengutamakan keadilan dan kebajikan.",
+      "Ekonomi Islam menekankan rezeki halal, amanah dan keadilan serta melarang riba, penindasan dan penipuan dalam urus niaga.",
   },
   {
     id: "sej-f1-c8-q23",
@@ -7333,15 +7228,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Medium",
     question: "Apakah peranan masjid dalam Tamadun Islam selain tempat ibadat?",
-    options: [
-      "Tempat menyimpan senjata",
-      "Pusat pendidikan, pentadbiran, musyawarah, dan pusat komuniti",
-      "Tempat pertarungan gladiator",
-      "Pusat perniagaan utama",
-    ],
+    options: ["Pusat kediaman pemerintah sahaja", "Pusat pendidikan, penyampaian maklumat dan kegiatan masyarakat", "Pusat latihan tentera tanpa kegiatan ilmu", "Pusat simpanan barang perdagangan sahaja"],
     answerIndex: 1,
     explanation:
-      "Masjid dalam tamadun Islam awal berfungsi sebagai hab kehidupan masyarakat — tempat belajar, berbincang, dan menyelesaikan masalah komuniti.",
+      "Selain ibadat, masjid digunakan untuk menyampaikan maklumat dan ilmu serta menjalankan kegiatan masyarakat. Masjid juga berkembang sebagai institusi pendidikan.",
   },
   {
     id: "sej-f1-c8-q24",
@@ -7349,16 +7239,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah kepentingan Hijrah Nabi Muhammad SAW dari Mekah ke Madinah?",
-    options: [
-      "Menandakan kekalahan Islam di Mekah",
-      "Menandakan permulaan negara Islam pertama dan menjadi titik permulaan kalendar Hijri",
-      "Menandakan akhir dakwah Islam",
-      "Menandakan bermulanya peperangan dengan empayar Rom",
-    ],
+    question: "Bagaimanakah Hijrah ke Madinah membantu perkembangan kepimpinan Nabi Muhammad SAW?",
+    options: ["Mengakhiri semua kegiatan dakwah baginda", "Membolehkan baginda membina pentadbiran dan masyarakat Islam di Madinah", "Menghapuskan keperluan hubungan dengan masyarakat luar", "Menjadikan kegiatan ekonomi tidak lagi diperlukan"],
     answerIndex: 1,
     explanation:
-      "Hijrah (622 M) adalah peristiwa penting yang membolehkan Nabi membina negara Islam pertama di Madinah dengan Piagam Madinah sebagai perlembagaannya.",
+      "Di Madinah, Nabi Muhammad SAW diterima sebagai pemimpin dan merangka Piagam Madinah bagi membentuk negara yang adil serta masyarakat yang aman.",
   },
   {
     id: "sej-f1-c8-q25",
@@ -7366,16 +7251,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Bagaimanakah Tamadun Islam mempengaruhi perkembangan ilmu pengetahuan di Eropah?",
-    options: [
-      "Melalui peperangan Salib yang membawa buku Islam ke Eropah",
-      "Melalui terjemahan karya ilmuwan Islam ke bahasa Latin semasa zaman Renaissance",
-      "Melalui penjajahan Islam ke atas Eropah",
-      "Melalui pertukaran pelajar antara universiti",
-    ],
-    answerIndex: 1,
+    question: "Mengapakah pusat ilmu di bandar seperti Cordoba dan Toledo penting kepada perkembangan ilmu dunia?",
+    options: ["Menjadi tempat pembelajaran dan pertukaran ilmu antara masyarakat", "Menghadkan pembelajaran kepada sarjana dari satu wilayah sahaja", "Mengumpulkan karya tanpa membenarkan pembelajaran", "Menolak penterjemahan dan perkembangan ilmu daripada tamadun lain"],
+    answerIndex: 0,
     explanation:
-      "Semasa Zaman Kegelapan Eropah, ilmuwan Islam memelihara dan mengembangkan ilmu Greek. Terjemahan karya mereka mencetuskan Renaissance Eropah.",
+      "Pusat intelektual Islam menarik pelajar dan sarjana serta membantu perkembangan dan penyebaran ilmu.",
   },
   {
     id: "sej-f1-c8-q26",
@@ -7383,16 +7263,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah perbezaan utama antara masyarakat Jahiliah dan masyarakat Islam awal?",
-    options: [
-      "Jahiliah lebih maju dari segi teknologi",
-      "Jahiliah: perpecahan kabilah dan penindasan; Islam: perpaduan ummah, keadilan ekonomi, dan nilai moral kukuh",
-      "Tiada perbezaan yang ketara",
-      "Islam awal lebih mengutamakan peperangan",
-    ],
+    question: "Antara berikut, yang manakah merupakan sifat baik yang turut wujud dalam masyarakat Arab sebelum kedatangan Islam?",
+    options: ["Mengutamakan kabilah walaupun berlaku ketidakadilan", "Memuliakan tetamu dan menepati janji", "Menipu timbangan untuk memperoleh keuntungan", "Memandang rendah kedudukan wanita"],
     answerIndex: 1,
     explanation:
-      "Islam membawa transformasi menyeluruh — dari sistem kabilah yang berpecah kepada ummah yang bersatu, dan dari ekonomi eksploitasi kepada ekonomi beretika.",
+      "Di samping amalan negatif, buku teks turut menyatakan sifat baik seperti memuliakan tetamu, menepati janji, membantu golongan lemah dan gigih menghadapi kesukaran.",
   },
   {
     id: "sej-f1-c8-q27",
@@ -7400,16 +7275,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah sumbangan terbesar Tamadun Islam kepada sistem pemerintahan dunia?",
-    options: [
-      "Sistem monarki mutlak",
-      "Piagam Madinah sebagai kontrak sosial pertama dan Syura sebagai asas demokrasi berasaskan perbincangan",
-      "Sistem feudal berhierarki",
-      "Sistem peperiksaan awam",
-    ],
-    answerIndex: 1,
+    question: "Bagaimanakah prinsip keterbukaan dan kesaksamaan membantu perkembangan Tamadun Islam?",
+    options: ["Membolehkan masyarakat pelbagai bangsa hidup dalam suasana lebih terbuka dan adil", "Mengehadkan peluang kerjasama kepada satu bangsa sahaja", "Menilai hak masyarakat berdasarkan keturunan semata-mata", "Memisahkan setiap kelompok daripada hubungan luar"],
+    answerIndex: 0,
     explanation:
-      "Piagam Madinah dan Syura meletakkan asas kepada konsep perlembagaan, hak rakyat, dan keputusan bersama yang menjadi tunjang sistem politik moden.",
+      "Keterbukaan, toleransi, kesaksamaan dan keadilan membantu penerimaan Islam. Hubungan diplomatik, dakwah secara bijaksana dan perdagangan turut membantu penyebarannya.",
   },
   {
     id: "sej-f1-c8-q28",
@@ -7418,16 +7288,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Medium",
     question:
-      "Mengapakah suasana yang diciptakan oleh geometri dan kaligrafi dalam masjid penting?",
-    options: [
-      "Untuk menakutkan musuh yang masuk",
-      "Untuk mewujudkan suasana tenang dan khusyuk yang diperlukan dalam tempat ibadat",
-      "Untuk menunjukkan kekayaan pemerintah Islam",
-      "Untuk bersaing dengan seni bina Yunani dan Rom",
-    ],
-    answerIndex: 1,
+      "Apakah tindakan Nabi Muhammad SAW yang membantu mengukuhkan perpaduan masyarakat Islam di Madinah?",
+    options: ["Mempersaudarakan Muhajirin dengan Ansar", "Mengutamakan persaingan antara Muhajirin dengan Ansar", "Memisahkan kegiatan ekonomi kedua-dua kelompok", "Mengehadkan bantuan kepada anggota kabilah sendiri"],
+    answerIndex: 0,
     explanation:
-      "Seni bina masjid direka untuk menenangkan jiwa dan meningkatkan tumpuan dalam ibadat — setiap elemen mempunyai fungsi spiritual dan praktikal.",
+      "Persaudaraan Muhajirin dan Ansar membantu membina masyarakat Islam yang bersatu.",
   },
   {
     id: "sej-f1-c8-q29",
@@ -7436,16 +7301,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Medium",
     question:
-      "Apakah pengajaran utama daripada sistem ekonomi Islam (Baitulmal dan Zakat) untuk dunia moden?",
-    options: [
-      "Cukai tinggi adalah cara terbaik mengurangkan kemiskinan",
-      "Sistem agihan kekayaan yang adil dan beretika dapat mewujudkan kestabilan sosial dan mengurangkan jurang antara kaya dan miskin",
-      "Perdagangan bebas tanpa peraturan adalah yang terbaik",
-      "Hanya pemerintah yang berhak menguruskan kekayaan negara",
-    ],
-    answerIndex: 1,
+      "Penggunaan sistem pengairan, pemilihan benih dan baja yang lebih baik menunjukkan sumbangan Tamadun Islam dalam",
+    options: ["penyelidikan dan peningkatan teknologi pertanian", "pengurusan peperangan dan pertahanan", "penghasilan karya seni khat", "penyusunan sistem kehakiman"],
+    answerIndex: 0,
     explanation:
-      "Model Baitulmal menunjukkan bahawa sistem ekonomi yang mengutamakan keadilan sosial boleh mengurangkan kemiskinan secara sistematik — relevan kepada kebajikan sosial moden.",
+      "Penyelidikan pertanian meningkatkan hasil dan menunjukkan penggunaan ilmu secara praktikal.",
   },
   {
     id: "sej-f1-c8-q30",
