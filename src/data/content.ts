@@ -6211,16 +6211,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Namakan lima sistem pemerintahan Athens mengikut urutan yang betul.",
-    options: [
-      "Demokrasi, Monarki, Oligarki, Aristokrasi, Tirani",
-      "Monarki, Oligarki, Aristokrasi, Tirani, Demokrasi",
-      "Aristokrasi, Tirani, Monarki, Demokrasi, Oligarki",
-      "Oligarki, Monarki, Tirani, Demokrasi, Aristokrasi",
-    ],
+    question: "Antara berikut, yang manakah menyenaraikan lima bentuk pemerintahan yang pernah diamalkan dalam polis Yunani?",
+    options: ["Monarki, oligarki, aristokrasi, republik dan empayar","Monarki, oligarki, aristokrasi, tirani dan demokrasi","Monarki, republik, feudal, tirani dan demokrasi","Aristokrasi, teokrasi, republik, empayar dan demokrasi"],
     answerIndex: 1,
     explanation:
-      "Athens melalui evolusi pemerintahan yang kompleks bermula dari Monarki hingga akhirnya mempelopori sistem Demokrasi.",
+      "Lima bentuk pemerintahan yang dibincangkan ialah monarki, oligarki, aristokrasi, tirani dan demokrasi. Demokrasi berkembang di Athens.",
   },
   {
     id: "sej-f1-c6-q5",
@@ -6229,15 +6224,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Medium",
     question: "Apakah ciri utama sistem pemerintahan 'Oligarki'?",
-    options: [
-      "Kuasa dipegang sekelompok kecil orang kaya",
-      "Pemerintahan beraja berkuasa mutlak",
-      "Semua rakyat terlibat dalam keputusan",
-      "Pemerintahan oleh golongan agama",
-    ],
+    options: ["Kuasa dipegang oleh sebahagian kecil golongan yang berkuasa", "Kuasa pemerintahan dipegang oleh seorang raja", "Warganegara yang layak terlibat secara langsung dalam keputusan", "Kuasa pemerintahan dirampas oleh seorang pemerintah"],
     answerIndex: 0,
     explanation:
-      "Oligarki bermaksud 'pemerintahan oleh segelintir'. Golongan kaya mengawal aspek politik dan ekonomi tanpa penyertaan rakyat biasa.",
+      "Oligarki ialah pemerintahan oleh sebahagian kecil golongan yang berkuasa.",
   },
   {
     id: "sej-f1-c6-q6",
@@ -6245,11 +6235,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Siapakah tokoh yang membawa kemuncak sistem demokrasi di Athens?",
-    options: ["Alexander the Great", "Socrates", "Pericles", "Aristotle"],
-    answerIndex: 2,
+    question: "Mengapakah sistem demokrasi Athens dikenali sebagai demokrasi langsung?",
+    options: ["Warganegara lelaki yang layak terlibat secara langsung dalam perbincangan dan penentuan dasar", "Semua keputusan dibuat oleh seorang raja", "Rakyat hanya memilih wakil untuk membuat semua keputusan", "Pemerintahan dikendalikan sepenuhnya oleh tentera"],
+    answerIndex: 0,
     explanation:
-      "Pericles memerintah Athens pada abad ke-5 SM dan di bawah kepimpinannya, sistem demokrasi Athens mencapai tahap kegemilangan yang paling tinggi.",
+      "Dalam demokrasi langsung Athens, warganegara lelaki yang layak terlibat dalam perbincangan dan keputusan negara-kota. Hak ini tidak diberikan kepada wanita, orang asing dan hamba.",
   },
   {
     id: "sej-f1-c6-q7",
@@ -6258,12 +6248,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Medium",
     question: "Siapakah yang TIDAK dibenarkan menjadi ahli Dewan Perhimpunan Athens?",
-    options: [
-      "Petani lelaki",
-      "Pedagang lelaki",
-      "Wanita, orang asing, dan hamba",
-      "Artisan lelaki",
-    ],
+    options: ["Petani lelaki yang memenuhi syarat kewarganegaraan", "Pedagang lelaki yang memenuhi syarat kewarganegaraan", "Wanita, orang asing dan hamba", "Artisan lelaki yang memenuhi syarat kewarganegaraan"],
     answerIndex: 2,
     explanation:
       "Walaupun Athens mempelopori demokrasi, sistem ini tidak inklusif. Wanita, orang asing (metic), dan hamba dikecualikan daripada hak politik.",
@@ -6274,11 +6259,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Berapakah bilangan ahli dalam 'Majlis (Council of 500)' Athens?",
-    options: ["100 orang", "300 orang", "500 orang", "1000 orang"],
-    answerIndex: 2,
+    question: "Apakah fungsi utama Majlis dalam sistem pemerintahan Athens?",
+    options: ["Mengendalikan urusan penting pemerintahan dan melaksanakan keputusan Dewan Perhimpunan", "Mengatasi Dewan Perhimpunan sebagai badan tertinggi", "Memutuskan kes sebagai badan kehakiman", "Memerintah sebagai raja yang mewarisi takhta"],
+    answerIndex: 0,
     explanation:
-      "Majlis terdiri daripada tepat 500 orang yang dipilih melalui undian untuk tempoh satu tahun bagi menguruskan hal ehwal harian kerajaan.",
+      "Majlis membantu mengurus hal pemerintahan dan pentadbiran serta melaksanakan keputusan Dewan Perhimpunan.",
   },
   {
     id: "sej-f1-c6-q9",
@@ -6286,16 +6271,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Apakah sistem pemerintahan unik Sparta yang berbeza daripada Athens?",
-    options: [
-      "Monarki tunggal",
-      "Diarqi — dua raja memerintah serentak",
-      "Demokrasi penuh",
-      "Oligarki tiga orang",
-    ],
-    answerIndex: 1,
+    question: "Apakah kedudukan Dewan Perhimpunan dalam sistem demokrasi Athens?",
+    options: ["Badan tertinggi dalam pemerintahan dan pentadbiran", "Badan yang melaksanakan tugas pentadbiran harian sahaja", "Badan yang memutuskan kes mahkamah sahaja", "Badan yang mengurus kegiatan perdagangan sahaja"],
+    answerIndex: 0,
     explanation:
-      "Diarqi bermaksud dua orang raja memerintah secara serentak. Sistem ini direka untuk menghalang mana-mana pihak daripada menyalahgunakan kuasa mutlak.",
+      "Dewan Perhimpunan merupakan badan tertinggi dalam sistem pemerintahan Athens. Di bawahnya terdapat Majlis, Majistret dan Juri.",
   },
   {
     id: "sej-f1-c6-q10",
@@ -6303,11 +6283,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Apakah nama kem latihan tentera di Sparta?",
-    options: ["Acropolis", "Agora", "Agoge", "Polis"],
-    answerIndex: 2,
+    question: "Apakah ciri yang paling menonjol dalam kehidupan masyarakat Sparta?",
+    options: ["Disiplin ketenteraan dan taat setia kepada negara-kota", "Penyertaan warganegara dalam demokrasi langsung seperti Athens", "Penumpuan kepada perdagangan laut tanpa latihan ketenteraan", "Penolakan latihan fizikal dalam pendidikan"],
+    answerIndex: 0,
     explanation:
-      "Agoge adalah sistem pendidikan dan latihan ketenteraan wajib di Sparta di mana kanak-kanak lelaki dilatih dari usia tujuh tahun.",
+      "Sparta menekankan latihan ketenteraan, disiplin dan taat setia kepada negara-kota dalam kehidupan masyarakatnya.",
   },
   {
     id: "sej-f1-c6-q11",
@@ -6315,11 +6295,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Pada usia berapakah kanak-kanak lelaki Sparta diambil untuk latihan Agoge?",
-    options: ["5 tahun", "7 tahun", "10 tahun", "12 tahun"],
-    answerIndex: 1,
+    question: "Apakah fungsi Majistret dalam sistem demokrasi Athens?",
+    options: ["Melaksanakan dasar dan mengurus urusan pentadbiran kerajaan", "Menjadi badan tertinggi yang menggantikan Dewan Perhimpunan", "Memutuskan kes mahkamah sebagai Juri", "Memerintah Athens melalui pewarisan takhta"],
+    answerIndex: 0,
     explanation:
-      "Kanak-kanak lelaki Sparta diambil dari keluarga pada usia tujuh tahun untuk menjalani latihan ketenteraan yang keras di Agoge.",
+      "Majistret berfungsi seperti kakitangan kerajaan yang melaksanakan dasar dan mengurus perkara seperti pendidikan serta percukaian.",
   },
   {
     id: "sej-f1-c6-q12",
@@ -6327,16 +6307,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Mengapakah wanita di Sparta turut diberikan latihan fizikal?",
-    options: [
-      "Untuk bertarung dalam peperangan",
-      "Supaya dapat melahirkan anak yang kuat untuk menjadi tentera",
-      "Untuk menguruskan Agoge",
-      "Untuk menyertai Dewan Perhimpunan",
-    ],
-    answerIndex: 1,
+    question: "Mengapakah kawasan berhampiran Sungai Tiber sesuai untuk perkembangan Tamadun Rom?",
+    options: ["Tanahnya subur, mempunyai sumber air dan menyediakan laluan ke laut", "Kawasannya tidak memerlukan pengurusan air untuk pertanian", "Sungainya memutuskan hubungan dengan kawasan pantai", "Tanahnya hanya sesuai untuk pertahanan tanpa kegiatan ekonomi"],
+    answerIndex: 0,
     explanation:
-      "Sparta percaya bahawa ibu yang sihat dan kuat akan melahirkan anak lelaki yang sihat untuk menjadi tentera yang hebat.",
+      "Lembah Latium yang subur menyokong pertanian, manakala Sungai Tiber membekalkan air dan menjadi laluan perhubungan.",
   },
   {
     id: "sej-f1-c6-q13",
@@ -6344,16 +6319,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Apakah bahan utama yang menjadikan konkrit bangunan Rom sangat kukuh?",
-    options: [
-      "Granit dan pasir",
-      "Pozzolana — campuran kapur dan abu gunung berapi",
-      "Batu kapur dan tanah liat",
-      "Besi dan batu bata",
-    ],
-    answerIndex: 1,
+    question: "Bagaimanakah orang Rom menghasilkan seni bina yang mempunyai identiti tersendiri?",
+    options: ["Menggabungkan teknik Yunani dengan inovasi dan bahan binaan baharu", "Menyalin setiap reka bentuk Yunani tanpa menyesuaikannya", "Mengekalkan bahan binaan yang sama tanpa pembaharuan", "Mengutamakan saiz bangunan tanpa mempertimbangkan kegunaannya"],
+    answerIndex: 0,
     explanation:
-      "Pozzolana adalah campuran unik kapur dengan abu gunung berapi yang menghasilkan konkrit yang jauh lebih kuat, tahan lama, dan kalis air berbanding bahan lain.",
+      "Seni bina Rom menggabungkan warisan teknik Yunani dengan inovasi Rom, termasuk penggunaan simen dan reka bentuk kreatif.",
   },
   {
     id: "sej-f1-c6-q14",
@@ -6361,16 +6331,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Apakah dua inovasi struktur utama dalam seni bina Tamadun Rom?",
-    options: [
-      "Piramid dan Obelisk",
-      "Arca (Arch) dan Kubah (Dome)",
-      "Kolum dan Pelantar",
-      "Tembok dan Parit",
-    ],
+    question: "Apakah dua unsur struktur yang penting dalam seni bina Rom?",
+    options: ["Piramid dan obelisk", "Lengkung dan kubah", "Parit dan pagar kayu", "Pelantar dan tangga"],
     answerIndex: 1,
     explanation:
-      "Arca dan Kubah membolehkan bangunan yang sangat besar dibina tanpa memerlukan banyak tiang sokongan, merevolusikan seni bina dunia.",
+      "Lengkung dan kubah merupakan unsur penting yang digunakan dalam pembinaan Rom untuk menghasilkan bukaan serta ruang dalaman yang luas.",
   },
   {
     id: "sej-f1-c6-q15",
@@ -6378,11 +6343,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Berapakah kapasiti penonton Colosseum di Rom?",
-    options: ["20,000 penonton", "30,000 penonton", "50,000 penonton", "100,000 penonton"],
-    answerIndex: 2,
+    question: "Colosseum ialah amfiteater besar dengan tempat duduk mengelilingi arena. Susun atur ini paling sesuai untuk kegiatan apakah?",
+    options: ["Persembahan dan pertandingan seperti gladiator yang ditonton orang ramai", "Pengaliran air dari kawasan tinggi ke bandar", "Penyimpanan bekalan tentera di sepanjang sempadan", "Pengangkutan barang antara wilayah"],
+    answerIndex: 0,
     explanation:
-      "Colosseum yang berbentuk elips mampu memuatkan sehingga 50,000 penonton dalam satu-satu masa untuk menyaksikan pertarungan gladiator.",
+      "Colosseum ialah amfiteater yang menyediakan arena dan tempat duduk untuk ramai penonton menyaksikan persembahan serta pertandingan.",
   },
   {
     id: "sej-f1-c6-q16",
@@ -6390,16 +6355,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Apakah keistimewaan kubah bangunan Pantheon?",
-    options: [
-      "Terbuat daripada emas tulen",
-      "Kubah konkrit terbesar tanpa tulang sokongan dalaman",
-      "Kubah kaca pertama di dunia",
-      "Kubah terapung di atas air",
-    ],
-    answerIndex: 1,
+    question: "Apakah fungsi asal Pantheon dalam Tamadun Rom?",
+    options: ["Tempat penyembahan dewa-dewi masyarakat Rom", "Tempat pertandingan gladiator", "Pusat latihan tentera sempadan", "Tempat mandi awam penduduk"],
+    answerIndex: 0,
     explanation:
-      "Kubah Pantheon adalah pencapaian kejuruteraan luar biasa — kubah konkrit terbesar di dunia yang dibina tanpa sebarang tulang sokongan dalaman.",
+      "Pantheon merupakan binaan berkubah yang digunakan sebagai tempat penyembahan dewa-dewi masyarakat Rom.",
   },
   {
     id: "sej-f1-c6-q17",
@@ -6416,7 +6376,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Oculus adalah lubang bulat bergaris pusat 8.8 meter di puncak kubah Pantheon yang membenarkan cahaya matahari masuk menerangi bahagian dalam.",
+      "Oculus ialah bukaan bulat di puncak kubah Pantheon yang membolehkan cahaya semula jadi menerangi ruang dalaman.",
   },
   {
     id: "sej-f1-c6-q18",
@@ -6424,11 +6384,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Apakah prinsip fizik yang digunakan oleh Akueduk Rom untuk mengalirkan air?",
-    options: ["Tekanan wap", "Pam elektrik", "Tarikan graviti", "Tenaga angin"],
-    answerIndex: 2,
+    question: "Sebuah bandar Rom memerlukan bekalan air dari sumber yang jauh. Binaan manakah digunakan untuk menyelesaikan masalah tersebut?",
+    options: ["Akueduk", "Colosseum", "Amfiteater", "Tembok pertahanan"],
+    answerIndex: 0,
     explanation:
-      "Akueduk Rom direka bentuk dengan kecerunan yang tepat untuk menggunakan tarikan graviti semula jadi bagi mengalirkan air dari kawasan tinggi ke bandar.",
+      "Akueduk digunakan untuk membawa dan membekalkan air ke kawasan bandar.",
   },
   {
     id: "sej-f1-c6-q19",
@@ -6436,11 +6396,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Berapakah panjang Tembok Hadrian yang dibina di wilayah Britain?",
-    options: ["50 km", "80 km", "100 km", "117 km"],
-    answerIndex: 3,
+    question: "Sebuah wilayah Rom menghadapi ancaman serangan dari luar sempadannya. Apakah tujuan utama pembinaan tembok pertahanan di kawasan tersebut?",
+    options: ["Melindungi wilayah daripada ancaman musuh", "Menyediakan arena pertandingan untuk penduduk", "Mengalirkan air ke pusat bandar", "Mewujudkan ruang pertemuan pedagang"],
+    answerIndex: 0,
     explanation:
-      "Tembok Hadrian sepanjang 117 km dibina merentasi utara Britain sebagai benteng untuk mengawal sempadan wilayah Rom daripada serangan.",
+      "Tembok pertahanan dibina bagi melindungi kawasan dan sempadan daripada serangan.",
   },
   {
     id: "sej-f1-c6-q20",
@@ -6465,16 +6425,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Siapakah Gladiator dalam masyarakat Rom?",
-    options: [
-      "Pahlawan bebas pilihan sendiri",
-      "Hamba atau tawanan perang yang dipaksa bertarung untuk hiburan awam",
-      "Askar Rom yang berpangkat tinggi",
-      "Atlet sukan Olimpik",
-    ],
-    answerIndex: 1,
+    question: "Apakah faktor yang membantu perkembangan pesat seni bina Rom?",
+    options: ["Kepakaran, teknologi, pendidikan, kewangan dan sokongan pemerintah", "Sokongan pemerintah sahaja tanpa tenaga mahir", "Sumber kewangan sahaja tanpa perancangan pembinaan", "Bahan binaan sahaja tanpa pengetahuan teknologi"],
+    answerIndex: 0,
     explanation:
-      "Gladiator biasanya terdiri daripada hamba, tawanan perang, atau penjenayah yang dipaksa bertarung — kadang-kadang hingga mati — untuk hiburan orang ramai.",
+      "Kemajuan seni bina Rom didorong oleh kepakaran, pendidikan, dasar kerajaan, kewangan, teknologi, sumber alam dan buruh.",
   },
   {
     id: "sej-f1-c6-q22",
@@ -6482,16 +6437,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Apakah perbezaan utama antara demokrasi Athens dan demokrasi moden?",
-    options: [
-      "Athens menggunakan undi rahsia; moden tidak",
-      "Athens adalah demokrasi langsung; moden adalah demokrasi perwakilan",
-      "Athens melibatkan wanita; moden tidak",
-      "Athens dipimpin raja; moden dipimpin presiden",
-    ],
+    question: "Apakah perbezaan utama antara demokrasi langsung Athens dengan demokrasi perwakilan yang diamalkan di banyak negara moden?",
+    options: ["Athens tidak melibatkan pengundian, manakala demokrasi perwakilan melibatkan pengundian", "Warganegara Athens yang layak membuat keputusan secara langsung, manakala rakyat dalam demokrasi perwakilan memilih wakil", "Athens memberikan hak politik kepada semua penduduk, manakala demokrasi perwakilan hanya kepada raja", "Athens diperintah oleh tentera, manakala demokrasi perwakilan tidak mempunyai institusi pentadbiran"],
     answerIndex: 1,
     explanation:
-      "Demokrasi Athens adalah 'direct democracy' di mana setiap warganegara layak mengundi terus, berbeza dengan sistem moden di mana rakyat memilih wakil.",
+      "Demokrasi langsung Athens melibatkan warganegara yang layak dalam keputusan negara-kota. Dalam demokrasi perwakilan, rakyat memilih wakil untuk menjalankan urusan pemerintahan.",
   },
   {
     id: "sej-f1-c6-q23",
@@ -6500,16 +6450,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Medium",
     question:
-      "Mengapakah bilangan juri dalam sistem kehakiman Athens sangat banyak (201-501 orang)?",
-    options: [
-      "Kerana tiada hakim yang berkelayakan",
-      "Untuk mengelakkan rasuah dan pengaruh luar dalam penghakiman",
-      "Kerana kes mahkamah sangat kompleks",
-      "Untuk mempercepatkan proses perbicaraan",
-    ],
-    answerIndex: 1,
+      "Apakah fungsi utama Juri dalam sistem pemerintahan Athens?",
+    options: ["Mengendalikan perkara berkaitan keadilan dan memutuskan kes", "Mengurus pendidikan dan percukaian sebagai pegawai pentadbiran", "Melaksanakan keputusan Dewan Perhimpunan sebagai Majlis", "Menjadi badan tertinggi dalam pemerintahan Athens"],
+    answerIndex: 0,
     explanation:
-      "Bilangan juri yang besar memastikan tidak ada seorang pun boleh mempengaruhi atau merasuah semua juri, menjamin keadilan yang lebih objektif.",
+      "Juri bertanggungjawab dalam hal kehakiman dan menjadi pemutus sesuatu kes.",
   },
   {
     id: "sej-f1-c6-q24",
@@ -6538,7 +6483,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Jaringan jalan raya yang luas (lebih 80,000 km) adalah nadi empayar Rom, memudahkan kawalan tentera dan integrasi ekonomi seluruh wilayah.",
+      "Jalan raya menghubungkan wilayah Rom, memudahkan pergerakan tentera dan perdagangan serta membantu pentadbiran empayar.",
   },
   {
     id: "sej-f1-c6-q26",
@@ -6563,16 +6508,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Bagaimanakah inovasi Arca (Arch) membantu seni bina Rom?",
-    options: [
-      "Mengurangkan kos binaan",
-      "Membolehkan bangunan besar dibina tanpa banyak tiang sokongan di bahagian tengah",
-      "Memperindah rupa bangunan sahaja",
-      "Membolehkan bangunan dibina lebih cepat",
-    ],
+    question: "Bagaimanakah penggunaan lengkung membantu seni bina Rom?",
+    options: ["Menghapuskan keperluan asas bangunan yang kukuh", "Mengagihkan beban ke penyokong di sisi supaya bukaan dapat dibina tanpa tiang di tengah", "Menjadikan semua bahan binaan lebih ringan tanpa perubahan reka bentuk", "Menggantikan fungsi kubah sebagai bumbung bagi setiap bangunan"],
     answerIndex: 1,
     explanation:
-      "Arca mengagihkan berat struktur ke tepi, membolehkan bukaan yang lebar tanpa tiang di tengah, merevolusikan reka bentuk jambatan, gerbang, dan bangunan.",
+      "Lengkung mengagihkan beban kepada penyokong di kedua-dua sisi. Ini membolehkan bukaan dibina tanpa tiang di tengah dan digunakan pada jambatan serta bangunan.",
   },
   {
     id: "sej-f1-c6-q28",
@@ -6589,7 +6529,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Athens mengajar kita bahawa rakyat yang aktif terlibat dalam pemerintahan akan menghasilkan keputusan yang lebih adil dan mencerminkan kehendak masyarakat.",
+      "Perkembangan demokrasi Athens menunjukkan kepentingan penglibatan warganegara dalam perbincangan dan keputusan pemerintahan. Pelaksanaannya pada masa itu tetap mempunyai batasan hak penyertaan.",
   },
   {
     id: "sej-f1-c6-q29",
@@ -6614,16 +6554,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Mengapakah kita perlu mempelajari Tamadun Yunani dan Rom?",
-    options: [
-      "Untuk meniru sistem hamba mereka",
-      "Kerana ia menghiburkan semata-mata",
-      "Kerana asas demokrasi, undang-undang, seni bina, dan falsafah dunia moden berasal dari kedua-dua tamadun ini",
-      "Kerana ia adalah tamadun terkaya dalam sejarah",
-    ],
-    answerIndex: 2,
+    question: "Apakah kesimpulan terbaik tentang sumbangan Tamadun Yunani dan Rom kepada dunia hari ini?",
+    options: ["Idea demokrasi Yunani dan pencapaian seni bina Rom terus mempengaruhi masyarakat moden", "Semua amalan Yunani dan Rom diterima tanpa perubahan pada masa kini", "Warisan Yunani terbatas kepada ketenteraan dan warisan Rom kepada pertanian", "Kemajuan moden berkembang tanpa hubungan dengan idea dan teknologi terdahulu"],
+    answerIndex: 0,
     explanation:
-      "Yunani dan Rom meletakkan asas kepada hampir semua aspek kehidupan moden kita — daripada cara kita memerintah, membuat undang-undang, membina bangunan, hingga cara kita berfikir.",
+      "Demokrasi Yunani dan seni bina serta kejuruteraan Rom menjadi antara warisan penting kepada tamadun seterusnya.",
   },
   // Sejarah Form 1 Chapter 7 - Peningkatan Tamadun India Dan China
 
