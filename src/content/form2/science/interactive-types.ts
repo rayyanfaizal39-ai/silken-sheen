@@ -1784,6 +1784,15 @@ export type ScienceInteractiveSection = {
   flipCards?: FlipCardItem[];
   accordions?: ScienceInteractiveCard[];
   tabs?: ScienceInteractiveCard[];
+  /**
+   * Optional heading + short intro rendered directly above `tabs`, for a
+   * subsection that needs a real visible title of its own without becoming a
+   * separate top-level section — e.g. "Organic Solvents" leading the tab row
+   * of individual solvents, inside a section still titled after the broader
+   * topic. Omit to render `tabs` bare, as chapters that already led into
+   * their tabs with a `cards` block or plain `intro` continue to do.
+   */
+  tabsHeading?: { title: string; instruction?: string };
   phSlider?: PhSliderBlock;
   calculators?: CalculatorBlock[];
   buoyancy?: BuoyancyBlock;

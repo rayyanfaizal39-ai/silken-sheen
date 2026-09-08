@@ -224,6 +224,7 @@ export function AnnotatedImage({
   const isClean = annotationMode === "clean";
   const isRegions = annotationMode === "regions";
   const isSpotlight = annotationMode === "spotlight";
+  const isMarkers = annotationMode === "markers";
   const wantsLabels = annotationMode === "labels" || annotationMode === "hybrid";
 
   // Direct labels stay on the artwork only while there is room for them. Past
@@ -455,6 +456,71 @@ export function AnnotatedImage({
             );
           })}
 
+        {/* Always-visible compact number badges, one per point, plus — for the
+            active point only — a floating full-name chip and a glow traced
+            around its hit area. Nothing else on the artwork ever carries
+            text, so there is no width past which points start colliding. */}
+        {isMarkers &&
+          placed.map((item, index) => {
+            const isActive = active === item.id;
+            const width = item.w ?? 24;
+            const height = item.h ?? 24;
+            const translateX = item.x < 15 ? "0%" : item.x > 85 ? "-100%" : "-50%";
+            return (
+              <span key={item.id}>
+                {isActive && (
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute rounded-xl border-2 border-primary shadow-[0_0_18px_2px_rgba(99,102,241,0.4)] transition-all"
+                    style={{
+                      left: `${Math.max(0, item.x - width / 2)}%`,
+                      top: `${Math.max(0, item.y - height / 2)}%`,
+                      width: `${width}%`,
+                      height: `${height}%`,
+                    }}
+                  />
+                )}
+                <button
+                  type="button"
+                  aria-pressed={isActive}
+                  aria-label={item.label}
+                  aria-describedby={`${baseId}-explanation`}
+                  onClick={() => setActive(isActive ? null : item.id)}
+                  onMouseEnter={() => setActive(item.id)}
+                  onFocus={() => setActive(item.id)}
+                  className={`absolute z-10 flex h-6 w-6 items-center justify-center rounded-full border text-[10.5px] font-bold tabular-nums shadow-[0_1px_6px_rgba(0,0,0,0.5)] transition-all before:absolute before:-inset-2 before:content-[''] sm:h-7 sm:w-7 sm:text-[11.5px] ${
+                    isActive
+                      ? "scale-110 border-primary bg-primary text-primary-foreground ring-2 ring-primary/45 ring-offset-1 ring-offset-slate-950"
+                      : active
+                        ? "border-primary/35 bg-slate-950/85 text-white opacity-70 hover:opacity-100"
+                        : "border-primary/50 bg-slate-950/85 text-white hover:border-primary"
+                  }`}
+                  style={{
+                    left: `${item.x}%`,
+                    top: `${item.y}%`,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  {index + 1}
+                </button>
+                {isActive && (
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute z-20 flex items-center gap-1 whitespace-nowrap rounded-full border border-primary bg-primary px-2 py-0.5 text-[10.5px] font-bold leading-tight text-primary-foreground shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:px-2.5 sm:py-1 sm:text-[11.5px]"
+                    style={{
+                      left: `${item.x}%`,
+                      top: `${item.y}%`,
+                      transform: `translate(${translateX}, calc(-50% - 20px))`,
+                    }}
+                  >
+                    <span className="tabular-nums">{index + 1}</span>
+                    <span>{item.label}</span>
+                  </div>
+                )}
+              </span>
+            );
+          })}
+
         {/* Direct labels and the small-screen pin fallback. */}
         {placed.map((item, index) => {
           const isActive = active === item.id;
@@ -502,7 +568,16 @@ export function AnnotatedImage({
                   onClick={() => setActive(isActive ? null : item.id)}
                   onMouseEnter={() => setActive(item.id)}
                   onFocus={() => setActive(item.id)}
-                  className={`${CHIP_BASE} ${isActive ? CHIP_ACTIVE : CHIP_IDLE} ${richVisibility}`}
+                  className={`${CHIP_BASE} ${richVisibility} ${
+                    isActive
+                      ? CHIP_ACTIVE
+                      : // Any selection at all dims the other chips slightly, so the
+                        // active one reads as unmistakably chosen rather than just
+                        // one of an equal row of labels.
+                        active
+                        ? `${CHIP_IDLE} opacity-55`
+                        : CHIP_IDLE
+                  }`}
                   style={style}
                 >
                   {item.label}

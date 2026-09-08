@@ -35,7 +35,18 @@ export type AnnotationMode =
    * border weight cannot tell those states apart; full-image dimming with a
    * glowing cutout can. See `ImageAnnotation`'s `spotlight*` fields.
    */
-  | "spotlight";
+  | "spotlight"
+  /**
+   * A compact numbered badge for every point, always visible at every width —
+   * for wide multi-stage artwork where full-text `labels` would rather
+   * collide than fit (six stages across one strip has no room for six full
+   * names at once). Only the *active* point also gets a full "N Label" chip,
+   * floating just above it, plus a glowing outline traced around its hit
+   * area; every other badge just dims a little. So there is never more than
+   * one full name drawn on the picture at a time, no matter how many points
+   * it carries.
+   */
+  | "markers";
 
 /** Share of the frame width taken by ONE callout gutter. */
 export const CALLOUT_GUTTER = 23;

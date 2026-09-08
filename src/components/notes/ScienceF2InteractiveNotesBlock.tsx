@@ -518,24 +518,38 @@ export function ScienceF2InteractiveNotesBlock({
           </Accordion>
         )}
         {section.tabs && (
-          <Tabs defaultValue="tab-0">
-            <TabsList className="h-auto max-w-full flex-wrap justify-start">
+          <div>
+            {section.tabsHeading && (
+              <>
+                <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                  {section.tabsHeading.title}
+                </h3>
+                {section.tabsHeading.instruction && (
+                  <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                    {section.tabsHeading.instruction}
+                  </p>
+                )}
+              </>
+            )}
+            <Tabs defaultValue="tab-0">
+              <TabsList className="h-auto max-w-full flex-wrap justify-start">
+                {section.tabs.map((tab, i) => (
+                  <TabsTrigger key={tab.title} value={`tab-${i}`}>
+                    {tab.title}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
               {section.tabs.map((tab, i) => (
-                <TabsTrigger key={tab.title} value={`tab-${i}`}>
-                  {tab.title}
-                </TabsTrigger>
+                <TabsContent
+                  key={tab.title}
+                  value={`tab-${i}`}
+                  className="text-[13.5px] leading-relaxed text-muted-foreground"
+                >
+                  <ScienceEmphasis text={tab.body} />
+                </TabsContent>
               ))}
-            </TabsList>
-            {section.tabs.map((tab, i) => (
-              <TabsContent
-                key={tab.title}
-                value={`tab-${i}`}
-                className="text-[13.5px] leading-relaxed text-muted-foreground"
-              >
-                <ScienceEmphasis text={tab.body} />
-              </TabsContent>
-            ))}
-          </Tabs>
+            </Tabs>
+          </div>
         )}
         {section.phSlider && (
           <div>
