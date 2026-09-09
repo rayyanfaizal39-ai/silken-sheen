@@ -1,6 +1,6 @@
 import type { AnnotationMode } from "@/components/notes/blocks/annotation-layout";
 import type { LearningImageSize } from "@/components/notes/blocks/learning-image";
-import type { ImageAnnotation } from "@/components/notes/blocks/AnnotatedImage";
+import type { ImageAnnotation, OverlayHeading } from "@/components/notes/blocks/AnnotatedImage";
 import type {
   SpotlightShape,
   SpotlightPulseGroup,
@@ -385,6 +385,12 @@ export type AnnotatedImageBlock = {
    * the diagram in one pass; `numbers` is a last resort for very dense artwork.
    */
   annotationMode?: AnnotationMode;
+  /** `spotlight` mode only — see `AnnotatedImageProps.spotlightDimOpacity`. */
+  spotlightDimOpacity?: number;
+  /** `spotlight` mode only — see `AnnotatedImageProps.spotlightCaptionEdge`. */
+  spotlightCaptionEdge?: "auto" | "top";
+  /** See `AnnotatedImageProps.overlayHeadings`. */
+  overlayHeadings?: OverlayHeading[];
   /** Key pinned inside the artwork, e.g. what each arrow colour represents. */
   imageKey?: { color: string; label: string }[];
   annotations: ImageAnnotation[];
@@ -404,6 +410,10 @@ export type DiagramImage = {
   legendLabel?: string;
   /** How the annotations are presented. Defaults to callouts. */
   annotationMode?: AnnotationMode;
+  /** `spotlight` mode only — see `AnnotatedImageProps.spotlightDimOpacity`. */
+  spotlightDimOpacity?: number;
+  /** See `AnnotatedImageProps.overlayHeadings`. */
+  overlayHeadings?: OverlayHeading[];
   /** Key pinned inside the artwork, e.g. what each arrow colour represents. */
   imageKey?: { color: string; label: string }[];
   /**

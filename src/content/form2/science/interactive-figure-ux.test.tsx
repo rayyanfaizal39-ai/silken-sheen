@@ -180,7 +180,17 @@ describe("duplicate visual cleanup", () => {
     },
   );
 
-  it.each(REPLACED)(
+  // "why water matters" and "acid-alkali titration" are excluded here: their
+  // replacement artwork is text-free (unlike the other four, which carry
+  // baked-in English labels), so each now ships to BM too instead of falling
+  // back to the drawn schematic — see the "why water matters — visual
+  // replacement" and "acid-alkali titration — visual replacement" describe
+  // blocks below.
+  it.each(
+    REPLACED.filter(
+      (r) => r.concept !== "why water matters" && r.concept !== "acid-alkali titration",
+    ),
+  )(
     "$concept keeps its schematic on the BM surface, which has no approved artwork",
     ({ bm, block, schematicMarker }) => {
       const content = bm();
@@ -414,7 +424,7 @@ describe("why water matters — visual replacement", () => {
     expect(block.image, "approved artwork attached").toBeDefined();
     const src = block.image!.src.split("?")[0];
     expect(src.endsWith(".webp"), src).toBe(true);
-    expect(src).toContain("why-water-matters-acids-alkalis");
+    expect(src).toContain("science-f2-ch6-role-of-water");
     const index = src.indexOf("src/assets/");
     expect(existsSync(resolve(process.cwd(), src.slice(index))), src).toBe(true);
   });
@@ -467,7 +477,7 @@ describe("why water matters — visual replacement", () => {
     }
   });
 
-  it("renders the artwork on DLP and the schematic on BM, never both", () => {
+  it("renders the shared artwork on BOTH DLP and BM, never the old schematic", () => {
     const dlp = renderToStaticMarkup(
       createElement(ScienceF2InteractiveNotesBlock, {
         content: { ...scienceF2C6InteractiveDLP, sections: [section] },
@@ -476,18 +486,88 @@ describe("why water matters — visual replacement", () => {
     );
     expect(dlp).toContain(block.image!.src.split("?")[0]);
     expect(dlp, "old four-panel SVG must be gone").not.toContain('viewBox="0 0 92 66"');
-    expect(occurrences(dlp, "why-water-matters-acids-alkalis")).toBe(1);
+    expect(occurrences(dlp, "science-f2-ch6-role-of-water")).toBe(1);
 
     const bmSection = scienceF2C6InteractiveBM.sections.find((s) => s.dryVsAqueous)!;
-    expect(bmSection.dryVsAqueous!.image, "BM must not carry the English artwork").toBeUndefined();
+    expect(bmSection.dryVsAqueous!.image, "BM now shares the same text-free artwork").toBeDefined();
+    expect(bmSection.dryVsAqueous!.image!.src).toBe(block.image!.src);
     const bm = renderToStaticMarkup(
       createElement(ScienceF2InteractiveNotesBlock, {
         content: { ...scienceF2C6InteractiveBM, sections: [bmSection] },
         lang: "bm" as const,
       }),
     );
-    expect(bm).toContain('viewBox="0 0 92 66"');
-    expect(bm).not.toContain("why-water-matters");
+    expect(bm, "old four-panel SVG must be gone").not.toContain('viewBox="0 0 92 66"');
+    expect(occurrences(bm, "science-f2-ch6-role-of-water")).toBe(1);
+  });
+});
+
+describe("acid-alkali titration — visual replacement", () => {
+  const section = scienceF2C6InteractiveDLP.sections.find((s) => s.titrationSchematic)!;
+  const block = section.titrationSchematic!;
+
+  it("ships the approved text-free WebP, with no runtime PNG reference", () => {
+    expect(block.image, "approved artwork attached").toBeDefined();
+    const src = block.image!.src.split("?")[0];
+    expect(src.endsWith(".webp"), src).toBe(true);
+    expect(src).toContain("science-f2-ch6-titration");
+    const index = src.indexOf("src/assets/");
+    expect(existsSync(resolve(process.cwd(), src.slice(index))), src).toBe(true);
+  });
+
+  it("keeps the same six controls, each with a region on the artwork", () => {
+    const ids = block.labels.map((l) => l.id);
+    const extraIds = (block.image!.extra ?? []).map((e) => e.id);
+    expect([...ids, ...extraIds].sort()).toEqual(
+      ["acid", "burette", "endpoint", "flask", "indicator", "stopcock"].sort(),
+    );
+    for (const id of [...ids, ...extraIds]) {
+      expect(block.image!.points.map((p) => p.id).concat(extraIds), id).toContain(id);
+    }
+  });
+
+  it("BM now shares the same artwork and hotspot geometry as DLP", () => {
+    const bmSection = scienceF2C6InteractiveBM.sections.find((s) => s.titrationSchematic)!;
+    const bmBlock = bmSection.titrationSchematic!;
+    expect(bmBlock.image, "BM now carries the shared text-free artwork").toBeDefined();
+    expect(bmBlock.image!.src).toBe(block.image!.src);
+    expect(bmBlock.image!.points).toEqual(block.image!.points);
+    expect(bmBlock.image!.extra?.[0]?.x).toBe(block.image!.extra?.[0]?.x);
+    expect(bmBlock.image!.extra?.[0]?.y).toBe(block.image!.extra?.[0]?.y);
+  });
+
+  it("BM's stopcock-equivalent control uses the same term everywhere: button, hotspot, and helper text", () => {
+    const bmSection = scienceF2C6InteractiveBM.sections.find((s) => s.titrationSchematic)!;
+    const bmBlock = bmSection.titrationSchematic!;
+    const stopcockExtra = bmBlock.image!.extra!.find((e) => e.id === "stopcock")!;
+    expect(stopcockExtra.label).toBe("Injap");
+    expect(bmBlock.hint).toContain("Injap");
+  });
+
+  it("renders the shared artwork on BOTH DLP and BM, never the old drawn schematic", () => {
+    const dlp = renderToStaticMarkup(
+      createElement(ScienceF2InteractiveNotesBlock, {
+        content: { ...scienceF2C6InteractiveDLP, sections: [section] },
+        lang: "en" as const,
+      }),
+    );
+    expect(dlp).toContain(block.image!.src.split("?")[0]);
+    expect(dlp, "old schematic SVG must be gone").not.toContain('viewBox="0 0 240 200"');
+    expect(occurrences(dlp, "science-f2-ch6-titration")).toBe(1);
+    // Every control has a real region on the artwork, plus its own concept button.
+    expect(dlp).toContain(">Stopcock<");
+
+    const bmSection = scienceF2C6InteractiveBM.sections.find((s) => s.titrationSchematic)!;
+    const bm = renderToStaticMarkup(
+      createElement(ScienceF2InteractiveNotesBlock, {
+        content: { ...scienceF2C6InteractiveBM, sections: [bmSection] },
+        lang: "bm" as const,
+      }),
+    );
+    expect(bm, "old schematic SVG must be gone").not.toContain('viewBox="0 0 240 200"');
+    expect(occurrences(bm, "science-f2-ch6-titration")).toBe(1);
+    expect(bm).toContain(">Injap<");
+    expect(bm, "no English leakage in BM").not.toMatch(/>Stopcock<|>Burette<|>Conical flask</);
   });
 });
 
