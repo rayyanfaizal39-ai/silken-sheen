@@ -586,7 +586,7 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
         image: {
           src: titrationImg,
           alt: "Satu pentitratan asid-alkali: asid dalam buret dititiskan sedikit demi sedikit ke dalam kelalang kon berisi alkali dan fenolftalein, yang bertukar daripada merah jambu kepada tidak berwarna pada takat akhir.",
-          size: "wide",
+          size: "diagram",
           aspect: "3 / 2",
           annotationMode: "regions",
           legendLabel: "Radas pentitratan dan takat akhir",

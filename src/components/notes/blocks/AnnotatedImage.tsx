@@ -6,6 +6,7 @@ import { LearningImageLightbox } from "./LearningImageLightbox";
 import {
   defaultLearningImageSize,
   learningImageMaxWidth,
+  learningImageMinWidth,
   parseAspectRatio,
   type LearningImageSize,
 } from "./learning-image";
@@ -419,6 +420,7 @@ export function AnnotatedImage({
   );
   const resolvedSize = size ?? defaultLearningImageSize(aspect);
   const artMaxWidth = learningImageMaxWidth(resolvedSize, aspect);
+  const artMinWidth = learningImageMinWidth(resolvedSize);
   // In callout mode the gutters sit outside the picture, so the frame is wider
   // than the artwork while the artwork itself keeps its intended size.
   const frameMaxWidth = isCallout ? calloutFrameMaxWidth(artMaxWidth) : artMaxWidth;
@@ -430,22 +432,29 @@ export function AnnotatedImage({
 
   if (!url) return null;
 
-  return (
-    <figure className={`m-0 flex flex-col gap-2 ${className ?? ""}`}>
-      <div
-        className={`relative mx-auto w-full overflow-hidden rounded-2xl border border-border bg-secondary/30 ${
-          isCallout ? "callout-frame" : ""
-        }`}
-        style={
-          isCallout
-            ? ({
-                aspectRatio: aspect,
-                maxWidth: artMaxWidth,
-                "--callout-frame-aspect": frameAspect,
-                "--callout-frame-max-width": frameMaxWidth,
-              } as React.CSSProperties)
-            : { aspectRatio: aspect, maxWidth: artMaxWidth }
-        }
+  // A `minWidth` variant is a readability floor, not just a cap: on a
+  // viewport narrower than that floor the frame must keep its width and let
+  // this wrapper scroll sideways, rather than the artwork (and the text
+  // baked into it) shrinking further to avoid overflow.
+  const frame = (
+    <div
+      className={`relative mx-auto w-full overflow-hidden rounded-2xl border border-border bg-secondary/30 ${
+        isCallout ? "callout-frame" : ""
+      }`}
+      style={
+        isCallout
+          ? ({
+              aspectRatio: aspect,
+              maxWidth: artMaxWidth,
+              "--callout-frame-aspect": frameAspect,
+              "--callout-frame-max-width": frameMaxWidth,
+            } as React.CSSProperties)
+          : {
+              aspectRatio: aspect,
+              maxWidth: artMaxWidth,
+              ...(artMinWidth ? { minWidth: `${artMinWidth}px` } : {}),
+            }
+      }
       >
         <img
           src={url}
@@ -727,6 +736,14 @@ export function AnnotatedImage({
           <span className="hidden sm:inline">{enlargeLabel}</span>
         </button>
       </div>
+  );
+
+  return (
+    <figure className={`m-0 flex flex-col gap-2 ${className ?? ""}`}>
+      {/* The floor-width variants overflow their column by design; scope the
+          horizontal scroll to just this wrapper so the page itself never
+          gains body-level overflow. */}
+      {artMinWidth ? <div className="w-full overflow-x-auto">{frame}</div> : frame}
 
       {showLegend && !hideLegend && annotations.length > 0 && (
         <ol

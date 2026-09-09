@@ -645,7 +645,7 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
         image: {
           src: titrationImg,
           alt: "An acid-alkali titration: acid in a burette added drop by drop into a conical flask of alkali and phenolphthalein, which turns from pink to colourless at the end point.",
-          size: "wide",
+          size: "diagram",
           aspect: "3 / 2",
           annotationMode: "regions",
           legendLabel: "Titration apparatus and the end point",
