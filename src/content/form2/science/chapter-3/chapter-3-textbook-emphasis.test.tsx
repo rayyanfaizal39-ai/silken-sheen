@@ -39,7 +39,8 @@ const EXPECTED: Record<string, string[]> = {
     "Sumber tenaga utama badan",
     "pertumbuhan dan pembaikan tisu badan",
     "Simpanan tenaga paling pekat",
-    "merangsang peristalsis dan mencegah sembelit",
+    "Merangsang peristalsis",
+    "mencegah sembelit",
     "Diperoleh secara berterusan daripada makanan",
     "Diangkut dan disimpan bersama lemak",
     "reagen khusus",
@@ -54,23 +55,20 @@ const EXPECTED: Record<string, string[]> = {
     "TIDAK melibatkan enzim",
     "Melibatkan bantuan enzim",
     "menggalakkan tindak balas kimia",
-    "mengaktifkan protease dan membunuh bakteria",
     "menambahkan luas permukaan",
     "jarak resapan yang pendek",
     "molekul kanji terlalu besar",
     "molekul glukosa cukup kecil",
     "molekul besar seperti kanji tidak boleh",
-    "Ketiga-tiga sistem bekerjasama",
-    "menghasilkan tenaga",
-    "membentuk komponen sel baharu",
     "Baki pepejal",
     "cukup serat",
   ],
   DLP: [
     "The body's main energy source",
     "growth and repair of body tissues",
-    "The most concentrated energy store",
-    "stimulates peristalsis and prevents constipation",
+    "The most concentrated source and store of energy",
+    "Stimulates peristalsis",
+    "prevent constipation",
     "Needed continuously from food",
     "Transported and stored together with fat",
     "specific reagent",
@@ -85,15 +83,11 @@ const EXPECTED: Record<string, string[]> = {
     "Does NOT involve enzymes",
     "Involves enzymes",
     "speeds up chemical reactions",
-    "activates protease and kills bacteria",
     "increase the surface area",
     "short diffusion distance",
     "starch molecules are too large",
     "glucose molecules are small enough",
     "large molecules like starch cannot",
-    "The three systems work together",
-    "produce energy",
-    "form new cell components",
     "The solid waste",
     "enough fibre",
   ],
@@ -102,14 +96,12 @@ const EXPECTED: Record<string, string[]> = {
 /** Field path -> the exact original wording (before markers were added). */
 const ORIGINALS: Record<string, Record<string, string>> = {
   BM: {
-    "content.sections[0].cards[0].body":
-      "Sumber tenaga utama badan (makanan ruji). Contoh: kanji (simpanan dalam tumbuhan), glikogen (simpanan dalam haiwan). Sumber: nasi, roti, kentang, pisang, madu.",
-    "content.sections[0].cards[1].body":
-      "Untuk pertumbuhan dan pembaikan tisu badan, serta mensintesis enzim, hormon dan antibodi. Dicernakan kepada asid amino. Sumber: ikan, ayam, telur, kekacang, daging, susu.",
+    "content.sections[0].cards[0].body": "Sumber tenaga utama badan (makanan ruji).",
+    "content.sections[0].cards[1].body": "Diperlukan untuk pertumbuhan dan pembaikan tisu badan.",
     "content.sections[0].cards[2].body":
-      "Simpanan tenaga paling pekat — membekalkan kira-kira 2× tenaga karbohidrat/protein bagi setiap gram. Melindungi organ badan dan menjadi penebat haba. Sumber: mentega, minyak masak, kacang tanah.",
-    "content.sections[0].cards[5].body":
-      "Selulosa yang tidak dapat dicerna oleh sistem pencernaan; merangsang peristalsis dan mencegah sembelit. Sumber: bijirin, buah-buahan, sayur-sayuran.",
+      "Simpanan tenaga paling pekat — kira-kira 2× tenaga karbohidrat/protein bagi setiap gram.",
+    "content.sections[0].cards[5].facts[2].value":
+      "Merangsang peristalsis dan membantu makanan bergerak melalui salur pencernaan, membantu mencegah sembelit",
     "content.sections[1].comparison.columns[0].body":
       "Vitamin B dan C. Diperoleh secara berterusan daripada makanan kerana tidak disimpan lama dalam badan.",
     "content.sections[1].comparison.columns[1].body":
@@ -122,15 +114,15 @@ const ORIGINALS: Record<string, Record<string, string>> = {
       "Protein: tambah reagen Millon, kemudian panaskan dalam mandi air — mendakan/warna merah bata menunjukkan keputusan positif. Lemak: campurkan sampel dengan etanol, kemudian tuang ke dalam air — emulsi putih melekit/berkabus terbentuk jika positif.",
     "content.sections[2].accordions[3].body":
       "Etanol mudah terbakar, jadi pemanasan bagi ujian Benedict dan Millon dijalankan dalam mandi air, bukan nyalaan api terus.",
-    "content.sections[3].cards[3].body":
+    "content.sections[4].cards[3].body":
       "Petani, buruh dan nelayan memerlukan lebih banyak tenaga kerana kerja berat, berbanding pekerja pejabat seperti guru.",
-    "content.sections[4].comparison.columns[0].body":
+    "content.sections[5].comparison.columns[0].body":
       "37 kJ/g (9 kcal/g) — lebih dua kali ketumpatan tenaga protein atau karbohidrat.",
-    "content.sections[4].comparison.columns[1].body":
+    "content.sections[5].comparison.columns[1].body":
       "Setiap satu membekalkan kira-kira 17 kJ/g (4 kcal/g).",
-    "content.sections[5].causeEffect.items[0].note":
+    "content.sections[6].causeEffect.items[0].note":
       "Alternatif sihat: kurangkan gula, garam dan minyak; tambah sayur-sayuran dan buah-buahan.",
-    "content.sections[5].causeEffect.items[1].note":
+    "content.sections[6].causeEffect.items[1].note":
       "Alternatif sihat: bersenam secara berkala setiap minggu.",
     "content.sections[7].comparison.columns[0].body":
       "Berlaku di dalam mulut sahaja. Melibatkan pemecahan makanan secara mekanikal (pengunyahan). TIDAK melibatkan enzim.",
@@ -138,36 +130,26 @@ const ORIGINALS: Record<string, Record<string, string>> = {
       "Berlaku di dalam mulut, perut, duodenum dan usus. Melibatkan bantuan enzim untuk memecahkan molekul kompleks kepada molekul kecil dan larut.",
     "content.sections[7].accordions[0].body":
       "Enzim ialah bahan di dalam badan yang menggalakkan tindak balas kimia dalam sistem pencernaan. Enzim diperbuat daripada protein — tanpa enzim, pencernaan berlaku pada kadar yang sangat perlahan.",
-    "content.sections[8].accordions[0].body":
-      "Dirembeskan oleh dinding perut bersama protease. Dua fungsi utama: mengaktifkan protease dan membunuh bakteria dalam makanan yang masuk ke dalam perut.",
-    "content.sections[9].cards[0].body":
+    "content.sections[10].cards[0].body":
       "Berjuta-juta unjuran halus menambahkan luas permukaan penyerapan.",
-    "content.sections[9].cards[1].body":
+    "content.sections[10].cards[1].body":
       "Dinding vilus sangat nipis, mewujudkan jarak resapan yang pendek.",
-    "content.sections[10].accordions[3].body":
+    "content.sections[11].accordions[3].body":
       "Tabung didih P (kanji): ujian iodin dan Benedict pada air suling kekal negatif pada akhir eksperimen — molekul kanji terlalu besar untuk menembusi tiub Visking. Tabung didih Q (glukosa): ujian Benedict pada air suling menjadi positif (mendakan merah bata) selepas 30 minit — molekul glukosa cukup kecil untuk meresap keluar melalui tiub Visking.",
-    "content.sections[10].accordions[4].body":
+    "content.sections[11].accordions[4].body":
       "Tiub Visking berfungsi seperti model dinding usus kecil: molekul kecil dan larut seperti glukosa boleh meresap melaluinya, tetapi molekul besar seperti kanji tidak boleh.",
-    "content.sections[11].causeEffect.items[2].note":
-      "Ketiga-tiga sistem bekerjasama supaya sel badan menerima nutrien dan oksigen serentak.",
-    "content.sections[11].comparison.columns[0].body":
-      "Digunakan untuk menghasilkan tenaga melalui respirasi.",
-    "content.sections[11].comparison.columns[1].body":
-      "Asid amino membentuk komponen sel baharu. Asid lemak dan gliserol bergabung membentuk lemak — penebat haba dan pelindung organ dalaman.",
-    "content.sections[12].cards[1].body":
+    "content.sections[13].cards[1].body":
       "Baki pepejal (serat, sisa rembesan salur pencernaan, sel mati, air) yang tidak diserap atau dicerna.",
-    "content.sections[12].causeEffect.items[0].note":
+    "content.sections[13].causeEffect.items[0].note":
       "Cara elak: makan cukup serat (buah-buahan, sayur-sayuran, bijirin) dan air (sekurang-kurangnya 2 liter sehari).",
   },
   DLP: {
-    "content.sections[0].cards[0].body":
-      "The body's main energy source (staple food). Examples: starch (stored in plants), glycogen (stored in animals). Sources: rice, bread, potatoes, bananas, honey.",
-    "content.sections[0].cards[1].body":
-      "For growth and repair of body tissues, and to synthesise enzymes, hormones and antibodies. Digested into amino acids. Sources: fish, chicken, eggs, legumes, meat, milk.",
+    "content.sections[0].cards[0].body": "The body's main energy source (staple food).",
+    "content.sections[0].cards[1].body": "Needed for growth and repair of body tissues.",
     "content.sections[0].cards[2].body":
-      "The most concentrated energy store — provides about 2× the energy of carbohydrate/protein per gram. Protects body organs and acts as a heat insulator. Sources: butter, cooking oil, groundnuts.",
-    "content.sections[0].cards[5].body":
-      "Cellulose that cannot be digested by the digestive system; stimulates peristalsis and prevents constipation. Sources: grains, fruits, vegetables.",
+      "The most concentrated source and store of energy — about 2× the energy of carbohydrate/protein per gram.",
+    "content.sections[0].cards[5].facts[2].value":
+      "Stimulates peristalsis and helps food move through the digestive tract, helping prevent constipation",
     "content.sections[1].comparison.columns[0].body":
       "Vitamins B and C. Needed continuously from food because they are not stored for long in the body.",
     "content.sections[1].comparison.columns[1].body":
@@ -180,15 +162,14 @@ const ORIGINALS: Record<string, Record<string, string>> = {
       "Protein: add Millon's reagent, then heat in a water bath — a brick-red precipitate/colour shows a positive result. Fat: mix the sample with ethanol, then pour into water — a cloudy, milky-white emulsion forms if positive.",
     "content.sections[2].accordions[3].body":
       "Ethanol is flammable, so heating for Benedict's and Millon's tests is done in a water bath, not over a direct flame.",
-    "content.sections[3].cards[3].body":
+    "content.sections[4].cards[3].body":
       "Farmers, labourers and fishermen need more energy because of heavy work, compared with office workers such as teachers.",
-    "content.sections[4].comparison.columns[0].body":
+    "content.sections[5].comparison.columns[0].body":
       "37 kJ/g (9 kcal/g) — more than twice the energy density of protein or carbohydrate.",
-    "content.sections[4].comparison.columns[1].body":
-      "Each provides about 17 kJ/g (4 kcal/g).",
-    "content.sections[5].causeEffect.items[0].note":
+    "content.sections[5].comparison.columns[1].body": "Each provides about 17 kJ/g (4 kcal/g).",
+    "content.sections[6].causeEffect.items[0].note":
       "Healthier alternative: reduce sugar, salt and oil; add more fruits and vegetables.",
-    "content.sections[5].causeEffect.items[1].note":
+    "content.sections[6].causeEffect.items[1].note":
       "Healthier alternative: exercise regularly every week.",
     "content.sections[7].comparison.columns[0].body":
       "Occurs in the mouth only. Involves the mechanical breakdown of food (chewing). Does NOT involve enzymes.",
@@ -196,31 +177,27 @@ const ORIGINALS: Record<string, Record<string, string>> = {
       "Occurs in the mouth, stomach, duodenum and intestine. Involves enzymes that break complex molecules into small, soluble molecules.",
     "content.sections[7].accordions[0].body":
       "An enzyme is a substance in the body that speeds up chemical reactions in the digestive system. Enzymes are made of protein — without enzymes, digestion occurs at a very slow rate.",
-    "content.sections[8].accordions[0].body":
-      "Secreted by the stomach wall together with protease. Two main functions: activates protease and kills bacteria in food entering the stomach.",
-    "content.sections[9].cards[0].body":
+    "content.sections[10].cards[0].body":
       "Millions of tiny projections greatly increase the surface area for absorption.",
-    "content.sections[9].cards[1].body":
+    "content.sections[10].cards[1].body":
       "The villus wall is very thin, creating a short diffusion distance.",
-    "content.sections[10].accordions[3].body":
+    "content.sections[11].accordions[3].body":
       "Boiling tube P (starch): iodine and Benedict's tests on the water remain negative at the end of the experiment — starch molecules are too large to pass through the Visking tubing. Boiling tube Q (glucose): Benedict's test on the water turns positive (brick-red precipitate) after 30 minutes — glucose molecules are small enough to diffuse out through the Visking tubing.",
-    "content.sections[10].accordions[4].body":
+    "content.sections[11].accordions[4].body":
       "Visking tubing acts as a model of the small intestine wall: small, soluble molecules like glucose can diffuse through it, but large molecules like starch cannot.",
-    "content.sections[11].causeEffect.items[2].note":
-      "The three systems work together so body cells receive nutrients and oxygen at the same time.",
-    "content.sections[11].comparison.columns[0].body":
-      "Used to produce energy through respiration.",
-    "content.sections[11].comparison.columns[1].body":
-      "Amino acids form new cell components. Fatty acids and glycerol combine to form fat — a heat insulator and organ protector.",
-    "content.sections[12].cards[1].body":
+    "content.sections[13].cards[1].body":
       "The solid waste (fibre, digestive tract secretions, dead cells, water) that is not absorbed or digested.",
-    "content.sections[12].causeEffect.items[0].note":
+    "content.sections[13].causeEffect.items[0].note":
       "Prevention: eat enough fibre (fruits, vegetables, grains) and water (at least 2 litres a day).",
   },
 };
 
-/** Only these field-path suffixes are wired to render through ScienceEmphasis. */
-const ALLOWED_FIELD = /\.(body|intro|note|challenge|adaptation|role|benefit|remember|quickExplanation)(\[\d+\])?$/;
+/**
+ * Only these field-path suffixes are wired to render through ScienceEmphasis.
+ * `facts[n].value` covers the food-class card facts (see `ScienceInteractiveCard.facts`).
+ */
+const ALLOWED_FIELD =
+  /\.(body|intro|note|challenge|adaptation|role|benefit|remember|quickExplanation)(\[\d+\])?$|\.facts\[\d+\]\.value$/;
 
 describe("Chapter 3 — the textbook's emphasis, and only that", () => {
   it.each(STREAMS)("%s marks exactly the terms transferred from the textbook", (name, content) => {

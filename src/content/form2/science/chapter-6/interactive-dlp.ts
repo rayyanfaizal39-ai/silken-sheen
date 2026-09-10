@@ -1,9 +1,11 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch6-asid-alkali.png";
-import whyWaterMattersImg from "@/assets/notes/form2-science/chapter-6/why-water-matters-acids-alkalis.webp";
+import propertiesAcidsAlkalisImg from "@/assets/notes/form2-science/chapter-6/science-f2-ch6-properties-acids-alkalis.webp";
+import roleOfWaterImg from "@/assets/notes/form2-science/chapter-6/science-f2-ch6-role-of-water.webp";
+import neutralisationApplicationsImg from "@/assets/notes/form2-science/chapter-6/science-f2-ch6-neutralisation-applications.webp";
 import acidMetalTestImg from "@/assets/notes/form2-science/chapter-6/chapter6_acid_metal_hydrogen_test.webp";
 import phTestingImg from "@/assets/notes/form2-science/chapter-6/chapter6_ph_testing_methods.webp";
-import titrationImg from "@/assets/notes/form2-science/chapter-6/chapter6_acid_alkali_titration.webp";
+import titrationImg from "@/assets/notes/form2-science/chapter-6/science-f2-ch6-titration.webp";
 import usesOfAcidsAlkalisImg from "@/assets/notes/form2-science/chapter-6/chapter6_uses_of_acids_and_alkalis.webp";
 
 export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
@@ -34,47 +36,176 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     // ------------------------------------------------------------- 6.1
     {
       number: "6.1",
-      title: "Acids and Alkalis",
+      title: "Properties of Acids and Alkalis",
       intro:
-        "The word \"acid\" comes from the Latin acidus, **meaning sour**. \"Alkali\" comes from the Arabic al-qali, **meaning ashes of plants**. A substance containing acid is called an acidic substance; a substance containing alkali is called an alkaline substance.",
-      cards: [
+        "Acids and alkalis are common substances with a predictable, opposite set of properties. Compare the two property by property.",
+      conceptContrast: {
+        title: "⚖️ Acid versus alkali",
+        instruction: "Both are corrosive — the difference lies in every other property.",
+        keyPoint:
+          "⚠️ Sour and bitter tastes are descriptions of properties only. Never taste laboratory chemicals or any unknown substance.",
+        left: {
+          id: "acid",
+          icon: "🍋",
+          term: "Acid",
+          question: "pH value less than 7",
+          definition: "A substance that shows acidic properties when dissolved in water.",
+          examples: [
+            "Tastes sour",
+            "Corrosive",
+            "Turns blue litmus paper red",
+            "Reacts with metals to produce hydrogen gas",
+          ],
+        },
+        right: {
+          id: "alkali",
+          icon: "🧼",
+          term: "Alkali",
+          question: "pH value more than 7",
+          definition: "A substance that shows alkaline properties when dissolved in water.",
+          examples: [
+            "Tastes bitter",
+            "Corrosive",
+            "Turns red litmus paper blue",
+            "Does not react with metals",
+          ],
+        },
+      },
+      images: [
         {
-          title: "Acidic substances",
-          body: "Substances that contain acid. Many are in the kitchen — **apples and coffee** are acidic substances, and so are vinegar and lime juice.",
+          src: propertiesAcidsAlkalisImg,
+          alt: "Side-by-side comparison of an acid and an alkali: pH scale position, taste symbol, a corrosive reaction with a metal plate, litmus paper colour change, and reaction with magnesium metal.",
+          size: "wide",
+          aspect: "3 / 2",
+          annotationMode: "spotlight",
+          spotlightDimOpacity: 0.45,
+          legendLabel: "Acid versus alkali properties",
+          overlayHeadings: [
+            { id: "acid-heading", x: 25, y: 4, text: "Acid" },
+            { id: "alkali-heading", x: 75, y: 4, text: "Alkali" },
+          ],
+          annotations: [
+            {
+              id: "ph",
+              label: "pH",
+              note: "Acid: pH is less than 7. Alkali: pH is more than 7.",
+              spotlightCaption: "pH",
+              spotlightShapes: [
+                { id: "ph-acid", kind: "rect", x: 2.6, y: 2.9, w: 46.2, h: 15.7 },
+                { id: "ph-alkali", kind: "rect", x: 51.4, y: 2.9, w: 46.2, h: 15.7 },
+              ],
+            },
+            {
+              id: "taste",
+              label: "Taste",
+              note: "Acid: tastes sour (shown here with a lemon). Alkali: tastes bitter (shown here with bitter gourd). These are textbook properties only — never taste a laboratory acid or alkali.",
+              spotlightCaption: "Taste",
+              spotlightShapes: [
+                { id: "taste-acid", kind: "rect", x: 2.6, y: 19.5, w: 46.2, h: 15.7 },
+                { id: "taste-alkali", kind: "rect", x: 51.4, y: 19.5, w: 46.2, h: 15.7 },
+              ],
+            },
+            {
+              id: "corrosiveness",
+              label: "Corrosiveness",
+              note: "Both acid and alkali are corrosive — each damages the metal plate.",
+              spotlightCaption: "Corrosiveness",
+              spotlightShapes: [
+                { id: "corrosive-acid", kind: "rect", x: 2.6, y: 36.1, w: 46.2, h: 17.1 },
+                { id: "corrosive-alkali", kind: "rect", x: 51.4, y: 36.1, w: 46.2, h: 17.1 },
+              ],
+            },
+            {
+              id: "litmus",
+              label: "Litmus",
+              note: "Acid: blue litmus turns red. Alkali: red litmus turns blue.",
+              spotlightCaption: "Litmus",
+              spotlightShapes: [
+                { id: "litmus-acid", kind: "rect", x: 2.6, y: 54.2, w: 46.2, h: 14.2 },
+                { id: "litmus-alkali", kind: "rect", x: 51.4, y: 54.2, w: 46.2, h: 14.2 },
+              ],
+            },
+            {
+              id: "metal-reaction",
+              label: "Reaction with Metals",
+              note: "Acid: reacts with a suitable metal such as magnesium to produce hydrogen gas. Alkali: does not react with metals.",
+              spotlightCaption: "Reaction with Metals",
+              spotlightShapes: [
+                { id: "metal-acid", kind: "rect", x: 2.6, y: 69.3, w: 46.2, h: 24 },
+                { id: "metal-alkali", kind: "rect", x: 51.4, y: 69.3, w: 46.2, h: 24 },
+              ],
+            },
+          ],
         },
         {
-          title: "Alkaline substances",
-          body: "Substances that contain alkali. **Baking soda** is an alkaline substance, and so are soap and dishwashing liquid.",
+          src: acidMetalTestImg,
+          alt: "Magnesium ribbon reacting with acid in a test tube to give off hydrogen gas, and the lit splint test in which the hydrogen burns with a pop sound.",
+          size: "wide",
+          aspect: "3 / 2",
+          legendLabel: "Acid and a suitable metal, and the hydrogen test",
+          caption:
+            "Magnesium is used here because it is a suitable reactive metal — not every metal reacts with an acid this way.",
+          annotations: [],
         },
       ],
+      remember:
+        "The hydrogen gas test: when an acid **reacts with a metal such as magnesium or zinc**, **hydrogen gas is produced** — tested with a lit splint, which gives a 'pop' sound. Alkalis do not give this reaction with metals.",
       checks: [
         {
+          question: "Why do bottles of acid and alkali both carry a corrosive warning symbol?",
+          hint: "Because both acids AND alkalis — not acids alone — can be corrosive and damage skin or other materials.",
+        },
+        {
           question:
-            "You find an unlabelled bottle of liquid in the kitchen. How could you tell whether it is acidic or alkaline?",
-          hint: "Test it with an indicator such as litmus paper. You cannot tell by looking — and you must not taste it, because an unknown substance may be harmful.",
+            "A strip of magnesium ribbon is placed into potassium hydroxide solution. What would you expect to happen?",
+          hint: "No reaction. Alkalis do not react with metals — only acids react with metals to produce hydrogen gas.",
         },
       ],
     },
     {
       number: "6.1",
-      title: "Why Water Matters",
+      title: "Role of Water",
       intro:
         "This may be surprising: a substance can be an acid and yet not behave like one. Acids and alkalis only show their properties when water is present. Compare the four cases below.",
-      remember:
-        "Acids and alkalis only show their properties in **the presence of water**.",
+      remember: "Acids and alkalis only show their properties in **the presence of water**.",
       dryVsAqueous: {
         image: {
-          src: whyWaterMattersImg,
+          src: roleOfWaterImg,
           alt: "Four-panel comparison showing that acids and alkalis show their characteristic properties only in the presence of water.",
           size: "wide",
           aspect: "3 / 2",
-          annotationMode: "regions",
+          annotationMode: "spotlight",
+          spotlightDimOpacity: 0.45,
           legendLabel: "Without water versus with water",
           points: [
-            { id: "acid-dry", x: 14.2, y: 53, w: 22.5, h: 58 },
-            { id: "acid-wet", x: 37.3, y: 53, w: 22.5, h: 58 },
-            { id: "alkali-dry", x: 63, y: 53, w: 22.5, h: 58 },
-            { id: "alkali-wet", x: 86.1, y: 53, w: 22.5, h: 58 },
+            {
+              id: "acid-dry",
+              x: 25,
+              y: 25,
+              spotlightShapes: [{ id: "acid-dry", kind: "rect", x: 1.3, y: 2, w: 47.5, h: 46.3 }],
+            },
+            {
+              id: "acid-wet",
+              x: 75,
+              y: 25,
+              spotlightShapes: [{ id: "acid-wet", kind: "rect", x: 51.4, y: 2, w: 47.5, h: 46.3 }],
+            },
+            {
+              id: "alkali-dry",
+              x: 25,
+              y: 74,
+              spotlightShapes: [
+                { id: "alkali-dry", kind: "rect", x: 1.3, y: 50.3, w: 47.5, h: 46.9 },
+              ],
+            },
+            {
+              id: "alkali-wet",
+              x: 75,
+              y: 74,
+              spotlightShapes: [
+                { id: "alkali-wet", kind: "rect", x: 51.4, y: 50.3, w: 47.5, h: 46.9 },
+              ],
+            },
           ],
         },
         title: "💧 Without water versus with water",
@@ -133,75 +264,30 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     },
     {
       number: "6.1",
-      title: "Properties of Acids and Alkalis",
+      title: "Acidic and Alkaline Substances",
       intro:
-        "Once water is present, acids and alkalis show a predictable set of properties. Compare the two property by property.",
-      conceptContrast: {
-        title: "⚖️ Acid versus alkali",
-        instruction: "Both are corrosive — the difference lies in every other property.",
-        keyPoint:
-          "⚠️ Sour and bitter tastes are descriptions of properties only. Never taste laboratory chemicals or any unknown substance.",
-        left: {
-          id: "acid",
-          icon: "🍋",
-          term: "Acid",
-          question: "pH value less than 7",
-          definition: "A substance that shows acidic properties when dissolved in water.",
-          examples: [
-            "Tastes sour",
-            "Corrosive",
-            "Turns blue litmus paper red",
-            "Reacts with metals to produce hydrogen gas",
-          ],
-        },
-        right: {
-          id: "alkali",
-          icon: "🧼",
-          term: "Alkali",
-          question: "pH value more than 7",
-          definition: "A substance that shows alkaline properties when dissolved in water.",
-          examples: [
-            "Tastes bitter",
-            "Corrosive",
-            "Turns red litmus paper blue",
-            "Does not react with metals",
-          ],
-        },
-      },
+        'The word "acid" comes from the Latin acidus, **meaning sour**. "Alkali" comes from the Arabic al-qali, **meaning ashes of plants**. A substance containing acid is called an acidic substance; a substance containing alkali is called an alkaline substance.',
       cards: [
         {
-          title: "The hydrogen gas test",
-          body: "When an acid **reacts with a metal such as magnesium or zinc**, **hydrogen gas is produced**. A lit splinter makes a 'pop' sound when brought near hydrogen gas.",
-          detail: "Alkalis do not give this reaction with metals.",
+          title: "Acidic substances",
+          body: "Substances that contain acid. Many are in the kitchen — **apples and coffee** are acidic substances, and so are vinegar and lime juice.",
         },
-      ],
-      images: [
         {
-          src: acidMetalTestImg,
-          alt: "Magnesium ribbon reacting with acid in a test tube to give off hydrogen gas, and the lit splint test in which the hydrogen burns with a pop sound.",
-          size: "wide",
-          aspect: "3 / 2",
-          legendLabel: "Acid and a suitable metal, and the hydrogen test",
-          caption:
-            "Magnesium is used here because it is a suitable reactive metal — not every metal reacts with an acid this way.",
-          annotations: [],
+          title: "Alkaline substances",
+          body: "Substances that contain alkali. **Baking soda** is an alkaline substance, and so are soap and dishwashing liquid.",
         },
       ],
       checks: [
         {
-          question: "Why do bottles of acid and alkali both carry a corrosive warning symbol?",
-          hint: "Because both acids AND alkalis — not acids alone — can be corrosive and damage skin or other materials.",
-        },
-        {
           question:
-            "A strip of magnesium ribbon is placed into potassium hydroxide solution. What would you expect to happen?",
-          hint: "No reaction. Alkalis do not react with metals — only acids react with metals to produce hydrogen gas.",
+            "You find an unlabelled bottle of liquid in the kitchen. How could you tell whether it is acidic or alkaline?",
+          hint: "Test it with an indicator such as litmus paper. You cannot tell by looking — and you must not taste it, because an unknown substance may be harmful.",
         },
       ],
     },
     {
       number: "6.1",
-      title: "Indicators and Measuring pH",
+      title: "Indicators",
       intro:
         "An indicator is **a colouring that changes colour** according to the substance being tested. Different indicators tell you different things — some only tell you acid or alkali, others give you a pH value.",
       indicatorTable: {
@@ -329,16 +415,21 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     },
     {
       number: "6.1",
-      title: "The pH Scale",
+      title: "Strength of Acids and Alkalis",
       intro:
-        "The pH scale shows how acidic or alkaline a solution is. Its values range from **0 to 14**, with **pH 7 as neutral**. The lower the pH value, the more acidic the solution; the higher the pH value, the more alkaline.",
+        "The pH scale shows how acidic or alkaline a solution is. Its values range from **0 to 14**, with **pH 7 as neutral** — the lower the pH, the more acidic the solution; the higher the pH, the more alkaline. To compare the strength of acids or alkalis fairly using pH, the solutions must be compared at **the same concentration**.",
       phSlider: {
         title: "🌈 The pH scale — drag to explore",
-        instruction: "Every substance sits somewhere on a 0–14 scale. Drag the marker to see what lives at each pH.",
+        instruction:
+          "Every substance sits somewhere on a 0–14 scale. Drag the marker to see what lives at each pH.",
         scale: [
           { value: 0, name: "Battery acid", description: "Extremely acidic — highly corrosive." },
           { value: 1, name: "Stomach acid", description: "Very acidic — enough to digest food." },
-          { value: 2, name: "Vinegar / lemon juice", description: "Acidic — the sour taste you recognise." },
+          {
+            value: 2,
+            name: "Vinegar / lemon juice",
+            description: "Acidic — the sour taste you recognise.",
+          },
           { value: 3, name: "Orange juice", description: "Acidic." },
           { value: 4, name: "Pineapple juice / tomato", description: "Slightly acidic." },
           { value: 5, name: "Black coffee", description: "Slightly acidic." },
@@ -350,27 +441,13 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
           { value: 11, name: "Ammonia solution", description: "Alkaline." },
           { value: 12, name: "Soapy water", description: "Alkaline." },
           { value: 13, name: "Bleach", description: "Very alkaline." },
-          { value: 14, name: "Drain cleaner", description: "Extremely alkaline — highly corrosive." },
+          {
+            value: 14,
+            name: "Drain cleaner",
+            description: "Extremely alkaline — highly corrosive.",
+          },
         ],
       },
-      checks: [
-        {
-          question:
-            "A liquid turns universal indicator green. Is it acidic, neutral, or alkaline?",
-          hint: "Neutral — green sits exactly at pH 7 on the universal indicator scale.",
-        },
-        {
-          question:
-            "Arrange in increasing order of acidity: pineapple juice (pH 4), fresh milk (pH 6), vinegar (pH 2).",
-          hint: "Fresh milk (pH 6), pineapple juice (pH 4), then vinegar (pH 2). The lower the pH value, the more acidic the solution.",
-        },
-      ],
-    },
-    {
-      number: "6.1",
-      title: "Strength of Acids and Alkalis",
-      intro:
-        "The pH value tells you how acidic a solution is — but to compare the strength of the substances themselves, we have to compare them fairly, at **the same concentration**.",
       strengthComparison: {
         title: "💪 Strong versus weak",
         instruction: "Tap any substance to find out why.",
@@ -421,6 +498,10 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
       },
       checks: [
         {
+          question: "A liquid turns universal indicator green. Is it acidic, neutral, or alkaline?",
+          hint: "Neutral — green sits exactly at pH 7 on the universal indicator scale.",
+        },
+        {
           question:
             "Two acid solutions at the same concentration are tested. Solution P has pH 1 and solution Q has pH 3. Which is the strong acid?",
           hint: "Solution P. At the same concentration, the acid giving the lower pH is the stronger one. The 'same concentration' condition matters — without it the comparison is not fair.",
@@ -433,7 +514,7 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     },
     {
       number: "6.1",
-      title: "Uses of Acids and Alkalis",
+      title: "Uses of Acids and Alkalis in Daily Life",
       intro:
         "Acids and alkalis are used every day at home, and widely in the agricultural and industrial sectors too.",
       cards: [
@@ -505,9 +586,9 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     // ------------------------------------------------------------- 6.2
     {
       number: "6.2",
-      title: "Neutralisation and Titration",
+      title: "Neutralisation",
       intro:
-        "Mix an acid with an alkali and they cancel each other out — the acid loses its acidity, the alkali loses its alkalinity, and the reaction produces salt and water. The laboratory method used to carry out this reaction is called titration.",
+        "Mix an acid with an alkali and they cancel each other out — the acid loses its acidity, the alkali loses its alkalinity, and the reaction produces salt and water.",
       cards: [
         {
           title: "The neutralisation equation",
@@ -527,21 +608,115 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
           body: "Produces **sodium nitrate** and water.",
         },
       ],
+      checks: [
+        {
+          question: "What salt is produced when nitric acid reacts with sodium hydroxide?",
+          hint: "Sodium nitrate — nitric acid + sodium hydroxide → sodium nitrate + water.",
+        },
+      ],
+    },
+    {
+      number: "6.2",
+      title: "Titration",
+      intro:
+        "Titration can be used to determine the end point of a neutralisation reaction using an indicator.",
+      cards: [
+        {
+          title: "🧪 Apparatus and Materials",
+          body: "Everything needed to carry out an acid-alkali titration.",
+          facts: [
+            {
+              label: "You will need",
+              value: [
+                "Burette — holds the hydrochloric acid",
+                "Hydrochloric acid — the acid added drop by drop",
+                "Pipette — measures an exact volume of the sodium hydroxide solution",
+                "Conical flask — holds the sodium hydroxide solution during the titration",
+                "Sodium hydroxide solution — the alkali being neutralised",
+                "Phenolphthalein — the indicator used to show the end point",
+                "White tile — placed under the flask so the colour change is easy to see",
+                "Retort stand — holds the burette upright",
+              ],
+            },
+          ],
+        },
+      ],
       titrationSchematic: {
         image: {
           src: titrationImg,
           alt: "An acid-alkali titration: acid in a burette added drop by drop into a conical flask of alkali and phenolphthalein, which turns from pink to colourless at the end point.",
-          size: "wide",
+          size: "diagram",
           aspect: "3 / 2",
           annotationMode: "regions",
           legendLabel: "Titration apparatus and the end point",
           caption: "End point: pink \u2192 colourless",
+          overlayHeadings: [
+            {
+              id: "title",
+              x: 49.7,
+              y: 5.9,
+              text: "Titration",
+              emphasis: "heading",
+              bare: true,
+              w: 34,
+            },
+            { id: "burette-tag", x: 37.1, y: 16.5, text: "Burette", bare: true },
+            { id: "acid-tag", x: 36.1, y: 27.1, text: "Acid", bare: true },
+            { id: "stopcock-tag", x: 38, y: 41.2, text: "Stopcock", bare: true },
+            {
+              id: "drop-by-drop",
+              x: 14.6,
+              y: 52.3,
+              text: "Acid added drop by drop",
+              emphasis: "body",
+              bare: true,
+              w: 13.7,
+            },
+            { id: "flask-tag", x: 39.2, y: 59.7, text: "Conical flask", bare: true },
+            {
+              id: "indicator-tag",
+              x: 39.3,
+              y: 69.2,
+              text: "Alkali + phenolphthalein",
+              emphasis: "body",
+              bare: true,
+              w: 14.1,
+            },
+            { id: "endpoint-header", x: 71.5, y: 19, text: "End point", bare: true },
+            {
+              id: "before-endpoint",
+              x: 60.6,
+              y: 26.7,
+              text: "Before end point",
+              bare: true,
+              tone: "dark",
+            },
+            { id: "at-endpoint", x: 82.6, y: 26.7, text: "At end point", bare: true, tone: "dark" },
+            { id: "pink-swatch", x: 60.5, y: 68, text: "Pink", bare: true, tone: "dark" },
+            { id: "colourless-swatch", x: 82, y: 68, text: "Colourless", bare: true, tone: "dark" },
+            {
+              id: "pink-to-colourless",
+              x: 71,
+              y: 75.1,
+              text: "Pink \u2192 Colourless",
+              bare: true,
+            },
+            {
+              id: "bottom-explanation",
+              x: 52.1,
+              y: 91.4,
+              text: "Acid is added gradually from the burette to the alkali and phenolphthalein until the pink colour just disappears. This is the end point.",
+              emphasis: "body",
+              bare: true,
+              w: 63.8,
+            },
+          ],
           points: [
-            { id: "burette", x: 31, y: 16, w: 17, h: 13 },
-            { id: "acid", x: 31, y: 27, w: 17, h: 12 },
-            { id: "flask", x: 33, y: 60, w: 26, h: 10 },
-            { id: "indicator", x: 33, y: 72.5, w: 28, h: 14 },
-            { id: "endpoint", x: 71.5, y: 49, w: 43, h: 54 },
+            { id: "burette", x: 37.1, y: 16.5, w: 10, h: 5.5 },
+            { id: "acid", x: 36.1, y: 27.1, w: 8, h: 5 },
+            { id: "flask", x: 39.2, y: 59.7, w: 13, h: 5.5 },
+            { id: "indicator", x: 39.3, y: 69.2, w: 15, h: 8 },
+            { id: "endpoint", x: 71.5, y: 46.9, w: 43, h: 61 },
           ],
           extra: [
             {
@@ -549,17 +724,17 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
               insertAfter: "acid",
               label: "Stopcock",
               note: "Controls the flow, so the acid can be released drop by drop.",
-              x: 33,
-              y: 42,
-              w: 22,
-              h: 9,
+              x: 38,
+              y: 41.2,
+              w: 11,
+              h: 5.5,
             },
           ],
         },
         title: "🧪 Acid-alkali titration",
         instruction: "Tap any part to find out what it does.",
         endpointCaption: "End point: pink → colourless",
-        hint: "Tap Burette, Acid, Conical flask, Indicator or End point.",
+        hint: "Tap Burette, Acid, Stopcock, Conical flask, Indicator or End point.",
         labels: [
           {
             id: "burette",
@@ -588,6 +763,8 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
           },
         ],
       },
+      remember:
+        "Titration is the practical method for carrying out a neutralisation: Acid + Alkali → Salt + Water.",
       checks: [
         {
           question:
@@ -603,9 +780,64 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     },
     {
       number: "6.2",
-      title: "Neutralisation in Daily Life",
+      title: "Applications of Neutralisation in Daily Life",
       intro:
         "Neutralisation is not just a laboratory reaction. It is used every day in personal care products, in agriculture and in industry.",
+      contextImages: [
+        {
+          src: neutralisationApplicationsImg,
+          alt: "Five everyday applications of neutralisation: toothpaste applied to a tooth, fabric softener on a stained shirt, conditioner on hair, slaked lime added to soil with seedlings, and treatment of acidic industrial wastewater.",
+          size: "wide",
+          aspect: "3 / 2",
+          annotationMode: "spotlight",
+          spotlightDimOpacity: 0.45,
+          spotlightCaptionEdge: "top",
+          legendLabel: "Applications of neutralisation",
+          annotations: [
+            {
+              id: "toothpaste",
+              label: "Toothpaste",
+              note: "Acids produced by bacteria can affect teeth. Alkaline toothpaste helps neutralise these acids.",
+              spotlightCaption: "Toothpaste",
+              spotlightShapes: [{ id: "toothpaste", kind: "rect", x: 1.3, y: 2.9, w: 32, h: 44 }],
+            },
+            {
+              id: "fabric-softener",
+              label: "Fabric Softener",
+              note: "Detergent can leave alkaline residue on fabric. Acidic fabric softener helps neutralise the alkaline residue.",
+              spotlightCaption: "Fabric Softener",
+              spotlightShapes: [
+                { id: "fabric-softener", kind: "rect", x: 34.5, y: 2.9, w: 32, h: 44 },
+              ],
+            },
+            {
+              id: "hair-conditioner",
+              label: "Hair Conditioner",
+              note: "Shampoo can leave hair in an alkaline condition. Mildly acidic conditioner helps neutralise the alkalinity and improve hair condition.",
+              spotlightCaption: "Hair Conditioner",
+              spotlightShapes: [
+                { id: "hair-conditioner", kind: "rect", x: 67, y: 2.9, w: 32, h: 44 },
+              ],
+            },
+            {
+              id: "acidic-soil",
+              label: "Acidic Soil",
+              note: "Acidic soil can affect plant growth. Slaked lime can be added to reduce soil acidity.",
+              spotlightCaption: "Acidic Soil",
+              spotlightShapes: [{ id: "acidic-soil", kind: "rect", x: 1.3, y: 49.3, w: 45, h: 45 }],
+            },
+            {
+              id: "industrial-waste",
+              label: "Industrial Waste",
+              note: "Acidic industrial waste can be treated with a suitable alkali. Neutralisation helps reduce excessive acidity before further treatment or safe discharge.",
+              spotlightCaption: "Industrial Waste",
+              spotlightShapes: [
+                { id: "industrial-waste", kind: "rect", x: 47.5, y: 49.3, w: 51, h: 45 },
+              ],
+            },
+          ],
+        },
+      ],
       accordions: [
         {
           title: "🦷 Toothpaste",
@@ -629,14 +861,14 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "🏭 Treating industrial waste",
-          body: "**Acidic waste from factories is treated with alkalis** before being released into rivers, so that it does not harm aquatic life.",
+          body: "Acidic industrial waste can be treated with a suitable alkali to reduce excessive acidity before further treatment or safe discharge.",
         },
       ],
       checks: [
         {
           question:
             "Amran was stung by a jellyfish. His pain got worse when his friend applied soap and toothpaste to the area. Why, and what should have been done?",
-          hint: "Soap and toothpaste are alkaline. In the model used here, the jellyfish sting is also treated as alkaline — so adding more alkaline material does not neutralise it and makes the pain worse. An acidic substance such as vinegar is used to neutralise the condition. (Note: real sting treatment depends on the species — follow current first-aid guidance.)",
+          hint: "Soap and toothpaste are alkaline. The jellyfish sting is also alkaline — so adding more alkaline material does not neutralise it and makes the pain worse. An acidic substance such as vinegar is used to neutralise the sting instead.",
         },
         {
           question:
@@ -647,9 +879,9 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     },
   ],
   reflectionItems: [
-    "I can explain what acidic and alkaline substances are, with examples.",
-    "I can explain why acids and alkalis only show their properties in the presence of water.",
     "I can compare the properties of acids and alkalis, including their action on metals.",
+    "I can explain why acids and alkalis only show their properties in the presence of water.",
+    "I can explain what acidic and alkaline substances are, with examples.",
     "I can state the colour change of each indicator.",
     "I can choose a suitable tool for finding the pH value of a substance.",
     "I can use the pH scale to decide whether a substance is acidic, neutral or alkaline.",
@@ -678,9 +910,15 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     {
       type: "multiple-choice",
       question: "What are the two products of a neutralisation reaction?",
-      options: ["Acid and alkali", "Salt and water", "Oxygen and hydrogen", "Carbon dioxide and water"],
+      options: [
+        "Acid and alkali",
+        "Salt and water",
+        "Oxygen and hydrogen",
+        "Carbon dioxide and water",
+      ],
       answerIndex: 1,
-      explanation: "Acid + Alkali → Salt + Water, every time — only the specific salt formed changes.",
+      explanation:
+        "Acid + Alkali → Salt + Water, every time — only the specific salt formed changes.",
     },
     {
       type: "multiple-choice",

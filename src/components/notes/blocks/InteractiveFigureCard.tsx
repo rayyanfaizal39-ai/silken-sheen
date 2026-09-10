@@ -33,12 +33,24 @@ export type InteractiveFigureCardProps = {
   /** The concepts. Any with `x`/`y` also become a region on the artwork. */
   concepts: ImageAnnotation[];
   /**
+   * Seeds the selection so the card opens with one concept already active,
+   * instead of the usual neutral "tap to explore" prompt — for a figure like
+   * a stage-by-stage process where showing nothing selected reads as broken
+   * rather than as an invitation.
+   */
+  initialActive?: string | null;
+  /**
    * Render the row of concept buttons. Set false for artwork whose labels are
    * already drawn on the picture with leader lines — there the labels are the
    * control, and a second row of buttons below would only repeat them.
    */
   showControls?: boolean;
-  image: Omit<
+  /**
+   * Omit when no approved artwork exists for this language: the badge, concept
+   * buttons and explanation panel still render — the same interaction, just
+   * without a picture leading it.
+   */
+  image?: Omit<
     AnnotatedImageProps,
     | "annotations"
     | "active"
@@ -107,7 +119,7 @@ export function conceptButtonClass(isActive: boolean, extra = ""): string {
     "text-[12.5px] font-semibold leading-tight transition-all",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     isActive
-      ? "border-primary bg-primary text-primary-foreground shadow-md"
+      ? "border-primary bg-primary text-primary-foreground shadow-md ring-2 ring-primary/45 ring-offset-2 ring-offset-background"
       : "border-primary/40 bg-card text-foreground hover:-translate-y-px hover:border-primary hover:bg-primary/10 hover:shadow-md",
     extra,
   ]
@@ -196,7 +208,7 @@ export function InteractiveBadge({
         <Sparkles className="h-3 w-3" aria-hidden="true" />
         {copy.badge}
       </span>
-      <span className="text-[12.5px] font-medium leading-snug text-foreground/85">
+      <span className="text-[12.5px] font-semibold leading-snug text-foreground/95">
         {instruction ?? copy.instruction}
       </span>
     </div>
@@ -212,9 +224,10 @@ export function InteractiveFigureCard({
   showControls = true,
   image,
   className,
+  initialActive = null,
 }: InteractiveFigureCardProps) {
   const copy = figureCopy(lang);
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState<string | null>(initialActive);
   const [cued, cueRef] = useFirstViewCue();
   const selected = concepts.find((concept) => concept.id === active) ?? null;
 
@@ -223,60 +236,51 @@ export function InteractiveFigureCard({
       ref={cueRef}
       className={`rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5 ${className ?? ""}`}
     >
-      {title && (
-        <h3 className="font-display mb-2 text-base font-bold text-foreground">{title}</h3>
-      )}
+      {title && <h3 className="font-display mb-2 text-base font-bold text-foreground">{title}</h3>}
 
       {/* The affordance, stated rather than implied. */}
-      <InteractiveBadge
-        lang={lang}
-        instruction={instruction}
-        cued={cued}
-        className="mb-2.5"
-      />
+      <InteractiveBadge lang={lang} instruction={instruction} cued={cued} className="mb-2.5" />
 
-      <AnnotatedImage
-        {...image}
-        annotations={concepts}
-        active={active}
-        onActiveChange={setActive}
-        hideLegend={showControls}
-        hidePanel
-        enlargeLabel={copy.enlarge}
-        closeLabel={copy.close}
-      />
+      {image && (
+        <AnnotatedImage
+          {...image}
+          annotations={concepts}
+          active={active}
+          onActiveChange={setActive}
+          hideLegend={showControls}
+          hidePanel
+          enlargeLabel={copy.enlarge}
+          closeLabel={copy.close}
+        />
+      )}
 
       {/* Controls sit immediately under the artwork, so image, buttons and
           explanation read as one unit rather than three separate things. */}
       {showControls && (
-      <div
-        role="group"
-        aria-label={copy.controlsLabel}
-        className="mt-3 flex flex-wrap gap-1.5"
-      >
-        {concepts.map((concept, index) => {
-          const isActive = concept.id === active;
-          return (
-            <button
-              key={concept.id}
-              type="button"
-              aria-pressed={isActive}
-              onClick={() => setActive(isActive ? null : concept.id)}
-              className={conceptButtonClass(
-                isActive,
-                `flex-auto sm:flex-none ${cued && index === 0 && !isActive ? "figure-cue-glow" : ""}`,
-              )}
-            >
-              {concept.icon && (
-                <span aria-hidden="true" className="text-[13px]">
-                  {concept.icon}
-                </span>
-              )}
-              {concept.label}
-            </button>
-          );
-        })}
-      </div>
+        <div role="group" aria-label={copy.controlsLabel} className="mt-3 flex flex-wrap gap-1.5">
+          {concepts.map((concept, index) => {
+            const isActive = concept.id === active;
+            return (
+              <button
+                key={concept.id}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setActive(isActive ? null : concept.id)}
+                className={conceptButtonClass(
+                  isActive,
+                  `flex-auto sm:flex-none ${cued && index === 0 && !isActive ? "figure-cue-glow" : ""}`,
+                )}
+              >
+                {concept.icon && (
+                  <span aria-hidden="true" className="text-[13px]">
+                    {concept.icon}
+                  </span>
+                )}
+                {concept.label}
+              </button>
+            );
+          })}
+        </div>
       )}
 
       {/* One panel, always in the same place and always reserving its space, so
@@ -297,11 +301,21 @@ export function InteractiveFigureCard({
               <p className="mt-1 text-[12.5px] leading-relaxed text-foreground">{selected.note}</p>
             )}
             {selected.facts && selected.facts.length > 0 && (
-              <dl className="mt-1.5 flex flex-col gap-0.5">
+              <dl className="mt-1.5 flex flex-col gap-1">
                 {selected.facts.map((fact) => (
-                  <div key={fact.label} className="flex flex-wrap gap-x-1.5 text-[12px] leading-snug">
+                  <div key={fact.label} className="text-[12px] leading-snug">
                     <dt className="font-semibold text-muted-foreground">{fact.label}:</dt>
-                    <dd className="m-0 min-w-0 text-foreground">{fact.value}</dd>
+                    {Array.isArray(fact.value) ? (
+                      <dd className="m-0 mt-0.5 min-w-0 text-foreground">
+                        <ul className="list-disc space-y-0.5 pl-4">
+                          {fact.value.map((line) => (
+                            <li key={line}>{line}</li>
+                          ))}
+                        </ul>
+                      </dd>
+                    ) : (
+                      <dd className="m-0 inline min-w-0 text-foreground"> {fact.value}</dd>
+                    )}
                   </div>
                 ))}
               </dl>

@@ -1,5 +1,9 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch6-asid-alkali.png";
+import propertiesAcidsAlkalisImg from "@/assets/notes/form2-science/chapter-6/science-f2-ch6-properties-acids-alkalis.webp";
+import roleOfWaterImg from "@/assets/notes/form2-science/chapter-6/science-f2-ch6-role-of-water.webp";
+import neutralisationApplicationsImg from "@/assets/notes/form2-science/chapter-6/science-f2-ch6-neutralisation-applications.webp";
+import titrationImg from "@/assets/notes/form2-science/chapter-6/science-f2-ch6-titration.webp";
 
 export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 6,
@@ -29,23 +33,119 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     // ------------------------------------------------------------- 6.1
     {
       number: "6.1",
-      title: "Asid dan Alkali",
+      title: "Sifat Asid dan Alkali",
       intro:
-        "Perkataan \"asid\" berasal daripada perkataan Latin acidus, **bermaksud masam**. Perkataan \"alkali\" berasal daripada perkataan Arab al-qali, **bermaksud abu tumbuhan**. Bahan yang mengandungi asid dipanggil bahan berasid; bahan yang mengandungi alkali dipanggil bahan beralkali.",
-      cards: [
-        {
-          title: "Bahan berasid",
-          body: "Bahan yang mengandungi asid. Banyak terdapat di dapur — **epal dan kopi** ialah bahan berasid, begitu juga cuka dan jus limau.",
+        "Asid dan alkali ialah bahan yang biasa ditemui, dengan set sifat yang boleh diramal dan bertentangan antara satu sama lain. Bandingkan kedua-duanya sifat demi sifat.",
+      conceptContrast: {
+        title: "⚖️ Asid berbanding alkali",
+        instruction: "Kedua-duanya bersifat mengakis — perbezaannya terletak pada sifat yang lain.",
+        keyPoint:
+          "⚠️ Rasa masam dan rasa pahit ialah huraian sifat sahaja. Jangan sekali-kali merasa bahan kimia di dalam makmal atau bahan yang tidak dikenali.",
+        left: {
+          id: "acid",
+          icon: "🍋",
+          term: "Asid",
+          question: "Nilai pH kurang daripada 7",
+          definition: "Bahan yang menunjukkan sifat berasid apabila dilarutkan di dalam air.",
+          examples: [
+            "Berasa masam",
+            "Bersifat mengakis",
+            "Menukarkan kertas litmus biru kepada merah",
+            "Bertindak balas dengan logam untuk menghasilkan gas hidrogen",
+          ],
         },
+        right: {
+          id: "alkali",
+          icon: "🧼",
+          term: "Alkali",
+          question: "Nilai pH lebih daripada 7",
+          definition: "Bahan yang menunjukkan sifat beralkali apabila dilarutkan di dalam air.",
+          examples: [
+            "Berasa pahit",
+            "Bersifat mengakis",
+            "Menukarkan kertas litmus merah kepada biru",
+            "Tidak bertindak balas dengan logam",
+          ],
+        },
+      },
+      images: [
         {
-          title: "Bahan beralkali",
-          body: "Bahan yang mengandungi alkali. **Soda penaik** ialah bahan beralkali, begitu juga sabun dan pencuci pinggan.",
+          src: propertiesAcidsAlkalisImg,
+          alt: "Perbandingan sebelah-menyebelah asid dan alkali: kedudukan pada skala pH, simbol rasa, tindak balas mengakis dengan plat logam, perubahan warna kertas litmus, dan tindak balas dengan logam magnesium.",
+          size: "wide",
+          aspect: "3 / 2",
+          annotationMode: "spotlight",
+          spotlightDimOpacity: 0.45,
+          legendLabel: "Sifat asid berbanding alkali",
+          overlayHeadings: [
+            { id: "acid-heading", x: 25, y: 4, text: "Asid" },
+            { id: "alkali-heading", x: 75, y: 4, text: "Alkali" },
+          ],
+          annotations: [
+            {
+              id: "ph",
+              label: "pH",
+              note: "Asid: nilai pH kurang daripada 7. Alkali: nilai pH lebih daripada 7.",
+              spotlightCaption: "pH",
+              spotlightShapes: [
+                { id: "ph-acid", kind: "rect", x: 2.6, y: 2.9, w: 46.2, h: 15.7 },
+                { id: "ph-alkali", kind: "rect", x: 51.4, y: 2.9, w: 46.2, h: 15.7 },
+              ],
+            },
+            {
+              id: "taste",
+              label: "Rasa",
+              note: "Asid: berasa masam (digambarkan di sini dengan limau). Alkali: berasa pahit (digambarkan di sini dengan peria). Ini hanyalah sifat dalam buku teks — jangan sekali-kali merasa asid atau alkali makmal.",
+              spotlightCaption: "Rasa",
+              spotlightShapes: [
+                { id: "taste-acid", kind: "rect", x: 2.6, y: 19.5, w: 46.2, h: 15.7 },
+                { id: "taste-alkali", kind: "rect", x: 51.4, y: 19.5, w: 46.2, h: 15.7 },
+              ],
+            },
+            {
+              id: "corrosiveness",
+              label: "Kekakisan",
+              note: "Kedua-dua asid dan alkali bersifat mengakis — kedua-duanya merosakkan plat logam.",
+              spotlightCaption: "Kekakisan",
+              spotlightShapes: [
+                { id: "corrosive-acid", kind: "rect", x: 2.6, y: 36.1, w: 46.2, h: 17.1 },
+                { id: "corrosive-alkali", kind: "rect", x: 51.4, y: 36.1, w: 46.2, h: 17.1 },
+              ],
+            },
+            {
+              id: "litmus",
+              label: "Litmus",
+              note: "Asid: litmus biru bertukar merah. Alkali: litmus merah bertukar biru.",
+              spotlightCaption: "Litmus",
+              spotlightShapes: [
+                { id: "litmus-acid", kind: "rect", x: 2.6, y: 54.2, w: 46.2, h: 14.2 },
+                { id: "litmus-alkali", kind: "rect", x: 51.4, y: 54.2, w: 46.2, h: 14.2 },
+              ],
+            },
+            {
+              id: "metal-reaction",
+              label: "Tindak Balas dengan Logam",
+              note: "Asid: bertindak balas dengan logam yang sesuai seperti magnesium untuk menghasilkan gas hidrogen. Alkali: tidak bertindak balas dengan logam.",
+              spotlightCaption: "Tindak Balas dengan Logam",
+              spotlightShapes: [
+                { id: "metal-acid", kind: "rect", x: 2.6, y: 69.3, w: 46.2, h: 24 },
+                { id: "metal-alkali", kind: "rect", x: 51.4, y: 69.3, w: 46.2, h: 24 },
+              ],
+            },
+          ],
         },
       ],
+      remember:
+        "Ujian gas hidrogen: apabila asid **bertindak balas dengan logam** seperti magnesium atau zink, **gas hidrogen terhasil** — diuji dengan kayu uji menyala, yang menghasilkan bunyi 'pop'. Alkali tidak menghasilkan tindak balas ini dengan logam.",
       checks: [
         {
-          question: "Anda menjumpai sebotol cecair tanpa label di dapur. Bagaimanakah anda boleh mengetahui sama ada ia berasid atau beralkali?",
-          hint: "Uji dengan penunjuk seperti kertas litmus. Anda tidak boleh mengetahuinya daripada rupa sahaja — dan anda tidak boleh merasanya, kerana bahan yang tidak dikenali mungkin berbahaya.",
+          question: "Mengapakah botol asid dan alkali mempunyai simbol amaran kakisan?",
+          hint: "Kerana kedua-dua asid DAN alkali — bukan asid sahaja — boleh bersifat mengakis dan merosakkan kulit atau bahan lain.",
+        },
+        {
+          question:
+            "Pita magnesium dimasukkan ke dalam larutan kalium hidroksida. Apakah yang anda jangka berlaku?",
+          hint: "Tiada tindak balas. Alkali tidak bertindak balas dengan logam — hanya asid yang bertindak balas dengan logam untuk menghasilkan gas hidrogen.",
         },
       ],
     },
@@ -54,9 +154,47 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       title: "Peranan Air",
       intro:
         "Ini mungkin mengejutkan: sesuatu bahan boleh menjadi asid tetapi tidak berkelakuan seperti asid. Asid dan alkali hanya menunjukkan sifatnya apabila air hadir. Bandingkan keempat-empat keadaan di bawah.",
-      remember:
-        "Asid dan alkali hanya menunjukkan sifatnya dengan **kehadiran air**.",
+      remember: "Asid dan alkali hanya menunjukkan sifatnya dengan **kehadiran air**.",
       dryVsAqueous: {
+        image: {
+          src: roleOfWaterImg,
+          alt: "Perbandingan empat panel menunjukkan bahawa asid dan alkali hanya menunjukkan sifat cirinya dengan kehadiran air.",
+          size: "wide",
+          aspect: "3 / 2",
+          annotationMode: "spotlight",
+          spotlightDimOpacity: 0.45,
+          legendLabel: "Tanpa air berbanding dengan air",
+          points: [
+            {
+              id: "acid-dry",
+              x: 25,
+              y: 25,
+              spotlightShapes: [{ id: "acid-dry", kind: "rect", x: 1.3, y: 2, w: 47.5, h: 46.3 }],
+            },
+            {
+              id: "acid-wet",
+              x: 75,
+              y: 25,
+              spotlightShapes: [{ id: "acid-wet", kind: "rect", x: 51.4, y: 2, w: 47.5, h: 46.3 }],
+            },
+            {
+              id: "alkali-dry",
+              x: 25,
+              y: 74,
+              spotlightShapes: [
+                { id: "alkali-dry", kind: "rect", x: 1.3, y: 50.3, w: 47.5, h: 46.9 },
+              ],
+            },
+            {
+              id: "alkali-wet",
+              x: 75,
+              y: 74,
+              spotlightShapes: [
+                { id: "alkali-wet", kind: "rect", x: 51.4, y: 50.3, w: 47.5, h: 46.9 },
+              ],
+            },
+          ],
+        },
         title: "💧 Tanpa air berbanding dengan air",
         instruction: "Tekan mana-mana keadaan untuk membaca apa yang berlaku dan mengapa.",
         withoutWaterLabel: "Tanpa air",
@@ -113,65 +251,30 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     },
     {
       number: "6.1",
-      title: "Sifat Asid dan Alkali",
+      title: "Bahan Berasid dan Bahan Beralkali",
       intro:
-        "Setelah air hadir, asid dan alkali menunjukkan set sifat yang boleh diramal. Bandingkan kedua-duanya sifat demi sifat.",
-      conceptContrast: {
-        title: "⚖️ Asid berbanding alkali",
-        instruction: "Kedua-duanya bersifat mengakis — perbezaannya terletak pada sifat yang lain.",
-        keyPoint:
-          "⚠️ Rasa masam dan rasa pahit ialah huraian sifat sahaja. Jangan sekali-kali merasa bahan kimia di dalam makmal atau bahan yang tidak dikenali.",
-        left: {
-          id: "acid",
-          icon: "🍋",
-          term: "Asid",
-          question: "Nilai pH kurang daripada 7",
-          definition:
-            "Bahan yang menunjukkan sifat berasid apabila dilarutkan di dalam air.",
-          examples: [
-            "Berasa masam",
-            "Bersifat mengakis",
-            "Menukarkan kertas litmus biru kepada merah",
-            "Bertindak balas dengan logam untuk menghasilkan gas hidrogen",
-          ],
-        },
-        right: {
-          id: "alkali",
-          icon: "🧼",
-          term: "Alkali",
-          question: "Nilai pH lebih daripada 7",
-          definition:
-            "Bahan yang menunjukkan sifat beralkali apabila dilarutkan di dalam air.",
-          examples: [
-            "Berasa pahit",
-            "Bersifat mengakis",
-            "Menukarkan kertas litmus merah kepada biru",
-            "Tidak bertindak balas dengan logam",
-          ],
-        },
-      },
+        'Perkataan "asid" berasal daripada perkataan Latin acidus, **bermaksud masam**. Perkataan "alkali" berasal daripada perkataan Arab al-qali, **bermaksud abu tumbuhan**. Bahan yang mengandungi asid dipanggil bahan berasid; bahan yang mengandungi alkali dipanggil bahan beralkali.',
       cards: [
         {
-          title: "Ujian gas hidrogen",
-          body: "Apabila asid **bertindak balas dengan logam** seperti magnesium atau zink, **gas hidrogen terhasil**. Kayu uji menyala menghasilkan bunyi 'pop' apabila didekatkan kepada gas hidrogen.",
-          detail: "Alkali tidak menghasilkan tindak balas ini dengan logam.",
+          title: "Bahan berasid",
+          body: "Bahan yang mengandungi asid. Banyak terdapat di dapur — **epal dan kopi** ialah bahan berasid, begitu juga cuka dan jus limau.",
+        },
+        {
+          title: "Bahan beralkali",
+          body: "Bahan yang mengandungi alkali. **Soda penaik** ialah bahan beralkali, begitu juga sabun dan pencuci pinggan.",
         },
       ],
       checks: [
         {
-          question: "Mengapakah botol asid dan alkali mempunyai simbol amaran kakisan?",
-          hint: "Kerana kedua-dua asid DAN alkali — bukan asid sahaja — boleh bersifat mengakis dan merosakkan kulit atau bahan lain.",
-        },
-        {
           question:
-            "Pita magnesium dimasukkan ke dalam larutan kalium hidroksida. Apakah yang anda jangka berlaku?",
-          hint: "Tiada tindak balas. Alkali tidak bertindak balas dengan logam — hanya asid yang bertindak balas dengan logam untuk menghasilkan gas hidrogen.",
+            "Anda menjumpai sebotol cecair tanpa label di dapur. Bagaimanakah anda boleh mengetahui sama ada ia berasid atau beralkali?",
+          hint: "Uji dengan penunjuk seperti kertas litmus. Anda tidak boleh mengetahuinya daripada rupa sahaja — dan anda tidak boleh merasanya, kerana bahan yang tidak dikenali mungkin berbahaya.",
         },
       ],
     },
     {
       number: "6.1",
-      title: "Penunjuk dan Cara Mengukur pH",
+      title: "Penunjuk",
       intro:
         "Penunjuk ialah **bahan pewarna yang menukar warna** mengikut bahan yang diujinya. Penunjuk yang berbeza memberitahu anda perkara yang berbeza — sesetengahnya hanya memberitahu asid atau alkali, sesetengahnya memberikan nilai pH.",
       indicatorTable: {
@@ -287,17 +390,25 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     },
     {
       number: "6.1",
-      title: "Skala pH",
+      title: "Kekuatan Asid dan Alkali",
       intro:
-        "Skala pH menunjukkan sejauh mana sesuatu larutan itu berasid atau beralkali. Julat nilainya adalah antara **0 hingga 14**, dengan **pH 7 sebagai neutral**. Semakin rendah nilai pH, semakin berasid larutan itu; semakin tinggi nilai pH, semakin beralkali.",
+        "Skala pH menunjukkan sejauh mana sesuatu larutan itu berasid atau beralkali. Julat nilainya adalah antara **0 hingga 14**, dengan **pH 7 sebagai neutral** — semakin rendah nilai pH, semakin berasid larutan itu; semakin tinggi nilai pH, semakin beralkali. Untuk membandingkan kekuatan asid atau alkali secara adil menggunakan pH, larutan mesti dibandingkan pada **kepekatan yang sama**.",
       phSlider: {
         title: "🌈 Skala pH — seret untuk meneroka",
         instruction:
           "Setiap bahan berada pada skala 0–14. Seret penanda untuk melihat apa yang berada pada setiap nilai pH.",
         scale: [
           { value: 0, name: "Asid bateri", description: "Sangat berasid — amat mengakis." },
-          { value: 1, name: "Asid gastrik", description: "Sangat berasid — cukup untuk mencerna makanan." },
-          { value: 2, name: "Cuka / jus limau", description: "Berasid — rasa masam yang anda kenali." },
+          {
+            value: 1,
+            name: "Asid gastrik",
+            description: "Sangat berasid — cukup untuk mencerna makanan.",
+          },
+          {
+            value: 2,
+            name: "Cuka / jus limau",
+            description: "Berasid — rasa masam yang anda kenali.",
+          },
           { value: 3, name: "Jus oren", description: "Berasid." },
           { value: 4, name: "Jus nanas / tomato", description: "Sedikit berasid." },
           { value: 5, name: "Kopi hitam", description: "Sedikit berasid." },
@@ -309,26 +420,13 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
           { value: 11, name: "Larutan ammonia", description: "Beralkali." },
           { value: 12, name: "Air sabun", description: "Beralkali." },
           { value: 13, name: "Peluntur (bleach)", description: "Sangat beralkali." },
-          { value: 14, name: "Pencuci saluran paip", description: "Sangat beralkali — amat mengakis." },
+          {
+            value: 14,
+            name: "Pencuci saluran paip",
+            description: "Sangat beralkali — amat mengakis.",
+          },
         ],
       },
-      checks: [
-        {
-          question:
-            "Sejenis cecair menukarkan penunjuk semesta kepada warna hijau. Adakah ia berasid, neutral, atau beralkali?",
-          hint: "Neutral — hijau berada tepat pada pH 7 dalam skala penunjuk semesta.",
-        },
-        {
-          question: "Susun mengikut urutan menaik keasidan: jus nanas (pH 4), susu segar (pH 6), cuka (pH 2).",
-          hint: "Susu segar (pH 6), jus nanas (pH 4), kemudian cuka (pH 2). Semakin rendah nilai pH, semakin berasid larutan itu.",
-        },
-      ],
-    },
-    {
-      number: "6.1",
-      title: "Kekuatan Asid dan Alkali",
-      intro:
-        "Nilai pH memberitahu sejauh mana sesuatu larutan itu berasid — tetapi untuk membandingkan kekuatan bahan itu sendiri, kita perlu membandingkannya secara adil, iaitu pada **kepekatan yang sama**.",
       strengthComparison: {
         title: "💪 Kuat berbanding lemah",
         instruction: "Tekan mana-mana bahan untuk mengetahui sebabnya.",
@@ -380,6 +478,11 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
       checks: [
         {
           question:
+            "Sejenis cecair menukarkan penunjuk semesta kepada warna hijau. Adakah ia berasid, neutral, atau beralkali?",
+          hint: "Neutral — hijau berada tepat pada pH 7 dalam skala penunjuk semesta.",
+        },
+        {
+          question:
             "Dua larutan asid pada kepekatan yang sama diuji. Larutan P mempunyai pH 1 dan larutan Q mempunyai pH 3. Yang manakah asid kuat?",
           hint: "Larutan P. Pada kepekatan yang sama, asid yang memberikan nilai pH lebih rendah ialah asid yang lebih kuat. Syarat 'kepekatan yang sama' penting — tanpanya perbandingan itu tidak adil.",
         },
@@ -391,7 +494,7 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     },
     {
       number: "6.1",
-      title: "Kegunaan Asid dan Alkali",
+      title: "Kegunaan Asid dan Alkali dalam Kehidupan Harian",
       intro:
         "Asid dan alkali digunakan setiap hari di rumah, dan juga secara meluas dalam sektor pertanian dan perindustrian.",
       cards: [
@@ -407,7 +510,8 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
         {
           title: "🏭 Dalam industri",
           body: "**Asid sulfurik** digunakan di dalam bateri kereta. Natrium hidroksida digunakan untuk menghasilkan detergen. Alkali juga digunakan untuk **merawat sisa kilang yang berasid** sebelum ia dilepaskan ke sungai.",
-          detail: "Pembakaran bahan api di kawasan perindustrian boleh menurunkan nilai pH air hujan.",
+          detail:
+            "Pembakaran bahan api di kawasan perindustrian boleh menurunkan nilai pH air hujan.",
         },
       ],
       checks: [
@@ -422,9 +526,9 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     // ------------------------------------------------------------- 6.2
     {
       number: "6.2",
-      title: "Peneutralan dan Pentitratan",
+      title: "Peneutralan",
       intro:
-        "Campurkan asid dengan alkali dan kedua-duanya saling meniadakan — asid hilang sifat asidnya, alkali hilang sifat alkalinya, dan tindak balas menghasilkan garam dan air. Kaedah makmal yang digunakan untuk menjalankan tindak balas ini dipanggil pentitratan.",
+        "Campurkan asid dengan alkali dan kedua-duanya saling meniadakan — asid hilang sifat asidnya, alkali hilang sifat alkalinya, dan tindak balas menghasilkan garam dan air.",
       cards: [
         {
           title: "Persamaan peneutralan",
@@ -444,11 +548,148 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
           body: "Menghasilkan **natrium nitrat** dan air.",
         },
       ],
+      checks: [
+        {
+          question:
+            "Apakah garam yang terhasil apabila asid nitrik bertindak balas dengan natrium hidroksida?",
+          hint: "Natrium nitrat — asid nitrik + natrium hidroksida → natrium nitrat + air.",
+        },
+      ],
+    },
+    {
+      number: "6.2",
+      title: "Pentitratan",
+      intro:
+        "Pentitratan boleh digunakan untuk menentukan takat akhir tindak balas peneutralan dengan bantuan penunjuk.",
+      cards: [
+        {
+          title: "🧪 Radas dan Bahan",
+          body: "Semua yang diperlukan untuk menjalankan pentitratan asid-alkali.",
+          facts: [
+            {
+              label: "Anda memerlukan",
+              value: [
+                "Buret — memegang asid hidroklorik",
+                "Asid hidroklorik — asid yang dititiskan sedikit demi sedikit",
+                "Pipet — menyukat isi padu larutan natrium hidroksida yang tepat",
+                "Kelalang kon — memegang larutan natrium hidroksida semasa pentitratan",
+                "Larutan natrium hidroksida — alkali yang dineutralkan",
+                "Fenolftalein — penunjuk yang menunjukkan takat akhir",
+                "Jubin putih — diletakkan di bawah kelalang supaya perubahan warna mudah dilihat",
+                "Kaki retort — memegang buret supaya tegak",
+              ],
+            },
+          ],
+        },
+      ],
       titrationSchematic: {
+        image: {
+          src: titrationImg,
+          alt: "Satu pentitratan asid-alkali: asid dalam buret dititiskan sedikit demi sedikit ke dalam kelalang kon berisi alkali dan fenolftalein, yang bertukar daripada merah jambu kepada tidak berwarna pada takat akhir.",
+          size: "diagram",
+          aspect: "3 / 2",
+          annotationMode: "regions",
+          legendLabel: "Radas pentitratan dan takat akhir",
+          caption: "Takat akhir: merah jambu → tidak berwarna",
+          overlayHeadings: [
+            {
+              id: "title",
+              x: 49.7,
+              y: 5.9,
+              text: "Pentitratan",
+              emphasis: "heading",
+              bare: true,
+              w: 34,
+            },
+            { id: "burette-tag", x: 37.1, y: 16.5, text: "Buret", bare: true },
+            { id: "acid-tag", x: 36.1, y: 27.1, text: "Asid", bare: true },
+            { id: "stopcock-tag", x: 38, y: 41.2, text: "Injap", bare: true },
+            {
+              id: "drop-by-drop",
+              x: 14.6,
+              y: 52.3,
+              text: "Asid ditambah setitis demi setitis",
+              emphasis: "body",
+              bare: true,
+              w: 13.7,
+            },
+            { id: "flask-tag", x: 39.2, y: 59.7, text: "Kelalang kon", bare: true },
+            {
+              id: "indicator-tag",
+              x: 39.3,
+              y: 69.2,
+              text: "Alkali + fenolftalein",
+              emphasis: "body",
+              bare: true,
+              w: 14.1,
+            },
+            { id: "endpoint-header", x: 71.5, y: 19, text: "Takat akhir", bare: true },
+            {
+              id: "before-endpoint",
+              x: 60.6,
+              y: 26.7,
+              text: "Sebelum takat akhir",
+              bare: true,
+              tone: "dark",
+            },
+            {
+              id: "at-endpoint",
+              x: 82.6,
+              y: 26.7,
+              text: "Pada takat akhir",
+              bare: true,
+              tone: "dark",
+            },
+            { id: "pink-swatch", x: 60.5, y: 68, text: "Merah jambu", bare: true, tone: "dark" },
+            {
+              id: "colourless-swatch",
+              x: 82,
+              y: 68,
+              text: "Tidak berwarna",
+              bare: true,
+              tone: "dark",
+            },
+            {
+              id: "pink-to-colourless",
+              x: 71,
+              y: 75.1,
+              text: "Merah jambu → Tidak berwarna",
+              bare: true,
+            },
+            {
+              id: "bottom-explanation",
+              x: 52.1,
+              y: 91.4,
+              text: "Asid ditambah sedikit demi sedikit dari buret kepada alkali dan fenolftalein sehingga warna merah jambu baru sahaja hilang. Ini ialah takat akhir.",
+              emphasis: "body",
+              bare: true,
+              w: 63.8,
+            },
+          ],
+          points: [
+            { id: "burette", x: 37.1, y: 16.5, w: 10, h: 5.5 },
+            { id: "acid", x: 36.1, y: 27.1, w: 8, h: 5 },
+            { id: "flask", x: 39.2, y: 59.7, w: 13, h: 5.5 },
+            { id: "indicator", x: 39.3, y: 69.2, w: 15, h: 8 },
+            { id: "endpoint", x: 71.5, y: 46.9, w: 43, h: 61 },
+          ],
+          extra: [
+            {
+              id: "stopcock",
+              insertAfter: "acid",
+              label: "Injap",
+              note: "Mengawal aliran, supaya asid dapat dilepaskan setitis demi setitis.",
+              x: 38,
+              y: 41.2,
+              w: 11,
+              h: 5.5,
+            },
+          ],
+        },
         title: "🧪 Pentitratan asid-alkali",
         instruction: "Tekan mana-mana bahagian untuk mengetahui fungsinya.",
         endpointCaption: "Takat akhir: merah jambu → tidak berwarna",
-        hint: "Tekan Buret, Asid, Kelalang kon, Penunjuk atau Takat akhir.",
+        hint: "Tekan Buret, Asid, Injap, Kelalang kon, Penunjuk atau Takat akhir.",
         labels: [
           {
             id: "burette",
@@ -477,6 +718,8 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
           },
         ],
       },
+      remember:
+        "Pentitratan ialah kaedah praktikal untuk menjalankan peneutralan: Asid + Alkali → Garam + Air.",
       checks: [
         {
           question:
@@ -492,9 +735,64 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     },
     {
       number: "6.2",
-      title: "Peneutralan dalam Kehidupan Harian",
+      title: "Aplikasi Peneutralan dalam Kehidupan Harian",
       intro:
         "Peneutralan bukan sekadar tindak balas makmal. Ia digunakan setiap hari dalam produk penjagaan diri, dalam pertanian dan dalam industri.",
+      contextImages: [
+        {
+          src: neutralisationApplicationsImg,
+          alt: "Lima aplikasi peneutralan dalam kehidupan harian: ubat gigi pada gigi, pelembut fabrik pada kemeja bernoda, perapi pada rambut, kapur mati ditambah ke tanah bersama anak pokok, dan rawatan air sisa perindustrian yang berasid.",
+          size: "wide",
+          aspect: "3 / 2",
+          annotationMode: "spotlight",
+          spotlightDimOpacity: 0.45,
+          spotlightCaptionEdge: "top",
+          legendLabel: "Aplikasi peneutralan",
+          annotations: [
+            {
+              id: "toothpaste",
+              label: "Ubat Gigi",
+              note: "Asid yang dihasilkan oleh bakteria boleh menjejaskan gigi. Ubat gigi yang beralkali membantu meneutralkan asid tersebut.",
+              spotlightCaption: "Ubat Gigi",
+              spotlightShapes: [{ id: "toothpaste", kind: "rect", x: 1.3, y: 2.9, w: 32, h: 44 }],
+            },
+            {
+              id: "fabric-softener",
+              label: "Pelembut Fabrik",
+              note: "Detergen boleh meninggalkan baki beralkali pada fabrik. Pelembut fabrik yang berasid membantu meneutralkan baki beralkali tersebut.",
+              spotlightCaption: "Pelembut Fabrik",
+              spotlightShapes: [
+                { id: "fabric-softener", kind: "rect", x: 34.5, y: 2.9, w: 32, h: 44 },
+              ],
+            },
+            {
+              id: "hair-conditioner",
+              label: "Perapi Rambut",
+              note: "Syampu boleh meninggalkan rambut dalam keadaan beralkali. Perapi rambut yang sedikit berasid membantu meneutralkan keadaan beralkali itu dan memperbaiki keadaan rambut.",
+              spotlightCaption: "Perapi Rambut",
+              spotlightShapes: [
+                { id: "hair-conditioner", kind: "rect", x: 67, y: 2.9, w: 32, h: 44 },
+              ],
+            },
+            {
+              id: "acidic-soil",
+              label: "Tanah Berasid",
+              note: "Tanah yang berasid boleh menjejaskan pertumbuhan tumbuhan. Kapur mati boleh ditambah untuk mengurangkan keasidan tanah.",
+              spotlightCaption: "Tanah Berasid",
+              spotlightShapes: [{ id: "acidic-soil", kind: "rect", x: 1.3, y: 49.3, w: 45, h: 45 }],
+            },
+            {
+              id: "industrial-waste",
+              label: "Sisa Industri",
+              note: "Sisa industri yang berasid boleh dirawat dengan alkali yang sesuai. Peneutralan membantu mengurangkan keasidan berlebihan sebelum rawatan lanjut atau pelepasan yang selamat.",
+              spotlightCaption: "Sisa Industri",
+              spotlightShapes: [
+                { id: "industrial-waste", kind: "rect", x: 47.5, y: 49.3, w: 51, h: 45 },
+              ],
+            },
+          ],
+        },
+      ],
       accordions: [
         {
           title: "🦷 Ubat gigi",
@@ -518,14 +816,14 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "🏭 Merawat sisa industri",
-          body: "**Bahan buangan berasid daripada kilang dirawat dengan alkali** sebelum dibebaskan ke sungai, supaya ia tidak menjejaskan hidupan akuatik.",
+          body: "Sisa industri berasid boleh dirawat dengan alkali yang sesuai untuk mengurangkan keasidan berlebihan sebelum rawatan lanjut atau pelepasan yang selamat.",
         },
       ],
       checks: [
         {
           question:
             "Amran disengat ubur-ubur. Kesakitannya bertambah teruk apabila kawannya menyapu sabun dan ubat gigi pada bahagian itu. Mengapa, dan apakah yang sepatutnya dilakukan?",
-          hint: "Sabun dan ubat gigi bersifat alkali. Dalam model yang digunakan di sini, sengatan ubur-ubur juga dianggap beralkali — jadi menambah lagi bahan beralkali tidak meneutralkannya dan menyebabkan kesakitan bertambah. Bahan berasid seperti cuka digunakan untuk meneutralkan keadaan itu. (Nota: rawatan sengatan sebenar bergantung pada spesies — ikut panduan pertolongan cemas semasa.)",
+          hint: "Sabun dan ubat gigi bersifat alkali. Sengatan ubur-ubur juga bersifat alkali — jadi menambah lagi bahan beralkali tidak meneutralkannya dan menyebabkan kesakitan bertambah. Bahan berasid seperti cuka digunakan untuk meneutralkan sengatan itu.",
         },
         {
           question:
@@ -536,9 +834,9 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     },
   ],
   reflectionItems: [
-    "Saya boleh menerangkan maksud bahan berasid dan bahan beralkali dengan contoh.",
-    "Saya boleh menerangkan mengapa asid dan alkali hanya menunjukkan sifatnya dengan kehadiran air.",
     "Saya boleh membandingkan sifat asid dan alkali, termasuk tindakannya terhadap logam.",
+    "Saya boleh menerangkan mengapa asid dan alkali hanya menunjukkan sifatnya dengan kehadiran air.",
+    "Saya boleh menerangkan maksud bahan berasid dan bahan beralkali dengan contoh.",
     "Saya boleh menyatakan perubahan warna bagi setiap penunjuk.",
     "Saya boleh memilih alat yang sesuai untuk mengetahui nilai pH sesuatu bahan.",
     "Saya boleh menggunakan skala pH untuk menentukan sama ada bahan itu berasid, neutral atau beralkali.",
@@ -567,9 +865,15 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     {
       type: "multiple-choice",
       question: "Apakah dua hasil tindak balas peneutralan?",
-      options: ["Asid dan alkali", "Garam dan air", "Oksigen dan hidrogen", "Karbon dioksida dan air"],
+      options: [
+        "Asid dan alkali",
+        "Garam dan air",
+        "Oksigen dan hidrogen",
+        "Karbon dioksida dan air",
+      ],
       answerIndex: 1,
-      explanation: "Asid + Alkali → Garam + Air, setiap kali — hanya jenis garam yang terhasil berbeza.",
+      explanation:
+        "Asid + Alkali → Garam + Air, setiap kali — hanya jenis garam yang terhasil berbeza.",
     },
     {
       type: "multiple-choice",

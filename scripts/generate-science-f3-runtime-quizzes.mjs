@@ -17,6 +17,12 @@ const supplementalSourcePath = path.join(
   "science-form3-ch7-10-quizzes",
   "science-f3-ch7-10-normalized.json",
 );
+const chapter6SourcePath = path.join(
+  repositoryRoot,
+  "outputs",
+  "science-form3-ch6-quizzes",
+  "science-f3-ch6-normalized.json",
+);
 const outputPath = path.join(
   repositoryRoot,
   "src",
@@ -158,11 +164,16 @@ assert(
   fs.existsSync(supplementalSourcePath),
   `Science Form 3 Chapter 7-10 source not found: ${supplementalSourcePath}`,
 );
+assert(
+  fs.existsSync(chapter6SourcePath),
+  `Science Form 3 Chapter 6 source not found: ${chapter6SourcePath}`,
+);
 const allRows = [
   ...parseCsv(fs.readFileSync(sourcePath, "utf8")).filter((row) => {
     const chapter = Number(row.chapter_number);
     return chapter >= 1 && chapter <= 5;
   }),
+  ...JSON.parse(fs.readFileSync(chapter6SourcePath, "utf8")),
   ...JSON.parse(fs.readFileSync(supplementalSourcePath, "utf8")),
 ];
 const headers = Object.keys(allRows[0] ?? {});
@@ -170,9 +181,9 @@ for (const column of requiredColumns) {
   assert(headers.includes(column), `Missing required master CSV column: ${column}`);
 }
 
-const generatedChapters = [1, 2, 3, 4, 5, 7, 8, 9, 10];
+const generatedChapters = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const rows = allRows.filter((row) => generatedChapters.includes(Number(row.chapter_number)));
-assert(rows.length === 450, `Expected 450 Chapter 1-5 and 7-10 rows, found ${rows.length}`);
+assert(rows.length === 500, `Expected 500 Chapter 1-10 rows, found ${rows.length}`);
 
 const seenIds = new Set();
 const seenQuestions = { bm: new Set(), dlp: new Set() };
@@ -225,9 +236,7 @@ for (const chapter of generatedChapters) {
           const symbolPattern = new RegExp(`(?<![A-Za-z0-9-])${symbol}(?![A-Za-z0-9-])`);
           const optionUsesSymbol = question.options.some((option) =>
             symbolPattern.test(
-              option
-                .replace(/['\"][XYZPQ]['\"]/g, "")
-                .replace(/\b[XYZPQ]-shaped\b/gi, ""),
+              option.replace(/['\"][XYZPQ]['\"]/g, "").replace(/\b[XYZPQ]-shaped\b/gi, ""),
             ),
           );
           assert(
@@ -251,6 +260,7 @@ for (const chapter of generatedChapters) {
 const banner = [
   "// This file is generated. Do not edit it by hand.",
   "// Sources: outputs/science-form3-master-quizzes/sains-t3-kssm-quizzes-master-updated.csv",
+  "//          outputs/science-form3-ch6-quizzes/science-f3-ch6-normalized.json",
   "//          outputs/science-form3-ch7-10-quizzes/science-f3-ch7-10-normalized.json",
   "// Regenerate with: node scripts/generate-science-f3-runtime-quizzes.mjs",
   "/* eslint-disable prettier/prettier */",

@@ -1,5 +1,8 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch5-air-larutan.png";
+import statesOfWaterImg from "@/assets/notes/form2-science/chapter-5/chapter5_states_of_water.webp";
+import evaporationApplicationsImg from "@/assets/notes/form2-science/chapter-5/chapter5_evaporation_applications.webp";
+import waterTreatmentImg from "@/assets/notes/form2-science/chapter-5/chapter5_water_treatment_journey.webp";
 
 export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 5,
@@ -31,26 +34,126 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.1",
       title: "Sifat Fizik Air",
       intro:
-        "Air tulen **tidak berwarna, tidak berbau dan tidak berasa**, serta kekal sebagai cecair pada suhu bilik. Ia mendidih pada tepat 100°C, membeku pada 0°C, dan mempunyai ketumpatan 1 g cm⁻³. Nilai tetap ini sebenarnya digunakan untuk menguji sama ada air mengandungi bendasing, kerana bendasing mengubah nilai-nilai ini.",
+        "Air tulen **tidak berwarna, tidak berbau dan tidak berasa**, serta kekal sebagai cecair pada suhu bilik. Nilai tetap ini sebenarnya digunakan untuk menguji sama ada air mengandungi bendasing, kerana bendasing mengubah nilai-nilai ini.",
       cards: [
         {
-          title: "Empat nilai tetap air tulen",
-          body: "Takat didih **100°C**, takat beku **0°C**, tiada warna, dan ketumpatan **1 g cm⁻³**. Kesemuanya diukur pada air yang benar-benar tulen.",
-          detail: "Sebarang perubahan pada nilai-nilai ini menunjukkan kehadiran bendasing terlarut.",
+          title: "💧 Tahukah anda?",
+          body: "**Lebih daripada 70%** permukaan Bumi diliputi oleh air.",
         },
         {
-          title: "Peleburan & Pembekuan",
-          body: "Peleburan menukar ais pepejal kepada air cecair dengan **menyerap haba**. Pembekuan menukar air cecair kepada ais pepejal dengan membebaskan haba.",
+          title: "Sifat fizik air tulen",
+          body: "",
+          facts: [
+            { label: "Warna", value: "Tidak berwarna" },
+            { label: "Bau dan rasa", value: "Tidak berbau dan tidak berasa" },
+            { label: "Takat didih", value: "100°C" },
+            { label: "Takat beku", value: "0°C" },
+            { label: "Ketumpatan", value: "1 g cm⁻³" },
+          ],
+          detail:
+            "Sebarang perubahan pada nilai-nilai ini menunjukkan kehadiran bendasing terlarut.",
         },
+      ],
+      images: [
         {
-          title: "Penyejatan/Pendidihan & Kondensasi",
-          body: "Penyejatan/pendidihan menukar air cecair kepada wap air dengan menyerap haba. Kondensasi menukar wap air kembali kepada cecair dengan **membebaskan haba**.",
+          src: statesOfWaterImg,
+          alt: "Tiga keadaan air — ais pepejal, air cecair dan wap air — bersama susunan zarah dan perubahan haba antara setiap keadaan.",
+          size: "wide",
+          aspect: "16 / 9",
+          legendLabel: "Tiga keadaan air",
+          annotationMode: "labels",
+          caption:
+            "Tekan satu keadaan atau satu proses untuk melihat apa yang berlaku kepada zarah dan haba.",
+          annotations: [
+            {
+              id: "solid",
+              label: "Pepejal",
+              note: "Zarah tersusun rapat dalam susunan tetap dan hanya boleh bergetar di tempatnya.",
+              x: 15,
+              y: 16,
+            },
+            {
+              id: "liquid",
+              label: "Cecair",
+              note: "Zarah rapat antara satu sama lain tetapi boleh bergerak dan meluncur melepasi satu sama lain.",
+              x: 50,
+              y: 14,
+            },
+            {
+              id: "gas",
+              label: "Gas",
+              note: "Zarah berjauhan, bergerak dengan pantas dan tersebar mengisi ruang yang ada.",
+              x: 86,
+              y: 16,
+            },
+            {
+              id: "melting",
+              label: "Peleburan",
+              note: "Menukar ais pepejal kepada air cecair dengan **menyerap haba**.",
+              x: 33,
+              y: 29,
+            },
+            {
+              id: "freezing",
+              label: "Pembekuan",
+              note: "Menukar air cecair kepada ais pepejal dengan membebaskan haba.",
+              x: 33,
+              y: 43,
+            },
+            {
+              id: "evaporation",
+              label: "Penyejatan",
+              note: "Menukar air cecair kepada wap air dengan menyerap haba.",
+              facts: [
+                {
+                  label: "Bezanya dengan pendidihan",
+                  value: [
+                    "Berlaku hanya di permukaan cecair",
+                    "Boleh berlaku pada suhu di bawah takat didih",
+                  ],
+                },
+              ],
+              x: 65,
+              y: 25,
+            },
+            {
+              id: "boiling",
+              label: "Pendidihan",
+              note: "Turut menukar air cecair kepada wap air dengan menyerap haba.",
+              facts: [
+                {
+                  label: "Bezanya dengan penyejatan",
+                  value: [
+                    "Berlaku di seluruh cecair, bukan hanya di permukaan",
+                    "Hanya berlaku pada takat didih",
+                  ],
+                },
+              ],
+              x: 65,
+              y: 35,
+            },
+            {
+              id: "condensation",
+              label: "Kondensasi",
+              note: "Menukar wap air kembali kepada cecair dengan **membebaskan haba**.",
+              x: 65,
+              y: 46,
+            },
+          ],
         },
       ],
       checks: [
         {
           question: "Bagaimanakah Ikram boleh menguji sama ada sebotol air itu tulen?",
           hint: "Uji takat didih dan takat bekunya — air tulen mendidih pada tepat 100°C dan membeku pada tepat 0°C. Sebarang perubahan menunjukkan kehadiran bendasing terlarut.",
+        },
+        {
+          question: "Apakah yang berlaku kepada zarah air apabila ia menyejat?",
+          hint: "Zarah memperoleh tenaga haba, bergerak menjauhi antara satu sama lain, bergerak lebih pantas dan tersebar mengisi ruang di sekelilingnya.",
+        },
+        {
+          question: "Apakah perbezaan antara penyejatan dan pendidihan?",
+          hint: "Penyejatan berlaku hanya di permukaan dan boleh berlaku pada suhu di bawah takat didih. Pendidihan berlaku di seluruh cecair, dan hanya pada takat didih.",
         },
       ],
     },
@@ -96,7 +199,8 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       },
       checks: [
         {
-          question: "Mengapakah tuala boleh menyerap air walaupun air sepatutnya mengalir ke bawah?",
+          question:
+            "Mengapakah tuala boleh menyerap air walaupun air sepatutnya mengalir ke bawah?",
           hint: "Ruang halus antara gentian tuala berkelakuan seperti salur kapilari — daya lekatan menarik air ke dinding gentian dan daya lekitan menarik molekul air yang lain mengikutinya.",
         },
       ],
@@ -105,22 +209,39 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.1",
       title: "Bendasing dan Elektrolisis Air",
       intro:
-        "Air ialah **sebatian** — dua atom hidrogen bergabung dengan satu atom oksigen, **H₂O**. Elektrolisis memisahkannya semula, dan isi padu gas yang terkumpul membuktikan nisbah itu. Bendasing terlarut pula mengubah takat lebur dan takat didih air.",
+        "Air ialah **sebatian** — dua atom hidrogen bergabung dengan satu atom oksigen, **H₂O**. Bendasing terlarut mengubah takat lebur dan takat didih air.",
       cards: [
+        {
+          title: "Mengapa elektrolisiskan air?",
+          body: "",
+          facts: [
+            {
+              label: "Tujuan",
+              value: "Elektrolisis air digunakan untuk menentukan komposisi unsur air.",
+            },
+            {
+              label: "Keputusan",
+              value: "Air terdiri daripada hidrogen dan oksigen, dalam nisbah isi padu 2 : 1.",
+            },
+          ],
+        },
         {
           title: "Mengapa sup masin mendidih lebih lambat",
           body: "Bendasing terlarut mengubah takat lebur dan takat didih air — garam **menurunkan takat lebur ais** tetapi **meningkatkan takat didih air**. Itulah sebabnya periuk air biasa mendidih lebih cepat daripada periuk yang mengandungi garam atau stok sup terlarut.",
-          detail: "Rasa, bau dan warna air juga boleh berubah dengan kehadiran bendasing — air laut berasa masin kerana garam terlarut di dalamnya.",
+          detail:
+            "Rasa, bau dan warna air juga boleh berubah dengan kehadiran bendasing — air laut berasa masin kerana garam terlarut di dalamnya.",
         },
         {
           title: "Menguji gas yang terhasil",
           body: "Kayu uji berbara menyala semula dalam oksigen; kayu uji menyala berbunyi 'pop' dalam hidrogen.",
-          detail: "Air suling sendiri konduktor elektrik yang lemah, jadi sedikit asid cair ditambah supaya arus dapat mengalir semasa elektrolisis.",
+          detail:
+            "Air suling sendiri konduktor elektrik yang lemah, jadi sedikit asid cair ditambah supaya arus dapat mengalir semasa elektrolisis.",
         },
       ],
       electrolysisDiagram: {
         title: "⚡ Elektrolisis air",
-        instruction: "Tekan mana-mana bahagian untuk mengetahui fungsinya. Bandingkan tinggi kedua-dua turus gas.",
+        instruction:
+          "Tekan mana-mana bahagian untuk mengetahui fungsinya. Bandingkan tinggi kedua-dua turus gas.",
         ratioCaption: "Isi padu hidrogen : oksigen = 2 : 1",
         hint: "Tekan Anod, Katod, Gas hidrogen atau Gas oksigen.",
         labels: [
@@ -148,16 +269,17 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       },
       checks: [
         {
-          question: "Semasa elektrolisis air, tabung uji manakah terkumpul lebih banyak gas, dan mengapa?",
+          question:
+            "Semasa elektrolisis air, tabung uji manakah terkumpul lebih banyak gas, dan mengapa?",
           hint: "Tabung di katod — gas hidrogen. Isi padunya dua kali ganda oksigen kerana setiap molekul air (H₂O) mempunyai dua atom hidrogen berbanding satu atom oksigen.",
         },
       ],
     },
     {
       number: "5.1",
-      title: "Penyejatan Air",
+      title: "Faktor-faktor yang Mempengaruhi Kadar Penyejatan",
       intro:
-        "Penyejatan berlaku di permukaan air dan menukarkan air menjadi wap air. Ia **boleh berlaku pada sebarang suhu**, kerana molekul air di permukaan mempunyai **tenaga kinetik yang lebih tinggi** dan dapat terlepas ke udara. Empat faktor mempengaruhi kadar penyejatan.",
+        "Penyejatan berlaku di permukaan air dan boleh berlaku pada sebarang suhu. Empat faktor mempengaruhi seberapa cepat ia berlaku.",
       flipCards: [
         {
           id: "humidity",
@@ -253,8 +375,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
               "Semakin besar luas permukaan air yang terdedah, semakin tinggi kadar penyejatan air.",
             manipulated: "Luas permukaan air yang terdedah",
             responding: "Kadar penyejatan air",
-            controlled:
-              "Kelembapan udara, isi padu air, pergerakan udara dan suhu persekitaran",
+            controlled: "Kelembapan udara, isi padu air, pergerakan udara dan suhu persekitaran",
             materials: "Kertas turas, air dan benang",
             apparatus: "Kaki retort dan pengapit",
             method: [
@@ -286,7 +407,8 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
               "Letakkan slaid M di bawah kipas dan slaid N jauh daripada kipas.",
               "Rekodkan pemerhatian anda selepas 15 minit.",
             ],
-            observation: "Kertas pada slaid M di bawah kipas bertukar biru lebih cepat daripada slaid N.",
+            observation:
+              "Kertas pada slaid M di bawah kipas bertukar biru lebih cepat daripada slaid N.",
             conclusion:
               "Pergerakan udara yang lebih laju menghasilkan kadar penyejatan yang lebih tinggi. Hipotesis diterima.",
           },
@@ -304,6 +426,93 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
         },
       ],
     },
+    {
+      number: "5.1",
+      title: "Aplikasi Penyejatan dalam Kehidupan Harian",
+      intro:
+        "Penyejatan digunakan dalam pelbagai aktiviti harian. Terokai setiap contoh untuk melihat bagaimana proses penyejatan digunakan.",
+      contextImages: [
+        {
+          src: evaporationApplicationsImg,
+          alt: "Empat kegunaan penyejatan dalam kehidupan seharian: mengeringkan pakaian di tali, mengeringkan makanan laut di atas rak, mendapatkan garam laut daripada kolam penyejatan, dan pengering rambut yang meniupkan udara panas yang bergerak.",
+          size: "wide",
+          aspect: "16 / 9",
+          legendLabel: "Kegunaan penyejatan",
+          annotationMode: "labels",
+          caption:
+            "Tekan satu panel untuk melihat bagaimana setiap kegunaan seharian bergantung kepada penyejatan.",
+          annotations: [
+            {
+              id: "clothes",
+              icon: "👕",
+              label: "Mengeringkan Pakaian",
+              note: "Pakaian basah disidai supaya air di dalam fabrik menyejat.",
+              facts: [
+                {
+                  label: "Mengapa ia berkesan",
+                  value: [
+                    "Luas permukaan terdedah yang lebih besar membantu air menyejat",
+                    "Cahaya matahari dan udara yang bergerak mempercepatkan pengeringan",
+                  ],
+                },
+              ],
+              x: 25,
+              y: 25,
+            },
+            {
+              id: "seafood",
+              icon: "🐟",
+              label: "Mengeringkan Hasil Laut",
+              note: "Air disingkirkan daripada ikan dan makanan laut lain melalui penyejatan.",
+              facts: [
+                {
+                  label: "Mengapa ia berkesan",
+                  value:
+                    "Kandungan air yang rendah membantu mengawet makanan, kerana mikroorganisma memerlukan air untuk membiak.",
+                },
+              ],
+              x: 75,
+              y: 25,
+            },
+            {
+              id: "sea-salt",
+              icon: "🧂",
+              label: "Mendapatkan Garam",
+              note: "Air laut dibiarkan di dalam kolam cetek di bawah cahaya matahari.",
+              facts: [
+                {
+                  label: "Mengapa ia berkesan",
+                  value: "Air menyejat daripada air laut, dan garam yang tertinggal terhablur.",
+                },
+              ],
+              x: 25,
+              y: 75,
+            },
+            {
+              id: "hair-dryer",
+              icon: "💨",
+              label: "Pengering Rambut",
+              note: "Pengering rambut meniupkan udara panas yang bergerak ke atas rambut basah.",
+              facts: [
+                {
+                  label: "Mengapa ia berkesan",
+                  value:
+                    "Udara panas yang bergerak meningkatkan kadar penyejatan, jadi rambut kering lebih cepat.",
+                },
+              ],
+              x: 75,
+              y: 75,
+            },
+          ],
+        },
+      ],
+      checks: [
+        {
+          question: "Mengapakah menyidai makanan laut membantu mengawetkannya?",
+          hint: "Penyejatan menyingkirkan air daripada makanan laut. Mikroorganisma yang merosakkan makanan memerlukan air untuk membiak, jadi makanan yang lebih kering bertahan lebih lama.",
+        },
+      ],
+    },
 
     // ---------------------------------------------------------------- 5.2
     {
@@ -315,9 +524,22 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
         "**Keterlarutan** suatu bahan ialah kuantiti maksimum zat terlarut yang dapat larut di dalam 100 ml pelarut pada suhu yang tertentu.",
       cards: [
         {
+          title: "Zat terlarut",
+          body: "**Bahan yang larut** di dalam sesuatu cecair. Gula ialah zat terlarut apabila ia larut di dalam air.",
+        },
+        {
+          title: "Pelarut",
+          body: "**Cecair yang melarutkan** sesuatu bahan. Air ialah pelarut apabila gula larut di dalamnya.",
+        },
+        {
+          title: "Larutan",
+          body: "**Campuran jernih dan sekata** yang terbentuk apabila zat terlarut larut di dalam pelarut. Air gula ialah larutan yang terbentuk daripada gula dan air.",
+        },
+        {
           title: "Keterlarutan",
           body: "Keterlarutan suatu bahan ialah kuantiti maksimum zat terlarut yang dapat larut di dalam 100 ml pelarut pada suhu yang tertentu.",
-          detail: "Ia adalah satu kuantiti — jawapan kepada soalan 'berapa banyak?', bukan 'berapa cepat?'.",
+          detail:
+            "Ia adalah satu kuantiti — jawapan kepada soalan 'berapa banyak?', bukan 'berapa cepat?'.",
         },
       ],
       conceptContrast: {
@@ -524,7 +746,8 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
               "Tentukan garam di dalam bikar mana yang larut dengan lebih cepat.",
               "Catatkan pemerhatian anda.",
             ],
-            observation: "Garam di dalam bikar L yang dikacau dengan pantas larut dengan lebih cepat.",
+            observation:
+              "Garam di dalam bikar L yang dikacau dengan pantas larut dengan lebih cepat.",
             conclusion:
               "Kadar kacauan yang lebih tinggi menghasilkan kadar keterlarutan yang lebih tinggi — garam larut lebih cepat. Kuantiti maksimum yang boleh larut tidak berubah. Hipotesis diterima.",
           },
@@ -577,6 +800,11 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
           body: "Sifat pelarut bukan air yang **mudah meruap** menyebabkan pelarut ini digunakan secara meluas dalam penyediaan bahan semburan seperti cat, minyak wangi dan racun serangga. Pelarut bukan air perlu dikendalikan dengan cermat kerana ia **membahayakan kesihatan manusia**.",
         },
       ],
+      tabsHeading: {
+        title: "Pelarut Organik",
+        instruction:
+          "Sesetengah bahan yang tidak larut dalam air boleh larut dalam pelarut organik.",
+      },
       tabs: [
         { title: "Alkohol", body: "Digunakan dalam penghasilan minyak wangi dan antiseptik." },
         { title: "Kerosin", body: "Digunakan sebagai minyak lampu." },
@@ -663,24 +891,34 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
       number: "5.3",
       title: "Sistem Pembekalan Air",
       intro:
-        "Air yang dikumpul daripada sumber seperti sungai dan air hujan disalurkan ke **loji pembersihan air** untuk dirawat sebelum dihantar kepada pengguna. **Bakteria, alga dan bahan mineral** adalah antara bahan yang disingkirkan dalam proses ini.",
+        "Air yang dikumpul daripada sumber seperti sungai dan air hujan disalurkan ke **loji pembersihan air** untuk dirawat dalam enam peringkat sebelum sampai ke rumah. **Bakteria, alga dan bahan mineral** adalah antara bahan yang disingkirkan dalam proses ini.",
       waterTreatmentFlow: {
+        image: {
+          src: waterTreatmentImg,
+          alt: "Perjalanan air daripada sungai, melalui penapisan awal, pengoksidaan, penggumpalan, pengenapan, penapisan pasir dan pengklorinan berserta pemfluoridaan, ke dalam tangki simpanan dan seterusnya ke rumah.",
+          size: "wide",
+          aspect: "16 / 9",
+          annotationMode: "markers",
+          legendLabel: "Peringkat rawatan air",
+          points: [
+            { id: "screening", x: 8, y: 50, w: 15, h: 55 },
+            { id: "oxidation", x: 22, y: 50, w: 11, h: 55 },
+            { id: "coagulation", x: 34, y: 46, w: 12, h: 63 },
+            { id: "sedimentation", x: 47, y: 50, w: 12, h: 55 },
+            { id: "filtration", x: 61, y: 50, w: 9, h: 55 },
+            { id: "chlorination", x: 72, y: 46, w: 10, h: 63 },
+          ],
+        },
         title: "🚰 Perjalanan air dari sungai ke paip",
         instruction: "Tekan mana-mana peringkat untuk melihat fungsinya. Urutannya penting.",
         chemicalLabel: "Bahan ditambah",
         hint: "Tekan mana-mana peringkat untuk membaca fungsinya.",
         stages: [
           {
-            id: "reservoir",
-            icon: "🏞️",
-            name: "Takungan air",
-            fn: "Air mentah dikumpul daripada sungai atau air hujan di takungan sebelum dirawat.",
-          },
-          {
             id: "screening",
             icon: "🪵",
-            name: "Penapisan",
-            fn: "Menyingkirkan bendasing besar seperti ranting kayu dan daun.",
+            name: "Penapisan Awal",
+            fn: "Penapisan awal menyingkirkan bendasing terampai yang besar seperti ranting kayu dan daun.",
           },
           {
             id: "oxidation",
@@ -705,37 +943,32 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
           {
             id: "filtration",
             icon: "🏖️",
-            name: "Penurasan",
-            fn: "Menyingkirkan baki bendasing dengan penapis pasir.",
+            name: "Penapisan Pasir",
+            fn: "Menyingkirkan baki bendasing terampai dengan penapis pasir.",
           },
           {
             id: "chlorination",
             icon: "🧪",
-            name: "Pengklorinan dan pemfluoridaan",
+            name: "Pengklorinan & Pengfluoridaan",
             fn: "Mikroorganisma di dalam air dibunuh, dan bahan untuk melindungi gigi ditambah.",
             chemical:
               "Klorin — untuk membunuh mikroorganisma; natrium fluorida — untuk mengelakkan pereputan gigi",
-          },
-          {
-            id: "homes",
-            icon: "🏠",
-            name: "Ke rumah",
-            fn: "Air bersih disimpan di dalam tangki air bersih, kemudian dipam melalui tangki simpanan terus kepada pengguna.",
           },
         ],
       },
       checks: [
         {
-          question: "Apakah dua bahan yang ditambah semasa peringkat penggumpalan, dan apakah tugas masing-masing?",
+          question:
+            "Apakah dua bahan yang ditambah semasa peringkat penggumpalan, dan apakah tugas masing-masing?",
           hint: "Alum menggumpalkan zarah-zarah lumpur supaya ia tenggelam; kapur mati (kalsium hidroksida) mengurangkan keasidan air.",
         },
       ],
     },
     {
       number: "5.3",
-      title: "Bekalan Air Alternatif dan Kelestarian Air",
+      title: "Bekalan Air Alternatif",
       intro:
-        "Sesetengah negara yang mengalami **kekurangan sumber air** menggunakan **cara alternatif** untuk mendapatkan bekalan air. Pada masa yang sama, menjaga air yang sedia ada adalah tanggungjawab setiap individu.",
+        "Sesetengah negara yang mengalami **kekurangan sumber air** menggunakan **cara alternatif** untuk mendapatkan bekalan air.",
       methodCards: {
         title: "🌍 Tiga cara mendapatkan bekalan air",
         instruction:
@@ -770,7 +1003,80 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
           },
         ],
       },
+      checks: [
+        {
+          question:
+            "Sebuah negara pulau kecil dikelilingi laut tetapi kehabisan air tawar. Kaedah manakah paling sesuai, dan mengapa?",
+          hint: "Osmosis berbalik — air laut ditolak dengan tekanan melalui membran halus yang menahan garam terlarut, menghasilkan air tawar daripada sumber yang tidak terhad di sekelilingnya.",
+        },
+      ],
+    },
+    {
+      number: "5.4",
+      title: "Kelestarian Air",
+      intro:
+        "Sungai merupakan sumber air utama di Malaysia. Pencemaran air boleh menyebabkan air tidak sesuai untuk kegunaan manusia dan memberi kesan buruk kepada alam sekitar. Aktiviti pembangunan, perindustrian dan pertanian merupakan antara punca utama pencemaran air.",
       cards: [
+        {
+          title: "🏠 Bahan Buangan Domestik",
+          body: "Sisa kumbahan dan sampah daripada rumah dan kawasan petempatan.",
+          facts: [
+            {
+              label: "Cara mengatasi",
+              value: [
+                "Menaik taraf sistem pembetungan di seluruh negara.",
+                "Mendidik masyarakat tentang cara pembuangan sampah yang betul.",
+                "Menyediakan kemudahan sanitasi yang sempurna di kawasan pedalaman.",
+              ],
+            },
+          ],
+        },
+        {
+          title: "🏭 Bahan Buangan Industri",
+          body: "Sisa yang tidak dirawat dilepaskan daripada kilang.",
+          facts: [
+            {
+              label: "Cara mengatasi",
+              value: [
+                "Menguatkuasakan undang-undang untuk memastikan bahan buangan industri dirawat sebelum dibuang ke dalam sungai.",
+              ],
+            },
+            {
+              label: "Contoh peraturan",
+              value: [
+                "PPKAS (Buangan Terjadual) 2005",
+                "PPKAS (Efluen Perindustrian) 2009",
+                "PPKAS (Kumbahan) 2009",
+              ],
+            },
+          ],
+        },
+        {
+          title: "🌾 Bahan Kimia dalam Pertanian",
+          body: "Baja dan racun perosak yang terhanyut daripada ladang ke dalam sungai.",
+          facts: [
+            {
+              label: "Cara mengatasi",
+              value: [
+                "Mendidik para petani supaya menggunakan baja dan racun perosak yang bersifat terbiodegradasi.",
+              ],
+            },
+          ],
+        },
+        {
+          title: "🛢️ Tumpahan Minyak",
+          body: "Minyak yang tertumpah ke laut daripada kapal tangki, pelantar atau saluran paip.",
+          facts: [
+            {
+              label: "Cara mengatasi",
+              value: [
+                "Membendung dan mengawal tumpahan minyak di laut.",
+                "Memungut dan mengawal tumpahan minyak melalui rancangan kontinjensi negara.",
+                "Mempertingkat pengawasan melalui udara dengan kerjasama Unit Udara Polis.",
+              ],
+            },
+          ],
+        },
         {
           title: "Air yang selamat diminum",
           body: "Air yang **selamat diminum** mestilah bebas daripada mikroorganisma berbahaya, bahan kimia beracun dan bendasing. Itulah sebabnya air dirawat di loji sebelum sampai ke rumah.",
@@ -810,15 +1116,15 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
           {
             id: "oil",
             label: "🛢️ Tumpahan minyak",
-            match: "Kandung tumpahan dengan pelan kontingensi negara dan tingkatkan pengawasan udara",
+            match:
+              "Kandung tumpahan dengan pelan kontingensi negara dan tingkatkan pengawasan udara",
           },
         ],
       },
       checks: [
         {
-          question:
-            "Sebuah negara pulau kecil dikelilingi laut tetapi kehabisan air tawar. Kaedah manakah paling sesuai, dan mengapa?",
-          hint: "Osmosis berbalik — air laut ditolak dengan tekanan melalui membran halus yang menahan garam terlarut, menghasilkan air tawar daripada sumber yang tidak terhad di sekelilingnya.",
+          question: "Bagaimanakah pencemaran air oleh sisa perindustrian dapat dikurangkan?",
+          hint: "Dengan menguatkuasakan undang-undang supaya bahan buangan industri dirawat sebelum dibuang ke dalam sungai, seperti di bawah PPKAS (Efluen Perindustrian) 2009.",
         },
         {
           question: "Apakah yang boleh dipelajari daripada kejadian di Teluk Minamata?",
@@ -829,9 +1135,12 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
   ],
   reflectionItems: [
     "Saya boleh menerangkan sifat fizik air dan kesan bendasing terhadapnya.",
+    "Saya boleh menerangkan tiga keadaan air dan perubahan antaranya.",
     "Saya boleh membezakan daya lekitan dan daya lekatan dalam tindakan kapilari.",
-    "Saya boleh menerangkan elektrolisis air dan nisbah isi padu hidrogen kepada oksigen.",
+    "Saya boleh menerangkan tujuan elektrolisis air dan nisbah isi padu hidrogen kepada oksigen.",
     "Saya boleh menjalankan penyiasatan tentang faktor yang mempengaruhi kadar penyejatan air.",
+    "Saya boleh menerangkan kegunaan penyejatan dalam kehidupan seharian.",
+    "Saya boleh mendefinisikan zat terlarut, pelarut dan larutan.",
     "Saya boleh menerangkan maksud keterlarutan dan membezakannya daripada kadar keterlarutan.",
     "Saya boleh membezakan larutan cair, pekat dan tepu.",
     "Saya boleh membezakan larutan, ampaian dan koloid dengan contoh.",
@@ -839,7 +1148,8 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
     "Saya boleh menerangkan kegunaan air sebagai pelarut semesta dan contoh pelarut bukan air.",
     "Saya boleh membandingkan kaedah pembersihan air dan menerangkan maksud penulenan.",
     "Saya boleh menerangkan setiap peringkat dalam sistem pembekalan air.",
-    "Saya boleh mencadangkan cara alternatif mendapatkan bekalan air dan mewajarkan kelestarian air.",
+    "Saya boleh mencadangkan cara alternatif mendapatkan bekalan air.",
+    "Saya boleh menerangkan punca pencemaran air dan cara mengatasinya, serta mewajarkan kelestarian air.",
   ],
   miniQuiz: [
     {

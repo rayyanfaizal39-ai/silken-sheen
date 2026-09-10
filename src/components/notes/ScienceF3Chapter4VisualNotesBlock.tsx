@@ -23,19 +23,19 @@ type Lang = "en" | "bm";
 const copy = {
   bm: {
     eyebrow: "Peta visual Bab 4",
-    title: "Fahami bagaimana kereaktifan menentukan segalanya",
-    subtitle: "Daripada mineral dalam kerak Bumi, bina siri kereaktifan daripada bukti eksperimen, kemudian gunakan siri itu untuk memilih cara logam diekstrak.",
+    title: "Kereaktifan Logam",
+    subtitle: "Kepelbagaian mineral, siri kereaktifan logam dan pengekstrakan logam daripada bijihnya.",
     roadmap: [
       ["4.1 Kepelbagaian Mineral", "Kenal pasti unsur, sebatian semula jadi dan unsur yang bergabung."],
       ["4.2 Siri Kereaktifan Logam", "Bandingkan tindak balas dengan oksigen serta tentukan kedudukan karbon dan hidrogen."],
-      ["4.3 Pengekstrakan Logam", "Gunakan kedudukan logam untuk memilih elektrolisis, penurunan karbon atau pemanasan."],
+      ["4.3 Pengekstrakan Logam daripada Bijihnya", "Gunakan kedudukan logam untuk memilih elektrolisis, penurunan karbon atau pemanasan."],
     ],
     bigIdea: "Idea besar",
     check: "Uji diri",
     reveal: "Lihat jawapan",
     hide: "Tutup jawapan",
-    mineralTitle: "Mineral ialah bahan semula jadi di dalam kerak Bumi",
-    mineralBody: "Mineral ialah unsur atau sebatian pepejal semula jadi dengan struktur hablur dan komposisi kimia tertentu. Kandungan mineral yang berbeza menghasilkan warna, struktur, bentuk dan tekstur batuan yang berbeza.",
+    mineralTitle: "Kepelbagaian Mineral",
+    mineralBody: "Definisi dan Konsep Mineral",
     element: "Mineral unsur",
     elementBody: "Wujud bebas tanpa bergabung secara kimia.",
     compound: "Sebatian semula jadi",
@@ -48,18 +48,18 @@ const copy = {
     limewater: "Alirkan gas ke air kapur",
     cloudy: "Air kapur menjadi keruh",
     conclusion: "Kesimpulan: CaCO₃ mengandungi kalsium, karbon dan oksigen.",
-    reactivityTitle: "Kereaktifan dibina daripada apa yang kita lihat",
-    reactivityBody: "Semakin cergas tindak balas logam dengan oksigen, semakin tinggi kedudukannya dalam siri kereaktifan.",
+    reactivityTitle: "Siri Kereaktifan Logam",
+    reactivityBody: "Konsep Kereaktifan Logam terhadap Oksigen",
     oxygenExperiment: "Aktiviti 4.3 — pemanasan logam dalam oksigen",
-    carbonTitle: "Letakkan karbon dengan ujian penyingkiran oksigen",
-    carbonRule: "Jika karbon mengambil oksigen daripada oksida logam, karbon lebih reaktif daripada logam itu.",
-    hydrogenTitle: "Letakkan hidrogen dengan kaedah yang sama",
-    hydrogenRule: "Hidrogen kering dialirkan di atas oksida logam yang dipanaskan. Jika logam terbentuk, hidrogen lebih reaktif daripada logam itu.",
+    carbonTitle: "Kedudukan Karbon dalam Siri Kereaktifan Logam",
+    carbonRule: "Jika karbon boleh menyingkirkan oksigen daripada oksida logam, karbon lebih reaktif daripada logam tersebut. Jika karbon tidak boleh menyingkirkan oksigen daripada oksida logam, karbon kurang reaktif daripada logam tersebut.",
+    hydrogenTitle: "Kedudukan Hidrogen dalam Siri Kereaktifan Logam",
+    hydrogenRule: "Kedudukan hidrogen dalam siri kereaktifan logam boleh ditentukan melalui interpretasi data tindak balas hidrogen dengan oksida logam.",
     seriesTitle: "Siri kereaktifan lengkap",
     more: "Lebih reaktif",
     less: "Kurang reaktif",
-    extractionTitle: "Kedudukan menentukan kaedah pengekstrakan",
-    extractionBody: "Pengekstrakan logam ialah proses kimia memperoleh atau mengasingkan logam tulen daripada bijihnya.",
+    extractionTitle: "Pengekstrakan Logam daripada Bijihnya",
+    extractionBody: "Definisi Pengekstrakan Logam",
     furnaceTitle: "Ikuti bahan di dalam relau bagas",
     furnaceBody: "Bijih besi, kok dan batu kapur masuk dari atas. Udara sangat panas masuk dari bawah. Besi dan sanga keluar melalui saluran berasingan.",
     ironPath: "Laluan menghasilkan besi",
@@ -70,19 +70,19 @@ const copy = {
   },
   en: {
     eyebrow: "Chapter 4 visual map",
-    title: "Understand how reactivity determines everything",
-    subtitle: "Start with minerals in Earth's crust, build the reactivity series from experimental evidence, then use the series to choose how each metal is extracted.",
+    title: "Reactivity of Metals",
+    subtitle: "Variety of minerals, reactivity series of metals and extraction of metals from their ores.",
     roadmap: [
       ["4.1 Variety of Minerals", "Identify elements, natural compounds and the elements combined in them."],
       ["4.2 Reactivity Series of Metals", "Compare reactions with oxygen and determine the positions of carbon and hydrogen."],
-      ["4.3 Extraction of Metals", "Use a metal's position to choose electrolysis, carbon reduction or heating."],
+      ["4.3 Extraction of Metals from their Ores", "Use a metal's position to choose electrolysis, carbon reduction or heating."],
     ],
     bigIdea: "Big idea",
     check: "Check yourself",
     reveal: "Reveal answer",
     hide: "Hide answer",
-    mineralTitle: "Minerals are natural substances in Earth's crust",
-    mineralBody: "A mineral is a naturally occurring solid element or compound with a definite crystalline structure and chemical composition. Different mineral contents give rocks different colours, structures, shapes and textures.",
+    mineralTitle: "Variety of Minerals",
+    mineralBody: "Definition and Concept of Minerals",
     element: "Element mineral",
     elementBody: "Exists freely without chemically combining with other elements.",
     compound: "Natural compound",
@@ -95,18 +95,18 @@ const copy = {
     limewater: "Bubble gas through limewater",
     cloudy: "Limewater turns cloudy",
     conclusion: "Conclusion: CaCO₃ contains calcium, carbon and oxygen.",
-    reactivityTitle: "Reactivity is built from what we observe",
-    reactivityBody: "The more vigorous a metal's reaction with oxygen, the higher its position in the reactivity series.",
+    reactivityTitle: "Reactivity Series of Metals",
+    reactivityBody: "Concept of Metal Reactivity towards Oxygen",
     oxygenExperiment: "Activity 4.3 — heating metals in oxygen",
-    carbonTitle: "Place carbon by testing oxygen removal",
-    carbonRule: "If carbon removes oxygen from a metal oxide, carbon is more reactive than that metal.",
-    hydrogenTitle: "Place hydrogen using the same reasoning",
-    hydrogenRule: "Dry hydrogen is passed over a heated metal oxide. If metal forms, hydrogen is more reactive than that metal.",
+    carbonTitle: "Position of Carbon in the Reactivity Series of Metals",
+    carbonRule: "If carbon can remove oxygen from a metal oxide, carbon is more reactive than that metal. If carbon cannot remove oxygen from a metal oxide, carbon is less reactive than that metal.",
+    hydrogenTitle: "Position of Hydrogen in the Reactivity Series of Metals",
+    hydrogenRule: "The position of hydrogen in the reactivity series of metals can be determined by interpreting data from the reactions of hydrogen with metal oxides.",
     seriesTitle: "Complete reactivity series",
     more: "More reactive",
     less: "Less reactive",
-    extractionTitle: "Position determines the extraction method",
-    extractionBody: "Metal extraction is the chemical process of obtaining or separating a pure metal from its ore.",
+    extractionTitle: "Extraction of Metals from their Ores",
+    extractionBody: "Definition of Metal Extraction",
     furnaceTitle: "Follow each material through the blast furnace",
     furnaceBody: "Iron ore, coke and limestone enter from the top. Very hot air enters from below. Iron and slag leave through separate outlets.",
     ironPath: "Route that produces iron",
@@ -164,22 +164,22 @@ const oxygenEquations = {
 
 const carbonResults = {
   bm: [
-    ["Al₂O₃ + C", "Tiada perubahan", "Karbon kurang reaktif daripada aluminium", "Tiada tindak balas"],
-    ["ZnO + C", "Membara cergas · pepejal kelabu", "Karbon lebih reaktif daripada zink", "Zink oksida + karbon → zink + karbon dioksida"],
-    ["PbO + C", "Membara sangat terang · plumbum berkilat", "Karbon lebih reaktif daripada plumbum", "Plumbum(II) oksida + karbon → plumbum + karbon dioksida"],
+    ["Al₂O₃ + C", "Tiada tindak balas", "Karbon kurang reaktif daripada aluminium", "Al > C"],
+    ["ZnO + C", "Karbon menurunkan zink oksida", "Karbon lebih reaktif daripada zink", "C > Zn"],
+    ["PbO + C", "Karbon menurunkan plumbum(II) oksida", "Karbon lebih reaktif daripada plumbum", "C > Pb"],
   ],
   en: [
-    ["Al₂O₃ + C", "No change", "Carbon is less reactive than aluminium", "No reaction"],
-    ["ZnO + C", "Vigorous glow · grey solid", "Carbon is more reactive than zinc", "Zinc oxide + carbon → zinc + carbon dioxide"],
-    ["PbO + C", "Very bright glow · shiny lead", "Carbon is more reactive than lead", "Lead(II) oxide + carbon → lead + carbon dioxide"],
+    ["Al₂O₃ + C", "No reaction", "Carbon is less reactive than aluminium", "Al > C"],
+    ["ZnO + C", "Carbon reduces zinc oxide", "Carbon is more reactive than zinc", "C > Zn"],
+    ["PbO + C", "Carbon reduces lead(II) oxide", "Carbon is more reactive than lead", "C > Pb"],
   ],
 } as const;
 
 const hydrogenResults = {
   bm: [
-    ["Al₂O₃", "Tiada baraan · kekal putih", "H kurang reaktif daripada Al"], ["ZnO", "Kuning semasa panas, putih semasa sejuk", "H kurang reaktif daripada Zn"],
-    ["Fe₂O₃", "Perang kemerahan → besi kelabu berkilat", "H lebih reaktif daripada Fe"], ["PbO", "Kuning → plumbum kelabu berkilat", "H lebih reaktif daripada Pb"],
-    ["CuO", "Hitam → kuprum perang", "H lebih reaktif daripada Cu"],
+    ["Al₂O₃", "Tiada baraan · kekal putih", "Hidrogen kurang reaktif daripada aluminium"], ["ZnO", "Kuning semasa panas, putih semasa sejuk", "Hidrogen kurang reaktif daripada zink"],
+    ["Fe₂O₃", "Perang kemerahan → besi kelabu berkilat", "Hidrogen lebih reaktif daripada ferum"], ["PbO", "Kuning → plumbum kelabu berkilat", "Hidrogen lebih reaktif daripada plumbum"],
+    ["CuO", "Hitam → kuprum perang", "Hidrogen lebih reaktif daripada kuprum"],
   ],
   en: [
     ["Al₂O₃", "No glow · remains white", "H is less reactive than Al"], ["ZnO", "Yellow when hot, white when cool", "H is less reactive than Zn"],
@@ -208,7 +208,7 @@ function OxygenExperiment({lang}:{lang:Lang}) {
 
 function ReductionTests({lang,type}:{lang:Lang;type:"carbon"|"hydrogen"}) {
   const data=type==="carbon"?carbonResults[lang]:hydrogenResults[lang]; const [selected,setSelected]=useState(0); const item=data[selected];
-  return <Panel><div className="flex gap-2 overflow-x-auto pb-2">{data.map((x,i)=><button key={x[0]} type="button" onClick={()=>setSelected(i)} className={`min-h-11 shrink-0 rounded-full px-4 text-xs font-black ${selected===i?"bg-cyan-300 text-cyan-950":"bg-white/5 text-slate-200"}`}>{x[0]}</button>)}</div><div className="mt-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/8 p-4"><div className="flex items-center gap-3"><FlaskConical className="h-8 w-8 text-cyan-300"/><div><p className="font-black text-white">{item[1]}</p><p className="text-sm font-bold text-cyan-200">{item[2]}</p></div></div>{type==="carbon"&&<p className="mt-3 text-xs leading-5 text-slate-300">{item[3]}</p>}</div>{type==="carbon"?<div className="mt-4"><Flow items={["Al", "C", "Zn"]}/><p className="mt-2 text-center text-xs font-black text-cyan-200">Al &gt; C &gt; Zn</p></div>:<div className="mt-4"><Flow items={["Zn", "H", "Fe"]}/><p className="mt-2 text-center text-xs font-black text-cyan-200">Zn &gt; H &gt; Fe</p></div>}</Panel>;
+  return <Panel><div className="flex gap-2 overflow-x-auto pb-2">{data.map((x,i)=><button key={x[0]} type="button" onClick={()=>setSelected(i)} className={`min-h-11 shrink-0 rounded-full px-4 text-xs font-black ${selected===i?"bg-cyan-300 text-cyan-950":"bg-white/5 text-slate-200"}`}>{x[0]}</button>)}</div><div className="mt-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/8 p-4"><div className="flex items-center gap-3"><FlaskConical className="h-8 w-8 text-cyan-300"/><div><p className="font-black text-white">{item[1]}</p><p className="text-sm font-bold text-cyan-200">{item[2]}</p></div></div>{type==="carbon"&&<p className="mt-3 text-xs leading-5 text-slate-300">{item[3]}</p>}</div>{type==="carbon"?<div className="mt-4"><Flow items={["Al", "C", "Zn", "Pb"]}/><p className="mt-2 text-center text-xs font-black text-cyan-200">Al &gt; C &gt; Zn &gt; Pb</p></div>:<div className="mt-4"><Flow items={["Al", "C", "Zn", "H", "Fe", "Sn", "Pb", "Cu"]}/><p className="mt-2 text-center text-xs font-black text-cyan-200">Al &gt; C &gt; Zn &gt; H &gt; Fe &gt; Sn &gt; Pb &gt; Cu</p></div>}</Panel>;
 }
 
 function FullSeries({lang}:{lang:Lang}) {
@@ -263,7 +263,7 @@ export function ScienceF3Chapter4VisualNotesBlock({id,content,lang,isRead,onMark
 
     <div className="space-y-6"><SectionTitle number="4.1" title={t.mineralTitle} subtitle={t.mineralBody}/><div className="grid gap-4 md:grid-cols-2"><Panel><Sparkles className="h-8 w-8 text-amber-300"/><h3 className="mt-3 font-black text-white">{t.element}</h3><p className="mt-2 text-sm text-slate-300">{t.elementBody}</p><p className="mt-4 rounded-xl bg-amber-300/8 p-3 text-sm font-bold text-amber-100">{lang==="bm"?"Emas · perak":"Gold · silver"}</p></Panel><Panel><Gem className="h-8 w-8 text-cyan-300"/><h3 className="mt-3 font-black text-white">{t.compound}</h3><p className="mt-2 text-sm text-slate-300">{t.compoundBody}</p><p className="mt-4 rounded-xl bg-cyan-300/8 p-3 text-sm font-bold text-cyan-100">{lang==="bm"?"Bauksit · hematit · galena · kasiterit":"Bauxite · hematite · galena · cassiterite"}</p></Panel></div><Panel><h3 className="font-black text-white">{t.mineralTable}</h3><div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{minerals[lang].map(x=><div key={x[0]} className="rounded-xl border border-white/10 bg-white/5 p-3"><p className="text-sm font-black text-white">{x[0]}</p><p className="mt-1 text-xs font-bold text-amber-200">{x[1]}</p><p className="mt-1 text-xs text-slate-400">{x[2]}</p></div>)}</div><p className="mt-4 text-xs leading-5 text-slate-400">{lang==="bm"?"Mineralogi mengkaji mineral. Litium dan kobalt penting untuk bateri kereta elektrik tahan lama. Kalsium silikat boleh digunakan sebagai bahan tambahan makanan.":"Mineralogy studies minerals. Lithium and cobalt are important for long-lasting electric-car batteries. Calcium silicate can be used as a food additive."}</p></Panel><SectionTitle number="4.1A" title={t.proofTitle} subtitle={t.proofBody}/><LimestoneProof lang={lang}/><Panel><p className="text-xs font-black uppercase tracking-[.14em] text-slate-400">{lang==="bm"?"Bentuk semula jadi CaCO₃":"Natural forms of CaCO₃"}</p><div className="mt-3 flex flex-wrap gap-2">{(lang==="bm"?["Batu kapur","Marmar","Kapur","Kalsit","Terumbu karang","Cangkerang haiwan laut"]:["Limestone","Marble","Chalk","Calcite","Coral reefs","Marine shells"]).map(x=><span key={x} className="rounded-full bg-white/5 px-3 py-2 text-xs font-bold text-slate-200">{x}</span>)}</div></Panel><Check lang={lang} question={content.sections[0]?.checks[0]?.question??""} answer={content.sections[0]?.checks[0]?.hint??""}/></div>
 
-    <div className="space-y-6"><SectionTitle number="4.2" title={t.reactivityTitle} subtitle={t.reactivityBody}/><SectionTitle number="4.2A" title={t.oxygenExperiment}/><OxygenExperiment lang={lang}/><SectionTitle number="4.2B" title={t.carbonTitle} subtitle={t.carbonRule}/><ReductionTests lang={lang} type="carbon"/><Check lang={lang} question={lang==="bm"?"Karbon menurunkan ZnO dan PbO tetapi tidak Al₂O₃. Di manakah karbon dalam siri?":"Carbon reduces ZnO and PbO but not Al₂O₃. Where does carbon sit in the series?"} answer={lang==="bm"?"Di antara aluminium dan zink: Al > C > Zn. Karbon lebih reaktif daripada zink dan plumbum, tetapi kurang reaktif daripada aluminium.":"Between aluminium and zinc: Al > C > Zn. Carbon is more reactive than zinc and lead, but less reactive than aluminium."}/><SectionTitle number="4.2C" title={t.hydrogenTitle} subtitle={t.hydrogenRule}/><Panel><Flow items={lang==="bm"?["Zn + asid sulfurik cair · CuSO₄ sebagai mangkin","Gas H₂ terhasil","Keringkan dengan CaCl₂ kontang","Alir atas oksida logam panas","Bakar lebihan H₂"]:["Zn + dilute sulphuric acid · CuSO₄ catalyst","H₂ gas forms","Dry with anhydrous CaCl₂","Pass over hot metal oxide","Burn excess H₂"]}/><p className="mt-3 text-xs text-rose-200">{lang==="bm"?"Lebihan hidrogen dibakar supaya gas tidak terkumpul dan meletup.":"Excess hydrogen is burned so the gas cannot collect and explode."}</p></Panel><ReductionTests lang={lang} type="hydrogen"/><SectionTitle number="4.2D" title={t.seriesTitle}/><FullSeries lang={lang}/></div>
+    <div className="space-y-6"><SectionTitle number="4.2" title={t.reactivityTitle} subtitle={t.reactivityBody}/><SectionTitle number="4.2A" title={t.oxygenExperiment}/><OxygenExperiment lang={lang}/><SectionTitle number="4.2B" title={t.carbonTitle} subtitle={t.carbonRule}/><ReductionTests lang={lang} type="carbon"/><Check lang={lang} question={lang==="bm"?"Karbon boleh menurunkan ZnO dan PbO tetapi tidak Al₂O₃. Di manakah kedudukan karbon dalam siri kereaktifan?":"Carbon can reduce ZnO and PbO but not Al₂O₃. Where is carbon positioned in the reactivity series?"} answer={lang==="bm"?"Karbon berada di bawah aluminium tetapi di atas zink dan plumbum. Al > C > Zn > Pb":"Carbon is below aluminium but above zinc and lead. Al > C > Zn > Pb"}/><SectionTitle number="4.2C" title={t.hydrogenTitle} subtitle={t.hydrogenRule}/><Panel><Flow items={lang==="bm"?["Zn + asid sulfurik cair · CuSO₄ sebagai mangkin","Gas H₂ terhasil","Keringkan dengan CaCl₂ kontang","Alir atas oksida logam panas","Bakar lebihan H₂"]:["Zn + dilute sulphuric acid · CuSO₄ catalyst","H₂ gas forms","Dry with anhydrous CaCl₂","Pass over hot metal oxide","Burn excess H₂"]}/><p className="mt-3 text-xs text-rose-200">{lang==="bm"?"Lebihan hidrogen dibakar supaya gas tidak terkumpul dan meletup.":"Excess hydrogen is burned so the gas cannot collect and explode."}</p></Panel><ReductionTests lang={lang} type="hydrogen"/><SectionTitle number="4.2D" title={t.seriesTitle}/><FullSeries lang={lang}/></div>
 
     <div className="space-y-6"><SectionTitle number="4.3" title={t.extractionTitle} subtitle={t.extractionBody}/><ExtractionChoice lang={lang}/><SectionTitle number="4.3A" title={t.furnaceTitle} subtitle={t.furnaceBody}/><BlastFurnace lang={lang}/><Check lang={lang} question={content.sections[2]?.checks[0]?.question??""} answer={content.sections[2]?.checks[0]?.hint??""}/><SectionTitle number="4.3B" title={t.miningTitle}/><div className="grid gap-4 lg:grid-cols-2"><Panel><ShieldAlert className="h-8 w-8 text-rose-300"/><h3 className="mt-3 font-black text-white">{lang==="bm"?"Kesan perlombongan tidak terancang":"Effects of poorly planned mining"}</h3><div className="mt-4 grid grid-cols-2 gap-2">{impacts.map(x=><div key={x} className="rounded-xl bg-rose-300/8 p-3 text-xs font-bold text-rose-100">{x}</div>)}</div></Panel><Panel><Leaf className="h-8 w-8 text-emerald-300"/><h3 className="mt-3 font-black text-white">{lang==="bm"?"Tindakan tempatan dan global":"Local and global actions"}</h3><div className="mt-4 grid grid-cols-2 gap-2">{solutions.map(x=><div key={x} className="rounded-xl bg-emerald-300/8 p-3 text-xs font-bold text-emerald-100">{x}</div>)}</div></Panel></div></div>
 

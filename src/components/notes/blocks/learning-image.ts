@@ -23,13 +23,28 @@ export type LearningImageSize =
   | "scene"
   | "sceneTall"
   | "panel"
-  | "pair";
+  | "pair"
+  /** Text-in-artwork diagrams — see the third group in LEARNING_IMAGE_VARIANTS. */
+  | "diagram";
 
 type Variant = {
   /** Hard ceiling on rendered width, in px. */
   maxWidth: number;
-  /** Height budget as a CSS `min()` expression — viewport-aware. */
-  heightBudget: string;
+  /**
+   * Height budget as a CSS `min()` expression — viewport-aware. Omit (see
+   * `minWidth`) for artwork that must be sized by width alone.
+   */
+  heightBudget?: string;
+  /**
+   * Hard floor on rendered width, in px — for artwork whose own embedded
+   * text must stay legible no matter how narrow the viewport is. Below this
+   * width the frame keeps its width and its wrapper scrolls horizontally
+   * instead of the artwork continuing to shrink. Implies no `heightBudget`:
+   * a vh-based cap would fight the floor on short viewports, so a variant
+   * with `minWidth` is sized by width alone and lets height follow the
+   * aspect ratio.
+   */
+  minWidth?: number;
 };
 
 /**
@@ -67,6 +82,16 @@ export const LEARNING_IMAGE_VARIANTS: Record<LearningImageSize, Variant> = {
   panel: { maxWidth: 660, heightBudget: "min(44vh, 380px)" },
   /** One half of a matched pair shown side by side on desktop. */
   pair: { maxWidth: 460, heightBudget: "min(34vh, 300px)" },
+
+  // --- Text-in-artwork diagrams ------------------------------------------
+  // A third group for artwork that bakes its own labels and explanatory text
+  // into the picture (a titration set-up, say) rather than relying on
+  // `AnnotatedImage`'s own label/callout layer. A vh-based height cap would
+  // shrink that baked-in text below reading size on any laptop with a modest
+  // window height, so this group sizes by width alone and gives it a floor.
+
+  /** Wide labelled apparatus/process artwork. Width-only; see `minWidth`. */
+  diagram: { maxWidth: 900, minWidth: 760 },
 };
 
 /** Parses `"3 / 4"`, `"16/9"` or `"1.5"` into a width ÷ height number. */
@@ -82,8 +107,18 @@ export function parseAspectRatio(aspect: string): number {
  */
 export function learningImageMaxWidth(size: LearningImageSize, aspect: string): string {
   const variant = LEARNING_IMAGE_VARIANTS[size];
+  if (!variant.heightBudget) return `${variant.maxWidth}px`;
   const ratio = parseAspectRatio(aspect);
   return `min(${variant.maxWidth}px, calc(${variant.heightBudget} * ${ratio.toFixed(4)}))`;
+}
+
+/**
+ * The `min-width` value for a figure, if its variant sets a readability
+ * floor. Pair with a horizontally-scrolling wrapper: below this width the
+ * frame keeps its size and overflows sideways rather than shrinking further.
+ */
+export function learningImageMinWidth(size: LearningImageSize): number | undefined {
+  return LEARNING_IMAGE_VARIANTS[size].minWidth;
 }
 
 /**

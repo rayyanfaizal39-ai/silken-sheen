@@ -50,6 +50,7 @@ export function WaterTreatmentFlow({
         instruction={block.instruction}
         prompt={block.hint}
         concepts={withExtras}
+        initialActive={block.stages[0]?.id ?? null}
         image={{
           src: block.image.src,
           alt: block.image.alt,

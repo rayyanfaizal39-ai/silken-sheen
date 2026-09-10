@@ -26,7 +26,27 @@ export type AnnotationMode =
    * clickable list beneath, which is also the phone and keyboard reading
    * surface.
    */
-  | "regions";
+  | "regions"
+  /**
+   * Like `regions`, but the picked concept is shown by strongly dimming
+   * everything else on the artwork rather than by a border on one rectangle.
+   * For artwork where the concepts genuinely overlap or nest (one dragonfly
+   * vs. all of them vs. every living thing vs. the whole scene) a shared
+   * border weight cannot tell those states apart; full-image dimming with a
+   * glowing cutout can. See `ImageAnnotation`'s `spotlight*` fields.
+   */
+  | "spotlight"
+  /**
+   * A compact numbered badge for every point, always visible at every width —
+   * for wide multi-stage artwork where full-text `labels` would rather
+   * collide than fit (six stages across one strip has no room for six full
+   * names at once). Only the *active* point also gets a full "N Label" chip,
+   * floating just above it, plus a glowing outline traced around its hit
+   * area; every other badge just dims a little. So there is never more than
+   * one full name drawn on the picture at a time, no matter how many points
+   * it carries.
+   */
+  | "markers";
 
 /** Share of the frame width taken by ONE callout gutter. */
 export const CALLOUT_GUTTER = 23;

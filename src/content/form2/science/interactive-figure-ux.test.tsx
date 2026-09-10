@@ -72,13 +72,6 @@ const REPLACED = [
     schematicMarker: 'viewBox="0 0 110 74"',
   },
   {
-    concept: "water treatment system",
-    chapter: () => scienceF2C5InteractiveDLP,
-    bm: () => scienceF2C5InteractiveBM,
-    block: (s: ScienceF2InteractiveContent["sections"][number]) => s.waterTreatmentFlow,
-    schematicMarker: '<ol class="flex flex-wrap items-stretch gap-1"',
-  },
-  {
     concept: "acid-alkali titration",
     chapter: () => scienceF2C6InteractiveDLP,
     bm: () => scienceF2C6InteractiveBM,
@@ -157,8 +150,8 @@ function occurrences(haystack: string, needle: string): number {
 
 /** Every approved WebP a chapter renders, by bundled filename. */
 function assetFilenames(markup: string): string[] {
-  return [...markup.matchAll(/src="([^"]*chapter[1-6][^"]*\.webp[^"]*)"/g)].map((m) =>
-    m[1].split("/").pop()!.split("?")[0],
+  return [...markup.matchAll(/src="([^"]*chapter[1-6][^"]*\.webp[^"]*)"/g)].map(
+    (m) => m[1].split("/").pop()!.split("?")[0],
   );
 }
 
@@ -187,13 +180,26 @@ describe("duplicate visual cleanup", () => {
     },
   );
 
-  it.each(REPLACED)(
+  // "why water matters" and "acid-alkali titration" are excluded here: their
+  // replacement artwork is text-free (unlike the other four, which carry
+  // baked-in English labels), so each now ships to BM too instead of falling
+  // back to the drawn schematic — see the "why water matters — visual
+  // replacement" and "acid-alkali titration — visual replacement" describe
+  // blocks below.
+  it.each(
+    REPLACED.filter(
+      (r) => r.concept !== "why water matters" && r.concept !== "acid-alkali titration",
+    ),
+  )(
     "$concept keeps its schematic on the BM surface, which has no approved artwork",
     ({ bm, block, schematicMarker }) => {
       const content = bm();
       const section = content.sections.find((s) => block(s));
       expect(section).toBeDefined();
-      expect(block(section!)!.image, "BM must not carry the English-labelled artwork").toBeUndefined();
+      expect(
+        block(section!)!.image,
+        "BM must not carry the English-labelled artwork",
+      ).toBeUndefined();
 
       const markup = renderToStaticMarkup(
         createElement(ScienceF2InteractiveNotesBlock, {
@@ -251,7 +257,7 @@ describe("interactive figure affordance", () => {
     if (!markup.includes(">Interaktif<")) return; // chapter has no figure card
     expect(markup, "English badge must not leak onto a BM page").not.toContain(">Interactive<");
     expect(markup).not.toContain("Tap a concept");
-    expect(markup).not.toContain("aria-label=\"Enlarge");
+    expect(markup).not.toContain('aria-label="Enlarge');
   });
 
   it.each(CHAPTERS)("$name gives every concept button something to say", ({ dlp }) => {
@@ -271,11 +277,19 @@ describe("interactive figure affordance", () => {
         },
         section.mixtureComparison && {
           image: section.mixtureComparison.image,
-          items: section.mixtureComparison.kinds.map((k) => ({ id: k.id, label: k.name, note: k.note })),
+          items: section.mixtureComparison.kinds.map((k) => ({
+            id: k.id,
+            label: k.name,
+            note: k.note,
+          })),
         },
         section.waterTreatmentFlow && {
           image: section.waterTreatmentFlow.image,
-          items: section.waterTreatmentFlow.stages.map((s) => ({ id: s.id, label: s.name, note: s.fn })),
+          items: section.waterTreatmentFlow.stages.map((s) => ({
+            id: s.id,
+            label: s.name,
+            note: s.fn,
+          })),
         },
         section.defenceLines && {
           image: section.defenceLines.image,
@@ -293,14 +307,19 @@ describe("interactive figure affordance", () => {
 
       for (const group of groups) {
         if (!group?.image) continue;
-        const ids = [...group.items.map((i) => i.id), ...(group.image.extra ?? []).map((e) => e.id)];
+        const ids = [
+          ...group.items.map((i) => i.id),
+          ...(group.image.extra ?? []).map((e) => e.id),
+        ];
         expect(new Set(ids).size, "concept ids are unique within a figure").toBe(ids.length);
         for (const item of group.items) {
           expect(item.note?.trim().length ?? 0, `${item.id} has an explanation`).toBeGreaterThan(0);
           expect(item.label.trim().length, `${item.id} has a label`).toBeGreaterThan(0);
         }
         for (const extra of group.image.extra ?? []) {
-          expect(extra.note?.trim().length ?? 0, `${extra.id} has an explanation`).toBeGreaterThan(0);
+          expect(extra.note?.trim().length ?? 0, `${extra.id} has an explanation`).toBeGreaterThan(
+            0,
+          );
         }
         // Every point maps to a concept that actually exists.
         for (const point of group.image.points) {
@@ -326,14 +345,47 @@ describe("interactive figure affordance", () => {
     expect(markup).toContain("min-h-11");
   });
 
-  it("water treatment keeps the two stages the artwork does not depict", () => {
+  // The water-treatment journey artwork is text-free, so — unlike the other
+  // REPLACED concepts above — it now ships to BOTH languages from one shared
+  // WebP, and BM no longer falls back to the drawn schematic for this concept.
+  it.each([
+    ["dlp", () => scienceF2C5InteractiveDLP, "en"] as const,
+    ["bm", () => scienceF2C5InteractiveBM, "bm"] as const,
+  ])(
+    "water treatment system (%s) renders the shared artwork, not the old schematic",
+    (_name, getContent, lang) => {
+      const content = getContent();
+      const section = content.sections.find((s) => s.waterTreatmentFlow);
+      expect(section, "section carrying the block").toBeDefined();
+
+      const flow = section!.waterTreatmentFlow!;
+      expect(flow.image, "shared artwork attached to the block").toBeDefined();
+
+      const markup = renderToStaticMarkup(
+        createElement(ScienceF2InteractiveNotesBlock, {
+          content: { ...content, sections: [section!] },
+          lang,
+        }),
+      );
+
+      expect(markup).toContain(flow.image!.src.split("?")[0]);
+      expect(markup, "old schematic must not render beside the artwork").not.toContain(
+        '<ol class="flex flex-wrap items-stretch gap-1"',
+      );
+    },
+  );
+
+  // Reservoir and "to homes" were removed as interactive stages entirely (the
+  // human-audit fix keeps them as visual endpoints only), so every remaining
+  // stage is now depicted with its own on-image label — none are control-only.
+  it("water treatment depicts every one of its six stages on the artwork", () => {
     const section = scienceF2C5InteractiveDLP.sections.find((s) => s.waterTreatmentFlow)!;
     const flow = section.waterTreatmentFlow!;
     const depicted = new Set(flow.image!.points.map((p) => p.id));
     const undepicted = flow.stages.filter((stage) => !depicted.has(stage.id));
 
-    // They are control-only, but they must still be taught.
-    expect(undepicted.map((s) => s.id)).toEqual(["reservoir"]);
+    expect(undepicted).toEqual([]);
+    expect(flow.stages.map((s) => s.id)).toEqual([...depicted]);
     const markup = renderToStaticMarkup(
       createElement(ScienceF2InteractiveNotesBlock, {
         content: { ...scienceF2C5InteractiveDLP, sections: [section] },
@@ -372,7 +424,7 @@ describe("why water matters — visual replacement", () => {
     expect(block.image, "approved artwork attached").toBeDefined();
     const src = block.image!.src.split("?")[0];
     expect(src.endsWith(".webp"), src).toBe(true);
-    expect(src).toContain("why-water-matters-acids-alkalis");
+    expect(src).toContain("science-f2-ch6-role-of-water");
     const index = src.indexOf("src/assets/");
     expect(existsSync(resolve(process.cwd(), src.slice(index))), src).toBe(true);
   });
@@ -393,14 +445,25 @@ describe("why water matters — visual replacement", () => {
     ]);
     for (const panel of block.panels) {
       expect(panel.note.trim().length, panel.id).toBeGreaterThan(0);
-      expect(block.image!.points.map((p) => p.id), panel.id).toContain(panel.id);
+      expect(
+        block.image!.points.map((p) => p.id),
+        panel.id,
+      ).toContain(panel.id);
     }
   });
 
   it("labels the four buttons from the chapter's own localised strings", () => {
     for (const [content, lang, expected] of [
-      [scienceF2C6InteractiveDLP, "en", ["Acid: without water", "Acid: with water", "Alkali: without water", "Alkali: with water"]],
-      [scienceF2C6InteractiveBM, "bm", ["Asid: tanpa air", "Asid: dengan air", "Alkali: tanpa air", "Alkali: dengan air"]],
+      [
+        scienceF2C6InteractiveDLP,
+        "en",
+        ["Acid: without water", "Acid: with water", "Alkali: without water", "Alkali: with water"],
+      ],
+      [
+        scienceF2C6InteractiveBM,
+        "bm",
+        ["Asid: tanpa air", "Asid: dengan air", "Alkali: tanpa air", "Alkali: dengan air"],
+      ],
     ] as const) {
       const dry = content.sections.find((s) => s.dryVsAqueous)!.dryVsAqueous!;
       const composed = dry.panels.map((panel) => {
@@ -414,7 +477,7 @@ describe("why water matters — visual replacement", () => {
     }
   });
 
-  it("renders the artwork on DLP and the schematic on BM, never both", () => {
+  it("renders the shared artwork on BOTH DLP and BM, never the old schematic", () => {
     const dlp = renderToStaticMarkup(
       createElement(ScienceF2InteractiveNotesBlock, {
         content: { ...scienceF2C6InteractiveDLP, sections: [section] },
@@ -423,33 +486,108 @@ describe("why water matters — visual replacement", () => {
     );
     expect(dlp).toContain(block.image!.src.split("?")[0]);
     expect(dlp, "old four-panel SVG must be gone").not.toContain('viewBox="0 0 92 66"');
-    expect(occurrences(dlp, "why-water-matters-acids-alkalis")).toBe(1);
+    expect(occurrences(dlp, "science-f2-ch6-role-of-water")).toBe(1);
 
     const bmSection = scienceF2C6InteractiveBM.sections.find((s) => s.dryVsAqueous)!;
-    expect(bmSection.dryVsAqueous!.image, "BM must not carry the English artwork").toBeUndefined();
+    expect(bmSection.dryVsAqueous!.image, "BM now shares the same text-free artwork").toBeDefined();
+    expect(bmSection.dryVsAqueous!.image!.src).toBe(block.image!.src);
     const bm = renderToStaticMarkup(
       createElement(ScienceF2InteractiveNotesBlock, {
         content: { ...scienceF2C6InteractiveBM, sections: [bmSection] },
         lang: "bm" as const,
       }),
     );
-    expect(bm).toContain('viewBox="0 0 92 66"');
-    expect(bm).not.toContain("why-water-matters");
+    expect(bm, "old four-panel SVG must be gone").not.toContain('viewBox="0 0 92 66"');
+    expect(occurrences(bm, "science-f2-ch6-role-of-water")).toBe(1);
+  });
+});
+
+describe("acid-alkali titration — visual replacement", () => {
+  const section = scienceF2C6InteractiveDLP.sections.find((s) => s.titrationSchematic)!;
+  const block = section.titrationSchematic!;
+
+  it("ships the approved text-free WebP, with no runtime PNG reference", () => {
+    expect(block.image, "approved artwork attached").toBeDefined();
+    const src = block.image!.src.split("?")[0];
+    expect(src.endsWith(".webp"), src).toBe(true);
+    expect(src).toContain("science-f2-ch6-titration");
+    const index = src.indexOf("src/assets/");
+    expect(existsSync(resolve(process.cwd(), src.slice(index))), src).toBe(true);
+  });
+
+  it("keeps the same six controls, each with a region on the artwork", () => {
+    const ids = block.labels.map((l) => l.id);
+    const extraIds = (block.image!.extra ?? []).map((e) => e.id);
+    expect([...ids, ...extraIds].sort()).toEqual(
+      ["acid", "burette", "endpoint", "flask", "indicator", "stopcock"].sort(),
+    );
+    for (const id of [...ids, ...extraIds]) {
+      expect(block.image!.points.map((p) => p.id).concat(extraIds), id).toContain(id);
+    }
+  });
+
+  it("BM now shares the same artwork and hotspot geometry as DLP", () => {
+    const bmSection = scienceF2C6InteractiveBM.sections.find((s) => s.titrationSchematic)!;
+    const bmBlock = bmSection.titrationSchematic!;
+    expect(bmBlock.image, "BM now carries the shared text-free artwork").toBeDefined();
+    expect(bmBlock.image!.src).toBe(block.image!.src);
+    expect(bmBlock.image!.points).toEqual(block.image!.points);
+    expect(bmBlock.image!.extra?.[0]?.x).toBe(block.image!.extra?.[0]?.x);
+    expect(bmBlock.image!.extra?.[0]?.y).toBe(block.image!.extra?.[0]?.y);
+  });
+
+  it("BM's stopcock-equivalent control uses the same term everywhere: button, hotspot, and helper text", () => {
+    const bmSection = scienceF2C6InteractiveBM.sections.find((s) => s.titrationSchematic)!;
+    const bmBlock = bmSection.titrationSchematic!;
+    const stopcockExtra = bmBlock.image!.extra!.find((e) => e.id === "stopcock")!;
+    expect(stopcockExtra.label).toBe("Injap");
+    expect(bmBlock.hint).toContain("Injap");
+  });
+
+  it("renders the shared artwork on BOTH DLP and BM, never the old drawn schematic", () => {
+    const dlp = renderToStaticMarkup(
+      createElement(ScienceF2InteractiveNotesBlock, {
+        content: { ...scienceF2C6InteractiveDLP, sections: [section] },
+        lang: "en" as const,
+      }),
+    );
+    expect(dlp).toContain(block.image!.src.split("?")[0]);
+    expect(dlp, "old schematic SVG must be gone").not.toContain('viewBox="0 0 240 200"');
+    expect(occurrences(dlp, "science-f2-ch6-titration")).toBe(1);
+    // Every control has a real region on the artwork, plus its own concept button.
+    expect(dlp).toContain(">Stopcock<");
+
+    const bmSection = scienceF2C6InteractiveBM.sections.find((s) => s.titrationSchematic)!;
+    const bm = renderToStaticMarkup(
+      createElement(ScienceF2InteractiveNotesBlock, {
+        content: { ...scienceF2C6InteractiveBM, sections: [bmSection] },
+        lang: "bm" as const,
+      }),
+    );
+    expect(bm, "old schematic SVG must be gone").not.toContain('viewBox="0 0 240 200"');
+    expect(occurrences(bm, "science-f2-ch6-titration")).toBe(1);
+    expect(bm).toContain(">Injap<");
+    expect(bm, "no English leakage in BM").not.toMatch(/>Stopcock<|>Burette<|>Conical flask</);
   });
 });
 
 describe("preserved interactions", () => {
-  it("chapter 4 still renders the primary and secondary immune response graph", () => {
-    const section = scienceF2C4InteractiveDLP.sections.find((s) => s.immuneResponseGraph);
-    expect(section, "immune response graph section").toBeDefined();
+  // Chapter 4's human-audit correction pass removed the standalone primary /
+  // secondary immune-response graph module — the DSKP-scoped concept now
+  // lives only inside the active-immunity cells of the four-type matrix, each
+  // with its own small trend chart, rather than as its own lesson.
+  it("chapter 4 has no standalone immune response graph, and folds the concept into the immunity matrix instead", () => {
+    expect(scienceF2C4InteractiveDLP.sections.some((s) => s.immuneResponseGraph)).toBe(false);
+    const section = scienceF2C4InteractiveDLP.sections.find((s) => s.immunityMatrix);
+    expect(section, "immunity matrix section").toBeDefined();
     const markup = renderToStaticMarkup(
       createElement(ScienceF2InteractiveNotesBlock, {
         content: { ...scienceF2C4InteractiveDLP, sections: [section!] },
         lang: "en" as const,
       }),
     );
-    expect(markup).toContain(html(section!.immuneResponseGraph!.title));
-    // ...and no second visual was added beside it.
+    // The matrix's own per-cell trend chart renders (an inline SVG, not a file asset).
+    expect(markup).toContain("<svg");
     expect(assetFilenames(markup)).toEqual([]);
   });
 
@@ -457,7 +595,10 @@ describe("preserved interactions", () => {
     ["pH slider", (s: ScienceF2InteractiveContent["sections"][number]) => s.phSlider],
     ["indicator table", (s: ScienceF2InteractiveContent["sections"][number]) => s.indicatorTable],
     ["dry versus aqueous", (s: ScienceF2InteractiveContent["sections"][number]) => s.dryVsAqueous],
-    ["strong versus weak", (s: ScienceF2InteractiveContent["sections"][number]) => s.strengthComparison],
+    [
+      "strong versus weak",
+      (s: ScienceF2InteractiveContent["sections"][number]) => s.strengthComparison,
+    ],
   ])("chapter 6 preserves its %s interaction", (_name, pick) => {
     for (const content of [scienceF2C6InteractiveBM, scienceF2C6InteractiveDLP]) {
       expect(content.sections.some((section) => pick(section))).toBe(true);

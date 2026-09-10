@@ -18,7 +18,13 @@ import {
  * Selecting "end point" flips the flask contents from pink to colourless, so the
  * colour change is something the learner watches happen rather than only reads.
  */
-export function TitrationSchematic({ block, lang }: { block: TitrationSchematicBlock; lang?: string }) {
+export function TitrationSchematic({
+  block,
+  lang,
+}: {
+  block: TitrationSchematicBlock;
+  lang?: string;
+}) {
   // Approved artwork replaces the schematic outright — the two never appear
   // together, and every label below is this block's own verified data.
   if (block.image) {
@@ -49,12 +55,12 @@ export function TitrationSchematic({ block, lang }: { block: TitrationSchematicB
           caption: block.image.caption,
           legendLabel: block.image.legendLabel ?? block.title,
           annotationMode: block.image.annotationMode ?? "regions",
+          overlayHeadings: block.image.overlayHeadings,
           imageKey: block.image.imageKey,
         }}
       />
     );
   }
-
 
   const [active, setActive] = useState<string | null>(null);
   const activeLabel = block.labels.find((l) => l.id === active) ?? null;
@@ -130,14 +136,7 @@ export function TitrationSchematic({ block, lang }: { block: TitrationSchematicB
           />
 
           {/* white tile under the flask */}
-          <rect
-            x={72}
-            y={192}
-            width="66"
-            height="5"
-            rx="1.5"
-            className="fill-slate-200/70"
-          />
+          <rect x={72} y={192} width="66" height="5" rx="1.5" className="fill-slate-200/70" />
 
           {/* indicator marker */}
           {on("indicator") && (

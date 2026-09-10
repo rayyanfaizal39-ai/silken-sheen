@@ -1,11 +1,13 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
 import chapterImage from "@/assets/science/form2/ch5-air-larutan.png";
+import statesOfWaterImg from "@/assets/notes/form2-science/chapter-5/chapter5_states_of_water.webp";
 import capillaryActionImg from "@/assets/notes/form2-science/chapter-5/chapter5_capillary_action.webp";
 import electrolysisImg from "@/assets/notes/form2-science/chapter-5/chapter5_electrolysis_of_water.webp";
 import evaporationFactorsImg from "@/assets/notes/form2-science/chapter-5/chapter5_evaporation_factors.webp";
+import evaporationApplicationsImg from "@/assets/notes/form2-science/chapter-5/chapter5_evaporation_applications.webp";
 import mixtureTypesImg from "@/assets/notes/form2-science/chapter-5/chapter5_solution_suspension_colloid.webp";
 import concentrationTypesImg from "@/assets/notes/form2-science/chapter-5/chapter5_dilute_concentrated_saturated.webp";
-import waterTreatmentImg from "@/assets/notes/form2-science/chapter-5/chapter5_water_treatment_system.webp";
+import waterTreatmentImg from "@/assets/notes/form2-science/chapter-5/chapter5_water_treatment_journey.webp";
 
 /**
  * English rendering of "kadar keterlarutan".
@@ -53,26 +55,124 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.1",
       title: "Physical Characteristics of Water",
       intro:
-        "Pure water is **colourless, odourless and tasteless**, and stays liquid at room temperature. It boils at exactly 100°C, freezes at 0°C, and has a density of 1 g cm⁻³. These fixed values are actually how we test whether water contains impurities, since impurities shift them.",
+        "Pure water is **colourless, odourless and tasteless**, and stays liquid at room temperature. These fixed values are actually how we test whether water contains impurities, since impurities shift them.",
       cards: [
         {
-          title: "Four fixed values of pure water",
-          body: "Boiling point **100°C**, freezing point **0°C**, no colour, and a density of **1 g cm⁻³**. All of them are measured on water that is genuinely pure.",
+          title: "💧 Did you know?",
+          body: "**More than 70%** of the Earth's surface is covered by water.",
+        },
+        {
+          title: "Physical characteristics of pure water",
+          body: "",
+          facts: [
+            { label: "Colour", value: "Colourless" },
+            { label: "Smell and taste", value: "Odourless and tasteless" },
+            { label: "Boiling point", value: "100°C" },
+            { label: "Freezing point", value: "0°C" },
+            { label: "Density", value: "1 g cm⁻³" },
+          ],
           detail: "Any change in these values points to dissolved impurities being present.",
         },
+      ],
+      images: [
         {
-          title: "Melting & Freezing",
-          body: "Melting turns solid ice into liquid water by **absorbing heat**. Freezing turns liquid water into solid ice by releasing heat.",
-        },
-        {
-          title: "Evaporation/Boiling & Condensation",
-          body: "Evaporation/boiling turns liquid water into water vapour by absorbing heat. Condensation turns water vapour back into liquid by **releasing heat**.",
+          src: statesOfWaterImg,
+          alt: "The three states of water — solid ice, liquid water and water vapour — with their particle arrangements and the heat changes between each state.",
+          size: "wide",
+          aspect: "16 / 9",
+          legendLabel: "The three states of water",
+          annotationMode: "labels",
+          caption: "Tap a state or a process to see what happens to the particles and to heat.",
+          annotations: [
+            {
+              id: "solid",
+              label: "Solid",
+              note: "Particles are packed tightly together in a fixed arrangement and can only vibrate in place.",
+              x: 15,
+              y: 16,
+            },
+            {
+              id: "liquid",
+              label: "Liquid",
+              note: "Particles are close together but can move around and slide past one another.",
+              x: 50,
+              y: 14,
+            },
+            {
+              id: "gas",
+              label: "Gas",
+              note: "Particles are far apart, move rapidly and spread out to fill the space available.",
+              x: 86,
+              y: 16,
+            },
+            {
+              id: "melting",
+              label: "Melting",
+              note: "Turns solid ice into liquid water by **absorbing heat**.",
+              x: 33,
+              y: 29,
+            },
+            {
+              id: "freezing",
+              label: "Freezing",
+              note: "Turns liquid water into solid ice by releasing heat.",
+              x: 33,
+              y: 43,
+            },
+            {
+              id: "evaporation",
+              label: "Evaporation",
+              note: "Turns liquid water into water vapour by absorbing heat.",
+              facts: [
+                {
+                  label: "How it differs from boiling",
+                  value: [
+                    "Occurs at the surface of the liquid only",
+                    "Can occur below the boiling point",
+                  ],
+                },
+              ],
+              x: 65,
+              y: 25,
+            },
+            {
+              id: "boiling",
+              label: "Boiling",
+              note: "Also turns liquid water into water vapour by absorbing heat.",
+              facts: [
+                {
+                  label: "How it differs from evaporation",
+                  value: [
+                    "Occurs throughout the whole liquid, not just the surface",
+                    "Only occurs at the boiling point",
+                  ],
+                },
+              ],
+              x: 65,
+              y: 35,
+            },
+            {
+              id: "condensation",
+              label: "Condensation",
+              note: "Turns water vapour back into liquid by **releasing heat**.",
+              x: 65,
+              y: 46,
+            },
+          ],
         },
       ],
       checks: [
         {
           question: "How could Ikram test whether a bottle of water is pure?",
           hint: "Test its boiling and freezing points — pure water boils at exactly 100°C and freezes at exactly 0°C. Any shift points to dissolved impurities.",
+        },
+        {
+          question: "What happens to the particles of water when it evaporates?",
+          hint: "The particles gain heat energy, move apart, move much faster and spread out to fill the surrounding space.",
+        },
+        {
+          question: "What is the difference between evaporation and boiling?",
+          hint: "Evaporation happens only at the surface and can occur below the boiling point. Boiling happens throughout the whole liquid, and only at the boiling point.",
         },
       ],
     },
@@ -141,8 +241,23 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.1",
       title: "Impurities and Electrolysis of Water",
       intro:
-        "Water is a **compound** — two hydrogen atoms joined to one oxygen atom, **H₂O**. Electrolysis splits it apart again, and the volumes of gas collected prove that ratio. Dissolved impurities, meanwhile, shift the melting and boiling points of water.",
+        "Water is a **compound** — two hydrogen atoms joined to one oxygen atom, **H₂O**. Dissolved impurities shift the melting and boiling points of water.",
       cards: [
+        {
+          title: "Why electrolyse water?",
+          body: "",
+          facts: [
+            {
+              label: "Purpose",
+              value:
+                "Electrolysis of water is used to determine the elemental composition of water.",
+            },
+            {
+              label: "Result",
+              value: "Water is made up of hydrogen and oxygen, in a volume ratio of 2 : 1.",
+            },
+          ],
+        },
         {
           title: "Why salty soup boils more slowly",
           body: "Dissolved impurities change the melting and boiling points of water — salt **lowers the melting point of ice** but **raises the boiling point of water**. That is why a pot of plain water boils faster than one holding salt or dissolved soup stock.",
@@ -184,7 +299,8 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
           ],
         },
         title: "⚡ Electrolysis of water",
-        instruction: "Tap any part to find out what it does. Compare the heights of the two gas columns.",
+        instruction:
+          "Tap any part to find out what it does. Compare the heights of the two gas columns.",
         ratioCaption: "Volume of hydrogen : oxygen = 2 : 1",
         hint: "Tap Anode, Cathode, Hydrogen gas or Oxygen gas.",
         labels: [
@@ -219,9 +335,21 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
     },
     {
       number: "5.1",
-      title: "Evaporation of Water",
+      title: "Factors Affecting the Rate of Evaporation",
       intro:
-        "Evaporation happens at the surface of water and turns water into water vapour. It can **occur at any temperature**, because water molecules at the surface have **higher kinetic energy** and can escape into the air. Four factors affect the rate of evaporation.",
+        "Evaporation happens at the surface of water and can occur at any temperature. Four factors affect how quickly it happens.",
+      contextImages: [
+        {
+          src: evaporationFactorsImg,
+          alt: "Four factors that speed up evaporation: lower humidity, higher temperature, a larger surface area and greater air movement.",
+          size: "wide",
+          aspect: "3 / 2",
+          legendLabel: "Factors affecting the rate of evaporation",
+          caption:
+            "All four panels reach the same result — faster evaporation — for four different reasons.",
+          annotations: [],
+        },
+      ],
       flipCards: [
         {
           id: "humidity",
@@ -353,24 +481,13 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
               "Place slide M under a fan and slide N away from the fan.",
               "Record your observations after 15 minutes.",
             ],
-            observation: "The paper on slide M under the fan turns blue faster than the one on slide N.",
+            observation:
+              "The paper on slide M under the fan turns blue faster than the one on slide N.",
             conclusion:
               "Faster air movement gives a higher rate of evaporation. The hypothesis is accepted.",
           },
         ],
       },
-      images: [
-        {
-          src: evaporationFactorsImg,
-          alt: "Four factors that speed up evaporation: lower humidity, higher temperature, a larger surface area and greater air movement.",
-          size: "wide",
-          aspect: "3 / 2",
-          legendLabel: "Factors affecting the rate of evaporation",
-          caption:
-            "All four panels reach the same result — faster evaporation — for four different reasons.",
-          annotations: [],
-        },
-      ],
       checks: [
         {
           question: "Why do we feel cool right after sweating?",
@@ -380,6 +497,92 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
           question:
             "In the surface area investigation, which is the manipulated variable and which is the responding variable?",
           hint: "Manipulated: the exposed surface area of water. Responding: the rate of evaporation of water. The rest — humidity, volume of water, air movement and temperature — are controlled.",
+        },
+      ],
+    },
+    {
+      number: "5.1",
+      title: "Applications of Evaporation in Daily Life",
+      intro:
+        "Evaporation is useful in many daily activities. Explore each example to see how evaporation is applied.",
+      contextImages: [
+        {
+          src: evaporationApplicationsImg,
+          alt: "Four everyday applications of evaporation: drying clothes on a line, drying seafood on a rack, obtaining sea salt from evaporation ponds, and a hair dryer blowing warm moving air.",
+          size: "wide",
+          aspect: "16 / 9",
+          legendLabel: "Applications of evaporation",
+          annotationMode: "labels",
+          caption: "Tap a panel to see how each everyday use relies on evaporation.",
+          annotations: [
+            {
+              id: "clothes",
+              icon: "👕",
+              label: "Drying Clothes",
+              note: "Wet clothes are hung out so that water in the fabric evaporates.",
+              facts: [
+                {
+                  label: "Why it works",
+                  value: [
+                    "A larger exposed surface helps water evaporate",
+                    "Sunlight and moving air increase the rate of drying",
+                  ],
+                },
+              ],
+              x: 25,
+              y: 25,
+            },
+            {
+              id: "seafood",
+              icon: "🐟",
+              label: "Drying Seafood",
+              note: "Water is removed from fish and other seafood through evaporation.",
+              facts: [
+                {
+                  label: "Why it works",
+                  value:
+                    "Lower water content helps preserve the food, because microorganisms need water to grow.",
+                },
+              ],
+              x: 75,
+              y: 25,
+            },
+            {
+              id: "sea-salt",
+              icon: "🧂",
+              label: "Obtaining Sea Salt",
+              note: "Seawater is left in shallow ponds under the sun.",
+              facts: [
+                {
+                  label: "Why it works",
+                  value:
+                    "Water evaporates from the seawater, and the salt remains behind and crystallises.",
+                },
+              ],
+              x: 25,
+              y: 75,
+            },
+            {
+              id: "hair-dryer",
+              icon: "💨",
+              label: "Hair Dryer",
+              note: "A hair dryer blows warm, moving air over wet hair.",
+              facts: [
+                {
+                  label: "Why it works",
+                  value: "Warm moving air increases the rate of evaporation, so hair dries faster.",
+                },
+              ],
+              x: 75,
+              y: 75,
+            },
+          ],
+        },
+      ],
+      checks: [
+        {
+          question: "Why does hanging seafood out to dry help preserve it?",
+          hint: "Evaporation removes water from the seafood. Microorganisms that spoil food need water to grow, so drier food lasts longer.",
         },
       ],
     },
@@ -394,10 +597,21 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
         "**Solubility** of a solute is the maximum amount of solute that can dissolve in 100 ml of solvent at a specific temperature.",
       cards: [
         {
+          title: "Solute",
+          body: "The **substance that dissolves** in a liquid. Sugar is the solute when it dissolves in water.",
+        },
+        {
+          title: "Solvent",
+          body: "The **liquid that dissolves** a substance. Water is the solvent when sugar dissolves in it.",
+        },
+        {
+          title: "Solution",
+          body: "A **clear, uniform mixture** formed when a solute dissolves in a solvent. Sugar water is the solution formed from sugar and water.",
+        },
+        {
           title: "Solubility",
           body: "The solubility of a substance is the maximum amount of solute that can dissolve in 100 ml of solvent at a specified temperature.",
-          detail:
-            "It is a quantity — the answer to 'how much?', not to 'how fast?'.",
+          detail: "It is a quantity — the answer to 'how much?', not to 'how fast?'.",
         },
       ],
       conceptContrast: {
@@ -677,6 +891,11 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
           body: "Because non-water solvents **evaporate readily**, they are widely used in preparing spray products such as paint, perfume and insecticide. Non-water solvents must be handled carefully because they are **hazardous to human health**.",
         },
       ],
+      tabsHeading: {
+        title: "Organic Solvents",
+        instruction:
+          "Some substances that do not dissolve in water can dissolve in organic solvents.",
+      },
       tabs: [
         { title: "Alcohol", body: "Used in making perfume and antiseptic." },
         { title: "Kerosene", body: "Used as lamp oil." },
@@ -753,7 +972,8 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       ],
       checks: [
         {
-          question: "Which purification method removes dissolved substances AND kills microorganisms?",
+          question:
+            "Which purification method removes dissolved substances AND kills microorganisms?",
           hint: "Distillation — it is the only method that does both at once, and the only one that produces pure water.",
         },
       ],
@@ -762,23 +982,22 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
       number: "5.3",
       title: "Water Supply System",
       intro:
-        "Water collected from sources such as rivers and rainfall is channelled to a **water treatment plant** to be treated before it is sent on to consumers. **Bacteria, algae and mineral substances** are among the things removed in the process.",
+        "Water collected from sources such as rivers and rainfall is channelled to a **water treatment plant** to be treated in six stages before it reaches homes. **Bacteria, algae and mineral substances** are among the things removed in the process.",
       waterTreatmentFlow: {
         image: {
           src: waterTreatmentImg,
-          alt: "The seven stages of a water treatment system in order: screening, oxidation, coagulation, sedimentation, filtration, chlorination and fluoridation, ending in treated water.",
+          alt: "The journey of water from a river, through initial filtration, oxidation, coagulation, sedimentation, sand filtration and chlorination with fluoridation, into a storage tank and out to homes.",
           size: "wide",
-          aspect: "2 / 1",
-          annotationMode: "regions",
-          legendLabel: "The seven treatment stages",
+          aspect: "16 / 9",
+          annotationMode: "markers",
+          legendLabel: "The water treatment stages",
           points: [
-            { id: "screening", x: 7, y: 48, w: 13, h: 64 },
-            { id: "oxidation", x: 19, y: 48, w: 12, h: 64 },
-            { id: "coagulation", x: 33, y: 48, w: 14, h: 64 },
-            { id: "sedimentation", x: 46, y: 48, w: 13, h: 64 },
-            { id: "filtration", x: 59, y: 48, w: 13, h: 64 },
-            { id: "chlorination", x: 78, y: 48, w: 24, h: 64 },
-            { id: "homes", x: 95, y: 48, w: 10, h: 64 },
+            { id: "screening", x: 8, y: 50, w: 15, h: 55 },
+            { id: "oxidation", x: 22, y: 50, w: 11, h: 55 },
+            { id: "coagulation", x: 34, y: 46, w: 12, h: 63 },
+            { id: "sedimentation", x: 47, y: 50, w: 12, h: 55 },
+            { id: "filtration", x: 61, y: 50, w: 9, h: 55 },
+            { id: "chlorination", x: 72, y: 46, w: 10, h: 63 },
           ],
         },
         title: "🚰 The journey of water from river to tap",
@@ -787,16 +1006,10 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
         hint: "Tap any stage to read what it does.",
         stages: [
           {
-            id: "reservoir",
-            icon: "🏞️",
-            name: "Reservoir",
-            fn: "Raw water is collected from rivers or rainfall at a reservoir before treatment.",
-          },
-          {
             id: "screening",
             icon: "🪵",
-            name: "Screening",
-            fn: "Removes large impurities such as twigs and leaves.",
+            name: "Initial Filtration",
+            fn: "Initial filtration removes large suspended impurities such as leaves and twigs.",
           },
           {
             id: "oxidation",
@@ -821,22 +1034,15 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
           {
             id: "filtration",
             icon: "🏖️",
-            name: "Filtration",
-            fn: "Removes the remaining impurities using a sand filter.",
+            name: "Sand Filtration",
+            fn: "Removes the remaining suspended impurities using a sand filter.",
           },
           {
             id: "chlorination",
             icon: "🧪",
-            name: "Chlorination and fluoridation",
+            name: "Chlorination & Fluoridation",
             fn: "Microorganisms in the water are killed, and a substance that protects teeth is added.",
-            chemical:
-              "Chlorine — to kill microorganisms; sodium fluoride — to prevent tooth decay",
-          },
-          {
-            id: "homes",
-            icon: "🏠",
-            name: "To homes",
-            fn: "Clean water is held in a clean water tank, then pumped through a storage tank out to consumers.",
+            chemical: "Chlorine — to kill microorganisms; sodium fluoride — to prevent tooth decay",
           },
         ],
       },
@@ -849,9 +1055,9 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
     },
     {
       number: "5.3",
-      title: "Alternative Water Supplies and Water Sustainability",
+      title: "Alternative Water Supplies",
       intro:
-        "Some countries **short of water resources** use **alternative ways** of obtaining a water supply. At the same time, looking after the water we already have is every individual's responsibility.",
+        "Some countries **short of water resources** use **alternative ways** of obtaining a water supply.",
       methodCards: {
         title: "🌍 Three ways of obtaining a water supply",
         instruction: "Each method answers the same three questions, so you can compare them.",
@@ -885,7 +1091,78 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
           },
         ],
       },
+      checks: [
+        {
+          question:
+            "A small island nation is surrounded by sea but is running out of fresh water. Which method suits it best, and why?",
+          hint: "Reverse osmosis — seawater is pushed under pressure through a fine membrane that holds back the dissolved salt, producing fresh water from the unlimited source all around it.",
+        },
+      ],
+    },
+    {
+      number: "5.4",
+      title: "Water Sustainability",
+      intro:
+        "Rivers are the main water source in Malaysia. Water pollution can make water unsuitable for consumption and can cause harmful effects on the environment. Development, industrial and agricultural activities are among the main causes of water pollution.",
       cards: [
+        {
+          title: "🏠 Domestic Waste",
+          body: "Sewage and rubbish released from homes and settlements.",
+          facts: [
+            {
+              label: "Ways to overcome",
+              value: [
+                "Upgrade sewerage systems nationwide.",
+                "Educate people on how to manage and dispose of rubbish correctly.",
+                "Improve sanitation facilities in rural areas.",
+              ],
+            },
+          ],
+        },
+        {
+          title: "🏭 Industrial Waste",
+          body: "Untreated waste discharged from factories.",
+          facts: [
+            {
+              label: "Ways to overcome",
+              value: [
+                "Enforce laws to ensure industrial waste is treated before being discharged into rivers.",
+              ],
+            },
+            {
+              label: "Examples of regulations",
+              value: [
+                "Environmental Quality (Scheduled Wastes) Regulations 2005",
+                "Environmental Quality (Industrial Effluent) Regulations 2009",
+                "Environmental Quality (Sewage) Regulations 2009",
+              ],
+            },
+          ],
+        },
+        {
+          title: "🌾 Chemicals in Agriculture",
+          body: "Fertilisers and pesticides washed off farmland into rivers.",
+          facts: [
+            {
+              label: "Ways to overcome",
+              value: ["Educate farmers to use biodegradable fertilisers and pesticides."],
+            },
+          ],
+        },
+        {
+          title: "🛢️ Oil Spillage",
+          body: "Oil released into the sea from tankers, rigs or pipelines.",
+          facts: [
+            {
+              label: "Ways to overcome",
+              value: [
+                "Surround and contain oil spilled at sea.",
+                "Collect and control the spill using the national oil-spill contingency plan.",
+                "Improve air surveillance with the cooperation of the Air Police Unit.",
+              ],
+            },
+          ],
+        },
         {
           title: "Water that is safe to drink",
           body: "Water that is **safe to drink** must be free of harmful microorganisms, toxic chemicals and impurities. That is why water is treated at a plant before it reaches homes.",
@@ -925,15 +1202,15 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
           {
             id: "oil",
             label: "🛢️ Oil spills",
-            match: "Contain spills with a national contingency plan and increase aerial surveillance",
+            match:
+              "Contain spills with a national contingency plan and increase aerial surveillance",
           },
         ],
       },
       checks: [
         {
-          question:
-            "A small island nation is surrounded by sea but is running out of fresh water. Which method suits it best, and why?",
-          hint: "Reverse osmosis — seawater is pushed under pressure through a fine membrane that holds back the dissolved salt, producing fresh water from the unlimited source all around it.",
+          question: "How can industrial water pollution be reduced?",
+          hint: "By enforcing laws requiring industrial waste to be treated before it is discharged into rivers, such as under the Environmental Quality (Industrial Effluent) Regulations 2009.",
         },
         {
           question: "What can be learned from what happened at Minamata Bay?",
@@ -944,9 +1221,12 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
   ],
   reflectionItems: [
     "I can describe the physical characteristics of water and the effect of impurities on them.",
+    "I can explain the three states of water and the changes between them.",
     "I can distinguish the cohesive force from the adhesive force in capillary action.",
-    "I can explain the electrolysis of water and the volume ratio of hydrogen to oxygen.",
+    "I can explain the purpose of electrolysis of water and the volume ratio of hydrogen to oxygen.",
     "I can carry out an investigation into the factors affecting the rate of evaporation of water.",
+    "I can explain everyday applications of evaporation.",
+    "I can define solute, solvent and solution.",
     `I can explain what solubility means and distinguish it from the ${RATE_TERM}.`,
     "I can distinguish dilute, concentrated and saturated solutions.",
     "I can distinguish solutions, suspensions and colloids with examples.",
@@ -954,7 +1234,8 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
     "I can explain the uses of water as the universal solvent and give examples of non-water solvents.",
     "I can compare water purification methods and explain what purification means.",
     "I can explain each stage in the water supply system.",
-    "I can suggest alternative ways of obtaining a water supply and justify water sustainability.",
+    "I can suggest alternative ways of obtaining a water supply.",
+    "I can explain the causes of water pollution and the ways to overcome them, and justify water sustainability.",
   ],
   miniQuiz: [
     {

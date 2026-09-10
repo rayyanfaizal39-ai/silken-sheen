@@ -6,6 +6,7 @@ import { LearningImageLightbox } from "./LearningImageLightbox";
 import {
   defaultLearningImageSize,
   learningImageMaxWidth,
+  learningImageMinWidth,
   parseAspectRatio,
   type LearningImageSize,
 } from "./learning-image";
@@ -17,6 +18,8 @@ import {
   layoutCallouts,
   type AnnotationMode,
 } from "./annotation-layout";
+import { SpotlightOverlay } from "./SpotlightOverlay";
+import { spotlightBounds, type SpotlightShape, type SpotlightPulseGroup } from "./spotlight-shapes";
 
 /**
  * One annotated point on the image.
@@ -37,9 +40,11 @@ export type ImageAnnotation = {
   /**
    * Extra labelled facts shown under the note in the explanation panel — used
    * where a concept was previously taught by a small table, so folding that
-   * table into the figure loses none of it.
+   * table into the figure loses none of it. `value` may be an array to render
+   * a real bullet list (e.g. a route's list of example diseases) instead of
+   * one comma-separated line.
    */
-  facts?: { label: string; value: string }[];
+  facts?: { label: string; value: string | string[] }[];
   /**
    * Horizontal position as a percentage of image width. Omit — together with
    * `y` — for a concept the artwork does not depict: it then appears in the
@@ -55,6 +60,65 @@ export type ImageAnnotation = {
    */
   w?: number;
   h?: number;
+  /**
+   * `spotlight` mode only — one or more shapes, in artwork percentages, that
+   * stay bright while the rest of the picture dims. Multiple shapes let one
+   * concept ("population") light up several discrete organisms at once rather
+   * than one rectangle that can only ever grow or shrink. Omit (or pass an
+   * empty array) for a concept that IS the whole picture — it renders at full
+   * brightness with no dimming at all.
+   */
+  spotlightShapes?: SpotlightShape[];
+  /**
+   * `spotlight` mode only — short phrase in a floating callout drawn directly
+   * on the artwork next to the shape. Falls back to `label`. Keep it to a
+   * few words — the fuller definition still belongs in `note`, read from the
+   * explanation panel below.
+   */
+  spotlightCaption?: string;
+  /**
+   * `spotlight` mode only — tints the revealed area this CSS colour instead
+   * of just removing the dim, e.g. a translucent blue wash over a habitat's
+   * boundary so the PLACE itself reads as highlighted, not just brighter.
+   */
+  spotlightTint?: string;
+  /**
+   * `spotlight` mode only — draws one soft unifying wash behind several
+   * shapes so a group reads as one group rather than several unrelated spots.
+   */
+  spotlightGroupHalo?: boolean;
+  /**
+   * `spotlight` mode only — for a concept that dims nothing (typically the
+   * one with no `spotlightShapes`, e.g. "ecosystem"): briefly sweeps two
+   * colour groups across the artwork — living vs. non-living, say — before
+   * settling back into the plain full-colour picture. Also draws a persistent
+   * soft glow around the whole frame while this concept stays selected.
+   */
+  spotlightPulseGroups?: SpotlightPulseGroup[];
+};
+
+/**
+ * One static caption pinned over a fixed spot on the artwork — see
+ * `AnnotatedImageProps.overlayHeadings`.
+ */
+export type OverlayHeading = {
+  id: string;
+  x: number;
+  y: number;
+  text: string;
+  /** Max width as a % of the artwork, for a box wide enough to need wrapped text. Omit to keep the text on one line. */
+  w?: number;
+  /** Text colour for the box it sits on. `"light"` (default) for a dark/navy box; `"dark"` for a bright box (yellow, green, pale pink, white). */
+  tone?: "light" | "dark";
+  /**
+   * Skip the decorative pill background — for a heading dropped onto a box
+   * the ARTWORK already draws, where a second background would double up.
+   * Default `false` keeps the small dark pill, for headings floating over
+   * open artwork with no box of their own.
+   */
+  bare?: boolean;
+  /** Size/weight: `"tag"` (default, small bold caps — a short label), `"heading"` (bigger, for a title), or `"body"` (a readable wrapped sentence). */
+  emphasis?: "tag" | "heading" | "body";
 };
 
 /** An annotation that has a place on the artwork, so it can be drawn. */
@@ -85,6 +149,44 @@ export type AnnotatedImageProps = {
    *               second, competing label
    */
   annotationMode?: AnnotationMode;
+  /**
+   * `spotlight` mode only — how strongly the scrim dims everything outside
+   * the active shapes, 0-1. Omit for the default 0.78 (near-blackout — right
+   * for "this one thing out of a busy scene"). A figure whose other regions
+   * are still worth reading at a glance (a side-by-side property table, a set
+   * of peer panels) should pass a lower value, e.g. 0.45, so the unselected
+   * regions merely dim rather than disappear.
+   */
+  spotlightDimOpacity?: number;
+  /**
+   * `spotlight` mode only — how the floating caption is placed relative to
+   * the active shape's own bounding box.
+   *  - `"auto"` (default) — floats in whichever open space (above or below
+   *    the shape) has more room. Built for artwork where the shapes are
+   *    scattered over otherwise-empty background (an organism on a pond
+   *    scene), so "the open space near it" is unambiguous.
+   *  - `"top"` — pins the caption just inside the shape's own top edge,
+   *    never outside its bounding box. For artwork that is itself a grid of
+   *    adjacent panels (peer application panels, a property-comparison row
+   *    spanning two columns), "open space below" is usually the START of the
+   *    NEXT panel, not empty background — `"auto"` would float the caption
+   *    onto a neighbour. Anchoring inside the shape's own top edge keeps the
+   *    label unambiguously attached to the panel it names, at any width.
+   */
+  spotlightCaptionEdge?: "auto" | "top";
+  /**
+   * Short static captions pinned over the artwork at a fixed spot — e.g. a
+   * bilingual "Acid" / "Alkali" heading over each half of a two-column
+   * figure whose own artwork is deliberately text-free so one file serves
+   * both languages, or the whole label set for artwork drawn with blank
+   * boxes precisely so BM and DLP text can be swapped in without ever baking
+   * either language into the picture. Purely decorative (`aria-hidden`): the
+   * words they show are never the only place that information appears, so
+   * nothing is lost to a screen reader. `x`/`y` are the box's centre — every
+   * heading is centred on both axes, so it drops cleanly into a pre-drawn
+   * box of any size.
+   */
+  overlayHeadings?: OverlayHeading[];
   /**
    * Rendered footprint. Omit to derive one from the aspect ratio, so an image
    * added without a size still stays bounded.
@@ -154,6 +256,9 @@ export function AnnotatedImage({
   alt,
   annotations = [],
   annotationMode = "labels",
+  spotlightDimOpacity,
+  spotlightCaptionEdge = "auto",
+  overlayHeadings = [],
   size,
   aspect = "3 / 2",
   caption,
@@ -184,6 +289,8 @@ export function AnnotatedImage({
   const isNumbers = annotationMode === "numbers";
   const isClean = annotationMode === "clean";
   const isRegions = annotationMode === "regions";
+  const isSpotlight = annotationMode === "spotlight";
+  const isMarkers = annotationMode === "markers";
   const wantsLabels = annotationMode === "labels" || annotationMode === "hybrid";
 
   // Direct labels stay on the artwork only while there is room for them. Past
@@ -198,22 +305,122 @@ export function AnnotatedImage({
   // Gutters need horizontal room a phone does not have, and direct labels only
   // survive while they still fit side by side once the artwork is phone-sized.
   const needsSmallScreenFallback =
-    isCallout ||
-    (wantsLabels && (placed.length > 5 || labelsCollideWhenSmall(placed, artRatio)));
+    isCallout || (wantsLabels && (placed.length > 5 || labelsCollideWhenSmall(placed, artRatio)));
   const richVisibility = needsSmallScreenFallback ? "hidden sm:block" : "";
   const pinVisibility = needsSmallScreenFallback ? "sm:hidden" : "";
 
   const showPins = isNumbers || needsSmallScreenFallback;
   const showLegend =
-    isNumbers || isClean || isRegions || annotationMode === "hybrid" || needsSmallScreenFallback;
-  // A `clean`, `regions` or `hybrid` legend is the point, so it shows at every
-  // width; a fallback legend only accompanies the small-screen pins.
+    isNumbers ||
+    isClean ||
+    isRegions ||
+    isSpotlight ||
+    annotationMode === "hybrid" ||
+    needsSmallScreenFallback;
+  // A `clean`, `regions`, `spotlight` or `hybrid` legend is the point, so it
+  // shows at every width; a fallback legend only accompanies the small-screen
+  // pins.
   const legendVisibility =
-    isNumbers || isClean || isRegions || annotationMode === "hybrid" ? "" : pinVisibility;
+    isNumbers || isClean || isRegions || isSpotlight || annotationMode === "hybrid"
+      ? ""
+      : pinVisibility;
 
   const activeAnnotation = annotations.find((a) => a.id === active) ?? null;
+  const spotlightShapes = activeAnnotation?.spotlightShapes ?? [];
+  const spotlightMaskId = `${baseId}-spotlight-mask`;
+  const spotlightCalloutStyle: React.CSSProperties | undefined = isSpotlight
+    ? (() => {
+        if (spotlightShapes.length > 0) {
+          const { minX, minY, maxX, maxY } = spotlightBounds(spotlightShapes);
+          const cx = Math.min(94, Math.max(6, (minX + maxX) / 2));
+          if (spotlightCaptionEdge === "top") {
+            return {
+              left: `${cx}%`,
+              top: `${Math.min(96, minY + 2)}%`,
+              transform: "translate(-50%, 0)",
+            };
+          }
+          // A group spanning most of the artwork's height (community's whole
+          // living cast, habitat's near-full-height pond boundary) has no
+          // single edge worth hugging — snugging to its top or bottom edge
+          // pushes the callout to the very rim of the frame and clips it, so
+          // it gets a plain top-banner spot instead.
+          if (maxY - minY > 50) {
+            return { left: "50%", top: "4%", transform: "translate(-50%, 0)" };
+          }
+          const roomAbove = minY;
+          const roomBelow = 100 - maxY;
+          return roomBelow >= roomAbove
+            ? { left: `${cx}%`, top: `${Math.min(92, maxY + 3)}%`, transform: "translate(-50%, 0)" }
+            : {
+                left: `${cx}%`,
+                top: `${Math.max(3, minY - 3)}%`,
+                transform: "translate(-50%, -100%)",
+              };
+        }
+        return { left: "50%", top: "4%", transform: "translate(-50%, 0)" };
+      })()
+    : undefined;
+  const spotlightLayer = isSpotlight ? (
+    <>
+      <SpotlightOverlay
+        maskId={spotlightMaskId}
+        shapes={spotlightShapes}
+        tint={activeAnnotation?.spotlightTint}
+        groupHalo={activeAnnotation?.spotlightGroupHalo}
+        pulseGroups={activeAnnotation?.spotlightPulseGroups}
+        wholeGlow={Boolean(activeAnnotation?.spotlightPulseGroups?.length)}
+        dimOpacity={spotlightDimOpacity}
+      />
+      {activeAnnotation && (
+        <div
+          key={activeAnnotation.id}
+          className="spotlight-callout pointer-events-none absolute z-10 max-w-[80%] whitespace-normal rounded-full bg-primary px-3 py-1.5 text-center text-[11px] font-bold leading-tight text-primary-foreground shadow-[0_4px_16px_rgba(0,0,0,0.45)] sm:text-[12.5px]"
+          style={spotlightCalloutStyle}
+        >
+          {activeAnnotation.spotlightCaption ?? activeAnnotation.label}
+        </div>
+      )}
+    </>
+  ) : null;
+  const overlayHeadingLayer = overlayHeadings.length > 0 && (
+    <>
+      {overlayHeadings.map((heading) => {
+        const bare = heading.bare ?? false;
+        const dark = heading.tone === "dark";
+        const sizeClass =
+          heading.emphasis === "heading"
+            ? "text-[12px] font-extrabold sm:text-[14.5px]"
+            : heading.emphasis === "body"
+              ? "text-[9.5px] font-semibold leading-snug sm:text-[11.5px]"
+              : "text-[10px] font-bold uppercase tracking-wide sm:text-[11px]";
+        const colourClass = bare
+          ? dark
+            ? "text-slate-900"
+            : "text-white"
+          : "rounded-full border border-white/20 bg-slate-950/70 px-2.5 py-1 text-white shadow-[0_2px_10px_rgba(0,0,0,0.4)] backdrop-blur-[2px]";
+        return (
+          <div
+            key={heading.id}
+            aria-hidden="true"
+            className={`pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-1/2 text-center ${
+              heading.w ? "whitespace-normal" : "whitespace-nowrap"
+            } ${sizeClass} ${colourClass}`}
+            style={{
+              left: `${heading.x}%`,
+              top: `${heading.y}%`,
+              ...(heading.w ? { width: `${heading.w}%` } : {}),
+            }}
+          >
+            {heading.text}
+          </div>
+        );
+      })}
+    </>
+  );
   const resolvedSize = size ?? defaultLearningImageSize(aspect);
   const artMaxWidth = learningImageMaxWidth(resolvedSize, aspect);
+  const artMinWidth = learningImageMinWidth(resolvedSize);
   // In callout mode the gutters sit outside the picture, so the frame is wider
   // than the artwork while the artwork itself keeps its intended size.
   const frameMaxWidth = isCallout ? calloutFrameMaxWidth(artMaxWidth) : artMaxWidth;
@@ -225,22 +432,29 @@ export function AnnotatedImage({
 
   if (!url) return null;
 
-  return (
-    <figure className={`m-0 flex flex-col gap-2 ${className ?? ""}`}>
-      <div
-        className={`relative mx-auto w-full overflow-hidden rounded-2xl border border-border bg-secondary/30 ${
-          isCallout ? "callout-frame" : ""
-        }`}
-        style={
-          isCallout
-            ? ({
-                aspectRatio: aspect,
-                maxWidth: artMaxWidth,
-                "--callout-frame-aspect": frameAspect,
-                "--callout-frame-max-width": frameMaxWidth,
-              } as React.CSSProperties)
-            : { aspectRatio: aspect, maxWidth: artMaxWidth }
-        }
+  // A `minWidth` variant is a readability floor, not just a cap: on a
+  // viewport narrower than that floor the frame must keep its width and let
+  // this wrapper scroll sideways, rather than the artwork (and the text
+  // baked into it) shrinking further to avoid overflow.
+  const frame = (
+    <div
+      className={`relative mx-auto w-full overflow-hidden rounded-2xl border border-border bg-secondary/30 ${
+        isCallout ? "callout-frame" : ""
+      }`}
+      style={
+        isCallout
+          ? ({
+              aspectRatio: aspect,
+              maxWidth: artMaxWidth,
+              "--callout-frame-aspect": frameAspect,
+              "--callout-frame-max-width": frameMaxWidth,
+            } as React.CSSProperties)
+          : {
+              aspectRatio: aspect,
+              maxWidth: artMaxWidth,
+              ...(artMinWidth ? { minWidth: `${artMinWidth}px` } : {}),
+            }
+      }
       >
         <img
           src={url}
@@ -252,6 +466,9 @@ export function AnnotatedImage({
           }`}
         />
 
+        {spotlightLayer}
+        {overlayHeadingLayer}
+
         {/* Leader lines, drawn under the labels. Percentage coordinates keep
             every line locked to its structure at any rendered width. */}
         {isCallout && (
@@ -261,7 +478,8 @@ export function AnnotatedImage({
           >
             {callouts.map(({ annotation, side, labelY, anchorX, anchorY }) => {
               const isActive = active === annotation.id;
-              const startX = side === "left" ? `${CALLOUT_GUTTER - 1}%` : `${100 - CALLOUT_GUTTER + 1}%`;
+              const startX =
+                side === "left" ? `${CALLOUT_GUTTER - 1}%` : `${100 - CALLOUT_GUTTER + 1}%`;
               return (
                 <g key={annotation.id}>
                   <line
@@ -318,6 +536,15 @@ export function AnnotatedImage({
             const isActive = active === item.id;
             const width = item.w ?? 24;
             const height = item.h ?? 24;
+            // Smaller regions sit above larger ones. Regions legitimately nest —
+            // a pond's dragonflies are inside its community, which is inside the
+            // pond, which is inside the ecosystem — and with one shared z-index
+            // the outermost region is drawn last and swallows every click meant
+            // for the ones within it, leaving them reachable only by keyboard.
+            const area = width * height;
+            const enclosing = placed.filter(
+              (other) => (other.w ?? 24) * (other.h ?? 24) > area,
+            ).length;
             return (
               <button
                 key={item.id}
@@ -330,16 +557,85 @@ export function AnnotatedImage({
                 // which is exactly the state the explanation panel must keep.
                 onClick={() => setActive(isActive ? null : item.id)}
                 onFocus={() => setActive(item.id)}
-                className={`absolute z-10 cursor-pointer rounded-xl border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                  isActive ? "border-primary bg-primary/12" : "border-transparent hover:border-primary/60"
+                className={`absolute cursor-pointer rounded-xl border-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  isActive
+                    ? "border-primary bg-primary/12"
+                    : "border-transparent hover:border-primary/60"
                 }`}
                 style={{
                   left: `${Math.max(0, item.x - width / 2)}%`,
                   top: `${Math.max(0, item.y - height / 2)}%`,
                   width: `${width}%`,
                   height: `${height}%`,
+                  // Base 10, as before; the rank stays below the enlarge control at z-20.
+                  zIndex: 10 + enclosing,
                 }}
               />
+            );
+          })}
+
+        {/* Always-visible compact number badges, one per point, plus — for the
+            active point only — a floating full-name chip and a glow traced
+            around its hit area. Nothing else on the artwork ever carries
+            text, so there is no width past which points start colliding. */}
+        {isMarkers &&
+          placed.map((item, index) => {
+            const isActive = active === item.id;
+            const width = item.w ?? 24;
+            const height = item.h ?? 24;
+            const translateX = item.x < 15 ? "0%" : item.x > 85 ? "-100%" : "-50%";
+            return (
+              <span key={item.id}>
+                {isActive && (
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute rounded-xl border-2 border-primary shadow-[0_0_18px_2px_rgba(99,102,241,0.4)] transition-all"
+                    style={{
+                      left: `${Math.max(0, item.x - width / 2)}%`,
+                      top: `${Math.max(0, item.y - height / 2)}%`,
+                      width: `${width}%`,
+                      height: `${height}%`,
+                    }}
+                  />
+                )}
+                <button
+                  type="button"
+                  aria-pressed={isActive}
+                  aria-label={item.label}
+                  aria-describedby={`${baseId}-explanation`}
+                  onClick={() => setActive(isActive ? null : item.id)}
+                  onMouseEnter={() => setActive(item.id)}
+                  onFocus={() => setActive(item.id)}
+                  className={`absolute z-10 flex h-6 w-6 items-center justify-center rounded-full border text-[10.5px] font-bold tabular-nums shadow-[0_1px_6px_rgba(0,0,0,0.5)] transition-all before:absolute before:-inset-2 before:content-[''] sm:h-7 sm:w-7 sm:text-[11.5px] ${
+                    isActive
+                      ? "scale-110 border-primary bg-primary text-primary-foreground ring-2 ring-primary/45 ring-offset-1 ring-offset-slate-950"
+                      : active
+                        ? "border-primary/35 bg-slate-950/85 text-white opacity-70 hover:opacity-100"
+                        : "border-primary/50 bg-slate-950/85 text-white hover:border-primary"
+                  }`}
+                  style={{
+                    left: `${item.x}%`,
+                    top: `${item.y}%`,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  {index + 1}
+                </button>
+                {isActive && (
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute z-20 flex items-center gap-1 whitespace-nowrap rounded-full border border-primary bg-primary px-2 py-0.5 text-[10.5px] font-bold leading-tight text-primary-foreground shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:px-2.5 sm:py-1 sm:text-[11.5px]"
+                    style={{
+                      left: `${item.x}%`,
+                      top: `${item.y}%`,
+                      transform: `translate(${translateX}, calc(-50% - 20px))`,
+                    }}
+                  >
+                    <span className="tabular-nums">{index + 1}</span>
+                    <span>{item.label}</span>
+                  </div>
+                )}
+              </span>
             );
           })}
 
@@ -390,7 +686,16 @@ export function AnnotatedImage({
                   onClick={() => setActive(isActive ? null : item.id)}
                   onMouseEnter={() => setActive(item.id)}
                   onFocus={() => setActive(item.id)}
-                  className={`${CHIP_BASE} ${isActive ? CHIP_ACTIVE : CHIP_IDLE} ${richVisibility}`}
+                  className={`${CHIP_BASE} ${richVisibility} ${
+                    isActive
+                      ? CHIP_ACTIVE
+                      : // Any selection at all dims the other chips slightly, so the
+                        // active one reads as unmistakably chosen rather than just
+                        // one of an equal row of labels.
+                        active
+                        ? `${CHIP_IDLE} opacity-55`
+                        : CHIP_IDLE
+                  }`}
                   style={style}
                 >
                   {item.label}
@@ -431,6 +736,14 @@ export function AnnotatedImage({
           <span className="hidden sm:inline">{enlargeLabel}</span>
         </button>
       </div>
+  );
+
+  return (
+    <figure className={`m-0 flex flex-col gap-2 ${className ?? ""}`}>
+      {/* The floor-width variants overflow their column by design; scope the
+          horizontal scroll to just this wrapper so the page itself never
+          gains body-level overflow. */}
+      {artMinWidth ? <div className="w-full overflow-x-auto">{frame}</div> : frame}
 
       {showLegend && !hideLegend && annotations.length > 0 && (
         <ol
@@ -472,7 +785,6 @@ export function AnnotatedImage({
                     type="button"
                     aria-pressed={isActive}
                     onClick={() => setActive(isActive ? null : item.id)}
-                    onFocus={() => setActive(item.id)}
                     className={`${rowClass} w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary`}
                   >
                     {marker}
@@ -527,6 +839,12 @@ export function AnnotatedImage({
         alt={alt}
         title={legendLabel ?? alt}
         closeLabel={closeLabel}
+        overlay={
+          <>
+            {spotlightLayer}
+            {overlayHeadingLayer}
+          </>
+        }
       />
     </figure>
   );

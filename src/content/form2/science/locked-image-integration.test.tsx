@@ -45,8 +45,11 @@ const PAIRS: [string, ScienceF2InteractiveContent, ScienceF2InteractiveContent][
   ["chapter 6", scienceF2C6InteractiveBM, scienceF2C6InteractiveDLP],
 ];
 
-/** Every expected asset, by the semantic filename it ships under. */
-const EXPECTED_ASSETS = [
+/**
+ * The original locked pack: baked-in ENGLISH labels, so it ships on the DLP
+ * surface only.
+ */
+const ENGLISH_LABELLED_ASSETS = [
   "chapter-4/chapter4_infectious_disease_transmission.webp",
   "chapter-4/chapter4_vector_pathogen_disease.webp",
   "chapter-4/chapter4_three_lines_body_defence.webp",
@@ -55,12 +58,55 @@ const EXPECTED_ASSETS = [
   "chapter-5/chapter5_evaporation_factors.webp",
   "chapter-5/chapter5_solution_suspension_colloid.webp",
   "chapter-5/chapter5_dilute_concentrated_saturated.webp",
-  "chapter-5/chapter5_water_treatment_system.webp",
   "chapter-6/chapter6_acid_metal_hydrogen_test.webp",
   "chapter-6/chapter6_ph_testing_methods.webp",
-  "chapter-6/chapter6_acid_alkali_titration.webp",
   "chapter-6/chapter6_uses_of_acids_and_alkalis.webp",
 ];
+
+/**
+ * A later, Chapter 5 visual pass added three TEXT-FREE assets — states of
+ * water, applications of evaporation, and the water-treatment journey (which
+ * replaced the earlier English-labelled `chapter5_water_treatment_system`).
+ * Because no language is baked into the artwork, these three are shared by
+ * both BM and DLP from one file each, closing part of the BM asset gap the
+ * English-labelled pack left open.
+ *
+ * The Chapter 6 visual-integration pass added three more of the same kind —
+ * properties of acids/alkalis, the role of water, and applications of
+ * neutralisation — also shared from one file each. `science-f2-ch6-role-of-water`
+ * replaces the earlier `why-water-matters-acids-alkalis`, which (unlike this
+ * one) really was English-labelled and so never reached BM.
+ *
+ * A follow-up QA pass then retired `chapter6_acid_alkali_titration` (baked-in
+ * English, DLP-only) in favour of `science-f2-ch6-titration` — drawn with
+ * blank label boxes instead, so the same file now serves BM too, with every
+ * word rendered as a UI overlay (`overlayHeadings`) in the reader's language.
+ */
+const SHARED_TEXT_FREE_ASSETS = [
+  "chapter-5/chapter5_states_of_water.webp",
+  "chapter-5/chapter5_evaporation_applications.webp",
+  "chapter-5/chapter5_water_treatment_journey.webp",
+  "chapter-6/science-f2-ch6-properties-acids-alkalis.webp",
+  "chapter-6/science-f2-ch6-role-of-water.webp",
+  "chapter-6/science-f2-ch6-neutralisation-applications.webp",
+  "chapter-6/science-f2-ch6-titration.webp",
+];
+
+/**
+ * Of the shared text-free assets, these use `spotlight` mode rather than the
+ * shared-asset default `labels` — each highlights one concept's region(s)
+ * while dimming the rest, which direct chips can't do (a property that spans
+ * both an acid AND an alkali column, or a peer set of five application panels
+ * that must never all show full names at once).
+ */
+const SPOTLIGHT_MODE_ASSETS = [
+  "chapter-6/science-f2-ch6-properties-acids-alkalis.webp",
+  "chapter-6/science-f2-ch6-role-of-water.webp",
+  "chapter-6/science-f2-ch6-neutralisation-applications.webp",
+];
+
+/** Every expected asset, by the semantic filename it ships under. */
+const EXPECTED_ASSETS = [...ENGLISH_LABELLED_ASSETS, ...SHARED_TEXT_FREE_ASSETS];
 
 const ASSET_ROOT = resolve(process.cwd(), "src/assets/notes/form2-science");
 
@@ -73,19 +119,67 @@ type Figure = Omit<AnnotatedImageBlock, "annotations"> & { annotations: ImageAnn
 
 function imagesOf(content: ScienceF2InteractiveContent): Figure[] {
   return content.sections.flatMap((section) => {
-    const standalone: Figure[] = (section.images ?? []).map((image) => ({ ...image }));
+    const standalone: Figure[] = [
+      ...(section.images ?? []),
+      // The "recognise it, then understand it" leading slot — used by the
+      // Chapter 5 visual-order fix so a figure can lead its section, ahead of
+      // any cards or experiment.
+      ...(section.contextImages ?? []),
+    ].map((image) => ({ ...image }));
+
+    if (section.conceptSelector?.image) {
+      standalone.push({
+        src: section.conceptSelector.image.src,
+        alt: section.conceptSelector.image.alt,
+        size: section.conceptSelector.image.size,
+        aspect: section.conceptSelector.image.aspect,
+        legendLabel: section.conceptSelector.image.legendLabel,
+        annotationMode: section.conceptSelector.image.annotationMode,
+        annotations: section.conceptSelector.concepts,
+      });
+    }
 
     const blocks = [
-      section.capillaryDiagram && { image: section.capillaryDiagram.image, items: section.capillaryDiagram.labels },
-      section.electrolysisDiagram && { image: section.electrolysisDiagram.image, items: section.electrolysisDiagram.labels },
-      section.titrationSchematic && { image: section.titrationSchematic.image, items: section.titrationSchematic.labels },
+      section.capillaryDiagram && {
+        image: section.capillaryDiagram.image,
+        items: section.capillaryDiagram.labels,
+      },
+      section.electrolysisDiagram && {
+        image: section.electrolysisDiagram.image,
+        items: section.electrolysisDiagram.labels,
+      },
+      // The rendered button label is composed from the column + water
+      // headings (see `DryVsAqueous.tsx`), not the raw `substance` string.
+      section.dryVsAqueous && {
+        image: section.dryVsAqueous.image,
+        items: section.dryVsAqueous.panels.map((p) => {
+          const dry = section.dryVsAqueous!;
+          const group = (p.id.startsWith("acid") ? dry.acidColumnLabel : dry.alkaliColumnLabel)
+            .split("—")[0]
+            .trim();
+          const water = p.withWater ? dry.withWaterLabel : dry.withoutWaterLabel;
+          return { id: p.id, label: `${group}: ${water.toLocaleLowerCase()}`, note: p.note };
+        }),
+      },
+      section.titrationSchematic && {
+        image: section.titrationSchematic.image,
+        items: section.titrationSchematic.labels,
+      },
       section.mixtureComparison && {
         image: section.mixtureComparison.image,
-        items: section.mixtureComparison.kinds.map((k) => ({ id: k.id, label: k.name, note: k.note })),
+        items: section.mixtureComparison.kinds.map((k) => ({
+          id: k.id,
+          label: k.name,
+          note: k.note,
+        })),
       },
       section.waterTreatmentFlow && {
         image: section.waterTreatmentFlow.image,
-        items: section.waterTreatmentFlow.stages.map((s) => ({ id: s.id, label: s.name, note: s.fn })),
+        items: section.waterTreatmentFlow.stages.map((s) => ({
+          id: s.id,
+          label: s.name,
+          note: s.fn,
+        })),
       },
       section.defenceLines && {
         image: section.defenceLines.image,
@@ -99,7 +193,15 @@ function imagesOf(content: ScienceF2InteractiveContent): Figure[] {
       const annotations: ImageAnnotation[] = [
         ...entry.items.map((item) => {
           const point = image.points.find((p) => p.id === item.id);
-          return { id: item.id, label: item.label, note: item.note, x: point?.x, y: point?.y, w: point?.w, h: point?.h };
+          return {
+            id: item.id,
+            label: item.label,
+            note: item.note,
+            x: point?.x,
+            y: point?.y,
+            w: point?.w,
+            h: point?.h,
+          };
         }),
         ...(image.extra ?? []),
       ];
@@ -125,6 +227,11 @@ function repoPathOf(src: string): string {
   const withoutQuery = src.split("?")[0];
   const index = withoutQuery.indexOf("src/assets/");
   return index === -1 ? withoutQuery : resolve(process.cwd(), withoutQuery.slice(index));
+}
+
+/** Just the filename (no directory), so it can be matched against a src URL regardless of path-separator style. */
+function basename(assetPath: string): string {
+  return assetPath.split("/").pop()!;
 }
 
 /**
@@ -159,10 +266,20 @@ describe("locked image pack — assets", () => {
     expect(existsSync(resolve(ASSET_ROOT, relative))).toBe(true);
   });
 
-  it("integrates exactly the 13 assets in the locked pack, each exactly once", () => {
-    const used = DLP.flatMap(([, content]) => imagesOf(content).map((image) => repoPathOf(image.src)));
+  it("integrates exactly the 18 assets in the locked pack, each exactly once (DLP)", () => {
+    const used = DLP.flatMap(([, content]) =>
+      imagesOf(content).map((image) => repoPathOf(image.src)),
+    );
     expect(used).toHaveLength(EXPECTED_ASSETS.length);
     expect(new Set(used).size).toBe(EXPECTED_ASSETS.length);
+  });
+
+  it("BM uses exactly the 7 shared text-free assets, each exactly once", () => {
+    const used = BM.flatMap(([, content]) =>
+      imagesOf(content).map((image) => repoPathOf(image.src)),
+    );
+    expect(used).toHaveLength(SHARED_TEXT_FREE_ASSETS.length);
+    expect(new Set(used).size).toBe(SHARED_TEXT_FREE_ASSETS.length);
   });
 
   it.each(DLP)("%s resolves every image src to a real file", (_name, content) => {
@@ -184,14 +301,17 @@ describe("locked image pack — assets", () => {
     }
   });
 
-  it.each(DLP)("%s sizes every figure explicitly rather than filling the column", (_name, content) => {
-    for (const image of imagesOf(content)) {
-      expect(image.size, image.alt).toBeDefined();
-      // An aspect ratio reserves the box before the file loads, so a figure
-      // cannot shift the section as it arrives.
-      expect(image.aspect, image.alt).toBeDefined();
-    }
-  });
+  it.each(DLP)(
+    "%s sizes every figure explicitly rather than filling the column",
+    (_name, content) => {
+      for (const image of imagesOf(content)) {
+        expect(image.size, image.alt).toBeDefined();
+        // An aspect ratio reserves the box before the file loads, so a figure
+        // cannot shift the section as it arrives.
+        expect(image.aspect, image.alt).toBeDefined();
+      }
+    },
+  );
 });
 
 describe("locked image pack — hotspots", () => {
@@ -233,16 +353,45 @@ describe("locked image pack — hotspots", () => {
   });
 
   it.each(DLP)(
-    "%s annotates locked artwork with regions, never with chips or pins over its printed labels",
+    "%s annotates English-labelled artwork with regions, never with chips or pins over its printed labels",
     (_name, content) => {
       for (const image of imagesOf(content)) {
         if (image.annotations.length === 0) continue;
-        expect(image.annotationMode, image.alt).toBe("regions");
+        const isSharedTextFree = SHARED_TEXT_FREE_ASSETS.some((asset) =>
+          image.src.includes(basename(asset)),
+        );
+        // The water-treatment journey packs six stages into one wide strip,
+        // too many full-text labels to fit side by side, so it alone uses
+        // `markers` — a numbered badge per stage plus one floating full name
+        // for whichever is active. The titration artwork is drawn with its
+        // own blank label boxes (text rendered entirely via `overlayHeadings`
+        // instead of chips), so it alone keeps `regions` despite being shared
+        // text-free artwork. The other shared text-free assets use `labels`
+        // (the chip IS the on-image label) unless listed in
+        // `SPOTLIGHT_MODE_ASSETS`, and every English-labelled asset keeps
+        // `regions`.
+        const isWaterTreatment = image.src.includes(
+          basename("chapter5_water_treatment_journey.webp"),
+        );
+        const isTitration = image.src.includes(basename("science-f2-ch6-titration.webp"));
+        const isSpotlight = SPOTLIGHT_MODE_ASSETS.some((asset) =>
+          image.src.includes(basename(asset)),
+        );
+        const expectedMode = isWaterTreatment
+          ? "markers"
+          : isTitration
+            ? "regions"
+            : isSpotlight
+              ? "spotlight"
+              : isSharedTextFree
+                ? "labels"
+                : "regions";
+        expect(image.annotationMode, image.alt).toBe(expectedMode);
       }
     },
   );
 
-  it("keeps four of the thirteen figures deliberately static", () => {
+  it("keeps four of the eighteen figures deliberately static", () => {
     const staticFigures = DLP.flatMap(([, content]) =>
       imagesOf(content).filter((image) => image.annotations.length === 0),
     );
@@ -252,14 +401,40 @@ describe("locked image pack — hotspots", () => {
 
 describe("locked image pack — BM / DLP", () => {
   it.each(BM)("%s renders none of the English-labelled locked assets", (_name, content) => {
-    expect(imagesOf(content)).toEqual([]);
+    const usedBasenames = imagesOf(content).map((image) => basename(image.src.split("?")[0]));
+    for (const asset of ENGLISH_LABELLED_ASSETS) {
+      expect(usedBasenames, asset).not.toContain(basename(asset));
+    }
   });
 
-  it.each(BM)("%s markup references no locked asset file", (_name, content) => {
+  it.each(BM)("%s markup references no English-labelled locked asset file", (_name, content) => {
     const markup = renderChapter(content, "bm");
-    for (const asset of EXPECTED_ASSETS) {
+    for (const asset of ENGLISH_LABELLED_ASSETS) {
       expect(markup).not.toContain(asset.split("/")[1]);
     }
+  });
+
+  const CH5_SHARED_ASSETS = SHARED_TEXT_FREE_ASSETS.filter((a) => a.startsWith("chapter-5/"));
+  const CH6_SHARED_ASSETS = SHARED_TEXT_FREE_ASSETS.filter((a) => a.startsWith("chapter-6/"));
+
+  it("ch5 bm renders exactly the three shared text-free assets", () => {
+    const usedBasenames = imagesOf(scienceF2C5InteractiveBM)
+      .map((image) => basename(image.src.split("?")[0]))
+      .sort();
+    const expectedBasenames = CH5_SHARED_ASSETS.map(basename).sort();
+    expect(usedBasenames).toEqual(expectedBasenames);
+  });
+
+  it("ch6 bm renders exactly the four shared text-free assets", () => {
+    const usedBasenames = imagesOf(scienceF2C6InteractiveBM)
+      .map((image) => basename(image.src.split("?")[0]))
+      .sort();
+    const expectedBasenames = CH6_SHARED_ASSETS.map(basename).sort();
+    expect(usedBasenames).toEqual(expectedBasenames);
+  });
+
+  it("ch4 bm still renders no images at all", () => {
+    expect(imagesOf(scienceF2C4InteractiveBM)).toEqual([]);
   });
 
   it.each(PAIRS)("%s keeps BM and DLP section parity", (_name, bm, dlp) => {
@@ -306,6 +481,47 @@ describe("locked image pack — rendering", () => {
       for (const annotation of image.annotations) {
         // Every concept is reachable by name — as a region on the artwork when
         // it has one, and always as a button under the picture.
+        expect(markup, annotation.id).toContain(html(annotation.label));
+      }
+    }
+  });
+
+  it("ch5 bm renders each shared figure lazily, with its alt text and an enlarge control", () => {
+    const markup = renderChapter(scienceF2C5InteractiveBM, "bm");
+    const images = imagesOf(scienceF2C5InteractiveBM);
+    expect(images.length).toBe(3);
+    for (const image of images) {
+      expect(markup, image.alt).toContain(`alt="${html(image.alt)}"`);
+      // BM's enlarge-control copy is "Besarkan", not the DLP "Enlarge".
+      expect(markup, image.alt).toContain(`aria-label="Besarkan — ${html(image.alt)}"`);
+    }
+    expect(markup.match(/loading="lazy"/g)?.length ?? 0).toBeGreaterThanOrEqual(images.length);
+  });
+
+  it("ch5 bm renders every shared-figure hotspot as a labelled control", () => {
+    const markup = renderChapter(scienceF2C5InteractiveBM, "bm");
+    for (const image of imagesOf(scienceF2C5InteractiveBM)) {
+      for (const annotation of image.annotations) {
+        expect(markup, annotation.id).toContain(html(annotation.label));
+      }
+    }
+  });
+
+  it("ch6 bm renders each shared figure lazily, with its alt text and an enlarge control", () => {
+    const markup = renderChapter(scienceF2C6InteractiveBM, "bm");
+    const images = imagesOf(scienceF2C6InteractiveBM);
+    expect(images.length).toBe(4);
+    for (const image of images) {
+      expect(markup, image.alt).toContain(`alt="${html(image.alt)}"`);
+      expect(markup, image.alt).toContain(`aria-label="Besarkan — ${html(image.alt)}"`);
+    }
+    expect(markup.match(/loading="lazy"/g)?.length ?? 0).toBeGreaterThanOrEqual(images.length);
+  });
+
+  it("ch6 bm renders every shared-figure hotspot as a labelled control", () => {
+    const markup = renderChapter(scienceF2C6InteractiveBM, "bm");
+    for (const image of imagesOf(scienceF2C6InteractiveBM)) {
+      for (const annotation of image.annotations) {
         expect(markup, annotation.id).toContain(html(annotation.label));
       }
     }

@@ -38,10 +38,17 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "dlp",
-    question: "On which date is the International Day for Biological Diversity celebrated?",
-    options: ["5 June", "22 May", "1 March", "16 September"],
+    question:
+      "Biodiversity exists partly because organisms live in different habitats and climates. Why can this lead to a wide variety of organisms?",
+    options: [
+      "All organisms develop exactly the same characteristics",
+      "Organisms develop characteristics that help them survive in different environmental conditions",
+      "Climate prevents organisms from adapting to their habitats",
+      "Every habitat contains the same organisms",
+    ],
     answerIndex: 1,
-    explanation: "The International Day for Biological Diversity is celebrated on 22 May every year.",
+    explanation:
+      "Different habitats and climates favour different characteristics and adaptations, contributing to biodiversity.",
   },
   {
     id: "sci-f2-c1-dlp-q4",
@@ -50,15 +57,16 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "dlp",
-    question: "Which act bans the killing or trade of endemic and endangered animals and plants in Malaysia?",
+    question: "Why is effective biodiversity management important?",
     options: [
-      "Environmental Quality Act 1974",
-      "Wildlife Protection Act 1972",
-      "National Forestry Act 1984",
-      "National Parks Act 1980",
+      "To increase the number of buildings in natural habitats",
+      "To prevent species loss and maintain healthy ecosystems",
+      "To remove all predators from ecosystems",
+      "To ensure only economically useful species survive",
     ],
     answerIndex: 1,
-    explanation: "The Wildlife Protection Act 1972 bans the killing or trade of endemic and endangered animals and plants.",
+    explanation:
+      "Effective biodiversity management prevents species loss and helps ecosystems stay balanced and healthy.",
   },
   {
     id: "sci-f2-c1-dlp-q5",
@@ -67,10 +75,16 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "dlp",
-    question: "Which of the following is an example of an endemic species in Malaysia?",
-    options: ["Cat", "Dog", "Rafflesia flower", "Cow"],
-    answerIndex: 2,
-    explanation: "The rafflesia flower is an example of an endemic species in Malaysia, alongside the pitcher plant, leatherback turtle, Malayan tiger and Borneo Pygmy elephant.",
+    question: "A species is described as endemic to a particular region. What does this mean?",
+    options: [
+      "It naturally occurs only in that particular geographical area",
+      "It can survive in every habitat in the world",
+      "It is always an extinct species",
+      "It must be kept only in captivity",
+    ],
+    answerIndex: 0,
+    explanation:
+      "An endemic species is one that naturally occurs only in a specific geographical area and nowhere else.",
   },
   {
     id: "sci-f2-c1-dlp-q6",
@@ -79,10 +93,12 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "dlp",
-    question: "An animal without a backbone is known as a/an...",
-    options: ["Vertebrate", "Invertebrate", "Homeotherm", "Poikilotherm"],
+    question:
+      "An animal has no backbone and has a segmented body with an exoskeleton. Which broad group does it belong to?",
+    options: ["Vertebrate", "Invertebrate", "Mammal", "Amphibian"],
     answerIndex: 1,
-    explanation: "An invertebrate is an animal that does not have a backbone.",
+    explanation:
+      "An animal with no backbone, a segmented body and an exoskeleton is classified as an invertebrate.",
   },
   {
     id: "sci-f2-c1-dlp-q7",
@@ -91,10 +107,17 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "dlp",
-    question: "How many main groups of vertebrates are studied in this chapter?",
-    options: ["3", "4", "5", "6"],
-    answerIndex: 2,
-    explanation: "The five groups of vertebrates are fish, amphibians, reptiles, birds and mammals.",
+    question:
+      "A forest contains plants that are used to produce medicines, timber and food. Which statement best describes the importance of biodiversity shown here?",
+    options: [
+      "Biodiversity provides useful biological resources",
+      "Biodiversity prevents all competition between organisms",
+      "Biodiversity eliminates the need for conservation",
+      "Biodiversity causes all organisms to use the same resources",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Biodiversity is important because it provides useful biological resources such as medicines, timber and food.",
   },
   {
     id: "sci-f2-c1-dlp-q8",
@@ -127,10 +150,11 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     lang: "dlp",
-    question: "A seed with one cotyledon is known as a...",
-    options: ["Dicotyledon", "Monocotyledon", "Conifer", "Spore"],
-    answerIndex: 1,
-    explanation: "A seed with one cotyledon is called a monocotyledon, e.g. paddy and maize.",
+    question: "Plant X has one cotyledon, fibrous roots and parallel leaf veins. How should Plant X be classified?",
+    options: ["Moss", "Fern", "Monocotyledon", "Dicotyledon"],
+    answerIndex: 2,
+    explanation:
+      "One cotyledon, fibrous roots and parallel leaf veins are all characteristics of a monocotyledon.",
   },
   {
     id: "sci-f2-c1-dlp-q11",
@@ -173,10 +197,16 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     lang: "dlp",
-    question: "How many pairs of legs do insects such as ants and butterflies have?",
-    options: ["Two pairs", "Three pairs", "Four pairs", "Five pairs"],
-    answerIndex: 1,
-    explanation: "Insects such as ants, butterflies and cockroaches have three pairs of legs.",
+    question: "Which comparison of leaf venation is correct?",
+    options: [
+      "Monocotyledon: parallel veins; Dicotyledon: network-like veins",
+      "Monocotyledon: network-like veins; Dicotyledon: parallel veins",
+      "Both have only parallel veins",
+      "Both have only network-like veins",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Monocotyledons have parallel leaf veins, while dicotyledons have network-like (reticulate) leaf veins.",
   },
   {
     id: "sci-f2-c1-dlp-q14",
@@ -248,15 +278,17 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     lang: "dlp",
-    question: "In a dichotomous key, what is meant by a 'couplet'?",
+    question:
+      "Factories release untreated waste into a river over several years. Which consequence is most likely to reduce biodiversity in the river?",
     options: [
-      "A single organism being studied",
-      "Two statements of characteristics that divide organisms into two choices",
-      "The total number of organisms in a group",
-      "The scientific name of an organism",
+      "More fish species will appear in the river",
+      "Aquatic organisms die or leave, reducing the variety of species in the river",
+      "The water becomes clearer and healthier for organisms",
+      "Competition between species disappears completely",
     ],
     answerIndex: 1,
-    explanation: "A couplet consists of two statements describing characteristics of an organism, dividing it into choice (a) or (b).",
+    explanation:
+      "Untreated waste pollutes the water, killing or driving away aquatic organisms and reducing the variety of species in the river.",
   },
   {
     id: "sci-f2-c1-dlp-q19",
@@ -295,10 +327,16 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     question:
-      "A dichotomous key gives the couplet: 1(a) Poikilothermic → go to 2, 1(b) Homeothermic → go to 3; 3(a) Non-feathered → Lion, 3(b) Feathered → Chicken. Animal X is homeothermic and feathered. What is animal X?",
-    options: ["Lion", "Chicken", "Snake", "Frog"],
+      "A population of an endemic animal is declining because its forest habitat is being cleared. Which action would be the most effective biodiversity-management strategy?",
+    options: [
+      "Capture every individual and permanently keep all of them in cages",
+      "Protect the natural habitat and control activities that threaten the population",
+      "Introduce several unrelated species into the habitat",
+      "Allow development to continue without monitoring the population",
+    ],
     answerIndex: 1,
-    explanation: "Following the couplet path: homeothermic → go to 3 → feathered → Chicken.",
+    explanation:
+      "Protecting the natural habitat and controlling the activities that threaten a population is the most effective way to prevent an endemic species from declining further.",
   },
   {
     id: "sci-f2-c1-dlp-q22",
@@ -338,11 +376,16 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 1",
     lang: "dlp",
-    question:
-      "A plant dichotomous key: 1(a) Non-flowering → go to 2, 1(b) Flowering → go to 3; 2(a) Non-vascular → Marchantia sp., 2(b) Vascular → go to 4; 4(a) Does not produce seeds → Fern, 4(b) Produce seeds → Gnetum sp. Plant Y is non-flowering, vascular and produces seeds. What is plant Y?",
-    options: ["Marchantia sp.", "Fern", "Gnetum sp.", "Maize plant"],
-    answerIndex: 2,
-    explanation: "Path: non-flowering → go to 2 → vascular → go to 4 → produces seeds → Gnetum sp.",
+    question: "Which combination correctly compares a monocotyledon with a dicotyledon?",
+    options: [
+      "Monocotyledon: taproot and network-like veins; Dicotyledon: fibrous roots and parallel veins",
+      "Monocotyledon: fibrous roots and parallel veins; Dicotyledon: taproot and network-like veins",
+      "Both have fibrous roots and parallel veins",
+      "Both have taproots and network-like veins",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Monocotyledons have fibrous roots and parallel leaf veins, while dicotyledons have a tap root and network-like leaf veins.",
   },
   {
     id: "sci-f2-c1-dlp-q25",
@@ -431,14 +474,16 @@ export const scienceF2C1QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 1",
     lang: "dlp",
-    question: "Why is it important to construct a dichotomous key with exactly two choices (a) and (b) per couplet, not three or more?",
+    question:
+      "A rare species is declining because of habitat destruction and illegal hunting. Which plan is most likely to conserve the species effectively in the long term?",
     options: [
-      "Because this rule only exists to help students memorise, without scientific reason",
-      "Because 'dichotomous' means 'divided into two', so each classification step remains systematic and unambiguous",
-      "Because only two organisms can exist in the world",
-      "Because a key with three choices cannot be drawn on paper",
+      "Protect its habitat, enforce wildlife laws and support breeding programmes where necessary",
+      "Protect only a few individuals but allow the habitat to continue being destroyed",
+      "Stop all scientific research on the species",
+      "Move every individual permanently into a city zoo",
     ],
-    answerIndex: 1,
-    explanation: "The word 'dichotomous' means divided into two parts; this structure ensures each classification step is consistent, systematic, and unambiguous when identifying organisms.",
+    answerIndex: 0,
+    explanation:
+      "Effective long-term conservation combines habitat protection, law enforcement against illegal hunting, and breeding programmes where necessary.",
   },
 ];

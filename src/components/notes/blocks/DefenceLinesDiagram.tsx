@@ -1,11 +1,7 @@
 import { useState } from "react";
 import type { DefenceLinesBlock } from "@/content/form2/science/interactive-types";
 import type { ImageAnnotation } from "./AnnotatedImage";
-import {
-  InteractiveBadge,
-  InteractiveFigureCard,
-  mergeConcepts,
-} from "./InteractiveFigureCard";
+import { InteractiveBadge, InteractiveFigureCard, mergeConcepts } from "./InteractiveFigureCard";
 
 /**
  * The body's three lines of defence, drawn as a pathogen meeting each barrier
@@ -16,13 +12,12 @@ import {
  * (specific). That split is drawn explicitly because it is what students are
  * asked to compare, and it was the piece missing from the earlier notes.
  */
-export function DefenceLinesDiagram({
-  block,
-  lang,
-}: {
-  block: DefenceLinesBlock;
-  lang?: string;
-}) {
+export function DefenceLinesDiagram({ block, lang }: { block: DefenceLinesBlock; lang?: string }) {
+  // Declared unconditionally: the non-image branch below returns before this
+  // point, and hooks must run in the same order on every render.
+  const [active, setActive] = useState<string | null>(null);
+  const activeLine = block.lines.find((l) => l.id === active) ?? null;
+
   // Approved artwork replaces the drawn card row. The non-specific / specific
   // grouping the cards carried is kept as a labelled fact on each concept, so
   // the comparison students are asked to make survives the swap.
@@ -32,6 +27,7 @@ export function DefenceLinesDiagram({
       return {
         id: line.id,
         label: line.name,
+        // The key idea reads first, immediately, before any deeper detail.
         note: line.note,
         x: point?.x,
         y: point?.y,
@@ -39,10 +35,10 @@ export function DefenceLinesDiagram({
         h: point?.h,
         facts: [
           {
-            label:
-              line.group === "non-specific" ? block.nonSpecificLabel : block.specificLabel,
+            label: line.group === "non-specific" ? block.nonSpecificLabel : block.specificLabel,
             value: line.parts,
           },
+          ...(line.facts ?? []),
         ],
       };
     });
@@ -67,14 +63,14 @@ export function DefenceLinesDiagram({
     );
   }
 
-  const [active, setActive] = useState<string | null>(null);
-  const activeLine = block.lines.find((l) => l.id === active) ?? null;
-
   const nonSpecific = block.lines.filter((l) => l.group === "non-specific");
   const specific = block.lines.filter((l) => l.group === "specific");
 
   const renderLine = (line: (typeof block.lines)[number], index: number) => {
     const isActive = active === line.id;
+    // Any selection at all dims the rest, so the active line is unmistakable —
+    // never just a colour change on the button itself.
+    const isDimmed = active !== null && !isActive;
     return (
       <button
         key={line.id}
@@ -85,20 +81,28 @@ export function DefenceLinesDiagram({
         onFocus={() => setActive(line.id)}
         className={`flex min-h-11 min-w-0 flex-1 cursor-pointer flex-col items-start gap-1 rounded-xl border-2 p-2.5 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
           isActive
-            ? "border-primary bg-primary/15 shadow-md"
-            : "border-primary/40 bg-card hover:-translate-y-px hover:border-primary hover:bg-primary/10 hover:shadow-md"
+            ? "border-primary bg-primary text-primary-foreground shadow-md ring-2 ring-primary/45 ring-offset-2 ring-offset-background"
+            : `border-primary/40 bg-card hover:-translate-y-px hover:border-primary hover:bg-primary/10 hover:shadow-md ${isDimmed ? "opacity-50" : ""}`
         }`}
       >
         <span className="flex items-center gap-1.5">
           <span
             aria-hidden="true"
-            className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-secondary text-[10px] font-bold tabular-nums text-muted-foreground"
+            className={`inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold tabular-nums ${
+              isActive
+                ? "bg-primary-foreground/20 text-primary-foreground"
+                : "bg-secondary text-muted-foreground"
+            }`}
           >
             {index + 1}
           </span>
-          <span className="font-display text-[12.5px] font-bold text-foreground">{line.name}</span>
+          <span className="font-display text-[12.5px] font-bold">{line.name}</span>
         </span>
-        <span className="text-[11.5px] leading-snug text-muted-foreground">{line.parts}</span>
+        <span
+          className={`text-[11.5px] leading-snug ${isActive ? "text-primary-foreground/90" : "text-muted-foreground"}`}
+        >
+          {line.parts}
+        </span>
       </button>
     );
   };
@@ -134,9 +138,9 @@ export function DefenceLinesDiagram({
         </div>
       </section>
 
-      <p
+      <div
         aria-live="polite"
-        className={`mt-2.5 min-h-[2.5rem] rounded-xl border px-3 py-1.5 text-[12px] leading-relaxed ${
+        className={`mt-2.5 min-h-[2.5rem] rounded-xl border px-3 py-2 text-[12px] leading-relaxed ${
           activeLine
             ? "border-primary/25 bg-primary/8 text-foreground"
             : "border-border bg-secondary/30 text-muted-foreground"
@@ -144,12 +148,33 @@ export function DefenceLinesDiagram({
       >
         {activeLine ? (
           <>
-            <b className="text-primary">{activeLine.name}</b> — {activeLine.note}
+            <p className="font-display text-[13px] font-bold text-primary">{activeLine.name}</p>
+            <p className="mt-0.5">{activeLine.note}</p>
+            {activeLine.facts && activeLine.facts.length > 0 && (
+              <dl className="mt-1.5 flex flex-col gap-1.5 border-t border-primary/15 pt-1.5">
+                {activeLine.facts.map((fact) => (
+                  <div key={fact.label}>
+                    <dt className="font-semibold text-muted-foreground">{fact.label}:</dt>
+                    {Array.isArray(fact.value) ? (
+                      <dd className="m-0 mt-0.5 min-w-0">
+                        <ul className="list-disc space-y-0.5 pl-4">
+                          {fact.value.map((line) => (
+                            <li key={line}>{line}</li>
+                          ))}
+                        </ul>
+                      </dd>
+                    ) : (
+                      <dd className="m-0 inline min-w-0"> {fact.value}</dd>
+                    )}
+                  </div>
+                ))}
+              </dl>
+            )}
           </>
         ) : (
           block.hint
         )}
-      </p>
+      </div>
     </div>
   );
 }

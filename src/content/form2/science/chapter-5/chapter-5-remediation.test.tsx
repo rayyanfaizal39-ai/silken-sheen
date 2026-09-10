@@ -7,10 +7,7 @@ import { scienceF2C5FlashcardsBM } from "./flashcards-bm";
 import { scienceF2C5FlashcardsDLP } from "./flashcards-dlp";
 import { scienceF2C5MindMapBM } from "./mindmap-bm";
 import { scienceF2C5MindMapDLP } from "./mindmap-dlp";
-import type {
-  ScienceF2InteractiveContent,
-  ScienceInteractiveSection,
-} from "../interactive-types";
+import type { ScienceF2InteractiveContent, ScienceInteractiveSection } from "../interactive-types";
 
 /**
  * Regression guards for the Chapter 5 remediation — see
@@ -33,16 +30,17 @@ const LANGS: [string, ScienceF2InteractiveContent][] = [
 const text = (v: unknown) => JSON.stringify(v);
 const allText = (c: ScienceF2InteractiveContent) => text(c);
 
-const sectionsWith = (
-  c: ScienceF2InteractiveContent,
-  key: keyof ScienceInteractiveSection,
-) => c.sections.filter((s) => s[key] !== undefined);
+const sectionsWith = (c: ScienceF2InteractiveContent, key: keyof ScienceInteractiveSection) =>
+  c.sections.filter((s) => s[key] !== undefined);
 
 describe("Chapter 5 — structure", () => {
   for (const [lang, content] of LANGS) {
-    it(`${lang}: notes are split into 9-12 sections, not the original 3`, () => {
+    it(`${lang}: notes are split into 9-14 sections, not the original 3`, () => {
       expect(content.sections.length).toBeGreaterThanOrEqual(9);
-      expect(content.sections.length).toBeLessThanOrEqual(12);
+      // 14, not 13: Alternative Water Supplies and Water Sustainability were
+      // split back into two distinct sections, matching the textbook's own
+      // separate treatment of the two topics.
+      expect(content.sections.length).toBeLessThanOrEqual(14);
     });
 
     it(`${lang}: every section has a title and at least one learning block`, () => {
@@ -62,7 +60,9 @@ describe("Chapter 5 — structure", () => {
           s.mixtureComparison ||
           s.waterTreatmentFlow ||
           s.matcher ||
-          s.sequence;
+          s.sequence ||
+          s.images ||
+          s.contextImages;
         expect(hasBlock, `section "${s.title}" has no learning block`).toBeTruthy();
       }
     });
@@ -129,7 +129,9 @@ describe("Chapter 5 — solubility vs rate of dissolving (regression protection)
       // The banned claim in English. "rate of solubility" is a separate, held
       // term (see interactive-dlp.ts) and must not be caught by this guard.
       expect(t).not.toMatch(/stirring[^".]{0,40}increases (the )?solubility(?! ?rate)/i);
-      expect(t).not.toMatch(/(smaller|particle size)[^".]{0,40}increases (the )?solubility\b(?!\s*rate)/i);
+      expect(t).not.toMatch(
+        /(smaller|particle size)[^".]{0,40}increases (the )?solubility\b(?!\s*rate)/i,
+      );
       // And in BM: "kacauan ... meningkatkan keterlarutan" without "kadar".
       expect(t).not.toMatch(/kacauan[^".]{0,40}meningkatkan keterlarutan/i);
       expect(t).not.toMatch(/saiz[^".]{0,40}meningkatkan keterlarutan(?! ?nya)/i);
@@ -229,9 +231,10 @@ describe("Chapter 5 — previously missing content is now taught", () => {
     });
 
     it(`${lang}: all five non-water solvents are listed`, () => {
-      const names = lang === "bm"
-        ? ["Alkohol", "Kerosin", "Aseton", "Turpentin", "Eter"]
-        : ["Alcohol", "Kerosene", "Acetone", "Turpentine", "Ether"];
+      const names =
+        lang === "bm"
+          ? ["Alkohol", "Kerosin", "Aseton", "Turpentin", "Eter"]
+          : ["Alcohol", "Kerosene", "Acetone", "Turpentine", "Ether"];
       const solventTabs = content.sections.flatMap((s) => s.tabs ?? []).map((x) => x.title);
       for (const n of names) expect(solventTabs).toContain(n);
     });
@@ -267,23 +270,50 @@ describe("Chapter 5 — previously missing content is now taught", () => {
 });
 
 describe("Chapter 5 — water treatment terminology and order", () => {
+  // Reservoir and "to homes" are visual endpoints only now — the interactive
+  // flow covers exactly the six treatment stages the human audit specified.
   const EXPECTED_ORDER = [
-    "reservoir",
     "screening",
     "oxidation",
     "coagulation",
     "sedimentation",
     "filtration",
     "chlorination",
-    "homes",
   ];
 
   for (const [lang, content] of LANGS) {
     const flow = sectionsWith(content, "waterTreatmentFlow")[0]?.waterTreatmentFlow;
 
-    it(`${lang}: the treatment flow keeps the source stage order`, () => {
+    it(`${lang}: the treatment flow keeps exactly the six source stages, in order`, () => {
       expect(flow, "no waterTreatmentFlow block").toBeTruthy();
       expect(flow!.stages.map((s) => s.id)).toEqual(EXPECTED_ORDER);
+    });
+
+    it(`${lang}: the first stage is labelled Initial Filtration, not the generic "Screening"`, () => {
+      const first = flow!.stages[0];
+      expect(first.id).toBe("screening");
+      expect(first.name, lang).toMatch(/^Initial Filtration$|^Penapisan Awal$/);
+    });
+
+    it(`${lang}: the sand-filtration stage is distinguished from initial filtration`, () => {
+      const sandFilter = flow!.stages.find((s) => s.id === "filtration")!;
+      expect(sandFilter.name, lang).toMatch(/^Sand Filtration$|^Penapisan Pasir$/);
+    });
+
+    it(`${lang}: reservoir and homes are no longer interactive treatment stages`, () => {
+      const ids = flow!.stages.map((s) => s.id);
+      expect(ids).not.toContain("reservoir");
+      expect(ids).not.toContain("homes");
+    });
+
+    it(`${lang}: the image gives an on-image marker to every stage`, () => {
+      expect(flow!.image, "no shared artwork").toBeDefined();
+      // Six full-text labels at once is what this mode replaced: `markers`
+      // shows a compact numbered badge for every stage but draws only the
+      // active stage's full name, so a wide six-stage strip never collides.
+      expect(flow!.image!.annotationMode).toBe("markers");
+      const pointIds = flow!.image!.points.map((p) => p.id).sort();
+      expect(pointIds).toEqual([...EXPECTED_ORDER].sort());
     });
 
     it(`${lang}: every stage explains what it does`, () => {
@@ -306,7 +336,15 @@ describe("Chapter 5 — water treatment terminology and order", () => {
 
   it("BM uses the source stage names, not the earlier non-source ones", () => {
     const t = allText(scienceF2C5InteractiveBM);
-    for (const term of ["Penapisan", "Pengoksidaan", "Penggumpalan", "Pengenapan", "Penurasan"]) {
+    // "Penurasan" was renamed to "Penapisan Pasir" to distinguish it from the
+    // first stage's "Penapisan Awal" — both are still real "Penapisan" terms.
+    for (const term of [
+      "Penapisan Awal",
+      "Pengoksidaan",
+      "Penggumpalan",
+      "Pengenapan",
+      "Penapisan Pasir",
+    ]) {
       expect(t, `missing source term ${term}`).toContain(term);
     }
     expect(t, "non-source term 'Kogulasi' is back").not.toMatch(/Kogulasi/i);

@@ -8140,9 +8140,55 @@
   animation: figure-cue-glow 1100ms ease-out 1 both;
 }
 
+/* `AnnotatedImage`'s `spotlight` mode: the on-artwork callout pops in rather
+   than just appearing, and a concept with no dimming of its own (the whole
+   picture, e.g. "ecosystem") gets a brief two-group colour sweep instead. */
+@keyframes spotlight-callout-pop {
+  from {
+    opacity: 0;
+    scale: 0.92;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.spotlight-callout {
+  /* `scale` (not `transform`) animates here on purpose: the callout's
+     position comes from an inline `transform: translate(...)` that differs
+     per placement (above vs. below its shape), and a `transform` keyframe
+     would win that fight and freeze the callout at the wrong offset once the
+     animation's fill-mode takes over. `scale` composes with `transform`
+     instead of replacing it. */
+  transform-origin: center;
+  animation: spotlight-callout-pop 200ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes spotlight-pulse {
+  0%,
+  100% {
+    fill-opacity: 0;
+  }
+  35% {
+    fill-opacity: 0.32;
+  }
+}
+
+.spotlight-pulse-a {
+  animation: spotlight-pulse 900ms ease-out both;
+}
+
+.spotlight-pulse-b {
+  animation: spotlight-pulse 900ms ease-out 220ms both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .figure-cue-badge,
-  .figure-cue-glow {
+  .figure-cue-glow,
+  .spotlight-callout,
+  .spotlight-pulse-a,
+  .spotlight-pulse-b {
     animation: none;
   }
 }

@@ -19,6 +19,8 @@ import { MatchingPairs } from "@/components/notes/blocks/MatchingPairs";
 import { Journey } from "@/components/notes/blocks/Journey";
 import { FoodWebDiagram } from "@/components/notes/blocks/FoodWebDiagram";
 import { PyramidDiagram } from "@/components/notes/blocks/PyramidDiagram";
+import { NutrientTable } from "@/components/notes/blocks/NutrientTable";
+import { DiseaseReferenceTable } from "@/components/notes/blocks/DiseaseReferenceTable";
 import { DigestiveSystemDiagram } from "@/components/notes/blocks/DigestiveSystemDiagram";
 import { ViskingExperimentDiagram } from "@/components/notes/blocks/ViskingExperimentDiagram";
 import { VillusDiagram } from "@/components/notes/blocks/VillusDiagram";
@@ -45,7 +47,12 @@ import { useProgress } from "@/hooks/use-progress";
 import { AnnotatedImage } from "@/components/notes/blocks/AnnotatedImage";
 import { InteractiveFigureCard } from "@/components/notes/blocks/InteractiveFigureCard";
 import { EcologicalTermsDiagram } from "@/components/notes/blocks/EcologicalTermsDiagram";
+import { ConceptTree } from "@/components/notes/blocks/ConceptTree";
+import { ImpactTable } from "@/components/notes/blocks/ImpactTable";
 import { EnzymeExplorer } from "@/components/notes/blocks/EnzymeExplorer";
+import { EnzymeReactionFlow } from "@/components/notes/blocks/EnzymeReactionFlow";
+import { SystemFlowDiagram } from "@/components/notes/blocks/SystemFlowDiagram";
+import { CalorieWorkedExample } from "@/components/notes/blocks/CalorieWorkedExample";
 import { ImmuneResponseGraph } from "@/components/notes/blocks/ImmuneResponseGraph";
 import { DefenceLinesDiagram } from "@/components/notes/blocks/DefenceLinesDiagram";
 import { ImmunityMatrix } from "@/components/notes/blocks/ImmunityMatrix";
@@ -97,6 +104,26 @@ import {
 } from "./chapter8/Chapter8ContextFigure";
 
 type Lang = "en" | "bm";
+
+/**
+ * Renders one `Fact`'s value — a single emphasised line, or a real bullet
+ * list when the content is genuinely point-form (e.g. a disease's examples)
+ * rather than one comma-separated sentence.
+ */
+function FactValue({ value }: { value: string | string[] }) {
+  if (Array.isArray(value)) {
+    return (
+      <ul className="mt-0.5 list-disc space-y-0.5 pl-4">
+        {value.map((line) => (
+          <li key={line}>
+            <ScienceEmphasis text={line} />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  return <ScienceEmphasis text={value} />;
+}
 
 function MiniQuiz({
   item,
@@ -217,6 +244,9 @@ export function ScienceF2InteractiveNotesBlock({
           caption: image.caption,
           legendLabel: image.legendLabel,
           annotationMode: image.annotationMode ?? "labels",
+          spotlightDimOpacity: image.spotlightDimOpacity,
+          spotlightCaptionEdge: image.spotlightCaptionEdge,
+          overlayHeadings: image.overlayHeadings,
           imageKey: image.imageKey,
           priority: image.priority,
         }}
@@ -259,7 +289,24 @@ export function ScienceF2InteractiveNotesBlock({
         {chapter8Figure && (
           <Chapter8ContextFigure kind={chapter8Figure} section={section} lang={lang} />
         )}
+        {section.standardTitle && (
+          // Which numbered part of the chapter this is. The shell prints only
+          // the section's own title, so without this a learner reading
+          // "Producers, Consumers and Decomposers" cannot see that they are
+          // inside 2.1 Energy Flow in an Ecosystem.
+          <p className="-mt-1 text-[11.5px] font-semibold uppercase tracking-wide text-primary">
+            {section.standardTitle}
+          </p>
+        )}
         {section.contextImages?.map(renderFigure)}
+        {section.contextImageSet && section.contextImageSet.length > 0 && (
+          // One set, one footprint each: three across from `sm`, stacked on a
+          // phone. Every member keeps its own caption, alt text and enlarge
+          // control.
+          <div className="grid gap-3 sm:grid-cols-3" data-figure-set="">
+            {section.contextImageSet.map(renderFigure)}
+          </div>
+        )}
         {section.contextImagePair && section.contextImagePair.length > 0 && (
           // A matched pair reads as one figure, so the two share a row from
           // `sm` up and stack on a phone. Each half keeps its own caption,
@@ -267,6 +314,29 @@ export function ScienceF2InteractiveNotesBlock({
           <div className="grid gap-3 sm:grid-cols-2" data-figure-pair="">
             {section.contextImagePair.map(renderFigure)}
           </div>
+        )}
+        {section.conceptSelector && (
+          <InteractiveFigureCard
+            lang={lang}
+            title={section.conceptSelector.title}
+            instruction={section.conceptSelector.instruction}
+            prompt={section.conceptSelector.prompt}
+            concepts={section.conceptSelector.concepts}
+            image={
+              section.conceptSelector.image
+                ? {
+                    src: section.conceptSelector.image.src,
+                    alt: section.conceptSelector.image.alt,
+                    size: section.conceptSelector.image.size ?? "wide",
+                    aspect: section.conceptSelector.image.aspect ?? "4 / 3",
+                    caption: section.conceptSelector.image.caption,
+                    legendLabel: section.conceptSelector.image.legendLabel,
+                    annotationMode: section.conceptSelector.image.annotationMode ?? "regions",
+                    imageKey: section.conceptSelector.image.imageKey,
+                  }
+                : undefined
+            }
+          />
         )}
         {unpicturedFlipCards.length > 0 && (
           <div className="border-l-2 border-primary/35 pl-4">
@@ -277,12 +347,51 @@ export function ScienceF2InteractiveNotesBlock({
               {unpicturedFlipCards.map((item) => (
                 <div key={item.id}>
                   <dt className="text-[13px] font-bold text-foreground">{item.label}</dt>
-                  <dd className="mt-0.5 text-[13px] leading-relaxed text-muted-foreground">{item.fact}</dd>
+                  <dd className="mt-0.5 text-[13px] leading-relaxed text-muted-foreground">
+                    {item.fact}
+                  </dd>
                 </div>
               ))}
             </dl>
           </div>
         )}
+        {section.conceptTree && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.conceptTree.title}
+            </h3>
+            {section.conceptTree.instruction && (
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                {section.conceptTree.instruction}
+              </p>
+            )}
+            <ConceptTree block={section.conceptTree} />
+          </div>
+        )}
+        {section.impactTable && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.impactTable.title}
+            </h3>
+            {section.impactTable.instruction && (
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                {section.impactTable.instruction}
+              </p>
+            )}
+            <ImpactTable block={section.impactTable} />
+          </div>
+        )}
+        {section.nutrientTables?.map((table) => (
+          <div key={table.title}>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">{table.title}</h3>
+            {table.instruction && (
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                {table.instruction}
+              </p>
+            )}
+            <NutrientTable block={table} />
+          </div>
+        ))}
         {section.cards && !isChapter8 && (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {section.cards.map((card) => (
@@ -294,11 +403,38 @@ export function ScienceF2InteractiveNotesBlock({
                 <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
                   <ScienceEmphasis text={card.body} />
                 </p>
+                {card.facts && card.facts.length > 0 && (
+                  <dl className="mt-2.5 flex flex-col gap-1.5 border-t border-border/60 pt-2.5">
+                    {card.facts.map((fact) => (
+                      <div key={fact.label}>
+                        <dt className="text-[10px] font-semibold uppercase tracking-wide text-primary">
+                          {fact.label}
+                        </dt>
+                        <dd className="mt-0.5 text-[12.5px] leading-snug text-muted-foreground">
+                          <FactValue value={fact.value} />
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
                 {card.detail && (
                   <p className="mt-2 text-xs font-semibold text-primary">{card.detail}</p>
                 )}
               </article>
             ))}
+          </div>
+        )}
+        {section.diseaseReferenceTable && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.diseaseReferenceTable.title}
+            </h3>
+            {section.diseaseReferenceTable.instruction && (
+              <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                {section.diseaseReferenceTable.instruction}
+              </p>
+            )}
+            <DiseaseReferenceTable block={section.diseaseReferenceTable} />
           </div>
         )}
         {section.flipCards && !isChapter8 && <FlipCardGrid items={section.flipCards} />}
@@ -362,31 +498,61 @@ export function ScienceF2InteractiveNotesBlock({
               <AccordionItem key={item.title} value={`${section.number}-${i}`}>
                 <AccordionTrigger>{item.title}</AccordionTrigger>
                 <AccordionContent className="text-[13px] leading-relaxed text-muted-foreground">
-                  <ScienceEmphasis text={item.body} />
+                  {item.body && <ScienceEmphasis text={item.body} />}
+                  {item.facts && item.facts.length > 0 && (
+                    <dl
+                      className={`flex flex-col gap-2 ${item.body ? "mt-2.5 border-t border-border/60 pt-2.5" : ""}`}
+                    >
+                      {item.facts.map((fact) => (
+                        <div key={fact.label}>
+                          <dt className="text-[10.5px] font-bold uppercase tracking-wide text-primary">
+                            {fact.label}
+                          </dt>
+                          <dd className="mt-0.5 text-[12.5px] leading-relaxed text-foreground/90">
+                            <FactValue value={fact.value} />
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         )}
         {section.tabs && (
-          <Tabs defaultValue="tab-0">
-            <TabsList className="h-auto max-w-full flex-wrap justify-start">
+          <div>
+            {section.tabsHeading && (
+              <>
+                <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                  {section.tabsHeading.title}
+                </h3>
+                {section.tabsHeading.instruction && (
+                  <p className="mb-3 text-[13px] leading-relaxed text-muted-foreground">
+                    {section.tabsHeading.instruction}
+                  </p>
+                )}
+              </>
+            )}
+            <Tabs defaultValue="tab-0">
+              <TabsList className="h-auto max-w-full flex-wrap justify-start">
+                {section.tabs.map((tab, i) => (
+                  <TabsTrigger key={tab.title} value={`tab-${i}`}>
+                    {tab.title}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
               {section.tabs.map((tab, i) => (
-                <TabsTrigger key={tab.title} value={`tab-${i}`}>
-                  {tab.title}
-                </TabsTrigger>
+                <TabsContent
+                  key={tab.title}
+                  value={`tab-${i}`}
+                  className="text-[13.5px] leading-relaxed text-muted-foreground"
+                >
+                  <ScienceEmphasis text={tab.body} />
+                </TabsContent>
               ))}
-            </TabsList>
-            {section.tabs.map((tab, i) => (
-              <TabsContent
-                key={tab.title}
-                value={`tab-${i}`}
-                className="text-[13.5px] leading-relaxed text-muted-foreground"
-              >
-                <ScienceEmphasis text={tab.body} />
-              </TabsContent>
-            ))}
-          </Tabs>
+            </Tabs>
+          </div>
         )}
         {section.phSlider && (
           <div>
@@ -406,32 +572,37 @@ export function ScienceF2InteractiveNotesBlock({
             />
           </div>
         )}
-        {!isChapter8 && section.calculators?.map((calc, i) => (
-          <div key={`${section.number}-calc-${i}`}>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
-            <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
-            {calc.type === "ohms-law" ? (
-              <OhmsLawCalculator lang={lang} />
-            ) : calc.type === "resistance-comparator" ? (
-              <ResistanceComparator
-                lang={lang}
-                defaultR1={calc.defaultR1}
-                defaultR2={calc.defaultR2}
-              />
-            ) : calc.type === "au-light-year" ? (
-              <AuLightYearCalculator defaultKm={calc.defaultKm} lang={lang} />
-            ) : (
-              <TwoFieldCalculator
-                fieldA={calc.fieldA}
-                fieldB={calc.fieldB}
-                operation={calc.operation}
-                resultLabel={calc.resultLabel}
-                resultUnit={calc.resultUnit}
-                lang={lang}
-              />
-            )}
-          </div>
-        ))}
+        {!isChapter8 &&
+          section.calculators?.map((calc, i) => (
+            <div key={`${section.number}-calc-${i}`}>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                {calc.title}
+              </h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">
+                {calc.instruction}
+              </p>
+              {calc.type === "ohms-law" ? (
+                <OhmsLawCalculator lang={lang} />
+              ) : calc.type === "resistance-comparator" ? (
+                <ResistanceComparator
+                  lang={lang}
+                  defaultR1={calc.defaultR1}
+                  defaultR2={calc.defaultR2}
+                />
+              ) : calc.type === "au-light-year" ? (
+                <AuLightYearCalculator defaultKm={calc.defaultKm} lang={lang} />
+              ) : (
+                <TwoFieldCalculator
+                  fieldA={calc.fieldA}
+                  fieldB={calc.fieldB}
+                  operation={calc.operation}
+                  resultLabel={calc.resultLabel}
+                  resultUnit={calc.resultUnit}
+                  lang={lang}
+                />
+              )}
+            </div>
+          ))}
         {section.buoyancy && !isChapter8 && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -467,7 +638,11 @@ export function ScienceF2InteractiveNotesBlock({
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.pyramid.title}
             </h3>
-            <PyramidDiagram block={section.pyramid} />
+            <PyramidDiagram
+              block={section.pyramid}
+              enlargeLabel={imageCopy.enlarge}
+              closeLabel={imageCopy.close}
+            />
           </div>
         )}
         {section.digestiveSystem && (
@@ -552,6 +727,23 @@ export function ScienceF2InteractiveNotesBlock({
             <EnzymeExplorer block={section.enzymeExplorer} />
           </div>
         )}
+        {section.reactionFlow && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.reactionFlow.title}
+            </h3>
+            <EnzymeReactionFlow block={section.reactionFlow} />
+          </div>
+        )}
+        {section.systemFlow && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.systemFlow.title}
+            </h3>
+            <SystemFlowDiagram block={section.systemFlow} />
+          </div>
+        )}
+        {section.calorieExample && <CalorieWorkedExample block={section.calorieExample} />}
         {section.conceptContrast && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -792,40 +984,61 @@ export function ScienceF2InteractiveNotesBlock({
                   <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
                     <ScienceEmphasis text={card.body} />
                   </p>
-                  {card.detail && <p className="mt-1.5 text-[12px] font-semibold text-primary">{card.detail}</p>}
+                  {card.detail && (
+                    <p className="mt-1.5 text-[12px] font-semibold text-primary">{card.detail}</p>
+                  )}
                 </article>
               ))}
             </div>
           </div>
         )}
-        {isChapter8 && section.calculators?.map((calc, i) => (
-          <div key={`${section.number}-ch8-calc-${i}`} className="border-t border-border/70 pt-5">
-            <p className="font-display mb-3 text-center text-[14px] font-bold text-primary">{calc.instruction.split(".")[0]}</p>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
-            <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
-            {calc.type === "two-field" && (
-              <TwoFieldCalculator fieldA={calc.fieldA} fieldB={calc.fieldB} operation={calc.operation} resultLabel={calc.resultLabel} resultUnit={calc.resultUnit} lang={lang} />
-            )}
-          </div>
-        ))}
-        {section.miniExperiment && (isChapter8 ? (
-          <Accordion type="single" collapsible className="border-t border-border/70 pt-2">
-            <AccordionItem value="chapter-8-pressure-investigation">
-              <AccordionTrigger className="min-h-12 text-left text-[14px] font-bold">
-                {lang === "bm" ? "Cuba penyiasatan" : "Try the investigation"}
-              </AccordionTrigger>
-              <AccordionContent className="flex flex-col gap-4 pt-2">
-                {section.pressureApparatus && <PressureApparatus block={section.pressureApparatus} lang={lang} />}
-                <MiniExperiment block={section.miniExperiment} />
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        ) : (
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.miniExperiment.title}</h3>
-            <MiniExperiment block={section.miniExperiment} />
-          </div>
-        ))}
+        {isChapter8 &&
+          section.calculators?.map((calc, i) => (
+            <div key={`${section.number}-ch8-calc-${i}`} className="border-t border-border/70 pt-5">
+              <p className="font-display mb-3 text-center text-[14px] font-bold text-primary">
+                {calc.instruction.split(".")[0]}
+              </p>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                {calc.title}
+              </h3>
+              <p className="text-[13px] leading-relaxed text-muted-foreground">
+                {calc.instruction}
+              </p>
+              {calc.type === "two-field" && (
+                <TwoFieldCalculator
+                  fieldA={calc.fieldA}
+                  fieldB={calc.fieldB}
+                  operation={calc.operation}
+                  resultLabel={calc.resultLabel}
+                  resultUnit={calc.resultUnit}
+                  lang={lang}
+                />
+              )}
+            </div>
+          ))}
+        {section.miniExperiment &&
+          (isChapter8 ? (
+            <Accordion type="single" collapsible className="border-t border-border/70 pt-2">
+              <AccordionItem value="chapter-8-pressure-investigation">
+                <AccordionTrigger className="min-h-12 text-left text-[14px] font-bold">
+                  {lang === "bm" ? "Cuba penyiasatan" : "Try the investigation"}
+                </AccordionTrigger>
+                <AccordionContent className="flex flex-col gap-4 pt-2">
+                  {section.pressureApparatus && (
+                    <PressureApparatus block={section.pressureApparatus} lang={lang} />
+                  )}
+                  <MiniExperiment block={section.miniExperiment} />
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          ) : (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                {section.miniExperiment.title}
+              </h3>
+              <MiniExperiment block={section.miniExperiment} />
+            </div>
+          ))}
         {section.comparisonMatrix && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -1093,9 +1306,27 @@ export function ScienceF2InteractiveNotesBlock({
                   className="rounded-2xl border border-border bg-gradient-to-br from-primary/10 to-accent/5 p-4"
                 >
                   <h4 className="font-display font-bold text-foreground">{column.title}</h4>
-                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
-                    <ScienceEmphasis text={column.body} />
-                  </p>
+                  {column.body && (
+                    <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
+                      <ScienceEmphasis text={column.body} />
+                    </p>
+                  )}
+                  {column.facts && column.facts.length > 0 && (
+                    <dl
+                      className={`flex flex-col gap-2 ${column.body ? "mt-2.5 border-t border-border/60 pt-2.5" : "mt-2"}`}
+                    >
+                      {column.facts.map((fact) => (
+                        <div key={fact.label}>
+                          <dt className="text-[10.5px] font-bold uppercase tracking-wide text-primary">
+                            {fact.label}
+                          </dt>
+                          <dd className="mt-0.5 text-[12.5px] leading-relaxed text-foreground/90">
+                            <FactValue value={fact.value} />
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
                 </article>
               ))}
             </div>

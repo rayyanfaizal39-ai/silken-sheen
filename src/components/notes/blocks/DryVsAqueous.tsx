@@ -71,13 +71,7 @@ function Panel({ panel, selected }: { panel: DryAqueousPanel; selected: boolean 
   );
 }
 
-export function DryVsAqueous({
-  block,
-  lang,
-}: {
-  block: DryVsAqueousBlock;
-  lang?: string;
-}) {
+export function DryVsAqueous({ block, lang }: { block: DryVsAqueousBlock; lang?: string }) {
   // Approved artwork replaces the four drawn panels. Each case keeps its own
   // verified explanation; the button label is composed from the block's own
   // column and water headings.
@@ -88,14 +82,17 @@ export function DryVsAqueous({
         panel.id.startsWith("acid") ? block.acidColumnLabel : block.alkaliColumnLabel,
       );
       const water = panel.withWater ? block.withWaterLabel : block.withoutWaterLabel;
+      const label = `${group}: ${water.toLocaleLowerCase()}`;
       return {
         id: panel.id,
-        label: `${group}: ${water.toLocaleLowerCase()}`,
+        label,
         note: panel.note,
         x: point?.x,
         y: point?.y,
         w: point?.w,
         h: point?.h,
+        spotlightShapes: point?.spotlightShapes,
+        spotlightCaption: point?.spotlightCaption ?? label,
       };
     });
     const withExtras = mergeConcepts(concepts, block.image.extra);
@@ -113,6 +110,8 @@ export function DryVsAqueous({
           caption: block.image.caption ?? block.keyMessage,
           legendLabel: block.image.legendLabel ?? block.title,
           annotationMode: block.image.annotationMode ?? "regions",
+          spotlightDimOpacity: block.image.spotlightDimOpacity,
+          overlayHeadings: block.image.overlayHeadings,
           imageKey: block.image.imageKey,
         }}
       />

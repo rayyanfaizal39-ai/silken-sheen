@@ -16,13 +16,12 @@ describe("Science Form 3 quiz registration", () => {
       );
       expect(hasFormResourceContent("science", "Form 3", "quiz", lang)).toBe(true);
 
-      for (const [chapterIndex, chapter] of chapters.entries()) {
+      for (const chapter of chapters) {
         expect(chapter.available).toBe(true);
         expect(hasResourceContent("science", "Form 3", chapter.key, "quiz", lang)).toBe(true);
 
         const questions = getChapterQuizQuestions("science", "Form 3", chapter.key, lang);
-        const usesQuizSets = chapterIndex !== 5;
-        const expectedLength = usesQuizSets ? 50 : 30;
+        const expectedLength = 50;
         expect(questions).toHaveLength(expectedLength);
         expect(new Set(questions.map((question) => question.id))).toHaveLength(expectedLength);
         expect(
@@ -30,14 +29,10 @@ describe("Science Form 3 quiz registration", () => {
             counts[question.difficulty] = (counts[question.difficulty] ?? 0) + 1;
             return counts;
           }, {}),
-        ).toEqual(
-          usesQuizSets ? { Easy: 16, Medium: 22, Hard: 12 } : { Easy: 10, Medium: 10, Hard: 10 },
-        );
-        if (usesQuizSets) {
-          expect(questions.filter((question) => question.set === "A")).toHaveLength(25);
-          expect(questions.filter((question) => question.set === "B")).toHaveLength(25);
-          expect(questions.every((question) => question.explanation?.trim())).toBe(true);
-        }
+        ).toEqual({ Easy: 16, Medium: 22, Hard: 12 });
+        expect(questions.filter((question) => question.set === "A")).toHaveLength(25);
+        expect(questions.filter((question) => question.set === "B")).toHaveLength(25);
+        expect(questions.every((question) => question.explanation?.trim())).toBe(true);
         expect(
           questions.every(
             (question) =>
@@ -53,6 +48,27 @@ describe("Science Form 3 quiz registration", () => {
       }
     });
   }
+
+  it("loads Chapter 6 Sets A and B as standalone bilingual questions", () => {
+    const forbiddenReference =
+      /\b(?:buku teks|textbook|Rajah|Jadual|diagram|table)\s+(?:di bawah|berikut|below|following)\b/i;
+
+    for (const lang of ["bm", "dlp"] as const) {
+      const questions = getChapterQuizQuestions("science", "Form 3", "Chapter 6", lang);
+      expect(questions).toHaveLength(50);
+      expect(questions.filter((question) => question.set === "A")).toHaveLength(25);
+      expect(questions.filter((question) => question.set === "B")).toHaveLength(25);
+      expect(questions.every((question) => !forbiddenReference.test(question.question))).toBe(true);
+      expect(questions.every((question) => !/[\\$]|\*\*|`/.test(question.question))).toBe(true);
+
+      const correctedTransformerQuestion = questions.find(
+        (question) => question.id === `sci-f3-c6-set-b-${lang}-q11`,
+      );
+      expect(correctedTransformerQuestion?.options[0]).toContain("720");
+      expect(correctedTransformerQuestion?.answerIndex).toBe(0);
+      expect(correctedTransformerQuestion?.explanation).not.toMatch(/let'?s correct|rewrite/i);
+    }
+  });
 
   it.each([
     ["science", "Form 1", "Chapter 1", "bm"],

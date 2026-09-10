@@ -1,5 +1,6 @@
+import { useState } from "react";
 import type { ViskingExperimentBlock } from "@/content/form2/science/interactive-types";
-import { InteractiveBadge } from "./InteractiveFigureCard";
+import { InteractiveBadge, conceptButtonClass } from "./InteractiveFigureCard";
 import { AnnotatedImage, type ImageAnnotation } from "./AnnotatedImage";
 
 /**
@@ -9,6 +10,10 @@ import { AnnotatedImage, type ImageAnnotation } from "./AnnotatedImage";
  * *surrounding water*, not on the tubing's contents — that is the detail an
  * earlier NotebookLM-sourced summary got backwards, so the diagram marks the
  * test location explicitly rather than leaving it to be inferred.
+ *
+ * `spotlight` mode adds its own button row (see `VillusDiagram` for the same
+ * pattern) so a stage change is unmistakable — dim + glow + a real button,
+ * not just a colour swap on the label.
  */
 export function ViskingExperimentDiagram({
   block,
@@ -23,18 +28,34 @@ export function ViskingExperimentDiagram({
   hintLabel?: string;
   lang?: string;
 }) {
+  const [active, setActive] = useState<string | null>(null);
   const image = block.image;
+  const isSpotlight = image?.annotationMode === "spotlight";
   const imageAnnotations: ImageAnnotation[] = image
     ? [
         ...image.points.flatMap((point) => {
           const tube = block.tubes.find((t) => t.id === point.id);
           return tube
-            ? [{ id: tube.id, label: tube.contents, note: tube.label, x: point.x, y: point.y }]
+            ? [
+                {
+                  id: tube.id,
+                  label: tube.contents,
+                  note: tube.label,
+                  x: point.x,
+                  y: point.y,
+                  spotlightShapes: point.spotlightShapes,
+                  spotlightCaption: point.spotlightCaption,
+                  spotlightTint: point.spotlightTint,
+                  spotlightGroupHalo: point.spotlightGroupHalo,
+                  spotlightPulseGroups: point.spotlightPulseGroups,
+                },
+              ]
             : [];
         }),
         ...(image.extra ?? []),
       ]
     : [];
+  const selected = imageAnnotations.find((a) => a.id === active) ?? null;
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-4">
@@ -50,6 +71,10 @@ export function ViskingExperimentDiagram({
           legendLabel={image.legendLabel ?? block.title}
           annotationMode={image.annotationMode ?? "labels"}
           annotations={imageAnnotations}
+          active={isSpotlight ? active : undefined}
+          onActiveChange={isSpotlight ? setActive : undefined}
+          hideLegend={isSpotlight}
+          hidePanel={isSpotlight}
           enlargeLabel={enlargeLabel}
           closeLabel={closeLabel}
           hintLabel={hintLabel}
@@ -107,6 +132,47 @@ export function ViskingExperimentDiagram({
           </div>
         ))}
       </div>
+      )}
+
+      {isSpotlight && imageAnnotations.length > 0 && (
+        <div role="group" aria-label={image?.legendLabel ?? block.title} className="mt-3 flex flex-wrap gap-1.5">
+          {imageAnnotations.map((item) => {
+            const isActive = item.id === active;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setActive(isActive ? null : item.id)}
+                className={conceptButtonClass(isActive, "flex-auto sm:flex-none")}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {isSpotlight && (
+        <div
+          aria-live="polite"
+          className={`mt-2.5 min-h-[3rem] rounded-xl border px-3 py-2.5 transition-colors ${
+            selected ? "border-primary/35 bg-primary/8" : "border-border bg-secondary/30"
+          }`}
+        >
+          {selected ? (
+            <>
+              <p className="font-display text-[13px] font-bold text-primary">{selected.label}</p>
+              {selected.note && (
+                <p className="mt-1 text-[12.5px] leading-relaxed text-foreground">
+                  {selected.note}
+                </p>
+              )}
+            </>
+          ) : (
+            <p className="text-[12.5px] leading-relaxed text-muted-foreground">{hintLabel}</p>
+          )}
+        </div>
       )}
 
       <div className="mt-3 flex items-center justify-center gap-1.5 text-[10.5px] text-primary">

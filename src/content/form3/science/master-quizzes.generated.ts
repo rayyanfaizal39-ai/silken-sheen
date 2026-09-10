@@ -1,5 +1,6 @@
 // This file is generated. Do not edit it by hand.
 // Sources: outputs/science-form3-master-quizzes/sains-t3-kssm-quizzes-master-updated.csv
+//          outputs/science-form3-ch6-quizzes/science-f3-ch6-normalized.json
 //          outputs/science-form3-ch7-10-quizzes/science-f3-ch7-10-normalized.json
 // Regenerate with: node scripts/generate-science-f3-runtime-quizzes.mjs
 /* eslint-disable prettier/prettier */
@@ -9039,6 +9040,1812 @@ const scienceF3MasterQuizBanks: Partial<
         ],
         "answerIndex": 1,
         "explanation": "Proses pelarutan asid pekat di dalam air membebaskan kuantiti haba yang teramat besar (highly exothermic). Jika air dituang ke asid pekat, air yang sedikit di permukaan asid akan menyerap tenaga haba yang dilepaskan secara mendadak pada satu titik, lalu mendidih serta-merta dan memercikkan asid yang sangat mengakis ke luar. Melalui menuang asid perlahan-lahan ke dalam air yang banyak, air bertindak menyerap dan mengagihkan haba secara selamat tanpa pendidihan mendadak. The process of dissolving concentrated acid in water releases an immense amount of heat (highly exothermic). If water is poured into concentrated acid, the small amount of water on the acid surface will absorb the released heat energy suddenly at one point, boiling instantly and splashing highly corrosive acid outward. By pouring acid slowly into a large volume of water, the water absorbs and distributes the heat safely without flash boiling."
+      }
+    ]
+  },
+  "6": {
+    "bm": [
+      {
+        "id": "sci-f3-c6-set-a-bm-q1",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Antara berikut, yang manakah dikelaskan dengan betul sebagai sumber tenaga boleh baharu dan sumber tenaga tidak boleh baharu?",
+        "options": [
+          "Biomass (Biomas) | Tenaga Nuklear (Nuclear Energy)",
+          "Gas Asli (Natural Gas) | Geotermal (Geothermal)",
+          "Arang Batu (Coal) | Tenaga Angin (Wind Energy)",
+          "Petroleum (Petroleum) | Tenaga Pasang Surut (Tidal Energy)"
+        ],
+        "answerIndex": 0,
+        "explanation": "Biomas, tenaga angin, geotermal, suria, hidro, ombak, dan pasang surut ialah sumber tenaga boleh baharu yang boleh digantikan secara berterusan dan tidak akan habis. Sebaliknya, tenaga nuklear, arang batu, gas asli, dan petroleum ialah sumber tidak boleh baharu yang akan kehabisan apabila digunakan secara berterusan. Oleh itu, gandingan dalam pilihan A adalah tepat. Biomass, wind, geothermal, solar, hydro, wave, and tidal are renewable energy sources that can be continuously replenished. Nuclear energy, coal, natural gas, and petroleum are non-renewable and will deplete over time. Thus, Option A is correctly paired."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q2",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Sultan Azlan Shah Power Station di Manjung, Perak, dan Tuanku Jaafar Power Station di Port Dickson, Negeri Sembilan, masing-masing menggunakan sumber tenaga apa untuk menjana elektrik?",
+        "options": [
+          "Hidro (Hydro) | Gas Asli (Natural Gas)",
+          "Arang Batu (Coal) | Gas Asli (Natural Gas)",
+          "Gas Asli (Natural Gas) | Petroleum (Petroleum)",
+          "Arang Batu (Coal) | Biomas (Biomass)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Stesen Jana Kuasa Sultan Azlan Shah menggunakan arang batu, manakala Stesen Jana Kuasa Tuanku Jaafar menggunakan gas asli. Sultan Azlan Shah Power Station uses coal, while Tuanku Jaafar Power Station uses natural gas."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q3",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Sebuah gegelung dawai kuprum disambungkan kepada galvanometer sifar tengah. Antara tindakan berikut, yang manakah akan menghasilkan pesongan paling besar pada penunjuk galvanometer?",
+        "options": [
+          "Membiarkan magnet bar kekal pegun di dalam gegelung dawai.",
+          "Menggerakkan magnet bar ke dalam gegelung dawai dengan sangat perlahan.",
+          "Menggerakkan magnet bar keluar dari gegelung dawai dengan kelajuan tinggi.",
+          "Menggunakan magnet yang lebih lemah untuk bergerak relatif dengan gegelung."
+        ],
+        "answerIndex": 2,
+        "explanation": "Arus aruhan dihasilkan apabila terdapat pergerakan relatif antara magnet dengan gegelung dawai yang menyebabkan pemotongan garis medan magnet (fluks magnet). Mengikut Hukum Faraday, magnitud arus aruhan (ditunjukkan oleh magnitud pesongan galvanometer) adalah berkadar terus dengan kadar pemotongan fluks magnet. Menggerakkan magnet keluar pada kelajuan tinggi meningkatkan kadar pemotongan ini, menghasilkan pesongan terbesar. Apabila magnet pegun (A), tiada pemotongan berlaku dan galvanometer kekal sifar. Induced current is generated when there is relative motion between a magnet and a coil, cutting the magnetic flux lines. According to Faraday's Law, the magnitude of the induced current (indicated by galvanometer deflection) is directly proportional to the rate of cutting of magnetic flux. Moving the magnet at high speed (C) increases this rate, yielding the largest deflection. When stationary (A), no flux cutting occurs, and deflection is zero."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q4",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Apakah fungsi komutator dalam sebuah penjana arus terus (a.t.) ringkas?",
+        "options": [
+          "Gelang gelincir; membalikkan arah arus dalam gegelung setiap setengah putaran.",
+          "Komutator; menukar arus ulang-alik dalam gegelung kepada arus terus pada litar luar.",
+          "Komutator; meningkatkan voltan output yang dijana.",
+          "Gelang gelincir; mengekalkan sentuhan elektrik yang lancar sahaja tanpa mengubah arah arus."
+        ],
+        "answerIndex": 1,
+        "explanation": "Penjana a.t. menggunakan komutator (pengetat belah) sebagai komponen [X] untuk memastikan arus elektrik mengalir dalam satu arah sahaja pada litar luar (arus terus), walaupun arus dalam gegelung berputar sentiasa berubah arah (arus ulang-alik). Penjana arus ulang-alik (a.u.) pula menggunakan gelang gelincir (slip rings). A d.c. generator utilizes a split-ring commutator [X] to ensure the current in the external circuit flows in one direction only (direct current), despite the current inside the rotating coil continuously reversing (alternating current). An a.c. generator uses slip rings instead."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q5",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Antara berikut, perubahan bentuk tenaga yang manakah berlaku dengan betul di stesen jana kuasa hidroelektrik?",
+        "options": [
+          "Tenaga kimia → tenaga haba → tenaga elektrik",
+          "Tenaga keupayaan graviti → tenaga kinetik → tenaga elektrik",
+          "Tenaga nuklear → tenaga cahaya → tenaga elektrik",
+          "Tenaga keupayaan graviti → tenaga kimia → tenaga elektrik"
+        ],
+        "answerIndex": 1,
+        "explanation": "Di stesen hidroelektrik, air yang disimpan di dalam empangan tinggi mempunyai tenaga keupayaan graviti. Apabila air mengalir turun melalui terowong kuasa, ia ditukarkan kepada tenaga kinetik yang memutarkan bilah turbin. Turbin memutarkan penjana untuk menjana tenaga elektrik. In a hydroelectric station, water stored in a high dam possesses gravitational potential energy. As water flows down through the penstock, it converts to kinetic energy to turn the turbine blades, which drive the generator to produce electrical energy."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q6",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Apakah turutan perubahan tenaga yang berlaku di stesen jana kuasa tenaga nuklear?",
+        "options": [
+          "Tenaga kimia → tenaga haba → tenaga elektrik",
+          "Tenaga nuklear → tenaga haba → tenaga kinetik → tenaga elektrik",
+          "Tenaga nuklear → tenaga elektrik → tenaga haba",
+          "Tenaga cahaya → tenaga nuklear → tenaga elektrik"
+        ],
+        "answerIndex": 1,
+        "explanation": "Tindak balas nuklear di dalam reaktor membebaskan tenaga nuklear yang menghasilkan haba yang sangat tinggi (tenaga haba) untuk mendidihkan air menjadi stim. Stim bertekanan tinggi memutarkan turbin (tenaga kinetik), yang kemudiannya memutarkan penjana untuk menghasilkan tenaga elektrik. Nuclear reactions in the reactor release nuclear energy, producing high heat (thermal energy) to boil water into steam. The high-pressure steam spins the turbine (kinetic energy), driving the generator to produce electrical energy."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q7",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Tombol kawalan manakah pada Osiloskop Sinar Katod (O.S.K.) yang berfungsi untuk mengubah ketinggian (magnitud) tompok cahaya secara menegak pada skrin?",
+        "options": [
+          "Tombol Gandaan-Y (Y-gain / Y-amplification)",
+          "Tombol Dasar-masa (Time-base)",
+          "Tombol Pesongan-X (X-position)",
+          "Tombol Kawalan Fokus (Focus control)"
+        ],
+        "answerIndex": 0,
+        "explanation": "Tombol Gandaan-Y (Y-gain) digunakan untuk mengubah amplitud atau ketinggian menegak isyarat input (voltan) pada skrin O.S.K. Tombol Dasar-masa (Time-base) mengawal pergerakan mengufuk (paksi-X), manakala Pesongan-X mengawal kedudukan mengufuk tompok cahaya. The Y-gain knob scales the vertical height (amplitude/voltage) of the input signal on the C.R.O. screen. The Time-base knob controls horizontal sweep rate (X-axis), while the X-position adjusts the horizontal placement of the spot."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q8",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Apabila suatu bekalan sel kering (arus terus) disambungkan ke input-Y sebuah O.S.K. dengan terminal positif disambung ke terminal bumi O.S.K. dan dasar-masa dihidupkan, apakah paparan yang diperhatikan pada skrin?",
+        "options": [
+          "Garisan lurus mendatar di atas garis sifar tengah.",
+          "Garisan lurus mendatar di bawah garis sifar tengah.",
+          "Tompok cahaya tunggal terpesong ke bawah.",
+          "Gelombang sinusoidal terbentuk di atas paksi-X."
+        ],
+        "answerIndex": 1,
+        "explanation": "Sel kering memberikan bekalan arus terus (a.t.). Terminal positif sel kering disambung ke bumi bermakna terminal negatif disambung ke input-Y aktif, menyebabkan isyarat voltan negatif dikesan. Tompok cahaya terpesong ke bawah. Kerana dasar-masa dihidupkan, tompok tersebut menyapu mengufuk dengan cepat, membentuk satu garisan lurus mendatar di bawah garisan sifar tengah. Jika dasar-masa dimatikan, ia hanya berupa tompok cahaya tunggal di bawah pusat sifar. A dry cell provides d.c. Since the positive cell terminal is grounded, the negative terminal is connected to the active Y-input, giving a negative voltage input that deflects the spot downwards. Because the time-base is turned on, the spot sweeps horizontally, forming a straight horizontal line below the center zero line."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q9",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Skrin O.S.K. memaparkan gelombang sinus lengkap. Apakah jenis bekalan input dan keadaan dasar-masa yang menghasilkan paparan ini?",
+        "options": [
+          "Arus terus (a.t.); dasar-masa dimatikan.",
+          "Arus ulang-alik (a.u.); dasar-masa dimatikan.",
+          "Arus terus (a.t.); dasar-masa dihidupkan.",
+          "Arus ulang-alik (a.u.); dasar-masa dihidupkan."
+        ],
+        "answerIndex": 3,
+        "explanation": "Arus ulang-alik (a.u.) mempunyai voltan yang sentiasa berubah arah secara berkala. Apabila disambungkan ke input-Y dan dasar-masa dihidupkan (menyebabkan sapuan mengufuk), gerakan menegak berkala a.u. digabungkan dengan gerakan mengufuk dasar-masa untuk memaparkan bentuk gelombang sinusoidal lengkap pada skrin. Sekiranya dasar-masa dimatikan, skrin hanya akan menunjukkan satu garisan menegak lurus di tengah skrin. Alternating current (a.c.) continuously reverses direction periodically. When connected to the Y-input with the time-base turned on, the vertical periodic movement of the a.c. combines with the horizontal sweep of the time-base to display a sinusoidal wave pattern. If the time-base were off, it would display a single vertical line."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q10",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Apakah fungsi utama teras besi lembut berlamina (laminated soft iron core) dalam pembinaan sebuah transformer?",
+        "options": [
+          "Meningkatkan magnitud arus ulang-alik yang dijana.",
+          "Membantu mengalirkan arus terus dari litar primer ke litar sekunder.",
+          "Mengurangkan kehilangan tenaga sebagai haba akibat arus pusar (eddy currents).",
+          "Mengelakkan kerosakan kawat kuprum akibat pintasan elektrik."
+        ],
+        "answerIndex": 2,
+        "explanation": "Teras besi lembut berlamina (terdiri daripada lapisan-lapisan besi nipis yang diselaputi bahan penebat) digunakan khusus untuk mengurangkan kehilangan tenaga haba yang disebabkan oleh arus pusar (arus aruhan yang berputar di dalam teras besi akibat perubahan medan magnet). A laminated soft iron core (made of thin iron sheets insulated from each other) is used to minimize energy lost as heat due to eddy currents, which are induced circulating currents within the core caused by changing magnetic fields."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q11",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Antara perbandingan transformer injak naik dengan transformer injak turun berikut, yang manakah betul?",
+        "options": [
+          "Injak naik: Vs < Vp; injak turun: Vs > Vp",
+          "Injak naik: Ns > Np; injak turun: Ns < Np",
+          "Injak naik: digunakan dalam pengecas telefon; injak turun: digunakan sebelum penghantaran",
+          "Injak naik: a.t. sahaja; injak turun: a.u. sahaja"
+        ],
+        "answerIndex": 1,
+        "explanation": "Bagi transformer injak naik, bilangan lilitan gegelung sekunder (N_s) adalah lebih banyak daripada bilangan lilitan gegelung primer (N_p) (N_s > N_p), menyebabkan voltan sekunder (V_s) lebih tinggi daripada voltan primer (V_p). Sebaliknya, bagi transformer injak turun, N_s < N_p, menyebabkan V_s < V_p. Pilihan A terbalik, pilihan C juga terbalik dari segi kegunaan harian, dan transformer hanya beroperasi menggunakan arus ulang-alik (a.u.), bukannya arus terus. For a step-up transformer, the number of secondary turns (N_s) is greater than primary turns (N_p) (N_s > N_p), stepping up output voltage (V_s > V_p). For a step-down, N_s < N_p, stepping down voltage. Option A is inverted, Option C is swapped, and transformers only operate on a.c."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q12",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Sebuah transformer mempunyai 2400 lilitan pada gegelung primer dan 100 lilitan pada gegelung sekunder. Jika voltan bekalan input ialah 240 V a.u., hitungkan voltan output sekunder transformer tersebut.",
+        "options": [
+          "10 V",
+          "24 V",
+          "12 V",
+          "5 V"
+        ],
+        "answerIndex": 0,
+        "explanation": "Menggunakan rumus turn ratio transformer: V_p/V_s = N_p/N_s Gantikan nilai yang diberikan: 240/V_s = 2400/100 240/V_s = 24 V_s = 240/24 = 10 V Oleh itu, voltan sekunder ialah 10 V (transformer injak turun). Using the transformer turn ratio formula: V_p/V_s = N_p/N_s → 240/V_s = 2400/100 → 240 = 24 × V_s → V_s = 10 V"
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q13",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Alat elektrik domestik yang manakah mengandungi transformer injak turun dalam reka bentuk operasinya?",
+        "options": [
+          "Seterika elektrik (Electric iron)",
+          "Pengecas telefon bimbit (Mobile phone charger)",
+          "Pembakar roti (Bread toaster)",
+          "Cerek elektrik (Electric kettle)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Telefon bimbit biasanya memerlukan voltan yang kecil (contohnya 5 V atau 9 V) untuk mengecas baterinya. Pengecas telefon bimbit mengandungi transformer injak turun mini yang menurunkan voltan bekalan domestik Malaysia (240 V a.u.) kepada nilai rendah tersebut sebelum ditukarkan kepada a.t. Seterika, pembakar roti, dan cerek ialah alat pemanas elektrik berkuasa tinggi yang beroperasi terus pada voltan 240 V tanpa transformer. Mobile phones require low voltage (e.g., 5 V or 9 V) to charge. A phone charger contains a miniature step-down transformer that drops the Malaysian domestic voltage (240 V a.c.) to this low value. Irons, toasters, and kettles run directly on 240 V."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q14",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Voltan dinaikkan daripada 11 kV kepada 132 kV sebelum penghantaran dan diturunkan semula sebelum dibekalkan pada 240 V ke rumah. Apakah jenis transformer yang digunakan mengikut urutan?",
+        "options": [
+          "Injak naik (Step-up) | Injak naik (Step-up)",
+          "Injak turun (Step-down) | Injak naik (Step-up)",
+          "Injak naik (Step-up) | Injak turun (Step-down)",
+          "Injak turun (Step-down) | Injak turun (Step-down)"
+        ],
+        "answerIndex": 2,
+        "explanation": "Di stesen jana kuasa, voltan 11 kV dinaikkan ke ultra-tinggi (132 kV hingga 500 kV) menggunakan transformer injak naik [P] sebelum dialirkan menerusi Rangkaian Grid Nasional untuk mengurangkan kehilangan tenaga sebagai haba. Seterusnya, sebelum sampai ke perumahan, voltan tinggi ini diturunkan secara berperingkat melalui transformer injak turun [Q] di pencawang masuk utama dan pencawang bahagian sehingga mencapai 240 V untuk kegunaan selamat di rumah. At the power station, voltage is stepped up from 11 kV to high transmission levels (132 kV - 500 kV) using a step-up transformer [P] to reduce line loss. Before reaching homes, it is stepped down step-by-step using step-down transformers [Q] to a safe domestic level of 240 V."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q15",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Mengapakah penghantaran tenaga elektrik melalui pilon Rangkaian Grid Nasional mesti dijalankan pada voltan ultra-tinggi (seperti 132 kV atau 275 kV)?",
+        "options": [
+          "Untuk meningkatkan arus elektrik yang mengalir melalui kabel transmisi.",
+          "Untuk mengurangkan kehilangan tenaga sebagai haba di dalam kabel penghantaran.",
+          "Untuk mengelakkan kabel daripada disambar petir semasa hujan.",
+          "Untuk mengelakkan pembentukan medan elektromagnet berhampiran pilon."
+        ],
+        "answerIndex": 1,
+        "explanation": "Mengikut fizik elektrik, kehilangan kuasa di dalam kabel penghantaran terbebas sebagai haba mengikut rumus P_(lost) = I² R, di mana I ialah arus dan R ialah rintangan kabel. Dengan meningkatkan voltan (V) penghantaran menggunakan transformer injak naik, magnitud arus (I) akan berkurang secara drastik (kerana kuasa P = VI adalah malar). Arus yang sangat rendah mengurangkan kehilangan kuasa haba dengan ketara, memastikan kecekapan penghantaran tinggi pada jarak jauh. Power loss in cables is dissipated as heat according to P_(lost) = I² R. By raising transmission voltage (V), the current (I) is drastically reduced (since power P=VI is constant). A very low current minimizes the I² R heat loss, maximizing transmission efficiency over long distances."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q16",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Antara berikut, yang manakah menerangkan perbezaan antara sistem pendawaian elektrik satu fasa dengan tiga fasa di Malaysia?",
+        "options": [
+          "Satu fasa hanya sesuai untuk kawasan perindustrian berat, manakala tiga fasa untuk perumahan kecil.",
+          "Satu fasa membekalkan voltan sehingga 415 V, manakala tiga fasa mengehadkan voltan kepada 240 V sahaja.",
+          "Satu fasa sesuai untuk kediaman komersial yang memerlukan penggunaan elektrik melebihi 50 A, manakala tiga fasa untuk penggunaan rendah.",
+          "Satu fasa sesuai untuk kawasan kediaman dengan penggunaan tenaga tidak melebihi 10 kW, manakala tiga fasa sesuai untuk kawasan komersial/industri melebihi 10 kW."
+        ],
+        "answerIndex": 3,
+        "explanation": "Pendawaian satu fasa (single-phase) adalah stabil dan cukup untuk penggunaan tenaga rendah domestik yang tidak melebihi 10 kW atau 50 A (membekalkan 240 V). Pendawaian tiga fasa (three-phase) menyediakan bekalan tenaga yang lebih tinggi, stabil, dan lancar (membekalkan 415 V) bagi kawasan komersial atau industri yang menggunakan lebih daripada 10 kW atau 50 A. Single-phase wiring is stable and sufficient for low domestic energy demands not exceeding 10 kW or 50 A (supplying 240 V). Three-phase wiring delivers higher, stable power (415 V) for commercial/industrial sites consuming over 10 kW or 50 A."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q17",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Apakah dua komponen pertama yang dilalui oleh bekalan elektrik rumah sebelum sampai ke suis utama?",
+        "options": [
+          "ELCB dan Kotak Fius Utama (ELCB and Main Fuse Box)",
+          "Kotak Fius Utama dan Meter Elektrik (Main Fuse Box and Electricity Meter)",
+          "Meter Elektrik dan MCB (Electricity Meter and MCB)",
+          "Dawai Bumi dan ELCB (Earth Wire and ELCB)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Urutan laluan aliran elektrik domestik dari kabel luar masuk ke dalam rumah mengikut turutan: Kabel bekalan utama → Kotak fius utama [L] (mengandungi fius utama untuk mengehadkan arus maksimum yang masuk) → Meter elektrik [M] (untuk menyukat jumlah unit tenaga elektrik kWj yang digunakan) → Suis utama → ELCB → MCB → Litar soket/pencahayaan. The chronological sequence of domestic electricity entering a house is: Main supply cable → Main fuse box [L] (with main fuse to limit incoming current) → Electric meter [M] (to measure energy consumption in kWh) → Main switch → ELCB → MCB → Sockets/lights. Thus, Option B is correct."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q18",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Antara komponen keselamatan elektrik berikut, yang manakah berfungsi memutuskan litar secara automatik apabila berlaku kebocoran arus ke bumi pada perkakas elektrik rumah?",
+        "options": [
+          "Miniature Circuit Breaker (MCB)",
+          "Earth Leakage Circuit Breaker (ELCB)",
+          "Fius Kartrij (Cartridge Fuse)",
+          "Pengalir Kilat (Lightning Conductor)"
+        ],
+        "answerIndex": 1,
+        "explanation": "ELCB (Earth Leakage Circuit Breaker atau Pemutus Litar Bocor Bumi) diletakkan khusus untuk mengesan perbezaan arus antara dawai hidup dan dawai neutral yang menandakan berlakunya kebocoran elektrik (biasanya mengalir ke bumi melalui badan perkakas atau tubuh manusia). ELCB akan memutuskan bekalan secara serta-merta untuk mengelakkan kejutan elektrik maut. MCB pula bertindak memutuskan litar jika berlaku beban lampau (overload) atau litar pintas (short circuit). An ELCB (Earth Leakage Circuit Breaker) detects current imbalances between the live and neutral wires, indicating current leakage to the ground. It trips instantly to prevent fatal shocks. MCB protects against overloads and short circuits."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q19",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Apakah kod warna antarabangsa bagi dawai bumi (earth wire) dalam sistem pendawaian palam 3-pin di Malaysia?",
+        "options": [
+          "Perang (Brown)",
+          "Biru (Blue)",
+          "Kuning (Yellow)",
+          "Belang hijau dan kuning (Green and yellow stripes)"
+        ],
+        "answerIndex": 3,
+        "explanation": "Berdasarkan standard kod warna antarabangsa: 1. Dawai Hidup (Live wire) = Perang (Brown) 2. Dawai Neutral (Neutral wire) = Biru (Blue) 3. Dawai Bumi (Earth wire) = Belang hijau dan kuning (Green and yellow stripes) Oleh itu, pilihan D adalah tepat. According to international color standards: 1. Live wire = Brown 2. Neutral wire = Blue 3. Earth wire = Green and yellow stripes. Thus, Option D is correct."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q20",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "Sebuah penyaman udara berkuasa 960 W disambungkan kepada bekalan 240 V. Antara nilai fius berikut, yang manakah paling sesuai untuk palamnya?",
+        "options": [
+          "3 A",
+          "5 A",
+          "13 A",
+          "15 A"
+        ],
+        "answerIndex": 1,
+        "explanation": "Arus operasi, I = P/V = 960/240 = 4 A. Fius 5 A ialah nilai terendah yang melebihi arus operasi biasa. The operating current is I = P/V = 960/240 = 4 A. A 5 A fuse is the lowest rating above the normal operating current."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q21",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "Apakah takrifan bagi \"kecekapan tenaga\" (energy efficiency)?",
+        "options": [
+          "Peratusan tenaga elektrik output yang berguna berbanding jumlah input tenaga elektrik yang dibekalkan.",
+          "Keupayaan mengurangkan bil elektrik bulanan rumah sehingga menjadi sifar.",
+          "Nisbah jumlah kuasa elektrik yang digunakan oleh alat elektrik dalam masa 24 jam.",
+          "Penggunaan tenaga elektrik yang dibekalkan daripada sumber tenaga boleh baharu sahaja."
+        ],
+        "answerIndex": 0,
+        "explanation": "Kecekapan tenaga ditakrifkan sebagai peratusan tenaga output yang berguna dibahagi dengan jumlah input tenaga elektrik yang dibekalkan kepada sesuatu alat, dirumuskan seperti berikut: Kecekapan tenaga = Tenaga output yang berguna (J)/Tenaga input elektrik yang dibekalkan (J) × 100% Energy efficiency is defined as the percentage of useful output energy divided by the total input electrical energy supplied to an appliance. This is represented by the formula: Energy efficiency = Useful output energy/Input electrical energy × 100%"
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q22",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "Antara lampu berikut, yang manakah mempunyai kecekapan tenaga yang paling tinggi bagi menghasilkan keamatan cahaya yang sama terang?",
+        "options": [
+          "Lampu Filament (Filament bulb)",
+          "Lampu Pendarfluor Padat (CFL)",
+          "Lampu Diod Pemancar Cahaya (LED)",
+          "Lampu Halogen (Halogen bulb)"
+        ],
+        "answerIndex": 2,
+        "explanation": "Lampu LED (Light Emitting Diode) mempunyai kecekapan tenaga tertinggi (sehingga 90%), di mana hampir keseluruhan tenaga elektrik ditukarkan kepada tenaga cahaya dan hanya sebahagian kecil hilang sebagai tenaga haba. Lampu CFL mempunyai kecekapan sekitar 50%, manakah lampu filament biasa adalah sangat tidak cekap (hanya 10% efisien) kerana 90% tenaga input dibazirkan sebagai haba yang memanaskan mentol. LED lamps have the highest energy efficiency (up to 90%), converting almost all input electricity to light with minimal heat loss. In contrast, CFLs are about 50% efficient, and filament bulbs are highly inefficient (only 10% efficient), wasting 90% of energy as heat."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q23",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "Suruhanjaya Tenaga (ST) memperkenalkan Label Kecekapan Tenaga bagi peralatan elektrik domestik. Apakah kepentingan bilangan \"bintang\" (stars) pada label tersebut?",
+        "options": [
+          "Lebih banyak bintang bermaksud alat tersebut lebih mahal untuk diselenggara.",
+          "Lebih banyak bintang bermaksud kecekapan penggunaan tenaga alat tersebut adalah lebih tinggi (lebih jimat elektrik).",
+          "Bilangan bintang menunjukkan bilangan tahun jaminan waranti perkakas.",
+          "Bilangan bintang menunjukkan bilangan fasa bekalan kuasa yang diperlukan."
+        ],
+        "answerIndex": 1,
+        "explanation": "Sistem penarafan bintang pada label kecekapan tenaga Suruhanjaya Tenaga menggunakan skala 1 hingga 5 bintang. Bilangan bintang yang lebih banyak bermakna peralatan elektrik tersebut lebih cekap tenaga dan menggunakan kurang unit elektrik (kWh) untuk berfungsi, menjimatkan kos bil elektrik pengguna. The star rating system on the Energy Commission's efficiency label ranges from 1 to 5 stars. More stars indicate that the appliance is more energy-efficient, consuming fewer units (kWh) of electricity and saving consumers money on their bills."
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q24",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "Sebuah cerek elektrik berkuasa 2 kW digunakan selama 30 minit setiap hari untuk mendidihkan air. Jika kadar tarif elektrik ialah 30 sen bagi setiap unit (1 unit = 1 kWj), hitungkan kos penggunaan elektrik cerek tersebut selama 30 hari.",
+        "options": [
+          "RM 9.00",
+          "RM 4.50",
+          "RM 18.00",
+          "RM 1.20"
+        ],
+        "answerIndex": 0,
+        "explanation": "Mula-mula, tukarkan masa harian kepada jam: Masa = 30 minit = 0.5 jam Hitung tenaga elektrik yang digunakan dalam sehari: Tenaga (kWj) = Kuasa (kW) × Masa (j) E = 2 kW × 0.5 j = 1 kWj (atau 1 unit harian) Hitung jumlah unit yang digunakan dalam masa 30 hari: Jumlah tenaga = 1 unit/hari × 30 hari = 30 unit (kWj) Hitung kos penggunaan elektrik: Kos = 30 unit × RM 0.30/unit = RM 9.00 Oleh itu, jawapannya ialah RM 9.00. Convert daily use time to hours: Time = 30 minutes = 0.5 hours Calculate daily energy used: Energy = P × t = 2 kW × 0.5 h = 1 kWh (1 unit per day) Total energy used in 30 days: Total energy = 1 unit/day × 30 days = 30 units Calculate total cost: Cost = 30 units × RM 0.30 = RM 9.00"
+      },
+      {
+        "id": "sci-f3-c6-set-a-bm-q25",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "Antara berikut, yang manakah merupakan ciri reka bentuk pasif (passive design) bagi sebuah Bangunan Hijau (Green Building) yang bertujuan untuk menjimatkan penggunaan tenaga elektrik secara semula jadi?",
+        "options": [
+          "Memasang panel suria foto-voltaik pada bumbung bangunan untuk menjana elektrik.",
+          "Menggunakan sistem pendingin hawa berpusat dengan penarafan 5-bintang.",
+          "Mereka bentuk tingkap yang besar dan susun atur yang memaksimumkan pencahayaan siang serta pengudaraan semula jadi.",
+          "Memasang sensor gerakan automatik untuk memadamkan lampu LED di dalam bilik yang kosong."
+        ],
+        "answerIndex": 2,
+        "explanation": "Reka bentuk pasif (passive design) merujuk kepada ciri-ciri mekanikal semula jadi bangunan yang mengeksploitasi alam sekitar sekitar tanpa bergantung kepada peranti mekanikal atau elektrikal aktif. Contohnya ialah reka bentuk tingkap besar untuk pencahayaan siang semula jadi dan struktur lubang pengudaraan bagi aliran angin semulajadi yang mengurangkan keperluan menyalakan lampu elektrik atau pendingin hawa. Panel suria, pendingin hawa cekap tenaga, dan sensor pintar ialah contoh ciri reka bentuk aktif (active design). Passive design features utilize natural, structural, and environmental factors to reduce energy needs without active mechanical/electrical devices. Examples include large window placement for natural daylight and cross-ventilation openings (Option C). Solar panels, high-efficiency AC, and motion sensors represent active design elements."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q1",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "Antara stesen jana kuasa berikut, yang manakah menggunakan sumber tenaga boleh baharu dan melibatkan perubahan tenaga daripada Tenaga Keupayaan Graviti → Tenaga Kinetik → Tenaga Elektrik?",
+        "options": [
+          "Stesen Jana Kuasa Sultan Azlan Shah (Arang batu",
+          "Stesen Jana Kuasa Hidroelektrik Bakun (Hidro",
+          "Stesen Jana Kuasa Tuanku Jaafar (Gas asli",
+          "Stesen Jana Kuasa Gelugor (Diesel)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Stesen jana kuasa hidroelektrik seperti di Bakun, Sarawak, menggunakan air yang disimpan di dalam empangan tinggi (Tenaga Keupayaan Graviti). Apabila pintu empangan dibuka, air mengalir turun dengan laju (Tenaga Kinetik) untuk memutarkan turbin yang memacu penjana bagi menghasilkan Tenaga Elektrik. Air ialah sumber tenaga boleh baharu. Water stored behind a high dam has gravitational potential energy. As it flows down, this becomes kinetic energy that turns a turbine and generator to produce electrical energy."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q2",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "Seutas dawai digerakkan dengan pantas merentasi medan magnet dan disambungkan kepada galvanometer sifar tengah. Apakah fenomena yang berlaku dan jenis arus yang dikesan?",
+        "options": [
+          "Resapan gas; Arus terus (a.t.)",
+          "Aruhan elektromagnet; Arus aruhan",
+          "Peneutralan magnet; Arus cas statik",
+          "Termokimia; Arus ulang-alik (a.u.)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Apabila dawai kuprum digerakkan memotong garis medan magnet, berlaku perubahan fluks magnetik yang mencetuskan d.g.e. aruhan. Ini menghasilkan arus aruhan (induced current) di dalam litar melalui fenomena aruhan elektromagnet (electromagnetic induction), menyebabkan penunjuk galvanometer terpesong. A conductor moving across magnetic field lines experiences electromagnetic induction and an induced current flows in the circuit."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q3",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "Sebutir magnet bar ditolak masuk ke dalam sebuah solenoid yang disambungkan kepada galvanometer sifar tengah. Antara tindakan berikut, yang manakah TIDAK akan meningkatkan magnitud pemesongan jarum galvanometer?",
+        "options": [
+          "Menambah bilangan lilitan gegelung pada solenoid",
+          "Menggunakan magnet bar yang lebih kuat (fluks magnet tinggi)",
+          "Menolak magnet bar masuk ke dalam solenoid dengan lebih lambat",
+          "Menolak magnet bar masuk ke dalam solenoid dengan lebih laju"
+        ],
+        "answerIndex": 2,
+        "explanation": "Mengikut Hukum Faraday, kadar pemotongan fluks magnet berkadar terus dengan kadar perubahan medan magnet. Menolak magnet dengan lebih lambat akan mengurangkan kadar pemotongan fluks magnet, seterusnya mengurangkan (bukan meningkatkan) d.g.e. aruhan dan magnitud pesongan galvanometer. Moving the magnet more slowly reduces the rate of change of magnetic flux, so it does not increase the galvanometer deflection."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q4",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "Apakah fungsi utama komutator gegelang terbelah dalam penjana arus terus (a.t.)?",
+        "options": [
+          "Mengubah arah arus elektrik dalam litar luar setiap setengah putaran gegelung",
+          "Membolehkan arus mengalir dalam satu arah sahaja pada litar luar",
+          "Memutuskan sambungan elektrik apabila gegelung berada dalam kedudukan menegak",
+          "Meningkatkan rintangan dalam gegelung supaya LED menyala cerah"
+        ],
+        "answerIndex": 1,
+        "explanation": "Fungsi utama komutator (split-ring commutator) dalam penjana arus terus (a.t.) adalah untuk menukar arah sambungan antara gegelung berputar dengan litar luar pada setiap setengah putaran. Ini memastikan arus yang dihasilkan dalam litar luar sentiasa mengalir dalam satu arah sahaja (menghasilkan arus terus). The split-ring commutator reverses the coil connection every half-turn so that current in the external circuit continues to flow in one direction."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q5",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "Antara padanan stesen jana kuasa dengan perubahan bentuk tenaga berikut, yang manakah adalah SALAH?",
+        "options": [
+          "Stesen Jana Kuasa Nuklear: Tenaga Nuklear → Tenaga Haba → Tenaga Kinetik → Tenaga Elektrik",
+          "Stesen Jana Kuasa Terma: Tenaga Kimia → Tenaga Haba → Tenaga Kinetik → Tenaga Elektrik",
+          "Stesen Jana Kuasa Biomass: Tenaga Kimia → Tenaga Haba → Tenaga Kinetik → Tenaga Elektrik",
+          "Stesen Jana Kuasa Suria: Tenaga Cahaya → Tenaga Haba → Tenaga Kinetik → Tenaga Elektrik"
+        ],
+        "answerIndex": 3,
+        "explanation": "Padanan D adalah salah kerana panel solar dalam stesen jana kuasa suria menukarkan Tenaga Cahaya secara terus kepada Tenaga Elektrik tanpa melalui fasa tenaga haba, stim, atau tenaga kinetik turbin berputar. A photovoltaic solar power station converts light energy directly into electrical energy, so the sequence in option D is incorrect."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q6",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "Apakah ciri utama yang membezakan antara arus terus (a.t.) dengan arus ulang-alik (a.u.)?",
+        "options": [
+          "Arus terus mempunyai voltan tinggi manakala arus ulang-alik mempunyai voltan rendah.",
+          "Arus terus mengalir dalam satu arah sahaja manakala arah aliran arus ulang-alik sentiasa berubah-ubah secara berterusan.",
+          "Arus terus dihasilkan oleh aruhan elektromagnet manakala arus ulang-alik dihasilkan oleh sel kimia kering sahaja.",
+          "Arus ulang-alik tidak mempunyai kesan haba manakala arus terus mempunyai kesan haba yang tinggi."
+        ],
+        "answerIndex": 1,
+        "explanation": "Arus terus (a.t.) ditakrifkan sebagai arus elektrik yang mengalir dalam satu arah sahaja secara tetap (contohnya dari sel kering atau panel solar). Manakala arus ulang-alik (a.u.) ialah arus elektrik yang arah alirannya sentiasa berubah-ubah secara berulang-alik secara berterusan (arus domestik sesalur rumah). Direct current flows in one direction, while alternating current repeatedly reverses its direction."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q7",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "Sebuah Osiloskop Sinar Katod (O.S.K.) dilaraskan dengan tombol dasar-masa (time-base) dihidupkan. Jika satu bekalan arus terus (a.t.) 1.5 V disambungkan ke input-Y dengan terminal positif disambung ke terminal bumi O.S.K., apakah paparan yang akan kelihatan pada skrin O.S.K.?",
+        "options": [
+          "Satu garis lurus mengufuk yang terletak di atas paksi-X tengah",
+          "Satu titik bercahaya yang tidak bergerak di pusat skrin",
+          "Satu garis lurus mengufuk yang terletak di bawah paksi-X tengah",
+          "Satu bentuk gelombang sinosoid yang turun naik secara berkala"
+        ],
+        "answerIndex": 2,
+        "explanation": "Apabila tombol dasar-masa dihidupkan, tompok cahaya bergerak merentasi skrin secara mengufuk untuk membentuk garis lurus mengufuk. Memandangkan terminal positif bateri disambungkan ke terminal bumi (menyongsangkan sambungan normal input-Y), pesongan tompok cahaya berlaku ke bawah, menghasilkan garis lurus mengufuk di bawah paksi-X tengah. With the time-base on, d.c. produces a horizontal line. Grounding the positive terminal gives a negative Y-input, so the line appears below the centre."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q8",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "Skrin O.S.K. menunjukkan satu garis tegak pada paksi-Y tengah. Apakah tetapan dasar-masa dan jenis input yang menghasilkan corak ini?",
+        "options": [
+          "Dasar-masa dihidupkan; Input arus terus (a.t.)",
+          "Dasar-masa dimatikan; Input arus ulang-alik (a.u.)",
+          "Dasar-masa dihidupkan; Input arus ulang-alik (a.u.)",
+          "Dasar-masa dimatikan; Input arus terus (a.t.)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Apabila dasar-masa dimatikan (OFF), tompok cahaya tidak bergerak secara mengufuk. Jika bekalan arus ulang-alik (a.u.) disambungkan ke input-Y, voltan yang sentiasa berubah-ubah menyebabkan tompok cahaya berayun naik dan turun dengan sangat pantas pada paksi menegak, membentuk satu garis mencancang (vertical line) pada paksi-Y tengah. With the time-base off, an a.c. input moves the spot rapidly up and down, producing a vertical line at the centre of the screen."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q9",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Mengapakah teras besi lembut sebuah transformer dibina daripada lapisan-lapisan nipis yang bertebat?",
+        "options": [
+          "Untuk membenarkan transformer berfungsi menggunakan bekalan arus terus (a.t.)",
+          "Untuk mengurangkan kehilangan tenaga sebagai haba akibat daripada arus pusar (eddy current)",
+          "Untuk mengurangkan rintangan elektrik di dalam dawai kuprum primer",
+          "Untuk meningkatkan medan magnet kekal di dalam teras besi"
+        ],
+        "answerIndex": 1,
+        "explanation": "Teras besi lembut dibina secara berlamina (kepingan besi nipis yang diselaputi oleh lapisan penebat nipis) bertujuan untuk memotong laluan arus pusar (eddy currents) yang teraruh di dalam teras besi akibat medan magnet yang berubah-ubah. Ini mengurangkan kehilangan tenaga elektrik sebagai tenaga haba di dalam teras besi. Insulated laminations interrupt eddy-current paths in the soft iron core and reduce energy loss as heat."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q10",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Sebuah transformer mempunyai 1,200 lilitan pada gegelung primer dan 300 lilitan pada gegelung sekunder. Jika voltan input ialah 240 V arus ulang-alik (a.u.), hitungkan voltan output sekunder transformer tersebut.",
+        "options": [
+          "60 V",
+          "960 V",
+          "120 V",
+          "30 V"
+        ],
+        "answerIndex": 0,
+        "explanation": "Menggunakan formula nisbah transformer: V_p/V_s = N_p/N_s 240/V_s = 1200/300 240/V_s = 4 → V_s = 240/4 = 60 V Ini merupakan sebuah transformer injak turun (step-down transformer) kerana V_s < V_p. Using Vp/Vs = Np/Ns gives 240/Vs = 1200/300 = 4, so Vs = 60 V."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q11",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Sebuah pengecas telefon pintar menggunakan transformer ringkas untuk menurunkan voltan sesalur domestik 240 V kepada 5 V untuk mengecas bateri. Jika bilangan lilitan gegelung sekunder ialah 15 lilitan, hitungkan bilangan lilitan gegelung primer.",
+        "options": [
+          "720 lilitan",
+          "360 lilitan",
+          "450 lilitan",
+          "900 lilitan"
+        ],
+        "answerIndex": 0,
+        "explanation": "Menggunakan Vp/Vs = Np/Ns, 240/5 = Np/15. Oleh itu, Np = 720 lilitan dan pilihan A ialah jawapan yang betul. Using Vp/Vs = Np/Ns, 240/5 = Np/15. Therefore, Np = 720 turns and option A is correct."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q12",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Mengapakah bekalan tenaga elektrik yang dijanakan di stesen jana kuasa mesti dinaikkan voltannya ke tahap yang sangat tinggi (sehingga 132 kV - 500 kV) melalui stesen transformer injak naik sebelum dihantar melalui Rangkaian Grid Nasional?",
+        "options": [
+          "Untuk membolehkan arus mengalir dalam bentuk arus terus (a.t.) merentasi jarak jauh",
+          "Untuk merendahkan arus elektrik di dalam kabel penghantaran bagi mengurangkan kehilangan tenaga sebagai haba (I²R)",
+          "Untuk mengurangkan ketebalan lapisan plastik penebat pada kabel pilon luar",
+          "Untuk mempercepatkan kelajuan pergerakan elektron di dalam kabel elektrik"
+        ],
+        "answerIndex": 1,
+        "explanation": "Penghantaran kuasa elektrik merentasi kabel panjang menghadapi rintangan dawai (R). Mengikut formula kehilangan kuasa as haba, P_(lost) = I² R. Dengan menggunakan transformer injak naik, voltan (V) dinaikkan dengan sangat tinggi, secara automatik menyebabkan nilai arus (I) berkurang dengan banyak. Arus yang kecil ini mengurangkan haba yang dijana di dalam kabel, meminimumkan kehilangan tenaga elektrik sepanjang laluan transmisi. For the same transmitted power, increasing voltage reduces current. Since cable heating is proportional to I²R, less energy is lost as heat."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q13",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Dalam sistem penghantaran elektrik, komponen manakah terletak selepas Rangkaian Grid Nasional dan sebelum pencawang masuk utama?",
+        "options": [
+          "Lapangan suis",
+          "Pencawang bahagian",
+          "Meter elektrik",
+          "Fius utama"
+        ],
+        "answerIndex": 0,
+        "explanation": "Lapangan suis (Switchyard) terletak selepas kabel Rangkaian Grid Nasional dan sebelum Pencawang Masuk Utama. Fungsinya adalah untuk mengawal pengaliran kuasa elektrik secara selamat, membenarkan pencawang ditutup untuk penyelenggaraan tanpa mengganggu bekalan kuasa utama. The switchyard is positioned between the National Grid and the main intake substation to control and isolate the electricity supply safely."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q14",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Antara perbandingan berikut, yang manakah membezakan sistem pendawaian satu fasa dengan sistem pendawaian tiga fasa dengan betul?",
+        "options": [
+          "Satu fasa membekalkan kuasa melebihi 50 kW manakala tiga fasa membekalkan kuasa di bawah 10 kW.",
+          "Satu fasa hanya sesuai untuk kawasan industri berat manakala tiga fasa sesuai untuk kawasan rumah kos rendah.",
+          "Satu fasa membekalkan voltan yang lebih stabil dan sesuai untuk peralatan elektrik berkuasa tinggi seperti mesin kilang.",
+          "Satu fasa sesuai untuk kediaman domestik dengan penggunaan elektrik tidak melebihi 10 kW (50 A) manakala tiga fasa sesuai untuk bangunan komersial/industri dengan penggunaan melebihi 10 kW."
+        ],
+        "answerIndex": 3,
+        "explanation": "Sistem pendawaian satu fasa (single-phase) hanya stabil untuk beban elektrik kecil di bawah 10 kW (atau 50 A) yang biasa digunakan di kawasan perumahan biasa. Manakala tiga fasa (three-phase) menyediakan bekalan kuasa voltan yang lebih stabil dan tinggi, sesuai untuk industri, kilang, dan komersial dengan penggunaan elektrik melebihi 10 kW. Single-phase wiring is suitable for lower domestic loads, while three-phase wiring is used for higher commercial and industrial loads."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q15",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Nyatakan laluan aliran elektrik yang betul sebaik sahaja memasuki sistem pendawaian elektrik domestik di dalam rumah berdasarkan susunan komponen keselamatan berikut:",
+        "options": [
+          "Kotak fius utama → Meter elektrik → Suis utama → Pemutus litar ELCB → Pemutus litar MCB",
+          "Meter elektrik → Pemutus litar MCB → Kotak fius utama → Suis utama → Pemutus litar ELCB",
+          "Pemutus litar ELCB → Suis utama → Meter elektrik → Pemutus litar MCB → Kotak fius utama",
+          "Suis utama → Pemutus litar ELCB → Pemutus litar MCB → Meter elektrik → Kotak fius utama"
+        ],
+        "answerIndex": 0,
+        "explanation": "Arus elektrik sesalur mengalir masuk mengikut susunan kronologi komponen keselamatan berikut: Kabel utama masuk ke Kotak fius utama (mengandungi fius utama) → Meter elektrik (menyukat penggunaan kWj) → Suis utama → ELCB (Earth Leakage Circuit Breaker - memutuskan litar jika ada kebocoran arus ke bumi) → MCB (Miniature Circuit Breaker - mengasingkan litar pencahayaan/kuasa). The correct sequence is main fuse box, electricity meter, main switch, ELCB and then MCB."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q16",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Apakah fungsi utama Pemutus Litar Kebocoran Bumi (ELCB - Earth Leakage Circuit Breaker) dalam kotak pengagihan elektrik domestik?",
+        "options": [
+          "Mengukur jumlah unit tenaga elektrik yang telah digunakan dalam masa sebulan",
+          "Memutuskan litar secara automatik apabila dikesan arus elektrik berlebihan bocor mengalir keluar melalui dawai bumi",
+          "Melindungi peralatan elektrik daripada kerosakan akibat litar pintas di antara dawai hidup dengan dawai neutral",
+          "Menghadkan jumlah arus yang mengalir masuk ke dalam mentol lampu hiasan rumah"
+        ],
+        "answerIndex": 1,
+        "explanation": "ELCB berfungsi mengesan kebocoran arus elektrik yang kecil (biasanya akibat kerosakan penebat peralatan logam) yang mengalir keluar ke bumi melalui dawai bumi. Sebaik sahaja dikesan kebocoran arus, ELCB akan terpelanting (trip) dan memutuskan litar serta-merta untuk mengelakkan bahaya renjatan elektrik kepada manusia. An ELCB detects current leaking to earth and disconnects the circuit quickly to reduce the risk of electric shock."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q17",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Antara dawai di dalam palam 3-pin berikut, yang manakah dipadankan dengan kod warna antarabangsa yang SALAH?",
+        "options": [
+          "Dawai Hidup (Live wire) — Perang (Brown)",
+          "Dawai Neutral (Neutral wire) — Biru (Blue)",
+          "Dawai Bumi (Earth wire) — Belang Kuning dan Hijau (Yellow and Green stripes)",
+          "Dawai Bumi (Earth wire) — Merah (Red)"
+        ],
+        "answerIndex": 3,
+        "explanation": "Padanan D adalah salah. Mengikut kod warna antarabangsa bagi pendawaian elektrik: Dawai Hidup berwarna perang, Dawai Neutral berwarna biru, dan Dawai Bumi berwarna belang kuning dan hijau. Tiada dawai berwarna merah dalam standard keselamatan palam 3-pin moden di Malaysia. Modern wiring uses brown for live, blue for neutral, and green-and-yellow stripes for earth. Red is not the earth-wire colour."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q18",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Sebuah perkakas berlabel 240 V, 1.2 kW disambungkan kepada bekalan rumah. Hitung arus dan pilih fius paling sesuai daripada 1 A, 2 A, 3 A, 5 A, 10 A dan 13 A.",
+        "options": [
+          "Arus = 2.0 A; Fius sesuai = 3 A",
+          "Arus = 5.0 A; Fius sesuai = 10 A",
+          "Arus = 5.0 A; Fius sesuai = 5 A",
+          "Arus = 0.2 A; Fius sesuai = 1 A"
+        ],
+        "answerIndex": 1,
+        "explanation": "1. Tukarkan kuasa kepada Watt: 1.2 kW = 1,200 W. 2. Gunakan formula Kuasa (P = V × I): I = P/V = 1200 W/240 V = 5.0 A 3. Nilai rating fius mestilah sedikit lebih tinggi daripada nilai arus operasi normal perkakas agar fius tidak melebur semasa penggunaan biasa. Fius yang berada sedikit di atas 5.0 A dalam senarai piawai ialah 10 A (fius 5 A tidak sesuai kerana ia akan melebur serta-merta apabila arus mencecah had operasi normalnya). The operating current is I = P/V = 1200/240 = 5.0 A. From the listed ratings, a 10 A fuse is the next rating above the normal current."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q19",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Antara tindakan keselamatan berikut, yang manakah menghalang badan manusia daripada terkena renjatan elektrik apabila berlaku kebocoran arus pada rangka besi mesin basuh elektrik?",
+        "options": [
+          "Memasang fius dengan rating yang sangat tinggi pada palam mesin basuh",
+          "Menyambung rangka logam mesin basuh terus kepada dawai bumi (pembumian)",
+          "Menggunakan dawai neutral yang lebih tebal pada kabel palam",
+          "Menyapu lapisan cat minyak tebal pada seluruh permukaan plastik luaran"
+        ],
+        "answerIndex": 1,
+        "explanation": "Dawai bumi menyediakan laluan berintangan rendah untuk arus bocor. Hal ini membolehkan alat perlindungan memutuskan bekalan dan mengelakkan arus melalui badan manusia. The earth wire provides a low-resistance route for leakage current, allowing the protective device to disconnect the supply instead of current passing through a person."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q20",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "Apakah takrifan bagi kecekapan tenaga (energy efficiency)?",
+        "options": [
+          "Peratusan tenaga input elektrik yang berjaya ditukarkan kepada bentuk tenaga output yang berguna.",
+          "Nisbah jumlah kos penggunaan bulanan elektrik terhadap kuasa watt perkakas elektrik.",
+          "Jumlah keseluruhan tenaga kinetik yang dihasilkan oleh turbin stesen jana kuasa dalam masa satu jam.",
+          "Keupayaan sel kimia kering untuk mengekalkan voltan output malar tanpa sebarang rintangan dalaman."
+        ],
+        "answerIndex": 0,
+        "explanation": "Kecekapan tenaga merujuk kepada keupayaan sesuatu alat elektrik untuk menukarkan sebahagian besar tenaga elektrik (tenaga input) kepada bentuk tenaga output yang berguna (seperti tenaga cahaya bagi lampu), dengan mengurangkan kehilangan tenaga tidak berguna (seperti haba terbuang). Formula: Kecekapan tenaga = Tenaga output berguna/Tenaga input elektrik × 100% Energy efficiency is the percentage of input energy converted into useful output energy."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q21",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "Sebuah periuk nasi menggunakan 800 J tenaga elektrik dan menghasilkan 720 J tenaga haba berguna. Hitung peratus kecekapan tenaganya.",
+        "options": [
+          "80%",
+          "95%",
+          "90%",
+          "75%"
+        ],
+        "answerIndex": 2,
+        "explanation": "Kecekapan tenaga = Tenaga output berguna/Tenaga input elektrik × 100% Kecekapan tenaga = 720 J/800 J × 100% = 90% Efficiency = useful output energy/input energy × 100% = 720/800 × 100% = 90%."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q22",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "Lampu hiasan manakah yang mempunyai kecekapan tenaga yang paling tinggi untuk kegunaan rumah kediaman hijau?",
+        "options": [
+          "Lampu filamen (filament bulb)",
+          "Lampu pendarfluor mampat (CFL)",
+          "Lampu diod pemancar cahaya (LED)",
+          "Lampu gas neon"
+        ],
+        "answerIndex": 2,
+        "explanation": "Lampu LED menghasilkan kecerahan yang sama dengan menggunakan kurang tenaga elektrik berbanding lampu lain yang disenaraikan. An LED produces the same brightness using less electrical energy than the other listed lamps."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q23",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "Sebuah rumah menggunakan penyaman udara 2 kW selama 5 jam sehari untuk 30 hari. Tarif bagi 200 kWj pertama ialah 21.8 sen/kWj dan 100 kWj berikutnya ialah 33.4 sen/kWj. Berapakah tenaga yang digunakan dan kosnya?",
+        "options": [
+          "Tenaga = 300 kWj; Kos = RM 77.00",
+          "Tenaga = 300 kWj; Kos = RM 150.00",
+          "Tenaga = 150 kWj; Kos = RM 32.70",
+          "Tenaga = 10 kWj; Kos = RM 2.18"
+        ],
+        "answerIndex": 0,
+        "explanation": "1. Hitungkan jumlah tenaga elektrik (E dalam kWj / unit): E = Kuasa (kW) × Masa (j) Penggunaan sehari = 2 kW × 5 jam = 10 kWj (unit) Penggunaan sebulan (30 hari) = 10 kWj × 30 = 300 kWj (unit) 2. Hitungkan kos berdasarkan blok tarif: Blok 1 (200 unit pertama): 200 × 21.8 sen = 4,360 sen Blok 2 (100 unit berikutnya): 100 × 33.4 sen = 3,340 sen Jumlah kos = 4,360 + 3,340 = 7,700 sen = RM 77.00 The air conditioner uses 2 × 5 × 30 = 300 kWh. The cost is 200 × RM0.218 + 100 × RM0.334 = RM77.00."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q24",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "Antara berikut, yang manakah merupakan reka bentuk bangunan hijau secara aktif (active green design)?",
+        "options": [
+          "Membina tingkap kaca yang besar untuk memaksimumkan pencahayaan semula jadi di waktu siang",
+          "Mengecat dinding bangunan menggunakan cat cerah lut sinar untuk memantulkan haba matahari",
+          "Memasang panel suria (solar photovoltaic panels) pada bumbung untuk menjanakan kuasa elektrik bersih",
+          "Menggunakan susunan tumbuhan hijau di balkoni luar untuk teduhan pasif"
+        ],
+        "answerIndex": 2,
+        "explanation": "Reka bentuk bangunan hijau aktif melibatkan penggunaan teknologi atau peralatan mekanikal/elektrikal luaran untuk menjana tenaga bersih atau menjimatkan kuasa (seperti panel suria, turbin angin mikro, atau penderia gerakan automatik pintar). Ciri A, B, dan D ialah reka bentuk pasif kerana ia memanfaatkan alam semula jadi atau struktur asas bangunan tanpa memerlukan peralatan mekanikal aktif. Solar panels are an active green feature because they use technology to generate electricity. Daylighting, reflective surfaces and plant shading are passive features."
+      },
+      {
+        "id": "sci-f3-c6-set-b-bm-q25",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "bm",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "Apakah peranan badan kawal selia Suruhanjaya Tenaga (ST) di Malaysia dalam mempromosikan kecekapan tenaga domestik?",
+        "options": [
+          "Mengharamkan import semua barangan elektrik buatan luar negara",
+          "Mengeluarkan label penarafan bintang (1 hingga 5 Bintang) bagi peralatan elektrik berdasarkan kecekapan tenaganya",
+          "Menurunkan nilai voltan sesalur rumah dari 240 V kepada 110 V secara paksa",
+          "Memberikan subsidi kewangan kepada pengguna yang menggunakan lampu filamen lama"
+        ],
+        "answerIndex": 1,
+        "explanation": "Suruhanjaya Tenaga mengeluarkan label penarafan satu hingga lima bintang supaya pengguna dapat membandingkan kecekapan tenaga peralatan elektrik. The Energy Commission issues one-to-five-star labels so consumers can compare the energy efficiency of electrical appliances."
+      }
+    ],
+    "dlp": [
+      {
+        "id": "sci-f3-c6-set-a-dlp-q1",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Which of the following is correctly classified as a renewable energy source and a non-renewable energy source?",
+        "options": [
+          "Biomass | Nuclear energy",
+          "Natural gas | Geothermal energy",
+          "Coal | Wind energy",
+          "Petroleum | Tidal energy"
+        ],
+        "answerIndex": 0,
+        "explanation": "Biomas, tenaga angin, geotermal, suria, hidro, ombak, dan pasang surut ialah sumber tenaga boleh baharu yang boleh digantikan secara berterusan dan tidak akan habis. Sebaliknya, tenaga nuklear, arang batu, gas asli, dan petroleum ialah sumber tidak boleh baharu yang akan kehabisan apabila digunakan secara berterusan. Oleh itu, gandingan dalam pilihan A adalah tepat. Biomass, wind, geothermal, solar, hydro, wave, and tidal are renewable energy sources that can be continuously replenished. Nuclear energy, coal, natural gas, and petroleum are non-renewable and will deplete over time. Thus, Option A is correctly paired."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q2",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Sultan Azlan Shah Power Station in Manjung, Perak, and Tuanku Jaafar Power Station in Port Dickson, Negeri Sembilan, utilize which energy sources respectively to generate electricity?",
+        "options": [
+          "Hydroelectric power | Natural gas",
+          "Coal | Natural gas",
+          "Natural gas | Petroleum",
+          "Coal | Biomass"
+        ],
+        "answerIndex": 1,
+        "explanation": "Stesen Jana Kuasa Sultan Azlan Shah menggunakan arang batu, manakala Stesen Jana Kuasa Tuanku Jaafar menggunakan gas asli. Sultan Azlan Shah Power Station uses coal, while Tuanku Jaafar Power Station uses natural gas."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q3",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "A coil of copper wire is connected to a center-zero galvanometer. Which of the following actions will produce the largest deflection on the galvanometer pointer?",
+        "options": [
+          "Leave the bar magnet stationary inside the coil.",
+          "Move the bar magnet very slowly into the coil.",
+          "Move the bar magnet rapidly out of the coil.",
+          "Move a weaker magnet relative to the coil."
+        ],
+        "answerIndex": 2,
+        "explanation": "Arus aruhan dihasilkan apabila terdapat pergerakan relatif antara magnet dengan gegelung dawai yang menyebabkan pemotongan garis medan magnet (fluks magnet). Mengikut Hukum Faraday, magnitud arus aruhan (ditunjukkan oleh magnitud pesongan galvanometer) adalah berkadar terus dengan kadar pemotongan fluks magnet. Menggerakkan magnet keluar pada kelajuan tinggi meningkatkan kadar pemotongan ini, menghasilkan pesongan terbesar. Apabila magnet pegun (A), tiada pemotongan berlaku dan galvanometer kekal sifar. Induced current is generated when there is relative motion between a magnet and a coil, cutting the magnetic flux lines. According to Faraday's Law, the magnitude of the induced current (indicated by galvanometer deflection) is directly proportional to the rate of cutting of magnetic flux. Moving the magnet at high speed (C) increases this rate, yielding the largest deflection. When stationary (A), no flux cutting occurs, and deflection is zero."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q4",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "What is the function of the commutator in a simple direct current (d.c.) generator?",
+        "options": [
+          "Slip rings; reverse the current in the coil every half-turn.",
+          "Commutator; produces direct current in the external circuit.",
+          "Commutator; increases the generated output voltage.",
+          "Slip rings; maintain electrical contact without changing current direction."
+        ],
+        "answerIndex": 1,
+        "explanation": "Penjana a.t. menggunakan komutator (pengetat belah) sebagai komponen [X] untuk memastikan arus elektrik mengalir dalam satu arah sahaja pada litar luar (arus terus), walaupun arus dalam gegelung berputar sentiasa berubah arah (arus ulang-alik). Penjana arus ulang-alik (a.u.) pula menggunakan gelang gelincir (slip rings). A d.c. generator utilizes a split-ring commutator [X] to ensure the current in the external circuit flows in one direction only (direct current), despite the current inside the rotating coil continuously reversing (alternating current). An a.c. generator uses slip rings instead."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q5",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Which of the following energy transformations correctly occurs in a hydroelectric power station?",
+        "options": [
+          "Chemical energy → heat energy → electrical energy",
+          "Gravitational potential energy → kinetic energy → electrical energy",
+          "Nuclear energy → light energy → electrical energy",
+          "Gravitational potential energy → chemical energy → electrical energy"
+        ],
+        "answerIndex": 1,
+        "explanation": "Di stesen hidroelektrik, air yang disimpan di dalam empangan tinggi mempunyai tenaga keupayaan graviti. Apabila air mengalir turun melalui terowong kuasa, ia ditukarkan kepada tenaga kinetik yang memutarkan bilah turbin. Turbin memutarkan penjana untuk menjana tenaga elektrik. In a hydroelectric station, water stored in a high dam possesses gravitational potential energy. As water flows down through the penstock, it converts to kinetic energy to turn the turbine blades, which drive the generator to produce electrical energy."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q6",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "What is the sequence of energy transformations that occurs in a nuclear power station?",
+        "options": [
+          "Chemical energy → heat energy → electrical energy",
+          "Nuclear energy → heat energy → kinetic energy → electrical energy",
+          "Nuclear energy → electrical energy → heat energy",
+          "Light energy → nuclear energy → electrical energy"
+        ],
+        "answerIndex": 1,
+        "explanation": "Tindak balas nuklear di dalam reaktor membebaskan tenaga nuklear yang menghasilkan haba yang sangat tinggi (tenaga haba) untuk mendidihkan air menjadi stim. Stim bertekanan tinggi memutarkan turbin (tenaga kinetik), yang kemudiannya memutarkan penjana untuk menghasilkan tenaga elektrik. Nuclear reactions in the reactor release nuclear energy, producing high heat (thermal energy) to boil water into steam. The high-pressure steam spins the turbine (kinetic energy), driving the generator to produce electrical energy."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q7",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "Which control knob on the Cathode Ray Oscilloscope (C.R.O.) serves to adjust the vertical height (magnitude) of the light spot on the screen?",
+        "options": [
+          "Y-gain control",
+          "Time-base control",
+          "X-position control",
+          "Focus control"
+        ],
+        "answerIndex": 0,
+        "explanation": "Tombol Gandaan-Y (Y-gain) digunakan untuk mengubah amplitud atau ketinggian menegak isyarat input (voltan) pada skrin O.S.K. Tombol Dasar-masa (Time-base) mengawal pergerakan mengufuk (paksi-X), manakala Pesongan-X mengawal kedudukan mengufuk tompok cahaya. The Y-gain knob scales the vertical height (amplitude/voltage) of the input signal on the C.R.O. screen. The Time-base knob controls horizontal sweep rate (X-axis), while the X-position adjusts the horizontal placement of the spot."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q8",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Easy",
+        "question": "When a dry cell (direct current) is connected to the Y-input of a C.R.O. with its positive terminal connected to the C.R.O. ground terminal and the time-base is turned on, what pattern is observed on the screen?",
+        "options": [
+          "A horizontal line above the centre zero line.",
+          "A horizontal line below the centre zero line.",
+          "A single light spot deflected downwards.",
+          "A sinusoidal wave above the X-axis."
+        ],
+        "answerIndex": 1,
+        "explanation": "Sel kering memberikan bekalan arus terus (a.t.). Terminal positif sel kering disambung ke bumi bermakna terminal negatif disambung ke input-Y aktif, menyebabkan isyarat voltan negatif dikesan. Tompok cahaya terpesong ke bawah. Kerana dasar-masa dihidupkan, tompok tersebut menyapu mengufuk dengan cepat, membentuk satu garisan lurus mendatar di bawah garisan sifar tengah. Jika dasar-masa dimatikan, ia hanya berupa tompok cahaya tunggal di bawah pusat sifar. A dry cell provides d.c. Since the positive cell terminal is grounded, the negative terminal is connected to the active Y-input, giving a negative voltage input that deflects the spot downwards. Because the time-base is turned on, the spot sweeps horizontally, forming a straight horizontal line below the center zero line."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q9",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "A C.R.O. screen displays a complete sinusoidal wave. Which input supply and time-base setting produce this display?",
+        "options": [
+          "Direct current; time-base off.",
+          "Alternating current; time-base off.",
+          "Direct current; time-base on.",
+          "Alternating current; time-base on."
+        ],
+        "answerIndex": 3,
+        "explanation": "Arus ulang-alik (a.u.) mempunyai voltan yang sentiasa berubah arah secara berkala. Apabila disambungkan ke input-Y dan dasar-masa dihidupkan (menyebabkan sapuan mengufuk), gerakan menegak berkala a.u. digabungkan dengan gerakan mengufuk dasar-masa untuk memaparkan bentuk gelombang sinusoidal lengkap pada skrin. Sekiranya dasar-masa dimatikan, skrin hanya akan menunjukkan satu garisan menegak lurus di tengah skrin. Alternating current (a.c.) continuously reverses direction periodically. When connected to the Y-input with the time-base turned on, the vertical periodic movement of the a.c. combines with the horizontal sweep of the time-base to display a sinusoidal wave pattern. If the time-base were off, it would display a single vertical line."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q10",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "What is the primary function of a laminated soft iron core in the construction of a transformer?",
+        "options": [
+          "Increase the magnitude of the generated alternating current.",
+          "Carry direct current from the primary circuit to the secondary circuit.",
+          "Reduce energy loss as heat caused by eddy currents.",
+          "Prevent short circuits in the copper wire."
+        ],
+        "answerIndex": 2,
+        "explanation": "Teras besi lembut berlamina (terdiri daripada lapisan-lapisan besi nipis yang diselaputi bahan penebat) digunakan khusus untuk mengurangkan kehilangan tenaga haba yang disebabkan oleh arus pusar (arus aruhan yang berputar di dalam teras besi akibat perubahan medan magnet). A laminated soft iron core (made of thin iron sheets insulated from each other) is used to minimize energy lost as heat due to eddy currents, which are induced circulating currents within the core caused by changing magnetic fields."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q11",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Which comparison between a step-up transformer and a step-down transformer is correct?",
+        "options": [
+          "Step-up: Vs < Vp; step-down: Vs > Vp",
+          "Step-up: Ns > Np; step-down: Ns < Np",
+          "Step-up: used in phone chargers; step-down: used before transmission",
+          "Step-up: d.c. only; step-down: a.c. only"
+        ],
+        "answerIndex": 1,
+        "explanation": "Bagi transformer injak naik, bilangan lilitan gegelung sekunder (N_s) adalah lebih banyak daripada bilangan lilitan gegelung primer (N_p) (N_s > N_p), menyebabkan voltan sekunder (V_s) lebih tinggi daripada voltan primer (V_p). Sebaliknya, bagi transformer injak turun, N_s < N_p, menyebabkan V_s < V_p. Pilihan A terbalik, pilihan C juga terbalik dari segi kegunaan harian, dan transformer hanya beroperasi menggunakan arus ulang-alik (a.u.), bukannya arus terus. For a step-up transformer, the number of secondary turns (N_s) is greater than primary turns (N_p) (N_s > N_p), stepping up output voltage (V_s > V_p). For a step-down, N_s < N_p, stepping down voltage. Option A is inverted, Option C is swapped, and transformers only operate on a.c."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q12",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "A transformer has 2400 turns in its primary coil and 100 turns in its secondary coil. If the input voltage supply is 240 V a.c., calculate the secondary output voltage of the transformer.",
+        "options": [
+          "10 V",
+          "24 V",
+          "12 V",
+          "5 V"
+        ],
+        "answerIndex": 0,
+        "explanation": "Menggunakan rumus turn ratio transformer: V_p/V_s = N_p/N_s Gantikan nilai yang diberikan: 240/V_s = 2400/100 240/V_s = 24 V_s = 240/24 = 10 V Oleh itu, voltan sekunder ialah 10 V (transformer injak turun). Using the transformer turn ratio formula: V_p/V_s = N_p/N_s → 240/V_s = 2400/100 → 240 = 24 × V_s → V_s = 10 V"
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q13",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Which domestic electrical appliance contains a step-down transformer in its operational design?",
+        "options": [
+          "Electric iron",
+          "Mobile phone charger",
+          "Bread toaster",
+          "Electric kettle"
+        ],
+        "answerIndex": 1,
+        "explanation": "Telefon bimbit biasanya memerlukan voltan yang kecil (contohnya 5 V atau 9 V) untuk mengecas baterinya. Pengecas telefon bimbit mengandungi transformer injak turun mini yang menurunkan voltan bekalan domestik Malaysia (240 V a.u.) kepada nilai rendah tersebut sebelum ditukarkan kepada a.t. Seterika, pembakar roti, dan cerek ialah alat pemanas elektrik berkuasa tinggi yang beroperasi terus pada voltan 240 V tanpa transformer. Mobile phones require low voltage (e.g., 5 V or 9 V) to charge. A phone charger contains a miniature step-down transformer that drops the Malaysian domestic voltage (240 V a.c.) to this low value. Irons, toasters, and kettles run directly on 240 V."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q14",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Voltage is raised from 11 kV to 132 kV before transmission and lowered again before a 240 V supply reaches homes. Which transformer types are used in order?",
+        "options": [
+          "Step-up | Step-up",
+          "Step-down | Step-up",
+          "Step-up | Step-down",
+          "Step-down | Step-down"
+        ],
+        "answerIndex": 2,
+        "explanation": "Di stesen jana kuasa, voltan 11 kV dinaikkan ke ultra-tinggi (132 kV hingga 500 kV) menggunakan transformer injak naik [P] sebelum dialirkan menerusi Rangkaian Grid Nasional untuk mengurangkan kehilangan tenaga sebagai haba. Seterusnya, sebelum sampai ke perumahan, voltan tinggi ini diturunkan secara berperingkat melalui transformer injak turun [Q] di pencawang masuk utama dan pencawang bahagian sehingga mencapai 240 V untuk kegunaan selamat di rumah. At the power station, voltage is stepped up from 11 kV to high transmission levels (132 kV - 500 kV) using a step-up transformer [P] to reduce line loss. Before reaching homes, it is stepped down step-by-step using step-down transformers [Q] to a safe domestic level of 240 V."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q15",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Why must electrical power transmission through National Grid pylons be conducted at ultra-high voltages (such as 132 kV or 275 kV)?",
+        "options": [
+          "To increase the current in the transmission cables.",
+          "To reduce energy loss as heat in the transmission cables.",
+          "To prevent lightning strikes on the cables.",
+          "To prevent electromagnetic fields near the pylons."
+        ],
+        "answerIndex": 1,
+        "explanation": "Mengikut fizik elektrik, kehilangan kuasa di dalam kabel penghantaran terbebas sebagai haba mengikut rumus P_(lost) = I² R, di mana I ialah arus dan R ialah rintangan kabel. Dengan meningkatkan voltan (V) penghantaran menggunakan transformer injak naik, magnitud arus (I) akan berkurang secara drastik (kerana kuasa P = VI adalah malar). Arus yang sangat rendah mengurangkan kehilangan kuasa haba dengan ketara, memastikan kecekapan penghantaran tinggi pada jarak jauh. Power loss in cables is dissipated as heat according to P_(lost) = I² R. By raising transmission voltage (V), the current (I) is drastically reduced (since power P=VI is constant). A very low current minimizes the I² R heat loss, maximizing transmission efficiency over long distances."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q16",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Which of the following describes the difference between single-phase and three-phase electrical wiring systems in Malaysia?",
+        "options": [
+          "Single-phase is for heavy industry, while three-phase is for small homes.",
+          "Single-phase supplies up to 415 V, while three-phase is limited to 240 V.",
+          "Single-phase is for premises using more than 50 A, while three-phase is for low usage.",
+          "Single-phase is suitable for homes using no more than 10 kW, while three-phase is suitable for commercial or industrial premises using more than 10 kW."
+        ],
+        "answerIndex": 3,
+        "explanation": "Pendawaian satu fasa (single-phase) adalah stabil dan cukup untuk penggunaan tenaga rendah domestik yang tidak melebihi 10 kW atau 50 A (membekalkan 240 V). Pendawaian tiga fasa (three-phase) menyediakan bekalan tenaga yang lebih tinggi, stabil, dan lancar (membekalkan 415 V) bagi kawasan komersial atau industri yang menggunakan lebih daripada 10 kW atau 50 A. Single-phase wiring is stable and sufficient for low domestic energy demands not exceeding 10 kW or 50 A (supplying 240 V). Three-phase wiring delivers higher, stable power (415 V) for commercial/industrial sites consuming over 10 kW or 50 A."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q17",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Which first two components does the domestic electricity supply pass through before reaching the main switch?",
+        "options": [
+          "ELCB | Main fuse box",
+          "Main fuse box | Electricity meter",
+          "Electricity meter | MCB",
+          "Earth wire | ELCB"
+        ],
+        "answerIndex": 1,
+        "explanation": "Urutan laluan aliran elektrik domestik dari kabel luar masuk ke dalam rumah mengikut turutan: Kabel bekalan utama → Kotak fius utama [L] (mengandungi fius utama untuk mengehadkan arus maksimum yang masuk) → Meter elektrik [M] (untuk menyukat jumlah unit tenaga elektrik kWj yang digunakan) → Suis utama → ELCB → MCB → Litar soket/pencahayaan. The chronological sequence of domestic electricity entering a house is: Main supply cable → Main fuse box [L] (with main fuse to limit incoming current) → Electric meter [M] (to measure energy consumption in kWh) → Main switch → ELCB → MCB → Sockets/lights. Thus, Option B is correct."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q18",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "Which of the following electrical safety components automatically trips the circuit when current leaks to the earth on a household appliance?",
+        "options": [
+          "Miniature circuit breaker (MCB)",
+          "Earth leakage circuit breaker (ELCB)",
+          "Cartridge fuse",
+          "Lightning conductor"
+        ],
+        "answerIndex": 1,
+        "explanation": "ELCB (Earth Leakage Circuit Breaker atau Pemutus Litar Bocor Bumi) diletakkan khusus untuk mengesan perbezaan arus antara dawai hidup dan dawai neutral yang menandakan berlakunya kebocoran elektrik (biasanya mengalir ke bumi melalui badan perkakas atau tubuh manusia). ELCB akan memutuskan bekalan secara serta-merta untuk mengelakkan kejutan elektrik maut. MCB pula bertindak memutuskan litar jika berlaku beban lampau (overload) atau litar pintas (short circuit). An ELCB (Earth Leakage Circuit Breaker) detects current imbalances between the live and neutral wires, indicating current leakage to the ground. It trips instantly to prevent fatal shocks. MCB protects against overloads and short circuits."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q19",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Medium",
+        "question": "What is the international color code for the earth wire in a 3-pin plug wiring system in Malaysia?",
+        "options": [
+          "Brown",
+          "Blue",
+          "Yellow",
+          "Green and yellow stripes"
+        ],
+        "answerIndex": 3,
+        "explanation": "Berdasarkan standard kod warna antarabangsa: 1. Dawai Hidup (Live wire) = Perang (Brown) 2. Dawai Neutral (Neutral wire) = Biru (Blue) 3. Dawai Bumi (Earth wire) = Belang hijau dan kuning (Green and yellow stripes) Oleh itu, pilihan D adalah tepat. According to international color standards: 1. Live wire = Brown 2. Neutral wire = Blue 3. Earth wire = Green and yellow stripes. Thus, Option D is correct."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q20",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "An air conditioner rated at 960 W is connected to a 240 V supply. Which fuse rating is most suitable for its plug?",
+        "options": [
+          "3 A",
+          "5 A",
+          "13 A",
+          "15 A"
+        ],
+        "answerIndex": 1,
+        "explanation": "Arus operasi, I = P/V = 960/240 = 4 A. Fius 5 A ialah nilai terendah yang melebihi arus operasi biasa. The operating current is I = P/V = 960/240 = 4 A. A 5 A fuse is the lowest rating above the normal operating current."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q21",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "What is the definition of \"energy efficiency\"?",
+        "options": [
+          "The percentage of electrical input energy converted into useful output energy.",
+          "The ability to reduce a monthly electricity bill to zero.",
+          "The ratio of total power used by an appliance over 24 hours.",
+          "The use of electricity supplied only by renewable sources."
+        ],
+        "answerIndex": 0,
+        "explanation": "Kecekapan tenaga ditakrifkan sebagai peratusan tenaga output yang berguna dibahagi dengan jumlah input tenaga elektrik yang dibekalkan kepada sesuatu alat, dirumuskan seperti berikut: Kecekapan tenaga = Tenaga output yang berguna (J)/Tenaga input elektrik yang dibekalkan (J) × 100% Energy efficiency is defined as the percentage of useful output energy divided by the total input electrical energy supplied to an appliance. This is represented by the formula: Energy efficiency = Useful output energy/Input electrical energy × 100%"
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q22",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "Which of the following lamps has the highest energy efficiency to produce the same intensity of light?",
+        "options": [
+          "Filament bulb",
+          "Compact fluorescent lamp (CFL)",
+          "Light-emitting diode lamp (LED)",
+          "Halogen bulb"
+        ],
+        "answerIndex": 2,
+        "explanation": "Lampu LED (Light Emitting Diode) mempunyai kecekapan tenaga tertinggi (sehingga 90%), di mana hampir keseluruhan tenaga elektrik ditukarkan kepada tenaga cahaya dan hanya sebahagian kecil hilang sebagai tenaga haba. Lampu CFL mempunyai kecekapan sekitar 50%, manakah lampu filament biasa adalah sangat tidak cekap (hanya 10% efisien) kerana 90% tenaga input dibazirkan sebagai haba yang memanaskan mentol. LED lamps have the highest energy efficiency (up to 90%), converting almost all input electricity to light with minimal heat loss. In contrast, CFLs are about 50% efficient, and filament bulbs are highly inefficient (only 10% efficient), wasting 90% of energy as heat."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q23",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "The Energy Commission (ST) introduced Energy Efficiency Labels for domestic electrical appliances. What is the significance of the number of \"stars\" on the label?",
+        "options": [
+          "More stars mean that the appliance costs more to maintain.",
+          "More stars mean higher energy efficiency and lower electricity use.",
+          "The stars show the number of warranty years.",
+          "The stars show the number of supply phases required."
+        ],
+        "answerIndex": 1,
+        "explanation": "Sistem penarafan bintang pada label kecekapan tenaga Suruhanjaya Tenaga menggunakan skala 1 hingga 5 bintang. Bilangan bintang yang lebih banyak bermakna peralatan elektrik tersebut lebih cekap tenaga dan menggunakan kurang unit elektrik (kWh) untuk berfungsi, menjimatkan kos bil elektrik pengguna. The star rating system on the Energy Commission's efficiency label ranges from 1 to 5 stars. More stars indicate that the appliance is more energy-efficient, consuming fewer units (kWh) of electricity and saving consumers money on their bills."
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q24",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "An electric kettle rated at 2 kW is used for 30 minutes every day to boil water. If the electricity tariff rate is 30 cents per unit (1 unit = 1 kWh), calculate the cost of electricity consumption of the kettle for 30 days.",
+        "options": [
+          "RM9.00",
+          "RM4.50",
+          "RM18.00",
+          "RM1.20"
+        ],
+        "answerIndex": 0,
+        "explanation": "Mula-mula, tukarkan masa harian kepada jam: Masa = 30 minit = 0.5 jam Hitung tenaga elektrik yang digunakan dalam sehari: Tenaga (kWj) = Kuasa (kW) × Masa (j) E = 2 kW × 0.5 j = 1 kWj (atau 1 unit harian) Hitung jumlah unit yang digunakan dalam masa 30 hari: Jumlah tenaga = 1 unit/hari × 30 hari = 30 unit (kWj) Hitung kos penggunaan elektrik: Kos = 30 unit × RM 0.30/unit = RM 9.00 Oleh itu, jawapannya ialah RM 9.00. Convert daily use time to hours: Time = 30 minutes = 0.5 hours Calculate daily energy used: Energy = P × t = 2 kW × 0.5 h = 1 kWh (1 unit per day) Total energy used in 30 days: Total energy = 1 unit/day × 30 days = 30 units Calculate total cost: Cost = 30 units × RM 0.30 = RM 9.00"
+      },
+      {
+        "id": "sci-f3-c6-set-a-dlp-q25",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "A",
+        "difficulty": "Hard",
+        "question": "Which of the following is a passive design feature of a Green Building aimed at naturally saving electricity consumption?",
+        "options": [
+          "Install photovoltaic solar panels on the roof.",
+          "Use a five-star central air-conditioning system.",
+          "Design large windows and a layout that maximise daylight and natural ventilation.",
+          "Install motion sensors that switch off LED lights in empty rooms."
+        ],
+        "answerIndex": 2,
+        "explanation": "Reka bentuk pasif (passive design) merujuk kepada ciri-ciri mekanikal semula jadi bangunan yang mengeksploitasi alam sekitar sekitar tanpa bergantung kepada peranti mekanikal atau elektrikal aktif. Contohnya ialah reka bentuk tingkap besar untuk pencahayaan siang semula jadi dan struktur lubang pengudaraan bagi aliran angin semulajadi yang mengurangkan keperluan menyalakan lampu elektrik atau pendingin hawa. Panel suria, pendingin hawa cekap tenaga, dan sensor pintar ialah contoh ciri reka bentuk aktif (active design). Passive design features utilize natural, structural, and environmental factors to reduce energy needs without active mechanical/electrical devices. Examples include large window placement for natural daylight and cross-ventilation openings (Option C). Solar panels, high-efficiency AC, and motion sensors represent active design elements."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q1",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "Which of the following power stations uses a renewable energy source and involves the energy change of Gravitational Potential Energy → Kinetic Energy → Electrical Energy?",
+        "options": [
+          "Sultan Azlan Shah Power Station (coal)",
+          "Bakun Hydroelectric Power Station (hydro)",
+          "Tuanku Jaafar Power Station (natural gas)",
+          "Gelugor Power Station (diesel)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Stesen jana kuasa hidroelektrik seperti di Bakun, Sarawak, menggunakan air yang disimpan di dalam empangan tinggi (Tenaga Keupayaan Graviti). Apabila pintu empangan dibuka, air mengalir turun dengan laju (Tenaga Kinetik) untuk memutarkan turbin yang memacu penjana bagi menghasilkan Tenaga Elektrik. Air ialah sumber tenaga boleh baharu. Water stored behind a high dam has gravitational potential energy. As it flows down, this becomes kinetic energy that turns a turbine and generator to produce electrical energy."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q2",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "A wire connected to a centre-zero galvanometer is moved rapidly across a magnetic field. What phenomenon occurs and what type of current is detected?",
+        "options": [
+          "Gas diffusion; Direct current (d.c.)",
+          "Electromagnetic induction; Induced current",
+          "Magnetic neutralization; Static charge current",
+          "Thermochemistry; Alternating current (a.c.)"
+        ],
+        "answerIndex": 1,
+        "explanation": "Apabila dawai kuprum digerakkan memotong garis medan magnet, berlaku perubahan fluks magnetik yang mencetuskan d.g.e. aruhan. Ini menghasilkan arus aruhan (induced current) di dalam litar melalui fenomena aruhan elektromagnet (electromagnetic induction), menyebabkan penunjuk galvanometer terpesong. A conductor moving across magnetic field lines experiences electromagnetic induction and an induced current flows in the circuit."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q3",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "A bar magnet is pushed into a solenoid connected to a center-zero galvanometer. Which of the following actions will NOT increase the magnitude of the galvanometer pointer deflection?",
+        "options": [
+          "Increasing the number of turns of the solenoid coil",
+          "Using a stronger bar magnet",
+          "Pushing the bar magnet into the solenoid more slowly",
+          "Pushing the bar magnet into the solenoid more rapidly"
+        ],
+        "answerIndex": 2,
+        "explanation": "Mengikut Hukum Faraday, kadar pemotongan fluks magnet berkadar terus dengan kadar perubahan medan magnet. Menolak magnet dengan lebih lambat akan mengurangkan kadar pemotongan fluks magnet, seterusnya mengurangkan (bukan meningkatkan) d.g.e. aruhan dan magnitud pesongan galvanometer. Moving the magnet more slowly reduces the rate of change of magnetic flux, so it does not increase the galvanometer deflection."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q4",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "What is the main function of the split-ring commutator in a direct current (d.c.) generator?",
+        "options": [
+          "Changing the direction of electrical current in the external circuit every half rotation of the coil",
+          "Allowing current to flow in one direction only in the external circuit",
+          "Cutting off electrical connection when the coil is in a vertical position",
+          "Increasing the resistance in the coil so that the LED glows brighter"
+        ],
+        "answerIndex": 1,
+        "explanation": "Fungsi utama komutator (split-ring commutator) dalam penjana arus terus (a.t.) adalah untuk menukar arah sambungan antara gegelung berputar dengan litar luar pada setiap setengah putaran. Ini memastikan arus yang dihasilkan dalam litar luar sentiasa mengalir dalam satu arah sahaja (menghasilkan arus terus). The split-ring commutator reverses the coil connection every half-turn so that current in the external circuit continues to flow in one direction."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q5",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "Which of the following matches of power station and energy form change is INCORRECT?",
+        "options": [
+          "Nuclear power station: nuclear energy → heat energy → kinetic energy → electrical energy",
+          "Thermal power station: chemical energy → heat energy → kinetic energy → electrical energy",
+          "Biomass power station: chemical energy → heat energy → kinetic energy → electrical energy",
+          "Solar power station: light energy → heat energy → kinetic energy → electrical energy"
+        ],
+        "answerIndex": 3,
+        "explanation": "Padanan D adalah salah kerana panel solar dalam stesen jana kuasa suria menukarkan Tenaga Cahaya secara terus kepada Tenaga Elektrik tanpa melalui fasa tenaga haba, stim, atau tenaga kinetik turbin berputar. A photovoltaic solar power station converts light energy directly into electrical energy, so the sequence in option D is incorrect."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q6",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "What is the primary characteristic that differentiates direct current (d.c.) from alternating current (a.c.)?",
+        "options": [
+          "Direct current has high voltage, whereas alternating current has low voltage.",
+          "Direct current flows in one direction, whereas alternating current repeatedly reverses direction.",
+          "Direct current is produced by electromagnetic induction, whereas alternating current is produced only by dry cells.",
+          "Alternating current has no heating effect, whereas direct current has a strong heating effect."
+        ],
+        "answerIndex": 1,
+        "explanation": "Arus terus (a.t.) ditakrifkan sebagai arus elektrik yang mengalir dalam satu arah sahaja secara tetap (contohnya dari sel kering atau panel solar). Manakala arus ulang-alik (a.u.) ialah arus elektrik yang arah alirannya sentiasa berubah-ubah secara berulang-alik secara berterusan (arus domestik sesalur rumah). Direct current flows in one direction, while alternating current repeatedly reverses its direction."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q7",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "A Cathode Ray Oscilloscope (C.R.O.) is adjusted with the time-base knob turned on. If a 1.5 V direct current (d.c.) supply is connected to the Y-input with the positive terminal connected to the C.R.O. earth terminal, what display will be visible on the C.R.O. screen?",
+        "options": [
+          "A horizontal straight line located above the central X-axis",
+          "A single stationary glowing spot at the center of the screen",
+          "A horizontal straight line located below the central X-axis",
+          "A sinusoidal wave pattern oscillating periodically"
+        ],
+        "answerIndex": 2,
+        "explanation": "Apabila tombol dasar-masa dihidupkan, tompok cahaya bergerak merentasi skrin secara mengufuk untuk membentuk garis lurus mengufuk. Memandangkan terminal positif bateri disambungkan ke terminal bumi (menyongsangkan sambungan normal input-Y), pesongan tompok cahaya berlaku ke bawah, menghasilkan garis lurus mengufuk di bawah paksi-X tengah. With the time-base on, d.c. produces a horizontal line. Grounding the positive terminal gives a negative Y-input, so the line appears below the centre."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q8",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Easy",
+        "question": "A C.R.O. screen shows a vertical line on the central Y-axis. Which time-base setting and input type produce this pattern?",
+        "options": [
+          "Time-base ON; D.C. input",
+          "Time-base OFF; A.C. input",
+          "Time-base ON; A.C. input",
+          "Time-base OFF; D.C. input"
+        ],
+        "answerIndex": 1,
+        "explanation": "Apabila dasar-masa dimatikan (OFF), tompok cahaya tidak bergerak secara mengufuk. Jika bekalan arus ulang-alik (a.u.) disambungkan ke input-Y, voltan yang sentiasa berubah-ubah menyebabkan tompok cahaya berayun naik dan turun dengan sangat pantas pada paksi menegak, membentuk satu garis mencancang (vertical line) pada paksi-Y tengah. With the time-base off, an a.c. input moves the spot rapidly up and down, producing a vertical line at the centre of the screen."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q9",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Why is the soft iron core of a transformer made from thin insulated laminations?",
+        "options": [
+          "To allow the transformer to function using a direct current (d.c.) supply",
+          "To reduce energy loss as heat caused by eddy currents",
+          "To reduce electrical resistance inside the primary copper wire",
+          "To increase the permanent magnetic field inside the iron core"
+        ],
+        "answerIndex": 1,
+        "explanation": "Teras besi lembut dibina secara berlamina (kepingan besi nipis yang diselaputi oleh lapisan penebat nipis) bertujuan untuk memotong laluan arus pusar (eddy currents) yang teraruh di dalam teras besi akibat medan magnet yang berubah-ubah. Ini mengurangkan kehilangan tenaga elektrik sebagai tenaga haba di dalam teras besi. Insulated laminations interrupt eddy-current paths in the soft iron core and reduce energy loss as heat."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q10",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "A transformer has 1,200 turns on its primary coil and 300 turns on its secondary coil. If the input voltage is 240 V alternating current (a.c.), calculate the secondary output voltage of the transformer.",
+        "options": [
+          "60 V",
+          "960 V",
+          "120 V",
+          "30 V"
+        ],
+        "answerIndex": 0,
+        "explanation": "Menggunakan formula nisbah transformer: V_p/V_s = N_p/N_s 240/V_s = 1200/300 240/V_s = 4 → V_s = 240/4 = 60 V Ini merupakan sebuah transformer injak turun (step-down transformer) kerana V_s < V_p. Using Vp/Vs = Np/Ns gives 240/Vs = 1200/300 = 4, so Vs = 60 V."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q11",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "A smartphone charger uses a simple transformer to step down domestic mains voltage from 240 V to 5 V for battery charging. If the number of secondary coil turns is 15 turns, calculate the number of primary coil turns.",
+        "options": [
+          "720 turns",
+          "360 turns",
+          "450 turns",
+          "900 turns"
+        ],
+        "answerIndex": 0,
+        "explanation": "Menggunakan Vp/Vs = Np/Ns, 240/5 = Np/15. Oleh itu, Np = 720 lilitan dan pilihan A ialah jawapan yang betul. Using Vp/Vs = Np/Ns, 240/5 = Np/15. Therefore, Np = 720 turns and option A is correct."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q12",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Why must the electrical energy generated at power stations be stepped up to very high voltages (up to 132 kV - 500 kV) via step-up transformer stations before being transmitted through the National Grid Network?",
+        "options": [
+          "To allow current to flow as direct current (d.c.) over long distances",
+          "To lower the electrical current in transmission cables to reduce energy loss as heat (I²R)",
+          "To reduce the thickness of plastic insulation layers on outdoor pylon cables",
+          "To speed up the movement rate of electrons inside electrical cables"
+        ],
+        "answerIndex": 1,
+        "explanation": "Penghantaran kuasa elektrik merentasi kabel panjang menghadapi rintangan dawai (R). Mengikut formula kehilangan kuasa as haba, P_(lost) = I² R. Dengan menggunakan transformer injak naik, voltan (V) dinaikkan dengan sangat tinggi, secara automatik menyebabkan nilai arus (I) berkurang dengan banyak. Arus yang kecil ini mengurangkan haba yang dijana di dalam kabel, meminimumkan kehilangan tenaga elektrik sepanjang laluan transmisi. For the same transmitted power, increasing voltage reduces current. Since cable heating is proportional to I²R, less energy is lost as heat."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q13",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "In the electricity transmission system, which component is located after the National Grid and before the main intake substation?",
+        "options": [
+          "Switchyard",
+          "Substation",
+          "Electric meter",
+          "Main fuse"
+        ],
+        "answerIndex": 0,
+        "explanation": "Lapangan suis (Switchyard) terletak selepas kabel Rangkaian Grid Nasional dan sebelum Pencawang Masuk Utama. Fungsinya adalah untuk mengawal pengaliran kuasa elektrik secara selamat, membenarkan pencawang ditutup untuk penyelenggaraan tanpa mengganggu bekalan kuasa utama. The switchyard is positioned between the National Grid and the main intake substation to control and isolate the electricity supply safely."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q14",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Which of the following comparisons correctly differentiates the single-phase wiring system from the three-phase wiring system?",
+        "options": [
+          "Single-phase supplies more than 50 kW, whereas three-phase supplies less than 10 kW.",
+          "Single-phase is for heavy industry, whereas three-phase is for low-cost homes.",
+          "Single-phase provides more stable voltage for high-power factory machinery.",
+          "Single-phase is suitable for homes using no more than 10 kW, whereas three-phase is suitable for commercial or industrial premises using more than 10 kW."
+        ],
+        "answerIndex": 3,
+        "explanation": "Sistem pendawaian satu fasa (single-phase) hanya stabil untuk beban elektrik kecil di bawah 10 kW (atau 50 A) yang biasa digunakan di kawasan perumahan biasa. Manakala tiga fasa (three-phase) menyediakan bekalan kuasa voltan yang lebih stabil dan tinggi, sesuai untuk industri, kilang, dan komersial dengan penggunaan elektrik melebihi 10 kW. Single-phase wiring is suitable for lower domestic loads, while three-phase wiring is used for higher commercial and industrial loads."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q15",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "State the correct path of electricity flow upon entering the domestic home wiring system based on the arrangement of the following safety components:",
+        "options": [
+          "Main fuse box → electricity meter → main switch → ELCB → MCB",
+          "Electricity meter → MCB → main fuse box → main switch → ELCB",
+          "ELCB → main switch → electricity meter → MCB → main fuse box",
+          "Main switch → ELCB → MCB → electricity meter → main fuse box"
+        ],
+        "answerIndex": 0,
+        "explanation": "Arus elektrik sesalur mengalir masuk mengikut susunan kronologi komponen keselamatan berikut: Kabel utama masuk ke Kotak fius utama (mengandungi fius utama) → Meter elektrik (menyukat penggunaan kWj) → Suis utama → ELCB (Earth Leakage Circuit Breaker - memutuskan litar jika ada kebocoran arus ke bumi) → MCB (Miniature Circuit Breaker - mengasingkan litar pencahayaan/kuasa). The correct sequence is main fuse box, electricity meter, main switch, ELCB and then MCB."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q16",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "What is the primary function of the ELCB in the domestic electrical distribution box?",
+        "options": [
+          "Measuring the total units of electrical energy used in a month",
+          "Automatically breaking the circuit when excess current leakage is detected flowing out through the earth wire",
+          "Protecting electrical appliances from damage due to short circuits between live and neutral wires",
+          "Limiting the amount of current flowing into household decorative lightbulbs"
+        ],
+        "answerIndex": 1,
+        "explanation": "ELCB berfungsi mengesan kebocoran arus elektrik yang kecil (biasanya akibat kerosakan penebat peralatan logam) yang mengalir keluar ke bumi melalui dawai bumi. Sebaik sahaja dikesan kebocoran arus, ELCB akan terpelanting (trip) dan memutuskan litar serta-merta untuk mengelakkan bahaya renjatan elektrik kepada manusia. An ELCB detects current leaking to earth and disconnects the circuit quickly to reduce the risk of electric shock."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q17",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Which of the following wires in a 3-pin plug is matched with an INCORRECT international color code?",
+        "options": [
+          "Live wire — brown",
+          "Neutral wire — blue",
+          "Earth wire — green and yellow stripes",
+          "Earth wire — red"
+        ],
+        "answerIndex": 3,
+        "explanation": "Padanan D adalah salah. Mengikut kod warna antarabangsa bagi pendawaian elektrik: Dawai Hidup berwarna perang, Dawai Neutral berwarna biru, dan Dawai Bumi berwarna belang kuning dan hijau. Tiada dawai berwarna merah dalam standard keselamatan palam 3-pin moden di Malaysia. Modern wiring uses brown for live, blue for neutral, and green-and-yellow stripes for earth. Red is not the earth-wire colour."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q18",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "An appliance rated at 240 V, 1.2 kW is connected to a domestic supply. Calculate the current and select the most suitable fuse from 1 A, 2 A, 3 A, 5 A, 10 A and 13 A.",
+        "options": [
+          "Current = 2.0 A; fuse = 3 A",
+          "Current = 5.0 A; fuse = 10 A",
+          "Current = 5.0 A; fuse = 5 A",
+          "Current = 0.2 A; fuse = 1 A"
+        ],
+        "answerIndex": 1,
+        "explanation": "1. Tukarkan kuasa kepada Watt: 1.2 kW = 1,200 W. 2. Gunakan formula Kuasa (P = V × I): I = P/V = 1200 W/240 V = 5.0 A 3. Nilai rating fius mestilah sedikit lebih tinggi daripada nilai arus operasi normal perkakas agar fius tidak melebur semasa penggunaan biasa. Fius yang berada sedikit di atas 5.0 A dalam senarai piawai ialah 10 A (fius 5 A tidak sesuai kerana ia akan melebur serta-merta apabila arus mencecah had operasi normalnya). The operating current is I = P/V = 1200/240 = 5.0 A. From the listed ratings, a 10 A fuse is the next rating above the normal current."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q19",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Medium",
+        "question": "Which of the following safety measures prevents the human body from receiving an electric shock when a current leak occurs on the metal frame of an electric washing machine?",
+        "options": [
+          "Installing a very high-rating fuse on the washing machine plug",
+          "Connecting the metal frame of the washing machine directly to the earth wire (earthing)",
+          "Using a thicker neutral wire on the plug cable",
+          "Coating the entire outer plastic surface with a thick layer of oil paint"
+        ],
+        "answerIndex": 1,
+        "explanation": "Dawai bumi menyediakan laluan berintangan rendah untuk arus bocor. Hal ini membolehkan alat perlindungan memutuskan bekalan dan mengelakkan arus melalui badan manusia. The earth wire provides a low-resistance route for leakage current, allowing the protective device to disconnect the supply instead of current passing through a person."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q20",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "What is the definition of energy efficiency?",
+        "options": [
+          "The percentage of electrical input energy converted into useful output energy.",
+          "The ratio of the monthly electricity cost to the appliance power rating.",
+          "The total kinetic energy produced by a power-station turbine in one hour.",
+          "The ability of a dry cell to maintain constant output voltage without internal resistance."
+        ],
+        "answerIndex": 0,
+        "explanation": "Kecekapan tenaga merujuk kepada keupayaan sesuatu alat elektrik untuk menukarkan sebahagian besar tenaga elektrik (tenaga input) kepada bentuk tenaga output yang berguna (seperti tenaga cahaya bagi lampu), dengan mengurangkan kehilangan tenaga tidak berguna (seperti haba terbuang). Formula: Kecekapan tenaga = Tenaga output berguna/Tenaga input elektrik × 100% Energy efficiency is the percentage of input energy converted into useful output energy."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q21",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "An electric rice cooker consumes 800 J of electrical energy to produce 720 J of useful heat energy output. Calculate the energy efficiency percentage of the rice cooker.",
+        "options": [
+          "80%",
+          "95%",
+          "90%",
+          "75%"
+        ],
+        "answerIndex": 2,
+        "explanation": "Kecekapan tenaga = Tenaga output berguna/Tenaga input elektrik × 100% Kecekapan tenaga = 720 J/800 J × 100% = 90% Efficiency = useful output energy/input energy × 100% = 720/800 × 100% = 90%."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q22",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "Which decorative lamp has the highest energy efficiency for use in a green residential home?",
+        "options": [
+          "Filament bulb",
+          "Compact fluorescent lamp (CFL)",
+          "Light-emitting diode lamp (LED)",
+          "Neon lamp"
+        ],
+        "answerIndex": 2,
+        "explanation": "Lampu LED menghasilkan kecerahan yang sama dengan menggunakan kurang tenaga elektrik berbanding lampu lain yang disenaraikan. An LED produces the same brightness using less electrical energy than the other listed lamps."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q23",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "A home uses a 2 kW air conditioner for 5 hours a day for 30 days. The tariff is 21.8 sen/kWh for the first 200 kWh and 33.4 sen/kWh for the next 100 kWh. How much energy is used and what is the cost?",
+        "options": [
+          "Energy = 300 kWh; cost = RM77.00",
+          "Energy = 300 kWh; cost = RM150.00",
+          "Energy = 150 kWh; cost = RM32.70",
+          "Energy = 10 kWh; cost = RM2.18"
+        ],
+        "answerIndex": 0,
+        "explanation": "1. Hitungkan jumlah tenaga elektrik (E dalam kWj / unit): E = Kuasa (kW) × Masa (j) Penggunaan sehari = 2 kW × 5 jam = 10 kWj (unit) Penggunaan sebulan (30 hari) = 10 kWj × 30 = 300 kWj (unit) 2. Hitungkan kos berdasarkan blok tarif: Blok 1 (200 unit pertama): 200 × 21.8 sen = 4,360 sen Blok 2 (100 unit berikutnya): 100 × 33.4 sen = 3,340 sen Jumlah kos = 4,360 + 3,340 = 7,700 sen = RM 77.00 The air conditioner uses 2 × 5 × 30 = 300 kWh. The cost is 200 × RM0.218 + 100 × RM0.334 = RM77.00."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q24",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "Which of the following is an active green building design feature?",
+        "options": [
+          "Building large glass windows to maximize natural lighting during the day",
+          "Painting building walls with light reflective paint to reflect solar heat",
+          "Installing solar panels on the roof to generate clean electricity",
+          "Using green plants on outer balconies for passive shading"
+        ],
+        "answerIndex": 2,
+        "explanation": "Reka bentuk bangunan hijau aktif melibatkan penggunaan teknologi atau peralatan mekanikal/elektrikal luaran untuk menjana tenaga bersih atau menjimatkan kuasa (seperti panel suria, turbin angin mikro, atau penderia gerakan automatik pintar). Ciri A, B, dan D ialah reka bentuk pasif kerana ia memanfaatkan alam semula jadi atau struktur asas bangunan tanpa memerlukan peralatan mekanikal aktif. Solar panels are an active green feature because they use technology to generate electricity. Daylighting, reflective surfaces and plant shading are passive features."
+      },
+      {
+        "id": "sci-f3-c6-set-b-dlp-q25",
+        "subjectId": "science",
+        "form": "Form 3",
+        "chapter": "Chapter 6",
+        "lang": "dlp",
+        "set": "B",
+        "difficulty": "Hard",
+        "question": "What is the role of the Energy Commission (ST) in Malaysia in promoting domestic energy efficiency?",
+        "options": [
+          "Banning imports of all foreign-made electrical appliances",
+          "Issuing star rating labels (1 to 5 Stars) for electrical appliances based on their energy efficiency",
+          "Stepping down household mains voltage from 240 V to 110 V by force",
+          "Providing financial subsidies to consumers using old filament bulbs"
+        ],
+        "answerIndex": 1,
+        "explanation": "Suruhanjaya Tenaga mengeluarkan label penarafan satu hingga lima bintang supaya pengguna dapat membandingkan kecekapan tenaga peralatan elektrik. The Energy Commission issues one-to-five-star labels so consumers can compare the energy efficiency of electrical appliances."
       }
     ]
   },
