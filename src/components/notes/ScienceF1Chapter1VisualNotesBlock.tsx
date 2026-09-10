@@ -1,7 +1,6 @@
 import { useState, type ReactNode } from "react";
 import {
   AlertTriangle,
-  Beaker,
   BookOpenCheck,
   BriefcaseBusiness,
   CheckCircle2,
@@ -22,6 +21,11 @@ import {
 } from "lucide-react";
 import type { Chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
 import { HazardPictogram } from "./blocks/HazardDiamonds";
+import {
+  HeatingSupportVisual,
+  LaboratoryApparatusVisual,
+  type LaboratoryApparatusId,
+} from "./blocks/LaboratoryApparatusVisual";
 
 type Lang = "en" | "bm";
 
@@ -80,7 +84,13 @@ const ui = {
     chooseField: "Pilih bidang sains",
     relatedCareers: "Kerjaya berkaitan",
     dailyImpact: "Mengapa sains penting",
-    chooseApparatus: "Pilih radas untuk melihat fungsinya",
+    chooseApparatus: "Pilih radas untuk melihat bentuk, fungsi dan cirinya",
+    functionLabel: "Fungsi",
+    recogniseLabel: "Cara mengenalinya",
+    compareTitle: "Jangan Keliru",
+    compareSubtitle: "Bandingkan bentuk dan ciri utama radas yang hampir serupa.",
+    heatingTitle: "Bagaimana sokongan pemanasan disusun",
+    heatingLabels: ["Bikar", "Kasa dawai", "Tungku kaki tiga", "Sumber haba"],
     chooseHazard: "Pilih simbol amaran",
     examples: "Contoh",
     safety: ["Peraturan makmal", "Langkah keselamatan", "Jika berlaku kemalangan"],
@@ -184,7 +194,13 @@ const ui = {
     chooseField: "Choose a field of science",
     relatedCareers: "Related careers",
     dailyImpact: "Why science matters",
-    chooseApparatus: "Choose apparatus to see its function",
+    chooseApparatus: "Choose apparatus to see its shape, function and clues",
+    functionLabel: "Function",
+    recogniseLabel: "How to recognise it",
+    compareTitle: "Don't Mix Them Up",
+    compareSubtitle: "Compare the shape and key features of apparatus that look similar.",
+    heatingTitle: "How the heating support is arranged",
+    heatingLabels: ["Beaker", "Wire gauze", "Tripod stand", "Heat source"],
     chooseHazard: "Choose a warning symbol",
     examples: "Examples",
     safety: ["Laboratory rules", "Safety measures", "If an accident occurs"],
@@ -236,6 +252,72 @@ const ui = {
     marked: "Chapter 1 complete",
   },
 } as const;
+
+const apparatusRecognition: Record<Lang, Record<LaboratoryApparatusId, string>> = {
+  bm: {
+    "boiling-tube": "Tabung kaca terbuka yang lebih lebar dan kukuh, dengan dasar membulat.",
+    "test-tube": "Tabung kaca terbuka yang sempit dan kecil, dengan dasar membulat.",
+    beaker: "Bekas kaca yang lebar, berdasar rata dan mempunyai muncung kecil.",
+    "conical-flask": "Badan berbentuk kon dengan dasar lebar dan leher yang sempit.",
+    "flat-bottom-flask": "Badan bulat seperti bebuli, leher sempit dan dasar yang rata.",
+    "measuring-cylinder": "Silinder tinggi dan sempit dengan skala serta tapak yang lebar.",
+    burette: "Tiub berskala yang sangat panjang dengan pili dan hujung halus di bawah.",
+    pipette: "Tiub sempit dengan bebuli di tengah dan hujung bawah yang tirus.",
+    "tripod-stand": "Gelang sokongan di atas tiga kaki yang tinggi.",
+    "wire-gauze": "Kepingan jejaring dawai berbentuk segi empat dengan bahagian tengah tahan haba.",
+    "filter-funnel": "Corong berbentuk kon dengan batang panjang dan sempit.",
+    "gas-jar": "Bekas kaca tinggi, lebar dan lurus dengan dasar rata tanpa muncung.",
+    "retort-stand": "Tapak berat dengan rod menegak, bos dan pengapit.",
+    "evaporating-dish": "Mangkuk porselin yang sangat cetek dengan bukaan luas dan muncung kecil.",
+  },
+  en: {
+    "boiling-tube": "An open glass tube that is wider and sturdier, with a rounded bottom.",
+    "test-tube": "A slim, small open glass tube with a rounded bottom.",
+    beaker: "A wide glass vessel with a flat bottom and a small pouring spout.",
+    "conical-flask": "A sloping conical body with a broad base and narrow neck.",
+    "flat-bottom-flask": "A rounded bulb-shaped body with a narrow neck and flat base.",
+    "measuring-cylinder": "A tall, narrow cylinder with a scale and broad stable base.",
+    burette: "A very long graduated tube with a stopcock and fine lower tip.",
+    pipette: "A narrow tube with a central bulb and tapered lower tip.",
+    "tripod-stand": "A top support ring held above the bench by three tall legs.",
+    "wire-gauze": "A square wire mesh with a heat-resistant centre.",
+    "filter-funnel": "A conical funnel with a long, narrow stem.",
+    "gas-jar": "A tall, wide, straight-sided glass container with no spout.",
+    "retort-stand": "A heavy base with a vertical rod, boss head and clamp.",
+    "evaporating-dish": "A very shallow porcelain bowl with a broad opening and small lip.",
+  },
+};
+
+const comparisonNotes: Record<Lang, Partial<Record<LaboratoryApparatusId, string>>> = {
+  bm: {
+    "test-tube": "Lebih sempit",
+    "boiling-tube": "Lebih lebar dan kukuh",
+    beaker: "Lebar + muncung · mengisi/mencampur",
+    "measuring-cylinder": "Tinggi + berskala · menyukat isi padu",
+    "conical-flask": "Badan bercerun",
+    "flat-bottom-flask": "Badan bulat · dasar rata",
+    burette: "Berskala + berpili",
+    pipette: "Bebuli tengah · tiada pili",
+  },
+  en: {
+    "test-tube": "Narrower",
+    "boiling-tube": "Wider and sturdier",
+    beaker: "Wide + spout · holds/mixes",
+    "measuring-cylinder": "Tall + graduated · measures volume",
+    "conical-flask": "Sloping body",
+    "flat-bottom-flask": "Rounded body · flat base",
+    burette: "Graduated + stopcock",
+    pipette: "Central bulb · no stopcock",
+  },
+};
+
+const apparatusComparisons: ReadonlyArray<readonly [LaboratoryApparatusId, LaboratoryApparatusId]> =
+  [
+    ["test-tube", "boiling-tube"],
+    ["beaker", "measuring-cylinder"],
+    ["conical-flask", "flat-bottom-flask"],
+    ["burette", "pipette"],
+  ];
 
 const pendulumResults = [
   [20, 9.1],
@@ -396,30 +478,118 @@ export function ScienceF1Chapter1VisualNotesBlock({
               <FlaskConical className="h-7 w-7 text-teal-300" aria-hidden="true" />
               <h3 className="font-black text-white">{c.chooseApparatus}</h3>
             </div>
-            <div
-              className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-7"
-              role="tablist"
-              aria-label={c.chooseApparatus}
-            >
-              {t.laboratory.apparatus.map((item, index) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={apparatus === index}
-                  onClick={() => setApparatus(index)}
-                  className={`min-h-16 rounded-xl border p-2 text-left text-[11px] font-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${apparatus === index ? "border-teal-300 bg-teal-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
-                >
-                  <Beaker className="mb-2 h-4 w-4 text-teal-300" aria-hidden="true" />
-                  {item.name}
-                </button>
-              ))}
+            <div className="mt-5 grid min-w-0 gap-4 lg:grid-cols-[minmax(0,1fr)_18rem]">
+              <div
+                className="grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4"
+                role="tablist"
+                aria-label={c.chooseApparatus}
+              >
+                {t.laboratory.apparatus.map((item, index) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={apparatus === index}
+                    aria-controls="selected-apparatus-detail"
+                    data-apparatus-option={item.id}
+                    onClick={() => setApparatus(index)}
+                    className={`group min-h-44 min-w-0 cursor-pointer rounded-2xl border p-3 text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${apparatus === index ? "border-teal-300 bg-teal-300/10 text-teal-100" : "border-white/10 bg-slate-950/25 text-slate-300 hover:border-white/25 hover:bg-white/[0.055]"}`}
+                  >
+                    <LaboratoryApparatusVisual
+                      apparatus={item.id}
+                      label={item.name}
+                      decorative
+                      className="mx-auto h-32 w-full max-w-40"
+                    />
+                    <span className="mt-1 block text-xs font-black leading-5 sm:text-sm">
+                      {item.name}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <div
+                id="selected-apparatus-detail"
+                role="tabpanel"
+                aria-live="polite"
+                data-selected-apparatus={t.laboratory.apparatus[apparatus].id}
+                className="self-start rounded-2xl border border-teal-300/25 bg-teal-300/[0.07] p-4 lg:sticky lg:top-4"
+              >
+                <LaboratoryApparatusVisual
+                  apparatus={t.laboratory.apparatus[apparatus].id}
+                  label={t.laboratory.apparatus[apparatus].name}
+                  className="mx-auto h-40 w-full max-w-48 text-teal-100"
+                />
+                <p className="mt-2 text-lg font-black text-white">
+                  {t.laboratory.apparatus[apparatus].name}
+                </p>
+                <p className="mt-4 text-xs font-black uppercase tracking-wider text-teal-300">
+                  {c.functionLabel}
+                </p>
+                <p className="mt-1 text-sm leading-6 text-slate-200">
+                  {t.laboratory.apparatus[apparatus].function}
+                </p>
+                <p className="mt-4 text-xs font-black uppercase tracking-wider text-teal-300">
+                  {c.recogniseLabel}
+                </p>
+                <p className="mt-1 text-sm leading-6 text-slate-200">
+                  {apparatusRecognition[lang][t.laboratory.apparatus[apparatus].id]}
+                </p>
+              </div>
             </div>
-            <div className="mt-3 rounded-2xl border border-teal-300/20 bg-teal-300/[0.07] p-4">
-              <p className="font-black text-teal-100">{t.laboratory.apparatus[apparatus].name}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                {t.laboratory.apparatus[apparatus].function}
-              </p>
+          </Panel>
+
+          <Panel>
+            <div className="max-w-3xl">
+              <h3 className="font-display text-xl font-black text-white sm:text-2xl">
+                {c.compareTitle}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{c.compareSubtitle}</p>
+            </div>
+            <div className="mt-5 grid gap-4 xl:grid-cols-[minmax(0,1fr)_18rem]">
+              <div className="grid gap-3 sm:grid-cols-2">
+                {apparatusComparisons.map(([firstId, secondId]) => {
+                  const first = t.laboratory.apparatus.find((item) => item.id === firstId)!;
+                  const second = t.laboratory.apparatus.find((item) => item.id === secondId)!;
+                  return (
+                    <article
+                      key={`${firstId}-${secondId}`}
+                      data-apparatus-comparison={`${firstId}:${secondId}`}
+                      className="rounded-2xl border border-white/10 bg-slate-950/25 p-3 sm:p-4"
+                    >
+                      <h4 className="text-center text-sm font-black text-white">
+                        {first.name} <span className="text-teal-300">vs</span> {second.name}
+                      </h4>
+                      <div className="mt-3 grid grid-cols-2 gap-3">
+                        {[first, second].map((item) => (
+                          <div key={item.id} className="min-w-0 text-center">
+                            <LaboratoryApparatusVisual
+                              apparatus={item.id}
+                              label={item.name}
+                              className="mx-auto h-28 w-full max-w-36 text-slate-200"
+                            />
+                            <p className="text-xs font-black leading-5 text-white">{item.name}</p>
+                            <p className="mt-1 text-xs leading-5 text-slate-300">
+                              {comparisonNotes[lang][item.id]}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+              <article className="rounded-2xl border border-amber-300/20 bg-amber-300/[0.045] p-4">
+                <h4 className="text-sm font-black leading-5 text-white">{c.heatingTitle}</h4>
+                <HeatingSupportVisual className="mx-auto mt-3 h-52 w-full max-w-56 text-slate-200" />
+                <ol className="mt-2 grid gap-1 text-xs leading-5 text-slate-300">
+                  {c.heatingLabels.map((label, index) => (
+                    <li key={label} className="flex items-center gap-2">
+                      <span className="font-mono font-black text-amber-300">{index + 1}</span>
+                      {label}
+                    </li>
+                  ))}
+                </ol>
+              </article>
             </div>
           </Panel>
 
