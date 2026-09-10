@@ -6,6 +6,7 @@ import { LearningImageLightbox } from "./LearningImageLightbox";
 import {
   defaultLearningImageSize,
   learningImageMaxWidth,
+  learningImageMinWidth,
   parseAspectRatio,
   type LearningImageSize,
 } from "./learning-image";
@@ -96,6 +97,30 @@ export type ImageAnnotation = {
   spotlightPulseGroups?: SpotlightPulseGroup[];
 };
 
+/**
+ * One static caption pinned over a fixed spot on the artwork — see
+ * `AnnotatedImageProps.overlayHeadings`.
+ */
+export type OverlayHeading = {
+  id: string;
+  x: number;
+  y: number;
+  text: string;
+  /** Max width as a % of the artwork, for a box wide enough to need wrapped text. Omit to keep the text on one line. */
+  w?: number;
+  /** Text colour for the box it sits on. `"light"` (default) for a dark/navy box; `"dark"` for a bright box (yellow, green, pale pink, white). */
+  tone?: "light" | "dark";
+  /**
+   * Skip the decorative pill background — for a heading dropped onto a box
+   * the ARTWORK already draws, where a second background would double up.
+   * Default `false` keeps the small dark pill, for headings floating over
+   * open artwork with no box of their own.
+   */
+  bare?: boolean;
+  /** Size/weight: `"tag"` (default, small bold caps — a short label), `"heading"` (bigger, for a title), or `"body"` (a readable wrapped sentence). */
+  emphasis?: "tag" | "heading" | "body";
+};
+
 /** An annotation that has a place on the artwork, so it can be drawn. */
 export type PlacedAnnotation = ImageAnnotation & { x: number; y: number };
 
@@ -124,6 +149,44 @@ export type AnnotatedImageProps = {
    *               second, competing label
    */
   annotationMode?: AnnotationMode;
+  /**
+   * `spotlight` mode only — how strongly the scrim dims everything outside
+   * the active shapes, 0-1. Omit for the default 0.78 (near-blackout — right
+   * for "this one thing out of a busy scene"). A figure whose other regions
+   * are still worth reading at a glance (a side-by-side property table, a set
+   * of peer panels) should pass a lower value, e.g. 0.45, so the unselected
+   * regions merely dim rather than disappear.
+   */
+  spotlightDimOpacity?: number;
+  /**
+   * `spotlight` mode only — how the floating caption is placed relative to
+   * the active shape's own bounding box.
+   *  - `"auto"` (default) — floats in whichever open space (above or below
+   *    the shape) has more room. Built for artwork where the shapes are
+   *    scattered over otherwise-empty background (an organism on a pond
+   *    scene), so "the open space near it" is unambiguous.
+   *  - `"top"` — pins the caption just inside the shape's own top edge,
+   *    never outside its bounding box. For artwork that is itself a grid of
+   *    adjacent panels (peer application panels, a property-comparison row
+   *    spanning two columns), "open space below" is usually the START of the
+   *    NEXT panel, not empty background — `"auto"` would float the caption
+   *    onto a neighbour. Anchoring inside the shape's own top edge keeps the
+   *    label unambiguously attached to the panel it names, at any width.
+   */
+  spotlightCaptionEdge?: "auto" | "top";
+  /**
+   * Short static captions pinned over the artwork at a fixed spot — e.g. a
+   * bilingual "Acid" / "Alkali" heading over each half of a two-column
+   * figure whose own artwork is deliberately text-free so one file serves
+   * both languages, or the whole label set for artwork drawn with blank
+   * boxes precisely so BM and DLP text can be swapped in without ever baking
+   * either language into the picture. Purely decorative (`aria-hidden`): the
+   * words they show are never the only place that information appears, so
+   * nothing is lost to a screen reader. `x`/`y` are the box's centre — every
+   * heading is centred on both axes, so it drops cleanly into a pre-drawn
+   * box of any size.
+   */
+  overlayHeadings?: OverlayHeading[];
   /**
    * Rendered footprint. Omit to derive one from the aspect ratio, so an image
    * added without a size still stays bounded.
@@ -193,6 +256,9 @@ export function AnnotatedImage({
   alt,
   annotations = [],
   annotationMode = "labels",
+  spotlightDimOpacity,
+  spotlightCaptionEdge = "auto",
+  overlayHeadings = [],
   size,
   aspect = "3 / 2",
   caption,
@@ -267,6 +333,13 @@ export function AnnotatedImage({
         if (spotlightShapes.length > 0) {
           const { minX, minY, maxX, maxY } = spotlightBounds(spotlightShapes);
           const cx = Math.min(94, Math.max(6, (minX + maxX) / 2));
+          if (spotlightCaptionEdge === "top") {
+            return {
+              left: `${cx}%`,
+              top: `${Math.min(96, minY + 2)}%`,
+              transform: "translate(-50%, 0)",
+            };
+          }
           // A group spanning most of the artwork's height (community's whole
           // living cast, habitat's near-full-height pond boundary) has no
           // single edge worth hugging — snugging to its top or bottom edge
@@ -297,6 +370,7 @@ export function AnnotatedImage({
         groupHalo={activeAnnotation?.spotlightGroupHalo}
         pulseGroups={activeAnnotation?.spotlightPulseGroups}
         wholeGlow={Boolean(activeAnnotation?.spotlightPulseGroups?.length)}
+        dimOpacity={spotlightDimOpacity}
       />
       {activeAnnotation && (
         <div
@@ -309,8 +383,44 @@ export function AnnotatedImage({
       )}
     </>
   ) : null;
+  const overlayHeadingLayer = overlayHeadings.length > 0 && (
+    <>
+      {overlayHeadings.map((heading) => {
+        const bare = heading.bare ?? false;
+        const dark = heading.tone === "dark";
+        const sizeClass =
+          heading.emphasis === "heading"
+            ? "text-[12px] font-extrabold sm:text-[14.5px]"
+            : heading.emphasis === "body"
+              ? "text-[9.5px] font-semibold leading-snug sm:text-[11.5px]"
+              : "text-[10px] font-bold uppercase tracking-wide sm:text-[11px]";
+        const colourClass = bare
+          ? dark
+            ? "text-slate-900"
+            : "text-white"
+          : "rounded-full border border-white/20 bg-slate-950/70 px-2.5 py-1 text-white shadow-[0_2px_10px_rgba(0,0,0,0.4)] backdrop-blur-[2px]";
+        return (
+          <div
+            key={heading.id}
+            aria-hidden="true"
+            className={`pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-1/2 text-center ${
+              heading.w ? "whitespace-normal" : "whitespace-nowrap"
+            } ${sizeClass} ${colourClass}`}
+            style={{
+              left: `${heading.x}%`,
+              top: `${heading.y}%`,
+              ...(heading.w ? { width: `${heading.w}%` } : {}),
+            }}
+          >
+            {heading.text}
+          </div>
+        );
+      })}
+    </>
+  );
   const resolvedSize = size ?? defaultLearningImageSize(aspect);
   const artMaxWidth = learningImageMaxWidth(resolvedSize, aspect);
+  const artMinWidth = learningImageMinWidth(resolvedSize);
   // In callout mode the gutters sit outside the picture, so the frame is wider
   // than the artwork while the artwork itself keeps its intended size.
   const frameMaxWidth = isCallout ? calloutFrameMaxWidth(artMaxWidth) : artMaxWidth;
@@ -322,22 +432,29 @@ export function AnnotatedImage({
 
   if (!url) return null;
 
-  return (
-    <figure className={`m-0 flex flex-col gap-2 ${className ?? ""}`}>
-      <div
-        className={`relative mx-auto w-full overflow-hidden rounded-2xl border border-border bg-secondary/30 ${
-          isCallout ? "callout-frame" : ""
-        }`}
-        style={
-          isCallout
-            ? ({
-                aspectRatio: aspect,
-                maxWidth: artMaxWidth,
-                "--callout-frame-aspect": frameAspect,
-                "--callout-frame-max-width": frameMaxWidth,
-              } as React.CSSProperties)
-            : { aspectRatio: aspect, maxWidth: artMaxWidth }
-        }
+  // A `minWidth` variant is a readability floor, not just a cap: on a
+  // viewport narrower than that floor the frame must keep its width and let
+  // this wrapper scroll sideways, rather than the artwork (and the text
+  // baked into it) shrinking further to avoid overflow.
+  const frame = (
+    <div
+      className={`relative mx-auto w-full overflow-hidden rounded-2xl border border-border bg-secondary/30 ${
+        isCallout ? "callout-frame" : ""
+      }`}
+      style={
+        isCallout
+          ? ({
+              aspectRatio: aspect,
+              maxWidth: artMaxWidth,
+              "--callout-frame-aspect": frameAspect,
+              "--callout-frame-max-width": frameMaxWidth,
+            } as React.CSSProperties)
+          : {
+              aspectRatio: aspect,
+              maxWidth: artMaxWidth,
+              ...(artMinWidth ? { minWidth: `${artMinWidth}px` } : {}),
+            }
+      }
       >
         <img
           src={url}
@@ -350,6 +467,7 @@ export function AnnotatedImage({
         />
 
         {spotlightLayer}
+        {overlayHeadingLayer}
 
         {/* Leader lines, drawn under the labels. Percentage coordinates keep
             every line locked to its structure at any rendered width. */}
@@ -618,6 +736,14 @@ export function AnnotatedImage({
           <span className="hidden sm:inline">{enlargeLabel}</span>
         </button>
       </div>
+  );
+
+  return (
+    <figure className={`m-0 flex flex-col gap-2 ${className ?? ""}`}>
+      {/* The floor-width variants overflow their column by design; scope the
+          horizontal scroll to just this wrapper so the page itself never
+          gains body-level overflow. */}
+      {artMinWidth ? <div className="w-full overflow-x-auto">{frame}</div> : frame}
 
       {showLegend && !hideLegend && annotations.length > 0 && (
         <ol
@@ -713,7 +839,12 @@ export function AnnotatedImage({
         alt={alt}
         title={legendLabel ?? alt}
         closeLabel={closeLabel}
-        overlay={spotlightLayer}
+        overlay={
+          <>
+            {spotlightLayer}
+            {overlayHeadingLayer}
+          </>
+        }
       />
     </figure>
   );

@@ -41,6 +41,7 @@ export function SpotlightOverlay({
   groupHalo = false,
   pulseGroups,
   wholeGlow = false,
+  dimOpacity = 0.78,
 }: {
   maskId: string;
   /** Shapes to keep bright. Empty (or omitted) skips dimming entirely. */
@@ -53,6 +54,15 @@ export function SpotlightOverlay({
   pulseGroups?: SpotlightPulseGroup[];
   /** Persistent soft border around the whole frame (ecosystem = everything). */
   wholeGlow?: boolean;
+  /**
+   * Opacity of the dim scrim over everything outside `shapes`, 0-1. Defaults
+   * to a strong 0.78 (near-blackout) for the "this one thing out of a busy
+   * scene" case (ecosystem, population). A figure whose OTHER regions are
+   * still worth reading at a glance — a side-by-side property table, a set of
+   * peer panels — wants a lighter touch instead, so callers there pass a
+   * lower value.
+   */
+  dimOpacity?: number;
 }) {
   const dim = shapes.length > 0;
   const halo = groupHalo && shapes.length > 1 ? spotlightBounds(shapes) : null;
@@ -89,7 +99,7 @@ export function SpotlightOverlay({
           y="0"
           width="100"
           height="100"
-          fill="rgba(2,6,23,0.78)"
+          fill={`rgba(2,6,23,${dimOpacity})`}
           mask={`url(#${maskId})`}
           style={{ transition: "opacity 200ms ease-out" }}
         />
@@ -153,10 +163,7 @@ export function SpotlightOverlay({
         ))}
 
       {pulseGroups?.map((group, index) => (
-        <g
-          key={index}
-          className={index === 0 ? "spotlight-pulse-a" : "spotlight-pulse-b"}
-        >
+        <g key={index} className={index === 0 ? "spotlight-pulse-a" : "spotlight-pulse-b"}>
           {group.shapes.map((shape) => (
             <ShapeEl
               key={shape.id}

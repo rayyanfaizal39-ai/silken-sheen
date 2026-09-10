@@ -244,6 +244,9 @@ export function ScienceF2InteractiveNotesBlock({
           caption: image.caption,
           legendLabel: image.legendLabel,
           annotationMode: image.annotationMode ?? "labels",
+          spotlightDimOpacity: image.spotlightDimOpacity,
+          spotlightCaptionEdge: image.spotlightCaptionEdge,
+          overlayHeadings: image.overlayHeadings,
           imageKey: image.imageKey,
           priority: image.priority,
         }}
