@@ -5434,16 +5434,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Apakah kepentingan penemuan alat besi bersoket di Lembah Bernam?",
+    question: "Apakah yang dibuktikan oleh penemuan alat besi bersoket Zaman Prasejarah?",
     options: [
       "Hubungan perdagangan dengan China",
-      "Teknologi logam masyarakat Selangor",
+      "Penguasaan teknologi logam",
       "Kemahiran pelayaran jarak jauh",
       "Penggunaan tulisan untuk pentadbiran",
     ],
     answerIndex: 1,
     explanation:
-      "Alat besi bersoket digunakan untuk aktiviti pertanian dan pertukangan yang lebih efisien.",
+      "Peralatan besi membuktikan penguasaan teknologi logam untuk memburu, bertani dan menjalankan kegiatan harian.",
   },
   {
     id: "sej-f1-c3-q21",
