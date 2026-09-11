@@ -1,19 +1,64 @@
 import { useState } from "react";
-import type { MiniExperimentBlock } from "@/content/form2/science/interactive-types";
+import type {
+  ApparatusDiagramBlock,
+  MiniExperimentBlock,
+} from "@/content/form2/science/interactive-types";
+import { ElectromagnetApparatusFigure } from "./ElectromagnetApparatusFigure";
 
 /**
  * A compulsory experiment, staged compactly enough to sit inside a notes
  * section rather than expanding into a worksheet page.
  *
- * One tab per manipulated variable. The three variables are pinned at the top
- * in a fixed order and colour, because naming the manipulated and responding
- * variable is the part that gets examined — everything below them is support.
+ * One tab per manipulated variable. The three variables are pinned above the
+ * apparatus in a fixed order and colour, because naming the manipulated and
+ * responding variable is the part that gets examined.
+ *
+ * The order below is the order a laboratory report is written in — aim,
+ * hypothesis, variables, apparatus, the measurements, then observation and
+ * conclusion — so an investigation that ships approved apparatus artwork
+ * (`block.apparatusImage`) puts the picture exactly where the apparatus
+ * belongs, with the manipulated-variable control directly under it. The
+ * picture then responds to that control rather than sitting beside it: see
+ * `ElectromagnetApparatusFigure`.
  */
-export function MiniExperiment({ block }: { block: MiniExperimentBlock }) {
+export function MiniExperiment({
+  block,
+  /**
+   * The apparatus a picture-led investigation labels. Passed in rather than
+   * duplicated into this block: the eight names and roles already live in the
+   * section's `apparatusDiagram`, which stops being drawn as a separate
+   * schematic once the photograph is carrying them.
+   */
+  apparatus,
+  lang,
+}: {
+  block: MiniExperimentBlock;
+  apparatus?: ApparatusDiagramBlock;
+  lang?: string;
+}) {
   const [activeId, setActiveId] = useState(block.parts[0]?.id ?? "");
+  // Keyed by part id so switching tabs (Current <-> Turns) does not reset the
+  // other tab's own stepper position.
+  const [stepByPart, setStepByPart] = useState<Record<string, number>>({});
+  const [activePart, setActivePart] = useState<string | null>(null);
   const part = block.parts.find((p) => p.id === activeId) ?? block.parts[0];
 
   if (!part) return null;
+
+  const step = stepByPart[part.id] ?? 0;
+  const setStep = (next: number) => setStepByPart((prev) => ({ ...prev, [part.id]: next }));
+  const figure =
+    block.apparatusImage && apparatus ? (
+      <ElectromagnetApparatusFigure
+        image={block.apparatusImage}
+        apparatus={apparatus}
+        variable={part.id}
+        step={step}
+        activePart={activePart}
+        onActivePartChange={setActivePart}
+        lang={lang}
+      />
+    ) : null;
 
   const variables = [
     {
@@ -86,7 +131,9 @@ export function MiniExperiment({ block }: { block: MiniExperimentBlock }) {
           <p className="mt-0.5 text-[13px] leading-relaxed text-foreground">{part.hypothesis}</p>
         </div>
 
-        {/* the examinable triad */}
+        {/* the examinable triad, above the apparatus: a learner should know
+            what is being changed and what is being measured before they look
+            at the set-up that changes and measures it. */}
         <div className="grid gap-2 sm:grid-cols-3">
           {variables.map((v) => (
             <div key={v.key} className={`rounded-xl border px-3 py-2 ${v.tone}`}>
@@ -95,6 +142,51 @@ export function MiniExperiment({ block }: { block: MiniExperimentBlock }) {
             </div>
           ))}
         </div>
+
+        {/* the apparatus itself, directly above the control that changes it */}
+        {figure}
+
+        {/* the interactive stepper: move through the tested values and watch
+            the qualitative (rank-only — never a fabricated count) response
+            indicator move with it, so the relationship is watched, not just
+            read in the conclusion sentence. */}
+        {part.values && part.values.length > 0 && (
+          <div className="rounded-xl border border-primary/25 bg-primary/5 px-3 py-2.5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="text-[10.5px] font-bold uppercase tracking-wide text-primary">
+                {part.manipulated}
+              </span>
+              <span className="font-display text-[15px] font-bold text-foreground">
+                {part.values[step]}
+              </span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={part.values.length - 1}
+              step={1}
+              value={step}
+              onChange={(e) => setStep(Number(e.target.value))}
+              aria-label={part.manipulated}
+              aria-valuetext={part.values[step]}
+              className="mt-2 w-full accent-primary"
+            />
+            <div className="mt-2 flex items-end gap-1" aria-hidden="true">
+              {part.values.map((v, i) => (
+                <div
+                  key={v}
+                  className={`flex-1 rounded-t transition-all ${
+                    i === step ? "bg-primary" : "bg-primary/20"
+                  }`}
+                  style={{ height: `${8 + ((i + 1) / part.values!.length) * 28}px` }}
+                />
+              ))}
+            </div>
+            <p className="mt-1.5 text-[11.5px] leading-relaxed text-muted-foreground">
+              {block.respondingLabel}: {part.responding}
+            </p>
+          </div>
+        )}
 
         <div className="grid gap-2 sm:grid-cols-2">
           <div className="rounded-xl border border-border bg-card/55 px-3 py-2">

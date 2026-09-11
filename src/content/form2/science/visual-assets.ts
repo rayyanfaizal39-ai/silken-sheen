@@ -29,6 +29,17 @@ export const SCIENCE_F2_CH7_IMAGES = {
   straightWireApparatus: `${DIR}/chapter-7/07_05_straight_current_carrying_wire_apparatus.webp`,
   circularLoopApparatus: `${DIR}/chapter-7/07_06_current_carrying_circular_loop_apparatus.webp`,
   solenoidApparatus: `${DIR}/chapter-7/07_07_current_carrying_solenoid_apparatus.webp`,
+  /**
+   * The three later approved figures. Each is the PRIMARY visual for the
+   * concept it teaches — the electroscope's three stages, how lightning forms,
+   * and the electromagnet-strength apparatus — and each is driven by real
+   * controls rather than shown as decoration: see
+   * `ch7-approved-figure-geometry.ts` for the overlay geometry, which is
+   * shared by BM and DLP because the artwork carries no words at all.
+   */
+  electroscope: `${DIR}/chapter-7/science-f2-ch7-electroscope.webp`,
+  lightningFormation: `${DIR}/chapter-7/science-f2-ch7-lightning-formation.webp`,
+  electromagnetInvestigation: `${DIR}/chapter-7/science-f2-ch7-electromagnet-investigation.webp`,
 } as const;
 
 export const SCIENCE_F2_CH9_IMAGES = {
@@ -62,14 +73,16 @@ export const SCIENCE_F2_CH10_IMAGES = {
 
 /**
  * Intrinsic aspect ratios, so the frame reserves the right box before the file
- * arrives and nothing on the page moves as it loads. Eighteen of the nineteen
- * are 1672 x 941; the bell jar is 1448 x 1086.
+ * arrives and nothing on the page moves as it loads. Most of the pack is
+ * 1672 x 941; the bell jar is 1448 x 1086 and the lightning scene 1536 x 1024.
  */
 export const SCIENCE_F2_VISUAL_ASPECT = {
   /** 1672 x 941. */
   wide: "16 / 9",
   /** 1448 x 1086 — the vacuum bell jar. */
   upright: "4 / 3",
+  /** 1536 x 1024 — the lightning-formation scene. */
+  standard: "3 / 2",
 } as const;
 
 /**

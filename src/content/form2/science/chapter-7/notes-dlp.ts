@@ -58,7 +58,7 @@ export const scienceF2C7NotesDLP: ScienceChapter2Notes = {
           title: "Important Facts",
           bulletPoints: [
             "Ohm's Law formula: V = IR, where V = voltage (V), I = current (A), R = resistance (Ω). — I = V / R; R = V / I",
-            "Experiment 7.1 shows: the higher the resistance, the smaller the current flow (by increasing the length of the nichrome wire); the higher the voltage (by increasing the number of dry cells), the larger the current flow.",
+            "Investigating resistance and voltage: the higher the resistance (by increasing the length of the nichrome wire), the smaller the current flow; the higher the voltage (by increasing the number of dry cells), the larger the current flow.",
             "Example calculation: A car light bulb conducts 0.025 A current when connected to a 12 V car accumulator. Resistance = V/I = 12/0.025 = 480 Ω.",
           ],
         },
@@ -121,7 +121,7 @@ export const scienceF2C7NotesDLP: ScienceChapter2Notes = {
           title: "Examples",
           bulletPoints: [
             "Decorative lights that all light up except one — this shows the bulbs are connected in a parallel circuit (otherwise, all lights would go out if one fails in a series circuit).",
-            "Activities 7.7 and 7.8 use bulbs M and N to measure current and voltage in series and parallel circuits using an ammeter and voltmeter.",
+            "Measuring current and voltage in series and parallel circuits, using two bulbs and an ammeter and voltmeter, confirms the rules above.",
           ],
         },
         {
@@ -164,7 +164,7 @@ export const scienceF2C7NotesDLP: ScienceChapter2Notes = {
         {
           title: "Important Facts",
           bulletPoints: [
-            "Experiment 7.2 studies the factors that influence the strength of the magnetic field: — Factor 1 — Current: The larger the current that flows through a conductor, the stronger the magnetic field (measured by the number of pins attracted by the iron rod).; Factor 2 — Number of turns of the coil: The more the number of turns of a coil, the stronger the magnetic field.",
+            "Investigating the factors that influence the strength of the magnetic field: — Factor 1 — Current: The larger the current that flows through a conductor, the stronger the magnetic field (measured by the number of pins attracted by the iron rod).; Factor 2 — Number of turns of the coil: The more the number of turns of a coil, the stronger the magnetic field.",
             "The strength of the magnetic field reduces as it moves away from the centre of the conductor.",
             "A magnet that is broken into two pieces still has two poles in each piece (not just one pole per piece).",
           ],
@@ -187,7 +187,7 @@ export const scienceF2C7NotesDLP: ScienceChapter2Notes = {
   ],
   keyExamFacts: [
     "Ohm's Law formula: V = IR, where V = voltage (V), I = current (A), R = resistance (Ω). — I = V / R; R = V / I",
-    "Experiment 7.1 shows: the higher the resistance, the smaller the current flow (by increasing the length of the nichrome wire); the higher the voltage (by increasing the number of dry cells), the larger the current flow.",
+    "Investigating resistance and voltage: the higher the resistance (by increasing the length of the nichrome wire), the smaller the current flow; the higher the voltage (by increasing the number of dry cells), the larger the current flow.",
     "Example calculation: A car light bulb conducts 0.025 A current when connected to a 12 V car accumulator. Resistance = V/I = 12/0.025 = 480 Ω.",
     "Advantages of a series circuit: every component receives the same amount of current; every component is controlled by the same switch; increase in voltage supplies more electric current.",
     "Disadvantages of a series circuit: when one electrical appliance is damaged, other appliances cease to function; adding more electrical appliances increases resistance and decreases the flow of current; each appliance cannot be switched off individually.",
@@ -195,7 +195,7 @@ export const scienceF2C7NotesDLP: ScienceChapter2Notes = {
     "Disadvantages of a parallel circuit: the voltage for every electrical appliance cannot be adjusted because the voltage is the same as the source of voltage.",
     "Example calculation (series circuit): Two resistors R₁ = 2 Ω and R₂ = 2 Ω are connected in series with a 6V supply. Effective resistance, R = R₁ + R₂ = 4 Ω. Current, I = V/R = 6/4 = 1.5 A. V₁ = IR₁ = 1.5 × 2 = 3 V. V₂ = IR₂ = 1.5 × 2 = 3 V.",
     "Example calculation (parallel circuit): Two resistors R₁ = 2 Ω and R₂ = 2 Ω are connected in parallel with a 6V supply. 1/R = 1/R₁ + 1/R₂ = 1/2 + 1/2 = 1, so R = 1 Ω. Voltage, V = 6 V (same across both resistors). I₁ = V/R₁ = 6/2 = 3 A; I₂ = V/R₂ = 6/2 = 3 A. Total current, I = I₁ + I₂ = 3 + 3 = 6 A.",
-    "Experiment 7.2 studies the factors that influence the strength of the magnetic field: — Factor 1 — Current: The larger the current that flows through a conductor, the stronger the magnetic field (measured by the number of pins attracted by the iron rod).; Factor 2 — Number of turns of the coil: The more the number of turns of a coil, the stronger the magnetic field.",
+    "Investigating the factors that influence the strength of the magnetic field: — Factor 1 — Current: The larger the current that flows through a conductor, the stronger the magnetic field (measured by the number of pins attracted by the iron rod).; Factor 2 — Number of turns of the coil: The more the number of turns of a coil, the stronger the magnetic field.",
     "The strength of the magnetic field reduces as it moves away from the centre of the conductor.",
     "A magnet that is broken into two pieces still has two poles in each piece (not just one pole per piece).",
   ],

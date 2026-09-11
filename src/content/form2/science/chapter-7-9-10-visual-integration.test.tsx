@@ -41,15 +41,17 @@ import { scienceF2C13InteractiveBM } from "./chapter-13/interactive-bm";
 const CH7_ASSETS: string[] = Object.values(SCIENCE_F2_CH7_IMAGES);
 
 /**
- * Chapter 7's four contextual scenes — the ones rendered through
- * `AnnotatedImage`, which everything in this file is about. Its other three
- * files are apparatus photographs carrying a generated SVG teaching layer, a
- * different component with different rules; they are guarded by
- * chapter-7/chapter-7-field-overlays.test.tsx.
+ * Chapter 7's remaining contextual scenes — the ones rendered through
+ * `AnnotatedImage`, which everything in this file is about. The old
+ * four-panel "dailyLife" composite was removed from the learner-facing
+ * content in the final correction pass (it duplicated the approved lightning
+ * visual and the daily-life accordions), so it is no longer expected here.
+ * The other three files are apparatus photographs carrying a generated SVG
+ * teaching layer, a different component with different rules; they are
+ * guarded by chapter-7/chapter-7-field-overlays.test.tsx.
  */
 const CH7_CONTEXT_ASSETS: string[] = [
   SCIENCE_F2_CH7_IMAGES.chargeTransfer,
-  SCIENCE_F2_CH7_IMAGES.dailyLife,
   SCIENCE_F2_CH7_IMAGES.meterPlacement,
   SCIENCE_F2_CH7_IMAGES.electromagnetUses,
 ];
@@ -171,9 +173,14 @@ const EVERY_VIEW: [string, ScienceF2InteractiveContent, "bm" | "en"][] = CHAPTER
 );
 
 describe("Science F2 Ch7/9/10 — assets on disk", () => {
-  it("ships exactly twenty-four files", () => {
-    expect(SCIENCE_F2_VISUAL_ASSETS).toHaveLength(24);
-    expect(new Set(SCIENCE_F2_VISUAL_ASSETS).size).toBe(24);
+  it("ships exactly twenty-seven files", () => {
+    // Twenty-four in the original pack, plus the three later approved Chapter 7
+    // figures (electroscope, lightning formation, electromagnet investigation).
+    // Those three are not `contextImages`, so they are guarded by
+    // chapter-7/chapter-7-approved-figures.test.tsx rather than by the
+    // placement and authoring assertions below.
+    expect(SCIENCE_F2_VISUAL_ASSETS).toHaveLength(27);
+    expect(new Set(SCIENCE_F2_VISUAL_ASSETS).size).toBe(27);
   });
 
   it.each(SCIENCE_F2_VISUAL_ASSETS)("%s exists and is not empty", (src) => {
