@@ -58,7 +58,7 @@ export const scienceF2C7NotesBM: ScienceChapter2Notes = {
           title: "Fakta Penting",
           bulletPoints: [
             "Formula Hukum Ohm: V = IR, di mana V = voltan (V), I = arus (A), R = rintangan (Ω). — I = V / R; R = V / I",
-            "Eksperimen 7.1 menunjukkan: semakin tinggi rintangan, semakin kecil aliran arus (dengan menambah panjang wayar nikrom); semakin tinggi voltan (menambah bilangan sel kering), semakin besar aliran arus.",
+            "Kajian rintangan dan voltan: semakin tinggi rintangan (dengan menambah panjang wayar nikrom), semakin kecil aliran arus; semakin tinggi voltan (menambah bilangan sel kering), semakin besar aliran arus.",
             "Contoh Pengiraan: Jika lampu kereta mengalirkan arus 0.025 A apabila disambungkan kepada akumulator kereta 12 V, rintangan = V/I = 12/0.025 = 480 Ω.",
           ],
         },
@@ -121,7 +121,7 @@ export const scienceF2C7NotesBM: ScienceChapter2Notes = {
           title: "Contoh",
           bulletPoints: [
             "Lampu hiasan yang menyala kesemuanya kecuali satu — ini menunjukkan lampu disambung secara litar selari (jika tidak, semua lampu akan terpadam jika satu rosak dalam litar bersiri).",
-            "Aktiviti 7.7 dan 7.8 menggunakan mentol M dan N untuk mengukur arus dan voltan dalam litar bersiri dan litar selari menggunakan ammeter dan voltmeter.",
+            "Mengukur arus dan voltan dalam litar bersiri dan litar selari, menggunakan dua mentol serta ammeter dan voltmeter, mengesahkan peraturan di atas.",
           ],
         },
         {
@@ -164,7 +164,7 @@ export const scienceF2C7NotesBM: ScienceChapter2Notes = {
         {
           title: "Fakta Penting",
           bulletPoints: [
-            "Eksperimen 7.2 mengkaji faktor yang mempengaruhi kekuatan medan magnet: — Faktor 1 — Arus: Semakin besar arus yang mengalir melalui konduktor, semakin kuat medan magnet (diukur melalui bilangan pin yang ditarik oleh rod besi).; Faktor 2 — Bilangan lilitan gegelung: Semakin banyak bilangan lilitan gegelung, semakin kuat medan magnet.",
+            "Kajian faktor yang mempengaruhi kekuatan medan magnet: — Faktor 1 — Arus: Semakin besar arus yang mengalir melalui konduktor, semakin kuat medan magnet (diukur melalui bilangan pin yang ditarik oleh rod besi).; Faktor 2 — Bilangan lilitan gegelung: Semakin banyak bilangan lilitan gegelung, semakin kuat medan magnet.",
             "Kekuatan medan magnet berkurang apabila bergerak jauh daripada pusat konduktor.",
             "Magnet yang dipatahkan kepada dua bahagian masih mempunyai dua kutub pada setiap bahagian (bukan satu kutub setiap bahagian).",
           ],
@@ -187,7 +187,7 @@ export const scienceF2C7NotesBM: ScienceChapter2Notes = {
   ],
   keyExamFacts: [
     "Formula Hukum Ohm: V = IR, di mana V = voltan (V), I = arus (A), R = rintangan (Ω). — I = V / R; R = V / I",
-    "Eksperimen 7.1 menunjukkan: semakin tinggi rintangan, semakin kecil aliran arus (dengan menambah panjang wayar nikrom); semakin tinggi voltan (menambah bilangan sel kering), semakin besar aliran arus.",
+    "Kajian rintangan dan voltan: semakin tinggi rintangan (dengan menambah panjang wayar nikrom), semakin kecil aliran arus; semakin tinggi voltan (menambah bilangan sel kering), semakin besar aliran arus.",
     "Contoh Pengiraan: Jika lampu kereta mengalirkan arus 0.025 A apabila disambungkan kepada akumulator kereta 12 V, rintangan = V/I = 12/0.025 = 480 Ω.",
     "Kelebihan litar bersiri: setiap komponen menerima arus yang sama; setiap komponen dikawal oleh suis yang sama; peningkatan voltan membekalkan lebih banyak arus elektrik.",
     "Kekurangan litar bersiri: apabila satu peralatan elektrik rosak, peralatan lain berhenti berfungsi; menambah lebih banyak peralatan elektrik meningkatkan rintangan dan mengurangkan aliran arus; setiap peralatan elektrik tidak boleh dimatikan secara berasingan.",
@@ -195,7 +195,7 @@ export const scienceF2C7NotesBM: ScienceChapter2Notes = {
     "Kekurangan litar selari: voltan bagi setiap peralatan elektrik tidak boleh diselaraskan kerana voltan adalah sama dengan sumber voltan.",
     "Contoh Pengiraan Litar Bersiri: Dua perintang R₁ = 2 Ω dan R₂ = 2 Ω disambung secara bersiri pada bekalan 6V. Rintangan berkesan R = R₁ + R₂ = 4 Ω. Arus I = V/R = 6/4 = 1.5 A. V₁ = IR₁ = 1.5 × 2 = 3 V. V₂ = IR₂ = 1.5 × 2 = 3 V.",
     "Contoh Pengiraan Litar Selari: Dua perintang R₁ = 2 Ω dan R₂ = 2 Ω disambung secara selari pada bekalan 6V. 1/R = 1/R₁ + 1/R₂ = 1/2 + 1/2 = 1, maka R = 1 Ω. Voltan, V = 6 V (sama merentasi kedua-dua perintang). I₁ = V/R₁ = 6/2 = 3 A; I₂ = V/R₂ = 6/2 = 3 A. Jumlah arus, I = I₁ + I₂ = 3 + 3 = 6 A.",
-    "Eksperimen 7.2 mengkaji faktor yang mempengaruhi kekuatan medan magnet: — Faktor 1 — Arus: Semakin besar arus yang mengalir melalui konduktor, semakin kuat medan magnet (diukur melalui bilangan pin yang ditarik oleh rod besi).; Faktor 2 — Bilangan lilitan gegelung: Semakin banyak bilangan lilitan gegelung, semakin kuat medan magnet.",
+    "Kajian faktor yang mempengaruhi kekuatan medan magnet: — Faktor 1 — Arus: Semakin besar arus yang mengalir melalui konduktor, semakin kuat medan magnet (diukur melalui bilangan pin yang ditarik oleh rod besi).; Faktor 2 — Bilangan lilitan gegelung: Semakin banyak bilangan lilitan gegelung, semakin kuat medan magnet.",
     "Kekuatan medan magnet berkurang apabila bergerak jauh daripada pusat konduktor.",
     "Magnet yang dipatahkan kepada dua bahagian masih mempunyai dua kutub pada setiap bahagian (bukan satu kutub setiap bahagian).",
   ],

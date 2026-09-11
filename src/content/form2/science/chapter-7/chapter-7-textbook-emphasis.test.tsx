@@ -51,8 +51,7 @@ const EXPECTED: Record<string, string[]> = {
     "cas yang mengalir menghasilkan arus elektrik",
     "Kadar aliran cas elektrik melalui konduktor.",
     "Beza keupayaan antara dua titik dalam litar.",
-    "Keupayaan konduktor untuk merintangi aliran arus.",
-    "reostat (perintang berubah) boleh diselaraskan",
+    "Rintangan ialah keupayaan suatu konduktor untuk mengehadkan atau merintangi aliran arus elektrik.",
     "Hukum Ohm",
     "arus yang mengalir berkurang apabila rintangan bertambah",
     "satu laluan tunggal",
@@ -85,8 +84,7 @@ const EXPECTED: Record<string, string[]> = {
     "flowing charge produces an electric current",
     "The rate of flow of electric charge through a conductor.",
     "The potential difference between two points in a circuit.",
-    "A conductor's ability to oppose the flow of current.",
-    "a rheostat (variable resistor) can be adjusted",
+    "Resistance is the ability of a conductor to limit or resist the flow of electric current.",
     "Ohm's Law",
     "the current flowing decreases as the resistance increases",
     "a single path",
@@ -129,7 +127,7 @@ const ORIGINALS: Record<string, Record<string, string>> = {
     "content.sections[4].cards[1].body":
       "Beza keupayaan antara dua titik dalam litar.",
     "content.sections[4].cards[2].body":
-      "Keupayaan konduktor untuk merintangi aliran arus. Perintang tetap mempunyai rintangan yang tidak boleh diselaraskan, manakala reostat (perintang berubah) boleh diselaraskan.",
+      "Rintangan ialah keupayaan suatu konduktor untuk mengehadkan atau merintangi aliran arus elektrik.",
     "content.sections[5].remember":
       "Hukum Ohm: Arus elektrik yang mengalir melalui suatu konduktor berkadar terus dengan voltan merentasinya, dengan syarat suhu dan keadaan fizik lain tetap. Ditulis sebagai V = IR.",
     "content.sections[5].cards[1].body":
@@ -171,7 +169,7 @@ const ORIGINALS: Record<string, Record<string, string>> = {
     "content.sections[4].cards[1].body":
       "The potential difference between two points in a circuit.",
     "content.sections[4].cards[2].body":
-      "A conductor's ability to oppose the flow of current. A fixed resistor has a resistance that cannot be adjusted, while a rheostat (variable resistor) can be adjusted.",
+      "Resistance is the ability of a conductor to limit or resist the flow of electric current.",
     "content.sections[5].remember":
       "Ohm's Law: The current flowing through a conductor is directly proportional to the voltage across it, provided the temperature and other physical conditions stay constant. Written as V = IR.",
     "content.sections[5].cards[1].body":

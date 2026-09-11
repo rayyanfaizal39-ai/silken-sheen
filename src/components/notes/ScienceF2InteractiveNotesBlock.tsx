@@ -67,6 +67,18 @@ import { WaterTreatmentFlow } from "@/components/notes/blocks/WaterTreatmentFlow
 import { IndicatorTable } from "@/components/notes/blocks/IndicatorTable";
 import { DryVsAqueous } from "@/components/notes/blocks/DryVsAqueous";
 import { TitrationSchematic } from "@/components/notes/blocks/TitrationSchematic";
+import { PolarityInteraction } from "@/components/notes/blocks/PolarityInteraction";
+import { ElectroscopeDiagram } from "@/components/notes/blocks/ElectroscopeDiagram";
+import { LightningFormation } from "@/components/notes/blocks/LightningFormation";
+import { CurrentDirectionDiagram } from "@/components/notes/blocks/CurrentDirectionDiagram";
+import { CircuitSymbolsTable } from "@/components/notes/blocks/CircuitSymbolsTable";
+import { OhmsLawTriangle } from "@/components/notes/blocks/OhmsLawTriangle";
+import { GuidedCalculation } from "@/components/notes/blocks/GuidedCalculation";
+import { UnitsMemoryCard } from "@/components/notes/blocks/UnitsMemoryCard";
+import { SelfPracticeCircuit } from "@/components/notes/blocks/SelfPracticeCircuit";
+import { CircuitConceptTeaching } from "@/components/notes/blocks/CircuitConceptTeaching";
+import { CircuitRecognitionChallenge } from "@/components/notes/blocks/CircuitRecognitionChallenge";
+import { DryHumidComparison } from "@/components/notes/blocks/DryHumidComparison";
 import { StrengthComparison } from "@/components/notes/blocks/StrengthComparison";
 import { CircuitMeterDiagram } from "@/components/notes/blocks/CircuitMeterDiagram";
 import { SeriesParallelSchematic } from "@/components/notes/blocks/SeriesParallelSchematic";
@@ -492,6 +504,17 @@ export function ScienceF2InteractiveNotesBlock({
             <PlanetSphereList planets={section.planets.planets} />
           </div>
         )}
+        {/* Lightning FORMATION, on its own approved scene, immediately before
+            the applications of electrostatic charge the accordions cover — the
+            mechanism first, then what it is used for and guarded against. */}
+        {section.lightningFormation && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.lightningFormation.title}
+            </h3>
+            <LightningFormation block={section.lightningFormation} lang={lang} />
+          </div>
+        )}
         {section.accordions && (
           <Accordion type="single" collapsible>
             {section.accordions.map((item, i) => (
@@ -519,6 +542,9 @@ export function ScienceF2InteractiveNotesBlock({
               </AccordionItem>
             ))}
           </Accordion>
+        )}
+        {section.dryHumidComparison && (
+          <DryHumidComparison block={section.dryHumidComparison} />
         )}
         {section.tabs && (
           <div>
@@ -1027,7 +1053,7 @@ export function ScienceF2InteractiveNotesBlock({
                   {section.pressureApparatus && (
                     <PressureApparatus block={section.pressureApparatus} lang={lang} />
                   )}
-                  <MiniExperiment block={section.miniExperiment} />
+                  <MiniExperiment block={section.miniExperiment} lang={lang} />
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -1036,7 +1062,15 @@ export function ScienceF2InteractiveNotesBlock({
               <h3 className="font-display mb-2 text-base font-bold text-foreground">
                 {section.miniExperiment.title}
               </h3>
-              <MiniExperiment block={section.miniExperiment} />
+              {/* An investigation that ships approved apparatus artwork carries
+                  the apparatus inside itself, labelled from the section's own
+                  `apparatusDiagram` — so the eight names live in one place and
+                  the schematic below is not drawn a second time. */}
+              <MiniExperiment
+                block={section.miniExperiment}
+                apparatus={section.apparatusDiagram}
+                lang={lang}
+              />
             </div>
           ))}
         {section.comparisonMatrix && (
@@ -1087,6 +1121,98 @@ export function ScienceF2InteractiveNotesBlock({
             <TitrationSchematic block={section.titrationSchematic} lang={lang} />
           </div>
         )}
+        {section.polarityInteraction && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.polarityInteraction.title}
+            </h3>
+            <PolarityInteraction block={section.polarityInteraction} lang={lang} />
+          </div>
+        )}
+        {section.electroscope && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.electroscope.title}
+            </h3>
+            <ElectroscopeDiagram block={section.electroscope} lang={lang} />
+          </div>
+        )}
+        {section.currentDirection && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.currentDirection.title}
+            </h3>
+            <CurrentDirectionDiagram block={section.currentDirection} lang={lang} />
+          </div>
+        )}
+        {section.circuitSymbols && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.circuitSymbols.title}
+            </h3>
+            <CircuitSymbolsTable block={section.circuitSymbols} lang={lang} />
+          </div>
+        )}
+        {section.circuitConceptSeries && (
+          <CircuitConceptTeaching block={section.circuitConceptSeries} />
+        )}
+        {section.circuitConceptParallel && (
+          <CircuitConceptTeaching block={section.circuitConceptParallel} />
+        )}
+        {section.seriesParallel && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.seriesParallel.title}
+            </h3>
+            <SeriesParallelSchematic block={section.seriesParallel} lang={lang} />
+          </div>
+        )}
+        {section.circuitRecognition && (
+          <CircuitRecognitionChallenge block={section.circuitRecognition} />
+        )}
+        {section.numericalProblemsIntro && (
+          <div>
+            <h3 className="font-display mb-1 text-base font-bold text-foreground">
+              {section.numericalProblemsIntro.title}
+            </h3>
+            <p className="mb-2.5 text-[13px] leading-relaxed text-muted-foreground">
+              {section.numericalProblemsIntro.instruction}
+            </p>
+            <UnitsMemoryCard block={section.numericalProblemsIntro.unitsMemory} />
+          </div>
+        )}
+        {section.workedExamples?.map((figure) => (
+          <SelfPracticeCircuit key={figure.figureLabel} figure={figure} lang={lang} />
+        ))}
+        {section.ohmsTriangle && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.ohmsTriangle.title}
+            </h3>
+            <OhmsLawTriangle block={section.ohmsTriangle} lang={lang} />
+          </div>
+        )}
+        {section.guidedCalculations?.map((calc, i) => (
+          <GuidedCalculation key={`${section.number}-guided-${i}`} block={calc} />
+        ))}
+        {section.unitsMemory && <UnitsMemoryCard block={section.unitsMemory} />}
+        {section.selfPractice && (
+          <div>
+            <h3 className="font-display mb-1 text-base font-bold text-foreground">
+              {section.selfPractice.title}
+            </h3>
+            {section.selfPractice.instruction && (
+              <p className="mb-2 text-[13px] leading-relaxed text-muted-foreground">
+                {section.selfPractice.instruction}
+              </p>
+            )}
+            <div className="flex flex-col gap-3">
+              {section.selfPractice.figures.map((figure) => (
+                <SelfPracticeCircuit key={figure.figureLabel} figure={figure} lang={lang} />
+              ))}
+            </div>
+          </div>
+        )}
         {section.strengthComparison && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -1101,14 +1227,6 @@ export function ScienceF2InteractiveNotesBlock({
               {section.circuitMeterDiagram.title}
             </h3>
             <CircuitMeterDiagram block={section.circuitMeterDiagram} lang={lang} />
-          </div>
-        )}
-        {section.seriesParallel && (
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">
-              {section.seriesParallel.title}
-            </h3>
-            <SeriesParallelSchematic block={section.seriesParallel} lang={lang} />
           </div>
         )}
         {section.magnetFieldDiagram && (
@@ -1127,7 +1245,14 @@ export function ScienceF2InteractiveNotesBlock({
             <CurrentFieldPatterns block={section.currentFieldPatterns} lang={lang} />
           </div>
         )}
-        {section.apparatusDiagram && (
+        {/* ONE CONCEPT, ONE PRIMARY VISUAL. Where the investigation above is
+            led by approved apparatus artwork, these same eight parts are
+            already labelled on the photograph; drawing the schematic here as
+            well would teach the same set-up twice, in two competing pictures.
+            The block itself stays — it is where the part names and roles live,
+            and it is still the whole figure for an investigation with no
+            approved artwork. */}
+        {section.apparatusDiagram && !section.miniExperiment?.apparatusImage && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.apparatusDiagram.title}

@@ -107,15 +107,43 @@ function BarMagnet({
   );
 }
 
-/** Arrow head pointing along the tangent at (x,y), rotated by `deg`. */
-function Arrow({ x, y, deg, dim }: FieldArrow & { dim: boolean }) {
+/**
+ * Arrow head pointing along the tangent at (x,y), rotated by `deg`.
+ *
+ * `emphasize` (the DIRECTION property) scales it up and brightens it — the
+ * one property whose whole content IS the arrowhead, so it is the one thing
+ * that grows rather than a line changing colour.
+ */
+function Arrow({
+  x,
+  y,
+  deg,
+  dim,
+  emphasize = false,
+}: FieldArrow & { dim: boolean; emphasize?: boolean }) {
   return (
     <path
       d="M-4,-3 L4,0 L-4,3 Z"
-      transform={`translate(${x} ${y}) rotate(${deg})`}
-      className={dim ? "fill-muted-foreground/40" : "fill-emerald-300"}
+      transform={`translate(${x} ${y}) rotate(${deg}) scale(${emphasize ? 1.7 : 1})`}
+      className={
+        dim ? "fill-muted-foreground/40" : emphasize ? "fill-emerald-200" : "fill-emerald-300"
+      }
     />
   );
+}
+
+/**
+ * A traced field line. `separate` (the NEVER-CROSS property) draws it wider
+ * and brighter so the learner's eye follows one distinct path start to
+ * finish — the point being made is that this line stays itself, unbroken and
+ * apart from its neighbours, all the way along.
+ */
+export function lineClass(dim: boolean, separate: boolean): string {
+  if (dim) return "stroke-muted-foreground/30";
+  return separate ? "stroke-teal-200" : "stroke-emerald-300/80";
+}
+export function lineWidth(base: number, separate: boolean): number {
+  return separate ? base + 0.9 : base;
 }
 
 export function MagnetFieldDiagram({
@@ -147,6 +175,12 @@ export function MagnetFieldDiagram({
   // A property tied to one arrangement is about a place in the picture, not
   // about the lines, so the lines step back while it is being explained.
   const dimField = activeFeature?.requiresShape !== undefined;
+  // DIRECTION and NEVER-CROSS are properties of the lines themselves — unlike
+  // SPACING (already highlighted at the poles below) and NEUTRAL POINT
+  // (already highlighted at its marker), so the lines/arrows carry their own
+  // visual response instead of only the caption changing underneath them.
+  const emphasizeDirection = feature === "direction";
+  const emphasizeSeparation = feature === "no-cross";
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
@@ -181,10 +215,10 @@ export function MagnetFieldDiagram({
                   <path
                     d={arc.d}
                     fill="none"
-                    className={dimField ? "stroke-muted-foreground/30" : "stroke-emerald-300/80"}
-                    strokeWidth={feature === "density" ? 2 : 1.5}
+                    className={lineClass(dimField, emphasizeSeparation)}
+                    strokeWidth={lineWidth(feature === "density" ? 2 : 1.5, emphasizeSeparation)}
                   />
-                  <Arrow {...arc.arrow} dim={dimField} />
+                  <Arrow {...arc.arrow} dim={dimField} emphasize={emphasizeDirection} />
                 </g>
               ))}
               {/* Where the lines crowd. Highlighted only while the spacing
@@ -235,10 +269,16 @@ export function MagnetFieldDiagram({
                     y1={122 + i * 5}
                     x2={192}
                     y2={122 + i * 5}
-                    className={dimField ? "stroke-muted-foreground/30" : "stroke-emerald-300/80"}
-                    strokeWidth="1.5"
+                    className={lineClass(dimField, emphasizeSeparation)}
+                    strokeWidth={lineWidth(1.5, emphasizeSeparation)}
                   />
-                  <Arrow x={162} y={122 + i * 5} deg={0} dim={dimField} />
+                  <Arrow
+                    x={162}
+                    y={122 + i * 5}
+                    deg={0}
+                    dim={dimField}
+                    emphasize={emphasizeDirection}
+                  />
                 </g>
               ))}
             </>
@@ -258,10 +298,10 @@ export function MagnetFieldDiagram({
                     y1={58}
                     x2={x}
                     y2={110}
-                    className={dimField ? "stroke-muted-foreground/30" : "stroke-emerald-300/80"}
-                    strokeWidth="1.5"
+                    className={lineClass(dimField, emphasizeSeparation)}
+                    strokeWidth={lineWidth(1.5, emphasizeSeparation)}
                   />
-                  <Arrow x={x} y={86} deg={90} dim={dimField} />
+                  <Arrow x={x} y={86} deg={90} dim={dimField} emphasize={emphasizeDirection} />
                 </g>
               ))}
             </>
@@ -274,10 +314,10 @@ export function MagnetFieldDiagram({
                   <path
                     d={arc.d}
                     fill="none"
-                    className={dimField ? "stroke-muted-foreground/30" : "stroke-emerald-300/70"}
-                    strokeWidth="1.4"
+                    className={lineClass(dimField, emphasizeSeparation)}
+                    strokeWidth={lineWidth(1.4, emphasizeSeparation)}
                   />
-                  <Arrow {...arc.arrow} dim={dimField} />
+                  <Arrow {...arc.arrow} dim={dimField} emphasize={emphasizeDirection} />
                 </g>
               ))}
               <BarMagnet {...LIKE_POLES.left} copy={copy} />
@@ -308,7 +348,7 @@ export function MagnetFieldDiagram({
                     cy={LIKE_POLES.neutral.y}
                     r="16"
                     fill="none"
-                    className="stroke-amber-300"
+                    className="animate-pulse stroke-amber-300"
                     strokeWidth="1.6"
                   />
                 )}
