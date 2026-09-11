@@ -79,7 +79,7 @@ export const chapter1LearningExperiences: Chapter1LearningExperience[] = [
     title: { en: "Conduct the pendulum investigation", bm: "Jalankan penyiasatan bandul" },
     purpose: { en: "Apply all nine steps to the textbook pendulum problem and produce a complete report.", bm: "Gunakan kesemua sembilan langkah bagi masalah bandul buku teks dan hasilkan laporan lengkap." },
     instructions: [
-      { en: "Plan and conduct the teacher-supervised investigation on pendulum length and the time for one complete oscillation.", bm: "Rancang dan jalankan penyiasatan di bawah pengawasan guru tentang panjang bandul dan masa satu ayunan lengkap." },
+      { en: "Plan and conduct the teacher-supervised investigation on pendulum length and the time for 10 complete oscillations.", bm: "Rancang dan jalankan penyiasatan di bawah pengawasan guru tentang panjang bandul dan masa untuk 10 ayunan lengkap." },
       { en: "Take three readings, average them, graph and interpret the data, conclude and write the report.", bm: "Ambil tiga bacaan, hitung purata, graf dan tafsir data, buat kesimpulan serta tulis laporan." },
     ],
     studentOutput: { en: "A complete report based on physical observations and measurements.", bm: "Laporan lengkap berdasarkan pemerhatian dan ukuran fizikal." }, practicalNotice: teacherGuidedNotice,

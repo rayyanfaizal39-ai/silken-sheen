@@ -27,12 +27,20 @@ import {
   type LaboratoryApparatusId,
 } from "./blocks/LaboratoryApparatusVisual";
 
+import {
+  Chapter1Completion,
+  InstrumentVisual,
+  MeasurementConceptVisual,
+  ErrorVisual,
+  PendulumFigure,
+  DensityExplorer,
+} from "./blocks/Chapter1Completion";
 type Lang = "en" | "bm";
 
 const ui = {
   bm: {
     eyebrow: "Peta visual Bab 1",
-    title: "Penyiasatan saintifik bermula dengan rasa ingin tahu",
+    title: "Pengenalan kepada Penyiasatan Saintifik",
     subtitle:
       "Hubungkan sains dalam kehidupan, keselamatan makmal, pengukuran, ketumpatan dan kaedah saintifik dalam satu aliran pembelajaran.",
     path: [
@@ -116,17 +124,17 @@ const ui = {
     hypothesis: "Hipotesis",
     variables: "Pemboleh ubah",
     conclusion: "Kesimpulan",
-    pendulumProblem: "Bagaimanakah panjang bandul mempengaruhi masa untuk 10 ayunan lengkap?",
-    pendulumHypothesis: "Semakin panjang bandul, semakin lama masa untuk 10 ayunan lengkap.",
+    pendulumProblem: "Bagaimanakah panjang bandul mempengaruhi masa untuk satu ayunan lengkap?",
+    pendulumHypothesis: "Semakin panjang bandul, semakin lama masa untuk satu ayunan lengkap.",
     pendulumVariables: [
       "Dimanipulasikan: panjang bandul",
-      "Bergerak balas: masa untuk 10 ayunan",
+      "Bergerak balas: Masa untuk 10 ayunan lengkap",
       "Dimalarkan: jisim ladung dan sudut ayunan awal",
     ],
     pendulumConclusion:
-      "Hipotesis diterima: masa purata meningkat apabila panjang bandul bertambah.",
-    length: "Panjang (cm)",
-    average: "Purata masa (s)",
+      "Hipotesis diterima: masa untuk satu ayunan lengkap meningkat apabila panjang bandul bertambah.",
+    length: "Panjang bandul (cm)",
+    average: "Masa untuk 10 ayunan lengkap (s)",
     coreValues: "Nilai teras",
     moreValues: "Amalan tambahan",
     recap: "Semak sebelum tamat",
@@ -142,7 +150,7 @@ const ui = {
   },
   en: {
     eyebrow: "Chapter 1 visual map",
-    title: "Scientific investigation begins with curiosity",
+    title: "Introduction to Scientific Investigation",
     subtitle:
       "Connect science in daily life, laboratory safety, measurement, density and the scientific method in one learning journey.",
     path: [
@@ -226,18 +234,18 @@ const ui = {
     hypothesis: "Hypothesis",
     variables: "Variables",
     conclusion: "Conclusion",
-    pendulumProblem: "How does pendulum length affect the time for 10 complete oscillations?",
+    pendulumProblem: "How does pendulum length affect the time for one complete oscillation?",
     pendulumHypothesis:
-      "The longer the pendulum, the longer the time for 10 complete oscillations.",
+      "The longer the pendulum, the longer the time for one complete oscillation.",
     pendulumVariables: [
       "Manipulated: pendulum length",
-      "Responding: time for 10 oscillations",
+      "Responding: Time taken for 10 complete oscillations",
       "Constant: bob mass and initial angle",
     ],
     pendulumConclusion:
-      "The hypothesis is accepted: average time increases as pendulum length increases.",
-    length: "Length (cm)",
-    average: "Average time (s)",
+      "The hypothesis is accepted: the time for one complete oscillation increases as pendulum length increases.",
+    length: "Length of pendulum (cm)",
+    average: "Time taken for 10 complete oscillations (s)",
     coreValues: "Core values",
     moreValues: "Additional practices",
     recap: "Check before you finish",
@@ -342,9 +350,6 @@ function SectionHeading({ section }: { section: readonly [string, string, string
         {section[0]}
       </span>
       <h2 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl">{section[1]}</h2>
-      <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">
-        {section[2]}
-      </p>
     </div>
   );
 }
@@ -369,12 +374,10 @@ export function ScienceF1Chapter1VisualNotesBlock({
   const [apparatus, setApparatus] = useState(0);
   const [hazard, setHazard] = useState(0);
   const [instrument, setInstrument] = useState(0);
-  const [material, setMaterial] = useState(6);
+
   const [investigation, setInvestigation] = useState(0);
   const selectedField = t.scienceInLife.fields[field];
   const selectedCareer = t.scienceInLife.careers.find((item) => item.field === selectedField.name);
-  const selectedMaterial = t.density.table[material];
-  const selectedDensity = Number(selectedMaterial.density);
 
   return (
     <section
@@ -393,9 +396,9 @@ export function ScienceF1Chapter1VisualNotesBlock({
           <h1 className="mt-3 max-w-4xl font-display text-4xl font-black leading-[1.04] text-white sm:text-5xl">
             {c.title}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">{c.subtitle}</p>
+
           <div className="mt-7 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
-            {c.path.map((item, index) => (
+            {c.sections.map((item, index) => (
               <div
                 key={item[0]}
                 className="relative rounded-xl border border-white/10 bg-white/5 p-3"
@@ -461,7 +464,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
                 <h4 className="text-xl font-black text-white">{selectedField.name}</h4>
                 <p className="mt-2 text-sm leading-6 text-slate-300">{selectedField.description}</p>
                 <p className="mt-3 text-xs font-black uppercase tracking-wider text-teal-300">
-                  {c.relatedCareers}
+                  {selectedCareer ? c.relatedCareers : c.examples}
                 </p>
                 <p className="mt-1 text-sm text-slate-300">
                   {selectedCareer?.jobs.join(" · ") ?? selectedField.examples.join(" · ")}
@@ -469,6 +472,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </div>
             </Panel>
           </div>
+          <Chapter1Completion section="science" content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
@@ -580,7 +584,10 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </div>
               <article className="rounded-2xl border border-amber-300/20 bg-amber-300/[0.045] p-4">
                 <h4 className="text-sm font-black leading-5 text-white">{c.heatingTitle}</h4>
-                <HeatingSupportVisual className="mx-auto mt-3 h-52 w-full max-w-56 text-slate-200" />
+                <HeatingSupportVisual
+                  lang={lang}
+                  className="mx-auto mt-3 h-52 w-full max-w-56 text-slate-200"
+                />
                 <ol className="mt-2 grid gap-1 text-xs leading-5 text-slate-300">
                   {c.heatingLabels.map((label, index) => (
                     <li key={label} className="flex items-center gap-2">
@@ -634,35 +641,44 @@ export function ScienceF1Chapter1VisualNotesBlock({
                 </p>
               </div>
             </Panel>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {[
-                t.laboratory.rules.slice(0, 6),
-                t.laboratory.safetyMeasures,
-                t.laboratory.accidentSteps,
-              ].map((items, column) => (
-                <Panel key={c.safety[column]} className={column === 2 ? "border-red-300/20" : ""}>
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck
-                      className={`h-5 w-5 ${column === 2 ? "text-red-300" : "text-lime-300"}`}
-                      aria-hidden="true"
-                    />
-                    <h3 className="text-sm font-black text-white">{c.safety[column]}</h3>
-                  </div>
-                  <div className="mt-4 space-y-3">
-                    {items.map((item) => (
-                      <p key={item} className="text-xs leading-5 text-slate-300">
-                        {item}
-                      </p>
-                    ))}
-                  </div>
-                </Panel>
-              ))}
+            <div className="grid gap-4">
+              {[t.laboratory.rules, t.laboratory.safetyMeasures, t.laboratory.accidentSteps].map(
+                (items, column) => (
+                  <Panel
+                    key={c.safety[column]}
+                    className={
+                      column === 2
+                        ? "border-red-300/40 border-l-4"
+                        : column === 1
+                          ? "border-amber-300/30 border-l-4"
+                          : "border-teal-300/20"
+                    }
+                  >
+                    <div className="flex items-center gap-2">
+                      <ShieldCheck
+                        className={`h-5 w-5 ${column === 2 ? "text-red-300" : "text-lime-300"}`}
+                        aria-hidden="true"
+                      />
+                      <h3 className="text-sm font-black text-white">{c.safety[column]}</h3>
+                    </div>
+                    <div className="mt-4 space-y-3">
+                      {items.map((item) => (
+                        <p key={item} className="text-xs leading-5 text-slate-300">
+                          {item}
+                        </p>
+                      ))}
+                    </div>
+                  </Panel>
+                ),
+              )}
             </div>
           </div>
+          <Chapter1Completion section="laboratory" content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
           <SectionHeading section={c.sections[2]} />
+          <Chapter1Completion section="units" content={t} lang={lang} />
           <div className="grid gap-4 lg:grid-cols-2">
             <Panel>
               <div className="flex items-center gap-3">
@@ -702,6 +718,9 @@ export function ScienceF1Chapter1VisualNotesBlock({
                       </span>
                     </div>
                     <p className="mt-2 font-mono text-xs text-slate-300">{item.standardForm}</p>
+                    <p className="mt-1 break-words font-mono text-xs text-slate-200">
+                      {item.value}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -729,7 +748,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               const Icon = icons[index];
               return (
                 <Panel key={item.term}>
-                  <Icon className="h-7 w-7 text-teal-300" aria-hidden="true" />
+                  <MeasurementConceptVisual index={index} lang={lang} />
                   <h3 className="mt-3 font-black text-white">{item.term}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{item.body}</p>
                 </Panel>
@@ -765,12 +784,14 @@ export function ScienceF1Chapter1VisualNotesBlock({
                 <p className="mt-2 font-black text-white">
                   {t.measuringInstruments.instruments[instrument].standardTool}
                 </p>
+                <InstrumentVisual index={instrument} lang={lang} />
               </div>
               <div className="rounded-xl bg-lime-300/[0.07] p-4">
                 <p className="text-xs text-lime-200">{c.accurate}</p>
                 <p className="mt-2 font-black text-white">
                   {t.measuringInstruments.instruments[instrument].higherAccuracyTool ?? "—"}
                 </p>
+                {instrument === 0 && <InstrumentVisual index={6} lang={lang} />}
               </div>
             </div>
             <p className="mt-3 text-sm text-slate-300">
@@ -781,9 +802,11 @@ export function ScienceF1Chapter1VisualNotesBlock({
             <div>
               <h3 className="font-black text-white">{c.errors}</h3>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                {t.measuringInstruments.errorTypes.map((error) => (
+                {t.measuringInstruments.errorTypes.map((error, index) => (
                   <Panel key={error.type}>
                     <h4 className="font-black text-amber-200">{error.type}</h4>
+                    <ErrorVisual systematic={index === 0} lang={lang} />
+                    <p className="mt-2 text-sm text-slate-200">{error.examples.join(" · ")}</p>
                     <p className="mt-2 text-sm leading-6 text-slate-300">{error.definition}</p>
                     <div className="mt-3 space-y-2">
                       {error.waysToOvercome.map((item) => (
@@ -814,6 +837,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </Panel>
             </div>
           </div>
+          <Chapter1Completion section="measurement" content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
@@ -837,52 +861,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
                 {t.density.workedExample.answer}
               </p>
             </Panel>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Scale className="h-7 w-7 text-teal-300" aria-hidden="true" />
-                <h3 className="font-black text-white">{c.densityLab}</h3>
-              </div>
-              <p className="mt-2 text-xs text-slate-400">{c.selectMaterial}</p>
-              <div
-                className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-5"
-                role="tablist"
-                aria-label={c.selectMaterial}
-              >
-                {t.density.table.map((item, index) => (
-                  <button
-                    key={item.material}
-                    type="button"
-                    role="tab"
-                    aria-selected={material === index}
-                    onClick={() => setMaterial(index)}
-                    className={`min-h-12 rounded-xl border p-2 text-left text-[11px] font-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${material === index ? "border-teal-300 bg-teal-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
-                  >
-                    {item.material}
-                  </button>
-                ))}
-              </div>
-              <div className="mt-4 grid items-center gap-4 rounded-2xl bg-slate-950/55 p-4 sm:grid-cols-[.7fr_1.3fr]">
-                <div className="relative mx-auto h-40 w-32 overflow-hidden rounded-b-[2.5rem] rounded-t-xl border-2 border-cyan-300/40 bg-cyan-400/15">
-                  <div
-                    className={`absolute left-1/2 h-14 w-14 -translate-x-1/2 rounded-full border-4 border-white/60 bg-gradient-to-br from-amber-200 to-orange-500 shadow-lg transition-transform duration-300 motion-reduce:transition-none ${selectedDensity <= 1 ? "top-4" : "top-24"}`}
-                  />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400">{c.comparedWithWater}</p>
-                  <h4 className="mt-1 text-2xl font-black text-white">
-                    {selectedMaterial.material}
-                  </h4>
-                  <p className="mt-2 font-mono text-lg font-black text-teal-200">
-                    {selectedMaterial.density} g cm⁻³
-                  </p>
-                  <p
-                    className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-black ${selectedDensity <= 1 ? "bg-lime-300/15 text-lime-200" : "bg-orange-300/15 text-orange-200"}`}
-                  >
-                    {selectedDensity <= 1 ? c.floats : c.sinks}
-                  </p>
-                </div>
-              </div>
-            </Panel>
+            <DensityExplorer content={t.density} lang={lang} />
           </div>
           <Panel>
             <h3 className="font-black text-white">{c.displacement}</h3>
@@ -906,6 +885,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               ))}
             </div>
           </Panel>
+          <Chapter1Completion section="density" content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
@@ -915,11 +895,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               <BookOpenCheck className="h-7 w-7 text-teal-300" aria-hidden="true" />
               <h3 className="font-black text-white">{c.investigationSteps}</h3>
             </div>
-            <div
-              className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-9"
-              role="tablist"
-              aria-label={c.investigationSteps}
-            >
+            <div className="mt-4 grid gap-3" role="tablist" aria-label={c.investigationSteps}>
               {t.investigationSteps.steps.map((step, index) => (
                 <button
                   key={step.step}
@@ -929,8 +905,10 @@ export function ScienceF1Chapter1VisualNotesBlock({
                   onClick={() => setInvestigation(index)}
                   className={`min-h-14 rounded-xl border p-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${investigation === index ? "border-teal-300 bg-teal-300/15" : "border-white/10 bg-white/[0.04]"}`}
                 >
-                  <span className="font-mono text-xs font-black text-lime-300">0{step.step}</span>
-                  <span className="mt-1 block text-[10px] font-black leading-4 text-white">
+                  <span className="font-mono text-xs font-black text-lime-300">
+                    0{step.step} {index < 8 ? "↓" : ""}
+                  </span>
+                  <span className="mt-1 block text-sm font-black leading-5 text-white">
                     {step.heading}
                   </span>
                 </button>
@@ -981,15 +959,18 @@ export function ScienceF1Chapter1VisualNotesBlock({
                 </div>
               ))}
             </div>
-            <div className="mt-4 overflow-x-auto">
-              <table className="w-full min-w-[420px] border-separate border-spacing-y-1 text-left text-xs">
+            <PendulumFigure
+              data={pendulumResults}
+              lang={lang}
+              xLabel={c.length}
+              yLabel={c.average}
+            />
+            <div className="mt-4">
+              <table className="w-full border-separate border-spacing-y-1 text-left text-xs">
                 <thead>
                   <tr className="text-teal-200">
                     <th className="px-3 py-2">{c.length}</th>
                     <th className="px-3 py-2">{c.average}</th>
-                    <th className="px-3 py-2">
-                      <span className="sr-only">Trend</span>
-                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -997,18 +978,13 @@ export function ScienceF1Chapter1VisualNotesBlock({
                     <tr key={length} className="bg-white/5">
                       <td className="rounded-l-lg px-3 py-2 font-mono text-white">{length}</td>
                       <td className="px-3 py-2 font-mono font-black text-lime-200">{average}</td>
-                      <td className="rounded-r-lg px-3 py-2">
-                        <div
-                          className="h-2 rounded-full bg-amber-300/70"
-                          style={{ width: `${35 + index * 14}%` }}
-                        />
-                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           </Panel>
+          <Chapter1Completion section="investigation" content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
@@ -1042,6 +1018,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </div>
             </Panel>
           </div>
+          <Chapter1Completion section="values" content={t} lang={lang} />
         </div>
 
         <footer className="rounded-[1.75rem] border border-teal-300/20 bg-teal-300/[0.06] p-5 sm:p-7">

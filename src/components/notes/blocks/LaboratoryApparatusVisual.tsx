@@ -164,7 +164,13 @@ export function LaboratoryApparatusVisual({
   );
 }
 
-export function HeatingSupportVisual({ className = "" }: { className?: string }) {
+export function HeatingSupportVisual({
+  className = "",
+  lang = "en",
+}: {
+  className?: string;
+  lang?: "en" | "bm";
+}) {
   return (
     <svg
       viewBox="0 0 220 190"
@@ -172,7 +178,11 @@ export function HeatingSupportVisual({ className = "" }: { className?: string })
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="Beaker supported by wire gauze and a tripod stand above a heat source"
+      aria-label={
+        lang === "en"
+          ? "1 Beaker, 2 Wire gauze, 3 Tripod stand, 4 Heat source"
+          : "1 Bikar, 2 Kasa dawai, 3 Tungku kaki tiga, 4 Sumber haba"
+      }
       data-heating-support-visual
     >
       <g
@@ -194,6 +204,27 @@ export function HeatingSupportVisual({ className = "" }: { className?: string })
         <path d="M36 173h13m59 0h10m50 0h13" />
         <path d="M91 172h34l-5 9H96l-5-9Zm8 0v-25h18v25m-18-18h18" />
         <path d="M108 145c-8-9-5-18 0-25 5 7 8 16 0 25Z" className="text-amber-300" />
+        {[
+          [1, 28, 40, 76, 40],
+          [2, 192, 85, 160, 91],
+          [3, 192, 130, 164, 145],
+          [4, 28, 156, 98, 156],
+        ].map(([n, x, y, tx, ty]) => (
+          <g key={n}>
+            <path d={`M${x} ${y}L${tx} ${ty}`} strokeDasharray="3 3" />
+            <circle cx={x} cy={y} r="10" fill="#071b22" />
+            <text
+              x={x}
+              y={y + 4}
+              textAnchor="middle"
+              fill="currentColor"
+              stroke="none"
+              fontSize="12"
+            >
+              {n}
+            </text>
+          </g>
+        ))}
       </g>
     </svg>
   );
