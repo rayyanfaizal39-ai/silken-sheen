@@ -2,6 +2,12 @@ import { useState, type ReactNode } from "react";
 import type { Chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
 import type { Chapter1Section } from "@/content/form1/science/chapter-1/chapter1-activities";
 import { LaboratoryApparatusVisual } from "./LaboratoryApparatusVisual";
+import {
+  ConversionLadders,
+  InstrumentReadings,
+  DensityRelationships,
+  InvestigationReport,
+} from "./Chapter1FinalCleanup";
 
 type Lang = "en" | "bm";
 const box = "rounded-2xl border border-white/15 bg-slate-950/25 p-4 sm:p-5";
@@ -224,8 +230,8 @@ export function MeasurementConceptVisual({ index, lang }: { index: number; lang:
       label={
         en
           ? index === 0
-            ? "Accurate and precise"
-            : "Precise but inaccurate"
+            ? "Accurate and consistent"
+            : "Consistent but inaccurate"
           : index === 0
             ? "Jitu dan persis"
             : "Persis tetapi tidak jitu"
@@ -254,8 +260,8 @@ export function MeasurementConceptVisual({ index, lang }: { index: number; lang:
       <Text x={35} y={165}>
         {en
           ? index === 0
-            ? "Accurate + precise"
-            : "Precise, inaccurate"
+            ? "Accurate + consistent"
+            : "Consistent, inaccurate"
           : index === 0
             ? "Jitu + persis"
             : "Persis, tidak jitu"}
@@ -598,6 +604,7 @@ export function PendulumFigure({
         <p className="mt-1 text-center text-sm text-teal-100">{xLabel}</p>
       </Figure>
       <p className="border-l-2 border-teal-300 pl-4 text-sm leading-6">
+        <strong className="mb-1 block">{en ? "AcadeMY Tip" : "Tip AcadeMY"}</strong>
         {en
           ? "In the experiment, the time for 10 oscillations is measured to obtain a more reliable timing. The period of one oscillation can be obtained by dividing the time for 10 oscillations by 10."
           : "Dalam eksperimen, masa bagi 10 ayunan diukur untuk mendapatkan bacaan yang lebih boleh dipercayai. Tempoh satu ayunan boleh diperoleh dengan membahagikan masa 10 ayunan dengan 10."}
@@ -699,7 +706,6 @@ export function Chapter1Completion({
                     return (
                       <li key={id} data-classified-apparatus={id} className="text-sm">
                         <span className="font-semibold">{item.name}</span>
-                        <span className="block text-slate-300">{item.function}</span>
                       </li>
                     );
                   })}
@@ -730,12 +736,14 @@ export function Chapter1Completion({
               <br />m
             </span>
           </div>
-          <p className="mt-4 font-mono text-teal-200">kg → × 1000 → g</p>
-          <p className="mt-2 font-mono text-teal-200">g → ÷ 1000 → kg</p>
+          <div className="mt-4">
+            <ConversionLadders lang={lang} />
+          </div>
         </div>
       )}
       {section === "measurement" && (
         <>
+          <InstrumentReadings lang={lang} />
           <div className={box}>
             <ReadingVisual lang={lang} />
           </div>
@@ -747,6 +755,7 @@ export function Chapter1Completion({
       )}
       {section === "density" && (
         <>
+          <DensityRelationships lang={lang} />
           <p className="border-l-2 border-teal-300 pl-4 text-sm leading-6">
             {t.density.operationalDefinition}
           </p>
@@ -761,6 +770,19 @@ export function Chapter1Completion({
             ))}
           </ul>
         </>
+      )}
+      {section === "investigation" && <InvestigationReport lang={lang} />}
+      {section === "laboratory" && (
+        <section className={box} data-fire-prevention>
+          <h3 className="font-bold text-amber-100">
+            {en ? "Preventing fires in the laboratory" : "Mencegah kebakaran di makmal"}
+          </h3>
+          <p className="mt-2 text-sm leading-6">
+            {en
+              ? "Keep flammable substances away from flames and heat. Handle heat sources only as instructed by the teacher and follow laboratory instructions. Know the emergency procedure: leave the danger area, inform the teacher and follow the laboratory emergency instructions."
+              : "Jauhkan bahan mudah terbakar daripada api dan haba. Kendalikan sumber haba mengikut arahan guru dan patuhi arahan makmal. Ketahui prosedur kecemasan: tinggalkan kawasan berbahaya, maklumkan guru dan ikuti arahan kecemasan makmal."}
+          </p>
+        </section>
       )}
       {section === "values" && (
         <>

@@ -76,7 +76,8 @@ export const chapter1Terminology = {
   science: { en: "Science", bm: "Sains" },
   physicalQuantity: { en: "physical quantity", bm: "kuantiti fizik" },
   accuracy: { en: "Accuracy", bm: "Kejituan" },
-  precision: { en: "Precision", bm: "Kepersisan" },
+  // Retain the property key for compatibility; KPM DLP textbook §1.4 and DSKP p.42 say Consistency.
+  precision: { en: "Consistency", bm: "Kepersisan" },
   sensitivity: { en: "Sensitivity", bm: "Kepekaan" },
   higherAccuracyTool: { en: "Higher-accuracy tool", bm: "Alat pengukur yang lebih jitu" },
   volume: { en: "volume", bm: "isi padu" },

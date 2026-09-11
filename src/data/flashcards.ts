@@ -1461,8 +1461,8 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "What is Precision?",
-    back: "Consistency and closeness between multiple measurements of the same quantity.",
+    front: "What is Consistency?",
+    back: "The closeness among repeated readings of the same quantity.",
   },
   {
     id: "sci-f1-c1-dlp-f38",
@@ -1470,7 +1470,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "Give an example of high accuracy but low precision.",
+    front: "Give an example of high accuracy but low consistency.",
     back: "Measurements of 9.8, 10.2, 9.5 cm when true value is 10 cm. Close to true value but not consistent.",
   },
   {
@@ -1479,7 +1479,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "Give an example of high precision but low accuracy.",
+    front: "Give an example of high consistency but low accuracy.",
     back: "Measurements of 8.1, 8.1, 8.1 cm when true value is 10 cm. Very consistent but far from true value.",
   },
   {
