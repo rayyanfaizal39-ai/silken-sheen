@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { twoFieldResult } from "@/components/notes/blocks/TwoFieldCalculator";
@@ -52,15 +53,17 @@ function allProse(c: ScienceF2InteractiveContent): string {
   return JSON.stringify(c);
 }
 
-const findSection = (c: ScienceF2InteractiveContent, pick: (s: ScienceInteractiveSection) => boolean) =>
-  c.sections.find(pick);
+const findSection = (
+  c: ScienceF2InteractiveContent,
+  pick: (s: ScienceInteractiveSection) => boolean,
+) => c.sections.find(pick);
 
 // ------------------------------------------------------------ A. STRUCTURE
 
 describe("Chapter 8 — section architecture", () => {
   for (const [lang, content] of LANGS) {
-    it(`${lang} splits the chapter into 11 learner-sized sections`, () => {
-      expect(content.sections).toHaveLength(11);
+    it(`${lang} splits the chapter into 12 learner-sized sections`, () => {
+      expect(content.sections).toHaveLength(12);
       expect(content.chapter).toBe(8);
     });
 
@@ -93,7 +96,11 @@ describe("Chapter 8 — section architecture", () => {
 
 describe("Chapter 8 — all 12 SPs have a teaching home", () => {
   const SP: [string, RegExp, RegExp][] = [
-    ["8.1.1 six forces", /daya graviti[\s\S]*daya geseran/i, /gravitational force[\s\S]*frictional force/i],
+    [
+      "8.1.1 six forces",
+      /daya graviti[\s\S]*daya geseran/i,
+      /gravitational force[\s\S]*frictional force/i,
+    ],
     ["8.1.2 magnitude/direction/point", /titik aplikasi/i, /point of application/i],
     ["8.1.3 spring balance + newton", /neraca spring/i, /spring balance/i],
     ["8.1.4 action and reaction", /daya tindak balas/i, /reaction force/i],
@@ -161,6 +168,7 @@ describe("Chapter 8 — BM terminology follows the source", () => {
     ["penimbang spring", /penimbang spring/i],
     ["tukul kebawa", /tukul kebawa/i],
     ["bola Magdeburg", /bola magdeburg/i],
+    ["pembersih vakum", /pembersih vakum/i],
   ];
 
   const bmSurfaces: [string, unknown][] = [
@@ -202,13 +210,17 @@ describe("Chapter 8 — force diagram (SP 8.1.2 requires one)", () => {
       // Every example must name where the force acts, not just how big it is.
       for (const e of block.examples) {
         expect(e.magnitude, `${lang} ${e.id} magnitude`).toMatch(/\d/);
-        expect(e.applicationPoint.length, `${lang} ${e.id} point of application`).toBeGreaterThan(8);
+        expect(e.applicationPoint.length, `${lang} ${e.id} point of application`).toBeGreaterThan(
+          8,
+        );
       }
     });
 
     it(`${lang} force diagram renders an arrow for each example`, () => {
       const block = findSection(content, (s) => !!s.forceDiagram)!.forceDiagram!;
-      const markup = renderToStaticMarkup(<ForceDiagram block={block} lang={lang === "dlp" ? "en" : "bm"} />);
+      const markup = renderToStaticMarkup(
+        <ForceDiagram block={block} lang={lang === "dlp" ? "en" : "bm"} />,
+      );
       // The scene is now the supplied artwork and the arrow is drawn over it:
       // a marker arrowhead for direction, and a tail dot on the point of
       // application. (Previously an inline path and a rotate() transform.)
@@ -233,15 +245,18 @@ describe("Chapter 8 — force diagram (SP 8.1.2 requires one)", () => {
 
 describe("Chapter 8 — buoyancy", () => {
   for (const [lang, content] of LANGS) {
-    it(`${lang} teaches buoyant force as real weight minus apparent weight`, () => {
+    it(`${lang} teaches buoyant force as actual weight minus apparent weight`, () => {
       const block = findSection(content, (s) => !!s.buoyancySchematic)?.buoyancySchematic;
       expect(block, `${lang} has no buoyancy schematic`).toBeTruthy();
       const formula = block!.formula.toLowerCase();
       if (lang === "bm") {
         expect(formula).toMatch(/berat sebenar\s*[−-]\s*berat ketara/);
       } else {
-        expect(formula).toMatch(/real weight\s*[−-]\s*apparent weight/);
+        expect(formula).toMatch(/actual weight\s*[−-]\s*apparent weight/);
       }
+      // The formula also states it symbolically: F = W1 - W2.
+      expect(block!.formula).toMatch(/F\s*=\s*W₁\s*[−-]\s*W₂/);
+      expect(block!.workedExample, `${lang} has no buoyancy worked example`).toBeTruthy();
     });
 
     it(`${lang} states floating as equilibrium, not as an unbalanced upward force`, () => {
@@ -266,17 +281,24 @@ describe("Chapter 8 — buoyancy", () => {
 
   it("no live surface states unqualified 'floating means F > W'", () => {
     // The textbook's F > W applies only while an object is being pushed under.
-    const BAD = /terapung[^"]{0,80}F\s*>\s*W|floating[^"]{0,80}F\s*>\s*W/i;
+    // The comparison operator may have a word between it and "W" (e.g. "F > weight W",
+    // "F > berat W"), so the gap after `>` is not anchored to whitespace only.
+    const BAD =
+      /terapung[^"]{0,80}F\s*>[^"]{0,20}W\b|floating[^"]{0,80}F\s*>[^"]{0,20}W\b|float[^"]{0,80}F\s*>[^"]{0,20}W\b/i;
     for (const [name, deck] of DECKS) {
       expect(text(deck), `${name} still teaches floating as F > W`).not.toMatch(BAD);
     }
     for (const [lang, content] of LANGS) {
-      expect(allProse(content), `${lang} interactive still teaches floating as F > W`).not.toMatch(BAD);
+      expect(allProse(content), `${lang} interactive still teaches floating as F > W`).not.toMatch(
+        BAD,
+      );
     }
   });
 
   it("the buoyancy schematic draws equal arrows for floating and unequal for sinking", () => {
-    const block = scienceF2C8InteractiveBM.sections.find((s) => s.buoyancySchematic)!.buoyancySchematic!;
+    const block = scienceF2C8InteractiveBM.sections.find(
+      (s) => s.buoyancySchematic,
+    )!.buoyancySchematic!;
     const markup = renderToStaticMarkup(<BuoyancySchematic block={block} lang="bm" />);
     expect(markup).toMatch(/svg/);
     expect(markup).toContain(block.realWeight);
@@ -301,7 +323,9 @@ describe("Chapter 8 — levers", () => {
       if (lang === "bm") {
         expect(block.formula).toMatch(/Beban[\s\S]*Jarak beban[\s\S]*Daya[\s\S]*Jarak daya/i);
       } else {
-        expect(block.formula).toMatch(/Load[\s\S]*Distance of load[\s\S]*Effort[\s\S]*Distance of effort/i);
+        expect(block.formula).toMatch(
+          /Load[\s\S]*Distance of load[\s\S]*Effort[\s\S]*Distance of effort/i,
+        );
       }
     });
 
@@ -535,9 +559,15 @@ describe("Chapter 8 — calculator never shows Infinity or NaN", () => {
   const A = { label: "Surface area", unit: "m²" };
 
   it("computes the ordinary cases correctly", () => {
-    expect(twoFieldResult("50", "0.2", "multiply", A, "Moment", "N m", "en")).toBe("Moment = 10.00 N m");
-    expect(twoFieldResult("10", "0.01", "divide", A, "Pressure", "Pa", "en")).toBe("Pressure = 1000.00 Pa");
-    expect(twoFieldResult("20", "0.5", "divide", A, "Pressure", "Pa", "en")).toBe("Pressure = 40.00 Pa");
+    expect(twoFieldResult("50", "0.2", "multiply", A, "Moment", "N m", "en")).toBe(
+      "Moment = 10.00 N m",
+    );
+    expect(twoFieldResult("10", "0.01", "divide", A, "Pressure", "Pa", "en")).toBe(
+      "Pressure = 1000.00 Pa",
+    );
+    expect(twoFieldResult("20", "0.5", "divide", A, "Pressure", "Pa", "en")).toBe(
+      "Pressure = 40.00 Pa",
+    );
   });
 
   it("intercepts a zero surface area with a localized message", () => {
@@ -545,13 +575,25 @@ describe("Chapter 8 — calculator never shows Infinity or NaN", () => {
       "Surface area must be greater than 0 m².",
     );
     expect(
-      twoFieldResult("10", "0", "divide", { label: "Luas permukaan", unit: "m²" }, "Tekanan", "Pa", "bm"),
+      twoFieldResult(
+        "10",
+        "0",
+        "divide",
+        { label: "Luas permukaan", unit: "m²" },
+        "Tekanan",
+        "Pa",
+        "bm",
+      ),
     ).toBe("Luas permukaan mesti lebih besar daripada 0 m².");
   });
 
   it("still allows zero where multiplication makes it valid", () => {
-    expect(twoFieldResult("0", "0.2", "multiply", A, "Moment", "N m", "en")).toBe("Moment = 0.00 N m");
-    expect(twoFieldResult("50", "0", "multiply", A, "Moment", "N m", "en")).toBe("Moment = 0.00 N m");
+    expect(twoFieldResult("0", "0.2", "multiply", A, "Moment", "N m", "en")).toBe(
+      "Moment = 0.00 N m",
+    );
+    expect(twoFieldResult("50", "0", "multiply", A, "Moment", "N m", "en")).toBe(
+      "Moment = 0.00 N m",
+    );
   });
 
   it("never renders Infinity, -Infinity or NaN for any input combination", () => {
@@ -618,7 +660,8 @@ describe("Chapter 8 — quizzes, flashcards and mind map", () => {
   });
 
   it("no deck exposes textbook activity or experiment numbering", () => {
-    const LEAK = /aktiviti\s*8\.\d|activit(y|ies)\s*8\.\d|eksperimen\s*8\.\d|experiment\s*8\.\d|rajah\s*8\.\d|figure\s*8\.\d|jadual\s*8\.\d|table\s*8\.\d/i;
+    const LEAK =
+      /aktiviti\s*8\.\d|activit(y|ies)\s*8\.\d|eksperimen\s*8\.\d|experiment\s*8\.\d|rajah\s*8\.\d|figure\s*8\.\d|jadual\s*8\.\d|table\s*8\.\d/i;
     for (const [name, deck] of DECKS) {
       expect(text(deck), `${name} leaks numbering`).not.toMatch(LEAK);
     }
@@ -634,11 +677,14 @@ describe("Chapter 8 — interactive controls are real", () => {
   for (const [lang, content] of LANGS) {
     it(`${lang} every interactive figure offers more than one choice`, () => {
       for (const s of content.sections) {
-        if (s.forceDiagram) expect(s.forceDiagram.examples.length, `${lang} force diagram`).toBeGreaterThan(1);
+        if (s.forceDiagram)
+          expect(s.forceDiagram.examples.length, `${lang} force diagram`).toBeGreaterThan(1);
         if (s.leverClasses) expect(s.leverClasses.classes.length, `${lang} levers`).toBe(3);
-        if (s.momentDiagram) expect(s.momentDiagram.situations.length, `${lang} moments`).toBeGreaterThan(1);
+        if (s.momentDiagram)
+          expect(s.momentDiagram.situations.length, `${lang} moments`).toBeGreaterThan(1);
         if (s.gasParticles) expect(s.gasParticles.states.length, `${lang} gas`).toBeGreaterThan(1);
-        if (s.depthPressure) expect(s.depthPressure.levels.length, `${lang} depth`).toBeGreaterThan(1);
+        if (s.depthPressure)
+          expect(s.depthPressure.levels.length, `${lang} depth`).toBeGreaterThan(1);
         if (s.buoyancy) expect(s.buoyancy.materials.length, `${lang} buoyancy`).toBeGreaterThan(1);
         if (s.matcher) expect(s.matcher.pairs.length, `${lang} matcher`).toBeGreaterThan(1);
       }
@@ -646,10 +692,152 @@ describe("Chapter 8 — interactive controls are real", () => {
 
     it(`${lang} interactive figures carry an instruction line`, () => {
       for (const s of content.sections) {
-        for (const block of [s.forceDiagram, s.leverClasses, s.momentDiagram, s.gasParticles, s.depthPressure]) {
+        for (const block of [
+          s.forceDiagram,
+          s.leverClasses,
+          s.momentDiagram,
+          s.gasParticles,
+          s.depthPressure,
+        ]) {
           if (block) expect(block.instruction, `${lang} ${s.title} instruction`).toBeTruthy();
         }
       }
     });
   }
+});
+
+// ---------------------------------------------- N. FINAL REMEDIATION (2026)
+
+describe("Chapter 8 — Types of Forces teaches all six equally, magnetic is enrichment only", () => {
+  for (const [lang, content] of LANGS) {
+    it(`${lang} the six core forces contain no magnetic force`, () => {
+      const section = content.sections.find((s) =>
+        s.title.match(/types of forces|jenis-jenis daya/i),
+      )!;
+      const ids = (section.flipCards ?? []).map((c) => c.id);
+      expect(ids.sort()).toEqual(
+        ["buoyant", "elastic", "frictional", "gravitational", "normal", "weight"].sort(),
+      );
+    });
+  }
+
+  it("the magnetic-force enrichment card has been removed, not just relabelled", () => {
+    // Types of Forces teaches exactly the six core forces the artwork paints;
+    // a seventh, non-core example card was redundant once the six-panel scene
+    // and its six definitions were already complete, so it was dropped rather
+    // than kept as a caveat.
+    const source = readFileSync("src/components/notes/chapter8/Chapter8ContextFigure.tsx", "utf-8");
+    expect(source).not.toMatch(/magnetic force \(extra example\)/i);
+    expect(source).not.toMatch(/daya magnet \(contoh tambahan\)/i);
+    expect(source).not.toContain("data-ch8-enrichment");
+    expect(source).not.toContain("magnetic:");
+  });
+});
+
+describe("Chapter 8 — Measuring Force is its own section, and teaches mass vs weight", () => {
+  for (const [lang, content] of LANGS) {
+    it(`${lang} has a standalone Measuring Force section with 100 g = 1 N`, () => {
+      const section = content.sections.find((s) => /measuring force|mengukur daya/i.test(s.title));
+      expect(section, `${lang} missing Measuring Force section`).toBeTruthy();
+      expect(allProse(content)).toMatch(/100 g[\s\S]{0,20}1 N/);
+      expect(allProse(content)).toMatch(/1 kg[\s\S]{0,20}10 N/);
+    });
+
+    it(`${lang} distinguishes mass (kg) from weight (N)`, () => {
+      const t = allProse(content);
+      const massTerm = lang === "bm" ? /jisim/i : /\bmass\b/i;
+      const weightTerm = lang === "bm" ? /\bberat\b/i : /\bweight\b/i;
+      expect(t).toMatch(massTerm);
+      expect(t).toMatch(weightTerm);
+      expect(t, `${lang} missing kg unit for mass`).toMatch(/kilogram \(kg\)/i);
+    });
+  }
+});
+
+describe("Chapter 8 — Action–Reaction Force Pair keeps its required title", () => {
+  it("DLP/BM sections are titled exactly as required", () => {
+    const dlp = scienceF2C8InteractiveDLP.sections.find((s) => s.title.includes("Action"))!;
+    const bm = scienceF2C8InteractiveBM.sections.find((s) => s.title.includes("Tindakan"))!;
+    expect(dlp.title).toBe("Action–Reaction Force Pair");
+    expect(bm.title).toBe("Pasangan Daya Tindakan–Daya Tindak Balas");
+  });
+});
+
+describe("Chapter 8 — buoyant force formula is F = W1 - W2, with a worked example", () => {
+  for (const [lang, content] of LANGS) {
+    it(`${lang} states the formula symbolically and gives a question-first worked example`, () => {
+      const block = findSection(content, (s) => !!s.buoyancySchematic)!.buoyancySchematic!;
+      expect(block.formula).toMatch(/F\s*=\s*W₁\s*[−-]\s*W₂/);
+      expect(block.workedExample, `${lang} missing worked example`).toBeTruthy();
+      expect(block.workedExample!.given).toMatch(/8 N/);
+      expect(block.workedExample!.given).toMatch(/5 N/);
+      expect(block.workedExample!.answer).toMatch(/3 N/);
+    });
+
+    it(`${lang} never calls it "real weight" in the DLP stream (uses "actual weight")`, () => {
+      if (lang !== "dlp") return;
+      const block = findSection(content, (s) => !!s.buoyancySchematic)!.buoyancySchematic!;
+      expect(block.realWeightLabel.toLowerCase()).toContain("actual weight");
+      expect(block.formula.toLowerCase()).not.toMatch(/\breal weight\b/);
+    });
+  }
+});
+
+describe("Chapter 8 — Moment of Force shows clockwise/anticlockwise sense", () => {
+  for (const [lang, content] of LANGS) {
+    it(`${lang} the moment diagram declares clockwise and anticlockwise labels`, () => {
+      const block = findSection(content, (s) => !!s.momentDiagram)!.momentDiagram!;
+      expect(block.senseLabels, `${lang} missing senseLabels`).toBeTruthy();
+      expect(block.senseLabels!.clockwise.length).toBeGreaterThan(0);
+      expect(block.senseLabels!.anticlockwise.length).toBeGreaterThan(0);
+    });
+
+    it(`${lang} the moment section states its two textbook takeaways`, () => {
+      const section = findSection(content, (s) => !!s.momentDiagram)!;
+      expect(section.remember, `${lang} moment section missing remember`).toBeTruthy();
+      const doWorkTerm =
+        lang === "bm" ? /melakukan kerja dengan lebih mudah/i : /do work more easily/i;
+      const dependsTerm =
+        lang === "bm"
+          ? /bergantung pada daya[\s\S]{0,20}jarak tegak/i
+          : /depends on the force[\s\S]{0,30}perpendicular distance/i;
+      expect(section.remember).toMatch(doWorkTerm);
+      expect(section.remember).toMatch(dependsTerm);
+    });
+  }
+});
+
+describe("Chapter 8 — pressure investigation states an operational definition", () => {
+  for (const [lang, content] of LANGS) {
+    it(`${lang} operational definition relates pressure to indentation depth`, () => {
+      const block = findSection(content, (s) => !!s.miniExperiment)!.miniExperiment!;
+      expect(block.operationalDefinitionLabel, `${lang} missing label`).toBeTruthy();
+      const part = block.parts[0];
+      expect(part.operationalDefinition, `${lang} missing operational definition`).toBeTruthy();
+      const term = lang === "bm" ? /kedalaman lekuk/i : /depth of indentation/i;
+      expect(part.operationalDefinition).toMatch(term);
+    });
+  }
+});
+
+describe("Chapter 8 — Liquid Pressure applications include the diver", () => {
+  for (const [lang, content] of LANGS) {
+    it(`${lang} teaches dam, submarine and diver applications`, () => {
+      const block = findSection(content, (s) => !!s.depthPressure)!.depthPressure!;
+      const ids = (block.applications ?? []).map((a) => a.id).sort();
+      expect(ids).toEqual(["dam", "diver", "submarine"]);
+    });
+  }
+});
+
+describe("Chapter 8 — the flashcard/mindmap buoyancy 'common mistake' no longer teaches F > W", () => {
+  it("neither language states an unqualified F > W for a floating object", () => {
+    const BAD = /float[^"]{0,80}F\s*>[^"]{0,20}W\b|terapung[^"]{0,80}F\s*>[^"]{0,20}W\b/i;
+    expect(text(scienceF2C8FlashcardsDLP)).not.toMatch(BAD);
+    expect(text(scienceF2C8FlashcardsBM)).not.toMatch(BAD);
+    expect(text(scienceF2C8MindMapDLP)).not.toMatch(BAD);
+    expect(text(scienceF2C8MindMapBM)).not.toMatch(BAD);
+    expect(text(scienceF2C8FlashcardsDLP)).toMatch(/F\s*=\s*W/);
+    expect(text(scienceF2C8FlashcardsBM)).toMatch(/F\s*=\s*W/);
+  });
 });

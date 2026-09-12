@@ -146,7 +146,7 @@ export const scienceF2C8MindMapBM: MindNode = {
           label: "Ketumpatan dan Kesan Keapungan",
           children: [
             { id: "c2-4-1", label: "Lebih tumpat daripada cecair → tenggelam (daya keapungan F < berat W)" },
-            { id: "c2-4-2", label: "Kurang tumpat daripada cecair → terapung (daya keapungan F > berat W)" },
+            { id: "c2-4-2", label: "Kurang tumpat daripada cecair → terapung (semasa pegun, daya apungan F = berat W)" },
             {
               id: "c2-4-3",
               label: "Jadual Ketumpatan (g cm⁻³)",
@@ -219,7 +219,7 @@ export const scienceF2C8MindMapBM: MindNode = {
           children: [
             { id: "c2-9-1", label: "Tekanan oleh atmosfera ke atas permukaan Bumi dan objek di atasnya" },
             { id: "c2-9-2", label: "Berkurang apabila altitud meningkat — kurang udara di atas, jadi berat lajur udara lebih kecil" },
-            { id: "c2-9-3", label: "Contoh aplikasi: pam sedut (plunger), hemisfera Magdeburg, penyedut minuman, sifon, picagari, pembersih vakum" },
+            { id: "c2-9-3", label: "Contoh aplikasi: pam sedut sinki, hemisfera Magdeburg, penyedut minuman, sifon, picagari, penyedut hampagas" },
             { id: "c2-9-4", label: "Tin susu pekat 2 lubang — susu mengalir lancar kerana tekanan dalam & luar sama" },
           ],
         },

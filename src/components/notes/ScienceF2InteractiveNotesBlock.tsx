@@ -86,6 +86,8 @@ import { MagnetFieldDiagram } from "@/components/notes/blocks/MagnetFieldDiagram
 import { ForceDiagram } from "@/components/notes/blocks/ForceDiagram";
 import { BuoyancySchematic } from "@/components/notes/blocks/BuoyancySchematic";
 import { LeverClasses } from "@/components/notes/blocks/LeverClasses";
+import { LeverPrincipleDiagram } from "@/components/notes/blocks/LeverPrincipleDiagram";
+import { SpringBalanceDiagram } from "@/components/notes/blocks/SpringBalanceDiagram";
 import { MomentDiagram } from "@/components/notes/blocks/MomentDiagram";
 import { GasParticles } from "@/components/notes/blocks/GasParticles";
 import { DepthPressure } from "@/components/notes/blocks/DepthPressure";
@@ -112,8 +114,22 @@ import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceS
 import {
   Chapter8ContextFigure,
   CHAPTER8_HOTSPOT_GEOMETRY,
-  CHAPTER8_SECTION_FIGURES,
+  chapter8FigureForSection,
+  type Chapter8FigureKind,
 } from "./chapter8/Chapter8ContextFigure";
+
+/**
+ * First-state defaults for the Chapter 8 figures that used to open on an empty
+ * "choose a scene" placeholder. Each id is the first hotspot painted on that
+ * figure's own artwork (see CHAPTER8_HOTSPOT_GEOMETRY), so the panel a learner
+ * sees pre-selected is always one the picture actually shows.
+ */
+const CHAPTER8_DEFAULT_SELECTION: Partial<Record<Chapter8FigureKind, string>> = {
+  types: "gravitational",
+  effects: "moves",
+  "action-reaction": "book",
+  buoyancy: "boat",
+};
 
 type Lang = "en" | "bm";
 
@@ -286,20 +302,32 @@ export function ScienceF2InteractiveNotesBlock({
   function renderSection(
     section: ScienceF2InteractiveContent["sections"][number],
     isLast: boolean,
-    sectionIndex: number,
   ) {
     const isChapter8 = content.chapter === 8;
-    const chapter8Figure = isChapter8 ? CHAPTER8_SECTION_FIGURES[sectionIndex] : undefined;
+    const chapter8Figure = isChapter8 ? chapter8FigureForSection(section) : undefined;
     const depictedIds = chapter8Figure
       ? new Set(CHAPTER8_HOTSPOT_GEOMETRY[chapter8Figure].map((point) => point.id))
       : new Set<string>();
+
+    // Every Chapter 8 figure — including "types" now that its approved artwork
+    // depicts all six core forces — is the SOLE teaching surface for whatever
+    // flip cards it depicts: one interactive image, one set of controls, one
+    // definition per selection. A flip card only falls through to the plain
+    // "other concepts" list below if the figure's own artwork does not depict
+    // it (nothing currently falls through, since every figure's hotspot set
+    // covers every one of its section's flip cards).
     const unpicturedFlipCards = isChapter8
       ? (section.flipCards ?? []).filter((item) => !depictedIds.has(item.id))
       : [];
     return (
       <div className="flex min-w-0 flex-col gap-5">
         {chapter8Figure && (
-          <Chapter8ContextFigure kind={chapter8Figure} section={section} lang={lang} />
+          <Chapter8ContextFigure
+            kind={chapter8Figure}
+            section={section}
+            lang={lang}
+            initialSelection={CHAPTER8_DEFAULT_SELECTION[chapter8Figure] ?? null}
+          />
         )}
         {section.standardTitle && (
           // Which numbered part of the chapter this is. The shell prints only
@@ -515,7 +543,14 @@ export function ScienceF2InteractiveNotesBlock({
             <LightningFormation block={section.lightningFormation} lang={lang} />
           </div>
         )}
-        {section.accordions && (
+        {/* Action-Reaction's three situations (book/floating/trolleys) are
+            already taught by its own three-panel interactive image above
+            (section.actionReactionPairs); repeating them again as accordion
+            text below would teach the same three examples twice. Every other
+            section's accordions (e.g. Atmospheric Pressure's six
+            applications) have no such interactive duplicate and still
+            render normally. */}
+        {section.accordions && !section.actionReactionPairs && (
           <Accordion type="single" collapsible>
             {section.accordions.map((item, i) => (
               <AccordionItem key={item.title} value={`${section.number}-${i}`}>
@@ -830,6 +865,60 @@ export function ScienceF2InteractiveNotesBlock({
             <LeverClasses block={section.leverClasses} lang={lang} />
           </div>
         )}
+        {/* The contextual photograph above teaches the three lever classes,
+            but never states the numerical relationship between them — so
+            without this block, chapter 8 has the formula and worked example
+            in its own data but nothing on screen ever shows either one
+            before the numerical Check Yourself question. This is the one
+            piece of `section.leverClasses` the photograph does not already
+            say, so it renders on its own rather than pulling in the whole
+            (redundant) LeverClasses component. */}
+        {isChapter8 && section.leverClasses && (
+          <div className="border-t border-border/70 pt-5">
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {lang === "bm" ? "Prinsip Momen bagi Tuas" : "Principle of Moments for Levers"}
+            </h3>
+            <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
+              <p className="text-center text-[13px] font-semibold leading-relaxed text-foreground">
+                {section.leverClasses.formula}
+              </p>
+              <p className="font-display mt-1.5 text-center text-[13px] font-bold text-primary">
+                L × dL = E × dE
+              </p>
+              <div className="mt-3">
+                <LeverPrincipleDiagram
+                  loadLabel={section.leverClasses.loadLabel}
+                  effortLabel={section.leverClasses.effortLabel}
+                  fulcrumLabel={section.leverClasses.fulcrumLabel}
+                  loadDistanceLabel={
+                    lang === "bm" ? "jarak beban dari fulkrum" : "distance of load from fulcrum"
+                  }
+                  effortDistanceLabel={
+                    lang === "bm" ? "jarak daya dari fulkrum" : "distance of effort from fulcrum"
+                  }
+                />
+              </div>
+              {/* question first — the worked example is never shown solution-first */}
+              <div className="mt-3 rounded-xl border border-border bg-secondary/20 px-3 py-2.5">
+                <p className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
+                  {lang === "bm" ? "Soalan" : "Question"}
+                </p>
+                <p className="mt-1 text-[12.5px] leading-relaxed text-foreground">
+                  {section.leverClasses.workedExample.given}
+                </p>
+                <p className="mt-2 text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
+                  {lang === "bm" ? "Formula dan Penyelesaian" : "Formula and Solution"}
+                </p>
+                <p className="mt-1 font-display text-[12px] leading-relaxed text-muted-foreground">
+                  {section.leverClasses.workedExample.working}
+                </p>
+                <p className="mt-1 font-display text-[13px] font-bold text-emerald-300">
+                  {section.leverClasses.workedExample.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
         {section.momentDiagram && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -999,6 +1088,11 @@ export function ScienceF2InteractiveNotesBlock({
               {section.buoyancy.instruction}
             </p>
             <BuoyancySimulator materials={section.buoyancy.materials} lang={lang} />
+          </div>
+        )}
+        {isChapter8 && /measuring force|mengukur daya/i.test(section.title) && (
+          <div className="border-t border-border/70 pt-5">
+            <SpringBalanceDiagram lang={lang} />
           </div>
         )}
         {isChapter8 && section.cards && (
@@ -1548,7 +1642,7 @@ export function ScienceF2InteractiveNotesBlock({
     label: section.title,
     title: section.title,
     description: section.intro,
-    content: renderSection(section, index === content.sections.length - 1, index),
+    content: renderSection(section, index === content.sections.length - 1),
   }));
 
   return (
