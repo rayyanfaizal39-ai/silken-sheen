@@ -939,6 +939,39 @@ export type MiniExperimentPart = {
   method: string[];
   observation: string;
   conclusion: string;
+  /**
+   * The manipulated-variable values actually tested, in order, e.g.
+   * ["0.5 A", "1.0 A", "1.5 A", "2.0 A", "2.5 A"] — lets the learner step
+   * through them and see a qualitative (rank-only, never a fabricated count)
+   * response indicator move. Omit for a part with no interactive stepper.
+   */
+  values?: string[];
+};
+
+/**
+ * The approved apparatus photograph an investigation is carried out on, and the
+ * words its generated response layer needs.
+ *
+ * The picture is not an illustration beside the investigation — it IS the
+ * investigation's apparatus, and it responds: selecting a piece of apparatus
+ * highlights the real thing, and moving the manipulated variable redraws the
+ * coil, the field cue and the pins clinging to the iron core. The apparatus
+ * names and roles are NOT repeated here: they are read from the section's own
+ * `apparatusDiagram.parts`, so the eight labels exist once per language.
+ */
+export type ExperimentApparatusImage = {
+  /** Public WebP path, from `SCIENCE_F2_CH7_IMAGES`. */
+  src: string;
+  /** Meaningful alt text, written per language. */
+  alt: string;
+  /**
+   * One qualitative line per tested value, weakest response to strongest, read
+   * out as the manipulated variable is stepped. Rank only — the source gives no
+   * pin dataset, so these must never state a measured number of pins.
+   */
+  responseLabels: string[];
+  /** Accessible name for the coil-turn readout drawn on the artwork, e.g. "Coil turns". */
+  turnsLabel: string;
 };
 
 export type MiniExperimentBlock = {
@@ -946,6 +979,13 @@ export type MiniExperimentBlock = {
   /** The shared aim across every part. */
   aim: string;
   instruction?: string;
+  /**
+   * The approved apparatus photograph. When present it becomes the
+   * investigation's primary apparatus visual, sitting between the variables and
+   * the manipulated-variable control, and the section's separate apparatus
+   * schematic is no longer drawn — one concept, one primary visual.
+   */
+  apparatusImage?: ExperimentApparatusImage;
   aimLabel: string;
   hypothesisLabel: string;
   manipulatedLabel: string;
@@ -1035,6 +1075,336 @@ export type ConceptContrastBlock = {
   right: ConceptContrastSide;
   /** The takeaway shown under both columns. */
   keyPoint: string;
+};
+
+/**
+ * One charge pairing in the attraction/repulsion interaction — Chapter 7's
+ * electrostatic force rule taught as a picture rather than only the sentence
+ * "like charges repel, unlike charges attract".
+ */
+export type PolarityPair = {
+  id: string;
+  /** e.g. "+ and −". */
+  label: string;
+  leftCharge: "+" | "-";
+  rightCharge: "+" | "-";
+  outcome: "attract" | "repel";
+  note: string;
+};
+
+export type PolarityInteractionBlock = {
+  title: string;
+  instruction?: string;
+  /** Exactly the three cases: +/−, +/+, −/−. */
+  pairs: PolarityPair[];
+  attractLabel: string;
+  repelLabel: string;
+};
+
+/**
+ * The approved, text-free photograph a Chapter 7 concept is taught on.
+ *
+ * The artwork is language-neutral, so BM and DLP name the SAME file here and
+ * every word a learner reads — label, caption, alt text, explanation — comes
+ * from the block's own stages in the reader's language. The overlay geometry
+ * that makes the picture respond is not a field at all: it lives in
+ * `ch7-approved-figure-geometry.ts`, keyed by the same stage ids, so the two
+ * languages cannot drift into different hotspots.
+ */
+export type ApprovedFigureImage = {
+  /** Public WebP path, from `SCIENCE_F2_CH7_IMAGES`. */
+  src: string;
+  /** Meaningful alt text, written per language. */
+  alt: string;
+  /** Rendered footprint. */
+  size?: LearningImageSize;
+  /** Intrinsic aspect ratio — must match the artwork so percentage geometry stays aligned. */
+  aspect: string;
+  caption?: string;
+  legendLabel?: string;
+};
+
+/** One state of the electroscope's gold leaf. */
+export type ElectroscopeStage = {
+  id: "uncharged" | "charged" | "diverged";
+  label: string;
+  note: string;
+  /** Short phrase floated on the artwork beside the highlighted panel. Falls back to `label`. */
+  spotlightCaption?: string;
+};
+
+export type ElectroscopeBlock = {
+  title: string;
+  instruction?: string;
+  /**
+   * The approved three-panel photograph. When present it is the PRIMARY (and
+   * only) visual: the block's own schematic is not drawn, so a learner never
+   * meets the same three stages twice in two different drawings. Omit for a
+   * language or chapter with no approved artwork and the schematic still
+   * teaches all three stages.
+   */
+  image?: ApprovedFigureImage;
+  /** Neutral prompt shown before a stage is picked. Only used with `image`. */
+  prompt?: string;
+  stages: ElectroscopeStage[];
+};
+
+/** One stage in the formation of lightning. */
+export type LightningStage = {
+  id: "friction" | "separation" | "induced" | "discharge";
+  label: string;
+  /** One sentence, textbook-faithful: what happens at this stage and why. */
+  note: string;
+  icon?: string;
+  /** Short phrase floated on the artwork beside the highlighted region. Falls back to `label`. */
+  spotlightCaption?: string;
+};
+
+/**
+ * How lightning forms, taught on the approved scene as four ordered stages.
+ *
+ * Deliberately about FORMATION only. The lightning conductor, refuelling
+ * safety, the Faraday cage and dry-weather clothing are separate applications
+ * of electrostatic charge and keep their own teaching elsewhere in the section
+ * — this block must never be made to stand in for them.
+ */
+export type LightningFormationBlock = {
+  title: string;
+  instruction?: string;
+  prompt?: string;
+  image: ApprovedFigureImage;
+  /** The four stages, in the order lightning actually forms. */
+  stages: LightningStage[];
+  /** Heading over the summary the four stages add up to. */
+  summaryLabel: string;
+  /** The textbook's own account, one short line per stage. */
+  summary: string[];
+};
+
+/** One of the two opposite directions drawn on the current-direction figure. */
+export type CurrentDirectionMode = {
+  id: "electron" | "conventional";
+  label: string;
+  note: string;
+  /** Compact one-line summary shown inside that mode's own row, e.g. "Negative → Positive". */
+  directionSummary: string;
+};
+
+/**
+ * Electron flow vs conventional current, drawn as two separate, always-visible
+ * horizontal lanes rather than two arrows sharing one conductor — the layout
+ * that made the two directions hard to tell apart. Selecting a mode brightens
+ * its own lane and dims (never hides) the other, so the contrast stays on
+ * screen regardless of which is selected.
+ */
+export type CurrentDirectionBlock = {
+  title: string;
+  instruction?: string;
+  modes: CurrentDirectionMode[];
+  /** "These two directions are opposite." */
+  keyPoint: string;
+  /** Terminal word shown under the − symbol, e.g. "Negative terminal" / "Terminal negatif". */
+  negativeTerminalLabel: string;
+  /** Terminal word shown under the + symbol, e.g. "Positive terminal" / "Terminal positif". */
+  positiveTerminalLabel: string;
+  /** Heading over the "opposite directions" contrast strip, e.g. "OPPOSITE DIRECTIONS" / "ARAH BERTENTANGAN". */
+  contrastLabel: string;
+};
+
+/** One row of Table 7.1 — a component's standard circuit symbol and purpose. */
+export type CircuitSymbol = {
+  id: string;
+  name: string;
+  purpose: string;
+};
+
+export type CircuitSymbolsBlock = {
+  title: string;
+  instruction?: string;
+  symbols: CircuitSymbol[];
+};
+
+/** The Ohm's Law triangle — tap V, I or R to see its rearrangement. */
+export type OhmsTriangleBlock = {
+  title: string;
+  instruction?: string;
+  vFormula: string;
+  iFormula: string;
+  rFormula: string;
+};
+
+/**
+ * A small two-panel comparison: dry conditions let electrostatic charge
+ * accumulate, humid air helps it dissipate. Kept separate from the daily-life
+ * multi-panel photograph because that image never depicted this concept at
+ * all — a small deterministic diagram closes the gap without a new asset.
+ */
+export type DryHumidComparisonBlock = {
+  title: string;
+  dryLabel: string;
+  humidLabel: string;
+  dryCaption: string;
+  humidCaption: string;
+  /** The one-sentence core concept, shown under both panels. */
+  note: string;
+};
+
+/**
+ * One Given → Find → Formula → Substitute → Answer worked example. Generic so
+ * any chapter's numeric problems can use the same compact teaching shape
+ * instead of hiding the working inside a check-yourself hint.
+ *
+ * `steps` + `circuit` are optional: when both are set, the block additionally
+ * renders a small deterministic circuit diagram (see `CircuitWorkedDiagram`)
+ * and a step selector, so tapping "Step 1/2/3" highlights the part of the
+ * circuit that step's formula is about, alongside that step's own
+ * formula/substitute/answer. The flat `find`/`formula`/`substitute`/`answer`
+ * fields above stay authored regardless — they are what every other chapter's
+ * guided calculation still renders, and what already-passing tests assert on.
+ */
+export type GuidedCalculationStep = {
+  /** e.g. "Step 1". */
+  label: string;
+  formula: string;
+  substitute: string;
+  answer: string;
+  /** Which parts of the linked `circuit` diagram light up while this step is active. */
+  highlight: CircuitDiagramPart[];
+};
+
+/**
+ * A part of a `CircuitWorkedDiagram` a guided-calculation step can highlight.
+ * `"r1"`/`"r2"`/`"r3"` etc. address a resistor (and, on the parallel diagram,
+ * its whole branch) by its `CircuitResistorSpec.id`; `"source"`/`"loop"`
+ * address the cell and the main wire.
+ */
+export type CircuitDiagramPart = "source" | "loop" | `r${number}`;
+
+/** One resistor drawn on a `CircuitWorkedDiagram` — its id is also its highlight key. */
+export type CircuitResistorSpec = {
+  /** e.g. "r1" — matches the `CircuitDiagramPart` a step highlights it with. */
+  id: `r${number}`;
+  /** e.g. "R₁ = 2 Ω". */
+  label: string;
+};
+
+/**
+ * The small series/parallel circuit a stepped guided calculation (or a
+ * self-practice figure) is illustrated on. Two resistors draws the Ohm's-Law
+ * worked-example shape; three draws the Formative-Practice Figure 1 shape —
+ * the diagram itself does not care how many, as long as every id is unique.
+ */
+export type CircuitWorkedExampleSpec = {
+  kind: "series" | "parallel";
+  supplyLabel: string;
+  resistors: CircuitResistorSpec[];
+  /** Accessible name for the step selector, e.g. "Step" / "Langkah". */
+  stepLabel: string;
+  /**
+   * Draw an ammeter in the main loop/trunk and a voltmeter branch across every
+   * resistor — the Figure 7.12/7.13 "how is it actually wired" shape. Defaults
+   * to false, for a plainer source-and-resistors figure (e.g. a self-practice
+   * question that only asks for effective resistance, current and voltage,
+   * not meter placement).
+   */
+  showMeters?: boolean;
+  /**
+   * Rendered footprint. "large" is for a diagram that IS the section's own
+   * visual focus (a standalone concept teaching block, or a worked example) —
+   * bigger, higher-contrast, thicker strokes. Defaults to the original
+   * compact footprint used inside a guided calculation.
+   */
+  size?: "compact" | "large";
+};
+
+export type GuidedCalculationBlock = {
+  title: string;
+  givenLabel: string;
+  findLabel: string;
+  formulaLabel: string;
+  substituteLabel: string;
+  answerLabel: string;
+  given: string[];
+  find: string;
+  formula: string;
+  substitute: string;
+  answer: string;
+  /** When set alongside `circuit`, a step selector replaces the flat formula/substitute/answer rows. */
+  steps?: GuidedCalculationStep[];
+  circuit?: CircuitWorkedExampleSpec;
+};
+
+/**
+ * One row of the "Remember the Units" memory card — a physical quantity's
+ * own symbol, its unit's name, and the unit's own symbol, kept as three
+ * separate fields so a chapter can never collapse "R = Ω" (the quantity is
+ * not its unit; see `UnitsMemoryBlock`'s own doc).
+ */
+export type UnitsMemoryItem = {
+  /** The quantity's symbol, e.g. "I". */
+  quantitySymbol: string;
+  /** The unit's name, e.g. "ampere". */
+  unitName: string;
+  /** The unit's own symbol, e.g. "A". */
+  unitSymbol: string;
+};
+
+/**
+ * A compact memory aid pinning down current/voltage/resistance against their
+ * units — added because "R = Ω" is a common but wrong shorthand a learner
+ * picks up from compressed notes: R is the quantity (resistance), Ω is only
+ * the unit it is measured in. Each item keeps the three facts separate so the
+ * card can never be misread as equating a quantity with its unit.
+ */
+export type UnitsMemoryBlock = {
+  title: string;
+  items: UnitsMemoryItem[];
+};
+
+/**
+ * One self-practice figure — a circuit a learner must work out themselves,
+ * with progressive hints before the worked solution is revealed.
+ *
+ * The circuit (`circuit`) is drawn immediately and unconditionally: a learner
+ * needs to see the apparatus to answer the question at all. What stays
+ * hidden until requested is the WORKING — the hints, then the full
+ * Given/steps/answer breakdown in `solution`, reusing the exact same stepped
+ * shape (and the same `circuit`) a worked example uses, so revealing the
+ * solution highlights the same figure rather than switching to a new one.
+ */
+export type SelfPracticeFigure = {
+  /** e.g. "Figure 1" / "Rajah 1". */
+  figureLabel: string;
+  /**
+   * The QUESTION itself, in full sentences, rendered before the diagram —
+   * e.g. "Two resistors, R₁ = 2 Ω and R₂ = 2 Ω, are connected in series to a
+   * 6 V supply." Required so a worked example or self-practice figure never
+   * opens on "Given" without first stating what is actually being asked.
+   */
+  questionIntro?: string;
+  circuit: CircuitWorkedExampleSpec;
+  questionsLabel?: string;
+  /** e.g. ["a. the effective resistance", "b. the current in the circuit", ...]. */
+  questions: string[];
+  /**
+   * A worked example's own "identify the circuit first" gate — absent for a
+   * self-practice figure, which uses `hints` instead.
+   */
+  identifyCircuit?: CircuitTypeGate;
+  /** Accessible group label for the hint buttons, e.g. "Hint" / "Petunjuk". */
+  hintsLabel?: string;
+  /** Exactly as many hints as the figure needs — revealed one at a time, in order. Omit for a worked example. */
+  hints?: string[];
+  showSolutionLabel: string;
+  /** The full worked solution, sharing `circuit`'s own geometry via its steps' highlights. */
+  solution: GuidedCalculationBlock;
+};
+
+export type SelfPracticeBlock = {
+  /** e.g. "Try It Yourself" / "Cuba Sendiri". */
+  title: string;
+  instruction?: string;
+  figures: SelfPracticeFigure[];
 };
 
 /** A clickable label on the capillary-action diagram. */
@@ -1295,8 +1665,9 @@ export type CircuitKind = {
   currentRule: string;
   voltageRule: string;
   resistanceRule: string;
-  advantage: string;
-  disadvantage: string;
+  /** Point-form, not one flowing sentence — the textbook itself lists these. */
+  advantages: string[];
+  disadvantages: string[];
   note: string;
 };
 
@@ -1310,6 +1681,107 @@ export type SeriesParallelBlock = {
   disadvantageLabel: string;
   kinds: CircuitKind[];
   hint: string;
+  /**
+   * Small side-by-side diagrams for the two circuits, so the
+   * Current/Voltage/Resistance property selector highlights something real on
+   * BOTH pictures at once rather than only changing the caption underneath
+   * them. Optional so a plain text-only comparison still renders without it.
+   */
+  circuits?: { series: CircuitWorkedExampleSpec; parallel: CircuitWorkedExampleSpec };
+  /**
+   * The bottom explanation, one sentence per selected property — replaces a
+   * single static caption that used to read the same regardless of what was
+   * selected. Each sentence contrasts series against parallel for exactly
+   * that property.
+   */
+  propertyExplanations?: { current: string; voltage: string; resistance: string };
+};
+
+/** One compact "quantity — formula — teaching point" card under a circuit's own diagram. */
+export type CircuitRelationshipCard = {
+  /** e.g. "Current" / "Arus". */
+  label: string;
+  formula: string;
+  teachingPoint: string;
+};
+
+/**
+ * A standalone teaching block for ONE circuit type (series or parallel) —
+ * large diagram first, then its I/V/R relationships as three compact cards,
+ * then the already-correct advantages/disadvantages kept secondary. This is
+ * deliberately separate from `SeriesParallelBlock` (the later side-by-side
+ * comparison): a learner meets series (or parallel) as its own concept before
+ * ever being asked to compare the two.
+ */
+export type CircuitConceptSection = {
+  /** Short, strong visual tag, e.g. "ONE PATH" / "SATU LALUAN". */
+  tag: string;
+  title: string;
+  circuit: CircuitWorkedExampleSpec;
+  explanation: string;
+  relationships: CircuitRelationshipCard[];
+  advantagesLabel: string;
+  disadvantagesLabel: string;
+  advantages: string[];
+  disadvantages: string[];
+};
+
+/** One tappable option in the recognition challenge — points at one of the two diagrams. */
+export type RecognitionOption = {
+  id: "a" | "b";
+  label: string;
+  /** Whether this diagram (a or b) is actually the series circuit. */
+  isSeries: boolean;
+};
+
+/**
+ * A short "which circuit is it?" checkpoint — two unlabelled diagrams, a
+ * question for each, immediate feedback. Deliberately tiny (two short
+ * questions, not a graded quiz page): its only job is to make a learner
+ * identify series vs parallel BEFORE they ever reach a formula, since picking
+ * the right relationship depends entirely on getting this right first.
+ */
+export type RecognitionChallengeBlock = {
+  title: string;
+  instruction?: string;
+  diagramA: CircuitWorkedExampleSpec;
+  diagramB: CircuitWorkedExampleSpec;
+  options: RecognitionOption[];
+  seriesPrompt: string;
+  parallelPrompt: string;
+  seriesCorrectFeedback: string;
+  parallelCorrectFeedback: string;
+  incorrectFeedback: string;
+  /** e.g. "Identify the circuit before choosing a formula." */
+  reminderNote: string;
+};
+
+/** The short divider heading that opens the Numerical Problems part of 7.2. */
+export type NumericalProblemsIntroBlock = {
+  title: string;
+  instruction: string;
+  unitsMemory: UnitsMemoryBlock;
+};
+
+/** One option in a worked example's "identify the circuit first" gate. */
+export type CircuitTypeOption = {
+  label: string;
+  isCorrect: boolean;
+};
+
+/**
+ * The optional "what type of circuit is this?" gate a worked example (not a
+ * self-practice figure) shows before its solution — answering it, or tapping
+ * past it, both lead to the same `startSolutionLabel` control, because the
+ * rule is QUESTION → DIAGRAM → THINK → SOLUTION, never solution-first, but a
+ * learner must never be trapped by a forced quiz either.
+ */
+export type CircuitTypeGate = {
+  prompt: string;
+  options: CircuitTypeOption[];
+  correctFeedback: string;
+  incorrectFeedback: string;
+  startSolutionLabel: string;
 };
 
 /** One selectable feature of the magnet-field schematic. */
@@ -1362,6 +1834,11 @@ export type ConductorPattern = {
    * and pole letters are not in the picture: they are drawn over it.
    */
   image: { src: string; alt: string; caption?: string };
+  /**
+   * Short "what should you notice?" recap points for this conductor —
+   * a plain-language summary read after the interaction, not new science.
+   */
+  notice?: string[];
 };
 
 export type CurrentFieldPatternsBlock = {
@@ -1375,6 +1852,8 @@ export type CurrentFieldPatternsBlock = {
   gripRule: { title: string; steps: string[] };
   conductors: ConductorPattern[];
   hint: string;
+  /** Heading over each conductor's `notice` list, e.g. "What should you notice?". */
+  noticeLabel?: string;
 };
 
 /** A clickable part of the electromagnet experiment apparatus. */
@@ -1849,9 +2328,26 @@ export type ScienceInteractiveSection = {
   strengthComparison?: StrengthComparisonBlock;
   circuitMeterDiagram?: CircuitMeterDiagramBlock;
   seriesParallel?: SeriesParallelBlock;
+  circuitConceptSeries?: CircuitConceptSection;
+  circuitConceptParallel?: CircuitConceptSection;
+  circuitRecognition?: RecognitionChallengeBlock;
+  numericalProblemsIntro?: NumericalProblemsIntroBlock;
+  /** Guided "question → diagram → identify circuit → solution" worked examples, rendered in order. */
+  workedExamples?: SelfPracticeFigure[];
   magnetFieldDiagram?: MagnetFieldDiagramBlock;
   currentFieldPatterns?: CurrentFieldPatternsBlock;
   apparatusDiagram?: ApparatusDiagramBlock;
+  polarityInteraction?: PolarityInteractionBlock;
+  electroscope?: ElectroscopeBlock;
+  lightningFormation?: LightningFormationBlock;
+  currentDirection?: CurrentDirectionBlock;
+  circuitSymbols?: CircuitSymbolsBlock;
+  ohmsTriangle?: OhmsTriangleBlock;
+  /** One or more Given → Find → Formula → Substitute → Answer worked examples. */
+  guidedCalculations?: GuidedCalculationBlock[];
+  unitsMemory?: UnitsMemoryBlock;
+  selfPractice?: SelfPracticeBlock;
+  dryHumidComparison?: DryHumidComparisonBlock;
   forceDiagram?: ForceDiagramBlock;
   buoyancySchematic?: BuoyancySchematicBlock;
   leverClasses?: LeverClassesBlock;

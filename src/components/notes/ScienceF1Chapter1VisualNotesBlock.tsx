@@ -1,7 +1,6 @@
 import { useState, type ReactNode } from "react";
 import {
   AlertTriangle,
-  Beaker,
   BookOpenCheck,
   BriefcaseBusiness,
   CheckCircle2,
@@ -21,14 +20,31 @@ import {
   Timer,
 } from "lucide-react";
 import type { Chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
+import {
+  pendulumReadings,
+  pendulumGraphData,
+} from "@/content/form1/science/chapter-1/chapter1-cleanup";
 import { HazardPictogram } from "./blocks/HazardDiamonds";
+import {
+  HeatingSupportVisual,
+  LaboratoryApparatusVisual,
+  type LaboratoryApparatusId,
+} from "./blocks/LaboratoryApparatusVisual";
 
+import {
+  Chapter1Completion,
+  InstrumentVisual,
+  MeasurementConceptVisual,
+  ErrorVisual,
+  PendulumFigure,
+  DensityExplorer,
+} from "./blocks/Chapter1Completion";
 type Lang = "en" | "bm";
 
 const ui = {
   bm: {
     eyebrow: "Peta visual Bab 1",
-    title: "Penyiasatan saintifik bermula dengan rasa ingin tahu",
+    title: "Pengenalan kepada Penyiasatan Saintifik",
     subtitle:
       "Hubungkan sains dalam kehidupan, keselamatan makmal, pengukuran, ketumpatan dan kaedah saintifik dalam satu aliran pembelajaran.",
     path: [
@@ -58,7 +74,7 @@ const ui = {
       ],
       [
         "1.4",
-        "Alat pengukur dan ralat",
+        "Penggunaan Alat Pengukur, Kejituan, Kepersisan, Kepekaan dan Ralat",
         "Pilih alat yang sesuai serta bezakan kejituan, kepersisan dan kepekaan.",
       ],
       [
@@ -80,7 +96,13 @@ const ui = {
     chooseField: "Pilih bidang sains",
     relatedCareers: "Kerjaya berkaitan",
     dailyImpact: "Mengapa sains penting",
-    chooseApparatus: "Pilih radas untuk melihat fungsinya",
+    chooseApparatus: "Pilih radas untuk melihat bentuk, fungsi dan cirinya",
+    functionLabel: "Fungsi",
+    recogniseLabel: "Cara mengenalinya",
+    compareTitle: "Jangan Keliru",
+    compareSubtitle: "Bandingkan bentuk dan ciri utama radas yang hampir serupa.",
+    heatingTitle: "Bagaimana sokongan pemanasan disusun",
+    heatingLabels: ["Bikar", "Kasa dawai", "Tungku kaki tiga", "Sumber haba"],
     chooseHazard: "Pilih simbol amaran",
     examples: "Contoh",
     safety: ["Peraturan makmal", "Langkah keselamatan", "Jika berlaku kemalangan"],
@@ -106,17 +128,17 @@ const ui = {
     hypothesis: "Hipotesis",
     variables: "Pemboleh ubah",
     conclusion: "Kesimpulan",
-    pendulumProblem: "Bagaimanakah panjang bandul mempengaruhi masa untuk 10 ayunan lengkap?",
-    pendulumHypothesis: "Semakin panjang bandul, semakin lama masa untuk 10 ayunan lengkap.",
+    pendulumProblem: "Bagaimanakah panjang bandul mempengaruhi masa untuk satu ayunan lengkap?",
+    pendulumHypothesis: "Semakin panjang bandul, semakin lama masa untuk satu ayunan lengkap.",
     pendulumVariables: [
       "Dimanipulasikan: panjang bandul",
-      "Bergerak balas: masa untuk 10 ayunan",
+      "Bergerak balas: Masa untuk 10 ayunan lengkap",
       "Dimalarkan: jisim ladung dan sudut ayunan awal",
     ],
     pendulumConclusion:
-      "Hipotesis diterima: masa purata meningkat apabila panjang bandul bertambah.",
-    length: "Panjang (cm)",
-    average: "Purata masa (s)",
+      "Hipotesis diterima. Semakin panjang bandul, semakin panjang tempoh diambil untuk satu ayunan lengkap.",
+    length: "Panjang bandul (cm)",
+    average: "Masa untuk 10 ayunan lengkap (s)",
     coreValues: "Nilai teras",
     moreValues: "Amalan tambahan",
     recap: "Semak sebelum tamat",
@@ -132,7 +154,7 @@ const ui = {
   },
   en: {
     eyebrow: "Chapter 1 visual map",
-    title: "Scientific investigation begins with curiosity",
+    title: "Introduction to Scientific Investigation",
     subtitle:
       "Connect science in daily life, laboratory safety, measurement, density and the scientific method in one learning journey.",
     path: [
@@ -162,8 +184,8 @@ const ui = {
       ],
       [
         "1.4",
-        "Measuring instruments and errors",
-        "Choose a suitable instrument and distinguish accuracy, precision and sensitivity.",
+        "The Use of Measuring Instruments, Accuracy, Consistency, Sensitivity and Errors",
+        "Choose a suitable instrument and distinguish accuracy, consistency and sensitivity.",
       ],
       [
         "1.5",
@@ -184,7 +206,13 @@ const ui = {
     chooseField: "Choose a field of science",
     relatedCareers: "Related careers",
     dailyImpact: "Why science matters",
-    chooseApparatus: "Choose apparatus to see its function",
+    chooseApparatus: "Choose apparatus to see its shape, function and clues",
+    functionLabel: "Function",
+    recogniseLabel: "How to recognise it",
+    compareTitle: "Don't Mix Them Up",
+    compareSubtitle: "Compare the shape and key features of apparatus that look similar.",
+    heatingTitle: "How the heating support is arranged",
+    heatingLabels: ["Beaker", "Wire gauze", "Tripod stand", "Heat source"],
     chooseHazard: "Choose a warning symbol",
     examples: "Examples",
     safety: ["Laboratory rules", "Safety measures", "If an accident occurs"],
@@ -210,25 +238,25 @@ const ui = {
     hypothesis: "Hypothesis",
     variables: "Variables",
     conclusion: "Conclusion",
-    pendulumProblem: "How does pendulum length affect the time for 10 complete oscillations?",
+    pendulumProblem: "How does pendulum length affect the time for one complete oscillation?",
     pendulumHypothesis:
-      "The longer the pendulum, the longer the time for 10 complete oscillations.",
+      "The longer the pendulum, the longer the time for one complete oscillation.",
     pendulumVariables: [
       "Manipulated: pendulum length",
-      "Responding: time for 10 oscillations",
+      "Responding: Time taken for 10 complete oscillations",
       "Constant: bob mass and initial angle",
     ],
     pendulumConclusion:
-      "The hypothesis is accepted: average time increases as pendulum length increases.",
-    length: "Length (cm)",
-    average: "Average time (s)",
+      "The longer the length of the pendulum, the longer the time taken for 10 complete oscillations.",
+    length: "Length of pendulum (cm)",
+    average: "Time taken for 10 complete oscillations (s)",
     coreValues: "Core values",
     moreValues: "Additional practices",
     recap: "Check before you finish",
     recapItems: [
       "Science explains phenomena through systematic observation and experiments.",
       "Laboratory safety depends on correct apparatus, symbols, rules and emergency action.",
-      "S.I. units standardise measurement; strong readings need accuracy, precision and sensitivity.",
+      "S.I. units standardise measurement; strong readings need accuracy, consistency and sensitivity.",
       "Density = mass ÷ volume; compare it with fluid density to predict floating or sinking.",
       "A scientific investigation moves from a problem and hypothesis to data, conclusion and report.",
     ],
@@ -237,13 +265,73 @@ const ui = {
   },
 } as const;
 
-const pendulumResults = [
-  [20, 9.1],
-  [30, 11.4],
-  [40, 13.1],
-  [50, 14.3],
-  [60, 15.2],
-] as const;
+const apparatusRecognition: Record<Lang, Record<LaboratoryApparatusId, string>> = {
+  bm: {
+    "boiling-tube": "Tabung kaca terbuka yang lebih lebar dan kukuh, dengan dasar membulat.",
+    "test-tube": "Tabung kaca terbuka yang sempit dan kecil, dengan dasar membulat.",
+    beaker: "Bekas kaca yang lebar, berdasar rata dan mempunyai muncung kecil.",
+    "conical-flask": "Badan berbentuk kon dengan dasar lebar dan leher yang sempit.",
+    "flat-bottom-flask": "Badan bulat seperti bebuli, leher sempit dan dasar yang rata.",
+    "measuring-cylinder": "Silinder tinggi dan sempit dengan skala serta tapak yang lebar.",
+    burette: "Tiub berskala yang sangat panjang dengan pili dan hujung halus di bawah.",
+    pipette: "Tiub sempit dengan bebuli di tengah dan hujung bawah yang tirus.",
+    "tripod-stand": "Gelang sokongan di atas tiga kaki yang tinggi.",
+    "wire-gauze": "Kepingan jejaring dawai berbentuk segi empat dengan bahagian tengah tahan haba.",
+    "filter-funnel": "Corong berbentuk kon dengan batang panjang dan sempit.",
+    "gas-jar": "Bekas kaca tinggi, lebar dan lurus dengan dasar rata tanpa muncung.",
+    "retort-stand": "Tapak berat dengan rod menegak, bos dan pengapit.",
+    "evaporating-dish": "Mangkuk porselin yang sangat cetek dengan bukaan luas dan muncung kecil.",
+  },
+  en: {
+    "boiling-tube": "An open glass tube that is wider and sturdier, with a rounded bottom.",
+    "test-tube": "A slim, small open glass tube with a rounded bottom.",
+    beaker: "A wide glass vessel with a flat bottom and a small pouring spout.",
+    "conical-flask": "A sloping conical body with a broad base and narrow neck.",
+    "flat-bottom-flask": "A rounded bulb-shaped body with a narrow neck and flat base.",
+    "measuring-cylinder": "A tall, narrow cylinder with a scale and broad stable base.",
+    burette: "A very long graduated tube with a stopcock and fine lower tip.",
+    pipette: "A narrow tube with a central bulb and tapered lower tip.",
+    "tripod-stand": "A top support ring held above the bench by three tall legs.",
+    "wire-gauze": "A square wire mesh with a heat-resistant centre.",
+    "filter-funnel": "A conical funnel with a long, narrow stem.",
+    "gas-jar": "A tall, wide, straight-sided glass container with no spout.",
+    "retort-stand": "A heavy base with a vertical rod, boss head and clamp.",
+    "evaporating-dish": "A very shallow porcelain bowl with a broad opening and small lip.",
+  },
+};
+
+const comparisonNotes: Record<Lang, Partial<Record<LaboratoryApparatusId, string>>> = {
+  bm: {
+    "test-tube": "Lebih sempit",
+    "boiling-tube": "Lebih lebar dan kukuh",
+    beaker: "Lebar + muncung · mengisi/mencampur",
+    "measuring-cylinder": "Tinggi + berskala · menyukat isi padu",
+    "conical-flask": "Badan bercerun",
+    "flat-bottom-flask": "Badan bulat · dasar rata",
+    burette: "Berskala + berpili",
+    pipette: "Bebuli tengah · tiada pili",
+  },
+  en: {
+    "test-tube": "Narrower",
+    "boiling-tube": "Wider and sturdier",
+    beaker: "Wide + spout · holds/mixes",
+    "measuring-cylinder": "Tall + graduated · measures volume",
+    "conical-flask": "Sloping body",
+    "flat-bottom-flask": "Rounded body · flat base",
+    burette: "Graduated + stopcock",
+    pipette: "Central bulb · no stopcock",
+  },
+};
+
+const apparatusComparisons: ReadonlyArray<readonly [LaboratoryApparatusId, LaboratoryApparatusId]> =
+  [
+    ["test-tube", "boiling-tube"],
+    ["beaker", "measuring-cylinder"],
+    ["conical-flask", "flat-bottom-flask"],
+    ["burette", "pipette"],
+  ];
+
+const pendulumResults = pendulumGraphData;
 
 function Panel({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
@@ -260,9 +348,6 @@ function SectionHeading({ section }: { section: readonly [string, string, string
         {section[0]}
       </span>
       <h2 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl">{section[1]}</h2>
-      <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">
-        {section[2]}
-      </p>
     </div>
   );
 }
@@ -287,12 +372,10 @@ export function ScienceF1Chapter1VisualNotesBlock({
   const [apparatus, setApparatus] = useState(0);
   const [hazard, setHazard] = useState(0);
   const [instrument, setInstrument] = useState(0);
-  const [material, setMaterial] = useState(6);
+
   const [investigation, setInvestigation] = useState(0);
   const selectedField = t.scienceInLife.fields[field];
   const selectedCareer = t.scienceInLife.careers.find((item) => item.field === selectedField.name);
-  const selectedMaterial = t.density.table[material];
-  const selectedDensity = Number(selectedMaterial.density);
 
   return (
     <section
@@ -311,9 +394,9 @@ export function ScienceF1Chapter1VisualNotesBlock({
           <h1 className="mt-3 max-w-4xl font-display text-4xl font-black leading-[1.04] text-white sm:text-5xl">
             {c.title}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">{c.subtitle}</p>
+
           <div className="mt-7 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
-            {c.path.map((item, index) => (
+            {c.sections.map((item, index) => (
               <div
                 key={item[0]}
                 className="relative rounded-xl border border-white/10 bg-white/5 p-3"
@@ -341,7 +424,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </div>
               <p className="mt-4 text-sm leading-6 text-slate-300">{t.scienceInLife.definition}</p>
               <div className="mt-4 space-y-2">
-                {t.scienceInLife.importance.map((item) => (
+                {t.scienceInLife.importance.slice(0, 1).map((item) => (
                   <p key={item} className="flex gap-2 text-sm text-slate-300">
                     <CheckCircle2
                       className="mt-0.5 h-4 w-4 shrink-0 text-lime-300"
@@ -378,8 +461,14 @@ export function ScienceF1Chapter1VisualNotesBlock({
               <div className="mt-4 rounded-2xl bg-slate-950/50 p-4">
                 <h4 className="text-xl font-black text-white">{selectedField.name}</h4>
                 <p className="mt-2 text-sm leading-6 text-slate-300">{selectedField.description}</p>
+                {selectedCareer && (
+                  <p className="mt-3 text-sm text-teal-100" data-career-subject>
+                    {selectedCareer.field} → {lang === "en" ? "Subject" : "Mata pelajaran"}:{" "}
+                    {selectedCareer.subject} →
+                  </p>
+                )}
                 <p className="mt-3 text-xs font-black uppercase tracking-wider text-teal-300">
-                  {c.relatedCareers}
+                  {selectedCareer ? c.relatedCareers : c.examples}
                 </p>
                 <p className="mt-1 text-sm text-slate-300">
                   {selectedCareer?.jobs.join(" · ") ?? selectedField.examples.join(" · ")}
@@ -387,6 +476,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </div>
             </Panel>
           </div>
+          <Chapter1Completion section="science" content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
@@ -396,30 +486,121 @@ export function ScienceF1Chapter1VisualNotesBlock({
               <FlaskConical className="h-7 w-7 text-teal-300" aria-hidden="true" />
               <h3 className="font-black text-white">{c.chooseApparatus}</h3>
             </div>
-            <div
-              className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-7"
-              role="tablist"
-              aria-label={c.chooseApparatus}
-            >
-              {t.laboratory.apparatus.map((item, index) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={apparatus === index}
-                  onClick={() => setApparatus(index)}
-                  className={`min-h-16 rounded-xl border p-2 text-left text-[11px] font-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${apparatus === index ? "border-teal-300 bg-teal-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
-                >
-                  <Beaker className="mb-2 h-4 w-4 text-teal-300" aria-hidden="true" />
-                  {item.name}
-                </button>
-              ))}
+            <div className="mt-5 grid min-w-0 gap-4 lg:grid-cols-[minmax(0,1fr)_18rem]">
+              <div
+                className="grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4"
+                role="tablist"
+                aria-label={c.chooseApparatus}
+              >
+                {t.laboratory.apparatus.map((item, index) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={apparatus === index}
+                    aria-controls="selected-apparatus-detail"
+                    data-apparatus-option={item.id}
+                    onClick={() => setApparatus(index)}
+                    className={`group min-h-44 min-w-0 cursor-pointer rounded-2xl border p-3 text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${apparatus === index ? "border-teal-300 bg-teal-300/10 text-teal-100" : "border-white/10 bg-slate-950/25 text-slate-300 hover:border-white/25 hover:bg-white/[0.055]"}`}
+                  >
+                    <LaboratoryApparatusVisual
+                      apparatus={item.id}
+                      label={item.name}
+                      decorative
+                      className="mx-auto h-32 w-full max-w-40"
+                    />
+                    <span className="mt-1 block text-xs font-black leading-5 sm:text-sm">
+                      {item.name}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <div
+                id="selected-apparatus-detail"
+                role="tabpanel"
+                aria-live="polite"
+                data-selected-apparatus={t.laboratory.apparatus[apparatus].id}
+                className="self-start rounded-2xl border border-teal-300/25 bg-teal-300/[0.07] p-4 lg:sticky lg:top-4"
+              >
+                <LaboratoryApparatusVisual
+                  apparatus={t.laboratory.apparatus[apparatus].id}
+                  label={t.laboratory.apparatus[apparatus].name}
+                  className="mx-auto h-40 w-full max-w-48 text-teal-100"
+                />
+                <p className="mt-2 text-lg font-black text-white">
+                  {t.laboratory.apparatus[apparatus].name}
+                </p>
+                <p className="mt-4 text-xs font-black uppercase tracking-wider text-teal-300">
+                  {c.functionLabel}
+                </p>
+                <p className="mt-1 text-sm leading-6 text-slate-200">
+                  {t.laboratory.apparatus[apparatus].function}
+                </p>
+                <p className="mt-4 text-xs font-black uppercase tracking-wider text-teal-300">
+                  {c.recogniseLabel}
+                </p>
+                <p className="mt-1 text-sm leading-6 text-slate-200">
+                  {apparatusRecognition[lang][t.laboratory.apparatus[apparatus].id]}
+                </p>
+              </div>
             </div>
-            <div className="mt-3 rounded-2xl border border-teal-300/20 bg-teal-300/[0.07] p-4">
-              <p className="font-black text-teal-100">{t.laboratory.apparatus[apparatus].name}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                {t.laboratory.apparatus[apparatus].function}
-              </p>
+          </Panel>
+
+          <Panel>
+            <div className="max-w-3xl">
+              <h3 className="font-display text-xl font-black text-white sm:text-2xl">
+                {c.compareTitle}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{c.compareSubtitle}</p>
+            </div>
+            <div className="mt-5 grid gap-4 xl:grid-cols-[minmax(0,1fr)_18rem]">
+              <div className="grid gap-3 sm:grid-cols-2">
+                {apparatusComparisons.map(([firstId, secondId]) => {
+                  const first = t.laboratory.apparatus.find((item) => item.id === firstId)!;
+                  const second = t.laboratory.apparatus.find((item) => item.id === secondId)!;
+                  return (
+                    <article
+                      key={`${firstId}-${secondId}`}
+                      data-apparatus-comparison={`${firstId}:${secondId}`}
+                      className="rounded-2xl border border-white/10 bg-slate-950/25 p-3 sm:p-4"
+                    >
+                      <h4 className="text-center text-sm font-black text-white">
+                        {first.name} <span className="text-teal-300">vs</span> {second.name}
+                      </h4>
+                      <div className="mt-3 grid grid-cols-2 gap-3">
+                        {[first, second].map((item) => (
+                          <div key={item.id} className="min-w-0 text-center">
+                            <LaboratoryApparatusVisual
+                              apparatus={item.id}
+                              label={item.name}
+                              className="mx-auto h-28 w-full max-w-36 text-slate-200"
+                            />
+                            <p className="text-xs font-black leading-5 text-white">{item.name}</p>
+                            <p className="mt-1 text-xs leading-5 text-slate-300">
+                              {comparisonNotes[lang][item.id]}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+              <article className="rounded-2xl border border-amber-300/20 bg-amber-300/[0.045] p-4">
+                <h4 className="text-sm font-black leading-5 text-white">{c.heatingTitle}</h4>
+                <HeatingSupportVisual
+                  lang={lang}
+                  className="mx-auto mt-3 h-52 w-full max-w-56 text-slate-200"
+                />
+                <ol className="mt-2 grid gap-1 text-xs leading-5 text-slate-300">
+                  {c.heatingLabels.map((label, index) => (
+                    <li key={label} className="flex items-center gap-2">
+                      <span className="font-mono font-black text-amber-300">{index + 1}</span>
+                      {label}
+                    </li>
+                  ))}
+                </ol>
+              </article>
             </div>
           </Panel>
 
@@ -464,35 +645,44 @@ export function ScienceF1Chapter1VisualNotesBlock({
                 </p>
               </div>
             </Panel>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {[
-                t.laboratory.rules.slice(0, 6),
-                t.laboratory.safetyMeasures,
-                t.laboratory.accidentSteps,
-              ].map((items, column) => (
-                <Panel key={c.safety[column]} className={column === 2 ? "border-red-300/20" : ""}>
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck
-                      className={`h-5 w-5 ${column === 2 ? "text-red-300" : "text-lime-300"}`}
-                      aria-hidden="true"
-                    />
-                    <h3 className="text-sm font-black text-white">{c.safety[column]}</h3>
-                  </div>
-                  <div className="mt-4 space-y-3">
-                    {items.map((item) => (
-                      <p key={item} className="text-xs leading-5 text-slate-300">
-                        {item}
-                      </p>
-                    ))}
-                  </div>
-                </Panel>
-              ))}
+            <div className="grid gap-4">
+              {[t.laboratory.rules, t.laboratory.safetyMeasures, t.laboratory.accidentSteps].map(
+                (items, column) => (
+                  <Panel
+                    key={c.safety[column]}
+                    className={
+                      column === 2
+                        ? "border-red-300/40 border-l-4"
+                        : column === 1
+                          ? "border-amber-300/30 border-l-4"
+                          : "border-teal-300/20"
+                    }
+                  >
+                    <div className="flex items-center gap-2">
+                      <ShieldCheck
+                        className={`h-5 w-5 ${column === 2 ? "text-red-300" : "text-lime-300"}`}
+                        aria-hidden="true"
+                      />
+                      <h3 className="text-sm font-black text-white">{c.safety[column]}</h3>
+                    </div>
+                    <div className="mt-4 space-y-3">
+                      {items.map((item) => (
+                        <p key={item} className="text-xs leading-5 text-slate-300">
+                          {item}
+                        </p>
+                      ))}
+                    </div>
+                  </Panel>
+                ),
+              )}
             </div>
           </div>
+          <Chapter1Completion section="laboratory" content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
           <SectionHeading section={c.sections[2]} />
+          <Chapter1Completion section="units" content={t} lang={lang} />
           <div className="grid gap-4 lg:grid-cols-2">
             <Panel>
               <div className="flex items-center gap-3">
@@ -532,6 +722,9 @@ export function ScienceF1Chapter1VisualNotesBlock({
                       </span>
                     </div>
                     <p className="mt-2 font-mono text-xs text-slate-300">{item.standardForm}</p>
+                    <p className="mt-1 break-words font-mono text-xs text-slate-200">
+                      {item.value}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -559,7 +752,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               const Icon = icons[index];
               return (
                 <Panel key={item.term}>
-                  <Icon className="h-7 w-7 text-teal-300" aria-hidden="true" />
+                  <MeasurementConceptVisual index={index} lang={lang} />
                   <h3 className="mt-3 font-black text-white">{item.term}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{item.body}</p>
                 </Panel>
@@ -595,12 +788,14 @@ export function ScienceF1Chapter1VisualNotesBlock({
                 <p className="mt-2 font-black text-white">
                   {t.measuringInstruments.instruments[instrument].standardTool}
                 </p>
+                <InstrumentVisual index={instrument} lang={lang} />
               </div>
               <div className="rounded-xl bg-lime-300/[0.07] p-4">
                 <p className="text-xs text-lime-200">{c.accurate}</p>
                 <p className="mt-2 font-black text-white">
                   {t.measuringInstruments.instruments[instrument].higherAccuracyTool ?? "—"}
                 </p>
+                {instrument === 0 && <InstrumentVisual index={6} lang={lang} />}
               </div>
             </div>
             <p className="mt-3 text-sm text-slate-300">
@@ -611,9 +806,11 @@ export function ScienceF1Chapter1VisualNotesBlock({
             <div>
               <h3 className="font-black text-white">{c.errors}</h3>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                {t.measuringInstruments.errorTypes.map((error) => (
+                {t.measuringInstruments.errorTypes.map((error, index) => (
                   <Panel key={error.type}>
                     <h4 className="font-black text-amber-200">{error.type}</h4>
+                    <ErrorVisual systematic={index === 0} lang={lang} />
+                    <p className="mt-2 text-sm text-slate-200">{error.examples.join(" · ")}</p>
                     <p className="mt-2 text-sm leading-6 text-slate-300">{error.definition}</p>
                     <div className="mt-3 space-y-2">
                       {error.waysToOvercome.map((item) => (
@@ -644,6 +841,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </Panel>
             </div>
           </div>
+          <Chapter1Completion section="measurement" content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
@@ -667,75 +865,9 @@ export function ScienceF1Chapter1VisualNotesBlock({
                 {t.density.workedExample.answer}
               </p>
             </Panel>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Scale className="h-7 w-7 text-teal-300" aria-hidden="true" />
-                <h3 className="font-black text-white">{c.densityLab}</h3>
-              </div>
-              <p className="mt-2 text-xs text-slate-400">{c.selectMaterial}</p>
-              <div
-                className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-5"
-                role="tablist"
-                aria-label={c.selectMaterial}
-              >
-                {t.density.table.map((item, index) => (
-                  <button
-                    key={item.material}
-                    type="button"
-                    role="tab"
-                    aria-selected={material === index}
-                    onClick={() => setMaterial(index)}
-                    className={`min-h-12 rounded-xl border p-2 text-left text-[11px] font-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${material === index ? "border-teal-300 bg-teal-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
-                  >
-                    {item.material}
-                  </button>
-                ))}
-              </div>
-              <div className="mt-4 grid items-center gap-4 rounded-2xl bg-slate-950/55 p-4 sm:grid-cols-[.7fr_1.3fr]">
-                <div className="relative mx-auto h-40 w-32 overflow-hidden rounded-b-[2.5rem] rounded-t-xl border-2 border-cyan-300/40 bg-cyan-400/15">
-                  <div
-                    className={`absolute left-1/2 h-14 w-14 -translate-x-1/2 rounded-full border-4 border-white/60 bg-gradient-to-br from-amber-200 to-orange-500 shadow-lg transition-transform duration-300 motion-reduce:transition-none ${selectedDensity <= 1 ? "top-4" : "top-24"}`}
-                  />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400">{c.comparedWithWater}</p>
-                  <h4 className="mt-1 text-2xl font-black text-white">
-                    {selectedMaterial.material}
-                  </h4>
-                  <p className="mt-2 font-mono text-lg font-black text-teal-200">
-                    {selectedMaterial.density} g cm⁻³
-                  </p>
-                  <p
-                    className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-black ${selectedDensity <= 1 ? "bg-lime-300/15 text-lime-200" : "bg-orange-300/15 text-orange-200"}`}
-                  >
-                    {selectedDensity <= 1 ? c.floats : c.sinks}
-                  </p>
-                </div>
-              </div>
-            </Panel>
+            <DensityExplorer content={t.density} lang={lang} />
           </div>
-          <Panel>
-            <h3 className="font-black text-white">{c.displacement}</h3>
-            <div className="mt-4 grid gap-2 lg:grid-cols-5">
-              {t.density.waterDisplacement.map((item, index) => (
-                <div
-                  key={item}
-                  className="relative rounded-xl bg-teal-300/[0.07] p-3 text-xs leading-5 text-slate-200"
-                >
-                  <span className="mb-2 block font-mono font-black text-teal-300">
-                    0{index + 1}
-                  </span>
-                  {item}
-                  {index < 4 && (
-                    <ChevronRight
-                      className="absolute -right-4 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[#071b22] p-1 text-teal-300 lg:block"
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </Panel>
+          <Chapter1Completion section="density" content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
@@ -745,11 +877,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               <BookOpenCheck className="h-7 w-7 text-teal-300" aria-hidden="true" />
               <h3 className="font-black text-white">{c.investigationSteps}</h3>
             </div>
-            <div
-              className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-9"
-              role="tablist"
-              aria-label={c.investigationSteps}
-            >
+            <div className="mt-4 grid gap-3" role="tablist" aria-label={c.investigationSteps}>
               {t.investigationSteps.steps.map((step, index) => (
                 <button
                   key={step.step}
@@ -759,8 +887,10 @@ export function ScienceF1Chapter1VisualNotesBlock({
                   onClick={() => setInvestigation(index)}
                   className={`min-h-14 rounded-xl border p-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${investigation === index ? "border-teal-300 bg-teal-300/15" : "border-white/10 bg-white/[0.04]"}`}
                 >
-                  <span className="font-mono text-xs font-black text-lime-300">0{step.step}</span>
-                  <span className="mt-1 block text-[10px] font-black leading-4 text-white">
+                  <span className="font-mono text-xs font-black text-lime-300">
+                    0{step.step} {index < 8 ? "↓" : ""}
+                  </span>
+                  <span className="mt-1 block text-sm font-black leading-5 text-white">
                     {step.heading}
                   </span>
                 </button>
@@ -802,7 +932,6 @@ export function ScienceF1Chapter1VisualNotesBlock({
               {[
                 [c.problem, c.pendulumProblem],
                 [c.hypothesis, c.pendulumHypothesis],
-                [c.variables, c.pendulumVariables.join(" · ")],
                 [c.conclusion, c.pendulumConclusion],
               ].map((item) => (
                 <div key={item[0]} className="rounded-xl bg-white/5 p-3">
@@ -811,27 +940,50 @@ export function ScienceF1Chapter1VisualNotesBlock({
                 </div>
               ))}
             </div>
-            <div className="mt-4 overflow-x-auto">
-              <table className="w-full min-w-[420px] border-separate border-spacing-y-1 text-left text-xs">
+            <PendulumFigure
+              data={pendulumResults}
+              lang={lang}
+              xLabel={c.length}
+              yLabel={c.average}
+            />
+            <div className="mt-4">
+              <table
+                data-pendulum-results
+                className="w-full table-fixed border-separate border-spacing-y-1 text-left text-xs"
+              >
+                <caption className="mb-2 text-left text-sm text-teal-100">{c.average}</caption>
                 <thead>
                   <tr className="text-teal-200">
-                    <th className="px-3 py-2">{c.length}</th>
-                    <th className="px-3 py-2">{c.average}</th>
-                    <th className="px-3 py-2">
-                      <span className="sr-only">Trend</span>
+                    <th scope="col" className="px-1 py-2">
+                      {c.length}
+                    </th>
+                    {[1, 2, 3].map((n) => (
+                      <th key={n} scope="col" className="px-1 py-2">
+                        {lang === "en" ? "Reading" : "Cubaan"} {n}
+                      </th>
+                    ))}
+                    <th scope="col" className="px-1 py-2">
+                      {lang === "en" ? "Average" : "Purata"}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {pendulumResults.map(([length, average], index) => (
-                    <tr key={length} className="bg-white/5">
-                      <td className="rounded-l-lg px-3 py-2 font-mono text-white">{length}</td>
-                      <td className="px-3 py-2 font-mono font-black text-lime-200">{average}</td>
-                      <td className="rounded-r-lg px-3 py-2">
-                        <div
-                          className="h-2 rounded-full bg-amber-300/70"
-                          style={{ width: `${35 + index * 14}%` }}
-                        />
+                  {pendulumReadings.map(({ length, readings, average }) => (
+                    <tr
+                      key={length}
+                      data-pendulum-row={[length, ...readings, average].join(",")}
+                      className="bg-white/5"
+                    >
+                      <th scope="row" className="rounded-l-lg px-1 py-2 font-mono text-white">
+                        {length}
+                      </th>
+                      {readings.map((value, i) => (
+                        <td key={i} className="px-1 py-2 font-mono">
+                          {value.toFixed(1)}
+                        </td>
+                      ))}
+                      <td className="px-1 py-2 font-mono font-black text-lime-200">
+                        {average.toFixed(1)}
                       </td>
                     </tr>
                   ))}
@@ -839,6 +991,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </table>
             </div>
           </Panel>
+          <Chapter1Completion section="investigation" content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
@@ -872,6 +1025,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </div>
             </Panel>
           </div>
+          <Chapter1Completion section="values" content={t} lang={lang} />
         </div>
 
         <footer className="rounded-[1.75rem] border border-teal-300/20 bg-teal-300/[0.06] p-5 sm:p-7">

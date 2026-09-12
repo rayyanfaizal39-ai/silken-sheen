@@ -567,16 +567,25 @@ describe("Ch7 — one primary visual per concept", () => {
   });
 
   it.each(STREAMS)("%s keeps its other Chapter 7 visuals untouched", (_n, _l, content) => {
-    // The four contextual scenes the earlier pass added must survive this one.
+    // The contextual scenes an earlier pass added must survive this one. The
+    // old four-panel "dailyLife" composite was deliberately removed in the
+    // final correction pass — it duplicated the approved lightning visual and
+    // the daily-life accordions — so it is no longer expected here.
     const used = JSON.stringify(content);
     for (const src of [
       SCIENCE_F2_CH7_IMAGES.chargeTransfer,
-      SCIENCE_F2_CH7_IMAGES.dailyLife,
       SCIENCE_F2_CH7_IMAGES.meterPlacement,
       SCIENCE_F2_CH7_IMAGES.electromagnetUses,
     ]) {
       expect(used, `${src} was dropped`).toContain(src);
     }
+  });
+
+  it.each(STREAMS)("%s no longer carries the redundant four-panel daily-life composite", (_n, _l, content) => {
+    const used = JSON.stringify(content);
+    expect(used, "dailyLife image should have been removed as duplicative").not.toContain(
+      SCIENCE_F2_CH7_IMAGES.dailyLife,
+    );
   });
 });
 

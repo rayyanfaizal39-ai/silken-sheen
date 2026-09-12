@@ -40,8 +40,23 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "☀️ Sources of energy",
-          body: "The sun, wind, radioactive materials, fossil fuels, geothermal heat, biomass, waves and water.",
-          detail: "These eight sources supply energy that then changes into various forms.",
+          body: "Energy comes from eight sources.",
+          facts: [
+            {
+              label: "The eight sources",
+              value: [
+                "The Sun",
+                "Wind",
+                "Radioactive substances",
+                "Fossil fuels",
+                "Geothermal energy",
+                "Biomass",
+                "Waves",
+                "Water",
+              ],
+            },
+          ],
+          detail: "The Sun, wind, radioactive substances, fossil fuels, geothermal energy, biomass, waves and water — these eight sources supply energy that then changes into various forms.",
         },
       ],
       flipCards: [
@@ -66,7 +81,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       number: "7.1",
       title: "Electrostatic Charges",
       intro:
-        "All matter contains positive charges (protons) and negative charges (electrons). When two different materials are rubbed together, only electrons transfer — protons do not move. An object that gains electrons becomes negatively charged; one that loses electrons becomes positively charged; one with equal numbers of protons and electrons is neutral.",
+        "Static electric charges that accumulate on an object are called electrostatic charges. All matter contains positive charges (protons) and negative charges (electrons).",
       contextImages: [
         {
           src: SCIENCE_F2_CH7_IMAGES.chargeTransfer,
@@ -90,10 +105,81 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
           detail: "The further the gold leaf diverges, the greater the quantity of charge collected.",
         },
       ],
+      polarityInteraction: {
+        title: "⚡ Attraction and repulsion",
+        instruction: "Tap a pair of charges to see which way the force acts.",
+        attractLabel: "Attract",
+        repelLabel: "Repel",
+        pairs: [
+          {
+            id: "attract",
+            label: "+ and −",
+            leftCharge: "+",
+            rightCharge: "-",
+            outcome: "attract",
+            note: "Unlike charges attract each other.",
+          },
+          {
+            id: "repel-pos",
+            label: "+ and +",
+            leftCharge: "+",
+            rightCharge: "+",
+            outcome: "repel",
+            note: "Like charges repel each other.",
+          },
+          {
+            id: "repel-neg",
+            label: "− and −",
+            leftCharge: "-",
+            rightCharge: "-",
+            outcome: "repel",
+            note: "Like charges repel each other. This is why a comb that has been rubbed can pick up small pieces of paper — the comb's charge repels electrons in the paper, leaving the paper's near side with an opposite, attracting charge.",
+          },
+        ],
+      },
+      electroscope: {
+        title: "🔬 Electroscope",
+        instruction:
+          "Tap each stage to follow what happens inside the electroscope. The panel you choose stays bright while the other two dim.",
+        prompt: "Choose a stage to see what is happening to the gold leaf.",
+        image: {
+          src: SCIENCE_F2_CH7_IMAGES.electroscope,
+          alt: "Three electroscopes side by side under glass jars. In the first, the gold leaf hangs closed against the conducting stem. In the second, a positively charged glass rod touches the metal cap and electrons are shown moving from the cap to the rod, leaving positive charges down the stem and on the leaf. In the third, the electroscope carries positive charges and its gold leaf has swung well away from the stem.",
+          caption:
+            "One electroscope, three stages: neutral, charge being introduced, and the gold leaf diverged.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          legendLabel: "Stages of a charged electroscope",
+        },
+        stages: [
+          {
+            id: "uncharged",
+            label: "Neutral",
+            spotlightCaption: "Neutral",
+            note: "The electroscope is neutral and the gold leaf stays close to the conducting stem.",
+          },
+          {
+            id: "charged",
+            label: "Charge introduced",
+            spotlightCaption: "Electrons leave",
+            note: "A positively charged rod touches the metal cap. Electrons move from the electroscope towards the positively charged rod.",
+          },
+          {
+            id: "diverged",
+            label: "Gold leaf diverges",
+            spotlightCaption: "Charges repel",
+            note: "The electroscope is left positively charged. Like charges on the conducting stem and gold leaf repel, causing the leaf to diverge. Greater divergence can indicate a greater amount of accumulated electrostatic charge.",
+          },
+        ],
+      },
       checks: [
         {
           question: "A rod is rubbed with a cloth and becomes negatively charged. What has happened to its electrons?",
           hint: "The rod has gained electrons from the cloth. Only electrons transfer during rubbing — the protons stay where they are.",
+        },
+        {
+          question: "Why does the gold leaf of a charged electroscope diverge?",
+          hint: "The leaf and the plate it hangs from both end up carrying the same charge, and like charges repel each other.",
         },
       ],
     },
@@ -102,18 +188,58 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Electrostatics in Daily Life",
       intro:
         "Electrostatic charge is not just a laboratory effect. It explains lightning, the small shock you feel on a door handle, and several important safety measures.",
-      contextImages: [
-        {
-          src: SCIENCE_F2_CH7_IMAGES.dailyLife,
-          alt: "Four night-time scenes. Lightning strikes the ground from a cloud carrying positive charge above and negative charge below. A lightning conductor on a building carries the charge down into the earth. A spark appears at the nozzle while a car is being refuelled. Lightning travels over the metal body of a car, around the person sitting inside.",
+      lightningFormation: {
+        title: "🌩️ How lightning forms",
+        instruction:
+          "Step through the four stages. Each one lights up the part of the scene it describes.",
+        prompt: "Choose a stage to see where it happens in the scene.",
+        image: {
+          src: SCIENCE_F2_CH7_IMAGES.lightningFormation,
+          alt: "A night scene. Air sweeps past a storm cloud from both sides. Positive charges gather in the upper part of the cloud and negative charges in the lower part. Positive charges sit on the ground directly beneath the cloud, and a branching lightning bolt runs from the base of the cloud down to the ground.",
           caption:
-            "Lightning, the lightning conductor, refuelling safety and the metal-bodied car — the four situations explained below.",
+            "Friction with the surrounding air, charge separation inside the cloud, induced charge on the ground, and the discharge itself.",
           size: "panel",
-          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
-          priority: true,
-          annotations: [],
+          aspect: SCIENCE_F2_VISUAL_ASPECT.standard,
+          legendLabel: "Stages in the formation of lightning",
         },
-      ],
+        stages: [
+          {
+            id: "friction",
+            icon: "💨",
+            label: "Friction",
+            spotlightCaption: "Cloud and surrounding air",
+            note: "Friction between the cloud and the surrounding air causes electric charges to accumulate on the cloud.",
+          },
+          {
+            id: "separation",
+            icon: "➕➖",
+            label: "Charge separation",
+            spotlightCaption: "Positive above, negative below",
+            note: "The upper part of the cloud becomes positively charged while the lower part becomes negatively charged.",
+          },
+          {
+            id: "induced",
+            icon: "🌍",
+            label: "Induced ground charge",
+            spotlightCaption: "Positive charge on the ground",
+            note: "The negative charge at the lower part of the cloud induces a positive charge on the ground beneath it.",
+          },
+          {
+            id: "discharge",
+            icon: "⚡",
+            label: "Discharge",
+            spotlightCaption: "Sudden discharge",
+            note: "A sudden electrostatic discharge between the cloud and the ground then occurs as lightning.",
+          },
+        ],
+        summaryLabel: "The four stages together",
+        summary: [
+          "Friction between clouds and the surrounding air causes electric charges to accumulate.",
+          "The upper part of the cloud becomes positively charged while the lower part becomes negatively charged.",
+          "Negative charge at the lower cloud induces positive charge on the ground.",
+          "A sudden electrostatic discharge can then occur as lightning.",
+        ],
+      },
       accordions: [
         {
           title: "⚡ How lightning happens",
@@ -124,21 +250,34 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
           body: "A lightning conductor is fitted to a building to **provide a path for the electric charge from lightning to pass into the Earth**. This protects the building from being struck.",
         },
         {
-          title: "👕 Dry weather and choice of clothing",
+          title: "📺 Dusty TV screen",
+          body: "Problem: A television screen can become dusty quickly because electrostatic attraction causes charged dust particles to be attracted to the screen.",
+          detail: "Solution: Use a microfibre / anti-electrostatic cloth to reduce the accumulation of dust.",
+        },
+        {
+          title: "👕 Dry weather, fabric and static electricity",
           body: "In dry weather, electrostatic charge builds up on objects more easily. Plenty of water vapour in the air during humid weather prevents charge from accumulating. That is why small shocks happen more often in dry conditions.",
-          detail: "If a nylon carpet causes a small shock when you touch a metal object, wearing rubber-soled shoes is the suggested way to reduce the effect.",
+          detail: "Some synthetic fabrics accumulate electrostatic charge more easily from rubbing than others. If a nylon carpet causes a small shock when you touch a metal object, wearing rubber-soled shoes is the suggested way to reduce the effect.",
         },
         {
-          title: "⛽ Safety while refuelling",
-          body: "Petrol vapour catches fire easily. A spark from built-up electrostatic charge could ignite that vapour, so charge must be reduced or safely conducted away while refuelling.",
-          detail: "That is why the nozzle and tank are connected so charge flows to earth, and why drivers are advised not to keep getting in and out of the vehicle.",
-        },
-        {
-          title: "🚗 The Faraday cage concept",
+          title: "🚗 Safe shelter during a thunderstorm — the Faraday cage concept",
           body: "A metal box can protect what is inside it because charge travels over the outer surface of the metal and does not pass into the inside. This is why staying inside a metal-bodied vehicle is a safer shelter during a thunderstorm.",
           detail: "The protection comes from the metal body conducting charge around you — not from the rubber tyres.",
         },
+        {
+          title: "⛽ Extra: safety while refuelling",
+          body: "Petrol vapour catches fire easily. A spark from built-up electrostatic charge could ignite that vapour, so charge must be reduced or safely conducted away while refuelling.",
+          detail: "That is why the nozzle and tank are connected so charge flows to earth, and why drivers are advised not to keep getting in and out of the vehicle.",
+        },
       ],
+      dryHumidComparison: {
+        title: "💧 Dry weather vs humid weather",
+        dryLabel: "Dry",
+        humidLabel: "Humid",
+        dryCaption: "Little moisture in the air — charge builds up.",
+        humidCaption: "Water vapour in the air — charge dissipates.",
+        note: "Dry conditions allow electrostatic charge to accumulate more easily. In humid air, moisture helps charges dissipate more easily.",
+      },
       checks: [
         {
           question: "Why does a Van de Graaff generator not work well in humid weather?",
@@ -172,6 +311,28 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
           detail: "A galvanometer is used to detect small electric currents.",
         },
       ],
+      currentDirection: {
+        title: "🔀 Electron flow vs conventional current",
+        instruction: "Tap either direction to compare them.",
+        keyPoint: "These two directions are opposite.",
+        negativeTerminalLabel: "Negative terminal",
+        positiveTerminalLabel: "Positive terminal",
+        contrastLabel: "Opposite directions",
+        modes: [
+          {
+            id: "electron",
+            label: "Electron Flow",
+            note: "Electrons actually move from the negative terminal to the positive terminal.",
+            directionSummary: "Negative → Positive",
+          },
+          {
+            id: "conventional",
+            label: "Conventional Current",
+            note: "Conventional current is defined as flowing from the positive terminal to the negative terminal — the direction used in every circuit and rule you learn.",
+            directionSummary: "Positive → Negative",
+          },
+        ],
+      },
       checks: [
         {
           question: "In a simple circuit, which way do the electrons move, and which way is conventional current said to flow?",
@@ -187,7 +348,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       number: "7.1",
       title: "Current, Voltage and Resistance",
       intro:
-        "Three electrical quantities to know, each with its own symbol, unit and measuring instrument. What gets tested most is not only what each instrument measures, but how it is connected into the circuit.",
+        "Three electrical quantities to know, each with its own symbol, unit and measuring instrument. What gets tested most is not only what each instrument measures, but how it is connected into the circuit. Every complete circuit is drawn with standard symbols rather than pictures of the real components — learn those first, and the diagram below is easy to read.",
       contextImages: [
         {
           src: SCIENCE_F2_CH7_IMAGES.meterPlacement,
@@ -213,8 +374,8 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
         },
         {
           title: "Resistance, R",
-          body: "**A conductor's ability to oppose the flow of current.** A fixed resistor has a resistance that cannot be adjusted, while **a rheostat (variable resistor) can be adjusted**.",
-          detail: "Unit: ohm (Ω)",
+          body: "**Resistance is the ability of a conductor to limit or resist the flow of electric current.**",
+          detail: "Unit: ohm (Ω) · A fixed resistor has a resistance that cannot be adjusted. A rheostat (variable resistor) allows resistance to be adjusted.",
         },
       ],
       circuitMeterDiagram: {
@@ -259,6 +420,10 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
           question: "Where should a voltmeter be connected to measure the voltage across a bulb?",
           hint: "In parallel with the bulb — on its own branch across the two ends of the bulb.",
         },
+        {
+          question: "Which component has a resistance that can be adjusted?",
+          hint: "The variable resistor (rheostat). A fixed resistor's resistance cannot be changed.",
+        },
       ],
     },
     {
@@ -279,6 +444,36 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
           body: "At a constant voltage, **the current flowing decreases as the resistance increases**. Increasing the length of a wire increases its resistance, which reduces the current.",
         },
       ],
+      ohmsTriangle: {
+        title: "🔺 The Ohm's Law triangle",
+        instruction: "Tap V, I or R to cover it and see its formula.",
+        vFormula: "V = I × R",
+        iFormula: "I = V ÷ R",
+        rFormula: "R = V ÷ I",
+      },
+      guidedCalculations: [
+        {
+          title: "✏️ Worked example",
+          givenLabel: "Given",
+          findLabel: "Find",
+          formulaLabel: "Formula",
+          substituteLabel: "Substitute",
+          answerLabel: "Answer",
+          given: ["V = 6 V", "R = 3 Ω"],
+          find: "I = ? A",
+          formula: "I = V ÷ R",
+          substitute: "I = 6 V ÷ 3 Ω",
+          answer: "I = 2 A",
+        },
+      ],
+      unitsMemory: {
+        title: "📌 Remember the units",
+        items: [
+          { quantitySymbol: "I", unitName: "ampere", unitSymbol: "A" },
+          { quantitySymbol: "V", unitName: "volt", unitSymbol: "V" },
+          { quantitySymbol: "R", unitName: "ohm", unitSymbol: "Ω" },
+        ],
+      },
       calculators: [
         {
           type: "ohms-law",
@@ -300,15 +495,142 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Series and Parallel Circuits",
       intro:
         "A series circuit connects components one after another in **a single path**. A parallel circuit **splits into separate branches**. That difference changes how current, voltage and resistance behave.",
+      circuitSymbols: {
+        title: "🔧 Electrical circuit components and their symbols",
+        instruction: "Tap a component to see its symbol and purpose highlighted.",
+        symbols: [
+          { id: "switch", name: "Switch", purpose: "Opens or closes the circuit, stopping or allowing current to flow." },
+          { id: "cell", name: "Dry cell", purpose: "A single source of electrical energy that drives current around a circuit." },
+          { id: "voltmeter", name: "Voltmeter", purpose: "Measures voltage, in volts. Always connected in parallel." },
+          { id: "galvanometer", name: "Galvanometer", purpose: "Detects and measures very small electric currents by deflecting its pointer." },
+          { id: "ammeter", name: "Ammeter", purpose: "Measures current, in amperes. Always connected in series." },
+          { id: "bulb", name: "Bulb", purpose: "Lights up when current flows through it — often used to show that a circuit is complete." },
+          { id: "resistor", name: "Resistor", purpose: "A fixed component that opposes the flow of current by a set amount." },
+          { id: "fuse", name: "Fuse", purpose: "A safety component that melts and breaks the circuit if the current becomes too large." },
+          { id: "rheostat", name: "Variable resistor", purpose: "A resistor whose resistance can be adjusted, used to change the current in a circuit." },
+        ],
+      },
+      circuitConceptSeries: {
+        tag: "ONE PATH",
+        title: "SERIES CIRCUIT",
+        circuit: {
+          kind: "series",
+          supplyLabel: "6 V",
+          resistors: [
+            { id: "r1", label: "R₁" },
+            { id: "r2", label: "R₂" },
+          ],
+          stepLabel: "Step",
+        },
+        explanation: "A series circuit has only one path for electric current to flow.",
+        relationships: [
+          {
+            label: "Current",
+            formula: "I = I₁ = I₂",
+            teachingPoint: "The same current flows through every component.",
+          },
+          {
+            label: "Voltage",
+            formula: "V = V₁ + V₂",
+            teachingPoint: "The supply voltage is shared across the components.",
+          },
+          {
+            label: "Resistance",
+            formula: "R = R₁ + R₂",
+            teachingPoint: "The total resistance is the sum of all resistances.",
+          },
+        ],
+        advantagesLabel: "Advantages",
+        disadvantagesLabel: "Disadvantages",
+        advantages: [
+          "Every component in the circuit receives the same current.",
+          "Components are controlled by the same switch.",
+          "Increasing the supply voltage can increase the current.",
+        ],
+        disadvantages: [
+          "If one component is damaged, the circuit is broken and the other components stop working.",
+          "Adding more components increases total resistance and reduces current.",
+          "Components cannot be switched independently.",
+        ],
+      },
+      circuitConceptParallel: {
+        tag: "SEVERAL BRANCHES",
+        title: "PARALLEL CIRCUIT",
+        circuit: {
+          kind: "parallel",
+          supplyLabel: "6 V",
+          resistors: [
+            { id: "r1", label: "R₁" },
+            { id: "r2", label: "R₂" },
+          ],
+          stepLabel: "Step",
+        },
+        explanation: "A parallel circuit has more than one path for electric current to flow.",
+        relationships: [
+          {
+            label: "Current",
+            formula: "I = I₁ + I₂",
+            teachingPoint: "The total current splits between the branches.",
+          },
+          {
+            label: "Voltage",
+            formula: "V = V₁ = V₂",
+            teachingPoint: "Each branch receives the same voltage as the source.",
+          },
+          {
+            label: "Resistance",
+            formula: "1/R = 1/R₁ + 1/R₂",
+            teachingPoint: "The effective resistance decreases when parallel branches are added.",
+          },
+        ],
+        advantagesLabel: "Advantages",
+        disadvantagesLabel: "Disadvantages",
+        advantages: [
+          "Each appliance can be switched on or off separately.",
+          "Adding an appliance does not affect the others in the same circuit.",
+          "Each branch receives the full supply voltage.",
+        ],
+        disadvantages: [
+          "The voltage of each appliance cannot be controlled separately, because it is always the same as the supply voltage.",
+        ],
+      },
       seriesParallel: {
-        title: "🔀 One path versus several branches",
-        instruction: "Tap either circuit to see its advantages and disadvantages.",
+        title: "🔀 Series vs Parallel",
+        instruction: "Tap Current, Voltage or Resistance to compare both circuits.",
         currentLabel: "Current",
         voltageLabel: "Voltage",
         resistanceLabel: "Resistance",
         advantageLabel: "Advantage",
         disadvantageLabel: "Disadvantage",
         hint: "Notice how many paths the charge can take in each circuit.",
+        propertyExplanations: {
+          current:
+            "In series, the same current flows through one path. In parallel, the current splits between branches.",
+          voltage:
+            "In series, the supply voltage is shared. In parallel, each branch has the same voltage as the source.",
+          resistance:
+            "Series resistances add directly. Parallel branches reduce the effective resistance.",
+        },
+        circuits: {
+          series: {
+            kind: "series",
+            supplyLabel: "6 V",
+            resistors: [
+              { id: "r1", label: "R₁" },
+              { id: "r2", label: "R₂" },
+            ],
+            stepLabel: "Step",
+          },
+          parallel: {
+            kind: "parallel",
+            supplyLabel: "6 V",
+            resistors: [
+              { id: "r1", label: "R₁" },
+              { id: "r2", label: "R₂" },
+            ],
+            stepLabel: "Step",
+          },
+        },
         kinds: [
           {
             id: "series",
@@ -317,10 +639,16 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
             currentRule: "I = I₁ = I₂",
             voltageRule: "V = V₁ + V₂",
             resistanceRule: "R = R₁ + R₂",
-            advantage:
-              "Every component receives the same amount of current, and all components are controlled by the same switch.",
-            disadvantage:
-              "If one component fails, the whole circuit stops. Adding components increases the total resistance and reduces the current.",
+            advantages: [
+              "Every component in the circuit receives the same current.",
+              "Components are controlled by the same switch.",
+              "Increasing the supply voltage can increase the current.",
+            ],
+            disadvantages: [
+              "If one component is damaged, the circuit is broken and the other components stop working.",
+              "Adding more components increases total resistance and reduces current.",
+              "Components cannot be switched independently.",
+            ],
             note: "All components sit on the same loop, so charge has only one path to take.",
           },
           {
@@ -330,11 +658,424 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
             currentRule: "I = I₁ + I₂",
             voltageRule: "V = V₁ = V₂",
             resistanceRule: "1/R = 1/R₁ + 1/R₂",
-            advantage:
-              "Each appliance can be switched on or off separately, and adding an appliance does not affect the others in the same circuit.",
-            disadvantage:
+            advantages: [
+              "Each appliance can be switched on or off separately.",
+              "Adding an appliance does not affect the others in the same circuit.",
+              "Each branch receives the full supply voltage.",
+            ],
+            disadvantages: [
               "The voltage of each appliance cannot be controlled separately, because it is always the same as the supply voltage.",
+            ],
             note: "The circuit splits into branches at one point and rejoins at another, so charge has more than one path.",
+          },
+        ],
+      },
+      circuitRecognition: {
+        title: "❓ Which Circuit Is It?",
+        instruction: "Look at each diagram, then answer both questions below.",
+        diagramA: {
+          kind: "series",
+          supplyLabel: "6 V",
+          resistors: [
+            { id: "r1", label: "R₁" },
+            { id: "r2", label: "R₂" },
+          ],
+          stepLabel: "Step",
+        },
+        diagramB: {
+          kind: "parallel",
+          supplyLabel: "6 V",
+          resistors: [
+            { id: "r1", label: "R₁" },
+            { id: "r2", label: "R₂" },
+          ],
+          stepLabel: "Step",
+        },
+        options: [
+          { id: "a", label: "Diagram A", isSeries: true },
+          { id: "b", label: "Diagram B", isSeries: false },
+        ],
+        seriesPrompt: "Which one is a series circuit?",
+        parallelPrompt: "Which one is a parallel circuit?",
+        seriesCorrectFeedback: "Correct — there is only one path.",
+        parallelCorrectFeedback: "Correct — the current has more than one path.",
+        incorrectFeedback: "Not quite — look again at how many paths the current can take.",
+        reminderNote: "Identify the circuit before choosing a formula.",
+      },
+      numericalProblemsIntro: {
+        title: "📊 Numerical Problems — Series & Parallel Circuits",
+        instruction: "First identify the circuit. Then choose the correct relationship.",
+        unitsMemory: {
+          title: "📌 Remember the units",
+          items: [
+            { quantitySymbol: "I", unitName: "ampere", unitSymbol: "A" },
+            { quantitySymbol: "V", unitName: "volt", unitSymbol: "V" },
+            { quantitySymbol: "R", unitName: "ohm", unitSymbol: "Ω" },
+          ],
+        },
+      },
+      workedExamples: [
+        {
+          figureLabel: "Worked Example 1 — Series Circuit",
+          questionIntro:
+            "Two resistors, R₁ = 2 Ω and R₂ = 2 Ω, are connected in series to a 6 V supply.",
+          circuit: {
+            kind: "series",
+            supplyLabel: "6 V",
+            resistors: [
+              { id: "r1", label: "R₁ = 2 Ω" },
+              { id: "r2", label: "R₂ = 2 Ω" },
+            ],
+            stepLabel: "Step",
+            showMeters: true,
+            size: "large",
+          },
+          questionsLabel: "Calculate",
+          questions: [
+            "(a) the effective resistance, R",
+            "(b) the current, I in the circuit",
+            "(c) the voltage, V₁ and V₂ across the resistors",
+          ],
+          identifyCircuit: {
+            prompt: "What type of circuit is this?",
+            options: [
+              { label: "Series", isCorrect: true },
+              { label: "Parallel", isCorrect: false },
+            ],
+            correctFeedback: "Correct — the components are connected in one path.",
+            incorrectFeedback: "Not quite — look at how many paths the current can take.",
+            startSolutionLabel: "Start solution",
+          },
+          showSolutionLabel: "Start solution",
+          solution: {
+            title: "Worked Example 1 — solution",
+            givenLabel: "Given",
+            findLabel: "Find",
+            formulaLabel: "Formula",
+            substituteLabel: "Substitute",
+            answerLabel: "Answer",
+            given: ["R₁ = 2 Ω", "R₂ = 2 Ω", "Supply, V = 6 V (series)"],
+            find: "Effective resistance R, then current I, then V₁ and V₂",
+            formula: "R = R₁ + R₂  ·  I = V ÷ R  ·  V₁ = IR₁, V₂ = IR₂",
+            substitute: "R = 2 + 2 = 4 Ω  ·  I = 6 ÷ 4 = 1.5 A  ·  V₁ = 1.5 × 2 = 3 V, V₂ = 1.5 × 2 = 3 V",
+            answer: "R = 4 Ω, I = 1.5 A, V₁ = 3 V, V₂ = 3 V",
+            circuit: {
+              kind: "series",
+              supplyLabel: "6 V",
+              resistors: [
+                { id: "r1", label: "R₁ = 2 Ω" },
+                { id: "r2", label: "R₂ = 2 Ω" },
+              ],
+              stepLabel: "Step",
+              showMeters: true,
+              size: "large",
+            },
+            steps: [
+              {
+                label: "Step 1",
+                formula: "R = R₁ + R₂",
+                substitute: "R = 2 + 2",
+                answer: "R = 4 Ω",
+                highlight: ["r1", "r2"],
+              },
+              {
+                label: "Step 2",
+                formula: "I = V ÷ R",
+                substitute: "I = 6 ÷ 4",
+                answer: "I = 1.5 A",
+                highlight: ["source", "loop"],
+              },
+              {
+                label: "Step 3",
+                formula: "V₁ = IR₁",
+                substitute: "V₁ = 1.5 × 2",
+                answer: "V₁ = 3 V",
+                highlight: ["r1"],
+              },
+              {
+                label: "Step 4",
+                formula: "V₂ = IR₂",
+                substitute: "V₂ = 1.5 × 2",
+                answer: "V₂ = 3 V",
+                highlight: ["r2"],
+              },
+            ],
+          },
+        },
+        {
+          figureLabel: "Worked Example 2 — Parallel Circuit",
+          questionIntro:
+            "Two resistors, R₁ = 2 Ω and R₂ = 2 Ω, are connected in parallel to a 6 V supply.",
+          circuit: {
+            kind: "parallel",
+            supplyLabel: "6 V",
+            resistors: [
+              { id: "r1", label: "R₁ = 2 Ω" },
+              { id: "r2", label: "R₂ = 2 Ω" },
+            ],
+            stepLabel: "Step",
+            showMeters: true,
+            size: "large",
+          },
+          questionsLabel: "Calculate",
+          questions: [
+            "(a) effective resistance, R",
+            "(b) voltage, V across each branch",
+            "(c) current, I in the circuit",
+          ],
+          identifyCircuit: {
+            prompt: "What type of circuit is this?",
+            options: [
+              { label: "Series", isCorrect: false },
+              { label: "Parallel", isCorrect: true },
+            ],
+            correctFeedback: "Correct — current has more than one path.",
+            incorrectFeedback: "Not quite — look at how many branches the current can take.",
+            startSolutionLabel: "Start solution",
+          },
+          showSolutionLabel: "Start solution",
+          solution: {
+            title: "Worked Example 2 — solution",
+            givenLabel: "Given",
+            findLabel: "Find",
+            formulaLabel: "Formula",
+            substituteLabel: "Substitute",
+            answerLabel: "Answer",
+            given: ["R₁ = 2 Ω", "R₂ = 2 Ω", "Supply, V = 6 V (parallel)"],
+            find: "Effective resistance R, then branch currents I₁ and I₂, then total current I",
+            formula: "1/R = 1/R₁ + 1/R₂  ·  I₁ = V ÷ R₁, I₂ = V ÷ R₂  ·  I = I₁ + I₂",
+            substitute: "1/R = 1/2 + 1/2 = 1, so R = 1 Ω  ·  I₁ = 6 ÷ 2 = 3 A, I₂ = 6 ÷ 2 = 3 A  ·  I = 3 + 3",
+            answer: "R = 1 Ω, I₁ = 3 A, I₂ = 3 A, total I = 6 A",
+            circuit: {
+              kind: "parallel",
+              supplyLabel: "6 V",
+              resistors: [
+                { id: "r1", label: "R₁ = 2 Ω" },
+                { id: "r2", label: "R₂ = 2 Ω" },
+              ],
+              stepLabel: "Step",
+              showMeters: true,
+              size: "large",
+            },
+            steps: [
+              {
+                label: "Step 1",
+                formula: "1/R = 1/R₁ + 1/R₂",
+                substitute: "1/R = 1/2 + 1/2 = 1",
+                answer: "R = 1 Ω",
+                highlight: ["r1", "r2"],
+              },
+              {
+                label: "Step 2",
+                formula: "V = V₁ = V₂",
+                substitute: "V = V₁ = V₂ = 6 V",
+                answer: "V₁ = V₂ = 6 V",
+                highlight: ["source", "r1", "r2"],
+              },
+              {
+                label: "Step 3",
+                formula: "I₁ = V₁ ÷ R₁",
+                substitute: "I₁ = 6 ÷ 2",
+                answer: "I₁ = 3 A",
+                highlight: ["r1"],
+              },
+              {
+                label: "Step 4",
+                formula: "I₂ = V₂ ÷ R₂",
+                substitute: "I₂ = 6 ÷ 2",
+                answer: "I₂ = 3 A",
+                highlight: ["r2"],
+              },
+              {
+                label: "Step 5",
+                formula: "I = I₁ + I₂",
+                substitute: "I = 3 + 3",
+                answer: "I = 6 A",
+                highlight: ["source"],
+              },
+            ],
+          },
+        },
+      ],
+      selfPractice: {
+        title: "🎯 Try It Yourself",
+        instruction: "Work through each figure yourself before checking the solution.",
+        figures: [
+          {
+            figureLabel: "Circuit 1",
+            questionIntro:
+              "Three resistors, R₁ = 1 Ω, R₂ = 3 Ω and R₃ = 5 Ω, are connected in series to a 9 V supply.",
+            circuit: {
+              kind: "series",
+              supplyLabel: "9 V",
+              resistors: [
+                { id: "r1", label: "R₁ = 1 Ω" },
+                { id: "r2", label: "R₂ = 3 Ω" },
+                { id: "r3", label: "R₃ = 5 Ω" },
+              ],
+              stepLabel: "Step",
+              size: "large",
+            },
+            questionsLabel: "Calculate",
+            questions: [
+              "a. the effective resistance",
+              "b. the current in the circuit",
+              "c. the voltage across each resistor",
+            ],
+            hintsLabel: "Hint",
+            hints: [
+              "Identify whether the resistors are connected in series or in parallel.",
+              "Calculate the effective resistance first — you will need it for every other part.",
+            ],
+            showSolutionLabel: "Show solution",
+            solution: {
+              title: "Circuit 1 — solution",
+              givenLabel: "Given",
+              findLabel: "Find",
+              formulaLabel: "Formula",
+              substituteLabel: "Substitute",
+              answerLabel: "Answer",
+              given: ["V = 9 V", "R₁ = 1 Ω", "R₂ = 3 Ω", "R₃ = 5 Ω"],
+              find: "R, then I, then V₁, V₂ and V₃",
+              formula: "R = R₁ + R₂ + R₃  ·  I = V ÷ R  ·  V = IR (each resistor)",
+              substitute: "R = 1 + 3 + 5 = 9 Ω  ·  I = 9 ÷ 9 = 1 A  ·  V₁ = 1×1, V₂ = 1×3, V₃ = 1×5",
+              answer: "R = 9 Ω, I = 1 A, V₁ = 1 V, V₂ = 3 V, V₃ = 5 V",
+              circuit: {
+                kind: "series",
+                supplyLabel: "9 V",
+                resistors: [
+                  { id: "r1", label: "R₁ = 1 Ω" },
+                  { id: "r2", label: "R₂ = 3 Ω" },
+                  { id: "r3", label: "R₃ = 5 Ω" },
+                ],
+                stepLabel: "Step",
+                size: "large",
+              },
+              steps: [
+                {
+                  label: "Step 1",
+                  formula: "R = R₁ + R₂ + R₃",
+                  substitute: "R = 1 + 3 + 5",
+                  answer: "R = 9 Ω",
+                  highlight: ["r1", "r2", "r3"],
+                },
+                {
+                  label: "Step 2",
+                  formula: "I = V ÷ R",
+                  substitute: "I = 9 ÷ 9",
+                  answer: "I = 1 A",
+                  highlight: ["source", "loop"],
+                },
+                {
+                  label: "Step 3",
+                  formula: "V₁ = IR₁",
+                  substitute: "V₁ = 1 × 1",
+                  answer: "V₁ = 1 V",
+                  highlight: ["r1"],
+                },
+                {
+                  label: "Step 4",
+                  formula: "V₂ = IR₂",
+                  substitute: "V₂ = 1 × 3",
+                  answer: "V₂ = 3 V",
+                  highlight: ["r2"],
+                },
+                {
+                  label: "Step 5",
+                  formula: "V₃ = IR₃",
+                  substitute: "V₃ = 1 × 5",
+                  answer: "V₃ = 5 V",
+                  highlight: ["r3"],
+                },
+              ],
+            },
+          },
+          {
+            figureLabel: "Circuit 2",
+            questionIntro:
+              "Two resistors, R₁ = 3 Ω and R₂ = 6 Ω, are connected in parallel to a 4 V supply.",
+            circuit: {
+              kind: "parallel",
+              supplyLabel: "4 V",
+              resistors: [
+                { id: "r1", label: "R₁ = 3 Ω" },
+                { id: "r2", label: "R₂ = 6 Ω" },
+              ],
+              stepLabel: "Step",
+              size: "large",
+            },
+            questionsLabel: "Calculate",
+            questions: [
+              "a. the effective resistance",
+              "b. the voltage across each resistor",
+              "c. the current through each resistor (I₁ and I₂)",
+            ],
+            hintsLabel: "Hint",
+            hints: [
+              "Identify whether the resistors are connected in series or in parallel.",
+              "Calculate the effective resistance first — you will need it for every other part.",
+            ],
+            showSolutionLabel: "Show solution",
+            solution: {
+              title: "Circuit 2 — solution",
+              givenLabel: "Given",
+              findLabel: "Find",
+              formulaLabel: "Formula",
+              substituteLabel: "Substitute",
+              answerLabel: "Answer",
+              given: ["V = 4 V", "R₁ = 3 Ω", "R₂ = 6 Ω"],
+              find: "R, then V₁ and V₂, then I₁ and I₂",
+              formula: "1/R = 1/R₁ + 1/R₂  ·  V = V₁ = V₂  ·  I = V ÷ R (each branch)",
+              substitute: "1/R = 1/3 + 1/6 = 1/2, so R = 2 Ω  ·  V₁ = V₂ = 4 V  ·  I₁ = 4÷3, I₂ = 4÷6",
+              answer: "R = 2 Ω, V₁ = V₂ = 4 V, I₁ ≈ 1.33 A, I₂ ≈ 0.67 A",
+              circuit: {
+                kind: "parallel",
+                supplyLabel: "4 V",
+                resistors: [
+                  { id: "r1", label: "R₁ = 3 Ω" },
+                  { id: "r2", label: "R₂ = 6 Ω" },
+                ],
+                stepLabel: "Step",
+                size: "large",
+              },
+              steps: [
+                {
+                  label: "Step 1",
+                  formula: "1/R = 1/R₁ + 1/R₂",
+                  substitute: "1/R = 1/3 + 1/6 = 1/2",
+                  answer: "R = 2 Ω",
+                  highlight: ["r1", "r2"],
+                },
+                {
+                  label: "Step 2",
+                  formula: "V = V₁ = V₂",
+                  substitute: "V₁ = V₂ = 4 V",
+                  answer: "V₁ = V₂ = 4 V",
+                  highlight: ["source", "r1", "r2"],
+                },
+                {
+                  label: "Step 3",
+                  formula: "I₁ = V₁ ÷ R₁",
+                  substitute: "I₁ = 4 ÷ 3",
+                  answer: "I₁ ≈ 1.33 A",
+                  highlight: ["r1"],
+                },
+                {
+                  label: "Step 4",
+                  formula: "I₂ = V₂ ÷ R₂",
+                  substitute: "I₂ = 4 ÷ 6",
+                  answer: "I₂ ≈ 0.67 A",
+                  highlight: ["r2"],
+                },
+                {
+                  label: "Step 5",
+                  formula: "I = I₁ + I₂ (total, optional)",
+                  substitute: "I ≈ 1.33 + 0.67",
+                  answer: "I ≈ 2.00 A",
+                  highlight: ["source"],
+                },
+              ],
+            },
           },
         ],
       },
@@ -461,6 +1202,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
           ],
         },
         hint: "Tap any conductor shape above.",
+        noticeLabel: "What should you notice?",
         conductors: [
           {
             id: "straight",
@@ -473,6 +1215,11 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
               alt: "A vertical copper wire passing through the centre of a horizontal board, with eight plotting compasses arranged in a ring around it.",
               caption: "The apparatus used to show the magnetic field around a straight current-carrying wire.",
             },
+            notice: [
+              "The field forms circles around the wire.",
+              "Reversing the current reverses the field direction.",
+              "The field becomes weaker farther from the wire.",
+            ],
           },
           {
             id: "loop",
@@ -485,6 +1232,11 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
               alt: "A single circular copper loop held upright on a laboratory stand, its two ends clamped to the terminals beneath it.",
               caption: "The apparatus used to show the magnetic field of a current-carrying circular loop.",
             },
+            notice: [
+              "The magnetic fields from different parts of the loop combine.",
+              "The field is stronger near the centre of the loop.",
+              "Reversing the current reverses the field direction.",
+            ],
           },
           {
             id: "solenoid",
@@ -498,6 +1250,12 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
               alt: "An air-core solenoid: copper wire wound into about eleven evenly spaced turns, held horizontally on a stand, with its hollow centre visible.",
               caption: "The apparatus used to show the magnetic field of a current-carrying solenoid.",
             },
+            notice: [
+              "The field resembles that of a bar magnet.",
+              "One end acts as a north pole, the other as a south pole.",
+              "The field inside the solenoid is relatively strong.",
+              "Reversing the current reverses which end is which pole.",
+            ],
           },
         ],
       },
@@ -505,6 +1263,10 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
         {
           title: "Field strength and distance",
           body: "**The strength of a magnetic field decreases as you move further from the centre of the conductor.** This is different from the factors that change the strength of the electromagnet itself — distance changes the strength you measure, not the strength produced.",
+        },
+        {
+          title: "🧲 Why a coil, and why an iron core",
+          body: "A coil concentrates the magnetic field from every turn of wire into the same small space, making the field far stronger than a single straight wire. An iron core placed inside the coil strengthens the electromagnet further.",
         },
       ],
       checks: [
@@ -539,6 +1301,18 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
         title: "🔬 Investigation: factors affecting magnetic field strength",
         aim: "To study the factors that affect the magnetic field strength of an electromagnet.",
         instruction: "Pick one factor to see its full investigation.",
+        apparatusImage: {
+          src: SCIENCE_F2_CH7_IMAGES.electromagnetInvestigation,
+          alt: "The investigation set up on a laboratory bench. A D.C. power supply, a switch, an ammeter and a rheostat are connected in one series loop with copper wire wound around a vertical iron rod. The rod is held by a clamp on a retort stand, with its lower end above a Petri dish of pins.",
+          responseLabels: [
+            "Weakest field around the iron core — the fewest pins are attracted.",
+            "Weak field around the iron core — few pins are attracted.",
+            "Stronger field around the iron core — more pins are attracted.",
+            "Strong field around the iron core — many pins are attracted.",
+            "Strongest field around the iron core — the most pins are attracted.",
+          ],
+          turnsLabel: "Coil turns",
+        },
         aimLabel: "Aim",
         hypothesisLabel: "Hypothesis",
         manipulatedLabel: "Manipulated variable",
@@ -574,6 +1348,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
               "The greater the current used, the more pins are attracted by the iron rod.",
             conclusion:
               "A greater current produces a higher magnetic field strength. The hypothesis is accepted.",
+            values: ["0.5 A", "1.0 A", "1.5 A", "2.0 A", "2.5 A"],
           },
           {
             id: "turns",
@@ -599,6 +1374,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
               "The greater the number of coil turns used, the more pins are attracted by the iron rod.",
             conclusion:
               "A greater number of coil turns produces a higher magnetic field strength. The hypothesis is accepted.",
+            values: ["10", "20", "30", "40", "50"],
           },
         ],
       },

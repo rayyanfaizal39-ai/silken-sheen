@@ -24,6 +24,7 @@ export function ApparatusOverlayFigure({
   aspect,
   size = "scene",
   overlay,
+  children,
   caption,
   priority = false,
 }: {
@@ -37,6 +38,15 @@ export function ApparatusOverlayFigure({
    * `viewBox` dimensions so one figure cannot drift from its artwork.
    */
   overlay: { width: number; height: number; children: ReactNode; label: string };
+  /**
+   * A second layer over the same box, in PERCENTAGES of the artwork rather than
+   * its pixels — for anything that has to be a real DOM element instead of SVG:
+   * a dim-and-highlight scrim, or hotspot regions that need focus and
+   * `aria-pressed`. It shares the frame with `overlay`, so the two stay locked
+   * to each other and to the picture at every width. Rendered above the pixel
+   * overlay, and responsible for its own pointer-events.
+   */
+  children?: ReactNode;
   caption?: string;
   priority?: boolean;
 }) {
@@ -65,6 +75,7 @@ export function ApparatusOverlayFigure({
         >
           {overlay.children}
         </svg>
+        {children}
       </div>
       {caption && (
         <figcaption className="text-center text-[11.5px] leading-snug text-muted-foreground">

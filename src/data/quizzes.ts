@@ -321,16 +321,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "What is the difference between Accuracy and Precision?",
+    question: "What is the difference between Accuracy and Consistency?",
     options: [
       "They mean exactly the same thing",
-      "Accuracy is closeness to true value, Precision is consistency of measurements",
-      "Accuracy is consistency, Precision is closeness to true value",
+      "Accuracy is closeness to the actual value; Consistency is closeness among repeated readings",
+      "Accuracy is closeness among repeated readings; Consistency is closeness to the actual value",
       "Accuracy only applies to temperature",
     ],
     answerIndex: 1,
     explanation:
-      "Accuracy refers to how close a measurement is to the true value, while Precision refers to how consistent repeated measurements are with each other.",
+      "Accuracy refers to how close a measurement is to the true value, while Consistency refers to how consistent repeated measurements are with each other.",
   },
   {
     id: "sci-f1-c1-dlp-q22",

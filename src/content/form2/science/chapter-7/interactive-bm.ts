@@ -40,8 +40,23 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "☀️ Sumber tenaga",
-          body: "Matahari, angin, bahan radioaktif, bahan api fosil, geoterma, biojisim, ombak dan air.",
-          detail: "Lapan sumber ini membekalkan tenaga yang kemudian bertukar kepada pelbagai bentuk.",
+          body: "Tenaga datang daripada lapan sumber.",
+          facts: [
+            {
+              label: "Lapan sumber tenaga",
+              value: [
+                "Matahari",
+                "Angin",
+                "Bahan radioaktif",
+                "Bahan api fosil",
+                "Geoterma",
+                "Biojisim",
+                "Ombak",
+                "Air",
+              ],
+            },
+          ],
+          detail: "Matahari, angin, bahan radioaktif, bahan api fosil, geoterma, biojisim, ombak dan air — lapan sumber ini membekalkan tenaga yang kemudian bertukar kepada pelbagai bentuk.",
         },
       ],
       flipCards: [
@@ -66,7 +81,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       number: "7.1",
       title: "Cas Elektrostatik",
       intro:
-        "Semua jirim mengandungi cas positif (proton) dan cas negatif (elektron). Apabila dua bahan berbeza digosokkan, hanya elektron berpindah — proton tidak bergerak. Objek yang memperoleh elektron menjadi bercas negatif; objek yang kehilangan elektron menjadi bercas positif; objek dengan bilangan proton dan elektron yang sama adalah neutral.",
+        "Cas elektrik statik yang terkumpul pada sesuatu objek dikenali sebagai cas elektrostatik. Semua jirim mengandungi cas positif (proton) dan cas negatif (elektron). Apabila dua bahan berbeza digosokkan, hanya elektron berpindah — proton tidak bergerak. Objek yang memperoleh elektron menjadi bercas negatif; objek yang kehilangan elektron menjadi bercas positif; objek dengan bilangan proton dan elektron yang sama adalah neutral.",
       contextImages: [
         {
           src: SCIENCE_F2_CH7_IMAGES.chargeTransfer,
@@ -90,10 +105,81 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
           detail: "Semakin jauh pencapahan kerajang emas, semakin banyak kuantiti cas yang terkumpul.",
         },
       ],
+      polarityInteraction: {
+        title: "⚡ Tarikan dan tolakan",
+        instruction: "Tekan sepasang cas untuk melihat ke arah mana daya itu bertindak.",
+        attractLabel: "Tarik",
+        repelLabel: "Tolak",
+        pairs: [
+          {
+            id: "attract",
+            label: "+ dan −",
+            leftCharge: "+",
+            rightCharge: "-",
+            outcome: "attract",
+            note: "Cas yang berlainan jenis saling menarik.",
+          },
+          {
+            id: "repel-pos",
+            label: "+ dan +",
+            leftCharge: "+",
+            rightCharge: "+",
+            outcome: "repel",
+            note: "Cas yang sama jenis saling menolak.",
+          },
+          {
+            id: "repel-neg",
+            label: "− dan −",
+            leftCharge: "-",
+            rightCharge: "-",
+            outcome: "repel",
+            note: "Cas yang sama jenis saling menolak. Inilah sebabnya sikat yang telah digosok boleh menarik cebisan kertas kecil — cas sikat itu menolak elektron dalam kertas, meninggalkan bahagian kertas yang hampir dengan sikat bercas bertentangan sehingga tertarik.",
+          },
+        ],
+      },
+      electroscope: {
+        title: "🔬 Elektroskop",
+        instruction:
+          "Tekan setiap peringkat untuk mengikuti apa yang berlaku di dalam elektroskop. Panel yang anda pilih kekal terang manakala dua yang lain menjadi malap.",
+        prompt: "Pilih satu peringkat untuk melihat apa yang berlaku pada kerajang emas.",
+        image: {
+          src: SCIENCE_F2_CH7_IMAGES.electroscope,
+          alt: "Tiga elektroskop bersebelahan di bawah balang kaca. Pada yang pertama, kerajang emas tergantung rapat pada batang konduktor. Pada yang kedua, rod kaca bercas positif menyentuh tudung logam dan elektron ditunjukkan bergerak dari tudung ke rod itu, meninggalkan cas positif menuruni batang dan pada kerajang. Pada yang ketiga, elektroskop membawa cas positif dan kerajang emasnya telah mencapah jauh daripada batang.",
+          caption:
+            "Satu elektroskop, tiga peringkat: neutral, cas sedang dikenakan, dan kerajang emas yang mencapah.",
+          size: "panel",
+          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
+          legendLabel: "Peringkat elektroskop yang bercas",
+        },
+        stages: [
+          {
+            id: "uncharged",
+            label: "Neutral",
+            spotlightCaption: "Neutral",
+            note: "Elektroskop itu neutral dan kerajang emas kekal rapat pada batang konduktor.",
+          },
+          {
+            id: "charged",
+            label: "Cas dikenakan",
+            spotlightCaption: "Elektron keluar",
+            note: "Rod yang bercas positif menyentuh tudung logam. Elektron bergerak dari elektroskop menuju rod yang bercas positif itu.",
+          },
+          {
+            id: "diverged",
+            label: "Kerajang emas mencapah",
+            spotlightCaption: "Cas menolak",
+            note: "Elektroskop kekal bercas positif. Cas sama jenis pada batang konduktor dan kerajang emas saling menolak, lalu menyebabkan kerajang itu mencapah. Capahan yang lebih besar boleh menunjukkan kuantiti cas elektrostatik terkumpul yang lebih banyak.",
+          },
+        ],
+      },
       checks: [
         {
           question: "Sebatang rod digosok dengan kain, lalu menjadi bercas negatif. Apakah yang telah berlaku kepada elektronnya?",
           hint: "Rod itu telah memperoleh elektron daripada kain. Hanya elektron berpindah semasa penggosokan — proton kekal di tempatnya.",
+        },
+        {
+          question: "Mengapakah kerajang emas elektroskop yang bercas mencapah?",
+          hint: "Kerajang dan plat yang digantungnya akhirnya membawa cas yang sama, dan cas yang sama jenis saling menolak.",
         },
       ],
     },
@@ -102,18 +188,58 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Elektrostatik dalam Kehidupan Harian",
       intro:
         "Cas elektrostatik bukan sekadar kesan makmal. Ia menerangkan kilat, renjatan kecil yang anda rasa pada tombol pintu, dan beberapa langkah keselamatan penting.",
-      contextImages: [
-        {
-          src: SCIENCE_F2_CH7_IMAGES.dailyLife,
-          alt: "Empat pemandangan waktu malam. Kilat memanah tanah daripada awan yang membawa cas positif di bahagian atas dan cas negatif di bahagian bawah. Konduktor kilat pada sebuah bangunan mengalirkan cas turun ke bumi. Percikan api muncul pada muncung semasa sebuah kereta diisi petrol. Kilat mengalir pada badan logam kereta, mengelilingi orang yang duduk di dalamnya.",
+      lightningFormation: {
+        title: "🌩️ Bagaimana kilat terbentuk",
+        instruction:
+          "Ikuti empat peringkat ini. Setiap satu menerangi bahagian pemandangan yang diterangkannya.",
+        prompt: "Pilih satu peringkat untuk melihat di mana ia berlaku dalam pemandangan ini.",
+        image: {
+          src: SCIENCE_F2_CH7_IMAGES.lightningFormation,
+          alt: "Pemandangan waktu malam. Udara mengalir melepasi awan ribut dari kedua-dua belah. Cas positif berkumpul di bahagian atas awan dan cas negatif di bahagian bawahnya. Cas positif berada pada permukaan Bumi tepat di bawah awan itu, dan pancaran kilat bercabang menuruni dari dasar awan ke Bumi.",
           caption:
-            "Kilat, konduktor kilat, keselamatan semasa mengisi petrol dan kereta berbadan logam — empat situasi yang diterangkan di bawah.",
+            "Geseran dengan udara di sekeliling, pemisahan cas di dalam awan, cas teraruh pada Bumi, dan nyahcas itu sendiri.",
           size: "panel",
-          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
-          priority: true,
-          annotations: [],
+          aspect: SCIENCE_F2_VISUAL_ASPECT.standard,
+          legendLabel: "Peringkat pembentukan kilat",
         },
-      ],
+        stages: [
+          {
+            id: "friction",
+            icon: "💨",
+            label: "Geseran",
+            spotlightCaption: "Awan dan udara sekeliling",
+            note: "Geseran antara awan dan udara di sekelilingnya menyebabkan cas elektrik terkumpul pada awan itu.",
+          },
+          {
+            id: "separation",
+            icon: "➕➖",
+            label: "Pemisahan cas",
+            spotlightCaption: "Positif di atas, negatif di bawah",
+            note: "Bahagian atas awan menjadi bercas positif manakala bahagian bawahnya menjadi bercas negatif.",
+          },
+          {
+            id: "induced",
+            icon: "🌍",
+            label: "Cas teraruh di Bumi",
+            spotlightCaption: "Cas positif pada Bumi",
+            note: "Cas negatif di bahagian bawah awan mengaruhkan cas positif pada permukaan Bumi di bawahnya.",
+          },
+          {
+            id: "discharge",
+            icon: "⚡",
+            label: "Nyahcas",
+            spotlightCaption: "Nyahcas mengejut",
+            note: "Nyahcas elektrostatik yang mengejut antara awan dan Bumi kemudian berlaku sebagai kilat.",
+          },
+        ],
+        summaryLabel: "Empat peringkat itu secara keseluruhan",
+        summary: [
+          "Geseran antara awan dan udara di sekelilingnya menyebabkan cas elektrik terkumpul.",
+          "Bahagian atas awan menjadi bercas positif manakala bahagian bawahnya menjadi bercas negatif.",
+          "Cas negatif di bahagian bawah awan mengaruhkan cas positif pada permukaan Bumi.",
+          "Nyahcas elektrostatik yang mengejut kemudian boleh berlaku sebagai kilat.",
+        ],
+      },
       accordions: [
         {
           title: "⚡ Kejadian kilat",
@@ -124,21 +250,34 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
           body: "Konduktor kilat dipasang pada bangunan untuk **menyediakan satu lintasan bagi cas elektrik daripada kilat masuk ke dalam Bumi**. Cara ini melindungi bangunan daripada disambar kilat.",
         },
         {
-          title: "👕 Cuaca kering dan pemilihan pakaian",
+          title: "📺 Skrin televisyen berhabuk",
+          body: "Masalah: Skrin televisyen boleh cepat berhabuk kerana tarikan elektrostatik menyebabkan zarah habuk tertarik pada skrin.",
+          detail: "Penyelesaian: Gunakan kain mikrofiber / bahan antielektrostatik untuk mengurangkan pengumpulan habuk.",
+        },
+        {
+          title: "👕 Cuaca kering, fabrik dan elektrik statik",
           body: "Semasa cuaca kering, cas elektrostatik lebih mudah terkumpul pada objek. Wap air yang banyak di udara semasa cuaca lembap pula menghalang pengumpulan cas. Itulah sebabnya renjatan kecil lebih kerap berlaku dalam keadaan kering.",
-          detail: "Jika lantai berkarpet nilon menyebabkan renjatan kecil apabila menyentuh objek logam, memakai kasut bertapak getah dicadangkan untuk mengurangkan kesan tersebut.",
+          detail: "Sesetengah fabrik sintetik lebih mudah terkumpul cas elektrostatik akibat penggeseran. Jika lantai berkarpet nilon menyebabkan renjatan kecil apabila menyentuh objek logam, memakai kasut bertapak getah dicadangkan untuk mengurangkan kesan tersebut.",
         },
         {
-          title: "⛽ Keselamatan semasa mengisi petrol",
-          body: "Wap petrol mudah terbakar. Percikan daripada cas elektrostatik yang terkumpul boleh menyalakan wap itu, maka cas perlu dikurangkan atau dialirkan dengan selamat semasa mengisi minyak.",
-          detail: "Itulah sebabnya nozel dan tangki disambungkan supaya cas mengalir ke bumi, dan pengguna dinasihatkan supaya tidak berulang-alik masuk dan keluar kenderaan.",
-        },
-        {
-          title: "🚗 Konsep sangkar Faraday",
+          title: "🚗 Tempat perlindungan selamat semasa ribut petir — konsep sangkar Faraday",
           body: "Sebuah kotak logam boleh melindungi apa yang berada di dalamnya kerana cas mengalir pada permukaan luar logam itu dan tidak masuk ke dalam. Inilah sebabnya kekal berada di dalam kenderaan berbadan logam ialah tempat perlindungan yang lebih selamat semasa ribut petir.",
           detail: "Perlindungan itu datang daripada badan logam yang mengalirkan cas di sekelilingnya — bukan daripada tayar getah.",
         },
+        {
+          title: "⛽ Tambahan: keselamatan semasa mengisi petrol",
+          body: "Wap petrol mudah terbakar. Percikan daripada cas elektrostatik yang terkumpul boleh menyalakan wap itu, maka cas perlu dikurangkan atau dialirkan dengan selamat semasa mengisi minyak.",
+          detail: "Itulah sebabnya nozel dan tangki disambungkan supaya cas mengalir ke bumi, dan pengguna dinasihatkan supaya tidak berulang-alik masuk dan keluar kenderaan.",
+        },
       ],
+      dryHumidComparison: {
+        title: "💧 Cuaca kering berbanding cuaca lembap",
+        dryLabel: "Kering",
+        humidLabel: "Lembap",
+        dryCaption: "Sedikit wap air di udara — cas terkumpul.",
+        humidCaption: "Wap air di udara — cas terlerai.",
+        note: "Keadaan kering membolehkan cas elektrostatik terkumpul dengan lebih mudah. Dalam udara lembap, wap air membantu cas terlerai dengan lebih mudah.",
+      },
       checks: [
         {
           question: "Mengapakah penjana Van de Graaff tidak berfungsi dengan baik ketika cuaca lembap?",
@@ -172,6 +311,28 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
           detail: "Galvanometer digunakan untuk mengesan arus elektrik yang kecil.",
         },
       ],
+      currentDirection: {
+        title: "🔀 Aliran elektron lawan arus konvensional",
+        instruction: "Tekan mana-mana arah untuk membandingkannya.",
+        keyPoint: "Kedua-dua arah ini bertentangan.",
+        negativeTerminalLabel: "Terminal negatif",
+        positiveTerminalLabel: "Terminal positif",
+        contrastLabel: "Arah bertentangan",
+        modes: [
+          {
+            id: "electron",
+            label: "Aliran Elektron",
+            note: "Elektron sebenarnya bergerak dari terminal negatif ke terminal positif.",
+            directionSummary: "Negatif → Positif",
+          },
+          {
+            id: "conventional",
+            label: "Arus Konvensional",
+            note: "Arus konvensional ditakrifkan sebagai mengalir dari terminal positif ke terminal negatif — arah yang digunakan dalam semua litar dan petua yang anda pelajari.",
+            directionSummary: "Positif → Negatif",
+          },
+        ],
+      },
       checks: [
         {
           question: "Dalam satu litar mudah, ke arah manakah elektron bergerak, dan ke arah manakah arus konvensional dikatakan mengalir?",
@@ -187,7 +348,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       number: "7.1",
       title: "Arus, Voltan dan Rintangan",
       intro:
-        "Tiga kuantiti elektrik yang perlu anda kenali, setiap satu dengan simbol, unit dan alat pengukurnya sendiri. Yang paling kerap diuji bukan sahaja apa yang diukur oleh setiap alat, tetapi bagaimana alat itu disambungkan ke dalam litar.",
+        "Tiga kuantiti elektrik yang perlu anda kenali, setiap satu dengan simbol, unit dan alat pengukurnya sendiri. Yang paling kerap diuji bukan sahaja apa yang diukur oleh setiap alat, tetapi bagaimana alat itu disambungkan ke dalam litar. Setiap litar lengkap dilukis menggunakan simbol piawai, bukan gambar komponen sebenar — kuasai simbol itu dahulu, dan rajah di bawah menjadi mudah dibaca.",
       contextImages: [
         {
           src: SCIENCE_F2_CH7_IMAGES.meterPlacement,
@@ -213,8 +374,8 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
         },
         {
           title: "Rintangan, R",
-          body: "**Keupayaan konduktor untuk merintangi aliran arus.** Perintang tetap mempunyai rintangan yang tidak boleh diselaraskan, manakala **reostat (perintang berubah) boleh diselaraskan**.",
-          detail: "Unit: ohm (Ω)",
+          body: "**Rintangan ialah keupayaan suatu konduktor untuk mengehadkan atau merintangi aliran arus elektrik.**",
+          detail: "Unit: ohm (Ω) · Perintang tetap mempunyai rintangan yang tidak boleh diselaraskan. Reostat (perintang berubah) membolehkan rintangan diselaraskan.",
         },
       ],
       circuitMeterDiagram: {
@@ -259,6 +420,10 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
           question: "Di manakah voltmeter perlu disambungkan untuk mengukur voltan merentasi sebuah mentol?",
           hint: "Secara selari dengan mentol itu — pada cabangnya sendiri merentasi kedua-dua hujung mentol.",
         },
+        {
+          question: "Komponen manakah yang mempunyai rintangan yang boleh dilaraskan?",
+          hint: "Perintang berubah (reostat). Rintangan perintang tetap tidak boleh diubah.",
+        },
       ],
     },
     {
@@ -279,6 +444,36 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
           body: "Pada voltan yang tetap, **arus yang mengalir berkurang apabila rintangan bertambah**. Menambah panjang dawai meningkatkan rintangannya, lalu mengurangkan arus.",
         },
       ],
+      ohmsTriangle: {
+        title: "🔺 Segi tiga Hukum Ohm",
+        instruction: "Tekan V, I atau R untuk menutupnya dan melihat formulanya.",
+        vFormula: "V = I × R",
+        iFormula: "I = V ÷ R",
+        rFormula: "R = V ÷ I",
+      },
+      guidedCalculations: [
+        {
+          title: "✏️ Contoh berpandu",
+          givenLabel: "Diberi",
+          findLabel: "Cari",
+          formulaLabel: "Formula",
+          substituteLabel: "Gantikan",
+          answerLabel: "Jawapan",
+          given: ["V = 6 V", "R = 3 Ω"],
+          find: "I = ? A",
+          formula: "I = V ÷ R",
+          substitute: "I = 6 V ÷ 3 Ω",
+          answer: "I = 2 A",
+        },
+      ],
+      unitsMemory: {
+        title: "📌 Ingat unit",
+        items: [
+          { quantitySymbol: "I", unitName: "ampere", unitSymbol: "A" },
+          { quantitySymbol: "V", unitName: "volt", unitSymbol: "V" },
+          { quantitySymbol: "R", unitName: "ohm", unitSymbol: "Ω" },
+        ],
+      },
       calculators: [
         {
           type: "ohms-law",
@@ -300,15 +495,142 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
       title: "Litar Bersiri dan Litar Selari",
       intro:
         "Litar bersiri menyambungkan komponen secara berturutan dalam **satu laluan tunggal**. Litar selari pula terbahagi kepada **beberapa cabang berasingan**. Perbezaan itu mengubah cara arus, voltan dan rintangan berkelakuan.",
+      circuitSymbols: {
+        title: "🔧 Komponen litar elektrik dan simbolnya",
+        instruction: "Tekan sesuatu komponen untuk melihat simbol dan fungsinya diserlahkan.",
+        symbols: [
+          { id: "switch", name: "Suis", purpose: "Membuka atau menutup litar, menghentikan atau membenarkan arus mengalir." },
+          { id: "cell", name: "Sel kering", purpose: "Satu sumber tenaga elektrik tunggal yang mendorong arus mengelilingi litar." },
+          { id: "voltmeter", name: "Voltmeter", purpose: "Mengukur voltan, dalam unit volt. Sentiasa disambung secara selari." },
+          { id: "galvanometer", name: "Galvanometer", purpose: "Mengesan dan mengukur arus elektrik yang sangat kecil melalui pesongan jarumnya." },
+          { id: "ammeter", name: "Ammeter", purpose: "Mengukur arus, dalam unit ampere. Sentiasa disambung secara bersiri." },
+          { id: "bulb", name: "Mentol", purpose: "Menyala apabila arus mengalir melaluinya — sering digunakan untuk menunjukkan litar itu lengkap." },
+          { id: "resistor", name: "Perintang", purpose: "Komponen tetap yang merintangi aliran arus mengikut nilai yang ditetapkan." },
+          { id: "fuse", name: "Fius", purpose: "Komponen keselamatan yang lebur dan memutuskan litar jika arus menjadi terlalu besar." },
+          { id: "rheostat", name: "Perintang boleh laras", purpose: "Perintang yang rintangannya boleh dilaraskan, digunakan untuk mengubah arus dalam litar." },
+        ],
+      },
+      circuitConceptSeries: {
+        tag: "SATU LALUAN",
+        title: "LITAR BERSIRI",
+        circuit: {
+          kind: "series",
+          supplyLabel: "6 V",
+          resistors: [
+            { id: "r1", label: "R₁" },
+            { id: "r2", label: "R₂" },
+          ],
+          stepLabel: "Langkah",
+        },
+        explanation: "Litar bersiri mempunyai hanya satu laluan untuk arus elektrik mengalir.",
+        relationships: [
+          {
+            label: "Arus",
+            formula: "I = I₁ = I₂",
+            teachingPoint: "Arus yang sama mengalir melalui setiap komponen.",
+          },
+          {
+            label: "Voltan",
+            formula: "V = V₁ + V₂",
+            teachingPoint: "Voltan bekalan dikongsi merentasi komponen.",
+          },
+          {
+            label: "Rintangan",
+            formula: "R = R₁ + R₂",
+            teachingPoint: "Jumlah rintangan ialah hasil tambah semua rintangan.",
+          },
+        ],
+        advantagesLabel: "Kelebihan",
+        disadvantagesLabel: "Kekurangan",
+        advantages: [
+          "Setiap komponen dalam litar menerima arus yang sama.",
+          "Komponen dikawal oleh suis yang sama.",
+          "Menambah voltan bekalan boleh meningkatkan arus.",
+        ],
+        disadvantages: [
+          "Jika satu komponen rosak, litar terputus dan komponen lain berhenti berfungsi.",
+          "Menambah lebih banyak komponen meningkatkan jumlah rintangan dan mengurangkan arus.",
+          "Komponen tidak boleh dihidupkan atau dimatikan secara berasingan.",
+        ],
+      },
+      circuitConceptParallel: {
+        tag: "BEBERAPA CABANG",
+        title: "LITAR SELARI",
+        circuit: {
+          kind: "parallel",
+          supplyLabel: "6 V",
+          resistors: [
+            { id: "r1", label: "R₁" },
+            { id: "r2", label: "R₂" },
+          ],
+          stepLabel: "Langkah",
+        },
+        explanation: "Litar selari mempunyai lebih daripada satu laluan untuk arus elektrik mengalir.",
+        relationships: [
+          {
+            label: "Arus",
+            formula: "I = I₁ + I₂",
+            teachingPoint: "Jumlah arus terbahagi antara cabang.",
+          },
+          {
+            label: "Voltan",
+            formula: "V = V₁ = V₂",
+            teachingPoint: "Setiap cabang menerima voltan yang sama seperti sumber.",
+          },
+          {
+            label: "Rintangan",
+            formula: "1/R = 1/R₁ + 1/R₂",
+            teachingPoint: "Rintangan berkesan berkurang apabila cabang selari ditambah.",
+          },
+        ],
+        advantagesLabel: "Kelebihan",
+        disadvantagesLabel: "Kekurangan",
+        advantages: [
+          "Setiap alat boleh dihidupkan atau dimatikan secara berasingan.",
+          "Menambah alat tidak menjejaskan fungsi alat lain dalam litar yang sama.",
+          "Setiap cabang menerima voltan bekalan sepenuhnya.",
+        ],
+        disadvantages: [
+          "Voltan setiap alat tidak dapat dikawal secara berasingan kerana ia sentiasa sama dengan voltan sumber.",
+        ],
+      },
       seriesParallel: {
-        title: "🔀 Satu laluan berbanding beberapa cabang",
-        instruction: "Tekan mana-mana litar untuk melihat kelebihan dan kekurangannya.",
+        title: "🔀 Litar Bersiri lawan Litar Selari",
+        instruction: "Tekan Arus, Voltan atau Rintangan untuk membandingkan kedua-dua litar.",
         currentLabel: "Arus",
         voltageLabel: "Voltan",
         resistanceLabel: "Rintangan",
         advantageLabel: "Kelebihan",
         disadvantageLabel: "Kekurangan",
         hint: "Perhatikan bilangan laluan yang boleh dilalui oleh cas dalam setiap litar.",
+        propertyExplanations: {
+          current:
+            "Dalam litar bersiri, arus yang sama mengalir melalui satu laluan. Dalam litar selari, arus terbahagi antara cabang.",
+          voltage:
+            "Dalam litar bersiri, voltan bekalan dikongsi. Dalam litar selari, setiap cabang mempunyai voltan yang sama seperti sumber.",
+          resistance:
+            "Rintangan bersiri bertambah terus. Cabang selari mengurangkan rintangan berkesan.",
+        },
+        circuits: {
+          series: {
+            kind: "series",
+            supplyLabel: "6 V",
+            resistors: [
+              { id: "r1", label: "R₁" },
+              { id: "r2", label: "R₂" },
+            ],
+            stepLabel: "Langkah",
+          },
+          parallel: {
+            kind: "parallel",
+            supplyLabel: "6 V",
+            resistors: [
+              { id: "r1", label: "R₁" },
+              { id: "r2", label: "R₂" },
+            ],
+            stepLabel: "Langkah",
+          },
+        },
         kinds: [
           {
             id: "series",
@@ -317,10 +639,16 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
             currentRule: "I = I₁ = I₂",
             voltageRule: "V = V₁ + V₂",
             resistanceRule: "R = R₁ + R₂",
-            advantage:
-              "Setiap komponen menerima kuantiti arus yang sama, dan semua komponen dikawal oleh suis yang sama.",
-            disadvantage:
-              "Jika satu komponen rosak, seluruh litar terhenti. Menambah komponen meningkatkan jumlah rintangan dan mengurangkan arus.",
+            advantages: [
+              "Setiap komponen dalam litar menerima arus yang sama.",
+              "Komponen dikawal oleh suis yang sama.",
+              "Menambah voltan bekalan boleh meningkatkan arus.",
+            ],
+            disadvantages: [
+              "Jika satu komponen rosak, litar terputus dan komponen lain berhenti berfungsi.",
+              "Menambah lebih banyak komponen meningkatkan jumlah rintangan dan mengurangkan arus.",
+              "Komponen tidak boleh dihidupkan atau dimatikan secara berasingan.",
+            ],
             note: "Semua komponen berada pada gelung yang sama, jadi cas hanya mempunyai satu laluan untuk dilalui.",
           },
           {
@@ -330,11 +658,424 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
             currentRule: "I = I₁ + I₂",
             voltageRule: "V = V₁ = V₂",
             resistanceRule: "1/R = 1/R₁ + 1/R₂",
-            advantage:
-              "Setiap alat boleh dihidupkan atau dimatikan secara berasingan, dan menambah alat tidak menjejaskan fungsi alat lain dalam litar yang sama.",
-            disadvantage:
+            advantages: [
+              "Setiap alat boleh dihidupkan atau dimatikan secara berasingan.",
+              "Menambah alat tidak menjejaskan fungsi alat lain dalam litar yang sama.",
+              "Setiap cabang menerima voltan bekalan sepenuhnya.",
+            ],
+            disadvantages: [
               "Voltan setiap alat tidak dapat dikawal secara berasingan kerana ia sentiasa sama dengan voltan sumber.",
+            ],
             note: "Litar terbahagi kepada cabang di satu titik dan bercantum semula di titik yang lain, jadi cas mempunyai lebih daripada satu laluan.",
+          },
+        ],
+      },
+      circuitRecognition: {
+        title: "❓ Litar Yang Mana?",
+        instruction: "Lihat setiap rajah, kemudian jawab kedua-dua soalan di bawah.",
+        diagramA: {
+          kind: "series",
+          supplyLabel: "6 V",
+          resistors: [
+            { id: "r1", label: "R₁" },
+            { id: "r2", label: "R₂" },
+          ],
+          stepLabel: "Langkah",
+        },
+        diagramB: {
+          kind: "parallel",
+          supplyLabel: "6 V",
+          resistors: [
+            { id: "r1", label: "R₁" },
+            { id: "r2", label: "R₂" },
+          ],
+          stepLabel: "Langkah",
+        },
+        options: [
+          { id: "a", label: "Rajah A", isSeries: true },
+          { id: "b", label: "Rajah B", isSeries: false },
+        ],
+        seriesPrompt: "Yang manakah litar bersiri?",
+        parallelPrompt: "Yang manakah litar selari?",
+        seriesCorrectFeedback: "Betul — hanya ada satu laluan.",
+        parallelCorrectFeedback: "Betul — arus mempunyai lebih daripada satu laluan.",
+        incorrectFeedback: "Belum tepat — lihat semula bilangan laluan yang boleh dilalui arus.",
+        reminderNote: "Kenal pasti litar sebelum memilih formula.",
+      },
+      numericalProblemsIntro: {
+        title: "📊 Masalah Pengiraan — Litar Bersiri & Litar Selari",
+        instruction: "Kenal pasti litar dahulu. Kemudian pilih hubungan yang betul.",
+        unitsMemory: {
+          title: "📌 Ingat unit",
+          items: [
+            { quantitySymbol: "I", unitName: "ampere", unitSymbol: "A" },
+            { quantitySymbol: "V", unitName: "volt", unitSymbol: "V" },
+            { quantitySymbol: "R", unitName: "ohm", unitSymbol: "Ω" },
+          ],
+        },
+      },
+      workedExamples: [
+        {
+          figureLabel: "Contoh Pengiraan 1 — Litar Bersiri",
+          questionIntro:
+            "Dua perintang, R₁ = 2 Ω dan R₂ = 2 Ω, disambungkan secara bersiri kepada bekalan 6 V.",
+          circuit: {
+            kind: "series",
+            supplyLabel: "6 V",
+            resistors: [
+              { id: "r1", label: "R₁ = 2 Ω" },
+              { id: "r2", label: "R₂ = 2 Ω" },
+            ],
+            stepLabel: "Langkah",
+            showMeters: true,
+            size: "large",
+          },
+          questionsLabel: "Hitungkan",
+          questions: [
+            "(a) rintangan berkesan, R",
+            "(b) arus, I dalam litar",
+            "(c) voltan, V₁ dan V₂ merentasi perintang",
+          ],
+          identifyCircuit: {
+            prompt: "Apakah jenis litar ini?",
+            options: [
+              { label: "Bersiri", isCorrect: true },
+              { label: "Selari", isCorrect: false },
+            ],
+            correctFeedback: "Betul — komponen disambungkan dalam satu laluan.",
+            incorrectFeedback: "Belum tepat — lihat bilangan laluan yang boleh dilalui arus.",
+            startSolutionLabel: "Mula penyelesaian",
+          },
+          showSolutionLabel: "Mula penyelesaian",
+          solution: {
+            title: "Contoh Pengiraan 1 — penyelesaian",
+            givenLabel: "Diberi",
+            findLabel: "Cari",
+            formulaLabel: "Formula",
+            substituteLabel: "Gantikan",
+            answerLabel: "Jawapan",
+            given: ["R₁ = 2 Ω", "R₂ = 2 Ω", "Bekalan, V = 6 V (bersiri)"],
+            find: "Rintangan berkesan R, kemudian arus I, kemudian V₁ dan V₂",
+            formula: "R = R₁ + R₂  ·  I = V ÷ R  ·  V₁ = IR₁, V₂ = IR₂",
+            substitute: "R = 2 + 2 = 4 Ω  ·  I = 6 ÷ 4 = 1.5 A  ·  V₁ = 1.5 × 2 = 3 V, V₂ = 1.5 × 2 = 3 V",
+            answer: "R = 4 Ω, I = 1.5 A, V₁ = 3 V, V₂ = 3 V",
+            circuit: {
+              kind: "series",
+              supplyLabel: "6 V",
+              resistors: [
+                { id: "r1", label: "R₁ = 2 Ω" },
+                { id: "r2", label: "R₂ = 2 Ω" },
+              ],
+              stepLabel: "Langkah",
+              showMeters: true,
+              size: "large",
+            },
+            steps: [
+              {
+                label: "Langkah 1",
+                formula: "R = R₁ + R₂",
+                substitute: "R = 2 + 2",
+                answer: "R = 4 Ω",
+                highlight: ["r1", "r2"],
+              },
+              {
+                label: "Langkah 2",
+                formula: "I = V ÷ R",
+                substitute: "I = 6 ÷ 4",
+                answer: "I = 1.5 A",
+                highlight: ["source", "loop"],
+              },
+              {
+                label: "Langkah 3",
+                formula: "V₁ = IR₁",
+                substitute: "V₁ = 1.5 × 2",
+                answer: "V₁ = 3 V",
+                highlight: ["r1"],
+              },
+              {
+                label: "Langkah 4",
+                formula: "V₂ = IR₂",
+                substitute: "V₂ = 1.5 × 2",
+                answer: "V₂ = 3 V",
+                highlight: ["r2"],
+              },
+            ],
+          },
+        },
+        {
+          figureLabel: "Contoh Pengiraan 2 — Litar Selari",
+          questionIntro:
+            "Dua perintang, R₁ = 2 Ω dan R₂ = 2 Ω, disambungkan secara selari kepada bekalan 6 V.",
+          circuit: {
+            kind: "parallel",
+            supplyLabel: "6 V",
+            resistors: [
+              { id: "r1", label: "R₁ = 2 Ω" },
+              { id: "r2", label: "R₂ = 2 Ω" },
+            ],
+            stepLabel: "Langkah",
+            showMeters: true,
+            size: "large",
+          },
+          questionsLabel: "Hitungkan",
+          questions: [
+            "(a) rintangan berkesan, R",
+            "(b) voltan, V merentasi setiap cabang",
+            "(c) arus, I dalam litar",
+          ],
+          identifyCircuit: {
+            prompt: "Apakah jenis litar ini?",
+            options: [
+              { label: "Bersiri", isCorrect: false },
+              { label: "Selari", isCorrect: true },
+            ],
+            correctFeedback: "Betul — arus mempunyai lebih daripada satu laluan.",
+            incorrectFeedback: "Belum tepat — lihat bilangan cabang yang boleh dilalui arus.",
+            startSolutionLabel: "Mula penyelesaian",
+          },
+          showSolutionLabel: "Mula penyelesaian",
+          solution: {
+            title: "Contoh Pengiraan 2 — penyelesaian",
+            givenLabel: "Diberi",
+            findLabel: "Cari",
+            formulaLabel: "Formula",
+            substituteLabel: "Gantikan",
+            answerLabel: "Jawapan",
+            given: ["R₁ = 2 Ω", "R₂ = 2 Ω", "Bekalan, V = 6 V (selari)"],
+            find: "Rintangan berkesan R, kemudian arus cabang I₁ dan I₂, kemudian jumlah arus I",
+            formula: "1/R = 1/R₁ + 1/R₂  ·  I₁ = V ÷ R₁, I₂ = V ÷ R₂  ·  I = I₁ + I₂",
+            substitute: "1/R = 1/2 + 1/2 = 1, maka R = 1 Ω  ·  I₁ = 6 ÷ 2 = 3 A, I₂ = 6 ÷ 2 = 3 A  ·  I = 3 + 3",
+            answer: "R = 1 Ω, I₁ = 3 A, I₂ = 3 A, jumlah I = 6 A",
+            circuit: {
+              kind: "parallel",
+              supplyLabel: "6 V",
+              resistors: [
+                { id: "r1", label: "R₁ = 2 Ω" },
+                { id: "r2", label: "R₂ = 2 Ω" },
+              ],
+              stepLabel: "Langkah",
+              showMeters: true,
+              size: "large",
+            },
+            steps: [
+              {
+                label: "Langkah 1",
+                formula: "1/R = 1/R₁ + 1/R₂",
+                substitute: "1/R = 1/2 + 1/2 = 1",
+                answer: "R = 1 Ω",
+                highlight: ["r1", "r2"],
+              },
+              {
+                label: "Langkah 2",
+                formula: "V = V₁ = V₂",
+                substitute: "V = V₁ = V₂ = 6 V",
+                answer: "V₁ = V₂ = 6 V",
+                highlight: ["source", "r1", "r2"],
+              },
+              {
+                label: "Langkah 3",
+                formula: "I₁ = V₁ ÷ R₁",
+                substitute: "I₁ = 6 ÷ 2",
+                answer: "I₁ = 3 A",
+                highlight: ["r1"],
+              },
+              {
+                label: "Langkah 4",
+                formula: "I₂ = V₂ ÷ R₂",
+                substitute: "I₂ = 6 ÷ 2",
+                answer: "I₂ = 3 A",
+                highlight: ["r2"],
+              },
+              {
+                label: "Langkah 5",
+                formula: "I = I₁ + I₂",
+                substitute: "I = 3 + 3",
+                answer: "I = 6 A",
+                highlight: ["source"],
+              },
+            ],
+          },
+        },
+      ],
+      selfPractice: {
+        title: "🎯 Cuba Sendiri",
+        instruction: "Selesaikan setiap rajah sendiri sebelum menyemak penyelesaiannya.",
+        figures: [
+          {
+            figureLabel: "Litar 1",
+            questionIntro:
+              "Tiga perintang, R₁ = 1 Ω, R₂ = 3 Ω dan R₃ = 5 Ω, disambungkan secara bersiri kepada bekalan 9 V.",
+            circuit: {
+              kind: "series",
+              supplyLabel: "9 V",
+              resistors: [
+                { id: "r1", label: "R₁ = 1 Ω" },
+                { id: "r2", label: "R₂ = 3 Ω" },
+                { id: "r3", label: "R₃ = 5 Ω" },
+              ],
+              stepLabel: "Langkah",
+              size: "large",
+            },
+            questionsLabel: "Hitungkan",
+            questions: [
+              "a. rintangan berkesan",
+              "b. arus dalam litar",
+              "c. voltan merentasi setiap perintang",
+            ],
+            hintsLabel: "Petunjuk",
+            hints: [
+              "Kenal pasti sama ada perintang disambung secara bersiri atau selari.",
+              "Kira rintangan berkesan dahulu — nilai ini diperlukan untuk bahagian lain.",
+            ],
+            showSolutionLabel: "Tunjukkan penyelesaian",
+            solution: {
+              title: "Litar 1 — penyelesaian",
+              givenLabel: "Diberi",
+              findLabel: "Cari",
+              formulaLabel: "Formula",
+              substituteLabel: "Gantikan",
+              answerLabel: "Jawapan",
+              given: ["V = 9 V", "R₁ = 1 Ω", "R₂ = 3 Ω", "R₃ = 5 Ω"],
+              find: "R, kemudian I, kemudian V₁, V₂ dan V₃",
+              formula: "R = R₁ + R₂ + R₃  ·  I = V ÷ R  ·  V = IR (setiap perintang)",
+              substitute: "R = 1 + 3 + 5 = 9 Ω  ·  I = 9 ÷ 9 = 1 A  ·  V₁ = 1×1, V₂ = 1×3, V₃ = 1×5",
+              answer: "R = 9 Ω, I = 1 A, V₁ = 1 V, V₂ = 3 V, V₃ = 5 V",
+              circuit: {
+                kind: "series",
+                supplyLabel: "9 V",
+                resistors: [
+                  { id: "r1", label: "R₁ = 1 Ω" },
+                  { id: "r2", label: "R₂ = 3 Ω" },
+                  { id: "r3", label: "R₃ = 5 Ω" },
+                ],
+                stepLabel: "Langkah",
+                size: "large",
+              },
+              steps: [
+                {
+                  label: "Langkah 1",
+                  formula: "R = R₁ + R₂ + R₃",
+                  substitute: "R = 1 + 3 + 5",
+                  answer: "R = 9 Ω",
+                  highlight: ["r1", "r2", "r3"],
+                },
+                {
+                  label: "Langkah 2",
+                  formula: "I = V ÷ R",
+                  substitute: "I = 9 ÷ 9",
+                  answer: "I = 1 A",
+                  highlight: ["source", "loop"],
+                },
+                {
+                  label: "Langkah 3",
+                  formula: "V₁ = IR₁",
+                  substitute: "V₁ = 1 × 1",
+                  answer: "V₁ = 1 V",
+                  highlight: ["r1"],
+                },
+                {
+                  label: "Langkah 4",
+                  formula: "V₂ = IR₂",
+                  substitute: "V₂ = 1 × 3",
+                  answer: "V₂ = 3 V",
+                  highlight: ["r2"],
+                },
+                {
+                  label: "Langkah 5",
+                  formula: "V₃ = IR₃",
+                  substitute: "V₃ = 1 × 5",
+                  answer: "V₃ = 5 V",
+                  highlight: ["r3"],
+                },
+              ],
+            },
+          },
+          {
+            figureLabel: "Litar 2",
+            questionIntro:
+              "Dua perintang, R₁ = 3 Ω dan R₂ = 6 Ω, disambungkan secara selari kepada bekalan 4 V.",
+            circuit: {
+              kind: "parallel",
+              supplyLabel: "4 V",
+              resistors: [
+                { id: "r1", label: "R₁ = 3 Ω" },
+                { id: "r2", label: "R₂ = 6 Ω" },
+              ],
+              stepLabel: "Langkah",
+              size: "large",
+            },
+            questionsLabel: "Hitungkan",
+            questions: [
+              "a. rintangan berkesan",
+              "b. voltan merentasi setiap perintang",
+              "c. arus melalui setiap perintang (I₁ dan I₂)",
+            ],
+            hintsLabel: "Petunjuk",
+            hints: [
+              "Kenal pasti sama ada perintang disambung secara bersiri atau selari.",
+              "Kira rintangan berkesan dahulu — nilai ini diperlukan untuk bahagian lain.",
+            ],
+            showSolutionLabel: "Tunjukkan penyelesaian",
+            solution: {
+              title: "Litar 2 — penyelesaian",
+              givenLabel: "Diberi",
+              findLabel: "Cari",
+              formulaLabel: "Formula",
+              substituteLabel: "Gantikan",
+              answerLabel: "Jawapan",
+              given: ["V = 4 V", "R₁ = 3 Ω", "R₂ = 6 Ω"],
+              find: "R, kemudian V₁ dan V₂, kemudian I₁ dan I₂",
+              formula: "1/R = 1/R₁ + 1/R₂  ·  V = V₁ = V₂  ·  I = V ÷ R (setiap cabang)",
+              substitute: "1/R = 1/3 + 1/6 = 1/2, maka R = 2 Ω  ·  V₁ = V₂ = 4 V  ·  I₁ = 4÷3, I₂ = 4÷6",
+              answer: "R = 2 Ω, V₁ = V₂ = 4 V, I₁ ≈ 1.33 A, I₂ ≈ 0.67 A",
+              circuit: {
+                kind: "parallel",
+                supplyLabel: "4 V",
+                resistors: [
+                  { id: "r1", label: "R₁ = 3 Ω" },
+                  { id: "r2", label: "R₂ = 6 Ω" },
+                ],
+                stepLabel: "Langkah",
+                size: "large",
+              },
+              steps: [
+                {
+                  label: "Langkah 1",
+                  formula: "1/R = 1/R₁ + 1/R₂",
+                  substitute: "1/R = 1/3 + 1/6 = 1/2",
+                  answer: "R = 2 Ω",
+                  highlight: ["r1", "r2"],
+                },
+                {
+                  label: "Langkah 2",
+                  formula: "V = V₁ = V₂",
+                  substitute: "V₁ = V₂ = 4 V",
+                  answer: "V₁ = V₂ = 4 V",
+                  highlight: ["source", "r1", "r2"],
+                },
+                {
+                  label: "Langkah 3",
+                  formula: "I₁ = V₁ ÷ R₁",
+                  substitute: "I₁ = 4 ÷ 3",
+                  answer: "I₁ ≈ 1.33 A",
+                  highlight: ["r1"],
+                },
+                {
+                  label: "Langkah 4",
+                  formula: "I₂ = V₂ ÷ R₂",
+                  substitute: "I₂ = 4 ÷ 6",
+                  answer: "I₂ ≈ 0.67 A",
+                  highlight: ["r2"],
+                },
+                {
+                  label: "Langkah 5",
+                  formula: "I = I₁ + I₂ (jumlah, tambahan)",
+                  substitute: "I ≈ 1.33 + 0.67",
+                  answer: "I ≈ 2.00 A",
+                  highlight: ["source"],
+                },
+              ],
+            },
           },
         ],
       },
@@ -461,6 +1202,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
           ],
         },
         hint: "Tekan mana-mana bentuk konduktor di atas.",
+        noticeLabel: "Apakah yang perlu anda perhatikan?",
         conductors: [
           {
             id: "straight",
@@ -473,6 +1215,11 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
               alt: "Dawai kuprum tegak menembusi pusat sebuah papan mendatar, dengan lapan kompas plot disusun membentuk bulatan di sekelilingnya.",
               caption: "Radas yang digunakan untuk menunjukkan medan magnet di sekeliling dawai lurus yang mengalirkan arus.",
             },
+            notice: [
+              "Medan itu membentuk bulatan mengelilingi dawai.",
+              "Menyongsangkan arus menyongsangkan arah medan.",
+              "Medan menjadi lebih lemah semakin jauh daripada dawai.",
+            ],
           },
           {
             id: "loop",
@@ -485,6 +1232,11 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
               alt: "Satu gelung kuprum berbentuk bulat dipasang tegak pada kaki retort, kedua-dua hujungnya diapit pada terminal di bawahnya.",
               caption: "Radas yang digunakan untuk menunjukkan medan magnet gelung bulat yang mengalirkan arus.",
             },
+            notice: [
+              "Medan magnet daripada bahagian-bahagian gelung yang berlainan bergabung.",
+              "Medan lebih kuat berhampiran tengah gelung.",
+              "Menyongsangkan arus menyongsangkan arah medan.",
+            ],
           },
           {
             id: "solenoid",
@@ -498,6 +1250,12 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
               alt: "Solenoid teras udara: dawai kuprum digulung menjadi kira-kira sebelas lilitan yang sama jarak, dipasang mendatar pada kaki retort, dengan pusatnya yang berongga kelihatan.",
               caption: "Radas yang digunakan untuk menunjukkan medan magnet solenoid yang mengalirkan arus.",
             },
+            notice: [
+              "Medan itu menyerupai medan sebatang magnet bar.",
+              "Satu hujung bertindak sebagai kutub utara, satu lagi sebagai kutub selatan.",
+              "Medan di dalam solenoid agak kuat.",
+              "Menyongsangkan arus menyongsangkan kutub pada setiap hujung.",
+            ],
           },
         ],
       },
@@ -505,6 +1263,10 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
         {
           title: "Kekuatan medan dan jarak",
           body: "**Kekuatan medan magnet berkurang apabila menjauhi pusat konduktor.** Ini berbeza daripada faktor yang mengubah kekuatan elektromagnet itu sendiri — jarak mengubah kekuatan yang anda ukur, bukan kekuatan yang dihasilkan.",
+        },
+        {
+          title: "🧲 Mengapa gegelung, dan mengapa teras besi",
+          body: "Gegelung menumpukan medan magnet daripada setiap lilitan dawai ke ruang yang sama kecil, menjadikan medan itu jauh lebih kuat berbanding sebatang dawai lurus. Teras besi yang diletakkan di dalam gegelung menguatkan lagi elektromagnet itu.",
         },
       ],
       checks: [
@@ -539,6 +1301,18 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
         title: "🔬 Penyiasatan: faktor yang mempengaruhi kekuatan medan magnet",
         aim: "Mengkaji faktor-faktor yang mempengaruhi kekuatan medan magnet sesuatu elektromagnet.",
         instruction: "Pilih satu faktor untuk melihat penyiasatan penuhnya.",
+        apparatusImage: {
+          src: SCIENCE_F2_CH7_IMAGES.electromagnetInvestigation,
+          alt: "Penyiasatan yang disusun di atas meja makmal. Bekalan kuasa a.t., suis, ammeter dan reostat disambung dalam satu gelung bersiri dengan dawai kuprum yang dililit mengelilingi rod besi menegak. Rod itu dipegang oleh pengapit pada kaki retort, dengan hujung bawahnya berada di atas piring Petri yang berisi jarum peniti.",
+          responseLabels: [
+            "Medan paling lemah di sekeliling rod besi — paling sedikit jarum peniti ditarik.",
+            "Medan lemah di sekeliling rod besi — sedikit jarum peniti ditarik.",
+            "Medan lebih kuat di sekeliling rod besi — lebih banyak jarum peniti ditarik.",
+            "Medan kuat di sekeliling rod besi — banyak jarum peniti ditarik.",
+            "Medan paling kuat di sekeliling rod besi — paling banyak jarum peniti ditarik.",
+          ],
+          turnsLabel: "Lilitan gegelung",
+        },
         aimLabel: "Tujuan",
         hypothesisLabel: "Hipotesis",
         manipulatedLabel: "Pemboleh ubah dimanipulasikan",
@@ -574,6 +1348,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
               "Semakin besar arus yang digunakan, semakin banyak jarum peniti yang ditarik oleh rod besi itu.",
             conclusion:
               "Arus yang lebih besar menghasilkan kekuatan medan magnet yang lebih tinggi. Hipotesis diterima.",
+            values: ["0.5 A", "1.0 A", "1.5 A", "2.0 A", "2.5 A"],
           },
           {
             id: "turns",
@@ -599,6 +1374,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
               "Semakin banyak lilitan gegelung yang digunakan, semakin banyak jarum peniti yang ditarik oleh rod besi itu.",
             conclusion:
               "Bilangan lilitan gegelung yang lebih banyak menghasilkan kekuatan medan magnet yang lebih tinggi. Hipotesis diterima.",
+            values: ["10", "20", "30", "40", "50"],
           },
         ],
       },

@@ -33,7 +33,7 @@ function flattenLabels(root: { label: string; children?: Array<{ label: string; 
   return labels;
 }
 
-describe("Science Form 1 Chapter 1 canonical coverage", () => {
+describe("Science Form 1 Chapter 1 canonical curriculum data (not live-render coverage)", () => {
   it("declares every DSKP learning standard exactly once", () => {
     expect(chapter1Coverage.map((entry) => entry.standard).sort()).toEqual([...expectedStandards].sort());
     expect(new Set(chapter1Coverage.map((entry) => entry.standard)).size).toBe(expectedStandards.length);
@@ -57,7 +57,7 @@ describe("Science Form 1 Chapter 1 canonical coverage", () => {
     ]);
   });
 
-  it("maps every compact interaction to canonical INTERACTIVE coverage", () => {
+  it("maps legacy compact-interaction metadata to canonical INTERACTIVE coverage, not live access", () => {
     const interactiveStandards = new Set(Object.values(chapter1InteractionCoverage).flat());
     for (const standard of interactiveStandards) {
       expect(chapter1Coverage.find((entry) => entry.standard === standard)?.modes).toContain("INTERACTIVE");
@@ -73,10 +73,10 @@ describe("Science Form 1 Chapter 1 canonical coverage", () => {
     expect(chapter1Coverage.find((entry) => entry.standard === "1.6.3")?.modes).toEqual(["EXPERIMENT"]);
   });
 
-  it("uses the formal DLP measurement term", () => {
-    expect(chapter1Terminology.precision.en).toBe("Precision");
+  it("uses KPM DLP textbook section 1.4 and DSKP p.42 terminology: Consistency", () => {
+    expect(chapter1Terminology.precision.en).toBe("Consistency");
     expect(scienceF1C1MindMapDLP.label).toBe("Introduction to Scientific Investigation");
-    expect(flattenLabels(scienceF1C1MindMapDLP).join(" ")).toContain("Precision");
+    expect(flattenLabels(scienceF1C1MindMapDLP).join(" ")).toContain("Consistency");
   });
 
   it("keeps the textbook apparatus and warning-category sets complete", () => {
@@ -141,7 +141,7 @@ describe("Science Form 1 Chapter 1 assessment remediation", () => {
 
   it("keeps remediated Chapter 1 terminology and safety wording source-faithful", () => {
     expect(chapterQuizzes.find((quiz) => quiz.id === "sci-f1-c1-dlp-q20")?.question).toContain("Micro (µ)");
-    expect(chapterQuizzes.find((quiz) => quiz.id === "sci-f1-c1-dlp-q21")?.question).toContain("Precision");
+    expect(chapterQuizzes.find((quiz) => quiz.id === "sci-f1-c1-dlp-q21")?.question).toContain("Consistency");
     expect(chapterQuizzes.find((quiz) => quiz.id === "sci-f1-c1-bm-q20")?.question).toContain("Mikro (µ)");
     expect(chapterFlashcards.find((card) => card.id === "sci-f1-c1-dlp-f16")?.back).toContain("eyes, nose and throat");
     expect(chapterFlashcards.find((card) => card.id === "sci-f1-c1-bm-f16")?.back).toContain("mata, hidung dan tekak");
