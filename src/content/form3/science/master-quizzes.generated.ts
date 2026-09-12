@@ -12665,15 +12665,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Matahari merupakan sumber radioaktif semula jadi terbesar yang berhampiran dengan Bumi. Walau bagaimanapun, semasa berlaku fenomena Lentingan Jisim Korona (Coronal Mass Ejection - CME), sinaran bertenaga tinggi yang sangat berbahaya dibebaskan ke angkasa. Antara pernyataan berikut, yang manakah menerangkan kesan dan perlindungan terhadap fenomena ini dengan betul?",
+        "question": "Apakah bahan adangan yang sesuai untuk mengurangkan pendedahan kepada sinar gama berkuasa penembusan tinggi?",
         "options": [
-          "CME membebaskan sinar ultraungu (UV) tinggi yang boleh diadang sepenuhnya menggunakan payung UV komersial biasa di Bumi.",
-          "CME membebaskan sinar gama yang berkuasa penembusan tinggi, yang hanya boleh diadang dengan berkesan menggunakan payung yang dilapisi plumbum tebal, walaupun ia tidak praktikal kerana plumbum sangat berat dan toksik.",
-          "Sinaran mengion dari CME tidak memberi sebarang kesan kepada sistem elektronik di Bumi kerana ia dihalang oleh lapisan ozon.",
-          "Payung yang dilapisi dengan bahan aluminium nipis setebal 3 mm adalah memadai untuk menghalang sinaran gama daripada CME."
+          "Payung kain biasa.",
+          "Plumbum tebal.",
+          "Sehelai kertas nipis.",
+          "Lapisan udara nipis sahaja."
         ],
         "answerIndex": 1,
-        "explanation": "CME membebaskan sinar gama yang berkuasa, yang hanya boleh diadang dengan payung plumbum tebal, walaupun tidak praktikal. CME releases powerful gamma rays, which can only be effectively shielded by thick lead shields, though impractical due to lead's weight and toxicity."
+        "explanation": "Plumbum tebal mengurangkan pendedahan kepada sinar gama berkuasa penembusan tinggi. Thick lead reduces exposure to highly penetrating gamma rays."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q2",
@@ -12704,7 +12704,7 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Pada tahun 1896, Antoine Henri Becquerel menjadi orang pertama yang menemukan keradioaktifan secara tidak sengaja. Bagaimanakah beliau mengesan kewujudan pancaran radioaktif tersebut dalam eksperimennya?",
         "options": [
           "Melalui pemesongan pancaran di dalam medan magnet menggunakan Petua Tangan Kiri Fleming.",
-          "Melalui kesan penghitaman plat fotografi yang disimpan di dalam laci gelap secara spontan oleh sebatian uranium tanpa kehadiran cahaya matahari.",
+          "Sebatian uranium menghitamkan plat fotografi yang disimpan dalam gelap tanpa cahaya matahari.",
           "Menggunakan tiub pembilang Geiger untuk mengukur dos latar belakang sebatian uranium.",
           "Dengan melihat percikan cahaya nampak yang dipancarkan secara berterusan oleh unsur radium."
         ],
@@ -12719,12 +12719,12 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Pasangan suami isteri Marie dan Pierre Curie berjaya mengekstrak dua unsur radioaktif baharu daripada bijih uranium mentah yang dikenali sebagai picblend (pitchblende) pada tahun 1897. Apakah dua unsur radioaktif baharu tersebut?",
+        "question": "Marie dan Pierre Curie mengkaji keradioaktifan melalui kuasa pengionannya pada akhir 1897. Apakah dua unsur radioaktif yang kemudiannya diekstrak daripada picblend?",
         "options": [
-          "Uranium-238 dan Torium-234",
-          "Karbon-14 dan Radon-222",
+          "Uranium-238 dan torium-234",
+          "Karbon-14 dan radon-222",
           "Polonium dan radium",
-          "Kobalt-60 dan Sesium-137"
+          "Kobalt-60 dan sesium-137"
         ],
         "answerIndex": 2,
         "explanation": "Marie dan Pierre Curie mengekstrak polonium dan radium daripada bijih picblend. Marie and Pierre Curie extracted polonium and radium from pitchblende ore."
@@ -12737,15 +12737,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Keradioaktifan ditakrifkan secara khusus dalam fizik nuklear KSSM. Antara pernyataan berikut, yang manakah merupakan definisi bagi keradioaktifan yang paling tepat?",
+        "question": "Pernyataan manakah mentakrifkan keradioaktifan dengan tepat?",
         "options": [
-          "Process pemisahan atom berat kepada dua atom yang lebih ringan dengan pembebasan tenaga haba yang ekstrem.",
-          "Proses pereputan secara rawak dan spontan bagi nukleus yang tidak stabil dengan memancarkan sinaran radioaktif untuk menjadi lebih stabil.",
-          "Proses penggabungan dua nukleus ringan untuk membentuk satu nukleus berat di bawah suhu tinggi.",
-          "Pembebasan elektron daripada permukaan logam apabila ia disinari oleh gelombang elektromagnet yang berfrekuensi tinggi."
+          "Masa untuk separuh nukleus radioaktif mereput.",
+          "Pereputan rawak dan spontan nukleus tidak stabil sambil memancarkan sinaran radioaktif.",
+          "Kehilangan elektron daripada petala atom untuk membentuk kation.",
+          "Penyerapan cahaya nampak oleh atom neutral."
         ],
         "answerIndex": 1,
-        "explanation": "Keradioaktifan adalah proses perebutan nukleus yang tidak stabil dengan memancarkan sinaran radioaktif untuk menjadi lebih stabil. Radioactivity is the spontaneous decay of an unstable nucleus by emitting radiation to become more stable."
+        "explanation": "Keradioaktifan melibatkan pereputan rawak dan spontan nukleus tidak stabil dengan pancaran sinaran. Radioactivity involves random and spontaneous decay of an unstable nucleus with radiation emission."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q6",
@@ -12791,7 +12791,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Satu nukleus Kobalt-60 yang berada dalam keadaan teruja (tidak stabil) mengalami pereputan radioaktif untuk mencapai keadaan Kobalt-60 yang lebih stabil. Kobalt-60 → Kobalt-60 + Sinaran Y Apakah ciri utama bagi sinaran Y yang dibebaskan dalam proses ini?",
+        "question": "Nukleus teruja membebaskan tenaga lebihan sebagai sinaran gama untuk mencapai keadaan bertenaga lebih rendah. Apakah ciri utama sinaran ini?",
         "options": [
           "Ia membawa cas positif dan dipesongkan oleh medan magnet ke arah atas.",
           "Ia merupakan sinar gama (γ) yang berupa gelombang elektromagnet berfrekuensi tinggi, tidak membawa sebarang cas, dan tidak mengubah bilangan proton atau neutron dalam nukleus.",
@@ -12884,7 +12884,7 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Menurut Teori Atom Dalton (1808), atom merupakan zarah terkecil berbentuk sfera yang tidak boleh dibahagikan lagi. Walau bagaimanapun, perkembangan sains moden membuktikan teori ini tidak tepat. Mengapakah Teori Dalton dianggap tidak tepat hari ini?",
         "options": [
           "Kerana atom boleh membesar secara osmosis apabila menyerap molekul air.",
-          "Kerana atom didapati terdiri daripada zarah subatom yang lebih kecil iaitu proton, neutron, dan elektron.",
+          "Atom terdiri daripada zarah subatom yang lebih kecil, iaitu proton, neutron dan elektron.",
           "Kerana atom didapati berbentuk kubus tegar dan tidak boleh bergerak secara bebas.",
           "Kerana semua atom mempunyai saiz dan jisim yang sama tanpa mengira jenis unsur."
         ],
@@ -12902,7 +12902,7 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Atom neutral boleh membentuk ion positif (kation). Bagaimanakah suatu atom natrium (Na) yang neutral bertukar menjadi ion natrium (Na⁺)?",
         "options": [
           "Dengan menerima satu proton tambahan ke dalam nukleusnya, menjadikan cas bersih +1.",
-          "Dengan menderma (kehilangan) 1 elektron daripada petala luar, menyebabkan bilangan proton (11p, cas +11) melebihi bilangan elektron (10e, cas -10) dengan cas bersih +1.",
+          "Kehilangan satu elektron daripada petala luar menghasilkan 11 proton, 10 elektron dan cas bersih +1.",
           "Dengan membebaskan satu neutron dari nukleus secara spontan melalui pereputan alfa.",
           "Dengan berkongsi sepasang elektron secara kovalen bersama atom klorin."
         ],
@@ -12920,7 +12920,7 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Atom klorin mempunyai 17 proton dan 17 elektron. Ion klorida mempunyai 17 proton dan 18 elektron. Bagaimanakah ion bercas -1 itu terbentuk?",
         "options": [
           "Atom klorin menderma satu proton dari nukleus kepada atom lain.",
-          "Atom klorin menerima (memperoleh) 1 elektron tambahan, menyebabkan bilangan elektron (18, cas -18) melebihi bilangan proton (17, cas +17) dengan beza cas -1.",
+          "Atom klorin menerima satu elektron, menghasilkan 17 proton, 18 elektron dan cas bersih −1.",
           "Atom klorin mengalami pereputan beta spontan yang mengubah neutron menjadi elektron.",
           "Nukleus atom klorin menarik cas positif keluar dari persekitaran secara osmosis."
         ],
@@ -12935,15 +12935,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Medium",
-        "question": "Spektrum elektromagnet dibahagikan kepada zon Sinaran Mengion dan Sinaran Tidak Mengion. Antara kumpulan gelombang berikut, yang manakah semuanya dikelaskan sebagai Sinaran Mengion?",
+        "question": "Mengikut pengelasan Tingkatan 3, kumpulan gelombang elektromagnet manakah terdiri daripada sinaran mengion sahaja?",
         "options": [
           "Gelombang Radio, Gelombang Mikro, Sinar Inframerah.",
           "Cahaya Nampak, Sinar Ultraungu, Sinar-X.",
-          "Sinar Ultraungu (UV), Sinar-X, Sinar Gama.",
+          "Ultraungu, sinar-X dan sinar gama.",
           "Sinar Inframerah, Cahaya Nampak, Sinar Gama."
         ],
         "answerIndex": 2,
-        "explanation": "Sinar ultraungu, sinar-X, dan sinar gama dikelaskan sebagai sinaran mengion. Ultraviolet, X-rays, and gamma rays are classified as ionizing radiation."
+        "explanation": "Ultraungu, sinar-X dan sinar gama dikelaskan sebagai sinaran mengion dalam pengelasan Tingkatan 3. Ultraviolet, X-rays and gamma rays are classified as ionising radiation in the Form 3 classification."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q17",
@@ -12956,12 +12956,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Tiga jenis sinaran mengion semula jadi (α, β, γ) mempunyai sifat pengionan yang sangat berbeza. Mengapakah sinar alfa (α) mempunyai kuasa pengionan yang paling tinggi berbanding sinar beta dan sinar gama?",
         "options": [
           "Kerana sinar alfa mempunyai halaju yang sama dengan kelajuan cahaya nampak.",
-          "Kerana zarah alfa mempunyai saiz zarah yang paling besar (jisim tinggi) dan membawa cas positif (+2), yang memudahkan perlanggaran fizikal dan pemindahan tenaga untuk membebaskan elektron dari molekul udara.",
+          "Zarah alfa mempunyai saiz terbesar dan cas +2, lalu memindahkan tenaga kepada jirim untuk menyingkirkan elektron dengan berkesan.",
           "Kerana sinar alfa tidak mempunyai cas dan jisim, membolehkannya melintasi nukleus atom tanpa sebarang rintangan.",
           "Kerana ia merupakan gelombang elektromagnet dengan panjang gelombang paling pendek."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar alfa mempunyai saiz zarah yang paling besar dan membawa cas positif (+2), yang memudahkan perlanggaran fizikal dan pemindahan tenaga. Alpha rays have the largest particle size and a +2 charge, making it easier for physical penetration and energy transfer."
+        "explanation": "Saiz besar dan cas +2 membantu zarah alfa mengionkan jirim dengan kuat. The large size and +2 charge help alpha particles ionise matter strongly."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q18",
@@ -13025,15 +13025,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Dos sinaran latar belakang persekitaran boleh diukur dengan mudah menggunakan alat pembilang Geiger. Seseorang individu dianggap menerima dos sinaran latar belakang harian yang selamat dan normal sekiranya kadar dos yang dikesan adalah:",
+        "question": "Dalam konteks sukatan Tingkatan 3, kadar dos sinaran latar belakang manakah dianggap normal dan selamat?",
         "options": [
           "Melebihi 10 Sv/j di mana-mana kawasan kediaman.",
-          "Kurang daripada 0.2 μSv/j (atau bersamaan dengan 1.752 mSv/tahun).",
+          "Kurang daripada 0.2 μSv/h.",
           "Sentiasa sifar mutlak (0.00 μSv/j) tanpa sebarang sinaran dikesan.",
           "Berada di antara 1 Sv/j hingga 5 Sv/j bagi kawasan sekolah."
         ],
         "answerIndex": 1,
-        "explanation": "Kadar dos sinaran latar belakang harian yang selamat adalah kurang daripada 0.2 μSv/j (1.752 mSv/tahun). The safe daily background radiation dose rate is less than 0.2 μSv/j (1.752 mSv/year)."
+        "explanation": "Aras latar normal/selamat dalam konteks sukatan Tingkatan 3 ialah kurang daripada 0.2 μSv/h. The normal/safe background level in the Form 3 syllabus context is less than 0.2 μSv/h."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q22",
@@ -13061,15 +13061,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "A",
         "difficulty": "Hard",
-        "question": "Dalam bidang arkeologi dan geokronologi, usia fosil purba atau artifak kayu yang telah mati boleh ditentukan menggunakan kaedah pentarikhan Karbon-14. Antara berikut, yang manakah menerangkan mekanisme kaedah ini dengan betul?",
+        "question": "Bagaimanakah pentarikhan karbon-14 dapat menganggarkan usia tinggalan organik purba selepas organisma mati?",
         "options": [
-          "Fosil purba membiaskan sinar gama mengikut ketebalan cincin tahunan sel kayu.",
-          "Apabila organisma mati, pengambilan karbon terhenti dan kandungan Karbon-14 (C-14) yang radioaktif di dalam tisu mula mereput secara spontan dengan memancarkan sinar beta (β) mengikut separuh hayatnya yang bernilai 5,700 tahun.",
-          "Karbon-12 menyerap haba persekitaran dan bertukar menjadi Karbon-14 yang stabil secara kimia.",
-          "Usia fosil diukur berdasarkan kadar resapan molekul air merentasi dinding sel fosil yang mereput."
+          "Organisma mati menyerap C-14 dengan lebih cepat.",
+          "Pengambilan C-14 terhenti; C-14 sedia ada terus mereput dengan memancarkan beta, dengan separuh hayat kira-kira 5,700 tahun.",
+          "Semua C-12 bertukar menjadi C-14.",
+          "Pereputan C-14 berhenti sepenuhnya selepas kematian."
         ],
         "answerIndex": 1,
-        "explanation": "Usia fosil purba ditentukan dengan pentarikan Karbon-14, di mana kandungan Karbon-14 yang radioaktif di dalam tisu mula mereput secara spontan. The age of ancient fossils is determined by Carbon-14 dating, where the radioactive Carbon-14 in the tissue decays spontaneously."
+        "explanation": "Organisma hidup mengekalkan nisbah C-14 yang agak tetap. Selepas mati, pengambilan terhenti tetapi pereputan beta berterusan. Baki keaktifan C-14 menganggarkan usia tinggalan organik, bukan fosil seusia dinosaur. Living organisms maintain a relatively steady C-14 proportion. After death, intake stops but beta decay continues. Remaining C-14 activity estimates the age of organic remains, not dinosaur-age fossils."
       },
       {
         "id": "sci-f3-c8-set-a-bm-q24",
@@ -13081,10 +13081,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Dalam sektor perindustrian, sinar beta (β) digunakan secara meluas dalam sistem kawalan ketebalan kepingan logam secara automatik. Mengapakah sinar beta dipilih dalam aplikasi ini, bukannya sinar alfa atau sinar gama?",
         "options": [
-          "Kerana sinar beta mempunyai kuasa pengionan tertinggi yang boleh mengubah struktur kristal kepingan logam secara kekal.",
-          "Kerana sinar beta mempunyai kuasa penembusan sederhana yang sangat peka (sensitif) terhadap perubahan kecil pada ketebalan kepingan logam nipis, manakala alfa diadang sepenuhnya oleh kepingan logam dan gama menembusi logam tanpa sebarang perubahan bacaan yang ketara.",
-          "Kerana sinar beta dipesongkan by graviti Bumi untuk mengukur berat logam.",
-          "Kerana sinar beta tidak berbahaya dan boleh dikendalikan dengan tangan tanpa perlindungan plumbum."
+          "Alfa menembusi kepingan logam tebal dengan mudah.",
+          "Penembusan beta sederhana; bacaan pengesan berubah apabila ketebalan kepingan berubah.",
+          "Gama sentiasa diserap sepenuhnya oleh kepingan nipis.",
+          "Beta tidak boleh dikesan selepas melalui kepingan nipis."
         ],
         "answerIndex": 1,
         "explanation": "Sinar beta dipilih kerana ia mempunyai penembusan yang peka terhadap perubahan ketebalan logam nipis, membolehkan pengawalan ketebalan yang tepat. Beta rays are chosen because they have a sensitive penetration that can detect small changes in thin metal sheets, allowing precise thickness control."
@@ -13099,13 +13099,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Aplikasi sinaran radioaktif amat luas merentasi pelbagai bidang. Antara padanan berikut, yang manakah paling tepat menghubungkan radioisotop dengan fungsi klinikal / kegunaannya?",
         "options": [
-          "Natrium-24 (Na-24) → Digunakan oleh ahli arkeologi untuk menentukan usia fosil tulang dinosaur.",
-          "Sesium-137 (Cs-137) atau Kobalt-60 (Co-60) → Memancarkan sinar gama bertenaga tinggi untuk membunuh sel-sel kanser dalam radioterapi.",
-          "Iodin-131 (I-131) → Digunakan sebagai penjejaj dalam baja untuk mengkaji kadar penyerapan baja oleh akar tumbuhan.",
-          "Teknetium-99 (Tc-99) → Digunakan untuk menstabilkan ketebalan kepingan logam di kilang gelekan keluli."
+          "Na-24 → pentarikhan kayu purba.",
+          "Co-60/Cs-137 → rawatan kanser.",
+          "P-32 → menentukan usia artifak.",
+          "C-14 → menjejak bekuan darah."
         ],
         "answerIndex": 1,
-        "explanation": "Sesium-137 atau Kobalt-60 memancarkan sinar gama bertenaga tinggi untuk pengobatan kanser. Sodium-137 or Cobalt-60 emit high-energy gamma rays for cancer treatment."
+        "explanation": "Co-60 dan Cs-137 memancarkan sinar gama yang digunakan untuk merawat kanser. Co-60 and Cs-137 emit gamma rays used to treat cancer."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q1",
@@ -13123,7 +13123,7 @@ const scienceF3MasterQuizBanks: Partial<
           "3.8 mSv/tahun"
         ],
         "answerIndex": 1,
-        "explanation": "Kadar sinaran kosmik dikalikan jam terbang, ditambah sinaran latar belakang: 0.003 × 600 + 0.8 = 1.8 mSv/tahun. Calculate cosmic radiation dose for flight time, then add background radiation: 0.003 × 600 + 0.8 = 1.8 mSv/year."
+        "explanation": "Dos semasa penerbangan = 0.003 × 600 = 1.8 mSv setahun. The dose received during flights is 0.003 × 600 = 1.8 mSv per year."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q2",
@@ -13154,12 +13154,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Marie dan Pierre Curie merupakan pasangan saintis yang berjaya mengesan pancaran radioaktif yang kuat daripada uranium. Apakah ciri fizikal utama yang digunakan oleh mereka untuk mengukur dan membuktikan kewujudan keradioaktifan berbanding eksperimen Becquerel?",
         "options": [
           "Kesan pemesongan pancaran dalam medan magnet yang kuat.",
-          "Keupayaan pancaran untuk menembusi kepingan plumbum tebal.",
-          "Kuasa pengionan yang tinggi untuk mengalirkan arus elektrik dalam udara neutral.",
+          "Keupayaan sinaran menembusi plumbum tebal.",
+          "Kuasa pengionan sinaran yang membolehkan udara mengalirkan arus elektrik.",
           "Keupayaan unsur polonium untuk menghasilkan haba yang ekstrem secara berterusan."
         ],
-        "answerIndex": 1,
-        "explanation": "Curie menggunakan keupayaan pancaran menembusi plumbum tebal untuk membuktikan keradioaktifan. Curie used the ability of radiation to penetrate thick lead to prove radioactivity."
+        "answerIndex": 2,
+        "explanation": "Pasangan Curie mengesan keradioaktifan melalui kuasa pengionan sinaran. The Curies detected radioactivity through the ionising power of radiation."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q4",
@@ -13205,12 +13205,12 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Easy",
-        "question": "Nukleus Kobalt-60 yang tidak stabil membebaskan tenaga yang tinggi semasa pereputan gama (\\(γ\\)) untuk membentuk Kobalt-60 yang stabil. Mengapakah bilangan proton dan neutron di dalam Kobalt-60 kekal tidak berubah selepas pereputan tersebut?",
+        "question": "Nukleus teruja membebaskan tenaga lebihan sebagai sinar gama. Mengapakah bilangan proton dan neutron kekal sama?",
         "options": [
-          "Sinar gama merupakan zarah neutral yang tidak mempunyai jisim atau cas elektrik.",
-          "Sinar gama merupakan gelombang elektromagnet berfrekuensi tinggi yang hanya membawa keluar tenaga lebihan dari nukleus.",
-          "Zarah beta yang dibebaskan secara serentak meneutralkan cas positif proton di dalam nukleus.",
-          "Tenaga gama diserap semula secara serta-merta oleh neutron untuk mengekalkan keseimbangan nukleus."
+          "Sinar gama ialah zarah neutral daripada nukleus.",
+          "Sinar gama ialah gelombang elektromagnet yang membawa keluar tenaga lebihan tanpa mengubah bilangan nukleon.",
+          "Zarah beta meneutralkan cas proton.",
+          "Elektron luar bertukar menjadi neutron."
         ],
         "answerIndex": 1,
         "explanation": "Sinar gama hanya membawa keluar tenaga lebihan dari nukleus tanpa mengubah nukleon. Gamma rays only carry away excess energy from the nucleus without changing the number of nucleons."
@@ -13248,8 +13248,8 @@ const scienceF3MasterQuizBanks: Partial<
           "40 g",
           "80 g"
         ],
-        "answerIndex": 3,
-        "explanation": "Jisim asal 80 g, kerana 2.5 g = 1/16 jisim asal (4 separuh hayat). The original mass was 80 g, as 2.5 g is 1/16 of the original mass (4 half-lives)."
+        "answerIndex": 2,
+        "explanation": "32 ÷ 8 = 4 separuh hayat. Jisim asal = 2.5 × 2⁴ = 40 g. 32 ÷ 8 = 4 half-lives. Original mass = 2.5 × 2⁴ = 40 g."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q9",
@@ -13267,7 +13267,7 @@ const scienceF3MasterQuizBanks: Partial<
           "20 jam"
         ],
         "answerIndex": 1,
-        "explanation": "Separuh hayat 10 jam, kerana 320 Bq = 1/4 keaktifan asal (2 separuh hayat). The half-life is 10 hours, as 320 Bq is 1/4 of the original activity (2 half-lives)."
+        "explanation": "Keaktifan berkurang daripada 640 Bq kepada 320 Bq, iaitu separuh, dalam 10 jam. Maka separuh hayat ialah 10 jam. Activity falls from 640 Bq to 320 Bq, which is half, in 10 hours. The half-life is therefore 10 hours."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q10",
@@ -13279,10 +13279,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "Berdasarkan Teori Atom Dalton (1808), atom ditakrifkan sebagai zarah terkecil yang tidak boleh dibahagi lagi. Bagaimanakah sains moden menyanggah kenyataan ini dengan pembuktian struktur atom neutral?",
         "options": [
-          "Atom neutral sebenarnya terdiri daripada nukleus yang hanya mengandungi elektron bercas positif.",
-          "Atom neutral mempunyai zarah subatom yang lebih kecil iaitu proton dan neutron di dalam nukleus, serta elektron mengorbit di luar nukleus.",
-          "Struktur atom neutral tidak mempunyai nukleus dan zarah-zarahnya bergerak bebas tanpa sebarang orbit yang tetap.",
-          "Atom neutral boleh dibahagi secara fizikal kepada beberapa atom molekul gas hidrogen sahaja melalui pemanasan."
+          "Nukleus atom mengandungi elektron positif sahaja.",
+          "Atom mempunyai proton dan neutron dalam nukleus serta elektron di luar nukleus.",
+          "Atom tidak mempunyai nukleus.",
+          "Pemanasan membahagikan atom kepada molekul hidrogen."
         ],
         "answerIndex": 1,
         "explanation": "Atom neutral mempunyai nukleus dengan proton dan neutron, serta elektron mengorbit di luar nukleus. A neutral atom has a nucleus containing protons and neutrons, with electrons orbiting outside the nucleus."
@@ -13331,15 +13331,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Spektrum elektromagnet dibahagikan kepada zon mengion dan tidak mengion. Antara kumpulan gelombang elektromagnet berikut, yang manakah dikelaskan dalam Zon Sinaran Mengion sepenuhnya?",
+        "question": "Seorang murid mengasingkan gelombang elektromagnet kepada dua kumpulan. Pasangan manakah patut diletakkan dalam kumpulan mengion mengikut pengelasan Tingkatan 3?",
         "options": [
           "Gelombang mikro, Sinar inframerah, Cahaya nampak",
           "Gelombang radio, Cahaya nampak, Sinar ultraungu",
-          "Sinar ultraungu, Sinar-X, Sinar gama",
+          "Ultraungu, sinar-X dan sinar gama.",
           "Sinar inframerah, Sinar-X, Sinar ultraungu"
         ],
         "answerIndex": 2,
-        "explanation": "Sinar ultraungu, Sinar-X, Sinar gama Ultraviolet, X-rays, Gamma rays"
+        "explanation": "Ultraungu, sinar-X dan sinar gama dikelaskan sebagai sinaran mengion dalam pengelasan Tingkatan 3. Ultraviolet, X-rays and gamma rays are classified as ionising radiation in the Form 3 classification."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q14",
@@ -13352,12 +13352,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Sinar alfa (\\(α\\)) mempunyai kuasa pengionan yang paling tinggi berbanding sinar beta (\\(β\\)) dan sinar gama (\\(γ\\)). Antara faktor berikut, yang manakah menerangkan fenomena ini dengan betul?",
         "options": [
           "Zarah alfa mempunyai kelajuan yang sangat tinggi menyamai kelajuan cahaya.",
-          "Zarah alfa mempunyai saiz zarah yang paling besar dan cas positif (+2) yang memudahkan perlanggaran dengan molekul udara.",
+          "Zarah alfa mempunyai saiz terbesar dan cas +2, lalu memindahkan tenaga kepada jirim untuk menyingkirkan elektron dengan berkesan.",
           "Zarah alfa tidak mempunyai sebarang cas elektrik dan jisim fizikal.",
           "Kuasa penembusan zarah alfa yang sangat tinggi membolehkannya menembusi dinding plumbum dengan mudah."
         ],
         "answerIndex": 1,
-        "explanation": "Zarah alfa mempunyai saiz zarah yang paling besar dan cas positif (+2) yang memudahkan perlanggaran dengan molekul udara. Alpha particle has the largest particle size and positive charge (+2) that easily interacts with air molecules."
+        "explanation": "Saiz besar dan cas +2 membantu zarah alfa mengionkan jirim dengan kuat. The large size and +2 charge help alpha particles ionise matter strongly."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q15",
@@ -13367,7 +13367,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Sebuah makmal penyelidikan nuklear mengkaji kuasa penembusan tiga jenis sinaran radioaktif. Hasil eksperimen menunjukkan keputusan berikut: Sinaran K: Dihalang sepenuhnya oleh sehelai kertas nipis. Sinaran L: Menembusi kertas tetapi dihalang sepenuhnya oleh kepingan aluminium setebal 3 mm. Sinaran M: Menembusi kertas dan aluminium, tetapi dihalang oleh plumbum setebal 10 cm. Kenal pasti jenis sinaran K, L, dan M yang betul.",
+        "question": "Sinaran K dihalang kertas, L memerlukan plumbum tebal untuk mengurangkan penembusannya, dan M dihalang aluminium 3 mm. Kenal pasti K, L dan M.",
         "options": [
           "K = Beta, L = Alfa, M = Gama",
           "K = Alfa, L = Gama, M = Beta",
@@ -13425,7 +13425,7 @@ const scienceF3MasterQuizBanks: Partial<
         "options": [
           "Pancaran gelombang mikro yang dihasilkan secara eksklusif oleh telefon bimbit dan menara telekomunikasi.",
           "Gas radioaktif semula jadi yang dibebaskan daripada pereputan batuan uranium di kerak Bumi.",
-          "Sinaran bertenaga tinggi yang dihasilkan di luar Sistem Suria atau galaksi lain yang merentasi angkasa lepas ke Bumi.",
+          "Sinaran bertenaga tinggi yang berasal dari luar Sistem Suria atau galaksi lain.",
           "Sisa radioaktif berbahaya yang dihasilkan daripada aktiviti stesen jana kuasa nuklear tempatan."
         ],
         "answerIndex": 2,
@@ -13439,7 +13439,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Medium",
-        "question": "Kadar dos sinaran latar belakang persekitaran diukur menggunakan alat pembilang Geiger. Dos yang kurang daripada 0.2 μSv/j dianggap aras normal yang selamat bagi tubuh manusia. Berapakah nilai dos tahunan yang sepadan dengan aras selamat ini?",
+        "question": "Kadar dos 0.2 μSv/h digunakan sebagai nilai sempadan aras latar dalam sukatan Tingkatan 3. Jika kadar ini berterusan selama 365 hari, berapakah dos terkumpul?",
         "options": [
           "0.35 mSv/tahun",
           "1.00 mSv/tahun",
@@ -13447,7 +13447,7 @@ const scienceF3MasterQuizBanks: Partial<
           "5.50 mSv/tahun"
         ],
         "answerIndex": 2,
-        "explanation": "1.752 mSv/tahun. 1.752 mSv/year."
+        "explanation": "0.2 × 24 × 365 = 1,752 μSv = 1.752 mSv. Aras normal sukatan Tingkatan 3 ialah kurang daripada kadar 0.2 μSv/h. 0.2 × 24 × 365 = 1,752 μSv = 1.752 mSv. The Form 3 syllabus normal level is below the rate of 0.2 μSv/h."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q20",
@@ -13475,15 +13475,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "bm",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Ahli arkeologi menggunakan kaedah pentarikhan karbon-14 (carbon-14 dating) untuk menentukan usia fosil atau artifak purba. Bagaimanakah proses ini berlaku secara saintifik selepas organisma mati?",
+        "question": "Apakah yang berlaku kepada karbon-14 dalam tinggalan organik selepas organisma mati?",
         "options": [
-          "Organisma mula menyerap Karbon-14 dengan kadar yang sangat cepat dari atmosfera persekitaran.",
-          "Pengambilan Karbon terhenti, dan Karbon-14 yang sedia ada di dalam tisu mula mereput secara spontan dengan membebaskan sinar beta.",
-          "Semua Karbon-12 di dalam fosil bertukar menjadi Karbon-14 secara perlahan-lahan.",
-          "Proses pembusukan meningkatkan separuh hayat Karbon-14 sehingga mencapai sejuta tahun."
+          "Organisma mati menyerap C-14 dengan lebih cepat.",
+          "Pengambilan C-14 terhenti; C-14 sedia ada terus mereput dengan memancarkan beta, dengan separuh hayat kira-kira 5,700 tahun.",
+          "Semua C-12 bertukar menjadi C-14.",
+          "Pereputan C-14 berhenti sepenuhnya selepas kematian."
         ],
         "answerIndex": 1,
-        "explanation": "Pengambilan Karbon-14 berhenti selepas organisma mati, dan Karbon-14 yang sedia ada mereput secara spontan. After an organism dies, carbon-14 uptake stops, and the existing carbon-14 decays spontaneously."
+        "explanation": "Organisma hidup mengekalkan nisbah C-14 yang agak tetap. Selepas mati, pengambilan terhenti tetapi pereputan beta berterusan. Baki keaktifan C-14 menganggarkan usia tinggalan organik, bukan fosil seusia dinosaur. Living organisms maintain a relatively steady C-14 proportion. After death, intake stops but beta decay continues. Remaining C-14 activity estimates the age of organic remains, not dinosaur-age fossils."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q22",
@@ -13495,13 +13495,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Dalam bidang perindustrian, sinar beta (\\(β\\)) digunakan dalam sistem kawalan ketebalan kepingan logam secara automatik. Mengapakah sinar alfa (\\(α\\)) dan sinar gama (\\(γ\\)) tidak sesuai digunakan untuk tujuan ini?",
         "options": [
-          "Sinar alfa terlalu bertenaga tinggi, manakala sinar gama diserap sepenuhnya oleh kepingan logam nipis.",
-          "Sinar alfa dihalang sepenuhnya oleh kepingan logam nipis (tiada bacaan dikesan), manakala sinar gama menembusi logam tanpa sebarang perubahan bacaan yang sensitif.",
-          "Sinar alfa tidak mempunyai kuasa pengionan, manakala sinar gama sangat toksik kepada mesin penggelek.",
-          "Sinar beta adalah satu-satunya sinaran yang boleh bergerak dalam orbit bulatan mengelilingi penggelek logam."
+          "Alfa mempunyai penembusan tinggi dan gama diserap sepenuhnya oleh kepingan nipis.",
+          "Alfa dihalang sepenuhnya, manakala gama terlalu menembus untuk memberikan perubahan bacaan yang peka bagi kepingan nipis.",
+          "Alfa tidak mengionkan jirim dan gama merosakkan semua mesin.",
+          "Hanya beta bergerak mengelilingi penggelek."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar alfa dihalang oleh logam nipis, manakala sinar gama menembusi tanpa perubahan bacaan. Alpha rays are stopped by thin metal sheets, while gamma rays pass through without changing the reading."
+        "explanation": "Beta mempunyai penembusan sederhana yang sesuai untuk mengesan perubahan ketebalan kepingan nipis. Beta has moderate penetration suitable for detecting changes in thin-sheet thickness."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q23",
@@ -13513,10 +13513,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Dalam bidang pertanian, radioisotop Fosforus-32 (P-32) ditambahkan ke dalam baja fosfat sebagai penjejaj (tracer). Apakah fungsi utama penggunaan P-32?",
         "options": [
-          "Membunuh semua serangga perosak dan kumbang di dalam tanah secara kimia.",
-          "Mengubah ciri-ciri genetik tumbuhan supaya menghasilkan buah yang lebih besar.",
-          "Mengesan kadar dan kecekapan penyerapan baja fosfat oleh akar tumbuhan menggunakan pengesan sinar beta.",
-          "Mempercepatkan kadar fotosintesis tumbuhan pada waktu malam tanpa bantuan cahaya."
+          "Membunuh semua perosak secara kimia.",
+          "Mengubah gen tumbuhan untuk menghasilkan buah besar.",
+          "Menjejak penyerapan baja fosfat oleh akar tumbuhan.",
+          "Mempercepat fotosintesis pada waktu malam tanpa cahaya."
         ],
         "answerIndex": 2,
         "explanation": "P-32 digunakan untuk mengesan penyerapan fosfat oleh akar tumbuhan. P-32 is used to trace the uptake of phosphate by plant roots."
@@ -13537,7 +13537,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Logo MyOrganic"
         ],
         "answerIndex": 2,
-        "explanation": "Logo Radura wajib dilekatkan pada makanan yang diperparah dengan sinar gama. The Radura logo must be placed on food irradiated with gamma rays."
+        "explanation": "Label Radura mengenal pasti makanan yang diawet menggunakan sinaran. The Radura label identifies food preserved using irradiation."
       },
       {
         "id": "sci-f3-c8-set-b-bm-q25",
@@ -13549,10 +13549,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Pengendali bahan radioaktif diwajibkan memakai Lencana Sinaran (Film Badge) semasa bekerja di kawasan makmal atau loji kuasa nuklear. Apakah fungsi lencana tersebut?",
         "options": [
-          "Menyerap dan meneutralkan semua sinar gama yang bocor di dalam bilik kerja.",
-          "Mengandungi filem fotografi sensitif untuk mengesan dan memantau jumlah dos sinaran kumulatif yang diserap oleh pekerja.",
-          "Memancarkan isyarat amaran kecemasan dalam bentuk bunyi apabila reaktor nuklear terlalu panas.",
-          "Berperanan sebagai kunci keselamatan elektronik untuk membuka pintu bilik stor simpanan plumbum."
+          "Menyerap semua sinar gama yang bocor.",
+          "Memantau dos sinaran terkumpul yang diterima pekerja.",
+          "Membunyikan penggera apabila reaktor terlalu panas.",
+          "Membuka kunci stor radioaktif."
         ],
         "answerIndex": 1,
         "explanation": "Lencana Sinaran mengandungi filem sensitif untuk mengesan dos sinaran. The dosimeter contains sensitive film to measure radiation dose."
@@ -13567,15 +13567,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "The Sun is the largest natural radioactive source near Earth. However, during a Coronal Mass Ejection (CME), highly dangerous high-energy radiation is released into space. Which of the following statements correctly explains the effects and protection against this phenomenon?",
+        "question": "Which shielding material is suitable for reducing exposure to highly penetrating gamma rays?",
         "options": [
-          "CME releases high-energy UV radiation that can be completely absorbed using a common commercial UV umbrella on Earth.",
-          "CME releases high-power UV radiation that can only be absorbed with a thick lead umbrella, although it is not practical due to lead's heaviness and toxicity.",
-          "The ionization from CME does not affect the electronic system on Earth because it is blocked by the ozone layer.",
-          "A 3 mm thick lead umbrella is sufficient to block CME radiation."
+          "An ordinary fabric umbrella.",
+          "Thick lead.",
+          "A thin sheet of paper.",
+          "Only a thin layer of air."
         ],
         "answerIndex": 1,
-        "explanation": "CME membebaskan sinar gama yang berkuasa, yang hanya boleh diadang dengan payung plumbum tebal, walaupun tidak praktikal. CME releases powerful gamma rays, which can only be effectively shielded by thick lead shields, though impractical due to lead's weight and toxicity."
+        "explanation": "Plumbum tebal mengurangkan pendedahan kepada sinar gama berkuasa penembusan tinggi. Thick lead reduces exposure to highly penetrating gamma rays."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q2",
@@ -13606,7 +13606,7 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "In 1896, Antoine Henri Becquerel became the first person to discover radioactivity accidentally. How did he detect the existence of radioactive emission in his experiment?",
         "options": [
           "Using the magnetic field to guide the beam of particles.",
-          "The spontaneous decay of uranium plates in the dark chamber without sunlight.",
+          "A uranium compound darkened a photographic plate kept in darkness without sunlight.",
           "Using Geiger counter tubes to measure the background radiation of uranium plates.",
           "Seeing the continuous emission of light from radium."
         ],
@@ -13621,12 +13621,12 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "The husband-and-wife team Marie and Pierre Curie successfully extracted two new radioactive elements from raw uranium ore known as pitchblende in 1897. What are these two new radioactive elements?",
+        "question": "Marie and Pierre Curie studied radioactivity through its ionising power at the end of 1897. Which two radioactive elements did they later extract from pitchblende?",
         "options": [
-          "Uranium-238 and Torium-234",
-          "Carbon-14 and Radon-222",
-          "Polonium dan Radium",
-          "Kobalt-60 dan Seseh-137"
+          "Uranium-238 and thorium-234",
+          "Carbon-14 and radon-222",
+          "Polonium and radium",
+          "Cobalt-60 and caesium-137"
         ],
         "answerIndex": 2,
         "explanation": "Marie dan Pierre Curie mengekstrak polonium dan radium daripada bijih picblend. Marie and Pierre Curie extracted polonium and radium from pitchblende ore."
@@ -13639,15 +13639,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "Radioactivity is specifically defined in KSSM nuclear physics. Which of the following statements is the most accurate definition of radioactivity?",
+        "question": "Which statement accurately defines radioactivity?",
         "options": [
-          "Separuh daripada masa yang diambil untuk mengubah satu atom radioaktif sepenuhnya dari alam sekitar.",
-          "Masa yang diambil untuk bilangan nukleus yang belum mereput berkurang menjadi setengah daripada nilai asalnya.",
-          "Masa yang diambil oleh suatu zarah alfa untuk menembusi separuh daripada ketebalan adangan plumbum.",
-          "Masa yang diambil untuk suatu zarah beta untuk menembusi separuh daripada ketebalan adangan plumbum."
+          "The time for half the radioactive nuclei to decay.",
+          "Random and spontaneous decay of an unstable nucleus while emitting radioactive radiation.",
+          "Loss of electrons from an atomic shell to form a cation.",
+          "Absorption of visible light by a neutral atom."
         ],
         "answerIndex": 1,
-        "explanation": "Keradioaktifan adalah proses perebutan nukleus yang tidak stabil dengan memancarkan sinaran radioaktif untuk menjadi lebih stabil. Radioactivity is the spontaneous decay of an unstable nucleus by emitting radiation to become more stable."
+        "explanation": "Keradioaktifan melibatkan pereputan rawak dan spontan nukleus tidak stabil dengan pancaran sinaran. Radioactivity involves random and spontaneous decay of an unstable nucleus with radiation emission."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q6",
@@ -13693,7 +13693,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Easy",
-        "question": "An excited (unstable) Cobalt-60 nucleus undergoes radioactive decay to reach a more stable Cobalt-60 state. What is the main characteristic of radiation Y released in this process?",
+        "question": "An excited nucleus releases excess energy as gamma radiation to reach a lower-energy state. What is the main characteristic of this radiation?",
         "options": [
           "It has a positive charge and bends towards the negative plate in an electric field.",
           "It is gamma radiation, a high-frequency electromagnetic wave with no charge that does not change the number of protons or neutrons.",
@@ -13786,7 +13786,7 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "According to Dalton's Atomic Theory (1808), atoms are the smallest spherical particles that cannot be divided further. However, modern scientific developments have proven this theory inaccurate. Why is Dalton's Theory considered inaccurate today?",
         "options": [
           "Because atoms can swell osmotically when they absorb water molecules.",
-          "Because atoms are composed of subatomic particles smaller than protons, neutrons, and electrons.",
+          "Atoms consist of smaller subatomic particles: protons, neutrons and electrons.",
           "Because atoms take the form of a cubical prism and cannot move freely.",
           "Because all atoms have the same size and mass without considering the type of element."
         ],
@@ -13804,7 +13804,7 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "A neutral atom can form a positive ion (cation). How does a neutral sodium atom (Na) transform into a sodium ion (Na⁺)?",
         "options": [
           "With the addition of one proton to the nucleus, making the bare charge +1.",
-          "With the loss of one electron from the outer shell, causing the number of protons (11p, bare charge +11) to exceed the number of electrons (10e, bare charge -10) with bare charge +1.",
+          "Losing one outer-shell electron leaves 11 protons, 10 electrons and a net charge of +1.",
           "With the spontaneous emission of a neutron from the nucleus.",
           "With the sharing of two electrons covalently with chlorine atoms."
         ],
@@ -13822,7 +13822,7 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "A chlorine atom has 17 protons and 17 electrons. A chloride ion has 17 protons and 18 electrons. How is the ion with a -1 charge formed?",
         "options": [
           "Chlorine atoms lose a proton from the nucleus to another atom.",
-          "Chlorine atoms receive (obtain) 1 additional electron, causing the number of electrons (18, bare charge -18) to exceed the number of protons (17, bare charge +17) with a difference of -1.",
+          "A chlorine atom gains one electron, giving 17 protons, 18 electrons and a net charge of −1.",
           "Chlorine atoms experience spontaneous beta decay, changing a neutron into an electron.",
           "The nucleus of a chlorine atom attracts a positive charge out of the field through osmosis."
         ],
@@ -13837,15 +13837,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Medium",
-        "question": "The electromagnetic spectrum is divided into Ionising Radiation and Non-ionising Radiation. Which of the following groups of waves are all classified as Ionising Radiation?",
+        "question": "Under the Form 3 classification, which group of electromagnetic waves consists only of ionising radiation?",
         "options": [
           "Radio waves, microwaves, infrared light.",
           "Visible light, ultraviolet light, X-rays.",
-          "Ultraviolet light (UV), X-rays, gamma rays.",
+          "Ultraviolet, X-rays and gamma rays.",
           "Infrared light, visible light, gamma rays."
         ],
         "answerIndex": 2,
-        "explanation": "Sinar ultraungu, sinar-X, dan sinar gama dikelaskan sebagai sinaran mengion. Ultraviolet, X-rays, and gamma rays are classified as ionizing radiation."
+        "explanation": "Ultraungu, sinar-X dan sinar gama dikelaskan sebagai sinaran mengion dalam pengelasan Tingkatan 3. Ultraviolet, X-rays and gamma rays are classified as ionising radiation in the Form 3 classification."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q17",
@@ -13858,12 +13858,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Three types of natural ionising radiation (α, β, γ) have vastly different ionising powers. Why does alpha radiation (α) have the highest ionising power compared to beta and gamma radiation?",
         "options": [
           "Because alpha rays have the same energy as the speed of visible light.",
-          "Because alpha particles have the largest (high mass) atomic radius and carry a positive charge (+2), making it easier to violate physical laws and transfer energy to release electrons from air molecules.",
+          "Alpha particles have the largest size and a +2 charge, allowing them to transfer energy to matter and remove electrons effectively.",
           "Because alpha rays do not have a charge and mass, allowing them to pass through the nucleus of an atom without any obstacles.",
           "Because it is an electromagnetic wave with the shortest wavelength."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar alfa mempunyai saiz zarah yang paling besar dan membawa cas positif (+2), yang memudahkan perlanggaran fizikal dan pemindahan tenaga. Alpha rays have the largest particle size and a +2 charge, making it easier for physical penetration and energy transfer."
+        "explanation": "Saiz besar dan cas +2 membantu zarah alfa mengionkan jirim dengan kuat. The large size and +2 charge help alpha particles ionise matter strongly."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q18",
@@ -13927,15 +13927,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "The background radiation dose of the environment can be easily measured using a Geiger counter. An individual is considered to receive a safe and normal daily background radiation dose if the detected dose rate is:",
+        "question": "In the Form 3 syllabus context, which background radiation dose rate is considered normal and safe?",
         "options": [
           "Exceeding 10 Sv/j in any area of residence.",
-          "Less than 0.2 μSv/j (or equivalent to 1.752 mSv/year).",
+          "Less than 0.2 μSv/h.",
           "Always zero (0.00 μSv/j) without any radiation exposure.",
           "Between 1 Sv/j and 5 Sv/j for school areas."
         ],
         "answerIndex": 1,
-        "explanation": "Kadar dos sinaran latar belakang harian yang selamat adalah kurang daripada 0.2 μSv/j (1.752 mSv/tahun). The safe daily background radiation dose rate is less than 0.2 μSv/j (1.752 mSv/year)."
+        "explanation": "Aras latar normal/selamat dalam konteks sukatan Tingkatan 3 ialah kurang daripada 0.2 μSv/h. The normal/safe background level in the Form 3 syllabus context is less than 0.2 μSv/h."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q22",
@@ -13963,15 +13963,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "A",
         "difficulty": "Hard",
-        "question": "In the field of archaeology and geochronology, the age of ancient fossils or dead wood artifacts can be determined using the Carbon-14 dating method. Which of the following correctly explains the mechanism of this method?",
+        "question": "How can carbon-14 dating estimate the age of ancient organic remains after an organism dies?",
         "options": [
-          "Fossil remains emit gamma radiation according to the annual thickness of the tree ring.",
-          "Organisms stop taking carbon when they die, and the radioactively stable carbon-14 in the tissue starts to decay spontaneously with a half-life of 5,700 years.",
-          "Carbon-12 absorbs waste and turns into stable carbon.",
-          "The age of fossils is measured by the amount of dissolved molecules of water passing through the fossil's cell membrane."
+          "The dead organism absorbs C-14 more quickly.",
+          "C-14 intake stops; existing C-14 continues to decay by emitting beta radiation, with a half-life of approximately 5,700 years.",
+          "All C-12 changes into C-14.",
+          "C-14 decay stops completely after death."
         ],
         "answerIndex": 1,
-        "explanation": "Usia fosil purba ditentukan dengan pentarikan Karbon-14, di mana kandungan Karbon-14 yang radioaktif di dalam tisu mula mereput secara spontan. The age of ancient fossils is determined by Carbon-14 dating, where the radioactive Carbon-14 in the tissue decays spontaneously."
+        "explanation": "Organisma hidup mengekalkan nisbah C-14 yang agak tetap. Selepas mati, pengambilan terhenti tetapi pereputan beta berterusan. Baki keaktifan C-14 menganggarkan usia tinggalan organik, bukan fosil seusia dinosaur. Living organisms maintain a relatively steady C-14 proportion. After death, intake stops but beta decay continues. Remaining C-14 activity estimates the age of organic remains, not dinosaur-age fossils."
       },
       {
         "id": "sci-f3-c8-set-a-dlp-q24",
@@ -13983,10 +13983,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "In the industrial sector, beta radiation (β) is widely used in automatic metal sheet thickness control systems. Why is beta radiation chosen for this application instead of alpha or gamma radiation?",
         "options": [
-          "Sodium-24 (²⁴Na) is used by archaeologists to determine the age of fossil bones.",
-          "Cesium-137 (Cs-137) or Cobalt-60 (Co-60) emits high-energy gamma rays to kill cancer cells in radiotherapy.",
-          "Iodine-131 (¹³¹I) is used as a tracer in metal to measure the amount of metal absorbed by plant roots.",
-          "Technetium-99 (⁹⁹Tc) is used to stabilize the thickness of metal sheets in a kiln."
+          "Alpha easily penetrates thick metal sheets.",
+          "Beta has moderate penetrating power; the detector reading changes as sheet thickness changes.",
+          "Gamma is always completely absorbed by a thin sheet.",
+          "Beta cannot be detected after passing through a thin sheet."
         ],
         "answerIndex": 1,
         "explanation": "Sinar beta dipilih kerana ia mempunyai penembusan yang peka terhadap perubahan ketebalan logam nipis, membolehkan pengawalan ketebalan yang tepat. Beta rays are chosen because they have a sensitive penetration that can detect small changes in thin metal sheets, allowing precise thickness control."
@@ -14001,13 +14001,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "The application of radioactive radiation is highly extensive across various fields. Which of the following pairings is the most accurate connecting the radioisotope to its clinical function / application?",
         "options": [
-          "1 mSv/year",
-          "1.8 mSv/year",
-          "2.6 mSv/year",
-          "3.8 mSv/year"
+          "Na-24 → dating ancient wood.",
+          "Co-60/Cs-137 → cancer treatment.",
+          "P-32 → determining the age of artefacts.",
+          "C-14 → locating blood clots."
         ],
         "answerIndex": 1,
-        "explanation": "Sesium-137 atau Kobalt-60 memancarkan sinar gama bertenaga tinggi untuk pengobatan kanser. Sodium-137 or Cobalt-60 emit high-energy gamma rays for cancer treatment."
+        "explanation": "Co-60 dan Cs-137 memancarkan sinar gama yang digunakan untuk merawat kanser. Co-60 and Cs-137 emit gamma rays used to treat cancer."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q1",
@@ -14025,7 +14025,7 @@ const scienceF3MasterQuizBanks: Partial<
           "3.8 mSv per year"
         ],
         "answerIndex": 1,
-        "explanation": "Kadar sinaran kosmik dikalikan jam terbang, ditambah sinaran latar belakang: 0.003 × 600 + 0.8 = 1.8 mSv/tahun. Calculate cosmic radiation dose for flight time, then add background radiation: 0.003 × 600 + 0.8 = 1.8 mSv/year."
+        "explanation": "Dos semasa penerbangan = 0.003 × 600 = 1.8 mSv setahun. The dose received during flights is 0.003 × 600 = 1.8 mSv per year."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q2",
@@ -14056,12 +14056,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Marie and Pierre Curie were a pair of scientists who successfully detected strong radioactive emissions from uranium. What was the main physical property they used to measure and prove the existence of radioactivity compared to Becquerel's experiment?",
         "options": [
           "The effect of the intense magnetic field.",
-          "The ability of the pancar to penetrate lead plates.",
-          "The high ionization ability to conduct electricity in neutral air.",
+          "The ability of radiation to penetrate thick lead.",
+          "The ionising power of radiation, which allows air to conduct electric current.",
           "The ability of polonium to continuously produce extremely high radiation."
         ],
-        "answerIndex": 1,
-        "explanation": "Curie menggunakan keupayaan pancaran menembusi plumbum tebal untuk membuktikan keradioaktifan. Curie used the ability of radiation to penetrate thick lead to prove radioactivity."
+        "answerIndex": 2,
+        "explanation": "Pasangan Curie mengesan keradioaktifan melalui kuasa pengionan sinaran. The Curies detected radioactivity through the ionising power of radiation."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q4",
@@ -14107,12 +14107,12 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Easy",
-        "question": "An unstable Cobalt-60 nucleus releases high energy during gamma (\\(γ\\)) decay to form stable Cobalt-60. Why do the number of protons and neutrons in Cobalt-60 remain unchanged after the decay?",
+        "question": "An excited nucleus releases excess energy as gamma rays. Why do the numbers of protons and neutrons remain unchanged?",
         "options": [
-          "Gamma rays are neutral particles without electric charge or electrical cas.",
-          "Gamma rays are high-frequency electromagnetic waves that only carry more energy than the nucleus.",
-          "The beta particle is neutralizing the positive cas of a proton in the nucleus.",
-          "Gamma rays are absorbed back into the neutron to maintain the nucleus balance."
+          "Gamma rays are neutral particles from the nucleus.",
+          "Gamma rays are electromagnetic waves that carry away excess energy without changing the number of nucleons.",
+          "Beta particles neutralise proton charge.",
+          "Outer electrons change into neutrons."
         ],
         "answerIndex": 1,
         "explanation": "Sinar gama hanya membawa keluar tenaga lebihan dari nukleus tanpa mengubah nukleon. Gamma rays only carry away excess energy from the nucleus without changing the number of nucleons."
@@ -14150,8 +14150,8 @@ const scienceF3MasterQuizBanks: Partial<
           "40 g",
           "80 g"
         ],
-        "answerIndex": 3,
-        "explanation": "Jisim asal 80 g, kerana 2.5 g = 1/16 jisim asal (4 separuh hayat). The original mass was 80 g, as 2.5 g is 1/16 of the original mass (4 half-lives)."
+        "answerIndex": 2,
+        "explanation": "32 ÷ 8 = 4 separuh hayat. Jisim asal = 2.5 × 2⁴ = 40 g. 32 ÷ 8 = 4 half-lives. Original mass = 2.5 × 2⁴ = 40 g."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q9",
@@ -14169,7 +14169,7 @@ const scienceF3MasterQuizBanks: Partial<
           "20 hours"
         ],
         "answerIndex": 1,
-        "explanation": "Separuh hayat 10 jam, kerana 320 Bq = 1/4 keaktifan asal (2 separuh hayat). The half-life is 10 hours, as 320 Bq is 1/4 of the original activity (2 half-lives)."
+        "explanation": "Keaktifan berkurang daripada 640 Bq kepada 320 Bq, iaitu separuh, dalam 10 jam. Maka separuh hayat ialah 10 jam. Activity falls from 640 Bq to 320 Bq, which is half, in 10 hours. The half-life is therefore 10 hours."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q10",
@@ -14181,10 +14181,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "Based on Dalton's Atomic Theory (1808), an atom is defined as the smallest indivisible particle. How does modern science refute this statement with the proof of a neutral atomic structure?",
         "options": [
-          "The actual neutral atom consists of a nucleus containing only positive cas electrons.",
-          "The neutral atom has a subatomic zarah of proton and neutron in the nucleus, and electrons orbiting outside the nucleus.",
-          "The neutral atom's structure does not have a nucleus and its zarahs move freely without any fixed orbit.",
-          "The neutral atom can be physically divided into a single molecule of hydrogen gas through heating."
+          "The nucleus contains only positive electrons.",
+          "An atom has protons and neutrons inside the nucleus and electrons outside it.",
+          "An atom has no nucleus.",
+          "Heating divides an atom into hydrogen molecules."
         ],
         "answerIndex": 1,
         "explanation": "Atom neutral mempunyai nukleus dengan proton dan neutron, serta elektron mengorbit di luar nukleus. A neutral atom has a nucleus containing protons and neutrons, with electrons orbiting outside the nucleus."
@@ -14217,10 +14217,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Medium",
         "question": "A neutral Bromine (Br) atom has a proton number of 35 and neutron number of 45. When this atom forms a bromide ion (\\(Br⁻\\)), what is the number of electrons and the net charge of the ion?",
         "options": [
-          "35 electrons; cas +1",
-          "36 electrons; cas -1",
-          "34 electrons; cas -1",
-          "36 electrons; cas +1"
+          "35 electrons; charge +1",
+          "36 electrons; charge -1",
+          "34 electrons; charge -1",
+          "36 electrons; charge +1"
         ],
         "answerIndex": 1,
         "explanation": "36 elektron; cas -1 36 electrons; charge -1"
@@ -14233,15 +14233,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "The electromagnetic spectrum is divided into ionising and non-ionising zones. Which of the following groups of electromagnetic waves are classified entirely in the Ionising Radiation Zone?",
+        "question": "A student sorts electromagnetic waves into two groups. Which pair belongs in the ionising group under the Form 3 classification?",
         "options": [
           "Micro-waves, Infrared light, Visible light",
           "Radio waves, Visible light, Ultraviolet light",
-          "Ultraviolet light, X-rays, Gamma rays",
+          "Ultraviolet, X-rays and gamma rays.",
           "Infrared light, X-rays, Ultraviolet light"
         ],
         "answerIndex": 2,
-        "explanation": "Sinar ultraungu, Sinar-X, Sinar gama Ultraviolet, X-rays, Gamma rays"
+        "explanation": "Ultraungu, sinar-X dan sinar gama dikelaskan sebagai sinaran mengion dalam pengelasan Tingkatan 3. Ultraviolet, X-rays and gamma rays are classified as ionising radiation in the Form 3 classification."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q14",
@@ -14254,12 +14254,12 @@ const scienceF3MasterQuizBanks: Partial<
         "question": "Alpha radiation (\\(α\\)) has the highest ionising power compared to beta (\\(β\\)) and gamma (\\(γ\\)) radiation. Which of the following factors correctly explains this phenomenon?",
         "options": [
           "The speed of alpha particle is very high, equal to the speed of light.",
-          "The alpha particle has the largest and positive charge (+2) of cas, making it easier to violate the molecular air.",
+          "Alpha particles have the largest size and a +2 charge, allowing them to transfer energy to matter and remove electrons effectively.",
           "The alpha particle does not have any electric charge or physical force.",
           "The extremely high penetration power of the alpha particle allows it to easily penetrate the lead wall."
         ],
         "answerIndex": 1,
-        "explanation": "Zarah alfa mempunyai saiz zarah yang paling besar dan cas positif (+2) yang memudahkan perlanggaran dengan molekul udara. Alpha particle has the largest particle size and positive charge (+2) that easily interacts with air molecules."
+        "explanation": "Saiz besar dan cas +2 membantu zarah alfa mengionkan jirim dengan kuat. The large size and +2 charge help alpha particles ionise matter strongly."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q15",
@@ -14269,7 +14269,7 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "A nuclear research laboratory studies the penetrating power of three types of radioactive radiation. The experimental results show the following: Identify the correct types of radiation for K, L, and M.",
+        "question": "Radiation K is stopped by paper, L requires thick lead to reduce its penetration, and M is stopped by 3 mm aluminium. Identify K, L and M.",
         "options": [
           "K = Beta, L = Alpha, M = Gamma",
           "K = Alpha, L = Gamma, M = Beta",
@@ -14327,7 +14327,7 @@ const scienceF3MasterQuizBanks: Partial<
         "options": [
           "The exclusive micro-waves produced by the telephone and communication towers.",
           "Radioactive gas that was previously released from the uranium ore in the Earth's crust.",
-          "High-energy radiation produced outside the System Suria or other galaxies that pass through space to Earth.",
+          "High-energy radiation originating outside the Solar System or from other galaxies.",
           "Radioactive waste produced from the activities of nuclear power stations in the local area."
         ],
         "answerIndex": 2,
@@ -14341,15 +14341,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Medium",
-        "question": "The environmental background radiation dose rate is measured using a Geiger counter. A dose of less than 0.2 μSv/h is considered a normal, safe level for the human body. What is the annual dose value equivalent to this safe level?",
+        "question": "A dose rate of 0.2 μSv/h is used as the Form 3 syllabus background-level boundary. If this rate continues for 365 days, what is the accumulated dose?",
         "options": [
           "0.35 mSv/year",
           "1.00 mSv/year",
-          "1.752 mSv/tahun",
-          "5.50 mSv/tahun"
+          "1.752 mSv/year",
+          "5.50 mSv/year"
         ],
         "answerIndex": 2,
-        "explanation": "1.752 mSv/tahun. 1.752 mSv/year."
+        "explanation": "0.2 × 24 × 365 = 1,752 μSv = 1.752 mSv. Aras normal sukatan Tingkatan 3 ialah kurang daripada kadar 0.2 μSv/h. 0.2 × 24 × 365 = 1,752 μSv = 1.752 mSv. The Form 3 syllabus normal level is below the rate of 0.2 μSv/h."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q20",
@@ -14377,15 +14377,15 @@ const scienceF3MasterQuizBanks: Partial<
         "lang": "dlp",
         "set": "B",
         "difficulty": "Hard",
-        "question": "Archaeologists use the carbon-14 dating method to determine the age of dinosaur fossils or ancient artifacts. How does this process occur scientifically after an organism dies?",
+        "question": "What happens to carbon-14 in organic remains after an organism dies?",
         "options": [
-          "Organisme mula menyerap Karbon-14 dengan kadar yang sangat cepat dari atmosfera persekitaran.",
-          "Pengambilan Karbon terhenti, dan Karbon-14 yang sedia ada di dalam tisu mula mereput secara spontan dengan membebaskan sinar beta.",
-          "Semua Karbon-12 di dalam fosil bertukar menjadi Karbon-14 secara perlahan-lahan.",
-          "Proses pembusukan meningkatkan separuh hayat Karbon-14 sehingga mencapai sejuta tahun."
+          "The dead organism absorbs C-14 more quickly.",
+          "C-14 intake stops; existing C-14 continues to decay by emitting beta radiation, with a half-life of approximately 5,700 years.",
+          "All C-12 changes into C-14.",
+          "C-14 decay stops completely after death."
         ],
         "answerIndex": 1,
-        "explanation": "Pengambilan Karbon-14 berhenti selepas organisma mati, dan Karbon-14 yang sedia ada mereput secara spontan. After an organism dies, carbon-14 uptake stops, and the existing carbon-14 decays spontaneously."
+        "explanation": "Organisma hidup mengekalkan nisbah C-14 yang agak tetap. Selepas mati, pengambilan terhenti tetapi pereputan beta berterusan. Baki keaktifan C-14 menganggarkan usia tinggalan organik, bukan fosil seusia dinosaur. Living organisms maintain a relatively steady C-14 proportion. After death, intake stops but beta decay continues. Remaining C-14 activity estimates the age of organic remains, not dinosaur-age fossils."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q22",
@@ -14397,13 +14397,13 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "In the industrial sector, beta (\\(β\\)) radiation is used in automatic sheet metal thickness control systems. Why are alpha (\\(α\\)) and gamma (\\(γ\\)) radiation unsuitable for this purpose?",
         "options": [
-          "Sinar alfa terlalu bertenaga tinggi, manakala sinar gama diserap sepenuhnya oleh kepingan logam nipis.",
-          "Sinar alfa dihalang sepenuhnya oleh kepingan logam nipis (tiada bacaan dikesan), manakala sinar gama menembusi logam tanpa sebarang perubahan bacaan yang sensitif.",
-          "Sinar alfa tidak mempunyai kuasa pengionan, manakala sinar gama sangat toksik kepada mesin penggelek.",
-          "Sinar beta adalah satu-satunya sinaran yang boleh bergerak dalam orbit bulatan mengelilingi penggelek logam."
+          "Alpha has high penetration and gamma is completely absorbed by thin sheets.",
+          "Alpha is stopped completely, while gamma is too penetrating to give a sensitive change in reading for thin sheets.",
+          "Alpha does not ionise matter and gamma damages all machines.",
+          "Only beta moves around the rollers."
         ],
         "answerIndex": 1,
-        "explanation": "Sinar alfa dihalang oleh logam nipis, manakala sinar gama menembusi tanpa perubahan bacaan. Alpha rays are stopped by thin metal sheets, while gamma rays pass through without changing the reading."
+        "explanation": "Beta mempunyai penembusan sederhana yang sesuai untuk mengesan perubahan ketebalan kepingan nipis. Beta has moderate penetration suitable for detecting changes in thin-sheet thickness."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q23",
@@ -14415,10 +14415,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "In agriculture, the radioisotope Phosphorus-32 (P-32) is added to phosphate fertilizers as a tracer. What is the main function of using P-32?",
         "options": [
-          "Membunuh semua serangga perosak dan kumbang di dalam tanah secara kimia.",
-          "Mengubah ciri-ciri genetik tumbuhan supaya menghasilkan buah yang lebih besar.",
-          "Mengesan kadar dan kecekapan penyerapan baja fosfat oleh akar tumbuhan menggunakan pengesan sinar beta.",
-          "Mempercepatan kadar fotosintesis tumbuhan pada waktu malam tanpa bantuan cahaya."
+          "Killing all pests chemically.",
+          "Changing plant genes to produce large fruit.",
+          "Tracing phosphate fertiliser uptake by plant roots.",
+          "Accelerating photosynthesis at night without light."
         ],
         "answerIndex": 2,
         "explanation": "P-32 digunakan untuk mengesan penyerapan fosfat oleh akar tumbuhan. P-32 is used to trace the uptake of phosphate by plant roots."
@@ -14439,7 +14439,7 @@ const scienceF3MasterQuizBanks: Partial<
           "Logo MyOrganic"
         ],
         "answerIndex": 2,
-        "explanation": "Logo Radura wajib dilekatkan pada makanan yang diperparah dengan sinar gama. The Radura logo must be placed on food irradiated with gamma rays."
+        "explanation": "Label Radura mengenal pasti makanan yang diawet menggunakan sinaran. The Radura label identifies food preserved using irradiation."
       },
       {
         "id": "sci-f3-c8-set-b-dlp-q25",
@@ -14451,10 +14451,10 @@ const scienceF3MasterQuizBanks: Partial<
         "difficulty": "Hard",
         "question": "Radioactive handlers are required to wear a Radiation Badge (Film Badge) while working in laboratory areas or nuclear power plants. What is the function of the badge?",
         "options": [
-          "Menyerap dan meneutralkan semua sinar gama yang bocor di dalam bilik kerja.",
-          "Mengandungi filem fotografi sensitif untuk mengesan dan memantau jumlah dos sinaran kumulatif yang diserap oleh pekerja.",
-          "Memancarkan isyarat amaran kecemasan dalam bentuk bunyi apabila reaktor nuklear terlalu panas.",
-          "Berperanan sebagai kunci keselamatan elektronik untuk membuka pintu bilik stor simpanan plumbum."
+          "Absorbing all leaking gamma rays.",
+          "Monitoring the accumulated radiation dose received by a worker.",
+          "Sounding an alarm when a reactor overheats.",
+          "Unlocking the radioactive-material store."
         ],
         "answerIndex": 1,
         "explanation": "Lencana Sinaran mengandungi filem sensitif untuk mengesan dos sinaran. The dosimeter contains sensitive film to measure radiation dose."

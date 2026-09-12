@@ -45,7 +45,7 @@ export const scienceF3C3InteractiveBM: ScienceF3InteractiveContent = {
           instruction: "Ketik untuk membandingkan sistol dan diastol.",
           options: [
             { id: "sistol", label: "Sistol ('Lab')", body: "Ventrikel berkontraksi, menutup injap trikuspid dan bikuspid — menghasilkan bunyi 'lab'. Bacaan tekanan darah yang mengalir KELUAR daripada jantung ialah tekanan sistolik." },
-            { id: "diastol", label: "Diastol ('Dab')", body: "Ventrikel berelaksasi, menutup injap semilunar di aorta dan arteri pulmonari — menghasilkan bunyi 'dab'. Bacaan tekanan darah yang mengalir MASUK ke jantung ialah tekanan diastolik." },
+            { id: "diastol", label: "Diastol ('Dab')", body: "Ventrikel berelaksasi, menutup injap semilunar di aorta dan arteri pulmonari — menghasilkan bunyi 'dab'. Tekanan diastolik ialah bacaan semasa otot ventrikel mengendur." },
           ],
         },
       ],

@@ -45,7 +45,7 @@ export const scienceF3C3InteractiveDLP: ScienceF3InteractiveContent = {
           instruction: "Tap to compare systole and diastole.",
           options: [
             { id: "systole", label: "Systole ('Lub')", body: "Ventricles contract, closing the tricuspid and bicuspid valves — producing the 'lub' sound. The pressure reading of blood flowing OUT of the heart is the systolic pressure." },
-            { id: "diastole", label: "Diastole ('Dub')", body: "Ventricles relax, closing the semilunar valves at the aorta and pulmonary artery — producing the 'dub' sound. The pressure reading of blood flowing INTO the heart is the diastolic pressure." },
+            { id: "diastole", label: "Diastole ('Dub')", body: "Ventricles relax, closing the semilunar valves at the aorta and pulmonary artery — producing the 'dub' sound. Diastolic pressure is the reading when ventricular muscles relax." },
           ],
         },
       ],
