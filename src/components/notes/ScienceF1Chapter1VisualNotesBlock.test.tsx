@@ -5,6 +5,10 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
 import { laboratoryApparatus } from "@/content/form1/science/chapter-1/chapter1-canonical";
+import {
+  pendulumReadings,
+  reportHeadings,
+} from "@/content/form1/science/chapter-1/chapter1-cleanup";
 import { ScienceF1Chapter1VisualNotesBlock } from "./ScienceF1Chapter1VisualNotesBlock";
 
 function renderChapter(lang: "bm" | "en") {
@@ -12,6 +16,83 @@ function renderChapter(lang: "bm" | "en") {
     createElement(ScienceF1Chapter1VisualNotesBlock, { content: chapter1Content, lang }),
   );
 }
+
+describe("Final cleanup — current live renderer, not legacy interactions", () => {
+  it.each(["bm", "en"] as const)("%s exposes the source-backed teaching additions", (lang) => {
+    const html = renderChapter(lang);
+    for (const marker of [
+      "data-career-subject",
+      "data-fire-prevention",
+      "data-conversion-ladders",
+      "data-instrument-readings",
+      "data-equal-volume-cubes",
+      "data-investigation-report",
+      "data-zero-correction",
+    ])
+      expect(html).toContain(marker);
+    for (const diagram of [
+      "standard-units",
+      "vernier-reading",
+      "micrometer-reading",
+      "density-formula-triangle",
+      "vernier-zero-0.00",
+      "vernier-zero-+0.03",
+      "vernier-zero-−0.06",
+    ])
+      expect(html).toContain(`data-chapter1-diagram="${diagram}"`);
+    for (const value of ["3.20", "0.02", "3.22", "3.50", "0.38", "3.88", "+0.03", "−0.06"])
+      expect(html).toContain(value);
+    for (const heading of reportHeadings[lang]) expect(html).toContain(heading);
+    expect(html).toContain(lang === "en" ? "AcadeMY Tip" : "Tip AcadeMY");
+    expect(html).toContain(lang === "en" ? "Consistency" : "Kepersisan");
+    expect(html).not.toMatch(/\bprecision\b/i);
+  });
+
+  it.each(["bm", "en"] as const)(
+    "%s renders all source readings, preserving the original averages",
+    (lang) => {
+      const html = renderChapter(lang);
+      const expected = [
+        "20,9.1,9.2,9,9.1",
+        "30,11.3,11.4,11.4,11.4",
+        "40,13.1,13,13.1,13.1",
+        "50,14.4,14.3,14.3,14.3",
+        "60,15.2,15.1,15.3,15.2",
+      ];
+      expect(pendulumReadings.map((r) => [r.length, ...r.readings, r.average].join(","))).toEqual(
+        expected,
+      );
+      for (const row of expected) expect(html).toContain(`data-pendulum-row="${row}"`);
+      expect(html.replace(/<!--.*?-->/g, "")).toContain(lang === "en" ? "Reading 3" : "Cubaan 3");
+    },
+  );
+
+  it("preserves the explicitly approved BM/DLP textbook conclusion difference", () => {
+    expect(renderChapter("en")).toContain(
+      "The longer the length of the pendulum, the longer the time taken for 10 complete oscillations.",
+    );
+    expect(renderChapter("bm")).toContain(
+      "Hipotesis diterima. Semakin panjang bandul, semakin panjang tempoh diambil untuk satu ayunan lengkap.",
+    );
+  });
+
+  it.each(["bm", "en"] as const)(
+    "%s removes repeated function sentences and displacement step cards only from the live presentation",
+    (lang) => {
+      const html = renderChapter(lang);
+      const entries = html.match(/<li[^>]*data-classified-apparatus="[^"]+"[^>]*>[\s\S]*?<\/li>/g)!;
+      expect(entries).toHaveLength(14);
+      for (const entry of entries) expect(entry).not.toContain("text-slate-300");
+      expect(html).toContain('data-chapter1-diagram="water-displacement"');
+      const source = readFileSync(
+        resolve("src/components/notes/ScienceF1Chapter1VisualNotesBlock.tsx"),
+        "utf8",
+      );
+      expect(source).not.toContain("t.density.waterDisplacement.map");
+      expect(source).not.toContain("c.pendulumVariables.join");
+    },
+  );
+});
 
 describe("ScienceF1Chapter1VisualNotesBlock", () => {
   it("renders the complete Malay visual-learning path", () => {

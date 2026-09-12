@@ -1,0 +1,44 @@
+[
+  {
+    "lang": "bm",
+    "width": 320,
+    "interactions": "PASS",
+    "horizontalOverflow": false,
+    "consoleErrors": []
+  },
+  {
+    "lang": "bm",
+    "width": 390,
+    "interactions": "PASS",
+    "horizontalOverflow": false,
+    "consoleErrors": []
+  },
+  {
+    "lang": "bm",
+    "width": 1280,
+    "interactions": "PASS",
+    "horizontalOverflow": false,
+    "consoleErrors": []
+  },
+  {
+    "lang": "en",
+    "width": 320,
+    "interactions": "PASS",
+    "horizontalOverflow": false,
+    "consoleErrors": []
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "interactions": "PASS",
+    "horizontalOverflow": false,
+    "consoleErrors": []
+  },
+  {
+    "lang": "en",
+    "width": 1280,
+    "interactions": "PASS",
+    "horizontalOverflow": false,
+    "consoleErrors": []
+  }
+]

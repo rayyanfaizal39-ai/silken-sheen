@@ -2997,10 +2997,10 @@ Ulang istilah penting seperti polis, monarki, oligarki, aristokrasi, tirani, dem
     lang: "dlp",
     title: "1.4 Measurement and Accuracy",
     summary:
-      "ACCURACY is how close a measurement is to the true value, while PRECISION is the consistency and closeness between repeated measurements of the same quantity. ZERO ERROR is a systematic error where the instrument does not start at zero — correct it using: Actual Reading = Scale Reading − Zero Error. PARALLAX ERROR is a random error caused when the eye is not perpendicular to the scale; avoid it by aligning your eye level directly with the meniscus (for liquids, read the bottom of the curve).",
+      "ACCURACY is how close a measurement is to the true value, while CONSISTENCY describes how close repeated readings of the same quantity are to one another. ZERO ERROR is a systematic error where the instrument does not start at zero — correct it using: Actual Reading = Scale Reading − Zero Error. PARALLAX ERROR is a random error caused when the eye is not perpendicular to the scale; avoid it by aligning your eye level directly with the meniscus (for liquids, read the bottom of the curve).",
     keywords: [
       "Accuracy",
-      "Precision",
+      "Consistency",
       "Zero Error",
       "Parallax Error",
       "Meniscus",
@@ -3512,16 +3512,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Medium",
-    question: "What is the difference between Accuracy and Precision?",
+    question: "What is the difference between Accuracy and Consistency?",
     options: [
       "They mean exactly the same thing",
-      "Accuracy is closeness to the actual value; Precision is closeness among repeated readings",
-      "Accuracy is closeness among repeated readings; Precision is closeness to the actual value",
+      "Accuracy is closeness to the actual value; Consistency is closeness among repeated readings",
+      "Accuracy is closeness among repeated readings; Consistency is closeness to the actual value",
       "Accuracy only applies to temperature",
     ],
     answerIndex: 1,
     explanation:
-      "Accuracy concerns closeness to the actual value, while Precision concerns how close repeated readings are to one another.",
+      "Accuracy concerns closeness to the actual value, while Consistency concerns how close repeated readings are to one another.",
   },
   {
     id: "sci-f1-c1-dlp-q22",
@@ -21330,7 +21330,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    front: "What is Precision in measurement?",
+    front: "What is Consistency in measurement?",
     back: "The closeness among repeated readings of the same quantity.",
   },
   {

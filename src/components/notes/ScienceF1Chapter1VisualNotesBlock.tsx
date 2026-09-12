@@ -20,6 +20,10 @@ import {
   Timer,
 } from "lucide-react";
 import type { Chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
+import {
+  pendulumReadings,
+  pendulumGraphData,
+} from "@/content/form1/science/chapter-1/chapter1-cleanup";
 import { HazardPictogram } from "./blocks/HazardDiamonds";
 import {
   HeatingSupportVisual,
@@ -70,7 +74,7 @@ const ui = {
       ],
       [
         "1.4",
-        "Alat pengukur dan ralat",
+        "Penggunaan Alat Pengukur, Kejituan, Kepersisan, Kepekaan dan Ralat",
         "Pilih alat yang sesuai serta bezakan kejituan, kepersisan dan kepekaan.",
       ],
       [
@@ -132,7 +136,7 @@ const ui = {
       "Dimalarkan: jisim ladung dan sudut ayunan awal",
     ],
     pendulumConclusion:
-      "Hipotesis diterima: masa untuk satu ayunan lengkap meningkat apabila panjang bandul bertambah.",
+      "Hipotesis diterima. Semakin panjang bandul, semakin panjang tempoh diambil untuk satu ayunan lengkap.",
     length: "Panjang bandul (cm)",
     average: "Masa untuk 10 ayunan lengkap (s)",
     coreValues: "Nilai teras",
@@ -180,8 +184,8 @@ const ui = {
       ],
       [
         "1.4",
-        "Measuring instruments and errors",
-        "Choose a suitable instrument and distinguish accuracy, precision and sensitivity.",
+        "The Use of Measuring Instruments, Accuracy, Consistency, Sensitivity and Errors",
+        "Choose a suitable instrument and distinguish accuracy, consistency and sensitivity.",
       ],
       [
         "1.5",
@@ -243,7 +247,7 @@ const ui = {
       "Constant: bob mass and initial angle",
     ],
     pendulumConclusion:
-      "The hypothesis is accepted: the time for one complete oscillation increases as pendulum length increases.",
+      "The longer the length of the pendulum, the longer the time taken for 10 complete oscillations.",
     length: "Length of pendulum (cm)",
     average: "Time taken for 10 complete oscillations (s)",
     coreValues: "Core values",
@@ -252,7 +256,7 @@ const ui = {
     recapItems: [
       "Science explains phenomena through systematic observation and experiments.",
       "Laboratory safety depends on correct apparatus, symbols, rules and emergency action.",
-      "S.I. units standardise measurement; strong readings need accuracy, precision and sensitivity.",
+      "S.I. units standardise measurement; strong readings need accuracy, consistency and sensitivity.",
       "Density = mass ÷ volume; compare it with fluid density to predict floating or sinking.",
       "A scientific investigation moves from a problem and hypothesis to data, conclusion and report.",
     ],
@@ -327,13 +331,7 @@ const apparatusComparisons: ReadonlyArray<readonly [LaboratoryApparatusId, Labor
     ["burette", "pipette"],
   ];
 
-const pendulumResults = [
-  [20, 9.1],
-  [30, 11.4],
-  [40, 13.1],
-  [50, 14.3],
-  [60, 15.2],
-] as const;
+const pendulumResults = pendulumGraphData;
 
 function Panel({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
@@ -426,7 +424,7 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </div>
               <p className="mt-4 text-sm leading-6 text-slate-300">{t.scienceInLife.definition}</p>
               <div className="mt-4 space-y-2">
-                {t.scienceInLife.importance.map((item) => (
+                {t.scienceInLife.importance.slice(0, 1).map((item) => (
                   <p key={item} className="flex gap-2 text-sm text-slate-300">
                     <CheckCircle2
                       className="mt-0.5 h-4 w-4 shrink-0 text-lime-300"
@@ -463,6 +461,12 @@ export function ScienceF1Chapter1VisualNotesBlock({
               <div className="mt-4 rounded-2xl bg-slate-950/50 p-4">
                 <h4 className="text-xl font-black text-white">{selectedField.name}</h4>
                 <p className="mt-2 text-sm leading-6 text-slate-300">{selectedField.description}</p>
+                {selectedCareer && (
+                  <p className="mt-3 text-sm text-teal-100" data-career-subject>
+                    {selectedCareer.field} → {lang === "en" ? "Subject" : "Mata pelajaran"}:{" "}
+                    {selectedCareer.subject} →
+                  </p>
+                )}
                 <p className="mt-3 text-xs font-black uppercase tracking-wider text-teal-300">
                   {selectedCareer ? c.relatedCareers : c.examples}
                 </p>
@@ -863,28 +867,6 @@ export function ScienceF1Chapter1VisualNotesBlock({
             </Panel>
             <DensityExplorer content={t.density} lang={lang} />
           </div>
-          <Panel>
-            <h3 className="font-black text-white">{c.displacement}</h3>
-            <div className="mt-4 grid gap-2 lg:grid-cols-5">
-              {t.density.waterDisplacement.map((item, index) => (
-                <div
-                  key={item}
-                  className="relative rounded-xl bg-teal-300/[0.07] p-3 text-xs leading-5 text-slate-200"
-                >
-                  <span className="mb-2 block font-mono font-black text-teal-300">
-                    0{index + 1}
-                  </span>
-                  {item}
-                  {index < 4 && (
-                    <ChevronRight
-                      className="absolute -right-4 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[#071b22] p-1 text-teal-300 lg:block"
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </Panel>
           <Chapter1Completion section="density" content={t} lang={lang} />
         </div>
 
@@ -950,7 +932,6 @@ export function ScienceF1Chapter1VisualNotesBlock({
               {[
                 [c.problem, c.pendulumProblem],
                 [c.hypothesis, c.pendulumHypothesis],
-                [c.variables, c.pendulumVariables.join(" · ")],
                 [c.conclusion, c.pendulumConclusion],
               ].map((item) => (
                 <div key={item[0]} className="rounded-xl bg-white/5 p-3">
@@ -966,18 +947,44 @@ export function ScienceF1Chapter1VisualNotesBlock({
               yLabel={c.average}
             />
             <div className="mt-4">
-              <table className="w-full border-separate border-spacing-y-1 text-left text-xs">
+              <table
+                data-pendulum-results
+                className="w-full table-fixed border-separate border-spacing-y-1 text-left text-xs"
+              >
+                <caption className="mb-2 text-left text-sm text-teal-100">{c.average}</caption>
                 <thead>
                   <tr className="text-teal-200">
-                    <th className="px-3 py-2">{c.length}</th>
-                    <th className="px-3 py-2">{c.average}</th>
+                    <th scope="col" className="px-1 py-2">
+                      {c.length}
+                    </th>
+                    {[1, 2, 3].map((n) => (
+                      <th key={n} scope="col" className="px-1 py-2">
+                        {lang === "en" ? "Reading" : "Cubaan"} {n}
+                      </th>
+                    ))}
+                    <th scope="col" className="px-1 py-2">
+                      {lang === "en" ? "Average" : "Purata"}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {pendulumResults.map(([length, average], index) => (
-                    <tr key={length} className="bg-white/5">
-                      <td className="rounded-l-lg px-3 py-2 font-mono text-white">{length}</td>
-                      <td className="px-3 py-2 font-mono font-black text-lime-200">{average}</td>
+                  {pendulumReadings.map(({ length, readings, average }) => (
+                    <tr
+                      key={length}
+                      data-pendulum-row={[length, ...readings, average].join(",")}
+                      className="bg-white/5"
+                    >
+                      <th scope="row" className="rounded-l-lg px-1 py-2 font-mono text-white">
+                        {length}
+                      </th>
+                      {readings.map((value, i) => (
+                        <td key={i} className="px-1 py-2 font-mono">
+                          {value.toFixed(1)}
+                        </td>
+                      ))}
+                      <td className="px-1 py-2 font-mono font-black text-lime-200">
+                        {average.toFixed(1)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

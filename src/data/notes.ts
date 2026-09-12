@@ -2315,10 +2315,10 @@ Ulang istilah penting seperti polis, monarki, oligarki, aristokrasi, tirani, dem
     lang: "dlp",
     title: "1.4 Measurement and Accuracy",
     summary:
-      "ACCURACY is how close a measurement is to the true value, while PRECISION is the consistency and closeness between repeated measurements of the same quantity. ZERO ERROR is a systematic error where the instrument does not start at zero — correct it using: Actual Reading = Scale Reading − Zero Error. PARALLAX ERROR is a random error caused when the eye is not perpendicular to the scale; avoid it by aligning your eye level directly with the meniscus (for liquids, read the bottom of the curve).",
+      "ACCURACY is how close a measurement is to the true value, while CONSISTENCY describes how close repeated readings of the same quantity are to one another. ZERO ERROR is a systematic error where the instrument does not start at zero — correct it using: Actual Reading = Scale Reading − Zero Error. PARALLAX ERROR is a random error caused when the eye is not perpendicular to the scale; avoid it by aligning your eye level directly with the meniscus (for liquids, read the bottom of the curve).",
     keywords: [
       "Accuracy",
-      "Precision",
+      "Consistency",
       "Zero Error",
       "Parallax Error",
       "Meniscus",

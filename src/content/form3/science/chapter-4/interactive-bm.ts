@@ -1,6 +1,7 @@
+import { completeChapter4Interactive } from "./build-interactive";
 import type { ScienceF3InteractiveContent } from "../interactive-types";
 
-export const scienceF3C4InteractiveBM: ScienceF3InteractiveContent = {
+export const scienceF3C4InteractiveBM: ScienceF3InteractiveContent = completeChapter4Interactive({
   chapter: 4,
   blogHighlight: {
     title: "Galeri Sains — Logam Pertama Digunakan Manusia",
@@ -30,7 +31,7 @@ export const scienceF3C4InteractiveBM: ScienceF3InteractiveContent = {
       number: "4.2",
       title: "Siri Kereaktifan Logam",
       intro:
-        "Logam disusun dalam siri kereaktifan berdasarkan sejauh mana ia bertindak balas dengan oksigen — magnesium terbakar dengan nyalaan terang, manakala ferum hanya berbara perlahan. Karbon dan hidrogen (bukan logam) juga diletakkan dalam siri ini, kerana kereaktifannya boleh dibandingkan dengan cara yang sama. Ketik mana-mana unsur dalam tangga di bawah untuk melihat tindak balasnya.",
+        "Logam disusun dalam siri kereaktifan berdasarkan sejauh mana ia bertindak balas dengan oksigen — magnesium terbakar dengan nyalaan terang, manakala ferum berbara terang. Karbon dan hidrogen (bukan logam) juga diletakkan dalam siri ini, kerana kereaktifannya boleh dibandingkan dengan cara yang sama. Ketik mana-mana unsur dalam tangga di bawah untuk melihat tindak balasnya.",
       ladder: {
         title: "Disusun mengikut sejauh mana ia \"mahu\" bertindak balas",
         instruction: "Ketik mana-mana unsur untuk melihat tindak balasnya dengan oksigen.",
@@ -53,7 +54,7 @@ export const scienceF3C4InteractiveBM: ScienceF3InteractiveContent = {
         ],
       },
       checks: [
-        { question: "Karbon dapat menurunkan zink oksida dan aluminium oksida tetapi tidak plumbum(II) oksida. Apakah yang ini menunjukkan tentang kedudukan karbon?", hint: "Tunggu — jika karbon dapat menurunkan zink oksida, ini bermakna karbon lebih reaktif daripada zink. Tetapi karbon tidak dapat menurunkan aluminium oksida, bermakna aluminium lebih reaktif daripada karbon. Jadi karbon terletak antara aluminium dan zink dalam siri tersebut." },
+        { question: "Karbon dapat menurunkan zink oksida dan plumbum(II) oksida tetapi tidak aluminium oksida. Di manakah kedudukan karbon?", hint: "Tunggu — jika karbon dapat menurunkan zink oksida, ini bermakna karbon lebih reaktif daripada zink. Tetapi karbon tidak dapat menurunkan aluminium oksida, bermakna aluminium lebih reaktif daripada karbon. Jadi karbon terletak antara aluminium dan zink dalam siri tersebut." },
       ],
     },
     {
@@ -68,7 +69,8 @@ export const scienceF3C4InteractiveBM: ScienceF3InteractiveContent = {
           options: [
             { id: "electrolysis", label: "Atas Karbon", body: "Logam seperti kalium, natrium, kalsium, magnesium dan aluminium terlalu reaktif untuk disesarkan oleh karbon — ia diekstrak melalui elektrolisis sebatian leburnya." },
             { id: "carbon", label: "Bawah Karbon", body: "Logam seperti zink, ferum, timah dan plumbum kurang reaktif daripada karbon — karbon dapat menyesarkannya daripada oksidanya melalui penurunan dalam relau." },
-            { id: "heat", label: "Sangat Tidak Reaktif", body: "Logam seperti raksa dan perak begitu tidak reaktif sehingga hampir tidak membentuk sebatian — selalunya diekstrak melalui pemanasan terus. Emas wujud sebagai unsur tulen dalam kerak Bumi, tidak memerlukan sebarang kimia pengekstrakan." },
+            { id: "heat", label: "Kuprum dan raksa: Cu, Hg", body: "Kuprum dan raksa diekstrak melalui pemanasan terus sebatian logamnya." },
+            { id: "native", label: "Perak dan emas: Ag, Au", body: "Perak dan emas sangat kurang reaktif dan boleh wujud sebagai unsur dalam kerak Bumi." },
           ],
         },
       ],
@@ -99,4 +101,4 @@ export const scienceF3C4InteractiveBM: ScienceF3InteractiveContent = {
     { type: "true-false", question: "Betul atau salah: Kalium diekstrak daripada bijihnya menggunakan penurunan karbon.", answer: false, explanation: "Kalium terletak jauh di atas karbon dalam siri kereaktifan — ia mesti diekstrak melalui elektrolisis, bukan penurunan karbon." },
     { type: "multiple-choice", question: "Bahan apakah yang ditambah ke dalam relau bagas untuk menyingkirkan bendasing pasir sebagai sanga?", options: ["Kok", "Batu kapur", "Bijih ferum", "Udara panas"], answerIndex: 1, explanation: "Batu kapur terurai membentuk kalsium oksida, yang bertindak balas dengan bendasing pasir (silikon dioksida) membentuk sanga (kalsium silikat)." },
   ],
-};
+}, "bm");
