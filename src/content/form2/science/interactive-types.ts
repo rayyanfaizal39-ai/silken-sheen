@@ -946,6 +946,13 @@ export type MiniExperimentPart = {
    * response indicator move. Omit for a part with no interactive stepper.
    */
   values?: string[];
+  /**
+   * How the responding variable is actually observed/measured in this
+   * investigation, e.g. "pressure can be related to the depth of indentation
+   * produced..." — the textbook's operational-definition question, kept
+   * separate from `hypothesis` because it answers a different exam question.
+   */
+  operationalDefinition?: string;
 };
 
 /**
@@ -996,6 +1003,8 @@ export type MiniExperimentBlock = {
   methodLabel: string;
   observationLabel: string;
   conclusionLabel: string;
+  /** Shown only for a part that supplies `operationalDefinition`. */
+  operationalDefinitionLabel?: string;
   parts: MiniExperimentPart[];
 };
 
@@ -1911,6 +1920,8 @@ export type BuoyancySchematicBlock = {
   sinkingNote: string;
   caption: string;
   hint: string;
+  /** One question-first worked example: F = W1 - W2, shown before any self-check asks for it. */
+  workedExample?: { title: string; given: string; working: string; answer: string };
 };
 
 /** One lever class, with the order of fulcrum / load / effort along the bar. */
@@ -1948,6 +1959,8 @@ export type MomentDiagramBlock = {
   situations: { id: string; label: string; note: string }[];
   caption: string;
   hint: string;
+  /** Compact clockwise/anticlockwise sense strip, drawn as a small deterministic SVG. */
+  senseLabels?: { clockwise: string; anticlockwise: string };
 };
 
 export type GasParticlesBlock = {
@@ -1965,9 +1978,54 @@ export type DepthPressureBlock = {
   instruction?: string;
   /** Depth labels top -> bottom; jet length grows with depth. */
   levels: { id: string; label: string; note: string }[];
-  applications: { id: string; label: string; note: string }[];
+  /**
+   * Real-world applications of "deeper means higher pressure" — dam, submarine,
+   * diver. `image` names approved artwork for the ones that have it; the others
+   * are taught by their text alone, and the depth-and-jet figure above stays the
+   * primary visual for the concept itself either way.
+   */
+  applications: {
+    id: string;
+    label: string;
+    note: string;
+    image?: { key: string; alt: string };
+  }[];
   caption: string;
   hint: string;
+  /** Heading over the application controls, e.g. "Where this matters". */
+  applicationsLabel?: string;
+};
+
+/**
+ * One of the three situations the action–reaction triptych paints.
+ *
+ * `id` (`book` | `floating` | `trolleys`) also selects the force-arrow geometry
+ * in `Chapter8ContextFigure`, so the picture is language-neutral: this supplies
+ * every word and that supplies every coordinate.
+ */
+export type ActionReactionSituation = {
+  id: string;
+  /** Control label, e.g. "Book on table". */
+  label: string;
+  /** One sentence on why the two forces here are equal and opposite. */
+  note: string;
+  /**
+   * The two forces drawn on the artwork. Each `id` names an arrow in the
+   * geometry for this situation, so a label can never end up on the wrong
+   * vector. Exactly two per situation — a pair is the whole idea.
+   */
+  forces: { id: string; label: string }[];
+};
+
+/**
+ * The three textbook action–reaction situations, taught on one approved image.
+ *
+ * Deliberately NOT called a third-law block: the remediated section teaches
+ * "Action–Reaction Force Pair", and this pass must not reintroduce a Newton's
+ * Third Law heading the chapter had already moved away from.
+ */
+export type ActionReactionPairsBlock = {
+  situations: ActionReactionSituation[];
 };
 
 export type AltitudePressureBlock = {
@@ -2354,6 +2412,7 @@ export type ScienceInteractiveSection = {
   momentDiagram?: MomentDiagramBlock;
   gasParticles?: GasParticlesBlock;
   depthPressure?: DepthPressureBlock;
+  actionReactionPairs?: ActionReactionPairsBlock;
   pressureApparatus?: ApparatusDiagramBlock;
   altitudePressure?: AltitudePressureBlock;
   conductionDiagram?: ConductionDiagramBlock;

@@ -1,3 +1,6 @@
+import { scienceF3Chapter8Source } from "./chapter-8/chapter8-content";
+import { scienceF3Chapter4Source } from "./chapter-4/chapter4-content";
+
 type Bilingual = { bm: string; dlp: string };
 type Fact = { term: Bilingual; statement: Bilingual };
 type Subtopic = { number: string; title: Bilingual; introduction: Bilingual; facts: Fact[] };
@@ -164,42 +167,7 @@ export const scienceF3Chapters: ScienceF3ChapterSource[] = [
       ]},
     ],
   },
-  {
-    chapter: 4,
-    title: bi("Kereaktifan Logam", "Reactivity of Metals"),
-    mission: bi("Logam dalam telefon, bangunan dan kenderaan berasal daripada mineral yang perlu dipisahkan dan diproses.", "Metals in phones, buildings and vehicles come from minerals that must be separated and processed."),
-    whyItMatters: bi("Siri kereaktifan membantu meramal tindak balas logam dan memilih kaedah pengekstrakan yang sesuai sambil menilai kesan perlombongan.", "The reactivity series helps predict metal reactions and select suitable extraction methods while evaluating mining impacts."),
-    objectives: [bi("Menerangkan kepelbagaian mineral.", "Explain the diversity of minerals."), bi("Membina dan menggunakan siri kereaktifan logam.", "Construct and use the reactivity series of metals."), bi("Menerangkan pengekstrakan logam dan kesannya.", "Explain metal extraction and its impacts.")],
-    summary: bi("Mineral terdiri daripada unsur atau sebatian; kereaktifan logam terhadap oksigen membentuk siri kereaktifan yang menentukan sama ada karbon boleh menurunkan oksida logam semasa pengekstrakan.", "Minerals consist of elements or compounds; metal reactivity towards oxygen forms a reactivity series that determines whether carbon can reduce a metal oxide during extraction."),
-    subtopics: [
-      { number: "4.1", title: bi("Kepelbagaian Mineral", "Diversity of Minerals"), introduction: bi("Kerak Bumi mengandungi mineral unsur dan mineral sebatian.", "Earth's crust contains elemental and compound minerals."), facts: [
-        fact("Mineral", "Mineral ialah unsur atau sebatian pepejal yang wujud secara semula jadi dengan struktur hablur tertentu.", "Mineral", "A mineral is a naturally occurring solid element or compound with a definite crystal structure."),
-        fact("Mineral unsur", "Emas, perak dan grafit ialah contoh mineral unsur.", "Elemental mineral", "Gold, silver and graphite are examples of elemental minerals."),
-        fact("Mineral sebatian", "Bauksit, hematit, galena dan kasiterit ialah bijih yang mengandungi sebatian logam.", "Compound mineral", "Bauxite, haematite, galena and cassiterite are ores containing metal compounds."),
-        fact("Kegunaan mineral", "Mineral digunakan untuk meneutralkan tanah berasid, membuat kaca, membina tapak bangunan dan menghasilkan barang harian.", "Uses of minerals", "Minerals are used to neutralise acidic soil, make glass, build foundations and produce everyday items."),
-        fact("Batu kapur", "Batu kapur mengandungi kalsium karbonat dan mempunyai pelbagai kegunaan dalam pembinaan serta industri.", "Limestone", "Limestone contains calcium carbonate and has various uses in construction and industry."),
-        fact("Bauksit", "Bauksit ialah bijih aluminium.", "Bauxite", "Bauxite is an ore of aluminium."),
-      ]},
-      { number: "4.2", title: bi("Siri Kereaktifan Logam", "Reactivity Series of Metals"), introduction: bi("Kecergasan tindak balas logam dengan oksigen digunakan untuk menyusun logam.", "The vigour of metal reactions with oxygen is used to arrange metals."), facts: [
-        fact("Siri kereaktifan", "Logam disusun daripada paling reaktif kepada paling kurang reaktif berdasarkan tindak balasnya.", "Reactivity series", "Metals are arranged from most reactive to least reactive based on their reactions."),
-        fact("Tindak balas oksigen", "Logam yang lebih reaktif bertindak balas dengan oksigen secara lebih cergas.", "Reaction with oxygen", "A more reactive metal reacts more vigorously with oxygen."),
-        fact("Karbon dalam siri", "Kedudukan karbon digunakan untuk menentukan logam yang boleh diekstrak daripada oksidanya melalui penurunan oleh karbon.", "Carbon in the series", "The position of carbon determines which metals can be extracted from their oxides by carbon reduction."),
-        fact("Oksida logam", "Tindak balas logam dengan oksigen menghasilkan oksida logam.", "Metal oxide", "The reaction of a metal with oxygen produces a metal oxide."),
-        fact("Magnesium", "Magnesium terbakar dengan cahaya putih terang apabila dipanaskan dalam oksigen.", "Magnesium", "Magnesium burns with a bright white light when heated in oxygen."),
-        fact("Kereaktifan rendah", "Logam yang kurang reaktif menunjukkan tindak balas yang kurang cergas terhadap oksigen.", "Low reactivity", "Less reactive metals show less vigorous reactions with oxygen."),
-        fact("Ramalan tindak balas", "Kedudukan dalam siri kereaktifan membolehkan perbandingan dan ramalan kecergasan tindak balas logam.", "Predicting reactions", "Position in the reactivity series allows comparison and prediction of reaction vigour."),
-      ]},
-      { number: "4.3", title: bi("Pengekstrakan Logam daripada Bijih", "Extraction of Metals from Ores"), introduction: bi("Kaedah pengekstrakan bergantung pada kedudukan logam relatif kepada karbon.", "The extraction method depends on the metal's position relative to carbon."), facts: [
-        fact("Penurunan oleh karbon", "Oksida logam yang kurang reaktif daripada karbon boleh diturunkan oleh karbon.", "Reduction by carbon", "Metal oxides less reactive than carbon can be reduced by carbon."),
-        fact("Relau bagas", "Besi diekstrak daripada hematit dalam relau bagas menggunakan karbon sebagai agen penurunan.", "Blast furnace", "Iron is extracted from haematite in a blast furnace using carbon as a reducing agent."),
-        fact("Bijih besi", "Hematit ialah bijih ferum yang digunakan dalam pengekstrakan besi.", "Iron ore", "Haematite is an iron ore used in iron extraction."),
-        fact("Logam sangat reaktif", "Logam yang lebih reaktif daripada karbon tidak boleh diekstrak daripada oksidanya menggunakan karbon.", "Highly reactive metals", "Metals more reactive than carbon cannot be extracted from their oxides using carbon."),
-        fact("Perlombongan", "Perlombongan yang tidak dirancang dengan baik memberi kesan buruk kepada hidupan dan alam sekitar.", "Mining", "Poorly planned mining has harmful effects on living things and the environment."),
-        fact("Pemulihan kawasan", "Idea kreatif dan inovatif diperlukan untuk mengurangkan kesan perlombongan serta memulihkan kawasan.", "Site rehabilitation", "Creative and innovative ideas are needed to reduce mining impacts and rehabilitate sites."),
-        fact("Agen penurunan", "Agen penurunan menyingkirkan oksigen daripada oksida logam.", "Reducing agent", "A reducing agent removes oxygen from a metal oxide."),
-      ]},
-    ],
-  },
+  scienceF3Chapter4Source,
   {
     chapter: 5,
     title: bi("Termokimia", "Thermochemistry"),
@@ -306,44 +274,7 @@ export const scienceF3Chapters: ScienceF3ChapterSource[] = [
       ]},
     ],
   },
-  {
-    chapter: 8,
-    title: bi("Keradioaktifan", "Radioactivity"),
-    mission: bi("Sinaran digunakan untuk diagnosis, rawatan, industri dan pentarikhan, tetapi pendedahan mesti dikawal.", "Radiation is used in diagnosis, treatment, industry and dating, but exposure must be controlled."),
-    whyItMatters: bi("Memahami nukleus, sinaran mengion dan langkah keselamatan membolehkan teknologi radioaktif digunakan secara bertanggungjawab.", "Understanding nuclei, ionising radiation and safety measures allows radioactive technology to be used responsibly."),
-    objectives: [bi("Menghuraikan sejarah penemuan keradioaktifan.", "Describe the history of radioactivity discoveries."), bi("Menerangkan atom, nukleus dan sinaran.", "Explain atoms, nuclei and radiation."), bi("Menerangkan kegunaan dan keselamatan sinaran radioaktif.", "Explain uses and safety of radioactive radiation.")],
-    summary: bi("Keradioaktifan ialah pereputan spontan nukleus tidak stabil yang memancarkan sinaran; sinaran mengion mempunyai pelbagai kegunaan tetapi memerlukan penyimpanan, perlindungan, pemantauan dan pelupusan yang selamat.", "Radioactivity is the spontaneous decay of unstable nuclei that emit radiation; ionising radiation has many uses but requires safe storage, shielding, monitoring and disposal."),
-    subtopics: [
-      { number: "8.1", title: bi("Sejarah Penemuan Keradioaktifan", "History of the Discovery of Radioactivity"), introduction: bi("Penemuan sinaran-X dan keradioaktifan berlaku pada akhir abad ke-19.", "X-rays and radioactivity were discovered at the end of the nineteenth century."), facts: [
-        fact("Wilhelm Roentgen", "Wilhelm Roentgen menemukan sinar-X pada tahun 1895.", "Wilhelm Roentgen", "Wilhelm Roentgen discovered X-rays in 1895."),
-        fact("Henri Becquerel", "Henri Becquerel menemukan keradioaktifan pada tahun 1896.", "Henri Becquerel", "Henri Becquerel discovered radioactivity in 1896."),
-        fact("Marie dan Pierre Curie", "Marie dan Pierre Curie mengesan keradioaktifan melalui kesan pengionannya pada tahun 1897.", "Marie and Pierre Curie", "Marie and Pierre Curie detected radioactivity through its ionising effect in 1897."),
-        fact("Keradioaktifan", "Keradioaktifan ialah proses pereputan spontan nukleus tidak stabil dengan memancarkan sinaran radioaktif.", "Radioactivity", "Radioactivity is the spontaneous decay of an unstable nucleus with the emission of radioactive radiation."),
-        fact("Bahan radioaktif", "Karbon-14, radon-222, torium-234 dan uranium-238 ialah contoh bahan radioaktif.", "Radioactive substances", "Carbon-14, radon-222, thorium-234 and uranium-238 are examples of radioactive substances."),
-      ]},
-      { number: "8.2", title: bi("Atom dan Nukleus", "Atom and Nucleus"), introduction: bi("Struktur nukleus menentukan identiti dan kestabilan atom.", "Nuclear structure determines an atom's identity and stability."), facts: [
-        fact("Proton", "Proton bercas positif dan terletak di dalam nukleus.", "Proton", "A proton is positively charged and located in the nucleus."),
-        fact("Neutron", "Neutron tidak bercas dan terletak di dalam nukleus.", "Neutron", "A neutron has no charge and is located in the nucleus."),
-        fact("Elektron", "Elektron bercas negatif dan bergerak mengelilingi nukleus.", "Electron", "An electron is negatively charged and moves around the nucleus."),
-        fact("Nombor proton", "Nombor proton ialah bilangan proton dalam nukleus atom.", "Proton number", "The proton number is the number of protons in an atomic nucleus."),
-        fact("Nombor nukleon", "Nombor nukleon ialah jumlah proton dan neutron dalam nukleus.", "Nucleon number", "The nucleon number is the total number of protons and neutrons in a nucleus."),
-      ]},
-      { number: "8.3", title: bi("Sinaran Mengion dan Tidak Mengion", "Ionising and Non-ionising Radiation"), introduction: bi("Sinaran mengion mempunyai tenaga yang cukup untuk menghasilkan ion.", "Ionising radiation has enough energy to produce ions."), facts: [
-        fact("Sinaran mengion", "Sinar alfa, beta, gama dan sinar-X ialah sinaran mengion.", "Ionising radiation", "Alpha, beta and gamma radiation and X-rays are ionising radiation."),
-        fact("Pengionan", "Pengionan menghasilkan ion positif dan ion negatif.", "Ionisation", "Ionisation produces positive and negative ions."),
-        fact("Sumber semula jadi", "Sinaran kosmik dan sinaran latar belakang ialah sumber sinaran semula jadi.", "Natural sources", "Cosmic radiation and background radiation are natural radiation sources."),
-        fact("Sumber buatan", "Ujian nuklear dan unsur radioaktif buatan ialah sumber sinaran buatan manusia.", "Artificial sources", "Nuclear tests and artificial radioactive elements are human-made radiation sources."),
-        fact("Becquerel", "Becquerel, Bq, ialah unit S.I. bagi aktiviti keradioaktifan.", "Becquerel", "The becquerel, Bq, is the SI unit of radioactive activity."),
-      ]},
-      { number: "8.4", title: bi("Kegunaan Sinaran Radioaktif", "Uses of Radioactive Radiation"), introduction: bi("Kegunaan sinaran perlu diseimbangkan dengan perlindungan daripada kesan berbahaya.", "Radiation uses must be balanced with protection from harmful effects."), facts: [
-        fact("Bidang kegunaan", "Sinaran radioaktif digunakan dalam pertanian, pertahanan, perubatan, arkeologi, geokronologi, industri dan pengawetan makanan.", "Fields of use", "Radioactive radiation is used in agriculture, defence, medicine, archaeology, geochronology, industry and food preservation."),
-        fact("Penyimpanan", "Sumber radioaktif perlu disimpan di tempat khas yang selamat.", "Storage", "Radioactive sources must be stored in a special safe place."),
-        fact("Perisai plumbum", "Kepingan plumbum digunakan untuk menghadang sinaran mengion.", "Lead shielding", "Lead sheets are used to block ionising radiation."),
-        fact("Tangan robotik", "Tangan robotik digunakan untuk mengendalikan sumber radioaktif dari jarak selamat.", "Robotic hand", "A robotic hand is used to handle radioactive sources from a safe distance."),
-        fact("Lencana sinaran", "Lencana sinaran dipakai untuk memantau dos sinaran yang diterima pekerja.", "Radiation badge", "A radiation badge is worn to monitor the radiation dose received by a worker."),
-      ]},
-    ],
-  },
+  scienceF3Chapter8Source,
   {
     chapter: 9,
     title: bi("Cuaca Angkasa Lepas", "Space Weather"),

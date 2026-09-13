@@ -1,6 +1,7 @@
+import { completeChapter4Interactive } from "./build-interactive";
 import type { ScienceF3InteractiveContent } from "../interactive-types";
 
-export const scienceF3C4InteractiveDLP: ScienceF3InteractiveContent = {
+export const scienceF3C4InteractiveDLP: ScienceF3InteractiveContent = completeChapter4Interactive({
   chapter: 4,
   blogHighlight: {
     title: "Science Gallery — The First Metal Ever Used",
@@ -30,7 +31,7 @@ export const scienceF3C4InteractiveDLP: ScienceF3InteractiveContent = {
       number: "4.2",
       title: "Reactivity Series of Metals",
       intro:
-        "Metals are arranged in a reactivity series based on how vigorously they react with oxygen — magnesium bursts into bright flame, while iron just glows dully. Carbon and hydrogen (non-metals) are also placed within this series, since their reactivity can be compared the same way. Tap any element in the ladder below to see its reaction.",
+        "Metals are arranged in a reactivity series based on how vigorously they react with oxygen — magnesium bursts into bright flame, while iron glows brightly. Carbon and hydrogen (non-metals) are also placed within this series, since their reactivity can be compared the same way. Tap any element in the ladder below to see its reaction.",
       ladder: {
         title: "Ranked by how badly they want to react",
         instruction: "Tap any element to reveal its reaction with oxygen.",
@@ -53,7 +54,7 @@ export const scienceF3C4InteractiveDLP: ScienceF3InteractiveContent = {
         ],
       },
       checks: [
-        { question: "Carbon reduces zinc oxide and aluminium oxide but not lead(II) oxide. What does this tell you about carbon's position?", hint: "Wait — if carbon reduces zinc oxide, that means carbon is more reactive than zinc. But carbon can't reduce aluminium oxide, meaning aluminium is more reactive than carbon. So carbon sits between aluminium and zinc in the series." },
+        { question: "Carbon reduces zinc oxide and lead(II) oxide but not aluminium oxide. Where is carbon positioned?", hint: "Wait — if carbon reduces zinc oxide, that means carbon is more reactive than zinc. But carbon can't reduce aluminium oxide, meaning aluminium is more reactive than carbon. So carbon sits between aluminium and zinc in the series." },
       ],
     },
     {
@@ -68,7 +69,8 @@ export const scienceF3C4InteractiveDLP: ScienceF3InteractiveContent = {
           options: [
             { id: "electrolysis", label: "Above Carbon", body: "Metals like potassium, sodium, calcium, magnesium and aluminium are too reactive for carbon to displace — they're extracted through electrolysis of their molten compounds." },
             { id: "carbon", label: "Below Carbon", body: "Metals like zinc, iron, tin and lead are less reactive than carbon — carbon can displace them from their oxides through reduction in a furnace." },
-            { id: "heat", label: "Very Unreactive", body: "Metals like mercury and silver are so unreactive they barely form compounds at all — often extracted through simple direct heating. Gold exists as pure element in the crust, needing no extraction chemistry at all." },
+            { id: "heat", label: "Copper and mercury: Cu, Hg", body: "Copper and mercury are extracted by direct heating of their metallic compounds." },
+            { id: "native", label: "Silver and gold: Ag, Au", body: "Silver and gold are very unreactive and may occur as elements in Earth's crust." },
           ],
         },
       ],
@@ -99,4 +101,4 @@ export const scienceF3C4InteractiveDLP: ScienceF3InteractiveContent = {
     { type: "true-false", question: "True or false: Potassium is extracted from its ore using carbon reduction.", answer: false, explanation: "Potassium sits well above carbon in the reactivity series — it must be extracted via electrolysis, not carbon reduction." },
     { type: "multiple-choice", question: "What substance is added to a blast furnace to remove sand impurities as slag?", options: ["Coke", "Limestone", "Iron ore", "Hot air"], answerIndex: 1, explanation: "Limestone decomposes into calcium oxide, which reacts with sand (silicon dioxide) impurities to form slag (calcium silicate)." },
   ],
-};
+}, "dlp");

@@ -37,14 +37,21 @@ export const CHAPTER8_FIGURE_WIDTH = {
   single: 600,
   /** A comparison or multi-panel scene that needs the extra width to read. */
   wide: 660,
+  /**
+   * Artwork much wider than 16:9 — the three-situation action–reaction
+   * triptych. A 660px cap would land it at 247px tall, which is well under the
+   * intended 340-380px band and leaves each of its three situations too small
+   * to read; 840px lands it at 315px instead.
+   */
+  panorama: 840,
 } as const;
 
 export type Chapter8FigureVariant = keyof typeof CHAPTER8_FIGURE_WIDTH;
 
 /** Which artwork earns the wider cap. Everything else is a single scene. */
 export const CHAPTER8_WIDE_IMAGES = new Set<Chapter8ImageKey>([
-  "types",
-  "effects",
+  "typesOfForces",
+  "effectsOfForce",
   "levers",
   "buoyancy",
   // two-panel comparisons whose overlay text needs the room

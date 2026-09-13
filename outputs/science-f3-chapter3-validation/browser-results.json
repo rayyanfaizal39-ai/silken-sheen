@@ -1,0 +1,56 @@
+[
+  {
+    "lang": "bm",
+    "width": 320,
+    "coverage": "PASS",
+    "interactions": "PASS",
+    "aboPairs": 16,
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "lang": "bm",
+    "width": 390,
+    "coverage": "PASS",
+    "interactions": "PASS",
+    "aboPairs": 16,
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "lang": "bm",
+    "width": 1280,
+    "coverage": "PASS",
+    "interactions": "PASS",
+    "aboPairs": 16,
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "lang": "en",
+    "width": 320,
+    "coverage": "PASS",
+    "interactions": "PASS",
+    "aboPairs": 16,
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "coverage": "PASS",
+    "interactions": "PASS",
+    "aboPairs": 16,
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "lang": "en",
+    "width": 1280,
+    "coverage": "PASS",
+    "interactions": "PASS",
+    "aboPairs": 16,
+    "overflow": [],
+    "errors": []
+  }
+]

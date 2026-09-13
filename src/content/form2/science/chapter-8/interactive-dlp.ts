@@ -36,12 +36,12 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       remember:
         "A force is a push or a pull acting on an object — even though it cannot be seen, its effects can always be observed.",
       flipCards: [
-        { id: "gravitational", icon: "🌍", label: "Gravitational force", fact: "Pulls every object toward the centre of the Earth — which is what brings a thrown ball back down." },
-        { id: "weight", icon: "⚖️", label: "Weight", fact: "The gravitational force acting on the mass of an object." },
-        { id: "normal", icon: "🧱", label: "Normal force", fact: "The surface contact force that pushes back when an object rests on it." },
-        { id: "frictional", icon: "🌀", label: "Frictional force", fact: "Resists motion between two surfaces in contact, always acting opposite to the direction of motion." },
-        { id: "elastic", icon: "🔗", label: "Elastic force", fact: "Exists in a spring or material that is stretched or compressed." },
-        { id: "buoyant", icon: "🛟", label: "Buoyant force", fact: "The upthrust a fluid exerts on an object floating or submerged in it." },
+        { id: "gravitational", icon: "🌍", label: "Gravitational force", fact: "A force that pulls objects towards the centre of the Earth.", example: "The object falls towards Earth." },
+        { id: "weight", icon: "⚖️", label: "Weight", fact: "The gravitational force acting on an object.", example: "The rock experiences a downward gravitational force." },
+        { id: "normal", icon: "🧱", label: "Normal force", fact: "A force exerted by a surface on an object in contact with it.", example: "The table pushes upward on the book." },
+        { id: "frictional", icon: "🌀", label: "Frictional force", fact: "A force that opposes motion between surfaces in contact.", example: "Friction acts opposite to the motion of the crate." },
+        { id: "elastic", icon: "🔗", label: "Elastic force", fact: "A force produced when an elastic material is stretched or compressed.", example: "The stretched elastic tends to return to its original shape." },
+        { id: "buoyant", icon: "🛟", label: "Buoyant force", fact: "An upward thrust exerted by a fluid on an object.", example: "Water exerts an upward force on the floating duck." },
       ],
       checks: [
         { question: "A bungee jumper jumps off a platform. Which force pulls them down?", hint: "Gravitational force — the same force that pulls any thrown object back to Earth." },
@@ -50,9 +50,11 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     },
     {
       number: "8.1",
-      title: "Magnitude, Direction and Point of Application",
+      title: "Characteristics of Force",
       intro:
-        "Force is a **vector quantity**: every force has a magnitude (how strong it is), a direction, and a **point of application (exactly where the force acts)**. That is why a force is drawn as an arrow — the length of the arrow shows the magnitude, the arrowhead shows the direction, and the tail sits on the point of application.",
+        "Every force has three characteristics: a **magnitude** (how strong it is), a **direction**, and a **point of application (exactly where the force acts)**. That is why a force is drawn as an arrow — the length of the arrow shows the magnitude, the arrowhead shows the direction, and the tail sits on the point of application.",
+      remember:
+        "A force has three characteristics: magnitude, direction and point of application. (Enrichment: because a force has both magnitude and direction, it is also known as a vector quantity.)",
       forceDiagram: {
         title: "➡️ Drawing a force as an arrow",
         instruction: "Tap each example to see where the force is applied.",
@@ -78,6 +80,16 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
         caption: "A longer arrow means a larger force.",
         hint: "Pick an example to see its magnitude, direction and point of application.",
       },
+      checks: [
+        { question: "A man pushes a car. Where is the point of application of the pushing force?", hint: "At the part of his hands in contact with the car — that is where the force is applied." },
+        { question: "A book is pulled to the right. Name the three characteristics of this force that the arrow shows.", hint: "Magnitude (arrow length), direction (arrowhead) and point of application (arrow tail)." },
+      ],
+    },
+    {
+      number: "8.1",
+      title: "Measuring Force",
+      intro:
+        "Force is measured using a spring balance. The S.I. unit of force is the newton (N).",
       cards: [
         {
           title: "Measuring force",
@@ -88,17 +100,52 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
           title: "Unit of force",
           body: "The S.I. unit of force is the **newton (N)**. On Earth, an object with a mass of 100 g has a weight of 1 N — so an object with a mass of 1 kg has a weight of 10 N.",
         },
+        {
+          title: "Mass and weight are not the same",
+          body: "Mass is the amount of matter in an object — its S.I. unit is the kilogram (kg), and it is measured with a beam/electronic balance. Weight is the gravitational force acting on that object — its S.I. unit is the newton (N), and it is measured with a spring balance.",
+        },
       ],
       checks: [
-        { question: "A man pushes a car. Where is the point of application of the pushing force?", hint: "At the part of his hands in contact with the car — that is where the force is applied." },
         { question: "A 2 kg object hangs from a spring balance on Earth. What weight does it read?", hint: "20 N, because every 1 kg has a weight of 10 N." },
+        { question: "A student says a bag of rice 'weighs 5 kg'. What is actually being described, mass or weight — and what unit should weight use?", hint: "That value is the rice's mass (kg). Its weight would be measured in newtons (N), using a spring balance." },
       ],
     },
     {
       number: "8.1",
-      title: "Action and Reaction Forces",
+      title: "Action–Reaction Force Pair",
       intro:
         "For every action force there is a reaction force of **equal magnitude acting in the opposite direction**. The three situations below show these force pairs clearly.",
+      actionReactionPairs: {
+        situations: [
+          {
+            id: "book",
+            label: "Book on table",
+            note: "The book remains stationary because the downward weight and the upward normal force have the same magnitude and act in opposite directions.",
+            forces: [
+              { id: "normal", label: "Normal force" },
+              { id: "weight", label: "Weight" },
+            ],
+          },
+          {
+            id: "floating",
+            label: "Floating block",
+            note: "The block remains floating at equilibrium because the buoyant force equals its weight and acts in the opposite direction.",
+            forces: [
+              { id: "buoyant", label: "Buoyant force" },
+              { id: "weight", label: "Weight" },
+            ],
+          },
+          {
+            id: "trolleys",
+            label: "Two trolleys",
+            note: "The two trolleys exert forces of the same magnitude on each other in opposite directions.",
+            forces: [
+              { id: "action", label: "Action force" },
+              { id: "reaction", label: "Reaction force" },
+            ],
+          },
+        ],
+      },
       accordions: [
         {
           title: "📖 A body resting on a table",
@@ -124,11 +171,11 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       intro:
         "A force cannot be seen directly, but its effects can always be detected. There are **five main effects** of a force acting on an object.",
       flipCards: [
-        { id: "moves", icon: "▶️", label: "Moves a stationary object", fact: "Push a toy car at rest and it starts to move." },
-        { id: "stops", icon: "⏹️", label: "Stops a moving object", fact: "A force from the opposite direction stops a moving toy car." },
-        { id: "speed", icon: "⚡", label: "Changes speed", fact: "A force in the same direction speeds motion up; an opposing force slows it down." },
-        { id: "direction", icon: "↩️", label: "Changes direction of motion", fact: "A force from the side changes the path of a moving toy car." },
-        { id: "shape", icon: "🔄", label: "Changes shape or size", fact: "Pressing a piece of plasticine changes its shape." },
+        { id: "moves", icon: "▶️", label: "Moves a stationary object", fact: "A force can cause a stationary object to start moving. Example: pushing a crate." },
+        { id: "stops", icon: "⏹️", label: "Stops a moving object", fact: "A force acting opposite to motion can slow down and stop a moving object. Example: applying bicycle brakes." },
+        { id: "speed", icon: "⚡", label: "Changes speed", fact: "A force can increase or decrease the speed of a moving object. Example: a driving force changes a car's speed." },
+        { id: "direction", icon: "↩️", label: "Changes direction of motion", fact: "A force acting from another direction can change an object's direction of motion. Example: a tennis racket redirects a moving ball." },
+        { id: "shape", icon: "🔄", label: "Changes shape and size", fact: "A force can change the shape and size of an object. Example: pressing plasticine." },
       ],
       checks: [
         { question: "A goalkeeper stops a ball kicked toward them. Which effect of force is shown?", hint: "The force stops a moving object." },
@@ -143,10 +190,10 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       buoyancySchematic: {
         title: "🌊 Finding buoyant force with a spring balance",
         instruction: "Tap each state to see the forces acting.",
-        realWeightLabel: "Real weight in air",
-        apparentWeightLabel: "Apparent weight in water",
+        realWeightLabel: "Actual weight",
+        apparentWeightLabel: "Apparent weight",
         buoyantForceLabel: "Measuring buoyant force",
-        formula: "Buoyant force = Real weight − Apparent weight. Real weight is the weight of the object in air; apparent weight is its weight while submerged in a liquid.",
+        formula: "Buoyant force = Actual weight − Apparent weight (F = W₁ − W₂). W₁ is the actual weight of the object in air; W₂ is its apparent weight while submerged in a liquid.",
         realWeight: "10 N",
         apparentWeight: "6 N",
         buoyantForce: "Buoyant force = 10 N − 6 N = 4 N",
@@ -154,6 +201,12 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
         sinkingNote: "Sinking — the buoyant force is not enough to support the weight of the object, so the buoyant force is LESS than the weight. The object is denser than the liquid.",
         caption: "The difference between the two spring-balance readings is the buoyant force.",
         hint: "Pick a state to see the forces acting.",
+        workedExample: {
+          title: "Worked example",
+          given: "The actual weight of an object in air is 8 N. Its apparent weight in water is 5 N. Find the buoyant force.",
+          working: "F = W₁ − W₂ → F = 8 N − 5 N",
+          answer: "F = 3 N",
+        },
       },
       buoyancy: {
         title: "🪵 Why do some materials float and others sink?",
@@ -177,7 +230,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
         },
       ],
       checks: [
-        { question: "An object weighs 12 N in air and 9 N while submerged. What is the buoyant force?", hint: "3 N. Buoyant force = real weight − apparent weight = 12 N − 9 N." },
+        { question: "An object weighs 12 N in air and 9 N while submerged. What is the buoyant force?", hint: "3 N. Buoyant force = actual weight − apparent weight = 12 N − 9 N." },
         { question: "A wooden block floats at rest on water. Compare the buoyant force with its weight.", hint: "They are equal in magnitude — a floating object is in equilibrium." },
       ],
     },
@@ -243,6 +296,8 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
       title: "Moment of Force",
       intro:
         "A force applied to an object can turn that object about a fixed point called the **pivot or fulcrum**. The turning effect produced is called the **moment of force**.",
+      remember:
+        "Moment of force allows us to do work more easily. Moment of force depends on the force applied and the perpendicular distance from the pivot to the force.",
       momentDiagram: {
         title: "🔩 Moment of force and perpendicular distance",
         instruction: "Tap each situation to see which distance goes into the calculation.",
@@ -270,6 +325,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
         ],
         caption: "The moment of force increases when the force increases, or when the perpendicular distance increases.",
         hint: "Pick a situation to see its perpendicular distance.",
+        senseLabels: { clockwise: "Clockwise moment", anticlockwise: "Anticlockwise moment" },
       },
       calculators: [
         {
@@ -322,6 +378,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
         methodLabel: "METHOD",
         observationLabel: "OBSERVATION",
         conclusionLabel: "CONCLUSION",
+        operationalDefinitionLabel: "OPERATIONAL DEFINITION",
         parts: [
           {
             id: "surface-area",
@@ -329,6 +386,8 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
             icon: "📐",
             question: "What is the effect of surface area on the pressure produced by the same force?",
             hypothesis: "As the surface area increases, the pressure produced decreases.",
+            operationalDefinition:
+              "Operationally, pressure can be related to the depth of indentation produced when the same force acts over different surface areas: a deeper indentation means a higher pressure.",
             manipulated: "Surface area over which the force acts",
             responding: "Depth of the indentation in the plasticine",
             controlled: "Metal blocks of the same mass, so the force acting is the same",
@@ -482,9 +541,19 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
         applications: [
           { id: "dam", label: "Dam walls", note: "A dam wall is built thicker at the bottom because the water pressure is greatest at the greatest depth." },
           { id: "submarine", label: "Submarines", note: "A submarine hull is designed thick and strong so that it can withstand the high water pressure at depth." },
+          {
+            id: "diver",
+            label: "Divers",
+            note: "At greater depth, water pressure is higher. Divers wear suitable protective equipment to withstand the higher pressure.",
+            image: {
+              key: "diverLiquidPressure",
+              alt: "A diver at significant underwater depth wearing protective diving equipment.",
+            },
+          },
         ],
         caption: "The deeper the hole, the further the water jets out.",
         hint: "Pick a hole position to compare.",
+        applicationsLabel: "Where this matters",
       },
       checks: [
         { question: "Why is a dam wall built thicker at the bottom?", hint: "Because liquid pressure increases with depth, so the bottom has to withstand the greatest water pressure." },
@@ -497,7 +566,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     "I can draw a force as an arrow showing magnitude, direction and point of application.",
     "I can measure force in newtons using a spring balance.",
     "I can explain action and reaction force pairs with examples.",
-    "I can determine buoyant force using real weight and apparent weight.",
+    "I can determine buoyant force using actual weight and apparent weight.",
     "I can classify levers and solve problems using the principle of moments.",
     "I can calculate the moment of force using the perpendicular distance from the pivot.",
     "I can explain the relationship between surface area and pressure, and calculate pressure.",

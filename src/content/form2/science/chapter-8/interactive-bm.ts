@@ -36,12 +36,12 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       remember:
         "Daya ialah tarikan atau tolakan yang dikenakan ke atas sesuatu objek — walaupun tidak dapat dilihat, kesannya sentiasa boleh diperhatikan.",
       flipCards: [
-        { id: "gravitational", icon: "🌍", label: "Daya graviti", fact: "Menarik setiap objek ke arah pusat Bumi — yang membawa bola yang dilontar jatuh semula." },
-        { id: "weight", icon: "⚖️", label: "Berat", fact: "Daya tarikan graviti yang bertindak ke atas jisim sesuatu objek." },
-        { id: "normal", icon: "🧱", label: "Daya normal", fact: "Daya sentuhan permukaan yang menolak balik apabila sesuatu objek bersandar padanya." },
-        { id: "frictional", icon: "🌀", label: "Daya geseran", fact: "Merintangi pergerakan antara dua permukaan yang bersentuhan, sentiasa bertindak bertentangan dengan arah gerakan." },
-        { id: "elastic", icon: "🔗", label: "Daya kenyal", fact: "Wujud dalam spring atau bahan yang diregang atau dimampat." },
-        { id: "buoyant", icon: "🛟", label: "Daya apungan", fact: "Tujahan ke atas yang dikenakan oleh bendalir ke atas objek yang terapung atau terendam di dalamnya." },
+        { id: "gravitational", icon: "🌍", label: "Daya graviti", fact: "Daya yang menarik objek ke arah pusat Bumi.", example: "Objek itu jatuh ke arah Bumi." },
+        { id: "weight", icon: "⚖️", label: "Berat", fact: "Daya graviti yang bertindak ke atas sesuatu objek.", example: "Batu itu mengalami daya graviti ke bawah." },
+        { id: "normal", icon: "🧱", label: "Daya normal", fact: "Daya yang dikenakan oleh permukaan ke atas objek yang bersentuhan dengannya.", example: "Meja itu menolak buku ke atas." },
+        { id: "frictional", icon: "🌀", label: "Daya geseran", fact: "Daya yang merintangi pergerakan antara permukaan yang bersentuhan.", example: "Geseran bertindak bertentangan dengan pergerakan krat itu." },
+        { id: "elastic", icon: "🔗", label: "Daya kenyal", fact: "Daya yang terhasil apabila bahan kenyal diregang atau dimampatkan.", example: "Getah yang diregang cenderung kembali ke bentuk asalnya." },
+        { id: "buoyant", icon: "🛟", label: "Daya apungan", fact: "Tujahan ke atas yang dikenakan oleh bendalir ke atas sesuatu objek.", example: "Air mengenakan daya ke atas terhadap itik yang terapung." },
       ],
       checks: [
         { question: "Seorang peloncat bungee melompat dari sebuah platform. Daya manakah yang menariknya ke bawah?", hint: "Daya graviti — daya yang sama yang menarik semula sebarang objek yang dilontar ke Bumi." },
@@ -50,9 +50,11 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     },
     {
       number: "8.1",
-      title: "Magnitud, Arah dan Titik Aplikasi",
+      title: "Ciri-ciri Daya",
       intro:
-        "Daya ialah **kuantiti vektor**: setiap daya mempunyai magnitud (kekuatan), arah, dan **titik aplikasi (tempat tepat daya itu dikenakan)**. Kerana itu daya dilukis sebagai anak panah — panjang anak panah menunjukkan magnitud, mata anak panah menunjukkan arah, dan pangkalnya terletak pada titik aplikasi.",
+        "Setiap daya mempunyai tiga ciri: **magnitud** (kekuatan), **arah**, dan **titik aplikasi (tempat tepat daya itu dikenakan)**. Kerana itu daya dilukis sebagai anak panah — panjang anak panah menunjukkan magnitud, mata anak panah menunjukkan arah, dan pangkalnya terletak pada titik aplikasi.",
+      remember:
+        "Daya mempunyai tiga ciri: magnitud, arah dan titik aplikasi. (Pengayaan: kerana daya mempunyai magnitud dan arah, ia juga dikenali sebagai kuantiti vektor.)",
       forceDiagram: {
         title: "➡️ Melukis daya sebagai anak panah",
         instruction: "Tekan setiap contoh untuk melihat di mana daya itu dikenakan.",
@@ -78,6 +80,16 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
         caption: "Anak panah yang lebih panjang bermakna daya yang lebih besar.",
         hint: "Pilih satu contoh untuk melihat magnitud, arah dan titik aplikasinya.",
       },
+      checks: [
+        { question: "Seorang lelaki menolak sebuah kereta. Di manakah titik aplikasi daya tolakan itu?", hint: "Pada bahagian tangannya yang bersentuhan dengan kereta itu — di situlah daya dikenakan." },
+        { question: "Sebuah buku ditarik ke kanan. Namakan tiga ciri daya ini yang ditunjukkan oleh anak panah.", hint: "Magnitud (panjang anak panah), arah (mata anak panah) dan titik aplikasi (pangkal anak panah)." },
+      ],
+    },
+    {
+      number: "8.1",
+      title: "Mengukur Daya",
+      intro:
+        "Daya diukur menggunakan neraca spring. Unit S.I. bagi daya ialah newton (N).",
       cards: [
         {
           title: "Mengukur daya",
@@ -88,17 +100,52 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
           title: "Unit daya",
           body: "Unit S.I. bagi daya ialah **newton (N)**. Di Bumi, objek berjisim 100 g mempunyai berat 1 N — jadi objek berjisim 1 kg mempunyai berat 10 N.",
         },
+        {
+          title: "Jisim dan berat tidak sama",
+          body: "Jisim ialah jumlah bahan dalam sesuatu objek — unit S.I.nya ialah kilogram (kg), dan ia diukur dengan neraca alur/neraca elektronik. Berat ialah daya tarikan graviti yang bertindak ke atas objek itu — unit S.I.nya ialah newton (N), dan ia diukur dengan neraca spring.",
+        },
       ],
       checks: [
-        { question: "Seorang lelaki menolak sebuah kereta. Di manakah titik aplikasi daya tolakan itu?", hint: "Pada bahagian tangannya yang bersentuhan dengan kereta itu — di situlah daya dikenakan." },
         { question: "Sebuah objek berjisim 2 kg digantung pada neraca spring di Bumi. Apakah bacaan beratnya?", hint: "20 N, kerana setiap 1 kg mempunyai berat 10 N." },
+        { question: "Seorang murid berkata sebuah beg beras 'beratnya 5 kg'. Apakah sebenarnya yang diterangkan, jisim atau berat — dan unit apakah yang sepatutnya digunakan untuk berat?", hint: "Nilai itu ialah jisim beras (kg). Beratnya akan diukur dalam newton (N), menggunakan neraca spring." },
       ],
     },
     {
       number: "8.1",
-      title: "Daya Tindakan dan Daya Tindak Balas",
+      title: "Pasangan Daya Tindakan–Daya Tindak Balas",
       intro:
         "Bagi setiap daya tindakan, wujud satu daya tindak balas yang **sama magnitud tetapi bertentangan arah**. Tiga situasi di bawah menunjukkan pasangan daya ini dengan jelas.",
+      actionReactionPairs: {
+        situations: [
+          {
+            id: "book",
+            label: "Buku di atas meja",
+            note: "Buku itu kekal pegun kerana berat yang bertindak ke bawah dan daya normal yang bertindak ke atas mempunyai magnitud yang sama serta bertentangan arah.",
+            forces: [
+              { id: "normal", label: "Daya normal" },
+              { id: "weight", label: "Berat" },
+            ],
+          },
+          {
+            id: "floating",
+            label: "Blok terapung",
+            note: "Blok itu kekal terapung dalam keseimbangan kerana daya apungan sama dengan beratnya dan bertindak dalam arah yang bertentangan.",
+            forces: [
+              { id: "buoyant", label: "Daya apungan" },
+              { id: "weight", label: "Berat" },
+            ],
+          },
+          {
+            id: "trolleys",
+            label: "Dua troli",
+            note: "Kedua-dua troli mengenakan daya yang sama magnitud antara satu sama lain dalam arah yang bertentangan.",
+            forces: [
+              { id: "action", label: "Daya tindakan" },
+              { id: "reaction", label: "Daya tindak balas" },
+            ],
+          },
+        ],
+      },
       accordions: [
         {
           title: "📖 Jasad yang kekal di atas meja",
@@ -124,11 +171,11 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       intro:
         "Daya tidak dapat dilihat secara langsung, tetapi kesannya sentiasa dapat dikesan. Terdapat **lima kesan utama** tindakan daya.",
       flipCards: [
-        { id: "moves", icon: "▶️", label: "Menggerakkan objek pegun", fact: "Tolak kereta mainan yang diam dan ia mula bergerak." },
-        { id: "stops", icon: "⏹️", label: "Menghentikan objek bergerak", fact: "Daya dari arah bertentangan memberhentikan kereta mainan yang sedang bergerak." },
-        { id: "speed", icon: "⚡", label: "Mengubah kelajuan", fact: "Daya dari arah yang sama mempercepatkan gerakan; daya bertentangan memperlahankannya." },
-        { id: "direction", icon: "↩️", label: "Mengubah arah gerakan", fact: "Daya dari sisi mengubah haluan kereta mainan yang bergerak." },
-        { id: "shape", icon: "🔄", label: "Mengubah bentuk atau saiz", fact: "Menekan sekeping plastisin mengubah bentuknya." },
+        { id: "moves", icon: "▶️", label: "Menggerakkan objek pegun", fact: "Daya boleh menyebabkan objek yang pegun mula bergerak. Contoh: menolak sebuah peti." },
+        { id: "stops", icon: "⏹️", label: "Menghentikan objek bergerak", fact: "Daya yang bertindak bertentangan dengan gerakan boleh memperlahankan dan menghentikan objek yang bergerak. Contoh: menekan brek basikal." },
+        { id: "speed", icon: "⚡", label: "Mengubah kelajuan", fact: "Daya boleh menambah atau mengurangkan kelajuan objek yang bergerak. Contoh: daya pacuan mengubah kelajuan sebuah kereta." },
+        { id: "direction", icon: "↩️", label: "Mengubah arah gerakan", fact: "Daya yang bertindak dari arah lain boleh mengubah arah gerakan sesuatu objek. Contoh: raket tenis mengubah arah bola yang bergerak." },
+        { id: "shape", icon: "🔄", label: "Mengubah bentuk dan saiz", fact: "Daya boleh mengubah bentuk dan saiz sesuatu objek. Contoh: menekan plastisin." },
       ],
       checks: [
         { question: "Seorang penjaga gol menahan bola yang ditendang ke arahnya. Apakah kesan daya yang ditunjukkan?", hint: "Daya itu menghentikan objek yang sedang bergerak." },
@@ -143,10 +190,10 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       buoyancySchematic: {
         title: "🌊 Menentukan daya apungan dengan neraca spring",
         instruction: "Tekan setiap keadaan untuk melihat daya yang bertindak.",
-        realWeightLabel: "Berat sebenar di udara",
-        apparentWeightLabel: "Berat ketara dalam air",
+        realWeightLabel: "Berat sebenar",
+        apparentWeightLabel: "Berat ketara",
         buoyantForceLabel: "Mengukur daya apungan",
-        formula: "Daya apungan = Berat sebenar − Berat ketara. Berat sebenar ialah berat objek di udara; berat ketara ialah berat objek semasa terendam di dalam cecair.",
+        formula: "Daya apungan = Berat sebenar − Berat ketara (F = W₁ − W₂). W₁ ialah berat sebenar objek di udara; W₂ ialah berat ketara objek semasa terendam di dalam cecair.",
         realWeight: "10 N",
         apparentWeight: "6 N",
         buoyantForce: "Daya apungan = 10 N − 6 N = 4 N",
@@ -154,6 +201,12 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
         sinkingNote: "Tenggelam — daya apungan tidak cukup untuk menampung berat objek, jadi daya apungan KURANG daripada berat. Objek lebih tumpat daripada cecair itu.",
         caption: "Perbezaan antara dua bacaan neraca spring itulah daya apungan.",
         hint: "Pilih satu keadaan untuk melihat daya yang bertindak.",
+        workedExample: {
+          title: "Contoh berpandu",
+          given: "Berat sebenar sesuatu objek di udara ialah 8 N. Berat ketaranya di dalam air ialah 5 N. Cari daya apungan.",
+          working: "F = W₁ − W₂ → F = 8 N − 5 N",
+          answer: "F = 3 N",
+        },
       },
       buoyancy: {
         title: "🪵 Mengapa sesetengah bahan terapung dan yang lain tenggelam?",
@@ -243,6 +296,8 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
       title: "Momen Daya",
       intro:
         "Daya yang dikenakan pada suatu objek boleh memutarkan objek itu pada satu titik tetap yang dipanggil **pangsi atau fulkrum**. Kesan putaran yang dihasilkan itu disebut **momen daya**.",
+      remember:
+        "Momen daya membolehkan kita melakukan kerja dengan lebih mudah. Momen daya bergantung pada daya yang dikenakan dan jarak tegak dari pangsi ke daya itu.",
       momentDiagram: {
         title: "🔩 Momen daya dan jarak tegak",
         instruction: "Tekan setiap situasi untuk melihat jarak yang digunakan dalam pengiraan.",
@@ -270,6 +325,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
         ],
         caption: "Momen daya bertambah apabila daya bertambah, atau apabila jarak tegak bertambah.",
         hint: "Pilih satu situasi untuk melihat jarak tegaknya.",
+        senseLabels: { clockwise: "Momen ikut jam", anticlockwise: "Momen lawan jam" },
       },
       calculators: [
         {
@@ -322,6 +378,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
         methodLabel: "KAEDAH",
         observationLabel: "PEMERHATIAN",
         conclusionLabel: "KESIMPULAN",
+        operationalDefinitionLabel: "DEFINISI SECARA OPERASI",
         parts: [
           {
             id: "surface-area",
@@ -329,6 +386,8 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
             icon: "📐",
             question: "Apakah kesan luas permukaan terhadap tekanan oleh tindakan daya yang sama?",
             hypothesis: "Apabila luas permukaan meningkat, tekanan yang dihasilkan berkurang.",
+            operationalDefinition:
+              "Secara operasi, tekanan boleh dikaitkan dengan kedalaman lekuk yang dihasilkan apabila daya yang sama bertindak ke atas luas permukaan yang berbeza: lekuk yang lebih dalam bermakna tekanan yang lebih tinggi.",
             manipulated: "Luas permukaan tindakan daya",
             responding: "Kedalaman lekuk pada plastisin",
             controlled: "Blok logam yang berjisim sama, supaya daya yang bertindak adalah sama",
@@ -445,8 +504,8 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
           body: "Apabila udara di dalam hemisfera dipam keluar sehingga ruang di dalamnya menjadi vakum, tekanan di dalamnya menjadi sifar. Kedua-dua hemisfera sukar dipisahkan kerana **tekanan atmosfera di luar mengenakan daya yang sangat besar** ke atasnya.",
         },
         {
-          title: "🚿 Pam sedut",
-          body: "Apabila pam sedut ditekan pada sinki, udara di dalamnya dipaksa keluar lalu membentuk keadaan bertekanan rendah. Apabila pam sedut ditarik ke atas, tekanan yang lebih tinggi di dalam salur paip menolak kotoran yang tersumbat.",
+          title: "🚿 Pam sedut sinki",
+          body: "Apabila pam sedut sinki ditekan pada sinki, udara di dalamnya dipaksa keluar lalu membentuk keadaan bertekanan rendah. Apabila pam sedut sinki ditarik ke atas, tekanan yang lebih tinggi di dalam salur paip menolak kotoran yang tersumbat.",
         },
         {
           title: "💧 Sifon",
@@ -457,8 +516,8 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
           body: "Apabila omboh ditarik ke atas, ruang di dalam picagari menjadi bertekanan rendah. Tekanan atmosfera di luar kemudian menolak cecair masuk ke dalam picagari.",
         },
         {
-          title: "🧹 Pembersih vakum",
-          body: "Kipas pembersih vakum menurunkan tekanan udara di dalamnya. Tekanan atmosfera yang lebih tinggi di luar menolak udara masuk, dan udara itu membawa habuk serta cebisan kertas bersamanya.",
+          title: "🧹 Penyedut hampagas",
+          body: "Kipas penyedut hampagas menurunkan tekanan udara di dalamnya. Tekanan atmosfera yang lebih tinggi di luar menolak udara masuk, dan udara itu membawa habuk serta cebisan kertas bersamanya.",
         },
       ],
       checks: [
@@ -482,9 +541,19 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
         applications: [
           { id: "dam", label: "Dinding empangan", note: "Dinding empangan dibina lebih tebal di bahagian bawah kerana tekanan air paling tinggi pada kedalaman yang paling dalam." },
           { id: "submarine", label: "Kapal selam", note: "Badan kapal selam direka tebal dan kukuh supaya dapat menahan tekanan air yang tinggi pada kedalaman laut." },
+          {
+            id: "diver",
+            label: "Penyelam",
+            note: "Pada kedalaman yang lebih besar, tekanan air lebih tinggi. Penyelam memakai peralatan perlindungan yang sesuai untuk menahan tekanan yang lebih tinggi.",
+            image: {
+              key: "diverLiquidPressure",
+              alt: "Seorang penyelam pada kedalaman air yang ketara sambil memakai peralatan menyelam yang melindunginya.",
+            },
+          },
         ],
         caption: "Semakin dalam lubang itu, semakin jauh air memancut keluar.",
         hint: "Pilih satu kedudukan lubang untuk melihat perbandingannya.",
+        applicationsLabel: "Di mana ini penting",
       },
       checks: [
         { question: "Mengapakah dinding empangan dibina lebih tebal di bahagian bawah?", hint: "Kerana tekanan cecair bertambah dengan kedalaman, jadi bahagian bawah menanggung tekanan air yang paling tinggi." },

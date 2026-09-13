@@ -427,7 +427,7 @@ export const scienceF2C8FlashcardsDLP: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     front: "[Common Mistake] Does an object less dense than a liquid submerge?",
-    back: "No. An object less dense than the liquid will float because buoyant force F > weight W.",
+    back: "No. An object less dense than the liquid will float. While floating at rest, the buoyant force F is equal to its weight W (F = W) — not greater than it.",
   },
   {
     id: "sci-f2-c8-dlp-f48",
