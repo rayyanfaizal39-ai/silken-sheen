@@ -30,6 +30,7 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "11.1",
       title: "Galaxies and the Universe",
+      conceptQuestion: "What is a Galaxy?",
       intro:
         "The universe consists of everything that exists around us, and there are millions of galaxies within it. A **galaxy** is a collection of bodies made up of millions of stars together with gas and dust. Galaxies exist in several shapes: spiral galaxies, elliptical galaxies and irregular galaxies. Astronomy carried out with technology such as telescopes has made us aware of the beauty and vastness of the universe.",
       cards: [
@@ -61,6 +62,7 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "11.1",
       title: "The Milky Way, the Solar System's Location and Relative Scale",
+      conceptQuestion: "What is the Milky Way?",
       intro:
         "Our solar system lies inside the **Milky Way** galaxy. The Milky Way is a medium-sized spiral galaxy, and our solar system sits at the edge of one of its spiral arms. The Milky Way contains roughly **200 billion stars**, and the Sun is one of them.",
       milkyWayLocator: {
@@ -106,6 +108,7 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "11.1",
       title: "The Life Cycle of Stars",
+      conceptQuestion: "How Are Stars Born?",
       intro:
         "Stars are born from a nebula. A **nebula** is a vast cloud made up of dust and gases such as hydrogen and helium. Strong gravitational attraction pulls the gas and dust particles together into a clump that contracts and compresses into a core. When the temperature and pressure in the core become very high, a nuclear reaction takes place and hydrogen gas is converted into helium, releasing a great deal of heat and light energy. The core shines and a star is born.",
       accordions: [
@@ -167,6 +170,7 @@ export const scienceF2C11InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "11.1",
       title: "Characteristics of Stars",
+      conceptQuestion: "What are the Characteristics of Stars?",
       intro:
         "If you look at the night sky, some stars appear bright and others appear dim. Stars can be classified by five characteristics: **temperature, size, distance, colour and brightness**. In general, a star's colour follows its surface temperature, running from lower temperatures to higher ones.",
       cards: [

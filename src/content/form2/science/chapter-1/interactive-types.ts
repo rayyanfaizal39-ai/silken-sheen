@@ -15,6 +15,8 @@ export interface FlipCardItem {
   fact: string;
   /** Object path inside the academy-notes-images bucket, e.g. "form2-science/chapter-1/habitat-sea.jpg". */
   imagePath?: string;
+  /** One short concrete example/application, kept separate from `fact` (the definition). */
+  example?: string;
 }
 
 export interface ImportanceItem {

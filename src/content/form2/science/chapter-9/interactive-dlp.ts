@@ -32,6 +32,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "9.1",
       title: "Heat and Temperature",
+      conceptQuestion: "What is Heat and Temperature?",
       intro:
         "Heat is **a form of energy** that flows from a region of higher temperature to a region of lower temperature. Temperature is **the measure of the degree of hotness or coldness of an object**. The two are related, but they are not the same thing — two beakers of water at the same temperature can hold very different quantities of heat, depending on how much water there is.",
       remember:
@@ -61,7 +62,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
           detail: "Measured in degrees Celsius (°C) or kelvin (K).",
         },
         {
-          title: "⚖️ Thermal equilibrium",
+          title: "⚖️ What is thermal equilibrium?",
           body: "When two objects are in contact, heat energy is transferred from the object at the higher temperature to the object at the lower temperature. When **the heat transfer between them becomes zero**, the two objects are in **thermal equilibrium** and share the same temperature.",
         },
       ],
@@ -73,6 +74,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "9.2",
       title: "Conduction",
+      conceptQuestion: "What is Conduction?",
       intro:
         "Conduction is **the flow of heat from a hot region to a cold region through a solid medium**. Particles that receive heat energy vibrate faster and collide with their neighbouring particles more often, transferring that energy throughout the medium.",
       quickExplanation:
@@ -101,6 +103,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "9.2",
       title: "Convection and Radiation",
+      conceptQuestion: "What is Convection and Radiation?",
       intro:
         "Heat can also flow without passing through a solid. In fluids, convection **carries heat through the movement of the fluid itself**. Radiation needs no medium at all — it is **the only way heat can travel through empty space**.",
       convectionRadiation: {
@@ -141,6 +144,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "9.2",
       title: "Sea Breeze and Land Breeze",
+      conceptQuestion: "How Do Sea and Land Breezes Form?",
       intro:
         "Sea breezes and land breezes are **examples of convection happening in nature**. The key is that **land heats up and cools down faster than the sea**.",
       breezeDiagram: {
@@ -188,6 +192,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "9.2",
       title: "Heat Conductors and Heat Insulators",
+      conceptQuestion: "What are Heat Conductors and Insulators?",
       intro:
         "A material that **lets heat flow through it easily** is known as a heat conductor. A material that **prevents or slows down the flow of heat** is known as a heat insulator.",
       contextImages: [
@@ -232,6 +237,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "9.3",
       title: "Expansion and Contraction of Matter",
+      conceptQuestion: "What Happens When Matter is Heated?",
       intro:
         "When matter is heated, its particles gain energy, move or vibrate faster, and **the spacing between the particles increases** — so the matter expands. When cooled, the particles move more slowly, **the spacing decreases**, and the matter contracts. This happens in solids, liquids and gases.",
       expansionParticles: {
@@ -311,6 +317,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "9.4",
       title: "Heat Absorption and Emission",
+      conceptQuestion: "What are Heat Absorption and Emission?",
       intro:
         "The ability of an object to absorb and emit heat depends on the type and colour of its surface. When an object absorbs heat, its temperature rises; when an object emits heat, its temperature falls. **Dark, dull surfaces are better absorbers and better emitters of heat** than light, shiny surfaces.",
       surfaceComparison: {
@@ -356,6 +363,7 @@ export const scienceF2C9InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "9.4",
       title: "The Green Building Concept",
+      conceptQuestion: "What is the Green Building Concept?",
       intro:
         "The Green Building Concept is an idea developed to **reduce the impact of rapid development on the environment and on human health**. The heat concepts in this chapter are used directly: a green home is designed so that the energy needed to cool or heat it is reduced.",
       contextImages: [

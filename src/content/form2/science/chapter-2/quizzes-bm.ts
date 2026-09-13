@@ -125,16 +125,12 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 2",
     lang: "bm",
-    question: "Mengapakah daun kaktus berubah menjadi duri di habitat gurun?",
-    options: [
-      "Supaya kaktus dapat menyerap lebih banyak cahaya matahari",
-      "Untuk mengurangkan luas permukaan supaya kadar transpirasi menjadi sangat rendah",
-      "Untuk membantu kaktus menjalankan respirasi pada waktu malam",
-      "Supaya kaktus dapat bergerak mengikut arah angin",
-    ],
-    answerIndex: 1,
+    question:
+      "Pasangan manakah terdiri daripada satu komponen hidup dan satu komponen bukan hidup dalam ekosistem kolam?",
+    options: ["Ikan dan siput", "Air dan tanah", "Cahaya matahari dan udara", "Ikan dan air"],
+    answerIndex: 3,
     explanation:
-      "Cabaran utama di gurun ialah kehilangan air. Duri mempunyai luas permukaan yang jauh lebih kecil daripada daun biasa, jadi transpirasi berkurang dan air yang disimpan dalam batang tebal dapat bertahan sepanjang musim kering.",
+      "Ikan ialah komponen hidup, manakala air ialah komponen bukan hidup dalam ekosistem kolam.",
   },
   {
     id: "sci-f2-c2-bm-q10",
@@ -233,16 +229,11 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "bm",
     question:
-      "Rubah Artik mempunyai telinga yang kecil berbanding rubah di kawasan panas. Wajarkan mengapa ciri ini penting untuk kemandiriannya.",
-    options: [
-      "Telinga kecil membolehkannya mendengar mangsa di bawah salji dengan lebih jelas",
-      "Telinga kecil mengurangkan luas permukaan yang terdedah, jadi kurang haba badan hilang ke persekitaran yang sangat sejuk",
-      "Telinga kecil membolehkannya berenang dengan lebih laju di dalam air sejuk",
-      "Telinga kecil tidak mempunyai sebarang kaitan dengan kemandirian",
-    ],
-    answerIndex: 1,
+      "Di sebuah kolam terdapat populasi ikan, siput, berudu dan keladi bunting yang hidup bersama. Kesemua populasi ini membentuk...",
+    options: ["organisma", "populasi", "komuniti", "habitat"],
+    answerIndex: 2,
     explanation:
-      "Cabaran utama di tundra ialah kesejukan melampau. Telinga yang kecil mengurangkan luas permukaan tempat haba boleh hilang, jadi suhu badan rubah Artik kekal walaupun persekitarannya sangat sejuk. Itulah sebabnya penyesuaian ini penting, bukan sekadar satu ciri fizikal.",
+      "Beberapa populasi daripada spesies berlainan yang hidup bersama dalam habitat yang sama membentuk komuniti.",
   },
   {
     id: "sci-f2-c2-bm-q17",
@@ -268,10 +259,17 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "bm",
-    question: "Burung kuntul kerbau (Bubulcus ibis) berhijrah ke Kuala Gula, Perak pada tempoh bulan...",
-    options: ["Januari hingga Jun", "Mac hingga Ogos", "September hingga April", "Mei hingga Oktober"],
-    answerIndex: 2,
-    explanation: "Burung kuntul kerbau berhijrah ke Kuala Gula, Perak dari bulan September hingga April setiap tahun.",
+    question:
+      "Apabila burung kuntul kerbau berhijrah ke sesuatu kawasan, bilangan serangga seperti belalang, cengkerik dan lalat boleh berkurang. Mengapakah keadaan ini berlaku?",
+    options: [
+      "Burung kuntul menghasilkan bahan yang membunuh serangga",
+      "Burung kuntul memakan serangga tersebut",
+      "Serangga berhenti membiak apabila burung tiba",
+      "Burung kuntul mengurangkan jumlah air dalam habitat",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Migrasi boleh mengubah saiz populasi dalam ekosistem. Burung kuntul memakan serangga, maka bilangan serangga boleh berkurang apabila bilangan burung kuntul meningkat.",
   },
   {
     id: "sci-f2-c2-bm-q19",
@@ -406,15 +404,16 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "bm",
     question:
-      "Pada tahun 2015, wilayah selatan Rusia diserang oleh kawanan belalang. Apakah kesan yang dinyatakan dalam bab ini, dan apakah konsep ekologi yang digambarkan oleh peristiwa ini?",
+      "Populasi belalang di sebuah kawasan pertanian meningkat dengan mendadak. Apakah kesan yang paling mungkin berlaku kepada ekosistem tersebut?",
     options: [
-      "Ladang jagung seluas 800 hektar musnah dalam masa beberapa jam, menggambarkan bagaimana peningkatan mendadak populasi perosak boleh menjejaskan populasi pengeluar",
-      "Ladang jagung seluas 80 hektar musnah dalam masa sebulan, menggambarkan kitar air",
-      "Tiada kesan ekonomi, hanya kesan kepada populasi burung",
-      "Ladang jagung musnah akibat kemarau, bukan belalang",
+      "Populasi tumbuhan meningkat kerana lebih banyak haiwan hadir",
+      "Populasi pengeluar boleh berkurang dan keseimbangan ekosistem boleh terganggu",
+      "Semua pemangsa akan pupus serta-merta",
+      "Kitar air akan berhenti sepenuhnya",
     ],
-    answerIndex: 0,
-    explanation: "Serangan belalang memusnahkan ladang jagung seluas 800 hektar dalam masa beberapa jam — ini menggambarkan bagaimana peningkatan mendadak populasi perosak (perubahan saiz populasi) boleh menjejaskan populasi pengeluar dalam ekosistem.",
+    answerIndex: 1,
+    explanation:
+      "Peningkatan mendadak populasi herbivor seperti belalang meningkatkan pemakanan terhadap tumbuhan. Populasi pengeluar boleh berkurang dan seterusnya mengganggu populasi lain dalam siratan makanan.",
   },
   {
     id: "sci-f2-c2-bm-q27",
@@ -437,15 +436,16 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "bm",
     question:
-      "Bagaimanakah amalan 5R membantu mengekalkan keseimbangan ekosistem secara tidak langsung melalui kitar nutrien?",
+      "Jika bilangan pengurai dalam sesuatu ekosistem berkurang dengan banyak, apakah kesan yang paling mungkin berlaku?",
     options: [
-      "5R tidak berkaitan dengan kitar nutrien sama sekali",
-      "Dengan mengurangkan jumlah bahan sisa dan penggunaan sumber asli, 5R mengurangkan tekanan terhadap kitar nutrien dan ekosistem semula jadi",
-      "5R hanya berkesan jika dilakukan oleh kerajaan, bukan individu",
-      "5R menggantikan keperluan untuk kawalan biologi",
+      "Bahan mati terkumpul dan kurang nutrien dikembalikan ke dalam tanah",
+      "Semua pengguna mula menghasilkan makanan sendiri",
+      "Fotosintesis berhenti kerana tiada pemangsa",
+      "Semua komponen bukan hidup hilang",
     ],
-    answerIndex: 1,
-    explanation: "Amalan 5R (Refuse, Reduce, Reuse, Recycle, Repurpose) mengurangkan jumlah bahan sisa dan penggunaan sumber asli secara berlebihan, sekali gus mengurangkan tekanan terhadap kitar nutrien dan ekosistem semula jadi.",
+    answerIndex: 0,
+    explanation:
+      "Pengurai memecahkan organisma mati dan bahan buangan serta mengembalikan nutrien ke persekitaran. Kekurangan pengurai menyebabkan bahan mati terkumpul dan kitar nutrien terganggu.",
   },
   {
     id: "sci-f2-c2-bm-q29",

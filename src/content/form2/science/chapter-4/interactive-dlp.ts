@@ -28,6 +28,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "4.1",
       title: "Infectious and Non-Infectious Diseases",
+      conceptQuestion: "What is a Disease?",
       intro:
         "A disease is an abnormal condition of body or mind that causes discomfort, difficulty to function or stress to an individual.",
       comparison: {
@@ -460,6 +461,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "4.2",
       title: "Body Defence",
+      conceptQuestion: "How Does the Body Defend Itself?",
       intro:
         "Pathogens enter the body through the respiratory system, digestive system, excretory system and skin. Our body has three lines of defence to destroy pathogens before and after they enter the body.",
       cards: [
@@ -585,6 +587,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "4.2",
       title: "Importance of Immunisation",
+      conceptQuestion: "What is Immunisation?",
       intro:
         "Immunisation is an effort to stimulate the body's defence against infections in babies, children and adults by injecting vaccines.",
       cards: [
@@ -658,6 +661,7 @@ export const scienceF2C4InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "4.2",
       title: "Active and Passive Immunity",
+      conceptQuestion: "What is Immunity?",
       intro:
         "Two questions decide the type of immunity: does the body make its own antibodies, and how were those antibodies acquired?",
       cards: [

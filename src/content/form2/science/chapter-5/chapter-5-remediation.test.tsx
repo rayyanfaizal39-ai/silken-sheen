@@ -459,11 +459,11 @@ describe("Chapter 5 — assessment integrity", () => {
   it("the protected quiz items are still present and unweakened", () => {
     const find = (id: string) => scienceF2C5QuizzesBM.find((q) => q.id === id);
 
-    // q23 — heating a saturated solution. Solubility as a quantity.
+    // q23 — rate of dissolving vs. temperature of the solvent.
     const q23 = find("sci-f2-c5-bm-q23")!;
     expect(q23, "q23 was removed").toBeTruthy();
     expect(q23.difficulty).toBe("Hard");
-    expect(q23.options[q23.answerIndex]).toMatch(/keterlarutan secara umum meningkat/i);
+    expect(q23.options[q23.answerIndex]).toMatch(/suhu.*meningkatkan kadar/i);
 
     // q22 — electrolysis conductivity. q28 — alternative supply.
     expect(find("sci-f2-c5-bm-q22"), "q22 was removed").toBeTruthy();

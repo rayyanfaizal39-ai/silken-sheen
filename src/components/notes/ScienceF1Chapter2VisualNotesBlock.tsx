@@ -6,7 +6,6 @@ import {
   CheckCircle2,
   ChevronRight,
   CircleDot,
-  Dna,
   FlaskConical,
   HeartPulse,
   Leaf,
@@ -17,6 +16,16 @@ import {
 } from "lucide-react";
 import type { Chapter2Content } from "@/content/form1/science/chapter-2/chapter2-content";
 import { localizeChapter2PracticalAreas } from "@/content/form1/science/chapter-2/chapter2-activities";
+import { Chapter2CellDiagrams } from "./blocks/Chapter2CellDiagrams";
+import { Chapter2OrganismDiagrams } from "./blocks/Chapter2OrganismDiagrams";
+import { Chapter2SpecialisedDiagrams } from "./blocks/Chapter2SpecialisedDiagrams";
+import { Chapter2OrganisationDiagrams } from "./blocks/Chapter2OrganisationDiagrams";
+import { BodySystemsVisual } from "./blocks/Chapter2BodySystemsVisual";
+import {
+  CoverSlipTechnique,
+  MicroscopeFields,
+  SlidePreparationSequence,
+} from "./blocks/Chapter2MicroscopeVisuals";
 
 type Lang = "en" | "bm";
 
@@ -85,18 +94,22 @@ const ui = {
       "Plant cells usually have a large permanent vacuole. Some animal cells can contain small temporary vacuoles with different contents and functions.",
     onion: "Onion epidermal cell",
     cheek: "Human cheek cell",
-    protocol: ["Extract & place", "Stain", "Lower cover slip", "Clean & observe"],
     onionSteps: [
-      "Peel a thin onion epidermis and place it flat in a drop of water.",
+      "Peel a thin onion epidermis.",
+      "Place it flat on a clean slide in a drop of water.",
       "Add iodine solution.",
-      "Lower the cover slip at about 45° with a mounting needle.",
-      "Blot excess stain; observe with low power before high power.",
+      "Lower the cover slip slowly at about 45° with a mounting needle.",
+      "Remove excess stain with filter paper.",
+      "Observe first with the low-power objective.",
+      "Then use the high-power objective as directed by the teacher.",
     ],
     cheekSteps: [
-      "Gently scrape the inner cheek and transfer the cells into a drop of water.",
+      "Gently scrape the inner cheek according to the teacher's instructions.",
+      "Transfer the cells into a drop of distilled water on a clean slide.",
       "Add methylene blue solution.",
-      "Lower the cover slip at about 45° without trapping air bubbles.",
-      "Blot excess liquid; observe with low power before high power.",
+      "Lower the cover slip slowly at about 45° with a mounting needle.",
+      "Remove excess liquid with filter paper.",
+      "Observe with low power before high power as directed by the teacher.",
     ],
     practicalEvidence: "Practical evidence",
     unicellular: "Unicellular organisms",
@@ -187,18 +200,22 @@ const ui = {
       "Sel tumbuhan biasanya mempunyai vakuol kekal yang besar. Sesetengah sel haiwan boleh mempunyai vakuol sementara yang kecil dengan kandungan dan fungsi berbeza.",
     onion: "Sel epidermis bawang",
     cheek: "Sel pipi manusia",
-    protocol: ["Ambil & letak", "Warnakan", "Turunkan penutup", "Bersih & perhati"],
     onionSteps: [
-      "Kupas epidermis bawang yang nipis dan letakkan rata dalam setitis air.",
+      "Kupas epidermis bawang yang nipis.",
+      "Letakkan rata pada slaid bersih dalam setitis air.",
       "Titiskan larutan iodin.",
-      "Turunkan penutup kaca pada sudut kira-kira 45° menggunakan jarum tenggek.",
-      "Serap pewarna berlebihan; perhati dengan kuasa rendah sebelum kuasa tinggi.",
+      "Turunkan penutup kaca perlahan-lahan pada sudut kira-kira 45° menggunakan jarum tenggek.",
+      "Serap pewarna berlebihan dengan kertas turas.",
+      "Perhatikan dahulu dengan kanta objek kuasa rendah.",
+      "Kemudian gunakan kanta objek kuasa tinggi mengikut arahan guru.",
     ],
     cheekSteps: [
-      "Kikis bahagian dalam pipi dengan lembut dan pindahkan sel ke dalam setitis air.",
+      "Kikis bahagian dalam pipi dengan lembut mengikut arahan guru.",
+      "Pindahkan sel ke dalam setitis air suling pada slaid bersih.",
       "Titiskan larutan metilena biru.",
-      "Turunkan penutup kaca pada sudut kira-kira 45° tanpa memerangkap gelembung udara.",
-      "Serap cecair berlebihan; perhati dengan kuasa rendah sebelum kuasa tinggi.",
+      "Turunkan penutup kaca perlahan-lahan pada sudut kira-kira 45° menggunakan jarum tenggek.",
+      "Serap cecair berlebihan dengan kertas turas.",
+      "Perhatikan dengan kuasa rendah sebelum kuasa tinggi mengikut arahan guru.",
     ],
     practicalEvidence: "Bukti amali",
     unicellular: "Organisma unisel",
@@ -285,9 +302,7 @@ export function ScienceF1Chapter2VisualNotesBlock({
     .find((area) => area.id === "photosynthesis-investigation-hub")
     ?.investigations?.find((item) => item.id === "starch");
   const [structure, setStructure] = useState(0);
-  const [system, setSystem] = useState(0);
   const selectedStructure = t.cellStructures[structure];
-  const selectedSystem = t.bodySystems[system];
 
   return (
     <section
@@ -372,20 +387,20 @@ export function ScienceF1Chapter2VisualNotesBlock({
           <SectionHeading section={c.sections[1]} />
           <Panel>
             <div className="flex items-center gap-3">
-              <Dna className="h-7 w-7 text-cyan-300" />
+              <Microscope className="h-7 w-7 text-cyan-300" />
               <h3 className="font-black text-white">{c.chooseStructure}</h3>
             </div>
             <div
               className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7"
-              role="tablist"
+              role="group"
               aria-label={c.chooseStructure}
             >
               {t.cellStructures.map((item, index) => (
                 <button
                   key={item.id}
                   type="button"
-                  role="tab"
-                  aria-selected={structure === index}
+                  aria-pressed={structure === index}
+                  data-structure-selector={item.id}
                   onClick={() => setStructure(index)}
                   className={`min-h-14 cursor-pointer rounded-xl border p-2 text-left text-xs font-black transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 ${structure === index ? "border-cyan-300 bg-cyan-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
                 >
@@ -393,10 +408,17 @@ export function ScienceF1Chapter2VisualNotesBlock({
                 </button>
               ))}
             </div>
-            <div className="mt-4 grid gap-4 rounded-2xl border border-cyan-300/20 bg-slate-950/45 p-4 sm:grid-cols-[auto_1fr] sm:items-center">
-              <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border-4 border-cyan-300/30 bg-cyan-300/10">
-                <CircleDot className="h-11 w-11 text-cyan-200" />
-              </div>
+            <Chapter2CellDiagrams
+              structures={t.cellStructures}
+              selectedId={selectedStructure.id}
+              animalLabel={c.animal}
+              plantLabel={c.plant}
+              lang={lang}
+            />
+            <div
+              aria-live="polite"
+              className="mt-4 rounded-2xl border border-cyan-300/20 bg-slate-950/45 p-4"
+            >
               <div>
                 <h4 className="text-xl font-black text-white">{selectedStructure.name}</h4>
                 <p className="mt-2 text-sm leading-6 text-slate-300">
@@ -439,44 +461,18 @@ export function ScienceF1Chapter2VisualNotesBlock({
         <div className="space-y-6">
           <SectionHeading section={c.sections[2]} />
           <div className="grid gap-4 lg:grid-cols-2">
-            {[
-              { title: c.onion, steps: c.onionSteps, tone: "emerald" },
-              { title: c.cheek, steps: c.cheekSteps, tone: "cyan" },
-            ].map((protocol) => (
-              <Panel
-                key={protocol.title}
-                className={
-                  protocol.tone === "emerald" ? "border-emerald-300/20" : "border-cyan-300/20"
-                }
-              >
-                <h3 className="flex items-center gap-2 font-black text-white">
-                  <Microscope
-                    className={`h-6 w-6 ${protocol.tone === "emerald" ? "text-emerald-300" : "text-cyan-300"}`}
-                  />
-                  {protocol.title}
-                </h3>
-                <div className="mt-4 space-y-3">
-                  {protocol.steps.map((step, index) => (
-                    <div key={step} className="flex gap-3">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-black text-white">
-                        {index + 1}
-                      </span>
-                      <div>
-                        <p className="text-xs font-black uppercase tracking-wider text-slate-400">
-                          {c.protocol[index]}
-                        </p>
-                        <p className="mt-1 text-sm leading-6 text-slate-300">{step}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Panel>
-            ))}
+            <SlidePreparationSequence onion title={c.onion} steps={c.onionSteps} />
+            <SlidePreparationSequence onion={false} title={c.cheek} steps={c.cheekSteps} />
           </div>
+          <CoverSlipTechnique lang={lang} />
+          <MicroscopeFields lang={lang} onionLabel={c.onion} cheekLabel={c.cheek} />
           {slidePractical && (
             <Panel>
               <p className="font-black text-emerald-200">{c.practicalEvidence}</p>
               <p className="mt-2 text-sm leading-6 text-slate-300">{slidePractical.evidence}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">
+                {slidePractical.steps?.at(-1)}
+              </p>
               <p className="mt-3 text-xs leading-5 text-amber-100/80">
                 {slidePractical.practicalNotice}
               </p>
@@ -489,51 +485,24 @@ export function ScienceF1Chapter2VisualNotesBlock({
           <p className="text-sm leading-6 text-slate-300">
             {t.unicellularMulticellular.definition}
           </p>
-          <div className="grid gap-4 lg:grid-cols-2">
-            <Panel>
-              <h3 className="font-black text-cyan-200">{c.unicellular}</h3>
-              <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                {t.unicellularMulticellular.unicellular.map((item) => (
-                  <div key={item.id} className="rounded-xl bg-white/5 p-3">
-                    <p className="font-black text-white">{item.name}</p>
-                    <p className="mt-1 text-xs leading-5 text-slate-400">{item.note}</p>
-                  </div>
-                ))}
-              </div>
-            </Panel>
-            <Panel>
-              <h3 className="font-black text-emerald-200">{c.multicellular}</h3>
-              <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                {t.unicellularMulticellular.multicellular.map((item) => (
-                  <div key={item.id} className="rounded-xl bg-white/5 p-3">
-                    <p className="font-black text-white">{item.name}</p>
-                    <p className="mt-1 text-xs leading-5 text-slate-400">{item.note}</p>
-                  </div>
-                ))}
-              </div>
-            </Panel>
-          </div>
-          <div className="grid gap-4 lg:grid-cols-2">
-            {[
-              { title: c.specialisedAnimal, items: t.animalCellTypes },
-              { title: c.specialisedPlant, items: t.plantCellTypes },
-            ].map((group) => (
-              <Panel key={group.title}>
-                <h3 className="font-black text-white">{group.title}</h3>
-                <div className="mt-4 space-y-2">
-                  {group.items.map((item) => (
-                    <div
-                      key={item.id}
-                      className="rounded-xl border border-white/10 bg-white/[0.035] p-3"
-                    >
-                      <p className="font-black text-cyan-100">{item.name}</p>
-                      <p className="mt-1 text-xs leading-5 text-slate-300">{item.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </Panel>
-            ))}
-          </div>
+          <Chapter2OrganismDiagrams
+            content={t}
+            lang={lang}
+            unicellularTitle={c.unicellular}
+            multicellularTitle={c.multicellular}
+          />
+          <Chapter2SpecialisedDiagrams
+            items={t.animalCellTypes}
+            title={c.specialisedAnimal}
+            group="animal"
+            lang={lang}
+          />
+          <Chapter2SpecialisedDiagrams
+            items={t.plantCellTypes}
+            title={c.specialisedPlant}
+            group="plant"
+            lang={lang}
+          />
         </div>
 
         <div className="space-y-6">
@@ -543,68 +512,37 @@ export function ScienceF1Chapter2VisualNotesBlock({
               <Network className="h-6 w-6 text-cyan-300" />
               {c.hierarchy}
             </h3>
-            <div className="mt-5 grid gap-2 sm:grid-cols-5">
-              {t.organisationHierarchy.map((item, index) => (
-                <div
-                  key={item.level}
-                  className="relative rounded-xl border border-cyan-300/15 bg-cyan-300/[0.06] p-3"
-                >
-                  <span className="font-mono text-xs font-black text-emerald-300">
-                    0{index + 1}
-                  </span>
-                  <p className="mt-1 font-black text-white">{item.level}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-400">{item.description}</p>
-                  {index < 4 && (
-                    <ChevronRight className="absolute -right-4 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[#061923] p-1 text-cyan-300 sm:block" />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl bg-white/5 p-3">
-                <p className="text-xs font-black uppercase text-cyan-300">{c.animalExample}</p>
-                <p className="mt-2 text-sm font-bold text-white">
-                  {t.organisationExamples.animal.join(" → ")}
-                </p>
-              </div>
-              <div className="rounded-xl bg-white/5 p-3">
-                <p className="text-xs font-black uppercase text-emerald-300">{c.plantExample}</p>
-                <p className="mt-2 text-sm font-bold text-white">
-                  {t.organisationExamples.plant.join(" → ")}
-                </p>
-              </div>
-            </div>
+            <Chapter2OrganisationDiagrams content={t} />
           </Panel>
           <Panel>
             <div className="flex items-center gap-3">
               <HeartPulse className="h-7 w-7 text-rose-300" />
               <h3 className="font-black text-white">{c.systems}</h3>
             </div>
-            <div
-              className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4"
-              role="tablist"
-              aria-label={c.systems}
-            >
-              {t.bodySystems.map((item, index) => (
-                <button
-                  key={item.name}
-                  type="button"
-                  role="tab"
-                  aria-selected={system === index}
-                  onClick={() => setSystem(index)}
-                  className={`min-h-14 cursor-pointer rounded-xl border p-2 text-left text-xs font-black transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 ${system === index ? "border-rose-300 bg-rose-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-            <div className="mt-4 rounded-2xl bg-slate-950/45 p-4">
-              <h4 className="text-xl font-black text-white">{selectedSystem.name}</h4>
-              <p className="mt-2 text-xs font-black uppercase tracking-wider text-rose-200">
-                {c.organs}: {selectedSystem.organs}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{selectedSystem.function}</p>
-            </div>
+            <BodySystemsVisual content={t} lang={lang} />
+          </Panel>
+          <Panel>
+            <fieldset data-learning-standard="2.1.7" className="min-w-0">
+              <legend className="text-lg font-black text-white">
+                <span className="mr-2 font-mono text-sm text-emerald-300">2.1.7</span>
+                {t.appreciation.title}
+              </legend>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{t.appreciation.body}</p>
+              <div className="mt-4 space-y-2">
+                {t.appreciation.reflectionItems.map((item, index) => (
+                  <label
+                    key={index}
+                    className="flex min-h-14 cursor-pointer items-start gap-3 rounded-xl border border-white/15 bg-white/5 p-3 text-sm leading-6 text-slate-100 hover:bg-white/10"
+                  >
+                    <input
+                      type="checkbox"
+                      className="mt-1 h-5 w-5 shrink-0 accent-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                    />
+                    {item}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
           </Panel>
         </div>
 

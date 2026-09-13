@@ -33,6 +33,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "5.1",
       title: "Sifat Fizik Air",
+      conceptQuestion: "Apakah Sifat Fizik Air?",
       intro:
         "Air tulen **tidak berwarna, tidak berbau dan tidak berasa**, serta kekal sebagai cecair pada suhu bilik. Nilai tetap ini sebenarnya digunakan untuk menguji sama ada air mengandungi bendasing, kerana bendasing mengubah nilai-nilai ini.",
       cards: [
@@ -208,6 +209,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "5.1",
       title: "Bendasing dan Elektrolisis Air",
+      conceptQuestion: "Apakah Kandungan Air?",
       intro:
         "Air ialah **sebatian** — dua atom hidrogen bergabung dengan satu atom oksigen, **H₂O**. Bendasing terlarut mengubah takat lebur dan takat didih air.",
       cards: [
@@ -278,6 +280,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "5.1",
       title: "Faktor-faktor yang Mempengaruhi Kadar Penyejatan",
+      conceptQuestion: "Apakah Penyejatan?",
       intro:
         "Penyejatan berlaku di permukaan air dan boleh berlaku pada sebarang suhu. Empat faktor mempengaruhi seberapa cepat ia berlaku.",
       flipCards: [
@@ -518,8 +521,10 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "5.2",
       title: "Zat Terlarut, Pelarut dan Larutan",
+      conceptQuestion: "Apakah Larutan?",
       intro:
         "Apabila gula larut dalam air, gula ialah **zat terlarut** (bahan yang larut), air ialah **pelarut** (cecair yang melarutkan), dan air gula ialah **larutan** yang terbentuk bersama. Daripada tiga istilah ini datang satu lagi yang sering dikelirukan — keterlarutan.",
+      rememberQuestion: "Apakah Keterlarutan?",
       remember:
         "**Keterlarutan** suatu bahan ialah kuantiti maksimum zat terlarut yang dapat larut di dalam 100 ml pelarut pada suhu yang tertentu.",
       cards: [
@@ -825,6 +830,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "5.3",
       title: "Kaedah Pembersihan Air",
+      conceptQuestion: "Bagaimanakah Air Dibersihkan?",
       intro:
         "Air meliputi **dua pertiga permukaan Bumi**, tetapi kebanyakannya mengandungi bendasing, mikroorganisma dan bahan terlarut yang menjadikannya tidak selamat terus daripada sumber. Pembersihan air membuang **bau, rasa, warna, mikroorganisma dan bahan terlarut** supaya ia boleh digunakan dengan selamat.",
       comparisonMatrix: {
@@ -890,6 +896,7 @@ export const scienceF2C5InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "5.3",
       title: "Sistem Pembekalan Air",
+      conceptQuestion: "Bagaimanakah Air Dirawat?",
       intro:
         "Air yang dikumpul daripada sumber seperti sungai dan air hujan disalurkan ke **loji pembersihan air** untuk dirawat dalam enam peringkat sebelum sampai ke rumah. **Bakteria, alga dan bahan mineral** adalah antara bahan yang disingkirkan dalam proses ini.",
       waterTreatmentFlow: {

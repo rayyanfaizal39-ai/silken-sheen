@@ -37,7 +37,13 @@ export function readingValue(text: string) {
   return match ? Number(match[0].replace(",", ".")) : null;
 }
 
-export function BuoyancySchematic({ block, lang }: { block: BuoyancySchematicBlock; lang?: string }) {
+export function BuoyancySchematic({
+  block,
+  lang,
+}: {
+  block: BuoyancySchematicBlock;
+  lang?: string;
+}) {
   const [view, setView] = useState<ViewId>("measure");
   const copy = figureCopy(lang);
 
@@ -48,7 +54,11 @@ export function BuoyancySchematic({ block, lang }: { block: BuoyancySchematicBlo
   ];
 
   const note =
-    view === "measure" ? block.formula : view === "floating" ? block.floatingNote : block.sinkingNote;
+    view === "measure"
+      ? block.formula
+      : view === "floating"
+        ? block.floatingNote
+        : block.sinkingNote;
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
@@ -204,12 +214,20 @@ export function BuoyancySchematic({ block, lang }: { block: BuoyancySchematicBlo
       )}
 
       {view === "measure" && (
-        <p
-          data-buoyant-force=""
-          className="mt-2 rounded-xl border border-amber-300/40 bg-amber-300/10 px-3 py-2 text-center font-display text-[13px] font-bold text-amber-200"
-        >
-          {block.buoyantForce}
-        </p>
+        <div className="mt-2 rounded-xl border border-amber-300/40 bg-amber-300/10 px-3 py-2 text-center">
+          {/* These two readings are one worked example, not a fixed
+              experimental measurement — the badge keeps that distinction
+              explicit rather than implied by the surrounding formula alone. */}
+          <span
+            data-example-badge=""
+            className="mb-1 inline-block rounded-full bg-amber-300/25 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-200"
+          >
+            {copy.exampleBadge}
+          </span>
+          <p data-buoyant-force="" className="font-display text-[13px] font-bold text-amber-200">
+            {block.buoyantForce}
+          </p>
+        </div>
       )}
       <p className="mt-1 text-center text-[11.5px] italic text-muted-foreground">{block.caption}</p>
 
@@ -219,6 +237,24 @@ export function BuoyancySchematic({ block, lang }: { block: BuoyancySchematicBlo
       >
         {note}
       </p>
+
+      {/* one worked example, question first, before any self-check asks for it */}
+      {block.workedExample && (
+        <div className="mt-2 rounded-xl border border-border bg-secondary/20 px-3 py-2.5">
+          <p className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
+            {block.workedExample.title}
+          </p>
+          <p className="mt-1 text-[12px] leading-relaxed text-foreground">
+            {block.workedExample.given}
+          </p>
+          <p className="mt-1 font-display text-[12px] leading-relaxed text-muted-foreground">
+            {block.workedExample.working}
+          </p>
+          <p className="mt-1 font-display text-[13px] font-bold text-emerald-300">
+            {block.workedExample.answer}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

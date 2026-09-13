@@ -37,6 +37,7 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "6.1",
       title: "Properties of Acids and Alkalis",
+      conceptQuestion: "What are Acids and Alkalis?",
       intro:
         "Acids and alkalis are common substances with a predictable, opposite set of properties. Compare the two property by property.",
       conceptContrast: {
@@ -288,6 +289,7 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "6.1",
       title: "Indicators",
+      conceptQuestion: "What is an Indicator?",
       intro:
         "An indicator is **a colouring that changes colour** according to the substance being tested. Different indicators tell you different things — some only tell you acid or alkali, others give you a pH value.",
       indicatorTable: {
@@ -587,6 +589,7 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "6.2",
       title: "Neutralisation",
+      conceptQuestion: "What is Neutralisation?",
       intro:
         "Mix an acid with an alkali and they cancel each other out — the acid loses its acidity, the alkali loses its alkalinity, and the reaction produces salt and water.",
       cards: [
@@ -618,6 +621,7 @@ export const scienceF2C6InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "6.2",
       title: "Titration",
+      conceptQuestion: "What is Titration?",
       intro:
         "Titration can be used to determine the end point of a neutralisation reaction using an indicator.",
       cards: [

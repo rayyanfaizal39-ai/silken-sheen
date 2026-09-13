@@ -43,6 +43,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.1.1",
       title: "Pengeluar, Pengguna dan Pengurai",
       standardTitle: "2.1 Aliran Tenaga dalam Ekosistem",
+      conceptQuestion: "Apakah Pengeluar, Pengguna dan Pengurai?",
       intro:
         "Sumber tenaga dalam semua ekosistem berasal dari **Matahari**. Tumbuhan hijau menukarkan tenaga cahaya daripada Matahari kepada **tenaga kimia** melalui fotosintesis. Tenaga kimia itu dipindahkan kepada pengguna primer, kemudian pengguna sekunder dan pengguna tertier melalui **rantai makanan dan siratan makanan**.",
       cards: [
@@ -93,6 +94,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.1.2",
       title: "Rantai Makanan dan Siratan Makanan",
       standardTitle: "2.1 Aliran Tenaga dalam Ekosistem",
+      conceptQuestion: "Apakah Rantai Makanan dan Siratan Makanan?",
       intro:
         "Rantai makanan menunjukkan satu laluan pemakanan yang lurus. Siratan makanan pula ialah **gabungan beberapa rantai makanan** yang saling berkait dalam satu ekosistem yang sama.",
       sequence: {
@@ -170,6 +172,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.2.2",
       title: "Kitar Air",
       standardTitle: "2.2 Kitar Nutrien dalam Ekosistem",
+      conceptQuestion: "Apakah Kitar Air?",
       images: [
         {
           src: waterCycleImage,
@@ -272,6 +275,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.2.1",
       title: "Kitar Karbon dan Kitar Oksigen",
       standardTitle: "2.2 Kitar Nutrien dalam Ekosistem",
+      conceptQuestion: "Apakah Kitar Karbon dan Kitar Oksigen?",
       images: [
         {
           src: carbonOxygenCycleImage,
@@ -404,6 +408,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.3.1",
       title: "Saling Bersandaran dan Istilah Ekologi",
       standardTitle: "2.3 Saling Bersandaran dan Interaksi antara Organisma dan antara Organisma dengan Persekitaran",
+      conceptQuestion: "Bagaimanakah Ekosistem Disusun?",
       intro:
         "Sebelum mengkaji interaksi, kenali lima istilah asas ekologi. Spesies, populasi dan komuniti ialah aras organisasi hidupan; habitat pula ialah tempat, bukan aras.",
       contextImages: [
@@ -548,6 +553,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.3.2",
       title: "Penyesuaian Hidupan",
       standardTitle: "2.3 Saling Bersandaran dan Interaksi antara Organisma dan antara Organisma dengan Persekitaran",
+      conceptQuestion: "Apakah Penyesuaian?",
       intro:
         "Setiap habitat mengenakan cabaran yang berbeza. Penyesuaian ialah ciri badan atau tingkah laku yang membolehkan organisma mengatasi cabaran itu — tanpanya, organisma tidak dapat bermandiri di habitat tersebut.",
       adaptations: {
@@ -702,6 +708,7 @@ export const scienceF2C2InteractiveBM: ScienceF2InteractiveContent = {
       number: "2.3.3",
       title: "Interaksi antara Organisma",
       standardTitle: "2.3 Saling Bersandaran dan Interaksi antara Organisma dan antara Organisma dengan Persekitaran",
+      conceptQuestion: "Apakah Interaksi antara Organisma?",
       intro:
         "Interaksi antara organisma terdiri daripada **simbiosis** (mutualisme, komensalisme, parasitisme), mangsa-pemangsa dan persaingan.",
       conceptTree: {

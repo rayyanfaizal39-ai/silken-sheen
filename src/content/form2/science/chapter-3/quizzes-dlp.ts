@@ -32,10 +32,12 @@ export const scienceF2C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 3",
     lang: "dlp",
-    question: "The disease caused by Vitamin B deficiency is called...",
-    options: ["Beri-beri", "Scurvy", "Rickets", "Goiter"],
-    answerIndex: 0,
-    explanation: "Vitamin B deficiency causes beri-beri and anaemia; Vitamin B helps maintain nervous system function and red blood cell formation.",
+    question:
+      "A food sample forms a brick-red precipitate after being heated with Benedict's solution. Which nutrient is present?",
+    options: ["Starch", "Glucose", "Protein", "Fat"],
+    answerIndex: 1,
+    explanation:
+      "A brick-red precipitate after heating with Benedict's solution indicates the presence of glucose.",
   },
   {
     id: "sci-f2-c3-dlp-q4",
@@ -68,10 +70,15 @@ export const scienceF2C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 3",
     lang: "dlp",
-    question: "Deficiency of Vitamin C causes...",
-    options: ["Beri-beri", "Scurvy", "Rickets", "Anaemia"],
-    answerIndex: 1,
-    explanation: "Deficiency of Vitamin C causes Scurvy (bleeding gums).",
+    question: "What is the positive result of the alcohol-emulsion test for fat?",
+    options: [
+      "A blue-black colour forms",
+      "A brick-red precipitate forms",
+      "A cloudy white emulsion forms",
+      "The solution turns purple",
+    ],
+    answerIndex: 2,
+    explanation: "Fat produces a cloudy white emulsion in the alcohol-emulsion test.",
   },
   {
     id: "sci-f2-c3-dlp-q7",
@@ -121,10 +128,16 @@ export const scienceF2C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 3",
     lang: "dlp",
-    question: "What is the minimum recommended amount of water to drink daily?",
-    options: ["1 litre", "2 litres", "4 litres", "0.5 litre"],
-    answerIndex: 1,
-    explanation: "The recommendation is to drink at least 2 litres of water a day.",
+    question: "Which person would generally require a higher energy intake?",
+    options: [
+      "A person sleeping throughout the day",
+      "A person resting throughout the day",
+      "Everyone requires exactly the same amount of energy",
+      "A worker performing heavy physical work",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Energy requirements are affected by activity level. Heavy physical activity requires more energy.",
   },
   {
     id: "sci-f2-c3-dlp-q11",
@@ -162,15 +175,12 @@ export const scienceF2C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 3",
     lang: "dlp",
-    question: "Why are Benedict's and Millon's tests heated in a water bath instead of a direct flame?",
-    options: [
-      "To prevent starch from exploding",
-      "Because ethanol used in another test is flammable, and for safe/even heating",
-      "Because iodine cannot be exposed to light",
-      "To save experiment time",
-    ],
+    question:
+      "Food sample X remains brown in the iodine test, forms a brick-red precipitate in Benedict's test after heating, gives no positive result in Millon's test, and forms a white emulsion in the alcohol-emulsion test. Which nutrients are detected?",
+    options: ["Starch and protein", "Glucose and fat", "Protein and fat", "Starch and glucose"],
     answerIndex: 1,
-    explanation: "Heating in a water bath is safer and more even; ethanol (used in the fat test) is flammable, so safety precautions must be taken in the lab.",
+    explanation:
+      "A positive Benedict's test indicates glucose, while a white emulsion indicates fat. The negative iodine and Millon's tests mean starch and protein were not detected.",
   },
   {
     id: "sci-f2-c3-dlp-q14",
@@ -363,15 +373,17 @@ export const scienceF2C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 3",
     lang: "dlp",
-    question: "Based on the NHMS 2016 statistics, what is the MOST accurate conclusion about Malaysians' eating habits?",
+    question:
+      "A Visking tube containing glucose and starch is immersed in distilled water. After some time, glucose is detected outside the tubing but starch is not. What is the best explanation?",
     options: [
-      "The majority of Malaysians practise very healthy and balanced eating",
-      "The high percentages of diet-related health problems (47% high cholesterol, 40% overweight) show improper diet/lifestyle among Malaysians",
-      "Only diabetes is significant among Malaysians",
-      "There is no connection between these statistics and eating habits",
+      "Glucose changes into water",
+      "Glucose molecules are small enough to pass through the Visking membrane but starch molecules are too large",
+      "Starch moves through the membrane faster than glucose",
+      "The Visking membrane only allows starch to pass through",
     ],
     answerIndex: 1,
-    explanation: "High percentages (47% high cholesterol, 40% overweight, 17% obesity, 30% high blood pressure, 17.5% diabetes) show improper diet/lifestyle among Malaysians.",
+    explanation:
+      "Visking tubing is partially permeable. Smaller glucose molecules can pass through it, while the much larger starch molecules cannot. This models absorption of digested food.",
   },
   {
     id: "sci-f2-c3-dlp-q27",

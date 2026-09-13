@@ -51,6 +51,7 @@ export interface CanonicalOrganism {
   cellCount: "unicellular" | "multicellular";
   name: BilingualText;
   note: BilingualText;
+  recognitionClue: BilingualText;
 }
 
 export interface CanonicalSpecialisedCell {
@@ -58,6 +59,7 @@ export interface CanonicalSpecialisedCell {
   group: "animal" | "plant";
   name: BilingualText;
   description: BilingualText;
+  adaptation: BilingualText;
 }
 
 export const chapter2Sources = {
@@ -209,8 +211,13 @@ export const chapter2Organelles: CanonicalOrganelle[] = [
 ];
 
 export const chapter2Organisms: CanonicalOrganism[] = [
+  // Recognition clues follow the supplied Pass 2A visual brief; existing notes stay intact.
   {
     id: "amoeba",
+    recognitionClue: {
+      en: "Irregular changing outline with pseudopodia",
+      bm: "Bentuk tidak tetap dengan pseudopodium",
+    },
     cellCount: "unicellular",
     name: { en: "Amoeba", bm: "Amoeba" },
     note: {
@@ -220,6 +227,10 @@ export const chapter2Organisms: CanonicalOrganism[] = [
   },
   {
     id: "paramecium",
+    recognitionClue: {
+      en: "Slipper-like form with cilia around the surface",
+      bm: "Bentuk seperti selipar dengan silia pada permukaan",
+    },
     cellCount: "unicellular",
     name: { en: "Paramecium", bm: "Paramecium" },
     note: {
@@ -229,6 +240,10 @@ export const chapter2Organisms: CanonicalOrganism[] = [
   },
   {
     id: "chlamydomonas",
+    recognitionClue: {
+      en: "Rounded single cell with flagella",
+      bm: "Sel tunggal berbentuk bulat dengan flagelum",
+    },
     cellCount: "unicellular",
     name: { en: "Chlamydomonas", bm: "Chlamydomonas" },
     note: {
@@ -238,6 +253,10 @@ export const chapter2Organisms: CanonicalOrganism[] = [
   },
   {
     id: "euglena",
+    recognitionClue: {
+      en: "Elongated single cell with a flagellum",
+      bm: "Sel tunggal memanjang dengan flagelum",
+    },
     cellCount: "unicellular",
     name: { en: "Euglena", bm: "Euglena" },
     note: {
@@ -247,18 +266,30 @@ export const chapter2Organisms: CanonicalOrganism[] = [
   },
   {
     id: "mucor",
+    recognitionClue: {
+      en: "Branching fungal hyphae with sporangia",
+      bm: "Hifa kulat bercabang dengan sporangium",
+    },
     cellCount: "multicellular",
     name: { en: "Mucor", bm: "Mucor" },
     note: { en: "A multicellular organism", bm: "Organisma multisel" },
   },
   {
     id: "spirogyra",
+    recognitionClue: {
+      en: "Long filament made of many connected cells",
+      bm: "Filamen panjang yang terdiri daripada banyak sel bersambung",
+    },
     cellCount: "multicellular",
     name: { en: "Spirogyra", bm: "Spirogyra" },
     note: { en: "A multicellular organism", bm: "Organisma multisel" },
   },
   {
     id: "hydra",
+    recognitionClue: {
+      en: "Tubular body with tentacles",
+      bm: "Badan berbentuk tiub dengan tentakel",
+    },
     cellCount: "multicellular",
     name: { en: "Hydra", bm: "Hydra" },
     note: { en: "A multicellular organism", bm: "Organisma multisel" },
@@ -266,8 +297,10 @@ export const chapter2Organisms: CanonicalOrganism[] = [
 ];
 
 export const chapter2SpecialisedCells: CanonicalSpecialisedCell[] = [
+  // Structural cues from the supplied Pass 2A brief; functions remain source-controlled below.
   {
     id: "nerve",
+    adaptation: { en: "Long fibre", bm: "Gentian panjang" },
     group: "animal",
     name: { en: "Nerve cell", bm: "Sel saraf" },
     description: {
@@ -277,6 +310,7 @@ export const chapter2SpecialisedCells: CanonicalSpecialisedCell[] = [
   },
   {
     id: "epithelial",
+    adaptation: { en: "Continuous layer of cells", bm: "Lapisan sel yang berterusan" },
     group: "animal",
     name: { en: "Epithelial cell", bm: "Sel epitelium" },
     description: {
@@ -286,6 +320,7 @@ export const chapter2SpecialisedCells: CanonicalSpecialisedCell[] = [
   },
   {
     id: "muscle",
+    adaptation: { en: "Elongated contractile cells", bm: "Sel memanjang yang boleh mengecut" },
     group: "animal",
     name: { en: "Muscle cell", bm: "Sel otot" },
     description: {
@@ -295,6 +330,10 @@ export const chapter2SpecialisedCells: CanonicalSpecialisedCell[] = [
   },
   {
     id: "red-blood",
+    adaptation: {
+      en: "Biconcave disc · No nucleus · Haemoglobin",
+      bm: "Cakera dwicekung · Tiada nukleus · Hemoglobin",
+    },
     group: "animal",
     name: { en: "Red blood cell", bm: "Sel darah merah" },
     description: {
@@ -304,6 +343,7 @@ export const chapter2SpecialisedCells: CanonicalSpecialisedCell[] = [
   },
   {
     id: "white-blood",
+    adaptation: { en: "Changes shape", bm: "Berubah bentuk" },
     group: "animal",
     name: { en: "White blood cell", bm: "Sel darah putih" },
     description: {
@@ -313,6 +353,10 @@ export const chapter2SpecialisedCells: CanonicalSpecialisedCell[] = [
   },
   {
     id: "reproductive",
+    adaptation: {
+      en: "Sperm: small head and long tail · Ovum: larger rounded cell",
+      bm: "Sperma: kepala kecil dan ekor panjang · Ovum: sel bulat yang lebih besar",
+    },
     group: "animal",
     name: { en: "Reproductive cells", bm: "Sel pembiakan" },
     description: {
@@ -322,6 +366,10 @@ export const chapter2SpecialisedCells: CanonicalSpecialisedCell[] = [
   },
   {
     id: "epidermal",
+    adaptation: {
+      en: "Tightly arranged covering layer",
+      bm: "Lapisan penutup dengan sel tersusun rapat",
+    },
     group: "plant",
     name: { en: "Epidermal cell", bm: "Sel epidermis" },
     description: {
@@ -331,6 +379,10 @@ export const chapter2SpecialisedCells: CanonicalSpecialisedCell[] = [
   },
   {
     id: "palisade",
+    adaptation: {
+      en: "Elongated columnar cell with many chloroplasts",
+      bm: "Sel memanjang berbentuk turus dengan banyak kloroplas",
+    },
     group: "plant",
     name: { en: "Palisade cell", bm: "Sel palisad" },
     description: {
@@ -340,6 +392,10 @@ export const chapter2SpecialisedCells: CanonicalSpecialisedCell[] = [
   },
   {
     id: "guard",
+    adaptation: {
+      en: "Pair of curved cells around a stoma",
+      bm: "Sepasang sel melengkung mengelilingi stoma",
+    },
     group: "plant",
     name: { en: "Guard cell", bm: "Sel pengawal" },
     description: {
@@ -349,6 +405,7 @@ export const chapter2SpecialisedCells: CanonicalSpecialisedCell[] = [
   },
   {
     id: "root-hair",
+    adaptation: { en: "Long hair-like extension", bm: "Unjuran panjang seperti rambut" },
     group: "plant",
     name: { en: "Root hair cell", bm: "Sel rerambut akar" },
     description: {

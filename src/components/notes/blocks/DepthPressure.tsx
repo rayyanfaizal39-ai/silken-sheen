@@ -3,6 +3,7 @@ import type { DepthPressureBlock } from "@/content/form2/science/interactive-typ
 import { conceptButtonClass, InteractiveBadge } from "./InteractiveFigureCard";
 import { figureCopy } from "./figure-copy";
 import { Chapter8PhotoFigure } from "@/components/notes/chapter8/Chapter8PhotoFigure";
+import type { Chapter8ImageKey } from "@/components/notes/chapter8/chapter8-assets";
 
 /**
  * Liquid pressure against depth, shown as jets from holes down one side of a can.
@@ -22,10 +23,17 @@ const REACH_SCALE = 35;
 const JET_DROP = 150;
 
 export function DepthPressure({ block, lang }: { block: DepthPressureBlock; lang?: string }) {
-  const [active, setActive] = useState<string | null>(null);
+  /* Opens on the shallowest state rather than an empty "choose a depth"
+     placeholder, so the comparison is visible immediately. */
+  const [active, setActive] = useState<string | null>(block.levels[0]?.id ?? null);
+  /* Kept separate from the depth selection: comparing hole depths and reading
+     an application are two different questions, and picking one must not clear
+     the other's answer. */
+  const [application, setApplication] = useState<string | null>(null);
   const copy = figureCopy(lang);
 
   const level = block.levels.find((l) => l.id === active) ?? null;
+  const selectedApplication = block.applications.find((a) => a.id === application) ?? null;
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
@@ -110,14 +118,66 @@ export function DepthPressure({ block, lang }: { block: DepthPressureBlock; lang
         )}
       </p>
 
-      <div className="mt-2 flex flex-col gap-1.5">
-        {block.applications.map((a) => (
-          <div key={a.id} className="rounded-xl border border-border bg-secondary/20 px-3 py-2">
-            <p className="text-[12px] leading-relaxed text-foreground">
-              <b className="text-primary">{a.label}</b> — {a.note}
-            </p>
+      {/* Applications of the same relationship, as controls rather than a static
+          list — so the one with approved artwork can show it without turning
+          into a second, competing section. The depth-and-jet figure above stays
+          the primary visual for the concept itself. */}
+      <div className="mt-3">
+        {block.applicationsLabel && (
+          <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-wide text-primary">
+            {block.applicationsLabel}
+          </p>
+        )}
+        <div
+          className="flex flex-wrap gap-1.5"
+          role="group"
+          aria-label={block.applicationsLabel ?? copy.controlsLabel}
+        >
+          {block.applications.map((a) => {
+            const on = application === a.id;
+            return (
+              <button
+                key={a.id}
+                type="button"
+                data-ch8-application={a.id}
+                aria-pressed={on}
+                onClick={() => setApplication(on ? null : a.id)}
+                className={conceptButtonClass(on)}
+              >
+                {a.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Only an application with approved artwork shows a picture; the others
+            are taught by their own line alone rather than by a stand-in. */}
+        {selectedApplication?.image && (
+          <div className="mt-2">
+            <Chapter8PhotoFigure
+              image={selectedApplication.image.key as Chapter8ImageKey}
+              alt={selectedApplication.image.alt}
+            />
           </div>
-        ))}
+        )}
+
+        <p
+          aria-live="polite"
+          className={`mt-2 min-h-[2.75rem] rounded-xl border px-3 py-2 text-[12px] leading-relaxed ${
+            selectedApplication
+              ? "border-primary/25 bg-primary/10 text-foreground"
+              : "border-border bg-secondary/30 text-muted-foreground"
+          }`}
+        >
+          {selectedApplication ? (
+            <>
+              <b className="text-primary">{selectedApplication.label}</b> —{" "}
+              {selectedApplication.note}
+            </>
+          ) : (
+            block.applications.map((a) => a.label).join(" · ")
+          )}
+        </p>
       </div>
     </div>
   );

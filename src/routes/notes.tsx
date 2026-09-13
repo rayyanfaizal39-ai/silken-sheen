@@ -274,10 +274,9 @@ const F2_SCIENCE_INTERACTIVE_META: Record<
   2: { modules: 11, minutes: 26, experiments: 1, difficulty: "Core" },
   3: { modules: 13, minutes: 30, experiments: 2, difficulty: "Core" },
   // `modules` must equal the chapter's section count, because the section rail
-  // above the hero renders one step per section. Chapter 8 has 11 sections and
-  // one investigation (8.2.5), so it was reading the placeholder default's 10
-  // and disagreeing with its own rail.
-  8: { modules: 11, minutes: 26, experiments: 1, difficulty: "Core" },
+  // above the hero renders one step per section. Chapter 8 has 12 sections and
+  // one investigation.
+  8: { modules: 12, minutes: 26, experiments: 1, difficulty: "Core" },
 };
 
 // Form 3 Science Chapters 1-3 reuse the Lab Telemetry hero's Form-1-indexed

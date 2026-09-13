@@ -80,6 +80,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "7.1",
       title: "Electrostatic Charges",
+      conceptQuestion: "What is Electrostatic Charge?",
       intro:
         "Static electric charges that accumulate on an object are called electrostatic charges. All matter contains positive charges (protons) and negative charges (electrons).",
       contextImages: [
@@ -292,6 +293,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "7.1",
       title: "Electric Current",
+      conceptQuestion: "What is Electric Current?",
       intro:
         "When charge flows through a conductor, that flow produces an electric current. Current is the rate of flow of electric charge through a conductor. There are two ways this direction is described, and they are opposite to one another.",
       cards: [
@@ -347,6 +349,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "7.1",
       title: "Current, Voltage and Resistance",
+      conceptQuestion: "What are Current, Voltage and Resistance?",
       intro:
         "Three electrical quantities to know, each with its own symbol, unit and measuring instrument. What gets tested most is not only what each instrument measures, but how it is connected into the circuit. Every complete circuit is drawn with standard symbols rather than pictures of the real components — learn those first, and the diagram below is easy to read.",
       contextImages: [
@@ -429,6 +432,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "7.1",
       title: "Ohm's Law",
+      conceptQuestion: "What is Ohm's Law?",
       intro:
         "Ohm's Law states that the electric current flowing through a conductor is directly proportional to the voltage across the two ends of that conductor, provided the temperature and other physical conditions stay constant. The relationship is written as V = IR.",
       remember:
@@ -493,6 +497,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "7.2",
       title: "Series and Parallel Circuits",
+      conceptQuestion: "What are Series and Parallel Circuits?",
       intro:
         "A series circuit connects components one after another in **a single path**. A parallel circuit **splits into separate branches**. That difference changes how current, voltage and resistance behave.",
       circuitSymbols: {
@@ -1111,6 +1116,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "7.3",
       title: "Properties of Magnets and Magnetic Fields",
+      conceptQuestion: "What is a Magnetic Field?",
       intro:
         "Magnets occur naturally as lodestone, but most magnets used today are made from materials such as **iron, steel, cobalt and nickel**. The region around a magnet where its magnetic force can be felt is called the **magnetic field**.",
       flipCards: [
@@ -1185,6 +1191,7 @@ export const scienceF2C7InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "7.3",
       title: "Electromagnets and Field Patterns",
+      conceptQuestion: "What is an Electromagnet?",
       intro:
         "An electromagnet is **a temporary magnet** — it only produces a magnetic field while a current flows. The direction of the field produced is **set by the direction of the current**, and the pattern of the field **depends on the shape of the conductor**.",
       currentFieldPatterns: {

@@ -13,6 +13,7 @@ export const scienceF2C13InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "13.1",
       title: "Meteoroids, Asteroids and Comets",
+      conceptQuestion: "What are Meteoroids, Asteroids and Comets?",
       intro:
         "Besides galaxies, stars and planets, our solar system is also full of smaller wandering objects — meteoroids, asteroids and comets. All three differ in **size, composition, and how they move around the Sun**.",
       cards: [
@@ -111,6 +112,7 @@ export const scienceF2C13InteractiveDLP: ScienceF2InteractiveContent = {
         tailRule: "A comet's tail is always in a position facing away from the Sun because of the solar wind blowing from the Sun.",
         scaleNote: "Diagram is not to true scale.",
       },
+      rememberQuestion: "How Does a Meteoroid Become a Meteorite?",
       remember:
         "The same object changes name depending on its location: a meteoroid in outer space, a meteor once it burns up in Earth's atmosphere, and a meteorite if it survives to reach Earth's surface.",
       checks: [

@@ -32,10 +32,12 @@ export const scienceF2C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 3",
     lang: "bm",
-    question: "Penyakit kekurangan Vitamin B dipanggil...",
-    options: ["Beri-beri", "Skurvi", "Riket", "Goiter"],
-    answerIndex: 0,
-    explanation: "Kekurangan Vitamin B menyebabkan beri-beri dan anemia; Vitamin B membantu mengekalkan fungsi sistem saraf dan pembentukan sel darah merah.",
+    question:
+      "Selepas suatu sampel makanan dipanaskan bersama larutan Benedict, mendakan merah bata terbentuk. Apakah bahan makanan yang hadir?",
+    options: ["Kanji", "Glukosa", "Protein", "Lemak"],
+    answerIndex: 1,
+    explanation:
+      "Mendakan merah bata selepas pemanasan dengan larutan Benedict menunjukkan kehadiran glukosa.",
   },
   {
     id: "sci-f2-c3-bm-q4",
@@ -68,10 +70,15 @@ export const scienceF2C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 3",
     lang: "bm",
-    question: "Kekurangan Vitamin C menyebabkan penyakit...",
-    options: ["Beri-beri", "Skurvi", "Riket", "Anemia"],
-    answerIndex: 1,
-    explanation: "Kekurangan Vitamin C menyebabkan Skurvi (gum berdarah).",
+    question: "Apakah pemerhatian positif bagi ujian emulsi alkohol untuk lemak?",
+    options: [
+      "Warna hitam-kebiruan terbentuk",
+      "Mendakan merah bata terbentuk",
+      "Emulsi putih keruh terbentuk",
+      "Larutan menjadi ungu",
+    ],
+    answerIndex: 2,
+    explanation: "Kehadiran lemak menghasilkan emulsi putih keruh apabila ujian emulsi alkohol dijalankan.",
   },
   {
     id: "sci-f2-c3-bm-q7",
@@ -121,10 +128,16 @@ export const scienceF2C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 3",
     lang: "bm",
-    question: "Berapakah cadangan minimum air yang perlu diminum sehari?",
-    options: ["1 liter", "2 liter", "4 liter", "0.5 liter"],
-    answerIndex: 1,
-    explanation: "Cadangan adalah minum sekurang-kurangnya 2 liter air sehari.",
+    question: "Antara individu berikut, siapakah biasanya memerlukan pengambilan tenaga yang lebih tinggi?",
+    options: [
+      "Individu yang tidur sepanjang hari",
+      "Individu yang duduk berehat sepanjang hari",
+      "Semua individu memerlukan jumlah tenaga yang sama",
+      "Pekerja yang melakukan kerja fizikal berat",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Keperluan tenaga dipengaruhi oleh tahap aktiviti. Individu yang melakukan kerja fizikal berat menggunakan lebih banyak tenaga.",
   },
   {
     id: "sci-f2-c3-bm-q11",
@@ -162,15 +175,12 @@ export const scienceF2C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 3",
     lang: "bm",
-    question: "Mengapakah ujian Benedict dan Millon perlu dipanaskan dalam mandi air, bukan nyalaan api terus?",
-    options: [
-      "Untuk mengelakkan letupan kanji",
-      "Kerana etanol yang digunakan dalam ujian lain mudah terbakar dan untuk pemanasan yang selamat/sekata",
-      "Kerana iodin tidak boleh terkena cahaya",
-      "Untuk menjimatkan masa eksperimen",
-    ],
+    question:
+      "Keputusan ujian bagi sampel makanan X adalah seperti berikut: Ujian iodin kekal perang; ujian Benedict selepas dipanaskan menghasilkan mendakan merah bata; ujian Millon tidak menunjukkan perubahan positif; ujian emulsi alkohol menghasilkan emulsi putih. Apakah kandungan utama yang dikesan?",
+    options: ["Kanji dan protein", "Glukosa dan lemak", "Protein dan lemak", "Kanji dan glukosa"],
     answerIndex: 1,
-    explanation: "Pemanasan dalam mandi air adalah lebih selamat dan sekata; etanol (digunakan dalam ujian lemak) mudah terbakar, jadi langkah berjaga-jaga perlu diambil di dalam makmal.",
+    explanation:
+      "Ujian Benedict yang positif menunjukkan glukosa, manakala emulsi putih menunjukkan lemak. Ujian iodin dan Millon yang negatif menunjukkan kanji dan protein tidak dikesan.",
   },
   {
     id: "sci-f2-c3-bm-q14",
@@ -363,15 +373,17 @@ export const scienceF2C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 3",
     lang: "bm",
-    question: "Berdasarkan statistik NHMS 2016, apakah kesimpulan yang PALING tepat tentang tabiat pemakanan rakyat Malaysia?",
+    question:
+      "Satu tiub Visking mengandungi campuran glukosa dan kanji lalu direndam di dalam air suling. Selepas beberapa ketika, glukosa dikesan di luar tiub tetapi kanji tidak dikesan. Apakah penjelasan terbaik?",
     options: [
-      "Majoriti rakyat Malaysia mengamalkan pemakanan yang sangat sihat dan seimbang",
-      "Peratusan tinggi masalah kesihatan berkaitan pemakanan (kolesterol tinggi 47%, berat badan berlebihan 40%) menunjukkan amalan pemakanan/gaya hidup yang tidak sihat",
-      "Hanya masalah diabetes yang signifikan dalam kalangan rakyat Malaysia",
-      "Tiada kaitan antara statistik tersebut dengan amalan pemakanan",
+      "Glukosa bertukar menjadi air",
+      "Molekul glukosa cukup kecil untuk melalui membran Visking tetapi molekul kanji terlalu besar",
+      "Kanji bergerak keluar lebih cepat daripada glukosa",
+      "Membran Visking hanya membenarkan kanji melaluinya",
     ],
     answerIndex: 1,
-    explanation: "Peratusan tinggi (kolesterol tinggi 47%, berat badan berlebihan 40%, obesiti 17%, darah tinggi 30%, diabetes 17.5%) menunjukkan amalan pemakanan dan gaya hidup yang tidak sihat dalam kalangan rakyat Malaysia.",
+    explanation:
+      "Membran Visking separa telap. Molekul glukosa yang lebih kecil boleh merentasinya, manakala molekul kanji yang besar tidak dapat melaluinya. Ini memodelkan penyerapan hasil pencernaan.",
   },
   {
     id: "sci-f2-c3-bm-q27",

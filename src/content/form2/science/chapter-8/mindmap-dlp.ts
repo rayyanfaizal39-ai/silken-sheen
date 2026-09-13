@@ -146,7 +146,7 @@ export const scienceF2C8MindMapDLP: MindNode = {
           label: "Density and Buoyant Effect",
           children: [
             { id: "c2-4-1", label: "More dense than liquid → submerges (buoyant force F < weight W)" },
-            { id: "c2-4-2", label: "Less dense than liquid → floats (buoyant force F > weight W)" },
+            { id: "c2-4-2", label: "Less dense than liquid → floats (at rest, buoyant force F = weight W)" },
             {
               id: "c2-4-3",
               label: "Table of Densities (g cm⁻³)",

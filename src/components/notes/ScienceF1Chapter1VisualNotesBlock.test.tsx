@@ -17,6 +17,118 @@ function renderChapter(lang: "bm" | "en") {
   );
 }
 
+describe("Section 1.3 — live length conversion ladder", () => {
+  function ladder(lang: "bm" | "en", title: string) {
+    const match = renderChapter(lang).match(
+      new RegExp(`<h4[^>]*>${title}</h4><ol[^>]*>([\\s\\S]*?)</ol>`),
+    );
+    expect(match, `${lang}: ${title} ladder`).not.toBeNull();
+    const html = match![1];
+    return {
+      html,
+      units: [...html.matchAll(/<span class="rounded-lg[^"]*">([^<]+)<\/span>/g)].map((m) => m[1]),
+      multiply: [...html.matchAll(/×(\d+) →/g)].map((m) => Number(m[1])),
+      divide: [...html.matchAll(/← ÷(\d+)/g)].map((m) => Number(m[1])),
+    };
+  }
+
+  it.each(["bm", "en"] as const)(
+    "%s renders dm between m and cm with correct factors in both directions",
+    (lang) => {
+      const length = ladder(lang, lang === "en" ? "Length" : "Panjang");
+      expect(length.units).toEqual(["km", "m", "dm", "cm", "mm"]);
+      expect(length.multiply).toEqual([1000, 10, 10, 10]);
+      expect(length.divide).toEqual([1000, 10, 10, 10]);
+      const mass = ladder(lang, lang === "en" ? "Mass" : "Jisim");
+      expect(mass.units).toEqual(["kg", "g"]);
+      expect(mass.multiply).toEqual([1000]);
+      expect(mass.divide).toEqual([1000]);
+      const time = ladder(lang, lang === "en" ? "Time" : "Masa");
+      expect(time.units).toEqual(
+        lang === "en" ? ["hour", "minute", "second"] : ["jam", "minit", "saat"],
+      );
+      expect(time.multiply).toEqual([60, 60]);
+      expect(time.divide).toEqual([60, 60]);
+    },
+  );
+
+  it("renders identical BM/DLP length conversion structure", () => {
+    expect(ladder("bm", "Panjang")).toEqual(ladder("en", "Length"));
+  });
+});
+
+describe("Section 1.1 — live canonical career map", () => {
+  it.each(["bm", "en"] as const)(
+    "%s renders all four branches and every canonical career together",
+    (lang) => {
+      const html = renderChapter(lang);
+      const map = html.match(/<section data-science-career-map[\s\S]*?<\/section>/)?.[0];
+      expect(map).toBeDefined();
+      const expected = chapter1Content[lang].scienceInLife.careers;
+      expect(expected).toHaveLength(4);
+      expect(map!.match(/data-career-branch=/g)).toHaveLength(4);
+      expect(map!.match(/data-career-name=/g)).toHaveLength(
+        expected.reduce((count, branch) => count + branch.jobs.length, 0),
+      );
+      for (const branch of expected) {
+        expect(map).toContain(`data-career-branch="${branch.field}"`);
+        for (const job of branch.jobs) expect(map).toContain(`data-career-name="true">${job}</li>`);
+      }
+      expect(map).toContain(lang === "en" ? "Careers in Science" : "Kerjaya dalam Sains");
+      expect(map).toContain(
+        lang === "en"
+          ? "What is your ambition? Which science subjects would help you achieve it?"
+          : "Apakah cita-cita anda? Apakah mata pelajaran sains yang dapat membantu anda mencapainya?",
+      );
+      expect(map).not.toContain("<button");
+      expect(map).not.toContain("<img");
+      expect(map).not.toContain(
+        `data-career-branch="${lang === "en" ? "Astronomy" : "Astronomi"}"`,
+      );
+      expect(map).not.toContain(
+        `data-career-branch="${lang === "en" ? "Meteorology" : "Meteorologi"}"`,
+      );
+      const selector = html.slice(0, html.indexOf("data-science-career-map"));
+      expect(chapter1Content[lang].scienceInLife.fields).toHaveLength(6);
+      for (const field of chapter1Content[lang].scienceInLife.fields)
+        expect(selector).toContain(field.name);
+    },
+  );
+
+  it("derives the live map from supplied career data, not a duplicated list", () => {
+    const source = readFileSync(
+      resolve("src/components/notes/ScienceF1Chapter1VisualNotesBlock.tsx"),
+      "utf8",
+    );
+    const mapSource = source.slice(
+      source.indexOf("<section data-science-career-map"),
+      source.indexOf('<Chapter1Completion section="science"'),
+    );
+    expect(mapSource).toContain("t.scienceInLife.careers.map");
+    expect(mapSource).toContain("branch.jobs.map");
+    // Changing the supplied canonical record must change the displayed map in both streams.
+    for (const lang of ["bm", "en"] as const) {
+      const content = structuredClone(chapter1Content);
+      content[lang].scienceInLife.careers = [
+        { field: "__branch_probe__", subject: "__subject_probe__", jobs: ["__career_probe__"] },
+      ];
+      const html = renderToStaticMarkup(
+        createElement(ScienceF1Chapter1VisualNotesBlock, { content, lang }),
+      );
+      const map = html.match(/<section data-science-career-map[\s\S]*?<\/section>/)![0];
+      expect(map.match(/data-career-branch=/g)).toHaveLength(1);
+      expect(map).toContain("__career_probe__");
+      expect(map).not.toContain("__subject_probe__");
+      for (const branch of chapter1Content[lang].scienceInLife.careers) {
+        for (const job of branch.jobs) {
+          expect(map).not.toContain(`>${job}</li>`);
+          expect(mapSource).not.toContain(JSON.stringify(job));
+        }
+      }
+    }
+  });
+});
+
 describe("Final cleanup — current live renderer, not legacy interactions", () => {
   it.each(["bm", "en"] as const)("%s exposes the source-backed teaching additions", (lang) => {
     const html = renderChapter(lang);

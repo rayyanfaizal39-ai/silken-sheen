@@ -131,6 +131,17 @@ export function MiniExperiment({
           <p className="mt-0.5 text-[13px] leading-relaxed text-foreground">{part.hypothesis}</p>
         </div>
 
+        {part.operationalDefinition && block.operationalDefinitionLabel && (
+          <div className="rounded-xl border border-sky-400/30 bg-sky-500/10 px-3 py-2">
+            <p className="text-[10.5px] font-bold uppercase tracking-wide text-sky-300">
+              {block.operationalDefinitionLabel}
+            </p>
+            <p className="mt-0.5 text-[13px] leading-relaxed text-foreground">
+              {part.operationalDefinition}
+            </p>
+          </div>
+        )}
+
         {/* the examinable triad, above the apparatus: a learner should know
             what is being changed and what is being measured before they look
             at the set-up that changes and measures it. */}

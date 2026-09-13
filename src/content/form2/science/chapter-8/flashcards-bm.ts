@@ -326,7 +326,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "Berikan contoh aplikasi konsep tekanan udara/atmosfera dalam kehidupan harian.",
-    back: "Pam sedut (plunger), hemisfera Magdeburg, penyedut minuman, sifon, picagari dan pembersih vakum.",
+    back: "Pam sedut sinki, hemisfera Magdeburg, penyedut minuman, sifon, picagari dan penyedut hampagas.",
   },
   {
     id: "sci-f2-c8-bm-f37",
@@ -427,7 +427,7 @@ export const scienceF2C8FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 8",
     lang: "bm",
     front: "[Kesilapan Lazim] Adakah objek yang kurang tumpat daripada cecair akan tenggelam?",
-    back: "Tidak. Objek yang kurang tumpat akan terapung kerana daya keapungan F > berat W.",
+    back: "Tidak. Objek yang kurang tumpat akan terapung. Semasa terapung dalam keadaan pegun, daya apungan F adalah sama dengan beratnya W (F = W) — bukan lebih besar daripadanya.",
   },
   {
     id: "sci-f2-c8-bm-f48",

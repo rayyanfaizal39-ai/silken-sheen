@@ -7,10 +7,11 @@ import {
   CHAPTER8_LEVER_MARKERS,
   CHAPTER8_LEVER_PANELS,
   CHAPTER8_LEVER_STATES,
-  CHAPTER8_SECTION_FIGURES,
+  chapter8FigureForSection,
   CHAPTER8_FIGURE_VARIANTS,
   CHAPTER8_VISUAL_ASSETS,
-  ACTION_REACTION_ARROWS,
+  ACTION_REACTION_SITUATIONS,
+  actionReactionArrowLength,
   ATMOSPHERE_HAZE_GEOMETRY,
   Chapter8ContextFigure,
   chapter8Concepts,
@@ -24,6 +25,7 @@ import { GasParticles } from "@/components/notes/blocks/GasParticles";
 import { ForceDiagram } from "@/components/notes/blocks/ForceDiagram";
 import { DepthPressure } from "@/components/notes/blocks/DepthPressure";
 import { MomentDiagram } from "@/components/notes/blocks/MomentDiagram";
+import { ScienceF2InteractiveNotesBlock } from "@/components/notes/ScienceF2InteractiveNotesBlock";
 import { CHAPTER8_IMAGES, CHAPTER8_IMAGE_LIST } from "@/components/notes/chapter8/chapter8-assets";
 import {
   CHAPTER8_FIGURE_WIDTH,
@@ -57,10 +59,7 @@ const LANGS: [string, ScienceF2InteractiveContent][] = [
 const KINDS = Object.keys(CHAPTER8_HOTSPOT_GEOMETRY) as Chapter8FigureKind[];
 
 function sectionFor(content: ScienceF2InteractiveContent, kind: Chapter8FigureKind) {
-  const index = Number(
-    Object.entries(CHAPTER8_SECTION_FIGURES).find(([, value]) => value === kind)![0],
-  );
-  return content.sections[index];
+  return content.sections.find((s) => chapter8FigureForSection(s) === kind)!;
 }
 
 function sectionWith(content: ScienceF2InteractiveContent, key: string) {
@@ -77,9 +76,14 @@ describe("Chapter 8 · hit regions sit on the artwork", () => {
       for (const point of CHAPTER8_HOTSPOT_GEOMETRY[kind]) {
         const left = point.x - point.w / 2;
         const top = point.y - point.h / 2;
-        expect(
-          { kind, id: point.id, left, top, right: left + point.w, bottom: top + point.h },
-        ).toMatchObject({ kind, id: point.id });
+        expect({
+          kind,
+          id: point.id,
+          left,
+          top,
+          right: left + point.w,
+          bottom: top + point.h,
+        }).toMatchObject({ kind, id: point.id });
         expect(left, `${kind}/${point.id} left`).toBeGreaterThanOrEqual(-1);
         expect(top, `${kind}/${point.id} top`).toBeGreaterThanOrEqual(-1);
         expect(left + point.w, `${kind}/${point.id} right`).toBeLessThanOrEqual(101);
@@ -125,13 +129,15 @@ describe("Chapter 8 · hit regions sit on the artwork", () => {
 
   it("keeps the approved artwork and adds no new raster image", () => {
     expect(Object.values(CHAPTER8_VISUAL_ASSETS).sort()).toEqual([
-      "/science/form2/chapter-8/01_effects_of_force.webp",
       "/science/form2/chapter-8/02_buoyancy_everyday_life.webp",
       "/science/form2/chapter-8/03_levers_everyday_life.webp",
       "/science/form2/chapter-8/04_pressure_contact_area.webp",
-      "/science/form2/chapter-8/05_types_of_forces.webp",
-      "/science/form2/chapter-8/06_action_reaction_palms_touching.webp",
       "/science/form2/chapter-8/07_atmospheric_pressure_altitude.webp",
+      // the approved scenes, which replaced 06_action_reaction_palms_touching,
+      // 01_effects_of_force and 05_types_of_forces respectively
+      "/science/form2/chapter-8/science-f2-ch8-action-reaction-pairs.webp",
+      "/science/form2/chapter-8/science-f2-ch8-effects-of-force.webp",
+      "/science/form2/chapter-8/science-f2-ch8-types-of-forces.webp",
     ]);
   });
 });
@@ -200,7 +206,9 @@ describe("Chapter 8 · lever markers", () => {
           />,
         );
         const controls = markup.match(/<button[^>]*data-ch8-control[^>]*>/g) ?? [];
-        const selectedControls = controls.filter((button) => button.includes('aria-pressed="true"'));
+        const selectedControls = controls.filter((button) =>
+          button.includes('aria-pressed="true"'),
+        );
         expect(selectedControls, `${lang}/${state.id} selected button`).toHaveLength(1);
         expect(selectedControls[0]).toContain(`data-ch8-control="${state.id}"`);
         expect(selectedControls[0]).toContain(`data-lever-button="${state.scene}"`);
@@ -217,7 +225,11 @@ describe("Chapter 8 · lever markers", () => {
   });
 
   it("maps each class id to exactly the required contextual scene", () => {
-    expect(Object.fromEntries(Object.entries(CHAPTER8_LEVER_STATES).map(([id, state]) => [id, state.scene]))).toEqual({
+    expect(
+      Object.fromEntries(
+        Object.entries(CHAPTER8_LEVER_STATES).map(([id, state]) => [id, state.scene]),
+      ),
+    ).toEqual({
       first: "seesaw",
       second: "wheelbarrow",
       third: "fishing-rod",
@@ -225,57 +237,86 @@ describe("Chapter 8 · lever markers", () => {
   });
 });
 
-describe("Chapter 8 · the action-reaction figure describes its own picture", () => {
-  it("does not borrow the trolley example or its equal-distance claim", () => {
+describe("Chapter 8 · the action-reaction figure teaches its three situations", () => {
+  it("offers exactly the book, the floating block and the two trolleys", () => {
     for (const [lang, content] of LANGS) {
       const section = sectionFor(content, "action-reaction");
-      const [pair] = chapter8Concepts("action-reaction", section, lang === "bm" ? "bm" : "en");
-      const text = `${pair.label} ${pair.note}`;
-      expect(text).not.toMatch(/troli|trolley/i);
-      // "both move through equal distances" does not follow from equal and
-      // opposite forces alone, and must not be attached to this image.
-      expect(text).not.toMatch(/jarak yang sama|equal distances/i);
-      // it must still carry the section's own validated statement
-      expect(pair.note).toContain((section.intro ?? "").slice(0, 40));
+      const items = chapter8Concepts("action-reaction", section, lang === "bm" ? "bm" : "en");
+      expect(items.map((item) => item.id)).toEqual(["book", "floating", "trolleys"]);
+      for (const item of items) {
+        expect(item.label.trim().length).toBeGreaterThan(3);
+        expect(item.note.trim().length).toBeGreaterThan(30);
+      }
     }
   });
 
-  it("draws the two forces equal in length and opposite in direction", () => {
-    // Geometry lives in ACTION_REACTION_ARROWS and is asserted there; this
-    // checks the figure still mounts and exposes its hit region.
-    const markup = renderToStaticMarkup(
-      <Chapter8ContextFigure
-        kind="action-reaction"
-        section={sectionFor(scienceF2C8InteractiveBM, "action-reaction")}
-        lang="bm"
-      />,
-    );
-    expect(markup).toContain("data-ch8-hotspot");
-    const [left, right] = ACTION_REACTION_ARROWS;
-    expect(Math.abs(left.x2 - left.x1)).toBeCloseTo(Math.abs(right.x2 - right.x1), 6);
+  it("does not attach the trolleys' equal-distance claim to the figure", () => {
+    for (const [lang, content] of LANGS) {
+      const section = sectionFor(content, "action-reaction");
+      const items = chapter8Concepts("action-reaction", section, lang === "bm" ? "bm" : "en");
+      const text = items.map((item) => `${item.label} ${item.note}`).join(" ");
+      // "both move through equal distances" does not follow from equal and
+      // opposite forces alone. The accordions keep that fuller treatment.
+      expect(text).not.toMatch(/jarak yang sama|equal distances/i);
+    }
   });
 
-  it("reuses the approved raster in a palms-touching contact pose", () => {
+  it("teaches the floating block as equilibrium, never as a net upward force", () => {
+    for (const [, content] of LANGS) {
+      const section = sectionFor(content, "action-reaction");
+      const floating = section.actionReactionPairs!.situations.find((s) => s.id === "floating")!;
+      // F = W at equilibrium. "greater than" here would teach a rising object.
+      expect(floating.note).not.toMatch(/lebih besar daripada berat|greater than (its )?weight/i);
+      expect(floating.note).toMatch(/sama dengan berat|equals its weight/i);
+    }
+  });
+
+  it("renders the approved triptych, not the retired palms photograph", () => {
     const markup = renderToStaticMarkup(
       <Chapter8ContextFigure
         kind="action-reaction"
         section={sectionFor(scienceF2C8InteractiveDLP, "action-reaction")}
         lang="en"
-        initialSelection="pair"
+        initialSelection="book"
       />,
     );
-    // The supplied pack ships artwork that already shows the palms in contact,
-    // so the figure is one plain image rather than a shifted composite.
-    expect(markup).toContain("06_action_reaction_palms_touching.webp");
+    expect(markup).toContain("science-f2-ch8-action-reaction-pairs.webp");
+    expect(markup).not.toContain("06_action_reaction_palms_touching.webp");
     expect(markup).not.toContain("data-skater-half");
-    // both arrows appear together on selection
+    expect(markup).toContain("data-ch8-hotspot");
+    // both arrows of the chosen pair appear together, and only that pair
     expect(markup.match(/data-arrow=/g)).toHaveLength(2);
+    expect(markup).toContain('data-arrow-situation="book"');
+    // the other two situations dim, so the chosen one reads at full brightness
+    expect(markup).toContain('data-ch8-dim="book"');
+  });
+
+  it("labels each arrow from content, in the reader's own language", () => {
+    for (const [lang, content] of LANGS) {
+      const section = sectionFor(content, "action-reaction");
+      const markup = renderToStaticMarkup(
+        <Chapter8ContextFigure
+          kind="action-reaction"
+          section={section}
+          lang={lang === "bm" ? "bm" : "en"}
+          initialSelection="floating"
+        />,
+      );
+      const floating = section.actionReactionPairs!.situations.find((s) => s.id === "floating")!;
+      for (const force of floating.forces) {
+        expect(markup, force.id).toContain(`data-arrow-label="${force.id}"`);
+        expect(markup, force.label).toContain(force.label);
+      }
+    }
   });
 });
 
 describe("Chapter 8 · gas particles", () => {
   const gasSection = sectionWith(scienceF2C8InteractiveBM, "gasParticles");
-  const gas = blockFrom<{ particleCount: number; states: { id: string }[] }>(gasSection, "gasParticles");
+  const gas = blockFrom<{ particleCount: number; states: { id: string }[] }>(
+    gasSection,
+    "gasParticles",
+  );
 
   it("scatters the particles instead of laying them on one line", () => {
     const pts = seedParticles(gas.particleCount, 200, 20);
@@ -295,7 +336,9 @@ describe("Chapter 8 · gas particles", () => {
   });
 
   it("is deterministic, so screenshots and tests stay stable", () => {
-    expect(seedParticles(gas.particleCount, 200, 20)).toEqual(seedParticles(gas.particleCount, 200, 20));
+    expect(seedParticles(gas.particleCount, 200, 20)).toEqual(
+      seedParticles(gas.particleCount, 200, 20),
+    );
   });
 
   it("gives every particle its own velocity", () => {
@@ -385,7 +428,9 @@ describe("Chapter 8 · buoyancy figures", () => {
   it("shows float and sink as positions in a tank of water", () => {
     const section = sectionWith(scienceF2C8InteractiveBM, "buoyancy");
     const block = blockFrom<{ materials: BuoyancyMaterial[] }>(section, "buoyancy");
-    const markup = renderToStaticMarkup(<BuoyancySimulator materials={block.materials} lang="bm" />);
+    const markup = renderToStaticMarkup(
+      <BuoyancySimulator materials={block.materials} lang="bm" />,
+    );
     // This is the density interaction, which stays a drawn animated tank. The
     // floating/sinking artwork belongs to the buoyant-force figure instead.
     expect(markup).toContain("<svg");
@@ -402,7 +447,7 @@ describe("Chapter 8 · point of application", () => {
     const source = readFileSync("src/components/notes/blocks/ForceDiagram.tsx", "utf8");
     // the accepted hammer artwork carries the scene; the overlay carries the force
     expect(source).toContain('image: "hammerNail"');
-    const nail = /nail: \{([\s\S]*?)\n  \},/.exec(source)![1];
+    const nail = /nail: \{([\s\S]*?)\n {2}\},/.exec(source)![1];
     const tail = /tail: \[(\d+), (\d+)\]/.exec(nail)!;
     const dir = /dir: \[(-?[\d.]+), (-?[\d.]+)\]/.exec(nail)!;
     // the claw grips the nail head at ~(777, 540); the wood surface is ~y 790
@@ -411,7 +456,9 @@ describe("Chapter 8 · point of application", () => {
     expect(Number(dir[2])).toBeLessThan(0);
     const markup = renderToStaticMarkup(
       <ForceDiagram
-        block={blockFrom(sectionWith(scienceF2C8InteractiveBM, "forceDiagram"), "forceDiagram") as never}
+        block={
+          blockFrom(sectionWith(scienceF2C8InteractiveBM, "forceDiagram"), "forceDiagram") as never
+        }
         lang="bm"
       />,
     );
@@ -428,17 +475,17 @@ describe("Chapter 8 · chapter chrome", () => {
     expect(entry, "Chapter 8 needs its own hero meta entry").not.toBeNull();
     expect(Number(entry![1])).toBe(scienceF2C8InteractiveBM.sections.length);
     for (const [lang, content] of LANGS) {
-      expect(content.sections.length, lang).toBe(11);
+      expect(content.sections.length, lang).toBe(12);
     }
   });
 
   it("maps every figure kind to a section that can supply its concepts", () => {
     for (const [lang, content] of LANGS) {
-      for (const [index, kind] of Object.entries(CHAPTER8_SECTION_FIGURES)) {
-        const section = content.sections[Number(index)];
-        expect(section, `${lang} section ${index}`).toBeDefined();
-        const concepts = chapter8Concepts(kind!, section, lang === "bm" ? "bm" : "en");
-        expect(concepts.length, `${lang} ${kind}`).toBe(CHAPTER8_HOTSPOT_GEOMETRY[kind!].length);
+      for (const kind of KINDS) {
+        const section = content.sections.find((s) => chapter8FigureForSection(s) === kind);
+        expect(section, `${lang} section for ${kind}`).toBeDefined();
+        const concepts = chapter8Concepts(kind, section!, lang === "bm" ? "bm" : "en");
+        expect(concepts.length, `${lang} ${kind}`).toBe(CHAPTER8_HOTSPOT_GEOMETRY[kind].length);
         for (const c of concepts) {
           expect(c.label.trim(), `${lang} ${kind}/${c.id} label`).not.toBe("");
           expect(c.note.trim(), `${lang} ${kind}/${c.id} note`).not.toBe("");
@@ -449,8 +496,12 @@ describe("Chapter 8 · chapter chrome", () => {
 
   it("uses the Force & Motion asset instead of the Biology-labelled subject banner", () => {
     const source = readFileSync("src/routes/notes.tsx", "utf8");
-    expect(source).toContain('import scienceF2Chapter8Artwork from "@/assets/science/form2/ch8-daya-gerakan.png"');
-    expect(source).toMatch(/subject === "science" && form === "Form 2" && activeChapterKey === "Chapter 8"[\s\S]{0,120}\? scienceF2Chapter8Artwork/);
+    expect(source).toContain(
+      'import scienceF2Chapter8Artwork from "@/assets/science/form2/ch8-daya-gerakan.png"',
+    );
+    expect(source).toMatch(
+      /subject === "science" && form === "Form 2" && activeChapterKey === "Chapter 8"[\s\S]{0,120}\? scienceF2Chapter8Artwork/,
+    );
   });
 });
 
@@ -468,7 +519,8 @@ describe("Chapter 8 · §18 — what already worked is left alone", () => {
         <DepthPressure block={block as never} lang={lang === "bm" ? "bm" : "en"} />,
       );
       expect(block.levels.length, lang).toBeGreaterThan(1);
-      for (const level of block.levels) expect(markup, `${lang}/${level.id}`).toContain(level.label);
+      for (const level of block.levels)
+        expect(markup, `${lang}/${level.id}`).toContain(level.label);
       const buttons = (markup.match(/<button/g) ?? []).length;
       expect(buttons, lang).toBeGreaterThanOrEqual(block.levels.length);
     }
@@ -476,7 +528,9 @@ describe("Chapter 8 · §18 — what already worked is left alone", () => {
 
   it("leaves every academic quiz key untouched", () => {
     // Captured from the frozen chapter before this visual pass began.
-    const EXPECTED = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1];
+    const EXPECTED = [
+      0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1,
+    ];
     for (const [lang, file] of [
       ["bm", "quizzes-bm.ts"],
       ["dlp", "quizzes-dlp.ts"],
@@ -511,43 +565,110 @@ describe("Chapter 8 · atmospheric pressure renders without ghost boxes", () => 
     // The selected state paints one feathered haze and nothing box-like; it is
     // much taller for the hiker at the foot, which is the whole point.
     const source = readFileSync("src/components/notes/chapter8/Chapter8ContextFigure.tsx", "utf8");
-    const block = /if \(kind === "atmosphere"\) \{[\s\S]*?\n  \}/.exec(source)![0];
+    const block = /if \(kind === "atmosphere"\) \{[\s\S]*?\n {2}\}/.exec(source)![0];
     expect(block).toContain("data-air-haze");
     expect(block).toContain("feGaussianBlur");
     expect(block).not.toMatch(/strokeDasharray|<rect|rounded|border/);
     const footHeight = ATMOSPHERE_HAZE_GEOMETRY.foot.bottom - ATMOSPHERE_HAZE_GEOMETRY.foot.top;
-    const summitHeight = ATMOSPHERE_HAZE_GEOMETRY.summit.bottom - ATMOSPHERE_HAZE_GEOMETRY.summit.top;
+    const summitHeight =
+      ATMOSPHERE_HAZE_GEOMETRY.summit.bottom - ATMOSPHERE_HAZE_GEOMETRY.summit.top;
     expect(footHeight).toBeGreaterThan(summitHeight * 3);
   });
 });
 
 describe("Chapter 8 · the action-reaction arrows are drawn as a pair", () => {
-  it("renders both arrows together from one source", () => {
-    expect(ACTION_REACTION_ARROWS).toHaveLength(2);
-    const [left, right] = ACTION_REACTION_ARROWS;
-    // same line of action
-    expect(left.y).toBe(right.y);
-    // equal magnitude
-    expect(Math.abs(left.x2 - left.x1)).toBeCloseTo(Math.abs(right.x2 - right.x1), 6);
-    // opposite directions, each pointing away from the contact between the hands
-    expect(left.x2).toBeLessThan(left.x1);
-    expect(right.x2).toBeGreaterThan(right.x1);
-    expect(left.x1).toBeLessThan(right.x1);
-    // short vectors at the hand contact, not movement arrows spanning the scene
-    expect(Math.abs(left.x2 - left.x1)).toBeLessThanOrEqual(6);
-    // anchored to the palm contact measured on the artwork, so this cannot
-    // drift if the scene is ever re-shot at a different centre
-    const contact = CHAPTER8_HOTSPOT_GEOMETRY["action-reaction"][0].x;
-    expect(Math.abs(left.x1 - contact)).toBeLessThanOrEqual(1);
-    expect(Math.abs(right.x1 - contact)).toBeLessThanOrEqual(1);
+  const SITUATIONS = ["book", "floating", "trolleys"] as const;
+  const ART = { width: 2048, height: 768 };
+  const panelOf = (id: string) =>
+    CHAPTER8_HOTSPOT_GEOMETRY["action-reaction"].find((hotspot) => hotspot.id === id)!;
+
+  it("gives every situation exactly two arrows, equal in length", () => {
+    for (const id of SITUATIONS) {
+      const arrows = ACTION_REACTION_SITUATIONS[id];
+      expect(arrows, id).toHaveLength(2);
+      const [a, b] = arrows.map(actionReactionArrowLength);
+      // Equal magnitude is the teaching. For the floating block especially: a
+      // longer upward arrow would say the block is rising, not floating.
+      expect(a, id).toBeCloseTo(b, 6);
+      expect(a, id).toBeGreaterThan(0);
+    }
+  });
+
+  it("points the book and block pairs in opposite VERTICAL directions", () => {
+    for (const id of ["book", "floating"] as const) {
+      const up = ACTION_REACTION_SITUATIONS[id].find((a) => a.y2 < a.y1)!;
+      const down = ACTION_REACTION_SITUATIONS[id].find((a) => a.y2 > a.y1)!;
+      expect(up, id).toBeDefined();
+      expect(down, id).toBeDefined();
+      // one line of action through the object
+      expect(up.x1).toBe(down.x1);
+      expect(up.x2).toBe(up.x1);
+      expect(down.x2).toBe(down.x1);
+    }
+    // the upward force is named for whatever actually pushes up in each scene
+    expect(ACTION_REACTION_SITUATIONS.book.map((a) => a.id)).toEqual(["normal", "weight"]);
+    expect(ACTION_REACTION_SITUATIONS.floating.map((a) => a.id)).toEqual(["buoyant", "weight"]);
+  });
+
+  it("points the trolley pair in opposite HORIZONTAL directions, on different trolleys", () => {
+    const [reaction, action] = ACTION_REACTION_SITUATIONS.trolleys;
+    // level with each other, so they read as one pair
+    expect(reaction.y1).toBe(reaction.y2);
+    expect(action.y1).toBe(action.y2);
+    expect(reaction.y1).toBe(action.y1);
+    // opposite directions, each pointing outwards away from the spring
+    expect(reaction.x2).toBeLessThan(reaction.x1);
+    expect(action.x2).toBeGreaterThan(action.x1);
+    // and each acting over its OWN trolley, not both on one of them
+    const midX = (panelOf("trolleys").x / 100) * ART.width;
+    expect(reaction.x2, "reaction arrow is on the left trolley").toBeLessThan(midX);
+    expect(action.x2, "action arrow is on the right trolley").toBeGreaterThan(midX);
+  });
+
+  it("keeps every arrow inside the artwork it is drawn on", () => {
+    for (const arrows of Object.values(ACTION_REACTION_SITUATIONS)) {
+      for (const arrow of arrows) {
+        for (const x of [arrow.x1, arrow.x2]) {
+          expect(x).toBeGreaterThan(0);
+          expect(x).toBeLessThan(ART.width);
+        }
+        for (const y of [arrow.y1, arrow.y2]) {
+          expect(y).toBeGreaterThan(0);
+          expect(y).toBeLessThan(ART.height);
+        }
+        expect(arrow.labelX).toBeGreaterThan(0);
+        expect(arrow.labelX).toBeLessThan(100);
+        expect(arrow.labelY).toBeGreaterThan(0);
+        expect(arrow.labelY).toBeLessThan(100);
+      }
+    }
+  });
+
+  it("keeps each situation's arrows and labels inside that situation's own panel", () => {
+    for (const id of SITUATIONS) {
+      const panel = panelOf(id);
+      const left = panel.x - panel.w / 2;
+      const right = panel.x + panel.w / 2;
+      for (const arrow of ACTION_REACTION_SITUATIONS[id]) {
+        for (const x of [arrow.x1, arrow.x2]) {
+          expect((x / ART.width) * 100, id).toBeGreaterThanOrEqual(left);
+          expect((x / ART.width) * 100, id).toBeLessThanOrEqual(right);
+        }
+        expect(arrow.labelX, id).toBeGreaterThanOrEqual(left);
+        expect(arrow.labelX, id).toBeLessThanOrEqual(right);
+      }
+    }
   });
 });
 
 describe("Chapter 8 · final visual pack — WebP production assets", () => {
   const DIR = "public/science/form2/chapter-8";
 
-  it("ships all 16 production images as WebP", () => {
-    expect(CHAPTER8_IMAGE_LIST).toHaveLength(16);
+  it("ships all 17 production images as WebP", () => {
+    // 13 from the original pack — the palms-touching action-reaction
+    // photograph, the four-panel effects scene and the four-example types
+    // scene are all retired — plus the four approved figures.
+    expect(CHAPTER8_IMAGE_LIST).toHaveLength(17);
     for (const url of CHAPTER8_IMAGE_LIST) {
       expect(url.endsWith(".webp"), url).toBe(true);
       const file = path.join(DIR, path.basename(url));
@@ -557,8 +678,8 @@ describe("Chapter 8 · final visual pack — WebP production assets", () => {
     }
   });
 
-  it("declares each of the sixteen images exactly once", () => {
-    expect(new Set(CHAPTER8_IMAGE_LIST).size).toBe(16);
+  it("declares each of the seventeen images exactly once", () => {
+    expect(new Set(CHAPTER8_IMAGE_LIST).size).toBe(17);
   });
 
   it("serves no Chapter 8 PNG from the production asset path", () => {
@@ -584,12 +705,13 @@ describe("Chapter 8 · final visual pack — WebP production assets", () => {
 });
 
 describe("Chapter 8 · final visual pack — figures use the supplied artwork", () => {
-  it("uses the real palms-touching image, with no raster shift hack", () => {
+  it("uses the approved triptych, with no raster shift hack", () => {
     const source = readFileSync("src/components/notes/chapter8/Chapter8ContextFigure.tsx", "utf8");
-    expect(CHAPTER8_VISUAL_ASSETS["action-reaction"]).toBe(CHAPTER8_IMAGES.actionReaction);
+    expect(CHAPTER8_VISUAL_ASSETS["action-reaction"]).toBe(CHAPTER8_IMAGES.actionReactionPairs);
     expect(source).not.toContain("ACTION_REACTION_CONTACT_SHIFT");
     expect(source).not.toContain("data-skater-half");
-    expect(source).not.toContain("clipPath");
+    // the retired palms photograph is no longer registered or referenced
+    expect(source).not.toContain("06_action_reaction_palms_touching");
   });
 
   it("maps each force example to its own supplied scene", () => {
@@ -598,7 +720,9 @@ describe("Chapter 8 · final visual pack — figures use the supplied artwork", 
     expect(source).toContain('image: "hammerNail"');
     const markup = renderToStaticMarkup(
       <ForceDiagram
-        block={blockFrom(sectionWith(scienceF2C8InteractiveBM, "forceDiagram"), "forceDiagram") as never}
+        block={
+          blockFrom(sectionWith(scienceF2C8InteractiveBM, "forceDiagram"), "forceDiagram") as never
+        }
         lang="bm"
       />,
     );
@@ -634,7 +758,9 @@ describe("Chapter 8 · final visual pack — figures use the supplied artwork", 
       sectionWith(scienceF2C8InteractiveBM, "buoyancy"),
       "buoyancy",
     );
-    const markup = renderToStaticMarkup(<BuoyancySimulator materials={block.materials} lang="bm" />);
+    const markup = renderToStaticMarkup(
+      <BuoyancySimulator materials={block.materials} lang="bm" />,
+    );
     // floating/sinking artwork belongs to the buoyant-force figure, not here
     expect(markup).not.toContain(CHAPTER8_IMAGES.floating);
     expect(markup).not.toContain(CHAPTER8_IMAGES.sinking);
@@ -649,7 +775,12 @@ describe("Chapter 8 · final visual pack — figures use the supplied artwork", 
     expect(source).toContain("CHAPTER8_IMAGES.momentAngle");
     const markup = renderToStaticMarkup(
       <MomentDiagram
-        block={blockFrom(sectionWith(scienceF2C8InteractiveBM, "momentDiagram"), "momentDiagram") as never}
+        block={
+          blockFrom(
+            sectionWith(scienceF2C8InteractiveBM, "momentDiagram"),
+            "momentDiagram",
+          ) as never
+        }
         lang="bm"
       />,
     );
@@ -728,7 +859,9 @@ describe("Chapter 8 · buoyant force and density are separate interactions", () 
       sectionWith(scienceF2C8InteractiveBM, "buoyancy"),
       "buoyancy",
     );
-    const markup = renderToStaticMarkup(<BuoyancySimulator materials={block.materials} lang="bm" />);
+    const markup = renderToStaticMarkup(
+      <BuoyancySimulator materials={block.materials} lang="bm" />,
+    );
     for (const forbidden of [CHAPTER8_IMAGES.floating, CHAPTER8_IMAGES.sinking]) {
       expect(markup, forbidden).not.toContain(forbidden);
       expect(simulatorSource, forbidden).not.toContain(forbidden);
@@ -779,7 +912,9 @@ describe("Chapter 8 · buoyant force and density are separate interactions", () 
       sectionWith(scienceF2C8InteractiveBM, "buoyancy"),
       "buoyancy",
     );
-    const markup = renderToStaticMarkup(<BuoyancySimulator materials={block.materials} lang="bm" />);
+    const markup = renderToStaticMarkup(
+      <BuoyancySimulator materials={block.materials} lang="bm" />,
+    );
     expect(markup).toContain('data-state="empty"');
   });
 });
@@ -789,22 +924,42 @@ describe("Chapter 8 · contextual artwork is sized to support the lesson", () =>
     expect(CHAPTER8_FIGURE_WIDTH.single).toBeLessThanOrEqual(600);
     expect(CHAPTER8_FIGURE_WIDTH.wide).toBeLessThanOrEqual(660);
     expect(CHAPTER8_FIGURE_WIDTH.single).toBeLessThan(CHAPTER8_FIGURE_WIDTH.wide);
-    // at 16:9 these caps land inside the intended 340-380px visual height
-    for (const w of Object.values(CHAPTER8_FIGURE_WIDTH)) {
-      const height = (w * 9) / 16;
-      expect(height).toBeLessThanOrEqual(380);
+    // the panorama cap cannot exceed the figure card it sits in
+    expect(CHAPTER8_FIGURE_WIDTH.panorama).toBeLessThanOrEqual(840);
+    // Every cap lands inside the intended 340-380px visual height — measured at
+    // the ratio each variant is actually used at, since a wider cap on wider
+    // artwork is not a taller figure.
+    const RATIO: Record<keyof typeof CHAPTER8_FIGURE_WIDTH, number> = {
+      single: 16 / 9,
+      wide: 16 / 9,
+      panorama: 8 / 3,
+    };
+    for (const [variant, w] of Object.entries(CHAPTER8_FIGURE_WIDTH)) {
+      const height = w / RATIO[variant as keyof typeof CHAPTER8_FIGURE_WIDTH];
+      expect(height, variant).toBeLessThanOrEqual(380);
     }
   });
 
   it("gives multi-panel scenes the wider cap and single scenes the narrower one", () => {
-    expect(CHAPTER8_FIGURE_VARIANTS.types).toBe("wide");
-    expect(CHAPTER8_FIGURE_VARIANTS.effects).toBe("wide");
+    // six and five panels on 16:9 artwork, so they take the panorama cap: at
+    // the "wide" 660px each of six panels would be about 103px across
+    expect(CHAPTER8_FIGURE_VARIANTS.types).toBe("panorama");
+    expect(CHAPTER8_FIGURE_VARIANTS.effects).toBe("panorama");
     expect(CHAPTER8_FIGURE_VARIANTS.levers).toBe("wide");
     expect(CHAPTER8_FIGURE_VARIANTS.buoyancy).toBe("wide");
-    expect(CHAPTER8_FIGURE_VARIANTS["action-reaction"]).toBe("single");
+    // 8:3 artwork, so it takes the panorama cap rather than a 16:9 one
+    expect(CHAPTER8_FIGURE_VARIANTS["action-reaction"]).toBe("panorama");
     expect(CHAPTER8_FIGURE_VARIANTS.atmosphere).toBe("single");
     // the simple single-object scenes the spec names
-    for (const key of ["pushBox", "hammerNail", "floating", "sinking", "momentDoor", "momentSpanner", "momentAngle"] as const) {
+    for (const key of [
+      "pushBox",
+      "hammerNail",
+      "floating",
+      "sinking",
+      "momentDoor",
+      "momentSpanner",
+      "momentAngle",
+    ] as const) {
       expect(chapter8FigureVariant(key), key).toBe("single");
     }
   });
@@ -832,5 +987,114 @@ describe("Chapter 8 · contextual artwork is sized to support the lesson", () =>
     expect(source).toContain("CHAPTER8_FIGURE_WIDTH[chapter8FigureVariant(image)]");
     // and the svg overlay is pinned to that same box
     expect(source).toContain("pointer-events-none absolute inset-0 h-full w-full");
+  });
+});
+
+// ---------------------------- I. FINAL CLEANUP / LANGUAGE-NEUTRAL VISUAL PASS
+
+describe("Chapter 8 · final cleanup — buoyancy labels and worked-example badge", () => {
+  it.each(LANGS)("%s buoyancy labels are the short form, with no baked audience/location", (lang, content) => {
+    const block = blockFrom<{ realWeightLabel: string; apparentWeightLabel: string }>(
+      sectionWith(content, "buoyancySchematic"),
+      "buoyancySchematic",
+    );
+    if (lang === "bm") {
+      expect(block.realWeightLabel).toBe("Berat sebenar");
+      expect(block.apparentWeightLabel).toBe("Berat ketara");
+    } else {
+      expect(block.realWeightLabel).toBe("Actual weight");
+      expect(block.apparentWeightLabel).toBe("Apparent weight");
+    }
+  });
+
+  it.each(LANGS)(
+    "%s marks the 10 N / 6 N reading as a worked example, distinct from the general formula",
+    (lang, content) => {
+      const block = blockFrom<{ formula: string; realWeight: string; apparentWeight: string }>(
+        sectionWith(content, "buoyancySchematic"),
+        "buoyancySchematic",
+      );
+      const markup = renderToStaticMarkup(
+        <BuoyancySchematic block={block as never} lang={lang === "bm" ? "bm" : "en"} />,
+      );
+      expect(markup).toContain("data-example-badge");
+      expect(markup).toContain(lang === "bm" ? ">Contoh<" : ">Example<");
+      // the general rule F = W1 - W2 still renders as its own, un-replaced line
+      expect(markup).toContain(block.formula);
+      expect(markup).toContain(block.realWeight);
+      expect(markup).toContain(block.apparentWeight);
+    },
+  );
+
+  it.each(LANGS)("%s buoyancy schematic opens on the measure view, not an empty placeholder", (lang, content) => {
+    const block = blockFrom<{ buoyantForce: string }>(
+      sectionWith(content, "buoyancySchematic"),
+      "buoyancySchematic",
+    );
+    const markup = renderToStaticMarkup(
+      <BuoyancySchematic block={block as never} lang={lang === "bm" ? "bm" : "en"} />,
+    );
+    // the measure view's own reading is visible without any click
+    expect(markup).toContain('aria-pressed="true"');
+    expect(markup).toContain(block.buoyantForce);
+  });
+});
+
+describe("Chapter 8 · final cleanup — liquid pressure opens on Shallow", () => {
+  it.each(LANGS)("%s opens with the shallowest state selected, not an empty placeholder", (lang, content) => {
+    const block = blockFrom<{ levels: { id: string; label: string; note: string }[] }>(
+      sectionWith(content, "depthPressure"),
+      "depthPressure",
+    );
+    const markup = renderToStaticMarkup(
+      <DepthPressure block={block as never} lang={lang === "bm" ? "bm" : "en"} />,
+    );
+    const shallow = block.levels.find((l) => l.id === "shallow")!;
+    expect(markup).toContain(shallow.note);
+    expect(markup).toContain('aria-pressed="true"');
+  });
+});
+
+describe("Chapter 8 · final cleanup — default-selected first states through the real shell", () => {
+  const CASES: [string, "types" | "effects" | "action-reaction" | "buoyancy", string][] = [
+    ["types opens on Gravitational", "types", "gravitational"],
+    ["effects opens on Moves a stationary object", "effects", "moves"],
+    ["action-reaction opens on Book on table", "action-reaction", "book"],
+    ["buoyancy examples open on the first scene", "buoyancy", "boat"],
+  ];
+
+  for (const [label, kind, expectedId] of CASES) {
+    it.each(LANGS)(`%s ${label}`, (_lang, content) => {
+      const section = content.sections.find((s) => chapter8FigureForSection(s) === kind)!;
+      const markup = renderToStaticMarkup(
+        <ScienceF2InteractiveNotesBlock
+          content={{ ...content, sections: [section] }}
+          lang={content === scienceF2C8InteractiveBM ? "bm" : "en"}
+        />,
+      );
+      expect(markup, `${kind} default selection`).toContain(`data-ch8-selection="${expectedId}"`);
+    });
+  }
+});
+
+describe("Chapter 8 · final cleanup — Magnetic Force card fully removed", () => {
+  it("Types of Forces shows only the six core forces, no seventh enrichment card", () => {
+    for (const [lang, content] of LANGS) {
+      const section = content.sections.find((s) => chapter8FigureForSection(s) === "types")!;
+      const markup = renderToStaticMarkup(
+        <ScienceF2InteractiveNotesBlock
+          content={{ ...content, sections: [section] }}
+          lang={lang === "bm" ? "bm" : "en"}
+        />,
+      );
+      expect(markup).not.toContain("data-ch8-enrichment");
+      expect(markup).not.toContain("Magnetic force");
+      expect(markup).not.toContain("Daya magnet");
+      // the six core definitions are untouched by the card's removal
+      const section8 = blockFrom<{ id: string }[]>(section, "flipCards");
+      expect(section8.map((c) => c.id).sort()).toEqual(
+        ["buoyant", "elastic", "frictional", "gravitational", "normal", "weight"].sort(),
+      );
+    }
   });
 });

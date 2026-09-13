@@ -49,8 +49,8 @@ export function ConversionLadders({ lang }: { lang: Lang }) {
         { title: en ? "Mass" : "Jisim", units: ["kg", "g"], factors: [1000] },
         {
           title: en ? "Length" : "Panjang",
-          units: ["km", "m", "cm", "mm"],
-          factors: [1000, 100, 10],
+          units: ["km", "m", "dm", "cm", "mm"],
+          factors: [1000, 10, 10, 10],
         },
         {
           title: en ? "Time" : "Masa",

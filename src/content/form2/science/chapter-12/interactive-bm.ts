@@ -184,6 +184,7 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "12.1",
       title: "Jarak dalam Sistem Suria",
+      conceptQuestion: "Bagaimanakah Jarak Diukur dalam Sistem Suria?",
       intro:
         "Sistem suria terdiri daripada lapan planet yang mengorbit Matahari, termasuk Bumi. Jarak planet-planet dari Matahari adalah sangat besar, jadi **unit astronomi dan tahun cahaya** digunakan untuk mengukur jarak relatif planet itu dari Matahari. Pada tahun 2006, Pluto tidak lagi dikenali sebagai planet dalam sistem suria, sebaliknya dikenali sebagai **planet kerdil**.",
       cards: [
@@ -254,6 +255,7 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "12.1",
       title: "Membandingkan Planet",
+      conceptQuestion: "Bagaimanakah Planet Dibandingkan?",
       intro:
         "Setiap planet boleh dibandingkan dengan Bumi menggunakan ciri yang sama. Pilih satu ciri untuk melihat kesemua lapan planet pada ciri itu, atau ketuk sebuah planet untuk melihat profil penuhnya.",
       planetComparison: {
@@ -381,6 +383,7 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "12.1",
       title: "Hubungan antara Ciri Planet",
+      conceptQuestion: "Bagaimanakah Ciri-ciri Planet Berkait?",
       intro:
         "Ciri-ciri planet berkait antara satu sama lain. Secara teorinya, **planet yang berada lebih dekat dengan Matahari menerima lebih banyak haba**, tetapi situasi sebenar adalah lebih kompleks — dan beberapa anomali wujud.",
       accordions: [
@@ -478,6 +481,7 @@ export const scienceF2C12InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "12.1",
       title: "Bumi sebagai Planet untuk Kehidupan",
+      conceptQuestion: "Mengapakah Bumi Boleh Menampung Kehidupan?",
       intro:
         "Setakat ini, **Bumi merupakan satu-satunya planet yang mempunyai hidupan**. Bumi dapat menampung hidupan akibat beberapa faktor seperti kehadiran air, sumber mineral, suhu permukaan dan kandungan atmosferanya.",
       flipCards: [

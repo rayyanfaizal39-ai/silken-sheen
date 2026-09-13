@@ -42,6 +42,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "3.1.1",
       title: "Kelas Makanan",
+      conceptQuestion: "Apakah Kelas Makanan?",
       intro:
         "Badan yang sihat memerlukan tujuh kelas makanan dalam kadar yang sesuai: karbohidrat, protein, lemak, vitamin, mineral, pelawas dan air.",
       cards: [
@@ -352,6 +353,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "3.2.1",
       title: "Gizi Seimbang & Piramid Makanan",
+      conceptQuestion: "Apakah Gizi Seimbang?",
       intro:
         "Gizi seimbang ialah gizi yang mengandungi semua kelas makanan dalam kuantiti yang betul seperti yang diperlukan oleh badan, berpandukan piramid makanan.",
       pyramid: {
@@ -479,6 +481,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "3.2.2",
       title: "Nilai Kalori Makanan",
+      conceptQuestion: "Apakah Nilai Kalori?",
       intro:
         "Nilai kalori ialah jumlah tenaga yang dibebaskan apabila 1 g makanan dioksidakan dengan lengkap, diukur dalam kalori (kal) atau joule (J).",
       comparison: {
@@ -624,6 +627,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "3.3.1",
       title: "Sistem Pencernaan Manusia",
+      conceptQuestion: "Apakah Pencernaan?",
       intro:
         "Pencernaan ialah penguraian fizikal dan kimia makanan yang kompleks atau besar kepada molekul yang lebih kecil, larut dan boleh diserap oleh badan.",
       digestiveSystem: {
@@ -927,6 +931,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "3.4.1",
       title: "Penyerapan Hasil Pencernaan",
+      conceptQuestion: "Apakah Penyerapan?",
       intro:
         "Vilus = bentuk tunggal / vili = bentuk jamak: dinding usus kecil mempunyai berjuta-juta unjuran halus seperti jari dipanggil vili, yang menambahkan luas permukaan untuk penyerapan makanan tercerna.",
       cards: [
@@ -1159,6 +1164,7 @@ export const scienceF2C3InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "3.4.2",
       title: "Asimilasi & Kerjasama Sistem",
+      conceptQuestion: "Apakah Asimilasi?",
       intro:
         "Asimilasi ialah proses pengagihan hasil akhir pencernaan bagi kegunaan sel-sel badan. Untuk molekul ini sampai daripada vilus ke setiap sel, kerjasama tiga sistem badan diperlukan.",
       systemFlow: {

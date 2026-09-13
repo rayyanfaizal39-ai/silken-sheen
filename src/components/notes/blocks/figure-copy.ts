@@ -53,6 +53,8 @@ export type FigureCopy = {
   enterDistance: string;
   /** Input placeholder showing an example distance. */
   distanceExample: string;
+  /** Small badge marking specific numbers as a worked example, not a fixed measurement. */
+  exampleBadge: string;
 };
 
 const COPY: Record<FigureLang, FigureCopy> = {
@@ -75,6 +77,7 @@ const COPY: Record<FigureLang, FigureCopy> = {
     distanceKm: "Jarak (km)",
     enterDistance: "Masukkan jarak",
     distanceExample: "cth. 227900000",
+    exampleBadge: "Contoh",
   },
   en: {
     enlarge: "Enlarge",
@@ -95,6 +98,7 @@ const COPY: Record<FigureLang, FigureCopy> = {
     distanceKm: "Distance (km)",
     enterDistance: "Enter a distance",
     distanceExample: "e.g. 227900000",
+    exampleBadge: "Example",
   },
 };
 

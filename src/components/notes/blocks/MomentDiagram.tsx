@@ -52,13 +52,26 @@ function unit(dx: number, dy: number) {
 }
 
 /** Foot of the perpendicular dropped from the pivot onto the force's line of action. */
-export function perpendicularFoot(ax: number, ay: number, ux: number, uy: number, px: number, py: number) {
+export function perpendicularFoot(
+  ax: number,
+  ay: number,
+  ux: number,
+  uy: number,
+  px: number,
+  py: number,
+) {
   const t = (px - ax) * ux + (py - ay) * uy;
   return { x: ax + t * ux, y: ay + t * uy };
 }
 
 /** A short square tick marking a right angle between directions `u` and `v` at a point. */
-function rightAngleMark(x: number, y: number, u: readonly [number, number], v: readonly [number, number], s: number) {
+function rightAngleMark(
+  x: number,
+  y: number,
+  u: readonly [number, number],
+  v: readonly [number, number],
+  s: number,
+) {
   return `M ${x + u[0] * s} ${y + u[1] * s} L ${x + u[0] * s + v[0] * s} ${y + u[1] * s + v[1] * s} L ${x + v[0] * s} ${y + v[1] * s}`;
 }
 
@@ -132,9 +145,50 @@ export function MomentDiagram({ block, lang }: { block: MomentDiagramBlock; lang
       )}
 
       <div className="mt-2 rounded-xl border border-primary/25 bg-secondary/30 px-3 py-2">
-        <p className="font-display text-center text-[13px] font-bold text-primary">{block.formula}</p>
+        <p className="font-display text-center text-[13px] font-bold text-primary">
+          {block.formula}
+        </p>
       </div>
       <p className="mt-1 text-center text-[11.5px] italic text-muted-foreground">{block.caption}</p>
+
+      {block.senseLabels && (
+        <div className="mt-2 grid grid-cols-2 gap-2.5">
+          <div className="rounded-xl border border-border bg-card/55 px-3 py-2.5 text-center">
+            <svg viewBox="0 0 60 60" className="mx-auto h-12 w-12" aria-hidden="true">
+              <ArrowHead id="ch8-moment-cw" className="fill-primary" />
+              <circle cx="30" cy="30" r="2.4" className="fill-primary" />
+              <path
+                d="M30,10 A20,20 0 1 1 10,30"
+                fill="none"
+                className="stroke-primary"
+                strokeWidth="3"
+                strokeLinecap="round"
+                markerEnd="url(#ch8-moment-cw)"
+              />
+            </svg>
+            <p className="mt-1 text-[11.5px] font-semibold text-foreground">
+              {block.senseLabels.clockwise}
+            </p>
+          </div>
+          <div className="rounded-xl border border-border bg-card/55 px-3 py-2.5 text-center">
+            <svg viewBox="0 0 60 60" className="mx-auto h-12 w-12" aria-hidden="true">
+              <ArrowHead id="ch8-moment-acw" className="fill-primary" />
+              <circle cx="30" cy="30" r="2.4" className="fill-primary" />
+              <path
+                d="M30,10 A20,20 0 1 0 50,30"
+                fill="none"
+                className="stroke-primary"
+                strokeWidth="3"
+                strokeLinecap="round"
+                markerEnd="url(#ch8-moment-acw)"
+              />
+            </svg>
+            <p className="mt-1 text-[11.5px] font-semibold text-foreground">
+              {block.senseLabels.anticlockwise}
+            </p>
+          </div>
+        </div>
+      )}
 
       <p
         aria-live="polite"
@@ -179,11 +233,17 @@ function PerpendicularMoment({
   const ay = py + armU[1] * d;
 
   // perpendicular to the arm; pick the side the person actually pushes from
-  const perp: readonly [number, number] = view === "door" ? [armU[1], -armU[0]] : [-armU[1], armU[0]];
+  const perp: readonly [number, number] =
+    view === "door" ? [armU[1], -armU[0]] : [-armU[1], armU[0]];
   const FORCE_LEN = 210;
 
   return (
-    <Chapter8PhotoFigure image={view === "door" ? "momentDoor" : "momentSpanner"} alt={alt} space="pixel" priority>
+    <Chapter8PhotoFigure
+      image={view === "door" ? "momentDoor" : "momentSpanner"}
+      alt={alt}
+      space="pixel"
+      priority
+    >
       <ArrowHead id={`ch8-moment-${view}`} className="fill-emerald-300" />
 
       {/* perpendicular distance, along the arm from the pivot to the force */}
@@ -289,7 +349,14 @@ function AngledMoment({ block, alt }: { block: MomentDiagramBlock; alt: string }
         aria-label={alt}
       >
         <ArrowHead id="ch8-moment-angled" className="fill-emerald-300" />
-        <image href={CHAPTER8_IMAGES.momentAngle} x="0" y="0" width={PX} height={PY} preserveAspectRatio="none" />
+        <image
+          href={CHAPTER8_IMAGES.momentAngle}
+          x="0"
+          y="0"
+          width={PX}
+          height={PY}
+          preserveAspectRatio="none"
+        />
 
         {/* line of action, extended well past the attachment in both directions */}
         <line
