@@ -321,6 +321,25 @@ export function ScienceF2InteractiveNotesBlock({
       : [];
     return (
       <div className="flex min-w-0 flex-col gap-5">
+        {/* "Types of Forces" already opens on "What is Force?" (conceptQuestion,
+            rendered by the shell above this section's intro). The six-panel
+            interactive below teaches the classification itself, so it gets its
+            own short second opener here rather than six separate headings —
+            one per force is exactly what section 18 of the concept-opener pass
+            says not to do; the selected panel's own definition already covers
+            that. */}
+        {chapter8Figure === "types" && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {lang === "bm" ? "Apakah Jenis-jenis Daya?" : "What are the Types of Force?"}
+            </h3>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {lang === "bm"
+                ? "Daya boleh dikelaskan kepada beberapa jenis bergantung pada cara ia bertindak ke atas sesuatu objek."
+                : "Forces can be classified into several types depending on how they act on an object."}
+            </p>
+          </div>
+        )}
         {chapter8Figure && (
           <Chapter8ContextFigure
             kind={chapter8Figure}
@@ -1553,6 +1572,11 @@ export function ScienceF2InteractiveNotesBlock({
         )}
         {(section.remember || section.quickExplanation) && (
           <div className="flex flex-col gap-2.5">
+            {section.rememberQuestion && (
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">
+                {section.rememberQuestion}
+              </h3>
+            )}
             {section.remember && <ScienceRemember lang={lang} text={section.remember} />}
             {section.quickExplanation && (
               <ScienceQuickExplanation lang={lang} text={section.quickExplanation} />
@@ -1641,6 +1665,7 @@ export function ScienceF2InteractiveNotesBlock({
     eyebrow: section.number,
     label: section.title,
     title: section.title,
+    conceptQuestion: section.conceptQuestion,
     description: section.intro,
     content: renderSection(section, index === content.sections.length - 1),
   }));

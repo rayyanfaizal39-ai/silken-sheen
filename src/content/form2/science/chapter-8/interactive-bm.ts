@@ -31,6 +31,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.1",
       title: "Jenis-jenis Daya",
+      conceptQuestion: "Apakah Daya?",
       intro:
         "Daya ialah **tarikan atau tolakan** yang dikenakan ke atas sesuatu objek. Daya tidak dapat dilihat, tetapi kesannya sentiasa boleh diperhatikan. Hampir semua aktiviti harian melibatkan daya — membuka tin makanan, menekan suis, membuka pintu. Tekan setiap jenis daya di bawah untuk mengenalinya.",
       remember:
@@ -51,6 +52,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.1",
       title: "Ciri-ciri Daya",
+      conceptQuestion: "Apakah Ciri-ciri Daya?",
       intro:
         "Setiap daya mempunyai tiga ciri: **magnitud** (kekuatan), **arah**, dan **titik aplikasi (tempat tepat daya itu dikenakan)**. Kerana itu daya dilukis sebagai anak panah — panjang anak panah menunjukkan magnitud, mata anak panah menunjukkan arah, dan pangkalnya terletak pada titik aplikasi.",
       remember:
@@ -113,6 +115,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.1",
       title: "Pasangan Daya Tindakan–Daya Tindak Balas",
+      conceptQuestion: "Apakah Pasangan Daya Tindakan–Tindak Balas?",
       intro:
         "Bagi setiap daya tindakan, wujud satu daya tindak balas yang **sama magnitud tetapi bertentangan arah**. Tiga situasi di bawah menunjukkan pasangan daya ini dengan jelas.",
       actionReactionPairs: {
@@ -168,6 +171,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Kesan Daya",
+      conceptQuestion: "Apakah Kesan Daya?",
       intro:
         "Daya tidak dapat dilihat secara langsung, tetapi kesannya sentiasa dapat dikesan. Terdapat **lima kesan utama** tindakan daya.",
       flipCards: [
@@ -185,6 +189,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Keapungan dan Ketumpatan",
+      conceptQuestion: "Apakah Daya Apungan?",
       intro:
         "Daya apungan ialah **tujahan ke atas** yang dikenakan oleh cecair terhadap objek di dalamnya. Daya apungan boleh ditentukan dengan neraca spring, dengan membandingkan berat objek di udara dengan beratnya semasa terendam.",
       buoyancySchematic: {
@@ -237,6 +242,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Tuas",
+      conceptQuestion: "Apakah Tuas?",
       intro:
         "Tuas ialah sebuah **palang yang berputar pada satu titik yang tetap**. Tuas terdiri daripada tiga bahagian: fulkrum (titik sokongan yang tetap), beban (objek yang hendak digerakkan) dan daya (tolakan atau tarikan yang dikenakan pada palang). Tuas membolehkan kita melakukan kerja dengan lebih mudah, selalunya dengan daya yang lebih kecil.",
       leverClasses: {
@@ -294,6 +300,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Momen Daya",
+      conceptQuestion: "Apakah Momen Daya?",
       intro:
         "Daya yang dikenakan pada suatu objek boleh memutarkan objek itu pada satu titik tetap yang dipanggil **pangsi atau fulkrum**. Kesan putaran yang dihasilkan itu disebut **momen daya**.",
       remember:
@@ -347,6 +354,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Tekanan",
+      conceptQuestion: "Apakah Tekanan?",
       intro:
         "Anda boleh menekan paku tekan ke dalam papan, tetapi tidak boleh menekan syiling ke dalam papan walaupun menggunakan daya yang sama. Sebabnya ialah tekanan: tekanan ditakrifkan sebagai **daya per unit luas permukaan**, dengan arah daya berserenjang dengan permukaan itu. Unit S.I. bagi tekanan ialah pascal (Pa); 1 Pa bersamaan dengan 1 newton per meter persegi (N m⁻²).",
       remember:
@@ -437,6 +445,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Tekanan Gas",
+      conceptQuestion: "Apakah Tekanan Gas?",
       intro:
         "**Teori kinetik gas** menyatakan bahawa molekul-molekul udara sentiasa bergerak secara rawak dan berlanggar dengan dinding bekasnya. Perlanggaran ini menghasilkan daya yang menolak pada dinding bekas — daya per unit luas inilah yang dikenali sebagai **tekanan udara**.",
       quickExplanation:
@@ -473,6 +482,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Tekanan Atmosfera",
+      conceptQuestion: "Apakah Tekanan Atmosfera?",
       intro:
         "Tekanan atmosfera ialah **tekanan yang dikenakan oleh atmosfera ke atas permukaan Bumi dan semua jasad di Bumi**. Gunakan istilah dengan betul: tekanan udara ialah tekanan yang dikenakan oleh udara secara umum, manakala tekanan atmosfera merujuk khusus kepada tekanan yang dikenakan oleh atmosfera Bumi.",
       cards: [
@@ -528,6 +538,7 @@ export const scienceF2C8InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Tekanan Cecair",
+      conceptQuestion: "Apakah Tekanan Cecair?",
       intro:
         "**Tekanan dalam cecair bertambah apabila kedalaman bertambah.** Seorang penyelam mengalami tekanan kerana berat air yang bertindak ke atas badannya, dan tekanan itu meningkat semakin dalam dia menyelam.",
       depthPressure: {

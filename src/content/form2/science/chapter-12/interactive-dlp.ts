@@ -183,6 +183,7 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "12.1",
       title: "Distance in the Solar System",
+      conceptQuestion: "How is Distance Measured in the Solar System?",
       intro:
         "The solar system consists of eight planets orbiting the Sun, including Earth. The distances of the planets from the Sun are very large, so **astronomical units and light years** are used to measure their relative distances from the Sun. In 2006, Pluto was no longer recognised as a planet in the solar system; it is now known as a **dwarf planet**.",
       cards: [
@@ -253,6 +254,7 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "12.1",
       title: "Comparing the Planets",
+      conceptQuestion: "How Do the Planets Compare?",
       intro:
         "Every planet can be compared with Earth using the same characteristics. Choose one characteristic to see all eight planets on it, or tap a planet to see its full profile.",
       planetComparison: {
@@ -380,6 +382,7 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "12.1",
       title: "Relationships between Planetary Characteristics",
+      conceptQuestion: "How Are Planetary Characteristics Related?",
       intro:
         "The characteristics of the planets are related to one another. In theory **a planet closer to the Sun receives more heat**, but the real situation is more complex — and some anomalies exist.",
       accordions: [
@@ -477,6 +480,7 @@ export const scienceF2C12InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "12.1",
       title: "Earth as a Planet for Life",
+      conceptQuestion: "Why Can Earth Support Life?",
       intro:
         "So far, **Earth is the only planet that has life**. Earth can support life because of several factors such as the presence of water, mineral resources, surface temperature and the content of its atmosphere.",
       flipCards: [

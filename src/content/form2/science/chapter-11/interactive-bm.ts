@@ -30,6 +30,7 @@ export const scienceF2C11InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "11.1",
       title: "Galaksi dan Alam Semesta",
+      conceptQuestion: "Apakah Galaksi?",
       intro:
         "Alam semesta terdiri daripada semua benda yang wujud di sekeliling kita, dan terdapat jutaan galaksi di dalamnya. **Galaksi** ialah satu himpunan jasad yang terdiri daripada jutaan bintang bersama gas, debu dan habuk. Galaksi wujud dalam pelbagai bentuk, iaitu galaksi berpilin, galaksi elips dan galaksi tidak seragam. Kajian astronomi menggunakan alat teknologi seperti teleskop telah menyedarkan kita tentang keindahan dan keluasan alam semesta.",
       cards: [
@@ -61,6 +62,7 @@ export const scienceF2C11InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "11.1",
       title: "Bima Sakti, Kedudukan Sistem Suria dan Skala Relatif",
+      conceptQuestion: "Apakah Bima Sakti?",
       intro:
         "Sistem suria kita terletak di dalam galaksi **Bima Sakti**. Bima Sakti ialah sebuah galaksi berpilin yang sederhana besar, dan sistem suria kita berada di pinggir salah satu cabang berpilinnya. Bima Sakti terdiri daripada lebih kurang **200 bilion bintang**, dan Matahari merupakan salah satu daripadanya.",
       milkyWayLocator: {
@@ -106,6 +108,7 @@ export const scienceF2C11InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "11.1",
       title: "Kitar Hidup Bintang",
+      conceptQuestion: "Bagaimanakah Bintang Terbentuk?",
       intro:
         "Bintang dilahirkan daripada nebula. **Nebula** ialah awan besar yang terdiri daripada debu dan gas-gas seperti hidrogen dan helium. Daya tarikan graviti yang kuat menarik gas dan zarah debu itu sehingga membentuk satu gumpalan yang mengecut dan termampat menjadi satu teras. Apabila suhu dan tekanan dalam teras menjadi terlalu tinggi, tindak balas nuklear berlaku dan gas hidrogen ditukarkan kepada helium, lalu membebaskan banyak tenaga haba dan cahaya. Teras itu menyinar dan satu bintang dilahirkan.",
       accordions: [
@@ -167,6 +170,7 @@ export const scienceF2C11InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "11.1",
       title: "Ciri-ciri Bintang",
+      conceptQuestion: "Apakah Ciri-ciri Bintang?",
       intro:
         "Jika diperhatikan pada waktu malam, ada bintang yang kelihatan cerah dan ada yang malap. Bintang-bintang boleh dikelaskan berdasarkan lima ciri, iaitu **suhu, saiz, jarak, warna dan kecerahan**. Secara umumnya, bintang mempunyai warna mengikut suhu di permukaannya, iaitu daripada suhu yang rendah kepada suhu yang lebih tinggi.",
       cards: [

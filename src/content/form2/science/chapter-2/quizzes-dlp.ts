@@ -125,16 +125,12 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 2",
     lang: "dlp",
-    question: "Why are the leaves of a cactus reduced to spines in a desert habitat?",
-    options: [
-      "So that the cactus can absorb more sunlight",
-      "To reduce the surface area so that the rate of transpiration becomes very low",
-      "To help the cactus respire at night",
-      "So that the cactus can move with the direction of the wind",
-    ],
-    answerIndex: 1,
+    question:
+      "Which pair consists of one living component and one non-living component in a pond ecosystem?",
+    options: ["Fish and snails", "Water and soil", "Sunlight and air", "Fish and water"],
+    answerIndex: 3,
     explanation:
-      "The main challenge in a desert is water loss. Spines have a far smaller surface area than ordinary leaves, so transpiration is reduced and the water stored in the thick stem lasts through the dry season.",
+      "Fish are living components, while water is a non-living component of a pond ecosystem.",
   },
   {
     id: "sci-f2-c2-dlp-q10",
@@ -233,16 +229,11 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "dlp",
     question:
-      "The Arctic fox has small ears compared with foxes in hot regions. Justify why this feature matters for its survival.",
-    options: [
-      "Small ears let it hear prey under the snow more clearly",
-      "Small ears reduce the exposed surface area, so less body heat is lost to the extremely cold surroundings",
-      "Small ears let it swim faster in cold water",
-      "Small ears have no connection to its survival",
-    ],
-    answerIndex: 1,
+      "A pond contains populations of fish, snails, tadpoles and water hyacinths living together. Together, these populations form a...",
+    options: ["organism", "population", "community", "habitat"],
+    answerIndex: 2,
     explanation:
-      "The main challenge in the tundra is extreme cold. Small ears reduce the surface area from which heat can escape, so the Arctic fox keeps a steady body temperature even in very cold surroundings. That is why this adaptation matters, rather than it being just a physical feature.",
+      "Several populations of different species living together in the same habitat form a community.",
   },
   {
     id: "sci-f2-c2-dlp-q17",
@@ -268,10 +259,17 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "dlp",
-    question: "The cattle egret (Bubulcus ibis) migrates to Kuala Gula, Perak during which period?",
-    options: ["January to June", "March to August", "September to April", "May to October"],
-    answerIndex: 2,
-    explanation: "The cattle egret migrates to Kuala Gula, Perak from September to April every year.",
+    question:
+      "When cattle egrets migrate into an area, populations of insects such as grasshoppers, crickets and flies may decrease. Why?",
+    options: [
+      "The egrets produce substances that kill the insects",
+      "The egrets feed on the insects",
+      "The insects stop reproducing when the birds arrive",
+      "The egrets reduce the amount of water in the habitat",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Migration can alter population sizes in an ecosystem. Cattle egrets feed on insects, so insect populations may decrease when the number of egrets increases.",
   },
   {
     id: "sci-f2-c2-dlp-q19",
@@ -406,15 +404,16 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "dlp",
     question:
-      "In 2015, the southern region of Russia was attacked by locusts. What effect is stated in this chapter, and what ecological concept does this event illustrate?",
+      "The grasshopper population in an agricultural ecosystem increases sharply. What is the most likely effect?",
     options: [
-      "Cornfields as wide as 800 hectares were destroyed within hours, illustrating how a sharp increase in a pest population can affect the producer population",
-      "Cornfields as wide as 80 hectares were destroyed within a month, illustrating the water cycle",
-      "There was no economic impact, only an effect on bird populations",
-      "The cornfields were destroyed by drought, not locusts",
+      "Plant populations increase because more animals are present",
+      "Producer populations may decrease and the ecosystem balance may be disturbed",
+      "All predators immediately become extinct",
+      "The water cycle completely stops",
     ],
-    answerIndex: 0,
-    explanation: "The locust attack destroyed cornfields as wide as 800 hectares within hours — this illustrates how a sharp increase in a pest population (change in population size) can affect the producer population in an ecosystem.",
+    answerIndex: 1,
+    explanation:
+      "A sharp increase in herbivores such as grasshoppers increases feeding on plants. Producer populations may decrease, affecting other populations in the food web.",
   },
   {
     id: "sci-f2-c2-dlp-q27",
@@ -437,15 +436,16 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 2",
     lang: "dlp",
     question:
-      "How does practising the 5R indirectly help maintain ecosystem balance through the nutrient cycle?",
+      "If the number of decomposers in an ecosystem decreases greatly, what is the most likely result?",
     options: [
-      "The 5R has no relation to the nutrient cycle at all",
-      "By reducing the amount of waste materials and natural resource consumption, the 5R reduces pressure on the nutrient cycle and natural ecosystem",
-      "The 5R only works if done by the government, not individuals",
-      "The 5R replaces the need for biological control",
+      "Dead matter accumulates and fewer nutrients are returned to the soil",
+      "All consumers begin producing their own food",
+      "Photosynthesis stops because there are no predators",
+      "All non-living components disappear",
     ],
-    answerIndex: 1,
-    explanation: "Practising the 5R (Refuse, Reduce, Reuse, Recycle, Repurpose) reduces the amount of waste materials and excessive consumption of natural resources, thereby reducing pressure on the nutrient cycle and natural ecosystem.",
+    answerIndex: 0,
+    explanation:
+      "Decomposers break down dead organisms and waste and return nutrients to the environment. Fewer decomposers can therefore disrupt nutrient cycling.",
   },
   {
     id: "sci-f2-c2-dlp-q29",

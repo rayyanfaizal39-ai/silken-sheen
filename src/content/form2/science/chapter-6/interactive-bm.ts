@@ -34,6 +34,7 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "6.1",
       title: "Sifat Asid dan Alkali",
+      conceptQuestion: "Apakah Asid dan Alkali?",
       intro:
         "Asid dan alkali ialah bahan yang biasa ditemui, dengan set sifat yang boleh diramal dan bertentangan antara satu sama lain. Bandingkan kedua-duanya sifat demi sifat.",
       conceptContrast: {
@@ -275,6 +276,7 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "6.1",
       title: "Penunjuk",
+      conceptQuestion: "Apakah Penunjuk?",
       intro:
         "Penunjuk ialah **bahan pewarna yang menukar warna** mengikut bahan yang diujinya. Penunjuk yang berbeza memberitahu anda perkara yang berbeza — sesetengahnya hanya memberitahu asid atau alkali, sesetengahnya memberikan nilai pH.",
       indicatorTable: {
@@ -527,6 +529,7 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "6.2",
       title: "Peneutralan",
+      conceptQuestion: "Apakah Peneutralan?",
       intro:
         "Campurkan asid dengan alkali dan kedua-duanya saling meniadakan — asid hilang sifat asidnya, alkali hilang sifat alkalinya, dan tindak balas menghasilkan garam dan air.",
       cards: [
@@ -559,6 +562,7 @@ export const scienceF2C6InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "6.2",
       title: "Pentitratan",
+      conceptQuestion: "Apakah Pentitratan?",
       intro:
         "Pentitratan boleh digunakan untuk menentukan takat akhir tindak balas peneutralan dengan bantuan penunjuk.",
       cards: [

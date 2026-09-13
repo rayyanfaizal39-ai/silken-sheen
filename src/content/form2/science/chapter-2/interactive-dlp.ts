@@ -43,6 +43,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       number: "2.1.1",
       title: "Producers, Consumers and Decomposers",
       standardTitle: "2.1 Energy Flow in an Ecosystem",
+      conceptQuestion: "What are Producers, Consumers and Decomposers?",
       intro:
         "The source of energy in all ecosystems originates from **the Sun**. Green plants convert light energy from the Sun into **chemical energy** through photosynthesis. The chemical energy is transferred to primary consumers, then to secondary consumers and tertiary consumers through **food chains and food webs**.",
       cards: [
@@ -93,6 +94,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       number: "2.1.2",
       title: "Food Chains and Food Webs",
       standardTitle: "2.1 Energy Flow in an Ecosystem",
+      conceptQuestion: "What are Food Chains and Food Webs?",
       intro:
         "A food chain shows one straight feeding pathway. A food web is **several interconnected food chains** within the same ecosystem.",
       sequence: {
@@ -170,6 +172,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       number: "2.2.2",
       title: "The Water Cycle",
       standardTitle: "2.2 Nutrient Cycle in an Ecosystem",
+      conceptQuestion: "What is the Water Cycle?",
       images: [
         {
           src: waterCycleImage,
@@ -272,6 +275,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       number: "2.2.1",
       title: "The Carbon and Oxygen Cycles",
       standardTitle: "2.2 Nutrient Cycle in an Ecosystem",
+      conceptQuestion: "What are the Carbon and Oxygen Cycles?",
       images: [
         {
           src: carbonOxygenCycleImage,
@@ -404,6 +408,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       number: "2.3.1",
       title: "Interdependence and Ecological Terms",
       standardTitle: "2.3 Interdependence and Interaction among Organisms, and between Organisms and the Environment",
+      conceptQuestion: "How is an Ecosystem Organised?",
       intro:
         "Before studying interactions, learn the five basic ecological terms. Species, population and community are levels of living organisation; a habitat is a place, not a level.",
       contextImages: [
@@ -548,6 +553,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       number: "2.3.2",
       title: "Adaptation of Living Things",
       standardTitle: "2.3 Interdependence and Interaction among Organisms, and between Organisms and the Environment",
+      conceptQuestion: "What is Adaptation?",
       intro:
         "Every habitat imposes a different challenge. An adaptation is a body feature or behaviour that lets an organism overcome that challenge — without it, the organism could not survive there.",
       adaptations: {
@@ -702,6 +708,7 @@ export const scienceF2C2InteractiveDLP: ScienceF2InteractiveContent = {
       number: "2.3.3",
       title: "Interactions Between Organisms",
       standardTitle: "2.3 Interdependence and Interaction among Organisms, and between Organisms and the Environment",
+      conceptQuestion: "What are Interactions Between Organisms?",
       intro:
         "Interactions between organisms consist of **symbiosis** (mutualism, commensalism, parasitism), predator–prey and competition.",
       conceptTree: {

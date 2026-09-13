@@ -54,6 +54,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "5.1",
       title: "Physical Characteristics of Water",
+      conceptQuestion: "What are the Physical Characteristics of Water?",
       intro:
         "Pure water is **colourless, odourless and tasteless**, and stays liquid at room temperature. These fixed values are actually how we test whether water contains impurities, since impurities shift them.",
       cards: [
@@ -240,6 +241,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "5.1",
       title: "Impurities and Electrolysis of Water",
+      conceptQuestion: "What is Water Made Of?",
       intro:
         "Water is a **compound** — two hydrogen atoms joined to one oxygen atom, **H₂O**. Dissolved impurities shift the melting and boiling points of water.",
       cards: [
@@ -336,6 +338,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "5.1",
       title: "Factors Affecting the Rate of Evaporation",
+      conceptQuestion: "What is Evaporation?",
       intro:
         "Evaporation happens at the surface of water and can occur at any temperature. Four factors affect how quickly it happens.",
       contextImages: [
@@ -591,8 +594,10 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "5.2",
       title: "Solute, Solvent and Solution",
+      conceptQuestion: "What is a Solution?",
       intro:
         "When sugar dissolves in water, sugar is the **solute** (the substance that dissolves), water is the **solvent** (the liquid doing the dissolving), and sugar water is the **solution** they form together. From these three terms comes another one that is often confused — solubility.",
+      rememberQuestion: "What is Solubility?",
       remember:
         "**Solubility** of a solute is the maximum amount of solute that can dissolve in 100 ml of solvent at a specific temperature.",
       cards: [
@@ -916,6 +921,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "5.3",
       title: "Water Purification Methods",
+      conceptQuestion: "How is Water Purified?",
       intro:
         "Water covers **two-thirds of the Earth's surface**, but most of it holds impurities, microorganisms and dissolved substances that make it unsafe straight from the source. Purifying water removes **smell, taste, colour, microorganisms and dissolved substances** so it can be used safely.",
       comparisonMatrix: {
@@ -981,6 +987,7 @@ export const scienceF2C5InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "5.3",
       title: "Water Supply System",
+      conceptQuestion: "How is Water Treated?",
       intro:
         "Water collected from sources such as rivers and rainfall is channelled to a **water treatment plant** to be treated in six stages before it reaches homes. **Bacteria, algae and mineral substances** are among the things removed in the process.",
       waterTreatmentFlow: {

@@ -25,6 +25,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "4.1",
       title: "Penyakit Berjangkit dan Penyakit Tidak Berjangkit",
+      conceptQuestion: "Apakah Penyakit?",
       intro:
         "Penyakit ialah keadaan tidak normal pada badan atau minda yang menyebabkan rasa tidak selesa, kesukaran berfungsi atau tekanan kepada seseorang individu.",
       comparison: {
@@ -414,6 +415,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "4.2",
       title: "Pertahanan Badan",
+      conceptQuestion: "Bagaimanakah Badan Mempertahankan Diri?",
       intro:
         "Patogen memasuki badan melalui sistem pernafasan, sistem pencernaan, sistem perkumuhan dan kulit. Badan kita mempunyai tiga pertahanan untuk memusnahkan patogen sebelum dan selepas ia memasuki badan.",
       cards: [
@@ -523,6 +525,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "4.2",
       title: "Kepentingan Imunisasi",
+      conceptQuestion: "Apakah Imunisasi?",
       intro:
         "Imunisasi ialah usaha untuk merangsang pertahanan badan terhadap jangkitan dalam kalangan bayi, kanak-kanak dan orang dewasa melalui suntikan vaksin.",
       cards: [
@@ -596,6 +599,7 @@ export const scienceF2C4InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "4.2",
       title: "Keimunan Aktif dan Keimunan Pasif",
+      conceptQuestion: "Apakah Keimunan?",
       intro:
         "Dua soalan menentukan jenis keimunan: adakah badan menghasilkan antibodinya sendiri, dan bagaimana antibodi itu diperoleh?",
       cards: [

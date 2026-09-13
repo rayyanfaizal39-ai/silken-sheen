@@ -30,6 +30,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "10.1",
       title: "Penghasilan dan Perambatan Bunyi",
+      conceptQuestion: "Apakah Bunyi?",
       intro:
         "Bunyi ialah **satu bentuk tenaga yang dihasilkan oleh getaran**. Apabila sesuatu objek bergetar, zarah-zarah di sekelilingnya turut bergetar dan berlanggar dengan zarah bersebelahan. Getaran ini dipindahkan dari satu zarah ke zarah lain dalam bentuk gelombang sehingga sampai ke telinga pendengar. Kerana gelombang bunyi perlu dipindahkan melalui zarah, bunyi **memerlukan medium untuk merambat dan tidak dapat merambat melalui vakum**.",
       contextImages: [
@@ -98,6 +99,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "10.1",
       title: "Pantulan, Penyerapan dan Kelajuan Bunyi",
+      conceptQuestion: "Bagaimanakah Bunyi Dipantulkan dan Merambat?",
       intro:
         "Apabila gelombang bunyi terkena permukaan sesuatu objek, **sebahagiannya dipantulkan dan sebahagiannya diserap**. Jumlah bunyi yang dipantul atau diserap bergantung pada jenis permukaan itu. Selain itu, gelombang bunyi **merambat pada kelajuan yang berbeza di dalam medium yang berbeza**, bergantung pada seberapa rapat zarah-zarah medium itu tersusun.",
       contextImages: [
@@ -171,6 +173,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "10.2",
       title: "Frekuensi, Amplitud dan O.S.K.",
+      conceptQuestion: "Apakah Frekuensi dan Amplitud?",
       intro:
         "Frekuensi ialah **bilangan getaran lengkap dalam masa satu saat**, dan diukur dalam unit hertz (Hz). Amplitud pula ialah **sesaran maksimum gelombang daripada kedudukan keseimbangan**. Kedua-dua ciri ini boleh dilihat pada skrin Osiloskop Sinar Katod (O.S.K.) apabila penjana isyarat audio disambungkan kepada pembesar suara dan O.S.K.",
       remember:
@@ -214,6 +217,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "10.2",
       title: "Kenyaringan dan Kelangsingan Bunyi",
+      conceptQuestion: "Apakah Kenyaringan dan Kelangsingan Bunyi?",
       intro:
         "Telinga kita dapat membezakan bunyi kerana setiap bunyi mempunyai kenyaringan dan kelangsingan yang berbeza. **Kenyaringan bunyi bergantung pada amplitud gelombang bunyi**, manakala **kelangsingan bunyi bergantung pada frekuensi gelombang bunyi**.",
       cards: [
@@ -296,6 +300,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "10.3",
       title: "Gema dan Kesan Doppler",
+      conceptQuestion: "Apakah Gema dan Kesan Doppler?",
       intro:
         "Pantulan gelombang bunyi menghasilkan fenomena yang boleh kita alami setiap hari. Gema terhasil apabila **gelombang bunyi dipantulkan kembali kepada pendengar daripada suatu permukaan yang keras**. Kesan Doppler pula berlaku apabila terdapat **pergerakan relatif antara sumber bunyi dengan pemerhati**.",
       quickExplanation:
@@ -361,6 +366,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "10.3",
       title: "Sonar, Sonogram dan Ekolokasi",
+      conceptQuestion: "Apakah Ultrabunyi?",
       intro:
         "Ultrabunyi ialah gelombang bunyi yang **berfrekuensi lebih daripada 20 000 Hz**. Ultrabunyi **tidak dapat didengar oleh manusia tetapi boleh didengar oleh haiwan seperti kelawar**. Pantulan gelombang ultrabunyi digunakan dalam pelbagai sektor kerana bunyi yang dipantulkan itu membawa maklumat tentang objek yang dikenainya.",
       contextImages: [
@@ -429,6 +435,7 @@ export const scienceF2C10InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "10.3",
       title: "Had Pendengaran Manusia dan Haiwan",
+      conceptQuestion: "Apakah Julat Pendengaran Manusia?",
       intro:
         "Telinga manusia hanya dapat mengesan bunyi dalam julat frekuensi tertentu. Frekuensi bunyi yang dapat dikesan oleh telinga manusia **terhad kepada julat 20 Hz hingga 20 000 Hz**. Julat ini **semakin berkurang apabila usia meningkat** kerana telinga menjadi kurang sensitif terhadap frekuensi bunyi. Haiwan pula mempunyai had pendengarannya yang tersendiri, dan sesetengahnya jauh melebihi julat manusia.",
       hearingRange: {

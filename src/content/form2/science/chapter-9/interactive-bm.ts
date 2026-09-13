@@ -32,6 +32,7 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "9.1",
       title: "Haba dan Suhu",
+      conceptQuestion: "Apakah Haba dan Suhu?",
       intro:
         "Haba ialah **satu bentuk tenaga** yang mengalir daripada kawasan bersuhu tinggi ke kawasan bersuhu rendah. Suhu pula ialah **sukatan darjah kepanasan atau kesejukan sesuatu objek**. Kedua-duanya berkait, tetapi ia bukan perkara yang sama — dua bikar air pada suhu yang sama boleh mengandungi kuantiti haba yang sangat berbeza, bergantung kepada berapa banyak air itu.",
       remember:
@@ -61,7 +62,7 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
           detail: "Diukur dalam darjah Celsius (°C) atau kelvin (K).",
         },
         {
-          title: "⚖️ Keseimbangan terma",
+          title: "⚖️ Apakah keseimbangan terma?",
           body: "Apabila dua objek bersentuhan, tenaga haba dipindahkan daripada objek bersuhu tinggi kepada objek bersuhu rendah. Apabila **pemindahan haba antara kedua-duanya menjadi sifar**, kedua-dua objek berada dalam **keseimbangan terma** dan mempunyai suhu yang sama.",
         },
       ],
@@ -73,6 +74,7 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "9.2",
       title: "Konduksi",
+      conceptQuestion: "Apakah Konduksi?",
       intro:
         "Konduksi ialah **proses pengaliran haba dari kawasan panas ke kawasan sejuk melalui medium pepejal**. Zarah-zarah yang menerima tenaga haba bergetar dengan lebih cepat dan berlanggar dengan zarah jiran dengan lebih kerap, lalu memindahkan tenaga itu ke seluruh medium.",
       quickExplanation:
@@ -101,6 +103,7 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "9.2",
       title: "Perolakan dan Sinaran",
+      conceptQuestion: "Apakah Perolakan dan Sinaran?",
       intro:
         "Haba juga boleh mengalir tanpa melalui pepejal. Dalam bendalir, perolakan **membawa haba melalui pergerakan bendalir itu sendiri**. Sinaran pula tidak memerlukan sebarang medium — inilah **satu-satunya cara haba boleh merambat menerusi ruang kosong**.",
       convectionRadiation: {
@@ -141,6 +144,7 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "9.2",
       title: "Bayu Laut dan Bayu Darat",
+      conceptQuestion: "Bagaimanakah Bayu Laut dan Bayu Darat Terbentuk?",
       intro:
         "Pembentukan bayu laut dan bayu darat merupakan **contoh perolakan yang berlaku secara semula jadi**. Kuncinya ialah **darat memanas dan menyejuk dengan lebih cepat berbanding laut**.",
       breezeDiagram: {
@@ -188,6 +192,7 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "9.2",
       title: "Konduktor dan Penebat Haba",
+      conceptQuestion: "Apakah Konduktor dan Penebat Haba?",
       intro:
         "Bahan yang boleh **mengalirkan haba dengan mudah** dikenali sebagai konduktor haba. Bahan yang boleh **menghalang atau melambatkan pengaliran haba** pula dikenali sebagai penebat haba.",
       contextImages: [
@@ -232,6 +237,7 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "9.3",
       title: "Pengembangan dan Pengecutan Jirim",
+      conceptQuestion: "Apakah yang Berlaku Apabila Jirim Dipanaskan?",
       intro:
         "Apabila jirim dipanaskan, zarah-zarahnya memperoleh tenaga, bergerak atau bergetar dengan lebih cepat, dan **jarak antara zarah bertambah** — jadi jirim itu mengembang. Apabila disejukkan, zarah bergerak lebih perlahan, **jarak antara zarah berkurang**, dan jirim mengecut. Ini berlaku pada pepejal, cecair dan gas.",
       expansionParticles: {
@@ -311,6 +317,7 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "9.4",
       title: "Penyerapan dan Pembebasan Haba",
+      conceptQuestion: "Apakah Penyerapan dan Pembebasan Haba?",
       intro:
         "Keupayaan sesuatu objek untuk menyerap dan membebaskan haba bergantung pada jenis dan warna permukaannya. Apabila objek menyerap haba, suhunya meningkat; apabila objek membebaskan haba, suhunya menurun. **Permukaan yang gelap dan kusam merupakan penyerap dan pembebas haba yang lebih baik** berbanding permukaan yang cerah dan berkilat.",
       surfaceComparison: {
@@ -356,6 +363,7 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "9.4",
       title: "Konsep Bangunan Hijau",
+      conceptQuestion: "Apakah Konsep Bangunan Hijau?",
       intro:
         "Konsep Bangunan Hijau ialah idea yang dijana untuk **mengurangkan kesan pembangunan yang pesat terhadap alam sekitar dan kesihatan manusia**. Konsep haba yang anda pelajari dalam bab ini digunakan secara langsung: sebuah rumah hijau direka supaya tenaga yang diperlukan untuk menyejukkan atau memanaskannya dapat dikurangkan.",
       contextImages: [
