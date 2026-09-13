@@ -17,6 +17,46 @@ function renderChapter(lang: "bm" | "en") {
   );
 }
 
+describe("Section 1.3 — live length conversion ladder", () => {
+  function ladder(lang: "bm" | "en", title: string) {
+    const match = renderChapter(lang).match(
+      new RegExp(`<h4[^>]*>${title}</h4><ol[^>]*>([\\s\\S]*?)</ol>`),
+    );
+    expect(match, `${lang}: ${title} ladder`).not.toBeNull();
+    const html = match![1];
+    return {
+      html,
+      units: [...html.matchAll(/<span class="rounded-lg[^"]*">([^<]+)<\/span>/g)].map((m) => m[1]),
+      multiply: [...html.matchAll(/×(\d+) →/g)].map((m) => Number(m[1])),
+      divide: [...html.matchAll(/← ÷(\d+)/g)].map((m) => Number(m[1])),
+    };
+  }
+
+  it.each(["bm", "en"] as const)(
+    "%s renders dm between m and cm with correct factors in both directions",
+    (lang) => {
+      const length = ladder(lang, lang === "en" ? "Length" : "Panjang");
+      expect(length.units).toEqual(["km", "m", "dm", "cm", "mm"]);
+      expect(length.multiply).toEqual([1000, 10, 10, 10]);
+      expect(length.divide).toEqual([1000, 10, 10, 10]);
+      const mass = ladder(lang, lang === "en" ? "Mass" : "Jisim");
+      expect(mass.units).toEqual(["kg", "g"]);
+      expect(mass.multiply).toEqual([1000]);
+      expect(mass.divide).toEqual([1000]);
+      const time = ladder(lang, lang === "en" ? "Time" : "Masa");
+      expect(time.units).toEqual(
+        lang === "en" ? ["hour", "minute", "second"] : ["jam", "minit", "saat"],
+      );
+      expect(time.multiply).toEqual([60, 60]);
+      expect(time.divide).toEqual([60, 60]);
+    },
+  );
+
+  it("renders identical BM/DLP length conversion structure", () => {
+    expect(ladder("bm", "Panjang")).toEqual(ladder("en", "Length"));
+  });
+});
+
 describe("Section 1.1 — live canonical career map", () => {
   it.each(["bm", "en"] as const)(
     "%s renders all four branches and every canonical career together",
