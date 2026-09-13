@@ -34,7 +34,7 @@ export const scienceF3C6InteractiveBM: ScienceF3InteractiveContent = {
           title: "Boleh diperbaharui atau tidak boleh diperbaharui?",
           instruction: "Setiap sumber tenaga yang digunakan untuk menjana elektrik tergolong dalam salah satu daripada dua kumpulan. Ketik untuk membandingkan.",
           options: [
-            { id: "renewable", label: "Boleh Diperbaharui", body: "Sumber yang boleh digantikan secara berterusan dan tidak akan habis: hidro, ombak, suria, air pasang surut, angin, biojisim, geoterma. Malaysia merupakan negara terkehadapan dalam sektor perindustrian biojisim di rantau Asia Tenggara, memanfaatkan sisa kelapa sawit, hutan, getah dan sekam padi." },
+            { id: "renewable", label: "Boleh Diperbaharui", body: "Sumber yang boleh digantikan secara berterusan: hidro, ombak, suria, air pasang surut, angin, biojisim, geoterma. Malaysia merupakan negara terkehadapan dalam sektor perindustrian biojisim di rantau Asia Tenggara, memanfaatkan sisa kelapa sawit, hutan, getah dan sekam padi." },
             { id: "nonrenewable", label: "Tidak Boleh Diperbaharui", body: "Sumber yang tidak boleh digantikan dan akhirnya akan habis: nuklear, arang batu, gas asli, petroleum." },
           ],
         },
@@ -104,7 +104,7 @@ export const scienceF3C6InteractiveBM: ScienceF3InteractiveContent = {
       number: "6.4",
       title: "Mengira Kos Penggunaan Tenaga Elektrik",
       intro:
-        "Kecekapan tenaga = (Output tenaga berguna ÷ Input tenaga dibekalkan) × 100%. Mentol filamen lama hanya menukar kira-kira 10% tenaga elektriknya kepada cahaya — selebihnya terbazir sebagai haba. Mentol LED mencapai kira-kira 90%. Tenaga elektrik digunakan (kWj) = Kuasa (kW) × Masa (j) — 1 kWj selalunya dipanggil \"1 unit.\"",
+        "Kecekapan tenaga = (Output tenaga berguna ÷ Input tenaga dibekalkan) × 100%. Tenaga elektrik digunakan (kWj) = Kuasa (kW) × Masa (j) — 1 kWj selalunya dipanggil \"1 unit.\"",
       cards: [
         { title: "Bagaimana rupa bangunan hijau", body: "Pengudaraan cekap untuk kurangkan penggunaan penyaman udara/kipas, pencahayaan semula jadi dimaksimumkan, dan panel suria untuk bekalan boleh diperbaharui." },
       ],

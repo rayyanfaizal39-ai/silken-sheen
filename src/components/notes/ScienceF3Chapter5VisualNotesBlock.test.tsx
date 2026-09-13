@@ -13,11 +13,11 @@ describe("ScienceF3Chapter5VisualNotesBlock", () => {
     expect(html).toContain("Tindak Balas Endotermik dan Eksotermik");
     expect(html).toContain("Perbandingan dan Perbezaan Utama");
     expect(html).toContain("Aktiviti Inkuiri 5.1: Membandingkan Tindak Balas Eksotermik dan Endotermik");
-    expect(html).toContain("Empat campuran, satu kaedah pengelasan");
+    expect(html).not.toContain("Empat campuran, satu kaedah pengelasan");
     expect(html).toContain("Contoh Tindak Balas Eksotermik dan Endotermik dalam Kehidupan Harian");
     expect(html).toContain("Rekaan STEM dan Aplikasi Kejuruteraan Termokimia");
     expect(html).toContain("Aplikasi Industri: Tindak Balas Termit");
-    expect(html).toContain("Isu Alam Sekitar: Pemanasan Global dan Fotosintesis");
+    expect(html).not.toContain("Isu Alam Sekitar: Pemanasan Global dan Fotosintesis");
     expect(html).not.toContain("Fahami arah aliran haba");
     expect(html).toContain("id=\"science-notes-content\"");
   });
@@ -29,11 +29,11 @@ describe("ScienceF3Chapter5VisualNotesBlock", () => {
     expect(html).toContain("Endothermic and Exothermic Reactions");
     expect(html).toContain("Main Comparison and Differences");
     expect(html).toContain("Inquiry Activity 5.1: Comparing Exothermic and Endothermic Reactions");
-    expect(html).toContain("Four mixtures, one classification method");
+    expect(html).not.toContain("Four mixtures, one classification method");
     expect(html).toContain("Examples of Exothermic and Endothermic Reactions in Daily Life");
     expect(html).toContain("STEM Design and Thermochemistry Engineering Applications");
     expect(html).toContain("Industrial Application: Thermite Reaction");
-    expect(html).toContain("Environmental Issue: Global Warming and Photosynthesis");
+    expect(html).not.toContain("Environmental Issue: Global Warming and Photosynthesis");
     expect(html).not.toContain("Understand the direction of heat flow");
   });
 });

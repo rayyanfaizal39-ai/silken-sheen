@@ -28,15 +28,17 @@ const copy = {
     title: "Tenaga dan Kuasa",
     subtitle: "Kerja, tenaga dan kuasa, tenaga keupayaan dan tenaga kinetik, serta prinsip keabadian tenaga.",
     path: [
-      ["7.1 Kerja, Tenaga dan Kuasa", "Hubungkan daya, sesaran dan masa."],
-      ["7.2 Tenaga Keupayaan dan Tenaga Kinetik", "Bezakan tenaga kerana kedudukan, bentuk dan gerakan."],
-      ["7.3 Prinsip Keabadian Tenaga", "Jejaki pertukaran tenaga dalam sistem ayunan."],
+      ["7.1 Kerja, Tenaga dan Kuasa"],
+      ["7.2 Tenaga Keupayaan dan Tenaga Kinetik"],
+      ["7.3 Prinsip Keabadian Tenaga"],
     ],
     bigIdea: "Idea besar",
     formula: "Rumus",
     unit: "Unit S.I.",
     workTitle: "Kerja, Tenaga dan Kuasa",
-    workBody: "Dalam fizik, kerja ialah hasil darab daya dengan sesaran dalam arah daya. Menolak dinding yang tidak bergerak tidak melakukan kerja walaupun anda berasa penat.",
+    workBody: "Kerja berlaku apabila daya menyebabkan sesuatu objek bergerak dalam arah daya tersebut. Semakin besar daya atau semakin jauh objek bergerak, semakin besar kerja yang dilakukan. Jika objek tidak bergerak, tiada kerja dilakukan dalam fizik.",
+    workFormula: "Kerja, W = Daya, F × Sesaran, s",
+    workExample: "Contoh: Anda menolak dinding tetapi dinding tidak bergerak. Walaupun anda berasa penat, tiada kerja dilakukan dalam fizik kerana tiada sesaran.",
     yesWork: "Ada kerja",
     yesWorkBody: "Daya 10 N menolak troli sejauh 5 m dalam arah yang sama.",
     noWork: "Tiada kerja",
@@ -85,7 +87,7 @@ const copy = {
     closedTitle: "Sistem ideal berbanding dunia sebenar",
     closed: "Sistem tertutup",
     closedBody: "Tiada geseran atau rintangan udara. Jumlah tenaga mekanikal kekal malar.",
-    real: "Sistem Realiti (Sistem Terbuka)",
+    real: "Sistem sebenar",
     realBody: "Geseran dan rintangan udara menukar sebahagian tenaga mekanikal kepada haba; ayunan akhirnya berhenti.",
     workedTitle: "Masalah Numerikal Pengiraan Keabadian Tenaga",
     workedQuestion: "Spring 300 mm dimampat hingga 50 mm oleh daya 5 N. Bola plastik berjisim 50 g. Cari halaju maksimum.",
@@ -101,15 +103,17 @@ const copy = {
     title: "Energy and Power",
     subtitle: "Work, energy and power, potential energy and kinetic energy, and the principle of conservation of energy.",
     path: [
-      ["7.1 Work, Energy and Power", "Connect force, displacement and time."],
-      ["7.2 Potential Energy and Kinetic Energy", "Distinguish energy due to position, shape and motion."],
-      ["7.3 Principle of Conservation of Energy", "Track energy changes in oscillating systems."],
+      ["7.1 Work, Energy and Power"],
+      ["7.2 Potential Energy and Kinetic Energy"],
+      ["7.3 Principle of Conservation of Energy"],
     ],
     bigIdea: "Big idea",
     formula: "Equation",
     unit: "S.I. unit",
     workTitle: "Work, Energy and Power",
-    workBody: "In physics, work is the product of force and displacement in the direction of the force. Pushing a wall that does not move does no work, even if you feel tired.",
+    workBody: "Work is done when a force causes an object to move in the direction of that force. The greater the force or the farther the object moves, the greater the work done. If the object does not move, no work is done in physics.",
+    workFormula: "Work, W = Force, F × Displacement, s",
+    workExample: "Example: You push a wall, but the wall does not move. Although you feel tired, no work is done in physics because there is no displacement.",
     yesWork: "Work is done",
     yesWorkBody: "A 10 N force pushes a trolley 5 m in the same direction.",
     noWork: "No work",
@@ -158,7 +162,7 @@ const copy = {
     closedTitle: "An ideal system versus the real world",
     closed: "Closed system",
     closedBody: "No friction or air resistance. Total mechanical energy stays constant.",
-    real: "Real System (Open System)",
+    real: "Real system",
     realBody: "Friction and air resistance convert some mechanical energy to heat; the oscillation eventually stops.",
     workedTitle: "Numerical Problem on the Conservation of Energy",
     workedQuestion: "A 300 mm spring is compressed to 50 mm by a 5 N force. The plastic ball has a mass of 50 g. Find its maximum velocity.",
@@ -211,11 +215,12 @@ export function ScienceF3Chapter7VisualNotesBlock({ id, content, lang, isRead, o
         <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[.2em] text-amber-200"><Zap className="h-4 w-4" />{t.eyebrow}</div>
         <h1 className="mt-3 max-w-3xl font-display text-4xl font-black leading-[1.04] text-white sm:text-5xl">{t.title}</h1>
         <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">{t.subtitle}</p>
-        <div className="mt-7 grid gap-3 lg:grid-cols-3">{t.path.map((item, index) => <div key={item[0]} className="relative rounded-2xl border border-white/10 bg-white/5 p-4"><span className="text-xs font-black text-amber-300">0{index + 1}</span><h2 className="mt-2 text-sm font-black text-white">{item[0]}</h2><p className="mt-2 text-xs leading-5 text-slate-300">{item[1]}</p>{index < 2 && <ChevronRight className="absolute -right-5 top-1/2 z-10 hidden h-7 w-7 -translate-y-1/2 rounded-full border border-cyan-300/30 bg-[#101426] p-1 text-cyan-300 lg:block" />}</div>)}</div>
+        <div className="mt-7 grid gap-3 lg:grid-cols-3">{t.path.map((item, index) => <div key={item[0]} className="relative rounded-2xl border border-white/10 bg-white/5 p-4"><span className="text-xs font-black text-amber-300">0{index + 1}</span><h2 className="mt-2 text-sm font-black text-white">{item[0]}</h2>{index < 2 && <ChevronRight className="absolute -right-5 top-1/2 z-10 hidden h-7 w-7 -translate-y-1/2 rounded-full border border-cyan-300/30 bg-[#101426] p-1 text-cyan-300 lg:block" />}</div>)}</div>
       </header>
 
       <div className="space-y-6">
         <SectionHeading number="7.1" title={t.workTitle} body={t.workBody} />
+        <div><Formula label={t.workFormula} value="W = Fs" /><p className="mt-3 text-sm leading-6 text-slate-300">{t.workExample}</p></div>
         <div className="grid gap-4 lg:grid-cols-[1.1fr_.9fr]">
           <Panel><div className="grid gap-3 sm:grid-cols-3"><Formula label={t.formula} value="W = Fs" unit="W (J) · F (N) · s (m)" /><Formula label={t.unit} value="1 J = 1 N m" /><Formula label={t.bigIdea} value="s = 0 → W = 0" /></div><div className="mt-4 grid gap-3 sm:grid-cols-2"><div className="rounded-xl bg-emerald-400/10 p-4"><div className="flex items-center gap-2 font-black text-emerald-300"><CheckCircle2 className="h-5 w-5" />{t.yesWork}</div><p className="mt-2 text-sm leading-6 text-slate-300">{t.yesWorkBody}</p><p className="mt-2 font-mono font-black text-white">W = 10 × 5 = 50 J</p></div><div className="rounded-xl bg-rose-400/10 p-4"><div className="flex items-center gap-2 font-black text-rose-300"><Dumbbell className="h-5 w-5" />{t.noWork}</div><p className="mt-2 text-sm leading-6 text-slate-300">{t.noWorkBody}</p><p className="mt-2 font-mono font-black text-white">W = F × 0 = 0 J</p></div></div></Panel>
           <Panel className="border-cyan-300/20 bg-cyan-300/[0.06]"><div className="flex items-start gap-3"><Sparkles className="mt-1 h-7 w-7 shrink-0 text-cyan-300" /><div><h3 className="font-black text-white">{lang === "bm" ? "Definisi dan Konsep Tenaga" : "Definition and Concept of Energy"}</h3><p className="mt-2 text-sm leading-6 text-slate-300">{t.energyDefinition}</p></div></div><div className="mt-5 flex flex-wrap gap-2 text-xs font-bold"><span className="rounded-full bg-white/10 px-3 py-2">1 kJ = 1,000 J</span><span className="rounded-full bg-white/10 px-3 py-2">1 MJ = 1,000,000 J</span></div></Panel>
@@ -233,7 +238,7 @@ export function ScienceF3Chapter7VisualNotesBlock({ id, content, lang, isRead, o
         <SectionHeading number="7.2" title={t.energyTitle} body={t.energyHint} />
         <div className="grid gap-3 sm:grid-cols-3" role="tablist" aria-label={t.energyTitle}>{(["gpe", "epe", "ke"] as const).map((key) => { const item = { gpe: { label: t.gpe, Icon: MoveUp }, epe: { label: t.epe, Icon: Activity }, ke: { label: t.ke, Icon: Bike } }[key]; const Icon = item.Icon; return <button key={key} type="button" role="tab" aria-selected={energy === key} onClick={() => setEnergy(key)} className={`min-h-24 rounded-2xl border p-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${energy === key ? "border-amber-300/60 bg-amber-300/15" : "border-white/10 bg-white/[0.04] hover:bg-white/[0.08]"}`}><Icon className="h-6 w-6 text-amber-300" /><span className="mt-3 block text-sm font-black text-white">{item.label}</span></button>; })}</div>
         <Panel className="border-amber-300/25"><div className="grid gap-5 lg:grid-cols-[1fr_.8fr]"><div><div className="flex items-center gap-3"><energyData.icon className="h-8 w-8 text-amber-300" /><h3 className="text-xl font-black text-white">{energyData.name}</h3></div><p className="mt-3 text-sm leading-6 text-slate-300">{energyData.origin}</p><div className="mt-4"><Formula label={t.formula} value={energyData.equation} unit={energyData.units} /></div></div><div className="rounded-2xl bg-slate-950/60 p-4"><p className="text-xs font-black uppercase tracking-[.15em] text-cyan-300">{lang === "bm" ? "Contoh dikira" : "Worked example"}</p><p className="mt-3 text-sm leading-6 text-slate-200">{energyData.example}</p></div></div></Panel>
-        <div className="grid gap-4 lg:grid-cols-2"><Panel><h3 className="font-black text-white">{t.variables}</h3><div className="mt-4 grid grid-cols-2 gap-2 text-sm"><span className="rounded-xl bg-white/5 p-3"><b>m</b> = {lang === "bm" ? "jisim (kg)" : "mass (kg)"}</span><span className="rounded-xl bg-white/5 p-3"><b>g</b> = 10 m s⁻²</span><span className="rounded-xl bg-white/5 p-3"><b>h, x</b> = {lang === "bm" ? "meter (m)" : "metre (m)"}</span><span className="rounded-xl bg-white/5 p-3"><b>v</b> = m s⁻¹</span></div></Panel><Panel><div className="flex gap-4"><div className="relative h-28 w-32 shrink-0 border-b border-l border-slate-500"><div className="absolute bottom-0 left-0 h-0 w-0 border-b-[110px] border-r-[120px] border-b-amber-300/25 border-r-transparent" /><span className="absolute -bottom-6 right-0 text-xs">x</span><span className="absolute -left-4 top-0 text-xs">F</span></div><div><h3 className="font-black text-white">{t.graphTitle}</h3><p className="mt-2 text-xs leading-5 text-slate-300">{t.graphBody}</p></div></div></Panel></div>
+        <div className="grid gap-4 lg:grid-cols-2"><Panel><h3 className="font-black text-white">{t.variables}</h3><div className="mt-4 grid grid-cols-2 gap-2 text-sm"><span className="rounded-xl bg-white/5 p-3"><b>m</b> = {lang === "bm" ? "jisim (kg)" : "mass (kg)"}</span><span className="rounded-xl bg-white/5 p-3"><b>g</b> = 10 m s⁻²</span><span className="rounded-xl bg-white/5 p-3"><b>h, x</b> = {lang === "bm" ? "meter (m)" : "metre (m)"}</span><span className="rounded-xl bg-white/5 p-3"><b>v</b> = m s⁻¹</span></div></Panel><Panel><div className="flex gap-4"><svg viewBox="0 0 160 160" className="h-40 w-32 shrink-0 overflow-visible" role="img" aria-label={t.graphTitle}><path d="M 24 12 V 120 H 150" fill="none" stroke="#64748b" /><polygon points="24,120 140,120 140,24" fill="rgba(252,211,77,0.25)" /><path d="M 24 120 L 140 24" fill="none" stroke="#fcd34d" strokeWidth="2" /><path d="M 24 24 H 140 V 120" fill="none" stroke="#64748b" strokeDasharray="4 3" /><g fill="currentColor" fontSize="11"><text x="8" y="133">0</text><text x="4" y="18">F</text><text x="143" y="133">x</text><text x="100" y="18">(x, F)</text><text x="69" y="106">W = ½Fx</text><text x="80" y="147" textAnchor="middle">{lang === "bm" ? "Regangan / mampatan, x" : "Extension / compression, x"}</text><text x="28" y="10">{lang === "bm" ? "Daya, F" : "Force, F"}</text></g></svg><div><h3 className="font-black text-white">{t.graphTitle}</h3><p className="mt-2 text-xs leading-5 text-slate-300">{t.graphBody}</p></div></div></Panel></div>
       </div>
 
       <div className="space-y-6">
