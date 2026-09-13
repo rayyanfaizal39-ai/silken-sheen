@@ -129,6 +129,7 @@ export function ScienceDiscoveryChapterHeader({
   onBack,
   onChangeLang,
   metaOverride,
+  hideGenericCopy = false,
 }: {
   chapterKey: string;
   title: string;
@@ -137,6 +138,7 @@ export function ScienceDiscoveryChapterHeader({
   chapterProgress: number;
   isRead: boolean;
   embedded?: boolean;
+  hideGenericCopy?: boolean;
   onBack?: () => void;
   onChangeLang?: () => void;
   /** Overrides the Form-1-indexed SCIENCE_LAB_META lookup — needed whenever
@@ -171,18 +173,18 @@ export function ScienceDiscoveryChapterHeader({
 
       <div className="science-discovery-hero-grid">
         <div className="science-discovery-hero-copy">
-          <div className="science-live-status">
+          {!hideGenericCopy && <div className="science-live-status">
             <span /> {bm ? "STESEN PENYELIDIKAN AKTIF" : "RESEARCH STATION ONLINE"}
-          </div>
-          <p className="science-lab-kicker">
+          </div>}
+          {!hideGenericCopy && <p className="science-lab-kicker">
             {bm ? "Makmal Penyelidikan" : "Research Laboratory"} {String(chapter).padStart(2, "0")}
-          </p>
+          </p>}
           <h1>{title}</h1>
-          <p className="science-discovery-intro">
+          {!hideGenericCopy && <p className="science-discovery-intro">
             {bm
               ? "Masuki modul penyelidikan, perhatikan bukti dan bina kefahaman saintifik anda."
               : "Enter the research modules, examine the evidence, and build your scientific understanding."}
-          </p>
+          </p>}
           <div className="science-hero-metadata">
             <span>
               <Clock3 /> {meta.minutes} {bm ? "min bacaan" : "min read"}
@@ -241,11 +243,11 @@ export function ScienceDiscoveryChapterHeader({
   );
 }
 
-export function MiniInvestigation({ lang }: { lang: "en" | "bm" }) {
+export function MiniInvestigation({ lang, hideHeading = false }: { lang: "en" | "bm"; hideHeading?: boolean }) {
   const bm = lang === "bm";
   return (
     <aside className="science-mini-investigation">
-      <div className="science-mini-investigation-heading">
+      {!hideHeading && <div className="science-mini-investigation-heading">
         <div className="science-mini-icon">
           <Microscope />
         </div>
@@ -253,7 +255,7 @@ export function MiniInvestigation({ lang }: { lang: "en" | "bm" }) {
           <p>{bm ? "JEDA RASA INGIN TAHU" : "CURIOSITY CHECKPOINT"}</p>
           <h3>{bm ? "Penyiasatan Mini" : "Mini Investigation"}</h3>
         </div>
-      </div>
+      </div>}
       <p className="science-mini-question">
         {bm
           ? "Apakah hubungan yang dapat anda kenal pasti antara pemerhatian dalam modul penyelidikan ini?"

@@ -1,6 +1,7 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { MiniInvestigation } from "../science/ScienceDiscoveryChrome";
 import { ScienceF3Chapter6VisualNotesBlock } from "./ScienceF3Chapter6VisualNotesBlock";
 import { scienceF3C6InteractiveBM } from "@/content/form3/science/chapter-6/interactive-bm";
 import { scienceF3C6InteractiveDLP } from "@/content/form3/science/chapter-6/interactive-dlp";
@@ -15,13 +16,18 @@ describe("ScienceF3Chapter6VisualNotesBlock", () => {
       }),
     );
 
-    expect(html).toContain("Fahami perjalanan tenaga elektrik");
-    expect(html).toContain("6.3 Penghantaran &amp; Pengagihan Tenaga Elektrik");
-    expect(html).toContain("Arus aruhan bermula dengan gerakan");
-    expect(html).toContain("Transformer: lihat lilitan dahulu");
-    expect(html).toContain("Perjalanan elektrik ke rumah");
-    expect(html).toContain("Fius melindungi dengan memutuskan litar");
-    expect(html).toContain("Daripada kuasa kepada kos");
+    for (const section of scienceF3C6InteractiveBM.sections) {
+      expect(html).toContain(section.title);
+    }
+    expect(html.replace(/<[^>]*>/g, "")).not.toMatch(/10%|50%|90%|2, 4, 6, 8/);
+    expect(html).toContain("P = VI");
+    expect(html).toContain("E = Pt");
+    expect(html).toContain("0.24");
+    expect(html).toContain("RM0.218/unit");
+    expect(html).not.toContain("Fahami perjalanan tenaga elektrik");
+    expect(html).not.toContain("Arus aruhan bermula dengan gerakan");
+    expect(html).not.toContain("tidak akan habis");
+    expect(html).toContain("nilai tarif contoh");
     expect(html).toContain("id=\"science-notes-content\"");
   });
 
@@ -33,12 +39,39 @@ describe("ScienceF3Chapter6VisualNotesBlock", () => {
       }),
     );
 
-    expect(html).toContain("Understand the journey of electrical energy");
-    expect(html).toContain("6.3 Transmission &amp; Distribution of Electricity");
-    expect(html).toContain("Induced current starts with motion");
-    expect(html).toContain("Transformer: see the turns first");
-    expect(html).toContain("Electricity&#x27;s journey to your home");
-    expect(html).toContain("A fuse protects by opening the circuit");
-    expect(html).toContain("From power to cost");
+    for (const section of scienceF3C6InteractiveDLP.sections) {
+      expect(html).toContain(section.title);
+    }
+    expect(html.replace(/<[^>]*>/g, "")).not.toMatch(/10%|50%|90%|2, 4, 6, 8/);
+    expect(html).toContain("P = VI");
+    expect(html).toContain("E = Pt");
+    expect(html).toContain("0.24");
+    expect(html).toContain("RM0.218/unit");
+    expect(html).not.toContain("Understand the journey");
+    expect(html).not.toContain("will not be used up");
+    expect(html).toContain("example tariff value");
+  });
+});
+
+
+describe("Chapter 6 source-fidelity cleanup", () => {
+  it.each(["bm", "en"] as const)("hides only the requested shared headings in %s", (lang) => {
+    const hidden = renderToStaticMarkup(createElement(MiniInvestigation, { lang, hideHeading: true }));
+    const normal = renderToStaticMarkup(createElement(MiniInvestigation, { lang }));
+    expect(hidden).not.toContain("science-mini-investigation-heading");
+    expect(hidden).toContain("science-mini-question");
+    expect(normal).toContain("science-mini-investigation-heading");
+  });
+
+  it("keeps BM/DLP section and numerical parity", () => {
+    const contents = [scienceF3C6InteractiveBM, scienceF3C6InteractiveDLP];
+    expect(contents[0].sections.map(s => s.number)).toEqual(contents[1].sections.map(s => s.number));
+    for (const content of contents) {
+      expect(JSON.stringify(content)).not.toMatch(/10%|90%|will never deplete|dan tidak akan habis/);
+    }
+    const render = (lang: "bm" | "en", content: typeof contents[number]) =>
+      renderToStaticMarkup(createElement(ScienceF3Chapter6VisualNotesBlock, { lang, content }));
+    const numbers = (html: string) => html.replace(/<[^>]*>/g, " ").replace(/&[^;]+;/g, " ").match(/\d+(?:\.\d+)?/g);
+    expect(numbers(render("bm", contents[0]))).toEqual(numbers(render("en", contents[1])));
   });
 });

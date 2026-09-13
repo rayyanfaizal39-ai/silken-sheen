@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import type { Chapter2Content } from "@/content/form1/science/chapter-2/chapter2-content";
 import type { LocalizedChapter2PracticalArea } from "@/content/form1/science/chapter-2/chapter2-activities";
 import animalPlantCellImage from "@/assets/chapters/science/form-1/chapter-2/animal-plant-cell.webp";
@@ -6,7 +6,7 @@ import unicellularMulticellularImage from "@/assets/chapters/science/form-1/chap
 import specialisedCellsImage from "@/assets/chapters/science/form-1/chapter-2/specialised-cells.webp";
 import levelsOfOrganisationImage from "@/assets/chapters/science/form-1/chapter-2/levels-of-organisation.webp";
 import photosynthesisStarchTestImage from "@/assets/chapters/science/form-1/chapter-2/photosynthesis-starch-test.webp";
-import humanBodySystemsImage from "@/assets/chapters/science/form-1/chapter-2/human-body-systems.webp";
+export { BodySystemsVisual } from "./Chapter2BodySystemsVisual";
 
 type Lang = "en" | "bm";
 
@@ -649,50 +649,6 @@ export function PhotosynthesisVisual({
       <p className="mt-3 rounded-xl border border-amber-300/30 bg-amber-300/10 p-3 text-xs leading-relaxed text-amber-100">
         {area?.practicalNotice ?? COPY[lang].visualGuide}
       </p>
-    </LearningVisual>
-  );
-}
-
-export function BodySystemsVisual({ content, lang }: { content: Chapter2Content; lang: Lang }) {
-  const items = useMemo(
-    () =>
-      content.bodySystems.map((system, index) => ({
-        id: `system-${index}`,
-        label: system.name,
-        detail: `${COPY[lang].organs}: ${system.organs}. ${COPY[lang].function}: ${system.function}`,
-      })),
-    [content.bodySystems, lang],
-  );
-  const coordinates = [
-    [76, 29],
-    [62, 28],
-    [24, 69],
-    [22, 29],
-    [63, 69],
-    [91, 69],
-    [10, 28],
-    [36, 69],
-    [90, 28],
-    [77, 69],
-    [10, 69],
-  ];
-  return (
-    <LearningVisual
-      src={humanBodySystemsImage}
-      alt={
-        lang === "en"
-          ? "Eleven human body systems surrounding a human figure"
-          : "Sebelas sistem badan manusia mengelilingi figura manusia"
-      }
-      items={items}
-      markers={items.map((item, index) => ({
-        id: item.id,
-        x: coordinates[index][0],
-        y: coordinates[index][1],
-      }))}
-      lang={lang}
-    >
-      <p className="mt-3 text-xs leading-relaxed text-slate-300">{COPY[lang].systems}</p>
     </LearningVisual>
   );
 }

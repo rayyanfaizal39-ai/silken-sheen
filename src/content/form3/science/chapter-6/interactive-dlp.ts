@@ -34,7 +34,7 @@ export const scienceF3C6InteractiveDLP: ScienceF3InteractiveContent = {
           title: "Renewable or non-renewable?",
           instruction: "Every energy source used to generate electricity falls into one of two groups. Tap to compare.",
           options: [
-            { id: "renewable", label: "Renewable", body: "Sources that can be replaced continually and will never deplete: hydro, wave, solar, tidal, wind, biomass, geothermal. Malaysia is a leading Southeast Asian biomass producer, drawing on oil palm, forest, rubber and rice husk waste." },
+            { id: "renewable", label: "Renewable", body: "Sources that can be replaced continually: hydro, wave, solar, tidal, wind, biomass, geothermal. Malaysia is a leading Southeast Asian biomass producer, drawing on oil palm, forest, rubber and rice husk waste." },
             { id: "nonrenewable", label: "Non-renewable", body: "Sources that cannot be replaced and will eventually run out: nuclear, coal, natural gas, petroleum." },
           ],
         },
@@ -104,7 +104,7 @@ export const scienceF3C6InteractiveDLP: ScienceF3InteractiveContent = {
       number: "6.4",
       title: "Calculate the Cost of Electricity Consumption",
       intro:
-        "Energy efficiency = (Useful energy output ÷ Energy input supplied) × 100%. An old filament bulb turns only about 10% of its electrical energy into light — the rest is wasted heat. LED bulbs reach about 90%. Electrical energy used (kWh) = Power (kW) × Time (h) — 1 kWh is often called \"1 unit.\"",
+        "Energy efficiency = (Useful energy output ÷ Energy input supplied) × 100%. Electrical energy used (kWh) = Power (kW) × Time (h) — 1 kWh is often called \"1 unit.\"",
       cards: [
         { title: "What a green building looks like", body: "Efficient ventilation to cut aircon/fan use, maximised natural lighting, and solar panels for renewable supply." },
       ],

@@ -476,6 +476,45 @@ export function ScienceF1Chapter1VisualNotesBlock({
               </div>
             </Panel>
           </div>
+          <section data-science-career-map aria-labelledby="science-career-map-heading">
+            <h3 id="science-career-map-heading" className="font-bold text-teal-100 md:text-center">
+              {lang === "en" ? "Careers in Science" : "Kerjaya dalam Sains"}
+            </h3>
+            <div
+              aria-hidden="true"
+              className="ml-3 h-5 border-l border-teal-300/40 md:mx-auto md:w-0"
+            />
+            <ul className="ml-3 space-y-4 border-l border-teal-300/40 pl-5 md:ml-0 md:grid md:grid-cols-4 md:gap-5 md:space-y-0 md:border-l-0 md:border-t md:pl-0">
+              {t.scienceInLife.careers.map((branch) => (
+                <li
+                  key={branch.field}
+                  data-career-branch={branch.field}
+                  className="relative min-w-0 md:pt-4"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute -left-5 top-3 w-4 border-t border-teal-300/40 md:left-0 md:top-0 md:h-3 md:w-0 md:border-l md:border-t-0"
+                  />
+                  <h4 className="font-bold text-teal-100">{branch.field}</h4>
+                  <ul className="mt-2 space-y-1 border-l border-white/15 pl-3 text-sm leading-6 text-slate-200">
+                    {branch.jobs.map((job) => (
+                      <li key={job} data-career-name>
+                        {job}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+            <p
+              data-career-reflection
+              className="mt-5 border-l-2 border-amber-300/50 pl-4 text-sm leading-6 text-amber-100"
+            >
+              {lang === "en"
+                ? "What is your ambition? Which science subjects would help you achieve it?"
+                : "Apakah cita-cita anda? Apakah mata pelajaran sains yang dapat membantu anda mencapainya?"}
+            </p>
+          </section>
           <Chapter1Completion section="science" content={t} lang={lang} />
         </div>
 
