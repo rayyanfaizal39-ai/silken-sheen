@@ -385,7 +385,7 @@ function buildContent(lang: Chapter1Lang): Chapter1Content {
             { quantity: "Length", standardTool: "Ruler / measuring tape", higherAccuracyTool: "Vernier calipers (0.01 cm) / micrometer screw gauge (0.001 cm)", note: "Keep the eye perpendicular to the scale to avoid parallax error" },
             { quantity: "Mass", standardTool: "Lever balance / triple-beam balance", higherAccuracyTool: "Digital balance", note: "S.I. unit: kilogram (kg)" },
             { quantity: "Time", standardTool: "Stopwatch (0.1 s or 0.2 s)", higherAccuracyTool: "Digital stopwatch (0.01 s)", note: "S.I. unit: second (s)" },
-            { quantity: "Temperature", standardTool: "Laboratory thermometer (1°C) / clinical thermometer (0.1°C)", higherAccuracyTool: "Digital thermometer (0.1°C)", note: "Kelvin = °C + 273" },
+            { quantity: "Temperature", standardTool: "Laboratory thermometer (1°C)", higherAccuracyTool: "Clinical thermometer (0.1°C) / digital thermometer (0.1°C)", note: "Kelvin = °C + 273" },
             { quantity: "Electric current", standardTool: "Ammeter", higherAccuracyTool: "Digital ammeter (0.01 A)", note: "Measures current in a circuit" },
             { quantity: "Liquid volume", standardTool: "Measuring cylinder", note: "Read with the eye perpendicular to the scale" },
           ]
@@ -393,7 +393,7 @@ function buildContent(lang: Chapter1Lang): Chapter1Content {
             { quantity: "Panjang", standardTool: "Pembaris / pita pengukur", higherAccuracyTool: "Angkup vernier (0.01 cm) / tolok skru mikrometer (0.001 cm)", note: "Pastikan mata berserenjang dengan skala untuk mengelakkan ralat paralaks" },
             { quantity: "Jisim", standardTool: "Neraca tuas / neraca tiga alur", higherAccuracyTool: "Penimbang digital", note: "Unit S.I.: kilogram (kg)" },
             { quantity: "Masa", standardTool: "Jam randik (0.1 s atau 0.2 s)", higherAccuracyTool: "Jam randik digital (0.01 s)", note: "Unit S.I.: saat (s)" },
-            { quantity: "Suhu", standardTool: "Termometer makmal (1°C) / termometer klinik (0.1°C)", higherAccuracyTool: "Termometer digital (0.1°C)", note: "Kelvin = °C + 273" },
+            { quantity: "Suhu", standardTool: "Termometer makmal (1°C)", higherAccuracyTool: "Termometer klinik (0.1°C) / termometer digital (0.1°C)", note: "Kelvin = °C + 273" },
             { quantity: "Arus elektrik", standardTool: "Ammeter", higherAccuracyTool: "Ammeter digital (0.01 A)", note: "Menyukat arus dalam litar" },
             { quantity: "Isi padu cecair", standardTool: "Silinder penyukat", note: "Baca dengan mata berserenjang dengan skala" },
           ],

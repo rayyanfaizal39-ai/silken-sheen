@@ -54,7 +54,15 @@ function Text({ x, y, children }: { x: number; y: number; children: ReactNode })
 }
 
 /** Diagram labels follow the canonical instrument strings; drawings are shared across languages. */
-export function InstrumentVisual({ index, lang }: { index: number; lang: Lang }) {
+export function InstrumentVisual({
+  index,
+  lang,
+  caption = true,
+}: {
+  index: number;
+  lang: Lang;
+  caption?: boolean;
+}) {
   const en = lang === "en";
   if (index === 5)
     return (
@@ -84,8 +92,22 @@ export function InstrumentVisual({ index, lang }: { index: number; lang: Lang })
         "Angkup vernier / tolok skru mikrometer",
       ];
   return (
-    <Figure title={labels[index]} id={`instrument-${index}`}>
-      <Drawing label={labels[index]} viewBox={index === 6 ? "0 0 320 310" : undefined}>
+    <figure className="min-w-0" data-chapter1-diagram={`instrument-${index}`}>
+      {caption && (
+        <figcaption className="mb-3 text-sm font-bold text-teal-100">{labels[index]}</figcaption>
+      )}
+      <Drawing
+        label={labels[index]}
+        viewBox={
+          index === 6
+            ? "0 0 320 310"
+            : index === 2
+              ? "75 15 170 155"
+              : index === 4
+                ? "45 25 230 155"
+                : undefined
+        }
+      >
         {index === 0 && (
           <>
             <rect x="20" y="30" width="280" height="42" rx="2" />
@@ -97,9 +119,14 @@ export function InstrumentVisual({ index, lang }: { index: number; lang: Lang })
                 {n}
               </Text>
             ))}
-            <path d="M35 112h220q35 0 35 18t-35 18H50q-25 0-25-18t25-18M255 112v36" />
-            {Array.from({ length: 20 }, (_, i) => (
-              <path key={i} d={`M${50 + i * 10} 113v10`} />
+            <path
+              d={`${Array.from({ length: 53 }, (_, i) => `${i ? "L" : "M"}${30 + i * 5} ${122 + 12 * Math.sin((i * 5) / 34)}`).join(" ")} ${Array.from({ length: 53 }, (_, i) => `L${290 - i * 5} ${142 + 12 * Math.sin((260 - i * 5) / 34)}`).join(" ")}Z`}
+            />
+            {Array.from({ length: 26 }, (_, i) => (
+              <path
+                key={i}
+                d={`M${35 + i * 10} ${122 + 12 * Math.sin((5 + i * 10) / 34)}v${i % 5 ? 8 : 13}`}
+              />
             ))}
           </>
         )}
@@ -166,7 +193,7 @@ export function InstrumentVisual({ index, lang }: { index: number; lang: Lang })
         {index === 6 && (
           <>
             <Text x={15} y={18}>
-              {en ? "Vernier calipers" : "Angkup vernier"}
+              {caption ? (en ? "Vernier calipers" : "Angkup vernier") : "1"}
             </Text>
             <path d="M25 62h270v16H25zM25 62V32l14 12v18M25 78v48l14-12V78M91 62V38l-12 9v15M91 78v48l-15-12V78M295 70h16" />
             <rect x="68" y="58" width="46" height="30" />
@@ -177,7 +204,7 @@ export function InstrumentVisual({ index, lang }: { index: number; lang: Lang })
               <path key={i} d={`M${72 + i * 4} 80v6`} />
             ))}
             <Text x={15} y={164}>
-              {en ? "Micrometer screw gauge" : "Tolok skru mikrometer"}
+              {caption ? (en ? "Micrometer screw gauge" : "Tolok skru mikrometer") : "2"}
             </Text>
             <path d="M64 207c-47 0-50 85 5 85h39c34 0 43-23 43-49v-42h20M66 219c-30 0-29 60 3 60h36c21 0 33-12 33-36v-10h33M64 200v26h12v-26zM94 211h77v12H94z" />
             <rect x="171" y="201" width="38" height="32" />
@@ -189,7 +216,7 @@ export function InstrumentVisual({ index, lang }: { index: number; lang: Lang })
           </>
         )}
       </Drawing>
-    </Figure>
+    </figure>
   );
 }
 

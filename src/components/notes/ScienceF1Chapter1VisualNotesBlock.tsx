@@ -33,12 +33,12 @@ import {
 
 import {
   Chapter1Completion,
-  InstrumentVisual,
   MeasurementConceptVisual,
   ErrorVisual,
   PendulumFigure,
   DensityExplorer,
 } from "./blocks/Chapter1Completion";
+import { MeasuringInstrumentComparison } from "./blocks/MeasuringInstrumentComparison";
 type Lang = "en" | "bm";
 
 const ui = {
@@ -775,6 +775,9 @@ export function ScienceF1Chapter1VisualNotesBlock({
                   type="button"
                   role="tab"
                   aria-selected={instrument === index}
+                  id={`measurement-tab-${index}`}
+                  aria-controls="measurement-comparison-panel"
+                  data-measurement-tab={index}
                   onClick={() => setInstrument(index)}
                   className={`min-h-12 rounded-xl border px-3 text-left text-xs font-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-300 ${instrument === index ? "border-lime-300 bg-lime-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
                 >
@@ -782,21 +785,19 @@ export function ScienceF1Chapter1VisualNotesBlock({
                 </button>
               ))}
             </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl bg-white/5 p-4">
-                <p className="text-xs text-slate-400">{c.standard}</p>
-                <p className="mt-2 font-black text-white">
-                  {t.measuringInstruments.instruments[instrument].standardTool}
-                </p>
-                <InstrumentVisual index={instrument} lang={lang} />
-              </div>
-              <div className="rounded-xl bg-lime-300/[0.07] p-4">
-                <p className="text-xs text-lime-200">{c.accurate}</p>
-                <p className="mt-2 font-black text-white">
-                  {t.measuringInstruments.instruments[instrument].higherAccuracyTool ?? "—"}
-                </p>
-                {instrument === 0 && <InstrumentVisual index={6} lang={lang} />}
-              </div>
+            <div
+              id="measurement-comparison-panel"
+              role="tabpanel"
+              aria-labelledby={`measurement-tab-${instrument}`}
+              aria-live="polite"
+            >
+              <MeasuringInstrumentComparison
+                index={instrument}
+                item={t.measuringInstruments.instruments[instrument]}
+                lang={lang}
+                standardLabel={c.standard}
+                higherLabel={c.accurate}
+              />
             </div>
             <p className="mt-3 text-sm text-slate-300">
               {t.measuringInstruments.instruments[instrument].note}
