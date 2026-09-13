@@ -80,6 +80,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "7.1",
       title: "Cas Elektrostatik",
+      conceptQuestion: "Apakah Cas Elektrostatik?",
       intro:
         "Cas elektrik statik yang terkumpul pada sesuatu objek dikenali sebagai cas elektrostatik. Semua jirim mengandungi cas positif (proton) dan cas negatif (elektron). Apabila dua bahan berbeza digosokkan, hanya elektron berpindah — proton tidak bergerak. Objek yang memperoleh elektron menjadi bercas negatif; objek yang kehilangan elektron menjadi bercas positif; objek dengan bilangan proton dan elektron yang sama adalah neutral.",
       contextImages: [
@@ -292,6 +293,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "7.1",
       title: "Arus Elektrik",
+      conceptQuestion: "Apakah Arus Elektrik?",
       intro:
         "Apabila cas mengalir melalui suatu konduktor, aliran itu menghasilkan arus elektrik. Arus ialah kadar aliran cas elektrik melalui konduktor. Terdapat dua cara arah aliran ini diperihalkan, dan kedua-duanya bertentangan antara satu sama lain.",
       cards: [
@@ -347,6 +349,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "7.1",
       title: "Arus, Voltan dan Rintangan",
+      conceptQuestion: "Apakah Arus, Voltan dan Rintangan?",
       intro:
         "Tiga kuantiti elektrik yang perlu anda kenali, setiap satu dengan simbol, unit dan alat pengukurnya sendiri. Yang paling kerap diuji bukan sahaja apa yang diukur oleh setiap alat, tetapi bagaimana alat itu disambungkan ke dalam litar. Setiap litar lengkap dilukis menggunakan simbol piawai, bukan gambar komponen sebenar — kuasai simbol itu dahulu, dan rajah di bawah menjadi mudah dibaca.",
       contextImages: [
@@ -429,6 +432,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "7.1",
       title: "Hukum Ohm",
+      conceptQuestion: "Apakah Hukum Ohm?",
       intro:
         "Hukum Ohm menyatakan bahawa arus elektrik yang mengalir melalui suatu konduktor adalah berkadar terus dengan voltan yang merentasi dua hujung konduktor itu, dengan syarat suhu dan keadaan fizik lain adalah tetap. Hubungan ini ditulis sebagai V = IR.",
       remember:
@@ -493,6 +497,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "7.2",
       title: "Litar Bersiri dan Litar Selari",
+      conceptQuestion: "Apakah Litar Bersiri dan Litar Selari?",
       intro:
         "Litar bersiri menyambungkan komponen secara berturutan dalam **satu laluan tunggal**. Litar selari pula terbahagi kepada **beberapa cabang berasingan**. Perbezaan itu mengubah cara arus, voltan dan rintangan berkelakuan.",
       circuitSymbols: {
@@ -1111,6 +1116,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "7.3",
       title: "Sifat Magnet dan Medan Magnet",
+      conceptQuestion: "Apakah Medan Magnet?",
       intro:
         "Magnet boleh wujud secara semula jadi sebagai batu magnet, tetapi kebanyakan magnet yang digunakan hari ini diperbuat daripada bahan seperti **besi, keluli, kobalt dan nikel**. Kawasan di sekitar magnet yang wujud kesan daya oleh magnet dikenali sebagai **medan magnet**.",
       flipCards: [
@@ -1185,6 +1191,7 @@ export const scienceF2C7InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "7.3",
       title: "Elektromagnet dan Corak Medan Magnet",
+      conceptQuestion: "Apakah Elektromagnet?",
       intro:
         "Elektromagnet ialah **magnet sementara** — ia hanya menghasilkan medan magnet semasa arus mengalir. Arah medan magnet yang terhasil **ditentukan oleh arah arus elektrik**, dan corak medannya **bergantung pada bentuk konduktor yang digunakan**.",
       currentFieldPatterns: {

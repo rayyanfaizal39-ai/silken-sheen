@@ -31,6 +31,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.1",
       title: "Types of Forces",
+      conceptQuestion: "What is Force?",
       intro:
         "A force is a **push or a pull** acting on an object. A force cannot be seen, but its effects can always be observed. Almost every daily activity involves force — opening a can of food, pressing a switch, opening a door. Tap each type of force below to get to know it.",
       remember:
@@ -51,6 +52,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.1",
       title: "Characteristics of Force",
+      conceptQuestion: "What are the Characteristics of a Force?",
       intro:
         "Every force has three characteristics: a **magnitude** (how strong it is), a **direction**, and a **point of application (exactly where the force acts)**. That is why a force is drawn as an arrow — the length of the arrow shows the magnitude, the arrowhead shows the direction, and the tail sits on the point of application.",
       remember:
@@ -113,6 +115,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.1",
       title: "Action–Reaction Force Pair",
+      conceptQuestion: "What is an Action-Reaction Force Pair?",
       intro:
         "For every action force there is a reaction force of **equal magnitude acting in the opposite direction**. The three situations below show these force pairs clearly.",
       actionReactionPairs: {
@@ -168,6 +171,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Effects of Force",
+      conceptQuestion: "What Can Force Do?",
       intro:
         "A force cannot be seen directly, but its effects can always be detected. There are **five main effects** of a force acting on an object.",
       flipCards: [
@@ -185,6 +189,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Buoyancy and Density",
+      conceptQuestion: "What is Buoyant Force?",
       intro:
         "Buoyant force is the **upthrust** a liquid exerts on an object in it. Buoyant force can be determined with a spring balance, by comparing the weight of the object in air with its weight while submerged.",
       buoyancySchematic: {
@@ -237,6 +242,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Levers",
+      conceptQuestion: "What is a Lever?",
       intro:
         "A lever is a **bar that turns about one fixed point**. A lever has three parts: the fulcrum (the fixed supporting point), the load (the object to be moved) and the effort (the push or pull applied to the bar). Levers let us do work more easily, often using a smaller force.",
       leverClasses: {
@@ -294,6 +300,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Moment of Force",
+      conceptQuestion: "What is the Moment of Force?",
       intro:
         "A force applied to an object can turn that object about a fixed point called the **pivot or fulcrum**. The turning effect produced is called the **moment of force**.",
       remember:
@@ -347,6 +354,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Pressure",
+      conceptQuestion: "What is Pressure?",
       intro:
         "You can press a drawing pin into a board, but you cannot press a coin into a board even using the same force. The reason is pressure: pressure is defined as **force per unit surface area**, with the force acting perpendicular to that surface. The S.I. unit of pressure is the pascal (Pa); 1 Pa is equal to 1 newton per square metre (N m⁻²).",
       remember:
@@ -437,6 +445,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Gas Pressure",
+      conceptQuestion: "What is Gas Pressure?",
       intro:
         "The **kinetic theory of gases** states that air molecules move randomly at all times and collide with the walls of their container. These collisions produce a force pushing on the container walls — and that force per unit area is what we call **air pressure**.",
       quickExplanation:
@@ -473,6 +482,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Atmospheric Pressure",
+      conceptQuestion: "What is Atmospheric Pressure?",
       intro:
         "Atmospheric pressure is **the pressure exerted by the atmosphere on the surface of the Earth and on all bodies on it**. Use the terms correctly: air pressure is the pressure exerted by air in general, while atmospheric pressure refers specifically to the pressure exerted by the Earth's atmosphere.",
       cards: [
@@ -528,6 +538,7 @@ export const scienceF2C8InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "8.2",
       title: "Liquid Pressure",
+      conceptQuestion: "What is Liquid Pressure?",
       intro:
         "**Pressure in a liquid increases as depth increases.** A diver feels pressure because of the weight of the water acting on their body, and that pressure grows the deeper they dive.",
       depthPressure: {

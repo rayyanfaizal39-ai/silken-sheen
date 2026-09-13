@@ -30,6 +30,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "10.1",
       title: "Sound Production and Propagation",
+      conceptQuestion: "What is Sound?",
       intro:
         "Sound is **a form of energy produced by vibration**. When an object vibrates, the particles around it vibrate too and collide with neighbouring particles. The vibration is passed from one particle to the next as a wave until it reaches a listener's ear. Because a sound wave has to be passed along by particles, sound **needs a medium to propagate and cannot travel through a vacuum**.",
       contextImages: [
@@ -98,6 +99,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "10.1",
       title: "Reflection, Absorption and Speed of Sound",
+      conceptQuestion: "How Does Sound Reflect and Travel?",
       intro:
         "When a sound wave strikes the surface of an object, **part of it is reflected and part of it is absorbed**. How much is reflected or absorbed depends on the type of surface. Sound waves also **propagate at different speeds in different media**, depending on how closely the particles of that medium are packed together.",
       contextImages: [
@@ -171,6 +173,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "10.2",
       title: "Frequency, Amplitude and the Oscilloscope",
+      conceptQuestion: "What are Frequency and Amplitude?",
       intro:
         "Frequency is **the number of complete vibrations in one second**, and it is measured in hertz (Hz). Amplitude is **the maximum displacement of the wave from the equilibrium position**. Both properties can be seen on the screen of a cathode-ray oscilloscope (C.R.O.) when an audio signal generator is connected to a loudspeaker and the oscilloscope.",
       remember:
@@ -214,6 +217,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "10.2",
       title: "Loudness and Pitch of Sound",
+      conceptQuestion: "What are Loudness and Pitch?",
       intro:
         "Our ears can tell sounds apart because every sound has its own loudness and pitch. **The loudness of a sound depends on the amplitude of the sound wave**, while **the pitch of a sound depends on the frequency of the sound wave**.",
       cards: [
@@ -296,6 +300,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "10.3",
       title: "Echo and the Doppler Effect",
+      conceptQuestion: "What are Echo and the Doppler Effect?",
       intro:
         "The reflection of sound waves produces phenomena we meet every day. An echo is produced when **a sound wave is reflected back to the listener from a hard surface**. The Doppler effect happens when there is **relative movement between a sound source and an observer**.",
       quickExplanation:
@@ -361,6 +366,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "10.3",
       title: "Sonar, Sonogram and Echolocation",
+      conceptQuestion: "What is Ultrasound?",
       intro:
         "Ultrasound is a sound wave with **a frequency greater than 20 000 Hz**. Ultrasound **cannot be heard by humans but can be heard by animals such as bats**. The reflection of ultrasound waves is used across several sectors, because the reflected sound carries information about whatever it struck.",
       contextImages: [
@@ -429,6 +435,7 @@ export const scienceF2C10InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "10.3",
       title: "Human and Animal Hearing Limits",
+      conceptQuestion: "What is the Human Hearing Range?",
       intro:
         "The human ear can only detect sound within a certain frequency range. The frequency of sound that the human ear can detect is **limited to the range 20 Hz to 20 000 Hz**. This range **narrows as we grow older**, because the ear becomes less sensitive to sound frequencies. Animals have their own hearing limits, and some reach far beyond the human range.",
       hearingRange: {

@@ -2326,7 +2326,24 @@ export type ScienceInteractiveSection = {
    * standard; the shared heading is the point.
    */
   standardTitle?: string;
+  /**
+   * A short "What is X?" / "Apakah X?" concept-opener question rendered as
+   * its own heading directly above `intro`, matching the reference pattern
+   * used by Chapter 1's "What is Biodiversity?". Omit for a section that
+   * does not open on one major definition.
+   */
+  conceptQuestion?: string;
   intro?: string;
+  /**
+   * A second "What is X?" / "Apakah X?" concept-opener, for a definition that
+   * lives in `remember`/`quickExplanation` further down a section that already
+   * opened on a different concept via `conceptQuestion` — e.g. a section whose
+   * top teaches one term, then introduces a second, related term partway
+   * through via a `remember` callout that otherwise renders with no heading
+   * at all. Omit when the section has only one concept, or when `remember`/
+   * `quickExplanation` is a supporting note rather than a fresh definition.
+   */
+  rememberQuestion?: string;
   cards?: ScienceInteractiveCard[];
   flipCards?: FlipCardItem[];
   accordions?: ScienceInteractiveCard[];

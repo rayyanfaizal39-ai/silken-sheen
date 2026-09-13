@@ -13,6 +13,7 @@ export const scienceF2C13InteractiveBM: ScienceF2InteractiveContent = {
     {
       number: "13.1",
       title: "Meteoroid, Asteroid dan Komet",
+      conceptQuestion: "Apakah Meteoroid, Asteroid dan Komet?",
       intro:
         "Selain galaksi, bintang dan planet, sistem suria kita turut dipenuhi jasad-jasad kecil lain yang mengembara — meteoroid, asteroid dan komet. Ketiga-tiganya berbeza dari segi **saiz, komposisi dan cara pergerakan** mereka mengelilingi Matahari.",
       cards: [
@@ -111,6 +112,7 @@ export const scienceF2C13InteractiveBM: ScienceF2InteractiveContent = {
         tailRule: "Ekor komet sentiasa dalam keadaan menjauhi Matahari disebabkan tiupan angin suria dari Matahari.",
         scaleNote: "Rajah tidak mengikut skala sebenar.",
       },
+      rememberQuestion: "Bagaimanakah Meteoroid Menjadi Meteorit?",
       remember:
         "Objek yang sama menukar nama mengikut lokasinya: meteoroid di angkasa lepas, meteor apabila terbakar di atmosfera Bumi, dan meteorit jika ia berjaya sampai ke permukaan Bumi.",
       checks: [

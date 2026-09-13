@@ -14,6 +14,14 @@ export type ScienceNotesSection = {
   label: string;
   title: string;
   description?: string;
+  /**
+   * A short "What is X?" / "Apakah X?" concept-opener question, rendered as
+   * its own heading directly above `description` — the same question-first
+   * pattern Chapter 1 uses for "What is Biodiversity?". Omit for a section
+   * that does not open on one major definition (e.g. a pure recap or a
+   * section whose own content already leads with its own heading).
+   */
+  conceptQuestion?: string;
   content: ReactNode;
 };
 
@@ -99,6 +107,11 @@ export function ScienceSectionedNotesShell({
           {active.title}
         </h2>
         <ResearchModuleMeta index={current} total={total} title={active.title} lang={lang} />
+        {active.conceptQuestion && (
+          <h3 className="font-display mb-2 text-base font-bold text-foreground">
+            {active.conceptQuestion}
+          </h3>
+        )}
         {active.description ? (
           <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">
             <ScienceEmphasis text={active.description} />

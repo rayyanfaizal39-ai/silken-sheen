@@ -42,6 +42,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "3.1.1",
       title: "Classes of Food",
+      conceptQuestion: "What are the Classes of Food?",
       intro:
         "A healthy body needs seven classes of food in suitable proportions: carbohydrate, protein, fat, vitamin, mineral, fibre and water.",
       cards: [
@@ -355,6 +356,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "3.2.1",
       title: "Balanced Diet & Food Pyramid",
+      conceptQuestion: "What is a Balanced Diet?",
       intro:
         "A balanced diet is a diet that contains all food classes in the right quantities required by the body, guided by the food pyramid.",
       pyramid: {
@@ -481,6 +483,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "3.2.2",
       title: "Calorific Value of Food",
+      conceptQuestion: "What is Calorific Value?",
       intro:
         "The total energy released when 1 g of food is completely oxidised is called the energy value, or calorific value, measured in calories (cal) or joules (J).",
       comparison: {
@@ -620,6 +623,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "3.3.1",
       title: "Human Digestive System",
+      conceptQuestion: "What is Digestion?",
       intro:
         "Digestion is the physical and chemical breakdown of large, complex food into smaller, soluble molecules that the body can absorb.",
       digestiveSystem: {
@@ -923,6 +927,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "3.4.1",
       title: "Absorption of Digested Products",
+      conceptQuestion: "What is Absorption?",
       intro:
         "Villus (singular) / villi (plural): the wall of the small intestine has millions of tiny finger-like projections called villi, which increase the surface area for absorbing digested food.",
       cards: [
@@ -1155,6 +1160,7 @@ export const scienceF2C3InteractiveDLP: ScienceF2InteractiveContent = {
     {
       number: "3.4.2",
       title: "Assimilation & System Cooperation",
+      conceptQuestion: "What is Assimilation?",
       intro:
         "Assimilation is the process of distributing the end products of digestion for use by body cells. Getting those molecules from the villi to every cell requires three body systems to work together.",
       systemFlow: {
