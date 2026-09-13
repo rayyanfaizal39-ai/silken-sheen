@@ -17,6 +17,9 @@ import {
 import type { Chapter2Content } from "@/content/form1/science/chapter-2/chapter2-content";
 import { localizeChapter2PracticalAreas } from "@/content/form1/science/chapter-2/chapter2-activities";
 import { Chapter2CellDiagrams } from "./blocks/Chapter2CellDiagrams";
+import { Chapter2OrganismDiagrams } from "./blocks/Chapter2OrganismDiagrams";
+import { Chapter2SpecialisedDiagrams } from "./blocks/Chapter2SpecialisedDiagrams";
+import { Chapter2OrganisationDiagrams } from "./blocks/Chapter2OrganisationDiagrams";
 import {
   CoverSlipTechnique,
   MicroscopeFields,
@@ -483,51 +486,24 @@ export function ScienceF1Chapter2VisualNotesBlock({
           <p className="text-sm leading-6 text-slate-300">
             {t.unicellularMulticellular.definition}
           </p>
-          <div className="grid gap-4 lg:grid-cols-2">
-            <Panel>
-              <h3 className="font-black text-cyan-200">{c.unicellular}</h3>
-              <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                {t.unicellularMulticellular.unicellular.map((item) => (
-                  <div key={item.id} className="rounded-xl bg-white/5 p-3">
-                    <p className="font-black text-white">{item.name}</p>
-                    <p className="mt-1 text-xs leading-5 text-slate-400">{item.note}</p>
-                  </div>
-                ))}
-              </div>
-            </Panel>
-            <Panel>
-              <h3 className="font-black text-emerald-200">{c.multicellular}</h3>
-              <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                {t.unicellularMulticellular.multicellular.map((item) => (
-                  <div key={item.id} className="rounded-xl bg-white/5 p-3">
-                    <p className="font-black text-white">{item.name}</p>
-                    <p className="mt-1 text-xs leading-5 text-slate-400">{item.note}</p>
-                  </div>
-                ))}
-              </div>
-            </Panel>
-          </div>
-          <div className="grid gap-4 lg:grid-cols-2">
-            {[
-              { title: c.specialisedAnimal, items: t.animalCellTypes },
-              { title: c.specialisedPlant, items: t.plantCellTypes },
-            ].map((group) => (
-              <Panel key={group.title}>
-                <h3 className="font-black text-white">{group.title}</h3>
-                <div className="mt-4 space-y-2">
-                  {group.items.map((item) => (
-                    <div
-                      key={item.id}
-                      className="rounded-xl border border-white/10 bg-white/[0.035] p-3"
-                    >
-                      <p className="font-black text-cyan-100">{item.name}</p>
-                      <p className="mt-1 text-xs leading-5 text-slate-300">{item.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </Panel>
-            ))}
-          </div>
+          <Chapter2OrganismDiagrams
+            content={t}
+            lang={lang}
+            unicellularTitle={c.unicellular}
+            multicellularTitle={c.multicellular}
+          />
+          <Chapter2SpecialisedDiagrams
+            items={t.animalCellTypes}
+            title={c.specialisedAnimal}
+            group="animal"
+            lang={lang}
+          />
+          <Chapter2SpecialisedDiagrams
+            items={t.plantCellTypes}
+            title={c.specialisedPlant}
+            group="plant"
+            lang={lang}
+          />
         </div>
 
         <div className="space-y-6">
@@ -537,37 +513,7 @@ export function ScienceF1Chapter2VisualNotesBlock({
               <Network className="h-6 w-6 text-cyan-300" />
               {c.hierarchy}
             </h3>
-            <div className="mt-5 grid gap-2 sm:grid-cols-5">
-              {t.organisationHierarchy.map((item, index) => (
-                <div
-                  key={item.level}
-                  className="relative rounded-xl border border-cyan-300/15 bg-cyan-300/[0.06] p-3"
-                >
-                  <span className="font-mono text-xs font-black text-emerald-300">
-                    0{index + 1}
-                  </span>
-                  <p className="mt-1 font-black text-white">{item.level}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-400">{item.description}</p>
-                  {index < 4 && (
-                    <ChevronRight className="absolute -right-4 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[#061923] p-1 text-cyan-300 sm:block" />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl bg-white/5 p-3">
-                <p className="text-xs font-black uppercase text-cyan-300">{c.animalExample}</p>
-                <p className="mt-2 text-sm font-bold text-white">
-                  {t.organisationExamples.animal.join(" → ")}
-                </p>
-              </div>
-              <div className="rounded-xl bg-white/5 p-3">
-                <p className="text-xs font-black uppercase text-emerald-300">{c.plantExample}</p>
-                <p className="mt-2 text-sm font-bold text-white">
-                  {t.organisationExamples.plant.join(" → ")}
-                </p>
-              </div>
-            </div>
+            <Chapter2OrganisationDiagrams content={t} />
           </Panel>
           <Panel>
             <div className="flex items-center gap-3">

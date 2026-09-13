@@ -23,12 +23,14 @@ export interface CellTypeCard {
   id: string;
   name: string;
   description: string;
+  adaptation: string;
 }
 
 export interface OrganismExample {
   id: string;
   name: string;
   note?: string;
+  recognitionClue: string;
 }
 
 export interface OrganisationLevel {
@@ -110,6 +112,7 @@ function localizeOrganisms(
       id: organism.id,
       name: localize(organism.name, lang),
       note: localize(organism.note, lang),
+      recognitionClue: localize(organism.recognitionClue, lang),
     }));
 }
 
@@ -120,6 +123,7 @@ function localizeCells(lang: Chapter2Lang, group: "animal" | "plant"): CellTypeC
       id: cell.id,
       name: localize(cell.name, lang),
       description: localize(cell.description, lang),
+      adaptation: localize(cell.adaptation, lang),
     }));
 }
 
