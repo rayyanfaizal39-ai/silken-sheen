@@ -20,6 +20,7 @@ import { Chapter2CellDiagrams } from "./blocks/Chapter2CellDiagrams";
 import { Chapter2OrganismDiagrams } from "./blocks/Chapter2OrganismDiagrams";
 import { Chapter2SpecialisedDiagrams } from "./blocks/Chapter2SpecialisedDiagrams";
 import { Chapter2OrganisationDiagrams } from "./blocks/Chapter2OrganisationDiagrams";
+import { BodySystemsVisual } from "./blocks/Chapter2BodySystemsVisual";
 import {
   CoverSlipTechnique,
   MicroscopeFields,
@@ -301,9 +302,7 @@ export function ScienceF1Chapter2VisualNotesBlock({
     .find((area) => area.id === "photosynthesis-investigation-hub")
     ?.investigations?.find((item) => item.id === "starch");
   const [structure, setStructure] = useState(0);
-  const [system, setSystem] = useState(0);
   const selectedStructure = t.cellStructures[structure];
-  const selectedSystem = t.bodySystems[system];
 
   return (
     <section
@@ -520,31 +519,30 @@ export function ScienceF1Chapter2VisualNotesBlock({
               <HeartPulse className="h-7 w-7 text-rose-300" />
               <h3 className="font-black text-white">{c.systems}</h3>
             </div>
-            <div
-              className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4"
-              role="tablist"
-              aria-label={c.systems}
-            >
-              {t.bodySystems.map((item, index) => (
-                <button
-                  key={item.name}
-                  type="button"
-                  role="tab"
-                  aria-selected={system === index}
-                  onClick={() => setSystem(index)}
-                  className={`min-h-14 cursor-pointer rounded-xl border p-2 text-left text-xs font-black transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 ${system === index ? "border-rose-300 bg-rose-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-            <div className="mt-4 rounded-2xl bg-slate-950/45 p-4">
-              <h4 className="text-xl font-black text-white">{selectedSystem.name}</h4>
-              <p className="mt-2 text-xs font-black uppercase tracking-wider text-rose-200">
-                {c.organs}: {selectedSystem.organs}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{selectedSystem.function}</p>
-            </div>
+            <BodySystemsVisual content={t} lang={lang} />
+          </Panel>
+          <Panel>
+            <fieldset data-learning-standard="2.1.7" className="min-w-0">
+              <legend className="text-lg font-black text-white">
+                <span className="mr-2 font-mono text-sm text-emerald-300">2.1.7</span>
+                {t.appreciation.title}
+              </legend>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{t.appreciation.body}</p>
+              <div className="mt-4 space-y-2">
+                {t.appreciation.reflectionItems.map((item, index) => (
+                  <label
+                    key={index}
+                    className="flex min-h-14 cursor-pointer items-start gap-3 rounded-xl border border-white/15 bg-white/5 p-3 text-sm leading-6 text-slate-100 hover:bg-white/10"
+                  >
+                    <input
+                      type="checkbox"
+                      className="mt-1 h-5 w-5 shrink-0 accent-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                    />
+                    {item}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
           </Panel>
         </div>
 
