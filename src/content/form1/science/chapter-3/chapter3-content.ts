@@ -123,7 +123,7 @@ const en: Chapter3Content = {
     meaning:
       "Homeostasis refers to the maintenance of the internal environment in the body of an organism — such as temperature, water, pH and blood pressure — in a balanced and stable condition, so all living processes can work well.",
     etymology:
-      "Homeostasis comes from two Greek words: 'homeo' meaning 'similar' and 'stasis' meaning 'stable'.",
+      "Homeostasis comes from two Greek words: 'homeo' meaning 'same' and 'stasis' meaning 'not moving'.",
     importance:
       "If internal conditions are not balanced — for example if temperature is too high — the cells of the organism may die.",
   },
@@ -339,7 +339,7 @@ const bm: Chapter3Content = {
     meaning:
       "Homeostasis merujuk kepada pengekalan persekitaran dalaman badan organisma — seperti suhu, kandungan air, pH dan tekanan darah — dalam keadaan seimbang dan stabil, supaya semua proses hidup dapat berfungsi dengan baik.",
     etymology:
-      "Homeostasis berasal daripada dua perkataan Greek: 'homeo' bermaksud 'serupa' dan 'stasis' bermaksud 'stabil'.",
+      "Homeostasis berasal daripada dua perkataan Greek: 'homeo' bermaksud 'sama' dan 'stasis' bermaksud 'tidak bergerak'.",
     importance:
       "Jika keadaan dalaman tidak seimbang — contohnya jika suhu terlalu tinggi — sel organisma boleh mati.",
   },

@@ -56,9 +56,21 @@ describe("Science Form 1 Chapter 3 Pass 1 live renderer", () => {
         false,
       );
     });
-    it(`${lang}: meaning, examples and frozen word-origin and importance content are preserved`, () => {
+    it(`${lang}: meaning, examples, corrected word origin and importance are rendered`, () => {
       const html = render();
       for (const text of Object.values(content.definition)) expect(html).toContain(escape(text));
+      expect(content.definition.etymology).toContain(
+        lang === "bm" ? "'homeo' bermaksud 'sama'" : "'homeo' meaning 'same'",
+      );
+      expect(content.definition.etymology).toContain(
+        lang === "bm" ? "'stasis' bermaksud 'tidak bergerak'" : "'stasis' meaning 'not moving'",
+      );
+      expect(html).toContain(
+        lang === "bm" ? "Proses Kawalan Homeostasis" : "Homeostatic Control Process",
+      );
+      expect(html).not.toMatch(
+        /negative-feedback|maklum balas negatif|Expected pulse range|Julat nadi dijangka/,
+      );
       expect(content.definition.meaning).toMatch(/pH/);
       expect(content.definition.meaning).toContain(
         lang === "bm" ? "tekanan darah" : "blood pressure",
@@ -153,7 +165,7 @@ describe("Science Form 1 Chapter 3 Pass 1 live renderer", () => {
         expect(html).not.toMatch(/Rambut menegak rata|Rambut tegak berdiri/);
       }
     });
-    it(`${lang}: Experiment 3.1 has source variables and ten-minute fan OFF/ON procedure with blank observations`, () => {
+    it(`${lang}: Experiment 3.1 has source variables and ten-minute fan OFF/ON procedure without worksheet inputs`, () => {
       const html = renderToStaticMarkup(<SweatingExperimentVisual content={content} lang={lang} />);
       const experiment = content.sweatExperiment;
       expect(render()).toContain('data-experiment="3.1"');
@@ -173,13 +185,12 @@ describe("Science Form 1 Chapter 3 Pass 1 live renderer", () => {
       expect(html).toContain('data-fan-condition="on"');
       expect(html.match(/data-fan-airflow=/g)).toHaveLength(1);
       expect(html.match(/data-stopwatch=/g)).toHaveLength(2);
-      const table = html.match(/<table[\s\S]*?<\/table>/)![0];
-      expect(table.match(/<input /g)).toHaveLength(2);
-      expect(table).not.toMatch(/\bvalue=|\bplaceholder=/);
+      expect(html).not.toMatch(/<table|<input/);
+      expect(html).toContain("<details");
       expect(experiment.sequence[0]).toContain("10");
       expect(experiment.sequence[2]).toContain("10");
     });
-    it(`${lang}: Experiment 3.2 has rest, ten-minute walk/jog, one-minute wrist measurement and blank measured results`, () => {
+    it(`${lang}: Experiment 3.2 has rest, ten-minute walk/jog, one-minute wrist measurement and compact conclusion without worksheet inputs`, () => {
       const html = renderToStaticMarkup(<PulseExperimentVisual content={content} lang={lang} />);
       const experiment = content.pulseExperiment;
       expect(render()).toContain('data-experiment="3.2"');
@@ -196,23 +207,18 @@ describe("Science Form 1 Chapter 3 Pass 1 live renderer", () => {
       expect(experiment.countDurationMinutes).toBe(1);
       for (const activity of experiment.activities)
         expect(html).toContain(`data-activity="${activity.id}"`);
-      for (const text of [
-        experiment.title,
-        experiment.problem,
-        experiment.hypothesis,
-        experiment.purpose,
-        experiment.apparatus,
-        experiment.conclusion,
-        ...experiment.sequence,
-        ...Object.values(experiment.variables),
-      ])
+      for (const text of [experiment.title, experiment.sequence[1], experiment.conclusion])
         expect(html).toContain(escape(text));
       expect(html).toContain('data-two-fingers="true"');
       expect(html).toContain('data-pulse-point="true"');
-      const table = html.match(/<table[^>]*data-pulse-results="true"[\s\S]*?<\/table>/)![0];
-      expect(table.match(/type="number"/g)).toHaveLength(12);
-      expect(table.match(/type="text"/g)).toHaveLength(4);
-      expect(table).not.toMatch(/\bvalue=|\bplaceholder=/);
+      expect(html).not.toMatch(/<table|<input|<ol/);
+      expect(html).not.toContain(escape(experiment.sequence[2]));
+      // Full textbook practical data remains available independently of the compact Notes view.
+      expect(experiment.problem).toBeTruthy();
+      expect(experiment.hypothesis).toBeTruthy();
+      expect(experiment.apparatus).toBeTruthy();
+      expect(Object.values(experiment.variables).every(Boolean)).toBe(true);
+      expect(experiment.sequence.length).toBeGreaterThanOrEqual(3);
       expect(html).not.toMatch(/70[–-]80|90[–-]110|130[–-]160|\bbpm\b/);
     });
     it(`${lang}: deferred animal, plant and appreciation content is still rendered`, () => {

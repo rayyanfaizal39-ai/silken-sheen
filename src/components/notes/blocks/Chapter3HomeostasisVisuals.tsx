@@ -42,17 +42,12 @@ const copy = {
     fixed: "Fixed variable",
     apparatus: "Materials and apparatus",
     procedure: "Procedure",
-    results: "Results",
     conclusion: "Conclusion",
-    surrounding: "Surrounding condition",
-    sweat: "Presence of sweat",
     fanOff: "Fan OFF",
     fanOn: "Fan ON",
     minutes: "minutes",
     minute: "minute",
     pulse: "Pulse count",
-    student: "Student name",
-    group: "Group number",
   },
   bm: {
     normal: "Julat normal dipulihkan",
@@ -90,17 +85,12 @@ const copy = {
     fixed: "Pemboleh ubah dimalarkan",
     apparatus: "Bahan dan radas",
     procedure: "Prosedur",
-    results: "Keputusan",
     conclusion: "Kesimpulan",
-    surrounding: "Suhu persekitaran",
-    sweat: "Kehadiran peluh",
     fanOff: "Kipas tidak dipasang",
     fanOn: "Kipas dipasang",
     minutes: "minit",
     minute: "minit",
     pulse: "Kiraan nadi",
-    student: "Nama murid",
-    group: "Nombor kumpulan",
   },
 } as const;
 const panel = "min-w-0 rounded-2xl border border-white/15 bg-[#071923] p-4 sm:p-5";
@@ -656,32 +646,12 @@ export function SweatingExperimentVisual({
           </figure>
         ))}
       </div>
-      <Procedure steps={experiment.sequence} lang={lang} />
-      <h3 className="mb-3 mt-5 font-bold text-cyan-200">{c.results}</h3>
-      <table className="w-full text-left text-sm">
-        <thead>
-          <tr>
-            <th className="border border-white/15 p-3">{c.surrounding}</th>
-            <th className="border border-white/15 p-3">{c.sweat}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {experiment.conditions.map((condition) => (
-            <tr key={condition}>
-              <th scope="row" className="border border-white/15 p-3 font-medium">
-                {condition}
-              </th>
-              <td className="border border-white/15 p-3">
-                <input
-                  type="text"
-                  aria-label={`${condition}: ${c.sweat}`}
-                  className="min-h-11 w-full rounded-lg border border-white/20 bg-slate-950/40 px-2 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <details className="rounded-xl border border-white/10 p-3">
+        <summary className="cursor-pointer text-sm font-bold text-cyan-200">{c.procedure}</summary>
+        <div className="mt-3">
+          <Procedure steps={experiment.sequence} lang={lang} />
+        </div>
+      </details>
       <p className="mt-4 text-sm leading-6 text-emerald-200">
         {c.conclusion}: {experiment.conclusion}
       </p>
@@ -750,73 +720,33 @@ export function PulseExperimentVisual({ content, lang }: { content: Chapter3Cont
   const experiment = content.pulseExperiment;
   return (
     <section data-experiment="3.2" className={panel}>
-      <PracticalIntroduction experiment={experiment} notice={content.practicalNotice} lang={lang} />
-      <div data-activity-sequence="true" className="my-4 grid grid-cols-3 gap-2">
-        {experiment.activities.map((activity, i) => (
-          <figure key={activity.id} className="relative rounded-xl border border-white/10 p-2">
-            <h3 className="text-center text-sm font-bold">{activity.label}</h3>
-            <ActivityDiagram id={activity.id} label={activity.label} />
-            {activity.durationMinutes !== undefined && (
-              <p className="text-center text-sm font-bold text-cyan-200">
-                {activity.durationMinutes} {c.minutes}
-              </p>
-            )}
-            {i < 2 && (
-              <span
-                aria-hidden="true"
-                className="absolute -right-3 top-1/2 z-10 text-xl text-cyan-200"
-              >
-                →
-              </span>
-            )}
-          </figure>
-        ))}
-      </div>
-      <WristPulseDiagram content={content} lang={lang} />
-      <Procedure steps={experiment.sequence} lang={lang} />
-      <h3 className="mb-3 mt-5 font-bold text-cyan-200">
-        {c.results} · {c.pulse}
-      </h3>
-      <div className="overflow-x-auto">
-        <table data-pulse-results="true" className="w-full min-w-[560px] text-left text-sm">
-          <thead>
-            <tr>
-              {[c.group, c.student, ...experiment.activities.map((activity) => activity.label)].map(
-                (label) => (
-                  <th key={label} className="border border-white/15 p-3">
-                    {label}
-                  </th>
-                ),
+      <h3 className="text-xl font-black text-white">{experiment.title}</h3>
+      <div className="grid items-center gap-4 md:grid-cols-[3fr_2fr]">
+        <div data-activity-sequence="true" className="my-4 grid grid-cols-3 gap-2">
+          {experiment.activities.map((activity, i) => (
+            <figure key={activity.id} className="relative rounded-xl border border-white/10 p-2">
+              <h3 className="text-center text-sm font-bold">{activity.label}</h3>
+              <ActivityDiagram id={activity.id} label={activity.label} />
+              {activity.durationMinutes !== undefined && (
+                <p className="text-center text-sm font-bold text-cyan-200">
+                  {activity.durationMinutes} {c.minutes}
+                </p>
               )}
-            </tr>
-          </thead>
-          <tbody>
-            {[1, 2, 3, 4].map((group) => (
-              <tr key={group}>
-                <th scope="row" className="border border-white/15 p-3">
-                  {group}
-                </th>
-                <td className="border border-white/15 p-2">
-                  <input
-                    type="text"
-                    aria-label={`${c.group} ${group}: ${c.student}`}
-                    className="min-h-11 w-full rounded-lg border border-white/20 bg-slate-950/40 px-2 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
-                  />
-                </td>
-                {experiment.activities.map((activity) => (
-                  <td key={activity.id} className="border border-white/15 p-2">
-                    <input
-                      type="number"
-                      min="0"
-                      aria-label={`${c.group} ${group}: ${activity.label} — ${c.pulse}`}
-                      className="min-h-11 w-full rounded-lg border border-white/20 bg-slate-950/40 px-2 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
-                    />
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+              {i < 2 && (
+                <span
+                  aria-hidden="true"
+                  className="absolute -right-3 top-1/2 z-10 text-xl text-cyan-200"
+                >
+                  →
+                </span>
+              )}
+            </figure>
+          ))}
+        </div>
+        <div>
+          <WristPulseDiagram content={content} lang={lang} />
+          <p className="text-sm leading-6 text-slate-300">{experiment.sequence[1]}</p>
+        </div>
       </div>
       <p className="mt-4 text-sm font-bold leading-6 text-emerald-200">
         {c.conclusion}: {experiment.conclusion}

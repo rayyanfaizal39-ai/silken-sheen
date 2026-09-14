@@ -24,8 +24,7 @@ const ui = {
   en: {
     eyebrow: "Chapter 3 visual map",
     title: "Coordination and Response",
-    subtitle:
-      "Follow the negative-feedback loop through water balance, body temperature, pulse rate, animal adaptations and plant transpiration.",
+    subtitle: "Homeostatic Control Process",
     path: [
       ["3.1", "Homeostasis in Living Things"],
       ["", "Homeostatic Control Process"],
@@ -76,7 +75,7 @@ const ui = {
     meaning: "What homeostasis means",
     origin: "Word origin",
     importance: "Why stability matters",
-    controlLoop: "The negative-feedback control loop",
+    controlLoop: "Homeostatic Control Process",
     loop: [
       "Internal change",
       "Receptor detects",
@@ -98,12 +97,8 @@ const ui = {
     chooseCondition: "Choose the surrounding condition",
     hot: "Hot day",
     cold: "Cold day",
-    coreTemperature: "Why 37°C matters",
-    enzymeText:
-      "Human enzymes work best near 37°C. Low temperature slows enzyme activity; very high core temperature can denature enzymes and damage cells.",
     practical: "Compulsory investigation",
     method: "Method sequence",
-    expected: "Expected pulse range",
     conclusion: "Conclusion",
     chooseAnimal: "Choose an animal adaptation",
     transpiration: "Transpiration",
@@ -138,8 +133,7 @@ const ui = {
   bm: {
     eyebrow: "Peta visual Bab 3",
     title: "Koordinasi dan Gerak Balas",
-    subtitle:
-      "Ikuti gelung maklum balas negatif melalui keseimbangan air, suhu badan, kadar nadi, adaptasi haiwan dan transpirasi tumbuhan.",
+    subtitle: "Proses Kawalan Homeostasis",
     path: [
       ["3.1", "Homeostasis dalam Benda Hidup"],
       ["", "Proses Kawalan Homeostasis"],
@@ -190,7 +184,7 @@ const ui = {
     meaning: "Maksud homeostasis",
     origin: "Asal perkataan",
     importance: "Mengapa kestabilan penting",
-    controlLoop: "Gelung kawalan maklum balas negatif",
+    controlLoop: "Proses Kawalan Homeostasis",
     loop: [
       "Perubahan dalaman",
       "Reseptor mengesan",
@@ -212,12 +206,8 @@ const ui = {
     chooseCondition: "Pilih keadaan persekitaran",
     hot: "Hari panas",
     cold: "Hari sejuk",
-    coreTemperature: "Mengapa 37°C penting",
-    enzymeText:
-      "Enzim manusia berfungsi paling baik sekitar 37°C. Suhu rendah memperlahankan aktiviti enzim; suhu teras yang sangat tinggi boleh menyahaslikan enzim dan merosakkan sel.",
     practical: "Penyiasatan wajib",
     method: "Urutan kaedah",
-    expected: "Julat nadi dijangka",
     conclusion: "Kesimpulan",
     chooseAnimal: "Pilih adaptasi haiwan",
     transpiration: "Transpirasi",
@@ -324,6 +314,7 @@ export function ScienceF1Chapter3VisualNotesBlock({
           <h1 className="mt-3 max-w-4xl font-display text-4xl font-black leading-[1.04] text-white sm:text-5xl">
             {t.structure.chapter}
           </h1>
+          <p className="mt-3 text-sm text-slate-300">{c.subtitle}</p>
           <div className="mt-7 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {c.path.map((item, index) => (
               <div
