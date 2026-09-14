@@ -2,6 +2,9 @@
 // Source-verified content for Chapter 3 / Bab 3 — Coordination and Response / Koordinasi dan Gerak Balas
 // EN sourced from T1_BT_SN_DLP-_SCIENCE.pdf (pages 70-85)
 // BM sourced from T1_BT_SN-_SAINS.pdf (pages 70-85, official KSSM counterpart)
+// Pass 1 BM checked against T1 BT SN- SAINS.pdf, printed pp. 72-78 (PDF pp. 82-88).
+// The cited official DLP file was not available locally for independent verification.
+// New DLP experiment/diagram labels are semantic counterparts of that BM source and the user brief.
 // Content data only — no presentation markup.
 
 export interface CorrectiveMechanism {
@@ -23,7 +26,28 @@ export interface StomaState {
   reason: string;
 }
 
+export interface Chapter3Practical {
+  title: string;
+  problem: string;
+  hypothesis: string;
+  purpose: string;
+  variables: { manipulated: string; responding: string; fixed: string };
+  apparatus: string;
+  sequence: string[];
+  conclusion: string;
+}
+
 export interface Chapter3Content {
+  structure: {
+    chapter: string;
+    subtopic: string;
+    meaning: string;
+    control: string;
+    water: string;
+    temperature: string;
+  };
+  practicalNotice: string;
+  sweatExperiment: Chapter3Practical & { conditions: string[] };
   hook: { title: string; body: string };
   definition: {
     meaning: string;
@@ -44,11 +68,9 @@ export interface Chapter3Content {
     coldCondition: CorrectiveMechanism;
     skinMechanisms: { condition: string; mechanisms: string[] }[];
   };
-  pulseExperiment: {
-    purpose: string;
-    sequence: string[];
-    results: { activity: string; pulseRange: string; explanation: string }[];
-    conclusion: string;
+  pulseExperiment: Chapter3Practical & {
+    activities: { id: "rest" | "walking" | "jogging"; label: string; durationMinutes?: number }[];
+    countDurationMinutes: number;
   };
   animalHomeostasis: AnimalAdaptation[];
   plantHomeostasis: {
@@ -63,6 +85,36 @@ export interface Chapter3Content {
 }
 
 const en: Chapter3Content = {
+  structure: {
+    chapter: "Coordination and Response",
+    subtopic: "3.1 Homeostasis in Living Things",
+    meaning: "Definition of Homeostasis",
+    control: "Homeostatic Control Process",
+    water: "Regulation of Water Content",
+    temperature: "Regulation of Body Temperature",
+  },
+  practicalNotice:
+    "Teacher/lab-guided physical practical. Record your own observations and measured results.",
+  sweatExperiment: {
+    title: "Experiment 3.1",
+    problem: "Do we sweat in a hot or cold condition?",
+    hypothesis: "We sweat in a hot condition.",
+    purpose: "To study biological actions that respond to changes in temperature",
+    variables: {
+      manipulated: "Surrounding temperature",
+      responding: "Presence of sweat",
+      fixed: "Time taken",
+    },
+    apparatus: "Stopwatch, one student from each group.",
+    sequence: [
+      "Enter the laboratory with the fans off for 10 minutes.",
+      "Record whether you sweat or not.",
+      "Then switch the fans on for 10 minutes.",
+      "Record whether you sweat or not.",
+    ],
+    conditions: ["Hot (fans off)", "Cold (fans on)"],
+    conclusion: "Is the hypothesis accepted? Give your reasons.",
+  },
   hook: {
     title: "Why this matters",
     body: "Right now, your body is running dozens of automatic corrections — adjusting temperature, water levels, and more — without you ever noticing. This chapter shows you the actual feedback loops your body (and every living thing) uses to keep itself stable no matter what's happening outside.",
@@ -84,7 +136,7 @@ const en: Chapter3Content = {
       trigger: "Water content in the body increases when we drink water",
       detectedBy: "Brain",
       mechanism: [
-        "The brain stimulates less secretion of a hormone",
+        "The brain stimulates a reduction in secretion of a hormone so the kidneys increase urine production",
         "Kidneys increase the production of urine",
         "More urine is produced",
       ],
@@ -94,7 +146,7 @@ const en: Chapter3Content = {
       trigger: "Water content in the body decreases when we sweat",
       detectedBy: "Brain",
       mechanism: [
-        "The brain stimulates more secretion of a hormone",
+        "The brain stimulates secretion of a hormone so the kidneys reduce urine production",
         "Kidneys decrease the production of urine",
         "We feel thirsty",
       ],
@@ -111,7 +163,8 @@ const en: Chapter3Content = {
         "Blood vessels dilate",
         "Hairs lie flat",
         "Sweating increases",
-        "Skeletal muscle activity and hormone secretion reduce",
+        "Skeletal muscle activity and certain hormone secretions reduce",
+        "Less urine",
       ],
       result: "Body temperature decreases",
     },
@@ -146,28 +199,23 @@ const en: Chapter3Content = {
     ],
   },
   pulseExperiment: {
-    purpose:
-      "Investigate how physical activity affects pulse rate by comparing a student's pulse at rest, while walking and after jogging.",
-    sequence: ["Rest", "Walk", "Jog", "Count pulse for one minute", "Compare the results"],
-    results: [
-      {
-        activity: "At rest",
-        pulseRange: "70-80 bpm",
-        explanation:
-          "Minimal muscle activity creates a lower demand for oxygen, glucose and energy.",
-      },
-      {
-        activity: "Walking",
-        pulseRange: "90-110 bpm",
-        explanation: "Moderate muscle activity increases energy demand, so the heart beats faster.",
-      },
-      {
-        activity: "Jogging",
-        pulseRange: "130-160 bpm",
-        explanation:
-          "Vigorous muscle activity needs more oxygen and glucose and produces more carbon dioxide, so pulse rate rises sharply.",
-      },
+    title: "Experiment 3.2",
+    problem: "Does pulse count increase when performing heavier tasks?",
+    hypothesis: "Pulse count increases when performing heavier tasks.",
+    purpose: "To study biological actions that respond to pulse count",
+    variables: { manipulated: "Type of activity", responding: "Pulse count", fixed: "Time taken" },
+    apparatus: "Stopwatch, one student from each group.",
+    sequence: [
+      "Select one student from each group to carry out the planned activities: resting, walking and jogging. Walking and jogging are carried out for ten minutes.",
+      "Then count each student's pulse for one minute by placing two fingers on their wrist and record the reading.",
+      "Record all the results in the table.",
     ],
+    activities: [
+      { id: "rest", label: "At rest" },
+      { id: "walking", label: "Walking", durationMinutes: 10 },
+      { id: "jogging", label: "Jogging", durationMinutes: 10 },
+    ],
+    countDurationMinutes: 1,
     conclusion: "The more vigorous the physical activity, the higher the pulse rate.",
   },
   animalHomeostasis: [
@@ -253,6 +301,36 @@ const en: Chapter3Content = {
 };
 
 const bm: Chapter3Content = {
+  structure: {
+    chapter: "Koordinasi dan Gerak Balas",
+    subtopic: "3.1 Homeostasis dalam Benda Hidup",
+    meaning: "Definisi Homeostasis",
+    control: "Proses Kawalan Homeostasis",
+    water: "Kawal Atur Kandungan Air",
+    temperature: "Kawal Atur Suhu Badan",
+  },
+  practicalNotice:
+    "Amali fizikal dengan bimbingan guru/makmal. Rekodkan pemerhatian dan bacaan sebenar anda.",
+  sweatExperiment: {
+    title: "Eksperimen 3.1",
+    problem: "Kita berpeluh dalam keadaan panas atau sejuk?",
+    hypothesis: "Kita berpeluh dalam keadaan panas.",
+    purpose: "Mengkaji tindakan biologi yang memberikan gerak balas kepada perubahan suhu",
+    variables: {
+      manipulated: "Suhu persekitaran",
+      responding: "Kehadiran peluh",
+      fixed: "Masa yang diambil",
+    },
+    apparatus: "Jam randik, satu murid dari setiap kumpulan.",
+    sequence: [
+      "Masuk ke dalam bilik makmal tanpa memasang kipas selama 10 minit.",
+      "Rekodkan sama ada anda berpeluh atau tidak.",
+      "Kemudian, pasangkan kipas selama 10 minit.",
+      "Rekodkan sama ada anda berpeluh atau tidak.",
+    ],
+    conditions: ["Panas (tanpa pasang kipas)", "Sejuk (kipas dipasang)"],
+    conclusion: "Adakah hipotesis itu diterima? Berikan alasan anda.",
+  },
   hook: {
     title: "Kenapa ini penting",
     body: "Pada saat ini, badan anda sedang menjalankan berpuluh-puluh pembetulan automatik — menyesuaikan suhu, kandungan air, dan banyak lagi — tanpa anda sedari. Bab ini menunjukkan gelung maklum balas sebenar yang digunakan oleh badan anda (dan setiap benda hidup) untuk kekal stabil tidak kira apa yang berlaku di luar.",
@@ -269,13 +347,13 @@ const bm: Chapter3Content = {
     "Apabila keadaan dalaman (seperti suhu badan) meningkat, pusat kawalan di otak mengesan perubahan tersebut dan mencetuskan mekanisme pembetulan yang mengembalikannya ke julat normal. Apabila keadaan menurun, mekanisme pembetulan bertentangan mengembalikannya semula. Gelung kesan-dan-betulkan ini adalah proses teras di sebalik setiap contoh homeostasis dalam bab ini.",
   waterRegulation: {
     systemsInvolved: "Sistem perkumuhan dan sistem endokrin",
-    organsInvolved: "Buah pinggang dan otak",
+    organsInvolved: "Ginjal dan otak",
     increase: {
       trigger: "Kandungan air dalam badan meningkat apabila kita minum air",
       detectedBy: "Otak",
       mechanism: [
-        "Otak merangsang kurang perembesan hormon",
-        "Buah pinggang meningkatkan penghasilan air kencing",
+        "Otak akan merangsangkan pengurangan rembesan sejenis hormon supaya ginjal dapat menambahkan penghasilan air kencing.",
+        "Ginjal menambahkan penghasilan air kencing",
         "Lebih banyak air kencing dihasilkan",
       ],
       result: "Kandungan air kembali normal",
@@ -284,8 +362,8 @@ const bm: Chapter3Content = {
       trigger: "Kandungan air dalam badan berkurang apabila kita berpeluh",
       detectedBy: "Otak",
       mechanism: [
-        "Otak merangsang lebih perembesan hormon",
-        "Buah pinggang mengurangkan penghasilan air kencing",
+        "Otak merangsang rembesan sejenis hormon supaya ginjal mengurangkan penghasilan air kencing.",
+        "Ginjal mengurangkan penghasilan air kencing",
         "Kita berasa dahaga",
       ],
       result: "Kandungan air kembali normal",
@@ -298,10 +376,11 @@ const bm: Chapter3Content = {
       trigger: "Pada hari panas, suhu badan meningkat",
       detectedBy: "Otak",
       mechanism: [
-        "Saluran darah berdilat",
-        "Rambut menegak rata",
+        "Salur darah mengembang",
+        "Bulu roma condong",
         "Peluh bertambah",
-        "Aktiviti otot rangka dan perembesan hormon berkurang",
+        "Aktiviti otot rangka dan perembesan hormon-hormon tertentu akan berkurangan, seterusnya menurunkan suhu badan.",
+        "Air kencing sedikit",
       ],
       result: "Suhu badan menurun",
     },
@@ -309,11 +388,11 @@ const bm: Chapter3Content = {
       trigger: "Pada hari sejuk, suhu badan menurun",
       detectedBy: "Otak",
       mechanism: [
-        "Saluran darah mengecut",
-        "Rambut tegak berdiri",
+        "Salur darah mengecut",
+        "Bulu roma menegak",
         "Peluh berkurang",
-        "Otot rangka mengecut/mengendur dengan pantas, menyebabkan menggigil",
-        "Hormon meningkatkan metabolisme badan",
+        "Otot rangka akan mengecut dan mengendur secara aktif dan menyebabkan seseorang menggigil supaya meningkatkan suhu badan.",
+        "Hormon tertentu akan dirembeskan untuk meningkatkan metabolisme badan.",
       ],
       result: "Suhu badan meningkat",
     },
@@ -321,50 +400,42 @@ const bm: Chapter3Content = {
       {
         condition: "Suhu persekitaran lebih tinggi",
         mechanisms: [
-          "Kelenjar peluh menghasilkan lebih banyak peluh, yang menyejukkan kulit apabila menyejat",
-          "Rambut menegak rata untuk mengurangkan udara terperangkap, membebaskan haba dengan mudah",
-          "Saluran darah berdilat, membawa lebih banyak darah dekat dengan kulit untuk meningkatkan kehilangan haba",
+          "Kelenjar peluh menghasilkan lebih banyak peluh bagi menyejukkan kulit apabila peluh tersejat.",
+          "Bulu roma condong untuk mengurangkan udara terperangkap pada kulit supaya haba mudah dibebaskan.",
+          "Salur darah mengembang untuk membolehkan lebih banyak darah mendekati kulit bagi membebaskan tenaga haba.",
         ],
       },
       {
         condition: "Suhu persekitaran lebih rendah",
         mechanisms: [
-          "Rambut tegak berdiri memerangkap lapisan udara yang bertindak sebagai penebat haba",
-          "Saluran darah mengecut, menjauhkan darah daripada kulit untuk mengurangkan kehilangan haba",
+          "Bulu roma menegak supaya dapat memerangkap satu lapisan udara yang bertindak sebagai penebat haba.",
+          "Salur darah mengecut untuk membolehkan lebih banyak darah menjauhi kulit bagi mengurangkan pembebasan tenaga haba.",
         ],
       },
     ],
   },
   pulseExperiment: {
-    purpose:
-      "Menyiasat kesan aktiviti fizikal terhadap kadar denyutan nadi dengan membandingkan nadi murid semasa rehat, berjalan dan selepas berjoging.",
+    title: "Eksperimen 3.2",
+    problem: "Adakah kiraan nadi semakin meningkat apabila melaksanakan tugas yang berat?",
+    hypothesis: "Kiraan nadi semakin meningkat apabila melaksanakan tugas yang berat.",
+    purpose: "Mengkaji tindakan biologi yang memberikan gerak balas kepada kiraan nadi",
+    variables: {
+      manipulated: "Jenis aktiviti",
+      responding: "Kiraan nadi",
+      fixed: "Masa yang diambil",
+    },
+    apparatus: "Jam randik, seorang murid daripada setiap kumpulan.",
     sequence: [
-      "Rehat",
-      "Berjalan",
-      "Berjoging",
-      "Kira denyutan nadi selama satu minit",
-      "Bandingkan keputusan",
+      "Pilih seorang murid daripada setiap kumpulan untuk menjalankan aktiviti yang dirancangkan, iaitu keadaan rehat, berjalan dan berjoging. Aktiviti berjalan dan berjoging dilakukan selama sepuluh minit.",
+      "Kemudian, ambil kiraan nadi setiap murid selama satu minit dengan meletakkan dua jari pada pergelangan tangan mereka dan rekodkan bacaan.",
+      "Rekodkan semua keputusan dalam jadual seperti yang berikut.",
     ],
-    results: [
-      {
-        activity: "Semasa rehat",
-        pulseRange: "70-80 bpm",
-        explanation:
-          "Aktiviti otot yang minimum menghasilkan permintaan oksigen, glukosa dan tenaga yang lebih rendah.",
-      },
-      {
-        activity: "Berjalan",
-        pulseRange: "90-110 bpm",
-        explanation:
-          "Aktiviti otot sederhana meningkatkan keperluan tenaga, maka jantung berdenyut lebih pantas.",
-      },
-      {
-        activity: "Berjoging",
-        pulseRange: "130-160 bpm",
-        explanation:
-          "Aktiviti otot cergas memerlukan lebih banyak oksigen dan glukosa serta menghasilkan lebih banyak karbon dioksida, maka kadar denyutan nadi meningkat dengan ketara.",
-      },
+    activities: [
+      { id: "rest", label: "Keadaan rehat" },
+      { id: "walking", label: "Berjalan", durationMinutes: 10 },
+      { id: "jogging", label: "Berjoging", durationMinutes: 10 },
     ],
+    countDurationMinutes: 1,
     conclusion: "Semakin cergas aktiviti fizikal, semakin tinggi kadar denyutan nadi.",
   },
   animalHomeostasis: [

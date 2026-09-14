@@ -1,37 +1,40 @@
 import { useState, type ReactNode } from "react";
 import {
-  AlertTriangle,
   BookOpenCheck,
   CheckCircle2,
   ChevronRight,
   CircleGauge,
-  Droplets,
-  HeartPulse,
   Leaf,
   PawPrint,
-  RotateCcw,
-  Snowflake,
-  Sun,
-  Thermometer,
   Wind,
 } from "lucide-react";
 import type { Chapter3Content } from "@/content/form1/science/chapter-3/chapter3-content";
+
+import {
+  HomeostaticControlVisual,
+  WaterRegulationVisual,
+  TemperatureRegulationVisual,
+  SweatingExperimentVisual,
+  PulseExperimentVisual,
+} from "./blocks/Chapter3HomeostasisVisuals";
 
 type Lang = "en" | "bm";
 
 const ui = {
   en: {
     eyebrow: "Chapter 3 visual map",
-    title: "Homeostasis keeps life in balance",
+    title: "Coordination and Response",
     subtitle:
       "Follow the negative-feedback loop through water balance, body temperature, pulse rate, animal adaptations and plant transpiration.",
     path: [
-      ["3.1", "Control loop"],
-      ["3.2", "Water balance"],
-      ["3.2", "Temperature"],
+      ["3.1", "Homeostasis in Living Things"],
+      ["", "Homeostatic Control Process"],
+      ["", "Regulation of Water Content"],
+      ["", "Regulation of Body Temperature"],
+      ["Experiment 3.1", "Sweating"],
       ["Experiment 3.2", "Pulse rate"],
-      ["3.3", "Animals"],
-      ["3.4", "Plants"],
+      ["", "Animals"],
+      ["", "Plants"],
     ],
     sections: [
       [
@@ -40,12 +43,12 @@ const ui = {
         "Homeostasis keeps conditions such as temperature, water content, pH and blood pressure within a balanced range.",
       ],
       [
-        "3.2",
+        "",
         "Regulating water content",
         "The brain, endocrine system and kidneys coordinate urine production and thirst to restore water balance.",
       ],
       [
-        "3.2",
+        "",
         "Regulating body temperature",
         "Effectors in the skin, muscles and endocrine system respond in opposite ways when the body is too hot or too cold.",
       ],
@@ -55,12 +58,12 @@ const ui = {
         "Measure pulse rate at rest, while walking and after jogging to connect muscle activity with oxygen and energy demand.",
       ],
       [
-        "3.3",
+        "",
         "Animals solve homeostasis differently",
         "Behavioural and structural adaptations help animals regulate temperature or prevent excessive water loss.",
       ],
       [
-        "3.4",
+        "",
         "Plants balance water loss and cooling",
         "Transpiration creates upward water pull and evaporative cooling, while guard cells control each stoma.",
       ],
@@ -134,16 +137,18 @@ const ui = {
   },
   bm: {
     eyebrow: "Peta visual Bab 3",
-    title: "Homeostasis mengekalkan keseimbangan hidupan",
+    title: "Koordinasi dan Gerak Balas",
     subtitle:
       "Ikuti gelung maklum balas negatif melalui keseimbangan air, suhu badan, kadar nadi, adaptasi haiwan dan transpirasi tumbuhan.",
     path: [
-      ["3.1", "Gelung kawalan"],
-      ["3.2", "Keseimbangan air"],
-      ["3.2", "Suhu badan"],
+      ["3.1", "Homeostasis dalam Benda Hidup"],
+      ["", "Proses Kawalan Homeostasis"],
+      ["", "Kawal Atur Kandungan Air"],
+      ["", "Kawal Atur Suhu Badan"],
+      ["Eksperimen 3.1", "Peluh"],
       ["Eksperimen 3.2", "Kadar nadi"],
-      ["3.3", "Haiwan"],
-      ["3.4", "Tumbuhan"],
+      ["", "Haiwan"],
+      ["", "Tumbuhan"],
     ],
     sections: [
       [
@@ -152,12 +157,12 @@ const ui = {
         "Homeostasis mengekalkan keadaan seperti suhu, kandungan air, pH dan tekanan darah dalam julat yang seimbang.",
       ],
       [
-        "3.2",
+        "",
         "Mengawal kandungan air",
         "Otak, sistem endokrin dan buah pinggang menyelaras penghasilan air kencing serta rasa dahaga untuk memulihkan keseimbangan air.",
       ],
       [
-        "3.2",
+        "",
         "Mengawal suhu badan",
         "Efektor pada kulit, otot dan sistem endokrin bertindak secara bertentangan apabila badan terlalu panas atau terlalu sejuk.",
       ],
@@ -167,12 +172,12 @@ const ui = {
         "Ukur kadar nadi semasa rehat, berjalan dan selepas berjoging untuk menghubungkan aktiviti otot dengan keperluan oksigen dan tenaga.",
       ],
       [
-        "3.3",
+        "",
         "Haiwan mengawal homeostasis dengan cara berbeza",
         "Adaptasi tingkah laku dan struktur membantu haiwan mengawal suhu atau mencegah kehilangan air berlebihan.",
       ],
       [
-        "3.4",
+        "",
         "Tumbuhan mengimbangi kehilangan air dan penyejukan",
         "Transpirasi menghasilkan tarikan air ke atas dan penyejukan melalui penyejatan, manakala sel pengawal mengawal setiap stoma.",
       ],
@@ -260,7 +265,7 @@ function SectionHeading({ section }: { section: readonly [string, string, string
       <span className="text-xs font-black uppercase tracking-[.2em] text-amber-300">
         {section[0]}
       </span>
-      <h2 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl">{section[1]}</h2>
+      <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl">{section[1]}</h3>
       <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">
         {section[2]}
       </p>
@@ -281,33 +286,6 @@ function Checklist({ items }: { items: readonly string[] | string[] }) {
   );
 }
 
-function MechanismCard({
-  mechanism,
-  labels,
-  tone,
-}: {
-  mechanism: Chapter3Content["waterRegulation"]["increase"];
-  labels: { detected: string; result: string };
-  tone: "amber" | "cyan";
-}) {
-  return (
-    <Panel className={tone === "amber" ? "border-amber-300/20" : "border-cyan-300/20"}>
-      <p className={`font-black ${tone === "amber" ? "text-amber-200" : "text-cyan-200"}`}>
-        {mechanism.trigger}
-      </p>
-      <p className="mt-3 text-xs font-black uppercase tracking-wider text-slate-400">
-        {labels.detected}: {mechanism.detectedBy}
-      </p>
-      <div className="mt-3">
-        <Checklist items={mechanism.mechanism} />
-      </div>
-      <p className="mt-4 rounded-xl bg-emerald-300/10 p-3 text-sm font-black text-emerald-100">
-        {labels.result}: {mechanism.result}
-      </p>
-    </Panel>
-  );
-}
-
 export function ScienceF1Chapter3VisualNotesBlock({
   id,
   content,
@@ -324,12 +302,8 @@ export function ScienceF1Chapter3VisualNotesBlock({
 }) {
   const t = content[lang];
   const c = ui[lang];
-  const [waterDirection, setWaterDirection] = useState<"increase" | "decrease">("increase");
-  const [temperature, setTemperature] = useState<"hotCondition" | "coldCondition">("hotCondition");
   const [animal, setAnimal] = useState(0);
   const [stoma, setStoma] = useState(0);
-  const selectedWater = t.waterRegulation[waterDirection];
-  const selectedTemperature = t.temperatureRegulation[temperature];
   const selectedAnimal = t.animalHomeostasis[animal];
   const selectedStoma = t.plantHomeostasis.stomaStates[stoma];
 
@@ -348,10 +322,9 @@ export function ScienceF1Chapter3VisualNotesBlock({
             {c.eyebrow}
           </div>
           <h1 className="mt-3 max-w-4xl font-display text-4xl font-black leading-[1.04] text-white sm:text-5xl">
-            {c.title}
+            {t.structure.chapter}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">{c.subtitle}</p>
-          <div className="mt-7 grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <div className="mt-7 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {c.path.map((item, index) => (
               <div
                 key={`${item[0]}-${item[1]}`}
@@ -370,210 +343,30 @@ export function ScienceF1Chapter3VisualNotesBlock({
           </div>
         </header>
 
-        <div className="space-y-6">
-          <SectionHeading section={c.sections[0]} />
-          <div className="grid gap-4 lg:grid-cols-[1.1fr_.9fr]">
-            <Panel>
-              <div className="flex items-center gap-3">
-                <CircleGauge className="h-7 w-7 text-amber-300" />
-                <h3 className="font-black text-white">{c.meaning}</h3>
-              </div>
-              <p className="mt-4 text-sm leading-6 text-slate-300">{t.definition.meaning}</p>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-xl bg-white/5 p-3">
-                  <p className="text-xs font-black uppercase text-amber-300">{c.origin}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{t.definition.etymology}</p>
-                </div>
-                <div className="rounded-xl bg-rose-300/10 p-3">
-                  <p className="text-xs font-black uppercase text-rose-200">{c.importance}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{t.definition.importance}</p>
-                </div>
-              </div>
-            </Panel>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <RotateCcw className="h-7 w-7 text-cyan-300" />
-                <h3 className="font-black text-white">{c.controlLoop}</h3>
-              </div>
-              <div className="mt-4 space-y-2">
-                {c.loop.map((step, index) => (
-                  <div key={step} className="flex items-center gap-3 rounded-xl bg-white/5 p-3">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-300/10 font-mono text-xs font-black text-cyan-200">
-                      {index + 1}
-                    </span>
-                    <p className="font-bold text-slate-200">{step}</p>
-                    {index < c.loop.length - 1 && (
-                      <ChevronRight className="ml-auto h-4 w-4 text-amber-300" />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </Panel>
-          </div>
-          <p className="rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.07] p-4 text-sm leading-6 text-slate-300">
-            {t.controlProcessConcept}
-          </p>
-        </div>
-
-        <div className="space-y-6">
-          <SectionHeading section={c.sections[1]} />
+        <div className="space-y-6" data-curriculum-subtopic="3.1">
+          <h2 className="font-display text-2xl font-black text-white sm:text-3xl">
+            {t.structure.subtopic}
+          </h2>
           <Panel>
-            <div className="flex items-center gap-3">
-              <Droplets className="h-7 w-7 text-cyan-300" />
-              <h3 className="font-black text-white">{c.chooseDirection}</h3>
-            </div>
-            <div
-              className="mt-4 grid grid-cols-2 gap-2"
-              role="tablist"
-              aria-label={c.chooseDirection}
-            >
-              {(["increase", "decrease"] as const).map((direction) => (
-                <button
-                  key={direction}
-                  type="button"
-                  role="tab"
-                  aria-selected={waterDirection === direction}
-                  onClick={() => setWaterDirection(direction)}
-                  className={`min-h-12 cursor-pointer rounded-xl border px-4 text-sm font-black transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 ${waterDirection === direction ? "border-cyan-300 bg-cyan-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
-                >
-                  {direction === "increase" ? c.increases : c.decreases}
-                </button>
-              ))}
-            </div>
-            <div className="mt-4">
-              <MechanismCard
-                mechanism={selectedWater}
-                labels={c}
-                tone={waterDirection === "increase" ? "cyan" : "amber"}
-              />
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-bold text-slate-200">
-                {c.systems}: {t.waterRegulation.systemsInvolved}
-              </span>
-              <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-bold text-slate-200">
-                {c.organs}: {t.waterRegulation.organsInvolved}
-              </span>
+            <h3 className="font-black text-white">{t.structure.meaning}</h3>
+            <p className="mt-4 text-sm leading-6 text-slate-300">{t.definition.meaning}</p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl bg-white/5 p-3">
+                <p className="text-xs font-black uppercase text-amber-300">{c.origin}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{t.definition.etymology}</p>
+              </div>
+              <div className="rounded-xl bg-rose-300/10 p-3">
+                <p className="text-xs font-black uppercase text-rose-200">{c.importance}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{t.definition.importance}</p>
+              </div>
             </div>
           </Panel>
-          <div className="rounded-2xl border border-amber-300/25 bg-amber-300/[0.08] p-4">
-            <p className="flex items-center gap-2 font-black text-amber-200">
-              <Droplets className="h-5 w-5" />
-              {c.sweatUrine}
-            </p>
-            <p className="mt-2 text-sm leading-6 text-slate-300">{c.sweatUrineText}</p>
-          </div>
+          <HomeostaticControlVisual content={t} lang={lang} />
         </div>
-
-        <div className="space-y-6">
-          <SectionHeading section={c.sections[2]} />
-          <Panel>
-            <div className="flex items-center gap-3">
-              <Thermometer className="h-7 w-7 text-rose-300" />
-              <h3 className="font-black text-white">{c.chooseCondition}</h3>
-            </div>
-            <div
-              className="mt-4 grid grid-cols-2 gap-2"
-              role="tablist"
-              aria-label={c.chooseCondition}
-            >
-              {(["hotCondition", "coldCondition"] as const).map((condition) => (
-                <button
-                  key={condition}
-                  type="button"
-                  role="tab"
-                  aria-selected={temperature === condition}
-                  onClick={() => setTemperature(condition)}
-                  className={`min-h-12 cursor-pointer rounded-xl border px-4 text-sm font-black transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${temperature === condition ? "border-amber-300 bg-amber-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
-                >
-                  {condition === "hotCondition" ? c.hot : c.cold}
-                </button>
-              ))}
-            </div>
-            <div className="mt-4 rounded-2xl border border-white/10 bg-slate-950/35 p-4">
-              <div className="flex items-center gap-3">
-                {temperature === "hotCondition" ? (
-                  <Sun className="h-8 w-8 text-amber-300" />
-                ) : (
-                  <Snowflake className="h-8 w-8 text-cyan-300" />
-                )}
-                <div>
-                  <p className="font-black text-white">{selectedTemperature.trigger}</p>
-                  <p className="mt-1 text-xs font-black uppercase tracking-wider text-slate-400">
-                    {c.detected}: {selectedTemperature.detectedBy}
-                  </p>
-                </div>
-              </div>
-              <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                {selectedTemperature.mechanism.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-xl bg-white/5 p-3 text-sm font-bold leading-6 text-slate-200"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 rounded-xl bg-emerald-300/10 p-3 text-sm font-black text-emerald-100">
-                {c.result}: {selectedTemperature.result}
-              </p>
-            </div>
-          </Panel>
-          <div className="rounded-2xl border border-rose-300/20 bg-rose-300/[0.07] p-4">
-            <p className="flex items-center gap-2 font-black text-rose-200">
-              <AlertTriangle className="h-5 w-5" />
-              {c.coreTemperature}
-            </p>
-            <p className="mt-2 text-sm leading-6 text-slate-300">{c.enzymeText}</p>
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          <SectionHeading section={c.sections[3]} />
-          <Panel>
-            <div className="flex items-center gap-3">
-              <HeartPulse className="h-7 w-7 text-rose-300" />
-              <div>
-                <p className="text-xs font-black uppercase tracking-wider text-rose-200">
-                  {c.practical}
-                </p>
-                <h3 className="font-black text-white">{t.pulseExperiment.purpose}</h3>
-              </div>
-            </div>
-            <p className="mt-5 text-xs font-black uppercase tracking-wider text-slate-400">
-              {c.method}
-            </p>
-            <div className="mt-3 grid gap-2 sm:grid-cols-5">
-              {t.pulseExperiment.sequence.map((step, index) => (
-                <div key={step} className="rounded-xl bg-white/5 p-3">
-                  <span className="font-mono text-xs font-black text-rose-300">0{index + 1}</span>
-                  <p className="mt-2 text-xs font-bold leading-5 text-slate-200">{step}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              {t.pulseExperiment.results.map((row, index) => (
-                <div
-                  key={row.activity}
-                  className="rounded-2xl border border-white/10 bg-slate-950/35 p-4"
-                >
-                  <p className="font-black text-white">{row.activity}</p>
-                  <p className="mt-2 text-2xl font-black text-rose-200">{row.pulseRange}</p>
-                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-rose-400"
-                      style={{ width: `${45 + index * 25}%` }}
-                    />
-                  </div>
-                  <p className="mt-3 text-xs leading-5 text-slate-300">{row.explanation}</p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-4 rounded-xl bg-emerald-300/10 p-3 text-sm font-black text-emerald-100">
-              {c.conclusion}: {t.pulseExperiment.conclusion}
-            </p>
-          </Panel>
-        </div>
+        <WaterRegulationVisual content={t} lang={lang} />
+        <TemperatureRegulationVisual content={t} lang={lang} />
+        <SweatingExperimentVisual content={t} lang={lang} />
+        <PulseExperimentVisual content={t} lang={lang} />
 
         <div className="space-y-6">
           <SectionHeading section={c.sections[4]} />
