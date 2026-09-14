@@ -32,7 +32,7 @@ const modelImages = [
 const copy = {
   bm: {
     eyebrow: "Peta visual Bab 10",
-    title: "Daripada memerhati langit kepada meneroka angkasa",
+    title: "Penerokaan Angkasa Lepas",
     subtitle:
       "Lihat bagaimana bukti mengubah model Sistem Suria, kemudian jejaki teknologi yang membawa manusia, mesin dan sensor melangkaui atmosfera Bumi.",
     path: [
@@ -44,7 +44,6 @@ const copy = {
     section101: "Perkembangan dalam astronomi",
     section101Body:
       "Model saintifik berubah apabila pemerhatian dan bukti yang lebih tepat muncul. Tiga tokoh utama menunjukkan bagaimana pemahaman Sistem Suria dibina semula.",
-    modelTitle: "Tiga tokoh, tiga model Sistem Suria",
     modelHint: "Pilih tokoh untuk melihat pusat dan bentuk orbit modelnya.",
     modelImageAlt: [
       "Infografik model geosentrik Ptolemy dengan Bumi di pusat",
@@ -79,7 +78,6 @@ const copy = {
     ],
     centre: "Pusat model",
     orbitShape: "Bentuk orbit",
-    compareTitle: "Apa yang kekal, apa yang berubah?",
     comparisons: [
       [
         "Ptolemy ↔ Copernicus",
@@ -95,7 +93,6 @@ const copy = {
     section102: "Perkembangan teknologi dan aplikasinya",
     section102Body:
       "Penerokaan angkasa berkembang melalui gabungan daya tujah, pemerhatian, komunikasi radio, sistem sokongan hidup dan penderiaan dari orbit.",
-    timelineTitle: "Daripada roket primitif kepada RazakSAT",
     timelineHint: "Gerakkan peluncur atau pilih penanda masa untuk meneroka 11 pencapaian.",
     timeline: [
       [
@@ -122,7 +119,6 @@ const copy = {
       ["2000", "TiungSAT-1", "Mikrosatelit pertama Malaysia dilancarkan ke orbit."],
       ["2009", "RazakSAT", "Satelit penderiaan jauh pertama Malaysia dilancarkan."],
     ],
-    technologyTitle: "Lima alat, lima peranan",
     technologyHint: "Pilih teknologi untuk membezakan tujuan dan cara operasinya.",
     technologies: [
       [
@@ -149,7 +145,6 @@ const copy = {
     probeQuestion: "Mengapa kuar tidak membawa angkasawan?",
     probeAnswer:
       "Misi terlalu jauh, berbahaya dan boleh mengambil puluhan tahun. Kuar tidak mempunyai sistem sokongan hidup manusia.",
-    remoteTitle: "Penderiaan jauh: data tanpa menyentuh sasaran",
     remoteBody:
       "Sensor atau kamera pada satelit, pesawat atau belon mengumpul sinaran daripada permukaan Bumi, lalu data dihantar untuk diproses menjadi peta dan maklumat tindakan.",
     remoteFlow: [
@@ -159,7 +154,6 @@ const copy = {
       "Data dihantar",
       "Imej & analisis",
     ],
-    applicationsTitle: "Empat bidang menggunakan pandangan dari atas",
     applications: [
       [
         "Pertanian",
@@ -199,7 +193,7 @@ const copy = {
   },
   en: {
     eyebrow: "Chapter 10 visual map",
-    title: "From observing the sky to exploring space",
+    title: "Space Exploration",
     subtitle:
       "See how evidence changed the Solar System model, then track the technologies that carry people, machines and sensors beyond Earth's atmosphere.",
     path: [
@@ -211,7 +205,6 @@ const copy = {
     section101: "Development in astronomy",
     section101Body:
       "Scientific models change when more accurate observations and evidence emerge. Three major astronomers show how our picture of the Solar System was rebuilt.",
-    modelTitle: "Three astronomers, three Solar System models",
     modelHint: "Choose an astronomer to see the centre and orbit shape in the model.",
     modelImageAlt: [
       "Ptolemy's geocentric model infographic with Earth at the centre",
@@ -246,7 +239,6 @@ const copy = {
     ],
     centre: "Model centre",
     orbitShape: "Orbit shape",
-    compareTitle: "What stayed, and what changed?",
     comparisons: [
       [
         "Ptolemy ↔ Copernicus",
@@ -262,7 +254,6 @@ const copy = {
     section102: "Technology development and its applications",
     section102Body:
       "Space exploration advances through a combination of thrust, observation, radio communication, life-support systems and sensing from orbit.",
-    timelineTitle: "From primitive rockets to RazakSAT",
     timelineHint: "Move the slider or choose a time marker to explore 11 milestones.",
     timeline: [
       [
@@ -293,7 +284,6 @@ const copy = {
       ["2000", "TiungSAT-1", "Malaysia's first microsatellite was launched into orbit."],
       ["2009", "RazakSAT", "Malaysia's first remote-sensing satellite was launched."],
     ],
-    technologyTitle: "Five tools, five roles",
     technologyHint: "Choose a technology to distinguish its purpose and operation.",
     technologies: [
       [
@@ -320,7 +310,6 @@ const copy = {
     probeQuestion: "Why do probes not carry astronauts?",
     probeAnswer:
       "Missions are too distant, dangerous and may take decades. Probes do not contain human life-support systems.",
-    remoteTitle: "Remote sensing: data without touching the target",
     remoteBody:
       "Sensors or cameras on satellites, aircraft or balloons collect radiation from Earth's surface, then transmit data for processing into maps and actionable information.",
     remoteFlow: [
@@ -330,7 +319,6 @@ const copy = {
       "Data transmitted",
       "Image & analysis",
     ],
-    applicationsTitle: "Four fields use the view from above",
     applications: [
       [
         "Agriculture",
@@ -454,14 +442,13 @@ export function ScienceF3Chapter10VisualNotesBlock({
             <div className="flex items-center gap-3">
               <Orbit className="h-8 w-8 text-violet-300" />
               <div>
-                <h3 className="font-black text-white">{t.modelTitle}</h3>
                 <p className="mt-1 text-sm text-slate-400">{t.modelHint}</p>
               </div>
             </div>
             <div
               className="mt-5 grid gap-3 sm:grid-cols-3"
               role="tablist"
-              aria-label={t.modelTitle}
+              aria-label={t.section101}
             >
               {t.models.map((item, index) => (
                 <button
@@ -510,7 +497,6 @@ export function ScienceF3Chapter10VisualNotesBlock({
             </div>
           </Panel>
           <div>
-            <h3 className="font-black text-white">{t.compareTitle}</h3>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               {t.comparisons.map((item) => (
                 <Panel key={item[0]}>
@@ -535,7 +521,6 @@ export function ScienceF3Chapter10VisualNotesBlock({
             <div className="flex items-center gap-3">
               <Rocket className="h-8 w-8 text-cyan-300" />
               <div>
-                <h3 className="font-black text-white">{t.timelineTitle}</h3>
                 <p className="mt-1 text-sm text-slate-400">{t.timelineHint}</p>
               </div>
             </div>
@@ -589,14 +574,13 @@ export function ScienceF3Chapter10VisualNotesBlock({
             <div className="flex items-center gap-3">
               <TechnologyIcon className="h-8 w-8 text-violet-300" />
               <div>
-                <h3 className="font-black text-white">{t.technologyTitle}</h3>
                 <p className="mt-1 text-sm text-slate-400">{t.technologyHint}</p>
               </div>
             </div>
             <div
               className="mt-5 grid gap-2 sm:grid-cols-5"
               role="tablist"
-              aria-label={t.technologyTitle}
+              aria-label={t.section102}
             >
               {t.technologies.map((item, index) => {
                 const Icon = technologyIcons[index];
@@ -633,7 +617,6 @@ export function ScienceF3Chapter10VisualNotesBlock({
             <div className="flex items-center gap-3">
               <Satellite className="h-8 w-8 text-cyan-300" />
               <div>
-                <h3 className="font-black text-white">{t.remoteTitle}</h3>
                 <p className="mt-1 text-sm leading-6 text-slate-300">{t.remoteBody}</p>
               </div>
             </div>
@@ -654,11 +637,10 @@ export function ScienceF3Chapter10VisualNotesBlock({
           </Panel>
 
           <div>
-            <h3 className="font-black text-white">{t.applicationsTitle}</h3>
             <div
               className="mt-4 grid gap-3 sm:grid-cols-4"
               role="tablist"
-              aria-label={t.applicationsTitle}
+              aria-label={t.path[3][0]}
             >
               {t.applications.map((item, index) => {
                 const Icon = applicationIcons[index];

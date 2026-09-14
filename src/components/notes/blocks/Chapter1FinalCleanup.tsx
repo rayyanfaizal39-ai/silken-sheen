@@ -128,8 +128,8 @@ export function InstrumentReadings({ lang }: { lang: Lang }) {
       <figure>
         <figcaption className="text-sm font-bold">
           {en
-            ? "Vernier calipers — textbook example (p.22)"
-            : "Angkup vernier — contoh buku teks (m.s.22)"}
+            ? "Vernier calipers"
+            : "Angkup vernier"}
         </figcaption>
         <Diagram
           title={

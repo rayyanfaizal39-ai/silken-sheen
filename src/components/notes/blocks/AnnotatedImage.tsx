@@ -1,5 +1,5 @@
 import type * as React from "react";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Maximize2 } from "lucide-react";
 import { getNotesImageUrl } from "@/lib/notes-images";
 import { LearningImageLightbox } from "./LearningImageLightbox";
@@ -128,6 +128,23 @@ export function isPlaced(item: ImageAnnotation): item is PlacedAnnotation {
   return typeof item.x === "number" && typeof item.y === "number";
 }
 
+/**
+ * The horizontal centre of the selected region, as a percentage of the
+ * artwork's width — or null when nothing is selected or the selection has no
+ * place on the picture. Used only to scroll a floor-width frame so the chosen
+ * region is on screen.
+ */
+function activeRegionCentre(annotations: ImageAnnotation[], active: string | null): number | null {
+  if (!active) return null;
+  const item = annotations.find((entry) => entry.id === active);
+  if (!item) return null;
+  if (item.spotlightShapes && item.spotlightShapes.length > 0) {
+    const { minX, maxX } = spotlightBounds(item.spotlightShapes);
+    return (minX + maxX) / 2;
+  }
+  return typeof item.x === "number" ? item.x : null;
+}
+
 export type AnnotatedImageProps = {
   /** Bundled asset URL (a `src/assets` import) or notes-bucket object path. */
   src: string;
@@ -194,6 +211,16 @@ export type AnnotatedImageProps = {
   size?: LearningImageSize;
   /** Intrinsic aspect ratio, e.g. "3 / 2". Reserves space so there is no layout shift. */
   aspect?: string;
+  /**
+   * Per-figure readability floor in px, overriding whatever the `size`
+   * variant sets. For artwork whose legibility depends on how much it packs
+   * in rather than on its size class — a three-panel comparison scene needs
+   * more width than a single subject at the same aspect ratio. Below this
+   * width the frame keeps its size and the wrapper scrolls sideways; the
+   * selected region is scrolled into view, so choosing a control can never
+   * light up a panel the reader cannot see.
+   */
+  minWidth?: number;
   /** Optional short caption rendered under the image. */
   caption?: string;
   /**
@@ -261,6 +288,7 @@ export function AnnotatedImage({
   overlayHeadings = [],
   size,
   aspect = "3 / 2",
+  minWidth,
   caption,
   priority = false,
   legendLabel,
@@ -284,6 +312,23 @@ export function AnnotatedImage({
   };
   const baseId = useId();
   const url = getNotesImageUrl(src);
+
+  /* Keep the chosen region on screen when a floor-width frame is scrolling:
+     picking a control must never highlight something the reader cannot see. */
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const activeCentre = activeRegionCentre(annotations, active);
+  useEffect(() => {
+    const wrapper = scrollRef.current;
+    if (!wrapper || activeCentre === null) return;
+    const frameEl = wrapper.firstElementChild as HTMLElement | null;
+    if (!frameEl) return;
+    const centre = (frameEl.clientWidth * activeCentre) / 100;
+    // Assigned, and deliberately NOT smoothed: scrollTo({ behavior: "smooth" })
+    // and CSS scroll-behavior are both silently no-ops in some engines and
+    // under prefers-reduced-motion, which would leave the chosen region
+    // off-screen — the one thing this must never do. A plain assignment lands.
+    wrapper.scrollLeft = centre - wrapper.clientWidth / 2;
+  }, [activeCentre]);
 
   const isCallout = annotationMode === "callouts";
   const isNumbers = annotationMode === "numbers";
@@ -420,7 +465,7 @@ export function AnnotatedImage({
   );
   const resolvedSize = size ?? defaultLearningImageSize(aspect);
   const artMaxWidth = learningImageMaxWidth(resolvedSize, aspect);
-  const artMinWidth = learningImageMinWidth(resolvedSize);
+  const artMinWidth = minWidth ?? learningImageMinWidth(resolvedSize);
   // In callout mode the gutters sit outside the picture, so the frame is wider
   // than the artwork while the artwork itself keeps its intended size.
   const frameMaxWidth = isCallout ? calloutFrameMaxWidth(artMaxWidth) : artMaxWidth;
@@ -743,7 +788,13 @@ export function AnnotatedImage({
       {/* The floor-width variants overflow their column by design; scope the
           horizontal scroll to just this wrapper so the page itself never
           gains body-level overflow. */}
-      {artMinWidth ? <div className="w-full overflow-x-auto">{frame}</div> : frame}
+      {artMinWidth ? (
+        <div ref={scrollRef} className="w-full overflow-x-auto">
+          {frame}
+        </div>
+      ) : (
+        frame
+      )}
 
       {showLegend && !hideLegend && annotations.length > 0 && (
         <ol

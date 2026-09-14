@@ -69,6 +69,8 @@ import { DryVsAqueous } from "@/components/notes/blocks/DryVsAqueous";
 import { TitrationSchematic } from "@/components/notes/blocks/TitrationSchematic";
 import { PolarityInteraction } from "@/components/notes/blocks/PolarityInteraction";
 import { ElectroscopeDiagram } from "@/components/notes/blocks/ElectroscopeDiagram";
+import { Chapter9SpotlightFigure } from "@/components/notes/blocks/Chapter9SpotlightFigure";
+import { HeatFlowDirection } from "@/components/notes/blocks/HeatFlowDirection";
 import { LightningFormation } from "@/components/notes/blocks/LightningFormation";
 import { CurrentDirectionDiagram } from "@/components/notes/blocks/CurrentDirectionDiagram";
 import { CircuitSymbolsTable } from "@/components/notes/blocks/CircuitSymbolsTable";
@@ -451,6 +453,22 @@ export function ScienceF2InteractiveNotesBlock({
             <NutrientTable block={table} />
           </div>
         ))}
+        {section.heatFlowDirection && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.heatFlowDirection.title}
+            </h3>
+            <HeatFlowDirection block={section.heatFlowDirection} lang={lang} />
+          </div>
+        )}
+        {section.ch9SpotlightFigure && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.ch9SpotlightFigure.title}
+            </h3>
+            <Chapter9SpotlightFigure block={section.ch9SpotlightFigure} lang={lang} />
+          </div>
+        )}
         {section.cards && !isChapter8 && (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {section.cards.map((card) => (
@@ -1530,6 +1548,56 @@ export function ScienceF2InteractiveNotesBlock({
               instruction={section.sequence.instruction}
               lang={lang}
             />
+          </div>
+        )}
+        {section.differencesTable && (
+          <div>
+            <h3 className="font-display mb-3 text-base font-bold text-foreground">
+              {section.differencesTable.title}
+            </h3>
+            {/* A real <table>, not a card grid: the textbook draws this as rows
+                of comparison, and a reader scanning "Unit" must land on one row
+                with both answers beside it, not on two separate cards. The
+                wrapper scrolls sideways on a narrow phone rather than letting
+                the table squeeze its own columns unreadably thin. */}
+            <div className="overflow-x-auto rounded-2xl border border-border">
+              <table className="w-full min-w-[420px] border-collapse text-[12.5px]">
+                <thead>
+                  <tr className="bg-primary/10">
+                    <th scope="col" className="p-2.5 text-left">
+                      <span className="sr-only">{section.differencesTable.title}</span>
+                    </th>
+                    {section.differencesTable.headers.map((header) => (
+                      <th
+                        key={header}
+                        scope="col"
+                        className="font-display p-2.5 text-left font-bold text-foreground"
+                      >
+                        {header}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {section.differencesTable.rows.map((row) => (
+                    <tr key={row.label} className="border-t border-border/60">
+                      <th
+                        scope="row"
+                        className="p-2.5 text-left align-top text-[10.5px] font-bold uppercase tracking-wide text-primary"
+                      >
+                        {row.label}
+                      </th>
+                      <td className="p-2.5 align-top leading-relaxed text-foreground/90">
+                        <FactValue value={row.left} />
+                      </td>
+                      <td className="p-2.5 align-top leading-relaxed text-foreground/90">
+                        <FactValue value={row.right} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
         {section.comparison && (

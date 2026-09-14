@@ -26,7 +26,7 @@ type Lang = "en" | "bm";
 const copy = {
   bm: {
     eyebrow: "Peta visual Bab 9",
-    title: "Dari denyutan Matahari ke sistem di Bumi",
+    title: "Cuaca Angkasa",
     subtitle: "Teroka lapisan Matahari, kenal pasti fenomena aktif, kemudian jejaki bagaimana ribut suria boleh menghasilkan aurora atau mengganggu teknologi.",
     path: [
       ["Struktur Matahari", "Enam lapisan membawa tenaga dari teras ke korona."],
@@ -36,7 +36,6 @@ const copy = {
     ],
     section91: "Aktiviti Matahari yang memberi kesan kepada Bumi",
     section91Body: "Matahari ialah bebola gas hidrogen dan helium yang membara. Tenaga daripada pelakuran nuklear bergerak merentasi lapisan dalam sebelum dipancarkan dari atmosfera Matahari.",
-    layersTitle: "Enam lapisan, satu aliran tenaga",
     layersHint: "Pilih lapisan dari pusat ke luar.",
     layers: [
       ["Teras", "Bahagian Dalam", "Pelakuran nuklear hidrogen menjana tenaga haba dan cahaya Matahari."],
@@ -47,7 +46,6 @@ const copy = {
       ["Korona", "Atmosfera", "Lapisan terluar berwarna putih kebiruan yang mengembang jauh ke angkasa."],
     ],
     energyFlow: "Teras → radiasi → perolakan → fotosfera → kromosfera → korona",
-    phenomenaTitle: "Tujuh wajah Matahari yang aktif",
     phenomenaHint: "Pilih fenomena untuk melihat ciri yang membezakannya.",
     phenomena: [
       ["Granul", "Bahagian atas sel perolakan plasma panas yang menjadikan fotosfera berbutir; diameter sekitar 1,000 km."],
@@ -58,9 +56,7 @@ const copy = {
       ["Lentingan Jisim Korona", "Awan plasma bermagnet gergasi yang meletus dari korona dan boleh mencetuskan ribut geomagnet."],
       ["Angin Suria", "Aliran plasma berterusan — elektron, proton dan alfa — pada 250 hingga 750 km s⁻¹."],
     ],
-    arrivalsTitle: "Tidak semua gangguan tiba serentak",
-    arrivals: [["8 minit", "Cahaya / radiasi nyalaan suria"], ["Puluhan minit", "Zarah bercas nyalaan suria"], ["±3 hari", "Plasma bermagnet CME"], ["Berterusan", "Angin suria"]],
-    shieldTitle: "Magnetosfera ialah perisai dinamik",
+    arrivals: [["8 minit", "Cahaya / radiasi nyalaan suria"], ["", "Zarah bercas nyalaan suria"], ["±3 hari", "Plasma bermagnet CME"], ["Berterusan", "Angin suria"]],
     shieldBody: "Magnetosfera terbentuk melalui interaksi medan magnet Bumi dengan medan magnet antara planet yang dibawa angin suria. Bahagian menghadap Matahari dihimpit, manakala bahagian belakang memanjang sebagai ekor magnet.",
     calm: "Angin suria biasa",
     storm: "Ribut suria kuat",
@@ -71,20 +67,16 @@ const copy = {
     spaceSide: "Di angkasa lepas",
     sunExamples: "Nyalaan · semarak · tompok · CME",
     spaceExamples: "Angin suria · ribut pancaran · ribut geomagnet",
-    chainTitle: "Daripada letusan kepada kesan",
     chain: ["Tompok aktif", "Nyalaan / CME", "Zarah & medan magnet", "Interaksi magnetosfera", "Kesan di Bumi"],
-    effectsTitle: "Empat kesan utama di Bumi",
     effects: [
       ["Aurora", "Zarah bercas disalurkan ke kutub lalu berlanggar dengan oksigen dan nitrogen, menghasilkan cahaya berwarna."],
       ["Telekomunikasi", "Pengionan ionosfera mengganggu atau menyerap isyarat radio frekuensi tinggi."],
       ["Navigasi GPS", "Ribut suria melambatkan dan memesongkan isyarat satelit, lalu menghasilkan ralat kedudukan."],
       ["Grid kuasa", "Ribut geomagnet mengaruh arus tinggi dalam kabel, merosakkan transformer dan menyebabkan blackout."],
     ],
-    cycleTitle: "Lebih banyak tompok, lebih aktif cuaca angkasa",
     cycleBody: "Pada maksimum suria dalam kitaran 11 tahun, nyalaan, CME serta kelajuan dan ketumpatan angin suria cenderung meningkat. Data ini membantu saintis memberi amaran awal.",
     lowActivity: "Minimum suria",
     highActivity: "Maksimum suria",
-    forecast: "Tujuan ramalan",
     forecastItems: ["Anggar masa CME menuju Bumi.", "Lindungi satelit dengan mod selamat.", "Sediakan pengendali grid kuasa.", "Maklumkan penerbangan dan komunikasi radio."],
     eventTitle: "Kajian kes: 6 September 2017",
     eventBody: "Nyalaan suria kelas X9.3 pada 8.02 pagi diikuti CME. Telekomunikasi, navigasi dan talian kuasa di Bumi terganggu selama kira-kira satu jam.",
@@ -95,7 +87,7 @@ const copy = {
   },
   en: {
     eyebrow: "Chapter 9 visual map",
-    title: "From the Sun's pulse to systems on Earth",
+    title: "Space Weather",
     subtitle: "Explore the Sun's layers, identify active phenomena, then track how solar storms can create aurora or disrupt technology.",
     path: [
       ["Structure of the Sun", "Six layers carry energy from the core to the corona."],
@@ -105,7 +97,6 @@ const copy = {
     ],
     section91: "Activities of the Sun that affect Earth",
     section91Body: "The Sun is a glowing ball of hydrogen and helium gas. Energy from nuclear fusion travels through its inner layers before radiating from the solar atmosphere.",
-    layersTitle: "Six layers, one energy flow",
     layersHint: "Choose a layer from the centre outward.",
     layers: [
       ["Core", "Interior", "Nuclear fusion of hydrogen generates the Sun's heat and light energy."],
@@ -116,7 +107,6 @@ const copy = {
       ["Corona", "Atmosphere", "The bluish-white outermost layer extending far into space."],
     ],
     energyFlow: "Core → radiation → convection → photosphere → chromosphere → corona",
-    phenomenaTitle: "Seven faces of an active Sun",
     phenomenaHint: "Choose a phenomenon to see its distinguishing features.",
     phenomena: [
       ["Granules", "The tops of hot plasma convection cells that make the photosphere look grainy; about 1,000 km wide."],
@@ -127,9 +117,7 @@ const copy = {
       ["Coronal Mass Ejection", "A giant cloud of magnetised plasma erupting from the corona that may trigger a geomagnetic storm."],
       ["Solar Wind", "A continuous plasma flow — electrons, protons and alpha particles — travelling at 250 to 750 km s⁻¹."],
     ],
-    arrivalsTitle: "Not every disturbance arrives together",
-    arrivals: [["8 minutes", "Light / radiation from a solar flare"], ["Tens of minutes", "Charged flare particles"], ["About 3 days", "Magnetised CME plasma"], ["Continuous", "Solar wind"]],
-    shieldTitle: "The magnetosphere is a dynamic shield",
+    arrivals: [["8 minutes", "Light / radiation from a solar flare"], ["", "Charged flare particles"], ["About 3 days", "Magnetised CME plasma"], ["Continuous", "Solar wind"]],
     shieldBody: "The magnetosphere forms when Earth's magnetic field interacts with the interplanetary field carried by solar wind. Its Sun-facing side is compressed while its far side stretches into a magnetotail.",
     calm: "Normal solar wind",
     storm: "Strong solar storm",
@@ -140,20 +128,16 @@ const copy = {
     spaceSide: "In space",
     sunExamples: "Flares · prominences · sunspots · CME",
     spaceExamples: "Solar wind · radiation storms · geomagnetic storms",
-    chainTitle: "From eruption to impact",
     chain: ["Active sunspot", "Flare / CME", "Particles & magnetic field", "Magnetosphere interaction", "Impact on Earth"],
-    effectsTitle: "Four major effects on Earth",
     effects: [
       ["Aurora", "Charged particles funnel to the poles and collide with oxygen and nitrogen, producing coloured light."],
       ["Telecommunication", "Excess ionisation in the ionosphere disrupts or absorbs high-frequency radio signals."],
       ["GPS Navigation", "Solar storms slow and bend satellite signals, producing position errors."],
       ["Power Grid", "Geomagnetic storms induce high currents in cables, damaging transformers and causing blackouts."],
     ],
-    cycleTitle: "More sunspots, more active space weather",
     cycleBody: "At solar maximum in the 11-year cycle, flares, CMEs, and solar-wind speed and density tend to increase. Scientists use this data to issue early warnings.",
     lowActivity: "Solar minimum",
     highActivity: "Solar maximum",
-    forecast: "Why forecast it",
     forecastItems: ["Estimate when a CME will reach Earth.", "Place satellites into safe mode.", "Prepare power-grid operators.", "Alert aviation and radio communications."],
     eventTitle: "Case study: 6 September 2017",
     eventBody: "An X9.3-class solar flare at 8:02 am was followed by a CME. Telecommunications, navigation and power lines on Earth were disrupted for about an hour.",
@@ -195,23 +179,23 @@ export function ScienceF3Chapter9VisualNotesBlock({ id, content, lang, isRead, o
 
       <div className="space-y-6">
         <SectionHeading number="9.1" title={t.section91} body={t.section91Body} />
-        <Panel><div className="flex items-center gap-3"><Atom className="h-8 w-8 text-orange-300" /><div><h3 className="font-black text-white">{t.layersTitle}</h3><p className="mt-1 text-sm text-slate-400">{t.layersHint}</p></div></div><div className="mt-5 grid gap-6 lg:grid-cols-[.8fr_1.2fr]"><div className="relative mx-auto grid h-64 w-64 place-items-center rounded-full border border-orange-200/20 bg-orange-950/30"><div className="absolute rounded-full border border-cyan-200/30 bg-gradient-to-br from-yellow-200 via-orange-400 to-rose-600 shadow-[0_0_50px_rgba(249,115,22,.3)] transition-[width,height] duration-300" style={{ width: `${layerRadius}%`, height: `${layerRadius}%` }} /><Sun className="relative z-10 h-12 w-12 text-white" /></div><div><div className="grid grid-cols-2 gap-2 sm:grid-cols-3">{t.layers.map((item, index) => <button key={item[0]} type="button" onClick={() => setLayer(index)} className={`min-h-12 rounded-xl border px-3 py-2 text-left text-xs font-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 ${layer === index ? "border-orange-300 bg-orange-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}>{index + 1}. {item[0]}</button>)}</div><div className="mt-4 rounded-2xl bg-slate-950/60 p-4"><p className="text-xs font-black uppercase tracking-[.14em] text-cyan-300">{t.layers[layer][1]}</p><h4 className="mt-1 text-xl font-black text-white">{t.layers[layer][0]}</h4><p className="mt-2 text-sm leading-6 text-slate-300">{t.layers[layer][2]}</p></div></div></div><div className="mt-5 rounded-xl bg-orange-300/10 p-3 text-center font-mono text-xs font-bold text-orange-100 sm:text-sm">{t.energyFlow}</div></Panel>
+        <Panel><div className="flex items-center gap-3"><Atom className="h-8 w-8 text-orange-300" /><div><p className="mt-1 text-sm text-slate-400">{t.layersHint}</p></div></div><div className="mt-5 grid gap-6 lg:grid-cols-[.8fr_1.2fr]"><div className="relative mx-auto grid h-64 w-64 place-items-center rounded-full border border-orange-200/20 bg-orange-950/30"><div className="absolute rounded-full border border-cyan-200/30 bg-gradient-to-br from-yellow-200 via-orange-400 to-rose-600 shadow-[0_0_50px_rgba(249,115,22,.3)] transition-[width,height] duration-300" style={{ width: `${layerRadius}%`, height: `${layerRadius}%` }} /><Sun className="relative z-10 h-12 w-12 text-white" /></div><div><div className="grid grid-cols-2 gap-2 sm:grid-cols-3">{t.layers.map((item, index) => <button key={item[0]} type="button" onClick={() => setLayer(index)} className={`min-h-12 rounded-xl border px-3 py-2 text-left text-xs font-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 ${layer === index ? "border-orange-300 bg-orange-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}>{index + 1}. {item[0]}</button>)}</div><div className="mt-4 rounded-2xl bg-slate-950/60 p-4"><p className="text-xs font-black uppercase tracking-[.14em] text-cyan-300">{t.layers[layer][1]}</p><h4 className="mt-1 text-xl font-black text-white">{t.layers[layer][0]}</h4><p className="mt-2 text-sm leading-6 text-slate-300">{t.layers[layer][2]}</p></div></div></div><div className="mt-5 rounded-xl bg-orange-300/10 p-3 text-center font-mono text-xs font-bold text-orange-100 sm:text-sm">{t.energyFlow}</div></Panel>
 
-        <Panel><div className="flex items-center gap-3"><PhenomenonIcon className="h-8 w-8 text-cyan-300" /><div><h3 className="font-black text-white">{t.phenomenaTitle}</h3><p className="mt-1 text-sm text-slate-400">{t.phenomenaHint}</p></div></div><div className="mt-5 grid gap-5 lg:grid-cols-[.75fr_1.25fr]"><div className="grid grid-cols-2 gap-2">{t.phenomena.map((item, index) => <button key={item[0]} type="button" onClick={() => setPhenomenon(index)} className={`min-h-12 rounded-xl px-3 py-2 text-left text-xs font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 ${phenomenon === index ? "bg-cyan-300 text-slate-950" : "bg-white/5 text-slate-300"}`}>{item[0]}</button>)}</div><div className="flex min-h-48 items-center rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.06] p-5"><div><PhenomenonIcon className="h-10 w-10 text-cyan-300" /><h4 className="mt-4 text-xl font-black text-white">{t.phenomena[phenomenon][0]}</h4><p className="mt-3 text-sm leading-6 text-slate-300">{t.phenomena[phenomenon][1]}</p></div></div></div></Panel>
+        <Panel><div className="flex items-center gap-3"><PhenomenonIcon className="h-8 w-8 text-cyan-300" /><div><p className="mt-1 text-sm text-slate-400">{t.phenomenaHint}</p></div></div><div className="mt-5 grid gap-5 lg:grid-cols-[.75fr_1.25fr]"><div className="grid grid-cols-2 gap-2">{t.phenomena.map((item, index) => <button key={item[0]} type="button" onClick={() => setPhenomenon(index)} className={`min-h-12 rounded-xl px-3 py-2 text-left text-xs font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 ${phenomenon === index ? "bg-cyan-300 text-slate-950" : "bg-white/5 text-slate-300"}`}>{item[0]}</button>)}</div><div className="flex min-h-48 items-center rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.06] p-5"><div><PhenomenonIcon className="h-10 w-10 text-cyan-300" /><h4 className="mt-4 text-xl font-black text-white">{t.phenomena[phenomenon][0]}</h4><p className="mt-3 text-sm leading-6 text-slate-300">{t.phenomena[phenomenon][1]}</p></div></div></div></Panel>
 
-        <Panel><h3 className="font-black text-white">{t.arrivalsTitle}</h3><div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">{t.arrivals.map((item, index) => <div key={item[0]} className="relative rounded-xl bg-white/5 p-4"><span className="font-mono text-lg font-black text-orange-300">{item[0]}</span><p className="mt-2 text-xs leading-5 text-slate-300">{item[1]}</p>{index < 3 && <ChevronRight className="absolute -right-4 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[#0b1224] p-1 text-slate-500 xl:block" />}</div>)}</div></Panel>
+        <Panel><div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">{t.arrivals.map((item, index) => <div key={item[0]} className="relative rounded-xl bg-white/5 p-4">{item[0] && <span className="font-mono text-lg font-black text-orange-300">{item[0]}</span>}<p className="mt-2 text-xs leading-5 text-slate-300">{item[1]}</p>{index < 3 && <ChevronRight className="absolute -right-4 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[#0b1224] p-1 text-slate-500 xl:block" />}</div>)}</div></Panel>
 
-        <Panel className="border-cyan-300/20"><div className="grid gap-6 lg:grid-cols-[1.15fr_.85fr]"><div><div className="flex items-center gap-3"><ShieldCheck className="h-8 w-8 text-cyan-300" /><h3 className="text-xl font-black text-white">{t.shieldTitle}</h3></div><p className="mt-3 text-sm leading-6 text-slate-300">{t.shieldBody}</p><div className="mt-5 flex gap-2" role="group" aria-label={t.shieldTitle}>{[false, true].map((value) => <button key={String(value)} type="button" aria-pressed={storm === value} onClick={() => setStorm(value)} className={`min-h-11 flex-1 rounded-xl px-3 text-sm font-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 ${storm === value ? "bg-cyan-300 text-slate-950" : "bg-white/5 text-slate-300"}`}>{value ? t.storm : t.calm}</button>)}</div></div><div className="relative min-h-64 overflow-hidden rounded-2xl bg-slate-950/70"><div className="absolute -left-8 top-1/2 h-28 w-28 -translate-y-1/2 rounded-full bg-gradient-to-br from-yellow-200 to-orange-600 shadow-[0_0_45px_rgba(249,115,22,.45)]" /><div className={`absolute left-1/2 top-1/2 h-36 -translate-x-1/2 -translate-y-1/2 rounded-[50%] border-2 border-cyan-300/60 bg-cyan-300/5 transition-[width] duration-300 ${storm ? "w-36" : "w-52"}`}><Earth className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 text-cyan-300" /><div className={`absolute left-full top-1/2 h-20 -translate-y-1/2 border-y border-cyan-300/40 bg-gradient-to-r from-cyan-300/10 to-transparent transition-[width] duration-300 ${storm ? "w-24" : "w-36"}`} /></div>{Array.from({ length: storm ? 9 : 5 }, (_, index) => <span key={index} className="absolute h-0.5 bg-orange-300" style={{ left: `${12 + index * 7}%`, top: `${22 + (index % 5) * 14}%`, width: storm ? "18%" : "10%" }} />)}</div></div><div className="mt-5 grid gap-2 sm:grid-cols-3">{t.shieldFunctions.map((item) => <div key={item} className="flex gap-2 rounded-xl bg-cyan-300/[0.06] p-3 text-xs leading-5 text-cyan-50"><CheckCircle2 className="h-4 w-4 shrink-0 text-cyan-300" />{item}</div>)}</div></Panel>
+        <Panel className="border-cyan-300/20"><div className="grid gap-6 lg:grid-cols-[1.15fr_.85fr]"><div><div className="flex items-center gap-3"><ShieldCheck className="h-8 w-8 text-cyan-300" /><h3 className="text-xl font-black text-white">{t.path[2][0]}</h3></div><p className="mt-3 text-sm leading-6 text-slate-300">{t.shieldBody}</p><div className="mt-5 flex gap-2" role="group" aria-label={t.path[2][0]}>{[false, true].map((value) => <button key={String(value)} type="button" aria-pressed={storm === value} onClick={() => setStorm(value)} className={`min-h-11 flex-1 rounded-xl px-3 text-sm font-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 ${storm === value ? "bg-cyan-300 text-slate-950" : "bg-white/5 text-slate-300"}`}>{value ? t.storm : t.calm}</button>)}</div></div><div className="relative min-h-64 overflow-hidden rounded-2xl bg-slate-950/70"><div className="absolute -left-8 top-1/2 h-28 w-28 -translate-y-1/2 rounded-full bg-gradient-to-br from-yellow-200 to-orange-600 shadow-[0_0_45px_rgba(249,115,22,.45)]" /><div className={`absolute left-1/2 top-1/2 h-36 -translate-x-1/2 -translate-y-1/2 rounded-[50%] border-2 border-cyan-300/60 bg-cyan-300/5 transition-[width] duration-300 ${storm ? "w-36" : "w-52"}`}><Earth className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 text-cyan-300" /><div className={`absolute left-full top-1/2 h-20 -translate-y-1/2 border-y border-cyan-300/40 bg-gradient-to-r from-cyan-300/10 to-transparent transition-[width] duration-300 ${storm ? "w-24" : "w-36"}`} /></div>{Array.from({ length: storm ? 9 : 5 }, (_, index) => <span key={index} className="absolute h-0.5 bg-orange-300" style={{ left: `${12 + index * 7}%`, top: `${22 + (index % 5) * 14}%`, width: storm ? "18%" : "10%" }} />)}</div></div><div className="mt-5 grid gap-2 sm:grid-cols-3">{t.shieldFunctions.map((item) => <div key={item} className="flex gap-2 rounded-xl bg-cyan-300/[0.06] p-3 text-xs leading-5 text-cyan-50"><CheckCircle2 className="h-4 w-4 shrink-0 text-cyan-300" />{item}</div>)}</div></Panel>
       </div>
 
       <div className="space-y-6">
         <SectionHeading number="9.2" title={t.section92} body={t.section92Body} />
         <div className="grid gap-4 lg:grid-cols-2"><Panel className="border-orange-300/20"><div className="flex items-center gap-3"><Sun className="h-7 w-7 text-orange-300" /><h3 className="font-black text-white">{t.sunSide}</h3></div><p className="mt-3 text-sm font-bold text-orange-100">{t.sunExamples}</p></Panel><Panel className="border-violet-300/20"><div className="flex items-center gap-3"><Orbit className="h-7 w-7 text-violet-300" /><h3 className="font-black text-white">{t.spaceSide}</h3></div><p className="mt-3 text-sm font-bold text-violet-100">{t.spaceExamples}</p></Panel></div>
-        <Panel><h3 className="font-black text-white">{t.chainTitle}</h3><div className="mt-4 grid gap-2 lg:grid-cols-5">{t.chain.map((item, index) => <div key={item} className="relative rounded-xl bg-white/5 p-3 text-center text-xs font-bold text-slate-200"><span className="mb-2 block font-mono text-orange-300">0{index + 1}</span>{item}{index < 4 && <ChevronRight className="absolute -right-4 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[#0b1224] p-1 text-orange-300 lg:block" />}</div>)}</div></Panel>
+        <Panel><div className="mt-4 grid gap-2 lg:grid-cols-5">{t.chain.map((item, index) => <div key={item} className="relative rounded-xl bg-white/5 p-3 text-center text-xs font-bold text-slate-200"><span className="mb-2 block font-mono text-orange-300">0{index + 1}</span>{item}{index < 4 && <ChevronRight className="absolute -right-4 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[#0b1224] p-1 text-orange-300 lg:block" />}</div>)}</div></Panel>
 
-        <div><h3 className="font-black text-white">{t.effectsTitle}</h3><div className="mt-4 grid gap-4 sm:grid-cols-2">{t.effects.map((item, index) => { const Icon = effectIcons[index]; return <Panel key={item[0]}><div className="flex items-center gap-3"><Icon className="h-7 w-7 text-cyan-300" /><h4 className="font-black text-white">{item[0]}</h4></div><p className="mt-3 text-sm leading-6 text-slate-300">{item[1]}</p></Panel>; })}</div></div>
+        <div><div className="mt-4 grid gap-4 sm:grid-cols-2">{t.effects.map((item, index) => { const Icon = effectIcons[index]; return <Panel key={item[0]}><div className="flex items-center gap-3"><Icon className="h-7 w-7 text-cyan-300" /><h4 className="font-black text-white">{item[0]}</h4></div><p className="mt-3 text-sm leading-6 text-slate-300">{item[1]}</p></Panel>; })}</div></div>
 
-        <div className="grid gap-4 lg:grid-cols-[1.15fr_.85fr]"><Panel><div className="flex items-center gap-3"><Activity className="h-8 w-8 text-orange-300" /><h3 className="font-black text-white">{t.cycleTitle}</h3></div><p className="mt-3 text-sm leading-6 text-slate-300">{t.cycleBody}</p><div className="mt-5 flex h-40 items-end gap-2 border-b border-slate-600 px-2">{cycleHeights.map((height, index) => <div key={index} className={`flex-1 rounded-t bg-gradient-to-t transition-[height] duration-300 ${height > 80 ? "from-rose-600 to-orange-300" : "from-violet-700 to-cyan-400"}`} style={{ height: `${height}%` }}><span className="sr-only">{index + 1}: {height}%</span></div>)}</div><div className="mt-2 flex justify-between text-xs font-bold text-slate-400"><span>{t.lowActivity}</span><span className="text-orange-300">{t.highActivity}</span><span>{t.lowActivity}</span></div></Panel><Panel><div className="flex items-center gap-3"><Satellite className="h-8 w-8 text-violet-300" /><h3 className="font-black text-white">{t.forecast}</h3></div><div className="mt-4 space-y-2">{t.forecastItems.map((item) => <div key={item} className="flex gap-3 rounded-xl bg-white/5 p-3 text-sm text-slate-300"><Antenna className="h-5 w-5 shrink-0 text-violet-300" />{item}</div>)}</div></Panel></div>
+        <div className="grid gap-4 lg:grid-cols-[1.15fr_.85fr]"><Panel><div className="flex items-center gap-3"><Activity className="h-8 w-8 text-orange-300" /></div><p className="mt-3 text-sm leading-6 text-slate-300">{t.cycleBody}</p><div className="mt-5 flex h-40 items-end gap-2 border-b border-slate-600 px-2">{cycleHeights.map((height, index) => <div key={index} className={`flex-1 rounded-t bg-gradient-to-t transition-[height] duration-300 ${height > 80 ? "from-rose-600 to-orange-300" : "from-violet-700 to-cyan-400"}`} style={{ height: `${height}%` }}><span className="sr-only">{index + 1}: {height}%</span></div>)}</div><div className="mt-2 flex justify-between text-xs font-bold text-slate-400"><span>{t.lowActivity}</span><span className="text-orange-300">{t.highActivity}</span><span>{t.lowActivity}</span></div></Panel><Panel><div className="flex items-center gap-3"><Satellite className="h-8 w-8 text-violet-300" /></div><div className="mt-4 space-y-2">{t.forecastItems.map((item) => <div key={item} className="flex gap-3 rounded-xl bg-white/5 p-3 text-sm text-slate-300"><Antenna className="h-5 w-5 shrink-0 text-violet-300" />{item}</div>)}</div></Panel></div>
 
         <Panel className="border-rose-300/25 bg-gradient-to-br from-rose-400/[0.09] to-transparent"><div className="flex items-start gap-4"><CloudLightning className="mt-1 h-9 w-9 shrink-0 text-rose-300" /><div><p className="text-xs font-black uppercase tracking-[.15em] text-rose-200">X9.3</p><h3 className="mt-1 text-xl font-black text-white">{t.eventTitle}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{t.eventBody}</p></div></div></Panel>
       </div>

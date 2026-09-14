@@ -11,6 +11,16 @@ import { figureCopy } from "./figure-copy";
  * expands because its particles move further apart, not because the particles
  * themselves get bigger, and a figure that grew the dots would teach exactly the
  * misconception the standard warns against.
+ *
+ * The three states also differ in ARRANGEMENT, not just spacing: solid keeps
+ * its regular lattice (particles vibrate about fixed positions), liquid is
+ * jittered off that lattice (particles are still close together but free to
+ * slide past one another, so neat rows would misteach a crystal), and gas is
+ * scattered across the whole chamber at random-looking positions (particles
+ * are free and far apart, so a grid — however wide — would misteach a lattice
+ * again). "Random-looking" is deterministic, not `Math.random()`: `jitter`
+ * hashes the particle's own index, so the figure draws identically on every
+ * render and in both languages, and a snapshot never flickers.
  */
 
 /** One radius for every particle in every state and temperature. Never varies. */
@@ -21,6 +31,12 @@ const GRID: Record<string, { cols: number; rows: number }> = {
   liquid: { cols: 5, rows: 3 },
   gas: { cols: 4, rows: 3 },
 };
+
+/** Deterministic pseudo-random in [0, 1), keyed only by `n` — never `Math.random()`. */
+function jitter(n: number): number {
+  const x = Math.sin(n * 12.9898 + 78.233) * 43758.5453;
+  return x - Math.floor(x);
+}
 
 /** Base spacing per state, then scaled by temperature. */
 export const BASE_GAP: Record<string, number> = { solid: 27, liquid: 34, gas: 46 };
@@ -47,8 +63,16 @@ const VIEW = {
   h: Math.round(MAX_GAP + PAD_Y + 8) * 2,
 };
 
-export function ExpansionParticles({ block, lang }: { block: ExpansionParticlesBlock; lang?: string }) {
-  const [state, setState] = useState<"solid" | "liquid" | "gas">((block.states[0]?.id as "solid") ?? "solid");
+export function ExpansionParticles({
+  block,
+  lang,
+}: {
+  block: ExpansionParticlesBlock;
+  lang?: string;
+}) {
+  const [state, setState] = useState<"solid" | "liquid" | "gas">(
+    (block.states[0]?.id as "solid") ?? "solid",
+  );
   const [heated, setHeated] = useState(true);
   const copy = figureCopy(lang);
 
@@ -58,18 +82,62 @@ export function ExpansionParticles({ block, lang }: { block: ExpansionParticlesB
   const cx = VIEW.w / 2;
   const cy = VIEW.h / 2;
 
-  const particles: { x: number; y: number }[] = [];
-  for (let r = 0; r < grid.rows; r++) {
-    for (let c = 0; c < grid.cols; c++) {
-      particles.push({
-        x: cx + (c - (grid.cols - 1) / 2) * gap,
-        y: cy + (r - (grid.rows - 1) / 2) * gap,
-      });
-    }
-  }
-  // Container grows with the particle spread, so "the object expands" is visible.
+  // Container grows with the particle spread, so "the object expands" is
+  // visible. Sized from the same grid/gap for every state, so the chamber
+  // keeps filling the canvas even where the particles inside it no longer
+  // sit on that grid.
   const halfW = ((grid.cols - 1) * gap) / 2 + PAD_X;
   const halfH = ((grid.rows - 1) * gap) / 2 + PAD_Y;
+
+  const particles: { x: number; y: number; angle: number }[] = [];
+  if (state === "liquid") {
+    // Jittered off the solid's own lattice: still close together — this is
+    // liquid, not gas — but no neat rows, because these particles are free to
+    // slide past one another rather than vibrating about a fixed point.
+    let i = 0;
+    for (let r = 0; r < grid.rows; r++) {
+      for (let c = 0; c < grid.cols; c++) {
+        const jx = (jitter(i * 2 + 1) - 0.5) * gap * 0.7;
+        const jy = (jitter(i * 2 + 2) - 0.5) * gap * 0.7;
+        particles.push({
+          x: cx + (c - (grid.cols - 1) / 2) * gap + jx,
+          y: cy + (r - (grid.rows - 1) / 2) * gap + jy,
+          angle: 0,
+        });
+        i++;
+      }
+    }
+  } else if (state === "gas") {
+    // Same coarse-grid-then-jitter approach as liquid, but at gas's own much
+    // wider spacing (`gap` is largest for gas of the three states) and a
+    // stronger jitter fraction: random-looking positions that stay clearly
+    // farther apart than the liquid's tight jitter, never collapsing into a
+    // lattice or into two particles landing right next to each other.
+    let i = 0;
+    for (let r = 0; r < grid.rows; r++) {
+      for (let c = 0; c < grid.cols; c++) {
+        const jx = (jitter(i * 3 + 1) - 0.5) * gap * 0.8;
+        const jy = (jitter(i * 3 + 2) - 0.5) * gap * 0.8;
+        particles.push({
+          x: cx + (c - (grid.cols - 1) / 2) * gap + jx,
+          y: cy + (r - (grid.rows - 1) / 2) * gap + jy,
+          angle: jitter(i * 3 + 3) * Math.PI * 2,
+        });
+        i++;
+      }
+    }
+  } else {
+    // Solid: the regular lattice — particles vibrate about fixed positions.
+    for (let r = 0; r < grid.rows; r++) {
+      for (let c = 0; c < grid.cols; c++) {
+        particles.push({
+          x: cx + (c - (grid.cols - 1) / 2) * gap,
+          y: cy + (r - (grid.rows - 1) / 2) * gap,
+          angle: 0,
+        });
+      }
+    }
+  }
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
@@ -89,10 +157,20 @@ export function ExpansionParticles({ block, lang }: { block: ExpansionParticlesB
         ))}
       </div>
       <div className="mb-2 flex flex-wrap gap-1.5" role="group" aria-label={copy.controlsLabel}>
-        <button type="button" aria-pressed={heated} onClick={() => setHeated(true)} className={conceptButtonClass(heated)}>
+        <button
+          type="button"
+          aria-pressed={heated}
+          onClick={() => setHeated(true)}
+          className={conceptButtonClass(heated)}
+        >
           🔥 {block.heatedLabel}
         </button>
-        <button type="button" aria-pressed={!heated} onClick={() => setHeated(false)} className={conceptButtonClass(!heated)}>
+        <button
+          type="button"
+          aria-pressed={!heated}
+          onClick={() => setHeated(false)}
+          className={conceptButtonClass(!heated)}
+        >
           ❄️ {block.cooledLabel}
         </button>
       </div>
@@ -125,7 +203,12 @@ export function ExpansionParticles({ block, lang }: { block: ExpansionParticlesB
                 className={heated ? "stroke-rose-300/60" : "stroke-sky-300/50"}
                 strokeWidth="2.6"
               />
-              <circle cx={p.x} cy={p.y} r={PARTICLE_R} className={heated ? "fill-rose-300" : "fill-sky-300"} />
+              <circle
+                cx={p.x}
+                cy={p.y}
+                r={PARTICLE_R}
+                className={heated ? "fill-rose-300" : "fill-sky-300"}
+              />
             </g>
           ))}
         </svg>

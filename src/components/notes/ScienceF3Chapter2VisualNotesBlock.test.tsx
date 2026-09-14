@@ -17,11 +17,11 @@ describe("ScienceF3Chapter2VisualNotesBlock", () => {
     expect(html).toContain("2.5 Pertukaran Gas dalam Tumbuhan");
     expect(html).toContain("Laluan udara dari hidung ke peparu");
     expect(html).not.toContain("Altitud tinggi mempunyai kurang");
-    expect(html).toContain("Isi padu mengubah tekanan");
+    expect(html).not.toContain("Isi padu mengubah tekanan");
     expect(html).toContain("Eksperimen 2.1A");
-    expect(html).toContain("Jejaki O₂ ke sel");
+    expect(html).not.toContain("Jejaki O₂ ke sel");
     expect(html).toContain("Eksperimen 2.2");
-    expect(html).toContain("Habitat berbeza");
+    expect(html).not.toContain("Habitat berbeza");
     expect(html).toContain("Pencemaran mengganggu");
     expect(html).toContain("id=\"science-notes-content\"");
   });
@@ -36,7 +36,7 @@ describe("ScienceF3Chapter2VisualNotesBlock", () => {
     expect(html).toContain("2.3 Health of Human Respiratory System");
     expect(html).toContain("2.4 Adaptations in Respiratory Systems");
     expect(html).toContain("2.5 Gaseous Exchange in Plants");
-    expect(html).toContain("Volume changes pressure");
+    expect(html).not.toContain("Volume changes pressure");
     expect(html).toContain("Experiment 2.1A");
     expect(html).toContain("Experiment 2.2");
     expect(html).toContain("Pollution disrupts");

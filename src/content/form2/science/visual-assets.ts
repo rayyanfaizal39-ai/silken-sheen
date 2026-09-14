@@ -60,6 +60,28 @@ export const SCIENCE_F2_CH9_IMAGES = {
   polarBear: `${DIR}/chapter-9/09_09_polar_bear_insulation.webp`,
   expansionUses: `${DIR}/chapter-9/09_10_expansion_contraction_applications.webp`,
   absorptionEmission: `${DIR}/chapter-9/09_11_heat_absorption_emission_black_vs_shiny.webp`,
+
+  /**
+   * The three later approved Chapter 9 figures.
+   *
+   * `heatTransferMethods` is the master comparison for 9.2: it paints
+   * conduction, convection and radiation side by side, which is what let the
+   * chapter stop teaching conduction in one section and convection + radiation
+   * in another. It replaced `kitchenHeatTransfer`, whose one scene carried two
+   * of the three mechanisms and none of the comparison.
+   * `sunEarthRadiation` gives "warming of the Earth by the Sun" — a required
+   * natural phenomenon the chapter previously mentioned only in passing — its
+   * own visual. `conductorsInsulators` puts four everyday objects on one
+   * scene, so conductors and insulators are taught by picture before the
+   * matching practice rather than by text alone.
+   *
+   * All three are language-neutral, so BM and DLP reference the same file and
+   * every label comes from chapter content. Geometry lives in
+   * `ch9-approved-figure-geometry.ts`.
+   */
+  heatTransferMethods: `${DIR}/chapter-9/science-f2-ch9-heat-transfer-methods.webp`,
+  sunEarthRadiation: `${DIR}/chapter-9/science-f2-ch9-sun-earth-radiation.webp`,
+  conductorsInsulators: `${DIR}/chapter-9/science-f2-ch9-conductors-insulators.webp`,
 } as const;
 
 export const SCIENCE_F2_CH10_IMAGES = {

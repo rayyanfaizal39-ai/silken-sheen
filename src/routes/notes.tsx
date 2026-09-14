@@ -903,6 +903,7 @@ function NotesPage() {
             header={
               isScienceDiscovery ? (
                 <ScienceDiscoveryChapterHeader
+                  hideGenericCopy={(subject === "science" && form === "Form 1" && activeChapterKey === "Chapter 1") || (isScienceF3Interactive && (activeChapter?.sciF3InteractiveData?.chapter === 2 || activeChapter?.sciF3InteractiveData?.chapter === 5 || activeChapter?.sciF3InteractiveData?.chapter === 6 || activeChapter?.sciF3InteractiveData?.chapter === 9 || activeChapter?.sciF3InteractiveData?.chapter === 10))}
                   chapterKey={activeChapterKey}
                   title={chapterMeta?.label ?? activeChapter?.title ?? activeChapterKey}
                   lang={scienceLang === "bm" ? "bm" : "dlp"}
@@ -2195,7 +2196,7 @@ function NotesPage() {
               )
             )}
 
-            {isScienceDiscovery && <MiniInvestigation lang={scienceLang === "bm" ? "bm" : "en"} />}
+            {isScienceDiscovery && <MiniInvestigation lang={scienceLang === "bm" ? "bm" : "en"} hideHeading={isScienceF3Interactive && (activeChapter?.sciF3InteractiveData?.chapter === 6 || activeChapter?.sciF3InteractiveData?.chapter === 10)} />}
           </NotesContentWithVideo>
 
           {filtered.length === 0 ? (

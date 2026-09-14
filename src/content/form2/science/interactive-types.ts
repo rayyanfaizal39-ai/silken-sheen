@@ -1009,6 +1009,79 @@ export type MiniExperimentBlock = {
 };
 
 /** A yes / no / partial answer for one criterion in a ComparisonMatrixBlock. */
+/**
+ * One region of an approved Chapter 9 photograph.
+ *
+ * No geometry here: the shapes live in `ch9-approved-figure-geometry.ts`, keyed
+ * by this `id`. That is what lets BM and DLP supply different words for
+ * provably identical hotspots.
+ */
+export type Ch9SpotlightConcept = {
+  id: string;
+  label: string;
+  /** One or two sentences — the teaching for this region. */
+  note: string;
+  icon?: string;
+  /** Short phrase floated on the artwork beside the region. Falls back to `label`. */
+  spotlightCaption?: string;
+};
+
+/**
+ * An approved Chapter 9 photograph taught as a row of selectable regions.
+ *
+ * Three figures share this one shape — the three methods of heat transfer, the
+ * Sun warming the Earth, and conductors versus insulators — so they cannot
+ * drift apart in behaviour. `figure` selects both the artwork's aspect ratio
+ * and its hotspot geometry.
+ */
+export type Ch9SpotlightFigureBlock = {
+  title: string;
+  /** `heat-transfer` | `sun-earth` | `conductor-insulator`. */
+  figure: "heat-transfer" | "sun-earth" | "conductor-insulator";
+  /** Public WebP path, from `SCIENCE_F2_CH9_IMAGES`. */
+  src: string;
+  /** Meaningful alt text, written per language. */
+  alt: string;
+  instruction?: string;
+  prompt?: string;
+  caption?: string;
+  legendLabel?: string;
+  size?: LearningImageSize;
+  /** One per painted region, in the artwork's own order. */
+  concepts: Ch9SpotlightConcept[];
+};
+
+/** One state of the hot-to-cold heat-flow figure. */
+export type HeatFlowStage = {
+  /** `flow` (heat moving) or `equilibrium` (equal temperatures, no net flow). */
+  id: "flow" | "equilibrium";
+  label: string;
+  note: string;
+  leftLabel: string;
+  rightLabel: string;
+  /** Shown inside each box, e.g. "80 °C". Drawn from data so picture and text agree. */
+  leftTemperature: string;
+  rightTemperature: string;
+};
+
+/**
+ * Which way heat flows, drawn deterministically rather than photographed.
+ *
+ * Used twice: with one stage at the head of 9.2, to establish hot -> cold
+ * before any mechanism is named; and with two stages in the thermal-equilibrium
+ * section, so the same pair of objects is seen reaching equal temperatures.
+ */
+export type HeatFlowDirectionBlock = {
+  title: string;
+  instruction?: string;
+  /** Caption over the arrow while heat is flowing, e.g. "heat". */
+  heatLabel: string;
+  /** Caption over the arrows once temperatures are equal, e.g. "no net heat transfer". */
+  noNetFlowLabel: string;
+  caption?: string;
+  stages: HeatFlowStage[];
+};
+
 export type ComparisonMatrixValue = "yes" | "no" | "partial";
 
 export type ComparisonMatrixRow = {
@@ -2488,6 +2561,21 @@ export type ScienceInteractiveSection = {
     title: string;
     columns: ScienceInteractiveCard[];
   };
+  /**
+   * A genuine textbook comparison table — rendered as a real `<table>`, not a
+   * card grid, so it visually reads as "Table 9.1" rather than as two more
+   * concept cards. Each row is one point of comparison (e.g. Meaning, Unit,
+   * Depends on); `left`/`right` hold that row's value for each of the two
+   * `headers`. A cell may be a short list (rendered as bullets) rather than
+   * one sentence, for rows like "Depends on" that name several factors.
+   */
+  differencesTable?: {
+    title: string;
+    headers: [string, string];
+    rows: { label: string; left: string | string[]; right: string | string[] }[];
+  };
+  ch9SpotlightFigure?: Ch9SpotlightFigureBlock;
+  heatFlowDirection?: HeatFlowDirectionBlock;
   /**
    * Compact "🧠 Ingat / Remember" callout for a core textbook definition or
    * rule worth pausing on. Rendered via `ScienceRemember`. May carry its own
