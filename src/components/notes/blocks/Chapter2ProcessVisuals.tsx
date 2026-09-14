@@ -832,46 +832,133 @@ export function PhotosynthesisInvestigationHub({
 
 export function ComplementaryCycle({ content, lang }: { content: Chapter2Content; lang: Lang }) {
   const c = labels[lang];
+  const captionId = useId();
+  const toRespiration = chapter2Processes.photosynthesis.products[lang];
+  const toPhotosynthesis = chapter2Processes.photosynthesis.reactants[lang];
+  const accessibleLoop = `${c.photo} → ${toRespiration} → ${c.cell} → ${toPhotosynthesis} → ${c.photo}`;
+  const processNode = (
+    process: "photosynthesis" | "respiration",
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+  ) => (
+    <g data-cycle-node={process} transform={`translate(${x} ${y})`}>
+      <rect
+        width={width}
+        height={height}
+        rx="18"
+        fill={process === "photosynthesis" ? "#064e3b" : "#164e63"}
+        stroke={process === "photosynthesis" ? "#6ee7b7" : "#67e8f9"}
+        strokeWidth="2"
+      />
+      <g transform={`translate(42 ${height / 2})`} aria-hidden="true">
+        {process === "photosynthesis" ? (
+          <g data-cycle-symbol="leaf-sunlight">
+            <path
+              d="M-5 20 C-24 5 -15 -17 15 -18 C21 6 11 22 -5 20Z"
+              fill="#34d399"
+              stroke="#a7f3d0"
+              strokeWidth="1.5"
+            />
+            <path
+              d="M-10 27 L11 -12 M0 10 L-8 0 M5 0 L14 -2"
+              fill="none"
+              stroke="#065f46"
+              strokeWidth="2"
+            />
+            <circle cx="-16" cy="-22" r="7" fill="#fde68a" />
+            <path
+              d="M-16 -33 V-37 M-27 -22 H-31 M-24 -30 L-27 -33 M-6 -30 L-3 -33"
+              fill="none"
+              stroke="#fde68a"
+              strokeWidth="2"
+            />
+          </g>
+        ) : (
+          <g data-cycle-symbol="cell-mitochondrion">
+            <ellipse rx="26" ry="23" fill="#1e3a5f" stroke="#93c5fd" strokeWidth="2" />
+            <circle cx="-13" cy="-4" r="6" fill="#a78bfa" />
+            <ellipse
+              cx="8"
+              cy="5"
+              rx="12"
+              ry="8"
+              fill="#a85429"
+              stroke="#fed7aa"
+              strokeWidth="1.5"
+            />
+            <path d="M-1 5 Q2 -2 5 5 T11 5 T17 5" fill="none" stroke="#fed7aa" strokeWidth="1.5" />
+          </g>
+        )}
+      </g>
+      <text
+        x={(width + 66) / 2}
+        y={height / 2 + 6}
+        fill="#f8fafc"
+        fontSize="18"
+        fontWeight="800"
+        textAnchor="middle"
+      >
+        {process === "photosynthesis" ? c.photo : c.cell}
+      </text>
+    </g>
+  );
   return (
     <figure data-learning-standard="2.2.4" className={card}>
-      <Canvas
-        name={content.complementaryRelationship}
+      <svg
         data-process="complementary-cycle"
-        viewBox="0 0 420 510"
+        data-cycle-layout="desktop"
+        role="img"
+        aria-label={accessibleLoop}
+        aria-describedby={captionId}
+        viewBox="0 0 760 260"
+        fontFamily="Arial, sans-serif"
+        className="mx-auto my-3 hidden w-full max-w-[52rem] md:block"
       >
-        <path d="M68 444 H25 V54 H65" fill="none" stroke="#6ee7b7" strokeWidth="3" />
-        <Arrow d="M25 54 H65" color="#6ee7b7" />
-        <rect x="65" y="22" width="320" height="65" rx="16" fill="#065f46" stroke="#6ee7b7" />
-        <Text x={225} y={62}>
-          {c.photo}
-        </Text>
-        <Text x={225} y={116}>
-          {c.produces}
-        </Text>
-        <Arrow d="M225 123 V148" color="#6ee7b7" />
-        <Text x={225} y={177}>
-          {chapter2Processes.photosynthesis.products[lang]}
-        </Text>
-        <Text x={225} y={214}>
-          {c.used}
-        </Text>
-        <Arrow d="M225 224 V252" />
-        <rect x="65" y="265" width="320" height="65" rx="16" fill="#164e63" stroke="#67e8f9" />
-        <Text x={225} y={305}>
-          {c.cell}
-        </Text>
-        <Text x={225} y={359}>
-          {c.produces}
-        </Text>
-        <Arrow d="M225 367 V392" />
-        <Text x={225} y={423}>
-          {chapter2Processes.photosynthesis.reactants[lang]}
-        </Text>
-        <Text x={225} y={462}>
-          {c.used}
-        </Text>
-      </Canvas>
-      <figcaption className="text-sm leading-6 text-slate-300">
+        <g data-cycle-flow="to-respiration">
+          <Arrow d="M260 120 C315 32 445 32 500 120" color="#6ee7b7" />
+          <text x="380" y="35" fill="#a7f3d0" fontSize="14" fontWeight="600" textAnchor="middle">
+            {toRespiration}
+          </text>
+        </g>
+        <g data-cycle-flow="to-photosynthesis">
+          <Arrow d="M500 170 C445 240 315 240 260 170" />
+          <text x="380" y="239" fill="#a5f3fc" fontSize="14" fontWeight="600" textAnchor="middle">
+            {toPhotosynthesis}
+          </text>
+        </g>
+        {processNode("photosynthesis", 25, 95, 235, 100)}
+        {processNode("respiration", 500, 95, 235, 100)}
+      </svg>
+      <svg
+        data-process="complementary-cycle"
+        data-cycle-layout="mobile"
+        role="img"
+        aria-label={accessibleLoop}
+        aria-describedby={captionId}
+        viewBox="0 0 340 330"
+        fontFamily="Arial, sans-serif"
+        className="mx-auto my-3 block w-full max-w-[21rem] md:hidden"
+      >
+        <g data-cycle-flow="to-respiration">
+          <Arrow d="M190 100 V180" color="#6ee7b7" />
+          <rect x="65" y="125" width="250" height="30" rx="8" fill="#0b1e2a" />
+          <text x="190" y="145" fill="#a7f3d0" fontSize="14" fontWeight="600" textAnchor="middle">
+            {toRespiration}
+          </text>
+        </g>
+        <g data-cycle-flow="to-photosynthesis">
+          <Arrow d="M190 260 V295 H32 Q18 295 18 281 V62 Q18 48 32 48 H60" />
+          <rect x="50" y="281" width="270" height="30" rx="8" fill="#0b1e2a" />
+          <text x="190" y="302" fill="#a5f3fc" fontSize="14" fontWeight="600" textAnchor="middle">
+            {toPhotosynthesis}
+          </text>
+        </g>
+        {processNode("photosynthesis", 60, 20, 260, 80)}
+        {processNode("respiration", 60, 180, 260, 80)}
+      </svg>
+      <figcaption id={captionId} className="mt-3 text-sm leading-6 text-slate-300">
         {content.complementaryRelationship}
       </figcaption>
     </figure>

@@ -43,7 +43,7 @@ function geometry(html: string) {
     html.matchAll(/<(?:svg|path|ellipse|circle|rect|g|line|text|marker)\b[^>]*>/g),
     (match) =>
       match[0].replace(
-        /\s(?:id|aria-labelledby|marker-end|data-investigation-diagram|data-process)="[^"]*"/g,
+        /\s(?:id|aria-label|aria-labelledby|aria-describedby|marker-end|data-investigation-diagram|data-process)="[^"]*"/g,
         "",
       ),
   ).join("\n");
@@ -223,6 +223,50 @@ describe("Science Form 1 Chapter 2 final Section 2.2 pass", () => {
       expect(html).toContain(content.complementaryRelationship);
       const cycle = renderToStaticMarkup(<ComplementaryCycle content={content} lang={lang} />);
       expect(cycle).not.toMatch(lang === "bm" ? /Tenaga/ : /Energy/);
+    });
+    it(`${lang}: the cycle has compact desktop and mobile loops with dominant process nodes and source material labels`, () => {
+      const html = renderToStaticMarkup(<ComplementaryCycle content={content} lang={lang} />);
+      const desktop = html.match(/<svg[^>]*data-cycle-layout="desktop"[\s\S]*?<\/svg>/)![0];
+      const mobile = html.match(/<svg[^>]*data-cycle-layout="mobile"[\s\S]*?<\/svg>/)![0];
+      expect(desktop).toContain('viewBox="0 0 760 260"');
+      expect(desktop).toContain("hidden w-full max-w-[52rem] md:block");
+      expect(mobile).toContain('viewBox="0 0 340 330"');
+      expect(mobile).toContain("block w-full max-w-[21rem] md:hidden");
+      for (const diagram of [desktop, mobile]) {
+        expect(diagram.match(/data-cycle-node=/g)).toHaveLength(2);
+        expect(diagram).toContain('data-cycle-node="photosynthesis"');
+        expect(diagram).toContain('data-cycle-node="respiration"');
+        expect(diagram).toContain('data-cycle-symbol="leaf-sunlight"');
+        expect(diagram).toContain('data-cycle-symbol="cell-mitochondrion"');
+        expect(diagram).toContain('fill="#064e3b"');
+        expect(diagram).toContain('fill="#164e63"');
+        expect(diagram).toContain('font-size="18"');
+        expect(diagram).toContain('font-size="14"');
+        expect(diagram.match(/marker-end=/g)).toHaveLength(2);
+        const outward = diagram.match(/data-cycle-flow="to-respiration"[\s\S]*?<\/text>/)![0];
+        const returning = diagram.match(/data-cycle-flow="to-photosynthesis"[\s\S]*?<\/text>/)![0];
+        expect(outward).toContain(
+          lang === "bm" ? ">Glukosa + Oksigen</text>" : ">Glucose + Oxygen</text>",
+        );
+        expect(returning).toContain(
+          lang === "bm" ? ">Karbon dioksida + Air</text>" : ">Carbon dioxide + Water</text>",
+        );
+        expect(diagram).not.toMatch(/>(?:Produces|Used in|Menghasilkan|Digunakan dalam)</);
+      }
+      expect(desktop).toContain('d="M260 120 C315 32 445 32 500 120"');
+      expect(desktop).toContain('d="M500 170 C445 240 315 240 260 170"');
+      expect(mobile).toContain('d="M190 260 V295 H32 Q18 295 18 281 V62 Q18 48 32 48 H60"');
+    });
+    it(`${lang}: accessible source explanation stays below the cycle without native title tooltips`, () => {
+      const html = renderToStaticMarkup(<ComplementaryCycle content={content} lang={lang} />);
+      expect(html).not.toMatch(/<title\b|\stitle=/);
+      const caption = html.match(/<figcaption id="([^"]+)"[^>]*>([\s\S]*?)<\/figcaption>/)!;
+      expect(caption[2]).toBe(escape(content.complementaryRelationship));
+      expect(html.match(/role="img"/g)).toHaveLength(2);
+      expect(html.match(/aria-label=/g)).toHaveLength(2);
+      for (const svg of html.matchAll(/<svg[^>]*>/g))
+        expect(svg[0]).toContain(`aria-describedby="${caption[1]}"`);
+      expect(html.lastIndexOf("</svg>")).toBeLessThan(html.indexOf("<figcaption"));
     });
   }
   it("BM and DLP share every diagram's SVG geometry and contain no opposite-language diagram labels", () => {
