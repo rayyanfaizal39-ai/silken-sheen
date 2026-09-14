@@ -1,18 +1,14 @@
 import { useState, type ReactNode } from "react";
 import {
-  Activity,
-  AlertTriangle,
   BookOpenCheck,
   CheckCircle2,
   ChevronRight,
   CircleDot,
-  FlaskConical,
   HeartPulse,
   Leaf,
   Microscope,
   Network,
   Sparkles,
-  Sun,
 } from "lucide-react";
 import type { Chapter2Content } from "@/content/form1/science/chapter-2/chapter2-content";
 import { localizeChapter2PracticalAreas } from "@/content/form1/science/chapter-2/chapter2-activities";
@@ -26,6 +22,13 @@ import {
   MicroscopeFields,
   SlidePreparationSequence,
 } from "./blocks/Chapter2MicroscopeVisuals";
+
+import {
+  RespirationVisual,
+  PhotosynthesisProcessVisual,
+  PhotosynthesisInvestigationHub,
+  ComplementaryCycle,
+} from "./blocks/Chapter2ProcessVisuals";
 
 type Lang = "en" | "bm";
 
@@ -298,9 +301,9 @@ export function ScienceF1Chapter2VisualNotesBlock({
   const c = ui[lang];
   const practicals = localizeChapter2PracticalAreas(lang);
   const slidePractical = practicals.find((area) => area.id === "cell-slide-preparation");
-  const starchTest = practicals
-    .find((area) => area.id === "photosynthesis-investigation-hub")
-    ?.investigations?.find((item) => item.id === "starch");
+  const photosynthesisHub = practicals.find(
+    (area) => area.id === "photosynthesis-investigation-hub",
+  );
   const [structure, setStructure] = useState(0);
   const selectedStructure = t.cellStructures[structure];
 
@@ -547,70 +550,15 @@ export function ScienceF1Chapter2VisualNotesBlock({
         </div>
 
         <div className="space-y-6">
-          <SectionHeading section={c.sections[5]} />
-          <div className="grid gap-4 lg:grid-cols-2">
-            <Panel>
-              <h3 className="flex items-center gap-2 font-black text-white">
-                <Activity className="h-6 w-6 text-cyan-300" />
-                {c.cellRespiration}
-              </h3>
-              <div className="mt-4 rounded-xl bg-cyan-300/10 p-4 text-center text-sm font-black text-cyan-50">
-                {t.respiration.wordEquation}
-              </div>
-              <p className="mt-4 text-sm leading-6 text-slate-300">{t.respiration.definition}</p>
-              <div className="mt-4 rounded-xl border border-white/10 p-3">
-                <p className="font-black text-white">{c.externalRespiration}</p>
-                <p className="mt-1 text-xs leading-5 text-slate-400">{c.externalText}</p>
-              </div>
-            </Panel>
-            <Panel>
-              <h3 className="flex items-center gap-2 font-black text-white">
-                <Leaf className="h-6 w-6 text-emerald-300" />
-                {c.photosynthesis}
-              </h3>
-              <div className="mt-4 rounded-xl bg-emerald-300/10 p-4 text-center text-sm font-black text-emerald-50">
-                {t.photosynthesis.wordEquation}
-              </div>
-              <p className="mt-4 text-sm leading-6 text-slate-300">{t.photosynthesis.definition}</p>
-              <p className="mt-4 text-xs font-black uppercase tracking-wider text-emerald-300">
-                {c.requirements}
-              </p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {t.photosynthesis.requirements.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs font-bold text-emerald-100"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </Panel>
-          </div>
-          {starchTest && (
-            <Panel className="border-amber-300/20">
-              <h3 className="flex items-center gap-2 font-black text-white">
-                <FlaskConical className="h-6 w-6 text-amber-300" />
-                {c.starchTest}
-              </h3>
-              <div className="mt-4 grid gap-2 sm:grid-cols-5">
-                {starchTest.visualSteps?.map((step, index) => (
-                  <div key={step} className="rounded-xl bg-white/5 p-3">
-                    <span className="font-mono text-xs font-black text-amber-300">
-                      0{index + 1}
-                    </span>
-                    <p className="mt-2 text-xs font-bold leading-5 text-slate-200">{step}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 rounded-xl bg-emerald-300/10 p-3 text-sm font-black text-emerald-100">
-                {c.starchResult}
-              </p>
-              <p className="mt-3 flex gap-2 text-xs leading-5 text-amber-100">
-                <AlertTriangle className="h-4 w-4 shrink-0" />
-                {c.safety}
-              </p>
-            </Panel>
+          <h2 className="font-display text-2xl font-black text-white sm:text-3xl">
+            {lang === "en"
+              ? "2.2 Cell Respiration and Photosynthesis"
+              : "2.2 Respirasi Sel dan Fotosintesis"}
+          </h2>
+          <RespirationVisual content={t} lang={lang} />
+          <PhotosynthesisProcessVisual content={t} lang={lang} />
+          {photosynthesisHub && (
+            <PhotosynthesisInvestigationHub area={photosynthesisHub} lang={lang} />
           )}
         </div>
 
@@ -654,13 +602,7 @@ export function ScienceF1Chapter2VisualNotesBlock({
               </table>
             </div>
           </Panel>
-          <Panel className="text-center">
-            <Sun className="mx-auto h-9 w-9 text-amber-300" />
-            <h3 className="mt-3 font-black text-white">{c.relationship}</h3>
-            <p className="mx-auto mt-3 max-w-3xl text-sm leading-6 text-slate-300">
-              {t.complementaryRelationship}
-            </p>
-          </Panel>
+          <ComplementaryCycle content={t} lang={lang} />
           <div className="grid gap-4 lg:grid-cols-[1.2fr_.8fr]">
             <Panel>
               <h3 className="font-black text-white">{c.examFacts}</h3>
