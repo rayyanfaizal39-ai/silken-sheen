@@ -1,13 +1,5 @@
 import { useState, type ReactNode } from "react";
-import {
-  BookOpenCheck,
-  CheckCircle2,
-  ChevronRight,
-  CircleGauge,
-  Leaf,
-  PawPrint,
-  Wind,
-} from "lucide-react";
+import { BookOpenCheck, CheckCircle2, ChevronRight, CircleGauge, Leaf, Wind } from "lucide-react";
 import type { Chapter3Content } from "@/content/form1/science/chapter-3/chapter3-content";
 
 import {
@@ -17,6 +9,8 @@ import {
   SweatingExperimentVisual,
   PulseExperimentVisual,
 } from "./blocks/Chapter3HomeostasisVisuals";
+
+import { Chapter3AnimalHomeostasis } from "./blocks/Chapter3AnimalHomeostasis";
 
 type Lang = "en" | "bm";
 
@@ -292,9 +286,7 @@ export function ScienceF1Chapter3VisualNotesBlock({
 }) {
   const t = content[lang];
   const c = ui[lang];
-  const [animal, setAnimal] = useState(0);
   const [stoma, setStoma] = useState(0);
-  const selectedAnimal = t.animalHomeostasis[animal];
   const selectedStoma = t.plantHomeostasis.stomaStates[stoma];
 
   return (
@@ -361,34 +353,7 @@ export function ScienceF1Chapter3VisualNotesBlock({
 
         <div className="space-y-6">
           <SectionHeading section={c.sections[4]} />
-          <Panel>
-            <div className="flex items-center gap-3">
-              <PawPrint className="h-7 w-7 text-amber-300" />
-              <h3 className="font-black text-white">{c.chooseAnimal}</h3>
-            </div>
-            <div
-              className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5"
-              role="tablist"
-              aria-label={c.chooseAnimal}
-            >
-              {t.animalHomeostasis.map((item, index) => (
-                <button
-                  key={`${item.animal}-${index}`}
-                  type="button"
-                  role="tab"
-                  aria-selected={animal === index}
-                  onClick={() => setAnimal(index)}
-                  className={`min-h-14 cursor-pointer rounded-xl border p-2 text-left text-xs font-black transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${animal === index ? "border-amber-300 bg-amber-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
-                >
-                  {item.animal}
-                </button>
-              ))}
-            </div>
-            <div className="mt-4 rounded-2xl bg-slate-950/40 p-5">
-              <h4 className="text-xl font-black text-white">{selectedAnimal.animal}</h4>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{selectedAnimal.adaptation}</p>
-            </div>
-          </Panel>
+          <Chapter3AnimalHomeostasis content={t} lang={lang} />
         </div>
 
         <div className="space-y-6">
