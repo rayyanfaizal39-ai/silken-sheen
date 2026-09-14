@@ -146,8 +146,50 @@ describe("Science Form 1 Chapter 2 final Section 2.2 pass", () => {
       expect(html).toContain(
         lang === "bm" ? "jangan panaskan secara terus" : "never heat it directly",
       );
-      expect(html).not.toMatch(/data-(?:flame|burner|direct-ethanol-heating)=/);
+      expect(bath).not.toMatch(
+        /data-(?:flame|burner|direct-ethanol-heating|active-water-heating|heat-source)=/,
+      );
       expect(html).not.toContain("blue-black");
+    });
+    it(`${lang}: only Stage 1 actively heats water; Stage 4 only softens the leaf in hot water`, () => {
+      const html = hub(lang, 0);
+      const boil = html.match(/<svg[^>]*data-starch-stage="1"[\s\S]*?<\/svg>/)![0];
+      const soften = html.match(/<svg[^>]*data-starch-stage="4"[\s\S]*?<\/svg>/)![0];
+      for (const diagram of [boil, soften]) {
+        expect(diagram).toContain('data-container="water"');
+        expect(diagram).toContain('data-leaf="plain"');
+        expect(diagram).toContain('data-hot-water="true"');
+      }
+      expect(boil).toContain('data-active-water-heating="true"');
+      expect(boil).toContain('data-heat-source="electric-hotplate"');
+      expect(boil).toContain('data-boiling-water="true"');
+      expect(boil).toContain('<ellipse cx="150" cy="192"');
+      expect(boil).toContain('<rect x="75" y="199"');
+      expect(soften).not.toMatch(
+        /data-(?:active-water-heating|heat-source|boiling-water|flame|burner)=/,
+      );
+      expect(html.match(/data-active-water-heating=/g)).toHaveLength(1);
+    });
+    it(`${lang}: Stage 6 adds iodine with a dropper; Stage 7 emphasizes the final dark-blue result without a dropper`, () => {
+      const html = hub(lang, 0);
+      const add = html.match(/<svg[^>]*data-starch-stage="6"[\s\S]*?<\/svg>/)![0];
+      const observe = html.match(/<svg[^>]*data-starch-stage="7"[\s\S]*?<\/svg>/)![0];
+      for (const diagram of [add, observe]) {
+        expect(diagram).toContain('data-white-tile="true"');
+        expect(diagram).toContain('data-leaf="plain"');
+      }
+      expect(add).toContain('data-iodine="true"');
+      expect(add).toContain('data-iodine-dropper="true"');
+      expect(add).toContain('d="M173 72 Q161 87 173 93 Q185 87 173 72"');
+      expect(add).toContain(lang === "bm" ? ">Larutan iodin</text>" : ">Iodine solution</text>");
+      expect(observe).toContain('data-final-leaf-result="dark-blue"');
+      expect(observe).toContain('data-result-emphasis="true"');
+      expect(observe).toContain('fill="#244ca8"');
+      expect(observe).toContain("scale(.85)");
+      expect(observe).toContain(lang === "bm" ? ">Biru tua</text>" : ">Dark blue</text>");
+      expect(observe).not.toMatch(/data-iodine(?:-dropper)?=/);
+      expect(observe).not.toContain(lang === "bm" ? "Larutan iodin" : "Iodine solution");
+      expect(html.match(/data-iodine-dropper=/g)).toHaveLength(1);
     });
     it(`${lang}: requirement diagrams depict light/dark, variegation, sealed KOH jars and watered/unwatered plants`, () => {
       const light = hub(lang, 1);

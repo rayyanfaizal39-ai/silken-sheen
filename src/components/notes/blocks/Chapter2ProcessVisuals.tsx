@@ -453,7 +453,11 @@ export function PhotosynthesisProcessVisual({
 function StarchStage({ stage, lang, name }: { stage: number; lang: Lang; name: string }) {
   const c = labels[lang];
   return (
-    <Canvas name={name} data-starch-stage={stage} viewBox="0 0 300 235">
+    <Canvas
+      name={name}
+      data-starch-stage={stage}
+      viewBox={stage === 1 ? "0 0 300 265" : "0 0 300 235"}
+    >
       {stage <= 4 ? (
         <>
           {stage === 3 && (
@@ -473,6 +477,17 @@ function StarchStage({ stage, lang, name }: { stage: number; lang: Lang; name: s
               stroke="#e2e8f0"
               strokeWidth="3"
             />
+            {stage === 1 && (
+              <g data-boiling-water="true">
+                <path d="M100 97 H200 V171 Q150 194 100 171Z" fill="#38bdf8" fillOpacity=".3" />
+                <g fill="none" stroke="#bae6fd" strokeWidth="2">
+                  <circle cx="118" cy="150" r="4" />
+                  <circle cx="181" cy="133" r="5" />
+                  <circle cx="128" cy="110" r="3" />
+                  <circle cx="174" cy="157" r="3" />
+                </g>
+              </g>
+            )}
             <path d="M100 97 H200" stroke="#7dd3fc" strokeWidth="2" />
             <g transform="translate(150 126) scale(.35)">
               <Leaf fill={stage >= 3 ? "#e5d9b2" : "#34d399"} />
@@ -486,6 +501,38 @@ function StarchStage({ stage, lang, name }: { stage: number; lang: Lang; name: s
           {(stage === 1 || stage === 4) && (
             <g data-hot-water="true" stroke="#cbd5e1" strokeWidth="2" fill="none">
               <path d="M115 75 Q100 62 115 49 M150 75 Q135 62 150 49 M185 75 Q170 62 185 49" />
+            </g>
+          )}
+          {stage === 1 && (
+            <g data-active-water-heating="true" data-heat-source="electric-hotplate">
+              <ellipse
+                cx="150"
+                cy="192"
+                rx="57"
+                ry="7"
+                fill="#fb923c"
+                stroke="#fed7aa"
+                strokeWidth="2"
+              />
+              <rect
+                x="75"
+                y="199"
+                width="150"
+                height="40"
+                rx="6"
+                fill="#475569"
+                stroke="#cbd5e1"
+                strokeWidth="2"
+              />
+              <path
+                d="M88 239 V248 M212 239 V248 M225 221 H247 V249"
+                fill="none"
+                stroke="#94a3b8"
+                strokeWidth="4"
+              />
+              <circle cx="198" cy="218" r="7" fill="#1e293b" stroke="#e2e8f0" strokeWidth="2" />
+              <path d="M198 218 L202 214" stroke="#e2e8f0" strokeWidth="2" />
+              <circle cx="105" cy="218" r="5" fill="#fb923c" />
             </g>
           )}
           {stage === 3 && (
@@ -508,17 +555,46 @@ function StarchStage({ stage, lang, name }: { stage: number; lang: Lang; name: s
             rx="8"
             fill="#f8fafc"
           />
-          <g transform="translate(150 137) scale(.7)">
+          {stage === 7 && (
+            <rect
+              data-result-emphasis="true"
+              x="32"
+              y="74"
+              width="236"
+              height="138"
+              rx="12"
+              fill="none"
+              stroke="#60a5fa"
+              strokeWidth="4"
+            />
+          )}
+          <g
+            data-final-leaf-result={stage === 7 ? "dark-blue" : undefined}
+            transform={
+              stage === 7 ? "translate(150 137) scale(.85)" : "translate(150 137) scale(.7)"
+            }
+          >
             <Leaf fill={stage === 7 ? "#244ca8" : "#e5d9b2"} />
           </g>
-          {stage >= 6 && (
+          {stage === 6 && (
             <g data-iodine="true">
-              <path d="M195 14 L176 61" stroke="#fbbf24" strokeWidth="8" />
+              <g data-iodine-dropper="true">
+                <path d="M195 14 L176 61" stroke="#fbbf24" strokeWidth="8" />
+                <path d="M195 14 L176 61" stroke="#fef3c7" strokeWidth="2" />
+                <ellipse
+                  cx="197"
+                  cy="12"
+                  rx="8"
+                  ry="11"
+                  transform="rotate(22 197 12)"
+                  fill="#64748b"
+                />
+              </g>
               <path d="M173 72 Q161 87 173 93 Q185 87 173 72" fill="#b77935" />
             </g>
           )}
           <Text x={150} y={stage >= 6 ? 232 : 48}>
-            {stage >= 6 ? c.iodine : c.tile}
+            {stage === 7 ? c.blue : stage === 6 ? c.iodine : c.tile}
           </Text>
         </>
       )}
