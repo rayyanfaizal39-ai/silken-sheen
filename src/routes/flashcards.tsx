@@ -5320,10 +5320,15 @@ function FlashcardsPage() {
    * The single source of truth for "what is the card allowed to do right
    * now" — replaces a scatter of ad hoc `if (slideOut) return` checks with
    * one place that every entry point (drag start, swipe commit, tap-to-flip,
-   * prev/next, the rating buttons) agrees on. `revealing-answer` is the new
-   * "swiped on the question, answer is showing, rating not committed yet"
-   * hold; `transitioning` covers the existing flash/toast/slide-out window
-   * before the next card is dealt.
+   * prev/next, the rating buttons) agrees on.
+   *
+   * `revealing-answer` is held indefinitely once a swipe crosses the
+   * threshold: the answer is shown, the rating is already decided (right =
+   * know, left = don't know) but NOT yet applied, and the student reads at
+   * their own pace until they press "Next Card". Nothing here auto-advances
+   * on a timer — see `pendingRatingRef` / `handleNextCard`. `transitioning`
+   * covers the brief flash/toast/slide-out window after Next Card is
+   * pressed, before the following card is dealt.
    */
   const [interactionState, setInteractionState] = useState<
     "idle" | "dragging" | "revealing-answer" | "transitioning"
@@ -5345,15 +5350,27 @@ function FlashcardsPage() {
    *  actually stops two near-simultaneous triggers (swipe + button tap, or a
    *  second pointer) from both committing a rating. */
   const isCommittingRef = useRef(false);
-  const revealTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** The rating a swipe already decided, held until "Next Card" is pressed —
+   *  not a timer, just a value waiting for one explicit confirmation. */
+  const pendingRatingRef = useRef<0 | 2 | null>(null);
   const commitTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const reducedMotionRef = useRef(false);
+  /**
+   * Idempotent XP guard: the set of card ids that have already paid out
+   * their "know" XP in THIS deck session. Cleared only when `pool` itself
+   * changes identity (see the effect further below, once `pool` exists) —
+   * i.e. when the student is genuinely studying a different deck — never by
+   * re-shuffling or restarting the same one, which is exactly the loop a
+   * farmer would otherwise use. Reused across both the swipe path and the
+   * manual tap-flip-then-button path, since both end up in
+   * `applyRatingEffects`.
+   */
+  const awardedXpCardIdsRef = useRef<Set<string>>(new Set());
   useEffect(() => {
     reducedMotionRef.current = prefersReducedMotion();
   }, []);
   useEffect(
     () => () => {
-      if (revealTimeoutRef.current) clearTimeout(revealTimeoutRef.current);
       if (commitTimeoutRef.current) clearTimeout(commitTimeoutRef.current);
     },
     [],
@@ -5521,6 +5538,25 @@ function FlashcardsPage() {
     favOnly,
     progress.favorites,
   ]);
+  // Identifies which deck is being studied — deliberately NOT `pool` itself
+  // (a new array reference on every render `useMemo` recomputes, including a
+  // `favOnly` toggle that shows the exact same cards) and deliberately NOT
+  // including `favOnly`: only an actual change of subject/chapter/set/
+  // language means a genuinely different deck. That's what resets the
+  // idempotent XP guard below — re-shuffling or toggling the favourites
+  // filter on the same deck must NOT reopen it.
+  const deckIdentityKey = [
+    subject,
+    form,
+    chapter,
+    scienceLang,
+    mathFlashcardLang,
+    mathFlashcardCategory,
+    selectedFlashcardSet,
+  ].join("|");
+  useEffect(() => {
+    awardedXpCardIdsRef.current = new Set();
+  }, [deckIdentityKey]);
 
   const currentPoolIdx = queue[idx];
   const current = currentPoolIdx !== undefined ? pool[currentPoolIdx] : pool[0];
@@ -5546,10 +5582,10 @@ function FlashcardsPage() {
   }
 
   function shuffle() {
-    if (revealTimeoutRef.current) clearTimeout(revealTimeoutRef.current);
     if (commitTimeoutRef.current) clearTimeout(commitTimeoutRef.current);
     isCommittingRef.current = false;
     dragRef.current = null;
+    pendingRatingRef.current = null;
     const arr = buildShuffled();
     setQueue(arr);
     setIdx(0);
@@ -5579,11 +5615,22 @@ function FlashcardsPage() {
     isCommittingRef.current = true;
     setInteractionState("transitioning");
 
-    // SM-2 spaced repetition
+    // SM-2 spaced repetition — this keeps updating on every genuine review,
+    // lapse or not: that's the point of spaced repetition, and it isn't the
+    // part that pays out XP.
     if (rateCard) rateCard(current.id, rating);
 
     const pass = rating >= 2;
-    const xpAmount = rating === 3 ? 15 : rating === 2 ? 10 : 0;
+    // Idempotent XP: the attempt key is simply the card's own id, scoped to
+    // this deck session by `awardedXpCardIdsRef` (reset only when the deck
+    // identity itself changes — see `deckIdentityKey` above). A card that
+    // already paid out — however many times it gets swiped right again,
+    // re-queued after a lapse, or revisited via prev/next — pays out 0 XP
+    // every time after the first. A left/"don't know" swipe never pays XP
+    // regardless, so it never needs to check or touch this set.
+    const alreadyAwardedXp = awardedXpCardIdsRef.current.has(current.id);
+    const xpAmount = pass && !alreadyAwardedXp ? (rating === 3 ? 15 : 10) : 0;
+    if (xpAmount > 0) awardedXpCardIdsRef.current.add(current.id);
 
     if (pass) {
       sfx.ding();
@@ -5655,10 +5702,14 @@ function FlashcardsPage() {
   /**
    * A drag crossed the swipe threshold. Right = know (rating 2), left =
    * don't know (rating 0) — same two ratings the swipe hint on the card has
-   * always promised. If the question is still showing, this is the new
-   * "swipe reveals the answer, holds on it, then rates" flow; if the learner
-   * already flipped the card manually, there's nothing to reveal, so it
-   * shortens to a brief confirmation before the same commit.
+   * always promised. If the question is still showing, this reveals the
+   * answer; either way the rating is DECIDED here but not yet applied — it
+   * sits in `pendingRatingRef` until the student presses "Next Card". No
+   * timer: the answer stays up for as long as it takes to read, and nothing
+   * else on the card can change that pending rating (interactionState stays
+   * "revealing-answer" until Next Card fires, and every other entry point —
+   * drag start, flip, the rating buttons — checks that state and refuses to
+   * run while it holds).
    */
   function commitSwipe(direction: "right" | "left") {
     if (!current || interactionState === "revealing-answer" || interactionState === "transitioning")
@@ -5674,12 +5725,22 @@ function FlashcardsPage() {
       setFlipped(true);
     }
     setSwipeRatingCue(direction);
+    pendingRatingRef.current = rating;
+  }
 
-    if (revealTimeoutRef.current) clearTimeout(revealTimeoutRef.current);
-    revealTimeoutRef.current = setTimeout(() => {
-      setSwipeRatingCue(null);
-      applyRatingEffects(rating);
-    }, 1200);
+  /**
+   * The only way a swipe-decided rating actually gets applied: an explicit
+   * press, not a timer. Also doubles as the confirm step for a card that was
+   * flipped manually and then swiped rather than tapped with a rating
+   * button — same pending-rating mechanism either way.
+   */
+  function handleNextCard() {
+    if (interactionState !== "revealing-answer") return;
+    const rating = pendingRatingRef.current;
+    if (rating === null) return;
+    pendingRatingRef.current = null;
+    setSwipeRatingCue(null);
+    applyRatingEffects(rating);
   }
 
   function handleFlip() {
@@ -5802,10 +5863,10 @@ function FlashcardsPage() {
   }
 
   function resetSession() {
-    if (revealTimeoutRef.current) clearTimeout(revealTimeoutRef.current);
     if (commitTimeoutRef.current) clearTimeout(commitTimeoutRef.current);
     isCommittingRef.current = false;
     dragRef.current = null;
+    pendingRatingRef.current = null;
     setIdx(0);
     setFlipped(false);
     setStreak(0);
@@ -6629,9 +6690,9 @@ function FlashcardsPage() {
                       Don't know
                     </div>
                   )}
-                  {/* Swipe accepted: the answer is showing (or already was),
-                      and this confirms how it was rated before the next card
-                      is dealt. */}
+                  {/* Swipe accepted: the answer is showing and this confirms
+                      how it was rated. It stays up — no timer — until the
+                      student presses "Next Card" below. */}
                   {swipeRatingCue && (
                     <div
                       aria-live="polite"
@@ -6641,7 +6702,7 @@ function FlashcardsPage() {
                         color: "white",
                       }}
                     >
-                      {swipeRatingCue === "right" ? "Knew it ✓" : "Review again ↻"}
+                      {swipeRatingCue === "right" ? "✓ I knew this" : "↻ Review again"}
                     </div>
                   )}
                   <div
@@ -6723,9 +6784,15 @@ function FlashcardsPage() {
                           {planetTheme.decor[1] ?? planetTheme.decor[0]}
                         </span>
                       )}
-                      <p className="font-display text-xl sm:text-3xl text-center leading-relaxed">
-                        {cleanLearningQuestion(current.back)}
-                      </p>
+                      {/* The answer now stays on screen indefinitely (no
+                          auto-advance timer), so a long answer must be able
+                          to scroll internally rather than clip against the
+                          card's fixed height. */}
+                      <div className="max-h-full w-full overflow-y-auto py-1">
+                        <p className="font-display text-xl sm:text-3xl text-center leading-relaxed">
+                          {cleanLearningQuestion(current.back)}
+                        </p>
+                      </div>
                     </div>
                   </div>
 
@@ -6748,13 +6815,15 @@ function FlashcardsPage() {
                 </div>
               </div>
 
-              {/* Navigation row */}
+              {/* Navigation row — locked while a swipe rating is pending or
+                  applying, so it can't abandon/duplicate that attempt. */}
               <div className="mt-6 flex items-center justify-center gap-3">
                 <button
                   type="button"
                   aria-label="Previous card"
+                  disabled={interactionState !== "idle"}
                   onClick={() => go(-1)}
-                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
@@ -6764,15 +6833,38 @@ function FlashcardsPage() {
                 <button
                   type="button"
                   aria-label="Next card"
+                  disabled={interactionState !== "idle"}
                   onClick={() => go(1)}
-                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </div>
 
-              {/* SM-2 Rating row — shown after card is flipped */}
-              {flipped ? (
+              {/* Below the card: three mutually exclusive states.
+                  1. A swipe already decided the rating — the answer stays up
+                     indefinitely and the only way forward is this explicit
+                     button, which fires the rating exactly once.
+                  2. Flipped manually (no swipe pending) — the original SM-2
+                     rating grid, unchanged.
+                  3. Still on the question — the flip hint, unchanged. */}
+              {interactionState === "revealing-answer" ? (
+                <div className="mt-4 flex flex-col items-center gap-2">
+                  <p className="text-xs text-muted-foreground">
+                    {swipeRatingCue === "right"
+                      ? "Marked as known — read the answer, then continue."
+                      : "Marked for review — read the answer, then continue."}
+                  </p>
+                  <button
+                    type="button"
+                    aria-label="Continue to the next card"
+                    onClick={handleNextCard}
+                    className="flex min-h-14 w-full max-w-sm items-center justify-center gap-2 rounded-2xl bg-[#8B5CF6] px-6 text-base font-bold text-white shadow-lg transition-all hover:bg-[#7C3AED] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  >
+                    Next Card <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+              ) : flipped ? (
                 <div className="mt-4 grid grid-cols-4 gap-2">
                   <button
                     type="button"
