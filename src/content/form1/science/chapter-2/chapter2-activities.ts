@@ -114,6 +114,7 @@ export const chapter2PracticalAreas: Chapter2PracticalArea[] = [
         },
         visualSteps: [
           { en: "Boil the leaf in water", bm: "Didihkan daun di dalam air" },
+          { en: "Place the leaf in ethanol", bm: "Letakkan daun dalam etanol" },
           {
             en: "Heat it in ethanol using a hot-water bath",
             bm: "Panaskan dalam etanol menggunakan rendaman air panas",
@@ -121,9 +122,10 @@ export const chapter2PracticalAreas: Chapter2PracticalArea[] = [
           { en: "Soften it again in hot water", bm: "Lembutkan semula dalam air panas" },
           { en: "Place it on a white tile", bm: "Letakkan di atas jubin putih" },
           {
-            en: "Add iodine solution and observe the colour",
-            bm: "Titiskan larutan iodin dan perhatikan warna",
+            en: "Add iodine solution",
+            bm: "Titiskan larutan iodin",
           },
+          { en: "Observe the colour", bm: "Perhatikan warna" },
         ],
       },
       {
