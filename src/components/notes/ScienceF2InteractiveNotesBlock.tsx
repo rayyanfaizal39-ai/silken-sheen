@@ -33,9 +33,7 @@ import { WaveVisualizer } from "@/components/notes/blocks/WaveVisualizer";
 import { GalaxyCardGrid } from "@/components/notes/blocks/GalaxyCardGrid";
 import { PlanetSphereList } from "@/components/notes/blocks/PlanetSphereList";
 import { PlanetComparisonTable } from "@/components/notes/blocks/PlanetComparisonTable";
-import { MeteoroidEntryFigure } from "@/components/notes/blocks/MeteoroidEntryFigure";
-import { AsteroidBeltFigure } from "@/components/notes/blocks/AsteroidBeltFigure";
-import { CometOrbitFigure } from "@/components/notes/blocks/CometOrbitFigure";
+import { LessonFlow } from "@/components/notes/blocks/LessonFlow";
 import { AuLightYearCalculator } from "@/components/notes/blocks/AuLightYearCalculator";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
 import type {
@@ -534,30 +532,7 @@ export function ScienceF2InteractiveNotesBlock({
             <PlanetComparisonTable block={section.planetComparison} lang={lang} />
           </div>
         )}
-        {section.meteoroidEntry && (
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">
-              {section.meteoroidEntry.title}
-            </h3>
-            <MeteoroidEntryFigure block={section.meteoroidEntry} lang={lang} />
-          </div>
-        )}
-        {section.asteroidBelt && (
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">
-              {section.asteroidBelt.title}
-            </h3>
-            <AsteroidBeltFigure block={section.asteroidBelt} lang={lang} />
-          </div>
-        )}
-        {section.cometOrbit && (
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">
-              {section.cometOrbit.title}
-            </h3>
-            <CometOrbitFigure block={section.cometOrbit} lang={lang} />
-          </div>
-        )}
+        {section.lessonFlow && <LessonFlow parts={section.lessonFlow} lang={lang} />}
         {section.planets && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -1651,26 +1626,30 @@ export function ScienceF2InteractiveNotesBlock({
             )}
           </div>
         )}
-        <div>
-          <h3 className="font-display mb-2 text-base font-bold text-foreground">
-            {section.checksTitle ??
-              (lang === "bm"
-                ? `Semak diri — ${section.number}`
-                : `Check yourself — ${section.number}`)}
-          </h3>
-          <Accordion type="single" collapsible>
-            {section.checks.map((item, i) => (
-              <AccordionItem key={item.question} value={`check-${section.number}-${i}`}>
-                <AccordionTrigger className="text-[13.5px]">
-                  {i + 1}. {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-[13px] text-muted-foreground">
-                  {item.hint}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+        {/* A section that gathers its questions into a later Check Yourself
+            section has none of its own — no empty heading for it. */}
+        {section.checks.length > 0 && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.checksTitle ??
+                (lang === "bm"
+                  ? `Semak diri — ${section.number}`
+                  : `Check yourself — ${section.number}`)}
+            </h3>
+            <Accordion type="single" collapsible>
+              {section.checks.map((item, i) => (
+                <AccordionItem key={item.question} value={`check-${section.number}-${i}`}>
+                  <AccordionTrigger className="text-[13.5px]">
+                    {i + 1}. {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[13px] text-muted-foreground">
+                    {item.hint}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        )}
 
         {isLast && (
           <>

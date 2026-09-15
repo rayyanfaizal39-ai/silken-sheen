@@ -94,6 +94,23 @@ export const SCIENCE_F2_CH10_IMAGES = {
 } as const;
 
 /**
+ * The four approved Chapter 13 figures, all 1774 x 887 (2:1).
+ *
+ * `meteoroidJourney` is the master visual for meteoroid → meteor → meteorite;
+ * `impactCrater` shows the crater an impact LEAVES, never an incoming asteroid;
+ * `cometAnatomy` teaches nucleus, coma, tail and solar wind; `hobaMeteorite`
+ * shows the meteorite already resting on the ground. None carries baked-in
+ * text, so BM and DLP use the same file. Geometry lives in
+ * `ch13-approved-figure-geometry.ts`.
+ */
+export const SCIENCE_F2_CH13_IMAGES = {
+  meteoroidJourney: `${DIR}/chapter-13/science-f2-ch13-meteoroid-meteor-meteorite.webp`,
+  impactCrater: `${DIR}/chapter-13/science-f2-ch13-asteroid-impact-crater.webp`,
+  cometAnatomy: `${DIR}/chapter-13/science-f2-ch13-comet-anatomy-tail.webp`,
+  hobaMeteorite: `${DIR}/chapter-13/science-f2-ch13-hoba-meteorite.webp`,
+} as const;
+
+/**
  * Intrinsic aspect ratios, so the frame reserves the right box before the file
  * arrives and nothing on the page moves as it loads. Most of the pack is
  * 1672 x 941; the bell jar is 1448 x 1086 and the lightning scene 1536 x 1024.
@@ -117,4 +134,5 @@ export const SCIENCE_F2_VISUAL_ASSETS: string[] = [
   ...Object.values(SCIENCE_F2_CH7_IMAGES),
   ...Object.values(SCIENCE_F2_CH9_IMAGES),
   ...Object.values(SCIENCE_F2_CH10_IMAGES),
+  ...Object.values(SCIENCE_F2_CH13_IMAGES),
 ];

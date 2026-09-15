@@ -116,7 +116,7 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 13",
     lang: "bm",
-    front: "Apakah Lingkaran Asteroid (asteroid belt)?",
+    front: "Apakah jalur asteroid?",
     back: "Kawasan antara orbit Marikh dan Musytari tempat kebanyakan asteroid berada.",
   },
   {
@@ -245,7 +245,7 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "bm",
     front: "Bandingkan orbit asteroid dengan orbit komet.",
-    back: "Asteroid: kebanyakan dalam Lingkaran Asteroid antara Marikh dan Musytari. Komet: orbit elips sendiri, boleh melepasi Lingkaran Kuiper dan Awan Oort.",
+    back: "Asteroid: kebanyakan dalam jalur asteroid antara Marikh dan Musytari. Komet: orbit elips sendiri, boleh melepasi Jalur Kuiper dan Awan Oort.",
   },
   {
     id: "sci-f2-c13-bm-f28",
@@ -262,7 +262,7 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 13",
     lang: "bm",
-    front: "Apakah maksud Lingkaran Kuiper?",
+    front: "Apakah maksud Jalur Kuiper?",
     back: "Kawasan di tepi sistem suria, di luar orbit Neptun, yang menjadi salah satu asal usul komet.",
   },
   {
@@ -308,7 +308,7 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "bm",
     front: "Apakah Orbit Apollo, Amor dan Aten?",
-    back: "Contoh orbit asteroid di luar Lingkaran Asteroid yang boleh bersilang dengan orbit Bumi.",
+    back: "Contoh orbit asteroid di luar jalur asteroid yang boleh bersilang dengan orbit Bumi.",
   },
   {
     id: "sci-f2-c13-bm-f35",
@@ -373,7 +373,7 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "bm",
     front: "[KBAT] Mengapa asteroid lebih sejuk berbanding meteoroid?",
-    back: "Asteroid kebanyakannya berada lebih jauh daripada Matahari dalam Lingkaran Asteroid, berbanding meteoroid yang lebih kerap dijumpai berhampiran orbit dalam.",
+    back: "Asteroid kebanyakannya berada lebih jauh daripada Matahari dalam jalur asteroid, berbanding meteoroid yang lebih kerap dijumpai berhampiran orbit dalam.",
   },
   {
     id: "sci-f2-c13-bm-f42",
@@ -382,7 +382,7 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "bm",
     front: "[KBAT] Mengapa orbit Apollo, Amor dan Aten dianggap berisiko lebih tinggi?",
-    back: "Kerana orbitnya berada di luar Lingkaran Asteroid dan boleh bersilang dengan orbit Bumi, meningkatkan risiko perlanggaran.",
+    back: "Kerana orbitnya berada di luar jalur asteroid dan boleh bersilang dengan orbit Bumi, meningkatkan risiko perlanggaran.",
   },
   {
     id: "sci-f2-c13-bm-f43",
@@ -472,7 +472,7 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     chapter: "Chapter 13",
     lang: "bm",
     front: "Berikan tiga ciri umum asteroid.",
-    back: "Bersaiz 1 m hingga 1,000 km, suhu kira-kira −73°C, kebanyakannya dalam Lingkaran Asteroid antara Marikh dan Musytari.",
+    back: "Bersaiz 1 m hingga 1,000 km, suhu kira-kira −73°C, kebanyakannya dalam jalur asteroid antara Marikh dan Musytari.",
   },
   {
     id: "sci-f2-c13-bm-f53",
@@ -516,8 +516,8 @@ export const scienceF2C13FlashcardsBM: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 13",
     lang: "bm",
-    front: "[Kesilapan Lazim] Adakah semua asteroid berada dalam Lingkaran Asteroid?",
-    back: "Tidak semua. Sebahagian seperti dalam orbit Apollo, Amor dan Aten berada di luar Lingkaran Asteroid dan boleh bersilang dengan orbit Bumi.",
+    front: "[Kesilapan Lazim] Adakah semua asteroid berada dalam jalur asteroid?",
+    back: "Tidak semua. Sebahagian seperti dalam orbit Apollo, Amor dan Aten berada di luar jalur asteroid dan boleh bersilang dengan orbit Bumi.",
   },
   {
     id: "sci-f2-c13-bm-f58",

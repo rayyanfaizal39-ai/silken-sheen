@@ -178,14 +178,16 @@ const EVERY_VIEW: [string, ScienceF2InteractiveContent, "bm" | "en"][] = CHAPTER
 );
 
 describe("Science F2 Ch7/9/10 — assets on disk", () => {
-  it("ships exactly thirty files", () => {
+  it("ships exactly thirty-four files", () => {
     // Twenty-four in the original pack, plus the three later approved Chapter 7
-    // figures (electroscope, lightning formation, electromagnet investigation).
-    // Those three are not `contextImages`, so they are guarded by
-    // chapter-7/chapter-7-approved-figures.test.tsx rather than by the
-    // placement and authoring assertions below.
-    expect(SCIENCE_F2_VISUAL_ASSETS).toHaveLength(30);
-    expect(new Set(SCIENCE_F2_VISUAL_ASSETS).size).toBe(30);
+    // figures (electroscope, lightning formation, electromagnet investigation),
+    // plus the four approved Chapter 13 figures. None of those seven is a
+    // `contextImages` entry, so they are guarded by their own chapter tests
+    // (chapter-7-approved-figures, chapter-13-remediation) rather than by the
+    // placement and authoring assertions below — but they still share the
+    // on-disk, WebP-only and no-PNG-duplicate checks here.
+    expect(SCIENCE_F2_VISUAL_ASSETS).toHaveLength(34);
+    expect(new Set(SCIENCE_F2_VISUAL_ASSETS).size).toBe(34);
   });
 
   it.each(SCIENCE_F2_VISUAL_ASSETS)("%s exists and is not empty", (src) => {
