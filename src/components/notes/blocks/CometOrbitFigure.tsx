@@ -6,66 +6,80 @@ import { figureCopy } from "./figure-copy";
 /**
  * Rajah 13.4 — a comet on its elliptical orbit, and which way its tail points.
  *
- * Text alone cannot settle the chapter's classic misconception. "The tail points
- * away from the Sun" sounds like it should mean "behind the comet", and it does
- * not: on the outbound leg the tail leads. So the learner moves the comet round
- * the orbit and the tail is recomputed each time as the direction Sun → comet,
- * which is the only rule the source states.
+ * Three named positions, not five numbered ones: far from the Sun, nearest
+ * the Sun, moving away. That is enough to teach the concept, and it reads as
+ * three sentences instead of a geometry exercise. At every position the tail
+ * is recomputed as the direction Sun → comet — never from the direction of
+ * travel, which is why a comet moving away still trails its tail in FRONT of
+ * it. `travel` stays on `cometGeometry`'s return even though nothing draws it
+ * any more, because the "tail is not the travel direction" claim is still
+ * asserted against it in tests.
  *
- * The tail is drawn longer near the Sun, matching the source's "semakin laju,
- * mencair dan kelihatan seperti berekor panjang". The speed readout is the
- * source's own range; nothing is computed from orbital mechanics.
+ * Nearer the Sun the coma is larger and brighter and the tail longer. Nothing
+ * is computed from orbital mechanics beyond the ellipse itself.
  */
 
 /**
- * The canvas is sized around the TAIL, not the orbit.
- *
- * At perihelion the tail is at its longest and points straight out from the
- * Sun, so it reaches ~206 px to the left of the ellipse centre — well past the
- * orbit itself. A canvas drawn to fit the orbit clips exactly there, losing
- * half the tail at the one position whose whole point is that the tail is long.
- * So the box is the full content extent (364 x 242) plus margin, and the orbit
- * simply sits inside it. Aspect ratio is kept at ~1.53 so the rendered height
- * is unchanged; text and symbols are scaled to match the wider box.
+ * The canvas is sized around the TAIL, not the orbit: at the nearest position
+ * the tail is longest and points straight out from the Sun, past the ellipse.
  */
-const VIEW_W = 430;
-const VIEW_H = 280;
-/** Ellipse geometry. The Sun sits at a focus, not the centre — the orbit is elliptical. */
-const CX = 222;
+const VIEW_W = 420;
+const VIEW_H = 260;
+/** Ellipse geometry. The Sun sits at a focus, not the centre. */
+const CX = 230;
 const CY = VIEW_H / 2;
-const RX = 132;
-const RY = 78;
-const FOCUS_X = CX - Math.sqrt(RX * RX - RY * RY);
+const RX = 125;
+const RY = 74;
+const FOCUS_OFFSET = Math.sqrt(RX * RX - RY * RY);
+const FOCUS_X = CX - FOCUS_OFFSET;
 
-/** Stops around the orbit, in degrees, starting at perihelion (nearest the Sun). */
-const STOPS = [180, 240, 300, 0, 60, 120];
+/**
+ * Far, nearest, moving away — in the order the comet visits them. 180° is
+ * nearest the Sun. The "far" stop is 40°, not the true aphelion at 0°: it
+ * keeps the tail short (still clearly far), while also being the one place
+ * among the three where the tail visibly TRAILS the comet — at the exact
+ * aphelion and perihelion points the tail is perpendicular to the direction
+ * of travel, which would not demonstrate that the tail can trail as well as
+ * lead. 40° shows both without a fourth stop.
+ */
+const STOPS = [40, 180, 300];
 
 function pointAt(angleDeg: number) {
   const a = (angleDeg * Math.PI) / 180;
   return { x: CX + RX * Math.cos(a), y: CY + RY * Math.sin(a) };
 }
 
+/** Unit direction of travel along the orbit at an angle (the comet moves towards increasing angle). */
+function travelAt(angleDeg: number) {
+  const a = (angleDeg * Math.PI) / 180;
+  const tx = -RX * Math.sin(a);
+  const ty = RY * Math.cos(a);
+  const m = Math.hypot(tx, ty) || 1;
+  return { ux: tx / m, uy: ty / m };
+}
+
 /**
- * Where the comet sits at a stop, and which way its tail lies.
+ * Where the comet sits at a position, which way its tail lies, and which way it
+ * is moving.
  *
- * Exported so the tail rule can be asserted at every position rather than
- * eyeballed at one: the tail must point along Sun → comet everywhere on the
- * orbit, which is what makes it *lead* the comet on the outbound leg.
+ * Exported so the tail rule is asserted at every position rather than eyeballed
+ * at one: the tail must lie along Sun → comet everywhere, whatever `travel` is.
  */
 export function cometGeometry(stopIndex: number) {
-  const comet = pointAt(STOPS[stopIndex % STOPS.length]);
+  const angle = STOPS[stopIndex % STOPS.length];
+  const comet = pointAt(angle);
   const dx = comet.x - FOCUS_X;
   const dy = comet.y - CY;
   const dist = Math.hypot(dx, dy) || 1;
-  const ux = dx / dist;
-  const uy = dy / dist;
-  const near = 1 - Math.min(dist / (RX + Math.abs(FOCUS_X - CX)), 1);
+  const near = 1 - Math.min(dist / (RX + FOCUS_OFFSET), 1);
   return {
     sun: { x: FOCUS_X, y: CY },
     comet,
-    tail: { ux, uy },
+    tail: { ux: dx / dist, uy: dy / dist },
+    travel: travelAt(angle),
     distanceToSun: dist,
-    tailLength: 26 + near * 54,
+    tailLength: 8 + near * 72,
+    comaRadius: 5 + near * 10,
     isNear: near > 0.5,
   };
 }
@@ -75,13 +89,18 @@ export const COMET_STOP_COUNT = STOPS.length;
 /** The drawing canvas, so tests can assert nothing is clipped by it. */
 export const COMET_VIEWBOX = { width: VIEW_W, height: VIEW_H };
 
+const HALO = { paintOrder: "stroke" as const, strokeWidth: 3, strokeLinejoin: "round" as const };
+/** The halo matches the card's own fixed navy background, not the site theme. */
+const NAVY = "#0b1220";
+
 export function CometOrbitFigure({ block, lang }: { block: CometOrbitBlock; lang?: string }) {
   const [stopIndex, setStopIndex] = useState(0);
   const copy = figureCopy(lang);
 
-  // the only rule the source gives: the tail lies along Sun -> comet, always
-  const { comet, tail, tailLength: tailLen, isNear } = cometGeometry(stopIndex);
+  const { comet, tail, tailLength, comaRadius, isNear } = cometGeometry(stopIndex);
   const { ux, uy } = tail;
+  const stage = block.stages[stopIndex] ?? block.stages[0];
+  const tailHalfWidth = isNear ? 8 : 5;
 
   return (
     <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-3.5">
@@ -93,127 +112,143 @@ export function CometOrbitFigure({ block, lang }: { block: CometOrbitBlock; lang
             key={i}
             type="button"
             aria-pressed={i === stopIndex}
+            aria-label={`${block.positionLabel} ${i + 1}: ${block.stages[i]?.label ?? ""}`}
             onClick={() => setStopIndex(i)}
-            className={conceptButtonClass(i === stopIndex)}
+            className={conceptButtonClass(i === stopIndex, "flex-auto sm:flex-none")}
           >
-            {block.positionLabel} {i + 1}
+            {block.stages[i]?.label}
           </button>
         ))}
       </div>
 
-      <div className="overflow-x-auto">
-        <svg
-          viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
-          className="h-auto w-full min-w-[300px]"
-          role="img"
-          aria-label={block.figureLabel}
-        >
-          {/* elliptical orbit */}
-          <ellipse
-            cx={CX}
-            cy={CY}
-            rx={RX}
-            ry={RY}
-            fill="none"
-            className="stroke-muted-foreground/40"
-            strokeWidth="1.6"
-            strokeDasharray="5 4"
-          />
+      <svg
+        viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+        className="block h-auto w-full"
+        role="img"
+        aria-label={`${block.figureLabel} — ${stage.label}`}
+        data-ch13-figure="comet-orbit"
+        data-position={stopIndex + 1}
+      >
+        <rect x="0" y="0" width={VIEW_W} height={VIEW_H} rx="18" fill={NAVY} />
 
-          {/* solar wind, blowing outward from the Sun in every direction */}
-          {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
-            const a = (deg * Math.PI) / 180;
-            return (
-              <line
-                key={deg}
-                x1={FOCUS_X + 19 * Math.cos(a)}
-                y1={CY + 19 * Math.sin(a)}
-                x2={FOCUS_X + 34 * Math.cos(a)}
-                y2={CY + 34 * Math.sin(a)}
-                className="stroke-yellow-500/40"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-              />
-            );
-          })}
-
-          {/* the Sun, at a focus of the ellipse */}
-          <circle cx={FOCUS_X} cy={CY} r="16" className="fill-yellow-400" />
-          <text
-            x={FOCUS_X}
-            y={CY + 35}
-            textAnchor="middle"
-            className="fill-current text-[11.5px] font-bold text-foreground"
+        <defs>
+          <linearGradient
+            id="c13-tail"
+            x1={comet.x}
+            y1={comet.y}
+            x2={comet.x + ux * tailLength}
+            y2={comet.y + uy * tailLength}
+            gradientUnits="userSpaceOnUse"
           >
-            {block.sunLabel}
-          </text>
+            <stop offset="0%" stopColor="#67e8f9" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#67e8f9" stopOpacity="0" />
+          </linearGradient>
+          <radialGradient id="c13-coma">
+            <stop offset="0%" stopColor="#e0f2fe" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#67e8f9" stopOpacity="0" />
+          </radialGradient>
+        </defs>
 
-          {/* every stop, so the path is readable while one is selected */}
-          {STOPS.map((deg, i) => {
-            const p = pointAt(deg);
-            return (
-              <circle
-                key={deg}
-                cx={p.x}
-                cy={p.y}
-                r="3.4"
-                className={i === stopIndex ? "fill-transparent" : "fill-muted-foreground/45"}
-              />
-            );
-          })}
+        {/* elliptical orbit — a clean, thin cyan line, not a grey dashed one */}
+        <ellipse
+          cx={CX}
+          cy={CY}
+          rx={RX}
+          ry={RY}
+          fill="none"
+          stroke="#22d3ee"
+          strokeWidth="1.4"
+          opacity="0.6"
+        />
 
-          {/* the tail: drawn along Sun -> comet, so it always points away */}
-          <defs>
-            <linearGradient
-              id="c13-tail"
-              x1={comet.x}
-              y1={comet.y}
-              x2={comet.x + ux * tailLen}
-              y2={comet.y + uy * tailLen}
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop offset="0%" stopColor="currentColor" stopOpacity="0.85" />
-              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <path
-            d={`M ${comet.x - uy * 6.5} ${comet.y + ux * 6.5}
-                L ${comet.x + ux * tailLen} ${comet.y + uy * tailLen}
-                L ${comet.x + uy * 6.5} ${comet.y - ux * 6.5} Z`}
-            fill="url(#c13-tail)"
-            className="text-sky-400"
-          />
+        {/* the other two positions, small and dim — the three points on the
+            orbit, with nothing to read except "there are three of them" */}
+        {STOPS.map((deg, i) => {
+          if (i === stopIndex) return null;
+          const p = pointAt(deg);
+          return <circle key={deg} cx={p.x} cy={p.y} r="3.2" fill="#475569" opacity="0.7" />;
+        })}
 
-          {/* the comet head */}
-          <circle cx={comet.x} cy={comet.y} r="8" className="fill-sky-200 stroke-sky-500" strokeWidth="2" />
+        {/* solar wind, blowing outward from the Sun in every direction */}
+        {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
+          const a = (deg * Math.PI) / 180;
+          return (
+            <line
+              key={deg}
+              x1={FOCUS_X + 18 * Math.cos(a)}
+              y1={CY + 18 * Math.sin(a)}
+              x2={FOCUS_X + 31 * Math.cos(a)}
+              y2={CY + 31 * Math.sin(a)}
+              stroke="#fbbf24"
+              strokeOpacity="0.5"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+          );
+        })}
 
-          {/* the rule, stated on the drawing itself */}
-          <line
-            x1={FOCUS_X + ux * 21}
-            y1={CY + uy * 21}
-            x2={comet.x - ux * 13}
-            y2={comet.y - uy * 13}
-            className="stroke-muted-foreground/50"
-            strokeWidth="1.3"
-            strokeDasharray="3 4"
-          />
+        {/* the Sun, at a focus of the ellipse */}
+        <circle cx={FOCUS_X} cy={CY} r="20" fill="#fbbf24" opacity="0.2" />
+        <circle cx={FOCUS_X} cy={CY} r="14" fill="#fbbf24" />
+        <text
+          x={FOCUS_X}
+          y={CY + 34}
+          textAnchor="middle"
+          fill="#e2e8f0"
+          fontSize="12"
+          fontWeight="700"
+          stroke={NAVY}
+          style={HALO}
+        >
+          {block.sunLabel}
+        </text>
 
-          <text x="11" y="21" className="fill-current text-[11.5px] font-semibold text-muted-foreground">
-            {isNear ? block.nearSunLabel : block.farSunLabel}
-          </text>
-          <text x="11" y={VIEW_H - 11} className="fill-current text-[11.5px] font-bold text-foreground">
-            {isNear ? block.nearSpeedLabel : block.farSpeedLabel}
-          </text>
-        </svg>
-      </div>
+        {/* the tail: drawn along Sun -> comet, so it always points away */}
+        <path
+          data-comet-tail=""
+          aria-label={block.tailLabel}
+          d={`M ${comet.x - uy * tailHalfWidth} ${comet.y + ux * tailHalfWidth}
+              L ${comet.x + ux * tailLength} ${comet.y + uy * tailLength}
+              L ${comet.x + uy * tailHalfWidth} ${comet.y - ux * tailHalfWidth} Z`}
+          fill="url(#c13-tail)"
+        />
+
+        {/* coma: grows and brightens near the Sun */}
+        <circle
+          cx={comet.x}
+          cy={comet.y}
+          r={comaRadius}
+          fill="url(#c13-coma)"
+          opacity={isNear ? 0.95 : 0.5}
+        />
+
+        {/* the head: a small dark rocky/icy core */}
+        <circle cx={comet.x} cy={comet.y} r="5" fill="#334155" stroke="#94a3b8" strokeWidth="1.2" />
+
+        <text
+          x="12"
+          y="24"
+          fill="#e2e8f0"
+          fontSize="13"
+          fontWeight="700"
+          stroke={NAVY}
+          style={HALO}
+        >
+          {stage.label}
+        </text>
+      </svg>
 
       <p className="mt-2 text-center text-[11px] italic text-muted-foreground">{block.scaleNote}</p>
 
-      <div className="mt-3 rounded-xl border border-primary/20 bg-background/70 p-3">
-        <p className="text-[13px] leading-relaxed text-muted-foreground">
-          {isNear ? block.nearBody : block.farBody}
+      <div
+        aria-live="polite"
+        className="mt-3 rounded-xl border border-primary/35 bg-primary/8 px-3 py-2.5"
+      >
+        <p className="font-display text-[13px] font-bold text-primary">{stage.label}</p>
+        <p className="mt-1 text-[13px] leading-relaxed text-foreground">{stage.body}</p>
+        <p className="mt-2 text-[13px] font-semibold leading-relaxed text-foreground">
+          {block.tailRule}
         </p>
-        <p className="mt-2 text-[13px] font-semibold leading-relaxed text-foreground">{block.tailRule}</p>
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ export const scienceF2C13MindMapDLP: MindNode = {
                 { id: "c1-2-3-1", label: "Moves freely in space — not on its own orbit around the Sun" },
                 { id: "c1-2-3-2", label: "Influenced by the gravitational pull of planets, moons and other objects around it" },
                 { id: "c1-2-3-3", label: "Its small size and mass make it more easily influenced by a small gravitational pull" },
-                { id: "c1-2-3-4", label: "Stages: meteoroid → meteor → meteor shower → meteorite" },
+                { id: "c1-2-3-4", label: "Journey: meteoroid → meteor → meteorite (only if part of it survives); a meteor shower is many meteors at once, not a stage" },
               ],
             },
           ],

@@ -18,7 +18,7 @@ import {
   layoutCallouts,
   type AnnotationMode,
 } from "./annotation-layout";
-import { SpotlightOverlay } from "./SpotlightOverlay";
+import { ShapeEl, SpotlightOverlay } from "./SpotlightOverlay";
 import { spotlightBounds, type SpotlightShape, type SpotlightPulseGroup } from "./spotlight-shapes";
 
 /**
@@ -145,6 +145,43 @@ function activeRegionCentre(annotations: ImageAnnotation[], active: string | nul
   return typeof item.x === "number" ? item.x : null;
 }
 
+/**
+ * Where a floating spotlight caption sits relative to the shapes it names.
+ * See `AnnotatedImageProps.spotlightCaptionEdge`.
+ */
+function spotlightCaptionPosition(
+  shapes: SpotlightShape[],
+  edge: "auto" | "top",
+): React.CSSProperties {
+  if (shapes.length === 0) return { left: "50%", top: "4%", transform: "translate(-50%, 0)" };
+  const { minX, minY, maxX, maxY } = spotlightBounds(shapes);
+  const cx = Math.min(94, Math.max(6, (minX + maxX) / 2));
+  if (edge === "top") {
+    return {
+      left: `${cx}%`,
+      top: `${Math.min(96, minY + 2)}%`,
+      transform: "translate(-50%, 0)",
+    };
+  }
+  // A group spanning most of the artwork's height (community's whole
+  // living cast, habitat's near-full-height pond boundary) has no
+  // single edge worth hugging — snugging to its top or bottom edge
+  // pushes the callout to the very rim of the frame and clips it, so
+  // it gets a plain top-banner spot instead.
+  if (maxY - minY > 50) {
+    return { left: "50%", top: "4%", transform: "translate(-50%, 0)" };
+  }
+  const roomAbove = minY;
+  const roomBelow = 100 - maxY;
+  return roomBelow >= roomAbove
+    ? { left: `${cx}%`, top: `${Math.min(92, maxY + 3)}%`, transform: "translate(-50%, 0)" }
+    : {
+        left: `${cx}%`,
+        top: `${Math.max(3, minY - 3)}%`,
+        transform: "translate(-50%, -100%)",
+      };
+}
+
 export type AnnotatedImageProps = {
   /** Bundled asset URL (a `src/assets` import) or notes-bucket object path. */
   src: string;
@@ -191,6 +228,15 @@ export type AnnotatedImageProps = {
    *    label unambiguously attached to the panel it names, at any width.
    */
   spotlightCaptionEdge?: "auto" | "top";
+  /**
+   * `spotlight` mode only — also make every placed concept (`x`/`y` centre,
+   * `w`/`h` size) a real control ON the artwork, not just in the row beneath
+   * it. Hovering or focusing one previews its spotlight shapes with a dashed
+   * outline and a small name tag, without changing the selection; clicking or
+   * tapping selects it. The hit area may be larger than the drawn subject, so
+   * a small planet never needs a precise tap.
+   */
+  spotlightHotspots?: boolean;
   /**
    * Short static captions pinned over the artwork at a fixed spot — e.g. a
    * bilingual "Acid" / "Alkali" heading over each half of a two-column
@@ -285,6 +331,7 @@ export function AnnotatedImage({
   annotationMode = "labels",
   spotlightDimOpacity,
   spotlightCaptionEdge = "auto",
+  spotlightHotspots = false,
   overlayHeadings = [],
   size,
   aspect = "3 / 2",
@@ -304,6 +351,8 @@ export function AnnotatedImage({
 }: AnnotatedImageProps) {
   const [uncontrolledActive, setUncontrolledActive] = useState<string | null>(null);
   const [zoomed, setZoomed] = useState(false);
+  /** The hotspot under the pointer or keyboard focus — a preview, never the selection. */
+  const [previewId, setPreviewId] = useState<string | null>(null);
   const isControlled = controlledActive !== undefined;
   const active = isControlled ? controlledActive : uncontrolledActive;
   const setActive = (next: string | null) => {
@@ -374,38 +423,15 @@ export function AnnotatedImage({
   const spotlightShapes = activeAnnotation?.spotlightShapes ?? [];
   const spotlightMaskId = `${baseId}-spotlight-mask`;
   const spotlightCalloutStyle: React.CSSProperties | undefined = isSpotlight
-    ? (() => {
-        if (spotlightShapes.length > 0) {
-          const { minX, minY, maxX, maxY } = spotlightBounds(spotlightShapes);
-          const cx = Math.min(94, Math.max(6, (minX + maxX) / 2));
-          if (spotlightCaptionEdge === "top") {
-            return {
-              left: `${cx}%`,
-              top: `${Math.min(96, minY + 2)}%`,
-              transform: "translate(-50%, 0)",
-            };
-          }
-          // A group spanning most of the artwork's height (community's whole
-          // living cast, habitat's near-full-height pond boundary) has no
-          // single edge worth hugging — snugging to its top or bottom edge
-          // pushes the callout to the very rim of the frame and clips it, so
-          // it gets a plain top-banner spot instead.
-          if (maxY - minY > 50) {
-            return { left: "50%", top: "4%", transform: "translate(-50%, 0)" };
-          }
-          const roomAbove = minY;
-          const roomBelow = 100 - maxY;
-          return roomBelow >= roomAbove
-            ? { left: `${cx}%`, top: `${Math.min(92, maxY + 3)}%`, transform: "translate(-50%, 0)" }
-            : {
-                left: `${cx}%`,
-                top: `${Math.max(3, minY - 3)}%`,
-                transform: "translate(-50%, -100%)",
-              };
-        }
-        return { left: "50%", top: "4%", transform: "translate(-50%, 0)" };
-      })()
+    ? spotlightCaptionPosition(spotlightShapes, spotlightCaptionEdge)
     : undefined;
+  const withHotspots = isSpotlight && spotlightHotspots;
+  const previewAnnotation =
+    withHotspots && previewId && previewId !== active
+      ? (annotations.find(
+          (item) => item.id === previewId && (item.spotlightShapes?.length ?? 0) > 0,
+        ) ?? null)
+      : null;
   const spotlightLayer = isSpotlight ? (
     <>
       <SpotlightOverlay
@@ -513,6 +539,86 @@ export function AnnotatedImage({
 
         {spotlightLayer}
         {overlayHeadingLayer}
+
+        {/* Hotspot preview: a quiet dashed outline and a small name tag on the
+            region under the pointer or keyboard focus. It never changes the
+            selection, so sweeping across the artwork cannot rewrite the
+            explanation panel. */}
+        {previewAnnotation?.spotlightShapes && (
+          <>
+            <svg
+              className="pointer-events-none absolute inset-0 h-full w-full"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              {previewAnnotation.spotlightShapes.map((shape) => (
+                <ShapeEl
+                  key={`preview-${shape.id}`}
+                  shape={shape}
+                  fill="none"
+                  className="stroke-primary"
+                  strokeWidth={1.5}
+                  strokeOpacity={0.85}
+                  strokeDasharray="5 4"
+                  vectorEffect="non-scaling-stroke"
+                />
+              ))}
+            </svg>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute z-10 whitespace-nowrap rounded-full border border-white/25 bg-slate-950/85 px-2 py-0.5 text-[10.5px] font-semibold leading-tight text-white shadow-[0_2px_10px_rgba(0,0,0,0.45)] sm:text-[11.5px]"
+              style={spotlightCaptionPosition(
+                previewAnnotation.spotlightShapes,
+                spotlightCaptionEdge,
+              )}
+            >
+              {previewAnnotation.label}
+            </div>
+          </>
+        )}
+
+        {/* Hotspots: invisible controls over each region. Smaller areas stack
+            above larger ones, as in `regions` mode, so an overlapping neighbour
+            never swallows the tap. */}
+        {withHotspots &&
+          placed.map((item) => {
+            const isActive = active === item.id;
+            const width = item.w ?? 12;
+            const height = item.h ?? 12;
+            const area = width * height;
+            const enclosing = placed.filter(
+              (other) => (other.w ?? 12) * (other.h ?? 12) > area,
+            ).length;
+            const clearPreview = () =>
+              setPreviewId((current) => (current === item.id ? null : current));
+            return (
+              <button
+                key={item.id}
+                type="button"
+                data-hotspot={item.id}
+                aria-label={item.label}
+                aria-pressed={isActive}
+                onClick={() => {
+                  setPreviewId(null);
+                  setActive(isActive ? null : item.id);
+                }}
+                onMouseEnter={() => setPreviewId(item.id)}
+                onMouseLeave={clearPreview}
+                onFocus={() => setPreviewId(item.id)}
+                onBlur={clearPreview}
+                className="absolute cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/80"
+                style={{
+                  left: `${Math.max(0, item.x - width / 2)}%`,
+                  top: `${Math.max(0, item.y - height / 2)}%`,
+                  width: `${width}%`,
+                  height: `${height}%`,
+                  // Stays below the enlarge control at z-20.
+                  zIndex: 10 + Math.min(enclosing, 9),
+                }}
+              />
+            );
+          })}
 
         {/* Leader lines, drawn under the labels. Percentage coordinates keep
             every line locked to its structure at any rendered width. */}

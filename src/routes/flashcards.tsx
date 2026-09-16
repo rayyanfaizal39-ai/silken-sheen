@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import { useProgress } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
@@ -28,6 +28,7 @@ import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLangu
 import { useScienceLang } from "@/hooks/use-science-lang";
 import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
+import { prefersReducedMotion } from "@/lib/motion-preferences";
 import {
   cleanLearningLabel,
   cleanLearningQuestion,
@@ -5315,7 +5316,65 @@ function FlashcardsPage() {
   const [longestStreak, setLongestStreak] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [swipeOffset, setSwipeOffset] = useState(0);
-  const touchStart = useRef<number | null>(null);
+  /**
+   * The single source of truth for "what is the card allowed to do right
+   * now" — replaces a scatter of ad hoc `if (slideOut) return` checks with
+   * one place that every entry point (drag start, swipe commit, tap-to-flip,
+   * prev/next, the rating buttons) agrees on.
+   *
+   * `revealing-answer` is held indefinitely once a swipe crosses the
+   * threshold: the answer is shown, the rating is already decided (right =
+   * know, left = don't know) but NOT yet applied, and the student reads at
+   * their own pace until they press "Next Card". Nothing here auto-advances
+   * on a timer — see `pendingRatingRef` / `handleNextCard`. `transitioning`
+   * covers the brief flash/toast/slide-out window after Next Card is
+   * pressed, before the following card is dealt.
+   */
+  const [interactionState, setInteractionState] = useState<
+    "idle" | "dragging" | "revealing-answer" | "transitioning"
+  >("idle");
+  /** Which way a swipe-triggered rating is pending, for the "Knew it / Review again" badge. */
+  const [swipeRatingCue, setSwipeRatingCue] = useState<"right" | "left" | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{
+    pointerId: number;
+    startX: number;
+    startY: number;
+    startTime: number;
+    isDragging: boolean;
+  } | null>(null);
+  /** Set at pointerup when the gesture was a drag, so the click that a touch/mouse
+   *  device fires right after doesn't also flip the card. */
+  const wasDragRef = useRef(false);
+  /** Synchronous re-entrancy lock: state updates batch/async, so a ref is what
+   *  actually stops two near-simultaneous triggers (swipe + button tap, or a
+   *  second pointer) from both committing a rating. */
+  const isCommittingRef = useRef(false);
+  /** The rating a swipe already decided, held until "Next Card" is pressed —
+   *  not a timer, just a value waiting for one explicit confirmation. */
+  const pendingRatingRef = useRef<0 | 2 | null>(null);
+  const commitTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const reducedMotionRef = useRef(false);
+  /**
+   * Idempotent XP guard: the set of card ids that have already paid out
+   * their "know" XP in THIS deck session. Cleared only when `pool` itself
+   * changes identity (see the effect further below, once `pool` exists) —
+   * i.e. when the student is genuinely studying a different deck — never by
+   * re-shuffling or restarting the same one, which is exactly the loop a
+   * farmer would otherwise use. Reused across both the swipe path and the
+   * manual tap-flip-then-button path, since both end up in
+   * `applyRatingEffects`.
+   */
+  const awardedXpCardIdsRef = useRef<Set<string>>(new Set());
+  useEffect(() => {
+    reducedMotionRef.current = prefersReducedMotion();
+  }, []);
+  useEffect(
+    () => () => {
+      if (commitTimeoutRef.current) clearTimeout(commitTimeoutRef.current);
+    },
+    [],
+  );
 
   // engagement state
   const [flash, setFlash] = useState<"green" | "red" | null>(null);
@@ -5479,6 +5538,25 @@ function FlashcardsPage() {
     favOnly,
     progress.favorites,
   ]);
+  // Identifies which deck is being studied — deliberately NOT `pool` itself
+  // (a new array reference on every render `useMemo` recomputes, including a
+  // `favOnly` toggle that shows the exact same cards) and deliberately NOT
+  // including `favOnly`: only an actual change of subject/chapter/set/
+  // language means a genuinely different deck. That's what resets the
+  // idempotent XP guard below — re-shuffling or toggling the favourites
+  // filter on the same deck must NOT reopen it.
+  const deckIdentityKey = [
+    subject,
+    form,
+    chapter,
+    scienceLang,
+    mathFlashcardLang,
+    mathFlashcardCategory,
+    selectedFlashcardSet,
+  ].join("|");
+  useEffect(() => {
+    awardedXpCardIdsRef.current = new Set();
+  }, [deckIdentityKey]);
 
   const currentPoolIdx = queue[idx];
   const current = currentPoolIdx !== undefined ? pool[currentPoolIdx] : pool[0];
@@ -5504,6 +5582,10 @@ function FlashcardsPage() {
   }
 
   function shuffle() {
+    if (commitTimeoutRef.current) clearTimeout(commitTimeoutRef.current);
+    isCommittingRef.current = false;
+    dragRef.current = null;
+    pendingRatingRef.current = null;
     const arr = buildShuffled();
     setQueue(arr);
     setIdx(0);
@@ -5516,19 +5598,39 @@ function FlashcardsPage() {
     setTotalCards(arr.length);
     setCompleted(false);
     setDealing(true);
+    setSwipeOffset(0);
+    setSwipeRatingCue(null);
+    setInteractionState("idle");
     setTimeout(() => setDealing(false), 500);
   }
 
   // rating: 0=Again, 1=Hard, 2=Good, 3=Easy
-  function handleResponse(rating: 0 | 1 | 2 | 3) {
-    if (!current || slideOut) return;
-    if (!flipped) return; // must see answer before rating
+  // Does the actual work of committing a rating: SM-2, XP, streak, the
+  // flash/toast/slide-out feedback, and — after that plays out — advancing
+  // the queue. Guarded by a ref (not just state) so two callers landing in
+  // the same tick — a swipe commit racing a button tap, say — can't both
+  // get through: state updates are async, the ref flip is not.
+  function applyRatingEffects(rating: 0 | 1 | 2 | 3) {
+    if (!current || isCommittingRef.current) return;
+    isCommittingRef.current = true;
+    setInteractionState("transitioning");
 
-    // SM-2 spaced repetition
+    // SM-2 spaced repetition — this keeps updating on every genuine review,
+    // lapse or not: that's the point of spaced repetition, and it isn't the
+    // part that pays out XP.
     if (rateCard) rateCard(current.id, rating);
 
     const pass = rating >= 2;
-    const xpAmount = rating === 3 ? 15 : rating === 2 ? 10 : 0;
+    // Idempotent XP: the attempt key is simply the card's own id, scoped to
+    // this deck session by `awardedXpCardIdsRef` (reset only when the deck
+    // identity itself changes — see `deckIdentityKey` above). A card that
+    // already paid out — however many times it gets swiped right again,
+    // re-queued after a lapse, or revisited via prev/next — pays out 0 XP
+    // every time after the first. A left/"don't know" swipe never pays XP
+    // regardless, so it never needs to check or touch this set.
+    const alreadyAwardedXp = awardedXpCardIdsRef.current.has(current.id);
+    const xpAmount = pass && !alreadyAwardedXp ? (rating === 3 ? 15 : 10) : 0;
+    if (xpAmount > 0) awardedXpCardIdsRef.current.add(current.id);
 
     if (pass) {
       sfx.ding();
@@ -5559,7 +5661,7 @@ function FlashcardsPage() {
       setStreak(0);
     }
 
-    setTimeout(() => {
+    commitTimeoutRef.current = setTimeout(() => {
       setFlash(null);
       setShake(false);
       setFloatXp(false);
@@ -5568,6 +5670,9 @@ function FlashcardsPage() {
       setSlideOut(null);
       setFlipped(false);
       setSwipeOffset(0);
+      setSwipeRatingCue(null);
+      isCommittingRef.current = false;
+      setInteractionState("idle");
 
       setQueue((q) => {
         const remaining = q.slice(idx + 1);
@@ -5586,8 +5691,66 @@ function FlashcardsPage() {
     }, 450);
   }
 
+  // Click/keyboard path (the rating buttons, shown once flipped): same
+  // guards as before, now expressed through interactionState.
+  function handleResponse(rating: 0 | 1 | 2 | 3) {
+    if (!current || interactionState !== "idle") return;
+    if (!flipped) return; // must see answer before rating
+    applyRatingEffects(rating);
+  }
+
+  /**
+   * A drag crossed the swipe threshold. Right = know (rating 2), left =
+   * don't know (rating 0) — same two ratings the swipe hint on the card has
+   * always promised. If the question is still showing, this reveals the
+   * answer; either way the rating is DECIDED here but not yet applied — it
+   * sits in `pendingRatingRef` until the student presses "Next Card". No
+   * timer: the answer stays up for as long as it takes to read, and nothing
+   * else on the card can change that pending rating (interactionState stays
+   * "revealing-answer" until Next Card fires, and every other entry point —
+   * drag start, flip, the rating buttons — checks that state and refuses to
+   * run while it holds).
+   */
+  function commitSwipe(direction: "right" | "left") {
+    if (!current || interactionState === "revealing-answer" || interactionState === "transitioning")
+      return;
+    const rating: 0 | 2 = direction === "right" ? 2 : 0;
+
+    setInteractionState("revealing-answer");
+    setSwipeOffset(0);
+    if (!flipped) {
+      sfx.whoosh();
+      setShimmer(true);
+      setTimeout(() => setShimmer(false), 700);
+      setFlipped(true);
+    }
+    setSwipeRatingCue(direction);
+    pendingRatingRef.current = rating;
+  }
+
+  /**
+   * The only way a swipe-decided rating actually gets applied: an explicit
+   * press, not a timer. Also doubles as the confirm step for a card that was
+   * flipped manually and then swiped rather than tapped with a rating
+   * button — same pending-rating mechanism either way.
+   */
+  function handleNextCard() {
+    if (interactionState !== "revealing-answer") return;
+    const rating = pendingRatingRef.current;
+    if (rating === null) return;
+    pendingRatingRef.current = null;
+    setSwipeRatingCue(null);
+    applyRatingEffects(rating);
+  }
+
   function handleFlip() {
-    if (slideOut) return;
+    if (wasDragRef.current) {
+      // the click a touch/mouse device fires right after a drag release —
+      // not a tap, ignore it so dragging never also flips the card
+      wasDragRef.current = false;
+      return;
+    }
+    if (interactionState !== "idle") return;
     if (!flipped) {
       sfx.whoosh();
       setShimmer(true);
@@ -5601,30 +5764,109 @@ function FlashcardsPage() {
   }
 
   function go(delta: number) {
+    if (interactionState !== "idle") return;
     setFlipped(false);
     setIdx((i) => (i + delta + queue.length) % Math.max(queue.length, 1));
   }
 
-  // Touch swipe
-  function onTouchStart(e: TouchEvent) {
-    touchStart.current = e.touches[0].clientX;
+  // Pointer-based drag: one code path for touch, mouse and pen, so Android
+  // Chrome, Samsung Internet, iOS Safari and desktop all get the same feel.
+  // `touch-action: pan-y` on the card (set in its style below) leaves
+  // vertical scrolling to the browser and hands horizontal movement to us.
+  const SWIPE_DISTANCE_FRACTION = 0.27; // ~25-30% of card width
+  const SWIPE_VELOCITY_THRESHOLD = 0.55; // px/ms — a fast flick counts even if short
+  const MOVE_THRESHOLD = 6; // px before a pointerdown counts as a drag, not a tap
+
+  function onCardPointerDown(e: PointerEvent<HTMLDivElement>) {
+    if (interactionState !== "idle") return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    dragRef.current = {
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
+      startTime: performance.now(),
+      isDragging: false,
+    };
   }
-  function onTouchMove(e: TouchEvent) {
-    if (touchStart.current === null) return;
-    setSwipeOffset(e.touches[0].clientX - touchStart.current);
+
+  function onCardPointerMove(e: PointerEvent<HTMLDivElement>) {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== e.pointerId) return;
+    const dx = e.clientX - drag.startX;
+    const dy = e.clientY - drag.startY;
+
+    if (!drag.isDragging) {
+      if (Math.abs(dx) < MOVE_THRESHOLD && Math.abs(dy) < MOVE_THRESHOLD) return;
+      if (Math.abs(dy) > Math.abs(dx) * 1.2) {
+        // mostly vertical — this is a page scroll, not a card swipe; let the
+        // browser handle it and stop tracking this pointer entirely
+        dragRef.current = null;
+        return;
+      }
+      drag.isDragging = true;
+      wasDragRef.current = true;
+      setInteractionState("dragging");
+      e.currentTarget.setPointerCapture(e.pointerId);
+    }
+
+    // soft cap so an over-eager drag can't push the card (or the page's
+    // scrollable width) arbitrarily far off screen — a little resistance
+    // past 1.4 card-widths instead of tracking 1:1 forever
+    const cap = (cardRef.current?.offsetWidth || 320) * 1.4;
+    const clamped = Math.abs(dx) <= cap ? dx : Math.sign(dx) * (cap + (Math.abs(dx) - cap) * 0.15);
+    setSwipeOffset(clamped);
   }
-  function onTouchEnd() {
-    if (touchStart.current === null) return;
-    const dx = swipeOffset;
-    touchStart.current = null;
-    if (dx > 80)
-      handleResponse(2); // swipe right = Good
-    else if (dx < -80)
-      handleResponse(0); // swipe left = Again
-    else setSwipeOffset(0);
+
+  function endDrag(e: PointerEvent<HTMLDivElement>, commit: boolean) {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== e.pointerId) return;
+    dragRef.current = null;
+    if (e.currentTarget.hasPointerCapture?.(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+
+    if (!drag.isDragging) {
+      // never moved past the tap threshold — let the browser's own click
+      // (handled by onClick={handleFlip}) do the flipping
+      setInteractionState("idle");
+      return;
+    }
+
+    if (!commit) {
+      setSwipeOffset(0);
+      setInteractionState("idle");
+      return;
+    }
+
+    const dx = e.clientX - drag.startX;
+    const elapsedMs = Math.max(1, performance.now() - drag.startTime);
+    const velocity = dx / elapsedMs;
+    const width = cardRef.current?.offsetWidth || 320;
+    const distanceThreshold = width * SWIPE_DISTANCE_FRACTION;
+    const crossedThreshold =
+      Math.abs(dx) > distanceThreshold || Math.abs(velocity) > SWIPE_VELOCITY_THRESHOLD;
+
+    if (crossedThreshold) {
+      commitSwipe(dx > 0 ? "right" : "left");
+    } else {
+      // below threshold: spring back to centre, nothing changes
+      setSwipeOffset(0);
+      setInteractionState("idle");
+    }
+  }
+
+  function onCardPointerUp(e: PointerEvent<HTMLDivElement>) {
+    endDrag(e, true);
+  }
+  function onCardPointerCancel(e: PointerEvent<HTMLDivElement>) {
+    endDrag(e, false);
   }
 
   function resetSession() {
+    if (commitTimeoutRef.current) clearTimeout(commitTimeoutRef.current);
+    isCommittingRef.current = false;
+    dragRef.current = null;
+    pendingRatingRef.current = null;
     setIdx(0);
     setFlipped(false);
     setStreak(0);
@@ -5632,6 +5874,8 @@ function FlashcardsPage() {
     setCompleted(false);
     setQueue([]);
     setSwipeOffset(0);
+    setSwipeRatingCue(null);
+    setInteractionState("idle");
     setKnownCount(0);
     setUnknownCount(0);
     setXpEarned(0);
@@ -5725,6 +5969,19 @@ function FlashcardsPage() {
   const remaining = queue.length - idx;
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
   const planetTheme = getPlanetTheme(subject);
+
+  // Drag visuals: 0 -> 1 as the finger crosses toward the swipe threshold,
+  // used for both the rotation and the progressive KNOW / DON'T KNOW reveal.
+  // Capped at 1 so flinging the card doesn't over-rotate or over-saturate.
+  const cardWidthPx = cardRef.current?.offsetWidth || 320;
+  const swipeThresholdPx = cardWidthPx * SWIPE_DISTANCE_FRACTION;
+  const dragProgress =
+    interactionState === "dragging" ? Math.min(1, Math.abs(swipeOffset) / swipeThresholdPx) : 0;
+  const dragRotation = reducedMotionRef.current
+    ? 0
+    : Math.max(-8, Math.min(8, (swipeOffset / swipeThresholdPx) * 8));
+  const knowCueOpacity = swipeOffset > 0 ? dragProgress : 0;
+  const dontKnowCueOpacity = swipeOffset < 0 ? dragProgress : 0;
 
   // ── Subject World early-return ────────────────────────────────────────────
   if (subject && !formWasChosen && !chapter) {
@@ -6343,20 +6600,32 @@ function FlashcardsPage() {
               <FireBadge streak={streak} />
 
               <div className="relative">
-                {/* Card stack behind */}
+                {/* Card stack behind — not interactive, and not independently
+                    draggable: only the top card has pointer handlers. The
+                    next card eases toward full scale as the top one is
+                    dragged away, so the stack reads as "the next one is
+                    coming up" rather than a static backdrop. */}
                 {remaining > 1 && (
                   <>
-                    <div className="absolute inset-0 glass rounded-3xl translate-y-3 scale-[0.96] opacity-50" />
+                    <div
+                      className="absolute inset-0 glass rounded-3xl translate-y-3 opacity-50 pointer-events-none"
+                      style={{
+                        transform: `scale(${0.96 + dragProgress * 0.04})`,
+                        transition:
+                          interactionState === "dragging" ? "none" : "transform 0.3s ease",
+                      }}
+                    />
                     {remaining > 2 && (
-                      <div className="absolute inset-0 glass rounded-3xl translate-y-6 scale-[0.92] opacity-30" />
+                      <div className="absolute inset-0 glass rounded-3xl translate-y-6 scale-[0.92] opacity-30 pointer-events-none" />
                     )}
-                    <div className="absolute -top-3 -right-3 z-20 glass-strong rounded-full px-3 py-1 text-xs font-bold">
+                    <div className="absolute -top-3 -right-3 z-20 glass-strong rounded-full px-3 py-1 text-xs font-bold pointer-events-none">
                       {remaining} left
                     </div>
                   </>
                 )}
 
                 <div
+                  ref={cardRef}
                   role="button"
                   tabIndex={0}
                   aria-pressed={flipped}
@@ -6372,9 +6641,10 @@ function FlashcardsPage() {
                       handleFlip();
                     }
                   }}
-                  onTouchStart={onTouchStart}
-                  onTouchMove={onTouchMove}
-                  onTouchEnd={onTouchEnd}
+                  onPointerDown={onCardPointerDown}
+                  onPointerMove={onCardPointerMove}
+                  onPointerUp={onCardPointerUp}
+                  onPointerCancel={onCardPointerCancel}
                   className={`flashcard-study-card relative mx-auto cursor-pointer select-none rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]
                     ${dealing ? "animate-deal-in" : ""}
                     ${shake ? "animate-shake" : ""}
@@ -6387,12 +6657,54 @@ function FlashcardsPage() {
                   style={{
                     perspective: "1500px",
                     height: "clamp(360px, 58dvh, 440px)",
+                    // pan-y: the browser keeps vertical scroll, we own horizontal drag
+                    touchAction: "pan-y",
                     transform: slideOut
                       ? undefined
-                      : `translateX(${swipeOffset}px) rotate(${swipeOffset / 30}deg)`,
-                    transition: swipeOffset === 0 ? "transform 0.3s ease" : "none",
+                      : `translateX(${swipeOffset}px) rotate(${dragRotation}deg)`,
+                    transition:
+                      swipeOffset === 0
+                        ? reducedMotionRef.current
+                          ? "transform 0.15s linear"
+                          : "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)"
+                        : "none",
                   }}
                 >
+                  {/* Progressive KNOW / DON'T KNOW cue — fades in with drag
+                      distance, so the decision is legible before release. */}
+                  {knowCueOpacity > 0 && (
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute left-4 top-4 z-30 -rotate-6 rounded-xl border-2 border-emerald-400 px-3 py-1 text-lg font-black uppercase tracking-wide text-emerald-400"
+                      style={{ opacity: knowCueOpacity }}
+                    >
+                      Know
+                    </div>
+                  )}
+                  {dontKnowCueOpacity > 0 && (
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute right-4 top-4 z-30 rotate-6 rounded-xl border-2 border-rose-400 px-3 py-1 text-lg font-black uppercase tracking-wide text-rose-400"
+                      style={{ opacity: dontKnowCueOpacity }}
+                    >
+                      Don't know
+                    </div>
+                  )}
+                  {/* Swipe accepted: the answer is showing and this confirms
+                      how it was rated. It stays up — no timer — until the
+                      student presses "Next Card" below. */}
+                  {swipeRatingCue && (
+                    <div
+                      aria-live="polite"
+                      className="pointer-events-none absolute left-1/2 top-4 z-30 -translate-x-1/2 rounded-full px-4 py-1.5 text-sm font-bold shadow-lg animate-fade-up"
+                      style={{
+                        backgroundColor: swipeRatingCue === "right" ? "#22C55E" : "#F43F5E",
+                        color: "white",
+                      }}
+                    >
+                      {swipeRatingCue === "right" ? "✓ I knew this" : "↻ Review again"}
+                    </div>
+                  )}
                   <div
                     key={current.id}
                     className="relative w-full h-full transition-transform duration-700"
@@ -6472,9 +6784,15 @@ function FlashcardsPage() {
                           {planetTheme.decor[1] ?? planetTheme.decor[0]}
                         </span>
                       )}
-                      <p className="font-display text-xl sm:text-3xl text-center leading-relaxed">
-                        {cleanLearningQuestion(current.back)}
-                      </p>
+                      {/* The answer now stays on screen indefinitely (no
+                          auto-advance timer), so a long answer must be able
+                          to scroll internally rather than clip against the
+                          card's fixed height. */}
+                      <div className="max-h-full w-full overflow-y-auto py-1">
+                        <p className="font-display text-xl sm:text-3xl text-center leading-relaxed">
+                          {cleanLearningQuestion(current.back)}
+                        </p>
+                      </div>
                     </div>
                   </div>
 
@@ -6497,13 +6815,15 @@ function FlashcardsPage() {
                 </div>
               </div>
 
-              {/* Navigation row */}
+              {/* Navigation row — locked while a swipe rating is pending or
+                  applying, so it can't abandon/duplicate that attempt. */}
               <div className="mt-6 flex items-center justify-center gap-3">
                 <button
                   type="button"
                   aria-label="Previous card"
+                  disabled={interactionState !== "idle"}
                   onClick={() => go(-1)}
-                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
@@ -6513,15 +6833,38 @@ function FlashcardsPage() {
                 <button
                   type="button"
                   aria-label="Next card"
+                  disabled={interactionState !== "idle"}
                   onClick={() => go(1)}
-                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </div>
 
-              {/* SM-2 Rating row — shown after card is flipped */}
-              {flipped ? (
+              {/* Below the card: three mutually exclusive states.
+                  1. A swipe already decided the rating — the answer stays up
+                     indefinitely and the only way forward is this explicit
+                     button, which fires the rating exactly once.
+                  2. Flipped manually (no swipe pending) — the original SM-2
+                     rating grid, unchanged.
+                  3. Still on the question — the flip hint, unchanged. */}
+              {interactionState === "revealing-answer" ? (
+                <div className="mt-4 flex flex-col items-center gap-2">
+                  <p className="text-xs text-muted-foreground">
+                    {swipeRatingCue === "right"
+                      ? "Marked as known — read the answer, then continue."
+                      : "Marked for review — read the answer, then continue."}
+                  </p>
+                  <button
+                    type="button"
+                    aria-label="Continue to the next card"
+                    onClick={handleNextCard}
+                    className="flex min-h-14 w-full max-w-sm items-center justify-center gap-2 rounded-2xl bg-[#8B5CF6] px-6 text-base font-bold text-white shadow-lg transition-all hover:bg-[#7C3AED] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  >
+                    Next Card <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+              ) : flipped ? (
                 <div className="mt-4 grid grid-cols-4 gap-2">
                   <button
                     type="button"
