@@ -161,11 +161,23 @@ describe("Chapter 10 — every SP has a teaching home in the notes", () => {
     // code, BM evidence, DLP evidence
     ["10.1.1 medium + vacuum", /memerlukan medium/i, /needs a medium/i],
     ["10.1.1 speed by state", /pepejal/i, /solid/i],
-    ["10.2.1 frequency + Hz", /bilangan getaran lengkap dalam masa satu saat/i, /number of complete vibrations in one second/i],
+    [
+      "10.2.1 frequency + Hz",
+      /bilangan getaran lengkap dalam masa satu saat/i,
+      /number of complete vibrations in one second/i,
+    ],
     ["10.2.1 amplitude definition", /sesaran maksimum/i, /maximum displacement/i],
     ["10.2.1 oscilloscope", /O\.S\.K\./, /oscilloscope/i],
-    ["10.2.2 pitch", /kelangsingan.{0,40}frekuensi|frekuensi.{0,40}kelangsingan/is, /pitch.{0,40}frequency|frequency.{0,40}pitch/is],
-    ["10.2.3 loudness", /kenyaringan.{0,40}amplitud|amplitud.{0,40}kenyaringan/is, /loudness.{0,40}amplitude|amplitude.{0,40}loudness/is],
+    [
+      "10.2.2 pitch",
+      /kelangsingan.{0,40}frekuensi|frekuensi.{0,40}kelangsingan/is,
+      /pitch.{0,40}frequency|frequency.{0,40}pitch/is,
+    ],
+    [
+      "10.2.3 loudness",
+      /kenyaringan.{0,40}amplitud|amplitud.{0,40}kenyaringan/is,
+      /loudness.{0,40}amplitude|amplitude.{0,40}loudness/is,
+    ],
     ["10.2.4 musical instruments", /gitar/i, /guitar/i],
     ["10.3.1 echo", /gema/i, /echo/i],
     ["10.3.1 Doppler", /kesan Doppler/i, /Doppler effect/i],
@@ -208,8 +220,13 @@ describe("Chapter 10 — speed is never inferred from loudness", () => {
   });
 
   it("no surface claims a louder sound travels faster", () => {
-    for (const [surface, data] of [...DECKS, ...LANGS.map(([l, c]) => [l, c] as [string, unknown])]) {
-      expect(text(data), surface).not.toMatch(/lebih kuat,? (jadi|maka).{0,30}(lebih cepat|lebih pantas)/i);
+    for (const [surface, data] of [
+      ...DECKS,
+      ...LANGS.map(([l, c]) => [l, c] as [string, unknown]),
+    ]) {
+      expect(text(data), surface).not.toMatch(
+        /lebih kuat,? (jadi|maka).{0,30}(lebih cepat|lebih pantas)/i,
+      );
       expect(text(data), surface).not.toMatch(/louder,? so.{0,30}faster/i);
     }
   });
@@ -242,7 +259,9 @@ describe("Chapter 10 — reflection and absorption", () => {
     });
 
     it(`${lang}: never imports the angle of incidence law, which Chapter 10 does not teach`, () => {
-      expect(notesText(content)).not.toMatch(/sudut tuju|sudut pantulan|angle of incidence|angle of reflection/i);
+      expect(notesText(content)).not.toMatch(
+        /sudut tuju|sudut pantulan|angle of incidence|angle of reflection/i,
+      );
     });
   }
 });
@@ -318,8 +337,9 @@ describe("Chapter 10 — Doppler", () => {
   });
 
   it("renders both observers and the steady-frequency note", () => {
-    const block = sectionsOf(scienceF2C10InteractiveBM).find((s) => s.dopplerWavefronts)!
-      .dopplerWavefronts!;
+    const block = sectionsOf(scienceF2C10InteractiveBM).find(
+      (s) => s.dopplerWavefronts,
+    )!.dopplerWavefronts!;
     const markup = renderToStaticMarkup(<DopplerWavefronts block={block} lang="bm" />);
     expect(markup).toContain("Pemerhati di hadapan");
     expect(markup).toContain("Pemerhati di belakang");
@@ -332,10 +352,12 @@ describe("Chapter 10 — echo figure", () => {
   it("draws an outgoing leg and a returning leg", () => {
     const block = sectionsOf(scienceF2C10InteractiveBM).find((s) => s.echoDiagram)!.echoDiagram!;
     const svg = figureSvg(renderToStaticMarkup(<EchoDiagram block={block} lang="bm" />));
-    const lines = [...svg.matchAll(/<line[^>]*x1="([\d.]+)"[^>]*x2="([\d.]+)"[^>]*>/g)].map((m) => ({
-      x1: Number(m[1]),
-      x2: Number(m[2]),
-    }));
+    const lines = [...svg.matchAll(/<line[^>]*x1="([\d.]+)"[^>]*x2="([\d.]+)"[^>]*>/g)].map(
+      (m) => ({
+        x1: Number(m[1]),
+        x2: Number(m[2]),
+      }),
+    );
     expect(lines.some((l) => l.x2 > l.x1)).toBe(true); // out to the surface
     expect(lines.some((l) => l.x2 < l.x1)).toBe(true); // back to the listener
   });
@@ -364,18 +386,29 @@ describe("Chapter 10 — sonar and echolocation", () => {
     it(`${lang}: both modes draw a send and a return`, () => {
       for (const mode of block.modes) {
         const one = { ...block, modes: [mode] };
-        const svg = figureSvg(renderToStaticMarkup(<EcholocationDiagram block={one} lang={lang} />));
+        const svg = figureSvg(
+          renderToStaticMarkup(<EcholocationDiagram block={one} lang={lang} />),
+        );
         const lines = [...svg.matchAll(/<line[^>]*x1="([\d.]+)"[^>]*x2="([\d.]+)"[^>]*>/g)].map(
           (m) => ({ x1: Number(m[1]), x2: Number(m[2]) }),
         );
-        expect(lines.some((l) => l.x2 > l.x1), `${mode.id} send`).toBe(true);
-        expect(lines.some((l) => l.x2 < l.x1), `${mode.id} return`).toBe(true);
+        expect(
+          lines.some((l) => l.x2 > l.x1),
+          `${mode.id} send`,
+        ).toBe(true);
+        expect(
+          lines.some((l) => l.x2 < l.x1),
+          `${mode.id} return`,
+        ).toBe(true);
       }
     });
   }
 
   it("adds no application the source does not carry", () => {
-    for (const [surface, data] of [...DECKS, ...LANGS.map(([l, c]) => [l, c] as [string, unknown])]) {
+    for (const [surface, data] of [
+      ...DECKS,
+      ...LANGS.map(([l, c]) => [l, c] as [string, unknown]),
+    ]) {
       expect(text(data), surface).not.toMatch(/retak|crack detection|barang kemas|jewell?ery/i);
     }
   });
@@ -455,9 +488,19 @@ describe("Chapter 10 — overcoming hearing limits", () => {
     });
   }
 
-  it("no live surface presents a megaphone as a Chapter 10 device", () => {
-    for (const [surface, data] of [...DECKS, ...LANGS.map(([l, c]) => [l, c] as [string, unknown])]) {
-      expect(text(data), surface).not.toMatch(/megafon|megaphone/i);
+  it("the quiz bank correctly teaches the megaphone as a Chapter 10 device", () => {
+    // The supplied English KSSM Form 2 textbook explicitly lists stethoscope,
+    // hearing aid AND megaphone as hearing-support devices (see the Chapter
+    // 7-10 quiz-bank remediation report). An earlier audit incorrectly
+    // concluded megaphone was absent from the source and this test used to
+    // assert the opposite; that was corrected against the textbook itself,
+    // and the quiz bank now teaches it as an amplification device, not as
+    // something that widens the biological hearing range.
+    for (const [lang, quiz] of [
+      ["bm", scienceF2C10QuizzesBM],
+      ["dlp", scienceF2C10QuizzesDLP],
+    ] as const) {
+      expect(text(quiz), lang).toMatch(lang === "bm" ? /megafon/i : /megaphone/i);
     }
   });
 
@@ -472,7 +515,10 @@ describe("Chapter 10 — overcoming hearing limits", () => {
     // misconception ("can a hearing aid let us hear ultrasound?") and answers no.
     const IS_QUESTION = /\?/;
 
-    for (const [surface, data] of [...DECKS, ...LANGS.map(([l, c]) => [l, c] as [string, unknown])]) {
+    for (const [surface, data] of [
+      ...DECKS,
+      ...LANGS.map(([l, c]) => [l, c] as [string, unknown]),
+    ]) {
       const sentences = text(data)
         .split(/(?<=[.!?])\s+|\\n|","|":"/)
         .filter((s) => DEVICE.test(s) && ULTRA.test(s));
@@ -502,11 +548,24 @@ describe("Chapter 10 — figures are accessible and self-consistent", () => {
     const bm = scienceF2C10InteractiveBM;
     const s = sectionsOf(bm);
     const markups = [
-      renderToStaticMarkup(<SoundMediaDiagram block={s.find((x) => x.soundMedia)!.soundMedia!} lang="bm" />),
-      renderToStaticMarkup(<EchoDiagram block={s.find((x) => x.echoDiagram)!.echoDiagram!} lang="bm" />),
-      renderToStaticMarkup(<DopplerWavefronts block={s.find((x) => x.dopplerWavefronts)!.dopplerWavefronts!} lang="bm" />),
-      renderToStaticMarkup(<EcholocationDiagram block={s.find((x) => x.echolocation)!.echolocation!} lang="bm" />),
-      renderToStaticMarkup(<HearingRangeChart block={s.find((x) => x.hearingRange)!.hearingRange!} />),
+      renderToStaticMarkup(
+        <SoundMediaDiagram block={s.find((x) => x.soundMedia)!.soundMedia!} lang="bm" />,
+      ),
+      renderToStaticMarkup(
+        <EchoDiagram block={s.find((x) => x.echoDiagram)!.echoDiagram!} lang="bm" />,
+      ),
+      renderToStaticMarkup(
+        <DopplerWavefronts
+          block={s.find((x) => x.dopplerWavefronts)!.dopplerWavefronts!}
+          lang="bm"
+        />,
+      ),
+      renderToStaticMarkup(
+        <EcholocationDiagram block={s.find((x) => x.echolocation)!.echolocation!} lang="bm" />,
+      ),
+      renderToStaticMarkup(
+        <HearingRangeChart block={s.find((x) => x.hearingRange)!.hearingRange!} />,
+      ),
     ];
     for (const m of markups) {
       expect(m).toContain('role="img"');
@@ -518,8 +577,16 @@ describe("Chapter 10 — figures are accessible and self-consistent", () => {
 // -------------------------------------------------------------------- decks
 
 describe("Chapter 10 — quizzes", () => {
-  const bm = scienceF2C10QuizzesBM as { options: string[]; answerIndex: number; difficulty: string }[];
-  const dlp = scienceF2C10QuizzesDLP as { options: string[]; answerIndex: number; difficulty: string }[];
+  const bm = scienceF2C10QuizzesBM as {
+    options: string[];
+    answerIndex: number;
+    difficulty: string;
+  }[];
+  const dlp = scienceF2C10QuizzesDLP as {
+    options: string[];
+    answerIndex: number;
+    difficulty: string;
+  }[];
 
   it("keeps 30 questions per stream", () => {
     expect(bm).toHaveLength(30);
@@ -527,7 +594,10 @@ describe("Chapter 10 — quizzes", () => {
   });
 
   it("every answerIndex is valid and every option set is unique", () => {
-    for (const [name, deck] of [["bm", bm], ["dlp", dlp]] as const) {
+    for (const [name, deck] of [
+      ["bm", bm],
+      ["dlp", dlp],
+    ] as const) {
       for (const [i, q] of deck.entries()) {
         expect(q.options.length, `${name} q${i}`).toBe(4);
         expect(q.answerIndex, `${name} q${i}`).toBeGreaterThanOrEqual(0);
@@ -538,7 +608,10 @@ describe("Chapter 10 — quizzes", () => {
   });
 
   it("answer positions are balanced", () => {
-    for (const [name, deck] of [["bm", bm], ["dlp", dlp]] as const) {
+    for (const [name, deck] of [
+      ["bm", bm],
+      ["dlp", dlp],
+    ] as const) {
       const counts = [0, 0, 0, 0];
       for (const q of deck) counts[q.answerIndex] += 1;
       expect(Math.max(...counts) - Math.min(...counts), name).toBeLessThanOrEqual(2);
@@ -546,11 +619,22 @@ describe("Chapter 10 — quizzes", () => {
     }
   });
 
-  it("keeps the difficulty split at 10/10/10", () => {
-    for (const [name, deck] of [["bm", bm], ["dlp", dlp]] as const) {
+  it("difficulty labels are reaudited by reasoning depth, not forced into 10/10/10", () => {
+    // The Chapter 7-10 quiz-bank remediation reaudited every difficulty label
+    // against what a question actually requires (single-fact recall = Easy,
+    // one-step application/comparison = Medium, multi-step/inference = Hard)
+    // rather than preserving an arbitrary even split. Several questions that
+    // were labelled Hard purely for being framed as a real-life scenario
+    // (an animal-hearing-range table lookup, "how does a stethoscope work",
+    // the rewritten ultrasound-benefits question) were reclassified to
+    // Medium. Genuinely multi-step Doppler-effect reasoning stayed Hard.
+    for (const [name, deck] of [
+      ["bm", bm],
+      ["dlp", dlp],
+    ] as const) {
       const counts: Record<string, number> = {};
       for (const q of deck) counts[q.difficulty] = (counts[q.difficulty] ?? 0) + 1;
-      expect(counts, name).toEqual({ Easy: 10, Medium: 10, Hard: 10 });
+      expect(counts, name).toEqual({ Easy: 9, Medium: 14, Hard: 7 });
     }
   });
 
@@ -567,7 +651,10 @@ describe("Chapter 10 — decks agree with the notes", () => {
   });
 
   it("no live surface exposes curriculum or audit metadata", () => {
-    for (const [surface, data] of [...DECKS, ...LANGS.map(([l, c]) => [l, c] as [string, unknown])]) {
+    for (const [surface, data] of [
+      ...DECKS,
+      ...LANGS.map(([l, c]) => [l, c] as [string, unknown]),
+    ]) {
       expect(text(data), surface).not.toMatch(
         /\bDSKP\b|\bSK\s*10\.|\bSP\s*10\.|jadual\s*9\b|buku teks|\btextbook\b|\bmandatory\b|\bremediation\b/i,
       );

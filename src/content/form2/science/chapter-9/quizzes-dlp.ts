@@ -33,7 +33,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "The rate of heat transfer",
     ],
     answerIndex: 1,
-    explanation: "Temperature is a measure of the degree of hotness or coldness of an object, measured using a thermometer.",
+    explanation:
+      "Temperature is a measure of the degree of hotness or coldness of an object, measured using a thermometer.",
   },
   {
     id: "sci-f2-c9-dlp-q3",
@@ -42,32 +43,35 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "Heat is measured in...",
+    question: "Which of the following correctly compares the units of heat and temperature?",
     options: [
-      "Kelvin (K)",
-      "Degrees Celsius (°C)",
-      "Joule (J)",
-      "Newton (N)",
+      "Heat is measured in joule (J); temperature is measured in °C or K",
+      "Heat is measured in °C; temperature is measured in joule (J)",
+      "Both heat and temperature are measured in joule (J)",
+      "Both heat and temperature are measured in °C",
     ],
-    answerIndex: 2,
-    explanation: "Heat is a form of energy measured in joule (J), unlike temperature which is measured in degrees Celsius or kelvin.",
+    answerIndex: 0,
+    explanation:
+      "Heat is a form of energy and is measured in joule (J). Temperature is a measure of hotness or coldness and is measured in degrees Celsius (°C) or kelvin (K).",
   },
   {
     id: "sci-f2-c9-dlp-q4",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "Temperature is measured in...",
+    question:
+      "Beaker P contains 500 ml of water and beaker Q contains 100 ml of water, both at the same temperature. Which beaker contains more heat, and why?",
     options: [
-      "Joule (J)",
-      "Pascal (Pa)",
-      "Newton (N)",
-      "Degrees Celsius (°C) or Kelvin (K)",
+      "Beaker P, because it contains a greater quantity of water even though the temperature is the same",
+      "Beaker Q, because a smaller quantity of water heats up faster",
+      "Both beakers contain the same amount of heat because the temperature is the same",
+      "Neither beaker contains any heat because they are at the same temperature",
     ],
-    answerIndex: 3,
-    explanation: "Temperature is measured in degrees Celsius (°C) or kelvin (K), unlike heat which is measured in joule.",
+    answerIndex: 0,
+    explanation:
+      "Even at the same temperature, the amount of heat contained depends on the quantity (and type) of material. Beaker P has a greater quantity of water, so it contains more heat than beaker Q, even though both are at the same temperature.",
   },
   {
     id: "sci-f2-c9-dlp-q5",
@@ -101,7 +105,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Heat transfer that only occurs through a vacuum",
     ],
     answerIndex: 1,
-    explanation: "Conduction is the process of heat transfer from hotter regions to colder regions through a solid medium.",
+    explanation:
+      "Conduction is the process of heat transfer from hotter regions to colder regions through a solid medium.",
   },
   {
     id: "sci-f2-c9-dlp-q7",
@@ -118,7 +123,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Heat transfer through the vibration of solid particles",
     ],
     answerIndex: 2,
-    explanation: "Convection is the process of heat transfer by the movement of fluid (liquid and gas) from hotter regions to colder regions.",
+    explanation:
+      "Convection is the process of heat transfer by the movement of fluid (liquid and gas) from hotter regions to colder regions.",
   },
   {
     id: "sci-f2-c9-dlp-q8",
@@ -135,7 +141,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Heat transfer without any medium, can propagate through a vacuum",
     ],
     answerIndex: 3,
-    explanation: "Radiation is the process of transferring heat without any medium and can propagate through an empty space or vacuum.",
+    explanation:
+      "Radiation is the process of transferring heat without any medium and can propagate through an empty space or vacuum.",
   },
   {
     id: "sci-f2-c9-dlp-q9",
@@ -144,32 +151,34 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "Materials that allow heat flow are known as...",
+    question: "Which statement correctly compares heat conductors and heat insulators?",
     options: [
-      "Heat conductors",
-      "Heat insulators",
-      "Fluids",
-      "Solids",
+      "Conductors allow heat to flow through them easily; insulators prevent or slow down heat flow",
+      "Conductors prevent heat flow; insulators allow heat to flow easily",
+      "Both conductors and insulators allow heat to flow at the same rate",
+      "Neither conductors nor insulators allow any heat flow",
     ],
     answerIndex: 0,
-    explanation: "Heat conductors are materials that allow heat flow, such as metals and mercury.",
+    explanation:
+      "Heat conductors, such as metals, allow heat to flow through them easily. Heat insulators, such as wood and fibreglass, prevent or slow down heat flow.",
   },
   {
     id: "sci-f2-c9-dlp-q10",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "Materials that prevent heat flow are known as...",
+    question: "How does heat energy from the Sun reach the Earth?",
     options: [
-      "Heat conductors",
-      "Heat insulators",
-      "Radiation",
-      "Convection current",
+      "By conduction through the vacuum of space",
+      "By convection currents in space",
+      "By radiation, which does not require a medium and can travel through the vacuum of space",
+      "Heat energy from the Sun does not reach the Earth",
     ],
-    answerIndex: 1,
-    explanation: "Heat insulators are materials that prevent heat flow, such as fibreglass, wood and polystyrene.",
+    answerIndex: 2,
+    explanation:
+      "Heat energy from the Sun reaches the Earth through radiation. Unlike conduction and convection, radiation does not need a medium and can travel through the vacuum of space.",
   },
   {
     id: "sci-f2-c9-dlp-q11",
@@ -186,7 +195,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "A condition where an object does not absorb any heat at all",
     ],
     answerIndex: 2,
-    explanation: "Thermal equilibrium is achieved when there is no net transfer of heat energy between two objects in thermal contact, and both objects have the same temperature.",
+    explanation:
+      "Thermal equilibrium is achieved when there is no net transfer of heat energy between two objects in thermal contact, and both objects have the same temperature.",
   },
   {
     id: "sci-f2-c9-dlp-q12",
@@ -195,7 +205,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "In the conduction demonstration, why do the thumbtacks fall off in sequence when a copper rod is heated at one end?",
+    question:
+      "In the conduction demonstration, why do the thumbtacks fall off in sequence when a copper rod is heated at one end?",
     options: [
       "Because the copper rod expands",
       "Because the thumbtacks are heat insulators",
@@ -203,7 +214,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Because heat is transferred via conduction along the rod, melting the wax holding the thumbtacks one by one",
     ],
     answerIndex: 3,
-    explanation: "Heat is transferred via conduction along the copper rod, melting the wax in sequence and causing the thumbtacks to fall off one by one, showing the direction of heat flow.",
+    explanation:
+      "Heat is transferred via conduction along the copper rod, melting the wax in sequence and causing the thumbtacks to fall off one by one, showing the direction of heat flow.",
   },
   {
     id: "sci-f2-c9-dlp-q13",
@@ -212,7 +224,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "Why does the potassium permanganate crystal move upward in a beaker of heated water?",
+    question:
+      "Why does the potassium permanganate crystal move upward in a beaker of heated water?",
     options: [
       "Because the heated water becomes less dense and rises, carrying the crystal with it (convection current)",
       "Because potassium permanganate is a heat insulator",
@@ -220,7 +233,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Because heat is transferred through radiation in the beaker",
     ],
     answerIndex: 0,
-    explanation: "Water heated at the bottom expands, becomes less dense and rises, carrying the potassium permanganate crystal with it — this demonstrates convection current in a liquid.",
+    explanation:
+      "Water heated at the bottom expands, becomes less dense and rises, carrying the potassium permanganate crystal with it — this demonstrates convection current in a liquid.",
   },
   {
     id: "sci-f2-c9-dlp-q14",
@@ -229,7 +243,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "How does the heat-transfer demonstration demonstrate radiation as a method of heat transfer?",
+    question:
+      "How does the heat-transfer demonstration demonstrate radiation as a method of heat transfer?",
     options: [
       "Smoke moves due to hot and cold air",
       "Heat can still be felt even when air is removed from a bell jar (vacuum)",
@@ -237,7 +252,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "The potassium permanganate crystal moves upward",
     ],
     answerIndex: 1,
-    explanation: "Heat can still be felt even when air is removed from a bell jar (creating a vacuum), showing that radiation does not require a medium to propagate.",
+    explanation:
+      "Heat can still be felt even when air is removed from a bell jar (creating a vacuum), showing that radiation does not require a medium to propagate.",
   },
   {
     id: "sci-f2-c9-dlp-q15",
@@ -254,7 +270,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "The air above the sea becomes less dense and rises first",
     ],
     answerIndex: 2,
-    explanation: "During the day, the Sun heats the land faster. Warm air on land expands, becomes less dense and rises; cold air from the sea is drawn in to replace it, resulting in sea breeze.",
+    explanation:
+      "During the day, the Sun heats the land faster. Warm air on land expands, becomes less dense and rises; cold air from the sea is drawn in to replace it, resulting in sea breeze.",
   },
   {
     id: "sci-f2-c9-dlp-q16",
@@ -271,7 +288,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "The land cools faster than the sea, the warmer air above the sea rises and cold air from the land moves towards the sea",
     ],
     answerIndex: 3,
-    explanation: "At night, the land cools faster than the sea. The warmer air above the sea becomes less dense and rises, and the colder, denser air from land moves to the sea, resulting in land breeze.",
+    explanation:
+      "At night, the land cools faster than the sea. The warmer air above the sea becomes less dense and rises, and the colder, denser air from land moves to the sea, resulting in land breeze.",
   },
   {
     id: "sci-f2-c9-dlp-q17",
@@ -288,7 +306,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Because mercury is white in colour",
     ],
     answerIndex: 0,
-    explanation: "Mercury in thermometers is a good heat conductor that can detect changes in temperature very quickly, and it expands and contracts noticeably.",
+    explanation:
+      "Mercury in thermometers is a good heat conductor that can detect changes in temperature very quickly, and it expands and contracts noticeably.",
   },
   {
     id: "sci-f2-c9-dlp-q18",
@@ -298,14 +317,10 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "dlp",
     question: "In the heat-insulator investigation, which material is a good heat insulator?",
-    options: [
-      "Aluminium foil",
-      "Cotton and felt",
-      "Copper metal",
-      "Water",
-    ],
+    options: ["Aluminium foil", "Cotton and felt", "Copper metal", "Water"],
     answerIndex: 1,
-    explanation: "The heat-insulator investigation shows that cotton and felt are good heat insulators (maintaining the temperature of hot water), while aluminium foil is a heat conductor.",
+    explanation:
+      "The heat-insulator investigation shows that cotton and felt are good heat insulators (maintaining the temperature of hot water), while aluminium foil is a heat conductor.",
   },
   {
     id: "sci-f2-c9-dlp-q19",
@@ -322,7 +337,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Because oven gloves can expand",
     ],
     answerIndex: 2,
-    explanation: "Oven gloves are heat insulators that prevent hands from getting scalded while taking hot food trays out of the oven.",
+    explanation:
+      "Oven gloves are heat insulators that prevent hands from getting scalded while taking hot food trays out of the oven.",
   },
   {
     id: "sci-f2-c9-dlp-q20",
@@ -339,7 +355,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Particles vibrate faster and move further apart, causing the solid to expand",
     ],
     answerIndex: 3,
-    explanation: "When a solid is heated, particles vibrate faster and move further apart from one another, causing the volume to increase as the solid expands.",
+    explanation:
+      "When a solid is heated, particles vibrate faster and move further apart from one another, causing the volume to increase as the solid expands.",
   },
   {
     id: "sci-f2-c9-dlp-q21",
@@ -348,7 +365,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "A metal bar that was just heated cannot fit into a gauge, but it fits again after being cooled with water. What is the most accurate explanation?",
+    question:
+      "A metal bar that was just heated cannot fit into a gauge, but it fits again after being cooled with water. What is the most accurate explanation?",
     options: [
       "Particles in the metal bar vibrate faster and move further apart when heated, causing the bar to expand; when cooled, particles vibrate slower and the bar contracts again",
       "The metal bar turns into a liquid when hot",
@@ -356,7 +374,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "The water cools the gauge, not the bar",
     ],
     answerIndex: 0,
-    explanation: "Heating causes particles in the metal bar to vibrate faster and move further apart, resulting in expansion; cooling causes particles to vibrate slower and the bar contracts again, as shown in the expansion and contraction demonstration.",
+    explanation:
+      "Heating causes particles in the metal bar to vibrate faster and move further apart, resulting in expansion; cooling causes particles to vibrate slower and the bar contracts again, as shown in the expansion and contraction demonstration.",
   },
   {
     id: "sci-f2-c9-dlp-q22",
@@ -373,7 +392,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "To make it easier to install new rails",
     ],
     answerIndex: 1,
-    explanation: "Expansion gaps on railway tracks allow the rails to expand in hot weather; without these gaps, the tracks would buckle and overlap.",
+    explanation:
+      "Expansion gaps on railway tracks allow the rails to expand in hot weather; without these gaps, the tracks would buckle and overlap.",
   },
   {
     id: "sci-f2-c9-dlp-q23",
@@ -390,7 +410,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "The bimetallic strip is unaffected by heat",
     ],
     answerIndex: 2,
-    explanation: "A bimetallic strip is made from two types of metal that expand at different rates; when exposed to heat, the copper strip expands faster than the iron strip, causing the strip to bend towards the contact point, completing the circuit and ringing the alarm.",
+    explanation:
+      "A bimetallic strip is made from two types of metal that expand at different rates; when exposed to heat, the copper strip expands faster than the iron strip, causing the strip to bend towards the contact point, completing the circuit and ringing the alarm.",
   },
   {
     id: "sci-f2-c9-dlp-q24",
@@ -399,7 +420,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "In the dark-versus-light surface investigation, two milk cans — one painted white (J) and one painted black (K) — are placed close to a Bunsen burner. What is observed and what is the conclusion?",
+    question:
+      "In the dark-versus-light surface investigation, two milk cans — one painted white (J) and one painted black (K) — are placed close to a Bunsen burner. What is observed and what is the conclusion?",
     options: [
       "Can J shows a greater increase in temperature, showing white surfaces absorb heat better",
       "Neither can shows any change in temperature",
@@ -407,7 +429,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Can K shows a greater increase in temperature, showing dark and dull surfaces absorb heat better than white and shiny surfaces",
     ],
     answerIndex: 3,
-    explanation: "Can K (black) shows a greater increase in temperature, proving that dark and dull surfaces are better heat absorbers compared to white and shiny surfaces.",
+    explanation:
+      "Can K (black) shows a greater increase in temperature, proving that dark and dull surfaces are better heat absorbers compared to white and shiny surfaces.",
   },
   {
     id: "sci-f2-c9-dlp-q25",
@@ -416,7 +439,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "In the heat-emission investigation, both cans J (white) and K (black) are filled with hot water. What observation shows that can K is a better heat radiator?",
+    question:
+      "In the heat-emission investigation, both cans J (white) and K (black) are filled with hot water. What observation shows that can K is a better heat radiator?",
     options: [
       "Can K shows a greater decrease in temperature compared to can J",
       "Can K shows a smaller decrease in temperature compared to can J",
@@ -424,7 +448,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Can J shows a greater decrease in temperature",
     ],
     answerIndex: 0,
-    explanation: "Can K (black) shows a greater decrease in temperature compared to can J (white), showing that dark and dull surfaces radiate heat better than white and shiny surfaces.",
+    explanation:
+      "Can K (black) shows a greater decrease in temperature compared to can J (white), showing that dark and dull surfaces radiate heat better than white and shiny surfaces.",
   },
   {
     id: "sci-f2-c9-dlp-q26",
@@ -441,7 +466,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "To add more weight to the fuel tank",
     ],
     answerIndex: 1,
-    explanation: "Bright colours such as white or silver do not absorb a lot of heat compared to dark colours, thereby reducing heat absorption and fuel evaporation inside the tank.",
+    explanation:
+      "Bright colours such as white or silver do not absorb a lot of heat compared to dark colours, thereby reducing heat absorption and fuel evaporation inside the tank.",
   },
   {
     id: "sci-f2-c9-dlp-q27",
@@ -450,7 +476,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "A student claims that heat and temperature are the same thing because both relate to hotness. What is the most accurate correction to this claim?",
+    question:
+      "A student claims that heat and temperature are the same thing because both relate to hotness. What is the most accurate correction to this claim?",
     options: [
       "The claim is correct because heat and temperature have the same unit",
       "The claim is incorrect because temperature is a form of energy",
@@ -458,7 +485,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "The claim is correct because both are measured using a thermometer",
     ],
     answerIndex: 2,
-    explanation: "Although interrelated, heat and temperature are two different quantities: heat is energy (joule) that depends on the type and quantity of material as well as temperature, while temperature depends on the degree of movement of particles and is measured in °C or K.",
+    explanation:
+      "Although interrelated, heat and temperature are two different quantities: heat is energy (joule) that depends on the type and quantity of material as well as temperature, while temperature depends on the degree of movement of particles and is measured in °C or K.",
   },
   {
     id: "sci-f2-c9-dlp-q28",
@@ -467,7 +495,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "How is the principle of heat expansion used to solve the problem of a tight bottle lid?",
+    question:
+      "How is the principle of heat expansion used to solve the problem of a tight bottle lid?",
     options: [
       "Submerging the bottle lid in ice so it contracts",
       "Leaving the bottle at room temperature for a long time",
@@ -475,7 +504,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Submerging the bottle lid in hot water so the metal expands and becomes looser",
     ],
     answerIndex: 3,
-    explanation: "Submerging a metal bottle lid in hot water causes the metal to expand, thereby loosening a tight bottle lid.",
+    explanation:
+      "Submerging a metal bottle lid in hot water causes the metal to expand, thereby loosening a tight bottle lid.",
   },
   {
     id: "sci-f2-c9-dlp-q29",
@@ -484,7 +514,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "Steel bridges are built with rollers and a gap on one end. What is the purpose of this design?",
+    question:
+      "Steel bridges are built with rollers and a gap on one end. What is the purpose of this design?",
     options: [
       "To allow the bridge to expand in hot weather without suffering damage",
       "To reduce the cost of building the bridge",
@@ -492,7 +523,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "To make it easier for vehicles to cross the bridge",
     ],
     answerIndex: 0,
-    explanation: "Rollers and a gap on one end of a steel bridge allow the bridge to expand in hot weather without experiencing structural stress that could cause damage.",
+    explanation:
+      "Rollers and a gap on one end of a steel bridge allow the bridge to expand in hot weather without experiencing structural stress that could cause damage.",
   },
   {
     id: "sci-f2-c9-dlp-q30",
@@ -501,7 +533,8 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "dlp",
-    question: "What are the main features of the Green Building Concept related to heat and energy management?",
+    question:
+      "What are the main features of the Green Building Concept related to heat and energy management?",
     options: [
       "Using only new materials and avoiding any renewable energy",
       "Having high energy efficiency through the usage of solar or renewable energy, good air circulation and lighting systems, and using recycled materials",
@@ -509,6 +542,7 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Not considering any environmental aspects at all",
     ],
     answerIndex: 1,
-    explanation: "The Green Building Concept aims to reduce the effects of development on the environment through features such as high energy efficiency (solar/renewable energy), good air circulation and lighting systems, and the use of recycled materials.",
+    explanation:
+      "The Green Building Concept aims to reduce the effects of development on the environment through features such as high energy efficiency (solar/renewable energy), good air circulation and lighting systems, and the use of recycled materials.",
   },
 ];
