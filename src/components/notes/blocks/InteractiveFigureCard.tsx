@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Sparkles, MousePointerClick } from "lucide-react";
 import { AnnotatedImage, type AnnotatedImageProps, type ImageAnnotation } from "./AnnotatedImage";
 import { figureCopy, type FigureCopy } from "./figure-copy";
@@ -45,6 +45,16 @@ export type InteractiveFigureCardProps = {
    * control, and a second row of buttons below would only repeat them.
    */
   showControls?: boolean;
+  /**
+   * Replaces the default wrapping row of controls — e.g. a two-column grid on
+   * phones, for a set whose labels are too long to pair up in a wrapping row.
+   */
+  controlsClassName?: string;
+  /**
+   * An extra action at the foot of the explanation panel for the selected
+   * concept — e.g. opening the fuller card the figure only previews.
+   */
+  panelAction?: (concept: ImageAnnotation) => ReactNode;
   /**
    * Omit when no approved artwork exists for this language: the badge, concept
    * buttons and explanation panel still render — the same interaction, just
@@ -222,6 +232,8 @@ export function InteractiveFigureCard({
   prompt,
   concepts,
   showControls = true,
+  controlsClassName,
+  panelAction,
   image,
   className,
   initialActive = null,
@@ -257,7 +269,11 @@ export function InteractiveFigureCard({
       {/* Controls sit immediately under the artwork, so image, buttons and
           explanation read as one unit rather than three separate things. */}
       {showControls && (
-        <div role="group" aria-label={copy.controlsLabel} className="mt-3 flex flex-wrap gap-1.5">
+        <div
+          role="group"
+          aria-label={copy.controlsLabel}
+          className={controlsClassName ?? "mt-3 flex flex-wrap gap-1.5"}
+        >
           {concepts.map((concept, index) => {
             const isActive = concept.id === active;
             return (
@@ -320,6 +336,7 @@ export function InteractiveFigureCard({
                 ))}
               </dl>
             )}
+            {panelAction?.(selected)}
           </>
         ) : (
           <p className="flex items-center gap-1.5 text-[12.5px] leading-relaxed text-muted-foreground">

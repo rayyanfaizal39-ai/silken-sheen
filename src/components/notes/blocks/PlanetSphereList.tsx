@@ -2,8 +2,29 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import type { PlanetSphere } from "@/content/form2/science/interactive-types";
 
-export function PlanetSphereList({ planets }: { planets: PlanetSphere[] }) {
-  const [openId, setOpenId] = useState<string | null>(null);
+export function PlanetSphereList({
+  planets,
+  openId: controlledOpenId,
+  onOpenChange,
+  cardIdPrefix,
+}: {
+  planets: PlanetSphere[];
+  /** Controlled open card. Pass with `onOpenChange` to let a parent open a profile. */
+  openId?: string | null;
+  onOpenChange?: (next: string | null) => void;
+  /**
+   * Gives each card's toggle the id `${cardIdPrefix}-${planet.id}`, so a parent
+   * (the Chapter 12 planet sheet) can scroll to and focus the profile it opened.
+   */
+  cardIdPrefix?: string;
+}) {
+  const [uncontrolledOpenId, setUncontrolledOpenId] = useState<string | null>(null);
+  const isControlled = controlledOpenId !== undefined;
+  const openId = isControlled ? controlledOpenId : uncontrolledOpenId;
+  const setOpenId = (next: string | null) => {
+    if (!isControlled) setUncontrolledOpenId(next);
+    onOpenChange?.(next);
+  };
 
   return (
     <div className="mt-3 flex flex-col gap-2.5">
@@ -13,9 +34,11 @@ export function PlanetSphereList({ planets }: { planets: PlanetSphere[] }) {
           <div key={planet.id} className="rounded-2xl border border-border bg-card/55">
             <button
               type="button"
+              id={cardIdPrefix ? `${cardIdPrefix}-${planet.id}` : undefined}
+              data-planet-card={planet.id}
               onClick={() => setOpenId(open ? null : planet.id)}
               aria-expanded={open}
-              className="flex w-full items-center gap-4 p-4 text-left"
+              className="flex w-full scroll-mt-24 items-center gap-4 rounded-2xl p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <span
                 className="relative shrink-0"

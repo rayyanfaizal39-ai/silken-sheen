@@ -1,7 +1,7 @@
 import type * as React from "react";
 import { spotlightBounds, type SpotlightShape, type SpotlightPulseGroup } from "./spotlight-shapes";
 
-function ShapeEl({
+export function ShapeEl({
   shape,
   ...props
 }: { shape: SpotlightShape } & Omit<React.SVGProps<SVGEllipseElement>, "id">) {

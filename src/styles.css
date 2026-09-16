@@ -8191,4 +8191,11 @@
   .spotlight-pulse-b {
     animation: none;
   }
+
+  /* Chapter 12's approved figures: the dim and glow still change on selection,
+     but instantly, with no fade. */
+  [data-ch12-figure] *,
+  [data-ch12-figure] svg * {
+    transition: none !important;
+  }
 }

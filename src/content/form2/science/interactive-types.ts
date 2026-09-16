@@ -350,6 +350,31 @@ export type PlanetSpheresBlock = {
   planets: PlanetSphere[];
 };
 
+/**
+ * One planet's axial tilt — Jadual/Rajah 12.6. `direction` is the spin sense
+ * seen from above the Sun's north pole: `"prograde"` (west→east, the same
+ * way seven of the eight planets spin), `"retrograde"` (east→west — Venus,
+ * and Venus alone), or `"sideways"` (Uranus, whose tilt is so extreme its
+ * axis points almost along its orbit rather than roughly perpendicular to
+ * it).
+ */
+export type PlanetTiltItem = {
+  id: string;
+  name: string;
+  tiltDeg: number;
+  direction: "prograde" | "retrograde" | "sideways";
+  note: string;
+};
+
+export type PlanetAxialTiltBlock = {
+  title: string;
+  instruction: string;
+  planets: PlanetTiltItem[];
+  /** e.g. "Most planets rotate west to east." */
+  ruleLabel: string;
+  scaleNote: string;
+};
+
 /** One organism in a food web. `tier` 0 = producer, 1 = primary consumer, 2 = secondary, 3 = tertiary. */
 export type FoodWebNode = {
   id: string;
@@ -1167,6 +1192,47 @@ export type Ch9SpotlightFigureBlock = {
   size?: LearningImageSize;
   /** One per painted region, in the artwork's own order. */
   concepts: Ch9SpotlightConcept[];
+};
+
+/** The three approved Chapter 12 figures — see `ch12-approved-figure-geometry.ts`. */
+export type Ch12FigureId = "solar-system" | "eight-planets" | "earth-characteristics";
+
+/** One selectable region on an approved Chapter 12 figure. */
+export type Ch12SpotlightConcept = {
+  id: string;
+  label: string;
+  /** One or two short sentences — the teaching for this region. */
+  note: string;
+  icon?: string;
+};
+
+/**
+ * An approved Chapter 12 figure taught as selectable regions — on the artwork
+ * itself and as a row of controls beneath it, which are the same selection.
+ *
+ * `eight-planets` carries no `concepts`: its regions are the section's own
+ * planet profiles (`section.planets`), so the figure and the profile cards
+ * below it can never disagree about a planet, and no planet fact is written
+ * twice.
+ */
+export type Ch12SpotlightFigureBlock = {
+  title: string;
+  figure: Ch12FigureId;
+  /** Public WebP path, from `SCIENCE_F2_CH12_IMAGES`. */
+  src: string;
+  /** Meaningful alt text, written per language. */
+  alt: string;
+  instruction?: string;
+  prompt?: string;
+  caption?: string;
+  /**
+   * A short note such as "Not to scale", rendered by the UI under the artwork.
+   * Never baked into the image, so it can be written in either language.
+   */
+  scaleNote?: string;
+  concepts?: Ch12SpotlightConcept[];
+  /** `eight-planets` only — label on the control that opens the matching planet profile. */
+  openProfileLabel?: string;
 };
 
 /** One state of the hot-to-cold heat-flow figure. */
@@ -2637,6 +2703,7 @@ export type ScienceInteractiveSection = {
   cosmicScale?: CosmicScaleBlock;
   milkyWayLocator?: MilkyWayLocatorBlock;
   starSizeCompare?: StarSizeCompareBlock;
+  planetAxialTilt?: PlanetAxialTiltBlock;
   /**
    * Contextual artwork rendered at the TOP of the section, before its teaching
    * cards and before any precise diagram.
@@ -2692,6 +2759,12 @@ export type ScienceInteractiveSection = {
     rows: { label: string; left: string | string[]; right: string | string[] }[];
   };
   ch9SpotlightFigure?: Ch9SpotlightFigureBlock;
+  /**
+   * An approved Chapter 12 figure, rendered at the top of its section. An
+   * `eight-planets` figure also takes over rendering `planets`, so selecting a
+   * planet on the picture can open that planet's own profile card.
+   */
+  ch12SpotlightFigure?: Ch12SpotlightFigureBlock;
   heatFlowDirection?: HeatFlowDirectionBlock;
   /**
    * Compact "🧠 Ingat / Remember" callout for a core textbook definition or

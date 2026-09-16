@@ -94,6 +94,21 @@ export const SCIENCE_F2_CH10_IMAGES = {
 } as const;
 
 /**
+ * The three approved Chapter 12 figures, all 1672 x 941.
+ *
+ * `solarSystemOverview` orients the opening section; `eightPlanetsSheet` leads
+ * "Planets in the Solar System" as a selector for the profile cards below it;
+ * `earthCharacteristics` teaches the six characteristics of Earth. None
+ * carries baked-in text — not even "not to scale", which the UI adds — so BM
+ * and DLP use the same file. Geometry lives in `ch12-approved-figure-geometry.ts`.
+ */
+export const SCIENCE_F2_CH12_IMAGES = {
+  solarSystemOverview: `${DIR}/chapter-12/science-f2-ch12-solar-system-overview.webp`,
+  eightPlanetsSheet: `${DIR}/chapter-12/science-f2-ch12-eight-planets-sheet.webp`,
+  earthCharacteristics: `${DIR}/chapter-12/science-f2-ch12-earth-characteristics.webp`,
+} as const;
+
+/**
  * The four approved Chapter 13 figures, all 1774 x 887 (2:1).
  *
  * `meteoroidJourney` is the master visual for meteoroid → meteor → meteorite;
@@ -134,5 +149,6 @@ export const SCIENCE_F2_VISUAL_ASSETS: string[] = [
   ...Object.values(SCIENCE_F2_CH7_IMAGES),
   ...Object.values(SCIENCE_F2_CH9_IMAGES),
   ...Object.values(SCIENCE_F2_CH10_IMAGES),
+  ...Object.values(SCIENCE_F2_CH12_IMAGES),
   ...Object.values(SCIENCE_F2_CH13_IMAGES),
 ];

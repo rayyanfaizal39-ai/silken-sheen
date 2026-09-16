@@ -68,6 +68,10 @@ import { TitrationSchematic } from "@/components/notes/blocks/TitrationSchematic
 import { PolarityInteraction } from "@/components/notes/blocks/PolarityInteraction";
 import { ElectroscopeDiagram } from "@/components/notes/blocks/ElectroscopeDiagram";
 import { Chapter9SpotlightFigure } from "@/components/notes/blocks/Chapter9SpotlightFigure";
+import {
+  Chapter12PlanetExplorer,
+  Chapter12SpotlightFigure,
+} from "@/components/notes/blocks/Chapter12SpotlightFigure";
 import { HeatFlowDirection } from "@/components/notes/blocks/HeatFlowDirection";
 import { LightningFormation } from "@/components/notes/blocks/LightningFormation";
 import { CurrentDirectionDiagram } from "@/components/notes/blocks/CurrentDirectionDiagram";
@@ -108,6 +112,7 @@ import { StellarLifecycle } from "@/components/notes/blocks/StellarLifecycle";
 import { CosmicScale } from "@/components/notes/blocks/CosmicScale";
 import { MilkyWayLocator } from "@/components/notes/blocks/MilkyWayLocator";
 import { StarSizeCompare } from "@/components/notes/blocks/StarSizeCompare";
+import { PlanetAxialTilt } from "@/components/notes/blocks/PlanetAxialTilt";
 import { CurrentFieldPatterns } from "@/components/notes/blocks/CurrentFieldPatterns";
 import { ApparatusDiagram } from "@/components/notes/blocks/ApparatusDiagram";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
@@ -467,6 +472,25 @@ export function ScienceF2InteractiveNotesBlock({
             <Chapter9SpotlightFigure block={section.ch9SpotlightFigure} lang={lang} />
           </div>
         )}
+        {/* An approved Chapter 12 figure leads its section. The planet sheet
+            also renders the section's planet profiles, so choosing a planet on
+            the picture can open that planet's card. */}
+        {section.ch12SpotlightFigure && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.ch12SpotlightFigure.title}
+            </h3>
+            {section.ch12SpotlightFigure.figure === "eight-planets" && section.planets ? (
+              <Chapter12PlanetExplorer
+                figure={section.ch12SpotlightFigure}
+                planets={section.planets}
+                lang={lang}
+              />
+            ) : (
+              <Chapter12SpotlightFigure block={section.ch12SpotlightFigure} lang={lang} />
+            )}
+          </div>
+        )}
         {section.cards && !isChapter8 && (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {section.cards.map((card) => (
@@ -533,7 +557,7 @@ export function ScienceF2InteractiveNotesBlock({
           </div>
         )}
         {section.lessonFlow && <LessonFlow parts={section.lessonFlow} lang={lang} />}
-        {section.planets && (
+        {section.planets && section.ch12SpotlightFigure?.figure !== "eight-planets" && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.planets.title}
@@ -590,9 +614,7 @@ export function ScienceF2InteractiveNotesBlock({
             ))}
           </Accordion>
         )}
-        {section.dryHumidComparison && (
-          <DryHumidComparison block={section.dryHumidComparison} />
-        )}
+        {section.dryHumidComparison && <DryHumidComparison block={section.dryHumidComparison} />}
         {section.tabs && (
           <div>
             {section.tabsHeading && (
@@ -1089,6 +1111,14 @@ export function ScienceF2InteractiveNotesBlock({
               {section.starSizeCompare.title}
             </h3>
             <StarSizeCompare block={section.starSizeCompare} lang={lang} />
+          </div>
+        )}
+        {section.planetAxialTilt && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.planetAxialTilt.title}
+            </h3>
+            <PlanetAxialTilt block={section.planetAxialTilt} lang={lang} />
           </div>
         )}
         {isChapter8 && section.buoyancy && (

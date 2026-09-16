@@ -183,11 +183,11 @@ describe("Science F2 Ch7/9/10 — assets on disk", () => {
     // figures (electroscope, lightning formation, electromagnet investigation),
     // plus the four approved Chapter 13 figures. None of those seven is a
     // `contextImages` entry, so they are guarded by their own chapter tests
-    // (chapter-7-approved-figures, chapter-13-remediation) rather than by the
+    // (chapter-7-approved-figures, chapter-12-remediation, chapter-13-remediation) rather than by the
     // placement and authoring assertions below — but they still share the
     // on-disk, WebP-only and no-PNG-duplicate checks here.
-    expect(SCIENCE_F2_VISUAL_ASSETS).toHaveLength(34);
-    expect(new Set(SCIENCE_F2_VISUAL_ASSETS).size).toBe(34);
+    expect(SCIENCE_F2_VISUAL_ASSETS).toHaveLength(37);
+    expect(new Set(SCIENCE_F2_VISUAL_ASSETS).size).toBe(37);
   });
 
   it.each(SCIENCE_F2_VISUAL_ASSETS)("%s exists and is not empty", (src) => {
