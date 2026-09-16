@@ -31,8 +31,8 @@ const copy = {
     transpiration: "Transpirasi",
     route: [
       "Air tanah",
-      "Akar rambut",
-      "Penyerapan air + mineral",
+      "Rerambut akar",
+      "Penyerapan air dan garam mineral",
       "Pengangkutan ke atas melalui batang",
       "Daun",
       "Stoma",

@@ -19,7 +19,7 @@ type Lang = "en" | "bm";
 const ui = {
   en: {
     eyebrow: "Chapter 3 visual map",
-    subtitle: "Homeostatic Control Process",
+    subtitle: "How humans, animals and plants maintain a stable internal environment.",
     origin: "Word origin",
     importance: "Why stability matters",
     examFacts: "Key exam facts",
@@ -46,7 +46,8 @@ const ui = {
   },
   bm: {
     eyebrow: "Peta visual Bab 3",
-    subtitle: "Proses Kawalan Homeostasis",
+    subtitle:
+      "Bagaimana manusia, haiwan dan tumbuhan mengekalkan persekitaran dalaman yang stabil.",
     origin: "Asal perkataan",
     importance: "Mengapa kestabilan penting",
     examFacts: "Fakta penting peperiksaan",
@@ -81,10 +82,9 @@ function Panel({ children, className = "" }: { children: ReactNode; className?: 
   );
 }
 
-function SectionHeading({ title, standard }: { title: string; standard?: string }) {
+function SectionHeading({ title }: { title: string }) {
   return (
     <div className="max-w-3xl">
-      {standard && <span className="text-xs font-mono font-bold text-cyan-300">{standard}</span>}
       <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl">{title}</h3>
     </div>
   );
@@ -164,7 +164,7 @@ export function ScienceF1Chapter3VisualNotesBlock({
           </h2>
           <div data-learning-standard="3.1.1">
             <Panel>
-              <SectionHeading title={t.structure.meaning} standard="3.1.1" />
+              <SectionHeading title={t.structure.meaning} />
               <p className="mt-4 text-sm leading-6 text-slate-300">{t.definition.meaning}</p>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl bg-white/5 p-3">
@@ -180,7 +180,7 @@ export function ScienceF1Chapter3VisualNotesBlock({
           </div>
         </div>
         <section data-learning-standard="3.1.2" className="space-y-6">
-          <SectionHeading title={t.structure.humans} standard="3.1.2" />
+          <SectionHeading title={t.structure.humans} />
           <HomeostaticControlVisual content={t} lang={lang} />
           <WaterRegulationVisual content={t} lang={lang} />
           <TemperatureRegulationVisual content={t} lang={lang} />
@@ -193,11 +193,11 @@ export function ScienceF1Chapter3VisualNotesBlock({
           </div>
         </section>
         <section data-learning-standard="3.1.3" className="space-y-6">
-          <SectionHeading title={t.structure.plants} standard="3.1.3" />
+          <SectionHeading title={t.structure.plants} />
           <Chapter3PlantHomeostasis content={t} lang={lang} />
         </section>
         <section data-learning-standard="3.1.4" className="space-y-6">
-          <SectionHeading title={t.structure.importance} standard="3.1.4" />
+          <SectionHeading title={t.structure.importance} />
           <Chapter3Importance content={t} />
         </section>
 
