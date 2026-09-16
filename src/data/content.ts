@@ -4158,8 +4158,7 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Easy",
-    question:
-      "Apakah pengertian sejarah secara umum?",
+    question: "Apakah pengertian sejarah secara umum?",
     options: [
       "Ramalan peristiwa masa hadapan",
       "Peristiwa pada masa lalu",
@@ -4175,8 +4174,7 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question:
-      "Mengapakah sejarawan perlu menggunakan bukti dalam penyelidikan?",
+    question: "Mengapakah sejarawan perlu menggunakan bukti dalam penyelidikan?",
     options: [
       "Memastikan maklumat boleh disahkan",
       "Menyusun indeks mengikut nama tokoh",
@@ -4221,14 +4219,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question:
-      "Menurut E.H. Carr, sejarah melibatkan interaksi sejarawan dengan apakah?",
-    options: [
-      "Cerita rakyat",
-      "Masyarakat masa kini",
-      "Masa hadapan",
-      "Fakta-fakta sejarah",
-    ],
+    question: "Menurut E.H. Carr, sejarah melibatkan interaksi sejarawan dengan apakah?",
+    options: ["Cerita rakyat", "Masyarakat masa kini", "Masa hadapan", "Fakta-fakta sejarah"],
     answerIndex: 3,
     explanation:
       "Menurut Carr, sejarah melibatkan interaksi berterusan antara sejarawan dengan fakta yang dikaji dan ditafsir dalam penyelidikan.",
@@ -4250,7 +4242,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Murid menyusun peristiwa daripada paling awal hingga paling akhir. Apakah kemahiran ini?",
+    question:
+      "Murid menyusun peristiwa daripada paling awal hingga paling akhir. Apakah kemahiran ini?",
     options: ["Kronologi", "Tafsiran", "Perbandingan sumber", "Pengesahan sumber"],
     answerIndex: 0,
     explanation:
@@ -4262,12 +4255,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     question: "Sekumpulan tempoh masa yang merangkumi 1,000 tahun dikenali sebagai...",
-    options: [
-      "Zaman",
-      "Dekad",
-      "Alaf",
-      "Abad",
-    ],
+    options: ["Zaman", "Dekad", "Alaf", "Abad"],
     answerIndex: 2,
     explanation:
       "Alaf ialah tempoh seribu tahun, manakala dekad merujuk sepuluh tahun dan abad merujuk seratus tahun.",
@@ -4310,12 +4298,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     question: "Artifak merupakan antara sumber sejarah yang penting. Apakah contoh artifak?",
-    options: [
-      "Loceng gangsa",
-      "Dinding gua",
-      "Struktur candi",
-      "Fosil manusia",
-    ],
+    options: ["Loceng gangsa", "Dinding gua", "Struktur candi", "Fosil manusia"],
     answerIndex: 0,
     explanation:
       "Loceng gangsa ialah artifak kerana merupakan benda buatan manusia yang boleh dialih dan dikaji sebagai bukti sejarah.",
@@ -4325,14 +4308,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question:
-      "Antara berikut, yang manakah contoh bukan artifak?",
-    options: [
-      "Kapak batu",
-      "Lubang sampah",
-      "Tembikar tanah",
-      "Mata wang logam",
-    ],
+    question: "Antara berikut, yang manakah contoh bukan artifak?",
+    options: ["Kapak batu", "Lubang sampah", "Tembikar tanah", "Mata wang logam"],
     answerIndex: 1,
     explanation:
       "Bukan artifak ialah tinggalan yang tidak boleh dialih, seperti lubang sampah, lubang tiang dan struktur bangunan.",
@@ -4342,14 +4319,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question:
-      "Antara berikut, yang manakah merupakan sumber sekunder?",
-    options: [
-      "Buku teks sejarah",
-      "Batu bersurat",
-      "Diari tokoh",
-      "Manuskrip asal",
-    ],
+    question: "Antara berikut, yang manakah merupakan sumber sekunder?",
+    options: ["Buku teks sejarah", "Batu bersurat", "Diari tokoh", "Manuskrip asal"],
     answerIndex: 0,
     explanation:
       "Buku teks sejarah ialah sumber sekunder kerana penulis mengolah maklumat daripada sumber lain untuk menjelaskan peristiwa.",
@@ -4391,7 +4362,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Murid mahu merakam pengalaman peribadi seorang bekas tentera. Apakah kaedah paling sesuai?",
+    question:
+      "Murid mahu merakam pengalaman peribadi seorang bekas tentera. Apakah kaedah paling sesuai?",
     options: [
       "Menggali tapak perkhemahan lama",
       "Menganalisis peta lokasi pertempuran",
@@ -4442,12 +4414,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     question: "Aktiviti 'gali cari' di tapak penemuan sejarah dikenali sebagai...",
-    options: [
-      "Eksploitasi",
-      "Ekskavasi",
-      "Eksperimentasi",
-      "Ekspedisi",
-    ],
+    options: ["Eksploitasi", "Ekskavasi", "Eksperimentasi", "Ekspedisi"],
     answerIndex: 1,
     explanation:
       "Ekskavasi ialah kerja menggali dan merekod tinggalan arkeologi secara sistematik supaya maklumat penemuan dapat dikaji dengan teliti.",
@@ -4473,7 +4440,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Hard",
-    question: "Penyelidik memperoleh surat lama yang belum disahkan ketulenannya. Urutan kerja manakah sesuai sebelum dapatan diterbitkan?",
+    question:
+      "Penyelidik memperoleh surat lama yang belum disahkan ketulenannya. Urutan kerja manakah sesuai sebelum dapatan diterbitkan?",
     options: [
       "Menganalisis, menulis dapatan, kemudian mengesahkan sumber",
       "Mengesahkan, menyimpan sumber, kemudian menganalisis kandungan",
@@ -4481,14 +4449,16 @@ export const quizzes: QuizQuestion[] = [
       "Menyunting dapatan, menganalisis, kemudian mengesahkan sumber",
     ],
     answerIndex: 1,
-    explanation: "Sumber bertulis perlu diperoleh, disahkan dan disimpan sebelum dianalisis untuk menghasilkan penulisan sejarah yang berasaskan bukti.",
+    explanation:
+      "Sumber bertulis perlu diperoleh, disahkan dan disimpan sebelum dianalisis untuk menghasilkan penulisan sejarah yang berasaskan bukti.",
   },
   {
     id: "sej-f1-c1-q22",
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Hard",
-    question: "Murid telah memilih orang sumber, tetapi rakaman temu bualnya menyimpang daripada tajuk kajian. Persediaan manakah yang terlepas?",
+    question:
+      "Murid telah memilih orang sumber, tetapi rakaman temu bualnya menyimpang daripada tajuk kajian. Persediaan manakah yang terlepas?",
     options: [
       "Menyalin rakaman dan menyusun senarai kandungan",
       "Menyunting rakaman dan menyimpan salinan temu bual",
@@ -4496,7 +4466,8 @@ export const quizzes: QuizQuestion[] = [
       "Membandingkan fakta rakaman dengan sumber bertulis",
     ],
     answerIndex: 2,
-    explanation: "Selepas memilih orang sumber, penyelidik menetapkan skop dan menyediakan soalan sebelum rakaman serta penilaian fakta.",
+    explanation:
+      "Selepas memilih orang sumber, penyelidik menetapkan skop dan menyediakan soalan sebelum rakaman serta penilaian fakta.",
   },
   {
     id: "sej-f1-c1-q23",
@@ -4519,8 +4490,7 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Easy",
-    question:
-      "Apakah yang dimaksudkan dengan semangat patriotisme?",
+    question: "Apakah yang dimaksudkan dengan semangat patriotisme?",
     options: [
       "Semangat cinta akan negara",
       "Semangat mengutamakan kelompok sendiri",
@@ -4552,7 +4522,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Hard",
-    question: "Bukti baharu bercanggah dengan tafsiran awal sejarawan. Tindakan manakah mengekalkan objektiviti?",
+    question:
+      "Bukti baharu bercanggah dengan tafsiran awal sejarawan. Tindakan manakah mengekalkan objektiviti?",
     options: [
       "Menilai semula tafsiran berdasarkan bukti",
       "Mengekalkan tafsiran kerana telah diterbitkan",
@@ -4568,8 +4539,7 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question:
-      "Gambar keluarga lama dan sijil kelahiran asal tergolong dalam sumber apakah?",
+    question: "Gambar keluarga lama dan sijil kelahiran asal tergolong dalam sumber apakah?",
     options: ["Sumber sekunder", "Sumber lisan", "Sumber primer", "Sumber arkeologi"],
     answerIndex: 2,
     explanation:
@@ -4596,8 +4566,7 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question:
-      "Mengapakah istilah syajaratun dikaitkan dengan sejarah keluarga?",
+    question: "Mengapakah istilah syajaratun dikaitkan dengan sejarah keluarga?",
     options: [
       "Menentukan tempoh setiap pemerintahan",
       "Menerangkan lokasi semua peninggalan sejarah",
@@ -4742,7 +4711,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Hard",
-    question: "Jambatan darat tenggelam apabila paras laut meningkat. Apakah kesannya terhadap migrasi manusia?",
+    question:
+      "Jambatan darat tenggelam apabila paras laut meningkat. Apakah kesannya terhadap migrasi manusia?",
     options: [
       "Laluan darat antara kawasan terputus",
       "Jarak perjalanan darat menjadi pendek",
@@ -4759,12 +4729,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     question: "Zaman manakah yang berlangsung hingga hari ini?",
-    options: [
-      "Zaman Miosen",
-      "Zaman Pliosen",
-      "Zaman Holosen",
-      "Zaman Pleistosen",
-    ],
+    options: ["Zaman Miosen", "Zaman Pliosen", "Zaman Holosen", "Zaman Pleistosen"],
     answerIndex: 2,
     explanation:
       "Holosen ialah zaman selepas Pleistosen yang berterusan hingga hari ini. Pertanian dan tamadun manusia berkembang dalam zaman ini.",
@@ -4798,7 +4763,8 @@ export const quizzes: QuizQuestion[] = [
       "Mengurangkan kehilangan haba melalui permukaan badan",
     ],
     answerIndex: 3,
-    explanation: "Bulu tebal mengurangkan kehilangan haba badan, membantu mamot mengekalkan suhu badan dalam persekitaran Zaman Air Batu.",
+    explanation:
+      "Bulu tebal mengurangkan kehilangan haba badan, membantu mamot mengekalkan suhu badan dalam persekitaran Zaman Air Batu.",
   },
   {
     id: "sej-f1-c2-q12",
@@ -4853,7 +4819,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Hard",
-    question: "Lapisan ais pernah meliputi daratan yang kini tidak berais. Apakah kesimpulan tentang iklim dahulu?",
+    question:
+      "Lapisan ais pernah meliputi daratan yang kini tidak berais. Apakah kesimpulan tentang iklim dahulu?",
     options: [
       "Suhu lebih tinggi daripada kini",
       "Iklim lebih sejuk daripada kini",
@@ -4869,7 +4836,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Hard",
-    question: "Ketika iklim menyejuk, lebih banyak air terkumpul sebagai ais di daratan. Pasangan perubahan manakah dijangka berlaku?",
+    question:
+      "Ketika iklim menyejuk, lebih banyak air terkumpul sebagai ais di daratan. Pasangan perubahan manakah dijangka berlaku?",
     options: [
       "Paras laut menurun; daratan pantai meluas",
       "Paras laut meningkat; daratan pantai menyusut",
@@ -4877,7 +4845,8 @@ export const quizzes: QuizQuestion[] = [
       "Paras laut meningkat; daratan pantai meluas",
     ],
     answerIndex: 0,
-    explanation: "Air yang tersimpan sebagai ais daratan mengurangkan air lautan, lalu menurunkan paras laut dan mendedahkan kawasan pantai.",
+    explanation:
+      "Air yang tersimpan sebagai ais daratan mengurangkan air lautan, lalu menurunkan paras laut dan mendedahkan kawasan pantai.",
   },
   {
     id: "sej-f1-c2-q17",
@@ -4932,7 +4901,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Hard",
-    question: "Pemanasan mengurangkan tumbuhan makanan haiwan habitat sejuk. Mengapakah risiko kepupusannya meningkat?",
+    question:
+      "Pemanasan mengurangkan tumbuhan makanan haiwan habitat sejuk. Mengapakah risiko kepupusannya meningkat?",
     options: [
       "Pertambahan kawasan ragutan bagi semua spesies",
       "Peningkatan bekalan makanan di habitat asal",
@@ -4996,7 +4966,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question: "Peta pembentukan Bumi menunjukkan daratan besar dahulu berbeza susunannya daripada benua kini. Apakah perubahan yang digambarkan?",
+    question:
+      "Peta pembentukan Bumi menunjukkan daratan besar dahulu berbeza susunannya daripada benua kini. Apakah perubahan yang digambarkan?",
     options: [
       "Perubahan keluasan hutan di kawasan daratan",
       "Perubahan laluan migrasi haiwan antara daratan",
@@ -5004,14 +4975,16 @@ export const quizzes: QuizQuestion[] = [
       "Perubahan taburan glasier di kawasan daratan",
     ],
     answerIndex: 2,
-    explanation: "Perbandingan peta pembentukan Bumi menunjukkan perubahan bentuk dan susunan daratan sepanjang tempoh perkembangan fizikal Bumi.",
+    explanation:
+      "Perbandingan peta pembentukan Bumi menunjukkan perubahan bentuk dan susunan daratan sepanjang tempoh perkembangan fizikal Bumi.",
   },
   {
     id: "sej-f1-c2-q25",
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Hard",
-    question: "Pada Zaman Pliosen, jambatan darat Panama terbentuk. Mengapakah persamaan hidupan darat di kedua-dua benua boleh dikaitkan dengan perubahan ini?",
+    question:
+      "Pada Zaman Pliosen, jambatan darat Panama terbentuk. Mengapakah persamaan hidupan darat di kedua-dua benua boleh dikaitkan dengan perubahan ini?",
     options: [
       "Hidupan boleh berhijrah melalui daratan yang bersambung",
       "Hidupan kekal terasing akibat peluasan kawasan lautan",
@@ -5019,7 +4992,8 @@ export const quizzes: QuizQuestion[] = [
       "Hidupan terbatas di benua asal akibat glasier",
     ],
     answerIndex: 0,
-    explanation: "Jambatan darat Panama menghubungkan Amerika Utara dan Selatan, membolehkan hidupan berhijrah antara kawasan yang sebelumnya terpisah.",
+    explanation:
+      "Jambatan darat Panama menghubungkan Amerika Utara dan Selatan, membolehkan hidupan berhijrah antara kawasan yang sebelumnya terpisah.",
   },
   {
     id: "sej-f1-c2-q26",
@@ -5043,7 +5017,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     question: "Kumpulan manakah hanya terdiri daripada lautan?",
-    options: ["Artik, Atlantik, Hindi dan Mediterranean", "Artik, Atlantik, Hindi dan Pasifik", "Artik, Atlantik, Pasifik dan Laut Merah", "Atlantik, Hindi, Pasifik dan Laut China Selatan"],
+    options: [
+      "Artik, Atlantik, Hindi dan Mediterranean",
+      "Artik, Atlantik, Hindi dan Pasifik",
+      "Artik, Atlantik, Pasifik dan Laut Merah",
+      "Atlantik, Hindi, Pasifik dan Laut China Selatan",
+    ],
     answerIndex: 1,
     explanation:
       "Artik, Atlantik, Hindi dan Pasifik ialah lautan. Mediterranean, Laut Merah dan Laut China Selatan ialah laut.",
@@ -5054,12 +5033,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     question: "Berapakah jumlah benua utama di dunia hari ini?",
-    options: [
-      "Lima benua",
-      "Enam benua",
-      "Lapan benua",
-      "Tujuh benua",
-    ],
+    options: ["Lima benua", "Enam benua", "Lapan benua", "Tujuh benua"],
     answerIndex: 3,
     explanation:
       "Tujuh benua tersebut ialah Amerika Utara, Amerika Selatan, Eropah, Afrika, Asia, Oceania (Australia), dan Antartika.",
@@ -5069,7 +5043,8 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Hard",
-    question: "Perubahan habitat memaksa manusia berpindah. Hubungan manakah dapat disimpulkan daripada keadaan ini?",
+    question:
+      "Perubahan habitat memaksa manusia berpindah. Hubungan manakah dapat disimpulkan daripada keadaan ini?",
     options: [
       "Petempatan ditentukan oleh bentuk alat sahaja",
       "Migrasi berlaku tanpa perubahan sumber makanan",
@@ -5085,8 +5060,7 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     difficulty: "Medium",
-    question:
-      "Tindakan manakah selaras dengan kepentingan memelihara alam sekitar?",
+    question: "Tindakan manakah selaras dengan kepentingan memelihara alam sekitar?",
     options: [
       "Membuka hutan tanpa penilaian habitat",
       "Memelihara hutan dan mengelakkan pembakaran",
@@ -5223,12 +5197,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Easy",
     question: "Zaman manakah yang menyaksikan manusia mula hidup menetap?",
-    options: [
-      "Zaman Neolitik",
-      "Zaman Paleolitik",
-      "Zaman Mesolitik",
-      "Zaman Logam",
-    ],
+    options: ["Zaman Neolitik", "Zaman Paleolitik", "Zaman Mesolitik", "Zaman Logam"],
     answerIndex: 0,
     explanation:
       "Peralihan daripada cara hidup nomad kepada menetap berlaku kerana manusia mula menjalankan aktiviti pertanian dan penternakan.",
@@ -5256,7 +5225,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Hard",
-    question: "Petani menawarkan bijirin untuk mendapatkan tembikar, tetapi pembuat tembikar memerlukan daging. Mengapakah pertukaran barter mereka belum berlaku?",
+    question:
+      "Petani menawarkan bijirin untuk mendapatkan tembikar, tetapi pembuat tembikar memerlukan daging. Mengapakah pertukaran barter mereka belum berlaku?",
     options: [
       "Nilai pertukaran bijirin dengan tembikar belum dipersetujui",
       "Keperluan kedua-dua pihak belum saling sepadan",
@@ -5264,7 +5234,8 @@ export const quizzes: QuizQuestion[] = [
       "Lebihan bijirin tidak mencukupi untuk pertukaran",
     ],
     answerIndex: 1,
-    explanation: "Barter memerlukan kedua-dua pihak menerima barang yang ditawarkan; keperluan berbeza boleh menyukarkan pertukaran secara langsung.",
+    explanation:
+      "Barter memerlukan kedua-dua pihak menerima barang yang ditawarkan; keperluan berbeza boleh menyukarkan pertukaran secara langsung.",
   },
   {
     id: "sej-f1-c3-q11",
@@ -5273,12 +5244,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Easy",
     question: "Zaman Logam terbahagi kepada dua tahap penggunaan bahan. Apakah bahan tersebut?",
-    options: [
-      "Gangsa dan Besi",
-      "Batu dan kayu",
-      "Tembaga dan Emas",
-      "Besi dan Perak",
-    ],
+    options: ["Gangsa dan Besi", "Batu dan kayu", "Tembaga dan Emas", "Besi dan Perak"],
     answerIndex: 0,
     explanation:
       "Penggunaan logam menunjukkan peningkatan tahap kreativiti manusia dalam menghasilkan alatan yang lebih kuat dan tajam.",
@@ -5289,7 +5255,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Apakah kesimpulan yang disokong oleh penemuan alat batu bersama tinggalan manusia di tapak Prasejarah Malaysia?",
+    question:
+      "Apakah kesimpulan yang disokong oleh penemuan alat batu bersama tinggalan manusia di tapak Prasejarah Malaysia?",
     options: [
       "Masyarakat telah menghasilkan senjata daripada gangsa",
       "Masyarakat menggunakan peralatan sebelum mengenali tulisan",
@@ -5297,7 +5264,8 @@ export const quizzes: QuizQuestion[] = [
       "Masyarakat membina bandar dengan pengkhususan pekerjaan",
     ],
     answerIndex: 1,
-    explanation: "Penemuan alat batu dan tinggalan manusia menjadi bukti kehidupan masyarakat Prasejarah di Malaysia sebelum penggunaan tulisan.",
+    explanation:
+      "Penemuan alat batu dan tinggalan manusia menjadi bukti kehidupan masyarakat Prasejarah di Malaysia sebelum penggunaan tulisan.",
   },
   {
     id: "sej-f1-c3-q13",
@@ -5322,7 +5290,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Hard",
-    question: "Penduduk menetap dan pekerjaan bertambah. Mengapakah kepimpinan diperlukan dalam masyarakat Neolitik?",
+    question:
+      "Penduduk menetap dan pekerjaan bertambah. Mengapakah kepimpinan diperlukan dalam masyarakat Neolitik?",
     options: [
       "Menentukan laluan perpindahan setiap musim",
       "Mewariskan semua pekerjaan mengikut keturunan",
@@ -5339,7 +5308,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Loceng dan gendang gangsa menjadi barang dagangan Prasejarah. Kegiatan manakah ditunjukkan?",
+    question:
+      "Loceng dan gendang gangsa menjadi barang dagangan Prasejarah. Kegiatan manakah ditunjukkan?",
     options: [
       "Pengumpulan makanan di kawasan hutan",
       "Pertukaran barangan antara masyarakat",
@@ -5373,7 +5343,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Hard",
-    question: "Di sebuah tapak, terdapat kerang, tulang haiwan dan kesan pembakaran, tetapi tiada bukti tanaman. Tafsiran ekonomi manakah paling disokong?",
+    question:
+      "Di sebuah tapak, terdapat kerang, tulang haiwan dan kesan pembakaran, tetapi tiada bukti tanaman. Tafsiran ekonomi manakah paling disokong?",
     options: [
       "Memperoleh makanan melalui pemburuan dan pengumpulan",
       "Menghasilkan makanan melalui penanaman dan penternakan",
@@ -5381,7 +5352,8 @@ export const quizzes: QuizQuestion[] = [
       "Menghasilkan makanan melalui pengairan kawasan tanaman",
     ],
     answerIndex: 0,
-    explanation: "Sisa haiwan dan kerang menyokong tafsiran pemburuan serta pengumpulan makanan; pertanian memerlukan bukti tanaman atau kegiatan penanaman.",
+    explanation:
+      "Sisa haiwan dan kerang menyokong tafsiran pemburuan serta pengumpulan makanan; pertanian memerlukan bukti tanaman atau kegiatan penanaman.",
   },
   {
     id: "sej-f1-c3-q18",
@@ -5389,7 +5361,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Hard",
-    question: "Bekas makanan diletakkan berhampiran rangka dalam kubur Prasejarah. Mengapakah konteks penemuan penting untuk mentafsirkannya?",
+    question:
+      "Bekas makanan diletakkan berhampiran rangka dalam kubur Prasejarah. Mengapakah konteks penemuan penting untuk mentafsirkannya?",
     options: [
       "Bekas itu menunjukkan kegiatan memasak di kediaman",
       "Bekas itu menunjukkan kegiatan pertukaran di petempatan",
@@ -5397,7 +5370,8 @@ export const quizzes: QuizQuestion[] = [
       "Bekas itu menunjukkan kegiatan pembuatan di bengkel",
     ],
     answerIndex: 2,
-    explanation: "Kedudukan bekas bersama rangka dalam kubur mengaitkan penemuan dengan amalan pengebumian, bukan sekadar kegunaan harian tembikar.",
+    explanation:
+      "Kedudukan bekas bersama rangka dalam kubur mengaitkan penemuan dengan amalan pengebumian, bukan sekadar kegunaan harian tembikar.",
   },
   {
     id: "sej-f1-c3-q19",
@@ -5439,7 +5413,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Shahr-i-Sokhta mempunyai kawasan kediaman, perkuburan dan pembuatan barangan. Susunan ini menunjukkan...",
+    question:
+      "Shahr-i-Sokhta mempunyai kawasan kediaman, perkuburan dan pembuatan barangan. Susunan ini menunjukkan...",
     options: [
       "Perpindahan penduduk mengikut musim",
       "Pengkhususan petempatan untuk pemburuan",
@@ -5473,7 +5448,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Hard",
-    question: "Tembikar dahulu menyimpan makanan; labu sayong kini menyimpan air. Apakah kesinambungannya?",
+    question:
+      "Tembikar dahulu menyimpan makanan; labu sayong kini menyimpan air. Apakah kesinambungannya?",
     options: [
       "Pengekalan semua teknik tanpa perubahan",
       "Penggunaan bekas untuk ritual semata-mata",
@@ -5498,7 +5474,8 @@ export const quizzes: QuizQuestion[] = [
       "Kemahiran seni pertukangan",
     ],
     answerIndex: 3,
-    explanation: "Corak hiasan pada peralatan gangsa menunjukkan kreativiti dan kemahiran seni masyarakat Zaman Logam.",
+    explanation:
+      "Corak hiasan pada peralatan gangsa menunjukkan kreativiti dan kemahiran seni masyarakat Zaman Logam.",
   },
   {
     id: "sej-f1-c3-q25",
@@ -5523,7 +5500,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Hard",
-    question: "Alat batu dan alat besi digunakan untuk memotong. Apakah kesinambungan yang dapat dikenal pasti walaupun bahannya berubah?",
+    question:
+      "Alat batu dan alat besi digunakan untuk memotong. Apakah kesinambungan yang dapat dikenal pasti walaupun bahannya berubah?",
     options: [
       "Kaedah pembentukan alat melalui penyerpihan batu",
       "Pemilihan bijih logam sebagai bahan mentah",
@@ -5531,7 +5509,8 @@ export const quizzes: QuizQuestion[] = [
       "Penggunaan relau untuk membentuk mata pemotong",
     ],
     answerIndex: 2,
-    explanation: "Bahan dan teknik pembuatan berubah, tetapi tujuan menghasilkan peralatan bagi memenuhi keperluan manusia menunjukkan kesinambungan.",
+    explanation:
+      "Bahan dan teknik pembuatan berubah, tetapi tujuan menghasilkan peralatan bagi memenuhi keperluan manusia menunjukkan kesinambungan.",
   },
   {
     id: "sej-f1-c3-q27",
@@ -5539,7 +5518,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Medium",
-    question: "Kegiatan Neolitik manakah menjadi asas kepada pengeluaran makanan melalui pertanian dan penternakan hari ini?",
+    question:
+      "Kegiatan Neolitik manakah menjadi asas kepada pengeluaran makanan melalui pertanian dan penternakan hari ini?",
     options: [
       "Pemburuan binatang dan pengumpulan buah liar",
       "Penangkapan ikan dan pengumpulan hasil hutan",
@@ -5547,7 +5527,8 @@ export const quizzes: QuizQuestion[] = [
       "Pertukaran tembikar dan pembuatan peralatan gangsa",
     ],
     answerIndex: 2,
-    explanation: "Penanaman bijirin dan penjinakan haiwan pada Zaman Neolitik membentuk asas pengeluaran makanan yang terus berkembang hingga kini.",
+    explanation:
+      "Penanaman bijirin dan penjinakan haiwan pada Zaman Neolitik membentuk asas pengeluaran makanan yang terus berkembang hingga kini.",
   },
   {
     id: "sej-f1-c3-q28",
@@ -5563,7 +5544,8 @@ export const quizzes: QuizQuestion[] = [
       "Ruang mayat menggunakan badan perahu",
     ],
     answerIndex: 0,
-    explanation: "Kubur kepingan batu menggunakan binaan batu untuk pengebumian, manakala pengebumian tempayan menggunakan bekas tanah liat.",
+    explanation:
+      "Kubur kepingan batu menggunakan binaan batu untuk pengebumian, manakala pengebumian tempayan menggunakan bekas tanah liat.",
   },
   {
     id: "sej-f1-c3-q29",
@@ -5579,7 +5561,8 @@ export const quizzes: QuizQuestion[] = [
       "Menghasilkan makanan melalui tanaman dan ternakan",
     ],
     answerIndex: 3,
-    explanation: "Pertanian dan penternakan Neolitik membolehkan manusia menghasilkan makanan, berbeza daripada pergantungan Paleolitik pada pemburuan serta pengumpulan.",
+    explanation:
+      "Pertanian dan penternakan Neolitik membolehkan manusia menghasilkan makanan, berbeza daripada pergantungan Paleolitik pada pemburuan serta pengumpulan.",
   },
   {
     id: "sej-f1-c3-q30",
@@ -5587,7 +5570,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     difficulty: "Hard",
-    question: "Tapak Prasejarah hendak dibangunkan. Tindakan manakah mengekalkan bukti untuk penyelidikan?",
+    question:
+      "Tapak Prasejarah hendak dibangunkan. Tindakan manakah mengekalkan bukti untuk penyelidikan?",
     options: [
       "Memindahkan artifak tanpa merekod kedudukan",
       "Merekod dan melindungi tinggalan asal",
@@ -5641,7 +5625,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Petani menghasilkan lebihan bijirin dan memperoleh tembikar dari petempatan lain. Apakah kesimpulan yang paling disokong?",
+    question:
+      "Petani menghasilkan lebihan bijirin dan memperoleh tembikar dari petempatan lain. Apakah kesimpulan yang paling disokong?",
     options: [
       "Petempatan dikawal oleh pemerintah yang sama",
       "Kedua-dua petempatan mempunyai kepakaran yang sama",
@@ -5649,7 +5634,8 @@ export const quizzes: QuizQuestion[] = [
       "Perdagangan bergantung pada penggunaan mata wang",
     ],
     answerIndex: 2,
-    explanation: "Lebihan hasil pertanian dapat ditukar dengan barangan lain, menghubungkan pengeluaran makanan dengan perkembangan perdagangan antara petempatan.",
+    explanation:
+      "Lebihan hasil pertanian dapat ditukar dengan barangan lain, menghubungkan pengeluaran makanan dengan perkembangan perdagangan antara petempatan.",
   },
   {
     id: "sej-f1-c4-q4",
@@ -5682,7 +5668,8 @@ export const quizzes: QuizQuestion[] = [
       "Kemajuan rohani semata-mata",
     ],
     answerIndex: 0,
-    explanation: "Dalam perbandingan buku teks, konsep tamadun Barat lebih menekankan pencapaian lahiriah seperti penulisan, undang-undang, kesenian dan perbandaran.",
+    explanation:
+      "Dalam perbandingan buku teks, konsep tamadun Barat lebih menekankan pencapaian lahiriah seperti penulisan, undang-undang, kesenian dan perbandaran.",
   },
   {
     id: "sej-f1-c4-q6",
@@ -5690,7 +5677,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Easy",
-    question: "Apakah yang membezakan konsep tamadun Islam daripada penekanan lahiriah dalam konsep tamadun Barat?",
+    question:
+      "Apakah yang membezakan konsep tamadun Islam daripada penekanan lahiriah dalam konsep tamadun Barat?",
     options: [
       "Keutamaan kemajuan perbandaran dan pembinaan prasarana",
       "Keutamaan penguasaan teknologi dan penghasilan kesenian",
@@ -5698,7 +5686,8 @@ export const quizzes: QuizQuestion[] = [
       "Keseimbangan kegiatan perdagangan dan pengeluaran pertanian",
     ],
     answerIndex: 2,
-    explanation: "Konsep tamadun Islam menggabungkan kemajuan lahiriah dengan pembangunan rohani, termasuk akhlak serta kehalusan budi pekerti.",
+    explanation:
+      "Konsep tamadun Islam menggabungkan kemajuan lahiriah dengan pembangunan rohani, termasuk akhlak serta kehalusan budi pekerti.",
   },
   {
     id: "sej-f1-c4-q7",
@@ -5707,12 +5696,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Easy",
     question: "Siapakah tokoh Islam yang menekankan kehalusan budi pekerti dalam tamadun?",
-    options: [
-      "Ibn Khaldun",
-      "Arnold J. Toynbee",
-      "Herodotus",
-      "Syed Naquib al-Attas",
-    ],
+    options: ["Ibn Khaldun", "Arnold J. Toynbee", "Herodotus", "Syed Naquib al-Attas"],
     answerIndex: 3,
     explanation:
       "Beliau berpendapat tamadun adalah pencapaian tahap tatasusila yang tinggi dan kebudayaan yang luhur.",
@@ -5723,7 +5707,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Selepas bekalan makanan mencukupi, sebahagian penduduk menjadi artisan. Mengapakah perubahan ini boleh berlaku?",
+    question:
+      "Selepas bekalan makanan mencukupi, sebahagian penduduk menjadi artisan. Mengapakah perubahan ini boleh berlaku?",
     options: [
       "Lebihan makanan menyokong penduduk yang tidak bertani",
       "Artisan mengambil alih tugas mengagihkan tanah pertanian",
@@ -5731,7 +5716,8 @@ export const quizzes: QuizQuestion[] = [
       "Pengkhususan ditentukan oleh pewarisan tugas mengikut keturunan",
     ],
     answerIndex: 0,
-    explanation: "Bekalan makanan yang mencukupi membolehkan sebahagian penduduk mengkhusus dalam pertukangan, menunjukkan hubungan pertanian dengan pengkhususan pekerjaan.",
+    explanation:
+      "Bekalan makanan yang mencukupi membolehkan sebahagian penduduk mengkhusus dalam pertukangan, menunjukkan hubungan pertanian dengan pengkhususan pekerjaan.",
   },
   {
     id: "sej-f1-c4-q9",
@@ -5739,7 +5725,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Apakah kesan langsung sistem pengairan terhadap pengeluaran makanan dalam tamadun awal?",
+    question:
+      "Apakah kesan langsung sistem pengairan terhadap pengeluaran makanan dalam tamadun awal?",
     options: [
       "Memudahkan pencatatan hasil dan cukai",
       "Menentukan musim melalui pergerakan bintang",
@@ -5756,7 +5743,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Bangunan pemerintah terletak berhampiran pasar di sebuah bandar awal. Apakah fungsi bandar yang ditunjukkan?",
+    question:
+      "Bangunan pemerintah terletak berhampiran pasar di sebuah bandar awal. Apakah fungsi bandar yang ditunjukkan?",
     options: [
       "Pemusatan pentadbiran dan kegiatan perdagangan",
       "Pemusatan penternakan dan pengumpulan makanan",
@@ -5764,7 +5752,8 @@ export const quizzes: QuizQuestion[] = [
       "Pemusatan perikanan dan pembuatan perahu",
     ],
     answerIndex: 0,
-    explanation: "Bangunan pemerintah dan pasar menunjukkan pemusatan pentadbiran serta perdagangan, antara fungsi bandar dalam perkembangan tamadun awal.",
+    explanation:
+      "Bangunan pemerintah dan pasar menunjukkan pemusatan pentadbiran serta perdagangan, antara fungsi bandar dalam perkembangan tamadun awal.",
   },
   {
     id: "sej-f1-c4-q11",
@@ -5780,7 +5769,8 @@ export const quizzes: QuizQuestion[] = [
       "Ketua pemerintah berkuasa mutlak",
     ],
     answerIndex: 3,
-    explanation: "Dalam sistem beraja tamadun awal, raja memegang kuasa pemerintahan tertinggi dan dibantu oleh pegawai pentadbiran.",
+    explanation:
+      "Dalam sistem beraja tamadun awal, raja memegang kuasa pemerintahan tertinggi dan dibantu oleh pegawai pentadbiran.",
   },
   {
     id: "sej-f1-c4-q12",
@@ -5805,7 +5795,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Bagaimanakah penggunaan roda dan kereta kuda membantu kegiatan ekonomi tamadun awal?",
+    question:
+      "Bagaimanakah penggunaan roda dan kereta kuda membantu kegiatan ekonomi tamadun awal?",
     options: [
       "Memudahkan penyukatan keluasan tanah pertanian",
       "Memudahkan pengangkutan barang dagangan",
@@ -5840,12 +5831,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Easy",
     question: "Apakah golongan yang menduduki lapisan paling bawah dalam organisasi sosial?",
-    options: [
-      "Hamba",
-      "Pendeta",
-      "Pedagang",
-      "Artisan",
-    ],
+    options: ["Hamba", "Pendeta", "Pedagang", "Artisan"],
     answerIndex: 0,
     explanation:
       "Hamba biasanya terdiri daripada tawanan perang atau mereka yang gagal membayar hutang.",
@@ -5898,7 +5884,8 @@ export const quizzes: QuizQuestion[] = [
       "Membekalkan air ke kawasan tanaman",
     ],
     answerIndex: 0,
-    explanation: "Tulisan membolehkan pemerintah menyimpan rekod cukai, undang-undang dan urusan pentadbiran untuk mengurus masyarakat yang semakin kompleks.",
+    explanation:
+      "Tulisan membolehkan pemerintah menyimpan rekod cukai, undang-undang dan urusan pentadbiran untuk mengurus masyarakat yang semakin kompleks.",
   },
   {
     id: "sej-f1-c4-q19",
@@ -5906,7 +5893,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Penduduk sebuah petempatan bertambah dan pertikaian pembahagian air meningkat. Perkembangan manakah paling membantu pengurusan petempatan itu?",
+    question:
+      "Penduduk sebuah petempatan bertambah dan pertikaian pembahagian air meningkat. Perkembangan manakah paling membantu pengurusan petempatan itu?",
     options: [
       "Pembentukan pemerintahan untuk menyelaras aturan bersama",
       "Penghasilan kesenian untuk menghias bangunan masyarakat",
@@ -5914,7 +5902,8 @@ export const quizzes: QuizQuestion[] = [
       "Perluasan perdagangan untuk mendapatkan bahan mentah",
     ],
     answerIndex: 0,
-    explanation: "Pertambahan penduduk memerlukan pemerintahan dan aturan bersama supaya sumber serta pertikaian masyarakat dapat diurus dengan teratur.",
+    explanation:
+      "Pertambahan penduduk memerlukan pemerintahan dan aturan bersama supaya sumber serta pertikaian masyarakat dapat diurus dengan teratur.",
   },
   {
     id: "sej-f1-c4-q20",
@@ -5930,7 +5919,8 @@ export const quizzes: QuizQuestion[] = [
       "Pusat perdagangan dan latihan ketenteraan",
     ],
     answerIndex: 2,
-    explanation: "Piramid Mesir dibina sebagai makam raja dan menunjukkan kemampuan masyarakat menyelaras tenaga kerja serta kemahiran pembinaan.",
+    explanation:
+      "Piramid Mesir dibina sebagai makam raja dan menunjukkan kemampuan masyarakat menyelaras tenaga kerja serta kemahiran pembinaan.",
   },
   {
     id: "sej-f1-c4-q21",
@@ -5955,7 +5945,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Dua kawasan sesuai didiami, tetapi satu mempunyai sungai dan tanah subur. Mengapakah kawasan itu dipilih?",
+    question:
+      "Dua kawasan sesuai didiami, tetapi satu mempunyai sungai dan tanah subur. Mengapakah kawasan itu dipilih?",
     options: [
       "Menjamin petempatan bebas daripada banjir",
       "Mengurangkan keperluan mengurus sumber makanan",
@@ -5963,7 +5954,8 @@ export const quizzes: QuizQuestion[] = [
       "Memisahkan penduduk daripada kegiatan perdagangan",
     ],
     answerIndex: 2,
-    explanation: "Bekalan air dan tanah subur menyokong pertanian, menjadikan lembah sungai sesuai untuk perkembangan petempatan tamadun awal.",
+    explanation:
+      "Bekalan air dan tanah subur menyokong pertanian, menjadikan lembah sungai sesuai untuk perkembangan petempatan tamadun awal.",
   },
   {
     id: "sej-f1-c4-q23",
@@ -5971,7 +5963,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Pedagang sukar mencari pasangan pertukaran barang yang sepadan. Bagaimanakah mata wang membantu?",
+    question:
+      "Pedagang sukar mencari pasangan pertukaran barang yang sepadan. Bagaimanakah mata wang membantu?",
     options: [
       "Menyamakan nilai semua barang dagangan",
       "Menjadi perantara penilaian dan pembayaran",
@@ -5979,7 +5972,8 @@ export const quizzes: QuizQuestion[] = [
       "Mengehadkan pertukaran kepada satu petempatan",
     ],
     answerIndex: 1,
-    explanation: "Mata wang menjadi perantara nilai, membolehkan perdagangan berlaku tanpa memerlukan kedua-dua pihak menghendaki barang masing-masing.",
+    explanation:
+      "Mata wang menjadi perantara nilai, membolehkan perdagangan berlaku tanpa memerlukan kedua-dua pihak menghendaki barang masing-masing.",
   },
   {
     id: "sej-f1-c4-q24",
@@ -5995,7 +5989,8 @@ export const quizzes: QuizQuestion[] = [
       "Membantu menentukan musim penanaman",
     ],
     answerIndex: 3,
-    explanation: "Kalendar membantu petani mengenal pasti musim yang sesuai untuk menanam dan menuai. Ini menunjukkan sumbangan teknologi kepada pertanian.",
+    explanation:
+      "Kalendar membantu petani mengenal pasti musim yang sesuai untuk menanam dan menuai. Ini menunjukkan sumbangan teknologi kepada pertanian.",
   },
   {
     id: "sej-f1-c4-q25",
@@ -6011,7 +6006,8 @@ export const quizzes: QuizQuestion[] = [
       "Askar, pedagang dan hamba",
     ],
     answerIndex: 2,
-    explanation: "Golongan bangsawan, pendeta dan pegawai membantu raja melaksanakan pentadbiran serta mengurus urusan masyarakat dalam tamadun awal.",
+    explanation:
+      "Golongan bangsawan, pendeta dan pegawai membantu raja melaksanakan pentadbiran serta mengurus urusan masyarakat dalam tamadun awal.",
   },
   {
     id: "sej-f1-c4-q26",
@@ -6019,7 +6015,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Mengapakah sebuah bangunan besar sahaja tidak mencukupi untuk menilai pencapaian tamadun?",
+    question:
+      "Mengapakah sebuah bangunan besar sahaja tidak mencukupi untuk menilai pencapaian tamadun?",
     options: [
       "Penilaian bergantung pada keluasan bangunan",
       "Penilaian meliputi pelbagai bidang kehidupan",
@@ -6036,7 +6033,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Penduduk membina tempat ibadat dan menjalankan upacara bersama. Ciri tamadun manakah paling jelas ditunjukkan?",
+    question:
+      "Penduduk membina tempat ibadat dan menjalankan upacara bersama. Ciri tamadun manakah paling jelas ditunjukkan?",
     options: [
       "Tulisan dan penyimpanan rekod",
       "Kesenian dan kesusasteraan masyarakat",
@@ -6044,7 +6042,8 @@ export const quizzes: QuizQuestion[] = [
       "Teknologi dan inovasi pertanian",
     ],
     answerIndex: 2,
-    explanation: "Tempat ibadat dan upacara bersama menunjukkan agama serta kepercayaan yang membentuk amalan kehidupan masyarakat tamadun awal.",
+    explanation:
+      "Tempat ibadat dan upacara bersama menunjukkan agama serta kepercayaan yang membentuk amalan kehidupan masyarakat tamadun awal.",
   },
   {
     id: "sej-f1-c4-q28",
@@ -6052,7 +6051,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Masyarakat maju dalam teknologi tetapi mengabaikan akhlak. Aspek manakah kurang berkembang menurut konsep tamadun Islam?",
+    question:
+      "Masyarakat maju dalam teknologi tetapi mengabaikan akhlak. Aspek manakah kurang berkembang menurut konsep tamadun Islam?",
     options: [
       "Kemajuan perbandaran",
       "Penguasaan teknologi",
@@ -6060,7 +6060,8 @@ export const quizzes: QuizQuestion[] = [
       "Pembangunan rohani",
     ],
     answerIndex: 3,
-    explanation: "Konsep tamadun Islam menekankan keseimbangan lahiriah dan rohani, termasuk kemajuan teknologi serta pembentukan akhlak masyarakat.",
+    explanation:
+      "Konsep tamadun Islam menekankan keseimbangan lahiriah dan rohani, termasuk kemajuan teknologi serta pembentukan akhlak masyarakat.",
   },
   {
     id: "sej-f1-c4-q29",
@@ -6076,7 +6077,8 @@ export const quizzes: QuizQuestion[] = [
       "Meningkatkan mutu barangan dan perdagangan",
     ],
     answerIndex: 3,
-    explanation: "Pengkhususan membolehkan pekerja meningkatkan kemahiran, menghasilkan barangan bermutu dan menyokong perkembangan pertukaran serta perdagangan antara masyarakat.",
+    explanation:
+      "Pengkhususan membolehkan pekerja meningkatkan kemahiran, menghasilkan barangan bermutu dan menyokong perkembangan pertukaran serta perdagangan antara masyarakat.",
   },
   {
     id: "sej-f1-c4-q30",
@@ -6084,7 +6086,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question: "Kemarau mengancam tanaman sebuah tamadun. Apakah tindakan pemerintah yang paling sesuai?",
+    question:
+      "Kemarau mengancam tanaman sebuah tamadun. Apakah tindakan pemerintah yang paling sesuai?",
     options: [
       "Menyelaras bekalan air dan tenaga kerja",
       "Meluaskan monumen menggunakan tenaga petani",
@@ -6119,7 +6122,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Bagaimanakah masyarakat Sumer mengatasi cabaran pengaliran air sungai untuk kegiatan pertanian?",
+    question:
+      "Bagaimanakah masyarakat Sumer mengatasi cabaran pengaliran air sungai untuk kegiatan pertanian?",
     options: [
       "Membina saluran pengairan ke ladang",
       "Membina tembok di sekeliling bandar",
@@ -6137,14 +6141,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question: "Binaan manakah berfungsi sebagai rumah ibadat di pusat bandar Mesopotamia?",
-    options: [
-      "Piramid",
-      "Kolam mandi besar",
-      "Sfinks",
-      "Zigurat",
-    ],
+    options: ["Piramid", "Kolam mandi besar", "Sfinks", "Zigurat"],
     answerIndex: 3,
-    explanation: "Zigurat ialah rumah ibadat di pusat bandar Mesopotamia, berbeza daripada piramid yang menjadi makam pemerintah Mesir.",
+    explanation:
+      "Zigurat ialah rumah ibadat di pusat bandar Mesopotamia, berbeza daripada piramid yang menjadi makam pemerintah Mesir.",
   },
   {
     id: "sej-f1-c5-q4",
@@ -6152,7 +6152,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Apakah sumbangan Kod Undang-undang Hammurabi kepada pengurusan masyarakat Mesopotamia?",
+    question:
+      "Apakah sumbangan Kod Undang-undang Hammurabi kepada pengurusan masyarakat Mesopotamia?",
     options: [
       "Menentukan pewarisan jawatan melalui keturunan pendeta",
       "Membahagikan penduduk mengikut kemahiran pekerjaan",
@@ -6160,7 +6161,8 @@ export const quizzes: QuizQuestion[] = [
       "Menetapkan denda dan hukuman bagi kesalahan",
     ],
     answerIndex: 3,
-    explanation: "Kod Hammurabi menetapkan peraturan, denda dan hukuman untuk mengurus kesalahan serta membantu mewujudkan aturan dalam masyarakat.",
+    explanation:
+      "Kod Hammurabi menetapkan peraturan, denda dan hukuman untuk mengurus kesalahan serta membantu mewujudkan aturan dalam masyarakat.",
   },
   {
     id: "sej-f1-c5-q5",
@@ -6168,14 +6170,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Easy",
-    question:
-      "Pembahagian masa manakah berasaskan Sistem 60 Mesopotamia?",
-    options: [
-      "24 jam sehari",
-      "60 minit sejam",
-      "7 hari seminggu",
-      "365 hari setahun",
-    ],
+    question: "Pembahagian masa manakah berasaskan Sistem 60 Mesopotamia?",
+    options: ["24 jam sehari", "60 minit sejam", "7 hari seminggu", "365 hari setahun"],
     answerIndex: 1,
     explanation:
       "Sistem nombor berasaskan 60 di Mesopotamia menjadi asas pembahagian masa seperti enam puluh minit dalam sejam.",
@@ -6187,12 +6183,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question: "Penulisan epik Enuma Elish menunjukkan penggunaan tulisan dalam bidang apakah?",
-    options: [
-      "Percukaian",
-      "Pengairan",
-      "Kesusasteraan",
-      "Ketenteraan",
-    ],
+    options: ["Percukaian", "Pengairan", "Kesusasteraan", "Ketenteraan"],
     answerIndex: 2,
     explanation:
       "Epik Enuma Elish ialah karya Mesopotamia yang menunjukkan penggunaan tulisan untuk merakam cerita dalam tradisi kesusasteraan.",
@@ -6237,7 +6228,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Firaun menghantar tentera mengiringi pedagang ke luar Mesir. Apakah hubungan antara kuasa pemerintah dengan ekonomi yang ditunjukkan?",
+    question:
+      "Firaun menghantar tentera mengiringi pedagang ke luar Mesir. Apakah hubungan antara kuasa pemerintah dengan ekonomi yang ditunjukkan?",
     options: [
       "Menggantikan hasil cukai dengan rampasan perang",
       "Memindahkan pusat kerajaan ke kawasan perdagangan",
@@ -6245,7 +6237,8 @@ export const quizzes: QuizQuestion[] = [
       "Menggunakan kuasa ketenteraan untuk menyokong ekonomi",
     ],
     answerIndex: 3,
-    explanation: "Pengiring tentera melindungi pedagang semasa perjalanan, menunjukkan hubungan antara keselamatan dengan kelancaran kegiatan perdagangan Mesir Purba.",
+    explanation:
+      "Pengiring tentera melindungi pedagang semasa perjalanan, menunjukkan hubungan antara keselamatan dengan kelancaran kegiatan perdagangan Mesir Purba.",
   },
   {
     id: "sej-f1-c5-q10",
@@ -6287,7 +6280,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Batu bata Indus mempunyai ukuran seragam. Kesimpulan manakah disokong oleh bukti ini?",
+    question:
+      "Batu bata Indus mempunyai ukuran seragam. Kesimpulan manakah disokong oleh bukti ini?",
     options: [
       "Semua bangunan mempunyai fungsi sama",
       "Setiap rumah dimiliki oleh pemerintah",
@@ -6321,7 +6315,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Pembetungan Indus menyalurkan air buangan keluar dari kediaman. Apakah keutamaan perancangan ini?",
+    question:
+      "Pembetungan Indus menyalurkan air buangan keluar dari kediaman. Apakah keutamaan perancangan ini?",
     options: [
       "Pengurusan kebersihan kawasan petempatan",
       "Perlindungan sempadan daripada serangan",
@@ -6355,7 +6350,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Barangan Indus diperdagangkan di Mesopotamia. Kesimpulan manakah disokong oleh maklumat ini?",
+    question:
+      "Barangan Indus diperdagangkan di Mesopotamia. Kesimpulan manakah disokong oleh maklumat ini?",
     options: [
       "Wujud hubungan perdagangan antara masyarakat",
       "Kedua-duanya diperintah oleh raja sama",
@@ -6389,7 +6385,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Medium",
-    question: "Kepercayaan mandat daripada syurga menyokong kuasa raja Huang He melalui asas apakah?",
+    question:
+      "Kepercayaan mandat daripada syurga menyokong kuasa raja Huang He melalui asas apakah?",
     options: [
       "Pemilihan oleh semua penduduk",
       "Perjanjian bersama golongan pedagang",
@@ -6407,12 +6404,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question: "Ukiran geometri pada tembikar Huang He menunjukkan perkembangan bidang apakah?",
-    options: [
-      "Ketenteraan",
-      "Percukaian",
-      "Pengairan",
-      "Kesenian",
-    ],
+    options: ["Ketenteraan", "Percukaian", "Pengairan", "Kesenian"],
     answerIndex: 3,
     explanation:
       "Hiasan pada tembikar mencerminkan kemahiran seni masyarakat Huang He dalam menghasilkan corak dan motif yang pelbagai.",
@@ -6423,13 +6415,9 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Easy",
-    question: "Tulisan awal Huang He berkembang daripada lukisan. Bentuk tulisan ini dikenali sebagai...",
-    options: [
-      "Kuneiform",
-      "Piktograf",
-      "Hieroglif",
-      "Aksara Brahmi",
-    ],
+    question:
+      "Tulisan awal Huang He berkembang daripada lukisan. Bentuk tulisan ini dikenali sebagai...",
+    options: ["Kuneiform", "Piktograf", "Hieroglif", "Aksara Brahmi"],
     answerIndex: 1,
     explanation:
       "Tulisan Huang He berasal daripada bentuk lukisan atau piktograf yang kemudian berkembang sebagai sistem tulisan masyarakatnya.",
@@ -6441,14 +6429,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Easy",
     question: "Hasil tekstil manakah dikaitkan dengan pencapaian Tamadun Huang He?",
-    options: [
-      "Kain kapas",
-      "Kain sutera",
-      "Kain linen",
-      "Kain bulu",
-    ],
+    options: ["Kain kapas", "Kain sutera", "Kain linen", "Kain bulu"],
     answerIndex: 1,
-    explanation: "Penghasilan sutera ialah pencapaian Tamadun Huang He dalam pembuatan tekstil yang menyokong kegiatan ekonomi masyarakatnya.",
+    explanation:
+      "Penghasilan sutera ialah pencapaian Tamadun Huang He dalam pembuatan tekstil yang menyokong kegiatan ekonomi masyarakatnya.",
   },
   {
     id: "sej-f1-c5-q22",
@@ -6475,12 +6459,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Easy",
     question: "Sistem tulisan manakah yang digunakan di Mesopotamia?",
-    options: [
-      "Hieroglif",
-      "Kuneiform",
-      "Ideogram",
-      "Aksara Brahmi",
-    ],
+    options: ["Hieroglif", "Kuneiform", "Ideogram", "Aksara Brahmi"],
     answerIndex: 1,
     explanation:
       "Kuneiform diukir menggunakan kayu berbentuk baji pada kepingan tanah liat basah yang kemudian dikeringkan.",
@@ -6492,12 +6471,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Easy",
     question: "Tamadun manakah yang menggunakan tulisan Hieroglif?",
-    options: [
-      "Mesopotamia",
-      "Indus",
-      "Huang He",
-      "Mesir Purba",
-    ],
+    options: ["Mesopotamia", "Indus", "Huang He", "Mesir Purba"],
     answerIndex: 3,
     explanation:
       "Hieroglif adalah sistem tulisan bergambar Mesir Purba yang digunakan pada dinding kuil, makam, dan papirus.",
@@ -6516,7 +6490,8 @@ export const quizzes: QuizQuestion[] = [
       "Berkembang di oasis sepanjang laluan kafilah",
     ],
     answerIndex: 1,
-    explanation: "Keempat-empat tamadun berkembang di lembah sungai yang membekalkan air, tanah subur dan laluan perhubungan untuk masyarakat.",
+    explanation:
+      "Keempat-empat tamadun berkembang di lembah sungai yang membekalkan air, tanah subur dan laluan perhubungan untuk masyarakat.",
   },
   {
     id: "sej-f1-c5-q26",
@@ -6576,7 +6551,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Hard",
-    question: "Catatan kuneiform menyenaraikan hasil cukai, manakala catatan hieroglif merekod urusan pemerintah. Apakah persamaan kegunaan tulisan tersebut?",
+    question:
+      "Catatan kuneiform menyenaraikan hasil cukai, manakala catatan hieroglif merekod urusan pemerintah. Apakah persamaan kegunaan tulisan tersebut?",
     options: [
       "Membantu pengurusan maklumat dalam pentadbiran",
       "Membantu penyampaian cerita dalam kesusasteraan",
@@ -6584,7 +6560,8 @@ export const quizzes: QuizQuestion[] = [
       "Membantu pengiraan musim dalam pertanian",
     ],
     answerIndex: 0,
-    explanation: "Catatan cukai dan urusan pemerintah menunjukkan tulisan digunakan untuk menyimpan maklumat yang diperlukan dalam pentadbiran tamadun.",
+    explanation:
+      "Catatan cukai dan urusan pemerintah menunjukkan tulisan digunakan untuk menyimpan maklumat yang diperlukan dalam pentadbiran tamadun.",
   },
   {
     id: "sej-f1-c5-q30",
@@ -6612,12 +6589,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Easy",
     question: "Apakah maksud polis dalam Tamadun Yunani?",
-    options: [
-      "Negara kota",
-      "Pusat pertanian",
-      "Sistem perundangan",
-      "Pusat keagamaan",
-    ],
+    options: ["Negara kota", "Pusat pertanian", "Sistem perundangan", "Pusat keagamaan"],
     answerIndex: 0,
     explanation:
       "Polis ialah negara kota bebas yang merangkumi bandar utama, bandar kecil dan kawasan kampung di sekelilingnya.",
@@ -6696,7 +6668,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Wanita dan hamba dikecualikan daripada demokrasi Athens. Apakah batas penyertaan politiknya?",
+    question:
+      "Wanita dan hamba dikecualikan daripada demokrasi Athens. Apakah batas penyertaan politiknya?",
     options: [
       "Kuasa diwarisi oleh seorang raja",
       "Hak politik terhad kepada golongan tertentu",
@@ -6713,13 +6686,9 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Sekumpulan bangsawan memegang kuasa dalam polis Yunani. Bentuk pemerintahan manakah ditunjukkan?",
-    options: [
-      "Monarki",
-      "Tirani",
-      "Demokrasi",
-      "Aristokrasi",
-    ],
+    question:
+      "Sekumpulan bangsawan memegang kuasa dalam polis Yunani. Bentuk pemerintahan manakah ditunjukkan?",
+    options: ["Monarki", "Tirani", "Demokrasi", "Aristokrasi"],
     answerIndex: 3,
     explanation:
       "Aristokrasi ialah pemerintahan oleh golongan bangsawan, berbeza daripada monarki yang meletakkan kuasa pada seorang raja.",
@@ -6815,7 +6784,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Rom menyesuaikan teknik Yunani dengan bahan baharu. Apakah hubungan yang ditunjukkan oleh perkembangan ini?",
+    question:
+      "Rom menyesuaikan teknik Yunani dengan bahan baharu. Apakah hubungan yang ditunjukkan oleh perkembangan ini?",
     options: [
       "Reka bentuk disalin tanpa penyesuaian",
       "Semua pengetahuan terdahulu ditinggalkan",
@@ -6849,7 +6819,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Colosseum mempunyai arena pusat, tempat duduk bertingkat dan banyak pintu masuk. Apakah fungsi gabungan ciri ini?",
+    question:
+      "Colosseum mempunyai arena pusat, tempat duduk bertingkat dan banyak pintu masuk. Apakah fungsi gabungan ciri ini?",
     options: [
       "Menyediakan trek untuk perlumbaan kereta kuda",
       "Menampung pertandingan gladiator dan mengurus penonton",
@@ -6857,7 +6828,8 @@ export const quizzes: QuizQuestion[] = [
       "Mengumpulkan peserta upacara menghadap altar pemujaan",
     ],
     answerIndex: 1,
-    explanation: "Arena Colosseum menempatkan pertandingan, manakala tempat duduk bertingkat dan banyak pintu masuk membantu pengurusan penonton yang ramai.",
+    explanation:
+      "Arena Colosseum menempatkan pertandingan, manakala tempat duduk bertingkat dan banyak pintu masuk membantu pengurusan penonton yang ramai.",
   },
   {
     id: "sej-f1-c6-q16",
@@ -6900,12 +6872,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Medium",
     question: "Bandar Rom memerlukan air dari sumber jauh. Binaan manakah diperlukan?",
-    options: [
-      "Colosseum",
-      "Amfiteater",
-      "Tembok pertahanan",
-      "Akueduk",
-    ],
+    options: ["Colosseum", "Amfiteater", "Tembok pertahanan", "Akueduk"],
     answerIndex: 3,
     explanation:
       "Akueduk membawa air dari sumber ke bandar untuk memenuhi keperluan penduduk dan pelbagai kemudahan awam Rom.",
@@ -6933,7 +6900,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Selain kebersihan, tempat mandi awam Rom turut menyediakan kemudahan untuk kegiatan apakah?",
+    question:
+      "Selain kebersihan, tempat mandi awam Rom turut menyediakan kemudahan untuk kegiatan apakah?",
     options: [
       "Latihan tentera dan penyimpanan senjata",
       "Pembelajaran dan pertemuan masyarakat",
@@ -6967,7 +6935,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Athens melibatkan keputusan langsung warganegara. Apakah ciri demokrasi perwakilan yang berbeza?",
+    question:
+      "Athens melibatkan keputusan langsung warganegara. Apakah ciri demokrasi perwakilan yang berbeza?",
     options: [
       "Penyertaan tanpa pengundian",
       "Pemilihan wakil rakyat",
@@ -6984,8 +6953,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Easy",
-    question:
-      "Apakah fungsi utama Juri dalam sistem pemerintahan Athens?",
+    question: "Apakah fungsi utama Juri dalam sistem pemerintahan Athens?",
     options: [
       "Mengurus pendidikan dan kutipan cukai",
       "Melaksanakan keputusan sebagai ahli Majlis",
@@ -7002,13 +6970,9 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Easy",
-    question: "Sistem apakah membolehkan warganegara layak menyertai pemerintahan melalui Dewan Perhimpunan Athens?",
-    options: [
-      "Sistem monarki",
-      "Sistem aristokrasi",
-      "Sistem tirani",
-      "Sistem demokrasi",
-    ],
+    question:
+      "Sistem apakah membolehkan warganegara layak menyertai pemerintahan melalui Dewan Perhimpunan Athens?",
+    options: ["Sistem monarki", "Sistem aristokrasi", "Sistem tirani", "Sistem demokrasi"],
     answerIndex: 3,
     explanation:
       "Demokrasi Athens melibatkan warganegara lelaki yang layak dalam perbincangan dan keputusan melalui Dewan Perhimpunan negara kota.",
@@ -7019,7 +6983,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Jalan raya menghubungkan wilayah Rom yang berjauhan. Bagaimanakah keadaan ini mengukuhkan kawalan empayar?",
+    question:
+      "Jalan raya menghubungkan wilayah Rom yang berjauhan. Bagaimanakah keadaan ini mengukuhkan kawalan empayar?",
     options: [
       "Menggantikan pegawai pentadbiran setiap wilayah",
       "Menjadikan sempadan tidak memerlukan kawalan",
@@ -7053,7 +7018,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Rom mempunyai dana pembinaan, tetapi sebuah projek kekurangan jurubina mahir. Mengapakah kewangan sahaja tidak mencukupi?",
+    question:
+      "Rom mempunyai dana pembinaan, tetapi sebuah projek kekurangan jurubina mahir. Mengapakah kewangan sahaja tidak mencukupi?",
     options: [
       "Pembinaan turut memerlukan kepakaran mengolah bahan",
       "Pembinaan turut memerlukan peluasan wilayah empayar",
@@ -7061,7 +7027,8 @@ export const quizzes: QuizQuestion[] = [
       "Pembinaan turut memerlukan pembukaan laluan perdagangan",
     ],
     answerIndex: 0,
-    explanation: "Seni bina Rom berkembang melalui gabungan kewangan, kepakaran dan teknologi, maka dana sahaja tidak menjamin kejayaan pembinaan.",
+    explanation:
+      "Seni bina Rom berkembang melalui gabungan kewangan, kepakaran dan teknologi, maka dana sahaja tidak menjamin kejayaan pembinaan.",
   },
   {
     id: "sej-f1-c6-q28",
@@ -7069,7 +7036,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Hard",
-    question: "Warganegara Athens membahaskan dua cadangan dasar. Tindakan manakah mencerminkan demokrasi langsung?",
+    question:
+      "Warganegara Athens membahaskan dua cadangan dasar. Tindakan manakah mencerminkan demokrasi langsung?",
     options: [
       "Raja mewariskan keputusan kepada puteranya",
       "Bangsawan menetapkan keputusan tanpa perhimpunan",
@@ -7103,13 +7071,9 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Easy",
-    question: "Campuran air, kapur dan abu gunung berapi menghasilkan bahan binaan Rom yang manakah?",
-    options: [
-      "Simen",
-      "Kayu",
-      "Gangsa",
-      "Kaca",
-    ],
+    question:
+      "Campuran air, kapur dan abu gunung berapi menghasilkan bahan binaan Rom yang manakah?",
+    options: ["Simen", "Kayu", "Gangsa", "Kaca"],
     answerIndex: 0,
     explanation:
       "Simen Rom menggunakan air, kapur dan abu gunung berapi, yang menjadi bahan asas dalam teknologi pembinaannya.",
@@ -7139,7 +7103,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Bagaimanakah kedudukan Magadha di Lembah Ganges membantu kemunculannya sebagai kuasa penting?",
+    question:
+      "Bagaimanakah kedudukan Magadha di Lembah Ganges membantu kemunculannya sebagai kuasa penting?",
     options: [
       "Mengawal laluan perdagangan utama Sungai Ganges",
       "Menguasai pelabuhan pesisir di Teluk Cambay",
@@ -7147,7 +7112,8 @@ export const quizzes: QuizQuestion[] = [
       "Menguasai perdagangan pesisir di selatan India",
     ],
     answerIndex: 0,
-    explanation: "Kedudukan Magadha di Lembah Ganges membolehkannya mengawal laluan perdagangan utama sungai itu dan mengukuhkan pengaruh kerajaan.",
+    explanation:
+      "Kedudukan Magadha di Lembah Ganges membolehkannya mengawal laluan perdagangan utama sungai itu dan mengukuhkan pengaruh kerajaan.",
   },
   {
     id: "sej-f1-c7-q3",
@@ -7158,7 +7124,8 @@ export const quizzes: QuizQuestion[] = [
     question: "Siapakah pengasas Dinasti Maurya yang menyatukan utara India?",
     options: ["Raja Asoka", "Bindusara", "Chandragupta Maurya", "Chanakya"],
     answerIndex: 2,
-    explanation: "Chandragupta Maurya mengasaskan Dinasti Maurya dan memperluas kekuasaan melalui ketenteraan sehingga membentuk empayar yang berpusat di Pataliputra.",
+    explanation:
+      "Chandragupta Maurya mengasaskan Dinasti Maurya dan memperluas kekuasaan melalui ketenteraan sehingga membentuk empayar yang berpusat di Pataliputra.",
   },
   {
     id: "sej-f1-c7-q4",
@@ -7166,7 +7133,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Selepas Tamadun Indus berakhir, ke kawasan manakah pusat perkembangan Tamadun India beralih?",
+    question:
+      "Selepas Tamadun Indus berakhir, ke kawasan manakah pusat perkembangan Tamadun India beralih?",
     options: [
       "Dataran Tinggi Deccan",
       "Lembah Sungai Narmada",
@@ -7174,7 +7142,8 @@ export const quizzes: QuizQuestion[] = [
       "Lembah Sungai Ganges",
     ],
     answerIndex: 3,
-    explanation: "Peralihan pusat tamadun dari Lembah Indus ke Lembah Ganges menandakan tahap baharu dalam perkembangan Tamadun India.",
+    explanation:
+      "Peralihan pusat tamadun dari Lembah Indus ke Lembah Ganges menandakan tahap baharu dalam perkembangan Tamadun India.",
   },
   {
     id: "sej-f1-c7-q5",
@@ -7182,7 +7151,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Tentera India terlatih tetapi perbendaharaan lemah. Mengapakah perluasan kuasa boleh terjejas?",
+    question:
+      "Tentera India terlatih tetapi perbendaharaan lemah. Mengapakah perluasan kuasa boleh terjejas?",
     options: [
       "Latihan tentera menggantikan keperluan perbelanjaan",
       "Diplomasi terhenti apabila penduduk bertambah",
@@ -7250,13 +7220,9 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Easy",
-    question: "Agama manakah yang diberi tumpuan oleh Asoka untuk disebarkan selepas Perang Kalinga?",
-    options: [
-      "Buddha",
-      "Hindu",
-      "Jainisme",
-      "Zoroastrianisme",
-    ],
+    question:
+      "Agama manakah yang diberi tumpuan oleh Asoka untuk disebarkan selepas Perang Kalinga?",
+    options: ["Buddha", "Hindu", "Jainisme", "Zoroastrianisme"],
     answerIndex: 0,
     explanation:
       "Selepas Perang Kalinga, Asoka memberi tumpuan kepada penyebaran agama Buddha melalui pendekatan yang lebih aman dan berperikemanusiaan.",
@@ -7364,7 +7330,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Bagaimanakah penyeragaman sistem tulisan membantu perkembangan pendidikan Tamadun China?",
+    question:
+      "Bagaimanakah penyeragaman sistem tulisan membantu perkembangan pendidikan Tamadun China?",
     options: [
       "Memudahkan perkongsian bahan bertulis",
       "Mempelbagaikan tulisan antara wilayah",
@@ -7382,7 +7349,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     difficulty: "Easy",
     question: "Apakah tiga tahap pendidikan dalam Tamadun China?",
-    options: ["Rendah, menengah dan tinggi", "Daerah, wilayah dan istana", "Keluarga, kampung dan empayar", "Awam, tentera dan perdagangan"],
+    options: [
+      "Rendah, menengah dan tinggi",
+      "Daerah, wilayah dan istana",
+      "Keluarga, kampung dan empayar",
+      "Awam, tentera dan perdagangan",
+    ],
     answerIndex: 0,
     explanation:
       "Sistem pendidikan China mempunyai tiga tahap, iaitu pendidikan rendah, menengah dan tinggi.",
@@ -7393,7 +7365,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Peperiksaan China menggunakan sistem seragam dan menghukum peniruan. Apakah tujuan gabungan langkah ini?",
+    question:
+      "Peperiksaan China menggunakan sistem seragam dan menghukum peniruan. Apakah tujuan gabungan langkah ini?",
     options: [
       "Memilih calon mengikut kekayaan keluarga",
       "Menilai kebolehan calon dengan lebih adil",
@@ -7427,7 +7400,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Pelajar mentafsir buku suci serta mempelajari etika dan tanggungjawab negara. Apakah peringkat pendidikannya?",
+    question:
+      "Pelajar mentafsir buku suci serta mempelajari etika dan tanggungjawab negara. Apakah peringkat pendidikannya?",
     options: [
       "Pendidikan rendah",
       "Pendidikan menengah",
@@ -7444,7 +7418,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Seorang calon lulus peperiksaan dan dilantik pegawai China. Perubahan ini menunjukkan hubungan apakah?",
+    question:
+      "Seorang calon lulus peperiksaan dan dilantik pegawai China. Perubahan ini menunjukkan hubungan apakah?",
     options: [
       "Jawatan diwarisi melalui pertalian keluarga",
       "Pendidikan membuka peluang peningkatan status sosial",
@@ -7469,7 +7444,8 @@ export const quizzes: QuizQuestion[] = [
       "Menyebarkan pengaruh melalui hubungan diplomasi keagamaan",
     ],
     answerIndex: 2,
-    explanation: "Sumber manusia menyediakan tenaga yang mencukupi untuk menjalankan pentadbiran dan mengurus wilayah kerajaan India dengan berkesan.",
+    explanation:
+      "Sumber manusia menyediakan tenaga yang mencukupi untuk menjalankan pentadbiran dan mengurus wilayah kerajaan India dengan berkesan.",
   },
   {
     id: "sej-f1-c7-q23",
@@ -7581,15 +7557,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Hard",
-    question: "Sebuah sekolah China menekankan perundangan, kemudian beralih kepada ajaran Konfusianisme. Peralihan pemerintahan manakah paling sesuai dengan perubahan itu?",
-    options: [
-      "Han kepada Qin",
-      "Qin kepada Zhou",
-      "Zhou kepada Qin",
-      "Qin kepada Han",
-    ],
+    question:
+      "Sebuah sekolah China menekankan perundangan, kemudian beralih kepada ajaran Konfusianisme. Peralihan pemerintahan manakah paling sesuai dengan perubahan itu?",
+    options: ["Han kepada Qin", "Qin kepada Zhou", "Zhou kepada Qin", "Qin kepada Han"],
     answerIndex: 3,
-    explanation: "Dinasti Qin menekankan perundangan, manakala Dinasti Han menekankan Konfusianisme, maka perubahan kandungan pendidikan mencerminkan peralihan pemerintahan tersebut.",
+    explanation:
+      "Dinasti Qin menekankan perundangan, manakala Dinasti Han menekankan Konfusianisme, maka perubahan kandungan pendidikan mencerminkan peralihan pemerintahan tersebut.",
   },
   {
     id: "sej-f1-c7-q30",
@@ -7597,7 +7570,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     difficulty: "Medium",
-    question: "Padanan manakah menggambarkan peningkatan utama Tamadun India dan China yang dipelajari?",
+    question:
+      "Padanan manakah menggambarkan peningkatan utama Tamadun India dan China yang dipelajari?",
     options: [
       "India: pendidikan; China: perluasan kuasa",
       "India: seni bina; China: demokrasi",
@@ -7616,7 +7590,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Easy",
-    question: "Menurut buku teks, mengapakah masyarakat Arab sebelum Islam dikenali sebagai masyarakat Jahiliah?",
+    question:
+      "Menurut buku teks, mengapakah masyarakat Arab sebelum Islam dikenali sebagai masyarakat Jahiliah?",
     options: [
       "Ketiadaan nabi dan kitab sebagai petunjuk",
       "Ketiadaan kegiatan perdagangan antara masyarakat",
@@ -7634,12 +7609,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Easy",
     question: "Apakah sistem sosial utama masyarakat Arab Jahiliah?",
-    options: [
-      "Sistem feudal",
-      "Sistem kabilah",
-      "Sistem demokrasi",
-      "Sistem oligarki",
-    ],
+    options: ["Sistem feudal", "Sistem kabilah", "Sistem demokrasi", "Sistem oligarki"],
     answerIndex: 1,
     explanation:
       "Masyarakat Arab hidup dalam kabilah yang berasaskan keturunan. Semangat assabiyah yang keterlaluan boleh menyebabkan persengketaan antara kabilah.",
@@ -7658,7 +7628,8 @@ export const quizzes: QuizQuestion[] = [
       "Kedudukan sebagai pengeluar kemenyan di Hadramaut",
     ],
     answerIndex: 2,
-    explanation: "Pedagang Hijaz memperoleh barangan dari Yaman dan Habsyah untuk dijual di Syam serta Mesir, dengan Makkah sebagai pusat.",
+    explanation:
+      "Pedagang Hijaz memperoleh barangan dari Yaman dan Habsyah untuk dijual di Syam serta Mesir, dengan Makkah sebagai pusat.",
   },
   {
     id: "sej-f1-c8-q4",
@@ -7683,7 +7654,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Mengapakah perintah membaca dalam wahyu pertama penting kepada perkembangan Tamadun Islam?",
+    question:
+      "Mengapakah perintah membaca dalam wahyu pertama penting kepada perkembangan Tamadun Islam?",
     options: [
       "Menentukan keturunan pemimpin sesebuah kabilah",
       "Menetapkan laluan perdagangan antara wilayah",
@@ -7717,7 +7689,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Madinah dihuni masyarakat pelbagai agama. Bagaimanakah Piagam Madinah membantu mengurus perbezaan ini?",
+    question:
+      "Madinah dihuni masyarakat pelbagai agama. Bagaimanakah Piagam Madinah membantu mengurus perbezaan ini?",
     options: [
       "Menyeragamkan semua kepercayaan penduduk",
       "Mengehadkan pentadbiran kepada urusan perdagangan",
@@ -7752,12 +7725,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Easy",
     question: "Pemimpin berbincang sebelum membuat keputusan. Apakah prinsip Islam yang diamalkan?",
-    options: [
-      "Zakat",
-      "Dakwah",
-      "Hijrah",
-      "Syura",
-    ],
+    options: ["Zakat", "Dakwah", "Hijrah", "Syura"],
     answerIndex: 3,
     explanation:
       "Syura ialah perundingan sebelum keputusan dibuat, yang membolehkan pandangan pihak terlibat dipertimbangkan dalam urusan pemerintahan.",
@@ -7768,7 +7736,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Pentadbir dua wilayah menggunakan rujukan tarikh berbeza. Pembaharuan Umar al-Khattab manakah paling berkaitan untuk menyelaraskan urusan mereka?",
+    question:
+      "Pentadbir dua wilayah menggunakan rujukan tarikh berbeza. Pembaharuan Umar al-Khattab manakah paling berkaitan untuk menyelaraskan urusan mereka?",
     options: [
       "Penggunaan takwim Hijrah bagi urusan pentadbiran",
       "Pembahagian wilayah kepada beberapa bahagian pentadbiran",
@@ -7776,7 +7745,8 @@ export const quizzes: QuizQuestion[] = [
       "Penyusunan tanggungjawab pegawai dalam pentadbiran wilayah",
     ],
     answerIndex: 0,
-    explanation: "Takwim Hijrah menyediakan rujukan masa bersama, membantu penyelarasan tarikh urusan pentadbiran antara wilayah pada zaman Umar.",
+    explanation:
+      "Takwim Hijrah menyediakan rujukan masa bersama, membantu penyelarasan tarikh urusan pentadbiran antara wilayah pada zaman Umar.",
   },
   {
     id: "sej-f1-c8-q11",
@@ -7835,15 +7805,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Easy",
-    question: "Hiasan masjid memaparkan tulisan ayat al-Quran dalam susunan yang indah. Unsur seni manakah ditunjukkan?",
-    options: [
-      "Motif tumbuhan",
-      "Corak geometri",
-      "Seni kaligrafi",
-      "Ukiran kerawang",
-    ],
+    question:
+      "Hiasan masjid memaparkan tulisan ayat al-Quran dalam susunan yang indah. Unsur seni manakah ditunjukkan?",
+    options: ["Motif tumbuhan", "Corak geometri", "Seni kaligrafi", "Ukiran kerawang"],
     answerIndex: 2,
-    explanation: "Kaligrafi atau seni khat menggunakan tulisan yang indah sebagai hiasan, termasuk ayat al-Quran pada bangunan seni bina Islam.",
+    explanation:
+      "Kaligrafi atau seni khat menggunakan tulisan yang indah sebagai hiasan, termasuk ayat al-Quran pada bangunan seni bina Islam.",
   },
   {
     id: "sej-f1-c8-q15",
@@ -7886,7 +7853,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Masjid di Malaysia mempunyai banyak tingkap, manakala masjid di China menggunakan bentuk bumbung tradisional tempatan. Apakah faktor penyesuaian masing-masing?",
+    question:
+      "Masjid di Malaysia mempunyai banyak tingkap, manakala masjid di China menggunakan bentuk bumbung tradisional tempatan. Apakah faktor penyesuaian masing-masing?",
     options: [
       "Malaysia: iklim; China: budaya",
       "Malaysia: budaya; China: iklim",
@@ -7894,7 +7862,8 @@ export const quizzes: QuizQuestion[] = [
       "Malaysia: perdagangan; China: pertahanan",
     ],
     answerIndex: 0,
-    explanation: "Tingkap membantu keselesaan dalam iklim panas dan lembap, manakala bumbung tradisional China mencerminkan penyesuaian budaya tempatan.",
+    explanation:
+      "Tingkap membantu keselesaan dalam iklim panas dan lembap, manakala bumbung tradisional China mencerminkan penyesuaian budaya tempatan.",
   },
   {
     id: "sej-f1-c8-q18",
@@ -7931,7 +7900,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Golongan murtad enggan membayar zakat selepas kewafatan Nabi Muhammad SAW. Bagaimanakah Abu Bakar al-Siddiq menangani cabaran tersebut?",
+    question:
+      "Golongan murtad enggan membayar zakat selepas kewafatan Nabi Muhammad SAW. Bagaimanakah Abu Bakar al-Siddiq menangani cabaran tersebut?",
     options: [
       "Memimpin peperangan al-Riddah terhadap golongan berkenaan",
       "Membahagikan wilayah baharu di Iraq dan Syam",
@@ -7939,7 +7909,8 @@ export const quizzes: QuizQuestion[] = [
       "Menyelaraskan mushaf untuk kegunaan wilayah Islam",
     ],
     answerIndex: 0,
-    explanation: "Abu Bakar al-Siddiq memimpin peperangan al-Riddah terhadap golongan murtad yang enggan membayar zakat selepas kewafatan baginda.",
+    explanation:
+      "Abu Bakar al-Siddiq memimpin peperangan al-Riddah terhadap golongan murtad yang enggan membayar zakat selepas kewafatan baginda.",
   },
   {
     id: "sej-f1-c8-q21",
@@ -7947,7 +7918,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Umar al-Khattab membuka wilayah di Iraq, Syam dan Mesir lalu membahagikannya kepada beberapa bahagian. Mengapakah kedua-dua tindakan ini berkait?",
+    question:
+      "Umar al-Khattab membuka wilayah di Iraq, Syam dan Mesir lalu membahagikannya kepada beberapa bahagian. Mengapakah kedua-dua tindakan ini berkait?",
     options: [
       "Pembukaan wilayah memerlukan penyelarasan bacaan al-Quran",
       "Pembukaan wilayah memerlukan penetapan takwim baharu",
@@ -7955,7 +7927,8 @@ export const quizzes: QuizQuestion[] = [
       "Pembukaan wilayah memerlukan penyusunan pentadbiran setempat",
     ],
     answerIndex: 3,
-    explanation: "Wilayah yang semakin luas dibahagikan pada zaman Umar al-Khattab untuk memudahkan pentadbiran kawasan di bawah pemerintahan Islam.",
+    explanation:
+      "Wilayah yang semakin luas dibahagikan pada zaman Umar al-Khattab untuk memudahkan pentadbiran kawasan di bawah pemerintahan Islam.",
   },
   {
     id: "sej-f1-c8-q22",
@@ -7963,7 +7936,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah perbezaan usaha berkaitan al-Quran pada zaman Abu Bakar al-Siddiq dan Uthman bin Affan?",
+    question:
+      "Apakah perbezaan usaha berkaitan al-Quran pada zaman Abu Bakar al-Siddiq dan Uthman bin Affan?",
     options: [
       "Abu Bakar: penyelarasan mushaf; Uthman: pengumpulan al-Quran",
       "Abu Bakar: pengumpulan al-Quran; Uthman: penyelarasan mushaf",
@@ -7971,7 +7945,8 @@ export const quizzes: QuizQuestion[] = [
       "Abu Bakar: penetapan takwim; Uthman: penyelarasan mushaf",
     ],
     answerIndex: 1,
-    explanation: "Usaha pengumpulan al-Quran bermula pada zaman Abu Bakar, manakala Uthman menyelaraskan mushaf untuk kegunaan masyarakat Islam.",
+    explanation:
+      "Usaha pengumpulan al-Quran bermula pada zaman Abu Bakar, manakala Uthman menyelaraskan mushaf untuk kegunaan masyarakat Islam.",
   },
   {
     id: "sej-f1-c8-q23",
@@ -8030,7 +8005,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Kaum Badwi berpindah mencari rumput dan air. Kegiatan apakah mendorong perpindahan ini?",
+    question:
+      "Kaum Badwi berpindah mencari rumput dan air. Kegiatan apakah mendorong perpindahan ini?",
     options: [
       "Pertanian menetap di kawasan kota",
       "Penternakan binatang secara nomad",
@@ -8047,7 +8023,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question: "Satu kajian membandingkan pembahagian wilayah baharu dengan usaha mengekalkan kestabilan ketika konflik dalaman. Padanan khalifah manakah paling sesuai?",
+    question:
+      "Satu kajian membandingkan pembahagian wilayah baharu dengan usaha mengekalkan kestabilan ketika konflik dalaman. Padanan khalifah manakah paling sesuai?",
     options: [
       "Pembahagian: Ali; kestabilan ketika konflik: Umar",
       "Pembahagian: Umar; kestabilan ketika konflik: Ali",
@@ -8055,7 +8032,8 @@ export const quizzes: QuizQuestion[] = [
       "Pembahagian: Uthman; kestabilan ketika konflik: Abu Bakar",
     ],
     answerIndex: 1,
-    explanation: "Umar menyusun pentadbiran wilayah yang meluas, manakala Ali berusaha mengekalkan kestabilan pemerintahan ketika menghadapi konflik dalaman.",
+    explanation:
+      "Umar menyusun pentadbiran wilayah yang meluas, manakala Ali berusaha mengekalkan kestabilan pemerintahan ketika menghadapi konflik dalaman.",
   },
   {
     id: "sej-f1-c8-q28",
@@ -8063,7 +8041,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah langkah Nabi Muhammad SAW untuk mengukuhkan hubungan penduduk asal Madinah dengan umat Islam yang berhijrah?",
+    question:
+      "Apakah langkah Nabi Muhammad SAW untuk mengukuhkan hubungan penduduk asal Madinah dengan umat Islam yang berhijrah?",
     options: [
       "Mengadakan perjanjian Hudaibiyah dengan Quraisy",
       "Menghantar utusan kepada pemerintah kerajaan luar",
@@ -8071,7 +8050,8 @@ export const quizzes: QuizQuestion[] = [
       "Mempersaudarakan Muhajirin dengan Ansar",
     ],
     answerIndex: 3,
-    explanation: "Persaudaraan Muhajirin dengan Ansar mengukuhkan hubungan dan kerjasama, lalu membantu pembentukan masyarakat Islam yang bersatu di Madinah.",
+    explanation:
+      "Persaudaraan Muhajirin dengan Ansar mengukuhkan hubungan dan kerjasama, lalu membantu pembentukan masyarakat Islam yang bersatu di Madinah.",
   },
   {
     id: "sej-f1-c8-q29",
@@ -8079,14 +8059,8 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question:
-      "Pengairan, benih dan baja yang ditambah baik menunjukkan kemajuan bidang apakah?",
-    options: [
-      "Strategi ketenteraan",
-      "Seni khat",
-      "Teknologi pertanian",
-      "Sistem kehakiman",
-    ],
+    question: "Pengairan, benih dan baja yang ditambah baik menunjukkan kemajuan bidang apakah?",
+    options: ["Strategi ketenteraan", "Seni khat", "Teknologi pertanian", "Sistem kehakiman"],
     answerIndex: 2,
     explanation:
       "Penambahbaikan pengairan, benih dan baja menunjukkan penggunaan ilmu untuk meningkatkan hasil pertanian dalam perkembangan Tamadun Islam.",
@@ -8110,6 +8084,7 @@ export const quizzes: QuizQuestion[] = [
   },
 
   // Sejarah Form 2 Chapter 1 - Kerajaan Alam Melayu
+  // 1.1 Konsep Alam Melayu
   {
     id: "sej-f2-c1-q1",
     subjectId: "sejarah",
@@ -8124,7 +8099,7 @@ export const quizzes: QuizQuestion[] = [
       "Seni bina, muzik dan tarian",
     ],
     answerIndex: 0,
-    explanation: "Konsep Alam Melayu dapat dilihat dari aspek geografi, bahasa dan budaya.",
+    explanation: "Konsep Alam Melayu dapat dilihat daripada aspek geografi, bahasa dan budaya.",
   },
   {
     id: "sej-f2-c1-q2",
@@ -8132,15 +8107,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Apakah yang dirangkumi oleh Alam Melayu dari aspek geografi?",
+    question: "Menurut Ismail Hussein, Dunia Melayu turut meliputi kawasan manakah?",
     options: [
-      "Gugusan kepulauan dan tanah besar di Asia Tenggara",
-      "Hanya Semenanjung Tanah Melayu",
-      "Seluruh benua Asia",
-      "Kawasan Eropah dan Afrika",
+      "Madagaskar dan Australia",
+      "Selatan Vietnam, Kemboja dan selatan Myanmar",
+      "Tenasserim dan Kepulauan Solomon",
+      "Taiwan dan Kepulauan Pasifik",
     ],
-    answerIndex: 0,
-    explanation: "Alam Melayu merangkumi gugusan kepulauan dan tanah besar di Asia Tenggara.",
+    answerIndex: 1,
+    explanation:
+      "Ismail Hussein berpandangan Dunia Melayu meliputi selatan Vietnam, Kemboja, selatan Myanmar, Segenting Kra, Malaysia, Indonesia, Brunei dan Filipina.",
   },
   {
     id: "sej-f2-c1-q3",
@@ -8148,51 +8124,61 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question:
-      "Siapakah tokoh yang berpandangan Alam Melayu meliputi Madagaskar, Tanah Melayu, Taiwan, Papua New Guinea, Australia dan New Zealand?",
-    options: [
-      "Nik Hassan Shuhaimi Nik Abdul Rahman",
-      "Abdul Hadi Haji Hassan",
-      "Ismail Hussein",
-      "Alfred Russel Wallace",
-    ],
-    answerIndex: 0,
-    explanation:
-      "Nik Hassan Shuhaimi Nik Abdul Rahman berpandangan Alam Melayu meliputi kawasan tersebut.",
+    question: "Bahasa Melayu tergolong dalam keluarga bahasa yang manakah?",
+    options: ["Bahasa Sino-Tibet", "Bahasa Indo-Eropah", "Bahasa Austronesia", "Bahasa Semitik"],
+    answerIndex: 2,
+    explanation: "Bahasa Melayu tergolong dalam keluarga bahasa Austronesia.",
   },
   {
     id: "sej-f2-c1-q4",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Bahasa Melayu tergolong dalam keluarga bahasa apa?",
-    options: ["Austronesia", "Indo-Eropah", "Sino-Tibet", "Afro-Asiatik"],
-    answerIndex: 0,
-    explanation: "Bahasa Melayu tergolong dalam keluarga Austronesia.",
+    difficulty: "Medium",
+    question:
+      "Bahasa Melayu, yang tergolong dalam keluarga Austronesia, merupakan salah satu daripada kira-kira berapa bahasa yang dituturkan di Alam Melayu?",
+    options: ["50 bahasa", "100 bahasa", "500 bahasa", "200 bahasa"],
+    answerIndex: 3,
+    explanation:
+      "Bahasa Austronesia, termasuk bahasa Melayu, berada dalam kalangan kira-kira 200 bahasa yang dituturkan di Alam Melayu.",
   },
   {
     id: "sej-f2-c1-q5",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Berapakah jumlah bahasa yang dituturkan di Alam Melayu?",
-    options: ["Lebih 200 bahasa", "Lebih 20 bahasa", "Lebih 50 bahasa", "Lebih 1000 bahasa"],
+    difficulty: "Hard",
+    question: "Pada tahun 1972, UNESCO memilih istilah 'Melayu' untuk tujuan apakah?",
+    options: [
+      "Merujuk kumpulan etnik penutur bahasa Melayu di Asia Tenggara",
+      "Menamakan semula keluarga bahasa Austronesia",
+      "Menggantikan nama Alam Melayu",
+      "Mengiktiraf Bahasa Melayu sebagai bahasa rasmi serantau",
+    ],
     answerIndex: 0,
-    explanation: "Terdapat lebih 200 bahasa yang dituturkan di Alam Melayu.",
+    explanation:
+      "Pada tahun 1972, UNESCO memilih istilah 'Melayu' untuk merujuk kumpulan etnik yang menuturkan bahasa Melayu di Asia Tenggara. Sebelum ini, istilah Melayu-Polinesia pernah digunakan untuk menggambarkan keluarga bahasa Austronesia.",
   },
   {
     id: "sej-f2-c1-q6",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Apakah istilah lama yang digantikan dengan Austronesia?",
-    options: ["Melayu-Polinesia", "Indo-Melayu", "Sino-Melayu", "Eropah-Melayu"],
-    answerIndex: 0,
-    explanation: "Istilah Melayu-Polinesia digantikan dengan Austronesia.",
+    difficulty: "Medium",
+    question:
+      "Menurut A. Aziz Deraman, budaya di Alam Melayu menunjukkan persamaan dalam aspek yang manakah?",
+    options: [
+      "Mata wang dan sistem cukai",
+      "Kesenian, adat, nilai masyarakat dan gotong-royong",
+      "Bahasa rasmi kerajaan sahaja",
+      "Sempadan politik moden",
+    ],
+    answerIndex: 1,
+    explanation:
+      "A. Aziz Deraman menyatakan budaya di Alam Melayu menunjukkan persamaan dalam kesenian, adat, nilai masyarakat dan gotong-royong.",
   },
+
+  // 1.2 Kewujudan Kerajaan di Alam Melayu
   {
     id: "sej-f2-c1-q7",
     subjectId: "sejarah",
@@ -8200,10 +8186,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Easy",
     question:
-      "Pada tahun berapakah UNESCO menggantikan istilah Melayu-Polinesia dengan Austronesia?",
-    options: ["1972", "1955", "1981", "1965"],
-    answerIndex: 0,
-    explanation: "UNESCO menggantikan istilah tersebut pada tahun 1972.",
+      "Kerajaan Alam Melayu bermula daripada petempatan kecil yang berkembang menjadi apakah sebelum menjadi sebuah kerajaan?",
+    options: ["Kem tentera", "Pusat pentadbiran kolonial", "Pelabuhan", "Ibu kota negara moden"],
+    answerIndex: 2,
+    explanation:
+      "Kerajaan Alam Melayu bermula daripada petempatan kecil yang berkembang menjadi pelabuhan dan seterusnya menjadi sebuah kerajaan.",
   },
   {
     id: "sej-f2-c1-q8",
@@ -8211,78 +8198,98 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question:
-      "Siapakah tokoh yang menyatakan budaya Alam Melayu menunjukkan persamaan dalam kesenian, adat dan nilai masyarakat?",
-    options: ["A. Aziz Deraman", "Asmah Haji Omar", "Sutan Takdir Alisjahbana", "Ding Choo Ming"],
-    answerIndex: 0,
-    explanation:
-      "Menurut A. Aziz Deraman, budaya Alam Melayu menunjukkan persamaan dalam kesenian, adat dan nilai masyarakat.",
+    question: "Kerajaan Srivijaya terletak di lembah sungai manakah?",
+    options: ["Sungai Mekong", "Sungai Brantas", "Sungai Bujang", "Sungai Musi"],
+    answerIndex: 3,
+    explanation: "Kerajaan Srivijaya terletak di Lembah Sungai Musi, Sumatera.",
   },
   {
     id: "sej-f2-c1-q9",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Pada abad manakah Kerajaan Funan mula wujud?",
-    options: ["Abad Pertama", "Abad Kedua", "Abad Kelima", "Abad Kesembilan"],
+    difficulty: "Medium",
+    question:
+      "Sebuah kerajaan awal muncul pada abad kesembilan dan berpusat di Hariharalaya. Kerajaan manakah ini?",
+    options: ["Angkor", "Champa", "Majapahit", "Kedah Tua"],
     answerIndex: 0,
-    explanation: "Kerajaan Funan muncul seawal abad pertama.",
+    explanation:
+      "Kerajaan Angkor muncul pada abad kesembilan dan berpusat di Hariharalaya di Lembah Sungai Mekong.",
   },
   {
     id: "sej-f2-c1-q10",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Pada abad manakah Kerajaan Kedah Tua mula wujud?",
-    options: ["Abad Kelima", "Abad Pertama", "Abad Ketujuh", "Abad Ke-13"],
-    answerIndex: 0,
-    explanation: "Kerajaan Kedah Tua wujud pada abad kelima.",
+    difficulty: "Medium",
+    question: "Manakah antara berikut ialah pusat pemerintahan Kerajaan Kedah Tua?",
+    options: ["Vyadhapura", "Sungai Mas dan Pangkalan Bujang", "Kota Trowulan", "Pangkalan"],
+    answerIndex: 1,
+    explanation: "Kerajaan Kedah Tua berpusat di Sungai Mas dan Pangkalan Bujang.",
   },
   {
     id: "sej-f2-c1-q11",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Pada abad manakah Kerajaan Champa mula wujud?",
-    options: ["Abad Kedua", "Abad Pertama", "Abad Keenam", "Abad Kesembilan"],
-    answerIndex: 0,
-    explanation: "Kerajaan Champa wujud pada abad kedua.",
+    difficulty: "Hard",
+    question:
+      "Kerajaan Majapahit muncul pada abad ke-13 di Lembah Sungai Brantas, Jawa Timur. Antara pasangan lokasi-kerajaan berikut, yang manakah turut betul?",
+    options: [
+      "Gangga Nagara — Lembah Sungai Musi",
+      "Kedah Tua — Lembah Sungai Brantas",
+      "Champa — selatan dan tengah Vietnam",
+      "Funan — Jawa Timur",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Kerajaan Champa terletak di selatan dan tengah Vietnam, manakala Gangga Nagara, Kedah Tua dan Funan mempunyai lokasi yang berbeza daripada yang dinyatakan dalam pilihan lain.",
   },
   {
     id: "sej-f2-c1-q12",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Pada abad manakah Kerajaan Gangga Negara mula wujud?",
-    options: ["Abad Keenam", "Abad Kelima", "Abad Ketujuh", "Abad Ke-13"],
-    answerIndex: 0,
-    explanation: "Kerajaan Gangga Negara wujud pada abad keenam.",
+    difficulty: "Medium",
+    question:
+      "Kewujudan kerajaan Alam Melayu seawal abad pertama membuktikan perkara yang manakah?",
+    options: [
+      "Alam Melayu tidak mempunyai sebarang sistem pemerintahan",
+      "Alam Melayu hanya wujud selepas kedatangan penjajah Barat",
+      "Alam Melayu tidak menjalankan sebarang kegiatan ekonomi",
+      "Alam Melayu mempunyai tamadun yang setanding dengan tamadun dunia",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Kewujudan kerajaan Alam Melayu sejak abad pertama membuktikan bahawa Alam Melayu mempunyai tamadun yang setanding dengan tamadun dunia.",
   },
+
+  // 1.3 Kerajaan Alam Melayu yang Masyhur
   {
     id: "sej-f2-c1-q13",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Pada abad manakah Kerajaan Srivijaya mula wujud?",
-    options: ["Abad Ketujuh", "Abad Kedua", "Abad Keenam", "Abad Kesembilan"],
+    question:
+      "Kerajaan Funan diasaskan oleh Kaundinya, seorang Brahmin yang berkahwin dengan siapakah?",
+    options: ["Soma", "Sri Jayanasa", "Tribuana Tunggadewi", "Dewi Sita"],
     answerIndex: 0,
-    explanation: "Kerajaan Srivijaya wujud pada abad ketujuh.",
+    explanation:
+      "Kaundinya berkahwin dengan Soma, pemerintah wanita di Sungai Mekong, lalu membentuk kerajaan Funan.",
   },
   {
     id: "sej-f2-c1-q14",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Pada abad manakah Kerajaan Angkor mula wujud?",
-    options: ["Abad Kesembilan", "Abad Pertama", "Abad Kelima", "Abad Ke-13"],
-    answerIndex: 0,
-    explanation: "Kerajaan Angkor wujud pada abad kesembilan.",
+    difficulty: "Medium",
+    question:
+      "Funan mencapai kemasyhuran sebagai pusat perdagangan utama Alam Melayu pada abad ketiga, di bawah pemerintahan siapakah?",
+    options: ["Rudravarman", "Fan Shih-man", "Kaundinya", "Che Bong Nga"],
+    answerIndex: 1,
+    explanation:
+      "Di bawah Fan Shih-man, Funan meluaskan empayarnya dan menjadi pusat perdagangan utama Alam Melayu pada abad ketiga.",
   },
   {
     id: "sej-f2-c1-q15",
@@ -8290,54 +8297,72 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Siapakah pengasas Kerajaan Funan?",
-    options: ["Kaudinya", "Chu-Lien", "Raden Wijaya", "Jayavarman II"],
-    answerIndex: 0,
-    explanation: "Kerajaan Funan diasaskan oleh Kaudinya.",
+    question: "Kerajaan Champa diasaskan oleh Chu-Lien pada tahun manakah?",
+    options: ["92 Masihi", "292 Masihi", "192 Masihi", "692 Masihi"],
+    answerIndex: 2,
+    explanation:
+      "Chu-Lien mengasaskan kerajaan Champa pada tahun 192 Masihi dan membebaskan Champa daripada pengaruh China.",
   },
   {
     id: "sej-f2-c1-q16",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Apakah pusat Kerajaan Funan?",
-    options: ["Vyadhapura", "Indrapura", "Palembang", "Kota Trowulan"],
-    answerIndex: 0,
-    explanation: "Pusat Kerajaan Funan ialah Vyadhapura.",
+    difficulty: "Medium",
+    question:
+      "Zaman kemasyhuran Champa bermula di bawah pemerintahan Che Bong Nga. Apakah pencapaian pentingnya?",
+    options: [
+      "Membina Angkor Thom dan 102 buah hospital",
+      "Menakluk Selat Melaka dan Selat Sunda",
+      "Menjadi pusat pengajian agama Buddha",
+      "Mengatasi ancaman Dai Viet dan meluaskan empayar hingga Lembah Sungai Merah",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Che Bong Nga mengatasi ancaman Dai Viet, meluaskan empayar Champa hingga Lembah Sungai Merah dan membunuh Raja Tran Due Tong.",
   },
   {
     id: "sej-f2-c1-q17",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Siapakah pengasas Kerajaan Champa?",
-    options: ["Chu-Lien", "Kaudinya", "Jayavarman II", "Raden Wijaya"],
-    answerIndex: 0,
-    explanation: "Kerajaan Champa diasaskan oleh Chu-Lien.",
+    difficulty: "Medium",
+    question: "Srivijaya diasaskan pada tahun 683 Masihi oleh siapakah?",
+    options: ["Sangramadhananjaya", "Dapunta Hyang Sri Jayanasa", "Jayavarman II", "Raden Wijaya"],
+    answerIndex: 1,
+    explanation:
+      "Dapunta Hyang Sri Jayanasa mengasaskan kerajaan Srivijaya pada tahun 683 Masihi dan berpusat di Palembang.",
   },
   {
     id: "sej-f2-c1-q18",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Pada tahun berapakah Kerajaan Champa diasaskan?",
-    options: ["192 Masihi", "683 Masihi", "1294 Masihi", "1369 Masihi"],
-    answerIndex: 0,
-    explanation: "Kerajaan Champa diasaskan oleh Chu-Lien pada tahun 192 Masihi.",
+    difficulty: "Hard",
+    question:
+      "Srivijaya menguasai Selat Melaka dan Selat Sunda serta menjadi pusat pengajian agama Buddha semasa zaman kegemilangannya. Apakah yang menyebabkan kerajaan ini merosot pada tahun 1025?",
+    options: [
+      "Serangan Dai Viet",
+      "Serangan Kesultanan Demak",
+      "Serangan tentera Chola dari India",
+      "Serangan Siam",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Srivijaya diserang oleh tentera Chola dari India pada tahun 1025, menyebabkan kerajaan ini menjadi lemah.",
   },
   {
     id: "sej-f2-c1-q19",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Apakah pusat Kerajaan Srivijaya?",
-    options: ["Palembang", "Vyadhapura", "Hariharalaya", "Indrapura"],
-    answerIndex: 0,
-    explanation: "Kerajaan Srivijaya berpusat di Palembang.",
+    difficulty: "Medium",
+    question:
+      "Jayavarman VII, raja Angkor, terkenal kerana pembinaan Angkor Thom dan penubuhan berapa buah hospital?",
+    options: ["52 buah", "72 buah", "102 buah", "150 buah"],
+    answerIndex: 2,
+    explanation:
+      "Jayavarman VII meluaskan empayar Angkor hingga sempadan Annam, membina Angkor Thom dan mendirikan 102 buah hospital.",
   },
   {
     id: "sej-f2-c1-q20",
@@ -8345,49 +8370,60 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Siapakah pengasas Kerajaan Srivijaya?",
-    options: ["Dapunta Hyang Sri Jayanasa", "Jayavarman II", "Raden Wijaya", "Chu-Lien"],
-    answerIndex: 0,
-    explanation:
-      "Kerajaan Srivijaya diasaskan oleh Dapunta Hyang Sri Jayanasa pada tahun 683 Masihi.",
+    question: "Patih Gajah Mada dilantik sebagai Perdana Menteri Majapahit oleh siapakah?",
+    options: ["Raden Wijaya", "Sangramadhananjaya", "Jayavarman II", "Tribuana Tunggadewi"],
+    answerIndex: 3,
+    explanation: "Tribuana Tunggadewi melantik Patih Gajah Mada sebagai Perdana Menteri Majapahit.",
   },
   {
     id: "sej-f2-c1-q21",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Siapakah pemerintah Angkor yang membina Angkor Thom?",
-    options: ["Jayavarman VII", "Jayavarman II", "Suryavarman II", "Raden Wijaya"],
+    difficulty: "Hard",
+    question:
+      "Kedah Tua dan Gangga Nagara sama-sama mengalami kemerosotan akibat satu peristiwa yang sama pada tahun 1025. Apakah peristiwa itu?",
+    options: [
+      "Serangan tentera Chola dari India",
+      "Serangan Dai Viet",
+      "Serangan Kesultanan Demak",
+      "Letusan gunung berapi",
+    ],
     answerIndex: 0,
-    explanation: "Jayavarman VII membina Angkor Thom dan mendirikan 102 buah hospital.",
+    explanation:
+      "Kedah Tua dan Gangga Nagara sama-sama diserang tentera Chola dari India pada tahun 1025, yang melemahkan kedua-dua kerajaan.",
   },
   {
     id: "sej-f2-c1-q22",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Siapakah pengasas Kerajaan Majapahit?",
-    options: ["Raden Wijaya", "Patih Gajah Mada", "Jayavarman II", "Kaudinya"],
-    answerIndex: 0,
-    explanation: "Kerajaan Majapahit diasaskan oleh Raden Wijaya pada tahun 1294 Masihi.",
+    difficulty: "Medium",
+    question:
+      "Gangga Nagara terkenal sebagai pusat pelabuhan penting kerana kekayaan hasil buminya. Apakah dua hasil bumi utama Gangga Nagara?",
+    options: [
+      "Rempah dan gading gajah",
+      "Emas dan bijih timah",
+      "Kapur barus dan gaharu",
+      "Beras dan mutiara",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Gangga Nagara kaya dengan emas dan bijih timah, menjadikannya tumpuan pedagang luar.",
   },
+
+  // 1.4 Kerajaan Alam Melayu dan Kerajaan Luar yang Sezaman
   {
     id: "sej-f2-c1-q23",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Di manakah lokasi Kerajaan Kedah Tua?",
-    options: [
-      "Sungai Mas dan Sungai Bujang",
-      "Lembah Sungai Mekong",
-      "Lembah Sungai Musi",
-      "Pantai Barat Tengah Tanah Melayu",
-    ],
-    answerIndex: 0,
-    explanation: "Kerajaan Kedah Tua terletak di Sungai Mas dan Sungai Bujang.",
+    question: "Kerajaan Funan muncul sezaman dengan Empayar Rom pada abad manakah?",
+    options: ["Abad kesembilan", "Abad pertama", "Abad ke-12", "Abad ke-14"],
+    answerIndex: 1,
+    explanation:
+      "Funan muncul sezaman dengan Empayar Rom, Empayar Parsi, Empayar Kushan dan Dinasti Han pada abad pertama.",
   },
   {
     id: "sej-f2-c1-q24",
@@ -8395,117 +8431,129 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Easy",
-    question: "Apakah faktor kemasyhuran Kerajaan Gangga Negara?",
+    question:
+      "Apakah tujuan utama hubungan diplomatik antara kerajaan Alam Melayu dengan kerajaan luar?",
     options: [
-      "Kaya dengan emas dan bijih timah",
-      "Menjadi pusat pengajian agama Buddha terbesar",
-      "Menguasai Selat Melaka dan Selat Sunda",
-      "Membina 102 buah hospital",
+      "Menakluki kerajaan luar sepenuhnya",
+      "Menyebarkan bahasa Melayu sahaja",
+      "Menghapuskan sistem beraja kerajaan luar",
+      "Mengukuhkan kedudukan kerajaan, membuka jalan perdagangan dan menjalin persahabatan",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation:
-      "Gangga Negara menjadi pusat pelabuhan penting yang kaya dengan emas dan bijih timah.",
+      "Hubungan diplomatik bertujuan mengukuhkan kedudukan kerajaan, membuka jalan perdagangan dan menjalin persahabatan.",
   },
   {
     id: "sej-f2-c1-q25",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Kerajaan luar manakah yang sezaman dengan Kerajaan Funan pada abad pertama?",
-    options: ["Empayar Rom", "Dinasti Tang", "Kerajaan Chola", "Empayar Mongol"],
+    difficulty: "Medium",
+    question:
+      "Antara berikut, yang manakah BUKAN pelabuhan penting Alam Melayu yang terlibat dalam perdagangan antarabangsa?",
+    options: ["Hariharalaya", "Oc Eo", "Palembang", "Tuban"],
     answerIndex: 0,
     explanation:
-      "Funan muncul sezaman dengan Empayar Rom, Empayar Parsi, Empayar Kushan dan Dinasti Han pada abad pertama.",
+      "Oc Eo, Kedah Tua, Palembang dan Tuban ialah pelabuhan penting Alam Melayu dalam perdagangan antarabangsa, manakala Hariharalaya ialah pusat pemerintahan Angkor, bukan sebuah pelabuhan.",
   },
   {
     id: "sej-f2-c1-q26",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Apakah tujuan utusan Srivijaya dihantar ke China?",
+    difficulty: "Medium",
+    question: "Agama Buddha tersebar ke Alam Melayu terutamanya melalui peranan siapakah?",
     options: [
-      "Mendapatkan pengiktirafan, memperkukuh perdagangan dan mengukuhkan persahabatan",
-      "Memohon bantuan ketenteraan menentang Dai Viet",
-      "Memulihkan hubungan selepas peperangan",
-      "Menjalinkan hubungan persahabatan sahaja",
+      "Golongan Brahmin sahaja",
+      "Maharaja Asoka dan sami Buddha",
+      "Pedagang Arab",
+      "Tentera Chola",
     ],
-    answerIndex: 0,
+    answerIndex: 1,
     explanation:
-      "Srivijaya menghantar utusan ke China untuk mendapatkan pengiktirafan, memperkukuh perdagangan dan mengukuhkan persahabatan.",
+      "Agama Buddha tersebar melalui peranan Maharaja Asoka dan sami Buddha yang dihantar ke Alam Melayu.",
   },
   {
     id: "sej-f2-c1-q27",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Agama Buddha tersebar ke Alam Melayu melalui peranan siapa?",
+    difficulty: "Hard",
+    question:
+      "Funan dan Champa kedua-duanya menjalin hubungan dengan China pada abad ketiga, tetapi bertujuan berbeza. Apakah tujuan Funan menjalin hubungan ini?",
     options: [
-      "Maharaja Asoka dan sami Buddha",
-      "Golongan Brahmin",
-      "Pedagang dan pendakwah Islam",
-      "Tentera Chola",
+      "Mendapatkan pengiktirafan Dinasti Ming",
+      "Mengeratkan hubungan keagamaan sahaja",
+      "Memohon bantuan ketenteraan menentang Dai Viet",
+      "Memulihkan hubungan selepas peperangan dengan Dai Viet",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Agama Buddha tersebar melalui peranan Maharaja Asoka dan sami Buddha yang dihantar ke Alam Melayu.",
+      "Funan menjalin hubungan dengan China pada abad ketiga untuk memohon bantuan ketenteraan menentang Dai Viet, manakala Champa pada abad yang sama memulihkan hubungan dengan China selepas peperangan dengan Dai Viet.",
   },
   {
     id: "sej-f2-c1-q28",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
+    difficulty: "Hard",
     question:
-      "Antara berikut, yang manakah merupakan pelabuhan penting Alam Melayu dalam perdagangan antarabangsa?",
-    options: ["Oc Eo", "Hariharalaya", "Kota Trowulan", "Indrapura"],
-    answerIndex: 0,
+      "Antara Srivijaya dan Kedah Tua, kedua-duanya menjalin hubungan dengan China pada abad ketujuh. Kerajaan manakah yang bertujuan mendapatkan pengiktirafan, selain memperkukuh perdagangan dan persahabatan?",
+    options: [
+      "Kedah Tua",
+      "Kedua-duanya tidak bertujuan mendapatkan pengiktirafan",
+      "Angkor",
+      "Srivijaya",
+    ],
+    answerIndex: 3,
     explanation:
-      "Pelabuhan penting Alam Melayu yang terlibat dalam perdagangan antarabangsa ialah Oc Eo, Kedah Tua, Palembang dan Tuban.",
+      "Srivijaya menjalin hubungan dengan China pada abad ketujuh bertujuan mendapatkan pengiktirafan, memperkukuh perdagangan dan mengukuhkan persahabatan, manakala Kedah Tua pada abad yang sama bertujuan memperkukuh hubungan perdagangan sahaja.",
   },
   {
     id: "sej-f2-c1-q29",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
-    question: "Apakah tujuan hubungan diplomatik kerajaan Alam Melayu dengan kerajaan luar?",
-    options: [
-      "Mengukuhkan kedudukan kerajaan, membuka jalan perdagangan dan menjalin persahabatan",
-      "Menghapuskan kegiatan perdagangan kerajaan luar",
-      "Menutup pelabuhan antarabangsa",
-      "Menghalang penyebaran agama",
-    ],
+    difficulty: "Hard",
+    question:
+      "Angkor dan Majapahit kedua-duanya menjalin hubungan dengan India bertujuan mengeratkan hubungan persahabatan, tetapi pada abad yang berbeza. Pada abad manakah Angkor menjalin hubungan ini, berbanding Majapahit pada abad ke-14?",
+    options: ["Abad ke-12", "Abad kesembilan", "Abad ketujuh", "Abad pertama"],
     answerIndex: 0,
     explanation:
-      "Hubungan diplomatik bertujuan mengukuhkan kedudukan kerajaan, membuka jalan perdagangan dan menjalin persahabatan.",
+      "Angkor menjalin hubungan persahabatan dengan India pada abad ke-12, manakala Majapahit menjalin hubungan yang serupa pada abad ke-14.",
   },
   {
     id: "sej-f2-c1-q30",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    difficulty: "Easy",
+    difficulty: "Hard",
     question:
-      "Kerajaan luar manakah yang sezaman dengan Champa, Srivijaya dan Angkor pada abad kesembilan?",
-    options: ["Kerajaan Chola", "Empayar Rom", "Kesultanan Delhi", "Kerajaan Turki Uthmaniyah"],
-    answerIndex: 0,
-    explanation: "Champa, Srivijaya dan Angkor sezaman dengan Kerajaan Chola pada abad kesembilan.",
+      "Berdasarkan pola hubungan kerajaan Alam Melayu dengan kerajaan luar yang sezaman, apakah kesimpulan yang paling tepat?",
+    options: [
+      "Kerajaan Alam Melayu terpencil sepenuhnya daripada dunia luar",
+      "Kerajaan Alam Melayu membangun dan maju setanding dengan tamadun dunia lain",
+      "Kerajaan Alam Melayu hanya bergantung kepada China",
+      "Kerajaan Alam Melayu tidak menjalin sebarang hubungan luar",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Kewujudan kerajaan Alam Melayu yang sezaman dengan kerajaan luar serta hubungan perdagangan, keagamaan dan diplomatik yang dijalinkan membuktikan bahawa kerajaan Alam Melayu membangun dan maju setanding dengan tamadun dunia lain.",
   },
-
   // Sejarah Form 2 Chapter 2 - Sistem Pemerintahan dan Kegiatan Ekonomi
+  // 2.1 Sistem Pemerintahan
   {
     id: "sej-f2-c2-q1",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Easy",
-    question: "Apakah sistem pemerintahan yang diamalkan oleh kerajaan Alam Melayu?",
-    options: ["Sistem republik", "Sistem beraja", "Sistem demokrasi", "Sistem pilihan raya"],
-    answerIndex: 1,
-    explanation: "Kerajaan Alam Melayu mengamalkan sistem pemerintahan beraja.",
+    question:
+      "Sistem pemerintahan yang diamalkan oleh kerajaan Alam Melayu yang masyhur ialah sistem apakah?",
+    options: ["Sistem beraja", "Sistem republik", "Sistem persekutuan", "Sistem demokrasi"],
+    answerIndex: 0,
+    explanation:
+      "Kerajaan Alam Melayu yang masyhur mengamalkan sistem beraja, dengan raja berada di puncak pemerintahan.",
   },
   {
     id: "sej-f2-c2-q2",
@@ -8513,10 +8561,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Easy",
-    question: "Siapakah yang berada di puncak pemerintahan kerajaan Alam Melayu?",
-    options: ["Pembesar pusat", "Golongan agama", "Raja", "Ketua kampung"],
-    answerIndex: 2,
-    explanation: "Raja berada di puncak pemerintahan dan dibantu oleh pembesar.",
+    question:
+      "Masyarakat kerajaan Alam Melayu terbahagi kepada dua golongan utama, iaitu golongan pemerintah dan golongan apakah?",
+    options: [
+      "Golongan hamba sahaja",
+      "Golongan diperintah",
+      "Golongan pedagang sahaja",
+      "Golongan tentera sahaja",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Dua golongan utama masyarakat kerajaan Alam Melayu ialah golongan pemerintah dan golongan diperintah.",
   },
   {
     id: "sej-f2-c2-q3",
@@ -8524,10 +8579,10 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Easy",
-    question: "Apakah gelaran raja Funan yang bermaksud Raja Gunung?",
-    options: ["Kurung Bnam", "Dewaraja", "Sri Bathara", "Rajakumara"],
-    answerIndex: 0,
-    explanation: "Kurung Bnam ialah gelaran raja Funan yang bermaksud Raja Gunung.",
+    question: "Apakah maksud gelaran 'Kurung Bnam' yang digunakan oleh raja Funan?",
+    options: ["Pemerintah alam sejagat", "Raja segala raja", "Raja Gunung", "Raja di Pulau"],
+    answerIndex: 2,
+    explanation: "Kurung Bnam bermaksud Raja Gunung, salah satu gelaran raja Funan.",
   },
   {
     id: "sej-f2-c2-q4",
@@ -8535,10 +8590,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Easy",
-    question: "Berapakah jumlah wilayah dalam kerajaan Funan?",
-    options: ["Lima wilayah", "Enam wilayah", "Lapan wilayah", "Tujuh wilayah"],
+    question:
+      "Funan dibahagikan kepada tujuh wilayah, dan setiap wilayah diketuai oleh putera raja yang bergelar apakah?",
+    options: ["Yuvaraja", "Rajakumara", "Rajadhiraja", "Raja Kecil"],
     answerIndex: 3,
-    explanation: "Kerajaan Funan dibahagikan kepada tujuh wilayah.",
+    explanation:
+      "Funan dibahagikan kepada tujuh wilayah, dan ketua setiap wilayah terdiri daripada putera raja yang bergelar Raja Kecil.",
   },
   {
     id: "sej-f2-c2-q5",
@@ -8547,43 +8604,59 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question:
-      "Kerajaan manakah yang menggunakan gelaran Rajadhiraja dan mengaitkan raja dengan Dewa Siva?",
-    options: ["Majapahit", "Champa", "Kedah Tua", "Gangga Nagara"],
-    answerIndex: 1,
-    explanation: "Raja Champa menggunakan gelaran Rajadhiraja dan dikaitkan dengan Dewa Siva.",
+      "Raja Champa dianggap pemerintah yang mulia dan suci kerana dikaitkan dengan siapakah?",
+    options: ["Dewa Siva", "Bodhisattva", "Dewaraja", "Cakravatin"],
+    answerIndex: 0,
+    explanation:
+      "Raja Champa menggunakan gelaran Rajadhiraja dan dianggap mulia serta suci kerana dikaitkan dengan Dewa Siva.",
   },
   {
     id: "sej-f2-c2-q6",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah maksud Yuvaraja dalam sistem pemerintahan Srivijaya?",
-    options: ["Raja Muda", "Putera Raja", "Putera Mahkota", "Ketua wilayah"],
-    answerIndex: 2,
-    explanation: "Yuvaraja bermaksud Putera Mahkota dalam sistem pemerintahan Srivijaya.",
+    difficulty: "Medium",
+    question:
+      "Walaupun struktur pemerintahan Gangga Nagara tidak jelas, kerajaan ini tetap mengamalkan sistem beraja. Apakah dua tanggungjawab utama rajanya?",
+    options: [
+      "Mengutip cukai dan mendirikan candi",
+      "Mengetuai peperangan sahaja",
+      "Menyebarkan agama Buddha sahaja",
+      "Memajukan perdagangan dan menjaga keselamatan",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Raja Gangga Nagara bertanggungjawab memajukan perdagangan dan menjaga keselamatan kerajaan, walaupun struktur pentadbirannya secara keseluruhan tidak jelas.",
   },
   {
     id: "sej-f2-c2-q7",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah gelaran yang digunakan oleh raja-raja Angkor?",
-    options: ["Dewaraja", "Rajakumara", "Raja Kecil", "Kurung Bnam"],
-    answerIndex: 0,
-    explanation: "Raja-raja Angkor menggunakan gelaran Dewaraja.",
+    difficulty: "Medium",
+    question: "Raja Srivijaya dianggap mempunyai unsur kesaktian dan dianggap sebagai apakah?",
+    options: ["Dewaraja", "Bodhisattva", "Cakravatin", "Rajadhiraja"],
+    answerIndex: 1,
+    explanation:
+      "Raja Srivijaya dianggap Bodhisattva dan digelar Raja di Gunung serta Maharaja di Pulau.",
   },
   {
     id: "sej-f2-c2-q8",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah majlis penasihat diraja dalam kerajaan Majapahit?",
-    options: ["Pradatuan", "Kedatuan", "Raja Kecil", "Sapta Prabu"],
-    answerIndex: 3,
-    explanation: "Sapta Prabu ialah Majlis Penasihat Diraja dalam kerajaan Majapahit.",
+    difficulty: "Hard",
+    question:
+      "Wilayah Srivijaya terbahagi kepada Kedatuan dan Pradatuan. Apakah perbezaan utama antara kedua-duanya?",
+    options: [
+      "Kedatuan ditadbir Datu berketurunan raja, Pradatuan ditadbir Datu bukan berketurunan raja",
+      "Kedatuan hanya wujud di Sumatera, Pradatuan hanya wujud di Tanah Melayu",
+      "Kedatuan ditadbir golongan agama, Pradatuan ditadbir golongan tentera",
+      "Tiada perbezaan antara Kedatuan dan Pradatuan",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kedatuan ditadbir oleh Datu yang berketurunan raja, manakala Pradatuan ditadbir oleh Datu yang bukan berketurunan raja.",
   },
   {
     id: "sej-f2-c2-q9",
@@ -8591,104 +8664,134 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Easy",
-    question: "Apakah kedudukan Kedah Tua dalam pentadbiran Srivijaya?",
-    options: ["Sebahagian Pradatuan", "Pusat Dewaraja", "Wilayah Majapahit", "Daerah Angkor"],
-    answerIndex: 0,
-    explanation: "Kedah Tua menjadi sebahagian Pradatuan Srivijaya.",
+    question: "Raja Angkor menggunakan gelaran apakah, yang mengaitkan baginda sebagai dewa?",
+    options: ["Bodhisattva", "Rajadhiraja", "Dewaraja", "Cakravatin"],
+    answerIndex: 2,
+    explanation: "Raja Angkor menggunakan gelaran Dewaraja dan dikaitkan sebagai dewa.",
   },
   {
     id: "sej-f2-c2-q10",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah tanggungjawab raja Gangga Nagara?",
+    difficulty: "Hard",
+    question:
+      "Apakah susunan pentadbiran wilayah Angkor daripada yang paling besar kepada yang paling kecil?",
     options: [
-      "Membina baray",
-      "Menjaga keselamatan dan memajukan perdagangan",
-      "Mengutip sarang burung",
-      "Menanam bunga cengkih",
+      "Kampung, daerah kecil, daerah, wilayah",
+      "Wilayah, daerah, daerah kecil, kampung",
+      "Daerah, wilayah, kampung, daerah kecil",
+      "Wilayah, kampung, daerah, daerah kecil",
     ],
     answerIndex: 1,
     explanation:
-      "Raja Gangga Nagara berperanan memajukan perdagangan dan bertanggungjawab terhadap keselamatan.",
+      "Susunan pentadbiran Angkor bermula daripada wilayah, kemudian daerah, daerah kecil dan akhirnya kampung.",
   },
   {
     id: "sej-f2-c2-q11",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah tanaman utama masyarakat kerajaan Alam Melayu?",
-    options: ["Tebu", "Kelapa", "Padi", "Bijan"],
+    difficulty: "Medium",
+    question:
+      "Raja Majapahit dibantu oleh Sapta Prabu dalam urusan pentadbiran. Apakah Sapta Prabu?",
+    options: [
+      "Tentera peribadi raja",
+      "Golongan hamba istana",
+      "Majlis Penasihat Diraja yang terdiri daripada kerabat diraja",
+      "Sekumpulan pedagang asing",
+    ],
     answerIndex: 2,
-    explanation: "Padi ialah tanaman utama masyarakat kerajaan Alam Melayu.",
+    explanation:
+      "Sapta Prabu ialah Majlis Penasihat Diraja Majapahit yang terdiri daripada kerabat diraja.",
   },
   {
     id: "sej-f2-c2-q12",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah fungsi baray dalam kerajaan Angkor?",
-    options: ["Menyimpan air", "Menyimpan emas", "Tempat berjual beli", "Tempat membuat tembikar"],
+    difficulty: "Hard",
+    question:
+      "Majapahit mempunyai 14 wilayah yang disusun kepada beberapa peringkat pentadbiran. Kedah Tua pula menjadi sebahagian daripada wilayah kerajaan manakah selepas dikuasai?",
+    options: ["Pradatuan Srivijaya", "Kedatuan Srivijaya", "Kabupaten Majapahit", "Wilayah Angkor"],
     answerIndex: 0,
-    explanation: "Baray digunakan untuk menyimpan air bagi kegiatan pertanian.",
+    explanation:
+      "Berbeza daripada Majapahit yang mempunyai 14 wilayah tersusun (kabupaten, kawadanan, pakuwuan dan kebuyutan), Kedah Tua mempunyai pentadbiran yang mudah dan menjadi sebahagian daripada Pradatuan Srivijaya selepas dikuasai.",
   },
+
+  // 2.2 Kegiatan Ekonomi
   {
     id: "sej-f2-c2-q13",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Easy",
-    question: "Tasik manakah yang membekalkan air untuk pertanian di Angkor?",
-    options: ["Tasik Chini", "Tasik Bera", "Tasik Kenyir", "Tonle Sap"],
-    answerIndex: 3,
-    explanation: "Tonle Sap membekalkan air untuk kegiatan pertanian di Angkor.",
+    question: "Apakah tanaman utama masyarakat kerajaan Alam Melayu?",
+    options: ["Jagung", "Gandum", "Padi", "Ubi kayu"],
+    answerIndex: 2,
+    explanation: "Padi ialah tanaman utama masyarakat kerajaan Alam Melayu.",
   },
   {
     id: "sej-f2-c2-q14",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah jawatan yang terdapat di Champa bagi mengurus air di kampung?",
-    options: ["Ketua Air", "Raja Kecil", "Yuvaraja", "Tuhan Vatakvurah"],
-    answerIndex: 0,
-    explanation: "Champa mempunyai Ketua Air di setiap kampung.",
+    difficulty: "Medium",
+    question:
+      "Funan, Champa dan Angkor memanfaatkan tasik yang manakah untuk membekalkan air bagi pertanian padi?",
+    options: ["Tasik Toba", "Tonle Sap", "Tasik Chini", "Tasik Kenyir"],
+    answerIndex: 1,
+    explanation:
+      "Funan, Champa dan Angkor memanfaatkan kawasan Lembah Sungai Mekong, dengan Tonle Sap membekalkan air untuk pertanian.",
   },
   {
     id: "sej-f2-c2-q15",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Di manakah bunga cengkih ditanam?",
-    options: ["Pulau Banda", "Kepulauan Maluku", "Sumatera", "Jawa"],
-    answerIndex: 1,
-    explanation: "Bunga cengkih ditanam di Kepulauan Maluku.",
+    difficulty: "Medium",
+    question:
+      "Angkor membina kolam simpanan air yang dikenali sebagai baray, membolehkan penuaian padi berapa kali setahun?",
+    options: [
+      "Sekali setahun",
+      "Dua kali setahun",
+      "Tiga hingga empat kali setahun",
+      "Enam kali setahun",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Baray digunakan untuk menyimpan air, membolehkan Angkor menghasilkan padi tiga hingga empat kali setahun.",
   },
   {
     id: "sej-f2-c2-q16",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah pelabuhan kerajaan Srivijaya?",
-    options: ["Oc Eo", "Yasodharapura", "Palembang", "Pangkalan Bujang"],
-    answerIndex: 2,
-    explanation: "Pelabuhan kerajaan Srivijaya ialah Palembang.",
+    difficulty: "Hard",
+    question:
+      "Champa mempunyai Ketua Air di setiap kampung, manakala Majapahit menjalankan pertanian di sekitar Sungai Bengawan Solo dan Sungai Brantas. Apakah persamaan pendekatan kedua-dua kerajaan ini dalam bidang pertanian?",
+    options: [
+      "Kedua-duanya membina sistem pengairan untuk menampung keperluan pertanian padi",
+      "Kedua-duanya hanya menanam rempah-ratus",
+      "Kedua-duanya tidak menjalankan pertanian sama sekali",
+      "Kedua-duanya bergantung sepenuhnya kepada hujan tanpa sebarang sistem pengairan",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Champa menyelenggarakan terusan melalui Ketua Air manakala Majapahit membina sistem pengairan menggunakan Sungai Bengawan Solo dan Sungai Brantas — kedua-duanya membina kemudahan pengairan untuk meningkatkan hasil pertanian padi.",
   },
   {
     id: "sej-f2-c2-q17",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah pelabuhan kerajaan Funan?",
-    options: ["Oc Eo", "Tuban", "Sidayu", "Pangkalan"],
-    answerIndex: 0,
-    explanation: "Pelabuhan kerajaan Funan ialah Oc Eo.",
+    difficulty: "Medium",
+    question:
+      "Kawasan pertanian padi Srivijaya termasuklah Tanah Tinggi Pasemah dan kawasan yang manakah lagi?",
+    options: ["Lembah Bujang", "Tonle Sap", "Kota Trowulan", "Hulu Musi"],
+    answerIndex: 3,
+    explanation:
+      "Kawasan pertanian padi Srivijaya termasuk pedalaman Palembang, terutamanya Tanah Tinggi Pasemah dan Hulu Musi.",
   },
   {
     id: "sej-f2-c2-q18",
@@ -8696,15 +8799,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Easy",
-    question: "Apakah barang dagangan kerajaan Funan?",
-    options: [
-      "Beras, emas, perak dan gading gajah",
-      "Damar, kapur barus, kayu cendana dan gaharu",
-      "Emas, bijih timah dan rempah-ratus",
-      "Garam, gula, minyak dan mi beras",
-    ],
-    answerIndex: 1,
-    explanation: "Funan memperdagangkan damar, kapur barus, kayu cendana dan gaharu.",
+    question:
+      "Bunga cengkih yang menjadi barang dagangan penting Alam Melayu tumbuh subur di kawasan manakah?",
+    options: ["Pulau Banda", "Sumatera dan Jawa", "Kepulauan Maluku", "Lembah Bujang"],
+    answerIndex: 2,
+    explanation:
+      "Bunga cengkih tumbuh subur di Kepulauan Maluku, manakala buah pala di Pulau Banda dan lada hitam di Sumatera dan Jawa.",
   },
   {
     id: "sej-f2-c2-q19",
@@ -8712,96 +8812,113 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Easy",
-    question: "Kerajaan manakah yang mempunyai pelabuhan Tuban, Sidayu, Gresik dan Surabaya?",
-    options: ["Champa", "Kedah Tua", "Majapahit", "Gangga Nagara"],
-    answerIndex: 2,
-    explanation: "Tuban, Sidayu, Gresik dan Surabaya ialah pelabuhan kerajaan Majapahit.",
+    question: "Apakah faktor utama yang menyebabkan perdagangan berkembang pesat di Alam Melayu?",
+    options: [
+      "Bantuan kewangan daripada kerajaan luar",
+      "Ketiadaan pesaing perdagangan",
+      "Sistem cukai yang rendah sahaja",
+      "Kedudukan strategik di laluan perdagangan timur dan barat",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Kedudukan Alam Melayu yang strategik di tengah laluan perdagangan timur dan barat menjadi faktor utama perkembangan perdagangan.",
   },
   {
     id: "sej-f2-c2-q20",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah kesan perkembangan perdagangan kepada masyarakat Alam Melayu?",
-    options: [
-      "Menghapuskan pelabuhan",
-      "Menghentikan pertanian",
-      "Menutup laluan laut",
-      "Pembuatan kapal berkembang",
-    ],
-    answerIndex: 3,
-    explanation: "Perdagangan menyebabkan pembuatan kapal berkembang dan ilmu pelayaran dikuasai.",
+    difficulty: "Medium",
+    question: "Oc Eo ialah pelabuhan penting bagi kerajaan manakah?",
+    options: ["Champa", "Funan", "Srivijaya", "Majapahit"],
+    answerIndex: 1,
+    explanation:
+      "Oc Eo ialah pelabuhan penting Kerajaan Funan yang mendagangkan barangan seperti damar, kapur barus, kayu cendana dan gaharu.",
   },
   {
     id: "sej-f2-c2-q21",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah kegunaan gaharu?",
-    options: [
-      "Bahan pewangi dan perubatan",
-      "Barang perhiasan",
-      "Bahan makanan laut",
-      "Membuat mi beras",
-    ],
-    answerIndex: 0,
-    explanation: "Gaharu digunakan sebagai bahan pewangi dan perubatan.",
+    difficulty: "Medium",
+    question:
+      "Tuban, Sidayu, Gresik dan Surabaya merupakan pelabuhan penting bagi kerajaan manakah?",
+    options: ["Kedah Tua", "Angkor", "Champa", "Majapahit"],
+    answerIndex: 3,
+    explanation:
+      "Tuban, Sidayu, Gresik dan Surabaya ialah pelabuhan penting Majapahit yang mendagangkan rempah, beras, rotan, kayu cendana dan gaharu.",
   },
   {
     id: "sej-f2-c2-q22",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Di manakah sarang burung layang-layang banyak didapati?",
-    options: ["Sumatera dan Borneo", "Utara Pulau Borneo", "Lembah Sungai Mekong", "Phnom Dek"],
-    answerIndex: 1,
-    explanation: "Sarang burung layang-layang banyak didapati di utara Pulau Borneo.",
+    difficulty: "Hard",
+    question:
+      "Palembang menjadi pelabuhan utama Srivijaya dengan pelbagai barang dagangan. Antara berikut, barang manakah TIDAK didagangkan melalui Palembang?",
+    options: [
+      "Damar dan kapur barus",
+      "Mutiara dan rumpai laut",
+      "Sumbu badak dan madu",
+      "Beras dan gading gajah",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Palembang mendagangkan damar, kapur barus, gaharu, madu, rotan, rempah, mutiara, rumpai laut, gading gajah dan sumbu badak, manakala beras merupakan barang dagangan utama pelabuhan Champa, bukan Palembang.",
   },
   {
     id: "sej-f2-c2-q23",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah kegunaan rotan?",
+    difficulty: "Hard",
+    question:
+      "Pedagang China ke Alam Melayu membawa barangan seperti kain sutera. Apakah barangan yang mereka cari daripada Alam Melayu?",
     options: [
-      "Bahan pewangi",
-      "Barang perhiasan",
-      "Bahan binaan dan barang kraf tangan",
-      "Bahan membuat garam",
+      "Rempah, gaharu dan kapur barus",
+      "Batu berharga dan akik",
+      "Minyak wangi dan barangan kaca",
+      "Manik dan tembikar Arab",
     ],
-    answerIndex: 2,
-    explanation: "Rotan digunakan sebagai bahan binaan dan barang kraf tangan.",
+    answerIndex: 0,
+    explanation:
+      "Pedagang China mendapatkan barangan Alam Melayu seperti rempah, gaharu dan kapur barus sambil membawa barangan seperti kain sutera.",
   },
   {
     id: "sej-f2-c2-q24",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Di manakah kapur barus banyak ditemukan?",
+    difficulty: "Medium",
+    question:
+      "Pedagang Arab dan Parsi membawa barangan seperti tembikar, minyak wangi serta barangan kaca dan manik ke Alam Melayu. Apakah tujuan mereka membeli rempah dan kayu wangi?",
     options: [
-      "Hue dan Indrapura",
-      "Maluku dan Pulau Banda",
-      "Palembang dan Hulu Musi",
-      "Sumatera dan Borneo",
+      "Untuk kegunaan sendiri sahaja",
+      "Untuk didagangkan semula",
+      "Untuk dihadiahkan kepada raja Alam Melayu",
+      "Untuk ditanam semula di Tanah Arab",
     ],
-    answerIndex: 3,
-    explanation: "Kapur barus banyak ditemukan di Sumatera dan Borneo.",
+    answerIndex: 1,
+    explanation:
+      "Pedagang Arab dan Parsi membeli rempah dan kayu wangi daripada Alam Melayu untuk didagangkan semula.",
   },
   {
     id: "sej-f2-c2-q25",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah hasil laut yang dijadikan barang perhiasan?",
-    options: ["Mutiara", "Gamat", "Rumpai laut", "Rotan"],
-    answerIndex: 0,
-    explanation: "Mutiara dijadikan barang perhiasan.",
+    difficulty: "Hard",
+    question:
+      "Perkembangan perdagangan memberi kesan yang meluas kepada masyarakat Alam Melayu. Sejauh manakah kemahiran pelayaran masyarakat Alam Melayu berkembang akibat perdagangan ini?",
+    options: [
+      "Mereka hanya mampu belayar dalam Selat Melaka",
+      "Mereka tidak menguasai ilmu pelayaran langsung",
+      "Mereka bergantung sepenuhnya kepada kapal pedagang luar",
+      "Mereka mampu belayar sehingga ke Afrika",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Kesan perdagangan termasuklah perkembangan pelabuhan dan pembuatan kapal, sehingga masyarakat Alam Melayu menguasai ilmu pelayaran dan mampu belayar sejauh Afrika.",
   },
   {
     id: "sej-f2-c2-q26",
@@ -8809,60 +8926,76 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     difficulty: "Easy",
-    question: "Apakah kegunaan gamat?",
-    options: ["Bahan pewangi", "Bahan makanan dan perubatan", "Bahan binaan", "Barang perhiasan"],
+    question: "Gaharu digunakan sebagai bahan apakah dalam kehidupan masyarakat Alam Melayu?",
+    options: [
+      "Bahan binaan sahaja",
+      "Bahan pewangi dan perubatan",
+      "Bahan letupan",
+      "Bahan pewarna kain",
+    ],
     answerIndex: 1,
-    explanation: "Gamat dijadikan bahan makanan dan perubatan.",
+    explanation:
+      "Gaharu digunakan sebagai bahan pewangi dan perubatan, diperoleh daripada Hutan Sungai Mekong, Tanah Melayu dan Sumatera.",
   },
   {
     id: "sej-f2-c2-q27",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah hasil perlombongan masyarakat kerajaan Alam Melayu?",
-    options: [
-      "Gaharu, rotan dan damar",
-      "Padi, pisang dan tebu",
-      "Emas, perak dan bijih besi",
-      "Gamat, rumpai laut dan mutiara",
-    ],
+    difficulty: "Medium",
+    question:
+      "Sarang burung yang mendapat permintaan tinggi untuk tujuan kesihatan dan perubatan diperoleh terutamanya di manakah?",
+    options: ["Sumatera dan Borneo", "Selat Melaka", "Utara Pulau Borneo", "Lembah Sungai Mekong"],
     answerIndex: 2,
     explanation:
-      "Masyarakat kerajaan Alam Melayu menjalankan perlombongan emas, perak dan bijih besi.",
+      "Sarang burung yang digunakan untuk kesihatan dan perubatan diperoleh terutamanya di utara Pulau Borneo.",
   },
   {
     id: "sej-f2-c2-q28",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Di manakah kawasan perlombongan bijih besi yang dinyatakan dalam Bab 2?",
-    options: ["Pulau Banda", "Tonle Sap", "Sungai Brantas", "Phnom Dek"],
-    answerIndex: 3,
-    explanation: "Phnom Dek ialah kawasan perlombongan bijih besi.",
+    difficulty: "Medium",
+    question: "Gamat, rumpai laut dan mutiara diperoleh terutamanya di perairan manakah?",
+    options: [
+      "Selat Melaka dan Laut Sulu",
+      "Laut China Selatan sahaja",
+      "Lautan Hindi",
+      "Teluk Siam sahaja",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Gamat, rumpai laut dan mutiara diperoleh terutamanya di perairan Alam Melayu, khususnya Selat Melaka dan Laut Sulu.",
   },
   {
     id: "sej-f2-c2-q29",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah contoh kegiatan pembuatan masyarakat kerajaan Alam Melayu?",
-    options: ["Tembikar", "Bunga cengkih", "Sumbu badak", "Lada hitam"],
-    answerIndex: 0,
-    explanation: "Tembikar ialah antara hasil pembuatan masyarakat kerajaan Alam Melayu.",
+    difficulty: "Medium",
+    question:
+      "Kegiatan perlombongan bijih besi dijalankan oleh kerajaan Angkor di kawasan manakah?",
+    options: ["Pergunungan Hue", "Pergunungan Phnom Dek", "Indrapura", "Lembah Bujang"],
+    answerIndex: 1,
+    explanation: "Angkor menjalankan perlombongan bijih besi di kawasan Pergunungan Phnom Dek.",
   },
   {
     id: "sej-f2-c2-q30",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 2",
-    difficulty: "Easy",
-    question: "Apakah hasil pembuatan yang berkaitan dengan kelapa?",
-    options: ["Gaharu", "Cuka kelapa", "Mutiara", "Bijih besi"],
-    answerIndex: 1,
-    explanation: "Cuka kelapa ialah antara hasil pembuatan masyarakat kerajaan Alam Melayu.",
+    difficulty: "Hard",
+    question:
+      "Champa menjalankan perlombongan emas dan perak, manakala Majapahit terkenal dengan kegiatan pembuatan. Antara berikut, yang manakah barangan pembuatan Majapahit?",
+    options: [
+      "Tembikar dan cuka kelapa",
+      "Barang perhiasan emas daripada bijih besi",
+      "Garam, gula, minyak dan mi beras",
+      "Kain sutera dan barangan kaca",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Majapahit menghasilkan garam, gula, minyak dan mi beras, manakala tembikar dan cuka kelapa dihasilkan oleh Champa, dan barang perhiasan emas daripada bijih besi dihasilkan oleh Funan dan Angkor.",
   },
   ...sejarahF2C3Quizzes,
   ...sejarahF2C4Quizzes,
@@ -8889,10 +9022,14 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     question: "Apakah maksud arah?",
-    options: ["Jarak sesuatu tempat dari tempat lain.","Hala tuju tempat dari tempat lain.","Ketinggian sesuatu tempat dari aras laut.","Keluasan sesuatu tempat pada permukaan Bumi."],
+    options: [
+      "Jarak sesuatu tempat dari tempat lain.",
+      "Hala tuju tempat dari tempat lain.",
+      "Ketinggian sesuatu tempat dari aras laut.",
+      "Keluasan sesuatu tempat pada permukaan Bumi.",
+    ],
     answerIndex: 1,
-    explanation:
-      "Arah ialah hala tuju sesuatu tempat dari satu tempat yang lain.",
+    explanation: "Arah ialah hala tuju sesuatu tempat dari satu tempat yang lain.",
   },
   {
     id: "geo-f1-c1-q2",
@@ -8924,7 +9061,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     question: "Apakah yang dinyatakan oleh bearing sudutan sesuatu tempat?",
-    options: ["Arah dari titik rujukan dalam darjah.","Jarak dari titik rujukan dalam meter.","Ketinggian dari aras laut dalam meter.","Luas kawasan dalam unit kilometer persegi."],
+    options: [
+      "Arah dari titik rujukan dalam darjah.",
+      "Jarak dari titik rujukan dalam meter.",
+      "Ketinggian dari aras laut dalam meter.",
+      "Luas kawasan dalam unit kilometer persegi.",
+    ],
     answerIndex: 0,
     explanation:
       "Bearing sudutan menyatakan arah sesuatu tempat dari titik rujukan sebagai sudut dalam darjah.",
@@ -8948,9 +9090,15 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Mengapakah Matahari kelihatan bergerak dari Timur ke Barat?",
-    options: ["Bumi berputar dari Timur ke Barat.","Matahari mengelilingi Bumi dari Barat ke Timur.","Matahari mengelilingi Bumi dari Timur ke Barat.","Bumi berputar dari Barat ke Timur."],
+    options: [
+      "Bumi berputar dari Timur ke Barat.",
+      "Matahari mengelilingi Bumi dari Barat ke Timur.",
+      "Matahari mengelilingi Bumi dari Timur ke Barat.",
+      "Bumi berputar dari Barat ke Timur.",
+    ],
     answerIndex: 3,
-    explanation: "Putaran Bumi dari Barat ke Timur menyebabkan Matahari kelihatan terbit di Timur dan terbenam di Barat.",
+    explanation:
+      "Putaran Bumi dari Barat ke Timur menyebabkan Matahari kelihatan terbit di Timur dan terbenam di Barat.",
   },
   {
     id: "geo-f1-c1-q7",
@@ -8959,10 +9107,14 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Di manakah arah mata angin perantaraan terletak?",
-    options: ["Di tengah antara dua arah utama bersebelahan.","Di tengah antara dua arah utama bertentangan.","Pada kedudukan yang sama dengan arah utama.","Pada kedudukan yang berubah mengikut waktu siang."],
+    options: [
+      "Di tengah antara dua arah utama bersebelahan.",
+      "Di tengah antara dua arah utama bertentangan.",
+      "Pada kedudukan yang sama dengan arah utama.",
+      "Pada kedudukan yang berubah mengikut waktu siang.",
+    ],
     answerIndex: 0,
-    explanation:
-      "Empat arah perantaraan terletak di tengah antara arah utama bersebelahan.",
+    explanation: "Empat arah perantaraan terletak di tengah antara arah utama bersebelahan.",
   },
   {
     id: "geo-f1-c1-q8",
@@ -8971,7 +9123,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Ali menghadap Utara lalu berpusing suku bulatan ke kanan. Apakah arah baharunya?",
-    options: ["Selatan","Timur","Barat","Utara"],
+    options: ["Selatan", "Timur", "Barat", "Utara"],
     answerIndex: 1,
     explanation: "Suku pusingan ke kanan dari Utara membawa Ali menghadap Timur.",
   },
@@ -8982,7 +9134,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Kedai di Timur Laut rumah. Apakah arah rumah dari kedai?",
-    options: ["Timur Laut","Tenggara","Barat Laut","Barat Daya"],
+    options: ["Timur Laut", "Tenggara", "Barat Laut", "Barat Daya"],
     answerIndex: 3,
     explanation: "Arah bertentangan dengan Timur Laut ialah Barat Daya.",
   },
@@ -9004,7 +9156,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     question: "Bagaimanakah bearing sudutan diukur dengan betul?",
-    options: ["Melawan arah jam dari Utara.","Mengikut arah jam dari Utara.","Mengikut arah jam dari Selatan.","Melawan arah jam dari Selatan."],
+    options: [
+      "Melawan arah jam dari Utara.",
+      "Mengikut arah jam dari Utara.",
+      "Mengikut arah jam dari Selatan.",
+      "Melawan arah jam dari Selatan.",
+    ],
     answerIndex: 1,
     explanation: "Bearing diukur dari Utara mengikut arah pusingan jam.",
   },
@@ -9015,10 +9172,9 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     question: "Apakah unit yang digunakan untuk menyatakan bearing sudutan?",
-    options: ["Darjah","Meter","Kilometer","Sentimeter"],
+    options: ["Darjah", "Meter", "Kilometer", "Sentimeter"],
     answerIndex: 0,
-    explanation:
-      "Bearing ialah ukuran sudut, maka unitnya ialah darjah.",
+    explanation: "Bearing ialah ukuran sudut, maka unitnya ialah darjah.",
   },
   {
     id: "geo-f1-c1-q13",
@@ -9029,8 +9185,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Buruj Biduk digunakan untuk menentukan arah...?",
     options: ["Utara", "Selatan", "Timur", "Barat"],
     answerIndex: 0,
-    explanation:
-      "Buruj Biduk membantu menentukan arah Utara pada waktu malam yang cerah.",
+    explanation: "Buruj Biduk membantu menentukan arah Utara pada waktu malam yang cerah.",
   },
   {
     id: "geo-f1-c1-q14",
@@ -9039,7 +9194,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     question: "Alat manakah mengukur sudut bearing pada peta?",
-    options: ["Pembaris lurus","Jangka lukis","Jangka sudut","Pita ukur"],
+    options: ["Pembaris lurus", "Jangka lukis", "Jangka sudut", "Pita ukur"],
     answerIndex: 2,
     explanation:
       "Jangka sudut mengukur sudut antara garisan Utara dengan garisan ke objek pada peta.",
@@ -9075,7 +9230,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Untuk mengukur bearing sekolah dari rumah, pusat jangka sudut diletakkan di mana?",
-    options: ["Sekolah","Rumah","Pertengahan garisan rumah-sekolah","Hujung garisan Utara"],
+    options: ["Sekolah", "Rumah", "Pertengahan garisan rumah-sekolah", "Hujung garisan Utara"],
     answerIndex: 1,
     explanation:
       "Rumah ialah titik rujukan dalam frasa bearing sekolah dari rumah. Pusat jangka sudut diletakkan di rumah.",
@@ -9087,7 +9242,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Mengapakah kompas masih boleh menentukan arah ketika Matahari terlindung awan?",
-    options: ["Kompas berpandukan arah tiupan angin.","Kompas berpandukan kedudukan bayang objek.","Kompas berpandukan waktu pemerhatian dibuat.","Kompas berpandukan medan magnet Bumi."],
+    options: [
+      "Kompas berpandukan arah tiupan angin.",
+      "Kompas berpandukan kedudukan bayang objek.",
+      "Kompas berpandukan waktu pemerhatian dibuat.",
+      "Kompas berpandukan medan magnet Bumi.",
+    ],
     answerIndex: 3,
     explanation:
       "Jarum kompas menjajar dengan medan magnet Bumi. Bacaan arah tidak memerlukan Matahari kelihatan, tetapi kompas perlu dijauhkan daripada gangguan magnet.",
@@ -9099,10 +9259,14 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     question: "Apakah fungsi pemuka pada kompas magnetik?",
-    options: ["Melindungi bahagian dalam kompas magnetik.","Menjajarkan jarum dengan medan magnet.","Memaparkan tanda arah mata angin.","Membesarkan pandangan objek yang jauh."],
+    options: [
+      "Melindungi bahagian dalam kompas magnetik.",
+      "Menjajarkan jarum dengan medan magnet.",
+      "Memaparkan tanda arah mata angin.",
+      "Membesarkan pandangan objek yang jauh.",
+    ],
     answerIndex: 2,
-    explanation:
-      "Pemuka kompas memaparkan tanda arah mata angin untuk bacaan arah.",
+    explanation: "Pemuka kompas memaparkan tanda arah mata angin untuk bacaan arah.",
   },
   {
     id: "geo-f1-c1-q20",
@@ -9111,7 +9275,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Apakah yang mempengaruhi penjajaran jarum kompas magnetik?",
-    options: ["Tarikan graviti Bumi","Medan magnet Bumi","Arah tiupan angin","Arah cahaya Matahari"],
+    options: [
+      "Tarikan graviti Bumi",
+      "Medan magnet Bumi",
+      "Arah tiupan angin",
+      "Arah cahaya Matahari",
+    ],
     answerIndex: 1,
     explanation:
       "Jarum kompas ialah magnet yang menjajar dengan medan magnet Bumi apabila bebas bergerak tanpa gangguan.",
@@ -9123,10 +9292,9 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 1",
     question: "Apakah bearing sudutan bagi arah Timur?",
-    options: ["090°","045°","180°","270°"],
+    options: ["090°", "045°", "180°", "270°"],
     answerIndex: 0,
-    explanation:
-      "Timur berada 90° mengikut arah jam dari Utara, maka bearingnya 090°.",
+    explanation: "Timur berada 90° mengikut arah jam dari Utara, maka bearingnya 090°.",
   },
   {
     id: "geo-f1-c1-q22",
@@ -9135,7 +9303,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Arah menara hendak ditentukan. Ke manakah pemerhati perlu menghadap?",
-    options: ["Ke arah Utara","Ke arah Matahari","Ke arah Selatan","Ke arah menara"],
+    options: ["Ke arah Utara", "Ke arah Matahari", "Ke arah Selatan", "Ke arah menara"],
     answerIndex: 3,
     explanation:
       "Pemerhati menghadap objek sasaran, iaitu menara, sebelum mengorientasikan kompas.",
@@ -9147,7 +9315,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Mengapakah kompas perlu diletakkan di atas permukaan yang rata?",
-    options: ["Supaya jarum sentiasa menghala objek.","Supaya jarum terlindung daripada magnet.","Supaya jarum dapat berpusing bebas.","Supaya jarum selari dengan permukaan peta."],
+    options: [
+      "Supaya jarum sentiasa menghala objek.",
+      "Supaya jarum terlindung daripada magnet.",
+      "Supaya jarum dapat berpusing bebas.",
+      "Supaya jarum selari dengan permukaan peta.",
+    ],
     answerIndex: 2,
     explanation:
       "Kompas yang rata membolehkan jarum berpusing bebas dan menjajar dengan medan magnet Bumi.",
@@ -9159,7 +9332,12 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Bacaan kompas berubah berhampiran pagar besi. Apakah tindakan terbaik?",
-    options: ["Bergerak menjauhi pagar besi.","Merapatkan kompas pada pagar.","Mencondongkan kompas ke sisi.","Memusingkan pemuka ke Timur."],
+    options: [
+      "Bergerak menjauhi pagar besi.",
+      "Merapatkan kompas pada pagar.",
+      "Mencondongkan kompas ke sisi.",
+      "Memusingkan pemuka ke Timur.",
+    ],
     answerIndex: 0,
     explanation:
       "Besi boleh mengganggu medan magnet setempat. Jauhi pagar besi sebelum mengambil bacaan semula.",
@@ -9171,7 +9349,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Hujung utara jarum perlu sejajar dengan tanda mana ketika kompas diorientasikan?",
-    options: ["Timur (T)","Utara (U)","Selatan (S)","Barat (B)"],
+    options: ["Timur (T)", "Utara (U)", "Selatan (S)", "Barat (B)"],
     answerIndex: 1,
     explanation:
       "Pusingkan badan kompas sehingga hujung utara jarum sejajar dengan tanda U pada pemuka.",
@@ -9183,9 +9361,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 1",
     question: "Bearing sebuah pondok ialah 225°. Apakah arahnya?",
-    options: ["Timur Laut","Tenggara","Barat Daya","Barat Laut"],
+    options: ["Timur Laut", "Tenggara", "Barat Daya", "Barat Laut"],
     answerIndex: 2,
-    explanation: "Bearing 225° terletak di tengah antara Selatan (180°) dengan Barat (270°), iaitu Barat Daya.",
+    explanation:
+      "Bearing 225° terletak di tengah antara Selatan (180°) dengan Barat (270°), iaitu Barat Daya.",
   },
   {
     id: "geo-f1-c1-q27",
@@ -9194,7 +9373,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 1",
     question: "Garisan ke pondok membentuk sudut 40° dari Selatan ke Barat. Apakah bearing pondok?",
-    options: ["040°","140°","320°","220°"],
+    options: ["040°", "140°", "320°", "220°"],
     answerIndex: 3,
     explanation: "Bearing melebihi 180°: tambah sudut dari Selatan, iaitu 180° + 40° = 220°.",
   },
@@ -9205,7 +9384,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 1",
     question: "Murid mengukur 45° melawan arah jam dari Utara ke menara. Apakah bearing sebenar?",
-    options: ["045°","315°","135°","225°"],
+    options: ["045°", "315°", "135°", "225°"],
     answerIndex: 1,
     explanation: "Bearing mesti diukur mengikut arah jam: 360° - 45° = 315°, iaitu Barat Laut.",
   },
@@ -9215,8 +9394,9 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 1",
-    question: "Kompas telah diorientasikan. Tanda Tenggara sejajar dengan menara. Apakah arah menara?",
-    options: ["Tenggara","Timur Laut","Barat Daya","Barat Laut"],
+    question:
+      "Kompas telah diorientasikan. Tanda Tenggara sejajar dengan menara. Apakah arah menara?",
+    options: ["Tenggara", "Timur Laut", "Barat Daya", "Barat Laut"],
     answerIndex: 0,
     explanation:
       "Baca tanda pada pemuka yang sejajar dengan objek selepas kompas diorientasikan. Menara berada di Tenggara.",
@@ -9227,11 +9407,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 1",
-    question: "Garisan ke surau berada separuh jalan antara Timur dengan Selatan. Apakah bearing surau?",
-    options: ["045°","135°","225°","315°"],
+    question:
+      "Garisan ke surau berada separuh jalan antara Timur dengan Selatan. Apakah bearing surau?",
+    options: ["045°", "135°", "225°", "315°"],
     answerIndex: 1,
-    explanation:
-      "Sudut pertengahan antara Timur (090°) dan Selatan (180°) ialah 135°.",
+    explanation: "Sudut pertengahan antara Timur (090°) dan Selatan (180°) ialah 135°.",
   },
   // Geografi form 1 Chapter 2 - Kedudukan
   {
