@@ -1,40 +1,17 @@
 import type { QuizQuestion } from "@/data/content";
 
+/**
+ * Science Form 2, Chapter 6 (Acids and Alkalis) — quiz bank, DLP.
+ *
+ * 30 questions, textbook-only. IDs are preserved from the previous 34-item
+ * bank wherever the underlying slot survives — including several slots whose
+ * CONTENT was rewritten in place (see the chapter-6 quiz remediation report
+ * for the full old -> new mapping). sci-f2-c6-dlp-q1, q2, q4, q8 and q18 were
+ * deleted outright (etymology x2, a duplicate taste question, a duplicate
+ * pH-scale recall question, and a duplicate salt-identification question).
+ * sci-f2-c6-dlp-q35 is the only newly minted id.
+ */
 export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
-  {
-    id: "sci-f2-c6-dlp-q1",
-    subjectId: "science",
-    form: "Form 2",
-    difficulty: "Easy",
-    chapter: "Chapter 6",
-    lang: "dlp",
-    question: "From which language does the word \"acid\" originate, and what does it mean?",
-    options: [
-      "Latin, meaning sour",
-      "Arabic, meaning ashes of plants",
-      "Greek, meaning bitter",
-      "Latin, meaning corrosive",
-    ],
-    answerIndex: 0,
-    explanation: "The word \"acid\" comes from the Latin word acidus, which means sour.",
-  },
-  {
-    id: "sci-f2-c6-dlp-q2",
-    subjectId: "science",
-    form: "Form 2",
-    difficulty: "Easy",
-    chapter: "Chapter 6",
-    lang: "dlp",
-    question: "From which language does the word \"alkali\" originate, and what does it mean?",
-    options: [
-      "Latin, meaning sour",
-      "Arabic, meaning ashes of plants",
-      "Greek, meaning bitter",
-      "Sanskrit, meaning viscosity",
-    ],
-    answerIndex: 1,
-    explanation: "The word \"alkali\" comes from the Arabic word alqali, which means ashes of plants.",
-  },
   {
     id: "sci-f2-c6-dlp-q3",
     subjectId: "science",
@@ -42,22 +19,17 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "What is the range of the pH scale?",
-    options: ["0 to 7", "0 to 14", "1 to 10", "7 to 14"],
+    question:
+      "The pH scale ranges from 0 to 14. A solution is found to have a pH of 7. What does this tell us about the solution?",
+    options: [
+      "It is a strong acid",
+      "It is neutral, neither acidic nor alkaline",
+      "It is a strong alkali",
+      "Its pH cannot be on the scale",
+    ],
     answerIndex: 1,
-    explanation: "The pH scale is used to show the strength of acids or alkalis, with a range of 0 to 14.",
-  },
-  {
-    id: "sci-f2-c6-dlp-q4",
-    subjectId: "science",
-    form: "Form 2",
-    difficulty: "Easy",
-    chapter: "Chapter 6",
-    lang: "dlp",
-    question: "Which pH value indicates a neutral substance?",
-    options: ["pH 0", "pH 7", "pH 14", "pH 10"],
-    answerIndex: 1,
-    explanation: "pH 7 indicates that a substance is neutral, neither acidic nor alkaline.",
+    explanation:
+      "The pH scale ranges from 0 to 14. A pH value of 7 shows that a solution is neutral, neither acidic nor alkaline.",
   },
   {
     id: "sci-f2-c6-dlp-q5",
@@ -87,25 +59,19 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     id: "sci-f2-c6-dlp-q7",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "What is the taste of an acid?",
-    options: ["Sour", "Bitter", "Bland", "Sweet"],
-    answerIndex: 0,
-    explanation: "Acids taste sour, for example lime juice.",
-  },
-  {
-    id: "sci-f2-c6-dlp-q8",
-    subjectId: "science",
-    form: "Form 2",
-    difficulty: "Easy",
-    chapter: "Chapter 6",
-    lang: "dlp",
-    question: "What is the taste of an alkali?",
-    options: ["Sour", "Bitter", "Salty", "Bland"],
+    question: "Which of the following correctly compares the properties of acids and alkalis?",
+    options: [
+      "Acids taste bitter and alkalis taste sour",
+      "Acids taste sour and alkalis taste bitter; both can be corrosive",
+      "Acids are corrosive but alkalis are never corrosive",
+      "Alkalis taste sour and are not corrosive",
+    ],
     answerIndex: 1,
-    explanation: "Alkalis taste bitter, for example bitter gourd juice.",
+    explanation:
+      "Acids taste sour while alkalis taste bitter. Both acids and alkalis can be corrosive, so neither should ever be tasted or handled directly.",
   },
   {
     id: "sci-f2-c6-dlp-q9",
@@ -122,7 +88,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "An instrument used to measure the volume of a liquid",
     ],
     answerIndex: 1,
-    explanation: "An indicator is a colouring or mixture of different colourings that changes colour based on the substance tested, used to determine if a substance is neutral, acidic or alkaline.",
+    explanation:
+      "An indicator is a colouring or mixture of different colourings that changes colour based on the substance tested, used to determine if a substance is neutral, acidic or alkaline.",
   },
   {
     id: "sci-f2-c6-dlp-q10",
@@ -143,7 +110,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "Why does glacial ethanoic acid (without water) not change the colour of blue litmus paper?",
+    question:
+      "Why does glacial ethanoic acid (without water) not change the colour of blue litmus paper?",
     options: [
       "Because it is not a true acid",
       "Because acids and alkalis only show their properties in the presence of water",
@@ -151,19 +119,27 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "Because it is too dilute",
     ],
     answerIndex: 1,
-    explanation: "Acids and alkalis show their properties only in the presence of water; without water, glacial ethanoic acid does not change the colour of blue litmus paper.",
+    explanation:
+      "Acids and alkalis show their properties only in the presence of water; without water, glacial ethanoic acid does not change the colour of blue litmus paper.",
   },
   {
     id: "sci-f2-c6-dlp-q12",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Medium",
+    difficulty: "Hard",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "What colour change occurs to phenolphthalein when tested with an alkali?",
-    options: ["Colourless to pink", "Pink to colourless", "Red to blue", "Yellow to red"],
-    answerIndex: 0,
-    explanation: "Phenolphthalein is colourless in neutral and acidic conditions, but turns pink in alkaline conditions.",
+    question:
+      "A few drops of phenolphthalein are added to solution X, and it stays colourless. A student concludes that solution X must be acidic. Is this conclusion correct?",
+    options: [
+      "Yes, because phenolphthalein is colourless only in acids",
+      "No, because phenolphthalein is also colourless in a neutral solution, so another test is needed",
+      "Yes, because phenolphthalein always turns pink in acids",
+      "No, because phenolphthalein cannot be used with acids",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Phenolphthalein is colourless in BOTH acidic and neutral solutions, and only turns pink in an alkali. A colourless result alone does not prove the solution is acidic — another suitable test, such as litmus paper, is needed to confirm.",
   },
   {
     id: "sci-f2-c6-dlp-q13",
@@ -172,10 +148,16 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "What colour is universal indicator in a neutral solution?",
-    options: ["Red", "Green", "Blue", "Yellow"],
+    question: "What is an advantage of universal indicator compared with litmus paper?",
+    options: [
+      "It is used only for alkalis",
+      "It produces a range of colours that can be compared with a pH chart, giving a better idea of a solution's actual pH, not just whether it is acidic or alkaline",
+      "It cannot be used with a colour chart",
+      "It gives the same colour for every solution",
+    ],
     answerIndex: 1,
-    explanation: "According to the colour change table, universal indicator is green in neutral conditions, red in acids, and blue in alkalis.",
+    explanation:
+      "Litmus paper only shows whether a solution is acidic (red) or alkaline (blue). Universal indicator produces a range of colours — red in acid, green in neutral, blue in alkali — that can be compared with a pH chart to give a better idea of the solution's actual pH.",
   },
   {
     id: "sci-f2-c6-dlp-q14",
@@ -187,7 +169,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     question: "What colour is methyl orange in neutral and alkaline conditions?",
     options: ["Red", "Yellow", "Blue", "Green"],
     answerIndex: 1,
-    explanation: "Methyl orange is red in acid, but yellow in both neutral and alkaline conditions.",
+    explanation:
+      "Methyl orange is red in acid, but yellow in both neutral and alkaline conditions.",
   },
   {
     id: "sci-f2-c6-dlp-q15",
@@ -196,10 +179,12 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "In the acid and alkali properties test, what gas is produced when magnesium ribbon reacts with dilute hydrochloric acid?",
+    question:
+      "In the acid and alkali properties test, what gas is produced when magnesium ribbon reacts with dilute hydrochloric acid?",
     options: ["Oxygen gas", "Carbon dioxide gas", "Hydrogen gas", "Nitrogen gas"],
     answerIndex: 2,
-    explanation: "Magnesium ribbon reacts with dilute hydrochloric acid to produce hydrogen gas, which gives a \"pop\" sound with a lighted wooden splinter.",
+    explanation:
+      'Magnesium ribbon reacts with dilute hydrochloric acid to produce hydrogen gas, which gives a "pop" sound with a lighted wooden splinter.',
   },
   {
     id: "sci-f2-c6-dlp-q16",
@@ -208,7 +193,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "What happens when magnesium ribbon is placed in an alkaline solution in the acid and alkali properties test?",
+    question:
+      "What happens when magnesium ribbon is placed in an alkaline solution in the acid and alkali properties test?",
     options: [
       "It quickly produces hydrogen gas",
       "It produces oxygen gas",
@@ -216,7 +202,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "Magnesium dissolves completely",
     ],
     answerIndex: 2,
-    explanation: "Magnesium does not react with alkali in this activity, unlike its reaction with acid.",
+    explanation:
+      "Magnesium does not react with alkali in this activity, unlike its reaction with acid.",
   },
   {
     id: "sci-f2-c6-dlp-q17",
@@ -225,22 +212,17 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "What salt is produced from the reaction between hydrochloric acid and sodium hydroxide?",
-    options: ["Sodium nitrate", "Potassium sulphate", "Sodium chloride", "Magnesium chloride"],
-    answerIndex: 2,
-    explanation: "Hydrochloric acid + Sodium hydroxide → Sodium chloride + Water.",
-  },
-  {
-    id: "sci-f2-c6-dlp-q18",
-    subjectId: "science",
-    form: "Form 2",
-    difficulty: "Medium",
-    chapter: "Chapter 6",
-    lang: "dlp",
-    question: "What salt is produced from the reaction between sulphuric acid and potassium hydroxide?",
-    options: ["Potassium sulphate", "Sodium chloride", "Potassium nitrate", "Sodium sulphate"],
+    question:
+      "Which word equation correctly represents the neutralisation reaction between sulphuric acid and potassium hydroxide?",
+    options: [
+      "Sulphuric acid + Potassium hydroxide → Potassium sulphate + Water",
+      "Sulphuric acid + Potassium hydroxide → Potassium chloride + Water",
+      "Sulphuric acid + Potassium hydroxide → Potassium sulphate + Hydrogen",
+      "Sulphuric acid + Potassium hydroxide → Potassium nitrate + Water",
+    ],
     answerIndex: 0,
-    explanation: "Sulphuric acid + Potassium hydroxide → Potassium sulphate + Water.",
+    explanation:
+      "Neutralisation follows the word equation Acid + Alkali → Salt + Water. Sulphuric acid reacts with potassium hydroxide to produce potassium sulphate and water.",
   },
   {
     id: "sci-f2-c6-dlp-q19",
@@ -249,15 +231,12 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "In an acid-alkali titration, what is the role of the burette?",
-    options: [
-      "Transferring sodium hydroxide solution into the conical flask",
-      "Filled with hydrochloric acid for titration",
-      "Measuring the temperature of the solution",
-      "Acting as a colour indicator",
-    ],
+    question:
+      "In the textbook acid-alkali titration, which apparatus contains hydrochloric acid and allows it to be added drop by drop into the conical flask?",
+    options: ["Pipette", "Burette", "Conical flask", "Measuring cylinder"],
     answerIndex: 1,
-    explanation: "In an acid-alkali titration, the burette is filled with hydrochloric acid, while the pipette is used to transfer sodium hydroxide solution into the conical flask.",
+    explanation:
+      "In the titration, the burette is filled with hydrochloric acid and allows it to be added drop by drop into the conical flask, while the pipette is used to transfer a fixed volume of sodium hydroxide solution into the conical flask.",
   },
   {
     id: "sci-f2-c6-dlp-q20",
@@ -274,16 +253,18 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "The solution turns blue",
     ],
     answerIndex: 1,
-    explanation: "Using phenolphthalein as the indicator, neutralisation is complete when the solution changes from pink to colourless.",
+    explanation:
+      "Using phenolphthalein as the indicator, neutralisation is complete when the solution changes from pink to colourless.",
   },
   {
     id: "sci-f2-c6-dlp-q21",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "The soil on a farm is found to be too acidic for crops to grow well. What substance should be added and why?",
+    question:
+      "The soil on a farm is found to be too acidic for crops to grow well. What substance should be added and why?",
     options: [
       "Vinegar, because it will increase the soil's acidity",
       "Slaked lime, because it is alkaline and will neutralise the soil's acidity",
@@ -291,13 +272,14 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "Distilled water, because it has no effect",
     ],
     answerIndex: 1,
-    explanation: "Acidic soil can be treated by adding slaked lime, which is alkaline, so that plants can grow well through the process of neutralisation.",
+    explanation:
+      "Acidic soil can be treated by adding slaked lime, which is alkaline, so that plants can grow well through the process of neutralisation.",
   },
   {
     id: "sci-f2-c6-dlp-q22",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
     question: "Why is an acidic fabric softener used after fabrics are washed with detergent?",
@@ -308,33 +290,37 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "To remove heavy stains",
     ],
     answerIndex: 2,
-    explanation: "Fabric softeners are acidic and reduce the pH level of fabrics, which become alkaline after being washed with detergents — a form of neutralisation.",
+    explanation:
+      "Fabric softeners are acidic and reduce the pH level of fabrics, which become alkaline after being washed with detergents — a form of neutralisation.",
   },
   {
     id: "sci-f2-c6-dlp-q23",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "A factory discharges acidic chemical waste directly into a river without treatment. What is the long-term effect and how can it be prevented?",
+    question:
+      "A factory produces acidic chemical waste. What must be done to this waste before it is discharged into a river?",
     options: [
-      "No effect on aquatic life; no treatment is needed",
-      "It harms aquatic life due to changes in water pH; the waste must be treated with alkalis before discharge",
-      "The river water will naturally become alkaline without treatment",
-      "It only affects the colour of the river water, not living organisms",
+      "It can be discharged directly without any treatment",
+      "It must be treated with an alkali to neutralise it before being discharged",
+      "It must be diluted with more acid before being discharged",
+      "It only needs to be filtered, with no chemical treatment",
     ],
     answerIndex: 1,
-    explanation: "Acidic waste substances from factories must be treated with alkalis before being discharged into the river to prevent harmful effects on aquatic life caused by pH changes.",
+    explanation:
+      "Acidic waste substances from factories are treated with alkalis to neutralise them before being discharged into a river.",
   },
   {
     id: "sci-f2-c6-dlp-q24",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "How does toothpaste help prevent dental caries based on the concept of neutralisation?",
+    question:
+      "How does toothpaste help prevent dental caries based on the concept of neutralisation?",
     options: [
       "Toothpaste is acidic and adds to the acidity in the mouth",
       "Toothpaste contains an alkaline substance that neutralises the acid produced by bacteria in the mouth",
@@ -342,7 +328,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "Toothpaste only cleans physically without any chemical reaction",
     ],
     answerIndex: 1,
-    explanation: "Toothpaste contains an alkaline substance that can neutralise the acid produced by bacteria in the mouth, thereby preventing dental caries.",
+    explanation:
+      "Toothpaste contains an alkaline substance that can neutralise the acid produced by bacteria in the mouth, thereby preventing dental caries.",
   },
   {
     id: "sci-f2-c6-dlp-q25",
@@ -351,32 +338,34 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "A student uses an alkaline face cleanser daily until their facial skin becomes dry. What is the appropriate solution based on the concept of neutralisation?",
+    question: "A student wants to find the pH of ammonia gas. What should be done first, and why?",
     options: [
-      "Use more alkaline face cleanser",
-      "Use an acidic toner to neutralise the alkalinity on the skin",
-      "Stop washing the face altogether",
-      "Use only distilled water without any product",
+      "Test the gas directly with litmus paper, because gases do not need water",
+      "Dissolve the ammonia gas in water first, because acids and alkalis only show their properties in the presence of water, then test the resulting solution",
+      "Heat the ammonia gas until it becomes a solid before testing",
+      "Mix the ammonia gas with an acid before testing its pH",
     ],
     answerIndex: 1,
-    explanation: "Alkaline face cleansers make the facial skin dry, so acidic toners are used to neutralise the skin.",
+    explanation:
+      "Acids and alkalis only show their properties in the presence of water. To find the pH of ammonia gas, it must first be dissolved in water so that its alkaline property can be shown, and then a suitable test — such as litmus paper, universal indicator or a pH meter — can be used on the resulting solution.",
   },
   {
     id: "sci-f2-c6-dlp-q26",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "Why is a mildly acidic hair conditioner used after washing hair with shampoo?",
+    question: "Which of the following correctly matches a substance with its use?",
     options: [
-      "Shampoo makes hair slightly alkaline; acidic conditioner neutralises the shampoo residue so hair becomes smooth and healthy",
-      "To make the hair more alkaline",
-      "Shampoo has no effect on the pH of hair",
-      "Hair conditioner only functions as a colouring agent",
+      "Sodium hydroxide is used in car batteries",
+      "Sulphuric acid is used in car batteries",
+      "Vinegar is used to make detergents",
+      "Slaked lime is used in fizzy drinks",
     ],
-    answerIndex: 0,
-    explanation: "Healthy hair is slightly acidic, but shampoo makes hair slightly alkaline; a mildly acidic hair conditioner neutralises the shampoo residue on hair.",
+    answerIndex: 1,
+    explanation:
+      "Sulphuric acid, an acid, is used in car batteries. Sodium hydroxide, an alkali, is used to make detergents; vinegar, an acid, is used in cooking; and slaked lime, an alkali, is used to treat acidic soil.",
   },
   {
     id: "sci-f2-c6-dlp-q27",
@@ -385,7 +374,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "In an acid-alkali titration using phenolphthalein, the solution in the conical flask remains pink even after more hydrochloric acid has been added from the burette. What is the most accurate conclusion?",
+    question:
+      "In an acid-alkali titration using phenolphthalein, the solution in the conical flask remains pink even after more hydrochloric acid has been added from the burette. What is the most accurate conclusion?",
     options: [
       "Neutralisation is fully complete",
       "The amount of acid added is still insufficient to neutralise all the alkali in the conical flask",
@@ -393,7 +383,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "The solution in the conical flask is acidic",
     ],
     answerIndex: 1,
-    explanation: "The solution remaining pink (phenolphthalein's colour in alkaline conditions) means alkali is still in excess; neutralisation is only complete when the colour changes to colourless.",
+    explanation:
+      "The solution remaining pink (phenolphthalein's colour in alkaline conditions) means alkali is still in excess; neutralisation is only complete when the colour changes to colourless.",
   },
   {
     id: "sci-f2-c6-dlp-q28",
@@ -402,7 +393,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "Why does solid sodium hydroxide not change the colour of red litmus paper, but sodium hydroxide solution turns it blue?",
+    question:
+      "Why does solid sodium hydroxide not change the colour of red litmus paper, but sodium hydroxide solution turns it blue?",
     options: [
       "Because solid sodium hydroxide is not an alkali",
       "Because acids and alkalis only show their properties in the presence of water",
@@ -410,24 +402,27 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "Because solid sodium hydroxide is weaker than its solution",
     ],
     answerIndex: 1,
-    explanation: "Acids and alkalis show their properties only in the presence of water; solid sodium hydroxide (without water) does not change red litmus paper, but with water it turns it blue.",
+    explanation:
+      "Acids and alkalis show their properties only in the presence of water; solid sodium hydroxide (without water) does not change red litmus paper, but with water it turns it blue.",
   },
   {
     id: "sci-f2-c6-dlp-q29",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "A farmer uses ammonia solution to produce fertiliser for crops. What scientific concept underlies this process?",
+    question:
+      "Ammonia solution is used in the production of fertilisers for agriculture. Which statement correctly describes this process?",
     options: [
-      "Ammonia solution is an acid that corrodes the soil",
-      "Fertilisers are produced from the reaction between acidic and alkaline substances, with ammonia as the alkaline substance",
-      "Ammonia solution has no relation to acids or alkalis",
-      "Fertilisers are produced without any chemical reaction",
+      "Fertilisers are produced from a reaction between acidic and alkaline substances, with ammonia solution as the alkaline substance",
+      "Ammonia solution is an acid used to corrode raw materials",
+      "Fertiliser production does not involve any acid-alkali reaction",
+      "Ammonia solution is only used to colour the fertiliser",
     ],
-    answerIndex: 1,
-    explanation: "Fertilisers are produced from the reaction between acidic and alkaline substances; ammonia solution (an alkali) is used in fertiliser production for the agricultural sector.",
+    answerIndex: 0,
+    explanation:
+      "Fertilisers are produced from a reaction between acidic and alkaline substances. Ammonia solution, which is alkaline, is used in the production of fertilisers for the agricultural sector.",
   },
   {
     id: "sci-f2-c6-dlp-q30",
@@ -436,10 +431,12 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "Based on the indicator colour change table, a pond water sample is tested with blue litmus paper (stays blue), red litmus paper (stays red), and phenolphthalein (colourless). What is the pH nature of the pond water?",
+    question:
+      "Based on the indicator colour change table, a pond water sample is tested with blue litmus paper (stays blue), red litmus paper (stays red), and phenolphthalein (colourless). What is the pH nature of the pond water?",
     options: ["Acidic", "Alkaline", "Neutral", "Cannot be determined"],
     answerIndex: 2,
-    explanation: "Blue and red litmus paper remaining unchanged, along with phenolphthalein remaining colourless, indicates the substance is neutral (pH 7).",
+    explanation:
+      "Blue and red litmus paper remaining unchanged, along with phenolphthalein remaining colourless, indicates the substance is neutral (pH 7).",
   },
   {
     id: "sci-f2-c6-dlp-q31",
@@ -448,7 +445,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "Hydrochloric acid and ethanoic acid at the same concentration are tested with a pH meter. The hydrochloric acid reads pH 1 and the ethanoic acid reads pH 3. What can be concluded?",
+    question:
+      "Hydrochloric acid and ethanoic acid at the same concentration are tested with a pH meter. The hydrochloric acid reads pH 1 and the ethanoic acid reads pH 3. What can be concluded?",
     options: [
       "Ethanoic acid is the stronger acid because its pH value is higher",
       "Hydrochloric acid is a strong acid and ethanoic acid is a weak acid",
@@ -456,7 +454,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "Acid strength cannot be determined from pH values",
     ],
     answerIndex: 1,
-    explanation: "At the same concentration, the acid giving the lower pH value is the stronger acid. Hydrochloric acid (pH 1) is a strong acid; ethanoic acid (pH 3) is a weak acid.",
+    explanation:
+      "At the same concentration, the acid giving the lower pH value is the stronger acid. Hydrochloric acid (pH 1) is a strong acid; ethanoic acid (pH 3) is a weak acid.",
   },
   {
     id: "sci-f2-c6-dlp-q32",
@@ -465,7 +464,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "Why does the condition 'at the same concentration' matter when comparing the strength of two acids using pH values?",
+    question:
+      "Why does the condition 'at the same concentration' matter when comparing the strength of two acids using pH values?",
     options: [
       "Because acids only show their properties at certain concentrations",
       "Because without it, a difference in pH could come from concentration rather than from acid strength",
@@ -473,13 +473,14 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "Because weak acids do not dissolve at high concentrations",
     ],
     answerIndex: 1,
-    explanation: "A very dilute strong acid can show a higher pH than a concentrated weak acid. Comparing at the same concentration makes sure the difference in pH really is caused by the strength of the acid.",
+    explanation:
+      "A very dilute strong acid can show a higher pH than a concentrated weak acid. Comparing at the same concentration makes sure the difference in pH really is caused by the strength of the acid.",
   },
   {
     id: "sci-f2-c6-dlp-q33",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Medium",
+    difficulty: "Hard",
     chapter: "Chapter 6",
     lang: "dlp",
     question: "Vinegar contains ethanoic acid and tastes sour. What kind of acid is in vinegar?",
@@ -490,7 +491,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "Not an acid, because it is used in food",
     ],
     answerIndex: 2,
-    explanation: "Ethanoic acid is a weak acid. A sour taste and a low pH show the solution is acidic, but acid strength is decided by comparing substances at the same concentration.",
+    explanation:
+      "Ethanoic acid is a weak acid. A sour taste and a low pH show the solution is acidic, but acid strength is decided by comparing substances at the same concentration.",
   },
   {
     id: "sci-f2-c6-dlp-q34",
@@ -499,7 +501,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     lang: "dlp",
-    question: "Sodium hydroxide solution and ammonia solution at the same concentration read pH 13 and pH 11 respectively. Which is the weak alkali?",
+    question:
+      "Sodium hydroxide solution and ammonia solution at the same concentration read pH 13 and pH 11 respectively. Which is the weak alkali?",
     options: [
       "Sodium hydroxide solution",
       "Ammonia solution",
@@ -507,6 +510,20 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
       "Both are strong alkalis",
     ],
     answerIndex: 1,
-    explanation: "At the same concentration, the alkali giving the lower pH value is the weaker one. Ammonia solution (pH 11) is a weak alkali; sodium hydroxide solution (pH 13) is a strong alkali.",
+    explanation:
+      "At the same concentration, the alkali giving the lower pH value is the weaker one. Ammonia solution (pH 11) is a weak alkali; sodium hydroxide solution (pH 13) is a strong alkali.",
+  },
+  {
+    id: "sci-f2-c6-dlp-q35",
+    subjectId: "science",
+    form: "Form 2",
+    difficulty: "Easy",
+    chapter: "Chapter 6",
+    lang: "dlp",
+    question: "Which instrument gives a direct numerical reading of a solution's pH value?",
+    options: ["Litmus paper", "Universal indicator", "pH meter", "Methyl orange"],
+    answerIndex: 2,
+    explanation:
+      "A pH meter gives a direct numerical reading of a solution's pH value. Indicators such as litmus paper, universal indicator and methyl orange only show a colour change that must be compared with a chart or observed by eye.",
   },
 ];
