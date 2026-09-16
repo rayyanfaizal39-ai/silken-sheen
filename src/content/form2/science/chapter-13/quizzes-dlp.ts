@@ -9,7 +9,12 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     question: "What is the meaning of a meteoroid?",
-    options: ["A floating piece of stone and metal that moves in space", "A large metal and rocky body that travels around the Sun in its own orbit", "A small body made up of a mixture of ice, gas and frozen dust", "A star that is very small and does not emit light"],
+    options: [
+      "A floating piece of stone and metal that moves in space",
+      "A large metal and rocky body that travels around the Sun in its own orbit",
+      "A small body made up of a mixture of ice, gas and frozen dust",
+      "A star that is very small and does not emit light",
+    ],
     answerIndex: 0,
     explanation: "A meteoroid is a floating piece of stone and metal that moves in space.",
   },
@@ -21,9 +26,15 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     question: "What is the meaning of an asteroid?",
-    options: ["A small body of frozen ice, gas and dust", "A rock fragment that burns up in Earth's atmosphere", "A large metal and rocky body that travels around the Sun in its own orbit", "A small piece of rock that reaches the Earth's surface"],
+    options: [
+      "A small body of frozen ice, gas and dust",
+      "A rock fragment that burns up in Earth's atmosphere",
+      "A large metal and rocky body that travels around the Sun in its own orbit",
+      "A small piece of rock that reaches the Earth's surface",
+    ],
     answerIndex: 2,
-    explanation: "An asteroid is a large metal and rocky body that travels around the Sun in its own orbit.",
+    explanation:
+      "An asteroid is a large metal and rocky body that travels around the Sun in its own orbit.",
   },
   {
     id: "sci-f2-c13-dlp-q3",
@@ -33,9 +44,15 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     question: "What is the meaning of a comet?",
-    options: ["A large rocky body only", "A piece of metal floating in outer space", "A small body made up of a mixture of ice, gas and frozen dust, travelling around the Sun", "A small planet within the asteroid belt"],
+    options: [
+      "A large rocky body only",
+      "A piece of metal floating in outer space",
+      "A small body made up of a mixture of ice, gas and frozen dust, travelling around the Sun",
+      "A small planet within the asteroid belt",
+    ],
     answerIndex: 2,
-    explanation: "A comet is a small body made up of a mixture of ice, gas and frozen dust, travelling around the Sun in its own orbit.",
+    explanation:
+      "A comet is a small body made up of a mixture of ice, gas and frozen dust, travelling around the Sun in its own orbit.",
   },
   {
     id: "sci-f2-c13-dlp-q4",
@@ -59,7 +76,8 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     question: "What are the two main metals found in meteoroids and asteroids?",
     options: ["Iron and nickel", "Gold and silver", "Aluminium and copper", "Lead and zinc"],
     answerIndex: 0,
-    explanation: "Meteoroids and asteroids are made up of stones and metals such as iron and nickel.",
+    explanation:
+      "Meteoroids and asteroids are made up of stones and metals such as iron and nickel.",
   },
   {
     id: "sci-f2-c13-dlp-q6",
@@ -93,7 +111,12 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     question: "Between which two planetary orbits is the asteroid belt located?",
-    options: ["Between the orbits of Mars and Jupiter", "Between the orbits of Earth and Mars", "Between the orbits of Jupiter and Saturn", "Between the orbits of Saturn and Uranus"],
+    options: [
+      "Between the orbits of Mars and Jupiter",
+      "Between the orbits of Earth and Mars",
+      "Between the orbits of Jupiter and Saturn",
+      "Between the orbits of Saturn and Uranus",
+    ],
     answerIndex: 0,
     explanation: "Asteroids form an asteroid belt between the orbits of Mars and Jupiter.",
   },
@@ -129,9 +152,15 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     question: "What is the main difference between a meteoroid and a meteor?",
-    options: ["There is no difference, they are the same", "A meteor is an object in outer space; a meteoroid is an object that reaches the Earth's surface", "A meteoroid is an object in outer space; a meteor is a meteoroid that burns up entering Earth's atmosphere", "Meteoroids only exist in the Kuiper belt"],
+    options: [
+      "There is no difference, they are the same",
+      "A meteor is an object in outer space; a meteoroid is an object that reaches the Earth's surface",
+      "A meteoroid is an object in outer space; a meteor is a meteoroid that burns up entering Earth's atmosphere",
+      "Meteoroids only exist in the Kuiper belt",
+    ],
     answerIndex: 2,
-    explanation: "A meteoroid is a rock/metal fragment in outer space. When it enters Earth's atmosphere and burns up, it is called a meteor; if it reaches the Earth's surface, it becomes a meteorite.",
+    explanation:
+      "A meteoroid is a rock/metal fragment in outer space. When it enters Earth's atmosphere and burns up, it is called a meteor; if it reaches the Earth's surface, it becomes a meteorite.",
   },
   {
     id: "sci-f2-c13-dlp-q12",
@@ -141,7 +170,12 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     question: "How are meteoroids and asteroids related to each other?",
-    options: ["Asteroids are meteoroids that have already fallen to Earth", "Asteroids originate from fragments of meteoroids", "They are not related at all", "Meteoroids originate from fragments of asteroids and comets"],
+    options: [
+      "Asteroids are meteoroids that have already fallen to Earth",
+      "Asteroids originate from fragments of meteoroids",
+      "They are not related at all",
+      "Meteoroids originate from fragments of asteroids and comets",
+    ],
     answerIndex: 3,
     explanation: "Meteoroids originate from fragments of asteroids and comets.",
   },
@@ -176,10 +210,16 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 13",
     lang: "dlp",
-    question: "Name four large asteroids mentioned in the notes.",
-    options: ["Halley, Encke, Hale-Bopp and Tempel", "Ceres, Pallas, Juno and Vesta", "Apollo, Amor, Aten and Icarus", "Hoba, Arizona, Namibia and Grootfontein"],
+    question: "Which group of names consists entirely of large asteroids?",
+    options: [
+      "Halley, Encke, Hale-Bopp and Tempel",
+      "Ceres, Pallas, Juno and Vesta",
+      "Apollo, Amor, Aten and Icarus",
+      "Hoba, Arizona, Namibia and Grootfontein",
+    ],
     answerIndex: 1,
-    explanation: "Large asteroids such as Ceres, Pallas, Juno and Vesta have diameters of a few kilometres to 1,000 kilometres.",
+    explanation:
+      "Large asteroids such as Ceres, Pallas, Juno and Vesta have diameters of a few kilometres to 1,000 kilometres.",
   },
   {
     id: "sci-f2-c13-dlp-q16",
@@ -225,7 +265,12 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     question: "What is the average speed range of a comet's movement?",
-    options: ["10 km s⁻¹ to 70 km s⁻¹", "A constant 25 km s⁻¹", "A constant 42 km s⁻¹", "100 km s⁻¹ to 200 km s⁻¹"],
+    options: [
+      "10 km s⁻¹ to 70 km s⁻¹",
+      "A constant 25 km s⁻¹",
+      "A constant 42 km s⁻¹",
+      "100 km s⁻¹ to 200 km s⁻¹",
+    ],
     answerIndex: 0,
     explanation: "A comet travels at an average speed range of 10 km s⁻¹ to 70 km s⁻¹.",
   },
@@ -237,7 +282,12 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     question: "What is the composition of a comet's head and tail?",
-    options: ["Liquid hydrogen only", "Solid iron and nickel only", "Gas and water that freeze into ice, dust and rocky particles", "Granite and marble rock"],
+    options: [
+      "Liquid hydrogen only",
+      "Solid iron and nickel only",
+      "Gas and water that freeze into ice, dust and rocky particles",
+      "Granite and marble rock",
+    ],
     answerIndex: 2,
     explanation: "A comet comprises gas and water that freeze into ice, dust and rocky particles.",
   },
@@ -248,10 +298,17 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "dlp",
-    question: "Which of the following temperature comparisons for a meteoroid and an asteroid is correct?",
-    options: ["Meteoroid: about −73°C; Asteroid: around 0°C", "Meteoroid: around 0°C; Asteroid: about −73°C", "Meteoroid: around 0°C; Asteroid: about 100°C", "Both a meteoroid and an asteroid are about −73°C"],
+    question:
+      "Which of the following temperature comparisons for a meteoroid and an asteroid is correct?",
+    options: [
+      "Meteoroid: about −73°C; Asteroid: around 0°C",
+      "Meteoroid: around 0°C; Asteroid: about −73°C",
+      "Meteoroid: around 0°C; Asteroid: about 100°C",
+      "Both a meteoroid and an asteroid are about −73°C",
+    ],
     answerIndex: 1,
-    explanation: "The temperature of a meteoroid in outer space is around 0°C, while an asteroid has a cold surface temperature of about −73°C.",
+    explanation:
+      "The temperature of a meteoroid in outer space is around 0°C, while an asteroid has a cold surface temperature of about −73°C.",
   },
   {
     id: "sci-f2-c13-dlp-q22",
@@ -261,9 +318,15 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "dlp",
     question: "Why is it important for scientists to continuously monitor asteroid orbits?",
-    options: ["To count the total number of asteroids that exist in the universe", "To ensure asteroid orbits are at a safe distance from Earth's orbit and issue warnings if there is a risk of collision", "To determine the colour of asteroids", "To prove that asteroids do not contain metal"],
+    options: [
+      "To count the total number of asteroids that exist in the universe",
+      "To ensure asteroid orbits are at a safe distance from Earth's orbit and issue warnings if there is a risk of collision",
+      "To determine the colour of asteroids",
+      "To prove that asteroids do not contain metal",
+    ],
     answerIndex: 1,
-    explanation: "Scientists monitor asteroids to ensure their orbits remain at a safe distance from Earth's orbit; warnings are issued if there is a risk of collision, and dangerous asteroids may be destroyed or have their course changed.",
+    explanation:
+      "Scientists monitor asteroids to ensure their orbits remain at a safe distance from Earth's orbit; warnings are issued if there is a risk of collision, and dangerous asteroids may be destroyed or have their course changed.",
   },
   {
     id: "sci-f2-c13-dlp-q23",
@@ -272,10 +335,17 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "dlp",
-    question: "What evidence is linked to the extinction of dinosaurs according to paleontologists?",
-    options: ["A collision between two small meteoroids in outer space", "An explosion of Halley's Comet near the Earth", "The collision of a 10 km sized asteroid with the surface of the Earth", "A sudden change in Earth's orbit"],
+    question:
+      "What evidence is linked to the extinction of dinosaurs according to paleontologists?",
+    options: [
+      "A collision between two small meteoroids in outer space",
+      "An explosion of Halley's Comet near the Earth",
+      "The collision of a 10 km sized asteroid with the surface of the Earth",
+      "A sudden change in Earth's orbit",
+    ],
     answerIndex: 2,
-    explanation: "Paleontologists believe the extinction of dinosaurs was caused by the collision of a 10 km sized asteroid with the surface of the Earth.",
+    explanation:
+      "Paleontologists believe the extinction of dinosaurs was caused by the collision of a 10 km sized asteroid with the surface of the Earth.",
   },
   {
     id: "sci-f2-c13-dlp-q24",
@@ -284,10 +354,17 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "dlp",
-    question: "What event occurred in 1994 between comet Shoemaker-Levy 9 and Jupiter, and why is it significant?",
-    options: ["The first ever recorded direct collision of a comet with an object in the solar system", "The comet turned into an asteroid after passing Jupiter", "Jupiter pulled the comet into the asteroid belt", "It was the first time a meteoroid fell onto Jupiter"],
+    question:
+      "What event occurred in 1994 between comet Shoemaker-Levy 9 and Jupiter, and why is it significant?",
+    options: [
+      "The first ever recorded direct collision of a comet with an object in the solar system",
+      "The comet turned into an asteroid after passing Jupiter",
+      "Jupiter pulled the comet into the asteroid belt",
+      "It was the first time a meteoroid fell onto Jupiter",
+    ],
     answerIndex: 0,
-    explanation: "The first direct collision of a comet with objects in the solar system occurred in 1994, between the Shoemaker-Levy 9 comet and Jupiter — significant because it directly demonstrated such collisions can occur and be observed.",
+    explanation:
+      "The first direct collision of a comet with objects in the solar system occurred in 1994, between the Shoemaker-Levy 9 comet and Jupiter — significant because it directly demonstrated such collisions can occur and be observed.",
   },
   {
     id: "sci-f2-c13-dlp-q25",
@@ -296,10 +373,17 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "dlp",
-    question: "Halley's Comet was last seen passing the Earth in 1986. Based on its orbital cycle, in what year is it expected to be seen again?",
-    options: ["2030", "2061", "2050", "2086"],
+    question:
+      "As a comet travels along its elliptical orbit, in which direction does its tail point?",
+    options: [
+      "Always behind the comet, trailing its direction of travel",
+      "Always away from the Sun, regardless of the comet's direction of travel",
+      "Always towards the Sun",
+      "In a random direction that keeps changing",
+    ],
     answerIndex: 1,
-    explanation: "The Halley Comet was last seen passing the Earth in 1986 and is expected to pass the Earth again in 2061.",
+    explanation:
+      "A comet's tail always points away from the Sun — not simply behind the comet as it travels. This means that as a comet moves away from the Sun after passing it, the tail actually points ahead of the comet's direction of travel, not behind it.",
   },
   {
     id: "sci-f2-c13-dlp-q26",
@@ -308,10 +392,17 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "dlp",
-    question: "The Hoba Meteorite was discovered near Grootfontein, Namibia, in 1920. Why is it considered special in the study of space science?",
-    options: ["It led to the discovery of the asteroid belt", "It is the first meteorite ever found on Earth", "It is the only meteorite known to contain ice", "It is the largest meteorite ever recorded in the world"],
+    question:
+      "The Hoba Meteorite was discovered near Grootfontein, Namibia, in 1920. Why is it considered special in the study of space science?",
+    options: [
+      "It led to the discovery of the asteroid belt",
+      "It is the first meteorite ever found on Earth",
+      "It is the only meteorite known to contain ice",
+      "It is the largest meteorite ever recorded in the world",
+    ],
     answerIndex: 3,
-    explanation: "The Hoba Meteorite is the largest meteorite ever recorded in the world, believed to have fallen to Earth approximately 80,000 years ago.",
+    explanation:
+      "The Hoba Meteorite is the largest meteorite ever recorded in the world, believed to have fallen to Earth approximately 80,000 years ago.",
   },
   {
     id: "sci-f2-c13-dlp-q27",
@@ -320,10 +411,17 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "dlp",
-    question: "The meteorite crater in Arizona, United States, has a diameter of approximately 1.2 km and formed approximately 50,000 years ago. What conclusion can be drawn about the relationship between the size of a space object and its impact on Earth?",
-    options: ["Even relatively small space objects can leave large, lasting impacts on Earth's surface due to the high energy of collision", "Only objects larger than 1,000 km can form craters", "Craters only form from volcanic eruptions, not space object collisions", "Crater size has no relationship to the size of the colliding object"],
+    question:
+      "The meteorite crater in Arizona, United States, has a diameter of approximately 1.2 km and formed approximately 50,000 years ago. What conclusion can be drawn about the relationship between the size of a space object and its impact on Earth?",
+    options: [
+      "Even relatively small space objects can leave large, lasting impacts on Earth's surface due to the high energy of collision",
+      "Only objects larger than 1,000 km can form craters",
+      "Craters only form from volcanic eruptions, not space object collisions",
+      "Crater size has no relationship to the size of the colliding object",
+    ],
     answerIndex: 0,
-    explanation: "The Arizona crater shows that the collision of a space object, even one that is not extremely large, can produce major lasting physical effects due to the high kinetic energy involved during impact.",
+    explanation:
+      "The Arizona crater shows that the collision of a space object, even one that is not extremely large, can produce major lasting physical effects due to the high kinetic energy involved during impact.",
   },
   {
     id: "sci-f2-c13-dlp-q28",
@@ -332,10 +430,17 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "dlp",
-    question: "The orbits of Apollo, Amor and Aten are considered higher risk compared to other asteroids within the asteroid belt. Why?",
-    options: ["Because their orbits can intersect with Earth's orbit, lying outside the asteroid belt", "Because they move more slowly than other asteroids", "Because they are made of lighter materials", "Because they always stay far from the Sun"],
+    question:
+      "The orbits of Apollo, Amor and Aten are considered higher risk compared to other asteroids within the asteroid belt. Why?",
+    options: [
+      "Because their orbits can intersect with Earth's orbit, lying outside the asteroid belt",
+      "Because they move more slowly than other asteroids",
+      "Because they are made of lighter materials",
+      "Because they always stay far from the Sun",
+    ],
     answerIndex: 0,
-    explanation: "The orbits of Apollo, Amor and Aten are examples of asteroid orbits outside the asteroid belt that can intersect with Earth's orbit, increasing collision risk compared to asteroids that remain within the asteroid belt.",
+    explanation:
+      "The orbits of Apollo, Amor and Aten are examples of asteroid orbits outside the asteroid belt that can intersect with Earth's orbit, increasing collision risk compared to asteroids that remain within the asteroid belt.",
   },
   {
     id: "sci-f2-c13-dlp-q29",
@@ -344,10 +449,17 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "dlp",
-    question: "What is the role of the National Space Agency (ANGKASA) in relation to threats from space objects such as asteroids?",
-    options: ["It has no role in monitoring space objects", "It only manages commercial satellite launches", "It controls the prices of imported space metals", "It is responsible for driving and monitoring the development of space science in Malaysia"],
+    question:
+      "What is the role of the National Space Agency (ANGKASA) in relation to threats from space objects such as asteroids?",
+    options: [
+      "It has no role in monitoring space objects",
+      "It only manages commercial satellite launches",
+      "It controls the prices of imported space metals",
+      "It is responsible for driving and monitoring the development of space science in Malaysia",
+    ],
     answerIndex: 3,
-    explanation: "The National Space Agency (ANGKASA) is responsible for driving and monitoring the development of space science in Malaysia, including efforts related to monitoring space objects.",
+    explanation:
+      "The National Space Agency (ANGKASA) is responsible for driving and monitoring the development of space science in Malaysia, including efforts related to monitoring space objects.",
   },
   {
     id: "sci-f2-c13-dlp-q30",
@@ -356,9 +468,16 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "dlp",
-    question: "Based on their composition, size and orbit, why are meteoroids, asteroids and comets categorised as different objects even though all of them move within the solar system?",
-    options: ["Because meteoroids and asteroids do not exist in the same solar system as comets", "Because only the names differ; their physical characteristics are exactly the same", "Because only comets travel around the Sun", "Because differences in size, material composition and orbit type distinguish the physical characteristics and movement of each object"],
+    question:
+      "Based on their composition, size and orbit, why are meteoroids, asteroids and comets categorised as different objects even though all of them move within the solar system?",
+    options: [
+      "Because meteoroids and asteroids do not exist in the same solar system as comets",
+      "Because only the names differ; their physical characteristics are exactly the same",
+      "Because only comets travel around the Sun",
+      "Because differences in size, material composition and orbit type distinguish the physical characteristics and movement of each object",
+    ],
     answerIndex: 3,
-    explanation: "Meteoroids (small rock/metal fragments), asteroids (large rocky/metal bodies in the asteroid belt) and comets (ice/gas/dust bodies with elliptical orbits) differ in size, composition and orbital characteristics, making each a distinct category of solar system object.",
+    explanation:
+      "Meteoroids (small rock/metal fragments), asteroids (large rocky/metal bodies in the asteroid belt) and comets (ice/gas/dust bodies with elliptical orbits) differ in size, composition and orbital characteristics, making each a distinct category of solar system object.",
   },
 ];
