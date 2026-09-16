@@ -1,5 +1,5 @@
-import { useState, type ReactNode } from "react";
-import { BookOpenCheck, CheckCircle2, ChevronRight, CircleGauge, Leaf, Wind } from "lucide-react";
+import { type ReactNode } from "react";
+import { BookOpenCheck, CheckCircle2, CircleGauge } from "lucide-react";
 import type { Chapter3Content } from "@/content/form1/science/chapter-3/chapter3-content";
 
 import {
@@ -12,100 +12,21 @@ import {
 
 import { Chapter3AnimalHomeostasis } from "./blocks/Chapter3AnimalHomeostasis";
 
+import { Chapter3PlantHomeostasis, Chapter3Importance } from "./blocks/Chapter3PlantHomeostasis";
+
 type Lang = "en" | "bm";
 
 const ui = {
   en: {
     eyebrow: "Chapter 3 visual map",
-    title: "Coordination and Response",
     subtitle: "Homeostatic Control Process",
-    path: [
-      ["3.1", "Homeostasis in Living Things"],
-      ["", "Homeostatic Control Process"],
-      ["", "Regulation of Water Content"],
-      ["", "Regulation of Body Temperature"],
-      ["Experiment 3.1", "Sweating"],
-      ["Experiment 3.2", "Pulse rate"],
-      ["", "Animals"],
-      ["", "Plants"],
-    ],
-    sections: [
-      [
-        "3.1",
-        "A stable internal environment",
-        "Homeostasis keeps conditions such as temperature, water content, pH and blood pressure within a balanced range.",
-      ],
-      [
-        "",
-        "Regulating water content",
-        "The brain, endocrine system and kidneys coordinate urine production and thirst to restore water balance.",
-      ],
-      [
-        "",
-        "Regulating body temperature",
-        "Effectors in the skin, muscles and endocrine system respond in opposite ways when the body is too hot or too cold.",
-      ],
-      [
-        "Experiment 3.2",
-        "Physical activity changes pulse rate",
-        "Measure pulse rate at rest, while walking and after jogging to connect muscle activity with oxygen and energy demand.",
-      ],
-      [
-        "",
-        "Animals solve homeostasis differently",
-        "Behavioural and structural adaptations help animals regulate temperature or prevent excessive water loss.",
-      ],
-      [
-        "",
-        "Plants balance water loss and cooling",
-        "Transpiration creates upward water pull and evaporative cooling, while guard cells control each stoma.",
-      ],
-      [
-        "Chapter check",
-        "Connect every response to the control loop",
-        "Use the exam facts and practice prompts to explain stimulus, detection, correction and return to normal.",
-      ],
-    ],
-    meaning: "What homeostasis means",
     origin: "Word origin",
     importance: "Why stability matters",
-    controlLoop: "Homeostatic Control Process",
-    loop: [
-      "Internal change",
-      "Receptor detects",
-      "Brain / control centre",
-      "Corrective mechanism",
-      "Normal range restored",
-    ],
-    chooseDirection: "Choose a change",
-    increases: "Factor increases",
-    decreases: "Factor decreases",
-    systems: "Systems involved",
-    organs: "Organs involved",
-    detected: "Detected by",
-    correction: "Corrective response",
-    result: "Result",
-    sweatUrine: "Sweat and urine move in opposite directions",
-    sweatUrineText:
-      "Hot day or exercise: sweating increases, blood water falls and urine volume decreases. Cold day: sweating decreases and urine volume increases.",
-    chooseCondition: "Choose the surrounding condition",
-    hot: "Hot day",
-    cold: "Cold day",
-    practical: "Compulsory investigation",
-    method: "Method sequence",
-    conclusion: "Conclusion",
-    chooseAnimal: "Choose an animal adaptation",
-    transpiration: "Transpiration",
-    functions: "Why transpiration matters",
-    waterFact: "Water-loss fact",
-    chooseStoma: "Choose a stoma condition",
-    open: "Open stoma",
-    closed: "Closed stoma",
-    banana: "Banana-leaf response",
-    bananaText:
-      "On a hot afternoon, banana leaves roll up to reduce the surface area exposed to sunlight and reduce water loss.",
     examFacts: "Key exam facts",
     practice: "Test your explanation",
+    summary: "Chapter summary",
+    mark: "Mark Chapter 3 Complete",
+    marked: "Chapter 3 complete",
     questions: [
       [
         "How do blood vessels and sweat glands cool the body?",
@@ -120,101 +41,19 @@ const ui = {
         "Banana leaves roll up to reduce exposure; bees have a waxy layer and close spiracles between breaths.",
       ],
     ],
-    summary: "Chapter summary",
-    mark: "Mark Chapter 3 Complete",
-    marked: "Chapter 3 complete",
+    human: "Human",
+    chapterCheck: "Chapter Check",
   },
   bm: {
     eyebrow: "Peta visual Bab 3",
-    title: "Koordinasi dan Gerak Balas",
     subtitle: "Proses Kawalan Homeostasis",
-    path: [
-      ["3.1", "Homeostasis dalam Benda Hidup"],
-      ["", "Proses Kawalan Homeostasis"],
-      ["", "Kawal Atur Kandungan Air"],
-      ["", "Kawal Atur Suhu Badan"],
-      ["Eksperimen 3.1", "Peluh"],
-      ["Eksperimen 3.2", "Kadar nadi"],
-      ["", "Haiwan"],
-      ["", "Tumbuhan"],
-    ],
-    sections: [
-      [
-        "3.1",
-        "Persekitaran dalaman yang stabil",
-        "Homeostasis mengekalkan keadaan seperti suhu, kandungan air, pH dan tekanan darah dalam julat yang seimbang.",
-      ],
-      [
-        "",
-        "Mengawal kandungan air",
-        "Otak, sistem endokrin dan buah pinggang menyelaras penghasilan air kencing serta rasa dahaga untuk memulihkan keseimbangan air.",
-      ],
-      [
-        "",
-        "Mengawal suhu badan",
-        "Efektor pada kulit, otot dan sistem endokrin bertindak secara bertentangan apabila badan terlalu panas atau terlalu sejuk.",
-      ],
-      [
-        "Eksperimen 3.2",
-        "Aktiviti fizikal mengubah kadar denyutan nadi",
-        "Ukur kadar nadi semasa rehat, berjalan dan selepas berjoging untuk menghubungkan aktiviti otot dengan keperluan oksigen dan tenaga.",
-      ],
-      [
-        "",
-        "Haiwan mengawal homeostasis dengan cara berbeza",
-        "Adaptasi tingkah laku dan struktur membantu haiwan mengawal suhu atau mencegah kehilangan air berlebihan.",
-      ],
-      [
-        "",
-        "Tumbuhan mengimbangi kehilangan air dan penyejukan",
-        "Transpirasi menghasilkan tarikan air ke atas dan penyejukan melalui penyejatan, manakala sel pengawal mengawal setiap stoma.",
-      ],
-      [
-        "Semakan bab",
-        "Hubungkan setiap gerak balas dengan gelung kawalan",
-        "Gunakan fakta peperiksaan dan soalan latihan untuk menerangkan rangsangan, pengesanan, pembetulan dan kembali normal.",
-      ],
-    ],
-    meaning: "Maksud homeostasis",
     origin: "Asal perkataan",
     importance: "Mengapa kestabilan penting",
-    controlLoop: "Proses Kawalan Homeostasis",
-    loop: [
-      "Perubahan dalaman",
-      "Reseptor mengesan",
-      "Otak / pusat kawalan",
-      "Mekanisme pembetulan",
-      "Julat normal dipulihkan",
-    ],
-    chooseDirection: "Pilih perubahan",
-    increases: "Faktor meningkat",
-    decreases: "Faktor menurun",
-    systems: "Sistem terlibat",
-    organs: "Organ terlibat",
-    detected: "Dikesan oleh",
-    correction: "Gerak balas pembetulan",
-    result: "Hasil",
-    sweatUrine: "Peluh dan air kencing berubah secara songsang",
-    sweatUrineText:
-      "Hari panas atau senaman: peluh meningkat, air dalam darah berkurang dan isi padu air kencing menurun. Hari sejuk: peluh berkurang dan air kencing meningkat.",
-    chooseCondition: "Pilih keadaan persekitaran",
-    hot: "Hari panas",
-    cold: "Hari sejuk",
-    practical: "Penyiasatan wajib",
-    method: "Urutan kaedah",
-    conclusion: "Kesimpulan",
-    chooseAnimal: "Pilih adaptasi haiwan",
-    transpiration: "Transpirasi",
-    functions: "Mengapa transpirasi penting",
-    waterFact: "Fakta kehilangan air",
-    chooseStoma: "Pilih keadaan stoma",
-    open: "Stoma terbuka",
-    closed: "Stoma tertutup",
-    banana: "Gerak balas daun pisang",
-    bananaText:
-      "Pada waktu petang yang panas, daun pisang menggulung untuk mengurangkan luas permukaan terdedah kepada cahaya matahari dan mengurangkan kehilangan air.",
     examFacts: "Fakta penting peperiksaan",
     practice: "Uji penerangan anda",
+    summary: "Rumusan bab",
+    mark: "Tandakan Bab 3 Selesai",
+    marked: "Bab 3 selesai",
     questions: [
       [
         "Bagaimanakah salur darah dan kelenjar peluh menyejukkan badan?",
@@ -229,9 +68,8 @@ const ui = {
         "Daun pisang menggulung untuk mengurangkan pendedahan; lebah mempunyai lapisan berlilin dan menutup spirakel antara pernafasan.",
       ],
     ],
-    summary: "Rumusan bab",
-    mark: "Tandakan Bab 3 Selesai",
-    marked: "Bab 3 selesai",
+    human: "Manusia",
+    chapterCheck: "Semakan Bab",
   },
 } as const;
 
@@ -243,16 +81,11 @@ function Panel({ children, className = "" }: { children: ReactNode; className?: 
   );
 }
 
-function SectionHeading({ section }: { section: readonly [string, string, string] }) {
+function SectionHeading({ title, standard }: { title: string; standard?: string }) {
   return (
     <div className="max-w-3xl">
-      <span className="text-xs font-black uppercase tracking-[.2em] text-amber-300">
-        {section[0]}
-      </span>
-      <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl">{section[1]}</h3>
-      <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">
-        {section[2]}
-      </p>
+      {standard && <span className="text-xs font-mono font-bold text-cyan-300">{standard}</span>}
+      <h3 className="mt-2 font-display text-2xl font-black text-white sm:text-3xl">{title}</h3>
     </div>
   );
 }
@@ -286,20 +119,26 @@ export function ScienceF1Chapter3VisualNotesBlock({
 }) {
   const t = content[lang];
   const c = ui[lang];
-  const [stoma, setStoma] = useState(0);
-  const selectedStoma = t.plantHomeostasis.stomaStates[stoma];
+  const path = [
+    t.structure.subtopic.replace(/^3\.1 /, ""),
+    `${c.human} — ${t.structure.water}`,
+    `${c.human} — ${t.structure.temperature}`,
+    t.structure.animals,
+    t.structure.plants,
+    t.structure.importance,
+  ];
 
   return (
     <section
       id={id}
       data-lang={lang}
       data-chapter="3"
-      className="relative mt-8 min-w-0 overflow-hidden rounded-[2rem] border border-amber-300/15 bg-[#17120b] px-4 py-6 text-slate-100 shadow-2xl sm:px-7 lg:px-9"
+      className="relative mt-8 min-w-0 overflow-hidden rounded-[2rem] border border-cyan-300/15 bg-[#061923] px-4 py-6 text-slate-100 shadow-2xl sm:px-7 lg:px-9"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[38rem] bg-[radial-gradient(circle_at_14%_8%,rgba(245,158,11,.2),transparent_34%),radial-gradient(circle_at_84%_10%,rgba(56,189,248,.14),transparent_30%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[38rem] bg-[radial-gradient(circle_at_14%_8%,rgba(6,182,212,.12),transparent_34%),radial-gradient(circle_at_84%_10%,rgba(56,189,248,.14),transparent_30%)]" />
       <div className="relative mx-auto flex max-w-6xl flex-col gap-14">
-        <header className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-amber-400/15 via-slate-950/35 to-cyan-400/10 p-5 sm:p-8">
-          <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[.2em] text-amber-200">
+        <header className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-cyan-400/10 via-slate-950/35 to-cyan-400/10 p-5 sm:p-8">
+          <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[.2em] text-cyan-200">
             <CircleGauge className="h-4 w-4" aria-hidden="true" />
             {c.eyebrow}
           </div>
@@ -307,20 +146,13 @@ export function ScienceF1Chapter3VisualNotesBlock({
             {t.structure.chapter}
           </h1>
           <p className="mt-3 text-sm text-slate-300">{c.subtitle}</p>
-          <div className="mt-7 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            {c.path.map((item, index) => (
-              <div
-                key={`${item[0]}-${item[1]}`}
-                className="relative rounded-xl border border-white/10 bg-white/5 p-3"
-              >
-                <span className="font-mono text-xs font-black text-cyan-300">{item[0]}</span>
-                <p className="mt-1 text-xs font-black text-white">{item[1]}</p>
-                {index < c.path.length - 1 && (
-                  <ChevronRight
-                    className="absolute -right-4 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[#17120b] p-1 text-amber-300 xl:block"
-                    aria-hidden="true"
-                  />
+          <div data-chapter-path="true" className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {path.map((title, index) => (
+              <div key={title} className="rounded-xl border border-white/10 bg-white/5 p-3">
+                {index === 0 && (
+                  <span className="font-mono text-xs font-bold text-cyan-300">3.1</span>
                 )}
+                <p className="text-sm font-semibold text-white">{title}</p>
               </div>
             ))}
           </div>
@@ -330,99 +162,47 @@ export function ScienceF1Chapter3VisualNotesBlock({
           <h2 className="font-display text-2xl font-black text-white sm:text-3xl">
             {t.structure.subtopic}
           </h2>
-          <Panel>
-            <h3 className="font-black text-white">{t.structure.meaning}</h3>
-            <p className="mt-4 text-sm leading-6 text-slate-300">{t.definition.meaning}</p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl bg-white/5 p-3">
-                <p className="text-xs font-black uppercase text-amber-300">{c.origin}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{t.definition.etymology}</p>
+          <div data-learning-standard="3.1.1">
+            <Panel>
+              <SectionHeading title={t.structure.meaning} standard="3.1.1" />
+              <p className="mt-4 text-sm leading-6 text-slate-300">{t.definition.meaning}</p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-xl bg-white/5 p-3">
+                  <p className="text-xs font-black uppercase text-amber-300">{c.origin}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{t.definition.etymology}</p>
+                </div>
+                <div className="rounded-xl bg-rose-300/10 p-3">
+                  <p className="text-xs font-black uppercase text-rose-200">{c.importance}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{t.definition.importance}</p>
+                </div>
               </div>
-              <div className="rounded-xl bg-rose-300/10 p-3">
-                <p className="text-xs font-black uppercase text-rose-200">{c.importance}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{t.definition.importance}</p>
-              </div>
-            </div>
-          </Panel>
+            </Panel>
+          </div>
+        </div>
+        <section data-learning-standard="3.1.2" className="space-y-6">
+          <SectionHeading title={t.structure.humans} standard="3.1.2" />
           <HomeostaticControlVisual content={t} lang={lang} />
-        </div>
-        <WaterRegulationVisual content={t} lang={lang} />
-        <TemperatureRegulationVisual content={t} lang={lang} />
-        <SweatingExperimentVisual content={t} lang={lang} />
-        <PulseExperimentVisual content={t} lang={lang} />
+          <WaterRegulationVisual content={t} lang={lang} />
+          <TemperatureRegulationVisual content={t} lang={lang} />
+          <SweatingExperimentVisual content={t} lang={lang} />
+          <PulseExperimentVisual content={t} lang={lang} />
 
-        <div className="space-y-6">
-          <SectionHeading section={c.sections[4]} />
-          <Chapter3AnimalHomeostasis content={t} lang={lang} />
-        </div>
-
-        <div className="space-y-6">
-          <SectionHeading section={c.sections[5]} />
-          <div className="grid gap-4 lg:grid-cols-2">
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Leaf className="h-7 w-7 text-emerald-300" />
-                <h3 className="font-black text-white">{c.transpiration}</h3>
-              </div>
-              <p className="mt-4 text-sm leading-6 text-slate-300">
-                {t.plantHomeostasis.transpirationDefinition}
-              </p>
-              <p className="mt-4 text-xs font-black uppercase tracking-wider text-emerald-300">
-                {c.functions}
-              </p>
-              <div className="mt-3">
-                <Checklist items={t.plantHomeostasis.transpirationFunctions} />
-              </div>
-              <p className="mt-4 rounded-xl bg-cyan-300/10 p-3 text-sm font-bold leading-6 text-cyan-100">
-                {c.waterFact}: {t.plantHomeostasis.waterLossFact}
-              </p>
-            </Panel>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Wind className="h-7 w-7 text-cyan-300" />
-                <h3 className="font-black text-white">{c.chooseStoma}</h3>
-              </div>
-              <div
-                className="mt-4 grid grid-cols-2 gap-2"
-                role="tablist"
-                aria-label={c.chooseStoma}
-              >
-                {t.plantHomeostasis.stomaStates.map((item, index) => (
-                  <button
-                    key={item.condition}
-                    type="button"
-                    role="tab"
-                    aria-selected={stoma === index}
-                    onClick={() => setStoma(index)}
-                    className={`min-h-12 cursor-pointer rounded-xl border px-3 text-sm font-black transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 ${stoma === index ? "border-cyan-300 bg-cyan-300/15 text-white" : "border-white/10 bg-white/[0.04] text-slate-300"}`}
-                  >
-                    {item.condition}
-                  </button>
-                ))}
-              </div>
-              <div className="mt-5 flex items-center gap-4 rounded-2xl bg-slate-950/40 p-4">
-                <div
-                  className={`flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-8 ${selectedStoma.stomaState === "open" ? "border-emerald-300/50 bg-emerald-300/10" : "border-amber-300/50 bg-amber-300/10"}`}
-                >
-                  <span className="text-xs font-black uppercase text-white">
-                    {selectedStoma.stomaState === "open" ? c.open : c.closed}
-                  </span>
-                </div>
-                <div>
-                  <p className="font-black text-white">{selectedStoma.condition}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{selectedStoma.reason}</p>
-                </div>
-              </div>
-            </Panel>
+          <div className="space-y-6">
+            <SectionHeading title={t.structure.animals} />
+            <Chapter3AnimalHomeostasis content={t} lang={lang} />
           </div>
-          <div className="rounded-2xl border border-emerald-300/20 bg-emerald-300/[0.07] p-4">
-            <p className="font-black text-emerald-200">{c.banana}</p>
-            <p className="mt-2 text-sm leading-6 text-slate-300">{c.bananaText}</p>
-          </div>
-        </div>
+        </section>
+        <section data-learning-standard="3.1.3" className="space-y-6">
+          <SectionHeading title={t.structure.plants} standard="3.1.3" />
+          <Chapter3PlantHomeostasis content={t} lang={lang} />
+        </section>
+        <section data-learning-standard="3.1.4" className="space-y-6">
+          <SectionHeading title={t.structure.importance} standard="3.1.4" />
+          <Chapter3Importance content={t} />
+        </section>
 
         <div className="space-y-6">
-          <SectionHeading section={c.sections[6]} />
+          <SectionHeading title={c.chapterCheck} />
           <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
             <Panel>
               <h3 className="font-black text-white">{c.examFacts}</h3>
