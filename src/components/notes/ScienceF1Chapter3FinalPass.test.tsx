@@ -33,8 +33,10 @@ describe("Chapter 3 final canonical live coverage", () => {
         "3.1.3",
         "3.1.4",
       ]);
+      const visibleText = html.replace(/<[^>]*>/g, "");
       for (const standard of ["3.1.1", "3.1.2", "3.1.3", "3.1.4"])
-        expect(html).toContain(`>${standard}</span>`);
+        expect(visibleText).not.toContain(standard);
+      expect(visibleText).toContain(content.structure.subtopic);
       for (const title of [
         content.structure.humans,
         content.structure.animals,
@@ -53,6 +55,23 @@ describe("Chapter 3 final canonical live coverage", () => {
         expect(html).toContain(escape(visibleContent));
       expect(html).toContain("bg-[#061923]");
       expect(html).not.toContain("#17120b");
+    });
+    it(`${lang}: approved hero subtitle and plant terminology render without changing the control lesson heading`, () => {
+      const html = render();
+      const header = html.match(/<header[\s\S]*?<\/header>/)![0];
+      expect(header).toContain(
+        lang === "bm"
+          ? "Bagaimana manusia, haiwan dan tumbuhan mengekalkan persekitaran dalaman yang stabil."
+          : "How humans, animals and plants maintain a stable internal environment.",
+      );
+      expect(header).not.toContain(content.structure.control);
+      expect(html).toContain(content.structure.control);
+      if (lang === "bm") {
+        expect(html).toContain("Rerambut akar");
+        expect(html).toContain("Penyerapan air dan garam mineral");
+        expect(html).not.toContain("Akar rambut");
+        expect(html).not.toContain("Penyerapan air + mineral");
+      }
     });
     it(`${lang}: six conceptual path cards have only one numbering span and no experiment cards`, () => {
       const header = render().match(/<header[\s\S]*?<\/header>/)![0];
