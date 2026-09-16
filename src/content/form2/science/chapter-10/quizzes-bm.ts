@@ -11,7 +11,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     question: "Bunyi ialah satu bentuk tenaga yang disebabkan oleh...",
     options: ["Getaran", "Cahaya", "Magnet", "Pemanasan"],
     answerIndex: 0,
-    explanation: "Bunyi ialah satu bentuk tenaga yang disebabkan oleh getaran, contohnya getaran pita suara semasa bercakap.",
+    explanation:
+      "Bunyi ialah satu bentuk tenaga yang disebabkan oleh getaran, contohnya getaran pita suara semasa bercakap.",
   },
   {
     id: "sci-f2-c10-bm-q2",
@@ -23,7 +24,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     question: "Bunyi tidak dapat merambat melalui...",
     options: ["Pepejal", "Cecair", "Gas", "Vakum"],
     answerIndex: 3,
-    explanation: "Bunyi memerlukan medium untuk merambat dan tidak dapat merambat melalui vakum (kawasan tanpa udara).",
+    explanation:
+      "Bunyi memerlukan medium untuk merambat dan tidak dapat merambat melalui vakum (kawasan tanpa udara).",
   },
   {
     id: "sci-f2-c10-bm-q3",
@@ -35,19 +37,27 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     question: "Dalam medium manakah bunyi merambat paling cepat?",
     options: ["Gas", "Cecair", "Pepejal", "Vakum"],
     answerIndex: 2,
-    explanation: "Bunyi merambat paling cepat dalam pepejal kerana zarah pepejal tersusun rapat antara satu sama lain.",
+    explanation:
+      "Bunyi merambat paling cepat dalam pepejal kerana zarah pepejal tersusun rapat antara satu sama lain.",
   },
   {
     id: "sci-f2-c10-bm-q4",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Dalam medium manakah bunyi merambat paling perlahan?",
-    options: ["Pepejal", "Cecair", "Gas", "Logam"],
+    question:
+      "Seorang pemain gitar mengetatkan tali gitar untuk menalanya. Apakah yang berlaku kepada kelangsingan bunyi yang dihasilkan, dan mengapa?",
+    options: [
+      "Kelangsingan menurun, kerana tali yang lebih ketat bergetar pada frekuensi yang lebih rendah",
+      "Kenyaringan meningkat, tetapi kelangsingan tidak terjejas",
+      "Kelangsingan meningkat, kerana tali yang lebih ketat bergetar pada frekuensi yang lebih tinggi",
+      "Kelangsingan kekal sama, kerana ketegangan tidak memberi kesan kepada getaran tali",
+    ],
     answerIndex: 2,
-    explanation: "Bunyi merambat paling perlahan dalam gas kerana zarah gas tersusun jauh antara satu sama lain.",
+    explanation:
+      "Mengetatkan tali gitar meningkatkan frekuensi getarannya, menghasilkan kelangsingan yang lebih tinggi. Ini menunjukkan hubungan antara frekuensi dan kelangsingan dalam alat muzik.",
   },
   {
     id: "sci-f2-c10-bm-q5",
@@ -56,15 +66,17 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Apakah jenis permukaan yang menjadi pemantul bunyi yang baik?",
+    question:
+      "Kenyataan manakah yang membandingkan dengan betul pemantul bunyi dan penyerap bunyi?",
     options: [
-      "Permukaan keras dan licin",
-      "Permukaan lembut dan kasar",
-      "Permukaan berkarpet",
-      "Permukaan berlubang",
+      "Permukaan keras dan licin adalah pemantul yang baik; permukaan lembut dan kasar adalah penyerap yang baik",
+      "Permukaan keras dan licin adalah penyerap yang baik; permukaan lembut dan kasar adalah pemantul yang baik",
+      "Kedua-dua permukaan keras dan lembut memantulkan bunyi dengan baik yang sama",
+      "Hanya permukaan logam boleh memantul atau menyerap bunyi",
     ],
     answerIndex: 0,
-    explanation: "Permukaan keras dan licin seperti jubin marmar dan dinding adalah pemantul bunyi yang baik.",
+    explanation:
+      "Permukaan keras dan licin, seperti jubin marmar dan dinding, memantulkan bunyi dengan baik. Permukaan lembut dan kasar, seperti karpet dan papan lembut, menyerap bunyi dengan baik.",
   },
   {
     id: "sci-f2-c10-bm-q6",
@@ -73,15 +85,16 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Apakah jenis permukaan yang menjadi penyerap bunyi yang baik?",
+    question: "Bagaimanakah megafon membantu suara seseorang didengar dari jauh?",
     options: [
-      "Permukaan keras dan licin",
-      "Permukaan lembut dan kasar",
-      "Permukaan logam",
-      "Permukaan jubin",
+      "Ia menukar suara kepada kelangsingan yang lebih tinggi",
+      "Ia menukar suara kepada ultrabunyi",
+      "Ia memperkuatkan suara supaya dapat didengar dari jauh",
+      "Ia menghilangkan bunyi bising latar daripada suara",
     ],
-    answerIndex: 1,
-    explanation: "Permukaan lembut dan kasar seperti karpet dan papan lembut adalah penyerap bunyi yang baik.",
+    answerIndex: 2,
+    explanation:
+      "Megafon memperkuatkan suara seseorang supaya dapat didengar dari jauh, sama seperti alat bantu pendengaran memperkuatkan bunyi yang memasuki telinga.",
   },
   {
     id: "sci-f2-c10-bm-q7",
@@ -91,9 +104,15 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 10",
     lang: "bm",
     question: "Kenyaringan bunyi bergantung kepada...",
-    options: ["Amplitud gelombang bunyi", "Frekuensi gelombang bunyi", "Jarak sumber bunyi", "Warna gelombang bunyi"],
+    options: [
+      "Amplitud gelombang bunyi",
+      "Frekuensi gelombang bunyi",
+      "Jarak sumber bunyi",
+      "Warna gelombang bunyi",
+    ],
     answerIndex: 0,
-    explanation: "Kenyaringan bunyi bergantung kepada amplitud gelombang bunyi — semakin besar amplitud, semakin kuat bunyi.",
+    explanation:
+      "Kenyaringan bunyi bergantung kepada amplitud gelombang bunyi — semakin besar amplitud, semakin kuat bunyi.",
   },
   {
     id: "sci-f2-c10-bm-q8",
@@ -103,9 +122,15 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 10",
     lang: "bm",
     question: "Kelangsingan (pitch) bunyi bergantung kepada...",
-    options: ["Amplitud gelombang bunyi", "Frekuensi gelombang bunyi", "Kelajuan bunyi", "Suhu udara"],
+    options: [
+      "Amplitud gelombang bunyi",
+      "Frekuensi gelombang bunyi",
+      "Kelajuan bunyi",
+      "Suhu udara",
+    ],
     answerIndex: 1,
-    explanation: "Kelangsingan bunyi bergantung kepada frekuensi gelombang bunyi — semakin tinggi frekuensi, semakin tinggi kelangsingan.",
+    explanation:
+      "Kelangsingan bunyi bergantung kepada frekuensi gelombang bunyi — semakin tinggi frekuensi, semakin tinggi kelangsingan.",
   },
   {
     id: "sci-f2-c10-bm-q9",
@@ -134,7 +159,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Bunyi yang diserap sepenuhnya oleh permukaan lembut",
     ],
     answerIndex: 0,
-    explanation: "Gema terhasil apabila gelombang bunyi dipantulkan daripada permukaan keras kepada pendengar, dan mengambil sedikit masa untuk sampai ke telinga.",
+    explanation:
+      "Gema terhasil apabila gelombang bunyi dipantulkan daripada permukaan keras kepada pendengar, dan mengambil sedikit masa untuk sampai ke telinga.",
   },
   {
     id: "sci-f2-c10-bm-q11",
@@ -143,7 +169,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Mengapakah bunyi loceng penggera tidak dapat didengar selepas udara dikeluarkan daripada balang loceng menggunakan pam vakum?",
+    question:
+      "Mengapakah bunyi loceng penggera tidak dapat didengar selepas udara dikeluarkan daripada balang loceng menggunakan pam vakum?",
     options: [
       "Kerana loceng berhenti bergetar",
       "Kerana bunyi memerlukan medium untuk merambat dan tidak dapat merambat melalui vakum",
@@ -151,7 +178,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Kerana amplitud loceng menjadi sifar",
     ],
     answerIndex: 1,
-    explanation: "Demonstrasi balang vakum menunjukkan bunyi tidak dapat merambat melalui vakum kerana bunyi memerlukan medium, walaupun loceng masih bergetar di dalam balang.",
+    explanation:
+      "Demonstrasi balang vakum menunjukkan bunyi tidak dapat merambat melalui vakum kerana bunyi memerlukan medium, walaupun loceng masih bergetar di dalam balang.",
   },
   {
     id: "sci-f2-c10-bm-q12",
@@ -168,7 +196,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Kerana suhu pepejal lebih tinggi daripada gas",
     ],
     answerIndex: 0,
-    explanation: "Susunan zarah pepejal yang rapat membolehkan getaran daripada satu zarah segera menyebabkan zarah berdekatan turut bergetar, berbanding zarah gas yang jauh antara satu sama lain.",
+    explanation:
+      "Susunan zarah pepejal yang rapat membolehkan getaran daripada satu zarah segera menyebabkan zarah berdekatan turut bergetar, berbanding zarah gas yang jauh antara satu sama lain.",
   },
   {
     id: "sci-f2-c10-bm-q13",
@@ -185,7 +214,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Bunyi dipindahkan terus tanpa melalui sebarang medium",
     ],
     answerIndex: 0,
-    explanation: "Apabila loceng dibunyikan, permukaan logamnya bergetar, menyebabkan molekul udara berdekatan turut bergetar dan memindahkan getaran tersebut dalam bentuk gelombang sehingga didengar oleh pendengar.",
+    explanation:
+      "Apabila loceng dibunyikan, permukaan logamnya bergetar, menyebabkan molekul udara berdekatan turut bergetar dan memindahkan getaran tersebut dalam bentuk gelombang sehingga didengar oleh pendengar.",
   },
   {
     id: "sci-f2-c10-bm-q14",
@@ -194,7 +224,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Dalam penyiasatan menggunakan O.S.K. dan penjana isyarat audio, apakah kesan peningkatan kuasa output?",
+    question:
+      "Dalam penyiasatan menggunakan O.S.K. dan penjana isyarat audio, apakah kesan peningkatan kuasa output?",
     options: [
       "Meningkatkan amplitud gelombang, menjadikan bunyi lebih lantang",
       "Meningkatkan frekuensi gelombang, menjadikan kelangsingan lebih tinggi",
@@ -202,7 +233,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Menukar bunyi kepada cahaya",
     ],
     answerIndex: 0,
-    explanation: "Peningkatan kuasa output meningkatkan amplitud gelombang bunyi, menyebabkan bunyi menjadi lebih lantang.",
+    explanation:
+      "Peningkatan kuasa output meningkatkan amplitud gelombang bunyi, menyebabkan bunyi menjadi lebih lantang.",
   },
   {
     id: "sci-f2-c10-bm-q15",
@@ -211,7 +243,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Dalam penyiasatan menggunakan O.S.K. dan penjana isyarat audio, apakah kesan peningkatan frekuensi?",
+    question:
+      "Dalam penyiasatan menggunakan O.S.K. dan penjana isyarat audio, apakah kesan peningkatan frekuensi?",
     options: [
       "Meningkatkan amplitud gelombang",
       "Meningkatkan frekuensi gelombang, menjadikan kelangsingan bunyi lebih tinggi",
@@ -219,7 +252,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Tidak memberi sebarang kesan",
     ],
     answerIndex: 1,
-    explanation: "Peningkatan frekuensi pada penjana isyarat audio meningkatkan frekuensi gelombang bunyi, menyebabkan kelangsingan bunyi menjadi lebih tinggi.",
+    explanation:
+      "Peningkatan frekuensi pada penjana isyarat audio meningkatkan frekuensi gelombang bunyi, menyebabkan kelangsingan bunyi menjadi lebih tinggi.",
   },
   {
     id: "sci-f2-c10-bm-q16",
@@ -236,7 +270,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Kehilangan kepekaan telinga terhadap frekuensi tinggi",
     ],
     answerIndex: 0,
-    explanation: "Kesan Doppler ialah perubahan ketara dalam frekuensi bunyi yang disebabkan oleh pergerakan relatif antara sumber bunyi dan pemerhati.",
+    explanation:
+      "Kesan Doppler ialah perubahan ketara dalam frekuensi bunyi yang disebabkan oleh pergerakan relatif antara sumber bunyi dan pemerhati.",
   },
   {
     id: "sci-f2-c10-bm-q17",
@@ -245,10 +280,17 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Apakah yang berlaku kepada frekuensi siren ambulans yang didengar oleh pemerhati pegun apabila ambulans mendekatinya?",
-    options: ["Frekuensi menjadi sifar", "Frekuensi menurun", "Frekuensi kekal sama", "Frekuensi meningkat"],
+    question:
+      "Apakah yang berlaku kepada frekuensi siren ambulans yang didengar oleh pemerhati pegun apabila ambulans mendekatinya?",
+    options: [
+      "Frekuensi menjadi sifar",
+      "Frekuensi menurun",
+      "Frekuensi kekal sama",
+      "Frekuensi meningkat",
+    ],
     answerIndex: 3,
-    explanation: "Frekuensi siren ambulans yang didengar oleh pemerhati meningkat apabila ambulans mendekati pemerhati yang pegun, menurut kesan Doppler.",
+    explanation:
+      "Frekuensi siren ambulans yang didengar oleh pemerhati meningkat apabila ambulans mendekati pemerhati yang pegun, menurut kesan Doppler.",
   },
   {
     id: "sci-f2-c10-bm-q18",
@@ -260,7 +302,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     question: "Apakah jenis gelombang bunyi yang mempunyai frekuensi lebih daripada 20,000 Hz?",
     options: ["Infrabunyi", "Ultrabunyi", "Gema", "Gelombang radio"],
     answerIndex: 1,
-    explanation: "Ultrabunyi ialah gelombang bunyi dengan frekuensi lebih daripada 20,000 Hz, tidak dapat didengar oleh manusia tetapi dapat didengar oleh haiwan seperti kelawar.",
+    explanation:
+      "Ultrabunyi ialah gelombang bunyi dengan frekuensi lebih daripada 20,000 Hz, tidak dapat didengar oleh manusia tetapi dapat didengar oleh haiwan seperti kelawar.",
   },
   {
     id: "sci-f2-c10-bm-q19",
@@ -277,7 +320,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Mengesan objek bawah air",
     ],
     answerIndex: 3,
-    explanation: "Sonar ialah teknologi pantulan bunyi yang digunakan dalam industri perkapalan untuk mengesan objek bawah air, dan juga digunakan dalam sektor perubatan dan perikanan.",
+    explanation:
+      "Sonar ialah teknologi pantulan bunyi yang digunakan dalam industri perkapalan untuk mengesan objek bawah air, dan juga digunakan dalam sektor perubatan dan perikanan.",
   },
   {
     id: "sci-f2-c10-bm-q20",
@@ -287,30 +331,44 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 10",
     lang: "bm",
     question: "Apakah julat frekuensi bunyi yang dapat dikesan oleh manusia?",
-    options: ["2 Hz hingga 2,000 Hz", "20 Hz hingga 20,000 Hz", "200 Hz hingga 200,000 Hz", "2,000 Hz hingga 100,000 Hz"],
+    options: [
+      "2 Hz hingga 2,000 Hz",
+      "20 Hz hingga 20,000 Hz",
+      "200 Hz hingga 200,000 Hz",
+      "2,000 Hz hingga 100,000 Hz",
+    ],
     answerIndex: 1,
-    explanation: "Had pendengaran manusia adalah dalam julat 20 Hz hingga 20,000 Hz, dan julat ini semakin mengecil dengan usia.",
+    explanation:
+      "Had pendengaran manusia adalah dalam julat 20 Hz hingga 20,000 Hz, dan julat ini semakin mengecil dengan usia.",
   },
   {
     id: "sci-f2-c10-bm-q21",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Berdasarkan jadual julat pendengaran haiwan, haiwan manakah mempunyai julat pendengaran tertinggi (Hz)?",
-    options: ["Anjing (67–45,000)", "Lumba-lumba (40–100,000)", "Kelawar (2,000–110,000)", "Kuda (55–33,500)"],
+    question:
+      "Berdasarkan jadual julat pendengaran haiwan, haiwan manakah mempunyai julat pendengaran tertinggi (Hz)?",
+    options: [
+      "Anjing (67–45,000)",
+      "Lumba-lumba (40–100,000)",
+      "Kelawar (2,000–110,000)",
+      "Kuda (55–33,500)",
+    ],
     answerIndex: 2,
-    explanation: "Kelawar mempunyai julat pendengaran tertinggi dengan had atas 110,000 Hz, berbanding lumba-lumba (100,000 Hz), anjing (45,000 Hz) dan kuda (33,500 Hz).",
+    explanation:
+      "Kelawar mempunyai julat pendengaran tertinggi dengan had atas 110,000 Hz, berbanding lumba-lumba (100,000 Hz), anjing (45,000 Hz) dan kuda (33,500 Hz).",
   },
   {
     id: "sci-f2-c10-bm-q22",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Seorang doktor menggunakan peranti untuk mendengar denyutan jantung pesakit dengan lebih jelas. Apakah peranti yang digunakan dan bagaimana ia berfungsi?",
+    question:
+      "Seorang doktor menggunakan peranti untuk mendengar denyutan jantung pesakit dengan lebih jelas. Apakah peranti yang digunakan dan bagaimana ia berfungsi?",
     options: [
       "Pembesar suara — menjadikan suara lebih kuat supaya dapat didengar dari jauh",
       "Stetoskop — membantu doktor mendengar denyutan jantung pesakit dengan menyalurkan dan memperkuatkan bunyi",
@@ -318,7 +376,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Sonar — mengesan objek bawah air",
     ],
     answerIndex: 1,
-    explanation: "Stetoskop adalah peranti yang membantu doktor mendengar denyutan jantung pesakit dengan lebih jelas, mengatasi had pendengaran manusia.",
+    explanation:
+      "Stetoskop adalah peranti yang membantu doktor mendengar denyutan jantung pesakit dengan lebih jelas, mengatasi had pendengaran manusia.",
   },
   {
     id: "sci-f2-c10-bm-q23",
@@ -335,7 +394,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Kerana frekuensi bunyi berubah menjadi sangat rendah dalam gua",
     ],
     answerIndex: 1,
-    explanation: "Gema berulang dalam gua disebabkan oleh pantulan bunyi yang berulang-ulang antara permukaan keras gua sebelum sampai ke telinga pendengar.",
+    explanation:
+      "Gema berulang dalam gua disebabkan oleh pantulan bunyi yang berulang-ulang antara permukaan keras gua sebelum sampai ke telinga pendengar.",
   },
   {
     id: "sci-f2-c10-bm-q24",
@@ -344,7 +404,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Seorang jurutera bilik rakaman melapisi dinding dengan bahan penyerap bunyi. Apakah tujuan utama tindakan ini, dan mengapa ia berkesan?",
+    question:
+      "Seorang jurutera bilik rakaman melapisi dinding dengan bahan penyerap bunyi. Apakah tujuan utama tindakan ini, dan mengapa ia berkesan?",
     options: [
       "Untuk meningkatkan amplitud bunyi supaya rakaman lebih lantang",
       "Untuk meningkatkan frekuensi bunyi yang dirakam",
@@ -352,7 +413,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Untuk mengurangkan gema dan menghasilkan rakaman berkualiti tinggi, kerana permukaan lembut dan kasar menyerap bunyi dengan baik",
     ],
     answerIndex: 3,
-    explanation: "Bahan penyerap bunyi (lembut dan kasar) mengurangkan pantulan bunyi yang menyebabkan gema, menghasilkan rakaman bunyi berkualiti tinggi.",
+    explanation:
+      "Bahan penyerap bunyi (lembut dan kasar) mengurangkan pantulan bunyi yang menyebabkan gema, menghasilkan rakaman bunyi berkualiti tinggi.",
   },
   {
     id: "sci-f2-c10-bm-q25",
@@ -361,7 +423,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Seorang pemerhati pegun mendengar siren ambulans yang frekuensinya semakin tinggi, kemudian semakin rendah selepas ambulans melepasinya. Apakah penjelasan bagi fenomena ini?",
+    question:
+      "Seorang pemerhati pegun mendengar siren ambulans yang frekuensinya semakin tinggi, kemudian semakin rendah selepas ambulans melepasinya. Apakah penjelasan bagi fenomena ini?",
     options: [
       "Amplitud bunyi siren berubah secara mendadak",
       "Bunyi siren dipantulkan oleh permukaan jalan",
@@ -369,7 +432,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Frekuensi bunyi siren sentiasa malar tetapi telinga pemerhati yang berubah",
     ],
     answerIndex: 2,
-    explanation: "Ini adalah contoh klasik kesan Doppler, di mana frekuensi bunyi yang didengar oleh pemerhati pegun berubah akibat pergerakan relatif sumber bunyi (ambulans).",
+    explanation:
+      "Ini adalah contoh klasik kesan Doppler, di mana frekuensi bunyi yang didengar oleh pemerhati pegun berubah akibat pergerakan relatif sumber bunyi (ambulans).",
   },
   {
     id: "sci-f2-c10-bm-q26",
@@ -378,7 +442,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Mengapakah orang yang membawa sumber bunyi (contohnya hon udara) tidak merasakan perubahan kelangsingan semasa hon itu bergerak, berbeza dengan pemerhati pegun?",
+    question:
+      "Mengapakah orang yang membawa sumber bunyi (contohnya hon udara) tidak merasakan perubahan kelangsingan semasa hon itu bergerak, berbeza dengan pemerhati pegun?",
     options: [
       "Kerana hon udara tidak mengeluarkan sebarang bunyi",
       "Kerana hon udara menghasilkan ultrabunyi sahaja",
@@ -386,7 +451,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Kerana tidak ada pergerakan relatif antara sumber bunyi dan orang yang membawanya, berbeza dengan pemerhati pegun yang mengalami pergerakan relatif terhadap sumber",
     ],
     answerIndex: 3,
-    explanation: "Kesan Doppler bergantung kepada pergerakan relatif antara sumber bunyi dan pemerhati; orang yang membawa sumber bunyi tidak mengalami pergerakan relatif terhadap sumber itu sendiri.",
+    explanation:
+      "Kesan Doppler bergantung kepada pergerakan relatif antara sumber bunyi dan pemerhati; orang yang membawa sumber bunyi tidak mengalami pergerakan relatif terhadap sumber itu sendiri.",
   },
   {
     id: "sci-f2-c10-bm-q27",
@@ -395,7 +461,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Kelawar menggunakan ultrabunyi untuk navigasi dalam gelap. Bagaimanakah prinsip ini berkait dengan teknologi sonar yang digunakan manusia?",
+    question:
+      "Kelawar menggunakan ultrabunyi untuk navigasi dalam gelap. Bagaimanakah prinsip ini berkait dengan teknologi sonar yang digunakan manusia?",
     options: [
       "Kedua-duanya menggunakan cahaya untuk mengesan objek",
       "Kedua-duanya tidak berkaitan langsung",
@@ -403,7 +470,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Kelawar menggunakan magnet, manakala sonar menggunakan bunyi",
     ],
     answerIndex: 2,
-    explanation: "Kedua-dua kelawar (ekolokasi) dan teknologi sonar menggunakan prinsip pantulan gelombang bunyi/ultrabunyi untuk mengesan kedudukan, jarak atau objek di sekeliling.",
+    explanation:
+      "Kedua-dua kelawar (ekolokasi) dan teknologi sonar menggunakan prinsip pantulan gelombang bunyi/ultrabunyi untuk mengesan kedudukan, jarak atau objek di sekeliling.",
   },
   {
     id: "sci-f2-c10-bm-q28",
@@ -412,7 +480,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Seorang pelajar mendakwa 'manusia dapat mendengar semua jenis bunyi termasuk ultrabunyi'. Adakah dakwaan ini tepat? Mengapa?",
+    question:
+      "Seorang pelajar mendakwa 'manusia dapat mendengar semua jenis bunyi termasuk ultrabunyi'. Adakah dakwaan ini tepat? Mengapa?",
     options: [
       "Tepat, kerana telinga manusia sangat sensitif",
       "Tidak tepat, kerana manusia tidak dapat mendengar sebarang bunyi",
@@ -420,24 +489,27 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Tidak tepat, kerana ultrabunyi mempunyai frekuensi lebih daripada 20,000 Hz yang melebihi had pendengaran manusia (20 Hz–20,000 Hz)",
     ],
     answerIndex: 3,
-    explanation: "Dakwaan tidak tepat kerana had pendengaran manusia adalah 20 Hz hingga 20,000 Hz, manakala ultrabunyi mempunyai frekuensi lebih daripada 20,000 Hz dan tidak dapat didengar oleh manusia.",
+    explanation:
+      "Dakwaan tidak tepat kerana had pendengaran manusia adalah 20 Hz hingga 20,000 Hz, manakala ultrabunyi mempunyai frekuensi lebih daripada 20,000 Hz dan tidak dapat didengar oleh manusia.",
   },
   {
     id: "sci-f2-c10-bm-q29",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Doktor menggunakan ultrabunyi untuk mengimbas keadaan fetus dalam rahim ibu (sonogram). Mengapakah ultrabunyi sesuai digunakan untuk tujuan ini berbanding bunyi biasa?",
+    question:
+      "Doktor menggunakan ultrabunyi untuk mengimbas keadaan fetus dalam rahim ibu (sonogram). Apakah faedah penggunaan ultrabunyi untuk tujuan ini?",
     options: [
-      "Kerana ultrabunyi dapat didengar oleh fetus untuk tujuan komunikasi",
-      "Kerana ultrabunyi lebih lantang daripada bunyi biasa",
-      "Kerana ultrabunyi mempunyai frekuensi tinggi yang membolehkan pantulan tepat daripada struktur dalaman badan tanpa mendedahkan pesakit kepada bahaya seperti sinar-X",
-      "Kerana ultrabunyi tidak memerlukan medium untuk merambat",
+      "Ia lebih lantang daripada bunyi biasa, jadi lebih mudah dikesan",
+      "Ia tidak membahayakan fetus, tidak menyakitkan, tidak menggunakan sinaran, dan keputusan boleh diperoleh dengan segera",
+      "Ia membolehkan fetus mendengar muzik untuk tujuan komunikasi",
+      "Ia memerlukan fetus didedahkan kepada sinar-X untuk imej yang lebih jelas",
     ],
-    answerIndex: 2,
-    explanation: "Ultrabunyi digunakan dalam sonogram kerana sifat frekuensi tingginya membolehkan pantulan yang tepat daripada struktur dalaman badan, dengan kaedah yang dianggap lebih selamat berbanding teknik lain.",
+    answerIndex: 1,
+    explanation:
+      "Pengimbasan ultrabunyi (sonogram) tidak membahayakan fetus, tidak menyakitkan, tidak menggunakan sinaran, boleh dilakukan berulang kali, dan keputusan boleh diperoleh dengan segera — menjadikannya kaedah yang sesuai untuk pengimbasan pranatal.",
   },
   {
     id: "sci-f2-c10-bm-q30",
@@ -446,7 +518,8 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "bm",
-    question: "Mengapakah julat pendengaran manusia semakin mengecil dengan usia, dan apakah implikasinya terhadap keperluan alat bantu pendengaran?",
+    question:
+      "Mengapakah julat pendengaran manusia semakin mengecil dengan usia, dan apakah implikasinya terhadap keperluan alat bantu pendengaran?",
     options: [
       "Kerana amplitud semua bunyi di dunia berkurang dengan masa",
       "Kerana manusia tua tidak lagi menghasilkan gelombang bunyi",
@@ -454,6 +527,7 @@ export const scienceF2C10QuizzesBM: QuizQuestion[] = [
       "Kerana telinga manusia kehilangan kepekaan terhadap frekuensi bunyi tertentu seiring usia, menyebabkan sebahagian orang tua memerlukan alat bantu pendengaran untuk memperkuatkan bunyi yang memasuki telinga",
     ],
     answerIndex: 3,
-    explanation: "Julat pendengaran manusia mengecil dengan usia kerana kehilangan kepekaan telinga terhadap frekuensi bunyi tertentu; alat bantu pendengaran membantu memperkuatkan bunyi yang memasuki telinga untuk mengatasi had ini.",
+    explanation:
+      "Julat pendengaran manusia mengecil dengan usia kerana kehilangan kepekaan telinga terhadap frekuensi bunyi tertentu; alat bantu pendengaran membantu memperkuatkan bunyi yang memasuki telinga untuk mengatasi had ini.",
   },
 ];

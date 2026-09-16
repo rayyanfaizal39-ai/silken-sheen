@@ -16,7 +16,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Jarak antara dua objek",
     ],
     answerIndex: 0,
-    explanation: "Tenaga bermaksud kemampuan untuk melakukan kerja. Unit SI bagi tenaga adalah joule (J).",
+    explanation:
+      "Tenaga bermaksud kemampuan untuk melakukan kerja. Unit SI bagi tenaga adalah joule (J).",
   },
   {
     id: "sci-f2-c7-bm-q2",
@@ -25,7 +26,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 7",
     lang: "bm",
-    question: "Di manakah ammeter perlu disambungkan untuk mengukur arus yang melalui sebuah mentol?",
+    question:
+      "Di manakah ammeter perlu disambungkan untuk mengukur arus yang melalui sebuah mentol?",
     options: [
       "Secara bersiri dengan mentol",
       "Secara selari dengan mentol",
@@ -33,7 +35,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Di mana-mana sahaja dalam litar",
     ],
     answerIndex: 0,
-    explanation: "Ammeter disambung secara bersiri supaya arus yang sama mengalir melalui ammeter dan mentol itu.",
+    explanation:
+      "Ammeter disambung secara bersiri supaya arus yang sama mengalir melalui ammeter dan mentol itu.",
   },
   {
     id: "sci-f2-c7-bm-q3",
@@ -45,7 +48,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     question: "Objek yang kehilangan elektron akan menjadi bercas...",
     options: ["Positif", "Negatif", "Neutral", "Tidak bercas"],
     answerIndex: 0,
-    explanation: "Objek yang kehilangan elektron menjadi bercas positif; objek yang memperoleh elektron menjadi bercas negatif.",
+    explanation:
+      "Objek yang kehilangan elektron menjadi bercas positif; objek yang memperoleh elektron menjadi bercas negatif.",
   },
   {
     id: "sci-f2-c7-bm-q4",
@@ -62,24 +66,27 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Menghasilkan medan magnet",
     ],
     answerIndex: 0,
-    explanation: "Elektroskop ialah alat yang digunakan untuk mengesan kewujudan cas elektrik pada sesuatu objek.",
+    explanation:
+      "Elektroskop ialah alat yang digunakan untuk mengesan kewujudan cas elektrik pada sesuatu objek.",
   },
   {
     id: "sci-f2-c7-bm-q5",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 7",
     lang: "bm",
-    question: "Apakah fungsi ammeter?",
+    question:
+      "Yang manakah berikut memadankan dengan betul suatu situasi dengan bentuk tenaga utama yang terlibat?",
     options: [
-      "Mengukur arus elektrik",
-      "Mengukur voltan",
-      "Mengukur rintangan",
-      "Mengukur kekuatan medan magnet",
+      "Air mendidih — tenaga cahaya",
+      "Spring yang dimampatkan — tenaga keupayaan kenyal",
+      "Ayam yang berlari — tenaga kimia",
+      "Spring yang dimampatkan — tenaga bunyi",
     ],
-    answerIndex: 0,
-    explanation: "Arus elektrik diukur menggunakan ammeter, dengan unit SI ampere (A).",
+    answerIndex: 1,
+    explanation:
+      "Air mendidih melibatkan tenaga haba, spring yang dimampatkan menyimpan tenaga keupayaan kenyal, dan ayam yang berlari mempunyai tenaga kinetik kerana ia bergerak.",
   },
   {
     id: "sci-f2-c7-bm-q6",
@@ -91,7 +98,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     question: "Apakah unit bagi rintangan?",
     options: ["Ohm (Ω)", "Volt (V)", "Ampere (A)", "Joule (J)"],
     answerIndex: 0,
-    explanation: "Unit rintangan adalah ohm (Ω), iaitu keupayaan konduktor untuk menghalang aliran arus elektrik.",
+    explanation:
+      "Unit rintangan adalah ohm (Ω), iaitu keupayaan konduktor untuk menghalang aliran arus elektrik.",
   },
   {
     id: "sci-f2-c7-bm-q7",
@@ -108,7 +116,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Voltan berkadar songsang dengan masa",
     ],
     answerIndex: 0,
-    explanation: "Hukum Ohm menyatakan arus elektrik yang mengalir melalui konduktor adalah berkadar terus dengan voltan, dengan syarat suhu dan keadaan fizikal yang lain kekal tidak berubah.",
+    explanation:
+      "Hukum Ohm menyatakan arus elektrik yang mengalir melalui konduktor adalah berkadar terus dengan voltan, dengan syarat suhu dan keadaan fizikal yang lain kekal tidak berubah.",
   },
   {
     id: "sci-f2-c7-bm-q8",
@@ -117,10 +126,12 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 7",
     lang: "bm",
-    question: "Litar yang komponennya disambung secara berturutan dalam satu laluan tunggal dipanggil...",
+    question:
+      "Litar yang komponennya disambung secara berturutan dalam satu laluan tunggal dipanggil...",
     options: ["Litar selari", "Litar bersiri", "Litar terbuka", "Litar pintas"],
     answerIndex: 1,
-    explanation: "Litar bersiri dibentuk daripada komponen elektrik yang disambung secara berturutan di mana arus mengalir melalui satu laluan tunggal.",
+    explanation:
+      "Litar bersiri dibentuk daripada komponen elektrik yang disambung secara berturutan di mana arus mengalir melalui satu laluan tunggal.",
   },
   {
     id: "sci-f2-c7-bm-q9",
@@ -129,7 +140,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 7",
     lang: "bm",
-    question: "Di manakah voltmeter perlu disambungkan untuk mengukur voltan merentasi sebuah mentol?",
+    question:
+      "Di manakah voltmeter perlu disambungkan untuk mengukur voltan merentasi sebuah mentol?",
     options: [
       "Secara bersiri dengan mentol",
       "Secara selari dengan mentol",
@@ -137,7 +149,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Selepas mentol sahaja",
     ],
     answerIndex: 1,
-    explanation: "Voltmeter disambung secara selari merentasi mentol, iaitu pada cabangnya sendiri yang menyambung kedua-dua hujung mentol.",
+    explanation:
+      "Voltmeter disambung secara selari merentasi mentol, iaitu pada cabangnya sendiri yang menyambung kedua-dua hujung mentol.",
   },
   {
     id: "sci-f2-c7-bm-q10",
@@ -163,15 +176,17 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 7",
     lang: "bm",
-    question: "Semasa ribut petir, mengapakah berada di dalam kereta berbadan logam lebih selamat?",
+    question:
+      "Yang manakah berikut memberikan perlindungan paling selamat semasa ribut petir, berdasarkan konsep sangkar Faraday?",
     options: [
-      "Kerana tayar getah menebat kereta daripada bumi",
-      "Kerana badan logam mengalirkan cas di sekeliling bahagian luar dan bukan melalui ruang di dalamnya",
-      "Kerana cermin kereta menghalang kilat",
-      "Kerana enjin kereta menyerap cas elektrik",
+      "Padang terbuka, kerana tiada apa-apa berdekatan",
+      "Berdiri di bawah sebatang pokok tinggi yang berasingan",
+      "Di dalam bangunan atau kenderaan berbingkai logam, kerana logam mengalirkan cas di sekeliling bahagian luar dan bukan melalui ruang di dalamnya",
+      "Berdiri berhampiran pagar logam",
     ],
-    answerIndex: 1,
-    explanation: "Ini ialah konsep sangkar Faraday: cas bergerak pada permukaan luar badan logam dan tidak masuk ke ruang di dalamnya. Perlindungan itu datang daripada badan logam, bukan daripada tayar getah.",
+    answerIndex: 2,
+    explanation:
+      "Ini ialah konsep sangkar Faraday: struktur berbingkai logam, seperti sesetengah bangunan atau kereta, mengalirkan cas pada permukaan luarnya dan bukan melalui ruang di dalamnya, menjadikan ruang di dalamnya lebih selamat semasa ribut petir.",
   },
   {
     id: "sci-f2-c7-bm-q12",
@@ -188,7 +203,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Menarik kilat lebih kerap ke bangunan",
     ],
     answerIndex: 0,
-    explanation: "Konduktor kilat menyediakan laluan bagi cas elektrik mengalir ke dalam tanah, melindungi bangunan daripada disambar kilat.",
+    explanation:
+      "Konduktor kilat menyediakan laluan bagi cas elektrik mengalir ke dalam tanah, melindungi bangunan daripada disambar kilat.",
   },
   {
     id: "sci-f2-c7-bm-q13",
@@ -205,7 +221,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Perintang tetap dan reostat adalah komponen yang sama",
     ],
     answerIndex: 0,
-    explanation: "Perintang tetap mempunyai rintangan yang tidak dapat diselaraskan, manakala perintang berubah (reostat) mempunyai rintangan yang dapat diselaraskan.",
+    explanation:
+      "Perintang tetap mempunyai rintangan yang tidak dapat diselaraskan, manakala perintang berubah (reostat) mempunyai rintangan yang dapat diselaraskan.",
   },
   {
     id: "sci-f2-c7-bm-q14",
@@ -222,7 +239,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "V tidak berkaitan dengan litar bersiri",
     ],
     answerIndex: 0,
-    explanation: "Dalam litar bersiri, voltan keseluruhan adalah jumlah voltan merentasi setiap perintang, V = V₁ + V₂.",
+    explanation:
+      "Dalam litar bersiri, voltan keseluruhan adalah jumlah voltan merentasi setiap perintang, V = V₁ + V₂.",
   },
   {
     id: "sci-f2-c7-bm-q15",
@@ -239,7 +257,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "I sentiasa sifar dalam litar selari",
     ],
     answerIndex: 0,
-    explanation: "Dalam litar selari, jumlah arus adalah hasil tambah arus pada setiap laluan, I = I₁ + I₂, manakala voltan adalah sama merentasi setiap perintang.",
+    explanation:
+      "Dalam litar selari, jumlah arus adalah hasil tambah arus pada setiap laluan, I = I₁ + I₂, manakala voltan adalah sama merentasi setiap perintang.",
   },
   {
     id: "sci-f2-c7-bm-q16",
@@ -256,7 +275,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Untuk memastikan semua lampu terpadam serentak jika satu rosak",
     ],
     answerIndex: 0,
-    explanation: "Pendawaian rumah disambung secara selari supaya setiap lampu mendapat voltan yang sama daripada bekalan kuasa utama, dan setiap peralatan boleh dikawal berasingan.",
+    explanation:
+      "Pendawaian rumah disambung secara selari supaya setiap lampu mendapat voltan yang sama daripada bekalan kuasa utama, dan setiap peralatan boleh dikawal berasingan.",
   },
   {
     id: "sci-f2-c7-bm-q17",
@@ -273,7 +293,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Arah arus dan elektron tidak berkaitan dengan terminal sumber",
     ],
     answerIndex: 0,
-    explanation: "Arah aliran arus adalah daripada terminal positif kepada terminal negatif sumber elektrik, manakala arah aliran elektron adalah sebaliknya, daripada terminal negatif kepada terminal positif.",
+    explanation:
+      "Arah aliran arus adalah daripada terminal positif kepada terminal negatif sumber elektrik, manakala arah aliran elektron adalah sebaliknya, daripada terminal negatif kepada terminal positif.",
   },
   {
     id: "sci-f2-c7-bm-q18",
@@ -282,7 +303,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 7",
     lang: "bm",
-    question: "Apakah dua faktor yang mempengaruhi kekuatan medan magnet bagi sebuah elektromagnet?",
+    question:
+      "Apakah dua faktor yang mempengaruhi kekuatan medan magnet bagi sebuah elektromagnet?",
     options: [
       "Magnitud arus dan bilangan lilitan gegelung",
       "Warna wayar dan suhu persekitaran",
@@ -290,7 +312,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Jenis bateri dan saiz suis",
     ],
     answerIndex: 0,
-    explanation: "Kekuatan medan magnet sesuatu elektromagnet dipengaruhi oleh magnitud arus yang mengalir dan bilangan lilitan gegelung.",
+    explanation:
+      "Kekuatan medan magnet sesuatu elektromagnet dipengaruhi oleh magnitud arus yang mengalir dan bilangan lilitan gegelung.",
   },
   {
     id: "sci-f2-c7-bm-q19",
@@ -307,7 +330,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Mengira jumlah voltan dalam litar bersiri",
     ],
     answerIndex: 0,
-    explanation: "Petua tangan kanan (right-hand grip rule) digunakan untuk menentukan arah medan magnet bagi aliran arus dalam wayar lurus.",
+    explanation:
+      "Petua tangan kanan (right-hand grip rule) digunakan untuk menentukan arah medan magnet bagi aliran arus dalam wayar lurus.",
   },
   {
     id: "sci-f2-c7-bm-q20",
@@ -316,7 +340,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 7",
     lang: "bm",
-    question: "Apakah yang berlaku kepada kekuatan medan magnet apabila bergerak jauh daripada pusat konduktor?",
+    question:
+      "Apakah yang berlaku kepada kekuatan medan magnet apabila bergerak jauh daripada pusat konduktor?",
     options: [
       "Kekuatan medan magnet berkurang",
       "Kekuatan medan magnet bertambah",
@@ -363,7 +388,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Dua perintang R₁ = 2 Ω dan R₂ = 2 Ω disambung secara selari pada bekalan 6 V. Berapakah jumlah arus, I, dalam litar?",
     options: ["1 A", "3 A", "6 A", "12 A"],
     answerIndex: 2,
-    explanation: "1/R = 1/2 + 1/2 = 1, maka R = 1 Ω. I₁ = 6/2 = 3 A, I₂ = 6/2 = 3 A. Jumlah arus I = I₁ + I₂ = 6 A.",
+    explanation:
+      "1/R = 1/2 + 1/2 = 1, maka R = 1 Ω. I₁ = 6/2 = 3 A, I₂ = 6/2 = 3 A. Jumlah arus I = I₁ + I₂ = 6 A.",
   },
   {
     id: "sci-f2-c7-bm-q24",
@@ -381,7 +407,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Lampu menggunakan elektromagnet, bukan litar elektrik",
     ],
     answerIndex: 0,
-    explanation: "Jika lampu lain masih menyala walaupun satu rosak, ini menunjukkan litar selari kerana setiap laluan adalah berasingan; dalam litar bersiri, semua lampu akan terpadam.",
+    explanation:
+      "Jika lampu lain masih menyala walaupun satu rosak, ini menunjukkan litar selari kerana setiap laluan adalah berasingan; dalam litar bersiri, semua lampu akan terpadam.",
   },
   {
     id: "sci-f2-c7-bm-q25",
@@ -399,7 +426,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Kerana kedua-dua litar berfungsi dengan cara yang sama",
     ],
     answerIndex: 0,
-    explanation: "Dalam litar bersiri, rintangan keseluruhan bertambah dengan setiap komponen baharu (R = R₁ + R₂), mengurangkan arus keseluruhan. Dalam litar selari, setiap laluan adalah bebas dengan voltan sama, jadi penambahan peralatan tidak menjejaskan laluan lain.",
+    explanation:
+      "Dalam litar bersiri, rintangan keseluruhan bertambah dengan setiap komponen baharu (R = R₁ + R₂), mengurangkan arus keseluruhan. Dalam litar selari, setiap laluan adalah bebas dengan voltan sama, jadi penambahan peralatan tidak menjejaskan laluan lain.",
   },
   {
     id: "sci-f2-c7-bm-q26",
@@ -408,7 +436,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 7",
     lang: "bm",
-    question: "Dua kutub utara dua batang magnet didekatkan antara satu sama lain. Apakah yang terhasil di kawasan antara kedua-duanya, dan mengapa?",
+    question:
+      "Dua kutub utara dua batang magnet didekatkan antara satu sama lain. Apakah yang terhasil di kawasan antara kedua-duanya, dan mengapa?",
     options: [
       "Medan magnet yang paling kuat, kerana dua kutub bergabung",
       "Satu titik neutral, kerana medan magnet daripada kedua-dua kutub saling menentang",
@@ -416,7 +445,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Garisan medan magnet bersilang antara satu sama lain",
     ],
     answerIndex: 1,
-    explanation: "Medan magnet di antara dua kutub yang sama jenis saling menentang, menghasilkan satu titik yang tidak mempunyai sebarang medan magnet. Titik ini dipanggil titik neutral dan ditandakan X.",
+    explanation:
+      "Medan magnet di antara dua kutub yang sama jenis saling menentang, menghasilkan satu titik yang tidak mempunyai sebarang medan magnet. Titik ini dipanggil titik neutral dan ditandakan X.",
   },
   {
     id: "sci-f2-c7-bm-q27",
@@ -434,7 +464,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Wayar yang lebih panjang menukar arus terus kepada arus ulang-alik",
     ],
     answerIndex: 0,
-    explanation: "Wayar nikrom yang lebih panjang mempunyai rintangan yang lebih tinggi; mengikut Hukum Ohm (I = V/R), peningkatan rintangan dengan voltan tetap akan mengurangkan arus.",
+    explanation:
+      "Wayar nikrom yang lebih panjang mempunyai rintangan yang lebih tinggi; mengikut Hukum Ohm (I = V/R), peningkatan rintangan dengan voltan tetap akan mengurangkan arus.",
   },
   {
     id: "sci-f2-c7-bm-q28",
@@ -452,7 +483,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Kedua-dua kutub utara dan selatan serentak",
     ],
     answerIndex: 0,
-    explanation: "Bagi solenoid, arus yang mengalir dalam arah lawan jam (apabila dilihat dari hujung tersebut) menghasilkan kutub utara, manakala arah jam menghasilkan kutub selatan.",
+    explanation:
+      "Bagi solenoid, arus yang mengalir dalam arah lawan jam (apabila dilihat dari hujung tersebut) menghasilkan kutub utara, manakala arah jam menghasilkan kutub selatan.",
   },
   {
     id: "sci-f2-c7-bm-q29",
@@ -461,7 +493,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 7",
     lang: "bm",
-    question: "Dalam penyiasatan kesan arus terhadap kekuatan medan magnet, bilangan lilitan gegelung dikekalkan pada 10 lilitan. Apakah peranan bilangan lilitan itu, dan apakah pemboleh ubah bergerak balas?",
+    question:
+      "Dalam penyiasatan kesan arus terhadap kekuatan medan magnet, bilangan lilitan gegelung dikekalkan pada 10 lilitan. Apakah peranan bilangan lilitan itu, dan apakah pemboleh ubah bergerak balas?",
     options: [
       "Bilangan lilitan ialah pemboleh ubah dimanipulasikan; arus ialah pemboleh ubah bergerak balas",
       "Bilangan lilitan ialah pemboleh ubah dimalarkan; bilangan jarum peniti yang ditarik ialah pemboleh ubah bergerak balas",
@@ -469,7 +502,8 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Kedua-dua bilangan lilitan dan arus ialah pemboleh ubah dimanipulasikan",
     ],
     answerIndex: 1,
-    explanation: "Arus dimanipulasikan, bilangan lilitan gegelung dimalarkan pada 10 lilitan, dan yang diperhatikan serta diukur hasilnya ialah bilangan jarum peniti yang ditarik oleh rod besi.",
+    explanation:
+      "Arus dimanipulasikan, bilangan lilitan gegelung dimalarkan pada 10 lilitan, dan yang diperhatikan serta diukur hasilnya ialah bilangan jarum peniti yang ditarik oleh rod besi.",
   },
   {
     id: "sci-f2-c7-bm-q30",
@@ -487,6 +521,7 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Litar bersiri hanya boleh digunakan pada waktu malam",
     ],
     answerIndex: 0,
-    explanation: "Kekurangan utama litar bersiri untuk kegunaan rumah ialah apabila satu peralatan rosak, semua peralatan lain berhenti berfungsi, dan setiap peralatan tidak boleh dihidup/dimatikan secara berasingan — sebab utama litar selari digunakan dalam pendawaian rumah.",
+    explanation:
+      "Kekurangan utama litar bersiri untuk kegunaan rumah ialah apabila satu peralatan rosak, semua peralatan lain berhenti berfungsi, dan setiap peralatan tidak boleh dihidup/dimatikan secara berasingan — sebab utama litar selari digunakan dalam pendawaian rumah.",
   },
 ];

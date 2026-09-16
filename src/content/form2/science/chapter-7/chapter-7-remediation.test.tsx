@@ -64,18 +64,27 @@ describe("Chapter 7 — structure and SP teaching homes", () => {
       for (const s of content.sections) {
         expect(s.title.trim().length).toBeGreaterThan(0);
         const hasBlock =
-          s.cards || s.flipCards || s.tabs || s.accordions || s.calculators ||
-          s.circuitMeterDiagram || s.seriesParallel || s.magnetFieldDiagram ||
-          s.currentFieldPatterns || s.apparatusDiagram || s.miniExperiment;
+          s.cards ||
+          s.flipCards ||
+          s.tabs ||
+          s.accordions ||
+          s.calculators ||
+          s.circuitMeterDiagram ||
+          s.seriesParallel ||
+          s.magnetFieldDiagram ||
+          s.currentFieldPatterns ||
+          s.apparatusDiagram ||
+          s.miniExperiment;
         expect(hasBlock, `section "${s.title}" has no learning block`).toBeTruthy();
       }
     });
 
     it(`${lang}: energy sources are taught, and kept distinct from forms`, () => {
       const prose = assertedProse(content);
-      const sources = lang === "bm"
-        ? ["Matahari", "angin", "radioaktif", "fosil", "geoterma", "biojisim", "ombak"]
-        : ["sun", "wind", "radioactive", "fossil", "geothermal", "biomass", "wave"];
+      const sources =
+        lang === "bm"
+          ? ["Matahari", "angin", "radioaktif", "fosil", "geoterma", "biojisim", "ombak"]
+          : ["sun", "wind", "radioactive", "fossil", "geothermal", "biomass", "wave"];
       for (const s of sources) expect(prose).toMatch(new RegExp(s, "i"));
       expect(prose).toMatch(
         lang === "bm" ? /[Ss]umber tenaga ialah dari mana/ : /source of energy is where/i,
@@ -86,23 +95,33 @@ describe("Chapter 7 — structure and SP teaching homes", () => {
       const prose = assertedProse(content);
       expect(prose).toMatch(/Faraday/);
       expect(prose).toMatch(lang === "bm" ? /petrol/i : /refuel|petrol/i);
-      expect(prose).toMatch(lang === "bm" ? /cuaca kering|kelembapan|wap air/i : /dry weather|humid|water vapour/i);
+      expect(prose).toMatch(
+        lang === "bm" ? /cuaca kering|kelembapan|wap air/i : /dry weather|humid|water vapour/i,
+      );
     });
 
     it(`${lang}: the Faraday explanation does not credit rubber tyres`, () => {
       const prose = assertedProse(content);
-      expect(prose).toMatch(lang === "bm" ? /bukan daripada tayar getah/i : /not from the rubber tyres/i);
+      expect(prose).toMatch(
+        lang === "bm" ? /bukan daripada tayar getah/i : /not from the rubber tyres/i,
+      );
     });
 
     it(`${lang}: conventional current and electron direction are both given, and opposed`, () => {
       const prose = assertedProse(content);
-      expect(prose).toMatch(lang === "bm" ? /positif ke terminal negatif/i : /positive terminal to the negative/i);
-      expect(prose).toMatch(lang === "bm" ? /negatif ke terminal positif/i : /negative terminal to the positive/i);
+      expect(prose).toMatch(
+        lang === "bm" ? /positif ke terminal negatif/i : /positive terminal to the negative/i,
+      );
+      expect(prose).toMatch(
+        lang === "bm" ? /negatif ke terminal positif/i : /negative terminal to the positive/i,
+      );
     });
   }
 
   it("BM and DLP stay in lockstep on section count and order", () => {
-    expect(scienceF2C7InteractiveDLP.sections.length).toBe(scienceF2C7InteractiveBM.sections.length);
+    expect(scienceF2C7InteractiveDLP.sections.length).toBe(
+      scienceF2C7InteractiveBM.sections.length,
+    );
     expect(scienceF2C7InteractiveDLP.sections.map((s) => s.number)).toEqual(
       scienceF2C7InteractiveBM.sections.map((s) => s.number),
     );
@@ -111,11 +130,23 @@ describe("Chapter 7 — structure and SP teaching homes", () => {
   it("BM and DLP carry the same block types in the same sections", () => {
     const shape = (c: ScienceF2InteractiveContent) =>
       c.sections.map((s) =>
-        ([
-          "cards", "flipCards", "tabs", "accordions", "calculators",
-          "circuitMeterDiagram", "seriesParallel", "magnetFieldDiagram",
-          "currentFieldPatterns", "apparatusDiagram", "miniExperiment",
-        ] as const).filter((k) => s[k] !== undefined).join(","),
+        (
+          [
+            "cards",
+            "flipCards",
+            "tabs",
+            "accordions",
+            "calculators",
+            "circuitMeterDiagram",
+            "seriesParallel",
+            "magnetFieldDiagram",
+            "currentFieldPatterns",
+            "apparatusDiagram",
+            "miniExperiment",
+          ] as const
+        )
+          .filter((k) => s[k] !== undefined)
+          .join(","),
       );
     expect(shape(scienceF2C7InteractiveDLP)).toEqual(shape(scienceF2C7InteractiveBM));
   });
@@ -130,7 +161,11 @@ describe("Chapter 7 — meter connections", () => {
     it(`${lang}: a circuit meter diagram exists`, () => {
       expect(blk, "no circuitMeterDiagram block").toBeTruthy();
       expect(blk!.labels.map((l) => l.id).sort()).toEqual([
-        "ammeter", "bulb", "cell", "switch", "voltmeter",
+        "ammeter",
+        "bulb",
+        "cell",
+        "switch",
+        "voltmeter",
       ]);
     });
 
@@ -153,8 +188,12 @@ describe("Chapter 7 — meter connections", () => {
 
     it(`${lang}: the quantity cards carry the connection too`, () => {
       const prose = assertedProse(content);
-      expect(prose).toMatch(lang === "bm" ? /ammeter · Sambungan: bersiri/i : /ammeter · Connection: in series/i);
-      expect(prose).toMatch(lang === "bm" ? /voltmeter · Sambungan: selari/i : /voltmeter · Connection: in parallel/i);
+      expect(prose).toMatch(
+        lang === "bm" ? /ammeter · Sambungan: bersiri/i : /ammeter · Connection: in series/i,
+      );
+      expect(prose).toMatch(
+        lang === "bm" ? /voltmeter · Sambungan: selari/i : /voltmeter · Connection: in parallel/i,
+      );
     });
   }
 });
@@ -183,7 +222,9 @@ describe("Chapter 7 — Ohm's Law and circuit formulas", () => {
     });
 
     it(`${lang}: household wiring is attributed to parallel`, () => {
-      expect(prose).toMatch(lang === "bm" ? /rumah menggunakan litar selari/i : /wiring uses parallel/i);
+      expect(prose).toMatch(
+        lang === "bm" ? /rumah menggunakan litar selari/i : /wiring uses parallel/i,
+      );
     });
   }
 });
@@ -196,16 +237,24 @@ describe("Chapter 7 — magnetism", () => {
     it(`${lang}: the magnet field diagram covers all required shapes`, () => {
       expect(mf, "no magnetFieldDiagram block").toBeTruthy();
       expect(mf!.shapes.map((s) => s.id).sort()).toEqual([
-        "bar", "horseshoe", "like-poles", "magnadur",
+        "bar",
+        "horseshoe",
+        "like-poles",
+        "magnadur",
       ]);
     });
 
     it(`${lang}: field-line properties include direction, spacing, never-cross and neutral point`, () => {
       expect(mf!.features.map((f) => f.id).sort()).toEqual([
-        "density", "direction", "neutral", "no-cross",
+        "density",
+        "direction",
+        "neutral",
+        "no-cross",
       ]);
       const dir = mf!.features.find((f) => f.id === "direction")!;
-      expect(dir.note).toMatch(lang === "bm" ? /utara ke kutub selatan/i : /north pole to the south/i);
+      expect(dir.note).toMatch(
+        lang === "bm" ? /utara ke kutub selatan/i : /north pole to the south/i,
+      );
       const neutral = mf!.features.find((f) => f.id === "neutral")!;
       expect(neutral.note).toMatch(lang === "bm" ? /titik neutral/i : /neutral point/i);
     });
@@ -234,8 +283,12 @@ describe("Chapter 7 — magnetism", () => {
     });
 
     it(`${lang}: reversing current changes direction but not pattern`, () => {
-      expect(cf!.keyPoint).toMatch(lang === "bm" ? /ARAH medan magnet/ : /DIRECTION of the magnetic field/);
-      expect(cf!.keyPoint).toMatch(lang === "bm" ? /corak.{0,30}kekal sama/i : /pattern.{0,30}stays the same/i);
+      expect(cf!.keyPoint).toMatch(
+        lang === "bm" ? /ARAH medan magnet/ : /DIRECTION of the magnetic field/,
+      );
+      expect(cf!.keyPoint).toMatch(
+        lang === "bm" ? /corak.{0,30}kekal sama/i : /pattern.{0,30}stays the same/i,
+      );
     });
 
     it(`${lang}: the distance relationship is NOT attached to the turns factor`, () => {
@@ -259,7 +312,9 @@ describe("Chapter 7 — mandatory DSKP experiment", () => {
 
     it(`${lang}: Part A — current: hypothesis and all three variables`, () => {
       const a = exp!.parts.find((p) => p.id === "current")!;
-      expect(a.hypothesis).toMatch(lang === "bm" ? /[Ss]emakin besar arus/ : /greater the current/i);
+      expect(a.hypothesis).toMatch(
+        lang === "bm" ? /[Ss]emakin besar arus/ : /greater the current/i,
+      );
       expect(a.manipulated).toMatch(lang === "bm" ? /^Arus$/i : /^Current$/i);
       expect(a.responding).toMatch(lang === "bm" ? /jarum peniti/i : /pins attracted/i);
       expect(a.controlled).toMatch(/10/);
@@ -269,7 +324,9 @@ describe("Chapter 7 — mandatory DSKP experiment", () => {
 
     it(`${lang}: Part B — turns: hypothesis and all three variables`, () => {
       const b = exp!.parts.find((p) => p.id === "turns")!;
-      expect(b.hypothesis).toMatch(lang === "bm" ? /[Ss]emakin banyak bilangan lilitan/ : /greater the number of coil turns/i);
+      expect(b.hypothesis).toMatch(
+        lang === "bm" ? /[Ss]emakin banyak bilangan lilitan/ : /greater the number of coil turns/i,
+      );
       expect(b.manipulated).toMatch(lang === "bm" ? /lilitan/i : /coil turns/i);
       expect(b.responding).toMatch(lang === "bm" ? /jarum peniti/i : /pins attracted/i);
       expect(b.controlled).toMatch(/0\.5 A/);
@@ -285,9 +342,26 @@ describe("Chapter 7 — mandatory DSKP experiment", () => {
 
     it(`${lang}: source apparatus terms are used`, () => {
       const app = exp!.parts.map((p) => p.apparatus + " " + p.materials).join(" ");
-      const terms = lang === "bm"
-        ? ["ammeter", "reostat", "piring Petri", "rod besi", "dawai kuprum", "jarum peniti", "kaki retort"]
-        : ["ammeter", "rheostat", "Petri dish", "iron rod", "copper wire", "pins", "retort stand"];
+      const terms =
+        lang === "bm"
+          ? [
+              "ammeter",
+              "reostat",
+              "piring Petri",
+              "rod besi",
+              "dawai kuprum",
+              "jarum peniti",
+              "kaki retort",
+            ]
+          : [
+              "ammeter",
+              "rheostat",
+              "Petri dish",
+              "iron rod",
+              "copper wire",
+              "pins",
+              "retort stand",
+            ];
       for (const t of terms) expect(app).toMatch(new RegExp(t, "i"));
     });
 
@@ -366,20 +440,32 @@ describe("Chapter 7 — assessment and parity", () => {
       }
     });
 
-    it(`${lang}: difficulty stays balanced at 10/10/10`, () => {
+    it(`${lang}: difficulty labels are reaudited by reasoning depth, not forced into 10/10/10`, () => {
+      // The Chapter 7-10 quiz-bank remediation replaced the redundant ammeter
+      // recall question with an energy-forms comparison question (q5), which
+      // requires matching three scenarios to their forms of energy rather
+      // than a single fact recall — genuinely Medium, not Easy.
       const count = (d: string) => quiz.filter((q) => q.difficulty === d).length;
-      expect(count("Easy")).toBe(10);
-      expect(count("Medium")).toBe(10);
+      expect(count("Easy")).toBe(9);
+      expect(count("Medium")).toBe(11);
       expect(count("Hard")).toBe(10);
     });
 
     it(`${lang}: the newly required areas are assessed`, () => {
       const t = text(quiz);
-      expect(t, "ammeter connection not assessed").toMatch(lang === "bm" ? /bersiri dengan mentol/i : /series with the bulb/i);
-      expect(t, "voltmeter connection not assessed").toMatch(lang === "bm" ? /selari dengan mentol/i : /parallel with the bulb/i);
+      expect(t, "ammeter connection not assessed").toMatch(
+        lang === "bm" ? /bersiri dengan mentol/i : /series with the bulb/i,
+      );
+      expect(t, "voltmeter connection not assessed").toMatch(
+        lang === "bm" ? /selari dengan mentol/i : /parallel with the bulb/i,
+      );
       expect(t, "Faraday not assessed").toMatch(/Faraday|badan logam|metal body/i);
-      expect(t, "neutral point not assessed").toMatch(lang === "bm" ? /titik neutral/i : /neutral point/i);
-      expect(t, "experiment variables not assessed").toMatch(lang === "bm" ? /dimalarkan/i : /controlled variable/i);
+      expect(t, "neutral point not assessed").toMatch(
+        lang === "bm" ? /titik neutral/i : /neutral point/i,
+      );
+      expect(t, "experiment variables not assessed").toMatch(
+        lang === "bm" ? /dimalarkan/i : /controlled variable/i,
+      );
     });
 
     it(`${lang}: the fire-alarm item now keys to parallel`, () => {
@@ -416,18 +502,28 @@ describe("Chapter 7 — assessment and parity", () => {
       for (const c of node.children ?? []) ids(c, acc);
       return acc;
     };
-    for (const [lang, map] of [["bm", scienceF2C7MindMapBM], ["dlp", scienceF2C7MindMapDLP]] as const) {
+    for (const [lang, map] of [
+      ["bm", scienceF2C7MindMapBM],
+      ["dlp", scienceF2C7MindMapDLP],
+    ] as const) {
       const all = ids(map);
       expect(new Set(all).size, `${lang} mind map has duplicate node ids`).toBe(all.length);
     }
   });
 
   it("mind maps carry the newly added concepts", () => {
-    for (const [lang, map] of [["bm", scienceF2C7MindMapBM], ["dlp", scienceF2C7MindMapDLP]] as const) {
+    for (const [lang, map] of [
+      ["bm", scienceF2C7MindMapBM],
+      ["dlp", scienceF2C7MindMapDLP],
+    ] as const) {
       const t = text(map);
-      expect(t, `${lang} missing neutral point`).toMatch(lang === "bm" ? /[Tt]itik neutral/ : /[Nn]eutral point/);
+      expect(t, `${lang} missing neutral point`).toMatch(
+        lang === "bm" ? /[Tt]itik neutral/ : /[Nn]eutral point/,
+      );
       expect(t, `${lang} missing Faraday`).toMatch(/Faraday/);
-      expect(t, `${lang} missing meter connection`).toMatch(lang === "bm" ? /BERSIRI/ : /IN SERIES/);
+      expect(t, `${lang} missing meter connection`).toMatch(
+        lang === "bm" ? /BERSIRI/ : /IN SERIES/,
+      );
     }
   });
 });
@@ -466,10 +562,9 @@ describe("N-01 — bar magnet external field direction", () => {
       // parallel to the magnet, so it is very nearly horizontal and heads the
       // way S lies from N.
       expect(Math.abs(h.y), `arc is not horizontal at its arrowhead`).toBeLessThan(0.2);
-      expect(
-        Math.sign(h.x),
-        `an arc points away from the south pole (deg=${arc.arrow.deg})`,
-      ).toBe(Math.sign(southCentre - northCentre));
+      expect(Math.sign(h.x), `an arc points away from the south pole (deg=${arc.arrow.deg})`).toBe(
+        Math.sign(southCentre - northCentre),
+      );
     }
   });
 
@@ -494,7 +589,9 @@ describe("N-01 — bar magnet external field direction", () => {
     const markup = renderToStaticMarkup(
       <MagnetFieldDiagram block={magnetBlock(scienceF2C7InteractiveBM)!} lang="bm" />,
     );
-    const glyph = markup.match(/d="M-?[\d.]+,-?[\d.]+ L(-?[\d.]+),(-?[\d.]+) L-?[\d.]+,-?[\d.]+ Z"/);
+    const glyph = markup.match(
+      /d="M-?[\d.]+,-?[\d.]+ L(-?[\d.]+),(-?[\d.]+) L-?[\d.]+,-?[\d.]+ Z"/,
+    );
     expect(glyph, "arrowhead glyph not found in the rendered diagram").not.toBeNull();
     expect(Number(glyph![1]), "arrowhead apex is no longer on the +x side").toBeGreaterThan(0);
     expect(Number(glyph![2]), "arrowhead apex is no longer on the centre line").toBe(0);
@@ -695,7 +792,9 @@ describe("N-04 — magnet pole label localization", () => {
         ...block,
         conductors: [sol!, ...block.conductors.filter((c) => c.id !== "solenoid")],
       };
-      const labels = poleLabels(renderToStaticMarkup(<CurrentFieldPatterns block={reordered} lang={lang} />));
+      const labels = poleLabels(
+        renderToStaticMarkup(<CurrentFieldPatterns block={reordered} lang={lang} />),
+      );
       const north = labels.filter((l) => l.name === want.northName);
       const south = labels.filter((l) => l.name === want.southName);
       expect(north.length, `${stream} solenoid north pole`).toBe(1);
@@ -730,7 +829,9 @@ describe("N-04 — magnet pole label localization", () => {
       const en = renderShape(scienceF2C7InteractiveDLP, shapeId, "en");
       expect(en, `DLP ${shapeId} leaked a BM pole name`).not.toMatch(/aria-label="Kutub/);
       const bm = renderShape(scienceF2C7InteractiveBM, shapeId, "bm");
-      expect(bm, `BM ${shapeId} leaked an English pole name`).not.toMatch(/aria-label="(North|South) pole"/);
+      expect(bm, `BM ${shapeId} leaked an English pole name`).not.toMatch(
+        /aria-label="(North|South) pole"/,
+      );
     }
   });
 
@@ -740,8 +841,12 @@ describe("N-04 — magnet pole label localization", () => {
     for (const [stream, lang, content] of STREAMS) {
       const want = EXPECTED[lang as "bm" | "en"];
       const labels = poleLabels(renderShape(content, "like-poles", lang));
-      expect(labels.filter((l) => l.name === want.southName).length, `${stream} inner poles`).toBe(2);
-      expect(labels.filter((l) => l.name === want.northName).length, `${stream} outer poles`).toBe(2);
+      expect(labels.filter((l) => l.name === want.southName).length, `${stream} inner poles`).toBe(
+        2,
+      );
+      expect(labels.filter((l) => l.name === want.northName).length, `${stream} outer poles`).toBe(
+        2,
+      );
     }
   });
 
@@ -749,10 +854,12 @@ describe("N-04 — magnet pole label localization", () => {
     for (const [stream, lang, content] of STREAMS) {
       const markup = renderShape(content, "bar", lang);
       // Pole rectangles unchanged: N red on the left, S blue on the right.
-      const rects = [...markup.matchAll(/<rect x="(\d+)"[^>]*fill="(#d4544a|#4a7fd4)"/g)].map((m) => ({
-        x: Number(m[1]),
-        pole: m[2] === "#d4544a" ? "N" : "S",
-      }));
+      const rects = [...markup.matchAll(/<rect x="(\d+)"[^>]*fill="(#d4544a|#4a7fd4)"/g)].map(
+        (m) => ({
+          x: Number(m[1]),
+          pole: m[2] === "#d4544a" ? "N" : "S",
+        }),
+      );
       const N = rects.find((r) => r.pole === "N")!;
       const S = rects.find((r) => r.pole === "S")!;
       expect(N.x, `${stream} north pole moved`).toBe(BAR_MAGNET_POLES.north.x1);
@@ -762,7 +869,10 @@ describe("N-04 — magnet pole label localization", () => {
       const rotations = [...markup.matchAll(/rotate\((-?[\d.]+)\)/g)].map((m) => Number(m[1]));
       expect(rotations.length, `${stream} arrowhead count changed`).toBe(BAR_FIELD_ARCS.length);
       for (const deg of rotations) {
-        expect(Math.cos((deg * Math.PI) / 180), `${stream} arrow direction regressed`).toBeGreaterThan(0);
+        expect(
+          Math.cos((deg * Math.PI) / 180),
+          `${stream} arrow direction regressed`,
+        ).toBeGreaterThan(0);
       }
     }
   });

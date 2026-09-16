@@ -33,7 +33,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Anywhere in the circuit",
     ],
     answerIndex: 0,
-    explanation: "An ammeter is connected in series so that the same current flows through both the ammeter and the bulb.",
+    explanation:
+      "An ammeter is connected in series so that the same current flows through both the ammeter and the bulb.",
   },
   {
     id: "sci-f2-c7-dlp-q3",
@@ -45,7 +46,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
     question: "An object that loses electrons becomes...",
     options: ["Positively charged", "Negatively charged", "Neutral", "Uncharged"],
     answerIndex: 0,
-    explanation: "The object that loses electrons becomes positively charged; the object that gains electrons becomes negatively charged.",
+    explanation:
+      "The object that loses electrons becomes positively charged; the object that gains electrons becomes negatively charged.",
   },
   {
     id: "sci-f2-c7-dlp-q4",
@@ -62,24 +64,27 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "To produce a magnetic field",
     ],
     answerIndex: 0,
-    explanation: "An electroscope is a device used to detect the existence of electric charges on an object.",
+    explanation:
+      "An electroscope is a device used to detect the existence of electric charges on an object.",
   },
   {
     id: "sci-f2-c7-dlp-q5",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 7",
     lang: "dlp",
-    question: "What is the function of an ammeter?",
+    question:
+      "Which of the following correctly matches a situation with the main form of energy involved?",
     options: [
-      "To measure electric current",
-      "To measure voltage",
-      "To measure resistance",
-      "To measure magnetic field strength",
+      "Boiling water — light energy",
+      "A compressed spring — elastic potential energy",
+      "A running chicken — chemical energy",
+      "A compressed spring — sound energy",
     ],
-    answerIndex: 0,
-    explanation: "Electric current is measured using an ammeter, with the S.I. unit ampere (A).",
+    answerIndex: 1,
+    explanation:
+      "Boiling water involves heat energy, a compressed spring stores elastic potential energy, and a running chicken has kinetic energy because it is moving.",
   },
   {
     id: "sci-f2-c7-dlp-q6",
@@ -91,7 +96,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
     question: "What is the unit for resistance?",
     options: ["Ohm (Ω)", "Volt (V)", "Ampere (A)", "Joule (J)"],
     answerIndex: 0,
-    explanation: "The unit for resistance is ohm (Ω), which is the ability of a conductor to limit the flow of electric current.",
+    explanation:
+      "The unit for resistance is ohm (Ω), which is the ability of a conductor to limit the flow of electric current.",
   },
   {
     id: "sci-f2-c7-dlp-q7",
@@ -108,7 +114,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Voltage is inversely proportional to time",
     ],
     answerIndex: 0,
-    explanation: "Ohm's Law states that the electric current flowing through a conductor is directly proportional to the voltage across it, provided the temperature and other physical conditions remain unchanged.",
+    explanation:
+      "Ohm's Law states that the electric current flowing through a conductor is directly proportional to the voltage across it, provided the temperature and other physical conditions remain unchanged.",
   },
   {
     id: "sci-f2-c7-dlp-q8",
@@ -117,10 +124,12 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 7",
     lang: "dlp",
-    question: "A circuit in which components are connected one after another in a single path is called a...",
+    question:
+      "A circuit in which components are connected one after another in a single path is called a...",
     options: ["Parallel circuit", "Series circuit", "Open circuit", "Short circuit"],
     answerIndex: 1,
-    explanation: "A series circuit is made up of electrical components connected one after another, where the current flows through a single path.",
+    explanation:
+      "A series circuit is made up of electrical components connected one after another, where the current flows through a single path.",
   },
   {
     id: "sci-f2-c7-dlp-q9",
@@ -137,7 +146,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "After the bulb only",
     ],
     answerIndex: 1,
-    explanation: "A voltmeter is connected in parallel across the bulb, on its own branch joining the two ends of the bulb.",
+    explanation:
+      "A voltmeter is connected in parallel across the bulb, on its own branch joining the two ends of the bulb.",
   },
   {
     id: "sci-f2-c7-dlp-q10",
@@ -163,15 +173,17 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 7",
     lang: "dlp",
-    question: "During a thunderstorm, why is being inside a metal-bodied car safer?",
+    question:
+      "Which of the following provides the safest shelter during a thunderstorm, based on the Faraday cage concept?",
     options: [
-      "Because the rubber tyres insulate the car from the ground",
-      "Because the metal body conducts charge around the outside rather than through the space inside",
-      "Because the car windows block lightning",
-      "Because the car engine absorbs the electric charge",
+      "An open field, because there is nothing nearby",
+      "Standing under a tall, isolated tree",
+      "Inside a building or vehicle with a metal frame, because the metal conducts charge around the outside rather than through the space inside",
+      "Standing near a metal fence",
     ],
-    answerIndex: 1,
-    explanation: "This is the Faraday cage concept: charge travels over the outer surface of the metal body and does not pass into the space inside. The protection comes from the metal body, not from the rubber tyres.",
+    answerIndex: 2,
+    explanation:
+      "This is the Faraday cage concept: a structure with a metal frame, such as certain buildings or a car, conducts charge over its outer surface rather than through the space inside, making the space inside safer during a thunderstorm.",
   },
   {
     id: "sci-f2-c7-dlp-q12",
@@ -188,7 +200,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "To attract lightning more frequently to the building",
     ],
     answerIndex: 0,
-    explanation: "A lightning conductor provides a path for electric charges to flow into the ground, protecting the building from being struck by lightning.",
+    explanation:
+      "A lightning conductor provides a path for electric charges to flow into the ground, protecting the building from being struck by lightning.",
   },
   {
     id: "sci-f2-c7-dlp-q13",
@@ -205,7 +218,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "A fixed resistor and a rheostat are the same component",
     ],
     answerIndex: 0,
-    explanation: "A fixed resistor has resistance that cannot be adjusted, whereas a variable resistor (rheostat) has resistance that can be adjusted.",
+    explanation:
+      "A fixed resistor has resistance that cannot be adjusted, whereas a variable resistor (rheostat) has resistance that can be adjusted.",
   },
   {
     id: "sci-f2-c7-dlp-q14",
@@ -222,7 +236,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "V is unrelated to a series circuit",
     ],
     answerIndex: 0,
-    explanation: "In a series circuit, the total voltage is the sum of the voltages across each resistor, V = V₁ + V₂.",
+    explanation:
+      "In a series circuit, the total voltage is the sum of the voltages across each resistor, V = V₁ + V₂.",
   },
   {
     id: "sci-f2-c7-dlp-q15",
@@ -239,7 +254,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "I is always zero in a parallel circuit",
     ],
     answerIndex: 0,
-    explanation: "In a parallel circuit, the total current is the sum of the currents in each path, I = I₁ + I₂, while the voltage is the same across each resistor.",
+    explanation:
+      "In a parallel circuit, the total current is the sum of the currents in each path, I = I₁ + I₂, while the voltage is the same across each resistor.",
   },
   {
     id: "sci-f2-c7-dlp-q16",
@@ -256,7 +272,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "To ensure all lights go out at the same time if one is damaged",
     ],
     answerIndex: 0,
-    explanation: "Home wiring is connected in parallel so that every light gets the same voltage from the main power supply, and each appliance can be controlled separately.",
+    explanation:
+      "Home wiring is connected in parallel so that every light gets the same voltage from the main power supply, and each appliance can be controlled separately.",
   },
   {
     id: "sci-f2-c7-dlp-q17",
@@ -273,7 +290,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Current and electron flow are unrelated to the source terminals",
     ],
     answerIndex: 0,
-    explanation: "The direction of current flow is from the positive terminal to the negative terminal of the source, while electron flow is the opposite, from negative to positive.",
+    explanation:
+      "The direction of current flow is from the positive terminal to the negative terminal of the source, while electron flow is the opposite, from negative to positive.",
   },
   {
     id: "sci-f2-c7-dlp-q18",
@@ -290,7 +308,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Type of battery and size of the switch",
     ],
     answerIndex: 0,
-    explanation: "The magnetic field strength of an electromagnet is influenced by the magnitude of the current flowing and the number of turns of the coil.",
+    explanation:
+      "The magnetic field strength of an electromagnet is influenced by the magnitude of the current flowing and the number of turns of the coil.",
   },
   {
     id: "sci-f2-c7-dlp-q19",
@@ -307,7 +326,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "To calculate total voltage in a series circuit",
     ],
     answerIndex: 0,
-    explanation: "The right-hand grip rule is used to determine the direction of the magnetic field for current flow in a straight wire.",
+    explanation:
+      "The right-hand grip rule is used to determine the direction of the magnetic field for current flow in a straight wire.",
   },
   {
     id: "sci-f2-c7-dlp-q20",
@@ -316,7 +336,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 7",
     lang: "dlp",
-    question: "What happens to the strength of a magnetic field as it moves away from the centre of the conductor?",
+    question:
+      "What happens to the strength of a magnetic field as it moves away from the centre of the conductor?",
     options: [
       "The magnetic field strength decreases",
       "The magnetic field strength increases",
@@ -324,7 +345,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "The magnetic field strength turns into electric current",
     ],
     answerIndex: 0,
-    explanation: "The strength of the magnetic field reduces as it moves away from the centre of the conductor.",
+    explanation:
+      "The strength of the magnetic field reduces as it moves away from the centre of the conductor.",
   },
   {
     id: "sci-f2-c7-dlp-q21",
@@ -363,7 +385,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Two resistors R₁ = 2 Ω and R₂ = 2 Ω are connected in parallel with a 6 V supply. What is the total current, I, in the circuit?",
     options: ["1 A", "3 A", "6 A", "12 A"],
     answerIndex: 2,
-    explanation: "1/R = 1/2 + 1/2 = 1, so R = 1 Ω. I₁ = 6/2 = 3 A, I₂ = 6/2 = 3 A. Total current I = I₁ + I₂ = 6 A.",
+    explanation:
+      "1/R = 1/2 + 1/2 = 1, so R = 1 Ω. I₁ = 6/2 = 3 A, I₂ = 6/2 = 3 A. Total current I = I₁ + I₂ = 6 A.",
   },
   {
     id: "sci-f2-c7-dlp-q24",
@@ -381,7 +404,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "The bulbs use an electromagnet rather than an electric circuit",
     ],
     answerIndex: 0,
-    explanation: "If other bulbs remain lit even though one is damaged, this shows a parallel circuit because each path is independent; in a series circuit, all bulbs would go out.",
+    explanation:
+      "If other bulbs remain lit even though one is damaged, this shows a parallel circuit because each path is independent; in a series circuit, all bulbs would go out.",
   },
   {
     id: "sci-f2-c7-dlp-q25",
@@ -399,7 +423,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Because both circuits function in the same way",
     ],
     answerIndex: 0,
-    explanation: "In a series circuit, the total resistance increases with each new component (R = R₁ + R₂), reducing the overall current. In a parallel circuit, each path is independent with the same voltage, so adding appliances does not affect other paths.",
+    explanation:
+      "In a series circuit, the total resistance increases with each new component (R = R₁ + R₂), reducing the overall current. In a parallel circuit, each path is independent with the same voltage, so adding appliances does not affect other paths.",
   },
   {
     id: "sci-f2-c7-dlp-q26",
@@ -408,7 +433,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 7",
     lang: "dlp",
-    question: "The north poles of two bar magnets are brought close together. What is produced in the region between them, and why?",
+    question:
+      "The north poles of two bar magnets are brought close together. What is produced in the region between them, and why?",
     options: [
       "The strongest magnetic field, because two poles combine",
       "A neutral point, because the magnetic fields from the two poles oppose each other",
@@ -416,7 +442,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Magnetic field lines that cross one another",
     ],
     answerIndex: 1,
-    explanation: "The magnetic fields between two like poles oppose each other, producing a point with no magnetic field at all. This is called the neutral point and is marked X.",
+    explanation:
+      "The magnetic fields between two like poles oppose each other, producing a point with no magnetic field at all. This is called the neutral point and is marked X.",
   },
   {
     id: "sci-f2-c7-dlp-q27",
@@ -434,7 +461,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Longer wire converts direct current to alternating current",
     ],
     answerIndex: 0,
-    explanation: "A longer nichrome wire has higher resistance; according to Ohm's Law (I = V/R), increasing resistance at a constant voltage decreases the current.",
+    explanation:
+      "A longer nichrome wire has higher resistance; according to Ohm's Law (I = V/R), increasing resistance at a constant voltage decreases the current.",
   },
   {
     id: "sci-f2-c7-dlp-q28",
@@ -452,7 +480,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Both north and south poles simultaneously",
     ],
     answerIndex: 0,
-    explanation: "For a solenoid, current flowing in an anti-clockwise direction (when viewed from that end) produces a north pole, while a clockwise direction produces a south pole.",
+    explanation:
+      "For a solenoid, current flowing in an anti-clockwise direction (when viewed from that end) produces a north pole, while a clockwise direction produces a south pole.",
   },
   {
     id: "sci-f2-c7-dlp-q29",
@@ -461,7 +490,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 7",
     lang: "dlp",
-    question: "In the investigation into the effect of current on magnetic field strength, the number of coil turns is kept at 10. What is the role of the number of turns, and what is the responding variable?",
+    question:
+      "In the investigation into the effect of current on magnetic field strength, the number of coil turns is kept at 10. What is the role of the number of turns, and what is the responding variable?",
     options: [
       "The number of turns is the manipulated variable; the current is the responding variable",
       "The number of turns is the controlled variable; the number of pins attracted is the responding variable",
@@ -469,7 +499,8 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Both the number of turns and the current are manipulated variables",
     ],
     answerIndex: 1,
-    explanation: "The current is manipulated, the number of coil turns is kept constant at 10, and what is observed and measured as the outcome is the number of pins attracted by the iron rod.",
+    explanation:
+      "The current is manipulated, the number of coil turns is kept constant at 10, and what is observed and measured as the outcome is the number of pins attracted by the iron rod.",
   },
   {
     id: "sci-f2-c7-dlp-q30",
@@ -487,6 +518,7 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "A series circuit can only be used at night",
     ],
     answerIndex: 0,
-    explanation: "The main disadvantage of a series circuit for home use is that when one appliance is damaged, all other appliances stop functioning, and each appliance cannot be switched on or off individually — the main reason parallel circuits are used in home wiring.",
+    explanation:
+      "The main disadvantage of a series circuit for home use is that when one appliance is damaged, all other appliances stop functioning, and each appliance cannot be switched on or off individually — the main reason parallel circuits are used in home wiring.",
   },
 ];
