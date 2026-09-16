@@ -60,10 +60,10 @@ describe("Science Form 1 Chapter 3 Pass 1 live renderer", () => {
       const html = render();
       for (const text of Object.values(content.definition)) expect(html).toContain(escape(text));
       expect(content.definition.etymology).toContain(
-        lang === "bm" ? "'homeo' bermaksud 'sama'" : "'homeo' meaning 'same'",
+        lang === "bm" ? "'homeo' bermaksud 'sama'" : "'homeo' meaning 'similar'",
       );
       expect(content.definition.etymology).toContain(
-        lang === "bm" ? "'stasis' bermaksud 'tidak bergerak'" : "'stasis' meaning 'not moving'",
+        lang === "bm" ? "'stasis' bermaksud 'tidak bergerak'" : "'stasis' meaning 'stable'",
       );
       expect(html).toContain(
         lang === "bm" ? "Proses Kawalan Homeostasis" : "Homeostatic Control Process",
@@ -125,7 +125,7 @@ describe("Science Form 1 Chapter 3 Pass 1 live renderer", () => {
         lang === "bm" ? "lebih perembesan hormon" : "more secretion of a hormone",
       );
       expect(content.waterRegulation.increase.mechanism[0]).toContain(
-        lang === "bm" ? "pengurangan rembesan" : "reduction in secretion",
+        lang === "bm" ? "pengurangan rembesan" : "stimulate the secretion",
       );
     });
     it(`${lang}: hot and cold skin diagrams distinguish hair, sweat, vessel calibre/location, trapped air and heat loss`, () => {
@@ -190,7 +190,7 @@ describe("Science Form 1 Chapter 3 Pass 1 live renderer", () => {
       expect(experiment.sequence[0]).toContain("10");
       expect(experiment.sequence[2]).toContain("10");
     });
-    it(`${lang}: Experiment 3.2 has rest, ten-minute walk/jog, one-minute wrist measurement and compact conclusion without worksheet inputs`, () => {
+    it(`${lang}: Experiment 3.2 has rest, language-specific walk/jog duration, one-minute wrist measurement and compact conclusion without worksheet inputs`, () => {
       const html = renderToStaticMarkup(<PulseExperimentVisual content={content} lang={lang} />);
       const experiment = content.pulseExperiment;
       expect(render()).toContain('data-experiment="3.2"');
@@ -201,8 +201,8 @@ describe("Science Form 1 Chapter 3 Pass 1 live renderer", () => {
       ]);
       expect(experiment.activities.map((activity) => activity.durationMinutes)).toEqual([
         undefined,
-        10,
-        10,
+        lang === "bm" ? 10 : 5,
+        lang === "bm" ? 10 : 5,
       ]);
       expect(experiment.countDurationMinutes).toBe(1);
       for (const activity of experiment.activities)

@@ -4,7 +4,9 @@
 // BM sourced from T1_BT_SN-_SAINS.pdf (pages 70-85, official KSSM counterpart)
 // Pass 1 BM checked against T1 BT SN- SAINS.pdf, printed pp. 72-78 (PDF pp. 82-88).
 // The cited official DLP file was not available locally for independent verification.
-// New DLP experiment/diagram labels are semantic counterparts of that BM source and the user brief.
+// Final pass: language-specific DLP etymology, 5-minute activity duration and hormone wording
+// follow the official DLP excerpts supplied by the user on 2026-09-16.
+// Importance BM verified against printed p. 83; added EN importance text is a semantic counterpart of the supplied concepts.
 // Content data only — no presentation markup.
 
 export interface CorrectiveMechanism {
@@ -45,6 +47,10 @@ export interface Chapter3Content {
     control: string;
     water: string;
     temperature: string;
+    humans: string;
+    animals: string;
+    plants: string;
+    importance: string;
   };
   practicalNotice: string;
   sweatExperiment: Chapter3Practical & { conditions: string[] };
@@ -78,6 +84,14 @@ export interface Chapter3Content {
     transpirationFunctions: string[];
     waterLossFact: string;
     stomaStates: StomaState[];
+    bananaResponse: string;
+  };
+  importanceHomeostasis: {
+    process: string[];
+    enzymeProcess: string[];
+    explanation: string;
+    enzymeExplanation: string;
+    reflection: string[];
   };
   keyExamFacts: string[];
   keyTerms: string[];
@@ -92,6 +106,10 @@ const en: Chapter3Content = {
     control: "Homeostatic Control Process",
     water: "Regulation of Water Content",
     temperature: "Regulation of Body Temperature",
+    humans: "Homeostasis in Humans",
+    animals: "Homeostasis in Animals",
+    plants: "Homeostasis in Plants",
+    importance: "Importance of Homeostasis to Humans and Living Things",
   },
   practicalNotice:
     "Teacher/lab-guided physical practical. Record your own observations and measured results.",
@@ -123,7 +141,7 @@ const en: Chapter3Content = {
     meaning:
       "Homeostasis refers to the maintenance of the internal environment in the body of an organism — such as temperature, water, pH and blood pressure — in a balanced and stable condition, so all living processes can work well.",
     etymology:
-      "Homeostasis comes from two Greek words: 'homeo' meaning 'same' and 'stasis' meaning 'not moving'.",
+      "Homeostasis comes from two Greek words: 'homeo' meaning 'similar' and 'stasis' meaning 'stable'.",
     importance:
       "If internal conditions are not balanced — for example if temperature is too high — the cells of the organism may die.",
   },
@@ -136,7 +154,7 @@ const en: Chapter3Content = {
       trigger: "Water content in the body increases when we drink water",
       detectedBy: "Brain",
       mechanism: [
-        "The brain stimulates a reduction in secretion of a hormone so the kidneys increase urine production",
+        "The brain will stimulate the secretion of a hormone so that the kidneys increase the production of urine.",
         "Kidneys increase the production of urine",
         "More urine is produced",
       ],
@@ -206,14 +224,14 @@ const en: Chapter3Content = {
     variables: { manipulated: "Type of activity", responding: "Pulse count", fixed: "Time taken" },
     apparatus: "Stopwatch, one student from each group.",
     sequence: [
-      "Select one student from each group to carry out the planned activities: resting, walking and jogging. Walking and jogging are carried out for ten minutes.",
+      "Select one student from each group to carry out the planned activities: resting, walking and jogging. Walking and jogging are carried out for five minutes.",
       "Then count each student's pulse for one minute by placing two fingers on their wrist and record the reading.",
       "Record all the results in the table.",
     ],
     activities: [
       { id: "rest", label: "At rest" },
-      { id: "walking", label: "Walking", durationMinutes: 10 },
-      { id: "jogging", label: "Jogging", durationMinutes: 10 },
+      { id: "walking", label: "Walking", durationMinutes: 5 },
+      { id: "jogging", label: "Jogging", durationMinutes: 5 },
     ],
     countDurationMinutes: 1,
     conclusion: "The more vigorous the physical activity, the higher the pulse rate.",
@@ -251,6 +269,8 @@ const en: Chapter3Content = {
     },
   ],
   plantHomeostasis: {
+    bananaResponse:
+      "On a hot afternoon, banana leaves roll up to reduce the surface area exposed to sunlight and reduce water loss.",
     transpirationDefinition:
       "Transpiration is the process by which plants lose water from their leaves in the form of water vapour to the surroundings, through the stoma — involving the plant's transport system.",
     transpirationFunctions: [
@@ -272,6 +292,28 @@ const en: Chapter3Content = {
         reason:
           "Stoma closes to reduce water evaporated from the leaves, preventing excessive water loss",
       },
+    ],
+  },
+  importanceHomeostasis: {
+    process: [
+      "Homeostasis",
+      "Balanced and stable internal environment",
+      "Optimum conditions",
+      "Cells carry out metabolism efficiently",
+    ],
+    enzymeProcess: [
+      "Chemical reactions in living cells",
+      "Controlled by enzymes",
+      "Enzymes are sensitive to surrounding changes",
+      "Temperature changes influence enzyme activity",
+    ],
+    explanation:
+      "Homeostasis provides optimum conditions in humans and living things so that cells can carry out their metabolic activities efficiently.",
+    enzymeExplanation:
+      "Chemical reactions in living cells are controlled by enzymes that are sensitive to changes in their surroundings. Temperature changes influence enzyme activity.",
+    reflection: [
+      "What could happen if body temperature kept increasing or decreasing without control?",
+      "What could happen if water in the body continued to be lost without regulation?",
     ],
   },
   keyExamFacts: [
@@ -308,6 +350,10 @@ const bm: Chapter3Content = {
     control: "Proses Kawalan Homeostasis",
     water: "Kawal Atur Kandungan Air",
     temperature: "Kawal Atur Suhu Badan",
+    humans: "Homeostasis dalam Manusia",
+    animals: "Homeostasis dalam Haiwan",
+    plants: "Homeostasis dalam Tumbuhan",
+    importance: "Kepentingan Homeostasis kepada Manusia dan Benda Hidup",
   },
   practicalNotice:
     "Amali fizikal dengan bimbingan guru/makmal. Rekodkan pemerhatian dan bacaan sebenar anda.",
@@ -471,6 +517,8 @@ const bm: Chapter3Content = {
     },
   ],
   plantHomeostasis: {
+    bananaResponse:
+      "Pada waktu petang yang panas, daun pisang menggulung untuk mengurangkan luas permukaan terdedah kepada cahaya matahari dan mengurangkan kehilangan air.",
     transpirationDefinition:
       "Transpirasi ialah proses tumbuhan kehilangan air daripada daun dalam bentuk wap air ke persekitaran, melalui stoma — melibatkan sistem pengangkutan tumbuhan.",
     transpirationFunctions: [
@@ -492,6 +540,28 @@ const bm: Chapter3Content = {
         reason:
           "Stoma tertutup untuk mengurangkan air yang tersejat daripada daun, mencegah kehilangan air berlebihan",
       },
+    ],
+  },
+  importanceHomeostasis: {
+    process: [
+      "Homeostasis",
+      "Persekitaran dalam badan yang seimbang dan stabil",
+      "Keadaan optimum",
+      "Sel menjalankan aktiviti metabolisme dengan cekap",
+    ],
+    enzymeProcess: [
+      "Tindak balas kimia dalam sel hidup",
+      "Dikawal oleh enzim",
+      "Enzim peka kepada perubahan persekitaran",
+      "Perubahan suhu mempengaruhi aktiviti enzim",
+    ],
+    explanation:
+      "Kawalan homeostasis dalam badan manusia dan benda hidup bertujuan untuk menyediakan satu keadaan optimum dalam badan supaya sel dapat menjalankan aktiviti metabolismenya dengan cekap.",
+    enzymeExplanation:
+      "Semua tindak balas kimia dalam sel hidup dikawal oleh enzim yang peka kepada perubahan persekitaran. Perubahan suhu akan mempengaruhi aktiviti enzim itu.",
+    reflection: [
+      "Apakah kesannya jika suhu badan kita atau benda hidup terus meningkat atau menurun?",
+      "Apakah kesannya jika kandungan air di dalam badan kita dan benda hidup hilang tanpa dikawal?",
     ],
   },
   keyExamFacts: [
