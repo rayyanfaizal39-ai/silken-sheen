@@ -365,7 +365,6 @@ export function WaterRegulationVisual({ content, lang }: { content: Chapter3Cont
                   viewBox="0 0 380 390"
                   data-homeostasis-diagram={`water-${direction}`}
                 >
-                  <Arrow d="M62 350 H15 V60 H45" />
                   <Arrow d="M139 60 H220" />
                   <Arrow d="M270 109 V165" />
                   <Arrow d="M218 204 H132" />

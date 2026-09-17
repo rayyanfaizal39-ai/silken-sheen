@@ -147,7 +147,22 @@ describe("Science Form 1 Chapter 3 Pass 1 live renderer", () => {
         /<svg[^>]*data-homeostasis-diagram="water-increase"[\s\S]*?<\/svg>/,
       )![0];
       expect(high).toContain('viewBox="0 0 380 390"');
-      expect(high).toContain('d="M62 350 H15 V60 H45"');
+      expect(high).not.toContain('d="M62 350 H15 V60 H45"');
+      const highArrowPaths = [...high.matchAll(/<path d="([^"]+)"[^>]*marker-end=/g)].map(
+        (match) => match[1],
+      );
+      // The only arrows follow the correction; the last enters the normal box at y=324.
+      expect(highArrowPaths).toEqual([
+        "M139 60 H220",
+        "M270 109 V165",
+        "M218 204 H132",
+        "M89 292 V324",
+      ]);
+      const highEndpoint = high.slice(high.indexOf('<rect x="62" y="324"'));
+      expect(highEndpoint.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim()).toBe(
+        content.waterRegulation.increase.result,
+      );
+      expect(highEndpoint).not.toContain("marker-end=");
       expect(html).toContain(lang === "bm" ? "dahaga" : "thirst");
       expect(html).toContain('data-sweat-urine-process="true"');
       expect(html).not.toMatch(/\bADH\b|antidiuretic/i);
