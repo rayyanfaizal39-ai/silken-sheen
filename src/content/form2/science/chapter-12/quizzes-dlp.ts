@@ -16,7 +16,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "The time taken for the Earth to orbit the Sun",
     ],
     answerIndex: 0,
-    explanation: "An Astronomical Unit (A.U.) is the average distance between the Earth and the Sun, approximately 150 million kilometres (1.5 × 10⁸ km).",
+    explanation:
+      "An Astronomical Unit (A.U.) is the average distance between the Earth and the Sun, approximately 150 million kilometres (1.5 × 10⁸ km).",
   },
   {
     id: "sci-f2-c12-dlp-q2",
@@ -33,7 +34,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "The speed of light per second",
     ],
     answerIndex: 1,
-    explanation: "A light year is the distance travelled by light in one year, which is 9.5 × 10¹² km.",
+    explanation:
+      "A light year is the distance travelled by light in one year, which is 9.5 × 10¹² km.",
   },
   {
     id: "sci-f2-c12-dlp-q3",
@@ -43,7 +45,12 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "dlp",
     question: "What is the velocity of light?",
-    options: [ "9.5 million km per second", "150 000 km per second", "300 000 km per second", "1.5 million km per second" ],
+    options: [
+      "9.5 million km per second",
+      "150 000 km per second",
+      "300 000 km per second",
+      "1.5 million km per second",
+    ],
     answerIndex: 2,
     explanation: "Light moves at a velocity of 300 000 km every second.",
   },
@@ -55,7 +62,7 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "dlp",
     question: "How many planets are there in the solar system?",
-    options: [ "9", "6", "7", "8" ],
+    options: ["9", "6", "7", "8"],
     answerIndex: 3,
     explanation: "The solar system consists of eight planets that orbit the Sun.",
   },
@@ -66,10 +73,12 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "Since which year has Pluto no longer been recognised as a planet in the solar system?",
-    options: [ "2006", "2010", "1996", "2000" ],
+    question:
+      "Since which year has Pluto no longer been recognised as a planet in the solar system?",
+    options: ["2006", "2010", "1996", "2000"],
     answerIndex: 0,
-    explanation: "In 2006, Pluto was no longer recognised as a planet; instead, it is known as a dwarf planet.",
+    explanation:
+      "In 2006, Pluto was no longer recognised as a planet; instead, it is known as a dwarf planet.",
   },
   {
     id: "sci-f2-c12-dlp-q6",
@@ -79,7 +88,7 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "dlp",
     question: "Which planet is closest to the Sun?",
-    options: [ "Earth", "Mercury", "Mars", "Venus" ],
+    options: ["Earth", "Mercury", "Mars", "Venus"],
     answerIndex: 1,
     explanation: "Mercury is the closest planet to the Sun, approximately 57.9 million km away.",
   },
@@ -91,9 +100,10 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "dlp",
     question: "Which is the largest planet in the solar system?",
-    options: [ "Uranus", "Saturn", "Jupiter", "Neptune" ],
+    options: ["Uranus", "Saturn", "Jupiter", "Neptune"],
     answerIndex: 2,
-    explanation: "Jupiter is the fifth and largest planet in the solar system, with a mass almost 320 times that of Earth.",
+    explanation:
+      "Jupiter is the fifth and largest planet in the solar system, with a mass almost 320 times that of Earth.",
   },
   {
     id: "sci-f2-c12-dlp-q8",
@@ -103,9 +113,9 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "dlp",
     question: "Mars is known as the...",
-    options: [ "Green Planet", "Yellow Planet", "Blue Planet", "Red Planet" ],
+    options: ["Green Planet", "Yellow Planet", "Blue Planet", "Red Planet"],
     answerIndex: 3,
-    explanation: "Mars is known as the \"Red Planet.\"",
+    explanation: 'Mars is known as the "Red Planet."',
   },
   {
     id: "sci-f2-c12-dlp-q9",
@@ -115,7 +125,7 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "dlp",
     question: "What percentage of the Earth's surface is covered in water?",
-    options: [ "71%", "90%", "29%", "50%" ],
+    options: ["71%", "90%", "29%", "50%"],
     answerIndex: 0,
     explanation: "More than 71% of Earth's surface is covered in water, with 29% being land.",
   },
@@ -127,7 +137,7 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "dlp",
     question: "What is the name of Earth's natural satellite?",
-    options: [ "Titan", "The Moon", "Europa", "Phobos" ],
+    options: ["Titan", "The Moon", "Europa", "Phobos"],
     answerIndex: 1,
     explanation: "The Moon is the only natural satellite of the Earth.",
   },
@@ -138,7 +148,7 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "Why is Venus known as the \"greenhouse\" planet?",
+    question: 'Why is Venus known as the "greenhouse" planet?',
     options: [
       "Because it is the furthest planet from the Sun",
       "Because its surface is green in colour",
@@ -146,7 +156,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Because it has a lot of plants",
     ],
     answerIndex: 2,
-    explanation: "Venus is known as the \"greenhouse\" planet due to its high carbon dioxide content which traps heat, causing temperatures to reach up to 460°C.",
+    explanation:
+      'Venus is known as the "greenhouse" planet due to its high carbon dioxide content which traps heat, causing temperatures to reach up to 460°C.',
   },
   {
     id: "sci-f2-c12-dlp-q12",
@@ -163,7 +174,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Venus rotates from east to west, opposite to Earth",
     ],
     answerIndex: 3,
-    explanation: "Venus rotates from east to west (opposite of Earth), causing the Sun to rise in the west on Venus.",
+    explanation:
+      "Venus rotates from east to west (opposite of Earth), causing the Sun to rise in the west on Venus.",
   },
   {
     id: "sci-f2-c12-dlp-q13",
@@ -172,7 +184,7 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "Why is Jupiter considered the \"protector of the Earth\"?",
+    question: 'Why is Jupiter considered the "protector of the Earth"?',
     options: [
       "Because its strong gravity can deflect huge objects from hitting Earth",
       "Because it blocks ultraviolet rays from the Sun",
@@ -180,7 +192,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Because it produces oxygen for Earth",
     ],
     answerIndex: 0,
-    explanation: "Jupiter has very strong gravity due to its huge mass, allowing it to deflect huge objects such as asteroids from hitting Earth.",
+    explanation:
+      "Jupiter has very strong gravity due to its huge mass, allowing it to deflect huge objects such as asteroids from hitting Earth.",
   },
   {
     id: "sci-f2-c12-dlp-q14",
@@ -201,7 +214,7 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "What is meant by a \"giant gas\" planet?",
+    question: 'What is meant by a "giant gas" planet?',
     options: [
       "A planet without any moons",
       "A planet whose surface is entirely rock",
@@ -209,7 +222,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "The planet closest to the Sun",
     ],
     answerIndex: 2,
-    explanation: "Jupiter, Saturn, Uranus and Neptune are classified as \"giant gas\" planets because their surfaces are covered in gas and they receive very little sunlight.",
+    explanation:
+      'Jupiter, Saturn, Uranus and Neptune are classified as "giant gas" planets because their surfaces are covered in gas and they receive very little sunlight.',
   },
   {
     id: "sci-f2-c12-dlp-q16",
@@ -226,7 +240,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "It rotates on its side, almost parallel to its orbit around the Sun",
     ],
     answerIndex: 3,
-    explanation: "Uranus's axis of rotation is almost parallel to its orbit around the Sun, making it appear to rotate on its side.",
+    explanation:
+      "Uranus's axis of rotation is almost parallel to its orbit around the Sun, making it appear to rotate on its side.",
   },
   {
     id: "sci-f2-c12-dlp-q17",
@@ -235,10 +250,17 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "Why does the same surface of the Moon always face Earth when you observe it from Earth?",
-    options: [ "Because the time the Moon takes to rotate on its axis is the same as the time it takes to revolve around Earth", "Because the Moon always stays at the same position in space", "Because the Moon does not rotate on its axis", "Because Earth does not rotate on its axis" ],
+    question:
+      "Why does the same surface of the Moon always face Earth when you observe it from Earth?",
+    options: [
+      "Because the time the Moon takes to rotate on its axis is the same as the time it takes to revolve around Earth",
+      "Because the Moon always stays at the same position in space",
+      "Because the Moon does not rotate on its axis",
+      "Because Earth does not rotate on its axis",
+    ],
     answerIndex: 0,
-    explanation: "The time the Moon takes to rotate on its axis and to revolve around Earth is the same, about 27 days.",
+    explanation:
+      "The time the Moon takes to rotate on its axis and to revolve around Earth is the same, about 27 days.",
   },
   {
     id: "sci-f2-c12-dlp-q18",
@@ -247,7 +269,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "Based on the planet data, which planet has the greatest number of natural satellites?",
+    question:
+      "Based on the planet data, which planet has the greatest number of natural satellites?",
     options: [
       "Mercury, with 0 natural satellites",
       "Jupiter, with 67 natural satellites",
@@ -255,7 +278,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Mars, with 2 natural satellites",
     ],
     answerIndex: 1,
-    explanation: "Jupiter has 67 natural satellites, followed by Saturn with 62, Uranus with 27 and Neptune with 14. Mercury and Venus have none.",
+    explanation:
+      "Jupiter has 67 natural satellites, followed by Saturn with 62, Uranus with 27 and Neptune with 14. Mercury and Venus have none.",
   },
   {
     id: "sci-f2-c12-dlp-q19",
@@ -265,7 +289,7 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "dlp",
     question: "What is the value of Earth's gravity?",
-    options: [ "24.8 m s⁻²", "6.8 m s⁻²", "9.8 m s⁻²", "12.4 m s⁻²" ],
+    options: ["24.8 m s⁻²", "6.8 m s⁻²", "9.8 m s⁻²", "12.4 m s⁻²"],
     answerIndex: 2,
     explanation: "Earth's gravity is 9.8 m s⁻².",
   },
@@ -284,7 +308,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "A measure of the ability of water and land to provide basic human needs and the Earth's ability to regenerate resources",
     ],
     answerIndex: 3,
-    explanation: "Ecological footprint is a measure of the ability of water and land to provide the basic needs of humans, as well as the Earth's ability to absorb waste and regenerate resources.",
+    explanation:
+      "Ecological footprint is a measure of the ability of water and land to provide the basic needs of humans, as well as the Earth's ability to absorb waste and regenerate resources.",
   },
   {
     id: "sci-f2-c12-dlp-q21",
@@ -293,8 +318,9 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "A planet's distance from the Sun is 4.5 × 10⁹ km. What is this distance in A.U.? (1 A.U. = 1.5 × 10⁸ km)",
-    options: [ "30 A.U.", "300 A.U.", "3 A.U.", "15 A.U." ],
+    question:
+      "A planet's distance from the Sun is 4.5 × 10⁹ km. What is this distance in A.U.? (1 A.U. = 1.5 × 10⁸ km)",
+    options: ["30 A.U.", "300 A.U.", "3 A.U.", "15 A.U."],
     answerIndex: 0,
     explanation: "Distance in A.U. = (4.5 × 10⁹)/(1.5 × 10⁸) = 30 A.U.",
   },
@@ -305,7 +331,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "Why does Mercury experience an extreme temperature difference between the side facing the Sun and its dark side?",
+    question:
+      "Why does Mercury experience an extreme temperature difference between the side facing the Sun and its dark side?",
     options: [
       "Because it is the furthest planet from the Sun",
       "Because it has no atmosphere to trap or distribute heat",
@@ -313,7 +340,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Because it is covered in ice",
     ],
     answerIndex: 1,
-    explanation: "Mercury has no atmosphere, so the side facing the Sun is extremely hot (>427°C) while the dark side is extremely cold (can drop to −173°C) because no heat is distributed or trapped.",
+    explanation:
+      "Mercury has no atmosphere, so the side facing the Sun is extremely hot (>427°C) while the dark side is extremely cold (can drop to −173°C) because no heat is distributed or trapped.",
   },
   {
     id: "sci-f2-c12-dlp-q23",
@@ -330,7 +358,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Because Venus rotates faster",
     ],
     answerIndex: 2,
-    explanation: "Venus has a thick carbon dioxide atmosphere that traps heat through the greenhouse effect, making its temperature hotter (up to 462°C) compared to Mercury, which has no atmosphere.",
+    explanation:
+      "Venus has a thick carbon dioxide atmosphere that traps heat through the greenhouse effect, making its temperature hotter (up to 462°C) compared to Mercury, which has no atmosphere.",
   },
   {
     id: "sci-f2-c12-dlp-q24",
@@ -347,7 +376,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Because Jupiter has an extremely high mass",
     ],
     answerIndex: 3,
-    explanation: "Gravity depends on mass and density; Jupiter's extremely high mass (almost 320 times Earth) results in higher gravity despite its low density.",
+    explanation:
+      "Gravity depends on mass and density; Jupiter's extremely high mass (almost 320 times Earth) results in higher gravity despite its low density.",
   },
   {
     id: "sci-f2-c12-dlp-q25",
@@ -356,7 +386,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "Based on the relationship between distance and orbit time, why does Neptune take much longer (164.8 years) than Mercury (88 days) to orbit the Sun?",
+    question:
+      "Based on the relationship between distance and orbit time, why does Neptune take much longer (164.8 years) than Mercury (88 days) to orbit the Sun?",
     options: [
       "Because the further a planet is from the Sun, the more time it needs to orbit",
       "Because Neptune rotates on its side",
@@ -364,7 +395,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Because Neptune is bigger than Mercury",
     ],
     answerIndex: 0,
-    explanation: "The further a planet is from the Sun, the more time it needs to orbit the Sun — Neptune (furthest planet) takes 164.8 years compared to Mercury (closest planet) which takes only 88 days.",
+    explanation:
+      "The further a planet is from the Sun, the more time it needs to orbit the Sun — Neptune (furthest planet) takes 164.8 years compared to Mercury (closest planet) which takes only 88 days.",
   },
   {
     id: "sci-f2-c12-dlp-q26",
@@ -381,7 +413,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "All other planets would stop orbiting the Sun",
     ],
     answerIndex: 1,
-    explanation: "If Earth's rotation slowed down or stopped, day/night duration would be longer, more desert areas would form, tides would change, and temperatures would drop in areas not receiving sunlight.",
+    explanation:
+      "If Earth's rotation slowed down or stopped, day/night duration would be longer, more desert areas would form, tides would change, and temperatures would drop in areas not receiving sunlight.",
   },
   {
     id: "sci-f2-c12-dlp-q27",
@@ -398,7 +431,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Because Earth's gravity prevents the Moon from rotating",
     ],
     answerIndex: 2,
-    explanation: "The time taken for the Moon to rotate on its axis and orbit the Earth is about the same, 27 days, so the same surface always faces the Earth.",
+    explanation:
+      "The time taken for the Moon to rotate on its axis and orbit the Earth is about the same, 27 days, so the same surface always faces the Earth.",
   },
   {
     id: "sci-f2-c12-dlp-q28",
@@ -415,7 +449,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Its surface is entirely covered in gas like Jupiter",
     ],
     answerIndex: 3,
-    explanation: "Earth is NOT a \"giant gas\" planet; its surface consists of land and water, not gas like Jupiter, Saturn, Uranus and Neptune.",
+    explanation:
+      'Earth is NOT a "giant gas" planet; its surface consists of land and water, not gas like Jupiter, Saturn, Uranus and Neptune.',
   },
   {
     id: "sci-f2-c12-dlp-q29",
@@ -424,15 +459,17 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "Why does Europa, a natural satellite of Jupiter, interest scientists in the search for life beyond Earth?",
+    question:
+      "Which of the following correctly lists the six areas used to measure ecological footprint?",
     options: [
-      "Because it is believed to have seawater beneath its icy surface",
-      "Because it is the biggest moon in the solar system",
-      "Because it is closer to the Sun than Earth",
-      "Because it has the same atmosphere as Earth",
+      "Air footprint, ocean floor, forest, cropland, mining land, fishing grounds",
+      "Carbon footprint, built-up land, forest, cropland, grazing land, fishing grounds",
+      "Carbon footprint, built-up land, rainforest only, cropland, grazing land, hunting grounds",
+      "Water footprint, built-up land, forest, cropland, grazing land, shipping lanes",
     ],
-    answerIndex: 0,
-    explanation: "Europa is believed to have seawater beneath its icy surface — scientists assume the possibility of life there due to the presence of water.",
+    answerIndex: 1,
+    explanation:
+      "Ecological footprint is measured across six areas: carbon footprint, built-up land, forest, cropland, grazing land and fishing grounds.",
   },
   {
     id: "sci-f2-c12-dlp-q30",
@@ -441,7 +478,8 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "dlp",
-    question: "If humanity's ecological footprint exceeds Earth's ability to regenerate its resources, what long-term outcome is expected?",
+    question:
+      "If humanity's ecological footprint exceeds Earth's ability to regenerate its resources, what long-term outcome is expected?",
     options: [
       "There will be no effect because Earth's resources are unlimited",
       "Earth will be depleted of resources because consumption exceeds the rate of regeneration",
@@ -449,6 +487,7 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Earth will automatically generate more resources",
     ],
     answerIndex: 1,
-    explanation: "If the ecological footprint exceeds Earth's ability to regenerate its resources, Earth will be depleted of resources because consumption outpaces the rate of regeneration.",
+    explanation:
+      "If the ecological footprint exceeds Earth's ability to regenerate its resources, Earth will be depleted of resources because consumption outpaces the rate of regeneration.",
   },
 ];
