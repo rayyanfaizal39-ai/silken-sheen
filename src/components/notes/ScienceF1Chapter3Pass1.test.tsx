@@ -118,6 +118,36 @@ describe("Science Form 1 Chapter 3 Pass 1 live renderer", () => {
         ])
           expect(html).toContain(escape(text));
       }
+      const low = html.match(
+        /<svg[^>]*data-homeostasis-diagram="water-decrease"[\s\S]*?<\/svg>/,
+      )![0];
+      const renal = low.match(
+        /<g data-corrective-pathway="kidneys"[\s\S]*?(?=<g data-corrective-pathway="thirst")/,
+      )![0];
+      const thirst = low.match(
+        /<g data-corrective-pathway="thirst"[\s\S]*?(?=<g data-converges-on-normal)/,
+      )![0];
+      expect(renal).toContain('data-hormone-signal="brain-to-kidneys"');
+      expect(renal).toContain('data-kidneys="true"');
+      expect(renal).toContain('data-urine-production="less"');
+      expect(renal).not.toContain("data-drinking-water");
+      expect(thirst).toContain('data-thirst="true"');
+      expect(thirst).toContain('data-drinking-water="true"');
+      expect(thirst).not.toContain("data-urine-production");
+      expect(low).toContain(lang === "bm" ? "Lebih air dikekalkan" : "More water retained");
+      expect(low).not.toMatch(/Less urine \+ thirst|Kurang air kencing \+ dahaga/);
+      const convergence = low.match(
+        /<g data-converges-on-normal="true"[\s\S]*?(?=<g data-normal-endpoint)/,
+      )![0];
+      expect(convergence.match(/marker-end=/g)).toHaveLength(2);
+      const endpoint = low.slice(low.indexOf('<g data-normal-endpoint="true"'));
+      expect(endpoint).not.toContain("marker-end=");
+      expect(low).not.toContain("M62 350 H15 V60 H45");
+      const high = html.match(
+        /<svg[^>]*data-homeostasis-diagram="water-increase"[\s\S]*?<\/svg>/,
+      )![0];
+      expect(high).toContain('viewBox="0 0 380 390"');
+      expect(high).toContain('d="M62 350 H15 V60 H45"');
       expect(html).toContain(lang === "bm" ? "dahaga" : "thirst");
       expect(html).toContain('data-sweat-urine-process="true"');
       expect(html).not.toMatch(/\bADH\b|antidiuretic/i);
