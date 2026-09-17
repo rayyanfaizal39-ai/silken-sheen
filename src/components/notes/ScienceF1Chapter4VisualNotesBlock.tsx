@@ -1,3 +1,5 @@
+import { Chapter4DevelopmentFactors } from "./blocks/Chapter4DevelopmentFactors";
+import { Chapter4Infertility } from "./blocks/Chapter4Infertility";
 import { Chapter4MenstrualCycle } from "./blocks/Chapter4MenstrualCycle";
 import { Chapter4PregnancyVisuals } from "./blocks/Chapter4PregnancyVisuals";
 import { useState, type ReactNode } from "react";
@@ -9,10 +11,8 @@ import {
   Dna,
   Egg,
   Flower2,
-  HeartPulse,
   Microscope,
   Sprout,
-  TestTube2,
   Wind,
 } from "lucide-react";
 import type { Chapter4Content } from "@/content/form1/science/chapter-4/chapter4-content";
@@ -378,111 +378,18 @@ export function ScienceF1Chapter4VisualNotesBlock({
           <Chapter4PregnancyVisuals content={t} lang={lang} />
         </section>
 
-        <div className="space-y-6">
+        <section data-curriculum-subtopic="4.5" className="space-y-6">
           <SectionHeading
             section={[t.officialSubtopics[4].number, t.officialSubtopics[4].title, ""]}
           />
-          <div className="grid gap-4 lg:grid-cols-2">
-            <Panel>
-              <div className="flex items-center gap-3">
-                <HeartPulse className="h-7 w-7 text-rose-300" />
-                <h3 className="font-black text-white">{c.nutrients}</h3>
-              </div>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                {t.foetalDevelopmentFactors.nutrientNeeds.map((item) => (
-                  <div key={item.nutrient} className="rounded-xl bg-white/5 p-3">
-                    <p className="font-black text-white">{item.nutrient}</p>
-                    <p className="mt-1 text-xs font-bold text-fuchsia-200">{item.examples}</p>
-                    <p className="mt-2 text-xs leading-5 text-slate-300">{item.fn}</p>
-                  </div>
-                ))}
-              </div>
-            </Panel>
-            <div className="space-y-4">
-              <Panel>
-                <div className="flex items-center gap-3">
-                  <AlertTriangle className="h-7 w-7 text-rose-300" />
-                  <h3 className="font-black text-white">{c.harmful}</h3>
-                </div>
-                <div className="mt-4 space-y-3">
-                  {t.foetalDevelopmentFactors.harmfulSubstances.map((item) => (
-                    <div
-                      key={item.substance}
-                      className="rounded-xl border border-rose-300/15 bg-rose-300/[0.06] p-3"
-                    >
-                      <p className="font-black text-rose-100">{item.substance}</p>
-                      <p className="mt-2 text-xs leading-5 text-slate-300">
-                        {item.effects.join(" · ")}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </Panel>
-              <Panel>
-                <h3 className="font-black text-white">{c.breastfeeding}</h3>
-                <div className="mt-4">
-                  <Checklist items={t.foetalDevelopmentFactors.breastfeedingBenefits} />
-                </div>
-              </Panel>
-            </div>
-          </div>
+          <Chapter4DevelopmentFactors content={t} lang={lang} />
+        </section>
+        <section data-curriculum-subtopic="4.6" className="space-y-6">
           <SectionHeading
             section={[t.officialSubtopics[5].number, t.officialSubtopics[5].title, ""]}
           />
-          <Panel>
-            <div className="flex items-center gap-3">
-              <TestTube2 className="h-7 w-7 text-cyan-300" />
-              <h3 className="font-black text-white">{c.infertility}</h3>
-            </div>
-            <p className="mt-4 text-sm leading-6 text-slate-300">{t.infertility.definition}</p>
-            <div className="mt-4 grid gap-4 lg:grid-cols-2">
-              <div>
-                <p className="font-black text-cyan-100">
-                  {c.male} · {c.factors}
-                </p>
-                <div className="mt-2">
-                  <Checklist items={t.infertility.maleFactors} />
-                </div>
-              </div>
-              <div>
-                <p className="font-black text-fuchsia-100">
-                  {c.female} · {c.factors}
-                </p>
-                <div className="mt-2">
-                  <Checklist items={t.infertility.femaleFactors} />
-                </div>
-              </div>
-            </div>
-            <p className="mt-5 text-xs font-black uppercase tracking-wider text-emerald-200">
-              {c.treatments}
-            </p>
-            <div className="mt-3 grid gap-3 sm:grid-cols-3">
-              {t.infertility.treatments.map((item) => (
-                <div key={item.name} className="rounded-xl bg-emerald-300/[0.07] p-3">
-                  <p className="font-black text-emerald-100">{item.name}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-300">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </Panel>
-          <Panel>
-            <h3 className="font-black text-white">{c.contraception}</h3>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {t.infertility.contraceptionMethods.map((item) => (
-                <div
-                  key={item.name}
-                  className="rounded-xl border border-white/10 bg-white/[0.035] p-3"
-                >
-                  <p className="font-black text-white">{item.name}</p>
-                  <p className="mt-1 text-xs font-black uppercase tracking-wider text-fuchsia-200">
-                    {item.classification}
-                  </p>
-                  <p className="mt-2 text-xs leading-5 text-slate-300">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </Panel>
-        </div>
+          <Chapter4Infertility content={t} lang={lang} />
+        </section>
 
         <div className="space-y-6">
           <SectionHeading section={c.sections[5]} />
