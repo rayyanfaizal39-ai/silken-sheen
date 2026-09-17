@@ -20,7 +20,10 @@ const copy = {
     kidneys: "Kidneys",
     hormone: "Hormone",
     moreUrine: "More urine",
-    lessUrine: "Less urine + thirst",
+    lessUrine: "Less urine produced",
+    retainedWater: "More water retained",
+    thirst: "Thirst",
+    drinking: "Drinking water",
     hotExercise: "Hot / exercise",
     moreSweat: "Sweating increases",
     waterFalls: "Water content decreases",
@@ -63,7 +66,10 @@ const copy = {
     kidneys: "Ginjal",
     hormone: "Hormon",
     moreUrine: "Lebih banyak air kencing",
-    lessUrine: "Kurang air kencing + dahaga",
+    lessUrine: "Kurang air kencing dihasilkan",
+    retainedWater: "Lebih air dikekalkan",
+    thirst: "Dahaga",
+    drinking: "Minum air",
     hotExercise: "Panas / aktiviti fizikal",
     moreSweat: "Peluh bertambah",
     waterFalls: "Kandungan air menurun",
@@ -266,6 +272,78 @@ export function HomeostaticControlVisual({
   );
 }
 
+function LowWaterResponse({ content, lang }: { content: Chapter3Content; lang: Lang }) {
+  const c = copy[lang];
+  const result = content.waterRegulation.decrease.result;
+  return (
+    <Diagram
+      label={`${c.low} → ${c.brain}: ${c.hormone} → ${c.kidneys} → ${c.lessUrine} → ${c.retainedWater}; ${c.thirst} → ${c.drinking}; ${result}`}
+      viewBox="0 0 380 455"
+      data-homeostasis-diagram="water-decrease"
+    >
+      <g data-water-level="low">
+        <path d="M45 25 V92 H139 V25" fill="#164e63" stroke="#bae6fd" strokeWidth="3" />
+        <rect x="48" y="73" width="88" height="17" fill="#38bdf8" fillOpacity=".5" />
+        <Label x={93} y={115} text={c.low} width={18} size={14} />
+      </g>
+      <Arrow d="M139 60 H220" />
+      <Brain x={270} y={59} />
+      <Label x={270} y={115} text={c.brain} />
+      <g data-corrective-pathway="kidneys">
+        <g data-hormone-signal="brain-to-kidneys">
+          <Arrow d="M260 133 V149 H90 V172" />
+          <Label x={180} y={145} text={c.hormone} size={14} />
+        </g>
+        <Kidneys x={90} y={207} />
+        <Label x={90} y={256} text={c.kidneys} size={14} />
+        <Arrow d="M90 264 V284" />
+        <g data-urine-production="less">
+          <path
+            d="M61 286 L68 318 H112 L119 286"
+            fill="#713f12"
+            fillOpacity=".3"
+            stroke="#fde68a"
+            strokeWidth="2"
+          />
+          <path d="M68 309 H112 L110 316 H70Z" fill="#fbbf24" fillOpacity=".7" />
+          <path d="M116 293 H124 M115 302 H123 M114 311 H122" stroke="#fde68a" strokeWidth="2" />
+          <Label x={90} y={337} text={c.lessUrine} width={19} size={14} />
+        </g>
+        <Label x={90} y={376} text={c.retainedWater} width={23} size={14} color="#6ee7b7" />
+      </g>
+      <g data-corrective-pathway="thirst">
+        <Arrow d="M280 133 V174" />
+        <g data-thirst="true" stroke="#bae6fd" strokeWidth="3" fill="none">
+          <path d="M261 226 V217 Q243 207 250 188 Q260 171 279 178 Q292 182 292 193 L300 201 L291 204 V214 H279 V226" />
+          <path d="M282 208 H290" stroke="#fb7185" />
+          <circle cx="281" cy="192" r="2" fill="#bae6fd" />
+        </g>
+        <Label x={280} y={248} text={c.thirst} size={14} />
+        <Arrow d="M280 256 V277" />
+        <g data-drinking-water="true">
+          <path
+            d="M256 291 L262 322 H296 L302 291"
+            fill="#164e63"
+            stroke="#bae6fd"
+            strokeWidth="2"
+          />
+          <path d="M260 302 H298 L294 320 H264Z" fill="#38bdf8" fillOpacity=".7" />
+          <path d="M279 312 V282 L294 272" stroke="#e0f2fe" strokeWidth="3" fill="none" />
+        </g>
+        <Label x={280} y={344} text={c.drinking} width={20} size={14} />
+      </g>
+      <g data-converges-on-normal="true">
+        <Arrow d="M90 384 V395 H170 V406" color="#6ee7b7" />
+        <Arrow d="M280 355 V395 H210 V406" color="#6ee7b7" />
+      </g>
+      <g data-normal-endpoint="true">
+        <rect x="30" y="406" width="320" height="44" rx="12" fill="#065f46" stroke="#6ee7b7" />
+        <Label x={190} y={424} text={result} width={30} size={14} />
+      </g>
+    </Diagram>
+  );
+}
+
 export function WaterRegulationVisual({ content, lang }: { content: Chapter3Content; lang: Lang }) {
   const c = copy[lang];
   return (
@@ -281,65 +359,68 @@ export function WaterRegulationVisual({ content, lang }: { content: Chapter3Cont
           return (
             <figure key={direction} className={panel}>
               <h3 className="font-black text-cyan-100">{mechanism.trigger}</h3>
-              <Diagram
-                label={`${high ? c.high : c.low} → ${c.brain} → ${c.hormone} → ${c.kidneys} → ${high ? c.moreUrine : c.lessUrine} → ${mechanism.result}`}
-                viewBox="0 0 380 390"
-                data-homeostasis-diagram={`water-${direction}`}
-              >
-                <Arrow d="M62 350 H15 V60 H45" />
-                <Arrow d="M139 60 H220" />
-                <Arrow d="M270 109 V165" />
-                <Arrow d="M218 204 H132" />
-                <Arrow d="M89 292 V324" color="#6ee7b7" />
-                <g data-water-level={high ? "high" : "low"}>
-                  <path d="M45 25 V92 H139 V25" fill="#164e63" stroke="#bae6fd" strokeWidth="3" />
+              {high ? (
+                <Diagram
+                  label={`${high ? c.high : c.low} → ${c.brain} → ${c.hormone} → ${c.kidneys} → ${high ? c.moreUrine : c.lessUrine} → ${mechanism.result}`}
+                  viewBox="0 0 380 390"
+                  data-homeostasis-diagram={`water-${direction}`}
+                >
+                  <Arrow d="M139 60 H220" />
+                  <Arrow d="M270 109 V165" />
+                  <Arrow d="M218 204 H132" />
+                  <Arrow d="M89 292 V324" color="#6ee7b7" />
+                  <g data-water-level={high ? "high" : "low"}>
+                    <path d="M45 25 V92 H139 V25" fill="#164e63" stroke="#bae6fd" strokeWidth="3" />
+                    <rect
+                      x="48"
+                      y={high ? 43 : 73}
+                      width="88"
+                      height={high ? 47 : 17}
+                      fill="#38bdf8"
+                      fillOpacity=".5"
+                    />
+                    <Label x={93} y={115} text={high ? c.high : c.low} width={18} size={14} />
+                  </g>
+                  <Brain x={270} y={59} />
+                  <Label x={270} y={115} text={c.brain} />
+                  <Label x={326} y={147} text={c.hormone} size={14} />
+                  <Kidneys x={270} y={204} />
+                  <Label x={270} y={254} text={c.kidneys} />
+                  <g data-urine-production={high ? "more" : "less"}>
+                    <path
+                      d="M52 165 L62 231 H116 L126 165Z"
+                      fill="#713f12"
+                      fillOpacity=".3"
+                      stroke="#fde68a"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d={high ? "M59 184 H120 L113 229 H65Z" : "M65 216 H115 L113 229 H65Z"}
+                      fill="#fbbf24"
+                      fillOpacity=".7"
+                    />
+                    <Label
+                      x={89}
+                      y={254}
+                      text={high ? c.moreUrine : c.lessUrine}
+                      width={17}
+                      size={14}
+                    />
+                  </g>
                   <rect
-                    x="48"
-                    y={high ? 43 : 73}
-                    width="88"
-                    height={high ? 47 : 17}
-                    fill="#38bdf8"
-                    fillOpacity=".5"
+                    x="62"
+                    y="324"
+                    width="285"
+                    height="52"
+                    rx="12"
+                    fill="#065f46"
+                    stroke="#6ee7b7"
                   />
-                  <Label x={93} y={115} text={high ? c.high : c.low} width={18} size={14} />
-                </g>
-                <Brain x={270} y={59} />
-                <Label x={270} y={115} text={c.brain} />
-                <Label x={326} y={147} text={c.hormone} size={14} />
-                <Kidneys x={270} y={204} />
-                <Label x={270} y={254} text={c.kidneys} />
-                <g data-urine-production={high ? "more" : "less"}>
-                  <path
-                    d="M52 165 L62 231 H116 L126 165Z"
-                    fill="#713f12"
-                    fillOpacity=".3"
-                    stroke="#fde68a"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d={high ? "M59 184 H120 L113 229 H65Z" : "M65 216 H115 L113 229 H65Z"}
-                    fill="#fbbf24"
-                    fillOpacity=".7"
-                  />
-                  <Label
-                    x={89}
-                    y={254}
-                    text={high ? c.moreUrine : c.lessUrine}
-                    width={17}
-                    size={14}
-                  />
-                </g>
-                <rect
-                  x="62"
-                  y="324"
-                  width="285"
-                  height="52"
-                  rx="12"
-                  fill="#065f46"
-                  stroke="#6ee7b7"
-                />
-                <Label x={204} y={346} text={mechanism.result} width={30} size={14} />
-              </Diagram>
+                  <Label x={204} y={346} text={mechanism.result} width={30} size={14} />
+                </Diagram>
+              ) : (
+                <LowWaterResponse content={content} lang={lang} />
+              )}
               <figcaption>
                 <ul className="space-y-2 text-sm leading-6 text-slate-300">
                   {mechanism.mechanism.map((text) => (

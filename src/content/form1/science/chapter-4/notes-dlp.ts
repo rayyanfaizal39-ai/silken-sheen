@@ -114,7 +114,7 @@ export const scienceF1C4NotesDLP: StructuredNotes = {
       ],
     },
     {
-      title: "4.3 Menstrual Cycle",
+      title: "4.3 The Menstrual Cycle",
       subsections: [
         {
           title: "Menstruation Phase (Day 1-5)",
@@ -184,7 +184,7 @@ export const scienceF1C4NotesDLP: StructuredNotes = {
       ],
     },
     {
-      title: "4.5 Importance of Prenatal Care",
+      title: "4.5 Factors Affecting the Development of a Foetus and Baby",
       subsections: [
         {
           title: "Balanced Diet",
@@ -209,7 +209,7 @@ export const scienceF1C4NotesDLP: StructuredNotes = {
       ],
     },
     {
-      title: "4.6 Sterility and Contraception",
+      title: "4.6 Infertility and Contraception",
       subsections: [
         {
           title: "Sterility",
@@ -248,7 +248,7 @@ export const scienceF1C4NotesDLP: StructuredNotes = {
       ],
     },
     {
-      title: "4.7 Sexual Reproduction in Plants",
+      title: "4.7 Plant Reproduction",
       subsections: [
         {
           title: "Flower Structure",
