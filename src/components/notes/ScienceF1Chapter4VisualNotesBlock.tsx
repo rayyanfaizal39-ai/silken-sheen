@@ -1,7 +1,8 @@
+import { Chapter4MenstrualCycle } from "./blocks/Chapter4MenstrualCycle";
+import { Chapter4PregnancyVisuals } from "./blocks/Chapter4PregnancyVisuals";
 import { useState, type ReactNode } from "react";
 import {
   AlertTriangle,
-  Baby,
   BookOpenCheck,
   Check,
   ChevronRight,
@@ -10,7 +11,6 @@ import {
   Flower2,
   HeartPulse,
   Microscope,
-  ShieldCheck,
   Sprout,
   TestTube2,
   Wind,
@@ -305,10 +305,8 @@ export function ScienceF1Chapter4VisualNotesBlock({
 }) {
   const t = content[lang];
   const c = ui[lang];
-  const [cyclePhase, setCyclePhase] = useState(0);
   const [pollinator, setPollinator] = useState(0);
   const [germinationCondition, setGerminationCondition] = useState(0);
-  const selectedPhase = t.menstrualCycle.phases[cyclePhase];
   const selectedPollinator = t.plantReproduction.pollinatingAgents[pollinator];
   const selectedCondition = t.plantReproduction.germinationConditionDetails[germinationCondition];
 
@@ -367,139 +365,18 @@ export function ScienceF1Chapter4VisualNotesBlock({
           <Chapter4Puberty content={t} lang={lang} />
         </section>
 
-        <div className="space-y-6">
-          <SectionHeading section={c.sections[2]} />
-          <Panel>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <p className="rounded-xl bg-white/5 p-3 text-sm leading-6 text-slate-300">
-                <b className="text-white">{c.controlled}:</b> {t.menstrualCycle.controlledBy}
-              </p>
-              <p className="rounded-xl bg-white/5 p-3 text-sm leading-6 text-slate-300">
-                <b className="text-white">{c.average}:</b> {t.menstrualCycle.averageLength}
-              </p>
-            </div>
-            <p className="mt-4 text-sm leading-6 text-slate-300">{t.menstrualCycle.definition}</p>
-            <p className="mt-5 text-xs font-black uppercase tracking-wider text-fuchsia-200">
-              {c.choosePhase}
-            </p>
-            <div
-              className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4"
-              role="tablist"
-              aria-label={c.choosePhase}
-            >
-              {t.menstrualCycle.phases.map((phase, index) => (
-                <TabButton
-                  key={phase.name}
-                  selected={cyclePhase === index}
-                  onClick={() => setCyclePhase(index)}
-                >
-                  <span className="block text-xs text-fuchsia-200">{phase.days}</span>
-                  {phase.name}
-                </TabButton>
-              ))}
-            </div>
-            <div className="mt-4 rounded-2xl border border-fuchsia-300/20 bg-fuchsia-300/[0.07] p-5">
-              <p className="text-xl font-black text-white">{selectedPhase.name}</p>
-              <p className="mt-1 font-mono text-xs font-black text-fuchsia-200">
-                {selectedPhase.days}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{selectedPhase.description}</p>
-            </div>
-            <p className="mt-4 rounded-xl border border-cyan-300/20 bg-cyan-300/[0.07] p-3 text-sm font-black text-cyan-100">
-              {c.ovulation}: {t.menstrualCycle.phases[2].description}
-            </p>
-          </Panel>
-          <div className="grid gap-4 lg:grid-cols-2">
-            <Panel>
-              <div className="flex items-center gap-3">
-                <ShieldCheck className="h-7 w-7 text-emerald-300" />
-                <h3 className="font-black text-white">{c.hygiene}</h3>
-              </div>
-              <div className="mt-4">
-                <Checklist items={t.menstrualCycle.hygieneImportance} />
-              </div>
-            </Panel>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <AlertTriangle className="h-7 w-7 text-amber-300" />
-                <h3 className="font-black text-white">{c.irregular}</h3>
-              </div>
-              <p className="mt-4 text-xs font-black uppercase tracking-wider text-amber-200">
-                {c.causes}
-              </p>
-              <div className="mt-2">
-                <Checklist items={t.menstrualCycle.irregularMenstruation.causes} />
-              </div>
-              <p className="mt-4 text-xs font-black uppercase tracking-wider text-rose-200">
-                {c.effects}
-              </p>
-              <div className="mt-2">
-                <Checklist items={t.menstrualCycle.irregularMenstruation.effects} />
-              </div>
-            </Panel>
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          <SectionHeading section={c.sections[3]} />
-          <Panel>
-            <div className="flex items-center gap-3">
-              <Baby className="h-7 w-7 text-fuchsia-300" />
-              <h3 className="font-black text-white">{c.process}</h3>
-            </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {t.fertilisationAndPregnancy.process.map((step, index) => (
-                <div key={step} className="relative rounded-xl bg-white/5 p-3">
-                  <span className="font-mono text-xs font-black text-cyan-300">0{index + 1}</span>
-                  <p className="mt-2 text-xs font-bold leading-5 text-slate-200">{step}</p>
-                  {index < 4 && (
-                    <ChevronRight className="absolute -right-4 top-1/2 z-10 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[#100b18] p-1 text-fuchsia-300 lg:block" />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {t.fertilisationAndPregnancy.foetalDevelopment.map((stage) => (
-                <div
-                  key={stage.weeks}
-                  className="rounded-xl border border-white/10 bg-slate-950/35 p-3"
-                >
-                  <p className="font-mono text-xs font-black text-fuchsia-200">{stage.weeks}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-300">{stage.description}</p>
-                </div>
-              ))}
-            </div>
-          </Panel>
-          <Panel>
-            <h3 className="font-black text-white">{c.support}</h3>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {[
-                [
-                  lang === "en" ? "Placenta" : "Plasenta",
-                  t.fertilisationAndPregnancy.placentaFunction,
-                ],
-                [
-                  lang === "en" ? "Umbilical cord" : "Tali pusat",
-                  t.fertilisationAndPregnancy.umbilicalCordFunction,
-                ],
-                ["Amnion", t.fertilisationAndPregnancy.amnionFunction],
-                [
-                  lang === "en" ? "Amniotic fluid" : "Cecair amnion",
-                  t.fertilisationAndPregnancy.amnioticFluidFunction,
-                ],
-                [
-                  lang === "en" ? "Uterine wall" : "Dinding uterus",
-                  t.fertilisationAndPregnancy.uterineWallFunction,
-                ],
-              ].map(([name, body]) => (
-                <div key={name} className="rounded-xl bg-white/5 p-3">
-                  <p className="font-black text-cyan-100">{name}</p>
-                  <p className="mt-2 text-xs leading-5 text-slate-300">{body}</p>
-                </div>
-              ))}
-            </div>
-          </Panel>
-        </div>
+        <section data-curriculum-subtopic="4.3" className="space-y-6">
+          <SectionHeading
+            section={[t.officialSubtopics[2].number, t.officialSubtopics[2].title, ""]}
+          />
+          <Chapter4MenstrualCycle content={t} lang={lang} />
+        </section>
+        <section data-curriculum-subtopic="4.4" className="space-y-6">
+          <SectionHeading
+            section={[t.officialSubtopics[3].number, t.officialSubtopics[3].title, ""]}
+          />
+          <Chapter4PregnancyVisuals content={t} lang={lang} />
+        </section>
 
         <div className="space-y-6">
           <SectionHeading
