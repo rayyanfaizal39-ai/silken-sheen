@@ -2196,7 +2196,7 @@ function NotesPage() {
               )
             )}
 
-            {isScienceDiscovery && <MiniInvestigation lang={scienceLang === "bm" ? "bm" : "en"} hideHeading={isScienceF3Interactive && (activeChapter?.sciF3InteractiveData?.chapter === 6 || activeChapter?.sciF3InteractiveData?.chapter === 10)} />}
+            {isScienceDiscovery && <MiniInvestigation lang={scienceLang === "bm" ? "bm" : "en"} hideHeading={isScienceF3Interactive && (activeChapter?.sciF3InteractiveData?.chapter === 1 || activeChapter?.sciF3InteractiveData?.chapter === 6 || activeChapter?.sciF3InteractiveData?.chapter === 10)} />}
           </NotesContentWithVideo>
 
           {filtered.length === 0 ? (

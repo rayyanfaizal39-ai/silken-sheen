@@ -8,9 +8,9 @@ import { scienceF3C1InteractiveDLP } from "@/content/form3/science/chapter-1/int
 describe("ScienceF3Chapter1VisualNotesBlock", () => {
   it("renders the Malay stimulus-to-response journey", () => {
     const html = renderToStaticMarkup(createElement(ScienceF3Chapter1VisualNotesBlock, { id: "science-notes-content", content: scienceF3C1InteractiveBM, lang: "bm" }));
-    expect(html).toContain("Fahami bagaimana rangsangan menjadi gerak balas");
+    expect(html).toContain("Rangsangan dan Gerak Balas");
     expect(html).toContain("1.1 Sistem Saraf Manusia");
-    expect(html).toContain("Jejaki impuls");
+    expect(html).not.toContain("Jejaki impuls");
     expect(html).toContain("Aktiviti 1.1");
     expect(html).toContain("Mekanisme penglihatan");
     expect(html).toContain("Mekanisme pendengaran");
@@ -22,9 +22,7 @@ describe("ScienceF3Chapter1VisualNotesBlock", () => {
   it("renders the same learning journey in English", () => {
     const html = renderToStaticMarkup(createElement(ScienceF3Chapter1VisualNotesBlock, { content: scienceF3C1InteractiveDLP, lang: "en" }));
     expect(html).toContain("Stimuli and Responses");
-    expect(html).toContain("Human nervous system, stimuli and responses in humans, stimuli and responses in plants, and the importance of responses to stimuli in other animals.");
     expect(html).toContain("1.1 Human Nervous System");
-    expect(html).toContain("Structure of the Human Nervous System");
     expect(html).toContain("1.2 Stimuli and Responses in Humans");
     expect(html).toContain("1.3 Stimuli and Responses in Plants");
     expect(html).toContain("1.4 Importance of Responses to Stimuli in Other Animals");

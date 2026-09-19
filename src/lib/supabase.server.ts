@@ -57,7 +57,10 @@ export function getSupabaseServerClient() {
  * Every cookie emitted by Supabase is appended independently to the returned
  * Headers object so split auth cookies are never collapsed or dropped.
  */
-export function getSupabaseServerClientForRequest(request: Request) {
+export function getSupabaseServerClientForRequest(
+  request: Request,
+  { forCodeExchange = false }: { forCodeExchange?: boolean } = {},
+) {
   const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? "";
   const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY ?? "";
   if (!url || !key) return null;
@@ -88,7 +91,15 @@ export function getSupabaseServerClientForRequest(request: Request) {
       getAll() {
         return parseCookieHeader(request.headers.get("cookie") ?? "").map(({ name, value }) => ({
           name,
-          value: value ?? "",
+          // OAuth establishes a new session. Do not let the SDK's INITIAL_SESSION
+          // listener refresh an old one concurrently and remove the PKCE verifier.
+          // Keep cookie names visible so SSR can remove obsolete session chunks.
+          // The browser's existing cookies remain untouched if exchange fails.
+          value:
+            forCodeExchange &&
+            (name === SUPABASE_AUTH_COOKIE_NAME || name.startsWith(`${SUPABASE_AUTH_COOKIE_NAME}.`))
+              ? ""
+              : (value ?? ""),
         }));
       },
       setAll(cookiesToSet, headers) {
