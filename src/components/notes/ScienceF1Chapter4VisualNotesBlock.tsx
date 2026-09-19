@@ -1,20 +1,11 @@
+import { Chapter4FlowerReproduction } from "./blocks/Chapter4FlowerReproduction";
+import { Chapter4SeedReproduction } from "./blocks/Chapter4SeedReproduction";
 import { Chapter4DevelopmentFactors } from "./blocks/Chapter4DevelopmentFactors";
 import { Chapter4Infertility } from "./blocks/Chapter4Infertility";
 import { Chapter4MenstrualCycle } from "./blocks/Chapter4MenstrualCycle";
 import { Chapter4PregnancyVisuals } from "./blocks/Chapter4PregnancyVisuals";
-import { useState, type ReactNode } from "react";
-import {
-  AlertTriangle,
-  BookOpenCheck,
-  Check,
-  ChevronRight,
-  Dna,
-  Egg,
-  Flower2,
-  Microscope,
-  Sprout,
-  Wind,
-} from "lucide-react";
+import { type ReactNode } from "react";
+import { BookOpenCheck, Check, ChevronRight, Dna } from "lucide-react";
 import type { Chapter4Content } from "@/content/form1/science/chapter-4/chapter4-content";
 
 import { Chapter4ReproductionVisuals } from "./blocks/Chapter4ReproductionVisuals";
@@ -263,32 +254,6 @@ function Checklist({ items }: { items: string[] }) {
   );
 }
 
-function TabButton({
-  selected,
-  onClick,
-  children,
-}: {
-  selected: boolean;
-  onClick: () => void;
-  children: ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      role="tab"
-      aria-selected={selected}
-      onClick={onClick}
-      className={`min-h-12 cursor-pointer rounded-xl border px-4 py-2 text-left text-sm font-black transition-colors hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-300 ${
-        selected
-          ? "border-fuchsia-300 bg-fuchsia-300/15 text-white"
-          : "border-white/10 bg-white/[0.035] text-slate-300"
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
-
 export function ScienceF1Chapter4VisualNotesBlock({
   id,
   content,
@@ -305,10 +270,6 @@ export function ScienceF1Chapter4VisualNotesBlock({
 }) {
   const t = content[lang];
   const c = ui[lang];
-  const [pollinator, setPollinator] = useState(0);
-  const [germinationCondition, setGerminationCondition] = useState(0);
-  const selectedPollinator = t.plantReproduction.pollinatingAgents[pollinator];
-  const selectedCondition = t.plantReproduction.germinationConditionDetails[germinationCondition];
 
   return (
     <section
@@ -391,183 +352,13 @@ export function ScienceF1Chapter4VisualNotesBlock({
           <Chapter4Infertility content={t} lang={lang} />
         </section>
 
-        <div className="space-y-6">
-          <SectionHeading section={c.sections[5]} />
-          <div className="grid gap-4 lg:grid-cols-[.85fr_1.15fr]">
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Flower2 className="h-7 w-7 text-fuchsia-300" />
-                <h3 className="font-black text-white">{c.flowerParts}</h3>
-              </div>
-              <div className="mt-4 space-y-3">
-                {t.plantReproduction.flowerParts.map((item) => (
-                  <div key={item.part} className="rounded-xl bg-white/5 p-3">
-                    <p className="font-black text-white">{item.part}</p>
-                    <p className="mt-1 text-sm leading-6 text-slate-300">{item.function}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-5 font-black text-white">{c.flowerTypes}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                {t.plantReproduction.flowerTypes.bisexual}
-              </p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                {t.plantReproduction.flowerTypes.unisexual} ·{" "}
-                {t.plantReproduction.flowerTypes.unisexualExamples.join(", ")}
-              </p>
-            </Panel>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Wind className="h-7 w-7 text-cyan-300" />
-                <h3 className="font-black text-white">{c.chooseAgent}</h3>
-              </div>
-              <p className="mt-4 text-sm leading-6 text-slate-300">
-                {t.plantReproduction.pollinationDefinition}
-              </p>
-              <div
-                className="mt-4 grid grid-cols-2 gap-2"
-                role="tablist"
-                aria-label={c.chooseAgent}
-              >
-                {t.plantReproduction.pollinatingAgents.map((item, index) => (
-                  <TabButton
-                    key={item.agent}
-                    selected={pollinator === index}
-                    onClick={() => setPollinator(index)}
-                  >
-                    {item.agent}
-                  </TabButton>
-                ))}
-              </div>
-              <div className="mt-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.06] p-4">
-                <p className="font-black text-cyan-100">{selectedPollinator.agent}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
-                  {selectedPollinator.mechanism}
-                </p>
-                <div className="mt-3">
-                  <Checklist items={selectedPollinator.flowerCharacteristics} />
-                </div>
-                <p className="mt-3 text-xs font-bold text-fuchsia-200">
-                  {c.examples}: {selectedPollinator.examples.join(", ")}
-                </p>
-              </div>
-              <p className="mt-5 font-black text-white">{c.pollinationTypes}</p>
-              <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                <p className="rounded-xl bg-white/5 p-3 text-sm leading-6 text-slate-300">
-                  {t.plantReproduction.pollinationTypes.self}
-                </p>
-                <p className="rounded-xl bg-white/5 p-3 text-sm leading-6 text-slate-300">
-                  {t.plantReproduction.pollinationTypes.cross}
-                </p>
-              </div>
-              <p className="mt-5 font-black text-white">{c.advantages}</p>
-              <div className="mt-3">
-                <Checklist items={t.plantReproduction.crossPollinationAdvantages} />
-              </div>
-            </Panel>
-          </div>
-          <Panel>
-            <div className="flex items-center gap-3">
-              <Microscope className="h-7 w-7 text-fuchsia-300" />
-              <h3 className="font-black text-white">{c.plantFertilisation}</h3>
-            </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {t.plantReproduction.fertilisationSteps.map((step, index) => (
-                <div key={step} className="rounded-xl bg-white/5 p-3">
-                  <span className="font-mono text-xs font-black text-cyan-300">0{index + 1}</span>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{step}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {t.plantReproduction.afterFertilisation.map((item) => (
-                <p
-                  key={item.source}
-                  className="rounded-xl bg-emerald-300/[0.08] p-4 text-center font-black text-emerald-100"
-                >
-                  {item.source} <ChevronRight className="mx-2 inline h-4 w-4" /> {c.becomes}{" "}
-                  <span className="text-white">{item.outcome}</span>
-                </p>
-              ))}
-            </div>
-          </Panel>
-        </div>
-
-        <div className="space-y-6">
-          <SectionHeading section={c.sections[6]} />
-          <div className="grid gap-4 lg:grid-cols-2">
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Egg className="h-7 w-7 text-amber-300" />
-                <h3 className="font-black text-white">{c.seedParts}</h3>
-              </div>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                {t.plantReproduction.seedParts.map((item) => (
-                  <div key={item.part} className="rounded-xl bg-white/5 p-3">
-                    <p className="font-black text-amber-100">{item.part}</p>
-                    <p className="mt-2 text-xs leading-5 text-slate-300">{item.function}</p>
-                  </div>
-                ))}
-              </div>
-            </Panel>
-            <div className="space-y-4">
-              <Panel>
-                <h3 className="font-black text-white">{c.seedTypes}</h3>
-                <div className="mt-3 space-y-2">
-                  <p className="rounded-xl bg-white/5 p-3 text-sm text-slate-300">
-                    {t.plantReproduction.seedTypes.monocotyledonous}
-                  </p>
-                  <p className="rounded-xl bg-white/5 p-3 text-sm text-slate-300">
-                    {t.plantReproduction.seedTypes.dicotyledonous}
-                  </p>
-                </div>
-              </Panel>
-              <Panel>
-                <h3 className="font-black text-white">{c.germinationTypes}</h3>
-                <div className="mt-3 space-y-2">
-                  <p className="rounded-xl bg-white/5 p-3 text-sm text-slate-300">
-                    {t.plantReproduction.germinationTypes.epigeal}
-                  </p>
-                  <p className="rounded-xl bg-white/5 p-3 text-sm text-slate-300">
-                    {t.plantReproduction.germinationTypes.hypogeal}
-                  </p>
-                </div>
-              </Panel>
-            </div>
-          </div>
-          <Panel>
-            <div className="flex items-center gap-3">
-              <Sprout className="h-7 w-7 text-emerald-300" />
-              <h3 className="font-black text-white">{c.chooseCondition}</h3>
-            </div>
-            <div
-              className="mt-4 grid gap-2 sm:grid-cols-3"
-              role="tablist"
-              aria-label={c.chooseCondition}
-            >
-              {t.plantReproduction.germinationConditionDetails.map((item, index) => (
-                <TabButton
-                  key={item.condition}
-                  selected={germinationCondition === index}
-                  onClick={() => setGerminationCondition(index)}
-                >
-                  {item.condition}
-                </TabButton>
-              ))}
-            </div>
-            <div className="mt-4 rounded-2xl border border-emerald-300/20 bg-emerald-300/[0.07] p-5">
-              <p className="text-xl font-black text-emerald-100">{selectedCondition.condition}</p>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{selectedCondition.reason}</p>
-            </div>
-            <p className="mt-4 flex items-start gap-2 rounded-xl border border-amber-300/20 bg-amber-300/[0.08] p-4 text-sm font-black leading-6 text-amber-100">
-              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />{" "}
-              <span>
-                <span className="uppercase">{c.examTip}:</span>{" "}
-                {t.plantReproduction.germinationExamTip}
-              </span>
-            </p>
-          </Panel>
-        </div>
+        <section data-curriculum-subtopic="4.7" className="space-y-6">
+          <SectionHeading
+            section={[t.officialSubtopics[6].number, t.officialSubtopics[6].title, ""]}
+          />
+          <Chapter4FlowerReproduction content={t} lang={lang} />
+          <Chapter4SeedReproduction content={t} lang={lang} />
+        </section>
 
         <div className="space-y-6">
           <SectionHeading section={c.sections[7]} />

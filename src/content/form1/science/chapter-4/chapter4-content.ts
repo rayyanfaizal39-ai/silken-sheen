@@ -140,6 +140,8 @@ export interface Chapter4Content {
     germinationTypes: { epigeal: string; hypogeal: string };
     germinationConditions: string[];
     germinationConditionDetails: { condition: string; reason: string }[];
+    // Experiment 4.1: BM textbook printed pp. 129–130; EN setup labels are semantic counterparts.
+    germinationExperiment: { label: string; medium: string; temperature: string; cover: string }[];
     germinationExamTip: string;
   };
   keyExamFacts: string[];
@@ -650,8 +652,21 @@ const en: Chapter4Content = {
       },
       {
         condition: "Suitable temperature",
-        reason: "Keeps germination enzymes active; the usual suitable range is about 25-35°C",
+        reason: "Keeps germination enzymes active",
       },
+    ],
+    // Setup labels verified against T1 BT SN- SAINS.pdf, printed pp. 129–130.
+    // No measured outcomes are supplied; do not invent result values.
+    germinationExperiment: [
+      { label: "A", medium: "Moist cotton", temperature: "Room temperature", cover: "Black paper" },
+      { label: "B", medium: "Dry cotton", temperature: "Room temperature", cover: "Black paper" },
+      {
+        label: "C",
+        medium: "Cooled boiled water + cooking-oil layer",
+        temperature: "Room temperature",
+        cover: "Black paper",
+      },
+      { label: "D", medium: "Moist cotton", temperature: "Refrigerator", cover: "Black paper" },
     ],
     germinationExamTip:
       "Light is not required for seed germination. The seed uses food stored in its cotyledon; light is needed only after green leaves emerge.",
@@ -1221,8 +1236,20 @@ const bm: Chapter4Content = {
       },
       {
         condition: "Suhu yang sesuai",
-        reason: "Memastikan enzim percambahan aktif; julat sesuai lazimnya kira-kira 25-35°C",
+        reason: "Memastikan enzim percambahan aktif",
       },
+    ],
+    // Rajah 4.37, buku teks BM, halaman bercetak 129–130.
+    germinationExperiment: [
+      { label: "A", medium: "Kapas lembap", temperature: "Suhu bilik", cover: "Kertas hitam" },
+      { label: "B", medium: "Kapas kering", temperature: "Suhu bilik", cover: "Kertas hitam" },
+      {
+        label: "C",
+        medium: "Air didih yang disejukkan + lapisan minyak masak",
+        temperature: "Suhu bilik",
+        cover: "Kertas hitam",
+      },
+      { label: "D", medium: "Kapas lembap", temperature: "Peti sejuk", cover: "Kertas hitam" },
     ],
     germinationExamTip:
       "Cahaya tidak diperlukan untuk percambahan biji benih. Biji benih menggunakan makanan dalam kotiledon; cahaya hanya diperlukan selepas daun hijau muncul.",
