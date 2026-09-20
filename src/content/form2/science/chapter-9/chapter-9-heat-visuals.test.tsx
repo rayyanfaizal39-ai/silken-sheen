@@ -4,7 +4,6 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { resolve } from "node:path";
 import { BreezeDiagram } from "@/components/notes/blocks/BreezeDiagram";
-import { ConvectionRadiation } from "@/components/notes/blocks/ConvectionRadiation";
 import { BimetallicStrip } from "@/components/notes/blocks/BimetallicStrip";
 import { SurfaceComparison } from "@/components/notes/blocks/SurfaceComparison";
 import {
@@ -58,18 +57,45 @@ const STREAMS: [string, "bm" | "en", ScienceF2InteractiveContent][] = [
 /** The five files this pass added, in the order the chapter uses them. */
 const NEW_ASSETS: [string, string][] = [
   ["hero", SCIENCE_F2_CH9_IMAGES.heatHero],
-  ["heat vs temperature", SCIENCE_F2_CH9_IMAGES.heatVsTemperature],
   ["polar bear", SCIENCE_F2_CH9_IMAGES.polarBear],
   ["expansion uses", SCIENCE_F2_CH9_IMAGES.expansionUses],
   ["absorption/emission", SCIENCE_F2_CH9_IMAGES.absorptionEmission],
+];
+
+/**
+ * Files that still ship but are no longer referenced by Chapter 9 content.
+ * Each is checked for existence below, separately from the "is it used" checks
+ * the placed assets get — nothing is deleted from disk, because other subjects
+ * and future passes may still want the artwork.
+ *
+ * `heatVsTemperature`: the small-cup-vs-large-beaker photo mixed different
+ * temperatures with different quantities and implied the beaker "holds more
+ * heat". A deterministic same-temperature, different-quantity comparison card
+ * teaches the point instead, so no photograph is needed.
+ *
+ * `kitchenHeatTransfer`: one scene carrying two of the three mechanisms and
+ * none of the comparison. The master remediation unified 9.2 into a single
+ * "Three Methods of Heat Transfer" section taught on the approved triptych
+ * (`heatTransferMethods`), which paints conduction, convection and radiation
+ * side by side. The `convectionRadiation` block and its kitchen geometry are
+ * no longer placed in either language; the geometry itself is still guarded
+ * below, so the retired figure cannot rot unnoticed if it is ever brought back.
+ *
+ * `conductorInsulator`: two beakers and two spoons implied the contrast
+ * rather than naming it. The approved four-object scene
+ * (`conductorsInsulators`) names the conductor AND the insulator in real
+ * objects, and is taught through `Chapter9SpotlightFigure`.
+ */
+const RETIRED_ASSETS: [string, string][] = [
+  ["heat vs temperature (retired)", SCIENCE_F2_CH9_IMAGES.heatVsTemperature],
+  ["kitchen (retired)", SCIENCE_F2_CH9_IMAGES.kitchenHeatTransfer],
+  ["conductor vs insulator (retired)", SCIENCE_F2_CH9_IMAGES.conductorInsulator],
 ];
 
 /** The artwork the pass was told to keep exactly as it was. */
 const KEPT_ASSETS: [string, string][] = [
   ["sea breeze", SCIENCE_F2_CH9_IMAGES.seaBreeze],
   ["land breeze", SCIENCE_F2_CH9_IMAGES.landBreeze],
-  ["kitchen", SCIENCE_F2_CH9_IMAGES.kitchenHeatTransfer],
-  ["conductor vs insulator", SCIENCE_F2_CH9_IMAGES.conductorInsulator],
   ["fire alarm", SCIENCE_F2_CH9_IMAGES.bimetallicAlarm],
   ["green building", SCIENCE_F2_CH9_IMAGES.greenBuilding],
 ];
@@ -80,7 +106,6 @@ const blockOf = <T,>(c: ScienceF2InteractiveContent, key: string): T =>
   ] as T;
 
 type BreezeBlock = Parameters<typeof BreezeDiagram>[0]["block"];
-type ConvectionBlock = Parameters<typeof ConvectionRadiation>[0]["block"];
 type BimetallicBlock = Parameters<typeof BimetallicStrip>[0]["block"];
 type SurfaceBlock = Parameters<typeof SurfaceComparison>[0]["block"];
 
@@ -115,7 +140,7 @@ function renderState<B extends { [k: string]: unknown }>(
 // ---------------------------------------------------------------------------
 
 describe("Ch9 artwork — the files themselves", () => {
-  it.each([...NEW_ASSETS, ...KEPT_ASSETS])("%s ships a WebP that exists", (_name, src) => {
+  it.each([...NEW_ASSETS, ...KEPT_ASSETS, ...RETIRED_ASSETS])("%s ships a WebP that exists", (_name, src) => {
     expect(src.endsWith(".webp"), `${src} is not a WebP`).toBe(true);
     const file = resolve(PUBLIC_ROOT, src.replace(/^\//, ""));
     expect(existsSync(file), `${src} is missing from public/`).toBe(true);
@@ -140,10 +165,17 @@ describe("Ch9 artwork — the files themselves", () => {
 });
 
 describe("Ch9 — every kept visual is still used, exactly once", () => {
-  it.each(STREAMS)("%s still uses all six approved Chapter 9 images", (_n, _l, content) => {
+  it.each(STREAMS)("%s still uses every kept Chapter 9 image, once each", (_n, _l, content) => {
     const used = JSON.stringify(content);
     for (const [name, src] of KEPT_ASSETS) {
       expect(used.split(`"${src}"`).length - 1, `${name} is not used exactly once`).toBe(1);
+    }
+  });
+
+  it.each(STREAMS)("%s no longer places any retired Chapter 9 image", (_n, _l, content) => {
+    const used = JSON.stringify(content);
+    for (const [name, src] of RETIRED_ASSETS) {
+      expect(used, `${name} is still placed in content`).not.toContain(src);
     }
   });
 
@@ -156,19 +188,34 @@ describe("Ch9 — every kept visual is still used, exactly once", () => {
     expect(used).not.toContain(SCIENCE_F2_CH9_IMAGES.heatHero);
   });
 
-  it.each(STREAMS)("%s shows the Hidden Polar Bear enrichment card once only", (_n, _l, c) => {
-    expect(c.blogHighlight.imagePath).toBe(SCIENCE_F2_CH9_IMAGES.polarBear);
-    expect((c.blogHighlight.imageAlt ?? "").length).toBeGreaterThan(30);
-    // One card, and nothing in the sections repeats it.
-    expect(JSON.stringify(c.sections)).not.toContain(SCIENCE_F2_CH9_IMAGES.polarBear);
-  });
+  it.each(STREAMS)(
+    "%s replaces the Hidden Polar Bear enrichment with the carpet-vs-marble concept question",
+    (_n, lang, c) => {
+      // The final remediation removed the off-syllabus thermal-imaging trivia
+      // entirely — the Science Blog card now asks a KSSM-aligned conduction
+      // question instead. No suitable new photograph exists for this pass, so
+      // the card still ships the approved polar-bear artwork underneath (one
+      // card, used once, same as before); only the learner-facing story changed.
+      expect(c.blogHighlight.imagePath).toBe(SCIENCE_F2_CH9_IMAGES.polarBear);
+      expect((c.blogHighlight.imageAlt ?? "").length).toBeGreaterThan(30);
+      expect(JSON.stringify(c.sections)).not.toContain(SCIENCE_F2_CH9_IMAGES.polarBear);
+
+      const story = `${c.blogHighlight.title} ${c.blogHighlight.body}`.toLowerCase();
+      expect(story, `${lang} still tells the polar-bear story`).not.toMatch(
+        /polar bear|beruang kutub|thermal imaging|pengimejan terma/,
+      );
+      expect(story, `${lang} missing the carpet-vs-marble concept question`).toMatch(
+        lang === "bm" ? /permaidani/ : /carpet/,
+      );
+      expect(story, `${lang} missing marble`).toMatch(lang === "bm" ? /marmar/ : /marble/);
+    },
+  );
 
   it.each(STREAMS)("%s keeps one figure per concept, with no leftover duplicate", (_n, _l, c) => {
     // Each of these blocks now owns the photograph it teaches on, so the same
     // picture must not also appear as a static context image beside it.
     const contextSrcs = c.sections.flatMap((s) => (s.contextImages ?? []).map((i) => i.src));
     for (const src of [
-      SCIENCE_F2_CH9_IMAGES.kitchenHeatTransfer,
       SCIENCE_F2_CH9_IMAGES.bimetallicAlarm,
       SCIENCE_F2_CH9_IMAGES.seaBreeze,
       SCIENCE_F2_CH9_IMAGES.landBreeze,
@@ -298,14 +345,10 @@ describe("Ch9 convection and radiation — drawn on the kitchen scene", () => {
     }
   });
 
-  it.each(STREAMS)("%s draws no medium in the radiation gap", (_n, lang, c) => {
-    const block = blockOf<ConvectionBlock>(c, "convectionRadiation");
-    const markup = renderState(ConvectionRadiation, block, "modes", "radiation", lang);
-    // The cut-away panel belongs to convection; in radiation the space between
-    // pan and hand must stay empty, which is the whole point of the mode.
-    expect(markup).not.toContain(`width="${KITCHEN.pan.w}"`);
-    expect(markup).toContain(`src="${SCIENCE_F2_CH9_IMAGES.kitchenHeatTransfer}"`);
-  });
+  // There is no content-driven render test for this figure any more: 9.2 is
+  // taught on the approved triptych, so neither language places a
+  // `convectionRadiation` block for one to pull. What survives above is the
+  // geometry, which is what the assertions were really about.
 });
 
 describe("Ch9 bimetallic strip — the circuit closes only when it actually reaches", () => {
@@ -491,13 +534,6 @@ describe("Ch9 figure sizing — bounded, and never cropped", () => {
     const markups = [
       renderState(BreezeDiagram, blockOf<BreezeBlock>(c, "breezeDiagram"), "breezes", "sea", lang),
       renderState(
-        ConvectionRadiation,
-        blockOf<ConvectionBlock>(c, "convectionRadiation"),
-        "modes",
-        "convection",
-        lang,
-      ),
-      renderState(
         BimetallicStrip,
         blockOf<BimetallicBlock>(c, "bimetallicStrip"),
         "states",
@@ -596,13 +632,6 @@ describe("Ch9 — controls stay usable", () => {
   it.each(STREAMS)("%s gives every figure control a tap target and a pressed state", (_n, lang, c) => {
     const markups = [
       renderState(BreezeDiagram, blockOf<BreezeBlock>(c, "breezeDiagram"), "breezes", "sea", lang),
-      renderState(
-        ConvectionRadiation,
-        blockOf<ConvectionBlock>(c, "convectionRadiation"),
-        "modes",
-        "convection",
-        lang,
-      ),
       renderState(
         BimetallicStrip,
         blockOf<BimetallicBlock>(c, "bimetallicStrip"),

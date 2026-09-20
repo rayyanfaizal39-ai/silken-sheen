@@ -13,10 +13,10 @@ describe("ScienceF1Chapter3VisualNotesBlock", () => {
         lang: "bm",
       }),
     );
-    expect(html).toContain("Homeostasis mengekalkan keseimbangan hidupan");
-    expect(html).toContain("Mengawal kandungan air");
-    expect(html).toContain("Aktiviti fizikal mengubah kadar denyutan nadi");
-    expect(html).toContain("Tumbuhan mengimbangi kehilangan air dan penyejukan");
+    expect(html).toContain("Koordinasi dan Gerak Balas");
+    expect(html).toContain("Kawal Atur Kandungan Air");
+    expect(html).toContain("Eksperimen 3.2");
+    expect(html).toContain("Homeostasis dalam Tumbuhan");
     expect(html).toContain('id="science-notes-content"');
   });
 
@@ -24,10 +24,10 @@ describe("ScienceF1Chapter3VisualNotesBlock", () => {
     const html = renderToStaticMarkup(
       createElement(ScienceF1Chapter3VisualNotesBlock, { content: chapter3Content, lang: "en" }),
     );
-    expect(html).toContain("Homeostasis keeps life in balance");
-    expect(html).toContain("Regulating water content");
-    expect(html).toContain("Physical activity changes pulse rate");
-    expect(html).toContain("70-80 bpm");
-    expect(html).toContain("Plants balance water loss and cooling");
+    expect(html).toContain("Coordination and Response");
+    expect(html).toContain("Regulation of Water Content");
+    expect(html).toContain("Experiment 3.2");
+    expect(html).not.toContain("70-80 bpm");
+    expect(html).toContain("Homeostasis in Plants");
   });
 });

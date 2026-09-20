@@ -65,8 +65,13 @@ const CH9_ASSETS: string[] = Object.values(SCIENCE_F2_CH9_IMAGES);
  * chapter-9/chapter-9-heat-visuals.test.tsx.
  */
 const CH9_CONTEXT_ASSETS: string[] = [
-  SCIENCE_F2_CH9_IMAGES.heatVsTemperature,
-  SCIENCE_F2_CH9_IMAGES.conductorInsulator,
+  // Two files that once appeared here no longer do, and both still ship —
+  // see chapter-9-heat-visuals.test.tsx's RETIRED_ASSETS for each reason.
+  // `heatVsTemperature`: the mismatched (different-temperature,
+  // different-quantity) photo gave way to a deterministic comparison card.
+  // `conductorInsulator`: the two-beaker photo gave way to the approved
+  // four-object scene, which names the conductor AND the insulator in real
+  // objects and is taught through `Chapter9SpotlightFigure` instead.
   SCIENCE_F2_CH9_IMAGES.expansionUses,
   SCIENCE_F2_CH9_IMAGES.greenBuilding,
 ];
@@ -173,14 +178,16 @@ const EVERY_VIEW: [string, ScienceF2InteractiveContent, "bm" | "en"][] = CHAPTER
 );
 
 describe("Science F2 Ch7/9/10 — assets on disk", () => {
-  it("ships exactly twenty-seven files", () => {
+  it("ships exactly thirty-four files", () => {
     // Twenty-four in the original pack, plus the three later approved Chapter 7
-    // figures (electroscope, lightning formation, electromagnet investigation).
-    // Those three are not `contextImages`, so they are guarded by
-    // chapter-7/chapter-7-approved-figures.test.tsx rather than by the
-    // placement and authoring assertions below.
-    expect(SCIENCE_F2_VISUAL_ASSETS).toHaveLength(27);
-    expect(new Set(SCIENCE_F2_VISUAL_ASSETS).size).toBe(27);
+    // figures (electroscope, lightning formation, electromagnet investigation),
+    // plus the four approved Chapter 13 figures. None of those seven is a
+    // `contextImages` entry, so they are guarded by their own chapter tests
+    // (chapter-7-approved-figures, chapter-12-remediation, chapter-13-remediation) rather than by the
+    // placement and authoring assertions below — but they still share the
+    // on-disk, WebP-only and no-PNG-duplicate checks here.
+    expect(SCIENCE_F2_VISUAL_ASSETS).toHaveLength(37);
+    expect(new Set(SCIENCE_F2_VISUAL_ASSETS).size).toBe(37);
   });
 
   it.each(SCIENCE_F2_VISUAL_ASSETS)("%s exists and is not empty", (src) => {

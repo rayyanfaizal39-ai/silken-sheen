@@ -26,12 +26,7 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     question: "Apakah unit SI bagi daya?",
-    options: [
-      "Joule (J)",
-      "Newton (N)",
-      "Pascal (Pa)",
-      "Watt (W)",
-    ],
+    options: ["Joule (J)", "Newton (N)", "Pascal (Pa)", "Watt (W)"],
     answerIndex: 1,
     explanation: "Unit SI bagi daya ialah newton (N).",
   },
@@ -43,14 +38,10 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     question: "Alat apakah yang digunakan untuk mengukur daya?",
-    options: [
-      "Termometer",
-      "Barometer",
-      "Neraca spring",
-      "Ammeter",
-    ],
+    options: ["Termometer", "Barometer", "Neraca spring", "Ammeter"],
     answerIndex: 2,
-    explanation: "Daya diukur menggunakan neraca spring (spring balance), yang beroperasi berdasarkan prinsip pengembangan spring.",
+    explanation:
+      "Daya diukur menggunakan neraca spring (spring balance), yang beroperasi berdasarkan prinsip pengembangan spring.",
   },
   {
     id: "sci-f2-c8-bm-q4",
@@ -60,14 +51,10 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     question: "Objek berjisim 1 kg mempunyai berat berapa di Bumi?",
-    options: [
-      "1 N",
-      "0.1 N",
-      "100 N",
-      "10 N",
-    ],
+    options: ["1 N", "0.1 N", "100 N", "10 N"],
     answerIndex: 3,
-    explanation: "Objek berjisim 100 g mempunyai berat 1 N, oleh itu objek berjisim 1 kg mempunyai berat 10 N.",
+    explanation:
+      "Objek berjisim 100 g mempunyai berat 1 N, oleh itu objek berjisim 1 kg mempunyai berat 10 N.",
   },
   {
     id: "sci-f2-c8-bm-q5",
@@ -76,15 +63,12 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 8",
     lang: "bm",
-    question: "Daya yang menumpu ke arah pusat Bumi dan menyebabkan objek yang dilemparkan ke atas jatuh semula ialah...",
-    options: [
-      "Daya graviti",
-      "Daya normal",
-      "Daya geseran",
-      "Daya kenyal",
-    ],
+    question:
+      "Daya yang menumpu ke arah pusat Bumi dan menyebabkan objek yang dilemparkan ke atas jatuh semula ialah...",
+    options: ["Daya graviti", "Daya normal", "Daya geseran", "Daya kenyal"],
     answerIndex: 0,
-    explanation: "Daya graviti ialah daya yang menumpu ke arah pusat Bumi, menyebabkan semua objek yang dilemparkan ke atas jatuh semula ke Bumi.",
+    explanation:
+      "Daya graviti ialah daya yang menumpu ke arah pusat Bumi, menyebabkan semua objek yang dilemparkan ke atas jatuh semula ke Bumi.",
   },
   {
     id: "sci-f2-c8-bm-q6",
@@ -94,14 +78,10 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     question: "Daya yang merintangi pergerakan antara dua permukaan yang bersentuhan dipanggil...",
-    options: [
-      "Daya graviti",
-      "Daya geseran",
-      "Daya keapungan",
-      "Daya kenyal",
-    ],
+    options: ["Daya graviti", "Daya geseran", "Daya keapungan", "Daya kenyal"],
     answerIndex: 1,
-    explanation: "Daya geseran ialah daya yang merintangi pergerakan antara dua permukaan yang bersentuhan, dan bertindak dalam arah bertentangan dengan arah gerakan.",
+    explanation:
+      "Daya geseran ialah daya yang merintangi pergerakan antara dua permukaan yang bersentuhan, dan bertindak dalam arah bertentangan dengan arah gerakan.",
   },
   {
     id: "sci-f2-c8-bm-q7",
@@ -111,31 +91,29 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     question: "Daya yang terhasil apabila sesuatu objek bersentuhan dengan permukaan dipanggil...",
-    options: [
-      "Daya graviti",
-      "Daya geseran",
-      "Daya normal",
-      "Daya keapungan",
-    ],
+    options: ["Daya graviti", "Daya geseran", "Daya normal", "Daya keapungan"],
     answerIndex: 2,
-    explanation: "Daya normal ialah daya yang terhasil apabila sesuatu objek bersentuhan dengan permukaan.",
+    explanation:
+      "Daya normal ialah daya yang terhasil apabila sesuatu objek bersentuhan dengan permukaan.",
   },
   {
     id: "sci-f2-c8-bm-q8",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 8",
     lang: "bm",
-    question: "Berat sesuatu objek ditakrifkan sebagai...",
+    question:
+      "Dalam satu penyiasatan hubungan antara luas permukaan dan tekanan, blok logam berjisim sama ditekan ke atas plastisin menggunakan luas permukaan yang berbeza. Apakah pemboleh ubah dimanipulasikan, dan apakah yang dijangka diperhatikan?",
     options: [
-      "Isi padu sesuatu objek",
-      "Daya geseran yang bertindak ke atas sesuatu objek",
-      "Jisim sesuatu objek",
-      "Daya graviti yang bertindak ke atas sesuatu objek",
+      "Pemboleh ubah dimanipulasikan ialah luas permukaan; luas permukaan yang lebih besar menghasilkan lekukan yang lebih cetek (tekanan lebih rendah)",
+      "Pemboleh ubah dimanipulasikan ialah jisim blok; blok yang lebih berat menghasilkan lekukan yang lebih cetek",
+      "Pemboleh ubah dimanipulasikan ialah luas permukaan; luas permukaan yang lebih besar menghasilkan lekukan yang lebih dalam (tekanan lebih tinggi)",
+      "Pemboleh ubah dimanipulasikan ialah kedalaman lekukan; luas permukaan ialah pemboleh ubah bergerak balas",
     ],
-    answerIndex: 3,
-    explanation: "Berat ditakrifkan sebagai daya graviti yang bertindak ke atas sesuatu objek.",
+    answerIndex: 0,
+    explanation:
+      "Blok-blok itu mempunyai jisim yang sama (daya yang sama), jadi luas permukaan ialah pemboleh ubah dimanipulasikan manakala kedalaman lekukan pada plastisin (pemboleh ubah bergerak balas, menunjukkan tekanan) diperhatikan. Luas permukaan yang lebih besar merebakkan daya yang sama ke atas kawasan yang lebih luas, menghasilkan tekanan yang lebih rendah dan lekukan yang lebih cetek.",
   },
   {
     id: "sci-f2-c8-bm-q9",
@@ -144,15 +122,12 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 8",
     lang: "bm",
-    question: "Daya tujahan yang bertindak ke atas objek yang terapung di permukaan bendalir dipanggil...",
-    options: [
-      "Daya keapungan",
-      "Daya kenyal",
-      "Daya normal",
-      "Daya graviti",
-    ],
+    question:
+      "Daya tujahan yang bertindak ke atas objek yang terapung di permukaan bendalir dipanggil...",
+    options: ["Daya keapungan", "Daya kenyal", "Daya normal", "Daya graviti"],
     answerIndex: 0,
-    explanation: "Daya keapungan ialah daya tujahan yang bertindak ke atas objek yang terapung di permukaan bendalir.",
+    explanation:
+      "Daya keapungan ialah daya tujahan yang bertindak ke atas objek yang terapung di permukaan bendalir.",
   },
   {
     id: "sci-f2-c8-bm-q10",
@@ -162,14 +137,10 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     question: "Daya yang wujud apabila sesuatu bahan diregangkan atau dimampatkan dipanggil...",
-    options: [
-      "Daya graviti",
-      "Daya kenyal",
-      "Daya normal",
-      "Daya keapungan",
-    ],
+    options: ["Daya graviti", "Daya kenyal", "Daya normal", "Daya keapungan"],
     answerIndex: 1,
-    explanation: "Daya kenyal wujud apabila sesuatu bahan diregangkan atau dimampatkan, contohnya spring.",
+    explanation:
+      "Daya kenyal wujud apabila sesuatu bahan diregangkan atau dimampatkan, contohnya spring.",
   },
   {
     id: "sci-f2-c8-bm-q11",
@@ -186,7 +157,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Kerana ia sentiasa tetap nilainya",
     ],
     answerIndex: 2,
-    explanation: "Daya ialah kuantiti vektor yang mempunyai magnitud dan arah, serta titik aplikasi.",
+    explanation:
+      "Daya ialah kuantiti vektor yang mempunyai magnitud dan arah, serta titik aplikasi.",
   },
   {
     id: "sci-f2-c8-bm-q12",
@@ -220,7 +192,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Daya geseran (daya tindak balas)",
     ],
     answerIndex: 0,
-    explanation: "Berat (daya tindakan) seimbang dengan daya normal (daya tindak balas) dalam arah bertentangan apabila objek diletakkan di atas meja.",
+    explanation:
+      "Berat (daya tindakan) seimbang dengan daya normal (daya tindak balas) dalam arah bertentangan apabila objek diletakkan di atas meja.",
   },
   {
     id: "sci-f2-c8-bm-q14",
@@ -229,7 +202,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 8",
     lang: "bm",
-    question: "Dua troli bersentuhan dilancarkan dengan mekanisme spring. Apakah yang berlaku kepada kedua-dua troli tersebut?",
+    question:
+      "Dua troli bersentuhan dilancarkan dengan mekanisme spring. Apakah yang berlaku kepada kedua-dua troli tersebut?",
     options: [
       "Kedua-dua bergerak pada jarak sama dalam arah sama",
       "Kedua-dua bergerak pada jarak sama dalam arah bertentangan",
@@ -237,7 +211,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Kedua-dua troli kekal pegun",
     ],
     answerIndex: 1,
-    explanation: "Mengikut prinsip pasangan tindakan-tindak balas, kedua-dua troli akan bergerak pada jarak yang sama tetapi dalam arah bertentangan.",
+    explanation:
+      "Mengikut prinsip pasangan tindakan-tindak balas, kedua-dua troli akan bergerak pada jarak yang sama tetapi dalam arah bertentangan.",
   },
   {
     id: "sci-f2-c8-bm-q15",
@@ -254,7 +229,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Apabila objek lebih tumpat daripada bendalir",
     ],
     answerIndex: 2,
-    explanation: "Sesuatu objek akan terapung jika daya keapungan yang bertindak ke atasnya cukup untuk menampung beratnya (daya keapungan = berat objek).",
+    explanation:
+      "Sesuatu objek akan terapung jika daya keapungan yang bertindak ke atasnya cukup untuk menampung beratnya (daya keapungan = berat objek).",
   },
   {
     id: "sci-f2-c8-bm-q16",
@@ -271,7 +247,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Daya keapungan = Berat sebenar − Berat ketara",
     ],
     answerIndex: 3,
-    explanation: "Daya keapungan = Berat sebenar (di udara) − Berat ketara (direndam dalam bendalir).",
+    explanation:
+      "Daya keapungan = Berat sebenar (di udara) − Berat ketara (direndam dalam bendalir).",
   },
   {
     id: "sci-f2-c8-bm-q17",
@@ -281,14 +258,10 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     question: "Objek yang lebih tumpat daripada cecair akan...",
-    options: [
-      "Tenggelam",
-      "Terapung",
-      "Kekal pegun di permukaan",
-      "Berubah bentuk",
-    ],
+    options: ["Tenggelam", "Terapung", "Kekal pegun di permukaan", "Berubah bentuk"],
     answerIndex: 0,
-    explanation: "Objek yang lebih tumpat daripada cecair akan tenggelam kerana daya keapungan F kurang daripada berat W.",
+    explanation:
+      "Objek yang lebih tumpat daripada cecair akan tenggelam kerana daya keapungan F kurang daripada berat W.",
   },
   {
     id: "sci-f2-c8-bm-q18",
@@ -305,7 +278,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Momen daya = Daya + Jarak",
     ],
     answerIndex: 1,
-    explanation: "Momen daya = Daya (N) × Jarak tegak dari pangsi ke daya (m), dengan unit newton meter (N m).",
+    explanation:
+      "Momen daya = Daya (N) × Jarak tegak dari pangsi ke daya (m), dengan unit newton meter (N m).",
   },
   {
     id: "sci-f2-c8-bm-q19",
@@ -322,7 +296,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Isi padu, suhu, tekanan",
     ],
     answerIndex: 2,
-    explanation: "Tuil terdiri daripada tiga bahagian — daya kuasa (effort), beban (load), dan fulkrum (titik sokongan tetap).",
+    explanation:
+      "Tuil terdiri daripada tiga bahagian — daya kuasa (effort), beban (load), dan fulkrum (titik sokongan tetap).",
   },
   {
     id: "sci-f2-c8-bm-q20",
@@ -332,29 +307,21 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     question: "Pada tuil kelas pertama, fulkrum terletak di antara...",
-    options: [
-      "Titik aplikasi dan magnitud",
-      "Dua beban",
-      "Dua daya kuasa",
-      "Beban dan daya kuasa",
-    ],
+    options: ["Titik aplikasi dan magnitud", "Dua beban", "Dua daya kuasa", "Beban dan daya kuasa"],
     answerIndex: 3,
-    explanation: "Tuil kelas pertama mempunyai fulkrum terletak antara beban dan daya kuasa, contoh: gunting, playar, pembuka tin.",
+    explanation:
+      "Tuil kelas pertama mempunyai fulkrum terletak antara beban dan daya kuasa, contoh: gunting, playar, pembuka tin.",
   },
   {
     id: "sci-f2-c8-bm-q21",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 8",
     lang: "bm",
-    question: "Satu daya 50 N dikenakan pada jarak 0.2 m daripada pangsi untuk mengetatkan nat. Berapakah momen daya yang terhasil?",
-    options: [
-      "10 N m",
-      "5 N m",
-      "25 N m",
-      "100 N m",
-    ],
+    question:
+      "Satu daya 50 N dikenakan pada jarak 0.2 m daripada pangsi untuk mengetatkan nat. Berapakah momen daya yang terhasil?",
+    options: ["10 N m", "5 N m", "25 N m", "100 N m"],
     answerIndex: 0,
     explanation: "Momen daya = 50 N × 0.2 m = 10 N m.",
   },
@@ -365,15 +332,12 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 8",
     lang: "bm",
-    question: "Jia Yin (200 N) dan Wei Hong (300 N) duduk di atas jongkang-jongket. Wei Hong berada 2 m daripada fulkrum. Berapa jauhkah Jia Yin perlu duduk daripada fulkrum supaya seimbang?",
-    options: [
-      "1 m",
-      "3 m",
-      "2 m",
-      "6 m",
-    ],
+    question:
+      "Jia Yin (200 N) dan Wei Hong (300 N) duduk di atas jongkang-jongket. Wei Hong berada 2 m daripada fulkrum. Berapa jauhkah Jia Yin perlu duduk daripada fulkrum supaya seimbang?",
+    options: ["1 m", "3 m", "2 m", "6 m"],
     answerIndex: 1,
-    explanation: "200 N × d = 300 N × 2 m → d = 600/200 = 3 m. Jia Yin perlu duduk 3 m daripada fulkrum.",
+    explanation:
+      "200 N × d = 300 N × 2 m → d = 600/200 = 3 m. Jia Yin perlu duduk 3 m daripada fulkrum.",
   },
   {
     id: "sci-f2-c8-bm-q23",
@@ -382,32 +346,30 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 8",
     lang: "bm",
-    question: "Seorang lelaki memindahkan batu besar berjisim 100 kg menggunakan batu kecil sebagai fulkrum. Jarak batu besar–fulkrum = 0.5 m, jarak lelaki–fulkrum = 2 m, daya graviti = 10 N kg⁻¹. Berapakah daya kuasa yang diperlukan?",
-    options: [
-      "100 N",
-      "500 N",
-      "250 N",
-      "1000 N",
-    ],
+    question:
+      "Seorang lelaki memindahkan batu besar berjisim 100 kg menggunakan batu kecil sebagai fulkrum. Jarak batu besar–fulkrum = 0.5 m, jarak lelaki–fulkrum = 2 m, daya graviti = 10 N kg⁻¹. Berapakah daya kuasa yang diperlukan?",
+    options: ["100 N", "500 N", "250 N", "1000 N"],
     answerIndex: 2,
-    explanation: "Beban = 100 kg × 10 = 1000 N. 1000 N × 0.5 m = Daya kuasa × 2 m → Daya kuasa = 500/2 = 250 N.",
+    explanation:
+      "Beban = 100 kg × 10 = 1000 N. 1000 N × 0.5 m = Daya kuasa × 2 m → Daya kuasa = 500/2 = 250 N.",
   },
   {
     id: "sci-f2-c8-bm-q24",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 8",
     lang: "bm",
-    question: "Mengapakah gajah seberat 5000 kg tidak tenggelam ke dalam tanah?",
+    question: "Mengapakah traktor dipasang dengan tayar yang lebar berbanding tayar yang sempit?",
     options: [
-      "Kerana ia mempunyai daya keapungan yang tinggi",
-      "Kerana ia tidak mempunyai berat",
-      "Kerana ia mempunyai daya kenyal yang tinggi",
-      "Kerana luas permukaan tapak kakinya yang besar menghasilkan tekanan yang kecil ke atas tanah",
+      "Tayar lebar meningkatkan tekanan ke atas tanah, membantu traktor mencengkam dengan lebih baik",
+      "Tayar lebar merebakkan berat traktor ke atas luas permukaan yang lebih besar, mengurangkan tekanan ke atas tanah supaya ia tidak tenggelam ke dalam tanah lembut",
+      "Tayar lebar mengurangkan berat keseluruhan traktor",
+      "Tayar lebar tidak memberi sebarang kesan kepada tekanan",
     ],
-    answerIndex: 3,
-    explanation: "Tekanan = Daya/Luas. Luas permukaan tapak kaki gajah yang besar menghasilkan tekanan yang kecil ke atas tanah walaupun beratnya tinggi.",
+    answerIndex: 1,
+    explanation:
+      "Tekanan = Daya ÷ Luas. Tayar lebar merebakkan berat traktor ke atas luas permukaan yang lebih besar, menghasilkan tekanan yang lebih rendah supaya traktor tidak tenggelam ke dalam tanah lembut.",
   },
   {
     id: "sci-f2-c8-bm-q25",
@@ -416,7 +378,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 8",
     lang: "bm",
-    question: "Berdasarkan jadual ketumpatan, gabus (0.24 g cm⁻³) terapung di atas air (1.0 g cm⁻³) kerana...",
+    question:
+      "Berdasarkan jadual ketumpatan, gabus (0.24 g cm⁻³) terapung di atas air (1.0 g cm⁻³) kerana...",
     options: [
       "Gabus kurang tumpat daripada air",
       "Gabus lebih tumpat daripada air",
@@ -424,7 +387,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Gabus tidak mempunyai daya graviti",
     ],
     answerIndex: 0,
-    explanation: "Gabus terapung kerana ia kurang tumpat (0.24 g cm⁻³) berbanding air (1.0 g cm⁻³). Semasa terapung pegun, daya apungan sama magnitud dengan beratnya (F = W).",
+    explanation:
+      "Gabus terapung kerana ia kurang tumpat (0.24 g cm⁻³) berbanding air (1.0 g cm⁻³). Semasa terapung pegun, daya apungan sama magnitud dengan beratnya (F = W).",
   },
   {
     id: "sci-f2-c8-bm-q26",
@@ -441,7 +405,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Untuk menunjukkan arah pergerakan kapal",
     ],
     answerIndex: 1,
-    explanation: "Garis Plimsoll ditandakan untuk tujuan keselamatan kerana ketumpatan air laut berbeza mengikut suhu dan kepekatan garam di pelbagai bahagian dunia.",
+    explanation:
+      "Garis Plimsoll ditandakan untuk tujuan keselamatan kerana ketumpatan air laut berbeza mengikut suhu dan kepekatan garam di pelbagai bahagian dunia.",
   },
   {
     id: "sci-f2-c8-bm-q27",
@@ -458,7 +423,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Pergerakan molekul udara yang perlahan",
     ],
     answerIndex: 2,
-    explanation: "Kekerapan perlanggaran antara molekul udara yang bergerak bebas dengan dinding bekas menghasilkan daya yang menolak dinding, iaitu tekanan udara.",
+    explanation:
+      "Kekerapan perlanggaran antara molekul udara yang bergerak bebas dengan dinding bekas menghasilkan daya yang menolak dinding, iaitu tekanan udara.",
   },
   {
     id: "sci-f2-c8-bm-q28",
@@ -475,7 +441,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Kerana lebih sedikit udara berada di atas kita, jadi berat lajur udara yang menekan ke bawah lebih kecil",
     ],
     answerIndex: 3,
-    explanation: "Semakin tinggi altitud, semakin sedikit udara yang berada di atas kita. Berat lajur udara yang menekan ke bawah menjadi lebih kecil, jadi tekanan atmosfera menjadi lebih rendah.",
+    explanation:
+      "Semakin tinggi altitud, semakin sedikit udara yang berada di atas kita. Berat lajur udara yang menekan ke bawah menjadi lebih kecil, jadi tekanan atmosfera menjadi lebih rendah.",
   },
   {
     id: "sci-f2-c8-bm-q29",
@@ -484,7 +451,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 8",
     lang: "bm",
-    question: "Tin susu pekat dengan dua lubang membolehkan susu mengalir lebih lancar berbanding satu lubang. Mengapa?",
+    question:
+      "Tin susu pekat dengan dua lubang membolehkan susu mengalir lebih lancar berbanding satu lubang. Mengapa?",
     options: [
       "Kerana tekanan udara di dalam dan di luar tin menjadi sama",
       "Kerana tekanan udara di dalam tin menjadi lebih rendah daripada di luar",
@@ -492,7 +460,8 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Kerana daya graviti meningkat",
     ],
     answerIndex: 0,
-    explanation: "Dengan dua lubang, tekanan udara di dalam dan di luar tin menjadi sama, membolehkan susu mengalir lebih lancar.",
+    explanation:
+      "Dengan dua lubang, tekanan udara di dalam dan di luar tin menjadi sama, membolehkan susu mengalir lebih lancar.",
   },
   {
     id: "sci-f2-c8-bm-q30",
@@ -509,6 +478,7 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Untuk mengurangkan kos pembinaan",
     ],
     answerIndex: 1,
-    explanation: "Tekanan cecair meningkat dengan kedalaman, jadi dinding empangan direka lebih tebal di bahagian asas untuk menahan tekanan air yang lebih tinggi pada kedalaman tersebut.",
+    explanation:
+      "Tekanan cecair meningkat dengan kedalaman, jadi dinding empangan direka lebih tebal di bahagian asas untuk menahan tekanan air yang lebih tinggi pada kedalaman tersebut.",
   },
 ];

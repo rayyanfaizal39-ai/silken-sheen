@@ -13,7 +13,7 @@ export const scienceF1C3NotesDLP: StructuredNotes = {
   ],
   sections: [
     {
-      title: "3.1 Homeostasis",
+      title: "3.1 Homeostasis in Living Things",
       subsections: [
         {
           title: "Definition of Homeostasis",

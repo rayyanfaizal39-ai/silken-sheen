@@ -60,6 +60,28 @@ export const SCIENCE_F2_CH9_IMAGES = {
   polarBear: `${DIR}/chapter-9/09_09_polar_bear_insulation.webp`,
   expansionUses: `${DIR}/chapter-9/09_10_expansion_contraction_applications.webp`,
   absorptionEmission: `${DIR}/chapter-9/09_11_heat_absorption_emission_black_vs_shiny.webp`,
+
+  /**
+   * The three later approved Chapter 9 figures.
+   *
+   * `heatTransferMethods` is the master comparison for 9.2: it paints
+   * conduction, convection and radiation side by side, which is what let the
+   * chapter stop teaching conduction in one section and convection + radiation
+   * in another. It replaced `kitchenHeatTransfer`, whose one scene carried two
+   * of the three mechanisms and none of the comparison.
+   * `sunEarthRadiation` gives "warming of the Earth by the Sun" — a required
+   * natural phenomenon the chapter previously mentioned only in passing — its
+   * own visual. `conductorsInsulators` puts four everyday objects on one
+   * scene, so conductors and insulators are taught by picture before the
+   * matching practice rather than by text alone.
+   *
+   * All three are language-neutral, so BM and DLP reference the same file and
+   * every label comes from chapter content. Geometry lives in
+   * `ch9-approved-figure-geometry.ts`.
+   */
+  heatTransferMethods: `${DIR}/chapter-9/science-f2-ch9-heat-transfer-methods.webp`,
+  sunEarthRadiation: `${DIR}/chapter-9/science-f2-ch9-sun-earth-radiation.webp`,
+  conductorsInsulators: `${DIR}/chapter-9/science-f2-ch9-conductors-insulators.webp`,
 } as const;
 
 export const SCIENCE_F2_CH10_IMAGES = {
@@ -69,6 +91,38 @@ export const SCIENCE_F2_CH10_IMAGES = {
   sonarEcholocation: `${DIR}/chapter-10/10_04_sonar_and_bat_echolocation.webp`,
   echoCave: `${DIR}/chapter-10/10_05_echo_cave.webp`,
   instruments: `${DIR}/chapter-10/10_06_musical_instruments_vibrating_parts.webp`,
+} as const;
+
+/**
+ * The three approved Chapter 12 figures, all 1672 x 941.
+ *
+ * `solarSystemOverview` orients the opening section; `eightPlanetsSheet` leads
+ * "Planets in the Solar System" as a selector for the profile cards below it;
+ * `earthCharacteristics` teaches the six characteristics of Earth. None
+ * carries baked-in text — not even "not to scale", which the UI adds — so BM
+ * and DLP use the same file. Geometry lives in `ch12-approved-figure-geometry.ts`.
+ */
+export const SCIENCE_F2_CH12_IMAGES = {
+  solarSystemOverview: `${DIR}/chapter-12/science-f2-ch12-solar-system-overview.webp`,
+  eightPlanetsSheet: `${DIR}/chapter-12/science-f2-ch12-eight-planets-sheet.webp`,
+  earthCharacteristics: `${DIR}/chapter-12/science-f2-ch12-earth-characteristics.webp`,
+} as const;
+
+/**
+ * The four approved Chapter 13 figures, all 1774 x 887 (2:1).
+ *
+ * `meteoroidJourney` is the master visual for meteoroid → meteor → meteorite;
+ * `impactCrater` shows the crater an impact LEAVES, never an incoming asteroid;
+ * `cometAnatomy` teaches nucleus, coma, tail and solar wind; `hobaMeteorite`
+ * shows the meteorite already resting on the ground. None carries baked-in
+ * text, so BM and DLP use the same file. Geometry lives in
+ * `ch13-approved-figure-geometry.ts`.
+ */
+export const SCIENCE_F2_CH13_IMAGES = {
+  meteoroidJourney: `${DIR}/chapter-13/science-f2-ch13-meteoroid-meteor-meteorite.webp`,
+  impactCrater: `${DIR}/chapter-13/science-f2-ch13-asteroid-impact-crater.webp`,
+  cometAnatomy: `${DIR}/chapter-13/science-f2-ch13-comet-anatomy-tail.webp`,
+  hobaMeteorite: `${DIR}/chapter-13/science-f2-ch13-hoba-meteorite.webp`,
 } as const;
 
 /**
@@ -95,4 +149,6 @@ export const SCIENCE_F2_VISUAL_ASSETS: string[] = [
   ...Object.values(SCIENCE_F2_CH7_IMAGES),
   ...Object.values(SCIENCE_F2_CH9_IMAGES),
   ...Object.values(SCIENCE_F2_CH10_IMAGES),
+  ...Object.values(SCIENCE_F2_CH12_IMAGES),
+  ...Object.values(SCIENCE_F2_CH13_IMAGES),
 ];

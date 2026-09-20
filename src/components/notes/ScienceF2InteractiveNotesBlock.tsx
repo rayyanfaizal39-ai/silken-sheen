@@ -33,9 +33,7 @@ import { WaveVisualizer } from "@/components/notes/blocks/WaveVisualizer";
 import { GalaxyCardGrid } from "@/components/notes/blocks/GalaxyCardGrid";
 import { PlanetSphereList } from "@/components/notes/blocks/PlanetSphereList";
 import { PlanetComparisonTable } from "@/components/notes/blocks/PlanetComparisonTable";
-import { MeteoroidEntryFigure } from "@/components/notes/blocks/MeteoroidEntryFigure";
-import { AsteroidBeltFigure } from "@/components/notes/blocks/AsteroidBeltFigure";
-import { CometOrbitFigure } from "@/components/notes/blocks/CometOrbitFigure";
+import { LessonFlow } from "@/components/notes/blocks/LessonFlow";
 import { AuLightYearCalculator } from "@/components/notes/blocks/AuLightYearCalculator";
 import type { MiniQuizItem } from "@/content/form2/science/chapter-1/interactive-types";
 import type {
@@ -69,6 +67,12 @@ import { DryVsAqueous } from "@/components/notes/blocks/DryVsAqueous";
 import { TitrationSchematic } from "@/components/notes/blocks/TitrationSchematic";
 import { PolarityInteraction } from "@/components/notes/blocks/PolarityInteraction";
 import { ElectroscopeDiagram } from "@/components/notes/blocks/ElectroscopeDiagram";
+import { Chapter9SpotlightFigure } from "@/components/notes/blocks/Chapter9SpotlightFigure";
+import {
+  Chapter12PlanetExplorer,
+  Chapter12SpotlightFigure,
+} from "@/components/notes/blocks/Chapter12SpotlightFigure";
+import { HeatFlowDirection } from "@/components/notes/blocks/HeatFlowDirection";
 import { LightningFormation } from "@/components/notes/blocks/LightningFormation";
 import { CurrentDirectionDiagram } from "@/components/notes/blocks/CurrentDirectionDiagram";
 import { CircuitSymbolsTable } from "@/components/notes/blocks/CircuitSymbolsTable";
@@ -108,6 +112,7 @@ import { StellarLifecycle } from "@/components/notes/blocks/StellarLifecycle";
 import { CosmicScale } from "@/components/notes/blocks/CosmicScale";
 import { MilkyWayLocator } from "@/components/notes/blocks/MilkyWayLocator";
 import { StarSizeCompare } from "@/components/notes/blocks/StarSizeCompare";
+import { PlanetAxialTilt } from "@/components/notes/blocks/PlanetAxialTilt";
 import { CurrentFieldPatterns } from "@/components/notes/blocks/CurrentFieldPatterns";
 import { ApparatusDiagram } from "@/components/notes/blocks/ApparatusDiagram";
 import { ScienceSectionedNotesShell, type ScienceNotesSection } from "./ScienceSectionedNotesShell";
@@ -451,6 +456,41 @@ export function ScienceF2InteractiveNotesBlock({
             <NutrientTable block={table} />
           </div>
         ))}
+        {section.heatFlowDirection && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.heatFlowDirection.title}
+            </h3>
+            <HeatFlowDirection block={section.heatFlowDirection} lang={lang} />
+          </div>
+        )}
+        {section.ch9SpotlightFigure && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.ch9SpotlightFigure.title}
+            </h3>
+            <Chapter9SpotlightFigure block={section.ch9SpotlightFigure} lang={lang} />
+          </div>
+        )}
+        {/* An approved Chapter 12 figure leads its section. The planet sheet
+            also renders the section's planet profiles, so choosing a planet on
+            the picture can open that planet's card. */}
+        {section.ch12SpotlightFigure && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.ch12SpotlightFigure.title}
+            </h3>
+            {section.ch12SpotlightFigure.figure === "eight-planets" && section.planets ? (
+              <Chapter12PlanetExplorer
+                figure={section.ch12SpotlightFigure}
+                planets={section.planets}
+                lang={lang}
+              />
+            ) : (
+              <Chapter12SpotlightFigure block={section.ch12SpotlightFigure} lang={lang} />
+            )}
+          </div>
+        )}
         {section.cards && !isChapter8 && (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {section.cards.map((card) => (
@@ -516,31 +556,8 @@ export function ScienceF2InteractiveNotesBlock({
             <PlanetComparisonTable block={section.planetComparison} lang={lang} />
           </div>
         )}
-        {section.meteoroidEntry && (
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">
-              {section.meteoroidEntry.title}
-            </h3>
-            <MeteoroidEntryFigure block={section.meteoroidEntry} lang={lang} />
-          </div>
-        )}
-        {section.asteroidBelt && (
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">
-              {section.asteroidBelt.title}
-            </h3>
-            <AsteroidBeltFigure block={section.asteroidBelt} lang={lang} />
-          </div>
-        )}
-        {section.cometOrbit && (
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">
-              {section.cometOrbit.title}
-            </h3>
-            <CometOrbitFigure block={section.cometOrbit} lang={lang} />
-          </div>
-        )}
-        {section.planets && (
+        {section.lessonFlow && <LessonFlow parts={section.lessonFlow} lang={lang} />}
+        {section.planets && section.ch12SpotlightFigure?.figure !== "eight-planets" && (
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
               {section.planets.title}
@@ -597,9 +614,7 @@ export function ScienceF2InteractiveNotesBlock({
             ))}
           </Accordion>
         )}
-        {section.dryHumidComparison && (
-          <DryHumidComparison block={section.dryHumidComparison} />
-        )}
+        {section.dryHumidComparison && <DryHumidComparison block={section.dryHumidComparison} />}
         {section.tabs && (
           <div>
             {section.tabsHeading && (
@@ -1098,6 +1113,14 @@ export function ScienceF2InteractiveNotesBlock({
             <StarSizeCompare block={section.starSizeCompare} lang={lang} />
           </div>
         )}
+        {section.planetAxialTilt && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.planetAxialTilt.title}
+            </h3>
+            <PlanetAxialTilt block={section.planetAxialTilt} lang={lang} />
+          </div>
+        )}
         {isChapter8 && section.buoyancy && (
           <div className="border-t border-border/70 pt-5">
             <h3 className="font-display mb-2 text-base font-bold text-foreground">
@@ -1532,6 +1555,56 @@ export function ScienceF2InteractiveNotesBlock({
             />
           </div>
         )}
+        {section.differencesTable && (
+          <div>
+            <h3 className="font-display mb-3 text-base font-bold text-foreground">
+              {section.differencesTable.title}
+            </h3>
+            {/* A real <table>, not a card grid: the textbook draws this as rows
+                of comparison, and a reader scanning "Unit" must land on one row
+                with both answers beside it, not on two separate cards. The
+                wrapper scrolls sideways on a narrow phone rather than letting
+                the table squeeze its own columns unreadably thin. */}
+            <div className="overflow-x-auto rounded-2xl border border-border">
+              <table className="w-full min-w-[420px] border-collapse text-[12.5px]">
+                <thead>
+                  <tr className="bg-primary/10">
+                    <th scope="col" className="p-2.5 text-left">
+                      <span className="sr-only">{section.differencesTable.title}</span>
+                    </th>
+                    {section.differencesTable.headers.map((header) => (
+                      <th
+                        key={header}
+                        scope="col"
+                        className="font-display p-2.5 text-left font-bold text-foreground"
+                      >
+                        {header}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {section.differencesTable.rows.map((row) => (
+                    <tr key={row.label} className="border-t border-border/60">
+                      <th
+                        scope="row"
+                        className="p-2.5 text-left align-top text-[10.5px] font-bold uppercase tracking-wide text-primary"
+                      >
+                        {row.label}
+                      </th>
+                      <td className="p-2.5 align-top leading-relaxed text-foreground/90">
+                        <FactValue value={row.left} />
+                      </td>
+                      <td className="p-2.5 align-top leading-relaxed text-foreground/90">
+                        <FactValue value={row.right} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
         {section.comparison && (
           <div>
             <h3 className="font-display mb-3 text-base font-bold text-foreground">
@@ -1583,26 +1656,30 @@ export function ScienceF2InteractiveNotesBlock({
             )}
           </div>
         )}
-        <div>
-          <h3 className="font-display mb-2 text-base font-bold text-foreground">
-            {section.checksTitle ??
-              (lang === "bm"
-                ? `Semak diri — ${section.number}`
-                : `Check yourself — ${section.number}`)}
-          </h3>
-          <Accordion type="single" collapsible>
-            {section.checks.map((item, i) => (
-              <AccordionItem key={item.question} value={`check-${section.number}-${i}`}>
-                <AccordionTrigger className="text-[13.5px]">
-                  {i + 1}. {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-[13px] text-muted-foreground">
-                  {item.hint}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+        {/* A section that gathers its questions into a later Check Yourself
+            section has none of its own — no empty heading for it. */}
+        {section.checks.length > 0 && (
+          <div>
+            <h3 className="font-display mb-2 text-base font-bold text-foreground">
+              {section.checksTitle ??
+                (lang === "bm"
+                  ? `Semak diri — ${section.number}`
+                  : `Check yourself — ${section.number}`)}
+            </h3>
+            <Accordion type="single" collapsible>
+              {section.checks.map((item, i) => (
+                <AccordionItem key={item.question} value={`check-${section.number}-${i}`}>
+                  <AccordionTrigger className="text-[13.5px]">
+                    {i + 1}. {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[13px] text-muted-foreground">
+                    {item.hint}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        )}
 
         {isLast && (
           <>

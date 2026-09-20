@@ -1,11 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { ConductionDiagram } from "@/components/notes/blocks/ConductionDiagram";
-import { ConvectionRadiation } from "@/components/notes/blocks/ConvectionRadiation";
 import { BreezeDiagram } from "@/components/notes/blocks/BreezeDiagram";
 import { ExpansionParticles } from "@/components/notes/blocks/ExpansionParticles";
 import { BimetallicStrip } from "@/components/notes/blocks/BimetallicStrip";
 import { SurfaceComparison } from "@/components/notes/blocks/SurfaceComparison";
+import { Chapter9SpotlightFigure } from "@/components/notes/blocks/Chapter9SpotlightFigure";
+import { CH9_FIGURE_GEOMETRY } from "@/components/notes/blocks/ch9-approved-figure-geometry";
+import { spotlightBounds } from "@/components/notes/blocks/spotlight-shapes";
+import { SCIENCE_F2_CH9_IMAGES } from "../visual-assets";
 import { scienceF2C9InteractiveBM } from "./interactive-bm";
 import { scienceF2C9InteractiveDLP } from "./interactive-dlp";
 import { scienceF2C9QuizzesBM } from "./quizzes-bm";
@@ -45,6 +48,19 @@ const DECKS: [string, unknown][] = [
 
 const text = (v: unknown) => JSON.stringify(v);
 
+/**
+ * The one figure 9.2 now teaches all three methods on. Looked up by `figure`
+ * rather than by section index so the merge that created it cannot silently
+ * point these assertions at the conductor/insulator scene instead.
+ */
+const heatTransferFigure = (content: ScienceF2InteractiveContent) => {
+  const block = content.sections
+    .map((s) => s.ch9SpotlightFigure)
+    .find((f) => f?.figure === "heat-transfer");
+  expect(block, "no heat-transfer figure in this stream").toBeTruthy();
+  return block!;
+};
+
 /** Only the figure's own SVG — the interactive badge icon also draws circles. */
 const figureSvg = (markup: string) => {
   const i = markup.indexOf('role="img"');
@@ -77,7 +93,10 @@ describe("Chapter 9 — section architecture", () => {
     expect(dlp).toHaveLength(bm.length);
     expect(dlp.map((s) => s.number)).toEqual(bm.map((s) => s.number));
     const shape = (s: ScienceInteractiveSection) =>
-      Object.keys(s).filter((k) => !["number", "title", "intro"].includes(k)).sort().join(",");
+      Object.keys(s)
+        .filter((k) => !["number", "title", "intro"].includes(k))
+        .sort()
+        .join(",");
     for (let i = 0; i < bm.length; i++) {
       expect(shape(dlp[i]), `section ${i + 1} block shape differs`).toBe(shape(bm[i]));
     }
@@ -93,7 +112,11 @@ describe("Chapter 9 — all 9 SPs have a teaching home", () => {
     ["9.2.1 convection", /perolakan/i, /convection/i],
     ["9.2.1 radiation", /sinaran/i, /radiation/i],
     ["9.2.2 breezes", /bayu laut[\s\S]*bayu darat/i, /sea breeze[\s\S]*land breeze/i],
-    ["9.2.3 conductors/insulators", /konduktor haba[\s\S]*penebat haba/i, /heat conductor[\s\S]*heat insulator/i],
+    [
+      "9.2.3 conductors/insulators",
+      /konduktor haba[\s\S]*penebat haba/i,
+      /heat conductor[\s\S]*heat insulator/i,
+    ],
     ["9.3.1 expansion/contraction", /mengembang[\s\S]*mengecut/i, /expand[\s\S]*contract/i],
     ["9.3.2 uses of expansion", /dwilogam/i, /bimetallic/i],
     ["9.4.1 absorption", /menyerap haba/i, /absorb/i],
@@ -127,7 +150,9 @@ describe("Chapter 9 — a thermometer measures temperature, never heat", () => {
 
   it("states positively that a thermometer measures temperature", () => {
     expect(prose(scienceF2C9InteractiveBM)).toMatch(/termometer mengukur suhu|mengukur suhu/i);
-    expect(prose(scienceF2C9InteractiveDLP)).toMatch(/thermometer measures temperature|measure temperature/i);
+    expect(prose(scienceF2C9InteractiveDLP)).toMatch(
+      /thermometer measures temperature|measure temperature/i,
+    );
   });
 
   it("keeps heat and temperature separate, with their own units", () => {
@@ -150,7 +175,11 @@ describe("Chapter 9 — heat transfer mechanisms", () => {
     it(`${lang} conduction states vibration and collision, without particles migrating`, () => {
       const block = find(content, (s) => !!s.conductionDiagram)?.conductionDiagram;
       expect(block, `${lang} has no conduction figure`).toBeTruthy();
-      const all = (block!.stages.map((s) => s.note).join(" ") + " " + block!.mechanismNote).toLowerCase();
+      const all = (
+        block!.stages.map((s) => s.note).join(" ") +
+        " " +
+        block!.mechanismNote
+      ).toLowerCase();
       if (lang === "bm") {
         expect(all).toMatch(/bergetar/);
         expect(all).toMatch(/berlanggar/);
@@ -163,10 +192,9 @@ describe("Chapter 9 — heat transfer mechanisms", () => {
     });
 
     it(`${lang} convection states the density chain in the concept card, not a hint`, () => {
-      const block = find(content, (s) => !!s.convectionRadiation)?.convectionRadiation;
-      expect(block, `${lang} has no convection figure`).toBeTruthy();
-      const conv = block!.modes.find((m) => m.id === "convection")!;
-      const body = (conv.note + " " + conv.detail).toLowerCase();
+      const block = heatTransferFigure(content);
+      const conv = block.concepts.find((c) => c.id === "convection")!;
+      const body = conv.note.toLowerCase();
       if (lang === "bm") {
         expect(body).toMatch(/kurang tumpat/);
         expect(body).toMatch(/lebih tumpat/);
@@ -179,28 +207,46 @@ describe("Chapter 9 — heat transfer mechanisms", () => {
     });
 
     it(`${lang} radiation needs no medium and is not described as particle movement`, () => {
-      const block = find(content, (s) => !!s.convectionRadiation)!.convectionRadiation!;
-      const rad = block.modes.find((m) => m.id === "radiation")!;
-      const body = (rad.note + " " + rad.detail).toLowerCase();
+      const block = heatTransferFigure(content);
+      const rad = block.concepts.find((c) => c.id === "radiation")!;
+      const body = rad.note.toLowerCase();
       if (lang === "bm") {
-        expect(body).toMatch(/tanpa memerlukan sebarang medium|tanpa sebarang medium/);
+        expect(body).toMatch(/tanpa memerlukan[^.]*medium|tanpa sebarang medium/);
         expect(body).toMatch(/vakum|ruang kosong/);
       } else {
-        expect(body).toMatch(/without needing any medium|no medium/);
+        expect(body).toMatch(/without (needing|requiring)[^.]*medium|no medium/);
         expect(body).toMatch(/vacuum|empty space/);
       }
       expect(body).not.toMatch(/zarah bergerak|particles move/);
     });
+
+    it(`${lang} teaches all three methods on one figure, each with its own region`, () => {
+      const block = heatTransferFigure(content);
+      expect(block.concepts.map((c) => c.id)).toEqual(["conduction", "convection", "radiation"]);
+      // Every concept id must be a region the geometry actually paints, or the
+      // control would light nothing up.
+      const regions = CH9_FIGURE_GEOMETRY["heat-transfer"].regions;
+      for (const concept of block.concepts) {
+        expect(regions[concept.id], `${lang} ${concept.id} has no region`).toBeTruthy();
+      }
+    });
   }
 
-  it("the radiation view draws no medium between source and receiver", () => {
-    const block = scienceF2C9InteractiveDLP.sections.find((s) => s.convectionRadiation)!.convectionRadiation!;
-    const markup = renderToStaticMarkup(<ConvectionRadiation block={block} lang="en" />);
+  it("the radiation region is the one the artwork puts the Sun and the Earth in", () => {
+    const block = heatTransferFigure(scienceF2C9InteractiveDLP);
+    const markup = renderToStaticMarkup(<Chapter9SpotlightFigure block={block} lang="en" />);
+    // The spotlight overlay is an SVG drawn over the artwork itself.
     expect(markup).toMatch(/svg/);
+    expect(markup).toContain(`src="${SCIENCE_F2_CH9_IMAGES.heatTransferMethods}"`);
+    // Right-hand panel: radiation is the last third of the triptych.
+    const radiation = spotlightBounds(CH9_FIGURE_GEOMETRY["heat-transfer"].regions.radiation);
+    expect(radiation.minX, "radiation is not the right-hand panel").toBeGreaterThan(60);
   });
 
   it("the conduction figure keeps every particle at a fixed position", () => {
-    const block = scienceF2C9InteractiveBM.sections.find((s) => s.conductionDiagram)!.conductionDiagram!;
+    const block = scienceF2C9InteractiveBM.sections.find(
+      (s) => s.conductionDiagram,
+    )!.conductionDiagram!;
     const markup = renderToStaticMarkup(<ConductionDiagram block={block} lang="bm" />);
     const cx = [...figureSvg(markup).matchAll(/<circle cx="([\d.]+)"/g)].map((m) => Number(m[1]));
     expect(cx.length).toBe(block.particleCount);
@@ -273,14 +319,18 @@ describe("Chapter 9 — conductor and insulator definitions", () => {
     it(`${lang} keeps aluminium on the conductor side`, () => {
       const t = prose(content).toLowerCase();
       // The insulation investigation shows foil is the poorest of the three.
-      expect(t).toMatch(/kerajang aluminium ialah konduktor|aluminium foil is a heat conductor|aluminium/);
+      expect(t).toMatch(
+        /kerajang aluminium ialah konduktor|aluminium foil is a heat conductor|aluminium/,
+      );
       expect(t).not.toMatch(/ayam panggang|roast(ed)? chicken/);
     });
   }
 
   it("no deck claims foil retains heat for roasting", () => {
     for (const [name, deck] of DECKS) {
-      expect(text(deck), `${name} carries the unsourced roasting claim`).not.toMatch(/ayam panggang|roast(ed)? chicken/i);
+      expect(text(deck), `${name} carries the unsourced roasting claim`).not.toMatch(
+        /ayam panggang|roast(ed)? chicken/i,
+      );
     }
   });
 });
@@ -308,7 +358,9 @@ describe("Chapter 9 — expansion and contraction", () => {
   }
 
   it("the figure draws every particle at one fixed radius", () => {
-    const block = scienceF2C9InteractiveBM.sections.find((s) => s.expansionParticles)!.expansionParticles!;
+    const block = scienceF2C9InteractiveBM.sections.find(
+      (s) => s.expansionParticles,
+    )!.expansionParticles!;
     const markup = renderToStaticMarkup(<ExpansionParticles block={block} lang="bm" />);
     const radii = [...figureSvg(markup).matchAll(/<circle[^>]*r="([\d.]+)"/g)].map((m) => m[1]);
     expect(radii.length).toBeGreaterThan(5);
@@ -349,13 +401,16 @@ describe("Chapter 9 — bimetallic strip", () => {
   }
 
   it("no live surface still pairs copper with steel", () => {
-    const BAD = /(kuprum|copper)[^"]{0,60}(keluli|steel strip)|(keluli|steel) strip[^"]{0,60}(kuprum|copper)/i;
+    const BAD =
+      /(kuprum|copper)[^"]{0,60}(keluli|steel strip)|(keluli|steel) strip[^"]{0,60}(kuprum|copper)/i;
     for (const [lang, content] of LANGS) expect(prose(content), `${lang}`).not.toMatch(BAD);
     for (const [name, deck] of DECKS) expect(text(deck), name).not.toMatch(BAD);
   });
 
   it("the heated state deflects the strip and the room state does not", () => {
-    const block = scienceF2C9InteractiveDLP.sections.find((s) => s.bimetallicStrip)!.bimetallicStrip!;
+    const block = scienceF2C9InteractiveDLP.sections.find(
+      (s) => s.bimetallicStrip,
+    )!.bimetallicStrip!;
     const room = { ...block, states: [block.states.find((s) => s.id === "room")!] };
     const hot = { ...block, states: [block.states.find((s) => s.id === "heated")!] };
     const a = renderToStaticMarkup(<BimetallicStrip block={room} lang="en" />);
@@ -397,7 +452,9 @@ describe("Chapter 9 — absorption and emission", () => {
   });
 
   it("the figure draws more arrows for the dark can, and flips direction between modes", () => {
-    const block = scienceF2C9InteractiveBM.sections.find((s) => s.surfaceComparison)!.surfaceComparison!;
+    const block = scienceF2C9InteractiveBM.sections.find(
+      (s) => s.surfaceComparison,
+    )!.surfaceComparison!;
     const absorb = { ...block, modes: [block.modes.find((m) => m.id === "absorb")!] };
     const emit = { ...block, modes: [block.modes.find((m) => m.id === "emit")!] };
     const a = renderToStaticMarkup(<SurfaceComparison block={absorb} lang="bm" />);
@@ -412,11 +469,11 @@ describe("Chapter 9 — absorption and emission", () => {
 describe("Chapter 9 — Green Building (SP 9.4.3)", () => {
   for (const [lang, content] of LANGS) {
     it(`${lang} teaches Green Building in the notes, not only on the decks`, () => {
-      const section = content.sections.find((s) =>
-        /bangunan hijau|green building/i.test(s.title),
-      );
+      const section = content.sections.find((s) => /bangunan hijau|green building/i.test(s.title));
       expect(section, `${lang} has no Green Building section`).toBeTruthy();
-      expect(section!.tabs?.length ?? 0, `${lang} Green Building has no content`).toBeGreaterThan(2);
+      expect(section!.tabs?.length ?? 0, `${lang} Green Building has no content`).toBeGreaterThan(
+        2,
+      );
       expect(section!.checks.length).toBeGreaterThan(0);
     });
 
@@ -438,7 +495,9 @@ describe("Chapter 9 — Green Building (SP 9.4.3)", () => {
 
   it("exposes no textbook QR link or URL", () => {
     for (const [lang, content] of LANGS) {
-      expect(prose(content), `${lang} exposes a link`).not.toMatch(/https?:\/\/|imbas|scan the qr/i);
+      expect(prose(content), `${lang} exposes a link`).not.toMatch(
+        /https?:\/\/|imbas|scan the qr/i,
+      );
     }
   });
 });
@@ -449,9 +508,17 @@ describe("Chapter 9 — learner-facing leakage", () => {
   const LEAK =
     /aktiviti\s*9\.\d|activit(y|ies)\s*9\.\d|eksperimen\s*9\.\d|experiment\s*9\.\d|rajah\s*9\.\d|figure\s*9\.\d|jadual\s*9\.\d|table\s*9\.\d|\bDSKP\b|\bSP\s*9\.\d/i;
 
+  // Table 9.1 is the one deliberate exception: the chapter's own Heat-vs-
+  // Temperature comparison is captioned "Table 9.1" / "Jadual 9.1" so it reads
+  // as a real textbook table, not a source citation leaking through. Strip
+  // just that caption before checking for leakage, so every other
+  // "table/jadual 9.x" mention (an actual citation back to the source) still
+  // fails the guard.
+  const stripApprovedTableCaption = (s: string) => s.replace(/table\s*9\.1|jadual\s*9\.1/gi, "");
+
   for (const [lang, content] of LANGS) {
     it(`${lang} interactive surface is free of textbook numbering`, () => {
-      expect(prose(content)).not.toMatch(LEAK);
+      expect(stripApprovedTableCaption(prose(content))).not.toMatch(LEAK);
     });
   }
   for (const [name, deck] of DECKS) {
@@ -481,8 +548,12 @@ describe("Chapter 9 — quizzes, flashcards and mind map", () => {
 
   it("keeps BM and DLP decks index-for-index aligned", () => {
     for (let i = 0; i < scienceF2C9QuizzesBM.length; i++) {
-      expect(scienceF2C9QuizzesDLP[i].answerIndex, `q${i + 1}`).toBe(scienceF2C9QuizzesBM[i].answerIndex);
-      expect(scienceF2C9QuizzesDLP[i].difficulty, `q${i + 1}`).toBe(scienceF2C9QuizzesBM[i].difficulty);
+      expect(scienceF2C9QuizzesDLP[i].answerIndex, `q${i + 1}`).toBe(
+        scienceF2C9QuizzesBM[i].answerIndex,
+      );
+      expect(scienceF2C9QuizzesDLP[i].difficulty, `q${i + 1}`).toBe(
+        scienceF2C9QuizzesBM[i].difficulty,
+      );
     }
     expect(scienceF2C9FlashcardsDLP).toHaveLength(scienceF2C9FlashcardsBM.length);
   });
@@ -509,7 +580,8 @@ describe("Chapter 9 — interactive figures are real", () => {
       for (const s of content.sections) {
         const blocks = [
           s.conductionDiagram,
-          s.convectionRadiation,
+          s.ch9SpotlightFigure,
+          s.heatFlowDirection,
           s.breezeDiagram,
           s.expansionParticles,
           s.bimetallicStrip,
@@ -519,7 +591,8 @@ describe("Chapter 9 — interactive figures are real", () => {
           expect((b as { instruction?: string }).instruction, `${lang} ${s.title}`).toBeTruthy();
         }
         if (s.conductionDiagram) expect(s.conductionDiagram.stages.length).toBeGreaterThan(1);
-        if (s.convectionRadiation) expect(s.convectionRadiation.modes.length).toBe(2);
+        // Every spotlight figure is a comparison, so one region is never enough.
+        if (s.ch9SpotlightFigure) expect(s.ch9SpotlightFigure.concepts.length).toBeGreaterThan(1);
         if (s.breezeDiagram) expect(s.breezeDiagram.breezes.length).toBe(2);
         if (s.expansionParticles) expect(s.expansionParticles.states.length).toBe(3);
         if (s.bimetallicStrip) expect(s.bimetallicStrip.states.length).toBe(2);
@@ -527,17 +600,28 @@ describe("Chapter 9 — interactive figures are real", () => {
       }
     });
 
-    it(`${lang} renders six instructional figures across the chapter`, () => {
-      const count = content.sections.filter(
-        (s) =>
-          s.conductionDiagram ||
-          s.convectionRadiation ||
-          s.breezeDiagram ||
-          s.expansionParticles ||
-          s.bimetallicStrip ||
+    it(`${lang} renders ten instructional figures across the chapter`, () => {
+      // Counted as blocks rather than sections: 9.2 now carries three figures
+      // in one section (the direction of flow, the three-method triptych and
+      // the retained conduction particle model), so counting sections would
+      // hide two of them.
+      const count = content.sections.flatMap((s) =>
+        [
+          s.conductionDiagram,
+          s.ch9SpotlightFigure,
+          s.heatFlowDirection,
+          s.breezeDiagram,
+          s.expansionParticles,
+          s.bimetallicStrip,
           s.surfaceComparison,
+        ].filter(Boolean),
       ).length;
-      expect(count).toBe(6);
+      expect(count).toBe(10);
+    });
+
+    it(`${lang} places each approved spotlight figure exactly once`, () => {
+      const figures = content.sections.map((s) => s.ch9SpotlightFigure?.figure).filter(Boolean);
+      expect(figures.sort()).toEqual(["conductor-insulator", "heat-transfer", "sun-earth"]);
     });
   }
 });

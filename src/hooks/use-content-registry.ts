@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 // @/content/registry (and the @/data/content it partly builds on) statically
 // import every chapter's notes/quizzes/flashcards/mindmaps — several MB of
@@ -12,18 +12,22 @@ import { useEffect, useState } from "react";
 // once the dynamic import resolves in the browser.
 export type ContentRegistryModule = typeof import("@/content/registry");
 
+export const ContentRegistryContext = createContext<ContentRegistryModule | null>(null);
+
 export function useContentRegistry(): ContentRegistryModule | null {
+  const override = useContext(ContentRegistryContext);
   const [registry, setRegistry] = useState<ContentRegistryModule | null>(null);
   useEffect(() => {
     let cancelled = false;
+    if (override) return;
     import("@/content/registry").then((mod) => {
       if (!cancelled) setRegistry(mod);
     });
     return () => {
       cancelled = true;
     };
-  }, []);
-  return registry;
+  }, [override]);
+  return override ?? registry;
 }
 
 // Same rationale as ContentRegistryModule above: @/data/content is the
@@ -33,16 +37,17 @@ export function useContentRegistry(): ContentRegistryModule | null {
 // etc.) is needed outside the registry's own module.
 export type ContentDataModule = typeof import("@/data/content");
 
-export function useContentDataModule(): ContentDataModule | null {
+export function useContentDataModule(enabled = true): ContentDataModule | null {
   const [mod, setMod] = useState<ContentDataModule | null>(null);
   useEffect(() => {
     let cancelled = false;
+    if (!enabled) return;
     import("@/data/content").then((m) => {
       if (!cancelled) setMod(m);
     });
     return () => {
       cancelled = true;
     };
-  }, []);
-  return mod;
+  }, [enabled]);
+  return enabled ? mod : null;
 }

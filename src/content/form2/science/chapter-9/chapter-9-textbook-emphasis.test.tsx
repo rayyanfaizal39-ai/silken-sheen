@@ -36,13 +36,9 @@ function allStrings(content: ScienceF2InteractiveContent): [string, string][] {
 /** The exact set of terms each stream is expected to have marked (order-independent). */
 const EXPECTED: Record<string, string[]> = {
   BM: [
-    "memerangkap haba begitu berkesan di bawah bulu dan lemaknya",
+    "Marmar mengalirkan haba daripada kaki anda dengan lebih cepat",
     "satu bentuk tenaga",
-    "sukatan darjah kepanasan atau kesejukan sesuatu objek",
-    "jenis bahan, kuantiti bahan dan suhu",
-    "darjah pergerakan zarah-zarah di dalam bahan itu",
-    "pemindahan haba antara kedua-duanya menjadi sifar",
-    "keseimbangan terma",
+    "ukuran darjah kepanasan atau kesejukan",
     "proses pengaliran haba dari kawasan panas ke kawasan sejuk melalui medium pepejal",
     "membawa haba melalui pergerakan bendalir itu sendiri",
     "satu-satunya cara haba boleh merambat menerusi ruang kosong",
@@ -58,8 +54,9 @@ const EXPECTED: Record<string, string[]> = {
     "mengesan perubahan suhu dengan cepat",
     "mengembang pada hari yang panas tanpa membengkok atau terangkat",
     "mengembang dan mengecut dengan selamat",
-    "Permukaan yang gelap dan kusam merupakan penyerap dan pembebas haba yang lebih baik",
-    "Warna cerah tidak menyerap banyak haba",
+    "Permukaan yang gelap dan kusam ialah penyerap haba yang baik dan pembebas haba yang baik",
+    "Permukaan yang cerah dan berkilat ialah penyerap haba yang lemah dan pembebas haba yang lemah",
+    "permukaan perak atau putih yang berkilat",
     "mengurangkan kesan pembangunan yang pesat terhadap alam sekitar dan kesihatan manusia",
     "kecekapan tenaga yang tinggi",
     "Sistem pengaliran air yang baik",
@@ -67,13 +64,9 @@ const EXPECTED: Record<string, string[]> = {
     "Sistem peredaran udara dan pencahayaan semula jadi yang baik",
   ],
   DLP: [
-    "traps heat so effectively beneath its fur and fat",
+    "Marble conducts heat away from your feet faster",
     "a form of energy",
-    "the measure of the degree of hotness or coldness of an object",
-    "the type of substance, the quantity of substance and the temperature",
-    "the degree of movement of the particles within the substance",
-    "the heat transfer between them becomes zero",
-    "thermal equilibrium",
+    "a measure of the degree of hotness or coldness",
     "the flow of heat from a hot region to a cold region through a solid medium",
     "carries heat through the movement of the fluid itself",
     "the only way heat can travel through empty space",
@@ -89,8 +82,9 @@ const EXPECTED: Record<string, string[]> = {
     "detects changes in temperature quickly",
     "expand on a hot day without buckling or lifting",
     "expand and contract safely",
-    "Dark, dull surfaces are better absorbers and better emitters of heat",
-    "Light colours do not absorb much heat",
+    "Dark, dull surfaces are good absorbers and good emitters of heat",
+    "White, shiny surfaces are poor absorbers and poor emitters of heat",
+    "shiny silver or white surface",
     "reduce the impact of rapid development on the environment and on human health",
     "high energy efficiency",
     "Good water-flow systems",
@@ -99,30 +93,41 @@ const EXPECTED: Record<string, string[]> = {
   ],
 };
 
-/** Field path -> the exact original wording (before markers were added). */
+/**
+ * Field path -> the exact wording the field is expected to carry once the
+ * markers are stripped back out.
+ *
+ * For most of the chapter that is literally the pre-emphasis original. A
+ * handful of fields are not, because 9.2 was deliberately restructured and
+ * reordered: conduction and convection + radiation were merged into one
+ * "three methods" section (`sections[1]`); the learner-facing order is now
+ * direction of flow -> three methods -> natural phenomena (`sections[2]`) ->
+ * conductors/insulators (`sections[3]`) -> thermal equilibrium (`sections[4]`,
+ * which carries no markers and so needs no entry here); the old
+ * heat-vs-temperature `cards` duplicating `differencesTable` were removed
+ * (their two marked terms have no replacement — `differencesTable`'s cells
+ * are plain text, so EXPECTED no longer lists them); and the
+ * absorption/emission intro and oil-tanker card (`sections[7]`) were
+ * reworded to separate "good/poor absorber and emitter" from "reflects more
+ * radiation" instead of the vaguer "light colours don't absorb much heat".
+ * Every marked term in the rewritten strings below is still one the textbook
+ * itself emphasises, which is what EXPECTED pins.
+ */
 const ORIGINALS: Record<string, Record<string, string>> = {
   BM: {
     "content.blogHighlight.body":
-      "Kamera inframerah mengesan haba yang disinarkan daripada haiwan — tetapi beruang kutub memerangkap haba begitu berkesan di bawah bulu dan lemaknya sehingga ia hampir tidak kelihatan pada pengimejan terma, walaupun dalam habitat yang membeku.",
+      "Mengapakah permaidani terasa lebih panas daripada lantai marmar walaupun kedua-duanya berada pada suhu bilik yang sama? Marmar mengalirkan haba daripada kaki anda dengan lebih cepat berbanding permaidani. Permaidani ialah konduktor haba yang lebih lemah, jadi haba meninggalkan kaki anda dengan lebih perlahan — bukan kerana permaidani itu sebenarnya bersuhu lebih tinggi.",
     "content.sections[0].intro":
-      "Haba ialah satu bentuk tenaga yang mengalir daripada kawasan bersuhu tinggi ke kawasan bersuhu rendah. Suhu pula ialah sukatan darjah kepanasan atau kesejukan sesuatu objek. Kedua-duanya berkait, tetapi ia bukan perkara yang sama — dua bikar air pada suhu yang sama boleh mengandungi kuantiti haba yang sangat berbeza, bergantung kepada berapa banyak air itu.",
-    "content.sections[0].cards[0].body":
-      "Satu bentuk tenaga. Kuantiti haba bergantung pada jenis bahan, kuantiti bahan dan suhu.",
-    "content.sections[0].cards[1].body":
-      "Darjah kepanasan atau kesejukan sesuatu objek. Suhu bergantung pada darjah pergerakan zarah-zarah di dalam bahan itu.",
-    "content.sections[0].cards[2].body":
-      "Apabila dua objek bersentuhan, tenaga haba dipindahkan daripada objek bersuhu tinggi kepada objek bersuhu rendah. Apabila pemindahan haba antara kedua-duanya menjadi sifar, kedua-dua objek berada dalam keseimbangan terma dan mempunyai suhu yang sama.",
+      "Haba ialah satu bentuk tenaga yang mengalir daripada kawasan yang lebih panas ke kawasan yang lebih sejuk. Suhu pula ialah ukuran darjah kepanasan atau kesejukan sesuatu objek. Kedua-duanya berkait, tetapi ia bukan perkara yang sama.",
     "content.sections[1].intro":
-      "Konduksi ialah proses pengaliran haba dari kawasan panas ke kawasan sejuk melalui medium pepejal. Zarah-zarah yang menerima tenaga haba bergetar dengan lebih cepat dan berlanggar dengan zarah jiran dengan lebih kerap, lalu memindahkan tenaga itu ke seluruh medium.",
+      "Haba sentiasa mengalir daripada kawasan yang lebih panas ke kawasan yang lebih sejuk. Ia boleh berlaku melalui tiga cara. Konduksi ialah proses pengaliran haba dari kawasan panas ke kawasan sejuk melalui medium pepejal. Dalam bendalir, perolakan membawa haba melalui pergerakan bendalir itu sendiri. Sinaran pula tidak memerlukan sebarang medium — inilah satu-satunya cara haba boleh merambat menerusi ruang kosong.",
     "content.sections[2].intro":
-      "Haba juga boleh mengalir tanpa melalui pepejal. Dalam bendalir, perolakan membawa haba melalui pergerakan bendalir itu sendiri. Sinaran pula tidak memerlukan sebarang medium — inilah satu-satunya cara haba boleh merambat menerusi ruang kosong.",
+      "Haba dari Matahari sampai ke Bumi melalui sinaran, satu-satunya cara yang tidak memerlukan sebarang medium. Haba itu tidak memanaskan darat dan laut sama rata, dan kerana darat memanas dan menyejuk dengan lebih cepat berbanding laut, bayu laut dan bayu darat terbentuk. Kedua-duanya merupakan contoh perolakan yang berlaku secara semula jadi.",
     "content.sections[3].intro":
-      "Pembentukan bayu laut dan bayu darat merupakan contoh perolakan yang berlaku secara semula jadi. Kuncinya ialah darat memanas dan menyejuk dengan lebih cepat berbanding laut.",
-    "content.sections[4].intro":
       "Bahan yang boleh mengalirkan haba dengan mudah dikenali sebagai konduktor haba. Bahan yang boleh menghalang atau melambatkan pengaliran haba pula dikenali sebagai penebat haba.",
-    "content.sections[4].cards[0].body":
+    "content.sections[3].cards[0].body":
       "Bahan yang membenarkan haba mengalir melaluinya dengan mudah. Logam seperti kuprum, aluminium dan besi ialah konduktor haba yang baik.",
-    "content.sections[4].cards[1].body":
+    "content.sections[3].cards[1].body":
       "Bahan yang menghalang atau melambatkan pengaliran haba. Kayu, kapas, kain felt, gentian kaca dan polistirena ialah penebat haba yang baik.",
     "content.sections[5].intro":
       "Apabila jirim dipanaskan, zarah-zarahnya memperoleh tenaga, bergerak atau bergetar dengan lebih cepat, dan jarak antara zarah bertambah — jadi jirim itu mengembang. Apabila disejukkan, zarah bergerak lebih perlahan, jarak antara zarah berkurang, dan jirim mengecut. Ini berlaku pada pepejal, cecair dan gas.",
@@ -133,9 +138,9 @@ const ORIGINALS: Record<string, Record<string, string>> = {
     "content.sections[6].accordions[2].body":
       "Satu hujung jambatan diletakkan di atas penggolek supaya seluruh struktur boleh mengembang dan mengecut dengan selamat mengikut perubahan suhu.",
     "content.sections[7].intro":
-      "Keupayaan sesuatu objek untuk menyerap dan membebaskan haba bergantung pada jenis dan warna permukaannya. Apabila objek menyerap haba, suhunya meningkat; apabila objek membebaskan haba, suhunya menurun. Permukaan yang gelap dan kusam merupakan penyerap dan pembebas haba yang lebih baik berbanding permukaan yang cerah dan berkilat.",
+      "Keupayaan sesuatu objek untuk menyerap dan membebaskan haba bergantung pada jenis dan warna permukaannya. Apabila objek menyerap haba, suhunya meningkat; apabila objek membebaskan haba, suhunya menurun. Permukaan yang gelap dan kusam ialah penyerap haba yang baik dan pembebas haba yang baik. Permukaan yang cerah dan berkilat ialah penyerap haba yang lemah dan pembebas haba yang lemah — sebaliknya ia memantulkan lebih banyak sinaran.",
     "content.sections[7].cards[0].body":
-      "Lori tangki minyak dicat dengan warna cerah seperti putih atau perak. Warna cerah tidak menyerap banyak haba, jadi penyejatan minyak dapat dikurangkan.",
+      "Lori tangki minyak dicat dengan permukaan perak atau putih yang berkilat. Permukaan berkilat memantulkan lebih banyak sinaran Matahari dan menyerap kurang haba, jadi minyak di dalamnya kurang panas dan penyejatan dapat dikurangkan.",
     "content.sections[8].intro":
       "Konsep Bangunan Hijau ialah idea yang dijana untuk mengurangkan kesan pembangunan yang pesat terhadap alam sekitar dan kesihatan manusia. Konsep haba yang anda pelajari dalam bab ini digunakan secara langsung: sebuah rumah hijau direka supaya tenaga yang diperlukan untuk menyejukkan atau memanaskannya dapat dikurangkan.",
     "content.sections[8].tabs[0].body":
@@ -149,26 +154,18 @@ const ORIGINALS: Record<string, Record<string, string>> = {
   },
   DLP: {
     "content.blogHighlight.body":
-      "Infrared cameras detect the heat radiated by animals — but a polar bear traps heat so effectively beneath its fur and fat that it is almost invisible to thermal imaging, even in a freezing habitat.",
+      "Why does a carpet feel warmer than a marble floor when both are at the same room temperature? Marble conducts heat away from your feet faster than carpet does. Carpet is a poorer heat conductor, so heat leaves your feet more slowly — it is not that the carpet is actually at a higher temperature.",
     "content.sections[0].intro":
-      "Heat is a form of energy that flows from a region of higher temperature to a region of lower temperature. Temperature is the measure of the degree of hotness or coldness of an object. The two are related, but they are not the same thing — two beakers of water at the same temperature can hold very different quantities of heat, depending on how much water there is.",
-    "content.sections[0].cards[0].body":
-      "A form of energy. The quantity of heat depends on the type of substance, the quantity of substance and the temperature.",
-    "content.sections[0].cards[1].body":
-      "The degree of hotness or coldness of an object. Temperature depends on the degree of movement of the particles within the substance.",
-    "content.sections[0].cards[2].body":
-      "When two objects are in contact, heat energy is transferred from the object at the higher temperature to the object at the lower temperature. When the heat transfer between them becomes zero, the two objects are in thermal equilibrium and share the same temperature.",
+      "Heat is a form of energy that flows from a hotter region to a colder region. Temperature is a measure of the degree of hotness or coldness of an object. The two are related, but they are not the same thing.",
     "content.sections[1].intro":
-      "Conduction is the flow of heat from a hot region to a cold region through a solid medium. Particles that receive heat energy vibrate faster and collide with their neighbouring particles more often, transferring that energy throughout the medium.",
+      "Heat always flows from a hotter region to a colder region. It can do that in three ways. Conduction is the flow of heat from a hot region to a cold region through a solid medium. In fluids, convection carries heat through the movement of the fluid itself. Radiation needs no medium at all — it is the only way heat can travel through empty space.",
     "content.sections[2].intro":
-      "Heat can also flow without passing through a solid. In fluids, convection carries heat through the movement of the fluid itself. Radiation needs no medium at all — it is the only way heat can travel through empty space.",
+      "Heat from the Sun reaches the Earth by radiation, the one method that needs no medium at all. That heat does not warm land and sea equally, and because land heats up and cools down faster than the sea, sea breezes and land breezes form. They are examples of convection happening in nature.",
     "content.sections[3].intro":
-      "Sea breezes and land breezes are examples of convection happening in nature. The key is that land heats up and cools down faster than the sea.",
-    "content.sections[4].intro":
       "A material that lets heat flow through it easily is known as a heat conductor. A material that prevents or slows down the flow of heat is known as a heat insulator.",
-    "content.sections[4].cards[0].body":
+    "content.sections[3].cards[0].body":
       "A material that allows heat to flow through it easily. Metals such as copper, aluminium and iron are good heat conductors.",
-    "content.sections[4].cards[1].body":
+    "content.sections[3].cards[1].body":
       "A material that prevents or slows down the flow of heat. Wood, cotton, felt, fibreglass and polystyrene are good heat insulators.",
     "content.sections[5].intro":
       "When matter is heated, its particles gain energy, move or vibrate faster, and the spacing between the particles increases — so the matter expands. When cooled, the particles move more slowly, the spacing decreases, and the matter contracts. This happens in solids, liquids and gases.",
@@ -179,9 +176,9 @@ const ORIGINALS: Record<string, Record<string, string>> = {
     "content.sections[6].accordions[2].body":
       "One end of the bridge rests on rollers so the whole structure can expand and contract safely as the temperature changes.",
     "content.sections[7].intro":
-      "The ability of an object to absorb and emit heat depends on the type and colour of its surface. When an object absorbs heat, its temperature rises; when an object emits heat, its temperature falls. Dark, dull surfaces are better absorbers and better emitters of heat than light, shiny surfaces.",
+      "The ability of an object to absorb and emit heat depends on the type and colour of its surface. When an object absorbs heat, its temperature rises; when an object emits heat, its temperature falls. Dark, dull surfaces are good absorbers and good emitters of heat. White, shiny surfaces are poor absorbers and poor emitters of heat — they reflect more radiation instead.",
     "content.sections[7].cards[0].body":
-      "Fuel tanker lorries are painted in light colours such as white or silver. Light colours do not absorb much heat, so evaporation of the fuel is reduced.",
+      "Fuel tanker lorries are painted with a shiny silver or white surface. A shiny surface reflects more of the Sun's radiation and absorbs less heat, so the fuel inside heats up less and evaporation is reduced.",
     "content.sections[8].intro":
       "The Green Building Concept is an idea developed to reduce the impact of rapid development on the environment and on human health. The heat concepts in this chapter are used directly: a green home is designed so that the energy needed to cool or heat it is reduced.",
     "content.sections[8].tabs[0].body":
@@ -196,7 +193,8 @@ const ORIGINALS: Record<string, Record<string, string>> = {
 };
 
 /** Only these field-path suffixes are wired to render through ScienceEmphasis. */
-const ALLOWED_FIELD = /\.(body|intro|note|challenge|adaptation|role|benefit|remember|quickExplanation)(\[\d+\])?$/;
+const ALLOWED_FIELD =
+  /\.(body|intro|note|challenge|adaptation|role|benefit|remember|quickExplanation)(\[\d+\])?$/;
 
 describe("Chapter 9 — the textbook's emphasis, and only that", () => {
   it.each(STREAMS)("%s marks exactly the terms transferred from the textbook", (name, content) => {
@@ -232,7 +230,9 @@ describe("Chapter 9 — the textbook's emphasis, and only that", () => {
         .filter(([, text]) => text.includes("**"))
         .map(([path]) => path)
         .sort();
-    expect(fieldsWithMarkers(scienceF2C9InteractiveBM)).toEqual(fieldsWithMarkers(scienceF2C9InteractiveDLP));
+    expect(fieldsWithMarkers(scienceF2C9InteractiveBM)).toEqual(
+      fieldsWithMarkers(scienceF2C9InteractiveDLP),
+    );
   });
 
   it.each(STREAMS)("%s puts markers only in fields wired to ScienceEmphasis", (name, content) => {

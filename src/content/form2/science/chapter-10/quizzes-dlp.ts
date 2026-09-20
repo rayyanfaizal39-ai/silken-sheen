@@ -11,7 +11,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question: "Sound is a form of energy caused by...",
     options: ["Vibration", "Light", "Magnetism", "Heating"],
     answerIndex: 0,
-    explanation: "Sound is a form of energy caused by vibration, for example the vibration of vocal cords while speaking.",
+    explanation:
+      "Sound is a form of energy caused by vibration, for example the vibration of vocal cords while speaking.",
   },
   {
     id: "sci-f2-c10-dlp-q2",
@@ -23,7 +24,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question: "Sound cannot propagate through...",
     options: ["Solids", "Liquids", "Gases", "A vacuum"],
     answerIndex: 3,
-    explanation: "Sound requires a medium to propagate and cannot propagate through a vacuum (an area without air).",
+    explanation:
+      "Sound requires a medium to propagate and cannot propagate through a vacuum (an area without air).",
   },
   {
     id: "sci-f2-c10-dlp-q3",
@@ -35,19 +37,27 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question: "In which medium does sound propagate fastest?",
     options: ["Gas", "Liquid", "Solid", "Vacuum"],
     answerIndex: 2,
-    explanation: "Sound propagates fastest in solids because the particles are arranged very closely together.",
+    explanation:
+      "Sound propagates fastest in solids because the particles are arranged very closely together.",
   },
   {
     id: "sci-f2-c10-dlp-q4",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "In which medium does sound propagate most slowly?",
-    options: ["Solid", "Liquid", "Gas", "Metal"],
+    question:
+      "A guitarist tightens a guitar string to tune it. What happens to the pitch of the sound produced, and why?",
+    options: [
+      "The pitch decreases, because a tighter string vibrates at a lower frequency",
+      "The volume increases, but the pitch is unaffected",
+      "The pitch increases, because a tighter string vibrates at a higher frequency",
+      "The pitch stays the same, because tightness does not affect a string's vibration",
+    ],
     answerIndex: 2,
-    explanation: "Sound propagates most slowly in gases because gas particles are arranged far apart from each other.",
+    explanation:
+      "Tightening a guitar string increases the frequency at which it vibrates, producing a higher pitch. This shows the relationship between frequency and pitch in musical instruments.",
   },
   {
     id: "sci-f2-c10-dlp-q5",
@@ -56,15 +66,16 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "What kind of surface is a good sound reflector?",
+    question: "Which statement correctly compares sound reflectors and sound absorbers?",
     options: [
-      "Hard and smooth surface",
-      "Soft and rough surface",
-      "Carpeted surface",
-      "Perforated surface",
+      "Hard, smooth surfaces are good reflectors; soft, rough surfaces are good absorbers",
+      "Hard, smooth surfaces are good absorbers; soft, rough surfaces are good reflectors",
+      "Both hard and soft surfaces reflect sound equally well",
+      "Only metal surfaces can reflect or absorb sound",
     ],
     answerIndex: 0,
-    explanation: "Hard and smooth surfaces such as marble tiles and walls are good sound reflectors.",
+    explanation:
+      "Hard and smooth surfaces, such as marble tiles and walls, reflect sound well. Soft and rough surfaces, such as carpet and softboard, absorb sound well.",
   },
   {
     id: "sci-f2-c10-dlp-q6",
@@ -73,15 +84,16 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "What kind of surface is a good sound absorber?",
+    question: "How does a megaphone help a person's voice be heard from a distance?",
     options: [
-      "Hard and smooth surface",
-      "Soft and rough surface",
-      "Metal surface",
-      "Tiled surface",
+      "It changes the voice to a higher pitch",
+      "It converts the voice into ultrasound",
+      "It amplifies the voice so that it can be heard from a distance",
+      "It removes background noise from the voice",
     ],
-    answerIndex: 1,
-    explanation: "Soft and rough surfaces such as carpet and softboard are good sound absorbers.",
+    answerIndex: 2,
+    explanation:
+      "A megaphone amplifies a person's voice so that it can be heard from a distance, similar to how a hearing aid amplifies sound entering the ear.",
   },
   {
     id: "sci-f2-c10-dlp-q7",
@@ -91,9 +103,15 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 10",
     lang: "dlp",
     question: "The loudness of sound depends on...",
-    options: ["The amplitude of the sound wave", "The frequency of the sound wave", "The distance of the source", "The colour of the sound wave"],
+    options: [
+      "The amplitude of the sound wave",
+      "The frequency of the sound wave",
+      "The distance of the source",
+      "The colour of the sound wave",
+    ],
     answerIndex: 0,
-    explanation: "Loudness of sound depends on the amplitude of the sound wave — the greater the amplitude, the louder the sound.",
+    explanation:
+      "Loudness of sound depends on the amplitude of the sound wave — the greater the amplitude, the louder the sound.",
   },
   {
     id: "sci-f2-c10-dlp-q8",
@@ -103,9 +121,15 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 10",
     lang: "dlp",
     question: "The pitch of sound depends on...",
-    options: ["The amplitude of the sound wave", "The frequency of the sound wave", "The speed of sound", "The air temperature"],
+    options: [
+      "The amplitude of the sound wave",
+      "The frequency of the sound wave",
+      "The speed of sound",
+      "The air temperature",
+    ],
     answerIndex: 1,
-    explanation: "Pitch of sound depends on the frequency of the sound wave — the higher the frequency, the higher the pitch.",
+    explanation:
+      "Pitch of sound depends on the frequency of the sound wave — the higher the frequency, the higher the pitch.",
   },
   {
     id: "sci-f2-c10-dlp-q9",
@@ -134,7 +158,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Sound fully absorbed by a soft surface",
     ],
     answerIndex: 0,
-    explanation: "An echo is produced when sound waves are reflected from a hard surface to the listener, taking some time to reach the ears.",
+    explanation:
+      "An echo is produced when sound waves are reflected from a hard surface to the listener, taking some time to reach the ears.",
   },
   {
     id: "sci-f2-c10-dlp-q11",
@@ -143,7 +168,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "Why can't the sound of an alarm clock's ringing be heard after air is sucked out of a bell jar using a vacuum pump?",
+    question:
+      "Why can't the sound of an alarm clock's ringing be heard after air is sucked out of a bell jar using a vacuum pump?",
     options: [
       "Because the alarm clock stops vibrating",
       "Because sound requires a medium to propagate and cannot propagate through a vacuum",
@@ -151,7 +177,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Because the amplitude of the alarm clock becomes zero",
     ],
     answerIndex: 1,
-    explanation: "The vacuum jar demonstration shows sound cannot propagate through a vacuum because it requires a medium, even though the alarm clock is still vibrating inside the jar.",
+    explanation:
+      "The vacuum jar demonstration shows sound cannot propagate through a vacuum because it requires a medium, even though the alarm clock is still vibrating inside the jar.",
   },
   {
     id: "sci-f2-c10-dlp-q12",
@@ -168,7 +195,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Because the temperature of solids is higher than gases",
     ],
     answerIndex: 0,
-    explanation: "The close arrangement of solid particles allows vibration from one particle to immediately cause nearby particles to vibrate, unlike gas particles which are far apart.",
+    explanation:
+      "The close arrangement of solid particles allows vibration from one particle to immediately cause nearby particles to vibrate, unlike gas particles which are far apart.",
   },
   {
     id: "sci-f2-c10-dlp-q13",
@@ -185,7 +213,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Sound is transferred directly without any medium",
     ],
     answerIndex: 0,
-    explanation: "When a bell is rung, its metal surface vibrates, causing nearby air molecules to vibrate and transfer the vibration in the form of waves until it is heard by the listener.",
+    explanation:
+      "When a bell is rung, its metal surface vibrates, causing nearby air molecules to vibrate and transfer the vibration in the form of waves until it is heard by the listener.",
   },
   {
     id: "sci-f2-c10-dlp-q14",
@@ -194,7 +223,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "In the investigation using a C.R.O. and an audio signal generator, what is the effect of increasing output power?",
+    question:
+      "In the investigation using a C.R.O. and an audio signal generator, what is the effect of increasing output power?",
     options: [
       "Increases the amplitude of the wave, making the sound louder",
       "Increases the frequency of the wave, making the pitch higher",
@@ -202,7 +232,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Converts sound into light",
     ],
     answerIndex: 0,
-    explanation: "Increasing output power increases the amplitude of the sound wave, causing the sound to become louder.",
+    explanation:
+      "Increasing output power increases the amplitude of the sound wave, causing the sound to become louder.",
   },
   {
     id: "sci-f2-c10-dlp-q15",
@@ -211,7 +242,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "In the investigation using a C.R.O. and an audio signal generator, what is the effect of increasing frequency?",
+    question:
+      "In the investigation using a C.R.O. and an audio signal generator, what is the effect of increasing frequency?",
     options: [
       "Increases the amplitude of the wave",
       "Increases the frequency of the wave, making the pitch higher",
@@ -219,7 +251,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Has no effect at all",
     ],
     answerIndex: 1,
-    explanation: "Increasing the frequency on the audio signal generator increases the wave frequency, causing the pitch to become higher.",
+    explanation:
+      "Increasing the frequency on the audio signal generator increases the wave frequency, causing the pitch to become higher.",
   },
   {
     id: "sci-f2-c10-dlp-q16",
@@ -236,7 +269,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "The loss of ear sensitivity to high frequencies",
     ],
     answerIndex: 0,
-    explanation: "The Doppler effect is the apparent change in frequency caused by relative movement between the sound source and the observer.",
+    explanation:
+      "The Doppler effect is the apparent change in frequency caused by relative movement between the sound source and the observer.",
   },
   {
     id: "sci-f2-c10-dlp-q17",
@@ -245,10 +279,17 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "What happens to the frequency of an ambulance siren heard by a stationary observer when the ambulance approaches them?",
-    options: ["The frequency becomes zero", "The frequency decreases", "The frequency stays the same", "The frequency increases"],
+    question:
+      "What happens to the frequency of an ambulance siren heard by a stationary observer when the ambulance approaches them?",
+    options: [
+      "The frequency becomes zero",
+      "The frequency decreases",
+      "The frequency stays the same",
+      "The frequency increases",
+    ],
     answerIndex: 3,
-    explanation: "The frequency of an ambulance siren heard by an observer increases when the ambulance approaches the stationary observer, according to the Doppler effect.",
+    explanation:
+      "The frequency of an ambulance siren heard by an observer increases when the ambulance approaches the stationary observer, according to the Doppler effect.",
   },
   {
     id: "sci-f2-c10-dlp-q18",
@@ -260,7 +301,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question: "Which type of sound wave has a frequency of more than 20,000 Hz?",
     options: ["Infrasound", "Ultrasound", "Echo", "Radio wave"],
     answerIndex: 1,
-    explanation: "Ultrasound is a sound wave with a frequency of more than 20,000 Hz, which cannot be heard by humans but can be heard by animals such as bats.",
+    explanation:
+      "Ultrasound is a sound wave with a frequency of more than 20,000 Hz, which cannot be heard by humans but can be heard by animals such as bats.",
   },
   {
     id: "sci-f2-c10-dlp-q19",
@@ -277,7 +319,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Detect underwater objects",
     ],
     answerIndex: 3,
-    explanation: "Sonar is a sound reflection technology used in the shipping industry to detect underwater objects, and is also used in medical and fisheries sectors.",
+    explanation:
+      "Sonar is a sound reflection technology used in the shipping industry to detect underwater objects, and is also used in medical and fisheries sectors.",
   },
   {
     id: "sci-f2-c10-dlp-q20",
@@ -287,30 +330,44 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 10",
     lang: "dlp",
     question: "What is the range of sound frequency that can be detected by humans?",
-    options: ["2 Hz to 2,000 Hz", "20 Hz to 20,000 Hz", "200 Hz to 200,000 Hz", "2,000 Hz to 100,000 Hz"],
+    options: [
+      "2 Hz to 2,000 Hz",
+      "20 Hz to 20,000 Hz",
+      "200 Hz to 200,000 Hz",
+      "2,000 Hz to 100,000 Hz",
+    ],
     answerIndex: 1,
-    explanation: "The limit of human hearing is within the range of 20 Hz to 20,000 Hz, and this range becomes narrower with age.",
+    explanation:
+      "The limit of human hearing is within the range of 20 Hz to 20,000 Hz, and this range becomes narrower with age.",
   },
   {
     id: "sci-f2-c10-dlp-q21",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "Based on the table of animal hearing ranges, which animal has the highest hearing range (Hz)?",
-    options: ["Dog (67–45,000)", "Dolphin (40–100,000)", "Bat (2,000–110,000)", "Horse (55–33,500)"],
+    question:
+      "Based on the table of animal hearing ranges, which animal has the highest hearing range (Hz)?",
+    options: [
+      "Dog (67–45,000)",
+      "Dolphin (40–100,000)",
+      "Bat (2,000–110,000)",
+      "Horse (55–33,500)",
+    ],
     answerIndex: 2,
-    explanation: "Bats have the highest hearing range with an upper limit of 110,000 Hz, compared to dolphins (100,000 Hz), dogs (45,000 Hz) and horses (33,500 Hz).",
+    explanation:
+      "Bats have the highest hearing range with an upper limit of 110,000 Hz, compared to dolphins (100,000 Hz), dogs (45,000 Hz) and horses (33,500 Hz).",
   },
   {
     id: "sci-f2-c10-dlp-q22",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "A doctor uses a device to listen to a patient's heartbeat more clearly. What device is used, and how does it work?",
+    question:
+      "A doctor uses a device to listen to a patient's heartbeat more clearly. What device is used, and how does it work?",
     options: [
       "Loudspeaker — makes a voice louder so it can be heard from a distance",
       "Stethoscope — helps the doctor hear the patient's heartbeat by channelling and amplifying the sound",
@@ -318,7 +375,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Sonar — detects objects underwater",
     ],
     answerIndex: 1,
-    explanation: "A stethoscope is a device that helps doctors hear a patient's heartbeat more clearly, overcoming the limitations of human hearing.",
+    explanation:
+      "A stethoscope is a device that helps doctors hear a patient's heartbeat more clearly, overcoming the limitations of human hearing.",
   },
   {
     id: "sci-f2-c10-dlp-q23",
@@ -335,7 +393,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Because the frequency of sound becomes very low inside a cave",
     ],
     answerIndex: 1,
-    explanation: "A repeated echo in a cave is caused by sound being reflected back and forth repeatedly between the hard surfaces of the cave before reaching the listener's ears.",
+    explanation:
+      "A repeated echo in a cave is caused by sound being reflected back and forth repeatedly between the hard surfaces of the cave before reaching the listener's ears.",
   },
   {
     id: "sci-f2-c10-dlp-q24",
@@ -344,7 +403,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "A recording studio engineer lines the walls with sound-absorbing material. What is the main purpose of this, and why is it effective?",
+    question:
+      "A recording studio engineer lines the walls with sound-absorbing material. What is the main purpose of this, and why is it effective?",
     options: [
       "To increase the amplitude of sound so recordings are louder",
       "To increase the frequency of the recorded sound",
@@ -352,7 +412,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "To reduce echo and produce high-quality recordings, because soft and rough surfaces absorb sound well",
     ],
     answerIndex: 3,
-    explanation: "Sound-absorbing materials (soft and rough) reduce the reflection of sound that causes echo, producing high-quality sound recordings.",
+    explanation:
+      "Sound-absorbing materials (soft and rough) reduce the reflection of sound that causes echo, producing high-quality sound recordings.",
   },
   {
     id: "sci-f2-c10-dlp-q25",
@@ -361,7 +422,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "A stationary observer hears an ambulance siren whose frequency increases, then decreases after the ambulance passes by. What is the most accurate explanation for this phenomenon?",
+    question:
+      "A stationary observer hears an ambulance siren whose frequency increases, then decreases after the ambulance passes by. What is the most accurate explanation for this phenomenon?",
     options: [
       "The amplitude of the siren sound changes suddenly",
       "The siren sound is reflected by the road surface",
@@ -369,7 +431,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "The frequency of the siren sound is always constant but the observer's ear changes",
     ],
     answerIndex: 2,
-    explanation: "This is a classic example of the Doppler effect, where the frequency of sound heard by a stationary observer changes due to the relative movement of the sound source (ambulance).",
+    explanation:
+      "This is a classic example of the Doppler effect, where the frequency of sound heard by a stationary observer changes due to the relative movement of the sound source (ambulance).",
   },
   {
     id: "sci-f2-c10-dlp-q26",
@@ -378,7 +441,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "Why doesn't a person carrying a sound source (e.g. an air horn) feel a change in pitch while moving, unlike a stationary observer?",
+    question:
+      "Why doesn't a person carrying a sound source (e.g. an air horn) feel a change in pitch while moving, unlike a stationary observer?",
     options: [
       "Because the air horn does not produce any sound",
       "Because the air horn only produces ultrasound",
@@ -386,7 +450,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Because there is no relative movement between the sound source and the person carrying it, unlike the stationary observer who experiences relative movement towards the source",
     ],
     answerIndex: 3,
-    explanation: "The Doppler effect depends on relative movement between the sound source and the observer; the person carrying the source experiences no relative movement with respect to the source itself.",
+    explanation:
+      "The Doppler effect depends on relative movement between the sound source and the observer; the person carrying the source experiences no relative movement with respect to the source itself.",
   },
   {
     id: "sci-f2-c10-dlp-q27",
@@ -395,7 +460,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "Bats use ultrasound to navigate in the dark. How does this principle relate to the sonar technology used by humans?",
+    question:
+      "Bats use ultrasound to navigate in the dark. How does this principle relate to the sonar technology used by humans?",
     options: [
       "Both use light to detect objects",
       "They are not related at all",
@@ -403,7 +469,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Bats use magnetism, while sonar uses sound",
     ],
     answerIndex: 2,
-    explanation: "Both bat echolocation and sonar technology use the principle of sound/ultrasound wave reflection to detect the position, distance or objects around them.",
+    explanation:
+      "Both bat echolocation and sonar technology use the principle of sound/ultrasound wave reflection to detect the position, distance or objects around them.",
   },
   {
     id: "sci-f2-c10-dlp-q28",
@@ -412,7 +479,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "A student claims 'humans can hear all types of sound including ultrasound'. Is this claim accurate? Why?",
+    question:
+      "A student claims 'humans can hear all types of sound including ultrasound'. Is this claim accurate? Why?",
     options: [
       "Accurate, because human ears are very sensitive",
       "Not accurate, because humans cannot hear any sound at all",
@@ -420,24 +488,27 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Not accurate, because ultrasound has a frequency of more than 20,000 Hz which exceeds the limit of human hearing (20 Hz–20,000 Hz)",
     ],
     answerIndex: 3,
-    explanation: "The claim is not accurate because the limit of human hearing is 20 Hz to 20,000 Hz, while ultrasound has a frequency of more than 20,000 Hz and cannot be heard by humans.",
+    explanation:
+      "The claim is not accurate because the limit of human hearing is 20 Hz to 20,000 Hz, while ultrasound has a frequency of more than 20,000 Hz and cannot be heard by humans.",
   },
   {
     id: "sci-f2-c10-dlp-q29",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "Doctors use ultrasound to scan the condition of a foetus in the womb (sonogram). Why is ultrasound suitable for this purpose compared to ordinary sound?",
+    question:
+      "Doctors use ultrasound to scan a foetus in the womb (sonogram). What are the benefits of using ultrasound for this purpose?",
     options: [
-      "Because ultrasound can be heard by the foetus for communication purposes",
-      "Because ultrasound is louder than ordinary sound",
-      "Because ultrasound has a high frequency that allows precise reflection from internal body structures without exposing the patient to hazards such as X-rays",
-      "Because ultrasound does not need a medium to propagate",
+      "It is louder than ordinary sound, so it is easier to detect",
+      "It is not harmful to the foetus, is painless, does not use radiation, and results can be obtained immediately",
+      "It allows the foetus to hear music for communication purposes",
+      "It requires the foetus to be exposed to X-rays for clearer images",
     ],
-    answerIndex: 2,
-    explanation: "Ultrasound is used in sonograms because its high-frequency properties allow precise reflection from internal body structures, using a method considered safer than other techniques.",
+    answerIndex: 1,
+    explanation:
+      "Ultrasound scanning (sonogram) is not harmful to the foetus, is painless, does not use radiation, may be performed repeatedly, and results can be obtained immediately — making it a suitable method for prenatal scanning.",
   },
   {
     id: "sci-f2-c10-dlp-q30",
@@ -446,7 +517,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 10",
     lang: "dlp",
-    question: "Why does the human hearing range become narrower with age, and what are the implications for the need for hearing aids?",
+    question:
+      "Why does the human hearing range become narrower with age, and what are the implications for the need for hearing aids?",
     options: [
       "Because the amplitude of all sounds in the world decreases over time",
       "Because elderly people no longer produce sound waves",
@@ -454,6 +526,7 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Because human ears lose sensitivity to certain sound frequencies with age, causing some elderly people to need hearing aids to amplify sound entering the ear",
     ],
     answerIndex: 3,
-    explanation: "The human hearing range narrows with age due to loss of ear sensitivity to certain sound frequencies; hearing aids help amplify sound entering the ear to overcome this limitation.",
+    explanation:
+      "The human hearing range narrows with age due to loss of ear sensitivity to certain sound frequencies; hearing aids help amplify sound entering the ear to overcome this limitation.",
   },
 ];

@@ -152,69 +152,187 @@ export type PlanetComparisonCharacteristic = {
   note?: string;
 };
 
-/** Rajah 13.2 — the four stages of a meteoroid's journey, named by where it is. */
-export type MeteoroidEntryStage = {
-  id: string;
-  label: string;
-  body: string;
-};
+/**
+ * Chapter 13 teaches meteoroids, asteroids and comets as separate lessons, and
+ * inside each lesson the ORDER is the teaching: definition, characteristics,
+ * the main visual, movement, then effects. The renderer's fixed slot order
+ * cannot express that, so these sections carry one ordered `lessonFlow`,
+ * rendered top to bottom by `LessonFlow`.
+ *
+ * Every part is words only. Hotspot geometry for the approved photographs lives
+ * in `ch13-approved-figure-geometry.ts` and orbit geometry lives in each figure
+ * component, so BM and DLP cannot drift onto different pictures.
+ */
 
-export type MeteoroidEntryBlock = {
+/** Which approved Chapter 13 photograph a spotlight figure is drawn on. */
+export type Ch13FigureId = "meteoroid-journey" | "impact-crater" | "comet-anatomy";
+
+export type LessonSpotlightFigureBlock = {
   title: string;
-  instruction: string;
-  figureLabel: string;
-  spaceLabel: string;
-  atmosphereLabel: string;
-  groundLabel: string;
-  stages: MeteoroidEntryStage[];
+  figure: Ch13FigureId;
+  /** Public WebP path, from `SCIENCE_F2_CH13_IMAGES`. */
+  src: string;
+  /** Meaningful alt text, written per language. */
+  alt: string;
+  instruction?: string;
+  caption?: string;
+  /** One per painted region, in the artwork's own order. */
+  concepts: Ch9SpotlightConcept[];
 };
 
-/** Rajah 13.3 — an asteroid orbit that reaches outside the belt. */
-export type AsteroidCrossingOrbit = {
+/** One named point on a branch flow, e.g. "Meteor — in Earth's atmosphere". */
+export type BranchFlowNode = { label: string; where: string };
+
+export type BranchFlowEnding = {
   id: string;
   label: string;
-  rx: number;
-  ry: number;
-  offsetX: number;
-  rotate: number;
+  note: string;
+  /** What this ending becomes, if anything — only the surviving branch has one. */
+  result?: BranchFlowNode;
 };
 
-/** Gambar foto 13.1 + Rajah 13.3 — the belt, and the orbits that cross Earth's. */
+/**
+ * A short chain that forks once: meteoroid → meteor → burns up | meteorite.
+ *
+ * A fork, not a list, because the misconception it replaces was a four-step
+ * list that put "meteor shower" between meteor and meteorite. A single
+ * meteoroid ends one of two ways; nothing else belongs on this path.
+ */
+export type BranchFlowBlock = {
+  title: string;
+  nodes: BranchFlowNode[];
+  /** The word between the two endings, e.g. "or" / "atau". */
+  orLabel: string;
+  endings: BranchFlowEnding[];
+};
+
+/** Meteor shower as its own mini-concept, deliberately NOT on the journey fork. */
+export type MeteorShowerBlock = {
+  title: string;
+  body: string;
+  /** Why it is not a stage of one meteoroid's journey. */
+  note: string;
+  figureLabel: string;
+  atmosphereLabel: string;
+  surfaceLabel: string;
+};
+
+/** A short "Science Blog" enrichment story with its own approved photograph. */
+export type ScienceBlogCardBlock = {
+  badge: string;
+  title: string;
+  /** Public WebP path. */
+  src: string;
+  alt: string;
+  points: string[];
+};
+
+/** Gambar foto 13.1 — Mars, the belt, Jupiter, each selectable. */
+export type AsteroidBeltItem = { id: "mars" | "belt" | "jupiter"; label: string; note: string };
+
 export type AsteroidBeltBlock = {
   title: string;
   instruction: string;
-  beltFigureLabel: string;
-  crossingFigureLabel: string;
-  beltToggleLabel: string;
-  crossingToggleLabel: string;
+  figureLabel: string;
   sunLabel: string;
-  venusLabel: string;
   earthLabel: string;
-  marsLabel: string;
-  jupiterLabel: string;
-  beltLabel: string;
-  beltBody: string;
-  crossingBody: string;
-  crossingOrbits: AsteroidCrossingOrbit[];
+  /** Exactly Mars, the belt and Jupiter — their labels are also the figure's labels. */
+  items: AsteroidBeltItem[];
   scaleNote: string;
 };
 
-/** Rajah 13.4 — comet orbit, speed near and far from the Sun, tail direction. */
+/** Rajah 13.3 — one asteroid orbit group outside the belt. */
+export type CrossingOrbitItem = { id: "apollo" | "amor" | "aten"; label: string };
+
+/**
+ * Compact and static: all three orbits are drawn at once, labelled directly
+ * beside their own path, so the figure needs no per-orbit note or legend —
+ * `explanation` is the one sentence a learner needs, shown once beneath it.
+ */
+export type CrossingOrbitsBlock = {
+  title: string;
+  explanation: string;
+  figureLabel: string;
+  sunLabel: string;
+  earthLabel: string;
+  earthOrbitLabel: string;
+  orbits: CrossingOrbitItem[];
+  scaleNote: string;
+};
+
+/** One of the comet's three named positions, in the order it visits them. */
+export type CometOrbitStage = { label: string; body: string };
+
+/** Rajah 13.4 — comet orbit, activity near and far from the Sun, tail direction. */
 export type CometOrbitBlock = {
   title: string;
   instruction: string;
   figureLabel: string;
+  /** e.g. "Position" / "Kedudukan" — screen-reader context only; buttons show the stage label. */
   positionLabel: string;
   sunLabel: string;
-  nearSunLabel: string;
-  farSunLabel: string;
-  nearSpeedLabel: string;
-  farSpeedLabel: string;
-  nearBody: string;
-  farBody: string;
+  tailLabel: string;
+  /** Exactly three: far from the Sun, nearest the Sun, moving away. */
+  stages: CometOrbitStage[];
   tailRule: string;
   scaleNote: string;
 };
+
+export type CometOriginRegion = { id: "kuiper" | "oort"; label: string; note: string };
+
+/** Where most comets come from: the Kuiper Belt and the Oort Cloud. */
+export type CometOriginBlock = {
+  title: string;
+  intro: string;
+  instruction: string;
+  figureLabel: string;
+  sunLabel: string;
+  regions: CometOriginRegion[];
+  scaleNote: string;
+};
+
+/** A row of short contextual cards — worked examples, not new concepts. */
+export type ContextCardsBlock = {
+  title?: string;
+  cards: { id: string; icon?: string; title: string; body?: string; points?: string[] }[];
+};
+
+export type ProcessFlowStep = { id: string; icon?: string; label: string; note: string };
+
+/** An ordered process, e.g. detect → track → assess → warn → deflect. */
+export type ProcessFlowBlock = {
+  title: string;
+  instruction: string;
+  /** e.g. "Step" / "Langkah". */
+  stepLabel: string;
+  steps: ProcessFlowStep[];
+};
+
+/**
+ * Several objects compared feature by feature. `values` is positional and must
+ * line up with `columns`. A real table from `sm` up, one card per object below.
+ */
+export type ObjectComparisonBlock = {
+  featureLabel: string;
+  columns: { id: string; icon?: string; label: string }[];
+  rows: { id: string; label: string; values: string[] }[];
+};
+
+export type LessonFlowPart =
+  | { kind: "heading"; title: string; body?: string }
+  | { kind: "points"; title: string; items: string[] }
+  | { kind: "callout"; tone: "remember" | "explain"; body: string }
+  | ({ kind: "figure" } & LessonSpotlightFigureBlock)
+  | ({ kind: "branchFlow" } & BranchFlowBlock)
+  | ({ kind: "meteorShower" } & MeteorShowerBlock)
+  | ({ kind: "blog" } & ScienceBlogCardBlock)
+  | ({ kind: "asteroidBelt" } & AsteroidBeltBlock)
+  | ({ kind: "crossingOrbits" } & CrossingOrbitsBlock)
+  | ({ kind: "cometOrigin" } & CometOriginBlock)
+  | ({ kind: "cometOrbit" } & CometOrbitBlock)
+  | ({ kind: "contextCards" } & ContextCardsBlock)
+  | ({ kind: "processFlow" } & ProcessFlowBlock)
+  | ({ kind: "comparisonTable" } & ObjectComparisonBlock);
 
 export type PlanetComparisonBlock = {
   title: string;
@@ -230,6 +348,31 @@ export type PlanetSpheresBlock = {
   title: string;
   instruction: string;
   planets: PlanetSphere[];
+};
+
+/**
+ * One planet's axial tilt — Jadual/Rajah 12.6. `direction` is the spin sense
+ * seen from above the Sun's north pole: `"prograde"` (west→east, the same
+ * way seven of the eight planets spin), `"retrograde"` (east→west — Venus,
+ * and Venus alone), or `"sideways"` (Uranus, whose tilt is so extreme its
+ * axis points almost along its orbit rather than roughly perpendicular to
+ * it).
+ */
+export type PlanetTiltItem = {
+  id: string;
+  name: string;
+  tiltDeg: number;
+  direction: "prograde" | "retrograde" | "sideways";
+  note: string;
+};
+
+export type PlanetAxialTiltBlock = {
+  title: string;
+  instruction: string;
+  planets: PlanetTiltItem[];
+  /** e.g. "Most planets rotate west to east." */
+  ruleLabel: string;
+  scaleNote: string;
 };
 
 /** One organism in a food web. `tier` 0 = producer, 1 = primary consumer, 2 = secondary, 3 = tertiary. */
@@ -1009,6 +1152,120 @@ export type MiniExperimentBlock = {
 };
 
 /** A yes / no / partial answer for one criterion in a ComparisonMatrixBlock. */
+/**
+ * One region of an approved Chapter 9 photograph.
+ *
+ * No geometry here: the shapes live in `ch9-approved-figure-geometry.ts`, keyed
+ * by this `id`. That is what lets BM and DLP supply different words for
+ * provably identical hotspots.
+ */
+export type Ch9SpotlightConcept = {
+  id: string;
+  label: string;
+  /** One or two sentences — the teaching for this region. */
+  note: string;
+  icon?: string;
+  /** Short phrase floated on the artwork beside the region. Falls back to `label`. */
+  spotlightCaption?: string;
+};
+
+/**
+ * An approved Chapter 9 photograph taught as a row of selectable regions.
+ *
+ * Three figures share this one shape — the three methods of heat transfer, the
+ * Sun warming the Earth, and conductors versus insulators — so they cannot
+ * drift apart in behaviour. `figure` selects both the artwork's aspect ratio
+ * and its hotspot geometry.
+ */
+export type Ch9SpotlightFigureBlock = {
+  title: string;
+  /** `heat-transfer` | `sun-earth` | `conductor-insulator`. */
+  figure: "heat-transfer" | "sun-earth" | "conductor-insulator";
+  /** Public WebP path, from `SCIENCE_F2_CH9_IMAGES`. */
+  src: string;
+  /** Meaningful alt text, written per language. */
+  alt: string;
+  instruction?: string;
+  prompt?: string;
+  caption?: string;
+  legendLabel?: string;
+  size?: LearningImageSize;
+  /** One per painted region, in the artwork's own order. */
+  concepts: Ch9SpotlightConcept[];
+};
+
+/** The three approved Chapter 12 figures — see `ch12-approved-figure-geometry.ts`. */
+export type Ch12FigureId = "solar-system" | "eight-planets" | "earth-characteristics";
+
+/** One selectable region on an approved Chapter 12 figure. */
+export type Ch12SpotlightConcept = {
+  id: string;
+  label: string;
+  /** One or two short sentences — the teaching for this region. */
+  note: string;
+  icon?: string;
+};
+
+/**
+ * An approved Chapter 12 figure taught as selectable regions — on the artwork
+ * itself and as a row of controls beneath it, which are the same selection.
+ *
+ * `eight-planets` carries no `concepts`: its regions are the section's own
+ * planet profiles (`section.planets`), so the figure and the profile cards
+ * below it can never disagree about a planet, and no planet fact is written
+ * twice.
+ */
+export type Ch12SpotlightFigureBlock = {
+  title: string;
+  figure: Ch12FigureId;
+  /** Public WebP path, from `SCIENCE_F2_CH12_IMAGES`. */
+  src: string;
+  /** Meaningful alt text, written per language. */
+  alt: string;
+  instruction?: string;
+  prompt?: string;
+  caption?: string;
+  /**
+   * A short note such as "Not to scale", rendered by the UI under the artwork.
+   * Never baked into the image, so it can be written in either language.
+   */
+  scaleNote?: string;
+  concepts?: Ch12SpotlightConcept[];
+  /** `eight-planets` only — label on the control that opens the matching planet profile. */
+  openProfileLabel?: string;
+};
+
+/** One state of the hot-to-cold heat-flow figure. */
+export type HeatFlowStage = {
+  /** `flow` (heat moving) or `equilibrium` (equal temperatures, no net flow). */
+  id: "flow" | "equilibrium";
+  label: string;
+  note: string;
+  leftLabel: string;
+  rightLabel: string;
+  /** Shown inside each box, e.g. "80 °C". Drawn from data so picture and text agree. */
+  leftTemperature: string;
+  rightTemperature: string;
+};
+
+/**
+ * Which way heat flows, drawn deterministically rather than photographed.
+ *
+ * Used twice: with one stage at the head of 9.2, to establish hot -> cold
+ * before any mechanism is named; and with two stages in the thermal-equilibrium
+ * section, so the same pair of objects is seen reaching equal temperatures.
+ */
+export type HeatFlowDirectionBlock = {
+  title: string;
+  instruction?: string;
+  /** Caption over the arrow while heat is flowing, e.g. "heat". */
+  heatLabel: string;
+  /** Caption over the arrows once temperatures are equal, e.g. "no net heat transfer". */
+  noNetFlowLabel: string;
+  caption?: string;
+  stages: HeatFlowStage[];
+};
+
 export type ComparisonMatrixValue = "yes" | "no" | "partial";
 
 export type ComparisonMatrixRow = {
@@ -2364,9 +2621,8 @@ export type ScienceInteractiveSection = {
   galaxyCards?: GalaxyCardsBlock;
   planets?: PlanetSpheresBlock;
   planetComparison?: PlanetComparisonBlock;
-  meteoroidEntry?: MeteoroidEntryBlock;
-  asteroidBelt?: AsteroidBeltBlock;
-  cometOrbit?: CometOrbitBlock;
+  /** An ordered lesson, rendered top to bottom — see `LessonFlowPart`. */
+  lessonFlow?: LessonFlowPart[];
   foodWeb?: FoodWebBlock;
   causeEffect?: CauseEffectBlock;
   adaptations?: AdaptationBlock;
@@ -2447,6 +2703,7 @@ export type ScienceInteractiveSection = {
   cosmicScale?: CosmicScaleBlock;
   milkyWayLocator?: MilkyWayLocatorBlock;
   starSizeCompare?: StarSizeCompareBlock;
+  planetAxialTilt?: PlanetAxialTiltBlock;
   /**
    * Contextual artwork rendered at the TOP of the section, before its teaching
    * cards and before any precise diagram.
@@ -2488,6 +2745,27 @@ export type ScienceInteractiveSection = {
     title: string;
     columns: ScienceInteractiveCard[];
   };
+  /**
+   * A genuine textbook comparison table — rendered as a real `<table>`, not a
+   * card grid, so it visually reads as "Table 9.1" rather than as two more
+   * concept cards. Each row is one point of comparison (e.g. Meaning, Unit,
+   * Depends on); `left`/`right` hold that row's value for each of the two
+   * `headers`. A cell may be a short list (rendered as bullets) rather than
+   * one sentence, for rows like "Depends on" that name several factors.
+   */
+  differencesTable?: {
+    title: string;
+    headers: [string, string];
+    rows: { label: string; left: string | string[]; right: string | string[] }[];
+  };
+  ch9SpotlightFigure?: Ch9SpotlightFigureBlock;
+  /**
+   * An approved Chapter 12 figure, rendered at the top of its section. An
+   * `eight-planets` figure also takes over rendering `planets`, so selecting a
+   * planet on the picture can open that planet's own profile card.
+   */
+  ch12SpotlightFigure?: Ch12SpotlightFigureBlock;
+  heatFlowDirection?: HeatFlowDirectionBlock;
   /**
    * Compact "🧠 Ingat / Remember" callout for a core textbook definition or
    * rule worth pausing on. Rendered via `ScienceRemember`. May carry its own

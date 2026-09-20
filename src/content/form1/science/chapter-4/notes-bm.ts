@@ -184,7 +184,7 @@ export const scienceF1C4NotesBM: StructuredNotes = {
       ],
     },
     {
-      title: "4.5 Kepentingan Penjagaan Prenatal",
+      title: "4.5 Faktor yang Mempengaruhi Perkembangan Fetus dan Bayi",
       subsections: [
         {
           title: "Gizi Seimbang",
@@ -248,7 +248,7 @@ export const scienceF1C4NotesBM: StructuredNotes = {
       ],
     },
     {
-      title: "4.7 Pembiakan Seks dalam Tumbuhan",
+      title: "4.7 Pembiakan Tumbuhan",
       subsections: [
         {
           title: "Struktur Bunga",

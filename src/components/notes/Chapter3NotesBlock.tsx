@@ -18,19 +18,19 @@ const ORBIT_LABELS: Record<Lang, string[]> = {
 
 const SECTION_CHROME: Record<Lang, Array<{ eyebrow: string; title: string; sub?: string }>> = {
   en: [
-    { eyebrow: "◆ 3.1", title: "Homeostasis & the Control Loop", sub: "Detect → corrective mechanism → return to normal. Every example in this chapter runs on this one loop." },
-    { eyebrow: "◆ 3.2", title: "Water Regulation" },
-    { eyebrow: "◆ 3.2 continued", title: "Temperature Regulation", sub: "The same brain-driven loop, running on hot days and cold days." },
-    { eyebrow: "◆ 3.3", title: "Homeostasis in Animals" },
-    { eyebrow: "◆ 3.4", title: "Homeostasis in Plants", sub: "Transpiration and the stoma that controls it." },
+    { eyebrow: "◆ 3.1", title: "Homeostasis in Living Things", sub: "Detect → corrective mechanism → return to normal. Every example in this chapter runs on this one loop." },
+    { eyebrow: "", title: "Water Regulation" },
+    { eyebrow: "", title: "Temperature Regulation", sub: "The same brain-driven loop, running on hot days and cold days." },
+    { eyebrow: "", title: "Homeostasis in Animals" },
+    { eyebrow: "", title: "Homeostasis in Plants", sub: "Transpiration and the stoma that controls it." },
     { eyebrow: "◆ Wrap-up", title: "Key Facts & Terms" },
   ],
   bm: [
-    { eyebrow: "◆ 3.1", title: "Homeostasis & Gelung Kawalan", sub: "Kesan → mekanisme pembetulan → kembali normal. Setiap contoh dalam bab ini berjalan atas satu gelung ini." },
-    { eyebrow: "◆ 3.2", title: "Regulasi Air" },
-    { eyebrow: "◆ Sambungan 3.2", title: "Regulasi Suhu", sub: "Gelung yang sama dikawal otak, berjalan pada hari panas dan hari sejuk." },
-    { eyebrow: "◆ 3.3", title: "Homeostasis pada Haiwan" },
-    { eyebrow: "◆ 3.4", title: "Homeostasis pada Tumbuhan", sub: "Transpirasi dan stoma yang mengawalnya." },
+    { eyebrow: "◆ 3.1", title: "Homeostasis dalam Benda Hidup", sub: "Kesan → mekanisme pembetulan → kembali normal. Setiap contoh dalam bab ini berjalan atas satu gelung ini." },
+    { eyebrow: "", title: "Regulasi Air" },
+    { eyebrow: "", title: "Regulasi Suhu", sub: "Gelung yang sama dikawal otak, berjalan pada hari panas dan hari sejuk." },
+    { eyebrow: "", title: "Homeostasis pada Haiwan" },
+    { eyebrow: "", title: "Homeostasis pada Tumbuhan", sub: "Transpirasi dan stoma yang mengawalnya." },
     { eyebrow: "◆ Rumusan", title: "Fakta & Istilah Penting" },
   ],
 };

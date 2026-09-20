@@ -9,7 +9,12 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Apakah maksud meteoroid?",
-    options: ["Sekeping batu dan logam terapung yang bergerak di angkasa lepas", "Jasad besar logam dan berbatu yang mengelilingi Matahari pada orbitnya sendiri", "Jasad kecil terdiri daripada campuran ais, gas dan debu yang membeku", "Bintang yang sangat kecil dan tidak memancarkan cahaya"],
+    options: [
+      "Sekeping batu dan logam terapung yang bergerak di angkasa lepas",
+      "Jasad besar logam dan berbatu yang mengelilingi Matahari pada orbitnya sendiri",
+      "Jasad kecil terdiri daripada campuran ais, gas dan debu yang membeku",
+      "Bintang yang sangat kecil dan tidak memancarkan cahaya",
+    ],
     answerIndex: 0,
     explanation: "Meteoroid ialah sekeping batu dan logam terapung yang bergerak di angkasa lepas.",
   },
@@ -21,9 +26,15 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Apakah maksud asteroid?",
-    options: ["Jasad kecil ais, gas dan debu membeku", "Serpihan batu yang terbakar di atmosfera Bumi", "Jasad besar logam dan berbatu yang bergerak mengelilingi Matahari pada orbitnya sendiri", "Sekeping batu kecil yang sampai ke permukaan Bumi"],
+    options: [
+      "Jasad kecil ais, gas dan debu membeku",
+      "Serpihan batu yang terbakar di atmosfera Bumi",
+      "Jasad besar logam dan berbatu yang bergerak mengelilingi Matahari pada orbitnya sendiri",
+      "Sekeping batu kecil yang sampai ke permukaan Bumi",
+    ],
     answerIndex: 2,
-    explanation: "Asteroid ialah jasad besar logam dan berbatu yang bergerak mengelilingi Matahari pada orbitnya sendiri.",
+    explanation:
+      "Asteroid ialah jasad besar logam dan berbatu yang bergerak mengelilingi Matahari pada orbitnya sendiri.",
   },
   {
     id: "sci-f2-c13-bm-q3",
@@ -33,9 +44,15 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Apakah maksud komet?",
-    options: ["Jasad besar berbatu sahaja", "Sekeping logam yang terapung di angkasa lepas", "Jasad kecil terdiri daripada campuran ais, gas dan debu yang membeku, bergerak mengelilingi Matahari", "Planet kecil dalam Lingkaran Asteroid"],
+    options: [
+      "Jasad besar berbatu sahaja",
+      "Sekeping logam yang terapung di angkasa lepas",
+      "Jasad kecil terdiri daripada campuran ais, gas dan debu yang membeku, bergerak mengelilingi Matahari",
+      "Planet kecil dalam jalur asteroid",
+    ],
     answerIndex: 2,
-    explanation: "Komet ialah jasad kecil yang terdiri daripada campuran ais, gas dan debu yang membeku, bergerak mengelilingi Matahari pada orbitnya sendiri.",
+    explanation:
+      "Komet ialah jasad kecil yang terdiri daripada campuran ais, gas dan debu yang membeku, bergerak mengelilingi Matahari pada orbitnya sendiri.",
   },
   {
     id: "sci-f2-c13-bm-q4",
@@ -81,7 +98,12 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Berapakah julat saiz asteroid?",
-    options: ["1 m hingga 1,000 km", "10 μm hingga 1 m", "250,000 km", "Lebih daripada 1,000,000 km"],
+    options: [
+      "1 m hingga 1,000 km",
+      "10 μm hingga 1 m",
+      "250,000 km",
+      "Lebih daripada 1,000,000 km",
+    ],
     answerIndex: 0,
     explanation: "Asteroid bersaiz daripada 1 m hingga 1,000 km.",
   },
@@ -92,10 +114,15 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 13",
     lang: "bm",
-    question: "Di antara orbit planet manakah Lingkaran Asteroid terletak?",
-    options: ["Antara orbit Marikh dan Musytari", "Antara orbit Bumi dan Marikh", "Antara orbit Musytari dan Zuhal", "Antara orbit Zuhal dan Uranus"],
+    question: "Di antara orbit planet manakah jalur asteroid terletak?",
+    options: [
+      "Antara orbit Marikh dan Musytari",
+      "Antara orbit Bumi dan Marikh",
+      "Antara orbit Musytari dan Zuhal",
+      "Antara orbit Zuhal dan Uranus",
+    ],
     answerIndex: 0,
-    explanation: "Lingkaran Asteroid terletak antara orbit Marikh dan Musytari.",
+    explanation: "Jalur asteroid terletak antara orbit Marikh dan Musytari.",
   },
   {
     id: "sci-f2-c13-bm-q9",
@@ -107,7 +134,7 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     question: "Asteroid juga dikenali sebagai...",
     options: ["Bintang kecil", "Planet kecil", "Galaksi kecil", "Bulan kecil"],
     answerIndex: 1,
-    explanation: "Asteroid juga dikenali sebagai \"planet kecil\".",
+    explanation: 'Asteroid juga dikenali sebagai "planet kecil".',
   },
   {
     id: "sci-f2-c13-bm-q10",
@@ -129,9 +156,15 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Apakah perbezaan utama antara meteoroid dan meteor?",
-    options: ["Tidak ada perbezaan, keduanya sama", "Meteor ialah objek di angkasa lepas, meteoroid ialah objek yang sampai ke permukaan Bumi", "Meteoroid ialah objek di angkasa lepas, meteor ialah meteoroid yang terbakar memasuki atmosfera Bumi", "Meteoroid hanya wujud di Lingkaran Kuiper"],
+    options: [
+      "Tidak ada perbezaan, keduanya sama",
+      "Meteor ialah objek di angkasa lepas, meteoroid ialah objek yang sampai ke permukaan Bumi",
+      "Meteoroid ialah objek di angkasa lepas, meteor ialah meteoroid yang terbakar memasuki atmosfera Bumi",
+      "Meteoroid hanya wujud di Jalur Kuiper",
+    ],
     answerIndex: 2,
-    explanation: "Meteoroid ialah serpihan batu/logam di angkasa lepas. Apabila ia memasuki atmosfera Bumi dan terbakar, ia dipanggil meteor; jika sampai ke permukaan Bumi ia menjadi meteorit.",
+    explanation:
+      "Meteoroid ialah serpihan batu/logam di angkasa lepas. Apabila ia memasuki atmosfera Bumi dan terbakar, ia dipanggil meteor; jika sampai ke permukaan Bumi ia menjadi meteorit.",
   },
   {
     id: "sci-f2-c13-bm-q12",
@@ -141,7 +174,12 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Bagaimanakah meteoroid dan asteroid berkaitan antara satu sama lain?",
-    options: ["Asteroid adalah meteoroid yang sudah jatuh ke Bumi", "Asteroid berasal daripada serpihan meteoroid", "Kedua-duanya tidak berkaitan", "Meteoroid berasal daripada serpihan asteroid dan komet"],
+    options: [
+      "Asteroid adalah meteoroid yang sudah jatuh ke Bumi",
+      "Asteroid berasal daripada serpihan meteoroid",
+      "Kedua-duanya tidak berkaitan",
+      "Meteoroid berasal daripada serpihan asteroid dan komet",
+    ],
     answerIndex: 3,
     explanation: "Meteoroid berasal daripada serpihan asteroid dan komet.",
   },
@@ -176,10 +214,16 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 13",
     lang: "bm",
-    question: "Namakan empat asteroid besar yang dinyatakan dalam nota.",
-    options: ["Halley, Encke, Hale-Bopp dan Tempel", "Ceres, Pallas, Juno dan Vesta", "Apollo, Amor, Aten dan Icarus", "Hoba, Arizona, Namibia dan Grootfontein"],
+    question: "Kumpulan nama manakah terdiri sepenuhnya daripada asteroid besar?",
+    options: [
+      "Halley, Encke, Hale-Bopp dan Tempel",
+      "Ceres, Pallas, Juno dan Vesta",
+      "Apollo, Amor, Aten dan Icarus",
+      "Hoba, Arizona, Namibia dan Grootfontein",
+    ],
     answerIndex: 1,
-    explanation: "Asteroid besar seperti Ceres, Pallas, Juno dan Vesta mempunyai diameter beberapa kilometer hingga 1,000 kilometer.",
+    explanation:
+      "Asteroid besar seperti Ceres, Pallas, Juno dan Vesta mempunyai diameter beberapa kilometer hingga 1,000 kilometer.",
   },
   {
     id: "sci-f2-c13-bm-q16",
@@ -225,7 +269,12 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Apakah julat kelajuan purata pergerakan komet?",
-    options: ["10 km s⁻¹ hingga 70 km s⁻¹", "25 km s⁻¹ tetap", "42 km s⁻¹ tetap", "100 km s⁻¹ hingga 200 km s⁻¹"],
+    options: [
+      "10 km s⁻¹ hingga 70 km s⁻¹",
+      "25 km s⁻¹ tetap",
+      "42 km s⁻¹ tetap",
+      "100 km s⁻¹ hingga 200 km s⁻¹",
+    ],
     answerIndex: 0,
     explanation: "Komet bergerak pada julat kelajuan purata 10 km s⁻¹ hingga 70 km s⁻¹.",
   },
@@ -237,9 +286,15 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Apakah komposisi kepala dan ekor komet?",
-    options: ["Hidrogen cecair sahaja", "Besi dan nikel pejal sahaja", "Gas dan air yang membeku menjadi ais, debu dan zarah berbatu", "Batu granit dan marmar"],
+    options: [
+      "Hidrogen cecair sahaja",
+      "Besi dan nikel pejal sahaja",
+      "Gas dan air yang membeku menjadi ais, debu dan zarah berbatu",
+      "Batu granit dan marmar",
+    ],
     answerIndex: 2,
-    explanation: "Komet terdiri daripada gas dan air yang membeku menjadi ais, debu dan zarah berbatu.",
+    explanation:
+      "Komet terdiri daripada gas dan air yang membeku menjadi ais, debu dan zarah berbatu.",
   },
   {
     id: "sci-f2-c13-bm-q21",
@@ -249,9 +304,15 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Manakah perbandingan suhu berikut yang betul bagi meteoroid dan asteroid?",
-    options: ["Meteoroid: sekitar −73°C; Asteroid: dalam lingkungan 0°C", "Meteoroid: dalam lingkungan 0°C; Asteroid: sekitar −73°C", "Meteoroid: dalam lingkungan 0°C; Asteroid: sekitar 100°C", "Meteoroid dan asteroid kedua-duanya sekitar −73°C"],
+    options: [
+      "Meteoroid: sekitar −73°C; Asteroid: dalam lingkungan 0°C",
+      "Meteoroid: dalam lingkungan 0°C; Asteroid: sekitar −73°C",
+      "Meteoroid: dalam lingkungan 0°C; Asteroid: sekitar 100°C",
+      "Meteoroid dan asteroid kedua-duanya sekitar −73°C",
+    ],
     answerIndex: 1,
-    explanation: "Suhu meteoroid di angkasa lepas adalah dalam lingkungan 0°C, manakala asteroid mempunyai suhu permukaan yang sejuk, iaitu sekitar −73°C.",
+    explanation:
+      "Suhu meteoroid di angkasa lepas adalah dalam lingkungan 0°C, manakala asteroid mempunyai suhu permukaan yang sejuk, iaitu sekitar −73°C.",
   },
   {
     id: "sci-f2-c13-bm-q22",
@@ -261,9 +322,15 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Apakah kepentingan saintis memantau orbit asteroid secara berterusan?",
-    options: ["Untuk mengira jumlah asteroid yang wujud di alam semesta", "Untuk memastikan orbit asteroid berada pada jarak selamat daripada orbit Bumi dan mengeluarkan amaran jika ada risiko perlanggaran", "Untuk menentukan warna asteroid", "Untuk membuktikan asteroid tidak mempunyai logam"],
+    options: [
+      "Untuk mengira jumlah asteroid yang wujud di alam semesta",
+      "Untuk memastikan orbit asteroid berada pada jarak selamat daripada orbit Bumi dan mengeluarkan amaran jika ada risiko perlanggaran",
+      "Untuk menentukan warna asteroid",
+      "Untuk membuktikan asteroid tidak mempunyai logam",
+    ],
     answerIndex: 1,
-    explanation: "Saintis memantau asteroid untuk memastikan orbitnya berada pada jarak selamat daripada orbit Bumi; amaran dikeluarkan jika terdapat risiko perlanggaran, dan asteroid berbahaya boleh dimusnahkan atau diubah arahnya.",
+    explanation:
+      "Saintis memantau asteroid untuk memastikan orbitnya berada pada jarak selamat daripada orbit Bumi; amaran dikeluarkan jika terdapat risiko perlanggaran, dan asteroid berbahaya boleh dimusnahkan atau diubah arahnya.",
   },
   {
     id: "sci-f2-c13-bm-q23",
@@ -273,9 +340,15 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 13",
     lang: "bm",
     question: "Apakah bukti yang dikaitkan dengan kepupusan dinosaur menurut pakar paleontologi?",
-    options: ["Pertembungan dua meteoroid kecil di angkasa lepas", "Letupan komet Halley berhampiran Bumi", "Perlanggaran asteroid berukuran 10 km dengan permukaan Bumi", "Perubahan orbit Bumi secara mendadak"],
+    options: [
+      "Pertembungan dua meteoroid kecil di angkasa lepas",
+      "Letupan komet Halley berhampiran Bumi",
+      "Perlanggaran asteroid berukuran 10 km dengan permukaan Bumi",
+      "Perubahan orbit Bumi secara mendadak",
+    ],
     answerIndex: 2,
-    explanation: "Pakar paleontologi mempercayai kepupusan dinosaur disebabkan oleh perlanggaran asteroid berukuran 10 km dengan permukaan Bumi.",
+    explanation:
+      "Pakar paleontologi mempercayai kepupusan dinosaur disebabkan oleh perlanggaran asteroid berukuran 10 km dengan permukaan Bumi.",
   },
   {
     id: "sci-f2-c13-bm-q24",
@@ -284,10 +357,17 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "bm",
-    question: "Apakah peristiwa yang berlaku pada tahun 1994 antara komet Shoemaker-Levy 9 dan Musytari, dan mengapa peristiwa ini penting?",
-    options: ["Perlanggaran langsung pertama komet dengan objek dalam sistem suria yang pernah direkodkan", "Komet itu menjadi asteroid selepas melepasi Musytari", "Musytari menarik komet itu ke dalam Lingkaran Asteroid", "Ia adalah kali pertama meteoroid jatuh ke Musytari"],
+    question:
+      "Apakah peristiwa yang berlaku pada tahun 1994 antara komet Shoemaker-Levy 9 dan Musytari, dan mengapa peristiwa ini penting?",
+    options: [
+      "Perlanggaran langsung pertama komet dengan objek dalam sistem suria yang pernah direkodkan",
+      "Komet itu menjadi asteroid selepas melepasi Musytari",
+      "Musytari menarik komet itu ke dalam jalur asteroid",
+      "Ia adalah kali pertama meteoroid jatuh ke Musytari",
+    ],
     answerIndex: 0,
-    explanation: "Perlanggaran langsung pertama komet dengan objek dalam sistem suria berlaku pada tahun 1994, antara komet Shoemaker-Levy 9 dengan Musytari — peristiwa ini penting kerana ia membuktikan secara langsung bahawa perlanggaran sebegini boleh berlaku dan dipantau.",
+    explanation:
+      "Perlanggaran langsung pertama komet dengan objek dalam sistem suria berlaku pada tahun 1994, antara komet Shoemaker-Levy 9 dengan Musytari — peristiwa ini penting kerana ia membuktikan secara langsung bahawa perlanggaran sebegini boleh berlaku dan dipantau.",
   },
   {
     id: "sci-f2-c13-bm-q25",
@@ -296,10 +376,16 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "bm",
-    question: "Komet Halley terakhir dilihat melintasi Bumi pada tahun 1986. Berdasarkan kitaran orbitnya, pada tahun bilakah ia dijangka kelihatan semula?",
-    options: ["2030", "2061", "2050", "2086"],
+    question: "Semasa komet bergerak di sepanjang orbit elipsnya, ke arah manakah ekornya menuju?",
+    options: [
+      "Sentiasa di belakang komet, mengikut arah pergerakannya",
+      "Sentiasa menjauhi Matahari, tanpa mengira arah pergerakan komet",
+      "Sentiasa menghala ke arah Matahari",
+      "Ke arah rawak yang sentiasa berubah",
+    ],
     answerIndex: 1,
-    explanation: "Komet Halley terakhir dilihat melintasi Bumi pada tahun 1986 dan dijangka melintasi Bumi semula pada tahun 2061.",
+    explanation:
+      "Ekor komet sentiasa menuju menjauhi Matahari — bukan sekadar di belakang komet semasa ia bergerak. Ini bermakna apabila komet bergerak menjauhi Matahari selepas melepasinya, ekornya sebenarnya menghala ke hadapan arah pergerakan komet, bukan ke belakang.",
   },
   {
     id: "sci-f2-c13-bm-q26",
@@ -308,10 +394,17 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "bm",
-    question: "Meteorit Hoba dijumpai berhampiran Grootfontein, Namibia pada tahun 1920. Mengapakah ia dianggap istimewa dalam kajian sains angkasa lepas?",
-    options: ["Ia membawa kepada penemuan Lingkaran Asteroid", "Ia adalah meteorit pertama yang dijumpai di Bumi", "Ia adalah satu-satunya meteorit yang mengandungi ais", "Ia merupakan meteorit terbesar yang pernah direkodkan di dunia"],
+    question:
+      "Meteorit Hoba dijumpai berhampiran Grootfontein, Namibia pada tahun 1920. Mengapakah ia dianggap istimewa dalam kajian sains angkasa lepas?",
+    options: [
+      "Ia membawa kepada penemuan jalur asteroid",
+      "Ia adalah meteorit pertama yang dijumpai di Bumi",
+      "Ia adalah satu-satunya meteorit yang mengandungi ais",
+      "Ia merupakan meteorit terbesar yang pernah direkodkan di dunia",
+    ],
     answerIndex: 3,
-    explanation: "Meteorit Hoba ialah meteorit terbesar yang pernah direkodkan di dunia, dipercayai jatuh ke Bumi kira-kira 80,000 tahun lalu.",
+    explanation:
+      "Meteorit Hoba ialah meteorit terbesar yang pernah direkodkan di dunia, dipercayai jatuh ke Bumi kira-kira 80,000 tahun lalu.",
   },
   {
     id: "sci-f2-c13-bm-q27",
@@ -320,10 +413,17 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "bm",
-    question: "Kawah meteorit di Arizona, Amerika Syarikat berdiameter kira-kira 1.2 km dan terbentuk kira-kira 50,000 tahun lalu. Apakah kesimpulan yang boleh dibuat tentang hubungan antara saiz objek angkasa dengan kesan perlanggaran di Bumi?",
-    options: ["Objek angkasa walaupun kecil boleh meninggalkan kesan kekal yang besar di permukaan Bumi akibat tenaga perlanggaran yang tinggi", "Hanya objek bersaiz lebih daripada 1,000 km mampu membentuk kawah", "Kawah hanya terbentuk akibat letupan gunung berapi, bukan perlanggaran objek angkasa", "Saiz kawah tidak berkaitan dengan saiz objek yang melanggar"],
+    question:
+      "Kawah meteorit di Arizona, Amerika Syarikat berdiameter kira-kira 1.2 km dan terbentuk kira-kira 50,000 tahun lalu. Apakah kesimpulan yang boleh dibuat tentang hubungan antara saiz objek angkasa dengan kesan perlanggaran di Bumi?",
+    options: [
+      "Objek angkasa walaupun kecil boleh meninggalkan kesan kekal yang besar di permukaan Bumi akibat tenaga perlanggaran yang tinggi",
+      "Hanya objek bersaiz lebih daripada 1,000 km mampu membentuk kawah",
+      "Kawah hanya terbentuk akibat letupan gunung berapi, bukan perlanggaran objek angkasa",
+      "Saiz kawah tidak berkaitan dengan saiz objek yang melanggar",
+    ],
     answerIndex: 0,
-    explanation: "Kawah Arizona menunjukkan bahawa perlanggaran objek angkasa, walaupun bukan yang terbesar, mampu menghasilkan kesan fizikal kekal yang besar akibat tenaga kinetik yang tinggi semasa perlanggaran.",
+    explanation:
+      "Kawah Arizona menunjukkan bahawa perlanggaran objek angkasa, walaupun bukan yang terbesar, mampu menghasilkan kesan fizikal kekal yang besar akibat tenaga kinetik yang tinggi semasa perlanggaran.",
   },
   {
     id: "sci-f2-c13-bm-q28",
@@ -332,10 +432,17 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "bm",
-    question: "Orbit Apollo, Amor dan Aten dianggap berisiko lebih tinggi berbanding asteroid lain dalam Lingkaran Asteroid. Mengapa?",
-    options: ["Kerana orbitnya boleh bersilang dengan orbit Bumi, di luar Lingkaran Asteroid", "Kerana ia bergerak lebih perlahan daripada asteroid lain", "Kerana ia diperbuat daripada bahan yang lebih ringan", "Kerana ia sentiasa berada jauh daripada Matahari"],
+    question:
+      "Orbit Apollo, Amor dan Aten dianggap berisiko lebih tinggi berbanding asteroid lain dalam jalur asteroid. Mengapa?",
+    options: [
+      "Kerana orbitnya boleh bersilang dengan orbit Bumi, di luar jalur asteroid",
+      "Kerana ia bergerak lebih perlahan daripada asteroid lain",
+      "Kerana ia diperbuat daripada bahan yang lebih ringan",
+      "Kerana ia sentiasa berada jauh daripada Matahari",
+    ],
     answerIndex: 0,
-    explanation: "Orbit Apollo, Amor dan Aten adalah contoh orbit asteroid di luar Lingkaran Asteroid yang boleh bersilang dengan orbit Bumi, meningkatkan risiko perlanggaran berbanding asteroid yang kekal dalam Lingkaran Asteroid.",
+    explanation:
+      "Orbit Apollo, Amor dan Aten adalah contoh orbit asteroid di luar jalur asteroid yang boleh bersilang dengan orbit Bumi, meningkatkan risiko perlanggaran berbanding asteroid yang kekal dalam jalur asteroid.",
   },
   {
     id: "sci-f2-c13-bm-q29",
@@ -344,10 +451,17 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "bm",
-    question: "Apakah peranan Agensi Angkasa Negara (ANGKASA) berkaitan dengan ancaman objek angkasa seperti asteroid?",
-    options: ["Tidak berkaitan dengan pemantauan objek angkasa", "Hanya menguruskan pelancaran satelit komersial", "Mengawal harga bahan logam yang diimport dari angkasa lepas", "Bertanggungjawab menggerakkan dan memantau pembangunan sains angkasa lepas di Malaysia"],
+    question:
+      "Apakah peranan Agensi Angkasa Negara (ANGKASA) berkaitan dengan ancaman objek angkasa seperti asteroid?",
+    options: [
+      "Tidak berkaitan dengan pemantauan objek angkasa",
+      "Hanya menguruskan pelancaran satelit komersial",
+      "Mengawal harga bahan logam yang diimport dari angkasa lepas",
+      "Bertanggungjawab menggerakkan dan memantau pembangunan sains angkasa lepas di Malaysia",
+    ],
     answerIndex: 3,
-    explanation: "Agensi Angkasa Negara (ANGKASA) bertanggungjawab menggerakkan dan memantau pembangunan sains angkasa lepas di Malaysia, termasuk usaha berkaitan pemantauan objek angkasa.",
+    explanation:
+      "Agensi Angkasa Negara (ANGKASA) bertanggungjawab menggerakkan dan memantau pembangunan sains angkasa lepas di Malaysia, termasuk usaha berkaitan pemantauan objek angkasa.",
   },
   {
     id: "sci-f2-c13-bm-q30",
@@ -356,9 +470,16 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     lang: "bm",
-    question: "Berdasarkan ciri-ciri komposisi, saiz dan orbit, mengapakah meteoroid, asteroid dan komet dikategorikan sebagai objek yang berbeza walaupun semuanya bergerak dalam sistem suria?",
-    options: ["Kerana meteoroid dan asteroid tidak wujud dalam sistem suria yang sama dengan komet", "Kerana hanya nama yang membezakan ketiga-tiganya, ciri fizikalnya adalah sama", "Kerana hanya komet yang bergerak mengelilingi Matahari", "Kerana saiz, komposisi bahan dan jenis orbitnya yang berbeza membezakan ciri fizikal dan pergerakan setiap objek"],
+    question:
+      "Berdasarkan ciri-ciri komposisi, saiz dan orbit, mengapakah meteoroid, asteroid dan komet dikategorikan sebagai objek yang berbeza walaupun semuanya bergerak dalam sistem suria?",
+    options: [
+      "Kerana meteoroid dan asteroid tidak wujud dalam sistem suria yang sama dengan komet",
+      "Kerana hanya nama yang membezakan ketiga-tiganya, ciri fizikalnya adalah sama",
+      "Kerana hanya komet yang bergerak mengelilingi Matahari",
+      "Kerana saiz, komposisi bahan dan jenis orbitnya yang berbeza membezakan ciri fizikal dan pergerakan setiap objek",
+    ],
     answerIndex: 3,
-    explanation: "Meteoroid (serpihan kecil batu/logam), asteroid (jasad besar berbatu/logam dalam Lingkaran Asteroid) dan komet (jasad ais/gas/debu berorbit elips) mempunyai saiz, komposisi dan ciri orbit yang berbeza, menjadikan setiap satu kategori objek sistem suria yang tersendiri.",
+    explanation:
+      "Meteoroid (serpihan kecil batu/logam), asteroid (jasad besar berbatu/logam dalam jalur asteroid) dan komet (jasad ais/gas/debu berorbit elips) mempunyai saiz, komposisi dan ciri orbit yang berbeza, menjadikan setiap satu kategori objek sistem suria yang tersendiri.",
   },
 ];

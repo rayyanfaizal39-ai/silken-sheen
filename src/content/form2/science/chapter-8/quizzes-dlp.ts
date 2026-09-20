@@ -26,12 +26,7 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     question: "What is the S.I. unit of force?",
-    options: [
-      "Joule (J)",
-      "Newton (N)",
-      "Pascal (Pa)",
-      "Watt (W)",
-    ],
+    options: ["Joule (J)", "Newton (N)", "Pascal (Pa)", "Watt (W)"],
     answerIndex: 1,
     explanation: "The S.I. unit of force is newton (N).",
   },
@@ -43,14 +38,10 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     question: "Which instrument is used to measure force?",
-    options: [
-      "Thermometer",
-      "Barometer",
-      "Spring balance",
-      "Ammeter",
-    ],
+    options: ["Thermometer", "Barometer", "Spring balance", "Ammeter"],
     answerIndex: 2,
-    explanation: "Force is measured using a spring balance, which operates based on the principle of spring extension.",
+    explanation:
+      "Force is measured using a spring balance, which operates based on the principle of spring extension.",
   },
   {
     id: "sci-f2-c8-dlp-q4",
@@ -60,14 +51,10 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     question: "What is the weight of an object with a mass of 1 kg on Earth?",
-    options: [
-      "1 N",
-      "0.1 N",
-      "100 N",
-      "10 N",
-    ],
+    options: ["1 N", "0.1 N", "100 N", "10 N"],
     answerIndex: 3,
-    explanation: "An object with a mass of 100 g has a weight of 1 N; therefore, an object with a mass of 1 kg has a weight of 10 N.",
+    explanation:
+      "An object with a mass of 100 g has a weight of 1 N; therefore, an object with a mass of 1 kg has a weight of 10 N.",
   },
   {
     id: "sci-f2-c8-dlp-q5",
@@ -76,15 +63,12 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 8",
     lang: "dlp",
-    question: "The force that points towards the centre of the Earth, causing objects thrown upward to fall back down, is called...",
-    options: [
-      "Gravitational force",
-      "Normal force",
-      "Frictional force",
-      "Elastic force",
-    ],
+    question:
+      "The force that points towards the centre of the Earth, causing objects thrown upward to fall back down, is called...",
+    options: ["Gravitational force", "Normal force", "Frictional force", "Elastic force"],
     answerIndex: 0,
-    explanation: "Gravitational force is the force that points towards the centre of the Earth, causing all objects thrown upwards to fall back to Earth.",
+    explanation:
+      "Gravitational force is the force that points towards the centre of the Earth, causing all objects thrown upwards to fall back to Earth.",
   },
   {
     id: "sci-f2-c8-dlp-q6",
@@ -94,14 +78,10 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     question: "The force that resists movement between two surfaces in contact is called...",
-    options: [
-      "Gravitational force",
-      "Frictional force",
-      "Buoyant force",
-      "Elastic force",
-    ],
+    options: ["Gravitational force", "Frictional force", "Buoyant force", "Elastic force"],
     answerIndex: 1,
-    explanation: "Frictional force resists movement between two surfaces in contact with each other, and acts in the opposite direction of motion.",
+    explanation:
+      "Frictional force resists movement between two surfaces in contact with each other, and acts in the opposite direction of motion.",
   },
   {
     id: "sci-f2-c8-dlp-q7",
@@ -111,12 +91,7 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     question: "The force produced when an object is in contact with a surface is called...",
-    options: [
-      "Gravitational force",
-      "Frictional force",
-      "Normal force",
-      "Buoyant force",
-    ],
+    options: ["Gravitational force", "Frictional force", "Normal force", "Buoyant force"],
     answerIndex: 2,
     explanation: "Normal force is the force produced when an object is in contact with a surface.",
   },
@@ -124,18 +99,20 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     id: "sci-f2-c8-dlp-q8",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 8",
     lang: "dlp",
-    question: "Weight is defined as...",
+    question:
+      "In an investigation into the relationship between surface area and pressure, metal blocks of the same mass are pressed onto plasticine using different surface areas. What is the manipulated variable, and what would you expect to observe?",
     options: [
-      "The volume of an object",
-      "The frictional force acting on an object",
-      "The mass of an object",
-      "The gravitational force acting on an object",
+      "The manipulated variable is surface area; a larger surface area produces a shallower dent (lower pressure)",
+      "The manipulated variable is the mass of the block; a heavier block produces a shallower dent",
+      "The manipulated variable is surface area; a larger surface area produces a deeper dent (higher pressure)",
+      "The manipulated variable is the depth of the dent; surface area is the responding variable",
     ],
-    answerIndex: 3,
-    explanation: "Weight is defined as the gravitational force acting on an object.",
+    answerIndex: 0,
+    explanation:
+      "The blocks have the same mass (the same force), so surface area is the manipulated variable while the depth of the dent in the plasticine (the responding variable, indicating pressure) is observed. A larger surface area spreads the same force over more area, producing lower pressure and therefore a shallower dent.",
   },
   {
     id: "sci-f2-c8-dlp-q9",
@@ -144,15 +121,12 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 8",
     lang: "dlp",
-    question: "The thrust force acting on an object floating on the surface of a fluid is called...",
-    options: [
-      "Buoyant force",
-      "Elastic force",
-      "Normal force",
-      "Gravitational force",
-    ],
+    question:
+      "The thrust force acting on an object floating on the surface of a fluid is called...",
+    options: ["Buoyant force", "Elastic force", "Normal force", "Gravitational force"],
     answerIndex: 0,
-    explanation: "Buoyant force is the thrust force acting on an object floating on the surface of a fluid.",
+    explanation:
+      "Buoyant force is the thrust force acting on an object floating on the surface of a fluid.",
   },
   {
     id: "sci-f2-c8-dlp-q10",
@@ -162,14 +136,10 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     question: "The force that exists when a material is stretched or compressed is called...",
-    options: [
-      "Gravitational force",
-      "Elastic force",
-      "Normal force",
-      "Buoyant force",
-    ],
+    options: ["Gravitational force", "Elastic force", "Normal force", "Buoyant force"],
     answerIndex: 1,
-    explanation: "Elastic force exists when a material is stretched or compressed, for example a spring.",
+    explanation:
+      "Elastic force exists when a material is stretched or compressed, for example a spring.",
   },
   {
     id: "sci-f2-c8-dlp-q11",
@@ -186,7 +156,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "Because its value is always constant",
     ],
     answerIndex: 2,
-    explanation: "Force is a vector quantity that has magnitude and direction, as well as a point of application.",
+    explanation:
+      "Force is a vector quantity that has magnitude and direction, as well as a point of application.",
   },
   {
     id: "sci-f2-c8-dlp-q12",
@@ -220,7 +191,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "Frictional force (reaction force)",
     ],
     answerIndex: 0,
-    explanation: "Weight (action force) is balanced by normal force (reaction force) in the opposite direction when an object is placed on a table.",
+    explanation:
+      "Weight (action force) is balanced by normal force (reaction force) in the opposite direction when an object is placed on a table.",
   },
   {
     id: "sci-f2-c8-dlp-q14",
@@ -229,7 +201,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 8",
     lang: "dlp",
-    question: "Two trolleys in contact are launched with a spring mechanism. What happens to both trolleys?",
+    question:
+      "Two trolleys in contact are launched with a spring mechanism. What happens to both trolleys?",
     options: [
       "Both move the same distance in the same direction",
       "Both move the same distance but in opposite directions",
@@ -237,7 +210,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "Both trolleys remain stationary",
     ],
     answerIndex: 1,
-    explanation: "According to the action-reaction pair principle, both trolleys move at the same distance but in opposite directions.",
+    explanation:
+      "According to the action-reaction pair principle, both trolleys move at the same distance but in opposite directions.",
   },
   {
     id: "sci-f2-c8-dlp-q15",
@@ -254,7 +228,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "When the object is denser than the fluid",
     ],
     answerIndex: 2,
-    explanation: "An object will float if the buoyant force acting on it is enough to support its weight (buoyant force = weight of the object).",
+    explanation:
+      "An object will float if the buoyant force acting on it is enough to support its weight (buoyant force = weight of the object).",
   },
   {
     id: "sci-f2-c8-dlp-q16",
@@ -281,14 +256,10 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     question: "An object more dense than a liquid will...",
-    options: [
-      "Submerge",
-      "Float",
-      "Remain stationary at the surface",
-      "Change shape",
-    ],
+    options: ["Submerge", "Float", "Remain stationary at the surface", "Change shape"],
     answerIndex: 0,
-    explanation: "An object more dense than the liquid will submerge because the buoyant force F is less than the weight W.",
+    explanation:
+      "An object more dense than the liquid will submerge because the buoyant force F is less than the weight W.",
   },
   {
     id: "sci-f2-c8-dlp-q18",
@@ -305,7 +276,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "Moment of force = Force + Distance",
     ],
     answerIndex: 1,
-    explanation: "Moment of force = Force (N) × Perpendicular distance from the pivot to the force (m), with unit newton metre (N m).",
+    explanation:
+      "Moment of force = Force (N) × Perpendicular distance from the pivot to the force (m), with unit newton metre (N m).",
   },
   {
     id: "sci-f2-c8-dlp-q19",
@@ -322,7 +294,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "Volume, temperature, pressure",
     ],
     answerIndex: 2,
-    explanation: "A lever is made up of three parts — effort, load, and fulcrum (fixed support point).",
+    explanation:
+      "A lever is made up of three parts — effort, load, and fulcrum (fixed support point).",
   },
   {
     id: "sci-f2-c8-dlp-q20",
@@ -332,29 +305,21 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     question: "In a first class lever, the fulcrum is located between...",
-    options: [
-      "Point of application and magnitude",
-      "Two loads",
-      "Two efforts",
-      "Load and effort",
-    ],
+    options: ["Point of application and magnitude", "Two loads", "Two efforts", "Load and effort"],
     answerIndex: 3,
-    explanation: "In a first class lever, the fulcrum is between load and effort, e.g. scissors, pliers, can opener.",
+    explanation:
+      "In a first class lever, the fulcrum is between load and effort, e.g. scissors, pliers, can opener.",
   },
   {
     id: "sci-f2-c8-dlp-q21",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 8",
     lang: "dlp",
-    question: "A force of 50 N is applied at a distance of 0.2 m from the pivot to tighten a nut. What is the resulting moment of force?",
-    options: [
-      "10 N m",
-      "5 N m",
-      "25 N m",
-      "100 N m",
-    ],
+    question:
+      "A force of 50 N is applied at a distance of 0.2 m from the pivot to tighten a nut. What is the resulting moment of force?",
+    options: ["10 N m", "5 N m", "25 N m", "100 N m"],
     answerIndex: 0,
     explanation: "Moment of force = 50 N × 0.2 m = 10 N m.",
   },
@@ -365,15 +330,12 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 8",
     lang: "dlp",
-    question: "Jia Yin (200 N) and Wei Hong (300 N) sit on a see-saw. Wei Hong is 2 m from the fulcrum. How far must Jia Yin sit from the fulcrum for balance?",
-    options: [
-      "1 m",
-      "3 m",
-      "2 m",
-      "6 m",
-    ],
+    question:
+      "Jia Yin (200 N) and Wei Hong (300 N) sit on a see-saw. Wei Hong is 2 m from the fulcrum. How far must Jia Yin sit from the fulcrum for balance?",
+    options: ["1 m", "3 m", "2 m", "6 m"],
     answerIndex: 1,
-    explanation: "200 N × d = 300 N × 2 m → d = 600/200 = 3 m. Jia Yin must sit 3 m from the fulcrum.",
+    explanation:
+      "200 N × d = 300 N × 2 m → d = 600/200 = 3 m. Jia Yin must sit 3 m from the fulcrum.",
   },
   {
     id: "sci-f2-c8-dlp-q23",
@@ -382,32 +344,30 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 8",
     lang: "dlp",
-    question: "A man moves a 100 kg boulder using a small stone as a fulcrum. Distance boulder-fulcrum = 0.5 m, distance man-fulcrum = 2 m, gravitational force = 10 N kg⁻¹. What effort is needed?",
-    options: [
-      "100 N",
-      "500 N",
-      "250 N",
-      "1000 N",
-    ],
+    question:
+      "A man moves a 100 kg boulder using a small stone as a fulcrum. Distance boulder-fulcrum = 0.5 m, distance man-fulcrum = 2 m, gravitational force = 10 N kg⁻¹. What effort is needed?",
+    options: ["100 N", "500 N", "250 N", "1000 N"],
     answerIndex: 2,
-    explanation: "Load = 100 kg × 10 = 1000 N. 1000 N × 0.5 m = Effort × 2 m → Effort = 500/2 = 250 N.",
+    explanation:
+      "Load = 100 kg × 10 = 1000 N. 1000 N × 0.5 m = Effort × 2 m → Effort = 500/2 = 250 N.",
   },
   {
     id: "sci-f2-c8-dlp-q24",
     subjectId: "science",
     form: "Form 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 8",
     lang: "dlp",
-    question: "Why does an elephant weighing 5000 kg not sink into the ground?",
+    question: "Why are tractors fitted with wide wheels instead of narrow wheels?",
     options: [
-      "Because it has high buoyant force",
-      "Because it has no weight",
-      "Because it has high elastic force",
-      "Because the large surface area of its sole results in small pressure on the ground",
+      "Wide wheels increase the pressure exerted on the ground, helping the tractor grip better",
+      "Wide wheels spread the tractor's weight over a larger surface area, reducing the pressure on the ground so it does not sink into soft soil",
+      "Wide wheels reduce the tractor's overall weight",
+      "Wide wheels have no effect on pressure",
     ],
-    answerIndex: 3,
-    explanation: "Pressure = Force/Area. The large surface area of an elephant's sole results in small pressure on the ground despite its high weight.",
+    answerIndex: 1,
+    explanation:
+      "Pressure = Force ÷ Area. Wide wheels spread the tractor's weight over a larger surface area, producing lower pressure so that the tractor does not sink into soft ground.",
   },
   {
     id: "sci-f2-c8-dlp-q25",
@@ -416,7 +376,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 8",
     lang: "dlp",
-    question: "Based on the density table, cork (0.24 g cm⁻³) floats on water (1.0 g cm⁻³) because...",
+    question:
+      "Based on the density table, cork (0.24 g cm⁻³) floats on water (1.0 g cm⁻³) because...",
     options: [
       "Cork is less dense than water",
       "Cork is denser than water",
@@ -424,7 +385,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "Cork has no gravitational force",
     ],
     answerIndex: 0,
-    explanation: "Cork floats because it is less dense (0.24 g cm⁻³) than water (1.0 g cm⁻³). While floating at rest, the buoyant force is equal in magnitude to its weight (F = W).",
+    explanation:
+      "Cork floats because it is less dense (0.24 g cm⁻³) than water (1.0 g cm⁻³). While floating at rest, the buoyant force is equal in magnitude to its weight (F = W).",
   },
   {
     id: "sci-f2-c8-dlp-q26",
@@ -441,7 +403,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "To show the direction of the ship's movement",
     ],
     answerIndex: 1,
-    explanation: "Plimsoll lines are marked for safety purposes because seawater density differs due to temperature and salt concentration in different parts of the world.",
+    explanation:
+      "Plimsoll lines are marked for safety purposes because seawater density differs due to temperature and salt concentration in different parts of the world.",
   },
   {
     id: "sci-f2-c8-dlp-q27",
@@ -458,7 +421,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "The slow movement of air molecules",
     ],
     answerIndex: 2,
-    explanation: "The frequency of collision between freely-moving air molecules and the walls of their container produces a force that pushes against the walls — air pressure.",
+    explanation:
+      "The frequency of collision between freely-moving air molecules and the walls of their container produces a force that pushes against the walls — air pressure.",
   },
   {
     id: "sci-f2-c8-dlp-q28",
@@ -475,7 +439,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "Because there is less air above you, so the weight of the air column pressing down is smaller",
     ],
     answerIndex: 3,
-    explanation: "The higher the altitude, the less air there is above you. The weight of the air column pressing down becomes smaller, so the atmospheric pressure is lower.",
+    explanation:
+      "The higher the altitude, the less air there is above you. The weight of the air column pressing down becomes smaller, so the atmospheric pressure is lower.",
   },
   {
     id: "sci-f2-c8-dlp-q29",
@@ -484,7 +449,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 8",
     lang: "dlp",
-    question: "A condensed milk can with two holes allows milk to flow more smoothly than one with a single hole. Why?",
+    question:
+      "A condensed milk can with two holes allows milk to flow more smoothly than one with a single hole. Why?",
     options: [
       "Because the air pressure inside and outside the can becomes equal",
       "Because the air pressure inside the can becomes lower than outside",
@@ -492,7 +458,8 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "Because gravitational force increases",
     ],
     answerIndex: 0,
-    explanation: "With two holes, the air pressure inside and outside the can becomes equal, allowing milk to flow out more smoothly.",
+    explanation:
+      "With two holes, the air pressure inside and outside the can becomes equal, allowing milk to flow out more smoothly.",
   },
   {
     id: "sci-f2-c8-dlp-q30",
@@ -509,6 +476,7 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "To reduce construction costs",
     ],
     answerIndex: 1,
-    explanation: "Liquid pressure increases with depth, so dam walls are designed thicker at the base to withstand the higher water pressure at that depth.",
+    explanation:
+      "Liquid pressure increases with depth, so dam walls are designed thicker at the base to withstand the higher water pressure at that depth.",
   },
 ];

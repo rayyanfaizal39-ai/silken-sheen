@@ -2,6 +2,9 @@
 // Source-verified content for Chapter 4 / Bab 4 — Reproduction / Pembiakan
 // EN sourced from T1_BT_SN_DLP-_SCIENCE.pdf (pages 88-133)
 // BM sourced from T1_BT_SN-_SAINS.pdf (pages 88-133, official KSSM counterpart)
+// Pass 1 additions: official headings and reproduction importance follow the user brief;
+// BM importance also checked against printed p. 96 of T1 BT SN- SAINS.pdf.
+// Existing organ terminology, functions and puberty ages are preserved.
 // Content data only — no presentation markup. Handle with age-appropriate,
 // clinical tone in the UI — this covers official KSSM Form 1 human
 // reproductive health content.
@@ -68,6 +71,10 @@ export interface SeedPart {
 }
 
 export interface Chapter4Content {
+  chapterTitle: string;
+  officialSubtopics: { number: string; title: string }[];
+  reproductionImportance: { title: string; benefits: string[]; failure: string[] };
+  gameteCommon: string[];
   hook: { title: string; body: string };
   reproductionBasics: {
     definition: string;
@@ -133,6 +140,8 @@ export interface Chapter4Content {
     germinationTypes: { epigeal: string; hypogeal: string };
     germinationConditions: string[];
     germinationConditionDetails: { condition: string; reason: string }[];
+    // Experiment 4.1: BM textbook printed pp. 129–130; EN setup labels are semantic counterparts.
+    germinationExperiment: { label: string; medium: string; temperature: string; cover: string }[];
     germinationExamTip: string;
   };
   keyExamFacts: string[];
@@ -141,6 +150,29 @@ export interface Chapter4Content {
 }
 
 const en: Chapter4Content = {
+  chapterTitle: "Reproduction",
+  officialSubtopics: [
+    { number: "4.1", title: "Sexual and Asexual Reproduction" },
+    { number: "4.2", title: "Human Reproductive System" },
+    { number: "4.3", title: "The Menstrual Cycle" },
+    { number: "4.4", title: "Fertilisation and Pregnancy" },
+    { number: "4.5", title: "Factors Affecting the Development of a Foetus and Baby" },
+    { number: "4.6", title: "Infertility and Contraception" },
+    { number: "4.7", title: "Plant Reproduction" },
+  ],
+  reproductionImportance: {
+    title: "Importance of Reproduction",
+    benefits: [
+      "Increases the number of individuals of the same species",
+      "Passes genetic information to the new generation",
+      "Ensures the continuation of the species",
+    ],
+    failure: ["Failure to reproduce", "Population disappears over generations", "Extinction"],
+  },
+  gameteCommon: [
+    "Sperm and ovum are reproductive cells (gametes).",
+    "Both carry genetic information.",
+  ],
   hook: {
     title: "Why this matters",
     body: "Every living thing on Earth exists because of reproduction — from a single Amoeba splitting in two, to the nine-month process that made you. This chapter covers how humans, animals, and plants all solve the same problem: creating the next generation.",
@@ -620,8 +652,21 @@ const en: Chapter4Content = {
       },
       {
         condition: "Suitable temperature",
-        reason: "Keeps germination enzymes active; the usual suitable range is about 25-35°C",
+        reason: "Keeps germination enzymes active",
       },
+    ],
+    // Setup labels verified against T1 BT SN- SAINS.pdf, printed pp. 129–130.
+    // No measured outcomes are supplied; do not invent result values.
+    germinationExperiment: [
+      { label: "A", medium: "Moist cotton", temperature: "Room temperature", cover: "Black paper" },
+      { label: "B", medium: "Dry cotton", temperature: "Room temperature", cover: "Black paper" },
+      {
+        label: "C",
+        medium: "Cooled boiled water + cooking-oil layer",
+        temperature: "Room temperature",
+        cover: "Black paper",
+      },
+      { label: "D", medium: "Moist cotton", temperature: "Refrigerator", cover: "Black paper" },
     ],
     germinationExamTip:
       "Light is not required for seed germination. The seed uses food stored in its cotyledon; light is needed only after green leaves emerge.",
@@ -669,6 +714,29 @@ const en: Chapter4Content = {
 };
 
 const bm: Chapter4Content = {
+  chapterTitle: "Pembiakan",
+  officialSubtopics: [
+    { number: "4.1", title: "Pembiakan Seks dan Aseks" },
+    { number: "4.2", title: "Sistem Pembiakan Manusia" },
+    { number: "4.3", title: "Kitar Haid" },
+    { number: "4.4", title: "Persenyawaan dan Kehamilan" },
+    { number: "4.5", title: "Faktor yang Mempengaruhi Perkembangan Fetus dan Bayi" },
+    { number: "4.6", title: "Kemandulan dan Pencegahan Kehamilan" },
+    { number: "4.7", title: "Pembiakan Tumbuhan" },
+  ],
+  reproductionImportance: {
+    title: "Kepentingan Pembiakan",
+    benefits: [
+      "Pembiakan dapat meningkatkan jumlah individu yang sama spesies",
+      "Pembiakan menurunkan maklumat genetik kepada generasi baharu",
+      "Memastikan spesies kekal wujud",
+    ],
+    failure: ["Kegagalan membiak", "Populasi hilang selepas beberapa generasi", "Kepupusan"],
+  },
+  gameteCommon: [
+    "Sperma dan ovum ialah sel pembiakan (gamet).",
+    "Kedua-duanya membawa maklumat genetik.",
+  ],
   hook: {
     title: "Kenapa ini penting",
     body: "Setiap benda hidup di Bumi wujud kerana pembiakan — daripada seekor Amoeba yang membelah dua, hingga proses sembilan bulan yang mencipta anda. Bab ini merangkumi bagaimana manusia, haiwan, dan tumbuhan semuanya menyelesaikan masalah yang sama: menghasilkan generasi seterusnya.",
@@ -1140,7 +1208,7 @@ const bm: Chapter4Content = {
       { part: "Hilum", function: "Tempat biji benih melekat pada buah" },
       { part: "Mikropil", function: "Lubang kecil membolehkan udara dan air memasuki biji benih" },
       { part: "Plumul", function: "Bahagian embrio yang berkembang menjadi pucuk baharu" },
-      { part: "Radikal", function: "Bahagian embrio yang berkembang menjadi akar" },
+      { part: "Radikel", function: "Bahagian embrio yang berkembang menjadi akar" },
       {
         part: "Kotiledon / Endosperma",
         function: "Menyimpan dan membekalkan makanan untuk biji benih",
@@ -1168,8 +1236,20 @@ const bm: Chapter4Content = {
       },
       {
         condition: "Suhu yang sesuai",
-        reason: "Memastikan enzim percambahan aktif; julat sesuai lazimnya kira-kira 25-35°C",
+        reason: "Memastikan enzim percambahan aktif",
       },
+    ],
+    // Rajah 4.37, buku teks BM, halaman bercetak 129–130.
+    germinationExperiment: [
+      { label: "A", medium: "Kapas lembap", temperature: "Suhu bilik", cover: "Kertas hitam" },
+      { label: "B", medium: "Kapas kering", temperature: "Suhu bilik", cover: "Kertas hitam" },
+      {
+        label: "C",
+        medium: "Air didih yang disejukkan + lapisan minyak masak",
+        temperature: "Suhu bilik",
+        cover: "Kertas hitam",
+      },
+      { label: "D", medium: "Kapas lembap", temperature: "Peti sejuk", cover: "Kertas hitam" },
     ],
     germinationExamTip:
       "Cahaya tidak diperlukan untuk percambahan biji benih. Biji benih menggunakan makanan dalam kotiledon; cahaya hanya diperlukan selepas daun hijau muncul.",

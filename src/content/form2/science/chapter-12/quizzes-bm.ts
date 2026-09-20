@@ -16,7 +16,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Tempoh masa Bumi mengorbit Matahari",
     ],
     answerIndex: 0,
-    explanation: "Unit Astronomi (A.U.) ialah jarak purata antara Bumi dan Matahari, iaitu kira-kira 150 juta kilometer (1.5 × 10⁸ km).",
+    explanation:
+      "Unit Astronomi (A.U.) ialah jarak purata antara Bumi dan Matahari, iaitu kira-kira 150 juta kilometer (1.5 × 10⁸ km).",
   },
   {
     id: "sci-f2-c12-bm-q2",
@@ -33,7 +34,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Kelajuan cahaya dalam saat",
     ],
     answerIndex: 1,
-    explanation: "Tahun cahaya ialah jarak yang dilalui oleh cahaya dalam masa satu tahun, iaitu 9.5 × 10¹² km.",
+    explanation:
+      "Tahun cahaya ialah jarak yang dilalui oleh cahaya dalam masa satu tahun, iaitu 9.5 × 10¹² km.",
   },
   {
     id: "sci-f2-c12-bm-q3",
@@ -43,7 +45,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "bm",
     question: "Berapakah kelajuan cahaya?",
-    options: [ "9.5 juta km sesaat", "150 000 km sesaat", "300 000 km sesaat", "1.5 juta km sesaat" ],
+    options: ["9.5 juta km sesaat", "150 000 km sesaat", "300 000 km sesaat", "1.5 juta km sesaat"],
     answerIndex: 2,
     explanation: "Cahaya bergerak pada halaju 300 000 km setiap saat.",
   },
@@ -55,7 +57,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "bm",
     question: "Berapakah jumlah planet dalam sistem suria?",
-    options: [ "9", "6", "7", "8" ],
+    options: ["9", "6", "7", "8"],
     answerIndex: 3,
     explanation: "Sistem suria terdiri daripada lapan planet yang mengorbit Matahari.",
   },
@@ -67,9 +69,10 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "bm",
     question: "Sejak tahun bilakah Pluto tidak lagi diiktiraf sebagai planet dalam sistem suria?",
-    options: [ "2006", "2010", "1996", "2000" ],
+    options: ["2006", "2010", "1996", "2000"],
     answerIndex: 0,
-    explanation: "Pada tahun 2006, Pluto tidak lagi diiktiraf sebagai planet; ia dikenali sebagai planet kerdil.",
+    explanation:
+      "Pada tahun 2006, Pluto tidak lagi diiktiraf sebagai planet; ia dikenali sebagai planet kerdil.",
   },
   {
     id: "sci-f2-c12-bm-q6",
@@ -79,7 +82,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "bm",
     question: "Apakah planet yang paling hampir dengan Matahari?",
-    options: [ "Bumi", "Utarid", "Marikh", "Zuhrah" ],
+    options: ["Bumi", "Utarid", "Marikh", "Zuhrah"],
     answerIndex: 1,
     explanation: "Utarid ialah planet paling hampir dengan Matahari, kira-kira 57.9 juta km.",
   },
@@ -91,9 +94,10 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "bm",
     question: "Apakah planet terbesar dalam sistem suria?",
-    options: [ "Uranus", "Zuhal", "Musytari", "Neptun" ],
+    options: ["Uranus", "Zuhal", "Musytari", "Neptun"],
     answerIndex: 2,
-    explanation: "Musytari ialah planet kelima dan terbesar dalam sistem suria, dengan jisim hampir 320 kali Bumi.",
+    explanation:
+      "Musytari ialah planet kelima dan terbesar dalam sistem suria, dengan jisim hampir 320 kali Bumi.",
   },
   {
     id: "sci-f2-c12-bm-q8",
@@ -103,9 +107,9 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "bm",
     question: "Marikh dikenali sebagai...",
-    options: [ "Planet Hijau", "Planet Kuning", "Planet Biru", "Planet Merah" ],
+    options: ["Planet Hijau", "Planet Kuning", "Planet Biru", "Planet Merah"],
     answerIndex: 3,
-    explanation: "Marikh dikenali sebagai \"Planet Merah\".",
+    explanation: 'Marikh dikenali sebagai "Planet Merah".',
   },
   {
     id: "sci-f2-c12-bm-q9",
@@ -115,7 +119,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "bm",
     question: "Berapa peratus permukaan Bumi diliputi air?",
-    options: [ "71%", "90%", "29%", "50%" ],
+    options: ["71%", "90%", "29%", "50%"],
     answerIndex: 0,
     explanation: "Lebih 71% permukaan Bumi diliputi air, 29% daratan.",
   },
@@ -127,7 +131,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "bm",
     question: "Apakah nama satelit semula jadi Bumi?",
-    options: [ "Titan", "Bulan", "Europa", "Phobos" ],
+    options: ["Titan", "Bulan", "Europa", "Phobos"],
     answerIndex: 1,
     explanation: "Bulan adalah satu-satunya satelit semula jadi Bumi.",
   },
@@ -138,7 +142,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Mengapakah Zuhrah dikenali sebagai planet \"rumah hijau\"?",
+    question: 'Mengapakah Zuhrah dikenali sebagai planet "rumah hijau"?',
     options: [
       "Kerana ia paling jauh daripada Matahari",
       "Kerana permukaannya berwarna hijau",
@@ -146,7 +150,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Kerana ia mempunyai banyak tumbuhan",
     ],
     answerIndex: 2,
-    explanation: "Zuhrah dikenali sebagai planet \"rumah hijau\" akibat kandungan karbon dioksida yang tinggi yang memerangkap haba, menyebabkan suhu mencecah 460°C.",
+    explanation:
+      'Zuhrah dikenali sebagai planet "rumah hijau" akibat kandungan karbon dioksida yang tinggi yang memerangkap haba, menyebabkan suhu mencecah 460°C.',
   },
   {
     id: "sci-f2-c12-bm-q12",
@@ -163,7 +168,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Zuhrah berputar daripada timur ke barat, bertentangan dengan Bumi",
     ],
     answerIndex: 3,
-    explanation: "Zuhrah berputar daripada timur ke barat (bertentangan dengan Bumi), menyebabkan Matahari terbit dari barat di Zuhrah.",
+    explanation:
+      "Zuhrah berputar daripada timur ke barat (bertentangan dengan Bumi), menyebabkan Matahari terbit dari barat di Zuhrah.",
   },
   {
     id: "sci-f2-c12-bm-q13",
@@ -172,7 +178,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Mengapakah Musytari dianggap sebagai \"pelindung Bumi\"?",
+    question: 'Mengapakah Musytari dianggap sebagai "pelindung Bumi"?',
     options: [
       "Kerana daya gravitinya yang kuat dapat memesongkan objek besar daripada menghentam Bumi",
       "Kerana ia menghalang sinar ultraungu daripada Matahari",
@@ -180,7 +186,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Kerana ia menghasilkan oksigen untuk Bumi",
     ],
     answerIndex: 0,
-    explanation: "Musytari mempunyai daya graviti yang sangat kuat akibat jisimnya yang besar, membolehkannya memesongkan objek besar seperti asteroid daripada menghentam Bumi.",
+    explanation:
+      "Musytari mempunyai daya graviti yang sangat kuat akibat jisimnya yang besar, membolehkannya memesongkan objek besar seperti asteroid daripada menghentam Bumi.",
   },
   {
     id: "sci-f2-c12-bm-q14",
@@ -201,7 +208,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Apakah yang dimaksudkan dengan planet \"gas gergasi\"?",
+    question: 'Apakah yang dimaksudkan dengan planet "gas gergasi"?',
     options: [
       "Planet yang tidak mempunyai bulan",
       "Planet yang permukaannya keseluruhannya batu",
@@ -209,7 +216,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Planet yang paling hampir dengan Matahari",
     ],
     answerIndex: 2,
-    explanation: "Musytari, Zuhal, Uranus dan Neptun dikelaskan sebagai planet \"gas gergasi\" kerana permukaannya diliputi gas dan menerima sedikit cahaya matahari.",
+    explanation:
+      'Musytari, Zuhal, Uranus dan Neptun dikelaskan sebagai planet "gas gergasi" kerana permukaannya diliputi gas dan menerima sedikit cahaya matahari.',
   },
   {
     id: "sci-f2-c12-bm-q16",
@@ -226,7 +234,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Ia berputar di sisinya, hampir selari dengan orbitnya mengelilingi Matahari",
     ],
     answerIndex: 3,
-    explanation: "Paksi putaran Uranus hampir selari dengan orbitnya mengelilingi Matahari, menyebabkan ia kelihatan berputar di sisinya.",
+    explanation:
+      "Paksi putaran Uranus hampir selari dengan orbitnya mengelilingi Matahari, menyebabkan ia kelihatan berputar di sisinya.",
   },
   {
     id: "sci-f2-c12-bm-q17",
@@ -235,10 +244,17 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Mengapakah permukaan Bulan yang sama sentiasa menghadap Bumi jika anda memerhatikannya dari Bumi?",
-    options: [ "Kerana tempoh putaran Bulan pada paksinya sama dengan tempoh peredarannya mengelilingi Bumi", "Kerana Bulan sentiasa berada pada kedudukan yang sama di angkasa", "Kerana Bulan tidak berputar pada paksinya", "Kerana Bumi tidak berputar pada paksinya" ],
+    question:
+      "Mengapakah permukaan Bulan yang sama sentiasa menghadap Bumi jika anda memerhatikannya dari Bumi?",
+    options: [
+      "Kerana tempoh putaran Bulan pada paksinya sama dengan tempoh peredarannya mengelilingi Bumi",
+      "Kerana Bulan sentiasa berada pada kedudukan yang sama di angkasa",
+      "Kerana Bulan tidak berputar pada paksinya",
+      "Kerana Bumi tidak berputar pada paksinya",
+    ],
     answerIndex: 0,
-    explanation: "Tempoh masa putaran Bulan pada paksinya dan peredarannya mengelilingi Bumi adalah sama, iaitu lebih kurang 27 hari.",
+    explanation:
+      "Tempoh masa putaran Bulan pada paksinya dan peredarannya mengelilingi Bumi adalah sama, iaitu lebih kurang 27 hari.",
   },
   {
     id: "sci-f2-c12-bm-q18",
@@ -247,7 +263,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Berdasarkan data planet, planet manakah yang mempunyai bilangan satelit semula jadi yang paling banyak?",
+    question:
+      "Berdasarkan data planet, planet manakah yang mempunyai bilangan satelit semula jadi yang paling banyak?",
     options: [
       "Utarid, dengan 0 satelit semula jadi",
       "Musytari, dengan 67 satelit semula jadi",
@@ -255,7 +272,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Marikh, dengan 2 satelit semula jadi",
     ],
     answerIndex: 1,
-    explanation: "Musytari mempunyai 67 satelit semula jadi, diikuti Zuhal 62, Uranus 27 dan Neptun 14. Utarid dan Zuhrah tidak mempunyai satelit semula jadi.",
+    explanation:
+      "Musytari mempunyai 67 satelit semula jadi, diikuti Zuhal 62, Uranus 27 dan Neptun 14. Utarid dan Zuhrah tidak mempunyai satelit semula jadi.",
   },
   {
     id: "sci-f2-c12-bm-q19",
@@ -265,7 +283,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 12",
     lang: "bm",
     question: "Berapakah graviti permukaan Bumi?",
-    options: [ "24.8 m s⁻²", "6.8 m s⁻²", "9.8 m s⁻²", "12.4 m s⁻²" ],
+    options: ["24.8 m s⁻²", "6.8 m s⁻²", "9.8 m s⁻²", "12.4 m s⁻²"],
     answerIndex: 2,
     explanation: "Graviti permukaan Bumi adalah 9.8 m s⁻².",
   },
@@ -284,7 +302,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Ukuran keupayaan air dan tanah menyediakan keperluan asas manusia serta keupayaan Bumi menjana semula sumbernya",
     ],
     answerIndex: 3,
-    explanation: "Jejak ekologi ialah ukuran keupayaan air dan tanah untuk menyediakan keperluan asas manusia, serta keupayaan Bumi untuk menyerap sisa dan menjana semula sumber.",
+    explanation:
+      "Jejak ekologi ialah ukuran keupayaan air dan tanah untuk menyediakan keperluan asas manusia, serta keupayaan Bumi untuk menyerap sisa dan menjana semula sumber.",
   },
   {
     id: "sci-f2-c12-bm-q21",
@@ -293,8 +312,9 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Jarak sebuah planet daripada Matahari ialah 4.5 × 10⁹ km. Berapakah jarak ini dalam unit A.U.? (1 A.U. = 1.5 × 10⁸ km)",
-    options: [ "30 A.U.", "300 A.U.", "3 A.U.", "15 A.U." ],
+    question:
+      "Jarak sebuah planet daripada Matahari ialah 4.5 × 10⁹ km. Berapakah jarak ini dalam unit A.U.? (1 A.U. = 1.5 × 10⁸ km)",
+    options: ["30 A.U.", "300 A.U.", "3 A.U.", "15 A.U."],
     answerIndex: 0,
     explanation: "Jarak dalam A.U. = (4.5 × 10⁹)/(1.5 × 10⁸) = 30 A.U.",
   },
@@ -305,7 +325,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Mengapakah Utarid mengalami perbezaan suhu yang amat ekstrem antara kawasan menghadap Matahari dan kawasan gelapnya?",
+    question:
+      "Mengapakah Utarid mengalami perbezaan suhu yang amat ekstrem antara kawasan menghadap Matahari dan kawasan gelapnya?",
     options: [
       "Kerana ia paling jauh daripada Matahari",
       "Kerana ia tidak mempunyai atmosfera untuk memerangkap atau mengagihkan haba",
@@ -313,7 +334,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Kerana ia diliputi oleh ais",
     ],
     answerIndex: 1,
-    explanation: "Utarid tiada atmosfera, justeru kawasan menghadap Matahari sangat panas (>427°C) tetapi kawasan gelap sangat sejuk (boleh jatuh ke −173°C) kerana tiada haba diagihkan atau diperangkap.",
+    explanation:
+      "Utarid tiada atmosfera, justeru kawasan menghadap Matahari sangat panas (>427°C) tetapi kawasan gelap sangat sejuk (boleh jatuh ke −173°C) kerana tiada haba diagihkan atau diperangkap.",
   },
   {
     id: "sci-f2-c12-bm-q23",
@@ -322,7 +344,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Mengapakah Zuhrah lebih panas berbanding Utarid walaupun Utarid lebih hampir dengan Matahari?",
+    question:
+      "Mengapakah Zuhrah lebih panas berbanding Utarid walaupun Utarid lebih hampir dengan Matahari?",
     options: [
       "Kerana Zuhrah mempunyai lebih banyak bulan",
       "Kerana Zuhrah lebih besar daripada Utarid",
@@ -330,7 +353,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Kerana Zuhrah berputar lebih pantas",
     ],
     answerIndex: 2,
-    explanation: "Zuhrah mempunyai atmosfera tebal karbon dioksida yang memerangkap haba melalui kesan rumah hijau, menjadikan suhunya lebih panas (hingga 462°C) berbanding Utarid yang tidak mempunyai atmosfera.",
+    explanation:
+      "Zuhrah mempunyai atmosfera tebal karbon dioksida yang memerangkap haba melalui kesan rumah hijau, menjadikan suhunya lebih panas (hingga 462°C) berbanding Utarid yang tidak mempunyai atmosfera.",
   },
   {
     id: "sci-f2-c12-bm-q24",
@@ -339,7 +363,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Mengapakah Musytari mempunyai graviti yang lebih tinggi berbanding Bumi walaupun ketumpatannya rendah?",
+    question:
+      "Mengapakah Musytari mempunyai graviti yang lebih tinggi berbanding Bumi walaupun ketumpatannya rendah?",
     options: [
       "Kerana Musytari lebih hampir dengan Matahari",
       "Kerana Musytari mempunyai cincin",
@@ -347,7 +372,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Kerana Musytari mempunyai jisim yang amat tinggi",
     ],
     answerIndex: 3,
-    explanation: "Daya graviti bergantung kepada jisim dan ketumpatan; jisim Musytari yang amat tinggi (hampir 320 kali Bumi) menghasilkan graviti yang lebih tinggi walaupun ketumpatannya rendah.",
+    explanation:
+      "Daya graviti bergantung kepada jisim dan ketumpatan; jisim Musytari yang amat tinggi (hampir 320 kali Bumi) menghasilkan graviti yang lebih tinggi walaupun ketumpatannya rendah.",
   },
   {
     id: "sci-f2-c12-bm-q25",
@@ -356,7 +382,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Berdasarkan hubungan jarak dan masa orbit, mengapakah Neptun mengambil masa yang jauh lebih lama (164.8 tahun) berbanding Utarid (88 hari) untuk mengorbit Matahari?",
+    question:
+      "Berdasarkan hubungan jarak dan masa orbit, mengapakah Neptun mengambil masa yang jauh lebih lama (164.8 tahun) berbanding Utarid (88 hari) untuk mengorbit Matahari?",
     options: [
       "Kerana semakin jauh planet daripada Matahari, semakin lama masa diperlukan untuk mengorbit",
       "Kerana Neptun berputar di sisinya",
@@ -364,7 +391,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Kerana Neptun lebih besar daripada Utarid",
     ],
     answerIndex: 0,
-    explanation: "Semakin jauh sesuatu planet daripada Matahari, semakin lama masa yang diperlukan untuk mengorbit Matahari — Neptun (planet terjauh) mengambil 164.8 tahun berbanding Utarid (planet terhampir) yang hanya 88 hari.",
+    explanation:
+      "Semakin jauh sesuatu planet daripada Matahari, semakin lama masa yang diperlukan untuk mengorbit Matahari — Neptun (planet terjauh) mengambil 164.8 tahun berbanding Utarid (planet terhampir) yang hanya 88 hari.",
   },
   {
     id: "sci-f2-c12-bm-q26",
@@ -373,7 +401,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Jika Bumi berputar lebih perlahan atau berhenti berputar, apakah kesan yang dijangka berlaku?",
+    question:
+      "Jika Bumi berputar lebih perlahan atau berhenti berputar, apakah kesan yang dijangka berlaku?",
     options: [
       "Tidak ada kesan kepada Bumi",
       "Tempoh siang/malam lebih panjang, lebih banyak gurun, perubahan air pasang surut dan suhu menurun di kawasan gelap",
@@ -381,7 +410,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Semua planet lain akan berhenti mengorbit Matahari",
     ],
     answerIndex: 1,
-    explanation: "Jika Bumi berputar lebih perlahan atau berhenti, tempoh siang/malam akan lebih panjang, lebih banyak kawasan gurun terbentuk, air pasang surut berubah dan suhu menurun di kawasan yang tidak menerima cahaya matahari.",
+    explanation:
+      "Jika Bumi berputar lebih perlahan atau berhenti, tempoh siang/malam akan lebih panjang, lebih banyak kawasan gurun terbentuk, air pasang surut berubah dan suhu menurun di kawasan yang tidak menerima cahaya matahari.",
   },
   {
     id: "sci-f2-c12-bm-q27",
@@ -398,7 +428,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Kerana graviti Bumi menghalang Bulan daripada berputar",
     ],
     answerIndex: 2,
-    explanation: "Tempoh Bulan berputar pada paksinya dan mengorbit Bumi adalah hampir sama, iaitu 27 hari, sehingga permukaan yang sama sentiasa menghadap Bumi.",
+    explanation:
+      "Tempoh Bulan berputar pada paksinya dan mengorbit Bumi adalah hampir sama, iaitu 27 hari, sehingga permukaan yang sama sentiasa menghadap Bumi.",
   },
   {
     id: "sci-f2-c12-bm-q28",
@@ -415,7 +446,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Permukaannya keseluruhannya diliputi gas seperti Musytari",
     ],
     answerIndex: 3,
-    explanation: "Bumi BUKAN planet \"gas gergasi\"; permukaannya terdiri daripada daratan dan air, bukan diliputi gas seperti Musytari, Zuhal, Uranus dan Neptun.",
+    explanation:
+      'Bumi BUKAN planet "gas gergasi"; permukaannya terdiri daripada daratan dan air, bukan diliputi gas seperti Musytari, Zuhal, Uranus dan Neptun.',
   },
   {
     id: "sci-f2-c12-bm-q29",
@@ -424,15 +456,17 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Mengapakah Europa, satelit semula jadi Musytari, menarik minat saintis dalam pencarian hidupan luar Bumi?",
+    question:
+      "Yang manakah berikut menyenaraikan dengan betul enam kawasan yang digunakan untuk mengukur jejak ekologi?",
     options: [
-      "Kerana dipercayai mempunyai air laut di bawah permukaan ais",
-      "Kerana ia adalah bulan terbesar dalam sistem suria",
-      "Kerana ia lebih hampir dengan Matahari berbanding Bumi",
-      "Kerana ia mempunyai atmosfera yang sama dengan Bumi",
+      "Jejak udara, dasar lautan, hutan, kawasan pertanian, kawasan perlombongan, kawasan perikanan",
+      "Jejak karbon, kawasan binaan, hutan, kawasan pertanian, kawasan penternakan, kawasan perikanan",
+      "Jejak karbon, kawasan binaan, hutan hujan sahaja, kawasan pertanian, kawasan penternakan, kawasan memburu",
+      "Jejak air, kawasan binaan, hutan, kawasan pertanian, kawasan penternakan, laluan perkapalan",
     ],
-    answerIndex: 0,
-    explanation: "Europa dipercayai mempunyai air laut di bawah permukaan ainya — saintis menganggap kemungkinan kewujudan hidupan di sana kerana kewujudan air.",
+    answerIndex: 1,
+    explanation:
+      "Jejak ekologi diukur merentasi enam kawasan: jejak karbon, kawasan binaan, hutan, kawasan pertanian, kawasan penternakan dan kawasan perikanan.",
   },
   {
     id: "sci-f2-c12-bm-q30",
@@ -441,7 +475,8 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 12",
     lang: "bm",
-    question: "Jika jejak ekologi manusia melebihi keupayaan Bumi untuk menjana semula sumbernya, apakah akibat jangka panjang yang dijangka?",
+    question:
+      "Jika jejak ekologi manusia melebihi keupayaan Bumi untuk menjana semula sumbernya, apakah akibat jangka panjang yang dijangka?",
     options: [
       "Tidak ada kesan kerana sumber Bumi adalah tidak terhad",
       "Bumi akan kehabisan sumber kerana penggunaan melebihi keupayaan penjanaan semula",
@@ -449,6 +484,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Bumi akan menjana lebih banyak sumber secara automatik",
     ],
     answerIndex: 1,
-    explanation: "Jika jejak ekologi melebihi keupayaan Bumi untuk menjana semula sumbernya, Bumi akan kehabisan sumber kerana penggunaan sumber lebih pantas daripada kadar penjanaan semula.",
+    explanation:
+      "Jika jejak ekologi melebihi keupayaan Bumi untuk menjana semula sumbernya, Bumi akan kehabisan sumber kerana penggunaan sumber lebih pantas daripada kadar penjanaan semula.",
   },
 ];

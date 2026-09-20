@@ -527,9 +527,15 @@ describe("Chapter 8 · §18 — what already worked is left alone", () => {
   });
 
   it("leaves every academic quiz key untouched", () => {
-    // Captured from the frozen chapter before this visual pass began.
+    // Captured from the frozen chapter before this visual pass began, then
+    // updated for the deliberate Chapter 7-10 quiz-bank remediation: q8
+    // (redundant "weight = gravitational force" recall, index 7) was
+    // replaced with a pressure-experiment reasoning question (answerIndex 0),
+    // and q24 (an "elephant" pressure example not traceable to the supplied
+    // textbook, index 23) was replaced with the textbook-confirmed wide
+    // tractor-wheels example (answerIndex 1). Every other key is unchanged.
     const EXPECTED = [
-      0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1,
+      0, 1, 2, 3, 0, 1, 2, 0, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 1, 0, 1, 2, 3, 0, 1,
     ];
     for (const [lang, file] of [
       ["bm", "quizzes-bm.ts"],
@@ -993,19 +999,22 @@ describe("Chapter 8 · contextual artwork is sized to support the lesson", () =>
 // ---------------------------- I. FINAL CLEANUP / LANGUAGE-NEUTRAL VISUAL PASS
 
 describe("Chapter 8 · final cleanup — buoyancy labels and worked-example badge", () => {
-  it.each(LANGS)("%s buoyancy labels are the short form, with no baked audience/location", (lang, content) => {
-    const block = blockFrom<{ realWeightLabel: string; apparentWeightLabel: string }>(
-      sectionWith(content, "buoyancySchematic"),
-      "buoyancySchematic",
-    );
-    if (lang === "bm") {
-      expect(block.realWeightLabel).toBe("Berat sebenar");
-      expect(block.apparentWeightLabel).toBe("Berat ketara");
-    } else {
-      expect(block.realWeightLabel).toBe("Actual weight");
-      expect(block.apparentWeightLabel).toBe("Apparent weight");
-    }
-  });
+  it.each(LANGS)(
+    "%s buoyancy labels are the short form, with no baked audience/location",
+    (lang, content) => {
+      const block = blockFrom<{ realWeightLabel: string; apparentWeightLabel: string }>(
+        sectionWith(content, "buoyancySchematic"),
+        "buoyancySchematic",
+      );
+      if (lang === "bm") {
+        expect(block.realWeightLabel).toBe("Berat sebenar");
+        expect(block.apparentWeightLabel).toBe("Berat ketara");
+      } else {
+        expect(block.realWeightLabel).toBe("Actual weight");
+        expect(block.apparentWeightLabel).toBe("Apparent weight");
+      }
+    },
+  );
 
   it.each(LANGS)(
     "%s marks the 10 N / 6 N reading as a worked example, distinct from the general formula",
@@ -1026,33 +1035,39 @@ describe("Chapter 8 · final cleanup — buoyancy labels and worked-example badg
     },
   );
 
-  it.each(LANGS)("%s buoyancy schematic opens on the measure view, not an empty placeholder", (lang, content) => {
-    const block = blockFrom<{ buoyantForce: string }>(
-      sectionWith(content, "buoyancySchematic"),
-      "buoyancySchematic",
-    );
-    const markup = renderToStaticMarkup(
-      <BuoyancySchematic block={block as never} lang={lang === "bm" ? "bm" : "en"} />,
-    );
-    // the measure view's own reading is visible without any click
-    expect(markup).toContain('aria-pressed="true"');
-    expect(markup).toContain(block.buoyantForce);
-  });
+  it.each(LANGS)(
+    "%s buoyancy schematic opens on the measure view, not an empty placeholder",
+    (lang, content) => {
+      const block = blockFrom<{ buoyantForce: string }>(
+        sectionWith(content, "buoyancySchematic"),
+        "buoyancySchematic",
+      );
+      const markup = renderToStaticMarkup(
+        <BuoyancySchematic block={block as never} lang={lang === "bm" ? "bm" : "en"} />,
+      );
+      // the measure view's own reading is visible without any click
+      expect(markup).toContain('aria-pressed="true"');
+      expect(markup).toContain(block.buoyantForce);
+    },
+  );
 });
 
 describe("Chapter 8 · final cleanup — liquid pressure opens on Shallow", () => {
-  it.each(LANGS)("%s opens with the shallowest state selected, not an empty placeholder", (lang, content) => {
-    const block = blockFrom<{ levels: { id: string; label: string; note: string }[] }>(
-      sectionWith(content, "depthPressure"),
-      "depthPressure",
-    );
-    const markup = renderToStaticMarkup(
-      <DepthPressure block={block as never} lang={lang === "bm" ? "bm" : "en"} />,
-    );
-    const shallow = block.levels.find((l) => l.id === "shallow")!;
-    expect(markup).toContain(shallow.note);
-    expect(markup).toContain('aria-pressed="true"');
-  });
+  it.each(LANGS)(
+    "%s opens with the shallowest state selected, not an empty placeholder",
+    (lang, content) => {
+      const block = blockFrom<{ levels: { id: string; label: string; note: string }[] }>(
+        sectionWith(content, "depthPressure"),
+        "depthPressure",
+      );
+      const markup = renderToStaticMarkup(
+        <DepthPressure block={block as never} lang={lang === "bm" ? "bm" : "en"} />,
+      );
+      const shallow = block.levels.find((l) => l.id === "shallow")!;
+      expect(markup).toContain(shallow.note);
+      expect(markup).toContain('aria-pressed="true"');
+    },
+  );
 });
 
 describe("Chapter 8 · final cleanup — default-selected first states through the real shell", () => {

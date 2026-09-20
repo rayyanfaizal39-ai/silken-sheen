@@ -1,16 +1,14 @@
 import type { ScienceF2InteractiveContent } from "../interactive-types";
-import {
-  SCIENCE_F2_CH9_IMAGES,
-  SCIENCE_F2_VISUAL_ASPECT,
-} from "../visual-assets";
+import { SCIENCE_F2_CH9_IMAGES, SCIENCE_F2_VISUAL_ASPECT } from "../visual-assets";
 
 export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
   chapter: 9,
   blogHighlight: {
-    title: "Blog Sains — Beruang Kutub Yang Tersembunyi",
-    body: "Kamera inframerah mengesan haba yang disinarkan daripada haiwan — tetapi beruang kutub **memerangkap haba begitu berkesan di bawah bulu dan lemaknya** sehingga ia hampir tidak kelihatan pada pengimejan terma, walaupun dalam habitat yang membeku.",
+    title: "Blog Sains — Permaidani atau Marmar: Mana Lebih Panas?",
+    body: "Mengapakah permaidani terasa lebih panas daripada lantai marmar walaupun kedua-duanya berada pada suhu bilik yang sama? **Marmar mengalirkan haba daripada kaki anda dengan lebih cepat** berbanding permaidani. Permaidani ialah konduktor haba yang lebih lemah, jadi haba meninggalkan kaki anda dengan lebih perlahan — bukan kerana permaidani itu sebenarnya bersuhu lebih tinggi.",
     imagePath: SCIENCE_F2_CH9_IMAGES.polarBear,
-    imageAlt: "Seekor beruang kutub berdiri di atas ais laut pada waktu malam, dengan keratan pengimejan terma menunjukkan haba yang terperangkap di dalam badannya sementara bulunya kekal sejuk.",
+    imageAlt:
+      "Seekor beruang kutub berdiri di atas ais laut pada waktu malam, dengan keratan pengimejan terma menunjukkan haba yang terperangkap di dalam badannya sementara bulunya kekal sejuk.",
   },
   keywords: [
     "Haba",
@@ -34,53 +32,130 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
       title: "Haba dan Suhu",
       conceptQuestion: "Apakah Haba dan Suhu?",
       intro:
-        "Haba ialah **satu bentuk tenaga** yang mengalir daripada kawasan bersuhu tinggi ke kawasan bersuhu rendah. Suhu pula ialah **sukatan darjah kepanasan atau kesejukan sesuatu objek**. Kedua-duanya berkait, tetapi ia bukan perkara yang sama — dua bikar air pada suhu yang sama boleh mengandungi kuantiti haba yang sangat berbeza, bergantung kepada berapa banyak air itu.",
+        "Haba ialah **satu bentuk tenaga** yang mengalir daripada kawasan yang lebih panas ke kawasan yang lebih sejuk. Suhu pula ialah **ukuran darjah kepanasan atau kesejukan** sesuatu objek. Kedua-duanya berkait, tetapi ia bukan perkara yang sama.",
       remember:
         "Haba ialah satu bentuk tenaga yang diukur dalam joule (J); suhu ialah darjah kepanasan atau kesejukan yang diukur dalam °C atau K. Kedua-duanya berkait, tetapi bukan perkara yang sama.",
-      contextImages: [
-        {
-          src: SCIENCE_F2_CH9_IMAGES.heatVsTemperature,
-          alt: "Sebuah cawan kaca kecil berisi minuman yang sangat panas di sebelah sebuah bikar besar berisi air suam, masing-masing dengan termometernya sendiri. Termometer di sebelah cawan kecil menunjukkan bacaan tinggi; termometer di sebelah bikar besar menunjukkan bacaan lebih rendah.",
-          caption:
-            "Cawan kecil itu bersuhu lebih tinggi, tetapi bikar besar mengandungi jauh lebih banyak air, jadi jauh lebih banyak haba.",
-          size: "scene",
-          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
-          priority: true,
-          annotations: [],
-        },
-      ],
-
-      cards: [
-        {
-          title: "🔥 Haba",
-          body: "Satu bentuk tenaga. Kuantiti haba bergantung pada **jenis bahan, kuantiti bahan dan suhu**.",
-          detail: "Diukur dalam joule (J).",
-        },
-        {
-          title: "🌡️ Suhu",
-          body: "Darjah kepanasan atau kesejukan sesuatu objek. Suhu bergantung pada **darjah pergerakan zarah-zarah di dalam bahan itu**.",
-          detail: "Diukur dalam darjah Celsius (°C) atau kelvin (K).",
-        },
-        {
-          title: "⚖️ Apakah keseimbangan terma?",
-          body: "Apabila dua objek bersentuhan, tenaga haba dipindahkan daripada objek bersuhu tinggi kepada objek bersuhu rendah. Apabila **pemindahan haba antara kedua-duanya menjadi sifar**, kedua-dua objek berada dalam **keseimbangan terma** dan mempunyai suhu yang sama.",
-        },
-      ],
+      quickExplanation:
+        "Kedua-dua sampel mempunyai suhu yang sama, tetapi lebih banyak tenaga haba diperlukan untuk memanaskan kuantiti air yang lebih besar kepada suhu tersebut.",
+      differencesTable: {
+        title: "Jadual 9.1 — Perbezaan Antara Haba dengan Suhu",
+        headers: ["Haba", "Suhu"],
+        rows: [
+          {
+            label: "Makna",
+            left: "Satu bentuk tenaga",
+            right: "Darjah kepanasan atau kesejukan sesuatu objek",
+          },
+          {
+            label: "Unit",
+            left: "joule (J)",
+            right: "darjah Celsius (°C) atau kelvin (K)",
+          },
+          {
+            label: "Bergantung pada",
+            left: ["jenis bahan", "kuantiti bahan", "suhu"],
+            right: "darjah pergerakan zarah dalam bahan itu",
+          },
+        ],
+      },
+      comparison: {
+        title: "Suhu Sama, Kuantiti Berbeza",
+        columns: [
+          {
+            title: "Bekas A",
+            body: "100 mL air pada 100 °C.",
+            facts: [
+              { label: "Isi padu", value: "100 mL" },
+              { label: "Suhu", value: "100 °C" },
+            ],
+          },
+          {
+            title: "Bekas B",
+            body: "200 mL air pada 100 °C.",
+            facts: [
+              { label: "Isi padu", value: "200 mL" },
+              { label: "Suhu", value: "100 °C" },
+            ],
+          },
+        ],
+      },
       checks: [
-        { question: "Adakah sentuhan cara yang boleh dipercayai untuk memeriksa sama ada seseorang demam?", hint: "Tidak begitu — sentuhan bersifat subjektif dan dipengaruhi oleh suhu tangan anda sendiri. Termometer memberikan bacaan suhu yang objektif." },
-        { question: "Air dalam dua bikar (100 ml dan 200 ml) dididihkan. Adakah suhunya sama? Adakah kuantiti habanya sama?", hint: "Suhunya sama (100 °C), tetapi bikar 200 ml mengandungi lebih banyak haba kerana kuantiti bahannya lebih besar." },
+        {
+          question:
+            "Adakah sentuhan cara yang boleh dipercayai untuk memeriksa sama ada seseorang demam?",
+          hint: "Tidak begitu — sentuhan bersifat subjektif dan dipengaruhi oleh suhu tangan anda sendiri. Termometer memberikan bacaan suhu yang objektif.",
+        },
+        {
+          question:
+            "Air dalam dua bikar (100 ml dan 200 ml) dididihkan. Adakah suhunya sama? Adakah kuantiti habanya sama?",
+          hint: "Suhunya sama (100 °C), tetapi lebih banyak tenaga haba diperlukan untuk memanaskan sampel 200 ml itu, kerana kuantiti airnya lebih besar.",
+        },
       ],
     },
     {
       number: "9.2",
-      title: "Konduksi",
-      conceptQuestion: "Apakah Konduksi?",
+      title: "Tiga Cara Pemindahan Haba",
+      conceptQuestion: "Bagaimanakah Haba Merambat?",
       intro:
-        "Konduksi ialah **proses pengaliran haba dari kawasan panas ke kawasan sejuk melalui medium pepejal**. Zarah-zarah yang menerima tenaga haba bergetar dengan lebih cepat dan berlanggar dengan zarah jiran dengan lebih kerap, lalu memindahkan tenaga itu ke seluruh medium.",
+        "Haba sentiasa mengalir daripada kawasan yang lebih panas ke kawasan yang lebih sejuk. Ia boleh berlaku melalui tiga cara. Konduksi ialah **proses pengaliran haba dari kawasan panas ke kawasan sejuk melalui medium pepejal**. Dalam bendalir, perolakan **membawa haba melalui pergerakan bendalir itu sendiri**. Sinaran pula tidak memerlukan sebarang medium — inilah **satu-satunya cara haba boleh merambat menerusi ruang kosong**.",
       quickExplanation:
         "Yang merambat di sepanjang bahan pengalir ialah tenaga, bukan zarah — setiap zarah hanya bergetar di tempatnya dan menyerahkan tenaga kepada jirannya.",
+      heatFlowDirection: {
+        title: "➡️ Ke arah manakah haba mengalir?",
+        instruction:
+          "Haba sentiasa bergerak dalam satu arah: daripada yang lebih panas ke yang lebih sejuk.",
+        heatLabel: "haba",
+        noNetFlowLabel: "tiada pemindahan haba bersih",
+        caption: "Tetapkan arahnya dahulu — setiap cara di bawah menurut arah yang sama.",
+        stages: [
+          {
+            id: "flow",
+            label: "Panas ke sejuk",
+            note: "Haba mengalir daripada kawasan atau objek yang lebih panas ke kawasan atau objek yang lebih sejuk. Ia tidak akan mengalir ke arah sebaliknya dengan sendiri.",
+            leftLabel: "PANAS",
+            rightLabel: "SEJUK",
+            leftTemperature: "80 °C",
+            rightTemperature: "20 °C",
+          },
+        ],
+      },
+      ch9SpotlightFigure: {
+        title: "🔥 Perbandingan tiga cara",
+        figure: "heat-transfer",
+        src: SCIENCE_F2_CH9_IMAGES.heatTransferMethods,
+        alt: "Tiga panel bersebelahan. Sebatang rod logam dipanaskan penunu Bunsen di satu hujung, dengan zarah-zarah dilukis di sepanjangnya. Sebuah bikar air di atas penunu dengan anak panah beredar naik di bahagian tengah dan turun di tepi. Matahari di sebelah kiri menghantar sinaran beralun merentasi ruang kosong ke Bumi di sebelah kanan.",
+        instruction:
+          "Tekan setiap cara untuk melihat bagaimana haba bergerak. Panel yang anda pilih kekal cerah manakala dua yang lain menjadi malap.",
+        prompt: "Pilih satu cara untuk membandingkan bagaimana haba merambat.",
+        caption:
+          "Satu gambar, tiga cara: melalui pepejal, melalui bendalir yang bergerak, dan tanpa medium sama sekali.",
+        legendLabel: "Tiga cara pemindahan haba",
+        concepts: [
+          {
+            id: "conduction",
+            icon: "🔗",
+            label: "Konduksi",
+            spotlightCaption: "Melalui pepejal",
+            note: "Konduksi ialah pemindahan haba melalui pepejal dari kawasan yang lebih panas ke kawasan yang lebih sejuk. Zarah di hujung panas memperoleh tenaga dan bergetar lebih cepat, lalu memindahkan tenaga itu kepada zarah jiran melalui perlanggaran. Zarah bergetar di sekitar kedudukan tetapnya — zarah tidak bergerak dari hujung panas ke hujung sejuk.",
+          },
+          {
+            id: "convection",
+            icon: "🌀",
+            label: "Perolakan",
+            spotlightCaption: "Melalui bendalir bergerak",
+            note: "Perolakan memindahkan haba melalui bendalir — cecair dan gas. Apabila bendalir dipanaskan, ia mengembang, menjadi kurang tumpat lalu naik. Bendalir yang lebih sejuk adalah lebih tumpat lalu turun. Peredaran berterusan ini membentuk arus perolakan.",
+          },
+          {
+            id: "radiation",
+            icon: "☀️",
+            label: "Sinaran",
+            spotlightCaption: "Menerusi ruang kosong",
+            note: "Sinaran memindahkan haba tanpa memerlukan medium bahan, jadi ia boleh merambat menerusi vakum. Konduksi memerlukan bahan dan perolakan memerlukan bendalir; sinaran tidak memerlukan kedua-duanya.",
+          },
+        ],
+      },
       conductionDiagram: {
-        title: "🔗 Bagaimana haba merambat melalui pepejal",
+        title: "🔗 Terokai konduksi: tenaga di sepanjang pepejal",
         instruction: "Tekan setiap peringkat untuk melihat tenaga merambat di sepanjang rod.",
         particleCount: 9,
         hotLabel: "Hujung panas",
@@ -88,65 +163,44 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
         mechanismNote:
           "Perhatikan bahawa zarah-zarah kekal di kedudukannya. Yang merambat di sepanjang rod ialah tenaga, bukan zarah — zarah hanya bergetar di tempatnya dan menyerahkan tenaga kepada jirannya.",
         stages: [
-          { id: "start", label: "Mula dipanaskan", note: "Zarah di hujung panas menerima tenaga haba dan mula bergetar dengan lebih cepat." },
-          { id: "middle", label: "Tenaga merambat", note: "Zarah yang bergetar lebih cepat berlanggar dengan zarah jiran dengan lebih kerap, memindahkan tenaga ke bahagian tengah rod." },
-          { id: "full", label: "Seluruh rod panas", note: "Perlanggaran berterusan zarah demi zarah membawa tenaga haba sehingga ke hujung yang sejuk." },
+          {
+            id: "start",
+            label: "Mula dipanaskan",
+            note: "Zarah di hujung panas menerima tenaga haba dan mula bergetar dengan lebih cepat.",
+          },
+          {
+            id: "middle",
+            label: "Tenaga merambat",
+            note: "Zarah yang bergetar lebih cepat berlanggar dengan zarah jiran dengan lebih kerap, memindahkan tenaga ke bahagian tengah rod.",
+          },
+          {
+            id: "full",
+            label: "Tenaga sampai ke hujung yang jauh",
+            note: "Perlanggaran berterusan zarah demi zarah membawa tenaga haba sehingga ke hujung yang sejuk.",
+          },
         ],
         caption: "Zarah kekal di kedudukannya — hanya tenaga yang merambat.",
         hint: "Pilih satu peringkat untuk melihat apa yang berlaku.",
       },
       checks: [
-        { question: "Mengapakah sudu logam menjadi panas apabila dibiarkan di dalam semangkuk sup panas?", hint: "Zarah di hujung sudu yang terendam bergetar lebih cepat dan berlanggar dengan zarah jiran, memindahkan tenaga haba di sepanjang sudu secara konduksi." },
-        { question: "Adakah zarah logam bergerak dari hujung panas ke hujung sejuk semasa konduksi?", hint: "Tidak. Zarah kekal di kedudukannya dan hanya bergetar; tenaga sahaja yang dipindahkan melalui perlanggaran." },
-      ],
-    },
-    {
-      number: "9.2",
-      title: "Perolakan dan Sinaran",
-      conceptQuestion: "Apakah Perolakan dan Sinaran?",
-      intro:
-        "Haba juga boleh mengalir tanpa melalui pepejal. Dalam bendalir, perolakan **membawa haba melalui pergerakan bendalir itu sendiri**. Sinaran pula tidak memerlukan sebarang medium — inilah **satu-satunya cara haba boleh merambat menerusi ruang kosong**.",
-      convectionRadiation: {
-        title: "🌀 Dua cara haba mengalir tanpa pepejal",
-        instruction: "Tekan setiap cara untuk melihat bagaimana haba bergerak.",
-        warmLabel: "Panas",
-        coolLabel: "Sejuk",
-        modes: [
-          {
-            id: "convection",
-            label: "Perolakan",
-            note: "Haba dialirkan melalui pergerakan bendalir — cecair dan gas — dari kawasan panas ke kawasan sejuk.",
-            detail:
-              "Bahagian bendalir yang menerima haba akan mengembang, menjadi kurang tumpat, lalu naik ke atas. Bahagian bendalir yang lebih sejuk dan lebih tumpat akan turun ke bawah untuk menggantikannya. Peredaran naik dan turun yang berterusan ini dikenali sebagai arus perolakan.",
-          },
-          {
-            id: "radiation",
-            label: "Sinaran",
-            note: "Proses pemindahan haba tanpa memerlukan sebarang medium.",
-            detail:
-              "Haba boleh merambat menerusi ruang kosong atau vakum. Itulah sebabnya tenaga haba dari Matahari dapat sampai ke Bumi walaupun merentasi ruang angkasa yang kosong. Jenis permukaan, suhu dan luas permukaan objek mempengaruhi kadar pengaliran haba secara sinaran.",
-          },
-        ],
-        caption: "Perolakan memerlukan bendalir; sinaran tidak memerlukan apa-apa pun.",
-        hint: "Pilih satu cara untuk melihat mekanismenya.",
-        image: {
-          src: SCIENCE_F2_CH9_IMAGES.kitchenHeatTransfer,
-          alt: "Pemandangan dapur: sebuah periuk logam dengan senduk kayu berdiri di dalamnya diletakkan di atas dapur gas yang menyala, air mendidih di dalam periuk dan wap naik daripadanya, dan sebelah tangan diangkat di udara bersebelahan periuk tanpa menyentuhnya.",
-          caption:
-            "Satu dapur, tiga cara: haba merambat melalui periuk logam secara konduksi, beredar melalui air mendidih secara perolakan, dan sampai ke tangan yang diangkat secara sinaran.",
+        {
+          question:
+            "Adakah zarah logam bergerak dari hujung panas ke hujung sejuk semasa konduksi?",
+          hint: "Tidak. Zarah kekal di kedudukannya dan hanya bergetar; tenaga sahaja yang dipindahkan melalui perlanggaran.",
         },
-      },
-      checks: [
-        { question: "Mengapakah gegelung pemanas dalam cerek elektrik diletakkan di bahagian bawah?", hint: "Air yang dipanaskan di bahagian bawah mengembang, menjadi kurang tumpat dan naik; air sejuk yang lebih tumpat turun menggantikannya, mewujudkan arus perolakan yang memanaskan seluruh cerek." },
-        { question: "Bagaimanakah tenaga haba dari Matahari sampai ke Bumi?", hint: "Melalui sinaran. Ruang angkasa ialah vakum, jadi konduksi dan perolakan tidak boleh berlaku — hanya sinaran yang dapat merambat menerusi ruang kosong." },
+        {
+          question:
+            "Bagaimanakah tenaga haba dari Matahari sampai ke Bumi, dan mengapa hanya satu cara sahaja yang boleh melakukannya?",
+          hint: "Melalui sinaran. Ruang angkasa ialah vakum, jadi konduksi tidak mempunyai bahan yang diperlukannya dan perolakan tidak mempunyai bendalir yang diperlukannya — hanya sinaran merambat tanpa medium bahan.",
+        },
       ],
     },
     {
       number: "9.2",
-      title: "Bayu Laut dan Bayu Darat",
-      conceptQuestion: "Bagaimanakah Bayu Laut dan Bayu Darat Terbentuk?",
+      title: "Pengaliran Haba dalam Fenomena Semula Jadi",
+      conceptQuestion: "Bagaimanakah Haba Mengalir dalam Alam Semula Jadi?",
       intro:
-        "Pembentukan bayu laut dan bayu darat merupakan **contoh perolakan yang berlaku secara semula jadi**. Kuncinya ialah **darat memanas dan menyejuk dengan lebih cepat berbanding laut**.",
+        "Haba dari Matahari sampai ke Bumi melalui sinaran, satu-satunya cara yang tidak memerlukan sebarang medium. Haba itu tidak memanaskan darat dan laut sama rata, dan kerana **darat memanas dan menyejuk dengan lebih cepat berbanding laut**, bayu laut dan bayu darat terbentuk. Kedua-duanya merupakan **contoh perolakan yang berlaku secara semula jadi**.",
       breezeDiagram: {
         title: "🌬️ Bayu laut dan bayu darat",
         instruction: "Tekan setiap bayu untuk melihat arah pergerakan udara.",
@@ -181,12 +235,53 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
             note: "Pada waktu malam, darat menjadi sejuk dengan lebih cepat berbanding laut. Udara di permukaan laut yang lebih panas menjadi kurang tumpat lalu naik ke atas. Udara sejuk yang lebih tumpat dari darat bergerak ke laut — inilah bayu darat.",
           },
         ],
-        caption: "Bayu dinamakan mengikut arah ia bertiup datang: bayu laut datang dari laut, bayu darat datang dari darat.",
+        caption:
+          "Bayu dinamakan mengikut arah ia bertiup datang: bayu laut datang dari laut, bayu darat datang dari darat.",
         hint: "Pilih satu bayu untuk melihat arah pergerakan udaranya.",
       },
+      ch9SpotlightFigure: {
+        title: "☀️ Pemanasan Bumi oleh Matahari",
+        figure: "sun-earth",
+        src: SCIENCE_F2_CH9_IMAGES.sunEarthRadiation,
+        alt: "Matahari di sebelah kiri bingkai menghantar empat sinaran beralun merentasi kegelapan angkasa ke Bumi di sebelah kanan, dengan bahagian Bumi yang mengadapnya diterangi.",
+        instruction: "Tekan setiap bahagian untuk mengikuti perjalanan haba dari Matahari ke Bumi.",
+        prompt: "Pilih satu bahagian perjalanan untuk melihat peranannya.",
+        caption:
+          "Haba dari Matahari sampai ke Bumi melalui sinaran — satu-satunya cara yang tidak memerlukan medium.",
+        legendLabel: "Bagaimana haba Matahari sampai ke Bumi",
+        concepts: [
+          {
+            id: "sun",
+            icon: "☀️",
+            label: "Matahari",
+            spotlightCaption: "Sumber",
+            note: "Matahari ialah sumber tenaga itu. Kerana suhunya amat tinggi, ia membebaskan haba dan cahaya sebagai sinaran ke semua arah.",
+          },
+          {
+            id: "vacuum",
+            icon: "🌌",
+            label: "Vakum",
+            spotlightCaption: "Tiada medium diperlukan",
+            note: "Antara Matahari dan Bumi terdapat vakum — hampir tiada bahan sama sekali. Sinaran tetap boleh merentasinya kerana sinaran tidak memerlukan medium bahan, dan itulah sebabnya konduksi dan perolakan tidak dapat membawa haba Matahari kepada kita.",
+          },
+          {
+            id: "earth",
+            icon: "🌍",
+            label: "Bumi",
+            spotlightCaption: "Menyerap sinaran",
+            note: "Bahagian Bumi yang mengadap Matahari menyerap sinaran suria yang tiba, lalu permukaan dan atmosfera di bahagian itu menjadi panas.",
+          },
+        ],
+      },
       checks: [
-        { question: "Mengapakah bayu laut bertiup dari laut ke darat pada waktu siang?", hint: "Darat memanas lebih cepat, jadi udara panas di darat naik dan udara sejuk yang lebih tumpat dari laut bergerak masuk menggantikannya." },
-        { question: "Pada waktu malam, ke arah manakah bayu darat bertiup, dan mengapa?", hint: "Dari darat ke laut. Darat menyejuk lebih cepat, jadi udara yang lebih panas di atas laut naik dan udara sejuk dari darat bergerak menggantikannya." },
+        {
+          question: "Mengapakah bayu laut bertiup dari laut ke darat pada waktu siang?",
+          hint: "Darat memanas lebih cepat, jadi udara panas di darat naik dan udara sejuk yang lebih tumpat dari laut bergerak masuk menggantikannya.",
+        },
+        {
+          question: "Mengapakah hanya sinaran yang dapat membawa haba Matahari ke Bumi?",
+          hint: "Ruang angkasa ialah vakum. Konduksi memerlukan bahan dan perolakan memerlukan bendalir, tetapi sinaran tidak memerlukan medium bahan sama sekali.",
+        },
       ],
     },
     {
@@ -195,18 +290,48 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
       conceptQuestion: "Apakah Konduktor dan Penebat Haba?",
       intro:
         "Bahan yang boleh **mengalirkan haba dengan mudah** dikenali sebagai konduktor haba. Bahan yang boleh **menghalang atau melambatkan pengaliran haba** pula dikenali sebagai penebat haba.",
-      contextImages: [
-        {
-          src: SCIENCE_F2_CH9_IMAGES.conductorInsulator,
-          alt: "Dua bikar jernih berisi air panas yang serupa diletakkan bersebelahan. Sebatang sudu logam berdiri di dalam bikar kiri; sebatang sudu kayu yang sama bentuk dan saiz berdiri di dalam bikar kanan.",
-          caption:
-            "Air panas yang sama dan bentuk sudu yang sama dalam kedua-dua bikar — hanya bahannya yang berbeza.",
-          size: "scene",
-          aspect: SCIENCE_F2_VISUAL_ASPECT.wide,
-          priority: true,
-          annotations: [],
-        },
-      ],
+      ch9SpotlightFigure: {
+        title: "🍳 Konduktor dan penebat haba di sekeliling rumah",
+        figure: "conductor-insulator",
+        src: SCIENCE_F2_CH9_IMAGES.conductorsInsulators,
+        alt: "Empat barangan harian. Sebuah kuali logam di atas dapur gas yang menyala. Sebuah seterika elektrik menggosok kemeja, tapak logamnya menekan fabrik. Gambar dekat sebelah tangan memegang pemegang kayu sebuah kuali panas. Sebuah kotak penyejuk polistirena terbuka berisi minuman sejuk dan ais.",
+        instruction:
+          "Tekan setiap barangan untuk mengetahui sama ada ia berfungsi sebagai konduktor atau penebat.",
+        prompt: "Pilih satu barangan untuk melihat tugas yang dilakukan oleh bahannya.",
+        caption:
+          "Setiap barangan ini dipilih berdasarkan sebaik mana bahannya mengalirkan haba — atau seburuk mana.",
+        legendLabel: "Konduktor dan penebat haba dalam barangan harian",
+        concepts: [
+          {
+            id: "pan",
+            icon: "🍳",
+            label: "Kuali logam",
+            spotlightCaption: "Konduktor",
+            note: "Badan kuali diperbuat daripada logam kerana logam ialah konduktor haba yang baik. Haba dari api merambat dengan cepat melaluinya masuk ke dalam makanan.",
+          },
+          {
+            id: "iron",
+            icon: "👔",
+            label: "Tapak seterika",
+            spotlightCaption: "Konduktor",
+            note: "Tapak seterika diperbuat daripada logam supaya haba mengalir melaluinya dengan mudah dan cepat sampai ke fabrik.",
+          },
+          {
+            id: "handle",
+            icon: "🪵",
+            label: "Pemegang kayu",
+            spotlightCaption: "Penebat",
+            note: "Pemegang diperbuat daripada kayu kerana kayu ialah pengalir haba yang lemah — iaitu penebat haba. Ia melambatkan pengaliran haba ke tangan, jadi kuali boleh diangkat dengan selamat.",
+          },
+          {
+            id: "cooler",
+            icon: "🧊",
+            label: "Kotak penyejuk polistirena",
+            spotlightCaption: "Penebat",
+            note: "Dinding kotak penyejuk diperbuat daripada polistirena, iaitu penebat haba. Ia melambatkan pengaliran haba dari udara panas di luar ke dalam kandungan yang sejuk, jadi minuman kekal sejuk lebih lama. Ia melambatkan pengaliran itu — bukan menghentikannya, dan itulah sebabnya ais akhirnya cair.",
+          },
+        ],
+      },
       cards: [
         {
           title: "🔥 Konduktor haba",
@@ -216,28 +341,160 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
         {
           title: "🧊 Penebat haba",
           body: "Bahan yang menghalang atau melambatkan pengaliran haba. **Kayu, kapas, kain felt, gentian kaca dan polistirena** ialah penebat haba yang baik.",
-          detail: "Contoh: sarung tangan ketuhar, dinding kotak ais, pemegang kayu pada peralatan dapur.",
+          detail:
+            "Contoh: sarung tangan ketuhar, dinding kotak ais, pemegang kayu pada peralatan dapur.",
         },
       ],
+      accordions: [
+        {
+          title: "🧣 Mengapa selimut tebal memanaskan badan",
+          body: "Selimut tebal diperbuat daripada bahan yang longgar dan gebu, lalu memerangkap banyak udara di dalamnya. Udara ialah pengalir haba yang lemah, jadi udara yang terperangkap itu melambatkan pengaliran haba dari badan ke persekitaran yang lebih sejuk. Itulah sebabnya selimut memanaskan badan — selimut sendiri tidak menghasilkan haba.",
+          detail:
+            "Dua lapis selimut nipis boleh lebih panas daripada satu selimut tebal, kerana satu lapisan udara turut terperangkap di antaranya.",
+        },
+        {
+          title: "🥘 Mengapa makanan dibalut dengan kerajang aluminium",
+          body: "Aluminium ialah konduktor haba yang baik, tetapi permukaan berkilat merupakan penyerap dan pembebas sinaran yang lemah. Membalut makanan panas dengan kerajang memantulkan haba yang disinarkan oleh makanan itu kembali kepadanya, jadi makanan kekal panas lebih lama. Kerajang yang sama pada makanan sejuk memantulkan haba yang disinarkan oleh persekitaran, jadi makanan kekal sejuk lebih lama.",
+          detail:
+            "Ini kesan permukaan, bukan penebatan: kerajang melambatkan kehilangan haba, bukan menghentikannya.",
+        },
+      ],
+      miniExperiment: {
+        title: "🧪 Pembalut manakah mengekalkan air panas paling lama?",
+        aim: "Membandingkan sebaik mana bahan yang berbeza menebat haba.",
+        instruction: "Empat kelalang serupa berisi air panas, empat jenis pembalut yang berbeza.",
+        aimLabel: "Tujuan",
+        hypothesisLabel: "Hipotesis",
+        manipulatedLabel: "Pemboleh ubah dimanipulasikan",
+        respondingLabel: "Pemboleh ubah bergerak balas",
+        controlledLabel: "Pemboleh ubah dimalarkan",
+        materialsLabel: "Bahan",
+        apparatusLabel: "Radas",
+        methodLabel: "Kaedah",
+        observationLabel: "Pemerhatian",
+        conclusionLabel: "Kesimpulan",
+        operationalDefinitionLabel: "Definisi secara operasi",
+        parts: [
+          {
+            id: "wrapping",
+            icon: "🧣",
+            label: "Jenis bahan penebat",
+            question:
+              "Adakah jenis bahan penebat mempengaruhi suhu akhir air panas selepas tempoh masa yang sama?",
+            hypothesis:
+              "Kelalang yang dibalut dengan pengalir haba yang lebih lemah mempunyai suhu akhir yang lebih tinggi selepas 10 minit berbanding kelalang yang dibalut dengan pengalir haba yang lebih baik atau yang dibiarkan terbuka.",
+            manipulated: "Jenis bahan penebat",
+            responding: "Suhu akhir air selepas 10 minit",
+            controlled:
+              "Isi padu air panas, suhu awal air, kelalang yang digunakan, ketebalan setiap pembalut dan persekitaran",
+            materials: "Air panas, kapas, kain felt dan kerajang aluminium",
+            apparatus:
+              "Empat kelalang kon serupa, empat termometer, silinder penyukat dan jam randik",
+            method: [
+              "Labelkan empat kelalang serupa sebagai K, L, M dan N, lalu tuangkan isi padu air panas yang sama ke dalam setiap satu.",
+              "Biarkan kelalang K terbuka. Balut kelalang L dengan kapas, kelalang M dengan kain felt dan kelalang N dengan kerajang aluminium, menggunakan ketebalan yang sama.",
+              "Rekodkan suhu awal dalam setiap kelalang — kesemuanya mesti sama.",
+              "Biarkan keempat-empat kelalang bersebelahan di tempat yang sama selama 10 minit, kemudian rekodkan suhu akhir setiap kelalang.",
+              "Bandingkan suhu akhir air dalam setiap kelalang. Penurunan suhu yang lebih kecil menunjukkan penebat yang lebih baik.",
+            ],
+            observation:
+              "Selepas 10 minit, kelalang K yang terbuka mempunyai suhu akhir paling rendah. Kelalang yang dibalut kapas dan kain felt mempunyai suhu akhir paling tinggi. Kelalang yang dibalut kerajang aluminium mempunyai suhu akhir yang lebih rendah berbanding kedua-duanya.",
+            conclusion:
+              "Jenis bahan penebat mempengaruhi suhu akhir air. Kapas dan kain felt memerangkap udara dan mengalirkan haba dengan lemah, jadi kedua-duanya penebat haba yang lebih baik, menghasilkan suhu akhir yang paling tinggi. Aluminium ialah konduktor haba, jadi kelalang N mempunyai suhu akhir yang lebih rendah. Setiap kelalang tetap menyejuk pada tahap tertentu — penebat melambatkan pengaliran haba, bukan menghentikannya. Hipotesis diterima.",
+            operationalDefinition:
+              "Sebaik mana sesuatu bahan menebat haba ditunjukkan oleh setinggi mana suhu akhir air itu kekal selepas tempoh masa yang sama (10 minit) — penurunan suhu yang lebih kecil menunjukkan penebatan yang lebih baik.",
+          },
+        ],
+      },
       matcher: {
         title: "🔌 Padankan bahan dengan fungsinya",
         instruction: "Pilih jenis bahan, kemudian pilih barangan harian yang menggunakannya.",
         pairs: [
-          { id: "pan", label: "🔥 Konduktor haba — memasak makanan dengan cepat", match: "Dasar kuali logam" },
-          { id: "iron", label: "🔥 Konduktor haba — menggosok pakaian dengan cepat", match: "Tapak seterika logam" },
-          { id: "gloves", label: "🧊 Penebat haba — melindungi tangan", match: "Sarung tangan ketuhar" },
-          { id: "icebox", label: "🧊 Penebat haba — mengekalkan kesejukan", match: "Dinding kotak ais (gentian kaca/polistirena)" },
+          {
+            id: "pan",
+            label: "🔥 Konduktor haba — memasak makanan dengan cepat",
+            match: "Dasar kuali logam",
+          },
+          {
+            id: "iron",
+            label: "🔥 Konduktor haba — menggosok pakaian dengan cepat",
+            match: "Tapak seterika logam",
+          },
+          {
+            id: "gloves",
+            label: "🧊 Penebat haba — melindungi tangan",
+            match: "Sarung tangan ketuhar",
+          },
+          {
+            id: "icebox",
+            label: "🧊 Penebat haba — mengekalkan kesejukan",
+            match: "Dinding kotak ais (gentian kaca/polistirena)",
+          },
         ],
       },
       checks: [
-        { question: "Mengapakah pemegang periuk sering diperbuat daripada kayu atau plastik?", hint: "Kayu dan plastik ialah penebat haba — keduanya menghalang haba daripada mengalir ke tangan semasa memasak." },
-        { question: "Sebuah kajian membandingkan kapas, kain felt dan kerajang aluminium sebagai pembalut kelalang berisi air panas. Bahan manakah menjadi penebat terbaik?", hint: "Kapas dan kain felt — keduanya melambatkan pengaliran haba, jadi suhu air kekal tinggi lebih lama. Kerajang aluminium ialah konduktor haba, jadi haba hilang dengan lebih cepat." },
+        {
+          question: "Mengapakah pemegang periuk sering diperbuat daripada kayu atau plastik?",
+          hint: "Kayu dan plastik ialah penebat haba — keduanya menghalang haba daripada mengalir ke tangan semasa memasak.",
+        },
+        {
+          question:
+            "Sebuah kajian membandingkan kapas, kain felt dan kerajang aluminium sebagai pembalut kelalang berisi air panas. Bahan manakah menjadi penebat terbaik?",
+          hint: "Kapas dan kain felt — keduanya melambatkan pengaliran haba, jadi suhu air kekal tinggi lebih lama. Kerajang aluminium ialah konduktor haba, jadi haba hilang dengan lebih cepat.",
+        },
+      ],
+    },
+    {
+      number: "9.2",
+      title: "Keseimbangan Terma",
+      conceptQuestion: "Apakah Keseimbangan Terma?",
+      intro:
+        "Apabila dua objek pada suhu yang berbeza bersentuhan secara terma, haba mengalir daripada objek yang lebih panas ke objek yang lebih sejuk.",
+      heatFlowDirection: {
+        title: "⚖️ Mencapai keseimbangan terma",
+        instruction: "Tekan setiap peringkat untuk melihat apa yang berlaku kepada kedua-dua suhu.",
+        heatLabel: "haba",
+        noNetFlowLabel: "tiada pemindahan haba bersih",
+        caption: "Keseimbangan terma dicapai apabila kedua-dua suhu menjadi sama.",
+        stages: [
+          {
+            id: "flow",
+            label: "Haba mengalir",
+            note: "Kedua-dua objek berada pada suhu yang berbeza, jadi haba mengalir daripada yang lebih panas ke yang lebih sejuk. Objek yang lebih panas menyejuk dan objek yang lebih sejuk memanas.",
+            leftLabel: "PANAS",
+            rightLabel: "SEJUK",
+            leftTemperature: "80 °C",
+            rightTemperature: "20 °C",
+          },
+          {
+            id: "equilibrium",
+            label: "Keseimbangan terma",
+            note: "Kedua-dua objek kini mempunyai suhu yang sama. Tiada pemindahan bersih haba antara kedua-duanya.",
+            leftLabel: "SAMA",
+            rightLabel: "SAMA",
+            leftTemperature: "50 °C",
+            rightTemperature: "50 °C",
+          },
+        ],
+      },
+      remember:
+        "Keseimbangan terma dicapai apabila dua objek yang pada mulanya bersuhu berbeza mencapai suhu yang sama, dan tiada pemindahan bersih haba antara kedua-duanya.",
+      checks: [
+        {
+          question:
+            "Sebatang sudu sejuk dibiarkan di dalam secawan teh panas. Terangkan apa yang berlaku kepada suhu kedua-duanya dari semasa ke semasa.",
+          hint: "Teh menyejuk dan sudu memanas. Haba mengalir daripada teh yang lebih panas ke sudu yang lebih sejuk sehingga kedua-duanya mencapai suhu yang sama — keseimbangan terma.",
+        },
+        {
+          question: "Apakah dua syarat yang menerangkan keseimbangan terma?",
+          hint: "Kedua-dua objek mempunyai suhu yang sama, dan tiada pemindahan bersih haba antara kedua-duanya.",
+        },
       ],
     },
     {
       number: "9.3",
       title: "Pengembangan dan Pengecutan Jirim",
-      conceptQuestion: "Apakah yang Berlaku Apabila Jirim Dipanaskan?",
+      conceptQuestion: "Apakah Pengembangan dan Pengecutan?",
       intro:
         "Apabila jirim dipanaskan, zarah-zarahnya memperoleh tenaga, bergerak atau bergetar dengan lebih cepat, dan **jarak antara zarah bertambah** — jadi jirim itu mengembang. Apabila disejukkan, zarah bergerak lebih perlahan, **jarak antara zarah berkurang**, dan jirim mengecut. Ini berlaku pada pepejal, cecair dan gas.",
       expansionParticles: {
@@ -248,21 +505,42 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
         misconceptionNote:
           "Perhatikan saiz setiap zarah tidak pernah berubah. Yang berubah hanyalah jarak antara zarah — jirim mengembang kerana zarahnya menjauh, bukan kerana zarah itu sendiri membesar.",
         states: [
-          { id: "solid", label: "Pepejal", note: "Zarah bergetar pada kedudukan tetap. Pemanasan menjadikannya bergetar lebih cepat dan menolak sedikit lebih jauh antara satu sama lain, jadi pepejal mengembang." },
-          { id: "liquid", label: "Cecair", note: "Zarah sudah bebas bergerak antara satu sama lain. Pemanasan menjadikannya bergerak lebih pantas dan lebih berjauhan, jadi cecair mengembang." },
-          { id: "gas", label: "Gas", note: "Zarah bergerak bebas dan jauh berjauhan. Pemanasan menjadikannya bergerak jauh lebih pantas, jadi gas mengembang paling banyak antara ketiga-tiga keadaan." },
+          {
+            id: "solid",
+            label: "Pepejal",
+            note: "Zarah bergetar pada kedudukan tetap. Pemanasan menjadikannya bergetar lebih cepat dan menolak sedikit lebih jauh antara satu sama lain, jadi pepejal mengembang.",
+          },
+          {
+            id: "liquid",
+            label: "Cecair",
+            note: "Zarah sudah bebas bergerak antara satu sama lain. Pemanasan menjadikannya bergerak lebih pantas dan lebih berjauhan, jadi cecair mengembang.",
+          },
+          {
+            id: "gas",
+            label: "Gas",
+            note: "Zarah bergerak bebas dan jauh berjauhan. Pemanasan menjadikannya bergerak jauh lebih pantas, jadi gas mengembang paling banyak antara ketiga-tiga keadaan.",
+          },
         ],
         caption: "Saiz zarah kekal sama; hanya jarak antara zarah yang berubah.",
         hint: "Pilih satu keadaan jirim untuk melihat kelakuan zarahnya.",
       },
       checks: [
-        { question: "Penutup botol logam tersekat ketat. Bagaimanakah air panas membantu membukanya?", hint: "Haba menyebabkan logam penutup itu mengembang sedikit, jadi cengkamannya melonggar dan penutup lebih mudah dibuka." },
-        { question: "Sebiji bola pingpong yang kemik dimasukkan ke dalam air panas dan kembali pulih. Mengapa?", hint: "Haba menyebabkan udara di dalam bola itu mengembang, lalu menolak permukaan yang kemik itu keluar semula." },
+        {
+          question:
+            "Penutup botol logam tersekat ketat. Bagaimanakah air panas membantu membukanya?",
+          hint: "Haba menyebabkan logam penutup itu mengembang sedikit, jadi cengkamannya melonggar dan penutup lebih mudah dibuka.",
+        },
+        {
+          question:
+            "Sebiji bola pingpong yang kemik dimasukkan ke dalam air panas dan kembali pulih. Mengapa?",
+          hint: "Haba menyebabkan udara di dalam bola itu mengembang, lalu menolak permukaan yang kemik itu keluar semula.",
+        },
       ],
     },
     {
       number: "9.3",
       title: "Kegunaan Pengembangan dan Pengecutan",
+      conceptQuestion: "Bagaimanakah Pengembangan Digunakan dalam Kehidupan Harian?",
       intro:
         "Prinsip pengembangan dan pengecutan jirim digunakan — dan perlu diambil kira — dalam banyak keadaan harian.",
       contextImages: [
@@ -288,8 +566,16 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
         circuitClosedLabel: "litar lengkap",
         circuitOpenLabel: "litar terbuka",
         states: [
-          { id: "room", label: "Suhu bilik", note: "Pada suhu bilik jalur itu lurus dan tidak menyentuh skru sentuhan. Litar tidak lengkap, jadi penggera tidak berbunyi." },
-          { id: "heated", label: "Dipanaskan oleh api", note: "Apabila terdedah kepada haba kebakaran, kuprum mengembang lebih cepat berbanding besi. Perbezaan ini menyebabkan jalur membengkok ke arah skru sentuhan, melengkapkan litar dan membunyikan penggera." },
+          {
+            id: "room",
+            label: "Suhu bilik",
+            note: "Pada suhu bilik jalur itu lurus dan tidak menyentuh skru sentuhan. Litar tidak lengkap, jadi penggera tidak berbunyi.",
+          },
+          {
+            id: "heated",
+            label: "Dipanaskan oleh api",
+            note: "Apabila terdedah kepada haba kebakaran, kuprum mengembang lebih cepat berbanding besi. Perbezaan ini menyebabkan jalur membengkok ke arah skru sentuhan, melengkapkan litar dan membunyikan penggera.",
+          },
         ],
         caption: "Logam yang mengembang lebih cepat berada di bahagian luar lengkungan.",
         hint: "Pilih satu keadaan untuk melihat kelakuan jalur itu.",
@@ -300,26 +586,56 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
             "Radas yang sama dalam kedua-dua keadaan — hanya jalur, sentuhan dan loceng yang berubah.",
         },
       },
+      comparison: {
+        title: "Bagaimanakah Pengembangan Membantu Menyelesaikan Masalah Harian?",
+        columns: [
+          {
+            title: "🏓 Bola pingpong yang kemik",
+            body: "Apabila bola pingpong yang kemik dimasukkan ke dalam air panas, udara di dalamnya dipanaskan dan mengembang lalu menolak bahagian kemik ke luar.",
+          },
+          {
+            title: "🔒 Penutup botol yang ketat",
+            body: "Apabila penutup logam direndam dalam air panas, penutup mengembang sedikit dan menjadi lebih mudah dibuka.",
+          },
+        ],
+      },
       accordions: [
         {
           title: "🌡️ Termometer merkuri",
           body: "Merkuri **mengembang dan mengecut secara seragam** apabila suhu berubah, dan ia **mengesan perubahan suhu dengan cepat**. Ketinggian turus merkuri di dalam tiub itulah yang digunakan untuk mengukur suhu.",
           detail: "Ingat: termometer mengukur suhu, bukan haba.",
         },
-        { title: "🚂 Ruang pada landasan kereta api", body: "Ruang kecil ditinggalkan antara bahagian rel supaya landasan boleh **mengembang pada hari yang panas tanpa membengkok atau terangkat**." },
-        { title: "🌉 Penggolek pada jambatan keluli", body: "Satu hujung jambatan diletakkan di atas penggolek supaya seluruh struktur boleh **mengembang dan mengecut dengan selamat** mengikut perubahan suhu." },
+        {
+          title: "🚂 Ruang pada landasan kereta api",
+          body: "Ruang kecil ditinggalkan antara bahagian rel supaya landasan boleh **mengembang pada hari yang panas tanpa membengkok atau terangkat**.",
+        },
+        {
+          title: "🌉 Penggolek pada jambatan keluli",
+          body: "Satu hujung jambatan diletakkan di atas penggolek supaya seluruh struktur boleh **mengembang dan mengecut dengan selamat** mengikut perubahan suhu.",
+        },
+        {
+          title: "⚡ Kabel elektrik di udara",
+          body: "Kabel elektrik pada tiang dipasang agak kendur. Kabel mengembang apabila panas dan mengecut apabila sejuk. Kekenduran mengurangkan tegangan berlebihan semasa pengecutan.",
+        },
       ],
       checks: [
-        { question: "Dalam jalur dwilogam penggera kebakaran, logam manakah mengembang lebih cepat, dan ke arah manakah jalur itu membengkok?", hint: "Kuprum mengembang lebih cepat berbanding besi, jadi jalur itu membengkok ke arah skru sentuhan lalu melengkapkan litar." },
-        { question: "Apakah yang diukur oleh sebuah termometer?", hint: "Suhu. Termometer mengukur darjah kepanasan atau kesejukan, bukan kuantiti haba." },
+        {
+          question:
+            "Dalam jalur dwilogam penggera kebakaran, logam manakah mengembang lebih cepat, dan ke arah manakah jalur itu membengkok?",
+          hint: "Kuprum mengembang lebih cepat berbanding besi, jadi jalur itu membengkok ke arah skru sentuhan lalu melengkapkan litar.",
+        },
+        {
+          question: "Apakah yang diukur oleh sebuah termometer?",
+          hint: "Suhu. Termometer mengukur darjah kepanasan atau kesejukan, bukan kuantiti haba.",
+        },
       ],
     },
     {
       number: "9.4",
       title: "Penyerapan dan Pembebasan Haba",
-      conceptQuestion: "Apakah Penyerapan dan Pembebasan Haba?",
+      conceptQuestion: "Bagaimanakah Permukaan Mempengaruhi Penyerapan dan Pembebasan Haba?",
       intro:
-        "Keupayaan sesuatu objek untuk menyerap dan membebaskan haba bergantung pada jenis dan warna permukaannya. Apabila objek menyerap haba, suhunya meningkat; apabila objek membebaskan haba, suhunya menurun. **Permukaan yang gelap dan kusam merupakan penyerap dan pembebas haba yang lebih baik** berbanding permukaan yang cerah dan berkilat.",
+        "Keupayaan sesuatu objek untuk menyerap dan membebaskan haba bergantung pada jenis dan warna permukaannya. Apabila objek menyerap haba, suhunya meningkat; apabila objek membebaskan haba, suhunya menurun. **Permukaan yang gelap dan kusam ialah penyerap haba yang baik dan pembebas haba yang baik**. **Permukaan yang cerah dan berkilat ialah penyerap haba yang lemah dan pembebas haba yang lemah** — sebaliknya ia memantulkan lebih banyak sinaran.",
       surfaceComparison: {
         title: "⬛⬜ Permukaan gelap berbanding permukaan berkilat",
         instruction: "Tekan untuk beralih antara menyerap haba dan membebaskan haba.",
@@ -351,19 +667,27 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
       cards: [
         {
           title: "Kegunaan harian",
-          body: "Lori tangki minyak dicat dengan warna cerah seperti putih atau perak. **Warna cerah tidak menyerap banyak haba**, jadi penyejatan minyak dapat dikurangkan.",
-          detail: "Sebaliknya, pemanas air solar menggunakan panel berwarna gelap supaya menyerap haba matahari sebanyak mungkin.",
+          body: "Lori tangki minyak dicat dengan **permukaan perak atau putih yang berkilat**. Permukaan berkilat memantulkan lebih banyak sinaran Matahari dan menyerap kurang haba, jadi minyak di dalamnya kurang panas dan penyejatan dapat dikurangkan.",
+          detail:
+            "Sebaliknya, pemanas air solar menggunakan panel berwarna gelap supaya menyerap haba matahari sebanyak mungkin.",
         },
       ],
       checks: [
-        { question: "Mengapakah pakaian berwarna cerah terasa lebih selesa semasa cuaca panas?", hint: "Permukaan cerah menyerap kurang haba daripada Matahari berbanding permukaan gelap, jadi badan tidak menjadi terlalu panas." },
-        { question: "Apakah ciri permukaan dinding kelalang termos yang membantu mengekalkan suhu air panas?", hint: "Permukaan berkilat — ia pembebas haba yang kurang baik, jadi haba lebih lambat hilang dari air di dalamnya." },
+        {
+          question: "Mengapakah pakaian berwarna cerah terasa lebih selesa semasa cuaca panas?",
+          hint: "Permukaan cerah menyerap kurang haba daripada Matahari berbanding permukaan gelap, jadi badan tidak menjadi terlalu panas.",
+        },
+        {
+          question:
+            "Apakah ciri permukaan dinding kelalang termos yang membantu mengekalkan suhu air panas?",
+          hint: "Permukaan berkilat — ia pembebas haba yang kurang baik, jadi haba lebih lambat hilang dari air di dalamnya.",
+        },
       ],
     },
     {
       number: "9.4",
       title: "Konsep Bangunan Hijau",
-      conceptQuestion: "Apakah Konsep Bangunan Hijau?",
+      conceptQuestion: "Apakah Bangunan Hijau?",
       intro:
         "Konsep Bangunan Hijau ialah idea yang dijana untuk **mengurangkan kesan pembangunan yang pesat terhadap alam sekitar dan kesihatan manusia**. Konsep haba yang anda pelajari dalam bab ini digunakan secara langsung: sebuah rumah hijau direka supaya tenaga yang diperlukan untuk menyejukkan atau memanaskannya dapat dikurangkan.",
       contextImages: [
@@ -441,8 +765,16 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
       ],
       checksTitle: "Bangunan Hijau — semak pantas",
       checks: [
-        { question: "Bagaimanakah penebat haba pada bumbung mengurangkan penggunaan tenaga sebuah rumah?", hint: "Penebat melambatkan pengaliran haba dari bumbung yang panas ke dalam rumah, jadi kurang tenaga diperlukan untuk menyejukkan ruang di dalamnya." },
-        { question: "Mengapakah bumbung dan dinding berwarna cerah membantu menyejukkan sebuah rumah?", hint: "Permukaan cerah dan berkilat ialah penyerap haba yang kurang baik, jadi kurang haba matahari diserap ke dalam bangunan itu." },
+        {
+          question:
+            "Bagaimanakah penebat haba pada bumbung mengurangkan penggunaan tenaga sebuah rumah?",
+          hint: "Penebat melambatkan pengaliran haba dari bumbung yang panas ke dalam rumah, jadi kurang tenaga diperlukan untuk menyejukkan ruang di dalamnya.",
+        },
+        {
+          question:
+            "Mengapakah bumbung dan dinding berwarna cerah membantu menyejukkan sebuah rumah?",
+          hint: "Permukaan cerah dan berkilat ialah penyerap haba yang kurang baik, jadi kurang haba matahari diserap ke dalam bangunan itu.",
+        },
       ],
     },
   ],
@@ -463,21 +795,29 @@ export const scienceF2C9InteractiveBM: ScienceF2InteractiveContent = {
       type: "true-false",
       question: "Betul atau salah: Haba dan suhu bermaksud perkara yang sama persis.",
       answer: false,
-      explanation: "Haba ialah satu bentuk tenaga yang diukur dalam joule; suhu ialah darjah kepanasan atau kesejukan yang diukur dalam °C atau K. Kedua-duanya berkait, tetapi tidak sama.",
+      explanation:
+        "Haba ialah satu bentuk tenaga yang diukur dalam joule; suhu ialah darjah kepanasan atau kesejukan yang diukur dalam °C atau K. Kedua-duanya berkait, tetapi tidak sama.",
     },
     {
       type: "multiple-choice",
       question: "Kaedah pemindahan haba yang manakah tidak memerlukan sebarang medium?",
       options: ["Konduksi", "Perolakan", "Sinaran", "Kesemuanya"],
       answerIndex: 2,
-      explanation: "Sinaran adalah cara haba daripada Matahari merentasi ruang kosong untuk sampai ke Bumi — tiada medium diperlukan.",
+      explanation:
+        "Sinaran adalah cara haba daripada Matahari merentasi ruang kosong untuk sampai ke Bumi — tiada medium diperlukan.",
     },
     {
       type: "multiple-choice",
       question: "Apakah yang diukur oleh sebuah termometer?",
-      options: ["Kuantiti haba dalam objek", "Suhu objek", "Tenaga kinetik jumlah objek", "Kadar pengaliran haba"],
+      options: [
+        "Kuantiti haba dalam objek",
+        "Suhu objek",
+        "Tenaga kinetik jumlah objek",
+        "Kadar pengaliran haba",
+      ],
       answerIndex: 1,
-      explanation: "Termometer mengukur suhu — darjah kepanasan atau kesejukan — dan bukan kuantiti haba yang terkandung dalam objek itu.",
+      explanation:
+        "Termometer mengukur suhu — darjah kepanasan atau kesejukan — dan bukan kuantiti haba yang terkandung dalam objek itu.",
     },
   ],
 };
