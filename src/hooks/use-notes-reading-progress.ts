@@ -328,6 +328,8 @@ export function useNotesReadingTracker({
       if (!hasReadingInteraction.current) return;
       const element = contentRef.current;
       if (!element || !sectionsLoaded.current) return;
+      // A lazy chapter's inline placeholder is not readable chapter content.
+      if (element.querySelector("[data-notes-loading]")) return;
       const sections = discoverTrackedSections(element);
       const incoming: NotesSectionProgressMap = {};
       for (const section of sections) {

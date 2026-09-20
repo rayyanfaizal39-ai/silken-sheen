@@ -1208,7 +1208,7 @@ const bm: Chapter4Content = {
       { part: "Hilum", function: "Tempat biji benih melekat pada buah" },
       { part: "Mikropil", function: "Lubang kecil membolehkan udara dan air memasuki biji benih" },
       { part: "Plumul", function: "Bahagian embrio yang berkembang menjadi pucuk baharu" },
-      { part: "Radikal", function: "Bahagian embrio yang berkembang menjadi akar" },
+      { part: "Radikel", function: "Bahagian embrio yang berkembang menjadi akar" },
       {
         part: "Kotiledon / Endosperma",
         function: "Menyimpan dan membekalkan makanan untuk biji benih",

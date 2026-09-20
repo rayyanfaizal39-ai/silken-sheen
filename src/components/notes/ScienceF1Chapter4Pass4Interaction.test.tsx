@@ -63,3 +63,21 @@ for (const lang of ["bm", "en"] as const) {
     });
   });
 }
+
+it("seed terminology renders Radikel in BM and Radicle in DLP with unchanged functions", () => {
+  for (const lang of ["bm", "en"] as const) {
+    state.selected = 0;
+    const source = chapter4Content[lang].plantReproduction;
+    const render = () => SeedAnatomy({ source, lang });
+    buttons(render())[4].props.onClick();
+    const html = renderToStaticMarkup(render());
+    expect(html).toContain(lang === "bm" ? "Radikel" : "Radicle");
+    expect(html).not.toContain("Radikal");
+    const expectedFunction =
+      lang === "bm"
+        ? "Bahagian embrio yang berkembang menjadi akar"
+        : "Part of the embryo that develops into the root";
+    expect(source.seedParts[4].function).toBe(expectedFunction);
+    expect(html).toContain(expectedFunction);
+  }
+});
