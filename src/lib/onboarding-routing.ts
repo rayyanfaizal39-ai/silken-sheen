@@ -58,5 +58,11 @@ export function shouldRedirectToLogin(
   hasUser: boolean,
   isGuest = false,
 ): boolean {
-  return !authLoading && !hasUser && !isGuest && STUDENT_PROTECTED_ROUTES.has(pathname);
+  // Guest previews cannot access the persistent student leaderboard.
+  return (
+    !authLoading &&
+    !hasUser &&
+    (!isGuest || pathname === "/leaderboard") &&
+    STUDENT_PROTECTED_ROUTES.has(pathname)
+  );
 }
