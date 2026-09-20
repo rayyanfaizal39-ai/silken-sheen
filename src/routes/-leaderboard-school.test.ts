@@ -126,3 +126,52 @@ describe("leaderboard UI school line", () => {
     expect(routeSource).toContain('<span className="truncate">{student.school}</span>');
   });
 });
+
+describe("Top 3 podium — school and column grouping", () => {
+  it("shows the school on the podium using the already-mapped, already-formatted value", () => {
+    expect(routeSource).toContain("{s.school && (");
+    expect(routeSource).toContain('<span className="truncate">{s.school}</span>');
+  });
+
+  it("omits the podium school line when there is none, without a placeholder", () => {
+    // Same contract as the table/mobile rows: no fabricated fallback text.
+    const podiumSection = routeSource.slice(
+      routeSource.indexOf("Cosmic Champion + floating top 3"),
+      routeSource.indexOf("Positions 4"),
+    );
+    expect(podiumSection).not.toContain("School not set");
+  });
+
+  it("keeps the avatar/details section and the podium section inside one column wrapper", () => {
+    const podiumSection = routeSource.slice(
+      routeSource.indexOf("Cosmic Champion + floating top 3"),
+      routeSource.indexOf("Positions 4"),
+    );
+    // Exactly one outer per-student column, containing both an avatar/details
+    // sub-section and a podium sub-section as siblings within it.
+    expect(podiumSection).toContain('className="flex min-w-0 flex-col items-center"');
+    expect(podiumSection).toContain("Avatar/details section");
+    expect(podiumSection).toContain("Podium section");
+  });
+
+  it("keeps the three-column podium grid with bottom alignment", () => {
+    const podiumSection = routeSource.slice(
+      routeSource.indexOf("Cosmic Champion + floating top 3"),
+      routeSource.indexOf("Positions 4"),
+    );
+    expect(podiumSection).toContain("grid grid-cols-3 items-end");
+  });
+
+  it("keeps the #2, #1 (champion), #3 slot order", () => {
+    expect(routeSource).toContain("{[1, 0, 2].map((slot) => {");
+  });
+
+  it("does not touch ranking, XP, or podium heights while adding the school line", () => {
+    const podiumSection = routeSource.slice(
+      routeSource.indexOf("Cosmic Champion + floating top 3"),
+      routeSource.indexOf("Positions 4"),
+    );
+    expect(podiumSection).toContain('const heights = ["h-24", "h-32", "h-20"];');
+    expect(podiumSection).toContain("s.monthlyXp.toLocaleString()");
+  });
+});

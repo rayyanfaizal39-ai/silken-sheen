@@ -49,3 +49,40 @@ export function getRankAsset(rank: string): string | undefined {
 export function getRankGlow(rank: string): string {
   return RANKS.find((item) => item.name === rank)?.glowColor ?? "rgba(59,130,246,0.36)";
 }
+
+// ─── Rank artwork geometry (measured, presentation-only) ─────────────────────
+//
+// Every /ranks/*.png is a 1536x1024 landscape canvas with the companion
+// centred inside a large transparent margin. When such an image is rendered
+// with `object-contain` into a SQUARE box of side B, it is reduced twice:
+//   1. letterboxed to B x (B / 1.5) to preserve the 3:2 aspect ratio, and
+//   2. the opaque artwork only occupies part of that letterboxed area.
+// The net effect is that the visible companion spans well under half of B,
+// which is why the podium frames looked mostly empty.
+//
+// `squareFill` is the measured result of both reductions: the visible
+// (non-transparent) longest side, expressed as a fraction of B. It is taken
+// from each asset's opaque bounding box (alpha > 12) as
+//   max(bboxW / canvasW, (bboxH / canvasH) / (canvasW / canvasH))
+// Consumers divide their target fill by it to work out how large to render
+// the image so the ARTWORK, not the padded canvas, hits the intended size.
+//
+// This is display metadata only: it never changes the asset, the rank
+// thresholds, or any progression logic. Re-measure if the artwork is replaced.
+const RANK_ARTWORK_SQUARE_FILL: Record<string, number> = {
+  "Space Cadet": 0.5059,
+  "Moon Explorer": 0.4271,
+  "Planet Voyager": 0.4056,
+  "Star Captain": 0.4805,
+  "Galaxy Guardian": 0.5397,
+  "Cosmic Legend": 0.526,
+};
+
+/**
+ * Fraction of a square image box that the visible artwork occupies under
+ * `object-contain`. Falls back to the mid-range value for an unknown rank so a
+ * new asset renders at a sane size rather than collapsing or exploding.
+ */
+export function getRankArtworkSquareFill(rank: string): number {
+  return RANK_ARTWORK_SQUARE_FILL[rank] ?? 0.48;
+}
