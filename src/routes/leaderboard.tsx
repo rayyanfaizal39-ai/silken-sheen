@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Trophy, Crown, Sparkles, Rocket, TrendingUp, RefreshCw } from "lucide-react";
+import { Trophy, Crown, Sparkles, Rocket, TrendingUp, RefreshCw, School } from "lucide-react";
 import { useProgress, getRank } from "@/hooks/use-progress";
 import { RankBadge } from "@/components/RankBadge";
 import { useAuth } from "@/context/auth-context";
@@ -11,6 +11,7 @@ import type {
   LeaderboardStudentRow,
 } from "./-leaderboard.server";
 import { seoMeta } from "@/lib/seo";
+import { formatSchoolName } from "@/lib/school-display";
 
 export const Route = createFileRoute("/leaderboard")({
   head: () =>
@@ -35,6 +36,8 @@ const MEDALS = ["#FBBF24", "#CBD5E1", "#FB923C"]; // gold / silver / bronze
 interface RealRankedStudent {
   rank: number;
   name: string;
+  /** Abbreviated for display (e.g. "SMK Kota Kemuning"); null = no school set, line omitted. */
+  school: string | null;
   lifetimeXp: number;
   monthlyXp: number;
   monthlyQuizCount: number;
@@ -47,6 +50,7 @@ function rankRealStudents(data: LeaderboardData): RealRankedStudent[] {
   return data.students.map((s: LeaderboardStudentRow) => ({
     rank: s.position,
     name: s.display_name.trim() || "Student",
+    school: formatSchoolName(s.school_name),
     lifetimeXp: s.lifetime_xp,
     monthlyXp: s.monthly_xp,
     monthlyQuizCount: s.monthly_quiz_count,
@@ -555,6 +559,12 @@ function RankTableRow({ student }: { student: RealRankedStudent }) {
                 </span>
               )}
             </div>
+            {student.school && (
+              <p className="mt-0.5 flex items-center gap-1 text-[11px] text-white/40">
+                <School className="h-3 w-3 shrink-0" aria-hidden="true" />
+                <span className="truncate">{student.school}</span>
+              </p>
+            )}
             <p className="mt-0.5 truncate text-[11px] font-black" style={{ color: r.color }}>
               {r.name}
             </p>
@@ -599,6 +609,12 @@ function RankMobileCard({ student }: { student: RealRankedStudent }) {
               <span className="shrink-0 text-[9px] font-black uppercase text-[#C4B5FD]">You</span>
             )}
           </div>
+          {student.school && (
+            <p className="flex items-center gap-1 text-[10px] text-white/40">
+              <School className="h-2.5 w-2.5 shrink-0" aria-hidden="true" />
+              <span className="truncate">{student.school}</span>
+            </p>
+          )}
           <p className="truncate text-[10px] font-black" style={{ color: rank.color }}>
             {rank.name}
           </p>
