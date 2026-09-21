@@ -21,6 +21,8 @@ import {
   Lightbulb,
   Flame,
   Zap,
+  Loader2,
+  AlertTriangle,
 } from "lucide-react";
 import {
   SubjectGrid,
@@ -41,10 +43,11 @@ import {
   cleanLearningTitle,
 } from "@/lib/clean-learning-title";
 import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
-import { useContentRegistry } from "@/hooks/use-content-registry";
+import { useContentRegistry, useContentRegistryStatus } from "@/hooks/use-content-registry";
 import {
   AcademyHero,
   AcademyPageShell,
+  AcademyPanel,
   SubjectWorldBanner,
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
@@ -15946,8 +15949,83 @@ function readStudySearch() {
   };
 }
 
+export function QuizFormLoadingState({
+  subjectId,
+  form,
+}: {
+  subjectId: string;
+  form: Extract<Form, "Form 2" | "Form 3">;
+}) {
+  const subj = subjects.find((s) => s.id === subjectId);
+  return (
+    <AcademyPanel>
+      <div
+        role="status"
+        aria-busy="true"
+        aria-live="polite"
+        className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-8 text-center shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:p-10"
+      >
+        <Loader2 className="mx-auto h-8 w-8 animate-spin text-white/70" aria-hidden="true" />
+        <p className="mt-4 text-xs font-black uppercase tracking-[0.22em] text-white/50">
+          {subj?.name} / {form}
+        </p>
+        <p className="mt-2 text-sm text-white/60">Loading quizzes…</p>
+      </div>
+    </AcademyPanel>
+  );
+}
+
+export function QuizFormErrorState({
+  subjectId,
+  form,
+  onRetry,
+  onBack,
+}: {
+  subjectId: string;
+  form: Extract<Form, "Form 2" | "Form 3">;
+  onRetry: () => void;
+  onBack: () => void;
+}) {
+  const subj = subjects.find((s) => s.id === subjectId);
+
+  return (
+    <AcademyPanel>
+      <button
+        type="button"
+        onClick={onBack}
+        className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.06] px-4 py-2 text-sm font-semibold text-white/70 transition-all hover:-translate-x-0.5 hover:bg-white/[0.10] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
+      >
+        <ArrowLeft className="h-4 w-4" /> Back to forms
+      </button>
+
+      <div
+        role="alert"
+        className="relative overflow-hidden rounded-[2rem] border border-rose-400/20 bg-[#0B1220]/62 p-8 text-center shadow-[0_18px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:p-10"
+      >
+        <AlertTriangle className="relative z-10 mx-auto h-8 w-8 text-rose-300" aria-hidden="true" />
+        <p className="relative z-10 mt-4 text-xs font-black uppercase tracking-[0.22em] text-rose-300">
+          {subj?.name} / {form}
+        </p>
+        <h2 className="relative z-10 mt-3 font-display text-2xl font-bold text-white">
+          Unable to load quizzes
+        </h2>
+        <p className="relative z-10 mx-auto mt-2 max-w-md text-sm leading-relaxed text-white/60">
+          We couldn’t load the quizzes right now.
+        </p>
+        <button
+          type="button"
+          onClick={onRetry}
+          className="relative z-10 mt-6 inline-flex items-center gap-2 rounded-full border border-[#7C3AED]/50 bg-[#7C3AED]/15 px-5 py-2.5 text-sm font-black text-[#DDD6FE] transition-colors hover:bg-[#7C3AED]/25"
+        >
+          Retry
+        </button>
+      </div>
+    </AcademyPanel>
+  );
+}
+
 function QuizzesPage() {
-  const registry = useContentRegistry();
+  const { registry, status: registryStatus, retry: retryRegistry } = useContentRegistryStatus();
   const navigate = Route.useNavigate();
   const routeSearch = Route.useSearch() as {
     subject?: string;
@@ -16867,27 +16945,42 @@ function QuizzesPage() {
     );
   }
 
-  if (
-    subject &&
-    (form === "Form 2" || form === "Form 3") &&
-    !hasUpperFormQuizPath &&
-    !needsScienceLang
-  ) {
-    return (
-      <AcademyPageShell subjectId={planetSubjectId}>
-        <FormComingSoon
-          subjectId={subject}
-          form={form}
-          mode="quizzes"
-          onBack={() => {
-            setChapter(null);
-            setFormWasChosen(false);
-            updateQuizSearch({ form: null, chapter: null });
-            reset();
-          }}
-        />
-      </AcademyPageShell>
-    );
+  if (subject && (form === "Form 2" || form === "Form 3") && !needsScienceLang) {
+    const backToForms = () => {
+      setChapter(null);
+      setFormWasChosen(false);
+      updateQuizSearch({ form: null, chapter: null });
+      reset();
+    };
+
+    if (registryStatus === "loading") {
+      return (
+        <AcademyPageShell subjectId={planetSubjectId}>
+          <QuizFormLoadingState subjectId={subject} form={form} />
+        </AcademyPageShell>
+      );
+    }
+
+    if (registryStatus === "error") {
+      return (
+        <AcademyPageShell subjectId={planetSubjectId}>
+          <QuizFormErrorState
+            subjectId={subject}
+            form={form}
+            onRetry={retryRegistry}
+            onBack={backToForms}
+          />
+        </AcademyPageShell>
+      );
+    }
+
+    if (!hasUpperFormQuizPath) {
+      return (
+        <AcademyPageShell subjectId={planetSubjectId}>
+          <FormComingSoon subjectId={subject} form={form} mode="quizzes" onBack={backToForms} />
+        </AcademyPageShell>
+      );
+    }
   }
 
   // ── Subject World early-return ────────────────────────────────────────────
