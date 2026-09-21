@@ -86,14 +86,22 @@ describe("AcadeMY email templates", () => {
     expect(signup.html).toContain("token=signup-token-hash");
     expect(recovery.subject).toBe("Reset your AcadeMY password");
     expect(recovery.html).toContain(
-      "https://myacademy.my/auth/confirm?token_hash=recovery-token-hash&amp;type=recovery&amp;next=%2Fauth%2Freset-password",
+      "https://www.myacademy.my/auth/confirm?token_hash=recovery-token-hash&amp;type=recovery&amp;next=%2Fauth%2Freset-password",
     );
     expect(recovery.text).toContain(
-      "https://myacademy.my/auth/confirm?token_hash=recovery-token-hash&type=recovery&next=%2Fauth%2Freset-password",
+      "https://www.myacademy.my/auth/confirm?token_hash=recovery-token-hash&type=recovery&next=%2Fauth%2Freset-password",
     );
     expect(recovery.html).not.toContain("Verification code");
     expect(recovery.text).not.toContain("123456");
     expect(recovery.html).not.toContain("/auth/v1/verify");
+  });
+
+  it("accepts the canonical www application origin for production recovery", () => {
+    const email = buildAuthEmails(authPayload({ email_action_type: "recovery" }), {
+      ...authUrls,
+      appUrl: "https://www.myacademy.my",
+    })[0];
+    expect(email.text).toContain("https://www.myacademy.my/auth/confirm?");
   });
 
   it("ignores a Supabase payload site_url for recovery and uses the public application URL", () => {
@@ -105,7 +113,7 @@ describe("AcadeMY email templates", () => {
     const recovery = buildAuthEmails(payload, authUrls)[0];
 
     expect(recovery.text).toContain(
-      "https://myacademy.my/auth/confirm?token_hash=hash%20with%20reserved%2F%3F%20characters&type=recovery&next=%2Fauth%2Freset-password",
+      "https://www.myacademy.my/auth/confirm?token_hash=hash%20with%20reserved%2F%3F%20characters&type=recovery&next=%2Fauth%2Freset-password",
     );
     expect(recovery.text).not.toContain("aojrbxoqbgyxmfljqpqj.supabase.co");
   });
@@ -119,7 +127,7 @@ describe("AcadeMY email templates", () => {
         ...authUrls,
         appUrl: "https://example.com",
       }),
-    ).toThrowError("must use https://myacademy.my");
+    ).toThrowError("must use https://www.myacademy.my");
   });
 
   it("sends secure email-change confirmations to both addresses with the correct hashes", () => {

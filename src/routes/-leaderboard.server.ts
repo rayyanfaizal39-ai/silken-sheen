@@ -4,6 +4,14 @@ import { getSupabaseServerClient } from "../lib/supabase.server";
 export interface LeaderboardStudentRow {
   position: number;
   display_name: string;
+  /**
+   * Canonical verified school name from public.schools, joined via
+   * profiles.school_id. Display-only metadata — it never affects ranking, XP,
+   * accuracy, quiz count, streak or eligibility. `null` when the student has
+   * not set a school; the UI omits the school line rather than showing a
+   * placeholder. Abbreviate with formatSchoolName() at render time only.
+   */
+  school_name: string | null;
   lifetime_xp: number;
   streak: number | null;
   monthly_xp: number;

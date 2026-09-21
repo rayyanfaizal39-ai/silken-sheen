@@ -12,7 +12,7 @@ let serverEntryPromise: Promise<ServerEntry> | undefined;
 async function getServerEntry(): Promise<ServerEntry> {
   if (!serverEntryPromise) {
     serverEntryPromise = import("@tanstack/react-start/server-entry").then(
-      (m) => ((m as { default?: ServerEntry }).default ?? (m as unknown as ServerEntry)),
+      (m) => (m as { default?: ServerEntry }).default ?? (m as unknown as ServerEntry),
     );
   }
   return serverEntryPromise;
@@ -52,7 +52,10 @@ function isCatastrophicSsrErrorBody(body: string, responseStatus: number): boole
 
 // h3 swallows in-handler throws into a normal 500 Response with body
 // {"unhandled":true,"message":"HTTPError"} — try/catch alone never fires for those.
-async function normalizeCatastrophicSsrResponse(response: Response, request: Request): Promise<Response> {
+async function normalizeCatastrophicSsrResponse(
+  response: Response,
+  request: Request,
+): Promise<Response> {
   if (response.status < 500) return response;
   const contentType = response.headers.get("content-type") ?? "";
   if (!contentType.includes("application/json")) return response;
@@ -65,8 +68,10 @@ async function normalizeCatastrophicSsrResponse(response: Response, request: Req
   const capturedError = consumeLastCapturedError();
   console.error(
     `[SSR] HTTPError on ${request.method} ${request.url}`,
-    "\n  response body:", body,
-    "\n  captured error:", capturedError ?? "(h3 swallowed it — no captured error)",
+    "\n  response body:",
+    body,
+    "\n  captured error:",
+    capturedError ?? "(h3 swallowed it — no captured error)",
   );
   return brandedErrorResponse();
 }
@@ -86,7 +91,8 @@ function canonicalHostRedirect(request: Request): Response | undefined {
   } catch {
     return undefined;
   }
-  if (url.hostname !== APEX_HOST) return undefined;
+  if (url.hostname !== APEX_HOST && !(url.hostname === CANONICAL_HOST && url.protocol !== "https:"))
+    return undefined;
   url.hostname = CANONICAL_HOST;
   url.protocol = "https:";
   return Response.redirect(url.toString(), 301);

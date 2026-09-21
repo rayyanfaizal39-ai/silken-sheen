@@ -49,6 +49,17 @@ describe("onboarding routing", () => {
     expect(shouldRedirectToLogin("/home", false, false, false)).toBe(true);
   });
 
+  it("sends both guests and logged-out visitors to sign in for the leaderboard", () => {
+    expect(shouldRedirectToLogin("/leaderboard", false, false, true)).toBe(true);
+    expect(shouldRedirectToLogin("/leaderboard", false, false, false)).toBe(true);
+    expect(shouldRedirectToLogin("/leaderboard", true, false, true)).toBe(false);
+  });
+
+  it("allows authenticated leaderboard access even with a stale guest flag", () => {
+    expect(shouldRedirectToLogin("/leaderboard", false, true, false)).toBe(false);
+    expect(shouldRedirectToLogin("/leaderboard", false, true, true)).toBe(false);
+  });
+
   it.each(["/login", "/forgot-password", "/auth/callback", "/auth/reset-password"])(
     "keeps Explorer Profile data out of public auth route %s",
     (pathname) => {

@@ -2,7 +2,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { canPersistProgress } from "@/lib/guest-mode";
-import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
 import { recordDailyFlashcardReview } from "@/lib/daily-mission-progress";
 import { getLocalDateKey } from "@/lib/local-date";
 import { normalizeSelectedAt, daysTogether as daysTogetherPure } from "@/companion/selectedAt";
@@ -733,13 +732,12 @@ async function saveToSupabase(userId: string, p: Progress): Promise<void> {
 
 /**
  * Inserts one immutable row into `quiz_history` for a completed quiz.
- * Fire-and-forget: this is purely a learning-history log for
- * getStudentAnalytics() (src/lib/analytics.ts) — it never affects XP,
- * streak, rank, or the local `quizHistory` array, which are already
- * handled by `recordQuizResult` regardless of whether this insert
- * succeeds. Only runs for a signed-in user with Supabase configured.
+ * Supplies monthly leaderboard XP as well as learning-history analytics.
+ * Every registered student's earned XP must be recorded regardless of plan;
+ * premium analytics access is enforced by its own UI guards. Local progress
+ * is handled separately by `recordQuizResult`.
  */
-async function insertQuizHistoryRow(result: {
+export async function insertQuizHistoryRow(result: {
   subjectId: string;
   chapterKey: string;
   scorePct: number;
@@ -759,15 +757,6 @@ async function insertQuizHistoryRow(result: {
       data: { user },
     } = await supabase.auth.getUser();
     if (!user || !canPersistProgress(user.id)) return;
-
-    const { data: subscription, error: subscriptionError } = await supabase
-      .from("subscriptions")
-      .select("plan")
-      .eq("user_id", user.id)
-      .eq("status", "active")
-      .maybeSingle();
-    if (subscriptionError || !hasFeature(resolveStoredPlan(subscription?.plan), "quiz_history"))
-      return;
 
     const { error } = await supabase.from("quiz_history").insert({
       user_id: user.id,
@@ -792,7 +781,7 @@ async function insertQuizHistoryRow(result: {
     });
     if (!error) window.dispatchEvent(new Event("academy:quiz-history-updated"));
   } catch {
-    // Silent — this is a supplementary analytics log, not the source of truth
+    // Preserve local progress when the remote history write is unavailable.
   }
 }
 
