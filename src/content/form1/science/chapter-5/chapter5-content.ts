@@ -126,8 +126,10 @@ const en: Chapter5Content = {
     matterExamples: ["Living things", "Water", "Soil", "Rocks", "Air"],
     evidenceSamples: ["Soil", "Water", "Bean sprouts"],
     propertyDefinitions: {
-      physical: "Observed or measured without producing a new substance.",
-      chemical: "Observed when matter undergoes chemical change or reaction.",
+      physical:
+        "Physical properties are properties that can be identified using the five senses or measuring tools. They depend on the type of material the matter is made of.",
+      chemical:
+        "Chemical properties are properties that become evident when a substance changes into a new substance. They depend on the reaction that occurs.",
     },
     labels: {
       matter: "Matter",
@@ -408,8 +410,10 @@ const bm: Chapter5Content = {
     matterExamples: ["Benda hidup", "Air", "Tanah", "Batu", "Udara"],
     evidenceSamples: ["Tanah", "Air", "Tauge"],
     propertyDefinitions: {
-      physical: "Diperhatikan atau diukur tanpa menghasilkan bahan baharu.",
-      chemical: "Diperhatikan apabila jirim mengalami perubahan kimia atau tindak balas.",
+      physical:
+        "Sifat fizik ialah sifat yang dapat dikenal pasti dengan menggunakan lima deria manusia atau alat pengukur. Sifat fizik bergantung pada jenis bahan yang membentuk jirim tersebut.",
+      chemical:
+        "Sifat kimia ialah sifat sesuatu bahan yang menjadi jelas apabila bahan itu berubah menjadi bahan baharu. Sifat kimia bergantung pada tindak balas yang berlaku.",
     },
     labels: {
       matter: "Jirim",

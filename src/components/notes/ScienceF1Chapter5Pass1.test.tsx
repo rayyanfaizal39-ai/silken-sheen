@@ -22,8 +22,29 @@ const geometry = (html: string) =>
   );
 
 describe("Chapter 5 Pass 1 live Notes", () => {
+  const approvedDefinitions = {
+    en: {
+      physical:
+        "Physical properties are properties that can be identified using the five senses or measuring tools. They depend on the type of material the matter is made of.",
+      chemical:
+        "Chemical properties are properties that become evident when a substance changes into a new substance. They depend on the reaction that occurs.",
+    },
+    bm: {
+      physical:
+        "Sifat fizik ialah sifat yang dapat dikenal pasti dengan menggunakan lima deria manusia atau alat pengukur. Sifat fizik bergantung pada jenis bahan yang membentuk jirim tersebut.",
+      chemical:
+        "Sifat kimia ialah sifat sesuatu bahan yang menjadi jelas apabila bahan itu berubah menjadi bahan baharu. Sifat kimia bergantung pada tindak balas yang berlaku.",
+    },
+  };
   for (const lang of ["en", "bm"] as const) {
     const source = chapter5Content[lang];
+    it(`${lang}: renders the exact approved physical and chemical property definitions`, () => {
+      expect(source.matterInNature.propertyDefinitions).toEqual(approvedDefinitions[lang]);
+      const html = render(lang);
+      for (const definition of Object.values(approvedDefinitions[lang])) {
+        expect(html).toContain(escaped(definition));
+      }
+    });
     it(`${lang}: presents exactly two official subtopics and two path links`, () => {
       const html = render(lang);
       expect(html.match(/data-official-subtopic=/g)).toHaveLength(2);
