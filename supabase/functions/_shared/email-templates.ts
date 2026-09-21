@@ -338,10 +338,14 @@ export function normalizePublicAppUrl(value: string) {
 }
 
 function recoveryUrl(appUrl: string, tokenHash: string, production: boolean) {
-  const normalizedAppUrl = normalizePublicAppUrl(appUrl);
+  let normalizedAppUrl = normalizePublicAppUrl(appUrl);
+  // Support existing hook secrets during rollout, but emit only canonical links.
+  if (production && normalizedAppUrl === "https://myacademy.my") {
+    normalizedAppUrl = "https://www.myacademy.my";
+  }
   const parsed = new URL(normalizedAppUrl);
-  if (production && parsed.origin !== "https://myacademy.my") {
-    throw new Error("Production recovery email URL must use https://myacademy.my");
+  if (production && parsed.origin !== "https://www.myacademy.my") {
+    throw new Error("Production recovery email URL must use https://www.myacademy.my");
   }
 
   return `${normalizedAppUrl}/auth/confirm?token_hash=${encodeURIComponent(tokenHash)}&type=recovery&next=${encodeURIComponent("/auth/reset-password")}`;

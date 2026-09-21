@@ -113,6 +113,8 @@ export type VideoBlock = {
  * the notes/flashcards/quizzes pages will pick it up automatically.
  */
 export type ChapterContent = {
+  /** Lightweight discovery metadata; actual chapter payloads remain on demand. */
+  resourceAvailability?: Record<ChapterFeatureKey, boolean>;
   id: string; // e.g. "sejarah-f1-c1", "science-f1-c2-bm"
   subjectId: string; // matches subjects[].id
   form: Form;
@@ -316,6 +318,7 @@ export type ChapterFeatureKey = "notes" | "flashcards" | "quiz" | "mindMap" | "v
 export function getChapterFeatures(
   c: ChapterContent | undefined,
 ): Record<ChapterFeatureKey, boolean> {
+  if (c?.resourceAvailability) return c.resourceAvailability;
   return {
     notes:
       !!c?.notes ||

@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Trophy, Crown, Sparkles, Rocket, TrendingUp, RefreshCw } from "lucide-react";
+import { Trophy, Crown, Sparkles, Rocket, TrendingUp, RefreshCw, School } from "lucide-react";
 import { useProgress, getRank } from "@/hooks/use-progress";
+import { getRankArtworkSquareFill } from "@/data/rankAssets";
 import { RankBadge } from "@/components/RankBadge";
 import { useAuth } from "@/context/auth-context";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
@@ -11,6 +12,7 @@ import type {
   LeaderboardStudentRow,
 } from "./-leaderboard.server";
 import { seoMeta } from "@/lib/seo";
+import { formatSchoolName } from "@/lib/school-display";
 
 export const Route = createFileRoute("/leaderboard")({
   head: () =>
@@ -35,6 +37,8 @@ const MEDALS = ["#FBBF24", "#CBD5E1", "#FB923C"]; // gold / silver / bronze
 interface RealRankedStudent {
   rank: number;
   name: string;
+  /** Abbreviated for display (e.g. "SMK Kota Kemuning"); null = no school set, line omitted. */
+  school: string | null;
   lifetimeXp: number;
   monthlyXp: number;
   monthlyQuizCount: number;
@@ -47,6 +51,7 @@ function rankRealStudents(data: LeaderboardData): RealRankedStudent[] {
   return data.students.map((s: LeaderboardStudentRow) => ({
     rank: s.position,
     name: s.display_name.trim() || "Student",
+    school: formatSchoolName(s.school_name),
     lifetimeXp: s.lifetime_xp,
     monthlyXp: s.monthly_xp,
     monthlyQuizCount: s.monthly_quiz_count,
@@ -316,6 +321,15 @@ function GalaxyHallOfFame({
           <h2 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-white">
             <Crown className="h-5 w-5 text-[#FBBF24]" /> Cosmic Champion
           </h2>
+          {/*
+            Three grid columns: #2, #1 (champion), #3 — left to right, matching
+            the visual podium arrangement. Each column is a single flex-col
+            wrapper so the avatar, name, school, cosmic rank, and podium block
+            all live in the SAME cell and share one horizontal center — the
+            avatar is never positioned independently of the podium beneath it.
+            `items-end` bottom-aligns the three columns so the podiums sit on a
+            common "ground line" despite #1's column being taller overall.
+          */}
           <div className="grid grid-cols-3 items-end gap-1.5 sm:gap-3">
             {[1, 0, 2].map((slot) => {
               const s = podium[slot];
@@ -326,24 +340,34 @@ function GalaxyHallOfFame({
               const label = top3Label(s.rank);
               return (
                 <div key={s.rank} className="flex min-w-0 flex-col items-center">
-                  <LeaderboardRankArtwork
-                    rank={cosmicRank}
-                    variant={s.rank === 1 ? "champion" : "finalist"}
-                    medal={MEDALS[slot]}
-                  />
-                  {label && (
-                    <span
-                      className="mt-2 rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-wide"
-                      style={{ background: `${MEDALS[slot]}22`, color: MEDALS[slot] }}
-                    >
-                      {label}
-                    </span>
-                  )}
-                  <p className="mt-1 max-w-full truncate text-center text-xs font-bold text-white">
-                    {s.name}
-                    {s.isCurrentUser ? " · You" : ""}
-                  </p>
-                  <CosmicRankLabel rank={cosmicRank} />
+                  {/* ── Avatar/details section: centered above its own podium ── */}
+                  <div className="flex w-full flex-col items-center">
+                    <LeaderboardRankArtwork
+                      rank={cosmicRank}
+                      variant={s.rank === 1 ? "champion" : "finalist"}
+                      medal={MEDALS[slot]}
+                    />
+                    {label && (
+                      <span
+                        className="mt-2 rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-wide"
+                        style={{ background: `${MEDALS[slot]}22`, color: MEDALS[slot] }}
+                      >
+                        {label}
+                      </span>
+                    )}
+                    <p className="mt-1 max-w-full truncate text-center text-xs font-bold text-white">
+                      {s.name}
+                      {s.isCurrentUser ? " · You" : ""}
+                    </p>
+                    {s.school && (
+                      <p className="flex max-w-full items-center gap-1 text-[10px] text-white/40">
+                        <School className="h-3 w-3 shrink-0" aria-hidden="true" />
+                        <span className="truncate">{s.school}</span>
+                      </p>
+                    )}
+                    <CosmicRankLabel rank={cosmicRank} />
+                  </div>
+                  {/* ── Podium section: same column, same horizontal center ── */}
                   <div
                     className={`mt-2 flex ${heights[hi]} w-full flex-col items-center justify-start rounded-t-xl border-t-2 pt-2`}
                     style={{
@@ -502,13 +526,28 @@ function LeaderboardRankArtwork({
       : isChampion
         ? "h-[4.75rem] w-[4.75rem]"
         : "h-[4.25rem] w-[4.25rem]";
-  const badgeSize = variant === "student" ? 48 : isChampion ? 56 : 52;
+
+  // Podium artwork sizing. The frame keeps its existing dimensions; only the
+  // image inside it is scaled up. The rank PNGs are padded landscape canvases
+  // (see getRankArtworkSquareFill), so a 56px image box rendered only ~27px of
+  // visible companion — roughly 37% of the frame. Dividing the target fill by
+  // the asset's measured fill ratio makes the *artwork* hit the target instead
+  // of the padded canvas, and normalises the six ranks to the same visual size.
+  // The image box deliberately overflows the frame; the frame clips it, but
+  // only the transparent margin is ever cut (verified per rank: the widest
+  // content reaches 33.2px against a 38px half-frame).
+  const framePx = isChampion ? 76 : 68; // 4.75rem / 4.25rem
+  const targetFill = isChampion ? 0.75 : 0.7; // champion slightly larger, per design
+  const badgeSize =
+    variant === "student"
+      ? 48
+      : Math.round((targetFill * framePx) / getRankArtworkSquareFill(rank.name));
   const treatmentColor = medal ?? rank.color;
 
   return (
     <div className="relative">
       <div
-        className={`flex shrink-0 items-center justify-center rounded-2xl border-2 ${containerClass}`}
+        className={`flex shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 ${containerClass}`}
         style={{
           borderColor: treatmentColor,
           boxShadow: `0 0 ${isChampion ? 24 : 18}px ${treatmentColor}66, 0 0 28px ${rank.glowColor}`,
@@ -555,6 +594,12 @@ function RankTableRow({ student }: { student: RealRankedStudent }) {
                 </span>
               )}
             </div>
+            {student.school && (
+              <p className="mt-0.5 flex items-center gap-1 text-[11px] text-white/40">
+                <School className="h-3 w-3 shrink-0" aria-hidden="true" />
+                <span className="truncate">{student.school}</span>
+              </p>
+            )}
             <p className="mt-0.5 truncate text-[11px] font-black" style={{ color: r.color }}>
               {r.name}
             </p>
@@ -599,6 +644,12 @@ function RankMobileCard({ student }: { student: RealRankedStudent }) {
               <span className="shrink-0 text-[9px] font-black uppercase text-[#C4B5FD]">You</span>
             )}
           </div>
+          {student.school && (
+            <p className="flex items-center gap-1 text-[10px] text-white/40">
+              <School className="h-2.5 w-2.5 shrink-0" aria-hidden="true" />
+              <span className="truncate">{student.school}</span>
+            </p>
+          )}
           <p className="truncate text-[10px] font-black" style={{ color: rank.color }}>
             {rank.name}
           </p>
