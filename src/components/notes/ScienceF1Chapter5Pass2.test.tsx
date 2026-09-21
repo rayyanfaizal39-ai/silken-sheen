@@ -208,32 +208,24 @@ describe("Chapter 5 Pass 2 scientific visuals", () => {
       );
     }
   });
-  it("leaves all canonical Pass 3 content unchanged", () => {
+  it("leaves the approved canonical Pass 2 content unchanged", () => {
     const hashes = {
-      en: "d648fc8404a5aae57592a0b6f256a8989c9ddff81ca8397e15d8ad7849b01374",
-      bm: "a386e1d533ca9b3af24d7020bea33f6f05bd34e1adf31e938cda65df649e1913",
+      en: "7292bce8d7bfc354921810d75b0089e0ca52a638bfe7fa2908e2f4c2db6f3571",
+      bm: "066852e5723a555901020afdec4bb51bbc1a183acbed620655266b09400ae608",
     };
+    const fields = [
+      "particlePresentation",
+      "diffusionPresentation",
+      "kineticTheory",
+      "stateProperties",
+      "diffusionDefinition",
+      "diffusionResults",
+    ] as const;
     for (const lang of ["bm", "en"] as const) {
-      const {
-        changesOfState,
-        constantFacts,
-        conservationExperiments,
-        everydayExamples,
-        activeRecall,
-      } = chapter5Content[lang].statesOfMatter;
-      expect(
-        createHash("sha256")
-          .update(
-            JSON.stringify({
-              changesOfState,
-              constantFacts,
-              conservationExperiments,
-              everydayExamples,
-              activeRecall,
-            }),
-          )
-          .digest("hex"),
-      ).toBe(hashes[lang]);
+      const data = Object.fromEntries(
+        fields.map((k) => [k, chapter5Content[lang].statesOfMatter[k]]),
+      );
+      expect(createHash("sha256").update(JSON.stringify(data)).digest("hex")).toBe(hashes[lang]);
     }
   });
 });
