@@ -60,8 +60,38 @@ export interface ConservationExperiment {
 }
 
 export interface Chapter5Content {
+  structure: { title: string; subtopics: [string, string] };
   hook: { title: string; body: string };
   matterInNature: {
+    matterExamples: string[];
+    evidenceSamples: string[];
+    propertyDefinitions: { physical: string; chemical: string };
+    labels: {
+      matter: string;
+      nonMatter: string;
+      mass: string;
+      space: string;
+      sample: string;
+      container: string;
+      balance: string;
+      before: string;
+      after: string;
+      physical: string;
+      chemical: string;
+      classify: string;
+      density: string;
+      higher: string;
+      lower: string;
+      points: string;
+      substance: string;
+      solubility: string;
+      solute: string;
+      solvent: string;
+      solution: string;
+      sugar: string;
+      coffee: string;
+      conclusion: string;
+    };
     definition: string;
     nonMatterExamples: string[];
     evidenceActivities: MatterEvidence[];
@@ -86,11 +116,45 @@ export interface Chapter5Content {
 }
 
 const en: Chapter5Content = {
+  structure: { title: "Matter", subtopics: ["5.1 Matter in Nature", "5.2 Three States of Matter"] },
   hook: {
     title: "Why this matters",
     body: "Every material around you — the chair you're sitting on, the water you drink, the air you breathe — is matter, and it all follows the same rules of particles. Once you understand how those particles behave, you can predict how anything will act when heated, cooled, or mixed.",
   },
   matterInNature: {
+    // Labels/excerpts from the existing definition, activities and textbook pp. 138–144.
+    matterExamples: ["Living things", "Water", "Soil", "Rocks", "Air"],
+    evidenceSamples: ["Soil", "Water", "Bean sprouts"],
+    propertyDefinitions: {
+      physical: "Observed or measured without producing a new substance.",
+      chemical: "Observed when matter undergoes chemical change or reaction.",
+    },
+    labels: {
+      matter: "Matter",
+      nonMatter: "Not matter",
+      mass: "Has mass",
+      space: "Occupies space",
+      sample: "Sample",
+      container: "Beaker",
+      balance: "Lever balance",
+      before: "Before",
+      after: "After",
+      physical: "Physical properties",
+      chemical: "Chemical properties",
+      classify: "Classification of materials by characteristic",
+      density: "Density",
+      higher: "Higher density",
+      lower: "Lower density",
+      points: "Melting and boiling points",
+      substance: "Substance",
+      solubility: "Solubility",
+      solute: "Solute",
+      solvent: "Solvent",
+      solution: "Solution",
+      sugar: "Sugar",
+      coffee: "Coffee",
+      conclusion: "Conclusion",
+    },
     definition:
       "Matter is a substance that has mass and occupies space. All living things (humans, plants, animals) and non-living things (water, soil, rocks, air) are matter.",
     nonMatterExamples: ["Light", "Sound", "Heat", "Shadows"],
@@ -335,11 +399,44 @@ const en: Chapter5Content = {
 };
 
 const bm: Chapter5Content = {
+  structure: { title: "Jirim", subtopics: ["5.1 Jirim dalam Alam", "5.2 Tiga Keadaan Jirim"] },
   hook: {
     title: "Kenapa ini penting",
     body: "Setiap bahan di sekeliling anda — kerusi yang anda duduki, air yang anda minum, udara yang anda hidu — semuanya jirim, dan semuanya mengikut peraturan zarah yang sama. Apabila anda memahami bagaimana zarah ini berkelakuan, anda boleh meramalkan bagaimana sesuatu bahan akan bertindak apabila dipanaskan, disejukkan, atau dicampur.",
   },
   matterInNature: {
+    matterExamples: ["Benda hidup", "Air", "Tanah", "Batu", "Udara"],
+    evidenceSamples: ["Tanah", "Air", "Tauge"],
+    propertyDefinitions: {
+      physical: "Diperhatikan atau diukur tanpa menghasilkan bahan baharu.",
+      chemical: "Diperhatikan apabila jirim mengalami perubahan kimia atau tindak balas.",
+    },
+    labels: {
+      matter: "Jirim",
+      nonMatter: "Bukan jirim",
+      mass: "Mempunyai jisim",
+      space: "Memenuhi ruang",
+      sample: "Sampel",
+      container: "Bikar",
+      balance: "Neraca tuas",
+      before: "Sebelum",
+      after: "Selepas",
+      physical: "Sifat Fizik Jirim",
+      chemical: "Sifat Kimia Jirim",
+      classify: "Pengelasan bahan berdasarkan ciri",
+      density: "Ketumpatan",
+      higher: "Lebih tumpat",
+      lower: "Kurang tumpat",
+      points: "Takat Lebur dan Takat Didih",
+      substance: "Bahan",
+      solubility: "Keterlarutan",
+      solute: "Bahan larut",
+      solvent: "Pelarut",
+      solution: "Larutan",
+      sugar: "Gula",
+      coffee: "Air kopi",
+      conclusion: "Kesimpulan",
+    },
     definition:
       "Jirim ialah bahan yang mempunyai jisim dan memenuhi ruang. Semua benda hidup (manusia, tumbuhan, haiwan) dan benda bukan hidup (air, tanah, batu, udara) adalah jirim.",
     nonMatterExamples: ["Cahaya", "Bunyi", "Haba", "Bayang-bayang"],
@@ -373,7 +470,7 @@ const bm: Chapter5Content = {
       { icon: "🍬", label: "Keterlarutan", detail: "Gula boleh larut dalam kopi" },
       {
         icon: "🔥",
-        label: "Pengalir haba",
+        label: "Kekonduksian haba",
         detail:
           "Pemegang kuali diperbuat daripada penebat haba (plastik); badan kuali pula konduktor haba (keluli)",
       },

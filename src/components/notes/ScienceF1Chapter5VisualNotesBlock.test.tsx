@@ -14,8 +14,8 @@ describe("ScienceF1Chapter5VisualNotesBlock", () => {
       }),
     );
 
-    expect(html).toContain("Jirim ialah zarah yang bergerak");
-    expect(html).toContain("Bukti mempunyai jisim dan memenuhi ruang");
+    expect(html).toContain("5.1 Jirim dalam Alam");
+    expect(html).toContain("Mempunyai jisim");
     expect(html).toContain("Resapan membuktikan zarah bergerak");
     expect(html).toContain("Eksperimen 5.6: keabadian jisim");
     expect(html).toContain('id="science-notes-content"');
@@ -29,7 +29,7 @@ describe("ScienceF1Chapter5VisualNotesBlock", () => {
       }),
     );
 
-    expect(html).toContain("Matter is particles in motion");
+    expect(html).toContain("5.1 Matter in Nature");
     expect(html).toContain("Experiment 5.2 - air in balloons");
     expect(html).toContain("Gas &gt; Liquid &gt; Solid");
     expect(html).toContain("Experiment 5.6: conservation of mass");
