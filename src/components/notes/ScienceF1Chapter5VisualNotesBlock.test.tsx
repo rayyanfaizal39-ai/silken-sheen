@@ -17,7 +17,7 @@ describe("ScienceF1Chapter5VisualNotesBlock", () => {
     expect(html).toContain("5.1 Jirim dalam Alam");
     expect(html).toContain("Mempunyai jisim");
     expect(html).toContain("Kadar Resapan dalam Tiga Keadaan Jirim");
-    expect(html).toContain("Eksperimen 5.6: keabadian jisim");
+    expect(html).toContain("Aktiviti 5.6 B — Jisim tidak berubah semasa perubahan fizikal");
     expect(html).toContain('id="science-notes-content"');
   });
 
@@ -32,7 +32,7 @@ describe("ScienceF1Chapter5VisualNotesBlock", () => {
     expect(html).toContain("5.1 Matter in Nature");
     expect(html).toContain("Experiment 5.2 - air in balloons");
     expect(html).toContain("Gas &gt; Liquid &gt; Solid");
-    expect(html).toContain("Experiment 5.6: conservation of mass");
+    expect(html).toContain("Activity 5.6 B — Mass remains unchanged during physical change");
     expect(html).toContain("Why does a wet towel dry below 100°C?");
   });
 });

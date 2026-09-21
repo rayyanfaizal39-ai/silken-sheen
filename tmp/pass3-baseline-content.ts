@@ -40,10 +40,6 @@ export interface DiffusionResult {
 }
 
 export interface ChangeOfState {
-  id: string;
-  from: number;
-  to: number;
-  heat: "absorbed" | "released";
   name: string;
   initialState: string;
   finalState: string;
@@ -58,11 +54,6 @@ export interface MatterEvidence {
 }
 
 export interface ConservationExperiment {
-  id: "ice" | "salt" | "metal";
-  materials: string;
-  before: string;
-  after: string;
-  action: string;
   title: string;
   procedure: string;
   observation: string;
@@ -147,38 +138,10 @@ export interface Chapter5Content {
     stateProperties: StateProperty[];
     diffusionDefinition: string;
     diffusionResults: DiffusionResult[];
-    pass3Presentation: {
-      heading: string;
-      mechanism: string;
-      comparison: string;
-      constant: string;
-      conservation: string;
-      examples: string;
-      recall: string;
-      absorbed: string;
-      released: string;
-      before: string;
-      after: string;
-      sameMass: string;
-      sameTemperature: string;
-      thermometer: string;
-      water: string;
-      balance: string;
-      tripleBalance: string;
-      ice: string;
-      salt: string;
-      ballRing: string;
-      glassRod: string;
-      choose: string;
-      model: string;
-    };
-    boilingActivity: { title: string; materials: string; procedure: string };
-    applicationActivity: { title: string; task: string };
-    constantProcesses: string[];
     changesOfState: ChangeOfState[];
     constantFacts: string[];
     conservationExperiments: ConservationExperiment[];
-    everydayExamples: { icon: string; id: string; label: string; process: string }[];
+    everydayExamples: { icon: string; label: string; process: string }[];
     activeRecall: { question: string; answer: string }[];
   };
 }
@@ -377,226 +340,126 @@ const en: Chapter5Content = {
         rate: "Fastest",
       },
     ],
-    pass3Presentation: {
-      heading: "The effect of heat on matter",
-      mechanism: "Changes in the arrangement of particles when heated or cooled",
-      comparison: "Boiling / Evaporation",
-      constant: "Temperature remains constant",
-      conservation: "Activity 5.6 B — Mass remains unchanged during physical change",
-      examples: "Examples of change of state of matter",
-      recall: "Chapter Check",
-      absorbed: "Heat is absorbed",
-      released: "Heat is released",
-      before: "Before",
-      after: "After",
-      sameMass: "Mass before = mass after",
-      sameTemperature: "Temperature remains constant",
-      thermometer: "Thermometer",
-      water: "100 ml of water",
-      balance: "Lever balance",
-      tripleBalance: "Triple beam balance",
-      ice: "Ice cubes",
-      salt: "100 ml of water + 10 spatulas of fine salt",
-      ballRing: "Metal ball and ring",
-      glassRod: "Glass rod",
-      choose: "Choose a change of state",
-      model: "Schematic / not to scale",
-    },
-    boilingActivity: {
-      title: "Activity 5.6 A — Temperature remains constant during boiling of water",
-      materials:
-        "Bunsen burner, tripod stand, wire gauze, beaker, thermometer, 100 ml water, retort stand and clamp.",
-      procedure:
-        "Record the initial temperature of 100 ml water. Heat it and record the temperature every 10 minutes until it remains constant.",
-    },
-    applicationActivity: {
-      title: "Activity 5.7",
-      task: "In groups, find two daily-life examples for each change of state and present the discussion using multimedia.",
-    },
-    constantProcesses: ["melting", "freezing", "boiling"],
     changesOfState: [
       {
-        id: "melting",
         name: "Melting",
         initialState: "Solid",
         finalState: "Liquid",
-        heat: "absorbed",
         thermalAction: "Absorbs heat",
         description: [
-          "Solid absorbs heat when heated.",
-          "Particles gain energy and vibrate faster.",
-          "Heat overcomes the force of attraction between particles.",
-          "At the melting point, particles move freely and the solid becomes liquid.",
+          "Particles gain kinetic energy and vibrate faster",
+          "Heat overcomes attraction at the melting point",
         ],
-        from: 0,
-        to: 1,
       },
       {
-        id: "boiling",
         name: "Boiling",
         initialState: "Liquid",
         finalState: "Gas",
-        heat: "absorbed",
         thermalAction: "Absorbs heat",
         description: [
-          "Boiling occurs at the boiling point.",
-          "Liquid absorbs heat; particles gain energy and move faster.",
-          "Heat overcomes attraction between liquid particles.",
-          "Particles move freely and randomly as the liquid becomes gas.",
+          "Occurs throughout the liquid at boiling point",
+          "Particles gain enough energy to overcome attraction",
         ],
-        from: 1,
-        to: 2,
       },
       {
-        id: "evaporation",
         name: "Evaporation",
         initialState: "Liquid",
         finalState: "Gas",
-        heat: "absorbed",
         thermalAction: "Absorbs heat",
         description: [
-          "Evaporation occurs at any temperature.",
-          "Liquid absorbs heat from the surroundings.",
-          "Particles gain energy and move faster.",
-          "Liquid slowly evaporates into gas.",
+          "Occurs slowly at any temperature below boiling point",
+          "Only particles at the liquid surface escape",
         ],
-        from: 1,
-        to: 2,
       },
       {
-        id: "condensation",
         name: "Condensation",
         initialState: "Gas",
         finalState: "Liquid",
-        heat: "released",
         thermalAction: "Releases heat",
         description: [
-          "Gas releases heat when cooled.",
-          "Particles lose energy, move more slowly and come closer together.",
-          "At or below the boiling point, gas becomes liquid.",
+          "Particles lose energy and move slower",
+          "Attractive forces pull particles closer together",
         ],
-        from: 2,
-        to: 1,
       },
       {
-        id: "freezing",
         name: "Freezing",
         initialState: "Liquid",
         finalState: "Solid",
-        heat: "released",
         thermalAction: "Releases heat",
         description: [
-          "Liquid releases heat when cooled.",
-          "Particles lose energy and move more slowly.",
-          "At the freezing point, particles vibrate at fixed positions and the liquid becomes solid.",
+          "Particles lose energy at the freezing point",
+          "Particles settle into fixed positions",
         ],
-        from: 1,
-        to: 0,
       },
       {
-        id: "sublimation",
         name: "Sublimation",
         initialState: "Solid",
         finalState: "Gas",
-        heat: "absorbed",
-        thermalAction: "Absorbs heat",
-        description: ["A solid changes directly into gas."],
-        from: 0,
-        to: 2,
-      },
-      {
-        id: "sublimation-reverse",
-        name: "Sublimation",
-        initialState: "Gas",
-        finalState: "Solid",
-        heat: "released",
-        thermalAction: "Releases heat",
-        description: ["A gas changes directly into solid."],
-        from: 2,
-        to: 0,
+        thermalAction: "Absorbs heat (reverse releases heat)",
+        description: [
+          "A solid changes directly into gas without becoming liquid",
+          "Examples include dry ice and shrinking mothballs",
+        ],
       },
     ],
     constantFacts: [
-      "Temperature remains constant during freezing, melting and boiling. Heat is absorbed or released to overcome or form attraction between particles.",
-      "Mass remains unchanged during physical changes.",
+      "Temperature remains constant during freezing, melting, and boiling — heat is used to overcome or form attraction between particles, not to raise temperature",
+      "Mass remains constant during physical changes (melting, dissolving, expansion) because the quantity of particles does not change — only their kinetic energy changes",
     ],
     conservationExperiments: [
       {
-        id: "ice",
-        title: "Change in mass when ice melts into water",
-        materials: "Ice cubes, beaker, lever balance.",
+        title: "Ice melts",
         procedure:
-          "Weigh the empty beaker, then the beaker containing ice. Allow all the ice to melt and weigh the same beaker with water.",
-        before: "Beaker + ice",
-        after: "Beaker + water",
-        action: "Melting",
-        observation: "Mass remains unchanged during physical changes.",
+          "Weigh a beaker of ice, allow it to melt completely, then weigh the same beaker again.",
+        observation:
+          "Mass before melting equals mass after melting because no particles were lost.",
       },
       {
-        id: "salt",
-        title: "Change in mass when salt dissolves",
-        materials: "Ten spatulas of fine salt, 100 ml water, glass rod, beaker, lever balance.",
+        title: "Salt dissolves",
         procedure:
-          "Weigh the beaker with 100 ml water. Add ten spatulas of fine salt and weigh again. Stir with a glass rod until the salt dissolves, then weigh the solution.",
-        before: "Beaker + water + salt",
-        after: "Beaker + salt solution",
-        action: "Dissolving",
-        observation: "Mass remains unchanged during physical changes.",
+          "Weigh water and salt together, dissolve all the salt, then weigh the salt solution.",
+        observation: "The combined starting mass equals the mass of the final solution.",
       },
       {
-        id: "metal",
-        title: "Change in mass during the expansion of solid",
-        materials: "Metal ball and ring, Bunsen burner, triple beam balance.",
+        title: "A solid expands",
         procedure:
-          "Weigh the metal ball together with its ring. Heat the ball for five minutes, then weigh the hot ball together with its ring.",
-        before: "Metal ball + ring",
-        after: "Hot metal ball + ring",
-        action: "Heat the ball for 5 minutes",
-        observation: "Mass remains unchanged during physical changes.",
+          "Weigh a metal ball and ring, heat the ball until it no longer fits through the ring, then weigh them again.",
+        observation:
+          "Heating increases particle spacing and volume, but mass and particle number remain unchanged.",
       },
     ],
     everydayExamples: [
-      {
-        icon: "🍦",
-        id: "ice-cream",
-        label: "Freezing",
-        process: "Sweet cream freezes to become ice-cream.",
-      },
+      { icon: "🍦", label: "Freezing", process: "Sweet cream freezes to become ice-cream" },
       {
         icon: "🧊",
-        id: "dry-ice",
         label: "Sublimation",
-        process: "Dry ice is used to prevent ice-cream from melting.",
+        process: "Dry ice is used by ice-cream vendors to keep ice-cream cold without melting it",
       },
       {
         icon: "🌫️",
-        id: "mothballs",
         label: "Sublimation",
-        process: "Mothballs become smaller as solid changes directly into gas.",
+        process: "Moth balls shrinking over time — solid changing directly to gas",
       },
       {
         icon: "💧",
-        id: "dew",
         label: "Condensation",
-        process: "Water vapour in the air condenses into dew droplets.",
-      },
-      {
-        icon: "👕",
-        id: "clothes",
-        label: "Evaporation",
-        process: "Water from wet clothes evaporates into the air.",
+        process: "Dew forms when water vapour in the air condenses into water droplets",
       },
     ],
     activeRecall: [
       {
         question: "Why does a wet towel dry below 100°C?",
         answer:
-          "Evaporation occurs at any temperature. Water in the wet towel slowly evaporates into gas.",
+          "Evaporation occurs at any temperature at the surface; wind removes water vapour and speeds the process.",
       },
       {
-        question: "Why is the temperature constant during boiling?",
+        question: "How do particles move in each state?",
         answer:
-          "Temperature remains constant during freezing, melting and boiling. Heat is absorbed or released to overcome or form attraction between particles.",
+          "Solid particles vibrate in fixed positions, liquid particles slide past one another, and gas particles move randomly at high speed.",
+      },
+      {
+        question: "Why is ethanol heated in a water bath?",
+        answer: "Ethanol is highly flammable, so direct heating over a flame is dangerous.",
       },
       {
         question: "How can seawater provide drinking water?",
@@ -804,230 +667,128 @@ const bm: Chapter5Content = {
         rate: "Paling cepat",
       },
     ],
-    pass3Presentation: {
-      heading: "Kesan haba kepada jirim",
-      mechanism: "Perubahan susunan zarah apabila dipanaskan dan disejukkan",
-      comparison: "Pendidihan / Penyejatan",
-      constant: "Suhu tidak berubah",
-      conservation: "Aktiviti 5.6 B — Jisim tidak berubah semasa perubahan fizikal",
-      examples: "Contoh perubahan keadaan jirim dalam kehidupan harian",
-      recall: "Semak Bab",
-      absorbed: "Haba diserap",
-      released: "Haba dibebaskan",
-      before: "Sebelum",
-      after: "Selepas",
-      sameMass: "Jisim sebelum = jisim selepas",
-      sameTemperature: "Suhu tidak berubah",
-      thermometer: "Termometer",
-      water: "100 ml air",
-      balance: "Neraca tuas",
-      tripleBalance: "Neraca tiga alur",
-      ice: "Kiub ais",
-      salt: "100 ml air + 10 spatula garam halus",
-      ballRing: "Bebola logam dan gelang",
-      glassRod: "Rod kaca",
-      choose: "Pilih perubahan keadaan",
-      model: "Skema / bukan mengikut skala",
-    },
-    boilingActivity: {
-      title: "Aktiviti 5.6 A — Suhu tidak berubah semasa pendidihan air",
-      materials:
-        "Penunu Bunsen, tungku kaki tiga, kasa dawai, bikar, termometer, 100 ml air, kaki retort dan pengapit.",
-      procedure:
-        "Catat suhu awal 100 ml air. Panaskan air dan catat suhu setiap 10 minit sehingga suhu tidak berubah.",
-    },
-    applicationActivity: {
-      title: "Aktiviti 5.7",
-      task: "Secara berkumpulan, cari dua contoh perubahan keadaan jirim dalam kehidupan harian bagi setiap proses dan persembahkan hasil perbincangan menggunakan multimedia.",
-    },
-    constantProcesses: ["melting", "freezing", "boiling"],
     changesOfState: [
       {
-        id: "melting",
         name: "Peleburan",
         initialState: "Pepejal",
         finalState: "Cecair",
-        heat: "absorbed",
         thermalAction: "Menyerap haba",
         description: [
-          "Pepejal menyerap haba apabila dipanaskan.",
-          "Zarah-zarah memperoleh tenaga dan bergetar dengan lebih kuat.",
-          "Tenaga haba digunakan untuk mengatasi daya tarikan antara zarah-zarah pepejal.",
-          "Zarah-zarah bergerak bebas apabila suhu meningkat hingga ke takat lebur. Pepejal berubah menjadi cecair.",
+          "Zarah memperoleh tenaga kinetik dan bergetar lebih laju",
+          "Haba mengatasi daya tarikan pada takat lebur",
         ],
-        from: 0,
-        to: 1,
       },
       {
-        id: "boiling",
         name: "Pendidihan",
         initialState: "Cecair",
         finalState: "Gas",
-        heat: "absorbed",
         thermalAction: "Menyerap haba",
         description: [
-          "Pendidihan berlaku apabila suhu cecair mencapai takat didih.",
-          "Cecair menyerap haba apabila dipanaskan.",
-          "Zarah-zarah memperoleh tenaga dan bergerak lebih laju.",
-          "Tenaga haba digunakan untuk mengatasi daya tarikan antara zarah-zarah cecair.",
-          "Apabila suhu meningkat ke takat didih, zarah-zarah pun bergerak secara bebas dan rawak. Cecair berubah menjadi gas.",
+          "Berlaku di seluruh cecair pada takat didih",
+          "Zarah memperoleh tenaga mencukupi untuk mengatasi daya tarikan",
         ],
-        from: 1,
-        to: 2,
       },
       {
-        id: "evaporation",
         name: "Penyejatan",
         initialState: "Cecair",
         finalState: "Gas",
-        heat: "absorbed",
         thermalAction: "Menyerap haba",
         description: [
-          "Penyejatan berlaku pada sebarang suhu.",
-          "Cecair menyerap haba apabila dipanaskan.",
-          "Zarah-zarah memperoleh tenaga dan bergerak lebih laju.",
-          "Cecair tersejat secara perlahan dan berubah menjadi gas.",
+          "Berlaku perlahan pada sebarang suhu di bawah takat didih",
+          "Hanya zarah pada permukaan cecair terlepas",
         ],
-        from: 1,
-        to: 2,
       },
       {
-        id: "condensation",
         name: "Kondensasi",
         initialState: "Gas",
         finalState: "Cecair",
-        heat: "released",
         thermalAction: "Membebaskan haba",
         description: [
-          "Haba dibebaskan apabila gas disejukkan.",
-          "Zarah-zarah akan kehilangan tenaga dan bergerak dengan lebih perlahan dan menghampiri antara satu sama lain.",
-          "Apabila suhu mencapai di bawah takat didih, gas akan bertukar menjadi cecair.",
+          "Zarah kehilangan tenaga dan bergerak lebih perlahan",
+          "Daya tarikan menarik zarah lebih rapat",
         ],
-        from: 2,
-        to: 1,
       },
       {
-        id: "freezing",
         name: "Pembekuan",
         initialState: "Cecair",
         finalState: "Pepejal",
-        heat: "released",
         thermalAction: "Membebaskan haba",
         description: [
-          "Cecair membebaskan haba apabila disejukkan.",
-          "Zarah-zarah kehilangan tenaga dan bergerak dengan lebih perlahan.",
-          "Apabila suhu mencapai takat beku, zarah-zarah akan bergetar pada kedudukan yang tetap. Cecair berubah menjadi pepejal.",
+          "Zarah kehilangan tenaga pada takat beku",
+          "Zarah tersusun pada kedudukan tetap",
         ],
-        from: 1,
-        to: 0,
       },
       {
-        id: "sublimation",
         name: "Pemejalwapan",
         initialState: "Pepejal",
         finalState: "Gas",
-        heat: "absorbed",
-        thermalAction: "Menyerap haba",
-        description: ["Pemejalwapan ialah proses pepejal berubah secara langsung menjadi gas."],
-        from: 0,
-        to: 2,
-      },
-      {
-        id: "sublimation-reverse",
-        name: "Pemejalwapan",
-        initialState: "Gas",
-        finalState: "Pepejal",
-        heat: "released",
-        thermalAction: "Membebaskan haba",
-        description: ["Proses gas berubah menjadi pepejal juga disebut sebagai pemejalwapan."],
-        from: 2,
-        to: 0,
+        thermalAction: "Menyerap haba (proses songsang membebaskan haba)",
+        description: [
+          "Pepejal berubah terus menjadi gas tanpa menjadi cecair",
+          "Contoh termasuk ais kering dan kapur barus yang mengecil",
+        ],
       },
     ],
     constantFacts: [
-      "Suhu tidak akan berubah ketika mencapai takat beku, takat lebur dan takat didih semasa proses pembekuan, peleburan dan pendidihan. Haba diserap atau dibebaskan untuk memastikan daya tarikan antara zarah-zarah diatasi atau dibentuk.",
-      "Jisim kekal tidak berubah semasa perubahan fizikal.",
+      "Suhu kekal malar semasa pembekuan, peleburan, dan pendidihan — haba digunakan untuk mengatasi atau membentuk daya tarikan antara zarah, bukan untuk menaikkan suhu",
+      "Jisim kekal malar semasa perubahan fizikal (peleburan, pelarutan, pengembangan) kerana bilangan zarah tidak berubah — hanya tenaga kinetiknya berubah",
     ],
     conservationExperiments: [
       {
-        id: "ice",
-        title: "Perubahan jisim semasa ais bertukar menjadi air",
-        materials: "Kiub ais, bikar, neraca tuas.",
+        title: "Ais melebur",
         procedure:
-          "Timbang jisim bikar kosong. Masukkan ais dan timbang bikar bersama ais. Biarkan sehingga semua ais melebur menjadi air, kemudian timbang bikar bersama air.",
-        before: "Bikar + ais",
-        after: "Bikar + air",
-        action: "Peleburan",
-        observation: "Jisim kekal tidak berubah semasa perubahan fizikal.",
+          "Timbang bikar berisi ais, biarkan ais melebur sepenuhnya, kemudian timbang bikar yang sama sekali lagi.",
+        observation:
+          "Jisim sebelum peleburan sama dengan jisim selepas peleburan kerana tiada zarah hilang.",
       },
       {
-        id: "salt",
-        title: "Perubahan jisim semasa garam melarut",
-        materials: "Sepuluh spatula garam halus, 100 ml air, rod kaca, bikar, neraca tuas.",
+        title: "Garam melarut",
         procedure:
-          "Timbang bikar bersama 100 ml air. Masukkan sepuluh spatula garam halus dan timbang semula. Kacau dengan rod kaca sehingga semua garam melarut, kemudian timbang larutan tersebut.",
-        before: "Bikar + air + garam",
-        after: "Bikar + larutan garam",
-        action: "Pelarutan",
-        observation: "Jisim kekal tidak berubah semasa perubahan fizikal.",
+          "Timbang air dan garam bersama-sama, larutkan semua garam, kemudian timbang larutan garam.",
+        observation: "Jumlah jisim awal sama dengan jisim larutan akhir.",
       },
       {
-        id: "metal",
-        title: "Perubahan jisim semasa pengembangan pepejal",
-        materials: "Bebola logam dan gelang, penunu Bunsen, neraca tiga alur.",
+        title: "Pepejal mengembang",
         procedure:
-          "Timbang bebola logam bersama gelang. Panaskan bebola logam selama lima minit, kemudian timbang bebola logam yang panas bersama gelang.",
-        before: "Bebola logam + gelang",
-        after: "Bebola logam panas + gelang",
-        action: "Panaskan bebola logam selama 5 minit",
-        observation: "Jisim kekal tidak berubah semasa perubahan fizikal.",
+          "Timbang bola logam dan gelang, panaskan bola sehingga tidak lagi muat melalui gelang, kemudian timbang semula.",
+        observation:
+          "Pemanasan menambah jarak zarah dan isi padu, tetapi jisim serta bilangan zarah kekal.",
       },
     ],
     everydayExamples: [
-      {
-        icon: "🍦",
-        id: "ice-cream",
-        label: "Pembekuan",
-        process: "Pembekuan membolehkan krim manis membeku menjadi aiskrim.",
-      },
+      { icon: "🍦", label: "Pembekuan", process: "Krim manis membeku untuk menjadi aiskrim" },
       {
         icon: "🧊",
-        id: "dry-ice",
         label: "Pemejalwapan",
         process:
-          "Ais kering digunakan oleh peniaga aiskrim untuk mengelakkan aiskrim daripada cair.",
+          "Ais kering digunakan oleh peniaga aiskrim untuk mengekalkan kesejukan tanpa melebur",
       },
       {
         icon: "🌫️",
-        id: "mothballs",
         label: "Pemejalwapan",
-        process:
-          "Ubat gegat yang semakin mengecil ialah contoh perubahan pepejal secara langsung menjadi gas melalui proses pemejalwapan.",
+        process: "Kapur barus mengecil dari semasa ke semasa — pepejal bertukar terus menjadi gas",
       },
       {
         icon: "💧",
-        id: "dew",
         label: "Kondensasi",
-        process: "Embun terbentuk apabila wap air dalam udara terkondensasi menjadi titisan air.",
-      },
-      {
-        icon: "👕",
-        id: "clothes",
-        label: "Penyejatan",
-        process:
-          "Air daripada pakaian yang basah tersejat menjadi wap ke udara melalui proses penyejatan.",
+        process: "Embun terbentuk apabila wap air di udara terkondensasi menjadi titisan air",
       },
     ],
     activeRecall: [
       {
         question: "Mengapa tuala basah kering pada suhu di bawah 100°C?",
         answer:
-          "Penyejatan berlaku pada sebarang suhu. Air dalam tuala basah tersejat secara perlahan dan berubah menjadi gas.",
+          "Penyejatan berlaku pada sebarang suhu di permukaan; angin menyingkirkan wap air dan mempercepat proses.",
       },
       {
-        question: "Mengapakah suhu tidak berubah semasa pendidihan?",
+        question: "Bagaimanakah zarah bergerak dalam setiap keadaan?",
         answer:
-          "Suhu tidak akan berubah ketika mencapai takat beku, takat lebur dan takat didih semasa proses pembekuan, peleburan dan pendidihan. Haba diserap atau dibebaskan untuk memastikan daya tarikan antara zarah-zarah diatasi atau dibentuk.",
+          "Zarah pepejal bergetar pada kedudukan tetap, zarah cecair meluncur antara satu sama lain, dan zarah gas bergerak rawak dengan laju.",
+      },
+      {
+        question: "Mengapa etanol dipanaskan dalam kukus air?",
+        answer:
+          "Etanol sangat mudah terbakar, maka pemanasan terus dengan nyalaan adalah berbahaya.",
       },
       {
         question: "Bagaimanakah air laut boleh menghasilkan air minuman?",
