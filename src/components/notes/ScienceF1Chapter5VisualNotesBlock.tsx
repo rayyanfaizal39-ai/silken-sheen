@@ -1,3 +1,5 @@
+import { Chapter5ParticleStates } from "./blocks/Chapter5ParticleStates";
+import { Chapter5Diffusion } from "./blocks/Chapter5Diffusion";
 import { Chapter5MatterInNature } from "./blocks/Chapter5MatterInNature";
 import { useState, type ReactNode } from "react";
 import {
@@ -5,7 +7,6 @@ import {
   BookOpenCheck,
   Check,
   ChevronRight,
-  CircleDot,
   Cloud,
   Droplets,
   Flame,
@@ -235,24 +236,6 @@ function TabButton({
   );
 }
 
-function ParticleDiagram({ state }: { state: string }) {
-  const gas = /gas/i.test(state);
-  const liquid = /liquid|cecair/i.test(state);
-  return (
-    <div
-      className={`grid h-32 w-full grid-cols-6 gap-2 rounded-2xl border border-sky-300/15 bg-slate-950/50 p-4 ${gas ? "content-between" : liquid ? "content-end" : "content-center"}`}
-    >
-      {Array.from({ length: gas ? 12 : 24 }, (_, index) => (
-        <CircleDot
-          key={index}
-          className={`h-4 w-4 text-sky-300 ${gas && index % 3 === 0 ? "translate-x-4" : ""}`}
-          aria-hidden="true"
-        />
-      ))}
-    </div>
-  );
-}
-
 export function ScienceF1Chapter5VisualNotesBlock({
   id,
   content,
@@ -269,21 +252,8 @@ export function ScienceF1Chapter5VisualNotesBlock({
 }) {
   const t = content[lang];
   const c = ui[lang];
-  const [stateIndex, setStateIndex] = useState(0);
-  const [diffusionIndex, setDiffusionIndex] = useState(0);
   const [changeIndex, setChangeIndex] = useState(0);
-  const state = t.statesOfMatter.stateProperties[stateIndex];
-  const diffusion = t.statesOfMatter.diffusionResults[diffusionIndex];
   const change = t.statesOfMatter.changesOfState[changeIndex];
-  const propertyLabels = [
-    [c.shape, state.shape],
-    [c.mass, state.mass],
-    [c.volume, state.volume],
-    [c.compression, state.compressibility],
-    [c.spacing, state.spaceBetweenParticles],
-    [c.arrangement, state.particleArrangement],
-    [c.movement, state.particleMovement],
-  ];
 
   return (
     <section
@@ -323,73 +293,8 @@ export function ScienceF1Chapter5VisualNotesBlock({
         <section id="chapter5-52" data-official-subtopic="5.2" className="scroll-mt-24 space-y-14">
           <h2 className="text-2xl font-black text-white sm:text-3xl">{t.structure.subtopics[1]}</h2>
 
-          <div className="space-y-6">
-            <SectionHeading section={c.sections[2]} />
-            <Panel>
-              <p className="text-sm leading-6 text-slate-300">{t.statesOfMatter.kineticTheory}</p>
-              <div
-                className="mt-5 grid gap-2 sm:grid-cols-3"
-                role="tablist"
-                aria-label={c.chooseState}
-              >
-                {t.statesOfMatter.stateProperties.map((item, index) => (
-                  <TabButton
-                    key={item.state}
-                    selected={stateIndex === index}
-                    onClick={() => setStateIndex(index)}
-                  >
-                    {item.state}
-                  </TabButton>
-                ))}
-              </div>
-              <div className="mt-4 grid gap-4 lg:grid-cols-[.7fr_1.3fr]">
-                <ParticleDiagram state={state.state} />
-                <div className="grid gap-2 sm:grid-cols-2">
-                  {propertyLabels.map(([label, value]) => (
-                    <div key={label} className="rounded-xl bg-white/5 p-3">
-                      <p className="text-xs font-black uppercase tracking-wider text-sky-200">
-                        {label}
-                      </p>
-                      <p className="mt-1 text-sm leading-6 text-slate-300">{value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Panel>
-          </div>
-
-          <div className="space-y-6">
-            <SectionHeading section={c.sections[3]} />
-            <Panel>
-              <p className="text-sm leading-6 text-slate-300">
-                {t.statesOfMatter.diffusionDefinition}
-              </p>
-              <div
-                className="mt-4 grid gap-2 sm:grid-cols-3"
-                role="tablist"
-                aria-label={c.chooseDiffusion}
-              >
-                {t.statesOfMatter.diffusionResults.map((item, index) => (
-                  <TabButton
-                    key={item.state}
-                    selected={diffusionIndex === index}
-                    onClick={() => setDiffusionIndex(index)}
-                  >
-                    {item.state}
-                  </TabButton>
-                ))}
-              </div>
-              <div className="mt-4 rounded-2xl border border-sky-300/20 bg-sky-300/[0.07] p-5">
-                <p className="text-2xl font-black text-white">{diffusion.state}</p>
-                <p className="mt-1 font-mono text-sm font-black text-teal-200">{diffusion.rate}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{diffusion.observation}</p>
-              </div>
-              <p className="mt-4 rounded-xl bg-emerald-300/[0.08] p-3 text-center font-black text-emerald-100">
-                {c.relationship}:{" "}
-                {lang === "en" ? "Gas > Liquid > Solid" : "Gas > Cecair > Pepejal"}
-              </p>
-            </Panel>
-          </div>
+          <Chapter5ParticleStates source={t.statesOfMatter} />
+          <Chapter5Diffusion source={t.statesOfMatter} />
 
           <div className="space-y-6">
             <SectionHeading section={c.sections[4]} />

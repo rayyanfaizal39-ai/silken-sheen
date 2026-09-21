@@ -16,7 +16,7 @@ describe("ScienceF1Chapter5VisualNotesBlock", () => {
 
     expect(html).toContain("5.1 Jirim dalam Alam");
     expect(html).toContain("Mempunyai jisim");
-    expect(html).toContain("Resapan membuktikan zarah bergerak");
+    expect(html).toContain("Kadar Resapan dalam Tiga Keadaan Jirim");
     expect(html).toContain("Eksperimen 5.6: keabadian jisim");
     expect(html).toContain('id="science-notes-content"');
   });

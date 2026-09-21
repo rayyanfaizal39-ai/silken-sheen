@@ -103,6 +103,37 @@ export interface Chapter5Content {
     solubilityDefinition: string;
   };
   statesOfMatter: {
+    particlePresentation: {
+      heading: string;
+      chooseState: string;
+      comparison: string;
+      behaviour: string;
+      modelNote: string;
+      particles: string;
+      heating: string;
+      cooling: string;
+      lessEnergy: string;
+      moreEnergy: string;
+      slower: string;
+      faster: string;
+      properties: Record<Exclude<keyof StateProperty, "state">, string>;
+    };
+    diffusionPresentation: {
+      heading: string;
+      before: string;
+      after: string;
+      high: string;
+      spread: string;
+      even: string;
+      air: string;
+      bromine: string;
+      mixture: string;
+      lid: string;
+      crystal: string;
+      gel: string;
+      water: string;
+      relationship: string;
+    };
     kineticTheory: string;
     stateProperties: StateProperty[];
     diffusionDefinition: string;
@@ -216,6 +247,46 @@ const en: Chapter5Content = {
       "Solubility is the ability of a substance (solute) to dissolve in a given amount of solvent to form a solution — e.g. sugar (solute) dissolved in coffee (solvent).",
   },
   statesOfMatter: {
+    // Pass 2 labels: supplied brief and textbook pp. 145–150. Facts remain canonical.
+    particlePresentation: {
+      heading: "Kinetic theory of matter",
+      chooseState: "Choose a state",
+      comparison: "Comparison of three states of matter",
+      behaviour: "Physical properties",
+      modelNote: "Particle diagrams are models and are not drawn to scale.",
+      particles: "Particles",
+      heating: "Heating",
+      cooling: "Cooling",
+      lessEnergy: "Less kinetic energy",
+      moreEnergy: "More kinetic energy",
+      slower: "Particles move slower",
+      faster: "Particles move faster",
+      properties: {
+        shape: "Shape",
+        mass: "Mass",
+        volume: "Volume",
+        compressibility: "Compressibility",
+        spaceBetweenParticles: "Space between particles",
+        particleArrangement: "Particle arrangement",
+        particleMovement: "Particle movement",
+      },
+    },
+    diffusionPresentation: {
+      heading: "Diffusion Rate in Three States of Matter",
+      before: "Before",
+      after: "After",
+      high: "High concentration",
+      spread: "Particles spread",
+      even: "More even distribution",
+      air: "Air",
+      bromine: "Bromine gas",
+      mixture: "Mixture of bromine gas and air",
+      lid: "Lid",
+      crystal: "Copper(II) sulphate crystals",
+      gel: "Colourless gel",
+      water: "Distilled water",
+      relationship: "Gas > Liquid > Solid",
+    },
     kineticTheory:
       "Matter is made up of constantly moving small and discrete particles. When heat is supplied, particles move faster; when cooled, particles move slower.",
     stateProperties: [
@@ -242,7 +313,7 @@ const en: Chapter5Content = {
       {
         state: "Gas",
         shape: "Takes shape of container",
-        mass: "Fixed for a fixed amount",
+        mass: "No fixed mass",
         volume: "Fills the container",
         compressibility: "Easily compressed",
         spaceBetweenParticles: "Very large",
@@ -260,13 +331,12 @@ const en: Chapter5Content = {
       },
       {
         state: "Liquid",
-        observation:
-          "Copper(II) sulphate in distilled water spreads throughout in about 15 minutes",
+        observation: "Water turns blue after two hours.",
         rate: "Fast",
       },
       {
         state: "Gas",
-        observation: "Gas particles spread through available space in seconds",
+        observation: "Bromine gas fills both gas jars after 15 minutes.",
         rate: "Fastest",
       },
     ],
@@ -504,6 +574,45 @@ const bm: Chapter5Content = {
       "Keterlarutan ialah kebolehan sesuatu bahan (solut) untuk larut dalam sejumlah pelarut untuk membentuk larutan — cth: gula (solut) larut dalam kopi (pelarut).",
   },
   statesOfMatter: {
+    particlePresentation: {
+      heading: "Teori kinetik jirim",
+      chooseState: "Pilih satu keadaan",
+      comparison: "Perbandingan tiga keadaan jirim",
+      behaviour: "Sifat fizik",
+      modelNote: "Rajah zarah ialah model dan bukan dilukis mengikut skala.",
+      particles: "Zarah",
+      heating: "Pemanasan",
+      cooling: "Penyejukan",
+      lessEnergy: "Tenaga kinetik berkurang",
+      moreEnergy: "Tenaga kinetik bertambah",
+      slower: "Zarah bergerak lebih perlahan",
+      faster: "Zarah bergerak lebih laju",
+      properties: {
+        shape: "Bentuk",
+        mass: "Jisim",
+        volume: "Isi padu",
+        compressibility: "Kebolehmampatan",
+        spaceBetweenParticles: "Ruang antara zarah",
+        particleArrangement: "Susunan zarah",
+        particleMovement: "Pergerakan zarah",
+      },
+    },
+    diffusionPresentation: {
+      heading: "Kadar Resapan dalam Tiga Keadaan Jirim",
+      before: "Sebelum",
+      after: "Selepas",
+      high: "Kepekatan tinggi",
+      spread: "Zarah tersebar",
+      even: "Taburan lebih sekata",
+      air: "Udara",
+      bromine: "Gas bromin",
+      mixture: "Campuran gas bromin dan udara",
+      lid: "Penutup balang gas",
+      crystal: "Hablur kuprum(II) sulfat",
+      gel: "Agar-agar tidak berwarna",
+      water: "Air suling",
+      relationship: "Gas > Cecair > Pepejal",
+    },
     kineticTheory:
       "Jirim terdiri daripada zarah-zarah kecil dan diskret yang sentiasa bergerak. Apabila haba dibekalkan, zarah bergerak lebih laju; apabila disejukkan, zarah bergerak lebih perlahan.",
     stateProperties: [
@@ -530,7 +639,7 @@ const bm: Chapter5Content = {
       {
         state: "Gas",
         shape: "Mengikut bentuk bekas",
-        mass: "Tetap bagi kuantiti tetap",
+        mass: "Tiada jisim tetap",
         volume: "Memenuhi bekas",
         compressibility: "Mudah dimampatkan",
         spaceBetweenParticles: "Sangat besar",
@@ -549,13 +658,12 @@ const bm: Chapter5Content = {
       },
       {
         state: "Cecair",
-        observation:
-          "Kuprum(II) sulfat dalam air suling tersebar sepenuhnya dalam kira-kira 15 minit",
+        observation: "Air bertukar menjadi warna biru selepas dua jam.",
         rate: "Cepat",
       },
       {
         state: "Gas",
-        observation: "Zarah gas tersebar memenuhi ruang yang ada dalam beberapa saat",
+        observation: "Gas bromin memenuhi kedua-dua balang gas selepas 15 minit.",
         rate: "Paling cepat",
       },
     ],

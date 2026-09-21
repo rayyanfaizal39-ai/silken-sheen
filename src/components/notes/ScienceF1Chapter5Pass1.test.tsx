@@ -162,15 +162,15 @@ describe("Chapter 5 Pass 1 live Notes", () => {
     expect(component).toContain("import type { Chapter5Content }");
     expect(component).not.toMatch(/"(?:Glycerol|Mercury|Petrol|Sugar|Gliserol|Merkuri|Gula)"/);
   });
-  it("leaves the complete canonical Pass 2 data untouched", () => {
+  it("leaves the approved canonical Pass 1 data untouched", () => {
     const hashes = {
-      bm: "e71c2ae2e7a783077bec29da9290a18eddec4f741f02dcf14bd6a91c6e03aa08",
-      en: "dc968c114702e7e73eba52a3cf3b565b6467b5ad84510085062ad9822fda60cb",
+      bm: "87717d65b7ac195b21901d09e4a1bfb439f8964e01a6a24e90bbaf864280d2e6",
+      en: "f147645b0617cb9d9dda261e2a117cf66061c1382bee132e1e048df41a571765",
     };
     for (const lang of ["bm", "en"] as const)
       expect(
         createHash("sha256")
-          .update(JSON.stringify(chapter5Content[lang].statesOfMatter))
+          .update(JSON.stringify(chapter5Content[lang].matterInNature))
           .digest("hex"),
       ).toBe(hashes[lang]);
   });
