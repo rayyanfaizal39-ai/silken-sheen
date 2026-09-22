@@ -163,7 +163,7 @@ function ChangeAction({ experiment }: { experiment: ConservationExperiment }) {
         {experiment.id === "metal" ? (
           <g>
             <circle cx="90" cy="45" r="21" fill="#94a3b8" stroke="#e2e8f0" strokeWidth="2" />
-            <path d="M90 24 V10 H160" stroke="#94a3b8" strokeWidth="4" />
+            <path d="M90 24 V10 H160" fill="none" stroke="#94a3b8" strokeWidth="4" />
             <path d="M90 97 Q74 85 90 64 Q108 85 90 97Z" fill="#fbbf24" />
             <path d="M84 101 H96 V125 H114 V131 H66 V125 H84Z" fill="#64748b" stroke="#cbd5e1" />
           </g>
