@@ -1,3 +1,4 @@
+import { getAuthReturnTo } from "./auth-return-to";
 import { getSupabaseServerClientForRequest } from "./supabase.server";
 
 /** Exchange before rendering React or initializing the browser auth client. */
@@ -29,10 +30,7 @@ export async function handleAuthCallback(request: Request): Promise<Response> {
     // Preserve every chunked Set-Cookie and the SSR library's no-cache headers.
     responseHeaders.set("Referrer-Policy", "no-referrer");
     const next = url.searchParams.get("next");
-    const destination =
-      next === "/admin/login" || next === "/upgrade" || next === "/auth/reset-password"
-        ? next
-        : "/home";
+    const destination = getAuthReturnTo(next);
     responseHeaders.set("Location", new URL(destination, request.url).toString());
     return new Response(null, { status: 303, headers: responseHeaders });
   } catch {

@@ -1,3 +1,4 @@
+import { getGoogleOAuthOptions } from "./auth-return-to";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { createBrowserClient } from "@supabase/ssr";
 import { SUPABASE_AUTH_COOKIE_NAME, SUPABASE_AUTH_COOKIE_OPTIONS } from "./supabase-auth-cookie";
@@ -52,6 +53,38 @@ describe("cookie-backed server OAuth callback (real Supabase SDK, mocked Auth AP
     vi.unstubAllGlobals();
     vi.unstubAllEnvs();
     vi.restoreAllMocks();
+  });
+
+  it.each([
+    undefined,
+    "https://senior.myacademy.my/home?tab=notes&form=4",
+    "https://evil.example",
+    "javascript:alert(1)",
+    "//evil.example",
+  ])("preserves and validates OAuth redirect_to all the way through exchange: %s", async (next) => {
+    const jar = new Map<string, string>();
+    const input = getGoogleOAuthOptions(origin, next);
+    const { data, error } = await browser(jar).auth.signInWithOAuth({
+      ...input,
+      options: { ...input.options, skipBrowserRedirect: true },
+    });
+    expect(error).toBeNull();
+    const callback = new URL(new URL(data.url!).searchParams.get("redirect_to")!);
+    const expected = next?.startsWith("https://senior.myacademy.my/") ? next : "/home";
+    expect(callback.searchParams.get("next")).toBe(next ? expected : null);
+    callback.searchParams.set("code", "returned-code");
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(
+        async () =>
+          new Response(JSON.stringify(session), {
+            headers: { "Content-Type": "application/json" },
+          }),
+      ),
+    );
+    const response = await handleAuthCallback(request(jar, callback.searchParams.toString()));
+    expect(response.status).toBe(303);
+    expect(response.headers.get("location")).toBe(new URL(expected, origin).href);
   });
 
   it("reproduces the old browser callback losing its verifier when an expired session refreshes", async () => {
@@ -133,6 +166,9 @@ describe("cookie-backed server OAuth callback (real Supabase SDK, mocked Auth AP
       expect(String(fetchMock.mock.calls[0][0])).toContain("grant_type=pkce");
       expect(response.headers.get("cache-control")).toContain("no-store");
       const cookies = response.headers.getSetCookie();
+      const sessionCookies = cookies.filter((cookie) => !cookie.includes("Max-Age=0"));
+      expect(sessionCookies.length).toBeGreaterThan(0);
+      for (const cookie of sessionCookies) expect(cookie).toContain("Domain=.myacademy.my");
       expect(cookies.some((cookie) => cookie.startsWith(`${SUPABASE_AUTH_COOKIE_NAME}.0=`))).toBe(
         true,
       );
@@ -173,29 +209,36 @@ describe("cookie-backed server OAuth callback (real Supabase SDK, mocked Auth AP
     },
   );
 
-  it.each(["/admin/login", "/upgrade", "https://evil.example", "//evil.example"])(
-    "allows only approved return paths: %s",
-    async (next) => {
-      const jar = new Map<string, string>();
-      await browser(jar).auth.signInWithOAuth({
-        provider: "google",
-        options: { skipBrowserRedirect: true },
-      });
-      vi.stubGlobal(
-        "fetch",
-        vi.fn(
-          async () =>
-            new Response(JSON.stringify(session), {
-              headers: { "Content-Type": "application/json" },
-            }),
-        ),
-      );
-      const response = await handleAuthCallback(
-        request(jar, `code=returned-code&next=${encodeURIComponent(next)}`),
-      );
-      expect(response.headers.get("location")).toBe(
-        `${origin}${next.startsWith("/admin") || next === "/upgrade" ? next : "/home"}`,
-      );
-    },
-  );
+  it.each([
+    "/admin/login",
+    "/upgrade",
+    "https://senior.myacademy.my/home",
+    "https://senior.myacademy.my/dashboard",
+    "https://evil.example",
+    "//evil.example",
+    "javascript:alert(1)",
+  ])("allows only approved return paths: %s", async (next) => {
+    const jar = new Map<string, string>();
+    await browser(jar).auth.signInWithOAuth({
+      provider: "google",
+      options: { skipBrowserRedirect: true },
+    });
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(
+        async () =>
+          new Response(JSON.stringify(session), {
+            headers: { "Content-Type": "application/json" },
+          }),
+      ),
+    );
+    const response = await handleAuthCallback(
+      request(jar, `code=returned-code&next=${encodeURIComponent(next)}`),
+    );
+    expect(response.headers.get("location")).toBe(
+      next.startsWith("https://senior.myacademy.my/")
+        ? next
+        : `${origin}${next.startsWith("/admin") || next === "/upgrade" ? next : "/home"}`,
+    );
+  });
 });

@@ -1,3 +1,4 @@
+import { getAuthReturnTo, getGoogleOAuthOptions } from "@/lib/auth-return-to";
 import {
   createContext,
   useContext,
@@ -40,7 +41,7 @@ interface AuthContextValue {
   explorerProfileError: string | null;
   onboardingRequired: boolean;
   isConfigured: boolean;
-  signInWithGoogle: (returnTo?: "/admin/login" | "/upgrade") => Promise<void>;
+  signInWithGoogle: (returnTo?: string) => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signUpWithEmail: (email: string, password: string) => Promise<{ needsConfirmation: boolean }>;
   requestPasswordReset: (email: string) => Promise<void>;
@@ -205,14 +206,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }, [explorerProfileRequired, user]);
 
-  const signInWithGoogle = useCallback(async (returnTo?: "/admin/login" | "/upgrade") => {
+  const signInWithGoogle = useCallback(async (returnTo?: string) => {
     if (!isSupabaseConfigured) {
       throw new Error("Supabase is not configured");
     }
 
     // Establish first-party cookies on the final origin BEFORE creating a verifier.
     // An iframe's cookies may be blocked/partitioned on mobile browsers.
-    const loginPath = returnTo ?? "/login";
+    const destination = getAuthReturnTo(returnTo);
+    const loginPath =
+      destination === "/admin/login"
+        ? "/admin/login"
+        : `/login?next=${encodeURIComponent(destination)}`;
     if (
       window.location.hostname === "myacademy.my" ||
       (window.location.hostname === "www.myacademy.my" && window.location.protocol !== "https:")
@@ -227,16 +232,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       throw new Error("Continue signing in from the AcadeMY tab that just opened.");
     }
 
-    const redirectTo = returnTo
-      ? `${window.location.origin}/auth/callback?next=${encodeURIComponent(returnTo)}`
-      : `${window.location.origin}/auth/callback`;
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo,
-        queryParams: { prompt: "select_account" },
-      },
-    });
+    const { error } = await supabase.auth.signInWithOAuth(
+      getGoogleOAuthOptions(window.location.origin, returnTo),
+    );
 
     if (error) throw error;
   }, []);

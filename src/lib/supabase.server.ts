@@ -14,11 +14,16 @@
 import { createServerClient, parseCookieHeader, serializeCookieHeader } from "@supabase/ssr";
 import {
   getCookies,
+  getRequestHost,
   getRequestProtocol,
   setCookie,
   setResponseHeader,
 } from "@tanstack/start-server-core";
-import { SUPABASE_AUTH_COOKIE_NAME, SUPABASE_AUTH_COOKIE_OPTIONS } from "./supabase-auth-cookie";
+import {
+  SUPABASE_AUTH_COOKIE_NAME,
+  getSupabaseAuthCookieOptions,
+  getSupabaseCookieWrites,
+} from "./supabase-auth-cookie";
 
 export function isSupabaseServerConfigured() {
   const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? "";
@@ -30,18 +35,25 @@ export function getSupabaseServerClient() {
   const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? "";
   const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY ?? "";
   if (!url || !key) return null;
+  const hostname = getRequestHost().split(":")[0];
+  const https = getRequestProtocol({ xForwardedProto: true }) === "https";
   return createServerClient(url, key, {
     cookieOptions: {
       name: SUPABASE_AUTH_COOKIE_NAME,
-      ...SUPABASE_AUTH_COOKIE_OPTIONS,
-      secure: getRequestProtocol({ xForwardedProto: true }) === "https",
+      ...getSupabaseAuthCookieOptions(hostname, https),
     },
     cookies: {
       getAll() {
         return Object.entries(getCookies()).map(([name, value]) => ({ name, value: value ?? "" }));
       },
       setAll(cookiesToSet, headers) {
-        for (const { name, value, options } of cookiesToSet) {
+        for (const { name, value, options } of getSupabaseCookieWrites(
+          cookiesToSet,
+          Object.entries(getCookies()).map(([name, value]) => ({ name, value: value ?? "" })),
+          url,
+          hostname,
+          https,
+        )) {
           setCookie(name, value, options);
         }
         for (const [name, value] of Object.entries(headers)) {
@@ -71,15 +83,17 @@ export function getSupabaseServerClientForRequest(
     Pragma: "no-cache",
   });
   const forwardedProtocol = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim();
-  const secure = forwardedProtocol
+  const https = forwardedProtocol
     ? forwardedProtocol === "https"
     : new URL(request.url).protocol === "https:";
 
+  const hostname = new URL(request.url).hostname;
+  const scope = getSupabaseAuthCookieOptions(hostname, https);
+  const secure = scope.secure;
   const supabase = createServerClient(url, key, {
     cookieOptions: {
       name: SUPABASE_AUTH_COOKIE_NAME,
-      ...SUPABASE_AUTH_COOKIE_OPTIONS,
-      secure,
+      ...scope,
     },
     auth: {
       flowType: "pkce",
@@ -103,11 +117,17 @@ export function getSupabaseServerClientForRequest(
         }));
       },
       setAll(cookiesToSet, headers) {
-        for (const { name, value, options } of cookiesToSet) {
-          responseHeaders.append(
-            "Set-Cookie",
-            serializeCookieHeader(name, value, { ...options, secure }),
-          );
+        const existing = parseCookieHeader(request.headers.get("cookie") ?? "").map(
+          ({ name, value }) => ({ name, value: value ?? "" }),
+        );
+        for (const { name, value, options } of getSupabaseCookieWrites(
+          cookiesToSet,
+          existing,
+          url,
+          hostname,
+          https,
+        )) {
+          responseHeaders.append("Set-Cookie", serializeCookieHeader(name, value, options));
         }
         for (const [name, value] of Object.entries(headers)) responseHeaders.set(name, value);
       },

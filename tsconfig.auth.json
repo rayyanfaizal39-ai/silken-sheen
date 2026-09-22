@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/routeTree.gen.ts",
+    "src/lib/auth-*.ts",
+    "src/lib/supabase*.ts",
+    "src/context/auth-context.tsx",
+    "src/routes/login.tsx",
+    "src/routes/admin_.login.tsx",
+    "src/routes/auth.*",
+    "src/routes/-auth-login.integration.tsx"
+  ]
+}

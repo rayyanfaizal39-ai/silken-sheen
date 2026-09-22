@@ -69,6 +69,8 @@ Local config changes do not update the hosted Dashboard automatically.
 - Allow `https://www.myacademy.my/auth/callback`, plus the exact existing returns
   `https://www.myacademy.my/auth/callback?next=%2Fadmin%2Flogin` and
   `https://www.myacademy.my/auth/callback?next=%2Fupgrade`.
+- Main/Senior SSO also requires callback URLs with the encoded Senior `next` query;
+  see [the SSO production procedure](main-senior-sso.md) for the exact URL and validation steps.
 - Retain `https://www.myacademy.my/auth/reset-password` and legitimate login/root
   entries. Retire apex entries for this app. Keep localhost entries only for
   intentional development. Existing partners entries belong to a separate app;

@@ -1,3 +1,4 @@
+import { getAuthReturnTo } from "@/lib/auth-return-to";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { AlertCircle, LockKeyhole, ShieldCheck } from "lucide-react";
@@ -7,7 +8,8 @@ import { getProfileForAdminCheck, hasAdministratorRole } from "@/lib/admin-acces
 import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/admin_/login")({
-  validateSearch: (search: Record<string, unknown>) => ({
+  validateSearch: (search: Record<string, unknown>): { next?: string; denied: boolean } => ({
+    next: typeof search.next === "string" ? getAuthReturnTo(search.next) : undefined,
     denied: search.denied === true || search.denied === "true",
   }),
   head: () =>
@@ -23,7 +25,7 @@ export const Route = createFileRoute("/admin_/login")({
 const ACCESS_ERROR = "This account does not have administrator access.";
 
 function AdminLoginPage() {
-  const { denied } = Route.useSearch();
+  const { denied, next } = Route.useSearch();
   const { user, loading, isConfigured, signInWithEmail, signInWithGoogle, signOut } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -33,6 +35,10 @@ function AdminLoginPage() {
 
   useEffect(() => {
     if (loading || !user) return;
+    if (next) {
+      window.location.replace(next);
+      return;
+    }
     let cancelled = false;
 
     void getProfileForAdminCheck(user.id)
@@ -51,7 +57,7 @@ function AdminLoginPage() {
     return () => {
       cancelled = true;
     };
-  }, [loading, navigate, user?.id]);
+  }, [loading, navigate, user?.id, next]);
 
   async function handleEmailLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -70,7 +76,7 @@ function AdminLoginPage() {
     setSubmitting(true);
     setError(null);
     try {
-      await signInWithGoogle("/admin/login");
+      await signInWithGoogle(next ?? "/admin/login");
     } catch {
       setError("Google sign-in could not be started. Please try again.");
       setSubmitting(false);
