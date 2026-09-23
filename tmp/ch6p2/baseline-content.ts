@@ -22,23 +22,7 @@ export interface PropertyComparisonRow {
   nonMetal: string;
 }
 
-export type SeparationMethodId =
-  | "filtration"
-  | "distillation"
-  | "magnet"
-  | "sedimentation"
-  | "floatation"
-  | "chromatography"
-  | "sieving";
-
 export interface SeparationMethod {
-  id: SeparationMethodId;
-  activity?: string;
-  materials: string;
-  apparatus: { id: string; label: string }[];
-  steps: string[];
-  observation: string;
-  notes: string[];
   name: string;
   usedFor: string;
   example: string;
@@ -162,11 +146,6 @@ export interface Chapter6Content {
     examples: string[];
     separationMethods: SeparationMethod[];
     selectionFactors: string[];
-    physicalSeparation: string;
-    labels: Record<string, string>;
-    decision: string[];
-    formativePractice: { mixture: string; method: SeparationMethodId }[];
-    reasoning: { question: string; answer: string };
   };
   compounds: {
     definition: string;
@@ -560,410 +539,51 @@ const en: Chapter6Content = {
       "Some elements, like germanium and silicon, cannot be classified as purely metal or non-metal — these are semi-metals, possessing characteristics of both.",
   },
   mixtures: {
-    definition: "A mixture consists of two or more elements or compounds mixed physically.",
+    definition:
+      "A mixture consists of two or more elements or compounds mixed physically, and can be separated back into its components by physical methods.",
     examples: [
       "Cocktail (solid and liquid)",
       "Air batu campur (solid and liquid)",
       "Salad",
       "Sandwich",
     ],
-    physicalSeparation: "As the mixture is formed physically, it can be separated physically too.",
-    labels: {
-      overview: "Methods to Separate Mixtures",
-      choose: "Choose a separation method",
-      mixture: "Mixture",
-      componentA: "Component A",
-      componentB: "Component B",
-      physical: "Mixed physically",
-      separate: "Separated physically",
-      selection: "The separation method depends on:",
-      method: "Separation method",
-      property: "Type of mixture / physical properties",
-      example: "Example",
-      materials: "Materials and apparatus",
-      instruction: "Instruction",
-      observation: "Observation",
-      practice: "Formative Practice 6.2",
-      match: "Match the following mixtures according to its suitable separation method.",
-      answer: "Answer",
-      correct: "Correct",
-      retry: "Try again",
-      exploration: "Science Exploration",
-      schematic: "Schematic / not to scale",
-    },
     separationMethods: [
       {
-        id: "filtration",
         name: "Filtration",
-        usedFor: "Separating an insoluble solid from a mixture of solid and liquid.",
-        example: "Filter paper separates coffee powder from a coffee drink.",
-        materials:
-          "Sand, distilled water, filter paper, filter funnel, two 50 ml beakers, spatula, glass rod, retort stand with clamp.",
-        apparatus: [
-          {
-            id: "mixture",
-            label: "Mixture of sand and water",
-          },
-          {
-            id: "paper",
-            label: "Filter paper",
-          },
-          {
-            id: "funnel",
-            label: "Filter funnel",
-          },
-          {
-            id: "residue",
-            label: "Residue",
-          },
-          {
-            id: "filtrate",
-            label: "Filtrate",
-          },
-          {
-            id: "rod",
-            label: "Glass rod",
-          },
-          {
-            id: "stand",
-            label: "Retort stand with clamp",
-          },
-          {
-            id: "beaker",
-            label: "50 ml beaker",
-          },
-          {
-            id: "spatula",
-            label: "Spatula",
-          },
-        ],
-        steps: [
-          "Add two spatulas of sand to 30 ml of water in a beaker. Stir for two minutes.",
-          "Filter the mixture.",
-          "Record your observation.",
-        ],
-        observation: "Insoluble sand remains as the residue; water passes through as the filtrate.",
-        notes: [],
-        activity: "6.4",
+        usedFor: "Separating an insoluble solid from a liquid mixture",
+        example: "Filter paper separates coffee powder from coffee",
       },
       {
-        id: "distillation",
         name: "Distillation",
-        usedFor:
-          "Separating a completely miscible liquid-liquid mixture with different boiling points.",
-        example: "Separating water and alcohol; producing perfume from rose petals.",
-        materials:
-          "Mixture of water and alcohol, porcelain chips, thermometer, tripod stand, Bunsen burner, wire gauze, Liebig condenser, retort stand with clamp, round-bottom flask, beaker.",
-        apparatus: [
-          {
-            id: "flask",
-            label: "Round-bottom flask",
-          },
-          {
-            id: "mixture",
-            label: "Water + alcohol",
-          },
-          {
-            id: "chips",
-            label: "Porcelain chips",
-          },
-          {
-            id: "thermometer",
-            label: "Thermometer",
-          },
-          {
-            id: "burner",
-            label: "Bunsen burner",
-          },
-          {
-            id: "gauze",
-            label: "Wire gauze",
-          },
-          {
-            id: "tripod",
-            label: "Tripod stand",
-          },
-          {
-            id: "condenser",
-            label: "Liebig condenser",
-          },
-          {
-            id: "in",
-            label: "Water in",
-          },
-          {
-            id: "out",
-            label: "Water out",
-          },
-          {
-            id: "beaker",
-            label: "Beaker",
-          },
-          {
-            id: "stand",
-            label: "Retort stand with clamp",
-          },
-        ],
-        steps: [
-          "Half-fill the round-bottom flask with water and alcohol. Add porcelain chips. Flow water through the Liebig condenser.",
-          "Heat the mixture: the component with the lower boiling point vaporises and enters the condenser.",
-          "The vapour cools in the condenser. Collect the liquid in a beaker.",
-        ],
-        observation:
-          "Record the temperature of the liquid. Determine the boiling point of the liquid.",
-        notes: [],
-        activity: "6.5",
+        usedFor: "Separating a miscible liquid-liquid mixture with different boiling points",
+        example: "Separating water and alcohol; producing perfume from rose petals",
       },
       {
-        id: "magnet",
         name: "Separation using magnet",
-        usedFor: "Separating two solids: a magnetic substance and a non-magnetic substance.",
-        example: "Iron nails separated from sand.",
-        materials: "Mixture of iron and sulphur powder, spatula, Petri dish, magnet bar, paper.",
-        apparatus: [
-          {
-            id: "iron",
-            label: "Iron powder",
-          },
-          {
-            id: "sulphur",
-            label: "Sulphur powder",
-          },
-          {
-            id: "dish",
-            label: "Petri dish",
-          },
-          {
-            id: "paper",
-            label: "Paper",
-          },
-          {
-            id: "magnet",
-            label: "Magnet bar",
-          },
-          {
-            id: "spatula",
-            label: "Spatula",
-          },
-        ],
-        steps: [
-          "Put one spatula of iron powder and sulphur powder into a Petri dish.",
-          "Hold a magnet bar near the mixture.",
-          "Iron is attracted to the magnet; sulphur remains in the Petri dish.",
-        ],
-        observation: "The substances are mixed physically.",
-        notes: [
-          "Iron, nickel and cobalt are magnetic metals.",
-          "Gold, bronze and aluminium are non-magnetic metals.",
-        ],
-        activity: "6.6",
+        usedFor: "Separating a magnetic solid from a non-magnetic solid",
+        example: "Iron nails separated from sand",
       },
       {
-        id: "sedimentation",
         name: "Sedimentation",
-        usedFor:
-          "Separating a liquid and an insoluble solid that has a higher density and settles at the base.",
-        example: "Sand deposited at the base of a beaker filled with water.",
-        materials: "Silty solution, two 100 ml beakers, glass rod.",
-        apparatus: [
-          {
-            id: "mixture",
-            label: "Silty solution",
-          },
-          {
-            id: "water",
-            label: "Clear water",
-          },
-          {
-            id: "sediment",
-            label: "Sediment",
-          },
-          {
-            id: "rod",
-            label: "Glass rod",
-          },
-          {
-            id: "beaker",
-            label: "100 ml beaker",
-          },
-        ],
-        steps: [
-          "Pour 50 ml of silty solution into a 100 ml beaker. Stir using a glass rod.",
-          "Observe the water and silt after a while.",
-          "Slowly pour the clear water into another beaker. Observe the sediment left inside the beaker.",
-        ],
-        observation: "The insoluble solid settles at the base; clear water is above it.",
-        notes: [],
-        activity: "6.7",
+        usedFor: "Separating an insoluble solid from a liquid, using density differences",
+        example: "Sand settling at the bottom of water",
       },
       {
-        id: "floatation",
         name: "Floatation",
-        usedFor:
-          "Floatation method can be used to separate soluble and insoluble materials in water.",
-        example: "Oil floats on water and can be separated using a separating funnel.",
-        materials:
-          "Mixture of water and oil, beakers, separating funnel, 100 ml measuring cylinder, retort stand with clamp.",
-        apparatus: [
-          {
-            id: "oil",
-            label: "Oil",
-          },
-          {
-            id: "water",
-            label: "Water",
-          },
-          {
-            id: "funnel",
-            label: "Separating funnel",
-          },
-          {
-            id: "tap",
-            label: "Tap",
-          },
-          {
-            id: "beaker",
-            label: "Beaker",
-          },
-          {
-            id: "stand",
-            label: "Retort stand with clamp",
-          },
-        ],
-        steps: [
-          "Pour 100 ml water and oil mixture into a beaker. Record your observation.",
-          "Pour the mixture into a separating funnel. Oil is above water.",
-          "Separate water and oil using different beakers. Water flows out through the tap.",
-        ],
-        observation:
-          "Oil has a lower density than water. Therefore, oil floats on the water surface.",
-        notes: [],
-        activity: "6.8",
+        usedFor: "Separating substances of different densities in water",
+        example: "Oil floating on water, separated using a separating funnel",
       },
       {
-        id: "chromatography",
         name: "Chromatography",
-        usedFor: "Separating small amounts of a mixture by separating the colours in ink.",
+        usedFor: "Separating small amounts of a mixture, especially by colour",
         example:
-          "Checking document fraud by separating ink colours; detecting harmful food colourings.",
-        materials:
-          "250 ml beaker, distilled water, filter paper, ruler, whiteboard marker pens (red, green and blue ink), skewer.",
-        apparatus: [
-          {
-            id: "paper",
-            label: "Filter paper: 5 cm × 12 cm",
-          },
-          {
-            id: "baseline",
-            label: "Pencil line: 1.5 cm from the edge",
-          },
-          {
-            id: "dots",
-            label: "Ink dots",
-          },
-          {
-            id: "water",
-            label: "Distilled water",
-          },
-          {
-            id: "beaker",
-            label: "250 ml beaker",
-          },
-          {
-            id: "skewer",
-            label: "Skewer",
-          },
-          {
-            id: "ruler",
-            label: "Ruler",
-          },
-          {
-            id: "pens",
-            label: "Whiteboard marker pens",
-          },
-        ],
-        steps: [
-          "Prepare the paper and pencil line. Draw three ink dots. Hang the paper using a skewer. The water must not touch the dots.",
-          "The water moves up the paper, separating components of the ink. Observe for 30 minutes.",
-          "Record your observation. What are the colours produced on the filter paper?",
-        ],
-        observation: "Is the colour produced the same as the ink of the whiteboard marker pen?",
-        notes: [
-          "Urine samples are tested to detect drug content in the body using chromatography.",
-        ],
-        activity: "6.9",
-      },
-      {
-        id: "sieving",
-        name: "Sieving",
-        usedFor: "Separating impurities from flour by sieving.",
-        example: "Impurities can be removed from flour by the sieving method.",
-        materials: "Flour and impurities; sieve.",
-        apparatus: [
-          {
-            id: "flour",
-            label: "Flour",
-          },
-          {
-            id: "impurities",
-            label: "Impurities",
-          },
-          {
-            id: "sieve",
-            label: "Sieve",
-          },
-        ],
-        steps: [
-          "Flour and impurities.",
-          "Sieve the flour.",
-          "Fine flour passes through; larger impurities remain.",
-        ],
-        observation: "Impurities are separated from flour.",
-        notes: [],
+          "Detecting harmful food colouring; checking document fraud by separating ink colours",
       },
     ],
     selectionFactors: [
       "Physical properties of the substances present in the mixture",
-      "Substance(s) to be obtained from the mixture",
+      "The substance(s) to be obtained from the mixture",
     ],
-    decision: [
-      "Substances in the mixture",
-      "Physical properties and states of matter",
-      "Substance(s) to be obtained",
-      "Choose a separation method",
-    ],
-    formativePractice: [
-      {
-        mixture: "Paper clips and glass fragments",
-        method: "magnet",
-      },
-      {
-        mixture: "Water and ethanol",
-        method: "distillation",
-      },
-      {
-        mixture: "Three types of water-soluble ink",
-        method: "chromatography",
-      },
-      {
-        mixture: "Soil and water",
-        method: "sedimentation",
-      },
-      {
-        mixture: "Oil and water",
-        method: "floatation",
-      },
-      {
-        mixture: "Coffee powder and water",
-        method: "filtration",
-      },
-    ],
-    reasoning: {
-      question:
-        "If you were given a mixture that contains rice and sand, can you separate them using filtration method? Why?",
-      answer:
-        "No. Rice and sand are both solids. Filtration separates an insoluble solid from a liquid.",
-    },
   },
   compounds: {
     definition:
@@ -1421,418 +1041,52 @@ const bm: Chapter6Content = {
   },
   mixtures: {
     definition:
-      "Campuran terdiri daripada dua atau lebih unsur atau sebatian yang bercampur secara fizikal.",
+      "Campuran terdiri daripada dua atau lebih unsur atau sebatian yang bercampur secara fizikal, dan boleh dipisahkan semula kepada komponennya melalui kaedah fizikal.",
     examples: [
       "Koktel (pepejal dan cecair)",
       "Air batu campur (pepejal dan cecair)",
       "Salad",
       "Sandwic",
     ],
-    physicalSeparation:
-      "Disebabkan campuran terbentuk secara fizikal, campuran juga dapat diasingkan secara fizikal.",
-    labels: {
-      overview: "Kaedah Pengasingan Campuran",
-      choose: "Pilih kaedah pemisahan",
-      mixture: "Campuran",
-      componentA: "Komponen A",
-      componentB: "Komponen B",
-      physical: "Bercampur secara fizikal",
-      separate: "Diasingkan secara fizikal",
-      selection: "Teknik pengasingan campuran bergantung pada:",
-      method: "Teknik pengasingan",
-      property: "Jenis campuran / sifat-sifat fizik",
-      example: "Contoh",
-      materials: "Bahan dan radas",
-      instruction: "Arahan",
-      observation: "Pemerhatian",
-      practice: "Praktis Formatif 6.2",
-      match: "Padankan jenis-jenis campuran di bawah ini dengan kaedah pengasingan yang sesuai.",
-      answer: "Jawapan",
-      correct: "Betul",
-      retry: "Cuba lagi",
-      exploration: "Eksplorasi Sains",
-      schematic: "Skema / bukan mengikut skala",
-    },
     separationMethods: [
       {
-        id: "filtration",
         name: "Penurasan",
-        usedFor:
-          "Mengasingkan bahan pepejal yang tidak larut daripada cecair di dalam suatu campuran antara cecair dan pepejal.",
-        example: "Kertas turas memisahkan serdak kopi daripada air kopi.",
-        materials:
-          "Pasir, air suling, kertas turas, corong turas, bikar 50 ml, spatula, rod kaca, kaki retort dan pengapit.",
-        apparatus: [
-          {
-            id: "mixture",
-            label: "Campuran pasir dan air",
-          },
-          {
-            id: "paper",
-            label: "Kertas turas",
-          },
-          {
-            id: "funnel",
-            label: "Corong turas",
-          },
-          {
-            id: "residue",
-            label: "Baki turasan",
-          },
-          {
-            id: "filtrate",
-            label: "Hasil turasan",
-          },
-          {
-            id: "rod",
-            label: "Rod kaca",
-          },
-          {
-            id: "stand",
-            label: "Kaki retort dan pengapit",
-          },
-          {
-            id: "beaker",
-            label: "Bikar 50 ml",
-          },
-          {
-            id: "spatula",
-            label: "Spatula",
-          },
-        ],
-        steps: [
-          "Masukkan 30 ml air dan dua spatula pasir ke dalam sebuah bikar. Kacau selama dua minit.",
-          "Turas campuran tersebut.",
-          "Catatkan pemerhatian anda.",
-        ],
-        observation:
-          "Pasir yang tidak larut kekal sebagai baki turasan; air melalui kertas turas sebagai hasil turasan.",
-        notes: [],
-        activity: "6.4",
+        usedFor: "Memisahkan pepejal tak terlarut daripada campuran cecair",
+        example: "Kertas turas memisahkan serbuk kopi daripada air kopi",
       },
       {
-        id: "distillation",
         name: "Penyulingan",
         usedFor:
-          "Mengasingkan campuran cecair dan cecair yang terlarut campur dan mempunyai takat didih berbeza.",
-        example:
-          "Memisahkan air dan alkohol; menghasilkan minyak wangi daripada kelopak bunga ros.",
-        materials:
-          "Campuran air dan alkohol, serpihan porselin, termometer, bikar, tungku kaki tiga, penunu Bunsen, kasa dawai, kondenser Liebig, kaki retort dengan pengapit, kelalang dasar bulat.",
-        apparatus: [
-          {
-            id: "flask",
-            label: "Kelalang dasar bulat",
-          },
-          {
-            id: "mixture",
-            label: "Air + alkohol",
-          },
-          {
-            id: "chips",
-            label: "Serpihan porselin",
-          },
-          {
-            id: "thermometer",
-            label: "Termometer",
-          },
-          {
-            id: "burner",
-            label: "Penunu Bunsen",
-          },
-          {
-            id: "gauze",
-            label: "Kasa dawai",
-          },
-          {
-            id: "tripod",
-            label: "Tungku kaki tiga",
-          },
-          {
-            id: "condenser",
-            label: "Kondenser Liebig",
-          },
-          {
-            id: "in",
-            label: "Air masuk",
-          },
-          {
-            id: "out",
-            label: "Air keluar",
-          },
-          {
-            id: "beaker",
-            label: "Bikar",
-          },
-          {
-            id: "stand",
-            label: "Kaki retort dengan pengapit",
-          },
-        ],
-        steps: [
-          "Isi kelalang dasar bulat sehingga separuh penuh dengan air dan alkohol. Tambahkan serpihan porselin. Alirkan air paip melalui kondenser Liebig.",
-          "Panaskan campuran: komponen dengan takat didih lebih rendah menjadi wap dan memasuki kondenser.",
-          "Wap menyejuk di dalam kondenser. Kumpulkan cecair menggunakan bikar.",
-        ],
-        observation:
-          "Rekodkan suhu cecair ketika cecair mula keluar dari kondenser. Tentukan takat didih cecair tersebut.",
-        notes: [],
-        activity: "6.5",
+          "Memisahkan campuran cecair-cecair yang boleh bercampur dengan takat didih berbeza",
+        example: "Memisahkan air dan alkohol; menghasilkan minyak wangi daripada kelopak bunga ros",
       },
       {
-        id: "magnet",
         name: "Pemisahan menggunakan magnet",
-        usedFor:
-          "Mengasingkan dua bahan pepejal yang bersifat bahan magnet dan tidak bersifat bahan magnet.",
-        example: "Paku besi dipisahkan daripada pasir.",
-        materials:
-          "Campuran serbuk besi dan serbuk sulfur, spatula, piring Petri, magnet bar, kertas.",
-        apparatus: [
-          {
-            id: "iron",
-            label: "Serbuk besi",
-          },
-          {
-            id: "sulphur",
-            label: "Serbuk sulfur",
-          },
-          {
-            id: "dish",
-            label: "Piring Petri",
-          },
-          {
-            id: "paper",
-            label: "Kertas",
-          },
-          {
-            id: "magnet",
-            label: "Magnet bar",
-          },
-          {
-            id: "spatula",
-            label: "Spatula",
-          },
-        ],
-        steps: [
-          "Letakkan satu spatula campuran serbuk besi dan serbuk sulfur ke dalam piring Petri.",
-          "Letakkan magnet bar dekat dengan campuran tersebut.",
-          "Serbuk besi tertarik pada magnet; serbuk sulfur tertinggal di dalam piring Petri.",
-        ],
-        observation: "Bahan-bahan bercampur secara fizikal.",
-        notes: [
-          "Besi, nikel dan kobalt ialah logam yang bersifat bahan magnet.",
-          "Emas, gangsa dan aluminium ialah logam yang tidak bersifat magnet.",
-        ],
-        activity: "6.6",
+        usedFor: "Memisahkan pepejal bermagnet daripada pepejal tidak bermagnet",
+        example: "Paku besi dipisahkan daripada pasir",
       },
       {
-        id: "sedimentation",
         name: "Pengenapan",
         usedFor:
-          "Mengasingkan campuran cecair dan bahan pepejal yang tidak larut dalam cecair itu dan terenap di dasar.",
-        example:
-          "Pasir tidak larut di dalam air dan mempunyai ketumpatan yang lebih tinggi daripada air.",
-        materials: "Larutan berkelodak, dua bikar 100 ml, rod kaca.",
-        apparatus: [
-          {
-            id: "mixture",
-            label: "Larutan berkelodak",
-          },
-          {
-            id: "water",
-            label: "Air jernih",
-          },
-          {
-            id: "sediment",
-            label: "Kelodak",
-          },
-          {
-            id: "rod",
-            label: "Rod kaca",
-          },
-          {
-            id: "beaker",
-            label: "Bikar 100 ml",
-          },
-        ],
-        steps: [
-          "Masukkan 50 ml air berkelodak ke dalam bikar 100 ml. Kacau menggunakan rod kaca.",
-          "Perhatikan air dan kelodak selepas seketika.",
-          "Tuangkan air jernih secara perlahan-lahan ke dalam bikar yang lain. Perhatikan baki yang tertinggal di dasar bikar.",
-        ],
-        observation:
-          "Bahan pepejal yang tidak larut terenap di dasar; air jernih berada di bahagian atas.",
-        notes: [],
-        activity: "6.7",
+          "Memisahkan pepejal tak terlarut daripada cecair, menggunakan perbezaan ketumpatan",
+        example: "Pasir mendap di dasar air",
       },
       {
-        id: "floatation",
         name: "Pengapungan",
-        usedFor:
-          "Kaedah pengapungan boleh digunakan untuk mengasingkan bahan yang tidak larut dan terapung di atas permukaan air.",
-        example: "Minyak terapung di atas air dan dapat diasingkan menggunakan corong pemisah.",
-        materials: "Campuran air dan minyak, bikar dan corong pemisah.",
-        apparatus: [
-          {
-            id: "oil",
-            label: "Minyak",
-          },
-          {
-            id: "water",
-            label: "Air",
-          },
-          {
-            id: "funnel",
-            label: "Corong pemisah",
-          },
-          {
-            id: "tap",
-            label: "Pili",
-          },
-          {
-            id: "beaker",
-            label: "Bikar",
-          },
-          {
-            id: "stand",
-            label: "Kaki retort dan pengapit",
-          },
-        ],
-        steps: [
-          "Tuang 100 ml campuran air dan minyak ke dalam sebuah bikar. Catatkan pemerhatian.",
-          "Masukkan campuran ke dalam corong pemisah. Minyak berada di atas air.",
-          "Asingkan air dan minyak menggunakan bikar yang berbeza. Air mengalir keluar melalui pili.",
-        ],
-        observation:
-          "Minyak mempunyai ketumpatan yang lebih rendah daripada air. Oleh itu, minyak terapung di atas permukaan air.",
-        notes: [],
-        activity: "6.8",
+        usedFor: "Memisahkan bahan berlainan ketumpatan dalam air",
+        example: "Minyak terapung di atas air, dipisahkan menggunakan corong pemisah",
       },
       {
-        id: "chromatography",
         name: "Kromatografi",
-        usedFor:
-          "Mengasingkan jumlah campuran yang sedikit dengan mengasingkan pewarna-pewarna dalam dakwat pen.",
+        usedFor: "Memisahkan sedikit campuran, terutamanya mengikut warna",
         example:
-          "Memeriksa pemalsuan dokumen dengan mengasingkan pewarna dakwat; memeriksa bahan pewarna makanan yang berbahaya.",
-        materials:
-          "Bikar 250 ml, air suling, kertas turas, pembaris, pen penanda papan putih; lidi ditunjukkan dalam Rajah 6.27.",
-        apparatus: [
-          {
-            id: "paper",
-            label: "Kertas turas: 5 cm × 12 cm",
-          },
-          {
-            id: "baseline",
-            label: "Garis pensel: 1.5 cm dari tepi kertas",
-          },
-          {
-            id: "dots",
-            label: "Titik-titik dakwat",
-          },
-          {
-            id: "water",
-            label: "Air suling",
-          },
-          {
-            id: "beaker",
-            label: "Bikar 250 ml",
-          },
-          {
-            id: "skewer",
-            label: "Lidi",
-          },
-          {
-            id: "ruler",
-            label: "Pembaris",
-          },
-          {
-            id: "pens",
-            label: "Pen penanda papan putih",
-          },
-        ],
-        steps: [
-          "Sediakan kertas dan garis pensel. Buat tiga titik dakwat. Gantungkan kertas menggunakan lidi. Pastikan air suling tidak terkena pada titik-titik dakwat.",
-          "Air bergerak ke atas kertas, mengasingkan komponen dakwat. Perhatikan selama 30 minit.",
-          "Rekodkan pemerhatian anda. Apakah warna yang terhasil pada kertas turas?",
-        ],
-        observation: "Adakah warna-warna yang terhasil sama pada setiap dakwat pen yang digunakan?",
-        notes: [
-          "Sampel air kencing diuji untuk mengesan kandungan dadah dalam badan dengan menggunakan kaedah kromatografi.",
-        ],
-        activity: "6.9",
-      },
-      {
-        id: "sieving",
-        name: "Penapisan",
-        usedFor: "Mengasingkan bahan bendasing daripada tepung dengan mengayak tepung.",
-        example: "Bahan bendasing dapat diasingkan daripada tepung dengan mengayak tepung.",
-        materials: "Tepung dan bahan bendasing; pengayak.",
-        apparatus: [
-          {
-            id: "flour",
-            label: "Tepung",
-          },
-          {
-            id: "impurities",
-            label: "Bahan bendasing",
-          },
-          {
-            id: "sieve",
-            label: "Pengayak",
-          },
-        ],
-        steps: [
-          "Tepung dan bahan bendasing.",
-          "Ayak tepung.",
-          "Tepung halus melalui pengayak; bahan bendasing yang lebih besar tertinggal.",
-        ],
-        observation: "Bahan bendasing diasingkan daripada tepung.",
-        notes: [],
+          "Mengesan pewarna makanan berbahaya; menyemak penipuan dokumen dengan memisahkan warna dakwat",
       },
     ],
     selectionFactors: [
-      "Sifat-sifat fizik dan keadaan jirim bahan-bahan yang terkandung dalam campuran",
-      "Bahan yang hendak diperoleh daripada campuran tersebut",
+      "Sifat fizikal bahan yang terdapat dalam campuran",
+      "Bahan yang ingin diperoleh daripada campuran",
     ],
-    decision: [
-      "Bahan-bahan dalam campuran",
-      "Sifat-sifat fizik dan keadaan jirim",
-      "Bahan yang hendak diperoleh",
-      "Pilih kaedah pemisahan",
-    ],
-    formativePractice: [
-      {
-        mixture: "Klip kertas besi dan serpihan kaca",
-        method: "magnet",
-      },
-      {
-        mixture: "Air dan etanol",
-        method: "distillation",
-      },
-      {
-        mixture: "Tiga jenis pewarna yang larut air",
-        method: "chromatography",
-      },
-      {
-        mixture: "Tanah dan air",
-        method: "sedimentation",
-      },
-      {
-        mixture: "Minyak dan air",
-        method: "floatation",
-      },
-      {
-        mixture: "Serbuk kopi dan air",
-        method: "filtration",
-      },
-    ],
-    reasoning: {
-      question:
-        "Jika anda diberi suatu campuran yang mengandungi beras dan pasir, bolehkah anda mengasingkan kedua-duanya dengan menggunakan kaedah penurasan? Mengapa?",
-      answer:
-        "Tidak. Beras dan pasir ialah pepejal. Penurasan mengasingkan bahan pepejal yang tidak larut daripada cecair.",
-    },
   },
   compounds: {
     definition:

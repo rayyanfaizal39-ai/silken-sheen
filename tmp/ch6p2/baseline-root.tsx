@@ -1,10 +1,11 @@
-import { type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import {
   BookOpenCheck,
   Check,
   ChevronDown,
   FlaskConical,
   Lightbulb,
+  Magnet,
   Sparkles,
   TestTubes,
   Zap,
@@ -15,8 +16,6 @@ import { chapter6Supplement } from "@/content/form1/science/chapter-6/chapter6-c
 import { Chapter6Atoms } from "./blocks/Chapter6Atoms";
 import { Chapter6PeriodicTable, Chapter6MetalProperties } from "./blocks/Chapter6PeriodicTable";
 import { Chapter6Experiments } from "./blocks/Chapter6Experiments";
-
-import { Chapter6Mixtures } from "./blocks/Chapter6Mixtures";
 
 type Lang = "en" | "bm";
 
@@ -208,6 +207,37 @@ function SectionHeading({ section }: { section: readonly [string, string, string
   );
 }
 
+function Tabs({
+  labels,
+  selected,
+  onSelect,
+}: {
+  labels: string[];
+  selected: number;
+  onSelect: (index: number) => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-2" role="tablist">
+      {labels.map((label, index) => (
+        <button
+          key={label}
+          type="button"
+          role="tab"
+          aria-selected={selected === index}
+          onClick={() => onSelect(index)}
+          className={`min-h-12 rounded-xl border px-4 py-2 text-left text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 ${
+            selected === index
+              ? "border-cyan-300/50 bg-cyan-300/15 text-cyan-100"
+              : "border-white/10 bg-slate-950/40 text-slate-300 hover:border-white/25"
+          }`}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function Checklist({ items }: { items: string[] }) {
   return (
     <ul className="space-y-2">
@@ -271,6 +301,7 @@ export function ScienceF1Chapter6VisualNotesBlock({
   const t = content[lang];
   const extra = chapter6Supplement[lang];
   const copy = ui[lang];
+  const [method, setMethod] = useState(0);
 
   return (
     <section
@@ -321,7 +352,39 @@ export function ScienceF1Chapter6VisualNotesBlock({
           </section>
           <section id="chapter6-62" data-official-subtopic="6.2" className="scroll-mt-24 space-y-6">
             <h2 className="text-2xl font-black sm:text-3xl">{t.structure.subtopics[1]}</h2>
-            <Chapter6Mixtures source={t.mixtures} />
+            <SectionHeading section={copy.sections[3]} />
+            <Panel>
+              <div className="flex items-center gap-3">
+                <Magnet className="h-6 w-6 text-emerald-300" />
+                <h3 className="font-bold text-white">{copy.chooseMethod}</h3>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{t.mixtures.definition}</p>
+              <div className="mt-4">
+                <Tabs
+                  labels={t.mixtures.separationMethods.map((item) => item.name)}
+                  selected={method}
+                  onSelect={setMethod}
+                />
+              </div>
+              <div className="mt-4 grid gap-3 md:grid-cols-2" role="tabpanel">
+                <div className="rounded-xl bg-emerald-300/10 p-4">
+                  <p className="text-xs font-bold uppercase text-emerald-300">{copy.principle}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">
+                    {t.mixtures.separationMethods[method].usedFor}
+                  </p>
+                </div>
+                <div className="rounded-xl bg-cyan-300/10 p-4">
+                  <p className="text-xs font-bold uppercase text-cyan-300">{copy.example}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-200">
+                    {t.mixtures.separationMethods[method].example}
+                  </p>
+                </div>
+              </div>
+            </Panel>
+            <Panel>
+              <h3 className="mb-3 font-bold text-white">{copy.selection}</h3>
+              <Checklist items={t.mixtures.selectionFactors} />
+            </Panel>
           </section>
 
           <section

@@ -248,9 +248,8 @@ describe("Chapter 6 Pass 1", () => {
       ),
     );
   });
-  it("preserves all deferred 6.2/6.3 data and supplement fields", () => {
+  it("preserves all deferred 6.3 data and supplement fields", () => {
     const keys = [
-      "mixtures",
       "compounds",
       "physicalVsChemicalChange",
       "mixturesVsCompounds",
@@ -259,8 +258,8 @@ describe("Chapter 6 Pass 1", () => {
       "chapterSummary",
     ] as const;
     const hashes = {
-      en: "9f27c814452d75a50ebe254340874fb40ddd87fc4941f88356108ab916e86593",
-      bm: "c6007e48de3fe887d3fd3f4ea220412940ea57784e1a6ab37bbd36e05c48f486",
+      en: "e16efa9916632c156f1b11beb85a4d9f347f40b9668501a4c14c1bcefa773697",
+      bm: "a0e0020b8145f9c28db84eee9b2d1a1ad379821c96acff5ebe4dc3435e9f0695",
     };
     for (const lang of ["en", "bm"] as const) {
       const data = {
