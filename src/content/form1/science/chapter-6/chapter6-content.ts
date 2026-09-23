@@ -45,7 +45,78 @@ export interface MixtureCompoundRow {
   compound: string;
 }
 
+export interface ClassificationContent {
+  labels: {
+    atom: string;
+    molecule: string;
+    nucleus: string;
+    choose: string;
+    charge: string;
+    location: string;
+    neutral: string;
+    protons: string;
+    electrons: string;
+    oxygenAtom: string;
+    oxygenMolecule: string;
+    element: string;
+    compound: string;
+    salt: string;
+    sodium: string;
+    chlorine: string;
+    model: string;
+    microscope: string;
+    table: string;
+    context: string;
+    history: string;
+    comparison: string;
+    property: string;
+    metal: string;
+    nonmetal: string;
+    semi: string;
+    inert: string;
+    applications: string;
+    experiment: string;
+    conclusion: string;
+    appreciation: string;
+    sandpaper: string;
+    hammer: string;
+    wood: string;
+    ammeter: string;
+    dryCell: string;
+    switch: string;
+    clips: string;
+    candle: string;
+    wax: string;
+    thumbtack: string;
+    stand: string;
+    crucible: string;
+    thermometer: string;
+    tripod: string;
+    triangle: string;
+    burner: string;
+    fume: string;
+    stopwatch: string;
+  };
+  microscopeAnalogy: string;
+  history: { scientist: string; contribution: string }[];
+  arrangement: string;
+  regions: { id: string; name: string; location: string }[];
+  regionRows: string[];
+  applications: { id: string; element: string; properties: string; uses: string }[];
+  experiments: {
+    id: string;
+    title: string;
+    materials: string;
+    procedure: string;
+    samples: { name: string; material: string; effect: string; outcome: string }[];
+    safety?: string;
+  }[];
+  appreciation: string[];
+}
+
 export interface Chapter6Content {
+  structure: { title: string; subtopics: [string, string, string] };
+  classification: ClassificationContent;
   hook: { title: string; body: string };
   atomsAndMolecules: {
     definition: string;
@@ -95,6 +166,313 @@ export interface Chapter6Content {
 }
 
 const en: Chapter6Content = {
+  structure: {
+    title: "Periodic Table",
+    subtopics: ["6.1 Classification of Elements", "6.2 Mixtures", "6.3 Compounds"],
+  },
+  classification: {
+    labels: {
+      atom: "Atom",
+      molecule: "Molecule",
+      nucleus: "Nucleus",
+      choose: "Choose a subatomic particle",
+      charge: "Charge",
+      location: "Location",
+      neutral: "Neutral atom",
+      protons: "Number of protons",
+      electrons: "Number of electrons",
+      oxygenAtom: "Oxygen atom",
+      oxygenMolecule: "Oxygen molecule",
+      element: "What is an Element?",
+      compound: "What is a Compound?",
+      salt: "Salt",
+      sodium: "Sodium",
+      chlorine: "Chlorine",
+      model: "Diagram is a model and is not drawn to scale.",
+      microscope: "Electron microscope",
+      table: "Periodic Table",
+      context: "Textbook context: as of 2016",
+      history: "History of the Periodic Table",
+      comparison: "Differences between Metals and Non-metals",
+      property: "Property",
+      metal: "Metal",
+      nonmetal: "Non-metal",
+      semi: "Semi-metal",
+      inert: "Inert gases",
+      applications: "Examples of metals and non-metals",
+      experiment: "Experiment 6.2 — Metals and Non-metals",
+      conclusion: "Conclusion",
+      appreciation: "Appreciate the Order of Elements that Exist in Nature",
+      sandpaper: "Sandpaper",
+      hammer: "Hammer",
+      wood: "Wooden block",
+      ammeter: "Ammeter",
+      dryCell: "Dry cell",
+      switch: "Switch",
+      clips: "Crocodile clips",
+      candle: "Candle",
+      wax: "Wax",
+      thumbtack: "Thumbtack",
+      stand: "Retort stand and clamp",
+      crucible: "Crucible",
+      thermometer: "Thermometer",
+      tripod: "Tripod stand",
+      triangle: "Pipeclay triangle",
+      burner: "Bunsen burner",
+      fume: "Fume chamber",
+      stopwatch: "Stopwatch",
+    },
+    microscopeAnalogy:
+      "The textbook compares an orange enlarged to the size of Earth with the magnification needed to see an atom using an electron microscope.",
+    history: [
+      {
+        scientist: "Antoine Lavoisier",
+        contribution: "Classified materials as metals and non-metals.",
+      },
+      {
+        scientist: "Dmitri Mendeleev · 1869",
+        contribution:
+          "Arranged 63 known elements using cards containing properties and atomic weights. Left gaps for undiscovered elements and predicted their properties.",
+      },
+      {
+        scientist: "1886 · Germanium",
+        contribution: "The discovery of germanium supported his prediction.",
+      },
+    ],
+    arrangement: "Elements are arranged systematically in the Periodic Table.",
+    regions: [
+      {
+        id: "metal",
+        name: "Metals",
+        location: "Left and centre",
+      },
+      {
+        id: "nonmetal",
+        name: "Non-metals",
+        location: "Right side; hydrogen at the upper left",
+      },
+      {
+        id: "semi",
+        name: "Semi-metals",
+        location: "Between metals and non-metals",
+      },
+      {
+        id: "inert",
+        name: "Inert gases",
+        location: "Far-right column",
+      },
+    ],
+    regionRows: [
+      "N................I",
+      "MM..........SNNNNI",
+      "MM..........MSNNNI",
+      "MMMMMMMMMMMMMSSNNI",
+      "MMMMMMMMMMMMMMSSNI",
+      "MMMMMMMMMMMMMMMSNI",
+      "MMMMMMMMMMMMMMMMNI",
+    ],
+    applications: [
+      {
+        id: "aluminium",
+        element: "Aluminium",
+        properties: "Malleable; strong and light; grey and shiny",
+        uses: "Aluminium foil",
+      },
+      {
+        id: "iron",
+        element: "Iron",
+        properties: "Strong; malleable; magnetic; good electrical conductor; grey",
+        uses: "Hoe",
+      },
+      {
+        id: "copper",
+        element: "Copper",
+        properties: "Strong; rustproof; ductile; good electrical conductor; brown",
+        uses: "Copper wire",
+      },
+      {
+        id: "zinc",
+        element: "Zinc",
+        properties: "Strong; grey; good electrical conductor",
+        uses: "Zinc roof",
+      },
+      {
+        id: "carbon",
+        element: "Carbon",
+        properties: "Black; smooth; light; conducts electricity",
+        uses: "Pencil lead and racquets",
+      },
+      {
+        id: "sulphur",
+        element: "Sulphur",
+        properties: "Yellow powder; poisonous",
+        uses: "Hardens rubber tyres",
+      },
+      {
+        id: "chlorine",
+        element: "Chlorine",
+        properties: "Greenish-yellow gas; bleaching agent; poisonous",
+        uses: "Bleach",
+      },
+      {
+        id: "iodine",
+        element: "Iodine",
+        properties: "Black crystals; poisonous; antiseptic",
+        uses: "Prevents bacterial infection of wounds",
+      },
+    ],
+    experiments: [
+      {
+        id: "lustre",
+        title: "Appearance of metals and non-metals",
+        materials: "Copper rod, carbon rod, sandpaper.",
+        procedure: "Rub both rods with sandpaper and observe their surfaces.",
+        samples: [
+          {
+            name: "Copper rod",
+            material: "copper",
+            effect: "shine",
+            outcome: "Shiny",
+          },
+          {
+            name: "Carbon rod",
+            material: "carbon",
+            effect: "dull",
+            outcome: "Dull",
+          },
+        ],
+      },
+      {
+        id: "ductility",
+        title: "Ductility",
+        materials: "Copper wire, pencil lead.",
+        procedure: "Bend copper wire into a circle. Repeat with pencil lead.",
+        samples: [
+          {
+            name: "Copper wire",
+            material: "copper",
+            effect: "bend",
+            outcome: "Ductile",
+          },
+          {
+            name: "Pencil lead",
+            material: "carbon",
+            effect: "break",
+            outcome: "Brittle",
+          },
+        ],
+      },
+      {
+        id: "malleability",
+        title: "Malleability",
+        materials: "Iron, copper and sulphur pieces, hammer, wooden block.",
+        procedure: "Hammer each piece on a wooden block and observe its change in shape.",
+        samples: [
+          {
+            name: "Iron piece",
+            material: "iron",
+            effect: "flat",
+            outcome: "Malleable",
+          },
+          {
+            name: "Copper piece",
+            material: "copper",
+            effect: "flat",
+            outcome: "Malleable",
+          },
+          {
+            name: "Sulphur piece",
+            material: "sulphur",
+            effect: "break",
+            outcome: "Non-malleable",
+          },
+        ],
+      },
+      {
+        id: "electricity",
+        title: "Electrical conductivity",
+        materials: "Dry cell, switch, ammeter, crocodile clips, iron, carbon and sulphur rods.",
+        procedure:
+          "Connect each rod between the crocodile clips. Observe the deflection of the ammeter needle.",
+        samples: [
+          {
+            name: "Iron rod",
+            material: "iron",
+            effect: "current",
+            outcome: "Good electrical conductor",
+          },
+          {
+            name: "Carbon rod",
+            material: "carbon",
+            effect: "current",
+            outcome: "Conducts electricity: carbon exception",
+          },
+          {
+            name: "Sulphur rod",
+            material: "sulphur",
+            effect: "none",
+            outcome: "Poor electrical conductor",
+          },
+        ],
+      },
+      {
+        id: "heat",
+        title: "Heat conductivity",
+        materials:
+          "Carbon, iron and copper rods, candle, wax, thumbtack, stopwatch, retort stand and clamp.",
+        procedure:
+          "Clamp a rod and fix a thumbtack with wax at one end. Heat the other end with a candle and record the time for the thumbtack to drop. Repeat for each rod.",
+        samples: [
+          {
+            name: "Carbon rod",
+            material: "carbon",
+            effect: "slow",
+            outcome: "Poor heat conductor",
+          },
+          {
+            name: "Iron rod",
+            material: "iron",
+            effect: "drop",
+            outcome: "Good heat conductor",
+          },
+          {
+            name: "Copper rod",
+            material: "copper",
+            effect: "drop",
+            outcome: "Good heat conductor",
+          },
+        ],
+      },
+      {
+        id: "melting",
+        title: "Melting point",
+        materials:
+          "Thermometer (0–360°C), crucible, Bunsen burner, pipeclay triangle, tripod stand, tin powder, sulphur powder.",
+        procedure:
+          "Heat tin powder in a crucible. Observe and record its melting point. Repeat with sulphur powder.",
+        samples: [
+          {
+            name: "Tin powder",
+            material: "tin",
+            effect: "higher",
+            outcome: "Higher melting point",
+          },
+          {
+            name: "Sulphur powder",
+            material: "sulphur",
+            effect: "lower",
+            outcome: "Lower melting point",
+          },
+        ],
+        safety: "This activity may produce poisonous gases. Carry it out in a fume chamber.",
+      },
+    ],
+    appreciation: [
+      "Gold, silver and platinum are used for jewellery.",
+      "Elements are used in construction, transportation, health, medicine, agriculture and industry.",
+      "Appreciate the scientists who researched and arranged the elements systematically.",
+    ],
+  },
   hook: {
     title: "Why this matters",
     body: "Every material you can name — salt, water, the metal in your phone — is built from around 118 known elements arranged in one elegant table. Once you understand how atoms combine and how mixtures differ from compounds, you can explain almost everything in your kitchen, your bag, and your body.",
@@ -132,7 +510,7 @@ const en: Chapter6Content = {
   periodicTable: {
     history:
       "During the 18th and 19th centuries, scientists discovered many elements and arranged them into the Periodic Table in an orderly, systematic manner — still used today.",
-    totalDiscovered: "As of 2016, 118 elements have been discovered.",
+    totalDiscovered: "As of 2016, approximately 118 elements had been discovered.",
     exampleElements: [
       { symbol: "H", name: "Hydrogen", category: "nonmetal" },
       { symbol: "He", name: "Helium", category: "inert" },
@@ -292,6 +670,317 @@ const en: Chapter6Content = {
 };
 
 const bm: Chapter6Content = {
+  structure: {
+    title: "Jadual Berkala",
+    subtopics: ["6.1 Pengelasan Unsur", "6.2 Campuran", "6.3 Sebatian"],
+  },
+  classification: {
+    labels: {
+      atom: "Atom",
+      molecule: "Molekul",
+      nucleus: "Nukleus",
+      choose: "Pilih zarah subatom",
+      charge: "Cas",
+      location: "Lokasi",
+      neutral: "Atom neutral",
+      protons: "Bilangan proton",
+      electrons: "Bilangan elektron",
+      oxygenAtom: "Atom oksigen",
+      oxygenMolecule: "Molekul oksigen",
+      element: "Apakah itu Unsur?",
+      compound: "Apakah itu Sebatian?",
+      salt: "Garam",
+      sodium: "Natrium",
+      chlorine: "Klorin",
+      model: "Rajah ialah model dan bukan dilukis mengikut skala.",
+      microscope: "Mikroskop elektron",
+      table: "Jadual Berkala",
+      context: "Konteks buku teks: sehingga tahun 2016",
+      history: "Sejarah Jadual Berkala",
+      comparison: "Perbezaan Ciri-ciri Logam dan Bukan Logam",
+      property: "Ciri",
+      metal: "Logam",
+      nonmetal: "Bukan logam",
+      semi: "Separuh logam",
+      inert: "Gas nadir",
+      applications: "Contoh-contoh bahan logam dan bukan logam",
+      experiment: "Eksperimen 6.2 — Logam dan Bukan Logam",
+      conclusion: "Kesimpulan",
+      appreciation: "Menghargai Ketertiban Unsur yang Wujud dalam Alam Ini",
+      sandpaper: "Kertas pasir",
+      hammer: "Tukul",
+      wood: "Bongkah kayu",
+      ammeter: "Ammeter",
+      dryCell: "Sel kering",
+      switch: "Suis",
+      clips: "Klip buaya",
+      candle: "Lilin",
+      wax: "Lilin",
+      thumbtack: "Paku tekan",
+      stand: "Kaki retort dan pengapit",
+      crucible: "Mangkuk pijar",
+      thermometer: "Termometer",
+      tripod: "Tungku kaki tiga",
+      triangle: "Alas segi tiga tanah liat",
+      burner: "Penunu Bunsen",
+      fume: "Kebuk wasap",
+      stopwatch: "Jam randik",
+    },
+    microscopeAnalogy:
+      "Andaikan sebiji buah oren ialah suatu atom, ia akan dibesarkan sebesar saiz Bumi dengan menggunakan mikroskop elektron.",
+    history: [
+      {
+        scientist: "Antoine Lavoisier",
+        contribution: "Mengelaskan bahan-bahan kepada logam dan bukan logam.",
+      },
+      {
+        scientist: "Dmitri Mendeleev · 1869",
+        contribution:
+          "Menyusun 63 unsur pada kad yang mengandungi sifat dan berat atom. Meninggalkan ruang kosong untuk unsur yang belum ditemui dan meramalkan sifatnya.",
+      },
+      {
+        scientist: "1886 · Germanium",
+        contribution: "Penemuan germanium menepati ramalan Mendeleev.",
+      },
+    ],
+    arrangement: "Unsur-unsur disusun secara teratur dan sistematik dalam Jadual Berkala.",
+    regions: [
+      {
+        id: "metal",
+        name: "Logam",
+        location: "Bahagian kiri dan tengah",
+      },
+      {
+        id: "nonmetal",
+        name: "Bukan logam",
+        location: "Bahagian kanan; hidrogen di kiri atas",
+      },
+      {
+        id: "semi",
+        name: "Separuh logam",
+        location: "Antara logam dengan bukan logam",
+      },
+      {
+        id: "inert",
+        name: "Gas nadir",
+        location: "Lajur paling kanan",
+      },
+    ],
+    regionRows: [
+      "N................I",
+      "MM..........SNNNNI",
+      "MM..........MSNNNI",
+      "MMMMMMMMMMMMMSSNNI",
+      "MMMMMMMMMMMMMMSSNI",
+      "MMMMMMMMMMMMMMMSNI",
+      "MMMMMMMMMMMMMMMMNI",
+    ],
+    applications: [
+      {
+        id: "aluminium",
+        element: "Aluminium",
+        properties: "Boleh ditempa; kuat dan ringan; kelabu dan berkilat",
+        uses: "Kerajang aluminium",
+      },
+      {
+        id: "iron",
+        element: "Besi",
+        properties: "Kuat; mudah ditempa; bahan magnet; konduktor elektrik yang baik; kelabu",
+        uses: "Cangkul",
+      },
+      {
+        id: "copper",
+        element: "Kuprum",
+        properties: "Kuat; tahan karat; mulur; konduktor elektrik yang baik; coklat kemerahan",
+        uses: "Wayar kuprum",
+      },
+      {
+        id: "zinc",
+        element: "Zink",
+        properties: "Kuat; kelabu; konduktor elektrik yang baik",
+        uses: "Atap zink",
+      },
+      {
+        id: "carbon",
+        element: "Karbon",
+        properties: "Hitam; licin; ringan; konduktor elektrik yang baik",
+        uses: "Mata pensel dan raket",
+      },
+      {
+        id: "sulphur",
+        element: "Sulfur",
+        properties: "Serbuk kuning; beracun",
+        uses: "Membuatkan tayar getah menjadi lebih keras",
+      },
+      {
+        id: "chlorine",
+        element: "Klorin",
+        properties: "Gas kuning kehijauan; peluntur warna; beracun",
+        uses: "Bahan peluntur",
+      },
+      {
+        id: "iodine",
+        element: "Iodin",
+        properties: "Hablur hitam; beracun; antiseptik",
+        uses: "Mencegah luka daripada jangkitan bakteria",
+      },
+    ],
+    experiments: [
+      {
+        id: "lustre",
+        title: "Kekilauan permukaan",
+        materials: "Rod kuprum, rod karbon, kertas pasir.",
+        procedure:
+          "Gosokkan permukaan kedua-dua rod dengan kertas pasir dan perhatikan kekilauannya.",
+        samples: [
+          {
+            name: "Rod kuprum",
+            material: "copper",
+            effect: "shine",
+            outcome: "Berkilau",
+          },
+          {
+            name: "Rod karbon",
+            material: "carbon",
+            effect: "dull",
+            outcome: "Pudar",
+          },
+        ],
+      },
+      {
+        id: "ductility",
+        title: "Kemuluran",
+        materials: "Dawai kuprum dan grafit pensel.",
+        procedure:
+          "Bengkokkan dawai kuprum untuk membentuk satu bulatan. Lakukan perkara yang sama pada grafit pensel.",
+        samples: [
+          {
+            name: "Dawai kuprum",
+            material: "copper",
+            effect: "bend",
+            outcome: "Mulur",
+          },
+          {
+            name: "Grafit pensel",
+            material: "carbon",
+            effect: "break",
+            outcome: "Rapuh",
+          },
+        ],
+      },
+      {
+        id: "malleability",
+        title: "Kebolehtempaan",
+        materials: "Kepingan besi, kuprum dan sulfur, tukul, bongkah kayu.",
+        procedure:
+          "Ketukkan setiap kepingan di atas bongkah kayu dengan tukul. Perhatikan perubahan bentuknya.",
+        samples: [
+          {
+            name: "Kepingan besi",
+            material: "iron",
+            effect: "flat",
+            outcome: "Boleh ditempa",
+          },
+          {
+            name: "Kepingan kuprum",
+            material: "copper",
+            effect: "flat",
+            outcome: "Boleh ditempa",
+          },
+          {
+            name: "Kepingan sulfur",
+            material: "sulphur",
+            effect: "break",
+            outcome: "Tidak boleh ditempa",
+          },
+        ],
+      },
+      {
+        id: "electricity",
+        title: "Kekonduksian elektrik",
+        materials: "Sel kering, suis, ammeter, klip buaya, rod besi, karbon dan sulfur.",
+        procedure:
+          "Sambungkan kedua-dua hujung setiap rod dengan klip buaya. Perhatikan pesongan jarum ammeter.",
+        samples: [
+          {
+            name: "Rod besi",
+            material: "iron",
+            effect: "current",
+            outcome: "Konduktor elektrik yang baik",
+          },
+          {
+            name: "Rod karbon",
+            material: "carbon",
+            effect: "current",
+            outcome: "Mengkonduksikan elektrik: pengecualian karbon",
+          },
+          {
+            name: "Rod sulfur",
+            material: "sulphur",
+            effect: "none",
+            outcome: "Konduktor elektrik yang lemah",
+          },
+        ],
+      },
+      {
+        id: "heat",
+        title: "Kekonduksian haba",
+        materials:
+          "Rod karbon, besi dan kuprum, lilin, paku tekan, jam randik, kaki retort dan pengapit.",
+        procedure:
+          "Pasangkan rod pada kaki retort. Lekatkan paku tekan dengan lilin pada satu hujung rod. Panaskan hujung yang lain dan rekodkan masa paku tekan jatuh. Ulang dengan setiap rod.",
+        samples: [
+          {
+            name: "Rod karbon",
+            material: "carbon",
+            effect: "slow",
+            outcome: "Konduktor haba yang lemah",
+          },
+          {
+            name: "Rod besi",
+            material: "iron",
+            effect: "drop",
+            outcome: "Konduktor haba yang baik",
+          },
+          {
+            name: "Rod kuprum",
+            material: "copper",
+            effect: "drop",
+            outcome: "Konduktor haba yang baik",
+          },
+        ],
+      },
+      {
+        id: "melting",
+        title: "Takat lebur",
+        materials:
+          "Termometer (0–360°C), mangkuk pijar, penunu Bunsen, alas segi tiga tanah liat, tungku kaki tiga, serbuk timah, serbuk sulfur.",
+        procedure:
+          "Panaskan serbuk timah dalam mangkuk pijar. Perhatikan dan rekod takat leburnya. Ulang dengan serbuk sulfur.",
+        samples: [
+          {
+            name: "Serbuk timah",
+            material: "tin",
+            effect: "higher",
+            outcome: "Takat lebur lebih tinggi",
+          },
+          {
+            name: "Serbuk sulfur",
+            material: "sulphur",
+            effect: "lower",
+            outcome: "Takat lebur lebih rendah",
+          },
+        ],
+        safety:
+          "Aktiviti ini menghasilkan gas berbahaya. Oleh itu, lakukan aktiviti ini di dalam kebuk wasap.",
+      },
+    ],
+    appreciation: [
+      "Emas, perak dan platinum digunakan untuk membuat barang perhiasan.",
+      "Unsur digunakan dalam bidang pembinaan, pengangkutan, kesihatan, perubatan, pertanian dan perindustrian.",
+      "Hargai jasa ahli sains yang telah menemukan dan menyusun unsur dengan teratur dalam Jadual Berkala.",
+    ],
+  },
   hook: {
     title: "Kenapa ini penting",
     body: "Setiap bahan yang boleh anda namakan — garam, air, logam dalam telefon anda — dibina daripada kira-kira 118 unsur yang diketahui, disusun dalam satu jadual yang elegan. Apabila anda memahami bagaimana atom bergabung dan bagaimana campuran berbeza daripada sebatian, anda boleh menerangkan hampir semua yang ada di dapur, beg, dan badan anda.",
@@ -311,18 +1000,18 @@ const bm: Chapter6Content = {
   },
   elementsAndCompounds: {
     elementDefinition:
-      "Unsur ialah bahan yang paling ringkas — tidak boleh dipecahkan kepada dua atau lebih bahan yang lebih ringkas, dan mengandungi hanya satu jenis atom.",
+      "Unsur ialah bahan yang paling ringkas — tidak boleh diuraikan secara kimia kepada dua atau lebih bahan yang lebih ringkas, dan mengandungi hanya satu jenis atom.",
     elementExamples: ["Besi", "Oksigen", "Hidrogen", "Aluminium", "Karbon", "Kuprum"],
     compoundDefinition:
       "Sebatian terdiri daripada dua atau lebih unsur yang bergabung secara kimia, terhasil daripada tindak balas kimia. Ia boleh dihasilkan di makmal atau berlaku secara semula jadi.",
-    compoundExamples: ["Aluminium oksida", "Zink sulfida", "Ferum klorida", "Gula", "Air", "Garam"],
+    compoundExamples: ["Aluminium oksida", "Zink sulfida", "Besi klorida", "Gula", "Air", "Garam"],
     separationNote:
       "Unsur-unsur dalam sebatian tidak boleh dipisahkan secara fizikal — hanya secara kimia, cth menggunakan tenaga elektrik (elektrolisis).",
   },
   periodicTable: {
     history:
       "Sepanjang abad ke-18 dan ke-19, saintis menemui banyak unsur dan menyusunnya dalam Jadual Berkala secara teratur dan sistematik — masih digunakan sehingga kini.",
-    totalDiscovered: "Sehingga 2016, 118 unsur telah ditemui.",
+    totalDiscovered: "Sehingga tahun 2016, lebih kurang 118 unsur telah ditemui.",
     exampleElements: [
       { symbol: "H", name: "Hidrogen", category: "nonmetal" },
       { symbol: "He", name: "Helium", category: "inert" },
@@ -338,17 +1027,17 @@ const bm: Chapter6Content = {
   },
   metalsVsNonMetals: {
     comparison: [
-      { property: "Penampilan", metal: "Berkilat", nonMetal: "Kusam" },
+      { property: "Kekilauan", metal: "Berkilau", nonMetal: "Pudar" },
       { property: "Kemuluran", metal: "Mulur", nonMetal: "Rapuh" },
       { property: "Kebolehtempaan", metal: "Boleh ditempa", nonMetal: "Tidak boleh ditempa" },
-      { property: "Kekuatan tegangan", metal: "Tinggi", nonMetal: "Rendah (mudah patah)" },
+      { property: "Kekuatan regangan", metal: "Kuat", nonMetal: "Rendah (mudah patah)" },
       { property: "Kekonduksian elektrik", metal: "Baik", nonMetal: "Lemah (kecuali karbon)" },
       { property: "Kekonduksian haba", metal: "Baik", nonMetal: "Lemah" },
       { property: "Ketumpatan", metal: "Tinggi", nonMetal: "Rendah" },
-      { property: "Takat lebur/didih", metal: "Tinggi", nonMetal: "Rendah" },
+      { property: "Takat lebur dan takat didih", metal: "Tinggi", nonMetal: "Rendah" },
     ],
     semiMetalNote:
-      "Sesetengah unsur, seperti germanium dan silikon, tidak dapat dikelaskan sepenuhnya sebagai logam atau bukan logam — ini adalah semilogam, memiliki ciri-ciri kedua-duanya.",
+      "Sesetengah unsur, seperti germanium dan silikon, tidak dapat dikelaskan sepenuhnya sebagai logam atau bukan logam — ini ialah separuh logam, memiliki ciri-ciri kedua-duanya.",
   },
   mixtures: {
     definition:
@@ -486,10 +1175,6 @@ const bm: Chapter6Content = {
 export const chapter6Content = { en, bm };
 
 export interface Chapter6Supplement {
-  periodicHistory: { scientist: string; contribution: string }[];
-  periodicArrangement: string;
-  periodicRegions: { name: string; location: string }[];
-  elementApplications: { element: string; properties: string; uses: string }[];
   electrolysis: {
     setup: string[];
     products: { electrode: string; gas: string; test: string }[];
@@ -499,64 +1184,6 @@ export interface Chapter6Supplement {
 }
 
 const supplementEn: Chapter6Supplement = {
-  periodicHistory: [
-    {
-      scientist: "Antoine Lavoisier",
-      contribution: "Grouped the known elements into metals and non-metals.",
-    },
-    {
-      scientist: "Dmitri Mendeleev · 1869",
-      contribution:
-        "Arranged 63 known elements on cards, left gaps for undiscovered elements, and predicted their properties. The later discovery of germanium supported his predictions.",
-    },
-  ],
-  periodicArrangement:
-    "The 118 known elements are arranged systematically in rows and columns according to proton number.",
-  periodicRegions: [
-    { name: "Metals", location: "Left and centre" },
-    { name: "Non-metals", location: "Right" },
-    { name: "Semi-metals", location: "Along the staircase boundary" },
-    { name: "Inert gases", location: "Far-right column (Group 18)" },
-  ],
-  elementApplications: [
-    {
-      element: "Iron · Fe",
-      properties: "Strong, malleable, magnetic, conductive",
-      uses: "Buildings and tools",
-    },
-    {
-      element: "Copper · Cu",
-      properties: "Strong, ductile, corrosion-resistant, conductive",
-      uses: "Electrical wiring",
-    },
-    {
-      element: "Aluminium · Al",
-      properties: "Strong, light, shiny, malleable",
-      uses: "Foil and aircraft",
-    },
-    { element: "Zinc · Zn", properties: "Strong and conductive", uses: "Galvanised steel roofing" },
-    {
-      element: "Carbon · C (graphite)",
-      properties: "Black, light; conducts electricity",
-      uses: "Electrodes and pencils",
-    },
-    {
-      element: "Sulphur · S",
-      properties: "Yellow, poisonous, burns readily",
-      uses: "Vulcanising tyres",
-    },
-    {
-      element: "Chlorine · Cl",
-      properties: "Toxic greenish-yellow gas",
-      uses: "Bleaching and sanitation",
-    },
-    {
-      element: "Iodine · I",
-      properties: "Black crystal; sublimes to purple vapour",
-      uses: "Antiseptic",
-    },
-    { element: "Germanium & silicon", properties: "Semi-conductors", uses: "Microchips" },
-  ],
   electrolysis: {
     setup: [
       "Add a little dilute sulphuric acid to water so it conducts electricity.",
@@ -592,68 +1219,6 @@ const supplementEn: Chapter6Supplement = {
 };
 
 const supplementBm: Chapter6Supplement = {
-  periodicHistory: [
-    {
-      scientist: "Antoine Lavoisier",
-      contribution: "Mengelaskan unsur yang diketahui kepada logam dan bukan logam.",
-    },
-    {
-      scientist: "Dmitri Mendeleev · 1869",
-      contribution:
-        "Menyusun 63 unsur yang diketahui pada kad, meninggalkan ruang bagi unsur belum ditemui, dan meramalkan sifatnya. Penemuan germanium kemudian menyokong ramalannya.",
-    },
-  ],
-  periodicArrangement:
-    "Sebanyak 118 unsur yang diketahui disusun secara sistematik dalam baris dan lajur mengikut nombor proton.",
-  periodicRegions: [
-    { name: "Logam", location: "Bahagian kiri dan tengah" },
-    { name: "Bukan logam", location: "Bahagian kanan" },
-    { name: "Semilogam", location: "Sepanjang sempadan berbentuk tangga" },
-    { name: "Gas nadir", location: "Lajur paling kanan (Kumpulan 18)" },
-  ],
-  elementApplications: [
-    {
-      element: "Ferum · Fe",
-      properties: "Kuat, boleh ditempa, bermagnet, mengkonduksi",
-      uses: "Bangunan dan alatan",
-    },
-    {
-      element: "Kuprum · Cu",
-      properties: "Kuat, mulur, tahan kakisan, mengkonduksi",
-      uses: "Pendawaian elektrik",
-    },
-    {
-      element: "Aluminium · Al",
-      properties: "Kuat, ringan, berkilat, boleh ditempa",
-      uses: "Kerajang dan kapal terbang",
-    },
-    {
-      element: "Zink · Zn",
-      properties: "Kuat dan mengkonduksi",
-      uses: "Bumbung keluli tergalvani",
-    },
-    {
-      element: "Karbon · C (grafit)",
-      properties: "Hitam, ringan; mengkonduksi elektrik",
-      uses: "Elektrod dan pensel",
-    },
-    {
-      element: "Sulfur · S",
-      properties: "Kuning, beracun, mudah terbakar",
-      uses: "Pemvulkanan tayar",
-    },
-    {
-      element: "Klorin · Cl",
-      properties: "Gas hijau kekuningan yang toksik",
-      uses: "Pelunturan dan sanitasi",
-    },
-    {
-      element: "Iodin · I",
-      properties: "Hablur hitam; memejalwap menjadi wap ungu",
-      uses: "Antiseptik",
-    },
-    { element: "Germanium & silikon", properties: "Semikonduktor", uses: "Mikrocip" },
-  ],
   electrolysis: {
     setup: [
       "Tambahkan sedikit asid sulfurik cair ke dalam air supaya air mengkonduksi elektrik.",

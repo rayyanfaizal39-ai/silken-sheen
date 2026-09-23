@@ -14,7 +14,7 @@ describe("ScienceF1Chapter6VisualNotesBlock", () => {
       }),
     );
 
-    expect(html).toContain("Unsur membina dunia bahan");
+    expect(html).toContain("6.1 Pengelasan Unsur");
     expect(html).toContain("Dmitri Mendeleev");
     expect(html).toContain("Pilih kaedah pemisahan");
     expect(html).toContain("Elektrolisis air");
@@ -30,7 +30,7 @@ describe("ScienceF1Chapter6VisualNotesBlock", () => {
       }),
     );
 
-    expect(html).toContain("Elements build the material world");
+    expect(html).toContain("6.1 Classification of Elements");
     expect(html).toContain("Hydrogen gas");
     expect(html).toContain("2 : 1");
     expect(html).toContain("Why is air a mixture?");
