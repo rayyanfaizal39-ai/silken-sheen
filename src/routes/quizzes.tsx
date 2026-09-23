@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import type { Difficulty, QuizQuestion } from "@/data/content";
-import { QUIZ_PASS_BONUS_XP, QUIZ_PASS_PCT, useProgress } from "@/hooks/use-progress";
+import { useProgress } from "@/hooks/use-progress";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
@@ -103,11 +103,10 @@ import {
   shuffleQuestionOptions,
 } from "@/features/quiz/difficulty/quizDifficulty";
 import {
-  calculateQuizQuestionXp,
-  QUIZ_TIMER_BONUS_XP,
-  timerPrefToMode,
-  type QuizXpBreakdown,
-} from "@/features/quiz/bonus/quizBonusXp";
+  buildQuizKey,
+  createQuizCompletionId,
+  type QuizCompletionResult,
+} from "@/features/quiz/xp/quizXp";
 import {
   mathF2C1ChallengeQuizzesDLP,
   mathF2C1FoundationQuizzesDLP,
@@ -293,7 +292,6 @@ type TimerPref = { mode: TimerMode; seconds: number } | null;
 type QuizFeedback = {
   kind: "correct" | "wrong";
   msg: string;
-  xp?: QuizXpBreakdown;
   streakReset?: boolean;
 };
 type MathObjectiveId = "objective-1" | "objective-2" | "objective-3";
@@ -16032,7 +16030,7 @@ function QuizzesPage() {
     form?: string | number;
     chapter?: string;
   };
-  const { progress, addXp, recordQuiz, awardBadge, markChapter, recordQuizResult } = useProgress();
+  const { progress, awardBadge, markChapter, recordQuizResult } = useProgress();
   const { user: authUser } = useAuth();
   const { openCikgu } = useCikgu();
   const { open: openSignIn } = useSignInModal();
@@ -16046,11 +16044,10 @@ function QuizzesPage() {
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
-  // Mirrors `score` exactly (same reset points, same accumulation timing) so
-  // quiz_history.xp_earned reflects the *real* per-question difficulty-based
-  // XP award (10/20/30) instead of a flat approximation — feeds the Galaxy
-  // Hall of Fame's real Monthly XP ranking.
-  const [xpEarned, setXpEarned] = useState(0);
+  const [completionId, setCompletionId] = useState(createQuizCompletionId);
+  const [quizCompletion, setQuizCompletion] = useState<QuizCompletionResult | null>(null);
+  const [quizCompletionPending, setQuizCompletionPending] = useState(false);
+  const [quizCompletionError, setQuizCompletionError] = useState(false);
   const [done, setDone] = useState(false);
   // Background music is now handled globally by BgMusicController.
   const [animatedScore, setAnimatedScore] = useState(0);
@@ -16073,9 +16070,6 @@ function QuizzesPage() {
   >(null);
   const questionSeconds = timerPref?.mode === "timer" ? timerPref.seconds : 0;
   const [timeLeft, setTimeLeft] = useState(0);
-  const [baseXpEarned, setBaseXpEarned] = useState(0);
-  const [speedBonusXpEarned, setSpeedBonusXpEarned] = useState(0);
-  const [streakBonusXpEarned, setStreakBonusXpEarned] = useState(0);
   const [attemptStartXp, setAttemptStartXp] = useState(progress.xp);
   const quizStreak = useQuizStreak(
     `${subject ?? "picker"}:${form}:${chapter ?? "none"}:${mathObjectiveId ?? "regular"}:${subject === "science" && form === "Form 3" ? scienceQuizSet : (englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "none")}`,
@@ -16430,6 +16424,29 @@ function QuizzesPage() {
     return ordered.questions.map((question) => shuffleQuestionOptions(question));
   }
 
+  function resetQuizAward() {
+    setCompletionId(createQuizCompletionId());
+    setQuizCompletion(null);
+    setQuizCompletionPending(false);
+    setQuizCompletionError(false);
+  }
+
+  function submitCompletedQuiz(input: {
+    quizKey: string;
+    subjectId: string;
+    chapterKey: string;
+    correct: number;
+    total: number;
+  }) {
+    setQuizCompletion(null);
+    setQuizCompletionPending(true);
+    setQuizCompletionError(false);
+    void recordQuizResult({ completionId, ...input })
+      .then(setQuizCompletion)
+      .catch(() => setQuizCompletionError(true))
+      .finally(() => setQuizCompletionPending(false));
+  }
+
   function reshuffle() {
     if (pool.length > 0) {
       setShuffledPool(buildShuffledPool(pool));
@@ -16437,10 +16454,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
-    setXpEarned(0);
-    setBaseXpEarned(0);
-    setSpeedBonusXpEarned(0);
-    setStreakBonusXpEarned(0);
+    resetQuizAward();
     quizStreak.resetStreak();
     setFeedback(null);
     setTimeLeft(questionSeconds);
@@ -16452,23 +16466,11 @@ function QuizzesPage() {
     setSelected(i);
     const correct = i === current.answerIndex;
     if (correct) {
-      const reward = calculateQuizQuestionXp({
-        correct: true,
-        timerMode: timerPrefToMode(timerPref),
-        difficulty: current.difficulty,
-      });
-      const gain = reward.totalQuestionXp;
       setScore((s) => s + 1);
-      addXp(gain, current.subjectId);
-      setXpEarned((x) => x + gain);
-      setBaseXpEarned((x) => x + reward.baseXp);
-      setSpeedBonusXpEarned((x) => x + reward.timerBonusXp);
-      setStreakBonusXpEarned((x) => x + reward.streakBonusXp);
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `regular:${subject}:${chapter}:${idx}`,
         correct: true,
-        xpAwarded: reward.streakBonusXp,
       });
       const messages =
         subject === "science" && scienceLang
@@ -16477,7 +16479,6 @@ function QuizzesPage() {
       setFeedback({
         kind: "correct",
         msg: messages[Math.floor(Math.random() * messages.length)],
-        xp: reward,
       });
     } else {
       quizStreak.confirmAnswer({
@@ -16500,21 +16501,23 @@ function QuizzesPage() {
     const total = shuffledPool?.length ?? pool.length;
     if (idx + 1 >= total) {
       setDone(true);
-      recordQuiz();
       const finalCorrect = score;
-      const passed = total > 0 && Math.round((finalCorrect / total) * 100) >= QUIZ_PASS_PCT;
-      recordQuizResult({
-        subjectId: subject ?? current?.subjectId ?? "unknown",
+      const subjectId = subject ?? current?.subjectId ?? "unknown";
+      const chapterKey = chapter ?? "all";
+      submitCompletedQuiz({
+        quizKey: buildQuizKey({
+          subjectId,
+          form,
+          chapterKey,
+          variant:
+            availableScienceQuizSets.length > 0
+              ? `set-${scienceQuizSet}-difficulty-${diff}`
+              : `difficulty-${diff}`,
+        }),
+        subjectId,
         chapterKey: chapter ?? "all",
         correct: finalCorrect,
         total,
-        xpEarned: xpEarned + (passed ? QUIZ_PASS_BONUS_XP : 0),
-        timerMode: timerPrefToMode(timerPref),
-        baseXp: baseXpEarned,
-        speedBonusXp: speedBonusXpEarned,
-        streakBonusXp: streakBonusXpEarned,
-        passBonusXp: passed ? QUIZ_PASS_BONUS_XP : 0,
-        bestCorrectStreak: quizStreak.bestStreak,
       });
       if (subject && chapter) markChapter(subject, chapter, "quiz");
       if (
@@ -16535,10 +16538,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
-    setXpEarned(0);
-    setBaseXpEarned(0);
-    setSpeedBonusXpEarned(0);
-    setStreakBonusXpEarned(0);
+    resetQuizAward();
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16562,10 +16562,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
-    setXpEarned(0);
-    setBaseXpEarned(0);
-    setSpeedBonusXpEarned(0);
-    setStreakBonusXpEarned(0);
+    resetQuizAward();
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16582,10 +16579,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
-    setXpEarned(0);
-    setBaseXpEarned(0);
-    setSpeedBonusXpEarned(0);
-    setStreakBonusXpEarned(0);
+    resetQuizAward();
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16602,28 +16596,16 @@ function QuizzesPage() {
     const correct = i === currentMathQuestion.answerIndex;
 
     if (correct) {
-      const reward = calculateQuizQuestionXp({
-        correct: true,
-        timerMode: "none",
-        difficulty: currentMathQuestion.difficulty,
-      });
-      const gain = reward.totalQuestionXp;
       setScore((s) => s + 1);
-      addXp(gain, currentMathQuestion.subjectId);
-      setXpEarned((x) => x + gain);
-      setBaseXpEarned((x) => x + reward.baseXp);
-      setStreakBonusXpEarned((x) => x + reward.streakBonusXp);
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `math:${chapter}:${mathObjectiveId}:${idx}`,
         correct: true,
-        xpAwarded: reward.streakBonusXp,
       });
 
       setFeedback({
         kind: "correct",
         msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
-        xp: reward,
       });
     } else {
       quizStreak.confirmAnswer({
@@ -16644,23 +16626,20 @@ function QuizzesPage() {
     if (idx + 1 >= total) {
       setDone(true);
       setMathObjectivePhase("results");
-      recordQuiz();
-      {
-        const passed = total > 0 && Math.round((score / total) * 100) >= QUIZ_PASS_PCT;
-        recordQuizResult({
-          subjectId: subject ?? "math",
-          chapterKey: chapter ?? "all",
-          correct: score,
-          total,
-          xpEarned: xpEarned + (passed ? QUIZ_PASS_BONUS_XP : 0),
-          timerMode: "none",
-          baseXp: baseXpEarned,
-          speedBonusXp: 0,
-          streakBonusXp: streakBonusXpEarned,
-          passBonusXp: passed ? QUIZ_PASS_BONUS_XP : 0,
-          bestCorrectStreak: quizStreak.bestStreak,
-        });
-      }
+      const subjectId = subject ?? "math";
+      const chapterKey = chapter ?? "all";
+      submitCompletedQuiz({
+        quizKey: buildQuizKey({
+          subjectId,
+          form,
+          chapterKey,
+          variant: mathObjectiveId ?? "objective",
+        }),
+        subjectId,
+        chapterKey,
+        correct: score,
+        total,
+      });
       if (subject && chapter) markChapter(subject, chapter, "quiz");
       return;
     }
@@ -16675,10 +16654,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
-    setXpEarned(0);
-    setBaseXpEarned(0);
-    setSpeedBonusXpEarned(0);
-    setStreakBonusXpEarned(0);
+    resetQuizAward();
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16693,10 +16669,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
-    setXpEarned(0);
-    setBaseXpEarned(0);
-    setSpeedBonusXpEarned(0);
-    setStreakBonusXpEarned(0);
+    resetQuizAward();
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16711,10 +16684,7 @@ function QuizzesPage() {
     setIdx(0);
     setSelected(null);
     setScore(0);
-    setXpEarned(0);
-    setBaseXpEarned(0);
-    setSpeedBonusXpEarned(0);
-    setStreakBonusXpEarned(0);
+    resetQuizAward();
     setDone(false);
     quizStreak.resetStreak();
     setFeedback(null);
@@ -16731,28 +16701,16 @@ function QuizzesPage() {
     const correct = i === currentEnglishQuestion.answerIndex;
 
     if (correct) {
-      const reward = calculateQuizQuestionXp({
-        correct: true,
-        timerMode: "none",
-        difficulty: currentEnglishQuestion.difficulty,
-      });
-      const gain = reward.totalQuestionXp;
       setScore((s) => s + 1);
-      addXp(gain, currentEnglishQuestion.subjectId);
-      setXpEarned((x) => x + gain);
-      setBaseXpEarned((x) => x + reward.baseXp);
-      setStreakBonusXpEarned((x) => x + reward.streakBonusXp);
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `english:${englishSetId ?? englishSetIdF2 ?? englishSetIdF3}:${idx}`,
         correct: true,
-        xpAwarded: reward.streakBonusXp,
       });
 
       setFeedback({
         kind: "correct",
         msg: CORRECT_MSGS[Math.floor(Math.random() * CORRECT_MSGS.length)],
-        xp: reward,
       });
     } else {
       quizStreak.confirmAnswer({
@@ -16785,23 +16743,20 @@ function QuizzesPage() {
     if (idx + 1 >= total) {
       setDone(true);
       setEnglishPhase("results");
-      recordQuiz();
-      {
-        const passed = total > 0 && Math.round((score / total) * 100) >= QUIZ_PASS_PCT;
-        recordQuizResult({
+      const activeEnglishSetId = englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "set";
+      const chapterKey = activeEnglishSet?.title ?? `English ${form}`;
+      submitCompletedQuiz({
+        quizKey: buildQuizKey({
           subjectId: "english",
-          chapterKey: activeEnglishSet?.title ?? `English ${form}`,
-          correct: score,
-          total,
-          xpEarned: xpEarned + (passed ? QUIZ_PASS_BONUS_XP : 0),
-          timerMode: "none",
-          baseXp: baseXpEarned,
-          speedBonusXp: 0,
-          streakBonusXp: streakBonusXpEarned,
-          passBonusXp: passed ? QUIZ_PASS_BONUS_XP : 0,
-          bestCorrectStreak: quizStreak.bestStreak,
-        });
-      }
+          form,
+          chapterKey: "paper-1",
+          variant: activeEnglishSetId,
+        }),
+        subjectId: "english",
+        chapterKey,
+        correct: score,
+        total,
+      });
       if (activeEnglishSet) markChapter("english", activeEnglishSet.title, "quiz");
       return;
     }
@@ -16855,10 +16810,6 @@ function QuizzesPage() {
         totalXpEarned: "Jumlah XP diperoleh",
         bestStreak: "Turutan betul terbaik",
         xpEarned: "XP diperoleh",
-        baseQuestionXp: "XP Asas Soalan",
-        speedBonus: "Bonus Kepantasan",
-        streakBonus: "Bonus Turutan Betul",
-        passBonus: "Bonus Lulus",
         totalXp: "JUMLAH XP",
         tryAgain: "Cuba Lagi",
         chooseChapter: "Pilih Bab",
@@ -16882,10 +16833,6 @@ function QuizzesPage() {
         totalXpEarned: "Total XP earned",
         bestStreak: "Best correct streak",
         xpEarned: "XP earned",
-        baseQuestionXp: "Base Question XP",
-        speedBonus: "Speed Bonus",
-        streakBonus: "Correct Streak Bonus",
-        passBonus: "Pass Bonus",
         totalXp: "TOTAL XP",
         tryAgain: "Try Again",
         chooseChapter: "Choose Chapter",
@@ -17006,6 +16953,9 @@ function QuizzesPage() {
                 quizSet={selectedEnglishSetF3}
                 score={score}
                 total={englishShuffledQuestions?.length ?? englishSetQuestionsF3.length}
+                quizCompletion={quizCompletion}
+                quizCompletionPending={quizCompletionPending}
+                quizCompletionError={quizCompletionError}
                 onBack={() => {
                   setEnglishSetIdF3(null);
                   setEnglishPhase("select");
@@ -17076,6 +17026,9 @@ function QuizzesPage() {
                 quizSet={selectedEnglishSetF2}
                 score={score}
                 total={englishShuffledQuestions?.length ?? englishSetQuestionsF2.length}
+                quizCompletion={quizCompletion}
+                quizCompletionPending={quizCompletionPending}
+                quizCompletionError={quizCompletionError}
                 onBack={() => {
                   setEnglishSetIdF2(null);
                   setEnglishPhase("select");
@@ -17145,6 +17098,9 @@ function QuizzesPage() {
               quizSet={selectedEnglishSet}
               score={score}
               total={englishShuffledQuestions?.length ?? englishSetQuestions.length}
+              quizCompletion={quizCompletion}
+              quizCompletionPending={quizCompletionPending}
+              quizCompletionError={quizCompletionError}
               onBack={() => {
                 setEnglishSetId(null);
                 setEnglishPhase("select");
@@ -17506,6 +17462,9 @@ function QuizzesPage() {
               objective={selectedMathObjective}
               score={score}
               total={mathShuffledQuestions?.length ?? mathObjectiveQuestions.length}
+              quizCompletion={quizCompletion}
+              quizCompletionPending={quizCompletionPending}
+              quizCompletionError={quizCompletionError}
               quizLang={activeMathQuizLang}
               chapterKey={chapter}
               onBack={() => {
@@ -17606,6 +17565,7 @@ function QuizzesPage() {
           }}
           onStart={(pref) => {
             setAttemptStartXp(progress.xp);
+            resetQuizAward();
             setTimerPref(pref);
           }}
         />
@@ -17780,12 +17740,7 @@ function QuizzesPage() {
                     <div className="flex items-center gap-2 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-4 py-2">
                       <Zap className="h-4 w-4 text-[#FBBF24]" />
                       <span className="text-sm font-bold text-[#FBBF24]">
-                        +
-                        {xpEarned +
-                          (Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
-                          QUIZ_PASS_PCT
-                            ? QUIZ_PASS_BONUS_XP
-                            : 0)}
+                        +{quizCompletion?.xpEarned ?? 0}
                       </span>
                       <span className="text-xs text-white/40">{regularQuizCopy.totalXpEarned}</span>
                     </div>
@@ -17798,35 +17753,13 @@ function QuizzesPage() {
                     </div>
                   </div>
 
-                  <div className="mx-auto mb-8 max-w-md rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left">
-                    <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-white/50">
-                      {regularQuizCopy.xpEarned}
-                    </p>
-                    <XpResultRow label={regularQuizCopy.baseQuestionXp} value={baseXpEarned} />
-                    <XpResultRow label={regularQuizCopy.speedBonus} value={speedBonusXpEarned} />
-                    <XpResultRow label={regularQuizCopy.streakBonus} value={streakBonusXpEarned} />
-                    <XpResultRow
-                      label={regularQuizCopy.passBonus}
-                      value={
-                        Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
-                        QUIZ_PASS_PCT
-                          ? QUIZ_PASS_BONUS_XP
-                          : 0
-                      }
+                  <div className="mx-auto mb-8 max-w-md">
+                    <QuizAwardSummary
+                      result={quizCompletion}
+                      pending={quizCompletionPending}
+                      error={quizCompletionError}
+                      bm={scienceLang === "bm"}
                     />
-                    <div className="mt-3 border-t border-white/10 pt-3">
-                      <XpResultRow
-                        label={regularQuizCopy.totalXp}
-                        value={
-                          xpEarned +
-                          (Math.round((score / (shuffledPool?.length ?? pool.length)) * 100) >=
-                          QUIZ_PASS_PCT
-                            ? QUIZ_PASS_BONUS_XP
-                            : 0)
-                        }
-                        strong
-                      />
-                    </div>
                     <p className="mt-3 text-xs text-white/45">
                       {regularQuizCopy.lifetimeXp} {attemptStartXp.toLocaleString()} →{" "}
                       {progress.xp.toLocaleString()} XP
@@ -18130,8 +18063,62 @@ function XpResultRow({
   );
 }
 
+function QuizAwardSummary({
+  result,
+  pending,
+  error,
+  bm = false,
+}: {
+  result: QuizCompletionResult | null;
+  pending: boolean;
+  error: boolean;
+  bm?: boolean;
+}) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left" role="status">
+      <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-white/50">
+        {bm ? "XP kuiz" : "Quiz XP"}
+      </p>
+      {pending ? (
+        <p className="text-sm text-white/65">{bm ? "Menyimpan keputusan…" : "Saving result…"}</p>
+      ) : error ? (
+        <p className="text-sm text-rose-200">
+          {bm ? "XP belum disimpan. Cuba lagi apabila sambungan pulih." : "XP was not saved. Try again when your connection recovers."}
+        </p>
+      ) : result ? (
+        <>
+          <XpResultRow
+            label={bm ? "XP penyelesaian" : "Completion XP"}
+            value={result.awarded ? result.completionXp : 0}
+          />
+          <XpResultRow
+            label={bm ? "Bonus markah" : "Score bonus"}
+            value={result.awarded ? result.scoreBonusXp : 0}
+          />
+          <div className="mt-3 border-t border-white/10 pt-3">
+            <XpResultRow label={bm ? "JUMLAH XP" : "TOTAL XP"} value={result.xpEarned} strong />
+          </div>
+          {!result.eligible && (
+            <p className="mt-3 text-xs text-amber-100/75">
+              {bm
+                ? "Tetamu boleh berlatih, tetapi XP tidak disimpan atau dimasukkan dalam papan pendahulu."
+                : "Guests can practise, but XP is not saved or added to the leaderboard."}
+            </p>
+          )}
+          {result.eligible && !result.awarded && (
+            <p className="mt-3 text-xs text-white/55">
+              {bm
+                ? "Kuiz ini telah memberikan XP sebelum ini. Cubaan latihan ini memberi 0 XP tambahan."
+                : "This quiz has already awarded XP. This practice retake earns 0 additional XP."}
+            </p>
+          )}
+        </>
+      ) : null}
+    </div>
+  );
+}
+
 function QuestionXpFeedback({ feedback, bm = false }: { feedback: QuizFeedback; bm?: boolean }) {
-  const reward = feedback.xp;
   return (
     <div
       className={`quiz-xp-feedback mx-6 mb-4 rounded-2xl border p-4 ${
@@ -18154,28 +18141,6 @@ function QuestionXpFeedback({ feedback, bm = false }: { feedback: QuizFeedback; 
           {feedback.msg}
         </span>
       </div>
-      {reward && (
-        <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1 text-xs sm:flex sm:flex-wrap sm:items-center sm:gap-3">
-          <span>
-            +{reward.baseXp} {bm ? "XP Asas" : "Base XP"}
-          </span>
-          <span
-            aria-label={`${bm ? "Bonus Kepantasan tambah" : "Speed Bonus plus"} ${reward.timerBonusXp} XP`}
-          >
-            <Zap className="mr-1 inline h-3.5 w-3.5 text-amber-300" aria-hidden="true" />+
-            {reward.timerBonusXp} {bm ? "Bonus Kepantasan" : "Speed Bonus"}
-          </span>
-          <span
-            aria-label={`${bm ? "Bonus Turutan Betul tambah" : "Correct Streak Bonus plus"} ${reward.streakBonusXp} XP`}
-          >
-            <Flame className="mr-1 inline h-3.5 w-3.5 text-orange-400" aria-hidden="true" />+
-            {reward.streakBonusXp} {bm ? "Bonus Turutan" : "Streak Bonus"}
-          </span>
-          <strong className="text-[#FBBF24]">
-            {bm ? "JUMLAH" : "TOTAL"} +{reward.totalQuestionXp} XP
-          </strong>
-        </div>
-      )}
       {feedback.streakReset && (
         <p className="mt-2 text-xs text-white/55">
           {bm
@@ -18237,7 +18202,9 @@ function QuizSettingsScreen({
           <h2 className="font-display text-3xl font-bold">
             Quiz <span className="gradient-text">Settings</span>
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">Shorter timer = bigger Speed Bonus.</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Timer choice does not change XP. XP is based only on completion and final score.
+          </p>
         </div>
 
         {quizSets.length > 0 && selectedQuizSet && onSelectQuizSet && (
@@ -18273,7 +18240,7 @@ function QuizSettingsScreen({
           <button
             onClick={() => setMode("timer")}
             aria-pressed={mode === "timer"}
-            aria-label={`Timed quiz. Select 15, 30, or 60 seconds per question. Current Speed Bonus plus ${QUIZ_TIMER_BONUS_XP[seconds as 15 | 30 | 60]} XP per correct answer.`}
+            aria-label="Timed quiz. Select 15, 30, or 60 seconds per question. Timer choice does not change XP."
             className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
               mode === "timer"
                 ? "border-2 border-primary shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.55)] scale-[1.02]"
@@ -18302,7 +18269,7 @@ function QuizSettingsScreen({
                       role="button"
                       tabIndex={0}
                       aria-pressed={seconds === s}
-                      aria-label={`${s === 60 ? "1 minute" : `${s} seconds`}, plus ${QUIZ_TIMER_BONUS_XP[s as 15 | 30 | 60]} Speed Bonus XP per correct answer${s === 15 ? ", challenge mode" : ""}`}
+                      aria-label={`${s === 60 ? "1 minute" : `${s} seconds`} per question${s === 15 ? ", challenge mode" : ""}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         setSeconds(s);
@@ -18323,9 +18290,7 @@ function QuizSettingsScreen({
                       }`}
                     >
                       <span className="block">{s === 60 ? "1 MIN" : `${s} SEC`}</span>
-                      <span className="mt-0.5 block text-[10px]">
-                        +{QUIZ_TIMER_BONUS_XP[s as 15 | 30 | 60]} XP
-                      </span>
+                      <span className="mt-0.5 block text-[10px]">PER QUESTION</span>
                     </span>
                   ))}
                 </div>
@@ -18337,7 +18302,7 @@ function QuizSettingsScreen({
           <button
             onClick={() => setMode("none")}
             aria-pressed={mode === "none"}
-            aria-label={`No Timer, no Speed Bonus${mode === "none" ? ", selected" : ""}`}
+            aria-label={`No Timer${mode === "none" ? ", selected" : ""}`}
             className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
               mode === "none"
                 ? "border-2 border-accent shadow-[0_0_30px_oklch(0.7_0.18_180_/_0.5)] scale-[1.02]"
@@ -18354,7 +18319,7 @@ function QuizSettingsScreen({
               No countdown, no pressure. Just learn.
             </p>
             <span className="mt-4 inline-flex rounded-full bg-white/5 px-3 py-1.5 text-xs font-bold text-emerald-200">
-              NO TIMER · +0 XP
+              NO TIMER
             </span>
           </button>
         </div>
@@ -18370,15 +18335,7 @@ function QuizSettingsScreen({
                 : `${seconds === 60 ? "1 Minute" : `${seconds} Second`} Challenge`}
             </span>
             <span className="mx-2 text-white/25">•</span>
-            <span aria-label="Speed Bonus">
-              <Zap className="mr-1 inline h-4 w-4 text-amber-300" aria-hidden="true" />+
-              {mode === "none" ? 0 : QUIZ_TIMER_BONUS_XP[seconds as 15 | 30 | 60]} XP per correct
-            </span>
-            <span className="mx-2 text-white/25">•</span>
-            <span aria-label="Correct Streak Bonus">
-              <Flame className="mr-1 inline h-4 w-4 text-orange-400" aria-hidden="true" />
-              +5 XP when your correct streak increases
-            </span>
+            <span>Same completion + score XP rules</span>
           </div>
         )}
 
@@ -18621,6 +18578,9 @@ function EnglishResultsScreenF2(props: {
   quizSet: EnglishQuizSetMetaF2;
   score: number;
   total: number;
+  quizCompletion: QuizCompletionResult | null;
+  quizCompletionPending: boolean;
+  quizCompletionError: boolean;
   onBack: () => void;
   onRetry: () => void;
 }) {
@@ -18982,6 +18942,9 @@ function EnglishResultsScreenF3(props: {
   quizSet: EnglishQuizSetMetaF3;
   score: number;
   total: number;
+  quizCompletion: QuizCompletionResult | null;
+  quizCompletionPending: boolean;
+  quizCompletionError: boolean;
   onBack: () => void;
   onRetry: () => void;
 }) {
@@ -19047,6 +19010,9 @@ function EnglishResultsScreen({
   quizSet,
   score,
   total,
+  quizCompletion,
+  quizCompletionPending,
+  quizCompletionError,
   onBack,
   onRetry,
   formLabel = "English Form 1",
@@ -19054,6 +19020,9 @@ function EnglishResultsScreen({
   quizSet: EnglishQuizSetMeta;
   score: number;
   total: number;
+  quizCompletion: QuizCompletionResult | null;
+  quizCompletionPending: boolean;
+  quizCompletionError: boolean;
   onBack: () => void;
   onRetry: () => void;
   formLabel?: string;
@@ -19096,6 +19065,14 @@ function EnglishResultsScreen({
           <div className="text-3xl font-bold text-rose-300">{Math.max(0, total - score)}</div>
           <div className="mt-1 text-xs text-muted-foreground">Review</div>
         </div>
+      </div>
+
+      <div className="mx-auto mt-6 max-w-md">
+        <QuizAwardSummary
+          result={quizCompletion}
+          pending={quizCompletionPending}
+          error={quizCompletionError}
+        />
       </div>
 
       <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -20149,6 +20126,9 @@ function MathObjectiveResultsScreen({
   objective,
   score,
   total,
+  quizCompletion,
+  quizCompletionPending,
+  quizCompletionError,
   quizLang,
   chapterKey,
   onBack,
@@ -20157,6 +20137,9 @@ function MathObjectiveResultsScreen({
   objective?: (typeof MATH_OBJECTIVES)[number];
   score: number;
   total: number;
+  quizCompletion: QuizCompletionResult | null;
+  quizCompletionPending: boolean;
+  quizCompletionError: boolean;
   quizLang: MathQuizLang;
   chapterKey: string;
   onBack: () => void;
@@ -20293,6 +20276,15 @@ function MathObjectiveResultsScreen({
       <div className="mx-auto mt-8 max-w-xl rounded-3xl border border-white/10 bg-slate-950/80 p-6">
         <h3 className={`font-display text-2xl font-bold ${rating.color}`}>{rating.title}</h3>
         <p className="mt-2 text-sm text-muted-foreground">{rating.message}</p>
+      </div>
+
+      <div className="mx-auto mt-6 max-w-md">
+        <QuizAwardSummary
+          result={quizCompletion}
+          pending={quizCompletionPending}
+          error={quizCompletionError}
+          bm={!isDlp}
+        />
       </div>
 
       <div className="mt-8 flex flex-wrap justify-center gap-3">

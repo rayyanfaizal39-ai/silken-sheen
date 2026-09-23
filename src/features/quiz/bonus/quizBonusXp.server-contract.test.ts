@@ -3,39 +3,47 @@ import { describe, expect, it } from "vitest";
 
 const migration = readFileSync(
   new URL(
-    "../../../../supabase/migrations/20260814014705_quiz_bonus_xp_attempt_safety.sql",
+    "../../../../supabase/migrations/20260923125557_quiz_xp_one_time_awards.sql",
     import.meta.url,
   ),
   "utf8",
 );
 
-describe("quiz bonus XP server contract", () => {
-  it("locks timer mode to the four supported values", () => {
-    expect(migration).toMatch(/timer_mode in \('none', '60', '30', '15'\)/);
-    expect(migration).toMatch(/when '60' then 5 when '30' then 10 when '15' then 15 else 0/);
+describe("one-time quiz XP server contract", () => {
+  it("derives the exact score bands and caps each award at 50 XP", () => {
+    expect(migration).toMatch(/completion_reward constant integer := 20/);
+    expect(migration).toMatch(/score_percent = 100 then 30/);
+    expect(migration).toMatch(/score_percent >= 90 then 20/);
+    expect(migration).toMatch(/score_percent >= 80 then 10/);
+    expect(migration).toMatch(/score_percent >= 60 then 5/);
+    expect(migration).toMatch(/xp_earned between 0 and 50/);
   });
 
-  it("does not accept timer or streak bonus amounts as RPC arguments", () => {
-    const signature =
-      migration.match(/record_quiz_attempt_answer\([\s\S]*?\) returns jsonb/i)?.[0] ?? "";
-    expect(signature).not.toMatch(/bonus|streak/i);
+  it("does not accept an XP amount from the browser", () => {
+    const signature = migration.match(/complete_quiz\([\s\S]*?\)\s*returns jsonb/i)?.[0] ?? "";
+    expect(signature).not.toMatch(/requested_.*xp|timer|streak/i);
   });
 
-  it("uses attempt/question and attempt/sequence uniqueness for retry safety", () => {
-    expect(migration).toMatch(/primary key \(attempt_id, question_key\)/);
-    expect(migration).toMatch(/unique \(attempt_id, answer_sequence\)/);
-    expect(migration).toMatch(/'accepted', false/);
+  it("makes a completion request idempotent and an award unique per user and quiz", () => {
+    expect(migration).toMatch(/quiz_completion_requests \([\s\S]*?id uuid primary key/i);
+    expect(migration).toMatch(/primary key \(user_id, quiz_key\)/);
+    expect(migration).toMatch(/on conflict \(id\) do nothing/i);
+    expect(migration).toMatch(/on conflict \(user_id, quiz_key\) do nothing/i);
   });
 
-  it("awards the pass bonus once inside the idempotent completion transaction", () => {
-    expect(migration).toMatch(/score_percent >= 80 then 25/);
-    expect(migration).toMatch(/if attempt\.status = 'active' then/);
-    expect(migration).toMatch(/quiz_history_attempt_id_unique/);
+  it("blocks guests and retires the old write paths", () => {
+    expect(migration).toMatch(/auth\.jwt\(\) ->> 'is_anonymous'/);
+    expect(migration).toMatch(/drop policy if exists "Users can insert own quiz_history"/);
+    expect(migration).toMatch(/revoke insert, update, delete on table public\.quiz_history/);
+    expect(migration).toMatch(/revoke execute on function public\.complete_quiz_attempt/);
   });
 
-  it("keeps quiz-correct streak in attempt-scoped fields", () => {
-    expect(migration).toContain("current_correct_streak");
-    expect(migration).toContain("best_correct_streak");
-    expect(migration).not.toMatch(/daily_learning_streak/i);
+  it("allows every registered plan by avoiding plan-based eligibility", () => {
+    const signatureAndBody =
+      migration.match(/create or replace function public\.complete_quiz[\s\S]*?\$\$;/i)?.[0] ?? "";
+    expect(signatureAndBody).not.toMatch(/profiles\.plan|plan\s*=|subscription/i);
+    expect(migration).toMatch(
+      /grant execute on function public\.complete_quiz[\s\S]*to authenticated/,
+    );
   });
 });

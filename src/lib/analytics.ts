@@ -59,7 +59,6 @@ import {
   getChessRating,
   getCompanionStageForXp,
   COMPANION_STAGES,
-  QUIZ_PASS_BONUS_XP,
   QUIZ_PASS_PCT,
   QUIZ_HISTORY_CAP,
   type Progress,
@@ -68,6 +67,7 @@ import {
   type ChapterActivity,
   type CardMasteryRecord,
 } from "@/hooks/use-progress";
+import { calculateQuizXpFromScore } from "@/features/quiz/xp/quizXp";
 import { analyzeProgress, withinDays, type SubjectStat, type WeakSpot } from "@/lib/tracker";
 // Tiny standalone metadata module, not the multi-MB @/data/content curriculum
 // barrel — this file is imported by parent-dashboard.tsx (always SSR'd).
@@ -290,11 +290,12 @@ function recentActivityWithinDays(activity: RecentActivity[], days: number): Rec
 }
 
 /**
- * Approximates XP earned in the last 7 days from passed quizzes.
+ * Approximates XP earned in the last 7 days from completed quizzes.
  *
  * There is currently no server-side XP ledger with timestamps — `Progress.xp`
  * is only a running total. This is a best-effort estimate using the same
- * `QUIZ_PASS_BONUS_XP` constant the real XP system awards on a passed quiz.
+ * score bands used by the real quiz XP system. Repeat-attempt eligibility is
+ * server-owned, so this local-only estimate may include practice retakes.
  *
  * TODO(supabase): replace with a real query once an `xp_events` table
  * (user_id, amount, source, created_at) is introduced, e.g.:
@@ -303,7 +304,7 @@ function recentActivityWithinDays(activity: RecentActivity[], days: number): Rec
  */
 function estimateWeeklyXp(quizHistory: QuizResult[]): number {
   const recent = withinDays(quizHistory, 7);
-  return recent.filter((r) => r.scorePct >= QUIZ_PASS_PCT).length * QUIZ_PASS_BONUS_XP;
+  return recent.reduce((sum, result) => sum + calculateQuizXpFromScore(result.scorePct).totalXp, 0);
 }
 
 /**
