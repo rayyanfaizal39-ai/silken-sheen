@@ -1,4 +1,5 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { getAuthReturnTo } from "@/lib/auth-return-to";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Sparkles, Shield, Zap, Star, ArrowLeft, AlertCircle } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
@@ -7,6 +8,9 @@ import { AcademyLogo } from "@/components/AcademyLogo";
 import { enableGuestMode } from "@/lib/guest-mode";
 
 export const Route = createFileRoute("/login")({
+  validateSearch: (search: Record<string, unknown>): { next?: string } => ({
+    next: typeof search.next === "string" ? getAuthReturnTo(search.next) : undefined,
+  }),
   head: () =>
     seoMeta({
       title: "Sign In",
@@ -496,28 +500,24 @@ function StarField() {
 
 function LoginPage() {
   const { user, loading, isConfigured, signInWithGoogle } = useAuth();
-  const navigate = useNavigate();
-  const returnTo =
-    typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).get("next") === "/upgrade"
-      ? "/upgrade"
-      : "/home";
+  const { next } = Route.useSearch();
+  const returnTo = next ?? "/home";
   const [signing, setSigning] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // If already logged in, continue to the safe requested route.
   useEffect(() => {
     if (!loading && user) {
-      void navigate({ to: returnTo });
+      window.location.replace(returnTo);
     }
-  }, [user, loading, navigate, returnTo]);
+  }, [user, loading, returnTo]);
 
   async function handleGoogle() {
     console.info("[Auth] Google login button clicked");
     setError(null);
     setSigning(true);
     try {
-      await signInWithGoogle(returnTo === "/upgrade" ? "/upgrade" : undefined);
+      await signInWithGoogle(next);
       // Page will redirect to Google — spinner stays
     } catch (cause) {
       console.error("[Auth] Google login failed before redirect", cause);

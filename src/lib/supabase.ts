@@ -1,6 +1,11 @@
-import { createBrowserClient } from "@supabase/ssr";
+import { createBrowserClient, parseCookieHeader, serializeCookieHeader } from "@supabase/ssr";
 import { type SupabaseClient as SupabaseClientClass } from "@supabase/supabase-js";
-import { SUPABASE_AUTH_COOKIE_NAME, SUPABASE_AUTH_COOKIE_OPTIONS } from "./supabase-auth-cookie";
+import {
+  SUPABASE_AUTH_COOKIE_NAME,
+  getSupabaseAuthCookieOptions,
+  getSupabaseCookieWrites,
+  migrateBrowserAuthCookies,
+} from "./supabase-auth-cookie";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
@@ -42,13 +47,45 @@ function createStubClient() {
   return null as unknown as SupabaseClientClass;
 }
 
+const readBrowserCookies = () =>
+  parseCookieHeader(document.cookie).map(({ name, value }) => ({ name, value: value ?? "" }));
+if (isBrowser && isSupabaseConfigured) {
+  migrateBrowserAuthCookies(
+    readBrowserCookies,
+    ({ name, value, options }) => {
+      document.cookie = serializeCookieHeader(name, value, options);
+    },
+    supabaseUrl!,
+    window.location.hostname,
+    window.location.protocol === "https:",
+  );
+}
+
 export const supabase = isSupabaseConfigured
   ? createBrowserClient(supabaseUrl!, supabaseAnonKey!, {
       cookieOptions: {
         name: SUPABASE_AUTH_COOKIE_NAME,
-        ...SUPABASE_AUTH_COOKIE_OPTIONS,
-        secure: isBrowser && window.location.protocol === "https:",
+        ...getSupabaseAuthCookieOptions(
+          isBrowser ? window.location.hostname : "",
+          isBrowser && window.location.protocol === "https:",
+        ),
       },
+      cookies: isBrowser
+        ? {
+            getAll: readBrowserCookies,
+            setAll: (cookies) => {
+              for (const { name, value, options } of getSupabaseCookieWrites(
+                cookies,
+                readBrowserCookies(),
+                supabaseUrl!,
+                window.location.hostname,
+                window.location.protocol === "https:",
+              )) {
+                document.cookie = serializeCookieHeader(name, value, options);
+              }
+            },
+          }
+        : undefined,
       auth: {
         flowType: "pkce",
         persistSession: isBrowser,
