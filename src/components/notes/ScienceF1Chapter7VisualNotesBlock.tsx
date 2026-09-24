@@ -1,6 +1,6 @@
+import { Chapter7AirComposition } from "./Chapter7AirComposition";
 import { useState, type ReactNode } from "react";
 import {
-  Activity,
   AlertTriangle,
   Check,
   ChevronDown,
@@ -8,14 +8,11 @@ import {
   Cloud,
   Factory,
   Flame,
-  FlaskConical,
   HeartPulse,
   Leaf,
   Lightbulb,
-  Recycle,
   ShieldCheck,
   Sparkles,
-  Trees,
   Wind,
 } from "lucide-react";
 import type { Bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
@@ -26,37 +23,7 @@ type Lang = "en" | "bm";
 const ui = {
   en: {
     eyebrow: "Form 1 Science · Chapter 7",
-    title: "Air is an invisible life-support system",
-    subtitle:
-      "Explore its gas mixture, linked natural cycles, combustion, fire safety, and the evidence behind air-pollution control.",
-    path: [
-      ["7.1", "Composition"],
-      ["7.1", "Gas roles"],
-      ["7.1", "Cycles"],
-      ["7.2", "Combustion"],
-      ["7.3", "Pollution"],
-    ],
     sections: [
-      [
-        "7.1",
-        "Air is a physical mixture",
-        "Its gases retain their properties and can be separated physically.",
-      ],
-      [
-        "Activity 7.1",
-        "Measure oxygen using combustion",
-        "A one-fifth rise in water links observation to atmospheric composition.",
-      ],
-      [
-        "7.1",
-        "Every atmospheric gas has a role",
-        "Small percentages can still have major biological or industrial importance.",
-      ],
-      [
-        "7.1",
-        "Carbon and oxygen move in linked cycles",
-        "Photosynthesis connects the two cycles and helps maintain balance.",
-      ],
       ["7.2", "Fire needs three conditions", "Remove heat, oxygen, or fuel and combustion stops."],
       [
         "7.3",
@@ -74,19 +41,6 @@ const ui = {
         "Use scientific principles to justify safety and environmental decisions.",
       ],
     ],
-    atmosphere: "Standard atmospheric composition",
-    whyMixture: "Why air is a mixture",
-    variable: "Other variable components",
-    experiment: "Oxygen experiment",
-    aim: "Aim",
-    steps: "Method and observation",
-    predict: "Predict the water rise",
-    correct: "Correct",
-    tryAgain: "Try again",
-    gasRole: "Choose a gas",
-    uses: "Scientific and industrial roles",
-    cycles: "Compare the cycles",
-    protect: "Protect the balance",
     triangle: "Fire triangle",
     validate: "Experimental validation",
     procedure: "Procedure",
@@ -111,37 +65,7 @@ const ui = {
   },
   bm: {
     eyebrow: "Sains Tingkatan 1 · Bab 7",
-    title: "Udara ialah sistem sokongan hidup yang tidak kelihatan",
-    subtitle:
-      "Terokai campuran gas, kitar semula jadi yang berkait, pembakaran, keselamatan kebakaran, dan bukti di sebalik kawalan pencemaran udara.",
-    path: [
-      ["7.1", "Komposisi"],
-      ["7.1", "Peranan gas"],
-      ["7.1", "Kitar"],
-      ["7.2", "Pembakaran"],
-      ["7.3", "Pencemaran"],
-    ],
     sections: [
-      [
-        "7.1",
-        "Udara ialah campuran fizikal",
-        "Gas-gasnya mengekalkan sifat dan boleh dipisahkan secara fizikal.",
-      ],
-      [
-        "Aktiviti 7.1",
-        "Ukur oksigen melalui pembakaran",
-        "Kenaikan air satu perlima menghubungkan pemerhatian dengan komposisi atmosfera.",
-      ],
-      [
-        "7.1",
-        "Setiap gas atmosfera mempunyai peranan",
-        "Peratusan kecil masih boleh mempunyai kepentingan biologi atau industri yang besar.",
-      ],
-      [
-        "7.1",
-        "Karbon dan oksigen bergerak dalam kitar berkait",
-        "Fotosintesis menghubungkan kedua-dua kitar dan membantu mengekalkan keseimbangan.",
-      ],
       [
         "7.2",
         "Api memerlukan tiga syarat",
@@ -163,19 +87,6 @@ const ui = {
         "Gunakan prinsip saintifik untuk mewajarkan keputusan keselamatan dan alam sekitar.",
       ],
     ],
-    atmosphere: "Komposisi atmosfera piawai",
-    whyMixture: "Mengapa udara ialah campuran",
-    variable: "Komponen lain yang berubah-ubah",
-    experiment: "Eksperimen oksigen",
-    aim: "Tujuan",
-    steps: "Kaedah dan pemerhatian",
-    predict: "Ramalkan kenaikan air",
-    correct: "Betul",
-    tryAgain: "Cuba lagi",
-    gasRole: "Pilih satu gas",
-    uses: "Peranan saintifik dan industri",
-    cycles: "Bandingkan kitar",
-    protect: "Lindungi keseimbangan",
     triangle: "Segi tiga api",
     validate: "Pengesahan eksperimen",
     procedure: "Prosedur",
@@ -211,12 +122,9 @@ function Panel({ children, className = "" }: { children: ReactNode; className?: 
 function SectionHeading({ section }: { section: readonly [string, string, string] }) {
   return (
     <div className="max-w-3xl">
-      <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-sky-300">
-        {section[0]}
-      </p>
-      <h2 className="mt-2 font-display text-2xl font-black leading-tight text-white sm:text-3xl">
+      <h3 className="mt-2 font-display text-2xl font-black leading-tight text-white sm:text-3xl">
         {section[1]}
-      </h2>
+      </h3>
       <p className="mt-2 text-sm leading-6 text-slate-300 sm:text-base">{section[2]}</p>
     </div>
   );
@@ -312,15 +220,8 @@ export function ScienceF1Chapter7VisualNotesBlock({
   const t = content[lang];
   const extra = bab7Supplement[lang];
   const copy = ui[lang];
-  const [gas, setGas] = useState(0);
-  const [cycle, setCycle] = useState(0);
   const [fireFactor, setFireFactor] = useState(0);
   const [fireClass, setFireClass] = useState(0);
-  const [prediction, setPrediction] = useState<number | null>(null);
-
-  const cycleBoxes = [t.cycles.carbonCycle, t.cycles.oxygenCycle];
-  const predictionIsCorrect =
-    prediction !== null && t.experiment.predictOptions[prediction].correct;
 
   return (
     <section
@@ -336,11 +237,8 @@ export function ScienceF1Chapter7VisualNotesBlock({
                 {copy.eyebrow}
               </p>
               <h1 className="mt-3 font-display text-3xl font-black leading-tight text-white sm:text-5xl">
-                {copy.title}
+                {t.airLesson.title}
               </h1>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">
-                {copy.subtitle}
-              </p>
             </div>
             <div className="relative mx-auto grid h-36 w-36 shrink-0 place-items-center rounded-full border border-sky-300/30 bg-sky-300/10 lg:mx-0">
               <Wind className="h-20 w-20 text-sky-300" aria-hidden="true" />
@@ -350,190 +248,31 @@ export function ScienceF1Chapter7VisualNotesBlock({
               />
             </div>
           </div>
-          <div className="mt-6 grid gap-2 sm:grid-cols-5">
-            {copy.path.map(([code, label]) => (
-              <div
-                key={`${code}-${label}`}
-                className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3"
+          <nav aria-label={t.airLesson.title} className="mt-6 grid gap-2 sm:grid-cols-3">
+            {t.airLesson.subtopics.map(({ code, title }) => (
+              <a
+                key={code}
+                href={`#chapter7-${code.replace(".", "")}`}
+                className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 text-sm font-bold text-sky-100 hover:bg-sky-300/10"
               >
-                <span className="font-mono text-[10px] font-black uppercase text-sky-300">
-                  {code}
-                </span>
-                <p className="mt-1 text-xs font-bold text-slate-200">{label}</p>
-              </div>
+                {code} {title}
+              </a>
             ))}
-          </div>
+          </nav>
         </header>
 
         <div className="mt-12 space-y-16">
-          <section className="space-y-6">
+          <section id="chapter7-71" data-official-subtopic="7.1" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.airLesson.subtopics[0].code} {t.airLesson.subtopics[0].title}
+            </h2>
+            <Chapter7AirComposition content={t} />
+          </section>
+          <section id="chapter7-72" data-official-subtopic="7.2" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.airLesson.subtopics[1].code} {t.airLesson.subtopics[1].title}
+            </h2>
             <SectionHeading section={copy.sections[0]} />
-            <div className="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
-              <Panel className="grid place-items-center">
-                <div className="w-full max-w-xs">
-                  <div
-                    aria-label={copy.atmosphere}
-                    className="mx-auto aspect-square w-52 rounded-full border-8 border-slate-950 shadow-[0_0_50px_rgba(56,189,248,.15)]"
-                    style={{
-                      background:
-                        "conic-gradient(#38bdf8 0 78%, #a78bfa 78% 99%, #fbbf24 99% 99.03%, #4ade80 99.03% 100%)",
-                    }}
-                  />
-                  <div className="mt-5 grid grid-cols-2 gap-2">
-                    {t.composition.legend.map((item) => (
-                      <div key={item.name} className="rounded-lg bg-slate-950/35 p-3">
-                        <span
-                          className="inline-block h-2.5 w-2.5 rounded-full"
-                          style={{ backgroundColor: item.color }}
-                        />
-                        <p className="mt-1 text-xs text-slate-300">{item.name}</p>
-                        <p className="font-mono text-lg font-black text-white">{item.percentage}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Panel>
-              <div className="grid gap-4">
-                <Panel>
-                  <h3 className="font-bold text-sky-200">{copy.whyMixture}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    {t.composition.reveals[2].body}
-                  </p>
-                </Panel>
-                <Panel>
-                  <h3 className="font-bold text-emerald-200">{copy.variable}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    {t.composition.reveals[0].body}
-                  </p>
-                </Panel>
-                <Panel>
-                  <h3 className="font-bold text-violet-200">
-                    {t.composition.reveals[1].chipLabel.replace(/^[^A-Za-zÀ-ÿ"]+/, "")}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
-                    {t.composition.reveals[1].body}
-                  </p>
-                </Panel>
-              </div>
-            </div>
-          </section>
-
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[1]} />
-            <Panel>
-              <div className="flex items-center gap-3">
-                <FlaskConical className="h-6 w-6 text-sky-300" />
-                <h3 className="font-bold text-white">{copy.experiment}</h3>
-              </div>
-              <p className="mt-4 text-xs font-bold uppercase tracking-wider text-sky-300">
-                {copy.aim}
-              </p>
-              <p className="mt-1 text-sm text-slate-200">{t.experiment.aim}</p>
-              <div className="mt-5 grid gap-3 md:grid-cols-3">
-                {t.experiment.steps.map((step, index) => (
-                  <div
-                    key={step.caption}
-                    className="rounded-xl border border-white/10 bg-slate-950/40 p-4"
-                  >
-                    <span className="grid h-8 w-8 place-items-center rounded-full bg-sky-300/15 font-mono text-sm font-black text-sky-300">
-                      {index + 1}
-                    </span>
-                    <p className="mt-3 text-sm leading-6 text-slate-300">{step.caption}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 rounded-2xl border border-violet-300/20 bg-violet-300/[0.06] p-4 sm:p-5">
-                <h4 className="font-bold text-white">{copy.predict}</h4>
-                <p className="mt-1 text-sm text-slate-300">{t.experiment.predictQuestion}</p>
-                <div className="mt-4 grid gap-2 md:grid-cols-3">
-                  {t.experiment.predictOptions.map((option, index) => (
-                    <button
-                      key={option.label}
-                      type="button"
-                      onClick={() => setPrediction(index)}
-                      className={`min-h-12 cursor-pointer rounded-xl border px-4 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 ${prediction === index ? (option.correct ? "border-emerald-300/50 bg-emerald-300/15 text-emerald-100" : "border-rose-300/50 bg-rose-300/15 text-rose-100") : "border-white/10 bg-slate-950/40 text-slate-200 hover:border-white/25"}`}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </div>
-                {prediction !== null && (
-                  <p
-                    role="status"
-                    className={`mt-4 rounded-xl p-3 text-sm leading-6 ${predictionIsCorrect ? "bg-emerald-300/10 text-emerald-100" : "bg-rose-300/10 text-rose-100"}`}
-                  >
-                    <strong>{predictionIsCorrect ? copy.correct : copy.tryAgain}.</strong>{" "}
-                    {predictionIsCorrect
-                      ? t.experiment.predictFeedback
-                      : t.experiment.predictQuestion}
-                  </p>
-                )}
-              </div>
-            </Panel>
-          </section>
-
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[2]} />
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Activity className="h-6 w-6 text-violet-300" />
-                <h3 className="font-bold text-white">{copy.gasRole}</h3>
-              </div>
-              <div className="mt-4">
-                <Tabs
-                  labels={t.uses.tabs.map((item) => `${item.symbol} · ${item.name}`)}
-                  selected={gas}
-                  onSelect={setGas}
-                />
-              </div>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2" role="tabpanel">
-                {t.uses.tabs[gas].uses.map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-xl border border-white/10 bg-slate-950/35 p-4"
-                  >
-                    <p className="font-bold text-white">{item.label}</p>
-                    {item.sub && <p className="mt-1 text-sm text-slate-300">{item.sub}</p>}
-                  </div>
-                ))}
-              </div>
-            </Panel>
-          </section>
-
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[3]} />
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Recycle className="h-6 w-6 text-emerald-300" />
-                <h3 className="font-bold text-white">{copy.cycles}</h3>
-              </div>
-              <div className="mt-4">
-                <Tabs
-                  labels={cycleBoxes.map((item) => item.heading)}
-                  selected={cycle}
-                  onSelect={setCycle}
-                />
-              </div>
-              <div
-                className="mt-4 rounded-xl border border-emerald-300/20 bg-emerald-300/[0.06] p-4"
-                role="tabpanel"
-              >
-                <Checklist items={cycleBoxes[cycle].steps} />
-              </div>
-            </Panel>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Trees className="h-6 w-6 text-emerald-300" />
-                <h3 className="font-bold text-white">{copy.protect}</h3>
-              </div>
-              <div className="mt-4">
-                <Checklist items={t.cycles.balanceActions} />
-              </div>
-            </Panel>
-          </section>
-
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[4]} />
             <div className="grid gap-5 lg:grid-cols-[.75fr_1.25fr]">
               <Panel className="grid place-items-center">
                 <div className="w-full max-w-sm text-center">
@@ -638,8 +377,11 @@ export function ScienceF1Chapter7VisualNotesBlock({
             </Panel>
           </section>
 
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[5]} />
+          <section id="chapter7-73" data-official-subtopic="7.3" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.airLesson.subtopics[2].code} {t.airLesson.subtopics[2].title}
+            </h2>
+            <SectionHeading section={copy.sections[1]} />
             <Panel>
               <div className="flex items-center gap-3">
                 <Cloud className="h-6 w-6 text-slate-300" />
@@ -705,7 +447,7 @@ export function ScienceF1Chapter7VisualNotesBlock({
           </section>
 
           <section className="space-y-6">
-            <SectionHeading section={copy.sections[6]} />
+            <SectionHeading section={copy.sections[2]} />
             <div className="grid gap-4 lg:grid-cols-3">
               {t.prevention.map((category) => (
                 <Panel key={category.heading}>
@@ -719,7 +461,7 @@ export function ScienceF1Chapter7VisualNotesBlock({
           </section>
 
           <section className="space-y-6">
-            <SectionHeading section={copy.sections[7]} />
+            <SectionHeading section={copy.sections[3]} />
             <div className="grid gap-5 lg:grid-cols-2">
               <Panel>
                 <div className="flex items-center gap-3">
