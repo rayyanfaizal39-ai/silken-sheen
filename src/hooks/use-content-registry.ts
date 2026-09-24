@@ -30,6 +30,52 @@ export function useContentRegistry(): ContentRegistryModule | null {
   return override ?? registry;
 }
 
+export type ContentRegistryStatus = "loading" | "ready" | "error";
+
+/**
+ * Same lazy dynamic-import as `useContentRegistry`, but surfaces a real
+ * loading/ready/error status (instead of collapsing "still loading" and
+ * "failed to load" into the same `null`) plus a `retry` that re-runs the
+ * import. Use this wherever a page needs to tell "no content yet" apart
+ * from "still checking" or "the chunk failed to load".
+ */
+export function useContentRegistryStatus(): {
+  registry: ContentRegistryModule | null;
+  status: ContentRegistryStatus;
+  retry: () => void;
+} {
+  const override = useContext(ContentRegistryContext);
+  const [registry, setRegistry] = useState<ContentRegistryModule | null>(null);
+  const [status, setStatus] = useState<ContentRegistryStatus>("loading");
+  const [revision, setRevision] = useState(0);
+
+  useEffect(() => {
+    if (override) return;
+    let cancelled = false;
+    setStatus((current) => (current === "ready" ? current : "loading"));
+    import("@/content/registry").then(
+      (mod) => {
+        if (cancelled) return;
+        setRegistry(mod);
+        setStatus("ready");
+      },
+      () => {
+        if (cancelled) return;
+        setStatus("error");
+      },
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [override, revision]);
+
+  return {
+    registry: override ?? registry,
+    status: override ? "ready" : status,
+    retry: () => setRevision((v) => v + 1),
+  };
+}
+
 // Same rationale as ContentRegistryModule above: @/data/content is the
 // legacy multi-MB notes/quizzes/flashcards barrel that @/content/registry
 // itself builds on. Load it lazily, client-side only, wherever legacy

@@ -57,11 +57,12 @@ import {
   bmF3ObjektifKuiz3,
 } from "@/data/bm-f3-objektif-quizzes";
 import type { QuizQuestion } from "@/data/types";
-import { QUIZ_PASS_BONUS_XP, QUIZ_PASS_PCT, useProgress } from "@/hooks/use-progress";
+import { useProgress } from "@/hooks/use-progress";
 import {
-  QUIZ_CORRECT_STREAK_BONUS_XP,
-  QUIZ_TIMER_BONUS_XP,
-} from "@/features/quiz/bonus/quizBonusXp";
+  buildQuizKey,
+  createQuizCompletionId,
+  type QuizCompletionResult,
+} from "@/features/quiz/xp/quizXp";
 import { sfx } from "@/lib/sounds";
 import { getQuizQuestionCount } from "@/lib/quiz-counts";
 import {
@@ -546,7 +547,7 @@ function ObjektifKuizView({
 }) {
   const set = sets[setIndex];
   const questions: QuizQuestion[] = set.questions as unknown as QuizQuestion[];
-  const { addXp, recordQuiz, recordQuizResult } = useProgress();
+  const { recordQuizResult } = useProgress();
   const totalSeconds = 60;
 
   type Phase = "intro" | "quiz" | "results";
@@ -559,9 +560,10 @@ function ObjektifKuizView({
   const [revealed, setRevealed] = useState(false);
   const [answers, setAnswers] = useState<(number | null)[]>(Array(questions.length).fill(null));
   const [timeLeft, setTimeLeft] = useState(totalSeconds);
-  const [earnedXp, setEarnedXp] = useState(0);
-  const [speedBonusXp, setSpeedBonusXp] = useState(0);
-  const [streakBonusXp, setStreakBonusXp] = useState(0);
+  const [completionId, setCompletionId] = useState(createQuizCompletionId);
+  const [quizCompletion, setQuizCompletion] = useState<QuizCompletionResult | null>(null);
+  const [quizCompletionPending, setQuizCompletionPending] = useState(false);
+  const [quizCompletionError, setQuizCompletionError] = useState(false);
   const [streakWasReset, setStreakWasReset] = useState(false);
   const quizStreak = useQuizStreak(`bm:${formLabel}:${set.id}`);
 
@@ -595,13 +597,8 @@ function ObjektifKuizView({
     quizStreak.confirmAnswer({
       questionId: `bm:${set.id}:${current}`,
       correct: answerIsCorrect,
-      xpAwarded: answerIsCorrect ? QUIZ_CORRECT_STREAK_BONUS_XP : 0,
     });
     setStreakWasReset(!answerIsCorrect && previousStreak > 0);
-    if (answerIsCorrect) {
-      setSpeedBonusXp((value) => value + QUIZ_TIMER_BONUS_XP[60]);
-      setStreakBonusXp((value) => value + QUIZ_CORRECT_STREAK_BONUS_XP);
-    }
   }
 
   function handleNext() {
@@ -612,29 +609,25 @@ function ObjektifKuizView({
       setRevealed(false);
       setTimeLeft(totalSeconds);
     } else {
-      recordQuiz(pct === 100);
-      recordQuizResult({
+      setQuizCompletion(null);
+      setQuizCompletionPending(true);
+      setQuizCompletionError(false);
+      void recordQuizResult({
+        completionId,
+        quizKey: buildQuizKey({
+          subjectId: "bm",
+          form: formLabel,
+          chapterKey: "kertas-1-objektif",
+          variant: set.id,
+        }),
         subjectId: "bm",
         chapterKey: set.id,
         correct,
         total: quizQuestions.length,
-        xpEarned:
-          (pct >= 90 ? 45 : pct >= 80 ? 35 : pct >= 60 ? 20 : 10) +
-          speedBonusXp +
-          streakBonusXp +
-          (pct >= QUIZ_PASS_PCT ? QUIZ_PASS_BONUS_XP : 0),
-        timerMode: 60,
-        baseXp: pct >= 90 ? 45 : pct >= 80 ? 35 : pct >= 60 ? 20 : 10,
-        speedBonusXp,
-        streakBonusXp,
-        passBonusXp: pct >= QUIZ_PASS_PCT ? QUIZ_PASS_BONUS_XP : 0,
-        bestCorrectStreak: quizStreak.bestStreak,
-      });
-      const xpReward = pct >= 90 ? 45 : pct >= 80 ? 35 : pct >= 60 ? 20 : 10;
-      addXp(xpReward + speedBonusXp + streakBonusXp, "bm");
-      setEarnedXp(
-        xpReward + speedBonusXp + streakBonusXp + (pct >= QUIZ_PASS_PCT ? QUIZ_PASS_BONUS_XP : 0),
-      );
+      })
+        .then(setQuizCompletion)
+        .catch(() => setQuizCompletionError(true))
+        .finally(() => setQuizCompletionPending(false));
       if (pct >= 60) sfx.fanfare();
       setPhase("results");
     }
@@ -648,9 +641,10 @@ function ObjektifKuizView({
     setRevealed(false);
     setAnswers(Array(questions.length).fill(null));
     setTimeLeft(totalSeconds);
-    setEarnedXp(0);
-    setSpeedBonusXp(0);
-    setStreakBonusXp(0);
+    setCompletionId(createQuizCompletionId());
+    setQuizCompletion(null);
+    setQuizCompletionPending(false);
+    setQuizCompletionError(false);
     setStreakWasReset(false);
     setPhase("quiz");
   }
@@ -712,11 +706,7 @@ function ObjektifKuizView({
           <div className="mx-auto mt-4 max-w-md rounded-2xl border border-amber-300/15 bg-amber-300/[0.05] px-4 py-3 text-xs text-white/65">
             <span className="font-bold text-white">1 Minute Challenge</span>
             <span className="mx-2 text-white/25">•</span>
-            <span aria-label="Speed Bonus plus 5 XP per correct answer">
-              ⚡ +5 Speed XP / correct
-            </span>
-            <span className="mx-2 text-white/25">•</span>
-            <span aria-label="Correct Streak Bonus plus 5 XP">🔥 +5 Correct Streak XP</span>
+            <span>XP is based on completion and final score only</span>
           </div>
           <button
             onClick={handleStart}
@@ -802,37 +792,42 @@ function ObjektifKuizView({
               <p className="text-[10px] font-black uppercase tracking-wide text-white/35">
                 Ganjaran
               </p>
-              <p className="mt-1 text-lg font-black text-sky-200">+{earnedXp} XP</p>
+              <p className="mt-1 text-lg font-black text-sky-200">
+                +{quizCompletion?.xpEarned ?? 0} XP
+              </p>
             </div>
           </div>
           <div className="mx-auto mt-4 max-w-sm rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 text-left text-xs text-white/60">
-            <div className="flex justify-between py-1">
-              <span>Legacy BM quiz reward</span>
-              <span>
-                +
-                {earnedXp -
-                  speedBonusXp -
-                  streakBonusXp -
-                  (pct >= QUIZ_PASS_PCT ? QUIZ_PASS_BONUS_XP : 0)}{" "}
-                XP
-              </span>
-            </div>
-            <div className="flex justify-between py-1">
-              <span>Speed Bonus</span>
-              <span>+{speedBonusXp} XP</span>
-            </div>
-            <div className="flex justify-between py-1">
-              <span>Correct Streak Bonus</span>
-              <span>+{streakBonusXp} XP</span>
-            </div>
-            <div className="flex justify-between py-1">
-              <span>Pass Bonus</span>
-              <span>+{pct >= QUIZ_PASS_PCT ? QUIZ_PASS_BONUS_XP : 0} XP</span>
-            </div>
-            <div className="mt-2 flex justify-between border-t border-white/10 pt-2 font-bold text-white">
-              <span>TOTAL XP</span>
-              <span className="text-sky-200">+{earnedXp} XP</span>
-            </div>
+            {quizCompletionPending ? (
+              <p>Menyimpan keputusan…</p>
+            ) : quizCompletionError ? (
+              <p className="text-rose-200">XP belum disimpan. Cuba lagi apabila sambungan pulih.</p>
+            ) : quizCompletion ? (
+              <>
+                <div className="flex justify-between py-1">
+                  <span>XP penyelesaian</span>
+                  <span>+{quizCompletion.awarded ? quizCompletion.completionXp : 0} XP</span>
+                </div>
+                <div className="flex justify-between py-1">
+                  <span>Bonus markah</span>
+                  <span>+{quizCompletion.awarded ? quizCompletion.scoreBonusXp : 0} XP</span>
+                </div>
+                <div className="mt-2 flex justify-between border-t border-white/10 pt-2 font-bold text-white">
+                  <span>JUMLAH XP</span>
+                  <span className="text-sky-200">+{quizCompletion.xpEarned} XP</span>
+                </div>
+                {!quizCompletion.eligible && (
+                  <p className="mt-2 text-amber-100/75">
+                    Tetamu boleh berlatih, tetapi XP tidak disimpan atau dimasukkan dalam papan pendahulu.
+                  </p>
+                )}
+                {quizCompletion.eligible && !quizCompletion.awarded && (
+                  <p className="mt-2 text-white/50">
+                    Kuiz ini telah memberikan XP sebelum ini. Cubaan latihan ini memberi 0 XP tambahan.
+                  </p>
+                )}
+              </>
+            ) : null}
             <div className="mt-2 flex justify-between text-orange-200">
               <span>Best Correct Streak</span>
               <span>🔥 {quizStreak.bestStreak}</span>

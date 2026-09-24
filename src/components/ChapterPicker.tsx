@@ -668,11 +668,11 @@ export function FormComingSoon({
           {subj?.name} / {form}
         </p>
         <h2 className="relative mt-3 font-display text-3xl font-bold text-white">
-          {mode === "quizzes" ? "Quiz Coming Soon" : "Coming Soon"}
+          {mode === "quizzes" ? "No quizzes available yet" : "Coming Soon"}
         </h2>
         <p className="relative mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/60">
           {mode === "quizzes"
-            ? "Notes are available first. Quiz content will be added later."
+            ? "We’re still preparing quizzes for this chapter. Check back again soon."
             : `${form} content is currently being prepared.`}
         </p>
       </div>

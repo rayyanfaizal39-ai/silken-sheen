@@ -72,7 +72,7 @@ function getLoaderElements() {
  * They're created here only once a genuine boot failure/timeout has
  * occurred, and removed again via `removeLoaderError` once it clears.
  */
-function renderLoaderError(loader: HTMLElement, onRetry: () => void) {
+export function renderLoaderError(loader: HTMLElement, onRetry: () => Promise<void>) {
   if (loader.querySelector("[data-loading-error-block]")) return;
 
   const block = document.createElement("div");
@@ -94,7 +94,23 @@ function renderLoaderError(loader: HTMLElement, onRetry: () => void) {
   retryButton.type = "button";
   retryButton.setAttribute("data-loading-retry", "true");
   retryButton.textContent = "Retry";
-  retryButton.addEventListener("click", onRetry);
+  retryButton.addEventListener("click", () => {
+    if (retryButton.disabled) return;
+    retryButton.disabled = true;
+    retryButton.textContent = "Retrying…";
+    onRetry()
+      .catch(() => {
+        // A failed retry already surfaces through `state.error` (re-rendering
+        // this same error block with the updated message); this handler only
+        // owns the button's own busy/idle presentation, not error reporting.
+      })
+      .finally(() => {
+        // If the retry succeeded, `removeLoaderError` already dropped this
+        // button from the DOM — resetting a detached node is harmless.
+        retryButton.disabled = false;
+        retryButton.textContent = "Retry";
+      });
+  });
 
   const reloadButton = document.createElement("button");
   reloadButton.type = "button";
@@ -107,7 +123,7 @@ function renderLoaderError(loader: HTMLElement, onRetry: () => void) {
   loader.appendChild(block);
 }
 
-function removeLoaderError(loader: HTMLElement) {
+export function removeLoaderError(loader: HTMLElement) {
   loader.querySelector("[data-loading-error-block]")?.remove();
 }
 
@@ -146,7 +162,7 @@ export function AppBootGate({ children }: { children: ReactNode }) {
   const routeTask = useRef<LoadingTaskHandle | null>(null);
   const hideTimer = useRef<number | null>(null);
 
-  const retry = useCallback(() => {
+  const retry = useCallback(async () => {
     clearLoadingError();
     routeTask.current?.finish();
     routeTask.current = beginLoadingTask({
@@ -154,7 +170,7 @@ export function AppBootGate({ children }: { children: ReactNode }) {
       message: "Retrying your learning mission…",
       timeoutMs: BOOT_TIMEOUT_MS,
     });
-    void router.invalidate().finally(() => routeTask.current?.finish());
+    await router.invalidate().finally(() => routeTask.current?.finish());
   }, [router]);
 
   useEffect(() => {

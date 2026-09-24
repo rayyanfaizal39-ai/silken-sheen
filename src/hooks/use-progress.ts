@@ -11,6 +11,11 @@ import {
   type MissionSystemState,
 } from "@/lib/mission-system";
 import {
+  calculateQuizXp,
+  createNonEarningQuizResult,
+  type QuizCompletionResult,
+} from "@/features/quiz/xp/quizXp";
+import {
   removePendingGeographyF3Progress,
   sanitizeRemovedGeographyF3Progress,
 } from "@/lib/removed-content-progress";
@@ -190,9 +195,8 @@ export interface CompanionEvolutionEvent {
   timestamp: number;
 }
 
-/** Pass threshold + rewards for "passing" a quiz. */
+/** Mastery threshold used by tracker/analytics views. Quiz XP uses score bands. */
 export const QUIZ_PASS_PCT = 80;
-export const QUIZ_PASS_BONUS_XP = 25; // extra XP on top of per-question XP
 export const QUIZ_HISTORY_CAP = 200; // keep the most recent N results
 export const RECENT_ACTIVITY_CAP = 12;
 
@@ -731,58 +735,62 @@ async function saveToSupabase(userId: string, p: Progress): Promise<void> {
 }
 
 /**
- * Inserts one immutable row into `quiz_history` for a completed quiz.
- * Supplies monthly leaderboard XP as well as learning-history analytics.
- * Every registered student's earned XP must be recorded regardless of plan;
- * premium analytics access is enforced by its own UI guards. Local progress
- * is handled separately by `recordQuizResult`.
+ * Completes a quiz through the server-owned, idempotent XP transaction.
+ * The client sends only the score and stable quiz identity; Supabase derives
+ * the XP and enforces one leaderboard award per registered user + quiz.
  */
-export async function insertQuizHistoryRow(result: {
+export async function submitQuizCompletion(result: {
+  completionId: string;
+  quizKey: string;
   subjectId: string;
   chapterKey: string;
-  scorePct: number;
   correct: number;
   total: number;
-  xpEarned?: number;
-  timerMode?: "none" | 60 | 30 | 15;
-  baseXp?: number;
-  speedBonusXp?: number;
-  streakBonusXp?: number;
-  passBonusXp?: number;
-  bestCorrectStreak?: number;
-}): Promise<void> {
-  if (!isSupabaseConfigured) return;
-  try {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user || !canPersistProgress(user.id)) return;
-
-    const { error } = await supabase.from("quiz_history").insert({
-      user_id: user.id,
-      subject_id: result.subjectId,
-      chapter_key: result.chapterKey,
-      score_pct: result.scorePct,
-      correct: result.correct,
-      total: result.total,
-      // Real per-question difficulty-based XP award (10/20/30), summed for
-      // this quiz — not a flat estimate. Omitted (stays NULL) for callers
-      // that don't pass it, which the Galaxy Hall of Fame's Monthly XP
-      // ranking treats as "no data" rather than 0.
-      ...(result.xpEarned != null ? { xp_earned: result.xpEarned } : {}),
-      ...(result.timerMode != null ? { timer_mode: String(result.timerMode) } : {}),
-      ...(result.baseXp != null ? { base_xp: result.baseXp } : {}),
-      ...(result.speedBonusXp != null ? { speed_bonus_xp: result.speedBonusXp } : {}),
-      ...(result.streakBonusXp != null ? { streak_bonus_xp: result.streakBonusXp } : {}),
-      ...(result.passBonusXp != null ? { pass_bonus_xp: result.passBonusXp } : {}),
-      ...(result.bestCorrectStreak != null
-        ? { best_correct_streak: result.bestCorrectStreak }
-        : {}),
-    });
-    if (!error) window.dispatchEvent(new Event("academy:quiz-history-updated"));
-  } catch {
-    // Preserve local progress when the remote history write is unavailable.
+}): Promise<QuizCompletionResult> {
+  if (!isSupabaseConfigured) {
+    return createNonEarningQuizResult(result.correct, result.total, "unavailable");
   }
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const anonymousUser = (user as { is_anonymous?: boolean } | null)?.is_anonymous === true;
+  if (!user || anonymousUser || !canPersistProgress(user.id)) {
+    return createNonEarningQuizResult(result.correct, result.total, "guest");
+  }
+
+  const { data, error } = await supabase.rpc("complete_quiz", {
+    requested_completion_id: result.completionId,
+    requested_quiz_key: result.quizKey,
+    requested_subject_id: result.subjectId,
+    requested_chapter_key: result.chapterKey,
+    requested_correct: result.correct,
+    requested_total: result.total,
+  });
+  if (error) throw error;
+
+  const row = (data ?? {}) as Record<string, unknown>;
+  const fallback = calculateQuizXp(result.correct, result.total);
+  const numeric = (key: string, fallbackValue: number | null) =>
+    typeof row[key] === "number" ? (row[key] as number) : fallbackValue;
+  const completion: QuizCompletionResult = {
+    accepted: row.accepted !== false,
+    eligible: row.eligible !== false,
+    awarded: row.awarded === true,
+    completionXp: numeric("completionXp", fallback.completionXp) ?? fallback.completionXp,
+    scoreBonusXp: numeric("scoreBonusXp", fallback.scoreBonusXp) ?? fallback.scoreBonusXp,
+    potentialXp: numeric("potentialXp", fallback.totalXp) ?? fallback.totalXp,
+    xpEarned: numeric("xpEarned", 0) ?? 0,
+    scorePct: numeric("scorePct", fallback.scorePct) ?? fallback.scorePct,
+    lifetimeXp: numeric("lifetimeXp", null),
+    subjectXp: numeric("subjectXp", null),
+    quizzesTaken: numeric("quizzesTaken", null),
+  };
+
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("academy:quiz-history-updated"));
+  }
+  return completion;
 }
 
 // ─── Singleton auth sync ──────────────────────────────────────────────────────
@@ -1309,31 +1317,21 @@ export function useProgress() {
     [scheduleSync],
   );
 
-  /**
-   * Log a completed quiz for the AI Tracker + Parent Report and, when the
-   * student scores at least QUIZ_PASS_PCT, award the existing bonus XP.
-   * Returns 0 for backwards compatibility with older callers.
-   */
+  /** Logs local analytics, then applies only the authoritative server award. */
   const recordQuizResult = useCallback(
-    (input: {
+    async (input: {
+      completionId: string;
+      quizKey: string;
       subjectId: string;
       chapterKey: string;
       correct: number;
       total: number;
-      xpEarned?: number;
-      timerMode?: "none" | 60 | 30 | 15;
-      baseXp?: number;
-      speedBonusXp?: number;
-      streakBonusXp?: number;
-      passBonusXp?: number;
-      bestCorrectStreak?: number;
-    }): number => {
+    }): Promise<QuizCompletionResult> => {
       const total = Math.max(1, input.total);
       const correct = Math.max(0, Math.min(input.correct, total));
       const scorePct = Math.round((correct / total) * 100);
-      const passed = scorePct >= QUIZ_PASS_PCT;
       const result: QuizResult = {
-        id: `q_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+        id: input.completionId,
         subjectId: input.subjectId,
         chapterKey: input.chapterKey,
         scorePct,
@@ -1342,34 +1340,15 @@ export function useProgress() {
         date: new Date().toISOString(),
       };
 
-      trackMissionActivity("quiz", `quiz:${result.id}`, getLocalDateKey(new Date(result.date)), {
-        correct,
-        total,
-        subjectId: input.subjectId,
-      });
-      if (sharedUserId) {
-        void insertQuizHistoryRow({
-          subjectId: input.subjectId,
-          chapterKey: input.chapterKey,
-          scorePct,
-          correct,
-          total,
-          xpEarned: input.xpEarned,
-          timerMode: input.timerMode,
-          baseXp: input.baseXp,
-          speedBonusXp: input.speedBonusXp,
-          streakBonusXp: input.streakBonusXp,
-          passBonusXp: input.passBonusXp,
-          bestCorrectStreak: input.bestCorrectStreak,
-        });
-      }
-
       setProgress((prev) => {
+        const alreadyRecorded = (prev.quizHistory ?? []).some((item) => item.id === result.id);
+        if (alreadyRecorded) return prev;
         const quizHistory = [...(prev.quizHistory ?? []), result].slice(-QUIZ_HISTORY_CAP);
         const timestamp = Date.now();
 
         const next: Progress = {
           ...prev,
+          quizzesTaken: prev.quizzesTaken + 1,
           quizHistory,
           recentActivity: pushRecentActivity(prev.recentActivity, {
             subjectId: input.subjectId,
@@ -1379,22 +1358,64 @@ export function useProgress() {
             timestamp,
             detail: `${correct}/${total} correct`,
           }),
-          xp: prev.xp + (passed ? QUIZ_PASS_BONUS_XP : 0),
-          subjectXp: passed
-            ? {
-                ...prev.subjectXp,
-                [input.subjectId]: (prev.subjectXp[input.subjectId] || 0) + QUIZ_PASS_BONUS_XP,
-              }
-            : prev.subjectXp,
         };
         try {
           localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
         } catch {}
-        scheduleSync(next);
         detectProgressionEvents(prev, next);
         return next;
       });
-      return 0;
+
+      const completion = await submitQuizCompletion({
+        completionId: input.completionId,
+        quizKey: input.quizKey,
+        subjectId: input.subjectId,
+        chapterKey: input.chapterKey,
+        correct,
+        total,
+      });
+
+      if (completion.eligible) {
+        trackMissionActivity("quiz", `quiz:${result.id}`, getLocalDateKey(new Date(result.date)), {
+          correct,
+          total,
+          subjectId: input.subjectId,
+        });
+      }
+
+      if (completion.lifetimeXp != null || completion.quizzesTaken != null) {
+        setProgress((prev) => {
+          const nextXp =
+            completion.lifetimeXp == null ? prev.xp : Math.max(prev.xp, completion.lifetimeXp);
+          const next: Progress = {
+            ...prev,
+            xp: nextXp,
+            quizzesTaken:
+              completion.quizzesTaken == null
+                ? prev.quizzesTaken
+                : Math.max(prev.quizzesTaken, completion.quizzesTaken),
+            subjectXp:
+              completion.subjectXp == null
+                ? prev.subjectXp
+                : {
+                    ...prev.subjectXp,
+                    [input.subjectId]: Math.max(
+                      prev.subjectXp[input.subjectId] || 0,
+                      completion.subjectXp,
+                    ),
+                  },
+            badges: applyXpMilestoneBadges(prev.badges, nextXp),
+          };
+          try {
+            localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
+          } catch {}
+          scheduleSync(next);
+          detectProgressionEvents(prev, next);
+          return next;
+        });
+      }
+
+      return completion;
     },
     [scheduleSync, detectProgressionEvents, trackMissionActivity],
   );

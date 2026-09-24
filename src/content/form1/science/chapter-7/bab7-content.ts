@@ -108,7 +108,45 @@ export interface ApiRow {
   severity: "good" | "moderate" | "unhealthy" | "veryUnhealthy" | "hazardous";
 }
 
+export interface AirCycle {
+  definition: string;
+  nodes: { id: string; label: string }[];
+  edges: {
+    id: string;
+    from: string;
+    to: string;
+    label: string;
+    role: "uses" | "returns" | "transfer";
+  }[];
+  legend: { uses: string; returns: string };
+}
+export interface AirLesson {
+  title: string;
+  subtopics: { code: string; title: string }[];
+  compositionTitle: string;
+  variableTitle: string;
+  mixtureTitle: string;
+  distillation: string[];
+  activityTitle: string;
+  apparatus: { id: string; label: string }[];
+  stages: string[];
+  stageCaptions: string[];
+  apparatusLabel: string;
+  procedureLabel: string;
+  originalWater: string;
+  finalWater: string;
+  estimate: string;
+  chartOxygen: string;
+  usesTitle: string;
+  carbon: AirCycle;
+  oxygen: AirCycle;
+  research: { title: string; aim: string; instructions: string[] };
+  interference: { title: string; causes: string[]; increase: string; effects: string[] };
+  practice: { title: string; questions: string[] };
+}
+
 export interface Bab7Content {
+  airLesson: AirLesson;
   hook: { title: string; body: string };
   composition: CompositionSection;
   experiment: ExperimentSection;
@@ -125,32 +163,346 @@ export interface Bab7Content {
 }
 
 const en: Bab7Content = {
+  airLesson: {
+    title: "Air",
+    subtopics: [
+      {
+        code: "7.1",
+        title: "Composition of Air",
+      },
+      {
+        code: "7.2",
+        title: "Combustion",
+      },
+      {
+        code: "7.3",
+        title: "Air Pollution",
+      },
+    ],
+    compositionTitle: "Composition of air",
+    variableTitle: "Other components",
+    mixtureTitle: "Is Air a Mixture?",
+    distillation: [
+      "Liquid mixture",
+      "Fractions with different boiling points",
+      "Boiling and condensation",
+    ],
+    activityTitle: "Activity 7.1",
+    apparatus: [
+      {
+        id: "candle",
+        label: "Candle",
+      },
+      {
+        id: "plasticine",
+        label: "Plasticine",
+      },
+      {
+        id: "matches",
+        label: "Matches",
+      },
+      {
+        id: "basin",
+        label: "Glass basin",
+      },
+      {
+        id: "marker",
+        label: "Permanent marker",
+      },
+      {
+        id: "jar",
+        label: "Gas jar",
+      },
+      {
+        id: "stand",
+        label: "Gas jar stand",
+      },
+      {
+        id: "water",
+        label: "Water",
+      },
+    ],
+    stages: ["Before", "During", "After"],
+    stageCaptions: [
+      "Light the candle. The gas jar is marked into five equal parts.",
+      "Invert the gas jar over the burning candle.",
+      "The flame extinguishes. Water rises to one fifth of the gas jar.",
+    ],
+    apparatusLabel: "Materials and apparatus",
+    procedureLabel: "Procedure",
+    originalWater: "Original water level",
+    finalWater: "Water rises by 1/5",
+    estimate: "Activity 7.1: 1/5 ≈ 20% oxygen",
+    chartOxygen: "Composition of air: 21% oxygen",
+    usesTitle: "Importance of Gases in Daily Life",
+    carbon: {
+      definition:
+        "The carbon cycle maintains the carbon dioxide content in the air by continuously taking carbon dioxide from the air and returning it to the air.",
+      nodes: [
+        {
+          id: "atmosphere",
+          label: "Carbon dioxide in the atmosphere",
+        },
+        {
+          id: "plants",
+          label: "Green plants",
+        },
+        {
+          id: "animals",
+          label: "Animals",
+        },
+        {
+          id: "dead",
+          label: "Dead organisms",
+        },
+        {
+          id: "fossil",
+          label: "Fossil fuels: petroleum, natural gas and coal",
+        },
+      ],
+      edges: [
+        {
+          id: "photosynthesis",
+          from: "atmosphere",
+          to: "plants",
+          label: "Photosynthesis",
+          role: "uses",
+        },
+        {
+          id: "plant-respiration",
+          from: "plants",
+          to: "atmosphere",
+          label: "Respiration",
+          role: "returns",
+        },
+        {
+          id: "animal-respiration",
+          from: "animals",
+          to: "atmosphere",
+          label: "Respiration",
+          role: "returns",
+        },
+        {
+          id: "feeding",
+          from: "plants",
+          to: "animals",
+          label: "Eaten",
+          role: "transfer",
+        },
+        {
+          id: "plant-death",
+          from: "plants",
+          to: "dead",
+          label: "Dead organisms",
+          role: "transfer",
+        },
+        {
+          id: "animal-death",
+          from: "animals",
+          to: "dead",
+          label: "Dead organisms",
+          role: "transfer",
+        },
+        {
+          id: "decomposition",
+          from: "dead",
+          to: "atmosphere",
+          label: "Decomposition: bacteria and fungi",
+          role: "returns",
+        },
+        {
+          id: "formation",
+          from: "dead",
+          to: "fossil",
+          label: "Formation",
+          role: "transfer",
+        },
+        {
+          id: "combustion",
+          from: "fossil",
+          to: "atmosphere",
+          label: "Combustion of fossil fuels",
+          role: "returns",
+        },
+      ],
+      legend: {
+        uses: "Uses carbon dioxide",
+        returns: "Releases carbon dioxide",
+      },
+    },
+    oxygen: {
+      definition:
+        "The oxygen cycle involves taking oxygen from the air and returning oxygen to the air continuously.",
+      nodes: [
+        {
+          id: "oxygen",
+          label: "Oxygen in the atmosphere",
+        },
+        {
+          id: "plants",
+          label: "Green plants",
+        },
+        {
+          id: "carbon",
+          label: "Carbon dioxide in the atmosphere",
+        },
+        {
+          id: "respiration",
+          label: "Respiration",
+        },
+        {
+          id: "rusting",
+          label: "Rusting",
+        },
+        {
+          id: "combustion",
+          label: "Combustion",
+        },
+        {
+          id: "decomposition",
+          label: "Decomposition of waste and dead organisms",
+        },
+      ],
+      edges: [
+        {
+          id: "photosynthesis",
+          from: "plants",
+          to: "oxygen",
+          label: "Photosynthesis",
+          role: "returns",
+        },
+        {
+          id: "carbon-uptake",
+          from: "carbon",
+          to: "plants",
+          label: "Photosynthesis",
+          role: "transfer",
+        },
+        {
+          id: "respiration",
+          from: "oxygen",
+          to: "respiration",
+          label: "Respiration",
+          role: "uses",
+        },
+        {
+          id: "rusting",
+          from: "oxygen",
+          to: "rusting",
+          label: "Rusting",
+          role: "uses",
+        },
+        {
+          id: "combustion",
+          from: "oxygen",
+          to: "combustion",
+          label: "Combustion",
+          role: "uses",
+        },
+        {
+          id: "decomposition",
+          from: "oxygen",
+          to: "decomposition",
+          label: "Decomposition",
+          role: "uses",
+        },
+        {
+          id: "respiration-carbon",
+          from: "respiration",
+          to: "carbon",
+          label: "Respiration",
+          role: "transfer",
+        },
+        {
+          id: "combustion-carbon",
+          from: "combustion",
+          to: "carbon",
+          label: "Combustion",
+          role: "transfer",
+        },
+        {
+          id: "decomposition-carbon",
+          from: "decomposition",
+          to: "carbon",
+          label: "Decomposition",
+          role: "transfer",
+        },
+      ],
+      legend: {
+        uses: "Uses oxygen",
+        returns: "Releases oxygen",
+      },
+    },
+    research: {
+      title: "Activity 7.2",
+      aim: "Interpret and share information on the importance of gases in daily life, the oxygen cycle and the carbon cycle.",
+      instructions: [
+        "Carry out this activity in groups.",
+        "Find information on the importance of oxygen, carbon dioxide, nitrogen and inert gases in daily life.",
+        "Record the information in a suitable thinking map.",
+        "Find information about the oxygen cycle and carbon cycle. How do these cycles maintain the percentage of gases in the atmosphere?",
+        "Present it in class.",
+      ],
+    },
+    interference: {
+      title: "Steps to Prevent Interference in the Oxygen Cycle and Carbon Cycle",
+      causes: ["Logging", "Uncontrolled use of pesticides in agriculture"],
+      increase: "Increase in carbon dioxide; interference in the oxygen cycle and carbon cycle",
+      effects: ["Global warming", "Greenhouse effect"],
+    },
+    practice: {
+      title: "Formative Practice 7.1",
+      questions: [
+        "List the composition of air.",
+        "How do you identify oxygen and carbon dioxide gases?",
+        "What is the importance of carbon dioxide to plants?",
+        "What is the effect of an increase in carbon dioxide in the air on humans?",
+        "Suggest ways to maintain the balance of carbon dioxide and oxygen in the air.",
+      ],
+    },
+  },
   hook: {
-    title: "Why this matters",
-    body: "Every breath you take is only ~21% oxygen — that's why astronauts, divers, and even candles all depend on getting that ratio exactly right. This chapter shows you how air actually works, why fires behave the way they do, and how pollution throws all of it off balance.",
+    title: "Air",
+    body: "Clean air has no colour and smell. Air is a mixture of gases.",
   },
   composition: {
     legend: [
-      { color: "#4fb0ff", name: "Nitrogen", percentage: "78%" },
-      { color: "#8b6bff", name: "Oxygen", percentage: "21%" },
-      { color: "#fbbf5a", name: "Carbon dioxide", percentage: "0.03%" },
-      { color: "#4ade80", name: "Inert gases & others", percentage: "0.97%" },
+      {
+        color: "#4fb0ff",
+        name: "Nitrogen",
+        percentage: "78%",
+      },
+      {
+        color: "#8b6bff",
+        name: "Oxygen",
+        percentage: "21%",
+      },
+      {
+        color: "#fbbf5a",
+        name: "Carbon dioxide",
+        percentage: "0.03%",
+      },
+      {
+        color: "#4ade80",
+        name: "Inert gases",
+        percentage: "0.97%",
+      },
     ],
     reveals: [
       {
-        chipLabel: "💡 Formal definition",
+        chipLabel: "Other components",
         accent: "violet",
-        body: "Air is a mixture of gases that surrounds the Earth. Other components — water vapour, dust and microorganisms — are also present in small, variable amounts depending on place and time (e.g. more water vapour in forests or after rain).",
+        body: "Air also contains water vapour, dust and microorganisms in small quantities. The quantity of these components varies with place and time. For example, forests or areas after rain have more water vapour than on a hot day.",
       },
       {
-        chipLabel: '🧪 What\'s inside "inert gases"?',
+        chipLabel: "Inert gases",
         accent: "amber",
-        body: "Helium, Neon, Argon, Krypton and Xenon — five separate gases grouped together because they rarely react. Each has its own specific job later in this chapter.",
+        body: "Helium, argon, neon, xenon and krypton.",
       },
       {
-        chipLabel: "🔬 Mixture or compound?",
+        chipLabel: "Is Air a Mixture?",
         accent: "blue",
-        body: "Air is a mixture, not a compound — because its gases can be separated by a physical method called fractional distillation (separating a liquid mixture into fractions with different boiling points, through boiling and condensation).",
+        body: "Air is a mixture because the components of air can be separated by a physical method, which is fractional distillation. Fractional distillation separates a liquid mixture into fractions with different boiling points through boiling and condensation.",
       },
     ],
   },
@@ -158,21 +510,30 @@ const en: Bab7Content = {
     aim: "To determine the percentage of oxygen in the air",
     steps: [
       {
-        emoji: "🕯️",
-        caption:
-          "A lit candle is placed inside an upturned gas jar (marked into 5 equal parts), standing in water",
+        emoji: "",
+        caption: "Prepare the apparatus as shown in Figure 7.2(a).",
       },
-      { emoji: "💨", caption: "The candle burns for a while, then goes out on its own" },
-      { emoji: "📈", caption: "Water rises into the jar as it cools" },
+      {
+        emoji: "",
+        caption: "Divide the gas jar into five equal parts and mark with a permanent marker.",
+      },
+      {
+        emoji: "",
+        caption: "Light the candle and invert the gas jar over it.",
+      },
+      {
+        emoji: "",
+        caption: "Record the change in water level when the flame extinguishes.",
+      },
+      {
+        emoji: "",
+        caption: "Make a conclusion on the percentage of oxygen in the air.",
+      },
     ],
-    predictQuestion: "Quick check — before you scroll, predict: how far does the water rise?",
-    predictOptions: [
-      { label: "About half (2.5/5 parts)", correct: false },
-      { label: "About a fifth (1/5 parts)", correct: true },
-      { label: "Almost all (4.5/5 parts)", correct: false },
-    ],
+    predictQuestion: "What is the percentage of oxygen in the air based on this activity?",
+    predictOptions: [],
     predictFeedback:
-      "Right — water rises to 1/5 of the gas jar. That's proof: oxygen was used up during combustion, and it makes up roughly 20% of air.",
+      "The water level rises to one fifth of the gas jar. Approximately 20% of air is oxygen. Only oxygen in the air is used during combustion.",
   },
   uses: {
     tabs: [
@@ -180,39 +541,84 @@ const en: Bab7Content = {
         symbol: "O₂",
         name: "Oxygen",
         uses: [
-          { icon: "🫁", label: "Respiration" },
-          { icon: "🚀", label: "Rocket engines", sub: "combustion at high altitude" },
-          { icon: "⚡", label: "Welding & steel cutting" },
-          { icon: "🧪", label: "Compound preparation" },
+          {
+            icon: "🫁",
+            label: "Respiration",
+          },
+          {
+            icon: "🚀",
+            label: "Combustion of rocket engines at high altitudes",
+          },
+          {
+            icon: "⚡",
+            label: "Welding and steel cutting in industries",
+          },
+          {
+            icon: "🧪",
+            label: "Preparation of various compounds",
+          },
         ],
       },
       {
         symbol: "CO₂",
         name: "Carbon dioxide",
         uses: [
-          { icon: "🌿", label: "Photosynthesis" },
-          { icon: "🥤", label: "Carbonated drinks" },
-          { icon: "🧯", label: "Fire extinguishers" },
-          { icon: "🔄", label: "Carbon cycle" },
+          {
+            icon: "🌿",
+            label: "Photosynthesis",
+          },
+          {
+            icon: "🥤",
+            label: "Manufacture of carbonated drinks",
+          },
+          {
+            icon: "🧯",
+            label: "Fire extinguishers",
+          },
+          {
+            icon: "🔄",
+            label: "Carbon cycle",
+          },
         ],
       },
       {
         symbol: "N₂",
         name: "Nitrogen",
         uses: [
-          { icon: "🧪", label: "Nitric acid & ammonia", sub: "fertiliser production" },
-          { icon: "🔄", label: "Nitrogen cycle" },
-          { icon: "❄️", label: "Liquid nitrogen", sub: "cooling agent" },
+          {
+            icon: "🧪",
+            label: "Production of nitric acid and ammonia",
+            sub: "Nitrogen fertiliser",
+          },
+          {
+            icon: "🔄",
+            label: "Nitrogen cycle",
+          },
+          {
+            icon: "❄️",
+            label: "Liquid nitrogen as a cooling agent",
+          },
         ],
       },
       {
         symbol: "◆",
         name: "Inert gases",
         uses: [
-          { icon: "🎈", label: "Helium", sub: "hot air & weather balloons" },
-          { icon: "💡", label: "Neon", sub: "advertising lights" },
-          { icon: "💡", label: "Argon", sub: "light bulbs" },
-          { icon: "◇", label: "Krypton & Xenon", sub: "present in air as inert gases" },
+          {
+            icon: "🎈",
+            label: "Helium",
+            sub: "Hot-air balloons and weather balloons",
+          },
+          {
+            icon: "💡",
+            label: "Neon",
+            sub: "Advertising lights",
+          },
+          {
+            icon: "💡",
+            label: "Argon",
+            sub: "Light bulbs",
+          },
         ],
       },
     ],
@@ -221,27 +627,25 @@ const en: Bab7Content = {
     carbonCycle: {
       heading: "Carbon Cycle",
       steps: [
-        "Green plants absorb CO₂ through photosynthesis",
-        "Animals eat plants and obtain carbon from them",
-        "Dead plants & animals decompose (bacteria/fungi), releasing CO₂",
-        "Burning fossil fuels (coal, petrol) releases CO₂",
-        "Respiration releases CO₂ — balanced again by photosynthesis",
+        "Green plants absorb carbon dioxide through photosynthesis.",
+        "Animals obtain carbon by eating plants.",
+        "Dead plants and animals decompose. Bacteria and fungi in the soil release carbon dioxide during decomposition.",
+        "Burning fossil fuels such as coal and petroleum releases carbon dioxide.",
+        "All plants and animals release carbon dioxide during respiration. Decomposition, combustion and respiration are balanced by photosynthesis.",
       ],
     },
     oxygenCycle: {
       heading: "Oxygen Cycle",
       steps: [
-        "Respiration, rusting, combustion & decomposition all use O₂",
-        "Photosynthesis is the only process that releases O₂ back",
-        "This constant give-and-take keeps oxygen levels stable",
+        "Oxygen needed for respiration, rusting, combustion and decomposition is obtained from photosynthesis.",
       ],
     },
     balanceActions: [
-      "Prohibit illegal logging",
+      "Prevent illegal logging",
       "Reforestation",
-      "Don't burn forests",
-      "Avoid excessive pesticides",
-      "Prevent excess vehicle smoke",
+      "Avoid forest burning",
+      "Avoid excessive use of pesticides",
+      "Prevent excessive release of vehicle smoke",
     ],
   },
   combustion: {
@@ -422,32 +826,348 @@ const en: Bab7Content = {
 };
 
 const bm: Bab7Content = {
+  airLesson: {
+    title: "Udara",
+    subtopics: [
+      {
+        code: "7.1",
+        title: "Komposisi Udara",
+      },
+      {
+        code: "7.2",
+        title: "Pembakaran",
+      },
+      {
+        code: "7.3",
+        title: "Pencemaran Udara",
+      },
+    ],
+    compositionTitle: "Komposisi udara",
+    variableTitle: "Komponen lain",
+    mixtureTitle: "Adakah Udara Suatu Campuran?",
+    distillation: [
+      "Campuran cecair",
+      "Pecahan yang berlainan berdasarkan takat didih",
+      "Pendidihan dan kondensasi semula",
+    ],
+    activityTitle: "Aktiviti 7.1",
+    apparatus: [
+      {
+        id: "candle",
+        label: "Lilin",
+      },
+      {
+        id: "plasticine",
+        label: "Plastisin",
+      },
+      {
+        id: "matches",
+        label: "Mancis",
+      },
+      {
+        id: "basin",
+        label: "Besen kaca",
+      },
+      {
+        id: "marker",
+        label: "Pen penanda kekal",
+      },
+      {
+        id: "jar",
+        label: "Balang gas",
+      },
+      {
+        id: "stand",
+        label: "Pelapik balang gas",
+      },
+      {
+        id: "water",
+        label: "Air",
+      },
+    ],
+    stages: ["Sebelum", "Semasa", "Selepas"],
+    stageCaptions: [
+      "Nyalakan lilin. Balang gas ditandakan kepada lima bahagian yang sama.",
+      "Telangkupkan balang gas ke atas lilin yang menyala.",
+      "Api lilin terpadam. Air meningkat kepada satu perlima balang gas.",
+    ],
+    apparatusLabel: "Bahan dan radas",
+    procedureLabel: "Prosedur",
+    originalWater: "Aras air asal",
+    finalWater: "Air meningkat sebanyak 1/5",
+    estimate: "Aktiviti 7.1: 1/5 ≈ 20% oksigen",
+    chartOxygen: "Komposisi udara: 21% oksigen",
+    usesTitle: "Kepentingan Gas dalam Kehidupan Harian",
+    carbon: {
+      definition:
+        "Kitar karbon ialah kitar yang mengekalkan kandungan karbon dioksida dalam udara dengan mengambil karbon dioksida dari udara dan mengembalikannya semula ke udara secara berterusan.",
+      nodes: [
+        {
+          id: "atmosphere",
+          label: "Gas karbon dioksida dalam atmosfera",
+        },
+        {
+          id: "plants",
+          label: "Tumbuhan hijau",
+        },
+        {
+          id: "animals",
+          label: "Haiwan",
+        },
+        {
+          id: "dead",
+          label: "Organisma yang mati",
+        },
+        {
+          id: "fossil",
+          label: "Bahan api fosil: petroleum, gas asli dan arang batu",
+        },
+      ],
+      edges: [
+        {
+          id: "photosynthesis",
+          from: "atmosphere",
+          to: "plants",
+          label: "Fotosintesis",
+          role: "uses",
+        },
+        {
+          id: "plant-respiration",
+          from: "plants",
+          to: "atmosphere",
+          label: "Respirasi",
+          role: "returns",
+        },
+        {
+          id: "animal-respiration",
+          from: "animals",
+          to: "atmosphere",
+          label: "Respirasi",
+          role: "returns",
+        },
+        {
+          id: "feeding",
+          from: "plants",
+          to: "animals",
+          label: "Dimakan",
+          role: "transfer",
+        },
+        {
+          id: "plant-death",
+          from: "plants",
+          to: "dead",
+          label: "Organisma yang mati",
+          role: "transfer",
+        },
+        {
+          id: "animal-death",
+          from: "animals",
+          to: "dead",
+          label: "Organisma yang mati",
+          role: "transfer",
+        },
+        {
+          id: "decomposition",
+          from: "dead",
+          to: "atmosphere",
+          label: "Pereputan: bakteria dan kulat",
+          role: "returns",
+        },
+        {
+          id: "formation",
+          from: "dead",
+          to: "fossil",
+          label: "Membentuk",
+          role: "transfer",
+        },
+        {
+          id: "combustion",
+          from: "fossil",
+          to: "atmosphere",
+          label: "Pembakaran bahan api fosil",
+          role: "returns",
+        },
+      ],
+      legend: {
+        uses: "Menggunakan karbon dioksida",
+        returns: "Membebaskan karbon dioksida",
+      },
+    },
+    oxygen: {
+      definition:
+        "Kitar oksigen ialah kitar yang melibatkan pengambilan oksigen daripada udara dan pengembalian oksigen semula ke udara secara berterusan.",
+      nodes: [
+        {
+          id: "oxygen",
+          label: "Gas oksigen dalam atmosfera",
+        },
+        {
+          id: "plants",
+          label: "Tumbuhan hijau",
+        },
+        {
+          id: "carbon",
+          label: "Gas karbon dioksida dalam atmosfera",
+        },
+        {
+          id: "respiration",
+          label: "Respirasi",
+        },
+        {
+          id: "rusting",
+          label: "Pengaratan",
+        },
+        {
+          id: "combustion",
+          label: "Pembakaran",
+        },
+        {
+          id: "decomposition",
+          label: "Pereputan bahan kumuh dan organisma yang mati",
+        },
+      ],
+      edges: [
+        {
+          id: "photosynthesis",
+          from: "plants",
+          to: "oxygen",
+          label: "Fotosintesis",
+          role: "returns",
+        },
+        {
+          id: "carbon-uptake",
+          from: "carbon",
+          to: "plants",
+          label: "Fotosintesis",
+          role: "transfer",
+        },
+        {
+          id: "respiration",
+          from: "oxygen",
+          to: "respiration",
+          label: "Respirasi",
+          role: "uses",
+        },
+        {
+          id: "rusting",
+          from: "oxygen",
+          to: "rusting",
+          label: "Pengaratan",
+          role: "uses",
+        },
+        {
+          id: "combustion",
+          from: "oxygen",
+          to: "combustion",
+          label: "Pembakaran",
+          role: "uses",
+        },
+        {
+          id: "decomposition",
+          from: "oxygen",
+          to: "decomposition",
+          label: "Pereputan",
+          role: "uses",
+        },
+        {
+          id: "respiration-carbon",
+          from: "respiration",
+          to: "carbon",
+          label: "Respirasi",
+          role: "transfer",
+        },
+        {
+          id: "combustion-carbon",
+          from: "combustion",
+          to: "carbon",
+          label: "Pembakaran",
+          role: "transfer",
+        },
+        {
+          id: "decomposition-carbon",
+          from: "decomposition",
+          to: "carbon",
+          label: "Pereputan",
+          role: "transfer",
+        },
+      ],
+      legend: {
+        uses: "Menggunakan oksigen",
+        returns: "Membebaskan oksigen",
+      },
+    },
+    research: {
+      title: "Aktiviti 7.2",
+      aim: "Mentafsir dan berkongsi maklumat mengenai kepentingan gas dalam kehidupan harian serta maklumat mengenai kitar oksigen dan kitar karbon.",
+      instructions: [
+        "Lakukan aktiviti ini secara berkumpulan.",
+        "Cari maklumat mengenai kepentingan oksigen, karbon dioksida, nitrogen dan gas nadir dalam kehidupan harian.",
+        "Catatkan maklumat yang diperoleh dalam mana-mana bentuk peta pemikiran yang sesuai.",
+        "Cari maklumat berkaitan kitar oksigen dan kitar karbon. Bagaimanakah kitar-kitar tersebut mengekalkan peratusan gas dalam atmosfera?",
+      ],
+    },
+    interference: {
+      title: "Langkah-langkah Mengelakkan Gangguan kepada Kitar Oksigen dan Kitar Karbon",
+      causes: [
+        "Penebangan pokok",
+        "Penggunaan racun serangga dalam pertanian secara tidak terkawal",
+      ],
+      increase: "Peningkatan gas karbon dioksida; gangguan kepada kitar oksigen dan kitar karbon",
+      effects: ["Pemanasan global", "Kesan rumah hijau"],
+    },
+    practice: {
+      title: "Praktis Formatif 7.1",
+      questions: [
+        "Senaraikan komposisi udara.",
+        "Apakah cara anda mengenal pasti gas oksigen dan gas karbon dioksida?",
+        "Apakah kepentingan karbon dioksida kepada tumbuhan?",
+        "Apakah kesan peningkatan karbon dioksida dalam udara kepada manusia?",
+        "Sebagai seorang murid yang menghargai kepentingan kitar karbon dan kitar oksigen, cadangkan beberapa cara untuk memastikan keseimbangan kandungan karbon dioksida dan oksigen dalam udara.",
+      ],
+    },
+  },
   hook: {
-    title: "Kenapa ini penting",
-    body: "Setiap nafas yang anda ambil hanya mengandungi kira-kira 21% oksigen — itulah sebabnya angkasawan, penyelam, malah lilin juga bergantung pada nisbah ini. Bab ini menunjukkan bagaimana udara sebenarnya berfungsi, mengapa api berkelakuan sedemikian, dan bagaimana pencemaran mengganggu keseimbangan ini.",
+    title: "Udara",
+    body: "Udara yang bersih tidak mempunyai warna dan bau. Udara merupakan campuran beberapa jenis gas.",
   },
   composition: {
     legend: [
-      { color: "#4fb0ff", name: "Nitrogen", percentage: "78%" },
-      { color: "#8b6bff", name: "Oksigen", percentage: "21%" },
-      { color: "#fbbf5a", name: "Karbon dioksida", percentage: "0.03%" },
-      { color: "#4ade80", name: "Gas nadir & bahan lain", percentage: "0.97%" },
+      {
+        color: "#4fb0ff",
+        name: "Nitrogen",
+        percentage: "78%",
+      },
+      {
+        color: "#8b6bff",
+        name: "Oksigen",
+        percentage: "21%",
+      },
+      {
+        color: "#fbbf5a",
+        name: "Karbon dioksida",
+        percentage: "0.03%",
+      },
+      {
+        color: "#4ade80",
+        name: "Gas nadir",
+        percentage: "0.97%",
+      },
     ],
     reveals: [
       {
-        chipLabel: "💡 Definisi rasmi",
+        chipLabel: "Komponen lain",
         accent: "violet",
-        body: "Udara ialah campuran gas yang mengelilingi Bumi. Komponen lain — wap air, habuk dan mikroorganisma — turut wujud dalam kuantiti kecil yang berubah mengikut tempat dan masa (cth: wap air lebih banyak di hutan atau selepas hujan).",
+        body: "Udara juga mengandungi wap air, habuk dan mikroorganisma dalam kuantiti yang kecil. Kuantiti komponen-komponen ini berubah-ubah mengikut tempat dan masa. Contohnya, kawasan hutan atau selepas hujan mengandungi lebih banyak wap air berbanding dengan hari panas di gurun.",
       },
       {
-        chipLabel: '🧪 Apa yang ada dalam "gas nadir"?',
+        chipLabel: "Gas nadir",
         accent: "amber",
-        body: "Helium, Neon, Argon, Kripton dan Xenon — lima gas berasingan yang dikumpulkan kerana jarang bertindak balas. Setiap satu mempunyai kegunaan tersendiri nanti dalam bab ini.",
+        body: "Helium, argon, neon, xenon dan kripton.",
       },
       {
-        chipLabel: "🔬 Campuran atau sebatian?",
+        chipLabel: "Adakah Udara Suatu Campuran?",
         accent: "blue",
-        body: "Udara ialah campuran, bukan sebatian — kerana komponennya boleh diasingkan melalui kaedah fizikal iaitu penyulingan berperingkat (mengasingkan campuran kepada pecahan berlainan takat didih, melalui pendidihan dan kondensasi).",
+        body: "Udara merupakan campuran kerana komponen udara boleh diasingkan melalui kaedah fizikal, iaitu penyulingan berperingkat. Penyulingan berperingkat merupakan proses mengasingkan campuran kepada pecahan yang berlainan berdasarkan takat didih melalui pendidihan dan kondensasi semula.",
       },
     ],
   },
@@ -455,21 +1175,31 @@ const bm: Bab7Content = {
     aim: "Menentukan peratusan oksigen dalam udara",
     steps: [
       {
-        emoji: "🕯️",
-        caption:
-          "Lilin yang menyala diletakkan di dalam balang gas terbalik (ditanda 5 bahagian sama), berdiri di dalam air",
+        emoji: "",
+        caption: "Sediakan radas seperti yang ditunjukkan dalam Rajah 7.2(a).",
       },
-      { emoji: "💨", caption: "Lilin terbakar seketika, kemudian terpadam dengan sendirinya" },
-      { emoji: "📈", caption: "Air naik ke dalam balang apabila menyejuk" },
+      {
+        emoji: "",
+        caption:
+          "Bahagikan balang gas kepada lima bahagian yang sama dan tandakan dengan pen penanda kekal.",
+      },
+      {
+        emoji: "",
+        caption: "Nyalakan lilin dan telangkupkan balang gas ke atas lilin.",
+      },
+      {
+        emoji: "",
+        caption: "Rekodkan perubahan aras air apabila api lilin terpadam.",
+      },
+      {
+        emoji: "",
+        caption: "Buat kesimpulan tentang peratusan oksigen dalam udara.",
+      },
     ],
-    predictQuestion: "Semak cepat — sebelum menatal, ramalkan: berapa jauh air akan naik?",
-    predictOptions: [
-      { label: "Kira-kira separuh (2.5/5 bahagian)", correct: false },
-      { label: "Kira-kira satu perlima (1/5 bahagian)", correct: true },
-      { label: "Hampir semua (4.5/5 bahagian)", correct: false },
-    ],
+    predictQuestion: "Berapakah peratusan oksigen dalam udara berdasarkan aktiviti ini?",
+    predictOptions: [],
     predictFeedback:
-      "Betul — air naik ke 1/5 balang gas. Ini membuktikan oksigen telah digunakan semasa pembakaran, dan ia merangkumi kira-kira 20% udara.",
+      "Aras air meningkat kepada satu perlima balang gas. Kira-kira 20% daripada kandungan udara ialah oksigen. Hanya oksigen dalam udara digunakan untuk pembakaran.",
   },
   uses: {
     tabs: [
@@ -477,39 +1207,84 @@ const bm: Bab7Content = {
         symbol: "O₂",
         name: "Oksigen",
         uses: [
-          { icon: "🫁", label: "Pernafasan" },
-          { icon: "🚀", label: "Enjin roket", sub: "pembakaran pada altitud tinggi" },
-          { icon: "⚡", label: "Kimpalan & pemotongan keluli" },
-          { icon: "🧪", label: "Penyediaan sebatian" },
+          {
+            icon: "🫁",
+            label: "Pernafasan",
+          },
+          {
+            icon: "🚀",
+            label: "Pembakaran enjin roket pada altitud tinggi",
+          },
+          {
+            icon: "⚡",
+            label: "Kimpalan dan pemotongan logam dalam industri",
+          },
+          {
+            icon: "🧪",
+            label: "Penyediaan pelbagai sebatian",
+          },
         ],
       },
       {
         symbol: "CO₂",
         name: "Karbon dioksida",
         uses: [
-          { icon: "🌿", label: "Fotosintesis" },
-          { icon: "🥤", label: "Minuman berkarbonat" },
-          { icon: "🧯", label: "Alat pemadam api" },
-          { icon: "🔄", label: "Kitar karbon" },
+          {
+            icon: "🌿",
+            label: "Fotosintesis",
+          },
+          {
+            icon: "🥤",
+            label: "Pembuatan minuman berkarbonat",
+          },
+          {
+            icon: "🧯",
+            label: "Alat pemadam api",
+          },
+          {
+            icon: "🔄",
+            label: "Kitar karbon",
+          },
         ],
       },
       {
         symbol: "N₂",
         name: "Nitrogen",
         uses: [
-          { icon: "🧪", label: "Asid nitrik & ammonia", sub: "penghasilan baja" },
-          { icon: "🔄", label: "Kitar nitrogen" },
-          { icon: "❄️", label: "Nitrogen cecair", sub: "agen penyejuk" },
+          {
+            icon: "🧪",
+            label: "Penghasilan asid nitrik dan ammonia",
+            sub: "Baja bernitrogen",
+          },
+          {
+            icon: "🔄",
+            label: "Kitar nitrogen",
+          },
+          {
+            icon: "❄️",
+            label: "Nitrogen cecair sebagai agen penyejuk",
+          },
         ],
       },
       {
         symbol: "◆",
         name: "Gas nadir",
         uses: [
-          { icon: "🎈", label: "Helium", sub: "belon udara & belon kaji cuaca" },
-          { icon: "💡", label: "Neon", sub: "lampu iklan" },
-          { icon: "💡", label: "Argon", sub: "mentol lampu" },
-          { icon: "◇", label: "Kripton & Xenon", sub: "wujud dalam udara sebagai gas nadir" },
+          {
+            icon: "🎈",
+            label: "Helium",
+            sub: "Belon udara dan belon kaji cuaca",
+          },
+          {
+            icon: "💡",
+            label: "Neon",
+            sub: "Lampu iklan",
+          },
+          {
+            icon: "💡",
+            label: "Argon",
+            sub: "Mentol",
+          },
         ],
       },
     ],
@@ -518,27 +1293,25 @@ const bm: Bab7Content = {
     carbonCycle: {
       heading: "Kitar Karbon",
       steps: [
-        "Tumbuhan hijau menyerap CO₂ melalui fotosintesis",
-        "Haiwan memakan tumbuhan dan memperoleh karbon daripadanya",
-        "Tumbuhan & haiwan mati akan mereput (bakteria/kulat), membebaskan CO₂",
-        "Pembakaran bahan api fosil (arang batu, petroleum) membebaskan CO₂",
-        "Respirasi membebaskan CO₂ — diseimbangkan semula oleh fotosintesis",
+        "Tumbuhan hijau mengambil gas karbon dioksida melalui proses fotosintesis.",
+        "Haiwan yang memakan tumbuhan memperoleh unsur-unsur karbon daripadanya.",
+        "Apabila tumbuhan dan haiwan mati, tumbuhan dan haiwan akan mereput. Pereputan yang dilakukan oleh bakteria dan kulat dalam tanah membebaskan karbon dioksida.",
+        "Pembakaran bahan api fosil yang mengandungi karbon seperti arang batu dan petroleum juga membebaskan karbon dioksida.",
+        "Semasa respirasi, kesemua tumbuhan dan haiwan juga membebaskan karbon dioksida. Proses-proses seperti pereputan, pembakaran dan respirasi diseimbangkan oleh fotosintesis.",
       ],
     },
     oxygenCycle: {
       heading: "Kitar Oksigen",
       steps: [
-        "Respirasi, pengaratan, pembakaran & pereputan semuanya menggunakan O₂",
-        "Fotosintesis satu-satunya proses yang membebaskan semula O₂",
-        "Pertukaran berterusan ini mengekalkan kandungan oksigen",
+        "Oksigen yang diperlukan untuk proses respirasi, pengaratan, pembakaran dan pereputan diperoleh daripada hasil fotosintesis.",
       ],
     },
     balanceActions: [
-      "Larang pembalakan haram",
-      "Program penghutanan semula",
-      "Elak pembakaran hutan",
-      "Elak penggunaan racun serangga berlebihan",
-      "Elak asap kenderaan berlebihan",
+      "Mencegah pembalakan haram",
+      "Menanam semula pokok",
+      "Tidak melakukan pembakaran hutan",
+      "Mengelakkan penggunaan racun serangga yang berleluasa",
+      "Mengelakkan pembebasan asap kenderaan yang berlebihan",
     ],
   },
   combustion: {
@@ -779,11 +1552,6 @@ const supplementEn: Bab7Supplement = {
         "Use dry powder or carbon dioxide. Water conducts electricity and could electrocute the operator or damage the circuit.",
     },
     {
-      question: "How does logging raise atmospheric carbon dioxide, and what can result?",
-      answer:
-        "Logging removes plants that absorb carbon dioxide during photosynthesis. Carbon dioxide then accumulates, strengthening the greenhouse effect and global warming.",
-    },
-    {
       question: "Why can cave explorers use a burning torch as well as an electric torch?",
       answer:
         "A flame needs oxygen. If oxygen falls to an unsafe level, the flame flickers or goes out and provides an early warning.",
@@ -832,12 +1600,6 @@ const supplementBm: Bab7Supplement = {
       question: "Apakah pemadam yang sesuai untuk kebakaran elektrik, dan mengapa bukan air?",
       answer:
         "Gunakan serbuk kering atau karbon dioksida. Air mengkonduksi elektrik dan boleh menyebabkan renjatan kepada pengguna atau merosakkan litar.",
-    },
-    {
-      question:
-        "Bagaimanakah pembalakan meningkatkan karbon dioksida atmosfera, dan apakah kesannya?",
-      answer:
-        "Pembalakan mengurangkan tumbuhan yang menyerap karbon dioksida semasa fotosintesis. Karbon dioksida terkumpul lalu menguatkan kesan rumah hijau dan pemanasan global.",
     },
     {
       question: "Mengapakah peneroka gua boleh membawa obor bernyala selain lampu elektrik?",
