@@ -78,10 +78,61 @@ export interface ExtinguisherRow {
   extinguishers: string[];
 }
 
+export type FireCondition = "heat" | "oxygen" | "fuel";
+export interface CombustionInvestigation {
+  id: FireCondition;
+  heading: string;
+  apparatus: string[];
+  procedure: string[];
+  observation: string;
+  observationIsQuestion: boolean;
+  conclusion: string;
+}
+export interface CombustionLesson {
+  triangleTitle: string;
+  required: string;
+  stopped: string;
+  remove: string;
+  reset: string;
+  activityTitle: string;
+  aim: string;
+  investigations: CombustionInvestigation[];
+  fuelMaterials: { id: string; label: string; isFuel: boolean }[];
+  fuel: string;
+  nonFuel: string;
+  labels: {
+    apparatus: string;
+    setup: string;
+    observation: string;
+    conclusion: string;
+    before: string;
+    after: string;
+    test: string;
+    coldMatch: string;
+    ordinaryMatch: string;
+    matchbox: string;
+  };
+  extinguisherTitle: string;
+  tableTitle: string;
+  tableHeaders: string[];
+  oilTitle: string;
+  oilWarning: string;
+  oilLabels: string[];
+  methodsTitle: string;
+  blanketTitle: string;
+  blanket: string;
+  blanketSteps: string[];
+  preventionTitle: string;
+  poster: { title: string; aim: string; instructions: string[] };
+  practiceTitle: string;
+  questions: string[];
+  paraffinAnswer: string;
+}
 export interface CombustionSection {
+  lesson: CombustionLesson;
   definition: string;
   triangle: { heat: string; oxygen: string; fuel: string };
-  methods: MethodCard[];
+  methods: (MethodCard & { removes: FireCondition })[];
   extinguisherTable: ExtinguisherRow[];
   safetyChecklist: string[];
 }
@@ -650,36 +701,47 @@ const en: Bab7Content = {
   },
   combustion: {
     definition:
-      "Combustion is the reaction that occurs when a substance is heated in the presence of oxygen, producing heat energy and light energy.",
-    triangle: { heat: "Heat", oxygen: "Oxygen", fuel: "Fuel" },
+      "Combustion is the reaction that occurs when a substance is heated in the presence of oxygen which produces heat energy and light energy.",
+    triangle: {
+      heat: "Heat",
+      oxygen: "Oxygen",
+      fuel: "Fuel",
+    },
     methods: [
       {
-        icon: "🧊",
-        heading: "Cooling",
-        body: "Spray water or a layer of CO₂ onto the burning surface to remove heat",
-      },
-      {
-        icon: "🛑",
+        icon: "",
         heading: "Covering",
-        body: "Cut off oxygen using a fire blanket, wet sack, mud, sand, soil or foam",
+        removes: "oxygen",
+        body: "Cutting off the contact of the fuel with oxygen or air. For example, covering the surface of fuel with fire blanket, wet sack, mud, sand, soil or foam.",
       },
       {
-        icon: "📦",
-        heading: "Reducing fuel",
-        body: "Separate burning material, keep unburnt material away, cut off gas/oil supply",
+        icon: "",
+        heading: "Cooling",
+        removes: "heat",
+        body: "Cooling the surface of burning materials by spraying water or a layer of carbon dioxide.",
+      },
+      {
+        icon: "",
+        heading: "Reducing the amount of burning materials/cutting off the source of fuel",
+        removes: "fuel",
+        body: "Separating the burning materials, keeping away materials that have not burnt yet and cutting off the supply of gas or oil.",
       },
     ],
     extinguisherTable: [
-      { material: "Solid", examples: "Wood, cloth, paper", extinguishers: ["Water", "Dry powder"] },
+      {
+        material: "Solid",
+        examples: "Wood, cloth, paper",
+        extinguishers: ["Water", "Dry powder"],
+      },
       {
         material: "Liquid",
         examples: "Oil, varnish, paint",
-        extinguishers: ["Foam", "Dry powder", "CO₂"],
+        extinguishers: ["Foam", "Dry powder", "Carbon dioxide"],
       },
       {
         material: "Gas",
         examples: "Propane, acetylene, methane",
-        extinguishers: ["Foam", "Dry powder", "CO₂"],
+        extinguishers: ["Foam", "Dry powder", "Carbon dioxide"],
       },
       {
         material: "Metal",
@@ -688,13 +750,147 @@ const en: Bab7Content = {
       },
     ],
     safetyChecklist: [
-      "Keep flammable substances away from fire",
-      "Keep matches & lighters in a safe place",
-      "Always be aware of electrical appliances",
-      "Never discard burning cigarette butts",
-      "Install a fire alarm / smoke detector",
-      "Don't overload a single electrical socket",
+      "Keep away flammable substances from fire",
+      "Keep matches and lighters in a safe place",
+      "Always be aware of your electrical appliances",
+      "Do not throw away cigarette butts when they are still burning",
+      "Install fire alarm and smoke detector at home",
+      "Do not plug in too many electrical appliances to a single electrical source",
     ],
+    lesson: {
+      triangleTitle: "Three conditions needed for combustion",
+      required: "Combustion needs oxygen, heat and fuel.",
+      stopped: "Fire can be extinguished by removing one of the conditions needed for combustion.",
+      remove: "Remove",
+      reset: "All three conditions",
+      activityTitle: "Activity 7.3",
+      aim: "To prove that fuel, oxygen and heat are needed for combustion",
+      investigations: [
+        {
+          id: "fuel",
+          heading: "I — Fuel is needed for combustion",
+          apparatus: ["Bunsen burner", "Tongs", "Lighter", "Glass rod", "Wood", "Candle", "Stone"],
+          procedure: [
+            "Light a Bunsen burner.",
+            "Hold a glass rod over the fire by using tongs.",
+            "Observe whether or not the glass rod burns.",
+            "Record your observation in a table.",
+            "Repeat steps 2 to 4 by using wood, candle and stone.",
+          ],
+          observation: "Wood and candle burn; the glass rod and stone do not.",
+          observationIsQuestion: false,
+          conclusion: "Fuel is needed for combustion.",
+        },
+        {
+          id: "oxygen",
+          heading: "II — Oxygen is needed for combustion",
+          apparatus: [
+            "Gas jar",
+            "Two white tiles",
+            "Two candles of the same size",
+            "Plasticine",
+            "Lighter",
+          ],
+          procedure: [
+            "Hold two candles of the same size on white tiles by using plasticine.",
+            "Light candles X and Y.",
+            "Turn a gas jar over candle X.",
+            "Observe which candle extinguishes first.",
+          ],
+          observation:
+            "Candle X extinguishes first. Candle Y burns longer because it has a continuous supply of oxygen.",
+          observationIsQuestion: false,
+          conclusion: "Oxygen is needed for combustion.",
+        },
+        {
+          id: "heat",
+          heading: "III — Heat is needed for combustion",
+          apparatus: [
+            "Match stick",
+            "Match stick which has been stored inside the refrigerator",
+            "Matchbox",
+          ],
+          procedure: [
+            "Label the match stick which has been stored inside the refrigerator as P and the other match stick as Q.",
+            "Light match sticks P and Q. Observe the changes that occur.",
+          ],
+          observation: "Do both match sticks ignite? Why?",
+          observationIsQuestion: true,
+          conclusion: "Heat is needed for combustion.",
+        },
+      ],
+      fuelMaterials: [
+        {
+          id: "glass",
+          label: "Glass rod",
+          isFuel: false,
+        },
+        {
+          id: "wood",
+          label: "Wood",
+          isFuel: true,
+        },
+        {
+          id: "candle",
+          label: "Candle",
+          isFuel: true,
+        },
+        {
+          id: "stone",
+          label: "Stone",
+          isFuel: false,
+        },
+      ],
+      fuel: "Fuel",
+      nonFuel: "Non-fuel",
+      labels: {
+        apparatus: "Materials and apparatus",
+        setup: "Instruction",
+        observation: "Observation",
+        conclusion: "Conclusion",
+        before: "Before",
+        after: "After",
+        test: "Observe the changes that occur",
+        coldMatch: "P — Match stick stored in the refrigerator",
+        ordinaryMatch: "Q — Match stick",
+        matchbox: "Matchbox",
+      },
+      extinguisherTitle: "Fire Extinguisher",
+      tableTitle: "Table 7.1 Types of fire extinguisher for different sources of fire",
+      tableHeaders: ["Material on fire", "Example of material", "Type of fire extinguisher"],
+      oilTitle: "Science in Life",
+      oilWarning:
+        "Do not pour water onto an oil fire. Water is denser than oil and it will sink below the oil. The fire will not be extinguished. We must use foam!",
+      oilLabels: ["Oil", "Water", "Foam"],
+      methodsTitle: "Fire Extinguisher",
+      blanketTitle: "Fire blanket",
+      blanket:
+        "Fire blanket is a special blanket made of fire resistant substances. This blanket covers the fire and prevents oxygen from seeping below the blanket which will eventually extinguish the fire.",
+      blanketSteps: [
+        "Fire-resistant blanket",
+        "Covers the fire",
+        "Prevents oxygen from entering",
+        "Fire extinguishes",
+      ],
+      preventionTitle: "Safety Measures to Prevent the Occurrence of Fire",
+      poster: {
+        title: "Activity 7.4",
+        aim: "To make a poster on causes of fire and ways to prevent it",
+        instructions: [
+          "Prepare a poster entitled ‘Causes of Fire and Ways to Prevent it’ in a group.",
+          "Present the best three posters on the science board of your class.",
+        ],
+      },
+      practiceTitle: "Formative Practice 7.2",
+      questions: [
+        "Define combustion.",
+        "What are the conditions needed for combustion?",
+        "Luqman uses a fire blanket to put out a small fire at his house. How does the fire blanket work?",
+        "Give four ways to prevent fire.",
+        "Metals like potassium and sodium are kept in paraffin oil. Why?",
+      ],
+      paraffinAnswer: "Potassium and sodium metals are flammable when exposed to the air.",
+    },
   },
   pollutionSources: [
     {
@@ -1316,23 +1512,30 @@ const bm: Bab7Content = {
   },
   combustion: {
     definition:
-      "Pembakaran ialah tindak balas yang berlaku apabila sesuatu bahan dipanaskan dengan kehadiran oksigen, menghasilkan tenaga haba dan tenaga cahaya.",
-    triangle: { heat: "Haba", oxygen: "Oksigen", fuel: "Bahan api" },
+      "Pembakaran bermaksud tindak balas yang berlaku apabila suatu bahan dipanaskan dengan kehadiran oksigen dan membebaskan tenaga haba dan tenaga cahaya.",
+    triangle: {
+      heat: "Haba",
+      oxygen: "Oksigen",
+      fuel: "Bahan api",
+    },
     methods: [
       {
-        icon: "🧊",
-        heading: "Mendinginkan",
-        body: "Semburkan air atau lapisan CO₂ pada permukaan terbakar untuk menyingkirkan haba",
-      },
-      {
-        icon: "🛑",
+        icon: "",
         heading: "Menyelimuti",
-        body: "Putuskan bekalan oksigen menggunakan selimut api, karung basah, lumpur, pasir, tanah atau busa",
+        removes: "oxygen",
+        body: "Memutuskan hubungan bahan bakar dengan oksigen atau udara. Contohnya, menutup permukaan bahan bakar dengan selimut api, karung basah, lumpur, pasir, tanah atau busa.",
       },
       {
-        icon: "📦",
-        heading: "Mengurangkan bahan api",
-        body: "Asingkan bahan terbakar, jauhkan bahan belum terbakar, tutup bekalan gas/minyak",
+        icon: "",
+        heading: "Mendinginkan",
+        removes: "heat",
+        body: "Mendinginkan permukaan bahan yang terbakar dengan menyemburkan air atau lapisan karbon dioksida.",
+      },
+      {
+        icon: "",
+        heading: "Mengurangkan jumlah bahan yang terbakar/memutuskan sumber bahan bakar",
+        removes: "fuel",
+        body: "Memisahkan benda yang terbakar, menjauhkan benda yang belum terbakar dan menutup punca bekalan gas atau minyak.",
       },
     ],
     extinguisherTable: [
@@ -1344,12 +1547,12 @@ const bm: Bab7Content = {
       {
         material: "Cecair",
         examples: "Minyak, varnis, cat",
-        extinguishers: ["Busa", "Serbuk kering", "CO₂"],
+        extinguishers: ["Busa", "Serbuk kering", "Karbon dioksida"],
       },
       {
         material: "Gas",
         examples: "Propana, asetilena, metana",
-        extinguishers: ["Busa", "Serbuk kering", "CO₂"],
+        extinguishers: ["Busa", "Serbuk kering", "Karbon dioksida"],
       },
       {
         material: "Logam",
@@ -1358,13 +1561,156 @@ const bm: Bab7Content = {
       },
     ],
     safetyChecklist: [
-      "Jauhkan bahan mudah terbakar daripada api",
-      "Simpan mancis & pemetik api di tempat selamat",
-      "Sentiasa peka terhadap barangan elektrik",
-      "Jangan buang puntung rokok yang masih menyala",
-      "Pasang penggera kebakaran / pengesan asap",
-      "Jangan letak terlalu banyak beban pada satu sumber elektrik",
+      "Jauhkan bahan yang mudah terbakar daripada api",
+      "Simpan mancis dan pemetik api di tempat yang selamat",
+      "Sentiasa peka terhadap barangan elektrik yang digunakan",
+      "Tidak membuang puntung rokok ketika apinya masih menyala",
+      "Memasang alat pengesan asap dan penggera kebakaran di rumah",
+      "Tidak meletakkan terlalu banyak beban pada satu sumber elektrik",
     ],
+    lesson: {
+      triangleTitle: "Tiga keperluan pembakaran",
+      required: "Pembakaran memerlukan oksigen, haba dan bahan api.",
+      stopped:
+        "Prinsip pemadaman api adalah dengan menghapuskan salah satu faktor penyebab kebakaran.",
+      remove: "Singkirkan",
+      reset: "Ketiga-tiga syarat",
+      activityTitle: "Aktiviti 7.3",
+      aim: "Membuktikan bahawa bahan api, oksigen dan haba diperlukan untuk pembakaran berlaku",
+      investigations: [
+        {
+          id: "fuel",
+          heading: "A — Menentukan bahan api diperlukan untuk pembakaran",
+          apparatus: [
+            "Penunu Bunsen",
+            "Penyepit besi",
+            "Pemetik api",
+            "Rod kaca",
+            "Kayu",
+            "Lilin",
+            "Batu",
+          ],
+          procedure: [
+            "Nyalakan api penunu Bunsen.",
+            "Letakkan rod kaca pada nyalaan api penunu Bunsen dengan menggunakan penyepit.",
+            "Perhatikan sama ada rod kaca terbakar atau tidak.",
+            "Rekodkan pemerhatian anda dalam jadual.",
+            "Ulang langkah 2 hingga 4 dengan menggunakan kayu, lilin dan batu.",
+          ],
+          observation: "Kayu dan lilin terbakar; rod kaca dan batu tidak terbakar.",
+          observationIsQuestion: false,
+          conclusion: "Bahan api diperlukan untuk pembakaran.",
+        },
+        {
+          id: "oxygen",
+          heading: "B — Menentukan oksigen diperlukan untuk pembakaran",
+          apparatus: [
+            "Balang gas",
+            "Dua jubin putih",
+            "Dua batang lilin yang sama saiz",
+            "Plastisin",
+            "Mancis",
+          ],
+          procedure: [
+            "Dua batang lilin yang sama saiz dilekatkan pada jubin putih dengan menggunakan plastisin.",
+            "Nyalakan lilin X dan Y.",
+            "Telangkupkan balang gas di atas lilin X.",
+            "Perhatikan lilin yang padam terlebih dahulu.",
+          ],
+          observation:
+            "Lilin X padam terlebih dahulu. Lilin Y menyala lebih lama kerana mendapat bekalan oksigen yang berterusan.",
+          observationIsQuestion: false,
+          conclusion: "Oksigen diperlukan untuk pembakaran.",
+        },
+        {
+          id: "heat",
+          heading: "C — Menentukan bahawa haba diperlukan untuk pembakaran",
+          apparatus: [
+            "Mancis",
+            "Mancis yang telah disimpan di bahagian penyejuk beku peti sejuk",
+            "Kotak mancis",
+          ],
+          procedure: [
+            "Labelkan P pada mancis yang telah disimpan dalam bahagian penyejuk beku peti sejuk dan sebatang mancis lain sebagai Q.",
+            "Nyalakan mancis P dan Q. Perhatikan perubahan yang berlaku.",
+          ],
+          observation: "Adakah mancis P dan Q menyala? Mengapa?",
+          observationIsQuestion: true,
+          conclusion: "Haba diperlukan untuk pembakaran.",
+        },
+      ],
+      fuelMaterials: [
+        {
+          id: "glass",
+          label: "Rod kaca",
+          isFuel: false,
+        },
+        {
+          id: "wood",
+          label: "Kayu",
+          isFuel: true,
+        },
+        {
+          id: "candle",
+          label: "Lilin",
+          isFuel: true,
+        },
+        {
+          id: "stone",
+          label: "Batu",
+          isFuel: false,
+        },
+      ],
+      fuel: "Bahan api",
+      nonFuel: "Bukan bahan api",
+      labels: {
+        apparatus: "Bahan dan radas",
+        setup: "Arahan",
+        observation: "Pemerhatian",
+        conclusion: "Kesimpulan",
+        before: "Sebelum",
+        after: "Selepas",
+        test: "Perhatikan perubahan yang berlaku",
+        coldMatch: "P — Mancis dari bahagian penyejuk beku peti sejuk",
+        ordinaryMatch: "Q — Mancis",
+        matchbox: "Kotak mancis",
+      },
+      extinguisherTitle: "Alat Pemadam Api",
+      tableTitle: "Jadual 7.1 Jenis kebakaran dan alat pemadam api yang sesuai digunakan",
+      tableHeaders: ["Bahan yang terbakar", "Contoh bahan", "Alat pemadam api yang digunakan"],
+      oilTitle: "Sains dan Saya",
+      oilWarning:
+        "Jangan tuangkan air pada kebakaran minyak. Air lebih tumpat daripada minyak dan akan tenggelam di bawah minyak. Jadi, api tidak akan terpadam. Kita perlu menggunakan busa!",
+      oilLabels: ["Minyak", "Air", "Busa"],
+      methodsTitle: "Alat Pemadam Api",
+      blanketTitle: "Selimut api",
+      blanket:
+        "Selimut api merupakan selimut khas yang diperbuat daripada bahan kalis api. Selimut ini menutupi api dan menghalang oksigen daripada masuk ke bawah selimut sehingga akhirnya menyebabkan api terpadam.",
+      blanketSteps: [
+        "Selimut kalis api",
+        "Menutupi api",
+        "Menghalang oksigen daripada masuk",
+        "Api terpadam",
+      ],
+      preventionTitle: "Amalan Sikap Berjaga-jaga untuk Mengelakkan Kebakaran",
+      poster: {
+        title: "Aktiviti 7.4",
+        aim: "Membuat poster kesedaran tentang punca kebakaran dan langkah-langkah pencegahan kebakaran",
+        instructions: [
+          "Sediakan satu poster yang bertajuk ‘Punca kebakaran dan langkah pencegahan kebakaran’ secara berkumpulan.",
+          "Persembahkan tiga poster terbaik pada papan kenyataan sains di dalam kelas.",
+        ],
+      },
+      practiceTitle: "Praktis Formatif 7.2",
+      questions: [
+        "Berikan maksud pembakaran.",
+        "Apakah syarat-syarat pembakaran?",
+        "Luqman menggunakan selimut api untuk memadamkan suatu kebakaran kecil di rumahnya. Bagaimanakah selimut api itu berfungsi?",
+        "Berikan empat langkah berjaga-jaga yang boleh diambil bagi mengelakkan kebakaran.",
+        "Logam seperti kalium dan natrium disimpan dalam minyak parafin. Mengapa?",
+      ],
+      paraffinAnswer: "Logam kalium dan natrium mudah terbakar apabila terdedah kepada udara.",
+    },
   },
   pollutionSources: [
     {
@@ -1498,59 +1844,13 @@ const bm: Bab7Content = {
 export const bab7Content = { en, bm };
 
 export interface Bab7Supplement {
-  combustionExperiments: {
-    factor: string;
-    procedure: string;
-    observation: string;
-    conclusion: string;
-  }[];
-  fireWarnings: string[];
   pollutionDefinition: string;
   activeRecall: { question: string; answer: string }[];
 }
-
 const supplementEn: Bab7Supplement = {
-  combustionExperiments: [
-    {
-      factor: "Fuel",
-      procedure: "Heat a glass rod, wood, candle, and stone over a Bunsen flame using tongs.",
-      observation: "Wood and candle burn; the glass rod and stone do not.",
-      conclusion: "A combustible fuel is required for combustion.",
-    },
-    {
-      factor: "Oxygen",
-      procedure:
-        "Cover one of two burning candles with an inverted gas jar; leave the other exposed.",
-      observation:
-        "The covered candle goes out quickly while the exposed candle continues burning.",
-      conclusion: "Oxygen supports and is required for combustion.",
-    },
-    {
-      factor: "Heat",
-      procedure:
-        "Cool one matchstick in a refrigerator and keep another at room temperature, then strike both.",
-      observation:
-        "The room-temperature match lights immediately; the cold match initially fails to ignite.",
-      conclusion: "The fuel must receive enough heat to reach its ignition point.",
-    },
-  ],
-  fireWarnings: [
-    "Never use water on an oil fire. Water sinks below the less-dense oil and can make hot oil splash and spread the fire; use foam instead.",
-    "Never use water on an electrical fire because water conducts electricity. Use dry powder or carbon dioxide.",
-  ],
   pollutionDefinition:
     "Air pollution is the introduction of harmful chemicals, particulate matter, or biological contaminants into the atmosphere, causing discomfort, disease, or environmental damage.",
   activeRecall: [
-    {
-      question: "Why are sodium and potassium kept under paraffin oil?",
-      answer:
-        "The oil isolates these highly reactive metals from oxygen and moisture in air, preventing rapid reactions, fire, or explosion.",
-    },
-    {
-      question: "Which extinguisher should be used for an electrical fire, and why not water?",
-      answer:
-        "Use dry powder or carbon dioxide. Water conducts electricity and could electrocute the operator or damage the circuit.",
-    },
     {
       question: "Why can cave explorers use a burning torch as well as an electric torch?",
       answer:
@@ -1558,49 +1858,10 @@ const supplementEn: Bab7Supplement = {
     },
   ],
 };
-
 const supplementBm: Bab7Supplement = {
-  combustionExperiments: [
-    {
-      factor: "Bahan api",
-      procedure:
-        "Panaskan rod kaca, kayu, lilin, dan batu di atas nyalaan penunu Bunsen menggunakan penyepit.",
-      observation: "Kayu dan lilin terbakar; rod kaca dan batu tidak terbakar.",
-      conclusion: "Bahan api yang boleh terbakar diperlukan untuk pembakaran.",
-    },
-    {
-      factor: "Oksigen",
-      procedure:
-        "Tutup satu daripada dua lilin bernyala dengan balang gas terbalik; biarkan satu lagi terdedah.",
-      observation: "Lilin yang ditutup cepat terpadam manakala lilin yang terdedah terus menyala.",
-      conclusion: "Oksigen menyokong dan diperlukan untuk pembakaran.",
-    },
-    {
-      factor: "Haba",
-      procedure:
-        "Sejukkan satu batang mancis di dalam peti sejuk dan simpan satu lagi pada suhu bilik, kemudian nyalakan kedua-duanya.",
-      observation:
-        "Mancis suhu bilik menyala serta-merta; mancis sejuk gagal menyala pada mulanya.",
-      conclusion: "Bahan api mesti menerima haba yang cukup untuk mencapai takat pencucuhan.",
-    },
-  ],
-  fireWarnings: [
-    "Jangan gunakan air pada kebakaran minyak. Air tenggelam di bawah minyak yang kurang tumpat lalu boleh menyebabkan minyak panas terpercik dan api merebak; gunakan busa.",
-    "Jangan gunakan air pada kebakaran elektrik kerana air mengkonduksi elektrik. Gunakan serbuk kering atau karbon dioksida.",
-  ],
   pollutionDefinition:
     "Pencemaran udara ialah kemasukan bahan kimia, zarah, atau bahan cemar biologi yang berbahaya ke atmosfera sehingga menyebabkan ketidakselesaan, penyakit, atau kerosakan alam sekitar.",
   activeRecall: [
-    {
-      question: "Mengapakah natrium dan kalium disimpan di bawah minyak parafin?",
-      answer:
-        "Minyak mengasingkan logam yang sangat reaktif ini daripada oksigen dan kelembapan udara, lalu mencegah tindak balas pantas, kebakaran, atau letupan.",
-    },
-    {
-      question: "Apakah pemadam yang sesuai untuk kebakaran elektrik, dan mengapa bukan air?",
-      answer:
-        "Gunakan serbuk kering atau karbon dioksida. Air mengkonduksi elektrik dan boleh menyebabkan renjatan kepada pengguna atau merosakkan litar.",
-    },
     {
       question: "Mengapakah peneroka gua boleh membawa obor bernyala selain lampu elektrik?",
       answer:
@@ -1608,6 +1869,5 @@ const supplementBm: Bab7Supplement = {
     },
   ],
 };
-
 export const bab7Supplement = { en: supplementEn, bm: supplementBm };
 export default bab7Content;

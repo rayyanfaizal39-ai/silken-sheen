@@ -260,27 +260,16 @@ describe("Chapter 7 Pass 1 live Notes", () => {
       expect(a.practice.questions).toHaveLength(5);
       expect(section.textContent).not.toMatch(/glowing splint|limewater|kayu uji|air kapur/);
     });
-    it(`${lang}: locked 7.2/7.3 data exactly matches the pre-pass hash`, () => {
-      const keys = [
-        "combustion",
-        "pollutionSources",
-        "pollutionEffects",
-        "prevention",
-        "api",
-        "keyExamFacts",
-        "keyTerms",
-        "chapterSummary",
-      ] as const;
+    it(`${lang}: approved 7.1 and deferred 7.3 remain unchanged through Pass 2`, () => {
       const locked = {
-        ...Object.fromEntries(keys.map((k) => [k, t[k]])),
-        supplement: bab7Supplement[lang],
+        ...Object.fromEntries(Object.entries(t).filter(([key]) => key !== "combustion")),
+        pollutionDefinition: bab7Supplement[lang].pollutionDefinition,
       };
       expect(createHash("sha256").update(JSON.stringify(locked)).digest("hex")).toBe(
         lang === "en"
-          ? "2e6d991ff5396791f7200705df07fe927b8c2568da4cc7f7702cc61dd71d3278"
-          : "7c2b96ac8aec8704c0aa8f53ec42a0658581d15ef93e0f2732e55dd701c05c77",
+          ? "fa8fd0bdee4b8e4fd047de329871b8a137f6d4bb7d9545c4738c935d9cf92ef3"
+          : "669f5f1cdb1a745b12b150c0dec45eee3f1a4d36c6e4520d1568c73c1a888885",
       );
-      expect(bab7Supplement[lang].activeRecall).toHaveLength(3);
     });
   }
   it("BM and DLP share every scientific SVG geometry, including all activity stages", () => {

@@ -16,9 +16,9 @@ describe("ScienceF1Chapter7VisualNotesBlock", () => {
 
     expect(html).toContain("Komposisi Udara");
     expect(html).toContain("Aktiviti 7.1");
-    expect(html).toContain("Segi tiga api");
+    expect(html).toContain("Tiga keperluan pembakaran");
     expect(html).toContain("Indeks Pencemaran Udara");
-    expect(html).toContain("Mengapakah natrium dan kalium");
+    expect(html).toContain("Logam seperti kalium dan natrium");
     expect(html).toContain('id="science-notes-content"');
   });
 
@@ -32,7 +32,7 @@ describe("ScienceF1Chapter7VisualNotesBlock", () => {
 
     expect(html).toContain("Composition of Air");
     expect(html).toContain("1/5 ≈ 20% oxygen");
-    expect(html).toContain("Never use water on an oil fire");
+    expect(html).toContain("Do not pour water onto an oil fire");
     expect(html).toContain("Air Pollutant Index");
     expect(html).toContain("Why can cave explorers");
   });

@@ -1,13 +1,12 @@
+import { Chapter7Combustion } from "./Chapter7Combustion";
 import { Chapter7AirComposition } from "./Chapter7AirComposition";
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import {
-  AlertTriangle,
   Check,
   ChevronDown,
   CircleGauge,
   Cloud,
   Factory,
-  Flame,
   HeartPulse,
   Leaf,
   Lightbulb,
@@ -24,7 +23,6 @@ const ui = {
   en: {
     eyebrow: "Form 1 Science · Chapter 7",
     sections: [
-      ["7.2", "Fire needs three conditions", "Remove heat, oxygen, or fuel and combustion stops."],
       [
         "7.3",
         "Pollutants connect sources to consequences",
@@ -41,17 +39,6 @@ const ui = {
         "Use scientific principles to justify safety and environmental decisions.",
       ],
     ],
-    triangle: "Fire triangle",
-    validate: "Experimental validation",
-    procedure: "Procedure",
-    observation: "Observation",
-    conclusion: "Conclusion",
-    extinguish: "Choose an extinguisher by fuel",
-    examples: "Examples",
-    media: "Correct extinguishing media",
-    techniques: "Three firefighting techniques",
-    warning: "Critical safety warning",
-    safety: "Fire prevention checklist",
     pollution: "Air pollution",
     sources: "Sources and pollutants",
     effects: "Effects",
@@ -66,11 +53,6 @@ const ui = {
   bm: {
     eyebrow: "Sains Tingkatan 1 · Bab 7",
     sections: [
-      [
-        "7.2",
-        "Api memerlukan tiga syarat",
-        "Singkirkan haba, oksigen, atau bahan api dan pembakaran terhenti.",
-      ],
       [
         "7.3",
         "Bahan pencemar menghubungkan punca dengan kesan",
@@ -87,17 +69,6 @@ const ui = {
         "Gunakan prinsip saintifik untuk mewajarkan keputusan keselamatan dan alam sekitar.",
       ],
     ],
-    triangle: "Segi tiga api",
-    validate: "Pengesahan eksperimen",
-    procedure: "Prosedur",
-    observation: "Pemerhatian",
-    conclusion: "Kesimpulan",
-    extinguish: "Pilih pemadam mengikut bahan api",
-    examples: "Contoh",
-    media: "Medium pemadam yang betul",
-    techniques: "Tiga teknik memadam kebakaran",
-    warning: "Amaran keselamatan kritikal",
-    safety: "Senarai semak pencegahan kebakaran",
     pollution: "Pencemaran udara",
     sources: "Punca dan bahan pencemar",
     effects: "Kesan",
@@ -130,33 +101,6 @@ function SectionHeading({ section }: { section: readonly [string, string, string
   );
 }
 
-function Tabs({
-  labels,
-  selected,
-  onSelect,
-}: {
-  labels: string[];
-  selected: number;
-  onSelect: (index: number) => void;
-}) {
-  return (
-    <div className="flex flex-wrap gap-2" role="tablist">
-      {labels.map((label, index) => (
-        <button
-          key={label}
-          type="button"
-          role="tab"
-          aria-selected={selected === index}
-          onClick={() => onSelect(index)}
-          className={`min-h-12 cursor-pointer rounded-xl border px-4 py-2 text-left text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 ${selected === index ? "border-sky-300/50 bg-sky-300/15 text-sky-100" : "border-white/10 bg-slate-950/40 text-slate-300 hover:border-white/25"}`}
-        >
-          {label}
-        </button>
-      ))}
-    </div>
-  );
-}
-
 function Checklist({ items }: { items: string[] }) {
   return (
     <ul className="space-y-2">
@@ -167,38 +111,6 @@ function Checklist({ items }: { items: string[] }) {
         </li>
       ))}
     </ul>
-  );
-}
-
-function DataTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
-  return (
-    <div className="overflow-x-auto rounded-2xl border border-white/10">
-      <table className="w-full min-w-[680px] border-collapse text-left text-sm">
-        <thead className="bg-sky-300/10 text-sky-100">
-          <tr>
-            {headers.map((header) => (
-              <th key={header} className="px-4 py-3 font-bold">
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-white/10">
-          {rows.map((row) => (
-            <tr key={row.join("-")} className="bg-slate-950/20">
-              {row.map((cell, index) => (
-                <td
-                  key={`${cell}-${index}`}
-                  className={`px-4 py-3 align-top leading-6 ${index === 0 ? "font-semibold text-white" : "text-slate-300"}`}
-                >
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
   );
 }
 
@@ -220,8 +132,6 @@ export function ScienceF1Chapter7VisualNotesBlock({
   const t = content[lang];
   const extra = bab7Supplement[lang];
   const copy = ui[lang];
-  const [fireFactor, setFireFactor] = useState(0);
-  const [fireClass, setFireClass] = useState(0);
 
   return (
     <section
@@ -272,116 +182,14 @@ export function ScienceF1Chapter7VisualNotesBlock({
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               {t.airLesson.subtopics[1].code} {t.airLesson.subtopics[1].title}
             </h2>
-            <SectionHeading section={copy.sections[0]} />
-            <div className="grid gap-5 lg:grid-cols-[.75fr_1.25fr]">
-              <Panel className="grid place-items-center">
-                <div className="w-full max-w-sm text-center">
-                  <Flame className="mx-auto h-12 w-12 text-orange-300" />
-                  <h3 className="mt-3 font-bold text-white">{copy.triangle}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{t.combustion.definition}</p>
-                  <div className="mt-5 grid grid-cols-3 gap-2">
-                    {Object.values(t.combustion.triangle).map((item) => (
-                      <div
-                        key={item}
-                        className="rounded-xl border border-orange-300/25 bg-orange-300/10 p-3 text-sm font-black text-orange-100"
-                      >
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Panel>
-              <Panel>
-                <h3 className="font-bold text-white">{copy.validate}</h3>
-                <div className="mt-4">
-                  <Tabs
-                    labels={extra.combustionExperiments.map((item) => item.factor)}
-                    selected={fireFactor}
-                    onSelect={setFireFactor}
-                  />
-                </div>
-                <div className="mt-4 space-y-3" role="tabpanel">
-                  {([copy.procedure, copy.observation, copy.conclusion] as const).map(
-                    (label, index) => (
-                      <div key={label} className="rounded-xl bg-slate-950/35 p-4">
-                        <p className="text-xs font-bold uppercase tracking-wider text-orange-300">
-                          {label}
-                        </p>
-                        <p className="mt-1 text-sm leading-6 text-slate-300">
-                          {index === 0
-                            ? extra.combustionExperiments[fireFactor].procedure
-                            : index === 1
-                              ? extra.combustionExperiments[fireFactor].observation
-                              : extra.combustionExperiments[fireFactor].conclusion}
-                        </p>
-                      </div>
-                    ),
-                  )}
-                </div>
-              </Panel>
-            </div>
-            <Panel>
-              <h3 className="font-bold text-white">{copy.extinguish}</h3>
-              <div className="mt-4">
-                <Tabs
-                  labels={t.combustion.extinguisherTable.map((item) => item.material)}
-                  selected={fireClass}
-                  onSelect={setFireClass}
-                />
-              </div>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2" role="tabpanel">
-                <div className="rounded-xl bg-orange-300/10 p-4">
-                  <p className="text-xs font-bold uppercase text-orange-300">{copy.examples}</p>
-                  <p className="mt-2 font-semibold text-white">
-                    {t.combustion.extinguisherTable[fireClass].examples}
-                  </p>
-                </div>
-                <div className="rounded-xl bg-emerald-300/10 p-4">
-                  <p className="text-xs font-bold uppercase text-emerald-300">{copy.media}</p>
-                  <p className="mt-2 font-semibold text-white">
-                    {t.combustion.extinguisherTable[fireClass].extinguishers.join(" · ")}
-                  </p>
-                </div>
-              </div>
-            </Panel>
-            <div className="grid gap-5 lg:grid-cols-2">
-              <Panel>
-                <h3 className="mb-4 font-bold text-white">{copy.techniques}</h3>
-                <div className="space-y-3">
-                  {t.combustion.methods.map((item) => (
-                    <div key={item.heading} className="border-l-2 border-orange-300 pl-4">
-                      <p className="font-bold text-orange-200">{item.heading}</p>
-                      <p className="mt-1 text-sm leading-6 text-slate-300">{item.body}</p>
-                    </div>
-                  ))}
-                </div>
-              </Panel>
-              <Panel className="border-rose-300/25 bg-rose-300/[0.06]">
-                <div className="flex items-center gap-3">
-                  <AlertTriangle className="h-6 w-6 text-rose-300" />
-                  <h3 className="font-bold text-white">{copy.warning}</h3>
-                </div>
-                <div className="mt-4">
-                  <Checklist items={extra.fireWarnings} />
-                </div>
-              </Panel>
-            </div>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <ShieldCheck className="h-6 w-6 text-emerald-300" />
-                <h3 className="font-bold text-white">{copy.safety}</h3>
-              </div>
-              <div className="mt-4 grid gap-x-6 gap-y-2 md:grid-cols-2">
-                <Checklist items={t.combustion.safetyChecklist} />
-              </div>
-            </Panel>
+            <Chapter7Combustion source={t.combustion} />
           </section>
 
           <section id="chapter7-73" data-official-subtopic="7.3" className="space-y-6">
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               {t.airLesson.subtopics[2].code} {t.airLesson.subtopics[2].title}
             </h2>
-            <SectionHeading section={copy.sections[1]} />
+            <SectionHeading section={copy.sections[0]} />
             <Panel>
               <div className="flex items-center gap-3">
                 <Cloud className="h-6 w-6 text-slate-300" />
@@ -447,7 +255,7 @@ export function ScienceF1Chapter7VisualNotesBlock({
           </section>
 
           <section className="space-y-6">
-            <SectionHeading section={copy.sections[2]} />
+            <SectionHeading section={copy.sections[1]} />
             <div className="grid gap-4 lg:grid-cols-3">
               {t.prevention.map((category) => (
                 <Panel key={category.heading}>
@@ -461,7 +269,7 @@ export function ScienceF1Chapter7VisualNotesBlock({
           </section>
 
           <section className="space-y-6">
-            <SectionHeading section={copy.sections[3]} />
+            <SectionHeading section={copy.sections[2]} />
             <div className="grid gap-5 lg:grid-cols-2">
               <Panel>
                 <div className="flex items-center gap-3">
