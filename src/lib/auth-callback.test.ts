@@ -57,6 +57,7 @@ describe("cookie-backed server OAuth callback (real Supabase SDK, mocked Auth AP
 
   it.each([
     undefined,
+    "/admin",
     "https://senior.myacademy.my/home?tab=notes&form=4",
     "https://evil.example",
     "javascript:alert(1)",
@@ -70,7 +71,8 @@ describe("cookie-backed server OAuth callback (real Supabase SDK, mocked Auth AP
     });
     expect(error).toBeNull();
     const callback = new URL(new URL(data.url!).searchParams.get("redirect_to")!);
-    const expected = next?.startsWith("https://senior.myacademy.my/") ? next : "/home";
+    const expected =
+      next === "/admin" || next?.startsWith("https://senior.myacademy.my/") ? next : "/home";
     expect(callback.searchParams.get("next")).toBe(next ? expected : null);
     callback.searchParams.set("code", "returned-code");
     vi.stubGlobal(

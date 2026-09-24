@@ -215,7 +215,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // An iframe's cookies may be blocked/partitioned on mobile browsers.
     const destination = getAuthReturnTo(returnTo);
     const loginPath =
-      destination === "/admin/login"
+      destination === "/admin/login" || destination === "/admin"
         ? "/admin/login"
         : `/login?next=${encodeURIComponent(destination)}`;
     if (

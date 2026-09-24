@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getAuthReturnTo } from "./auth-return-to";
+import { getAuthReturnTo, getGoogleOAuthOptions } from "./auth-return-to";
 import { getSupabaseAuthCookieOptions } from "./supabase-auth-cookie";
 
 describe("SSO return destinations", () => {
@@ -39,4 +39,13 @@ describe("SSO return destinations", () => {
     expect(getSupabaseAuthCookieOptions("localhost").domain).toBeUndefined();
     expect(getSupabaseAuthCookieOptions("preview.pages.dev").domain).toBeUndefined();
   });
+});
+
+it("uses the exact admin callback URL while keeping student OAuth unchanged", () => {
+  expect(getGoogleOAuthOptions("https://www.myacademy.my", "/admin").options.redirectTo).toBe(
+    "https://www.myacademy.my/auth/callback?next=/admin",
+  );
+  expect(getGoogleOAuthOptions("https://www.myacademy.my").options.redirectTo).toBe(
+    "https://www.myacademy.my/auth/callback",
+  );
 });

@@ -111,3 +111,13 @@ describe("login route next wiring", () => {
     },
   );
 });
+
+it.each([undefined, "/", "https://senior.myacademy.my/home"])(
+  "admin Google always requests /admin regardless of next: %s",
+  async (next) => {
+    state.search = { next };
+    const button = find(render(Admin), (e) => e.props.children === "Continue with Google")!;
+    await (button.props.onClick as () => Promise<void>)();
+    expect(state.google).toHaveBeenCalledWith("/admin");
+  },
+);

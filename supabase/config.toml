@@ -5,6 +5,7 @@ site_url = "https://www.myacademy.my"
 additional_redirect_urls = [
   "https://www.myacademy.my/login",
   "https://www.myacademy.my/auth/callback",
+  "https://www.myacademy.my/auth/callback?next=/admin",
   "https://www.myacademy.my/auth/callback?next=%2Fadmin%2Flogin",
   "https://www.myacademy.my/auth/callback?next=%2Fupgrade",
   "https://www.myacademy.my/auth/reset-password",

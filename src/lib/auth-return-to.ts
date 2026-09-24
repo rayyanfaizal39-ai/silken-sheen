@@ -31,7 +31,12 @@ export function getAuthReturnTo(value: unknown, development = import.meta.env.DE
 
 export function getGoogleOAuthOptions(origin: string, next?: string) {
   const callback = new URL("/auth/callback", origin);
-  if (next) callback.searchParams.set("next", getAuthReturnTo(next));
+  if (next === "/admin") {
+    // Keep the admin callback identical to the production redirect allowlist entry.
+    callback.search = "?next=/admin";
+  } else if (next) {
+    callback.searchParams.set("next", getAuthReturnTo(next));
+  }
   return {
     provider: "google" as const,
     options: { redirectTo: callback.href, queryParams: { prompt: "select_account" } },

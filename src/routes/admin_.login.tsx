@@ -76,7 +76,7 @@ function AdminLoginPage() {
     setSubmitting(true);
     setError(null);
     try {
-      await signInWithGoogle(next ?? "/admin/login");
+      await signInWithGoogle("/admin");
     } catch {
       setError("Google sign-in could not be started. Please try again.");
       setSubmitting(false);
