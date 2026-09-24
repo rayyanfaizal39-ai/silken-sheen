@@ -248,26 +248,15 @@ describe("Chapter 6 Pass 1", () => {
       ),
     );
   });
-  it("preserves all deferred 6.3 data and supplement fields", () => {
-    const keys = [
-      "compounds",
-      "physicalVsChemicalChange",
-      "mixturesVsCompounds",
-      "keyExamFacts",
-      "keyTerms",
-      "chapterSummary",
-    ] as const;
+  it("preserves the approved Pass 2 mixture data during the final pass", () => {
     const hashes = {
-      en: "e16efa9916632c156f1b11beb85a4d9f347f40b9668501a4c14c1bcefa773697",
-      bm: "a0e0020b8145f9c28db84eee9b2d1a1ad379821c96acff5ebe4dc3435e9f0695",
+      en: "158db5fa7772ffee5d30bec52c7510f737ab466c2ad0ad9433e7e2b3b983a4c1",
+      bm: "ddaa47de044411da2d45e1dce258808eb30ad46c27b558302548073d4877c186",
     };
     for (const lang of ["en", "bm"] as const) {
-      const data = {
-        ...Object.fromEntries(keys.map((k) => [k, chapter6Content[lang][k]])),
-        electrolysis: chapter6Supplement[lang].electrolysis,
-        activeRecall: chapter6Supplement[lang].activeRecall,
-      };
-      expect(createHash("sha256").update(JSON.stringify(data)).digest("hex")).toBe(hashes[lang]);
+      expect(
+        createHash("sha256").update(JSON.stringify(chapter6Content[lang].mixtures)).digest("hex"),
+      ).toBe(hashes[lang]);
     }
   });
   it("uses canonical facts and removes duplicate Pass 1 supplement arrays", () => {

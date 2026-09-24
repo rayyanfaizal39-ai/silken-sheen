@@ -18,7 +18,7 @@ describe("ScienceF1Chapter6VisualNotesBlock", () => {
     expect(html).toContain("Dmitri Mendeleev");
     expect(html).toContain("Pilih kaedah pemisahan");
     expect(html).toContain("Elektrolisis air");
-    expect(html).toContain("Ingatan aktif");
+    expect(html).toContain("Praktis Formatif 6.3");
     expect(html).toContain('id="science-notes-content"');
   });
 
@@ -31,9 +31,9 @@ describe("ScienceF1Chapter6VisualNotesBlock", () => {
     );
 
     expect(html).toContain("6.1 Classification of Elements");
-    expect(html).toContain("Hydrogen gas");
-    expect(html).toContain("2 : 1");
-    expect(html).toContain("Why is air a mixture?");
+    expect(html).toContain("Negative electrode (cathode)");
+    expect(html).not.toContain("2 : 1");
+    expect(html).toContain("Define compound.");
     expect(html).toContain("germanium");
   });
 });

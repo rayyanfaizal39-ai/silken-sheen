@@ -172,11 +172,34 @@ export interface Chapter6Content {
     definition: string;
     formations: CompoundFormation[];
     alkaliMetalNote: string;
+    alkaliFormations: CompoundFormation[];
     massConservationNote: string;
     electrolysisDefinition: string;
+    labels: Record<string, string>;
+    examples: string[];
+    everyday: { id: string; elements: string; compound: string; object: string }[];
+    rust: string;
+    mineralNote: string;
+    separation: string;
+    activity610: { title: string; instructions: string[] };
+    activity611: {
+      title: string;
+      materials: string;
+      apparatus: { id: string; label: string }[];
+      steps: string[];
+      safety?: string;
+    };
+    activity612: { title: string; instructions: string[] };
+    electrolysis: {
+      setup: string[];
+      products: { id: "anode" | "cathode"; electrode: string; gas: string }[];
+      labels: Record<string, string>;
+    };
+    activeRecall: { question: string; answer: string }[];
   };
   physicalVsChemicalChange: {
     comparison: ChangeComparisonRow[];
+    common: string[];
     physicalExamples: string[];
     chemicalExamples: string[];
   };
@@ -967,60 +990,276 @@ const en: Chapter6Content = {
   },
   compounds: {
     definition:
-      "A compound consists of two or more elements mixed chemically, forming a newly formed product with its own characteristics, different from the original substances.",
+      "A compound consists of two or more elements that are mixed chemically. This newly formed product has its own characteristics.",
     formations: [
-      { reactants: "Magnesium + Oxygen", product: "Magnesium oxide" },
-      { reactants: "Aluminium + Oxygen", product: "Aluminium oxide" },
-      { reactants: "Zinc + Oxygen", product: "Zinc oxide" },
-      { reactants: "Iron + Oxygen", product: "Iron oxide" },
-      { reactants: "Copper + Oxygen", product: "Copper oxide" },
-      { reactants: "Iron + Sulphur (heated)", product: "Iron sulphide" },
+      {
+        reactants: "magnesium + oxygen",
+        product: "magnesium oxide",
+      },
+      {
+        reactants: "aluminium + oxygen",
+        product: "aluminium oxide",
+      },
+      {
+        reactants: "zinc + oxygen",
+        product: "zinc oxide",
+      },
+      {
+        reactants: "iron + oxygen",
+        product: "iron oxide",
+      },
+      {
+        reactants: "copper + oxygen",
+        product: "copper oxide",
+      },
+      {
+        reactants: "iron + sulphur",
+        product: "iron sulphide",
+      },
     ],
     alkaliMetalNote:
-      "Alkali metals (lithium, sodium, potassium) react with water to form alkali compounds and release hydrogen gas — e.g. sodium + water → sodium hydroxide + hydrogen gas.",
+      "There are some metals that react with water to form alkali compounds and release hydrogen gas. These elements are known as alkali metals.",
     massConservationNote:
-      "When a metal and non-metal combine to form a compound, the total mass before and after the reaction remains the same — mass is conserved.",
+      "The total mass before and after heating is the same and does not change. Mass is conserved during a chemical change.",
     electrolysisDefinition:
-      "Electrolysis is the chemical decomposition of a compound into its elements by passing an electric current through the compound — e.g. water decomposes into hydrogen (at the cathode) and oxygen (at the anode).",
+      "Electrolysis is a chemical decomposition of a compound to its elements by passing an electric current through the compound.",
+    alkaliFormations: [
+      {
+        reactants: "lithium + water",
+        product: "lithium hydroxide + hydrogen gas",
+      },
+      {
+        reactants: "sodium + water",
+        product: "sodium hydroxide + hydrogen gas",
+      },
+      {
+        reactants: "potassium + water",
+        product: "potassium hydroxide + hydrogen gas",
+      },
+    ],
+    labels: {
+      everyday: "Examples of compounds",
+      formation: "How do metal and non-metal elements combine chemically to form a compound?",
+      metalEquation: "metal + oxygen → metal oxide",
+      before: "Before heating",
+      after: "After heating",
+      heat: "Heat",
+      iron: "Iron powder",
+      sulphur: "Sulphur powder",
+      mixture: "Mixture",
+      compound: "Compound",
+      initialMass: "Initial mass",
+      finalMass: "Final mass",
+      materials: "Materials and apparatus",
+      procedure: "Procedure",
+      separation: "Methods to Separate Compounds",
+      physicalSeparation: "Physical separation",
+      chemicalSeparation: "Chemical separation",
+      electrolysis: "Electrolysis of water",
+      changes: "Physical Change and Chemical Change",
+      physical: "Physical change",
+      chemical: "Chemical change",
+      comparison: "Differences between Mixtures and Compounds",
+      characteristic: "Characteristic",
+      recall: "Formative Practice 6.3",
+      answer: "Answer",
+      facts: "Summary",
+      terms: "Terms",
+      schematic: "Schematic / not to scale",
+      table: "Table 6.2",
+      answerKey: "Formative Practice 6.3 — Answers",
+    },
+    examples: ["Salt", "Sugar", "Chalk", "Marble", "Polythene", "Water"],
+    everyday: [
+      {
+        id: "blocks",
+        elements: "Carbon + hydrogen",
+        compound: "Polythene",
+        object: "Building blocks",
+      },
+      {
+        id: "water",
+        elements: "Hydrogen + oxygen",
+        compound: "Water",
+        object: "Water",
+      },
+      {
+        id: "tiles",
+        elements: "Calcium + carbon + oxygen",
+        compound: "Marble",
+        object: "Tiles",
+      },
+    ],
+    rust: "Rust is a compound formed by a chemical reaction between iron and oxygen.",
+    mineralNote:
+      "All mineral salts that are found in nature exist in the form of compounds due to the chemical reaction that occurs, except for gold, silver and platinum.",
+    separation:
+      "Compounds cannot be separated physically like mixtures because the elements in a compound are bonded chemically. Therefore, a compound can only be separated chemically by electrolysis.",
+    activity610: {
+      title: "Activity 6.10",
+      instructions: [
+        "Work in groups.",
+        "Prepare a multimedia presentation on the examples of compounds that exist around you.",
+        "Present to your class.",
+      ],
+    },
+    activity611: {
+      title: "Activity 6.11",
+      materials:
+        "Sulphur powder, iron powder, Bunsen burner, crucible with lid, tripod stand, pipeclay triangle, weighing balance.",
+      apparatus: [
+        {
+          id: "lid",
+          label: "Lid",
+        },
+        {
+          id: "crucible",
+          label: "Crucible",
+        },
+        {
+          id: "triangle",
+          label: "Pipeclay triangle",
+        },
+        {
+          id: "tripod",
+          label: "Tripod stand",
+        },
+        {
+          id: "burner",
+          label: "Bunsen burner",
+        },
+        {
+          id: "balance",
+          label: "Weighing balance",
+        },
+      ],
+      steps: [
+        "Put one spatula of sulphur powder and one spatula of iron powder into the crucible. Stir well. Record the colour of the mixture.",
+        "Weigh the mixture. Record the initial mass.",
+        "Heat the mixture until the colour changes.",
+        "Let the product cool. Weigh and record the final mass of the product.",
+      ],
+    },
+    activity612: {
+      title: "Activity 6.12",
+      instructions: [
+        "Work in groups.",
+        "Compare and contrast between mixtures and compounds.",
+        "Include pictures and graphics to show your understanding of this topic.",
+        "Prepare a multimedia presentation of your discussion.",
+        "Present your discussion in class.",
+      ],
+    },
+    electrolysis: {
+      setup: ["Water + sulphuric acid", "Dry cells", "Ammeter"],
+      products: [
+        {
+          id: "anode",
+          electrode: "Positive electrode (anode)",
+          gas: "Oxygen",
+        },
+        {
+          id: "cathode",
+          electrode: "Negative electrode (cathode)",
+          gas: "Hydrogen",
+        },
+      ],
+      labels: {
+        water: "Water + sulphuric acid",
+        battery: "Dry cells",
+        ammeter: "Ammeter",
+        electrodes: "Electrodes",
+      },
+    },
+    activeRecall: [
+      {
+        question: "Define compound.",
+        answer:
+          "A compound consists of two or more elements that are mixed chemically. This newly formed product has its own characteristics.",
+      },
+      {
+        question: "List five examples of compounds.",
+        answer: "Salt, Sugar, Chalk, Marble, Polythene.",
+      },
+      {
+        question: "How can you separate a compound?",
+        answer:
+          "Electrolysis is a chemical decomposition of a compound to its elements by passing an electric current through the compound.",
+      },
+      {
+        question: "State the differences between a mixture and a compound.",
+        answer:
+          "A mixture is formed physically and does not form a new substance. A compound is formed chemically and forms a new substance.",
+      },
+    ],
   },
   physicalVsChemicalChange: {
     comparison: [
-      { characteristic: "New substance formed?", physicalChange: "No", chemicalChange: "Yes" },
       {
-        characteristic: "Properties of substance",
+        characteristic: "New substance",
+        physicalChange: "Does not form new substance",
+        chemicalChange: "Forms new substance",
+      },
+      {
+        characteristic: "Properties of substances and products",
         physicalChange: "Remain the same",
-        chemicalChange: "Not the same as original",
+        chemicalChange: "Not the same",
       },
       {
         characteristic: "Chemical composition",
         physicalChange: "Remains the same",
-        chemicalChange: "Different composition",
+        chemicalChange: "Different",
       },
       {
-        characteristic: "Energy required",
+        characteristic: "Energy",
         physicalChange: "Needs less energy",
         chemicalChange: "Needs more energy",
       },
     ],
+    common: ["Occurs to matter", "Needs energy"],
     physicalExamples: ["Ice melting", "Water freezing", "Water boiling"],
     chemicalExamples: ["Rusting of iron", "Photosynthesis", "Decaying of leaf", "Cell respiration"],
   },
   mixturesVsCompounds: [
-    { characteristic: "Formation of new substance", mixture: "No", compound: "Yes" },
-    { characteristic: "Chemical bond", mixture: "No", compound: "Yes" },
-    { characteristic: "Separation method", mixture: "Physical", compound: "Chemical" },
-    { characteristic: "Properties vs original substances", mixture: "Same", compound: "Different" },
+    {
+      characteristic: "Formation of new substances",
+      mixture: "No",
+      compound: "Yes",
+    },
+    {
+      characteristic: "Chemical bond",
+      mixture: "No",
+      compound: "Yes",
+    },
+    {
+      characteristic: "Separation method",
+      mixture: "Physical",
+      compound: "Chemical",
+    },
+    {
+      characteristic: "Properties of new substances compared to the original",
+      mixture: "Same",
+      compound: "Different",
+    },
+    {
+      characteristic: "Heat changes during formation",
+      mixture: "No heat changes",
+      compound: "Heat changes during formation",
+    },
+    {
+      characteristic: "Combination of components",
+      mixture: "Components mixed randomly",
+      compound: "Elements combine in a fixed proportion",
+    },
   ],
   keyExamFacts: [
-    "All matter consists of atoms; atoms contain protons, neutrons, and electrons",
-    "An atom is neutral because the number of electrons equals the number of protons",
-    "An element contains only one type of atom and cannot be broken into simpler substances",
-    "A compound forms from two or more elements combined chemically, and can only be separated chemically",
-    "The Periodic Table classifies elements as metals, non-metals, semi-metals, and inert gases",
-    "Metals are shiny, ductile, malleable, and good conductors; non-metals are generally the opposite",
-    "A mixture is formed and separated physically; separation methods include filtration, distillation, magnetic separation, sedimentation, floatation, and chromatography",
-    "Mass is conserved when elements combine to form a compound",
-    "Physical changes don't form a new substance; chemical changes do",
+    "The nucleus has an overall positive charge from its protons. The number of electrons equals the number of protons, making the atom neutral overall.",
+    "An element is the simplest form of substance — it cannot be divided into two or more simpler substances, and contains only one type of atom.",
+    "A compound consists of two or more elements that are mixed chemically. This newly formed product has its own characteristics.",
+    "As the mixture is formed physically, it can be separated physically too.",
+    "Seven mixture separation methods: Filtration, Distillation, Separation using magnet, Sedimentation, Floatation, Chromatography, Sieving.",
+    "The total mass before and after heating is the same and does not change. Mass is conserved during a chemical change.",
+    "Electrolysis is a chemical decomposition of a compound to its elements by passing an electric current through the compound.",
   ],
   keyTerms: [
     "Atom",
@@ -1041,12 +1280,14 @@ const en: Chapter6Content = {
     "Sedimentation",
     "Floatation",
     "Chromatography",
+    "Separation using magnet",
+    "Sieving",
     "Electrolysis",
     "Physical change",
     "Chemical change",
   ],
   chapterSummary:
-    "Chapter 6 explains that all matter is made of atoms, which combine to form elements and compounds. It covers the structure of the Periodic Table and the differences between metals, non-metals, and semi-metals, how mixtures are formed and separated through six physical methods, how compounds form through chemical reactions with mass conservation, and the key differences between physical and chemical changes, and between mixtures and compounds.",
+    "All matter consists of atoms. An element contains one type of atom. Mixtures form and separate physically through the seven methods shown in Figure 6.19, including sieving. Compounds form chemically and are separated chemically. Mass is conserved during chemical change.",
 };
 
 const bm: Chapter6Content = {
@@ -1836,60 +2077,278 @@ const bm: Chapter6Content = {
   },
   compounds: {
     definition:
-      "Sebatian terdiri daripada dua atau lebih unsur yang bercampur secara kimia, membentuk produk baharu dengan ciri tersendiri, berbeza daripada bahan asal.",
+      "Sebatian terdiri daripada dua atau lebih unsur yang bercampur secara kimia. Bahan baharu yang terbentuk ini mempunyai ciri-ciri tersendiri yang berbeza daripada unsur-unsur yang membentuknya.",
     formations: [
-      { reactants: "Magnesium + Oksigen", product: "Magnesium oksida" },
-      { reactants: "Aluminium + Oksigen", product: "Aluminium oksida" },
-      { reactants: "Zink + Oksigen", product: "Zink oksida" },
-      { reactants: "Ferum + Oksigen", product: "Ferum oksida" },
-      { reactants: "Kuprum + Oksigen", product: "Kuprum oksida" },
-      { reactants: "Ferum + Sulfur (dipanaskan)", product: "Ferum sulfida" },
+      {
+        reactants: "magnesium + oksigen",
+        product: "magnesium oksida",
+      },
+      {
+        reactants: "aluminium + oksigen",
+        product: "aluminium oksida",
+      },
+      {
+        reactants: "zink + oksigen",
+        product: "zink oksida",
+      },
+      {
+        reactants: "besi + oksigen",
+        product: "besi oksida",
+      },
+      {
+        reactants: "kuprum + oksigen",
+        product: "kuprum oksida",
+      },
+      {
+        reactants: "besi + sulfur",
+        product: "besi sulfida",
+      },
     ],
     alkaliMetalNote:
-      "Logam alkali (litium, natrium, kalium) bertindak balas dengan air membentuk sebatian alkali dan membebaskan gas hidrogen — cth: natrium + air → natrium hidroksida + gas hidrogen.",
+      "Terdapat unsur logam yang bertindak balas dengan air untuk menghasilkan sebatian yang bersifat alkali dan membebaskan gas hidrogen. Unsur-unsur tersebut disebut sebagai logam alkali.",
     massConservationNote:
-      "Apabila logam dan bukan logam bergabung membentuk sebatian, jumlah jisim sebelum dan selepas tindak balas kekal sama — jisim dikekalkan.",
+      "Jisim campuran sebelum dan selepas dipanaskan adalah sama dan tidak berubah. Jisim diabadikan semasa perubahan kimia.",
     electrolysisDefinition:
-      "Elektrolisis ialah penguraian kimia sesuatu sebatian kepada unsurnya dengan melalukan arus elektrik melalui sebatian tersebut — cth: air terurai kepada hidrogen (di katod) dan oksigen (di anod).",
+      "Elektrolisis ialah proses penguraian sesuatu sebatian kepada unsur-unsurnya apabila arus elektrik mengalir melaluinya.",
+    alkaliFormations: [
+      {
+        reactants: "litium + air",
+        product: "litium hidroksida + gas hidrogen",
+      },
+      {
+        reactants: "natrium + air",
+        product: "natrium hidroksida + gas hidrogen",
+      },
+      {
+        reactants: "kalium + air",
+        product: "kalium hidroksida + gas hidrogen",
+      },
+    ],
+    labels: {
+      everyday: "Contoh-contoh sebatian dalam kehidupan harian",
+      formation:
+        "Bagaimanakah unsur logam dan unsur bukan logam bergabung secara kimia dan membentuk suatu sebatian?",
+      metalEquation: "logam + oksigen → logam oksida",
+      before: "Sebelum pemanasan",
+      after: "Selepas pemanasan",
+      heat: "Panaskan",
+      iron: "Serbuk besi",
+      sulphur: "Serbuk sulfur",
+      mixture: "Campuran",
+      compound: "Sebatian",
+      initialMass: "Jisim awal",
+      finalMass: "Jisim akhir",
+      materials: "Bahan dan radas",
+      procedure: "Arahan",
+      separation: "Kaedah Pengasingan Sebatian",
+      physicalSeparation: "Kaedah fizikal",
+      chemicalSeparation: "Kaedah kimia",
+      electrolysis: "Elektrolisis air",
+      changes: "Perubahan Fizik dan Perubahan Kimia",
+      physical: "Perubahan fizik",
+      chemical: "Perubahan kimia",
+      comparison: "Perbezaan antara Campuran dengan Sebatian",
+      characteristic: "Perbezaan",
+      recall: "Praktis Formatif 6.3",
+      answer: "Jawapan",
+      facts: "Rumusan",
+      terms: "Istilah",
+      schematic: "Skema / bukan mengikut skala",
+      table: "Jadual 6.2",
+      answerKey: "Praktis Formatif 6.3 — Jawapan",
+    },
+    examples: ["Garam", "Gula", "Kapur tulis", "Marmar", "Politena", "Air tulen"],
+    everyday: [
+      {
+        id: "blocks",
+        elements: "Karbon + hidrogen",
+        compound: "Politena",
+        object: "Permainan blok",
+      },
+      {
+        id: "water",
+        elements: "Hidrogen + oksigen",
+        compound: "Air tulen",
+        object: "Air tulen",
+      },
+      {
+        id: "tiles",
+        elements: "Kalsium + karbon + oksigen",
+        compound: "Marmar",
+        object: "Jubin",
+      },
+    ],
+    rust: "Karat merupakan contoh sebatian yang terbentuk daripada tindak balas kimia antara besi dengan oksigen.",
+    mineralNote:
+      "Semua garam mineral yang dijumpai di Bumi wujud dalam bentuk sebatian akibat daripada tindak balas kimia yang berlaku, kecuali emas, perak dan platinum.",
+    separation:
+      "Sebatian tidak dapat diasingkan melalui kaedah fizikal seperti campuran kerana unsur-unsur dalam sebatian telah digabungkan secara kimia. Oleh itu, sebatian hanya boleh diasingkan menggunakan kaedah kimia melalui proses elektrolisis.",
+    activity610: {
+      title: "Aktiviti 6.10",
+      instructions: [
+        "Lakukan aktiviti ini secara berkumpulan.",
+        "Buat satu persembahan multimedia mengenai contoh-contoh sebatian yang wujud di sekeliling anda.",
+        "Persembahkan kepada rakan-rakan sekelas dan guru.",
+      ],
+    },
+    activity611: {
+      title: "Aktiviti 6.11",
+      materials:
+        "Serbuk sulfur, serbuk besi, penunu Bunsen, mangkuk pijar dengan penutup, tungku kaki tiga, alas segi tiga tanah liat, penimbang.",
+      apparatus: [
+        {
+          id: "lid",
+          label: "Penutup",
+        },
+        {
+          id: "crucible",
+          label: "Mangkuk pijar",
+        },
+        {
+          id: "triangle",
+          label: "Alas segi tiga tanah liat",
+        },
+        {
+          id: "tripod",
+          label: "Tungku kaki tiga",
+        },
+        {
+          id: "burner",
+          label: "Penunu Bunsen",
+        },
+        {
+          id: "balance",
+          label: "Penimbang",
+        },
+      ],
+      steps: [
+        "Masukkan satu spatula serbuk sulfur dan satu spatula serbuk besi ke dalam mangkuk pijar. Kacau sehingga sebati. Catatkan warna campuran.",
+        "Timbang campuran. Catatkan jisim awal campuran.",
+        "Panaskan campuran sehingga campuran itu bertukar warna.",
+        "Sejukkan hasil yang diperoleh. Timbang dan catatkan jisim akhir bahan tersebut.",
+      ],
+      safety: "Aktiviti haruslah dijalankan di dalam kebuk wasap.",
+    },
+    activity612: {
+      title: "Aktiviti 6.12",
+      instructions: [
+        "Lakukan aktiviti ini secara berkumpulan.",
+        "Bincangkan perbandingan antara campuran dengan sebatian.",
+        "Masukkan gambar dan lukisan grafik untuk menunjukkan pemahaman anda.",
+        "Buat satu persembahan multimedia tentang hasil perbincangan anda.",
+        "Bentangkan di hadapan guru dan rakan-rakan.",
+      ],
+    },
+    electrolysis: {
+      setup: ["Air + larutan asid sulfurik", "Sel kering", "Ammeter"],
+      products: [
+        {
+          id: "anode",
+          electrode: "Elektrod positif (anod)",
+          gas: "Oksigen",
+        },
+        {
+          id: "cathode",
+          electrode: "Elektrod negatif (katod)",
+          gas: "Hidrogen",
+        },
+      ],
+      labels: {
+        water: "Air + larutan asid sulfurik",
+        battery: "Sel kering",
+        ammeter: "Ammeter",
+        electrodes: "Elektrod",
+      },
+    },
+    activeRecall: [
+      {
+        question: "Berikan definisi sebatian.",
+        answer:
+          "Sebatian terdiri daripada dua atau lebih unsur yang bercampur secara kimia. Bahan baharu yang terbentuk ini mempunyai ciri-ciri tersendiri yang berbeza daripada unsur-unsur yang membentuknya.",
+      },
+      {
+        question: "Senaraikan lima contoh sebatian dalam kehidupan harian anda.",
+        answer: "Garam, Gula, Kapur tulis, Marmar, Politena.",
+      },
+      {
+        question: "Bagaimanakah anda boleh mengasingkan sebatian?",
+        answer:
+          "Elektrolisis ialah proses penguraian sesuatu sebatian kepada unsur-unsurnya apabila arus elektrik mengalir melaluinya.",
+      },
+      {
+        question: "Nyatakan perbezaan antara campuran dengan sebatian.",
+        answer:
+          "Campuran terbentuk secara fizikal dan tidak membentuk bahan baharu. Sebatian terbentuk secara kimia dan membentuk bahan baharu.",
+      },
+    ],
   },
   physicalVsChemicalChange: {
     comparison: [
-      { characteristic: "Bahan baharu terbentuk?", physicalChange: "Tidak", chemicalChange: "Ya" },
       {
-        characteristic: "Sifat bahan",
-        physicalChange: "Kekal sama",
-        chemicalChange: "Tidak sama dengan asal",
+        characteristic: "Bahan baharu",
+        physicalChange: "Tidak membentuk bahan baharu",
+        chemicalChange: "Membentuk bahan baharu",
       },
       {
-        characteristic: "Komposisi kimia",
-        physicalChange: "Kekal sama",
-        chemicalChange: "Komposisi berbeza",
+        characteristic: "Sifat bahan dan hasil",
+        physicalChange: "Sama",
+        chemicalChange: "Berbeza",
       },
       {
-        characteristic: "Tenaga diperlukan",
-        physicalChange: "Memerlukan kurang tenaga",
-        chemicalChange: "Memerlukan lebih tenaga",
+        characteristic: "Komposisi kimia bahan dan hasil",
+        physicalChange: "Sama",
+        chemicalChange: "Berbeza",
+      },
+      {
+        characteristic: "Tenaga",
+        physicalChange: "Memerlukan tenaga yang sedikit",
+        chemicalChange: "Memerlukan tenaga yang banyak",
       },
     ],
-    physicalExamples: ["Ais melebur", "Air membeku", "Air mendidih"],
+    common: ["Berlaku kepada jirim", "Perubahan tenaga berlaku"],
+    physicalExamples: ["Peleburan ais", "Pembekuan air", "Kondensasi", "Pendidihan air"],
     chemicalExamples: ["Pengaratan besi", "Fotosintesis", "Pereputan daun", "Respirasi sel"],
   },
   mixturesVsCompounds: [
-    { characteristic: "Pembentukan bahan baharu", mixture: "Tidak", compound: "Ya" },
-    { characteristic: "Ikatan kimia", mixture: "Tidak", compound: "Ya" },
-    { characteristic: "Kaedah pemisahan", mixture: "Fizikal", compound: "Kimia" },
-    { characteristic: "Sifat berbanding bahan asal", mixture: "Sama", compound: "Berbeza" },
+    {
+      characteristic: "Pembentukan bahan baharu",
+      mixture: "Tidak",
+      compound: "Ya",
+    },
+    {
+      characteristic: "Ikatan kimia terbentuk",
+      mixture: "Tiada",
+      compound: "Ya",
+    },
+    {
+      characteristic: "Kaedah pengasingan",
+      mixture: "Kaedah fizikal",
+      compound: "Kaedah kimia",
+    },
+    {
+      characteristic: "Sifat bahan baharu berbanding dengan sifat asal",
+      mixture: "Tiada perbezaan",
+      compound: "Ada perbezaan",
+    },
+    {
+      characteristic: "Perubahan haba semasa pembentukan",
+      mixture: "Tiada perubahan haba",
+      compound: "Haba diserap",
+    },
+    {
+      characteristic: "Penggabungan komponen",
+      mixture: "Komponen dicampur pada sebarang nisbah",
+      compound: "Unsur yang membentuk sebatian berpadu mengikut nisbah tetap",
+    },
   ],
   keyExamFacts: [
-    "Semua jirim terdiri daripada atom; atom mengandungi proton, neutron dan elektron",
-    "Atom bersifat neutral kerana bilangan elektron sama dengan bilangan proton",
-    "Unsur mengandungi hanya satu jenis atom dan tidak boleh dipecahkan kepada bahan lebih ringkas",
-    "Sebatian terbentuk daripada dua atau lebih unsur yang bergabung secara kimia, dan hanya boleh dipisahkan secara kimia",
-    "Jadual Berkala mengelaskan unsur sebagai logam, bukan logam, semilogam, dan gas nadir",
-    "Logam berkilat, mulur, boleh ditempa, dan konduktor yang baik; bukan logam secara umumnya sebaliknya",
-    "Campuran terbentuk dan dipisahkan secara fizikal; kaedah pemisahan termasuk penurasan, penyulingan, pemisahan magnet, pengenapan, pengapungan, dan kromatografi",
-    "Jisim dikekalkan apabila unsur bergabung membentuk sebatian",
-    "Perubahan fizikal tidak membentuk bahan baharu; perubahan kimia membentuknya",
+    "Nukleus mempunyai cas positif keseluruhan daripada proton. Bilangan elektron sama dengan bilangan proton, menjadikan atom neutral secara keseluruhan.",
+    "Unsur ialah bahan yang paling ringkas — tidak boleh diuraikan secara kimia kepada dua atau lebih bahan yang lebih ringkas, dan mengandungi hanya satu jenis atom.",
+    "Sebatian terdiri daripada dua atau lebih unsur yang bercampur secara kimia. Bahan baharu yang terbentuk ini mempunyai ciri-ciri tersendiri yang berbeza daripada unsur-unsur yang membentuknya.",
+    "Disebabkan campuran terbentuk secara fizikal, campuran juga dapat diasingkan secara fizikal.",
+    "Tujuh teknik pengasingan campuran: Penurasan, Penyulingan, Pemisahan menggunakan magnet, Pengenapan, Pengapungan, Kromatografi, Penapisan.",
+    "Jisim campuran sebelum dan selepas dipanaskan adalah sama dan tidak berubah. Jisim diabadikan semasa perubahan kimia.",
+    "Elektrolisis ialah proses penguraian sesuatu sebatian kepada unsur-unsurnya apabila arus elektrik mengalir melaluinya.",
   ],
   keyTerms: [
     "Atom",
@@ -1910,94 +2369,25 @@ const bm: Chapter6Content = {
     "Pengenapan",
     "Pengapungan",
     "Kromatografi",
+    "Pemisahan menggunakan magnet",
+    "Penapisan",
     "Elektrolisis",
-    "Perubahan fizikal",
+    "Perubahan fizik",
     "Perubahan kimia",
   ],
   chapterSummary:
-    "Bab 6 menerangkan bahawa semua jirim diperbuat daripada atom, yang bergabung membentuk unsur dan sebatian. Ia merangkumi struktur Jadual Berkala dan perbezaan antara logam, bukan logam, dan semilogam, bagaimana campuran terbentuk dan dipisahkan melalui enam kaedah fizikal, bagaimana sebatian terbentuk melalui tindak balas kimia dengan pengekalan jisim, serta perbezaan utama antara perubahan fizikal dan kimia, dan antara campuran dan sebatian.",
+    "Semua jirim terdiri daripada atom. Unsur mengandungi satu jenis atom. Campuran terbentuk dan diasingkan secara fizikal melalui tujuh teknik pengasingan yang ditunjukkan dalam Rajah 6.19, termasuk penapisan. Sebatian terbentuk secara kimia dan diasingkan melalui kaedah kimia. Jisim diabadikan semasa perubahan kimia.",
 };
 
 export const chapter6Content = { en, bm };
 
-export interface Chapter6Supplement {
-  electrolysis: {
-    setup: string[];
-    products: { electrode: string; gas: string; test: string }[];
-    volumeRatio: string;
-  };
-  activeRecall: { question: string; answer: string }[];
-}
-
-const supplementEn: Chapter6Supplement = {
-  electrolysis: {
-    setup: [
-      "Add a little dilute sulphuric acid to water so it conducts electricity.",
-      "Connect two electrodes to a direct-current supply and collect the gases separately.",
-    ],
-    products: [
-      {
-        electrode: "Cathode (−)",
-        gas: "Hydrogen gas",
-        test: "A burning splint gives a ‘pop’ sound",
-      },
-      { electrode: "Anode (+)", gas: "Oxygen gas", test: "A glowing splint relights" },
-    ],
-    volumeRatio: "Hydrogen : oxygen = 2 : 1 by volume.",
-  },
-  activeRecall: [
-    {
-      question: "How can sand, iron filings, salt, and sawdust be separated?",
-      answer:
-        "Use a magnet for iron. Add water so sawdust floats and salt dissolves. Remove the sawdust, filter out sand, then evaporate the water to recover salt.",
-    },
-    {
-      question: "Why is air a mixture?",
-      answer:
-        "Its gases are physically combined, are not chemically bonded, keep their own properties, and can be separated by fractional distillation.",
-    },
-    {
-      question: "Why can a magnet not separate iron from iron sulphide?",
-      answer:
-        "Heating forms a new compound with different properties; the iron is chemically bonded to sulphur and no longer behaves as free iron.",
-    },
-  ],
+// Reference-only compatibility view. Live 6.3 reads audited compounds directly.
+export type Chapter6Supplement = Pick<
+  Chapter6Content["compounds"],
+  "electrolysis" | "activeRecall"
+>;
+export const chapter6Supplement: { en: Chapter6Supplement; bm: Chapter6Supplement } = {
+  en: { electrolysis: en.compounds.electrolysis, activeRecall: en.compounds.activeRecall },
+  bm: { electrolysis: bm.compounds.electrolysis, activeRecall: bm.compounds.activeRecall },
 };
-
-const supplementBm: Chapter6Supplement = {
-  electrolysis: {
-    setup: [
-      "Tambahkan sedikit asid sulfurik cair ke dalam air supaya air mengkonduksi elektrik.",
-      "Sambungkan dua elektrod kepada bekalan arus terus dan kumpulkan gas secara berasingan.",
-    ],
-    products: [
-      {
-        electrode: "Katod (−)",
-        gas: "Gas hidrogen",
-        test: "Kayu uji bernyala menghasilkan bunyi ‘pop’",
-      },
-      { electrode: "Anod (+)", gas: "Gas oksigen", test: "Kayu uji berbara menyala semula" },
-    ],
-    volumeRatio: "Hidrogen : oksigen = 2 : 1 mengikut isi padu.",
-  },
-  activeRecall: [
-    {
-      question: "Bagaimanakah pasir, serbuk ferum, garam, dan habuk kayu dapat dipisahkan?",
-      answer:
-        "Gunakan magnet untuk ferum. Tambah air supaya habuk kayu terapung dan garam larut. Keluarkan habuk kayu, turas pasir, kemudian sejatkan air untuk memperoleh garam.",
-    },
-    {
-      question: "Mengapakah udara ialah campuran?",
-      answer:
-        "Gas-gasnya bercampur secara fizikal, tidak terikat secara kimia, mengekalkan sifat sendiri, dan boleh dipisahkan melalui penyulingan berperingkat.",
-    },
-    {
-      question: "Mengapakah magnet tidak dapat memisahkan ferum daripada ferum sulfida?",
-      answer:
-        "Pemanasan membentuk sebatian baharu dengan sifat berbeza; ferum terikat secara kimia kepada sulfur dan tidak lagi bertindak sebagai ferum bebas.",
-    },
-  ],
-};
-
-export const chapter6Supplement = { en: supplementEn, bm: supplementBm };
 export default chapter6Content;
