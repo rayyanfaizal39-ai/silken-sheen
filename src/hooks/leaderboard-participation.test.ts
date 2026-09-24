@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { submitQuizCompletion } from "./use-progress";
 import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
+import type { QuizCompletionSubmission } from "@/features/quiz/xp/quizXp";
 
 const db = vi.hoisted(() => ({
   getUser: vi.fn(),
@@ -12,13 +13,15 @@ vi.mock("@/lib/supabase", () => ({
   supabase: { auth: { getUser: db.getUser }, rpc: db.rpc },
 }));
 
-const result = {
+const result: QuizCompletionSubmission = {
   completionId: "11111111-1111-4111-8111-111111111111",
-  quizKey: "quiz-v1:science:form-2:chapter-1:difficulty-all",
+  quizKey: "quiz-v2:standard:science:form-2:chapter-1:bm:set-default:difficulty-all",
+  formula: "standard",
   subjectId: "science",
   chapterKey: "Chapter 1",
-  correct: 3,
   total: 3,
+  correct: { easy: 1, medium: 1, hard: 1 },
+  timerMode: "none",
 };
 
 describe("monthly leaderboard participation", () => {
@@ -33,10 +36,12 @@ describe("monthly leaderboard participation", () => {
         accepted: true,
         eligible: true,
         awarded: true,
-        completionXp: 20,
-        scoreBonusXp: 30,
-        potentialXp: 50,
-        xpEarned: 50,
+        baseXp: 60,
+        correctBonusXp: 15,
+        timerBonusXp: 0,
+        passBonusXp: 25,
+        potentialXp: 100,
+        xpEarned: 100,
         scorePct: 100,
         lifetimeXp: 150,
         subjectXp: 100,
@@ -53,16 +58,16 @@ describe("monthly leaderboard participation", () => {
     async (plan) => {
       db.getUser.mockResolvedValue({ data: { user: { id: "student", plan } } });
       await expect(submitQuizCompletion(result)).resolves.toMatchObject({
-        xpEarned: 50,
+        xpEarned: 100,
         awarded: true,
       });
-      expect(db.rpc).toHaveBeenCalledExactlyOnceWith("complete_quiz", {
+      expect(db.rpc).toHaveBeenCalledExactlyOnceWith("complete_catalog_quiz", {
         requested_completion_id: result.completionId,
         requested_quiz_key: result.quizKey,
-        requested_subject_id: result.subjectId,
-        requested_chapter_key: result.chapterKey,
-        requested_correct: result.correct,
-        requested_total: result.total,
+        requested_correct_easy: 1,
+        requested_correct_medium: 1,
+        requested_correct_hard: 1,
+        requested_timer_mode: "none",
       });
     },
   );

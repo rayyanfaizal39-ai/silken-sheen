@@ -58,8 +58,16 @@ import {
 } from "@/data/bm-f3-objektif-quizzes";
 import type { QuizQuestion } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
+import { useSignInModal } from "@/context/sign-in-modal";
 import {
-  buildQuizKey,
+  quizSaveFailureKindOf,
+  quizSaveFailureMessage,
+  type QuizSaveFailure,
+} from "@/features/quiz/xp/quizCompletionError";
+import {
+  EMPTY_CORRECT_BY_DIFFICULTY,
+  addCorrectAnswer,
+  buildCanonicalQuizKey,
   createQuizCompletionId,
   type QuizCompletionResult,
 } from "@/features/quiz/xp/quizXp";
@@ -163,6 +171,13 @@ const OBJEKTIF_SETS_FORM3 = [
     ready: true,
   },
 ] as const;
+/** BM World objective sets by form; also read by the server quiz catalog generator. */
+export const BM_OBJECTIVE_SETS_BY_FORM = {
+  1: OBJEKTIF_SETS,
+  2: OBJEKTIF_SETS_FORM2,
+  3: OBJEKTIF_SETS_FORM3,
+} as const;
+
 type ObjectiveSetCollection =
   | typeof OBJEKTIF_SETS
   | typeof OBJEKTIF_SETS_FORM2
@@ -535,12 +550,14 @@ function KertasCard({ kertas, onSelect }: { kertas: BMKertas; onSelect: () => vo
 function ObjektifKuizView({
   setIndex,
   sets,
+  quizForm,
   formLabel = "Tingkatan 1",
   onBack,
   onNextSet,
 }: {
   setIndex: 0 | 1 | 2;
   sets: ObjectiveSetCollection;
+  quizForm: 1 | 2 | 3;
   formLabel?: string;
   onBack: () => void;
   onNextSet?: () => void;
@@ -548,6 +565,7 @@ function ObjektifKuizView({
   const set = sets[setIndex];
   const questions: QuizQuestion[] = set.questions as unknown as QuizQuestion[];
   const { recordQuizResult } = useProgress();
+  const { open: openSignIn } = useSignInModal();
   const totalSeconds = 60;
 
   type Phase = "intro" | "quiz" | "results";
@@ -563,7 +581,7 @@ function ObjektifKuizView({
   const [completionId, setCompletionId] = useState(createQuizCompletionId);
   const [quizCompletion, setQuizCompletion] = useState<QuizCompletionResult | null>(null);
   const [quizCompletionPending, setQuizCompletionPending] = useState(false);
-  const [quizCompletionError, setQuizCompletionError] = useState(false);
+  const [quizCompletionError, setQuizCompletionError] = useState<QuizSaveFailure | null>(null);
   const [streakWasReset, setStreakWasReset] = useState(false);
   const quizStreak = useQuizStreak(`bm:${formLabel}:${set.id}`);
 
@@ -601,6 +619,22 @@ function ObjektifKuizView({
     setStreakWasReset(!answerIsCorrect && previousStreak > 0);
   }
 
+  function submitCompletion(input: Parameters<typeof recordQuizResult>[0]) {
+    setQuizCompletion(null);
+    setQuizCompletionPending(true);
+    setQuizCompletionError(null);
+    void recordQuizResult(input)
+      .then(setQuizCompletion)
+      .catch((error: unknown) =>
+        setQuizCompletionError({
+          kind: quizSaveFailureKindOf(error),
+          // Same completion id: the server treats a retry as the same attempt.
+          retry: () => submitCompletion(input),
+        }),
+      )
+      .finally(() => setQuizCompletionPending(false));
+  }
+
   function handleNext() {
     if (current < quizQuestions.length - 1) {
       sfx.whoosh();
@@ -609,25 +643,27 @@ function ObjektifKuizView({
       setRevealed(false);
       setTimeLeft(totalSeconds);
     } else {
-      setQuizCompletion(null);
-      setQuizCompletionPending(true);
-      setQuizCompletionError(false);
-      void recordQuizResult({
+      submitCompletion({
         completionId,
-        quizKey: buildQuizKey({
-          subjectId: "bm",
-          form: formLabel,
-          chapterKey: "kertas-1-objektif",
-          variant: set.id,
+        quizKey: buildCanonicalQuizKey({
+          kind: "bm-world",
+          form: `Form ${quizForm}`,
+          setId: set.id,
         }),
+        formula: "bm_world",
         subjectId: "bm",
         chapterKey: set.id,
-        correct,
         total: quizQuestions.length,
-      })
-        .then(setQuizCompletion)
-        .catch(() => setQuizCompletionError(true))
-        .finally(() => setQuizCompletionPending(false));
+        correct: quizQuestions.reduce(
+          (counts, question, index) =>
+            answers[index] === question.answerIndex
+              ? addCorrectAnswer(counts, question.difficulty)
+              : counts,
+          EMPTY_CORRECT_BY_DIFFICULTY,
+        ),
+        // BM World always runs its fixed 60 s question timer.
+        timerMode: "60",
+      });
       if (pct >= 60) sfx.fanfare();
       setPhase("results");
     }
@@ -644,7 +680,7 @@ function ObjektifKuizView({
     setCompletionId(createQuizCompletionId());
     setQuizCompletion(null);
     setQuizCompletionPending(false);
-    setQuizCompletionError(false);
+    setQuizCompletionError(null);
     setStreakWasReset(false);
     setPhase("quiz");
   }
@@ -801,17 +837,44 @@ function ObjektifKuizView({
             {quizCompletionPending ? (
               <p>Menyimpan keputusan…</p>
             ) : quizCompletionError ? (
-              <p className="text-rose-200">XP belum disimpan. Cuba lagi apabila sambungan pulih.</p>
+              <>
+                <p className="text-rose-200">
+                  {quizSaveFailureMessage(quizCompletionError.kind, true)}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {quizCompletionError.kind === "session_expired" && (
+                    <button
+                      type="button"
+                      onClick={() => openSignIn("signin")}
+                      className="rounded-full bg-white/10 px-4 py-1.5 font-bold text-white hover:bg-white/15"
+                    >
+                      Log masuk
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={quizCompletionError.retry}
+                    className="rounded-full bg-sky-300 px-4 py-1.5 font-bold text-slate-900 hover:bg-sky-200"
+                  >
+                    Cuba lagi
+                  </button>
+                </div>
+              </>
             ) : quizCompletion ? (
               <>
-                <div className="flex justify-between py-1">
-                  <span>XP penyelesaian</span>
-                  <span>+{quizCompletion.awarded ? quizCompletion.completionXp : 0} XP</span>
-                </div>
-                <div className="flex justify-between py-1">
-                  <span>Bonus markah</span>
-                  <span>+{quizCompletion.awarded ? quizCompletion.scoreBonusXp : 0} XP</span>
-                </div>
+                {(
+                  [
+                    ["XP markah", quizCompletion.baseXp],
+                    ["Bonus pantas", quizCompletion.timerBonusXp],
+                    ["Bonus jawapan betul", quizCompletion.correctBonusXp],
+                    ["Bonus lulus", quizCompletion.passBonusXp],
+                  ] as const
+                ).map(([label, value]) => (
+                  <div key={label} className="flex justify-between py-1">
+                    <span>{label}</span>
+                    <span>+{quizCompletion.awarded ? value : 0} XP</span>
+                  </div>
+                ))}
                 <div className="mt-2 flex justify-between border-t border-white/10 pt-2 font-bold text-white">
                   <span>JUMLAH XP</span>
                   <span className="text-sky-200">+{quizCompletion.xpEarned} XP</span>
@@ -5346,6 +5409,7 @@ export function BMWorldPage({
             key={screen.setIndex}
             setIndex={screen.setIndex}
             sets={objectiveSets}
+            quizForm={quizForm}
             formLabel={`Tingkatan ${quizForm}`}
             onBack={pop}
             onNextSet={

@@ -1,7 +1,8 @@
 /* eslint-disable no-empty -- Storage failures intentionally fall back to in-memory progress. */
 import { useEffect, useState, useCallback, useRef } from "react";
+import { isAuthSessionMissingError } from "@supabase/supabase-js";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
-import { canPersistProgress } from "@/lib/guest-mode";
+import { canPersistProgress, isGuestMode } from "@/lib/guest-mode";
 import { recordDailyFlashcardReview } from "@/lib/daily-mission-progress";
 import { getLocalDateKey } from "@/lib/local-date";
 import { normalizeSelectedAt, daysTogether as daysTogetherPure } from "@/companion/selectedAt";
@@ -11,10 +12,18 @@ import {
   type MissionSystemState,
 } from "@/lib/mission-system";
 import {
-  calculateQuizXp,
+  calculateOriginalQuizXp,
   createNonEarningQuizResult,
   type QuizCompletionResult,
+  type QuizCompletionSubmission,
 } from "@/features/quiz/xp/quizXp";
+import {
+  QuizCompletionError,
+  classifyQuizSaveFailure,
+  isBrowserOffline,
+  isRegisteredAccountRequired,
+  logQuizSaveFailure,
+} from "@/features/quiz/xp/quizCompletionError";
 import {
   removePendingGeographyF3Progress,
   sanitizeRemovedGeographyF3Progress,
@@ -195,8 +204,8 @@ export interface CompanionEvolutionEvent {
   timestamp: number;
 }
 
-/** Mastery threshold used by tracker/analytics views. Quiz XP uses score bands. */
-export const QUIZ_PASS_PCT = 80;
+/** Pass threshold + rewards for "passing" a quiz (single source: quizXp.ts). */
+export { QUIZ_PASS_PCT, QUIZ_PASS_BONUS_XP } from "@/features/quiz/xp/quizXp";
 export const QUIZ_HISTORY_CAP = 200; // keep the most recent N results
 export const RECENT_ACTIVITY_CAP = 12;
 
@@ -739,46 +748,71 @@ async function saveToSupabase(userId: string, p: Progress): Promise<void> {
  * The client sends only the score and stable quiz identity; Supabase derives
  * the XP and enforces one leaderboard award per registered user + quiz.
  */
-export async function submitQuizCompletion(result: {
-  completionId: string;
-  quizKey: string;
-  subjectId: string;
-  chapterKey: string;
-  correct: number;
-  total: number;
-}): Promise<QuizCompletionResult> {
+export async function submitQuizCompletion(
+  result: QuizCompletionSubmission,
+): Promise<QuizCompletionResult> {
   if (!isSupabaseConfigured) {
-    return createNonEarningQuizResult(result.correct, result.total, "unavailable");
+    return createNonEarningQuizResult(result, "unavailable");
+  }
+  if (isGuestMode()) {
+    return createNonEarningQuizResult(result, "guest");
   }
 
   const {
     data: { user },
+    error: userError,
   } = await supabase.auth.getUser();
+  if (!user && userError && !isAuthSessionMissingError(userError)) {
+    // A stored session exists but could not be verified: say so instead of
+    // silently treating a registered student as a guest.
+    const failure = new QuizCompletionError(
+      classifyQuizSaveFailure(userError, { offline: isBrowserOffline() }) === "offline"
+        ? "offline"
+        : "session_expired",
+      userError,
+    );
+    logQuizSaveFailure(failure, result);
+    throw failure;
+  }
   const anonymousUser = (user as { is_anonymous?: boolean } | null)?.is_anonymous === true;
   if (!user || anonymousUser || !canPersistProgress(user.id)) {
-    return createNonEarningQuizResult(result.correct, result.total, "guest");
+    return createNonEarningQuizResult(result, "guest");
   }
 
-  const { data, error } = await supabase.rpc("complete_quiz", {
+  // Only the quiz identity, correct answers per difficulty and the timer
+  // choice are sent; the server prices them from its own quiz catalog.
+  const { data, error, status } = await supabase.rpc("complete_catalog_quiz", {
     requested_completion_id: result.completionId,
     requested_quiz_key: result.quizKey,
-    requested_subject_id: result.subjectId,
-    requested_chapter_key: result.chapterKey,
-    requested_correct: result.correct,
-    requested_total: result.total,
+    requested_correct_easy: result.correct.easy,
+    requested_correct_medium: result.correct.medium,
+    requested_correct_hard: result.correct.hard,
+    requested_timer_mode: result.timerMode,
   });
-  if (error) throw error;
+  if (error) {
+    if (isRegisteredAccountRequired(error)) {
+      return createNonEarningQuizResult(result, "guest");
+    }
+    const failure = new QuizCompletionError(
+      classifyQuizSaveFailure(error, { status, offline: isBrowserOffline() }),
+      error,
+    );
+    logQuizSaveFailure(failure, result, user.id);
+    throw failure;
+  }
 
   const row = (data ?? {}) as Record<string, unknown>;
-  const fallback = calculateQuizXp(result.correct, result.total);
+  const fallback = calculateOriginalQuizXp(result);
   const numeric = (key: string, fallbackValue: number | null) =>
     typeof row[key] === "number" ? (row[key] as number) : fallbackValue;
   const completion: QuizCompletionResult = {
     accepted: row.accepted !== false,
     eligible: row.eligible !== false,
     awarded: row.awarded === true,
-    completionXp: numeric("completionXp", fallback.completionXp) ?? fallback.completionXp,
-    scoreBonusXp: numeric("scoreBonusXp", fallback.scoreBonusXp) ?? fallback.scoreBonusXp,
+    baseXp: numeric("baseXp", fallback.baseXp) ?? fallback.baseXp,
+    correctBonusXp: numeric("correctBonusXp", fallback.correctBonusXp) ?? fallback.correctBonusXp,
+    timerBonusXp: numeric("timerBonusXp", fallback.timerBonusXp) ?? fallback.timerBonusXp,
+    passBonusXp: numeric("passBonusXp", fallback.passBonusXp) ?? fallback.passBonusXp,
     potentialXp: numeric("potentialXp", fallback.totalXp) ?? fallback.totalXp,
     xpEarned: numeric("xpEarned", 0) ?? 0,
     scorePct: numeric("scorePct", fallback.scorePct) ?? fallback.scorePct,
@@ -789,6 +823,34 @@ export async function submitQuizCompletion(result: {
 
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event("academy:quiz-history-updated"));
+  }
+  return completion;
+}
+
+type QuizMissionTracker = (
+  activity: "quiz",
+  eventKey: string,
+  dateKey: string,
+  metadata: { correct: number; total: number; subjectId: string },
+) => void;
+
+/**
+ * Saves the quiz through the server award, then counts it toward the daily
+ * quiz mission. Only registered completions count; the mission event key is
+ * the completion id, so a retried save cannot count the same quiz twice.
+ */
+export async function completeQuizWithMission(
+  input: Parameters<typeof submitQuizCompletion>[0],
+  completedAt: Date,
+  trackMission: QuizMissionTracker,
+): Promise<QuizCompletionResult> {
+  const completion = await submitQuizCompletion(input);
+  if (completion.eligible) {
+    trackMission("quiz", `quiz:${input.completionId}`, getLocalDateKey(completedAt), {
+      correct: input.correct.easy + input.correct.medium + input.correct.hard,
+      total: input.total,
+      subjectId: input.subjectId,
+    });
   }
   return completion;
 }
@@ -1319,16 +1381,12 @@ export function useProgress() {
 
   /** Logs local analytics, then applies only the authoritative server award. */
   const recordQuizResult = useCallback(
-    async (input: {
-      completionId: string;
-      quizKey: string;
-      subjectId: string;
-      chapterKey: string;
-      correct: number;
-      total: number;
-    }): Promise<QuizCompletionResult> => {
+    async (input: QuizCompletionSubmission): Promise<QuizCompletionResult> => {
       const total = Math.max(1, input.total);
-      const correct = Math.max(0, Math.min(input.correct, total));
+      const correct = Math.max(
+        0,
+        Math.min(input.correct.easy + input.correct.medium + input.correct.hard, total),
+      );
       const scorePct = Math.round((correct / total) * 100);
       const result: QuizResult = {
         id: input.completionId,
@@ -1366,22 +1424,11 @@ export function useProgress() {
         return next;
       });
 
-      const completion = await submitQuizCompletion({
-        completionId: input.completionId,
-        quizKey: input.quizKey,
-        subjectId: input.subjectId,
-        chapterKey: input.chapterKey,
-        correct,
-        total,
-      });
-
-      if (completion.eligible) {
-        trackMissionActivity("quiz", `quiz:${result.id}`, getLocalDateKey(new Date(result.date)), {
-          correct,
-          total,
-          subjectId: input.subjectId,
-        });
-      }
+      const completion = await completeQuizWithMission(
+        input,
+        new Date(result.date),
+        trackMissionActivity,
+      );
 
       if (completion.lifetimeXp != null || completion.quizzesTaken != null) {
         setProgress((prev) => {

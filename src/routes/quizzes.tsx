@@ -103,10 +103,21 @@ import {
   shuffleQuestionOptions,
 } from "@/features/quiz/difficulty/quizDifficulty";
 import {
-  buildQuizKey,
+  EMPTY_CORRECT_BY_DIFFICULTY,
+  addCorrectAnswer,
+  buildCanonicalQuizKey,
   createQuizCompletionId,
+  timerModeFromPref,
+  type CorrectByDifficulty,
   type QuizCompletionResult,
+  type QuizCompletionSubmission,
 } from "@/features/quiz/xp/quizXp";
+import { defaultQuizLanguage } from "@/lib/quiz-identity";
+import {
+  quizSaveFailureKindOf,
+  quizSaveFailureMessage,
+  type QuizSaveFailure,
+} from "@/features/quiz/xp/quizCompletionError";
 import {
   mathF2C1ChallengeQuizzesDLP,
   mathF2C1FoundationQuizzesDLP,
@@ -15935,6 +15946,95 @@ interface ShuffledQuestion {
 
 type FormFilter = Form | "All";
 
+/**
+ * Resolves a Maths objective question bank. Shared by the quiz page and the
+ * server quiz catalog generator (src/features/quiz/catalog), so both always
+ * agree on which questions — and how many of each difficulty — a quiz has.
+ */
+export function resolveMathObjectiveQuestions({
+  form,
+  chapter,
+  mathObjectiveId,
+  lang,
+  scienceLang,
+}: {
+  form: string;
+  chapter: string | null;
+  mathObjectiveId: MathObjectiveId | null;
+  lang: MathQuizLang;
+  scienceLang: string | null | undefined;
+}): { questions: ShuffledQuestion[]; bankLang: MathQuizLang } {
+  if (!chapter || !mathObjectiveId) return { questions: [], bankLang: lang };
+  const isForm2Chapter1Dlp =
+    form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
+  const isForm2Chapter1Bm = form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
+  const isForm2Chapter2Dlp =
+    form === "Form 2" && chapter === "Chapter 2" && scienceLang === "dlp";
+  const isForm2Chapter2Bm = form === "Form 2" && chapter === "Chapter 2" && scienceLang === "bm";
+  const batchBChapter =
+    form === "Form 2" &&
+    (chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8")
+      ? chapter
+      : null;
+  const batchCChapter =
+    form === "Form 2" &&
+    (chapter === "Chapter 9" ||
+      chapter === "Chapter 10" ||
+      chapter === "Chapter 11" ||
+      chapter === "Chapter 12" ||
+      chapter === "Chapter 13")
+      ? chapter
+      : null;
+  const isForm2ObjectiveChapter =
+    form === "Form 2" &&
+    (chapter === "Chapter 1" ||
+      chapter === "Chapter 2" ||
+      chapter === "Chapter 3" ||
+      chapter === "Chapter 4" ||
+      chapter === "Chapter 5" ||
+      chapter === "Chapter 6" ||
+      chapter === "Chapter 7" ||
+      chapter === "Chapter 8" ||
+      chapter === "Chapter 9" ||
+      chapter === "Chapter 10" ||
+      chapter === "Chapter 11" ||
+      chapter === "Chapter 12" ||
+      chapter === "Chapter 13");
+  const questions = isForm2Chapter1Dlp
+    ? MATH_F2_C1_DLP_OBJECTIVE_BANK[mathObjectiveId]
+    : isForm2Chapter1Bm
+      ? MATH_F2_C1_BM_OBJECTIVE_BANK[mathObjectiveId]
+      : isForm2Chapter2Dlp
+        ? MATH_F2_C2_DLP_OBJECTIVE_BANK[mathObjectiveId]
+        : isForm2Chapter2Bm
+          ? MATH_F2_C2_BM_OBJECTIVE_BANK[mathObjectiveId]
+          : batchBChapter
+            ? MATH_F2_BATCH_B_OBJECTIVE_BANKS[batchBChapter][lang][mathObjectiveId]
+            : batchCChapter
+              ? MATH_F2_BATCH_C_OBJECTIVE_BANKS[batchCChapter][lang][mathObjectiveId]
+              : (MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? []);
+  const chapterNumber = Number(chapter.replace("Chapter ", ""));
+  const mapped = questions.map((question, questionIndex) => ({
+    ...question,
+    id:
+      question.id ??
+      `math-${isForm2ObjectiveChapter ? "f2" : "f1"}-c${chapterNumber}-${mathObjectiveId}-${lang}-q${questionIndex + 1}`,
+    form: isForm2ObjectiveChapter ? ("Form 2" as const) : ("Form 1" as const),
+    chapter,
+    lang,
+    set: mathObjectiveId,
+  }));
+  // Form 2 Chapters 1-2 pick their bank from the page language; every other
+  // chapter from the objective language toggle.
+  const bankLang: MathQuizLang =
+    isForm2Chapter1Dlp || isForm2Chapter2Dlp
+      ? "dlp"
+      : isForm2Chapter1Bm || isForm2Chapter2Bm
+        ? "bm"
+        : lang;
+  return { questions: mapped, bankLang };
+}
+
 function readStudySearch() {
   if (typeof window === "undefined")
     return { subject: null, form: "Form 1", chapter: null, hasForm: false };
@@ -16044,10 +16144,14 @@ function QuizzesPage() {
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
+  // Correct answers per historical difficulty tier; the server prices them.
+  const [correctByDifficulty, setCorrectByDifficulty] = useState<CorrectByDifficulty>(
+    EMPTY_CORRECT_BY_DIFFICULTY,
+  );
   const [completionId, setCompletionId] = useState(createQuizCompletionId);
   const [quizCompletion, setQuizCompletion] = useState<QuizCompletionResult | null>(null);
   const [quizCompletionPending, setQuizCompletionPending] = useState(false);
-  const [quizCompletionError, setQuizCompletionError] = useState(false);
+  const [quizCompletionError, setQuizCompletionError] = useState<QuizSaveFailure | null>(null);
   const [done, setDone] = useState(false);
   // Background music is now handled globally by BgMusicController.
   const [animatedScore, setAnimatedScore] = useState(0);
@@ -16246,69 +16350,18 @@ function QuizzesPage() {
           isForm2BatchCBmObjective
         ? "bm"
         : null);
-  const mathObjectiveQuestions = useMemo(() => {
-    const lang = activeMathQuizLang ?? "bm";
-    if (!chapter || !mathObjectiveId) return [];
-    const isForm2Chapter1Dlp =
-      form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
-    const isForm2Chapter1Bm = form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
-    const isForm2Chapter2Dlp =
-      form === "Form 2" && chapter === "Chapter 2" && scienceLang === "dlp";
-    const isForm2Chapter2Bm = form === "Form 2" && chapter === "Chapter 2" && scienceLang === "bm";
-    const batchBChapter =
-      form === "Form 2" &&
-      (chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8")
-        ? chapter
-        : null;
-    const batchCChapter =
-      form === "Form 2" &&
-      (chapter === "Chapter 9" ||
-        chapter === "Chapter 10" ||
-        chapter === "Chapter 11" ||
-        chapter === "Chapter 12" ||
-        chapter === "Chapter 13")
-        ? chapter
-        : null;
-    const isForm2ObjectiveChapter =
-      form === "Form 2" &&
-      (chapter === "Chapter 1" ||
-        chapter === "Chapter 2" ||
-        chapter === "Chapter 3" ||
-        chapter === "Chapter 4" ||
-        chapter === "Chapter 5" ||
-        chapter === "Chapter 6" ||
-        chapter === "Chapter 7" ||
-        chapter === "Chapter 8" ||
-        chapter === "Chapter 9" ||
-        chapter === "Chapter 10" ||
-        chapter === "Chapter 11" ||
-        chapter === "Chapter 12" ||
-        chapter === "Chapter 13");
-    const questions = isForm2Chapter1Dlp
-      ? MATH_F2_C1_DLP_OBJECTIVE_BANK[mathObjectiveId]
-      : isForm2Chapter1Bm
-        ? MATH_F2_C1_BM_OBJECTIVE_BANK[mathObjectiveId]
-        : isForm2Chapter2Dlp
-          ? MATH_F2_C2_DLP_OBJECTIVE_BANK[mathObjectiveId]
-          : isForm2Chapter2Bm
-            ? MATH_F2_C2_BM_OBJECTIVE_BANK[mathObjectiveId]
-            : batchBChapter
-              ? MATH_F2_BATCH_B_OBJECTIVE_BANKS[batchBChapter][lang][mathObjectiveId]
-              : batchCChapter
-                ? MATH_F2_BATCH_C_OBJECTIVE_BANKS[batchCChapter][lang][mathObjectiveId]
-                : (MATH_QUIZ_BANKS[chapter]?.[mathObjectiveId]?.[lang] ?? []);
-    const chapterNumber = Number(chapter.replace("Chapter ", ""));
-    return questions.map((question, questionIndex) => ({
-      ...question,
-      id:
-        question.id ??
-        `math-${isForm2ObjectiveChapter ? "f2" : "f1"}-c${chapterNumber}-${mathObjectiveId}-${lang}-q${questionIndex + 1}`,
-      form: isForm2ObjectiveChapter ? ("Form 2" as const) : ("Form 1" as const),
-      chapter,
-      lang,
-      set: mathObjectiveId,
-    }));
-  }, [activeMathQuizLang, chapter, form, mathObjectiveId, scienceLang]);
+  const mathObjectiveBank = useMemo(
+    () =>
+      resolveMathObjectiveQuestions({
+        form,
+        chapter,
+        mathObjectiveId,
+        lang: activeMathQuizLang ?? "bm",
+        scienceLang,
+      }),
+    [activeMathQuizLang, chapter, form, mathObjectiveId, scienceLang],
+  );
+  const mathObjectiveQuestions = mathObjectiveBank.questions;
   const currentMathQuestion = mathShuffledQuestions?.[idx] ?? null;
   const selectedEnglishSet = useMemo(
     () => ENGLISH_QUIZ_SETS.find((set) => set.id === englishSetId) ?? null,
@@ -16425,25 +16478,26 @@ function QuizzesPage() {
   }
 
   function resetQuizAward() {
+    setCorrectByDifficulty(EMPTY_CORRECT_BY_DIFFICULTY);
     setCompletionId(createQuizCompletionId());
     setQuizCompletion(null);
     setQuizCompletionPending(false);
-    setQuizCompletionError(false);
+    setQuizCompletionError(null);
   }
 
-  function submitCompletedQuiz(input: {
-    quizKey: string;
-    subjectId: string;
-    chapterKey: string;
-    correct: number;
-    total: number;
-  }) {
+  function submitCompletedQuiz(input: Omit<QuizCompletionSubmission, "completionId">) {
     setQuizCompletion(null);
     setQuizCompletionPending(true);
-    setQuizCompletionError(false);
+    setQuizCompletionError(null);
     void recordQuizResult({ completionId, ...input })
       .then(setQuizCompletion)
-      .catch(() => setQuizCompletionError(true))
+      .catch((error: unknown) =>
+        setQuizCompletionError({
+          kind: quizSaveFailureKindOf(error),
+          // Same completion id: the server treats a retry as the same attempt.
+          retry: () => submitCompletedQuiz(input),
+        }),
+      )
       .finally(() => setQuizCompletionPending(false));
   }
 
@@ -16467,6 +16521,7 @@ function QuizzesPage() {
     const correct = i === current.answerIndex;
     if (correct) {
       setScore((s) => s + 1);
+      setCorrectByDifficulty((counts) => addCorrectAnswer(counts, current.difficulty));
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `regular:${subject}:${chapter}:${idx}`,
@@ -16501,23 +16556,25 @@ function QuizzesPage() {
     const total = shuffledPool?.length ?? pool.length;
     if (idx + 1 >= total) {
       setDone(true);
-      const finalCorrect = score;
       const subjectId = subject ?? current?.subjectId ?? "unknown";
       const chapterKey = chapter ?? "all";
       submitCompletedQuiz({
-        quizKey: buildQuizKey({
+        quizKey: buildCanonicalQuizKey({
+          kind: "standard",
           subjectId,
           form,
           chapterKey,
-          variant:
-            availableScienceQuizSets.length > 0
-              ? `set-${scienceQuizSet}-difficulty-${diff}`
-              : `difficulty-${diff}`,
+          lang: isBilingualSubject ? (scienceLang ?? "bm") : defaultQuizLanguage(subjectId),
+          set: availableScienceQuizSets.length > 0 ? scienceQuizSet : null,
+          // Sejarah ignores the difficulty filter, so every filter is one quiz.
+          difficulty: subject === "sejarah" ? "All" : diff,
         }),
+        formula: "standard",
         subjectId,
-        chapterKey: chapter ?? "all",
-        correct: finalCorrect,
+        chapterKey,
         total,
+        correct: correctByDifficulty,
+        timerMode: timerModeFromPref(timerPref),
       });
       if (subject && chapter) markChapter(subject, chapter, "quiz");
       if (
@@ -16597,6 +16654,7 @@ function QuizzesPage() {
 
     if (correct) {
       setScore((s) => s + 1);
+      setCorrectByDifficulty((counts) => addCorrectAnswer(counts, currentMathQuestion.difficulty));
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `math:${chapter}:${mathObjectiveId}:${idx}`,
@@ -16629,16 +16687,19 @@ function QuizzesPage() {
       const subjectId = subject ?? "math";
       const chapterKey = chapter ?? "all";
       submitCompletedQuiz({
-        quizKey: buildQuizKey({
-          subjectId,
-          form,
+        quizKey: buildCanonicalQuizKey({
+          kind: "math-objective",
+          form: mathObjectiveQuestions[0]?.form ?? form,
           chapterKey,
-          variant: mathObjectiveId ?? "objective",
+          lang: mathObjectiveBank.bankLang,
+          objectiveId: mathObjectiveId ?? "objective",
         }),
+        formula: "objective",
         subjectId,
         chapterKey,
-        correct: score,
         total,
+        correct: correctByDifficulty,
+        timerMode: "none",
       });
       if (subject && chapter) markChapter(subject, chapter, "quiz");
       return;
@@ -16702,6 +16763,9 @@ function QuizzesPage() {
 
     if (correct) {
       setScore((s) => s + 1);
+      setCorrectByDifficulty((counts) =>
+        addCorrectAnswer(counts, currentEnglishQuestion.difficulty),
+      );
       sfx.success();
       quizStreak.confirmAnswer({
         questionId: `english:${englishSetId ?? englishSetIdF2 ?? englishSetIdF3}:${idx}`,
@@ -16746,16 +16810,13 @@ function QuizzesPage() {
       const activeEnglishSetId = englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "set";
       const chapterKey = activeEnglishSet?.title ?? `English ${form}`;
       submitCompletedQuiz({
-        quizKey: buildQuizKey({
-          subjectId: "english",
-          form,
-          chapterKey: "paper-1",
-          variant: activeEnglishSetId,
-        }),
+        quizKey: buildCanonicalQuizKey({ kind: "english", form, setId: activeEnglishSetId }),
+        formula: "objective",
         subjectId: "english",
         chapterKey,
-        correct: score,
         total,
+        correct: correctByDifficulty,
+        timerMode: "none",
       });
       if (activeEnglishSet) markChapter("english", activeEnglishSet.title, "quiz");
       return;
@@ -18071,9 +18132,10 @@ function QuizAwardSummary({
 }: {
   result: QuizCompletionResult | null;
   pending: boolean;
-  error: boolean;
+  error: QuizSaveFailure | null;
   bm?: boolean;
 }) {
+  const { open: openSignIn } = useSignInModal();
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left" role="status">
       <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-white/50">
@@ -18082,18 +18144,46 @@ function QuizAwardSummary({
       {pending ? (
         <p className="text-sm text-white/65">{bm ? "Menyimpan keputusan…" : "Saving result…"}</p>
       ) : error ? (
-        <p className="text-sm text-rose-200">
-          {bm ? "XP belum disimpan. Cuba lagi apabila sambungan pulih." : "XP was not saved. Try again when your connection recovers."}
-        </p>
+        <>
+          <p className="text-sm text-rose-200">{quizSaveFailureMessage(error.kind, bm)}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {error.kind === "session_expired" && (
+              <button
+                type="button"
+                onClick={() => openSignIn("signin")}
+                className="rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold text-white hover:bg-white/15"
+              >
+                {bm ? "Log masuk" : "Sign in"}
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={error.retry}
+              className="rounded-full bg-[#FBBF24] px-4 py-1.5 text-xs font-bold text-slate-900 hover:bg-[#FCD34D]"
+            >
+              {bm ? "Cuba lagi" : "Try again"}
+            </button>
+          </div>
+        </>
       ) : result ? (
         <>
           <XpResultRow
-            label={bm ? "XP penyelesaian" : "Completion XP"}
-            value={result.awarded ? result.completionXp : 0}
+            label={bm ? "XP soalan" : "Question XP"}
+            value={result.awarded ? result.baseXp : 0}
           />
           <XpResultRow
-            label={bm ? "Bonus markah" : "Score bonus"}
-            value={result.awarded ? result.scoreBonusXp : 0}
+            label={bm ? "Bonus jawapan betul" : "Correct-answer bonus"}
+            value={result.awarded ? result.correctBonusXp : 0}
+          />
+          {result.timerBonusXp > 0 && (
+            <XpResultRow
+              label={bm ? "Bonus pemasa" : "Timer bonus"}
+              value={result.awarded ? result.timerBonusXp : 0}
+            />
+          )}
+          <XpResultRow
+            label={bm ? "Bonus lulus" : "Pass bonus"}
+            value={result.awarded ? result.passBonusXp : 0}
           />
           <div className="mt-3 border-t border-white/10 pt-3">
             <XpResultRow label={bm ? "JUMLAH XP" : "TOTAL XP"} value={result.xpEarned} strong />
@@ -18580,7 +18670,7 @@ function EnglishResultsScreenF2(props: {
   total: number;
   quizCompletion: QuizCompletionResult | null;
   quizCompletionPending: boolean;
-  quizCompletionError: boolean;
+  quizCompletionError: QuizSaveFailure | null;
   onBack: () => void;
   onRetry: () => void;
 }) {
@@ -18944,7 +19034,7 @@ function EnglishResultsScreenF3(props: {
   total: number;
   quizCompletion: QuizCompletionResult | null;
   quizCompletionPending: boolean;
-  quizCompletionError: boolean;
+  quizCompletionError: QuizSaveFailure | null;
   onBack: () => void;
   onRetry: () => void;
 }) {
@@ -19022,7 +19112,7 @@ function EnglishResultsScreen({
   total: number;
   quizCompletion: QuizCompletionResult | null;
   quizCompletionPending: boolean;
-  quizCompletionError: boolean;
+  quizCompletionError: QuizSaveFailure | null;
   onBack: () => void;
   onRetry: () => void;
   formLabel?: string;
@@ -20139,7 +20229,7 @@ function MathObjectiveResultsScreen({
   total: number;
   quizCompletion: QuizCompletionResult | null;
   quizCompletionPending: boolean;
-  quizCompletionError: boolean;
+  quizCompletionError: QuizSaveFailure | null;
   quizLang: MathQuizLang;
   chapterKey: string;
   onBack: () => void;
