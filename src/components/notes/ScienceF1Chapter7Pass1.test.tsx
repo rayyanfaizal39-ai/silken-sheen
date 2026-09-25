@@ -4,7 +4,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { bab7Content, bab7Supplement } from "@/content/form1/science/chapter-7/bab7-content";
+import { bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
 import { AirCycleDiagram, Chapter7AirComposition, OxygenApparatus } from "./Chapter7AirComposition";
 import { ScienceF1Chapter7VisualNotesBlock } from "./ScienceF1Chapter7VisualNotesBlock";
 
@@ -260,15 +260,19 @@ describe("Chapter 7 Pass 1 live Notes", () => {
       expect(a.practice.questions).toHaveLength(5);
       expect(section.textContent).not.toMatch(/glowing splint|limewater|kayu uji|air kapur/);
     });
-    it(`${lang}: approved 7.1 and deferred 7.3 remain unchanged through Pass 2`, () => {
+    it(`${lang}: approved 7.1 remains unchanged through subsequent passes`, () => {
       const locked = {
-        ...Object.fromEntries(Object.entries(t).filter(([key]) => key !== "combustion")),
-        pollutionDefinition: bab7Supplement[lang].pollutionDefinition,
+        ...Object.fromEntries(
+          ["airLesson", "hook", "composition", "experiment", "uses", "cycles"].map((key) => [
+            key,
+            t[key as keyof typeof t],
+          ]),
+        ),
       };
       expect(createHash("sha256").update(JSON.stringify(locked)).digest("hex")).toBe(
         lang === "en"
-          ? "fa8fd0bdee4b8e4fd047de329871b8a137f6d4bb7d9545c4738c935d9cf92ef3"
-          : "669f5f1cdb1a745b12b150c0dec45eee3f1a4d36c6e4520d1568c73c1a888885",
+          ? "fccd4fe42abca059ec47002e2441eef562d2a5e31c4cdda98a564dab9bc04845"
+          : "d5c75650d83564ed67ae45b26ee927eeb095a8b819085963053a52a304f98631",
       );
     });
   }

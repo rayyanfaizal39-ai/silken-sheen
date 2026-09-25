@@ -1,118 +1,21 @@
 import { Chapter7Combustion } from "./Chapter7Combustion";
 import { Chapter7AirComposition } from "./Chapter7AirComposition";
-import { type ReactNode } from "react";
-import {
-  Check,
-  ChevronDown,
-  CircleGauge,
-  Cloud,
-  Factory,
-  HeartPulse,
-  Leaf,
-  Lightbulb,
-  ShieldCheck,
-  Sparkles,
-  Wind,
-} from "lucide-react";
+import { Chapter7AirPollution } from "./Chapter7AirPollution";
+import { Wind, Sparkles } from "lucide-react";
 import type { Bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
-import { bab7Supplement } from "@/content/form1/science/chapter-7/bab7-content";
-
 type Lang = "en" | "bm";
-
 const ui = {
   en: {
     eyebrow: "Form 1 Science · Chapter 7",
-    sections: [
-      [
-        "7.3",
-        "Pollutants connect sources to consequences",
-        "Trace each pollutant from its source to health and environmental damage.",
-      ],
-      [
-        "7.3",
-        "Control pollution on three fronts",
-        "Law, technology, and education work best together.",
-      ],
-      [
-        "Review",
-        "Turn evidence into exam answers",
-        "Use scientific principles to justify safety and environmental decisions.",
-      ],
-    ],
-    pollution: "Air pollution",
-    sources: "Sources and pollutants",
-    effects: "Effects",
-    api: "Air Pollutant Index (API)",
-    prevention: "Prevention and control",
-    facts: "High-yield facts",
-    recall: "Active recall",
-    summary: "Chapter rule",
     mark: "Mark Chapter 7 as read",
     marked: "Chapter 7 completed",
   },
   bm: {
     eyebrow: "Sains Tingkatan 1 · Bab 7",
-    sections: [
-      [
-        "7.3",
-        "Bahan pencemar menghubungkan punca dengan kesan",
-        "Jejaki setiap bahan pencemar daripada puncanya kepada kerosakan kesihatan dan alam sekitar.",
-      ],
-      [
-        "7.3",
-        "Kawal pencemaran melalui tiga pendekatan",
-        "Undang-undang, teknologi, dan pendidikan paling berkesan apabila digabungkan.",
-      ],
-      [
-        "Ulang kaji",
-        "Tukar bukti kepada jawapan peperiksaan",
-        "Gunakan prinsip saintifik untuk mewajarkan keputusan keselamatan dan alam sekitar.",
-      ],
-    ],
-    pollution: "Pencemaran udara",
-    sources: "Punca dan bahan pencemar",
-    effects: "Kesan",
-    api: "Indeks Pencemaran Udara (IPU)",
-    prevention: "Pencegahan dan kawalan",
-    facts: "Fakta skor tinggi",
-    recall: "Ingatan aktif",
-    summary: "Hukum bab",
     mark: "Tandakan Bab 7 selesai",
     marked: "Bab 7 telah selesai",
   },
-} as const;
-
-function Panel({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return (
-    <div className={`rounded-2xl border border-white/10 bg-white/[0.045] p-4 sm:p-5 ${className}`}>
-      {children}
-    </div>
-  );
-}
-
-function SectionHeading({ section }: { section: readonly [string, string, string] }) {
-  return (
-    <div className="max-w-3xl">
-      <h3 className="mt-2 font-display text-2xl font-black leading-tight text-white sm:text-3xl">
-        {section[1]}
-      </h3>
-      <p className="mt-2 text-sm leading-6 text-slate-300 sm:text-base">{section[2]}</p>
-    </div>
-  );
-}
-
-function Checklist({ items }: { items: string[] }) {
-  return (
-    <ul className="space-y-2">
-      {items.map((item) => (
-        <li key={item} className="flex items-start gap-2 text-sm leading-6 text-slate-300">
-          <Check className="mt-1 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
+};
 
 export function ScienceF1Chapter7VisualNotesBlock({
   id,
@@ -130,7 +33,6 @@ export function ScienceF1Chapter7VisualNotesBlock({
   storageKey?: string;
 }) {
   const t = content[lang];
-  const extra = bab7Supplement[lang];
   const copy = ui[lang];
 
   return (
@@ -189,122 +91,18 @@ export function ScienceF1Chapter7VisualNotesBlock({
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               {t.airLesson.subtopics[2].code} {t.airLesson.subtopics[2].title}
             </h2>
-            <SectionHeading section={copy.sections[0]} />
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Cloud className="h-6 w-6 text-slate-300" />
-                <h3 className="font-bold text-white">{copy.pollution}</h3>
-              </div>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{extra.pollutionDefinition}</p>
-            </Panel>
-            <div>
-              <h3 className="mb-4 font-bold text-white">{copy.sources}</h3>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {t.pollutionSources.map((source) => (
-                  <Panel key={source.from}>
-                    <Factory className="h-5 w-5 text-slate-300" />
-                    <p className="mt-3 font-bold text-white">{source.from}</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {source.pollutants.map((item) => (
-                        <span
-                          key={item}
-                          className="rounded-full bg-rose-300/10 px-3 py-1 text-xs text-rose-100"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </Panel>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="mb-4 font-bold text-white">{copy.effects}</h3>
-              <div className="grid gap-4 md:grid-cols-2">
-                {t.pollutionEffects.map((effect, index) => {
-                  const Icon = [HeartPulse, Factory, Leaf, Cloud][index];
-                  return (
-                    <Panel key={effect.heading}>
-                      <Icon className="h-6 w-6 text-sky-300" />
-                      <h4 className="mt-3 font-bold text-white">{effect.heading}</h4>
-                      <div className="mt-3">
-                        <Checklist items={effect.items} />
-                      </div>
-                    </Panel>
-                  );
-                })}
-              </div>
-            </div>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <CircleGauge className="h-6 w-6 text-sky-300" />
-                <h3 className="font-bold text-white">{copy.api}</h3>
-              </div>
-              <div className="mt-4 grid gap-2 sm:grid-cols-5">
-                {t.api.map((row, index) => (
-                  <div
-                    key={row.range}
-                    className={`rounded-xl border p-3 ${["border-emerald-300/30 bg-emerald-300/10", "border-sky-300/30 bg-sky-300/10", "border-amber-300/30 bg-amber-300/10", "border-orange-300/30 bg-orange-300/10", "border-rose-300/30 bg-rose-300/10"][index]}`}
-                  >
-                    <p className="font-mono text-lg font-black text-white">{row.range}</p>
-                    <p className="mt-1 text-xs font-bold text-slate-200">{row.label}</p>
-                  </div>
-                ))}
-              </div>
-            </Panel>
+            <Chapter7AirPollution source={t.pollution} />
           </section>
-
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[1]} />
-            <div className="grid gap-4 lg:grid-cols-3">
-              {t.prevention.map((category) => (
-                <Panel key={category.heading}>
-                  <h3 className="font-bold text-sky-200">{category.heading}</h3>
-                  <div className="mt-4">
-                    <Checklist items={category.items} />
-                  </div>
-                </Panel>
+          <section className="space-y-5 border-t border-white/15 pt-6" data-chapter-review>
+            <h3 className="text-xl font-bold">{t.pollution.labels.review}</h3>
+            <p>{t.chapterSummary}</p>
+            <ul className="list-disc space-y-2 pl-5 text-sm text-slate-300">
+              {t.keyExamFacts.map((fact) => (
+                <li key={fact}>{fact}</li>
               ))}
-            </div>
-          </section>
-
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[2]} />
-            <div className="grid gap-5 lg:grid-cols-2">
-              <Panel>
-                <div className="flex items-center gap-3">
-                  <ShieldCheck className="h-6 w-6 text-emerald-300" />
-                  <h3 className="font-bold text-white">{copy.facts}</h3>
-                </div>
-                <div className="mt-4">
-                  <Checklist items={t.keyExamFacts} />
-                </div>
-              </Panel>
-              <Panel>
-                <div className="flex items-center gap-3">
-                  <Lightbulb className="h-6 w-6 text-yellow-300" />
-                  <h3 className="font-bold text-white">{copy.recall}</h3>
-                </div>
-                <div className="mt-4 space-y-3">
-                  {extra.activeRecall.map((item) => (
-                    <details
-                      key={item.question}
-                      className="group rounded-xl border border-white/10 bg-slate-950/35 p-4"
-                    >
-                      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 font-semibold text-white focus-visible:outline-none">
-                        <span>{item.question}</span>
-                        <ChevronDown className="h-4 w-4 shrink-0 text-sky-300 transition group-open:rotate-180" />
-                      </summary>
-                      <p className="pt-3 text-sm leading-6 text-slate-300">{item.answer}</p>
-                    </details>
-                  ))}
-                </div>
-              </Panel>
-            </div>
-            <Panel className="border-sky-300/25 bg-gradient-to-br from-sky-300/10 to-emerald-300/10">
-              <h3 className="font-bold text-sky-200">{copy.summary}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-200">{t.chapterSummary}</p>
-            </Panel>
+            </ul>
+            <h4 className="font-bold text-sky-200">{t.pollution.labels.terms}</h4>
+            <p className="text-sm text-slate-300">{t.keyTerms.join(" · ")}</p>
             {onMarkRead && (
               <div className="flex justify-center">
                 <button
