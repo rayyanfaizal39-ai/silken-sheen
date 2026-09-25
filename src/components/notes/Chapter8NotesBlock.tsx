@@ -15,47 +15,117 @@ import { ColorMixingDiagram } from "./blocks/ColorMixingDiagram";
 type Lang = "en" | "bm";
 
 const ORBIT_LABELS: Record<Lang, string[]> = {
-  en: ["Mirror images", "Mirror types", "Law of reflection", "Properties of light", "Refraction", "Dispersion", "Scattering", "Colour mixing", "Key facts & terms"],
-  bm: ["Imej cermin", "Jenis cermin", "Hukum pantulan", "Sifat cahaya", "Pembiasan", "Serakan cahaya", "Penyerakan cahaya", "Percampuran warna", "Fakta & istilah penting"],
+  en: [
+    "Mirror images",
+    "Mirror types",
+    "Law of reflection",
+    "Properties of light",
+    "Refraction",
+    "Dispersion",
+    "Scattering",
+    "Colour mixing",
+    "Key facts & terms",
+  ],
+  bm: [
+    "Imej cermin",
+    "Jenis cermin",
+    "Hukum pantulan",
+    "Sifat cahaya",
+    "Pembiasan",
+    "Serakan cahaya",
+    "Penyerakan cahaya",
+    "Percampuran warna",
+    "Fakta & istilah penting",
+  ],
 };
 
 const SECTION_CHROME: Record<Lang, Array<{ eyebrow: string; title: string; sub?: string }>> = {
   en: [
-    { eyebrow: "◆ 8.1", title: "Real vs Virtual Images", sub: "A plane mirror always produces a virtual image." },
+    {
+      eyebrow: "◆ 8.1",
+      title: "Real vs Virtual Images",
+      sub: "A plane mirror always produces a virtual image.",
+    },
     { eyebrow: "◆ 8.1 continued", title: "Plane, Concave & Convex Mirrors" },
-    { eyebrow: "◆ 8.2", title: "The Law of Reflection & Optical Instruments", sub: "The angle of incidence always equals the angle of reflection." },
+    {
+      eyebrow: "◆ 8.2",
+      title: "The Law of Reflection & Optical Instruments",
+      sub: "The angle of incidence always equals the angle of reflection.",
+    },
     { eyebrow: "◆ 8.3", title: "Properties of Light & Shadows" },
-    { eyebrow: "◆ 8.4", title: "Refraction of Light", sub: "The single most-tested ray diagram in this chapter." },
+    {
+      eyebrow: "◆ 8.4",
+      title: "Refraction of Light",
+      sub: "The single most-tested ray diagram in this chapter.",
+    },
     { eyebrow: "◆ 8.5", title: "Dispersion of Light" },
-    { eyebrow: "◆ 8.6", title: "Scattering of Light", sub: "Why the sky is blue at midday and reddish at sunset." },
+    {
+      eyebrow: "◆ 8.6",
+      title: "Scattering of Light",
+      sub: "Why the sky is blue at midday and reddish at sunset.",
+    },
     { eyebrow: "◆ 8.7", title: "Addition & Subtraction of Colour" },
     { eyebrow: "◆ Wrap-up", title: "Key Facts & Terms" },
   ],
   bm: [
-    { eyebrow: "◆ 8.1", title: "Imej Nyata lwn. Maya", sub: "Cermin satah sentiasa menghasilkan imej maya." },
+    {
+      eyebrow: "◆ 8.1",
+      title: "Imej Nyata lwn. Maya",
+      sub: "Cermin satah sentiasa menghasilkan imej maya.",
+    },
     { eyebrow: "◆ Sambungan 8.1", title: "Cermin Satah, Cekung & Cembung" },
-    { eyebrow: "◆ 8.2", title: "Hukum Pantulan & Alat Optik", sub: "Sudut tuju sentiasa sama dengan sudut pantulan." },
+    {
+      eyebrow: "◆ 8.2",
+      title: "Hukum Pantulan & Alat Optik",
+      sub: "Sudut tuju sentiasa sama dengan sudut pantulan.",
+    },
     { eyebrow: "◆ 8.3", title: "Sifat Cahaya & Bayang-Bayang" },
-    { eyebrow: "◆ 8.4", title: "Pembiasan Cahaya", sub: "Gambar rajah sinar yang paling kerap diuji dalam bab ini." },
+    {
+      eyebrow: "◆ 8.4",
+      title: "Pembiasan Cahaya",
+      sub: "Gambar rajah sinar yang paling kerap diuji dalam bab ini.",
+    },
     { eyebrow: "◆ 8.5", title: "Serakan Cahaya" },
-    { eyebrow: "◆ 8.6", title: "Penyerakan Cahaya", sub: "Sebab langit biru pada tengah hari dan kemerahan waktu matahari terbenam." },
+    {
+      eyebrow: "◆ 8.6",
+      title: "Penyerakan Cahaya",
+      sub: "Sebab langit biru pada tengah hari dan kemerahan waktu matahari terbenam.",
+    },
     { eyebrow: "◆ 8.7", title: "Penambahan & Penolakan Warna" },
     { eyebrow: "◆ Rumusan", title: "Fakta & Istilah Penting" },
   ],
 };
 
-const PLANE_MIRROR_HEAD: Record<Lang, string> = { en: "🪞 Plane Mirror Characteristics", bm: "🪞 Ciri Cermin Satah" };
-const INSTRUMENTS_HEAD: Record<Lang, string> = { en: "🔭 Optical Instruments", bm: "🔭 Alat Optik" };
+const PLANE_MIRROR_HEAD: Record<Lang, string> = {
+  en: "🪞 Plane Mirror Characteristics",
+  bm: "🪞 Ciri Cermin Satah",
+};
+const INSTRUMENTS_HEAD: Record<Lang, string> = {
+  en: "🔭 Optical Instruments",
+  bm: "🔭 Alat Optik",
+};
 const FACTS_HEAD: Record<Lang, string> = { en: "💡 Facts", bm: "💡 Fakta" };
-const SHADOW_HEAD: Record<Lang, string> = { en: "🌑 How a Shadow Forms", bm: "🌑 Cara Bayang-Bayang Terbentuk" };
+const SHADOW_HEAD: Record<Lang, string> = {
+  en: "🌑 How a Shadow Forms",
+  bm: "🌑 Cara Bayang-Bayang Terbentuk",
+};
 const DAILY_LIFE_HEAD: Record<Lang, string> = { en: "Everyday examples", bm: "Contoh harian" };
-const RAINBOW_HEAD: Record<Lang, string> = { en: "🌈 How a Rainbow Forms", bm: "🌈 Cara Pelangi Terbentuk" };
+const RAINBOW_HEAD: Record<Lang, string> = {
+  en: "🌈 How a Rainbow Forms",
+  bm: "🌈 Cara Pelangi Terbentuk",
+};
 const PRIMARY_HEAD: Record<Lang, string> = { en: "Primary colours", bm: "Warna primer" };
 const SECONDARY_HEAD: Record<Lang, string> = { en: "Secondary colours", bm: "Warna sekunder" };
-const FACTS_EXAM_HEAD: Record<Lang, string> = { en: "⭐ Key exam facts", bm: "⭐ Fakta penting peperiksaan" };
+const FACTS_EXAM_HEAD: Record<Lang, string> = {
+  en: "⭐ Key exam facts",
+  bm: "⭐ Fakta penting peperiksaan",
+};
 const GLOSS_HEAD: Record<Lang, string> = { en: "📘 Glossary", bm: "📘 Glosari" };
 const SUMMARY_HEAD: Record<Lang, string> = { en: "⭐ Chapter Summary", bm: "⭐ Rumusan Bab" };
-const MARK_READ_BTN: Record<Lang, string> = { en: "📘 Mark Chapter 8 as Read", bm: "📘 Tandakan Bab 8 Selesai" };
+const MARK_READ_BTN: Record<Lang, string> = {
+  en: "📘 Mark Chapter 8 as Read",
+  bm: "📘 Tandakan Bab 8 Selesai",
+};
 const MARKED_BTN: Record<Lang, string> = { en: "Marked as read ✓", bm: "Selesai ditanda ✓" };
 const BACK_BTN: Record<Lang, string> = { en: "Back", bm: "Kembali" };
 const NEXT_BTN: Record<Lang, string> = { en: "Next section", bm: "Seksyen seterusnya" };
@@ -100,14 +170,20 @@ export function Chapter8NotesBlock({
   }
 
   const [planeMirror, concaveMirror, convexMirror] = t.mirrors.mirrorTypes;
-  const refractionBends: Array<"awayNormal" | "towardNormal" | "none"> = ["awayNormal", "towardNormal", "none"];
+  const refractionBends: Array<"awayNormal" | "towardNormal" | "none"> = [
+    "awayNormal",
+    "towardNormal",
+    "none",
+  ];
 
   return (
     <section id={id} data-lang={lang} className="science-research-modules mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">💡</div>
         <div>
-          <p className="font-display mb-1 text-base font-bold text-foreground sm:text-lg">{t.hook.title}</p>
+          <p className="font-display mb-1 text-base font-bold text-foreground sm:text-lg">
+            {t.hook.title}
+          </p>
           <p className="text-sm leading-relaxed text-muted-foreground">{t.hook.body}</p>
         </div>
       </div>
@@ -143,10 +219,16 @@ export function Chapter8NotesBlock({
       </div>
 
       <div className="science-research-module-shell relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="science-research-title font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">
+          {chrome.eyebrow}
+        </p>
+        <h2 className="science-research-title font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">
+          {chrome.title}
+        </h2>
         <ResearchModuleMeta index={current} total={total} title={chrome.title} lang={lang} />
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
+        {chrome.sub && (
+          <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>
+        )}
         {!chrome.sub && <div className="mb-6" />}
 
         {current === 0 && (
@@ -158,13 +240,20 @@ export function Chapter8NotesBlock({
                 [lang === "en" ? "Virtual" : "Maya", t.mirrors.realVsVirtual.virtual],
               ]}
             />
-            <ChipRow heading={PLANE_MIRROR_HEAD[lang]} items={t.mirrors.planeMirrorCharacteristics} />
+            <ChipRow
+              heading={PLANE_MIRROR_HEAD[lang]}
+              items={t.mirrors.planeMirrorCharacteristics}
+            />
           </div>
         )}
 
         {current === 1 && (
           <div className="space-y-6">
-            <MirrorComparison lang={lang} concaveUses={concaveMirror.uses} convexUses={convexMirror.uses} />
+            <MirrorComparison
+              lang={lang}
+              concaveUses={concaveMirror.uses}
+              convexUses={convexMirror.uses}
+            />
             <DefinitionCard
               items={[
                 {
@@ -182,7 +271,7 @@ export function Chapter8NotesBlock({
           <div className="space-y-6">
             <RayDiagram variant="reflection" lang={lang} />
             <ul className="flex flex-col gap-1.5">
-              {t.mirrors.lawOfReflection.statement.map((s) => (
+              {t.reflection.lawOfReflection.statement.map((s) => (
                 <li key={s} className="flex items-start gap-2 text-sm text-muted-foreground">
                   <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-muted-foreground" />
                   <span>{s}</span>
@@ -190,8 +279,15 @@ export function Chapter8NotesBlock({
               ))}
             </ul>
             <div>
-              <h4 className="font-display mb-3 text-sm font-bold text-foreground">{INSTRUMENTS_HEAD[lang]}</h4>
-              <DefinitionCard items={t.mirrors.opticalInstruments.map((o) => ({ name: o.name, body: o.howItWorks }))} />
+              <h4 className="font-display mb-3 text-sm font-bold text-foreground">
+                {INSTRUMENTS_HEAD[lang]}
+              </h4>
+              <DefinitionCard
+                items={t.mirrors.opticalInstruments.map((o) => ({
+                  name: o.name,
+                  body: o.howItWorks,
+                }))}
+              />
             </div>
           </div>
         )}
@@ -200,7 +296,9 @@ export function Chapter8NotesBlock({
           <div className="space-y-6">
             <FactGrid heading={FACTS_HEAD[lang]} facts={t.propertiesOfLight.facts} />
             <div>
-              <h4 className="font-display mb-3 text-sm font-bold text-foreground">{SHADOW_HEAD[lang]}</h4>
+              <h4 className="font-display mb-3 text-sm font-bold text-foreground">
+                {SHADOW_HEAD[lang]}
+              </h4>
               <ul className="flex flex-col gap-1.5">
                 {t.propertiesOfLight.shadowFormation.map((s, i) => (
                   <li key={s} className="flex items-start gap-2.5 text-sm text-muted-foreground">
@@ -217,7 +315,9 @@ export function Chapter8NotesBlock({
 
         {current === 4 && (
           <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.refraction.definition}</p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {t.refraction.definition}
+            </p>
             <div className="grid gap-4 sm:grid-cols-3">
               {t.refraction.cases.map((c, i) => (
                 <div key={c.scenario} className="flex flex-col gap-2">
@@ -233,28 +333,48 @@ export function Chapter8NotesBlock({
 
         {current === 5 && (
           <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.dispersion.definition}</p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {t.dispersion.definition}
+            </p>
             <DispersionPrism lang={lang} spectrumOrder={t.dispersion.spectrumOrder} />
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.dispersion.speedFact}</p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {t.dispersion.speedFact}
+            </p>
             <div>
-              <h4 className="font-display mb-2 text-sm font-bold text-foreground">{RAINBOW_HEAD[lang]}</h4>
-              <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.dispersion.rainbowFormation}</p>
+              <h4 className="font-display mb-2 text-sm font-bold text-foreground">
+                {RAINBOW_HEAD[lang]}
+              </h4>
+              <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+                {t.dispersion.rainbowFormation}
+              </p>
             </div>
           </div>
         )}
 
         {current === 6 && (
           <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.scattering.definition}</p>
-            <ScatteringComparison lang={lang} middayExplanation={t.scattering.middayExplanation} sunsetExplanation={t.scattering.sunsetExplanation} />
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {t.scattering.definition}
+            </p>
+            <ScatteringComparison
+              lang={lang}
+              middayExplanation={t.scattering.middayExplanation}
+              sunsetExplanation={t.scattering.sunsetExplanation}
+            />
           </div>
         )}
 
         {current === 7 && (
           <div className="space-y-6">
             <div className="grid gap-3.5 sm:grid-cols-2">
-              <ChipRow heading={PRIMARY_HEAD[lang]} items={t.colorAdditionSubtraction.primaryColors} />
-              <ChipRow heading={SECONDARY_HEAD[lang]} items={t.colorAdditionSubtraction.secondaryColors} />
+              <ChipRow
+                heading={PRIMARY_HEAD[lang]}
+                items={t.colorAdditionSubtraction.primaryColors}
+              />
+              <ChipRow
+                heading={SECONDARY_HEAD[lang]}
+                items={t.colorAdditionSubtraction.secondaryColors}
+              />
             </div>
             <ColorMixingDiagram
               lang={lang}
@@ -262,7 +382,9 @@ export function Chapter8NotesBlock({
               allThreeMixed={t.colorAdditionSubtraction.allThreeMixed}
               subtractionExamples={t.colorAdditionSubtraction.subtractionExamples}
             />
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{t.colorAdditionSubtraction.subtractionPrinciple}</p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {t.colorAdditionSubtraction.subtractionPrinciple}
+            </p>
           </div>
         )}
 
@@ -271,7 +393,9 @@ export function Chapter8NotesBlock({
             <FactGrid heading={FACTS_EXAM_HEAD[lang]} facts={t.keyExamFacts} />
             <ChipRow heading={GLOSS_HEAD[lang]} items={t.keyTerms} />
             <div className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-accent/5 p-5">
-              <h4 className="font-display mb-2 flex items-center gap-2 text-sm font-bold text-foreground">{SUMMARY_HEAD[lang]}</h4>
+              <h4 className="font-display mb-2 flex items-center gap-2 text-sm font-bold text-foreground">
+                {SUMMARY_HEAD[lang]}
+              </h4>
               <p className="text-sm leading-relaxed text-muted-foreground">{t.chapterSummary}</p>
             </div>
             {onMarkRead && (

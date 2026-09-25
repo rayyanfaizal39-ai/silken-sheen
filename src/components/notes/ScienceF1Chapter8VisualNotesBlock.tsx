@@ -1,17 +1,15 @@
+import { Chapter8Mirrors } from "./Chapter8Mirrors";
 import { useState, type ReactNode } from "react";
 import {
   Aperture,
   ArrowDownUp,
   Check,
   ChevronDown,
-  Eye,
   Filter,
   Focus,
-  Glasses,
   Lightbulb,
   Palette,
   Rainbow,
-  ScanLine,
   Sparkles,
   Sun,
 } from "lucide-react";
@@ -313,7 +311,6 @@ export function ScienceF1Chapter8VisualNotesBlock({
   const t = content[lang];
   const extra = chapter8Supplement[lang];
   const copy = ui[lang];
-  const [mirror, setMirror] = useState(0);
   const [refraction, setRefraction] = useState(0);
   const [sky, setSky] = useState(0);
   const [mix, setMix] = useState(0);
@@ -333,11 +330,8 @@ export function ScienceF1Chapter8VisualNotesBlock({
                 {copy.eyebrow}
               </p>
               <h1 className="mt-3 font-display text-3xl font-black leading-tight text-white sm:text-5xl">
-                {copy.title}
+                {t.title}
               </h1>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">
-                {copy.subtitle}
-              </p>
             </div>
             <div className="relative mx-auto grid h-36 w-36 shrink-0 place-items-center rounded-full border border-violet-300/30 bg-violet-300/10 lg:mx-0">
               <Aperture className="h-20 w-20 text-violet-300" aria-hidden="true" />
@@ -347,119 +341,65 @@ export function ScienceF1Chapter8VisualNotesBlock({
               />
             </div>
           </div>
-          <div className="mt-6 grid gap-2 sm:grid-cols-5">
-            {copy.path.map(([code, label]) => (
-              <div
-                key={`${code}-${label}`}
-                className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3"
+          <nav aria-label={t.title} className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {t.subtopics.map(({ code, title }) => (
+              <a
+                key={code}
+                href={`#chapter8-${code.replace(".", "")}`}
+                className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 text-sm font-bold text-violet-100"
               >
-                <span className="font-mono text-[10px] font-black uppercase text-violet-300">
-                  {code}
-                </span>
-                <p className="mt-1 text-xs font-bold text-slate-200">{label}</p>
-              </div>
+                {code} {title}
+              </a>
             ))}
-          </div>
+          </nav>
         </header>
 
         <div className="mt-12 space-y-16">
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[0]} />
-            <div className="grid gap-5 md:grid-cols-2">
-              <Panel>
-                <Eye className="h-6 w-6 text-sky-300" />
-                <h3 className="mt-3 font-bold text-white">
-                  {lang === "en" ? "Real image" : "Imej nyata"}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
-                  {t.mirrors.realVsVirtual.real}
-                </p>
-              </Panel>
-              <Panel>
-                <Glasses className="h-6 w-6 text-violet-300" />
-                <h3 className="mt-3 font-bold text-white">
-                  {lang === "en" ? "Virtual image" : "Imej maya"}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
-                  {t.mirrors.realVsVirtual.virtual}
-                </p>
-              </Panel>
-            </div>
-            <Panel>
-              <h3 className="mb-4 font-bold text-white">{copy.activity}</h3>
-              <Checklist items={extra.realVirtualActivity} />
-            </Panel>
-            <Panel>
-              <h3 className="font-bold text-white">{copy.chooseMirror}</h3>
-              <div className="mt-4">
-                <Tabs
-                  labels={t.mirrors.mirrorTypes.map((item) => item.name)}
-                  selected={mirror}
-                  onSelect={setMirror}
-                />
-              </div>
-              <div className="mt-4 grid gap-3 md:grid-cols-2" role="tabpanel">
-                <div className="rounded-xl bg-violet-300/10 p-4">
-                  <p className="text-xs font-bold uppercase text-violet-300">{copy.image}</p>
-                  <div className="mt-2">
-                    <Checklist items={t.mirrors.mirrorTypes[mirror].imageCharacteristics} />
-                  </div>
-                </div>
-                <div className="rounded-xl bg-sky-300/10 p-4">
-                  <p className="text-xs font-bold uppercase text-sky-300">{copy.applications}</p>
-                  <div className="mt-2">
-                    <Checklist items={t.mirrors.mirrorTypes[mirror].uses} />
-                  </div>
-                </div>
-              </div>
-            </Panel>
-            <div>
-              <h3 className="mb-4 font-bold text-white">{copy.instruments}</h3>
-              <div className="grid gap-4 md:grid-cols-2">
-                {t.mirrors.opticalInstruments.map((item) => (
-                  <Panel key={item.name}>
-                    <ScanLine className="h-6 w-6 text-violet-300" />
-                    <h4 className="mt-3 font-bold text-white">{item.name}</h4>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">{item.howItWorks}</p>
-                  </Panel>
-                ))}
-              </div>
-            </div>
+          <section id="chapter8-81" data-official-subtopic="8.1" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[0].code} {t.subtopics[0].title}
+            </h2>
+            <Chapter8Mirrors source={t.mirrors} />
           </section>
 
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[1]} />
-            <div className="grid gap-4 lg:grid-cols-2">
-              <Panel>
-                <div className="flex items-center gap-3">
-                  <Sun className="h-6 w-6 text-yellow-300" />
-                  <h3 className="font-bold text-white">{copy.properties}</h3>
-                </div>
-                <div className="mt-4">
-                  <Checklist items={t.propertiesOfLight.facts} />
-                </div>
-                <div className="mt-5 space-y-3">
-                  {extra.opticalHistory.map((item) => (
-                    <div key={item.name} className="border-l-2 border-yellow-300 pl-4">
-                      <p className="font-bold text-yellow-200">{item.name}</p>
-                      <p className="mt-1 text-sm leading-6 text-slate-300">{item.principle}</p>
-                    </div>
-                  ))}
-                </div>
-              </Panel>
-              <Panel>
-                <div className="flex items-center gap-3">
-                  <Focus className="h-6 w-6 text-sky-300" />
-                  <h3 className="font-bold text-white">{copy.reflection}</h3>
-                </div>
-                <div className="mt-4">
-                  <Checklist items={t.mirrors.lawOfReflection.statement} />
-                </div>
-                <p className="mt-5 rounded-xl border border-sky-300/25 bg-sky-300/10 p-4 text-center font-mono text-3xl font-black text-sky-100">
-                  {t.mirrors.lawOfReflection.keyEquation}
-                </p>
-              </Panel>
-            </div>
+          <section id="chapter8-82" data-official-subtopic="8.2" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[1].code} {t.subtopics[1].title}
+            </h2>
+            <Panel>
+              <div className="flex items-center gap-3">
+                <Sun className="h-6 w-6 text-yellow-300" />
+                <h3 className="font-bold text-white">{copy.properties}</h3>
+              </div>
+              <div className="mt-4">
+                <Checklist items={t.propertiesOfLight.facts} />
+              </div>
+              <div className="mt-5 space-y-3">
+                {extra.opticalHistory.map((item) => (
+                  <div key={item.name} className="border-l-2 border-yellow-300 pl-4">
+                    <p className="font-bold text-yellow-200">{item.name}</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-300">{item.principle}</p>
+                  </div>
+                ))}
+              </div>
+            </Panel>
+          </section>
+          <section id="chapter8-83" data-official-subtopic="8.3" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[2].code} {t.subtopics[2].title}
+            </h2>
+            <Panel>
+              <div className="flex items-center gap-3">
+                <Focus className="h-6 w-6 text-sky-300" />
+                <h3 className="font-bold text-white">{copy.reflection}</h3>
+              </div>
+              <div className="mt-4">
+                <Checklist items={t.reflection.lawOfReflection.statement} />
+              </div>
+              <p className="mt-5 rounded-xl border border-sky-300/25 bg-sky-300/10 p-4 text-center font-mono text-3xl font-black text-sky-100">
+                {t.reflection.lawOfReflection.keyEquation}
+              </p>
+            </Panel>
             <Panel>
               <h3 className="mb-4 font-bold text-white">{copy.experiment}</h3>
               <Checklist items={extra.reflectionExperiment} />
@@ -473,8 +413,10 @@ export function ScienceF1Chapter8VisualNotesBlock({
             </Panel>
           </section>
 
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[2]} />
+          <section id="chapter8-84" data-official-subtopic="8.4" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[3].code} {t.subtopics[3].title}
+            </h2>
             <p className="max-w-3xl text-sm leading-6 text-slate-300">{t.refraction.definition}</p>
             <Panel>
               <h3 className="font-bold text-white">{copy.chooseRule}</h3>
@@ -522,8 +464,10 @@ export function ScienceF1Chapter8VisualNotesBlock({
             </Panel>
           </section>
 
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[3]} />
+          <section id="chapter8-85" data-official-subtopic="8.5" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[4].code} {t.subtopics[4].title}
+            </h2>
             <div className="grid gap-5 lg:grid-cols-2">
               <Panel>
                 <div className="flex items-center gap-3">
@@ -560,6 +504,11 @@ export function ScienceF1Chapter8VisualNotesBlock({
                 </div>
               </Panel>
             </div>
+          </section>
+          <section id="chapter8-86" data-official-subtopic="8.6" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[5].code} {t.subtopics[5].title}
+            </h2>
             <Panel>
               <div className="flex items-center gap-3">
                 <Sun className="h-6 w-6 text-sky-300" />
@@ -594,8 +543,10 @@ export function ScienceF1Chapter8VisualNotesBlock({
             </Panel>
           </section>
 
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[4]} />
+          <section id="chapter8-87" data-official-subtopic="8.7" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[6].code} {t.subtopics[6].title}
+            </h2>
             <Panel>
               <div className="flex items-center gap-3">
                 <Palette className="h-6 w-6 text-fuchsia-300" />
@@ -634,7 +585,7 @@ export function ScienceF1Chapter8VisualNotesBlock({
           </section>
 
           <section className="space-y-6">
-            <SectionHeading section={copy.sections[5]} />
+            <h3 className="text-xl font-bold">{copy.sections[5][1]}</h3>
             <p className="max-w-3xl text-sm leading-6 text-slate-300">
               {t.colorAdditionSubtraction.subtractionPrinciple}
             </p>

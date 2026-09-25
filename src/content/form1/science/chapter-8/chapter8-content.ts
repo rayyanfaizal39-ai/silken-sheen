@@ -26,13 +26,69 @@ export interface ColorMix {
   result: string;
 }
 
+export interface MirrorActivity {
+  title: string;
+  aim: string;
+  materials: string[];
+  instructions: string[];
+  questions: string[];
+}
+export interface MirrorLesson {
+  labels: Record<
+    | "real"
+    | "virtual"
+    | "materials"
+    | "instructions"
+    | "questions"
+    | "shapes"
+    | "object"
+    | "image"
+    | "mirror"
+    | "screen"
+    | "blackCard"
+    | "pinhole"
+    | "pin"
+    | "candle"
+    | "graph"
+    | "distance"
+    | "applications"
+    | "reflectingSurface"
+    | "periscopePath"
+    | "beads"
+    | "reflections"
+    | "scienceInLife"
+    | "problem"
+    | "solution"
+    | "reason"
+    | "showAnswer"
+    | "rotate"
+    | "compare"
+    | "measurements",
+    string
+  >;
+  planeVirtual: string;
+  sizes: string[];
+  activity81: MirrorActivity;
+  activity82: MirrorActivity;
+  activity83: MirrorActivity;
+  activity84: MirrorActivity;
+  activity85: MirrorActivity;
+  knifeWarning: string;
+  periscopeMeasurements: string[];
+  life: { problem: string; solution: string; reason: string; instrument: string }[];
+  practice: { title: string; questions: string[] };
+}
+
 export interface Chapter8Content {
+  title: string;
+  subtopics: { code: string; title: string }[];
+  reflection: { lawOfReflection: { statement: string[]; keyEquation: string } };
   hook: { title: string; body: string };
   mirrors: {
     realVsVirtual: { real: string; virtual: string };
     planeMirrorCharacteristics: string[];
     mirrorTypes: MirrorType[];
-    lawOfReflection: { statement: string[]; keyEquation: string };
+    lesson: MirrorLesson;
     opticalInstruments: OpticalInstrument[];
   };
   propertiesOfLight: {
@@ -73,44 +129,38 @@ const en: Chapter8Content = {
     title: "Why this matters",
     body: "Why does the sky turn red at sunset? Why does a straight pencil look bent in water? Why can a submarine see the surface? Every one of these everyday mysteries has a precise, drawable explanation — and this chapter gives you the ray diagrams to prove it.",
   },
-  mirrors: {
-    realVsVirtual: {
-      real: "An image that forms on a screen",
-      virtual:
-        "An image that cannot be formed on a screen — our reflection forms behind the mirror, not on its surface, so a plane mirror always produces a virtual image",
+  title: "Light and Optics",
+  subtopics: [
+    {
+      code: "8.1",
+      title: "The Use of Mirrors",
     },
-    planeMirrorCharacteristics: [
-      "Upright",
-      "Laterally inverted",
-      "Same size as the object",
-      "Virtual",
-      "Same distance behind the mirror as the object is in front",
-    ],
-    mirrorTypes: [
-      {
-        name: "Plane mirror",
-        imageCharacteristics: ["Upright, virtual, same size, laterally inverted"],
-        uses: [
-          "Helps a dancer correct movement",
-          "Makes a living room look spacious",
-          "Used in periscopes and kaleidoscopes",
-        ],
-      },
-      {
-        name: "Concave mirror",
-        imageCharacteristics: ["Magnifies the image, makes it look bigger and closer"],
-        uses: ["Applying makeup (magnified image)", "Dentists viewing patients' teeth"],
-      },
-      {
-        name: "Convex mirror",
-        imageCharacteristics: ["Wider field of view, smaller image"],
-        uses: [
-          "Safety feature at dangerous road corners",
-          "Supermarket theft prevention",
-          "Fitted on bicycles to see behind",
-        ],
-      },
-    ],
+    {
+      code: "8.2",
+      title: "Properties of Light",
+    },
+    {
+      code: "8.3",
+      title: "Reflection of Light",
+    },
+    {
+      code: "8.4",
+      title: "Refraction of Light",
+    },
+    {
+      code: "8.5",
+      title: "Dispersion of Light",
+    },
+    {
+      code: "8.6",
+      title: "Scattering of Light",
+    },
+    {
+      code: "8.7",
+      title: "Addition and Subtraction of Light",
+    },
+  ],
+  reflection: {
     lawOfReflection: {
       statement: [
         "The incident ray, reflected ray, and normal line all lie on the same plane",
@@ -118,18 +168,218 @@ const en: Chapter8Content = {
       ],
       keyEquation: "i = r",
     },
+  },
+  mirrors: {
+    realVsVirtual: {
+      real: "A real image is an image that forms on a screen.",
+      virtual: "A virtual image is an image that cannot be formed on a screen.",
+    },
+    planeMirrorCharacteristics: [
+      "Upright",
+      "Laterally inverted",
+      "Same size as the object",
+      "Virtual",
+      "The object distance is equal to the image distance in a plane mirror",
+    ],
+    mirrorTypes: [
+      {
+        name: "Plane mirror",
+        imageCharacteristics: [
+          "Upright",
+          "Laterally inverted",
+          "Same size as the object",
+          "Virtual",
+          "The object distance is equal to the image distance in a plane mirror",
+        ],
+        uses: [
+          "A plane mirror helps a dancer to correct his movement.",
+          "A plane mirror makes a living room look spacious.",
+        ],
+      },
+      {
+        name: "Concave mirror",
+        imageCharacteristics: ["Bigger"],
+        uses: [
+          "A concave mirror helps to magnify the image to make it easier for someone to apply make up.",
+          "A concave mirror is used by a dentist to see the patient’s teeth so that the image formed looks bigger and closer.",
+        ],
+      },
+      {
+        name: "Convex mirror",
+        imageCharacteristics: ["Smaller"],
+        uses: [
+          "A convex mirror is used as a safety feature at dangerous corner of a road.",
+          "Convex mirrors at the supermarket can help a shopkeeper to see every corner of the supermarket to prevent theft.",
+        ],
+      },
+    ],
     opticalInstruments: [
       {
         name: "Periscope",
         howItWorks:
-          "Uses two mirrors angled at 45°. Light from the sea surface hits the top mirror and reflects down to a second mirror, then into the observer's eye — used in submarines",
+          "Periscope is an instrument used in submarines to observe the sea surface. Periscope works by using the concept of reflection of light. Light from the sea surface is hit through the top mirror and is reflected. The light is then reflected again at the second mirror, right into the eye of the observer in the submarine.",
       },
       {
         name: "Kaleidoscope",
         howItWorks:
-          "Uses three mirror strips joined into a triangular prism. Repeated reflection of objects inside creates more images than actual objects, forming patterns",
+          "Kaleidoscope is a toy made using plane mirrors. These patterns are obtained due to the repeated reflection of the image of the objects inside the kaleidoscope. Therefore, the number of images seen is more than the number of objects.",
       },
     ],
+    lesson: {
+      labels: {
+        real: "Real image",
+        virtual: "Virtual image",
+        materials: "Materials and apparatus",
+        instructions: "Instruction",
+        questions: "Questions",
+        shapes: "Types of mirrors",
+        object: "Object",
+        image: "Image",
+        mirror: "Mirror",
+        screen: "White cardboard as screen",
+        blackCard: "Black cardboard",
+        pinhole: "Pinhole",
+        pin: "Pin",
+        candle: "Candle",
+        graph: "Graph paper",
+        distance: "Object distance = Image distance",
+        applications: "Usage of Plane Mirror, Concave Mirror and Convex Mirror",
+        reflectingSurface: "Surface of mirror",
+        periscopePath: "Object → Mirror → Mirror → Eye of the observer",
+        beads: "Colourful beads",
+        reflections: "Repeated reflection",
+        scienceInLife: "Science in Life",
+        problem: "Situation",
+        solution: "Solution",
+        reason: "Reason",
+        showAnswer: "Show answer",
+        rotate: "Rotate",
+        compare: "Image formed",
+        measurements: "Measurements",
+      },
+      planeVirtual:
+        "Our image forms behind the mirror, not on the mirror screen. Therefore, the image formed by a plane mirror is a virtual image.",
+      sizes: ["Same size", "Bigger", "Smaller"],
+      activity81: {
+        title: "Activity 8.1",
+        aim: "To study the difference between real image and virtual image",
+        materials: [
+          "A piece of black A4 cardboard",
+          "A piece of white A4 cardboard",
+          "Candle",
+          "Pin",
+          "Mirror",
+        ],
+        instructions: [
+          "Use a pin to pierce a hole in a black A4 cardboard.",
+          "Arrange the materials and apparatus as in Figure 8.1. Use a white A4 cardboard as a screen where the image will be formed.",
+          "Observe the image formed on the second cardboard which is used as a screen.",
+          "Choose a student to stand in front of a mirror as shown in Figure 8.2. Observe the image formed.",
+        ],
+        questions: [
+          "Is the image formed in Figure 8.1 real or virtual?",
+          "Compare the characteristics of the image formed in Figure 8.1 with Figure 8.2.",
+        ],
+      },
+      activity82: {
+        title: "Activity 8.2",
+        aim: "To determine the characteristics of the image formed by a plane mirror, concave mirror and convex mirror",
+        materials: ["Plane mirror", "Concave mirror", "Convex mirror", "Candle", "Graph paper"],
+        instructions: [
+          "Place a candle on a piece of graph paper in front of a plane mirror as shown in Figure 8.4.",
+          "Observe the image formed. Is the image the same size, smaller or bigger than the object?",
+          "Repeat steps 1 and 2 by replacing the plane mirror with a concave mirror and a convex mirror.",
+          "Record the results in a table.",
+          "Then, measure the distance of the image from the plane mirror.",
+        ],
+        questions: [
+          "Compare the size of the image formed in the mirrors with the size of the object.",
+          "Compare the distance of the image formed in the plane mirror with the distance of the object.",
+        ],
+      },
+      activity83: {
+        title: "Activity 8.3",
+        aim: "To discuss the usage of plane mirrors, concave mirrors and convex mirrors",
+        materials: [],
+        instructions: [
+          "Work in groups.",
+          "Discuss the usage of plane mirrors, concave mirrors and convex mirrors.",
+          "Present your discussion using multimedia presentation.",
+        ],
+        questions: [],
+      },
+      activity84: {
+        title: "Activity 8.4",
+        aim: "To create a simple periscope",
+        materials: ["Two plane mirrors", "Box", "Knife"],
+        instructions: [
+          "Cut the side of the upper and lower box to fit the width of the mirror.",
+          "Place the mirrors facing each other.",
+          "Make two holes exactly opposite each mirror.",
+          "Place the object to be viewed in front of Hole 1.",
+        ],
+        questions: [],
+      },
+      knifeWarning: "Be careful when using knives to prevent injuries.",
+      periscopeMeasurements: ["Box: 30 cm × 10 cm × 15 cm", "Plane mirrors: 15 cm × 14 cm"],
+      activity85: {
+        title: "Activity 8.5",
+        aim: "To build a kaleidoscope",
+        materials: [
+          "One kitchen towel roll",
+          "Three pieces of mirror cards",
+          "Colourful beads",
+          "Two pieces of plastic discs",
+          "Scissors",
+          "Glue",
+          "Cellophane tape",
+          "Colourful paper for decoration",
+          "Round black cardboard",
+        ],
+        instructions: [
+          "Prepare the materials and apparatus as shown in Figure 8.8.",
+          "Prepare three pieces of mirror cards. Each one is 4.3 cm in width and 21 cm in length.",
+          "Stick the three pieces of the mirror cards with cellophane tape to make a triangle prism. Make sure the shiny surface is facing inward.",
+          "Push the triangle prism into the empty roll (Figure 8.9(a)).",
+          "Cut two pieces of round plastic discs with a diameter of 5.3 cm respectively.",
+          "Attach the first plastic disc on one end of the roll, A (Figure 8.9(b)). Push the first plastic disc into the roll until it touches the triangle prism.",
+          "Add colourful beads on the surface of the first plastic disc (Figure 8.10(a)). Attach the second plastic disc to cover the colourful beads (Figure 8.10(b)).",
+          "At the other end of the kitchen towel roll, B, attach a round black cardboard which has a diameter of 5.3 cm and make a hole on it (Figure 8.11).",
+          "Decorate the kitchen towel roll with colourful papers according to your creativity.",
+          "Look at the pattern of the colourful beads formed through the hole.",
+        ],
+        questions: [],
+      },
+      life: [
+        {
+          problem: "It is good if I can see things behind me to avoid accidents.",
+          solution: "You can fix a convex mirror on the bike to see things behind you.",
+          reason: "See things behind you",
+          instrument: "convex",
+        },
+        {
+          problem: "How do I see the scenery behind this wall?",
+          solution: "Well, a periscope can help me.",
+          reason: "See the scenery behind this wall",
+          instrument: "periscope",
+        },
+        {
+          problem:
+            "It is dangerous to walk on this path because we cannot see anything around the corner.",
+          solution: "We can fix convex mirrors at dangerous corners.",
+          reason: "See around the corner",
+          instrument: "convex",
+        },
+      ],
+      practice: {
+        title: "Formative Practice 8.1",
+        questions: [
+          "The picture shows a man standing in front of a mirror. What type of mirror is it? State the characteristic of the image formed.",
+          "What is the function of plane mirrors in a periscope?",
+          "Why do we need plane mirrors in a lift?",
+        ],
+      },
+    },
   },
   propertiesOfLight: {
     facts: [
@@ -239,44 +489,38 @@ const bm: Chapter8Content = {
     title: "Kenapa ini penting",
     body: "Kenapa langit bertukar merah waktu matahari terbenam? Kenapa pensel yang lurus kelihatan bengkok di dalam air? Bagaimana kapal selam dapat melihat permukaan laut? Setiap misteri harian ini mempunyai penjelasan yang tepat dan boleh dilukis — dan bab ini memberi anda gambar rajah sinar untuk membuktikannya.",
   },
-  mirrors: {
-    realVsVirtual: {
-      real: "Imej yang terbentuk pada skrin",
-      virtual:
-        "Imej yang tidak dapat dibentuk pada skrin — pantulan kita terbentuk di belakang cermin, bukan pada permukaannya, jadi cermin satah sentiasa menghasilkan imej maya",
+  title: "Cahaya dan Optik",
+  subtopics: [
+    {
+      code: "8.1",
+      title: "Penggunaan Cermin",
     },
-    planeMirrorCharacteristics: [
-      "Tegak",
-      "Berbalik sisi",
-      "Sama saiz dengan objek",
-      "Maya",
-      "Jarak di belakang cermin sama dengan jarak objek di hadapan",
-    ],
-    mirrorTypes: [
-      {
-        name: "Cermin satah",
-        imageCharacteristics: ["Tegak, maya, sama saiz, berbalik sisi"],
-        uses: [
-          "Membantu penari membetulkan pergerakan",
-          "Menjadikan ruang tamu kelihatan luas",
-          "Digunakan dalam periskop dan kaleidoskop",
-        ],
-      },
-      {
-        name: "Cermin cekung",
-        imageCharacteristics: ["Membesarkan imej, menjadikannya kelihatan lebih besar dan dekat"],
-        uses: ["Menyapu solek (imej dibesarkan)", "Doktor gigi melihat gigi pesakit"],
-      },
-      {
-        name: "Cermin cembung",
-        imageCharacteristics: ["Medan pandangan lebih luas, imej lebih kecil"],
-        uses: [
-          "Ciri keselamatan di selekoh jalan berbahaya",
-          "Pencegahan kecurian di pasar raya",
-          "Dipasang pada basikal untuk melihat ke belakang",
-        ],
-      },
-    ],
+    {
+      code: "8.2",
+      title: "Sifat Cahaya",
+    },
+    {
+      code: "8.3",
+      title: "Pantulan Cahaya",
+    },
+    {
+      code: "8.4",
+      title: "Pembiasan Cahaya",
+    },
+    {
+      code: "8.5",
+      title: "Penyebaran Cahaya",
+    },
+    {
+      code: "8.6",
+      title: "Penyerakan Cahaya",
+    },
+    {
+      code: "8.7",
+      title: "Penambahan dan Penolakan Cahaya",
+    },
+  ],
+  reflection: {
     lawOfReflection: {
       statement: [
         "Sinar tuju, sinar pantulan, dan garis normal semuanya terletak pada satah yang sama",
@@ -284,18 +528,227 @@ const bm: Chapter8Content = {
       ],
       keyEquation: "i = r",
     },
+  },
+  mirrors: {
+    realVsVirtual: {
+      real: "Imej sahih ialah imej yang terbentuk pada skrin.",
+      virtual: "Imej maya ialah imej yang tidak dapat terbentuk pada skrin.",
+    },
+    planeMirrorCharacteristics: [
+      "Tegak",
+      "Songsang sisi",
+      "Sama saiz dengan objek",
+      "Maya",
+      "Jarak objek adalah sama dengan jarak imej dalam cermin satah",
+    ],
+    mirrorTypes: [
+      {
+        name: "Cermin satah",
+        imageCharacteristics: [
+          "Tegak",
+          "Songsang sisi",
+          "Sama saiz dengan objek",
+          "Maya",
+          "Jarak objek adalah sama dengan jarak imej dalam cermin satah",
+        ],
+        uses: [
+          "Cermin satah membantu penari untuk membetulkan pergerakannya.",
+          "Cermin satah menjadikan ruang bilik kelihatan luas.",
+        ],
+      },
+      {
+        name: "Cermin cekung",
+        imageCharacteristics: ["Lebih besar"],
+        uses: [
+          "Cermin cekung berfungsi untuk membesarkan imej bagi memudahkan seseorang untuk bersolek.",
+          "Cermin cekung digunakan oleh doktor gigi untuk melihat gigi pesakit supaya imej yang terhasil kelihatan lebih besar dan dekat.",
+        ],
+      },
+      {
+        name: "Cermin cembung",
+        imageCharacteristics: ["Lebih kecil"],
+        uses: [
+          "Cermin cembung membantu individu memantau keselamatan diri di selekoh jalan yang berbahaya.",
+          "Cermin cembung di pasar raya dapat membantu pekedai untuk melihat setiap sudut pasar raya supaya dapat mengelakkan kecurian.",
+        ],
+      },
+    ],
     opticalInstruments: [
       {
         name: "Periskop",
         howItWorks:
-          "Menggunakan dua cermin bersudut 45°. Cahaya dari permukaan laut mengenai cermin atas dan terpantul turun ke cermin kedua, kemudian ke mata pemerhati — digunakan dalam kapal selam",
+          "Periskop merupakan alat yang digunakan pada kapal selam untuk melihat keadaan di permukaan laut. Periskop mengaplikasikan sifat cahaya yang boleh dipantulkan. Cahaya dari atas permukaan laut dikesan oleh suatu cermin, kemudian dipantulkan oleh cermin lain dan menuju ke mata pemerhati yang berada di dalam kapal.",
       },
       {
         name: "Kaleidoskop",
         howItWorks:
-          "Menggunakan tiga jalur cermin digabungkan membentuk prisma segi tiga. Pantulan berulang objek di dalamnya mencipta lebih banyak imej daripada objek sebenar, membentuk corak",
+          "Kaleidoskop merupakan alat mainan yang dibuat dengan menggunakan cermin satah. Pola-pola ini diperoleh kerana imej objek-objek di dalam kaleidoskop berkali-kali mengalami pantulan. Oleh yang demikian, jumlah imej yang kelihatan lebih banyak daripada jumlah objek.",
       },
     ],
+    lesson: {
+      labels: {
+        real: "Imej sahih",
+        virtual: "Imej maya",
+        materials: "Bahan dan radas",
+        instructions: "Arahan",
+        questions: "Soalan",
+        shapes: "Jenis-jenis cermin",
+        object: "Objek",
+        image: "Imej",
+        mirror: "Cermin",
+        screen: "Kadbod putih sebagai skrin",
+        blackCard: "Kadbod hitam",
+        pinhole: "Lubang jarum",
+        pin: "Jarum peniti",
+        candle: "Lilin",
+        graph: "Kertas graf",
+        distance: "Jarak objek = Jarak imej",
+        applications: "Aplikasi Cermin Satah, Cermin Cekung dan Cermin Cembung dalam Kehidupan",
+        reflectingSurface: "Permukaan cermin",
+        periscopePath: "Objek → Cermin → Cermin → Mata pemerhati",
+        beads: "Manik yang berwarna-warni",
+        reflections: "Pantulan berkali-kali",
+        scienceInLife: "Sains dalam Kehidupan",
+        problem: "Situasi",
+        solution: "Penyelesaian",
+        reason: "Sebab",
+        showAnswer: "Lihat jawapan",
+        rotate: "Putar",
+        compare: "Imej yang terbentuk",
+        measurements: "Ukuran",
+      },
+      planeVirtual:
+        "Imej kita dalam cermin terbentuk di belakang cermin. Oleh itu, imej yang terbentuk pada cermin ialah imej maya.",
+      sizes: ["Sama saiz", "Lebih besar", "Lebih kecil"],
+      activity81: {
+        title: "Aktiviti 8.1",
+        aim: "Mengkaji dan membezakan imej sahih dan maya",
+        materials: [
+          "Sekeping kadbod hitam bersaiz A4",
+          "Sekeping kadbod putih bersaiz A4",
+          "Lilin",
+          "Jarum peniti",
+          "Cermin",
+        ],
+        instructions: [
+          "Gunakan jarum peniti untuk menebuk lubang pada sekeping kadbod hitam.",
+          "Susun bahan dan radas seperti dalam Rajah 8.1 di dalam sebuah bilik gelap. Kadbod putih yang tidak ditebuk ialah skrin tempat imej akan terbentuk.",
+          "Perhatikan imej yang terbentuk pada kadbod kedua yang bertindak sebagai skrin.",
+          "Pilih seorang murid untuk berdiri di depan cermin seperti dalam Rajah 8.2. Perhatikan imej yang terbentuk.",
+        ],
+        questions: [
+          "Adakah imej yang terbentuk dalam Rajah 8.1 imej sahih atau maya?",
+          "Bandingkan ciri-ciri imej yang terbentuk dalam Rajah 8.1 dengan Rajah 8.2.",
+        ],
+      },
+      activity82: {
+        title: "Aktiviti 8.2",
+        aim: "Mengkaji ciri-ciri imej dalam cermin satah, cermin cekung, dan cermin cembung",
+        materials: [
+          "Cermin satah",
+          "Cermin cekung",
+          "Cermin cembung",
+          "Kertas graf",
+          "Lilin",
+          "Pembaris",
+        ],
+        instructions: [
+          "Letakkan sebatang lilin di atas sekeping kertas graf pada jarak 4 petak kertas graf daripada cermin satah seperti pada Rajah 8.4.",
+          "Perhatikan imej yang terbentuk. Adakah imej tersebut sama saiz atau lebih kecil atau lebih besar daripada objek?",
+          "Catatkan keputusan yang diperoleh dalam bentuk jadual di bawah.",
+          "Ulang langkah 1 hingga 2 dengan menggantikan cermin satah dengan cermin cekung dan cermin cembung.",
+          "Kemudian, ukur jarak imej dari cermin satah.",
+        ],
+        questions: [
+          "Bandingkan saiz imej yang terbentuk pada cermin-cermin tersebut dengan saiz objek.",
+          "Bandingkan jarak imej dari cermin satah dengan jarak objek daripada cermin satah.",
+        ],
+      },
+      activity83: {
+        title: "Aktiviti 8.3",
+        aim: "Membincangkan aplikasi cermin satah, cermin cekung dan cermin cembung",
+        materials: [],
+        instructions: [
+          "Jalankan aktiviti secara berkumpulan.",
+          "Bincangkan aplikasi cermin satah, cermin cekung dan cermin cembung.",
+          "Bentangkan hasil perbincangan dengan menggunakan persembahan multimedia.",
+        ],
+        questions: [],
+      },
+      activity84: {
+        title: "Aktiviti 8.4",
+        aim: "Mencipta periskop yang ringkas",
+        materials: ["Dua keping cermin", "Kotak", "Pisau"],
+        instructions: [
+          "Toreh bahagian sisi atas dan bawah kotak sesuai dengan lebar cermin.",
+          "Pasang cermin dengan kedudukan saling berhadapan.",
+          "Buat dua buah lubang yang persis berhadapan dengan tiap-tiap cermin.",
+          "Letakkan objek yang hendak dilihat di hadapan lubang 1.",
+        ],
+        questions: [],
+      },
+      knifeWarning: "Berhati-hati apabila menggunakan pisau lipat agar tidak tercedera.",
+      periscopeMeasurements: ["Kotak: 30 cm × 10 cm × 15 cm", "Cermin satah: 15 cm × 14 cm"],
+      activity85: {
+        title: "Aktiviti 8.5",
+        aim: "Membina sebuah kaleidoskop",
+        materials: [
+          "Bekas gulungan tisu",
+          "Tiga keping kad cermin",
+          "Manik yang berwarna-warni",
+          "Dua keping cakera plastik",
+          "Gunting",
+          "Gam",
+          "Pita selofan",
+          "Kertas berwarna untuk hiasan",
+          "Kadbod hitam berbentuk bulatan",
+        ],
+        instructions: [
+          "Sediakan bahan dan radas seperti dalam Rajah 8.8.",
+          "Sediakan tiga keping kad cermin yang setiap satunya mempunyai 4.3 cm lebar dan 21 cm panjang.",
+          "Lekatkan tiga keping kad cermin itu dengan pita selofan untuk membentuk sebuah prisma segi tiga. Pastikan bahagian muka yang bersinar menghadap ke dalam.",
+          "Tolak prisma cermin yang telah dibuat ke dalam bekas gulungan tisu (Rajah 8.9(a)).",
+          "Potong dua keping cakera plastik lutsinar berbentuk cakera dengan diameter masing-masing 5.3 cm.",
+          "Lekatkan cakera plastik yang pertama pada salah satu bahagian hujung prisma di dalam gulungan tisu itu, A (Rajah 8.9(b)).",
+          "Masukkan manik-manik berwarna-warni di atas permukaan cakera plastik yang pertama (Rajah 8.10(a)). Lekatkan cakera plastik kedua di permukaan hujung A gulungan tisu (Rajah 8.10(b)).",
+          "Terbalikkan kaleidoskop. Pada hujung gulungan tisu, B, lekatkan satu kadbod hitam berbentuk bulatan yang mempunyai diameter 5.3 cm dan buat satu lubang di atasnya (Rajah 8.11).",
+          "Hiaskan tiub ini dengan kertas berwarna-warni mengikut kreativiti anda.",
+          "Lihat corak manik berwarna-warni yang terbentuk dari lubang itu.",
+        ],
+        questions: [],
+      },
+      life: [
+        {
+          problem:
+            "Betapa bagusnya jika saya dapat melihat keadaan di belakang saya untuk mengelakkan kemalangan.",
+          solution:
+            "Anda boleh memasang cermin cembung pada basikal untuk melihat keadaan di belakang.",
+          reason: "Melihat keadaan di belakang",
+          instrument: "convex",
+        },
+        {
+          problem: "Bagaimanakah saya mahu melihat pemandangan di sebelah dinding ini?",
+          solution: "Baiklah, periskop dapat membantu saya.",
+          reason: "Melihat pemandangan di sebelah dinding",
+          instrument: "periscope",
+        },
+        {
+          problem:
+            "Bahayanya berjalan di jalan ini kerana kita tidak dapat melihat apa-apa sahaja di laluan selekoh ini.",
+          solution: "Penyelesaiannya, kita boleh memasang cermin cembung di selekoh berbahaya.",
+          reason: "Melihat laluan selekoh",
+          instrument: "convex",
+        },
+      ],
+      practice: {
+        title: "Praktis Formatif 8.1",
+        questions: [
+          "Rajah di sebelah menunjukkan seorang lelaki yang gemuk berdiri di hadapan sebuah cermin. Apakah jenis cermin itu? Nyatakan ciri imej yang terbentuk.",
+          "Apakah fungsi cermin satah dalam periskop?",
+          "Mengapakah kita memerlukan cermin satah di dalam lif?",
+        ],
+      },
+    },
   },
   propertiesOfLight: {
     facts: [
@@ -405,7 +858,6 @@ const bm: Chapter8Content = {
 export const chapter8Content = { en, bm };
 
 export interface Chapter8Supplement {
-  realVirtualActivity: string[];
   opticalHistory: { name: string; principle: string }[];
   reflectionExperiment: string[];
   lateralInversion: string;
@@ -421,10 +873,6 @@ export interface Chapter8Supplement {
 }
 
 const supplementEn: Chapter8Supplement = {
-  realVirtualActivity: [
-    "Project a candle image through a pinhole onto white cardboard: the image forms on the screen, so it is real.",
-    "Observe a student in a plane mirror: the image appears behind the glass but cannot be projected onto cardboard, so it is virtual.",
-  ],
   opticalHistory: [
     {
       name: "Sundial",
@@ -537,10 +985,6 @@ const supplementEn: Chapter8Supplement = {
 };
 
 const supplementBm: Chapter8Supplement = {
-  realVirtualActivity: [
-    "Tayangkan imej lilin melalui lubang jarum pada kadbod putih: imej terbentuk pada skrin, maka imej itu nyata.",
-    "Perhatikan murid dalam cermin satah: imej kelihatan di belakang kaca tetapi tidak boleh ditayangkan pada kadbod, maka imej itu maya.",
-  ],
   opticalHistory: [
     {
       name: "Jam matahari",
