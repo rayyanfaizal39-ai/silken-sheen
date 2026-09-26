@@ -715,9 +715,14 @@ function englishQuizzesFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form
   );
 }
 
+// sejarahChapterFromId matches sej-f1/f2/f3 ids alike, so the form check is
+// what keeps Form 2/3 "Chapter N" cards out of the Form 1 deck.
 function sejarahFlashcardsFor(chapterNum: number) {
   return allFlashcards.filter(
-    (f) => f.subjectId === "sejarah" && sejarahChapterFromId(f.id) === chapterNum,
+    (f) =>
+      f.subjectId === "sejarah" &&
+      f.form === "Form 1" &&
+      sejarahChapterFromId(f.id) === chapterNum,
   );
 }
 function sejarahQuizzesFor(chapterNum: number) {

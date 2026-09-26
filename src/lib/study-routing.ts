@@ -36,7 +36,8 @@ export function normalizeFormParam(value: unknown) {
   const cleaned = String(value)
     .toLowerCase()
     .replaceAll('"', "")
-    .replace(/^form\s*/, "");
+    .trim()
+    .replace(/^(?:form\s*|f)/, "");
   if (cleaned === "1" || cleaned === "2" || cleaned === "3") return `Form ${cleaned}`;
   return "Form 1";
 }

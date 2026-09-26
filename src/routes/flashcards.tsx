@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
+import type { Flashcard } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
@@ -41,7 +42,9 @@ import {
 } from "@/lib/study-routing";
 import {
   getFlashcardDeckCards,
+  getFlashcardSessionKey,
   hasFlashcardDeck,
+  keepSelectedFormCards,
   splitFlashcardDeck,
   standardizeFlashcardDeck,
 } from "@/lib/flashcard-availability";
@@ -5469,31 +5472,39 @@ function FlashcardsPage() {
     !isEnglishFlashcardDeckF3
   );
   const rawPool = useMemo(() => {
-    if (subject === "english" && isEnglishFlashcardDeckId(chapter)) {
-      return standardizeFlashcardDeck(getEnglishFlashcardsForDeck(chapter));
-    }
-    if (subject === "english" && isEnglishFlashcardDeckIdF2(chapter)) {
-      return standardizeFlashcardDeck(getEnglishFlashcardsForDeckF2(chapter));
-    }
-    if (subject === "english" && isEnglishFlashcardDeckIdF3(chapter)) {
-      return standardizeFlashcardDeck(getEnglishFlashcardsForDeckF3(chapter));
-    }
-    if (subject === "math" && chapter && MATH_FLASHCARD_BANKS[chapter] && mathFlashcardLang) {
-      return standardizeFlashcardDeck(
+    // A deck is only ever built for one explicit form — never "All".
+    if (!subject || !chapter || form === "All") return [];
+    let deck: Flashcard[];
+    if (form === "Form 1" && subject === "english" && isEnglishFlashcardDeckId(chapter)) {
+      deck = standardizeFlashcardDeck(getEnglishFlashcardsForDeck(chapter));
+    } else if (form === "Form 2" && subject === "english" && isEnglishFlashcardDeckIdF2(chapter)) {
+      deck = standardizeFlashcardDeck(getEnglishFlashcardsForDeckF2(chapter));
+    } else if (form === "Form 3" && subject === "english" && isEnglishFlashcardDeckIdF3(chapter)) {
+      deck = standardizeFlashcardDeck(getEnglishFlashcardsForDeckF3(chapter));
+    } else if (
+      form === "Form 1" &&
+      subject === "math" &&
+      MATH_FLASHCARD_BANKS[chapter] &&
+      mathFlashcardLang
+    ) {
+      deck = standardizeFlashcardDeck(
         MATH_FLASHCARD_CATEGORIES.flatMap((category) =>
           getMathFlashcards(chapter, mathFlashcardLang, category.id),
         ),
       );
+    } else {
+      deck = getFlashcardDeckCards(
+        subject,
+        form,
+        chapter,
+        scienceLang ?? undefined,
+        registry,
+        dataModule,
+      );
     }
-    if (!subject || !chapter) return [];
-    return getFlashcardDeckCards(
-      subject,
-      form,
-      chapter,
-      scienceLang ?? undefined,
-      registry,
-      dataModule,
-    );
+    // Last line of defence before the player: every card must match the
+    // selected subject + form.
+    return keepSelectedFormCards(deck, subject, form, chapter);
   }, [subject, chapter, form, scienceLang, mathFlashcardLang, registry, dataModule]);
   const hasSelectedChapterFlashcards =
     !!subject &&
@@ -5545,7 +5556,7 @@ function FlashcardsPage() {
   // language means a genuinely different deck. That's what resets the
   // idempotent XP guard below — re-shuffling or toggling the favourites
   // filter on the same deck must NOT reopen it.
-  const deckIdentityKey = [
+  const deckIdentityKey = getFlashcardSessionKey(
     subject,
     form,
     chapter,
@@ -5553,9 +5564,18 @@ function FlashcardsPage() {
     mathFlashcardLang,
     mathFlashcardCategory,
     selectedFlashcardSet,
-  ].join("|");
+  );
   useEffect(() => {
     awardedXpCardIdsRef.current = new Set();
+  }, [deckIdentityKey]);
+  // A different deck (e.g. Form 3 -> Form 1 via URL/back button) must start a
+  // fresh session; the old queue indexes belong to the previous deck.
+  const previousDeckIdentityKeyRef = useRef(deckIdentityKey);
+  useEffect(() => {
+    if (previousDeckIdentityKeyRef.current === deckIdentityKey) return;
+    previousDeckIdentityKeyRef.current = deckIdentityKey;
+    resetDeckProgress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deckIdentityKey]);
 
   const currentPoolIdx = queue[idx];
@@ -5863,6 +5883,12 @@ function FlashcardsPage() {
   }
 
   function resetSession() {
+    resetDeckProgress();
+    setSelectedFlashcardSet(null);
+  }
+
+  /** Clears the in-progress run but keeps the chosen set. */
+  function resetDeckProgress() {
     if (commitTimeoutRef.current) clearTimeout(commitTimeoutRef.current);
     isCommittingRef.current = false;
     dragRef.current = null;
@@ -5880,7 +5906,6 @@ function FlashcardsPage() {
     setUnknownCount(0);
     setXpEarned(0);
     setTotalCards(0);
-    setSelectedFlashcardSet(null);
   }
 
   function selectFlashcardSet(setIndex: FlashcardSetIndex) {
@@ -5901,7 +5926,7 @@ function FlashcardsPage() {
     if (typeof window === "undefined" || !mathFlashcardLang || !chapter) return;
     try {
       localStorage.setItem(
-        `academy-math-${chapter.toLowerCase().replaceAll(" ", "-")}-flashcards-last`,
+        `academy-math-f1-${chapter.toLowerCase().replaceAll(" ", "-")}-flashcards-last`,
         JSON.stringify({ lang: mathFlashcardLang, category, chapter }),
       );
     } catch {
@@ -5909,7 +5934,7 @@ function FlashcardsPage() {
     }
   }
 
-  // Auto-shuffle & deal on chapter entry
+  // Auto-shuffle & deal on chapter entry (and after a deck-change reset)
   useEffect(() => {
     if (pool.length > 0 && queue.length === 0 && !completed) {
       const arr = buildShuffled();
@@ -5919,7 +5944,7 @@ function FlashcardsPage() {
       setTimeout(() => setDealing(false), 500);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pool, completed]);
+  }, [pool, completed, queue.length]);
 
   // First-visit tip
   useEffect(() => {
@@ -5950,7 +5975,7 @@ function FlashcardsPage() {
     }
     try {
       localStorage.setItem(
-        `academy-math-${chapter.toLowerCase().replaceAll(" ", "-")}-flashcards-last-card`,
+        `academy-math-f1-${chapter.toLowerCase().replaceAll(" ", "-")}-flashcards-last-card`,
         JSON.stringify({
           lang: mathFlashcardLang,
           category: mathFlashcardCategory,

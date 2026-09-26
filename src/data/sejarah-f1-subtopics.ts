@@ -918,8 +918,8 @@ export const sejarahF1TextbookAdditions: Record<string, Subtopic[]> = {
       num: 10,
       title: "Peperiksaan Perkhidmatan Awam China",
       summary:
-        "Sistem peperiksaan bermula sejak Dinasti Qin dan diperkemas Maharaja Wu Di daripada Dinasti Han. Calon diperiksa dengan ketat untuk mengelakkan penipuan. Tiga tahap utama ialah Xiucai (daerah, dua kali setiap tiga tahun), Juren (ibu kota daerah, tiga tahun sekali) dan Jinshi (ibu kota empayar di hadapan maharaja, tiga tahun sekali). Mereka yang lulus memperoleh jawatan kerajaan, keistimewaan, tanda nama dan status sosial tinggi.",
-      keywords: ["Dinasti Qin", "Maharaja Wu Di", "Xiucai", "Juren", "Jinshi", "tiga tahun sekali"],
+        "Sistem peperiksaan mula diperkenalkan ketika pemerintahan Maharaja Wu dalam Dinasti Han dan kekal hingga dimansuhkan pada tahun 1905. Peperiksaan dikawal dengan ketat; calon dikurung sebelum peperiksaan dan sesiapa yang meniru dikenakan hukuman. Tiga tahap utama ialah Xiucai (peringkat daerah, dua kali setiap tiga tahun), Juren (ibu kota daerah, tiga tahun sekali) dan Jinshi (ibu kota kerajaan, tiga tahun sekali). Mereka yang lulus diserapkan ke dalam perkhidmatan awam kerajaan dan memperoleh keistimewaan seperti butang keemasan, tanda nama dan kedudukan tinggi.",
+      keywords: ["Maharaja Wu", "Dinasti Han", "Xiucai", "Juren", "Jinshi", "tiga tahun sekali"],
     },
   ],
   "Chapter 8": [
