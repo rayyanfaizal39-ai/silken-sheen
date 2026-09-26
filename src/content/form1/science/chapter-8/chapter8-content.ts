@@ -831,7 +831,7 @@ const bm: Chapter8Content = {
     "Warna objek legap ialah warna cahaya yang dipantulkannya — semua warna lain diserap",
   ],
   keyTerms: [
-    "Imej nyata",
+    "Imej sahih",
     "Imej maya",
     "Cermin satah",
     "Cermin cekung",

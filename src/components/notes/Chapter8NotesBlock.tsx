@@ -236,7 +236,7 @@ export function Chapter8NotesBlock({
             <DataTable
               headers={lang === "en" ? ["Image type", "Description"] : ["Jenis imej", "Penerangan"]}
               rows={[
-                [lang === "en" ? "Real" : "Nyata", t.mirrors.realVsVirtual.real],
+                [lang === "en" ? "Real" : "Sahih", t.mirrors.realVsVirtual.real],
                 [lang === "en" ? "Virtual" : "Maya", t.mirrors.realVsVirtual.virtual],
               ]}
             />

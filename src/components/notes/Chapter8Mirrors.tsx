@@ -128,7 +128,7 @@ export function ImageApparatus({ virtual = false }: { virtual?: boolean }) {
           <path data-pin d="M125 38L158 57" stroke="#e2e8f0" />
           <circle cx="122" cy="36" r="5" fill={violet} />
           <path data-white-screen d="M315 25L378 47V195L315 175Z" fill="#f8fafc" stroke="#cbd5e1" />
-          <g transform="translate(346 96) rotate(180)">
+          <g data-screen-image transform="translate(346 96) rotate(180)">
             <Candle x={0} y={0} scale={0.65} />
           </g>
           <path d="M80 206H137M216 206H288" stroke={amber} />
@@ -253,11 +253,12 @@ export function ApplicationDiagram({ kind }: { kind: number }) {
         <>
           <path
             d="M55 87Q38 44 68 47Q82 55 96 47Q131 40 115 89L104 151Q98 162 85 108Q75 151 65 157Z"
+            transform="translate(22 32) scale(.75)"
             fill="#e2e8f0"
           />
           <circle cx="282" cy="93" r="73" strokeWidth="6" />
           <path d="M255 188L261 163" strokeWidth="9" />
-          <g transform="translate(150 -4) scale(1.35)">
+          <g transform="translate(197 5)">
             <path
               d="M55 87Q38 44 68 47Q82 55 96 47Q131 40 115 89L104 140Q98 146 85 108Q75 140 65 140Z"
               fill="#c4b5fd"
