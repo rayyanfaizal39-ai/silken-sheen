@@ -6,6 +6,9 @@ import { getFlashcardDeckCards, splitFlashcardDeck } from "@/lib/flashcard-avail
 
 // Chapters 1 and 7 were topped up to 60 cards (fc56–fc60 and fc41–fc60) so
 // every Sejarah Form 1 chapter forms a complete three-set deck.
+const GENERATOR_LABEL = /^\s*[A-Za-z]+(?:\/[A-Za-z]+)?\s+\d+\.\d+\s*:/;
+const TRAILING_COUNTER = /\(\d+\)\s*$/;
+
 describe("Sejarah Form 1 flashcard decks", () => {
   for (const chapterNum of [1, 2, 3, 4, 5, 6, 7, 8]) {
     it(`Chapter ${chapterNum} has 60 unique Form 1 cards split into 3 sets of 20`, () => {
@@ -35,7 +38,36 @@ describe("Sejarah Form 1 flashcard decks", () => {
       ).toBe(true);
       expect(splitFlashcardDeck(deck).map((set) => set.length)).toEqual([20, 20, 20]);
     });
+
+    it(`Chapter ${chapterNum} shows no generator labels, counters or arrows`, () => {
+      const deck = dataModule.flashcards.filter((card) =>
+        card.id.startsWith(`sej-f1-c${chapterNum}-`),
+      );
+      const offenders = deck.filter(
+        (card) =>
+          GENERATOR_LABEL.test(card.front) ||
+          TRAILING_COUNTER.test(card.front) ||
+          /->|Kata kunci:/i.test(card.front) ||
+          /->|Kata kunci:/i.test(card.back),
+      );
+      expect(offenders.map((card) => `${card.id}: ${card.front}`)).toEqual([]);
+    });
   }
+
+  it("flags generator artifacts but allows real years and decimals", () => {
+    expect(GENERATOR_LABEL.test("Fakta 4.1: Maksud Tamadun (3)")).toBe(true);
+    expect(GENERATOR_LABEL.test("Tokoh/Tarikh 5.1: Tamadun Mesir Purba")).toBe(true);
+    expect(GENERATOR_LABEL.test("Sebab/Kesan 6.2: Demokrasi Athens")).toBe(true);
+    expect(TRAILING_COUNTER.test("Fakta 4.1: Maksud Tamadun (12)")).toBe(true);
+    for (const front of [
+      "Bilakah Solon mengasaskan demokrasi pada tahun 594 SM?",
+      "Berapakah diameter kubah Pantheon, iaitu 43 meter?",
+      "Apakah keluasan Pentas Sunda yang melebihi 3.2 juta kilometer persegi?",
+    ]) {
+      expect(GENERATOR_LABEL.test(front)).toBe(false);
+      expect(TRAILING_COUNTER.test(front)).toBe(false);
+    }
+  });
 
   it("keeps the new Chapter 1 and Chapter 7 cards in the Chapter N metadata", () => {
     const added = dataModule.flashcards.filter(
