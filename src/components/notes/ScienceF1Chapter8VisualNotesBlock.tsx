@@ -24,39 +24,7 @@ const ui = {
     title: "Light changes direction, colour, and what we see",
     subtitle:
       "Trace light through mirrors, boundaries, prisms, particles, objects, and filters using evidence you can draw and explain.",
-    path: [
-      ["8.1", "Mirrors"],
-      ["8.2-8.3", "Light & reflection"],
-      ["8.4", "Refraction"],
-      ["8.5-8.6", "Spectrum & sky"],
-      ["8.7", "Colour"],
-    ],
     sections: [
-      [
-        "8.1",
-        "Mirrors create useful images",
-        "Image type, curvature, and mirror arrangement determine what an observer sees.",
-      ],
-      [
-        "8.2-8.3",
-        "Light travels straight and reflects predictably",
-        "Shadows and reflected rays provide measurable evidence.",
-      ],
-      [
-        "8.4",
-        "Refraction follows density rules",
-        "A speed change at a boundary changes the ray direction.",
-      ],
-      [
-        "8.5-8.6",
-        "Dispersion separates; scattering redirects",
-        "Both involve colour, but they explain different observations.",
-      ],
-      [
-        "8.7",
-        "Adding coloured light creates new light",
-        "Red, green, and blue overlap to produce secondary colours and white.",
-      ],
       [
         "8.7",
         "Objects and filters subtract light",
@@ -68,7 +36,6 @@ const ui = {
         "Use the correct principle, direction, and observation in every answer.",
       ],
     ],
-    realVirtual: "Real image vs virtual image",
     activity: "Activity 8.1 evidence",
     chooseMirror: "Choose a mirror",
     image: "Image characteristics",
@@ -113,39 +80,7 @@ const ui = {
     title: "Cahaya mengubah arah, warna, dan apa yang kita lihat",
     subtitle:
       "Jejaki cahaya melalui cermin, sempadan, prisma, zarah, objek, dan penapis menggunakan bukti yang boleh dilukis dan diterangkan.",
-    path: [
-      ["8.1", "Cermin"],
-      ["8.2-8.3", "Cahaya & pantulan"],
-      ["8.4", "Pembiasan"],
-      ["8.5-8.6", "Spektrum & langit"],
-      ["8.7", "Warna"],
-    ],
     sections: [
-      [
-        "8.1",
-        "Cermin menghasilkan imej yang berguna",
-        "Jenis imej, kelengkungan, dan susunan cermin menentukan apa yang dilihat.",
-      ],
-      [
-        "8.2-8.3",
-        "Cahaya bergerak lurus dan memantul secara teratur",
-        "Bayang-bayang dan sinar pantulan memberikan bukti yang boleh diukur.",
-      ],
-      [
-        "8.4",
-        "Pembiasan mematuhi peraturan ketumpatan",
-        "Perubahan laju pada sempadan mengubah arah sinar.",
-      ],
-      [
-        "8.5-8.6",
-        "Serakan memisahkan; penyerakan mengubah arah",
-        "Kedua-duanya melibatkan warna tetapi menerangkan pemerhatian berbeza.",
-      ],
-      [
-        "8.7",
-        "Penambahan cahaya berwarna menghasilkan cahaya baharu",
-        "Merah, hijau, dan biru bertindih menghasilkan warna sekunder dan putih.",
-      ],
       [
         "8.7",
         "Objek dan penapis menolak cahaya",
@@ -157,7 +92,6 @@ const ui = {
         "Gunakan prinsip, arah, dan pemerhatian yang betul dalam setiap jawapan.",
       ],
     ],
-    realVirtual: "Imej nyata vs imej maya",
     activity: "Bukti Aktiviti 8.1",
     chooseMirror: "Pilih satu cermin",
     image: "Ciri imej",
@@ -585,7 +519,7 @@ export function ScienceF1Chapter8VisualNotesBlock({
           </section>
 
           <section className="space-y-6">
-            <h3 className="text-xl font-bold">{copy.sections[5][1]}</h3>
+            <h3 className="text-xl font-bold">{copy.sections[0][1]}</h3>
             <p className="max-w-3xl text-sm leading-6 text-slate-300">
               {t.colorAdditionSubtraction.subtractionPrinciple}
             </p>
@@ -628,7 +562,7 @@ export function ScienceF1Chapter8VisualNotesBlock({
           </section>
 
           <section className="space-y-6">
-            <SectionHeading section={copy.sections[6]} />
+            <SectionHeading section={copy.sections[1]} />
             <div className="grid gap-5 lg:grid-cols-2">
               <Panel>
                 <div className="flex items-center gap-3">
