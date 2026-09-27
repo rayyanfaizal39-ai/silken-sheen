@@ -40,11 +40,35 @@ const geometry = () => [...host.querySelectorAll("svg")].map((n) => n.outerHTML)
 const click = (selector: string, i = 0) =>
   act(() => host.querySelectorAll<HTMLButtonElement>(selector)[i].click());
 describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
+  it("locks the approved 8.1 diagram implementation without depending on temporary files", () => {
+    const source = readFileSync("src/components/notes/Chapter8Mirrors.tsx", "utf8").replace(
+      /\r\n/g,
+      "\n",
+    );
+    expect(createHash("sha256").update(source).digest("hex")).toBe(
+      "17aebadf4a2c0530061cbc590aa72c6b0ce28d1a7f2b8a98468a0f497eb466a1",
+    );
+  });
+  it("removes unused grouped navigation constants", () => {
+    const source = readFileSync(
+      "src/components/notes/ScienceF1Chapter8VisualNotesBlock.tsx",
+      "utf8",
+    );
+    expect(source).not.toMatch(/path:\s*\[|8\.2-8\.3|8\.5-8\.6/);
+  });
+
   for (const lang of ["en", "bm"] as const) {
     const t = chapter8Content[lang],
       m = t.mirrors,
       l = m.lesson;
     const render = () => mount(createElement(Chapter8Mirrors, { source: m }));
+    it(`${lang}: locks all approved 8.1 canonical facts`, () => {
+      expect(hash(m)).toBe(
+        lang === "en"
+          ? "f9ba2250f78733bf980abf159591493f7718fb0502bcbf72d8af1b3ed0085115"
+          : "a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a",
+      );
+    });
     it(`${lang}: seven official navigation links resolve to seven distinct sections`, () => {
       mount(createElement(ScienceF1Chapter8VisualNotesBlock, { content: chapter8Content, lang }));
       const links = [...host.querySelectorAll("nav a")];

@@ -60,11 +60,30 @@ No unresolved disagreement is being silently resolved: the explicit BM/DLP proce
 
 ## Validation results
 
-- Chapter 8 Pass 1 live-render/interaction tests: **37 passed**.
-- Chapter 8 integration render tests: **2 passed**. Total: **39/39**.
+- Chapter 8 Pass 1 live-render/interaction tests: **41 passed**.
+- Chapter 8 integration render tests: **2 passed**. Total: **43/43**.
 - Targeted ESLint: passed for the canonical file, new mirror component, both renderers and both test files.
 - Production build: **passed** after final diagram corrections.
 - TypeScript: no Chapter 8 errors. The project check still fails on two pre-existing Form 2 `string | undefined` argument errors: `src/content/form2/science/chapter-7-9-10-visual-integration.test.tsx:305` and `src/content/form2/science/chapter-9/chapter-9-heat-visuals.test.tsx:523`. Those files were not changed.
 - Scientific SVGs were rendered and visually inspected. The enlarged tooth was adjusted to remain inside its mirror. Equal-distance spacing, distinct curvature, two 45° reflections and repeated-pattern geometry were inspected.
 - Full desktop/mobile browser review was unavailable: the browser connector returned no connected browsers. This limitation is not represented as a passed browser check.
 - No Chapter 1–7 changes, no 8.2–8.7 scientific redesign, and no commit, push or deployment performed by this task.
+
+
+## Finalization and lock — 27 September 2026
+
+The audit and dedicated regression file already existed when this finalization began. They were retained and extended rather than recreating or rewriting approved science. Requested reference commit: `25bcaae5a586585c1c4afeca58ac3c6e03fcef91`. Actual checkout HEAD: `f32c5e3d7bd4b53f91a200ca6191f393babfaf56`. Later existing refinements were preserved; no rollback to the older reference was performed.
+
+Approved 8.1 locks added to the dedicated test:
+
+| Protected implementation | SHA-256 |
+| --- | --- |
+| Chapter8Mirrors.tsx, normalized LF | `17aebadf4a2c0530061cbc590aa72c6b0ce28d1a7f2b8a98468a0f497eb466a1` |
+| DLP canonical mirrors object | `f9ba2250f78733bf980abf159591493f7718fb0502bcbf72d8af1b3ed0085115` |
+| BM canonical mirrors object | `a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a` |
+
+The six existing deferred-data hashes above remain unchanged. Tests embed the baselines and do not depend on `tmp/ch8p1/`. All 17 tracked working artifacts and the remaining ignored log in that directory were removed; the directory itself is absent.
+
+Removed unused `ui.path` arrays and unused `ui.sections` entries 0–4 in both languages, remapping the two still-used entries without changing their values. This removes the stale grouped 8.2–8.3 and 8.5–8.6 constants. Before/after server-rendered markup is identical for BM and DLP after excluding development-only `data-tsd-source` location metadata. Neither `Chapter8Mirrors.tsx` nor the canonical content file was changed during finalization. No new learner-facing words or facts were added.
+
+Finalization checks rerun: **41 dedicated tests + 2 integration tests passed**; targeted lint passed; production build completed successfully (exit 0). TypeScript remains blocked solely by the two pre-existing Form 2 errors listed above. All approved 8.1 and deferred-content hashes passed. No new commit was created; finalization changes are left for review against HEAD `f32c5e3d7bd4b53f91a200ca6191f393babfaf56`.
