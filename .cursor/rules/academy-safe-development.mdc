@@ -1,0 +1,109 @@
+---
+description: Preserve working AcadeMY behavior. Investigate before editing. Invoke academy-guardian after meaningful changes.
+alwaysApply: true
+---
+
+# AcadeMY safe development
+
+These instructions apply to every Cursor Agent session in this repository.
+
+## PRESERVE EXISTING BEHAVIOR
+
+When implementing a requested change:
+
+- Change only what is necessary
+- Preserve unrelated working functionality
+- Avoid large rewrites for small fixes
+- Prefer minimal targeted patches
+- Do not remove functionality unless explicitly requested
+- Do not modify unrelated content
+- Do not rename public routes, database fields, RPCs, environment variables, or APIs without proving all consumers have been updated
+
+## INVESTIGATE BEFORE EDITING
+
+Before meaningful multi-file changes:
+
+1. Inspect the existing implementation
+2. Trace dependencies and callers
+3. Inspect relevant tests
+4. Understand routing, data, and auth impact
+5. Create a small implementation plan
+
+Do not guess architecture.
+
+## PROTECT WORKING FEATURES
+
+Treat the following as regression-critical:
+
+- Authentication (sign in/out, `/auth/callback`, session cookie `academy-auth-v1`, password reset, guest mode)
+- Admin access (`/admin`, `/admin/login`, `hasAdministratorRole`, RPC `is_admin`)
+- Routing (`src/routes/`, `src/routeTree.gen.ts`)
+- PWA (`public/site.webmanifest`, `src/lib/pwa-register.ts`, `/sw.js`)
+- Mobile responsiveness and flashcard 3D / `backface-visibility`
+- Supabase integration (`VITE_SUPABASE_*` in browser; `SUPABASE_SERVICE_ROLE_KEY` only in `*.server.ts`)
+- Quiz progress, XP, leaderboard, flashcards, mind maps
+- Curriculum content
+
+## DO NOT HIDE FAILURES
+
+Never:
+
+- Delete failing tests merely to obtain a green build
+- Weaken assertions without justification
+- Suppress TypeScript errors using unsafe casts purely to make compilation pass
+- Disable lint, test, or build steps because they fail
+- Claim something was tested when it was not
+
+Fix the underlying cause.
+
+## VERIFY AFTER EDITING
+
+After meaningful application changes, automatically use the `academy-guardian` subagent before claiming the task is complete.
+
+Use only these repository commands (do not invent others):
+
+- `npm run verify` — `tsc --noEmit` + `vitest run` (8 pre-existing failing test files are a known baseline; do not delete them)
+- `npx eslint <changed-files>` — lint only the files you changed. `npm run lint` (`eslint .`) is a known-red Prettier baseline; do not rewrite the repo to make it green
+- `npx vitest run --config vitest.auth.config.ts` — when auth files changed (`-auth-login.integration.tsx` is not in `npm test`)
+- `npm run build` then `npm run verify:notes-bundle` — when app, routing, PWA, Vite, Wrangler, or Cloudflare scripts changed
+
+Playwright is not installed. Do not claim live browser, PWA install, or visual breakpoint coverage.
+
+If Guardian returns FAIL:
+
+- Do not declare the task complete
+- Diagnose the regression
+- Make the minimum necessary correction
+- Invoke Guardian again
+
+Completion requires Guardian PASS, except when something requires manual user verification. In that case clearly mark it UNVERIFIED.
+
+## GIT SAFETY
+
+Before editing:
+
+- Inspect `git status`
+- Preserve unrelated user changes
+
+After editing:
+
+- Inspect `git diff`
+- Report changed files
+
+Never automatically:
+
+- Force push
+- `reset --hard`
+- Discard unrelated user changes
+- Overwrite existing uncommitted work
+- Push or deploy unless explicitly requested
+
+## CONTENT SAFETY
+
+Educational content and UI code are different scopes.
+
+If a request concerns animation, layout, responsive design, styling, or components:
+
+DO NOT alter Chemistry / Science / History / Geography / BM / Math educational wording or dataset contents unless explicitly requested.
+
+If content files change unexpectedly, Guardian should fail the review.

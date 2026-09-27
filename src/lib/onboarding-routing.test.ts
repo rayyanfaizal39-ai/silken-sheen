@@ -8,9 +8,20 @@ import {
 } from "./onboarding-routing";
 
 describe("onboarding routing", () => {
-  it.each(["/home", "/profile", "/dashboard", "/notes", "/quizzes", "/companion", "/leaderboard"])(
-    "requires incomplete students to onboard before %s",
-    (pathname) => expect(shouldRedirectToOnboarding(pathname, true)).toBe(true),
+  it.each([
+    "/home",
+    "/profile",
+    "/dashboard",
+    "/notes",
+    "/quizzes",
+    "/companion",
+    "/leaderboard",
+    "/subjects",
+    "/flashcards",
+    "/mindmaps",
+    "/tracker",
+  ])("requires incomplete students to onboard before %s", (pathname) =>
+    expect(shouldRedirectToOnboarding(pathname, true)).toBe(true),
   );
 
   it.each([
@@ -42,6 +53,16 @@ describe("onboarding routing", () => {
     expect(shouldRedirectToLogin("/home", false, true)).toBe(false);
     expect(shouldRedirectToLogin("/payment-return", false, false)).toBe(false);
   });
+
+  it.each(["/subjects", "/flashcards", "/mindmaps", "/notes", "/tracker"])(
+    "sends signed-out visitors to login from %s",
+    (pathname) => expect(shouldRedirectToLogin(pathname, false, false)).toBe(true),
+  );
+
+  it.each(["/subjects", "/flashcards", "/mindmaps", "/notes", "/tracker"])(
+    "lets an active guest into %s without a session",
+    (pathname) => expect(shouldRedirectToLogin(pathname, false, false, true)).toBe(false),
+  );
 
   it("lets an active guest into student-protected routes without a session", () => {
     expect(shouldRedirectToLogin("/home", false, false, true)).toBe(false);

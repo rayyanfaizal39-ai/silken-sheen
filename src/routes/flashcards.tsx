@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import type { Flashcard } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
@@ -5287,6 +5287,19 @@ function FlashcardSetPicker({
   );
 }
 
+/**
+ * -webkit- twins of the flip's 3D properties. They are set inline on
+ * purpose: the CSS build (Lightning CSS) strips them from styles.css for our
+ * browser targets, but older iOS Safari only honours the prefixed
+ * backface-visibility. See the `.flashcard-scene` notes in styles.css.
+ */
+const FLIP_SCENE_WEBKIT: CSSProperties = { WebkitPerspective: "1500px" };
+const FLIP_INNER_WEBKIT: CSSProperties = { WebkitTransformStyle: "preserve-3d" };
+const FLIP_FACE_WEBKIT: CSSProperties = {
+  WebkitBackfaceVisibility: "hidden",
+  WebkitTransformStyle: "flat",
+};
+
 function FlashcardsPage() {
   const registry = useContentRegistry();
   const dataModule = useContentDataModule();
@@ -6680,7 +6693,6 @@ function FlashcardsPage() {
                     ${flash === "red" ? "animate-flash-red" : ""}
                   `}
                   style={{
-                    perspective: "1500px",
                     height: "clamp(360px, 58dvh, 440px)",
                     // pan-y: the browser keeps vertical scroll, we own horizontal drag
                     touchAction: "pan-y",
@@ -6730,93 +6742,96 @@ function FlashcardsPage() {
                       {swipeRatingCue === "right" ? "✓ I knew this" : "↻ Review again"}
                     </div>
                   )}
-                  <div
-                    key={current.id}
-                    className="relative w-full h-full transition-transform duration-700"
-                    style={{
-                      transformStyle: "preserve-3d",
-                      transform: flipped ? "rotateY(180deg)" : "none",
-                    }}
-                  >
-                    {/* front */}
+                  {/* Flip structure: scene (perspective) → inner (the only
+                      thing that rotates) → flat front/back faces. See the
+                      `.flashcard-scene` notes in styles.css before adding a
+                      transform, filter or backdrop-filter anywhere in here. */}
+                  <div aria-hidden="true" className="flashcard-glass-backdrop" />
+                  <div className="flashcard-scene" style={FLIP_SCENE_WEBKIT}>
                     <div
-                      className="absolute inset-0 glass-strong rounded-3xl p-6 sm:p-8 flex flex-col overflow-hidden"
-                      style={{
-                        backfaceVisibility: "hidden",
-                        border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
-                        boxShadow: planetTheme
-                          ? `0 24px 70px -30px ${planetTheme.glow}`
-                          : undefined,
-                      }}
+                      key={current.id}
+                      className={`flashcard-inner${flipped ? " is-flipped" : ""}`}
+                      style={FLIP_INNER_WEBKIT}
                     >
-                      {shimmer && <div className="card-shimmer-overlay" />}
-                      {planetTheme && (
-                        <span
-                          aria-hidden
-                          className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
-                          style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.12 }}
-                        >
-                          {planetTheme.decor[0]}
-                        </span>
-                      )}
-                      <div className="flex justify-between items-start">
-                        <span className="text-xs font-semibold text-muted-foreground">
-                          {subj?.emoji} {subj?.name} • {current.form}
-                        </span>
-                        <button
-                          type="button"
-                          aria-label={fav ? "Remove from favorites" : "Add to favorites"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleFavorite(current.id);
-                          }}
-                          className={`rounded-full p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70 ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
-                        >
-                          <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
-                        </button>
-                      </div>
-                      <div className="flex-1 flex items-center justify-center text-center">
-                        <p className="font-display text-2xl sm:text-4xl font-bold leading-tight">
-                          {cleanLearningTitle(current.front)}
+                      {/* front */}
+                      <div
+                        className="flashcard-face flashcard-front glass-strong rounded-3xl p-6 sm:p-8 flex flex-col"
+                        style={{
+                          ...FLIP_FACE_WEBKIT,
+                          border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
+                          boxShadow: planetTheme
+                            ? `0 24px 70px -30px ${planetTheme.glow}`
+                            : undefined,
+                        }}
+                      >
+                        {shimmer && <div className="card-shimmer-overlay" />}
+                        {planetTheme && (
+                          <span
+                            aria-hidden
+                            className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
+                            style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.12 }}
+                          >
+                            {planetTheme.decor[0]}
+                          </span>
+                        )}
+                        <div className="flex justify-between items-start">
+                          <span className="text-xs font-semibold text-muted-foreground">
+                            {subj?.emoji} {subj?.name} • {current.form}
+                          </span>
+                          <button
+                            type="button"
+                            aria-label={fav ? "Remove from favorites" : "Add to favorites"}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(current.id);
+                            }}
+                            className={`rounded-full p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70 ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
+                          >
+                            <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
+                          </button>
+                        </div>
+                        <div className="flex-1 flex items-center justify-center text-center">
+                          <p className="font-display text-2xl sm:text-4xl font-bold leading-tight">
+                            {cleanLearningTitle(current.front)}
+                          </p>
+                        </div>
+                        <p className="text-center text-xs text-muted-foreground">
+                          Tap to flip · Swipe → know · Swipe ← don't know
                         </p>
                       </div>
-                      <p className="text-center text-xs text-muted-foreground">
-                        Tap to flip · Swipe → know · Swipe ← don't know
-                      </p>
-                    </div>
-                    {/* back */}
-                    <div
-                      className="absolute inset-0 glass-strong rounded-3xl p-6 sm:p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
-                      style={{
-                        backfaceVisibility: "hidden",
-                        transform: "rotateY(180deg)",
-                        background: planetTheme
-                          ? `linear-gradient(135deg, ${planetTheme.color}22, rgba(0,0,0,0.45))`
-                          : undefined,
-                        border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
-                        boxShadow: planetTheme
-                          ? `0 24px 70px -30px ${planetTheme.glow}`
-                          : undefined,
-                      }}
-                    >
-                      {shimmer && <div className="card-shimmer-overlay" />}
-                      {planetTheme && (
-                        <span
-                          aria-hidden
-                          className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
-                          style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.14 }}
-                        >
-                          {planetTheme.decor[1] ?? planetTheme.decor[0]}
-                        </span>
-                      )}
-                      {/* The answer now stays on screen indefinitely (no
+                      {/* back */}
+                      <div
+                        className="flashcard-face flashcard-back glass-strong rounded-3xl p-6 sm:p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20"
+                        style={{
+                          ...FLIP_FACE_WEBKIT,
+                          background: planetTheme
+                            ? `linear-gradient(135deg, ${planetTheme.color}22, rgba(0,0,0,0.45))`
+                            : undefined,
+                          border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
+                          boxShadow: planetTheme
+                            ? `0 24px 70px -30px ${planetTheme.glow}`
+                            : undefined,
+                        }}
+                      >
+                        {shimmer && <div className="card-shimmer-overlay" />}
+                        {planetTheme && (
+                          <span
+                            aria-hidden
+                            className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
+                            style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.14 }}
+                          >
+                            {planetTheme.decor[1] ?? planetTheme.decor[0]}
+                          </span>
+                        )}
+                        {/* The answer now stays on screen indefinitely (no
                           auto-advance timer), so a long answer must be able
                           to scroll internally rather than clip against the
                           card's fixed height. */}
-                      <div className="max-h-full w-full overflow-y-auto py-1">
-                        <p className="font-display text-xl sm:text-3xl text-center leading-relaxed">
-                          {cleanLearningQuestion(current.back)}
-                        </p>
+                        <div className="max-h-full w-full overflow-y-auto py-1">
+                          <p className="font-display text-xl sm:text-3xl text-center leading-relaxed">
+                            {cleanLearningQuestion(current.back)}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>

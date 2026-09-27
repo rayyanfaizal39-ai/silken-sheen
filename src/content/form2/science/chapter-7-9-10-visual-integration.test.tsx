@@ -302,7 +302,7 @@ describe("Science F2 Ch7/9/10 — figure authoring", () => {
       const ratio = parseAspectRatio(figure.aspect ?? "3 / 2");
       // The rendered width is the smaller of the variant cap and
       // heightBudget * ratio; the height then follows from the ratio.
-      const budget = Number(/min\((?:[\d.]+vh), (\d+)px\)/.exec(variant.heightBudget)?.[1]);
+      const budget = Number(/min\((?:[\d.]+vh), (\d+)px\)/.exec(variant.heightBudget ?? "")?.[1]);
       const width = Math.min(variant.maxWidth, budget * ratio);
       expect(width).toBeLessThanOrEqual(spec.maxWidth);
       expect(width / ratio).toBeLessThanOrEqual(spec.maxHeight);

@@ -10,6 +10,8 @@
     "email:dev": "email dev --dir src/emails/templates",
     "preview": "wrangler pages dev dist/client --ip 127.0.0.1 --port 4173",
     "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "verify": "npm run typecheck && npm test",
     "check:migrations": "node scripts/check-migrations-applied.mjs",
     "generate:quiz-catalog": "vite-node scripts/generate-quiz-catalog.ts",
     "verify:notes-bundle": "node scripts/verify-notes-bundle.mjs",

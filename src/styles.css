@@ -2271,6 +2271,139 @@
   contain: layout paint;
 }
 
+/*
+ * Flashcard flip — one deterministic 3D hierarchy for every subject/deck:
+ *
+ *   .flashcard-study-card   swipe / deal / shake / bounce (2D only, no 3D)
+ *     .flashcard-glass-backdrop   the card's frosted blur (static, not 3D)
+ *     .flashcard-scene      perspective only — never transformed
+ *       .flashcard-inner    the ONLY element that rotates
+ *         .flashcard-face.flashcard-front
+ *         .flashcard-face.flashcard-back
+ *
+ * Why it is built this way (iOS Safari showed the back face mirrored
+ * through the front):
+ * - backdrop-filter must NOT sit on a face. WebKit composites
+ *   backdrop-filter into its own layer that ignores backface-visibility,
+ *   so the hidden face bled through. The blur lives on a flat layer
+ *   behind the scene instead; `.glass-strong` keeps its tint/border.
+ * - Faces are flat (transform-style: flat), not preserve-3d. A preserve-3d
+ *   face puts its children (the question/answer text) into the parent 3D
+ *   context, where backface-visibility on the face no longer hides them —
+ *   which is exactly the mirrored-text symptom. Flat faces are culled as
+ *   one plane, children included.
+ * - Every 3D property is written with its -webkit- twin. The build
+ *   (Lightning CSS) strips -webkit-backface-visibility / -perspective /
+ *   -transform-style from this file for our browser targets, so the
+ *   component ALSO sets those inline, where no build step can remove them.
+ *   iOS < 15.4 only understands -webkit-backface-visibility.
+ * - The 0.1px translateZ separates the two faces so Safari's GPU path
+ *   cannot z-fight them.
+ * - The scene itself never gets a transform, filter, opacity or overflow
+ *   clip, so nothing flattens the 3D context between it and the faces.
+ */
+.flashcard-glass-backdrop {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  /* Prefixed first: Lightning CSS drops an unprefixed declaration that is
+     followed by its -webkit- twin, which would leave Chrome with no blur. */
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
+.flashcard-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-perspective: 1500px;
+  perspective: 1500px;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  -webkit-transition: -webkit-transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.flashcard-inner.is-flipped {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: flat;
+  transform-style: flat;
+  /* See above: no backdrop-filter on a rotating face, even where
+     `.glass-strong` (or its mobile override) would add one. */
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.flashcard-front {
+  -webkit-transform: rotateY(0deg) translateZ(0.1px);
+  transform: rotateY(0deg) translateZ(0.1px);
+}
+
+.flashcard-back {
+  -webkit-transform: rotateY(180deg) translateZ(0.1px);
+  transform: rotateY(180deg) translateZ(0.1px);
+  visibility: hidden;
+}
+
+/*
+ * Backface culling alone is not deterministic: when WebKit cannot give the
+ * card a GPU layer (memory pressure on older iPhones) it paints in software,
+ * which ignores backface-visibility entirely and shows the far face
+ * mirrored. So the far face is also `visibility: hidden`, swapped at the
+ * exact moment the card is edge-on. The flip easing is symmetric about
+ * (0.35, 0.5), so 90° is reached at 0.35 × 700ms = 245ms — keep this delay
+ * in step with `.flashcard-inner`'s transition if either ever changes.
+ */
+.flashcard-face {
+  -webkit-transition: visibility 0s linear 245ms;
+  transition: visibility 0s linear 245ms;
+}
+
+.flashcard-inner.is-flipped > .flashcard-front {
+  visibility: hidden;
+}
+
+.flashcard-inner.is-flipped > .flashcard-back {
+  visibility: visible;
+}
+
+@media (max-width: 767px) {
+  /* Mirrors the mobile `.glass-strong` blur the faces used to carry. */
+  .flashcard-glass-backdrop {
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The correct side is still shown; it just doesn't animate there. */
+  .flashcard-inner,
+  .flashcard-face {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+
 .academy-readable {
   overflow-wrap: anywhere;
   text-wrap: pretty;

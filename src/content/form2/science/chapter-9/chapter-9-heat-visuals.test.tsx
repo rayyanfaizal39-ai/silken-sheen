@@ -520,7 +520,7 @@ describe("Ch9 figure sizing — bounded, and never cropped", () => {
       expect(Object.keys(SPEC), figure.src).toContain(size);
       const variant = LEARNING_IMAGE_VARIANTS[size];
       const ratio = parseAspectRatio(figure.aspect ?? "3 / 2");
-      const budget = Number(/min\((?:[\d.]+vh), (\d+)px\)/.exec(variant.heightBudget)?.[1]);
+      const budget = Number(/min\((?:[\d.]+vh), (\d+)px\)/.exec(variant.heightBudget ?? "")?.[1]);
       const width = Math.min(variant.maxWidth, budget * ratio);
       expect(width, figure.src).toBeLessThanOrEqual(SPEC[size].maxWidth);
       expect(width / ratio, figure.src).toBeLessThanOrEqual(SPEC[size].maxHeight);
