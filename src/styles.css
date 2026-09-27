@@ -2268,7 +2268,58 @@
 }
 
 .flashcard-study-card {
-  contain: layout paint;
+  /* Do not paint-contain the perspective scene: Safari can flatten its faces. */
+  contain: layout;
+}
+
+/* Drag/deal effects live on the outer card. Only the inner layer flips;
+   neither the scene nor its faces inherit a competing animation transform. */
+.flashcard-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1500px;
+  -webkit-perspective: 1500px;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  transition: transform 700ms ease-in-out;
+  will-change: transform;
+}
+
+.flashcard-inner.is-flipped {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  /* backdrop-filter on a rotating face creates a flattened compositing layer
+     in WebKit, exposing the mirrored reverse through the front. */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.flashcard-front {
+  transform: rotateY(0deg) translateZ(0.1px);
+  -webkit-transform: rotateY(0deg) translateZ(0.1px);
+}
+
+.flashcard-back {
+  transform: rotateY(180deg) translateZ(0.1px);
+  -webkit-transform: rotateY(180deg) translateZ(0.1px);
 }
 
 .academy-readable {
