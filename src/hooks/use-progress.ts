@@ -16,6 +16,7 @@ import {
   createNonEarningQuizResult,
   type QuizCompletionResult,
   type QuizCompletionSubmission,
+  formFromCanonicalQuizKey,
 } from "@/features/quiz/xp/quizXp";
 import {
   QuizCompletionError,
@@ -245,7 +246,11 @@ export interface LastVisited {
   type: "notes" | "flashcards" | "quiz";
   label: string; // human-readable chapter name
   timestamp: number;
-  /** Which form the chapter belongs to. Older saved records predate this field — treat missing as "Form 1". */
+  /**
+   * Which form the chapter belongs to ("Chapter 3" exists in every form).
+   * Older saved records predate this field. Missing means UNKNOWN — never
+   * treat it as Form 1; resume links send the student to the Form chooser.
+   */
   form?: "Form 1" | "Form 2" | "Form 3";
 }
 
@@ -558,6 +563,7 @@ function pushRecentActivity(
       !(
         item.subjectId === nextItem.subjectId &&
         item.chapterKey === nextItem.chapterKey &&
+        (item.form ?? null) === (nextItem.form ?? null) &&
         item.type === nextItem.type
       ),
   );
@@ -1398,6 +1404,10 @@ export function useProgress() {
         date: new Date().toISOString(),
       };
 
+      // The canonical quiz key already carries the form; without it the
+      // homepage would have to guess which form's chapter this was.
+      const quizForm = formFromCanonicalQuizKey(input.quizKey);
+
       setProgress((prev) => {
         const alreadyRecorded = (prev.quizHistory ?? []).some((item) => item.id === result.id);
         if (alreadyRecorded) return prev;
@@ -1415,6 +1425,7 @@ export function useProgress() {
             label: input.chapterKey,
             timestamp,
             detail: `${correct}/${total} correct`,
+            ...(quizForm ? { form: quizForm } : {}),
           }),
         };
         try {

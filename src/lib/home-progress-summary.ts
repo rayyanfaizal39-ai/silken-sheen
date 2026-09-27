@@ -92,11 +92,7 @@ function subjectName(subjectId: string) {
 }
 
 function formNumber(form: HomeForm) {
-  return Number(form.match(/\d/)?.[0] ?? 1);
-}
-
-function normalizeForm(form: LastVisited["form"]): HomeForm {
-  return form ?? "Form 1";
+  return Number(form.slice(-1));
 }
 
 function chapterTitle(label: string) {
@@ -109,10 +105,15 @@ function latestActivity(progress: Progress) {
     .sort((a, b) => b.timestamp - a.timestamp)[0];
 }
 
-function candidateFromActivity(activity: LastVisited): HomeChapterCandidate {
+/**
+ * Null when the entry predates form tracking: "Chapter 4" exists in every
+ * form, so guessing one (historically Form 1) would resume the wrong chapter.
+ */
+function candidateFromActivity(activity: LastVisited): HomeChapterCandidate | null {
+  if (!activity.form) return null;
   return {
     subjectId: activity.subjectId,
-    form: normalizeForm(activity.form),
+    form: activity.form,
     chapterKey: activity.chapterKey,
     label: activity.label,
   };
@@ -156,9 +157,9 @@ export function resolveHomeRecommendation(
   weakTopics: readonly WeakTopicEvidence[] = [],
 ): HomeRecommendation {
   const latest = latestActivity(progress);
+  const candidate = latest ? candidateFromActivity(latest) : null;
 
-  if (latest) {
-    const candidate = candidateFromActivity(latest);
+  if (latest && candidate) {
     const activity =
       progress.chapterActivity[chapterActivityKey(candidate.subjectId, candidate.chapterKey)];
     const completionField = ACTIVITY_FIELDS[latest.type];

@@ -38,6 +38,7 @@ import {
 import {
   normalizeFlashcardSetParam,
   normalizeFormParam,
+  parseKnownForm,
   normalizeSubjectParam,
 } from "@/lib/study-routing";
 import {
@@ -6022,7 +6023,10 @@ function FlashcardsPage() {
   const dontKnowCueOpacity = swipeOffset < 0 ? dragProgress : 0;
 
   // ── Subject World early-return ────────────────────────────────────────────
-  if (subject && !formWasChosen && !chapter) {
+  // Any subject without an explicit form gets the Form chooser — including a
+  // URL/bookmark that names a chapter: "Chapter 3" is a different chapter in
+  // every form, so building a deck here would silently mean Form 1.
+  if (subject && !formWasChosen) {
     return (
       <AcademyPageShell subjectId={planetSubjectId}>
         <FormGrid
@@ -6096,7 +6100,7 @@ function FlashcardsPage() {
                 type: "flashcards",
                 label: deck?.title ?? deckId,
                 timestamp: Date.now(),
-                form: form === "All" ? "Form 1" : form,
+                ...(form === "All" ? {} : { form }),
               });
             }
           }}
@@ -6183,9 +6187,19 @@ function FlashcardsPage() {
                   <button
                     type="button"
                     onClick={() => {
+                      // Decks saved before form tracking have no form: send
+                      // those to the Form chooser rather than into Form 1.
+                      const deckForm = parseKnownForm(lastDeck.form);
                       setSubject(lastDeck.subjectId);
-                      setForm((lastDeck.form ?? "Form 1") as FormFilter);
-                      setChapter(lastDeck.chapterKey);
+                      setForm(deckForm ?? "Form 1");
+                      setFormWasChosen(deckForm !== null);
+                      setChapter(deckForm ? lastDeck.chapterKey : null);
+                      updateFlashcardSearch({
+                        subject: lastDeck.subjectId,
+                        form: deckForm,
+                        chapter: deckForm ? lastDeck.chapterKey : null,
+                        set: null,
+                      });
                       resetSession();
                     }}
                     className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
@@ -6309,7 +6323,7 @@ function FlashcardsPage() {
                   type: "flashcards",
                   label: chapMeta?.label ?? key,
                   timestamp: Date.now(),
-                  form: form === "All" ? "Form 1" : form,
+                  ...(form === "All" ? {} : { form }),
                 });
               }
             }}
@@ -6500,7 +6514,11 @@ function FlashcardsPage() {
                 <select
                   value={form}
                   onChange={(e) => {
-                    setForm(e.target.value as FormFilter);
+                    const nextForm = e.target.value as FormFilter;
+                    setForm(nextForm);
+                    // Write it to the URL too, so a refresh keeps this form
+                    // ("All" has no deck and opens the Form chooser).
+                    updateFlashcardSearch({ form: nextForm, set: null });
                     resetSession();
                   }}
                   className="px-4 py-2 rounded-full bg-white/5 text-sm"
