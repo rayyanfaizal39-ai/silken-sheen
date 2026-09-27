@@ -2275,18 +2275,19 @@
  * Flashcard flip — one deterministic 3D hierarchy for every subject/deck:
  *
  *   .flashcard-study-card   swipe / deal / shake / bounce (2D only, no 3D)
- *     .flashcard-glass-backdrop   the card's frosted blur (static, not 3D)
  *     .flashcard-scene      perspective only — never transformed
  *       .flashcard-inner    the ONLY element that rotates
+ *         .flashcard-surface   opaque card body behind both faces
  *         .flashcard-face.flashcard-front
  *         .flashcard-face.flashcard-back
  *
  * Why it is built this way (iOS Safari showed the back face mirrored
  * through the front):
- * - backdrop-filter must NOT sit on a face. WebKit composites
+ * - No backdrop-filter anywhere in the card. WebKit composites
  *   backdrop-filter into its own layer that ignores backface-visibility,
- *   so the hidden face bled through. The blur lives on a flat layer
- *   behind the scene instead; `.glass-strong` keeps its tint/border.
+ *   so the hidden face bled through. The frosted look it produced is
+ *   baked into `.flashcard-surface` instead, which also makes the card
+ *   genuinely opaque; `.glass-strong` keeps its tint/border on top.
  * - Faces are flat (transform-style: flat), not preserve-3d. A preserve-3d
  *   face puts its children (the question/answer text) into the parent 3D
  *   context, where backface-visibility on the face no longer hides them —
@@ -2297,22 +2298,13 @@
  *   -transform-style from this file for our browser targets, so the
  *   component ALSO sets those inline, where no build step can remove them.
  *   iOS < 15.4 only understands -webkit-backface-visibility.
- * - The 0.1px translateZ separates the two faces so Safari's GPU path
- *   cannot z-fight them.
+ * - The 0.01px translateZ keeps each face just in front of the surface so
+ *   Safari's GPU path cannot z-fight them. Don't raise it: at 0.1px the
+ *   1500px perspective scales the faces enough to visibly soften text in
+ *   Chromium; 0.01px renders pixel-identical to no offset.
  * - The scene itself never gets a transform, filter, opacity or overflow
  *   clip, so nothing flattens the 3D context between it and the faces.
  */
-.flashcard-glass-backdrop {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  /* Prefixed first: Lightning CSS drops an unprefixed declaration that is
-     followed by its -webkit- twin, which would leave Chrome with no blur. */
-  -webkit-backdrop-filter: blur(24px);
-  backdrop-filter: blur(24px);
-}
-
 .flashcard-scene {
   position: relative;
   width: 100%;
@@ -2334,6 +2326,23 @@
   will-change: transform;
 }
 
+/*
+ * The faces' `.glass-strong` backgrounds are translucent by design (75% navy
+ * on desktop, a 6%→2% white wash on mobile) and used to rely on a live
+ * backdrop blur for their solid look. This opaque body sits under them, in
+ * the rotating plane, so nothing behind the card can show through. Its
+ * colours are the frosted glass as it rendered before the flip fix: the
+ * card navy on desktop, the blurred violet→blue page glow on mobile. It has
+ * no text and a purely vertical gradient, so it reads the same from both
+ * sides and needs no backface handling.
+ */
+.flashcard-surface {
+  position: absolute;
+  inset: 0;
+  background: rgb(18, 29, 48);
+  background: oklch(0.23 0.04 260);
+}
+
 .flashcard-inner.is-flipped {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
@@ -2344,6 +2353,7 @@
   inset: 0;
   overflow: hidden;
   isolation: isolate;
+  opacity: 1;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-transform-style: flat;
@@ -2355,13 +2365,13 @@
 }
 
 .flashcard-front {
-  -webkit-transform: rotateY(0deg) translateZ(0.1px);
-  transform: rotateY(0deg) translateZ(0.1px);
+  -webkit-transform: rotateY(0deg) translateZ(0.01px);
+  transform: rotateY(0deg) translateZ(0.01px);
 }
 
 .flashcard-back {
-  -webkit-transform: rotateY(180deg) translateZ(0.1px);
-  transform: rotateY(180deg) translateZ(0.1px);
+  -webkit-transform: rotateY(180deg) translateZ(0.01px);
+  transform: rotateY(180deg) translateZ(0.01px);
   visibility: hidden;
 }
 
@@ -2388,10 +2398,9 @@
 }
 
 @media (max-width: 767px) {
-  /* Mirrors the mobile `.glass-strong` blur the faces used to carry. */
-  .flashcard-glass-backdrop {
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    backdrop-filter: blur(14px) saturate(140%);
+  /* The mobile page glow as the frosted faces showed it. */
+  .flashcard-surface {
+    background: linear-gradient(180deg, rgb(22, 34, 86), rgb(2, 34, 70));
   }
 }
 

@@ -6746,13 +6746,13 @@ function FlashcardsPage() {
                       thing that rotates) → flat front/back faces. See the
                       `.flashcard-scene` notes in styles.css before adding a
                       transform, filter or backdrop-filter anywhere in here. */}
-                  <div aria-hidden="true" className="flashcard-glass-backdrop" />
                   <div className="flashcard-scene" style={FLIP_SCENE_WEBKIT}>
                     <div
                       key={current.id}
                       className={`flashcard-inner${flipped ? " is-flipped" : ""}`}
                       style={FLIP_INNER_WEBKIT}
                     >
+                      <div aria-hidden="true" className="flashcard-surface rounded-3xl" />
                       {/* front */}
                       <div
                         className="flashcard-face flashcard-front glass-strong rounded-3xl p-6 sm:p-8 flex flex-col"
