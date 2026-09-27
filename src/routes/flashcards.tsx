@@ -6655,7 +6655,6 @@ function FlashcardsPage() {
                     ${flash === "red" ? "animate-flash-red" : ""}
                   `}
                   style={{
-                    perspective: "1500px",
                     height: "clamp(360px, 58dvh, 440px)",
                     // pan-y: the browser keeps vertical scroll, we own horizontal drag
                     touchAction: "pan-y",
@@ -6705,19 +6704,12 @@ function FlashcardsPage() {
                       {swipeRatingCue === "right" ? "✓ I knew this" : "↻ Review again"}
                     </div>
                   )}
-                  <div
-                    key={current.id}
-                    className="relative w-full h-full transition-transform duration-700"
-                    style={{
-                      transformStyle: "preserve-3d",
-                      transform: flipped ? "rotateY(180deg)" : "none",
-                    }}
-                  >
+                  <div className="flashcard-scene">
+                    <div key={current.id} className={`flashcard-inner${flipped ? " is-flipped" : ""}`}>
                     {/* front */}
                     <div
-                      className="absolute inset-0 glass-strong rounded-3xl p-6 sm:p-8 flex flex-col overflow-hidden"
+                      className="flashcard-face flashcard-front glass-strong rounded-3xl p-6 sm:p-8 flex flex-col overflow-hidden"
                       style={{
-                        backfaceVisibility: "hidden",
                         border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
                         boxShadow: planetTheme
                           ? `0 24px 70px -30px ${planetTheme.glow}`
@@ -6761,10 +6753,8 @@ function FlashcardsPage() {
                     </div>
                     {/* back */}
                     <div
-                      className="absolute inset-0 glass-strong rounded-3xl p-6 sm:p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
+                      className="flashcard-face flashcard-back glass-strong rounded-3xl p-6 sm:p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
                       style={{
-                        backfaceVisibility: "hidden",
-                        transform: "rotateY(180deg)",
                         background: planetTheme
                           ? `linear-gradient(135deg, ${planetTheme.color}22, rgba(0,0,0,0.45))`
                           : undefined,
@@ -6793,6 +6783,7 @@ function FlashcardsPage() {
                           {cleanLearningQuestion(current.back)}
                         </p>
                       </div>
+                    </div>
                     </div>
                   </div>
 
