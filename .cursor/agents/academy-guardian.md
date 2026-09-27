@@ -46,18 +46,38 @@ npm run verify
 
 This is `tsc --noEmit` + `vitest run`.
 
-`npm test` currently has a known 8-failure baseline, already documented in chapter release notes. Do **not** delete or weaken these tests. Do **not** treat them as a new regression if the failures are unchanged:
+After Vitest finishes, compare every failure to the **recorded baseline** in the next section. Never guess that a failure is pre-existing. A failure is baseline-allowed only when its file path **and** full test title match a recorded entry exactly.
 
-- `src/routes/-onboarding-ui.test.ts`
-- `src/content/form2/math/chapter-1/quizzes-dlp.test.ts`
-- `src/lib/billing-core.test.ts`
-- `src/lib/invoice-pdf.server.test.ts`
-- `src/content/bm/analisis-kehendak-soalan-form3-mindmap.test.ts`
-- `src/content/bm/teknik-menjana-idea-kbat-form3-mindmap.test.ts`
-- `src/content/bm/asas-penulisan-form1-mindmap.test.ts`
-- `src/content/bm/strategi-menjawab-uasa-form3-mindmap.test.ts`
+### Recorded Vitest failure baseline
 
-FAIL if any additional test file fails, or if one of these baseline failures changes shape in a file you edited.
+Recorded 2026-09-27 from `npm test` (`vitest run`) on this repository.
+
+Baseline size: **8 failed tests** in **8 files**.
+
+| File | Full test title |
+|------|-----------------|
+| `src/routes/-onboarding-ui.test.ts` | `Explorer onboarding UI contract > adds Profile to desktop and the existing mobile More sheet` |
+| `src/content/form2/math/chapter-1/quizzes-dlp.test.ts` | `Mathematics Form 2 Chapter 1 objective routing contract > routes only the Form 2 Chapter 1 DLP chapter through the three existing objective cards` |
+| `src/lib/billing-core.test.ts` | `server-side checkout prices > offers the approved monthly and annual ToyyibPay sandbox plans` |
+| `src/lib/invoice-pdf.server.test.ts` | `lightweight invoice PDF > generates a compact valid PDF containing the invoice reference` |
+| `src/content/bm/analisis-kehendak-soalan-form3-mindmap.test.ts` | `Bahasa Melayu Form 3 Analisis Kehendak Soalan mind map > registers as the second Form 3 Penulisan topic` |
+| `src/content/bm/teknik-menjana-idea-kbat-form3-mindmap.test.ts` | `Bahasa Melayu Form 3 Teknik Menjana Idea KBAT mind map > registers as the third Form 3 Penulisan topic` |
+| `src/content/bm/asas-penulisan-form1-mindmap.test.ts` | `Bahasa Melayu Form 1 Asas Penulisan mind map > registers Asas Penulisan under Penulisan for Form 1` |
+| `src/content/bm/strategi-menjawab-uasa-form3-mindmap.test.ts` | `Bahasa Melayu Form 3 Strategi Menjawab UASA mind map > registers as the first Form 3 Penulisan topic` |
+
+Do **not** delete or weaken these tests to obtain a green run.
+
+### Baseline comparison rules
+
+Collect the set of actual failures as `{file, fullTitle}` from the Vitest output.
+
+- If an actual failure's `{file, fullTitle}` is **not** in the recorded table → **NEW REGRESSION** → `GUARDIAN RESULT: FAIL`
+- If a **different** test fails in a baseline file (same file, different title) → **NEW REGRESSION** → `FAIL`
+- If a previously passing test starts failing → **NEW REGRESSION** → `FAIL`
+- If the number of failed tests is **greater than 8** → **NEW REGRESSION** → `FAIL`
+- If a recorded baseline test now **passes**, report `IMPROVED BASELINE` and state that the recorded table must be reduced to the remaining failing entries. That alone is not a FAIL.
+- Never classify a failure as “pre-existing” or “known baseline” unless it matches a recorded row exactly.
+- Label every unmatched failure as **NEW REGRESSION** in `Checks failed` and `Possible regressions`.
 
 Also lint the files that changed:
 
@@ -237,7 +257,13 @@ YES / NO
 
 Rules for the verdict:
 
-- `FAIL` if typecheck, lint, tests, required build, unexpected content edits, or a demonstrated regression fails
-- `PASS` only when required checks passed and remaining gaps are explicitly `UNVERIFIED`
+- `FAIL` if typecheck fails
+- `FAIL` if changed-file lint introduces new errors
+- `FAIL` if required build / notes-bundle fails
+- `FAIL` if unexpected content dataset edits appear
+- `FAIL` if any Vitest failure is a **NEW REGRESSION** under the baseline comparison rules
+- `PASS` only when required checks passed, unmatched test failures are none, and remaining gaps are explicitly `UNVERIFIED`
 - `Safe to commit: NO` on FAIL, or when unrelated user changes would be mixed in without the user asking
 - `Safe to commit: YES` only means the safeguard/review bar passed — never commit or push unless the user explicitly asked
+
+In `Checks failed`, list baseline-allowed failures as `BASELINE (allowed)` and unmatched failures as `NEW REGRESSION`.

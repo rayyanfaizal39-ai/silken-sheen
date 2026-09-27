@@ -62,7 +62,7 @@ After meaningful application changes, automatically use the `academy-guardian` s
 
 Use only these repository commands (do not invent others):
 
-- `npm run verify` — `tsc --noEmit` + `vitest run` (8 pre-existing failing test files are a known baseline; do not delete them)
+- `npm run verify` — `tsc --noEmit` + `vitest run`. Guardian compares failures to the exact recorded baseline in `.cursor/agents/academy-guardian.md`. Any unmatched failure is a NEW REGRESSION. Do not delete baseline tests.
 - `npx eslint <changed-files>` — lint only the files you changed. `npm run lint` (`eslint .`) is a known-red Prettier baseline; do not rewrite the repo to make it green
 - `npx vitest run --config vitest.auth.config.ts` — when auth files changed (`-auth-login.integration.tsx` is not in `npm test`)
 - `npm run build` then `npm run verify:notes-bundle` — when app, routing, PWA, Vite, Wrangler, or Cloudflare scripts changed
