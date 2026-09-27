@@ -26,12 +26,11 @@ export function FlipCardGrid({
             key={item.id}
             type="button"
             onClick={() => toggle(item.id)}
-            className="flashcard-scene flashcard-notes-scene group h-[150px] text-left"
+            className="group h-[150px] w-full text-left"
             aria-pressed={isFlipped}
           >
-            <div
-              className={`flashcard-inner${isFlipped ? " is-flipped" : ""}`}
-            >
+            <div className="flashcard-scene flashcard-notes-scene">
+              <div className={`flashcard-inner${isFlipped ? " is-flipped" : ""}`}>
               <div className="flashcard-face flashcard-front overflow-hidden rounded-2xl border border-border bg-secondary/40">
                 {imageUrl ? (
                   <img
@@ -51,6 +50,7 @@ export function FlipCardGrid({
                 className="flashcard-face flashcard-back flex items-center justify-center rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/35 to-accent/25 p-3.5 text-center text-xs leading-relaxed text-white"
               >
                 {item.fact}
+              </div>
               </div>
             </div>
           </button>
