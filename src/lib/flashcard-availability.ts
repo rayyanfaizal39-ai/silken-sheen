@@ -43,7 +43,12 @@ export function getFlashcardDeckCards(
 
   if (!subjectId || !chapterKey) return [];
 
-  const registeredCards = registry?.getChapter(subjectId, chapterKey, language, form)?.flashcards ?? [];
+  const registeredCards = keepSelectedFormCards(
+    registry?.getChapter(subjectId, chapterKey, language, form)?.flashcards ?? [],
+    subjectId,
+    form,
+    chapterKey,
+  );
   const legacyCards = dataModule
     ? dataModule.flashcards.filter((card) => {
         if (card.subjectId !== subjectId || card.form !== form) return false;
@@ -55,6 +60,58 @@ export function getFlashcardDeckCards(
 
   const source = registeredCards.length >= legacyCards.length ? registeredCards : legacyCards;
   return standardizeFlashcardDeck(source);
+}
+
+/**
+ * Cards in a deck that don't belong to the selected subject + form. Every
+ * deck the player shows must come back empty here.
+ */
+export function findFlashcardFormLeaks(cards: Flashcard[], subjectId: string, form: Form) {
+  return cards.filter((card) => card.subjectId !== subjectId || card.form !== form);
+}
+
+/**
+ * Drops (never substitutes) cards from another subject/form, and reports the
+ * leak in development so a bad chapter builder is caught at the source.
+ */
+export function keepSelectedFormCards(
+  cards: Flashcard[],
+  subjectId: string,
+  form: Form,
+  context = "",
+): Flashcard[] {
+  const leaks = findFlashcardFormLeaks(cards, subjectId, form);
+  if (leaks.length === 0) return cards;
+  if (import.meta.env.DEV) {
+    console.error("FLASHCARD FORM LEAK", {
+      subjectId,
+      form,
+      context,
+      leaked: leaks.length,
+      total: cards.length,
+      sample: leaks.slice(0, 3).map((card) => `${card.id} (${card.subjectId} ${card.form})`),
+    });
+  }
+  return cards.filter((card) => card.subjectId === subjectId && card.form === form);
+}
+
+/**
+ * Identity of one study session. Form is part of it, so the same chapter
+ * number in another form ("Chapter 1" exists in Form 1, 2 and 3) is always a
+ * different deck, e.g. `flashcard-session:sejarah:f1:chapter-1`.
+ */
+export function getFlashcardSessionKey(
+  subjectId: string | null,
+  form: string,
+  chapter: string | null,
+  ...variant: Array<string | number | null | undefined>
+) {
+  const formPart = form === "All" ? "all" : `f${form.replace(/\D/g, "")}`;
+  const chapterPart = (chapter ?? "none").toLowerCase().replace(/\s+/g, "-");
+  const variantParts = variant.filter((part) => part !== null && part !== undefined);
+  return ["flashcard-session", subjectId ?? "none", formPart, chapterPart, ...variantParts].join(
+    ":",
+  );
 }
 
 export function standardizeFlashcardDeck(cards: Flashcard[]) {

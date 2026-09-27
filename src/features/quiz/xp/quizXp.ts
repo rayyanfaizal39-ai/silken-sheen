@@ -207,6 +207,16 @@ export function buildCanonicalQuizKey(identity: CanonicalQuizIdentity): string {
   return ["quiz-v2", identity.kind, ...parts].map(keySegment).join(":");
 }
 
+/**
+ * The form a canonical quiz key belongs to. Every kind puts it in the same
+ * slot: `quiz-v2:<kind>:<subject>:form-<n>:...`. Null for anything else
+ * (legacy keys), so callers can tell "unknown" from Form 1.
+ */
+export function formFromCanonicalQuizKey(quizKey: string): "Form 1" | "Form 2" | "Form 3" | null {
+  const match = quizKey.match(/^quiz-v2:[^:]+:[^:]+:form-([123]):/);
+  return match ? (`Form ${match[1]}` as "Form 1" | "Form 2" | "Form 3") : null;
+}
+
 export function formulaForQuizKind(kind: CanonicalQuizIdentity["kind"]): QuizXpFormula {
   return kind === "standard" ? "standard" : kind === "bm-world" ? "bm_world" : "objective";
 }

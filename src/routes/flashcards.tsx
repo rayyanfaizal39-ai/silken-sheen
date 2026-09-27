@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
+import type { Flashcard } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
@@ -37,11 +38,14 @@ import {
 import {
   normalizeFlashcardSetParam,
   normalizeFormParam,
+  parseKnownForm,
   normalizeSubjectParam,
 } from "@/lib/study-routing";
 import {
   getFlashcardDeckCards,
+  getFlashcardSessionKey,
   hasFlashcardDeck,
+  keepSelectedFormCards,
   splitFlashcardDeck,
   standardizeFlashcardDeck,
 } from "@/lib/flashcard-availability";
@@ -5469,31 +5473,39 @@ function FlashcardsPage() {
     !isEnglishFlashcardDeckF3
   );
   const rawPool = useMemo(() => {
-    if (subject === "english" && isEnglishFlashcardDeckId(chapter)) {
-      return standardizeFlashcardDeck(getEnglishFlashcardsForDeck(chapter));
-    }
-    if (subject === "english" && isEnglishFlashcardDeckIdF2(chapter)) {
-      return standardizeFlashcardDeck(getEnglishFlashcardsForDeckF2(chapter));
-    }
-    if (subject === "english" && isEnglishFlashcardDeckIdF3(chapter)) {
-      return standardizeFlashcardDeck(getEnglishFlashcardsForDeckF3(chapter));
-    }
-    if (subject === "math" && chapter && MATH_FLASHCARD_BANKS[chapter] && mathFlashcardLang) {
-      return standardizeFlashcardDeck(
+    // A deck is only ever built for one explicit form — never "All".
+    if (!subject || !chapter || form === "All") return [];
+    let deck: Flashcard[];
+    if (form === "Form 1" && subject === "english" && isEnglishFlashcardDeckId(chapter)) {
+      deck = standardizeFlashcardDeck(getEnglishFlashcardsForDeck(chapter));
+    } else if (form === "Form 2" && subject === "english" && isEnglishFlashcardDeckIdF2(chapter)) {
+      deck = standardizeFlashcardDeck(getEnglishFlashcardsForDeckF2(chapter));
+    } else if (form === "Form 3" && subject === "english" && isEnglishFlashcardDeckIdF3(chapter)) {
+      deck = standardizeFlashcardDeck(getEnglishFlashcardsForDeckF3(chapter));
+    } else if (
+      form === "Form 1" &&
+      subject === "math" &&
+      MATH_FLASHCARD_BANKS[chapter] &&
+      mathFlashcardLang
+    ) {
+      deck = standardizeFlashcardDeck(
         MATH_FLASHCARD_CATEGORIES.flatMap((category) =>
           getMathFlashcards(chapter, mathFlashcardLang, category.id),
         ),
       );
+    } else {
+      deck = getFlashcardDeckCards(
+        subject,
+        form,
+        chapter,
+        scienceLang ?? undefined,
+        registry,
+        dataModule,
+      );
     }
-    if (!subject || !chapter) return [];
-    return getFlashcardDeckCards(
-      subject,
-      form,
-      chapter,
-      scienceLang ?? undefined,
-      registry,
-      dataModule,
-    );
+    // Last line of defence before the player: every card must match the
+    // selected subject + form.
+    return keepSelectedFormCards(deck, subject, form, chapter);
   }, [subject, chapter, form, scienceLang, mathFlashcardLang, registry, dataModule]);
   const hasSelectedChapterFlashcards =
     !!subject &&
@@ -5545,7 +5557,7 @@ function FlashcardsPage() {
   // language means a genuinely different deck. That's what resets the
   // idempotent XP guard below — re-shuffling or toggling the favourites
   // filter on the same deck must NOT reopen it.
-  const deckIdentityKey = [
+  const deckIdentityKey = getFlashcardSessionKey(
     subject,
     form,
     chapter,
@@ -5553,9 +5565,18 @@ function FlashcardsPage() {
     mathFlashcardLang,
     mathFlashcardCategory,
     selectedFlashcardSet,
-  ].join("|");
+  );
   useEffect(() => {
     awardedXpCardIdsRef.current = new Set();
+  }, [deckIdentityKey]);
+  // A different deck (e.g. Form 3 -> Form 1 via URL/back button) must start a
+  // fresh session; the old queue indexes belong to the previous deck.
+  const previousDeckIdentityKeyRef = useRef(deckIdentityKey);
+  useEffect(() => {
+    if (previousDeckIdentityKeyRef.current === deckIdentityKey) return;
+    previousDeckIdentityKeyRef.current = deckIdentityKey;
+    resetDeckProgress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deckIdentityKey]);
 
   const currentPoolIdx = queue[idx];
@@ -5863,6 +5884,12 @@ function FlashcardsPage() {
   }
 
   function resetSession() {
+    resetDeckProgress();
+    setSelectedFlashcardSet(null);
+  }
+
+  /** Clears the in-progress run but keeps the chosen set. */
+  function resetDeckProgress() {
     if (commitTimeoutRef.current) clearTimeout(commitTimeoutRef.current);
     isCommittingRef.current = false;
     dragRef.current = null;
@@ -5880,7 +5907,6 @@ function FlashcardsPage() {
     setUnknownCount(0);
     setXpEarned(0);
     setTotalCards(0);
-    setSelectedFlashcardSet(null);
   }
 
   function selectFlashcardSet(setIndex: FlashcardSetIndex) {
@@ -5909,7 +5935,7 @@ function FlashcardsPage() {
     }
   }
 
-  // Auto-shuffle & deal on chapter entry
+  // Auto-shuffle & deal on chapter entry (and after a deck-change reset)
   useEffect(() => {
     if (pool.length > 0 && queue.length === 0 && !completed) {
       const arr = buildShuffled();
@@ -5919,7 +5945,7 @@ function FlashcardsPage() {
       setTimeout(() => setDealing(false), 500);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pool, completed]);
+  }, [pool, completed, queue.length]);
 
   // First-visit tip
   useEffect(() => {
@@ -5984,7 +6010,10 @@ function FlashcardsPage() {
   const dontKnowCueOpacity = swipeOffset < 0 ? dragProgress : 0;
 
   // ── Subject World early-return ────────────────────────────────────────────
-  if (subject && !formWasChosen && !chapter) {
+  // Any subject without an explicit form gets the Form chooser — including a
+  // URL/bookmark that names a chapter: "Chapter 3" is a different chapter in
+  // every form, so building a deck here would silently mean Form 1.
+  if (subject && !formWasChosen) {
     return (
       <AcademyPageShell subjectId={planetSubjectId}>
         <FormGrid
@@ -6058,7 +6087,7 @@ function FlashcardsPage() {
                 type: "flashcards",
                 label: deck?.title ?? deckId,
                 timestamp: Date.now(),
-                form: form === "All" ? "Form 1" : form,
+                ...(form === "All" ? {} : { form }),
               });
             }
           }}
@@ -6145,9 +6174,19 @@ function FlashcardsPage() {
                   <button
                     type="button"
                     onClick={() => {
+                      // Decks saved before form tracking have no form: send
+                      // those to the Form chooser rather than into Form 1.
+                      const deckForm = parseKnownForm(lastDeck.form);
                       setSubject(lastDeck.subjectId);
-                      setForm((lastDeck.form ?? "Form 1") as FormFilter);
-                      setChapter(lastDeck.chapterKey);
+                      setForm(deckForm ?? "Form 1");
+                      setFormWasChosen(deckForm !== null);
+                      setChapter(deckForm ? lastDeck.chapterKey : null);
+                      updateFlashcardSearch({
+                        subject: lastDeck.subjectId,
+                        form: deckForm,
+                        chapter: deckForm ? lastDeck.chapterKey : null,
+                        set: null,
+                      });
                       resetSession();
                     }}
                     className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
@@ -6271,7 +6310,7 @@ function FlashcardsPage() {
                   type: "flashcards",
                   label: chapMeta?.label ?? key,
                   timestamp: Date.now(),
-                  form: form === "All" ? "Form 1" : form,
+                  ...(form === "All" ? {} : { form }),
                 });
               }
             }}
@@ -6462,7 +6501,11 @@ function FlashcardsPage() {
                 <select
                   value={form}
                   onChange={(e) => {
-                    setForm(e.target.value as FormFilter);
+                    const nextForm = e.target.value as FormFilter;
+                    setForm(nextForm);
+                    // Write it to the URL too, so a refresh keeps this form
+                    // ("All" has no deck and opens the Form chooser).
+                    updateFlashcardSearch({ form: nextForm, set: null });
                     resetSession();
                   }}
                   className="px-4 py-2 rounded-full bg-white/5 text-sm"

@@ -282,7 +282,9 @@ export function SubjectPlanetLink({
   return (
     <Link
       to={to}
-      search={{ subject: subjectId, form: 1 }}
+      // No form: every destination shows its Form chooser (FormGrid) for a
+      // subject without one, so a Form 2/3 student is never dropped in Form 1.
+      search={{ subject: subjectId }}
       className="academy-card group relative block h-full overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 text-left transition-all duration-300 hover:-translate-y-1 hover:border-white/[0.14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]"
       style={{
         boxShadow: `0 0 0 0 ${planet.glow}`,
