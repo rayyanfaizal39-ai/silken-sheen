@@ -2322,6 +2322,15 @@
   -webkit-transform: rotateY(180deg) translateZ(0.1px);
 }
 
+.flashcard-notes-scene {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.flashcard-notes-scene .flashcard-inner {
+  transition: transform 500ms ease-in-out;
+}
+
 .academy-readable {
   overflow-wrap: anywhere;
   text-wrap: pretty;

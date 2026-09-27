@@ -26,14 +26,13 @@ export function FlipCardGrid({
             key={item.id}
             type="button"
             onClick={() => toggle(item.id)}
-            className="group h-[150px] text-left [perspective:1000px]"
+            className="flashcard-scene flashcard-notes-scene group h-[150px] text-left"
             aria-pressed={isFlipped}
           >
             <div
-              className="relative h-full w-full transition-transform duration-500 [transform-style:preserve-3d]"
-              style={{ transform: isFlipped ? "rotateY(180deg)" : undefined }}
+              className={`flashcard-inner${isFlipped ? " is-flipped" : ""}`}
             >
-              <div className="absolute inset-0 overflow-hidden rounded-2xl border border-border bg-secondary/40 [backface-visibility:hidden]">
+              <div className="flashcard-face flashcard-front overflow-hidden rounded-2xl border border-border bg-secondary/40">
                 {imageUrl ? (
                   <img
                     src={imageUrl}
@@ -49,8 +48,7 @@ export function FlipCardGrid({
                 </div>
               </div>
               <div
-                className="absolute inset-0 flex items-center justify-center rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/35 to-accent/25 p-3.5 text-center text-xs leading-relaxed text-white [backface-visibility:hidden]"
-                style={{ transform: "rotateY(180deg)" }}
+                className="flashcard-face flashcard-back flex items-center justify-center rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/35 to-accent/25 p-3.5 text-center text-xs leading-relaxed text-white"
               >
                 {item.fact}
               </div>
