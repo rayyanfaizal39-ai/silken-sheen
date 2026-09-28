@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { ArrowLeft, ChevronLeft, ChevronRight, GitFork, Network, Rocket } from "lucide-react";
-import { subjects, type Form } from "@/data/subjects-meta";
+import { forms, subjects, type Form } from "@/data/subjects-meta";
 import {
   SubjectGrid,
   FormGrid,
@@ -15,7 +15,11 @@ import { useScienceLang } from "@/hooks/use-science-lang";
 import { useContentRegistry, type ContentRegistryModule } from "@/hooks/use-content-registry";
 import { MindMapBlock } from "@/components/notes/MindMapBlock";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
-import { normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
+import {
+  formSearchValue,
+  normalizeFormParam,
+  normalizeSubjectParam,
+} from "@/lib/study-routing";
 import {
   BAHASA_MELAYU_CATEGORY_DETAILS,
   getBahasaMelayuMindMapCategories,
@@ -39,9 +43,8 @@ const searchSchema = z.object({
     z.string().optional(),
   ),
   form: z.preprocess((value) => {
-    if (value == null || value === "") return undefined;
-    const formNumber = Number(String(value).replaceAll('"', ""));
-    return formNumber === 1 || formNumber === 2 || formNumber === 3 ? formNumber : undefined;
+    // Accepts 1/2/3, "Form 2", "form2"; unknown values stay unset (Form chooser).
+    return formSearchValue(value);
   }, z.number().optional()),
   chapter: z.preprocess(
     (value) => (value == null || value === "" ? undefined : String(value)),
@@ -478,8 +481,11 @@ function MindMapsPage() {
     normalizedSubject && subjects.some((candidate) => candidate.id === normalizedSubject)
       ? normalizedSubject
       : null;
-  const form = normalizeFormParam(search.form) as Form;
-  const hasSelectedForm = search.form != null;
+  const selectedForm = normalizeFormParam(search.form);
+  const hasSelectedForm = selectedForm !== null;
+  // Unknown Form: the Form chooser gate below returns before any mind map
+  // renders, so this value is never used to show content.
+  const form: Form = selectedForm ?? forms[0];
   const [chapter, setChapter] = useState<string | null>(search.chapter ?? null);
   const [selectedBmCategory, setSelectedBmCategory] =
     useState<BahasaMelayuMindMapCategory>("Tatabahasa");
@@ -632,7 +638,7 @@ function MindMapsPage() {
     });
   }
 
-  if (subject && !hasSelectedForm && !activeChapterKey) {
+  if (subject && !hasSelectedForm) {
     return (
       <AcademyPageShell subjectId={planetSubjectId}>
         <FormGrid

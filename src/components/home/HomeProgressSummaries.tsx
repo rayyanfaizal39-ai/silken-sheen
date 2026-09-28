@@ -57,16 +57,14 @@ function createLearningCatalog(registry: RegistryModule): HomeLearningCatalog {
       return chaptersFor(candidate).find((chapter) => chapter.key === candidate.chapterKey)?.label;
     },
     findAvailable(subjectId, chapterKey, activity) {
-      for (const form of FORMS) {
-        const candidate = { subjectId, chapterKey, form };
-        if (this.hasResource(candidate, activity)) {
-          return {
-            ...candidate,
-            label: this.getLabel(candidate),
-          };
-        }
-      }
-      return null;
+      // Chapter history is keyed without a Form. Only resolve it when exactly
+      // one Form has this chapter; if several do, the Form is unknown and we
+      // must not guess (never default to Form 1).
+      const matches = FORMS.map((form) => ({ subjectId, chapterKey, form })).filter((candidate) =>
+        this.hasResource(candidate, activity),
+      );
+      if (matches.length !== 1) return null;
+      return { ...matches[0], label: this.getLabel(matches[0]) };
     },
     firstAvailable(activity) {
       for (const subject of subjects) {

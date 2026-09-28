@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Sparkles, Brain, GitFork } from "lucide-react";
 import { useProgress, chapterActivityKey, type ChapterActivity } from "@/hooks/use-progress";
 import { subjects } from "@/data/subjects-meta";
-import { studyHref } from "@/lib/study-routing";
+import { normalizeFormParam, studyHref } from "@/lib/study-routing";
 
 type MissionKind = "notes" | "quiz" | "flashcards" | "mindmaps";
 
@@ -12,7 +12,7 @@ interface Mission {
   subjectId: string;
   subjectName: string;
   subjectColor: string;
-  form: string;
+  form: string | null;
   label: string;
   cta: string;
   href: string;
@@ -28,7 +28,9 @@ function pickNextMission(
   const anchor = lastVisited;
   const subject = subjects.find((s) => s.id === (anchor?.subjectId ?? "science"));
   if (!subject) return null;
-  const form = anchor?.form ?? "Form 1";
+  // Unknown Form (older history) → no form param, so the study page shows its
+  // Form chooser. Never guess Form 1.
+  const form = normalizeFormParam(anchor?.form);
   const chapterKey = anchor?.chapterKey ?? "chapter-1";
   const activity = chapterActivity[chapterActivityKey(subject.id, chapterKey)] ?? {};
 
@@ -71,7 +73,7 @@ function pickNextMission(
     form,
     label: anchor ? `${subject.name} • ${anchor.label}` : `${subject.name} • Chapter 1`,
     cta,
-    href: studyHref(kind === "quiz" ? "quizzes" : kind, subject.id, form),
+    href: studyHref(kind === "quiz" ? "quizzes" : kind, subject.id, form ?? undefined),
     xp,
     icon,
   };
@@ -115,7 +117,7 @@ export function NextMissionCard({ compact = false }: { compact?: boolean }) {
             {mission.label}
           </p>
           {!compact && (
-            <p className="mt-0.5 truncate text-xs text-white/60">{mission.subjectName} • {mission.form}</p>
+            <p className="mt-0.5 truncate text-xs text-white/60">{mission.subjectName}{mission.form ? ` • ${mission.form}` : ""}</p>
           )}
         </div>
         <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3 py-2 text-xs font-bold text-white transition-all group-hover:bg-white/20">

@@ -717,7 +717,10 @@ function englishQuizzesFor(chapterKey: string, form: "Form 1" | "Form 2" = "Form
 
 function sejarahFlashcardsFor(chapterNum: number) {
   return allFlashcards.filter(
-    (f) => f.subjectId === "sejarah" && sejarahChapterFromId(f.id) === chapterNum,
+    (f) =>
+      f.subjectId === "sejarah" &&
+      f.form === "Form 1" &&
+      sejarahChapterFromId(f.id) === chapterNum,
   );
 }
 function sejarahQuizzesFor(chapterNum: number) {

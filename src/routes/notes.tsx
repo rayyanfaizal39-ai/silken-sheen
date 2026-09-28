@@ -5,7 +5,7 @@ import {
 import { useNotesChapterLoading } from "@/hooks/use-notes-chapter-loading";
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useMemo, useRef, useState, type RefObject } from "react";
-import { subjects, type Form } from "@/data/subjects-meta";
+import { forms, subjects, type Form } from "@/data/subjects-meta";
 import { BookOpenCheck, ArrowLeft, ArrowUp, Compass } from "lucide-react";
 import { z } from "zod";
 import {
@@ -37,9 +37,11 @@ import {
   ScienceDiscoveryChapterHeader,
 } from "@/components/science/ScienceDiscoveryChrome";
 import {
+  formSearchValue,
   normalizeChapterParam,
   normalizeFormParam,
   normalizeSubjectParam,
+  studyResumeSearch,
 } from "@/lib/study-routing";
 import {
   AcademyHero,
@@ -673,9 +675,8 @@ const searchSchema = z.object({
     z.string().optional(),
   ),
   form: z.preprocess((value) => {
-    if (value == null || value === "") return undefined;
-    const formNumber = Number(String(value).replaceAll('"', ""));
-    return formNumber === 1 || formNumber === 2 || formNumber === 3 ? formNumber : undefined;
+    // Accepts 1/2/3, "Form 2", "form2"; unknown values stay unset (Form chooser).
+    return formSearchValue(value);
   }, z.number().optional()),
   chapter: z.preprocess(
     (value) => (value == null || value === "" ? undefined : String(value)),
@@ -829,11 +830,12 @@ function NotesRoute() {
   const scienceLanguage = useScienceLang();
   const { lang } = scienceLanguage;
   const subject = normalizeSubjectParam(search.subject) ?? null;
+  const selectedForm = normalizeFormParam(search.form);
   return (
     <NotesRegistryProvider
       subject={subject}
-      chapter={normalizeChapterParam(search.chapter)}
-      form={normalizeFormParam(search.form) as Form}
+      chapter={selectedForm ? normalizeChapterParam(search.chapter) : null}
+      form={selectedForm ?? forms[0]}
       lang={subject === "science" || subject === "math" ? (lang ?? undefined) : undefined}
     >
       <NotesPage scienceLanguage={scienceLanguage} />
@@ -853,8 +855,11 @@ function NotesPage({ scienceLanguage }: { scienceLanguage: ReturnType<typeof use
       ? normalizedSubject
       : null;
   const [chapter, setChapter] = useState<string | null>(normalizedChapter);
-  const form = normalizeFormParam(search.form) as Form;
-  const hasSelectedForm = search.form != null;
+  const selectedForm = normalizeFormParam(search.form);
+  const hasSelectedForm = selectedForm !== null;
+  // Unknown Form: the Form chooser gate below returns before any chapter
+  // renders, so this value is never used to show or record content.
+  const form: Form = selectedForm ?? forms[0];
   const [scrollPct, setScrollPct] = useState(0);
   const { progress, markChapter, setLastVisited } = useProgress();
   const { lang: scienceLang, setLang: setScienceLang } = scienceLanguage;
@@ -863,7 +868,8 @@ function NotesPage({ scienceLanguage }: { scienceLanguage: ReturnType<typeof use
 
   const activeScienceLang = isBilingualSubject ? (scienceLang ?? undefined) : undefined;
   const notesProgressScope = useMemo(
-    () => (subject ? { subject, form, variant: activeScienceLang } : null),
+    () =>
+      subject && hasSelectedForm ? { subject, form, variant: activeScienceLang } : null,
     [subject, form, activeScienceLang],
   );
   const notesContentRef = useRef<HTMLDivElement>(null);
@@ -1032,7 +1038,7 @@ function NotesPage({ scienceLanguage }: { scienceLanguage: ReturnType<typeof use
   }
 
   // ── BM has its own hub page ───────────────────────────────────────────────
-  if (subject && !hasSelectedForm && !activeChapterKey) {
+  if (subject && !hasSelectedForm) {
     return (
       <AcademyPageShell subjectId={planetSubjectId}>
         <FormGrid
@@ -1243,13 +1249,15 @@ function NotesPage({ scienceLanguage }: { scienceLanguage: ReturnType<typeof use
             });
           }}
           onContinueReading={(subjectId, chapterKey, form) => {
-            setChapter(chapterKey);
+            // Unknown Form (older history) → subject's Form chooser, not Form 1.
+            const resume = studyResumeSearch({ subjectId, chapterKey, form });
+            setChapter(resume.chapter ?? null);
             void navigate({
               search: (previous: Record<string, unknown>) => ({
                 ...previous,
-                subject: subjectId,
-                form: Number(form.replace("Form ", "")),
-                chapter: chapterKey,
+                subject: resume.subject,
+                form: resume.form,
+                chapter: resume.chapter,
               }),
             });
           }}

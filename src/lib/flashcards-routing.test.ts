@@ -9,15 +9,19 @@ import * as registryModule from "@/content/registry";
 import { flashcards, getItemChapterKey } from "@/data/content";
 import * as dataModule from "@/data/content";
 import {
+  formSearchValue,
   getStudyRouteMode,
   isRouteActive,
   normalizeFlashcardSetParam,
   normalizeFormParam,
   normalizeSubjectParam,
+  studyHref,
+  studyResumeSearch,
 } from "@/lib/study-routing";
 import {
   getFlashcardDeckCards as getFlashcardDeckCardsWithModules,
   hasFlashcardDeck as hasFlashcardDeckWithModules,
+  keepCardsForForm,
   splitFlashcardDeck,
 } from "@/lib/flashcard-availability";
 
@@ -362,5 +366,108 @@ describe("Flashcards route resolution", () => {
   it("keeps registered Form 2 and Form 3 flashcard paths working", () => {
     expect(hasFormResourceContent("science", "Form 2", "flashcards", "bm")).toBe(true);
     expect(hasFormResourceContent("science", "Form 3", "flashcards", "dlp")).toBe(true);
+  });
+});
+
+describe("Form routing never falls back to Form 1", () => {
+  it("normalizes every supported Form spelling", () => {
+    for (const n of [1, 2, 3] as const) {
+      const expected = `Form ${n}`;
+      expect(normalizeFormParam(n)).toBe(expected);
+      expect(normalizeFormParam(String(n))).toBe(expected);
+      expect(normalizeFormParam(`Form ${n}`)).toBe(expected);
+      expect(normalizeFormParam(`form${n}`)).toBe(expected);
+      expect(normalizeFormParam(`form-${n}`)).toBe(expected);
+      expect(formSearchValue(`Form ${n}`)).toBe(n);
+    }
+  });
+
+  it("treats missing or unknown Forms as unknown", () => {
+    for (const value of [undefined, null, "", "0", "4", "All", "Form 9", "abc", "form"]) {
+      expect(normalizeFormParam(value)).toBeNull();
+      expect(formSearchValue(value)).toBeUndefined();
+    }
+  });
+
+  it("resumes the saved Form and chapter, or only the subject when the Form is unknown", () => {
+    expect(
+      studyResumeSearch({ subjectId: "sejarah", chapterKey: "Chapter 3", form: "Form 2" }),
+    ).toEqual({ subject: "sejarah", form: 2, chapter: "Chapter 3" });
+    expect(
+      studyResumeSearch({ subjectId: "sejarah", chapterKey: "Chapter 5", form: "Form 3" }),
+    ).toEqual({ subject: "sejarah", form: 3, chapter: "Chapter 5" });
+    expect(studyResumeSearch({ subjectId: "sejarah", chapterKey: "Chapter 3" })).toEqual({
+      subject: "sejarah",
+    });
+    expect(
+      studyResumeSearch({ subjectId: "sejarah", chapterKey: "Chapter 3", form: "Form 7" }),
+    ).toEqual({ subject: "sejarah" });
+  });
+
+  it("keeps the Form on Next Mission study links", () => {
+    expect(studyHref("flashcards", "sejarah", "Form 2")).toBe(
+      "/flashcards?subject=sejarah&form=2",
+    );
+    expect(studyHref("quizzes", "sejarah", undefined)).toBe("/quizzes?subject=sejarah");
+  });
+
+  it("returns no deck for a missing or unknown Form", () => {
+    expect(getFlashcardDeckCards("sejarah", undefined, "Chapter 3")).toEqual([]);
+    expect(getFlashcardDeckCards("sejarah", "All", "Chapter 3")).toEqual([]);
+    expect(hasFlashcardDeck("sejarah", "Form 9", "Chapter 3")).toBe(false);
+  });
+});
+
+describe("Sejarah flashcard Form isolation", () => {
+  const chaptersFor = (form: "Form 1" | "Form 2" | "Form 3") =>
+    getRegisteredSubjectChapters("sejarah", undefined, form).map((chapter) => chapter.key);
+
+  it.each(["Form 1", "Form 2", "Form 3"] as const)(
+    "%s decks contain only %s cards in every chapter",
+    (form) => {
+      const prefix = `sej-f${form.slice(-1)}-`;
+      const chapters = chaptersFor(form);
+      expect(chapters.length).toBeGreaterThan(1);
+      for (const chapterKey of chapters) {
+        const registered = getChapter("sejarah", chapterKey, undefined, form)?.flashcards ?? [];
+        const deck = getFlashcardDeckCards("sejarah", form, chapterKey);
+        expect(registered.every((card) => card.form === form)).toBe(true);
+        expect(deck.every((card) => card.form === form && card.id.startsWith(prefix))).toBe(true);
+      }
+    },
+  );
+
+  it("serves the same chapter number from the selected Form only", () => {
+    const f1 = getFlashcardDeckCards("sejarah", 1, "Chapter 3");
+    const f2 = getFlashcardDeckCards("sejarah", "form2", "Chapter 3");
+    const f3 = getFlashcardDeckCards("sejarah", "Form 3", "Chapter 3");
+    expect(f1).toHaveLength(60);
+    expect(f2).toHaveLength(60);
+    expect(f3).toHaveLength(60);
+    expect(f1.every((card) => card.id.startsWith("sej-f1-c3-"))).toBe(true);
+    expect(f2.every((card) => card.id.startsWith("sej-f2-c3-"))).toBe(true);
+    expect(f3.every((card) => card.id.startsWith("sej-f3-c3-"))).toBe(true);
+    expect(splitFlashcardDeck(f2).map((set) => set.length)).toEqual([20, 20, 20]);
+  });
+
+  it("leaves under-filled Form 1 chapters as coming soon instead of borrowing other Forms", () => {
+    for (const chapterKey of ["Chapter 1", "Chapter 7"]) {
+      const ownCards = flashcards.filter(
+        (card) =>
+          card.subjectId === "sejarah" &&
+          card.form === "Form 1" &&
+          getItemChapterKey(card) === chapterKey,
+      );
+      expect(ownCards.length).toBeLessThan(60);
+      expect(getFlashcardDeckCards("sejarah", "Form 1", chapterKey)).toEqual([]);
+      expect(hasFlashcardDeck("sejarah", "Form 1", chapterKey)).toBe(false);
+    }
+  });
+
+  it("drops cards tagged with another Form at the loader guard", () => {
+    const f2Cards = getFlashcardDeckCards("sejarah", "Form 2", "Chapter 3");
+    const f3Cards = getFlashcardDeckCards("sejarah", "Form 3", "Chapter 3");
+    expect(keepCardsForForm([...f2Cards, ...f3Cards], "Form 2")).toEqual(f2Cards);
+    expect(keepCardsForForm([...f2Cards, ...f3Cards], "Form 1")).toEqual([]);
   });
 });
