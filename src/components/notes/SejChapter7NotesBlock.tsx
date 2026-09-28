@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Sej7Content } from "@/content/form1/sejarah/chapter-7/sej7-content";
 import { ChipRow } from "./blocks/ChipRow";
 import { FactGrid } from "./blocks/FactGrid";
@@ -9,31 +9,14 @@ import { ChinaDynastyTimeline } from "./blocks/ChinaDynastyTimeline";
 import { ExamSpanTimeline } from "./blocks/ExamSpanTimeline";
 import { bgPanel, groupGlow, neon } from "./blocks/neon-tokens";
 import transformasiAsoka from "@/assets/form1-content/transformasi-asoka.png";
-import dinastiQinHan from "@/assets/form1-content/dinasti-qin-han.png";
+import {
+  Chapter7Flow,
+  Chapter7ExamLadder,
+  Chapter7PaperProcess,
+} from "./SejChapter7LearningVisuals";
 
-const ORBIT_LABELS = [
-  "Pengenalan India",
-  "Perluasan Kuasa",
-  "Tiga Dinasti India",
-  "Transformasi Asoka",
-  "Zaman Gupta",
-  "Tamadun China",
-  "Pendidikan China",
-  "Rumusan",
-];
-
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 7.1", title: "Tamadun India" },
-  { eyebrow: "◆ 7.2", title: "Lima Faktor Perluasan Kuasa", sub: "Apa yang membolehkan sesebuah kerajaan India berkembang menjadi empayar." },
-  { eyebrow: "◆ 7.3", title: "Tiga Dinasti India — Kekuatan Ketenteraan", sub: "Semua berpusat di Pataliputra, semua bergantung pada kekuatan tentera." },
-  { eyebrow: "◆ 7.4", title: "Transformasi Asoka — Sebelum dan Selepas Kalinga", sub: "Satu peperangan yang mengubah keseluruhan hala tuju empayar." },
-  { eyebrow: "◆ 7.5", title: "Zaman Keemasan Gupta" },
-  { eyebrow: "◆ 7.6", title: "Dinasti Qin ke Dinasti Han", sub: "Penyatuan China, kemudian pembukaan dunia melalui Laluan Sutera." },
-  { eyebrow: "◆ 7.7", title: "Sistem Pendidikan Tamadun China", sub: "Tiga peringkat, satu matlamat: peperiksaan perkhidmatan awam." },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
-];
-
-const TOTAL = ORBIT_LABELS.length;
+const TOTAL = 10;
+const STEP_ORDER = [0, 1, 2, 3, 4, 5, 6, 8, 9, 7];
 
 export function SejChapter7NotesBlock({
   id,
@@ -41,33 +24,39 @@ export function SejChapter7NotesBlock({
   storageKey,
   isRead,
   onMarkRead,
+  initialSection = 0,
 }: {
   id?: string;
   content: Sej7Content;
   storageKey?: string;
   isRead?: boolean;
   onMarkRead?: () => void;
+  initialSection?: number;
 }) {
   const stateKey = storageKey ? `${storageKey}:sej-c7-section` : undefined;
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(initialSection);
 
   useEffect(() => {
     if (!stateKey) return;
     const saved = window.sessionStorage.getItem(stateKey);
     const parsed = saved ? Number(saved) : 0;
     if (Number.isFinite(parsed)) setCurrent(Math.max(0, Math.min(parsed, TOTAL - 1)));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stateKey]);
 
   useEffect(() => {
     if (stateKey) window.sessionStorage.setItem(stateKey, String(current));
   }, [current, stateKey]);
 
-  const chrome = SECTION_CHROME[current];
-  const isLast = current === TOTAL - 1;
+  const isLast = current === 7;
+  const official =
+    current < 5
+      ? content.officialSubtopics[0]
+      : current === 7
+        ? undefined
+        : content.officialSubtopics[1];
 
   function go(dir: number) {
-    setCurrent((c) => Math.max(0, Math.min(TOTAL - 1, c + dir)));
+    setCurrent((c) => STEP_ORDER[Math.max(0, Math.min(TOTAL - 1, STEP_ORDER.indexOf(c) + dir))]);
   }
 
   return (
@@ -75,74 +64,115 @@ export function SejChapter7NotesBlock({
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">🏯</div>
         <div>
-          <p className="font-display mb-1 text-base font-bold text-foreground sm:text-lg">{content.hook.title}</p>
+          <p className="font-display mb-1 text-base font-bold text-foreground sm:text-lg">
+            {content.hook.title}
+          </p>
           <p className="text-sm leading-relaxed text-muted-foreground">{content.hook.body}</p>
         </div>
       </div>
 
-      <div className="mb-6 flex items-center justify-between gap-1 overflow-x-auto pb-1">
-        {ORBIT_LABELS.map((label, i) => (
+      <nav aria-label="Subtopik rasmi" className="mb-4 flex flex-wrap gap-3">
+        {content.officialSubtopics.map((sub) => (
           <button
-            key={label}
+            key={sub.number}
             type="button"
-            onClick={() => setCurrent(i)}
-            className="flex shrink-0 flex-col items-center gap-1.5 px-1"
+            data-official-subtopic={sub.number}
+            onClick={() => setCurrent(sub.start)}
+            className="rounded-lg border border-primary/40 px-4 py-2 text-sm font-bold"
           >
-            <span
-              className={`flex h-8 w-8 items-center justify-center rounded-full border-2 text-xs font-semibold transition-all ${
-                i < current
-                  ? "border-transparent bg-gradient-to-br from-primary to-accent text-white"
-                  : i === current
-                    ? "border-primary text-primary shadow-[0_0_0_4px_rgba(59,130,246,0.16)]"
-                    : "border-border text-muted-foreground"
-              }`}
-            >
-              {i < current ? <CheckCircle2 className="h-4 w-4" /> : i + 1}
-            </span>
-            <span
-              className={`max-w-[68px] text-center text-[10px] leading-tight ${
-                i === current ? "font-semibold text-foreground" : "text-muted-foreground"
-              }`}
-            >
-              {label}
-            </span>
+            {sub.number} {sub.title}
           </button>
         ))}
-      </div>
+      </nav>
+      <nav aria-label="Bahagian pembelajaran" className="mb-6 flex gap-2 overflow-x-auto pb-2">
+        {STEP_ORDER.map((i) => (
+          <button
+            key={i}
+            type="button"
+            aria-pressed={i === current}
+            onClick={() => setCurrent(i)}
+            className={`shrink-0 rounded-lg border px-3 py-2 text-xs ${i === current ? "border-primary bg-primary/10 font-bold text-primary" : "border-border text-muted-foreground"}`}
+          >
+            {i === 0 ? "Tamadun India" : i === 5 ? "Tamadun China" : content.learningSections[i]}
+          </button>
+        ))}
+      </nav>
 
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8 [&_p]:text-sm [&_h5]:text-sm">
+        {official && (
+          <p
+            data-section-number={official.number}
+            className="mb-1 text-xs font-bold uppercase tracking-wider text-primary"
+          >
+            {official.title}
+          </p>
+        )}
+        <h2 className="font-display mb-6 text-xl font-bold text-foreground sm:text-2xl">
+          {content.learningSections[current]}
+        </h2>
 
         {current === 0 && (
           <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.indiaOverview.intro}</p>
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.indiaOverview.locationShift}</p>
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.indiaOverview.janapadaSystem}</p>
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.indiaOverview.magadhaRise}</p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {content.indiaOverview.intro}
+            </p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {content.indiaOverview.locationShift}
+            </p>
+            <Chapter7Flow
+              items={content.indiaOverview.development}
+              label="Lokasi dan Perkembangannya"
+            />
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {content.indiaOverview.janapadaSystem}
+            </p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {content.indiaOverview.magadhaRise}
+            </p>
           </div>
         )}
 
         {current === 1 && (
           <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.powerExpansion.definition}</p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {content.powerExpansion.definition}
+            </p>
             <IconCardGrid
-              items={content.powerExpansion.factors.map((f) => ({ label: f.factor, detail: f.description }))}
+              items={content.powerExpansion.factors.map((f) => ({
+                label: f.factor,
+                detail: f.description,
+              }))}
             />
             <div className="grid gap-3 sm:grid-cols-2">
               {content.powerExpansion.forms.map((f) => (
                 <div key={f.type} className="rounded-xl border border-border bg-secondary/40 p-3.5">
                   <p className="text-[12.5px] font-semibold text-foreground">{f.type}</p>
-                  <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{f.description}</p>
+                  <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
+                    {f.description}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {current === 2 && <DynastyMilitaryCards dynasties={content.indianDynasties} />}
+        {current === 2 && (
+          <div className="space-y-6">
+            <Chapter7Flow
+              items={content.indianDynasties.map((d) => d.name)}
+              label="Dinasti India"
+            />
+            <DynastyMilitaryCards dynasties={content.indianDynasties} />
+            <dl className="grid gap-3 sm:grid-cols-2">
+              {content.glossary.slice(0, 4).map((g) => (
+                <div key={g.term}>
+                  <dt className="font-semibold">{g.term}</dt>
+                  <dd className="text-sm text-muted-foreground">{g.meaning}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
 
         {current === 3 && (
           <div className="space-y-6">
@@ -152,19 +182,33 @@ export function SejChapter7NotesBlock({
               className="notes-figure-img rounded-2xl border border-border"
             />
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl p-4" style={{ background: bgPanel, boxShadow: groupGlow(neon.red, 18, 0.15) }}>
+              <div
+                className="rounded-2xl p-4"
+                style={{ background: bgPanel, boxShadow: groupGlow(neon.red, 18, 0.15) }}
+              >
                 <h5 className="font-display mb-2 text-sm font-bold" style={{ color: neon.red }}>
                   ⚔️ Sebelum Perang Kalinga
                 </h5>
-                <p className="text-[11px] leading-relaxed text-muted-foreground">{content.asokaTransformation.beforeKalinga}</p>
-                <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">{content.asokaTransformation.kalingaWar}</p>
+                <p className="text-[11px] leading-relaxed text-muted-foreground">
+                  {content.asokaTransformation.beforeKalinga}
+                </p>
+                <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
+                  {content.asokaTransformation.kalingaWar}
+                </p>
               </div>
-              <div className="rounded-2xl p-4" style={{ background: bgPanel, boxShadow: groupGlow(neon.green, 18, 0.15) }}>
+              <div
+                className="rounded-2xl p-4"
+                style={{ background: bgPanel, boxShadow: groupGlow(neon.green, 18, 0.15) }}
+              >
                 <h5 className="font-display mb-2 text-sm font-bold" style={{ color: neon.green }}>
                   ☸️ Selepas Perang Kalinga
                 </h5>
-                <p className="text-[11px] leading-relaxed text-muted-foreground">{content.asokaTransformation.afterKalinga}</p>
-                <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">{content.asokaTransformation.asokaPillar}</p>
+                <p className="text-[11px] leading-relaxed text-muted-foreground">
+                  {content.asokaTransformation.afterKalinga}
+                </p>
+                <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
+                  {content.asokaTransformation.asokaPillar}
+                </p>
               </div>
             </div>
             <ChipRow heading="☸️ Misi Buddha" items={content.asokaTransformation.buddhistMission} />
@@ -174,23 +218,41 @@ export function SejChapter7NotesBlock({
         {current === 4 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">
-              <span className="font-semibold text-foreground">{content.guptaGoldenAge.founder}</span> ({content.guptaGoldenAge.duration})
+              <span className="font-semibold text-foreground">
+                {content.guptaGoldenAge.founder}
+              </span>{" "}
+              ({content.guptaGoldenAge.duration})
             </p>
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.guptaGoldenAge.religionFocus}</p>
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.guptaGoldenAge.samudragupta}</p>
-            <FactGrid heading="🏆 Pencapaian Zaman Gupta" facts={content.guptaGoldenAge.achievements} />
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {content.guptaGoldenAge.religionFocus}
+            </p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {content.guptaGoldenAge.samudragupta}
+            </p>
+            <FactGrid heading="Zaman Gupta" facts={content.guptaGoldenAge.achievements} />
+            <p className="text-sm text-muted-foreground">
+              {content.glossary[4].term}: {content.glossary[4].meaning}
+            </p>
+            <FactGrid heading="Tamadun India" facts={content.indianAchievements} />
+            <details>
+              <summary className="cursor-pointer font-semibold">Aktiviti</summary>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-sm">
+                {content.activities[0].tasks.map((task) => (
+                  <li key={task}>{task}</li>
+                ))}
+              </ul>
+            </details>
           </div>
         )}
 
         {current === 5 && (
           <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.chinaOverview.intro}</p>
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.chinaOverview.location}</p>
-            <img
-              src={dinastiQinHan}
-              alt="Dinasti Qin dan Han"
-              className="notes-figure-img rounded-2xl border border-border"
-            />
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {content.chinaOverview.intro}
+            </p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              {content.chinaOverview.location}
+            </p>
             <ChinaDynastyTimeline
               items={content.chineseDynasties.map((d, i) => ({
                 name: d.name,
@@ -199,41 +261,173 @@ export function SejChapter7NotesBlock({
                 color: i === 0 ? neon.red : neon.blue,
               }))}
             />
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.silkRoad.definition}</p>
+            <div className="grid gap-5 sm:grid-cols-2">
+              {content.chineseDynasties.map((d) => (
+                <div key={d.name}>
+                  <h3 className="mb-2 font-bold">{d.name}</h3>
+                  <p className="text-sm">{d.founder}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{d.capital}</p>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-sm">
+                    {d.facts.map((f) => (
+                      <li key={f}>{f}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <h3 className="font-bold">Laluan Sutera</h3>
+            <Chapter7Flow
+              items={content.silkRoad.route}
+              label="Laluan Sutera — skema laluan, bukan peta berskala"
+            />
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              {content.silkRoad.definition}. {content.silkRoad.significance}.
+            </p>
           </div>
         )}
 
         {current === 6 && (
           <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.education.intro}</p>
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">
-              <span className="font-semibold text-foreground">Confucius</span> ({content.education.confucius.lifespan}) —{" "}
-              {content.education.confucius.work}. {content.education.confucius.legacy}
+              {content.education.intro}
             </p>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+              <span className="font-semibold text-foreground">
+                {content.education.confucius.name}
+              </span>{" "}
+              ({content.education.confucius.lifespan}) — {content.education.confucius.work}.{" "}
+              {content.education.confucius.legacy}
+            </p>
+            <Chapter7Flow items={content.education.chronology} label="Perkembangan Pendidikan" />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <section>
+                <h3 className="mb-2 font-bold">Dinasti Qin</h3>
+                <p className="text-sm leading-relaxed">{content.education.qinEducation}</p>
+              </section>
+              <section>
+                <h3 className="mb-2 font-bold">Dinasti Han</h3>
+                <p className="text-sm leading-relaxed">{content.education.hanEducation}</p>
+              </section>
+            </div>
+            <h3 className="font-bold">Tahap Sistem Pendidikan</h3>
+            <p className="text-sm">{content.education.skills}</p>
             <IconCardGrid
               items={content.education.levels.map((l) => ({ label: l.level, detail: l.focus }))}
             />
-            <ChipRow heading="🎯 Matlamat Pendidikan" items={content.education.goals.map((g) => g.goal)} />
+            <ChipRow
+              heading="🎯 Matlamat Pendidikan"
+              items={content.education.goals.map((g) => g.goal)}
+            />
+            <p className="text-sm">{content.education.socialImportance}</p>
+            <Chapter7Flow items={content.education.socialHierarchy} label="Hierarki sosial" />
+          </div>
+        )}
+
+        {current === 8 && (
+          <div className="space-y-6">
+            <p className="text-sm leading-relaxed">{content.education.examSystem.intro}</p>
             <ExamSpanTimeline
               startLabel={`Diperkenalkan — ${content.education.examSystem.introduced}`}
               startYear="29 SM"
               endLabel={`Dimansuhkan oleh ${content.education.examSystem.abolishedBy}`}
               endYear={content.education.examSystem.abolished}
             />
-            <p className="text-center text-[11px] text-muted-foreground">
-              Kertas dicipta oleh {content.education.paperInvention.inventor} — {content.education.paperInvention.materials}
-            </p>
+            <Chapter7ExamLadder exam={content.education.examSystem} />
+            <h3 className="font-bold">Ciri-ciri sistem peperiksaan perkhidmatan awam</h3>
+            <ul className="list-disc space-y-2 pl-5 text-sm">
+              {content.education.examSystem.characteristics.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+            <p className="text-sm leading-relaxed">{content.education.examSystem.sponsorship}</p>
+            <ul className="list-disc space-y-2 border-l-2 border-primary/40 pl-5 text-sm">
+              {content.education.examSystem.controls.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+            <p className="text-sm">{content.education.examSystem.syllabus}</p>
+            <details>
+              <summary className="cursor-pointer font-semibold">Sembilan Buku Suci</summary>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                {content.education.examSystem.books.map((group) => (
+                  <div key={group.group}>
+                    <h4 className="font-semibold">{group.group}</h4>
+                    <ul className="mt-2 list-disc pl-5 text-sm">
+                      {group.titles.map((title) => (
+                        <li key={title}>{title}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </details>
+            <h3 className="font-bold">Tokoh intelektual</h3>
+            <dl className="grid gap-4 sm:grid-cols-2">
+              {content.education.scholars.map((scholar) => (
+                <div key={scholar.name} className="border-t border-border pt-3">
+                  <dt className="font-semibold">
+                    {scholar.name}{" "}
+                    <span className="text-xs text-muted-foreground">{scholar.lifespan}</span>
+                  </dt>
+                  <dd className="mt-2 text-sm leading-relaxed">{scholar.contribution}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="text-sm">{content.education.examSystem.legacy}</p>
+            {content.activities.slice(1).map((activity) => (
+              <details key={activity.page}>
+                <summary className="cursor-pointer font-semibold">{activity.title}</summary>
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm">
+                  {activity.tasks.map((task) => (
+                    <li key={task}>{task}</li>
+                  ))}
+                </ul>
+              </details>
+            ))}
           </div>
         )}
 
+        {current === 9 && <Chapter7PaperProcess paper={content.education.paperInvention} />}
+
         {current === 7 && (
           <div className="space-y-6">
-            <FactGrid heading="⭐ Fakta Penting Peperiksaan" facts={content.keyExamFacts} />
+            <FactGrid heading="Fakta Penting Peperiksaan" facts={content.keyExamFacts} />
+            <FactGrid heading="Nilai, Patriotisme dan Iktibar" facts={content.values} />
             <ChipRow heading="📘 Istilah Utama" items={content.keyTerms} />
             <div>
-              <h4 className="font-display mb-2 text-sm font-bold text-foreground">⭐ Rumusan Bab</h4>
-              <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.chapterSummary}</p>
+              <h4 className="font-display mb-2 text-sm font-bold text-foreground">
+                ⭐ Rumusan Bab
+              </h4>
+              <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+                {content.chapterSummary}
+              </p>
             </div>
+            <details>
+              <summary className="cursor-pointer font-semibold">
+                Pemahaman dan Pemikiran Kritis
+              </summary>
+              <ol className="mt-4 list-decimal space-y-5 pl-5">
+                {content.practice.map((q) => (
+                  <li key={q.question} className="text-sm leading-relaxed">
+                    {q.context && (
+                      <ul className="mb-2 list-disc pl-4">
+                        {q.context.map((c) => (
+                          <li key={c}>{c}</li>
+                        ))}
+                      </ul>
+                    )}
+                    <p>{q.question}</p>
+                    {q.options && (
+                      <ol className="mt-2 list-[upper-alpha] pl-5">
+                        {q.options.map((option) => (
+                          <li key={option}>{option}</li>
+                        ))}
+                      </ol>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </details>
             {onMarkRead && (
               <div className="flex justify-center pt-2">
                 <button

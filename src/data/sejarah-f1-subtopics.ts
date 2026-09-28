@@ -470,67 +470,41 @@ export const sejarahF1Subtopics: Record<string, Subtopic[]> = {
       keywords: ["tamadun Islam", "ilmu", "keadilan", "perpaduan", "pendidikan", "kebajikan sosial"],
     },
   ],
+  // Lightweight Chapter 7 summaries: parity-tested against sej7Subtopics.
   "Chapter 7": [
     {
       key: "c7-s1",
       num: 1,
-      title: "Peningkatan Tamadun India",
+      title: "Tamadun India",
       summary:
-        "Tamadun India berkembang daripada petempatan kecil yang dikenali sebagai Janapada kepada kerajaan besar Mahajanapada. Perubahan ini menunjukkan peningkatan dalam sistem politik, ekonomi, dan sosial masyarakat India sehingga munculnya kerajaan yang lebih tersusun dan kuat.",
-      keywords: ["Janapada", "Mahajanapada", "Tamadun India", "politik", "ekonomi", "sosial"],
+        "Selepas Tamadun Indus berakhir, pusat tamadun beralih ke Lembah Ganges — tahap kedua dalam Tamadun India. Perkembangan di Lembah Ganges membawa kemunculan kerajaan kecil (janapada), yang kemudian membentuk kerajaan lebih besar (mahajanapada). Magadha (timur laut India) muncul sebagai kuasa penting antara 540-490 SM, menguasai kerajaan lain berkat kedudukan strategik di Lembah Ganges yang mengawal laluan perdagangan Sungai Ganges — menjadi asas kepada Dinasti Nanda, Maurya dan Gupta. Perluasan kuasa bermaksud usaha yang dilakukan oleh sesebuah kerajaan atau raja bagi menguasai dan memperluas pengaruh di sesebuah kawasan atau usaha untuk mengatasi pihak lain. Kesedaran daripada kemusnahan Perang Kalinga mengubah pemerintahan Asoka menjadi lebih toleran dan bertanggungjawab — beliau menghentikan perluasan fizikal dan menumpukan kepada pengembangan agama Buddha Penekanan kepada agama Hindu membolehkan zaman Gupta dikenali sebagai zaman keemasan agama Hindu. Pemerintah Gupta menekankan kebudayaan, kesusasteraan, seni bina, perdagangan dan pemerintahan yang berasaskan agama Hindu.",
+      keywords: [
+        "Janapada",
+        "Mahajanapada",
+        "Magadha",
+        "Dinasti Nanda",
+        "Dinasti Maurya",
+        "Dinasti Gupta",
+        "Asoka",
+      ],
     },
-
     {
       key: "c7-s2",
       num: 2,
-      title: "Keunggulan Kerajaan Magadha",
+      title: "Tamadun China",
       summary:
-        "Kerajaan Magadha muncul sebagai kuasa utama di India antara 540 SM hingga 320 SM. Kedudukannya di Lembah Ganges yang subur membantu perkembangan pertanian dan perdagangan. Selain itu, Magadha mempunyai sumber besi yang banyak untuk menghasilkan senjata serta gajah hutan yang digunakan dalam ketenteraan.",
-      keywords: ["Magadha", "Lembah Ganges", "pertanian", "perdagangan", "besi", "gajah", "ketenteraan"],
-    },
-
-    {
-      key: "c7-s3",
-      num: 3,
-      title: "Perluasan Kuasa Dinasti Maurya",
-      summary:
-        "Dinasti Maurya mencapai kegemilangan semasa pemerintahan Chandragupta Maurya dan Bindusara. Chandragupta Maurya dengan bantuan Chanakya membina angkatan tentera yang besar untuk menyatukan India Utara. Bindusara pula meneruskan usaha perluasan kuasa ke India Selatan sehingga ke Mysore.",
-      keywords: ["Dinasti Maurya", "Chandragupta Maurya", "Bindusara", "Chanakya", "tentera", "Mysore", "India Utara"],
-    },
-
-    {
-      key: "c7-s4",
-      num: 4,
-      title: "Raja Asoka dan Dasar Dharma",
-      summary:
-        "Selepas Perang Kalinga pada tahun 261 SM, Raja Asoka berasa kesal terhadap kematian dan penderitaan yang berlaku. Beliau memeluk agama Buddha dan memperkenalkan Dasar Dharma yang menekankan kasih sayang, keadilan, toleransi agama, dan kebajikan rakyat. Titah perintah Asoka diukir pada Tiang Asoka untuk dijadikan panduan masyarakat.",
-      keywords: ["Asoka", "Perang Kalinga", "Dharma", "Buddha", "Tiang Asoka", "keadilan", "toleransi agama"],
-    },
-
-    {
-      key: "c7-s5",
-      num: 5,
-      title: "Peningkatan Tamadun China",
-      summary:
-        "Peningkatan Tamadun China berasaskan sistem pendidikan dan meritokrasi. Pendidikan bertujuan melahirkan pegawai kerajaan yang berkualiti, mengekalkan ajaran Konfusianisme, dan meningkatkan status sosial masyarakat. Sistem ini membantu melahirkan pentadbiran yang cekap dan stabil.",
-      keywords: ["Tamadun China", "meritokrasi", "Konfusianisme", "pendidikan", "pegawai kerajaan", "status sosial"],
-    },
-
-    {
-      key: "c7-s6",
-      num: 6,
-      title: "Sistem Pendidikan dan Peperiksaan Awam China",
-      summary:
-        "Sistem pendidikan China dibahagikan kepada pendidikan rendah, menengah, dan tinggi. Pelajar mempelajari tulisan, sastera, falsafah Konfusius, etika, dan kepimpinan. Sistem peperiksaan awam dimulakan oleh Maharaja Wu semasa Dinasti Han. Peperiksaan terdiri daripada tiga tahap: Xiucai, Juren, dan Jinshi. Sistem ini sangat ketat dan bertujuan memilih pegawai kerajaan berdasarkan kebolehan serta ilmu pengetahuan.",
+        "Masih berpusat di Lembah Sungai Huang He — kawasan subur dan strategik Menekankan pemahaman perundangan (diasaskan Han Fei Zi) — ketegasan undang-undang mengawal tingkah laku manusia; Shi Huangdi menyeragamkan sistem tulisan Diperkukuh melalui sekolah tinggi di Chang'an, menekankan Konfusianisme; sekolah sama ditubuhkan di peringkat daerah dan wilayah 29 SM, zaman Maharaja Wu (Dinasti Han) Peperiksaan berkisar pada kandungan Empat Buku (The Four Books) dan Lima Kitab (The Five Classics) yang dikenali sebagai Sembilan Buku Suci. Xiucai: Peringkat daerah; Dua kali setiap tiga tahun; Sehari. Terbuka kepada semua orang. Butang keemasan dilekatkan pada topi. Diterima sebagai kakitangan kerajaan peringkat rendah. Menyertai Majlis Santapan Diraja. Juren: Ibu kota daerah; Tiga tahun sekali; Tiga hari. Hanya terbuka kepada calon yang telah lulus tahap pertama. Memperoleh butang keemasan dan jawatan dalam kerajaan. Tanda nama diletakkan di pintu masuk rumah. Mempunyai kakitangan pengiring. Jinshi: Ibu kota kerajaan; Tiga tahun sekali; 13 hari.  Mendapat kedudukan dan pangkat tinggi dalam kerajaan. Keistimewaan untuk dirinya, keluarga dan kampung. Sistem yang sama dilaksanakan di seluruh empayar dan mereka yang didapati meniru akan dikenakan hukuman. Bagi mengelakkan penipuan, calon akan dikurung sebelum peperiksaan berlangsung. Hanya mereka yang lulus dengan cemerlang akan diserapkan ke dalam sistem perkhidmatan kerajaan. Dong Zhongshu: Sarjana Konfusius terkemuka. Sima Qian: Sejarawan China pertama yang menulis Shiji. Karya ini mengisahkan sejarah China hingga tahun 90 SM. Cai Lun: Campuran kulit pokok, serpihan rami kain, dan jaring",
       keywords: [
-        "Maharaja Wu",
+        "Dinasti Qin",
         "Dinasti Han",
+        "Laluan Sutera",
+        "Han Fei Zi",
         "Xiucai",
         "Juren",
         "Jinshi",
-        "Konfusius",
-        "peperiksaan awam",
-        "meritokrasi",
+        "Dong Zhongshu",
+        "Sima Qian",
+        "Cai Lun",
       ],
     },
   ],
@@ -888,40 +862,7 @@ export const sejarahF1TextbookAdditions: Record<string, Subtopic[]> = {
       keywords: ["Colosseum", "Pantheon", "amfiteater", "akueduk", "Tembok Hadrian", "Circus Maximus"],
     },
   ],
-  "Chapter 7": [
-    {
-      key: "c7-tb1",
-      num: 7,
-      title: "Janapada, Mahajanapada dan Magadha",
-      summary:
-        "Selepas Tamadun Indus berakhir, pusat tamadun beralih ke Lembah Ganges. Kerajaan kecil dikenali sebagai janapada, manakala gabungan yang lebih besar disebut mahajanapada. Magadha muncul sebagai kuasa penting kerana kedudukan strategik, tanah subur, sumber besi, gajah untuk tentera dan hubungan perdagangan. Dinasti Nanda kemudian digantikan oleh Dinasti Maurya yang diasaskan Chandragupta Maurya.",
-      keywords: ["Lembah Ganges", "janapada", "mahajanapada", "Dinasti Nanda", "Dinasti Maurya"],
-    },
-    {
-      key: "c7-tb2",
-      num: 8,
-      title: "Perluasan Kuasa India",
-      summary:
-        "Perluasan kuasa dilakukan secara fizikal dan keagamaan. Chandragupta Maurya membentuk empayar berpusat di Pataliputra dengan tentera yang besar. Asoka meneruskan perluasan hingga Perang Kalinga, tetapi penderitaan perang mendorongnya menghentikan penaklukan bersenjata. Beliau kemudian menyebarkan agama Buddha melalui utusan, inskripsi dan misi ke Tibet, Nepal, Alexandria, Antioch, Bactria serta Asia Tenggara.",
-      keywords: ["Pataliputra", "Perang Kalinga", "perluasan fizikal", "perluasan keagamaan", "inskripsi", "Bactria"],
-    },
-    {
-      key: "c7-tb3",
-      num: 9,
-      title: "Matlamat Pendidikan Tamadun China",
-      summary:
-        "Pendidikan China bertujuan lulus peperiksaan perkhidmatan awam, mengekalkan ajaran Konfusianisme, membezakan golongan elit dengan rakyat, memilih pegawai yang cekap dan memupuk nilai moral. Pendidikan rendah menumpukan hafalan tulisan dan buku suci; peringkat menengah mengajar karangan dan sastera; peringkat tinggi menafsir kitab suci serta ajaran Konfusius.",
-      keywords: ["perkhidmatan awam", "Konfusianisme", "golongan elit", "hafalan", "karangan", "kitab suci"],
-    },
-    {
-      key: "c7-tb4",
-      num: 10,
-      title: "Peperiksaan Perkhidmatan Awam China",
-      summary:
-        "Sistem peperiksaan bermula sejak Dinasti Qin dan diperkemas Maharaja Wu Di daripada Dinasti Han. Calon diperiksa dengan ketat untuk mengelakkan penipuan. Tiga tahap utama ialah Xiucai (daerah, dua kali setiap tiga tahun), Juren (ibu kota daerah, tiga tahun sekali) dan Jinshi (ibu kota empayar di hadapan maharaja, tiga tahun sekali). Mereka yang lulus memperoleh jawatan kerajaan, keistimewaan, tanda nama dan status sosial tinggi.",
-      keywords: ["Dinasti Qin", "Maharaja Wu Di", "Xiucai", "Juren", "Jinshi", "tiga tahun sekali"],
-    },
-  ],
+  "Chapter 7": [],
   "Chapter 8": [
     {
       key: "c8-tb1",
