@@ -2286,7 +2286,7 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah istilah yang menggantikan Melayu-Polinesia pada tahun 1972?",
+    front: "Apakah istilah yang menggantikan Melayu Polinesia?",
     back: "Austronesia.",
   },
   {
@@ -2294,8 +2294,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah persamaan budaya Alam Melayu menurut A. Aziz Deraman?",
-    back: "Kesenian, adat, nilai masyarakat dan gotong-royong.",
+    front: "Apakah aspek budaya serumpun masyarakat Alam Melayu?",
+    back: "Bahasa dan tulisan, persuratan, struktur sosial, kesenian, kepercayaan dan adat.",
   },
   {
     id: "sej-f2-c1-fc7",
@@ -2319,7 +2319,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Siapakah pengasas Kerajaan Funan?",
-    back: "Kaudinya.",
+    back: "Kaundinya.",
   },
   {
     id: "sej-f2-c1-fc10",
@@ -2399,14 +2399,14 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Di manakah Kerajaan Kedah Tua berkembang?",
-    back: "Sungai Mas dan Pangkalan Bujang.",
+    back: "Sungai Mas dan Sungai Bujang.",
   },
   {
     id: "sej-f2-c1-fc20",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah pusat kerajaan terawal Gangga Negara?",
+    front: "Apakah pusat kerajaan terawal Gangga Nagara?",
     back: "Pangkalan.",
   },
 
@@ -2457,7 +2457,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Apakah faktor kemerosotan Kerajaan Champa?",
-    back: "Serangan Dai Viet dan penawanan Champa pada tahun 1471.",
+    back: "Kemerosotan bermula selepas kematian Indravarman pada tahun 1441, diikuti serangan Dai Viet sehingga Champa ditawan pada tahun 1471.",
   },
   {
     id: "sej-f2-c1-fc27",
@@ -2505,7 +2505,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Siapakah pengasas Kerajaan Majapahit?",
-    back: "Raden Wijaya.",
+    back: "Raden Vijaya.",
   },
   {
     id: "sej-f2-c1-fc33",
@@ -2579,7 +2579,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Apakah kawasan yang dikuasai Funan semasa kemasyhurannya?",
-    back: "Teluk Cam Ranh, selatan Myanmar, Segenting Kra dan laluan perdagangan Timur-Barat.",
+    back: "Sungai Mekong hingga Teluk Camranh, selatan Myanmar dan Segenting Kra.",
   },
   {
     id: "sej-f2-c1-fc42",
@@ -2619,7 +2619,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Apakah faktor yang melemahkan perdagangan Kedah Tua?",
-    back: "Serangan tentera Chola pada tahun 1025 sehingga muncul Kesultanan Kedah sebagai kerajaan baharu.",
+    back: "Serangan tentera Chola dari India pada tahun 1025 melemahkan kegiatan perdagangan Kedah Tua.",
   },
   {
     id: "sej-f2-c1-fc47",
@@ -2634,15 +2634,15 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Kerajaan Alam Melayu manakah yang sezaman dengan Empayar Byzantine pada abad kesembilan?",
-    back: "Srivijaya.",
+    front: "Namakan kerajaan Alam Melayu yang sezaman dengan Empayar Byzantine pada abad kesembilan.",
+    back: "Champa, Srivijaya dan Angkor.",
   },
   {
     id: "sej-f2-c1-fc49",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Kerajaan luar manakah yang sezaman dengan Majapahit pada abad ke-14?",
+    front: "Namakan satu kerajaan luar yang sezaman dengan Majapahit pada abad ke-14.",
     back: "Kerajaan Turki Uthmaniyah.",
   },
   {
@@ -2675,7 +2675,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Apakah kesan hubungan perdagangan kepada kerajaan Alam Melayu?",
-    back: "Menggalakkan kemakmuran ekonomi, menarik pedagang luar, memajukan pelabuhan dan mengukuhkan kerajaan.",
+    back: "Membawa kemakmuran ekonomi.",
   },
   {
     id: "sej-f2-c1-fc54",
