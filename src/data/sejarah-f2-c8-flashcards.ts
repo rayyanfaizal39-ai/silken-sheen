@@ -3,24 +3,39 @@ import type { Flashcard } from "./types";
 const cardContent: Array<[front: string, back: string]> = [
   // Set 1: Kerajaan, pengasas, pusat pemerintahan dan tokoh penting
   ["Siapakah pengasas Kerajaan Kedah?", "Maharaja Derbar Raja."],
-  ["Bilakah Kerajaan Kedah diasaskan?", "Tahun 630 Masihi."],
-  ["Maharaja Derbar Raja berasal dari mana?", "Parsi."],
+  ["Bilakah Kerajaan Kedah diasaskan?", "Sekitar tahun 630 Masihi."],
+  [
+    "Bagaimanakah Maharaja Derbar Raja menjadi Raja Kedah?",
+    "Maharaja Derbar Raja dari Parsi dilantik oleh Tan Dermadewa dan Tun Perkasa, manakala nobat yang dibawa dari Parsi diiktiraf sebagai alat kebesaran.",
+  ],
   ["Di manakah pusat pemerintahan awal Kedah?", "Sungai Mas."],
   ["Siapakah yang mengasaskan Alor Setar?", "Sultan Muhammad Jiwa Zainal Adilin Mu'adzam Shah II."],
   ["Siapakah pengasas Negara Patani Besar?", "Raja Sakti I."],
-  ["Siapakah pengasas Kerajaan Kelantan?", "Long Yunus."],
-  ["Bilakah Kerajaan Kelantan diasaskan?", "Tahun 1762."],
+  ["Siapakah pengasas Kerajaan Kelantan?", "Long Yunus pada tahun 1762."],
+  ["Apakah gelaran Long Yunus selepas mengasaskan Kerajaan Kelantan?", "Yang di-Pertuan Kelantan."],
   ["Di manakah pusat pemerintahan Long Yunus pada tahun 1777?", "Kota Galoh."],
-  ["Siapakah yang mengasaskan Kota Bharu?", "Sultan Muhammad II."],
-  ["Siapakah pengasas Kerajaan Negeri Sembilan?", "Raja Melewar."],
-  ["Bilakah Kerajaan Negeri Sembilan diasaskan?", "Tahun 1773."],
+  [
+    "Apakah sumbangan Sultan Muhammad II kepada Kelantan?",
+    "Mengasaskan Kota Bharu sebagai pusat pemerintahan pada tahun 1844, membina Istana Balai Besar dan menguatkuasakan undang-undang syarak.",
+  ],
+  ["Siapakah pengasas Kerajaan Negeri Sembilan?", "Raja Melewar pada tahun 1773."],
+  [
+    "Apakah tindakan empat Penghulu Luak pada tahun 1770?",
+    "Menghantar utusan untuk menjemput anak raja Minangkabau di Sumatera bagi dirajakan di Negeri Sembilan.",
+  ],
   ["Di manakah pusat pemerintahan awal Negeri Sembilan?", "Seri Menanti."],
   ["Apakah gelaran Raja Melewar?", "Yamtuan Seri Menanti."],
-  ["Siapakah yang memilih pemerintah Negeri Sembilan?", "Undang Yang Empat."],
+  [
+    "Siapakah yang memilih pemerintah Negeri Sembilan?",
+    "Undang Yang Empat, iaitu Sungai Ujong, Jelebu, Johol dan Rembau.",
+  ],
   ["Siapakah pemerintah awal Kerajaan Perlis?", "Syed Hussin Jamalullail."],
   ["Bilakah Syed Hussin Jamalullail diiktiraf sebagai pemerintah Perlis?", "Tahun 1843."],
   ["Di manakah pusat pemerintahan Kerajaan Perlis?", "Arau."],
-  ["Siapakah yang membina Kota Sena?", "Sultan Muhyiddin Mansur Shah."],
+  [
+    "Apakah yang berlaku kepada wilayah Kedah di bawah pengaruh Siam pada tahun 1839?",
+    "Wilayah Kedah dipecahkan kepada empat unit pentadbiran, iaitu Setul, Perlis, Kubang Pasu dan Kedah.",
+  ],
   ["Siapakah yang membangunkan Kota Kayang II?", "Sultan Dhiauddin Mukarram Shah II."],
 
   // Set 2: Asas hubungan dan hubungan diplomatik
@@ -33,17 +48,26 @@ const cardContent: Array<[front: string, back: string]> = [
   ["Apakah tarikan geografi dalam hubungan antara negeri?", "Sumber alam dan sumber bumi."],
   ["Apakah agama yang diterima oleh pemerintah kerajaan Melayu?", "Agama Islam."],
   ["Siapakah yang memperkukuh kegiatan keagamaan?", "Ulama."],
-  ["Siapakah yang hadir ke institusi pendidikan agama?", "Penuntut dari pelbagai wilayah."],
-  ["Apakah tujuan pengiktirafan diplomatik?", "Mengabsahkan sultan."],
+  [
+    "Apakah tujuan Perlis menghantar Bunga Mas kepada Siam?",
+    "Dihantar setiap tiga tahun sebagai tanda persahabatan dan untuk menjamin keselamatan.",
+  ],
+  ["Apakah tujuan pengiktirafan diplomatik?", "Mengabsahkan sultan sebagai pemerintah."],
   ["Siapakah yang mengiktiraf kedaulatan Kedah pada abad ke-15?", "Sultan Mahmud Shah."],
   ["Siapakah yang mengiktiraf Kelantan pada tahun 1775?", "Sultan Terengganu."],
   ["Apakah tujuan hubungan pertahanan?", "Mengekalkan kedaulatan."],
   ["Kerajaan manakah membantu Long Yunus menyatukan Kelantan?", "Terengganu dan Reman."],
-  ["Apakah jawatan ketenteraan Long Gaffar?", "Panglima Perang."],
+  [
+    "Apakah jawatan Long Gaffar dalam pemerintahan Kelantan?",
+    "Perdana Menteri Kelantan merangkap Panglima Perang.",
+  ],
   ["Siapakah puteri Kelantan yang berkahwin dengan Sultan Mahmud Shah?", "Onang Kening."],
   ["Siapakah puteri Long Yunus yang berkahwin dengan Tengku Muhammad?", "Che' Ku Wan."],
   ["Siapakah isteri Raja Syed Hussin?", "Tengku Nor Asiah."],
-  ["Apakah kesan perkahwinan diraja terhadap hubungan kerajaan?", "Mengukuhkan hubungan."],
+  [
+    "Apakah kesan perkahwinan diraja terhadap hubungan kerajaan?",
+    "Mengukuhkan hubungan dan menjamin kedaulatan sesebuah kerajaan.",
+  ],
 
   // Set 3: Hubungan perdagangan, barang dagangan dan kesannya
   ["Apakah yang menjadi asas hubungan perdagangan?", "Pelabuhan dan hasil tempatan."],
@@ -61,7 +85,10 @@ const cardContent: Array<[front: string, back: string]> = [
   ["Apakah hasil hutan wangi yang diperdagangkan Negeri Sembilan?", "Kayu gaharu."],
   ["Apakah pelabuhan perdagangan Perlis?", "Kuala Perlis."],
   ["Apakah hasil pertanian yang diperdagangkan Perlis?", "Beras."],
-  ["Dengan kuasa manakah Perlis menjalankan perdagangan?", "Siam."],
+  [
+    "Dengan siapakah Perlis menjalankan perdagangan beras dan bijih timah?",
+    "Negeri jiran dan Siam.",
+  ],
   ["Apakah kesan pengiktirafan terhadap pemerintah?", "Mengukuhkan kedaulatan."],
   ["Apakah kesan kerjasama pertahanan terhadap kerajaan?", "Menjamin keselamatan."],
   ["Apakah kesan pembinaan pelabuhan?", "Mengembangkan perdagangan."],
