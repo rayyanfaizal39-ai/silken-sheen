@@ -1087,7 +1087,7 @@ function QuickActionsCard({ lastVisited }: { lastVisited?: LastVisited }) {
         to: TYPE_ROUTES[lastVisited.type],
         search: studyResumeSearch(lastVisited) as Record<string, unknown>,
       }
-    : { to: "/notes" as const, search: { form: 1 } as Record<string, unknown> };
+    : { to: "/notes" as const, search: {} as Record<string, unknown> };
 
   return (
     <Card className="space-y-2">

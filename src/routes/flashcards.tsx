@@ -5488,7 +5488,15 @@ function FlashcardsPage() {
     if (subject === "english" && isEnglishFlashcardDeckIdF3(chapter)) {
       return standardizeFlashcardDeck(getEnglishFlashcardsForDeckF3(chapter));
     }
-    if (subject === "math" && chapter && MATH_FLASHCARD_BANKS[chapter] && mathFlashcardLang) {
+    // The Math category banks are Form 1 only (see hasMathFlashcards); other
+    // Forms must resolve through the Form-scoped registry deck below.
+    if (
+      form === "Form 1" &&
+      subject === "math" &&
+      chapter &&
+      MATH_FLASHCARD_BANKS[chapter] &&
+      mathFlashcardLang
+    ) {
       return standardizeFlashcardDeck(
         MATH_FLASHCARD_CATEGORIES.flatMap((category) =>
           getMathFlashcards(chapter, mathFlashcardLang, category.id),

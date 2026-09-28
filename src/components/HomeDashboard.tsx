@@ -244,7 +244,7 @@ function WorldPortalCard({
   return (
     <Link
       to="/notes"
-      search={{ subject: world.id, form: 1 } as Record<string, unknown>}
+      search={{ subject: world.id } as Record<string, unknown>}
       className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border transition-all duration-300 hover:-translate-y-1.5"
       style={
         {
@@ -395,7 +395,7 @@ function HeroWorldStrip() {
         <Link
           key={w.id}
           to="/notes"
-          search={{ subject: w.id, form: 1 } as Record<string, unknown>}
+          search={{ subject: w.id } as Record<string, unknown>}
           className="flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold backdrop-blur-xl transition-all duration-200 hover:scale-[1.06]"
           style={
             {
