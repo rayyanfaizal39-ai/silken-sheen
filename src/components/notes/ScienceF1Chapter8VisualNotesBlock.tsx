@@ -1,12 +1,12 @@
+import { Chapter8PropertiesOfLight } from "./Chapter8PropertiesOfLight";
+import { Chapter8Reflection } from "./Chapter8Reflection";
 import { Chapter8Mirrors } from "./Chapter8Mirrors";
 import { useState, type ReactNode } from "react";
 import {
   Aperture,
-  ArrowDownUp,
   Check,
   ChevronDown,
   Filter,
-  Focus,
   Lightbulb,
   Palette,
   Rainbow,
@@ -41,10 +41,7 @@ const ui = {
     image: "Image characteristics",
     applications: "Daily applications",
     instruments: "Optical instruments",
-    properties: "Properties and early applications",
-    reflection: "Law of reflection",
     experiment: "Experiment",
-    ambulance: "Why AMBULANCE is reversed",
     chooseRule: "Choose a boundary passage",
     bend: "Ray direction",
     speed: "Speed",
@@ -97,10 +94,7 @@ const ui = {
     image: "Ciri imej",
     applications: "Aplikasi harian",
     instruments: "Alat optik",
-    properties: "Sifat dan aplikasi awal",
-    reflection: "Hukum pantulan",
     experiment: "Eksperimen",
-    ambulance: "Mengapa AMBULANS ditulis terbalik",
     chooseRule: "Pilih laluan sempadan",
     bend: "Arah sinar",
     speed: "Laju",
@@ -300,51 +294,13 @@ export function ScienceF1Chapter8VisualNotesBlock({
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               {t.subtopics[1].code} {t.subtopics[1].title}
             </h2>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Sun className="h-6 w-6 text-yellow-300" />
-                <h3 className="font-bold text-white">{copy.properties}</h3>
-              </div>
-              <div className="mt-4">
-                <Checklist items={t.propertiesOfLight.facts} />
-              </div>
-              <div className="mt-5 space-y-3">
-                {extra.opticalHistory.map((item) => (
-                  <div key={item.name} className="border-l-2 border-yellow-300 pl-4">
-                    <p className="font-bold text-yellow-200">{item.name}</p>
-                    <p className="mt-1 text-sm leading-6 text-slate-300">{item.principle}</p>
-                  </div>
-                ))}
-              </div>
-            </Panel>
+            <Chapter8PropertiesOfLight source={t.propertiesOfLight} />
           </section>
           <section id="chapter8-83" data-official-subtopic="8.3" className="space-y-6">
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               {t.subtopics[2].code} {t.subtopics[2].title}
             </h2>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Focus className="h-6 w-6 text-sky-300" />
-                <h3 className="font-bold text-white">{copy.reflection}</h3>
-              </div>
-              <div className="mt-4">
-                <Checklist items={t.reflection.lawOfReflection.statement} />
-              </div>
-              <p className="mt-5 rounded-xl border border-sky-300/25 bg-sky-300/10 p-4 text-center font-mono text-3xl font-black text-sky-100">
-                {t.reflection.lawOfReflection.keyEquation}
-              </p>
-            </Panel>
-            <Panel>
-              <h3 className="mb-4 font-bold text-white">{copy.experiment}</h3>
-              <Checklist items={extra.reflectionExperiment} />
-            </Panel>
-            <Panel className="border-amber-300/25 bg-amber-300/[0.06]">
-              <div className="flex items-center gap-3">
-                <ArrowDownUp className="h-6 w-6 text-amber-300" />
-                <h3 className="font-bold text-white">{copy.ambulance}</h3>
-              </div>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{extra.lateralInversion}</p>
-            </Panel>
+            <Chapter8Reflection source={t.reflection} />
           </section>
 
           <section id="chapter8-84" data-official-subtopic="8.4" className="space-y-6">

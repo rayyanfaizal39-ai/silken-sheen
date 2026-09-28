@@ -84,18 +84,14 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
       ).toEqual(["8.1", "8.2", "8.3", "8.4", "8.5", "8.6", "8.7"]);
       expect(host.querySelector("nav")?.textContent).not.toMatch(/8\.2-8\.3|8\.5-8\.6/);
     });
-    it(`${lang}: all deferred facts, reflection law and supplemental data retain pre-pass hashes`, () => {
-      const keys = [
-        "propertiesOfLight",
-        "refraction",
-        "dispersion",
-        "scattering",
-        "colorAdditionSubtraction",
-      ] as const;
+    it(`${lang}: 8.4–8.7 facts, reflection law and deferred supplements retain pre-pass hashes`, () => {
+      // Pass 2 authorizes 8.2/8.3 edits; these baselines were captured before those edits.
+      // All 8.1 hashes above are retained without change.
+      const keys = ["refraction", "dispersion", "scattering", "colorAdditionSubtraction"] as const;
       expect(hash(Object.fromEntries(keys.map((k) => [k, t[k]])))).toBe(
         lang === "en"
-          ? "24de65c11ce89881db7195871876bb5ba6b119c160fbfcd6234a2148a04e236c"
-          : "8344aedadb6a27170249a635d44b1dc8ac833a616d98c582efd7ccb297000d77",
+          ? "47ed8a3d2d71d9f991bbca1df946b582c337622fa7e85bf928053cfc5ddda130"
+          : "09c8cfe1ef775d6b0dd6ae9af65149de2427adf1beaa575466897e64bc4fd949",
       );
       expect(hash(t.reflection.lawOfReflection)).toBe(
         lang === "en"
@@ -104,8 +100,8 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
       );
       expect(hash(chapter8Supplement[lang])).toBe(
         lang === "en"
-          ? "161e4900205ac12165031887a35c06996e84302068113e7af5477842468bd1a5"
-          : "287bc6456b4692dcf85d720ef0a0fe4870ab27307b78dc9aeaf43a024d355aba",
+          ? "b74d9795297a718c1afcdccc4f9a7d536dd89fbc9948bf9aeb693ad67e75dbad"
+          : "ae38f7540f1382fe22c831ceb31185774ff100617c6432497b6b4ddd9460f6c0",
       );
     });
     it(`${lang}: real/virtual are screen-based definitions and plane image is behind mirror`, () => {

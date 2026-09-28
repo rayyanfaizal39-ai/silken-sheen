@@ -31,7 +31,9 @@ describe("ScienceF1Chapter8VisualNotesBlock", () => {
     );
 
     expect(html).toContain("Light and Optics");
-    expect(html).toContain("AMBULANCE is written backwards");
+    expect(html).toContain("AMBULANCE");
+    expect(html).toContain("data-reversed-word");
+    expect(html).toContain("data-readable-word");
     expect(html).toContain("i &gt; r");
     expect(html).toContain("Overlapping filter outcomes");
     expect(html).toContain("A red road sign");

@@ -79,10 +79,86 @@ export interface MirrorLesson {
   practice: { title: string; questions: string[] };
 }
 
+export interface PropertiesOfLightLesson {
+  facts: string[];
+  shadowFormation: string[];
+  opaqueObject: { definition: string; umbrella: string; blockedLight: string; chain: string[] };
+  shadowChange: string;
+  rainbow: string;
+  sundial: { title: string; explanation: string };
+  wayangKulit: { title: string; explanation: string };
+  practice: { title: string; questions: string[] };
+  labels: {
+    source: string;
+    object: string;
+    shadow: string;
+    screen: string;
+    puppet: string;
+    pointer: string;
+    sun: string;
+    position: string;
+    torch: string;
+    blocks: string;
+    speed: string;
+  };
+}
+export interface ReflectionLesson {
+  title: string;
+  definition: string;
+  rayLabels: {
+    mirror: string;
+    normal: string;
+    incident: string;
+    reflected: string;
+    incidence: string;
+    reflection: string;
+    point: string;
+    diagram: string;
+    paper: string;
+    box: string;
+    slit: string;
+    power: string;
+    protractor: string;
+  };
+  lateralInversion: {
+    title: string;
+    word: string;
+    prompt: string;
+    vehicle: string;
+    mirror: string;
+    image: string;
+  };
+  applications: { title: string; items: string[] };
+  practice: { title: string; questions: string[] };
+  labels: {
+    materials: string;
+    procedure: string;
+    variables: string;
+    hypothesis: string;
+    results: string;
+    conclusion: string;
+    measure: string;
+    schematic: string;
+    unfilled: string;
+  };
+  lawOfReflection: { statement: string[]; keyEquation: string };
+  experiment: {
+    title: string;
+    aim: string;
+    hypothesis: string;
+    variables: string[];
+    materials: string[];
+    instructions: string[];
+    angles: number[];
+    printedResults: { i: number; r: null }[];
+    conclusion: string;
+  };
+}
+
 export interface Chapter8Content {
   title: string;
   subtopics: { code: string; title: string }[];
-  reflection: { lawOfReflection: { statement: string[]; keyEquation: string } };
+  reflection: ReflectionLesson;
   hook: { title: string; body: string };
   mirrors: {
     realVsVirtual: { real: string; virtual: string };
@@ -91,10 +167,7 @@ export interface Chapter8Content {
     lesson: MirrorLesson;
     opticalInstruments: OpticalInstrument[];
   };
-  propertiesOfLight: {
-    facts: string[];
-    shadowFormation: string[];
-  };
+  propertiesOfLight: PropertiesOfLightLesson;
   refraction: {
     definition: string;
     cases: RefractionCase[];
@@ -167,6 +240,87 @@ const en: Chapter8Content = {
         "The angle of incidence (i) is equal to the angle of reflection (r)",
       ],
       keyEquation: "i = r",
+    },
+    title: "Law of Reflection",
+    definition:
+      "When a beam of light is directed onto a piece of a plane mirror at a certain angle (angle of incidence, i), the light ray will be reflected to a certain angle (angle of reflection, r).",
+    rayLabels: {
+      mirror: "Plane mirror",
+      normal: "Normal line",
+      incident: "Incident ray",
+      reflected: "Reflected ray",
+      incidence: "Angle of incidence, i",
+      reflection: "Angle of reflection, r",
+      point: "Point of incidence",
+      diagram: "Reflection of light",
+      paper: "White paper",
+      box: "Ray box",
+      slit: "Slit",
+      power: "Power supply",
+      protractor: "Protractor",
+    },
+    experiment: {
+      title: "Experiment 8.1",
+      aim: "To determine the relationship between the angle of incidence, i and angle of reflection, r",
+      hypothesis: "The angle of incidence, i is the same as the angle of reflection, r.",
+      variables: [
+        "Manipulated variable: Angle of incidence, i",
+        "Responding variable: Angle of reflection, r",
+        "Constant variable: The size of slit",
+      ],
+      materials: ["Plane mirror", "Ray box", "Power supply", "White paper", "Protractor"],
+      instructions: [
+        "Carry out this activity in the dark.",
+        "Arrange a ray box and a plane mirror on a sheet of white paper.",
+        "Direct the light beam towards the plane mirror at an angle i = 10°.",
+        "Measure the angle of reflection, r.",
+        "Repeat steps 3 and 4 with angle of incidence, i = 20°, 30°, 40° and 50°.",
+        "Record your results in a table.",
+      ],
+      angles: [10, 20, 30, 40, 50],
+      printedResults: [
+        {
+          i: 10,
+          r: null,
+        },
+        {
+          i: 20,
+          r: null,
+        },
+      ],
+      conclusion:
+        "Is the hypothesis accepted? What is the relationship between the angle of incidence, i and angle of reflection, r?",
+    },
+    lateralInversion: {
+      title: "Laterally inverted",
+      word: "AMBULANCE",
+      prompt:
+        "Have you ever wondered why the word “ambulance” is written in an inverted manner? How is the image formed when the drivers of other vehicles look into their rear view mirror? Think about it.",
+      vehicle: "Ambulance",
+      mirror: "Rear-view mirror",
+      image: "Image",
+    },
+    applications: {
+      title: "Applications of Reflection of Light",
+      items: ["Traffic cones", "Road sign", "Warning triangle"],
+    },
+    practice: {
+      title: "Formative Practice 8.3",
+      questions: [
+        "Explain the Law of Reflection with the help of a light reflection ray diagram.",
+        "Complete the statement below. The image formed by a plane mirror is ______, ______, ______ and the image distance is ______ with the object distance.",
+      ],
+    },
+    labels: {
+      materials: "Materials and Apparatus",
+      procedure: "Procedure",
+      variables: "Variables",
+      hypothesis: "Hypothesis",
+      results: "Results",
+      conclusion: "Conclusion",
+      measure: "Measure the angle of reflection, r.",
+      schematic: "Ray diagram",
+      unfilled: "Not supplied by the textbook",
     },
   },
   mirrors: {
@@ -383,14 +537,58 @@ const en: Chapter8Content = {
   },
   propertiesOfLight: {
     facts: [
-      "The speed of light is 3.0 × 10⁸ m/s — much faster than sound, which is why we see lightning before we hear thunder",
-      "Light travels in straight lines",
+      "The speed of light is 3.0 × 10⁸ m/s. Light travels much faster than sound, so we see the lightning before we hear the thunder.",
+      "Light travels in straight lines.",
     ],
     shadowFormation: [
-      "Light travels in straight lines",
-      "An opaque object blocks light from passing through it",
-      "A shadow forms behind the opaque object where light is blocked",
+      "Sunlight travels in straight lines.",
+      "Umbrella is an opaque object, therefore the sunlight cannot pass through it.",
+      "When light is blocked by an opaque object, a shadow is formed behind the opaque object.",
     ],
+    opaqueObject: {
+      definition: "An opaque object does not allow light to pass through it.",
+      umbrella: "Umbrella = opaque object",
+      blockedLight: "Blocked light",
+      chain: [
+        "Sunlight travels in straight lines",
+        "Opaque object blocks the light",
+        "Light cannot pass through",
+        "Shadow forms behind the opaque object",
+      ],
+    },
+    shadowChange:
+      "Do you know that your shadow will become short in the afternoon and long in the evening?",
+    rainbow:
+      "Another property of light is that it can be dispersed by water droplets in the sky to form a rainbow.",
+    sundial: {
+      title: "The Sundial",
+      explanation:
+        "The sundial was used in ancient times to determine the time during the day. It used the concept that shadows are formed when sunlight is blocked by objects.",
+    },
+    wayangKulit: {
+      title: "Shadow puppets",
+      explanation: "Shadow puppets use the concept that shadows are formed when light is blocked.",
+    },
+    practice: {
+      title: "Formative Practice 8.2",
+      questions: [
+        "Hisyam’s shadow is the shortest in the ______ when the Sun is ______ his head.",
+        "The diagram shows two opaque objects blocking the light from a torchlight. Draw the shape of the shadow that will be formed on the screen.",
+      ],
+    },
+    labels: {
+      source: "Light source",
+      object: "Opaque object",
+      shadow: "Shadow",
+      screen: "Screen",
+      puppet: "Shadow puppet",
+      pointer: "Upright pointer",
+      sun: "Sunlight",
+      position: "Sun’s position",
+      torch: "Torchlight",
+      blocks: "Wooden blocks",
+      speed: "3.0 × 10⁸ m/s",
+    },
   },
   refraction: {
     definition:
@@ -527,6 +725,87 @@ const bm: Chapter8Content = {
         "Sudut tuju (i) adalah sama dengan sudut pantulan (r)",
       ],
       keyEquation: "i = r",
+    },
+    title: "Hukum Pantulan Cahaya",
+    definition:
+      "Apabila suatu sinar cahaya ditujukan ke atas sekeping cermin satah pada sudut tertentu (sudut tuju), sinar cahaya itu akan dipantulkan ke sudut tertentu (sudut pantulan).",
+    rayLabels: {
+      mirror: "Cermin satah",
+      normal: "Garis normal",
+      incident: "Sinar tuju",
+      reflected: "Sinar pantulan",
+      incidence: "Sudut tuju, i",
+      reflection: "Sudut pantulan, r",
+      point: "Titik tuju",
+      diagram: "Gambar rajah sinar pantulan cahaya",
+      paper: "Kertas putih",
+      box: "Kotak sinar",
+      slit: "Celah",
+      power: "Bekalan kuasa",
+      protractor: "Protraktor",
+    },
+    experiment: {
+      title: "Eksperimen 8.1",
+      aim: "Menyiasat hubungan sudut tuju, i dengan sudut pantulan, r",
+      hypothesis: "Sudut tuju, i adalah sama dengan sudut pantulan, r.",
+      variables: [
+        "Pemboleh ubah dimanipulasikan: Sudut tuju, i",
+        "Pemboleh ubah bergerak balas: Sudut pantulan, r",
+        "Pemboleh ubah dimalarkan: Saiz celah",
+      ],
+      materials: ["Cermin satah", "Kotak sinar", "Bekalan kuasa", "Kertas putih", "Protraktor"],
+      instructions: [
+        "Lakukan aktiviti ini dalam keadaan gelap.",
+        "Susun kotak sinar dan cermin satah di atas sehelai kertas putih.",
+        "Tujukan sinar cahaya yang menuju ke cermin satah pada sudut i = 10°.",
+        "Ukur sudut pantulan, r.",
+        "Ulang langkah 3 dan 4 dengan sudut tuju, i = 20°, 30°, 40° dan 50°.",
+        "Catatkan keputusan anda dalam bentuk jadual di bawah.",
+      ],
+      angles: [10, 20, 30, 40, 50],
+      printedResults: [
+        {
+          i: 10,
+          r: null,
+        },
+        {
+          i: 20,
+          r: null,
+        },
+      ],
+      conclusion:
+        "Adakah hipotesis diterima? Apakah hubungan antara sudut tuju, i dengan sudut pantulan r?",
+    },
+    lateralInversion: {
+      title: "Songsang sisi",
+      word: "AMBULANS",
+      prompt:
+        "Pernahkah anda terfikir, tentang sebab perkataan “ambulans” ditulis secara songsang sisi? Bagaimanakah imej ini akan terbentuk apabila pemandu kenderaan lain melihat cermin pandang belakang kenderaan mereka? Fikirkan.",
+      vehicle: "Ambulans",
+      mirror: "Cermin pandang belakang",
+      image: "Imej",
+    },
+    applications: {
+      title: "Aplikasi Pantulan dalam Kehidupan Harian",
+      items: ["Kon lalu lintas", "Papan tanda jalan", "Segi tiga amaran"],
+    },
+    practice: {
+      title: "Praktis Formatif 8.3",
+      questions: [
+        "Terangkan hukum pantulan dengan bantuan rajah sinar pantulan cahaya.",
+        "Lengkapkan pernyataan di bawah. Imej yang terbentuk pada cermin satah adalah ______, ______, ______ dan jarak objek ______ dengan jarak imej.",
+      ],
+    },
+    labels: {
+      materials: "Bahan dan radas",
+      procedure: "Prosedur",
+      variables: "Pemboleh ubah",
+      hypothesis: "Hipotesis",
+      results: "Keputusan",
+      conclusion: "Kesimpulan",
+      measure: "Ukur sudut pantulan, r.",
+      schematic: "Gambar rajah sinar",
+      unfilled: "Tidak dibekalkan dalam buku teks",
     },
   },
   mirrors: {
@@ -752,14 +1031,59 @@ const bm: Chapter8Content = {
   },
   propertiesOfLight: {
     facts: [
-      "Kelajuan cahaya ialah 3.0 × 10⁸ m/s — jauh lebih laju daripada bunyi, itulah sebabnya kita melihat kilat sebelum mendengar guruh",
-      "Cahaya bergerak dalam garis lurus",
+      "Kelajuan cahaya ialah 3.0 × 10⁸ m/s. Cahaya bergerak lebih laju daripada bunyi. Oleh itu, kita lihat kilat dahulu sebelum dengar bunyi guruh.",
+      "Cahaya bergerak lurus.",
     ],
     shadowFormation: [
-      "Cahaya bergerak dalam garis lurus",
-      "Objek legap menghalang cahaya daripada menembusinya",
-      "Bayang-bayang terbentuk di belakang objek legap di mana cahaya dihalang",
+      "Cahaya matahari bergerak lurus.",
+      "Payung ialah objek legap, maka cahaya matahari tidak dapat menembusinya.",
+      "Apabila cahaya dihalang oleh objek legap, maka bayang-bayang akan terbentuk di belakang objek legap itu.",
     ],
+    opaqueObject: {
+      definition: "Objek legap tidak membenarkan cahaya menembusinya.",
+      umbrella: "Payung = objek legap",
+      blockedLight: "Cahaya dihalang",
+      chain: [
+        "Cahaya matahari bergerak lurus",
+        "Objek legap menghalang cahaya",
+        "Cahaya tidak dapat menembusinya",
+        "Bayang-bayang terbentuk di belakang objek legap",
+      ],
+    },
+    shadowChange:
+      "Tahukah anda bahawa bayang-bayang anda akan menjadi pendek apabila menghampiri tengah hari dan kemudian menjadi panjang apabila waktu petang? Mengapa?",
+    rainbow:
+      "Salah satu sifat lain cahaya ialah cahaya boleh disebarkan oleh titisan air di langit untuk membentuk pelangi.",
+    sundial: {
+      title: "Jam matahari",
+      explanation:
+        "Jam matahari digunakan pada zaman dahulu untuk menentukan masa pada siang hari. Jam itu menggunakan konsep bayang-bayang yang terbentuk apabila cahaya matahari dihalang oleh objek.",
+    },
+    wayangKulit: {
+      title: "Wayang kulit",
+      explanation:
+        "Wayang kulit menggunakan konsep bayang-bayang terbentuk apabila cahaya dihalang.",
+    },
+    practice: {
+      title: "Praktis Formatif 8.2",
+      questions: [
+        "Bayang-bayang Hisyam adalah paling pendek pada waktu ______ ketika Matahari berada pada kedudukan ______.",
+        "Rajah di sebelah menunjukkan dua objek legap yang disinarkan oleh lampu suluh. Lukiskan bentuk bayang-bayang yang akan terbentuk pada skrin.",
+      ],
+    },
+    labels: {
+      source: "Sumber cahaya",
+      object: "Objek legap",
+      shadow: "Bayang-bayang",
+      screen: "Skrin",
+      puppet: "Wayang kulit",
+      pointer: "Penunjuk tegak",
+      sun: "Cahaya matahari",
+      position: "Kedudukan Matahari",
+      torch: "Lampu suluh",
+      blocks: "Bongkah kayu",
+      speed: "3.0 × 10⁸ m/s",
+    },
   },
   refraction: {
     definition:
@@ -821,7 +1145,7 @@ const bm: Chapter8Content = {
     ],
   },
   keyExamFacts: [
-    "Cermin satah menghasilkan imej maya, tegak, berbalik sisi, sama saiz, pada jarak yang sama di belakang cermin seperti objek di hadapan",
+    "Cermin satah menghasilkan imej maya, tegak, songsang sisi, sama saiz, pada jarak yang sama di belakang cermin seperti objek di hadapan",
     "Cermin cekung membesarkan imej; cermin cembung memberi medan pandangan lebih luas dengan imej lebih kecil",
     "Hukum Pantulan: sudut tuju sama dengan sudut pantulan (i = r)",
     "Cahaya dibiaskan menjauhi normal apabila bergerak dari medium tumpat ke kurang tumpat, dan mendekati normal sebaliknya",
@@ -831,7 +1155,7 @@ const bm: Chapter8Content = {
     "Warna objek legap ialah warna cahaya yang dipantulkannya — semua warna lain diserap",
   ],
   keyTerms: [
-    "Imej nyata",
+    "Imej sahih",
     "Imej maya",
     "Cermin satah",
     "Cermin cekung",
@@ -858,9 +1182,6 @@ const bm: Chapter8Content = {
 export const chapter8Content = { en, bm };
 
 export interface Chapter8Supplement {
-  opticalHistory: { name: string; principle: string }[];
-  reflectionExperiment: string[];
-  lateralInversion: string;
   refractionRules: { passage: string; bend: string; speed: string; angle: string }[];
   refractionExperiment: string[];
   fishTip: string;
@@ -873,25 +1194,6 @@ export interface Chapter8Supplement {
 }
 
 const supplementEn: Chapter8Supplement = {
-  opticalHistory: [
-    {
-      name: "Sundial",
-      principle:
-        "Straight-line travel of light and the changing shadow of an opaque gnomon indicate time.",
-    },
-    {
-      name: "Shadow puppets (wayang kulit)",
-      principle:
-        "Opaque puppets block light travelling in straight lines and cast outlines on a screen.",
-    },
-  ],
-  reflectionExperiment: [
-    "Direct one narrow ray from a ray box towards a plane mirror on white paper.",
-    "Draw the normal perpendicular to the mirror and measure i and r at 10°, 20°, 30°, 40°, and 50°.",
-    "For every reading, the angle of reflection equals the angle of incidence; the hypothesis i = r is accepted.",
-  ],
-  lateralInversion:
-    "AMBULANCE is written backwards so lateral inversion in a driver's rear-view mirror reverses it into readable text immediately.",
   refractionRules: [
     {
       passage: "Less dense → more dense",
@@ -985,25 +1287,6 @@ const supplementEn: Chapter8Supplement = {
 };
 
 const supplementBm: Chapter8Supplement = {
-  opticalHistory: [
-    {
-      name: "Jam matahari",
-      principle:
-        "Perambatan cahaya secara lurus dan perubahan bayang gnomon legap menunjukkan waktu.",
-    },
-    {
-      name: "Wayang kulit",
-      principle:
-        "Patung legap menghalang cahaya yang bergerak lurus lalu menghasilkan bentuk gelap pada skrin.",
-    },
-  ],
-  reflectionExperiment: [
-    "Halakan satu sinar sempit daripada kotak sinar ke arah cermin satah di atas kertas putih.",
-    "Lukis garis normal yang serenjang dengan cermin dan ukur i serta r pada 10°, 20°, 30°, 40°, dan 50°.",
-    "Bagi setiap bacaan, sudut pantulan sama dengan sudut tuju; hipotesis i = r diterima.",
-  ],
-  lateralInversion:
-    "AMBULANS ditulis secara terbalik supaya pembalikan sisi dalam cermin pandang belakang pemandu menukarkannya kepada tulisan yang dapat dibaca serta-merta.",
   refractionRules: [
     {
       passage: "Kurang tumpat → lebih tumpat",
