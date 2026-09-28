@@ -1,71 +1,206 @@
 import type { Flashcard } from "./types";
 
 const cardContent: Array<[front: string, back: string]> = [
-  // Deck 1: Pengasasan Melaka
-  ["Siapakah pengasas Melaka?", "Parameswara."],
-  ["Parameswara berasal dari mana?", "Palembang."],
-  ["Parameswara berundur ke mana?", "Temasik."],
-  ["Ke manakah Parameswara bergerak selepas Temasik?", "Muar."],
-  ["Ke manakah Parameswara bergerak selepas Muar?", "Sening Ujong."],
-  ["Apakah tempat yang dibuka oleh Parameswara?", "Melaka."],
-  ["Bilakah Parameswara membuka Melaka?", "Sekitar tahun 1400."],
+  // Deck 1: Pengasasan Kesultanan Melayu Melaka
+  ["Siapakah pengasas Kesultanan Melayu Melaka?", "Parameswara."],
+  ["Bilakah Kesultanan Melayu Melaka diasaskan?", "Sekitar tahun 1400."],
+  [
+    "Di manakah Parameswara memilih lokasi untuk membentuk kerajaan Melaka?",
+    "Di muara Sungai Bertam.",
+  ],
+  ["Apakah nama lain Sungai Bertam?", "Sungai Melaka."],
+  ["Apakah keadaan asal kawasan muara Sungai Bertam?", "Sebuah perkampungan nelayan."],
+  [
+    "Apakah kegiatan yang dijalankan di muara Sungai Bertam sebelum Melaka berkembang?",
+    "Berjual beli dan pertukaran barang dagangan.",
+  ],
+  [
+    "Apakah empat faktor pemilihan lokasi strategik Melaka?",
+    "Laluan perdagangan, bentuk muka bumi, benteng pertahanan dan terlindung daripada angin monsun.",
+  ],
+  [
+    "Mengapakah kedudukan Melaka penting dari segi laluan perdagangan?",
+    "Melaka terletak di laluan perdagangan utama antara timur dengan barat.",
+  ],
+  [
+    "Apakah kelebihan Melaka berada di laluan perdagangan utama?",
+    "Membolehkan Melaka mengawal laluan kapal dagang.",
+  ],
   ["Di selat manakah Melaka terletak?", "Selat Melaka."],
-  ["Apakah laluan penting di Melaka?", "Laluan perdagangan."],
-  ["Siapakah yang tertumpu di Melaka?", "Para pedagang."],
-  ["Apakah panduan kepada kapal?", "Bukit."],
-  ["Apakah kawasan yang sesuai dijadikan pelabuhan?", "Muara sungai."],
-  ["Apakah tumbuhan yang menjadi benteng?", "Pokok bakau."],
-  ["Apakah fungsi pokok bakau?", "Memberikan perlindungan semula jadi."],
-  ["Melaka terlindung daripada apa?", "Angin monsun."],
-  ["Apakah kesan perlindungan angin monsun kepada kapal?", "Kapal mudah berlabuh."],
-  ["Apakah kesan lokasi terlindung kepada pelabuhan?", "Pelabuhan berkembang."],
-  ["Apakah faktor strategik berkaitan kapal?", "Bentuk muka bumi."],
-  ["Apakah faktor strategik berkaitan keselamatan?", "Benteng pertahanan."],
-  ["Mengapakah Melaka menjadi tumpuan pedagang?", "Kedudukannya di Selat Melaka."],
+  [
+    "Bagaimanakah bentuk muka bumi Melaka membantu pertahanan?",
+    "Kawasan berbukit-bukau sesuai dijadikan benteng pertahanan.",
+  ],
+  [
+    "Bagaimanakah kawasan berbukit-bukau membantu kapal dagang?",
+    "Menjadi panduan kepada kapal dagang.",
+  ],
+  [
+    "Apakah tumbuhan yang menjadi benteng pertahanan semula jadi Melaka?",
+    "Pokok bakau dan api-api.",
+  ],
+  [
+    "Apakah kelebihan pokok bakau dan api-api di pesisir pantai Melaka?",
+    "Menjadi benteng pertahanan dan pelindung semula jadi yang sukar ditembusi musuh.",
+  ],
+  ["Melaka terlindung daripada tiupan apa?", "Angin monsun."],
+  [
+    "Apakah kesan Melaka terlindung daripada angin monsun?",
+    "Kapal dagang dapat datang dan berlabuh dengan selamat.",
+  ],
+  [
+    "Bagaimanakah Parameswara memanfaatkan alam semula jadi Melaka?",
+    "Memanfaatkan lokasi strategik dan alam semula jadi untuk membangunkan sebuah pelabuhan.",
+  ],
+  [
+    "Apakah yang berlaku kepada perkampungan nelayan selepas lokasi Melaka dimanfaatkan?",
+    "Berkembang menjadi sebuah pelabuhan yang maju.",
+  ],
+  [
+    "Apakah kesan kebijaksanaan Parameswara memilih lokasi Melaka?",
+    "Melaka muncul sebagai pusat perdagangan antarabangsa.",
+  ],
+  [
+    "Apakah kepentingan kedudukan strategik dalam pengasasan Melaka?",
+    "Membantu Melaka berkembang menjadi kerajaan yang unggul di Alam Melayu.",
+  ],
 
-  // Deck 2: Kegemilangan Melaka
-  ["Raja Melaka berketurunan siapa?", "Raja Palembang."],
-  ["Apakah konsep yang berkaitan dengan raja?", "Daulat."],
-  ["Apakah lambang kepimpinan raja?", "Alat kebesaran."],
-  ["Apakah sifat penting pemerintah?", "Kewibawaan."],
-  ["Apakah sistem pentadbiran Melaka?", "Sistem Pembesar Empat Lipatan."],
-  ["Siapakah pembesar utama pertama?", "Bendahara."],
-  ["Siapakah pembesar utama selain Bendahara?", "Penghulu Bendahari."],
-  ["Siapakah salah seorang pembesar utama Melaka?", "Temenggung."],
-  ["Apakah satu lagi jawatan pembesar utama?", "Laksamana."],
-  ["Apakah sistem pentadbiran yang melibatkan serah?", "Sistem Serah."],
-  ["Apakah sistem pentadbiran yang melibatkan kerah?", "Sistem Kerah."],
-  ["Sistem Serah tergolong dalam aspek apa?", "Sistem pentadbiran."],
-  ["Apakah kanun dalam perundangan Melaka?", "Hukum Kanun Melaka."],
-  ["Apakah undang-undang berkaitan laut?", "Undang-Undang Laut Melaka."],
-  ["Apakah adat dalam perundangan Melaka?", "Adat Temenggung."],
-  ["Hukum Kanun Melaka termasuk dalam sistem apa?", "Sistem perundangan."],
-  ["Apakah satu cara pembentukan empayar?", "Penaklukan."],
-  ["Apakah cara pembentukan empayar melalui ikatan keluarga?", "Perkahwinan."],
-  ["Apakah cara pembentukan empayar selain penaklukan?", "Naungan."],
-  ["Bagaimanakah keluasan empayar Melaka?", "Luas."],
+  // Deck 2: Faktor dan Aspek Kegemilangan
+  [
+    "Apakah tiga faktor utama kegemilangan Kesultanan Melayu Melaka?",
+    "Kepemimpinan raja yang berwibawa, sistem pentadbiran yang cekap dan sistem perundangan yang tersusun.",
+  ],
+  [
+    "Apakah kedudukan raja dalam pemerintahan Melaka?",
+    "Ketua pemerintah dan ketua kerajaan yang mempunyai kuasa tertinggi.",
+  ],
+  [
+    "Apakah peranan utama raja Melaka?",
+    "Simbol perpaduan dan kemakmuran, ketua angkatan tentera, ketua hubungan diplomatik, penyelaras ekonomi, Ketua Agama Islam dan penegak keadilan.",
+  ],
+  [
+    "Apakah maksud daulat dalam Kesultanan Melayu Melaka?",
+    "Kuasa dan kewibawaan raja sebagai pemimpin.",
+  ],
+  [
+    "Bagaimanakah rakyat mengakui kedaulatan raja?",
+    "Dengan memberikan taat setia sepenuhnya dan tidak menderhaka.",
+  ],
+  ["Namakan alat kebesaran diraja Melaka.", "Cap mohor, nobat, keris, lembing dan mahkota."],
+  [
+    "Apakah Sistem Pembesar Empat Lipatan?",
+    "Sistem pentadbiran yang mempunyai pembesar pada setiap peringkat untuk membantu melicinkan pentadbiran.",
+  ],
+  [
+    "Apakah empat peringkat pembesar dalam Sistem Pembesar Empat Lipatan?",
+    "Pembesar Berempat, Pembesar Berlapan, Pembesar Enam Belas dan Pembesar Tiga Puluh Dua.",
+  ],
+  [
+    "Siapakah Pembesar Berempat Kesultanan Melayu Melaka?",
+    "Bendahara, Penghulu Bendahari, Temenggung dan Laksamana.",
+  ],
+  [
+    "Apakah tugas utama pembesar Melaka?",
+    "Menjaga keamanan, mengutip cukai dan hasil, membekalkan tentera serta menyediakan tenaga buruh.",
+  ],
+  [
+    "Apakah maksud Sistem Serah?",
+    "Pemberian sebahagian hasil tanaman rakyat kepada pemerintah sebagai balasan kepada pembesar yang menyediakan tanah.",
+  ],
+  [
+    "Apakah maksud Sistem Kerah?",
+    "Pekerjaan yang dilakukan tanpa upah seperti membina istana, kubu, jalan dan saliran.",
+  ],
+  [
+    "Apakah kawasan yang dikurniakan kepada Pembesar Berempat dikenali sebagai?",
+    "Kawasan pegangan.",
+  ],
+  ["Apakah kawasan pembesar jajahan dan daerah dikenali sebagai?", "Kawasan pemakanan."],
+  [
+    "Apakah dua undang-undang bertulis utama Kesultanan Melayu Melaka?",
+    "Hukum Kanun Melaka dan Undang-Undang Laut Melaka.",
+  ],
+  ["Berapakah fasal dalam Hukum Kanun Melaka?", "44 fasal."],
+  [
+    "Apakah perkara yang terkandung dalam Hukum Kanun Melaka?",
+    "Hak dan tanggungjawab raja serta pembesar, jenayah, jual beli dan kekeluargaan.",
+  ],
+  ["Berapakah fasal dalam Undang-Undang Laut Melaka?", "25 fasal."],
+  ["Apakah tujuan Undang-Undang Laut Melaka?", "Menentukan peraturan pelayaran dan perdagangan."],
+  [
+    "Apakah tiga cara pembentukan empayar Kesultanan Melayu Melaka?",
+    "Penaklukan, perkahwinan dan naungan.",
+  ],
 
-  // Deck 3: Perdagangan dan Pengakhiran Melaka
-  ["Bagaimanakah pemerintah membantu penyebaran Islam?", "Melalui pengislaman pemerintah."],
-  ["Apakah ikatan yang menyebarkan Islam?", "Perkahwinan."],
-  ["Siapakah yang menyampaikan dakwah Islam?", "Ulama dan mubaligh."],
-  ["Apakah kegiatan yang membantu penyebaran Islam?", "Perdagangan."],
-  ["Apakah kaedah penyebaran Islam melalui empayar?", "Peluasan kuasa."],
-  ["Siapakah yang mengurus perdagangan?", "Syahbandar."],
-  ["Apakah bayaran dalam perdagangan?", "Cukai perdagangan."],
-  ["Apakah alat urusan perdagangan?", "Mata wang."],
-  ["Golongan manakah membantu pengurusan perdagangan?", "Orang Laut."],
-  ["Apakah yang menyokong kegiatan di pelabuhan?", "Kemudahan pelabuhan."],
-  ["Kerajaan manakah berhubung dengan Melaka di Alam Melayu?", "Pasai."],
-  ["Apakah satu lagi hubungan Melaka di Alam Melayu?", "Majapahit."],
-  ["Melaka turut berhubung dengan kerajaan Alam Melayu mana?", "Makasar."],
-  ["Apakah hubungan Melaka di luar Alam Melayu?", "China."],
-  ["Kerajaan manakah berhubung dengan Melaka selain China?", "Ryukyu."],
-  ["Apakah satu lagi hubungan luar Alam Melayu?", "Siam."],
-  ["Bilakah Portugis menyerang Melaka?", "Tahun 1511."],
-  ["Mengapakah Portugis menyerang Melaka?", "Untuk menguasai perdagangan rempah."],
-  ["Siapakah yang meneruskan perjuangan Melaka?", "Sultan Mahmud Shah."],
-  ["Siapakah yang menguasai kota selepas kejatuhan Melaka?", "Portugis."],
+  // Deck 3: Empayar, Perdagangan dan Pengakhiran Melaka
+  [
+    "Sejauh manakah empayar Kesultanan Melayu Melaka berkembang?",
+    "Meliputi seluruh Semenanjung Tanah Melayu dan kawasan pantai timur Sumatera.",
+  ],
+  [
+    "Apakah kepentingan politik pembentukan empayar Melaka?",
+    "Meluaskan wilayah, mengukuhkan hubungan dengan kerajaan taklukan dan menyekat pengaruh kuasa serantau.",
+  ],
+  [
+    "Apakah kepentingan ekonomi pembentukan empayar Melaka?",
+    "Menerima hadiah dan bekalan serta menguasai perdagangan di Selat Melaka.",
+  ],
+  ["Siapakah pemerintah Melaka yang memeluk Islam pada tahun 1414?", "Sultan Iskandar Shah."],
+  ["Siapakah yang menjadikan Islam agama rasmi Kesultanan Melayu Melaka?", "Sultan Muzaffar Shah."],
+  [
+    "Apakah cara penyebaran Islam oleh Kesultanan Melayu Melaka?",
+    "Pengislaman pemerintah, perkahwinan, peranan ulama dan mubaligh, perdagangan serta peluasan kuasa.",
+  ],
+  [
+    "Apakah fungsi pelabuhan Melaka sebagai pelabuhan entrepot?",
+    "Mengumpulkan barangan dari Alam Melayu dan mengedarkan barangan dari timur dan barat.",
+  ],
+  [
+    "Siapakah pedagang luar yang paling ramai mengunjungi Melaka?",
+    "Pedagang Arab, China dan Gujerat.",
+  ],
+  [
+    "Siapakah pedagang Alam Melayu yang paling ramai mengunjungi Melaka?",
+    "Pedagang Pasai dan Jawa.",
+  ],
+  [
+    "Apakah tugas utama syahbandar di pelabuhan Melaka?",
+    "Mengurus pasar dan gudang, menjaga kebajikan dan keselamatan pedagang, memeriksa alat timbang, sukatan dan mata wang, mengurus cukai serta menguatkuasakan peraturan pelabuhan.",
+  ],
+  [
+    "Apakah dua jenis cukai perdagangan di Melaka?",
+    "Cukai rasmi yang dikenali sebagai panduan dan cukai tidak rasmi dalam bentuk hadiah.",
+  ],
+  [
+    "Apakah dua bentuk urusan jual beli di Melaka?",
+    "Pertukaran barangan dan penggunaan mata wang.",
+  ],
+  [
+    "Apakah peranan Orang Laut dalam perdagangan Melaka?",
+    "Menjadi pelayar dan penunjuk arah serta tentera yang menjaga keselamatan pedagang.",
+  ],
+  [
+    "Apakah dua bentuk hubungan luar Kesultanan Melayu Melaka?",
+    "Hubungan diplomatik dan perdagangan.",
+  ],
+  [
+    "Namakan kerajaan Alam Melayu yang mempunyai hubungan dengan Melaka.",
+    "Pasai, Demak, Majapahit dan Makasar.",
+  ],
+  [
+    "Apakah masalah dalaman yang melemahkan Kesultanan Melayu Melaka?",
+    "Masalah kepimpinan, pilih kasih, rasuah, penyelewengan, perbalahan pembesar dan masalah perpaduan.",
+  ],
+  ["Apakah matlamat Portugis datang ke Alam Melayu?", "Kekayaan, keagamaan dan kemasyhuran."],
+  [
+    "Apakah tujuan Portugis menyerang Melaka?",
+    "Mengawal perdagangan rempah, menyebarkan agama Kristian dan menghapuskan penguasaan pedagang Islam.",
+  ],
+  ["Bilakah Portugis menyerang Melaka pada tahun 1511?", "25 Julai, 10 Ogos dan 24 Ogos 1511."],
+  [
+    "Bagaimanakah Sultan Mahmud Shah meneruskan perjuangan selepas kejatuhan Melaka?",
+    "Baginda berundur ke Bentan, melancarkan tiga serangan antara tahun 1515 hingga 1519, kemudian berundur ke Kampar selepas Bentan dimusnahkan Portugis pada tahun 1526 dan mangkat pada tahun 1528.",
+  ],
 ];
 
 export const sejarahF2C5Flashcards: Flashcard[] = cardContent.map(([front, back], index) => ({
