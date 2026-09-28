@@ -142,7 +142,7 @@ const SEJARAH_F2_C3_FLASHCARD_SET_OPTIONS: Array<{
 }> = [
   { index: 0, title: "Bahasa dan Tulisan", range: "Cards 1-20" },
   { index: 1, title: "Persuratan", range: "Cards 21-40" },
-  { index: 2, title: "Sastera dan Pengaruh", range: "Cards 41-60" },
+  { index: 2, title: "Seni Bina & Struktur Sosial", range: "Cards 41-60" },
 ];
 
 const SEJARAH_F2_C4_FLASHCARD_SET_OPTIONS: Array<{
