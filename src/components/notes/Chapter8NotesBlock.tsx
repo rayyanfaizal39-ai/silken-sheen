@@ -1,3 +1,4 @@
+import { Chapter8Refraction } from "./Chapter8Refraction";
 import { useEffect, useState } from "react";
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 import { ResearchModuleMeta } from "@/components/science/ScienceDiscoveryChrome";
@@ -109,7 +110,6 @@ const SHADOW_HEAD: Record<Lang, string> = {
   en: "🌑 How a Shadow Forms",
   bm: "🌑 Cara Bayang-Bayang Terbentuk",
 };
-const DAILY_LIFE_HEAD: Record<Lang, string> = { en: "Everyday examples", bm: "Contoh harian" };
 const RAINBOW_HEAD: Record<Lang, string> = {
   en: "🌈 How a Rainbow Forms",
   bm: "🌈 Cara Pelangi Terbentuk",
@@ -170,11 +170,6 @@ export function Chapter8NotesBlock({
   }
 
   const [planeMirror, concaveMirror, convexMirror] = t.mirrors.mirrorTypes;
-  const refractionBends: Array<"awayNormal" | "towardNormal" | "none"> = [
-    "awayNormal",
-    "towardNormal",
-    "none",
-  ];
 
   return (
     <section id={id} data-lang={lang} className="science-research-modules mt-8 animate-fade-up">
@@ -313,23 +308,7 @@ export function Chapter8NotesBlock({
           </div>
         )}
 
-        {current === 4 && (
-          <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
-              {t.refraction.definition}
-            </p>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {t.refraction.cases.map((c, i) => (
-                <div key={c.scenario} className="flex flex-col gap-2">
-                  <RayDiagram variant="refraction" lang={lang} bend={refractionBends[i]} />
-                  <p className="text-[11.5px] leading-snug text-muted-foreground">{c.scenario}</p>
-                  <p className="text-[11.5px] font-semibold text-foreground">{c.behavior}</p>
-                </div>
-              ))}
-            </div>
-            <ChipRow heading={DAILY_LIFE_HEAD[lang]} items={t.refraction.dailyLifeExamples} />
-          </div>
-        )}
+        {current === 4 && <Chapter8Refraction source={t.refraction} />}
 
         {current === 5 && (
           <div className="space-y-6">

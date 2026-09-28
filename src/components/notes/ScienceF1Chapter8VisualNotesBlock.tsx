@@ -1,3 +1,4 @@
+import { Chapter8Refraction } from "./Chapter8Refraction";
 import { Chapter8PropertiesOfLight } from "./Chapter8PropertiesOfLight";
 import { Chapter8Reflection } from "./Chapter8Reflection";
 import { Chapter8Mirrors } from "./Chapter8Mirrors";
@@ -42,12 +43,6 @@ const ui = {
     applications: "Daily applications",
     instruments: "Optical instruments",
     experiment: "Experiment",
-    chooseRule: "Choose a boundary passage",
-    bend: "Ray direction",
-    speed: "Speed",
-    angle: "Angle relationship",
-    everyday: "Everyday refraction",
-    fish: "Exam application: locating a fish",
     dispersion: "Dispersion through a prism",
     spectrum: "ROYGBIV spectrum",
     scattering: "Atmospheric scattering",
@@ -95,12 +90,6 @@ const ui = {
     applications: "Aplikasi harian",
     instruments: "Alat optik",
     experiment: "Eksperimen",
-    chooseRule: "Pilih laluan sempadan",
-    bend: "Arah sinar",
-    speed: "Laju",
-    angle: "Hubungan sudut",
-    everyday: "Pembiasan harian",
-    fish: "Aplikasi peperiksaan: menentukan kedudukan ikan",
     dispersion: "Serakan melalui prisma",
     spectrum: "Spektrum MUJHHBIU",
     scattering: "Penyerakan atmosfera",
@@ -239,7 +228,6 @@ export function ScienceF1Chapter8VisualNotesBlock({
   const t = content[lang];
   const extra = chapter8Supplement[lang];
   const copy = ui[lang];
-  const [refraction, setRefraction] = useState(0);
   const [sky, setSky] = useState(0);
   const [mix, setMix] = useState(0);
   const mixes = t.colorAdditionSubtraction.additionFormula;
@@ -307,51 +295,7 @@ export function ScienceF1Chapter8VisualNotesBlock({
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               {t.subtopics[3].code} {t.subtopics[3].title}
             </h2>
-            <p className="max-w-3xl text-sm leading-6 text-slate-300">{t.refraction.definition}</p>
-            <Panel>
-              <h3 className="font-bold text-white">{copy.chooseRule}</h3>
-              <div className="mt-4">
-                <Tabs
-                  labels={extra.refractionRules.map((item) => item.passage)}
-                  selected={refraction}
-                  onSelect={setRefraction}
-                />
-              </div>
-              <div className="mt-4 grid gap-3 sm:grid-cols-3" role="tabpanel">
-                <div className="rounded-xl bg-violet-300/10 p-4">
-                  <p className="text-xs font-bold uppercase text-violet-300">{copy.bend}</p>
-                  <p className="mt-2 font-bold text-white">
-                    {extra.refractionRules[refraction].bend}
-                  </p>
-                </div>
-                <div className="rounded-xl bg-sky-300/10 p-4">
-                  <p className="text-xs font-bold uppercase text-sky-300">{copy.speed}</p>
-                  <p className="mt-2 font-bold text-white">
-                    {extra.refractionRules[refraction].speed}
-                  </p>
-                </div>
-                <div className="rounded-xl bg-emerald-300/10 p-4">
-                  <p className="text-xs font-bold uppercase text-emerald-300">{copy.angle}</p>
-                  <p className="mt-2 font-mono text-xl font-black text-white">
-                    {extra.refractionRules[refraction].angle}
-                  </p>
-                </div>
-              </div>
-            </Panel>
-            <div className="grid gap-5 lg:grid-cols-2">
-              <Panel>
-                <h3 className="mb-4 font-bold text-white">{copy.experiment}</h3>
-                <Checklist items={extra.refractionExperiment} />
-              </Panel>
-              <Panel>
-                <h3 className="mb-4 font-bold text-white">{copy.everyday}</h3>
-                <Checklist items={t.refraction.dailyLifeExamples} />
-              </Panel>
-            </div>
-            <Panel className="border-sky-300/25 bg-sky-300/[0.06]">
-              <h3 className="font-bold text-sky-200">{copy.fish}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-300">{extra.fishTip}</p>
-            </Panel>
+            <Chapter8Refraction source={t.refraction} />
           </section>
 
           <section id="chapter8-85" data-official-subtopic="8.5" className="space-y-6">

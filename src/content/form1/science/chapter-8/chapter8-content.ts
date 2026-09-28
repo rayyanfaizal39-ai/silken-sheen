@@ -16,7 +16,10 @@ export interface OpticalInstrument {
 }
 
 export interface RefractionCase {
+  id: "water-air" | "air-water" | "normal-water-air" | "normal-air-water";
   scenario: string;
+  from: string;
+  to: string;
   behavior: string;
 }
 
@@ -155,6 +158,80 @@ export interface ReflectionLesson {
   };
 }
 
+export interface RefractionLesson {
+  definition: string;
+  illusions: { pond: string; pencil: string };
+  fish: { title: string; explanation: string; question: string };
+  experiment: {
+    title: string;
+    problem: string;
+    hypothesis: string;
+    aim: string;
+    variables: { manipulated: string; responding: string; constant: string };
+    materials: string[];
+    instructions: string[];
+    results: { i: null; r: null }[];
+    discussion: string[];
+    conclusion: string;
+    questions: string[];
+  };
+  activity: {
+    title: string;
+    aim: string;
+    instructions: string[];
+    phenomena: string[];
+    phenomenaAfter: number;
+  };
+  practice: { title: string; questions: string[]; caseLabels: string[] };
+  labels: {
+    observer: string;
+    actualFish: string;
+    image: string;
+    light: string;
+    surface: string;
+    air: string;
+    water: string;
+    normal: string;
+    incident: string;
+    refracted: string;
+    emerging: string;
+    incidence: string;
+    refraction: string;
+    rayCases: string;
+    problem: string;
+    hypothesis: string;
+    aim: string;
+    variables: string;
+    manipulated: string;
+    responding: string;
+    constant: string;
+    materials: string;
+    procedure: string;
+    results: string;
+    discussion: string;
+    conclusion: string;
+    questions: string;
+    instructions: string;
+    glass: string;
+    box: string;
+    slit: string;
+    paper: string;
+    power: string;
+    ruler: string;
+    protractor: string;
+    demo: string;
+    stage: string;
+    outline: string;
+    rays: string;
+    remove: string;
+    measure: string;
+    unfilled: string;
+    whatYouSee: string;
+    rayDiagram: string;
+  };
+  cases: RefractionCase[];
+}
+
 export interface Chapter8Content {
   title: string;
   subtopics: { code: string; title: string }[];
@@ -168,11 +245,7 @@ export interface Chapter8Content {
     opticalInstruments: OpticalInstrument[];
   };
   propertiesOfLight: PropertiesOfLightLesson;
-  refraction: {
-    definition: string;
-    cases: RefractionCase[];
-    dailyLifeExamples: string[];
-  };
+  refraction: RefractionLesson;
   dispersion: {
     definition: string;
     spectrumOrder: string[];
@@ -592,26 +665,179 @@ const en: Chapter8Content = {
   },
   refraction: {
     definition:
-      "Refraction of light is the change in direction of light as it travels through two mediums of different densities.",
+      "Refraction of light is the change in direction of light when light travels through two media of different densities.",
+    illusions: {
+      pond: "Why does a deep pond appear to be shallower and the fish in the pond appear to be much closer to the water surface?",
+      pencil: "Why does a pencil look bent in a glass of water?",
+    },
+    fish: {
+      title: "Fish in an aquarium",
+      explanation:
+        "Fish appears to be much shallower than its real location due to the refraction of light.",
+      question: "Due to the refraction of light phenomenon, how do you catch fish in a river?",
+    },
     cases: [
       {
-        scenario: "Light moves from a more dense medium (water) to a less dense medium (air)",
-        behavior: "The light ray is refracted away from the normal",
+        id: "water-air",
+        scenario: "Water → Air",
+        from: "Water (more dense)",
+        to: "Air (less dense)",
+        behavior:
+          "The light ray is refracted away from the normal when the incident ray moves from a more dense medium to a less dense medium.",
       },
       {
-        scenario: "Light moves from a less dense medium (air) to a more dense medium (water)",
-        behavior: "The light ray is refracted towards the normal",
+        id: "air-water",
+        scenario: "Air → Water",
+        from: "Air (less dense)",
+        to: "Water (more dense)",
+        behavior:
+          "The light ray is refracted towards the normal when the incident ray moves from a less dense medium to a more dense medium.",
       },
       {
-        scenario: "Incident ray is parallel to the normal (either direction)",
-        behavior: "The light ray is not refracted at all — it continues straight through",
+        id: "normal-water-air",
+        scenario: "Water → Air",
+        from: "Water (more dense)",
+        to: "Air (less dense)",
+        behavior:
+          "The light ray is not refracted when the incident ray is parallel to the normal and moves from a more dense medium to a less dense medium.",
+      },
+      {
+        id: "normal-air-water",
+        scenario: "Air → Water",
+        from: "Air (less dense)",
+        to: "Water (more dense)",
+        behavior:
+          "The light ray is not refracted when the incident ray is parallel to the normal and moves from a less dense medium to a more dense medium.",
       },
     ],
-    dailyLifeExamples: [
-      "A fish in a pond appears much closer to the surface than its actual location",
-      "A pencil looks bent in a glass of water",
-      "A swimming pool appears shallower than it actually is",
-    ],
+    experiment: {
+      title: "Experiment 8.2",
+      problem:
+        "What is the relationship between the angle of incidence, i and angle of refraction, r when light travels from a less dense medium to a more dense medium?",
+      hypothesis: "The greater the angle of incidence, i, the bigger the angle of refraction, r.",
+      aim: "To determine the relationship between angle of incidence, i and angle of refraction, r when light travels from a less dense medium (air) to a more dense medium (glass block)",
+      variables: {
+        manipulated: "Angle of incidence, i",
+        responding: "Angle of refraction, r",
+        constant: "Size of slit and shape of glass block",
+      },
+      materials: [
+        "Glass block",
+        "Ray box",
+        "Single-slit plate",
+        "Plastic ruler",
+        "Power supply",
+        "White paper",
+        "Protractor",
+      ],
+      instructions: [
+        "Carry out this experiment in the dark.",
+        "Place a glass block on a white paper and trace its outline.",
+        "Direct a single incident ray onto the block, mark its path and draw its incident ray with a ruler.",
+        "Mark the path of the ray emerging from the block and draw the ray with a ruler.",
+        "Remove the block, connect the entry and exit points to show the path of the ray inside the block.",
+        "Draw a normal line at the entry point.",
+        "Measure the angle of incidence, i and the angle of refraction, r using a protractor.",
+        "Repeat steps 3 to 7 for different angles of incidence.",
+        "Record your results in a table.",
+      ],
+      results: [
+        {
+          i: null,
+          r: null,
+        },
+        {
+          i: null,
+          r: null,
+        },
+        {
+          i: null,
+          r: null,
+        },
+        {
+          i: null,
+          r: null,
+        },
+        {
+          i: null,
+          r: null,
+        },
+      ],
+      discussion: [
+        "Plot a graph of i against r.",
+        "Based on the graph of the angle of incidence, i against the angle of refraction, r, what is the relationship between i and r?",
+      ],
+      conclusion: "Can the hypothesis be accepted?",
+      questions: [
+        "What happens to the light ray when it travels from a less dense medium to a more dense medium?",
+        "What happens to the light ray when it travels from a more dense medium to a less dense medium?",
+      ],
+    },
+    activity: {
+      title: "Activity 8.6",
+      aim: "To investigate the phenomenon of refraction of light",
+      instructions: [
+        "Work in groups.",
+        "Use resources such as the library, Internet and others to collect information regarding the following phenomena.",
+        "Present the outcomes of your research in class.",
+      ],
+      phenomena: ["A spoon looks bent in water", "The bottom of a pool appears to be shallower"],
+      phenomenaAfter: 1,
+    },
+    practice: {
+      title: "Formative Practice 8.4",
+      questions: [
+        "Why does the bottom of a deep swimming pool appear shallower?",
+        "Light rays refract at a certain angle in two different cases as below. Differentiate the density of the two media for both cases below.",
+      ],
+      caseLabels: ["Case 1", "Case 2"],
+    },
+    labels: {
+      observer: "Observer",
+      actualFish: "Actual location of fish",
+      image: "Image seen",
+      light: "Light ray",
+      surface: "Water surface",
+      air: "Air",
+      water: "Water",
+      normal: "Normal line",
+      incident: "Incident ray",
+      refracted: "Refracted ray",
+      emerging: "Emerging ray",
+      incidence: "Angle of incidence, i",
+      refraction: "Angle of refraction, r",
+      rayCases: "Ray diagrams to show the refraction of light",
+      problem: "Problem statement",
+      hypothesis: "Hypothesis",
+      aim: "Aim",
+      variables: "Variables",
+      manipulated: "Manipulated variable",
+      responding: "Responding variable",
+      constant: "Constant variable",
+      materials: "Materials and apparatus",
+      procedure: "Procedure",
+      results: "Results",
+      discussion: "Discussion",
+      conclusion: "Conclusion",
+      questions: "Question",
+      instructions: "Instruction",
+      glass: "Glass block",
+      box: "Ray box",
+      slit: "Single slit",
+      paper: "White paper",
+      power: "Power supply",
+      ruler: "Ruler",
+      protractor: "Protractor",
+      demo: "Diagram demonstration",
+      stage: "Procedure",
+      outline: "Trace the glass block",
+      rays: "Mark the incident and emerging rays",
+      remove: "Remove the glass block",
+      measure: "Draw the normal and measure i and r",
+      unfilled: "Blank textbook result",
+      whatYouSee: "What you see",
+      rayDiagram: "Ray diagram",
+    },
   },
   dispersion: {
     definition:
@@ -1087,28 +1313,184 @@ const bm: Chapter8Content = {
   },
   refraction: {
     definition:
-      "Pembiasan cahaya ialah perubahan arah cahaya semasa ia bergerak melalui dua medium yang berbeza ketumpatan.",
+      "Pembiasan cahaya ialah perubahan arah perambatan atau pembengkokan cahaya apabila cahaya bergerak melalui dua medium yang berbeza ketumpatan.",
+    illusions: {
+      pond: "Mengapakah dasar kolam yang dalam kelihatan cetek dan ikan yang berenang di dalam kolam itu kelihatan seperti berenang di atas permukaan air?",
+      pencil: "Mengapakah pensel kelihatan bengkok di dalam gelas berisi air?",
+    },
+    fish: {
+      title: "Ikan di dalam akuarium",
+      explanation:
+        "Ikan kelihatan seperti berada pada kedudukan yang lebih cetek berbanding dengan kedudukan asalnya kerana fenomena pembiasan cahaya.",
+      question:
+        "Disebabkan fenomena pembiasan cahaya, bagaimanakah anda dapat menangkap ikan di dalam sungai?",
+    },
     cases: [
       {
-        scenario:
-          "Cahaya bergerak daripada medium lebih tumpat (air) ke medium kurang tumpat (udara)",
-        behavior: "Sinar cahaya dibiaskan menjauhi garis normal",
+        id: "water-air",
+        scenario: "Air → Udara",
+        from: "Air (lebih tumpat)",
+        to: "Udara (kurang tumpat)",
+        behavior:
+          "Cahaya terbias menjauhi normal kerana sinar tuju bergerak dari medium lebih tumpat ke kurang tumpat.",
       },
       {
-        scenario:
-          "Cahaya bergerak daripada medium kurang tumpat (udara) ke medium lebih tumpat (air)",
-        behavior: "Sinar cahaya dibiaskan mendekati garis normal",
+        id: "air-water",
+        scenario: "Udara → Air",
+        from: "Udara (kurang tumpat)",
+        to: "Air (lebih tumpat)",
+        behavior:
+          "Cahaya terbias mendekati normal kerana sinar tuju bergerak dari medium kurang tumpat ke lebih tumpat.",
       },
       {
-        scenario: "Sinar tuju selari dengan garis normal (mana-mana arah)",
-        behavior: "Sinar cahaya tidak dibiaskan langsung — ia terus lurus",
+        id: "normal-water-air",
+        scenario: "Air → Udara",
+        from: "Air (lebih tumpat)",
+        to: "Udara (kurang tumpat)",
+        behavior:
+          "Cahaya tidak terbias kerana sinar tuju selari dengan normal apabila sinar tuju bergerak dari medium lebih tumpat ke kurang tumpat.",
+      },
+      {
+        id: "normal-air-water",
+        scenario: "Udara → Air",
+        from: "Udara (kurang tumpat)",
+        to: "Air (lebih tumpat)",
+        behavior:
+          "Cahaya tidak terbias kerana sinar tuju selari dengan normal apabila sinar tuju bergerak dari medium kurang tumpat ke lebih tumpat.",
       },
     ],
-    dailyLifeExamples: [
-      "Ikan dalam kolam kelihatan lebih dekat dengan permukaan berbanding lokasi sebenar",
-      "Pensel kelihatan bengkok dalam segelas air",
-      "Kolam renang kelihatan cetek berbanding kedalaman sebenar",
-    ],
+    experiment: {
+      title: "Eksperimen 8.2",
+      problem:
+        "Apakah hubungan antara sudut tuju dengan sudut biasan? Dengan menambahkan sudut tuju, adakah sudut biasan juga akan bertambah?",
+      hypothesis: "Semakin besar sudut tuju, i, semakin besar sudut biasan, r.",
+      aim: "Mengkaji hubungan antara sudut tuju, i dengan sudut biasan, r apabila cahaya bergerak dari medium kurang tumpat (udara) ke medium lebih tumpat (bongkah kaca)",
+      variables: {
+        manipulated: "Sudut tuju, i",
+        responding: "Sudut biasan, r",
+        constant: "Saiz celah dan bentuk bongkah kaca",
+      },
+      materials: [
+        "Bongkah kaca",
+        "Kotak sinar",
+        "Plat satu celah",
+        "Pembaris",
+        "Bekalan kuasa",
+        "Kertas putih",
+        "Protraktor",
+      ],
+      instructions: [
+        "Jalankan eksperimen ini di dalam bilik yang gelap.",
+        "Letak satu bongkah kaca di atas sehelai kertas putih dan lakarkan bentuknya.",
+        "Halakan satu sinar tuju ke bongkah tersebut, tandakan arahnya dan lukis sinar tuju tersebut dengan menggunakan pembaris.",
+        "Tandakan arah sinar yang keluar dari bongkah tersebut dan lukis sinar tersebut dengan menggunakan pembaris.",
+        "Alihkan bongkah kaca, sambungkan titik masuk dan titik keluar sinar tersebut untuk menunjukkan arah sinar dalam bongkah tersebut.",
+        "Lukis garis normal pada titik masuk.",
+        "Ukur sudut tuju, i dan sudut biasan, r dengan menggunakan protraktor.",
+        "Ulang langkah 3 hingga 7 untuk sudut tuju yang berlainan.",
+        "Rekodkan keputusan anda di dalam sebuah jadual.",
+      ],
+      results: [
+        {
+          i: null,
+          r: null,
+        },
+        {
+          i: null,
+          r: null,
+        },
+        {
+          i: null,
+          r: null,
+        },
+        {
+          i: null,
+          r: null,
+        },
+        {
+          i: null,
+          r: null,
+        },
+      ],
+      discussion: [
+        "Plotkan graf i melawan r.",
+        "Berdasarkan graf sudut tuju, i melawan sudut biasan, r, apakah hubungan antara sudut tuju, i dengan sudut biasan, r?",
+      ],
+      conclusion: "Adakah hipotesis eksperimen diterima?",
+      questions: [
+        "Apakah yang berlaku kepada sinar cahaya apabila sinar itu bergerak dari medium kurang tumpat ke medium lebih tumpat?",
+        "Apakah yang berlaku kepada sinar cahaya apabila sinar itu bergerak dari medium lebih tumpat ke medium kurang tumpat?",
+      ],
+    },
+    activity: {
+      title: "Aktiviti 8.6",
+      aim: "Menyiasat fenomena pembiasan cahaya",
+      instructions: [
+        "Jalankan aktiviti secara berkumpulan.",
+        "Kenal pasti fenomena pembiasan cahaya seperti di bawah.",
+        "Gunakan sumber-sumber seperti perpustakaan, Internet dan lain-lain untuk mengumpulkan maklumat berkenaan fenomena tersebut.",
+        "Bentangkan hasil kajian anda di dalam kelas.",
+      ],
+      phenomena: [
+        "Sudu kelihatan bengkok di dalam air",
+        "Dasar kolam renang kelihatan lebih cetek",
+      ],
+      phenomenaAfter: 1,
+    },
+    practice: {
+      title: "Praktis Formatif 8.4",
+      questions: [
+        "Mengapakah dasar kolam renang yang dalam kelihatan cetek?",
+        "Sinar cahaya terbias pada sudut tertentu dalam dua kes seperti di bawah. Bezakan ketumpatan kedua-dua medium dalam kes di bawah.",
+      ],
+      caseLabels: ["Kes 1", "Kes 2"],
+    },
+    labels: {
+      observer: "Pemerhati",
+      actualFish: "Kedudukan sebenar ikan",
+      image: "Imej yang dilihat",
+      light: "Sinar cahaya",
+      surface: "Permukaan air",
+      air: "Udara",
+      water: "Air",
+      normal: "Garis normal",
+      incident: "Sinar tuju",
+      refracted: "Sinar biasan",
+      emerging: "Sinar yang keluar",
+      incidence: "Sudut tuju, i",
+      refraction: "Sudut biasan, r",
+      rayCases: "Gambar rajah sinar pembiasan cahaya",
+      problem: "Pernyataan masalah",
+      hypothesis: "Hipotesis",
+      aim: "Tujuan",
+      variables: "Pemboleh ubah",
+      manipulated: "Pemboleh ubah dimanipulasikan",
+      responding: "Pemboleh ubah bergerak balas",
+      constant: "Pemboleh ubah dimalarkan",
+      materials: "Bahan dan radas",
+      procedure: "Prosedur",
+      results: "Keputusan",
+      discussion: "Perbincangan",
+      conclusion: "Kesimpulan",
+      questions: "Soalan",
+      instructions: "Arahan",
+      glass: "Bongkah kaca",
+      box: "Kotak sinar",
+      slit: "Satu celah",
+      paper: "Kertas putih",
+      power: "Bekalan kuasa",
+      ruler: "Pembaris",
+      protractor: "Protraktor",
+      demo: "Demonstrasi rajah",
+      stage: "Prosedur",
+      outline: "Lakarkan bentuk bongkah kaca",
+      rays: "Tandakan sinar tuju dan sinar yang keluar",
+      remove: "Alihkan bongkah kaca",
+      measure: "Lukis garis normal dan ukur i dan r",
+      unfilled: "Keputusan buku teks yang kosong",
+      whatYouSee: "Apa yang dilihat",
+      rayDiagram: "Gambar rajah sinar",
+    },
   },
   dispersion: {
     definition:
@@ -1182,9 +1564,6 @@ const bm: Chapter8Content = {
 export const chapter8Content = { en, bm };
 
 export interface Chapter8Supplement {
-  refractionRules: { passage: string; bend: string; speed: string; angle: string }[];
-  refractionExperiment: string[];
-  fishTip: string;
   dispersionExperiments: { part: string; setup: string; result: string }[];
   scatteringExperiment: string[];
   objectColourRows: { object: string; incident: string; reflected: string; absorbed: string }[];
@@ -1194,33 +1573,6 @@ export interface Chapter8Supplement {
 }
 
 const supplementEn: Chapter8Supplement = {
-  refractionRules: [
-    {
-      passage: "Less dense → more dense",
-      bend: "Towards the normal",
-      speed: "Decreases",
-      angle: "i > r",
-    },
-    {
-      passage: "More dense → less dense",
-      bend: "Away from the normal",
-      speed: "Increases",
-      angle: "i < r",
-    },
-    {
-      passage: "Along the normal (i = 0°)",
-      bend: "No change of direction",
-      speed: "Changes",
-      angle: "Straight through",
-    },
-  ],
-  refractionExperiment: [
-    "Trace a glass block on white paper and direct a single ray into it.",
-    "Mark the entrance and exit points, remove the block, then connect the points to trace the internal path.",
-    "The ray bends towards the normal on entering glass and away from the normal on returning to air.",
-  ],
-  fishTip:
-    "A fish appears shallower than its actual position because light bends away from the normal when leaving water. Aim below the visible image.",
   dispersionExperiments: [
     {
       part: "Glass prism",
@@ -1287,33 +1639,6 @@ const supplementEn: Chapter8Supplement = {
 };
 
 const supplementBm: Chapter8Supplement = {
-  refractionRules: [
-    {
-      passage: "Kurang tumpat → lebih tumpat",
-      bend: "Mendekati normal",
-      speed: "Berkurang",
-      angle: "i > r",
-    },
-    {
-      passage: "Lebih tumpat → kurang tumpat",
-      bend: "Menjauhi normal",
-      speed: "Bertambah",
-      angle: "i < r",
-    },
-    {
-      passage: "Sepanjang normal (i = 0°)",
-      bend: "Tiada perubahan arah",
-      speed: "Berubah",
-      angle: "Bergerak lurus",
-    },
-  ],
-  refractionExperiment: [
-    "Surih blok kaca pada kertas putih dan halakan satu sinar ke dalamnya.",
-    "Tandakan titik masuk dan keluar, alihkan blok, kemudian sambungkan titik untuk menyurih laluan di dalam blok.",
-    "Sinar membengkok mendekati normal apabila memasuki kaca dan menjauhi normal apabila kembali ke udara.",
-  ],
-  fishTip:
-    "Ikan kelihatan lebih cetek daripada kedudukan sebenar kerana cahaya membengkok menjauhi normal apabila keluar dari air. Halakan lembing di bawah imej yang kelihatan.",
   dispersionExperiments: [
     {
       part: "Prisma kaca",
