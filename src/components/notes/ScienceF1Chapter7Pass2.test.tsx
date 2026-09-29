@@ -65,15 +65,19 @@ describe("Chapter 7 Pass 2", () => {
         t.airLesson.subtopics.map((s) => `${s.code} ${s.title}`),
       );
     });
-    it(`${lang}: all non-combustion canonical content and 7.3 pollution definition retain their pre-pass hashes`, () => {
+    it(`${lang}: approved 7.1 canonical content retains its pre-pass hash`, () => {
       const locked = {
-        ...Object.fromEntries(Object.entries(t).filter(([key]) => key !== "combustion")),
-        pollutionDefinition: bab7Supplement[lang].pollutionDefinition,
+        ...Object.fromEntries(
+          ["airLesson", "hook", "composition", "experiment", "uses", "cycles"].map((key) => [
+            key,
+            t[key as keyof typeof t],
+          ]),
+        ),
       };
       expect(hash(JSON.stringify(locked))).toBe(
         lang === "en"
-          ? "fa8fd0bdee4b8e4fd047de329871b8a137f6d4bb7d9545c4738c935d9cf92ef3"
-          : "669f5f1cdb1a745b12b150c0dec45eee3f1a4d36c6e4520d1568c73c1a888885",
+          ? "fccd4fe42abca059ec47002e2441eef562d2a5e31c4cdda98a564dab9bc04845"
+          : "d5c75650d83564ed67ae45b26ee927eeb095a8b819085963053a52a304f98631",
       );
     });
     it(`${lang}: definition matches the textbook`, () => {
@@ -300,7 +304,7 @@ describe("Chapter 7 Pass 2", () => {
     });
     it(`${lang}: no independent supplement combustion facts or unsupported electrical teaching remain`, () => {
       expect(Object.keys(bab7Supplement[lang])).toEqual(["pollutionDefinition", "activeRecall"]);
-      expect(bab7Supplement[lang].activeRecall).toHaveLength(1);
+      expect(bab7Supplement[lang].activeRecall).toHaveLength(0);
       mount(createElement(ScienceF1Chapter7VisualNotesBlock, { content: bab7Content, lang }));
       expect(host.textContent).not.toMatch(
         /electrocute|water conducts electricity|air mengkonduksi elektrik|renjatan kepada pengguna|rapid reactions|tindak balas pantas/,

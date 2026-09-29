@@ -9,6 +9,42 @@ const migration = readFileSync(
   "utf8",
 );
 
+const hardening = readFileSync(
+  new URL(
+    "../../../../supabase/migrations/20260924120000_harden_complete_quiz_subject_xp.sql",
+    import.meta.url,
+  ),
+  "utf8",
+);
+
+describe("hardened complete_quiz contract", () => {
+  it("keeps the award formula and ledgers of the one-time award migration", () => {
+    for (const rule of [
+      /completion_reward constant integer := 20/,
+      /score_percent = 100 then 30/,
+      /score_percent >= 90 then 20/,
+      /score_percent >= 80 then 10/,
+      /score_percent >= 60 then 5/,
+      /on conflict \(id\) do nothing/i,
+      /on conflict \(user_id, quiz_key\) do nothing/i,
+      /auth\.jwt\(\) ->> 'is_anonymous'/,
+    ]) {
+      expect(hardening).toMatch(rule);
+    }
+  });
+
+  const hardeningCode = hardening.replace(/--.*$/gm, "");
+
+  it("never casts stored subject_xp directly to integer", () => {
+    expect(hardeningCode).not.toMatch(/subject_xp\s*->>[^;]*?\)::integer/i);
+    expect(hardeningCode).toMatch(/public\.safe_subject_xp\(/);
+  });
+
+  it("is additive: drops and deletes nothing", () => {
+    expect(hardeningCode).not.toMatch(/\b(drop|delete|truncate)\b/i);
+  });
+});
+
 describe("one-time quiz XP server contract", () => {
   it("derives the exact score bands and caps each award at 50 XP", () => {
     expect(migration).toMatch(/completion_reward constant integer := 20/);

@@ -12,6 +12,7 @@ import {
 } from "@/hooks/use-progress";
 import { subjects } from "@/data/subjects-meta";
 import { getSubjectWorldArtwork, SUBJECT_WORLD_FALLBACK_ACCENT } from "@/lib/subject-world-artwork";
+import { normalizeFormParam, studyResumeSearch } from "@/lib/study-routing";
 
 const ACTIVITY_ROUTES = {
   notes: "/notes",
@@ -84,8 +85,8 @@ export function HomeContinueLearning() {
     }
 
     void import("@/content/registry").then(({ getRegisteredSubjectChapters }) => {
-      if (!active) return;
-      const form = latest.form ?? "Form 1";
+      const form = normalizeFormParam(latest.form);
+      if (!active || !form) return;
       const chapter = getRegisteredSubjectChapters(latest.subjectId, undefined, form).find(
         (item) => item.key === latest.chapterKey,
       );
@@ -128,19 +129,15 @@ export function HomeContinueLearning() {
     (item) => item.id === (worldArtwork?.canonicalId ?? latest.subjectId),
   );
   const subjectName = subject?.name ?? latest.subjectId;
-  const form = latest.form ?? "Form 1";
+  // Older history without a Form resumes at the subject's Form chooser.
+  const form = normalizeFormParam(latest.form);
   const canonicalLabel = registryLabel ?? getCanonicalLabel(latest, recentActivity ?? []);
   const { chapterLabel, chapterTitle } = getChapterDisplay(latest.chapterKey, canonicalLabel);
   const activity =
     progress.chapterActivity[chapterActivityKey(latest.subjectId, latest.chapterKey)];
   const progressPct = activity ? chapterProgressPct(activity) : null;
   const route = ACTIVITY_ROUTES[latest.type];
-  const formNumber = Number(form.match(/\d/)?.[0] ?? 1);
-  const routeSearch = {
-    subject: latest.subjectId,
-    form: formNumber,
-    chapter: latest.chapterKey,
-  };
+  const routeSearch = studyResumeSearch(latest);
   const nextActivity = getNextActivity(latest.type);
   const nextRoute = ACTIVITY_ROUTES[nextActivity.type];
   const accent = worldArtwork?.accent ?? SUBJECT_WORLD_FALLBACK_ACCENT;
@@ -162,7 +159,13 @@ export function HomeContinueLearning() {
       <div className="home-continue-learning__details">
         <p className="home-skeleton__section-label">Continue Learning</p>
         <p className="home-continue-learning__subject">
-          {subjectName} <span>·</span> {form}
+          {subjectName}
+          {form && (
+            <>
+              {" "}
+              <span>·</span> {form}
+            </>
+          )}
         </p>
         <p className="home-continue-learning__chapter">{chapterLabel}</p>
         <h2 id="continue-learning-title">{chapterTitle}</h2>

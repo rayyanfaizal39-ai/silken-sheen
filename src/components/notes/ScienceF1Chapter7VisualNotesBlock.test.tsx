@@ -34,6 +34,7 @@ describe("ScienceF1Chapter7VisualNotesBlock", () => {
     expect(html).toContain("1/5 ≈ 20% oxygen");
     expect(html).toContain("Do not pour water onto an oil fire");
     expect(html).toContain("Air Pollutant Index");
-    expect(html).toContain("Why can cave explorers");
+    expect(html).toContain("Formative Practice 7.3");
+    expect(html).not.toContain("Why can cave explorers");
   });
 });

@@ -36,6 +36,16 @@ One row per completed quiz attempt: `user_id`, `subject_id`, `chapter_key`, `sco
 **Known issue:** `getQuizActivity` in `src/routes/-admin.server.ts` currently queries a table named `quiz_attempts`, which does not exist — only `quiz_history` does. This predates this session's changes; flagging it here rather than silently fixing it, since fixing admin tabs wasn't in scope for this task.
 **RLS:** users insert/read only their own rows. No admin-read policy exists yet (the admin tab is reading through this broken path, so the gap hasn't surfaced yet).
 
+### Quiz XP award (`complete_catalog_quiz`)
+Quiz XP uses the original AcadeMY economy (the rules before 2026-09-23, recovered from git), and the server calculates every award (`20260924150000_original_quiz_xp_economy`).
+
+- **Formula:** for each correct answer, Easy 10 / Medium 20 / Hard 30 (any other difficulty counts as 10), plus a +5 correct-answer bonus and a timer bonus on standard quizzes (60 s +5, 30 s +10, 15 s +15). A score of 80% or more adds +25. English and Maths objective quizzes get no timer XP. BM World uses its own score band (45/35/20/10), plus +5 speed and +5 correct-answer bonus per correct answer, plus +25 for a pass.
+- **`quiz_catalog`**: one row per real quiz, holding its subject, chapter, formula, question counts per difficulty, timer eligibility and XP ceiling. It is generated from app content by `npm run generate:quiz-catalog` as `*_seed|sync_quiz_catalog.sql` migrations. The browser sends only the quiz key, correct answers per difficulty and the timer choice; the server rejects unknown quizzes and impossible counts.
+- **`quiz_completion_requests`** makes retries idempotent. **`quiz_xp_awards`** allows one award per student and quiz; a retake is recorded with 0 XP. A trigger refuses any award for an uncatalogued quiz or above that quiz's `max_xp`.
+- **Writes, in one transaction:** `user_progress.xp`, `user_progress.subject_xp` (the row is created if missing) and one `quiz_history` row with the breakdown (`xp_earned` feeds the monthly leaderboard).
+- **Temporary:** the 6-argument `complete_quiz` (50 XP) serves the 2026-09-23 client, but only for keys listed in `quiz_catalog_legacy_keys`, and never on top of a catalog award. Retire it once no client calls it.
+- **`keep_user_progress_xp_monotonic`**: a stale client sync cannot lower `xp` or any `subject_xp` entry.
+
 ### `knowledge_engine`
 213 rows today. Bite-sized "discoveries" — `title`, `category`, `content`, `reflection`, `subject`/`form`/`chapter` tags, `reading_time`, `difficulty`, `published` flag.
 

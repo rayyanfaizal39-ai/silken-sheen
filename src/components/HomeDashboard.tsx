@@ -47,6 +47,7 @@ import { buildLeaderboard } from "@/lib/leaderboard";
 import { PlanetCardArt, subjectPlanetStyles, type SubjectPlanetId } from "@/components/AcademyPage";
 import type { FormStat } from "@/content/registry";
 import { NextMissionCard } from "@/components/NextMissionCard";
+import { studyResumeSearch } from "@/lib/study-routing";
 
 // getSubjectFormStats (@/content/registry) and analyzeProgress (@/lib/tracker,
 // via @/data/content's getSubjectChapters) each pull in several MB of
@@ -243,7 +244,7 @@ function WorldPortalCard({
   return (
     <Link
       to="/notes"
-      search={{ subject: world.id, form: 1 } as Record<string, unknown>}
+      search={{ subject: world.id } as Record<string, unknown>}
       className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border transition-all duration-300 hover:-translate-y-1.5"
       style={
         {
@@ -394,7 +395,7 @@ function HeroWorldStrip() {
         <Link
           key={w.id}
           to="/notes"
-          search={{ subject: w.id, form: 1 } as Record<string, unknown>}
+          search={{ subject: w.id } as Record<string, unknown>}
           className="flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold backdrop-blur-xl transition-all duration-200 hover:scale-[1.06]"
           style={
             {
@@ -1106,11 +1107,10 @@ export function HomeDashboard() {
 
 function ResumeBanner({ lastVisited }: { lastVisited: LastVisited }) {
   const world = WORLD_PORTALS.find((w) => w.id === lastVisited.subjectId);
-  const formNumber = Number(lastVisited.form?.match(/\d/)?.[0] ?? 1);
   return (
     <Link
       to={TYPE_ROUTES[lastVisited.type]}
-      search={{ subject: lastVisited.subjectId, form: formNumber } as Record<string, unknown>}
+      search={studyResumeSearch(lastVisited) as Record<string, unknown>}
       className="group flex items-center gap-4 rounded-[2rem] border border-[#6366F1]/30 bg-[#6366F1]/10 px-5 py-4 backdrop-blur-2xl transition-all hover:border-[#6366F1]/50 hover:bg-[#6366F1]/15"
     >
       <div

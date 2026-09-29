@@ -19,10 +19,10 @@ export function hasFlashcardDeck(
   dataModule: ContentDataModule | null,
 ) {
   const subjectId = normalizeSubjectParam(subjectValue);
-  const form = normalizeFormParam(formValue) as Form;
+  const form = normalizeFormParam(formValue);
   const chapterKey = normalizeChapterParam(chapterValue);
 
-  if (!subjectId || !chapterKey) return false;
+  if (!subjectId || !form || !chapterKey) return false;
 
   return (
     getFlashcardDeckCards(subjectId, form, chapterKey, language, registry, dataModule).length > 0
@@ -38,13 +38,16 @@ export function getFlashcardDeckCards(
   dataModule: ContentDataModule | null,
 ): Flashcard[] {
   const subjectId = normalizeSubjectParam(subjectValue);
-  const form = normalizeFormParam(formValue) as Form;
+  const form = normalizeFormParam(formValue);
   const chapterKey = normalizeChapterParam(chapterValue);
 
-  if (!subjectId || !chapterKey) return [];
+  // Unknown Form → no deck. Never fall back to Form 1.
+  if (!subjectId || !form || !chapterKey) return [];
 
-  const registeredCards =
-    registry?.getChapter(subjectId, chapterKey, language, form)?.flashcards ?? [];
+  const registeredCards = keepCardsForForm(
+    registry?.getChapter(subjectId, chapterKey, language, form)?.flashcards ?? [],
+    form,
+  );
   const legacyCards = dataModule
     ? dataModule.flashcards.filter((card) => {
         if (card.subjectId !== subjectId || card.form !== form) return false;
@@ -60,6 +63,14 @@ export function getFlashcardDeckCards(
     form === "Form 3" &&
     ["Chapter 1", "Chapter 2", "Chapter 3", "Chapter 4", "Chapter 5", "Chapter 6", "Chapter 7", "Chapter 8"].includes(chapterKey);
   return standardizeFlashcardDeck(source, SINGLE_SET_DECK_SIZE, isSejarahF3TwoSetChapter ? 40 : 60);
+}
+
+/**
+ * Defensive loader/session guard: a card tagged with a different Form can never
+ * enter the requested Form's deck, even if an upstream selector hands it over.
+ */
+export function keepCardsForForm<T extends { form?: string | null }>(cards: T[], form: Form) {
+  return cards.filter((card) => !card.form || card.form === form);
 }
 
 export function standardizeFlashcardDeck(

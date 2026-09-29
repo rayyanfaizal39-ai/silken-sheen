@@ -1,0 +1,11 @@
+-- Intentional no-op.
+--
+-- This file was committed empty (0 bytes) and has never been applied to the
+-- production project (verified with `supabase migration list --linked` on
+-- 2026-09-24). No quiz or mission XP rebalance ships in September: the quiz
+-- award rules remain those of 20260923125557_quiz_xp_one_time_awards.
+--
+-- It is kept as an explicit no-op instead of being deleted so that any
+-- environment that may already have recorded this version stays consistent.
+-- The October XP redesign must use a new, later migration file.
+select 1;

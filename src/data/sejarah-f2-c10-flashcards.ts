@@ -12,23 +12,38 @@ const cardContent: Array<[front: string, back: string]> = [
   ["Apakah kesan kemunculan Kesultanan Sulu terhadap utara Sabah?", "Perdagangan meningkat."],
   ["Apakah hasil utama yang menarik pedagang China ke utara Sabah?", "Sarang burung."],
   ["Apakah industri yang berkembang di Santubong pada abad ke-13?", "Peleburan bijih besi."],
-  ["Siapakah Ketua Bebas yang terkenal di Sabah?", "Syarif Osman dan Datu Kurunding."],
+  [
+    "Siapakah Ketua Bebas yang terkenal di Sabah dan kawasan kekuasaan mereka?",
+    "Syarif Osman menguasai Marudu, manakala Datu Kurunding menguasai Tungku. Mereka mentadbir wilayah dan menjalankan undang-undang sendiri.",
+  ],
   ["Di manakah Brunei menyebarkan agama Islam?", "Pesisir Sarawak dan Sabah."],
   ["Di manakah Sulu menyebarkan agama Islam?", "Pantai timur Sabah."],
   ["Apakah gelaran ketua masyarakat Iban?", "Tuai Rumah."],
   ["Apakah gelaran ketua masyarakat Kayan?", "Kelunan Maren atau Hipun Uma."],
-  ["Apakah gelaran ketua masyarakat Kenyah?", "Peran Lepo."],
-  ["Apakah gelaran ketua masyarakat Kelabit?", "Laih Rayeh."],
+  [
+    "Apakah peranan wakil raja di Sarawak dan Sabah?",
+    "Menjalankan pemerintahan dalam aspek kehakiman, menjaga keamanan dan kebajikan penduduk serta mengutip cukai daripada penduduk dan kegiatan perdagangan.",
+  ],
+  [
+    "Namakan kerajaan awal yang muncul di lembah sungai Sarawak.",
+    "Sawaku, Samadong, Kalka, Saribas dan Melano.",
+  ],
   ["Apakah bentuk pemerintahan di lembah sungai Sarawak?", "Kerajaan dan wakil raja."],
-  ["Apakah gelaran ketua kesukuan pedalaman Sabah?", "Orang Tua."],
+  [
+    "Bagaimanakah kepimpinan kesukuan di pedalaman Sabah diuruskan?",
+    "Ketua masyarakat dikenali sebagai Orang Tua, manakala Bobohizan atau Bobolian bagi Kadazandusun dan Babalian bagi Murut mengurus adat serta pantang larang.",
+  ],
   [
     "Apakah tiga corak kepimpinan lembah sungai Sabah?",
     "Wakil Brunei, wakil Sulu dan ketua bebas.",
   ],
 
   // Set 2: Kegiatan ekonomi dan kepentingan sungai
-  ["Apakah kegiatan ekonomi pedalaman Sarawak?", "Mengutip hasil hutan."],
-  ["Apakah tanaman utama pedalaman Sarawak?", "Padi bukit."],
+  [
+    "Apakah kegiatan ekonomi pedalaman Sarawak?",
+    "Mengutip hasil hutan, memburu haiwan liar dan menanam padi.",
+  ],
+  ["Apakah tanaman utama pedalaman Sarawak?", "Padi."],
   [
     "Kaum manakah menjalankan ekonomi pedalaman Sarawak?",
     "Iban, Kenyah, Penan, Kayan, Kelabit dan Punan.",
@@ -37,47 +52,77 @@ const cardContent: Array<[front: string, back: string]> = [
   ["Apakah tanaman lain di lembah sungai Sarawak?", "Sayur-sayuran dan buah-buahan."],
   ["Apakah kegiatan ekonomi pesisir Sarawak?", "Perdagangan dan menangkap ikan."],
   ["Apakah hasil utama kaum Melanau di pesisir Sarawak?", "Sagu."],
-  ["Apakah kegiatan ekonomi pedalaman Sabah?", "Mengutip hasil hutan dan sarang burung."],
+  [
+    "Apakah kegiatan ekonomi pedalaman Sabah?",
+    "Mengutip hasil hutan, menanam padi dan mengutip sarang burung.",
+  ],
   ["Kaum manakah menjalankan ekonomi pedalaman Sabah?", "Murut."],
   ["Apakah kegiatan ekonomi lembah sungai Sabah?", "Menanam padi."],
   [
     "Kaum manakah menjalankan ekonomi lembah sungai Sabah?",
     "Rungus, Kadazandusun dan Orang Sungai.",
   ],
-  ["Apakah kegiatan ekonomi pesisir Sabah?", "Berdagang dan menangkap hasil laut."],
-  ["Kaum manakah menjalankan ekonomi pesisir Sabah?", "Berunai, Bajau/Sama, Iranun dan Suluk."],
+  [
+    "Apakah kegiatan ekonomi pesisir Sabah?",
+    "Menangkap ikan, membuat perahu, mengutip hasil laut dan menjalankan perdagangan.",
+  ],
+  ["Kaum manakah menjalankan ekonomi pesisir Sabah?", "Melayu Brunei, Bajau, Iranun dan Suluk."],
   ["Apakah kegunaan harian air sungai?", "Minuman, mandi dan mencuci."],
   ["Apakah pengangkutan utama di sungai?", "Sampan dan bot."],
   ["Apakah fungsi pengangkutan sungai?", "Membawa penumpang dan barang."],
   ["Apakah bentuk petempatan di sungai?", "Kampung air."],
-  ["Apakah fungsi sungai dalam perdagangan?", "Menjadi lokasi pelabuhan."],
+  [
+    "Apakah fungsi sungai dalam perdagangan?",
+    "Menjadi tempat kegiatan perdagangan dan jual beli sejak zaman-berzaman.",
+  ],
   ["Apakah kegiatan rekreasi yang diadakan di sungai?", "Pesta regata."],
-  ["Apakah sumber rezeki daripada sungai?", "Sumber makanan."],
+  [
+    "Apakah kepentingan sungai sebagai sumber rezeki?",
+    "Sungai menjadi sumber rezeki kepada penduduk yang tinggal di kawasan sekitarnya.",
+  ],
 
   // Set 3: Masyarakat, perayaan, tarian dan seni bina
   ["Dari manakah Iban dan Bidayuh berasal?", "Iban dari Sungai Kapuas; Bidayuh dari Sungkung."],
   [
-    "Di manakah Melayu dan Melanau banyak menetap di Sarawak?",
-    "Melayu di pesisir; Melanau di kawasan tengah.",
+    "Apakah Pua Kumbu dan siapakah yang menghasilkannya?",
+    "Pua Kumbu ialah hasil tenunan kain kapas kaum Iban yang digunakan dalam majlis kelahiran, perkahwinan dan kematian.",
   ],
   [
-    "Siapakah Orang Ulu dan di manakah Kadazandusun menetap?",
-    "Orang Ulu kaum pedalaman; Kadazandusun di Penampang hingga Ranau.",
+    "Namakan contoh hasil kesenian masyarakat Sarawak.",
+    "Keringkam oleh masyarakat Melayu, terendak oleh Melanau dan Patung Burung Kenyalang oleh Iban.",
   ],
   [
     "Apakah keunikan Bajau dan kawasan petempatan Murut?",
     "Bajau terkenal berkuda; Murut di Tenom hingga Kalabakan.",
   ],
   [
-    "Di manakah Suluk dan Orang Sungai menetap?",
-    "Suluk di pantai timur; Orang Sungai di lembah sungai utama Sabah.",
+    "Namakan contoh hasil kesenian masyarakat Sabah.",
+    "Inavol oleh Rungus, dastar oleh Iranun, wakid, tayen dan buan oleh masyarakat pedalaman serta duang oleh Bajau/Sama.",
   ],
-  ["Siapakah yang menyambut Hari Gawai?", "Iban, Bidayuh dan Orang Ulu."],
-  ["Siapakah yang menyambut Pesta Kaul?", "Melanau."],
-  ["Siapakah yang menyambut Pesta Kaamatan?", "Kadazandusun dan Murut."],
-  ["Kaum manakah menganjurkan Regatta Lepa?", "Bajau/Sama."],
-  ["Siapakah yang menarikan Ngajat?", "Iban dan Orang Ulu."],
-  ["Apakah acara persembahan Bermukun?", "Bergendang, berpantun dan menari."],
+  [
+    "Apakah Gawai Dayak dan siapakah yang menyambutnya?",
+    "Pesta menuai yang disambut oleh Iban, Bidayuh dan Orang Ulu. Masyarakat Iban turut mengadakan upacara Miring sebagai tanda terima kasih kepada petara.",
+  ],
+  [
+    "Apakah tujuan Pesta Kaul masyarakat Melanau?",
+    "Diadakan untuk mengelakkan malapetaka buruk oleh roh jahat yang dikenali sebagai Ipok, dan antara acaranya ialah permainan Tibau.",
+  ],
+  [
+    "Apakah Pesta Kaamatan dan siapakah yang menyambutnya?",
+    "Perayaan kesyukuran masyarakat Kadazandusun dan Murut untuk meraikan semangat padi Bambaazon atau Bambarayon.",
+  ],
+  [
+    "Apakah tujuan Pesta Regata Lepa?",
+    "Memperingati peranan lepa dalam kehidupan kaum Bajau/Sama di pantai timur Sabah, dengan acara menghias lepa dan perlumbaan perahu.",
+  ],
+  [
+    "Apakah keunikan tarian Ngajat dan Datun Julud di Sarawak?",
+    "Ngajat ditarikan oleh Iban dan Orang Ulu, manakala Datun Julud berasal daripada Orang Ulu sebagai lambang kegembiraan dan terima kasih serta diiringi alat muzik sape.",
+  ],
+  [
+    "Apakah keunikan persembahan Bermukun?",
+    "Gendang dipalu oleh wanita, penarinya hanya lelaki dan para pemukul gendang berbalas pantun. Persembahan ini biasa diadakan semasa majlis perkahwinan.",
+  ],
   ["Siapakah yang menarikan Sumazau?", "Kadazandusun."],
   ["Siapakah yang menarikan Magunatip?", "Murut."],
   ["Siapakah yang menarikan Limbai?", "Bajau/Sama."],

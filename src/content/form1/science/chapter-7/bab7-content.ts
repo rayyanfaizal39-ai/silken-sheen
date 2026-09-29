@@ -196,7 +196,47 @@ export interface AirLesson {
   practice: { title: string; questions: string[] };
 }
 
+export interface PollutionActivity {
+  title: string;
+  aim: string;
+  context?: string;
+  instructions: string[];
+}
+export interface PollutionLesson {
+  definition: string;
+  sourceStatement: string;
+  labels: {
+    sources: string;
+    pollutants: string;
+    effects: string;
+    effect: string;
+    controls: string;
+    control: string;
+    check: string;
+    correct: string;
+    retry: string;
+    choose: string;
+    review: string;
+    terms: string;
+  };
+  sources: (SourceCard & { id: number; origins: string[] })[];
+  activity75: PollutionActivity;
+  effects: EffectCategory[];
+  pathways: { id: string; pollutant: string; effect: string }[];
+  photosynthesis: string[];
+  controls: PreventCategory[];
+  activity76: PollutionActivity;
+  api: { title: string; guidance: string; bands: ApiRow[] };
+  practice: {
+    title: string;
+    questions: string[];
+    matches: { pollutant: string; effect: string }[];
+    choices: { text: string; correct: boolean }[];
+  };
+}
+
 export interface Bab7Content {
+  pollution: PollutionLesson;
   airLesson: AirLesson;
   hook: { title: string; body: string };
   composition: CompositionSection;
@@ -212,6 +252,528 @@ export interface Bab7Content {
   keyTerms: string[];
   chapterSummary: string;
 }
+
+const pollutionEN: PollutionLesson = {
+  definition:
+    "Air pollution is a situation which involves the presence of any pollutants in the air. This brings harm and discomfort to living things and destroys the environment.",
+  sourceStatement: "Air pollutants come from various sources.",
+  labels: {
+    sources: "Sources",
+    pollutants: "Air pollutants",
+    effects: "Causes and effects of air pollution",
+    effect: "Effect",
+    controls: "Ways to prevent and control air pollution",
+    control: "Control",
+    check: "Check answers",
+    correct: "Correct",
+    retry: "Try again",
+    choose: "Choose an effect",
+    review: "Summary",
+    terms: "Keywords",
+  },
+  sources: [
+    {
+      id: 0,
+      from: "Exhaust of vehicles · Factories",
+      origins: ["Exhaust of vehicles", "Factories"],
+      pollutants: [
+        "Smoke",
+        "Soot",
+        "Dust",
+        "Carbon monoxide",
+        "Sulphur dioxide",
+        "Nitrogen dioxide",
+        "Plumbum",
+      ],
+    },
+    {
+      id: 1,
+      from: "Open burning · Cigarettes · Forest fires",
+      origins: ["Open burning", "Cigarettes", "Forest fires"],
+      pollutants: ["Dust", "Soot", "Smoke"],
+    },
+    {
+      id: 2,
+      from: "Construction sites · Asbestos factories · Limestone quarries",
+      origins: ["Construction sites", "Asbestos factories", "Limestone quarries"],
+      pollutants: ["Dust", "Soot"],
+    },
+    {
+      id: 3,
+      from: "Nuclear power plants",
+      origins: ["Nuclear power plants"],
+      pollutants: ["Radioactive materials"],
+    },
+    {
+      id: 4,
+      from: "Agriculture and plantation activities",
+      origins: ["Agriculture and plantation activities"],
+      pollutants: ["Aerosol spray", "Chemical fertilisers"],
+    },
+    {
+      id: 5,
+      from: "Air-conditioners · Refrigerators · Aerosol sprays · Electronic factories",
+      origins: ["Air-conditioners", "Refrigerators", "Aerosol sprays", "Electronic factories"],
+      pollutants: ["Chlorofluorocarbon (CFC)"],
+    },
+  ],
+  activity75: {
+    title: "Activity 7.5",
+    aim: "To discuss air pollution problems in Malaysia",
+    context: "Textbook context: Kuala Lumpur, 2015",
+    instructions: [
+      "Discuss in groups the definition of air pollution and sources of air pollutants which cause haze.",
+      "Then, present your discussion in class.",
+    ],
+  },
+  effects: [
+    {
+      heading: "Health",
+      category: "health",
+      items: [
+        "Smoke and dust can cause breathing problems",
+        "Sulphur dioxide can cause respiratory problems",
+        "Carbon monoxide can cause headache, mental retardation and death",
+        "Asbestos particles can cause lung cancer",
+        "Lead particles can cause intellectual disability among children and babies",
+      ],
+    },
+    {
+      heading: "Buildings and infrastructures",
+      category: "buildings",
+      items: [
+        "Dust and soot stain buildings",
+        "Acid rain corrodes concrete and limestone buildings",
+        "Acid rain speeds up iron rusting",
+      ],
+    },
+    {
+      heading: "Plants and animals",
+      category: "plants",
+      items: [
+        "Acid rain makes the soil acidic and less fertile",
+        "Acid rain makes the source of water acidic and not suitable for aquatic life",
+        "Smoke and haze decrease the amount of sunlight reaching the Earth and decrease the rate of photosynthesis.",
+      ],
+    },
+    {
+      heading: "Climate",
+      category: "climate",
+      items: [
+        "Smoke from factories, vehicles and open burning lead to haze",
+        "Excessive carbon dioxide contributes to greenhouse effect",
+        "Excessive chlorofluorocarbons (CFC) causes the thinning of the ozone layer",
+        "Sulphur dioxide and nitrogen dioxide cause acid rain",
+      ],
+    },
+  ],
+  pathways: [
+    {
+      id: "haze",
+      pollutant: "Smoke",
+      effect: "Haze",
+    },
+    {
+      id: "greenhouse",
+      pollutant: "Excessive carbon dioxide",
+      effect: "Greenhouse effect",
+    },
+    {
+      id: "ozone",
+      pollutant: "Excessive chlorofluorocarbons (CFC)",
+      effect: "Thinning of the ozone layer",
+    },
+    {
+      id: "acid",
+      pollutant: "Sulphur dioxide + Nitrogen dioxide",
+      effect: "Acid rain",
+    },
+  ],
+  photosynthesis: ["Smoke and haze", "Less sunlight", "Decreased rate of photosynthesis"],
+  controls: [
+    {
+      heading: "Law Enforcement",
+      items: [
+        "Fine smokers who smoke at restricted areas",
+        "Fine individuals who conduct open burning",
+        "Fine drivers whose vehicles emit excessive smoke",
+        "Prohibit factories from being built at housing areas",
+      ],
+    },
+    {
+      heading: "Education",
+      items: [
+        "Educate students about the effects of air pollution and ways to prevent it",
+        "Organise anti-smoking campaigns",
+        "Encourage the public to walk or ride bicycles",
+        "Encourage the usage of public transport or car pooling",
+      ],
+    },
+    {
+      heading: "Science and Technology",
+      items: [
+        "Implement hybrid technology in vehicles",
+        "Choose refrigerators which use hydrochlorofluorocarbons (HCFC) instead of chlorofluorocarbons (CFC)",
+        "Install filters in smoke chimneys at factories",
+        "Use catalytic converters on vehicles",
+        "Replace the use of pesticide with biological control to control pest",
+      ],
+    },
+  ],
+  activity76: {
+    title: "Activity 7.6",
+    aim: "To gather information on effects of air pollution on living things and the environment, and the steps taken by authorities in controlling air pollution.",
+    instructions: [
+      "Work in groups.",
+      "Each group has to choose an area in Malaysia which has a high rate of air pollution.",
+      "Gather the information below from your chosen area:",
+      "The effects of air pollution towards the health of the community, animals, plants, buildings and infrastructures.",
+      "Efforts taken by the authority, for instance Jabatan Alam Sekitar, to overcome the air pollution problem.",
+      "Present your findings in class.",
+    ],
+  },
+  api: {
+    title: "Air Pollutant Index (API) in Malaysia",
+    guidance: "A guide to air-quality level and its impact on health.",
+    bands: [
+      {
+        range: "0–50",
+        label: "Good",
+        severity: "good",
+      },
+      {
+        range: "51–100",
+        label: "Moderate",
+        severity: "moderate",
+      },
+      {
+        range: "101–200",
+        label: "Unhealthy",
+        severity: "unhealthy",
+      },
+      {
+        range: "201–300",
+        label: "Very Unhealthy",
+        severity: "veryUnhealthy",
+      },
+      {
+        range: ">300",
+        label: "Hazardous",
+        severity: "hazardous",
+      },
+    ],
+  },
+  practice: {
+    title: "Formative Practice 7.3",
+    questions: [
+      "What are the pollutants that can cause haze?",
+      "As a student, how can you increase the awareness of air pollution in the community?",
+      "Give three reasons why it is important to keep the air clean.",
+      "Littering can also cause air pollution. Explain how littering causes air pollution.",
+      "Match each pollutant to its effect.",
+      "Tick (✓) the correct statement on how to control and reduce air pollution.",
+    ],
+    matches: [
+      {
+        pollutant: "Carbon dioxide",
+        effect: "Greenhouse effect",
+      },
+      {
+        pollutant: "Nitrogen dioxide",
+        effect: "Acid rain",
+      },
+      {
+        pollutant: "Chlorofluorocarbons",
+        effect: "Thinning of the ozone layer",
+      },
+    ],
+    choices: [
+      {
+        text: "Use materials free of chlorofluorocarbons (CFC).",
+        correct: true,
+      },
+      {
+        text: "Use public transport.",
+        correct: true,
+      },
+      {
+        text: "Conduct open burning.",
+        correct: false,
+      },
+      {
+        text: "Practise reusing and recycling items.",
+        correct: true,
+      },
+      {
+        text: "Use petrol and diesel that contain lead.",
+        correct: false,
+      },
+    ],
+  },
+};
+
+const pollutionBM: PollutionLesson = {
+  definition:
+    "Pencemaran udara merupakan satu keadaan yang melibatkan kehadiran sebarang bahan pencemar dalam udara. Keadaan ini boleh menyebabkan kemudaratan dan ketidakselesaan kepada manusia atau organisma hidup lain serta merosakkan alam sekitar apabila dibebaskan ke atmosfera.",
+  sourceStatement: "Bahan pencemar udara berasal daripada pelbagai punca.",
+  labels: {
+    sources: "Punca",
+    pollutants: "Bahan pencemar udara",
+    effects: "Punca dan kesan buruk pencemaran udara",
+    effect: "Kesan",
+    controls: "Langkah-langkah mencegah dan mengawal pencemaran udara",
+    control: "Kawalan",
+    check: "Semak jawapan",
+    correct: "Betul",
+    retry: "Cuba lagi",
+    choose: "Pilih kesan",
+    review: "Rumusan",
+    terms: "Kata kunci",
+  },
+  sources: [
+    {
+      id: 0,
+      from: "Ekzos kenderaan · Kilang",
+      origins: ["Ekzos kenderaan", "Kilang"],
+      pollutants: [
+        "Asap",
+        "Jelaga",
+        "Habuk",
+        "Karbon monoksida",
+        "Sulfur dioksida",
+        "Nitrogen dioksida",
+        "Plumbum",
+      ],
+    },
+    {
+      id: 1,
+      from: "Pembakaran terbuka · Rokok · Kebakaran hutan",
+      origins: ["Pembakaran terbuka", "Rokok", "Kebakaran hutan"],
+      pollutants: ["Habuk", "Jelaga", "Asap", "Zarah logam"],
+    },
+    {
+      id: 2,
+      from: "Tapak pembinaan · Kilang asbestos · Kuari batu kapur",
+      origins: ["Tapak pembinaan", "Kilang asbestos", "Kuari batu kapur"],
+      pollutants: ["Habuk dan debu"],
+    },
+    {
+      id: 3,
+      from: "Loji kuasa nuklear",
+      origins: ["Loji kuasa nuklear"],
+      pollutants: ["Bahan radioaktif"],
+    },
+    {
+      id: 4,
+      from: "Aktiviti pertanian dan perladangan",
+      origins: ["Aktiviti pertanian dan perladangan"],
+      pollutants: ["Bahan semburan pestisid", "Baja kimia"],
+    },
+    {
+      id: 5,
+      from: "Alat pendingin udara · Peti sejuk · Semburan aerosol · Kilang elektronik",
+      origins: ["Alat pendingin udara", "Peti sejuk", "Semburan aerosol", "Kilang elektronik"],
+      pollutants: ["Klorofluorokarbon (CFC)"],
+    },
+  ],
+  activity75: {
+    title: "Aktiviti 7.5",
+    aim: "Berbincang tentang masalah pencemaran udara di Malaysia",
+    context: "Konteks buku teks: Kuala Lumpur, 2015",
+    instructions: [
+      "Bincangkan secara berkumpulan mengenai maksud pencemaran udara dan punca bahan pencemar udara yang menyebabkan jerebu tersebut.",
+      "Kemudian, bentangkan hasil perbincangan di hadapan kelas.",
+    ],
+  },
+  effects: [
+    {
+      heading: "Kesihatan manusia",
+      category: "health",
+      items: [
+        "Asap dan jelaga menyebabkan masalah kesesakan nafas",
+        "Sulfur dioksida menyebabkan penyakit berkaitan salur pernafasan",
+        "Karbon monoksida menyebabkan sakit kepala, kerencatan akal atau membawa maut",
+        "Zarah asbestos menyebabkan kanser peparu",
+        "Zarah plumbum menyebabkan kerencatan akal pada kanak-kanak dan bayi",
+      ],
+    },
+    {
+      heading: "Bangunan dan infrastruktur",
+      category: "buildings",
+      items: [
+        "Habuk dan jelaga mengotorkan bangunan",
+        "Hujan asid mengakis struktur konkrit dan batu kapur",
+        "Hujan asid mempercepat pengaratan besi",
+      ],
+    },
+    {
+      heading: "Tumbuhan dan haiwan",
+      category: "plants",
+      items: [
+        "Hujan asid menyebabkan tanah berasid dan kurang subur",
+        "Hujan asid menyebabkan sumber air berasid dan tidak sesuai untuk hidupan akuatik",
+        "Asap dan jerebu mengurangkan cahaya matahari sampai ke Bumi dan menyebabkan kadar fotosintesis menjadi rendah",
+      ],
+    },
+    {
+      heading: "Iklim bumi",
+      category: "climate",
+      items: [
+        "Pembebasan asap dari kilang, ekzos kenderaan dan pembakaran terbuka menyebabkan jerebu",
+        "Karbon dioksida yang berlebihan menyebabkan kesan rumah hijau",
+        "Klorofluorokarbon yang berlebihan menyebabkan penipisan lapisan ozon",
+        "Gas sulfur dioksida dan nitrogen dioksida menyebabkan hujan asid",
+      ],
+    },
+  ],
+  pathways: [
+    {
+      id: "haze",
+      pollutant: "Asap",
+      effect: "Jerebu",
+    },
+    {
+      id: "greenhouse",
+      pollutant: "Karbon dioksida yang berlebihan",
+      effect: "Kesan rumah hijau",
+    },
+    {
+      id: "ozone",
+      pollutant: "Klorofluorokarbon yang berlebihan",
+      effect: "Penipisan lapisan ozon",
+    },
+    {
+      id: "acid",
+      pollutant: "Sulfur dioksida + Nitrogen dioksida",
+      effect: "Hujan asid",
+    },
+  ],
+  photosynthesis: [
+    "Asap dan jerebu",
+    "Cahaya matahari berkurang",
+    "Kadar fotosintesis menjadi rendah",
+  ],
+  controls: [
+    {
+      heading: "Melalui undang-undang",
+      items: [
+        "Denda kepada perokok yang merokok di kawasan larangan",
+        "Denda kepada individu yang melakukan pembakaran terbuka",
+        "Denda kepada pemandu kenderaan yang ekzosnya mengeluarkan asap berlebihan",
+        "Tidak membenarkan kilang dibangunkan di kawasan perumahan",
+      ],
+    },
+    {
+      heading: "Melalui pendidikan",
+      items: [
+        "Pendidikan di sekolah yang menekankan pencemaran udara dan langkah-langkah pengawalannya",
+        "Program antimerokok",
+        "Galakan untuk berjalan kaki atau menunggang basikal",
+        "Galakan menggunakan pengangkutan awam atau berkongsi kereta",
+      ],
+    },
+    {
+      heading: "Melalui sains dan teknologi",
+      items: [
+        "Teknologi kenderaan hibrid",
+        "Teknologi peti sejuk menggunakan hidroklorofluorokarbon (HCFC) menggantikan klorofluorokarbon (CFC)",
+        "Pemasangan penapis cerobong asap di kilang",
+        "Penggunaan penukar bermangkin pada kenderaan bermotor",
+        "Menggantikan kaedah penggunaan pestisid dengan kaedah kawalan biologi untuk mengawal haiwan perosak",
+      ],
+    },
+  ],
+  activity76: {
+    title: "Aktiviti 7.6",
+    aim: "Berkongsi maklumat mengenai kesan buruk pencemaran udara dan langkah-langkah yang diambil oleh pihak berkuasa dalam mengawal pencemaran udara",
+    instructions: [
+      "Lakukan aktiviti ini secara berkumpulan.",
+      "Setiap kumpulan perlu memilih satu kawasan di Malaysia yang mempunyai tahap pencemaran udara yang tinggi.",
+      "Kumpulkan maklumat-maklumat yang berikut di kawasan yang dipilih:",
+      "Kesan buruk terhadap kesihatan penduduk sekitar, haiwan, tumbuhan, bangunan dan infrastruktur.",
+      "Langkah-langkah penyelesaian yang diambil oleh pihak berkuasa seperti Jabatan Alam Sekitar untuk menangani masalah pencemaran udara tersebut.",
+      "Bentangkan hasil maklumat yang anda perolehi dalam kelas.",
+    ],
+  },
+  api: {
+    title: "Indeks Pencemaran Udara (IPU) Malaysia",
+    guidance: "Panduan tahap kualiti udara dan kesannya terhadap kesihatan.",
+    bands: [
+      {
+        range: "0–50",
+        label: "Baik",
+        severity: "good",
+      },
+      {
+        range: "51–100",
+        label: "Sederhana",
+        severity: "moderate",
+      },
+      {
+        range: "101–200",
+        label: "Tidak sihat",
+        severity: "unhealthy",
+      },
+      {
+        range: "201–300",
+        label: "Sangat tidak sihat",
+        severity: "veryUnhealthy",
+      },
+      {
+        range: ">300",
+        label: "Berbahaya",
+        severity: "hazardous",
+      },
+    ],
+  },
+  practice: {
+    title: "Praktis Formatif 7.3",
+    questions: [
+      "Apakah bahan pencemar udara yang menyebabkan jerebu?",
+      "Sebagai seorang murid, apakah langkah-langkah yang perlu diambil bagi menambahkan kesedaran masyarakat mengenai pencemaran udara?",
+      "Berikan tiga kepentingan mengekalkan udara supaya sentiasa bersih.",
+      "Membuang sampah di merata-rata tempat juga boleh menyebabkan pencemaran udara. Terangkan.",
+      "Padankan setiap bahan pencemar yang berikut dengan kesannya.",
+      "Tandakan (✓) pada pernyataan yang betul mengenai cara-cara untuk mengawal dan mengurangkan pencemaran udara.",
+    ],
+    matches: [
+      {
+        pollutant: "Karbon dioksida",
+        effect: "Kesan rumah hijau",
+      },
+      {
+        pollutant: "Nitrogen dioksida",
+        effect: "Hujan asid",
+      },
+      {
+        pollutant: "Klorofluorokarbon",
+        effect: "Penipisan lapisan ozon",
+      },
+    ],
+    choices: [
+      {
+        text: "Menggunakan bahan bebas klorofluorokarbon (CFC)",
+        correct: true,
+      },
+      {
+        text: "Menggunakan pengangkutan awam",
+        correct: true,
+      },
+      {
+        text: "Melakukan pembakaran terbuka",
+        correct: false,
+      },
+      {
+        text: "Mengamalkan kitar semula dan guna semula barangan",
+        correct: true,
+      },
+      {
+        text: "Menggunakan minyak dan petrol berplumbum",
+        correct: false,
+      },
+    ],
+  },
+};
 
 const en: Bab7Content = {
   airLesson: {
@@ -892,133 +1454,32 @@ const en: Bab7Content = {
       paraffinAnswer: "Potassium and sodium metals are flammable when exposed to the air.",
     },
   },
-  pollutionSources: [
-    {
-      from: "Vehicle exhaust & factories",
-      pollutants: ["Smoke", "Soot", "CO", "SO₂", "NO₂", "Lead"],
-    },
-    { from: "Open burning, cigarettes, forest fires", pollutants: ["Dust", "Soot", "Smoke"] },
-    { from: "Construction, asbestos factories, quarries", pollutants: ["Dust", "Soot"] },
-    { from: "Nuclear power plants", pollutants: ["Radioactive materials"] },
-    {
-      from: "Agriculture & plantation activity",
-      pollutants: ["Aerosol spray", "Chemical fertiliser"],
-    },
-    { from: "A/C, fridges, aerosol sprays, electronics factories", pollutants: ["CFC"] },
-  ],
-  pollutionEffects: [
-    {
-      heading: "Health",
-      category: "health",
-      items: [
-        "Smoke & dust — breathing problems",
-        "Sulfur dioxide — respiratory problems",
-        "Carbon monoxide — headache, mental retardation, death",
-        "Asbestos particles — lung cancer",
-        "Lead particles — intellectual disability in children & babies",
-      ],
-    },
-    {
-      heading: "Buildings & Infrastructure",
-      category: "buildings",
-      items: [
-        "Dust & soot stain buildings",
-        "Acid rain corrodes concrete & limestone",
-        "Acid rain speeds up iron rusting",
-      ],
-    },
-    {
-      heading: "Plants & Animals",
-      category: "plants",
-      items: [
-        "Acid rain makes soil acidic & less fertile",
-        "Acid rain makes water acidic — unsuitable for aquatic life",
-        "Smoke & haze reduce sunlight — slows photosynthesis",
-      ],
-    },
-    {
-      heading: "Climate",
-      category: "climate",
-      items: [
-        "Smoke from factories, vehicles & burning → haze",
-        "Excess CO₂ → greenhouse effect",
-        "Excess CFC → thinning ozone layer",
-        "SO₂ & NO₂ → acid rain",
-      ],
-    },
-  ],
-  prevention: [
-    {
-      heading: "Law Enforcement",
-      items: [
-        "Fine smokers in restricted areas",
-        "Fine open burning",
-        "Fine vehicles emitting excess smoke",
-        "Prohibit factories in housing areas",
-      ],
-    },
-    {
-      heading: "Education",
-      items: [
-        "Teach students the effects & prevention of pollution",
-        "Anti-smoking campaigns",
-        "Encourage walking / cycling",
-        "Encourage public transport / carpooling",
-      ],
-    },
-    {
-      heading: "Science & Technology",
-      items: [
-        "Hybrid vehicle technology",
-        "HCFC instead of CFC in refrigerators",
-        "Install filters in factory chimneys",
-        "Catalytic converters on vehicles",
-        "Biological pest control instead of pesticides",
-      ],
-    },
-  ],
-  api: [
-    { range: "0–50", label: "Good", severity: "good" },
-    { range: "51–100", label: "Moderate", severity: "moderate" },
-    { range: "101–200", label: "Unhealthy", severity: "unhealthy" },
-    { range: "201–300", label: "Very Unhealthy", severity: "veryUnhealthy" },
-    { range: ">300", label: "Hazardous", severity: "hazardous" },
-  ],
-  keyExamFacts: [
-    "Nitrogen is the largest part of air, at 78%",
-    "Air is a mixture — separable by fractional distillation",
-    "Photosynthesis removes CO₂ and releases oxygen",
-    "Fire needs heat, oxygen and fuel — remove one, fire stops",
-    "Carbon monoxide reduces oxygen carried in the blood",
-    "SO₂ and NO₂ both contribute to acid rain",
-    "Excess CO₂ causes the greenhouse effect; excess CFC thins the ozone layer",
-    "Hybrid vehicles & catalytic converters reduce air pollution",
-  ],
+  pollution: pollutionEN,
+  // Compatibility aliases for the legacy Notes renderer; canonical ownership is pollution.
+  pollutionSources: pollutionEN.sources,
+  pollutionEffects: pollutionEN.effects,
+  prevention: pollutionEN.controls,
+  api: pollutionEN.api.bands,
+  keyExamFacts: [...pollutionEN.effects[3].items],
   keyTerms: [
-    "Air",
-    "Atmosphere",
-    "Nitrogen",
     "Oxygen",
     "Carbon dioxide",
-    "Inert gas",
-    "Fractional distillation",
+    "Nitrogen",
+    "Inert gases",
+    "Helium",
+    "Neon",
+    "Argon",
+    "Krypton",
+    "Xenon",
     "Carbon cycle",
     "Oxygen cycle",
-    "Photosynthesis",
-    "Respiration",
+    "Global warming",
+    "Greenhouse effect",
     "Combustion",
-    "Fire triangle",
     "Fire extinguisher",
     "Air pollution",
-    "Air Pollutant Index",
-    "Acid rain",
-    "Greenhouse effect",
-    "Ozone layer",
-    "CFC",
-    "Catalytic converter",
   ],
-  chapterSummary:
-    "Chapter 7 covers the composition of air and why air is a mixture, the importance of each gas, the carbon and oxygen cycles that keep them balanced, how combustion and fire safety work, and the sources, effects, and control of air pollution — including the Air Pollutant Index used to monitor it.",
+  chapterSummary: "Composition of Air \u00b7 Combustion \u00b7 Air Pollution",
 };
 
 const bm: Bab7Content = {
@@ -1712,162 +2173,39 @@ const bm: Bab7Content = {
       paraffinAnswer: "Logam kalium dan natrium mudah terbakar apabila terdedah kepada udara.",
     },
   },
-  pollutionSources: [
-    {
-      from: "Ekzos kenderaan & kilang",
-      pollutants: ["Asap", "Jelaga", "CO", "SO₂", "NO₂", "Plumbum"],
-    },
-    { from: "Pembakaran terbuka, rokok, kebakaran hutan", pollutants: ["Habuk", "Jelaga", "Asap"] },
-    { from: "Tapak pembinaan, kilang asbestos, kuari batu kapur", pollutants: ["Habuk", "Jelaga"] },
-    { from: "Loji kuasa nuklear", pollutants: ["Bahan radioaktif"] },
-    { from: "Aktiviti pertanian & perladangan", pollutants: ["Semburan aerosol", "Baja kimia"] },
-    {
-      from: "Penyaman udara, peti sejuk, semburan aerosol, kilang elektronik",
-      pollutants: ["CFC"],
-    },
-  ],
-  pollutionEffects: [
-    {
-      heading: "Kesihatan",
-      category: "health",
-      items: [
-        "Asap & habuk — masalah kesesakan nafas",
-        "Sulfur dioksida — penyakit salur pernafasan",
-        "Karbon monoksida — sakit kepala, kerencatan akal, maut",
-        "Zarah asbestos — kanser peparu",
-        "Zarah plumbum — kerencatan akal kanak-kanak & bayi",
-      ],
-    },
-    {
-      heading: "Bangunan & Infrastruktur",
-      category: "buildings",
-      items: [
-        "Habuk & jelaga mengotorkan bangunan",
-        "Hujan asid mengakis konkrit & batu kapur",
-        "Hujan asid mempercepat pengaratan besi",
-      ],
-    },
-    {
-      heading: "Tumbuhan & Haiwan",
-      category: "plants",
-      items: [
-        "Hujan asid menjadikan tanah berasid & kurang subur",
-        "Hujan asid menjadikan air berasid — tidak sesuai untuk hidupan akuatik",
-        "Asap & jerebu mengurangkan cahaya matahari — melambatkan fotosintesis",
-      ],
-    },
-    {
-      heading: "Iklim",
-      category: "climate",
-      items: [
-        "Asap kilang, kenderaan & pembakaran → jerebu",
-        "CO₂ berlebihan → kesan rumah hijau",
-        "CFC berlebihan → penipisan lapisan ozon",
-        "SO₂ & NO₂ → hujan asid",
-      ],
-    },
-  ],
-  prevention: [
-    {
-      heading: "Undang-undang",
-      items: [
-        "Denda perokok di kawasan larangan",
-        "Denda pembakaran terbuka",
-        "Denda kenderaan yang mengeluarkan asap berlebihan",
-        "Larang kilang dibina di kawasan perumahan",
-      ],
-    },
-    {
-      heading: "Pendidikan",
-      items: [
-        "Didik pelajar tentang kesan & pencegahan pencemaran",
-        "Program antimerokok",
-        "Galakan berjalan kaki / berbasikal",
-        "Galakan pengangkutan awam / kongsi kereta",
-      ],
-    },
-    {
-      heading: "Sains & Teknologi",
-      items: [
-        "Teknologi kenderaan hibrid",
-        "HCFC menggantikan CFC dalam peti sejuk",
-        "Pasang penapis di cerobong kilang",
-        "Penukar bermangkin pada kenderaan",
-        "Kawalan biologi menggantikan pestisid",
-      ],
-    },
-  ],
-  api: [
-    { range: "0–50", label: "Baik", severity: "good" },
-    { range: "51–100", label: "Sederhana", severity: "moderate" },
-    { range: "101–200", label: "Tidak sihat", severity: "unhealthy" },
-    { range: "201–300", label: "Sangat tidak sihat", severity: "veryUnhealthy" },
-    { range: ">300", label: "Berbahaya", severity: "hazardous" },
-  ],
-  keyExamFacts: [
-    "Nitrogen adalah komponen terbesar udara, iaitu 78%",
-    "Udara ialah campuran — boleh diasingkan melalui penyulingan berperingkat",
-    "Fotosintesis menyingkirkan CO₂ dan membebaskan oksigen",
-    "Api memerlukan haba, oksigen dan bahan api — singkirkan satu, api padam",
-    "Karbon monoksida mengurangkan oksigen dalam darah",
-    "SO₂ dan NO₂ kedua-duanya menyebabkan hujan asid",
-    "CO₂ berlebihan menyebabkan kesan rumah hijau; CFC berlebihan menipiskan lapisan ozon",
-    "Kenderaan hibrid & penukar bermangkin mengurangkan pencemaran udara",
-  ],
+  pollution: pollutionBM,
+  // Compatibility aliases for the legacy Notes renderer; canonical ownership is pollution.
+  pollutionSources: pollutionBM.sources,
+  pollutionEffects: pollutionBM.effects,
+  prevention: pollutionBM.controls,
+  api: pollutionBM.api.bands,
+  keyExamFacts: [...pollutionBM.effects[3].items],
   keyTerms: [
-    "Udara",
-    "Atmosfera",
-    "Nitrogen",
     "Oksigen",
     "Karbon dioksida",
+    "Nitrogen",
     "Gas nadir",
-    "Penyulingan berperingkat",
+    "Helium",
+    "Neon",
+    "Argon",
+    "Kripton",
+    "Xenon",
     "Kitar karbon",
     "Kitar oksigen",
-    "Fotosintesis",
-    "Respirasi",
+    "Pemanasan global",
+    "Kesan rumah hijau",
     "Pembakaran",
-    "Segi tiga api",
     "Alat pemadam api",
     "Pencemaran udara",
-    "Indeks Pencemaran Udara",
-    "Hujan asid",
-    "Kesan rumah hijau",
-    "Lapisan ozon",
-    "CFC",
-    "Penukar bermangkin",
   ],
-  chapterSummary:
-    "Bab 7 merangkumi komposisi udara dan sebab udara ialah campuran, kepentingan setiap gas, kitar karbon dan oksigen yang mengekalkan keseimbangan, cara pembakaran dan keselamatan kebakaran berfungsi, serta punca, kesan dan kawalan pencemaran udara — termasuk Indeks Pencemaran Udara.",
+  chapterSummary: "Komposisi Udara \u00b7 Pembakaran \u00b7 Pencemaran Udara",
 };
 
 export const bab7Content = { en, bm };
 
-export interface Bab7Supplement {
-  pollutionDefinition: string;
-  activeRecall: { question: string; answer: string }[];
-}
-const supplementEn: Bab7Supplement = {
-  pollutionDefinition:
-    "Air pollution is the introduction of harmful chemicals, particulate matter, or biological contaminants into the atmosphere, causing discomfort, disease, or environmental damage.",
-  activeRecall: [
-    {
-      question: "Why can cave explorers use a burning torch as well as an electric torch?",
-      answer:
-        "A flame needs oxygen. If oxygen falls to an unsafe level, the flame flickers or goes out and provides an early warning.",
-    },
-  ],
+// Legacy adapter only: no independent factual supplement.
+export const bab7Supplement = {
+  en: { pollutionDefinition: en.pollution.definition, activeRecall: [] },
+  bm: { pollutionDefinition: bm.pollution.definition, activeRecall: [] },
 };
-const supplementBm: Bab7Supplement = {
-  pollutionDefinition:
-    "Pencemaran udara ialah kemasukan bahan kimia, zarah, atau bahan cemar biologi yang berbahaya ke atmosfera sehingga menyebabkan ketidakselesaan, penyakit, atau kerosakan alam sekitar.",
-  activeRecall: [
-    {
-      question: "Mengapakah peneroka gua boleh membawa obor bernyala selain lampu elektrik?",
-      answer:
-        "Nyalaan memerlukan oksigen. Jika oksigen turun ke aras tidak selamat, nyalaan berkelip atau terpadam lalu memberi amaran awal.",
-    },
-  ],
-};
-export const bab7Supplement = { en: supplementEn, bm: supplementBm };
 export default bab7Content;

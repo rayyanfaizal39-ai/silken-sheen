@@ -1,17 +1,15 @@
+import { Chapter8PropertiesOfLight } from "./Chapter8PropertiesOfLight";
+import { Chapter8Reflection } from "./Chapter8Reflection";
+import { Chapter8Mirrors } from "./Chapter8Mirrors";
 import { useState, type ReactNode } from "react";
 import {
   Aperture,
-  ArrowDownUp,
   Check,
   ChevronDown,
-  Eye,
   Filter,
-  Focus,
-  Glasses,
   Lightbulb,
   Palette,
   Rainbow,
-  ScanLine,
   Sparkles,
   Sun,
 } from "lucide-react";
@@ -26,39 +24,7 @@ const ui = {
     title: "Light changes direction, colour, and what we see",
     subtitle:
       "Trace light through mirrors, boundaries, prisms, particles, objects, and filters using evidence you can draw and explain.",
-    path: [
-      ["8.1", "Mirrors"],
-      ["8.2-8.3", "Light & reflection"],
-      ["8.4", "Refraction"],
-      ["8.5-8.6", "Spectrum & sky"],
-      ["8.7", "Colour"],
-    ],
     sections: [
-      [
-        "8.1",
-        "Mirrors create useful images",
-        "Image type, curvature, and mirror arrangement determine what an observer sees.",
-      ],
-      [
-        "8.2-8.3",
-        "Light travels straight and reflects predictably",
-        "Shadows and reflected rays provide measurable evidence.",
-      ],
-      [
-        "8.4",
-        "Refraction follows density rules",
-        "A speed change at a boundary changes the ray direction.",
-      ],
-      [
-        "8.5-8.6",
-        "Dispersion separates; scattering redirects",
-        "Both involve colour, but they explain different observations.",
-      ],
-      [
-        "8.7",
-        "Adding coloured light creates new light",
-        "Red, green, and blue overlap to produce secondary colours and white.",
-      ],
       [
         "8.7",
         "Objects and filters subtract light",
@@ -70,16 +36,12 @@ const ui = {
         "Use the correct principle, direction, and observation in every answer.",
       ],
     ],
-    realVirtual: "Real image vs virtual image",
     activity: "Activity 8.1 evidence",
     chooseMirror: "Choose a mirror",
     image: "Image characteristics",
     applications: "Daily applications",
     instruments: "Optical instruments",
-    properties: "Properties and early applications",
-    reflection: "Law of reflection",
     experiment: "Experiment",
-    ambulance: "Why AMBULANCE is reversed",
     chooseRule: "Choose a boundary passage",
     bend: "Ray direction",
     speed: "Speed",
@@ -115,39 +77,7 @@ const ui = {
     title: "Cahaya mengubah arah, warna, dan apa yang kita lihat",
     subtitle:
       "Jejaki cahaya melalui cermin, sempadan, prisma, zarah, objek, dan penapis menggunakan bukti yang boleh dilukis dan diterangkan.",
-    path: [
-      ["8.1", "Cermin"],
-      ["8.2-8.3", "Cahaya & pantulan"],
-      ["8.4", "Pembiasan"],
-      ["8.5-8.6", "Spektrum & langit"],
-      ["8.7", "Warna"],
-    ],
     sections: [
-      [
-        "8.1",
-        "Cermin menghasilkan imej yang berguna",
-        "Jenis imej, kelengkungan, dan susunan cermin menentukan apa yang dilihat.",
-      ],
-      [
-        "8.2-8.3",
-        "Cahaya bergerak lurus dan memantul secara teratur",
-        "Bayang-bayang dan sinar pantulan memberikan bukti yang boleh diukur.",
-      ],
-      [
-        "8.4",
-        "Pembiasan mematuhi peraturan ketumpatan",
-        "Perubahan laju pada sempadan mengubah arah sinar.",
-      ],
-      [
-        "8.5-8.6",
-        "Serakan memisahkan; penyerakan mengubah arah",
-        "Kedua-duanya melibatkan warna tetapi menerangkan pemerhatian berbeza.",
-      ],
-      [
-        "8.7",
-        "Penambahan cahaya berwarna menghasilkan cahaya baharu",
-        "Merah, hijau, dan biru bertindih menghasilkan warna sekunder dan putih.",
-      ],
       [
         "8.7",
         "Objek dan penapis menolak cahaya",
@@ -159,16 +89,12 @@ const ui = {
         "Gunakan prinsip, arah, dan pemerhatian yang betul dalam setiap jawapan.",
       ],
     ],
-    realVirtual: "Imej nyata vs imej maya",
     activity: "Bukti Aktiviti 8.1",
     chooseMirror: "Pilih satu cermin",
     image: "Ciri imej",
     applications: "Aplikasi harian",
     instruments: "Alat optik",
-    properties: "Sifat dan aplikasi awal",
-    reflection: "Hukum pantulan",
     experiment: "Eksperimen",
-    ambulance: "Mengapa AMBULANS ditulis terbalik",
     chooseRule: "Pilih laluan sempadan",
     bend: "Arah sinar",
     speed: "Laju",
@@ -313,7 +239,6 @@ export function ScienceF1Chapter8VisualNotesBlock({
   const t = content[lang];
   const extra = chapter8Supplement[lang];
   const copy = ui[lang];
-  const [mirror, setMirror] = useState(0);
   const [refraction, setRefraction] = useState(0);
   const [sky, setSky] = useState(0);
   const [mix, setMix] = useState(0);
@@ -333,11 +258,8 @@ export function ScienceF1Chapter8VisualNotesBlock({
                 {copy.eyebrow}
               </p>
               <h1 className="mt-3 font-display text-3xl font-black leading-tight text-white sm:text-5xl">
-                {copy.title}
+                {t.title}
               </h1>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">
-                {copy.subtitle}
-              </p>
             </div>
             <div className="relative mx-auto grid h-36 w-36 shrink-0 place-items-center rounded-full border border-violet-300/30 bg-violet-300/10 lg:mx-0">
               <Aperture className="h-20 w-20 text-violet-300" aria-hidden="true" />
@@ -347,134 +269,44 @@ export function ScienceF1Chapter8VisualNotesBlock({
               />
             </div>
           </div>
-          <div className="mt-6 grid gap-2 sm:grid-cols-5">
-            {copy.path.map(([code, label]) => (
-              <div
-                key={`${code}-${label}`}
-                className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3"
+          <nav aria-label={t.title} className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {t.subtopics.map(({ code, title }) => (
+              <a
+                key={code}
+                href={`#chapter8-${code.replace(".", "")}`}
+                className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 text-sm font-bold text-violet-100"
               >
-                <span className="font-mono text-[10px] font-black uppercase text-violet-300">
-                  {code}
-                </span>
-                <p className="mt-1 text-xs font-bold text-slate-200">{label}</p>
-              </div>
+                {code} {title}
+              </a>
             ))}
-          </div>
+          </nav>
         </header>
 
         <div className="mt-12 space-y-16">
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[0]} />
-            <div className="grid gap-5 md:grid-cols-2">
-              <Panel>
-                <Eye className="h-6 w-6 text-sky-300" />
-                <h3 className="mt-3 font-bold text-white">
-                  {lang === "en" ? "Real image" : "Imej nyata"}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
-                  {t.mirrors.realVsVirtual.real}
-                </p>
-              </Panel>
-              <Panel>
-                <Glasses className="h-6 w-6 text-violet-300" />
-                <h3 className="mt-3 font-bold text-white">
-                  {lang === "en" ? "Virtual image" : "Imej maya"}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
-                  {t.mirrors.realVsVirtual.virtual}
-                </p>
-              </Panel>
-            </div>
-            <Panel>
-              <h3 className="mb-4 font-bold text-white">{copy.activity}</h3>
-              <Checklist items={extra.realVirtualActivity} />
-            </Panel>
-            <Panel>
-              <h3 className="font-bold text-white">{copy.chooseMirror}</h3>
-              <div className="mt-4">
-                <Tabs
-                  labels={t.mirrors.mirrorTypes.map((item) => item.name)}
-                  selected={mirror}
-                  onSelect={setMirror}
-                />
-              </div>
-              <div className="mt-4 grid gap-3 md:grid-cols-2" role="tabpanel">
-                <div className="rounded-xl bg-violet-300/10 p-4">
-                  <p className="text-xs font-bold uppercase text-violet-300">{copy.image}</p>
-                  <div className="mt-2">
-                    <Checklist items={t.mirrors.mirrorTypes[mirror].imageCharacteristics} />
-                  </div>
-                </div>
-                <div className="rounded-xl bg-sky-300/10 p-4">
-                  <p className="text-xs font-bold uppercase text-sky-300">{copy.applications}</p>
-                  <div className="mt-2">
-                    <Checklist items={t.mirrors.mirrorTypes[mirror].uses} />
-                  </div>
-                </div>
-              </div>
-            </Panel>
-            <div>
-              <h3 className="mb-4 font-bold text-white">{copy.instruments}</h3>
-              <div className="grid gap-4 md:grid-cols-2">
-                {t.mirrors.opticalInstruments.map((item) => (
-                  <Panel key={item.name}>
-                    <ScanLine className="h-6 w-6 text-violet-300" />
-                    <h4 className="mt-3 font-bold text-white">{item.name}</h4>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">{item.howItWorks}</p>
-                  </Panel>
-                ))}
-              </div>
-            </div>
+          <section id="chapter8-81" data-official-subtopic="8.1" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[0].code} {t.subtopics[0].title}
+            </h2>
+            <Chapter8Mirrors source={t.mirrors} />
           </section>
 
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[1]} />
-            <div className="grid gap-4 lg:grid-cols-2">
-              <Panel>
-                <div className="flex items-center gap-3">
-                  <Sun className="h-6 w-6 text-yellow-300" />
-                  <h3 className="font-bold text-white">{copy.properties}</h3>
-                </div>
-                <div className="mt-4">
-                  <Checklist items={t.propertiesOfLight.facts} />
-                </div>
-                <div className="mt-5 space-y-3">
-                  {extra.opticalHistory.map((item) => (
-                    <div key={item.name} className="border-l-2 border-yellow-300 pl-4">
-                      <p className="font-bold text-yellow-200">{item.name}</p>
-                      <p className="mt-1 text-sm leading-6 text-slate-300">{item.principle}</p>
-                    </div>
-                  ))}
-                </div>
-              </Panel>
-              <Panel>
-                <div className="flex items-center gap-3">
-                  <Focus className="h-6 w-6 text-sky-300" />
-                  <h3 className="font-bold text-white">{copy.reflection}</h3>
-                </div>
-                <div className="mt-4">
-                  <Checklist items={t.mirrors.lawOfReflection.statement} />
-                </div>
-                <p className="mt-5 rounded-xl border border-sky-300/25 bg-sky-300/10 p-4 text-center font-mono text-3xl font-black text-sky-100">
-                  {t.mirrors.lawOfReflection.keyEquation}
-                </p>
-              </Panel>
-            </div>
-            <Panel>
-              <h3 className="mb-4 font-bold text-white">{copy.experiment}</h3>
-              <Checklist items={extra.reflectionExperiment} />
-            </Panel>
-            <Panel className="border-amber-300/25 bg-amber-300/[0.06]">
-              <div className="flex items-center gap-3">
-                <ArrowDownUp className="h-6 w-6 text-amber-300" />
-                <h3 className="font-bold text-white">{copy.ambulance}</h3>
-              </div>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{extra.lateralInversion}</p>
-            </Panel>
+          <section id="chapter8-82" data-official-subtopic="8.2" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[1].code} {t.subtopics[1].title}
+            </h2>
+            <Chapter8PropertiesOfLight source={t.propertiesOfLight} />
+          </section>
+          <section id="chapter8-83" data-official-subtopic="8.3" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[2].code} {t.subtopics[2].title}
+            </h2>
+            <Chapter8Reflection source={t.reflection} />
           </section>
 
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[2]} />
+          <section id="chapter8-84" data-official-subtopic="8.4" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[3].code} {t.subtopics[3].title}
+            </h2>
             <p className="max-w-3xl text-sm leading-6 text-slate-300">{t.refraction.definition}</p>
             <Panel>
               <h3 className="font-bold text-white">{copy.chooseRule}</h3>
@@ -522,8 +354,10 @@ export function ScienceF1Chapter8VisualNotesBlock({
             </Panel>
           </section>
 
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[3]} />
+          <section id="chapter8-85" data-official-subtopic="8.5" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[4].code} {t.subtopics[4].title}
+            </h2>
             <div className="grid gap-5 lg:grid-cols-2">
               <Panel>
                 <div className="flex items-center gap-3">
@@ -560,6 +394,11 @@ export function ScienceF1Chapter8VisualNotesBlock({
                 </div>
               </Panel>
             </div>
+          </section>
+          <section id="chapter8-86" data-official-subtopic="8.6" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[5].code} {t.subtopics[5].title}
+            </h2>
             <Panel>
               <div className="flex items-center gap-3">
                 <Sun className="h-6 w-6 text-sky-300" />
@@ -594,8 +433,10 @@ export function ScienceF1Chapter8VisualNotesBlock({
             </Panel>
           </section>
 
-          <section className="space-y-6">
-            <SectionHeading section={copy.sections[4]} />
+          <section id="chapter8-87" data-official-subtopic="8.7" className="space-y-6">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
+              {t.subtopics[6].code} {t.subtopics[6].title}
+            </h2>
             <Panel>
               <div className="flex items-center gap-3">
                 <Palette className="h-6 w-6 text-fuchsia-300" />
@@ -634,7 +475,7 @@ export function ScienceF1Chapter8VisualNotesBlock({
           </section>
 
           <section className="space-y-6">
-            <SectionHeading section={copy.sections[5]} />
+            <h3 className="text-xl font-bold">{copy.sections[0][1]}</h3>
             <p className="max-w-3xl text-sm leading-6 text-slate-300">
               {t.colorAdditionSubtraction.subtractionPrinciple}
             </p>
@@ -677,7 +518,7 @@ export function ScienceF1Chapter8VisualNotesBlock({
           </section>
 
           <section className="space-y-6">
-            <SectionHeading section={copy.sections[6]} />
+            <SectionHeading section={copy.sections[1]} />
             <div className="grid gap-5 lg:grid-cols-2">
               <Panel>
                 <div className="flex items-center gap-3">
