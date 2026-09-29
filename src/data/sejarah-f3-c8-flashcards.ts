@@ -1,50 +1,350 @@
 import type { Flashcard } from "./types";
 
-type Topic = {
-  no: string;
-  title: string;
-  facts: string[];
-  keywords: string[];
-  tokoh: string[];
-  dates: string[];
-  places: string[];
-  treaties: string[];
-  laws: string[];
-  causes: string[];
-  effects: string[];
-  importance: string[];
-};
-
-const topics: Topic[] = [{"no":"8.1","title":"Reaksi Pemerintah Negeri-negeri Melayu Utara dan Johor Terhadap Tindakan Barat","facts":["Perjanjian Bangkok 1909 menimbulkan reaksi pemerintah negeri Melayu utara.","Perlis kehilangan wilayah Setul, Kedah kehilangan wilayah tertentu dan pemerintah membantah tindakan British-Siam.","Sultan Abdul Hamid Halim Shah menegaskan bantahan terhadap kesan Perjanjian Bangkok.","Sultan Zainal Abidin III mengecam tindakan British dan Siam.","Johor berusaha mengekalkan kedaulatan melalui diplomasi dan pemodenan."],"keywords":["reaksi pemerintah","Perjanjian Bangkok 1909","negeri Melayu utara","Johor","kedaulatan"],"tokoh":["Sultan Abdul Hamid Halim Shah","Sultan Muhammad IV","Sultan Zainal Abidin III","Sultan Abu Bakar","Sultan Ibrahim"],"dates":["1909: Perjanjian Bangkok"],"places":["Perlis","Kedah","Kelantan","Terengganu","Johor","Setul"],"treaties":["Perjanjian Bangkok 1909"],"laws":[],"causes":["Perjanjian dibuat tanpa persetujuan penuh pemerintah Melayu","Wilayah dan kedaulatan negeri terjejas","British mahu meluaskan kuasa"],"effects":["Pemerintah Melayu membantah","British tetap menempatkan penasihat","Kesedaran mempertahankan kedaulatan meningkat"],"importance":["Menunjukkan raja Melayu tidak pasif dalam menghadapi tindakan Barat."]},{"no":"8.2","title":"Tindakan Raja Melayu Menangani Cabaran Barat","facts":["Raja-raja Melayu menggunakan Durbar untuk menyuarakan bantahan terhadap pemusatan kuasa British.","Durbar Kuala Lumpur 1903 menyaksikan Sultan Idris Murshidul Adzam Shah mengkritik pemusatan kuasa Residen Jeneral.","Durbar Pekan 1932, Durbar Klang 1937 dan Durbar Seri Menanti 1939 menjadi wadah tuntutan raja-raja Melayu.","Sultan Abu Bakar mengadakan hubungan diplomatik untuk mengukuhkan kedudukan Johor.","Sultan Zainal Abidin III enggan menerima Penasihat British dan hanya menerima ejen British."],"keywords":["Durbar","diplomasi","Raja-raja Melayu","Penasihat British","ejen British"],"tokoh":["Sultan Idris Murshidul Adzam Shah","Sultan Iskandar Shah","Sultan Abu Bakar Riayatuddin Al-Muazzam Shah","Sultan Hisamuddin Alam Shah","Sultan Abu Bakar Johor","Sultan Zainal Abidin III"],"dates":["1903: Durbar Kuala Lumpur","1932: Durbar Pekan","1937: Durbar Klang","1939: Durbar Seri Menanti","24 Mei 1919: Perjanjian Terengganu-British"],"places":["Kuala Lumpur","Pekan","Klang","Seri Menanti","Johor","Terengganu"],"treaties":["Perjanjian Terengganu-British 1919"],"laws":[],"causes":["Pemusatan kuasa British","Kuasa raja dan negeri terhakis","Penasihat British semakin mengawal pentadbiran"],"effects":["Raja Melayu menyuarakan tuntutan","Durbar menjadi platform perbincangan","Kedaulatan dipertahankan melalui diplomasi"],"importance":["Membuktikan kebijaksanaan raja Melayu menggunakan saluran rasmi, diplomasi dan rundingan."]},{"no":"8.3","title":"Usaha Pembesar Melayu dalam Pemodenan Negeri","facts":["Pembesar Melayu memainkan peranan dalam pemodenan negeri melalui pentadbiran, pendidikan, ekonomi dan undang-undang.","Sultan Abu Bakar bekerjasama dengan Majlis Mesyuarat Kerajaan untuk memodenkan Johor.","Pembesar Johor membantu membangunkan sistem pentadbiran moden.","Pembesar Terengganu bekerjasama dengan Sultan Zainal Abidin III mempertahankan kedaulatan negeri."],"keywords":["pemodenan negeri","pembesar Melayu","Majlis Mesyuarat","pentadbiran moden","diplomasi"],"tokoh":["Sultan Abu Bakar","Dato' Jaafar bin Muhammad","Dato' Abdul Rahman Andak","Sultan Zainal Abidin III","Pembesar Terengganu"],"dates":["1895: Undang-Undang Tubuh Kerajaan Johor","1911: Undang-Undang Bagi Diri Kerajaan Terengganu"],"places":["Johor","Terengganu","London"],"treaties":[],"laws":["Undang-Undang Tubuh Kerajaan Johor 1895","Undang-Undang Bagi Diri Kerajaan Terengganu 1911"],"causes":["Keperluan memodenkan pentadbiran","Ancaman campur tangan British","Keinginan mempertahankan kedaulatan"],"effects":["Pentadbiran negeri lebih tersusun","British sukar menguasai negeri secara tergesa-gesa","Pembesar tempatan berperanan sebagai pentadbir moden"],"importance":["Murid melihat pembesar Melayu sebagai agen pemodenan, bukan hanya tokoh tradisional."]},{"no":"8.4","title":"Keberkesanan Peranan Pemerintah Tempatan dalam Menangani Cabaran Barat","facts":["Pemerintah tempatan berjaya melambatkan campur tangan British melalui diplomasi, undang-undang dan pemodenan.","Undang-Undang Tubuh Kerajaan Johor 1895 menetapkan sultan tidak boleh menyerahkan negeri kepada kuasa asing.","Undang-Undang Bagi Diri Kerajaan Terengganu 1911 mengandungi 53 fasal dan melarang penyerahan negeri kepada kuasa asing.","Walaupun British akhirnya meluaskan kuasa, usaha pemerintah tempatan mempertahankan identiti dan kedaulatan negeri tetap berkesan sebagai warisan politik."],"keywords":["keberkesanan","kedaulatan","undang-undang tubuh","pemodenan","diplomasi"],"tokoh":["Sultan Abu Bakar","Sultan Ibrahim","Sultan Zainal Abidin III","Sultan Muhammad II","Undang Luak Rembau"],"dates":["1895: Undang-Undang Tubuh Kerajaan Johor","1911: Undang-Undang Bagi Diri Kerajaan Terengganu","1914: Perjanjian Johor-British"],"places":["Johor","Terengganu","Perak","Selangor","Sungai Ujong","Pahang","Negeri Sembilan"],"treaties":["Perjanjian Johor-British 1914"],"laws":["Undang-Undang Tubuh Kerajaan Johor 1895","Undang-Undang Bagi Diri Kerajaan Terengganu 1911"],"causes":["Cabaran peluasan kuasa Barat","Keperluan mempertahankan negeri","Pemusatan kuasa British"],"effects":["Campur tangan British dapat dilambatkan","Identiti negeri dipertahankan","Pentadbiran moden tempatan berkembang","Warisan institusi raja terus kekal"],"importance":["Menyimpulkan kebijaksanaan pemerintah tempatan sebagai asas patriotisme dan jati diri negara."]}];
-
-function topic(index: number) {
-  return topics[index % topics.length];
-}
-
-function makeCards(): Array<[string, string]> {
-  const cards: Array<[string, string]> = [];
-  for (let i = 0; i < 20; i++) {
-    const t = topic(i);
-    cards.push([`Fakta ${t.no}: ${t.title} (${i + 1})`, t.facts[i % t.facts.length]]);
-  }
-  for (let i = 0; i < 20; i++) {
-    const t = topic(i + 1);
-    const detail = t.dates[i % Math.max(t.dates.length, 1)] || t.places[i % t.places.length];
-    cards.push([`Tokoh/Tarikh ${t.no}: ${t.title} (${i + 1})`, `${(t.tokoh[i % Math.max(t.tokoh.length, 1)] || "Kata kunci")}: ${detail}`]);
-  }
-  for (let i = 0; i < 20; i++) {
-    const t = topic(i + 2);
-    const treaty = t.treaties[0] || t.laws[0] || t.keywords[0];
-    cards.push([`Sebab/Kesan ${t.no}: ${t.title} (${i + 1})`, `${t.causes[i % t.causes.length]} -> ${t.effects[i % t.effects.length]}. Kata kunci: ${treaty}.`]);
-  }
-  return cards;
-}
-
-export const sejarahF3C8Flashcards: Flashcard[] = makeCards().map(([front, back], index) => ({
-  id: `sej-f3-c8-fc${index + 1}`,
-  subjectId: "sejarah",
-  form: "Form 3",
-  chapter: "Chapter 8",
-  front,
-  back,
-}));
+export const sejarahF3C8Flashcards: Flashcard[] = [
+  {
+    id: "sej-f3-c8-a-fc1",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah pendekatan utama yang digunakan oleh pemerintah Negeri-negeri Melayu dalam menghadapi gertakan dan tekanan kuasa Barat?",
+    back: "Menggunakan strategi diplomasi, penggubalan undang-undang tubuh kerajaan, pemodenan pentadbiran negeri, serta memanfaatkan persaingan antara kuasa Barat tanpa melancarkan peperangan secara meluru.",
+  },
+  {
+    id: "sej-f3-c8-a-fc2",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Bagaimanakah Sultan Abu Bakar dari Johor menggunakan diplomasi untuk mengekalkan kemerdekaan Johor daripada British?",
+    back: "Baginda mengadakan lawatan rasmi ke England, menjalin hubungan mesra dengan Ratu Victoria, serta menubuhkan Lembaga Penasihat Johor di London untuk menasihati baginda dalam hal ehwal luar.",
+  },
+  {
+    id: "sej-f3-c8-a-fc3",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Mengapakah Sultan Abu Bakar digelar sebagai 'Bapa Pemodenan Johor'?",
+    back: "Kerana baginda memodenkan pentadbiran Johor dengan menubuhkan jabatan-jabatan kerajaan (Polis, Tanah, Ukur, Mahkamah), membina infrastruktur moden, dan menggubal Perlembagaan Bertulis pertama.",
+  },
+  {
+    id: "sej-f3-c8-a-fc4",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah sumbangan utama Tunku Mahmud (Raja Muda Kedah) dalam mempertahankan kedaulatan bahasa dan birokrasi Kedah?",
+    back: "Beliau mewajibkan penggunaan Bahasa Melayu dalam surat-menyurat rasmi dan mahkamah, mengekalkan kalendar Hijrah, serta mengutamakan pegawai tempatan dalam Kedah Civil Service (KCS).",
+  },
+  {
+    id: "sej-f3-c8-a-fc5",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah langkah yang diambil oleh Sultan Zainal Abidin III untuk memodenkan Terengganu?",
+    back: "Baginda menubuhkan pelbagai jabatan kerajaan, memperkasakan sistem mahkamah syariah dan sivil, memajukan pendidikan agama dan sekular, serta menggubal Undang-Undang Bagi Diri Kerajaan Terengganu.",
+  },
+  {
+    id: "sej-f3-c8-a-fc6",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah pembaharuan pentadbiran yang diperkenalkan oleh Sultan Muhammad IV di Kelantan?",
+    back: "Baginda menubuhkan Majlis Mesyuarat Negeri, Jabatan Mahkamah, Jabatan Polis, dan Jabatan Tanah untuk melicinkan pentadbiran dan mengurangkan alasan British untuk campur tangan.",
+  },
+  {
+    id: "sej-f3-c8-a-fc7",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah nama undang-undang tubuh bertulis yang digubal oleh Sultan Abu Bakar pada tahun 1895?",
+    back: "Undang-Undang Tubuh Kerajaan Johor (1895).",
+  },
+  {
+    id: "sej-f3-c8-a-fc8",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah klausa terpenting dalam Undang-Undang Tubuh Kerajaan Johor 1895 berkaitan kedaulatan negeri?",
+    back: "Raja atau Kerajaan Johor dilarang sama sekali menyerahkan atau menyerahkan mana-mana bahagian negeri Johor kepada mana-mana kuasa asing atau kerajaan Barat.",
+  },
+  {
+    id: "sej-f3-c8-a-fc9",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah nama rasmi dalam bahasa Arab bagi Undang-Undang Bagi Diri Kerajaan Terengganu 1911?",
+    back: "Itqan al-muluk bi-ta'dil al-suluk (yang bermaksud 'Kukuhnya kerajaan dengan keadilan pentadbiran').",
+  },
+  {
+    id: "sej-f3-c8-a-fc10",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Menurut Undang-Undang Bagi Diri Kerajaan Terengganu 1911, apakah syarat utama bagi seorang Sultan yang memerintah?",
+    back: "Sultan mestilah beragama Islam, berbangsa Melayu, lelaki, dan daripada keturunan pemerintah Terengganu.",
+  },
+  {
+    id: "sej-f3-c8-a-fc11",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah sumbangan Long Jaafar dan Ngah Ibrahim di Larut, Perak?",
+    back: "Mereka memajukan perlombongan bijih timah secara komersial, membawa masuk buruh Cina, serta membina infrastruktur seperti jalan raya dan landasan kereta api pertama di Larut.",
+  },
+  {
+    id: "sej-f3-c8-a-fc12",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah projek pembangunan terbesar yang diusahakan oleh Wan Muhammad Saman di Kedah?",
+    back: "Pembinaan Terusan Wan Saman sepanjang 36 kilometer dari Alor Setar ke Gunung Jerai yang membolehkan pembukaan kawasan pertanian padi secara besar-besaran.",
+  },
+  {
+    id: "sej-f3-c8-a-fc13",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah peranan Dato' Jaafar bin Haji Muhammad sebagai Menteri Besar Johor yang pertama?",
+    back: "Beliau mewajibkan semua pegawai British di Johor memakai pakaian rasmi kerajaan Johor, mengibarkan bendera Johor pada kenderaan mereka, serta menggunakan Bahasa Melayu dalam urusan rasmi.",
+  },
+  {
+    id: "sej-f3-c8-a-fc14",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Mengapakah Dato' Abdul Rahman bin Andak digelar sebagai 'Benteng Kemerdekaan Johor'?",
+    back: "Kerana kebijaksanaannya sebagai Setiausaha Kerajaan Johor mengesan tektik British dan mengawal hubungan diplomatik sehingga British mendesak baginda Sultan menolaknya ke London.",
+  },
+  {
+    id: "sej-f3-c8-a-fc15",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah gelaran yang diberikan kepada Dato' Muhammad Salleh bin Perang atas sumbangannya di Johor?",
+    back: "Dato' Bentara Luar - beliau bertanggungjawab melukis peta topografi Johor yang tepat dan merancang pembangunan pemodenan bandar Bandar Penggaram (Batu Pahat) dan Muar.",
+  },
+  {
+    id: "sej-f3-c8-a-fc16",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Bagaimanakah Sultan Idris Murshidul Adzam Shah mengkritik pemusatan kuasa British semasa Durbar II 1903?",
+    back: "Baginda mendesak pemulihan kuasa Raja-raja Melayu, pengembalian kuasa Majlis Mesyuarat Negeri, dan pelantikan lebih ramai pegawai Melayu dalam pentadbiran kerajaan.",
+  },
+  {
+    id: "sej-f3-c8-a-fc17",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah sistem ladang yang diperkenalkan oleh Temenggung Daeng Ibrahim untuk menggalakkan penanaman gambir dan lada hitam?",
+    back: "Sistem Kangchu (pemberian Surat Sungai kepada pengusaha Cina untuk membuka ladang di sepanjang muara sungai).",
+  },
+  {
+    id: "sej-f3-c8-a-fc18",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah kepentingan penggubalan Undang-Undang Tubuh Kerajaan di Johor dan Terengganu?",
+    back: "Menjadikan pentadbiran berteraskan sistem Raja Berperlembagaan, memperkukuh kedaulatan negeri, dan menghalang British daripada mencampuri pentadbiran secara sewenang-wenangnya.",
+  },
+  {
+    id: "sej-f3-c8-a-fc19",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah peranan Tengku Omar (Tengku Sri Utama) di Terengganu?",
+    back: "Beliau membantu Sultan Zainal Abidin III dalam memodenkan sistem pentadbiran dan memperkukuh sistem pertahanan serta kewangan negeri Terengganu.",
+  },
+  {
+    id: "sej-f3-c8-a-fc20",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah iktibar utama daripada kebijaksanaan raja dan pembesar Melayu dalam menangani cabaran Barat?",
+    back: "Kepentingan ilmu pengetahuan, diplomas bersiasat, perpaduan kepimpinan, serta penggunaan undang-undang dan modenisasi untuk mempertahankan kedaulatan bangsa dan negara.",
+  },
+  {
+    id: "sej-f3-c8-b-fc1",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Mengapakah British menghadapi kesukaran untuk menundukkan Johor berbanding negeri-negeri Melayu yang lain?",
+    back: "Kerana Johor mempunyai struktur perundangan bertulis, birokrasi moden yang cekap, hubungan antarabangsa yang kukuh, serta kepimpinan raja dan pembesar yang berpendidikan.",
+  },
+  {
+    id: "sej-f3-c8-b-fc2",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Bagaimanakah Sultan Zainal Abidin III dari Terengganu mempamerkan penentangan terhadap tekanan British?",
+    back: "Baginda enggan menerima Penasihat British pada awalnya dan hanya menerima Agen British (W.D. Scott) yang mempunyai kuasa terbatas melalui Perjanjian 1910.",
+  },
+  {
+    id: "sej-f3-c8-b-fc3",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah badan penasihat yang ditubuhkan oleh Sultan Abu Bakar di London pada tahun 1886?",
+    back: "Lembaga Penasihat Johor (Johor Advisory Board).",
+  },
+  {
+    id: "sej-f3-c8-b-fc4",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah langkah pemodenan pendidikan yang diambil di Kedah di bawah pentadbiran Sultan Abdul Hamid Halim Shah?",
+    back: "Penubuhan sekolah-sekolah Melayu dan Inggeris seperti Sekolah Penang Free Cawangan Kedah (sekarang Maktab Mahmud) untuk melahirkan pegawai birokrasi tempatan.",
+  },
+  {
+    id: "sej-f3-c8-b-fc5",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah peranan Mahkamah Syariah yang diperkasa oleh Sultan Zainal Abidin III di Terengganu?",
+    back: "Mengendalikan kes-kes sivil dan jenayah mengikut hukum syarak Islam untuk mengelakkan campur tangan mahkamah Barat.",
+  },
+  {
+    id: "sej-f3-c8-b-fc6",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah pembangunan infrastruktur utama yang dilaksanakan di Kota Bharu semasa pemerintahan Sultan Muhammad IV?",
+    back: "Pembinaan jalan raya, jambatan, perkhidmatan telefon, serta pembentukan Majlis Perbandaran Kota Bharu.",
+  },
+  {
+    id: "sej-f3-c8-b-fc7",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah dua badan pentadbiran utama yang ditubuhkan di bawah Undang-Undang Tubuh Kerajaan Johor 1895?",
+    back: "Majlis Mesyuarat Kerajaan (menasihati Sultan dan menjalankan pentadbiran) dan Jemaah Menteri (menggubal dasar negeri).",
+  },
+  {
+    id: "sej-f3-c8-b-fc8",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah syarat kelayakan bagi jawatan Menteri Besar mengikut Perlembagaan Johor 1895?",
+    back: "Mestilah seorang yang berbangsa Melayu, beragama Islam, dan merupakan warganegara Johor.",
+  },
+  {
+    id: "sej-f3-c8-b-fc9",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah peranan Jemaah Menteri dalam Undang-Undang Bagi Diri Kerajaan Terengganu 1911?",
+    back: "Membantu Sultan dalam menguruskan pentadbiran, menjaga keamanan, dan meluluskan undang-undang negeri.",
+  },
+  {
+    id: "sej-f3-c8-b-fc10",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah ikrar penting Sultan Terengganu semasa menaiki takhta mengikut Perlembagaan 1911?",
+    back: "Memerintah dengan adil, mempertahankan agama Islam, dan tidak sekali-kali menyerahkan negeri Terengganu kepada kuasa asing.",
+  },
+  {
+    id: "sej-f3-c8-b-fc11",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah landasan kereta api pertama yang dibina oleh Ngah Ibrahim di Perak?",
+    back: "Landasan kereta api dari Port Weld ke Taiping yang dibina khas untuk mengangkut bijih timah dari lombong di Larut.",
+  },
+  {
+    id: "sej-f3-c8-b-fc12",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah kesan ekonomi pembinaan Terusan Wan Saman kepada negeri Kedah?",
+    back: "Kedah berkembang pesat sebagai 'Jelapang Padi Negara' kerana beribu-ribu ekar tanah baharu dapat diairi untuk penanaman padi.",
+  },
+  {
+    id: "sej-f3-c8-b-fc13",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Mengapakah Dato' Jaafar bin Haji Muhammad menetapkan syarat tegas kepada pegawai British di Johor?",
+    back: "Untuk menjaga maruah, martabat, dan kedaulatan kerajaan Johor supaya pegawai British tidak berasa mereka lebih berkuasa daripada pemerintah tempatan.",
+  },
+  {
+    id: "sej-f3-c8-b-fc14",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah tindakan British terhadap Dato' Abdul Rahman bin Andak apabila beliau kerap menghalang niat British di Johor?",
+    back: "British mengalihkan beliau secara halus dengan mendesak Sultan Ibrahim bersetuju memencenkan beliau dan menghantarnya menetap di London.",
+  },
+  {
+    id: "sej-f3-c8-b-fc15",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah kepentingan lukisan peta topografi oleh Dato' Muhammad Salleh bin Perang?",
+    back: "Memudahkan perancangan pembangunan bandar, pembahagian kawasan perladangan gambir/lada hitam, dan penentuan sempadan daerah di Johor.",
+  },
+  {
+    id: "sej-f3-c8-b-fc16",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah hasil desakan Raja-raja Melayu dalam Durbar berkenaan peluang pekerjaan anak tempatan?",
+    back: "Penubuhan Maktab Melayu Kuala Kangsar (MCKK) pada 1905 dan Skim Perkhidmatan Awam Melayu (MAS) untuk melatih pegawai Melayu dalam birokrasi.",
+  },
+  {
+    id: "sej-f3-c8-b-fc17",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front: "Apakah dokumen rasmi yang dikeluarkan oleh pemerintah Johor kepada ketua Kangchu Cina?",
+    back: "Surat Sungai (pemberian hak mengusahakan kawasan pertanian di muara sungai dan mengutip cukai tempatan).",
+  },
+  {
+    id: "sej-f3-c8-b-fc18",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Bagaimanakah Undang-Undang Tubuh Kerajaan mewujudkan pemerintahan Raja Berperlembagaan?",
+    back: "Kuasa Sultan tidak lagi mutlak sebaliknya tertakluk kepada perlembagaan dan perbincangan bersama Jemaah Menteri serta Majlis Mesyuarat Kerajaan.",
+  },
+  {
+    id: "sej-f3-c8-b-fc19",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Bagaimanakah pembesar Melayu di Johor, Kedah, dan Terengganu memastikan kelangsungan pentadbiran tempatan?",
+    back: "Dengan menggalakkan pendidikan moden dan agama bagi melahirkan generasi muda Melayu yang berilmu dan berkeupayaan memegang jawatan pentadbiran.",
+  },
+  {
+    id: "sej-f3-c8-b-fc20",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 8",
+    front:
+      "Apakah nilai kepimpinan tertinggi yang ditunjukkan oleh pembesar Melayu abad ke-19 dan awal abad ke-20?",
+    back: "Ketaatan kepada Raja, semangat cinta akan tanah air, kepintaran berdiplomasi, dan pengorbanan demi kedaulatan bangsa.",
+  },
+];

@@ -1,50 +1,352 @@
 import type { Flashcard } from "./types";
 
-type Topic = {
-  no: string;
-  title: string;
-  facts: string[];
-  keywords: string[];
-  tokoh: string[];
-  dates: string[];
-  places: string[];
-  treaties: string[];
-  laws: string[];
-  causes: string[];
-  effects: string[];
-  importance: string[];
-};
-
-const topics: Topic[] = [{"no":"1.1","title":"Kestabilan dan Kemakmuran Negara Kita","facts":["Negara kita mempunyai sistem pemerintahan beraja dan pentadbiran mantap sebelum kedatangan Barat.","Pentadbiran negeri diketuai raja atau sultan, dibantu pembesar jajahan atau daerah dan penghulu atau penggawa pada peringkat kampung.","Perundangan terdiri daripada undang-undang tidak bertulis seperti adat dan undang-undang bertulis seperti Hukum Kanun Melaka, Hukum Kanun Pahang dan Undang-Undang 99 Perak.","Kemakmuran disokong hasil bumi, hasil alam, perdagangan, pelabuhan, sistem mata wang, percukaian, timbang sukat dan kegiatan intelektual."],"keywords":["kestabilan","kemakmuran","sistem beraja","perundangan","hubungan luar","ekonomi tradisional"],"tokoh":["Raja atau Sultan","Pembesar","Penghulu","Penggawa","Ibu Soko"],"dates":["1759: Batu Uban dibuka oleh orang Melayu dari Sumatera"],"places":["Negeri-negeri Melayu","Sarawak","Sabah","Pelabuhan Johor","Kedah","Klang","Melaka","Batu Uban"],"treaties":[],"laws":["Adat Perpatih","Hukum Kanun Melaka","Hukum Kanun Pahang","Undang-Undang 99 Perak"],"causes":["Kebijaksanaan pemerintah","Muafakat pemerintah dan rakyat","Kedudukan pelabuhan strategik","Kekayaan hasil bumi dan hasil alam"],"effects":["Pentadbiran stabil","Hubungan luar berkembang","Ekonomi makmur","Bahasa Melayu dan tulisan Jawi berkembang"],"importance":["Membuktikan negara kita sudah mempunyai tamadun, pentadbiran dan ekonomi tersusun sebelum campur tangan Barat."]},{"no":"1.2","title":"Faktor Kedatangan Kuasa Barat ke Negara Kita","facts":["Pada tahun 1600, Syarikat Hindia Timur Inggeris ditubuhkan di England.","Pada tahun 1602, Syarikat Hindia Timur Belanda ditubuhkan.","Pada tahun 1664, Perancis menubuhkan Syarikat Hindia Timur Perancis.","Kedatangan Barat dipengaruhi keperluan barangan mewah, pusat pengumpulan barang, pelabuhan persinggahan, penyebaran agama Kristian, Revolusi Perindustrian, perkembangan industri kereta, kesuburan tanah, industri mengetin, Terusan Suez, kapal wap, persaingan kuasa Barat dan telegraf."],"keywords":["rempah-ratus","SHTI","VOC","Revolusi Perindustrian","Terusan Suez","kapal wap","telegraf"],"tokoh":["Ferdinand de Lesseps"],"dates":["1600: SHTI ditubuhkan","1602: Syarikat Hindia Timur Belanda ditubuhkan","1664: Syarikat Hindia Timur Perancis ditubuhkan","1859: Terusan Suez mula dibangunkan","1870-an: Jerman dan Perancis menjadi negara perindustrian"],"places":["Kepulauan Melayu","China","India","Canton","Pelabuhan Said","Suez","Tanjung Harapan"],"treaties":[],"laws":[],"causes":["Permintaan rempah, emas, perak, sutera dan tembikar","Keperluan bahan mentah dan pasaran","Perkembangan pengangkutan dan komunikasi","Persaingan mendapatkan tanah jajahan"],"effects":["Alam Melayu menjadi sasaran kuasa Barat","Perdagangan bertambah","Tanah jajahan dicari untuk bahan mentah dan pasaran"],"importance":["Menjelaskan sebab kuasa Barat sanggup datang jauh dan bersaing untuk menguasai Alam Melayu."]},{"no":"1.3","title":"Persaingan Kuasa Barat untuk Mendapatkan Tanah Jajahan","facts":["Kuasa Barat bersaing untuk mendapatkan tanah jajahan bagi bahan mentah, pasaran dan kedudukan strategik.","British, Belanda, Perancis, Sepanyol, Jerman dan Amerika Syarikat terlibat dalam persaingan imperialisme.","Kawasan di Alam Melayu penting kerana kedudukan strategik dan kekayaan hasil bumi.","Kuasa Barat menganggap keluasan tanah jajahan melambangkan kekuatan dan sanjungan."],"keywords":["imperialisme","tanah jajahan","persaingan kuasa Barat","bahan mentah","pasaran"],"tokoh":["Sultan Brunei","Sultan Sulu"],"dates":["1843: serangan penduduk tempatan ke atas kapal British di Sabah"],"places":["Alam Melayu","Sabah","Sarawak","Kepulauan Melayu","Filipina"],"treaties":[],"laws":[],"causes":["Keperluan bahan mentah","Kepentingan laluan perdagangan","Persaingan kuasa imperialis","Prestij tanah jajahan"],"effects":["Peluasan kuasa Barat semakin agresif","Negeri tempatan berhadapan ancaman kedaulatan","Kuasa Barat mula menggunakan pelbagai strategi"],"importance":["Murid perlu memahami persaingan kuasa Barat sebagai faktor luaran yang menggugat kedaulatan negara."]},{"no":"1.4","title":"Perbezaan Strategi Kuasa Barat untuk Menguasai Negara Kita","facts":["Kuasa Barat menggunakan strategi perjanjian, pakatan, manipulasi, ugutan, serangan fizikal dan pajakan.","British menggunakan perjanjian untuk mendapatkan Pulau Pinang, Singapura dan Melaka.","Belanda dan British memeterai Perjanjian London 1824 untuk menyelesaikan pertikaian di Alam Melayu.","Strategi pajakan dan perjanjian turut digunakan di Sabah dan Sarawak."],"keywords":["perjanjian","pakatan","manipulasi","ugutan","serangan fizikal","pajakan"],"tokoh":["Francis Light","Stamford Raffles","John Crawfurd","James Brooke"],"dates":["1786: British menduduki Pulau Pinang","1819: perjanjian awal Singapura","1824: Perjanjian London","1824: Perjanjian British di Singapura"],"places":["Pulau Pinang","Singapura","Melaka","Naning","Sarawak","Sabah"],"treaties":["Perjanjian London 1824","Perjanjian 6 Februari 1819","Perjanjian 2 Ogos 1824"],"laws":[],"causes":["British mahukan petempatan strategik","Belanda mahu melindungi kepentingan di Alam Melayu","Pemerintah tempatan menghadapi tekanan politik dan keselamatan"],"effects":["Kedaulatan tempatan terjejas","British menguasai petempatan strategik","Naning dianggap sebahagian Melaka oleh British selepas Perjanjian London"],"importance":["Menunjukkan perlunya berwaspada terhadap anasir luar dan strategi kuasa asing."]}];
-
-function topic(index: number) {
-  return topics[index % topics.length];
-}
-
-function makeCards(): Array<[string, string]> {
-  const cards: Array<[string, string]> = [];
-  for (let i = 0; i < 20; i++) {
-    const t = topic(i);
-    cards.push([`Fakta ${t.no}: ${t.title} (${i + 1})`, t.facts[i % t.facts.length]]);
-  }
-  for (let i = 0; i < 20; i++) {
-    const t = topic(i + 1);
-    const detail = t.dates[i % Math.max(t.dates.length, 1)] || t.places[i % t.places.length];
-    cards.push([`Tokoh/Tarikh ${t.no}: ${t.title} (${i + 1})`, `${(t.tokoh[i % Math.max(t.tokoh.length, 1)] || "Kata kunci")}: ${detail}`]);
-  }
-  for (let i = 0; i < 20; i++) {
-    const t = topic(i + 2);
-    const treaty = t.treaties[0] || t.laws[0] || t.keywords[0];
-    cards.push([`Sebab/Kesan ${t.no}: ${t.title} (${i + 1})`, `${t.causes[i % t.causes.length]} -> ${t.effects[i % t.effects.length]}. Kata kunci: ${treaty}.`]);
-  }
-  return cards;
-}
-
-export const sejarahF3C1Flashcards: Flashcard[] = makeCards().map(([front, back], index) => ({
-  id: `sej-f3-c1-fc${index + 1}`,
-  subjectId: "sejarah",
-  form: "Form 3",
-  chapter: "Chapter 1",
-  front,
-  back,
-}));
+export const sejarahF3C1Flashcards: Flashcard[] = [
+  {
+    id: "sej-f3-c1-a-fc1",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah susunan hierarki pentadbiran dalam sistem beraja di Negeri-negeri Melayu dari peringkat tertinggi hingga terendah?",
+    back: "1. Sultan/Raja (Peringkat Negeri) - Tonggak kedaulatan & pemerintahan.\n2. Pembesar (Peringkat Jajahan/Daerah) - Menguruskan keamanan & cukai daerah.\n3. Penghulu (Peringkat Mukim/Kampung) - Perantara pembesar dengan rakyat.",
+  },
+  {
+    id: "sej-f3-c1-a-fc2",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah urutan hirarki pemerintahan mengikut Adat Perpatih di Negeri Sembilan dari peringkat bawah ke atas?",
+    back: "Anak Buah -> Buapak -> Lembaga -> Undang -> Yamtuan Besar (Yang di-Pertuan Besar).",
+  },
+  {
+    id: "sej-f3-c1-a-fc3",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Nyatakan dua kategori undang-undang yang wujud dalam masyarakat Melayu sebelum kedatangan Barat beserta contohnya.",
+    back: "1. Undang-undang Tidak Bertulis: Adat Temenggung & Adat Perpatih.\n2. Undang-undang Bertulis: Hukum Kanun Melaka, Hukum Kanun Pahang, & Undang-Undang 99 Perak.",
+  },
+  {
+    id: "sej-f3-c1-a-fc4",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Bagaimanakah urutan nilai sukatan timbangan tradisional Melayu bagi barang bernilai seperti emas dan bijih timah?",
+    back: "Tahil -> Kati -> Pikul.\n(16 tahil = 1 kati; 100 kati = 1 pikul).",
+  },
+  {
+    id: "sej-f3-c1-a-fc5",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Apakah tujuan dan bentuk pendidikan tidak formal masyarakat Melayu tradisional?",
+    back: "Tujuan: Mempelajari kemahiran hidup, nilai moral, dan adat resam.\nBentuk: Asuhan keluarga melalui pantun, syair, peribahasa, serta cerita rakyat seperti 'Si Tanggang' dan 'Anjing dengan Bayang-bayang'.",
+  },
+  {
+    id: "sej-f3-c1-a-fc6",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Di manakah pusat-pusat pendidikan formal masyarakat Melayu tradisional dijalankan dan apakah fokus pengajiannya?",
+    back: "Pusat: Istana, masjid, surau, pondok, dan madrasah.\nFokus: Membaca Al-Quran, tajwid, fardhu ain, bahasa Arab, fikah, serta ilmu pentadbiran di istana.",
+  },
+  {
+    id: "sej-f3-c1-a-fc7",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah faktor utama yang mendorong kedatangan kuasa Barat ke Alam Melayu pada abad ke-16?",
+    back: "1. Mendermai barangan mewah Eropah (rempah-ratus, teh, sutera, tembikar).\n2. Memerlukan pusat pengumpulan barangan dagangan.\n3. Matlamat 3G: Kekayaan (Gold), Kemegahan (Glory), dan Keagamaan (Gospel).",
+  },
+  {
+    id: "sej-f3-c1-a-fc8",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah faktor perubahan di Eropah pada abad ke-17 dan ke-18 yang meningkatkan keperluan terhadap tanah jajahan?",
+    back: "Perkembangan Revolusi Perindustrian di Eropah yang memerlukan bekalan bahan mentah berterusan (seperti bijih timah) dan kawasan pasaran baharu bagi hasil kilang.",
+  },
+  {
+    id: "sej-f3-c1-a-fc9",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Nyatakan tiga perkembangan teknologi abad ke-19 yang merancakkan peluasan kuasa Barat di Alam Melayu.",
+    back: "1. Pembukaan Terusan Suez (1869) - Memendekkan jarak pelayaran.\n2. Penciptaan Kapal Wap - Pelayaran lebih cepat dan muatan banyak.\n3. Telegraf - Mempercepat perhubungan dan urusan perdagangan.",
+  },
+  {
+    id: "sej-f3-c1-a-fc10",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah slogan yang digunakan oleh British dan Perancis untuk merasionalkan penjajahan mereka di Timur?",
+    back: "British: 'Beban Orang Putih' (White Man's Burden).\nPerancis: 'Tugas Menyebarkan Tamadun' (Mission Civilisatrice).",
+  },
+  {
+    id: "sej-f3-c1-a-fc11",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Apakah kawasan di Tanah Melayu yang menarik minat Empayar Jerman pada abad ke-19?",
+    back: "Pulau Langkawi, yang ingin didapatkan oleh Jerman sebagai pangkalan pangkalan tentera/perdagangan.",
+  },
+  {
+    id: "sej-f3-c1-a-fc12",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Apakah wilayah yang menjadi sasaran Perancis di Asia Tenggara pada abad ke-19?",
+    back: "Indochina (Vietnam, Laos, Kemboja) dan merancang membina terusan di Segenting Kra untuk menguasai laluan perdagangan.",
+  },
+  {
+    id: "sej-f3-c1-a-fc13",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Apakah kawasan yang cuba dikuasai oleh Rusia di Alam Melayu?",
+    back: "Rusia berhasrat membuka petempatan di Ujong Salang (Phuket).",
+  },
+  {
+    id: "sej-f3-c1-a-fc14",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Apakah sasaran pangkalan Amerika Syarikat di Tanah Melayu?",
+    back: "Amerika Syarikat ingin bertapak dan mendapatkan pangkalan di Terengganu.",
+  },
+  {
+    id: "sej-f3-c1-a-fc15",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Bagaimanakah dinamika penguasaan Barat di Sarawak dan Sabah pada abad ke-19?",
+    back: "Sarawak: Dikuasai oleh Dinasti Brooke (James Brooke) dari tahun 1841-1905.\nSabah: Dikuasai oleh Syarikat Borneo Utara British (SBUB) melalui pajakan daripada Sultan Brunei dan Sulu.",
+  },
+  {
+    id: "sej-f3-c1-a-fc16",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Nyatakan tiga strategi utama yang digunakan oleh Belanda untuk menguasai wilayah di Tanah Melayu.",
+    back: "1. Serangan fizikal (menyerang Pangkor dan Kuala Selangor).\n2. Perjanjian monopoli perdagangan bijih timah.\n3. Pembinaan kubu pertahanan (Kubu Belanda di Pangkor & Kuala Selangor).",
+  },
+  {
+    id: "sej-f3-c1-a-fc17",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah strategi-strategi diplomasi dan manipulasi yang digunakan oleh British di Tanah Melayu?",
+    back: "1. Tipu Helah (seperti Francis Light di Pulau Pinang).\n2. Manipulasi krisis takhta/perang saudara.\n3. Paksaan, Ugutan, Perjanjian, dan Bantuan Ketenteraan.",
+  },
+  {
+    id: "sej-f3-c1-a-fc18",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah perbezaan ketara antara strategi Belanda dan British dalam meluaskan pengaruh di Tanah Melayu?",
+    back: "Belanda lebih banyak menggunakan kekuatan ketenteraan fizikal dan monopoli langsung, manakala British lebih banyak menggunakan strategi halus seperti diplomasi, tipu helah, manipulasi politik tempatan, dan perjanjian.",
+  },
+  {
+    id: "sej-f3-c1-a-fc19",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah jenis-jenis hasil alam dan hasil hutan utama yang menjadikan negara kita kaya sebelum penjajahan?",
+    back: "Hasil Hutan: Damar, rotan, gaharu.\nHasil Laut: Sirip ikan jerung, mutiara, timah laut.\nHasil Galian: Bijih timah, emas, perak.",
+  },
+  {
+    id: "sej-f3-c1-a-fc20",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah sistem mata wang yang digunakan dalam perdagangan Melayu tradisional sebelum wang kertas moden?",
+    back: "Penggunaan mata wang logam seperti wang emas, perak, dan timah (contoh: Duit Ayam Jantan di Kedah dan mata wang tampang di Pahang) serta perdagangan barter.",
+  },
+  {
+    id: "sej-f3-c1-b-fc1",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah peranan utama seorang Penghulu di peringkat mukim dalam pentadbiran tradisional?",
+    back: "Menjadi perantara antara pembesar daerah dengan rakyat kampung, menyampaikan arahan, mengekalkan keamanan, dan memungut hasil.",
+  },
+  {
+    id: "sej-f3-c1-b-fc2",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah tiga sistem pemerintahan tempatan yang wujud di Sabah sebelum ketibaan Syarikat Borneo Utara British (SBUB)?",
+    back: "1. Sistem Kesukuan (berdasarkan adat tempatan).\n2. Sistem Kesultanan (dibawah Kesultanan Brunei dan Sulu).\n3. Sistem Ketua Bebas (dipimpin tokoh tempatan seperti Syarif Masahor/Datu Paduka Mat Salleh).",
+  },
+  {
+    id: "sej-f3-c1-b-fc3",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Apakah dua bentuk sistem pemerintahan di Sarawak sebelum kedatangan James Brooke?",
+    back: "1. Sistem Kesukuan di kawasan pedalaman (diketuai Tuai Rumah/Menteri).\n2. Sistem Kedatuan di kawasan pesisir pantai (diketuai oleh Datu Patinggi, Datu Bandar, Datu Temenggong bawah naungan Brunei).",
+  },
+  {
+    id: "sej-f3-c1-b-fc4",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Apakah keistimewaan sistem pendidikan pondok dan di manakah ia berkembang pesat?",
+    back: "Pendidikan Islam berasrama yang mendalam meliputi fikah, usuluddin, tasawuf, dan bahasa Arab. Masyhur di Kelantan, Terengganu, dan Kedah.",
+  },
+  {
+    id: "sej-f3-c1-b-fc5",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah kepentingan tulisan Jawi dan Bahasa Melayu dalam pentadbiran dan perdagangan tradisional?",
+    back: "Bahasa Melayu sebagai Lingua Franca antarabangsa, manakala tulisan Jawi menjadi tulisan rasmi dalam persuratan, perjanjian, perundangan, dan hubungan diplomatik.",
+  },
+  {
+    id: "sej-f3-c1-b-fc6",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah dua syarikat perdagangan utama Barat yang ditubuhkan pada awal abad ke-17 untuk menguasai perdagangan rempah?",
+    back: "1. Syarikat Hindia Timur Inggeris (SHTI) - Ditubuhkan di England (1600).\n2. Syarikat Hindia Timur Belanda (VOC) - Ditubuhkan di Belanda (1602).",
+  },
+  {
+    id: "sej-f3-c1-b-fc7",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Siapakah yang membina Terusan Suez dan apakah impaknya kepada perdagangan dunia pada tahun 1869?",
+    back: "Dibina oleh Ferdinand de Lesseps (Perancis). Impak: Menghubungkan Laut Mediterranean dengan Laut Merah, memendekkan jarak perjalanan Eropah-Asia.",
+  },
+  {
+    id: "sej-f3-c1-b-fc8",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Mengapakah penciptaan kapal wap memberi kelebihan besar kepada kuasa Barat berbanding kapal layar tradisional?",
+    back: "Kapal wap berlayar lebih laju, tidak bergantung pada angin monsun, mampu membawa muatan barang dagangan lebih banyak, dan lebih selamat.",
+  },
+  {
+    id: "sej-f3-c1-b-fc9",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah peranan penting saluran kabel telegraf dasar laut dalam perniagaan pedagang Barat?",
+    back: "Membolehkan syarikat di Eropah menghubungi ejen/wakil mereka di Tanah Melayu dengan serta-merta bagi urusan pasaran pasaran minyak, timah, dan perkapalan.",
+  },
+  {
+    id: "sej-f3-c1-b-fc10",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Mengapakah permintaan terhadap bijih timah meningkat dengan mendadak di Eropah pada abad ke-19?",
+    back: "Perkembangan industri mengetin makanan, mengetin minuman, membuat bumbung rumah, dan perusahaan alatan dapur di Eropah.",
+  },
+  {
+    id: "sej-f3-c1-b-fc11",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Apakah kawasan di Asia Tenggara yang dikuasai oleh Sepanyol dan apakah misi utamanya?",
+    back: "Sepanyol menguasai Filipina dengan misi menyebarkan agama Kristian Katholik dan menguasai laluan perdagangan Pasifik.",
+  },
+  {
+    id: "sej-f3-c1-b-fc12",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Bilakah Portugis menawan Melaka dan apakah matlamat utama mereka?",
+    back: "Tahun 1511. Matlamat: Menguasai laluan perdagangan Selat Melaka, monopoli rempah-ratus, dan menyebarkan agama Kristian.",
+  },
+  {
+    id: "sej-f3-c1-b-fc13",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Apakah pusat pentadbiran utama Belanda di Alam Melayu sejak abad ke-17?",
+    back: "Batavia (Betawi) di Pulau Jawa.",
+  },
+  {
+    id: "sej-f3-c1-b-fc14",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front: "Apakah tiga pelabuhan utama di Selat Melaka yang dijadikan pangkalan kuasa British?",
+    back: "Pulau Pinang, Singapura, dan Melaka (yang kemudiannya digabungkan menjadi Negeri-negeri Selat).",
+  },
+  {
+    id: "sej-f3-c1-b-fc15",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Bagaimanakah Francis Light menggunakan tipu helah untuk menduduki Pulau Pinang pada tahun 1786?",
+    back: "Menjanjikan bantuan ketenteraan SHTI kepada Sultan Abdullah Kedah untuk menentang ancaman Siam, sedangkan SHTI enggan mengesahkan perjanjian tersebut.",
+  },
+  {
+    id: "sej-f3-c1-b-fc16",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah iktibar utama daripada tindakan kuasa Barat menggunakan strategi pecah dan perintah serta tipu helah?",
+    back: "Kita mesti berwaspada terhadap campur tangan luar, sentiasa menjaga kestabilan politik, bersatu padu, dan mengutamakan perundingan bijaksana.",
+  },
+  {
+    id: "sej-f3-c1-b-fc17",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah jenis-jenis kegiatan ekonomi sara diri yang dijalankan oleh penduduk tempatan Melayu?",
+    back: "Bercucuk tanam (padi, ubi), menangkap ikan, menternak binatang, memungut hasil hutan, dan pertukangan kayu/logam.",
+  },
+  {
+    id: "sej-f3-c1-b-fc18",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah bentuk hubungan luar yang dijalankan oleh kerajaan Melayu dengan kuasa jiran sebelum imperialisme Barat?",
+    back: "Hubungan perdagangan, diplomatik, dan ufti (seperti Bunga Emas) untuk menjamin keselamatan dan kestabilan kedaulatan.",
+  },
+  {
+    id: "sej-f3-c1-b-fc19",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Mengapakah kuasa Barat memperkenalkan dakwaan bahawa peradaban mereka lebih tinggi daripada masyarakat tempatan?",
+    back: "Untuk mewajarkan dan merasionalkan tindakan penjajahan serta pencerobohan wilayah mereka di seberang laut.",
+  },
+  {
+    id: "sej-f3-c1-b-fc20",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 1",
+    front:
+      "Apakah kesan pembahagian wilayah Alam Melayu ekoran perbezaan strategi kuasa British dan Belanda?",
+    back: "Terhakisnya kedaulatan kerajaan tempatan dan terpisahnya hubungan sejarah serta keturunan di perairan Selat Melaka dan Kepulauan Riau-Lingga.",
+  },
+];

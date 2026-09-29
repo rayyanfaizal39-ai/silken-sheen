@@ -58,6 +58,27 @@ function getFlashcardDeckCards(
 }
 
 describe("Flashcards route resolution", () => {
+  it("opens the supplied Sejarah Form 3 Chapter 1 sets", () => {
+    const cards = getFlashcardDeckCards("sejarah", "Form 3", "Chapter 1");
+    expect(cards).toHaveLength(40);
+    expect(hasFlashcardDeck("sejarah", "Form 3", "Chapter 1")).toBe(true);
+    expect(cards.every((card) => card.chapter === "Chapter 1")).toBe(true);
+    const sets = splitFlashcardDeck(cards, 2);
+    expect(sets.map((set) => set.length)).toEqual([20, 20]);
+    expect(sets[0]?.every((card) => card.id.startsWith("sej-f3-c1-a-"))).toBe(true);
+    expect(sets[1]?.every((card) => card.id.startsWith("sej-f3-c1-b-"))).toBe(true);
+  });
+
+  it.each([2, 3, 4, 5, 6, 7, 8])("opens both Sejarah Form 3 Chapter %i flashcard sets", (chapter) => {
+    const cards = getFlashcardDeckCards("sejarah", "Form 3", `Chapter ${chapter}`);
+    expect(cards).toHaveLength(40);
+    expect(hasFlashcardDeck("sejarah", "Form 3", `Chapter ${chapter}`)).toBe(true);
+    const sets = splitFlashcardDeck(cards, 2);
+    expect(sets.map((set) => set.length)).toEqual([20, 20]);
+    expect(sets[0]?.every((card) => card.id.startsWith(`sej-f3-c${chapter}-a-`))).toBe(true);
+    expect(sets[1]?.every((card) => card.id.startsWith(`sej-f3-c${chapter}-b-`))).toBe(true);
+  });
+
   it("keeps Notes, Flashcards, and Quizzes as distinct route modes", () => {
     expect(getStudyRouteMode("/notes")).toBe("notes");
     expect(getStudyRouteMode("/flashcards")).toBe("flashcards");

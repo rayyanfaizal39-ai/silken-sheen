@@ -1,78 +1,683 @@
-import type { Difficulty, QuizQuestion } from "./types";
+import type { QuizQuestion } from "./types";
 
-type Topic = {
-  no: string;
-  title: string;
-  facts: string[];
-  keywords: string[];
-  tokoh: string[];
-  dates: string[];
-  places: string[];
-  treaties: string[];
-  laws: string[];
-  causes: string[];
-  effects: string[];
-};
-
-type QuizSeed = [Difficulty, string, [string, string, string, string], number, string];
-
-const topics: Topic[] = [{"no":"6.1","title":"Pengenalan Ekonomi Moden oleh Kuasa Barat di Negara Kita","facts":["Kuasa Barat memperkenalkan ekonomi moden berasaskan modal besar, teknologi dan eksport.","Tanaman komersial seperti getah, tebu, tembakau dan padi berorientasikan eksport berkembang.","Bijih timah, bijih besi, emas, petroleum dan arang batu menjadi hasil penting.","SBUB melakukan pelaburan dalam tanaman getah di Sabah seperti Bongaya dan Sungai Labuk."],"keywords":["ekonomi moden","modal","eksport","getah","bijih timah","petroleum"],"tokoh":["Pelabur Barat","SBUB","Pentadbir British"],"dates":["Abad ke-19: ekonomi moden berkembang","Selepas 1840: permintaan bijih timah meningkat"],"places":["Negeri-negeri Melayu","Sarawak","Sabah","Bongaya","Sungai Labuk"],"treaties":[],"laws":[],"causes":["Permintaan bahan mentah dunia","Revolusi Perindustrian","Modal Barat","Kesuburan tanah dan kekayaan hasil bumi"],"effects":["Pertanian komersial berkembang","Perlombongan diperluas","Buruh luar dibawa masuk","Ekonomi tradisional berubah"]},{"no":"6.2","title":"Pentadbiran Barat Berkaitan dengan Ekonomi","facts":["Pentadbiran Barat menggubal dasar tanah, buruh dan kewangan untuk menyokong ekonomi kolonial.","Akta Tanah Simpanan Melayu diperkenalkan bagi melindungi tanah orang Melayu.","Sistem cukai dan peraturan tanah mengubah hubungan masyarakat dengan tanah.","Kemasukan buruh luar diurus untuk memenuhi keperluan lombong dan ladang."],"keywords":["tanah","buruh","cukai","Akta Tanah Simpanan Melayu","ekonomi kolonial"],"tokoh":["Pentadbir British","Pemodal Eropah","Buruh Cina","Buruh India"],"dates":["1913: Akta Tanah Simpanan Melayu diperkenalkan"],"places":["Tanah Melayu","Sarawak","Sabah","kawasan lombong","ladang getah"],"treaties":[],"laws":["Akta Tanah Simpanan Melayu","peraturan tanah","peraturan buruh"],"causes":["Keperluan mengawal tanah dan tenaga kerja","Perkembangan lombong dan ladang","Kepentingan hasil eksport"],"effects":["Tanah dikategorikan mengikut kepentingan ekonomi","Buruh luar meningkat","Masyarakat tempatan semakin terikat dengan sistem pentadbiran Barat"]},{"no":"6.3","title":"Kesan Ekonomi Akibat Pentadbiran Barat di Negara Kita","facts":["British membina landasan kereta api untuk menghubungkan kawasan lombong dengan pelabuhan.","Fasa kereta api 1885-1896 menghubungkan lombong dengan pelabuhan.","Fasa 1897-1909 menghubungkan utara dan selatan Tanah Melayu selepas NNMB dibentuk.","Fasa 1910-1931 menghubungkan seluruh Tanah Melayu selepas pengaruh British meluas ke NNMTB.","Jalan raya, pelabuhan, lapangan terbang awam dan telekomunikasi seperti telegraf, telefon dan pos berkembang."],"keywords":["kereta api","jalan raya","pelabuhan","telegraf","telefon","pos"],"tokoh":["Pentadbir British","Pengusaha lombong","Pengusaha ladang"],"dates":["1885-1896: fasa pertama kereta api","1897-1909: fasa kedua","1910-1931: fasa ketiga"],"places":["Port Weld","Taiping","Kuala Lumpur","Port Swettenham","Gemas","Padang Besar","Kota Bharu"],"treaties":[],"laws":[],"causes":["Keperluan mengangkut bijih timah dan getah","Pertumbuhan ekonomi eksport","Keperluan menghubungkan kawasan pengeluaran dengan pelabuhan"],"effects":["Pengangkutan moden berkembang","Bandar dan pelabuhan maju","Eksport bahan mentah lebih cepat","Telekomunikasi memudahkan pentadbiran"]},{"no":"6.4","title":"Kesan Sosial Akibat Perkembangan Ekonomi di Negara Kita","facts":["Perkembangan ekonomi membawa kepada kemunculan bandar baharu.","Kemasukan buruh luar membentuk masyarakat majmuk.","Pendidikan vernakular, sekolah Melayu dan sekolah agama berkembang mengikut komuniti.","Perkhidmatan kesihatan, hospital, sistem pos, telegraf dan telefon diperkenalkan.","SBUB membuka sekolah Melayu di Papar."],"keywords":["bandar","masyarakat majmuk","pendidikan vernakular","kesihatan","telekomunikasi"],"tokoh":["Pentadbir British","Masyarakat Melayu","Masyarakat Cina","Masyarakat India","SBUB"],"dates":["Awal abad ke-20: bandar dan perkhidmatan sosial berkembang"],"places":["Kuala Lumpur","Ipoh","Taiping","Papar","Sarawak","Sabah"],"treaties":[],"laws":[],"causes":["Perkembangan lombong dan ladang","Kemasukan buruh luar","Pembinaan infrastruktur","Keperluan pentadbiran kolonial"],"effects":["Bandar berkembang","Masyarakat majmuk terbentuk","Pendidikan terpisah mengikut kaum","Perkhidmatan sosial moden diperkenalkan"]}];
-
-function topic(index: number) {
-  return topics[index % topics.length];
-}
-
-function makeQuiz(): QuizSeed[] {
-  const items: QuizSeed[] = [];
-  for (let i = 0; i < 10; i++) {
-    const t = topic(i);
-    items.push([
-      "Easy",
-      `Apakah fakta utama bagi ${t.no} ${t.title}? (Set ${i + 1})`,
-      [t.facts[0], t.effects[0], t.causes[0], t.keywords[0]],
-      0,
-      `Fakta utama subtopik ini ialah: ${t.facts[0]}`,
-    ]);
-  }
-  for (let i = 0; i < 10; i++) {
-    const t = topic(i + 1);
-    const correct = t.treaties[0] || t.laws[0] || t.dates[0] || t.places[0];
-    items.push([
-      "Medium",
-      `Maklumat manakah paling berkaitan dengan ${t.no} ${t.title}? (Set ${i + 1})`,
-      [correct, t.effects[0], t.causes[0], t.keywords[t.keywords.length - 1]],
-      0,
-      `Maklumat ini penting kerana berkait langsung dengan ${t.title}.`,
-    ]);
-  }
-  for (let i = 0; i < 10; i++) {
-    const t = topic(i + 2);
-    items.push([
-      "Hard",
-      `Apakah hubungan sebab dan kesan yang tepat bagi ${t.no} ${t.title}? (Set ${i + 1})`,
-      [
-        `${t.causes[0]} -> ${t.effects[0]}`,
-        `${t.effects[0]} -> ${t.causes[0]}`,
-        `${t.keywords[0]} -> tiada perubahan pentadbiran`,
-        `${t.places[0]} -> semua kuasa Barat berundur serta-merta`,
-      ],
-      0,
-      `Jawapan tepat menghubungkan sebab textbook dengan kesannya: ${t.causes[0]} menyebabkan ${t.effects[0].toLowerCase()}.`,
-    ]);
-  }
-  return items;
-}
-
-export const sejarahF3C6Quizzes: QuizQuestion[] = makeQuiz().map(
-  ([difficulty, question, options, answerIndex, explanation], index) => ({
-    id: `sej-f3-c6-q${index + 1}`,
+export const sejarahF3C6Quizzes: QuizQuestion[] = [
+  {
+    id: "sej-f3-c6-a-q1",
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 6",
-    difficulty,
-    question,
-    options,
-    answerIndex,
-    explanation,
-  }),
-);
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Apakah ciri utama sistem ekonomi moden yang diperkenalkan oleh kuasa Barat di Tanah Melayu?",
+    options: [
+      "Pengeluaran berasaskan sara diri",
+      "Penggunaan modal yang besar dan teknologi moden",
+      "Penggunaan sistem barter dalam perdagangan",
+      "Penglibatan skala kecil oleh keluarga",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Ekonomi moden bercirikan pengeluaran skala besar, modal tinggi, penggunaan teknologi moden, tenaga kerja ramai, dan tumpuan eksport.",
+  },
+  {
+    id: "sej-f3-c6-a-q2",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Syarikat Eropah manakah yang memperkenalkan penggunaan kapal korek pertama di Batu Gajah, Perak pada tahun 1913?",
+    options: ["Harrisons & Crosfield", "Guthrie & Co.", "Sime Darby", "Malayan Tin Dredging"],
+    answerIndex: 3,
+    explanation:
+      "Syarikat Malayan Tin Dredging memperkenalkan kapal korek pertama di Batu Gajah, Perak pada tahun 1913.",
+  },
+  {
+    id: "sej-f3-c6-a-q3",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question: "Di manakah telaga minyak petroleum pertama di Sarawak ditemui pada tahun 1910?",
+    options: ["Kuching", "Sibu", "Bintulu", "Miri"],
+    answerIndex: 3,
+    explanation:
+      "Telaga minyak pertama dikenali sebagai 'Grand Old Lady' di Bukit Kanada, Miri, Sarawak pada tahun 1910 oleh Shell.",
+  },
+  {
+    id: "sej-f3-c6-a-q4",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Apakah kaedah torehan getah yang diperkenalkan oleh H.N. Ridley untuk mengelakkan kerosakan pada pokok getah?",
+    options: [
+      "Torehan ibidem (tulang ikan hering)",
+      "Torehan menegak dalam",
+      "Torehan secara tebuk",
+      "Torehan melingkar lengkap",
+    ],
+    answerIndex: 0,
+    explanation:
+      "H.N. Ridley merintis kaedah torehan ibidem (herringbone method) yang memanjangkan jangka hayat pokok getah.",
+  },
+  {
+    id: "sej-f3-c6-a-q5",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Siapakah tokoh perintis yang menanam getah secara komersial di Bukit Asahan, Melaka pada tahun 1896?",
+    options: ["Tan Chay Yan", "Yap Ah Loy", "Lim Goh Tong", "Loke Yew"],
+    answerIndex: 0,
+    explanation:
+      "Tan Chay Yan merupakan perintis tempatan yang membuka ladang getah komersial di Bukit Asahan, Melaka.",
+  },
+  {
+    id: "sej-f3-c6-a-q6",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Di manakah ladang kelapa sawit komersial pertama dibuka di Tanah Melayu pada tahun 1917?",
+    options: ["Jasin, Melaka", "Kluang, Johor", "Tenamaram, Kuala Selangor", "Teluk Intan, Perak"],
+    answerIndex: 2,
+    explanation:
+      "Ladang kelapa sawit komersial pertama dibuka di Tenamaram, Kuala Selangor oleh Henri Fauconnier pada tahun 1917.",
+  },
+  {
+    id: "sej-f3-c6-a-q7",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question: "Apakah tujuan British memperkenalkan Akta Tanah Simpanan Melayu pada tahun 1913?",
+    options: [
+      "Memberi percuma tanah kepada ladang asing",
+      "Menghapuskan hak pemilikan tanah tradisional",
+      "Menggalakkan orang Melayu menanam getah",
+      "Mengelakkan tanah Melayu dijual atau dipindah milik kepada kuasa/pemodal asing",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Akta TSM 1913 digubal untuk melindungi tanah orang Melayu daripada terlepas ke tangan bukan Melayu atau pemodal asing.",
+  },
+  {
+    id: "sej-f3-c6-a-q8",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Mengapakah Akta Tanah Simpanan Melayu 1913 dianggap tidak menguntungkan orang Melayu dari sudut ekonomi moden?",
+    options: [
+      "Tanah TSM dilarang ditanam tanaman komersial seperti getah",
+      "Kadar cukai tanah TSM terlalu tinggi",
+      "Tanah TSM dirampas oleh syarikat bijih timah",
+      "Orang Melayu dipaksa berpindah ke bandar",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Tanah Simpanan Melayu dilarang ditanam dengan tanaman komersial, menyebabkan orang Melayu kekal dalam pertanian sara diri.",
+  },
+  {
+    id: "sej-f3-c6-a-q9",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Melalui Land Order 1931 di Sarawak, manakah kawasan tanah yang membolehkan orang bukan pribumi memiliki hak milik tanah?",
+    options: [
+      "Tanah Adat Pribumi",
+      "Tanah Simpanan",
+      "Tanah Campuran (Mixed Zone Land)",
+      "Tanah Pedalaman",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Tanah Campuran (Mixed Zone Land) boleh dimiliki oleh orang bukan pribumi, manakala tanah lain dilindungi untuk anak negeri.",
+  },
+  {
+    id: "sej-f3-c6-a-q10",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question: "Bagaimanakah buruh dari India dibawa masuk ke Tanah Melayu di bawah Sistem Kangani?",
+    options: [
+      "Melalui pembelian lesen daripada kerajaan India",
+      "Melalui tawaran biasiswa pelajaran",
+      "Kangani (pengawas) dihantar ke India untuk mengambil buruh dari kampungnya sendiri",
+      "Melalui sistem raker tentera",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Sistem Kangani menggunakan pengawas (Kangani) yang kembali ke kampung asalnya di India untuk mengambil buruh.",
+  },
+  {
+    id: "sej-f3-c6-a-q11",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Mata wang manakah yang diperkenalkan oleh Lembaga Pesuruhjaya Wang pada tahun 1897 bagi Negeri-negeri Selat?",
+    options: ["Dolar Selat (Straits Dollar)", "Pound Sterling", "Dolar Sepanyol", "Rupee India"],
+    answerIndex: 0,
+    explanation:
+      "Lembaga Pesuruhjaya Wang mengeluarkan Mata Wang Dolar Selat untuk menyelaraskan sistem kewangan perdagangan.",
+  },
+  {
+    id: "sej-f3-c6-a-q12",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question: "Apakah bank tempatan pertama yang ditubuhkan di Kuala Lumpur pada tahun 1913?",
+    options: ["Kwong Yik Bank", "Bank Bumiputra", "Central Bank of Malaya", "Ban Hin Lee Bank"],
+    answerIndex: 0,
+    explanation:
+      "Kwong Yik Bank ditubuhkan di Kuala Lumpur pada tahun 1913 oleh tokoh peniaga Cina tempatan.",
+  },
+  {
+    id: "sej-f3-c6-a-q13",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question: "Apakah laluan kereta api pertama yang dibuka di Tanah Melayu pada tahun 1885?",
+    options: [
+      "Kuala Lumpur ke Port Swettenham",
+      "Taiping ke Port Weld",
+      "Seremban ke Port Dickson",
+      "Johor Bahru ke Gemas",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Laluan Taiping ke Port Weld dibuka pada tahun 1885 untuk memudahkan eksport bijih timah dari Perak.",
+  },
+  {
+    id: "sej-f3-c6-a-q14",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Apakah perkhidmatan penerbangan tempatan yang mula beroperasi di Tanah Melayu pada tahun 1937?",
+    options: ["Imperial Airways", "Malayan Airways", "Wearne's Air Service", "Borneo Airways"],
+    answerIndex: 2,
+    explanation:
+      "Wearne's Air Service ditubuhkan oleh syarikat Wearne Brothers untuk penerbangan antara Singapura, KL, dan P. Pinang.",
+  },
+  {
+    id: "sej-f3-c6-a-q15",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question: "Apakah faktor utama perkembangan bandar Miri di Sarawak menjadi bandar moden?",
+    options: [
+      "Pusat pembalakan kayu balak",
+      "Perlombongan bijih timah",
+      "Penanaman kelapa sawit",
+      "Penemuan dan penjelajahan petroleum",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Penemuan petroleum di Miri pada tahun 1910 mengubah Miri daripada perkampungan nelayan kepada bandar petroleum.",
+  },
+  {
+    id: "sej-f3-c6-a-q16",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Apakah agensi perubatan yang ditubuhkan di Kuala Lumpur pada tahun 1900 bagi menjalankan penyelidikan penyakit tropika?",
+    options: [
+      "Institut Penyelidikan Perubatan (IMR)",
+      "Hospital Universiti Malaya",
+      "Jabatan Sanitasi Persekutuan",
+      "Lembaga Kesihatan Awam",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Institut Penyelidikan Perubatan (IMR) ditubuhkan di Kuala Lumpur pada tahun 1900 untuk mengkaji penyakit malaria dan beri-beri.",
+  },
+  {
+    id: "sej-f3-c6-a-q17",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question: "Apakah sekolah Melayu terawal yang dibuka di Tanah Melayu pada tahun 1816?",
+    options: [
+      "Sekolah Melayu Gelugor",
+      "Sekolah Melayu Langgar",
+      "Sekolah Melayu Teluk Intan",
+      "Sekolah Melayu Kampong Gelam",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Sekolah Melayu Gelugor di Pulau Pinang dibuka pada tahun 1816 sebagai sekolah Melayu terawal.",
+  },
+  {
+    id: "sej-f3-c6-a-q18",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Maktab Perguruan Sultan Idris (MPSI) yang ditubuhkan pada tahun 1922 terletak di mana?",
+    options: [
+      "Batu Pahat, Johor",
+      "Kuala Kangsar, Perak",
+      "Tanjung Malim, Perak",
+      "Seremban, Negeri Sembilan",
+    ],
+    answerIndex: 2,
+    explanation:
+      "MPSI ditubuhkan pada tahun 1922 di Tanjung Malim, Perak untuk melatih guru-guru sekolah Melayu.",
+  },
+  {
+    id: "sej-f3-c6-a-q19",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question: "Apakah matlamat utama penubuhan Malay College Kuala Kangsar (MCKK) pada tahun 1905?",
+    options: [
+      "Melatih buruh mahir dalam sektor perlombongan",
+      "Menyediakan latihan teknikal pertanian",
+      "Melatih guru-guru agama",
+      "Melatih anak-anak bangsawan Melayu untuk berkhidmat dalam pentadbiran British",
+    ],
+    answerIndex: 3,
+    explanation:
+      "MCKK ditubuhkan khusus untuk anak-anak raja dan pembesar Melayu berkhidmat dalam Malay Administrative Service (MAS).",
+  },
+  {
+    id: "sej-f3-c6-a-q20",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "A",
+    difficulty: "Medium",
+    question:
+      "Apakah kesan utama dasar ekonomi British terhadap struktur sosial penduduk di Tanah Melayu?",
+    options: [
+      "Kewujudan masyarakat majmuk yang terpisah mengikut pekerjaan dan petempatan",
+      "Penghapusan bahasa tempatan",
+      "Peningkatan pendapatan secara saksama bagi semua kaum",
+      "Penyatuan budaya secara menyeluruh",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Dasar British mewujudkan masyarakat majmuk dengan garis pemisahan petempatan dan jenis pekerjaan mengikut kaum.",
+  },
+  {
+    id: "sej-f3-c6-b-q1",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question:
+      "Apakah perlombongan yang menggunakan pam kelikir untuk menyemprot tebing tanah bagi mengasingkan bijih?",
+    options: ["Melulang", "Lombong kebuk", "Lombong dedak", "Pam kelikir (gravel pump)"],
+    answerIndex: 3,
+    explanation:
+      "Pam kelikir menggunakan tekanan air untuk menyemprot tebing tanah bagi mengasingkan bijih timah.",
+  },
+  {
+    id: "sej-f3-c6-b-q2",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question:
+      "Syarikat perlombongan Eropah manakah yang mengusahakan perlombongan emas skala besar di Raub, Pahang?",
+    options: [
+      "British North Borneo Company",
+      "Anglo-American Gold Corp",
+      "Raub Tin Mining Ltd",
+      "Australian Gold Mining Company",
+    ],
+    answerIndex: 3,
+    explanation: "Australian Gold Mining Company mengendalikan perlombongan emas di Raub, Pahang.",
+  },
+  {
+    id: "sej-f3-c6-b-q3",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Apakah dua tanaman komersial utama yang diusahakan di Johor melalui Sistem Kangchu?",
+    options: [
+      "Getah dan kelapa sawit",
+      "Gambir dan lada hitam",
+      "Tebu dan kopi",
+      "Teh dan tembakau",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Sistem Kangchu di Johor memfokuskan tanaman gambir dan lada hitam di sepanjang tebing sungai.",
+  },
+  {
+    id: "sej-f3-c6-b-q4",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Siapakah pengasas ladang teh BOH di Cameron Highlands pada tahun 1929?",
+    options: ["Henry Waugh", "J.A. Russell", "John Guthrie", "William Sime"],
+    answerIndex: 1,
+    explanation: "J.A. Russell menubuhkan ladang teh BOH di Cameron Highlands pada tahun 1929.",
+  },
+  {
+    id: "sej-f3-c6-b-q5",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question:
+      "Apakah undang-undang tanah yang diperkenalkan oleh SBUB di Sabah pada tahun 1913 bagi melindungi hak tanah anak negeri?",
+    options: [
+      "Proklamasi Tanah Sabah",
+      "Akta Kanun Tanah Negara",
+      "Land Order 1931",
+      "Land Ordinance 1913",
+    ],
+    answerIndex: 3,
+    explanation:
+      "SBUB memperkenalkan Land Ordinance 1913 untuk melindungi hak milik tanah anak negeri di Sabah.",
+  },
+  {
+    id: "sej-f3-c6-b-q6",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Mengapakah buruh dari China dibawa masuk melalui Sistem Rumah Kongsi?",
+    options: [
+      "Untuk menyediakan tempat tinggal dan pengurusan buruh di lombong bijih timah",
+      "Untuk berkhidmat dalam pasukan polis",
+      "Untuk mengajar bahasa Mandarin di kampung",
+      "Untuk menjadi pentadbir sekolah",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Rumah Kongsi mengurus penempatan, makanan, dan pekerjaan buruh Cina di kawasan perlombongan.",
+  },
+  {
+    id: "sej-f3-c6-b-q7",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question:
+      "Apakah perbankan Eropah terawal yang mula beroperasi di Negeri-negeri Selat pada tahun 1859?",
+    options: ["The Chartered Bank", "Mercantile Bank", "HSBC Bank", "Citibank"],
+    answerIndex: 1,
+    explanation:
+      "Mercantile Bank merupakan bank Eropah terawal ditubuhkan di Negeri-negeri Selat pada tahun 1859.",
+  },
+  {
+    id: "sej-f3-c6-b-q8",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Bank tempatan Ban Hin Lee Bank yang ditubuhkan pada tahun 1935 berpusat di mana?",
+    options: ["Melaka", "Ipoh, Perak", "Pulau Pinang", "Kuching, Sarawak"],
+    answerIndex: 2,
+    explanation:
+      "Ban Hin Lee Bank ditubuhkan di Pulau Pinang pada tahun 1935 oleh peniaga tempatan.",
+  },
+  {
+    id: "sej-f3-c6-b-q9",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question:
+      "Apakah matlamat utama pembinaan jalan kereta api Fasa Kedua (1897-1909) di Tanah Melayu?",
+    options: [
+      "Membawa penumpang pelancong dari Thailand",
+      "Menghubungkan kawasan pantai timur dengan pantai barat",
+      "Menghubungkan pelabuhan tempatan dengan ladang lada hitam",
+      "Menghubungkan kawasan utara dengan selatan Tanah Melayu selepas pembentukan NNMB",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Fasa Kedua jaringan kereta api menyambungkan utara dan selatan Tanah Melayu berikutan penubuhan NNMB.",
+  },
+  {
+    id: "sej-f3-c6-b-q10",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Di Sabah, laluan kereta api dibina oleh SBUB untuk menghubungkan kawasan mana?",
+    options: [
+      "Weston ke Beaufort dan Jesselton",
+      "Kudat ke Lahad Datu",
+      "Ranau ke Keningau",
+      "Sandakan ke Tawau",
+    ],
+    answerIndex: 0,
+    explanation:
+      "SBUB membina jalan kereta api dari Weston ke Beaufort dan Jesselton untuk mengangkut hasil getah dan kayu balak.",
+  },
+  {
+    id: "sej-f3-c6-b-q11",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Pelabuhan Port Swettenham hari ini dikenali dengan nama apa?",
+    options: [
+      "Pelabuhan Pasir Gudang",
+      "Pelabuhan Klang",
+      "Pelabuhan Kuantan",
+      "Pelabuhan Tanjung Pelepas",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Port Swettenham dibuka pada tahun 1901 dan kini dikenali sebagai Pelabuhan Klang.",
+  },
+  {
+    id: "sej-f3-c6-b-q12",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question:
+      "Apakah bandar di Sabah yang pernah diberi gelaran 'Little London' kerana kemakmuran perdagangan kayu balak dan pentadbiran SBUB?",
+    options: ["Tawau", "Kudat", "Sandakan", "Jesselton"],
+    answerIndex: 2,
+    explanation:
+      "Sandakan menjadi pusat pentadbiran SBUB dan pelabuhan balak pesat sehingga digelar 'Little London'.",
+  },
+  {
+    id: "sej-f3-c6-b-q13",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Apakah hospital khas yang dibina oleh Rajah Charles Brooke di Kuching, Sarawak?",
+    options: [
+      "Hospital St. Joseph",
+      "Hospital Miri",
+      "Hospital Besar Sarawak",
+      "Hospital Raja Charles Brooke Memorial (khas untuk kusta)",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Hospital Raja Charles Brooke Memorial dibina khas untuk merawat pesakit kusta di Sarawak.",
+  },
+  {
+    id: "sej-f3-c6-b-q14",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question:
+      "Apakah tanggungjawab Sanitary Board yang ditubuhkan di bandar-bandar utama oleh British?",
+    options: [
+      "Menjaga kebersihan dan kesihatan awam bandar",
+      "Membina jalan kereta api persekutuan",
+      "Mengurus lesen perniagaan eksport",
+      "Menagih cukai pintu hartanah",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Sanitary Board (Lembaga Kesihatan) bertanggungjawab terhadap kebersihan awam dan sanitasi bandar.",
+  },
+  {
+    id: "sej-f3-c6-b-q15",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Sekolah Inggeris terawal yang ditubuhkan di Tanah Melayu pada tahun 1816 ialah:",
+    options: [
+      "Victoria Institution",
+      "Penang Free School",
+      "Malacca Free School",
+      "Raffles Institution",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Penang Free School merupakan sekolah Inggeris terawal yang ditubuhkan di Tanah Melayu pada tahun 1816.",
+  },
+  {
+    id: "sej-f3-c6-b-q16",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question:
+      "Pihak manakah yang memainkan peranan penting dalam mendirikan sekolah-sekolah di Sarawak dan Sabah semasa pentadbiran Dinasti Brooke dan SBUB?",
+    options: [
+      "Syarikat Kereta Api Borneo",
+      "Misi Kristian",
+      "Persatuan Peniaga Getah",
+      "Lembaga Kemajuan Kampung",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Misi Kristian menubuhkan sekolah-sekolah di Sarawak dan Sabah seperti Mission St. Thomas di Kuching.",
+  },
+  {
+    id: "sej-f3-c6-b-q17",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Apakah tanaman tebu komersial utama yang ditanam di Seberang Perai pada abad ke-19?",
+    options: [
+      "Biofuel tebu",
+      "Tebu hitam ubat",
+      "Gula pasir komersial",
+      "Tebu komersial untuk industri gula",
+    ],
+    answerIndex: 3,
+    explanation:
+      "Seberang Perai merupakan pusat tanaman tebu komersial terbesar untuk eksport gula pada pertengahan abad ke-19.",
+  },
+  {
+    id: "sej-f3-c6-b-q18",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question:
+      "Apakah iktibar utama daripada pembentukan masyarakat majmuk di bawah pentadbiran Barat?",
+    options: [
+      "Memupuk semangat perpaduan dan toleransi antara kaum",
+      "Menolak kemajuan ekonomi",
+      "Mengabaikan nilai tradisi tempatan",
+      "Mengamalkan sikap perkauman",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kepelbagaian kaum menuntut semangat perpaduan, toleransi, dan keharmonian dalam membina negara bersatu padu.",
+  },
+  {
+    id: "sej-f3-c6-b-q19",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Apakah peranan Land Settlement Order 1939 di Sarawak?",
+    options: [
+      "Menyerahkan tanah peribumi kepada Brooke",
+      "Melindungi hak milik tanah adat masyarakat pribumi daripada pencerobohan luar",
+      "Menjual tanah kepada syarikat minyak Shell",
+      "Mengenakan cukai tanah tinggi ke atas petani",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Land Settlement Order 1939 digubal untuk melindungi hak tanah adat pribumi di Sarawak.",
+  },
+  {
+    id: "sej-f3-c6-b-q20",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 6",
+    set: "B",
+    difficulty: "Medium",
+    question: "Apakah matlamat utama pembinaan talian telegraf dan telefon oleh pihak British?",
+    options: [
+      "Mengumpul maklumat banci penduduk",
+      "Memudahkan perbualan sosial penduduk kampung",
+      "Mempercepatkan perhubungan rasmi pentadbiran dan transaksi perniagaan",
+      "Menyebarkan siaran radio rasmi",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Talian telegraf dan telefon dibina untuk mempercepatkan urusan pentadbiran dan perniagaan komersial.",
+  },
+];

@@ -9,6 +9,8 @@ export interface ExplorerProfile {
   displayName: string | null;
   age: number | null;
   formLevel: ExplorerFormLevel | null;
+  /** Raw profiles.form, including Form 4–5 that Junior selectors do not offer. */
+  recordedForm?: string | null;
   schoolId: string | null;
   onboardingCompleted: boolean;
   role: ProfileRole;
@@ -70,6 +72,7 @@ function mapExplorerProfile(row: ExplorerProfileRow): ExplorerProfile {
     displayName: row.full_name,
     age: row.age,
     formLevel: isExplorerFormLevel(row.form) ? row.form : null,
+    recordedForm: row.form,
     schoolId: row.school_id,
     onboardingCompleted: row.onboarding_completed,
     role: row.role,

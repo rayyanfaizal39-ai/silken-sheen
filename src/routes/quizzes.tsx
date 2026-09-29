@@ -16072,7 +16072,7 @@ function QuizzesPage() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [attemptStartXp, setAttemptStartXp] = useState(progress.xp);
   const quizStreak = useQuizStreak(
-    `${subject ?? "picker"}:${form}:${chapter ?? "none"}:${mathObjectiveId ?? "regular"}:${subject === "science" && form === "Form 3" ? scienceQuizSet : (englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "none")}`,
+    `${subject ?? "picker"}:${form}:${chapter ?? "none"}:${mathObjectiveId ?? "regular"}:${form === "Form 3" && (subject === "science" || subject === "sejarah") ? scienceQuizSet : (englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "none")}`,
   );
   const confirmStreakAnswer = quizStreak.confirmAnswer;
 
@@ -16133,9 +16133,9 @@ function QuizzesPage() {
     );
   }, [subject, chapter, form, scienceLang, isBilingualSubject, registry]);
 
-  const availableScienceQuizSets = useMemo(
+  const availableChapterQuizSets = useMemo(
     () =>
-      subject === "science" && form === "Form 3"
+      form === "Form 3" && (subject === "science" || subject === "sejarah")
         ? (["A", "B"] as const).filter((set) =>
             chapterQuizQuestions.some((question) => question.set === set),
           )
@@ -16145,13 +16145,13 @@ function QuizzesPage() {
 
   const pool = useMemo(() => {
     const filteredQuestions = chapterQuizQuestions.filter((q) => {
-      if (availableScienceQuizSets.length > 0 && q.set !== scienceQuizSet) return false;
+      if (availableChapterQuizSets.length > 0 && q.set !== scienceQuizSet) return false;
       if (subject !== "sejarah" && diff !== "All" && q.difficulty !== diff) return false;
       return true;
     });
 
     return filteredQuestions;
-  }, [chapterQuizQuestions, availableScienceQuizSets, scienceQuizSet, subject, diff]);
+  }, [chapterQuizQuestions, availableChapterQuizSets, scienceQuizSet, subject, diff]);
   const hasSelectedChapterQuiz =
     !!subject &&
     !!chapter &&
@@ -16510,7 +16510,7 @@ function QuizzesPage() {
           form,
           chapterKey,
           variant:
-            availableScienceQuizSets.length > 0
+            availableChapterQuizSets.length > 0
               ? `set-${scienceQuizSet}-difficulty-${diff}`
               : `difficulty-${diff}`,
         }),
@@ -17555,7 +17555,7 @@ function QuizzesPage() {
           form={form}
           chapterKey={chapter}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
-          quizSets={availableScienceQuizSets}
+          quizSets={availableChapterQuizSets}
           selectedQuizSet={scienceQuizSet}
           onSelectQuizSet={setScienceQuizSet}
           onBack={() => {
@@ -18083,7 +18083,9 @@ function QuizAwardSummary({
         <p className="text-sm text-white/65">{bm ? "Menyimpan keputusan…" : "Saving result…"}</p>
       ) : error ? (
         <p className="text-sm text-rose-200">
-          {bm ? "XP belum disimpan. Cuba lagi apabila sambungan pulih." : "XP was not saved. Try again when your connection recovers."}
+          {bm
+            ? "XP belum disimpan. Cuba lagi apabila sambungan pulih."
+            : "XP was not saved. Try again when your connection recovers."}
         </p>
       ) : result ? (
         <>

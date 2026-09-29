@@ -119,6 +119,14 @@ const FLASHCARD_SET_OPTIONS: Array<{ index: FlashcardSetIndex; title: string; ra
   { index: 1, title: "Practice Review", range: "Cards 21-40" },
   { index: 2, title: "Challenge Review", range: "Cards 41-60" },
 ];
+const SEJARAH_F3_TWO_SET_FLASHCARD_OPTIONS: Array<{
+  index: FlashcardSetIndex;
+  title: string;
+  range: string;
+}> = [
+  { index: 0, title: "Set A", range: "Cards 1-20" },
+  { index: 1, title: "Set B", range: "Cards 21-40" },
+];
 
 const SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS: Array<{
   index: FlashcardSetIndex;
@@ -5272,7 +5280,7 @@ function FlashcardSetPicker({
               >
                 <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
                 <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-xl font-black shadow-lg">
-                  {["F", "P", "C"][index]}
+                  {set.title.startsWith("Set ") ? set.title.slice(4, 5) : ["F", "P", "C"][index]}
                 </div>
                 <h3 className="relative font-display text-2xl font-bold">{displayTitle}</h3>
               </button>
@@ -5509,10 +5517,20 @@ function FlashcardsPage() {
       (chapter && hasSelectedChapterFlashcards))
   );
 
-  const flashcardSets = useMemo(() => splitFlashcardDeck(rawPool), [rawPool]);
-  const shouldSplitFlashcards = flashcardSets.length === 3;
-  const flashcardSetOptions =
-    subject === "sejarah" && form === "Form 2" && chapter === "Chapter 2"
+  const isSejarahF3TwoSetChapter =
+    subject === "sejarah" &&
+    form === "Form 3" &&
+    ["Chapter 1", "Chapter 2", "Chapter 3", "Chapter 4", "Chapter 5", "Chapter 6", "Chapter 7", "Chapter 8"].includes(chapter ?? "");
+  const flashcardSets = useMemo(
+    () => splitFlashcardDeck(rawPool, isSejarahF3TwoSetChapter ? 2 : 3),
+    [rawPool, isSejarahF3TwoSetChapter],
+  );
+  const shouldSplitFlashcards = flashcardSets.length > 1;
+  const selectedSetIsValid =
+    selectedFlashcardSet !== null && selectedFlashcardSet < flashcardSets.length;
+  const flashcardSetOptions = isSejarahF3TwoSetChapter
+    ? SEJARAH_F3_TWO_SET_FLASHCARD_OPTIONS
+    : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 2"
       ? SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS
       : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 3"
         ? SEJARAH_F2_C3_FLASHCARD_SET_OPTIONS
@@ -5523,7 +5541,7 @@ function FlashcardsPage() {
             : FLASHCARD_SET_OPTIONS;
   const pool = useMemo(() => {
     const setCards =
-      shouldSplitFlashcards && selectedFlashcardSet !== null
+      shouldSplitFlashcards && selectedFlashcardSet !== null && selectedSetIsValid
         ? flashcardSets[selectedFlashcardSet]
         : shouldSplitFlashcards
           ? []
@@ -5535,6 +5553,7 @@ function FlashcardsPage() {
     flashcardSets,
     shouldSplitFlashcards,
     selectedFlashcardSet,
+    selectedSetIsValid,
     favOnly,
     progress.favorites,
   ]);
@@ -6329,7 +6348,7 @@ function FlashcardsPage() {
             resetSession();
           }}
         />
-      ) : shouldSplitFlashcards && selectedFlashcardSet === null ? (
+      ) : shouldSplitFlashcards && !selectedSetIsValid ? (
         <FlashcardSetPicker
           title={flashcardSetTitle}
           setOptions={flashcardSetOptions}
@@ -6789,7 +6808,7 @@ function FlashcardsPage() {
                           to scroll internally rather than clip against the
                           card's fixed height. */}
                       <div className="max-h-full w-full overflow-y-auto py-1">
-                        <p className="font-display text-xl sm:text-3xl text-center leading-relaxed">
+                        <p className="font-display text-xl sm:text-3xl text-center leading-relaxed whitespace-pre-line">
                           {cleanLearningQuestion(current.back)}
                         </p>
                       </div>
