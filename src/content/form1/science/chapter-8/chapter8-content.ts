@@ -158,6 +158,80 @@ export interface ReflectionLesson {
   };
 }
 
+export interface RefractionLesson {
+  definition: string;
+  illusions: { pond: string; pencil: string };
+  fish: { title: string; explanation: string; question: string };
+  experiment: {
+    title: string;
+    problem: string;
+    hypothesis: string;
+    aim: string;
+    variables: { manipulated: string; responding: string; constant: string };
+    materials: string[];
+    instructions: string[];
+    results: { i: null; r: null }[];
+    discussion: string[];
+    conclusion: string;
+    questions: string[];
+  };
+  activity: {
+    title: string;
+    aim: string;
+    instructions: string[];
+    phenomena: string[];
+    phenomenaAfter: number;
+  };
+  practice: { title: string; questions: string[]; caseLabels: string[] };
+  labels: {
+    observer: string;
+    actualFish: string;
+    image: string;
+    light: string;
+    surface: string;
+    air: string;
+    water: string;
+    normal: string;
+    incident: string;
+    refracted: string;
+    emerging: string;
+    incidence: string;
+    refraction: string;
+    rayCases: string;
+    problem: string;
+    hypothesis: string;
+    aim: string;
+    variables: string;
+    manipulated: string;
+    responding: string;
+    constant: string;
+    materials: string;
+    procedure: string;
+    results: string;
+    discussion: string;
+    conclusion: string;
+    questions: string;
+    instructions: string;
+    glass: string;
+    box: string;
+    slit: string;
+    paper: string;
+    power: string;
+    ruler: string;
+    protractor: string;
+    demo: string;
+    stage: string;
+    outline: string;
+    rays: string;
+    remove: string;
+    measure: string;
+    unfilled: string;
+    whatYouSee: string;
+    rayDiagram: string;
+  };
+  cases: RefractionCase[];
+}
+
 export interface Chapter8Content {
   title: string;
   subtopics: { code: string; title: string }[];
@@ -171,11 +245,7 @@ export interface Chapter8Content {
     opticalInstruments: OpticalInstrument[];
   };
   propertiesOfLight: PropertiesOfLightLesson;
-  refraction: {
-    definition: string;
-    cases: RefractionCase[];
-    dailyLifeExamples: string[];
-  };
+  refraction: RefractionLesson;
   dispersion: {
     definition: string;
     spectrumOrder: string[];
@@ -1494,9 +1564,6 @@ const bm: Chapter8Content = {
 export const chapter8Content = { en, bm };
 
 export interface Chapter8Supplement {
-  refractionRules: { passage: string; bend: string; speed: string; angle: string }[];
-  refractionExperiment: string[];
-  fishTip: string;
   dispersionExperiments: { part: string; setup: string; result: string }[];
   scatteringExperiment: string[];
   objectColourRows: { object: string; incident: string; reflected: string; absorbed: string }[];
@@ -1506,33 +1573,6 @@ export interface Chapter8Supplement {
 }
 
 const supplementEn: Chapter8Supplement = {
-  refractionRules: [
-    {
-      passage: "Less dense → more dense",
-      bend: "Towards the normal",
-      speed: "Decreases",
-      angle: "i > r",
-    },
-    {
-      passage: "More dense → less dense",
-      bend: "Away from the normal",
-      speed: "Increases",
-      angle: "i < r",
-    },
-    {
-      passage: "Along the normal (i = 0°)",
-      bend: "No change of direction",
-      speed: "Changes",
-      angle: "Straight through",
-    },
-  ],
-  refractionExperiment: [
-    "Trace a glass block on white paper and direct a single ray into it.",
-    "Mark the entrance and exit points, remove the block, then connect the points to trace the internal path.",
-    "The ray bends towards the normal on entering glass and away from the normal on returning to air.",
-  ],
-  fishTip:
-    "A fish appears shallower than its actual position because light bends away from the normal when leaving water. Aim below the visible image.",
   dispersionExperiments: [
     {
       part: "Glass prism",
@@ -1599,33 +1639,6 @@ const supplementEn: Chapter8Supplement = {
 };
 
 const supplementBm: Chapter8Supplement = {
-  refractionRules: [
-    {
-      passage: "Kurang tumpat → lebih tumpat",
-      bend: "Mendekati normal",
-      speed: "Berkurang",
-      angle: "i > r",
-    },
-    {
-      passage: "Lebih tumpat → kurang tumpat",
-      bend: "Menjauhi normal",
-      speed: "Bertambah",
-      angle: "i < r",
-    },
-    {
-      passage: "Sepanjang normal (i = 0°)",
-      bend: "Tiada perubahan arah",
-      speed: "Berubah",
-      angle: "Bergerak lurus",
-    },
-  ],
-  refractionExperiment: [
-    "Surih blok kaca pada kertas putih dan halakan satu sinar ke dalamnya.",
-    "Tandakan titik masuk dan keluar, alihkan blok, kemudian sambungkan titik untuk menyurih laluan di dalam blok.",
-    "Sinar membengkok mendekati normal apabila memasuki kaca dan menjauhi normal apabila kembali ke udara.",
-  ],
-  fishTip:
-    "Ikan kelihatan lebih cetek daripada kedudukan sebenar kerana cahaya membengkok menjauhi normal apabila keluar dari air. Halakan lembing di bawah imej yang kelihatan.",
   dispersionExperiments: [
     {
       part: "Prisma kaca",

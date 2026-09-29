@@ -12,7 +12,7 @@ import {
 } from "@/hooks/use-progress";
 import { subjects } from "@/data/subjects-meta";
 import { getSubjectWorldArtwork, SUBJECT_WORLD_FALLBACK_ACCENT } from "@/lib/subject-world-artwork";
-import { normalizeFormParam, studyResumeSearch } from "@/lib/study-routing";
+import { normalizeFormParam, parseKnownForm, studyResumeSearch } from "@/lib/study-routing";
 
 const ACTIVITY_ROUTES = {
   notes: "/notes",

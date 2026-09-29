@@ -17,6 +17,7 @@ import { notes } from "@/data/notes";
 import { quizzes } from "@/data/quizzes";
 import { flashcards } from "@/data/flashcards";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
+import baselineIds from "./SejarahF1Chapter7Audit.baseline-ids.json";
 
 (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT =
   true;
@@ -291,37 +292,66 @@ describe("Chapter 7 live navigation and legacy consistency", () => {
     expect(sej7Flashcards[23].back).toContain("sebelum peperiksaan");
     for (const q of sej7Quizzes) expect(q.options[q.answerIndex]).toBeTruthy();
   });
-  it.each(
-    Object.entries({
-      notes: "c333222088dbf87e3e306681d10d477c3d7fc708f2f2cbeabfdf3ea0e19f1fce",
-      content: "6b7d0797bf370325dc78a6c304f2cbb106fc79389d8d64e37168180fc2daffbb",
-      quizzes: "eceffa71ed189f535fddf5fc5e65211c6880c9d87b9deb02b2f7b371dc0c1de9",
-      flashcards: "8b24aa13a641ead4b1566c466fa58a501afa57f730305fa07fa5e2f9e73c7c50",
-    }),
-  )("preserves unrelated records in %s", (name, expected) => {
+  // Collateral-damage locks for the Chapter 7 remediation, both taken from the
+  // approved pre-merge baseline (d0dd8b0f), never from the current data:
+  //  - every Sejarah Form 1 record outside Chapter 7 (the records sharing these
+  //    data files with Chapter 7) keeps its exact source text;
+  //  - no record anywhere that existed at the baseline has been deleted.
+  // Other subjects and Forms may still be improved on their own without
+  // breaking this lock (e.g. Sejarah Form 2 Chapter 1 in 02b7069f).
+  const DATA_FILES = ["notes", "content", "quizzes", "flashcards"] as const;
+  const SEJARAH_F1_BASELINE: Record<(typeof DATA_FILES)[number], [number, string]> = {
+    notes: [6, "c0b48f42a8b9b103bbf69ddd6d97fc8da44078cba4b23ca6c91052dfa6d0a40b"],
+    content: [631, "9f1dc2deb1adb7280260ef9033fdb4577578b905e4cddce19fee7f226904e2ef"],
+    quizzes: [210, "f2cdd25ce271fbc7ab6fe6762a47384da0b7478619e228c410bea78671de515a"],
+    flashcards: [415, "dbb8bcebd4755545b2ddedd4013a7808ba917d0307c5d0e35e39dc216176e1d5"],
+  };
+
+  /** Every object literal with a string id outside Chapter 7, in file order. */
+  function unrelatedRecords(name: string) {
     const source = ts.createSourceFile(
       "data.ts",
       readFileSync(`src/data/${name}.ts`, "utf8"),
       ts.ScriptTarget.Latest,
       true,
     );
-    const records: string[] = [];
+    const records: { id: string; sejarahF1: boolean; text: string }[] = [];
     function visit(node: ts.Node) {
       if (ts.isObjectLiteralExpression(node)) {
-        const id = node.properties.find(
-          (p) => ts.isPropertyAssignment(p) && p.name.getText(source) === "id",
-        );
-        if (
-          id &&
-          ts.isPropertyAssignment(id) &&
-          ts.isStringLiteral(id.initializer) &&
-          !id.initializer.text.startsWith("sej-f1-c7-")
-        )
-          records.push(node.getText(source).replace(/\r\n/g, "\n"));
+        const literal = (key: string) => {
+          const prop = node.properties.find(
+            (p) => ts.isPropertyAssignment(p) && p.name.getText(source) === key,
+          );
+          return prop && ts.isPropertyAssignment(prop) && ts.isStringLiteral(prop.initializer)
+            ? prop.initializer.text
+            : undefined;
+        };
+        const id = literal("id");
+        if (id !== undefined && !id.startsWith("sej-f1-c7-"))
+          records.push({
+            id,
+            sejarahF1: literal("subjectId") === "sejarah" && literal("form") === "Form 1",
+            text: node.getText(source).replace(/\r\n/g, "\n"),
+          });
       }
       ts.forEachChild(node, visit);
     }
     visit(source);
-    expect(createHash("sha256").update(JSON.stringify(records)).digest("hex")).toBe(expected);
+    return records;
+  }
+
+  it.each(DATA_FILES)("preserves Sejarah Form 1 records outside Chapter 7 in %s", (name) => {
+    const neighbours = unrelatedRecords(name)
+      .filter((record) => record.sejarahF1)
+      .map((record) => record.text);
+    const [count, hash] = SEJARAH_F1_BASELINE[name];
+    expect(neighbours).toHaveLength(count);
+    expect(createHash("sha256").update(JSON.stringify(neighbours)).digest("hex")).toBe(hash);
+  });
+
+  it.each(DATA_FILES)("deletes no record that existed at the baseline in %s", (name) => {
+    const present = new Set(unrelatedRecords(name).map((record) => record.id));
+    const missing = baselineIds.files[name].filter((id) => !present.has(id));
+    expect(missing).toEqual([]);
   });
 });

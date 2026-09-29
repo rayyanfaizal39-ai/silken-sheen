@@ -17308,21 +17308,7 @@ function QuizzesPage() {
                   </p>
                   <button
                     type="button"
-                    onClick={() => {
-                      // Resume the saved Form. Older history without a Form
-                      // opens the Form chooser instead of guessing Form 1.
-                      const resumeForm = normalizeFormParam(lastQuiz.form);
-                      setSubject(lastQuiz.subjectId);
-                      setForm(resumeForm ?? "All");
-                      setFormWasChosen(resumeForm !== null);
-                      setChapter(resumeForm ? lastQuiz.chapterKey : null);
-                      reset();
-                      updateQuizSearch({
-                        subject: lastQuiz.subjectId,
-                        form: resumeForm,
-                        chapter: resumeForm ? lastQuiz.chapterKey : null,
-                      });
-                    }}
+                    onClick={() => openSignIn("signin")}
                     className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                   >
                     Sign In
@@ -17358,10 +17344,19 @@ function QuizzesPage() {
                 <button
                   type="button"
                   onClick={() => {
+                    // Resume the saved Form. Older history without a Form
+                    // opens the Form chooser instead of guessing Form 1.
+                    const resumeForm = normalizeFormParam(lastQuiz.form);
                     setSubject(lastQuiz.subjectId);
-                    setForm(lastQuiz.form ?? "Form 1");
-                    setChapter(lastQuiz.chapterKey);
+                    setForm(resumeForm ?? "All");
+                    setFormWasChosen(resumeForm !== null);
+                    setChapter(resumeForm ? lastQuiz.chapterKey : null);
                     reset();
+                    updateQuizSearch({
+                      subject: lastQuiz.subjectId,
+                      form: resumeForm,
+                      chapter: resumeForm ? lastQuiz.chapterKey : null,
+                    });
                   }}
                   className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                 >

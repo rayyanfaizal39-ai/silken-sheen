@@ -20,6 +20,13 @@ import { normalizeFormParam } from "@/lib/study-routing";
 const FORMS: Form[] = ["Form 1", "Form 2", "Form 3"];
 const LANGS = [undefined, "bm", "dlp"] as const;
 
+/** The Form a URL value names; explicit values must never come back unknown. */
+function urlForm(value: unknown): Form {
+  const form = normalizeFormParam(value);
+  if (!form) throw new Error(`Expected a known Form for ${String(value)}`);
+  return form;
+}
+
 function getDeck(subject: string, form: unknown, chapter: string, lang?: "bm" | "dlp") {
   return getFlashcardDeckCardsWithModules(
     subject,
@@ -195,18 +202,8 @@ describe("flashcard sessions are scoped by form", () => {
 
   it("refreshing Form 1 restores only the Form 1 session", () => {
     // A refresh re-reads ?subject=sejarah&form=1&chapter=Chapter 2 from the URL.
-    const beforeRefresh = getFlashcardSessionKey(
-      "sejarah",
-      normalizeFormParam("1"),
-      "Chapter 2",
-      null,
-    );
-    const afterRefresh = getFlashcardSessionKey(
-      "sejarah",
-      normalizeFormParam(1),
-      "Chapter 2",
-      null,
-    );
+    const beforeRefresh = getFlashcardSessionKey("sejarah", urlForm("1"), "Chapter 2", null);
+    const afterRefresh = getFlashcardSessionKey("sejarah", urlForm(1), "Chapter 2", null);
     expect(afterRefresh).toBe(beforeRefresh);
     expect(afterRefresh).toContain(":f1:");
     for (const other of ["Form 2", "Form 3"]) {

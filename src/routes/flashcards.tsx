@@ -38,13 +38,13 @@ import {
 import {
   normalizeFlashcardSetParam,
   normalizeFormParam,
-  parseKnownForm,
   normalizeSubjectParam,
 } from "@/lib/study-routing";
 import {
   getFlashcardDeckCards,
   getFlashcardSessionKey,
   hasFlashcardDeck,
+  keepCardsForForm,
   keepSelectedFormCards,
   splitFlashcardDeck,
   standardizeFlashcardDeck,
@@ -6166,22 +6166,7 @@ function FlashcardsPage() {
                   </p>
                   <button
                     type="button"
-                    onClick={() => {
-                      // Resume the saved Form. Older history without a Form
-                      // opens the Form chooser instead of guessing Form 1.
-                      const resumeForm = normalizeFormParam(lastDeck.form);
-                      setSubject(lastDeck.subjectId);
-                      setForm(resumeForm ?? "All");
-                      setFormWasChosen(resumeForm !== null);
-                      setChapter(resumeForm ? lastDeck.chapterKey : null);
-                      resetSession();
-                      updateFlashcardSearch({
-                        subject: lastDeck.subjectId,
-                        form: resumeForm,
-                        chapter: resumeForm ? lastDeck.chapterKey : null,
-                        set: null,
-                      });
-                    }}
+                    onClick={() => openSignIn("signin")}
                     className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                   >
                     Sign In
@@ -6214,20 +6199,20 @@ function FlashcardsPage() {
                 <button
                   type="button"
                   onClick={() => {
-                    // Decks saved before form tracking have no form: send
-                    // those to the Form chooser rather than into Form 1.
-                    const deckForm = parseKnownForm(lastDeck.form);
+                    // Resume the saved Form. Older history without a Form
+                    // opens the Form chooser instead of guessing Form 1.
+                    const resumeForm = normalizeFormParam(lastDeck.form);
                     setSubject(lastDeck.subjectId);
-                    setForm(deckForm ?? "Form 1");
-                    setFormWasChosen(deckForm !== null);
-                    setChapter(deckForm ? lastDeck.chapterKey : null);
+                    setForm(resumeForm ?? "All");
+                    setFormWasChosen(resumeForm !== null);
+                    setChapter(resumeForm ? lastDeck.chapterKey : null);
+                    resetSession();
                     updateFlashcardSearch({
                       subject: lastDeck.subjectId,
-                      form: deckForm,
-                      chapter: deckForm ? lastDeck.chapterKey : null,
+                      form: resumeForm,
+                      chapter: resumeForm ? lastDeck.chapterKey : null,
                       set: null,
                     });
-                    resetSession();
                   }}
                   className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                 >

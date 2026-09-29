@@ -28,8 +28,8 @@ describe("a missing form is unknown, never Form 1", () => {
     }
   });
 
-  it("keeps normalizeFormParam's existing URL behaviour", () => {
-    expect(normalizeFormParam(undefined)).toBe("Form 1");
+  it("reads explicit URL forms and never guesses Form 1 for a missing one", () => {
+    expect(normalizeFormParam(undefined)).toBeNull();
     expect(normalizeFormParam("2")).toBe("Form 2");
     expect(normalizeFormParam("form-3")).toBe("Form 3");
   });

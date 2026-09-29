@@ -31,13 +31,13 @@ export function normalizeSubjectParam(value: unknown) {
   return subjectSlugToId[subject] ?? null;
 }
 
- export type StudyForm = "Form 1" | "Form 2" | "Form 3";
+export type StudyForm = "Form 1" | "Form 2" | "Form 3";
 
 /**
- * Recognises 1 / 2 / 3, "Form 1" / "Form 2" / "Form 3" and "form1" / "form2" /
- * "form3". Anything else — including a missing value — is unknown and returns
- * null. Never guess Form 1: an unknown Form must send the student to the Form
- * chooser instead of silently loading Form 1 content.
+ * Recognises 1 / 2 / 3, "Form 1" / "Form 2" / "Form 3", "form1" / "form-2" /
+ * "form_3" and "f1" / "f2" / "f3". Anything else — including a missing value —
+ * is unknown and returns null. Never guess Form 1: an unknown Form must send
+ * the student to the Form chooser instead of silently loading Form 1 content.
  */
 export function normalizeFormParam(value: unknown): StudyForm | null {
   if (value == null) return null;
@@ -46,9 +46,42 @@ export function normalizeFormParam(value: unknown): StudyForm | null {
     .toLowerCase()
     .replaceAll('"', "")
     .trim()
-    .replace(/^(?:form[\s-]*|f)/, "");
+    .replace(/^(?:form[\s_-]*|f)/, "")
+    .trim();
   if (cleaned === "1" || cleaned === "2" || cleaned === "3") return `Form ${cleaned}`;
   return null;
+}
+
+/**
+ * The form a value explicitly names ("Form 2", 2, "f2", "form-2"), or null.
+ * It never guesses Form 1 — use it wherever a missing form must send the
+ * student to the Form chooser instead.
+ */
+export function parseKnownForm(value: unknown): StudyForm | null {
+  return normalizeFormParam(value);
+}
+
+/** URL search value (1 | 2 | 3) for a Form, or undefined when the Form is unknown. */
+export function formSearchValue(value: unknown): 1 | 2 | 3 | undefined {
+  const form = normalizeFormParam(value);
+  return form ? (Number(form.slice(-1)) as 1 | 2 | 3) : undefined;
+}
+
+/**
+ * Search params that resume a saved learning activity. The Form and chapter are
+ * only carried when the Form is known; older history without a Form resumes at
+ * the subject so the study page shows its Form chooser rather than guessing.
+ */
+export function studyResumeSearch(activity: {
+  subjectId: string;
+  chapterKey?: string | null;
+  form?: unknown;
+}): { subject: string; form?: 1 | 2 | 3; chapter?: string } {
+  const form = formSearchValue(activity.form);
+  if (!form) return { subject: activity.subjectId };
+  return activity.chapterKey
+    ? { subject: activity.subjectId, form, chapter: activity.chapterKey }
+    : { subject: activity.subjectId, form };
 }
 
 /**

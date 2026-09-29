@@ -64,6 +64,14 @@ export function getFlashcardDeckCards(
 }
 
 /**
+ * Defensive loader/session guard: a card tagged with a different Form can never
+ * enter the requested Form's deck, even if an upstream selector hands it over.
+ */
+export function keepCardsForForm<T extends { form?: string | null }>(cards: T[], form: Form) {
+  return cards.filter((card) => !card.form || card.form === form);
+}
+
+/**
  * Cards in a deck that don't belong to the selected subject + form. Every
  * deck the player shows must come back empty here.
  */

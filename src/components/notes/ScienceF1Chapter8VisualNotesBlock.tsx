@@ -1,3 +1,4 @@
+import { Chapter8Refraction } from "./Chapter8Refraction";
 import { Chapter8PropertiesOfLight } from "./Chapter8PropertiesOfLight";
 import { Chapter8Reflection } from "./Chapter8Reflection";
 import { Chapter8Mirrors } from "./Chapter8Mirrors";
@@ -42,12 +43,6 @@ const ui = {
     applications: "Daily applications",
     instruments: "Optical instruments",
     experiment: "Experiment",
-    chooseRule: "Choose a boundary passage",
-    bend: "Ray direction",
-    speed: "Speed",
-    angle: "Angle relationship",
-    everyday: "Everyday refraction",
-    fish: "Exam application: locating a fish",
     dispersion: "Dispersion through a prism",
     spectrum: "ROYGBIV spectrum",
     scattering: "Atmospheric scattering",
@@ -95,12 +90,6 @@ const ui = {
     applications: "Aplikasi harian",
     instruments: "Alat optik",
     experiment: "Eksperimen",
-    chooseRule: "Pilih laluan sempadan",
-    bend: "Arah sinar",
-    speed: "Laju",
-    angle: "Hubungan sudut",
-    everyday: "Pembiasan harian",
-    fish: "Aplikasi peperiksaan: menentukan kedudukan ikan",
     dispersion: "Serakan melalui prisma",
     spectrum: "Spektrum MUJHHBIU",
     scattering: "Penyerakan atmosfera",
