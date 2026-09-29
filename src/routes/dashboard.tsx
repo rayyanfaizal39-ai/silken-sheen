@@ -41,7 +41,6 @@ import {
   Sparkles,
   AlertTriangle,
   BookMarked,
-  GraduationCap,
   Search,
   Compass,
   Clock3,
@@ -223,7 +222,6 @@ function DashboardPage() {
   const rank = getRank(progress.xp);
   const nextRank = getNextRank(progress.xp);
   const rankPct = getRankProgress(progress.xp);
-  const completed = totalChaptersCompleted(progress.chapterActivity);
   const dueCount = getDueCount(progress.cardMastery);
   const masteredCount = getMasteredCount(progress.cardMastery);
   const streakUrgent = useStreakUrgent(progress.lastActive, progress.streak);
@@ -391,25 +389,10 @@ function DashboardPage() {
         <QuickActionsCard lastVisited={progress.lastVisited} />
       </div>
 
-      {/* ── ROW 5 — Companion Evolution / Mastery & Ace ──────────── */}
+      {/* ── ROW 5 — Companion Evolution / Ace ──────────── */}
       <div className="mb-6 grid gap-6 lg:grid-cols-2">
         <CosmicCompanionCard xp={progress.xp} companionId={companionId} />
         <div className="space-y-4">
-          {/* Chapters mastered stat */}
-          <Card className="flex items-center gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#8B5CF6]/20">
-              <GraduationCap className="h-7 w-7 text-[#A78BFA]" />
-            </div>
-            <div>
-              <p className="font-display text-4xl font-bold text-white">{completed}</p>
-              <p className="text-sm text-[#94A3B8]">
-                {completed === 0
-                  ? "No chapters fully mastered yet"
-                  : `chapter${completed !== 1 ? "s" : ""} fully mastered`}
-              </p>
-            </div>
-          </Card>
-
           {/* Ace CTA */}
           <div className="rounded-[2rem] border border-[#6366F1]/25 bg-gradient-to-br from-[#6366F1]/15 to-[#8B5CF6]/15 p-5 backdrop-blur-2xl">
             <div className="flex items-center gap-3 mb-3">

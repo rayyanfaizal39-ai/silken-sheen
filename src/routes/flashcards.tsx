@@ -6123,117 +6123,76 @@ function FlashcardsPage() {
 
       {!subject ? (
         <div className="space-y-6">
-          <div className="grid gap-4 xl:grid-cols-[1.1fr_1fr]">
-            {(() => {
-              const lastDeck =
-                progress.lastVisited?.type === "flashcards" ? progress.lastVisited : undefined;
-              if (!authUser) {
-                return (
-                  <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-                    <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                      Sign in to track progress
-                    </p>
-                    <h2 className="mt-3 font-display text-2xl font-bold">Save your study decks</h2>
-                    <p className="mt-1 text-sm text-[#94A3B8]">
-                      Sign in to resume decks and see your real progress here.
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => openSignIn("signin")}
-                      className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
-                    >
-                      Sign In
-                    </button>
-                  </div>
-                );
-              }
-              if (!lastDeck) {
-                return (
-                  <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-                    <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                      Get Started
-                    </p>
-                    <h2 className="mt-3 font-display text-2xl font-bold">No decks yet</h2>
-                    <p className="mt-1 text-sm text-[#94A3B8]">
-                      Pick a subject below to start your first flashcard session.
-                    </p>
-                  </div>
-                );
-              }
+          {(() => {
+            const lastDeck =
+              progress.lastVisited?.type === "flashcards" ? progress.lastVisited : undefined;
+            if (!authUser) {
               return (
                 <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
                   <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                    Continue Studying
+                    Sign in to track progress
                   </p>
-                  <h2 className="mt-3 font-display text-2xl font-bold">
-                    {subjects.find((s) => s.id === lastDeck.subjectId)?.name ?? lastDeck.subjectId}
-                  </h2>
+                  <h2 className="mt-3 font-display text-2xl font-bold">Save your study decks</h2>
                   <p className="mt-1 text-sm text-[#94A3B8]">
-                    {cleanLearningLabel(lastDeck.label)}
+                    Sign in to resume decks and see your real progress here.
                   </p>
                   <button
                     type="button"
-                    onClick={() => {
-                      // Decks saved before form tracking have no form: send
-                      // those to the Form chooser rather than into Form 1.
-                      const deckForm = parseKnownForm(lastDeck.form);
-                      setSubject(lastDeck.subjectId);
-                      setForm(deckForm ?? "Form 1");
-                      setFormWasChosen(deckForm !== null);
-                      setChapter(deckForm ? lastDeck.chapterKey : null);
-                      updateFlashcardSearch({
-                        subject: lastDeck.subjectId,
-                        form: deckForm,
-                        chapter: deckForm ? lastDeck.chapterKey : null,
-                        set: null,
-                      });
-                      resetSession();
-                    }}
+                    onClick={() => openSignIn("signin")}
                     className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                   >
-                    Resume Deck
+                    Sign In
                   </button>
                 </div>
               );
-            })()}
-            <div className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
-              {[
-                ["Active recall", "Flip cards and rate how well you knew each answer."],
-                ["Spaced practice", "Short daily sessions beat one long cram."],
-                ["Track mastery", "Rated cards feed your AcadeMY progress."],
-              ].map(([title, description]) => (
-                <div
-                  key={title}
-                  className="rounded-[1.5rem] border border-white/[0.08] bg-white/[0.05] p-4"
-                >
-                  <h3 className="font-display text-xl font-bold">{title}</h3>
-                  <p className="mt-1 text-sm text-[#94A3B8]">{description}</p>
+            }
+            if (!lastDeck) {
+              return (
+                <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                  <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                    Get Started
+                  </p>
+                  <h2 className="mt-3 font-display text-2xl font-bold">No decks yet</h2>
+                  <p className="mt-1 text-sm text-[#94A3B8]">
+                    Pick a subject below to start your first flashcard session.
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5">
-            <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-              Flashcard Player Preview
-            </p>
-            <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#6366F1]/20 to-[#8B5CF6]/20 p-6">
-                <p className="text-sm text-[#94A3B8]">Question side</p>
-                <h3 className="mt-3 font-display text-2xl font-bold">What is active recall?</h3>
+              );
+            }
+            return (
+              <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                  Continue Studying
+                </p>
+                <h2 className="mt-3 font-display text-2xl font-bold">
+                  {subjects.find((s) => s.id === lastDeck.subjectId)?.name ?? lastDeck.subjectId}
+                </h2>
+                <p className="mt-1 text-sm text-[#94A3B8]">{cleanLearningLabel(lastDeck.label)}</p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    // Decks saved before form tracking have no form: send
+                    // those to the Form chooser rather than into Form 1.
+                    const deckForm = parseKnownForm(lastDeck.form);
+                    setSubject(lastDeck.subjectId);
+                    setForm(deckForm ?? "Form 1");
+                    setFormWasChosen(deckForm !== null);
+                    setChapter(deckForm ? lastDeck.chapterKey : null);
+                    updateFlashcardSearch({
+                      subject: lastDeck.subjectId,
+                      form: deckForm,
+                      chapter: deckForm ? lastDeck.chapterKey : null,
+                      set: null,
+                    });
+                    resetSession();
+                  }}
+                  className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
+                >
+                  Resume Deck
+                </button>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {["Flip", "Easy", "Hard", "Don’t Know"].map((label) => (
-                  <button
-                    key={label}
-                    type="button"
-                    className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold"
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
+            );
+          })()}
           <SubjectGrid
             mode="flashcards"
             onSelect={(id) => {
@@ -6748,85 +6707,88 @@ function FlashcardsPage() {
                     </div>
                   )}
                   <div className="flashcard-scene">
-                    <div key={current.id} className={`flashcard-inner${flipped ? " is-flipped" : ""}`}>
-                    {/* front */}
                     <div
-                      className="flashcard-face flashcard-front glass-strong rounded-3xl p-6 sm:p-8 flex flex-col overflow-hidden"
-                      style={{
-                        border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
-                        boxShadow: planetTheme
-                          ? `0 24px 70px -30px ${planetTheme.glow}`
-                          : undefined,
-                      }}
+                      key={current.id}
+                      className={`flashcard-inner${flipped ? " is-flipped" : ""}`}
                     >
-                      {shimmer && <div className="card-shimmer-overlay" />}
-                      {planetTheme && (
-                        <span
-                          aria-hidden
-                          className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
-                          style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.12 }}
-                        >
-                          {planetTheme.decor[0]}
-                        </span>
-                      )}
-                      <div className="flex justify-between items-start">
-                        <span className="text-xs font-semibold text-muted-foreground">
-                          {subj?.emoji} {subj?.name} • {current.form}
-                        </span>
-                        <button
-                          type="button"
-                          aria-label={fav ? "Remove from favorites" : "Add to favorites"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleFavorite(current.id);
-                          }}
-                          className={`rounded-full p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70 ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
-                        >
-                          <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
-                        </button>
-                      </div>
-                      <div className="flex-1 flex items-center justify-center text-center">
-                        <p className="font-display text-2xl sm:text-4xl font-bold leading-tight">
-                          {cleanLearningTitle(current.front)}
+                      {/* front */}
+                      <div
+                        className="flashcard-face flashcard-front glass-strong rounded-3xl p-6 sm:p-8 flex flex-col overflow-hidden"
+                        style={{
+                          border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
+                          boxShadow: planetTheme
+                            ? `0 24px 70px -30px ${planetTheme.glow}`
+                            : undefined,
+                        }}
+                      >
+                        {shimmer && <div className="card-shimmer-overlay" />}
+                        {planetTheme && (
+                          <span
+                            aria-hidden
+                            className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
+                            style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.12 }}
+                          >
+                            {planetTheme.decor[0]}
+                          </span>
+                        )}
+                        <div className="flex justify-between items-start">
+                          <span className="text-xs font-semibold text-muted-foreground">
+                            {subj?.emoji} {subj?.name} • {current.form}
+                          </span>
+                          <button
+                            type="button"
+                            aria-label={fav ? "Remove from favorites" : "Add to favorites"}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(current.id);
+                            }}
+                            className={`rounded-full p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70 ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
+                          >
+                            <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
+                          </button>
+                        </div>
+                        <div className="flex-1 flex items-center justify-center text-center">
+                          <p className="font-display text-2xl sm:text-4xl font-bold leading-tight">
+                            {cleanLearningTitle(current.front)}
+                          </p>
+                        </div>
+                        <p className="text-center text-xs text-muted-foreground">
+                          Tap to flip · Swipe → know · Swipe ← don't know
                         </p>
                       </div>
-                      <p className="text-center text-xs text-muted-foreground">
-                        Tap to flip · Swipe → know · Swipe ← don't know
-                      </p>
-                    </div>
-                    {/* back */}
-                    <div
-                      className="flashcard-face flashcard-back glass-strong rounded-3xl p-6 sm:p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
-                      style={{
-                        background: planetTheme
-                          ? `linear-gradient(135deg, ${planetTheme.color}22, rgba(0,0,0,0.45))`
-                          : undefined,
-                        border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
-                        boxShadow: planetTheme
-                          ? `0 24px 70px -30px ${planetTheme.glow}`
-                          : undefined,
-                      }}
-                    >
-                      {shimmer && <div className="card-shimmer-overlay" />}
-                      {planetTheme && (
-                        <span
-                          aria-hidden
-                          className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
-                          style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.14 }}
-                        >
-                          {planetTheme.decor[1] ?? planetTheme.decor[0]}
-                        </span>
-                      )}
-                      {/* The answer now stays on screen indefinitely (no
+                      {/* back */}
+                      <div
+                        className="flashcard-face flashcard-back glass-strong rounded-3xl p-6 sm:p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
+                        style={{
+                          background: planetTheme
+                            ? `linear-gradient(135deg, ${planetTheme.color}22, rgba(0,0,0,0.45))`
+                            : undefined,
+                          border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
+                          boxShadow: planetTheme
+                            ? `0 24px 70px -30px ${planetTheme.glow}`
+                            : undefined,
+                        }}
+                      >
+                        {shimmer && <div className="card-shimmer-overlay" />}
+                        {planetTheme && (
+                          <span
+                            aria-hidden
+                            className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
+                            style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.14 }}
+                          >
+                            {planetTheme.decor[1] ?? planetTheme.decor[0]}
+                          </span>
+                        )}
+                        {/* The answer now stays on screen indefinitely (no
                           auto-advance timer), so a long answer must be able
                           to scroll internally rather than clip against the
                           card's fixed height. */}
-                      <div className="max-h-full w-full overflow-y-auto py-1">
-                        <p className="font-display text-xl sm:text-3xl text-center leading-relaxed">
-                          {cleanLearningQuestion(current.back)}
-                        </p>
+                        <div className="max-h-full w-full overflow-y-auto py-1">
+                          <p className="font-display text-xl sm:text-3xl text-center leading-relaxed">
+                            {cleanLearningQuestion(current.back)}
+                          </p>
+                        </div>
                       </div>
-                    </div>
                     </div>
                   </div>
 
