@@ -76,6 +76,7 @@ import {
   type MissionSystemState,
 } from "@/lib/mission-system";
 import { getLocalDateKey } from "@/lib/local-date";
+import { studyResumeSearch } from "@/lib/study-routing";
 
 export const Route = createFileRoute("/dashboard")({
   // Personal, per-user stats page — not useful search-result content, and

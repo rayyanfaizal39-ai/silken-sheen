@@ -194,7 +194,7 @@ function TrackerPage() {
                       <div className="flex shrink-0 gap-1.5">
                         <Link
                           to="/notes"
-                          search={{ subject: w.subjectId, form: 1 } as Record<string, unknown>}
+                          search={{ subject: w.subjectId } as Record<string, unknown>}
                           className="inline-flex items-center gap-1 rounded-xl border border-white/10 bg-white/[0.05] px-2.5 py-2 text-[11px] font-bold text-white/70 transition-colors hover:bg-white/[0.1] hover:text-white"
                           aria-label={`Revise notes for ${w.chapterLabel}`}
                         >
@@ -202,7 +202,7 @@ function TrackerPage() {
                         </Link>
                         <Link
                           to="/quizzes"
-                          search={{ subject: w.subjectId, form: 1 } as Record<string, unknown>}
+                          search={{ subject: w.subjectId } as Record<string, unknown>}
                           className="inline-flex items-center gap-1 rounded-xl bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] px-2.5 py-2 text-[11px] font-black text-[#050816] transition-transform hover:scale-[1.03]"
                           aria-label={`Retry quiz for ${w.chapterLabel}`}
                         >

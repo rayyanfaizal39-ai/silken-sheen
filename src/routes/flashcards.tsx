@@ -145,7 +145,7 @@ const SEJARAH_F2_C3_FLASHCARD_SET_OPTIONS: Array<{
 }> = [
   { index: 0, title: "Bahasa dan Tulisan", range: "Cards 1-20" },
   { index: 1, title: "Persuratan", range: "Cards 21-40" },
-  { index: 2, title: "Sastera dan Pengaruh", range: "Cards 41-60" },
+  { index: 2, title: "Seni Bina & Struktur Sosial", range: "Cards 41-60" },
 ];
 
 const SEJARAH_F2_C4_FLASHCARD_SET_OPTIONS: Array<{
@@ -165,7 +165,17 @@ const SEJARAH_F2_C5_FLASHCARD_SET_OPTIONS: Array<{
 }> = [
   { index: 0, title: "Pengasasan Melaka", range: "Cards 1-20" },
   { index: 1, title: "Kegemilangan Melaka", range: "Cards 21-40" },
-  { index: 2, title: "Perdagangan dan Pengakhiran Melaka", range: "Cards 41-60" },
+  { index: 2, title: "Empayar, Perdagangan dan Pengakhiran Melaka", range: "Cards 41-60" },
+];
+
+const SEJARAH_F2_C6_FLASHCARD_SET_OPTIONS: Array<{
+  index: FlashcardSetIndex;
+  title: string;
+  range: string;
+}> = [
+  { index: 0, title: "Pengasasan, Cabaran dan Strategi", range: "Cards 1-20" },
+  { index: 1, title: "Perdagangan dan Pengurusan Pelabuhan", range: "Cards 21-40" },
+  { index: 2, title: "Strategi, Persuratan dan Warisan Johor Riau", range: "Cards 41-60" },
 ];
 
 function vibrate(pattern: number | number[], enabled: boolean) {
@@ -4938,15 +4948,23 @@ function getMathFlashcards(
   });
 }
 
-function readStudySearch() {
+// "All" is the "no Form chosen yet" state: it never resolves to a deck, and the
+// Form chooser is shown until a real Form is known.
+function readStudySearch(): {
+  subject: string | null;
+  form: FormFilter;
+  chapter: string | null;
+  hasForm: boolean;
+} {
   if (typeof window === "undefined")
-    return { subject: null, form: "Form 1", chapter: null, hasForm: false };
+    return { subject: null, form: "All", chapter: null, hasForm: false };
   const params = new URLSearchParams(window.location.search);
+  const form = normalizeFormParam(params.get("form"));
   return {
     subject: normalizeSubjectParam(params.get("subject")),
-    form: normalizeFormParam(params.get("form")),
+    form: form ?? "All",
     chapter: params.get("chapter"),
-    hasForm: params.has("form"),
+    hasForm: form !== null,
   };
 }
 
@@ -5304,7 +5322,7 @@ function FlashcardsPage() {
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
-  const [form, setForm] = useState<FormFilter>(initialSearch.form as FormFilter);
+  const [form, setForm] = useState<FormFilter>(initialSearch.form);
   const [formWasChosen, setFormWasChosen] = useState(initialSearch.hasForm);
   const [mathFlashcardLang, setMathFlashcardLang] = useState<MathFlashcardLang | null>(null);
   const [mathFlashcardCategory, setMathFlashcardCategory] =
@@ -5410,9 +5428,10 @@ function FlashcardsPage() {
   const isBilingualSubject = subject === "science" || subject === "math";
 
   useEffect(() => {
+    const nextForm = normalizeFormParam(routeSearch.form);
     setSubject(normalizeSubjectParam(routeSearch.subject));
-    setForm(normalizeFormParam(routeSearch.form) as FormFilter);
-    setFormWasChosen(routeSearch.form != null);
+    setForm(nextForm ?? "All");
+    setFormWasChosen(nextForm !== null);
     setChapter(routeSearch.chapter ?? null);
     setSelectedFlashcardSet(normalizeFlashcardSetParam(routeSearch.set));
   }, [routeSearch.subject, routeSearch.form, routeSearch.chapter, routeSearch.set]);
@@ -5532,14 +5551,21 @@ function FlashcardsPage() {
           ? SEJARAH_F2_C4_FLASHCARD_SET_OPTIONS
           : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 5"
             ? SEJARAH_F2_C5_FLASHCARD_SET_OPTIONS
-            : FLASHCARD_SET_OPTIONS;
+            : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 6"
+              ? SEJARAH_F2_C6_FLASHCARD_SET_OPTIONS
+              : FLASHCARD_SET_OPTIONS;
   const pool = useMemo(() => {
-    const setCards =
+    // Session guard: no active deck without a known Form, and no card tagged
+    // with another Form may enter the active deck.
+    if (!formWasChosen || form === "All") return [];
+    const setCards = keepCardsForForm(
       shouldSplitFlashcards && selectedFlashcardSet !== null
         ? flashcardSets[selectedFlashcardSet]
         : shouldSplitFlashcards
           ? []
-          : rawPool;
+          : rawPool,
+      form,
+    );
 
     return favOnly ? setCards.filter((f) => progress.favorites.includes(f.id)) : setCards;
   }, [
@@ -5547,6 +5573,8 @@ function FlashcardsPage() {
     flashcardSets,
     shouldSplitFlashcards,
     selectedFlashcardSet,
+    form,
+    formWasChosen,
     favOnly,
     progress.favorites,
   ]);
@@ -6029,7 +6057,7 @@ function FlashcardsPage() {
           onBack={() => {
             setSubject(null);
             setChapter(null);
-            setForm("Form 1");
+            setForm("All");
             setFormWasChosen(false);
             updateFlashcardSearch({ subject: null, form: null, chapter: null, set: null });
             resetSession();
@@ -6138,7 +6166,22 @@ function FlashcardsPage() {
                   </p>
                   <button
                     type="button"
-                    onClick={() => openSignIn("signin")}
+                    onClick={() => {
+                      // Resume the saved Form. Older history without a Form
+                      // opens the Form chooser instead of guessing Form 1.
+                      const resumeForm = normalizeFormParam(lastDeck.form);
+                      setSubject(lastDeck.subjectId);
+                      setForm(resumeForm ?? "All");
+                      setFormWasChosen(resumeForm !== null);
+                      setChapter(resumeForm ? lastDeck.chapterKey : null);
+                      resetSession();
+                      updateFlashcardSearch({
+                        subject: lastDeck.subjectId,
+                        form: resumeForm,
+                        chapter: resumeForm ? lastDeck.chapterKey : null,
+                        set: null,
+                      });
+                    }}
                     className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                   >
                     Sign In
@@ -6198,7 +6241,7 @@ function FlashcardsPage() {
             onSelect={(id) => {
               setSubject(id);
               setChapter(null);
-              setForm("Form 1");
+              setForm("All");
               setFormWasChosen(false);
               setMathFlashcardLang(null);
               setMathFlashcardCategory(null);
@@ -6460,16 +6503,17 @@ function FlashcardsPage() {
                 <select
                   value={form}
                   onChange={(e) => {
-                    const nextForm = e.target.value as FormFilter;
-                    setForm(nextForm);
-                    // Write it to the URL too, so a refresh keeps this form
-                    // ("All" has no deck and opens the Form chooser).
-                    updateFlashcardSearch({ form: nextForm, set: null });
+                    const nextForm = normalizeFormParam(e.target.value);
+                    if (!nextForm) return;
+                    // Rebuild the session for the newly selected Form and keep
+                    // it in the URL so refresh/direct links stay on that Form.
                     resetSession();
+                    setForm(nextForm);
+                    setFormWasChosen(true);
+                    updateFlashcardSearch({ form: nextForm, set: null });
                   }}
                   className="px-4 py-2 rounded-full bg-white/5 text-sm"
                 >
-                  <option>All</option>
                   {forms.map((f) => (
                     <option key={f}>{f}</option>
                   ))}

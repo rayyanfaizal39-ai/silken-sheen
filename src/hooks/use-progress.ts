@@ -5,6 +5,7 @@ import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { canPersistProgress, isGuestMode } from "@/lib/guest-mode";
 import { recordDailyFlashcardReview } from "@/lib/daily-mission-progress";
 import { getLocalDateKey } from "@/lib/local-date";
+import { normalizeFormParam } from "@/lib/study-routing";
 import { normalizeSelectedAt, daysTogether as daysTogetherPure } from "@/companion/selectedAt";
 import {
   recordMissionActivity as recordMissionActivityRemote,
@@ -1394,6 +1395,7 @@ export function useProgress() {
         Math.min(input.correct.easy + input.correct.medium + input.correct.hard, total),
       );
       const scorePct = Math.round((correct / total) * 100);
+      const quizForm = normalizeFormParam(input.quizKey.split(":")[3]);
       const result: QuizResult = {
         id: input.completionId,
         subjectId: input.subjectId,
@@ -1425,6 +1427,8 @@ export function useProgress() {
             label: input.chapterKey,
             timestamp,
             detail: `${correct}/${total} correct`,
+            // Canonical quiz keys are `quiz-v2:<kind>:<subject>:form-N:…`; keep
+            // the Form so Continue Learning resumes it instead of guessing.
             ...(quizForm ? { form: quizForm } : {}),
           }),
         };

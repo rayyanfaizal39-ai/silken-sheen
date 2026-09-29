@@ -340,7 +340,7 @@ export const sejarahF2C2Flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     front: "Apakah kegunaan sarang burung?",
-    back: "Makanan dan perubatan.",
+    back: "Kesihatan dan perubatan.",
   },
   {
     id: "sej-f2-c2-fc43",
@@ -356,7 +356,7 @@ export const sejarahF2C2Flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     front: "Apakah kegunaan rotan?",
-    back: "Membuat perabot dan barang kraftangan.",
+    back: "Bahan binaan dan barang kraf tangan.",
   },
   {
     id: "sej-f2-c2-fc45",
@@ -372,7 +372,7 @@ export const sejarahF2C2Flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     front: "Apakah kegunaan kapur barus?",
-    back: "Pewangi, perubatan dan mengawet mayat.",
+    back: "Bahan pewangi.",
   },
   {
     id: "sej-f2-c2-fc47",
@@ -460,7 +460,7 @@ export const sejarahF2C2Flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 2",
     front: "Namakan satu barang perhiasan hasil pembuatan.",
-    back: "Barang perhiasan daripada emas, perak atau bijih besi.",
+    back: "Barang perhiasan emas.",
   },
   {
     id: "sej-f2-c2-fc58",

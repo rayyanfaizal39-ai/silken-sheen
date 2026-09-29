@@ -41,14 +41,14 @@ interface RecentItem {
   subjectId: string;
   chapterKey: string;
   label: string;
-  form: Form;
+  form: Form | null;
   pct: number;
 }
 
 export interface NotesLandingProps {
   progress: Progress;
   onSelectSubject: (id: string) => void;
-  onContinueReading: (subjectId: string, chapterKey: string, form: Form) => void;
+  onContinueReading: (subjectId: string, chapterKey: string, form: Form | null) => void;
 }
 
 export function NotesLanding({ progress, onSelectSubject, onContinueReading }: NotesLandingProps) {
@@ -67,7 +67,8 @@ export function NotesLanding({ progress, onSelectSubject, onContinueReading }: N
       const id = `${item.subjectId}:${item.chapterKey}`;
       if (seen.has(id)) return;
       seen.add(id);
-      const form: Form = item.form ?? "Form 1";
+      // Older history without a Form stays unknown — never guess Form 1.
+      const form: Form | null = item.form ?? null;
       const pct = chapterProgressPct(
         progress.chapterActivity[chapterActivityKey(item.subjectId, item.chapterKey)],
       );
@@ -155,7 +156,7 @@ export function NotesLanding({ progress, onSelectSubject, onContinueReading }: N
                     </p>
                     <div className="mt-auto pt-5">
                       <div className="mb-2 flex items-center justify-between text-[11px] text-slate-400">
-                        <span>{item.form}</span>
+                        {item.form && <span>{item.form}</span>}
                         <span>{item.pct}% completed</span>
                       </div>
                       <div

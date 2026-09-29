@@ -60,6 +60,9 @@ export function createLearningCatalog(registry: RegistryModule): HomeLearningCat
     // don't record a form). "Chapter 4" exists in several forms, so only
     // resolve when exactly one form has it — never pick the first (Form 1).
     findAvailable(subjectId, chapterKey, activity) {
+      // Chapter history is keyed without a Form. Only resolve it when exactly
+      // one Form has this chapter; if several do, the Form is unknown and we
+      // must not guess (never default to Form 1).
       const matches = FORMS.map((form) => ({ subjectId, chapterKey, form })).filter((candidate) =>
         this.hasResource(candidate, activity),
       );

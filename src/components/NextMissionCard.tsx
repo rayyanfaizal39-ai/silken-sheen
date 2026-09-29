@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Sparkles, Brain, GitFork } from "lucide-react";
 import { useProgress, chapterActivityKey, type ChapterActivity } from "@/hooks/use-progress";
 import { subjects } from "@/data/subjects-meta";
-import { parseKnownForm, studyHref } from "@/lib/study-routing";
+import { normalizeFormParam, studyHref } from "@/lib/study-routing";
 
 type MissionKind = "notes" | "quiz" | "flashcards" | "mindmaps";
 
@@ -29,7 +29,9 @@ function pickNextMission(
   const anchor = lastVisited;
   const subject = subjects.find((s) => s.id === (anchor?.subjectId ?? "science"));
   if (!subject) return null;
-  const form = parseKnownForm(anchor?.form);
+  // Unknown Form (older history) → no form param, so the study page shows its
+  // Form chooser. Never guess Form 1.
+  const form = normalizeFormParam(anchor?.form);
   const chapterKey = anchor?.chapterKey ?? "chapter-1";
   const activity = chapterActivity[chapterActivityKey(subject.id, chapterKey)] ?? {};
 

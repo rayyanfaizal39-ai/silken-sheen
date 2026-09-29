@@ -34,9 +34,7 @@ describe("ScienceF1Chapter8VisualNotesBlock", () => {
     expect(html).toContain("AMBULANCE");
     expect(html).toContain("data-reversed-word");
     expect(html).toContain("data-readable-word");
-    expect(html).toContain("data-refraction-lesson");
-    expect(html).toContain("Experiment 8.2");
-    expect(html).toContain("data-refraction-results");
+    expect(html).toContain("i &gt; r");
     expect(html).toContain("Overlapping filter outcomes");
     expect(html).toContain("A red road sign");
   });

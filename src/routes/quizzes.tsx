@@ -16033,15 +16033,23 @@ export function resolveMathObjectiveQuestions({
   return { questions: mapped, bankLang };
 }
 
-function readStudySearch() {
+// "All" is the "no Form chosen yet" state: quiz lookups reject it, and the Form
+// chooser is shown until a real Form is known.
+function readStudySearch(): {
+  subject: string | null;
+  form: FormFilter;
+  chapter: string | null;
+  hasForm: boolean;
+} {
   if (typeof window === "undefined")
-    return { subject: null, form: "Form 1", chapter: null, hasForm: false };
+    return { subject: null, form: "All", chapter: null, hasForm: false };
   const params = new URLSearchParams(window.location.search);
+  const form = normalizeFormParam(params.get("form"));
   return {
     subject: normalizeSubjectParam(params.get("subject")),
-    form: normalizeFormParam(params.get("form")),
+    form: form ?? "All",
     chapter: params.get("chapter"),
-    hasForm: params.has("form"),
+    hasForm: form !== null,
   };
 }
 
@@ -16135,7 +16143,7 @@ function QuizzesPage() {
   const initialSearch = useMemo(readStudySearch, []);
   const [subject, setSubject] = useState<string | null>(initialSearch.subject);
   const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
-  const [form, setForm] = useState<FormFilter>(initialSearch.form as FormFilter);
+  const [form, setForm] = useState<FormFilter>(initialSearch.form);
   const [formWasChosen, setFormWasChosen] = useState(initialSearch.hasForm);
   const [diff, setDiff] = useState<"All" | Difficulty>("All");
   const [scienceQuizSet, setScienceQuizSet] = useState<"A" | "B">("A");
@@ -16186,8 +16194,8 @@ function QuizzesPage() {
     const nextForm = normalizeFormParam(routeSearch.form);
     const nextChapter = routeSearch.chapter ?? null;
     setSubject(nextSubject);
-    setForm(nextForm as FormFilter);
-    setFormWasChosen(routeSearch.form != null);
+    setForm(nextForm ?? "All");
+    setFormWasChosen(nextForm !== null);
     setChapter(nextChapter);
   }, [routeSearch.subject, routeSearch.form, routeSearch.chapter]);
 
@@ -16904,7 +16912,7 @@ function QuizzesPage() {
     : { All: "All", Easy: "Easy", Medium: "Medium", Hard: "Hard" };
 
   // ── BM has its own hub page ───────────────────────────────────────────────
-  if (subject && !formWasChosen && !chapter) {
+  if (subject && !formWasChosen) {
     return (
       <AcademyPageShell subjectId={planetSubjectId}>
         <FormGrid
@@ -16921,7 +16929,7 @@ function QuizzesPage() {
           onBack={() => {
             setSubject(null);
             setChapter(null);
-            setForm("Form 1");
+            setForm("All");
             setFormWasChosen(false);
             updateQuizSearch({ subject: null, form: null, chapter: null });
             reset();
@@ -17300,7 +17308,21 @@ function QuizzesPage() {
                   </p>
                   <button
                     type="button"
-                    onClick={() => openSignIn("signin")}
+                    onClick={() => {
+                      // Resume the saved Form. Older history without a Form
+                      // opens the Form chooser instead of guessing Form 1.
+                      const resumeForm = normalizeFormParam(lastQuiz.form);
+                      setSubject(lastQuiz.subjectId);
+                      setForm(resumeForm ?? "All");
+                      setFormWasChosen(resumeForm !== null);
+                      setChapter(resumeForm ? lastQuiz.chapterKey : null);
+                      reset();
+                      updateQuizSearch({
+                        subject: lastQuiz.subjectId,
+                        form: resumeForm,
+                        chapter: resumeForm ? lastQuiz.chapterKey : null,
+                      });
+                    }}
                     className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                   >
                     Sign In
@@ -17352,7 +17374,7 @@ function QuizzesPage() {
             onSelect={(id) => {
               setSubject(id);
               setChapter(null);
-              setForm("Form 1");
+              setForm("All");
               setFormWasChosen(false);
               setDiff("All");
               updateQuizSearch({ subject: id, form: null, chapter: null });
@@ -17615,6 +17637,8 @@ function QuizzesPage() {
                       key={f}
                       onClick={() => {
                         setForm(f);
+                        setFormWasChosen(true);
+                        updateQuizSearch({ form: f });
                         reset();
                       }}
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
@@ -17632,7 +17656,11 @@ function QuizzesPage() {
                   <select
                     value={form}
                     onChange={(e) => {
-                      setForm(e.target.value as FormFilter);
+                      const nextForm = normalizeFormParam(e.target.value);
+                      if (!nextForm) return;
+                      setForm(nextForm);
+                      setFormWasChosen(true);
+                      updateQuizSearch({ form: nextForm });
                       reset();
                     }}
                     className="px-4 py-2 rounded-full bg-white/5 text-sm"

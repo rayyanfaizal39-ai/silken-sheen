@@ -6,6 +6,7 @@ import {
   type LastVisited,
   type Progress,
 } from "@/hooks/use-progress";
+import { normalizeFormParam } from "@/lib/study-routing";
 
 export type HomeStudyActivity = LastVisited["type"];
 export type HomeStudyRoute = "/notes" | "/quizzes" | "/flashcards";
@@ -105,15 +106,13 @@ function latestActivity(progress: Progress) {
     .sort((a, b) => b.timestamp - a.timestamp)[0];
 }
 
-/**
- * Null when the entry predates form tracking: "Chapter 4" exists in every
- * form, so guessing one (historically Form 1) would resume the wrong chapter.
- */
+/** Older history without a Form cannot be resumed safely — never guess Form 1. */
 function candidateFromActivity(activity: LastVisited): HomeChapterCandidate | null {
-  if (!activity.form) return null;
+  const form = normalizeFormParam(activity.form);
+  if (!form) return null;
   return {
     subjectId: activity.subjectId,
-    form: activity.form,
+    form,
     chapterKey: activity.chapterKey,
     label: activity.label,
   };

@@ -12,7 +12,7 @@ import {
 } from "@/hooks/use-progress";
 import { subjects } from "@/data/subjects-meta";
 import { getSubjectWorldArtwork, SUBJECT_WORLD_FALLBACK_ACCENT } from "@/lib/subject-world-artwork";
-import { buildResumeSearch, parseKnownForm } from "@/lib/study-routing";
+import { normalizeFormParam, studyResumeSearch } from "@/lib/study-routing";
 
 const ACTIVITY_ROUTES = {
   notes: "/notes",
@@ -93,8 +93,9 @@ export function HomeContinueLearning() {
     }
 
     void import("@/content/registry").then(({ getRegisteredSubjectChapters }) => {
-      if (!active) return;
-      const chapter = getRegisteredSubjectChapters(latest.subjectId, undefined, latestForm).find(
+      const form = normalizeFormParam(latest.form);
+      if (!active || !form) return;
+      const chapter = getRegisteredSubjectChapters(latest.subjectId, undefined, form).find(
         (item) => item.key === latest.chapterKey,
       );
       setRegistryLabel(chapter?.label ?? null);
@@ -136,17 +137,15 @@ export function HomeContinueLearning() {
     (item) => item.id === (worldArtwork?.canonicalId ?? latest.subjectId),
   );
   const subjectName = subject?.name ?? latest.subjectId;
-  // Older history (and quiz entries before they recorded one) has no form.
-  // Never present or route that as Form 1 — the resume links then open the
-  // subject's Form chooser instead.
-  const form = parseKnownForm(latest.form);
+  // Older history without a Form resumes at the subject's Form chooser.
+  const form = normalizeFormParam(latest.form);
   const canonicalLabel = registryLabel ?? getCanonicalLabel(latest, recentActivity ?? []);
   const { chapterLabel, chapterTitle } = getChapterDisplay(latest.chapterKey, canonicalLabel);
   const activity =
     progress.chapterActivity[chapterActivityKey(latest.subjectId, latest.chapterKey)];
   const progressPct = activity ? chapterProgressPct(activity) : null;
   const route = ACTIVITY_ROUTES[latest.type];
-  const routeSearch = buildResumeSearch(latest);
+  const routeSearch = studyResumeSearch(latest);
   const nextActivity = getNextActivity(latest.type);
   const nextRoute = ACTIVITY_ROUTES[nextActivity.type];
   const accent = worldArtwork?.accent ?? SUBJECT_WORLD_FALLBACK_ACCENT;

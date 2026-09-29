@@ -31,18 +31,18 @@ export function normalizeSubjectParam(value: unknown) {
   return subjectSlugToId[subject] ?? null;
 }
 
-export function normalizeFormParam(value: unknown) {
-  return parseKnownForm(value) ?? "Form 1";
-}
+ export type StudyForm = "Form 1" | "Form 2" | "Form 3";
 
 /**
- * The form a value explicitly names ("Form 2", 2, "f2", "form-2"), or null.
- * Unlike `normalizeFormParam` it never guesses Form 1 — use it wherever a
- * missing form must send the student to the Form chooser instead.
+ * Recognises 1 / 2 / 3, "Form 1" / "Form 2" / "Form 3" and "form1" / "form2" /
+ * "form3". Anything else — including a missing value — is unknown and returns
+ * null. Never guess Form 1: an unknown Form must send the student to the Form
+ * chooser instead of silently loading Form 1 content.
  */
-export function parseKnownForm(value: unknown): "Form 1" | "Form 2" | "Form 3" | null {
-  if (value === null || value === undefined || value === "") return null;
+export function normalizeFormParam(value: unknown): StudyForm | null {
+  if (value == null) return null;
   const cleaned = String(value)
+    .trim()
     .toLowerCase()
     .replaceAll('"', "")
     .trim()
@@ -97,7 +97,7 @@ export function studyHref(
   form?: string,
 ) {
   const subject = subjectIdToSlug[subjectId] ?? subjectId;
-  const formNumber = form?.match(/\d/)?.[0];
+  const formNumber = formSearchValue(form);
   const formParam = formNumber ? `&form=${formNumber}` : "";
   return `/${kind}?subject=${subject}${formParam}`;
 }

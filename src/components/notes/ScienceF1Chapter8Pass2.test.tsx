@@ -51,23 +51,22 @@ describe("Chapter 8 Pass 2 — source-controlled 8.2 and 8.3", () => {
       r = t.reflection;
     const properties = () => mount(createElement(Chapter8PropertiesOfLight, { source: p }));
     const reflection = () => mount(createElement(Chapter8Reflection, { source: r }));
-    it(`${lang}: approved 8.1 facts and all deferred 8.5–8.7 data remain locked`, () => {
+    it(`${lang}: approved 8.1 facts and all deferred 8.4–8.7 data remain locked`, () => {
       expect(hash(t.mirrors)).toBe(
         lang === "en"
           ? "f9ba2250f78733bf980abf159591493f7718fb0502bcbf72d8af1b3ed0085115"
           : "a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a",
       );
-      // Deferred-only hashes captured before Pass 3; 8.1–8.3 locks are unchanged.
-      const keys = ["dispersion", "scattering", "colorAdditionSubtraction"] as const;
+      const keys = ["refraction", "dispersion", "scattering", "colorAdditionSubtraction"] as const;
       expect(hash(Object.fromEntries(keys.map((k) => [k, t[k]])))).toBe(
         lang === "en"
-          ? "6f52dd8ec4ae7bfaaffa2d13b42f6abf41ace1e70606681bb0fae967305ab35a"
-          : "f9cdac68601e093710b4a2666bcf4d384f32d8c2efeaf17eca1ef8ad1bf0e90f",
+          ? "47ed8a3d2d71d9f991bbca1df946b582c337622fa7e85bf928053cfc5ddda130"
+          : "09c8cfe1ef775d6b0dd6ae9af65149de2427adf1beaa575466897e64bc4fd949",
       );
       expect(hash(supplement[lang])).toBe(
         lang === "en"
-          ? "9bd74bf30eb00a9a879ff93dab8849098ef92d958f795273c37b8b02b7281c44"
-          : "2113d8887f3f58f8012552aff1966740fdbcdf25641b695ef3128dde61cf1f5b",
+          ? "b74d9795297a718c1afcdccc4f9a7d536dd89fbc9948bf9aeb693ad67e75dbad"
+          : "ae38f7540f1382fe22c831ceb31185774ff100617c6432497b6b4ddd9460f6c0",
       );
     });
     it(`${lang}: seven separate official sections still render`, () => {

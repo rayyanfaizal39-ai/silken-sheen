@@ -19,10 +19,10 @@ export function hasFlashcardDeck(
   dataModule: ContentDataModule | null,
 ) {
   const subjectId = normalizeSubjectParam(subjectValue);
-  const form = normalizeFormParam(formValue) as Form;
+  const form = normalizeFormParam(formValue);
   const chapterKey = normalizeChapterParam(chapterValue);
 
-  if (!subjectId || !chapterKey) return false;
+  if (!subjectId || !form || !chapterKey) return false;
 
   return (
     getFlashcardDeckCards(subjectId, form, chapterKey, language, registry, dataModule).length > 0
@@ -38,10 +38,11 @@ export function getFlashcardDeckCards(
   dataModule: ContentDataModule | null,
 ): Flashcard[] {
   const subjectId = normalizeSubjectParam(subjectValue);
-  const form = normalizeFormParam(formValue) as Form;
+  const form = normalizeFormParam(formValue);
   const chapterKey = normalizeChapterParam(chapterValue);
 
-  if (!subjectId || !chapterKey) return [];
+  // Unknown Form → no deck. Never fall back to Form 1.
+  if (!subjectId || !form || !chapterKey) return [];
 
   const registeredCards = keepSelectedFormCards(
     registry?.getChapter(subjectId, chapterKey, language, form)?.flashcards ?? [],
