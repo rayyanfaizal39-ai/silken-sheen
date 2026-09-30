@@ -8,17 +8,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah matlamat utama perjuangan masyarakat tempatan menentang pencerobohan dan pentadbiran kuasa Barat pada abad ke-19 dan awal abad ke-20?",
+    question: "Apakah antara matlamat utama penentangan masyarakat tempatan terhadap kuasa Barat?",
     options: [
-      "Mempertahankan kedaulatan negeri, kedudukan Sultan, dan hak pembesar",
-      "Menuntut kebebasan berdagang dengan kuasa asing lain di Eropah",
-      "Memperkenalkan sistem pentadbiran republik berasaskan demokrasi",
-      "Mengambil alih seluruh monopoli perdagangan rempah di Kepulauan Melayu",
+      "Menghapuskan semua bentuk pentadbiran tradisional",
+      "Mempertahankan hak dan kedudukan pemerintah tempatan",
+      "Meluaskan jajahan ke negeri jiran",
+      "Menubuhkan kerajaan kolonial baharu",
     ],
-    answerIndex: 0,
+    answerIndex: 1,
     explanation:
-      "Matlamat utama perjuangan tempatan adalah untuk mempertahankan kedaulatan tanah air, menjaga kedudukan Sultan dan pembesar, serta menentang campur tangan British dalam urusan adat dan cukai.",
+      "Buku teks menyatakan masyarakat tempatan berjuang mempertahankan hak dan kedudukan pemerintah serta mengekalkan pentadbiran tradisional.",
   },
   {
     id: "sej-f3-c7-a-q2",
@@ -27,17 +26,15 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Antara berikut, yang manakah merupakan tiga bentuk strategi penentangan yang digunakan oleh masyarakat tempatan menentang Barat?",
+    question: "Mengapakah Dol Said menentang British di Naning?",
     options: [
-      "Perang gerila, pembakaran ladang, dan serangan siber",
-      "Penentangan bersenjata, cabaran perundangan, dan diplomasi",
-      "Boikot ekonomi, mogok pekerja, dan demonstrasi jalanan",
-      "Guerilla maritim, sabotaj kapal, dan pakatan tentera asing",
+      "British menuntut cukai hasil tahunan satu persepuluh dan Dol Said menganggap Naning negeri merdeka",
+      "British memindahkan pusat Naning ke Melaka",
+      "British melarang penggunaan Adat Temenggung",
+      "British menutup semua laluan perdagangan Naning",
     ],
-    answerIndex: 1,
-    explanation:
-      "Masyarakat tempatan menggunakan strategi penentangan bersenjata (seperti Dol Said & Rentap), cabaran perundangan (seperti Haji Abdul Rahman Limbong), dan diplomasi (seperti Yamtuan Antah & Dato' Bahaman).",
+    answerIndex: 0,
+    explanation: "Dol Said menolak cukai satu persepuluh dan menegaskan kemerdekaan Naning.",
   },
   {
     id: "sej-f3-c7-a-q3",
@@ -46,17 +43,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah faktor utama yang menyemarakkan penentangan Dol Said di Naning terhadap pihak British pada tahun 1831?",
+    question: "Apakah yang membantu British menewaskan Dol Said dalam Perang Naning Kedua?",
     options: [
-      "Dol Said diturunkan daripada takhta Penghulu Naning oleh Gabenor Melaka",
-      "British memindahkan ibu negeri Naning ke Pulau Pinang secara paksa",
-      "British mendakwa Naning adalah bahagian daripada Melaka dan menuntut ufti satu persepuluh",
-      "British melarang pembinaan masjid dan pusat pengajian agama di Naning",
+      "Penggunaan kapal perang di Sungai Perak",
+      "Sokongan penuh semua pembesar Melayu kepada British",
+      "Perpecahan pakatan Dol Said sehingga pembesar lain enggan membantu",
+      "Penyerahan Dol Said sebelum perang bermula",
     ],
     answerIndex: 2,
     explanation:
-      "British mendakwa Naning sebagai sebahagian wilayah Melaka di bawah Perjanjian London 1824 dan menuntut ufti 1/10 daripada hasil pertanian Naning, yang ditolak keras oleh Dol Said.",
+      "Permuafakatan Dol Said tidak kekal dan British berjaya memecahbelahkan pakatan tersebut.",
   },
   {
     id: "sej-f3-c7-a-q4",
@@ -65,17 +61,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Mengapakah pihak British mengalami kekalahan dalam Perang Naning Pertama pada tahun 1831?",
+    question: "Apakah hasil rundingan Yamtuan Antah dengan William Jervois pada tahun 1876?",
     options: [
-      "Tentera British kehabisan bekalan makanan dan dijangkiti wabak penyakit",
-      "Pasukan tentera Naning menggunakan senjata moden yang dibeli dari Perancis",
-      "Siam telah menghantar bantuan ketenteraan bagi mempertahankan Naning",
-      "Dol Said mendapat bantuan tentera daripada Rembau, Seri Menanti, dan Sungai Ujong",
+      "Yamtuan Antah dibuang negeri",
+      "Sungai Ujong diserahkan kepada Seri Menanti",
+      "British berundur sepenuhnya dari Negeri Sembilan",
+      "British melantik Yamtuan Antah sebagai Yamtuan Besar Seri Menanti",
     ],
     answerIndex: 3,
     explanation:
-      "Dalam Perang Naning I, Dol Said mendapat sokongan padu daripada hulubalang Rembau (Yam Tuan Muda Raja Ali), Seri Menanti, Sungai Ujong, dan Johol yang berjaya menewaskan British.",
+      "Selepas rundingan, British melantik Yamtuan Antah sebagai Yamtuan Besar Seri Menanti.",
   },
   {
     id: "sej-f3-c7-a-q5",
@@ -85,11 +80,15 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Slogan 'Agi Idup, Agi Ngalaban' merupakan ikrar perjuangan pahlawan Iban yang terkenal di Sarawak. Siapakah tokoh tersebut?",
-    options: ["Rentap", "Sharif Masahor", "Datu Patinggi Abang Abdul Gapur", "Kanang anak Langkau"],
+      "Siapakah yang membantu Dato' Bahaman dalam gerakan menentang British pada tahun 1891?",
+    options: [
+      "Tok Gajah dan Mat Kilau",
+      "Dol Said dan Yamtuan Antah",
+      "Sharif Masahor dan Rentap",
+      "Mat Salleh dan Mat Sator",
+    ],
     answerIndex: 0,
-    explanation:
-      "Rentap (Libau) ialah pahlawan Iban yang terkenal dengan slogan 'Agi Idup, Agi Ngalaban' (Selagi Hidup, Selagi Itu Melawan) dalam mempertahankan Bukit Sadok daripada serangan James Brooke.",
+    explanation: "Dato' Bahaman dibantu oleh Tok Gajah atau Imam Perang Rasul dan Mat Kilau.",
   },
   {
     id: "sej-f3-c7-a-q6",
@@ -98,17 +97,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah alasan yang digunakan oleh James Brooke untuk menyerang kawasan perkampungan Rentap di Sungai Skrang?",
+    question: "Apakah sebab utama Rentap menentang James Brooke?",
     options: [
-      "Orang Iban telah membakar ibu negeri Kuching",
-      "Menganggap orang Iban sebagai lanun yang mengganggu pelayaran",
-      "Rentap enggan membayar cukai hasil hutan kepada rejim Brooke",
-      "Rentap merampas kapal perintis Brooke di Kuching",
+      "Brooke menolak permohonan Rentap menjadi pembesar Sarikei",
+      "Brooke menuduh Rentap sebagai lanun dan menghapuskan petempatan orang Iban",
+      "Brooke merampas hak memungut cukai di Tambunan",
+      "Brooke mengenakan cukai tanah di Pasir Puteh",
     ],
     answerIndex: 1,
     explanation:
-      "James Brooke menuduh Rentap dan orang Iban di Skrang sebagai lanun bagi menjustifikasikan serangan ketenteraan dan pembinaan kubu di Nanga Skrang.",
+      "Rentap menentang kerana James Brooke menuduh beliau sebagai lanun dan menghapuskan petempatan orang Iban.",
   },
   {
     id: "sej-f3-c7-a-q7",
@@ -117,16 +115,17 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question: "Apakah sebab utama Sharif Masahor menentang pentadbiran Dinasti Brooke di Sarikei?",
+    question:
+      "Siapakah yang berpakat dengan Sharif Masahor pada tahun 1860 untuk menggulingkan Dinasti Brooke?",
     options: [
-      "Sharif Masahor dipaksa menyerahkan tanah peribadinya kepada Syarikat Borneo",
-      "Brooke enggan mengiktiraf pembinaan masjid di bahagian Sarikei",
-      "Kewujudan kubu Brooke di Kanowit mengambil alih kuasanya dan membatalkan hak mengutip cukai",
-      "Brooke melarang pembesar tempatan mengamalkan adat resam perkahwinan Melayu",
+      "Ngah Ibrahim dan Dato' Sagor",
+      "Tok Gajah dan Mat Kilau",
+      "Dato' Patinggi Abdul Gapur dan Pengiran Temenggung Hashim Jalil",
+      "Haji Said dan Penghulu Adam",
     ],
     answerIndex: 2,
     explanation:
-      "Pembinaan kubu Brooke di Kanowit mengancam wilayah kekuasaan Sharif Masahor di Sarikei dan menggugat hak tradisinya untuk mengutip cukai di kawasan tersebut.",
+      "Sharif Masahor berpakat dengan Dato' Patinggi Abdul Gapur dan Pengiran Temenggung Hashim Jalil.",
   },
   {
     id: "sej-f3-c7-a-q8",
@@ -135,17 +134,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah peristiwa puncak penentangan Dato' Maharaja Lela di Pasir Salak pada 2 November 1875?",
+    question: "Apakah yang berlaku selepas SBUB mengambil semula Tambunan pada tahun 1899?",
     options: [
-      "Penawanan Kota Ngah Ibrahim oleh tentera British",
-      "Pembakaran balai polis British di Kuala Kangsar",
-      "Penyingkiran Sultan Abdullah daripada takhta Perak",
-      "Pembunuhan Residen British Perak, J.W.W. Birch di Sungai Perak",
+      "Mat Salleh menyerahkan diri dan dilantik pegawai SBUB",
+      "Mat Salleh berpindah ke Sarawak",
+      "SBUB menyerahkan seluruh Sabah kepada Mat Salleh",
+      "Penentangan Mat Salleh berterusan sehingga beliau gugur di Tambunan pada tahun 1900",
     ],
     answerIndex: 3,
     explanation:
-      "Pada 2 November 1875, Septum membunuh Residen British J.W.W. Birch atas arahan Dato' Maharaja Lela dan Dato' Sagor di Sungai Perak, Pasir Salak.",
+      "Pengambilalihan semula Tambunan mencetuskan penentangan lanjut dan Mat Salleh gugur pada tahun 1900.",
   },
   {
     id: "sej-f3-c7-a-q9",
@@ -154,17 +152,15 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Mengapakah pembesar Perak seperti Dato' Maharaja Lela dan Dato' Sagor menolak pelaksanaaan sistem pentadbiran J.W.W. Birch?",
+    question: "Apakah tindakan British di Negeri Sembilan yang menggugat kedudukan Yamtuan Antah?",
     options: [
-      "Birch mencampuri adat resam, merampas hak kutipan cukai, dan mencabar kewibawaan Sultan",
-      "Birch melarang perdagangan bijih timah dengan pedagang Selat",
-      "Birch mahu memindahkan ibu negeri Perak ke Pulau Pinang",
-      "Birch menyokong Raja Ismail menjadi Sultan Perak tanpa persetujuan Majlis",
+      "Menyebelahi Dato' Kelana di Sungai Ujong",
+      "Menubuhkan kubu Brooke di Kanowit",
+      "Mengambil alih Tambunan",
+      "Membatalkan Perjanjian Pangkor",
     ],
     answerIndex: 0,
-    explanation:
-      "J.W.W. Birch bertindak angkuh dengan mencampuri adat tempatan (isu hamba), mengambil alih hak kutipan cukai pembesar, dan membelakangkan Sultan Abdullah.",
+    explanation: "British mula meluaskan kuasa di Sungai Ujong dengan menyebelahi Dato' Kelana.",
   },
   {
     id: "sej-f3-c7-a-q10",
@@ -173,17 +169,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah punca utama perselisihan antara Yamtuan Antah dengan pihak British di Negeri Sembilan pada tahun 1875?",
+    question: "Apakah kesan pembentukan daerah di bawah Pemungut Cukai dan Majistret di Pahang?",
     options: [
-      "British membatalkan gelaran Yamtuan Besar Negeri Sembilan",
-      "Tindakan British menduduki Terachi dan menyokong Dato' Kelana di Sungai Ujong",
-      "British melarang amalan Adat Perpatih di daerah Seri Menanti",
-      "Dato' Bandar melantik Gabenor NNS sebagai penaung Seri Menanti",
+      "Pembesar menerima kuasa kehakiman yang lebih besar",
+      "Kuasa pentadbiran pembesar di daerah masing-masing berkurang",
+      "Sultan Ahmad mendapat kuasa mutlak",
+      "Dato' Bahaman dilantik sebagai Residen",
     ],
     answerIndex: 1,
     explanation:
-      "Yamtuan Antah menentang British kerana British menyokong Dato' Kelana dan mencampuri urusan hak pertuanan di daerah Terachi yang terletak di bawah naungan Seri Menanti.",
+      "Struktur baharu itu menyebabkan pembesar kehilangan kuasa pentadbiran tradisional.",
   },
   {
     id: "sej-f3-c7-a-q11",
@@ -192,16 +187,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question: "Mengapakah Dato' Bahaman bangkit menentang pihak British di Semantan, Pahang?",
+    question: "Apakah kesan larangan mengutip cukai oleh J.W.W. Birch di Kuala Sungai Perak?",
     options: [
-      "Sultan Ahmad mengarahkan penangkapan Dato' Bahaman kerana memungut emas",
-      "British melarang pembukaan lombong emas baharu di Raub",
-      "Pelucutan gelaran pembesar, pembinaan balai polis di Lubuk Terua, dan pembatalan hak cukai",
-      "British memindahkan ibu negeri Pahang dari Pekan ke Kuantan",
+      "British kehilangan pendapatan",
+      "Petani tidak perlu membayar cukai",
+      "Pendapatan Sultan Abdullah, Ngah Ibrahim dan pembesar Perak terjejas",
+      "Ngah Ibrahim menjadi Pemungut Hasil British",
     ],
     answerIndex: 2,
     explanation:
-      "Dato' Bahaman menentang British di Pahang kerana pelucutan gelarannya sebagai Orang Kaya Semantan, pembinaan balai polis di Lubuk Terua tanpa persetujuannya, dan kehilangan hak mengutip cukai.",
+      "Larangan itu menjejaskan sumber pendapatan tradisional Sultan Abdullah, Ngah Ibrahim dan pembesar.",
   },
   {
     id: "sej-f3-c7-a-q12",
@@ -210,17 +205,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah tindakan SBUB yang menyebabkan Mat Salleh menyerang kubu SBUB di Pulau Gaya pada tahun 1897?",
+    question: "Mengapakah penduduk Pasir Puteh semakin membenci British?",
     options: [
-      "SBUB membakar perkampungan orang Bajau dan Suluk di Sandakan",
-      "SBUB melarang Mat Salleh menjalankan perniagaan sarung burung",
-      "SBUB melantik Residen Inggeris untuk mentadbir kubu Ranau",
-      "SBUB melaksana sistem cukai beras/kepala dan enggan berunding mengenai kedaulatan Tambunan",
+      "Semua cukai telah dihapuskan",
+      "British memberi tanah percuma kepada semua petani",
+      "Pejabat cukai dibuka sepanjang masa",
+      "Sistem cukai baharu membebankan dan urusan pembayaran sukar",
     ],
     answerIndex: 3,
     explanation:
-      "Mat Salleh menentang SBUB kerana SBUB memperkenalkan cukai beras dan cukai kepala, serta memungkiri janji Perjanjian Menggatal 1898 dengan menduduki Tambunan.",
+      "Penduduk diwajibkan membayar cukai, perlu pergi ke pejabat yang jauh dan boleh ditangkap atau didenda jika gagal membayar.",
   },
   {
     id: "sej-f3-c7-a-q13",
@@ -229,17 +223,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah faktor utama yang mencetuskan Kebangkitan Rondom 1915 oleh Antanom dan kaum Murut di Sabah?",
+    question: "Apakah kekuatan utama pakatan Dato' Maharaja Lela sebelum pembunuhan J.W.W. Birch?",
     options: [
-      "SBUB menceroboh hutan simpan roh nenek moyang, mengenakan cukai pokok kelapa/sampan, dan kerja paksa",
-      "SBUB melarang kaum Murut mengamalkan sistem pertanian pindah",
-      "SBUB memindahkan ibu negeri Sabah dari Kudat ke Jesselton",
-      "Antanom enggan menyerahkan senjata tradisi sumpitan kepada pegawai SBUB",
+      "Muafakat melalui beberapa mesyuarat sulit antara sultan dan pembesar",
+      "Bantuan ketenteraan SBUB",
+      "Penggunaan kapal perang moden",
+      "Sokongan tentera Belanda",
     ],
     answerIndex: 0,
     explanation:
-      "Antanom memimpin kaum Murut dalam Kebangkitan Rondom kerana SBUB menceroboh hutan simpan (tempat tinggal roh nenek moyang), mengenakan kerja paksa membina jalan, dan cukai yang menindas.",
+      "Pakatan sultan dan pembesar Melayu mengadakan beberapa mesyuarat sulit dan mengangkat sumpah untuk mengekalkan keputusan bersama.",
   },
   {
     id: "sej-f3-c7-a-q14",
@@ -248,17 +241,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Mengapakah Tok Janggut memimpin masyarakat Pasir Puteh, Kelantan menentang pentadbiran British pada tahun 1915?",
+    question: "Apakah ciri yang menguatkan kubu Rentap di Bukit Sadok?",
     options: [
-      "British menggantikan undang-undang Syariah dengan Kanun Keseksaan Negeri Selat",
-      "Pelaksanaan Peraturan Tanah 1915 yang mewajibkan bayaran cukai pokok, tanah, dan hasil bumi",
-      "British membatalkan status Pasir Puteh sebagai pusat perdagangan beras",
-      "Sultan Kelantan diasingkan oleh British ke Singapura",
+      "Terletak di kawasan rata tanpa hutan",
+      "Kawasan curam, berbukit tinggi dan dilindungi kayu belian tebal",
+      "Dibina daripada batu bata British",
+      "Dikelilingi pelabuhan dan kapal perang",
     ],
     answerIndex: 1,
     explanation:
-      "Tok Janggut (Haji Hassan bin Munas) menentang pelaksanaan Sistem Cukai Tanah 1915 yang membebankan petani Pasir Puteh dengan syarat cukai wajib walaupun tanah tidak dikerjakan.",
+      "Kubu Bukit Sadok berada di kawasan tinggi dan curam serta dilindungi kayu belian setebal dua kaki.",
   },
   {
     id: "sej-f3-c7-a-q15",
@@ -267,17 +259,15 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah hujah utama Haji Abdul Rahman Limbong di mahkamah semasa membela petani Terengganu pada tahun 1928?",
+    question: "Apakah senjata yang digunakan oleh angkatan Dol Said?",
     options: [
-      "Petani Terengganu telah membayar cukai terus kepada Gabenor Singapura",
-      "Negeri Terengganu tidak berada di bawah jajahan takluk mana-mana kuasa Eropah",
-      "Tanah merupakan hak Allah SWT dan rakyat bebas mengusahakannya tanpa perlu Lesen Pas Membuka Tanah",
-      "British tidak mempunyai Perjanjian Bangkok yang sah dengan Sultan Terengganu",
+      "Meriam Bujang Sadok sahaja",
+      "Senapang mesin dan kapal perang",
+      "Flintlock, snider rifles dan lela rentaka",
+      "Senapang automatik dan mortar",
     ],
     answerIndex: 2,
-    explanation:
-      "Haji Abdul Rahman Limbong menegaskan di mahkamah bahawa tanah adalah hak milik Allah dan rakyat tidak perlu mengambil lesen pas atau membayar cukai untuk bercucuk tanam.",
+    explanation: "Buku teks menyebut flintlock, snider rifles dan meriam kecil atau lela rentaka.",
   },
   {
     id: "sej-f3-c7-a-q16",
@@ -286,17 +276,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah kesan utama penentangan masyarakat tempatan terhadap pentadbiran kuasa Barat?",
+    question: "Mengapakah Yamtuan Antah akhirnya berundur?",
     options: [
-      "British serta-merta menarik diri dari seluruh Tanah Melayu, Sarawak, dan Sabah",
-      "Kuasa Sultan dan pembesar dikembalikan secara mutlak seperti era Kesultanan Melayu Melaka",
-      "Seluruh undang-undang tanah Barat dimansuhkan secara serta-merta",
-      "Mendorong British menyusun semula strategi pentadbiran dan berwaspada terhadap adat tempatan",
+      "Baginda kehilangan sokongan Brooke",
+      "British membatalkan semua cukai",
+      "Baginda menerima jawatan Residen",
+      "British menggunakan meriam besar sementara angkatannya kehabisan peluru dan ubat bedil",
     ],
     answerIndex: 3,
     explanation:
-      "Penentangan tempatan menyebabkan British terpaksa menanggung kos perang yang tinggi, berwaspada terhadap sensitiviti agama dan adat resam, serta menyusun semula pentadbiran.",
+      "Kelebihan meriam British dan kekurangan bekalan peluru serta ubat bedil melemahkan pertahanan Yamtuan Antah.",
   },
   {
     id: "sej-f3-c7-a-q17",
@@ -306,16 +295,15 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Antara berikut, apakah nasib yang menimpa pejuang tempatan seperti Dato' Maharaja Lela dan Dato' Sagor selepas tewas kepada British?",
+      "Apakah tindakan British terhadap Haji Abdul Rahman Limbong selepas Kebangkitan Tani 1928?",
     options: [
-      "Dijatuhkan hukuman gantung sampai mati di Matang, Perak",
-      "Dibuang negeri ke Kepulauan Seychelles bersama Sultan Abdullah",
-      "Dilantik semula menjadi Penasihat Negeri oleh British",
-      "Diampunkan oleh Majlis Mesyuarat Persekutuan",
+      "Menangkap, membicarakan dan membuang negeri beliau ke Makkah",
+      "Melantik beliau sebagai penasihat",
+      "Mengembalikan semua tanah tanpa syarat",
+      "Membenarkan beliau menubuhkan pentadbiran sendiri",
     ],
     answerIndex: 0,
-    explanation:
-      "Dato' Maharaja Lela, Dato' Sagor, Pandak Lam, Septum, dan Pandak Indut dijatuhkan hukuman gantung sampai mati di Matang, Perak atas tuduhan membunuh J.W.W. Birch.",
+    explanation: "Beliau ditangkap, dibicarakan di Kuala Terengganu dan dibuang negeri ke Makkah.",
   },
   {
     id: "sej-f3-c7-a-q18",
@@ -324,17 +312,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah iktibar utama yang boleh diambil daripada kegagalan sebahagian besar penentangan tempatan menentang kuasa Barat?",
+    question: "Apakah perubahan British selepas mengalami penentangan masyarakat tempatan?",
     options: [
-      "Penyerahan kedaulatan negeri secara sukarela bagi mengelakkan pertempuran",
-      "Kepentingan semangat perpaduan, strategi tersusun, dan penguasaan ilmu pengetahuan",
-      "Penggunaan kekuatan ketenteraan semata-mata tanpa sebarang perundingan",
-      "Pengasingan diri daripada sebarang pemodenan teknologi luar",
+      "Menghapuskan semua jawatan Residen",
+      "Melantik Residen yang lebih berpengalaman dan memahami adat tempatan",
+      "Menyerahkan seluruh pentadbiran kepada pembesar",
+      "Menutup Majlis Mesyuarat Negeri",
     ],
     answerIndex: 1,
     explanation:
-      "Kegagalan perjuangan awal mengajar kita tentang pentingnya perpaduan antara pembesar dan rakyat, perancangan strategi yang berkesan, serta penguasaan ilmu dan diplomasi.",
+      "British menjadi lebih berhati-hati dan melantik Residen yang berpengalaman, bijaksana serta memahami bahasa dan adat Melayu.",
   },
   {
     id: "sej-f3-c7-a-q19",
@@ -343,17 +330,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Di manakah lokasi pertempuran terakhir yang menyaksikan Tok Janggut gugur sebagai syahid dalam mempertahankan Pasir Puteh?",
+    question: "Antara berikut, yang manakah kesan terhadap masyarakat tempatan?",
     options: [
-      "Fort Alice, Simanggang",
-      "Kota Bharu, Kelantan",
-      "Kampung Dalam Rhu, Pasir Puteh",
-      "Lubuk Terua, Semantan",
+      "Semua pejuang diberi jawatan kerajaan",
+      "Tiada perubahan kepada kedudukan pembesar",
+      "Sebahagian pejuang kehilangan jawatan, nyawa atau dibuang negeri",
+      "British membatalkan semua hukuman",
     ],
     answerIndex: 2,
     explanation:
-      "Tok Janggut gugur dalam pertempuran di Kampung Dalam Rhu, Pasir Puteh pada 24 Mei 1915 semasa menentang pasukan tentera British.",
+      "Buku teks menyenaraikan kehilangan jawatan, kehilangan nyawa dan pembuangan negeri sebagai kesan kepada masyarakat tempatan.",
   },
   {
     id: "sej-f3-c7-a-q20",
@@ -362,17 +348,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Selepas tekanan ketenteraan British meningkat di Pahang, Dato' Bahaman, Mat Kilau, dan Tok Gajah telah berundur dan mendapat perlindungan di mana?",
+    question: "Apakah kesan jangka panjang keberanian pejuang tempatan?",
     options: [
-      "Johor dan Singapore",
-      "Perlis dan Kedah",
-      "Sarawak dan Sabah",
-      "Kelantan dan Terengganu",
+      "Menghapuskan penggunaan bahasa Melayu",
+      "Menamatkan sistem beraja",
+      "Menghentikan semua gerakan politik",
+      "Menjadi inspirasi dan memberi semangat kepada pejuang kemerdekaan",
     ],
     answerIndex: 3,
     explanation:
-      "Dato' Bahaman, Tok Gajah, dan Mat Kilau berundur ke Kelantan dan Terengganu untuk mendapat sokongan ulama tempatan seperti Tok Ku Paloh.",
+      "Keberanian mereka menjadi inspirasi kepada pejuang bangsa dan memberi semangat kepada perjuangan kemerdekaan.",
   },
   {
     id: "sej-f3-c7-b-q1",
@@ -381,17 +366,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah sistem pendaftaran tanah dan lesen pas yang diperkenalkan Barat sangat ditentang oleh masyarakat tempatan?",
+    question: "Yang manakah BUKAN bentuk penentangan yang dinyatakan dalam buku teks Bab 7?",
     options: [
-      "Memaksa rakyat menjual hasil pertanian hanya kepada Gabenor Selat",
-      "Menghadkan pengeluaran padi tempatan bagi menggalakkan import beras",
-      "Bertentangan dengan amalan adat di mana tanah dianggap milik bersama/hak Allah dan membebankan rakyat dengan cukai",
-      "Mewajibkan semua tanah diserahkan kepada syarikat asing di London",
+      "Penentangan bersenjata",
+      "Mencabar perjanjian",
+      "Menggunakan sistem perundangan",
+      "Menganjurkan pilihan raya kolonial",
     ],
-    answerIndex: 2,
+    answerIndex: 3,
     explanation:
-      "Sistem tanah Barat dianggap mencabar adat tradisi dan hukum agama (seperti tanah hak Allah), serta menyusahkan rakyat miskin yang terpaksa membayar lesen dan cukai tanah.",
+      "Buku teks menyenaraikan tiga bentuk: bersenjata, mencabar perjanjian dan menggunakan sistem perundangan.",
   },
   {
     id: "sej-f3-c7-b-q2",
@@ -400,17 +384,11 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah strategi British yang menyebabkan kekalahan Dol Said dalam Perang Naning Kedua pada tahun 1832?",
-    options: [
-      "Membakar seluruh ladang padi dan pusat bekalan air di Naning",
-      "Mendapat bantuan armada tentera dari Kerajaan Siam",
-      "Menangkap Dol Said semasa majlis perundingan damai",
-      "Menggunakan strategi pecah dan perintah dengan mengumpan Rembau untuk membantu British",
-    ],
-    answerIndex: 3,
+    question: "Di manakah British menakluki pusat pentadbiran Naning dalam Perang Naning Kedua?",
+    options: ["Taboh", "Paroi", "Jeram Ampai", "Kanowit"],
+    answerIndex: 0,
     explanation:
-      "Dalam Perang Naning II, British berjaya mempengaruhi Yam Tuan Muda Raja Ali dari Rembau untuk tidak membantu Dol Said, malah menghantar tentera membantu British menewaskan Naning.",
+      "British berjaya menakluki Taboh, pusat pentadbiran Naning, lalu menyatukan Naning dengan Melaka.",
   },
   {
     id: "sej-f3-c7-b-q3",
@@ -419,12 +397,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah kubu pertahanan utama Rentap yang sukar ditembusi oleh pasukan James Brooke di Sarawak?",
-    options: ["Kubu Bukit Sadok", "Kubu Nanga Skrang", "Kubu Margherita", "Kubu Pasir Salak"],
-    answerIndex: 0,
+    question: "Apakah kawasan yang ditawan Dato' Bahaman dan pengikutnya pada tahun 1894?",
+    options: [
+      "Kudat dan Ambong",
+      "Kuala Tembeling dan Jeram Ampai",
+      "Paroi dan Bukit Putus",
+      "Kuching dan Sarikei",
+    ],
+    answerIndex: 1,
     explanation:
-      "Kubu Bukit Sadok yang diperbuat daripada kayu belian tebal dan terletak di atas puncak bukit menjadi benteng kukuh Rentap yang menahan serangan Brooke sebanyak tiga kali.",
+      "Pada tahun 1894, Dato' Bahaman dan pengikutnya menawan Kuala Tembeling dan Jeram Ampai.",
   },
   {
     id: "sej-f3-c7-b-q4",
@@ -433,12 +415,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah nama meriam kayu milik Rentap yang digunakan untuk mempertahankan Bukit Sadok daripada serangan Charles Brooke?",
-    options: ["Meriam Lela Rentap", "Bujang Sadok", "Bujang Timpang Berang", "Seri Rambai"],
-    answerIndex: 1,
+    question: "Apakah peristiwa penting penentangan Rentap pada tahun 1853?",
+    options: [
+      "Rentap berundur ke Entabai",
+      "Charles Brooke menyerang Bukit Sadok kali ketiga",
+      "Rentap menyerang kubu Brooke di Nanga Skrang dan Alan Lee terkorban",
+      "Rentap berunding dengan William Cowie",
+    ],
+    answerIndex: 2,
     explanation:
-      "Rentap menggunakan meriam 'Bujang Sadok' untuk membalas tembakan meriam tembaga Charles Brooke 'Bujang Timpang Berang' semasa pertempuran di Bukit Sadok.",
+      "Pada tahun 1853 Rentap menyerang Nanga Skrang dan Alan Lee, pegawai James Brooke, terkorban.",
   },
   {
     id: "sej-f3-c7-b-q5",
@@ -447,17 +433,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Siapakah pembesar Melayu Sarawak yang berpakat dengan Sharif Masahor untuk menyerang rejim Brooke di Kuching?",
+    question: "Apakah strategi serangan Sharif Masahor terhadap Kuching?",
     options: [
-      "Pangeran Indera Mahkota",
-      "Datu Temenggong Abang Ali",
-      "Datu Patinggi Abang Abdul Gapur",
-      "Datu Bandar Abang Haji Muda",
+      "Menyerang melalui jalan laut dari arah barat sementara sekutunya menyerang dari arah timur",
+      "Membina landasan kereta api ke Kuching",
+      "Menggunakan sistem mahkamah Brooke",
+      "Menyerang hanya melalui jalan darat dari Sabah",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Sharif Masahor mengadakan pakatan sulit dengan Datu Patinggi Abang Abdul Gapur untuk menggulingkan Dinasti Brooke dan mengusir Charles Brooke dari Sarawak.",
+      "Sharif Masahor menggunakan jalan laut dari arah barat dan Dato' Patinggi Abdul Gapur menyerang dari arah timur.",
   },
   {
     id: "sej-f3-c7-b-q6",
@@ -466,17 +451,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah hukuman yang dikenakan oleh pihak Brooke ke atas Sharif Masahor selepas pakatan beliau digagalkan?",
+    question: "Apakah tindakan Tok Janggut pada 29 April 1915?",
     options: [
-      "Dijatuhkan hukuman gantung di Kuching",
-      "Dipenjarakan di Fort Alice Simanggang",
-      "Dilucutkan gelaran pembesar dan didenda",
-      "Dibuang negeri ke Singapura",
+      "Menyerang Pulau Gaya",
+      "Mengadakan mesyuarat di Kampung Tok Akib untuk memboikot cukai British",
+      "Mengupah R.C. Woods",
+      "Menawan Kudat",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Selepas pakatannya tewas, Sharif Masahor telah ditangkap dan dibuang negeri ke Singapura oleh pihak Brooke.",
+      "Tok Janggut mengadakan mesyuarat di Kampung Tok Akib untuk memboikot pengenalan cukai British.",
   },
   {
     id: "sej-f3-c7-b-q7",
@@ -485,17 +469,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah nama mesyuarat sulit yang diadakan oleh Raja-raja dan pembesar Melayu Perak untuk merancang penentangan terhadap J.W.W. Birch?",
+    question: "Siapakah Mat Sator?",
     options: [
-      "Persidangan Durian Sebatang",
-      "Mesyuarat Pasir Salak",
-      "Pakatan Pangkor",
-      "Persidangan Kuala Kangsar",
+      "Peguam yang membela petani Ulu Telemong",
+      "Pembesar Sarikei",
+      "Orang kanan dan Ketua Leftenan Mat Salleh serta pemimpin Kadazandusun di Tambunan",
+      "Penghulu Naning",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Sultan Abdullah, Raja Ismail, Dato' Maharaja Lela, dan pembesar Perak mengadakan mesyuarat di Durian Sebatang untuk membincangkan rancangan membunuh J.W.W. Birch.",
+      "Buku teks menerangkan Mat Sator sebagai orang kanan dan Ketua Leftenan Mat Salleh serta pemimpin Kadazandusun di Tambunan.",
   },
   {
     id: "sej-f3-c7-b-q8",
@@ -505,16 +488,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Siapakah pahlawan yang melepaskan tembakan dan mematangkan pembunuhan J.W.W. Birch semasa Birch berada di dalam sampan di Sungai Perak?",
+      "Apakah langkah awal Sultan Abdullah dan pembesar Perak untuk memansuhkan Perjanjian Pangkor?",
     options: [
-      "Dato' Bahaman dan Tok Gajah",
-      "Septum dan Pandak Indut",
-      "Dato' Sagor dan Ngah Ibrahim",
-      "Raja Abdullah dan Raja Ismail",
+      "Menyerang Pasir Salak serta-merta",
+      "Memohon bantuan SBUB",
+      "Menyerahkan Perak kepada Belanda",
+      "Mengupah peguam R.C. Woods dari Pulau Pinang",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation:
-      "Septum melontar lembing dan menembak Birch atas arahan Pandak Indut dan Dato' Maharaja Lela di Pasir Salak.",
+      "Pada 16 Oktober 1874 mereka mengupah R.C. Woods untuk cuba memansuhkan Perjanjian Pangkor.",
   },
   {
     id: "sej-f3-c7-b-q9",
@@ -523,17 +506,15 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah kesan perundingan damai antara Yamtuan Antah dengan Gabenor Sir William Jervois pada tahun 1876?",
+    question: "Apakah kesan pengambilalihan semula Tambunan oleh SBUB terhadap Mat Salleh?",
     options: [
-      "Seri Menanti digabungkan terus menjadi sebahagian daripada NNS",
-      "Dato' Kelana menyerahkan Sungai Ujong kepada Seri Menanti",
-      "British mengiktiraf Yamtuan Antah sebagai Yamtuan Besar Seri Menanti",
-      "Yamtuan Antah dibuang negeri ke Pulau Pinang",
+      "Mencabar kuasa dan kewibawaannya",
+      "Mengukuhkan kedudukannya sebagai pegawai SBUB",
+      "Menamatkan semua pertikaian",
+      "Memberinya kuasa ke atas seluruh Sabah",
     ],
-    answerIndex: 2,
-    explanation:
-      "Melalui perundingan dengan Sir William Jervois, Yamtuan Antah diiktiraf oleh British sebagai Yamtuan Besar Seri Menanti, manakala daerah lain kekal di bawah pembesar masing-masing.",
+    answerIndex: 0,
+    explanation: "Pengambilalihan semula Tambunan mencabar kuasa dan kewibawaan Mat Salleh.",
   },
   {
     id: "sej-f3-c7-b-q10",
@@ -543,16 +524,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Apakah balai polis pertama yang diserang dan ditawan oleh Dato' Bahaman dalam Kebangkitan Semantan pada tahun 1891?",
+      "Apakah yang berlaku kepada Engku Besar Jeram selepas pusat pentadbiran jajahan Pasir Puteh dipindahkan?",
     options: [
-      "Balai Polis Temerloh",
-      "Balai Polis Pekan",
-      "Balai Polis Bentong",
-      "Balai Polis Lubuk Terua",
+      "Dilantik sebagai Residen",
+      "Diberi jawatan lebih rendah sebagai Tok Kweng Muda",
+      "Menjadi Yamtuan Besar",
+      "Dilantik sebagai Pemungut Hasil",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Dato' Bahaman memimpin serangan ke atas Balai Polis Lubuk Terua pada Disember 1891 kerana pembinaannya menceroboh kawasan hak kekuasaannya.",
+      "Engku Besar Jeram kehilangan kuasa dan hanya diberi jawatan rendah sebagai Tok Kweng Muda.",
   },
   {
     id: "sej-f3-c7-b-q11",
@@ -561,17 +542,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah nama perjanjian yang ditandatangani antara Mat Salleh dan William C. Cowie dari SBUB pada tahun 1898?",
+    question: "Apakah yang dicabar oleh undang-undang Barat di Naning?",
     options: [
-      "Perjanjian Menggatal 1898",
-      "Perjanjian Sandakan 1898",
-      "Perjanjian Tambunan 1898",
-      "Perjanjian Kudat 1898",
+      "Hak British memungut cukai",
+      "Sistem perbankan moden",
+      "Bidang kuasa penghakiman Dol Said dan sistem berlandaskan Adat Perpatih",
+      "Kedudukan William Cowie",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Melalui Perjanjian Menggatal 1898, SBUB membenarkan Mat Salleh mentadbir daerah Tambunan dan memaafkan pengikutnya, namun SBUB memungkiri janji ini pada tahun 1899.",
+      "Pelaksanaan undang-undang Barat mencabar bidang kuasa Dol Said dan sistem perundangan Naning yang berlandaskan Adat Perpatih.",
   },
   {
     id: "sej-f3-c7-b-q12",
@@ -580,12 +560,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Di manakah pertempuran terakhir yang menyaksikan Mat Salleh gugur menentang pasukan tentera SBUB pada tahun 1900?",
-    options: ["Kubu Inanam", "Kubu Tambunan", "Kubu Ranau", "Pulau Gaya"],
-    answerIndex: 1,
+    question: "Apakah contoh layanan tidak adil SBUB terhadap orang Murut?",
+    options: [
+      "Membenarkan pembukaan tanah tanpa had",
+      "Menghapuskan semua cukai",
+      "Memberi tanah percuma kepada setiap keluarga",
+      "Melarang membuka tanah baharu dan mengenakan pelbagai cukai serta peraturan yang menyulitkan",
+    ],
+    answerIndex: 3,
     explanation:
-      "Mat Salleh gugur dalam pertempuran di kubu pertahanannya di Tambunan pada 31 Januari 1900 selepas diserang besar-besaran oleh SBUB.",
+      "Buku teks menyatakan orang Murut dilarang membuka tanah baharu dan dikenakan pelbagai cukai serta peraturan yang membebankan.",
   },
   {
     id: "sej-f3-c7-b-q13",
@@ -594,17 +578,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah strategi kubu pertahanan yang dibina oleh Antanom di Selangit semasa Kebangkitan Rondom?",
+    question: "Apakah bukti muafakat dalam perjuangan Dato' Maharaja Lela?",
     options: [
-      "Menggunakan meriam Bujang Sadok di atas pangkalan kayu belian",
-      "Membuat benteng parit dipenuhi air laut",
-      "Membina kubu bawah tanah yang mempunyai beberapa lorong sulit dan kubel tersembunyi",
-      "Membina dinding bata merah tebal bertingkat di atas bukit",
+      "Sultan dan pembesar mengadakan beberapa mesyuarat sulit serta mengangkat sumpah",
+      "Beliau berjuang seorang diri",
+      "Beliau mendapat bantuan tentera SBUB",
+      "Beliau bergantung kepada kapal perang British",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Antanom membina kubu bawah tanah yang terbilang hebat di Selangit, lengkap dengan lorong-lorong terowong dan kubel pertahanan untuk menentang serangan SBUB.",
+      "Beberapa mesyuarat sulit dan sumpah bersama menunjukkan muafakat yang kuat antara sultan dan pembesar.",
   },
   {
     id: "sej-f3-c7-b-q14",
@@ -613,17 +596,10 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Siapakah pegawai British di Pasir Puteh yang kejam dan enggan melayan rayuan penduduk berhubung masalah bayaran cukai tanah?",
-    options: [
-      "J.S. Mason",
-      "W.A. Graham",
-      "J.L. Humphreys",
-      "Encik Latiff (Pegawai Daerah Pasir Puteh)",
-    ],
-    answerIndex: 3,
-    explanation:
-      "Encik Latiff (Pegawai Daerah Pasir Puteh yang dilantik British) bertindak tegas dan tidak mahu beransur kompromi dengan petani tempatan, yang akhirnya mencetuskan kemarahan Tok Janggut.",
+    question: "Apakah nama meriam Rentap yang disebut dalam buku teks?",
+    options: ["Bujang Sadok", "Bujang Timpang Berang", "Lela Rentaka Naning", "Meriam Paroi"],
+    answerIndex: 1,
+    explanation: "Buku teks menyatakan Rentap menggunakan meriam 'Bujang Timpang Berang'.",
   },
   {
     id: "sej-f3-c7-b-q15",
@@ -632,17 +608,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah gelaran peristiwa kebangkitan rakyat Terengganu pada tahun 1928 yang dipimpin oleh para ulama dan petani?",
+    question: "Mengapakah Kota Mat Sator strategik?",
     options: [
-      "Kebangkitan Tani Terengganu",
-      "Perang Hulu Terengganu",
-      "Peristiwa Padang Kachong",
-      "Dahagi Terengganu",
+      "Terletak di pusat bandar Kudat",
+      "Berada di pelabuhan Pulau Gaya",
+      "Terletak di tebing Sungai Sunsuron, dekat Kota Mat Salleh dan menjadi pusat tinjauan",
+      "Dikelilingi landasan kereta api",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Kebangkitan Tani Terengganu (1928) merujuk kepada gerakan petani di Marang, Kuala Telemong, dan Kuala Berang menentang penguatkuasaan undang-undang tanah British.",
+      "Kedudukannya di tebing Sungai Sunsuron membekalkan air dan sesuai sebagai pusat tinjauan kegiatan British.",
   },
   {
     id: "sej-f3-c7-b-q16",
@@ -651,17 +626,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah tindakan yang diambil oleh British terhadap Haji Abdul Rahman Limbong selepas Kebangkitan Tani 1928 ditumpaskan?",
+    question: "Apakah kelemahan usaha pembesar Perak untuk membatalkan Perjanjian Pangkor?",
     options: [
-      "Dilucutkan jawatan sebagai guru agama",
-      "Dibuang negeri ke Mekah",
-      "Dijatuhkan hukuman penjara seumur hidup di Singapura",
-      "Dihukum gantung di Kuala Terengganu",
+      "Mereka tidak mempunyai sebarang peguam",
+      "Mereka tidak pernah membaca perjanjian",
+      "Sultan menolak usaha tersebut",
+      "Pembatalan memerlukan sokongan British dan mereka tidak diberi masa mencukupi meneliti perjanjian",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation:
-      "Haji Abdul Rahman Limbong ditangkap dan dibuang negeri ke Mekah oleh pihak British di mana beliau akhirnya meninggal dunia di sana.",
+      "Buku teks menegaskan usaha membatalkan perjanjian memerlukan sokongan British dan pembesar tidak diberi masa mencukupi untuk menelitinya.",
   },
   {
     id: "sej-f3-c7-b-q17",
@@ -670,16 +644,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question: "Apakah kesan terhadap Sultan Abdullah dari Perak selepas pembunuhan J.W.W. Birch?",
+    question: "Antara berikut, yang manakah faktor kegagalan penentangan masyarakat tempatan?",
     options: [
-      "Dikekalkan di takhta tetapi dinafikan elaun bulanan",
-      "Dipindahkan ke Singapura di bawah pengawasan Gabenor",
-      "Dibuang negeri ke Pulau Seychelles",
-      "Dijatuhkan hukuman gantung bersama Dato' Maharaja Lela",
+      "Gerakan bersifat setempat dan sokongan tidak menyeluruh",
+      "Senjata tempatan lebih canggih daripada Barat",
+      "British tidak menggunakan strategi ketenteraan",
+      "Semua pihak istana menyokong penentangan",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Sultan Abdullah, Raja Ismail, Ngah Ibrahim, dan Dato' Shahbandar dibuang negeri ke Pulau Seychelles kerana dituduh bersubahat dalam pembunuhan Birch.",
+      "Gerakan yang setempat serta sokongan tidak menyeluruh ialah antara faktor kegagalan yang dirumuskan dalam buku teks.",
   },
   {
     id: "sej-f3-c7-b-q18",
@@ -688,17 +662,15 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah sokongan istana atau pemuka agama sangat penting dalam menjayakan gerakan penentangan tempatan?",
+    question: "Apakah tujuan British menubuhkan Malay Administrative Service (MAS)?",
     options: [
-      "Membolehkan tentera tempatan membeli meriam moden dari Eropah",
-      "Membolehkan penentang mendapat elaun daripada perbendaharaan negeri",
-      "Memastikan British menyerah kalah tanpa pertumpahan darah",
-      "Memberi keabsahan moral, semangat jihad, dan perpaduan rakyat yang lebih meluas",
+      "Menggantikan semua sultan",
+      "Melibatkan orang Melayu dalam pentadbiran kerajaan",
+      "Menghapuskan pendidikan Melayu",
+      "Menubuhkan pasukan tentera baharu",
     ],
-    answerIndex: 3,
-    explanation:
-      "Penglibatan ulama dan dorongan istana memberikan keabsahan moral serta menyemarakkan semangat jihad dan perpaduan rakyat menentang penjajah.",
+    answerIndex: 1,
+    explanation: "MAS ditubuhkan bagi melibatkan orang Melayu dalam pentadbiran kerajaan.",
   },
   {
     id: "sej-f3-c7-b-q19",
@@ -707,12 +679,16 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Siapakah tokoh pahlawan Pahang yang merupakan ayah kepada Mat Kilau dan turut serta menentang British bersama Dato' Bahaman?",
-    options: ["Tok Gajah (Khatib Rasu)", "Tok Janggut", "Tok Ku Paloh", "Dato' Sagor"],
-    answerIndex: 0,
+    question: "Apakah fungsi Durbar yang diperkenalkan British?",
+    options: [
+      "Membicarakan semua pejuang tempatan",
+      "Mengurus cukai tanah sahaja",
+      "Memberi ruang kepada sultan dan pembesar menyuarakan pandangan tentang kepentingan bersama",
+      "Menggantikan semua Majlis Mesyuarat Negeri",
+    ],
+    answerIndex: 2,
     explanation:
-      "Tok Gajah (Khatib Rasu bin Shahrum) ialah penasihat utama Sultan Ahmad dan ayah kepada Mat Kilau yang bersama-sama Dato' Bahaman memimpin Kebangkitan Pahang.",
+      "Durbar memberi peluang kepada sultan, Ahli Mesyuarat Negeri dan pembesar Melayu menyuarakan pandangan.",
   },
   {
     id: "sej-f3-c7-b-q20",
@@ -722,15 +698,10 @@ export const sejarahF3C7Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Apakah peranan utama ulama terkemuka Terengganu, Tok Ku Paloh, dalam perjuangan menentang British?",
-    options: [
-      "Dilantik sebagai Penasihat British pertama di Terengganu",
-      "Memberi perlindungan, semangat perjuangan, dan azimat kepada pejuang Pahang seperti Mat Kilau",
-      "Memimpin pasukan tentera berkuda menentang British di Pekan",
-      "Menandatangani Perjanjian Bangkok 1909 bagi pihak Terengganu",
-    ],
-    answerIndex: 1,
+      "Apakah bahasa yang menjadi bahasa rasmi persidangan Majlis Mesyuarat Negeri menurut buku teks?",
+    options: ["Bahasa Inggeris", "Bahasa Arab", "Bahasa Tamil", "Bahasa Melayu"],
+    answerIndex: 3,
     explanation:
-      "Tok Ku Paloh (Sayyid Abdur Rahman bin Sayyid Muhammad al-Idrus) memberi perlindungan di Paloh dan menyemarakkan semangat jihad pejuang Pahang yang berundur ke Terengganu.",
+      "Buku teks menyatakan bahasa Melayu menjadi bahasa rasmi persidangan, manakala tulisan Jawi digunakan dalam surat-menyurat.",
   },
 ];

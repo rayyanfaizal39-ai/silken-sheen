@@ -44,9 +44,11 @@ export function getFlashcardDeckCards(
   // Unknown Form → no deck. Never fall back to Form 1.
   if (!subjectId || !form || !chapterKey) return [];
 
-  const registeredCards = keepCardsForForm(
+  const registeredCards = keepSelectedFormCards(
     registry?.getChapter(subjectId, chapterKey, language, form)?.flashcards ?? [],
+    subjectId,
     form,
+    chapterKey,
   );
   const legacyCards = dataModule
     ? dataModule.flashcards.filter((card) => {
@@ -58,11 +60,15 @@ export function getFlashcardDeckCards(
     : [];
 
   const source = registeredCards.length >= legacyCards.length ? registeredCards : legacyCards;
-  const isSejarahF3TwoSetChapter =
+  const isSejarahF3SetChapter =
     subjectId === "sejarah" &&
     form === "Form 3" &&
     ["Chapter 1", "Chapter 2", "Chapter 3", "Chapter 4", "Chapter 5", "Chapter 6", "Chapter 7", "Chapter 8"].includes(chapterKey);
-  return standardizeFlashcardDeck(source, SINGLE_SET_DECK_SIZE, isSejarahF3TwoSetChapter ? 40 : 60);
+  return standardizeFlashcardDeck(
+    source,
+    SINGLE_SET_DECK_SIZE,
+    isSejarahF3SetChapter && source.length === 40 ? 40 : 60,
+  );
 }
 
 /**
@@ -71,6 +77,58 @@ export function getFlashcardDeckCards(
  */
 export function keepCardsForForm<T extends { form?: string | null }>(cards: T[], form: Form) {
   return cards.filter((card) => !card.form || card.form === form);
+}
+
+/**
+ * Cards in a deck that don't belong to the selected subject + form. Every
+ * deck the player shows must come back empty here.
+ */
+export function findFlashcardFormLeaks(cards: Flashcard[], subjectId: string, form: Form) {
+  return cards.filter((card) => card.subjectId !== subjectId || card.form !== form);
+}
+
+/**
+ * Drops (never substitutes) cards from another subject/form, and reports the
+ * leak in development so a bad chapter builder is caught at the source.
+ */
+export function keepSelectedFormCards(
+  cards: Flashcard[],
+  subjectId: string,
+  form: Form,
+  context = "",
+): Flashcard[] {
+  const leaks = findFlashcardFormLeaks(cards, subjectId, form);
+  if (leaks.length === 0) return cards;
+  if (import.meta.env.DEV) {
+    console.error("FLASHCARD FORM LEAK", {
+      subjectId,
+      form,
+      context,
+      leaked: leaks.length,
+      total: cards.length,
+      sample: leaks.slice(0, 3).map((card) => `${card.id} (${card.subjectId} ${card.form})`),
+    });
+  }
+  return cards.filter((card) => card.subjectId === subjectId && card.form === form);
+}
+
+/**
+ * Identity of one study session. Form is part of it, so the same chapter
+ * number in another form ("Chapter 1" exists in Form 1, 2 and 3) is always a
+ * different deck, e.g. `flashcard-session:sejarah:f1:chapter-1`.
+ */
+export function getFlashcardSessionKey(
+  subjectId: string | null,
+  form: string,
+  chapter: string | null,
+  ...variant: Array<string | number | null | undefined>
+) {
+  const formPart = form === "All" ? "all" : `f${form.replace(/\D/g, "")}`;
+  const chapterPart = (chapter ?? "none").toLowerCase().replace(/\s+/g, "-");
+  const variantParts = variant.filter((part) => part !== null && part !== undefined);
+  return ["flashcard-session", subjectId ?? "none", formPart, chapterPart, ...variantParts].join(
+    ":",
+  );
 }
 
 export function standardizeFlashcardDeck(
@@ -89,7 +147,10 @@ export function standardizeFlashcardDeck(
   return uniqueCards.length === singleSetSize ? uniqueCards : [];
 }
 
-export function splitFlashcardDeck(cards: Flashcard[], setCount: 2 | 3 = 3) {
+export function splitFlashcardDeck(
+  cards: Flashcard[],
+  setCount: 2 | 3 = cards.length === 40 ? 2 : 3,
+) {
   const deckSize = SINGLE_SET_DECK_SIZE * setCount;
   if (cards.length !== deckSize || new Set(cards.map((card) => card.id)).size !== deckSize) {
     return [];

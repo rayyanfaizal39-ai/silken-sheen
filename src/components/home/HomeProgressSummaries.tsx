@@ -26,7 +26,7 @@ type TrackerModule = typeof import("@/lib/tracker");
 
 const FORMS: HomeForm[] = ["Form 1", "Form 2", "Form 3"];
 
-function createLearningCatalog(registry: RegistryModule): HomeLearningCatalog {
+export function createLearningCatalog(registry: RegistryModule): HomeLearningCatalog {
   const chapterCache = new Map<
     string,
     ReturnType<RegistryModule["getRegisteredSubjectChapters"]>
@@ -56,6 +56,9 @@ function createLearningCatalog(registry: RegistryModule): HomeLearningCatalog {
     getLabel(candidate) {
       return chaptersFor(candidate).find((chapter) => chapter.key === candidate.chapterKey)?.label;
     },
+    // Callers only know subject + chapter (chapter progress and quiz history
+    // don't record a form). "Chapter 4" exists in several forms, so only
+    // resolve when exactly one form has it — never pick the first (Form 1).
     findAvailable(subjectId, chapterKey, activity) {
       // Chapter history is keyed without a Form. Only resolve it when exactly
       // one Form has this chapter; if several do, the Form is unknown and we

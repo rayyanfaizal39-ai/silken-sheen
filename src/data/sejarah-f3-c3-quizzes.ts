@@ -9,16 +9,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Apakah strategi utama yang digunakan oleh British untuk campur tangan di Perak berelatan dengan perebutan takhta kesultanan?",
+      "Sejak zaman manakah bijih timah menjadi barang dagangan penting di negeri-negeri Melayu?",
     options: [
-      "Bantuan ketenteraan terbuka",
-      "Manipulasi konflik tempatan",
-      "Serangan tentera laut",
-      "Pembelian wilayah",
+      "Kesultanan Melayu Melaka",
+      "Persekutuan 1896",
+      "Pendudukan Jepun",
+      "Pembentukan Malayan Union",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "British mengambil kesempatan daripada konflik perebutan takhta antara Raja Abdullah, Raja Ismail, dan Raja Yusuf serta Perang Larut untuk memanipulasi keadaan dan campur tangan di Perak.",
+      "Bijih timah telah menjadi barang dagangan penting sejak zaman Kesultanan Melayu Melaka.",
   },
   {
     id: "sej-f3-c3-a-q2",
@@ -28,11 +28,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Siapakah pembesar Melayu yang menguasai daerah Larut dan membawa masuk pelombong Cina Ghee Hin dan Hai San?",
-    options: ["Dato' Kelana", "Long Jaafar", "Ngah Ibrahim", "Raja Mahadi"],
-    answerIndex: 2,
+      "Siapakah yang memajukan perlombongan bijih timah di Klian Pauh dan Klian Baru dengan membawa masuk pelombong Cina?",
+    options: [
+      "Raja Mahadi dan Raja Abdullah",
+      "Long Jaafar dan Ngah Ibrahim",
+      "Dato' Kelana dan Dato' Syahbandar",
+      "Sultan Ahmad dan J.P. Rodger",
+    ],
+    answerIndex: 1,
     explanation:
-      "Menteri Larut, Ngah Ibrahim (meneruskan usaha ayahnya Long Jaafar), menguasai Larut dan membawa masuk ramai pelombong Cina yang kemudiannya terlibat dalam Perang Larut.",
+      "Long Jaafar dan anaknya Ngah Ibrahim memajukan perlombongan bijih timah di Larut.",
   },
   {
     id: "sej-f3-c3-a-q3",
@@ -41,17 +46,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Perjanjian penting yang ditandatangani pada 20 Januari 1874 yang menandakan bermulanya campur tangan rasmi British di Perak ialah:",
+    question: "Apakah kepentingan Lembah Kinta pada akhir abad ke-19?",
     options: [
-      "Perjanjian Pangkor",
-      "Perjanjian Persekutuan",
-      "Perjanjian Bangkok",
-      "Perjanjian London",
+      "Pusat utama perdagangan emas",
+      "Pusat pentadbiran NNMB",
+      "Pengeluar utama bijih timah dunia",
+      "Pusat pemerintahan Kesultanan Selangor",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Perjanjian Pangkor ditandatangani pada 20 Januari 1874 di atas kapal HMS Pluto antara Gabenor Sir Andrew Clarke dengan Raja Abdullah dan pembesar Perak.",
+      "Pada akhir abad ke-19, Lembah Kinta muncul sebagai pengeluar utama bijih timah dunia.",
   },
   {
     id: "sej-f3-c3-a-q4",
@@ -60,17 +64,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Antara syarat utama Perjanjian Pangkor 1874 ialah Sultan Perak mesti menerima seorang Residen British. Nasihat Residen mesti diminta dan diikuti dalam semua urusan KECUALI:",
+    question: "Apakah kegiatan yang mendorong pembentukan bandar Kuala Lumpur pada abad ke-19?",
     options: [
-      "Agama Islam dan adat istiadat Melayu",
-      "Sistem kehakiman dan kepolisan",
-      "Pentadbiran tanah dan lombong",
-      "Pungutan cukai dan hasil negeri",
+      "Penanaman gambir",
+      "Perdagangan emas",
+      "Penternakan",
+      "Perlombongan bijih timah di Ampang dan kawasan sekitarnya",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation:
-      "Nasihat Residen British hendaklah diminta dan dipatuhi dalam semua perkara pentadbiran negeri kecuali hal berkaitan agama Islam dan adat istiadat Melayu.",
+      "Kejayaan perlombongan bijih timah di Ampang dan penggunaan pertemuan sungai sebagai pangkalan mengangkut timah mendorong pembentukan Kuala Lumpur.",
   },
   {
     id: "sej-f3-c3-a-q5",
@@ -79,17 +82,10 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah peristiwa di Selangor yang dijadikan dalih oleh British untuk mendesak Sultan Abdul Samad menerima perlindungan British pada tahun 1874?",
-    options: [
-      "Pembunuhan J.W.W. Birch",
-      "Rompakan kapal dagang British di Langat dan serangan Rumah Api Tanjung Rachado",
-      "Perebutan kawasan lombong bijih timah di Lukut",
-      "Pemberontakan Pahang",
-    ],
-    answerIndex: 1,
-    explanation:
-      "Peristiwa perompakan kapal dagang British yang berlayar dari Pulau Pinang ke Melaka berdekatan Langat serta serangan terhadap Rumah Api Tanjung Rachado digunakan British sebagai desakan.",
+    question: "Antara berikut, yang manakah kawasan perlombongan emas penting di Pahang?",
+    options: ["Raub", "Larut", "Lukut", "Ampang"],
+    answerIndex: 0,
+    explanation: "Raub ialah salah satu kawasan penting perlombongan emas di Pahang.",
   },
   {
     id: "sej-f3-c3-a-q6",
@@ -99,16 +95,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Dalam Perang Klang di Selangor, siapakah dua tokoh tempatan yang saling berbalah merebut kawalan daerah Klang?",
+      "Apakah tiga strategi utama British untuk meluaskan kuasa di negeri-negeri Melayu dalam Bab 3?",
     options: [
-      "Raja Ismail dan Raja Yusuf",
-      "Raja Mahadi dan Raja Abdullah",
-      "Long Jaafar dan Ngah Ibrahim",
-      "Dato' Kelana dan Dato' Bandar",
+      "Pajakan, pembelian dan penyerahan",
+      "Manipulasi, desakan dan paksaan, serta perjanjian",
+      "Perdagangan, pendidikan dan penghijrahan",
+      "Persekutuan, pilihan raya dan diplomasi",
     ],
     answerIndex: 1,
     explanation:
-      "Perang Klang berpunca daripada pertikaian antara Raja Mahadi dan Raja Abdullah untuk menguasai daerah Klang yang kaya dengan bijih timah.",
+      "British menggunakan manipulasi, desakan dan paksaan serta perjanjian dengan pemerintah tempatan.",
   },
   {
     id: "sej-f3-c3-a-q7",
@@ -117,17 +113,15 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Pertikaian di Sungai Ujong, Negeri Sembilan antara Dato' Kelana Syed Ahmad dan Dato' Bandar Kulop Tunggal adalah berpunca daripada:",
+    question: "Apakah dua kumpulan pelombong Cina yang terlibat dalam Perang Larut?",
     options: [
-      "Pembinaan balai polis British",
-      "Bantahan terhadap Adat Perpatih",
-      "Perebutan takhta Yamtuan Besar",
-      "Hak memungut cukai di Sungai Linggi",
+      "Hai San dan Kongsi Dua Belas",
+      "Ghee Hin dan Kapitan Cina",
+      "Ghee Hin dan Hai San",
+      "Hai San dan Dato' Kelana",
     ],
-    answerIndex: 3,
-    explanation:
-      "Dato' Kelana dan Dato' Bandar berebut hak memungut cukai ke atas pedagang yang membawa bijih timah melalui Sungai Linggi.",
+    answerIndex: 2,
+    explanation: "Pergaduhan antara kumpulan Ghee Hin dan Hai San mencetuskan Perang Larut.",
   },
   {
     id: "sej-f3-c3-a-q8",
@@ -137,16 +131,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Apakah dalih yang digunakan oleh British untuk mendesak Sultan Ahmad dari Pahang menerima Residen British pada tahun 1888?",
+      "Mengapakah Raja Abdullah tidak ditabalkan sebagai Sultan Perak selepas kemangkatan Sultan Ali?",
     options: [
-      "Kematian seorang lelaki berbangsa Cina bersubjek British bernama Goh Hui berhampiran istana",
-      "Ancaman pencerobohan kuasa Siam",
-      "Pemberontakan Dato' Bahaman",
-      "Perang saudara Pahang",
+      "Beliau menolak jawatan Raja Muda",
+      "Beliau berada di luar negeri",
+      "Beliau kalah dalam Perang Larut",
+      "Beliau tidak hadir ke upacara pemakaman Sultan Ali",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation:
-      "British menggunakan peristiwa kematian Goh Hui, seorang rakyat British, berhampiran istana Sultan Ahmad di Pekan untuk mendesak Sultan menerima Residen.",
+      "Raja Abdullah ialah Raja Muda tetapi tidak ditabalkan kerana tidak hadir ke upacara pemakaman Sultan Ali walaupun dijemput.",
   },
   {
     id: "sej-f3-c3-a-q9",
@@ -155,11 +149,12 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question: "Siapakah tokoh yang dilantik sebagai Residen British pertama di Perak?",
-    options: ["J.G. Davidson", "Frank Swettenham", "J.W.W. Birch", "Martin Lister"],
-    answerIndex: 2,
+    question:
+      "Siapakah Gabenor Negeri-negeri Selat yang mengambil peluang daripada Perang Larut dan perebutan takhta Perak untuk campur tangan?",
+    options: ["Andrew Clarke", "J.G. Davidson", "Frank Swettenham", "J.P. Rodger"],
+    answerIndex: 0,
     explanation:
-      "J.W.W. Birch dilantik sebagai Residen British pertama di Perak selepas Perjanjian Pangkor 1874.",
+      "Andrew Clarke menggunakan kedua-dua kekacauan itu sebagai peluang campur tangan British di Perak.",
   },
   {
     id: "sej-f3-c3-a-q10",
@@ -168,17 +163,15 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Manakah antara berikut MERUPAKAN padanan tepat Residen British Pertama dengan negeri yang ditadbirnya?",
+    question: "Siapakah dua tokoh yang bersaing dalam Perang Klang?",
     options: [
-      "Pahang - J.W.W. Birch",
-      "Perak - Frank Swettenham",
-      "Selangor - J.G. Davidson",
-      "Negeri Sembilan - J.P. Rodger",
+      "Dato' Kelana dan Dato' Syahbandar",
+      "Raja Abdullah dan Raja Mahadi",
+      "Raja Abdullah dan Raja Yusuf",
+      "Ngah Ibrahim dan Long Jaafar",
     ],
-    answerIndex: 2,
-    explanation:
-      "J.G. Davidson ialah Residen pertama Selangor, J.W.W. Birch (Perak), Martin Lister (Negeri Sembilan), dan J.P. Rodger (Pahang).",
+    answerIndex: 1,
+    explanation: "Raja Abdullah dan Raja Mahadi bersaing mendapatkan hak terhadap daerah Klang.",
   },
   {
     id: "sej-f3-c3-a-q11",
@@ -187,17 +180,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah peranan utama Majlis Mesyuarat Negeri yang ditubuhkan di bawah Sistem Residen?",
+    question: "Mengapakah Sungai Linggi menjadi rebutan pembesar di Sungai Ujong?",
     options: [
-      "Menguruskan perdagangan antarabangsa",
-      "Menentang dasar ketenteraan British",
-      "Menggubal undang-undang negeri dan membincangkan hal pentadbiran",
-      "Melantik Sultan dan pembesar baharu",
+      "Menjadi kawasan perlombongan emas",
+      "Menjadi sempadan Selangor-Pahang",
+      "Membolehkan pungutan cukai terhadap pedagang yang membawa bijih timah",
+      "Menjadi pusat pentadbiran British",
     ],
     answerIndex: 2,
     explanation:
-      "Majlis Mesyuarat Negeri dipengerusikan oleh Sultan untuk meluluskan undang-undang negeri dan membincangkan perkara pentadbiran, namun kuasa sebenar dipengaruhi Residen.",
+      "Penguasaan Sungai Linggi membolehkan pembesar memungut cukai daripada pedagang yang membawa bijih timah ke Melaka.",
   },
   {
     id: "sej-f3-c3-a-q12",
@@ -207,16 +199,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Apakah faktor utama kewangan yang mendorong pembentukan Negeri-negeri Melayu Bersekutu (NNMB) pada tahun 1896?",
+      "Apakah dua peristiwa yang digunakan British untuk mendesak Sultan Selangor menerima perlindungan British?",
     options: [
-      "Pahang mengalami masalah kewangan akibat penentangan tempatan dan hutang yang tinggi",
-      "British mahu mengurangkan gaji Sultan",
-      "Negeri Sembilan mahu menanggung kos pentadbiran Melaka",
-      "Kedua-dua Perak dan Selangor mengalami muflis",
+      "Perang Larut dan kematian Goh Hui",
+      "Perang Klang dan perebutan takhta Perak",
+      "Serangan Naning dan Perang Pahang",
+      "Rompakan kapal berhampiran Kuala Langat dan serangan rumah api di Tanjung Rachado",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation:
-      "Pahang mengalami masalah kewangan dan hutang yang banyak akibat kos menangani penentangan Dato' Bahaman. Gabungan persekutuan membolehkan Perak dan Selangor membantu Pahang.",
+      "Kedua-dua peristiwa pada 1873 dan 1874 digunakan sebagai alasan bahawa Sultan gagal menjamin keselamatan perairan Selangor.",
   },
   {
     id: "sej-f3-c3-a-q13",
@@ -226,16 +218,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Perjanjian Persekutuan 1895 menggabungkan empat buah negeri Melayu. Negeri manakah yang TERLIBAT?",
+      "Apakah peristiwa yang digunakan British untuk memaksa Sultan Ahmad menerima perlindungan British pada tahun 1888?",
     options: [
-      "Pulau Pinang, Melaka, Singapura, Kedah",
-      "Perak, Selangor, Negeri Sembilan, Pahang",
-      "Johor, Terengganu, Kelantan, Perlis",
-      "Kedah, Perlis, Kelantan, Johor",
+      "Kematian Goh Hui di pekarangan istana",
+      "Perang Larut",
+      "Serangan Rumah Api Tanjung Rachado",
+      "Pertikaian Sungai Linggi",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "NNMB atau Persekutuan 1896 terdiri daripada gabungan empat buah negeri: Perak, Selangor, Negeri Sembilan, dan Pahang.",
+      "British mendakwa Goh Hui ialah rakyat British dan menekan Sultan Ahmad selepas kematiannya.",
   },
   {
     id: "sej-f3-c3-a-q14",
@@ -245,11 +237,11 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Siapakah yang dilantik sebagai Residen Jeneral pertama Negeri-negeri Melayu Bersekutu apabila persekutuan ditubuhkan pada 1 Julai 1896?",
-    options: ["Sir Hugh Low", "Sir Andrew Clarke", "Sir Frank Swettenham", "J.W.W. Birch"],
-    answerIndex: 2,
+      "Dalam perkara apakah Sultan Perak tidak diwajibkan menerima nasihat Residen menurut Perjanjian Pangkor 1874?",
+    options: ["Pungutan cukai", "Agama Islam dan adat Melayu", "Pentadbiran tanah", "Hal ekonomi"],
+    answerIndex: 1,
     explanation:
-      "Sir Frank Swettenham dilantik sebagai Residen Jeneral pertama NNMB yang mengetuai pentadbiran Persekutuan berpusat di Kuala Lumpur.",
+      "Nasihat Residen mesti dipatuhi dalam urusan pentadbiran kecuali agama Islam dan adat Melayu.",
   },
   {
     id: "sej-f3-c3-a-q15",
@@ -259,11 +251,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Pilih bandar yang dipilih sebagai pusat pentadbiran (ibu negeri) Persekutuan Negeri-negeri Melayu Bersekutu pada tahun 1896:",
-    options: ["Kuala Lumpur", "Pekan", "Taiping", "Klang"],
-    answerIndex: 0,
+      "Apakah kuasa yang diberikan kepada British berkaitan cukai melalui Perjanjian Pangkor 1874?",
+    options: [
+      "Cukai hanya boleh dikutip oleh Sultan",
+      "Cukai dihapuskan sepenuhnya",
+      "British berkuasa penuh atas pungutan cukai di Perak",
+      "Cukai diserahkan kepada pedagang Cina",
+    ],
+    answerIndex: 2,
     explanation:
-      "Kuala Lumpur dipilih sebagai ibu negeri dan pusat pentadbiran Persekutuan NNMB kerana kedudukannya yang strategik di tengah-tengah negeri anggota.",
+      "Salah satu syarat Perjanjian Pangkor memberi British kuasa penuh ke atas pungutan cukai di Perak.",
   },
   {
     id: "sej-f3-c3-a-q16",
@@ -272,16 +269,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question: "Apakah kesan pembentukan NNMB terhadap kuasa Raja-raja Melayu?",
+    question: "Apakah tugas utama Residen British?",
     options: [
-      "Kuasa Sultan merosot kerana pentadbiran dipusatkan di tangan Residen Jeneral",
-      "Sultan dilantik sebagai Residen Jeneral",
-      "Majlis Mesyuarat Negeri dibubarkan sepenuhnya",
-      "Kuasa Sultan bertambah mutlak",
+      "Menentukan pewarisan takhta",
+      "Menjadi ketua agama Islam",
+      "Memerintah tanpa Sultan",
+      "Menasihati Raja Melayu dalam pentadbiran kecuali agama Islam dan adat Melayu",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation:
-      "Pembentukan NNMB menyebabkan pemusatan kuasa di tangan Residen Jeneral di Kuala Lumpur, menyebabkan kuasa Sultan dan Majlis Mesyuarat Negeri semakin terhakis.",
+      "Residen menasihati Raja-raja Melayu dalam semua hal pentadbiran kecuali agama Islam dan adat Melayu.",
   },
   {
     id: "sej-f3-c3-a-q17",
@@ -290,17 +287,10 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Persidangan Raja-Raja Melayu bagi Negeri-negeri Melayu Bersekutu yang dikenali sebagai Durbar pertama telah diadakan pada tahun 1897 di:",
-    options: [
-      "Kuala Lumpur",
-      "Kuala Kangsar, Perak",
-      "Seremban, Negeri Sembilan",
-      "Kuantan, Pahang",
-    ],
-    answerIndex: 1,
-    explanation:
-      "Durbar I (Persidangan Raja-Raja Melayu) pertama kali diadakan pada tahun 1897 di Istana Negara, Kuala Kangsar, Perak.",
+    question: "Siapakah Residen British pertama di Perak?",
+    options: ["J.W.W. Birch", "Martin Lister", "J.G. Davidson", "J.P. Rodger"],
+    answerIndex: 0,
+    explanation: "J.W.W. Birch ialah Residen British pertama di Perak.",
   },
   {
     id: "sej-f3-c3-a-q18",
@@ -309,17 +299,10 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Dalam Durbar II yang diadakan pada tahun 1903 di Kuala Lumpur, siapakah Sultan yang lantang menyuarakan kritikan terhadap pemusatan kuasa British dan menuntut hak orang Melayu?",
-    options: [
-      "Yamtuan Antah (Negeri Sembilan)",
-      "Sultan Abdul Samad (Selangor)",
-      "Sultan Idris Murshidul Adzam Shah (Perak)",
-      "Sultan Ahmad (Pahang)",
-    ],
-    answerIndex: 2,
-    explanation:
-      "Sultan Idris Shah dari Perak menyampaikan ucapan berani dalam Durbar II 1903 mengkritik pemusatan kuasa di tangan Residen Jeneral dan mendesak pemulihan kuasa Raja-raja serta pegawai Melayu.",
+    question: "Siapakah Residen British pertama di Negeri Sembilan?",
+    options: ["J.P. Rodger", "Martin Lister", "J.W.W. Birch", "J.G. Davidson"],
+    answerIndex: 1,
+    explanation: "Martin Lister ialah Residen British pertama di Negeri Sembilan.",
   },
   {
     id: "sej-f3-c3-a-q19",
@@ -329,16 +312,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Apakah cadangan penting Sultan Idris dalam Durbar II 1903 mengenai perkhidmatan awam?",
+      "Apakah perubahan penting kepada Sultan dan pembesar selepas pelaksanaan Sistem Residen?",
     options: [
-      "Menjadikan bahasa Inggeris sebagai bahasa rasmi tunggal",
-      "Menutup sekolah-sekolah Melayu",
-      "Menghapuskan jawatan Residen Jeneral",
-      "Melantik lebih ramai anak tempatan (orang Melayu) dalam jawatan pentadbiran kerajaan",
+      "Mereka mendapat kuasa penuh memungut cukai",
+      "Mereka dilantik menjadi Residen",
+      "Kedudukan dikekalkan tetapi kuasa pentadbiran dan pungutan cukai berkurang",
+      "Mereka mengambil alih jabatan British",
     ],
-    answerIndex: 3,
+    answerIndex: 2,
     explanation:
-      "Sultan Idris menuntut agar anak-anak Melayu dilatih dan dilantik dalam perkhidmatan kerajaan, yang kemudian membawa kepada penubuhan Malay Administrative Service (MAS) dan Malay College Kuala Kangsar (MCKK).",
+      "Kedudukan Sultan dan pembesar dikekalkan, tetapi mereka kehilangan banyak kuasa pentadbiran dan pungutan cukai.",
   },
   {
     id: "sej-f3-c3-a-q20",
@@ -347,17 +330,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Majlis Mesyuarat Persekutuan ditubuhkan pada tahun 1909 semasa pentadbiran Gabenor Sir John Anderson bertujuan untuk:",
+    question: "Antara berikut, yang manakah contoh jabatan bercorak Barat di bawah Sistem Residen?",
     options: [
-      "Mengembalikan sebahagian kuasa perundangan dan menguruskan pentadbiran persekutuan",
-      "Menyerahkan kembali kuasa penuh kepada Sultan",
-      "Menyertakan Negeri-negeri Melayu Tidak Bersekutu",
-      "Menghapuskan kuasa Majlis Mesyuarat Negeri",
+      "Majlis Raja-Raja sahaja",
+      "Pejabat Mufti sahaja",
+      "Balai adat sahaja",
+      "Jabatan Kehakiman, Jabatan Polis serta Jabatan Tanah dan Ukur",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation:
-      "Majlis Mesyuarat Persekutuan (Federal Council) ditubuhkan pada tahun 1909 untuk menggubal undang-undang bagi seluruh persekutuan NNMB.",
+      "Bab 3 menyenaraikan Jabatan Kehakiman, Jabatan Polis dan Jabatan Tanah dan Ukur sebagai contoh jabatan bercorak Barat.",
   },
   {
     id: "sej-f3-c3-b-q1",
@@ -366,17 +348,15 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah dua lokasi utama perlombongan bijih timah di Perak yang mengalami pertumbuhan pesat pada pertengahan abad ke-19?",
+    question: "Apakah empat negeri yang membentuk Negeri-negeri Melayu Bersekutu?",
     options: [
-      "Kuala Lumpur dan Ampang",
-      "Sungai Ujong dan Rasah",
-      "Larut dan Lembah Kinta",
-      "Lukut dan Klang",
+      "Perak, Selangor, Negeri Sembilan dan Pahang",
+      "Perak, Kedah, Kelantan dan Johor",
+      "Selangor, Melaka, Pahang dan Johor",
+      "Perlis, Kedah, Kelantan dan Terengganu",
     ],
-    answerIndex: 2,
-    explanation:
-      "Larut (dibuka oleh Long Jaafar) dan Lembah Kinta merupakan dua pusat utama pengeluaran bijih timah terpenting di Perak.",
+    answerIndex: 0,
+    explanation: "NNMB menggabungkan Perak, Selangor, Negeri Sembilan dan Pahang.",
   },
   {
     id: "sej-f3-c3-b-q2",
@@ -385,17 +365,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah berlaku pertikaian penggantian takhta di Perak selepas kemangkatan Sultan Ali pada tahun 1871?",
+    question: "Apakah maksud persekutuan?",
     options: [
-      "Raja Muda Abdullah tidak menghadiri upacara pemakaman dan Raja Bendahara Ismail dilantik sebagai Sultan",
-      "British melantik Raja Yusuf secara paksa",
-      "Perang Larut memusnahkan istana Sultan",
-      "Raja Abdullah ditabalkan tanpa persetujuan Siam",
+      "Gabungan negeri tanpa kerajaan pusat",
+      "Gabungan beberapa negeri di bawah satu unit pentadbiran yang mempunyai kerajaan pusat dan kerajaan negeri",
+      "Gabungan pelabuhan bebas",
+      "Gabungan wilayah yang ditadbir terus oleh Residen",
     ],
-    answerIndex: 0,
+    answerIndex: 1,
     explanation:
-      "Mengikut adat Perak, Raja Muda sepatutnya menghadiri pemakaman Sultan untuk ditabalkan. Kegagalan Raja Abdullah hadir menyebabkan Raja Bendahara Ismail dilantik sebagai Sultan.",
+      "Persekutuan ialah gabungan beberapa negeri di bawah satu unit pentadbiran yang mengandungi kerajaan pusat dan kerajaan negeri.",
   },
   {
     id: "sej-f3-c3-b-q3",
@@ -404,12 +383,10 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Siapakah Gabenor Negeri-negeri Selat yang menandatangani Perjanjian Pangkor bagi pihak kerajaan British?",
-    options: ["Sir Andrew Clarke", "Sir Stamford Raffles", "Sir Harry Ord", "Sir Frederick Weld"],
-    answerIndex: 0,
-    explanation:
-      "Sir Andrew Clarke menggantikan Sir Harry Ord sebagai Gabenor NNS dan mengambil pendekatan campur tangan secara langsung di Perak.",
+    question: "Siapakah ketua pentadbiran kerajaan persekutuan NNMB?",
+    options: ["Pesuruhjaya Tinggi", "Sultan Perak", "Residen Jeneral", "Residen Perak"],
+    answerIndex: 2,
+    explanation: "Residen Jeneral ialah ketua pentadbiran kerajaan persekutuan NNMB.",
   },
   {
     id: "sej-f3-c3-b-q4",
@@ -418,17 +395,10 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah tindakan British terhadap Raja Ismail selepas Perjanjian Pangkor 1874 ditandatangani?",
-    options: [
-      "Dilantik sebagai Residen Perak",
-      "Diiktiraf sebagai Sultan Perak yang sah",
-      "Diberi gelaran Sultan Muda dan pencen bulanan serta kawasan pencen",
-      "Dibuang negeri ke Pulau Seychelles",
-    ],
-    answerIndex: 2,
-    explanation:
-      "Raja Ismail diundur daripada takhta Sultan tetapi diberi gelaran Sultan Muda beserta elaun/pencen bulanan dan sebuah daerah.",
+    question: "Di manakah pusat pentadbiran Negeri-negeri Melayu Bersekutu?",
+    options: ["Taiping", "Kuala Kangsar", "Pekan", "Kuala Lumpur"],
+    answerIndex: 3,
+    explanation: "Kuala Lumpur menjadi pusat pentadbiran NNMB.",
   },
   {
     id: "sej-f3-c3-b-q5",
@@ -437,12 +407,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Siapakah tokoh keturunan Kedah yang dilantik oleh Sultan Abdul Samad sebagai Wakil Yamtuan untuk mendamaikan Perang Klang di Selangor?",
-    options: ["Raja Mahadi", "Raja Asal", "Tengku Kudin", "Yap Ah Loy"],
-    answerIndex: 2,
+    question: "Apakah kelemahan Sistem Residen yang mendorong pembentukan NNMB?",
+    options: [
+      "Residen tidak diberikan garis panduan yang jelas untuk melaksanakan tugas",
+      "Semua negeri mempunyai undang-undang yang sama",
+      "Raja mempunyai kuasa terlalu besar dalam kewangan British",
+      "Tiada kegiatan ekonomi di empat negeri",
+    ],
+    answerIndex: 0,
     explanation:
-      "Sultan Abdul Samad melantik menantunya, Tengku Kudin (Tengku Dhiauddin) dari Kedah, sebagai Wakil Yamtuan untuk mengamankan Selangor.",
+      "Antara kelemahan Sistem Residen ialah ketiadaan garis panduan yang jelas dan peningkatan kuasa Residen.",
   },
   {
     id: "sej-f3-c3-b-q6",
@@ -452,11 +426,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Kapitan Cina Kuala Lumpur yang banyak memajukan lombong bijih timah dan membantu Tengku Kudin dalam Perang Klang ialah:",
-    options: ["Goh Hui", "Long Jaafar", "Lim Boon Keng", "Yap Ah Loy"],
-    answerIndex: 3,
+      "Mengapakah British mahu menyeragamkan pentadbiran Perak, Selangor, Negeri Sembilan dan Pahang?",
+    options: [
+      "Untuk menghapuskan semua kerajaan negeri",
+      "Pentadbiran tidak seragam dan kemajuan ekonomi antara negeri tidak seimbang",
+      "Untuk menyerahkan negeri kepada Belanda",
+      "Semua negeri menolak sistem cukai",
+    ],
+    answerIndex: 1,
     explanation:
-      "Yap Ah Loy ialah Kapitan Cina Kuala Lumpur yang membangunkan semula Kuala Lumpur selepas musnah dalam Perang Klang.",
+      "Setiap negeri mempunyai undang-undang sendiri dan tahap kemajuan ekonomi yang berbeza; British mahu pentadbiran lebih cekap dan seragam.",
   },
   {
     id: "sej-f3-c3-b-q7",
@@ -465,17 +444,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Dalam pertikaian di Sungai Ujong, pihak British memberi bantuan ketenteraan kepada Dato' Kelana Syed Ahmad. Mengapakah British berbuat demikian?",
+    question: "Bagaimanakah pembentukan NNMB membantu masalah kewangan Pahang?",
     options: [
-      "Untuk menyokong Dato' Bandar Kulop Tunggal",
-      "Untuk menguasai laluan perdagangan bijih timah di Sungai Linggi",
-      "Untuk menghapuskan Adat Perpatih",
-      "Atas arahan Sultan Johor",
+      "Pahang dibebaskan daripada semua perbelanjaan",
+      "British menyerahkan Pahang kepada Selangor",
+      "Perak, Selangor dan Negeri Sembilan dapat membantu mengurangkan beban kewangan Pahang",
+      "Pahang menerima hasil Melaka",
     ],
-    answerIndex: 1,
+    answerIndex: 2,
     explanation:
-      "British memberi sokongan kepada Dato' Kelana supaya British mendapat hak untuk campur tangan dan mengawal laluan perdagangan bijih timah di Sungai Linggi.",
+      "Penggabungan negeri-negeri yang lebih kaya membolehkan beban kewangan Pahang dikurangkan.",
   },
   {
     id: "sej-f3-c3-b-q8",
@@ -484,12 +462,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Negeri Sembilan mengalami penyatuan berperingkat. Pada tahun 1895, perjanjiian ditandatangani untuk menyatukan seluruh daerah Negeri Sembilan di bawah naungan:",
-    options: ["Raja Ali", "Dato' Kelana", "Yamtuan Antah", "Sultan Abdul Samad"],
-    answerIndex: 2,
+    question: "Apakah manfaat pembentukan NNMB dari segi keselamatan?",
+    options: [
+      "Memansuhkan semua pasukan keselamatan",
+      "Menggunakan tentera Siam",
+      "Menyerahkan keselamatan kepada pedagang",
+      "Membolehkan NNMB mempunyai pasukan keselamatan sendiri",
+    ],
+    answerIndex: 3,
     explanation:
-      "Pada tahun 1895, Perjanjian ditandatangani antara British dengan Yamtuan Antah bersama Undang-Undang Negeri Sembilan untuk menyatukan Negeri Sembilan di bawah Yamtuan Besar.",
+      "Penggabungan membolehkan NNMB mempunyai pasukan keselamatan sendiri dan menjaga keamanan tanpa bantuan luar.",
   },
   {
     id: "sej-f3-c3-b-q9",
@@ -499,10 +481,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Kawasan perlombongan emas utama di Pahang yang menarik minat pelabur dan kuasa Barat pada abad ke-19 terletak di:",
-    options: ["Temerloh", "Kuantan", "Pekan", "Raub"],
-    answerIndex: 3,
-    explanation: "Raub, Pahang terkenal sebagai pusat perlombongan emas utama di Tanah Melayu.",
+      "Apakah peranan Majlis Mesyuarat Negeri sebelum kuasanya terhakis selepas pembentukan NNMB?",
+    options: [
+      "Menggubal undang-undang dan membantu pentadbiran negeri",
+      "Menentukan dasar luar British",
+      "Melantik Residen Jeneral",
+      "Mengurus Tanah Jajahan Negeri-negeri Selat",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Majlis Mesyuarat Negeri dipengerusikan Raja Melayu dan berperanan menggubal undang-undang serta membantu pentadbiran negeri.",
   },
   {
     id: "sej-f3-c3-b-q10",
@@ -511,17 +499,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah tindakan J.W.W. Birch yang menimbulkan kemarahan mendalam dalam kalangan Sultan dan pembesar Perak sehingga membawa kepada pembunuhannya?",
+    question: "Apakah yang berlaku kepada kuasa Majlis Mesyuarat Negeri selepas pembentukan NNMB?",
     options: [
-      "Mencampuri adat resam tempatan, merampas hak memungut cukai pembesar, dan bertindak kasar",
-      "Membawa masuk tentera Siam",
-      "Menutup semua lombong bijih timah",
-      "Memindahkan ibu negeri ke Taiping",
+      "Kuasa perundangan bertambah",
+      "Kuasa perundangan beralih kepada Residen Jeneral",
+      "Majlis mengambil alih kuasa Pesuruhjaya Tinggi",
+      "Majlis memansuhkan Sistem Residen",
     ],
-    answerIndex: 0,
+    answerIndex: 1,
     explanation:
-      "Birch bertindak angkuh, tidak menghormati budaya tempatan, dan mencabar hak tradisional Sultan dan pembesar dalam memungut cukai dan memiliki hamba.",
+      "Selepas pembentukan NNMB, Majlis Mesyuarat Negeri tidak lagi berkuasa kerana kuasa perundangan terletak di tangan Residen Jeneral.",
   },
   {
     id: "sej-f3-c3-b-q11",
@@ -530,17 +517,10 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Manakah antara berikut BUKAN merupakan ciri utama pelaksanaan Sistem Residen di Negeri-negeri Melayu?",
-    options: [
-      "Residen mengambil alih pentadbiran daripada Sultan dan pembesar",
-      "Pembentukan jabatan awam seperti jabatan polis dan cukai",
-      "Sultan mengekalkan kuasa mutlak dalam pentadbiran negeri dan kewangan",
-      "Nasihat Residen wajib dipatuhi dalam semua urusan kecuali agama dan adat",
-    ],
+    question: "Siapakah Residen Jeneral NNMB dari tahun 1896 hingga 1900?",
+    options: ["Andrew Clarke", "J.G. Davidson", "Frank Swettenham", "J.P. Rodger"],
     answerIndex: 2,
-    explanation:
-      "Dalam Sistem Residen, Sultan kehilangan kuasa pentadbiran sebenar dan kewangan kepada Residen British.",
+    explanation: "Frank Swettenham menjadi Residen Jeneral NNMB dari 1896 hingga 1900.",
   },
   {
     id: "sej-f3-c3-b-q12",
@@ -550,16 +530,15 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Mengapakah masalah tidak seragam dalam pentadbiran menjadi faktor British menubuhkan NNMB pada 1896?",
+      "Siapakah Pesuruhjaya Tinggi Negeri-negeri Melayu Bersekutu dalam struktur pentadbiran ketika itu?",
     options: [
-      "SHTI mengambil alih pentadbiran negeri",
-      "Setiap Residen menjalankan pentadbiran mengikut undang-undang dan peraturan sendiri tanpa keselarasan",
-      "Semua negeri menggunakan undang-undang Siam",
-      "Sultan meminta British menyamakan kadar cukai",
+      "Ketua semua pembesar Melayu",
+      "Residen Jeneral",
+      "Sultan Perak",
+      "Gabenor Negeri-negeri Selat",
     ],
-    answerIndex: 1,
-    explanation:
-      "Sistem Residen tidak mempunyai garis panduan yang seragam; setiap Residen membuat undang-undang dan dasar sendiri bagi negeri masing-masing.",
+    answerIndex: 3,
+    explanation: "Pesuruhjaya Tinggi NNMB juga merupakan Gabenor Negeri-negeri Selat.",
   },
   {
     id: "sej-f3-c3-b-q13",
@@ -568,16 +547,15 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question: "Apakah kelebihan pembentukan NNMB dari segi pembangunan infrastruktur perhubungan?",
+    question: "Apakah kuasa utama Majlis Mesyuarat Persekutuan yang ditubuhkan pada tahun 1909?",
     options: [
-      "Menghubungkan Tanah Melayu dengan Manila",
-      "Membina Terusan Kra",
-      "Membolehkan pembinaan jalan kereta api dan jalan raya menghubungkan keempat-empat negeri",
-      "Membina pelabuhan kapal terbang di Taiping",
+      "Meluluskan undang-undang di Negeri-negeri Melayu Bersekutu",
+      "Menentukan pewarisan takhta",
+      "Mengurus agama Islam",
+      "Membubarkan Sistem Residen",
     ],
-    answerIndex: 2,
-    explanation:
-      "Penggabungan membolehkan sumber dikongsi untuk membina rangkaian perhubungan seperti jalan kereta api menghubungkan pusat lombong dan pelabuhan antara negeri.",
+    answerIndex: 0,
+    explanation: "Majlis Mesyuarat Persekutuan berkuasa meluluskan undang-undang di NNMB.",
   },
   {
     id: "sej-f3-c3-b-q14",
@@ -586,11 +564,10 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question: "Perjanjian Persekutuan 1895 beruat kuasa secara rasmi pada tarikh:",
-    options: ["1 Julai 1896", "17 Mac 1824", "31 Ogos 1897", "20 Januari 1874"],
-    answerIndex: 0,
-    explanation:
-      "Perjanjian Persekutuan 1895 beruat kuasa secara rasmi pada 1 Julai 1896 dengan pembentukan Negeri-negeri Melayu Bersekutu (NNMB).",
+    question: "Siapakah pengerusi Majlis Mesyuarat Persekutuan 1909?",
+    options: ["Residen Jeneral", "Pesuruhjaya Tinggi British", "Sultan Perak", "Residen Selangor"],
+    answerIndex: 1,
+    explanation: "Pesuruhjaya Tinggi British menjadi pengerusi Majlis Mesyuarat Persekutuan.",
   },
   {
     id: "sej-f3-c3-b-q15",
@@ -599,17 +576,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Dalam struktur pentadbiran NNMB, siapakah jawatan tertinggi yang berada di atas Residen Jeneral dan bertindak sebagai wakil Mahkota British?",
+    question: "Apakah kesan penubuhan Majlis Mesyuarat Persekutuan terhadap Raja-raja Melayu?",
     options: [
-      "Gabenor Negeri-negeri Selat (Pesuruhjaya Tinggi Persekutuan)",
-      "Sultan Perak",
-      "Perdana Menteri British",
-      "Residen Pahang",
+      "Raja memperoleh kuasa penuh kewangan",
+      "Raja mengetuai semua jabatan British",
+      "Kewibawaan Raja terjejas kerana mereka hanya menjadi ahli biasa dalam majlis",
+      "Raja bebas daripada nasihat British",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Gabenor Negeri-negeri Selat memegang jawatan Pesuruhjaya Tinggi Persekutuan yang mengawasi Residen Jeneral di Kuala Lumpur.",
+      "Majlis itu mengukuhkan kawalan British terhadap undang-undang dan kewangan, manakala Raja-raja Melayu hanya menjadi ahli biasa.",
   },
   {
     id: "sej-f3-c3-b-q16",
@@ -618,16 +594,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question: "Apakah maksud istilah 'Durbar' dalam konteks sejarah pentadbiran NNMB?",
+    question: "Mengapakah British membentuk Durbar?",
     options: [
-      "Pasukan tentera tempatan",
-      "Cukai eksport bijih timah",
-      "Persidangan Raja-raja Melayu, Residen Jeneral, dan Residen British",
-      "Satu sistem pertukaran mata wang",
+      "Untuk menghapuskan Majlis Mesyuarat Negeri",
+      "Untuk menubuhkan pasukan keselamatan",
+      "Untuk memilih Residen Jeneral",
+      "Untuk mendapatkan sokongan Raja-raja Melayu terhadap NNMB",
     ],
-    answerIndex: 2,
+    answerIndex: 3,
     explanation:
-      "Durbar ialah persidangan rasmi yang menghimpunkan Raja-raja Melayu (Perak, Selangor, N.Sembilan, Pahang), Residen Jeneral, Pesuruhjaya Tinggi, dan Residen-residen.",
+      "British membentuk Durbar untuk mendapatkan sokongan Raja-raja Melayu terhadap NNMB.",
   },
   {
     id: "sej-f3-c3-b-q17",
@@ -636,17 +612,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah reaksi utama Raja-raja Melayu terhadap peranan Residen Jeneral selepas Persekutuan 1896 dibentuk?",
+    question: "Antara berikut, siapakah yang termasuk dalam keahlian Durbar?",
     options: [
-      "Menuntut Residen Jeneral memeluk Islam",
-      "Meminta British membubarkan persekutuan serta-merta",
-      "Sangat berpuas hati kerana elaun dinaikkan",
-      "Bimbang dan tidak puas hati kerana Residen Jeneral menguasai hampir seluruh pentadbiran dan membelakangkan Sultan",
+      "Pesuruhjaya Tinggi British, Raja-raja Melayu, Residen Jeneral dan Residen British",
+      "Pedagang Eropah, pelombong Cina dan pembesar tempatan",
+      "Sultan, pegawai Siam dan Residen Belanda",
+      "Ahli Parlimen Britain sahaja",
     ],
-    answerIndex: 3,
+    answerIndex: 0,
     explanation:
-      "Raja-raja Melayu menyedari pemusatan kuasa melampau di tangan Residen Jeneral mengurangkan peranan Sultan kepada sekadar 'penandatangan undang-undang'.",
+      "Keahlian Durbar terdiri daripada Pesuruhjaya Tinggi British, Raja-raja Melayu, Residen Jeneral dan Residen British.",
   },
   {
     id: "sej-f3-c3-b-q18",
@@ -655,16 +630,10 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question: "Maktab Melayu Kuala Kangsar (MCKK) yang ditubuhkan pada tahun 1905 bertujuan untuk:",
-    options: [
-      "Mendidik golongan elit Melayu untuk menyertai perkhidmatan pentadbiran kerajaan (MAS)",
-      "Mengajar teknik perlombongan bijih timah",
-      "Mengajar ilmu pertukangan dan pertanian",
-      "Melatih tentera elit British",
-    ],
-    answerIndex: 0,
-    explanation:
-      "MCKK ditubuhkan hasil desakan Sultan Idris untuk melatih anak-anak bangsawan dan elit Melayu berkhidmat dalam perkhidmatan awam pentadbiran persekutuan.",
+    question: "Bilakah dan di manakah Durbar pertama diadakan?",
+    options: ["1909 di Kuala Lumpur", "1897 di Kuala Kangsar", "1896 di Taiping", "1903 di Pekan"],
+    answerIndex: 1,
+    explanation: "Durbar pertama diadakan pada tahun 1897 di Kuala Kangsar.",
   },
   {
     id: "sej-f3-c3-b-q19",
@@ -673,17 +642,16 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah Sultan Perak, Sultan Idris, memprotes penggunaan bahasa Inggeris sebagai bahasa tunggal dalam mesyuarat pentadbiran semasa Durbar II?",
+    question: "Apakah kuasa yang diperoleh British melalui Perjanjian British-Sungai Ujong 1874?",
     options: [
-      "Kerana Baginda tidak faham bahasa Inggeris",
-      "Kerana Baginda mahu Bahasa Melayu dipelihara sebagai bahasa rasmi pentadbiran bersama-sama bahasa Inggeris",
-      "Kerana Baginda mahu bahasa Arab digunakan",
-      "Kerana undang-undang persekutuan mewajibkan bahasa Belanda",
+      "Menentukan Undang Luak",
+      "Menghapuskan jawatan Dato' Kelana",
+      "Kuasa penuh memungut cukai di Sungai Linggi",
+      "Menguasai semua tanah Negeri Sembilan",
     ],
-    answerIndex: 1,
+    answerIndex: 2,
     explanation:
-      "Sultan Idris menegaskan bahawa Bahasa Melayu hendaklah dihormati dan dijadikan bahasa rasmi pentadbiran persekutuan.",
+      "Perjanjian itu mengiktiraf Dato' Kelana sebagai pemerintah Sungai Ujong dan memberi British kuasa penuh memungut cukai di Sungai Linggi.",
   },
   {
     id: "sej-f3-c3-b-q20",
@@ -692,16 +660,15 @@ export const sejarahF3C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Institusi bersejarah Durbar yang ditubuhkan pada zaman NNMB merupakan asas kepada penubuhan badan penting dalam Perlembagaan Malaysia hari ini, iaitu:",
+    question: "Apakah kesan utama Perjanjian Negeri Sembilan 1895?",
     options: [
-      "Suruhanjaya Pilihan Raya",
-      "Dewan Rakyat",
-      "Majlis Raja-Raja (Conference of Rulers)",
-      "Cabinet Menteri",
+      "Negeri Sembilan diserahkan kepada Siam",
+      "Semua luak menjadi negeri berasingan",
+      "Residen British dikeluarkan",
+      "Luak-luak membentuk Negeri Sembilan di bawah naungan British dan menerima bantuan seorang Residen",
     ],
-    answerIndex: 2,
+    answerIndex: 3,
     explanation:
-      "Durbar menjadi pencetus dan warisan teras kepada pembentukan Majlis Raja-Raja yang wujud dalam Perlembagaan Persekutuan Malaysia hari ini.",
+      "Perjanjian 1895 menyatukan luak-luak dalam sebuah negeri gabungan yang dikenali sebagai Negeri Sembilan dan menerima Residen British.",
   },
 ];

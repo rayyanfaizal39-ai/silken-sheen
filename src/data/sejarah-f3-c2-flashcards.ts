@@ -16,16 +16,17 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     form: "Form 3",
     chapter: "Chapter 2",
     front:
-      "Mengapakah Sultan Abdullah Kedah berhasrat mendapatkan bantuan ketenteraan SHTI pada akhir abad ke-18?",
-    back: "Kedah menghadapi ancaman daripada Siam yang menuntut penghantaran Bunga Emas dan perebutan pengaruh daripada penguasa Bugis di Selangor.",
+      "Mengapakah Sultan Abdullah memohon bantuan ketenteraan daripada SHTI pada akhir abad ke-18?",
+    back: "Siam menuntut semula penghantaran bunga emas daripada Kedah. Sultan Abdullah berasa tergugat lalu memohon bantuan SHTI dan menawarkan Pulau Pinang sebagai pangkalan dengan syarat Kedah dilindungi daripada ancaman Siam.",
   },
   {
     id: "sej-f3-c2-a-fc3",
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front: "Bagaimanakah Francis Light menduduki Pulau Pinang pada 11 Ogos 1786 secara tidak sah?",
-    back: "Menaikkan bendera Union Jack di Medan Tanjung (Pulau Pinang) tanpa sebarang perjanjian rasmi disahkan oleh Lembaga Pengarah SHTI di London.",
+    front:
+      "Bagaimanakah Francis Light menggunakan tipu helah untuk membuka petempatan British di Pulau Pinang pada tahun 1786?",
+    back: "Francis Light berjanji bahawa SHTI akan memenuhi syarat bantuan ketenteraan yang diminta Sultan Abdullah. Baginda kemudian membenarkan Francis Light membuka petempatan di Pulau Pinang sementara menunggu jawapan rasmi SHTI.",
   },
   {
     id: "sej-f3-c2-a-fc4",
@@ -58,18 +59,16 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Apakah syarat utama Perjanjian 6 Februari 1819 antara Raffles, Sultan Hussein, dan Temenggung Abdul Rahman?",
-    back: "British dibenarkan membina petempatan perdagangan di Singapura, manakala SHTI membayar elaun tahunan kepada Sultan Hussein dan Temenggung.",
+    front: "Apakah kesan utama Perjanjian 6 Februari 1819 di Singapura?",
+    back: "Petempatan British di Singapura diiktiraf. British menaikkan bendera Union Jack pada 13 Februari 1819 dan William Farquhar dilantik sebagai Residen pertama Singapura.",
   },
   {
     id: "sej-f3-c2-a-fc8",
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Apakah kesan Perjanjian 2 Ogos 1824 yang ditandatangani oleh John Crawfurd terhadap Singapura?",
-    back: "Sultan Hussein dan Temenggung Abdul Rahman menyerahkan seluruh pulau Singapura secara mutlak kepada SHTI untuk selama-lamanya.",
+    front: "Apakah kesan Perjanjian 2 Ogos 1824 terhadap Singapura?",
+    back: "Singapura diserahkan kepada British untuk selama-lamanya. Sultan Hussein dan Temenggung Abdul Rahman hilang kedaulatan ke atas Singapura serta diberikan pampasan dan pencen bulanan seumur hidup.",
   },
   {
     id: "sej-f3-c2-a-fc9",
@@ -126,8 +125,8 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front: "Apakah tujuan utama SHTI membentuk unit pentadbiran Negeri-negeri Selat?",
-    back: "Menghematkan kos pentadbiran, menyeragamkan sistem pentadbiran, dan mengukuhkan pertahanan British di Selat Melaka.",
+    front: "Apakah tujuan pembentukan Negeri-negeri Selat pada tahun 1826?",
+    back: "Untuk menjimatkan perbelanjaan dan menyeragamkan pentadbiran Pulau Pinang, Singapura dan Melaka.",
   },
   {
     id: "sej-f3-c2-a-fc16",
@@ -144,17 +143,16 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     form: "Form 3",
     chapter: "Chapter 2",
     front:
-      "Siapakah yang mengetuai pentadbiran Negeri-negeri Selat semasa di bawah Syarikat Hindia Timur Inggeris (1826-1858)?",
-    back: "Diketuai oleh seorang Gabenor NNS yang dibantu oleh Residen Konsul di setiap wilayah dan bertanggungjawab kepada Gabenor Jeneral SHTI di India.",
+      "Bagaimanakah struktur pentadbiran Negeri-negeri Selat di bawah SHTI dari tahun 1826 hingga 1857?",
+    back: "Negeri-negeri Selat diketuai oleh seorang Gabenor. Residen Konsular di Pulau Pinang, Singapura dan Melaka membantu Gabenor menjalankan pentadbiran.",
   },
   {
     id: "sej-f3-c2-a-fc18",
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Mengapakah pentadbiran NNS dipindahkan ke Pejabat India (India Office) pada tahun 1858?",
-    back: "Kerana Syarikat Hindia Timur Inggeris (SHTI) dibubarkan berikutan Pemberontakan Dahagi India pada tahun 1857.",
+    front: "Apakah perubahan pentadbiran Negeri-negeri Selat selepas SHTI dibubarkan?",
+    back: "Mulai tahun 1858, Negeri-negeri Selat diletakkan di bawah India Office (Pejabat India). Undang-undang British dikuatkuasakan, tetapi Pejabat India tidak memberikan perhatian sewajarnya untuk melindungi pedagang Negeri-negeri Selat.",
   },
   {
     id: "sej-f3-c2-a-fc19",
@@ -162,8 +160,8 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     form: "Form 3",
     chapter: "Chapter 2",
     front:
-      "Nyatakan dua faktor yang menyebabkan pedagang NNS tidak berpuas hati dengan pentadbiran Pejabat India.",
-    back: "1. Pejabat India mahu memperkenalkan mata wang Rupee India menggantikan Dolar Sepanyol.\n2. Cadangan mengenakan cukai pelabuhan dan menjadikan NNS penempatan banduan.",
+      "Nyatakan tiga faktor yang menyebabkan pedagang Negeri-negeri Selat tidak berpuas hati dengan pentadbiran Pejabat India.",
+    back: "Antaranya ialah usaha menggantikan Dolar Sepanyol dengan rupee India, cadangan mengenakan cukai pelabuhan yang boleh menjejaskan taraf pelabuhan bebas, dan penggunaan Negeri-negeri Selat sebagai tempat buangan banduan.",
   },
   {
     id: "sej-f3-c2-a-fc20",
@@ -179,17 +177,17 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Apakah nama kubu pertahanan pertama yang dibina oleh Francis Light di Medan Tanjung, Pulau Pinang?",
-    back: "Fort Cornwallis (dinamakan sempena Gabenor Jeneral India, Charles Cornwallis).",
+    front: "Apakah perubahan status pentadbiran Pulau Pinang pada tahun 1805?",
+    back: "Pulau Pinang dinaik taraf menjadi Presidensi keempat selepas Benggala, Madras dan Bombay di India, dan seorang Gabenor dilantik sebagai ketua pentadbir.",
   },
   {
     id: "sej-f3-c2-b-fc2",
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front: "Mengapakah Sultan Abdullah menyerang Pulau Pinang pada tahun 1791 dan apakah kesannya?",
-    back: "Sebab: Francis Light enggan memberikan bantuan tentera apabila Siam menyerang Kedah.\nKesan: Kedah tewas dan terpaksa menandatangani perjanjian rasmi menyerahkan Pulau Pinang.",
+    front:
+      "Mengapakah Sultan Abdullah menghimpunkan angkatan perang di Seberang Perai pada tahun 1791 dan apakah kesannya?",
+    back: "Sultan Abdullah menyedari baginda tertipu apabila SHTI enggan memberikan bantuan ketenteraan. Baginda cuba mengambil semula Pulau Pinang, tetapi angkatan Kedah ditewaskan dan baginda dipaksa menandatangani perjanjian yang mengiktiraf pendudukan British secara rasmi.",
   },
   {
     id: "sej-f3-c2-b-fc3",
@@ -205,18 +203,16 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Apakah peranan William Farquhar dalam pembukaan petempatan British di Singapura pada tahun 1819?",
-    back: "Dilantik sebagai Residen Singapura pertama yang bertanggungjawab membinanya sebagai pelabuhan dan membina pertahanan awal.",
+    front: "Apakah kedudukan William Farquhar selepas Perjanjian 6 Februari 1819?",
+    back: "William Farquhar dilantik sebagai Residen pertama Singapura dan berkhidmat dari tahun 1819 hingga 1823.",
   },
   {
     id: "sej-f3-c2-b-fc5",
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Apakah maksud status 'pelabuhan bebas' yang diisytiharkan di Singapura pada tahun 1823?",
-    back: "Pelabuhan yang tidak mengenakan sebarang cukai pintu atau cukai import/eksport ke atas kapal pedagang.",
+    front: "Apakah maksud pelabuhan bebas seperti Singapura yang diisytiharkan pada tahun 1823?",
+    back: "Pelabuhan yang terbuka kepada pedagang asing dan tempatan, dengan barangan yang dibawa masuk bebas daripada cukai.",
   },
   {
     id: "sej-f3-c2-b-fc6",
@@ -232,18 +228,16 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Apakah latar belakang peperangan di Eropah yang menjejaskan hubungan British dan Belanda di Tanah Melayu?",
-    back: "Perang Napoleon di Eropah menyebabkan Belanda ditawan Perancis, lalu Raja Belanda menandatangani Surat-Surat Kew menyerahkan tanah jajahan sementara kepada British.",
+    front: "Apakah kesan Perang Napoleon terhadap tanah jajahan Belanda di Timur?",
+    back: "Belanda ditawan oleh Perancis. Raja Belanda menandatangani Surat Kew pada tahun 1795 yang menyerahkan tanah jajahan Belanda di Timur kepada British secara sementara sehingga perang tamat.",
   },
   {
     id: "sej-f3-c2-b-fc8",
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Mengapakah British yang menguasai Melaka terlibat dalam Perang Naning (1831-1832) menentang Penghulu Dol Said?",
-    back: "British menganggap Naning sebahagian daripada Melaka ekoran Perjanjian London 1824 dan menuntut cukai satu persepuluh daripada penduduk Naning.",
+    front: "Bagaimanakah Perjanjian London 1824 berkaitan dengan peluasan kuasa British di Naning?",
+    back: "Selepas menguasai Melaka melalui Perjanjian London 1824, British menganggap Naning sebagai sebahagian daripada Melaka dan mahu peraturan serta undang-undang Melaka turut dikuatkuasakan di Naning.",
   },
   {
     id: "sej-f3-c2-b-fc9",
@@ -286,17 +280,16 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     form: "Form 3",
     chapter: "Chapter 2",
     front:
-      "Apakah akta yang diluluskan di Parlimen British bagi membolehkan pemindahan NNS ke Pejabat Tanah Jajahan London?",
-    back: "Government of India Act / Akta Pemindahan NNS 1867.",
+      "Apakah masalah perwakilan yang mendorong desakan supaya pentadbiran Negeri-negeri Selat dipindahkan dari Pejabat India?",
+    back: "Tiada wakil Negeri-negeri Selat dalam Majlis Perundangan di India yang meluluskan undang-undang bagi Negeri-negeri Selat.",
   },
   {
     id: "sej-f3-c2-b-fc14",
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Siapakah Gabenor NNS pertama yang dilantik selepas NNS menjadi Tanah Jajahan Mahkota British pada tahun 1867?",
-    back: "Sir Harry Ord.",
+    front: "Apakah fungsi Pejabat Tanah Jajahan di London dan siapakah yang mengetuainya?",
+    back: "Pejabat Tanah Jajahan ialah jabatan kerajaan Britain yang mengurus hal ehwal tanah jajahan British dan diketuai oleh Setiausaha Negara bagi Tanah Jajahan.",
   },
   {
     id: "sej-f3-c2-b-fc15",
@@ -312,7 +305,7 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     form: "Form 3",
     chapter: "Chapter 2",
     front:
-      "Siapakah tokoh Melayu pertama yang dilantik sebagai Ahli Tidak Rasmi Majlis Perundangan NNS pada tahun 1924?",
+      "Siapakah orang Melayu pertama yang dilantik menganggotai Majlis Perundangan Negeri-negeri Selat?",
     back: "Mohammad Eunos Abdullah.",
   },
   {
@@ -320,18 +313,16 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Apakah nilai bayaran pampasan tahunan yang ditetapkan SHTI kepada Sultan Kedah selepas penyerahan Pulau Pinang pada tahun 1791?",
-    back: "6,000 Dolar Sepanyol setahun.",
+    front: "Apakah kesan utama perjanjian British-Kedah pada tahun 1791?",
+    back: "Perjanjian itu secara rasmi mengiktiraf pendudukan British di Pulau Pinang.",
   },
   {
     id: "sej-f3-c2-b-fc18",
     subjectId: "sejarah",
     form: "Form 3",
     chapter: "Chapter 2",
-    front:
-      "Berapakah jumlah pampasan tahunan tambahan yang diterima Sultan Kedah selepas penyerahan Seberang Perai pada tahun 1800?",
-    back: "4,000 Dolar Sepanyol (menjadikan jumlah keseluruhan 10,000 Dolar Sepanyol setahun).",
+    front: "Apakah nama yang kemudiannya diberikan oleh British kepada Seberang Perai?",
+    back: "Province of Wellesley.",
   },
   {
     id: "sej-f3-c2-b-fc19",
@@ -349,5 +340,175 @@ export const sejarahF3C2Flashcards: Flashcard[] = [
     chapter: "Chapter 2",
     front: "Bilakah unit pentadbiran Negeri-negeri Selat dibubarkan secara rasmi?",
     back: "Pada tahun 1946 (selepas Perang Dunia Kedua) untuk membolehkan pembentukan Malayan Union dan Tanah Jajahan Mahkota Singapura.",
+  },
+  {
+    id: "sej-f3-c2-c-fc1",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front: "Apakah kedudukan Pulau Pinang sebelum peluasan kuasa British?",
+    back: "Pulau Pinang ialah wilayah Kesultanan Kedah, menjadi tempat persinggahan pedagang dari Lingga dan pelabuhan dagang serantau terutama dengan Acheh di Sumatera.",
+  },
+  {
+    id: "sej-f3-c2-c-fc2",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front: "Apakah kepentingan Batu Uban dalam sejarah awal Pulau Pinang?",
+    back: "Batu Uban ialah pelabuhan paling awal di Pulau Pinang. Petempatannya dibuka oleh orang Melayu dari Sumatera pada tahun 1759 dan sering dikunjungi pedagang Arab.",
+  },
+  {
+    id: "sej-f3-c2-c-fc3",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front:
+      "Mengapakah British memerlukan pusat pengumpulan barang di Pulau Pinang untuk perdagangan dengan China?",
+    back: "China mahukan emas, perak, bijih timah dan rempah-ratus sebagai tukaran bagi teh. British boleh mengumpulkan barangan tersebut dari Alam Melayu di Pulau Pinang.",
+  },
+  {
+    id: "sej-f3-c2-c-fc4",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front: "Mengapakah British memerlukan pangkalan tentera yang lebih strategik di Alam Melayu?",
+    back: "Pangkalan British di Bombay sukar mengawal petempatan di Madras. British juga perlu menghadapi ancaman Perancis dan saingan Belanda di Alam Melayu.",
+  },
+  {
+    id: "sej-f3-c2-c-fc5",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front:
+      "Bagaimanakah Pulau Pinang membantu kepentingan British di Asia dan Pasifik pada abad ke-18?",
+    back: "Selepas kehilangan Amerika sebagai tanah jajahan, British mengukuhkan laluan perdagangan ke China dan meneroka Asia Pasifik. Pendudukan Pulau Pinang membantu mengukuhkan kedudukan British di Australia yang diduduki pada tahun 1770.",
+  },
+  {
+    id: "sej-f3-c2-c-fc6",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front:
+      "Apakah krisis yang berlaku semasa Sultan Muhammad Jiwa melantik Tunku Abdullah sebagai Raja Muda Kedah?",
+    back: "Sebahagian kerabat Diraja Kedah menentang pelantikan tersebut dan berpakat dengan Bugis di Selangor. Sultan Muhammad Jiwa kemudian berusaha mendapatkan bantuan ketenteraan SHTI.",
+  },
+  {
+    id: "sej-f3-c2-c-fc7",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front:
+      "Apakah nama yang diberikan Francis Light kepada Pulau Pinang dan petempatan British di situ?",
+    back: "Pulau Pinang dinamakan Prince of Wales Island, manakala petempatan British dinamakan Georgetown bersempena dengan nama Raja England.",
+  },
+  {
+    id: "sej-f3-c2-c-fc8",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front: "Bagaimanakah Singapura ditadbir sebelum British bertapak pada tahun 1819?",
+    back: "Singapura ialah wilayah Kesultanan Johor Riau. Johor, Singapura dan Kepulauan Riau ditadbir oleh Temenggung Abdul Rahman yang tinggal di Singapura, manakala Sultan Abdul Rahman bersemayam di Lingga.",
+  },
+  {
+    id: "sej-f3-c2-c-fc9",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front:
+      "Apakah kegiatan ekonomi yang dijalankan di Singapura semasa pentadbiran Temenggung Abdul Rahman?",
+    back: "Ladang-ladang gambir diusahakan oleh orang Melayu dan Cina.",
+  },
+  {
+    id: "sej-f3-c2-c-fc10",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front: "Apakah peranan Melaka di bawah Belanda dari tahun 1641 hingga 1824?",
+    back: "Belanda menjadikan Melaka sebagai pusat pengumpulan hasil bijih timah dari negeri-negeri Melayu, tetapi mementingkan Betawi di Pulau Jawa sebagai pusat perdagangan utama di Alam Melayu.",
+  },
+  {
+    id: "sej-f3-c2-c-fc11",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front: "Mengapakah pendudukan British di Singapura menimbulkan pertikaian dengan Belanda?",
+    back: "Belanda mendakwa Singapura berada dalam lingkungan pengaruhnya dan bimbang kemajuan Singapura menjejaskan perdagangan di Betawi, manakala British bertekad mempertahankan Singapura.",
+  },
+  {
+    id: "sej-f3-c2-c-fc12",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front:
+      "Mengapakah British dan Belanda memilih rundingan dan perdamaian berbanding peperangan di Alam Melayu?",
+    back: "Kedua-dua kuasa mahu mengelakkan peperangan seperti yang pernah berlaku pada abad ke-17 dan ke-18, sementara Belanda juga tidak mahu terbeban dengan masalah kewangan selepas Perang Napoleon.",
+  },
+  {
+    id: "sej-f3-c2-c-fc13",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front:
+      "Apakah masalah utama cara Perjanjian London 1824 dibuat dari sudut kedaulatan kerajaan Alam Melayu?",
+    back: "Perjanjian itu dibuat tanpa merujuk Raja-raja Melayu sebagai pemerintah kerajaan Alam Melayu dan mengutamakan kepentingan British serta Belanda.",
+  },
+  {
+    id: "sej-f3-c2-c-fc14",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front:
+      "Apakah dua entiti geopolitik yang muncul daripada pembahagian pengaruh selepas Perjanjian London 1824?",
+    back: "Tanah Melayu berada di bawah pengaruh British, manakala wilayah pengaruh Belanda dikenali sebagai Hindia Timur Belanda.",
+  },
+  {
+    id: "sej-f3-c2-c-fc15",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front: "Apakah yang berlaku kepada institusi Kesultanan Riau Lingga di bawah pengaruh Belanda?",
+    back: "Pada tahun 1911, institusi Kesultanan Riau Lingga dihapuskan oleh Belanda dan wilayah tersebut kemudiannya diperintah secara langsung melalui Residen Riau.",
+  },
+  {
+    id: "sej-f3-c2-c-fc16",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front: "Apakah tindakan Bendahara Tun Ali di Pahang selepas perpecahan Kesultanan Johor Riau?",
+    back: "Pada tahun 1853, dengan muafakat pembesar Pahang, Bendahara Tun Ali mengisytiharkan Pahang sebagai negeri yang bebas dan berdaulat.",
+  },
+  {
+    id: "sej-f3-c2-c-fc17",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front: "Bagaimanakah Perjanjian London 1824 mengukuhkan penguasaan British di Selat Melaka?",
+    back: "British menguasai perdagangan Selat Melaka melalui tiga pelabuhan strategik, iaitu Pulau Pinang, Melaka dan Singapura. Pengunduran Belanda dari Tanah Melayu turut membuka peluang British meluaskan kuasa.",
+  },
+  {
+    id: "sej-f3-c2-c-fc18",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front: "Bagaimanakah Pulau Pinang ditadbir sebelum pembentukan Negeri-negeri Selat?",
+    back: "Pada peringkat awal, Pulau Pinang ditadbir oleh Francis Light sebagai Pesuruhjaya yang bertanggungjawab kepada Gabenor Jeneral British di India. Pada tahun 1787, Pulau Pinang memperoleh status pelabuhan bebas.",
+  },
+  {
+    id: "sej-f3-c2-c-fc19",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front:
+      "Siapakah pedagang persendirian atau 'country trader' dalam perdagangan Negeri-negeri Selat?",
+    back: "Mereka ialah bekas pedagang SHTI yang menjalankan perdagangan antara India, Alam Melayu dan China serta membantu menjayakan peluasan kuasa British.",
+  },
+  {
+    id: "sej-f3-c2-c-fc20",
+    subjectId: "sejarah",
+    form: "Form 3",
+    chapter: "Chapter 2",
+    front:
+      "Bagaimanakah pembentukan Negeri-negeri Selat mengukuhkan ekonomi British di Alam Melayu?",
+    back: "Negeri-negeri Selat menjadi pusat pengumpulan hasil Alam Melayu terutama bijih timah, menarik pedagang melalui taraf pelabuhan bebas, menjadi pintu masuk buruh luar dan menerima penanaman modal pelabur luar.",
   },
 ];

@@ -5,7 +5,6 @@ import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { canPersistProgress, isGuestMode } from "@/lib/guest-mode";
 import { recordDailyFlashcardReview } from "@/lib/daily-mission-progress";
 import { getLocalDateKey } from "@/lib/local-date";
-import { normalizeFormParam } from "@/lib/study-routing";
 import { normalizeSelectedAt, daysTogether as daysTogetherPure } from "@/companion/selectedAt";
 import {
   recordMissionActivity as recordMissionActivityRemote,
@@ -17,6 +16,7 @@ import {
   createNonEarningQuizResult,
   type QuizCompletionResult,
   type QuizCompletionSubmission,
+  formFromCanonicalQuizKey,
 } from "@/features/quiz/xp/quizXp";
 import {
   QuizCompletionError,
@@ -246,7 +246,11 @@ export interface LastVisited {
   type: "notes" | "flashcards" | "quiz";
   label: string; // human-readable chapter name
   timestamp: number;
-  /** Which form the chapter belongs to. Older saved records predate this field — treat missing as unknown (show the Form chooser), never as "Form 1". */
+  /**
+   * Which form the chapter belongs to ("Chapter 3" exists in every form).
+   * Older saved records predate this field. Missing means UNKNOWN — never
+   * treat it as Form 1; resume links send the student to the Form chooser.
+   */
   form?: "Form 1" | "Form 2" | "Form 3";
 }
 
@@ -559,6 +563,7 @@ function pushRecentActivity(
       !(
         item.subjectId === nextItem.subjectId &&
         item.chapterKey === nextItem.chapterKey &&
+        (item.form ?? null) === (nextItem.form ?? null) &&
         item.type === nextItem.type
       ),
   );
@@ -1389,7 +1394,6 @@ export function useProgress() {
         Math.min(input.correct.easy + input.correct.medium + input.correct.hard, total),
       );
       const scorePct = Math.round((correct / total) * 100);
-      const quizForm = normalizeFormParam(input.quizKey.split(":")[3]);
       const result: QuizResult = {
         id: input.completionId,
         subjectId: input.subjectId,
@@ -1399,6 +1403,10 @@ export function useProgress() {
         total,
         date: new Date().toISOString(),
       };
+
+      // The canonical quiz key already carries the form; without it the
+      // homepage would have to guess which form's chapter this was.
+      const quizForm = formFromCanonicalQuizKey(input.quizKey);
 
       setProgress((prev) => {
         const alreadyRecorded = (prev.quizHistory ?? []).some((item) => item.id === result.id);

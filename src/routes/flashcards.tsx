@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
+import type { Flashcard } from "@/data/types";
 import { useProgress } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
@@ -41,12 +42,14 @@ import {
 } from "@/lib/study-routing";
 import {
   getFlashcardDeckCards,
+  getFlashcardSessionKey,
   hasFlashcardDeck,
   keepCardsForForm,
+  keepSelectedFormCards,
   splitFlashcardDeck,
   standardizeFlashcardDeck,
 } from "@/lib/flashcard-availability";
-import { useContentRegistry, useContentDataModule } from "@/hooks/use-content-registry";
+import { useContentRegistryStatus, useContentDataModule } from "@/hooks/use-content-registry";
 import {
   AcademyHero,
   AcademyPageShell,
@@ -120,13 +123,14 @@ const FLASHCARD_SET_OPTIONS: Array<{ index: FlashcardSetIndex; title: string; ra
   { index: 1, title: "Practice Review", range: "Cards 21-40" },
   { index: 2, title: "Challenge Review", range: "Cards 41-60" },
 ];
-const SEJARAH_F3_TWO_SET_FLASHCARD_OPTIONS: Array<{
+const SEJARAH_F3_FLASHCARD_OPTIONS: Array<{
   index: FlashcardSetIndex;
   title: string;
   range: string;
 }> = [
-  { index: 0, title: "Set A", range: "Cards 1-20" },
-  { index: 1, title: "Set B", range: "Cards 21-40" },
+  { index: 0, title: "Set 1", range: "Cards 1-20" },
+  { index: 1, title: "Set 2", range: "Cards 21-40" },
+  { index: 2, title: "Set 3", range: "Cards 41-60" },
 ];
 
 const SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS: Array<{
@@ -5312,7 +5316,7 @@ function FlashcardSetPicker({
 }
 
 function FlashcardsPage() {
-  const registry = useContentRegistry();
+  const { registry, status: registryStatus, retry: retryRegistry } = useContentRegistryStatus();
   const dataModule = useContentDataModule();
   const navigate = Route.useNavigate();
   const routeSearch = Route.useSearch() as {
@@ -5497,39 +5501,39 @@ function FlashcardsPage() {
     !isEnglishFlashcardDeckF3
   );
   const rawPool = useMemo(() => {
-    if (subject === "english" && isEnglishFlashcardDeckId(chapter)) {
-      return standardizeFlashcardDeck(getEnglishFlashcardsForDeck(chapter));
-    }
-    if (subject === "english" && isEnglishFlashcardDeckIdF2(chapter)) {
-      return standardizeFlashcardDeck(getEnglishFlashcardsForDeckF2(chapter));
-    }
-    if (subject === "english" && isEnglishFlashcardDeckIdF3(chapter)) {
-      return standardizeFlashcardDeck(getEnglishFlashcardsForDeckF3(chapter));
-    }
-    // The Math category banks are Form 1 only (see hasMathFlashcards); other
-    // Forms must resolve through the Form-scoped registry deck below.
-    if (
+    // A deck is only ever built for one explicit form — never "All".
+    if (!subject || !chapter || form === "All") return [];
+    let deck: Flashcard[];
+    if (form === "Form 1" && subject === "english" && isEnglishFlashcardDeckId(chapter)) {
+      deck = standardizeFlashcardDeck(getEnglishFlashcardsForDeck(chapter));
+    } else if (form === "Form 2" && subject === "english" && isEnglishFlashcardDeckIdF2(chapter)) {
+      deck = standardizeFlashcardDeck(getEnglishFlashcardsForDeckF2(chapter));
+    } else if (form === "Form 3" && subject === "english" && isEnglishFlashcardDeckIdF3(chapter)) {
+      deck = standardizeFlashcardDeck(getEnglishFlashcardsForDeckF3(chapter));
+    } else if (
       form === "Form 1" &&
       subject === "math" &&
-      chapter &&
       MATH_FLASHCARD_BANKS[chapter] &&
       mathFlashcardLang
     ) {
-      return standardizeFlashcardDeck(
+      deck = standardizeFlashcardDeck(
         MATH_FLASHCARD_CATEGORIES.flatMap((category) =>
           getMathFlashcards(chapter, mathFlashcardLang, category.id),
         ),
       );
+    } else {
+      deck = getFlashcardDeckCards(
+        subject,
+        form,
+        chapter,
+        scienceLang ?? undefined,
+        registry,
+        dataModule,
+      );
     }
-    if (!subject || !chapter) return [];
-    return getFlashcardDeckCards(
-      subject,
-      form,
-      chapter,
-      scienceLang ?? undefined,
-      registry,
-      dataModule,
-    );
+    // Last line of defence before the player: every card must match the
+    // selected subject + form.
+    return keepSelectedFormCards(deck, subject, form, chapter);
   }, [subject, chapter, form, scienceLang, mathFlashcardLang, registry, dataModule]);
   const hasSelectedChapterFlashcards =
     !!subject &&
@@ -5545,19 +5549,12 @@ function FlashcardsPage() {
       (chapter && hasSelectedChapterFlashcards))
   );
 
-  const isSejarahF3TwoSetChapter =
-    subject === "sejarah" &&
-    form === "Form 3" &&
-    ["Chapter 1", "Chapter 2", "Chapter 3", "Chapter 4", "Chapter 5", "Chapter 6", "Chapter 7", "Chapter 8"].includes(chapter ?? "");
-  const flashcardSets = useMemo(
-    () => splitFlashcardDeck(rawPool, isSejarahF3TwoSetChapter ? 2 : 3),
-    [rawPool, isSejarahF3TwoSetChapter],
-  );
+  const flashcardSets = useMemo(() => splitFlashcardDeck(rawPool), [rawPool]);
   const shouldSplitFlashcards = flashcardSets.length > 1;
   const selectedSetIsValid =
     selectedFlashcardSet !== null && selectedFlashcardSet < flashcardSets.length;
-  const flashcardSetOptions = isSejarahF3TwoSetChapter
-    ? SEJARAH_F3_TWO_SET_FLASHCARD_OPTIONS
+  const flashcardSetOptions = subject === "sejarah" && form === "Form 3"
+    ? SEJARAH_F3_FLASHCARD_OPTIONS.slice(0, flashcardSets.length)
     : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 2"
       ? SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS
       : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 3"
@@ -5601,7 +5598,7 @@ function FlashcardsPage() {
   // language means a genuinely different deck. That's what resets the
   // idempotent XP guard below — re-shuffling or toggling the favourites
   // filter on the same deck must NOT reopen it.
-  const deckIdentityKey = [
+  const deckIdentityKey = getFlashcardSessionKey(
     subject,
     form,
     chapter,
@@ -5609,35 +5606,18 @@ function FlashcardsPage() {
     mathFlashcardLang,
     mathFlashcardCategory,
     selectedFlashcardSet,
-  ].join("|");
+  );
   useEffect(() => {
     awardedXpCardIdsRef.current = new Set();
   }, [deckIdentityKey]);
-  // A different deck (e.g. switching Form 1 → Form 2 → Form 3) must never keep
-  // the previous deck's dealt queue: `queue` holds indexes into `pool`, so a
-  // stale queue would point at the old Form's session. Clear the in-progress
-  // session and let the auto-deal effect rebuild it from the new pool.
+  // A different deck (e.g. Form 3 -> Form 1 via URL/back button) must start a
+  // fresh session; the old queue indexes belong to the previous deck.
   const previousDeckIdentityKeyRef = useRef(deckIdentityKey);
   useEffect(() => {
     if (previousDeckIdentityKeyRef.current === deckIdentityKey) return;
     previousDeckIdentityKeyRef.current = deckIdentityKey;
-    if (commitTimeoutRef.current) clearTimeout(commitTimeoutRef.current);
-    isCommittingRef.current = false;
-    dragRef.current = null;
-    pendingRatingRef.current = null;
-    setQueue([]);
-    setIdx(0);
-    setFlipped(false);
-    setStreak(0);
-    setLongestStreak(0);
-    setCompleted(false);
-    setSwipeOffset(0);
-    setSwipeRatingCue(null);
-    setInteractionState("idle");
-    setKnownCount(0);
-    setUnknownCount(0);
-    setXpEarned(0);
-    setTotalCards(0);
+    resetDeckProgress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deckIdentityKey]);
 
   const currentPoolIdx = queue[idx];
@@ -5945,6 +5925,12 @@ function FlashcardsPage() {
   }
 
   function resetSession() {
+    resetDeckProgress();
+    setSelectedFlashcardSet(null);
+  }
+
+  /** Clears the in-progress run but keeps the chosen set. */
+  function resetDeckProgress() {
     if (commitTimeoutRef.current) clearTimeout(commitTimeoutRef.current);
     isCommittingRef.current = false;
     dragRef.current = null;
@@ -5962,7 +5948,6 @@ function FlashcardsPage() {
     setUnknownCount(0);
     setXpEarned(0);
     setTotalCards(0);
-    setSelectedFlashcardSet(null);
   }
 
   function selectFlashcardSet(setIndex: FlashcardSetIndex) {
@@ -5991,7 +5976,7 @@ function FlashcardsPage() {
     }
   }
 
-  // Auto-shuffle & deal on chapter entry
+  // Auto-shuffle & deal on chapter entry (and after a deck-change reset)
   useEffect(() => {
     if (pool.length > 0 && queue.length === 0 && !completed) {
       const arr = buildShuffled();
@@ -6001,7 +5986,7 @@ function FlashcardsPage() {
       setTimeout(() => setDealing(false), 500);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pool, completed]);
+  }, [pool, completed, queue.length]);
 
   // First-visit tip
   useEffect(() => {
@@ -6066,6 +6051,9 @@ function FlashcardsPage() {
   const dontKnowCueOpacity = swipeOffset < 0 ? dragProgress : 0;
 
   // ── Subject World early-return ────────────────────────────────────────────
+  // Any subject without an explicit form gets the Form chooser — including a
+  // URL/bookmark that names a chapter: "Chapter 3" is a different chapter in
+  // every form, so building a deck here would silently mean Form 1.
   if (subject && !formWasChosen) {
     return (
       <AcademyPageShell subjectId={planetSubjectId}>
@@ -6088,6 +6076,27 @@ function FlashcardsPage() {
             resetSession();
           }}
         />
+      </AcademyPageShell>
+    );
+  }
+
+  if (subject && (form === "Form 2" || form === "Form 3") && registryStatus !== "ready") {
+    return (
+      <AcademyPageShell subjectId={planetSubjectId}>
+        <div className="mx-auto max-w-2xl rounded-3xl border border-white/[0.08] bg-[#0D1525]/80 px-6 py-12 text-center text-white">
+          <h2 className="font-display text-2xl font-bold">
+            {registryStatus === "error" ? "Could not load flashcards" : "Loading flashcards…"}
+          </h2>
+          {registryStatus === "error" && (
+            <button
+              type="button"
+              onClick={retryRegistry}
+              className="mt-5 rounded-full bg-gradient-to-r from-primary to-accent px-6 py-3 font-semibold"
+            >
+              Retry
+            </button>
+          )}
+        </div>
       </AcademyPageShell>
     );
   }
@@ -6176,117 +6185,76 @@ function FlashcardsPage() {
 
       {!subject ? (
         <div className="space-y-6">
-          <div className="grid gap-4 xl:grid-cols-[1.1fr_1fr]">
-            {(() => {
-              const lastDeck =
-                progress.lastVisited?.type === "flashcards" ? progress.lastVisited : undefined;
-              if (!authUser) {
-                return (
-                  <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-                    <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                      Sign in to track progress
-                    </p>
-                    <h2 className="mt-3 font-display text-2xl font-bold">Save your study decks</h2>
-                    <p className="mt-1 text-sm text-[#94A3B8]">
-                      Sign in to resume decks and see your real progress here.
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => openSignIn("signin")}
-                      className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
-                    >
-                      Sign In
-                    </button>
-                  </div>
-                );
-              }
-              if (!lastDeck) {
-                return (
-                  <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-                    <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                      Get Started
-                    </p>
-                    <h2 className="mt-3 font-display text-2xl font-bold">No decks yet</h2>
-                    <p className="mt-1 text-sm text-[#94A3B8]">
-                      Pick a subject below to start your first flashcard session.
-                    </p>
-                  </div>
-                );
-              }
+          {(() => {
+            const lastDeck =
+              progress.lastVisited?.type === "flashcards" ? progress.lastVisited : undefined;
+            if (!authUser) {
               return (
                 <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
                   <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                    Continue Studying
+                    Sign in to track progress
                   </p>
-                  <h2 className="mt-3 font-display text-2xl font-bold">
-                    {subjects.find((s) => s.id === lastDeck.subjectId)?.name ?? lastDeck.subjectId}
-                  </h2>
+                  <h2 className="mt-3 font-display text-2xl font-bold">Save your study decks</h2>
                   <p className="mt-1 text-sm text-[#94A3B8]">
-                    {cleanLearningLabel(lastDeck.label)}
+                    Sign in to resume decks and see your real progress here.
                   </p>
                   <button
                     type="button"
-                    onClick={() => {
-                      // Resume the saved Form. Older history without a Form
-                      // opens the Form chooser instead of guessing Form 1.
-                      const resumeForm = normalizeFormParam(lastDeck.form);
-                      setSubject(lastDeck.subjectId);
-                      setForm(resumeForm ?? "All");
-                      setFormWasChosen(resumeForm !== null);
-                      setChapter(resumeForm ? lastDeck.chapterKey : null);
-                      resetSession();
-                      updateFlashcardSearch({
-                        subject: lastDeck.subjectId,
-                        form: resumeForm,
-                        chapter: resumeForm ? lastDeck.chapterKey : null,
-                        set: null,
-                      });
-                    }}
+                    onClick={() => openSignIn("signin")}
                     className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                   >
-                    Resume Deck
+                    Sign In
                   </button>
                 </div>
               );
-            })()}
-            <div className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
-              {[
-                ["Active recall", "Flip cards and rate how well you knew each answer."],
-                ["Spaced practice", "Short daily sessions beat one long cram."],
-                ["Track mastery", "Rated cards feed your AcadeMY progress."],
-              ].map(([title, description]) => (
-                <div
-                  key={title}
-                  className="rounded-[1.5rem] border border-white/[0.08] bg-white/[0.05] p-4"
-                >
-                  <h3 className="font-display text-xl font-bold">{title}</h3>
-                  <p className="mt-1 text-sm text-[#94A3B8]">{description}</p>
+            }
+            if (!lastDeck) {
+              return (
+                <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                  <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                    Get Started
+                  </p>
+                  <h2 className="mt-3 font-display text-2xl font-bold">No decks yet</h2>
+                  <p className="mt-1 text-sm text-[#94A3B8]">
+                    Pick a subject below to start your first flashcard session.
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5">
-            <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-              Flashcard Player Preview
-            </p>
-            <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#6366F1]/20 to-[#8B5CF6]/20 p-6">
-                <p className="text-sm text-[#94A3B8]">Question side</p>
-                <h3 className="mt-3 font-display text-2xl font-bold">What is active recall?</h3>
+              );
+            }
+            return (
+              <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                  Continue Studying
+                </p>
+                <h2 className="mt-3 font-display text-2xl font-bold">
+                  {subjects.find((s) => s.id === lastDeck.subjectId)?.name ?? lastDeck.subjectId}
+                </h2>
+                <p className="mt-1 text-sm text-[#94A3B8]">{cleanLearningLabel(lastDeck.label)}</p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    // Resume the saved Form. Older history without a Form
+                    // opens the Form chooser instead of guessing Form 1.
+                    const resumeForm = normalizeFormParam(lastDeck.form);
+                    setSubject(lastDeck.subjectId);
+                    setForm(resumeForm ?? "All");
+                    setFormWasChosen(resumeForm !== null);
+                    setChapter(resumeForm ? lastDeck.chapterKey : null);
+                    resetSession();
+                    updateFlashcardSearch({
+                      subject: lastDeck.subjectId,
+                      form: resumeForm,
+                      chapter: resumeForm ? lastDeck.chapterKey : null,
+                      set: null,
+                    });
+                  }}
+                  className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
+                >
+                  Resume Deck
+                </button>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {["Flip", "Easy", "Hard", "Don’t Know"].map((label) => (
-                  <button
-                    key={label}
-                    type="button"
-                    className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold"
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
+            );
+          })()}
           <SubjectGrid
             mode="flashcards"
             onSelect={(id) => {
@@ -6802,85 +6770,88 @@ function FlashcardsPage() {
                     </div>
                   )}
                   <div className="flashcard-scene">
-                    <div key={current.id} className={`flashcard-inner${flipped ? " is-flipped" : ""}`}>
-                    {/* front */}
                     <div
-                      className="flashcard-face flashcard-front glass-strong rounded-3xl p-6 sm:p-8 flex flex-col overflow-hidden"
-                      style={{
-                        border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
-                        boxShadow: planetTheme
-                          ? `0 24px 70px -30px ${planetTheme.glow}`
-                          : undefined,
-                      }}
+                      key={current.id}
+                      className={`flashcard-inner${flipped ? " is-flipped" : ""}`}
                     >
-                      {shimmer && <div className="card-shimmer-overlay" />}
-                      {planetTheme && (
-                        <span
-                          aria-hidden
-                          className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
-                          style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.12 }}
-                        >
-                          {planetTheme.decor[0]}
-                        </span>
-                      )}
-                      <div className="flex justify-between items-start">
-                        <span className="text-xs font-semibold text-muted-foreground">
-                          {subj?.emoji} {subj?.name} • {current.form}
-                        </span>
-                        <button
-                          type="button"
-                          aria-label={fav ? "Remove from favorites" : "Add to favorites"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleFavorite(current.id);
-                          }}
-                          className={`rounded-full p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70 ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
-                        >
-                          <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
-                        </button>
-                      </div>
-                      <div className="flex-1 flex items-center justify-center text-center">
-                        <p className="font-display text-2xl sm:text-4xl font-bold leading-tight">
-                          {cleanLearningTitle(current.front)}
+                      {/* front */}
+                      <div
+                        className="flashcard-face flashcard-front glass-strong rounded-3xl p-6 sm:p-8 flex flex-col overflow-hidden"
+                        style={{
+                          border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
+                          boxShadow: planetTheme
+                            ? `0 24px 70px -30px ${planetTheme.glow}`
+                            : undefined,
+                        }}
+                      >
+                        {shimmer && <div className="card-shimmer-overlay" />}
+                        {planetTheme && (
+                          <span
+                            aria-hidden
+                            className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
+                            style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.12 }}
+                          >
+                            {planetTheme.decor[0]}
+                          </span>
+                        )}
+                        <div className="flex justify-between items-start">
+                          <span className="text-xs font-semibold text-muted-foreground">
+                            {subj?.emoji} {subj?.name} • {current.form}
+                          </span>
+                          <button
+                            type="button"
+                            aria-label={fav ? "Remove from favorites" : "Add to favorites"}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(current.id);
+                            }}
+                            className={`rounded-full p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70 ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
+                          >
+                            <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
+                          </button>
+                        </div>
+                        <div className="flex-1 flex items-center justify-center text-center">
+                          <p className="font-display text-2xl sm:text-4xl font-bold leading-tight">
+                            {cleanLearningTitle(current.front)}
+                          </p>
+                        </div>
+                        <p className="text-center text-xs text-muted-foreground">
+                          Tap to flip · Swipe → know · Swipe ← don't know
                         </p>
                       </div>
-                      <p className="text-center text-xs text-muted-foreground">
-                        Tap to flip · Swipe → know · Swipe ← don't know
-                      </p>
-                    </div>
-                    {/* back */}
-                    <div
-                      className="flashcard-face flashcard-back glass-strong rounded-3xl p-6 sm:p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
-                      style={{
-                        background: planetTheme
-                          ? `linear-gradient(135deg, ${planetTheme.color}22, rgba(0,0,0,0.45))`
-                          : undefined,
-                        border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
-                        boxShadow: planetTheme
-                          ? `0 24px 70px -30px ${planetTheme.glow}`
-                          : undefined,
-                      }}
-                    >
-                      {shimmer && <div className="card-shimmer-overlay" />}
-                      {planetTheme && (
-                        <span
-                          aria-hidden
-                          className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
-                          style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.14 }}
-                        >
-                          {planetTheme.decor[1] ?? planetTheme.decor[0]}
-                        </span>
-                      )}
-                      {/* The answer now stays on screen indefinitely (no
+                      {/* back */}
+                      <div
+                        className="flashcard-face flashcard-back glass-strong rounded-3xl p-6 sm:p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
+                        style={{
+                          background: planetTheme
+                            ? `linear-gradient(135deg, ${planetTheme.color}22, rgba(0,0,0,0.45))`
+                            : undefined,
+                          border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
+                          boxShadow: planetTheme
+                            ? `0 24px 70px -30px ${planetTheme.glow}`
+                            : undefined,
+                        }}
+                      >
+                        {shimmer && <div className="card-shimmer-overlay" />}
+                        {planetTheme && (
+                          <span
+                            aria-hidden
+                            className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
+                            style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.14 }}
+                          >
+                            {planetTheme.decor[1] ?? planetTheme.decor[0]}
+                          </span>
+                        )}
+                        {/* The answer now stays on screen indefinitely (no
                           auto-advance timer), so a long answer must be able
                           to scroll internally rather than clip against the
                           card's fixed height. */}
-                      <div className="max-h-full w-full overflow-y-auto py-1">
-                        <p className="font-display text-xl sm:text-3xl text-center leading-relaxed whitespace-pre-line">
-                          {cleanLearningQuestion(current.back)}
-                        </p>
+                        <div className="max-h-full w-full overflow-y-auto py-1">
+                          <p className="font-display text-xl sm:text-3xl text-center leading-relaxed whitespace-pre-line">
+                            {cleanLearningQuestion(current.back)}
+                          </p>
+                        </div>
                       </div>
-                    </div>
                     </div>
                   </div>
 

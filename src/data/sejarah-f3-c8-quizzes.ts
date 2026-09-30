@@ -9,16 +9,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Apakah strategi utama yang digunakan oleh pemerintah Johor dan Negeri-negeri Melayu Utara dalam menghadapi tekanan peluasan kuasa British?",
+      "Apakah asas utama pembentukan sempadan melalui Protokol Sempadan Perjanjian Bangkok?",
     options: [
-      "Langkah ketenteraan dan perang terbuka",
-      "Diplomasi, pemodenan pentadbiran, dan penggubalan undang-undang bertulis",
-      "Serangan gerila dan pemusnahan kubu British",
-      "Meminta bantuan tentera daripada kuasa Barat lain seperti Perancis",
+      "Jalan raya dan landasan kereta api",
+      "Legeh dan lembah sungai",
+      "Sempadan daerah tradisional sahaja",
+      "Kawasan penanaman padi",
     ],
     answerIndex: 1,
     explanation:
-      "Pemerintah Johor dan Negeri-negeri Melayu Utara menggunakan pendekatan diplomasi, pemodenan pentadbiran, dan penggubalan perlembagaan bertulis untuk mengekalkan kedaulatan negeri tanpa pertumpahan darah.",
+      "British dan Siam menggunakan legeh dan lembah sungai sebagai asas pembahagian sempadan.",
   },
   {
     id: "sej-f3-c8-a-q2",
@@ -28,16 +28,11 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Sultan Abu Bakar telah melakukan lawatan rasmi ke Eropah dan England pada tahun 1868. Apakah kesan utama lawatan diplomasi tersebut?",
-    options: [
-      "Johor dipaksa menerima Residen British secara serta-merta",
-      "British menyerahkan Pulau Pinang kepada Johor",
-      "Johor diiktiraf sebagai negeri bebas dan Sultan Abu Bakar dihormati oleh Ratu Victoria",
-      "SHTI mengambil alih pentadbiran pelabuhan Johor",
-    ],
-    answerIndex: 2,
+      "Wilayah manakah yang dibantah oleh Raja Syed Alwi Jamalullail selepas diserahkan kepada Siam?",
+    options: ["Pujoh", "Tabal", "Sadao", "Ambong"],
+    answerIndex: 0,
     explanation:
-      "Lawatan diplomasi Sultan Abu Bakar mengeratkan hubungan dengan kerajaan British dan Ratu Victoria, sekali gus mengiktiraf kedaulatan Johor sebagai sebuah negeri bebas.",
+      "Raja Syed Alwi membantah kehilangan wilayah Pujoh yang sebelum itu ditadbir oleh Perlis.",
   },
   {
     id: "sej-f3-c8-a-q3",
@@ -46,17 +41,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah tindakan berani yang dilakukan oleh Tunku Mahmud (Pemangku Raja Kedah) bagi mempertahankan identiti dan kedaulatan negeri Kedah?",
+    question: "Mengapakah Sultan Zainal Abidin III menolak dakwaan Siam terhadap Terengganu?",
     options: [
-      "Menutup semua sekolah Inggeris di Kedah",
-      "Menyerahkan jawatan Presiden Majlis Mesyuarat Negeri kepada W.G. Maxwell",
-      "Menolak penggunaan Bahasa Inggeris dan mewajibkan Bahasa Melayu serta kalendar Hijrah dalam pentadbiran",
-      "Memindahkan ibu negeri Kedah ke Bangkok",
+      "Baginda mahu Terengganu menjadi sebahagian Johor",
+      "Baginda mahu British mentadbir Terengganu",
+      "Baginda menegaskan bunga emas ialah tanda persahabatan, bukan bukti Terengganu jajahan Siam",
+      "Baginda menolak semua hubungan dengan Siam",
     ],
     answerIndex: 2,
     explanation:
-      "Tunku Mahmud menolak dominasi Penasihat British W.G. Maxwell dengan mewajibkan penggunaan Bahasa Melayu dan kalendar Hijrah dalam surat-menyurat dan pentadbiran rasmi Kedah.",
+      "Baginda menegaskan Siam tidak mempunyai hak terhadap Terengganu dan bunga emas hanyalah tanda persahabatan.",
   },
   {
     id: "sej-f3-c8-a-q4",
@@ -66,16 +60,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Sultan Zainal Abidin III dari Terengganu terkenal dengan kebijaksanaan dalam pentadbiran. Apakah pembaharuan penting yang dilaksanakan oleh baginda?",
+      "Apakah tujuan Temenggung Daeng Ibrahim memindahkan pusat pentadbiran Johor ke Tanjung Puteri?",
     options: [
-      "Menjual tanah Terengganu kepada pelabur Eropah",
-      "Memansuhkan kuasa pembesar tempatan",
-      "Menolak pembentukan perlembagaan bertulis",
-      "Menubuhkan Jabatan Kerja Raya, Mahkamah Syariah, dan Polis",
+      "Untuk mendekati pusat pentadbiran Siam",
+      "Untuk membina pusat perlombongan",
+      "Untuk memudahkan British mentadbir Johor",
+      "Untuk mengelakkan tekanan British di Negeri-negeri Selat",
     ],
     answerIndex: 3,
     explanation:
-      "Sultan Zainal Abidin III memodenkan Terengganu dengan menubuhkan Jabatan Kerja Raya, Mahkamah Syariah, Polis, dan loji elektrik untuk memperkukuh birokrasi tempatan.",
+      "Pemindahan ke Tanjung Puteri membantu Johor menjauhkan pusat pentadbiran daripada tekanan British di Singapura.",
   },
   {
     id: "sej-f3-c8-a-q5",
@@ -84,17 +78,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Sultan Muhammad IV dari Kelantan telah memperkemas pentadbiran negeri dengan menubuhkan pelbagai jabatan rasmi. Manakah antara berikut jabatan yang ditubuhkan?",
+    question: "Apakah kesan Sistem Kangcu terhadap ekonomi Johor?",
     options: [
-      "Mahkamah Tinggi dan Jabatan Perhutanan",
-      "Majlis Bandaraya dan Jabatan Penerbangan",
-      "Jabatan Kastam Di Raja dan Tentera Udara",
-      "Lembaga Kemajuan Tanah dan Kilang Senjata",
+      "Johor menjadi pengeluar gambir dan lada hitam yang penting",
+      "Johor menghentikan kemasukan pedagang Cina",
+      "Johor menutup kawasan pertanian sungai",
+      "Johor bergantung sepenuhnya pada perlombongan bijih timah",
     ],
     answerIndex: 0,
     explanation:
-      "Sultan Muhammad IV memperkemas birokrasi Kelantan dengan menubuhkan Mahkamah Tinggi, Jabatan Perhutanan, dan Majlis Mesyuarat Negeri.",
+      "Sistem Kangcu menggalakkan pembukaan ladang gambir dan lada hitam sehingga Johor menjadi pengeluar penting.",
   },
   {
     id: "sej-f3-c8-a-q6",
@@ -104,16 +97,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Gelaran 'Bapa Pemodenan Johor' telah dianugerahkan kepada Sultan Abu Bakar atas sumbangan baginda. Apakah asas utama pemodenan tersebut?",
+      "Apakah yang dikritik oleh Sultan Idris Murshidul Adzam Shah dalam Durbar Kuala Lumpur?",
     options: [
-      "Penyerahan pentadbiran kewangan kepada Gabenor Singapura",
-      "Penubuhan jabatan kerajaan moden, Sistem Kangchu, dan pembinaan prasarana seperti Istana Besar",
-      "Penjualan estet getah secara berskala besar kepada syarikat Eropah",
-      "Pengenalan cukai pintu yang tinggi kepada penduduk kampung",
+      "Sistem pendidikan wanita",
+      "Pemusatan kuasa pada Residen Jeneral",
+      "Pembinaan sekolah Melayu",
+      "Perdagangan lada hitam",
     ],
     answerIndex: 1,
     explanation:
-      "Sultan Abu Bakar memodenkan Johor menerusi penubuhan Jabatan Ukur, Jabatan Pelajaran, Pasukan Setia Negara Johor, Sistem Kangchu, serta pembinaan bangunan pentadbiran moden.",
+      "Baginda mengkritik pemusatan kuasa dan menuntut pemulangan kuasa kepada institusi raja.",
   },
   {
     id: "sej-f3-c8-a-q7",
@@ -122,17 +115,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Mengapakah pemerintah Melayu mengutamakan pelantikan pegawai tempatan dalam perkhidmatan awam negeri seperti Kedah Civil Service (KCS) dan Johor Civil Service (JCS)?",
+    question: "Apakah peranan Lembaga Penasihat Johor di London?",
     options: [
-      "Untuk mengurangkan bayaran gaji pegawai",
-      "Atas arahan langsung daripada Pejabat Tanah Jajahan di London",
-      "Untuk mengelakkan penguasaan pegawai British dalam birokrasi negeri",
-      "Kerana pegawai British enggan bekerja di luar bandar",
+      "Mengurus pasukan tentera Johor",
+      "Menjual tanah Johor",
+      "Menasihati Sultan Abu Bakar dalam hal pentadbiran",
+      "Menggantikan Jemaah Menteri Johor",
     ],
     answerIndex: 2,
     explanation:
-      "Penglibatan pegawai tempatan elit dalam KCS dan JCS memastikan jentera pentadbiran negeri kekal dikuasai oleh anak tempatan dan menyukarkan campur tangan British.",
+      "Ahlinya terdiri daripada pegawai British berpengaruh yang membantu menasihati baginda dalam hal pentadbiran.",
   },
   {
     id: "sej-f3-c8-a-q8",
@@ -142,11 +134,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Bilakah Undang-Undang Tubuh Kerajaan Johor (Perlembagaan Negeri Johor) mula digubal dan diluluskan secara rasmi?",
-    options: ["10 Mac 1909", "1 Julai 1896", "20 Januari 1874", "14 April 1895"],
+      "Apakah syarat penting yang diterima Sultan Zainal Abidin III dalam Perjanjian British-Terengganu 1910?",
+    options: [
+      "Terengganu menerima Residen penuh",
+      "Siam menguasai pentadbiran negeri",
+      "Semua hubungan luar diserahkan kepada Johor",
+      "British mengakui Terengganu sebagai negeri merdeka dan wakil British tidak mempunyai kuasa pentadbiran",
+    ],
     answerIndex: 3,
     explanation:
-      "Undang-Undang Tubuh Kerajaan Johor digubal dan diluluskan oleh Sultan Abu Bakar pada 14 April 1895, menjadikannya perlembagaan bertulis pertama di negeri Melayu.",
+      "Baginda hanya bersetuju selepas kedaulatan Terengganu diakui dan wakil British tidak diberi kuasa mentadbir.",
   },
   {
     id: "sej-f3-c8-a-q9",
@@ -155,17 +152,15 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah syarat utama bagi calon Raja atau Sultan yang termaktub dalam Undang-Undang Tubuh Kerajaan Johor 1895?",
+    question: "Apakah ciri penting Undang-Undang Tubuh Kerajaan Johor?",
     options: [
-      "Lelaki, berbangsa Melayu, beragama Islam, dan keturunan Sultan Johor",
-      "Boleh berbangsa asing asalkan beragama Islam",
-      "Dilantik terus oleh Gabenor Negeri-negeri Selat",
-      "Mendapat kelulusan Parlimen British",
+      "Sultan dan kerajaan tidak boleh menyerahkan Johor kepada kuasa asing",
+      "Sultan wajib menerima Residen British",
+      "Bahasa Inggeris diwajibkan dalam semua urusan",
+      "Jemaah Menteri mesti terdiri daripada pegawai British",
     ],
     answerIndex: 0,
-    explanation:
-      "Fasal dalam Undang-Undang Tubuh Kerajaan Johor menetapkan bahawa Sultan mestilah seorang lelaki berbangsa Melayu, beragama Islam, dan daripada keturunan pemerintah Johor.",
+    explanation: "Perlembagaan Johor melarang penyerahan negeri kepada kuasa asing.",
   },
   {
     id: "sej-f3-c8-a-q10",
@@ -174,17 +169,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah fasal terpenting dalam Undang-Undang Tubuh Kerajaan Johor 1895 yang bertujuan menyekat peluasan kuasa British?",
+    question: "Apakah gelaran Sultan Abdul Hamid Halim Shah dalam konteks pemodenan negeri?",
     options: [
-      "Penetapan Bahasa Inggeris sebagai bahasa rasmi mahkamah",
-      "Larangan keras kepada Sultan dan Menteri untuk menyerahkan atau memajakkan mana-mana bahagian negeri Johor kepada kuasa asing",
-      "Kebenaran membawa masuk tentera British semasa darurat",
-      "Kewajipan menyerahkan hasil cukai bijih timah kepada British",
+      "Bapa Pemodenan Johor",
+      "Bapa Kedah Moden",
+      "Bapa Pendidikan Melayu",
+      "Bapa Sistem Kangcu",
     ],
     answerIndex: 1,
     explanation:
-      "Fasal ini melarang Raja dan Ahli Mesyuarat Kerajaan menyerahkan atau menggadaikan sebarang bahagian negeri Johor kepada kuasa asing. Hukuman bunuh/tuba terancam jika dilanggar.",
+      "Baginda dikenali sebagai Bapa Kedah Moden kerana pembangunan dan pemodenan negeri pada zaman pemerintahannya.",
   },
   {
     id: "sej-f3-c8-a-q11",
@@ -193,17 +187,15 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah nama undang-undang tubuh bagi negeri Terengganu yang digubal oleh Sultan Zainal Abidin III pada tahun 1911?",
+    question: "Apakah sumbangan ekonomi utama Long Jaafar?",
     options: [
-      "Ahkam Syariah Terengganu",
-      "Undang-Undang 99 Terengganu",
-      "Itqan al-muluk bi-ta'dil al-suluk",
-      "Hukum Kanun Terengganu",
+      "Membuka ladang getah di Johor",
+      "Menubuhkan Rejimen Askar Melayu",
+      "Memajukan perlombongan bijih timah di Larut",
+      "Mengasaskan Malay Girls College",
     ],
     answerIndex: 2,
-    explanation:
-      "Sultan Zainal Abidin III menggubal Perlembagaan Terengganu yang dinamakan 'Itqan al-muluk bi-ta'dil al-suluk' pada 2 November 1911 untuk memperkukuh kedaulatan negeri.",
+    explanation: "Long Jaafar memajukan Larut melalui penguasaan ekonomi perlombongan bijih timah.",
   },
   {
     id: "sej-f3-c8-a-q12",
@@ -212,17 +204,15 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Manakah antara berikut merupakan prinsip utama yang terkandung dalam Perlembagaan Terengganu (Itqan al-muluk bi-ta'dil al-suluk 1911)?",
+    question: "Apakah tujuan utama pembinaan Terusan Wan Muhammad Saman?",
     options: [
-      "Penasihat British memegang kuasa mutlak dalam Majlis Mesyuarat",
-      "Raja boleh melantik gabenor British sebagai timbalan",
-      "Bahasa Inggeris diwajibkan dalam perbicaraan Mahkamah Syariah",
-      "Pemerintah tidak boleh menyerahkan Terengganu kepada mana-mana kuasa asing dan Islam sebagai agama negeri",
+      "Mengangkut bijih timah ke pelabuhan",
+      "Menghubungkan Johor dengan Singapura",
+      "Membina sempadan Kedah-Siam",
+      "Membuka dan mengairi lebih banyak kawasan penanaman padi",
     ],
     answerIndex: 3,
-    explanation:
-      "Perlembagaan Terengganu 1911 menegaskan bahawa Islam ialah agama negeri dan melarang sama sekali penyerahan kedaulatan Terengganu kepada mana-mana kuasa asing.",
+    explanation: "Terusan itu membantu membuka tanah baharu dan mengairi kawasan sawah di Kedah.",
   },
   {
     id: "sej-f3-c8-a-q13",
@@ -231,17 +221,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Long Jaafar dan anaknya Ngah Ibrahim telah memainkan peranan penting di Larut, Perak. Apakah sumbangan utama mereka dalam memajukan ekonomi tempatan?",
+    question: "Siapakah yang melukis peta lengkap pertama negeri Johor?",
     options: [
-      "Memajukan perlombongan bijih timah dan membawa masuk pelombong Cina serta membina infrastruktur jalan",
-      "Membuka ladang getah komersial terbesar di Malaya",
-      "Membina kubu pertahanan di Pasir Salak",
-      "Menjual hasil timah secara eksklusif kepada syarikat Belanda",
+      "Dato' Muhammad Salleh bin Perang",
+      "Dato' Jaafar bin Muhammad",
+      "Wan Muhammad Saman",
+      "Ngah Ibrahim",
     ],
     answerIndex: 0,
     explanation:
-      "Long Jaafar dan Ngah Ibrahim memajukan daerah Larut sebagai pusat pengeluaran bijih timah utama, membawa pelombong Cina, dan membina jalan raya serta landasan kereta api Taiping-Port Weld.",
+      "Dato' Muhammad Salleh bin Perang melukis peta lengkap pertama Johor untuk membantu pembangunan negeri.",
   },
   {
     id: "sej-f3-c8-a-q14",
@@ -250,17 +239,15 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Wan Muhammad Saman (Dato' Seri Paduka Raja) dikenali kerana projek prasarana raksasa di Kedah. Apakah projek tersebut dan apakah impaknya?",
+    question: "Apakah tindakan Dato' Jaafar bin Muhammad untuk memartabatkan bahasa Melayu?",
     options: [
-      "Membina pelabuhan dalam di Kuala Kedah",
-      "Membina Terusan Wan Saman yang mengairi kawasan sawah padi hingga Kedah menjadi Jelapang Padi Negara",
-      "Membina jambatan gantung pertama menyeberangi Sungai Kedah",
-      "Membina landasan kereta api Alor Setar ke Bangkok",
+      "Menghapuskan surat rasmi",
+      "Menetapkan bahasa Melayu digunakan dalam penulisan surat rasmi kerajaan",
+      "Mewajibkan bahasa Inggeris dalam mahkamah",
+      "Menutup Jabatan Pelajaran",
     ],
     answerIndex: 1,
-    explanation:
-      "Wan Muhammad Saman membina Terusan Wan Saman sepanjang 36 km yang mengairi ribuan hektar sawah padi, menjayakan Kedah sebagai pembekal beras utama (Jelapang Padi).",
+    explanation: "Beliau menetapkan penggunaan bahasa Melayu dalam surat rasmi kerajaan Johor.",
   },
   {
     id: "sej-f3-c8-a-q15",
@@ -269,17 +256,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Dato' Jaafar bin Haji Muhammad, Menteri Besar Johor pertama, sangat tegas dalam mempertahankan maruah dan protokol istana. Apakah peraturan rasmi yang dikuatkuasakannya?",
+    question: "Mengapakah Dato' Abdul Rahman bin Andak dibersarakan daripada pentadbiran Johor?",
     options: [
-      "Semua urusan pentadbiran mesti menggunakan mata wang Dolar Sepanyol",
-      "Pegawai British tidak dibenarkan menghadiri majlis istana",
-      "Wajib untuk semua pegawai British mengibarkan bendera Johor di kediaman mereka dan memakai pakaian rasmi Johor",
-      "Pegawai British dilarang memasuki kawasan Johor Bahru",
+      "Beliau enggan bekerja dengan Sultan",
+      "Beliau berpindah ke Kedah",
+      "British mendesak penyingkirannya kerana kebijaksanaannya menghalang peluasan kuasa British",
+      "Beliau menutup hubungan Johor dengan semua kuasa luar",
     ],
     answerIndex: 2,
     explanation:
-      "Dato' Jaafar mewajibkan pegawai British yang berkhidmat di Johor memakai pakaian rasmi Johor dan mengibarkan bendera Johor lebih tinggi/sama di kediaman mereka.",
+      "Keupayaannya mematahkan usaha British menyebabkan British mendesak supaya beliau disingkirkan daripada pentadbiran.",
   },
   {
     id: "sej-f3-c8-a-q16",
@@ -288,17 +274,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Dato' Abdul Rahman bin Andak (Dato' Seri Amar Diraja) merupakan Setiausaha Kerajaan Johor yang sangat ditakuti oleh British. Mengapakah British bertindak memencenkan baginda ke London?",
+    question: "Apakah hasil pemodenan pentadbiran dan ekonomi Johor?",
     options: [
-      "Kerana baginda enggan mengajar bahasa Melayu di sekolah",
-      "Kerana baginda menyertai pemberontakan bersenjata di Pahang",
-      "Kerana baginda menjual tanah Johor kepada pelabur Jerman",
-      "Kerana Kebijaksanaan baginda menghidu muslihat British dan menggagalkan cubaan meluaskan kuasa di Johor",
+      "Pelabur asing meninggalkan Johor",
+      "Pengeluaran pertanian dihentikan",
+      "British terus mengambil alih Johor pada 1874",
+      "Kemakmuran negeri meningkat dan pelaburan pertanian komersial berkembang",
     ],
     answerIndex: 3,
     explanation:
-      "Dato' Abdul Rahman bin Andak sangat bijak berdiplomasi dan sering menggagalkan usaha British menguasai Johor, menyebabkan British mendesak Sultan Ibrahim memencenkan baginda ke London.",
+      "Pentadbiran yang cekap membantu menarik pelaburan serta meningkatkan kemakmuran Johor.",
   },
   {
     id: "sej-f3-c8-a-q17",
@@ -307,17 +292,10 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah sumbangan besar Dato' Muhammad Salleh bin Perang (Dato' Bentara Luar) dalam pembangunan geografi dan pemodenan Johor?",
-    options: [
-      "Melukis peta topografi Johor yang lengkap pertama dan merancang pembangunan bandar Muar, Batu Pahat, dan Endau",
-      "Membina kapal perang pertama Johor",
-      "Menulis buku sejarah Johor dalam bahasa Inggeris",
-      "Mengasaskan Maktab Melayu Kuala Kangsar",
-    ],
+    question: "Bilakah British berjaya menempatkan Penasihat Am British di Johor?",
+    options: ["1914", "1909", "1919", "1930"],
     answerIndex: 0,
-    explanation:
-      "Dato' Bentara Luar mahir dalam ilmu ukur dan melukis peta topografi Johor yang membolehkan perancangan pembangunan bandar Muar, Batu Pahat, dan Endau berjalan lancar.",
+    explanation: "Perjanjian British-Johor 1914 membolehkan penempatan Penasihat Am British.",
   },
   {
     id: "sej-f3-c8-a-q18",
@@ -326,17 +304,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Sultan Idris Murshidul Adzam Shah dari Perak telah menggunakan pentas Durbar II (1903) di Kuala Lumpur untuk membuat tuntutan berani. Apakah tuntutan baginda?",
+    question: "Apakah kesan desakan Raja-raja Melayu terhadap pendidikan?",
     options: [
-      "Menuntut penutupan semua lombong timah milik pelabur Eropah",
-      "Menuntut pemulihan kuasa Raja-raja Melayu, pertambahan pegawai Melayu dalam pentadbiran, dan pengiktirafan Bahasa Melayu",
-      "Mendesak British menyerahkan pentadbiran Pulau Pinang kepada Perak",
-      "Meminta British memansuhkan perkhidmatan kereta api di Perak",
+      "Sekolah tempatan ditutup",
+      "Lebih banyak sekolah termasuk sekolah perempuan dibuka",
+      "Bahasa Melayu dihapuskan",
+      "Pendidikan hanya diberikan kepada pegawai British",
     ],
     answerIndex: 1,
     explanation:
-      "Dalam Durbar II (1903), Sultan Idris secara kritikal menuntut agar kuasa Raja-raja Melayu dipulihkan, bahasa Melayu dihormati, dan lebih ramai pegawai Melayu dilantik dalam birokrasi.",
+      "Desakan Raja-raja Melayu membantu membawa kepada pembukaan sekolah bagi anak watan termasuk sekolah perempuan.",
   },
   {
     id: "sej-f3-c8-a-q19",
@@ -345,17 +322,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah iktibar utama yang boleh diambil daripada kebijaksanaan Raja dan pembesar Melayu dalam menangani cabaran Barat pada abad ke-19 dan awal abad ke-20?",
+    question: "Apakah yang menjadi asas kepada Rejimen Askar Melayu?",
     options: [
-      "Menolak terus sebarang bentuk pemodenan teknologi",
-      "Menyerahkan urusan pentadbiran negeri kepada syarikat asing",
-      "Pentingnya penguasaan ilmu pengetahuan, pemodenan berstrategi, dan perpaduan dalam mempertahankan kedaulatan negara",
-      "Keutamaan bergantung sepenuhnya kepada bantuan kuasa asing",
+      "Pasukan Polis Johor",
+      "Majlis Mesyuarat Negeri",
+      "Kompeni Percubaan di Port Dickson",
+      "Kedah Civil Service",
     ],
     answerIndex: 2,
     explanation:
-      "Kepimpinan berilmu, pandangan jauh, dan strategi diplomasi yang berkesan membolehkan sesebuah negara mempertahankan identiti dan kedaulatannya daripada pencerobohan asing.",
+      "Kompeni Percubaan pada tahun 1933 berkembang menjadi Rejimen Askar Melayu pada tahun 1935.",
   },
   {
     id: "sej-f3-c8-a-q20",
@@ -364,17 +340,15 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah institusi pendidikan elit yang ditubuhkan pada tahun 1905 hasil desakan Raja-raja Melayu untuk melatih anak-anak tempatan dalam pentadbiran?",
+    question: "Bagaimanakah institusi beraja terus berfungsi di bawah pentadbiran British?",
     options: [
-      "Maktab Perguruan Sultan Idris (MPSI)",
-      "Penang Free School",
-      "Kolej Sultan Abdul Hamid",
-      "Maktab Melayu Kuala Kangsar (MCKK)",
+      "Raja tidak lagi mempunyai sebarang peranan",
+      "Semua undang-undang diluluskan di London",
+      "Pembesar menggantikan sultan",
+      "Undang-undang masih memerlukan tandatangan dan cap mohor sultan sebagai pengesahan",
     ],
     answerIndex: 3,
-    explanation:
-      "MCKK ditubuhkan di Perak pada tahun 1905 untuk memberikan pendidikan Inggeris dan pentadbiran kepada anak-anak raja dan bangsawan Melayu bagi menganggotai Malay Administrative Service (MAS).",
+    explanation: "Walaupun kuasa raja berkurang, undang-undang masih memerlukan pengesahan sultan.",
   },
   {
     id: "sej-f3-c8-b-q1",
@@ -384,16 +358,11 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Mengapakah Negeri-negeri Melayu Utara dan Johor berhasrat menguji pemodenan berasaskan sistem pentadbiran Barat secara kendiri?",
-    options: [
-      "Untuk menarik kemasukan tentera dari negara Jerman",
-      "Kerana negeri-negeri tersebut kehabisan sumber kewangan",
-      "Untuk membuktikan kemampuan pemerintah tempatan mengurus negeri dan menutup alasan British untuk campur tangan",
-      "Atas paksaan daripada pihak Kerajaan Siam",
-    ],
-    answerIndex: 2,
+      "Apakah wilayah Kelantan yang diserahkan British kepada Siam selepas Perjanjian Bangkok?",
+    options: ["Pujoh", "Tabal", "Setul", "Pulau Langkawi"],
+    answerIndex: 1,
     explanation:
-      "Melalui pemodenan kendiri, pemerintah Melayu menunjukkan kemampuan mengurus birokrasi moden sekali gus menafikan dalih British bahawa negeri Melayu mundur dan tidak teratur.",
+      "Wilayah Tabal diserahkan kepada Siam dan sebahagian besar penduduk Melayunya berhijrah ke Kelantan.",
   },
   {
     id: "sej-f3-c8-b-q2",
@@ -402,17 +371,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah fungsi Lembaga Penasihat Johor (Johor Advisory Board) yang ditubuhkan di London oleh Sultan Abu Bakar?",
+    question: "Apakah pendirian pemerintah Negeri-negeri Melayu Utara terhadap Perjanjian Bangkok?",
     options: [
-      "Merekrut tentera Eropah untuk dihantar ke Johor",
-      "Menjual hasil pertanian gambir secara langsung di Eropah",
-      "Mengumpul dana untuk pembinaan jalan kereta api di Singapura",
-      "Menguruskan hal ehwal hubungan Johor-British dan menasihati Sultan dalam hal pentadbiran/kewangan",
+      "Mereka mempersoalkan hak British dan Siam menentukan masa depan negeri tanpa berunding",
+      "Mereka menerima semua sempadan tanpa bantahan",
+      "Mereka meminta negeri diserahkan kepada British",
+      "Mereka menyerahkan kuasa kepada Johor",
     ],
-    answerIndex: 3,
+    answerIndex: 0,
     explanation:
-      "Lembaga Penasihat Johor di London ditubuhkan untuk memelihara kepentingan diplomatik Johor di England dan menasihati Sultan mengenai hal-hal pentadbiran antarabangsa.",
+      "Kelantan, Terengganu, Kedah dan Perlis mempersoalkan tindakan British dan Siam yang tidak berunding dengan mereka.",
   },
   {
     id: "sej-f3-c8-b-q3",
@@ -421,17 +389,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Bagaimanakah Kedah menangani tekanan kewangan pada awal abad ke-20 sebelum kehadiran Penasihat British?",
+    question: "Apakah tujuan Surat Sungai dalam Sistem Kangcu?",
     options: [
-      "Meminjam dana daripada pinjaman luar (Siam) dan mengukuhkan pentadbiran perbendaharaan negeri",
-      "Menjual daerah Kulim kepada Negeri-negeri Selat",
-      "Meminta bantuan kewangan daripada Negeri-negeri Melayu Bersekutu",
-      "Mewajibkan cukai kepala yang tinggi kepada semua petani",
+      "Melantik Residen British",
+      "Menentukan sempadan antarabangsa",
+      "Memberi kebenaran menetap dan mengusahakan pertanian di lembah sungai",
+      "Mengutip cukai pelabuhan Singapura",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Kedah menguruskan kewangannya melalui pinjaman pinjaman Siam pada tahun 1905 dan menubuhkan Majlis Mesyuarat Negeri untuk mengawal perbelanjaan negeri.",
+      "Surat Sungai ialah surat kuasa atau kebenaran kepada ketua Kangcu untuk menetap dan mengusahakan pertanian di lembah sungai.",
   },
   {
     id: "sej-f3-c8-b-q4",
@@ -441,16 +408,11 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Sultan Zainal Abidin III di Terengganu telah menerima pelantikan Agen British pada tahun 1910. Apakah batas kuasa Agen British tersebut berbanding Residen?",
-    options: [
-      "Agen British diberi kuasa memecat pegawai tempatan",
-      "Agen British hanya mempunyai kuasa seperti konsul dan tidak berhak campur tangan dalam pentadbiran dalaman negeri",
-      "Agen British mempunyai kuasa mutlak dalam kutipan cukai",
-      "Agen British menguasai jawatan Menteri Besar Terengganu",
-    ],
-    answerIndex: 1,
+      "Apakah nama pusat pentadbiran Johor di Tanjung Puteri sebelum dinamakan Johor Bahru?",
+    options: ["Bandar Maharani", "Bandar Penggaram", "Kuala Sedili", "Bandar Iskandar Puteri"],
+    answerIndex: 3,
     explanation:
-      "Di bawah Perjanjian 1910, Terengganu hanya menerima seorang Agen British yang peranannya terhad seperti pegawai konsul tanpa kuasa eksekutif pentadbiran.",
+      "Tanjung Puteri dijadikan ibu negeri dan dinamakan Bandar Iskandar Puteri sebelum nama Johor Bahru digunakan.",
   },
   {
     id: "sej-f3-c8-b-q5",
@@ -459,17 +421,10 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah langkah pembaharuan yang dilaksanakan di Kelantan semasa pemerintahan Sultan Muhammad IV bagi memastikan kelancaran kehakiman?",
-    options: [
-      "Menggunakan undang-undang adat Inggeris sepenuhnya",
-      "Memansuhkan kuasa undang-undang Islam",
-      "Mewujudkan Mahkamah Tinggi, Mahkamah Perdana, dan Mahkamah Syariah",
-      "Menyerahkan sistem kehakiman kepada hakim British dari Singapura",
-    ],
-    answerIndex: 2,
-    explanation:
-      "Sultan Muhammad IV memperkemas sistem perundangan Kelantan dengan menubuhkan Mahkamah Tinggi, Mahkamah Perdana, dan Mahkamah Syariah untuk mengendalikan kes sivil dan agama.",
+    question: "Apakah hasil yang dijadikan monopoli Johor oleh Temenggung Daeng Ibrahim?",
+    options: ["Getah perca", "Bijih timah", "Petroleum", "Sagu"],
+    answerIndex: 0,
+    explanation: "Perdagangan getah perca sangat menguntungkan sehingga dijadikan monopoli Johor.",
   },
   {
     id: "sej-f3-c8-b-q6",
@@ -478,16 +433,17 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question: "Apakah kebaikan utama penubuhan Jabatan Ukur di Johor pada zaman Sultan Abu Bakar?",
+    question:
+      "Siapakah yang menuntut bahasa Melayu dijadikan bahasa rasmi Persekutuan dalam Durbar Kuala Lumpur?",
     options: [
-      "Menghalang orang Melayu daripada memiliki tanah estet",
-      "Menyediakan pemetaan khas untuk kawasan perlombongan emas sahaja",
-      "Membolehkan tanah Johor dijual kepada pelabur Eropah secara sulit",
-      "Memudahkan pemetaan sempadan tanah, pengeluaran geran tanah, dan perancangan pembukaan bandar",
+      "Sultan Idris Murshidul Adzam Shah",
+      "Tuanku Muhammad ibni Yamtuan Antah",
+      "Sultan Hisamuddin Alam Shah",
+      "Sultan Abu Bakar Johor",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Jabatan Ukur Johor ditubuhkan untuk memetakan tanah secara sistematik, mengeluarkan surat hak milik geran, dan melancarkan urusan cukai serta perancangan bandar.",
+      "Yang di-Pertuan Besar Negeri Sembilan, Tuanku Muhammad, membuat tuntutan tersebut.",
   },
   {
     id: "sej-f3-c8-b-q7",
@@ -496,17 +452,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah keistimewaan perkhidmatan awam Kedah Civil Service (KCS) yang ditubuhkan pada awal abad ke-20?",
+    question: "Apakah cadangan Sultan Hisamuddin Alam Shah dalam Durbar Seri Menanti?",
     options: [
-      "Mewajibkan penggunaan bahasa Melayu dalam urusan pentadbiran dan melatih pegawai tempatan berkaliber",
-      "Dikelola sepenuhnya oleh Pejabat Tanah Jajahan London",
-      "Hanya menerima graduan dari universiti di England",
-      "Membenarkan Penasihat British membuat keputusan tanpa mesyuarat",
+      "Menubuhkan Rejimen Askar Melayu",
+      "Menghapuskan Majlis Negeri",
+      "Menubuhkan Malay Girls College",
+      "Menyatukan Johor dengan Selangor",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Kedah Civil Service (KCS) berjaya melahirkan birokrat Melayu yang berpendidikan, mempertahankan penggunaan bahasa Melayu, dan mengawal keanggotaan perkhidmatan awam negeri.",
+      "Baginda mencadangkan Malay Girls College untuk meningkatkan pendidikan kaum wanita.",
   },
   {
     id: "sej-f3-c8-b-q8",
@@ -516,16 +471,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Apakah dua badan pentadbiran utama yang ditubuhkan di bawah Undang-Undang Tubuh Kerajaan Johor 1895?",
+      "Apakah yang menimbulkan pergeseran antara W.G. Maxwell dengan Majlis Mesyuarat Negeri Kedah?",
     options: [
-      "Majlis Diraja dan Mahkamah Tinggi",
-      "Majlis Mesyuarat Kerajaan (Kabinet) dan Majlis Mesyuarat Negeri (Parlimen)",
-      "Dewan Negara dan Dewan Rakyat",
-      "Lembaga Ukur dan Lembaga Hasil Dalam Negeri",
+      "W.G. Maxwell enggan menjadi Penasihat British",
+      "Kedah mahu menyerahkan negeri kepada Siam",
+      "British menutup semua pejabat kerajaan",
+      "W.G. Maxwell dianggap melampaui batas dalam mencampuri urusan pentadbiran dan identiti negeri",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation:
-      "Perlembagaan Johor 1895 membahagikan pentadbiran kepada Majlis Mesyuarat Kerajaan (menjalankan kuasa eksekutif) dan Majlis Mesyuarat Negeri (membantu menggubal undang-undang).",
+      "Campur tangan Maxwell dalam urusan surat rasmi, bahasa dan simbol negeri dianggap mencabar identiti Kedah.",
   },
   {
     id: "sej-f3-c8-b-q9",
@@ -535,16 +490,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Apakah syarat kewarganegaraan bagi Ahli Majlis Mesyuarat Kerajaan Johor mengikut Undang-Undang Tubuh Kerajaan Johor 1895?",
+      "Apakah ciri penting Jemaah Menteri Johor menurut Undang-Undang Tubuh Kerajaan Johor?",
     options: [
-      "Terbuka kepada mana-mana pedagang asing di Singapura",
+      "Terdiri daripada bangsa Melayu, rakyat Johor dan beragama Islam",
+      "Terdiri daripada pegawai British",
       "Dilantik oleh Gabenor Negeri-negeri Selat",
-      "Mestilah terdiri daripada rakyat Johor yang berbangsa Melayu dan beragama Islam",
-      "Mestilah warganegara British yang berpengalaman",
+      "Terbuka hanya kepada pedagang Singapura",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Ahli Majlis Mesyuarat Kerajaan Johor diwajibkan terdiri daripada rakyat Johor yang beragama Islam dan berbangsa Melayu untuk memastikan dasar kerajaan kekal di tangan tempatan.",
+      "Undang-Undang Tubuh Johor menetapkan ciri tempatan dan Islam bagi Jemaah Menteri.",
   },
   {
     id: "sej-f3-c8-b-q10",
@@ -554,16 +509,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Mengapakah Sultan Zainal Abidin III menggubal Perlembagaan 'Itqan al-muluk bi-ta'dil al-suluk' di Terengganu pada tahun 1911?",
+      "Apakah maksud penting Undang-Undang Bagi Diri Kerajaan Terengganu terhadap kedaulatan?",
     options: [
-      "Untuk membolehkan British mengambil alih kawasan perlombongan emas",
-      "Atas desakan daripada pihak Gabenor Singapura",
-      "Untuk memansuhkan institusi Kesultanan di Terengganu",
-      "Sebagai benteng perundangan untuk menghalang campur tangan dan peluasan kuasa British selepas Perjanjian Bangkok 1909",
+      "Sultan boleh menyerahkan negeri jika mendapat bayaran",
+      "Sultan tidak boleh menyerahkan Terengganu kepada kuasa asing",
+      "British mesti menjadi sebahagian Jemaah Menteri",
+      "Islam tidak boleh digunakan dalam perundangan",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Penggubalan Perlembagaan Terengganu 1911 bertujuan memperkemas birokrasi dan menjadi perisai undang-undang menentang cubaan British menguasai pentadbiran negeri.",
+      "Perlembagaan Terengganu secara tegas melarang penyerahan negeri kepada kuasa asing.",
   },
   {
     id: "sej-f3-c8-b-q11",
@@ -572,16 +527,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question: "Apakah peranan Jemaah Menteri mengikut peruntukan Perlembagaan Terengganu 1911?",
+    question: "Apakah usaha pendidikan Long Jaafar?",
     options: [
-      "Membantu Sultan dan Majlis Mesyuarat Negeri menguruskan pentadbiran serta menjalankan dasar kerajaan",
-      "Memilih Gabenor British bagi pihak Sultan",
-      "Mengumpul ufti tahunan untuk dihantar ke Bangkok",
-      "Menguruskan pendaftaran tentera asing",
+      "Menubuhkan Malay Girls College",
+      "Menubuhkan MCKK",
+      "Membina Sekolah Melayu Matang dan menggalakkan pengajian agama",
+      "Membuka sekolah Inggeris di London",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Jemaah Menteri Terengganu bertindak sebagai badan eksekutif yang membantu Sultan mengendalikan hal ehwal pentadbiran dan pelaksanaan undang-undang negeri.",
+      "Long Jaafar menggalakkan pengajian agama dan membina Sekolah Melayu Matang pada 1826.",
   },
   {
     id: "sej-f3-c8-b-q12",
@@ -590,17 +545,15 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah yang menyebabkan daerah Larut menjadi pusat perbalahan pelombong Cina (Perang Larut) pada zaman Ngah Ibrahim?",
+    question: "Apakah kaedah utama yang digunakan untuk membina Terusan Wan Muhammad Saman?",
     options: [
-      "Cukai eksport kayu balak yang terlalu tinggi",
-      "Perebutan kawasan lombong kaya bijih timah dan laluan kawalan air antara kumpulan Ghee Hin dan Hai San",
-      "Perebutan kawasan tanaman ladang getah",
-      "Perbezaan faham politik antara pembesar Melayu",
+      "Jentera wap British",
+      "Teknologi hidraulik Eropah",
+      "Mesin korek moden",
+      "Sistem kerah dan peralatan tradisional",
     ],
-    answerIndex: 1,
-    explanation:
-      "Pertambahan pesat pelombong Cina membawa kepada konflik puak antara Ghee Hin dan Hai San bagi merebut kawasan lombong timah yang kaya di Larut.",
+    answerIndex: 3,
+    explanation: "Terusan itu dibina menggunakan tenaga kerah dan peralatan tradisional.",
   },
   {
     id: "sej-f3-c8-b-q13",
@@ -609,17 +562,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Bagaimanakah Wan Muhammad Saman membina Terusan Wan Saman tanpa teknologi jentera moden pada akhir abad ke-19?",
+    question: "Apakah peranan Dato' Muhammad Ibrahim Munsyi?",
     options: [
-      "Menggunakan mesin pengorek stim dari Eropah",
-      "Meminta bantuan kepakaran jurutera dari Siam",
-      "Menggunakan tenaga manusia tempatan dengan alatan tradisional dan teknik ukuran cangkul secara bersistem",
-      "Menggunakan khidmat kontraktor ketenteraan dari British",
+      "Mengembangkan pendidikan moden di Johor",
+      "Mengurus perlombongan Larut",
+      "Menjadi Ketua Anak Negeri Sabah",
+      "Menjadi Penasihat British Kedah",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Terusan Wan Saman digali secara manual menggunakan cangkul dan tenaga tempatan dengan kemahiran pengurusan tanah dan kejuruteraan tradisional yang mengagumkan.",
+      "Beliau mengetuai usaha pendidikan melalui Jabatan Pelajaran dan mendorong pendidikan wajib.",
   },
   {
     id: "sej-f3-c8-b-q14",
@@ -628,17 +580,15 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Dato' Abdul Rahman bin Andak telah mengasaskan sebuah persatuan persuratan penting di Johor pada tahun 1888. Apakah nama persatuan tersebut?",
+    question: "Apakah badan persuratan yang dipelopori Dato' Abdul Rahman bin Andak?",
     options: [
-      "Persatuan Beliau Melayu Johor",
-      "Syarikat Kereta Api Johor",
-      "Lembaga Bahasa Melayu Singapura",
-      "Pakatan Belajar Mengajar Pengetahuan Bahasa (PBM-PB)",
+      "Majlis Syuyukh Islam",
+      "Pakatan Belajar Mengajar Pengetahuan Bahasa",
+      "Jemaah Menteri Terengganu",
+      "Perkhidmatan Tadbir Melayu",
     ],
-    answerIndex: 3,
-    explanation:
-      "Dato' Abdul Rahman bin Andak mengasaskan Pakatan Belajar Mengajar Pengetahuan Bahasa (PBM-PB) untuk memelihara, memodenkan, dan memperkaya kosa kata bahasa Melayu.",
+    answerIndex: 1,
+    explanation: "Beliau menjadi perintis Pakatan Belajar Mengajar Pengetahuan Bahasa pada 1888.",
   },
   {
     id: "sej-f3-c8-b-q15",
@@ -647,17 +597,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah gelaran khas yang dikurniakan kepada Dato' Muhammad Salleh bin Perang atas jasa baginda memetakan dan memajukan daerah-daerah di Johor?",
+    question: "Apakah peranan Orang Kaya-kaya Haji Mohammad Arshad di Sabah?",
     options: [
-      "Dato' Bentara Luar",
-      "Dato' Seri Amar Diraja",
-      "Dato' Seri Paduka Raja",
-      "Dato' Perdana Menteri",
+      "Menteri Besar Johor",
+      "Penasihat British",
+      "Ketua Anak Negeri yang membantu pentadbiran daerah dan Mahkamah Anak Negeri",
+      "Pengasas Terusan Wan Saman",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Dato' Muhammad Salleh bin Perang dikurniakan gelaran Dato' Bentara Luar atas kebolehan luar biasa baginda dalam ilmu ukur dan pembangunan wilayah Johor.",
+      "Beliau membantu Pegawai Daerah dan menjadi hakim Mahkamah Anak Negeri dalam hal adat dan syariah.",
   },
   {
     id: "sej-f3-c8-b-q16",
@@ -667,16 +616,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Apakah reaksi British terhadap tindakan Sultan Idris Shah yang kritikal dalam mesyuarat Durbar II tahun 1903?",
+      "Apakah salah satu sebab Johor menjadi makmur sebelum campur tangan British secara langsung?",
     options: [
-      "British menggantikan pentadbiran Perak dengan tentera",
-      "British terpaksa memberikan perhatian terhadap desakan baginda dan akhirnya menubuhkan Maktab Melayu Kuala Kangsar (MCKK)",
-      "British memecat Sultan Idris daripada takhta Perak",
-      "British memansuhkan sistem Durbar secara serta-merta",
+      "Johor menghentikan perdagangan antarabangsa",
+      "Semua pelaburan asing dilarang",
+      "British mengurus seluruh ekonomi Johor",
+      "Pentadbiran dan ekonomi yang cekap menarik pelaburan pertanian komersial",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation:
-      "Desakan Sultan Idris membuka mata British akan perlunya melatih anak tempatan dalam birokrasi, yang membawa kepada penubuhan MCKK (1905) dan MAS (1910).",
+      "Kecekapan pentadbiran dan ekonomi menarik pelabur ke sektor gambir dan lada hitam.",
   },
   {
     id: "sej-f3-c8-b-q17",
@@ -685,17 +634,10 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah sistem Raja Berperlembagaan yang diasaskan di Johor dan Terengganu penting dalam sejarah perundangan Malaysia?",
-    options: [
-      "Kerana ia memindahkan kuasa perundangan kepada Gabenor Jeneral",
-      "Kerana ia meniru sepenuhnya sistem perlembagaan Amerika Syarikat",
-      "Kerana ia menjadi asas kepada sistem Raja Berperlembagaan dan Demokrasi Berparlimen yang diamalkan di Malaysia hari ini",
-      "Kerana ia memansuhkan kuasa Mahkamah Syariah",
-    ],
-    answerIndex: 2,
-    explanation:
-      "Penggubalan perlembagaan bertulis Melayu mendahului zaman dan menjadi perintis kepada konsep Raja Berperlembagaan dalam Perlembagaan Persekutuan Malaysia.",
+    question: "Bilakah Terengganu menerima Penasihat British?",
+    options: ["1919", "1905", "1910", "1930"],
+    answerIndex: 0,
+    explanation: "British hanya berjaya menempatkan Penasihat British di Terengganu pada 1919.",
   },
   {
     id: "sej-f3-c8-b-q18",
@@ -704,17 +646,16 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah iktibar daripada tindakan Dato' Jaafar bin Haji Muhammad yang mewajibkan pegawai British mematuhi protokol istana Johor?",
+    question: "Apakah tujuan penubuhan Kompeni Percubaan pada tahun 1933?",
     options: [
-      "Kepentingan mengikut semua arahan pegawai asing",
-      "Keutamaan memenangi hati pihak musuh melalui penyerahan kuasa",
-      "Kepentingan mempelajari bahasa asing semata-mata",
-      "Kewajipan mempertahankan maruah bangsa dan kedaulatan wata tanpa rasa gentar terhadap kuasa asing",
+      "Melatih Penasihat British",
+      "Mewujudkan pasukan bersenjata yang dianggotai anak watan",
+      "Mengawal ladang gambir Johor",
+      "Mengurus sekolah perempuan",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Ketegasan Dato' Jaafar menunjukkan bahawa maruah, integriti, dan kedaulatan bangsa mesti dipertahankan dengan penuh ketegasan dalam apa jua keadaan.",
+      "Kompeni Percubaan menjadi asas pasukan tentera anak watan yang kemudian berkembang menjadi Rejimen Askar Melayu.",
   },
   {
     id: "sej-f3-c8-b-q19",
@@ -723,17 +664,15 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah nama badan perkhidmatan awam khas yang ditubuhkan pada tahun 1910 untuk melatih pegawai Melayu memegang jawatan pentadbiran di NNMB?",
+    question: "Apakah tujuan Perkhidmatan Tadbir Melayu yang bermula pada tahun 1910?",
     options: [
-      "Malay Administrative Service (MAS)",
-      "Johor Civil Service (JCS)",
-      "Kedah Civil Service (KCS)",
-      "Malayan Civil Service (MCS)",
+      "Menggantikan semua raja Melayu",
+      "Menutup jawatan kepada orang Melayu",
+      "Melatih orang Melayu untuk menceburkan diri dalam pentadbiran negeri",
+      "Mengurus tentera British",
     ],
-    answerIndex: 0,
-    explanation:
-      "Malay Administrative Service (MAS) ditubuhkan pada tahun 1910 bagi memberikan peluang kepada graduan Melayu (seperti graduan MCKK) berkhidmat dalam birokrasi persekutuan.",
+    answerIndex: 2,
+    explanation: "PTM membuka ruang latihan dan kerjaya pentadbiran kepada orang Melayu.",
   },
   {
     id: "sej-f3-c8-b-q20",
@@ -742,16 +681,15 @@ export const sejarahF3C8Quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Bagaimanakah pembesar Melayu seperti Long Jaafar dan Wan Muhammad Saman membuktikan daya usaha memperkasa ekonomi tempatan?",
+    question: "Apakah kesan peluasan British terhadap institusi beraja?",
     options: [
-      "Dengan memindahkan pusat perdagangan ke luar negara",
-      "Dengan memanfaatkan sumber alam negeri secara bijaksana, berpandangan jauh, dan membina prasarana impak tinggi",
-      "Dengan menjual hak perlombongan sepenuhnya kepada syarikat asing",
-      "Dengan mengharapkan dana bantuan daripada Pejabat Tanah Jajahan",
+      "Institusi raja dihapuskan sepenuhnya",
+      "Sultan digantikan oleh pembesar",
+      "Raja kehilangan semua fungsi pengesahan undang-undang",
+      "Institusi raja kekal walaupun kuasanya berkurang dan pengesahan sultan masih diperlukan",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation:
-      "Kebijaksanaan pembesar Melayu terserlah menerusi inovasi, perancangan jangka panjang, dan keberanian melabur dalam projek prasarana impak tinggi demi kemakmuran negeri.",
+      "British tidak menghapuskan institusi beraja; sultan kekal sebagai unsur penting dalam pengesahan pentadbiran.",
   },
 ];

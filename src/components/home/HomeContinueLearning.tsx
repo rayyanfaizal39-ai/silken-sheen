@@ -12,7 +12,7 @@ import {
 } from "@/hooks/use-progress";
 import { subjects } from "@/data/subjects-meta";
 import { getSubjectWorldArtwork, SUBJECT_WORLD_FALLBACK_ACCENT } from "@/lib/subject-world-artwork";
-import { normalizeFormParam, studyResumeSearch } from "@/lib/study-routing";
+import { normalizeFormParam, parseKnownForm, studyResumeSearch } from "@/lib/study-routing";
 
 const ACTIVITY_ROUTES = {
   notes: "/notes",
@@ -39,6 +39,8 @@ function getCanonicalLabel(activity: LastVisited, allActivity: RecentActivity[])
       (item) =>
         item.subjectId === activity.subjectId &&
         item.chapterKey === activity.chapterKey &&
+        // "Chapter 3" is a different chapter in each form.
+        (item.form ?? null) === (activity.form ?? null) &&
         item.label &&
         item.label !== item.chapterKey,
     )?.label ?? activity.chapterKey
@@ -78,7 +80,13 @@ export function HomeContinueLearning() {
   useEffect(() => {
     let active = true;
     setRegistryLabel(null);
-    if (!latest || getCanonicalLabel(latest, recentActivity ?? []) !== latest.chapterKey) {
+    const latestForm = latest ? parseKnownForm(latest.form) : null;
+    // Without a known form there is no single chapter to look the label up in.
+    if (
+      !latest ||
+      !latestForm ||
+      getCanonicalLabel(latest, recentActivity ?? []) !== latest.chapterKey
+    ) {
       return () => {
         active = false;
       };

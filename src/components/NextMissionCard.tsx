@@ -12,6 +12,7 @@ interface Mission {
   subjectId: string;
   subjectName: string;
   subjectColor: string;
+  /** Null when the anchor predates form tracking — the link opens the Form chooser. */
   form: string | null;
   label: string;
   cta: string;
@@ -117,7 +118,10 @@ export function NextMissionCard({ compact = false }: { compact?: boolean }) {
             {mission.label}
           </p>
           {!compact && (
-            <p className="mt-0.5 truncate text-xs text-white/60">{mission.subjectName}{mission.form ? ` • ${mission.form}` : ""}</p>
+            <p className="mt-0.5 truncate text-xs text-white/60">
+              {mission.subjectName}
+              {mission.form ? ` • ${mission.form}` : ""}
+            </p>
           )}
         </div>
         <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3 py-2 text-xs font-bold text-white transition-all group-hover:bg-white/20">

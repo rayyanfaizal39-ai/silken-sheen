@@ -15965,11 +15965,9 @@ export function resolveMathObjectiveQuestions({
   scienceLang: string | null | undefined;
 }): { questions: ShuffledQuestion[]; bankLang: MathQuizLang } {
   if (!chapter || !mathObjectiveId) return { questions: [], bankLang: lang };
-  const isForm2Chapter1Dlp =
-    form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
+  const isForm2Chapter1Dlp = form === "Form 2" && chapter === "Chapter 1" && scienceLang === "dlp";
   const isForm2Chapter1Bm = form === "Form 2" && chapter === "Chapter 1" && scienceLang === "bm";
-  const isForm2Chapter2Dlp =
-    form === "Form 2" && chapter === "Chapter 2" && scienceLang === "dlp";
+  const isForm2Chapter2Dlp = form === "Form 2" && chapter === "Chapter 2" && scienceLang === "dlp";
   const isForm2Chapter2Bm = form === "Form 2" && chapter === "Chapter 2" && scienceLang === "bm";
   const batchBChapter =
     form === "Form 2" &&
@@ -17288,122 +17286,85 @@ function QuizzesPage() {
 
       {!subject ? (
         <div className="space-y-6">
-          <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
-            {(() => {
-              const lastQuiz =
-                progress.lastVisited?.type === "quiz" ? progress.lastVisited : undefined;
-              const lastResult = [...(progress.quizHistory ?? [])]
-                .filter(
-                  (r) =>
-                    !lastQuiz ||
-                    (r.subjectId === lastQuiz.subjectId && r.chapterKey === lastQuiz.chapterKey),
-                )
-                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
-              if (!authUser) {
-                return (
-                  <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-                    <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                      Sign in to track progress
-                    </p>
-                    <h2 className="mt-3 font-display text-2xl font-bold">Save your quiz results</h2>
-                    <p className="mt-1 text-sm text-[#94A3B8]">
-                      Sign in to resume quizzes and see your real scores here.
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => openSignIn("signin")}
-                      className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
-                    >
-                      Sign In
-                    </button>
-                  </div>
-                );
-              }
-              if (!lastQuiz) {
-                return (
-                  <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
-                    <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                      Get Started
-                    </p>
-                    <h2 className="mt-3 font-display text-2xl font-bold">No quizzes yet</h2>
-                    <p className="mt-1 text-sm text-[#94A3B8]">
-                      Complete your first lesson to continue here.
-                    </p>
-                  </div>
-                );
-              }
+          {(() => {
+            const lastQuiz =
+              progress.lastVisited?.type === "quiz" ? progress.lastVisited : undefined;
+            const lastResult = [...(progress.quizHistory ?? [])]
+              .filter(
+                (r) =>
+                  !lastQuiz ||
+                  (r.subjectId === lastQuiz.subjectId && r.chapterKey === lastQuiz.chapterKey),
+              )
+              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
+            if (!authUser) {
               return (
                 <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
                   <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
-                    Continue Quiz
+                    Sign in to track progress
                   </p>
-                  <h2 className="mt-3 font-display text-2xl font-bold">
-                    {subjects.find((s) => s.id === lastQuiz.subjectId)?.name ?? lastQuiz.subjectId}
-                  </h2>
+                  <h2 className="mt-3 font-display text-2xl font-bold">Save your quiz results</h2>
                   <p className="mt-1 text-sm text-[#94A3B8]">
-                    {cleanLearningLabel(lastQuiz.label)}
-                    {lastResult ? ` • Best score ${Math.round(lastResult.scorePct)}%` : ""}
+                    Sign in to resume quizzes and see your real scores here.
                   </p>
                   <button
                     type="button"
-                    onClick={() => {
-                      // Resume the saved Form. Older history without a Form
-                      // opens the Form chooser instead of guessing Form 1.
-                      const resumeForm = normalizeFormParam(lastQuiz.form);
-                      setSubject(lastQuiz.subjectId);
-                      setForm(resumeForm ?? "All");
-                      setFormWasChosen(resumeForm !== null);
-                      setChapter(resumeForm ? lastQuiz.chapterKey : null);
-                      reset();
-                      updateQuizSearch({
-                        subject: lastQuiz.subjectId,
-                        form: resumeForm,
-                        chapter: resumeForm ? lastQuiz.chapterKey : null,
-                      });
-                    }}
+                    onClick={() => openSignIn("signin")}
                     className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                   >
-                    Resume Quiz
+                    Sign In
                   </button>
                 </div>
               );
-            })()}
-            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-              {[
-                ["Daily Challenge", "Mixed question challenge", "Start"],
-                ["Quick Practice", "5-minute warm up", "Practice"],
-                ["Exam Mode", "Timed score run", "Enter"],
-              ].map(([title, description, cta]) => (
-                <div
-                  key={title}
-                  className="rounded-[1.5rem] border border-white/[0.08] bg-white/[0.05] p-4"
-                >
-                  <h3 className="font-display text-xl font-bold">{title}</h3>
-                  <p className="mt-1 text-sm text-[#94A3B8]">{description}</p>
-                  <span className="mt-3 inline-flex rounded-xl bg-white px-3 py-2 text-xs font-bold text-[#050816]">
-                    {cta}
-                  </span>
+            }
+            if (!lastQuiz) {
+              return (
+                <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                  <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                    Get Started
+                  </p>
+                  <h2 className="mt-3 font-display text-2xl font-bold">No quizzes yet</h2>
+                  <p className="mt-1 text-sm text-[#94A3B8]">
+                    Complete your first lesson to continue here.
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5">
-            <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">Quiz Preview</p>
-            <h3 className="mt-3 font-display text-2xl font-bold">
-              Which process helps plants make food?
-            </h3>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              {["Photosynthesis", "Evaporation", "Condensation", "Melting"].map((option) => (
+              );
+            }
+            return (
+              <div className="rounded-[2rem] border border-white/[0.08] bg-[#101827]/76 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.24)]">
+                <p className="text-xs font-bold uppercase tracking-wide text-[#94A3B8]">
+                  Continue Quiz
+                </p>
+                <h2 className="mt-3 font-display text-2xl font-bold">
+                  {subjects.find((s) => s.id === lastQuiz.subjectId)?.name ?? lastQuiz.subjectId}
+                </h2>
+                <p className="mt-1 text-sm text-[#94A3B8]">
+                  {cleanLearningLabel(lastQuiz.label)}
+                  {lastResult ? ` • Best score ${Math.round(lastResult.scorePct)}%` : ""}
+                </p>
                 <button
-                  key={option}
                   type="button"
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-left text-sm font-bold"
+                  onClick={() => {
+                    // Resume the saved Form. Older history without a Form
+                    // opens the Form chooser instead of guessing Form 1.
+                    const resumeForm = normalizeFormParam(lastQuiz.form);
+                    setSubject(lastQuiz.subjectId);
+                    setForm(resumeForm ?? "All");
+                    setFormWasChosen(resumeForm !== null);
+                    setChapter(resumeForm ? lastQuiz.chapterKey : null);
+                    reset();
+                    updateQuizSearch({
+                      subject: lastQuiz.subjectId,
+                      form: resumeForm,
+                      chapter: resumeForm ? lastQuiz.chapterKey : null,
+                    });
+                  }}
+                  className="mt-5 inline-flex rounded-2xl bg-gradient-to-r from-primary to-accent px-5 py-3 text-sm font-bold text-white"
                 >
-                  {option}
+                  Resume Quiz
                 </button>
-              ))}
-            </div>
-          </div>
+              </div>
+            );
+          })()}
           <SubjectGrid
             onSelect={(id) => {
               setSubject(id);

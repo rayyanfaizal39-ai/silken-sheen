@@ -34,10 +34,10 @@ export function normalizeSubjectParam(value: unknown) {
 export type StudyForm = "Form 1" | "Form 2" | "Form 3";
 
 /**
- * Recognises 1 / 2 / 3, "Form 1" / "Form 2" / "Form 3" and "form1" / "form2" /
- * "form3". Anything else — including a missing value — is unknown and returns
- * null. Never guess Form 1: an unknown Form must send the student to the Form
- * chooser instead of silently loading Form 1 content.
+ * Recognises 1 / 2 / 3, "Form 1" / "Form 2" / "Form 3", "form1" / "form-2" /
+ * "form_3" and "f1" / "f2" / "f3". Anything else — including a missing value —
+ * is unknown and returns null. Never guess Form 1: an unknown Form must send
+ * the student to the Form chooser instead of silently loading Form 1 content.
  */
 export function normalizeFormParam(value: unknown): StudyForm | null {
   if (value == null) return null;
@@ -45,10 +45,20 @@ export function normalizeFormParam(value: unknown): StudyForm | null {
     .trim()
     .toLowerCase()
     .replaceAll('"', "")
-    .replace(/^form[\s_-]*/, "")
+    .trim()
+    .replace(/^(?:form[\s_-]*|f)/, "")
     .trim();
-  if (cleaned === "1" || cleaned === "2" || cleaned === "3") return `Form ${cleaned}` as StudyForm;
+  if (cleaned === "1" || cleaned === "2" || cleaned === "3") return `Form ${cleaned}`;
   return null;
+}
+
+/**
+ * The form a value explicitly names ("Form 2", 2, "f2", "form-2"), or null.
+ * It never guesses Form 1 — use it wherever a missing form must send the
+ * student to the Form chooser instead.
+ */
+export function parseKnownForm(value: unknown): StudyForm | null {
+  return normalizeFormParam(value);
 }
 
 /** URL search value (1 | 2 | 3) for a Form, or undefined when the Form is unknown. */
@@ -72,6 +82,25 @@ export function studyResumeSearch(activity: {
   return activity.chapterKey
     ? { subject: activity.subjectId, form, chapter: activity.chapterKey }
     : { subject: activity.subjectId, form };
+}
+
+/**
+ * Search params that resume a learning entry (a history record, a "Continue
+ * Learning" item). The chapter only travels with a known form: "Chapter 3"
+ * is a different chapter in every form, so without the form the student
+ * lands on the subject's Form chooser rather than in a guessed Form 1.
+ */
+export function buildResumeSearch(
+  entry: { subjectId: string; chapterKey?: string | null; form?: unknown },
+  { withChapter = true }: { withChapter?: boolean } = {},
+): { subject: string; form?: number; chapter?: string } {
+  const form = parseKnownForm(entry.form);
+  if (!form) return { subject: entry.subjectId };
+  return {
+    subject: entry.subjectId,
+    form: Number(form.slice(-1)),
+    ...(withChapter && entry.chapterKey ? { chapter: entry.chapterKey } : {}),
+  };
 }
 
 export function normalizeChapterParam(value: unknown) {

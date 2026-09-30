@@ -62,25 +62,44 @@ function getFlashcardDeckCards(
 }
 
 describe("Flashcards route resolution", () => {
-  it("opens the supplied Sejarah Form 3 Chapter 1 sets", () => {
+  it("opens all three Sejarah Form 3 Chapter 1 sets", () => {
     const cards = getFlashcardDeckCards("sejarah", "Form 3", "Chapter 1");
-    expect(cards).toHaveLength(40);
+    expect(cards).toHaveLength(60);
     expect(hasFlashcardDeck("sejarah", "Form 3", "Chapter 1")).toBe(true);
     expect(cards.every((card) => card.chapter === "Chapter 1")).toBe(true);
-    const sets = splitFlashcardDeck(cards, 2);
-    expect(sets.map((set) => set.length)).toEqual([20, 20]);
+    const sets = splitFlashcardDeck(cards);
+    expect(sets.map((set) => set.length)).toEqual([20, 20, 20]);
     expect(sets[0]?.every((card) => card.id.startsWith("sej-f3-c1-a-"))).toBe(true);
     expect(sets[1]?.every((card) => card.id.startsWith("sej-f3-c1-b-"))).toBe(true);
+    expect(sets[2]?.every((card) => card.id.startsWith("sej-f3-c1-c-"))).toBe(true);
+    expect(cards.map((card) => card.id)).toEqual(
+      ["a", "b", "c"].flatMap((set) =>
+        Array.from({ length: 20 }, (_, index) => `sej-f3-c1-${set}-fc${index + 1}`),
+      ),
+    );
+    expect(new Set(cards.map((card) => card.front)).size).toBe(60);
+    expect(new Set(cards.map((card) => card.back)).size).toBe(60);
+    expect(cards.every((card) => !/\b\d+\.\d+(?:\.\d+)?\b/.test(card.front))).toBe(true);
+    expect(splitFlashcardDeck(cards.slice(0, 40)).map((set) => set.length)).toEqual([20, 20]);
   });
 
-  it.each([2, 3, 4, 5, 6, 7, 8])("opens both Sejarah Form 3 Chapter %i flashcard sets", (chapter) => {
+  it.each([2, 3, 4, 5, 6, 7, 8])("opens all three Sejarah Form 3 Chapter %i flashcard sets", (chapter) => {
     const cards = getFlashcardDeckCards("sejarah", "Form 3", `Chapter ${chapter}`);
-    expect(cards).toHaveLength(40);
+    expect(cards).toHaveLength(60);
     expect(hasFlashcardDeck("sejarah", "Form 3", `Chapter ${chapter}`)).toBe(true);
-    const sets = splitFlashcardDeck(cards, 2);
-    expect(sets.map((set) => set.length)).toEqual([20, 20]);
+    const sets = splitFlashcardDeck(cards);
+    expect(sets.map((set) => set.length)).toEqual([20, 20, 20]);
     expect(sets[0]?.every((card) => card.id.startsWith(`sej-f3-c${chapter}-a-`))).toBe(true);
     expect(sets[1]?.every((card) => card.id.startsWith(`sej-f3-c${chapter}-b-`))).toBe(true);
+    expect(sets[2]?.every((card) => card.id.startsWith(`sej-f3-c${chapter}-c-`))).toBe(true);
+    expect(cards.map((card) => card.id)).toEqual(
+      ["a", "b", "c"].flatMap((set) =>
+        Array.from({ length: 20 }, (_, index) => `sej-f3-c${chapter}-${set}-fc${index + 1}`),
+      ),
+    );
+    expect(new Set(cards.map((card) => card.front)).size).toBe(60);
+    expect(cards.every((card) => card.back.trim().length > 0)).toBe(true);
+    expect(cards.every((card) => !/\b\d+\.\d+(?:\.\d+)?\b/.test(card.front))).toBe(true);
   });
 
   it("keeps Notes, Flashcards, and Quizzes as distinct route modes", () => {

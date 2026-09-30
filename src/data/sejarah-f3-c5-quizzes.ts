@@ -8,16 +8,15 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question: "Apakah peranan utama Tuai Rumah dalam Sistem Kesukuan masyarakat Iban di Sarawak?",
+    question: "Apakah asas utama Sistem Kesukuan di Sarawak dan Sabah?",
     options: [
-      "Menjadi wakil rasmi Sultan Brunei di kawasan pesisir",
-      "Menjaga keamanan, menyelesaikan pertikaian, dan memastikan keharmonian adat",
-      "Mengenakan cukai hasil bumi kepada pelombong asing",
-      "Mengubal undang-undang bertulis bagi seluruh daerah",
+      "Pegangan dan kepatuhan kepada adat masyarakat",
+      "Undang-undang British",
+      "Kuasa syarikat perdagangan",
+      "Sistem Residen",
     ],
-    answerIndex: 1,
-    explanation:
-      "Dalam Sistem Kesukuan masyarakat Iban, Tuai Rumah merupakan pemimpin utama yang bertanggungjawab menjaga keamanan, menyelesaikan masalah, dan memastikan semua penduduk mematuhi adat serta pegangan Pemali dan Menoa.",
+    answerIndex: 0,
+    explanation: "Sistem Kesukuan berasaskan pegangan dan kepatuhan kepada adat masyarakat.",
   },
   {
     id: "sej-f3-c5-a-q2",
@@ -26,17 +25,11 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Siapakah pembesar Melayu yang mengetuai pentadbiran Sistem Kedatuan di kawasan Lembah Sungai Sarawak sebelum kedatangan Brooke?",
-    options: [
-      "Dato' Kelana dan Dato' Bandar",
-      "Datu Patinggi, Datu Bandar, dan Datu Temenggong",
-      "Datu Maharaja Lela dan Datu Sagor",
-      "Orang Kaya-Kaya dan Pengelu",
-    ],
+    question: "Siapakah pemimpin utama masyarakat Iban?",
+    options: ["Menteri", "Tuai Rumah", "Peran Lepo", "Kelunan Maren"],
     answerIndex: 1,
     explanation:
-      "Sistem Kedatuan di Sarawak dijalankan oleh pembesar tempatan seperti Datu Patinggi, Datu Bandar, Datu Temenggong, dan Datu Imam yang bertindak sebagai wakil Sultan Brunei bagi mentadbir masyarakat tempatan.",
+      "Masyarakat Iban dipimpin oleh Tuai Rumah yang menjadi sumber autoriti masyarakat.",
   },
   {
     id: "sej-f3-c5-a-q3",
@@ -45,12 +38,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah bentuk denda yang dikenakan dalam Sistem Kesukuan di Sabah apabila seseorang melanggar hukum adat tempatan?",
-    options: ["Ufti Bunga Emas", "Pancung", "Cukai ufti", "Sogit"],
-    answerIndex: 3,
+    question: "Antara berikut, yang manakah tiga bentuk pentadbiran Kesultanan Brunei di Sarawak?",
+    options: [
+      "Sistem Datu, Sistem Residen dan Sistem Penghulu",
+      "Sungai Raja, Sungai Negeri dan Sungai Adat",
+      "Sungai Kerajaan, Sungai Tulin dan Sungai Kuripan",
+      "Bahagian, Daerah dan Mukim",
+    ],
+    answerIndex: 2,
     explanation:
-      "Dalam masyarakat tempatan di Sabah seperti Kadazandusun dan Murut, pelanggaran adat akan dikenakan denda yang dikenali sebagai 'Sogit' bagi memulihkan keharmonian masyarakat dan alam.",
+      "Pentadbiran yang dipengaruhi Brunei di Sarawak dibahagikan kepada Sungai Kerajaan, Sungai Tulin dan Sungai Kuripan.",
   },
   {
     id: "sej-f3-c5-a-q4",
@@ -59,12 +56,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Siapakah antara tokoh berikut yang memerintah sebagai Ketua Bebas di kawasan Marudu, Sabah?",
-    options: ["Syarif Osman", "Datu Patinggi Ali", "Raja Muda Hashim", "Mat Salleh"],
-    answerIndex: 0,
-    explanation:
-      "Syarif Osman merupakan seorang Ketua Bebas yang memegang pengaruh kuat di daerah Marudu, manakala Mat Salleh merupakan Ketua Bebas di kawasan Tambunan.",
+    question: "Siapakah Ketua Bebas yang berkuasa di Tungku pada akhir abad ke-19?",
+    options: ["Syarif Osman", "Mat Salleh", "Datu Patinggi Ali", "Datu Kerunding"],
+    answerIndex: 3,
+    explanation: "Datu Kerunding berkuasa di Tungku pada akhir abad ke-19.",
   },
   {
     id: "sej-f3-c5-a-q5",
@@ -73,17 +68,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah punca utama penentangan Datu Patinggi Ali terhadap Pangeran Indera Mahkota di Sarawak pada tahun 1836?",
-    options: [
-      "Pangeran Indera Mahkota mengenakan cukai tinggi dan mengambil paksa hasil bijih antimony/emas",
-      "Pangeran Indera Mahkota melarang aktiviti perdagangan dengan pihak British",
-      "Datu Patinggi Ali mahu menyerahkan Sarawak kepada tentera Sepanyol",
-      "Pangeran Indera Mahkota enggan mengiktiraf pembinaan Fort Margherita",
-    ],
+    question: "Kawasan manakah di Sabah yang dikuasai oleh Kesultanan Sulu?",
+    options: ["Pantai timur Sabah", "Pantai barat Sabah", "Pedalaman Sarawak", "Sungai Sarawak"],
     answerIndex: 0,
-    explanation:
-      "Pangeran Indera Mahkota mentadbir secara kuku besi, mengenakan cukai yang sangat berat, dan memaksa penduduk tempatan bekerja di lombong antimony tanpa bayaran, mencetuskan kebangkitan Datu Patinggi Ali.",
+    explanation: "Pantai timur Sabah berada di bawah pengaruh Kesultanan Sulu.",
   },
   {
     id: "sej-f3-c5-a-q6",
@@ -92,17 +80,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah tawaran Raja Muda Hashim kepada James Brooke sebagai balasan atas bantuan menamatkan penentangan di Sarawak?",
+    question: "Mengapakah Datu Patinggi Ali menentang Pengiran Indera Mahkota?",
     options: [
-      "Jawatan Penasihat di Istana Kesultanan Brunei",
-      "Jawatan Gabenor dan pemerintahkan wilayah Sarawak",
-      "Monopoli perdagangan kayu balak di Sandakan",
-      "Penyerahan seluruh wilayah Sabah kepada syarikat British",
+      "Larangan menanam sagu",
+      "Cukai tinggi dan kerahan tenaga",
+      "Penyerahan Lawas kepada SBUB",
+      "Penghapusan Majlis Negeri",
     ],
     answerIndex: 1,
     explanation:
-      "Raja Muda Hashim yang gagal mententeramkan keadaan memohon bantuan James Brooke dengan menawarkan jawatan Gabenor dan menyerahkan pemerintahan Sarawak kepadanya.",
+      "Pengiran Indera Mahkota mengenakan cukai tinggi dan kerahan tenaga yang menjejaskan masyarakat tempatan.",
   },
   {
     id: "sej-f3-c5-a-q7",
@@ -111,17 +98,15 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Mengapakah Sultan Omar Ali Saifuddin menandatangani Perjanjian 1842 dengan James Brooke?",
+    question: "Apakah empat strategi utama James Brooke untuk mendapatkan kuasa di Sarawak?",
     options: [
-      "Kerana tentera Sepanyol menawan Pelabuhan Brunei",
-      "Kerana Syarikat Borneo Utara British membayar bayaran sewa tahunan",
-      "Kerana James Brooke mengugut akan membedil Brunei dengan kapal perang HMS Dido",
-      "Kerana Sultan Brunei mahu bersara daripada pentadbiran",
+      "Pendidikan, perdagangan, cukai dan migrasi",
+      "Pajakan, pilihan raya, persekutuan dan diplomasi",
+      "Rundingan, ugutan, perjanjian dan ketenteraan",
+      "Residen, penasihat, konsul dan gabenor",
     ],
     answerIndex: 2,
-    explanation:
-      "James Brooke menggunakan strategi ugutan ketenteraan dengan bantuan kapal perang British HMS Dido bagi memaksa Sultan Omar Ali Saifuddin mengesahkan penyerahan Sarawak kepadanya secara merdeka.",
+    explanation: "James Brooke menggunakan rundingan, ugutan, perjanjian dan kekuatan ketenteraan.",
   },
   {
     id: "sej-f3-c5-a-q8",
@@ -131,16 +116,15 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Wilayah manakah yang menjadi kawasan pertama di bawah pentadbiran James Brooke pada tahun 1841?",
+      "Berapakah ufti tahunan yang perlu dibayar James Brooke kepada Sultan Brunei berdasarkan Perjanjian 1842?",
     options: [
-      "Dari Sungai Sadong hingga ke Oya",
-      "Kawasan Limbang dan Lawas",
-      "Kawasan Baram dan Trusan",
-      "Dari Tanjong Datu hingga ke Sungai Samarahan",
+      "4,200 Dolar Sepanyol",
+      "4,500 Dolar Sepanyol",
+      "6,000 Dolar Sepanyol",
+      "2,500 Dolar Sepanyol",
     ],
     answerIndex: 3,
-    explanation:
-      "Wilayah awal yang diserahkan kepada James Brooke pada tahun 1841 merangkumi kawasan dari Tanjong Datu hingga ke Sungai Samarahan (kawasan Kuching).",
+    explanation: "Perjanjian 1842 menetapkan ufti tahunan sebanyak 2,500 Dolar Sepanyol.",
   },
   {
     id: "sej-f3-c5-a-q9",
@@ -149,17 +133,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Bagaimanakah Charles Brooke memperoleh kawasan Baram daripada Sultan Brunei pada tahun 1883?",
-    options: [
-      "Melalui bayaran sewa tahunan sebanyak 4,200 Dolar kepada Sultan Brunei",
-      "Melalui peperangan dan pembakaran istana",
-      "Melalui penukaran wilayah dengan Pulau Labuan",
-      "Melalui desakan Syarikat Borneo Utara British",
-    ],
+    question: "Wilayah manakah yang melengkapkan sempadan Sarawak pada tahun 1905?",
+    options: ["Lawas", "Limbang", "Baram", "Mukah"],
     answerIndex: 0,
-    explanation:
-      "Charles Brooke memperoleh kawasan Lembah Sungai Baram pada tahun 1883 setelah bersetuju membayar ufti/sewa tahunan sebanyak 4,200 Dolar Dolar Sepanyol kepada Sultan Brunei.",
+    explanation: "Kerajaan Sarawak memperoleh hak terhadap Lawas pada 12 Januari 1905.",
   },
   {
     id: "sej-f3-c5-a-q10",
@@ -168,17 +145,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Mengapakah penguasaan Charles Brooke ke atas Limbang pada tahun 1890 dipertikaikan oleh Kesultanan Brunei?",
-    options: [
-      "Kerana tanah Limbang tidak mempunyai hasil bumi",
-      "Kerana pengambilan Limbang dilakukan secara paksa tanpa persetujuan Sultan Brunei",
-      "Kerana Limbang telah dijual kepada kerajaan Sepanyol",
-      "Kerana penduduk Limbang menolak pentadbiran Dinasti Brooke",
-    ],
+    question: "Kapal perang British manakah yang membantu kekuatan ketenteraan James Brooke?",
+    options: ["HMS Victory", "HMS Dido", "HMS Malaya", "HMS Royalist"],
     answerIndex: 1,
-    explanation:
-      "Charles Brooke mengisytiharkan penggabungan Limbang dengan Sarawak pada tahun 1890 secara sepihak/paksa ekoran kebangkitan penduduk tempatan, yang tidak pernah diiktiraf oleh Sultan Brunei.",
+    explanation: "James Brooke mendapat sokongan ketenteraan daripada kapal HMS Dido.",
   },
   {
     id: "sej-f3-c5-a-q11",
@@ -187,12 +157,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Siapakah tokoh pedagang Amerika Syarikat yang memperoleh hak konsesi tanah di Sabah daripada Sultan Brunei pada tahun 1865?",
-    options: ["Alfred Dent", "William Cowie", "Charles Lee Moses", "Baron von Overbeck"],
+    question: "Apakah dua faktor utama yang menarik pemodal asing ke Sabah?",
+    options: [
+      "Penduduk ramai dan lombong bijih timah",
+      "Iklim sejuk dan tanah tinggi",
+      "Kedudukan strategik dan kekayaan ekonomi",
+      "Hubungan dengan Belanda dan Portugis",
+    ],
     answerIndex: 2,
     explanation:
-      "Charles Lee Moses merupakan konsul Amerika Syarikat di Brunei yang pertama kali memperoleh konsesi sewa tanah di Sabah pada tahun 1865 sebelum menjualnya kepada American Trading Company.",
+      "Sabah menarik pemodal asing kerana kedudukannya yang strategik dan potensi kekayaan ekonomi.",
   },
   {
     id: "sej-f3-c5-a-q12",
@@ -201,17 +175,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah peranan Baron von Overbeck dan Alfred Dent dalam usaha meluaskan kuasa di Sabah?",
+    question: "Siapakah yang menyewa Sabah daripada Sultan Brunei pada tahun 1865?",
     options: [
-      "Melancarkan serangan ketenteraan ke atas pelabuhan Brunei",
-      "Menyerahkan Sabah kepada penguasaan Syarikat Hindia Timur Inggeris",
-      "Memindahkan pusat pentadbiran dari Kuching ke Sandakan",
-      "Menubuhkan Persatuan Sementara Borneo Utara British Berhad dan memohon Piagam Diraja",
+      "Alfred Dent",
+      "William Hood Treacher",
+      "Baron Gustavus von Overbeck",
+      "Charles Lee Moses",
     ],
     answerIndex: 3,
     explanation:
-      "Overbeck dan Dent bekerjasama membeli hak sewaan tanah Sabah dan menubuhkan syarikat yang kemudiannya memperoleh Piagam Diraja (Royal Charter) pada tahun 1881 untuk membentuk SBUB.",
+      "Charles Lee Moses menyewa Sabah daripada Sultan Brunei pada tahun 1865 selama 10 tahun.",
   },
   {
     id: "sej-f3-c5-a-q13",
@@ -221,16 +194,11 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     set: "A",
     difficulty: "Medium",
     question:
-      "Apakah kepetingan pengeluaran Piagam Diraja (Royal Charter) oleh kerajaan British kepada SBUB pada tahun 1881?",
-    options: [
-      "Gabenor SBUB diiktiraf secara rasmi dan mendapat perlindungan ketenteraan British",
-      "SBUB bebas menjual wilayah Sabah kepada kuasa asing seperti Jerman",
-      "SBUB tidak perlu mematuhi adat resam penduduk tempatan",
-      "SBUB dijadikan tanah jajahan mahkota British secara langsung",
-    ],
+      "Apakah dokumen yang memberikan kuasa kepada SBUB untuk memiliki dan mentadbir Sabah?",
+    options: ["Piagam Diraja", "Perjanjian Pangkor", "Perjanjian Bangkok", "Piagam Sarawak"],
     answerIndex: 0,
     explanation:
-      "Piagam Diraja memberi pengiktirafan rasmi kepada SBUB untuk mentadbir Sabah di bawah naungan British dan menghalang kuasa Barat lain daripada bertapak di Sabah.",
+      "Piagam Diraja mengiktiraf SBUB sebagai wakil kerajaan British dan memberikan kuasa mentadbir Sabah.",
   },
   {
     id: "sej-f3-c5-a-q14",
@@ -239,17 +207,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah syarat utama yang terkandung dalam Piagam Diraja mengenai pentadbiran SBUB di Sabah?",
-    options: [
-      "SBUB tidak dibenarkan mengutip sebarang cukai perdagangan",
-      "SBUB mesti melantik Gabenor dengan kelulusan Kerajaan British & menghormati adat/agama tempatan",
-      "SBUB dibenarkan menghapuskan institusi Mahkamah Anak Negeri",
-      "SBUB wajib menggunakan bahasa Inggeris dalam semua urusan adat tempatan",
-    ],
+    question: "Siapakah Gabenor pertama SBUB?",
+    options: ["Sir Rutherford Alcock", "William Hood Treacher", "Alfred Dent", "Edward Dent"],
     answerIndex: 1,
-    explanation:
-      "Antara syarat Piagam Diraja ialah SBUB mesti melantik Gabenor yang diluluskan oleh British, menghormati agama serta adat resam penduduk tempatan, dan tidak boleh menyerahkan wilayah tanpa kebenaran British.",
+    explanation: "William Hood Treacher ialah Gabenor pertama SBUB dari tahun 1881 hingga 1887.",
   },
   {
     id: "sej-f3-c5-a-q15",
@@ -258,17 +219,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah persidangan rasmi yang ditubuhkan oleh Charles Brooke pada tahun 1867 di Bintulu bagi melibatkan ketua-ketua kaum tempatan?",
-    options: [
-      "Majlis Mesyuarat Persekutuan",
-      "Sertifikat Diraja",
-      "Majlis Negeri (General Council)",
-      "Durbar",
-    ],
+    question: "Apakah hasil Sabah yang mendapat permintaan tinggi di China?",
+    options: ["Kapas", "Indigo", "Sarang burung", "Bijih timah"],
     answerIndex: 2,
-    explanation:
-      "Majlis Negeri (General Council) ditubuhkan pada tahun 1867 di Bintulu oleh Charles Brooke bagi memberi ruang kepada pembesar dan ketua kaum tempatan bersuara dalam pentadbiran.",
+    explanation: "Sarang burung mendapat permintaan tinggi dalam pasaran China.",
   },
   {
     id: "sej-f3-c5-a-q16",
@@ -277,11 +231,11 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question: "Apakah unit pentadbiran tertinggi di Sarawak yang diketuai oleh seorang Residen?",
-    options: ["Residensi", "Mukim", "Daerah Khas", "Bahagian (Division)"],
+    question: "Berapakah residensi di Sabah pada tahun 1922?",
+    options: ["Dua", "Tiga", "Empat", "Lima"],
     answerIndex: 3,
     explanation:
-      "Pentadbiran tempatan di Sarawak dibahagikan kepada 5 'Bahagian' (Division) di mana setiap Bahagian diketuai oleh seorang pegawi British bergelar Residen.",
+      "Pada tahun 1922 Sabah mempunyai lima residensi: Kudat, Pantai Barat, Pedalaman, Pantai Timur dan Tawau.",
   },
   {
     id: "sej-f3-c5-a-q17",
@@ -290,11 +244,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question: "Siapakah pegawai tertinggi pentadbiran SBUB di Sabah yang berpusat di Sandakan?",
-    options: ["Gabenor", "Residen Jeneral", "Pesuruhjaya Tinggi", "Rajang Brooke"],
+    question: "Siapakah yang mengetuai pentadbiran setiap bahagian di Sarawak?",
+    options: ["Residen", "Gabenor", "Ketua Anak Negeri", "Kapitan"],
     answerIndex: 0,
-    explanation:
-      "Di Sabah, jawatan pentadbiran tertinggi ialah Gabenor SBUB yang dilantik oleh Lembaga Pengarah di London dan berpusat di ibu negeri (Kudat kemudiannya Sandakan).",
+    explanation: "Setiap bahagian di Sarawak diketuai oleh seorang Residen.",
   },
   {
     id: "sej-f3-c5-a-q18",
@@ -303,17 +256,15 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah fungsi Mahkamah Anak Negeri (Native Court) yang diwujudkan di Sarawak dan Sabah?",
+    question: "Apakah jawatan yang diwujudkan Dinasti Brooke untuk masyarakat Cina?",
     options: [
-      "Melantik Pegawai Daerah dari England",
-      "Mengendalikan kes-kes pelanggaran adat resam tempatan dan hukum syarak",
-      "Mengendalikan kes jenayah berat membabitkan warga Eropah",
-      "Menentukan kadar cukai eksport emas dan minyak",
+      "Datu Imam dan Datu Hakim",
+      "Kapitan dan Kangcu",
+      "Residen dan Pegawai Daerah",
+      "Tuai Rumah dan Tua Kapung",
     ],
     answerIndex: 1,
-    explanation:
-      "Mahkamah Anak Negeri diwujudkan khusus untuk mengendalikan pertikaian dan kes pelanggaran adat resam, undang-undang tradisi, serta kes syariah masyarakat tempatan.",
+    explanation: "Bagi masyarakat Cina, Dinasti Brooke mewujudkan jawatan Kapitan dan Kangcu.",
   },
   {
     id: "sej-f3-c5-a-q19",
@@ -322,17 +273,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah gelaran yang diberikan kepada ketua tempatan di Sabah yang dilantik oleh SBUB untuk membantu Pegawai Daerah?",
-    options: [
-      "Tuai Rumah",
-      "Penghulu Mukim",
-      "Ketua Anak Negeri / Orang Kaya-Kaya (OKK)",
-      "Datu Patinggi",
-    ],
+    question: "Mahkamah manakah di Sabah yang menggunakan undang-undang Barat?",
+    options: ["Mahkamah Anak Negeri", "Mahkamah Adat", "Mahkamah Majistret", "Mahkamah Cina"],
     answerIndex: 2,
-    explanation:
-      "SBUB mengekalkan pimpinan tempatan dengan melantik Ketua Anak Negeri (diberi gelaran Orang Kaya-Kaya / OKK) bagi mengurus pentadbiran peringkat daerah dan kampung.",
+    explanation: "Mahkamah Majistret di Sabah menggunakan undang-undang Barat.",
   },
   {
     id: "sej-f3-c5-a-q20",
@@ -341,17 +285,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah iktibar penting daripada kejayaan perbentangan pentadbiran tempatan di Sarawak dan Sabah sebelum campur tangan Barat?",
-    options: [
-      "Kuasa Barat membawa kemajuan tanpa menjejaskan hak penduduk",
-      "Sistem pentadbiran tradisional tidak lagi sesuai digunakan hari ini",
-      "Pemimpin tempatan sentiasa menyokong kedatangan kuasa asing",
-      "Masyarakat tempatan telah mempunyai sistem pemerintahan teratur dan bertamadun tinggi",
-    ],
+    question: "Siapakah yang mengadili Mahkamah Anak Negeri di Sabah?",
+    options: ["Residen", "Gabenor", "Pegawai Daerah", "Ketua Anak Negeri"],
     answerIndex: 3,
-    explanation:
-      "Kewujudan Sistem Kesukuan dan Kedatuan membuktikan bahawa masyarakat Sarawak dan Sabah telah mempunyai sistem kestabilan dan pemerintahan yang berkesan sebelum kedatangan kuasa Barat.",
+    explanation: "Mahkamah Anak Negeri di Sabah diadili oleh Ketua Anak Negeri.",
   },
   {
     id: "sej-f3-c5-b-q1",
@@ -360,12 +297,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Masyarakat Bidayuh di Sarawak mengamalkan Sistem Kesukuan. Siapakah yang menjadi ketua pentadbir di peringkat kampung?",
-    options: ["Datu Patinggi", "Menteri Darat", "Tua Kampong", "Tuai Rumah"],
-    answerIndex: 2,
-    explanation:
-      "Bagi masyarakat Bidayuh, kepimpinan peringkat kampung dipegang oleh 'Tua Kampong' yang menguruskan adat dan keharmonian penduduk.",
+    question: "Siapakah pemimpin masyarakat Kenyah?",
+    options: ["Kelunan Maren", "Menteri", "Tua Kapung", "Peran Lepo"],
+    answerIndex: 3,
+    explanation: "Pemimpin masyarakat Kenyah dikenali sebagai Peran Lepo.",
   },
   {
     id: "sej-f3-c5-b-q2",
@@ -374,17 +309,15 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah Sultan Brunei melantik Datu Patinggi dan pembesar Melayu tempatan untuk mentadbir Sarawak sebelum kedatangan Brooke?",
+    question: "Siapakah yang mentadbir kerajaan awal Sawaku di sekitar Sungai Sarawak?",
     options: [
-      "Kerana Sultan Brunei tidak berminat dengan hasil bijih antimony",
-      "Kerana perlembagaan Brunei mewajibkan pembahagian kuasa",
-      "Kerana desakan daripada syarikat perdagangan Belanda",
-      "Kerana faktor jarak geografi yang jauh dari pusat pemerintahan Brunei",
+      "Datu Patinggi Ali",
+      "Pengiran Indera Mahkota",
+      "Datu Merpati Jepang",
+      "Syarif Osman",
     ],
-    answerIndex: 3,
-    explanation:
-      "Kedudukan geografi Sarawak yang jauh dari Brunei menyebabkan Sultan Brunei memberikan kuasa autonomi pentadbiran tempatan kepada Datu Patinggi dan pembesar tempatan.",
+    answerIndex: 2,
+    explanation: "Kerajaan Sawaku ditadbir oleh Datu Merpati Jepang.",
   },
   {
     id: "sej-f3-c5-b-q3",
@@ -393,12 +326,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Kawasan pantai timur Sabah seperti Sandakan dan Tawau berada di bawah naungan pemerintahan kuasa tempatan yang mana?",
-    options: ["Kesultanan Sulu", "Kesultanan Brunei", "Kesultanan Sambas", "Dinasti Brooke"],
-    answerIndex: 0,
+    question: "Apakah yang menentukan kuasa golongan Datu di pantai timur Sabah?",
+    options: [
+      "Jumlah tanah pertanian",
+      "Bilangan pengikut dan kemampuan menghantar ufti",
+      "Pelantikan Gabenor British",
+      "Kekuatan kapal dagang",
+    ],
+    answerIndex: 1,
     explanation:
-      "Bahagian pantai timur Sabah berada di bawah pengaruh dan jajahan Kesultanan Sulu, manakala bahagian pantai barat berada di bawah Kesultanan Brunei.",
+      "Kuasa Datu bergantung pada bilangan pengikut serta kemampuan menghantar ufti secara tetap kepada Sultan Sulu.",
   },
   {
     id: "sej-f3-c5-b-q4",
@@ -407,16 +344,15 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question: "Apakah ciri utama Sistem Ketua Bebas yang wujud di Sabah pada abad ke-19?",
+    question: "Apakah ciri penting Ketua Bebas di Sabah?",
     options: [
-      "Mempunyai perwakilan dalam Majlis Mesyuarat Persekutuan",
-      "Pemimpin mentadbir kawasan sendiri secara berasingan tanpa tertakluk kepada kuasa Brunei atau Sulu",
-      "Pemimpin dilantik secara rasmi oleh Gabenor British di Singapura",
-      "Mentadbir mengikut undang-undang bertulis Barat",
+      "Mempunyai undang-undang sendiri dan tidak mengiktiraf kuasa lain",
+      "Dilantik oleh SBUB",
+      "Mestilah pegawai Eropah",
+      "Berpusat di Sandakan",
     ],
-    answerIndex: 1,
-    explanation:
-      "Sistem Ketua Bebas dipimpin oleh tokoh yang mempunyai pengaruh kewibawaan tempatan dan mentadbir kawasan mereka secara merdeka daripada pengaruh Kesultanan Brunei mahupun Sulu.",
+    answerIndex: 0,
+    explanation: "Ketua Bebas mempunyai undang-undang tersendiri dan tidak mengiktiraf kuasa lain.",
   },
   {
     id: "sej-f3-c5-b-q5",
@@ -425,17 +361,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah peranan Pangeran Raja Muda Hashim ketika dihantar oleh Sultan Brunei ke Sarawak pada tahun 1839?",
-    options: [
-      "Menjual lombong emas di Bau kepada pedagang Eropah",
-      "Menandatangani Perjanjian London dengan pihak Belanda",
-      "Mengembalikan keamanan dan menamatkan penentangan Datu Patinggi Ali",
-      "Membina kubu pertahanan Fort Margherita",
-    ],
-    answerIndex: 2,
-    explanation:
-      "Raja Muda Hashim dihantar oleh Sultan Brunei untuk menyelesaikan krisis pemberontakan tempatan yang dipimpin oleh Datu Patinggi Ali menentang penindasan Pangeran Indera Mahkota.",
+    question: "Siapakah Ketua Bebas yang berkuasa di Marudu antara tahun 1830 hingga 1840?",
+    options: ["Datu Kerunding", "Datu Merpati Jepang", "Mat Salleh", "Syarif Osman"],
+    answerIndex: 3,
+    explanation: "Syarif Osman berkuasa di Marudu antara tahun 1830 hingga 1840.",
   },
   {
     id: "sej-f3-c5-b-q6",
@@ -444,17 +373,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah tindakan James Brooke selepas disahkan sebagai Raja Sarawak yang merdeka pada tahun 1842?",
+    question: "Apakah kandungan utama Perjanjian 1841?",
     options: [
-      "Menyerahkan kuasa pentadbiran kepada Syarikat Borneo Utara British",
-      "Menghapuskan institusi pimpinan Datu-Datu Melayu tempatan",
-      "Menjadikan bahasa Inggeris sebagai satu-satunya bahasa rasmi",
-      "Membayar ufti tahunan 2,500 Dolar kepada Sultan Brunei dan mengukuhkan pertahanan Kuching",
+      "Sarawak diserahkan kepada SBUB",
+      "James Brooke bebas campur tangan agama",
+      "James Brooke memerintah Sarawak dan menghormati undang-undang serta adat Melayu",
+      "Brunei menyerahkan Lawas kepada Brooke",
     ],
-    answerIndex: 3,
+    answerIndex: 2,
     explanation:
-      "Dalam Perjanjian 1842, James Brooke diiktiraf sebagai Raja Sarawak yang merdeka dengan syarat membayar ufti tahunan sebanyak 2,500 Dolar kepada Sultan Brunei.",
+      "Perjanjian 1841 membolehkan James Brooke memerintah Sarawak dan menguasai hasilnya dengan syarat menghormati undang-undang dan adat Melayu.",
   },
   {
     id: "sej-f3-c5-b-q7",
@@ -463,17 +391,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah Sharif Masahor dan Datu Patinggi Gapur menentang peluasan kuasa Dinasti Brooke di Sarawak?",
+    question: "Mengapakah James Brooke menyokong Pengiran Matusin di Mukah?",
     options: [
-      "Kerana penguasaan Brooke menghapuskan kuasa politik dan hak mengutip cukai mereka",
-      "Kerana James Brooke enggan membina jalan raya di Sadong",
-      "Kerana Brooke menyokong penandatanganan Perjanjian Bangkok 1909",
-      "Kerana pihak British menutup sekolah-sekolah tempatan",
+      "Untuk menubuhkan SBUB",
+      "Untuk mengambil kesempatan daripada pertelingkahan dan memecahkan kekuatan masyarakat tempatan",
+      "Untuk menyerahkan Mukah kepada Brunei",
+      "Untuk membina pelabuhan British",
     ],
-    answerIndex: 0,
+    answerIndex: 1,
     explanation:
-      "Sharif Masahor (di Rejang) dan Datu Patinggi Gapur (di Kuching) kehilangan kedudukan, kuasa pentadbiran, serta hak tradisi mengutip cukai akibat pembaharuan yang dibawa oleh Brooke.",
+      "Brooke memanfaatkan pertelingkahan antara Pengiran Matusin dengan Pengiran Ersat untuk memecahkan kekuatan masyarakat tempatan.",
   },
   {
     id: "sej-f3-c5-b-q8",
@@ -482,12 +409,11 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Siapakah Raja Putih Sarawak yang menggantikan James Brooke selepas kematiannya pada tahun 1868?",
-    options: ["Anthony Brooke", "Charles Brooke", "Charles Vyner Brooke", "Bertram Brooke"],
-    answerIndex: 1,
+    question: "Apakah organisasi keselamatan yang ditubuhkan pada tahun 1862?",
+    options: ["Renjer Sarawak", "Polis Sabah", "Pasukan Datu", "Majlis Penasihat"],
+    answerIndex: 0,
     explanation:
-      "Charles Brooke (anak saudara James Brooke) memerintah sebagai Raja Putih kedua Sarawak dari tahun 1868 hingga 1917 dan bertanggungjawab meluaskan lagi sempadan Sarawak.",
+      "Renjer Sarawak ditubuhkan pada tahun 1862 untuk mengawasi keamanan dan pertahanan.",
   },
   {
     id: "sej-f3-c5-b-q9",
@@ -496,17 +422,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah strategi yang digunakan oleh Dinasti Brooke bagi mempertahankan kawasan jajahan baharu daripada serangan penentang?",
+    question: "Berapakah bayaran tahunan bagi memperoleh Baram pada tahun 1883?",
     options: [
-      "Mengupah tentera mercenary dari Amerika Syarikat",
-      "Memindahkan ibu negeri Sarawak ke Lawas",
-      "Membina kubu-kubu pertahanan di lokasi strategik seperti Fort Alice dan Fort Margherita",
-      "Menandatangani Perjanjian London dengan tentera Sepanyol",
+      "2,500 Dolar Sepanyol",
+      "4,500 Dolar Sepanyol",
+      "6,000 Dolar Sepanyol",
+      "4,200 Dolar Sepanyol",
     ],
-    answerIndex: 2,
+    answerIndex: 3,
     explanation:
-      "Dinasti Brooke membina rangkaian kubu pertahanan (Fort) di sepanjang muara sungai utama bagi mengawal keselamatan dan menyekat penentangan penduduk tempatan.",
+      "Charles Brooke memperoleh Baram dengan bayaran ufti 4,200 Dolar Sepanyol setahun.",
   },
   {
     id: "sej-f3-c5-b-q10",
@@ -515,12 +440,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Wilayah manakah yang merupakan akuisisi terakhir dimasukkan ke dalam sempadan Sarawak pada tahun 1905?",
-    options: ["Limbang", "Baram", "Bintulu", "Lawas"],
-    answerIndex: 3,
+    question: "Apakah sebab Charles Brooke memperoleh Trusan pada tahun 1885?",
+    options: [
+      "Untuk memindahkan ibu negeri",
+      "Untuk membuka lombong emas",
+      "Untuk menyelesaikan isu pembunuhan beberapa peniaga Sarawak oleh orang Murut",
+      "Untuk menubuhkan Mahkamah Cina",
+    ],
+    answerIndex: 2,
     explanation:
-      "Kawasan Lawas diperoleh oleh Charles Brooke pada tahun 1905 daripada British North Borneo Company (SBUB) setelah kawasan tersebut diserahkan oleh Sultan Brunei.",
+      "Pengambilan Trusan dikaitkan dengan usaha menyelesaikan pembunuhan beberapa peniaga Sarawak oleh orang Murut.",
   },
   {
     id: "sej-f3-c5-b-q11",
@@ -529,12 +458,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Syarikat 'American Trading Company' yang ditubuhkan oleh Joseph Torrey pernah mencuba membangunkan koloni di Sabah yang dinamakan:",
-    options: ["Ellena", "Sandakan", "Kudat", "Victoria"],
-    answerIndex: 0,
+    question: "Mengapakah Sabah dianggap strategik dalam perdagangan antarabangsa?",
+    options: [
+      "Terletak di tengah Semenanjung Tanah Melayu",
+      "Berada di laluan perdagangan China-Singapura dan berhampiran laluan Pulau Palawan",
+      "Menguasai Selat Melaka",
+      "Berhampiran India",
+    ],
+    answerIndex: 1,
     explanation:
-      "Joseph Torrey bersama rakan-rakannya menubuhkan penempatan bernama 'Ellena' di Kimanis, namun usaha ini gagal kerana masalah kewangan dan penyakit.",
+      "Sabah berada di laluan perdagangan antara China dan Singapura serta berhampiran laluan Pulau Palawan ke China dan Jepun.",
   },
   {
     id: "sej-f3-c5-b-q12",
@@ -543,17 +476,11 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah Overbeck dan Dent mengadakan perjanjian pemajakan berasingan dengan Sultan Sulu pada tahun 1878?",
-    options: [
-      "Kerana Sultan Brunei enggan menerima sebarang ufti",
-      "Kerana Sultan Sulu turut menuntut hak pertuanan ke atas wilayah pantai timur Sabah",
-      "Kerana Sultan Sulu menguasai perdagangan bijih timah di pantai barat",
-      "Kerana tentera Sepanyol menduduki pelabuhan Kudat",
-    ],
-    answerIndex: 1,
+    question: "Siapakah yang menyerahkan Pulau Labuan kepada British pada tahun 1846?",
+    options: ["Sultan Brunei", "Sultan Sulu", "Alfred Dent", "Charles Lee Moses"],
+    answerIndex: 0,
     explanation:
-      "Sultan Sulu mendakwa kawasan pantai timur Sabah milik baginda, maka Overbeck dan Dent menandatangani perjanjian pada 22 Januari 1878 dengan bayaran ufti tahunan 5,000 Dolar.",
+      "Sultan Brunei menyerahkan Labuan kepada British melalui perjanjian pada 18 Disember 1846.",
   },
   {
     id: "sej-f3-c5-b-q13",
@@ -562,17 +489,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah kesan penandatanganan Perjanjian Perlindungan 1888 antara SBUB dengan Kerajaan British?",
-    options: [
-      "Sabah digabungkan dengan Negeri-negeri Selat",
-      "Sultan Brunei memperoleh semula hak ke atas pantai timur Sabah",
-      "Sabah menjadi negeri naungan British dan urusan luar negeri dikawal oleh British",
-      "SBUB dibubarkan dan digantikan oleh Pejabat Tanah Jajahan",
-    ],
-    answerIndex: 2,
-    explanation:
-      "Di bawah Perjanjian Perlindungan 1888, Sabah menjadi negeri naungan British di mana British bertanggungjawab mempertahankan Sabah daripada ancaman luar.",
+    question: "Pada tahun berapakah Borneo Utara menjadi negeri naungan British?",
+    options: ["1881", "1878", "1905", "1888"],
+    answerIndex: 3,
+    explanation: "Borneo Utara menjadi negeri naungan British pada tahun 1888.",
   },
   {
     id: "sej-f3-c5-b-q14",
@@ -581,17 +501,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah pusat pentadbiran SBUB dipindahkan dari Kudat ke Sandakan pada tahun 1883?",
-    options: [
-      "Kudat telah diserang oleh tentera Sepanyol",
-      "Sandakan kaya dengan simpanan bijih timah yang besar",
-      "Kawasan Kudat sering dilanda gempa bumi",
-      "Sandakan mempunyai kedudukan pelabuhan semula jadi yang lebih strategik untuk perdagangan",
-    ],
-    answerIndex: 3,
-    explanation:
-      "Sandakan dipilih sebagai ibu negeri baharu SBUB pada tahun 1883 kerana mempunyai pelabuhan semula jadi yang luas dan strategik bagi perdagangan hasil hutan dan sarung burung.",
+    question: "Siapakah presiden pertama SBUB?",
+    options: ["William Hood Treacher", "Alfred Dent", "Sir Rutherford Alcock", "Edward Dent"],
+    answerIndex: 2,
+    explanation: "Sir Rutherford Alcock menjadi presiden pertama SBUB.",
   },
   {
     id: "sej-f3-c5-b-q15",
@@ -600,17 +513,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah fungsi Majlis Tertinggi (Supreme Council) yang ditubuhkan dalam pentadbiran Dinasti Brooke di Sarawak?",
+    question: "Apakah salah satu syarat Piagam Diraja terhadap SBUB?",
     options: [
-      "Menasihati Raja dalam hal pentadbiran dan meluluskan undang-undang negeri",
-      "Mengendalikan urusan percuaian eksport balak sahaja",
-      "Menguruskan latihan ketenteraan kapal HMS Dido",
-      "Mengadili kes-kes Mahkamah Anak Negeri",
+      "SBUB bebas menyerahkan Sabah kepada mana-mana kuasa",
+      "SBUB perlu memelihara adat resam, agama dan undang-undang penduduk tempatan",
+      "SBUB wajib menghapuskan semua institusi peribumi",
+      "SBUB mesti memindahkan ibu negeri ke Labuan",
     ],
-    answerIndex: 0,
+    answerIndex: 1,
     explanation:
-      "Majlis Tertinggi ditubuhkan untuk menasihati Raja Brooke mengenai hal-hal dasar pentadbiran dan meluluskan undang-undang rasmi negeri Sarawak.",
+      "Piagam Diraja mensyaratkan SBUB memelihara adat resam, agama dan undang-undang penduduk tempatan.",
   },
   {
     id: "sej-f3-c5-b-q16",
@@ -619,17 +531,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Di Sabah, apakah badan tertinggi SBUB yang membuat dasar pentadbiran dan berpusat di London?",
+    question: "Apakah tujuan utama pembahagian wilayah oleh Brooke dan SBUB?",
     options: [
-      "Majlis Penasihat Diraja",
-      "Lembaga Pengarah (Board of Directors)",
-      "Majlis Perundangan SBUB",
-      "Pejabat Tanah Jajahan",
+      "Supaya pentadbiran dapat dijalankan dengan lebih berkesan",
+      "Menghapuskan semua kampung",
+      "Memindahkan semua penduduk ke bandar",
+      "Menyerahkan kuasa kepada Brunei",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Lembaga Pengarah SBUB yang berpusat di London merupakan pembuat dasar tertinggi syarikat, manakala Gabenor di Sabah bertanggungjawab menguruskan pentadbiran harian.",
+      "Pembahagian wilayah dilakukan untuk membolehkan pentadbiran dijalankan dengan lebih berkesan.",
   },
   {
     id: "sej-f3-c5-b-q17",
@@ -638,17 +549,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah tugas utama seorang Pegawai Daerah (District Officer) dalam pentadbiran SBUB di Sabah?",
+    question: "Antara berikut, yang manakah lima residensi Sabah pada tahun 1922?",
     options: [
-      "Melantik Sultan Brunei baharu",
-      "Menjual lesen memburu kepada pelancong Eropah",
-      "Ketua pentadbir peringkat daerah yang mengutip cukai dan menjaga keamanan",
-      "Menjadi hakim di Mahkamah Tinggi London",
+      "Kuching, Sibu, Marudi, Lawas, Simanggang",
+      "Sandakan, Jesselton, Labuan, Brunei, Tawau",
+      "Kudat, Pantai Barat, Pedalaman, Pantai Timur, Tawau",
+      "Kudat, Saribas, Baram, Rajang, Tawau",
     ],
     answerIndex: 2,
     explanation:
-      "Pegawai Daerah merupakan pegawai Eropah yang bertindak sebagai ketua pentadbir daerah, memungut cukai, menjaga keamanan, dan mengawasi Ketua Anak Negeri.",
+      "Lima residensi pada tahun 1922 ialah Kudat, Pantai Barat, Pedalaman, Pantai Timur dan Tawau.",
   },
   {
     id: "sej-f3-c5-b-q18",
@@ -657,17 +567,11 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah Brooke dan SBUB mengekalkan penglibatan pimpinan tempatan (Datu/OKK) dalam birokrasi pentadbiran mereka?",
-    options: [
-      "Kerana arahan rasmi daripada Pertubuhan Bangsa-Bangsa Bersatu",
-      "Kerana pembesar tempatan membayar gaji pegawai Eropah",
-      "Kerana penasihat tentera Sepanyol menghendakinya",
-      "Kerana kekurangan pegawai Eropah dan untuk mendapat sokongan penduduk tempatan",
-    ],
-    answerIndex: 3,
+    question: "Apakah gelaran lain bagi Ketua Anak Negeri yang membantu Pegawai Daerah di Sabah?",
+    options: ["Kapitan", "Orang Kaya-Kaya (O.K.K.)", "Datu Patinggi", "Temenggung Iban"],
+    answerIndex: 1,
     explanation:
-      "Penglibatan pimpinan tempatan dikekalkan kerana bilangan pegawai Eropah adalah terhad serta untuk mengelakkan penentangan dan memastikan kelancaran pentadbiran.",
+      "Ketua Anak Negeri turut digelar Orang Kaya-Kaya (O.K.K.) dan membantu Pegawai Daerah.",
   },
   {
     id: "sej-f3-c5-b-q19",
@@ -676,17 +580,16 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah nama ordinan undang-undang yang digubal oleh Dinasti Brooke bagi menguruskan hal ehwal masyarakat tempatan di Sarawak?",
+    question: "Apakah peranan Majlis Penasihat Sabah yang ditubuhkan pada tahun 1883?",
     options: [
-      "Brooke Native Laws Ordinance",
-      "Hukum Kanun Sarawak",
-      "Undang-Undang 99 Sarawak",
-      "Piagam Diraja Brooke",
+      "Mengutip ufti kepada Sultan Sulu",
+      "Menentukan sempadan Sarawak",
+      "Mengendalikan Mahkamah Adat",
+      "Menasihati Gabenor dalam hal ehwal pentadbiran",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation:
-      "Dinasti Brooke memperkenalkan 'Brooke Native Laws Ordinance' untuk menderetkan dan menguruskan undang-undang adat serta kes syariah penduduk tempatan.",
+      "Majlis Penasihat ditubuhkan untuk menasihati Gabenor dalam hal ehwal pentadbiran.",
   },
   {
     id: "sej-f3-c5-b-q20",
@@ -696,15 +599,10 @@ export const sejarahF3C5Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Apakah persamaan utama strategi peluasan kuasa yang digunakan oleh Dinasti Brooke di Sarawak dan SBUB di Sabah?",
-    options: [
-      "Kedua-duanya menghapuskan jawatan Ketua Kampung dan Tuai Rumah",
-      "Kedua-duanya memanfaatkan kelemahan Kesultanan Brunei dan membuat perjanjian pajakan/sewaan",
-      "Kedua-duanya menggunakan tentera tentera Jepun untuk menakluki wilayah",
-      "Kedua-duanya menubuhkan institusi Durbar untuk Raja-raja tempatan",
-    ],
-    answerIndex: 1,
+      "Mahkamah manakah di Sarawak yang diwujudkan pada tahun 1911 untuk kes masyarakat Cina?",
+    options: ["Mahkamah Cina", "Mahkamah Anak Negeri", "Mahkamah Majistret", "Mahkamah Datu"],
+    answerIndex: 0,
     explanation:
-      "Kedua-dua kuasa memanfaatkan krisis dalaman serta kelemahan pengawasan Kesultanan Brunei melalui pajakan, perjanjian, dan ufti tahunan untuk meluaskan jajahan secara berperingkat.",
+      "Mahkamah Cina diwujudkan di Kuching pada tahun 1911 bagi menangani kes masyarakat Cina.",
   },
 ];

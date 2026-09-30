@@ -41,7 +41,6 @@ import {
   Sparkles,
   AlertTriangle,
   BookMarked,
-  GraduationCap,
   Search,
   Compass,
   Clock3,
@@ -55,6 +54,7 @@ import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { isGuestMode } from "@/lib/guest-mode";
 import { seoMeta } from "@/lib/seo";
+import { buildResumeSearch } from "@/lib/study-routing";
 import {
   completeJourneyUnlock,
   subscribeToJourneyUnlocks,
@@ -223,7 +223,6 @@ function DashboardPage() {
   const rank = getRank(progress.xp);
   const nextRank = getNextRank(progress.xp);
   const rankPct = getRankProgress(progress.xp);
-  const completed = totalChaptersCompleted(progress.chapterActivity);
   const dueCount = getDueCount(progress.cardMastery);
   const masteredCount = getMasteredCount(progress.cardMastery);
   const streakUrgent = useStreakUrgent(progress.lastActive, progress.streak);
@@ -391,25 +390,10 @@ function DashboardPage() {
         <QuickActionsCard lastVisited={progress.lastVisited} />
       </div>
 
-      {/* ── ROW 5 — Companion Evolution / Mastery & Ace ──────────── */}
+      {/* ── ROW 5 — Companion Evolution / Ace ──────────── */}
       <div className="mb-6 grid gap-6 lg:grid-cols-2">
         <CosmicCompanionCard xp={progress.xp} companionId={companionId} />
         <div className="space-y-4">
-          {/* Chapters mastered stat */}
-          <Card className="flex items-center gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#8B5CF6]/20">
-              <GraduationCap className="h-7 w-7 text-[#A78BFA]" />
-            </div>
-            <div>
-              <p className="font-display text-4xl font-bold text-white">{completed}</p>
-              <p className="text-sm text-[#94A3B8]">
-                {completed === 0
-                  ? "No chapters fully mastered yet"
-                  : `chapter${completed !== 1 ? "s" : ""} fully mastered`}
-              </p>
-            </div>
-          </Card>
-
           {/* Ace CTA */}
           <div className="rounded-[2rem] border border-[#6366F1]/25 bg-gradient-to-br from-[#6366F1]/15 to-[#8B5CF6]/15 p-5 backdrop-blur-2xl">
             <div className="flex items-center gap-3 mb-3">
@@ -692,7 +676,8 @@ function ContinueLearningCard({ lastVisited }: { lastVisited: LastVisited }) {
   return (
     <Link
       to={TYPE_ROUTES[lastVisited.type]}
-      search={studyResumeSearch(lastVisited) as Record<string, unknown>}
+      // Unknown form (older history) opens the Form chooser, never Form 1.
+      search={buildResumeSearch(lastVisited, { withChapter: false }) as Record<string, unknown>}
       className="academy-surface group flex flex-col rounded-[2rem] border border-[#6366F1]/30 bg-gradient-to-br from-[#6366F1]/10 to-[#8B5CF6]/10 p-4 backdrop-blur-2xl transition-all hover:border-[#6366F1]/50 hover:from-[#6366F1]/15 hover:to-[#8B5CF6]/15"
     >
       <div className="flex items-center gap-3">
@@ -1056,7 +1041,7 @@ function RecentActivityCard({ activity }: { activity: RecentActivity[] }) {
               <Link
                 key={item.id}
                 to={TYPE_ROUTES[item.type]}
-                search={studyResumeSearch(item) as Record<string, unknown>}
+                search={buildResumeSearch(item) as Record<string, unknown>}
                 className="relative flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.04] px-3 py-3 transition-all hover:bg-white/[0.08]"
               >
                 <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300">
@@ -1085,7 +1070,7 @@ function QuickActionsCard({ lastVisited }: { lastVisited?: LastVisited }) {
   const continueAction = lastVisited
     ? {
         to: TYPE_ROUTES[lastVisited.type],
-        search: studyResumeSearch(lastVisited) as Record<string, unknown>,
+        search: buildResumeSearch(lastVisited) as Record<string, unknown>,
       }
     : { to: "/notes" as const, search: {} as Record<string, unknown> };
 

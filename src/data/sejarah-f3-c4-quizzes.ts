@@ -8,17 +8,10 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah faktor utama yang mendorong peluasan kuasa British di Negeri-negeri Melayu Tidak Bersekutu (NNMTB) pada awal abad ke-20?",
-    options: [
-      "Kedudukan strategik, kekayaan hasil bumi, dan usaha membendung kemajuan kuasa Barat lain",
-      "Membantu Sultan mengatasi masalah hutang kerajaan dan krisis kewangan",
-      "Permintaan tempatan daripada penduduk untuk mendapatkan perlindungan tentera",
-      "Menamatkan Perang Larut dan perebutan takhta kerajaan negeri",
-    ],
+    question: "Bilakah Perlis terpisah daripada Kedah?",
+    options: ["1842", "1843", "1909", "1914"],
     answerIndex: 0,
-    explanation:
-      "Peluasan kuasa British di NNMTB didorong oleh kedudukan strategik negeri-negeri tersebut, kekayaan hasil bumi (seperti bijih timah dan pertanian), serta bimbingan untuk membendung persaingan kuasa Barat lain seperti Perancis, Jerman, dan Amerika Syarikat.",
+    explanation: "Perlis menjadi wilayah yang terpisah daripada Kedah pada tahun 1842.",
   },
   {
     id: "sej-f3-c4-a-q2",
@@ -27,12 +20,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Kuasa Barat manakah yang berminat untuk meluaskan pengaruhnya di kawasan Segenting Kra yang membimbangkan British?",
-    options: ["Amerika Syarikat", "Perancis", "Jerman", "Rusia"],
+    question: "Siapakah Raja Perlis pertama yang diiktiraf oleh Maharaja Siam?",
+    options: [
+      "Raja Syed Alwi Jamalullail",
+      "Raja Syed Hussin Jamalullail",
+      "Sultan Mudzaffar Shah",
+      "Long Yunus",
+    ],
     answerIndex: 1,
     explanation:
-      "Perancis berhasrat membina terusan di Segenting Kra yang boleh mengancam perdagangan dan kedudukan Singapura sebagai pelabuhan utama British.",
+      "Maharaja Siam mengiktiraf Raja Syed Hussin Jamalullail sebagai Raja Perlis pertama pada tahun 1843.",
   },
   {
     id: "sej-f3-c4-a-q3",
@@ -41,17 +38,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah ikatan hubungan tradisional antara negeri Kedah, Perlis, Kelantan, dan Terengganu dengan kerajaan Siam sebelum Perjanjian Bangkok 1909?",
+    question: "Apakah asas perundangan yang dirujuk oleh Kerajaan Perlis?",
     options: [
-      "Penerimaan Gabenor Siam bagi mengetuai Majlis Mesyuarat Negeri",
-      "Pemuatan tentera Siam di setiap daerah utama negeri-negeri Melayu",
-      "Penghantaran Bunga Emas dan Perak tiga tahun sekali sebagai tanda persahabatan",
-      "Penyerahan separuh daripada hasil cukai bijih timah dan padi secara bulanan",
+      "Undang-Undang Tubuh Kerajaan Johor",
+      "Undang-Undang Bagi Diri Kerajaan Terengganu",
+      "Undang-Undang Kesultanan Kedah",
+      "Hukum Kanun Melaka",
     ],
     answerIndex: 2,
-    explanation:
-      "Hubungan tradisional negeri-negeri Melayu utara dengan Siam ditandai dengan penghantaran Bunga Emas dan Perak tiga tahun sekali sebagai simbol persahabatan dan naungan.",
+    explanation: "Perlis menggunakan Undang-Undang Kesultanan Kedah sebagai rujukan.",
   },
   {
     id: "sej-f3-c4-a-q4",
@@ -60,17 +55,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Siapakah tokoh yang mewakili pihak British dan Siam dalam menandatangani Perjanjian Bangkok pada 10 Mac 1909?",
+    question: "Mengapakah Kedah menjalinkan hubungan luar dengan Siam?",
     options: [
-      "Frank Swettenham dan Prince Devawongse",
-      "Andrew Clarke dan Sultan Abdul Hamid",
-      "W.G. Maxwell dan Meadows Frost",
-      "Ralph Paget dan E.H. Strobel",
+      "Untuk mendapatkan Pulau Pinang",
+      "Untuk menakluk Kelantan",
+      "Untuk mengembangkan perlombongan",
+      "Untuk mempertahankan negeri daripada ancaman Burma",
     ],
     answerIndex: 3,
-    explanation:
-      "Perjanjian Bangkok 1909 ditandatangani oleh Ralph Paget (Wakil British di Bangkok) dan E.H. Strobel (Penasihat Hal Ehwal Luar Kerajaan Siam).",
+    explanation: "Hubungan dengan Siam menjadi strategi Kedah menghadapi ancaman Burma.",
   },
   {
     id: "sej-f3-c4-a-q5",
@@ -79,12 +72,11 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Siapakah Penasihat British pertama yang dilantik di Perlis ekoran Perjanjian Bangkok 1909?",
-    options: ["Meadows Frost", "W.G. Maxwell", "J.S. Mason", "J.L. Humphreys"],
+    question: "Siapakah pentadbir peringkat bawah dalam sistem pentadbiran Kelantan?",
+    options: ["Tok Kweng", "Raja Muda", "Dato' Mata-mata", "Setiausaha Kerajaan"],
     answerIndex: 0,
     explanation:
-      "Meadows Frost telah dilantik sebagai Penasihat British pertama di Perlis selepas pemindahan pertuanan Siam kepada British melalui Perjanjian Bangkok 1909.",
+      "Pada peringkat bawah, pentadbiran Kelantan dijalankan oleh Tok Kweng yang turut dibantu oleh imam.",
   },
   {
     id: "sej-f3-c4-a-q6",
@@ -93,16 +85,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question: "Apakah syarat utama Perjanjian Perlis-British yang ditandatangani pada tahun 1910?",
+    question: "Apakah sistem pentadbiran yang dibentuk oleh Sultan Muhammad II di Kelantan?",
     options: [
-      "Penggunaan bahasa Inggeris diwajibkan dalam Mahkamah Perlis",
-      "Perlis mengiktiraf Perlis sebagai negeri naungan British dan menerima Penasihat British",
-      "Raja Perlis digantikan dengan Residen British sebagai Ketua Kerajaan",
-      "Perlis digabungkan secara rasmi ke dalam Negeri-negeri Melayu Bersekutu",
+      "Sistem Kangcu",
+      "Sistem Jemaah Menteri",
+      "Sistem Residen",
+      "Sistem Pembesar Empat Lipatan",
     ],
     answerIndex: 1,
-    explanation:
-      "Perjanjian Perlis-British 1910 secara rasmi menjadikan Perlis negeri naungan British dan memperuntukkan pelantikan seorang Penasihat British.",
+    explanation: "Sultan Muhammad II membentuk Sistem Jemaah Menteri.",
   },
   {
     id: "sej-f3-c4-a-q7",
@@ -111,12 +102,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Siapakah pemimpin Kedah yang berani dan tegas mempertahankan penggunaan bahasa Melayu serta kalendar Hijrah dalam urusan rasmi kerajaan?",
-    options: ["Sultan Abdul Halim", "Dato' Shaari", "Tunku Mahmud", "Tunku Anum"],
+    question: "Siapakah pengasas Kesultanan Terengganu yang menaiki takhta pada tahun 1708?",
+    options: [
+      "Sultan Omar",
+      "Sultan Zainal Abidin III",
+      "Sultan Zainal Abidin I",
+      "Sultan Muhammad II",
+    ],
     answerIndex: 2,
     explanation:
-      "Tunku Mahmud (Pemangku Raja Kedah / Pengerusi Majlis Mesyuarat Negeri) mempertahankan identiti Kedah dengan mewajibkan bahasa Melayu dan kalendar Hijrah dalam pentadbiran.",
+      "Sultan Zainal Abidin I ialah pengasas Kesultanan Terengganu dan menaiki takhta pada tahun 1708.",
   },
   {
     id: "sej-f3-c4-a-q8",
@@ -125,17 +120,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Mengapakah Sultan Abdul Hamid Halim Shah di Kedah berasa amat murka dengan penandatanganan Perjanjian Bangkok 1909?",
+    question: "Apakah fungsi Dato' Mata-mata dalam pentadbiran Terengganu?",
     options: [
-      "British enggan memberikan pinjaman kewangan bagi membiayai pentadbiran Kedah",
-      "Tentera British menduduki Istana Anak Bukit secara paksa",
-      "British membatalkan gelaran Sultan dan menggantikannya dengan Raja",
-      "Siam menyerahkan hak pertuanan atas Kedah kepada British tanpa pengetahuan baginda",
+      "Mengutip cukai pelabuhan",
+      "Menjadi Ketua Jabatan Mahkamah",
+      "Memimpin Jemaah Menteri",
+      "Menyambut pelawat atau orang kenamaan",
     ],
     answerIndex: 3,
     explanation:
-      "Sultan Abdul Hamid Halim Shah bertegas bahawa Siam tidak berhak menyerahkan Kedah kepada British kerana Kedah tidak pernah berada di bawah jajahan Siam secara mutlak.",
+      "Dato' Mata-mata bertugas menyambut kedatangan pelawat atau orang kenamaan Terengganu.",
   },
   {
     id: "sej-f3-c4-a-q9",
@@ -144,17 +138,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah nama undang-undang tubuh bertulis yang digubal oleh Sultan Zainal Abidin III di Terengganu pada tahun 1911?",
+    question: "Apakah undang-undang yang dimasyhurkan oleh Kesultanan Johor pada tahun 1895?",
     options: [
-      "Itqan al-muluk bi-ta'dil al-suluk",
-      "Undang-Undang 99 Terengganu",
-      "Ahkam Syariah Terengganu",
-      "Kanun Terengganu 1911",
+      "Undang-Undang Tubuh Kerajaan Johor",
+      "Undang-Undang 99",
+      "Kanun Kedah",
+      "Perjanjian Setia",
     ],
     answerIndex: 0,
-    explanation:
-      "Undang-Undang Tubuh Kerajaan Terengganu dinamakan Itqan al-muluk bi-ta'dil al-suluk digubal untuk mengukuhkan kedaulatan dan menghalang peluasan kuasa British.",
+    explanation: "Johor memasyhurkan Undang-Undang Tubuh Kerajaan pada tahun 1895.",
   },
   {
     id: "sej-f3-c4-a-q10",
@@ -163,17 +155,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Mengapakah Sultan Muhammad II di Terengganu bertindak meletakkan takhta kerajaan pada tahun 1919?",
+    question: "Mengapakah Kelantan dan Terengganu dianggap strategik kepada British?",
     options: [
-      "Menyerahkan pentadbiran kepada Negeri-negeri Melayu Bersekutu",
-      "Enggan menandatangani pindaian perjanjian yang menerima Penasihat British",
-      "Didesak oleh pembesar tempatan akibat krisis kewangan",
-      "Melanjutkan pengajian ke Eropah atas tajaan British",
+      "Mengawal lombong bijih timah terbesar",
+      "Terletak di laluan perdagangan antara Siam dan Singapura",
+      "Menjadi pusat pentadbiran Siam",
+      "Mempunyai pelabuhan bebas British",
     ],
     answerIndex: 1,
-    explanation:
-      "Sultan Muhammad II memilih untuk meletakkan takhta daripada terpaksa menandatangani perjanjian 1919 yang menukarkan jawatan Agen British kepada Penasihat British.",
+    explanation: "Kedudukan Kelantan dan Terengganu penting di laluan perdagangan Siam-Singapura.",
   },
   {
     id: "sej-f3-c4-a-q11",
@@ -182,12 +172,10 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah sistem pengurusan tanah dan buruh yang diperkenalkan oleh Temenggung Daeng Ibrahim di Johor untuk mengusahakan tanaman gambir dan lada hitam?",
-    options: ["Sistem Pajakan", "Sistem Serah", "Sistem Kangchu", "Sistem Kontrak"],
+    question: "Kuasa Barat manakah yang berminat meluaskan kuasa di Segenting Kra?",
+    options: ["Jerman", "Rusia", "Perancis", "Amerika Syarikat"],
     answerIndex: 2,
-    explanation:
-      "Sistem Kangchu membenarkan pengusaha Cina meneroka kawasan sepanjang muara sungai (Kawasan Kangkar) untuk menanam gambir dan lada hitam.",
+    explanation: "Perancis berminat meluaskan kuasa ke kawasan Segenting Kra.",
   },
   {
     id: "sej-f3-c4-a-q12",
@@ -196,16 +184,10 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question: "Mengapakah Sultan Abu Bakar dianugerahkan gelaran 'Bapa Pemodenan Johor'?",
-    options: [
-      "Membawa Johor bergabung dengan Negeri-negeri Selat",
-      "Menghapuskan sistem perhambaan dan menyerahkan pentadbiran kepada British",
-      "Membina jalan kereta api pertama dari Johor Bahru ke Kuala Lumpur",
-      "Memodenkan pentadbiran, prasarana, dan menggubal Undang-Undang Tubuh Kerajaan Johor 1895",
-    ],
+    question: "Kuasa manakah yang berusaha mendapatkan Pulau Langkawi?",
+    options: ["Perancis", "Rusia", "Amerika Syarikat", "Jerman"],
     answerIndex: 3,
-    explanation:
-      "Sultan Abu Bakar memodenkan sistem birokrasi, polis, mahkamah, Jabatan Ukur, serta memperkenalkan Undang-Undang Tubuh Kerajaan Johor pada tahun 1895.",
+    explanation: "Jerman berusaha mendapatkan Pulau Langkawi.",
   },
   {
     id: "sej-f3-c4-a-q13",
@@ -214,17 +196,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah peranannya Lembaga Penasihat Johor yang ditubuhkan oleh Sultan Abu Bakar di London?",
+    question: "Apakah kepentingan hasil Kedah dan Perlis kepada British?",
     options: [
-      "Menguruskan hubungan luar Johor dan menasihati Sultan dalam hal pentadbiran untuk mengelakkan campur tangan British",
-      "Mengumpul cukai eksport gambir daripada pedagang British di Eropah",
-      "Melatih tentera Johor dengan kerjasama Kerajaan British",
-      "Menyusun strategi pertempuran ketenteraan menentang Siam",
+      "Bekalan makanan kepada penduduk Pulau Pinang",
+      "Sumber utama arang batu",
+      "Bekalan senjata kepada Singapura",
+      "Pusat pembinaan kapal British",
     ],
     answerIndex: 0,
     explanation:
-      "Lembaga Penasihat Johor di London ditubuhkan untuk menjaga kepentingan Johor di England dan menasihati Sultan agar Johor tidak mudah ditekan British.",
+      "Hasil pertanian dan penternakan Kedah dan Perlis membekalkan makanan kepada Pulau Pinang.",
   },
   {
     id: "sej-f3-c4-a-q14",
@@ -233,12 +214,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Siapakah Penasihat British pertama yang dilantik di Johor selepas Sultan Ibrahim menandatangani pindaan Perjanjian 1914?",
-    options: ["Meadows Frost", "D.G. Campbell", "W.D. Scott", "J.L. Humphreys"],
+    question: "Mengapakah British mahu membina rangkaian antara Burma dengan Pulau Pinang?",
+    options: [
+      "Untuk memindahkan ibu negeri Burma",
+      "Untuk perdagangan dan keselamatan serta hubungan terus dengan India",
+      "Untuk menutup pelabuhan Singapura",
+      "Untuk memisahkan Kedah daripada Siam",
+    ],
     answerIndex: 1,
     explanation:
-      "D.G. Campbell dilantik sebagai Penasihat British pertama di Johor selepas perjanjian pindaan ditandatangani pada tahun 1914.",
+      "Jalan raya, kereta api dan telegraf akan memberi rangkaian terus dengan India untuk perdagangan dan keselamatan.",
   },
   {
     id: "sej-f3-c4-a-q15",
@@ -247,17 +232,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Siapakah Menteri Besar Johor pertama yang terkenal dengan ketegasannya mewajibkan pegawai British memakai pakaian rasmi Johor dan berbahasa Melayu?",
+    question: "Apakah slogan yang digunakan British untuk mewajarkan peluasan kuasanya?",
     options: [
-      "Dato' Muhammad Salleh bin Perang",
-      "Dato' Onn bin Jaafar",
-      "Dato' Jaafar bin Haji Muhammad",
-      "Dato' Abdul Rahman bin Andak",
+      "Dasar Pecah dan Perintah",
+      "Misi Perdagangan Bebas",
+      "Beban Orang Putih",
+      "Hak Pertuanan Siam",
     ],
     answerIndex: 2,
-    explanation:
-      "Dato' Jaafar bin Haji Muhammad merupakan Menteri Besar Johor pertama yang sangat tegas mempertahankan protokol, bahasa Melayu, dan kedaulatan negeri Johor.",
+    explanation: 'British menggunakan slogan "Beban Orang Putih" untuk mewajarkan tindakannya.',
   },
   {
     id: "sej-f3-c4-a-q16",
@@ -266,17 +249,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah ciri utama struktur pentadbiran Negeri-negeri Melayu Tidak Bersekutu (NNMTB) berbanding NNMB?",
+    question: "Bagaimanakah Siam mentafsir penghantaran bunga emas dan perak?",
     options: [
-      "Diperintah secara mutlak oleh seorang Residen Jeneral di Kuala Lumpur",
-      "Sultan kehilangan seluruh kuasa perundangan dan pentadbiran",
-      "Semua cukai disalurkan ke dalam akaun persekutuan yang tunggal",
-      "Pentadbiran bersifat tidak terpusat (longgar) dan setiap negeri kekal secara berasingan",
+      "Tanda jual beli",
+      "Tanda kebebasan negeri Melayu",
+      "Tanda perjanjian perdagangan",
+      "Tanda pertuanan Siam dan kepatuhan",
     ],
     answerIndex: 3,
-    explanation:
-      "NNMTB tidak ditubuhkan sebagai satu unit persekutuan yang bersatu, sebaliknya pentadbirannya bersifat tidak terpusat dan mengekalkan otonomi negeri masing-masing.",
+    explanation: "Siam menganggap bunga emas dan perak sebagai tanda pertuanan dan kepatuhan.",
   },
   {
     id: "sej-f3-c4-a-q17",
@@ -285,16 +266,17 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question: "Bagaimanakah kedudukan Sultan dan pembesar tempatan dalam pentadbiran NNMTB?",
+    question:
+      "Antara berikut, yang manakah BUKAN siri perjanjian British-Siam menuju Perjanjian Bangkok 1909?",
     options: [
-      "Mempunyai kuasa dan peranan yang lebih besar dalam Majlis Mesyuarat Negeri berbanding di NNMB",
-      "Hanya berperanan sebagai penasihat tanpa sebarang kuasa eksekutif",
-      "Diasingkan terus daripada sebarang urusan birokrasi dan pentadbiran",
-      "Diletakkan di bawah arahan Gabenor Negeri-negeri Selat secara langsung",
+      "Perjanjian Pangkor 1874",
+      "Perjanjian Burney 1826",
+      "Perjanjian Sempadan 1899",
+      "Perjanjian Sulit 1897",
     ],
     answerIndex: 0,
     explanation:
-      "Dalam NNMTB, Sultan kekal sebagai puncak kuasa pentadbiran dan pembesar Melayu memainkan peranan penting dalam birokrasi negeri.",
+      "Perjanjian Pangkor melibatkan Perak dan bukan sebahagian siri perjanjian British-Siam yang disenaraikan dalam Bab 4.",
   },
   {
     id: "sej-f3-c4-a-q18",
@@ -303,17 +285,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah perkhidmatan awam tempatan yang ditubuhkan di Johor bagi melatih dan mengambil pegawai elit Melayu dalam birokrasi negeri?",
+    question: "Apakah tujuan Perjanjian Sempadan British-Siam 1899?",
     options: [
-      "Federal Executive Service (FES)",
-      "Johor Civil Service (JCS)",
-      "Malay Administrative Service (MAS)",
-      "Straits Civil Service (SCS)",
+      "Menyerahkan Johor kepada British",
+      "Menetapkan sempadan dan menyelesaikan masalah sempadan Perak-Reman",
+      "Melantik Penasihat Am Johor",
+      "Menghapuskan penghantaran bunga emas",
     ],
     answerIndex: 1,
     explanation:
-      "Johor Civil Service (JCS) ditubuhkan untuk memastikan pentadbiran negeri dikendalikan oleh pegawai tempatan yang berwibawa.",
+      "Perjanjian 1899 menetapkan sempadan beberapa negeri dan menyelesaikan masalah Perak-Reman.",
   },
   {
     id: "sej-f3-c4-a-q19",
@@ -322,17 +303,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah bahasa dan tulisan rasmi yang diwajibkan dalam urusan pentadbiran dan surat-menyurat kerajaan di Kedah dan Johor?",
+    question: "Apakah yang ditetapkan oleh Pengisytiharan British-Siam 1902?",
     options: [
-      "Bahasa Siam dan tulisan Thai",
-      "Bahasa Arab dan tulisan Hijazi",
-      "Bahasa Melayu dan tulisan Jawi",
-      "Bahasa Inggeris dan tulisan Rumi",
+      "British mengawal semua pentadbiran Siam",
+      "Kelantan dan Terengganu menjadi negeri bebas",
+      "Siam mengawal hubungan luar Kelantan dan Terengganu serta konsesi asing memerlukan izinnya",
+      "Johor menerima Residen British",
     ],
     answerIndex: 2,
     explanation:
-      "Kerajaan Kedah dan Johor mewajibkan penggunaan bahasa Melayu dan tulisan Jawi dalam semua urusan rasmi pentadbiran dan minit mesyuarat.",
+      "Pengisytiharan 1902 memberi Siam kawalan hubungan luar Kelantan dan Terengganu serta kawalan terhadap konsesi asing.",
   },
   {
     id: "sej-f3-c4-a-q20",
@@ -341,17 +321,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "A",
     difficulty: "Medium",
-    question:
-      "Apakah nilai dan iktibar utama daripada kepimpinan Raja-raja Melayu di NNMTB dalam menolak tekanan British?",
+    question: "Siapakah yang menandatangani Perjanjian Bangkok 1909?",
     options: [
-      "Penggunaan kekuatan tentera secara berterusan tanpa sebarang rundingan",
-      "Penyerahan bulat-bulat kuasa pentadbiran kepada kuasa asing demi keamanan",
-      "Mengabaikan hubungan diplomatik dengan negara jiran",
-      "Kebijaksanaan bertindak secara diplomasi, penggubalan undang-undang tubuh, dan pemodenan pentadbiran",
+      "E.H. Strobel dan Ralph Paget",
+      "Frank Swettenham dan Raja Chulalongkorn",
+      "Arthur Henderson Young dan Sultan Ibrahim",
+      "Ralph Paget dan Putera Devawongse Varaprakar",
     ],
     answerIndex: 3,
     explanation:
-      "Pemerintah NNMTB menggunakan pendekatan diplomasi, pemodenan birokrasi, serta penggubalan Undang-Undang Tubuh bagi mempertahankan kedaulatan negeri.",
+      "Perjanjian Bangkok 1909 ditandatangani oleh Ralph Paget dan Putera Devawongse Varaprakar pada 10 Mac 1909.",
   },
   {
     id: "sej-f3-c4-b-q1",
@@ -361,16 +340,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Mengapakah peluasan kuasa Jerman di Pulau Langkawi amat dibimbangi oleh British pada akhir abad ke-19?",
+      "Apakah kesan utama Perjanjian Bangkok 1909 kepada Perlis, Kedah, Kelantan dan Terengganu?",
     options: [
-      "Jerman telah menandatangani perjanjian pakatan tentera dengan Sultan Kedah",
-      "Pulau Langkawi merupakan pusat utama pengeluaran bijih timah di Tanah Melayu",
-      "Boleh menjejaskan laluan perdagangan dan monopoli British di Selat Melaka",
-      "Jerman bercadang membina pangkalan tentera udara ter terbesar di Asia",
+      "Menerima Penasihat British",
+      "Digabungkan dalam NNMB",
+      "Menerima Residen Jeneral",
+      "Menjadi Negeri-negeri Selat",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Kehadiran Jerman di Pulau Langkawi mengancam kedudukan strategik British di Selat Melaka dan laluan laut ke Timur Far East.",
+      "Perjanjian Bangkok membuka laluan kepada penerimaan Penasihat British di keempat-empat negeri.",
   },
   {
     id: "sej-f3-c4-b-q2",
@@ -380,16 +359,11 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Apakah tindakan British untuk menyekat cita-cita Amerika Syarikat daripada bertapak di Terengganu?",
-    options: [
-      "Melancarkan serangan tentera laut ke atas perairan Terengganu",
-      "Membeli tanah di pantai Terengganu dengan harga yang tinggi",
-      "Membina kubu pertahanan British di Kuala Terengganu",
-      "Mendesak Siam menandatangani Perjanjian Sulit 1897 dan Perjanjian 1902",
-    ],
-    answerIndex: 3,
+      "Negeri manakah yang pada peringkat awal menolak kehadiran Penasihat British selepas Perjanjian Bangkok 1909?",
+    options: ["Perlis dan Kedah", "Kelantan dan Terengganu", "Johor dan Perlis", "Kedah dan Johor"],
+    answerIndex: 1,
     explanation:
-      "British menandatangani Perjanjian Sulit 1897 dengan Siam bagi memastikan Siam tidak menyerahkan mana-mana konsesi tanah kepada kuasa asing seperti AS di Terengganu.",
+      "Bab 4 menyatakan Kelantan dan Terengganu pada tahap awal menolak kehadiran penasihat.",
   },
   {
     id: "sej-f3-c4-b-q3",
@@ -398,16 +372,17 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question: "Apakah terma penting dalam Perjanjian Sulit 1897 antara British dengan Siam?",
+    question:
+      "Apakah faktor yang paling membantu Johor mengekalkan kedaulatannya hingga tahun 1914?",
     options: [
-      "Siam tidak akan menyerahkan sebarang wilayah di selatan 11 darjah Utara kepada kuasa asing tanpa kelulusan British",
-      "British membayar pampasan bulanan kepada Raja Siam bagi menguasai Kedah",
-      "Siam menyerahkan hak memungut cukai di Kelantan sepenuhnya kepada British",
-      "British dan Siam bersetuju membahagikan negeri-negeri Melayu secara saksama",
+      "Ketiadaan kegiatan ekonomi komersial",
+      "Perlindungan tentera Siam",
+      "Pentadbiran moden, pemerintah bijaksana dan pentadbir yang berkesan",
+      "Johor menjadi sebahagian NNMB",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Perjanjian Sulit 1897 menetapkan bahawa Siam tidak boleh menyerahkan konsesi atau wilayah di selatan garis 11 darjah Utara kepada mana-mana kuasa Barat lain.",
+      "Kemakmuran, pemodenan dan pentadbiran cekap menyukarkan British mencari alasan untuk campur tangan.",
   },
   {
     id: "sej-f3-c4-b-q4",
@@ -416,12 +391,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Antara berikut, wilayah manakah yang dipisahkan daripada Kedah dan kekal di bawah pertuanan Siam hasil Perjanjian Bangkok 1909?",
-    options: ["Kubang Pasu", "Setul", "Perlis", "Langkawi"],
-    answerIndex: 1,
+    question: "Apakah syarat Perjanjian 1855 tentang jajahan Kesang?",
+    options: [
+      "Kesang perlu diserahkan kepada Siam",
+      "Kesang menjadi wilayah British serta-merta",
+      "Kesang tidak boleh diperdagangkan",
+      "Jika hendak dijual, Kesang perlu terlebih dahulu ditawarkan kepada British",
+    ],
+    answerIndex: 3,
     explanation:
-      "Perjanjian Bangkok 1909 menyerahkan Kedah, Perlis, Kelantan, dan Terengganu kepada British, manakala wilayah Setul dipisahkan daripada Kedah dan kekal di bawah Siam.",
+      "Perjanjian 1855 menetapkan Kesang perlu ditawarkan dahulu kepada British jika hendak dijual.",
   },
   {
     id: "sej-f3-c4-b-q5",
@@ -430,17 +409,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Siapakah tokoh tempatan yang diiktiraf oleh Siam sebagai Raja Perlis yang pertama pada tahun 1843?",
+    question: "Apakah kedudukan wakil British yang diterima Johor melalui Perjanjian Setia 1885?",
     options: [
-      "Raja Syed Saffi",
-      "Raja Syed Ahmad",
-      "Raja Syed Hussin Jamalullail",
-      "Raja Syed Alwi",
+      "Ejen yang peranannya seperti pegawai Konsul dan lebih rendah daripada Penasihat",
+      "Residen Jeneral",
+      "Gabenor Negeri-negeri Selat",
+      "Pesuruhjaya Tinggi",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Raja Syed Hussin Jamalullail dilantik dan diiktiraf oleh Siam sebagai Raja Perlis yang pertama selepas Perlis dipisahkan daripada Kedah.",
+      "Perjanjian 1885 membenarkan seorang ejen setaraf pegawai Konsul, bukan Penasihat.",
   },
   {
     id: "sej-f3-c4-b-q6",
@@ -449,17 +427,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah tindakan tegas Tunku Mahmud di Kedah apabila Penasihat British W.G. Maxwell mencuba mengibarkan bendera Union Jack di kediamannya?",
+    question: "Untuk tujuan apakah British menawarkan pinjaman 200,000 dolar kepada Johor?",
     options: [
-      "Menolak terus kehadiran W.G. Maxwell dan mengusirnya dari Kedah",
-      "Membuat aduan rasmi kepada Raja Siam di Bangkok",
-      "Menghantar surat bantahan kepada Pertubuhan Bangsa-Bangsa Bersatu",
-      "Mengarahkan bendera negeri Kedah dikibarkan lebih tinggi daripada bendera Union Jack",
+      "Membina pelabuhan",
+      "Membiayai pembinaan kereta api",
+      "Membayar gaji pembesar",
+      "Membeli kapal perang",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Tunku Mahmud menunjukkan ketegasan kedaulatan negeri dengan mengarahkan bendera negeri Kedah dikibarkan lebih tinggi daripada bendera Union Jack.",
+      "British cuba memanipulasi kewangan Johor melalui pinjaman untuk pembinaan kereta api, tetapi cadangan itu ditolak.",
   },
   {
     id: "sej-f3-c4-b-q7",
@@ -469,11 +446,10 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Siapakah Penasihat British pertama yang dilantik di Kelantan selepas Perjanjian Kelantan-British ditandatangani pada tahun 1910?",
-    options: ["J.S. Mason", "W.A. Graham", "J.L. Humphreys", "Meadows Frost"],
-    answerIndex: 0,
-    explanation:
-      "J.S. Mason dilantik sebagai Penasihat British pertama di Kelantan pada tahun 1910.",
+      "Bilakah Sultan Ibrahim menandatangani perjanjian yang menukar jawatan Konsul kepada Penasihat Am British?",
+    options: ["10 Mac 1909", "14 April 1895", "12 Mei 1914", "29 November 1899"],
+    answerIndex: 2,
+    explanation: "Perjanjian itu ditandatangani pada 12 Mei 1914.",
   },
   {
     id: "sej-f3-c4-b-q8",
@@ -482,12 +458,10 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah jawatan rasmi wakil British di Terengganu mengikut Perjanjian 1910 sebelum dinaik taraf menjadi Penasihat British pada tahun 1919?",
-    options: ["Pegawai Daerah", "Agen British", "Residen British", "Konsul Jeneral"],
-    answerIndex: 1,
-    explanation:
-      "Perjanjian Terengganu-British 1910 hanya membenarkan pelantikan seorang 'Agen British' (W.D. Scott) yang peranannya seperti pegawai konsul.",
+    question: "Siapakah Penasihat Am British pertama di Johor?",
+    options: ["Ralph Paget", "E.H. Strobel", "W.G. Maxwell", "Douglas Graham Campbell"],
+    answerIndex: 3,
+    explanation: "Douglas Graham Campbell dilantik sebagai Penasihat Am British pertama di Johor.",
   },
   {
     id: "sej-f3-c4-b-q9",
@@ -496,11 +470,17 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question: "Siapakah Penasihat British pertama di Terengganu yang dilantik pada tahun 1919?",
-    options: ["W.G. Maxwell", "J.S. Mason", "J.L. Humphreys", "W.D. Scott"],
-    answerIndex: 2,
+    question:
+      "Apakah perubahan taraf Johor selepas pelantikan Penasihat Am British pada tahun 1914?",
+    options: [
+      "Daripada negeri bebas dan berdaulat kepada negeri naungan British",
+      "Menjadi Negeri-negeri Selat",
+      "Digabungkan dengan Kedah",
+      "Menjadi wilayah Siam",
+    ],
+    answerIndex: 0,
     explanation:
-      "J.L. Humphreys dilantik sebagai Penasihat British pertama di Terengganu selepas perjanjian pindaan 1919 dipaksakan ke atas Terengganu.",
+      "Pelantikan Penasihat Am mengubah Johor menjadi negeri naungan British walaupun kedudukan sultan masih diakui.",
   },
   {
     id: "sej-f3-c4-b-q10",
@@ -509,12 +489,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Siapakah tokoh ulama terkenal di Terengganu yang memimpin gerakan penentangan rakyat terhadap pengenalan undang-undang tanah British?",
-    options: ["Tok Jangkut", "Dato' Bahaman", "Kiai Salleh", "Haji Abdul Rahman Limbong"],
-    answerIndex: 3,
-    explanation:
-      "Haji Abdul Rahman Limbong memimpin gerakan penentangan petani di Terengganu (1922-1928) kerana menolak peraturan tanah dan lesen memungut hasil hutan yang diperkenalkan British.",
+    question: "Negeri manakah yang membentuk Negeri-negeri Melayu Tidak Bersekutu?",
+    options: [
+      "Perak, Selangor, Negeri Sembilan, Pahang dan Johor",
+      "Perlis, Kedah, Kelantan, Terengganu dan Johor",
+      "Pulau Pinang, Melaka, Singapura, Johor dan Perak",
+      "Kedah, Perak, Selangor, Pahang dan Johor",
+    ],
+    answerIndex: 1,
+    explanation: "NNMTB terdiri daripada Perlis, Kedah, Kelantan, Terengganu dan Johor.",
   },
   {
     id: "sej-f3-c4-b-q11",
@@ -523,12 +506,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah dokumen kebenaran bertulis yang dikeluarkan oleh pihak berkuasa Johor kepada pengusaha Cina dalam Sistem Kangchu?",
-    options: ["Surat Sungai", "Surat Kebenaran Kebun", "Lesen Kangchu", "Piagam Sungai"],
-    answerIndex: 0,
-    explanation:
-      "Surat Sungai merupakan dokumen rasmi yang dikeluarkan oleh pemerintah Johor kepada Kangchu untuk membuka kawasan pertanian di sepanjang sungai.",
+    question: "Apakah ciri utama struktur NNMTB?",
+    options: [
+      "Dikawal satu Residen Jeneral",
+      "Semua negeri digabung sebagai satu unit",
+      "Pentadbirannya longgar dan setiap negeri kekal berasingan",
+      "Semua sultan kehilangan kuasa",
+    ],
+    answerIndex: 2,
+    explanation: "NNMTB tidak ditadbir sebagai satu unit pentadbiran tunggal.",
   },
   {
     id: "sej-f3-c4-b-q12",
@@ -537,16 +523,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question: "Apakah kepentingan utama penggubalan Undang-Undang Tubuh Kerajaan Johor 1895?",
+    question: "Di bawah kawalan siapakah NNMTB?",
     options: [
-      "Menghapuskan peranan Majlis Mesyuarat Kerajaan",
-      "Membina asas raja berperlembagaan dan menghalang British daripada mencampuri pentadbiran Johor",
-      "Menyerahkan kuasa melantik Menteri Besar kepada Gabenor Singapura",
-      "Membenarkan tentera British ditempatkan di Johor Bahru pada bila-bila masa",
+      "Residen Jeneral Persekutuan",
+      "Setiausaha Tanah Jajahan",
+      "Raja Siam",
+      "Pesuruhjaya Tinggi NNMB yang juga Gabenor Negeri-negeri Selat",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation:
-      "Undang-Undang Tubuh Kerajaan Johor 1895 merupakan perlembagaan bertulis pertama yang memodernkan pentadbiran dan melindung kedaulatan negeri Johor daripada British.",
+      "Kelima-lima negeri berada di bawah kawalan Pesuruhjaya Tinggi NNMB yang juga Gabenor NNS.",
   },
   {
     id: "sej-f3-c4-b-q13",
@@ -555,17 +541,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Siapakah Setiausaha Kerajaan Johor yang sangat bijak dan mengasaskan Pakatan Belajar Mengajar Pengetahuan Bahasa bagi memelihara bahasa Melayu?",
+    question: "Bagaimanakah kuasa raja di NNMTB berbanding dengan NNMB?",
     options: [
-      "Dato' Muhammad Ibrahim Munsyi",
-      "Dato' Bentara Luar",
-      "Dato' Abdul Rahman bin Andak",
-      "Dato' Jaafar bin Haji Muhammad",
+      "Lebih besar",
+      "Sama sekali tiada kuasa",
+      "Lebih kecil",
+      "Sama tepat dalam semua perkara",
     ],
-    answerIndex: 2,
-    explanation:
-      "Dato' Abdul Rahman bin Andak ialah Setiausaha Kerajaan Johor yang cerdik dan sentiasa berwaspada terhadap muslihat British.",
+    answerIndex: 0,
+    explanation: "Raja NNMTB mempunyai kuasa yang lebih besar berbanding raja NNMB.",
   },
   {
     id: "sej-f3-c4-b-q14",
@@ -574,17 +558,10 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Antara berikut, yang manakah merupakan jabatan pentadbiran moden yang diasaskan di Johor di bawah pemodenan Sultan Abu Bakar?",
-    options: [
-      "Jabatan Kereta Api Persekutuan dan Pejabat Residen",
-      "Jabatan Hal Ehwal India dan Syarikat Perdagangan EIC",
-      "Pejabat Tanah Jajahan London dan Majlis Mesyuarat Persekutuan",
-      "Jabatan Pos, Jabatan Tanah, Jabatan Ukur, dan Mahkamah",
-    ],
-    answerIndex: 3,
-    explanation:
-      "Sultan Abu Bakar menubuhkan pelbagai jabatan birokrasi moden seperti Jabatan Pos, Tanah, Ukur, Kerja Raya, dan sistem mahkamah.",
+    question: "Siapakah yang mempengerusikan Majlis Mesyuarat Negeri Perlis?",
+    options: ["Penasihat British", "Raja", "Setiausaha Kerajaan", "Pesuruhjaya Tinggi"],
+    answerIndex: 1,
+    explanation: "Majlis Mesyuarat Negeri Perlis dipengerusikan oleh raja.",
   },
   {
     id: "sej-f3-c4-b-q15",
@@ -593,17 +570,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah klausa tegas dalam Undang-Undang Tubuh Kerajaan Johor 1895 mengenai pemilikan wilayah negeri Johor?",
+    question: "Apakah syarat penting berkaitan penyerahan Kedah kepada negeri lain?",
     options: [
-      "Raja dan pembesar dilarang sama sekali menyerahkan atau menyerahkan sebahagian negeri Johor kepada mana-mana kuasa asing",
-      "Johor boleh disewakan kepada British jika berlaku masalah kewangan",
-      "Wilayah Muar dan Batu Pahat hendaklah diserahkan kepada Negeri-negeri Selat",
-      "Sultan berhak menjual mana-mana kawasan tanah kepada syarikat asing tanpa kelulusan Jemaah Menteri",
+      "Mesti diluluskan Pesuruhjaya Tinggi sahaja",
+      "Mesti dipersetujui semua pegawai Eropah",
+      "Memerlukan keizinan bertulis sultan dalam Majlis Mesyuarat Negeri",
+      "Boleh dilakukan oleh Penasihat British sendiri",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Fasal dalam perlembagaan Johor 1895 melarang Raja dan Menteri menyerahkan negeri Johor kepada mana-mana kuasa asing.",
+      "Kedah tidak boleh diserahkan tanpa keizinan bertulis sultan dalam Majlis Mesyuarat Negeri.",
   },
   {
     id: "sej-f3-c4-b-q16",
@@ -612,17 +588,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Mengapakah cadangan British untuk menyatukan NNMTB dengan NNMB mengalami kegagalan sebelum Perang Dunia Kedua?",
+    question: "Apakah kedudukan Penasihat British dalam Majlis Mesyuarat Negeri Kelantan?",
     options: [
-      "Ketidaksetujuan pedagang Negeri-negeri Selat",
-      "Penentangan daripada Sultan dan pentadbir NNMTB yang mahu mempertahankan otonomi negeri",
-      "Kekurangan dana kewangan daripada Kerajaan British di London",
-      "Bantahan keras daripada Kerajaan Siam di Bangkok",
+      "Menjadi Sultan",
+      "Tidak terlibat langsung",
+      "Mempengerusikan Majlis",
+      "Menjadi anggota Majlis, manakala Sultan mempengerusikannya",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation:
-      "Raja-raja Melayu dan elit pentadbir NNMTB enggan menyertai persekutuan NNMB kerana tidak mahu kehilangan kuasa dan otonomi negeri.",
+      "Di Kelantan, Sultan mempengerusikan Majlis dan Penasihat British menjadi anggota.",
   },
   {
     id: "sej-f3-c4-b-q17",
@@ -631,12 +606,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Hari manakah yang ditetapkan sebagai hari cuti keagamaan rasmi mingguan bagi pentadbiran kerajaan di negeri-negeri NNMTB?",
-    options: ["Hari Sabtu", "Hari Isnin", "Hari Jumaat", "Hari Ahad"],
-    answerIndex: 2,
+    question: "Apakah asas pentadbiran negeri Terengganu dalam NNMTB?",
+    options: [
+      "Undang-Undang Bagi Diri Kerajaan Terengganu 1911",
+      "Perjanjian Pangkor 1874",
+      "Hukum Kanun Melaka",
+      "Perjanjian Setia 1885",
+    ],
+    answerIndex: 0,
     explanation:
-      "Kerajaan NNMTB menetapkan Hari Jumaat sebagai hari cuti rasmi mingguan bagi menghormati tuntutan agama Islam.",
+      "Pentadbiran Terengganu berlandaskan Undang-Undang Bagi Diri Kerajaan Terengganu yang diluluskan pada 1911.",
   },
   {
     id: "sej-f3-c4-b-q18",
@@ -646,16 +625,16 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     set: "B",
     difficulty: "Medium",
     question:
-      "Apakah perbezaan penglibatan pegawai Melayu dalam pentadbiran NNMTB berbanding NNMB?",
+      "Siapakah jurucakap rasmi kerajaan Johor menurut struktur pentadbiran yang diterangkan dalam Bab 4?",
     options: [
-      "Pegawai Melayu dalam NNMTB hanya berkhidmat sebagai atendan dan penterjemah",
-      "Semua jawatan pentadbiran NNMTB dipegang oleh pegawai British yang dibawa dari London",
-      "Pegawai Melayu dilarang menduduki Majlis Mesyuarat Negeri",
-      "Pegawai Melayu dalam NNMTB mendominasi jawatan penting dalam birokrasi kerajaan negeri",
+      "Penasihat Am British",
+      "Setiausaha Negeri yang terdiri daripada orang Melayu",
+      "Pesuruhjaya Tinggi",
+      "Raja Muda",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Dalam NNMTB (seperti Kedah dan Johor), perkhidmatan awam dikuasai oleh pegawai elit Melayu (JCS/KCS) berbanding NNMB yang dikuasai pegawai British.",
+      "Setiausaha Negeri, yang terdiri daripada orang Melayu, menjadi jurucakap rasmi kerajaan Johor.",
   },
   {
     id: "sej-f3-c4-b-q19",
@@ -664,17 +643,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah perbezaan utama peranan Penasihat British di NNMTB berbanding Residen British di NNMB?",
+    question: "Apakah tiga aspek utama perkembangan pentadbiran NNMTB?",
     options: [
-      "Penasihat British hanya memberikan nasihat, manakala Residen British memegang kuasa eksekutif pentadbiran",
-      "Penasihat British berkuasa penuh mengutip semua cukai negeri",
-      "Residen British tidak mempunyai sebarang kuasa dalam Majlis Mesyuarat Negeri",
-      "Penasihat British mengetuai angkatan tentera dan polis negeri",
+      "Perdagangan, pertanian dan perlombongan",
+      "Pendidikan, kesihatan dan tentera",
+      "Pengekalan sultan, penerusan pentadbiran tradisional dan pengenalan birokrasi Barat",
+      "Penghapusan sultan, pembentukan republik dan pentadbiran pusat",
     ],
-    answerIndex: 0,
-    explanation:
-      "Kuasa Penasihat British di NNMTB adalah lebih terhad berbanding Residen di NNMB yang mengawal urusan pentadbiran dan kewangan secara langsung.",
+    answerIndex: 2,
+    explanation: "Bab 4 merumuskan tiga aspek ini sebagai perkembangan utama pentadbiran NNMTB.",
   },
   {
     id: "sej-f3-c4-b-q20",
@@ -683,16 +660,15 @@ export const sejarahF3C4Quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     set: "B",
     difficulty: "Medium",
-    question:
-      "Apakah kepentingan pemeliharaan agama Islam dan adat istiadat Melayu dalam sistem pentadbiran NNMTB?",
+    question: "Antara berikut, yang manakah merupakan kesan pengenalan birokrasi Barat?",
     options: [
-      "Menghapuskan peranan Mahkamah Syariah di negeri-negeri Melayu",
-      "Memelihara identiti bangsa Melayu, kedaulatan institusi beraja, dan kebebasan amalan budaya tempatan",
-      "Menggalakkan kemasukan budaya Barat secara menyeluruh dalam masyarakat",
-      "Membolehkan British mengawal sekolah-sekolah pondok dan madrasah",
+      "Pembesar kembali mengutip semua cukai",
+      "Tiada pegawai British dibawa masuk",
+      "Mahkamah sivil dimansuhkan",
+      "Penasihat British menentukan dasar, jabatan baharu dan polis diwujudkan serta mahkamah sivil diperkenalkan",
     ],
-    answerIndex: 1,
+    answerIndex: 3,
     explanation:
-      "Pemeliharaan agama Islam dan adat Melayu memastikan kedaulatan negeri dan identiti Melayu kekal terpelihara walaupun di bawah sistem naungan British.",
+      "Pengenalan birokrasi Barat mengurangkan kuasa sultan dan pembesar serta membawa jabatan baharu, polis, mahkamah sivil dan pegawai British.",
   },
 ];

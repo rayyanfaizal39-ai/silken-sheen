@@ -185,6 +185,25 @@ describe("home recommendation", () => {
     expect(recommendation.to).toBe("/notes");
   });
 
+  it("does not resume a form-less (legacy) entry as Form 1", () => {
+    const formOneChapter = { ...scienceChapter, form: "Form 1" as const };
+    const recommendation = resolveHomeRecommendation(
+      progress({
+        lastVisited: {
+          subjectId: "science",
+          chapterKey: "Chapter 10",
+          type: "quiz",
+          label: "Chapter 10",
+          timestamp: 10,
+        },
+      }),
+      catalog([formOneChapter]),
+    );
+
+    expect(recommendation.category).not.toBe("Continue Mission");
+    expect(recommendation.category).not.toBe("Next Chapter Step");
+  });
+
   it("falls back safely when the content registry cannot resolve a chapter", () => {
     const recommendation = resolveHomeRecommendation(progress(), catalog([]));
     expect(recommendation.to).toBe("/notes");
