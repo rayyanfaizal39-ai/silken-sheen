@@ -158,7 +158,7 @@ function collectStandardQuizzes(collector: CatalogCollector) {
         for (const chapter of getRegisteredSubjectChapters(subjectId, lang, form)) {
           const chapterQuestions = getChapterQuizQuestions(subjectId, form, chapter.key, lang);
           const sets =
-            subjectId === "science" && form === "Form 3"
+            (subjectId === "science" || subjectId === "sejarah") && form === "Form 3"
               ? (["A", "B"] as const).filter((set) =>
                   chapterQuestions.some((question) => question.set === set),
                 )

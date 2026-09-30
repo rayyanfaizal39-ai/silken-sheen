@@ -9,7 +9,9 @@ import {
   getFlashcardDeckCards as getFlashcardDeckCardsWithModules,
   getFlashcardSessionKey,
   keepSelectedFormCards,
+  splitFlashcardDeck,
 } from "@/lib/flashcard-availability";
+import { progressToRow, withChapterCompletion, type Progress } from "@/hooks/use-progress";
 import { normalizeFormParam } from "@/lib/study-routing";
 
 // Regression suite for the Sejarah form leak: the Form 1 chapter builder
@@ -183,6 +185,35 @@ describe("the deck guard drops leaked cards instead of falling back", () => {
 });
 
 describe("flashcard sessions are scoped by form", () => {
+  it("persists independent Form 3 Sejarah deck completion keys for all chapters", () => {
+    let activity = {};
+    const keys = new Set<string>();
+    for (let chapter = 1; chapter <= 8; chapter += 1) {
+      const chapterKey = `Chapter ${chapter}`;
+      const sets = splitFlashcardDeck(getDeck("sejarah", "Form 3", chapterKey));
+      expect(sets).toHaveLength(3);
+      for (let set = 0; set < sets.length; set += 1) {
+        expect(sets[set]).toHaveLength(20);
+        const key = getFlashcardSessionKey("sejarah", "Form 3", chapterKey, set);
+        expect(keys.has(key)).toBe(false);
+        keys.add(key);
+        activity = withChapterCompletion(activity, "sejarah", chapterKey, "cards", key);
+        expect(activity).toHaveProperty(key, { cards: true });
+      }
+    }
+    expect(keys).toHaveProperty("size", 24);
+    expect(JSON.parse(JSON.stringify(activity))).toEqual(activity);
+    const row = progressToRow({ xp: 10, chapterActivity: activity } as Progress);
+    expect(row.xp).toBe(10);
+    expect(row.chapter_activity).toEqual(activity);
+    expect(getFlashcardSessionKey("sejarah", "Form 1", "Chapter 1", 0)).not.toBe(
+      getFlashcardSessionKey("sejarah", "Form 3", "Chapter 1", 0),
+    );
+    expect(getFlashcardSessionKey("sejarah", "Form 2", "Chapter 1", 0)).not.toBe(
+      getFlashcardSessionKey("sejarah", "Form 3", "Chapter 1", 0),
+    );
+  });
+
   it("builds form-scoped session keys", () => {
     expect(getFlashcardSessionKey("sejarah", "Form 1", "Chapter 1")).toBe(
       "flashcard-session:sejarah:f1:chapter-1",

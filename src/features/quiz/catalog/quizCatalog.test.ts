@@ -17,14 +17,15 @@ describe("server quiz catalog", () => {
     expect(renderQuizCatalogSql(buildQuizCatalog())).toBe(renderQuizCatalogSql(catalog));
   });
 
-  it("matches the latest catalog migration (run npm run generate:quiz-catalog)", () => {
+  it("matches the latest catalog migration for its declared scope", () => {
     const latest = readdirSync(migrationsDir)
       .filter((name) => QUIZ_CATALOG_MIGRATION_PATTERN.test(name))
       .sort()
       .at(-1);
     expect(latest).toBeDefined();
     const applied = readFileSync(new URL(latest!, migrationsDir), "utf8").replace(/\r\n/g, "\n");
-    expect(applied).toBe(renderQuizCatalogSql(catalog));
+    const scope = applied.includes("-- Scope: Sejarah Form 3 only.") ? "sejarah-f3" : undefined;
+    expect(applied).toBe(renderQuizCatalogSql(catalog, scope));
   });
 
   it("catalogs Science F1 Chapter 7 as 30 questions: 15 Easy, 10 Medium, 5 Hard", () => {
@@ -81,6 +82,32 @@ describe("server quiz catalog", () => {
     const sejarah = catalog.quizzes.filter((q) => q.subjectId === "sejarah" && q.kind === "standard");
     expect(sejarah.length).toBeGreaterThan(0);
     for (const quiz of sejarah) expect(quiz.quizKey).toMatch(/:difficulty-all$/);
+  });
+
+  it("catalogs both Form 3 Sejarah sets under distinct stable keys for every chapter", () => {
+    const keys = new Set(catalog.quizzes.map((quiz) => quiz.quizKey));
+    for (let chapter = 1; chapter <= 8; chapter += 1) {
+      const rows = (["A", "B"] as const).map((set) => {
+        const quizKey = buildCanonicalQuizKey({
+          kind: "standard",
+          subjectId: "sejarah",
+          form: "Form 3",
+          chapterKey: `Chapter ${chapter}`,
+          lang: "bm",
+          set,
+          difficulty: "All",
+        });
+        expect(keys.has(quizKey)).toBe(true);
+        return catalog.quizzes.find((quiz) => quiz.quizKey === quizKey)!;
+      });
+      expect(rows[0].quizKey).not.toBe(rows[1].quizKey);
+      expect(rows[0].totalQuestions).toBe(chapter <= 2 ? 10 : 20);
+      expect(rows[1].totalQuestions).toBe(chapter <= 2 ? 10 : 20);
+      expect(rows.every((row) => row.subjectId === "sejarah" && row.form === 3)).toBe(true);
+      expect(keys.has(`quiz-v2:standard:sejarah:form-3:chapter-${chapter}:bm:set-default:difficulty-all`)).toBe(false);
+    }
+    expect(keys.has("quiz-v2:standard:sejarah:form-1:chapter-1:bm:set-default:difficulty-all")).toBe(true);
+    expect(keys.has("quiz-v2:standard:sejarah:form-2:chapter-1:bm:set-default:difficulty-all")).toBe(true);
   });
 
   it("maps every legacy key to a real catalog quiz", () => {
