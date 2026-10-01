@@ -1,3 +1,5 @@
+import { Chapter8Dispersion } from "./Chapter8Dispersion";
+import { Chapter8Scattering } from "./Chapter8Scattering";
 import { Chapter8Refraction } from "./Chapter8Refraction";
 import { useEffect, useState } from "react";
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
@@ -9,8 +11,6 @@ import { ChipRow } from "./blocks/ChipRow";
 import { FactGrid } from "./blocks/FactGrid";
 import { RayDiagram } from "./blocks/RayDiagram";
 import { MirrorComparison } from "./blocks/MirrorComparison";
-import { DispersionPrism } from "./blocks/DispersionPrism";
-import { ScatteringComparison } from "./blocks/ScatteringComparison";
 import { ColorMixingDiagram } from "./blocks/ColorMixingDiagram";
 
 type Lang = "en" | "bm";
@@ -33,7 +33,7 @@ const ORBIT_LABELS: Record<Lang, string[]> = {
     "Hukum pantulan",
     "Sifat cahaya",
     "Pembiasan",
-    "Serakan cahaya",
+    "Penyebaran cahaya",
     "Penyerakan cahaya",
     "Percampuran warna",
     "Fakta & istilah penting",
@@ -86,7 +86,7 @@ const SECTION_CHROME: Record<Lang, Array<{ eyebrow: string; title: string; sub?:
       title: "Pembiasan Cahaya",
       sub: "Gambar rajah sinar yang paling kerap diuji dalam bab ini.",
     },
-    { eyebrow: "◆ 8.5", title: "Serakan Cahaya" },
+    { eyebrow: "◆ 8.5", title: "Penyebaran Cahaya" },
     {
       eyebrow: "◆ 8.6",
       title: "Penyerakan Cahaya",
@@ -109,10 +109,6 @@ const FACTS_HEAD: Record<Lang, string> = { en: "💡 Facts", bm: "💡 Fakta" };
 const SHADOW_HEAD: Record<Lang, string> = {
   en: "🌑 How a Shadow Forms",
   bm: "🌑 Cara Bayang-Bayang Terbentuk",
-};
-const RAINBOW_HEAD: Record<Lang, string> = {
-  en: "🌈 How a Rainbow Forms",
-  bm: "🌈 Cara Pelangi Terbentuk",
 };
 const PRIMARY_HEAD: Record<Lang, string> = { en: "Primary colours", bm: "Warna primer" };
 const SECONDARY_HEAD: Record<Lang, string> = { en: "Secondary colours", bm: "Warna sekunder" };
@@ -310,38 +306,8 @@ export function Chapter8NotesBlock({
 
         {current === 4 && <Chapter8Refraction source={t.refraction} />}
 
-        {current === 5 && (
-          <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
-              {t.dispersion.definition}
-            </p>
-            <DispersionPrism lang={lang} spectrumOrder={t.dispersion.spectrumOrder} />
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
-              {t.dispersion.speedFact}
-            </p>
-            <div>
-              <h4 className="font-display mb-2 text-sm font-bold text-foreground">
-                {RAINBOW_HEAD[lang]}
-              </h4>
-              <p className="text-[13.5px] leading-relaxed text-muted-foreground">
-                {t.dispersion.rainbowFormation}
-              </p>
-            </div>
-          </div>
-        )}
-
-        {current === 6 && (
-          <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">
-              {t.scattering.definition}
-            </p>
-            <ScatteringComparison
-              lang={lang}
-              middayExplanation={t.scattering.middayExplanation}
-              sunsetExplanation={t.scattering.sunsetExplanation}
-            />
-          </div>
-        )}
+        {current === 5 && <Chapter8Dispersion source={t.dispersion} />}
+        {current === 6 && <Chapter8Scattering source={t.scattering} />}
 
         {current === 7 && (
           <div className="space-y-6">

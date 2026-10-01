@@ -1,3 +1,4 @@
+// Pass 4 authorises 8.5/8.6 edits; deferred checks now cover pre-Pass-4 8.7 only.
 // @vitest-environment jsdom
 import { act, createElement, type ReactNode } from "react";
 import { createRoot, type Root } from "react-dom/client";
@@ -40,15 +41,15 @@ const locks = {
     mirrors: "f9ba2250f78733bf980abf159591493f7718fb0502bcbf72d8af1b3ed0085115",
     properties: "30892516c7b52edbeb3a815af5dd9e0c68697f3e459a4564257fab75f28f5b32",
     reflection: "edb95a522087ad0eecc853000d66d3984a8eff84382aedb7e9bf003d8cdd9da4",
-    deferred: "6f52dd8ec4ae7bfaaffa2d13b42f6abf41ace1e70606681bb0fae967305ab35a",
-    supplement: "9bd74bf30eb00a9a879ff93dab8849098ef92d958f795273c37b8b02b7281c44",
+    deferred: "95a724cbdb1d34b00f8b15710a3f8754012f798d50c9b2665f0bea41b1fe9ef9",
+    supplement: "bdf887aa50e4f06d1d1d4abddd0a2a95d532327f68e842093f03525eebeb5389",
   },
   bm: {
     mirrors: "a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a",
     properties: "98f9abcf4c1563d3b0f0427f4cef260bc2aeb5b42b715e56af831751032cfe6a",
     reflection: "6f63c7b902fa79fa6711548e6ae2bc511ef95bbfc4a764d4255ec38f9cf57888",
-    deferred: "f9cdac68601e093710b4a2666bcf4d384f32d8c2efeaf17eca1ef8ad1bf0e90f",
-    supplement: "2113d8887f3f58f8012552aff1966740fdbcdf25641b695ef3128dde61cf1f5b",
+    deferred: "5b924ae4a14de777bdce2320a23ab1434729e9e37368b03fe35af7833691d552",
+    supplement: "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8",
   },
 };
 
@@ -65,24 +66,24 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
       ).toBe(expected),
     );
   });
-  it("preserves the complete 8.5–8.7 presentation and review markup", () => {
+  it("preserves the complete 8.7 presentation and review markup", () => {
     const source = readFileSync(
       "src/components/notes/ScienceF1Chapter8VisualNotesBlock.tsx",
       "utf8",
     ).replace(/\r\n/g, "\n");
-    expect(sha(source.slice(source.indexOf('          <section id="chapter8-85"')))).toBe(
-      "0896220e0550adedfe80d3a7797f574e461d131ddaf73dcfd39736fc67600518",
+    expect(sha(source.slice(source.indexOf('          <section id="chapter8-87"')))).toBe(
+      "1586997d29b96f961b6c0fe2f5283c1e4d6bffb287927828d21ff6f9547a4d15",
     );
   });
   for (const lang of ["en", "bm"] as const) {
     const t = content[lang],
       s = t.refraction;
     const render = () => mount(createElement(Chapter8Refraction, { source: s }));
-    it(`${lang}: locks all approved 8.1–8.3 facts and deferred 8.5–8.7 facts and supplements`, () => {
+    it(`${lang}: locks all approved 8.1–8.3 facts and deferred 8.7 facts and supplements`, () => {
       expect(hash(t.mirrors)).toBe(locks[lang].mirrors);
       expect(hash(t.propertiesOfLight)).toBe(locks[lang].properties);
       expect(hash(t.reflection)).toBe(locks[lang].reflection);
-      const keys = ["dispersion", "scattering", "colorAdditionSubtraction"] as const;
+      const keys = ["colorAdditionSubtraction"] as const;
       expect(hash(Object.fromEntries(keys.map((k) => [k, t[k]])))).toBe(locks[lang].deferred);
       expect(hash(supplement[lang])).toBe(locks[lang].supplement);
     });

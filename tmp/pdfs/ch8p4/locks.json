@@ -1,0 +1,25 @@
+{
+  "en": {
+    "mirrors": "f9ba2250f78733bf980abf159591493f7718fb0502bcbf72d8af1b3ed0085115",
+    "propertiesOfLight": "30892516c7b52edbeb3a815af5dd9e0c68697f3e459a4564257fab75f28f5b32",
+    "reflection": "edb95a522087ad0eecc853000d66d3984a8eff84382aedb7e9bf003d8cdd9da4",
+    "refraction": "5a0d44c713094b70a792918002d0cfe4033801a1bdf0ceb4d8240d5b51722571",
+    "colorAdditionSubtraction": "20f5b6f8c49cfc15f5319083dc2ec59f7b0276310ece22eca45921e21728eee0",
+    "deferred": "95a724cbdb1d34b00f8b15710a3f8754012f798d50c9b2665f0bea41b1fe9ef9",
+    "supplement": "bdf887aa50e4f06d1d1d4abddd0a2a95d532327f68e842093f03525eebeb5389"
+  },
+  "bm": {
+    "mirrors": "a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a",
+    "propertiesOfLight": "98f9abcf4c1563d3b0f0427f4cef260bc2aeb5b42b715e56af831751032cfe6a",
+    "reflection": "6f63c7b902fa79fa6711548e6ae2bc511ef95bbfc4a764d4255ec38f9cf57888",
+    "refraction": "f3d720a5b196d3a487d52a981b70845ace3553273c3b970d7d6351634f5b878d",
+    "colorAdditionSubtraction": "9c63a2eab4f9dde4a883afb797192472ccab6e42139692df8983f09634a315e4",
+    "deferred": "5b924ae4a14de777bdce2320a23ab1434729e9e37368b03fe35af7833691d552",
+    "supplement": "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8"
+  },
+  "Chapter8Mirrors": "e048f18ea0739910d13aebe1d90987ef190543dcf6c7fbabc90726f52f05056d",
+  "Chapter8PropertiesOfLight": "e92572bc4e6980b5505efd0b7cab711c95a024b4fe2f71afeb5855b8be078d64",
+  "Chapter8Reflection": "63e3e7cbd789f880780d8103b6b859c45b4f2225602b6da80cffd6c345d2ec56",
+  "Chapter8Refraction": "12bfc933e74e482e50eae8a71a843a3976c8b08e24e34fa2c524f4da3e549de1",
+  "presentation": "1586997d29b96f961b6c0fe2f5283c1e4d6bffb287927828d21ff6f9547a4d15"
+}

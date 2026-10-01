@@ -1,19 +1,11 @@
+import { Chapter8Dispersion } from "./Chapter8Dispersion";
+import { Chapter8Scattering } from "./Chapter8Scattering";
 import { Chapter8Refraction } from "./Chapter8Refraction";
 import { Chapter8PropertiesOfLight } from "./Chapter8PropertiesOfLight";
 import { Chapter8Reflection } from "./Chapter8Reflection";
 import { Chapter8Mirrors } from "./Chapter8Mirrors";
 import { useState, type ReactNode } from "react";
-import {
-  Aperture,
-  Check,
-  ChevronDown,
-  Filter,
-  Lightbulb,
-  Palette,
-  Rainbow,
-  Sparkles,
-  Sun,
-} from "lucide-react";
+import { Aperture, Check, ChevronDown, Filter, Lightbulb, Palette, Sparkles } from "lucide-react";
 import type { Chapter8Content } from "@/content/form1/science/chapter-8/chapter8-content";
 import { chapter8Supplement } from "@/content/form1/science/chapter-8/chapter8-content";
 
@@ -43,11 +35,6 @@ const ui = {
     applications: "Daily applications",
     instruments: "Optical instruments",
     experiment: "Experiment",
-    dispersion: "Dispersion through a prism",
-    spectrum: "ROYGBIV spectrum",
-    scattering: "Atmospheric scattering",
-    compareSky: "Compare the sky",
-    labEvidence: "Laboratory evidence",
     addition: "Choose two primary lights",
     allThree: "All three primary lights",
     subtraction: "Object-colour subtraction",
@@ -90,11 +77,6 @@ const ui = {
     applications: "Aplikasi harian",
     instruments: "Alat optik",
     experiment: "Eksperimen",
-    dispersion: "Serakan melalui prisma",
-    spectrum: "Spektrum MUJHHBIU",
-    scattering: "Penyerakan atmosfera",
-    compareSky: "Bandingkan langit",
-    labEvidence: "Bukti makmal",
     addition: "Pilih dua cahaya primer",
     allThree: "Ketiga-tiga cahaya primer",
     subtraction: "Penolakan warna objek",
@@ -228,7 +210,6 @@ export function ScienceF1Chapter8VisualNotesBlock({
   const t = content[lang];
   const extra = chapter8Supplement[lang];
   const copy = ui[lang];
-  const [sky, setSky] = useState(0);
   const [mix, setMix] = useState(0);
   const mixes = t.colorAdditionSubtraction.additionFormula;
 
@@ -302,79 +283,13 @@ export function ScienceF1Chapter8VisualNotesBlock({
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               {t.subtopics[4].code} {t.subtopics[4].title}
             </h2>
-            <div className="grid gap-5 lg:grid-cols-2">
-              <Panel>
-                <div className="flex items-center gap-3">
-                  <Rainbow className="h-6 w-6 text-fuchsia-300" />
-                  <h3 className="font-bold text-white">{copy.dispersion}</h3>
-                </div>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{t.dispersion.definition}</p>
-                <div className="mt-5 flex overflow-hidden rounded-xl">
-                  {t.dispersion.spectrumOrder.map((colour, index) => (
-                    <div
-                      key={colour}
-                      className={`flex min-h-24 min-w-0 flex-1 items-end justify-center px-1 py-3 text-[9px] font-black text-white ${["bg-red-500", "bg-orange-500", "bg-yellow-400", "bg-green-500", "bg-blue-500", "bg-indigo-600", "bg-violet-600"][index]}`}
-                    >
-                      <span className="[writing-mode:vertical-rl] sm:[writing-mode:horizontal-tb]">
-                        {colour}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-4 text-sm leading-6 text-slate-300">{t.dispersion.speedFact}</p>
-              </Panel>
-              <Panel>
-                <h3 className="font-bold text-white">{copy.labEvidence}</h3>
-                <div className="mt-4 space-y-4">
-                  {extra.dispersionExperiments.map((item) => (
-                    <div key={item.part} className="rounded-xl bg-slate-950/35 p-4">
-                      <p className="font-bold text-fuchsia-200">{item.part}</p>
-                      <p className="mt-2 text-sm leading-6 text-slate-300">{item.setup}</p>
-                      <p className="mt-2 text-sm font-semibold leading-6 text-white">
-                        {item.result}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </Panel>
-            </div>
+            <Chapter8Dispersion source={t.dispersion} />
           </section>
           <section id="chapter8-86" data-official-subtopic="8.6" className="space-y-6">
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               {t.subtopics[5].code} {t.subtopics[5].title}
             </h2>
-            <Panel>
-              <div className="flex items-center gap-3">
-                <Sun className="h-6 w-6 text-sky-300" />
-                <h3 className="font-bold text-white">{copy.scattering}</h3>
-              </div>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{t.scattering.definition}</p>
-              <div className="mt-4">
-                <Tabs
-                  labels={
-                    lang === "en"
-                      ? ["Blue sky at midday", "Reddish sky at sunset"]
-                      : ["Langit biru tengah hari", "Langit kemerahan senja"]
-                  }
-                  selected={sky}
-                  onSelect={setSky}
-                />
-              </div>
-              <div
-                className={`mt-4 rounded-xl border p-5 ${sky === 0 ? "border-sky-300/30 bg-sky-300/10" : "border-orange-300/30 bg-orange-300/10"}`}
-                role="tabpanel"
-              >
-                <p className="text-sm leading-6 text-slate-200">
-                  {sky === 0 ? t.scattering.middayExplanation : t.scattering.sunsetExplanation}
-                </p>
-              </div>
-              <div className="mt-5">
-                <p className="mb-3 text-xs font-bold uppercase tracking-wider text-violet-300">
-                  {copy.labEvidence}
-                </p>
-                <Checklist items={extra.scatteringExperiment} />
-              </div>
-            </Panel>
+            <Chapter8Scattering source={t.scattering} />
           </section>
 
           <section id="chapter8-87" data-official-subtopic="8.7" className="space-y-6">

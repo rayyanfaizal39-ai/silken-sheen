@@ -1,3 +1,4 @@
+// Pass 4 authorises 8.5/8.6 edits; deferred checks now cover pre-Pass-4 8.7 only.
 // @vitest-environment jsdom
 import { act, createElement, type ReactNode } from "react";
 import { createRoot, type Root } from "react-dom/client";
@@ -84,15 +85,15 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
       ).toEqual(["8.1", "8.2", "8.3", "8.4", "8.5", "8.6", "8.7"]);
       expect(host.querySelector("nav")?.textContent).not.toMatch(/8\.2-8\.3|8\.5-8\.6/);
     });
-    it(`${lang}: 8.5–8.7 facts, reflection law and deferred supplements retain pre-pass hashes`, () => {
+    it(`${lang}: 8.7 facts, reflection law and deferred supplements retain pre-pass hashes`, () => {
       // Pass 3 authorizes 8.4 edits; these baselines were captured before those edits.
       // All 8.1 hashes above are retained without change.
       // Deferred-only hashes captured before Pass 3; 8.1–8.3 locks are unchanged.
-      const keys = ["dispersion", "scattering", "colorAdditionSubtraction"] as const;
+      const keys = ["colorAdditionSubtraction"] as const;
       expect(hash(Object.fromEntries(keys.map((k) => [k, t[k]])))).toBe(
         lang === "en"
-          ? "6f52dd8ec4ae7bfaaffa2d13b42f6abf41ace1e70606681bb0fae967305ab35a"
-          : "f9cdac68601e093710b4a2666bcf4d384f32d8c2efeaf17eca1ef8ad1bf0e90f",
+          ? "95a724cbdb1d34b00f8b15710a3f8754012f798d50c9b2665f0bea41b1fe9ef9"
+          : "5b924ae4a14de777bdce2320a23ab1434729e9e37368b03fe35af7833691d552",
       );
       expect(hash(t.reflection.lawOfReflection)).toBe(
         lang === "en"
@@ -101,8 +102,8 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
       );
       expect(hash(chapter8Supplement[lang])).toBe(
         lang === "en"
-          ? "9bd74bf30eb00a9a879ff93dab8849098ef92d958f795273c37b8b02b7281c44"
-          : "2113d8887f3f58f8012552aff1966740fdbcdf25641b695ef3128dde61cf1f5b",
+          ? "bdf887aa50e4f06d1d1d4abddd0a2a95d532327f68e842093f03525eebeb5389"
+          : "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8",
       );
     });
     it(`${lang}: real/virtual are screen-based definitions and plane image is behind mirror`, () => {

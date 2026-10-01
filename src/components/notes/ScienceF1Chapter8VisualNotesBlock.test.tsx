@@ -17,7 +17,9 @@ describe("ScienceF1Chapter8VisualNotesBlock", () => {
     expect(html).toContain("Cahaya dan Optik");
     expect(html).toContain("Aktiviti 8.1");
     expect(html).toContain("Pembiasan Cahaya");
-    expect(html).toContain("Spektrum MUJHHBIU");
+    expect(html).toContain("Spektrum");
+    expect(html).toContain("Indigo");
+    expect(html).not.toContain("MUJHHBIU");
     expect(html).toContain("Peraturan penapis warna");
     expect(html).toContain('id="science-notes-content"');
   });

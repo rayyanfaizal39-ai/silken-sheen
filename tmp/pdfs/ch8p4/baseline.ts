@@ -1,0 +1,6 @@
+import {chapter8Content as c,chapter8Supplement as s} from '../../../src/content/form1/science/chapter-8/chapter8-content';import {readFileSync,writeFileSync} from 'node:fs';import {createHash} from 'node:crypto';
+const sha=(x:string)=>createHash('sha256').update(x).digest('hex');const locks:any={};
+for(const lang of ['en','bm'] as const){locks[lang]={};for(const key of ['mirrors','propertiesOfLight','reflection','refraction','colorAdditionSubtraction'] as const)locks[lang][key]=sha(JSON.stringify(c[lang][key]));locks[lang].deferred=sha(JSON.stringify({colorAdditionSubtraction:c[lang].colorAdditionSubtraction}));const {dispersionExperiments,scatteringExperiment,...rest}=s[lang];locks[lang].supplement=sha(JSON.stringify(rest));}
+for(const file of ['Chapter8Mirrors','Chapter8PropertiesOfLight','Chapter8Reflection','Chapter8Refraction'])locks[file]=sha(readFileSync(`src/components/notes/${file}.tsx`,'utf8').replace(/\r\n/g,'\n'));
+const root=readFileSync('src/components/notes/ScienceF1Chapter8VisualNotesBlock.tsx','utf8').replace(/\r\n/g,'\n');locks.presentation=sha(root.slice(root.indexOf('          <section id="chapter8-87"')));
+writeFileSync('tmp/pdfs/ch8p4/locks.json',JSON.stringify(locks,null,2));writeFileSync('tmp/pdfs/ch8p4/baseline.json',JSON.stringify({c,s},null,2));
