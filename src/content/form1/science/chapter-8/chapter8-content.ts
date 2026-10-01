@@ -35,6 +35,12 @@ export interface DispersionLesson {
   practice: { title: string; questions: string[] };
 }
 export interface ScatteringLesson {
+  revision: {
+    longerPath: string;
+    blue: string;
+    red: string;
+    comparison: { process: string; explanation: string; examples: string }[];
+  };
   definition: string;
   middayExplanation: string;
   sunsetExplanation: string;
@@ -982,8 +988,26 @@ const en: Chapter8Content = {
     },
   },
   scattering: {
+    revision: {
+      longerPath:
+        "Near sunset, sunlight travels through a longer path in the atmosphere than at midday.",
+      blue: "Blue light — scattered more",
+      red: "Red and orange light — scattered less",
+      comparison: [
+        {
+          process: "Dispersion of Light",
+          explanation: "White light separates into its component colours.",
+          examples: "Prism · Rainbow",
+        },
+        {
+          process: "Scattering of Light",
+          explanation: "Particles redirect light in different directions.",
+          examples: "Blue sky · Reddish sunset",
+        },
+      ],
+    },
     definition:
-      "Scattering of light occurs when light is reflected in all directions by clouds or particles in the air.",
+      "Scattering of light occurs when light rays are obstructed and reflected in all directions by clouds or particles in the air.",
     middayExplanation:
       "During midday, blue light is scattered the most in all directions by the tiny particles in the atmosphere. Therefore, the sky looks blue during midday.",
     sunsetExplanation:
@@ -1743,6 +1767,24 @@ const bm: Chapter8Content = {
     },
   },
   scattering: {
+    revision: {
+      longerPath:
+        "Pada waktu senja, cahaya matahari melalui lintasan yang lebih panjang dalam atmosfera berbanding pada waktu tengah hari.",
+      blue: "Cahaya biru — diserak lebih banyak",
+      red: "Cahaya merah dan jingga — diserak lebih sedikit",
+      comparison: [
+        {
+          process: "Penyebaran Cahaya",
+          explanation: "Cahaya putih dipisahkan kepada komponen warnanya.",
+          examples: "Prisma · Pelangi",
+        },
+        {
+          process: "Penyerakan Cahaya",
+          explanation: "Zarah memantulkan cahaya ke arah yang berlainan.",
+          examples: "Langit kebiruan · Langit kemerahan pada waktu senja",
+        },
+      ],
+    },
     definition:
       "Penyerakan cahaya berlaku apabila sinar cahaya dihalang dan dipantulkan ke semua arah oleh awan atau zarah-zarah dalam udara.",
     middayExplanation:

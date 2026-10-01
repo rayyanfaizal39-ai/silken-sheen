@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { DispersionLesson } from "@/content/form1/science/chapter-8/chapter8-content";
 
 // Display colours and coordinates only. All lesson wording comes from the source prop.
@@ -58,12 +57,12 @@ export function Pin({ x, y, n }: { x: number; y: number; n: number }) {
     </g>
   );
 }
-export function PrismDiagram({ apparatus = false }: { apparatus?: boolean }) {
+export function PrismDiagram() {
   return (
     <svg
-      data-optics-visual={apparatus ? "prism-apparatus" : "prism"}
+      data-optics-visual="prism"
       viewBox="0 0 460 285"
-      className="w-full"
+      className="mx-auto w-full max-w-2xl"
       aria-hidden="true"
     >
       <path
@@ -74,17 +73,7 @@ export function PrismDiagram({ apparatus = false }: { apparatus?: boolean }) {
         strokeWidth="2"
       />
       <rect data-white-screen="" x="428" y="116" width="20" height="148" rx="2" fill="#f8fafc" />
-      {apparatus && (
-        <g data-ray-box="" transform="translate(45 184) rotate(-30)">
-          <rect x="-32" y="-18" width="48" height="36" rx="3" fill="#475569" stroke="#cbd5e1" />
-          <path d="M16 -5V5" stroke="#fff" strokeWidth="4" />
-        </g>
-      )}
-      <LightArrow
-        from={[apparatus ? 59 : 40, apparatus ? 176 : 187]}
-        to={[185, 115.5]}
-        kind="white-entry"
-      />
+      <LightArrow from={[40, 187]} to={[185, 115.5]} kind="white-entry" />
       <path data-normal="entry" d="M130 86.55L230 139.18" stroke="#94a3b8" strokeDasharray="5 5" />
       <path
         data-normal="exit"
@@ -110,13 +99,17 @@ export function PrismDiagram({ apparatus = false }: { apparatus?: boolean }) {
       <Pin x={229} y={190} n={2} />
       <Pin x={439} y={98} n={3} />
       <Pin x={135} y={73} n={4} />
-      {apparatus && <Pin x={35} y={226} n={5} />}
     </svg>
   );
 }
 function RainbowDiagram() {
   return (
-    <svg data-optics-visual="rainbow" viewBox="0 0 460 175" className="w-full" aria-hidden="true">
+    <svg
+      data-optics-visual="rainbow"
+      viewBox="0 0 460 175"
+      className="mx-auto w-full max-w-2xl"
+      aria-hidden="true"
+    >
       <circle cx="42" cy="80" r="25" fill="#fbbf24" />
       <LightArrow from={[74, 80]} to={[139, 80]} kind="sunlight" />
       <path
@@ -151,60 +144,7 @@ function RainbowDiagram() {
     </svg>
   );
 }
-function BasinDiagram() {
-  return (
-    <svg
-      data-optics-visual="rainbow-apparatus"
-      viewBox="0 0 460 295"
-      className="w-full"
-      aria-hidden="true"
-    >
-      <path
-        data-basin=""
-        d="M90 140L108 260H365L390 140"
-        fill="none"
-        stroke="#94a3b8"
-        strokeWidth="3"
-      />
-      <path data-water="" d="M101 200H378L365 260H108Z" fill="#38bdf82b" stroke="#7dd3fc" />
-      <path data-inclined-mirror="" d="M250 244L377 188.12" stroke="#e2e8f0" strokeWidth="7" />
-      <path data-tape="" d="M366 182L390 196" stroke="#fbbf24" strokeWidth="9" />
-      <g data-torch="" transform="translate(92 74) rotate(31)">
-        <rect width="68" height="27" rx="5" fill="#475569" stroke="#e2e8f0" />
-        <ellipse
-          data-black-card=""
-          cx="72"
-          cy="14"
-          rx="6"
-          ry="25"
-          fill="#020617"
-          stroke="#94a3b8"
-        />
-        <ellipse data-card-hole="" cx="72" cy="14" rx="2" ry="3" fill="#f8fafc" />
-      </g>
-      <LightArrow from={[145, 123]} to={[300, 222]} kind="torch-to-mirror" />
-      <path data-white-paper="" d="M271 39L420 63L401 89L252 65Z" fill="#f8fafc" />
-      {spectrumPaint.map((c, i) => (
-        <LightArrow
-          key={c}
-          from={[300, 222]}
-          to={[277 + i * 17, 66 + i * 2]}
-          color={c}
-          kind="mirror-to-paper"
-        />
-      ))}
-      <Pin x={92} y={279} n={1} />
-      <Pin x={195} y={240} n={2} />
-      <Pin x={341} y={213} n={3} />
-      <Pin x={82} y={56} n={4} />
-      <Pin x={169} y={103} n={5} />
-      <Pin x={368} y={39} n={6} />
-      <Pin x={405} y={186} n={7} />
-    </svg>
-  );
-}
 export function Chapter8Dispersion({ source: s }: { source: DispersionLesson }) {
-  const [part, setPart] = useState(0);
   const l = s.labels;
   const prismKey = [l.white, l.prism, l.screen, l.normal];
   return (
@@ -245,60 +185,6 @@ export function Chapter8Dispersion({ source: s }: { source: DispersionLesson }) 
             <p className="mt-4">{s.rainbowFormation}</p>
           </figcaption>
         </figure>
-      </section>
-      <p className="border-l-2 border-amber-300 pl-5" data-prism-inquiry="">
-        {s.inquiry}
-      </p>
-      <section data-activity="8.7" className="border-t border-slate-700 pt-6">
-        <h3 className="text-xl font-bold text-white">{s.activity.title}</h3>
-        <p className="mt-2">{s.activity.aim}</p>
-        <p className="mt-3">
-          <strong>{l.apparatus}: </strong>
-          {s.activity.apparatus.join(", ")}
-        </p>
-        <div className="my-4 flex flex-wrap gap-2">
-          {s.activity.parts.map((p, i) => (
-            <button
-              key={p.id}
-              type="button"
-              aria-pressed={part === i}
-              onClick={() => setPart(i)}
-              className={`rounded-lg border px-4 py-3 text-left font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300 ${part === i ? "border-cyan-300 bg-cyan-300/15 text-cyan-100" : "border-slate-600"}`}
-            >
-              {p.id} · {p.title}
-            </button>
-          ))}
-        </div>
-        <figure
-          data-activity-part={part === 0 ? "A" : "B"}
-          className="rounded-xl bg-slate-950/40 p-4"
-        >
-          {part === 0 ? <PrismDiagram apparatus /> : <BasinDiagram />}
-          <figcaption>
-            <DiagramKey
-              items={
-                part === 0
-                  ? [...prismKey, l.rayBox]
-                  : [l.basin, l.water, l.mirror, l.torch, l.card, l.paper, l.tape]
-              }
-            />
-          </figcaption>
-        </figure>
-        <h4 className="mt-4 font-bold">{l.instructions}</h4>
-        <ol className="mt-2 list-decimal space-y-2 pl-6" data-procedure="8.7">
-          {s.activity.parts[part].steps.map((p) => (
-            <li key={p}>{p}</li>
-          ))}
-        </ol>
-      </section>
-      <section data-practice="8.5" className="border-t border-slate-700 pt-6">
-        <h3 className="text-xl font-bold text-white">{s.practice.title}</h3>
-        <PrismDiagram />
-        <ol className="list-decimal space-y-3 pl-6">
-          {s.practice.questions.map((q) => (
-            <li key={q}>{q}</li>
-          ))}
-        </ol>
       </section>
     </div>
   );

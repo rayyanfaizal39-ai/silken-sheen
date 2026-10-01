@@ -1,5 +1,41 @@
 # Chapter 8 Pass 4 source audit — 8.5 and 8.6 only
 
+## Revision-notes cleanup — 2026-10-01
+
+This follow-up supersedes the original full-activity **live presentation** described below. The new user request explicitly asks for concise revision notes rather than a laboratory manual. The canonical activity/procedure/practice records are retained unchanged for provenance.
+
+### Implementation audit before editing
+
+- Core prism, spectrum, colour order, red/violet refraction and rainbow facts were already present. The BM terminology was already correct.
+- The default 8.5 view rendered the same prism three times: main explanation, Activity 8.7 A/I, and Practice 8.5. Activity 8.7 B/II added an alternate basin apparatus diagram without adding a new revision concept beyond rainbow formation.
+- The default 8.6 view rendered each sky diagram twice: once in the explanation and again in Practice 8.6. Its milk apparatus diagram taught observation positions, but intentionally supplied no verified result; it was low-value for this revision-only brief.
+- Full activity aims, apparatus lists, ten Activity 8.7 procedure steps across the two tabs, seven Activity 8.8 steps, activity questions and repeated practice prompts made the notes unnecessarily long.
+- No decorative photographs, missing raster assets, broken image URLs or badly cropped pictures were found. Existing explanatory SVGs were useful; the issue was duplication/procedural emphasis, not image quality. Numbered HTML legends already kept long labels readable on mobile.
+- The longer atmospheric path at sunset, a direct more/less scattering key point, and a concise dispersion-versus-scattering comparison were missing from the revision presentation.
+
+### Changes and source boundaries
+
+- Keep exactly four live explanatory SVGs: one prism, one rainbow chain, one midday scattering diagram and one sunset scattering diagram. Remove both extra prism renderings, both practice sky renderings, the basin apparatus view and the milk apparatus view. Remove the unused apparatus geometry and selector state from the two scoped components.
+- Remove live Activity 8.7/8.8 aims, apparatus, procedures and questions. Remove the extra inquiry/practice blocks. Their science remains in the core explanations and diagrams; their complete audited canonical records remain available and unchanged.
+- Preserve the existing source paragraphs on prism entry/exit, speeds, spectrum and rainbow. Preserve the BM scattering definition and each edition's sky explanations. Remove repeated short sky captions already explained by the adjacent paragraph. Constrain the prism/rainbow SVG width on desktop without shrinking mobile HTML labels.
+- Add the **user-requested** longer atmospheric path sentence in BM and DLP as `scattering.revision.longerPath`. The earlier audit did not establish this sentence on printed pp. 239–240: it is explicitly authorized supplementary Form 1 explanation, **not a verbatim textbook quotation**.
+- The new request explicitly includes obstruction in the English scattering concept. Add “light rays are obstructed and reflected” to the DLP definition, consistent with the supplied request and existing BM definition. This expanded English sentence is **not presented as a verbatim DLP quotation**; the original DLP edition difference remains documented in the historical audit below.
+- Add concise canonical revision labels for blue scattered more, red/orange scattered less, and the requested two-row comparison. These summarize concepts already present in the audited canonical paragraphs and the supplied request; no higher-level optics is introduced.
+- The change is limited to `Chapter8Dispersion.tsx`, `Chapter8Scattering.tsx`, `chapter8-content.ts`, `ScienceF1Chapter8Pass4.test.tsx` and this audit record. No routes, shared site components, other learning sections, quizzes or flashcards are edited. Existing 8.1–8.4 and 8.7 hashes remain unchanged.
+
+**Learner-facing additions beyond the previously inspected textbook wording:** the user-requested longer-path sentence, the expanded English obstruction wording, and concise comparison labels described above. No experimental observations or numerical results are invented.
+
+### Cleanup validation
+
+- All five Chapter 8 suites passed: **132 tests**, including the 31 updated Pass 4 live-render checks. Approved 8.1–8.4 component/canonical hashes and 8.7 canonical/presentation hashes remain green. No hashes were changed in this cleanup.
+- Tests now require exactly one prism, one rainbow and two distinct sky diagrams, no live laboratory/practice blocks, preserved canonical activity records, the longer-path explanation, explicit more/less scattering comparison and identical BM/DLP SVG geometry.
+- Targeted ESLint and `git diff --check` passed. Production `npm run build` passed through Pages packaging.
+- TypeScript reports only the same two existing unrelated Form 2 `string | undefined` errors at `chapter-7-9-10-visual-integration.test.tsx:305` and `chapter-9-heat-visuals.test.tsx:523`; neither file was edited.
+- Chromium component previews with production CSS were inspected in both languages at 320px, 390px and 1280px. All retained diagrams and HTML labels fit without horizontal overflow. No new image assets or broken references were introduced.
+- No commit or push performed.
+
+The remaining sections of this file record the original source audit and its original validation, before this revision-notes cleanup.
+
 Audit date: 2026-09-30. Scope: BM and DLP printed pp. 236–241. The 8.4 material at the top of p. 236 and 8.7 material below Practice 8.6 on p. 241 remain locked.
 
 ## Sources inspected

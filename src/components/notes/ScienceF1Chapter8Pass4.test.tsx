@@ -24,8 +24,6 @@ afterEach(() => {
   host.remove();
 });
 const mount = (node: ReactNode) => act(() => root.render(node));
-const tap = (selector: string, index = 0) =>
-  act(() => host.querySelectorAll<HTMLButtonElement>(selector)[index].click());
 const sha = (s: string) => createHash("sha256").update(s).digest("hex");
 const hash = (v: unknown) => sha(JSON.stringify(v));
 const read = (p: string) => readFileSync(p, "utf8").replace(/\r\n/g, "\n");
@@ -176,7 +174,7 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
       expect(((a[3] - a[1]) / (a[2] - a[0])) * -1.9).toBeCloseTo(-1, 2);
       expect(((b[3] - b[1]) / (b[2] - b[0])) * 1.9).toBeCloseTo(-1, 2);
     });
-    it(`${lang}: rainbow chain and inverted-prism inquiry are source-backed, with no invented answer`, () => {
+    it(`${lang}: rainbow chain is source-backed without an extra inquiry block`, () => {
       dispersion();
       const v = host.querySelector('[data-optics-visual="rainbow"]')!;
       expect(v.querySelector("[data-water-droplet]")).not.toBeNull();
@@ -185,43 +183,27 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
       expect(d.rainbowFormation).toMatch(
         lang === "bm" ? /dibiaskan dan disebarkan/ : /refracted and dispersed/,
       );
-      expect(host.querySelector("[data-prism-inquiry]")!.textContent).toBe(d.inquiry);
+      expect(host.querySelector("[data-prism-inquiry]")).toBeNull();
       expect(d.inquiry.endsWith("?")).toBe(true);
     });
-    it(`${lang}: Activity 8.7 has two real selectable setups and complete five-step source procedures`, () => {
+    it(`${lang}: Activity 8.7 source is preserved without classroom procedures in revision notes`, () => {
       dispersion();
-      const a = host.querySelector('[data-activity="8.7"]')!;
-      expect(d.activity.parts.map((p) => p.id)).toEqual(lang === "bm" ? ["A", "B"] : ["I", "II"]);
-      d.activity.apparatus.forEach((v) => expect(a.textContent).toContain(v));
-      expect(a.querySelector("[data-ray-box]")).not.toBeNull();
-      expect(a.querySelector("[data-prism]")).not.toBeNull();
-      expect(a.querySelectorAll("[data-procedure] li")).toHaveLength(5);
-      d.activity.parts[0].steps.forEach((p) => expect(a.textContent).toContain(p));
-      tap('[data-activity="8.7"] button', 1);
-      expect(a.querySelector('[data-activity-part="B"]')).not.toBeNull();
-      for (const key of [
-        "basin",
-        "water",
-        "inclined-mirror",
-        "tape",
-        "torch",
-        "black-card",
-        "white-paper",
-      ])
-        expect(a.querySelector(`[data-${key}]`)).not.toBeNull();
-      expect(a.querySelectorAll('[data-light-ray="mirror-to-paper"]')).toHaveLength(7);
-      expect(a.querySelectorAll("[data-procedure] li")).toHaveLength(5);
-      d.activity.parts[1].steps.forEach((p) => expect(a.textContent).toContain(p));
-      expect(a.querySelectorAll("button")[1].getAttribute("aria-pressed")).toBe("true");
-      tap('[data-activity="8.7"] button');
-      expect(a.querySelector('[data-optics-visual="prism-apparatus"]')).not.toBeNull();
+      expect(d.activity.parts.map((p) => p.steps.length)).toEqual([5, 5]);
+      expect(host.querySelector("[data-activity]")).toBeNull();
+      expect(host.querySelector("[data-procedure]")).toBeNull();
+      expect(host.textContent).not.toContain(d.activity.aim);
+      expect(host.textContent).not.toContain(d.labels.apparatus);
+      expect(host.textContent).toContain(d.rainbowFormation);
+      expect(host.textContent).toContain(d.speedFact);
     });
-    it(`${lang}: Formative Practice 8.5 retains exactly its two concepts and apparatus visual`, () => {
+    it(`${lang}: dispersion uses only one explanatory prism and one rainbow`, () => {
       dispersion();
-      const p = host.querySelector('[data-practice="8.5"]')!;
-      expect(p.querySelectorAll("li")).toHaveLength(2);
-      d.practice.questions.forEach((q) => expect(p.textContent).toContain(q));
-      expect(p.querySelector("[data-prism]")).not.toBeNull();
+      expect(
+        [...host.querySelectorAll("svg")].map((n) => n.getAttribute("data-optics-visual")),
+      ).toEqual(["prism", "rainbow"]);
+      expect(host.querySelector("[data-practice]")).toBeNull();
+      expect(host.textContent).not.toContain(d.inquiry);
+      expect(host.textContent).not.toMatch(/8\.5\.[12]|Basic text/);
     });
     it(`${lang}: source scattering definition, particles and day/evening explanations render`, () => {
       scattering();
@@ -232,7 +214,7 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
         );
       else
         expect(s.definition).toBe(
-          "Scattering of light occurs when light is reflected in all directions by clouds or particles in the air.",
+          "Scattering of light occurs when light rays are obstructed and reflected in all directions by clouds or particles in the air.",
         );
       [s.middayExplanation, s.sunsetExplanation, s.labels.particles].forEach((v) =>
         expect(host.textContent).toContain(v),
@@ -265,59 +247,44 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
       expect(branches).toHaveLength(3);
       expect(branches.every((p) => p[1] !== p[3])).toBe(true);
     });
-    it(`${lang}: Activity 8.8 has the four source apparatus, water, seven steps and two questions`, () => {
+    it(`${lang}: Activity 8.8 data remains complete but the laboratory manual is absent`, () => {
       scattering();
-      const a = host.querySelector('[data-activity="8.8"]')!;
-      expect(s.activity.apparatus).toEqual(
-        lang === "bm"
-          ? ["Serbuk susu", "Bikar kaca 1000 ml", "Kotak sinar", "Skrin putih"]
-          : ["Milk powder", "1000 ml glass beaker", "Ray box", "White screen"],
-      );
-      for (const key of [
-        "beaker",
-        "water",
-        "milk-spoon",
-        "ray-box",
-        "white-screen",
-        "side-observation",
-        "screen-observation",
-      ])
-        expect(a.querySelector(`[data-${key}]`)).not.toBeNull();
-      expect(a.querySelectorAll("[data-procedure] li")).toHaveLength(7);
-      [...s.activity.apparatus, ...s.activity.steps, ...s.activity.questions].forEach((v) =>
-        expect(a.textContent).toContain(v),
-      );
-      expect(a.querySelectorAll("[data-activity-questions] li")).toHaveLength(2);
-    });
-    it(`${lang}: observation selector changes viewing position without inventing measured colours or answers`, () => {
-      scattering();
-      const a = host.querySelector('[data-activity="8.8"]')!;
-      expect(a.querySelector('[data-observation-position="side"]')).not.toBeNull();
-      expect(a.querySelector("[data-side-observation]")!.getAttribute("opacity")).toBe("1");
-      tap('[data-activity="8.8"] button', 1);
-      expect(a.querySelector('[data-observation-position="screen"]')).not.toBeNull();
-      expect(a.querySelector("[data-screen-observation]")!.getAttribute("opacity")).toBe("1");
-      expect(a.textContent).not.toMatch(
-        /kebiruan|merah jingga|mewakili.*atmosfera|bluish|reddish|represent.*atmosphere/i,
-      );
-      expect(a.querySelector("[data-white-screen]")!.getAttribute("fill")).toBe("#e2e8f0");
-      expect(a.querySelector("[data-water]")!.getAttribute("fill")).toBe("#cbd5e115");
+      expect(s.activity.steps).toHaveLength(7);
+      expect(s.activity.questions).toHaveLength(2);
       expect(s.activity).not.toHaveProperty("result");
-      expect(s.activity).not.toHaveProperty("answers");
+      expect(host.querySelector("[data-activity]")).toBeNull();
+      expect(host.querySelector("[data-procedure]")).toBeNull();
+      expect(host.textContent).not.toContain(s.activity.aim);
+      expect(host.textContent).not.toContain(s.labels.apparatus);
+      expect(host.textContent).not.toContain(s.activity.questions[0]);
     });
-    it(`${lang}: Practice 8.6 has two questions and two observer diagrams with unfilled comparisons`, () => {
+    it(`${lang}: sunset path and blue versus red/orange comparison are explicit`, () => {
       scattering();
-      const p = host.querySelector('[data-practice="8.6"]')!;
-      expect(p.querySelectorAll("li")).toHaveLength(2);
-      expect(p.querySelectorAll("svg")).toHaveLength(2);
-      expect(p.querySelectorAll("[data-observer]")).toHaveLength(2);
-      [...s.practice.questions, ...s.practice.comparisons].forEach((v) =>
-        expect(p.textContent).toContain(v),
+      expect(host.querySelector("[data-sunset-path]")!.textContent).toBe(s.revision.longerPath);
+      expect(s.revision.longerPath).toContain(
+        lang === "en"
+          ? "longer path in the atmosphere"
+          : "lintasan yang lebih panjang dalam atmosfera",
       );
-      expect(s.practice.comparisons.every((q) => q.includes("______"))).toBe(true);
+      const compare = host.querySelector("[data-scattering-comparison]")!;
+      expect(compare.textContent).toContain(s.revision.blue);
+      expect(compare.textContent).toContain(s.revision.red);
+      expect(host.textContent).not.toMatch(/8\.6\.[12]|Basic text/);
+    });
+    it(`${lang}: two unique sky diagrams retain concepts and a concise distinction from dispersion`, () => {
+      scattering();
+      expect(
+        [...host.querySelectorAll("svg")].map((n) => n.getAttribute("data-optics-visual")),
+      ).toEqual(["midday", "sunset"]);
+      const comparison = host.querySelector("[data-dispersion-scattering-comparison]")!;
+      expect(comparison.querySelectorAll("dt")).toHaveLength(2);
+      s.revision.comparison.forEach((row) =>
+        Object.values(row).forEach((v) => expect(comparison.textContent).toContain(v)),
+      );
+      expect(host.querySelector("[data-practice]")).toBeNull();
     });
   }
-  it("BM and DLP share byte-identical SVG geometry in both activity states", () => {
+  it("BM and DLP share byte-identical geometry for exactly four explanatory diagrams", () => {
     const render = (lang: "en" | "bm") =>
       mount(
         createElement(
@@ -329,14 +296,9 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
       );
     render("en");
     const initial = geometry();
-    tap('[data-activity="8.7"] button', 1);
-    tap('[data-activity="8.8"] button', 1);
-    const alternate = geometry();
+    expect(initial).toHaveLength(4);
     render("bm");
     expect(geometry()).toEqual(initial);
-    tap('[data-activity="8.7"] button', 1);
-    tap('[data-activity="8.8"] button', 1);
-    expect(geometry()).toEqual(alternate);
   });
   it("new components consume canonical props; dispersion and scattering are structurally distinct", () => {
     mount(
