@@ -16,6 +16,8 @@ const MIGRATIONS = [
   "20260924150000_original_quiz_xp_economy.sql",
   "20260924154253_seed_quiz_catalog.sql",
   "20260930131938_sync_quiz_catalog.sql",
+  "20261001024818_sync_form3_sejarah_quiz_25_question_metadata.sql",
+  "20261001054107_sync_form3_sejarah_chapters_4_to_8_quiz_25_question_metadata.sql",
 ];
 
 const SUPABASE_SHIM = `

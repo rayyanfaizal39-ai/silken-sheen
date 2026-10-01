@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 4 (Set A)",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 4,
+  "set": "Set A",
+  "chapter_title": "Pentadbiran Negeri-negeri Melayu Tidak Bersekutu (NNMTB)",
+  "total_questions": 25,
+  "instructions": "Pilih satu jawapan yang paling tepat bagi setiap soalan.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "4.1 Strategi Kuasa Barat untuk Meluaskan Kuasa di NNMTB",
+      "question": "Apakah faktor utama yang mendorong peluasan kuasa British di Negeri-negeri Melayu Tidak Bersekutu (NNMTB) pada awal abad ke-20?",
+      "options": {
+        "A": "Membantu Sultan mengatasi masalah hutang kerajaan dan krisis kewangan",
+        "B": "Kedudukan strategik, kekayaan hasil bumi, dan usaha membendung kemajuan kuasa Barat lain",
+        "C": "Permintaan tempatan daripada penduduk untuk mendapatkan perlindungan tentera",
+        "D": "Menamatkan Perang Larut dan perebutan takhta kerajaan negeri"
+      },
+      "answer": "B",
+      "explanation": "Peluasan kuasa British di NNMTB didorong oleh kedudukan strategik negeri-negeri tersebut, kekayaan hasil bumi (seperti bijih timah dan pertanian), serta bimbingan untuk membendung persaingan kuasa Barat lain seperti Perancis, Jerman, dan Amerika Syarikat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 88-89)"
+    },
+    {
+      "id": 2,
+      "subtopic": "4.1 Strategi Kuasa Barat untuk Meluaskan Kuasa di NNMTB",
+      "question": "Kuasa Barat manakah yang berminat untuk meluaskan pengaruhnya di kawasan Segenting Kra yang membimbangkan British?",
+      "options": {
+        "A": "Jerman",
+        "B": "Rusia",
+        "C": "Amerika Syarikat",
+        "D": "Perancis"
+      },
+      "answer": "D",
+      "explanation": "Perancis berhasrat membina terusan di Segenting Kra yang boleh mengancam perdagangan dan kedudukan Singapura sebagai pelabuhan utama British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 89)"
+    },
+    {
+      "id": 3,
+      "subtopic": "4.1 Strategi Kuasa Barat untuk Meluaskan Kuasa di NNMTB",
+      "question": "Apakah ikatan hubungan tradisional antara negeri Kedah, Perlis, Kelantan, dan Terengganu dengan kerajaan Siam sebelum Perjanjian Bangkok 1909?",
+      "options": {
+        "A": "Penyerahan separuh daripada hasil cukai bijih timah dan padi secara bulanan",
+        "B": "Penerimaan Gabenor Siam bagi mengetuai Majlis Mesyuarat Negeri",
+        "C": "Pemuatan tentera Siam di setiap daerah utama negeri-negeri Melayu",
+        "D": "Penghantaran Bunga Emas dan Perak tiga tahun sekali sebagai tanda persahabatan"
+      },
+      "answer": "D",
+      "explanation": "Hubungan tradisional negeri-negeri Melayu utara dengan Siam ditandai dengan penghantaran Bunga Emas dan Perak tiga tahun sekali sebagai simbol persahabatan dan naungan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 90)"
+    },
+    {
+      "id": 4,
+      "subtopic": "4.2 Peluasan Kuasa British di Perlis, Kedah, Kelantan dan Terengganu",
+      "question": "Siapakah wakil British dan Siam yang menandatangani Perjanjian Bangkok pada 10 Mac 1909?",
+      "options": {
+        "A": "Ralph Paget dan Putera Devawongse Varaprakar",
+        "B": "Ralph Paget dan E.H. Strobel",
+        "C": "Frank Swettenham dan Putera Damrong",
+        "D": "Andrew Clarke dan Raja Chulalongkorn"
+      },
+      "answer": "A",
+      "explanation": "Perjanjian Bangkok 1909 ditandatangani oleh Ralph Paget bagi British dan Putera Devawongse Varaprakar, Menteri Hal Ehwal Luar Siam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.2 (ms. 93)"
+    },
+    {
+      "id": 5,
+      "subtopic": "4.2 Peluasan Kuasa British di Perlis, Kedah, Kelantan dan Terengganu",
+      "question": "Siapakah Penasihat British pertama yang dilantik di Perlis ekoran Perjanjian Bangkok 1909?",
+      "options": {
+        "A": "Meadows Frost",
+        "B": "W.G. Maxwell",
+        "C": "J.S. Mason",
+        "D": "J.L. Humphreys"
+      },
+      "answer": "A",
+      "explanation": "Meadows Frost telah dilantik sebagai Penasihat British pertama di Perlis selepas pemindahan pertuanan Siam kepada British melalui Perjanjian Bangkok 1909.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.2 (ms. 92)"
+    },
+    {
+      "id": 6,
+      "subtopic": "4.2 Peluasan Kuasa British di Perlis, Kedah, Kelantan dan Terengganu",
+      "question": "Apakah syarat utama Perjanjian Perlis-British yang ditandatangani pada tahun 1910?",
+      "options": {
+        "A": "Raja Perlis digantikan dengan Residen British sebagai Ketua Kerajaan",
+        "B": "Perlis digabungkan secara rasmi ke dalam Negeri-negeri Melayu Bersekutu",
+        "C": "Perlis mengiktiraf Perlis sebagai negeri naungan British dan menerima Penasihat British",
+        "D": "Penggunaan bahasa Inggeris diwajibkan dalam Mahkamah Perlis"
+      },
+      "answer": "C",
+      "explanation": "Perjanjian Perlis-British 1910 secara rasmi menjadikan Perlis negeri naungan British dan memperuntukkan pelantikan seorang Penasihat British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.2 (ms. 92)"
+    },
+    {
+      "id": 7,
+      "subtopic": "4.2 Peluasan Kuasa British di Perlis, Kedah, Kelantan dan Terengganu",
+      "question": "Apakah matlamat utama British menggunakan strategi perjanjian dengan Siam untuk meluaskan kuasa di Negeri-negeri Melayu Utara?",
+      "options": {
+        "A": "Menyerahkan Pulau Pinang kepada Siam",
+        "B": "Memastikan laluan perdagangan India-China selamat tanpa konfrontasi terbuka dengan Siam",
+        "C": "Menghapuskan sistem kesultanan Melayu",
+        "D": "Membentuk Negeri-negeri Melayu Bersekutu baharu"
+      },
+      "answer": "B",
+      "explanation": "British mengelakkan konfrontasi bersemuka dengan Siam dan menggunakan siri perjanjian untuk menjaga laluan perdagangan India-China serta meluaskan pengaruh.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.2 (ms. 92)"
+    },
+    {
+      "id": 8,
+      "subtopic": "4.2 Peluasan Kuasa British di Perlis, Kedah, Kelantan dan Terengganu",
+      "question": "Apakah kesan utama Perjanjian Bangkok 1909 terhadap Perlis, Kedah, Kelantan dan Terengganu?",
+      "options": {
+        "A": "Keempat-empat negeri menerima Penasihat British",
+        "B": "Keempat-empat negeri digabungkan dengan Negeri-negeri Selat",
+        "C": "Siam menempatkan Residen di setiap negeri",
+        "D": "British menyerahkan negeri-negeri tersebut kepada Siam"
+      },
+      "answer": "A",
+      "explanation": "Perjanjian Bangkok 1909 membuka laluan kepada British dan keempat-empat negeri menerima Penasihat British, walaupun Kelantan dan Terengganu pada awalnya menolak.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.2 (ms. 93)"
+    },
+    {
+      "id": 9,
+      "subtopic": "4.1 Pemerintahan Kesultanan Melayu di Perlis, Kedah, Kelantan, Terengganu dan Johor",
+      "question": "Apakah nama undang-undang bertulis yang digubal di Terengganu pada tahun 1911?",
+      "options": {
+        "A": "Undang-Undang 99 Perak",
+        "B": "Hukum Kanun Pahang",
+        "C": "Perjanjian Setia 1885",
+        "D": "Undang-Undang Bagi Diri Kerajaan Terengganu"
+      },
+      "answer": "D",
+      "explanation": "Pada tahun 1911, Terengganu menggubal Undang-Undang Bagi Diri Kerajaan Terengganu sebagai undang-undang tubuh bertulis.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 89)"
+    },
+    {
+      "id": 10,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Apakah perubahan yang berlaku di Johor melalui perjanjian 12 Mei 1914?",
+      "options": {
+        "A": "Johor menyertai Negeri-negeri Melayu Bersekutu",
+        "B": "Jawatan Konsul British ditukar kepada Penasihat Am British",
+        "C": "Sultan Johor digantikan oleh Residen",
+        "D": "Johor diserahkan kepada Negeri-negeri Selat"
+      },
+      "answer": "B",
+      "explanation": "Perjanjian 12 Mei 1914 menukarkan jawatan Konsul kepada Penasihat Am British; Douglas Graham Campbell menjadi Penasihat Am British pertama.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 95)"
+    },
+    {
+      "id": 11,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Apakah sistem pengurusan tanah dan buruh yang diperkenalkan oleh Temenggung Daeng Ibrahim di Johor untuk mengusahakan tanaman gambir dan lada hitam?",
+      "options": {
+        "A": "Sistem Kontrak",
+        "B": "Sistem Pajakan",
+        "C": "Sistem Kangchu",
+        "D": "Sistem Serah"
+      },
+      "answer": "C",
+      "explanation": "Sistem Kangchu membenarkan pengusaha Cina meneroka kawasan sepanjang muara sungai (Kawasan Kangkar) untuk menanam gambir dan lada hitam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 98)"
+    },
+    {
+      "id": 12,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Mengapakah Sultan Abu Bakar dianugerahkan gelaran 'Bapa Pemodenan Johor'?",
+      "options": {
+        "A": "Membawa Johor bergabung dengan Negeri-negeri Selat",
+        "B": "Memodenkan pentadbiran, prasarana, dan menggubal Undang-Undang Tubuh Kerajaan Johor 1895",
+        "C": "Menghapuskan sistem perhambaan dan menyerahkan pentadbiran kepada British",
+        "D": "Membina jalan kereta api pertama dari Johor Bahru ke Kuala Lumpur"
+      },
+      "answer": "B",
+      "explanation": "Sultan Abu Bakar memodenkan sistem birokrasi, polis, mahkamah, Jabatan Ukur, serta memperkenalkan Undang-Undang Tubuh Kerajaan Johor pada tahun 1895.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 99)"
+    },
+    {
+      "id": 13,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Apakah peranannya Lembaga Penasihat Johor yang ditubuhkan oleh Sultan Abu Bakar di London?",
+      "options": {
+        "A": "Mengumpul cukai eksport gambir daripada pedagang British di Eropah",
+        "B": "Melatih tentera Johor dengan kerjasama Kerajaan British",
+        "C": "Menguruskan hubungan luar Johor dan menasihati Sultan dalam hal pentadbiran untuk mengelakkan campur tangan British",
+        "D": "Menyusun strategi pertempuran ketenteraan menentang Siam"
+      },
+      "answer": "C",
+      "explanation": "Lembaga Penasihat Johor di London ditubuhkan untuk menjaga kepentingan Johor di England dan menasihati Sultan agar Johor tidak mudah ditekan British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 99)"
+    },
+    {
+      "id": 14,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Siapakah Penasihat British pertama yang dilantik di Johor selepas Sultan Ibrahim menandatangani pindaan Perjanjian 1914?",
+      "options": {
+        "A": "D.G. Campbell",
+        "B": "W.D. Scott",
+        "C": "J.L. Humphreys",
+        "D": "Meadows Frost"
+      },
+      "answer": "A",
+      "explanation": "D.G. Campbell dilantik sebagai Penasihat British pertama di Johor selepas perjanjian pindaan ditandatangani pada tahun 1914.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 101)"
+    },
+    {
+      "id": 15,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Apakah kedudukan Sultan dalam pentadbiran Negeri-negeri Melayu Tidak Bersekutu selepas peluasan kuasa British?",
+      "options": {
+        "A": "Sultan kehilangan semua kuasa dan jawatan",
+        "B": "Sultan kekal sebagai puncak kuasa terutama dalam agama Islam dan adat Melayu",
+        "C": "Sultan digantikan oleh Residen Jeneral",
+        "D": "Sultan hanya mengurus perdagangan luar"
+      },
+      "answer": "B",
+      "explanation": "Kedudukan sultan dikekalkan sebagai puncak kuasa, khususnya dalam hal agama Islam dan adat istiadat Melayu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 100)"
+    },
+    {
+      "id": 16,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Apakah ciri utama struktur pentadbiran Negeri-negeri Melayu Tidak Bersekutu (NNMTB) berbanding NNMB?",
+      "options": {
+        "A": "Diperintah secara mutlak oleh seorang Residen Jeneral di Kuala Lumpur",
+        "B": "Pentadbiran bersifat tidak terpusat (longgar) dan setiap negeri kekal secara berasingan",
+        "C": "Sultan kehilangan seluruh kuasa perundangan dan pentadbiran",
+        "D": "Semua cukai disalurkan ke dalam akaun persekutuan yang tunggal"
+      },
+      "answer": "B",
+      "explanation": "NNMTB tidak ditubuhkan sebagai satu unit persekutuan yang bersatu, sebaliknya pentadbirannya bersifat tidak terpusat dan mengekalkan otonomi negeri masing-masing.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 104)"
+    },
+    {
+      "id": 17,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Bagaimanakah kedudukan Sultan dan pembesar tempatan dalam pentadbiran NNMTB?",
+      "options": {
+        "A": "Hanya berperanan sebagai penasihat tanpa sebarang kuasa eksekutif",
+        "B": "Diasingkan terus daripada sebarang urusan birokrasi dan pentadbiran",
+        "C": "Diletakkan di bawah arahan Gabenor Negeri-negeri Selat secara langsung",
+        "D": "Mempunyai kuasa dan peranan yang lebih besar dalam Majlis Mesyuarat Negeri berbanding di NNMB"
+      },
+      "answer": "D",
+      "explanation": "Dalam NNMTB, Sultan kekal sebagai puncak kuasa pentadbiran dan pembesar Melayu memainkan peranan penting dalam birokrasi negeri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 104-105)"
+    },
+    {
+      "id": 18,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Apakah ciri sistem perkhidmatan awam Negeri-negeri Melayu Tidak Bersekutu?",
+      "options": {
+        "A": "Semua pegawai mesti berasal dari Britain",
+        "B": "Semua negeri dikawal Residen Jeneral di Kuala Lumpur",
+        "C": "Setiap negeri mempunyai sistem perkhidmatan awam sendiri dan pembesar Melayu terus menerajui pentadbiran",
+        "D": "Tiada pegawai tempatan dibenarkan berkhidmat"
+      },
+      "answer": "C",
+      "explanation": "Negeri-negeri Melayu Tidak Bersekutu mempunyai sistem perkhidmatan awam sendiri dan pembesar Melayu terus memainkan peranan penting.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 101)"
+    },
+    {
+      "id": 19,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Apakah perubahan yang dibawa oleh pengenalan birokrasi Barat di Negeri-negeri Melayu Tidak Bersekutu?",
+      "options": {
+        "A": "Semua jabatan tradisional dimansuhkan serta-merta",
+        "B": "Penasihat British tidak terlibat dalam dasar negeri",
+        "C": "Jabatan baharu, pasukan polis, mahkamah sivil dan pegawai British diperkenalkan",
+        "D": "Majlis Mesyuarat Negeri dibubarkan"
+      },
+      "answer": "C",
+      "explanation": "Birokrasi Barat memperkenalkan jabatan baharu, pasukan polis, mahkamah sivil dan pegawai British serta meningkatkan pengaruh Penasihat British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 101)"
+    },
+    {
+      "id": 20,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Apakah nilai dan iktibar utama daripada kepimpinan Raja-raja Melayu di NNMTB dalam menolak tekanan British?",
+      "options": {
+        "A": "Penggunaan kekuatan tentera secara berterusan tanpa sebarang rundingan",
+        "B": "Penyerahan bulat-bulat kuasa pentadbiran kepada kuasa asing demi keamanan",
+        "C": "Mengabaikan hubungan diplomatik dengan negara jiran",
+        "D": "Kebijaksanaan bertindak secara diplomasi, penggubalan undang-undang tubuh, dan pemodenan pentadbiran"
+      },
+      "answer": "D",
+      "explanation": "Pemerintah NNMTB menggunakan pendekatan diplomasi, pemodenan birokrasi, serta penggubalan Undang-Undang Tubuh bagi mempertahankan kedaulatan negeri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 106)"
+    },
+    {
+      "id": 21,
+      "subtopic": "4.1 Pemerintahan Kesultanan Melayu di Perlis, Kedah, Kelantan, Terengganu dan Johor",
+      "question": "Bilakah Perlis terpisah daripada Kedah?",
+      "options": {
+        "A": "1842",
+        "B": "1843",
+        "C": "1895",
+        "D": "1909"
+      },
+      "answer": "A",
+      "explanation": "Perlis terpisah daripada Kedah pada tahun 1842.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 86)"
+    },
+    {
+      "id": 22,
+      "subtopic": "4.1 Pemerintahan Kesultanan Melayu di Perlis, Kedah, Kelantan, Terengganu dan Johor",
+      "question": "Siapakah pemerintah Kedah pertama yang menggunakan gelaran sultan selepas pertapakan Islam?",
+      "options": {
+        "A": "Sultan Abdul Hamid Halim Shah",
+        "B": "Sultan Muhammad I",
+        "C": "Sultan Mudzaffar Shah",
+        "D": "Sultan Zainal Abidin I"
+      },
+      "answer": "C",
+      "explanation": "Sultan Mudzaffar Shah ialah pemerintah Kedah pertama yang bergelar sultan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 87)"
+    },
+    {
+      "id": 23,
+      "subtopic": "4.1 Pemerintahan Kesultanan Melayu di Perlis, Kedah, Kelantan, Terengganu dan Johor",
+      "question": "Apakah sistem pentadbiran yang dibentuk oleh Sultan Muhammad II di Kelantan?",
+      "options": {
+        "A": "Sistem Residen",
+        "B": "Sistem Kangcu",
+        "C": "Sistem Kedatuan",
+        "D": "Sistem Jemaah Menteri"
+      },
+      "answer": "D",
+      "explanation": "Sultan Muhammad II membentuk Sistem Jemaah Menteri untuk membantu pentadbiran Kelantan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 88)"
+    },
+    {
+      "id": 24,
+      "subtopic": "4.1 Pemerintahan Kesultanan Melayu di Perlis, Kedah, Kelantan, Terengganu dan Johor",
+      "question": "Siapakah pengasas Kesultanan Terengganu yang menaiki takhta pada tahun 1708?",
+      "options": {
+        "A": "Sultan Zainal Abidin I",
+        "B": "Sultan Zainal Abidin III",
+        "C": "Sultan Muhammad II",
+        "D": "Sultan Omar"
+      },
+      "answer": "A",
+      "explanation": "Sultan Zainal Abidin I ialah pengasas Kesultanan Terengganu dan menaiki takhta pada tahun 1708.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 89)"
+    },
+    {
+      "id": 25,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Siapakah yang mengawal Negeri-negeri Melayu Tidak Bersekutu pada peringkat British?",
+      "options": {
+        "A": "Pesuruhjaya Tinggi NNMB yang juga Gabenor Negeri-negeri Selat",
+        "B": "Residen Jeneral sahaja",
+        "C": "Gabenor Borneo Utara",
+        "D": "Sultan Siam"
+      },
+      "answer": "A",
+      "explanation": "Negeri-negeri Melayu Tidak Bersekutu berada di bawah kawalan Pesuruhjaya Tinggi NNMB yang juga Gabenor Negeri-negeri Selat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 96)"
+    }
+  ]
+}

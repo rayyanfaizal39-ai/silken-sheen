@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 4 (Set B)",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 4,
+  "set": "Set B",
+  "chapter_title": "Pentadbiran Negeri-negeri Melayu Tidak Bersekutu (NNMTB)",
+  "total_questions": 25,
+  "instructions": "Pilih satu jawapan yang paling tepat bagi setiap soalan.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "4.1 Strategi Kuasa Barat untuk Meluaskan Kuasa di NNMTB",
+      "question": "Mengapakah peluasan kuasa Jerman di Pulau Langkawi amat dibimbangi oleh British pada akhir abad ke-19?",
+      "options": {
+        "A": "Jerman bercadang membina pangkalan tentera udara ter terbesar di Asia",
+        "B": "Boleh menjejaskan laluan perdagangan dan monopoli British di Selat Melaka",
+        "C": "Jerman telah menandatangani perjanjian pakatan tentera dengan Sultan Kedah",
+        "D": "Pulau Langkawi merupakan pusat utama pengeluaran bijih timah di Tanah Melayu"
+      },
+      "answer": "B",
+      "explanation": "Kehadiran Jerman di Pulau Langkawi mengancam kedudukan strategik British di Selat Melaka dan laluan laut ke Timur Far East.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 89)"
+    },
+    {
+      "id": 2,
+      "subtopic": "4.1 Strategi Kuasa Barat untuk Meluaskan Kuasa di NNMTB",
+      "question": "Apakah tindakan British untuk menyekat cita-cita Amerika Syarikat daripada bertapak di Terengganu?",
+      "options": {
+        "A": "Melancarkan serangan tentera laut ke atas perairan Terengganu",
+        "B": "Membeli tanah di pantai Terengganu dengan harga yang tinggi",
+        "C": "Mendesak Siam menandatangani Perjanjian Sulit 1897 dan Perjanjian 1902",
+        "D": "Membina kubu pertahanan British di Kuala Terengganu"
+      },
+      "answer": "C",
+      "explanation": "British menandatangani Perjanjian Sulit 1897 dengan Siam bagi memastikan Siam tidak menyerahkan mana-mana konsesi tanah kepada kuasa asing seperti AS di Terengganu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 89)"
+    },
+    {
+      "id": 3,
+      "subtopic": "4.1 Strategi Kuasa Barat untuk Meluaskan Kuasa di NNMTB",
+      "question": "Apakah terma penting dalam Perjanjian Sulit 1897 antara British dengan Siam?",
+      "options": {
+        "A": "Siam tidak akan menyerahkan sebarang wilayah di selatan 11 darjah Utara kepada kuasa asing tanpa kelulusan British",
+        "B": "British membayar pampasan bulanan kepada Raja Siam bagi menguasai Kedah",
+        "C": "Siam menyerahkan hak memungut cukai di Kelantan sepenuhnya kepada British",
+        "D": "British dan Siam bersetuju membahagikan negeri-negeri Melayu secara saksama"
+      },
+      "answer": "A",
+      "explanation": "Perjanjian Sulit 1897 menetapkan bahawa Siam tidak boleh menyerahkan konsesi atau wilayah di selatan garis 11 darjah Utara kepada mana-mana kuasa Barat lain.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 90)"
+    },
+    {
+      "id": 4,
+      "subtopic": "4.1 Strategi Kuasa Barat untuk Meluaskan Kuasa di NNMTB",
+      "question": "Antara berikut, wilayah manakah yang dipisahkan daripada Kedah dan kekal di bawah pertuanan Siam hasil Perjanjian Bangkok 1909?",
+      "options": {
+        "A": "Perlis",
+        "B": "Langkawi",
+        "C": "Kubang Pasu",
+        "D": "Setul"
+      },
+      "answer": "D",
+      "explanation": "Perjanjian Bangkok 1909 menyerahkan Kedah, Perlis, Kelantan, dan Terengganu kepada British, manakala wilayah Setul dipisahkan daripada Kedah dan kekal di bawah Siam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 91)"
+    },
+    {
+      "id": 5,
+      "subtopic": "4.2 Peluasan Kuasa British di Perlis, Kedah, Kelantan dan Terengganu",
+      "question": "Siapakah tokoh tempatan yang diiktiraf oleh Siam sebagai Raja Perlis yang pertama pada tahun 1843?",
+      "options": {
+        "A": "Raja Syed Alwi",
+        "B": "Raja Syed Hussin Jamalullail",
+        "C": "Raja Syed Saffi",
+        "D": "Raja Syed Ahmad"
+      },
+      "answer": "B",
+      "explanation": "Raja Syed Hussin Jamalullail dilantik dan diiktiraf oleh Siam sebagai Raja Perlis yang pertama selepas Perlis dipisahkan daripada Kedah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.2 (ms. 92)"
+    },
+    {
+      "id": 6,
+      "subtopic": "4.1 Pemerintahan Kesultanan Melayu di Perlis, Kedah, Kelantan, Terengganu dan Johor",
+      "question": "Siapakah Raja Perlis pertama yang diiktiraf oleh Maharaja Siam pada tahun 1843?",
+      "options": {
+        "A": "Raja Syed Hussin Jamalullail",
+        "B": "Raja Syed Alwi Jamalullail",
+        "C": "Sultan Muhammad I",
+        "D": "Sultan Mudzaffar Shah"
+      },
+      "answer": "A",
+      "explanation": "Maharaja Siam mengiktiraf Syed Hussin Jamalullail sebagai Raja Perlis pertama pada tahun 1843.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 86)"
+    },
+    {
+      "id": 7,
+      "subtopic": "4.2 Peluasan Kuasa British di Perlis, Kedah, Kelantan dan Terengganu",
+      "question": "Siapakah Penasihat British pertama yang dilantik di Kelantan selepas Perjanjian Kelantan-British ditandatangani pada tahun 1910?",
+      "options": {
+        "A": "W.A. Graham",
+        "B": "J.S. Mason",
+        "C": "J.L. Humphreys",
+        "D": "Meadows Frost"
+      },
+      "answer": "B",
+      "explanation": "J.S. Mason dilantik sebagai Penasihat British pertama di Kelantan pada tahun 1910.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.2 (ms. 94)"
+    },
+    {
+      "id": 8,
+      "subtopic": "4.2 Peluasan Kuasa British di Perlis, Kedah, Kelantan dan Terengganu",
+      "question": "Apakah jawatan rasmi wakil British di Terengganu mengikut Perjanjian 1910 sebelum dinaik taraf menjadi Penasihat British pada tahun 1919?",
+      "options": {
+        "A": "Residen British",
+        "B": "Konsul Jeneral",
+        "C": "Pegawai Daerah",
+        "D": "Agen British"
+      },
+      "answer": "D",
+      "explanation": "Perjanjian Terengganu-British 1910 hanya membenarkan pelantikan seorang 'Agen British' (W.D. Scott) yang peranannya seperti pegawai konsul.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.2 (ms. 95)"
+    },
+    {
+      "id": 9,
+      "subtopic": "4.2 Peluasan Kuasa British di Perlis, Kedah, Kelantan dan Terengganu",
+      "question": "Siapakah Penasihat British pertama di Terengganu yang dilantik pada tahun 1919?",
+      "options": {
+        "A": "W.D. Scott",
+        "B": "W.G. Maxwell",
+        "C": "J.S. Mason",
+        "D": "J.L. Humphreys"
+      },
+      "answer": "D",
+      "explanation": "J.L. Humphreys dilantik sebagai Penasihat British pertama di Terengganu selepas perjanjian pindaan 1919 dipaksakan ke atas Terengganu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.2 (ms. 95)"
+    },
+    {
+      "id": 10,
+      "subtopic": "4.1 Pemerintahan Kesultanan Melayu di Perlis, Kedah, Kelantan, Terengganu dan Johor",
+      "question": "Apakah tugas Dato' Mata-mata dalam pentadbiran Terengganu?",
+      "options": {
+        "A": "Menyambut kedatangan pelawat atau orang kenamaan Terengganu",
+        "B": "Mengutip cukai di semua jajahan",
+        "C": "Menjadi Ketua Jabatan Mahkamah",
+        "D": "Menjadi Penasihat British"
+      },
+      "answer": "A",
+      "explanation": "Dato' Mata-mata ialah pembesar yang bertugas menyambut kedatangan pelawat atau orang kenamaan Terengganu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 89)"
+    },
+    {
+      "id": 11,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Apakah dokumen kebenaran bertulis yang dikeluarkan oleh pihak berkuasa Johor kepada pengusaha Cina dalam Sistem Kangchu?",
+      "options": {
+        "A": "Surat Kebenaran Kebun",
+        "B": "Surat Sungai",
+        "C": "Lesen Kangchu",
+        "D": "Piagam Sungai"
+      },
+      "answer": "B",
+      "explanation": "Surat Sungai merupakan dokumen rasmi yang dikeluarkan oleh pemerintah Johor kepada Kangchu untuk membuka kawasan pertanian di sepanjang sungai.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 98)"
+    },
+    {
+      "id": 12,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Apakah kepentingan utama penggubalan Undang-Undang Tubuh Kerajaan Johor 1895?",
+      "options": {
+        "A": "Menyerahkan kuasa melantik Menteri Besar kepada Gabenor Singapura",
+        "B": "Membenarkan tentera British ditempatkan di Johor Bahru pada bila-bila masa",
+        "C": "Membina asas raja berperlembagaan dan menghalang British daripada mencampuri pentadbiran Johor",
+        "D": "Menghapuskan peranan Majlis Mesyuarat Kerajaan"
+      },
+      "answer": "C",
+      "explanation": "Undang-Undang Tubuh Kerajaan Johor 1895 merupakan perlembagaan bertulis pertama yang memodernkan pentadbiran dan melindung kedaulatan negeri Johor daripada British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 99)"
+    },
+    {
+      "id": 13,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Apakah kandungan penting Perjanjian Setia 1885 antara Johor dengan British?",
+      "options": {
+        "A": "Johor menerima Residen British",
+        "B": "Johor menyerahkan Kesang kepada British",
+        "C": "Johor menerima seorang ejen British setaraf pegawai konsul dan hal ehwal luar dikawal British",
+        "D": "Johor menyertai Negeri-negeri Melayu Bersekutu"
+      },
+      "answer": "C",
+      "explanation": "Perjanjian Setia 1885 menetapkan Johor menerima seorang ejen yang peranannya seperti pegawai konsul, manakala hal ehwal luar dikawal British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 95)"
+    },
+    {
+      "id": 14,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Antara berikut, yang manakah merupakan jabatan pentadbiran moden yang diasaskan di Johor di bawah pemodenan Sultan Abu Bakar?",
+      "options": {
+        "A": "Jabatan Kereta Api Persekutuan dan Pejabat Residen",
+        "B": "Jabatan Hal Ehwal India dan Syarikat Perdagangan EIC",
+        "C": "Pejabat Tanah Jajahan London dan Majlis Mesyuarat Persekutuan",
+        "D": "Jabatan Pos, Jabatan Tanah, Jabatan Ukur, dan Mahkamah"
+      },
+      "answer": "D",
+      "explanation": "Sultan Abu Bakar menubuhkan pelbagai jabatan birokrasi moden seperti Jabatan Pos, Tanah, Ukur, Kerja Raya, dan sistem mahkamah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 99)"
+    },
+    {
+      "id": 15,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Apakah klausa tegas dalam Undang-Undang Tubuh Kerajaan Johor 1895 mengenai pemilikan wilayah negeri Johor?",
+      "options": {
+        "A": "Johor boleh disewakan kepada British jika berlaku masalah kewangan",
+        "B": "Wilayah Muar dan Batu Pahat hendaklah diserahkan kepada Negeri-negeri Selat",
+        "C": "Raja dan pembesar dilarang sama sekali menyerahkan atau menyerahkan sebahagian negeri Johor kepada mana-mana kuasa asing",
+        "D": "Sultan berhak menjual mana-mana kawasan tanah kepada syarikat asing tanpa kelulusan Jemaah Menteri"
+      },
+      "answer": "C",
+      "explanation": "Fasal dalam perlembagaan Johor 1895 melarang Raja dan Menteri menyerahkan negeri Johor kepada mana-mana kuasa asing.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 99)"
+    },
+    {
+      "id": 16,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Mengapakah cadangan British untuk menyatukan NNMTB dengan NNMB mengalami kegagalan sebelum Perang Dunia Kedua?",
+      "options": {
+        "A": "Kekurangan dana kewangan daripada Kerajaan British di London",
+        "B": "Bantahan keras daripada Kerajaan Siam di Bangkok",
+        "C": "Ketidaksetujuan pedagang Negeri-negeri Selat",
+        "D": "Penentangan daripada Sultan dan pentadbir NNMTB yang mahu mempertahankan otonomi negeri"
+      },
+      "answer": "D",
+      "explanation": "Raja-raja Melayu dan elit pentadbir NNMTB enggan menyertai persekutuan NNMB kerana tidak mahu kehilangan kuasa dan otonomi negeri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 104)"
+    },
+    {
+      "id": 17,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Mengapakah usaha British menggabungkan Negeri-negeri Melayu Tidak Bersekutu dengan Negeri-negeri Melayu Bersekutu gagal?",
+      "options": {
+        "A": "Raja-raja Melayu di Negeri-negeri Melayu Tidak Bersekutu menentangnya",
+        "B": "Belanda menghalang rancangan itu",
+        "C": "Siam menuntut semula semua negeri",
+        "D": "Tiada sistem perkhidmatan awam di negeri-negeri tersebut"
+      },
+      "answer": "A",
+      "explanation": "Usaha penggabungan gagal kerana tentangan Raja-raja Melayu di Negeri-negeri Melayu Tidak Bersekutu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 96)"
+    },
+    {
+      "id": 18,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Apakah perbezaan penglibatan pegawai Melayu dalam pentadbiran NNMTB berbanding NNMB?",
+      "options": {
+        "A": "Pegawai Melayu dalam NNMTB mendominasi jawatan penting dalam birokrasi kerajaan negeri",
+        "B": "Pegawai Melayu dalam NNMTB hanya berkhidmat sebagai atendan dan penterjemah",
+        "C": "Semua jawatan pentadbiran NNMTB dipegang oleh pegawai British yang dibawa dari London",
+        "D": "Pegawai Melayu dilarang menduduki Majlis Mesyuarat Negeri"
+      },
+      "answer": "A",
+      "explanation": "Dalam NNMTB (seperti Kedah dan Johor), perkhidmatan awam dikuasai oleh pegawai elit Melayu (JCS/KCS) berbanding NNMB yang dikuasai pegawai British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 105)"
+    },
+    {
+      "id": 19,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Apakah perbezaan utama peranan Penasihat British di NNMTB berbanding Residen British di NNMB?",
+      "options": {
+        "A": "Penasihat British hanya memberikan nasihat, manakala Residen British memegang kuasa eksekutif pentadbiran",
+        "B": "Penasihat British berkuasa penuh mengutip semua cukai negeri",
+        "C": "Residen British tidak mempunyai sebarang kuasa dalam Majlis Mesyuarat Negeri",
+        "D": "Penasihat British mengetuai angkatan tentera dan polis negeri"
+      },
+      "answer": "A",
+      "explanation": "Kuasa Penasihat British di NNMTB adalah lebih terhad berbanding Residen di NNMB yang mengawal urusan pentadbiran dan kewangan secara langsung.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 104-105)"
+    },
+    {
+      "id": 20,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Apakah kepentingan pemeliharaan agama Islam dan adat istiadat Melayu dalam sistem pentadbiran NNMTB?",
+      "options": {
+        "A": "Memelihara identiti bangsa Melayu, kedaulatan institusi beraja, dan kebebasan amalan budaya tempatan",
+        "B": "Menggalakkan kemasukan budaya Barat secara menyeluruh dalam masyarakat",
+        "C": "Membolehkan British mengawal sekolah-sekolah pondok dan madrasah",
+        "D": "Menghapuskan peranan Mahkamah Syariah di negeri-negeri Melayu"
+      },
+      "answer": "A",
+      "explanation": "Pemeliharaan agama Islam dan adat Melayu memastikan kedaulatan negeri dan identiti Melayu kekal terpelihara walaupun di bawah sistem naungan British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 105-106)"
+    },
+    {
+      "id": 21,
+      "subtopic": "4.1 Pemerintahan Kesultanan Melayu di Perlis, Kedah, Kelantan, Terengganu dan Johor",
+      "question": "Pada tahun 1904, Kelantan dibahagikan kepada berapa jajahan utama yang dinyatakan dalam buku teks?",
+      "options": {
+        "A": "Lima",
+        "B": "Tiga",
+        "C": "Tujuh",
+        "D": "Sebelas"
+      },
+      "answer": "B",
+      "explanation": "Pada tahun 1904, Kelantan mempunyai tiga jajahan utama: Selatan Batu Mekebang, Pasir Puteh dan Pasir Mas.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 88)"
+    },
+    {
+      "id": 22,
+      "subtopic": "4.1 Pemerintahan Kesultanan Melayu di Perlis, Kedah, Kelantan, Terengganu dan Johor",
+      "question": "Apakah gelaran pentadbir peringkat paling bawah dalam pentadbiran Kelantan?",
+      "options": {
+        "A": "Pengiran",
+        "B": "Residen",
+        "C": "Tok Kweng",
+        "D": "Kangcu"
+      },
+      "answer": "C",
+      "explanation": "Pada peringkat paling bawah pentadbiran Kelantan dijalankan oleh Tok Kweng yang dibantu imam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.1 (ms. 88)"
+    },
+    {
+      "id": 23,
+      "subtopic": "4.2 Peluasan Kuasa British di Perlis, Kedah, Kelantan dan Terengganu",
+      "question": "Apakah tujuan Perjanjian Sulit British-Siam 1897?",
+      "options": {
+        "A": "Menyerahkan Kedah kepada Siam",
+        "B": "Memastikan tiada kuasa lain meluaskan pengaruh ke Kedah, Kelantan dan Terengganu",
+        "C": "Menggabungkan Kelantan dengan Terengganu",
+        "D": "Membubarkan pemerintahan beraja"
+      },
+      "answer": "B",
+      "explanation": "British mahu memastikan kuasa Barat lain tidak meluaskan pengaruh ke Kedah, Kelantan dan Terengganu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.2 (ms. 92)"
+    },
+    {
+      "id": 24,
+      "subtopic": "4.3 Peluasan Kuasa British di Johor",
+      "question": "Apakah strategi British yang gagal apabila menawarkan pinjaman 200,000 dolar kepada Johor?",
+      "options": {
+        "A": "Serangan ketenteraan",
+        "B": "Pajakan wilayah",
+        "C": "Pakatan dengan Belanda",
+        "D": "Manipulasi kedudukan kewangan Johor"
+      },
+      "answer": "D",
+      "explanation": "British cuba memanipulasi kedudukan kewangan Johor dengan menawarkan pinjaman untuk pembinaan kereta api, tetapi cadangan itu ditolak.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.3 (ms. 95)"
+    },
+    {
+      "id": 25,
+      "subtopic": "4.4 Sistem Pentadbiran Negeri-negeri Melayu Tidak Bersekutu",
+      "question": "Apakah yang berlaku kepada pembesar selepas peluasan kuasa British di NNMTB?",
+      "options": {
+        "A": "Mereka dibuang negeri secara keseluruhan",
+        "B": "Mereka dilantik sebagai Residen British",
+        "C": "Mereka tidak lagi mengutip cukai dan pajak tetapi diberikan elaun dan pencen",
+        "D": "Mereka menguasai hal ehwal luar"
+      },
+      "answer": "C",
+      "explanation": "Kedudukan pembesar dikekalkan tetapi tugas berubah; mereka tidak lagi mengutip cukai dan pajak, sebaliknya menerima elaun dan pencen.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 4.4 (ms. 100)"
+    }
+  ]
+}

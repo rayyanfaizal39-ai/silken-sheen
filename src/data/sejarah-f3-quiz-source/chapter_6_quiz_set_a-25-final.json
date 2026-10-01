@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 6 (Set A)",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 6,
+  "set": "Set A",
+  "chapter_title": "Kesan Pentadbiran Barat Terhadap Ekonomi dan Sosial",
+  "total_questions": 25,
+  "instructions": "Pilih satu jawapan yang paling tepat bagi setiap soalan.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "6.1 Pengenalan Ekonomi Moden oleh Kuasa Barat di Negara Kita",
+      "question": "Apakah kombinasi yang paling tepat menggambarkan ciri sistem ekonomi moden yang diperkenalkan oleh kuasa Barat?",
+      "options": {
+        "A": "Modal kecil, teknologi tradisional dan pengeluaran sara diri",
+        "B": "Barter, pertanian keluarga dan pasaran tempatan sahaja",
+        "C": "Modal besar, teknologi moden, buruh ramai, skala besar untuk eksport dan tanah luas",
+        "D": "Pengeluaran kecil tanpa penggunaan tanah yang luas"
+      },
+      "answer": "C",
+      "explanation": "Ekonomi moden berasaskan modal besar, teknologi moden, tenaga buruh ramai, pengeluaran skala besar berorientasikan eksport dan penggunaan tanah yang luas.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.1 (ms. 138)"
+    },
+    {
+      "id": 2,
+      "subtopic": "6.1 Pengenalan Ekonomi Moden oleh Kuasa Barat di Negara Kita",
+      "question": "Di manakah British membuka lombong bijih timah bawah tanah yang terkenal pada tahun 1888?",
+      "options": {
+        "A": "Batu Arang, Selangor",
+        "B": "Bau, Sarawak",
+        "C": "Sungai Segama, Sabah",
+        "D": "Sungai Lembing, Pahang"
+      },
+      "answer": "D",
+      "explanation": "British membuka lombong bijih timah bawah tanah di Sungai Lembing, Pahang pada tahun 1888.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.1 (ms. 139)"
+    },
+    {
+      "id": 3,
+      "subtopic": "6.1 Pengenalan Ekonomi Moden oleh Kuasa Barat di Negara Kita",
+      "question": "Apakah faktor utama yang mendorong pengusaha tanaman komersial beralih daripada kopi kepada getah?",
+      "options": {
+        "A": "Larangan eksport kopi oleh British",
+        "B": "Kejatuhan harga kopi akibat penyakit dan pengeluaran berlebihan dari Brazil",
+        "C": "Kekurangan tanah untuk tanaman kopi",
+        "D": "Penutupan semua ladang kopi oleh kerajaan"
+      },
+      "answer": "B",
+      "explanation": "Harga kopi jatuh akibat serangan penyakit dan pengeluaran berlebihan dari Brazil, lalu pengusaha beralih kepada getah untuk eksport.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.1 (ms. 141)"
+    },
+    {
+      "id": 4,
+      "subtopic": "6.1 Pengenalan Ekonomi Moden oleh Kuasa Barat di Negara Kita",
+      "question": "Apakah sumbangan H.N. Ridley kepada perusahaan getah?",
+      "options": {
+        "A": "Membina landasan kereta api ke ladang getah",
+        "B": "Menubuhkan Lembaga Pesuruhjaya Wang",
+        "C": "Memperkenalkan teknik torehan sistem ibedem atau tulang ikan hering",
+        "D": "Mengasaskan pelabuhan Port Swettenham"
+      },
+      "answer": "C",
+      "explanation": "H.N. Ridley memperkenalkan teknik torehan sistem ibedem atau tulang ikan hering pada tahun 1897 yang membantu memanjangkan hayat pokok getah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.1 (ms. 143)"
+    },
+    {
+      "id": 5,
+      "subtopic": "6.1 Pengenalan Ekonomi Moden oleh Kuasa Barat di Negara Kita",
+      "question": "Apakah kesan Enakmen Tanah Padi 1917 terhadap penduduk tempatan?",
+      "options": {
+        "A": "Membenarkan mereka membuka lombong baharu",
+        "B": "Memberikan pinjaman modal besar kepada pekebun kecil",
+        "C": "Menghalang mereka menanam getah di tanah yang dikhaskan untuk padi",
+        "D": "Membolehkan tanah dijual bebas kepada syarikat asing"
+      },
+      "answer": "C",
+      "explanation": "British memperkenalkan Enakmen Tanah Padi 1917 yang menghalang penduduk tempatan menanam getah, sebahagian daripada dasar yang mengehadkan persaingan terhadap pelabur Eropah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.1 (ms. 145)"
+    },
+    {
+      "id": 6,
+      "subtopic": "6.2 Pentadbiran Barat Berkaitan dengan Ekonomi",
+      "question": "Apakah sekatan utama Akta Tanah Simpanan Melayu 1913?",
+      "options": {
+        "A": "Tanah tidak boleh dijual, dipajak gadai atau dipindah milik kepada orang bukan Melayu",
+        "B": "Tanah tidak boleh diwarisi oleh orang Melayu",
+        "C": "Tanah hanya boleh digunakan untuk perlombongan",
+        "D": "Tanah wajib diserahkan kepada kerajaan selepas sepuluh tahun"
+      },
+      "answer": "A",
+      "explanation": "Akta Tanah Simpanan Melayu menetapkan tanah simpanan tidak boleh dijual, dipajak gadai atau dipindah milik kepada orang bukan Melayu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.2 (ms. 146)"
+    },
+    {
+      "id": 7,
+      "subtopic": "6.2 Pentadbiran Barat Berkaitan dengan Ekonomi",
+      "question": "Apakah perundangan yang dikuatkuasakan di Sarawak pada tahun 1933 untuk melindungi masyarakat peribumi?",
+      "options": {
+        "A": "Akta Tanah Simpanan Melayu",
+        "B": "Land Settlement Order",
+        "C": "Ordinan Buruh Kontrak",
+        "D": "Proklamasi III Perlindungan Hak Peribumi"
+      },
+      "answer": "B",
+      "explanation": "Land Settlement Order dikuatkuasakan di Sarawak pada tahun 1933 untuk melindungi masyarakat peribumi.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.2 (ms. 146)"
+    },
+    {
+      "id": 8,
+      "subtopic": "6.2 Pentadbiran Barat Berkaitan dengan Ekonomi",
+      "question": "Apakah perundangan di Sabah yang bertujuan melindungi hak dan kepentingan peribumi dalam urus niaga tanah?",
+      "options": {
+        "A": "Land Order 1948",
+        "B": "Akta Tanah Simpanan Melayu 1913",
+        "C": "Enakmen Tanah Padi 1917",
+        "D": "Proklamasi III Perlindungan Hak Peribumi 1889"
+      },
+      "answer": "D",
+      "explanation": "Proklamasi III Perlindungan Hak Peribumi 1889 mengawal urus niaga tanah dan memberikan perlindungan kepada hak penduduk peribumi Sabah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.2 (ms. 146)"
+    },
+    {
+      "id": 9,
+      "subtopic": "6.2 Pentadbiran Barat Berkaitan dengan Ekonomi",
+      "question": "Bagaimanakah buruh India dibawa masuk melalui Sistem Kangani?",
+      "options": {
+        "A": "Majikan British menghantar kapal perang ke India",
+        "B": "Kangani dihantar ke India untuk mencari buruh dan mengurus perjalanan mereka ke ladang",
+        "C": "Buruh datang tanpa pengurusan majikan",
+        "D": "Buruh direkrut oleh Jabatan Kerja Raya"
+      },
+      "answer": "B",
+      "explanation": "Dalam Sistem Kangani, pemilik ladang menghantar kangani ke India untuk mencari tenaga buruh dan mengurus perjalanan mereka ke ladang.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.2 (ms. 147)"
+    },
+    {
+      "id": 10,
+      "subtopic": "6.2 Pentadbiran Barat Berkaitan dengan Ekonomi",
+      "question": "Apakah fungsi utama Syarikat Perwakilan atau Agency House?",
+      "options": {
+        "A": "Mengawal sekolah vernakular",
+        "B": "Mengurus kewangan, insurans, perkapalan, penyelidikan dan perdagangan antarabangsa",
+        "C": "Membina penjara dan hospital kerajaan sahaja",
+        "D": "Mengurus pilihan raya tempatan"
+      },
+      "answer": "B",
+      "explanation": "Syarikat Perwakilan mengendalikan rangkaian kewangan, insurans, perkapalan, penyelidikan dan perdagangan antarabangsa untuk menyokong kegiatan pemodal.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.2 (ms. 148)"
+    },
+    {
+      "id": 11,
+      "subtopic": "6.3 Kesan Ekonomi Akibat Pentadbiran Barat di Negara Kita",
+      "question": "Apakah tujuan utama landasan kereta api pada fasa awal pembinaannya di Tanah Melayu?",
+      "options": {
+        "A": "Menghubungkan sekolah dengan hospital",
+        "B": "Menggantikan semua pengangkutan sungai",
+        "C": "Menghubungkan kawasan lombong dengan pelabuhan",
+        "D": "Membawa pelancong ke kawasan tanah tinggi"
+      },
+      "answer": "C",
+      "explanation": "Pada fasa awal, landasan kereta api dibina untuk menghubungkan kawasan lombong dengan pelabuhan supaya bijih timah mudah dieksport.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.3 (ms. 150)"
+    },
+    {
+      "id": 12,
+      "subtopic": "6.3 Kesan Ekonomi Akibat Pentadbiran Barat di Negara Kita",
+      "question": "Apakah laluan kereta api yang dibina di Sarawak pada tahun 1917?",
+      "options": {
+        "A": "Miri ke Bintulu",
+        "B": "Sibu ke Mukah",
+        "C": "Bau ke Kuching",
+        "D": "Kuching ke Sarikei"
+      },
+      "answer": "C",
+      "explanation": "Di Sarawak, landasan kereta api yang menghubungkan Bau dengan Kuching dibina pada tahun 1917.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.3 (ms. 151)"
+    },
+    {
+      "id": 13,
+      "subtopic": "6.3 Kesan Ekonomi Akibat Pentadbiran Barat di Negara Kita",
+      "question": "Syarikat manakah yang memperkenalkan perkhidmatan penerbangan awam domestik pada tahun 1937?",
+      "options": {
+        "A": "Straits Steamship",
+        "B": "Singapore and Sarawak Steamship Company",
+        "C": "Malayan Tin Dredging",
+        "D": "Wearne Air Service"
+      },
+      "answer": "D",
+      "explanation": "Wearne Air Service memperkenalkan penerbangan awam domestik antara Singapura, Kuala Lumpur dan Pulau Pinang pada tahun 1937.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.3 (ms. 152)"
+    },
+    {
+      "id": 14,
+      "subtopic": "6.3 Kesan Ekonomi Akibat Pentadbiran Barat di Negara Kita",
+      "question": "Mengapakah pelabuhan seperti Pulau Pinang, Kuala Sepetang, Port Dickson, Singapura dan Klang menjadi penting?",
+      "options": {
+        "A": "Menjadi pusat latihan guru",
+        "B": "Menjadi kawasan tanaman padi utama",
+        "C": "Menjadi pusat penempatan banduan",
+        "D": "Peningkatan eksport bijih timah dan getah"
+      },
+      "answer": "D",
+      "explanation": "Peningkatan eksport bijih timah dan getah menyebabkan pelabuhan-pelabuhan tersebut berkembang sebagai pelabuhan penting.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.3 (ms. 153)"
+    },
+    {
+      "id": 15,
+      "subtopic": "6.3 Kesan Ekonomi Akibat Pentadbiran Barat di Negara Kita",
+      "question": "Apakah talian telegraf yang dipasang pada tahun 1886 di Negeri-negeri Melayu?",
+      "options": {
+        "A": "Taiping dengan Singapura",
+        "B": "Kuching dengan Miri",
+        "C": "Jesselton dengan Sandakan",
+        "D": "Kuala Lumpur dengan Melaka"
+      },
+      "answer": "D",
+      "explanation": "Pada tahun 1886, talian telegraf dipasang menghubungkan Kuala Lumpur dengan Melaka.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.3 (ms. 153)"
+    },
+    {
+      "id": 16,
+      "subtopic": "6.4 Kesan Sosial Akibat Perkembangan Ekonomi di Negara Kita",
+      "question": "Apakah faktor utama kemunculan bandar Miri pada abad ke-20?",
+      "options": {
+        "A": "Penemuan petroleum pada tahun 1910",
+        "B": "Perlombongan bijih timah",
+        "C": "Penanaman tebu",
+        "D": "Pembinaan MPSI"
+      },
+      "answer": "A",
+      "explanation": "Miri berkembang selepas penemuan petroleum pada tahun 1910.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.4 (ms. 155)"
+    },
+    {
+      "id": 17,
+      "subtopic": "6.4 Kesan Sosial Akibat Perkembangan Ekonomi di Negara Kita",
+      "question": "Apakah maksud sekolah vernakular?",
+      "options": {
+        "A": "Sekolah yang hanya mengajar kemahiran teknikal",
+        "B": "Sekolah yang menggunakan bahasa ibunda sebagai bahasa pengantar",
+        "C": "Sekolah yang diwajibkan untuk pegawai British",
+        "D": "Sekolah khas untuk latihan ketenteraan"
+      },
+      "answer": "B",
+      "explanation": "Sekolah vernakular menggunakan bahasa ibunda sesuatu kumpulan sebagai bahasa pengantar.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.4 (ms. 158)"
+    },
+    {
+      "id": 18,
+      "subtopic": "6.4 Kesan Sosial Akibat Perkembangan Ekonomi di Negara Kita",
+      "question": "Apakah matlamat British menubuhkan Kolej Melayu Kuala Kangsar pada tahun 1905?",
+      "options": {
+        "A": "Melatih buruh lombong",
+        "B": "Melatih doktor bagi hospital kerajaan",
+        "C": "Melahirkan pentadbir Melayu berpendidikan Inggeris daripada golongan anak raja dan bangsawan",
+        "D": "Mengurus perdagangan bijih timah"
+      },
+      "answer": "C",
+      "explanation": "Kolej Melayu Kuala Kangsar ditubuhkan untuk menarik anak raja dan bangsawan Melayu serta melahirkan pentadbir Melayu berpendidikan Inggeris.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.4 (ms. 159)"
+    },
+    {
+      "id": 19,
+      "subtopic": "6.4 Kesan Sosial Akibat Perkembangan Ekonomi di Negara Kita",
+      "question": "Apakah penyakit yang menjadi tumpuan penyelidikan Institut Penyelidikan Perubatan di Kuala Lumpur?",
+      "options": {
+        "A": "Beri-beri dan malaria",
+        "B": "Rabies dan demam campak",
+        "C": "Kolera dan influenza sahaja",
+        "D": "Penyakit kulit sahaja"
+      },
+      "answer": "A",
+      "explanation": "Institut Penyelidikan Perubatan yang ditubuhkan pada tahun 1900 menumpukan banyak penyelidikan kepada penyakit tropika seperti beri-beri dan malaria.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.4 (ms. 161)"
+    },
+    {
+      "id": 20,
+      "subtopic": "6.4 Kesan Sosial Akibat Perkembangan Ekonomi di Negara Kita",
+      "question": "Bilakah British mendirikan Penjara Cornwallis di Pulau Pinang?",
+      "options": {
+        "A": "1803",
+        "B": "1790",
+        "C": "1879",
+        "D": "1890"
+      },
+      "answer": "A",
+      "explanation": "Menjelang tahun 1790 banduan India telah ditempatkan di Fort Cornwallis, tetapi Penjara Cornwallis didirikan oleh British pada tahun 1803.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.4 (ms. 163)"
+    },
+    {
+      "id": 21,
+      "subtopic": "6.1 Pengenalan Ekonomi Moden oleh Kuasa Barat di Negara Kita",
+      "question": "Bilakah kapal korek pertama digunakan oleh Syarikat Malayan Tin Dredging di Batu Gajah, Perak?",
+      "options": {
+        "A": "1913",
+        "B": "1912",
+        "C": "1929",
+        "D": "1931"
+      },
+      "answer": "B",
+      "explanation": "Buku teks menyatakan kapal korek pertama digunakan oleh Syarikat Malayan Tin Dredging di Batu Gajah pada tahun 1912.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.1 (ms. 142)"
+    },
+    {
+      "id": 22,
+      "subtopic": "6.1 Pengenalan Ekonomi Moden oleh Kuasa Barat di Negara Kita",
+      "question": "Siapakah pemodal yang menanam kelapa sawit secara komersial di Kuala Selangor pada tahun 1917?",
+      "options": {
+        "A": "Pemodal Perancis",
+        "B": "Pemodal Belanda",
+        "C": "Pemodal Amerika",
+        "D": "Pemodal Jepun"
+      },
+      "answer": "A",
+      "explanation": "Pemodal Perancis menanam kelapa sawit secara komersial di Kuala Selangor pada tahun 1917.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.1 (ms. 140)"
+    },
+    {
+      "id": 23,
+      "subtopic": "6.2 Pentadbiran Barat Berkaitan dengan Ekonomi",
+      "question": "Melalui sistem apakah buruh Cina dibawa masuk untuk bekerja di lombong bijih timah?",
+      "options": {
+        "A": "Sistem Kontrak",
+        "B": "Sistem Kangani",
+        "C": "Sistem Kangcu",
+        "D": "Sistem Residen"
+      },
+      "answer": "A",
+      "explanation": "Buruh Cina dibawa masuk untuk bekerja di lombong bijih timah melalui Sistem Kontrak.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.2 (ms. 147)"
+    },
+    {
+      "id": 24,
+      "subtopic": "6.2 Pentadbiran Barat Berkaitan dengan Ekonomi",
+      "question": "Apakah badan yang ditubuhkan British pada tahun 1897 untuk mengeluarkan wang kertas Negeri-negeri Selat?",
+      "options": {
+        "A": "Lembaga Pesuruhjaya Wang",
+        "B": "Jabatan Pertanian",
+        "C": "Institut Penyelidikan Getah Malaya",
+        "D": "Jabatan Hal Ehwal Cina"
+      },
+      "answer": "A",
+      "explanation": "British menubuhkan Lembaga Pesuruhjaya Wang pada tahun 1897 untuk mengeluarkan wang kertas Negeri-negeri Selat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.2 (ms. 149)"
+    },
+    {
+      "id": 25,
+      "subtopic": "6.4 Kesan Sosial Akibat Perkembangan Ekonomi di Negara Kita",
+      "question": "Apakah faktor utama pembentukan masyarakat berbilang kaum semasa pentadbiran British?",
+      "options": {
+        "A": "Pemindahan semua penduduk ke bandar",
+        "B": "Penghapusan pertanian tempatan",
+        "C": "Penutupan pelabuhan lama",
+        "D": "Kemasukan buruh asing akibat perkembangan industri bijih timah dan getah"
+      },
+      "answer": "D",
+      "explanation": "Kepesatan industri bijih timah dan getah menggalakkan kemasukan buruh asing lalu membentuk masyarakat berbilang kaum.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 6.4 (ms. 156)"
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 5 (Set A)",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 5,
+  "set": "Set A",
+  "chapter_title": "Pentadbiran Barat di Sarawak dan Sabah",
+  "total_questions": 25,
+  "instructions": "Pilih satu jawapan yang paling tepat bagi setiap soalan.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "5.1 Latar Belakang Pemerintahan di Sarawak dan Sabah",
+      "question": "Apakah peranan utama Tuai Rumah dalam Sistem Kesukuan masyarakat Iban di Sarawak?",
+      "options": {
+        "A": "Menjaga keamanan, menyelesaikan pertikaian, dan memastikan keharmonian adat",
+        "B": "Menjadi wakil rasmi Sultan Brunei di kawasan pesisir",
+        "C": "Mengenakan cukai hasil bumi kepada pelombong asing",
+        "D": "Mengubal undang-undang bertulis bagi seluruh daerah"
+      },
+      "answer": "A",
+      "explanation": "Dalam Sistem Kesukuan masyarakat Iban, Tuai Rumah merupakan pemimpin utama yang bertanggungjawab menjaga keamanan, menyelesaikan masalah, dan memastikan semua penduduk mematuhi adat serta pegangan Pemali dan Menoa.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.1 (ms. 114)"
+    },
+    {
+      "id": 2,
+      "subtopic": "5.1 Latar Belakang Pemerintahan di Sarawak dan Sabah",
+      "question": "Siapakah pembesar Melayu yang mengetuai pentadbiran Sistem Kedatuan di kawasan Lembah Sungai Sarawak sebelum kedatangan Brooke?",
+      "options": {
+        "A": "Datu Maharaja Lela dan Datu Sagor",
+        "B": "Datu Patinggi, Datu Bandar, dan Datu Temenggong",
+        "C": "Orang Kaya-Kaya dan Pengelu",
+        "D": "Dato' Kelana dan Dato' Bandar"
+      },
+      "answer": "B",
+      "explanation": "Sistem Kedatuan di Sarawak dijalankan oleh pembesar tempatan seperti Datu Patinggi, Datu Bandar, Datu Temenggong, dan Datu Imam yang bertindak sebagai wakil Sultan Brunei bagi mentadbir masyarakat tempatan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.1 (ms. 115)"
+    },
+    {
+      "id": 3,
+      "subtopic": "5.1 Latar Belakang Pemerintahan di Sarawak dan Sabah",
+      "question": "Apakah bentuk denda yang dikenakan dalam Sistem Kesukuan di Sabah apabila seseorang melanggar hukum adat tempatan?",
+      "options": {
+        "A": "Cukai ufti",
+        "B": "Ufti Bunga Emas",
+        "C": "Pancung",
+        "D": "Sogit"
+      },
+      "answer": "D",
+      "explanation": "Dalam masyarakat tempatan di Sabah seperti Kadazandusun dan Murut, pelanggaran adat akan dikenakan denda yang dikenali sebagai 'Sogit' bagi memulihkan keharmonian masyarakat dan alam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.1 (ms. 116)"
+    },
+    {
+      "id": 4,
+      "subtopic": "5.1 Latar Belakang Pemerintahan di Sarawak dan Sabah",
+      "question": "Siapakah antara tokoh berikut yang memerintah sebagai Ketua Bebas di kawasan Marudu, Sabah?",
+      "options": {
+        "A": "Mat Salleh",
+        "B": "Datu Patinggi Ali",
+        "C": "Raja Muda Hashim",
+        "D": "Syarif Osman"
+      },
+      "answer": "D",
+      "explanation": "Syarif Osman merupakan seorang Ketua Bebas yang memegang pengaruh kuat di daerah Marudu, manakala Mat Salleh merupakan Ketua Bebas di kawasan Tambunan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.1 (ms. 117)"
+    },
+    {
+      "id": 5,
+      "subtopic": "5.2 Peluasan Kuasa Dinasti Brooke di Sarawak",
+      "question": "Apakah punca utama penentangan Datu Patinggi Ali terhadap Pangeran Indera Mahkota di Sarawak pada tahun 1836?",
+      "options": {
+        "A": "Pangeran Indera Mahkota mengenakan cukai tinggi dan mengambil paksa hasil bijih antimony/emas",
+        "B": "Pangeran Indera Mahkota melarang aktiviti perdagangan dengan pihak British",
+        "C": "Datu Patinggi Ali mahu menyerahkan Sarawak kepada tentera Sepanyol",
+        "D": "Pangeran Indera Mahkota enggan mengiktiraf pembinaan Fort Margherita"
+      },
+      "answer": "A",
+      "explanation": "Pangeran Indera Mahkota mentadbir secara kuku besi, mengenakan cukai yang sangat berat, dan memaksa penduduk tempatan bekerja di lombong antimony tanpa bayaran, mencetuskan kebangkitan Datu Patinggi Ali.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.2 (ms. 118)"
+    },
+    {
+      "id": 6,
+      "subtopic": "5.2 Peluasan Kuasa Dinasti Brooke di Sarawak",
+      "question": "Apakah tawaran Raja Muda Hashim kepada James Brooke sebagai balasan atas bantuan menamatkan penentangan di Sarawak?",
+      "options": {
+        "A": "Monopoli perdagangan kayu balak di Sandakan",
+        "B": "Jawatan Gabenor dan pemerintahkan wilayah Sarawak",
+        "C": "Penyerahan seluruh wilayah Sabah kepada syarikat British",
+        "D": "Jawatan Penasihat di Istana Kesultanan Brunei"
+      },
+      "answer": "B",
+      "explanation": "Raja Muda Hashim yang gagal mententeramkan keadaan memohon bantuan James Brooke dengan menawarkan jawatan Gabenor dan menyerahkan pemerintahan Sarawak kepadanya.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.2 (ms. 119)"
+    },
+    {
+      "id": 7,
+      "subtopic": "5.2 Peluasan Kuasa Dinasti Brooke di Sarawak",
+      "question": "Mengapakah Sultan Omar Ali Saifuddin menandatangani Perjanjian 1842 dengan James Brooke?",
+      "options": {
+        "A": "Kerana Sultan Brunei mahu bersara daripada pentadbiran",
+        "B": "Kerana tentera Sepanyol menawan Pelabuhan Brunei",
+        "C": "Kerana James Brooke mengugut akan membedil Brunei dengan kapal perang HMS Dido",
+        "D": "Kerana Syarikat Borneo Utara British membayar bayaran sewa tahunan"
+      },
+      "answer": "C",
+      "explanation": "James Brooke menggunakan strategi ugutan ketenteraan dengan bantuan kapal perang British HMS Dido bagi memaksa Sultan Omar Ali Saifuddin mengesahkan penyerahan Sarawak kepadanya secara merdeka.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.2 (ms. 120)"
+    },
+    {
+      "id": 8,
+      "subtopic": "5.2 Peluasan Kuasa Dinasti Brooke di Sarawak",
+      "question": "Wilayah manakah yang menjadi kawasan pertama di bawah pentadbiran James Brooke pada tahun 1841?",
+      "options": {
+        "A": "Dari Tanjong Datu hingga ke Sungai Samarahan",
+        "B": "Dari Sungai Sadong hingga ke Oya",
+        "C": "Kawasan Limbang dan Lawas",
+        "D": "Kawasan Baram dan Trusan"
+      },
+      "answer": "A",
+      "explanation": "Wilayah awal yang diserahkan kepada James Brooke pada tahun 1841 merangkumi kawasan dari Tanjong Datu hingga ke Sungai Samarahan (kawasan Kuching).",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.2 (ms. 121)"
+    },
+    {
+      "id": 9,
+      "subtopic": "5.2 Peluasan Kuasa Dinasti Brooke di Sarawak",
+      "question": "Bagaimanakah Charles Brooke memperoleh kawasan Baram daripada Sultan Brunei pada tahun 1883?",
+      "options": {
+        "A": "Melalui bayaran sewa tahunan sebanyak 4,200 Dolar kepada Sultan Brunei",
+        "B": "Melalui peperangan dan pembakaran istana",
+        "C": "Melalui penukaran wilayah dengan Pulau Labuan",
+        "D": "Melalui desakan Syarikat Borneo Utara British"
+      },
+      "answer": "A",
+      "explanation": "Charles Brooke memperoleh kawasan Lembah Sungai Baram pada tahun 1883 setelah bersetuju membayar ufti/sewa tahunan sebanyak 4,200 Dolar Dolar Sepanyol kepada Sultan Brunei.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.2 (ms. 122)"
+    },
+    {
+      "id": 10,
+      "subtopic": "5.2 Peluasan Kuasa Dinasti Brooke di Sarawak",
+      "question": "Mengapakah penguasaan Charles Brooke ke atas Limbang pada tahun 1890 dipertikaikan oleh Kesultanan Brunei?",
+      "options": {
+        "A": "Kerana pengambilan Limbang dilakukan secara paksa tanpa persetujuan Sultan Brunei",
+        "B": "Kerana Limbang telah dijual kepada kerajaan Sepanyol",
+        "C": "Kerana penduduk Limbang menolak pentadbiran Dinasti Brooke",
+        "D": "Kerana tanah Limbang tidak mempunyai hasil bumi"
+      },
+      "answer": "A",
+      "explanation": "Charles Brooke mengisytiharkan penggabungan Limbang dengan Sarawak pada tahun 1890 secara sepihak/paksa ekoran kebangkitan penduduk tempatan, yang tidak pernah diiktiraf oleh Sultan Brunei.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.2 (ms. 123)"
+    },
+    {
+      "id": 11,
+      "subtopic": "5.3 Peluasan Kuasa Syarikat Borneo Utara British di Sabah",
+      "question": "Siapakah tokoh yang menyewa Sabah daripada Sultan Brunei pada tahun 1865 selama 10 tahun?",
+      "options": {
+        "A": "J.W. Torrey",
+        "B": "Baron von Overbeck",
+        "C": "Charles Lee Moses",
+        "D": "Alfred Dent"
+      },
+      "answer": "C",
+      "explanation": "Charles Lee Moses menyewa Sabah daripada Sultan Brunei pada tahun 1865 selama 10 tahun sebelum menjual haknya kepada J.W. Torrey dan T.B. Harris.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.3 (ms. 122)"
+    },
+    {
+      "id": 12,
+      "subtopic": "5.3 Peluasan Kuasa Syarikat Borneo Utara British (SBUB) di Sabah",
+      "question": "Apakah peranan Baron von Overbeck dan Alfred Dent dalam usaha meluaskan kuasa di Sabah?",
+      "options": {
+        "A": "Melancarkan serangan ketenteraan ke atas pelabuhan Brunei",
+        "B": "Menyerahkan Sabah kepada penguasaan Syarikat Hindia Timur Inggeris",
+        "C": "Memindahkan pusat pentadbiran dari Kuching ke Sandakan",
+        "D": "Menubuhkan Persatuan Sementara Borneo Utara British Berhad dan memohon Piagam Diraja"
+      },
+      "answer": "D",
+      "explanation": "Overbeck dan Dent bekerjasama membeli hak sewaan tanah Sabah dan menubuhkan syarikat yang kemudiannya memperoleh Piagam Diraja (Royal Charter) pada tahun 1881 untuk membentuk SBUB.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.3 (ms. 125)"
+    },
+    {
+      "id": 13,
+      "subtopic": "5.3 Peluasan Kuasa Syarikat Borneo Utara British (SBUB) di Sabah",
+      "question": "Apakah kepetingan pengeluaran Piagam Diraja (Royal Charter) oleh kerajaan British kepada SBUB pada tahun 1881?",
+      "options": {
+        "A": "Gabenor SBUB diiktiraf secara rasmi dan mendapat perlindungan ketenteraan British",
+        "B": "SBUB bebas menjual wilayah Sabah kepada kuasa asing seperti Jerman",
+        "C": "SBUB tidak perlu mematuhi adat resam penduduk tempatan",
+        "D": "SBUB dijadikan tanah jajahan mahkota British secara langsung"
+      },
+      "answer": "A",
+      "explanation": "Piagam Diraja memberi pengiktirafan rasmi kepada SBUB untuk mentadbir Sabah di bawah naungan British dan menghalang kuasa Barat lain daripada bertapak di Sabah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.3 (ms. 126)"
+    },
+    {
+      "id": 14,
+      "subtopic": "5.3 Peluasan Kuasa Syarikat Borneo Utara British (SBUB) di Sabah",
+      "question": "Apakah syarat utama yang terkandung dalam Piagam Diraja mengenai pentadbiran SBUB di Sabah?",
+      "options": {
+        "A": "SBUB dibenarkan menghapuskan institusi Mahkamah Anak Negeri",
+        "B": "SBUB mesti melantik Gabenor dengan kelulusan Kerajaan British & menghormati adat/agama tempatan",
+        "C": "SBUB wajib menggunakan bahasa Inggeris dalam semua urusan adat tempatan",
+        "D": "SBUB tidak dibenarkan mengutip sebarang cukai perdagangan"
+      },
+      "answer": "B",
+      "explanation": "Antara syarat Piagam Diraja ialah SBUB mesti melantik Gabenor yang diluluskan oleh British, menghormati agama serta adat resam penduduk tempatan, dan tidak boleh menyerahkan wilayah tanpa kebenaran British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.3 (ms. 126)"
+    },
+    {
+      "id": 15,
+      "subtopic": "5.4 Bentuk Pentadbiran Barat di Sarawak dan Sabah",
+      "question": "Apakah badan pentadbiran yang membantu Raja Brooke dalam sistem pentadbiran berhierarki di Sarawak?",
+      "options": {
+        "A": "Durbar dan Majlis Persekutuan",
+        "B": "Lembaga Pengarah dan Majlis Penasihat",
+        "C": "Jemaah Menteri dan Majlis Mesyuarat Negeri",
+        "D": "Majlis Tertinggi dan Majlis Negeri"
+      },
+      "answer": "D",
+      "explanation": "Raja Brooke mengetuai pentadbiran Sarawak dan dibantu oleh Majlis Tertinggi serta Majlis Negeri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.4 (ms. 127)"
+    },
+    {
+      "id": 16,
+      "subtopic": "5.4 Bentuk Pentadbiran Barat di Sarawak dan Sabah",
+      "question": "Apakah unit pentadbiran tertinggi di Sarawak yang diketuai oleh seorang Residen?",
+      "options": {
+        "A": "Bahagian (Division)",
+        "B": "Residensi",
+        "C": "Mukim",
+        "D": "Daerah Khas"
+      },
+      "answer": "A",
+      "explanation": "Pentadbiran tempatan di Sarawak dibahagikan kepada 5 'Bahagian' (Division) di mana setiap Bahagian diketuai oleh seorang pegawi British bergelar Residen.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.4 (ms. 129)"
+    },
+    {
+      "id": 17,
+      "subtopic": "5.4 Bentuk Pentadbiran Barat di Sarawak dan Sabah",
+      "question": "Siapakah pegawai tertinggi pentadbiran SBUB di Sabah yang berpusat di Sandakan?",
+      "options": {
+        "A": "Residen Jeneral",
+        "B": "Pesuruhjaya Tinggi",
+        "C": "Gabenor",
+        "D": "Rajang Brooke"
+      },
+      "answer": "C",
+      "explanation": "Di Sabah, jawatan pentadbiran tertinggi ialah Gabenor SBUB yang dilantik oleh Lembaga Pengarah di London dan berpusat di ibu negeri (Kudat kemudiannya Sandakan).",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.4 (ms. 130)"
+    },
+    {
+      "id": 18,
+      "subtopic": "5.4 Bentuk Pentadbiran Barat di Sarawak dan Sabah",
+      "question": "Apakah perbezaan mahkamah tempatan di Sarawak dan Sabah di bawah pentadbiran Barat?",
+      "options": {
+        "A": "Kedua-duanya hanya mempunyai Mahkamah Majistret",
+        "B": "Sarawak mempunyai Mahkamah Adat, manakala Sabah mempunyai Mahkamah Anak Negeri",
+        "C": "Sarawak mempunyai Mahkamah Anak Negeri sahaja",
+        "D": "Sabah mempunyai Mahkamah Adat sahaja"
+      },
+      "answer": "B",
+      "explanation": "Dinasti Brooke mewujudkan Mahkamah Adat di Sarawak, manakala SBUB mengekalkan Mahkamah Anak Negeri di Sabah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.4 (ms. 129)"
+    },
+    {
+      "id": 19,
+      "subtopic": "5.4 Bentuk Pentadbiran Barat di Sarawak dan Sabah",
+      "question": "Apakah gelaran ketua tempatan di Sabah yang membantu Pegawai Daerah dalam pentadbiran?",
+      "options": {
+        "A": "Datu Patinggi",
+        "B": "Temenggung",
+        "C": "Kangcu",
+        "D": "Ketua Anak Negeri atau Orang Kaya-Kaya (O.K.K.)"
+      },
+      "answer": "D",
+      "explanation": "Ketua Anak Negeri yang turut digelar Orang Kaya-Kaya membantu Pegawai Daerah menjalankan pentadbiran di peringkat daerah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.4 (ms. 126)"
+    },
+    {
+      "id": 20,
+      "subtopic": "5.4 Bentuk Pentadbiran Barat di Sarawak dan Sabah",
+      "question": "Apakah iktibar penting daripada kejayaan perbentangan pentadbiran tempatan di Sarawak dan Sabah sebelum campur tangan Barat?",
+      "options": {
+        "A": "Kuasa Barat membawa kemajuan tanpa menjejaskan hak penduduk",
+        "B": "Sistem pentadbiran tradisional tidak lagi sesuai digunakan hari ini",
+        "C": "Masyarakat tempatan telah mempunyai sistem pemerintahan teratur dan bertamadun tinggi",
+        "D": "Pemimpin tempatan sentiasa menyokong kedatangan kuasa asing"
+      },
+      "answer": "C",
+      "explanation": "Kewujudan Sistem Kesukuan dan Kedatuan membuktikan bahawa masyarakat Sarawak dan Sabah telah mempunyai sistem kestabilan dan pemerintahan yang berkesan sebelum kedatangan kuasa Barat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.1 & 5.4 (ms. 114, 132)"
+    },
+    {
+      "id": 21,
+      "subtopic": "5.1 Latar Belakang Pemerintahan Tempatan di Sarawak dan Sabah",
+      "question": "Apakah tiga bentuk pentadbiran berasaskan penguasaan tanah di Sarawak di bawah pengaruh Brunei?",
+      "options": {
+        "A": "Sistem Residen, Sistem Penasihat dan Sistem Gabenor",
+        "B": "Kangcu, Kangkar dan Surat Sungai",
+        "C": "Sungai Kerajaan, Sungai Tulin dan Sungai Kuripan",
+        "D": "Jemaah Menteri, Majlis Negeri dan Durbar"
+      },
+      "answer": "C",
+      "explanation": "Pengaruh Brunei membahagikan pentadbiran Sarawak kepada Sungai Kerajaan, Sungai Tulin dan Sungai Kuripan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.1 (ms. 112)"
+    },
+    {
+      "id": 22,
+      "subtopic": "5.1 Latar Belakang Pemerintahan Tempatan di Sarawak dan Sabah",
+      "question": "Siapakah dua Ketua Bebas yang disebut dalam buku teks bagi Sabah?",
+      "options": {
+        "A": "Mat Salleh dan Antanom",
+        "B": "Syarif Osman dan Datu Kerunding",
+        "C": "Datu Patinggi Ali dan Sharif Masahor",
+        "D": "Rentap dan Mat Sator"
+      },
+      "answer": "B",
+      "explanation": "Syarif Osman berkuasa di Marudu dan Datu Kerunding di Tungku merupakan contoh Ketua Bebas di Sabah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.1 (ms. 113)"
+    },
+    {
+      "id": 23,
+      "subtopic": "5.2 Peluasan Kuasa Dinasti Brooke di Sarawak",
+      "question": "Apakah kawasan yang diserahkan Sultan Brunei kepada James Brooke melalui Perjanjian 1842?",
+      "options": {
+        "A": "Seluruh Sabah",
+        "B": "Dari Tanjung Datu hingga Sungai Samarahan",
+        "C": "Baram hingga Limbang",
+        "D": "Lawas hingga Trusan"
+      },
+      "answer": "B",
+      "explanation": "Perjanjian 1842 menyerahkan Sarawak dari Tanjung Datu hingga Sungai Samarahan kepada James Brooke.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.2 (ms. 116)"
+    },
+    {
+      "id": 24,
+      "subtopic": "5.3 Peluasan Kuasa Syarikat Borneo Utara British di Sabah",
+      "question": "Bilakah British North Borneo Provisional Association Ltd. ditubuhkan dan mendapat Piagam Diraja?",
+      "options": {
+        "A": "Ditubuhkan 1865 dan mendapat piagam 1878",
+        "B": "Ditubuhkan 1888 dan mendapat piagam 1890",
+        "C": "Ditubuhkan Julai 1881 dan mendapat piagam pada 1 November 1881",
+        "D": "Ditubuhkan 1846 dan mendapat piagam 1853"
+      },
+      "answer": "C",
+      "explanation": "Alfred Dent dan adiknya menubuhkan persatuan itu pada Julai 1881 dan mendapat status piagam pada 1 November 1881.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.3 (ms. 122)"
+    },
+    {
+      "id": 25,
+      "subtopic": "5.4 Bentuk Pentadbiran Barat di Sarawak dan Sabah",
+      "question": "Berapakah jumlah residensi Sabah pada tahun 1922 di bawah SBUB?",
+      "options": {
+        "A": "Dua residensi",
+        "B": "Tiga residensi",
+        "C": "Tujuh residensi",
+        "D": "Lima residensi"
+      },
+      "answer": "D",
+      "explanation": "Pada tahun 1922, Sabah mempunyai lima residensi: Kudat, Pantai Barat, Pedalaman, Pantai Timur dan Tawau.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 5.4 (ms. 125)"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it } from "vitest";
 import { buildQuizKey, calculateOriginalQuizXp, type QuizXpFormula } from "./quizXp";
 import { createQuizXpDb, registered, type CatalogQuizArgs } from "./quizXpDbHarness";
@@ -19,6 +20,8 @@ const MATH_F1_C1_O3 = "quiz-v2:math-objective:math:form-1:chapter-1:bm:objective
 const BM_F1_SET_A = "quiz-v2:bm-world:bm:form-1:kertas-1-objektif:bm:bm-f1-obj1"; // 0/15/0
 const SEJARAH_F3_C1_A = "quiz-v2:standard:sejarah:form-3:chapter-1:bm:set-a:difficulty-all";
 const SEJARAH_F3_C1_B = "quiz-v2:standard:sejarah:form-3:chapter-1:bm:set-b:difficulty-all";
+const SEJARAH_F3_C4_A = "quiz-v2:standard:sejarah:form-3:chapter-4:bm:set-a:difficulty-all";
+const SEJARAH_F3_C4_B = "quiz-v2:standard:sejarah:form-3:chapter-4:bm:set-b:difficulty-all";
 
 function result(
   quizKey: string,
@@ -66,24 +69,121 @@ describe("complete_catalog_quiz: original economy", () => {
     const userId = await freshUser();
     const first = await h.completeCatalogQuiz(
       registered(userId),
-      result(SEJARAH_F3_C1_A, [0, 10, 0]),
+      result(SEJARAH_F3_C1_A, [0, 25, 0]),
     );
-    expect(first).toMatchObject({ awarded: true, xpEarned: 275 });
+    expect(first).toMatchObject({ awarded: true, xpEarned: 650 });
     const retake = await h.completeCatalogQuiz(
       registered(userId),
-      result(SEJARAH_F3_C1_A, [0, 10, 0]),
+      result(SEJARAH_F3_C1_A, [0, 25, 0]),
     );
     expect(retake).toMatchObject({ awarded: false, xpEarned: 0 });
     const secondSet = await h.completeCatalogQuiz(
       registered(userId),
-      result(SEJARAH_F3_C1_B, [0, 10, 0]),
+      result(SEJARAH_F3_C1_B, [0, 25, 0]),
     );
-    expect(secondSet).toMatchObject({ awarded: true, xpEarned: 275 });
+    expect(secondSet).toMatchObject({ awarded: true, xpEarned: 650 });
     expect(await h.progressOf(userId)).toMatchObject({
-      xp: 550,
-      subject_xp: { sejarah: 550 },
+      xp: 1300,
+      subject_xp: { sejarah: 1300 },
       quizzes_taken: 3,
     });
+  });
+
+  it("preserves an old Set A award through the metadata correction and awards Set B independently", async () => {
+    const preCorrection = await createQuizXpDb({
+      before: "20261001024818_sync_form3_sejarah_quiz_25_question_metadata.sql",
+    });
+    const userId = newUserId();
+    await preCorrection.addUser(userId);
+    await expect(preCorrection.completeCatalogQuiz(
+      registered(userId), result(SEJARAH_F3_C1_A, [0, 10, 0]),
+    )).resolves.toMatchObject({ awarded: true, xpEarned: 275 });
+    const unaffectedSql = `select quiz_key, total_questions, easy_count, medium_count, hard_count, max_xp, is_active
+      from public.quiz_catalog where subject_id = 'sejarah'
+        and (form in (1, 2) or (form = 3 and chapter_key not in ('Chapter 1', 'Chapter 2', 'Chapter 3')))
+      order by quiz_key`;
+    const unaffectedBefore = (await preCorrection.db.query(unaffectedSql)).rows;
+    const migration = readFileSync(
+      new URL("../../../../supabase/migrations/20261001024818_sync_form3_sejarah_quiz_25_question_metadata.sql", import.meta.url),
+      "utf8",
+    );
+    await preCorrection.db.exec(migration);
+    expect((await preCorrection.db.query(unaffectedSql)).rows).toEqual(unaffectedBefore);
+    const corrected = await preCorrection.db.query<{
+      quiz_key: string; total_questions: number; easy_count: number;
+      medium_count: number; hard_count: number; max_xp: number;
+      timer_bonus_allowed: boolean;
+    }>(`select quiz_key, total_questions, easy_count, medium_count, hard_count,
+        max_xp, timer_bonus_allowed from public.quiz_catalog
+      where subject_id = 'sejarah' and form = 3 and is_active
+        and chapter_key in ('Chapter 1', 'Chapter 2', 'Chapter 3') order by quiz_key`);
+    expect(corrected.rows).toHaveLength(6);
+    for (const row of corrected.rows) {
+      expect(row).toMatchObject({
+        total_questions: 25, easy_count: 0, medium_count: 25,
+        hard_count: 0, max_xp: 1025, timer_bonus_allowed: true,
+      });
+    }
+    await expect(preCorrection.completeCatalogQuiz(
+      registered(userId), result(SEJARAH_F3_C1_A, [0, 25, 0]),
+    )).resolves.toMatchObject({ awarded: false, xpEarned: 0 });
+    await expect(preCorrection.completeCatalogQuiz(
+      registered(userId), result(SEJARAH_F3_C1_B, [0, 25, 0]),
+    )).resolves.toMatchObject({ awarded: true, xpEarned: 650 });
+    expect(await preCorrection.progressOf(userId)).toMatchObject({ xp: 925 });
+    expect(await preCorrection.historyOf(userId)).toHaveLength(3);
+    const inactive = await preCorrection.db.query<{ quiz_key: string; is_active: boolean }>(
+      `select quiz_key, is_active from public.quiz_catalog
+       where subject_id = 'sejarah' and form = 3 and chapter_key in ('Chapter 1', 'Chapter 2', 'Chapter 3')
+         and quiz_key like '%:set-default:%'`,
+    );
+    expect(inactive.rows).toHaveLength(3);
+    expect(inactive.rows.every((row) => row.is_active === false)).toBe(true);
+  });
+
+  it("corrects only Chapters 4-8 catalog metadata and preserves independent Set A/B XP", async () => {
+    const preCorrection = await createQuizXpDb({
+      before: "20261001054107_sync_form3_sejarah_chapters_4_to_8_quiz_25_question_metadata.sql",
+    });
+    const unaffectedSql = `select quiz_key, total_questions, easy_count, medium_count, hard_count, max_xp, is_active
+      from public.quiz_catalog where not (subject_id = 'sejarah' and form = 3
+        and chapter_key in ('Chapter 4', 'Chapter 5', 'Chapter 6', 'Chapter 7', 'Chapter 8')
+        and is_active)
+      order by quiz_key`;
+    const unaffectedBefore = (await preCorrection.db.query(unaffectedSql)).rows;
+    const migration = readFileSync(
+      new URL("../../../../supabase/migrations/20261001054107_sync_form3_sejarah_chapters_4_to_8_quiz_25_question_metadata.sql", import.meta.url),
+      "utf8",
+    );
+    await preCorrection.db.exec(migration);
+    expect((await preCorrection.db.query(unaffectedSql)).rows).toEqual(unaffectedBefore);
+    const corrected = await preCorrection.db.query<{
+      quiz_key: string; total_questions: number; easy_count: number;
+      medium_count: number; hard_count: number; max_xp: number;
+      timer_bonus_allowed: boolean;
+    }>(`select quiz_key, total_questions, easy_count, medium_count, hard_count,
+        max_xp, timer_bonus_allowed from public.quiz_catalog
+      where subject_id = 'sejarah' and form = 3 and is_active
+        and chapter_key in ('Chapter 4', 'Chapter 5', 'Chapter 6', 'Chapter 7', 'Chapter 8')
+      order by quiz_key`);
+    expect(corrected.rows).toHaveLength(10);
+    for (const row of corrected.rows) {
+      expect(row).toMatchObject({
+        total_questions: 25, easy_count: 0, medium_count: 25,
+        hard_count: 0, max_xp: 1025, timer_bonus_allowed: true,
+      });
+    }
+    const userId = newUserId();
+    await preCorrection.addUser(userId);
+    await expect(preCorrection.completeCatalogQuiz(
+      registered(userId), result(SEJARAH_F3_C4_A, [0, 25, 0]),
+    )).resolves.toMatchObject({ awarded: true, xpEarned: 650 });
+    await expect(preCorrection.completeCatalogQuiz(
+      registered(userId), result(SEJARAH_F3_C4_A, [0, 25, 0]),
+    )).resolves.toMatchObject({ awarded: false, xpEarned: 0 });
+    await expect(preCorrection.completeCatalogQuiz(
+      registered(userId), result(SEJARAH_F3_C4_B, [0, 25, 0]),
+    )).resolves.toMatchObject({ awarded: true, xpEarned: 650 });
   });
 
   it.each([

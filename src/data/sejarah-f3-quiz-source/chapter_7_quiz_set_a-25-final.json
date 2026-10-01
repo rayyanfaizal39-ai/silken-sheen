@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 7 (Set A)",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 7,
+  "set": "Set A",
+  "chapter_title": "Penentangan Masyarakat Tempatan",
+  "total_questions": 25,
+  "instructions": "Pilih satu jawapan yang paling tepat bagi setiap soalan.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "7.1 Matlamat dan Bentuk Penentangan Masyarakat Tempatan",
+      "question": "Apakah matlamat utama perjuangan masyarakat tempatan menentang pencerobohan dan pentadbiran kuasa Barat pada abad ke-19 dan awal abad ke-20?",
+      "options": {
+        "A": "Menuntut kebebasan berdagang dengan kuasa asing lain di Eropah",
+        "B": "Memperkenalkan sistem pentadbiran republik berasaskan demokrasi",
+        "C": "Mempertahankan kedaulatan negeri, kedudukan Sultan, dan hak pembesar",
+        "D": "Mengambil alih seluruh monopoli perdagangan rempah di Kepulauan Melayu"
+      },
+      "answer": "C",
+      "explanation": "Matlamat utama perjuangan tempatan adalah untuk mempertahankan kedaulatan tanah air, menjaga kedudukan Sultan dan pembesar, serta menentang campur tangan British dalam urusan adat dan cukai.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.1 (ms. 172)"
+    },
+    {
+      "id": 2,
+      "subtopic": "7.1 Matlamat dan Bentuk Penentangan Masyarakat Tempatan",
+      "question": "Apakah tiga bentuk penentangan masyarakat tempatan yang dinyatakan dalam Bab 7?",
+      "options": {
+        "A": "Diplomasi, pilihan raya dan mogok",
+        "B": "Boikot, demonstrasi dan petisyen",
+        "C": "Penentangan bersenjata, mencabar perjanjian dan menggunakan sistem perundangan",
+        "D": "Pajakan, manipulasi dan pakatan"
+      },
+      "answer": "C",
+      "explanation": "Bab 7 membahagikan bentuk penentangan kepada penentangan bersenjata, mencabar perjanjian dan menggunakan sistem perundangan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.1 (ms. 172)"
+    },
+    {
+      "id": 3,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Dol Said)",
+      "question": "Apakah faktor utama yang menyemarakkan penentangan Dol Said di Naning terhadap pihak British pada tahun 1831?",
+      "options": {
+        "A": "British melarang pembinaan masjid dan pusat pengajian agama di Naning",
+        "B": "Dol Said diturunkan daripada takhta Penghulu Naning oleh Gabenor Melaka",
+        "C": "British memindahkan ibu negeri Naning ke Pulau Pinang secara paksa",
+        "D": "British mendakwa Naning adalah bahagian daripada Melaka dan menuntut ufti satu persepuluh"
+      },
+      "answer": "D",
+      "explanation": "British mendakwa Naning sebagai sebahagian wilayah Melaka di bawah Perjanjian London 1824 dan menuntut ufti 1/10 daripada hasil pertanian Naning, yang ditolak keras oleh Dol Said.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 174)"
+    },
+    {
+      "id": 4,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Dol Said)",
+      "question": "Mengapakah pihak British mengalami kekalahan dalam Perang Naning Pertama pada tahun 1831?",
+      "options": {
+        "A": "Tentera British kehabisan bekalan makanan dan dijangkiti wabak penyakit",
+        "B": "Dol Said mendapat bantuan tentera daripada Rembau, Seri Menanti, dan Sungai Ujong",
+        "C": "Pasukan tentera Naning menggunakan senjata moden yang dibeli dari Perancis",
+        "D": "Siam telah menghantar bantuan ketenteraan bagi mempertahankan Naning"
+      },
+      "answer": "B",
+      "explanation": "Dalam Perang Naning I, Dol Said mendapat sokongan padu daripada hulubalang Rembau (Yam Tuan Muda Raja Ali), Seri Menanti, Sungai Ujong, dan Johol yang berjaya menewaskan British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 174)"
+    },
+    {
+      "id": 5,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Rentap)",
+      "question": "Slogan 'Agi Idup, Agi Ngalaban' merupakan ikrar perjuangan pahlawan Iban yang terkenal di Sarawak. Siapakah tokoh tersebut?",
+      "options": {
+        "A": "Rentap",
+        "B": "Sharif Masahor",
+        "C": "Datu Patinggi Abang Abdul Gapur",
+        "D": "Kanang anak Langkau"
+      },
+      "answer": "A",
+      "explanation": "Rentap (Libau) ialah pahlawan Iban yang terkenal dengan slogan 'Agi Idup, Agi Ngalaban' (Selagi Hidup, Selagi Itu Melawan) dalam mempertahankan Bukit Sadok daripada serangan James Brooke.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 176)"
+    },
+    {
+      "id": 6,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Rentap)",
+      "question": "Apakah alasan yang digunakan oleh James Brooke untuk menyerang kawasan perkampungan Rentap di Sungai Skrang?",
+      "options": {
+        "A": "Rentap enggan membayar cukai hasil hutan kepada rejim Brooke",
+        "B": "Menganggap orang Iban sebagai lanun yang mengganggu pelayaran",
+        "C": "Rentap merampas kapal perintis Brooke di Kuching",
+        "D": "Orang Iban telah membakar ibu negeri Kuching"
+      },
+      "answer": "B",
+      "explanation": "James Brooke menuduh Rentap dan orang Iban di Skrang sebagai lanun bagi menjustifikasikan serangan ketenteraan dan pembinaan kubu di Nanga Skrang.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 176)"
+    },
+    {
+      "id": 7,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Sharif Masahor)",
+      "question": "Apakah sebab utama Sharif Masahor menentang pentadbiran Dinasti Brooke di Sarikei?",
+      "options": {
+        "A": "Kewujudan kubu Brooke di Kanowit mengambil alih kuasanya dan membatalkan hak mengutip cukai",
+        "B": "Brooke melarang pembesar tempatan mengamalkan adat resam perkahwinan Melayu",
+        "C": "Sharif Masahor dipaksa menyerahkan tanah peribadinya kepada Syarikat Borneo",
+        "D": "Brooke enggan mengiktiraf pembinaan masjid di bahagian Sarikei"
+      },
+      "answer": "A",
+      "explanation": "Pembinaan kubu Brooke di Kanowit mengancam wilayah kekuasaan Sharif Masahor di Sarikei dan menggugat hak tradisinya untuk mengutip cukai di kawasan tersebut.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 178)"
+    },
+    {
+      "id": 8,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Dato' Maharaja Lela)",
+      "question": "Apakah peristiwa puncak penentangan Dato' Maharaja Lela di Pasir Salak pada 2 November 1875?",
+      "options": {
+        "A": "Penawanan Kota Ngah Ibrahim oleh tentera British",
+        "B": "Pembakaran balai polis British di Kuala Kangsar",
+        "C": "Pembunuhan Residen British Perak, J.W.W. Birch di Sungai Perak",
+        "D": "Penyingkiran Sultan Abdullah daripada takhta Perak"
+      },
+      "answer": "C",
+      "explanation": "Pada 2 November 1875, Septum membunuh Residen British J.W.W. Birch atas arahan Dato' Maharaja Lela dan Dato' Sagor di Sungai Perak, Pasir Salak.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 180)"
+    },
+    {
+      "id": 9,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Dato' Maharaja Lela)",
+      "question": "Mengapakah pembesar Perak seperti Dato' Maharaja Lela dan Dato' Sagor menolak pelaksanaaan sistem pentadbiran J.W.W. Birch?",
+      "options": {
+        "A": "Birch melarang perdagangan bijih timah dengan pedagang Selat",
+        "B": "Birch mahu memindahkan ibu negeri Perak ke Pulau Pinang",
+        "C": "Birch mencampuri adat resam, merampas hak kutipan cukai, dan mencabar kewibawaan Sultan",
+        "D": "Birch menyokong Raja Ismail menjadi Sultan Perak tanpa persetujuan Majlis"
+      },
+      "answer": "C",
+      "explanation": "J.W.W. Birch bertindak angkuh dengan mencampuri adat tempatan (isu hamba), mengambil alih hak kutipan cukai pembesar, dan membelakangkan Sultan Abdullah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 180)"
+    },
+    {
+      "id": 10,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Yamtuan Antah)",
+      "question": "Apakah punca utama perselisihan antara Yamtuan Antah dengan pihak British di Negeri Sembilan pada tahun 1875?",
+      "options": {
+        "A": "Tindakan British menduduki Terachi dan menyokong Dato' Kelana di Sungai Ujong",
+        "B": "British melarang amalan Adat Perpatih di daerah Seri Menanti",
+        "C": "Dato' Bandar melantik Gabenor NNS sebagai penaung Seri Menanti",
+        "D": "British membatalkan gelaran Yamtuan Besar Negeri Sembilan"
+      },
+      "answer": "A",
+      "explanation": "Yamtuan Antah menentang British kerana British menyokong Dato' Kelana dan mencampuri urusan hak pertuanan di daerah Terachi yang terletak di bawah naungan Seri Menanti.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 182)"
+    },
+    {
+      "id": 11,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Dato' Bahaman)",
+      "question": "Mengapakah Dato' Bahaman bangkit menentang pihak British di Semantan, Pahang?",
+      "options": {
+        "A": "British memindahkan ibu negeri Pahang dari Pekan ke Kuantan",
+        "B": "Sultan Ahmad mengarahkan penangkapan Dato' Bahaman kerana memungut emas",
+        "C": "Pelucutan gelaran pembesar, pembinaan balai polis di Lubuk Terua, dan pembatalan hak cukai",
+        "D": "British melarang pembukaan lombong emas baharu di Raub"
+      },
+      "answer": "C",
+      "explanation": "Dato' Bahaman menentang British di Pahang kerana pelucutan gelarannya sebagai Orang Kaya Semantan, pembinaan balai polis di Lubuk Terua tanpa persetujuannya, dan kehilangan hak mengutip cukai.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 184)"
+    },
+    {
+      "id": 12,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Mat Salleh)",
+      "question": "Apakah tindakan SBUB yang menyebabkan Mat Salleh menyerang kubu SBUB di Pulau Gaya pada tahun 1897?",
+      "options": {
+        "A": "SBUB membakar perkampungan orang Bajau dan Suluk di Sandakan",
+        "B": "SBUB melarang Mat Salleh menjalankan perniagaan sarung burung",
+        "C": "SBUB melantik Residen Inggeris untuk mentadbir kubu Ranau",
+        "D": "SBUB melaksana sistem cukai beras/kepala dan enggan berunding mengenai kedaulatan Tambunan"
+      },
+      "answer": "D",
+      "explanation": "Mat Salleh menentang SBUB kerana SBUB memperkenalkan cukai beras dan cukai kepala, serta memungkiri janji Perjanjian Menggatal 1898 dengan menduduki Tambunan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 186)"
+    },
+    {
+      "id": 13,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah peranan Mat Sator selepas kematian Mat Salleh pada tahun 1900?",
+      "options": {
+        "A": "Meneruskan perjuangan mempertahankan kedaulatan di Tambunan",
+        "B": "Menjadi Gabenor SBUB",
+        "C": "Menandatangani Perjanjian Pangkor",
+        "D": "Memimpin kebangkitan di Kelantan"
+      },
+      "answer": "A",
+      "explanation": "Mat Sator meneruskan perjuangan selepas kematian Mat Salleh dan mempertahankan kawasan Tambunan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.1 (ms. 177)"
+    },
+    {
+      "id": 14,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Tok Janggut)",
+      "question": "Mengapakah Tok Janggut memimpin masyarakat Pasir Puteh, Kelantan menentang pentadbiran British pada tahun 1915?",
+      "options": {
+        "A": "British membatalkan status Pasir Puteh sebagai pusat perdagangan beras",
+        "B": "Pelaksanaan Peraturan Tanah 1915 yang mewajibkan bayaran cukai pokok, tanah, dan hasil bumi",
+        "C": "Sultan Kelantan diasingkan oleh British ke Singapura",
+        "D": "British menggantikan undang-undang Syariah dengan Kanun Keseksaan Negeri Selat"
+      },
+      "answer": "B",
+      "explanation": "Tok Janggut (Haji Hassan bin Munas) menentang pelaksanaan Sistem Cukai Tanah 1915 yang membebankan petani Pasir Puteh dengan syarat cukai wajib walaupun tanah tidak dikerjakan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 190)"
+    },
+    {
+      "id": 15,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Haji Abdul Rahman Limbong)",
+      "question": "Apakah hujah utama Haji Abdul Rahman Limbong di mahkamah semasa membela petani Terengganu pada tahun 1928?",
+      "options": {
+        "A": "British tidak mempunyai Perjanjian Bangkok yang sah dengan Sultan Terengganu",
+        "B": "Petani Terengganu telah membayar cukai terus kepada Gabenor Singapura",
+        "C": "Negeri Terengganu tidak berada di bawah jajahan takluk mana-mana kuasa Eropah",
+        "D": "Tanah merupakan hak Allah SWT dan rakyat bebas mengusahakannya tanpa perlu Lesen Pas Membuka Tanah"
+      },
+      "answer": "D",
+      "explanation": "Haji Abdul Rahman Limbong menegaskan di mahkamah bahawa tanah adalah hak milik Allah dan rakyat tidak perlu mengambil lesen pas atau membayar cukai untuk bercucuk tanam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 192)"
+    },
+    {
+      "id": 16,
+      "subtopic": "7.4 Kesan Penentangan Masyarakat Tempatan",
+      "question": "Apakah salah satu kesan penentangan masyarakat tempatan terhadap pentadbiran British?",
+      "options": {
+        "A": "British mengalami kerugian peperangan dan menjadi lebih berhati-hati dalam pentadbiran",
+        "B": "British meninggalkan seluruh Tanah Melayu",
+        "C": "Semua Residen British dimansuhkan",
+        "D": "Negeri-negeri Melayu kembali tanpa pengaruh Barat"
+      },
+      "answer": "A",
+      "explanation": "Penentangan menyebabkan kerugian besar dan mendorong British lebih berhati-hati dalam pentadbiran serta merombak penempatan pegawai.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.4 (ms. 190)"
+    },
+    {
+      "id": 17,
+      "subtopic": "7.3 Kesan Penentangan Masyarakat Tempatan",
+      "question": "Antara berikut, apakah nasib yang menimpa pejuang tempatan seperti Dato' Maharaja Lela dan Dato' Sagor selepas tewas kepada British?",
+      "options": {
+        "A": "Dibuang negeri ke Kepulauan Seychelles bersama Sultan Abdullah",
+        "B": "Dijatuhkan hukuman gantung sampai mati di Matang, Perak",
+        "C": "Dilantik semula menjadi Penasihat Negeri oleh British",
+        "D": "Diampunkan oleh Majlis Mesyuarat Persekutuan"
+      },
+      "answer": "B",
+      "explanation": "Dato' Maharaja Lela, Dato' Sagor, Pandak Lam, Septum, dan Pandak Indut dijatuhkan hukuman gantung sampai mati di Matang, Perak atas tuduhan membunuh J.W.W. Birch.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 195)"
+    },
+    {
+      "id": 18,
+      "subtopic": "7.4 Iktibar daripada Perjuangan Masyarakat Tempatan",
+      "question": "Apakah iktibar utama yang boleh diambil daripada kegagalan sebahagian besar penentangan tempatan menentang kuasa Barat?",
+      "options": {
+        "A": "Penggunaan kekuatan ketenteraan semata-mata tanpa sebarang perundingan",
+        "B": "Pengasingan diri daripada sebarang pemodenan teknologi luar",
+        "C": "Kepentingan semangat perpaduan, strategi tersusun, dan penguasaan ilmu pengetahuan",
+        "D": "Penyerahan kedaulatan negeri secara sukarela bagi mengelakkan pertempuran"
+      },
+      "answer": "C",
+      "explanation": "Kegagalan perjuangan awal mengajar kita tentang pentingnya perpaduan antara pembesar dan rakyat, perancangan strategi yang berkesan, serta penguasaan ilmu dan diplomasi.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.4 (ms. 196)"
+    },
+    {
+      "id": 19,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Tok Janggut)",
+      "question": "Di manakah lokasi pertempuran terakhir yang menyaksikan Tok Janggut gugur sebagai syahid dalam mempertahankan Pasir Puteh?",
+      "options": {
+        "A": "Lubuk Terua, Semantan",
+        "B": "Fort Alice, Simanggang",
+        "C": "Kota Bharu, Kelantan",
+        "D": "Kampung Dalam Rhu, Pasir Puteh"
+      },
+      "answer": "D",
+      "explanation": "Tok Janggut gugur dalam pertempuran di Kampung Dalam Rhu, Pasir Puteh pada 24 Mei 1915 semasa menentang pasukan tentera British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 191)"
+    },
+    {
+      "id": 20,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Mat Kilau & Dato' Bahaman)",
+      "question": "Selepas tekanan ketenteraan British meningkat di Pahang, Dato' Bahaman, Mat Kilau, dan Tok Gajah telah berundur dan mendapat perlindungan di mana?",
+      "options": {
+        "A": "Kelantan dan Terengganu",
+        "B": "Johor dan Singapore",
+        "C": "Perlis dan Kedah",
+        "D": "Sarawak dan Sabah"
+      },
+      "answer": "A",
+      "explanation": "Dato' Bahaman, Tok Gajah, dan Mat Kilau berundur ke Kelantan dan Terengganu untuk mendapat sokongan ulama tempatan seperti Tok Ku Paloh.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 185)"
+    },
+    {
+      "id": 21,
+      "subtopic": "7.1 Matlamat dan Bentuk Penentangan Masyarakat Tempatan",
+      "question": "Apakah tiga matlamat utama perjuangan masyarakat tempatan menentang kuasa Barat?",
+      "options": {
+        "A": "Membentuk republik, memansuhkan sultan dan menyertai British",
+        "B": "Mempertahankan hak pemerintah, mengekalkan pentadbiran tradisional dan menentang peraturan baharu yang menyusahkan rakyat",
+        "C": "Menguasai perdagangan Eropah, membina empayar dan menawan Singapura",
+        "D": "Menghapuskan adat tempatan dan menggantikannya dengan undang-undang Barat"
+      },
+      "answer": "B",
+      "explanation": "Matlamat perjuangan ialah mempertahankan hak pemerintah, mengembalikan pentadbiran tradisional dan menentang peraturan baharu yang menyusahkan rakyat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.1 (ms. 172)"
+    },
+    {
+      "id": 22,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah yang dilakukan Mat Sator pada April 1900 sebelum terkorban?",
+      "options": {
+        "A": "Menawan Singapura",
+        "B": "Berjaya menawan Kudat sebelum British menyerang balas",
+        "C": "Menyerang Pasir Salak",
+        "D": "Menyertai Perang Naning"
+      },
+      "answer": "B",
+      "explanation": "Pada April 1900, Mat Sator berjaya menawan Kudat tetapi terkorban selepas British menyerang balas.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.1 (ms. 177)"
+    },
+    {
+      "id": 23,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah hujah utama Haji Abdul Rahman Limbong ketika membela petani Terengganu?",
+      "options": {
+        "A": "Tanah mesti diserahkan kepada British",
+        "B": "Semua cukai perlu dinaikkan",
+        "C": "Petani perlu berhijrah ke negeri lain",
+        "D": "Tanah yang diusahakan ialah Hak Allah SWT dan cukai British bercanggah dengan hukum syarak"
+      },
+      "answer": "D",
+      "explanation": "Beliau berhujah bahawa tanah ialah Hak Allah SWT dan sistem percukaian British bertentangan dengan hukum syarak.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 186)"
+    },
+    {
+      "id": 24,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah yang berlaku dalam Kebangkitan Tani 1928 di Terengganu?",
+      "options": {
+        "A": "Petani menyerahkan tanah kepada British",
+        "B": "British meninggalkan Terengganu tanpa syarat",
+        "C": "Sultan dibuang negeri",
+        "D": "Kebangkitan berlaku di Marang, Kuala Telemong dan Kuala Berang serta bangunan kerajaan diduduki"
+      },
+      "answer": "D",
+      "explanation": "Kebangkitan Tani 1928 berlaku di Marang, Kuala Telemong dan Kuala Berang; peserta menduduki balai polis dan bangunan kerajaan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 187)"
+    },
+    {
+      "id": 25,
+      "subtopic": "7.4 Kesan Penentangan Masyarakat Tempatan",
+      "question": "Apakah perubahan British terhadap penempatan pegawai selepas penentangan tempatan?",
+      "options": {
+        "A": "Melantik pegawai yang fasih bahasa Melayu dan memahami adat resam tempatan",
+        "B": "Menghapuskan semua pegawai British",
+        "C": "Hanya melantik tentera",
+        "D": "Menghentikan Majlis Mesyuarat Negeri"
+      },
+      "answer": "A",
+      "explanation": "British lebih berhati-hati dan melantik pegawai yang fasih bahasa Melayu serta memahami adat tempatan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.4 (ms. 190)"
+    }
+  ]
+}

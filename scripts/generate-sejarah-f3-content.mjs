@@ -1060,7 +1060,7 @@ function writeContent() {
     mkdirp(dir);
     fs.writeFileSync(path.join(dir, "notes.ts"), noteFile(chapter));
     fs.writeFileSync(path.join(dir, "mindmap.ts"), mindmapFile(chapter));
-    fs.writeFileSync(path.join(dataRoot, `sejarah-f3-c${chapter.num}-quizzes.ts`), quizFile(chapter));
+    // All Form 3 Sejarah quiz pools use approved JSON sources in src/data.
     fs.writeFileSync(path.join(dataRoot, `sejarah-f3-c${chapter.num}-flashcards.ts`), flashcardFile(chapter));
   }
 }
