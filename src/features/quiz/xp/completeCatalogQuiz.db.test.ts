@@ -17,6 +17,8 @@ const SCIENCE_F1_C7 = "quiz-v2:standard:science:form-1:chapter-7:bm:set-default:
 const ENGLISH_F1_A = "quiz-v2:english:english:form-1:paper-1:en:objective-a"; // 17/13/0
 const MATH_F1_C1_O3 = "quiz-v2:math-objective:math:form-1:chapter-1:bm:objective-3"; // 0/16/14
 const BM_F1_SET_A = "quiz-v2:bm-world:bm:form-1:kertas-1-objektif:bm:bm-f1-obj1"; // 0/15/0
+const SEJARAH_F3_C1_A = "quiz-v2:standard:sejarah:form-3:chapter-1:bm:set-a:difficulty-all";
+const SEJARAH_F3_C1_B = "quiz-v2:standard:sejarah:form-3:chapter-1:bm:set-b:difficulty-all";
 
 function result(
   quizKey: string,
@@ -45,6 +47,44 @@ describe("complete_catalog_quiz: original economy", () => {
   beforeAll(async () => {
     h = await createQuizXpDb();
   }, TIMEOUT);
+
+  it("reproduces the old catalog rejection for a Form 3 Sejarah set key", async () => {
+    const oldCatalog = await createQuizXpDb({
+      before: "20260930131938_sync_quiz_catalog.sql",
+    });
+    const userId = newUserId();
+    await oldCatalog.addUser(userId);
+    await expect(
+      oldCatalog.completeCatalogQuiz(
+        registered(userId),
+        result(SEJARAH_F3_C1_A, [0, 10, 0]),
+      ),
+    ).rejects.toMatchObject({ code: "22023", message: "Unknown quiz" });
+  });
+
+  it("persists Form 3 Sejarah Set A and B as independent awards and makes a retake 0 XP", async () => {
+    const userId = await freshUser();
+    const first = await h.completeCatalogQuiz(
+      registered(userId),
+      result(SEJARAH_F3_C1_A, [0, 10, 0]),
+    );
+    expect(first).toMatchObject({ awarded: true, xpEarned: 275 });
+    const retake = await h.completeCatalogQuiz(
+      registered(userId),
+      result(SEJARAH_F3_C1_A, [0, 10, 0]),
+    );
+    expect(retake).toMatchObject({ awarded: false, xpEarned: 0 });
+    const secondSet = await h.completeCatalogQuiz(
+      registered(userId),
+      result(SEJARAH_F3_C1_B, [0, 10, 0]),
+    );
+    expect(secondSet).toMatchObject({ awarded: true, xpEarned: 275 });
+    expect(await h.progressOf(userId)).toMatchObject({
+      xp: 550,
+      subject_xp: { sejarah: 550 },
+      quizzes_taken: 3,
+    });
+  });
 
   it.each([
     ["none", 675],

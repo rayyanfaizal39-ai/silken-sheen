@@ -550,6 +550,22 @@ export function chapterActivityKey(subjectId: string, chapterKey: string) {
   return `${subjectId}:${chapterKey}`;
 }
 
+export function withChapterCompletion(
+  activity: Record<string, ChapterActivity>,
+  subjectId: string,
+  chapterKey: string,
+  kind: keyof ChapterActivity,
+  deckKey?: string,
+) {
+  const chapterKeyId = chapterActivityKey(subjectId, chapterKey);
+  const next = {
+    ...activity,
+    [chapterKeyId]: { ...activity[chapterKeyId], [kind]: true },
+  };
+  if (deckKey) next[deckKey] = { ...next[deckKey], [kind]: true };
+  return next;
+}
+
 function pushRecentActivity(
   current: RecentActivity[] | undefined,
   activity: LastVisited & { detail?: string; id?: string },
@@ -582,7 +598,7 @@ export function totalChaptersCompleted(chapterActivity: Record<string, ChapterAc
 
 // ─── Supabase sync helpers ────────────────────────────────────────────────────
 
-function progressToRow(p: Progress) {
+export function progressToRow(p: Progress) {
   return {
     xp: p.xp,
     streak: p.streak,
@@ -1212,7 +1228,7 @@ export function useProgress() {
   );
 
   const markChapter = useCallback(
-    (subjectId: string, chapterKey: string, kind: keyof ChapterActivity) => {
+    (subjectId: string, chapterKey: string, kind: keyof ChapterActivity, deckKey?: string) => {
       if (kind === "read") {
         const dateKey = today();
         trackMissionActivity("lesson", `lesson:${dateKey}:${subjectId}:${chapterKey}`, dateKey, {
@@ -1222,15 +1238,22 @@ export function useProgress() {
       setProgress((prev) => {
         const k = chapterActivityKey(subjectId, chapterKey);
         const prior = prev.chapterActivity[k] ?? {};
-        if (prior[kind]) return prev;
+        const deckAlreadyDone = !deckKey || !!prev.chapterActivity[deckKey]?.[kind];
+        if (prior[kind] && deckAlreadyDone) return prev;
 
         const t = today();
         const missions = resetMissionsIfNewDay(prev.missions, t);
         const updatedMissions = { ...missions };
-        if (kind === "read") updatedMissions.readChapters += 1;
-        if (kind === "cards") updatedMissions.flashcardsDone += 1;
+        if (!prior[kind] && kind === "read") updatedMissions.readChapters += 1;
+        if (!prior[kind] && kind === "cards") updatedMissions.flashcardsDone += 1;
 
-        const newActivity = { ...prev.chapterActivity, [k]: { ...prior, [kind]: true } };
+        const newActivity = withChapterCompletion(
+          prev.chapterActivity,
+          subjectId,
+          chapterKey,
+          kind,
+          deckKey,
+        );
         const completedCount = totalChaptersCompleted(newActivity);
         const newBadges = [...prev.badges];
         if (!newBadges.includes("first_notes") && kind === "read") newBadges.push("first_notes");

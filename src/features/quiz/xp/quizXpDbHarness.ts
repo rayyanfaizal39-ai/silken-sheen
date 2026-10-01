@@ -15,6 +15,7 @@ const MIGRATIONS = [
   "20260924120000_harden_complete_quiz_subject_xp.sql",
   "20260924150000_original_quiz_xp_economy.sql",
   "20260924154253_seed_quiz_catalog.sql",
+  "20260930131938_sync_quiz_catalog.sql",
 ];
 
 const SUPABASE_SHIM = `

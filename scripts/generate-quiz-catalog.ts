@@ -2,6 +2,7 @@
 // content, when the content has changed since the latest catalog migration.
 //
 //   npm run generate:quiz-catalog
+//   npm run generate:quiz-catalog -- --scope=sejarah-f3
 //
 // The quiz catalog test fails until this has been run after a content change,
 // and `npm run check:migrations` then blocks release until it is applied.
@@ -14,7 +15,8 @@ import {
 } from "../src/features/quiz/catalog/quizCatalogSql";
 
 const migrationsDir = join(process.cwd(), "supabase", "migrations");
-const sql = renderQuizCatalogSql(buildQuizCatalog());
+const scope = process.argv.includes("--scope=sejarah-f3") ? "sejarah-f3" : undefined;
+const sql = renderQuizCatalogSql(buildQuizCatalog(), scope);
 const latest = readdirSync(migrationsDir)
   .filter((name) => QUIZ_CATALOG_MIGRATION_PATTERN.test(name))
   .sort()

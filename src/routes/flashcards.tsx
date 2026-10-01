@@ -5742,7 +5742,14 @@ function FlashcardsPage() {
         const nextQueue = pass ? remaining : [...remaining, q[idx]];
         if (nextQueue.length === 0) {
           setCompleted(true);
-          if (subject && chapter) markChapter(subject, chapter, "cards");
+          if (subject && chapter) {
+            markChapter(
+              subject,
+              chapter,
+              "cards",
+              subject === "sejarah" && form === "Form 3" ? deckIdentityKey : undefined,
+            );
+          }
           sfx.fanfare();
           vibrate([200, 80, 80, 80, 200], vibrateOn);
           return [];
