@@ -1,5 +1,54 @@
 # Chapter 8 Pass 4 source audit — 8.5 and 8.6 only
 
+## Actual-implementation re-audit — 2026-10-02
+
+Starting working tree: clean. The previous revision cleanup was already present. This audit inspects the current implementation rather than treating the earlier removed activities/images as new removals.
+
+### Actual render path and established style
+
+- `src/content/notes-loaders.generated.ts` loads `chapter8Content` from `src/content/form1/science/chapter-8/chapter8-content.ts` into `chapter8Data` for both Science F1 Chapter 8 language variants.
+- `src/routes/notes.tsx` lazy-loads `ScienceF1Chapter8VisualNotesBlock.tsx` under the local name `Chapter8NotesBlock` and supplies `activeChapter.chapter8Data`. The separate older `Chapter8NotesBlock.tsx` file is not the live route's Chapter 8 renderer.
+- The live renderer has seven independent sections: 8.1 mirrors; 8.2 properties; 8.3 reflection; 8.4 refraction; 8.5 dispersion; 8.6 scattering; 8.7 addition/subtraction. Its official headings come from `t.subtopics`. It passes `t.dispersion` and `t.scattering` to the two dedicated components.
+- Surrounding sections use the same dark-navy shell, `h2` official headings, smaller `h3` subheadings, rounded bordered figures, cyan/violet/amber accents, readable HTML captions and responsive grids. 8.5/8.6 already follow these conventions. No new Must Know headings, visual system, shared styles or site-wide component changes are needed.
+- The other Chapter 8 sections were inspected for structure/style and remain protected by existing regression checks. This is not a new textbook fact-by-fact certification of deferred 8.7.
+
+### Content classification
+
+| Concept / implemented item | Decision | Finding / action |
+| --- | --- | --- |
+| Meaning of dispersion and prism separation | KEEP / CORRECT presentation order | Existing source explanation is complete but followed the diagram. Move it before the diagram so the concept precedes its illustration. No rewritten definition. |
+| White light has seven colours; correct order including Indigo | KEEP | Both language lists are correct. |
+| Spectrum term | KEEP | Preserve the existing source sentence defining the ordered colours as a spectrum. |
+| English prose repeating the seven-colour list | CONDENSE | Remove only the redundant final colour-list sentence. The labelled seven-colour sequence remains once in the main figure. |
+| Different amounts of refraction; prism entry/exit normals | KEEP | Canonical text and actual SVG ray geometry agree. |
+| Red least / violet most; different speeds in a medium | KEEP | Already explicit at Form 1 level. No advanced theory needed. |
+| Rainbow: sunlight, droplets, refraction and dispersion | KEEP | Existing conceptual chain and source paragraph retain the prism/rainbow relationship. BM retains “dibiaskan dan disebarkan.” |
+| Scattering definition and atmospheric particles | KEEP | Existing BM wording and previously authorized English obstruction wording meet the supplied checklist. |
+| Midday: blue scattered strongly in many directions, observer receives blue | KEEP | Present in both the paragraph and the functional ray diagram. |
+| Sunset: longer path, blue scattered away, red/orange scattered less and reaching observer | KEEP | Already present, including the previously authorized longer-path supplement. |
+| Blue-more / red-orange-less comparison | KEEP | Existing concise highlighted text makes the revision point explicit. |
+| Dispersion versus scattering comparison and examples | KEEP | Existing compact comparison is sufficient; do not add another. |
+| Activity 8.7/8.8 methodology and repetitive questions | KEEP current omission | Already absent from live revision notes. Canonical source records remain intact. No further activity deletion in this pass. |
+| Missing syllabus concepts | ADD: none | No gap found against the supplied 8.5/8.6 checklist and the project’s documented DSKP 8.5/8.6 mapping. The conceptual learning outcomes survive the previous procedural cleanup. |
+| Unnecessary advanced facts, visible DSKP subcodes, filler | REMOVE: none found | None added or needed. |
+
+### Every live 8.5/8.6 visual
+
+All four are inline React SVG geometry, not local image files, imported raster assets or remote URLs. No image paths can fail to resolve. SVG internals are hidden from assistive technology; adjacent HTML legends and source explanations supply the accessible learning content without native hover tooltips.
+
+| Visual / owning function | Decision | Educational purpose |
+| --- | --- | --- |
+| Prism — `PrismDiagram`, `Chapter8Dispersion.tsx` | KEEP | White incident ray, triangular glass prism, normal lines and seven differently refracted rays reaching the screen; ordered labels identify the spectrum. |
+| Rainbow — `RainbowDiagram`, `Chapter8Dispersion.tsx` | KEEP | Sunlight → droplet → separated colours → rainbow, with the source refraction/dispersion explanation. It is a conceptual sequence, not a detailed internal droplet ray model. |
+| Midday — `SkyDiagram`, `Chapter8Scattering.tsx` | KEEP | Incoming light reaches atmospheric particles; multiple blue arrows include a path to the observer. |
+| Sunset — `SkyDiagram`, `Chapter8Scattering.tsx` | KEEP | Horizontal path, blue light directed away, red/orange reaching the observer; adjacent canonical text explains the longer path. |
+
+No duplicate, decorative, contextless, missing or badly cropped images remain in these sections. No images are removed or replaced in this re-audit. Mobile full-chapter inspection found small numeric SVG callouts; increase only the local `Pin` circle/text sizing from radius 11/font 12 to radius 14/font 18. The existing long labels stay in readable HTML. The helper is local to these two section components; no site-wide shared component changes.
+
+**New learner-facing factual content added in this re-audit: NONE.** The earlier user-authorized supplemental wording remains identified in the 2026-10-01 record below. No unrelated section, quiz, flashcard, route or asset is changed.
+
+Validation for this re-audit: **134 tests passed** across the five Chapter 8 suites; targeted ESLint, `git diff --check` and production build/Pages packaging passed. Existing 8.1–8.4 and 8.7 hashes remained green without rebaselining. TypeScript still reports only the two pre-existing Form 2 `string | undefined` test errors listed below. The actual full Chapter 8 renderer was previewed with production CSS in BM and DLP at 320px, 390px and 1280px; the four retained diagrams, captions and comparison fit with no horizontal overflow. This was a full-component preview, not an authenticated route/session test. No commit or push performed.
+
 ## Revision-notes cleanup — 2026-10-01
 
 This follow-up supersedes the original full-activity **live presentation** described below. The new user request explicitly asks for concise revision notes rather than a laboratory manual. The canonical activity/procedure/practice records are retained unchanged for provenance.

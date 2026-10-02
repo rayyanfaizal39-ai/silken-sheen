@@ -914,7 +914,7 @@ const en: Chapter8Content = {
       "For example, red light has the highest speed, so red light is refracted the least. However, violet light has the lowest speed, so violet light is refracted the most.",
     prismBehaviour: [
       "When a white light ray is directed to a prism, the white light will be separated into its components of colour. This is because the different colours in the white light bend towards the normal at different angles when entering the prism.",
-      "When the different colours leave the glass prism, they are refracted away from the normal. The different colours are dispersed in an order that is known as a spectrum. The spectrum of white light consists of red, orange, yellow, green, blue, indigo and violet colour.",
+      "When the different colours leave the glass prism, they are refracted away from the normal. The different colours are dispersed in an order that is known as a spectrum.",
     ],
     rainbowFormation:
       "When sunlight enters rain droplets in the sky, the white light will be refracted and dispersed into seven different colours to form a rainbow.",

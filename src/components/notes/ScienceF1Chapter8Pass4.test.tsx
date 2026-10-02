@@ -154,6 +154,20 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
       }
       expect(svg.querySelector("[data-white-screen]")!.getAttribute("fill")).toBe("#f8fafc");
     });
+    it(`${lang}: explains dispersion before its diagram and lists each spectrum colour once`, () => {
+      dispersion();
+      const lesson = host.querySelector("[data-dispersion-lesson]")!;
+      expect(lesson.firstElementChild?.getAttribute("data-dispersion-definition")).toBe("");
+      expect(lesson.firstElementChild?.textContent).toBe(d.prismBehaviour[0]);
+      expect(host.querySelector("[data-prism-exit]")?.textContent).toBe(d.prismBehaviour[1]);
+      expect(d.prismBehaviour[1]).not.toContain(d.spectrumOrder.join(", ").toLowerCase());
+      const spectrum = host.querySelector("figure figcaption ol:last-child")!;
+      expect([...spectrum.querySelectorAll("li")].map((n) => n.textContent)).toEqual(
+        d.spectrumOrder,
+      );
+      // The long colour-list sentence used to repeat the labelled spectrum in DLP.
+      expect(host.textContent).not.toContain("The spectrum of white light consists of red, orange");
+    });
     it(`${lang}: actual prism ray angles bend toward entry normal, away at exit, red least/violet most`, () => {
       dispersion();
       const svg = host.querySelector('[data-optics-visual="prism"]')!;
@@ -313,6 +327,13 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
     expect(host.querySelector("[data-dispersion-lesson] [data-air-particle]")).toBeNull();
     expect(host.querySelector("[data-scattering-lesson] [data-air-particle]")).not.toBeNull();
     expect(host.querySelector("[data-scattering-lesson] [data-prism]")).toBeNull();
+    // These are code-native diagrams with readable HTML captions, not external image assets.
+    expect(host.querySelectorAll("img, image")).toHaveLength(0);
+    expect(host.querySelectorAll("svg")).toHaveLength(4);
+    host
+      .querySelectorAll("[data-diagram-callout] text")
+      .forEach((n) => expect(Number(n.getAttribute("font-size"))).toBeGreaterThanOrEqual(18));
+    expect(host.querySelectorAll("figure figcaption")).toHaveLength(4);
     for (const name of ["Chapter8Dispersion", "Chapter8Scattering"]) {
       const source = read(`src/components/notes/${name}.tsx`);
       expect(source).not.toMatch(/lang\s*===|chapter8Supplement|const\s+(?:en|bm)\s*=/);

@@ -49,9 +49,9 @@ export function DiagramKey({ items }: { items: string[] }) {
 }
 export function Pin({ x, y, n }: { x: number; y: number; n: number }) {
   return (
-    <g transform={`translate(${x} ${y})`}>
-      <circle r="11" fill="#0f172a" stroke="#94a3b8" />
-      <text textAnchor="middle" y="4" fontSize="12" fill="#fff">
+    <g data-diagram-callout="" transform={`translate(${x} ${y})`}>
+      <circle r="14" fill="#0f172a" stroke="#94a3b8" />
+      <text textAnchor="middle" y="6" fontSize="18" fill="#fff">
         {n}
       </text>
     </g>
@@ -149,6 +149,7 @@ export function Chapter8Dispersion({ source: s }: { source: DispersionLesson }) 
   const prismKey = [l.white, l.prism, l.screen, l.normal];
   return (
     <div data-dispersion-lesson="" className="space-y-8 text-sm leading-6 text-slate-200">
+      <p data-dispersion-definition="">{s.prismBehaviour[0]}</p>
       <p>{s.definition}</p>
       <figure className="rounded-2xl border border-cyan-300/20 bg-slate-950/40 p-4 sm:p-6">
         <PrismDiagram />
@@ -165,14 +166,9 @@ export function Chapter8Dispersion({ source: s }: { source: DispersionLesson }) 
           </ol>
         </figcaption>
       </figure>
-      <ol className="space-y-3 border-l-2 border-cyan-400 pl-5">
-        {s.prismBehaviour.map((p, i) => (
-          <li key={p}>
-            <strong className="mr-2 text-cyan-300">{i + 1}.</strong>
-            {p}
-          </li>
-        ))}
-      </ol>
+      <p data-prism-exit="" className="border-l-2 border-cyan-400 pl-5">
+        {s.prismBehaviour[1]}
+      </p>
       <p className="border-l-2 border-violet-400 pl-5" data-speed-comparison="">
         {s.speedFact}
       </p>
