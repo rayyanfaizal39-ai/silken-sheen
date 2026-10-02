@@ -1,7 +1,7 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it } from "vitest";
 import { buildQuizCatalog, maxXpFor, type QuizCatalog } from "./buildQuizCatalog";
-import { QUIZ_CATALOG_MIGRATION_PATTERN, renderQuizCatalogSql } from "./quizCatalogSql";
+import { renderForm3SejarahQuiz25MetadataSql, renderQuizCatalogSql } from "./quizCatalogSql";
 import { buildCanonicalQuizKey } from "@/features/quiz/xp/quizXp";
 
 const migrationsDir = new URL("../../../../supabase/migrations/", import.meta.url);
@@ -17,15 +17,20 @@ describe("server quiz catalog", () => {
     expect(renderQuizCatalogSql(buildQuizCatalog())).toBe(renderQuizCatalogSql(catalog));
   });
 
-  it("matches the latest catalog migration for its declared scope", () => {
-    const latest = readdirSync(migrationsDir)
-      .filter((name) => QUIZ_CATALOG_MIGRATION_PATTERN.test(name))
-      .sort()
-      .at(-1);
-    expect(latest).toBeDefined();
-    const applied = readFileSync(new URL(latest!, migrationsDir), "utf8").replace(/\r\n/g, "\n");
-    const scope = applied.includes("-- Scope: Sejarah Form 3 only.") ? "sejarah-f3" : undefined;
-    expect(applied).toBe(renderQuizCatalogSql(catalog, scope));
+  it("matches the targeted six-row metadata migration", () => {
+    const sql = readFileSync(
+      new URL("20261001024818_sync_form3_sejarah_quiz_25_question_metadata.sql", migrationsDir),
+      "utf8",
+    ).replace(/\r\n/g, "\n");
+    expect(sql).toBe(renderForm3SejarahQuiz25MetadataSql(catalog));
+  });
+
+  it("matches the targeted ten-row Chapters 4-8 metadata migration", () => {
+    const sql = readFileSync(
+      new URL("20261001054107_sync_form3_sejarah_chapters_4_to_8_quiz_25_question_metadata.sql", migrationsDir),
+      "utf8",
+    ).replace(/\r\n/g, "\n");
+    expect(sql).toBe(renderForm3SejarahQuiz25MetadataSql(catalog, "chapters-4-8"));
   });
 
   it("catalogs Science F1 Chapter 7 as 30 questions: 15 Easy, 10 Medium, 5 Hard", () => {
@@ -101,8 +106,8 @@ describe("server quiz catalog", () => {
         return catalog.quizzes.find((quiz) => quiz.quizKey === quizKey)!;
       });
       expect(rows[0].quizKey).not.toBe(rows[1].quizKey);
-      expect(rows[0].totalQuestions).toBe(chapter <= 2 ? 10 : 20);
-      expect(rows[1].totalQuestions).toBe(chapter <= 2 ? 10 : 20);
+      expect(rows[0].totalQuestions).toBe(25);
+      expect(rows[1].totalQuestions).toBe(25);
       expect(rows.every((row) => row.subjectId === "sejarah" && row.form === 3)).toBe(true);
       expect(keys.has(`quiz-v2:standard:sejarah:form-3:chapter-${chapter}:bm:set-default:difficulty-all`)).toBe(false);
     }

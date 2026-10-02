@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 7 (Set B)",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 7,
+  "set": "Set B",
+  "chapter_title": "Penentangan Masyarakat Tempatan",
+  "total_questions": 25,
+  "instructions": "Pilih satu jawapan yang paling tepat bagi setiap soalan.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "7.1 Matlamat dan Bentuk Penentangan Masyarakat Tempatan",
+      "question": "Mengapakah sistem pendaftaran tanah dan lesen pas yang diperkenalkan Barat sangat ditentang oleh masyarakat tempatan?",
+      "options": {
+        "A": "Mewajibkan semua tanah diserahkan kepada syarikat asing di London",
+        "B": "Bertentangan dengan amalan adat di mana tanah dianggap milik bersama/hak Allah dan membebankan rakyat dengan cukai",
+        "C": "Memaksa rakyat menjual hasil pertanian hanya kepada Gabenor Selat",
+        "D": "Menghadkan pengeluaran padi tempatan bagi menggalakkan import beras"
+      },
+      "answer": "B",
+      "explanation": "Sistem tanah Barat dianggap mencabar adat tradisi dan hukum agama (seperti tanah hak Allah), serta menyusahkan rakyat miskin yang terpaksa membayar lesen dan cukai tanah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.1 (ms. 173)"
+    },
+    {
+      "id": 2,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Dol Said)",
+      "question": "Apakah strategi British yang menyebabkan kekalahan Dol Said dalam Perang Naning Kedua pada tahun 1832?",
+      "options": {
+        "A": "Membakar seluruh ladang padi dan pusat bekalan air di Naning",
+        "B": "Mendapat bantuan armada tentera dari Kerajaan Siam",
+        "C": "Menangkap Dol Said semasa majlis perundingan damai",
+        "D": "Menggunakan strategi pecah dan perintah dengan mengumpan Rembau untuk membantu British"
+      },
+      "answer": "D",
+      "explanation": "Dalam Perang Naning II, British berjaya mempengaruhi Yam Tuan Muda Raja Ali dari Rembau untuk tidak membantu Dol Said, malah menghantar tentera membantu British menewaskan Naning.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 175)"
+    },
+    {
+      "id": 3,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Rentap)",
+      "question": "Apakah kubu pertahanan utama Rentap yang sukar ditembusi oleh pasukan James Brooke di Sarawak?",
+      "options": {
+        "A": "Kubu Bukit Sadok",
+        "B": "Kubu Nanga Skrang",
+        "C": "Kubu Margherita",
+        "D": "Kubu Pasir Salak"
+      },
+      "answer": "A",
+      "explanation": "Kubu Bukit Sadok yang diperbuat daripada kayu belian tebal dan terletak di atas puncak bukit menjadi benteng kukuh Rentap yang menahan serangan Brooke sebanyak tiga kali.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 177)"
+    },
+    {
+      "id": 4,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah nama meriam yang digunakan Rentap untuk mempertahankan kubu Bukit Sadok?",
+      "options": {
+        "A": "Bukit Sadok",
+        "B": "Bujang Timpang Berang",
+        "C": "Lela Rentaka",
+        "D": "Snider Rifle"
+      },
+      "answer": "B",
+      "explanation": "Rentap menggunakan meriam 'Bujang Timpang Berang' yang diperbuat daripada besi.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 185)"
+    },
+    {
+      "id": 5,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Sharif Masahor)",
+      "question": "Siapakah pembesar Melayu Sarawak yang berpakat dengan Sharif Masahor untuk menyerang rejim Brooke di Kuching?",
+      "options": {
+        "A": "Datu Patinggi Abang Abdul Gapur",
+        "B": "Datu Bandar Abang Haji Muda",
+        "C": "Pangeran Indera Mahkota",
+        "D": "Datu Temenggong Abang Ali"
+      },
+      "answer": "A",
+      "explanation": "Sharif Masahor mengadakan pakatan sulit dengan Datu Patinggi Abang Abdul Gapur untuk menggulingkan Dinasti Brooke dan mengusir Charles Brooke dari Sarawak.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 178)"
+    },
+    {
+      "id": 6,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Sharif Masahor)",
+      "question": "Apakah hukuman yang dikenakan oleh pihak Brooke ke atas Sharif Masahor selepas pakatan beliau digagalkan?",
+      "options": {
+        "A": "Dijatuhkan hukuman gantung di Kuching",
+        "B": "Dipenjarakan di Fort Alice Simanggang",
+        "C": "Dilucutkan gelaran pembesar dan didenda",
+        "D": "Dibuang negeri ke Singapura"
+      },
+      "answer": "D",
+      "explanation": "Selepas pakatannya tewas, Sharif Masahor telah ditangkap dan dibuang negeri ke Singapura oleh pihak Brooke.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 179)"
+    },
+    {
+      "id": 7,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah tindakan Sultan Abdullah dan pembesar Perak pada 16 Oktober 1874 untuk mencabar Perjanjian Pangkor?",
+      "options": {
+        "A": "Menyerang British di Kuala Lumpur",
+        "B": "Memohon bantuan Siam",
+        "C": "Mengupah peguam R.C. Woods dari Pulau Pinang untuk memansuhkan perjanjian",
+        "D": "Mengisytiharkan perang terhadap Belanda"
+      },
+      "answer": "C",
+      "explanation": "Sultan Abdullah dan pembesar Perak mengupah R.C. Woods untuk cuba memansuhkan Perjanjian Pangkor, tetapi usaha itu gagal.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.1 (ms. 178)"
+    },
+    {
+      "id": 8,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah tujuan J.W.W. Birch datang ke Pasir Salak pada 2 November 1875?",
+      "options": {
+        "A": "Menandatangani Perjanjian Pangkor",
+        "B": "Menabalkan Sultan Ismail",
+        "C": "Menampal perisytiharan pengambilalihan hak memungut cukai oleh British",
+        "D": "Mengadakan Durbar"
+      },
+      "answer": "C",
+      "explanation": "Birch datang untuk menampal perisytiharan pengambilalihan hak memungut cukai oleh British sebelum beliau dibunuh.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.1 (ms. 178)"
+    },
+    {
+      "id": 9,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Yamtuan Antah)",
+      "question": "Apakah kesan perundingan damai antara Yamtuan Antah dengan Gabenor Sir William Jervois pada tahun 1876?",
+      "options": {
+        "A": "Yamtuan Antah dibuang negeri ke Pulau Pinang",
+        "B": "Seri Menanti digabungkan terus menjadi sebahagian daripada NNS",
+        "C": "Dato' Kelana menyerahkan Sungai Ujong kepada Seri Menanti",
+        "D": "British mengiktiraf Yamtuan Antah sebagai Yamtuan Besar Seri Menanti"
+      },
+      "answer": "D",
+      "explanation": "Melalui perundingan dengan Sir William Jervois, Yamtuan Antah diiktiraf oleh British sebagai Yamtuan Besar Seri Menanti, manakala daerah lain kekal di bawah pembesar masing-masing.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 183)"
+    },
+    {
+      "id": 10,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah kawasan yang berjaya ditawan Dato' Bahaman dan pengikutnya pada tahun 1894?",
+      "options": {
+        "A": "Paroi dan Bukit Putus",
+        "B": "Kuala Tembeling dan Jeram Ampai",
+        "C": "Pasir Salak dan Durian Sebatang",
+        "D": "Kudat dan Tambunan"
+      },
+      "answer": "B",
+      "explanation": "Pada tahun 1894, Dato' Bahaman dan pengikutnya menawan Kuala Tembeling dan Jeram Ampai.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.1 (ms. 174)"
+    },
+    {
+      "id": 11,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah hasil Rundingan Perdamaian Menggatal 1898 antara SBUB dengan Mat Salleh?",
+      "options": {
+        "A": "Mat Salleh dilantik sebagai Gabenor Sabah",
+        "B": "SBUB menyerahkan Kudat kepada Mat Salleh",
+        "C": "Mat Salleh dibuang ke Makkah",
+        "D": "Mat Salleh dibenarkan mentadbir daerah Tambunan"
+      },
+      "answer": "D",
+      "explanation": "Dalam rundingan 1898, SBUB membenarkan Mat Salleh mentadbir Tambunan sebelum mengambilnya semula pada tahun 1899.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 188)"
+    },
+    {
+      "id": 12,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Mat Salleh)",
+      "question": "Di manakah pertempuran terakhir yang menyaksikan Mat Salleh gugur menentang pasukan tentera SBUB pada tahun 1900?",
+      "options": {
+        "A": "Kubu Tambunan",
+        "B": "Kubu Ranau",
+        "C": "Pulau Gaya",
+        "D": "Kubu Inanam"
+      },
+      "answer": "A",
+      "explanation": "Mat Salleh gugur dalam pertempuran di kubu pertahanannya di Tambunan pada 31 Januari 1900 selepas diserang besar-besaran oleh SBUB.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 187)"
+    },
+    {
+      "id": 13,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah kelebihan strategik Kota Mat Sator di Kampung Kapayan Lama, Tambunan?",
+      "options": {
+        "A": "Terletak di pelabuhan antarabangsa",
+        "B": "Mempunyai landasan kereta api",
+        "C": "Terletak berhampiran Sungai Sunsuron yang membekalkan air dan menjadi pusat tinjauan kegiatan British",
+        "D": "Dilindungi tentera Belanda"
+      },
+      "answer": "C",
+      "explanation": "Kota Mat Sator terletak strategik di tebing Sungai Sunsuron, membekalkan air dan berfungsi sebagai pusat tinjauan kegiatan British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 185)"
+    },
+    {
+      "id": 14,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Tok Janggut)",
+      "question": "Siapakah pegawai British di Pasir Puteh yang kejam dan enggan melayan rayuan penduduk berhubung masalah bayaran cukai tanah?",
+      "options": {
+        "A": "Encik Latiff (Pegawai Daerah Pasir Puteh)",
+        "B": "J.S. Mason",
+        "C": "W.A. Graham",
+        "D": "J.L. Humphreys"
+      },
+      "answer": "A",
+      "explanation": "Encik Latiff (Pegawai Daerah Pasir Puteh yang dilantik British) bertindak tegas dan tidak mahu beransur kompromi dengan petani tempatan, yang akhirnya mencetuskan kemarahan Tok Janggut.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 190)"
+    },
+    {
+      "id": 15,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Haji Abdul Rahman Limbong)",
+      "question": "Apakah gelaran peristiwa kebangkitan rakyat Terengganu pada tahun 1928 yang dipimpin oleh para ulama dan petani?",
+      "options": {
+        "A": "Perang Hulu Terengganu",
+        "B": "Peristiwa Padang Kachong",
+        "C": "Kebangkitan Tani Terengganu",
+        "D": "Dahagi Terengganu"
+      },
+      "answer": "C",
+      "explanation": "Kebangkitan Tani Terengganu (1928) merujuk kepada gerakan petani di Marang, Kuala Telemong, dan Kuala Berang menentang penguatkuasaan undang-undang tanah British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 192)"
+    },
+    {
+      "id": 16,
+      "subtopic": "7.2 Penentangan Masyarakat Tempatan (Haji Abdul Rahman Limbong)",
+      "question": "Apakah tindakan yang diambil oleh British terhadap Haji Abdul Rahman Limbong selepas Kebangkitan Tani 1928 ditumpaskan?",
+      "options": {
+        "A": "Dijatuhkan hukuman penjara seumur hidup di Singapura",
+        "B": "Dibuang negeri ke Mekah",
+        "C": "Dihukum gantung di Kuala Terengganu",
+        "D": "Dilucutkan jawatan sebagai guru agama"
+      },
+      "answer": "B",
+      "explanation": "Haji Abdul Rahman Limbong ditangkap dan dibuang negeri ke Mekah oleh pihak British di mana beliau akhirnya meninggal dunia di sana.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.2 (ms. 193)"
+    },
+    {
+      "id": 17,
+      "subtopic": "7.3 Kesan Penentangan Masyarakat Tempatan",
+      "question": "Apakah kesan terhadap Sultan Abdullah dari Perak selepas pembunuhan J.W.W. Birch?",
+      "options": {
+        "A": "Dijatuhkan hukuman gantung bersama Dato' Maharaja Lela",
+        "B": "Dikekalkan di takhta tetapi dinafikan elaun bulanan",
+        "C": "Dibuang negeri ke Pulau Seychelles",
+        "D": "Dipindahkan ke Singapura di bawah pengawasan Gabenor"
+      },
+      "answer": "C",
+      "explanation": "Sultan Abdullah, Raja Ismail, Ngah Ibrahim, dan Dato' Shahbandar dibuang negeri ke Pulau Seychelles kerana dituduh bersubahat dalam pembunuhan Birch.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 195)"
+    },
+    {
+      "id": 18,
+      "subtopic": "7.4 Iktibar daripada Perjuangan Masyarakat Tempatan",
+      "question": "Mengapakah sokongan istana atau pemuka agama sangat penting dalam menjayakan gerakan penentangan tempatan?",
+      "options": {
+        "A": "Membolehkan tentera tempatan membeli meriam moden dari Eropah",
+        "B": "Membolehkan penentang mendapat elaun daripada perbendaharaan negeri",
+        "C": "Memastikan British menyerah kalah tanpa pertumpahan darah",
+        "D": "Memberi keabsahan moral, semangat jihad, dan perpaduan rakyat yang lebih meluas"
+      },
+      "answer": "D",
+      "explanation": "Penglibatan ulama dan dorongan istana memberikan keabsahan moral serta menyemarakkan semangat jihad dan perpaduan rakyat menentang penjajah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.4 (ms. 197)"
+    },
+    {
+      "id": 19,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah faktor yang membantu British menewaskan penentangan masyarakat tempatan?",
+      "options": {
+        "A": "Kelebihan teknologi senjata, strategi memecah pakatan, pengaruh istana dan tipu daya",
+        "B": "British tidak menggunakan tentera",
+        "C": "Masyarakat tempatan memiliki senjata lebih moden",
+        "D": "Semua penentangan mendapat sokongan menyeluruh"
+      },
+      "answer": "A",
+      "explanation": "British menggunakan kekuatan tentera, senjata moden, memecahbelahkan pakatan, pengaruh istana dan tipu daya.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 189)"
+    },
+    {
+      "id": 20,
+      "subtopic": "7.4 Kesan Penentangan Masyarakat Tempatan",
+      "question": "Berapakah kerugian British yang dinyatakan bagi Perang Naning?",
+      "options": {
+        "A": "100,000 Pound Sterling",
+        "B": "400,000 Pound Sterling",
+        "C": "7,000 Pound Sterling",
+        "D": "1,000 Pound Sterling"
+      },
+      "answer": "A",
+      "explanation": "Buku teks menyatakan British kerugian sebanyak 100,000 Pound Sterling dalam Perang Naning.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.4 (ms. 190)"
+    },
+    {
+      "id": 21,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Mengapakah kubu Bukit Sadok membantu Rentap menangkis serangan Brooke?",
+      "options": {
+        "A": "Terletak di tengah bandar",
+        "B": "Kedudukannya curam, tinggi, dikelilingi hutan dan dilindungi kayu belian tebal",
+        "C": "Dibina oleh tentera British",
+        "D": "Mempunyai landasan kereta api"
+      },
+      "answer": "B",
+      "explanation": "Kubu Bukit Sadok berada di kawasan curam dan tinggi, dikelilingi hutan serta mempunyai halangan kayu belian yang sukar ditembusi.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 185)"
+    },
+    {
+      "id": 22,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Apakah yang membantu British menewaskan Yamtuan Antah?",
+      "options": {
+        "A": "Meriam besar British serta kekurangan peluru dan ubat bedil pihak Yamtuan Antah",
+        "B": "Bantuan tentera Belanda kepada Yamtuan Antah",
+        "C": "Kubu Bukit Putus dibina British",
+        "D": "Yamtuan Antah tidak mempunyai pengikut"
+      },
+      "answer": "A",
+      "explanation": "British menggunakan meriam besar, manakala pihak Yamtuan Antah kehabisan peluru dan kekurangan ubat bedil.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 186)"
+    },
+    {
+      "id": 23,
+      "subtopic": "7.3 Penentangan Masyarakat Tempatan Terhadap Kuasa Barat",
+      "question": "Bagaimanakah Brooke akhirnya menewaskan Rentap pada tahun 1861?",
+      "options": {
+        "A": "Menggunakan perjanjian damai sahaja",
+        "B": "Menggunakan meriam tembaga 'Bukit Sadok' dan angkatan tentera yang lebih besar",
+        "C": "Mendapat bantuan Siam",
+        "D": "Menyerahkan Sarawak kepada Rentap"
+      },
+      "answer": "B",
+      "explanation": "Dalam serangan ketiga 1861, Brooke menggunakan meriam tembaga 'Bukit Sadok' dan angkatan tentera lebih besar.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.3 (ms. 186)"
+    },
+    {
+      "id": 24,
+      "subtopic": "7.4 Kesan Penentangan Masyarakat Tempatan",
+      "question": "Apakah tujuan British menubuhkan Majlis Mesyuarat Negeri selepas penentangan tempatan?",
+      "options": {
+        "A": "Menghapuskan institusi sultan",
+        "B": "Menggantikan semua mahkamah",
+        "C": "Menjadi badan perdagangan",
+        "D": "Menjadi badan penasihat sultan dan meluluskan Perintah atau Peraturan Sultan dalam Majlis"
+      },
+      "answer": "D",
+      "explanation": "MMN menjadi badan penasihat sultan dan meluluskan Perintah atau Peraturan Sultan dalam Majlis Mesyuarat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.4 (ms. 190)"
+    },
+    {
+      "id": 25,
+      "subtopic": "7.4 Kesan Penentangan Masyarakat Tempatan",
+      "question": "Berapakah perbelanjaan British dalam Perang Perak yang dinyatakan dalam buku teks?",
+      "options": {
+        "A": "100,000 Pound Sterling",
+        "B": "7,000 Pound Sterling",
+        "C": "400,000 Pound Sterling",
+        "D": "40,000 Pound Sterling"
+      },
+      "answer": "C",
+      "explanation": "British membelanjakan 400,000 Pound Sterling dalam Perang Perak.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 7.4 (ms. 190)"
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 2: Pentadbiran Negeri-negeri Selat (Set B)",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 2,
+  "set": "Set B",
+  "chapter_title": "Pentadbiran Negeri-negeri Selat",
+  "total_questions": 25,
+  "instructions": "Pilih satu jawapan yang paling tepat bagi setiap soalan.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah kepentingan Batu Uban dalam sejarah awal Pulau Pinang?",
+      "options": {
+        "A": "Pelabuhan paling awal di Pulau Pinang yang dibuka oleh orang Melayu dari Sumatera pada tahun 1759",
+        "B": "Pusat pentadbiran British selepas 1832",
+        "C": "Pangkalan Belanda di Pulau Pinang",
+        "D": "Pusat perlombongan emas"
+      },
+      "answer": "A",
+      "explanation": "Batu Uban ialah pelabuhan paling awal di Pulau Pinang dan petempatannya dibuka oleh orang Melayu dari Sumatera pada tahun 1759.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 30)"
+    },
+    {
+      "id": 2,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah barangan yang dikehendaki China sebagai tukaran bagi teh dalam perdagangan dengan British?",
+      "options": {
+        "A": "Kain bulu dan kapas",
+        "B": "Emas, perak, bijih timah dan rempah-ratus",
+        "C": "Arang batu dan petroleum",
+        "D": "Getah dan tembakau"
+      },
+      "answer": "B",
+      "explanation": "China mahukan emas, perak, bijih timah dan rempah-ratus sebagai tukaran bagi teh.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 32)"
+    },
+    {
+      "id": 3,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah fungsi pelabuhan persinggahan yang diperlukan British di laluan India-China?",
+      "options": {
+        "A": "Tempat menabalkan sultan",
+        "B": "Pusat perlombongan",
+        "C": "Tempat membaiki kapal, mendapatkan bekalan dan berlindung sementara menunggu perubahan angin monsun",
+        "D": "Tempat mengutip cukai tanah"
+      },
+      "answer": "C",
+      "explanation": "Pelabuhan persinggahan digunakan untuk membaiki kapal, mendapatkan bekalan makanan dan minuman serta berlindung sementara menunggu perubahan angin monsun.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 32)"
+    },
+    {
+      "id": 4,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah perkembangan yang mendorong British mengukuhkan kedudukan mereka di Asia Pasifik pada abad ke-18?",
+      "options": {
+        "A": "British menguasai Sepanyol",
+        "B": "Perancis menyerahkan Indochina",
+        "C": "Belanda meninggalkan Batavia",
+        "D": "British kehilangan Amerika sebagai tanah jajahan dan menduduki Australia pada tahun 1770"
+      },
+      "answer": "D",
+      "explanation": "Selepas kehilangan Amerika, British mengukuhkan laluan perdagangan ke China dan menduduki Australia pada tahun 1770.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 33)"
+    },
+    {
+      "id": 5,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah krisis yang berlaku semasa Sultan Muhammad Jiwa melantik Tunku Abdullah sebagai Raja Muda Kedah?",
+      "options": {
+        "A": "Sebahagian kerabat diraja berpakat dengan Bugis di Selangor menentang pelantikan itu",
+        "B": "Siam menakluk Pulau Pinang",
+        "C": "Belanda menyerang Kedah",
+        "D": "Perancis menguasai Seberang Perai"
+      },
+      "answer": "A",
+      "explanation": "Kerabat diraja yang tidak bersetuju dengan pelantikan Tunku Abdullah berpakat dengan Bugis di Selangor.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 34)"
+    },
+    {
+      "id": 6,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah nama yang diberikan Francis Light kepada Pulau Pinang dan petempatannya?",
+      "options": {
+        "A": "Province Wellesley dan Fort Canning",
+        "B": "Prince of Wales Island dan Georgetown",
+        "C": "Bencoolen dan Victoria",
+        "D": "George Island dan Cornwallis Town"
+      },
+      "answer": "B",
+      "explanation": "Francis Light menamakan Pulau Pinang sebagai Prince of Wales Island dan petempatan British sebagai Georgetown.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 34)"
+    },
+    {
+      "id": 7,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah kesan Surat Kew 1795 terhadap tanah jajahan Belanda di Timur?",
+      "options": {
+        "A": "Belanda menyerahkan Melaka selama-lamanya kepada British",
+        "B": "Perancis menguasai Singapura",
+        "C": "Tanah jajahan Belanda di Timur diserahkan sementara kepada British sehingga Perang Napoleon tamat",
+        "D": "Belanda menyerahkan Pulau Jawa kepada Siam"
+      },
+      "answer": "C",
+      "explanation": "Surat Kew membolehkan British mengambil alih tanah jajahan Belanda di Timur secara sementara sehingga perang tamat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 36)"
+    },
+    {
+      "id": 8,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Siapakah dua pegawai British yang tiba di Singapura pada Januari 1819 untuk mencari pelabuhan baharu?",
+      "options": {
+        "A": "Francis Light dan George Leith",
+        "B": "John Crawford dan William Farquhar",
+        "C": "Andrew Clarke dan Raffles",
+        "D": "Stamford Raffles dan William Farquhar"
+      },
+      "answer": "D",
+      "explanation": "Stamford Raffles dan William Farquhar tiba di Singapura pada Januari 1819.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 38)"
+    },
+    {
+      "id": 9,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Mengapakah Tengku Hussein tidak hadir semasa pemakaman Sultan Mahmud Shah III pada tahun 1812?",
+      "options": {
+        "A": "Baginda berada di Pahang",
+        "B": "Baginda berada di Melaka",
+        "C": "Baginda berada di Singapura",
+        "D": "Baginda berada di Kedah"
+      },
+      "answer": "A",
+      "explanation": "Tengku Hussein tidak hadir ketika pemakaman kerana berada di Pahang.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 38)"
+    },
+    {
+      "id": 10,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Siapakah Residen pertama Singapura selepas Perjanjian 6 Februari 1819?",
+      "options": {
+        "A": "John Crawford",
+        "B": "William Farquhar",
+        "C": "Stamford Raffles",
+        "D": "George Leith"
+      },
+      "answer": "B",
+      "explanation": "William Farquhar dilantik sebagai Residen pertama Singapura dan berkhidmat dari 1819 hingga 1823.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 39)"
+    },
+    {
+      "id": 11,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Siapakah Residen Singapura yang menandatangani Perjanjian 2 Ogos 1824 dengan Sultan Hussein dan Temenggung Abdul Rahman?",
+      "options": {
+        "A": "William Farquhar",
+        "B": "Francis Light",
+        "C": "John Crawford",
+        "D": "Andrew Clarke"
+      },
+      "answer": "C",
+      "explanation": "John Crawford, Residen Singapura 1823-1826, menandatangani Perjanjian 2 Ogos 1824.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 39)"
+    },
+    {
+      "id": 12,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah peranan utama Melaka di bawah Belanda dari 1641 hingga 1824?",
+      "options": {
+        "A": "Pusat pentadbiran British India",
+        "B": "Pusat perdagangan utama Belanda mengatasi Betawi",
+        "C": "Pusat perlombongan emas",
+        "D": "Pusat pengumpulan hasil bijih timah dari negeri-negeri Melayu"
+      },
+      "answer": "D",
+      "explanation": "Belanda menjadikan Melaka pusat pengumpulan hasil bijih timah, tetapi lebih mementingkan Betawi sebagai pusat perdagangan utama.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 31)"
+    },
+    {
+      "id": 13,
+      "subtopic": "2.2 Perjanjian London 1824 dan Kesannya Terhadap Alam Melayu",
+      "question": "Apakah syarat Perjanjian London 1824 yang dikenakan kepada British berkaitan Kepulauan Riau Lingga?",
+      "options": {
+        "A": "British tidak membuka petempatan baharu di Kepulauan Riau Lingga dan kepulauan lain di selatan Singapura",
+        "B": "British mesti menyerahkan Singapura kepada Belanda",
+        "C": "British mesti meninggalkan Pulau Pinang",
+        "D": "British mesti menyerahkan Melaka kepada Portugis"
+      },
+      "answer": "A",
+      "explanation": "British bersetuju tidak membuka petempatan baharu di Kepulauan Riau Lingga dan kepulauan lain di selatan Singapura.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.2 (ms. 43)"
+    },
+    {
+      "id": 14,
+      "subtopic": "2.2 Perjanjian London 1824 dan Kesannya Terhadap Alam Melayu",
+      "question": "Apakah nama wilayah pengaruh Belanda yang terbentuk selepas pembahagian Alam Melayu?",
+      "options": {
+        "A": "Tanah Melayu British",
+        "B": "Hindia Timur Belanda",
+        "C": "Negeri-negeri Selat",
+        "D": "Persekutuan 1896"
+      },
+      "answer": "B",
+      "explanation": "Wilayah pengaruh Belanda dikenali sebagai Hindia Timur Belanda.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.2 (ms. 42)"
+    },
+    {
+      "id": 15,
+      "subtopic": "2.2 Perjanjian London 1824 dan Kesannya Terhadap Alam Melayu",
+      "question": "Apakah yang berlaku kepada institusi Kesultanan Riau Lingga pada tahun 1911?",
+      "options": {
+        "A": "Disatukan dengan Johor",
+        "B": "Diletakkan di bawah British",
+        "C": "Dihapuskan oleh Belanda",
+        "D": "Dipindahkan ke Pahang"
+      },
+      "answer": "C",
+      "explanation": "Pada tahun 1911, institusi Kesultanan Riau Lingga dihapuskan oleh Belanda dan wilayah itu diperintah secara langsung melalui Residen Riau.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.2 (ms. 44)"
+    },
+    {
+      "id": 16,
+      "subtopic": "2.2 Perjanjian London 1824 dan Kesannya Terhadap Alam Melayu",
+      "question": "Apakah tindakan Bendahara Tun Ali di Pahang pada tahun 1853?",
+      "options": {
+        "A": "Menyerahkan Pahang kepada Belanda",
+        "B": "Menerima Residen British",
+        "C": "Menggabungkan Pahang dengan Singapura",
+        "D": "Mengisytiharkan Pahang sebagai negeri yang bebas dan berdaulat dengan muafakat pembesar"
+      },
+      "answer": "D",
+      "explanation": "Pada tahun 1853, Bendahara Tun Ali dengan muafakat pembesar Pahang mengisytiharkan Pahang sebagai negeri bebas dan berdaulat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.2 (ms. 45)"
+    },
+    {
+      "id": 17,
+      "subtopic": "2.3 Pembentukan Negeri-negeri Selat",
+      "question": "Bagaimanakah Pulau Pinang ditadbir pada peringkat awal sebelum pembentukan Negeri-negeri Selat?",
+      "options": {
+        "A": "Francis Light menjadi Pesuruhjaya yang bertanggungjawab kepada Gabenor Jeneral British di India",
+        "B": "Ditadbir oleh Residen Singapura",
+        "C": "Ditadbir oleh Temenggung Abdul Rahman",
+        "D": "Ditadbir terus oleh Pejabat Tanah Jajahan"
+      },
+      "answer": "A",
+      "explanation": "Pada peringkat awal, Francis Light mentadbir Pulau Pinang sebagai Pesuruhjaya yang bertanggungjawab kepada Gabenor Jeneral British di India.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.3 (ms. 46)"
+    },
+    {
+      "id": 18,
+      "subtopic": "2.3 Pembentukan Negeri-negeri Selat",
+      "question": "Apakah perubahan status Pulau Pinang pada tahun 1805?",
+      "options": {
+        "A": "Dijadikan tanah jajahan Belanda",
+        "B": "Dinaik taraf menjadi Presidensi keempat selepas Benggala, Madras dan Bombay",
+        "C": "Digabungkan dengan Kedah",
+        "D": "Dijadikan pusat pentadbiran Negeri-negeri Selat"
+      },
+      "answer": "B",
+      "explanation": "Pada tahun 1805, Pulau Pinang dinaik taraf menjadi Presidensi keempat selepas Benggala, Madras dan Bombay.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.3 (ms. 46)"
+    },
+    {
+      "id": 19,
+      "subtopic": "2.3 Pembentukan Negeri-negeri Selat",
+      "question": "Bagaimanakah Singapura ditadbir dari tahun 1819 hingga 1826?",
+      "options": {
+        "A": "Oleh Gabenor Jeneral India",
+        "B": "Oleh Sistem Kapitan",
+        "C": "Oleh Residen yang bertanggungjawab kepada Leftenan Gabenor British di Bangkahulu",
+        "D": "Oleh Sultan Hussein tanpa campur tangan British"
+      },
+      "answer": "C",
+      "explanation": "Singapura ditadbir oleh Residen yang bertanggungjawab kepada Leftenan Gabenor British di Bangkahulu, Sumatera.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.3 (ms. 46)"
+    },
+    {
+      "id": 20,
+      "subtopic": "2.3 Pembentukan Negeri-negeri Selat",
+      "question": "Apakah salah satu kesan ekonomi pembentukan Negeri-negeri Selat terhadap tenaga buruh dan masyarakat?",
+      "options": {
+        "A": "Menghentikan kemasukan buruh luar",
+        "B": "Menghapuskan masyarakat berbilang kaum",
+        "C": "Mengehadkan pelaburan luar",
+        "D": "Menjadi pintu masuk buruh luar dan menyumbang kepada pembentukan masyarakat berbilang kaum"
+      },
+      "answer": "D",
+      "explanation": "NNS menjadi pintu masuk buruh luar, mempercepat pembangunan ekonomi dan menyumbang kepada kewujudan masyarakat berbilang kaum.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.3 (ms. 47)"
+    },
+    {
+      "id": 21,
+      "subtopic": "2.4 Pentadbiran Negeri-negeri Selat",
+      "question": "Apakah masalah perwakilan yang mendorong bantahan terhadap pentadbiran Pejabat India?",
+      "options": {
+        "A": "Tiada wakil Negeri-negeri Selat dalam Majlis Perundangan di India",
+        "B": "Terlalu ramai wakil NNS dalam Majlis Perundangan India",
+        "C": "Sultan-sultan Melayu menguasai majlis",
+        "D": "Belanda menguasai Majlis Perundangan India"
+      },
+      "answer": "A",
+      "explanation": "Tiada wakil NNS dalam Majlis Perundangan di India yang meluluskan undang-undang bagi NNS.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.4 (ms. 49)"
+    },
+    {
+      "id": 22,
+      "subtopic": "2.4 Pentadbiran Negeri-negeri Selat",
+      "question": "Apakah isu mata wang yang menimbulkan rasa tidak puas hati terhadap Pejabat India?",
+      "options": {
+        "A": "Pejabat India mahu menggantikan rupee India dengan pound sterling",
+        "B": "Pejabat India mahu menggantikan Dolar Sepanyol dengan rupee India",
+        "C": "Pejabat India menghapuskan semua mata wang",
+        "D": "Pejabat India mahu menggunakan mata wang Belanda"
+      },
+      "answer": "B",
+      "explanation": "Pejabat India mahu menjadikan rupee India mata wang NNS menggantikan Dolar Sepanyol yang telah lama digunakan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.4 (ms. 49)"
+    },
+    {
+      "id": 23,
+      "subtopic": "2.4 Pentadbiran Negeri-negeri Selat",
+      "question": "Mengapakah cadangan mengenakan cukai pelabuhan dibantah oleh pedagang Negeri-negeri Selat?",
+      "options": {
+        "A": "Cukai akan mengukuhkan status pelabuhan bebas",
+        "B": "Cukai hanya dikenakan kepada British",
+        "C": "Cukai boleh menjejaskan kemakmuran taraf pelabuhan bebas",
+        "D": "Cukai menyebabkan Singapura menjadi wilayah Belanda"
+      },
+      "answer": "C",
+      "explanation": "Pedagang bimbang cukai pelabuhan akan menjejaskan kemakmuran NNS sebagai pelabuhan bebas.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.4 (ms. 49)"
+    },
+    {
+      "id": 24,
+      "subtopic": "2.4 Pentadbiran Negeri-negeri Selat",
+      "question": "Apakah kesan menjadikan Negeri-negeri Selat sebagai tempat buangan banduan?",
+      "options": {
+        "A": "Menarik lebih ramai pelabur",
+        "B": "Meningkatkan perdagangan teh",
+        "C": "Mengukuhkan imej pelabuhan",
+        "D": "Menjejaskan imej Negeri-negeri Selat sebagai pusat perdagangan"
+      },
+      "answer": "D",
+      "explanation": "Penggunaan NNS sebagai tempat buangan banduan menjejaskan imejnya sebagai pusat perdagangan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.4 (ms. 49)"
+    },
+    {
+      "id": 25,
+      "subtopic": "2.4 Pentadbiran Negeri-negeri Selat",
+      "question": "Siapakah orang Melayu pertama yang dilantik menganggotai Majlis Perundangan Negeri-negeri Selat?",
+      "options": {
+        "A": "Mohammad Eunos Abdullah",
+        "B": "Dato' Maharaja Lela",
+        "C": "Tunku Kudin",
+        "D": "Raja Abdullah"
+      },
+      "answer": "A",
+      "explanation": "Mohammad Eunos Abdullah ialah orang Melayu pertama yang dilantik menganggotai Majlis Perundangan Negeri-negeri Selat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.4 (ms. 49)"
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 8 (Set A)",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 8,
+  "set": "Set A",
+  "chapter_title": "Kebijaksanaan Raja dan Pembesar Melayu Menangani Cabaran Barat",
+  "total_questions": 25,
+  "instructions": "Pilih satu jawapan yang paling tepat bagi setiap soalan.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "8.1 Reaksi Pemerintah Melayu terhadap Cabaran Barat",
+      "question": "Apakah strategi utama yang digunakan oleh pemerintah Johor dan Negeri-negeri Melayu Utara dalam menghadapi tekanan peluasan kuasa British?",
+      "options": {
+        "A": "Langkah ketenteraan dan perang terbuka",
+        "B": "Diplomasi, pemodenan pentadbiran, dan penggubalan undang-undang bertulis",
+        "C": "Serangan gerila dan pemusnahan kubu British",
+        "D": "Meminta bantuan tentera daripada kuasa Barat lain seperti Perancis"
+      },
+      "answer": "B",
+      "explanation": "Pemerintah Johor dan Negeri-negeri Melayu Utara menggunakan pendekatan diplomasi, pemodenan pentadbiran, dan penggubalan perlembagaan bertulis untuk mengekalkan kedaulatan negeri tanpa pertumpahan darah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.1 (ms. 218-219)"
+    },
+    {
+      "id": 2,
+      "subtopic": "8.2 Tindakan Raja Melayu Menangani Cabaran Barat",
+      "question": "Apakah hasil penting kunjungan Sultan Abu Bakar ke England pada tahun 1868?",
+      "options": {
+        "A": "Baginda dikurniakan gelaran Maharaja Johor dan tekanan Gabenor Negeri-negeri Selat dapat diredakan",
+        "B": "Johor menerima Residen British",
+        "C": "Johor menyertai NNMB",
+        "D": "British menyerahkan Singapura kepada Johor"
+      },
+      "answer": "A",
+      "explanation": "Kunjungan Sultan Abu Bakar ke England membawa pengurniaan gelaran Maharaja Johor dan membantu meredakan tekanan Gabenor Negeri-negeri Selat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.2 (ms. 205)"
+    },
+    {
+      "id": 3,
+      "subtopic": "8.1 Reaksi Pemerintah Melayu terhadap Cabaran Barat",
+      "question": "Apakah tindakan berani yang dilakukan oleh Tunku Mahmud (Pemangku Raja Kedah) bagi mempertahankan identiti dan kedaulatan negeri Kedah?",
+      "options": {
+        "A": "Memindahkan ibu negeri Kedah ke Bangkok",
+        "B": "Menutup semua sekolah Inggeris di Kedah",
+        "C": "Menyerahkan jawatan Presiden Majlis Mesyuarat Negeri kepada W.G. Maxwell",
+        "D": "Menolak penggunaan Bahasa Inggeris dan mewajibkan Bahasa Melayu serta kalendar Hijrah dalam pentadbiran"
+      },
+      "answer": "D",
+      "explanation": "Tunku Mahmud menolak dominasi Penasihat British W.G. Maxwell dengan mewajibkan penggunaan Bahasa Melayu dan kalendar Hijrah dalam surat-menyurat dan pentadbiran rasmi Kedah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.1 (ms. 220)"
+    },
+    {
+      "id": 4,
+      "subtopic": "8.1 Reaksi Pemerintah Melayu terhadap Cabaran Barat",
+      "question": "Sultan Zainal Abidin III dari Terengganu terkenal dengan kebijaksanaan dalam pentadbiran. Apakah pembaharuan penting yang dilaksanakan oleh baginda?",
+      "options": {
+        "A": "Menjual tanah Terengganu kepada pelabur Eropah",
+        "B": "Memansuhkan kuasa pembesar tempatan",
+        "C": "Menubuhkan Jabatan Kerja Raya, Mahkamah Syariah, dan Polis",
+        "D": "Menolak pembentukan perlembagaan bertulis"
+      },
+      "answer": "C",
+      "explanation": "Sultan Zainal Abidin III memodenkan Terengganu dengan menubuhkan Jabatan Kerja Raya, Mahkamah Syariah, Polis, dan loji elektrik untuk memperkukuh birokrasi tempatan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.1 (ms. 221)"
+    },
+    {
+      "id": 5,
+      "subtopic": "8.1 Reaksi Pemerintah Negeri-negeri Melayu Utara dan Johor Terhadap Tindakan Barat",
+      "question": "Apakah reaksi Sultan Muhammad IV terhadap Perjanjian Bangkok 1909?",
+      "options": {
+        "A": "Baginda terus menerima semua syarat tanpa bantahan",
+        "B": "Baginda menyerahkan Kelantan kepada British",
+        "C": "Baginda menolak perjanjian dan kecewa wilayah Tabal diserahkan kepada Siam",
+        "D": "Baginda meminta Kelantan digabungkan dengan Kedah"
+      },
+      "answer": "C",
+      "explanation": "Sultan Muhammad IV menolak Perjanjian Bangkok 1909 dan kecewa apabila wilayah Tabal diserahkan kepada Siam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.1 (ms. 202)"
+    },
+    {
+      "id": 6,
+      "subtopic": "8.2 Kebijaksanaan Mengembangkan Kemakmuran Negeri",
+      "question": "Gelaran 'Bapa Pemodenan Johor' telah dianugerahkan kepada Sultan Abu Bakar atas sumbangan baginda. Apakah asas utama pemodenan tersebut?",
+      "options": {
+        "A": "Penubuhan jabatan kerajaan moden, Sistem Kangchu, dan pembinaan prasarana seperti Istana Besar",
+        "B": "Penjualan estet getah secara berskala besar kepada syarikat Eropah",
+        "C": "Pengenalan cukai pintu yang tinggi kepada penduduk kampung",
+        "D": "Penyerahan pentadbiran kewangan kepada Gabenor Singapura"
+      },
+      "answer": "A",
+      "explanation": "Sultan Abu Bakar memodenkan Johor menerusi penubuhan Jabatan Ukur, Jabatan Pelajaran, Pasukan Setia Negara Johor, Sistem Kangchu, serta pembinaan bangunan pentadbiran moden.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.2 (ms. 222-223)"
+    },
+    {
+      "id": 7,
+      "subtopic": "8.2 Tindakan Raja Melayu Menangani Cabaran Barat",
+      "question": "Apakah bidang pemodenan yang diterajui Sultan Abu Bakar di Johor?",
+      "options": {
+        "A": "Perlombongan emas sahaja",
+        "B": "Pertanian padi sahaja",
+        "C": "Pentadbiran, kewangan, undang-undang, pelajaran, kesihatan, tanah, polis dan tentera",
+        "D": "Perdagangan luar sahaja"
+      },
+      "answer": "C",
+      "explanation": "Pemodenan Johor meliputi pentadbiran, kewangan, undang-undang, pelajaran, kesihatan, tanah, polis dan tentera.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.2 (ms. 210)"
+    },
+    {
+      "id": 8,
+      "subtopic": "8.3 Perlembagaan Bertulis: Pemangkin Pembangunan Negeri",
+      "question": "Bilakah Undang-Undang Tubuh Kerajaan Johor (Perlembagaan Negeri Johor) mula digubal dan diluluskan secara rasmi?",
+      "options": {
+        "A": "10 Mac 1909",
+        "B": "1 Julai 1896",
+        "C": "14 April 1895",
+        "D": "20 Januari 1874"
+      },
+      "answer": "C",
+      "explanation": "Undang-Undang Tubuh Kerajaan Johor digubal dan diluluskan oleh Sultan Abu Bakar pada 14 April 1895, menjadikannya perlembagaan bertulis pertama di negeri Melayu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.3 (ms. 224)"
+    },
+    {
+      "id": 9,
+      "subtopic": "8.2 Tindakan Raja Melayu Menangani Cabaran Barat",
+      "question": "Apakah syarat penting keanggotaan Jemaah Menteri Johor menurut Undang-Undang Tubuh Kerajaan Johor 1895?",
+      "options": {
+        "A": "Mestilah pegawai British",
+        "B": "Mestilah pedagang asing",
+        "C": "Mestilah berasal dari Singapura",
+        "D": "Terdiri daripada bangsa Melayu, rakyat Johor dan beragama Islam"
+      },
+      "answer": "D",
+      "explanation": "Undang-Undang Tubuh Kerajaan Johor menetapkan Jemaah Menteri terdiri daripada bangsa Melayu, rakyat Johor dan beragama Islam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.2 (ms. 208)"
+    },
+    {
+      "id": 10,
+      "subtopic": "8.3 Perlembagaan Bertulis: Pemangkin Pembangunan Negeri",
+      "question": "Apakah fasal terpenting dalam Undang-Undang Tubuh Kerajaan Johor 1895 yang bertujuan menyekat peluasan kuasa British?",
+      "options": {
+        "A": "Kebenaran membawa masuk tentera British semasa darurat",
+        "B": "Larangan keras kepada Sultan dan Menteri untuk menyerahkan atau memajakkan mana-mana bahagian negeri Johor kepada kuasa asing",
+        "C": "Kewajipan menyerahkan hasil cukai bijih timah kepada British",
+        "D": "Penetapan Bahasa Inggeris sebagai bahasa rasmi mahkamah"
+      },
+      "answer": "B",
+      "explanation": "Fasal ini melarang Raja dan Ahli Mesyuarat Kerajaan menyerahkan atau menggadaikan sebarang bahagian negeri Johor kepada kuasa asing. Hukuman bunuh/tuba terancam jika dilanggar.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.3 (ms. 224)"
+    },
+    {
+      "id": 11,
+      "subtopic": "8.3 Perlembagaan Bertulis: Pemangkin Pembangunan Negeri",
+      "question": "Apakah nama undang-undang tubuh bagi negeri Terengganu yang digubal oleh Sultan Zainal Abidin III pada tahun 1911?",
+      "options": {
+        "A": "Hukum Kanun Terengganu",
+        "B": "Ahkam Syariah Terengganu",
+        "C": "Itqan al-muluk bi-ta'dil al-suluk",
+        "D": "Undang-Undang 99 Terengganu"
+      },
+      "answer": "C",
+      "explanation": "Sultan Zainal Abidin III menggubal Perlembagaan Terengganu yang dinamakan 'Itqan al-muluk bi-ta'dil al-suluk' pada 2 November 1911 untuk memperkukuh kedaulatan negeri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.3 (ms. 225)"
+    },
+    {
+      "id": 12,
+      "subtopic": "8.3 Perlembagaan Bertulis: Pemangkin Pembangunan Negeri",
+      "question": "Manakah antara berikut merupakan prinsip utama yang terkandung dalam Perlembagaan Terengganu (Itqan al-muluk bi-ta'dil al-suluk 1911)?",
+      "options": {
+        "A": "Pemerintah tidak boleh menyerahkan Terengganu kepada mana-mana kuasa asing dan Islam sebagai agama negeri",
+        "B": "Penasihat British memegang kuasa mutlak dalam Majlis Mesyuarat",
+        "C": "Raja boleh melantik gabenor British sebagai timbalan",
+        "D": "Bahasa Inggeris diwajibkan dalam perbicaraan Mahkamah Syariah"
+      },
+      "answer": "A",
+      "explanation": "Perlembagaan Terengganu 1911 menegaskan bahawa Islam ialah agama negeri dan melarang sama sekali penyerahan kedaulatan Terengganu kepada mana-mana kuasa asing.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.3 (ms. 225)"
+    },
+    {
+      "id": 13,
+      "subtopic": "8.4 Usaha Pembesar Melayu Menangani Cabaran Barat",
+      "question": "Long Jaafar dan anaknya Ngah Ibrahim telah memainkan peranan penting di Larut, Perak. Apakah sumbangan utama mereka dalam memajukan ekonomi tempatan?",
+      "options": {
+        "A": "Memajukan perlombongan bijih timah dan membawa masuk pelombong Cina serta membina infrastruktur jalan",
+        "B": "Membuka ladang getah komersial terbesar di Malaya",
+        "C": "Membina kubu pertahanan di Pasir Salak",
+        "D": "Menjual hasil timah secara eksklusif kepada syarikat Belanda"
+      },
+      "answer": "A",
+      "explanation": "Long Jaafar dan Ngah Ibrahim memajukan daerah Larut sebagai pusat pengeluaran bijih timah utama, membawa pelombong Cina, dan membina jalan raya serta landasan kereta api Taiping-Port Weld.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.4 (ms. 226)"
+    },
+    {
+      "id": 14,
+      "subtopic": "8.4 Usaha Pembesar Melayu Menangani Cabaran Barat",
+      "question": "Wan Muhammad Saman (Dato' Seri Paduka Raja) dikenali kerana projek prasarana raksasa di Kedah. Apakah projek tersebut dan apakah impaknya?",
+      "options": {
+        "A": "Membina jambatan gantung pertama menyeberangi Sungai Kedah",
+        "B": "Membina landasan kereta api Alor Setar ke Bangkok",
+        "C": "Membina pelabuhan dalam di Kuala Kedah",
+        "D": "Membina Terusan Wan Saman yang mengairi kawasan sawah padi hingga Kedah menjadi Jelapang Padi Negara"
+      },
+      "answer": "D",
+      "explanation": "Wan Muhammad Saman membina Terusan Wan Saman sepanjang 36 km yang mengairi ribuan hektar sawah padi, menjayakan Kedah sebagai pembekal beras utama (Jelapang Padi).",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.4 (ms. 227)"
+    },
+    {
+      "id": 15,
+      "subtopic": "8.4 Usaha Pembesar Melayu Menangani Cabaran Barat",
+      "question": "Dato' Jaafar bin Haji Muhammad, Menteri Besar Johor pertama, sangat tegas dalam mempertahankan maruah dan protokol istana. Apakah peraturan rasmi yang dikuatkuasakannya?",
+      "options": {
+        "A": "Wajib untuk semua pegawai British mengibarkan bendera Johor di kediaman mereka dan memakai pakaian rasmi Johor",
+        "B": "Pegawai British dilarang memasuki kawasan Johor Bahru",
+        "C": "Semua urusan pentadbiran mesti menggunakan mata wang Dolar Sepanyol",
+        "D": "Pegawai British tidak dibenarkan menghadiri majlis istana"
+      },
+      "answer": "A",
+      "explanation": "Dato' Jaafar mewajibkan pegawai British yang berkhidmat di Johor memakai pakaian rasmi Johor dan mengibarkan bendera Johor lebih tinggi/sama di kediaman mereka.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.4 (ms. 228)"
+    },
+    {
+      "id": 16,
+      "subtopic": "8.4 Usaha Pembesar Melayu Menangani Cabaran Barat",
+      "question": "Dato' Abdul Rahman bin Andak (Dato' Seri Amar Diraja) merupakan Setiausaha Kerajaan Johor yang sangat ditakuti oleh British. Mengapakah British bertindak memencenkan baginda ke London?",
+      "options": {
+        "A": "Kerana baginda enggan mengajar bahasa Melayu di sekolah",
+        "B": "Kerana Kebijaksanaan baginda menghidu muslihat British dan menggagalkan cubaan meluaskan kuasa di Johor",
+        "C": "Kerana baginda menyertai pemberontakan bersenjata di Pahang",
+        "D": "Kerana baginda menjual tanah Johor kepada pelabur Jerman"
+      },
+      "answer": "B",
+      "explanation": "Dato' Abdul Rahman bin Andak sangat bijak berdiplomasi dan sering menggagalkan usaha British menguasai Johor, menyebabkan British mendesak Sultan Ibrahim memencenkan baginda ke London.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.4 (ms. 228)"
+    },
+    {
+      "id": 17,
+      "subtopic": "8.4 Usaha Pembesar Melayu Menangani Cabaran Barat",
+      "question": "Apakah sumbangan besar Dato' Muhammad Salleh bin Perang (Dato' Bentara Luar) dalam pembangunan geografi dan pemodenan Johor?",
+      "options": {
+        "A": "Membina kapal perang pertama Johor",
+        "B": "Menulis buku sejarah Johor dalam bahasa Inggeris",
+        "C": "Mengasaskan Maktab Melayu Kuala Kangsar",
+        "D": "Melukis peta topografi Johor yang lengkap pertama dan merancang pembangunan bandar Muar, Batu Pahat, dan Endau"
+      },
+      "answer": "D",
+      "explanation": "Dato' Bentara Luar mahir dalam ilmu ukur dan melukis peta topografi Johor yang membolehkan perancangan pembangunan bandar Muar, Batu Pahat, dan Endau berjalan lancar.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.4 (ms. 229)"
+    },
+    {
+      "id": 18,
+      "subtopic": "8.4 Usaha Pembesar Melayu Menangani Cabaran Barat",
+      "question": "Sultan Idris Murshidul Adzam Shah dari Perak telah menggunakan pentas Durbar II (1903) di Kuala Lumpur untuk membuat tuntutan berani. Apakah tuntutan baginda?",
+      "options": {
+        "A": "Mendesak British menyerahkan pentadbiran Pulau Pinang kepada Perak",
+        "B": "Meminta British memansuhkan perkhidmatan kereta api di Perak",
+        "C": "Menuntut penutupan semua lombong timah milik pelabur Eropah",
+        "D": "Menuntut pemulihan kuasa Raja-raja Melayu, pertambahan pegawai Melayu dalam pentadbiran, dan pengiktirafan Bahasa Melayu"
+      },
+      "answer": "D",
+      "explanation": "Dalam Durbar II (1903), Sultan Idris secara kritikal menuntut agar kuasa Raja-raja Melayu dipulihkan, bahasa Melayu dihormati, dan lebih ramai pegawai Melayu dilantik dalam birokrasi.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.4 (ms. 230)"
+    },
+    {
+      "id": 19,
+      "subtopic": "8.4 Usaha Pembesar Melayu Menangani Cabaran Barat",
+      "question": "Apakah iktibar utama yang boleh diambil daripada kebijaksanaan Raja dan pembesar Melayu dalam menangani cabaran Barat pada abad ke-19 dan awal abad ke-20?",
+      "options": {
+        "A": "Keutamaan bergantung sepenuhnya kepada bantuan kuasa asing",
+        "B": "Pentingnya penguasaan ilmu pengetahuan, pemodenan berstrategi, dan perpaduan dalam mempertahankan kedaulatan negara",
+        "C": "Menolak terus sebarang bentuk pemodenan teknologi",
+        "D": "Menyerahkan urusan pentadbiran negeri kepada syarikat asing"
+      },
+      "answer": "B",
+      "explanation": "Kepimpinan berilmu, pandangan jauh, dan strategi diplomasi yang berkesan membolehkan sesebuah negara mempertahankan identiti dan kedaulatannya daripada pencerobohan asing.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.4 (ms. 231)"
+    },
+    {
+      "id": 20,
+      "subtopic": "8.4 Keberkesanan Peranan Pemerintah Tempatan dalam Menangani Cabaran Barat",
+      "question": "Apakah pasukan yang ditubuhkan hasil desakan Raja-raja Melayu dan pembesar melalui Durbar serta Majlis Perundangan Persekutuan?",
+      "options": {
+        "A": "Renjer Sarawak",
+        "B": "Askar Timbalan Setia Johor",
+        "C": "Rejimen Askar Melayu",
+        "D": "Polis Negeri-negeri Selat"
+      },
+      "answer": "C",
+      "explanation": "Desakan Raja-raja Melayu dan pembesar membawa kepada Kompeni Percubaan 1933 yang kemudian menjadi Rejimen Askar Melayu pada tahun 1935.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.4 (ms. 218)"
+    },
+    {
+      "id": 21,
+      "subtopic": "8.1 Reaksi Pemerintah Negeri-negeri Melayu Utara dan Johor Terhadap Tindakan Barat",
+      "question": "Wilayah manakah yang hilang daripada Perlis kepada Siam melalui Protokol Sempadan Perjanjian Bangkok 1909?",
+      "options": {
+        "A": "Tabal",
+        "B": "Pujoh",
+        "C": "Setul",
+        "D": "Lawas"
+      },
+      "answer": "B",
+      "explanation": "Perlis kehilangan wilayah Pujoh di sebelah utara Sungai Perlis kepada Siam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.1 (ms. 201)"
+    },
+    {
+      "id": 22,
+      "subtopic": "8.1 Reaksi Pemerintah Negeri-negeri Melayu Utara dan Johor Terhadap Tindakan Barat",
+      "question": "Apakah wilayah Kedah yang diserahkan kepada Siam selepas Perjanjian Bangkok 1909?",
+      "options": {
+        "A": "Pujoh sahaja",
+        "B": "Tabal sahaja",
+        "C": "Lawas dan Limbang",
+        "D": "Sadao, Setul, Pulau Terutau, Butang dan pulau-pulau sekitarnya"
+      },
+      "answer": "D",
+      "explanation": "Kedah kehilangan Sadao, Setul, Pulau Terutau, Butang dan pulau-pulau sekitarnya kepada Siam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.1 (ms. 201)"
+    },
+    {
+      "id": 23,
+      "subtopic": "8.1 Reaksi Pemerintah Negeri-negeri Melayu Utara dan Johor Terhadap Tindakan Barat",
+      "question": "Apakah kesan penyerahan wilayah Tabal kepada Siam terhadap penduduk Melayu setempat?",
+      "options": {
+        "A": "Sebahagian besar penduduk Tabal berhijrah ke Kelantan",
+        "B": "Semua penduduk berpindah ke Johor",
+        "C": "Tabal menjadi ibu negeri Kelantan",
+        "D": "Tiada perubahan penduduk"
+      },
+      "answer": "A",
+      "explanation": "Sebahagian besar penduduk Tabal berhijrah ke Kelantan kerana tidak mahu berada di bawah pemerintahan Siam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.1 (ms. 202)"
+    },
+    {
+      "id": 24,
+      "subtopic": "8.2 Tindakan Raja Melayu Menangani Cabaran Barat",
+      "question": "Apakah batas kuasa wakil British yang diterima Terengganu melalui Perjanjian British-Terengganu 1910?",
+      "options": {
+        "A": "Wakil British menjadi Residen penuh",
+        "B": "Wakil British tidak mempunyai kuasa dalam pentadbiran negeri",
+        "C": "Wakil British mengawal agama Islam",
+        "D": "Wakil British menggantikan Sultan"
+      },
+      "answer": "B",
+      "explanation": "Sultan Zainal Abidin III hanya menerima wakil British yang tidak mempunyai kuasa dalam pentadbiran negeri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.2 (ms. 205)"
+    },
+    {
+      "id": 25,
+      "subtopic": "8.4 Keberkesanan Peranan Pemerintah Tempatan dalam Menangani Cabaran Barat",
+      "question": "Apakah tujuan penubuhan Perkhidmatan Tadbir Melayu (PTM) pada tahun 1910?",
+      "options": {
+        "A": "Melatih orang Melayu menceburkan diri dalam pentadbiran negeri",
+        "B": "Menggantikan semua Raja Melayu",
+        "C": "Mengurus perdagangan getah sahaja",
+        "D": "Menghapuskan perkhidmatan awam negeri"
+      },
+      "answer": "A",
+      "explanation": "PTM ditubuhkan pada tahun 1910 untuk melatih orang Melayu menyertai pentadbiran negeri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 8.4 (ms. 219)"
+    }
+  ]
+}

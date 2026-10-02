@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 3: Pentadbiran Negeri-negeri Melayu Bersekutu (Set B)",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 3,
+  "set": "Set B",
+  "chapter_title": "Pentadbiran Negeri-negeri Melayu Bersekutu (NNMB)",
+  "total_questions": 25,
+  "instructions": "Pilih satu jawapan yang paling tepat bagi setiap soalan.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "3.1 Kekayaan Hasil Bumi di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Di manakah perlombongan bijih timah Perak tertumpu pada abad ke-16 hingga abad ke-17?",
+      "options": {
+        "A": "Sepanjang Sungai Perak dan anak sungai sekitar Kuala Kangsar serta Kelian Intan",
+        "B": "Hanya di Larut",
+        "C": "Hanya di Lembah Kinta",
+        "D": "Hanya di Kuala Lumpur"
+      },
+      "answer": "A",
+      "explanation": "Perlombongan Perak tertumpu di sepanjang Sungai Perak dan anak sungai sekitar Kuala Kangsar serta Kelian Intan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.1 (ms. 59)"
+    },
+    {
+      "id": 2,
+      "subtopic": "3.1 Kekayaan Hasil Bumi di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah yang menyebabkan pengeluaran bijih timah Perak merosot menjelang akhir abad ke-18?",
+      "options": {
+        "A": "Ketiadaan pelombong Cina",
+        "B": "Penyeludupan bijih timah kepada pedagang British di Pulau Pinang melalui Sungai Kurau",
+        "C": "Larangan Sultan terhadap perlombongan",
+        "D": "Serangan Siam ke atas Larut"
+      },
+      "answer": "B",
+      "explanation": "Pengeluaran merosot akibat penyeludupan bijih timah kepada pedagang British di Pulau Pinang melalui Sungai Kurau.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.1 (ms. 59)"
+    },
+    {
+      "id": 3,
+      "subtopic": "3.1 Kekayaan Hasil Bumi di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah peranan Kuala Sepetang dalam perlombongan bijih timah Larut?",
+      "options": {
+        "A": "Pusat pemerintahan Sultan Perak",
+        "B": "Pusat perlombongan emas",
+        "C": "Pelabuhan untuk mengangkut bijih timah dari Perak ke Pulau Pinang",
+        "D": "Pangkalan tentera Belanda"
+      },
+      "answer": "C",
+      "explanation": "Ngah Ibrahim menjadikan Kuala Sepetang sebagai pelabuhan untuk mengangkut bijih timah dari Perak ke Pulau Pinang.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.1 (ms. 60)"
+    },
+    {
+      "id": 4,
+      "subtopic": "3.1 Kekayaan Hasil Bumi di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah peranan Jugra dalam ekonomi Selangor semasa pemerintahan Sultan Abdul Samad?",
+      "options": {
+        "A": "Pusat perlombongan emas",
+        "B": "Pusat perdagangan getah",
+        "C": "Pusat pentadbiran British",
+        "D": "Pusat pentadbiran dan pengutipan cukai bijih timah melalui Sungai Langat"
+      },
+      "answer": "D",
+      "explanation": "Jugra menjadi pusat pentadbiran Kesultanan Selangor dan pusat pengutipan cukai bijih timah melalui Sungai Langat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.1 (ms. 61)"
+    },
+    {
+      "id": 5,
+      "subtopic": "3.1 Kekayaan Hasil Bumi di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Siapakah yang memulakan perlombongan bijih timah di Lukut dengan membawa masuk pelombong Cina?",
+      "options": {
+        "A": "Raja Busu",
+        "B": "Raja Jumaat",
+        "C": "Raja Abdullah",
+        "D": "Yap Ah Loy"
+      },
+      "answer": "A",
+      "explanation": "Raja Busu memulakan perlombongan bijih timah di Lukut dengan membawa masuk pelombong Cina.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.1 (ms. 61)"
+    },
+    {
+      "id": 6,
+      "subtopic": "3.1 Kekayaan Hasil Bumi di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah perubahan wilayah yang berlaku kepada Lukut pada tahun 1880?",
+      "options": {
+        "A": "Diserahkan kepada Pahang",
+        "B": "Diserahkan kepada Sungai Ujong, Negeri Sembilan",
+        "C": "Diserahkan kepada Perak",
+        "D": "Diserahkan kepada British sebagai NNS"
+      },
+      "answer": "B",
+      "explanation": "Pada tahun 1880, Lukut diserahkan kepada daerah Sungai Ujong, Negeri Sembilan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.1 (ms. 61)"
+    },
+    {
+      "id": 7,
+      "subtopic": "3.1 Kekayaan Hasil Bumi di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah yang ditunjukkan rekod China tentang emas Pahang?",
+      "options": {
+        "A": "Emas hanya digunakan dalam istana",
+        "B": "Emas tidak diperdagangkan",
+        "C": "Emas menjadi eksport utama Pahang sejak abad ke-13",
+        "D": "Emas hanya ditemui pada abad ke-19"
+      },
+      "answer": "C",
+      "explanation": "Rekod China menunjukkan emas telah menjadi eksport utama Pahang sejak abad ke-13.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.1 (ms. 62)"
+    },
+    {
+      "id": 8,
+      "subtopic": "3.1 Kekayaan Hasil Bumi di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah kaedah yang digunakan pelombong Eropah untuk melombong emas di Pahang pada abad ke-19?",
+      "options": {
+        "A": "Mendulang sahaja",
+        "B": "Melampan sahaja",
+        "C": "Kaedah tradisional sahaja",
+        "D": "Lombong dedah dan lombong bawah tanah"
+      },
+      "answer": "D",
+      "explanation": "Pada abad ke-19, pelombong Eropah menggunakan kaedah lombong dedah dan lombong bawah tanah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.1 (ms. 63)"
+    },
+    {
+      "id": 9,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah kesan Perang Larut yang berpanjangan terhadap kepentingan British?",
+      "options": {
+        "A": "Menjejaskan perdagangan bijih timah dan mendorong pelabur Eropah meminta British campur tangan",
+        "B": "Menghapuskan semua lombong di Perak",
+        "C": "Mengukuhkan kuasa Sultan Ismail",
+        "D": "Mengakhiri perdagangan dengan Pulau Pinang"
+      },
+      "answer": "A",
+      "explanation": "Perang Larut menjejaskan perdagangan bijih timah dan pelabur Eropah serta pedagang NNS meminta British melindungi pelaburan mereka.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 64)"
+    },
+    {
+      "id": 10,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Siapakah yang menyokong tuntutan Raja Abdullah sebagai Sultan Perak?",
+      "options": {
+        "A": "Pembesar Hulu Perak sahaja",
+        "B": "Pembesar Hilir Perak seperti Dato' Maharaja Lela",
+        "C": "Belanda di Melaka",
+        "D": "Sultan Selangor"
+      },
+      "answer": "B",
+      "explanation": "Raja Abdullah mendapat sokongan pembesar Hilir Perak seperti Dato' Maharaja Lela.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 65)"
+    },
+    {
+      "id": 11,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Siapakah yang menyokong Raja Ismail selepas beliau dilantik sebagai Sultan Perak?",
+      "options": {
+        "A": "Raja Abdullah",
+        "B": "Dato' Kelana",
+        "C": "Pembesar Hulu Perak termasuk Ngah Ibrahim",
+        "D": "Tunku Kudin"
+      },
+      "answer": "C",
+      "explanation": "Raja Ismail mendapat sokongan pembesar Hulu Perak termasuk Ngah Ibrahim, Menteri Larut.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 65)"
+    },
+    {
+      "id": 12,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah tuntutan Raja Yusuf dalam krisis pewarisan takhta Perak?",
+      "options": {
+        "A": "Menjadi Residen Perak",
+        "B": "Menguasai Larut",
+        "C": "Menjadi Orang Kaya Menteri",
+        "D": "Menuntut haknya sebagai Sultan setelah lama diketepikan"
+      },
+      "answer": "D",
+      "explanation": "Raja Yusuf sebagai Raja Di Hilir menuntut haknya sebagai Sultan setelah lama diketepikan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 65)"
+    },
+    {
+      "id": 13,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Mengapakah British memberikan bantuan ketenteraan kepada Tunku Kudin semasa Perang Klang?",
+      "options": {
+        "A": "British berharap kestabilan akan membawa keuntungan ekonomi dan mendorong Sultan menerima perlindungan British",
+        "B": "Untuk menyerahkan Klang kepada Belanda",
+        "C": "Untuk menyingkirkan Sultan Abdul Samad",
+        "D": "Untuk memindahkan ibu negeri ke Pahang"
+      },
+      "answer": "A",
+      "explanation": "British membantu pihak yang dapat membawa keuntungan ekonomi dan berharap Sultan Selangor sedia menerima perlindungan British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 66)"
+    },
+    {
+      "id": 14,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Siapakah tiga pembesar yang bersaing mengawal pungutan cukai di Sungai Linggi?",
+      "options": {
+        "A": "Raja Abdullah, Raja Mahadi dan Tunku Kudin",
+        "B": "Dato' Kelana, Dato' Syahbandar dan Dato' Muda Linggi",
+        "C": "Long Jaafar, Ngah Ibrahim dan Dato' Maharaja Lela",
+        "D": "Raja Abdullah, Raja Ismail dan Raja Yusuf"
+      },
+      "answer": "B",
+      "explanation": "Dato' Kelana, Dato' Syahbandar dan Dato' Muda Linggi bersaing mengawal pungutan cukai di Sungai Linggi.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 67)"
+    },
+    {
+      "id": 15,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Mengapakah British sukar menggunakan strategi manipulasi di Pahang?",
+      "options": {
+        "A": "Pahang tidak mempunyai sultan",
+        "B": "Pahang berada di bawah Belanda",
+        "C": "Tiada kekacauan pelombong Cina yang boleh dijadikan alasan dan Sultan Ahmad berhati-hati",
+        "D": "Pahang tidak mempunyai hasil bumi"
+      },
+      "answer": "C",
+      "explanation": "Di Pahang tidak berlaku kekacauan pelombong Cina dan Sultan Ahmad sangat berhati-hati dalam rundingan dengan British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 69)"
+    },
+    {
+      "id": 16,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah peranan Sultan Abu Bakar dari Johor dalam peluasan pengaruh British di Pahang pada tahun 1887?",
+      "options": {
+        "A": "Menyerang Pahang",
+        "B": "Menjadi Residen Pahang",
+        "C": "Menyerahkan Pahang kepada British",
+        "D": "Membantu British memujuk Sultan Ahmad menerima seorang wakil British"
+      },
+      "answer": "D",
+      "explanation": "British mendapatkan bantuan Sultan Abu Bakar untuk memujuk Sultan Ahmad menerima seorang wakil British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 69)"
+    },
+    {
+      "id": 17,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Di manakah Perjanjian Pangkor 1874 ditandatangani?",
+      "options": {
+        "A": "Di atas kapal perang British HMS Pluto",
+        "B": "Di Istana Perak",
+        "C": "Di Kuala Lumpur",
+        "D": "Di Melaka"
+      },
+      "answer": "A",
+      "explanation": "Perjanjian Pangkor 1874 ditandatangani di atas kapal perang British, HMS Pluto.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 70)"
+    },
+    {
+      "id": 18,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah kedudukan Raja Ismail selepas Perjanjian Pangkor 1874?",
+      "options": {
+        "A": "Dilantik sebagai Residen",
+        "B": "Dibenarkan memakai gelaran Sultan Muda dan diberi sebuah jajahan kecil",
+        "C": "Dibuang negeri ke India",
+        "D": "Dilantik sebagai Raja Muda semula"
+      },
+      "answer": "B",
+      "explanation": "Raja Ismail dibenarkan memakai gelaran Sultan Muda dan diberikan sebuah jajahan kecil untuk ditadbir.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 70)"
+    },
+    {
+      "id": 19,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Apakah kedudukan Ngah Ibrahim selepas Perjanjian Pangkor 1874?",
+      "options": {
+        "A": "Dilucutkan semua jawatan",
+        "B": "Dilantik sebagai Sultan",
+        "C": "Diakui sebagai Orang Kaya Menteri Larut dan menerima seorang Penolong Residen",
+        "D": "Dilantik sebagai Residen Jeneral"
+      },
+      "answer": "C",
+      "explanation": "Ngah Ibrahim diakui sebagai Orang Kaya Menteri Larut dan menerima seorang Penolong Residen.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 70)"
+    },
+    {
+      "id": 20,
+      "subtopic": "3.2 Peluasan Kuasa British di Perak, Selangor, Negeri Sembilan dan Pahang",
+      "question": "Antara berikut, yang manakah contoh jabatan bercorak Barat di bawah Sistem Residen?",
+      "options": {
+        "A": "Majlis Raja-Raja sahaja",
+        "B": "Pejabat Syahbandar",
+        "C": "Balai adat sahaja",
+        "D": "Jabatan Kehakiman, Jabatan Polis serta Jabatan Tanah dan Ukur"
+      },
+      "answer": "D",
+      "explanation": "Bab 3 menyenaraikan Jabatan Kehakiman, Jabatan Polis dan Jabatan Tanah dan Ukur sebagai contoh jabatan bercorak Barat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.2 (ms. 73)"
+    },
+    {
+      "id": 21,
+      "subtopic": "3.3 Pembentukan Negeri-negeri Melayu Bersekutu",
+      "question": "Mengapakah British mahu menyeragamkan pentadbiran empat negeri Melayu dalam NNMB?",
+      "options": {
+        "A": "Pentadbiran tidak seragam dan kemajuan ekonomi antara negeri tidak seimbang",
+        "B": "Semua negeri menggunakan undang-undang yang sama",
+        "C": "Semua negeri menolak Residen",
+        "D": "British mahu menyerahkan negeri kepada Belanda"
+      },
+      "answer": "A",
+      "explanation": "Pentadbiran empat negeri tidak seragam dan kemajuan ekonomi tidak seimbang, maka British mahu mewujudkan pentadbiran yang lebih cekap dan seragam.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.3 (ms. 75)"
+    },
+    {
+      "id": 22,
+      "subtopic": "3.3 Pembentukan Negeri-negeri Melayu Bersekutu",
+      "question": "Bagaimanakah NNMB membantu menangani masalah kewangan Pahang?",
+      "options": {
+        "A": "Pahang diserahkan kepada Selangor",
+        "B": "Perak, Selangor dan Negeri Sembilan dapat membantu mengurangkan beban kewangan Pahang",
+        "C": "Semua hutang Pahang dihapuskan oleh Sultan",
+        "D": "Pahang menerima hasil Melaka"
+      },
+      "answer": "B",
+      "explanation": "Penggabungan negeri-negeri yang lebih kaya membolehkan beban kewangan Pahang dikurangkan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.3 (ms. 75)"
+    },
+    {
+      "id": 23,
+      "subtopic": "3.4 Pentadbiran Negeri-negeri Melayu Bersekutu",
+      "question": "Apakah peranan Majlis Mesyuarat Negeri sebelum pembentukan NNMB mengurangkan kuasanya?",
+      "options": {
+        "A": "Mengurus hubungan luar British",
+        "B": "Melantik Residen Jeneral",
+        "C": "Menggubal undang-undang dan membantu pentadbiran negeri di bawah pengerusian Raja Melayu",
+        "D": "Mengurus Negeri-negeri Selat"
+      },
+      "answer": "C",
+      "explanation": "Majlis Mesyuarat Negeri dipengerusikan Raja Melayu dan berperanan menggubal undang-undang serta membantu pentadbiran negeri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.4 (ms. 76)"
+    },
+    {
+      "id": 24,
+      "subtopic": "3.4 Pentadbiran Negeri-negeri Melayu Bersekutu",
+      "question": "Apakah kesan pembentukan NNMB terhadap Majlis Mesyuarat Negeri?",
+      "options": {
+        "A": "Kuasa MMN bertambah",
+        "B": "MMN menjadi badan British di London",
+        "C": "MMN mengambil alih peranan Residen",
+        "D": "MMN tidak lagi berkuasa kerana kuasa perundangan terletak di tangan Residen Jeneral"
+      },
+      "answer": "D",
+      "explanation": "Selepas pembentukan NNMB, Majlis Mesyuarat Negeri tidak lagi berkuasa kerana kuasa perundangan terletak pada Residen Jeneral.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.4 (ms. 76)"
+    },
+    {
+      "id": 25,
+      "subtopic": "3.4 Pentadbiran Negeri-negeri Melayu Bersekutu",
+      "question": "Apakah tujuan utama British membentuk Durbar?",
+      "options": {
+        "A": "Mendapatkan sokongan Raja-raja Melayu terhadap Negeri-negeri Melayu Bersekutu",
+        "B": "Memansuhkan institusi raja",
+        "C": "Menentukan harga bijih timah",
+        "D": "Membentuk pasukan keselamatan"
+      },
+      "answer": "A",
+      "explanation": "British membentuk Durbar untuk mendapatkan sokongan Raja-raja Melayu terhadap NNMB.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 3.4 (ms. 77)"
+    }
+  ]
+}

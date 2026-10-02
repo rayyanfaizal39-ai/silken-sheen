@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 2: Pentadbiran Negeri-negeri Selat (Set A)",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 2,
+  "set": "Set A",
+  "chapter_title": "Pentadbiran Negeri-negeri Selat",
+  "total_questions": 25,
+  "instructions": "Pilih satu jawapan yang paling tepat bagi setiap soalan.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Mengapakah Pulau Pinang dianggap strategik oleh British pada akhir abad ke-18?",
+      "options": {
+        "A": "Sesuai sebagai pusat pengumpulan barang, pelabuhan persinggahan dan pangkalan tentera",
+        "B": "Merupakan pusat pemerintahan Belanda",
+        "C": "Menjadi pusat perlombongan emas utama",
+        "D": "Terletak di selatan Selat Sunda"
+      },
+      "answer": "A",
+      "explanation": "Kedudukan Pulau Pinang di pertengahan laluan perdagangan Timur-Barat sesuai untuk pusat pengumpulan barang, pelabuhan persinggahan dan pangkalan tentera.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 32)"
+    },
+    {
+      "id": 2,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Mengapakah Sultan Abdullah menawarkan Pulau Pinang sebagai pangkalan kepada SHTI?",
+      "options": {
+        "A": "Untuk mendapatkan hasil cukai pelabuhan",
+        "B": "Untuk mendapatkan bantuan ketenteraan dan perlindungan daripada ancaman Siam",
+        "C": "Untuk menyaingi pelabuhan Betawi",
+        "D": "Untuk memindahkan pusat pemerintahan Kedah"
+      },
+      "answer": "B",
+      "explanation": "Sultan Abdullah berasa terancam oleh Siam dan menawarkan Pulau Pinang kepada SHTI dengan syarat mendapat bantuan ketenteraan serta perlindungan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 34)"
+    },
+    {
+      "id": 3,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Bagaimanakah Francis Light berjaya membuka petempatan British di Pulau Pinang pada tahun 1786?",
+      "options": {
+        "A": "Melalui serangan tentera laut",
+        "B": "Melalui pembelian wilayah daripada Belanda",
+        "C": "Melalui tipu helah dengan menjanjikan SHTI akan memenuhi syarat Sultan Abdullah",
+        "D": "Melalui Perjanjian London 1824"
+      },
+      "answer": "C",
+      "explanation": "Francis Light berjanji bahawa SHTI akan memenuhi syarat bantuan yang diminta Sultan Abdullah, lalu baginda membenarkan pembukaan petempatan sementara menunggu jawapan SHTI.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 34)"
+    },
+    {
+      "id": 4,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah kesan utama perjanjian British-Kedah pada tahun 1791?",
+      "options": {
+        "A": "British menyerahkan Pulau Pinang kepada Kedah",
+        "B": "Siam menguasai Seberang Perai",
+        "C": "Melaka diserahkan kepada British",
+        "D": "Pendudukan British di Pulau Pinang diiktiraf secara rasmi"
+      },
+      "answer": "D",
+      "explanation": "Perjanjian 1791 secara rasmi mengiktiraf pendudukan British di Pulau Pinang.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 35)"
+    },
+    {
+      "id": 5,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah kepentingan Seberang Perai kepada British selepas perjanjian tahun 1800?",
+      "options": {
+        "A": "Menjadi benteng pertahanan dan kawasan pertanian untuk membekalkan makanan kepada Pulau Pinang",
+        "B": "Menjadi pusat pentadbiran Kesultanan Kedah",
+        "C": "Menjadi pangkalan utama Belanda",
+        "D": "Menjadi pusat perdagangan teh dengan China"
+      },
+      "answer": "A",
+      "explanation": "Seberang Perai penting sebagai benteng pertahanan dan kawasan pertanian untuk membekalkan sumber makanan kepada penduduk Pulau Pinang.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 35)"
+    },
+    {
+      "id": 6,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Mengapakah Singapura penting kepada British pada awal abad ke-19?",
+      "options": {
+        "A": "Kerana menjadi pusat perlombongan bijih timah",
+        "B": "Kedudukannya dapat mengawal perdagangan Selat Melaka dan Selat Sunda serta menyaingi Belanda",
+        "C": "Kerana berada di bawah penguasaan Siam",
+        "D": "Kerana menjadi pusat pentadbiran Portugis"
+      },
+      "answer": "B",
+      "explanation": "Singapura terletak strategik di selatan Semenanjung dan dapat mengawal kegiatan perdagangan Selat Melaka serta Selat Sunda.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 37)"
+    },
+    {
+      "id": 7,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah strategi Stamford Raffles untuk mendapatkan pengesahan sultan bagi petempatan British di Singapura?",
+      "options": {
+        "A": "Menyerang Lingga",
+        "B": "Membeli Singapura daripada Belanda",
+        "C": "Memanipulasikan isu pewarisan takhta Kesultanan Johor Riau",
+        "D": "Meminta bantuan Siam"
+      },
+      "answer": "C",
+      "explanation": "Raffles memanipulasikan isu pewarisan takhta dan mengisytiharkan Tengku Hussein sebagai Sultan Johor Riau di Singapura.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 38)"
+    },
+    {
+      "id": 8,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah kesan Perjanjian 6 Februari 1819 di Singapura?",
+      "options": {
+        "A": "Singapura diserahkan selama-lamanya kepada British",
+        "B": "Belanda menguasai Singapura",
+        "C": "Sultan Abdul Rahman berpindah ke Singapura",
+        "D": "Petempatan British di Singapura diiktiraf"
+      },
+      "answer": "D",
+      "explanation": "Perjanjian itu mengiktiraf petempatan British di Singapura; bendera Union Jack dinaikkan dan William Farquhar dilantik sebagai Residen pertama.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 39)"
+    },
+    {
+      "id": 9,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Apakah kesan utama Perjanjian 2 Ogos 1824 terhadap Singapura?",
+      "options": {
+        "A": "Singapura diserahkan kepada British untuk selama-lamanya",
+        "B": "Singapura dikembalikan kepada Belanda",
+        "C": "Singapura menjadi wilayah Siam",
+        "D": "Singapura digabungkan dengan Kedah"
+      },
+      "answer": "A",
+      "explanation": "Perjanjian 2 Ogos 1824 menyebabkan Singapura diserahkan kepada British untuk selama-lamanya dan Sultan serta Temenggung kehilangan kedaulatan ke atasnya.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 39)"
+    },
+    {
+      "id": 10,
+      "subtopic": "2.1 Peluasan Kuasa British di Pulau Pinang, Singapura dan Melaka",
+      "question": "Mengapakah British dan Belanda memilih untuk menyelesaikan pertikaian mereka melalui pakatan?",
+      "options": {
+        "A": "Untuk membentuk satu empayar bersama",
+        "B": "Untuk menamatkan pertikaian, menjaga persahabatan di Eropah dan mengelakkan peperangan",
+        "C": "Untuk menyerahkan semua pelabuhan kepada Perancis",
+        "D": "Untuk menghapuskan perdagangan di Selat Melaka"
+      },
+      "answer": "B",
+      "explanation": "Pakatan dibuat bagi menamatkan pertikaian, menjaga hubungan di Eropah dan mencari penyelesaian damai tanpa peperangan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1 (ms. 40)"
+    },
+    {
+      "id": 11,
+      "subtopic": "2.2 Perjanjian London 1824 dan Kesannya Terhadap Alam Melayu",
+      "question": "Bilakah Perjanjian London 1824 ditandatangani?",
+      "options": {
+        "A": "6 Februari 1819",
+        "B": "2 Ogos 1824",
+        "C": "17 Mac 1824",
+        "D": "1 April 1867"
+      },
+      "answer": "C",
+      "explanation": "Perjanjian London 1824 ditandatangani pada 17 Mac 1824 di London antara British dengan Belanda.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.1-2.2 (ms. 41-42)"
+    },
+    {
+      "id": 12,
+      "subtopic": "2.2 Perjanjian London 1824 dan Kesannya Terhadap Alam Melayu",
+      "question": "Apakah sempadan yang memisahkan lingkungan pengaruh British dan Belanda selepas Perjanjian London 1824?",
+      "options": {
+        "A": "Sungai Perak dan Sungai Klang",
+        "B": "Selat Sunda dan Laut Jawa",
+        "C": "Laut China Selatan dan Laut Sulu",
+        "D": "Selat Melaka dan Selat Singapura"
+      },
+      "answer": "D",
+      "explanation": "Selat Melaka dan Selat Singapura menjadi sempadan yang memisahkan wilayah pengaruh British dan Belanda.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.2 (ms. 42)"
+    },
+    {
+      "id": 13,
+      "subtopic": "2.2 Perjanjian London 1824 dan Kesannya Terhadap Alam Melayu",
+      "question": "Apakah pertukaran wilayah utama antara British dengan Belanda melalui Perjanjian London 1824?",
+      "options": {
+        "A": "British menyerahkan Bangkahulu kepada Belanda, manakala Belanda menyerahkan Melaka kepada British",
+        "B": "British menyerahkan Singapura kepada Belanda, manakala Belanda menyerahkan Riau kepada British",
+        "C": "British menyerahkan Pulau Pinang, manakala Belanda menyerahkan Betawi",
+        "D": "British menyerahkan Melaka, manakala Belanda menyerahkan Bangkahulu"
+      },
+      "answer": "A",
+      "explanation": "British berundur dari Sumatera dan menyerahkan Bangkahulu kepada Belanda, manakala Belanda menyerahkan Melaka dan jajahan takluknya kepada British.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.2 (ms. 43)"
+    },
+    {
+      "id": 14,
+      "subtopic": "2.2 Perjanjian London 1824 dan Kesannya Terhadap Alam Melayu",
+      "question": "Apakah kesan Perjanjian London 1824 terhadap Empayar Kesultanan Johor Riau?",
+      "options": {
+        "A": "Empayar disatukan semula",
+        "B": "Empayar berpecah akibat pembahagian pengaruh British dan Belanda",
+        "C": "Empayar berpindah ke Kedah",
+        "D": "Empayar diletakkan di bawah Siam"
+      },
+      "answer": "B",
+      "explanation": "Pembahagian pengaruh British dan Belanda memecahkan wilayah Kesultanan Johor Riau yang luas.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.2 (ms. 44)"
+    },
+    {
+      "id": 15,
+      "subtopic": "2.2 Perjanjian London 1824 dan Kesannya Terhadap Alam Melayu",
+      "question": "Bagaimanakah Perjanjian London 1824 mengukuhkan penguasaan British di Selat Melaka?",
+      "options": {
+        "A": "British memperoleh semua wilayah Sumatera",
+        "B": "Belanda menjadi sekutu tentera British",
+        "C": "British menguasai tiga pelabuhan strategik: Pulau Pinang, Melaka dan Singapura",
+        "D": "British menguasai Batavia"
+      },
+      "answer": "C",
+      "explanation": "Dengan memiliki Pulau Pinang, Melaka dan Singapura, British menguasai perdagangan di Selat Melaka.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.2 (ms. 45)"
+    },
+    {
+      "id": 16,
+      "subtopic": "2.3 Pembentukan Negeri-negeri Selat",
+      "question": "Negeri-negeri Selat yang dibentuk pada tahun 1826 terdiri daripada negeri mana?",
+      "options": {
+        "A": "Pulau Pinang, Perak dan Selangor",
+        "B": "Melaka, Johor dan Singapura",
+        "C": "Pulau Pinang, Kedah dan Melaka",
+        "D": "Pulau Pinang, Singapura dan Melaka"
+      },
+      "answer": "D",
+      "explanation": "Pada tahun 1826, Pulau Pinang, Singapura dan Melaka digabungkan menjadi Negeri-negeri Selat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.3 (ms. 47)"
+    },
+    {
+      "id": 17,
+      "subtopic": "2.3 Pembentukan Negeri-negeri Selat",
+      "question": "Apakah tujuan utama penggabungan Pulau Pinang, Singapura dan Melaka sebagai Negeri-negeri Selat?",
+      "options": {
+        "A": "Menjimatkan perbelanjaan dan menyeragamkan pentadbiran",
+        "B": "Menyerahkan pentadbiran kepada Belanda",
+        "C": "Menghapuskan semua pelabuhan bebas",
+        "D": "Membentuk pemerintahan beraja"
+      },
+      "answer": "A",
+      "explanation": "Penggabungan dibuat untuk menjimatkan perbelanjaan dan menyeragamkan pentadbiran.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.3 (ms. 47)"
+    },
+    {
+      "id": 18,
+      "subtopic": "2.3 Pembentukan Negeri-negeri Selat",
+      "question": "Apakah maksud pelabuhan bebas dalam konteks Negeri-negeri Selat?",
+      "options": {
+        "A": "Pelabuhan yang ditutup kepada pedagang asing",
+        "B": "Pelabuhan terbuka kepada pedagang asing dan tempatan dengan barangan masuk bebas cukai",
+        "C": "Pelabuhan yang hanya menerima kapal British",
+        "D": "Pelabuhan tanpa pentadbiran"
+      },
+      "answer": "B",
+      "explanation": "Pelabuhan bebas terbuka kepada pedagang asing dan tempatan, dan barangan yang dibawa masuk bebas daripada cukai.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.3 (ms. 46)"
+    },
+    {
+      "id": 19,
+      "subtopic": "2.3 Pembentukan Negeri-negeri Selat",
+      "question": "Bagaimanakah Melaka ditadbir sebelum pembentukan Negeri-negeri Selat?",
+      "options": {
+        "A": "Oleh seorang Gabenor Jeneral",
+        "B": "Oleh Sultan Kedah",
+        "C": "Oleh Residen Konsular dengan Sistem Kapitan diteruskan",
+        "D": "Oleh Temenggung Johor"
+      },
+      "answer": "C",
+      "explanation": "Melaka ditadbir oleh Residen Konsular dan Sistem Kapitan diteruskan bagi menjaga keamanan komuniti kaum.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.3 (ms. 46)"
+    },
+    {
+      "id": 20,
+      "subtopic": "2.3 Pembentukan Negeri-negeri Selat",
+      "question": "Apakah salah satu kepentingan taraf pelabuhan bebas Negeri-negeri Selat kepada British?",
+      "options": {
+        "A": "Mengurangkan kedatangan pedagang luar",
+        "B": "Menghapuskan perdagangan dengan China",
+        "C": "Mengehadkan perdagangan kepada kapal British",
+        "D": "Menarik pedagang tempatan dan luar dari Alam Melayu"
+      },
+      "answer": "D",
+      "explanation": "Taraf pelabuhan bebas menarik pedagang tempatan serta pedagang dari Arab, India, China, Eropah dan Amerika.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.3 (ms. 47)"
+    },
+    {
+      "id": 21,
+      "subtopic": "2.3 Pembentukan Negeri-negeri Selat",
+      "question": "Bagaimanakah hubungan ekonomi antara Negeri-negeri Selat dengan negeri-negeri Melayu?",
+      "options": {
+        "A": "Negeri-negeri Selat memerlukan hasil ekonomi negeri Melayu, manakala negeri Melayu memerlukan pelabuhan NNS untuk berdagang",
+        "B": "Kedua-duanya tidak mempunyai hubungan ekonomi",
+        "C": "NNS hanya membekalkan hasil pertanian kepada negeri Melayu",
+        "D": "Negeri Melayu hanya bergantung pada pelabuhan Belanda"
+      },
+      "answer": "A",
+      "explanation": "NNS memerlukan hasil ekonomi negeri Melayu, sementara negeri Melayu memerlukan pelabuhan NNS untuk memperdagangkan hasil mereka.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.3 (ms. 47)"
+    },
+    {
+      "id": 22,
+      "subtopic": "2.4 Pentadbiran Negeri-negeri Selat",
+      "question": "Mengapakah pusat pentadbiran Negeri-negeri Selat dipindahkan dari Pulau Pinang ke Singapura pada tahun 1832?",
+      "options": {
+        "A": "Pulau Pinang diserahkan kepada Siam",
+        "B": "Singapura lebih strategik dan maju",
+        "C": "Melaka menjadi tanah jajahan Belanda",
+        "D": "Singapura menjadi pusat perlombongan emas"
+      },
+      "answer": "B",
+      "explanation": "Pusat pentadbiran dipindahkan ke Singapura kerana Singapura lebih strategik dan maju berbanding Pulau Pinang.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.4 (ms. 48)"
+    },
+    {
+      "id": 23,
+      "subtopic": "2.4 Pentadbiran Negeri-negeri Selat",
+      "question": "Di bawah jabatan manakah Negeri-negeri Selat diletakkan selepas SHTI dibubarkan?",
+      "options": {
+        "A": "Pejabat Tanah Jajahan",
+        "B": "Pejabat Luar British",
+        "C": "India Office atau Pejabat India",
+        "D": "Majlis Mesyuarat Persekutuan"
+      },
+      "answer": "C",
+      "explanation": "Selepas SHTI dibubarkan, pentadbiran Negeri-negeri Selat diletakkan di bawah India Office atau Pejabat India.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.4 (ms. 48)"
+    },
+    {
+      "id": 24,
+      "subtopic": "2.4 Pentadbiran Negeri-negeri Selat",
+      "question": "Antara berikut, yang manakah faktor pemindahan pentadbiran Negeri-negeri Selat ke Pejabat Tanah Jajahan London?",
+      "options": {
+        "A": "Pedagang mahu menggunakan rupee India",
+        "B": "Pejabat India berjaya menghapuskan lanun",
+        "C": "NNS mempunyai wakil yang kuat dalam Majlis Perundangan India",
+        "D": "Cadangan cukai pelabuhan boleh menjejaskan kemakmuran pelabuhan bebas"
+      },
+      "answer": "D",
+      "explanation": "Cadangan Pejabat India mengenakan cukai pelabuhan dibantah kerana boleh menjejaskan kemakmuran taraf pelabuhan bebas.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.4 (ms. 49)"
+    },
+    {
+      "id": 25,
+      "subtopic": "2.4 Pentadbiran Negeri-negeri Selat",
+      "question": "Apakah perubahan pentadbiran penting pada 1 April 1867?",
+      "options": {
+        "A": "Negeri-negeri Selat menjadi tanah jajahan British di bawah Pejabat Tanah Jajahan dan mempunyai Majlis Perundangan sendiri",
+        "B": "Negeri-negeri Selat kembali di bawah SHTI",
+        "C": "Singapura diserahkan kepada Belanda",
+        "D": "Pulau Pinang menjadi wilayah Kedah semula"
+      },
+      "answer": "A",
+      "explanation": "Pada 1 April 1867, NNS diisytiharkan sebagai tanah jajahan British di bawah Pejabat Tanah Jajahan, dan Majlis Perundangan ditubuhkan untuk menggubal undang-undang sendiri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 2.4 (ms. 49)"
+    }
+  ]
+}

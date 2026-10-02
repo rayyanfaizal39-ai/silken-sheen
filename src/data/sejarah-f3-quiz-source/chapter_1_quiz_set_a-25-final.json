@@ -1,0 +1,361 @@
+{
+  "quiz_title": "Kuiz Sejarah Tingkatan 3 - Bab 1: Kedatangan Kuasa Barat (Set A)",
+  "set": "Set A",
+  "subject": "Sejarah Tingkatan 3 (KSSM)",
+  "chapter": 1,
+  "chapter_title": "Kedatangan Kuasa Barat",
+  "total_questions": 25,
+  "instructions": "Jawab semua soalan berikut dengan memilih jawapan yang tepat.",
+  "questions": [
+    {
+      "id": 1,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Apakah urutan hierarki pemerintahan di Negeri Sembilan dari peringkat tertinggi hingga peringkat asas?",
+      "options": {
+        "A": "Undang → Yamtuan Besar → Lembaga → Buapak → Anak Buah dan Ibu Soko",
+        "B": "Yamtuan Besar → Lembaga → Undang → Buapak → Anak Buah dan Ibu Soko",
+        "C": "Yamtuan Besar atau Yang di-Pertuan Besar → Undang → Lembaga → Buapak → Anak Buah dan Ibu Soko",
+        "D": "Yamtuan Besar → Undang → Buapak → Lembaga → Anak Buah dan Ibu Soko"
+      },
+      "answer": "C",
+      "explanation": "Hierarki pemerintahan Negeri Sembilan ialah Yamtuan Besar atau Yang di-Pertuan Besar, diikuti Undang, Lembaga, Buapak, kemudian Anak Buah dan Ibu Soko.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 5)"
+    },
+    {
+      "id": 2,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Antara berikut, yang manakah merupakan contoh undang-undang bertulis dalam Kesultanan Melayu sebelum campur tangan Barat?",
+      "options": {
+        "A": "Perjanjian Bangkok dan Perjanjian London",
+        "B": "Hukum Kanun Melaka dan Hukum Kanun Pahang",
+        "C": "Akta Tanah Simpanan Melayu dan Ordinan Buruh",
+        "D": "Piagam Diraja dan Perlembagaan Persekutuan"
+      },
+      "answer": "B",
+      "explanation": "Negeri-negeri Melayu telah lama mempunyai undang-undang bertulis seperti Hukum Kanun Melaka, Hukum Kanun Pahang, dan Undang-Undang 99 Perak.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 6)"
+    },
+    {
+      "id": 3,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Apakah unit timbangan yang diambil oleh orang Melayu daripada pedagang China?",
+      "options": {
+        "A": "Saga, mayam dan bungkal",
+        "B": "Kepul, leng dan kal",
+        "C": "Cupak, gantang dan gelen",
+        "D": "Kati, tahil dan pikul"
+      },
+      "answer": "D",
+      "explanation": "Orang Melayu mengambil sistem timbangan daripada pedagang China yang menggunakan kati, tahil dan pikul. Hubungannya ialah 16 tahil = 1 kati dan 100 kati = 1 pikul.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 7)"
+    },
+    {
+      "id": 4,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Bagaimanakah pendidikan tidak formal disampaikan kepada anak-anak dalam masyarakat Melayu tradisional?",
+      "options": {
+        "A": "Menerusi asuhan keluarga, cerita teladan, pantun, dan latihan kemahiran",
+        "B": "Menerusi sistem persekolahan berstruktur di madrasah dan pondok",
+        "C": "Menerusi peperiksaan bertulis di istana raja",
+        "D": "Menerusi kurikulum berasaskan buku teks dari Barat"
+      },
+      "answer": "A",
+      "explanation": "Pendidikan tidak formal disampaikan melalui asuhan keluarga, pantun, syair, peribahasa, pepatah, pantang larang, cerita teladan dan latihan kemahiran. Antara contoh cerita dalam buku teks ialah Si Tanggang Anak Derhaka dan Anjing dengan Bayang-bayang.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 8)"
+    },
+    {
+      "id": 5,
+      "subtopic": "1.2 Faktor Kedatangan Kuasa Barat",
+      "question": "Antara berikut, yang manakah paling tepat menerangkan faktor kedatangan kuasa Barat ke Alam Melayu pada abad ke-16?",
+      "options": {
+        "A": "Mendapatkan bijih timah untuk industri mengetin di Amerika Syarikat",
+        "B": "Mencari pasaran baharu untuk barangan kilang selepas Revolusi Perindustrian",
+        "C": "Mendapatkan barangan mewah dan rempah-ratus serta mencari pusat pengumpulan barang dan pelabuhan persinggahan",
+        "D": "Membina sistem telegraf untuk menghubungi ejen di Tanah Melayu"
+      },
+      "answer": "C",
+      "explanation": "Pada abad ke-16, kuasa Barat mencari barangan mewah dan rempah-ratus, memerlukan pusat pengumpulan barang serta pelabuhan persinggahan, dan turut didorong oleh penyebaran agama Kristian.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.2 (ms. 10-12)"
+    },
+    {
+      "id": 6,
+      "subtopic": "1.2 Faktor Kedatangan Kuasa Barat",
+      "question": "Apakah kepentingan pembukaan Terusan Suez kepada perdagangan antara Alam Melayu dengan Eropah?",
+      "options": {
+        "A": "Menghapuskan penggunaan kapal wap",
+        "B": "Mempercepat urusan perdagangan dan meningkatkan perdagangan antara Alam Melayu dengan Eropah",
+        "C": "Menghentikan perdagangan melalui Laut Mediterranean",
+        "D": "Menjadikan semua pelabuhan Alam Melayu bebas cukai"
+      },
+      "answer": "B",
+      "explanation": "Terusan Suez menghubungkan Laut Mediterranean dengan Laut Merah, mempercepat urusan perdagangan dan meningkatkan perdagangan antara Alam Melayu dengan Eropah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.2 (ms. 14)"
+    },
+    {
+      "id": 7,
+      "subtopic": "1.2 Faktor Kedatangan Kuasa Barat",
+      "question": "Apakah slogan yang digunakan oleh Perancis untuk mewajarkan tindakan penjajahan mereka?",
+      "options": {
+        "A": "Asia untuk Orang Asia",
+        "B": "Kemakmuran Bersama",
+        "C": "Beban Orang Putih",
+        "D": "Tugas Menyebarkan Tamadun"
+      },
+      "answer": "D",
+      "explanation": "Perancis menggunakan slogan 'Tugas Menyebarkan Tamadun' terhadap penduduk dunia bukan Barat yang dianggap mundur.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.2 (ms. 15)"
+    },
+    {
+      "id": 8,
+      "subtopic": "1.3 Persaingan Kuasa Barat untuk Mendapatkan Tanah Jajahan",
+      "question": "Semasa persaingan kuasa Barat pada abad ke-19, manakah wilayah yang cuba didapatkan oleh Jerman?",
+      "options": {
+        "A": "Pulau Langkawi",
+        "B": "Ujung Salang",
+        "C": "Terengganu",
+        "D": "Segenting Kra"
+      },
+      "answer": "A",
+      "explanation": "Jerman berusaha untuk mendapatkan Pulau Langkawi, manakala Rusia berhasrat di Ujung Salang, Perancis di Segenting Kra, dan Amerika Syarikat di Terengganu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.3 (ms. 16-17)"
+    },
+    {
+      "id": 9,
+      "subtopic": "1.3 Persaingan Kuasa Barat untuk Mendapatkan Tanah Jajahan",
+      "question": "Syarikat manakah yang membeli wilayah-wilayah Sabah daripada Sultan Brunei dan Sultan Sulu?",
+      "options": {
+        "A": "Syarikat Hindia Timur Belanda (VOC)",
+        "B": "Syarikat Hindia Timur Inggeris (SHTI)",
+        "C": "Syarikat Borneo Utara British (SBUB)",
+        "D": "Syarikat Hindia Timur Perancis"
+      },
+      "answer": "C",
+      "explanation": "Syarikat Borneo Utara British (SBUB) membeli wilayah-wilayah Sabah daripada Sultan Brunei dan Sultan Sulu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.3 (ms. 17)"
+    },
+    {
+      "id": 10,
+      "subtopic": "1.4 Perbezaan Strategi Kuasa Barat",
+      "question": "Apakah tiga strategi utama yang digunakan oleh Belanda untuk meluaskan kuasa di negara kita?",
+      "options": {
+        "A": "Manipulasi, ugutan/desakan dan pajakan",
+        "B": "Serangan fizikal, pakatan dan perjanjian",
+        "C": "Tipu helah, manipulasi dan Sistem Residen",
+        "D": "Pajakan, bantuan ketenteraan dan pencen"
+      },
+      "answer": "B",
+      "explanation": "Belanda menggunakan tiga strategi utama, iaitu serangan fizikal, pakatan dan perjanjian.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.4 (ms. 18-19)"
+    },
+    {
+      "id": 11,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Apakah peranan utama raja atau sultan dalam sistem pemerintahan beraja di negeri-negeri Melayu?",
+      "options": {
+        "A": "Mengetuai pentadbiran negeri dan menjadi lambang kedaulatan",
+        "B": "Menjadi ketua kampung",
+        "C": "Mengurus pelabuhan sebagai Syahbandar",
+        "D": "Mengendalikan semua kegiatan perlombongan"
+      },
+      "answer": "A",
+      "explanation": "Pentadbiran negeri diketuai oleh raja atau sultan dan baginda menjadi lambang kedaulatan negeri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 4)"
+    },
+    {
+      "id": 12,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Apakah dua sistem pemerintahan tempatan yang wujud di Sarawak?",
+      "options": {
+        "A": "Sistem Residen dan Sistem Penasihat",
+        "B": "Sistem Kesukuan dan Sistem Kesultanan",
+        "C": "Sistem Ketua Bebas dan Sistem Kapitan",
+        "D": "Sistem Adat Perpatih dan Adat Temenggung"
+      },
+      "answer": "B",
+      "explanation": "Bab 1 menunjukkan dua sistem pemerintahan di Sarawak, iaitu Sistem Kesukuan dan Sistem Kesultanan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 5)"
+    },
+    {
+      "id": 13,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Antara berikut, yang manakah merupakan hasil laut yang dinyatakan sebagai kekayaan alam negara kita?",
+      "options": {
+        "A": "Getah jelutung, damar dan rotan",
+        "B": "Bijih timah, emas dan perak",
+        "C": "Sirip ikan yu, timun laut, rumpai laut dan mutiara",
+        "D": "Tebu, tembakau, padi dan getah"
+      },
+      "answer": "C",
+      "explanation": "Hasil laut yang dinyatakan ialah sirip ikan yu, timun laut, rumpai laut dan mutiara.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 6)"
+    },
+    {
+      "id": 14,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Siapakah pegawai yang dilantik untuk mengurus pelabuhan di negeri-negeri Melayu?",
+      "options": {
+        "A": "Penghulu",
+        "B": "Lembaga",
+        "C": "Buapak",
+        "D": "Syahbandar"
+      },
+      "answer": "D",
+      "explanation": "Syahbandar dilantik untuk mengurus pelabuhan yang menjadi pusat pengumpulan barangan dari timur dan barat.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 7)"
+    },
+    {
+      "id": 15,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Bagaimanakah urusan perdagangan berubah selepas penggunaan sistem barter?",
+      "options": {
+        "A": "Mata wang logam daripada timah dan emas mula digunakan",
+        "B": "Semua perdagangan menggunakan rupee India",
+        "C": "Sistem percukaian dihapuskan",
+        "D": "Pelabuhan tidak lagi menggunakan mata wang"
+      },
+      "answer": "A",
+      "explanation": "Pada mulanya pedagang menggunakan sistem barter. Kemudian, mata wang logam daripada timah dan emas digunakan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 7)"
+    },
+    {
+      "id": 16,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Apakah fungsi utama cukai dalam sistem ekonomi masyarakat tempatan?",
+      "options": {
+        "A": "Menggantikan mata wang logam",
+        "B": "Menjadi sumber pendapatan pemerintah untuk memakmurkan negeri",
+        "C": "Menghapuskan kegiatan perdagangan",
+        "D": "Membayar pedagang asing sahaja"
+      },
+      "answer": "B",
+      "explanation": "Cukai menjadi sumber pendapatan pemerintah dan disalurkan untuk memakmurkan negeri.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 7)"
+    },
+    {
+      "id": 17,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Di manakah pendidikan formal masyarakat Melayu dilaksanakan sebelum kedatangan kuasa Barat?",
+      "options": {
+        "A": "Pelabuhan, pasar dan lombong",
+        "B": "Rumah pembesar sahaja",
+        "C": "Masjid, surau, pondok, madrasah dan istana",
+        "D": "Kubu pertahanan dan gudang perdagangan"
+      },
+      "answer": "C",
+      "explanation": "Pendidikan formal masyarakat Melayu dilaksanakan di masjid, surau, pondok, madrasah dan istana.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 9)"
+    },
+    {
+      "id": 18,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Apakah kedudukan Bahasa Melayu dalam kegiatan intelektual dan perdagangan di Alam Melayu?",
+      "options": {
+        "A": "Digunakan hanya dalam istana",
+        "B": "Digunakan hanya untuk urusan agama",
+        "C": "Digunakan hanya oleh pedagang tempatan",
+        "D": "Menjadi bahasa ilmu dan bahasa lingua franca dalam perdagangan"
+      },
+      "answer": "D",
+      "explanation": "Bahasa Melayu menjadi bahasa ilmu dan bahasa lingua franca dalam dunia perdagangan di Alam Melayu.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 9)"
+    },
+    {
+      "id": 19,
+      "subtopic": "1.2 Faktor Kedatangan Kuasa Barat ke Negara Kita",
+      "question": "Apakah perubahan keperluan kuasa Barat selepas Revolusi Perindustrian?",
+      "options": {
+        "A": "Mereka memerlukan bahan mentah berterusan dan pasaran yang lebih luas",
+        "B": "Mereka berhenti mencari tanah jajahan",
+        "C": "Mereka hanya mahu menjalankan pertanian sara diri",
+        "D": "Mereka tidak lagi memerlukan pusat perdagangan"
+      },
+      "answer": "A",
+      "explanation": "Kuasa Barat memerlukan bekalan bahan mentah berterusan dan pasaran lebih luas bagi barangan kilang.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.2 (ms. 12)"
+    },
+    {
+      "id": 20,
+      "subtopic": "1.2 Faktor Kedatangan Kuasa Barat ke Negara Kita",
+      "question": "Mengapakah perkembangan industri kereta di Eropah meningkatkan kepentingan negara kita?",
+      "options": {
+        "A": "Permintaan terhadap bijih besi menurun",
+        "B": "Permintaan terhadap getah asli meningkat",
+        "C": "Perdagangan rempah-ratus dihentikan",
+        "D": "Kapal layar kembali digunakan"
+      },
+      "answer": "B",
+      "explanation": "Kemunculan perusahaan kereta dan ciptaan tayar meningkatkan permintaan terhadap getah asli.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.2 (ms. 13)"
+    },
+    {
+      "id": 21,
+      "subtopic": "1.2 Faktor Kedatangan Kuasa Barat ke Negara Kita",
+      "question": "Apakah perkembangan di Amerika Syarikat pada abad ke-19 yang meningkatkan permintaan bijih timah dari negeri-negeri Melayu?",
+      "options": {
+        "A": "Pembinaan kapal layar",
+        "B": "Perkembangan ladang getah",
+        "C": "Industri mengetin makanan dan minuman serta pembuatan bumbung dan tong minyak",
+        "D": "Pengeluaran kain kapas"
+      },
+      "answer": "C",
+      "explanation": "Ciptaan baharu di Amerika Syarikat seperti industri mengetin makanan dan minuman, bumbung rumah dan tong minyak memerlukan bijih timah.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.2 (ms. 13)"
+    },
+    {
+      "id": 22,
+      "subtopic": "1.2 Faktor Kedatangan Kuasa Barat ke Negara Kita",
+      "question": "Apakah anggapan kuasa Barat yang mendorong persaingan mendapatkan tanah jajahan?",
+      "options": {
+        "A": "Tanah jajahan perlu dikurangkan",
+        "B": "Tanah jajahan hanya diperlukan untuk pertanian",
+        "C": "Tanah jajahan tidak berkaitan dengan kedudukan kuasa",
+        "D": "Semakin luas tanah jajahan, semakin tinggi sanjungan yang diperoleh"
+      },
+      "answer": "D",
+      "explanation": "Kuasa Barat menganggap semakin luas tanah jajahan yang dikuasai, semakin tinggi sanjungan yang diperoleh.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.2 (ms. 15)"
+    },
+    {
+      "id": 23,
+      "subtopic": "1.4 Perbezaan Strategi Kuasa Barat untuk Menguasai Negara Kita",
+      "question": "Apakah strategi yang digunakan oleh British untuk menguasai negara kita?",
+      "options": {
+        "A": "Serangan fizikal, pakatan, perjanjian, manipulasi, ugutan/desakan, tipu helah dan pajakan",
+        "B": "Serangan fizikal, pakatan dan perjanjian sahaja",
+        "C": "Perdagangan dan pendidikan sahaja",
+        "D": "Pakatan dan serangan fizikal sahaja"
+      },
+      "answer": "A",
+      "explanation": "British menggunakan tujuh strategi: serangan fizikal, pakatan, perjanjian, manipulasi, ugutan/desakan, tipu helah dan pajakan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.4 (ms. 19)"
+    },
+    {
+      "id": 24,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Dalam bentuk apakah hubungan luar negara kita dijalankan sebelum kedatangan kuasa Barat?",
+      "options": {
+        "A": "Ekonomi, politik dan sosial",
+        "B": "Ketenteraan sahaja",
+        "C": "Agama sahaja",
+        "D": "Pertanian sahaja"
+      },
+      "answer": "A",
+      "explanation": "Hubungan luar dijalankan dalam bentuk ekonomi, politik dan sosial.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 5)"
+    },
+    {
+      "id": 25,
+      "subtopic": "1.1 Kestabilan dan Kemakmuran Negara Kita",
+      "question": "Apakah kesan kebijaksanaan pemerintah tempatan menjalinkan hubungan diplomatik dan perdagangan?",
+      "options": {
+        "A": "Menghapuskan sistem pemerintahan beraja",
+        "B": "Mengurangkan kegiatan ekonomi",
+        "C": "Menghentikan hubungan dengan pedagang luar",
+        "D": "Meluaskan pengaruh, melindungi daripada ancaman, memajukan ekonomi dan menstabilkan pemerintahan"
+      },
+      "answer": "D",
+      "explanation": "Hubungan diplomatik dan perdagangan membantu meluaskan pengaruh, melindungi daripada ancaman musuh, memajukan ekonomi dan menstabilkan pemerintahan.",
+      "source_reference": "SEJ FORM 3.pdf, Bab 1.1 (ms. 5)"
+    }
+  ]
+}
