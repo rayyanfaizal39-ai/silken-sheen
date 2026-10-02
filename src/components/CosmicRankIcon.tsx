@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
  * and 74/64 ≈ 1.16× below that.
  * Top 10 rows are 40px from the md breakpoint and 44px from lg.
  * Mobile ranking cards are 36px. The sidebar chip stays 32px.
+ * Hall of Fame badges are calmer than the live podium and larger than a table row.
  */
 export const COSMIC_RANK_ICON_FRAME = {
   champion: "h-[74px] w-[74px] sm:h-[92px] sm:w-[92px]",
@@ -15,6 +16,8 @@ export const COSMIC_RANK_ICON_FRAME = {
   table: "h-[40px] w-[40px] lg:h-[44px] lg:w-[44px]",
   compact: "h-[36px] w-[36px]",
   sidebar: "h-8 w-8",
+  hallChampion: "h-[56px] w-[56px] sm:h-[64px] sm:w-[64px]",
+  hall: "h-[48px] w-[48px] sm:h-[56px] sm:w-[56px]",
   fill: "absolute inset-0",
 } as const;
 

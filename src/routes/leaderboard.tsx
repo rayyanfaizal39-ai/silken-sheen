@@ -12,6 +12,11 @@ import type {
 } from "./-leaderboard.server";
 import { seoMeta } from "@/lib/seo";
 import { formatSchoolName } from "@/lib/school-display";
+import {
+  normalizePreviousLeaderboard,
+  PreviousMonthHall,
+  type PreviousLeaderboardResponse,
+} from "@/components/leaderboard/PreviousMonthHall";
 
 export const Route = createFileRoute("/leaderboard")({
   head: () =>
@@ -114,6 +119,40 @@ async function getBrowserLeaderboardData(signal?: AbortSignal): Promise<Leaderbo
   }
 }
 
+async function getBrowserPreviousLeaderboard(
+  signal?: AbortSignal,
+): Promise<PreviousLeaderboardResponse> {
+  if (!isSupabaseConfigured) return { status: "error" };
+
+  try {
+    const { data, error } = await Promise.race([
+      supabase.rpc("get_previous_leaderboard", { page_size: 10, page_offset: 0 }),
+      new Promise<never>((_, reject) => {
+        const timer = window.setTimeout(
+          () => reject(new LeaderboardTimeoutError("Previous leaderboard request timed out")),
+          LEADERBOARD_TIMEOUT_MS,
+        );
+        signal?.addEventListener("abort", () => {
+          window.clearTimeout(timer);
+          reject(new DOMException("Aborted", "AbortError"));
+        });
+      }),
+    ]);
+
+    const history = normalizePreviousLeaderboard(data);
+    if (error || !history) {
+      if (import.meta.env.DEV) console.error("[leaderboard] get_previous_leaderboard RPC failed:", error);
+      return { status: "error" };
+    }
+
+    return { status: "ok", data: history };
+  } catch (err) {
+    if (err instanceof DOMException && err.name === "AbortError") throw err;
+    if (import.meta.env.DEV) console.error("[leaderboard] get_previous_leaderboard RPC failed:", err);
+    return { status: "error" };
+  }
+}
+
 function LeaderboardPage() {
   const { leaderboard: loaderLeaderboard } = Route.useLoaderData() as {
     leaderboard: LeaderboardResponse;
@@ -121,6 +160,7 @@ function LeaderboardPage() {
   const { user, loading: authLoading } = useAuth();
   const { progress } = useProgress();
   const [response, setResponse] = useState<LeaderboardResponse>(loaderLeaderboard);
+  const [history, setHistory] = useState<PreviousLeaderboardResponse>({ status: "loading" });
   const [refreshing, setRefreshing] = useState(false);
 
   const refresh = useCallback(
@@ -128,9 +168,13 @@ function LeaderboardPage() {
       if (!user) return;
       if (showSpinner) setRefreshing(true);
       try {
-        const next = await getBrowserLeaderboardData(signal);
+        const [next, previous] = await Promise.all([
+          getBrowserLeaderboardData(signal),
+          getBrowserPreviousLeaderboard(signal),
+        ]);
         if (signal?.aborted) return;
         setResponse(next);
+        setHistory(previous);
       } catch (error) {
         if (signal?.aborted || (error instanceof DOMException && error.name === "AbortError"))
           return;
@@ -190,6 +234,7 @@ function LeaderboardPage() {
       ranked={realRanked ?? []}
       currentStudent={currentRanked}
       month={response.data.month}
+      history={history}
       refreshing={refreshing}
       onRefresh={() => void refresh()}
     />
@@ -241,12 +286,14 @@ function GalaxyHallOfFame({
   ranked,
   currentStudent,
   month,
+  history,
   refreshing,
   onRefresh,
 }: {
   ranked: RealRankedStudent[];
   currentStudent: RealRankedStudent | null;
   month: string;
+  history: PreviousLeaderboardResponse;
   refreshing: boolean;
   onRefresh: () => void;
 }) {
@@ -425,6 +472,8 @@ function GalaxyHallOfFame({
           </div>
         </section>
       )}
+
+      <PreviousMonthHall history={history} />
     </section>
   );
 }
