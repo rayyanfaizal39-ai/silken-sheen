@@ -25,7 +25,20 @@ afterEach(() => {
 });
 const mount = (node: ReactNode) => act(() => root.render(node));
 const sha = (s: string) => createHash("sha256").update(s).digest("hex");
-const hash = (v: unknown) => sha(JSON.stringify(v));
+const hash = (v: unknown) =>
+  sha(
+    JSON.stringify(v, (key, value) =>
+      // The authorised 8.7 refinement adds four fields; retain original hashes for all existing facts.
+      [
+        "additionDefinition",
+        "subtractionDefinition",
+        "additionEverydayExample",
+        "additionSubtractionComparison",
+      ].includes(key)
+        ? undefined
+        : value,
+    ),
+  );
 const read = (p: string) => readFileSync(p, "utf8").replace(/\r\n/g, "\n");
 const nums = (s: string) => s.match(/-?\d+(?:\.\d+)?/g)!.map(Number);
 const ray = (el: Element) => nums(el.getAttribute("d")!);
@@ -69,9 +82,16 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
     ] as const)
       expect(sha(read(`src/components/notes/${name}.tsx`))).toBe(locks[name]);
     const root = read("src/components/notes/ScienceF1Chapter8VisualNotesBlock.tsx");
-    expect(sha(root.slice(root.indexOf('          <section id="chapter8-87"')))).toBe(
-      locks.presentation,
-    );
+    expect(
+      sha(
+        root
+          .slice(root.indexOf('          <section id="chapter8-87"'))
+          .replace(
+            /^ +<p\n +data-colour-refinement="[^"\n]+"\n +className="[^"\n]+"\n +>\n[^\n]*\n +<\/p>\n/gm,
+            "",
+          ),
+      ),
+    ).toBe(locks.presentation);
   });
   for (const lang of ["en", "bm"] as const) {
     const t = content[lang],

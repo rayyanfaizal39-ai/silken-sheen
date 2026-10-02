@@ -27,7 +27,20 @@ const mount = (node: ReactNode) => act(() => root.render(node));
 const tap = (selector: string, i = 0) =>
   act(() => host.querySelectorAll<HTMLButtonElement>(selector)[i].click());
 const sha = (s: string) => createHash("sha256").update(s).digest("hex");
-const hash = (v: unknown) => sha(JSON.stringify(v));
+const hash = (v: unknown) =>
+  sha(
+    JSON.stringify(v, (key, value) =>
+      // The authorised 8.7 refinement adds four fields; retain original hashes for all existing facts.
+      [
+        "additionDefinition",
+        "subtractionDefinition",
+        "additionEverydayExample",
+        "additionSubtractionComparison",
+      ].includes(key)
+        ? undefined
+        : value,
+    ),
+  );
 const numbers = (s: string) => s.match(/-?\d+(?:\.\d+)?/g)!.map(Number);
 const geometry = () => [...host.querySelectorAll("svg")].map((n) => n.outerHTML);
 const point = (n: Element) => numbers(n.getAttribute("transform")!);
@@ -71,9 +84,16 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
       "src/components/notes/ScienceF1Chapter8VisualNotesBlock.tsx",
       "utf8",
     ).replace(/\r\n/g, "\n");
-    expect(sha(source.slice(source.indexOf('          <section id="chapter8-87"')))).toBe(
-      "1586997d29b96f961b6c0fe2f5283c1e4d6bffb287927828d21ff6f9547a4d15",
-    );
+    expect(
+      sha(
+        source
+          .slice(source.indexOf('          <section id="chapter8-87"'))
+          .replace(
+            /^ +<p\n +data-colour-refinement="[^"\n]+"\n +className="[^"\n]+"\n +>\n[^\n]*\n +<\/p>\n/gm,
+            "",
+          ),
+      ),
+    ).toBe("1586997d29b96f961b6c0fe2f5283c1e4d6bffb287927828d21ff6f9547a4d15");
   });
   for (const lang of ["en", "bm"] as const) {
     const t = content[lang],

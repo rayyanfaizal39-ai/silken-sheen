@@ -325,6 +325,10 @@ export interface Chapter8Content {
   dispersion: DispersionLesson;
   scattering: ScatteringLesson;
   colorAdditionSubtraction: {
+    additionDefinition: string;
+    subtractionDefinition: string;
+    additionEverydayExample: string;
+    additionSubtractionComparison: string;
     primaryColors: string[];
     secondaryColors: string[];
     additionFormula: ColorMix[];
@@ -1060,6 +1064,14 @@ const en: Chapter8Content = {
     },
   },
   colorAdditionSubtraction: {
+    additionDefinition:
+      "Addition of light occurs when two or more primary coloured lights are combined to produce another colour.",
+    subtractionDefinition:
+      "Subtraction of light occurs when certain colours in light are absorbed or blocked by an object or colour filter, leaving only the remaining colours to pass through or reach the observer.",
+    additionEverydayExample:
+      "Digital screens use red, green and blue light in different combinations to produce many colours.",
+    additionSubtractionComparison:
+      "Addition combines coloured light; subtraction removes certain colours from light.",
     primaryColors: ["Red", "Blue", "Green"],
     secondaryColors: ["Cyan", "Yellow", "Magenta"],
     additionFormula: [
@@ -1842,6 +1854,14 @@ const bm: Chapter8Content = {
     },
   },
   colorAdditionSubtraction: {
+    additionDefinition:
+      "Penambahan cahaya berlaku apabila dua atau lebih cahaya berwarna primer digabungkan untuk menghasilkan warna lain.",
+    subtractionDefinition:
+      "Penolakan cahaya berlaku apabila warna tertentu dalam cahaya diserap atau dihalang oleh objek atau penapis warna, dan hanya warna yang tinggal dapat menembusinya atau sampai kepada pemerhati.",
+    additionEverydayExample:
+      "Skrin digital menggunakan cahaya merah, hijau dan biru dalam gabungan yang berbeza untuk menghasilkan pelbagai warna.",
+    additionSubtractionComparison:
+      "Penambahan menggabungkan cahaya berwarna; penolakan menyingkirkan warna tertentu daripada cahaya.",
     primaryColors: ["Merah", "Biru", "Hijau"],
     secondaryColors: ["Sian", "Kuning", "Magenta"],
     additionFormula: [

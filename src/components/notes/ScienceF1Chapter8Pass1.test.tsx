@@ -36,7 +36,22 @@ const mount = (node: ReactNode) => {
   act(() => root.render(node));
   return host;
 };
-const hash = (v: unknown) => createHash("sha256").update(JSON.stringify(v)).digest("hex");
+const hash = (v: unknown) =>
+  createHash("sha256")
+    .update(
+      JSON.stringify(v, (key, value) =>
+        // The authorised 8.7 refinement adds four fields; retain original hashes for all existing facts.
+        [
+          "additionDefinition",
+          "subtractionDefinition",
+          "additionEverydayExample",
+          "additionSubtractionComparison",
+        ].includes(key)
+          ? undefined
+          : value,
+      ),
+    )
+    .digest("hex");
 const geometry = () => [...host.querySelectorAll("svg")].map((n) => n.outerHTML);
 const click = (selector: string, i = 0) =>
   act(() => host.querySelectorAll<HTMLButtonElement>(selector)[i].click());

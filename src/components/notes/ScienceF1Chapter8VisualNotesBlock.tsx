@@ -296,6 +296,12 @@ export function ScienceF1Chapter8VisualNotesBlock({
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               {t.subtopics[6].code} {t.subtopics[6].title}
             </h2>
+            <p
+              data-colour-refinement="additionDefinition"
+              className="text-sm leading-6 text-slate-300"
+            >
+              {t.colorAdditionSubtraction.additionDefinition}
+            </p>
             <Panel>
               <div className="flex items-center gap-3">
                 <Palette className="h-6 w-6 text-fuchsia-300" />
@@ -330,11 +336,29 @@ export function ScienceF1Chapter8VisualNotesBlock({
                   {t.colorAdditionSubtraction.allThreeMixed}
                 </p>
               </div>
+              <p
+                data-colour-refinement="additionEverydayExample"
+                className="text-sm leading-6 text-slate-300"
+              >
+                {t.colorAdditionSubtraction.additionEverydayExample}
+              </p>
             </Panel>
           </section>
 
           <section className="space-y-6">
             <h3 className="text-xl font-bold">{copy.sections[0][1]}</h3>
+            <p
+              data-colour-refinement="subtractionDefinition"
+              className="text-sm leading-6 text-slate-300"
+            >
+              {t.colorAdditionSubtraction.subtractionDefinition}
+            </p>
+            <p
+              data-colour-refinement="additionSubtractionComparison"
+              className="text-sm leading-6 text-slate-300"
+            >
+              {t.colorAdditionSubtraction.additionSubtractionComparison}
+            </p>
             <p className="max-w-3xl text-sm leading-6 text-slate-300">
               {t.colorAdditionSubtraction.subtractionPrinciple}
             </p>
