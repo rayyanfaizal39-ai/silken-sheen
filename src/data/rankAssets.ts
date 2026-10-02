@@ -52,31 +52,32 @@ export function getRankGlow(rank: string): string {
 
 // ─── Rank artwork geometry (measured, presentation-only) ─────────────────────
 //
-// Every /ranks/*.png is a 1536x1024 landscape canvas with the companion
-// centred inside a large transparent margin. When such an image is rendered
-// with `object-contain` into a SQUARE box of side B, it is reduced twice:
-//   1. letterboxed to B x (B / 1.5) to preserve the 3:2 aspect ratio, and
-//   2. the opaque artwork only occupies part of that letterboxed area.
-// The net effect is that the visible companion spans well under half of B,
-// which is why the podium frames looked mostly empty.
+// Every /ranks/*.png is a 1536×1024 landscape canvas. `object-contain` in a
+// square letterboxes that canvas, and the opaque companion only occupies part
+// of the letterboxed area — a different fraction per file. Sizing the wrapper
+// from the file's intrinsic dimensions therefore makes one rank look larger
+// than another.
 //
-// `squareFill` is the measured result of both reductions: the visible
-// (non-transparent) longest side, expressed as a fraction of B. It is taken
-// from each asset's opaque bounding box (alpha > 12) as
-//   max(bboxW / canvasW, (bboxH / canvasH) / (canvasW / canvasH))
-// Consumers divide their target fill by it to work out how large to render
-// the image so the ARTWORK, not the padded canvas, hits the intended size.
+// `fill` is the opaque bounding box's longest side as a fraction of the square
+// (alpha > 12). `centerX` / `centerY` are that box's center inside the same
+// square. Consumers keep a fixed wrapper and scale + translate the image so
+// the artwork, not the transparent padding, fills the wrapper and stays
+// centered. Re-measure if the artwork is replaced.
 //
 // This is display metadata only: it never changes the asset, the rank
-// thresholds, or any progression logic. Re-measure if the artwork is replaced.
-const RANK_ARTWORK_SQUARE_FILL: Record<string, number> = {
-  "Space Cadet": 0.5059,
-  "Moon Explorer": 0.4271,
-  "Planet Voyager": 0.4056,
-  "Star Captain": 0.4805,
-  "Galaxy Guardian": 0.5397,
-  "Cosmic Legend": 0.526,
+// thresholds, or any progression logic.
+const ARTWORK_TARGET_FILL = 0.9;
+
+const RANK_ARTWORK_GEOMETRY: Record<string, { fill: number; centerX: number; centerY: number }> = {
+  "Space Cadet": { fill: 0.5039, centerX: 0.4925, centerY: 0.4759 },
+  "Moon Explorer": { fill: 0.4271, centerX: 0.498, centerY: 0.4714 },
+  "Planet Voyager": { fill: 0.4056, centerX: 0.499, centerY: 0.4587 },
+  "Star Captain": { fill: 0.4805, centerX: 0.4733, centerY: 0.4707 },
+  "Galaxy Guardian": { fill: 0.5397, centerX: 0.4977, centerY: 0.4912 },
+  "Cosmic Legend": { fill: 0.526, centerX: 0.4948, centerY: 0.4974 },
 };
+
+const FALLBACK_ARTWORK_GEOMETRY = { fill: 0.48, centerX: 0.5, centerY: 0.5 };
 
 /**
  * Fraction of a square image box that the visible artwork occupies under
@@ -84,5 +85,26 @@ const RANK_ARTWORK_SQUARE_FILL: Record<string, number> = {
  * new asset renders at a sane size rather than collapsing or exploding.
  */
 export function getRankArtworkSquareFill(rank: string): number {
-  return RANK_ARTWORK_SQUARE_FILL[rank] ?? 0.48;
+  return (RANK_ARTWORK_GEOMETRY[rank] ?? FALLBACK_ARTWORK_GEOMETRY).fill;
+}
+
+export type RankArtworkFit = {
+  scale: number;
+  translateX: number;
+  translateY: number;
+};
+
+/**
+ * Transform that makes every rank's opaque artwork fill the same fraction of a
+ * fixed square `object-contain` box, centered, without cropping opaque pixels.
+ * Translate percentages are applied after scale, with the origin at the center.
+ */
+export function getRankArtworkFit(rank: string): RankArtworkFit {
+  const geometry = RANK_ARTWORK_GEOMETRY[rank] ?? FALLBACK_ARTWORK_GEOMETRY;
+  const scale = ARTWORK_TARGET_FILL / geometry.fill;
+  return {
+    scale,
+    translateX: (0.5 - geometry.centerX) * scale * 100,
+    translateY: (0.5 - geometry.centerY) * scale * 100,
+  };
 }

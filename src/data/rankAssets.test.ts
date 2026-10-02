@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { RANKS, getRank } from "./rankAssets";
+import { RANKS, getRank, getRankArtworkFit, getRankArtworkSquareFill } from "./rankAssets";
 
 describe("Cosmic Journey rank boundaries", () => {
   it.each([
@@ -17,6 +17,17 @@ describe("Cosmic Journey rank boundaries", () => {
     [75000, "Cosmic Legend"],
   ])("%i XP resolves to %s", (xp, expectedRank) => {
     expect(getRank(xp).name).toBe(expectedRank);
+  });
+
+  it("normalises every rank's artwork to the same fill inside a fixed square", () => {
+    for (const rank of RANKS) {
+      const fit = getRankArtworkFit(rank.name);
+      expect(fit.scale * getRankArtworkSquareFill(rank.name)).toBeCloseTo(0.9, 5);
+      expect(fit.scale).toBeGreaterThan(1);
+      expect(fit.scale).toBeLessThan(2.4);
+      expect(Math.abs(fit.translateX)).toBeLessThan(12);
+      expect(Math.abs(fit.translateY)).toBeLessThan(12);
+    }
   });
 
   it("keeps the exact six-rank progression order and image mapping", () => {
