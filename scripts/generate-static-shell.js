@@ -22,6 +22,7 @@
 import { readFileSync, writeFileSync, rmSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { CHUNK_RECOVERY_INLINE_SCRIPT } from "../src/lib/chunk-recovery-inline.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -126,6 +127,7 @@ ${noReactStyleFallback}
       </div>
     </div>
     <div id="root"></div>
+    <script>${CHUNK_RECOVERY_INLINE_SCRIPT}</script>
     <script type="module" src="/${entry.file}"></script>
   </body>
 </html>

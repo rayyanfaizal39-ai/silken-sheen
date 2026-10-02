@@ -23,9 +23,9 @@
 //   requirement for the Advanced Mode directory entry point). Nothing inside
 //   references the entry file's own name, so the rename is safe.
 // - Writes dist/client/_routes.json so Pages invokes the Worker for
-//   everything except genuinely static assets (mirrors the exclude list in
-//   patch-wrangler-assets.js's run_worker_first, translated to Pages'
-//   include/exclude glob syntax).
+//   documents and /assets/*. Hashed chunks are not excluded: a missing
+//   chunk must 404 from the Worker instead of being replaced with HTML.
+//   Other static files stay on the asset server.
 // - Deletes .wrangler/deploy/config.json. nitro's `deployConfig: true` option
 //   (vite.config.ts) writes this file pointing at dist/server/wrangler.json —
 //   a Workers-with-Assets config whose `assets.run_worker_first` is an array
@@ -48,6 +48,7 @@ import {
 } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { mergePagesHeaders, pagesRouteConfig } from "./pages-output.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -77,10 +78,19 @@ const serviceWorkerTarget = join(clientDir, "sw.js");
 const workboxFiles = readdirSync(distDir).filter(
   (name) => name.startsWith("workbox-") && name.endsWith(".js"),
 );
+const serviceWorkerSourceText = existsSync(serviceWorkerSource)
+  ? readFileSync(serviceWorkerSource, "utf8")
+  : "";
+// Vite runs generateSW more than once. Each pass leaves its workbox-*.js
+// behind and only the last sw.js is current. Publish the runtime that
+// sw.js actually imports.
+const referencedWorkbox = workboxFiles.filter((name) =>
+  serviceWorkerSourceText.includes(name.slice(0, -".js".length)),
+);
 
-if (!existsSync(serviceWorkerSource) || workboxFiles.length === 0) {
+if (!existsSync(serviceWorkerSource) || referencedWorkbox.length !== 1) {
   console.error(
-    "[build-pages-worker] Expected vite-plugin-pwa output in dist/ (sw.js and workbox-*.js).",
+    "[build-pages-worker] Expected dist/sw.js to import exactly one workbox-*.js runtime.",
   );
   process.exit(1);
 }
@@ -92,7 +102,7 @@ for (const name of readdirSync(clientDir)) {
 }
 
 copyFileSync(serviceWorkerSource, serviceWorkerTarget);
-for (const name of workboxFiles) {
+for (const name of referencedWorkbox) {
   copyFileSync(join(distDir, name), join(clientDir, name));
 }
 
@@ -119,55 +129,15 @@ renameSync(entryMjs, entryJs);
 // it so it can't cause confusion.
 rmSync(join(workerDir, "wrangler.json"), { force: true });
 
-writeFileSync(
-  join(clientDir, "_routes.json"),
-  JSON.stringify(
-    {
-      version: 1,
-      description:
-        "Run the SSR Worker for all document/navigation requests; serve genuinely static files directly.",
-      include: ["/*"],
-      exclude: [
-        "/assets/*",
-        "/companions/*",
-        "/favicon.ico",
-        "/index.html",
-        "/sw.js",
-        "/workbox-*.js",
-        "/*.png",
-        "/*.webmanifest",
-        "/robots.txt",
-        "/sitemap.xml",
-      ],
-    },
-    null,
-    2,
-  ),
-);
+writeFileSync(join(clientDir, "_routes.json"), JSON.stringify(pagesRouteConfig(), null, 2));
 
-// The build's generated dist/client/_headers only covers /assets/* (content-
-// hashed, safe to cache immutably for a year). /sw.js and /workbox-*.js are
-// NOT content-hashed (filename: "sw.js" is fixed), so without an explicit
-// override the browser/Cloudflare edge can serve a stale copy of the worker
-// script itself — delaying how quickly a client even notices a new deploy
-// exists, on top of the skipWaiting/clientsClaim fix in vite.config.ts.
-// Force those two to always revalidate, while leaving whatever immutable
-// rule already exists for /assets/* untouched.
+// Hashed /assets/* stay immutable. The HTML shell, web manifest, sw.js and
+// workbox runtime are not content-hashed, so they must revalidate or an
+// older browser keeps the August worker and an app shell that points at
+// deleted chunks. Existing rules are left as written.
 const headersPath = join(clientDir, "_headers");
-const swHeaderRules = [
-  "/sw.js",
-  "  cache-control: no-cache, no-store, must-revalidate",
-  "",
-  "/workbox-*.js",
-  "  cache-control: no-cache, no-store, must-revalidate",
-  "",
-].join("\n");
-
 const existingHeaders = existsSync(headersPath) ? readFileSync(headersPath, "utf8") : "";
-if (!existingHeaders.includes("/sw.js")) {
-  const merged = `${existingHeaders.trimEnd()}\n\n${swHeaderRules}`.trimStart();
-  writeFileSync(headersPath, merged);
-}
+writeFileSync(headersPath, mergePagesHeaders(existingHeaders));
 
 // Belt + suspenders: remove every file Cloudflare Pages could follow as a
 // redirect away from the root wrangler.jsonc.

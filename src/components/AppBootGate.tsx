@@ -11,6 +11,7 @@ import {
 import { useRouter } from "@tanstack/react-router";
 import { ACADEMY_LOADER_FADE_MS } from "@/components/AcadeMYLoadingScreen";
 import { useAuth } from "@/context/auth-context";
+import { clearChunkRecoveryMarker } from "@/lib/chunk-recovery";
 import { isPublicAuthRoute } from "@/lib/onboarding-routing";
 import {
   beginLoadingTask,
@@ -279,6 +280,7 @@ export function AppBootGate({ children }: { children: ReactNode }) {
       return;
     }
 
+    if (!state.error) clearChunkRecoveryMarker();
     loader.classList.add("academy-loader--leaving");
     hideTimer.current = window.setTimeout(() => {
       loader.hidden = true;

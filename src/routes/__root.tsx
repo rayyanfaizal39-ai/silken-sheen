@@ -29,6 +29,11 @@ import { organizationSchema, educationalOrganizationSchema, websiteSchema } from
 import { JsonLd } from "@/components/seo/JsonLd";
 import { isPublicAuthRoute } from "@/lib/onboarding-routing";
 import { VisitorAnalytics } from "@/components/VisitorAnalytics";
+import {
+  CHUNK_RECOVERY_INLINE_SCRIPT,
+  recoverFromStaleChunk,
+  revealBootLoader,
+} from "@/lib/chunk-recovery";
 
 function NotFoundComponent() {
   // The 404 view has no file-based route of its own, so it can't set its
@@ -66,6 +71,11 @@ function NotFoundComponent() {
 
 function ErrorComponent({ error, info, reset }: ErrorComponentProps) {
   const router = useRouter();
+
+  useEffect(() => {
+    if (recoverFromStaleChunk(error)) return;
+    revealBootLoader();
+  }, [error]);
 
   useEffect(() => {
     const componentStack = info?.componentStack ?? "(component stack unavailable)";
@@ -215,6 +225,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body data-academy-loading="true">
         <AcadeMYStaticLoadingShell />
+        <script dangerouslySetInnerHTML={{ __html: CHUNK_RECOVERY_INLINE_SCRIPT }} />
         <div id="academy-app">{children}</div>
         <Scripts />
       </body>
