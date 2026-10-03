@@ -277,6 +277,15 @@ describe("Chapter 8 Pass 2 — source-controlled 8.2 and 8.3", () => {
     it(`${lang}: all road applications remain concise without decorative icons or repeated practice`, () => {
       reflection();
       expect(host.querySelectorAll("[data-reflection-application]")).toHaveLength(0);
+      const explanation = host.querySelector("[data-reflection-application-explanation]");
+      expect(explanation?.textContent).toBe(
+        lang === "en"
+          ? "Reflective materials return light toward road users, making objects such as road signs and warning triangles easier to see at night."
+          : "Bahan pemantul memantulkan cahaya ke arah pengguna jalan raya, menyebabkan objek seperti papan tanda dan segi tiga amaran lebih mudah dilihat pada waktu malam.",
+      );
+      expect(
+        host.querySelector("[data-reflection-applications]")?.querySelectorAll("svg,img"),
+      ).toHaveLength(0);
       r.applications.items.forEach((text) =>
         expect(host.querySelector("[data-reflection-applications]")?.textContent).toContain(text),
       );

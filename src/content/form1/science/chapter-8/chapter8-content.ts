@@ -207,7 +207,7 @@ export interface ReflectionLesson {
     mirror: string;
     image: string;
   };
-  applications: { title: string; items: string[] };
+  applications: { title: string; items: string[]; explanation: string };
   practice: { title: string; questions: string[] };
   labels: {
     materials: string;
@@ -446,6 +446,8 @@ const en: Chapter8Content = {
     },
     applications: {
       title: "Applications of Reflection of Light",
+      explanation:
+        "Reflective materials return light toward road users, making objects such as road signs and warning triangles easier to see at night.",
       items: ["Traffic cones", "Road sign", "Warning triangle"],
     },
     practice: {
@@ -1228,6 +1230,8 @@ const bm: Chapter8Content = {
     },
     applications: {
       title: "Aplikasi Pantulan dalam Kehidupan Harian",
+      explanation:
+        "Bahan pemantul memantulkan cahaya ke arah pengguna jalan raya, menyebabkan objek seperti papan tanda dan segi tiga amaran lebih mudah dilihat pada waktu malam.",
       items: ["Kon lalu lintas", "Papan tanda jalan", "Segi tiga amaran"],
     },
     practice: {

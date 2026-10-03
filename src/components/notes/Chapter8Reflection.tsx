@@ -309,6 +309,12 @@ export function Chapter8Reflection({ source: s }: { source: ReflectionLesson }) 
             <li key={name}>{name}</li>
           ))}
         </ul>
+        <p
+          data-reflection-application-explanation
+          className="mt-3 text-sm leading-6 text-slate-300"
+        >
+          {s.applications.explanation}
+        </p>
       </section>
     </div>
   );

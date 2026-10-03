@@ -1,3 +1,4 @@
+// 8.3 application refinement: only reflection content/component snapshots updated for the supplied explanation.
 // Revision cleanup (2026-10-03): only the four 8.1–8.4 component snapshots are updated; canonical/deferred locks are unchanged.
 // Pass 4 authorises 8.5/8.6 edits; deferred checks now cover pre-Pass-4 8.7 only.
 // @vitest-environment jsdom
@@ -54,14 +55,14 @@ const locks = {
   en: {
     mirrors: "f9ba2250f78733bf980abf159591493f7718fb0502bcbf72d8af1b3ed0085115",
     properties: "30892516c7b52edbeb3a815af5dd9e0c68697f3e459a4564257fab75f28f5b32",
-    reflection: "edb95a522087ad0eecc853000d66d3984a8eff84382aedb7e9bf003d8cdd9da4",
+    reflection: "86f052c685158c7c3fee19cd721bbd84c8c9652bf78f19a26dbe04207c5bba09",
     deferred: "95a724cbdb1d34b00f8b15710a3f8754012f798d50c9b2665f0bea41b1fe9ef9",
     supplement: "bdf887aa50e4f06d1d1d4abddd0a2a95d532327f68e842093f03525eebeb5389",
   },
   bm: {
     mirrors: "a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a",
     properties: "98f9abcf4c1563d3b0f0427f4cef260bc2aeb5b42b715e56af831751032cfe6a",
-    reflection: "6f63c7b902fa79fa6711548e6ae2bc511ef95bbfc4a764d4255ec38f9cf57888",
+    reflection: "c2f9235ecf43c945af6bd2db40448c0c36f34eab5d7ef946dbd939f5250c0bc1",
     deferred: "5b924ae4a14de777bdce2320a23ab1434729e9e37368b03fe35af7833691d552",
     supplement: "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8",
   },
@@ -72,7 +73,7 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
     const files = {
       Chapter8Mirrors: "0ec93bea9fc2e5a8c32eac59f48279ce3e011f49a23af25129b7c680ddea48fb",
       Chapter8PropertiesOfLight: "fafce58d624495031073d45fb2f9ec12c2bacaccb49b43ab3e2d55f7761c0508",
-      Chapter8Reflection: "b57e8d2bf6fe30c19a7272095e453819c0f9d7ce7404802fe942cd2516a427eb",
+      Chapter8Reflection: "b4e09434648f359a49c1db0375deb99a0d09328fdaf1415b3bafdb5d8f176a81",
     };
     Object.entries(files).forEach(([file, expected]) =>
       expect(
