@@ -207,7 +207,7 @@ export interface ReflectionLesson {
     mirror: string;
     image: string;
   };
-  applications: { title: string; items: string[] };
+  applications: { title: string; items: string[]; explanation: string };
   practice: { title: string; questions: string[] };
   labels: {
     materials: string;
@@ -235,6 +235,7 @@ export interface ReflectionLesson {
 }
 
 export interface RefractionLesson {
+  glassEntry: { air: string; glass: string; rule: string; angleComparison: string };
   definition: string;
   illusions: { pond: string; pencil: string };
   fish: { title: string; explanation: string; question: string };
@@ -325,6 +326,10 @@ export interface Chapter8Content {
   dispersion: DispersionLesson;
   scattering: ScatteringLesson;
   colorAdditionSubtraction: {
+    additionDefinition: string;
+    subtractionDefinition: string;
+    additionEverydayExample: string;
+    additionSubtractionComparison: string;
     primaryColors: string[];
     secondaryColors: string[];
     additionFormula: ColorMix[];
@@ -442,6 +447,8 @@ const en: Chapter8Content = {
     },
     applications: {
       title: "Applications of Reflection of Light",
+      explanation:
+        "Reflective materials return light toward road users, making objects such as road signs and warning triangles easier to see at night.",
       items: ["Traffic cones", "Road sign", "Warning triangle"],
     },
     practice: {
@@ -731,6 +738,13 @@ const en: Chapter8Content = {
     },
   },
   refraction: {
+    glassEntry: {
+      air: "Air",
+      glass: "Glass",
+      rule: "Air → glass: light bends towards the normal.",
+      angleComparison:
+        "Therefore, the angle of refraction, r, is smaller than the angle of incidence, i.",
+    },
     definition:
       "Refraction of light is the change in direction of light when light travels through two media of different densities.",
     illusions: {
@@ -914,7 +928,7 @@ const en: Chapter8Content = {
       "For example, red light has the highest speed, so red light is refracted the least. However, violet light has the lowest speed, so violet light is refracted the most.",
     prismBehaviour: [
       "When a white light ray is directed to a prism, the white light will be separated into its components of colour. This is because the different colours in the white light bend towards the normal at different angles when entering the prism.",
-      "When the different colours leave the glass prism, they are refracted away from the normal. The different colours are dispersed in an order that is known as a spectrum. The spectrum of white light consists of red, orange, yellow, green, blue, indigo and violet colour.",
+      "When the different colours leave the glass prism, they are refracted away from the normal. The different colours are dispersed in an order that is known as a spectrum.",
     ],
     rainbowFormation:
       "When sunlight enters rain droplets in the sky, the white light will be refracted and dispersed into seven different colours to form a rainbow.",
@@ -1060,6 +1074,14 @@ const en: Chapter8Content = {
     },
   },
   colorAdditionSubtraction: {
+    additionDefinition:
+      "Addition of light occurs when two or more primary coloured lights are combined to produce another colour.",
+    subtractionDefinition:
+      "Subtraction of light occurs when certain colours in light are absorbed or blocked by an object or colour filter, leaving only the remaining colours to pass through or reach the observer.",
+    additionEverydayExample:
+      "Digital screens use red, green and blue light in different combinations to produce many colours.",
+    additionSubtractionComparison:
+      "Addition combines coloured light; subtraction removes certain colours from light.",
     primaryColors: ["Red", "Blue", "Green"],
     secondaryColors: ["Cyan", "Yellow", "Magenta"],
     additionFormula: [
@@ -1216,6 +1238,8 @@ const bm: Chapter8Content = {
     },
     applications: {
       title: "Aplikasi Pantulan dalam Kehidupan Harian",
+      explanation:
+        "Bahan pemantul memantulkan cahaya ke arah pengguna jalan raya, menyebabkan objek seperti papan tanda dan segi tiga amaran lebih mudah dilihat pada waktu malam.",
       items: ["Kon lalu lintas", "Papan tanda jalan", "Segi tiga amaran"],
     },
     practice: {
@@ -1515,6 +1539,12 @@ const bm: Chapter8Content = {
     },
   },
   refraction: {
+    glassEntry: {
+      air: "Udara",
+      glass: "Kaca",
+      rule: "Udara → kaca: cahaya membengkok mendekati normal.",
+      angleComparison: "Jadi, sudut biasan, r, lebih kecil daripada sudut tuju, i.",
+    },
     definition:
       "Pembiasan cahaya ialah perubahan arah perambatan atau pembengkokan cahaya apabila cahaya bergerak melalui dua medium yang berbeza ketumpatan.",
     illusions: {
@@ -1842,6 +1872,14 @@ const bm: Chapter8Content = {
     },
   },
   colorAdditionSubtraction: {
+    additionDefinition:
+      "Penambahan cahaya berlaku apabila dua atau lebih cahaya berwarna primer digabungkan untuk menghasilkan warna lain.",
+    subtractionDefinition:
+      "Penolakan cahaya berlaku apabila warna tertentu dalam cahaya diserap atau dihalang oleh objek atau penapis warna, dan hanya warna yang tinggal dapat menembusinya atau sampai kepada pemerhati.",
+    additionEverydayExample:
+      "Skrin digital menggunakan cahaya merah, hijau dan biru dalam gabungan yang berbeza untuk menghasilkan pelbagai warna.",
+    additionSubtractionComparison:
+      "Penambahan menggabungkan cahaya berwarna; penolakan menyingkirkan warna tertentu daripada cahaya.",
     primaryColors: ["Merah", "Biru", "Hijau"],
     secondaryColors: ["Sian", "Kuning", "Magenta"],
     additionFormula: [
@@ -1896,6 +1934,8 @@ const bm: Chapter8Content = {
 export const chapter8Content = { en, bm };
 
 export interface Chapter8Supplement {
+  filterGate: string;
+  workedFilter: { steps: string[]; explanation: string; bothRule: string };
   objectColourRows: { object: string; incident: string; reflected: string; absorbed: string }[];
   filters: { type: string; rule: string; examples: string[] }[];
   filterMatrix: { first: string; second: string; result: string; reason: string }[];
@@ -1903,6 +1943,14 @@ export interface Chapter8Supplement {
 }
 
 const supplementEn: Chapter8Supplement = {
+  filterGate: "Think of a colour filter as a gate: only certain colours are allowed through.",
+  workedFilter: {
+    steps: ["White light", "Red filter", "Red light", "Cyan filter", "No light", "Black / Dark"],
+    explanation:
+      "The red filter transmits only red light. The cyan filter absorbs red, so no light reaches the screen.",
+    bothRule:
+      "When two filters are used, only colours that can pass through BOTH filters reach the screen.",
+  },
   objectColourRows: [
     { object: "Green leaf", incident: "White", reflected: "Green", absorbed: "Red and blue" },
     {
@@ -1933,8 +1981,43 @@ const supplementEn: Chapter8Supplement = {
   filterMatrix: [
     { first: "Red", second: "Yellow", result: "Red", reason: "Red passes through both filters." },
     { first: "Red", second: "Magenta", result: "Red", reason: "Red passes through both filters." },
-    { first: "Red", second: "Cyan", result: "Black", reason: "Cyan absorbs the red light." },
-    { first: "Blue", second: "Yellow", result: "Black", reason: "Yellow absorbs the blue light." },
+    {
+      first: "Red",
+      second: "Cyan",
+      result: "No light / Black",
+      reason: "Cyan absorbs the red light.",
+    },
+    {
+      first: "Green",
+      second: "Yellow",
+      result: "Green",
+      reason: "Green passes through both filters.",
+    },
+    {
+      first: "Green",
+      second: "Magenta",
+      result: "No light / Black",
+      reason: "Magenta absorbs the green light.",
+    },
+    {
+      first: "Green",
+      second: "Cyan",
+      result: "Green",
+      reason: "Green passes through both filters.",
+    },
+    {
+      first: "Blue",
+      second: "Yellow",
+      result: "No light / Black",
+      reason: "Yellow absorbs the blue light.",
+    },
+    {
+      first: "Blue",
+      second: "Magenta",
+      result: "Blue",
+      reason: "Blue passes through both filters.",
+    },
+    { first: "Blue", second: "Cyan", result: "Blue", reason: "Blue passes through both filters." },
   ],
   activeRecall: [
     {
@@ -1951,6 +2034,21 @@ const supplementEn: Chapter8Supplement = {
 };
 
 const supplementBm: Chapter8Supplement = {
+  filterGate: "Anggap penapis warna sebagai pintu: hanya warna tertentu dibenarkan melaluinya.",
+  workedFilter: {
+    steps: [
+      "Cahaya putih",
+      "Penapis merah",
+      "Cahaya merah",
+      "Penapis sian",
+      "Tiada cahaya",
+      "Hitam / Gelap",
+    ],
+    explanation:
+      "Penapis merah hanya membenarkan cahaya merah melaluinya. Penapis sian menyerap cahaya merah, jadi tiada cahaya sampai ke skrin.",
+    bothRule:
+      "Apabila dua penapis digunakan, hanya warna yang boleh melalui KEDUA-DUA penapis akan sampai ke skrin.",
+  },
   objectColourRows: [
     { object: "Daun hijau", incident: "Putih", reflected: "Hijau", absorbed: "Merah dan biru" },
     {
@@ -1996,8 +2094,33 @@ const supplementBm: Chapter8Supplement = {
       result: "Merah",
       reason: "Merah melalui kedua-dua penapis.",
     },
-    { first: "Merah", second: "Sian", result: "Hitam", reason: "Sian menyerap cahaya merah." },
-    { first: "Biru", second: "Kuning", result: "Hitam", reason: "Kuning menyerap cahaya biru." },
+    {
+      first: "Merah",
+      second: "Sian",
+      result: "Tiada cahaya / Hitam",
+      reason: "Sian menyerap cahaya merah.",
+    },
+    {
+      first: "Hijau",
+      second: "Kuning",
+      result: "Hijau",
+      reason: "Hijau melalui kedua-dua penapis.",
+    },
+    {
+      first: "Hijau",
+      second: "Magenta",
+      result: "Tiada cahaya / Hitam",
+      reason: "Magenta menyerap cahaya hijau.",
+    },
+    { first: "Hijau", second: "Sian", result: "Hijau", reason: "Hijau melalui kedua-dua penapis." },
+    {
+      first: "Biru",
+      second: "Kuning",
+      result: "Tiada cahaya / Hitam",
+      reason: "Kuning menyerap cahaya biru.",
+    },
+    { first: "Biru", second: "Magenta", result: "Biru", reason: "Biru melalui kedua-dua penapis." },
+    { first: "Biru", second: "Sian", result: "Biru", reason: "Biru melalui kedua-dua penapis." },
   ],
   activeRecall: [
     {

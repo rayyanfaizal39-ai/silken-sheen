@@ -1,3 +1,5 @@
+// Authorised 8.7 teaching refinement: supplement and 8.7 presentation snapshots updated; other locks unchanged.
+// Revision cleanup (2026-10-03): only the four 8.1–8.4 component snapshots are updated; canonical/deferred locks are unchanged.
 // Pass 4 authorises 8.5/8.6 edits; deferred checks now cover pre-Pass-4 8.7 only.
 // @vitest-environment jsdom
 import { act, createElement, type ReactNode } from "react";
@@ -27,7 +29,22 @@ afterEach(() => {
 const mount = (node: ReactNode) => act(() => root.render(node));
 const tap = (selector: string, i = 0) =>
   act(() => host.querySelectorAll<HTMLButtonElement>(selector)[i].click());
-const hash = (v: unknown) => createHash("sha256").update(JSON.stringify(v)).digest("hex");
+const hash = (v: unknown) =>
+  createHash("sha256")
+    .update(
+      JSON.stringify(v, (key, value) =>
+        // The authorised 8.7 refinement adds four fields; retain original hashes for all existing facts.
+        [
+          "additionDefinition",
+          "subtractionDefinition",
+          "additionEverydayExample",
+          "additionSubtractionComparison",
+        ].includes(key)
+          ? undefined
+          : value,
+      ),
+    )
+    .digest("hex");
 const nums = (s: string) => s.match(/-?\d+(?:\.\d+)?/g)!.map(Number);
 const geometry = () =>
   [...host.querySelectorAll("svg")].map((svg) => {
@@ -44,7 +61,7 @@ describe("Chapter 8 Pass 2 — source-controlled 8.2 and 8.3", () => {
           readFileSync("src/components/notes/Chapter8Mirrors.tsx", "utf8").replace(/\r\n/g, "\n"),
         )
         .digest("hex"),
-    ).toBe("e048f18ea0739910d13aebe1d90987ef190543dcf6c7fbabc90726f52f05056d");
+    ).toBe("0ec93bea9fc2e5a8c32eac59f48279ce3e011f49a23af25129b7c680ddea48fb");
   });
   for (const lang of ["en", "bm"] as const) {
     const t = content[lang],
@@ -67,8 +84,8 @@ describe("Chapter 8 Pass 2 — source-controlled 8.2 and 8.3", () => {
       );
       expect(hash(supplement[lang])).toBe(
         lang === "en"
-          ? "bdf887aa50e4f06d1d1d4abddd0a2a95d532327f68e842093f03525eebeb5389"
-          : "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8",
+          ? "deb9383cde7f6969ccd2d0db2013a67b306580713e93201244279919d58b415d"
+          : "d21518b43afa4b4a5e3737865688bf6b0c5f82ddd1418ccf4e3c9d8391b5d3a6",
       );
     });
     it(`${lang}: seven separate official sections still render`, () => {
@@ -124,7 +141,8 @@ describe("Chapter 8 Pass 2 — source-controlled 8.2 and 8.3", () => {
               "Bayang-bayang terbentuk di belakang objek legap",
             ],
       );
-      expect(lesson.textContent).toContain(p.shadowFormation[2]);
+      expect(lesson.textContent).toContain(p.opaqueObject.chain[3]);
+      expect(lesson.textContent).not.toContain(p.shadowFormation[2]);
       expect(lesson.textContent).not.toMatch(/transparent|translucent|lut sinar|lut cahaya/i);
     });
     it(`${lang}: sunlight ends at the opaque umbrella, never continues through it, and the shadow is behind it`, () => {
@@ -181,13 +199,14 @@ describe("Chapter 8 Pass 2 — source-controlled 8.2 and 8.3", () => {
       );
       expect(host.querySelector("[data-wayang]")?.textContent).toContain(p.wayangKulit.explanation);
     });
-    it(`${lang}: Practice 8.2 preserves both source questions and the two wooden blocks`, () => {
+    it(`${lang}: removes duplicate shadow practice while preserving the three explanatory shadow visuals`, () => {
       properties();
-      const section = host.querySelector('[data-practice="8.2"]')!;
-      expect(section.querySelectorAll("li")).toHaveLength(2);
-      p.practice.questions.forEach((q) => expect(section.textContent).toContain(q));
-      expect(section.querySelectorAll("[data-wooden-block]")).toHaveLength(2);
-      expect(section.querySelector("[data-practice-screen]")?.children).toHaveLength(0);
+      expect(host.querySelector('[data-practice="8.2"]')).toBeNull();
+      expect(host.querySelector('[data-light-diagram="shadow-practice"]')).toBeNull();
+      expect(host.querySelectorAll("[data-light-diagram]")).toHaveLength(3);
+      p.opaqueObject.chain.forEach((text) => expect(host.textContent).toContain(text));
+      expect(host.textContent).toContain(p.rainbow);
+      expect(host.textContent).not.toMatch(/prism|prisma|indigo/i);
     });
     it(`${lang}: both source law statements, plane mirror, normal and incidence point render`, () => {
       reflection();
@@ -203,7 +222,7 @@ describe("Chapter 8 Pass 2 — source-controlled 8.2 and 8.3", () => {
       reflection();
       for (let i = 0; i < 5; i++) {
         tap("[data-angle-selector] button", i);
-        for (const mode of ["law", "experiment"]) {
+        for (const mode of ["law"]) {
           const d = host.querySelector(`[data-reflection-diagram="${mode}"]`)!;
           const a = nums(d.querySelector("[data-incident-ray]")!.getAttribute("d")!);
           const b = nums(d.querySelector("[data-reflected-ray]")!.getAttribute("d")!);
@@ -227,35 +246,18 @@ describe("Chapter 8 Pass 2 — source-controlled 8.2 and 8.3", () => {
         }
       }
     });
-    it(`${lang}: Experiment 8.1 includes the exact apparatus and source procedure, not fabricated results`, () => {
+    it(`${lang}: Experiment 8.1 retains its relationship without a duplicate ray diagram or worksheet`, () => {
       reflection();
       const e = host.querySelector("[data-reflection-experiment]")!;
-      expect(r.experiment.materials).toEqual(
-        lang === "en"
-          ? ["Plane mirror", "Ray box", "Power supply", "White paper", "Protractor"]
-          : ["Cermin satah", "Kotak sinar", "Bekalan kuasa", "Kertas putih", "Protraktor"],
-      );
-      r.experiment.materials.forEach((m) => expect(e.textContent).toContain(m));
-      r.experiment.instructions.forEach((s) => expect(e.textContent).toContain(s));
-      expect(r.experiment.angles).toEqual([10, 20, 30, 40, 50]);
-      expect(r.experiment.printedResults).toEqual([
-        { i: 10, r: null },
-        { i: 20, r: null },
-      ]);
-      expect([...e.querySelectorAll("[data-unfilled-result]")].map((n) => n.textContent)).toEqual([
-        "",
-        "",
-      ]);
-      [
-        "white-paper",
-        "plane-mirror",
-        "ray-box",
-        "slit",
-        "power-supply",
-        "protractor",
-        "normal",
-      ].forEach((k) => expect(e.querySelector(`[data-${k}]`)).not.toBeNull());
-      expect(e.textContent).not.toMatch(/every reading|setiap bacaan|hypothesis.*accepted\./i);
+      expect(e.textContent).toContain(r.experiment.aim);
+      expect(e.textContent).toContain(r.experiment.hypothesis);
+      expect(host.querySelectorAll('[data-reflection-diagram="law"]')).toHaveLength(1);
+      expect(host.querySelector('[data-reflection-diagram="experiment"]')).toBeNull();
+      expect(host.querySelector("table")).toBeNull();
+      expect(e.querySelector("ol,dl,details")).toBeNull();
+      r.experiment.instructions.forEach((text) => expect(e.textContent).not.toContain(text));
+      expect(host.querySelectorAll("[data-angle-selector] button")).toHaveLength(5);
+      expect(host.textContent).toContain("i = r");
     });
     it(`${lang}: the vehicle word is mirrored but the rear-view image is readable`, () => {
       reflection();
@@ -273,13 +275,24 @@ describe("Chapter 8 Pass 2 — source-controlled 8.2 and 8.3", () => {
       expect(section.querySelector("[data-driver]")).not.toBeNull();
       expect(section.textContent).toContain(r.lateralInversion.prompt);
     });
-    it(`${lang}: source road applications and exactly two Practice 8.3 questions remain`, () => {
+    it(`${lang}: all road applications remain concise without decorative icons or repeated practice`, () => {
       reflection();
-      expect(host.querySelectorAll("[data-reflection-application]")).toHaveLength(3);
-      r.applications.items.forEach((s) => expect(host.textContent).toContain(s));
-      const section = host.querySelector('[data-practice="8.3"]')!;
-      expect(section.querySelectorAll("li")).toHaveLength(2);
-      r.practice.questions.forEach((q) => expect(section.textContent).toContain(q));
+      expect(host.querySelectorAll("[data-reflection-application]")).toHaveLength(0);
+      const explanation = host.querySelector("[data-reflection-application-explanation]");
+      expect(explanation?.textContent).toBe(
+        lang === "en"
+          ? "Reflective materials return light toward road users, making objects such as road signs and warning triangles easier to see at night."
+          : "Bahan pemantul memantulkan cahaya ke arah pengguna jalan raya, menyebabkan objek seperti papan tanda dan segi tiga amaran lebih mudah dilihat pada waktu malam.",
+      );
+      expect(
+        host.querySelector("[data-reflection-applications]")?.querySelectorAll("svg,img"),
+      ).toHaveLength(0);
+      r.applications.items.forEach((text) =>
+        expect(host.querySelector("[data-reflection-applications]")?.textContent).toContain(text),
+      );
+      expect(host.querySelector('[data-practice="8.3"]')).toBeNull();
+      r.lawOfReflection.statement.forEach((text) => expect(host.textContent).toContain(text));
+      expect(host.querySelector("[data-lateral-inversion] svg")).not.toBeNull();
     });
   }
   it("BM corrects chapter-wide legacy terms without touching approved 8.1", () => {
@@ -318,16 +331,16 @@ describe("Chapter 8 Pass 2 — source-controlled 8.2 and 8.3", () => {
     p.facts[0] = "source speed sentinel";
     p.opaqueObject.definition = "source opaque sentinel";
     p.sundial.explanation = "source sundial sentinel";
-    p.practice.questions[0] = "source question sentinel";
+    p.rainbow = "source rainbow sentinel";
     mount(createElement(Chapter8PropertiesOfLight, { source: p }));
-    ["speed", "sundial", "question", "opaque"].forEach((s) =>
+    ["speed", "sundial", "rainbow", "opaque"].forEach((s) =>
       expect(host.textContent).toContain(`source ${s} sentinel`),
     );
     r.lawOfReflection.statement[0] = "source law sentinel";
-    r.experiment.materials[0] = "source apparatus sentinel";
+    r.experiment.hypothesis = "source relationship sentinel";
     r.lateralInversion.prompt = "source application sentinel";
     mount(createElement(Chapter8Reflection, { source: r }));
-    ["law", "apparatus", "application"].forEach((s) =>
+    ["law", "relationship", "application"].forEach((s) =>
       expect(host.textContent).toContain(`source ${s} sentinel`),
     );
     for (const lang of ["en", "bm"] as const) {

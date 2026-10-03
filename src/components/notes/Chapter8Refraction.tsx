@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type {
   RefractionCase,
   RefractionLesson,
@@ -142,165 +141,66 @@ export function RefractionCaseDiagram({ kind }: { kind: RefractionCase["id"] }) 
   );
 }
 
-export function GlassBlockDiagram({ showBlock = true }: { showBlock?: boolean }) {
-  const start = { x: 80, y: 295 },
-    entry = { x: 165, y: 205 },
-    exit = { x: 215, y: 105 },
-    end = { x: 300, y: 15 };
-  const incoming = Math.hypot(85, 90),
-    inside = Math.hypot(50, 100);
+export function GlassBlockDiagram() {
+  const start = { x: 60, y: 65 },
+    entry = { x: 170, y: 150 },
+    end = { x: 235, y: 290 };
+  const incoming = Math.hypot(110, 85),
+    inside = Math.hypot(65, 140);
   return (
     <svg
       data-refraction-visual="experiment"
-      data-block-present={showBlock}
-      viewBox="0 0 400 370"
+      viewBox="0 0 320 320"
       aria-hidden="true"
       className="w-full"
     >
-      <rect data-white-paper x="15" y="5" width="370" height="325" rx="5" fill="#f8fafc" />
       <rect
-        data-traced-outline
-        x="125"
-        y="105"
-        width="180"
-        height="100"
-        fill="none"
-        stroke="#64748b"
-        strokeDasharray="5 4"
+        data-glass-block
+        x="15"
+        y="150"
+        width="290"
+        height="155"
+        fill="#0ea5e9"
+        fillOpacity=".18"
+        stroke="#7dd3fc"
+        strokeWidth="2"
       />
-      {showBlock && (
-        <rect
-          data-glass-block
-          x="125"
-          y="105"
-          width="180"
-          height="100"
-          fill="#7dd3fc"
-          fillOpacity=".35"
-          stroke="#0284c7"
-          strokeWidth="2"
-        />
-      )}
-      <path data-entry-normal d="M165 140V282" stroke="#475569" strokeDasharray="5 4" />
-      <path data-exit-normal d="M215 55V150" stroke="#475569" strokeDasharray="5 4" />
-      <Ray start={start} end={entry} kind="incident" color="#b45309" />
-      <Ray start={entry} end={exit} kind="internal" color="#0369a1" />
-      <Ray start={exit} end={end} kind="emerging" color="#0369a1" />
+      <path
+        data-entry-normal
+        d="M170 30V305"
+        stroke="#cbd5e1"
+        strokeWidth="2"
+        strokeDasharray="5 5"
+      />
+      <path data-right-angle d="M170 138H182V150" fill="none" stroke="#cbd5e1" strokeWidth="2" />
+      <Ray start={start} end={entry} kind="incident" />
+      <Ray start={entry} end={end} kind="refracted" color="#38bdf8" />
       <path
         data-i-arc
-        d={`M165 250A45 45 0 0 1 ${165 - (45 * 85) / incoming} ${205 + (45 * 90) / incoming}`}
+        d={`M170 95A55 55 0 0 0 ${170 - (55 * 110) / incoming} ${150 - (55 * 85) / incoming}`}
         fill="none"
-        stroke="#b45309"
+        stroke="#fbbf24"
         strokeWidth="2"
       />
       <path
         data-r-arc
-        d={`M165 160A45 45 0 0 1 ${165 + (45 * 50) / inside} ${205 - (45 * 100) / inside}`}
+        d={`M170 205A55 55 0 0 0 ${170 + (55 * 65) / inside} ${150 + (55 * 140) / inside}`}
         fill="none"
-        stroke="#0369a1"
+        stroke="#38bdf8"
         strokeWidth="2"
       />
-      <text x="143" y="263" fontSize="19" fontStyle="italic" fill="#92400e">
+      <text data-angle="i" x="136" y="89" fontSize="28" fontStyle="italic" fill="#fde68a">
         i
       </text>
-      <text x="185" y="155" fontSize="19" fontStyle="italic" fill="#075985">
+      <text data-angle="r" x="184" y="233" fontSize="28" fontStyle="italic" fill="#7dd3fc">
         r
       </text>
-      <circle data-entry-point cx="165" cy="205" r="3" fill="#334155" />
-      <circle data-exit-point cx="215" cy="105" r="3" fill="#334155" />
-      <g data-ray-box transform="translate(80 295) rotate(43.36)">
-        <rect x="-19" y="0" width="38" height="48" rx="3" fill="#334155" stroke="#94a3b8" />
-        <circle cx="0" cy="27" r="9" fill="#fbbf24" />
-        <path data-single-slit d="M-19 3H-2M2 3H19" stroke="#cbd5e1" strokeWidth="5" />
-      </g>
-      <path d="M38 326Q13 350 32 350H57" fill="none" stroke="#94a3b8" strokeWidth="2" />
-      <g data-power-supply>
-        <rect x="57" y="337" width="65" height="25" rx="3" fill="#475569" />
-        <circle cx="69" cy="349" r="4" fill="#4ade80" />
-      </g>
-      <g data-ruler>
-        <rect x="316" y="141" width="27" height="138" fill="#fde68a" stroke="#a16207" />
-        {Array.from({ length: 12 }, (_, i) => (
-          <path key={i} d={`M316 ${149 + i * 11}h${i % 2 === 0 ? 12 : 7}`} stroke="#92400e" />
-        ))}
-      </g>
-      <g data-protractor>
-        <path d="M213 309A49 49 0 0 1 311 309Z" fill="#cbd5e1" fillOpacity=".6" stroke="#64748b" />
-        {Array.from({ length: 7 }, (_, i) => (i * Math.PI) / 6).map((t) => (
-          <path
-            key={t}
-            d={`M${262 - 49 * Math.cos(t)} ${309 - 49 * Math.sin(t)}L${262 - 42 * Math.cos(t)} ${309 - 42 * Math.sin(t)}`}
-            stroke="#64748b"
-          />
-        ))}
-      </g>
-    </svg>
-  );
-}
-
-export function RefractionGraphTask() {
-  return (
-    <svg
-      data-refraction-visual="blank-graph"
-      viewBox="0 0 280 160"
-      aria-hidden="true"
-      className="w-full max-w-sm"
-    >
-      <path data-graph-axes d="M40 15V130H262" fill="none" stroke="#cbd5e1" strokeWidth="2" />
-      <text x="17" y="25" fill="#cbd5e1" fontSize="20" fontStyle="italic">
-        i
-      </text>
-      <text x="252" y="153" fill="#cbd5e1" fontSize="20" fontStyle="italic">
-        r
-      </text>
-    </svg>
-  );
-}
-export function RefractionPracticeDiagram({ second = false }: { second?: boolean }) {
-  return (
-    <svg
-      data-refraction-visual={second ? "practice-2" : "practice-1"}
-      viewBox="0 0 280 230"
-      aria-hidden="true"
-      className="w-full max-w-sm"
-    >
-      <rect
-        x="30"
-        y="15"
-        width="220"
-        height="100"
-        fill={second ? "#84cc16" : "#fbbf24"}
-        fillOpacity=".2"
-      />
-      <rect
-        x="30"
-        y="115"
-        width="220"
-        height="100"
-        fill={second ? "#fb923c" : "#38bdf8"}
-        fillOpacity=".2"
-      />
-      <path data-boundary d="M30 115H250" stroke="#cbd5e1" />
-      <path data-normal d="M140 15V215" stroke="#cbd5e1" strokeDasharray="5 5" />
-      <Ray start={{ x: 55, y: 190 }} end={{ x: 140, y: 115 }} kind="practice-incident" />
-      <Ray
-        start={{ x: 140, y: 115 }}
-        end={second ? { x: 178, y: 25 } : { x: 235, y: 85 }}
-        kind="practice-refracted"
-        color="#38bdf8"
-      />
-      <text x="45" y="72" fill="#e2e8f0" fontSize="20">
-        {second ? "C" : "A"}
-      </text>
-      <text x="45" y="151" fill="#e2e8f0" fontSize="20">
-        {second ? "D" : "B"}
-      </text>
+      <circle data-entry-point cx="170" cy="150" r="3" fill="#f8fafc" />
     </svg>
   );
 }
 
 export function Chapter8Refraction({ source: s }: { source: RefractionLesson }) {
-  const [showBlock, setShowBlock] = useState(true);
   const l = s.labels,
     e = s.experiment;
   return (
@@ -319,6 +219,9 @@ export function Chapter8Refraction({ source: s }: { source: RefractionLesson }) 
             <span className="text-sky-200">— {l.surface}</span>
           </div>
           <p className="mt-4 text-slate-300">{s.fish.explanation}</p>
+          <p className="mt-2 text-slate-300" data-refraction-phenomenon>
+            {s.activity.phenomena[1]}
+          </p>
         </figure>
         <figure>
           <figcaption className="text-lg font-semibold text-cyan-200">
@@ -327,6 +230,9 @@ export function Chapter8Refraction({ source: s }: { source: RefractionLesson }) 
           <div className="mx-auto max-w-md">
             <PencilIllusionDiagram />
           </div>
+          <p className="mt-2 text-slate-300" data-refraction-phenomenon>
+            {s.activity.phenomena[0]}
+          </p>
         </figure>
       </div>
       <p
@@ -367,169 +273,40 @@ export function Chapter8Refraction({ source: s }: { source: RefractionLesson }) 
       </section>
       <section data-refraction-experiment className="border-t border-white/10 pt-7">
         <h3 className="text-xl font-bold text-white">{e.title}</h3>
-        <div className="mt-5 grid gap-5 md:grid-cols-2">
-          <div>
-            <h4 className="font-bold text-cyan-200">{l.problem}</h4>
-            <p className="mt-2">{e.problem}</p>
+        <p className="mt-3 text-slate-300">{e.aim}</p>
+        <figure className="mx-auto mt-5 max-w-md">
+          <figcaption className="font-semibold text-amber-200">{l.demo}</figcaption>
+          <div data-glass-entry-diagram className="relative mt-4">
+            <GlassBlockDiagram />
+            <span className="absolute left-0 top-0 max-w-[40%] text-sm leading-5 text-amber-200">
+              {l.incident}
+            </span>
+            <span className="absolute left-[53%] top-0 text-sm leading-5 text-slate-200">
+              {l.normal}
+            </span>
+            <span className="absolute left-[8%] top-[38%] text-sm leading-5 text-slate-200">
+              {s.glassEntry.air}
+            </span>
+            <span className="absolute left-[8%] top-[55%] text-sm leading-5 text-sky-200">
+              {s.glassEntry.glass}
+            </span>
+            <span className="absolute right-0 top-[54%] max-w-[34%] text-sm leading-5 text-sky-200">
+              {l.refracted}
+            </span>
           </div>
-          <div>
-            <h4 className="font-bold text-cyan-200">{l.hypothesis}</h4>
-            <p className="mt-2">{e.hypothesis}</p>
+          <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            <span className="text-amber-200">{l.incidence}</span>
+            <span className="text-sky-200">{l.refraction}</span>
           </div>
+        </figure>
+        <div data-glass-entry-rule className="mt-5 border-l-2 border-cyan-300 pl-4">
+          <p className="font-semibold text-cyan-200">{s.glassEntry.rule}</p>
+          <p className="mt-2 text-slate-300">{s.glassEntry.angleComparison}</p>
+          <p className="mt-2 font-mono text-xl font-bold text-cyan-200">r &lt; i</p>
         </div>
-        <p className="mt-4">
-          <strong>{l.aim}: </strong>
-          {e.aim}
+        <p data-glass-angle-relationship className="mt-4 text-slate-300">
+          {e.hypothesis}
         </p>
-        <h4 className="mt-5 font-bold text-cyan-200">{l.variables}</h4>
-        <dl data-refraction-variables className="mt-3 grid gap-4 sm:grid-cols-3">
-          {(["manipulated", "responding", "constant"] as const).map((k) => (
-            <div key={k} className="border-l-2 border-cyan-300/30 pl-3">
-              <dt className="text-sm text-slate-400">{l[k]}</dt>
-              <dd data-variable={k} className="mt-1 font-semibold">
-                {e.variables[k]}
-              </dd>
-            </div>
-          ))}
-        </dl>
-        <h4 className="mt-5 font-bold text-cyan-200">{l.materials}</h4>
-        <ul data-refraction-materials className="mt-3 flex flex-wrap gap-2">
-          {e.materials.map((m) => (
-            <li key={m} className="rounded-lg border border-white/15 px-3 py-1">
-              {m}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-6 grid items-start gap-7 md:grid-cols-2">
-          <figure>
-            <figcaption className="font-semibold text-amber-200">{l.demo}</figcaption>
-            <GlassBlockDiagram showBlock={showBlock} />
-            <div data-glass-controls className="flex flex-wrap gap-2">
-              {[true, false].map((p) => (
-                <button
-                  key={String(p)}
-                  type="button"
-                  onClick={() => setShowBlock(p)}
-                  aria-pressed={showBlock === p}
-                  className={`min-h-11 rounded-lg border px-4 py-2 text-sm font-semibold ${showBlock === p ? "border-cyan-300 bg-cyan-300/10 text-cyan-200" : "border-white/20 text-slate-300"}`}
-                >
-                  {p ? l.glass : l.remove}
-                </button>
-              ))}
-            </div>
-            <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
-              <div className="text-amber-200">
-                <dt>{l.incident}</dt>
-                <dd>{l.incidence}</dd>
-              </div>
-              <div className="text-sky-200">
-                <dt>{l.refracted}</dt>
-                <dd>{l.refraction}</dd>
-              </div>
-              <div>
-                <dt>{l.normal}</dt>
-                <dd>{l.paper}</dd>
-              </div>
-              <div>
-                <dt>{l.box}</dt>
-                <dd>{l.slit}</dd>
-              </div>
-            </dl>
-          </figure>
-          <div>
-            <h4 className="font-bold text-cyan-200">{l.procedure}</h4>
-            <ol
-              data-refraction-procedure
-              className="mt-3 list-decimal space-y-3 pl-5 text-slate-300"
-            >
-              {e.instructions.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ol>
-          </div>
-        </div>
-        <div className="mt-6 grid gap-7 md:grid-cols-2">
-          <div>
-            <h4 className="font-bold text-cyan-200">{l.results}</h4>
-            <table
-              data-refraction-results
-              className="mt-3 w-full border-collapse text-left text-sm"
-            >
-              <thead>
-                <tr>
-                  <th className="border border-white/20 p-3">{l.incidence} (°)</th>
-                  <th className="border border-white/20 p-3">{l.refraction} (°)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {e.results.map((row, i) => (
-                  <tr key={i}>
-                    <td aria-label={l.unfilled} className="h-9 border border-white/20">
-                      {row.i}
-                    </td>
-                    <td aria-label={l.unfilled} className="h-9 border border-white/20">
-                      {row.r}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div>
-            <h4 className="font-bold text-cyan-200">{l.discussion}</h4>
-            <ol className="mt-3 list-decimal space-y-3 pl-5">
-              {e.discussion.map((q) => (
-                <li key={q}>{q}</li>
-              ))}
-            </ol>
-            <RefractionGraphTask />
-          </div>
-        </div>
-        <h4 className="mt-5 font-bold text-cyan-200">{l.conclusion}</h4>
-        <p className="mt-2">{e.conclusion}</p>
-        <h4 className="mt-5 font-bold text-cyan-200">{l.questions}</h4>
-        <ul className="mt-2 space-y-2">
-          {e.questions.map((q) => (
-            <li key={q}>{q}</li>
-          ))}
-        </ul>
-      </section>
-      <section data-refraction-activity className="border-t border-white/10 pt-6">
-        <h3 className="text-xl font-bold text-white">{s.activity.title}</h3>
-        <p className="mt-2">
-          <strong>{l.aim}: </strong>
-          {s.activity.aim}
-        </p>
-        <ol className="mt-4 list-decimal space-y-3 pl-5">
-          {s.activity.instructions.map((step, i) => (
-            <li key={step}>
-              {step}
-              {i === s.activity.phenomenaAfter && (
-                <ul className="mt-2 list-disc space-y-1 pl-5 text-cyan-200">
-                  {s.activity.phenomena.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ol>
-      </section>
-      <section data-practice="8.4" className="border-t border-white/10 pt-6">
-        <h3 className="text-xl font-bold text-violet-200">{s.practice.title}</h3>
-        <ol className="mt-3 list-decimal space-y-3 pl-5">
-          {s.practice.questions.map((q) => (
-            <li key={q}>{q}</li>
-          ))}
-        </ol>
-        <div className="mt-4 grid gap-5 sm:grid-cols-2">
-          {s.practice.caseLabels.map((name, i) => (
-            <figure key={name}>
-              <figcaption className="font-semibold">{name}</figcaption>
-              <RefractionPracticeDiagram second={i === 1} />
-            </figure>
-          ))}
-        </div>
       </section>
     </div>
   );

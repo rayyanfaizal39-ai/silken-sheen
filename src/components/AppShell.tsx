@@ -29,6 +29,7 @@ import {
   getCompanionLevelProgress,
 } from "@/hooks/use-progress";
 import { RankBadge } from "@/components/RankBadge";
+import { CosmicRankIcon } from "@/components/CosmicRankIcon";
 import { ProfileAvatar } from "@/components/ProfileAvatar";
 import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
@@ -272,7 +273,7 @@ function SidebarBottom() {
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-lg"
             style={{ background: `${rank.color}22` }}
           >
-            <RankBadge rank={rank} size={32} />
+            <CosmicRankIcon rank={rank} size="sidebar" />
           </div>
           <div className="min-w-0 flex-1">
             <p className="truncate text-xs font-bold" style={{ color: rank.color }}>

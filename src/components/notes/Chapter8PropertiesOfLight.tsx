@@ -139,23 +139,6 @@ export function SundialDiagram({ position = 0 }: { position?: number }) {
   );
 }
 
-export function ShadowPracticeDiagram() {
-  return (
-    <svg
-      data-light-diagram="shadow-practice"
-      viewBox="0 0 400 220"
-      aria-hidden="true"
-      className="mx-auto w-full max-w-md"
-    >
-      <path d="M43 181L293 64L360 130Z" fill="#fbbf24" opacity=".16" />
-      <path data-practice-screen d="M285 30L370 75V155L285 110Z" fill="#e2e8f0" stroke="#94a3b8" />
-      <path data-wooden-block d="M120 153L185 179V161L120 135Z" fill="#c4a777" stroke="#e2e8f0" />
-      <path data-wooden-block d="M220 147V79L233 84V152Z" fill="#c4a777" stroke="#e2e8f0" />
-      <path data-torch d="M26 181L61 164L72 182L37 199Z" fill="#94a3b8" stroke="#e2e8f0" />
-    </svg>
-  );
-}
-
 export function Chapter8PropertiesOfLight({ source: s }: { source: PropertiesOfLightLesson }) {
   const [position, setPosition] = useState(0);
   return (
@@ -193,7 +176,6 @@ export function Chapter8PropertiesOfLight({ source: s }: { source: PropertiesOfL
             </li>
           ))}
         </ol>
-        <p className="mt-4 text-slate-300">{s.shadowFormation[2]}</p>
       </figure>
       <div data-light-speed className="border-l-2 border-amber-300 pl-5">
         <p className="text-2xl font-bold text-amber-200">{s.labels.speed}</p>
@@ -240,18 +222,6 @@ export function Chapter8PropertiesOfLight({ source: s }: { source: PropertiesOfL
         </figure>
       </div>
       <p className="border-t border-white/10 pt-5 text-slate-300">{s.rainbow}</p>
-      <section data-practice="8.2" className="border-t border-white/10 pt-6">
-        <h3 className="text-lg font-bold text-violet-200">{s.practice.title}</h3>
-        <ol className="mt-3 list-decimal space-y-3 pl-6">
-          {s.practice.questions.map((q) => (
-            <li key={q}>{q}</li>
-          ))}
-        </ol>
-        <ShadowPracticeDiagram />
-        <p className="text-center text-sm text-slate-400">
-          {s.labels.torch} → {s.labels.blocks} → {s.labels.screen}
-        </p>
-      </section>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import { fetchHashedAsset } from "./lib/missing-asset";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -84,6 +85,20 @@ async function normalizeCatastrophicSsrResponse(
 const CANONICAL_HOST = "www.myacademy.my";
 const APEX_HOST = "myacademy.my";
 
+function revalidateDocument(request: Request, response: Response): Response {
+  if (request.method !== "GET" || response.status >= 400) return response;
+  const accept = request.headers.get("accept") ?? "";
+  if (!accept.includes("text/html")) return response;
+  if (response.headers.has("cache-control")) return response;
+  const headers = new Headers(response.headers);
+  headers.set("cache-control", "no-cache, must-revalidate");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 function canonicalHostRedirect(request: Request): Response | undefined {
   let url: URL;
   try {
@@ -103,10 +118,12 @@ export default {
     try {
       const redirectResponse = canonicalHostRedirect(request);
       if (redirectResponse) return redirectResponse;
+      const assetResponse = await fetchHashedAsset(request, env);
+      if (assetResponse) return assetResponse;
       const handler = await getServerEntry();
 
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response, request);
+      return await revalidateDocument(request, await normalizeCatastrophicSsrResponse(response, request));
     } catch (error) {
       console.error(`[SSR] Uncaught error on ${request.method} ${request.url}:`, error);
       return brandedErrorResponse();

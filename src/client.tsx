@@ -8,7 +8,10 @@ import { RouterProvider } from "@tanstack/react-router";
 import { StartClient } from "@tanstack/react-start/client";
 
 import "./styles.css";
+import { installChunkRecoveryListeners } from "./lib/chunk-recovery";
 import { getRouter } from "./router";
+
+installChunkRecoveryListeners();
 
 const container = document.getElementById("root");
 

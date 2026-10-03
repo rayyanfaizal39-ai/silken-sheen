@@ -2,8 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Trophy, Crown, Sparkles, Rocket, TrendingUp, RefreshCw, School } from "lucide-react";
 import { useProgress, getRank } from "@/hooks/use-progress";
-import { getRankArtworkSquareFill } from "@/data/rankAssets";
-import { RankBadge } from "@/components/RankBadge";
+import { CosmicRankIcon, COSMIC_RANK_ICON_FRAME } from "@/components/CosmicRankIcon";
 import { useAuth } from "@/context/auth-context";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import type {
@@ -13,6 +12,11 @@ import type {
 } from "./-leaderboard.server";
 import { seoMeta } from "@/lib/seo";
 import { formatSchoolName } from "@/lib/school-display";
+import {
+  normalizePreviousLeaderboard,
+  PreviousMonthHall,
+  type PreviousLeaderboardResponse,
+} from "@/components/leaderboard/PreviousMonthHall";
 
 export const Route = createFileRoute("/leaderboard")({
   head: () =>
@@ -115,6 +119,40 @@ async function getBrowserLeaderboardData(signal?: AbortSignal): Promise<Leaderbo
   }
 }
 
+async function getBrowserPreviousLeaderboard(
+  signal?: AbortSignal,
+): Promise<PreviousLeaderboardResponse> {
+  if (!isSupabaseConfigured) return { status: "error" };
+
+  try {
+    const { data, error } = await Promise.race([
+      supabase.rpc("get_previous_leaderboard", { page_size: 10, page_offset: 0 }),
+      new Promise<never>((_, reject) => {
+        const timer = window.setTimeout(
+          () => reject(new LeaderboardTimeoutError("Previous leaderboard request timed out")),
+          LEADERBOARD_TIMEOUT_MS,
+        );
+        signal?.addEventListener("abort", () => {
+          window.clearTimeout(timer);
+          reject(new DOMException("Aborted", "AbortError"));
+        });
+      }),
+    ]);
+
+    const history = normalizePreviousLeaderboard(data);
+    if (error || !history) {
+      if (import.meta.env.DEV) console.error("[leaderboard] get_previous_leaderboard RPC failed:", error);
+      return { status: "error" };
+    }
+
+    return { status: "ok", data: history };
+  } catch (err) {
+    if (err instanceof DOMException && err.name === "AbortError") throw err;
+    if (import.meta.env.DEV) console.error("[leaderboard] get_previous_leaderboard RPC failed:", err);
+    return { status: "error" };
+  }
+}
+
 function LeaderboardPage() {
   const { leaderboard: loaderLeaderboard } = Route.useLoaderData() as {
     leaderboard: LeaderboardResponse;
@@ -122,6 +160,7 @@ function LeaderboardPage() {
   const { user, loading: authLoading } = useAuth();
   const { progress } = useProgress();
   const [response, setResponse] = useState<LeaderboardResponse>(loaderLeaderboard);
+  const [history, setHistory] = useState<PreviousLeaderboardResponse>({ status: "loading" });
   const [refreshing, setRefreshing] = useState(false);
 
   const refresh = useCallback(
@@ -129,9 +168,13 @@ function LeaderboardPage() {
       if (!user) return;
       if (showSpinner) setRefreshing(true);
       try {
-        const next = await getBrowserLeaderboardData(signal);
+        const [next, previous] = await Promise.all([
+          getBrowserLeaderboardData(signal),
+          getBrowserPreviousLeaderboard(signal),
+        ]);
         if (signal?.aborted) return;
         setResponse(next);
+        setHistory(previous);
       } catch (error) {
         if (signal?.aborted || (error instanceof DOMException && error.name === "AbortError"))
           return;
@@ -191,6 +234,7 @@ function LeaderboardPage() {
       ranked={realRanked ?? []}
       currentStudent={currentRanked}
       month={response.data.month}
+      history={history}
       refreshing={refreshing}
       onRefresh={() => void refresh()}
     />
@@ -242,12 +286,14 @@ function GalaxyHallOfFame({
   ranked,
   currentStudent,
   month,
+  history,
   refreshing,
   onRefresh,
 }: {
   ranked: RealRankedStudent[];
   currentStudent: RealRankedStudent | null;
   month: string;
+  history: PreviousLeaderboardResponse;
   refreshing: boolean;
   onRefresh: () => void;
 }) {
@@ -426,6 +472,8 @@ function GalaxyHallOfFame({
           </div>
         </section>
       )}
+
+      <PreviousMonthHall history={history} />
     </section>
   );
 }
@@ -524,37 +572,21 @@ function LeaderboardRankArtwork({
     variant === "student"
       ? "h-16 w-16"
       : isChampion
-        ? "h-[4.75rem] w-[4.75rem]"
-        : "h-[4.25rem] w-[4.25rem]";
-
-  // Podium artwork sizing. The frame keeps its existing dimensions; only the
-  // image inside it is scaled up. The rank PNGs are padded landscape canvases
-  // (see getRankArtworkSquareFill), so a 56px image box rendered only ~27px of
-  // visible companion — roughly 37% of the frame. Dividing the target fill by
-  // the asset's measured fill ratio makes the *artwork* hit the target instead
-  // of the padded canvas, and normalises the six ranks to the same visual size.
-  // The image box deliberately overflows the frame; the frame clips it, but
-  // only the transparent margin is ever cut (verified per rank: the widest
-  // content reaches 33.2px against a 38px half-frame).
-  const framePx = isChampion ? 76 : 68; // 4.75rem / 4.25rem
-  const targetFill = isChampion ? 0.75 : 0.7; // champion slightly larger, per design
-  const badgeSize =
-    variant === "student"
-      ? 48
-      : Math.round((targetFill * framePx) / getRankArtworkSquareFill(rank.name));
+        ? COSMIC_RANK_ICON_FRAME.champion
+        : COSMIC_RANK_ICON_FRAME.podium;
   const treatmentColor = medal ?? rank.color;
 
   return (
-    <div className="relative">
+    <div className="relative shrink-0">
       <div
-        className={`flex shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 ${containerClass}`}
+        className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-2xl border-2 ${containerClass}`}
         style={{
           borderColor: treatmentColor,
           boxShadow: `0 0 ${isChampion ? 24 : 18}px ${treatmentColor}66, 0 0 28px ${rank.glowColor}`,
           background: `radial-gradient(circle, ${rank.color}22, ${treatmentColor}0d 68%, transparent)`,
         }}
       >
-        <RankBadge rank={rank} size={badgeSize} imageClassName="h-full w-full object-contain" />
+        <CosmicRankIcon rank={rank} size="fill" glow={false} />
       </div>
       {isChampion && (
         <span
@@ -579,7 +611,7 @@ function RankTableRow({ student }: { student: RealRankedStudent }) {
       </td>
       <td className="px-2 py-2.5">
         <div className="flex min-w-[190px] items-center gap-2.5">
-          <RankBadge rank={r} size={44} />
+          <CosmicRankIcon rank={r} size="table" />
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <span className="truncate font-bold text-white">{student.name}</span>
@@ -636,7 +668,7 @@ function RankMobileCard({ student }: { student: RealRankedStudent }) {
         <span className="w-8 shrink-0 font-display text-sm font-black tabular-nums text-white/70">
           #{student.rank}
         </span>
-        <RankBadge rank={rank} size={40} />
+        <CosmicRankIcon rank={rank} size="compact" />
         <div className="min-w-0 flex-1">
           <div className="flex min-w-0 items-center gap-1.5">
             <p className="truncate text-sm font-bold text-white">{student.name}</p>

@@ -1,8 +1,5 @@
 import { useState, type ReactNode } from "react";
-import type {
-  Chapter8Content,
-  MirrorActivity,
-} from "@/content/form1/science/chapter-8/chapter8-content";
+import type { Chapter8Content } from "@/content/form1/science/chapter-8/chapter8-content";
 type Mirrors = Chapter8Content["mirrors"];
 const cyan = "#7dd3fc",
   violet = "#c4b5fd",
@@ -317,55 +314,6 @@ export function LifeDiagram({ kind }: { kind: number }) {
     </Drawing>
   );
 }
-function Activity({
-  source: a,
-  labels: l,
-  children,
-}: {
-  source: MirrorActivity;
-  labels: MirrorLessonLabels;
-  children?: ReactNode;
-}) {
-  return (
-    <section
-      data-mirror-activity={a.title.slice(-3)}
-      className="space-y-4 border-t border-white/15 pt-5"
-    >
-      <h3 className="text-xl font-bold text-violet-200">{a.title}</h3>
-      <p>{a.aim}</p>
-      {children}
-      {a.materials.length > 0 && (
-        <div>
-          <h4 className="font-semibold text-sky-200">{l.materials}</h4>
-          <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm text-slate-300">
-            {a.materials.map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-      <details className="rounded-xl border border-white/10 p-3">
-        <summary className="min-h-9 cursor-pointer font-semibold">{l.instructions}</summary>
-        <ol className="list-decimal space-y-2 pl-5 text-sm leading-6 text-slate-300">
-          {a.instructions.map((s) => (
-            <li key={s}>{s}</li>
-          ))}
-        </ol>
-        {a.questions.length > 0 && (
-          <>
-            <h4 className="mt-4 font-bold">{l.questions}</h4>
-            <ol className="list-decimal space-y-2 pl-5 text-sm">
-              {a.questions.map((s) => (
-                <li key={s}>{s}</li>
-              ))}
-            </ol>
-          </>
-        )}
-      </details>
-    </section>
-  );
-}
-type MirrorLessonLabels = Mirrors["lesson"]["labels"];
 export function Chapter8Mirrors({ source: m }: { source: Mirrors }) {
   const l = m.lesson;
   const [mirror, setMirror] = useState(0);
@@ -393,16 +341,6 @@ export function Chapter8Mirrors({ source: m }: { source: Mirrors }) {
           </figure>
         ))}
       </section>
-      <Activity source={l.activity81} labels={l.labels}>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <p className="text-sm text-sky-200">
-            {l.labels.pin} → {l.labels.pinhole} → {l.labels.screen}
-          </p>
-          <p className="text-sm text-violet-200">
-            {m.mirrorTypes[0].name} → {l.labels.virtual}
-          </p>
-        </div>
-      </Activity>
       <section>
         <h3 className="text-xl font-bold">{l.labels.shapes}</h3>
         <div className="mt-4 grid grid-cols-3 gap-3">
@@ -417,7 +355,8 @@ export function Chapter8Mirrors({ source: m }: { source: Mirrors }) {
         </div>
         <p className="mt-2 text-center text-sm text-sky-300">{l.labels.reflectingSurface}</p>
       </section>
-      <Activity source={l.activity82} labels={l.labels}>
+      <section data-mirror-comparison-lesson className="space-y-4">
+        <h3 className="text-xl font-bold">{l.labels.compare}</h3>
         <div data-mirror-selector className="flex flex-wrap gap-2">
           {m.mirrorTypes.map((t, i) => (
             <button
@@ -444,7 +383,7 @@ export function Chapter8Mirrors({ source: m }: { source: Mirrors }) {
             </div>
           </div>
         </div>
-      </Activity>
+      </section>
       <figure data-equal-distance className="rounded-2xl bg-sky-300/[.04] p-4">
         <h3 className="text-center font-bold text-sky-200">{l.labels.distance}</h3>
         <PlaneDistance />
@@ -468,7 +407,7 @@ export function Chapter8Mirrors({ source: m }: { source: Mirrors }) {
           {m.mirrorTypes.map((t, i) => (
             <div key={t.name} className="border-t border-violet-300/30 pt-3">
               <h4 className="font-bold text-violet-200">{t.name}</h4>
-              <ApplicationDiagram kind={i} />
+              {i !== 0 && <ApplicationDiagram kind={i} />}
               <p className="text-center font-semibold text-sky-200">{l.sizes[i]}</p>
               <span aria-hidden="true" className="block text-center text-amber-300">
                 ↓
@@ -482,7 +421,6 @@ export function Chapter8Mirrors({ source: m }: { source: Mirrors }) {
           ))}
         </div>
       </section>
-      <Activity source={l.activity83} labels={l.labels} />
       <section data-periscope>
         <h3 className="text-xl font-bold text-violet-200">{m.opticalInstruments[0].name}</h3>
         <div className="grid items-center gap-5 md:grid-cols-2">
@@ -505,16 +443,23 @@ export function Chapter8Mirrors({ source: m }: { source: Mirrors }) {
             </div>
           </div>
         </div>
-        <Activity source={l.activity84} labels={l.labels}>
-          <p data-knife-warning className="border-l-2 border-amber-300 pl-3 text-amber-200">
+        <details data-periscope-construction className="mt-4 rounded-xl border border-white/15 p-4">
+          <summary className="min-h-9 cursor-pointer font-semibold">{l.activity84.aim}</summary>
+          <p data-knife-warning className="mt-3 border-l-2 border-amber-300 pl-3 text-amber-200">
             {l.knifeWarning}
           </p>
-          <div className="text-sm text-slate-300">
+          <p className="mt-3 text-sm text-slate-300">{l.activity84.materials.join(" · ")}</p>
+          <div className="mt-2 text-sm text-slate-300">
             {l.periscopeMeasurements.map((s) => (
               <p key={s}>{s}</p>
             ))}
           </div>
-        </Activity>
+          <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm text-slate-300">
+            {l.activity84.instructions.slice(0, 3).map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ol>
+        </details>
       </section>
       <section data-kaleidoscope>
         <h3 className="text-xl font-bold text-violet-200">{m.opticalInstruments[1].name}</h3>
@@ -532,9 +477,6 @@ export function Chapter8Mirrors({ source: m }: { source: Mirrors }) {
         >
           {l.labels.rotate}
         </button>
-        <div className="mt-5">
-          <Activity source={l.activity85} labels={l.labels} />
-        </div>
       </section>
       <section data-science-in-life>
         <h3 className="text-xl font-bold">{l.labels.scienceInLife}</h3>
@@ -544,7 +486,7 @@ export function Chapter8Mirrors({ source: m }: { source: Mirrors }) {
               <h4 className="font-bold text-amber-200">
                 {l.labels.problem} {i + 1}
               </h4>
-              <LifeDiagram kind={i} />
+              {i !== 1 && <LifeDiagram kind={i} />}
               <p>{s.problem}</p>
               <details className="mt-3 rounded-xl border border-sky-300/20 p-3">
                 <summary className="min-h-9 cursor-pointer font-semibold text-sky-200">
@@ -559,23 +501,10 @@ export function Chapter8Mirrors({ source: m }: { source: Mirrors }) {
           ))}
         </div>
       </section>
-      <section data-practice="8.1" className="border-t border-white/15 pt-5">
-        <h3 className="text-xl font-bold">{l.practice.title}</h3>
-        <ol className="mt-4 list-decimal space-y-4 pl-5">
-          {l.practice.questions.map((s, i) => (
-            <li key={s}>
-              {s}
-              {i === 0 && (
-                <Drawing name="practice-mirror">
-                  <Person x={90} y={130} scale={1.15} />
-                  <path d="M226 15Q180 110 226 205" strokeWidth="6" />
-                  <Person x={293} y={140} scale={0.7} ghost />
-                </Drawing>
-              )}
-            </li>
-          ))}
-        </ol>
-      </section>
+      <details data-mirror-application-question className="border-t border-white/15 pt-5">
+        <summary className="min-h-11 cursor-pointer font-semibold">{l.labels.questions}</summary>
+        <p className="mt-3">{l.practice.questions[2]}</p>
+      </details>
     </div>
   );
 }

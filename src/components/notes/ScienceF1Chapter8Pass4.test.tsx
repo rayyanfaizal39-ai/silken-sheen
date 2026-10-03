@@ -1,3 +1,7 @@
+// Authorised 8.7 teaching refinement: supplement and 8.7 presentation snapshots updated; other locks unchanged.
+// Authorised glass-entry simplification: only 8.4 snapshots updated.
+// 8.3 application refinement: only reflection content/component snapshots updated for the supplied explanation.
+// Revision cleanup (2026-10-03): only the four 8.1–8.4 component snapshots are updated; canonical/deferred locks are unchanged.
 // @vitest-environment jsdom
 import { act, createElement, type ReactNode } from "react";
 import { createRoot, type Root } from "react-dom/client";
@@ -25,7 +29,20 @@ afterEach(() => {
 });
 const mount = (node: ReactNode) => act(() => root.render(node));
 const sha = (s: string) => createHash("sha256").update(s).digest("hex");
-const hash = (v: unknown) => sha(JSON.stringify(v));
+const hash = (v: unknown) =>
+  sha(
+    JSON.stringify(v, (key, value) =>
+      // The authorised 8.7 refinement adds four fields; retain original hashes for all existing facts.
+      [
+        "additionDefinition",
+        "subtractionDefinition",
+        "additionEverydayExample",
+        "additionSubtractionComparison",
+      ].includes(key)
+        ? undefined
+        : value,
+    ),
+  );
 const read = (p: string) => readFileSync(p, "utf8").replace(/\r\n/g, "\n");
 const nums = (s: string) => s.match(/-?\d+(?:\.\d+)?/g)!.map(Number);
 const ray = (el: Element) => nums(el.getAttribute("d")!);
@@ -37,26 +54,26 @@ const locks = {
   en: {
     mirrors: "f9ba2250f78733bf980abf159591493f7718fb0502bcbf72d8af1b3ed0085115",
     propertiesOfLight: "30892516c7b52edbeb3a815af5dd9e0c68697f3e459a4564257fab75f28f5b32",
-    reflection: "edb95a522087ad0eecc853000d66d3984a8eff84382aedb7e9bf003d8cdd9da4",
-    refraction: "5a0d44c713094b70a792918002d0cfe4033801a1bdf0ceb4d8240d5b51722571",
+    reflection: "86f052c685158c7c3fee19cd721bbd84c8c9652bf78f19a26dbe04207c5bba09",
+    refraction: "b93cec69af9ac56c6cf93e31d703e442c973cc5e53d84c0188fbad2d02d81f68",
     colorAdditionSubtraction: "20f5b6f8c49cfc15f5319083dc2ec59f7b0276310ece22eca45921e21728eee0",
     deferred: "95a724cbdb1d34b00f8b15710a3f8754012f798d50c9b2665f0bea41b1fe9ef9",
-    supplement: "bdf887aa50e4f06d1d1d4abddd0a2a95d532327f68e842093f03525eebeb5389",
+    supplement: "deb9383cde7f6969ccd2d0db2013a67b306580713e93201244279919d58b415d",
   },
   bm: {
     mirrors: "a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a",
     propertiesOfLight: "98f9abcf4c1563d3b0f0427f4cef260bc2aeb5b42b715e56af831751032cfe6a",
-    reflection: "6f63c7b902fa79fa6711548e6ae2bc511ef95bbfc4a764d4255ec38f9cf57888",
-    refraction: "f3d720a5b196d3a487d52a981b70845ace3553273c3b970d7d6351634f5b878d",
+    reflection: "c2f9235ecf43c945af6bd2db40448c0c36f34eab5d7ef946dbd939f5250c0bc1",
+    refraction: "cbe4a4dfa8ec8ed78f4e26b29e715f243025a042ff836cb44d51903dd7ac6916",
     colorAdditionSubtraction: "9c63a2eab4f9dde4a883afb797192472ccab6e42139692df8983f09634a315e4",
     deferred: "5b924ae4a14de777bdce2320a23ab1434729e9e37368b03fe35af7833691d552",
-    supplement: "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8",
+    supplement: "d21518b43afa4b4a5e3737865688bf6b0c5f82ddd1418ccf4e3c9d8391b5d3a6",
   },
-  Chapter8Mirrors: "e048f18ea0739910d13aebe1d90987ef190543dcf6c7fbabc90726f52f05056d",
-  Chapter8PropertiesOfLight: "e92572bc4e6980b5505efd0b7cab711c95a024b4fe2f71afeb5855b8be078d64",
-  Chapter8Reflection: "63e3e7cbd789f880780d8103b6b859c45b4f2225602b6da80cffd6c345d2ec56",
-  Chapter8Refraction: "12bfc933e74e482e50eae8a71a843a3976c8b08e24e34fa2c524f4da3e549de1",
-  presentation: "1586997d29b96f961b6c0fe2f5283c1e4d6bffb287927828d21ff6f9547a4d15",
+  Chapter8Mirrors: "0ec93bea9fc2e5a8c32eac59f48279ce3e011f49a23af25129b7c680ddea48fb",
+  Chapter8PropertiesOfLight: "fafce58d624495031073d45fb2f9ec12c2bacaccb49b43ab3e2d55f7761c0508",
+  Chapter8Reflection: "b4e09434648f359a49c1db0375deb99a0d09328fdaf1415b3bafdb5d8f176a81",
+  Chapter8Refraction: "91241476e3beb06bbf40ec2b81e0e00edc9aac71967c6a1fdf2e51ebbc42260c",
+  presentation: "e21fb8f35694fe887082c16586fec3d0ec9220a16ccc8a534eeebbac296cb883",
 };
 
 describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
@@ -69,9 +86,16 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
     ] as const)
       expect(sha(read(`src/components/notes/${name}.tsx`))).toBe(locks[name]);
     const root = read("src/components/notes/ScienceF1Chapter8VisualNotesBlock.tsx");
-    expect(sha(root.slice(root.indexOf('          <section id="chapter8-87"')))).toBe(
-      locks.presentation,
-    );
+    expect(
+      sha(
+        root
+          .slice(root.indexOf('          <section id="chapter8-87"'))
+          .replace(
+            /^ +<p\n +data-colour-refinement="[^"\n]+"\n +className="[^"\n]+"\n +>\n[^\n]*\n +<\/p>\n/gm,
+            "",
+          ),
+      ),
+    ).toBe(locks.presentation);
   });
   for (const lang of ["en", "bm"] as const) {
     const t = content[lang],
@@ -153,6 +177,20 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
         expect(r.querySelector("polygon")).not.toBeNull();
       }
       expect(svg.querySelector("[data-white-screen]")!.getAttribute("fill")).toBe("#f8fafc");
+    });
+    it(`${lang}: explains dispersion before its diagram and lists each spectrum colour once`, () => {
+      dispersion();
+      const lesson = host.querySelector("[data-dispersion-lesson]")!;
+      expect(lesson.firstElementChild?.getAttribute("data-dispersion-definition")).toBe("");
+      expect(lesson.firstElementChild?.textContent).toBe(d.prismBehaviour[0]);
+      expect(host.querySelector("[data-prism-exit]")?.textContent).toBe(d.prismBehaviour[1]);
+      expect(d.prismBehaviour[1]).not.toContain(d.spectrumOrder.join(", ").toLowerCase());
+      const spectrum = host.querySelector("figure figcaption ol:last-child")!;
+      expect([...spectrum.querySelectorAll("li")].map((n) => n.textContent)).toEqual(
+        d.spectrumOrder,
+      );
+      // The long colour-list sentence used to repeat the labelled spectrum in DLP.
+      expect(host.textContent).not.toContain("The spectrum of white light consists of red, orange");
     });
     it(`${lang}: actual prism ray angles bend toward entry normal, away at exit, red least/violet most`, () => {
       dispersion();
@@ -313,6 +351,13 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
     expect(host.querySelector("[data-dispersion-lesson] [data-air-particle]")).toBeNull();
     expect(host.querySelector("[data-scattering-lesson] [data-air-particle]")).not.toBeNull();
     expect(host.querySelector("[data-scattering-lesson] [data-prism]")).toBeNull();
+    // These are code-native diagrams with readable HTML captions, not external image assets.
+    expect(host.querySelectorAll("img, image")).toHaveLength(0);
+    expect(host.querySelectorAll("svg")).toHaveLength(4);
+    host
+      .querySelectorAll("[data-diagram-callout] text")
+      .forEach((n) => expect(Number(n.getAttribute("font-size"))).toBeGreaterThanOrEqual(18));
+    expect(host.querySelectorAll("figure figcaption")).toHaveLength(4);
     for (const name of ["Chapter8Dispersion", "Chapter8Scattering"]) {
       const source = read(`src/components/notes/${name}.tsx`);
       expect(source).not.toMatch(/lang\s*===|chapter8Supplement|const\s+(?:en|bm)\s*=/);

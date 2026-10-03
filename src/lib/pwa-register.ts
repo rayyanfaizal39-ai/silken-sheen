@@ -76,7 +76,10 @@ export async function registerServiceWorker(
 
   try {
     const { Workbox } = await import("workbox-window");
-    const wb = new Workbox(SW_URL, { scope: "/" });
+    // updateViaCache "none" makes the browser revalidate sw.js and its
+    // workbox import on every update check, instead of trusting a copy
+    // cached when this registration was months old.
+    const wb = new Workbox(SW_URL, { scope: "/", updateViaCache: "none" });
 
     const promptUpdate = () => {
       onUpdate({
@@ -120,6 +123,10 @@ export async function registerServiceWorker(
     });
 
     await wb.register();
+    // Registration alone can wait up to 24 hours between browser-initiated
+    // checks. Ask once at startup, then hourly, so a worker left over from
+    // an older deploy is discovered without polling on a tight loop.
+    void wb.update();
 
     setInterval(() => {
       void wb.update();

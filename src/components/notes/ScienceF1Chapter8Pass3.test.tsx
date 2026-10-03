@@ -1,3 +1,6 @@
+// Authorised 8.7 teaching refinement: supplement and 8.7 presentation snapshots updated; other locks unchanged.
+// 8.3 application refinement: only reflection content/component snapshots updated for the supplied explanation.
+// Revision cleanup (2026-10-03): only the four 8.1–8.4 component snapshots are updated; canonical/deferred locks are unchanged.
 // Pass 4 authorises 8.5/8.6 edits; deferred checks now cover pre-Pass-4 8.7 only.
 // @vitest-environment jsdom
 import { act, createElement, type ReactNode } from "react";
@@ -24,10 +27,21 @@ afterEach(() => {
   host.remove();
 });
 const mount = (node: ReactNode) => act(() => root.render(node));
-const tap = (selector: string, i = 0) =>
-  act(() => host.querySelectorAll<HTMLButtonElement>(selector)[i].click());
 const sha = (s: string) => createHash("sha256").update(s).digest("hex");
-const hash = (v: unknown) => sha(JSON.stringify(v));
+const hash = (v: unknown) =>
+  sha(
+    JSON.stringify(v, (key, value) =>
+      // The authorised 8.7 refinement adds four fields; retain original hashes for all existing facts.
+      [
+        "additionDefinition",
+        "subtractionDefinition",
+        "additionEverydayExample",
+        "additionSubtractionComparison",
+      ].includes(key)
+        ? undefined
+        : value,
+    ),
+  );
 const numbers = (s: string) => s.match(/-?\d+(?:\.\d+)?/g)!.map(Number);
 const geometry = () => [...host.querySelectorAll("svg")].map((n) => n.outerHTML);
 const point = (n: Element) => numbers(n.getAttribute("transform")!);
@@ -40,25 +54,25 @@ const locks = {
   en: {
     mirrors: "f9ba2250f78733bf980abf159591493f7718fb0502bcbf72d8af1b3ed0085115",
     properties: "30892516c7b52edbeb3a815af5dd9e0c68697f3e459a4564257fab75f28f5b32",
-    reflection: "edb95a522087ad0eecc853000d66d3984a8eff84382aedb7e9bf003d8cdd9da4",
+    reflection: "86f052c685158c7c3fee19cd721bbd84c8c9652bf78f19a26dbe04207c5bba09",
     deferred: "95a724cbdb1d34b00f8b15710a3f8754012f798d50c9b2665f0bea41b1fe9ef9",
-    supplement: "bdf887aa50e4f06d1d1d4abddd0a2a95d532327f68e842093f03525eebeb5389",
+    supplement: "deb9383cde7f6969ccd2d0db2013a67b306580713e93201244279919d58b415d",
   },
   bm: {
     mirrors: "a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a",
     properties: "98f9abcf4c1563d3b0f0427f4cef260bc2aeb5b42b715e56af831751032cfe6a",
-    reflection: "6f63c7b902fa79fa6711548e6ae2bc511ef95bbfc4a764d4255ec38f9cf57888",
+    reflection: "c2f9235ecf43c945af6bd2db40448c0c36f34eab5d7ef946dbd939f5250c0bc1",
     deferred: "5b924ae4a14de777bdce2320a23ab1434729e9e37368b03fe35af7833691d552",
-    supplement: "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8",
+    supplement: "d21518b43afa4b4a5e3737865688bf6b0c5f82ddd1418ccf4e3c9d8391b5d3a6",
   },
 };
 
 describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
   it("keeps all three approved Pass 1/2 diagram implementations unchanged", () => {
     const files = {
-      Chapter8Mirrors: "e048f18ea0739910d13aebe1d90987ef190543dcf6c7fbabc90726f52f05056d",
-      Chapter8PropertiesOfLight: "e92572bc4e6980b5505efd0b7cab711c95a024b4fe2f71afeb5855b8be078d64",
-      Chapter8Reflection: "63e3e7cbd789f880780d8103b6b859c45b4f2225602b6da80cffd6c345d2ec56",
+      Chapter8Mirrors: "0ec93bea9fc2e5a8c32eac59f48279ce3e011f49a23af25129b7c680ddea48fb",
+      Chapter8PropertiesOfLight: "fafce58d624495031073d45fb2f9ec12c2bacaccb49b43ab3e2d55f7761c0508",
+      Chapter8Reflection: "b4e09434648f359a49c1db0375deb99a0d09328fdaf1415b3bafdb5d8f176a81",
     };
     Object.entries(files).forEach(([file, expected]) =>
       expect(
@@ -71,9 +85,16 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
       "src/components/notes/ScienceF1Chapter8VisualNotesBlock.tsx",
       "utf8",
     ).replace(/\r\n/g, "\n");
-    expect(sha(source.slice(source.indexOf('          <section id="chapter8-87"')))).toBe(
-      "1586997d29b96f961b6c0fe2f5283c1e4d6bffb287927828d21ff6f9547a4d15",
-    );
+    expect(
+      sha(
+        source
+          .slice(source.indexOf('          <section id="chapter8-87"'))
+          .replace(
+            /^ +<p\n +data-colour-refinement="[^"\n]+"\n +className="[^"\n]+"\n +>\n[^\n]*\n +<\/p>\n/gm,
+            "",
+          ),
+      ),
+    ).toBe("e21fb8f35694fe887082c16586fec3d0ec9220a16ccc8a534eeebbac296cb883");
   });
   for (const lang of ["en", "bm"] as const) {
     const t = content[lang],
@@ -191,7 +212,7 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
       render();
       const e = host.querySelector("[data-refraction-experiment]")!;
       expect(e.textContent).toContain(s.experiment.aim);
-      expect(e.textContent).toContain(s.experiment.problem);
+      expect(e.querySelector("[data-refraction-variables]")).toBeNull();
       expect(e.textContent).toContain(s.experiment.hypothesis);
       expect(s.experiment.variables).toEqual(
         lang === "en"
@@ -205,15 +226,6 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
               responding: "Sudut biasan, r",
               constant: "Saiz celah dan bentuk bongkah kaca",
             },
-      );
-      expect(e.querySelector('[data-variable="manipulated"]')?.textContent).toBe(
-        s.experiment.variables.manipulated,
-      );
-      expect(e.querySelector('[data-variable="responding"]')?.textContent).toBe(
-        s.experiment.variables.responding,
-      );
-      expect(e.querySelector('[data-variable="constant"]')?.textContent).toBe(
-        s.experiment.variables.constant,
       );
       expect(s.experiment.materials).toEqual(
         lang === "en"
@@ -236,122 +248,111 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
               "Protraktor",
             ],
       );
-      expect(
-        [...e.querySelectorAll("[data-refraction-materials] li")].map((n) => n.textContent),
-      ).toEqual(s.experiment.materials);
+      expect(e.querySelector("[data-refraction-materials]")).toBeNull();
     });
-    it(`${lang}: glass-block apparatus uses normals for i/r and rays enter, traverse and leave the block`, () => {
+    it(`${lang}: air-to-glass rays bend towards one perpendicular entry normal with r smaller than i`, () => {
       render();
       const d = host.querySelector('[data-refraction-visual="experiment"]')!;
-      [
-        "glass-block",
-        "white-paper",
-        "ray-box",
-        "single-slit",
-        "power-supply",
-        "ruler",
-        "protractor",
-        "entry-normal",
-        "traced-outline",
-      ].forEach((k) => expect(d.querySelector(`[data-${k}]`)).not.toBeNull());
+      expect(d.querySelector("[data-glass-block]")?.getAttribute("y")).toBe("150");
+      expect(d.querySelectorAll("[data-entry-normal]")).toHaveLength(1);
+      expect(d.querySelector("[data-entry-normal]")?.getAttribute("d")).toBe("M170 30V305");
+      expect(d.querySelector("[data-right-angle]")?.getAttribute("d")).toBe("M170 138H182V150");
       const incident = path(d, "incident"),
-        internal = path(d, "internal"),
-        emerging = path(d, "emerging");
-      expect(incident.slice(2)).toEqual(internal.slice(0, 2));
-      expect(internal.slice(2)).toEqual(emerging.slice(0, 2));
-      expect(internal).toEqual([165, 205, 215, 105]);
-      expect(angle(internal)).toBeLessThan(angle(incident));
-      expect(angle(emerging)).toBeCloseTo(angle(incident), 8);
-      expect(d.querySelector("[data-entry-normal]")?.getAttribute("d")).toBe("M165 140V282");
-      expect(d.querySelector("[data-i-arc]")?.getAttribute("d")).toMatch(/^M165 250A45 45/);
-      expect(d.querySelector("[data-r-arc]")?.getAttribute("d")).toMatch(/^M165 160A45 45/);
-      // Both arc starts are on x=165, the normal through entry (165,205).
+        refracted = path(d, "refracted");
+      expect(incident).toEqual([60, 65, 170, 150]);
+      expect(refracted).toEqual([170, 150, 235, 290]);
+      expect(angle(refracted)).toBeLessThan(angle(incident));
+      expect(d.querySelectorAll("[data-ray]")).toHaveLength(2);
       for (const key of ["i", "r"]) {
-        const v = numbers(d.querySelector(`[data-${key}-arc]`)!.getAttribute("d")!);
-        expect(v[0]).toBe(165);
-        expect(v[1]).not.toBe(205);
+        const arc = numbers(d.querySelector(`[data-${key}-arc]`)!.getAttribute("d")!);
+        expect(arc[0]).toBe(170);
+        expect(arc[1]).toBe(key === "i" ? 95 : 205);
+        const label = d.querySelector(`[data-angle="${key}"]`)!;
+        expect(label.textContent).toBe(key);
+        expect(Number(label.getAttribute("font-size"))).toBeGreaterThanOrEqual(28);
+        const y = Number(label.getAttribute("y"));
+        expect(key === "i" ? y < 150 : y > 150).toBe(true);
       }
       d.querySelectorAll("[data-ray-arrow]").forEach((n) => {
         const v = numbers(n.getAttribute("points")!);
-        expect(v[1]).toBeLessThan((v[3] + v[5]) / 2);
+        expect(v[1]).toBeGreaterThan((v[3] + v[5]) / 2);
       });
     });
-    it(`${lang}: removing the glass preserves its traced outline and constructed ray path`, () => {
-      render();
-      const before = host
-        .querySelector('[data-refraction-visual="experiment"] [data-ray="internal"]')!
-        .getAttribute("d");
-      tap("[data-glass-controls] button", 1);
-      expect(host.querySelector("[data-glass-block]")).toBeNull();
-      expect(host.querySelector("[data-traced-outline]")).not.toBeNull();
-      expect(
-        host
-          .querySelector('[data-refraction-visual="experiment"] [data-ray="internal"]')
-          ?.getAttribute("d"),
-      ).toBe(before);
-      expect(
-        host.querySelectorAll("[data-glass-controls] button")[1].getAttribute("aria-pressed"),
-      ).toBe("true");
-      tap("[data-glass-controls] button", 0);
-      expect(host.querySelector("[data-glass-block]")).not.toBeNull();
-    });
-    it(`${lang}: nine-step source procedure, blank results, graph task and conclusion remain complete`, () => {
+    it(`${lang}: direct labels and bending rules replace the apparatus and remove-glass interaction`, () => {
       render();
       const e = host.querySelector("[data-refraction-experiment]")!;
+      for (const key of [
+        "ruler",
+        "protractor",
+        "ray-box",
+        "power-supply",
+        "white-paper",
+        "exit-normal",
+        "glass-controls",
+      ])
+        expect(e.querySelector(`[data-${key}]`)).toBeNull();
+      expect(e.querySelector("button")).toBeNull();
+      const diagram = e.querySelector("[data-glass-entry-diagram]")!;
+      [
+        s.labels.incident,
+        s.labels.normal,
+        s.labels.refracted,
+        s.glassEntry.air,
+        s.glassEntry.glass,
+      ].forEach((text) => expect(diagram.textContent).toContain(text));
+      const rule = e.querySelector("[data-glass-entry-rule]")!;
+      expect(rule.textContent).toContain(
+        lang === "en"
+          ? "Air → glass: light bends towards the normal."
+          : "Udara → kaca: cahaya membengkok mendekati normal.",
+      );
+      expect(rule.textContent).toContain(s.glassEntry.angleComparison);
+      expect(rule.textContent).toContain("r < i");
+      const relationship = e.querySelector("[data-glass-angle-relationship]")!;
+      expect(relationship.textContent).toBe(s.experiment.hypothesis);
       expect(
-        [...e.querySelectorAll("[data-refraction-procedure] li")].map((n) => n.textContent),
-      ).toEqual(s.experiment.instructions);
-      expect(s.experiment.instructions).toHaveLength(9);
-      expect(s.experiment.instructions[0]).toMatch(/dark|gelap/);
-      expect(s.experiment.instructions[4]).toMatch(/Remove|Alihkan/);
-      expect(s.experiment.instructions[5]).toMatch(/normal/);
-      expect(s.experiment.instructions[6]).toMatch(/protractor|protraktor/);
-      expect(s.experiment.results).toEqual(Array.from({ length: 5 }, () => ({ i: null, r: null })));
-      expect(
-        [...e.querySelectorAll("[data-refraction-results] td")].map((n) => n.textContent),
-      ).toEqual(Array(10).fill(""));
+        rule.compareDocumentPosition(relationship) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+    });
+    it(`${lang}: preserves the air-to-glass relationship and angle labels without procedural results or graph tasks`, () => {
+      render();
+      const e = host.querySelector("[data-refraction-experiment]")!;
+      expect(e.textContent).toContain(s.experiment.aim);
+      expect(e.textContent).toContain(s.experiment.hypothesis);
+      expect(e.textContent).toContain(s.labels.incidence);
+      expect(e.textContent).toContain(s.labels.refraction);
       expect(e.textContent).toContain(s.labels.demo);
-      expect(e.textContent).toContain(s.experiment.discussion[0]);
-      expect(e.textContent).toContain(s.experiment.discussion[1]);
-      expect(e.textContent).toContain(s.experiment.conclusion);
-      const graph = e.querySelector('[data-refraction-visual="blank-graph"]')!;
-      expect(graph.querySelectorAll("path")).toHaveLength(1);
-      expect(graph.querySelectorAll("circle,polyline")).toHaveLength(0);
-      expect([...graph.querySelectorAll("text")].map((n) => n.textContent)).toEqual(["i", "r"]);
-      expect(graph.querySelector("text")?.getAttribute("x")).toBe("17");
-      s.experiment.questions.forEach((q) => expect(e.textContent).toContain(q));
+      expect(e.querySelector("table,ol,[data-refraction-procedure],[data-graph-axes]")).toBeNull();
+      s.experiment.instructions.forEach((text) => expect(e.textContent).not.toContain(text));
+      s.experiment.discussion.forEach((text) => expect(e.textContent).not.toContain(text));
+      expect(s.experiment.results).toEqual(Array.from({ length: 5 }, () => ({ i: null, r: null })));
     });
-    it(`${lang}: Activity 8.6 is source research and communication rather than another experiment`, () => {
+    it(`${lang}: Activity 8.6 phenomena accompany the existing illustrations without research instructions`, () => {
       render();
-      const a = host.querySelector("[data-refraction-activity]")!;
-      expect(a.textContent).toContain(s.activity.aim);
-      s.activity.instructions.forEach((q) => expect(a.textContent).toContain(q));
-      s.activity.phenomena.forEach((q) => expect(a.textContent).toContain(q));
-      expect(s.activity.instructions).toHaveLength(lang === "en" ? 3 : 4);
-      expect(a.textContent).toMatch(/library|perpustakaan/);
-      expect(a.textContent).toMatch(/class|kelas/);
-      expect(a.querySelectorAll("svg,table,input")).toHaveLength(0);
+      expect(host.querySelector("[data-refraction-activity]")).toBeNull();
+      s.activity.phenomena.forEach((text) =>
+        expect(host.querySelector("[data-refraction-illusions]")?.textContent).toContain(text),
+      );
+      s.activity.instructions.forEach((text) => expect(host.textContent).not.toContain(text));
+      expect(host.querySelector('[data-refraction-visual="fish"]')).not.toBeNull();
+      expect(host.querySelector('[data-refraction-visual="pencil"]')).not.toBeNull();
     });
-    it(`${lang}: Practice 8.4 has both source questions and two unanswered A/B and C/D ray cases`, () => {
+    it(`${lang}: removes duplicate practice rays while all four density cases and apparent-depth teaching remain`, () => {
       render();
-      const p = host.querySelector('[data-practice="8.4"]')!;
-      expect(p.querySelectorAll("ol > li")).toHaveLength(2);
-      s.practice.questions.forEach((q) => expect(p.textContent).toContain(q));
-      const svgs = [...p.querySelectorAll("svg")];
-      expect(svgs).toHaveLength(2);
-      expect([...svgs[0].querySelectorAll("text")].map((n) => n.textContent)).toEqual(["A", "B"]);
-      expect([...svgs[1].querySelectorAll("text")].map((n) => n.textContent)).toEqual(["C", "D"]);
-      svgs.forEach((d) => {
-        expect(path(d, "practice-incident")[3]).toBe(115);
-        expect(path(d, "practice-refracted")[3]).toBeLessThan(115);
+      expect(host.querySelector('[data-practice="8.4"]')).toBeNull();
+      expect(
+        host.querySelector(
+          '[data-refraction-visual="practice-1"],[data-refraction-visual="practice-2"]',
+        ),
+      ).toBeNull();
+      expect(host.querySelectorAll("[data-ray-case]")).toHaveLength(4);
+      s.cases.forEach((c) => {
+        const figure = host.querySelector(`[data-ray-case="${c.id}"]`)!;
+        expect(figure.textContent).toContain(c.from);
+        expect(figure.textContent).toContain(c.to);
+        expect(figure.textContent).toContain(c.behavior);
       });
-      expect(angle(path(svgs[0], "practice-refracted"))).toBeGreaterThan(
-        angle(path(svgs[0], "practice-incident")),
-      );
-      expect(angle(path(svgs[1], "practice-refracted"))).toBeLessThan(
-        angle(path(svgs[1], "practice-incident")),
-      );
-      expect(p.querySelector("details")).toBeNull();
+      expect(host.textContent).toContain(s.fish.explanation);
     });
   }
   it("BM labels use refraction terms, never sudut pantulan", () => {
@@ -367,16 +368,13 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
     ].forEach((s) => expect(host.textContent).toContain(s));
     expect(host.textContent).not.toMatch(/sudut pantulan/i);
   });
-  it("BM and DLP use identical SVGs both with and without the glass block", () => {
-    for (const i of [0, 1]) {
-      mount(createElement(Chapter8Refraction, { source: content.en.refraction }));
-      tap("[data-glass-controls] button", i);
-      const en = geometry();
-      mount(createElement(Chapter8Refraction, { source: content.bm.refraction }));
-      tap("[data-glass-controls] button", i);
-      expect(geometry()).toEqual(en);
-    }
+  it("BM and DLP share all SVG geometry including the simplified glass entry", () => {
+    mount(createElement(Chapter8Refraction, { source: content.en.refraction }));
+    const en = geometry();
+    mount(createElement(Chapter8Refraction, { source: content.bm.refraction }));
+    expect(geometry()).toEqual(en);
   });
+
   it("owns all 8.4 facts canonically and removes the replaced supplement fields", () => {
     for (const lang of ["en", "bm"] as const) {
       ["refractionRules", "refractionExperiment", "fishTip"].forEach((k) =>
@@ -387,10 +385,10 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
     s.definition = "canonical definition sentinel";
     s.fish.question = "canonical fish question sentinel";
     s.cases[0].behavior = "canonical case sentinel";
-    s.experiment.materials[0] = "canonical apparatus sentinel";
+    s.experiment.hypothesis = "canonical relationship sentinel";
     s.activity.phenomena[0] = "canonical activity sentinel";
     mount(createElement(Chapter8Refraction, { source: s }));
-    ["definition", "fish question", "case", "apparatus", "activity"].forEach((k) =>
+    ["definition", "fish question", "case", "relationship", "activity"].forEach((k) =>
       expect(host.textContent).toContain(`canonical ${k} sentinel`),
     );
     const source = readFileSync("src/components/notes/Chapter8Refraction.tsx", "utf8");

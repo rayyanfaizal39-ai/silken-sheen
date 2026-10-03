@@ -216,46 +216,6 @@ export function AmbulanceReflection({ word }: { word: string }) {
   );
 }
 
-function RoadApplication({ kind }: { kind: number }) {
-  return (
-    <svg
-      data-reflection-application={kind}
-      viewBox="0 0 160 120"
-      aria-hidden="true"
-      className="mx-auto w-full max-w-40"
-    >
-      {kind === 0 ? (
-        <>
-          <path d="M46 103L72 19H89L115 103Z" fill="#fb923c" />
-          <path d="M62 53H99L105 73H56Z" fill="#f8fafc" />
-          <path d="M39 106H122" stroke="#94a3b8" strokeWidth="7" />
-        </>
-      ) : kind === 1 ? (
-        <>
-          <path d="M80 70V116" stroke="#94a3b8" strokeWidth="6" />
-          <rect
-            x="15"
-            y="16"
-            width="130"
-            height="70"
-            rx="5"
-            fill="#065f46"
-            stroke="#f8fafc"
-            strokeWidth="3"
-          />
-          <path d="M39 51H119m-18 -16l18 16-18 16" stroke="#f8fafc" strokeWidth="7" fill="none" />
-        </>
-      ) : (
-        <>
-          <path d="M20 99L80 14L140 99Z" fill="#f43f5e" />
-          <path d="M44 85L80 34L116 85Z" fill="#0f172a" />
-          <path d="M57 110H103" stroke="#94a3b8" strokeWidth="5" />
-        </>
-      )}
-    </svg>
-  );
-}
-
 function RayLegend({ source: s }: { source: ReflectionLesson }) {
   return (
     <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
@@ -292,6 +252,21 @@ export function Chapter8Reflection({ source: s }: { source: ReflectionLesson }) 
               {s.rayLabels.normal}
             </figcaption>
             <ReflectionRayDiagram angle={angle} />
+            <div data-angle-selector className="flex flex-wrap gap-2">
+              {s.experiment.angles.map((a, i) => (
+                <button
+                  key={a}
+                  type="button"
+                  aria-label={`${s.rayLabels.incidence}: ${a}°`}
+                  aria-pressed={i === selected}
+                  onClick={() => setSelected(i)}
+                  className={`min-h-11 rounded-lg border px-4 font-mono ${i === selected ? "border-sky-300 bg-sky-300/15 text-sky-200" : "border-white/20 text-slate-300"}`}
+                >
+                  i = {a}°
+                </button>
+              ))}
+            </div>
+
             <RayLegend source={s} />
             <p className="mt-3 text-center text-xs text-slate-400">● {s.rayLabels.point}</p>
           </figure>
@@ -309,92 +284,10 @@ export function Chapter8Reflection({ source: s }: { source: ReflectionLesson }) 
           </div>
         </div>
       </section>
-      <section data-reflection-experiment>
-        <h3 className="text-xl font-bold text-white">{s.experiment.title}</h3>
+      <section data-reflection-experiment className="border-l-2 border-sky-300 pl-4">
+        <h3 className="font-bold text-white">{s.experiment.title}</h3>
         <p className="mt-2 text-slate-300">{s.experiment.aim}</p>
-        <div className="mt-5 grid items-start gap-6 md:grid-cols-2">
-          <figure>
-            <figcaption className="font-semibold text-sky-200">{s.labels.schematic}</figcaption>
-            <ReflectionRayDiagram angle={angle} apparatus />
-            <div data-angle-selector className="flex flex-wrap gap-2">
-              {s.experiment.angles.map((a, i) => (
-                <button
-                  key={a}
-                  type="button"
-                  aria-label={`${s.rayLabels.incidence}: ${a}°`}
-                  aria-pressed={i === selected}
-                  onClick={() => setSelected(i)}
-                  className={`min-h-11 rounded-lg border px-4 font-mono ${i === selected ? "border-sky-300 bg-sky-300/15 text-sky-200" : "border-white/20 text-slate-300"}`}
-                >
-                  i = {a}°
-                </button>
-              ))}
-            </div>
-            <p className="mt-3 font-semibold text-sky-200">
-              {s.rayLabels.incidence} → {s.rayLabels.reflection}
-            </p>
-            <p className="mt-2 text-slate-300">{s.labels.measure}</p>
-            <div className="mt-4 rounded-xl border border-white/10 p-4">
-              <p className="font-bold text-white">{s.labels.results}</p>
-              <table data-source-results className="mt-2 w-full text-left text-sm">
-                <thead>
-                  <tr>
-                    <th className="p-2">i (°)</th>
-                    <th className="p-2">r (°)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {s.experiment.printedResults.map((row) => (
-                    <tr key={row.i}>
-                      <td className="p-2">{row.i}</td>
-                      <td
-                        data-unfilled-result
-                        aria-label={s.labels.unfilled}
-                        className="border-b border-dashed border-slate-500 p-2"
-                      >
-                        {row.r}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </figure>
-          <div className="space-y-4">
-            <div>
-              <h4 className="font-bold text-white">{s.labels.materials}</h4>
-              <ul className="mt-2 flex flex-wrap gap-2">
-                {s.experiment.materials.map((m) => (
-                  <li key={m} className="rounded-lg border border-white/15 px-3 py-1">
-                    {m}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <details className="border-y border-white/10 py-3">
-              <summary className="cursor-pointer font-bold">
-                {s.labels.hypothesis} · {s.labels.variables}
-              </summary>
-              <p className="mt-3">{s.experiment.hypothesis}</p>
-              <ul className="mt-3 space-y-2">
-                {s.experiment.variables.map((v) => (
-                  <li key={v}>{v}</li>
-                ))}
-              </ul>
-            </details>
-            <h4 className="font-bold text-white">{s.labels.procedure}</h4>
-            <ol className="list-decimal space-y-2 pl-5 text-slate-300">
-              {s.experiment.instructions.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ol>
-            <div className="border-l-2 border-sky-300 pl-4">
-              <h4 className="font-bold">{s.labels.conclusion}</h4>
-              <p className="mt-2">{s.experiment.conclusion}</p>
-              <p className="mt-2 font-mono text-xl text-sky-200">{s.lawOfReflection.keyEquation}</p>
-            </div>
-          </div>
-        </div>
+        <p className="mt-2 font-semibold text-sky-200">{s.experiment.hypothesis}</p>
       </section>
       <section data-lateral-inversion className="border-t border-white/10 pt-6">
         <h3 className="text-xl font-bold text-amber-200">{s.lateralInversion.title}</h3>
@@ -411,22 +304,17 @@ export function Chapter8Reflection({ source: s }: { source: ReflectionLesson }) 
       </section>
       <section data-reflection-applications className="border-t border-white/10 pt-6">
         <h3 className="text-lg font-bold text-white">{s.applications.title}</h3>
-        <div className="mt-4 grid grid-cols-3 gap-4">
-          {s.applications.items.map((name, i) => (
-            <figure key={name}>
-              <RoadApplication kind={i} />
-              <figcaption className="text-center text-sm text-slate-300">{name}</figcaption>
-            </figure>
+        <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-slate-300">
+          {s.applications.items.map((name) => (
+            <li key={name}>{name}</li>
           ))}
-        </div>
-      </section>
-      <section data-practice="8.3" className="border-t border-white/10 pt-6">
-        <h3 className="text-lg font-bold text-violet-200">{s.practice.title}</h3>
-        <ol className="mt-3 list-decimal space-y-3 pl-6">
-          {s.practice.questions.map((q) => (
-            <li key={q}>{q}</li>
-          ))}
-        </ol>
+        </ul>
+        <p
+          data-reflection-application-explanation
+          className="mt-3 text-sm leading-6 text-slate-300"
+        >
+          {s.applications.explanation}
+        </p>
       </section>
     </div>
   );
