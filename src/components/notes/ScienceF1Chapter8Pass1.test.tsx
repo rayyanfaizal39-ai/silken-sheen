@@ -119,8 +119,8 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
       );
       expect(hash(chapter8Supplement[lang])).toBe(
         lang === "en"
-          ? "f372bff938253bcb1a1e26327fc617a2a11e5dd6726fdb620cf35266ba5ad595"
-          : "1e10cd62d684a16a0cc8389b986555cf9ac6395bdb7668857ff9b4de065198f5",
+          ? "deb9383cde7f6969ccd2d0db2013a67b306580713e93201244279919d58b415d"
+          : "d21518b43afa4b4a5e3737865688bf6b0c5f82ddd1418ccf4e3c9d8391b5d3a6",
       );
     });
     it(`${lang}: real/virtual are screen-based definitions and plane image is behind mirror`, () => {

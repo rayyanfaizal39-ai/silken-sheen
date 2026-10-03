@@ -58,7 +58,7 @@ const locks = {
     refraction: "b93cec69af9ac56c6cf93e31d703e442c973cc5e53d84c0188fbad2d02d81f68",
     colorAdditionSubtraction: "20f5b6f8c49cfc15f5319083dc2ec59f7b0276310ece22eca45921e21728eee0",
     deferred: "95a724cbdb1d34b00f8b15710a3f8754012f798d50c9b2665f0bea41b1fe9ef9",
-    supplement: "f372bff938253bcb1a1e26327fc617a2a11e5dd6726fdb620cf35266ba5ad595",
+    supplement: "deb9383cde7f6969ccd2d0db2013a67b306580713e93201244279919d58b415d",
   },
   bm: {
     mirrors: "a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a",
@@ -67,7 +67,7 @@ const locks = {
     refraction: "cbe4a4dfa8ec8ed78f4e26b29e715f243025a042ff836cb44d51903dd7ac6916",
     colorAdditionSubtraction: "9c63a2eab4f9dde4a883afb797192472ccab6e42139692df8983f09634a315e4",
     deferred: "5b924ae4a14de777bdce2320a23ab1434729e9e37368b03fe35af7833691d552",
-    supplement: "1e10cd62d684a16a0cc8389b986555cf9ac6395bdb7668857ff9b4de065198f5",
+    supplement: "d21518b43afa4b4a5e3737865688bf6b0c5f82ddd1418ccf4e3c9d8391b5d3a6",
   },
   Chapter8Mirrors: "0ec93bea9fc2e5a8c32eac59f48279ce3e011f49a23af25129b7c680ddea48fb",
   Chapter8PropertiesOfLight: "fafce58d624495031073d45fb2f9ec12c2bacaccb49b43ab3e2d55f7761c0508",

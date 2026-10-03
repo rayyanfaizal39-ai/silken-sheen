@@ -1981,7 +1981,12 @@ const supplementEn: Chapter8Supplement = {
   filterMatrix: [
     { first: "Red", second: "Yellow", result: "Red", reason: "Red passes through both filters." },
     { first: "Red", second: "Magenta", result: "Red", reason: "Red passes through both filters." },
-    { first: "Red", second: "Cyan", result: "Black", reason: "Cyan absorbs the red light." },
+    {
+      first: "Red",
+      second: "Cyan",
+      result: "No light / Black",
+      reason: "Cyan absorbs the red light.",
+    },
     {
       first: "Green",
       second: "Yellow",
@@ -1991,7 +1996,7 @@ const supplementEn: Chapter8Supplement = {
     {
       first: "Green",
       second: "Magenta",
-      result: "Black",
+      result: "No light / Black",
       reason: "Magenta absorbs the green light.",
     },
     {
@@ -2000,7 +2005,12 @@ const supplementEn: Chapter8Supplement = {
       result: "Green",
       reason: "Green passes through both filters.",
     },
-    { first: "Blue", second: "Yellow", result: "Black", reason: "Yellow absorbs the blue light." },
+    {
+      first: "Blue",
+      second: "Yellow",
+      result: "No light / Black",
+      reason: "Yellow absorbs the blue light.",
+    },
     {
       first: "Blue",
       second: "Magenta",
@@ -2084,7 +2094,12 @@ const supplementBm: Chapter8Supplement = {
       result: "Merah",
       reason: "Merah melalui kedua-dua penapis.",
     },
-    { first: "Merah", second: "Sian", result: "Hitam", reason: "Sian menyerap cahaya merah." },
+    {
+      first: "Merah",
+      second: "Sian",
+      result: "Tiada cahaya / Hitam",
+      reason: "Sian menyerap cahaya merah.",
+    },
     {
       first: "Hijau",
       second: "Kuning",
@@ -2094,11 +2109,16 @@ const supplementBm: Chapter8Supplement = {
     {
       first: "Hijau",
       second: "Magenta",
-      result: "Hitam",
+      result: "Tiada cahaya / Hitam",
       reason: "Magenta menyerap cahaya hijau.",
     },
     { first: "Hijau", second: "Sian", result: "Hijau", reason: "Hijau melalui kedua-dua penapis." },
-    { first: "Biru", second: "Kuning", result: "Hitam", reason: "Kuning menyerap cahaya biru." },
+    {
+      first: "Biru",
+      second: "Kuning",
+      result: "Tiada cahaya / Hitam",
+      reason: "Kuning menyerap cahaya biru.",
+    },
     { first: "Biru", second: "Magenta", result: "Biru", reason: "Biru melalui kedua-dua penapis." },
     { first: "Biru", second: "Sian", result: "Biru", reason: "Biru melalui kedua-dua penapis." },
   ],

@@ -134,27 +134,39 @@ describe("8.7 colour teaching refinement", () => {
             ? [
                 ["Red", "Yellow", "Red"],
                 ["Red", "Magenta", "Red"],
-                ["Red", "Cyan", "Black"],
+                ["Red", "Cyan", "No light / Black"],
                 ["Green", "Yellow", "Green"],
-                ["Green", "Magenta", "Black"],
+                ["Green", "Magenta", "No light / Black"],
                 ["Green", "Cyan", "Green"],
-                ["Blue", "Yellow", "Black"],
+                ["Blue", "Yellow", "No light / Black"],
                 ["Blue", "Magenta", "Blue"],
                 ["Blue", "Cyan", "Blue"],
               ]
             : [
                 ["Merah", "Kuning", "Merah"],
                 ["Merah", "Magenta", "Merah"],
-                ["Merah", "Sian", "Hitam"],
+                ["Merah", "Sian", "Tiada cahaya / Hitam"],
                 ["Hijau", "Kuning", "Hijau"],
-                ["Hijau", "Magenta", "Hitam"],
+                ["Hijau", "Magenta", "Tiada cahaya / Hitam"],
                 ["Hijau", "Sian", "Hijau"],
-                ["Biru", "Kuning", "Hitam"],
+                ["Biru", "Kuning", "Tiada cahaya / Hitam"],
                 ["Biru", "Magenta", "Biru"],
                 ["Biru", "Sian", "Biru"],
               ];
+        expect([...matrix.querySelectorAll("thead th")].map((n) => n.textContent)).toEqual(
+          lang === "en"
+            ? ["Primary filter", "Secondary filter", "Result", "Reason"]
+            : ["Penapis primer", "Penapis sekunder", "Hasil", "Sebab"],
+        );
         const rows = [...matrix.querySelectorAll("tbody tr")];
         expect(rows).toHaveLength(9);
+        expect(
+          rows.filter(
+            (row) =>
+              row.querySelectorAll("td")[2].textContent ===
+              (lang === "en" ? "No light / Black" : "Tiada cahaya / Hitam"),
+          ),
+        ).toHaveLength(3);
         expect(
           rows.map((row) => [...row.querySelectorAll("td")].slice(0, 3).map((n) => n.textContent)),
         ).toEqual(expectedRows);

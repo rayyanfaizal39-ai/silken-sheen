@@ -12,13 +12,13 @@ describe("8.1–8.4 revision cleanup boundary", () => {
     // Content/root snapshots include the authorised 8.7 teaching refinement; 8.5/8.6 component locks remain unchanged.
     const locks = {
       "src/content/form1/science/chapter-8/chapter8-content.ts":
-        "fa1d7bac48a2b99c7d48834ecdeb98bc7c8ff9a86f782d42151a4bd4d3276ef8",
+        "74ab9ff8e5d6e08fa560e18cb14a0e586a80bd5fdc56de18ed06a2baed86e07f",
       "src/components/notes/Chapter8Dispersion.tsx":
         "0f3e2a243cffe37a54e3217ca763a311aa4726b8bb38cb8a1274473e98f9bf13",
       "src/components/notes/Chapter8Scattering.tsx":
         "9db35631b73340e6feef776dd441758ecc83a38aa765104445f511e77d93de3a",
       "src/components/notes/ScienceF1Chapter8VisualNotesBlock.tsx":
-        "c6d5a2e3a0e4bbc5d56a45576c25451e72ab6128629c28e01c47b1119f916ff8",
+        "2235e57d299a4002ed477c74b65f46aa876d842fb7cb478d58d60cee6aa0bc6f",
     };
     for (const [file, expected] of Object.entries(locks)) {
       expect(
