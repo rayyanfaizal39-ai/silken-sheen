@@ -1,3 +1,4 @@
+// Authorised 8.7 teaching refinement: supplement and 8.7 presentation snapshots updated; other locks unchanged.
 // 8.3 application refinement: only reflection content/component snapshots updated for the supplied explanation.
 // Revision cleanup (2026-10-03): only the four 8.1–8.4 component snapshots are updated; canonical/deferred locks are unchanged.
 // Pass 4 authorises 8.5/8.6 edits; deferred checks now cover pre-Pass-4 8.7 only.
@@ -55,14 +56,14 @@ const locks = {
     properties: "30892516c7b52edbeb3a815af5dd9e0c68697f3e459a4564257fab75f28f5b32",
     reflection: "86f052c685158c7c3fee19cd721bbd84c8c9652bf78f19a26dbe04207c5bba09",
     deferred: "95a724cbdb1d34b00f8b15710a3f8754012f798d50c9b2665f0bea41b1fe9ef9",
-    supplement: "bdf887aa50e4f06d1d1d4abddd0a2a95d532327f68e842093f03525eebeb5389",
+    supplement: "f372bff938253bcb1a1e26327fc617a2a11e5dd6726fdb620cf35266ba5ad595",
   },
   bm: {
     mirrors: "a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a",
     properties: "98f9abcf4c1563d3b0f0427f4cef260bc2aeb5b42b715e56af831751032cfe6a",
     reflection: "c2f9235ecf43c945af6bd2db40448c0c36f34eab5d7ef946dbd939f5250c0bc1",
     deferred: "5b924ae4a14de777bdce2320a23ab1434729e9e37368b03fe35af7833691d552",
-    supplement: "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8",
+    supplement: "1e10cd62d684a16a0cc8389b986555cf9ac6395bdb7668857ff9b4de065198f5",
   },
 };
 
@@ -93,7 +94,7 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
             "",
           ),
       ),
-    ).toBe("1586997d29b96f961b6c0fe2f5283c1e4d6bffb287927828d21ff6f9547a4d15");
+    ).toBe("e21fb8f35694fe887082c16586fec3d0ec9220a16ccc8a534eeebbac296cb883");
   });
   for (const lang of ["en", "bm"] as const) {
     const t = content[lang],

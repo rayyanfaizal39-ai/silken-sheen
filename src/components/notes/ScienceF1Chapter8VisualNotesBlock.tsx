@@ -35,6 +35,8 @@ const ui = {
     applications: "Daily applications",
     instruments: "Optical instruments",
     experiment: "Experiment",
+    primaryColours: "Primary colours of light",
+    secondaryColours: "Secondary colours of light",
     addition: "Choose two primary lights",
     allThree: "All three primary lights",
     subtraction: "Object-colour subtraction",
@@ -77,6 +79,8 @@ const ui = {
     applications: "Aplikasi harian",
     instruments: "Alat optik",
     experiment: "Eksperimen",
+    primaryColours: "Warna primer cahaya",
+    secondaryColours: "Warna sekunder cahaya",
     addition: "Pilih dua cahaya primer",
     allThree: "Ketiga-tiga cahaya primer",
     subtraction: "Penolakan warna objek",
@@ -292,10 +296,24 @@ export function ScienceF1Chapter8VisualNotesBlock({
             <Chapter8Scattering source={t.scattering} />
           </section>
 
-          <section id="chapter8-87" data-official-subtopic="8.7" className="space-y-6">
+          <section id="chapter8-87" data-official-subtopic="8.7" className="min-w-0 space-y-6">
             <h2 className="text-2xl font-black text-white sm:text-3xl">
               {t.subtopics[6].code} {t.subtopics[6].title}
             </h2>
+            <dl data-light-colour-categories className="grid gap-3 text-sm sm:grid-cols-2">
+              <div>
+                <dt className="font-bold text-white">{copy.primaryColours}</dt>
+                <dd className="mt-1 text-slate-300">
+                  {[0, 2, 1].map((i) => t.colorAdditionSubtraction.primaryColors[i]).join(" · ")}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-bold text-white">{copy.secondaryColours}</dt>
+                <dd className="mt-1 text-slate-300">
+                  {[1, 2, 0].map((i) => t.colorAdditionSubtraction.secondaryColors[i]).join(" · ")}
+                </dd>
+              </div>
+            </dl>
             <p
               data-colour-refinement="additionDefinition"
               className="text-sm leading-6 text-slate-300"
@@ -315,7 +333,7 @@ export function ScienceF1Chapter8VisualNotesBlock({
                 />
               </div>
               <div
-                className="mt-5 flex items-center justify-center gap-4 rounded-2xl bg-slate-950/35 p-6"
+                className="mt-5 flex flex-wrap items-center justify-center gap-2 rounded-2xl bg-slate-950/35 p-4 sm:gap-4 sm:p-6"
                 role="tabpanel"
               >
                 <span className="rounded-full border border-white/20 px-4 py-3 font-bold text-white">
@@ -343,9 +361,6 @@ export function ScienceF1Chapter8VisualNotesBlock({
                 {t.colorAdditionSubtraction.additionEverydayExample}
               </p>
             </Panel>
-          </section>
-
-          <section className="space-y-6">
             <h3 className="text-xl font-bold">{copy.sections[0][1]}</h3>
             <p
               data-colour-refinement="subtractionDefinition"
@@ -371,8 +386,9 @@ export function ScienceF1Chapter8VisualNotesBlock({
                 item.absorbed,
               ])}
             />
-            <div>
+            <div data-colour-filter-rules>
               <h3 className="mb-4 font-bold text-white">{copy.filterRules}</h3>
+              <p className="mb-4 text-sm leading-6 text-slate-300">{extra.filterGate}</p>
               <div className="grid gap-4 md:grid-cols-2">
                 {extra.filters.map((item) => (
                   <Panel key={item.type}>
@@ -386,7 +402,30 @@ export function ScienceF1Chapter8VisualNotesBlock({
                 ))}
               </div>
             </div>
-            <div>
+            <div data-worked-filter-example className="border-l-2 border-violet-300/40 pl-4">
+              <ol className="flex flex-wrap items-center gap-x-2 gap-y-3 text-sm text-slate-200">
+                {extra.workedFilter.steps.map((step, i) => (
+                  <li key={step} className="flex items-center gap-2">
+                    {i > 0 && (
+                      <span aria-hidden="true" className="text-violet-300">
+                        →
+                      </span>
+                    )}
+                    <span className="rounded-lg border border-white/15 px-3 py-2">{step}</span>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                {extra.workedFilter.explanation}
+              </p>
+              <p
+                data-both-filter-rule
+                className="mt-3 text-sm font-semibold leading-6 text-violet-200"
+              >
+                {extra.workedFilter.bothRule}
+              </p>
+            </div>
+            <div data-filter-matrix className="min-w-0">
               <h3 className="mb-4 font-bold text-white">{copy.filterMatrix}</h3>
               <DataTable
                 headers={[copy.first, copy.second, copy.result, copy.reason]}

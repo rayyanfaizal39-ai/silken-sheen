@@ -1934,6 +1934,8 @@ const bm: Chapter8Content = {
 export const chapter8Content = { en, bm };
 
 export interface Chapter8Supplement {
+  filterGate: string;
+  workedFilter: { steps: string[]; explanation: string; bothRule: string };
   objectColourRows: { object: string; incident: string; reflected: string; absorbed: string }[];
   filters: { type: string; rule: string; examples: string[] }[];
   filterMatrix: { first: string; second: string; result: string; reason: string }[];
@@ -1941,6 +1943,14 @@ export interface Chapter8Supplement {
 }
 
 const supplementEn: Chapter8Supplement = {
+  filterGate: "Think of a colour filter as a gate: only certain colours are allowed through.",
+  workedFilter: {
+    steps: ["White light", "Red filter", "Red light", "Cyan filter", "No light", "Black / Dark"],
+    explanation:
+      "The red filter transmits only red light. The cyan filter absorbs red, so no light reaches the screen.",
+    bothRule:
+      "When two filters are used, only colours that can pass through BOTH filters reach the screen.",
+  },
   objectColourRows: [
     { object: "Green leaf", incident: "White", reflected: "Green", absorbed: "Red and blue" },
     {
@@ -1972,7 +1982,32 @@ const supplementEn: Chapter8Supplement = {
     { first: "Red", second: "Yellow", result: "Red", reason: "Red passes through both filters." },
     { first: "Red", second: "Magenta", result: "Red", reason: "Red passes through both filters." },
     { first: "Red", second: "Cyan", result: "Black", reason: "Cyan absorbs the red light." },
+    {
+      first: "Green",
+      second: "Yellow",
+      result: "Green",
+      reason: "Green passes through both filters.",
+    },
+    {
+      first: "Green",
+      second: "Magenta",
+      result: "Black",
+      reason: "Magenta absorbs the green light.",
+    },
+    {
+      first: "Green",
+      second: "Cyan",
+      result: "Green",
+      reason: "Green passes through both filters.",
+    },
     { first: "Blue", second: "Yellow", result: "Black", reason: "Yellow absorbs the blue light." },
+    {
+      first: "Blue",
+      second: "Magenta",
+      result: "Blue",
+      reason: "Blue passes through both filters.",
+    },
+    { first: "Blue", second: "Cyan", result: "Blue", reason: "Blue passes through both filters." },
   ],
   activeRecall: [
     {
@@ -1989,6 +2024,21 @@ const supplementEn: Chapter8Supplement = {
 };
 
 const supplementBm: Chapter8Supplement = {
+  filterGate: "Anggap penapis warna sebagai pintu: hanya warna tertentu dibenarkan melaluinya.",
+  workedFilter: {
+    steps: [
+      "Cahaya putih",
+      "Penapis merah",
+      "Cahaya merah",
+      "Penapis sian",
+      "Tiada cahaya",
+      "Hitam / Gelap",
+    ],
+    explanation:
+      "Penapis merah hanya membenarkan cahaya merah melaluinya. Penapis sian menyerap cahaya merah, jadi tiada cahaya sampai ke skrin.",
+    bothRule:
+      "Apabila dua penapis digunakan, hanya warna yang boleh melalui KEDUA-DUA penapis akan sampai ke skrin.",
+  },
   objectColourRows: [
     { object: "Daun hijau", incident: "Putih", reflected: "Hijau", absorbed: "Merah dan biru" },
     {
@@ -2035,7 +2085,22 @@ const supplementBm: Chapter8Supplement = {
       reason: "Merah melalui kedua-dua penapis.",
     },
     { first: "Merah", second: "Sian", result: "Hitam", reason: "Sian menyerap cahaya merah." },
+    {
+      first: "Hijau",
+      second: "Kuning",
+      result: "Hijau",
+      reason: "Hijau melalui kedua-dua penapis.",
+    },
+    {
+      first: "Hijau",
+      second: "Magenta",
+      result: "Hitam",
+      reason: "Magenta menyerap cahaya hijau.",
+    },
+    { first: "Hijau", second: "Sian", result: "Hijau", reason: "Hijau melalui kedua-dua penapis." },
     { first: "Biru", second: "Kuning", result: "Hitam", reason: "Kuning menyerap cahaya biru." },
+    { first: "Biru", second: "Magenta", result: "Biru", reason: "Biru melalui kedua-dua penapis." },
+    { first: "Biru", second: "Sian", result: "Biru", reason: "Biru melalui kedua-dua penapis." },
   ],
   activeRecall: [
     {

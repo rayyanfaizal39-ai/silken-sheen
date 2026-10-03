@@ -1,3 +1,4 @@
+// Authorised 8.7 teaching refinement: supplement and 8.7 presentation snapshots updated; other locks unchanged.
 // Revision cleanup (2026-10-03): only the four 8.1–8.4 component snapshots are updated; canonical/deferred locks are unchanged.
 // Pass 4 authorises 8.5/8.6 edits; deferred checks now cover pre-Pass-4 8.7 only.
 // @vitest-environment jsdom
@@ -118,8 +119,8 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
       );
       expect(hash(chapter8Supplement[lang])).toBe(
         lang === "en"
-          ? "bdf887aa50e4f06d1d1d4abddd0a2a95d532327f68e842093f03525eebeb5389"
-          : "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8",
+          ? "f372bff938253bcb1a1e26327fc617a2a11e5dd6726fdb620cf35266ba5ad595"
+          : "1e10cd62d684a16a0cc8389b986555cf9ac6395bdb7668857ff9b4de065198f5",
       );
     });
     it(`${lang}: real/virtual are screen-based definitions and plane image is behind mirror`, () => {

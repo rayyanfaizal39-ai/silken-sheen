@@ -1,3 +1,4 @@
+// Authorised 8.7 teaching refinement: supplement and 8.7 presentation snapshots updated; other locks unchanged.
 // Authorised glass-entry simplification: only 8.4 snapshots updated.
 // 8.3 application refinement: only reflection content/component snapshots updated for the supplied explanation.
 // Revision cleanup (2026-10-03): only the four 8.1–8.4 component snapshots are updated; canonical/deferred locks are unchanged.
@@ -57,7 +58,7 @@ const locks = {
     refraction: "b93cec69af9ac56c6cf93e31d703e442c973cc5e53d84c0188fbad2d02d81f68",
     colorAdditionSubtraction: "20f5b6f8c49cfc15f5319083dc2ec59f7b0276310ece22eca45921e21728eee0",
     deferred: "95a724cbdb1d34b00f8b15710a3f8754012f798d50c9b2665f0bea41b1fe9ef9",
-    supplement: "bdf887aa50e4f06d1d1d4abddd0a2a95d532327f68e842093f03525eebeb5389",
+    supplement: "f372bff938253bcb1a1e26327fc617a2a11e5dd6726fdb620cf35266ba5ad595",
   },
   bm: {
     mirrors: "a2a31f0fbd34c9e4efe16bc472ea69a83c07d5d280b676ebff796171cb260e2a",
@@ -66,13 +67,13 @@ const locks = {
     refraction: "cbe4a4dfa8ec8ed78f4e26b29e715f243025a042ff836cb44d51903dd7ac6916",
     colorAdditionSubtraction: "9c63a2eab4f9dde4a883afb797192472ccab6e42139692df8983f09634a315e4",
     deferred: "5b924ae4a14de777bdce2320a23ab1434729e9e37368b03fe35af7833691d552",
-    supplement: "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8",
+    supplement: "1e10cd62d684a16a0cc8389b986555cf9ac6395bdb7668857ff9b4de065198f5",
   },
   Chapter8Mirrors: "0ec93bea9fc2e5a8c32eac59f48279ce3e011f49a23af25129b7c680ddea48fb",
   Chapter8PropertiesOfLight: "fafce58d624495031073d45fb2f9ec12c2bacaccb49b43ab3e2d55f7761c0508",
   Chapter8Reflection: "b4e09434648f359a49c1db0375deb99a0d09328fdaf1415b3bafdb5d8f176a81",
   Chapter8Refraction: "91241476e3beb06bbf40ec2b81e0e00edc9aac71967c6a1fdf2e51ebbc42260c",
-  presentation: "1586997d29b96f961b6c0fe2f5283c1e4d6bffb287927828d21ff6f9547a4d15",
+  presentation: "e21fb8f35694fe887082c16586fec3d0ec9220a16ccc8a534eeebbac296cb883",
 };
 
 describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {

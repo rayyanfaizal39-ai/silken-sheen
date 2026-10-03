@@ -9,16 +9,16 @@ import { ScienceF1Chapter8VisualNotesBlock } from "./ScienceF1Chapter8VisualNote
 
 describe("8.1–8.4 revision cleanup boundary", () => {
   it("preserves all canonical source data and the complete 8.5–8.7 implementation against pre-cleanup hashes", () => {
-    // Canonical snapshot includes the authorised 8.3 explanation and 8.4 glass-entry rules; all 8.5–8.7 snapshots remain unchanged.
+    // Content/root snapshots include the authorised 8.7 teaching refinement; 8.5/8.6 component locks remain unchanged.
     const locks = {
       "src/content/form1/science/chapter-8/chapter8-content.ts":
-        "fd3b5066f6362cfebd632a58ab5437fcbdb13777b81d00af3f42937edc55a6c3",
+        "fa1d7bac48a2b99c7d48834ecdeb98bc7c8ff9a86f782d42151a4bd4d3276ef8",
       "src/components/notes/Chapter8Dispersion.tsx":
         "0f3e2a243cffe37a54e3217ca763a311aa4726b8bb38cb8a1274473e98f9bf13",
       "src/components/notes/Chapter8Scattering.tsx":
         "9db35631b73340e6feef776dd441758ecc83a38aa765104445f511e77d93de3a",
       "src/components/notes/ScienceF1Chapter8VisualNotesBlock.tsx":
-        "5ccdf5d4805bfa8f4df3f558d077210a67ee2e7bc7415a9101ebbadd8bf9c0d7",
+        "c6d5a2e3a0e4bbc5d56a45576c25451e72ab6128629c28e01c47b1119f916ff8",
     };
     for (const [file, expected] of Object.entries(locks)) {
       expect(
