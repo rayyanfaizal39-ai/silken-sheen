@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type {
   RefractionCase,
   RefractionLesson,
@@ -142,104 +141,66 @@ export function RefractionCaseDiagram({ kind }: { kind: RefractionCase["id"] }) 
   );
 }
 
-export function GlassBlockDiagram({ showBlock = true }: { showBlock?: boolean }) {
-  const start = { x: 80, y: 295 },
-    entry = { x: 165, y: 205 },
-    exit = { x: 215, y: 105 },
-    end = { x: 300, y: 15 };
-  const incoming = Math.hypot(85, 90),
-    inside = Math.hypot(50, 100);
+export function GlassBlockDiagram() {
+  const start = { x: 60, y: 65 },
+    entry = { x: 170, y: 150 },
+    end = { x: 235, y: 290 };
+  const incoming = Math.hypot(110, 85),
+    inside = Math.hypot(65, 140);
   return (
     <svg
       data-refraction-visual="experiment"
-      data-block-present={showBlock}
-      viewBox="0 0 400 370"
+      viewBox="0 0 320 320"
       aria-hidden="true"
       className="w-full"
     >
-      <rect data-white-paper x="15" y="5" width="370" height="325" rx="5" fill="#f8fafc" />
       <rect
-        data-traced-outline
-        x="125"
-        y="105"
-        width="180"
-        height="100"
-        fill="none"
-        stroke="#64748b"
-        strokeDasharray="5 4"
+        data-glass-block
+        x="15"
+        y="150"
+        width="290"
+        height="155"
+        fill="#0ea5e9"
+        fillOpacity=".18"
+        stroke="#7dd3fc"
+        strokeWidth="2"
       />
-      {showBlock && (
-        <rect
-          data-glass-block
-          x="125"
-          y="105"
-          width="180"
-          height="100"
-          fill="#7dd3fc"
-          fillOpacity=".35"
-          stroke="#0284c7"
-          strokeWidth="2"
-        />
-      )}
-      <path data-entry-normal d="M165 140V282" stroke="#475569" strokeDasharray="5 4" />
-      <path data-exit-normal d="M215 55V150" stroke="#475569" strokeDasharray="5 4" />
-      <Ray start={start} end={entry} kind="incident" color="#b45309" />
-      <Ray start={entry} end={exit} kind="internal" color="#0369a1" />
-      <Ray start={exit} end={end} kind="emerging" color="#0369a1" />
+      <path
+        data-entry-normal
+        d="M170 30V305"
+        stroke="#cbd5e1"
+        strokeWidth="2"
+        strokeDasharray="5 5"
+      />
+      <path data-right-angle d="M170 138H182V150" fill="none" stroke="#cbd5e1" strokeWidth="2" />
+      <Ray start={start} end={entry} kind="incident" />
+      <Ray start={entry} end={end} kind="refracted" color="#38bdf8" />
       <path
         data-i-arc
-        d={`M165 250A45 45 0 0 1 ${165 - (45 * 85) / incoming} ${205 + (45 * 90) / incoming}`}
+        d={`M170 95A55 55 0 0 0 ${170 - (55 * 110) / incoming} ${150 - (55 * 85) / incoming}`}
         fill="none"
-        stroke="#b45309"
+        stroke="#fbbf24"
         strokeWidth="2"
       />
       <path
         data-r-arc
-        d={`M165 160A45 45 0 0 1 ${165 + (45 * 50) / inside} ${205 - (45 * 100) / inside}`}
+        d={`M170 205A55 55 0 0 0 ${170 + (55 * 65) / inside} ${150 + (55 * 140) / inside}`}
         fill="none"
-        stroke="#0369a1"
+        stroke="#38bdf8"
         strokeWidth="2"
       />
-      <text x="143" y="263" fontSize="19" fontStyle="italic" fill="#92400e">
+      <text data-angle="i" x="136" y="89" fontSize="28" fontStyle="italic" fill="#fde68a">
         i
       </text>
-      <text x="185" y="155" fontSize="19" fontStyle="italic" fill="#075985">
+      <text data-angle="r" x="184" y="233" fontSize="28" fontStyle="italic" fill="#7dd3fc">
         r
       </text>
-      <circle data-entry-point cx="165" cy="205" r="3" fill="#334155" />
-      <circle data-exit-point cx="215" cy="105" r="3" fill="#334155" />
-      <g data-ray-box transform="translate(80 295) rotate(43.36)">
-        <rect x="-19" y="0" width="38" height="48" rx="3" fill="#334155" stroke="#94a3b8" />
-        <circle cx="0" cy="27" r="9" fill="#fbbf24" />
-        <path data-single-slit d="M-19 3H-2M2 3H19" stroke="#cbd5e1" strokeWidth="5" />
-      </g>
-      <path d="M38 326Q13 350 32 350H57" fill="none" stroke="#94a3b8" strokeWidth="2" />
-      <g data-power-supply>
-        <rect x="57" y="337" width="65" height="25" rx="3" fill="#475569" />
-        <circle cx="69" cy="349" r="4" fill="#4ade80" />
-      </g>
-      <g data-ruler>
-        <rect x="316" y="141" width="27" height="138" fill="#fde68a" stroke="#a16207" />
-        {Array.from({ length: 12 }, (_, i) => (
-          <path key={i} d={`M316 ${149 + i * 11}h${i % 2 === 0 ? 12 : 7}`} stroke="#92400e" />
-        ))}
-      </g>
-      <g data-protractor>
-        <path d="M213 309A49 49 0 0 1 311 309Z" fill="#cbd5e1" fillOpacity=".6" stroke="#64748b" />
-        {Array.from({ length: 7 }, (_, i) => (i * Math.PI) / 6).map((t) => (
-          <path
-            key={t}
-            d={`M${262 - 49 * Math.cos(t)} ${309 - 49 * Math.sin(t)}L${262 - 42 * Math.cos(t)} ${309 - 42 * Math.sin(t)}`}
-            stroke="#64748b"
-          />
-        ))}
-      </g>
+      <circle data-entry-point cx="170" cy="150" r="3" fill="#f8fafc" />
     </svg>
   );
 }
 
 export function Chapter8Refraction({ source: s }: { source: RefractionLesson }) {
-  const [showBlock, setShowBlock] = useState(true);
   const l = s.labels,
     e = s.experiment;
   return (
@@ -313,44 +274,39 @@ export function Chapter8Refraction({ source: s }: { source: RefractionLesson }) 
       <section data-refraction-experiment className="border-t border-white/10 pt-7">
         <h3 className="text-xl font-bold text-white">{e.title}</h3>
         <p className="mt-3 text-slate-300">{e.aim}</p>
-        <p className="mt-3 font-semibold text-cyan-200">{e.hypothesis}</p>
-        <div className="mx-auto mt-5 max-w-xl">
-          <figure>
-            <figcaption className="font-semibold text-amber-200">{l.demo}</figcaption>
-            <GlassBlockDiagram showBlock={showBlock} />
-            <div data-glass-controls className="flex flex-wrap gap-2">
-              {[true, false].map((p) => (
-                <button
-                  key={String(p)}
-                  type="button"
-                  onClick={() => setShowBlock(p)}
-                  aria-pressed={showBlock === p}
-                  className={`min-h-11 rounded-lg border px-4 py-2 text-sm font-semibold ${showBlock === p ? "border-cyan-300 bg-cyan-300/10 text-cyan-200" : "border-white/20 text-slate-300"}`}
-                >
-                  {p ? l.glass : l.remove}
-                </button>
-              ))}
-            </div>
-            <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
-              <div className="text-amber-200">
-                <dt>{l.incident}</dt>
-                <dd>{l.incidence}</dd>
-              </div>
-              <div className="text-sky-200">
-                <dt>{l.refracted}</dt>
-                <dd>{l.refraction}</dd>
-              </div>
-              <div>
-                <dt>{l.normal}</dt>
-                <dd>{l.paper}</dd>
-              </div>
-              <div>
-                <dt>{l.box}</dt>
-                <dd>{l.slit}</dd>
-              </div>
-            </dl>
-          </figure>
+        <figure className="mx-auto mt-5 max-w-md">
+          <figcaption className="font-semibold text-amber-200">{l.demo}</figcaption>
+          <div data-glass-entry-diagram className="relative mt-4">
+            <GlassBlockDiagram />
+            <span className="absolute left-0 top-0 max-w-[40%] text-sm leading-5 text-amber-200">
+              {l.incident}
+            </span>
+            <span className="absolute left-[53%] top-0 text-sm leading-5 text-slate-200">
+              {l.normal}
+            </span>
+            <span className="absolute left-[8%] top-[38%] text-sm leading-5 text-slate-200">
+              {s.glassEntry.air}
+            </span>
+            <span className="absolute left-[8%] top-[55%] text-sm leading-5 text-sky-200">
+              {s.glassEntry.glass}
+            </span>
+            <span className="absolute right-0 top-[54%] max-w-[34%] text-sm leading-5 text-sky-200">
+              {l.refracted}
+            </span>
+          </div>
+          <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            <span className="text-amber-200">{l.incidence}</span>
+            <span className="text-sky-200">{l.refraction}</span>
+          </div>
+        </figure>
+        <div data-glass-entry-rule className="mt-5 border-l-2 border-cyan-300 pl-4">
+          <p className="font-semibold text-cyan-200">{s.glassEntry.rule}</p>
+          <p className="mt-2 text-slate-300">{s.glassEntry.angleComparison}</p>
+          <p className="mt-2 font-mono text-xl font-bold text-cyan-200">r &lt; i</p>
         </div>
+        <p data-glass-angle-relationship className="mt-4 text-slate-300">
+          {e.hypothesis}
+        </p>
       </section>
     </div>
   );

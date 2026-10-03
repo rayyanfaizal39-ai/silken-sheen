@@ -26,8 +26,6 @@ afterEach(() => {
   host.remove();
 });
 const mount = (node: ReactNode) => act(() => root.render(node));
-const tap = (selector: string, i = 0) =>
-  act(() => host.querySelectorAll<HTMLButtonElement>(selector)[i].click());
 const sha = (s: string) => createHash("sha256").update(s).digest("hex");
 const hash = (v: unknown) =>
   sha(
@@ -251,60 +249,69 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
       );
       expect(e.querySelector("[data-refraction-materials]")).toBeNull();
     });
-    it(`${lang}: glass-block apparatus uses normals for i/r and rays enter, traverse and leave the block`, () => {
+    it(`${lang}: air-to-glass rays bend towards one perpendicular entry normal with r smaller than i`, () => {
       render();
       const d = host.querySelector('[data-refraction-visual="experiment"]')!;
-      [
-        "glass-block",
-        "white-paper",
-        "ray-box",
-        "single-slit",
-        "power-supply",
-        "ruler",
-        "protractor",
-        "entry-normal",
-        "traced-outline",
-      ].forEach((k) => expect(d.querySelector(`[data-${k}]`)).not.toBeNull());
+      expect(d.querySelector("[data-glass-block]")?.getAttribute("y")).toBe("150");
+      expect(d.querySelectorAll("[data-entry-normal]")).toHaveLength(1);
+      expect(d.querySelector("[data-entry-normal]")?.getAttribute("d")).toBe("M170 30V305");
+      expect(d.querySelector("[data-right-angle]")?.getAttribute("d")).toBe("M170 138H182V150");
       const incident = path(d, "incident"),
-        internal = path(d, "internal"),
-        emerging = path(d, "emerging");
-      expect(incident.slice(2)).toEqual(internal.slice(0, 2));
-      expect(internal.slice(2)).toEqual(emerging.slice(0, 2));
-      expect(internal).toEqual([165, 205, 215, 105]);
-      expect(angle(internal)).toBeLessThan(angle(incident));
-      expect(angle(emerging)).toBeCloseTo(angle(incident), 8);
-      expect(d.querySelector("[data-entry-normal]")?.getAttribute("d")).toBe("M165 140V282");
-      expect(d.querySelector("[data-i-arc]")?.getAttribute("d")).toMatch(/^M165 250A45 45/);
-      expect(d.querySelector("[data-r-arc]")?.getAttribute("d")).toMatch(/^M165 160A45 45/);
-      // Both arc starts are on x=165, the normal through entry (165,205).
+        refracted = path(d, "refracted");
+      expect(incident).toEqual([60, 65, 170, 150]);
+      expect(refracted).toEqual([170, 150, 235, 290]);
+      expect(angle(refracted)).toBeLessThan(angle(incident));
+      expect(d.querySelectorAll("[data-ray]")).toHaveLength(2);
       for (const key of ["i", "r"]) {
-        const v = numbers(d.querySelector(`[data-${key}-arc]`)!.getAttribute("d")!);
-        expect(v[0]).toBe(165);
-        expect(v[1]).not.toBe(205);
+        const arc = numbers(d.querySelector(`[data-${key}-arc]`)!.getAttribute("d")!);
+        expect(arc[0]).toBe(170);
+        expect(arc[1]).toBe(key === "i" ? 95 : 205);
+        const label = d.querySelector(`[data-angle="${key}"]`)!;
+        expect(label.textContent).toBe(key);
+        expect(Number(label.getAttribute("font-size"))).toBeGreaterThanOrEqual(28);
+        const y = Number(label.getAttribute("y"));
+        expect(key === "i" ? y < 150 : y > 150).toBe(true);
       }
       d.querySelectorAll("[data-ray-arrow]").forEach((n) => {
         const v = numbers(n.getAttribute("points")!);
-        expect(v[1]).toBeLessThan((v[3] + v[5]) / 2);
+        expect(v[1]).toBeGreaterThan((v[3] + v[5]) / 2);
       });
     });
-    it(`${lang}: removing the glass preserves its traced outline and constructed ray path`, () => {
+    it(`${lang}: direct labels and bending rules replace the apparatus and remove-glass interaction`, () => {
       render();
-      const before = host
-        .querySelector('[data-refraction-visual="experiment"] [data-ray="internal"]')!
-        .getAttribute("d");
-      tap("[data-glass-controls] button", 1);
-      expect(host.querySelector("[data-glass-block]")).toBeNull();
-      expect(host.querySelector("[data-traced-outline]")).not.toBeNull();
+      const e = host.querySelector("[data-refraction-experiment]")!;
+      for (const key of [
+        "ruler",
+        "protractor",
+        "ray-box",
+        "power-supply",
+        "white-paper",
+        "exit-normal",
+        "glass-controls",
+      ])
+        expect(e.querySelector(`[data-${key}]`)).toBeNull();
+      expect(e.querySelector("button")).toBeNull();
+      const diagram = e.querySelector("[data-glass-entry-diagram]")!;
+      [
+        s.labels.incident,
+        s.labels.normal,
+        s.labels.refracted,
+        s.glassEntry.air,
+        s.glassEntry.glass,
+      ].forEach((text) => expect(diagram.textContent).toContain(text));
+      const rule = e.querySelector("[data-glass-entry-rule]")!;
+      expect(rule.textContent).toContain(
+        lang === "en"
+          ? "Air → glass: light bends towards the normal."
+          : "Udara → kaca: cahaya membengkok mendekati normal.",
+      );
+      expect(rule.textContent).toContain(s.glassEntry.angleComparison);
+      expect(rule.textContent).toContain("r < i");
+      const relationship = e.querySelector("[data-glass-angle-relationship]")!;
+      expect(relationship.textContent).toBe(s.experiment.hypothesis);
       expect(
-        host
-          .querySelector('[data-refraction-visual="experiment"] [data-ray="internal"]')
-          ?.getAttribute("d"),
-      ).toBe(before);
-      expect(
-        host.querySelectorAll("[data-glass-controls] button")[1].getAttribute("aria-pressed"),
-      ).toBe("true");
-      tap("[data-glass-controls] button", 0);
-      expect(host.querySelector("[data-glass-block]")).not.toBeNull();
+        rule.compareDocumentPosition(relationship) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
     });
     it(`${lang}: preserves the air-to-glass relationship and angle labels without procedural results or graph tasks`, () => {
       render();
@@ -360,16 +367,13 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
     ].forEach((s) => expect(host.textContent).toContain(s));
     expect(host.textContent).not.toMatch(/sudut pantulan/i);
   });
-  it("BM and DLP use identical SVGs both with and without the glass block", () => {
-    for (const i of [0, 1]) {
-      mount(createElement(Chapter8Refraction, { source: content.en.refraction }));
-      tap("[data-glass-controls] button", i);
-      const en = geometry();
-      mount(createElement(Chapter8Refraction, { source: content.bm.refraction }));
-      tap("[data-glass-controls] button", i);
-      expect(geometry()).toEqual(en);
-    }
+  it("BM and DLP share all SVG geometry including the simplified glass entry", () => {
+    mount(createElement(Chapter8Refraction, { source: content.en.refraction }));
+    const en = geometry();
+    mount(createElement(Chapter8Refraction, { source: content.bm.refraction }));
+    expect(geometry()).toEqual(en);
   });
+
   it("owns all 8.4 facts canonically and removes the replaced supplement fields", () => {
     for (const lang of ["en", "bm"] as const) {
       ["refractionRules", "refractionExperiment", "fishTip"].forEach((k) =>

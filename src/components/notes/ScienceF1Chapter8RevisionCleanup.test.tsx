@@ -9,10 +9,10 @@ import { ScienceF1Chapter8VisualNotesBlock } from "./ScienceF1Chapter8VisualNote
 
 describe("8.1–8.4 revision cleanup boundary", () => {
   it("preserves all canonical source data and the complete 8.5–8.7 implementation against pre-cleanup hashes", () => {
-    // Canonical snapshot includes the authorised 8.3 application explanation; all 8.5–8.7 snapshots remain unchanged.
+    // Canonical snapshot includes the authorised 8.3 explanation and 8.4 glass-entry rules; all 8.5–8.7 snapshots remain unchanged.
     const locks = {
       "src/content/form1/science/chapter-8/chapter8-content.ts":
-        "6714d3cab42e577b6ddfa19579ab59a1883ab5ef58a4038a207847972a025988",
+        "fd3b5066f6362cfebd632a58ab5437fcbdb13777b81d00af3f42937edc55a6c3",
       "src/components/notes/Chapter8Dispersion.tsx":
         "0f3e2a243cffe37a54e3217ca763a311aa4726b8bb38cb8a1274473e98f9bf13",
       "src/components/notes/Chapter8Scattering.tsx":

@@ -235,6 +235,7 @@ export interface ReflectionLesson {
 }
 
 export interface RefractionLesson {
+  glassEntry: { air: string; glass: string; rule: string; angleComparison: string };
   definition: string;
   illusions: { pond: string; pencil: string };
   fish: { title: string; explanation: string; question: string };
@@ -737,6 +738,13 @@ const en: Chapter8Content = {
     },
   },
   refraction: {
+    glassEntry: {
+      air: "Air",
+      glass: "Glass",
+      rule: "Air → glass: light bends towards the normal.",
+      angleComparison:
+        "Therefore, the angle of refraction, r, is smaller than the angle of incidence, i.",
+    },
     definition:
       "Refraction of light is the change in direction of light when light travels through two media of different densities.",
     illusions: {
@@ -1531,6 +1539,12 @@ const bm: Chapter8Content = {
     },
   },
   refraction: {
+    glassEntry: {
+      air: "Udara",
+      glass: "Kaca",
+      rule: "Udara → kaca: cahaya membengkok mendekati normal.",
+      angleComparison: "Jadi, sudut biasan, r, lebih kecil daripada sudut tuju, i.",
+    },
     definition:
       "Pembiasan cahaya ialah perubahan arah perambatan atau pembengkokan cahaya apabila cahaya bergerak melalui dua medium yang berbeza ketumpatan.",
     illusions: {
