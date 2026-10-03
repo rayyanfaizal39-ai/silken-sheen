@@ -1,3 +1,4 @@
+// Revision cleanup (2026-10-03): only the four 8.1–8.4 component snapshots are updated; canonical/deferred locks are unchanged.
 // Pass 4 authorises 8.5/8.6 edits; deferred checks now cover pre-Pass-4 8.7 only.
 // @vitest-environment jsdom
 import { act, createElement, type ReactNode } from "react";
@@ -62,7 +63,7 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
       "\n",
     );
     expect(createHash("sha256").update(source).digest("hex")).toBe(
-      "e048f18ea0739910d13aebe1d90987ef190543dcf6c7fbabc90726f52f05056d",
+      "0ec93bea9fc2e5a8c32eac59f48279ce3e011f49a23af25129b7c680ddea48fb",
     );
   });
   it("removes unused grouped navigation constants", () => {
@@ -138,19 +139,13 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
       );
       expect(host.querySelectorAll("[data-image-comparison] figure")).toHaveLength(2);
     });
-    it(`${lang}: Activity 8.1 has source apparatus, four instructions and two comparison questions`, () => {
+    it(`${lang}: the screen test retains real/virtual outcomes without a classroom activity`, () => {
       render();
-      const a = host.querySelector('[data-mirror-activity="8.1"]')!;
-      expect(l.activity81.materials).toHaveLength(5);
-      l.activity81.materials.forEach((s) => expect(a.textContent).toContain(s));
-      expect(l.activity81.instructions).toHaveLength(4);
-      expect(l.activity81.questions).toHaveLength(2);
-      expect(
-        host.querySelectorAll(
-          "[data-pin],[data-pinhole],[data-black-card],[data-white-screen],[data-blank-screen]",
-        ),
-      ).toHaveLength(5);
-      expect(a.textContent).not.toMatch(/focal|camera obscura|fokus/);
+      expect(host.querySelector('[data-mirror-activity="8.1"]')).toBeNull();
+      expect(host.querySelector("[data-white-screen]")).not.toBeNull();
+      expect(host.querySelector("[data-blank-screen]")).not.toBeNull();
+      Object.values(m.realVsVirtual).forEach((text) => expect(host.textContent).toContain(text));
+      l.activity81.instructions.forEach((text) => expect(host.textContent).not.toContain(text));
     });
     it(`${lang}: three mirrors use distinct profiles and Activity 8.2 changes the comparison`, () => {
       render();
@@ -168,8 +163,8 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
         expect(host.querySelector(`[data-mirror-diagram="comparison-${i}"]`)).not.toBeNull();
         expect(host.querySelector("[data-mirror-comparison]")?.textContent).toContain(l.sizes[i]);
       });
-      const a = host.querySelector('[data-mirror-activity="8.2"]')!;
-      l.activity82.materials.forEach((s) => expect(a.textContent).toContain(s));
+      expect(host.querySelector('[data-mirror-activity="8.2"]')).toBeNull();
+      l.activity82.instructions.forEach((text) => expect(host.textContent).not.toContain(text));
     });
     it(`${lang}: equal object/image distances on graph paper have no fabricated centimetres`, () => {
       render();
@@ -187,7 +182,7 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
     it(`${lang}: applications connect the three mirror types to all source uses`, () => {
       render();
       const a = host.querySelector("[data-mirror-applications]")!;
-      expect(a.querySelectorAll("svg")).toHaveLength(3);
+      expect(a.querySelectorAll("svg")).toHaveLength(2);
       m.mirrorTypes.forEach((mt) => {
         expect(a.textContent).toContain(mt.name);
         mt.uses.forEach((s) => expect(a.textContent).toContain(s));
@@ -195,13 +190,13 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
       expect(a.querySelector("[data-wide-view]")).not.toBeNull();
       expect(m.mirrorTypes.map((t) => t.uses.length)).toEqual([2, 2, 2]);
     });
-    it(`${lang}: Activity 8.3 is group discussion with multimedia presentation`, () => {
+    it(`${lang}: mirror applications preserve all uses without group presentation instructions`, () => {
       render();
-      const a = host.querySelector('[data-mirror-activity="8.3"]')!;
-      expect(l.activity83.materials).toEqual([]);
-      expect(a.textContent).toContain(l.activity83.instructions[2]);
-      expect(a.textContent).toMatch(/multimedia/);
-      expect(a.textContent).not.toMatch(/experiment|eksperimen|radas|apparatus/i);
+      expect(host.querySelector('[data-mirror-activity="8.3"]')).toBeNull();
+      l.activity83.instructions.forEach((text) => expect(host.textContent).not.toContain(text));
+      m.mirrorTypes.forEach((type) =>
+        type.uses.forEach((text) => expect(host.textContent).toContain(text)),
+      );
     });
     it(`${lang}: periscope has two 45 degree mirrors and a twice-reflected directed light path`, () => {
       render();
@@ -232,7 +227,13 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
     });
     it(`${lang}: Activity 8.4 keeps construction apparatus, source dimensions and knife warning`, () => {
       render();
-      const a = host.querySelector('[data-mirror-activity="8.4"]')!;
+      const a = host.querySelector("[data-periscope-construction]")!;
+      expect(a.tagName).toBe("DETAILS");
+      expect(a.hasAttribute("open")).toBe(false);
+      expect(a.querySelectorAll("ol li")).toHaveLength(3);
+      l.activity84.instructions
+        .slice(0, 3)
+        .forEach((text) => expect(a.textContent).toContain(text));
       expect(l.activity84.materials).toEqual(
         lang === "en"
           ? ["Two plane mirrors", "Box", "Knife"]
@@ -258,16 +259,13 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
         original,
       );
     });
-    it(`${lang}: Activity 8.5 keeps nine materials, ten source steps and exact measurements`, () => {
+    it(`${lang}: kaleidoscope retains repeated reflection without the ten-step construction worksheet`, () => {
       render();
-      const a = host.querySelector('[data-mirror-activity="8.5"]')!;
-      expect(l.activity85.materials).toHaveLength(9);
-      expect(l.activity85.instructions).toHaveLength(10);
-      l.activity85.materials.forEach((s) => expect(a.textContent).toContain(s));
-      ["4.3 cm", "21 cm", "5.3 cm"].forEach((s) => expect(a.textContent).toContain(s));
-      expect(l.activity85.instructions[2]).toMatch(
-        /shiny surface is facing inward|bersinar menghadap ke dalam/,
-      );
+      expect(host.querySelector('[data-mirror-activity="8.5"]')).toBeNull();
+      const a = host.querySelector("[data-kaleidoscope]")!;
+      expect(a.querySelectorAll("[data-three-mirrors] path")).toHaveLength(3);
+      expect(a.textContent).toContain(m.opticalInstruments[1].howItWorks);
+      l.activity85.instructions.forEach((text) => expect(host.textContent).not.toContain(text));
     });
     it(`${lang}: Science in Life has the three source problems and revealed solutions`, () => {
       render();
@@ -279,15 +277,18 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
         expect(a.querySelector("details")!.open).toBe(true);
         expect(a.textContent).toContain(s.solution);
         expect(a.textContent).toContain(s.reason);
-        expect(a.querySelector("svg")).not.toBeNull();
+        expect(a.querySelector("svg") !== null).toBe(i !== 1);
       });
     });
-    it(`${lang}: exactly three Formative Practice 8.1 source questions and an actual mirror picture`, () => {
+    it(`${lang}: removes repeated mirror practice but preserves the unique lift application question`, () => {
       render();
-      const a = host.querySelector('[data-practice="8.1"]')!;
-      expect(a.querySelectorAll("li")).toHaveLength(3);
-      l.practice.questions.forEach((s) => expect(a.textContent).toContain(s));
-      expect(a.querySelector('[data-mirror-diagram="practice-mirror"]')).not.toBeNull();
+      expect(host.querySelector('[data-practice="8.1"]')).toBeNull();
+      expect(host.querySelector('[data-mirror-diagram="practice-mirror"]')).toBeNull();
+      expect(host.querySelector("[data-mirror-application-question]")?.textContent).toContain(
+        l.practice.questions[2],
+      );
+      m.planeMirrorCharacteristics.forEach((text) => expect(host.textContent).toContain(text));
+      expect(host.textContent).toContain(m.opticalInstruments[0].howItWorks);
     });
     it(`${lang}: law remains under 8.3 and no advanced optics enters 8.1`, () => {
       mount(createElement(ScienceF1Chapter8VisualNotesBlock, { content: chapter8Content, lang }));
@@ -354,11 +355,11 @@ describe("Chapter 8 Pass 1: source-controlled mirrors", () => {
   it("facts come from canonical props, not an independent component dataset", () => {
     const m = structuredClone(chapter8Content.en.mirrors);
     m.realVsVirtual.real = "canonical definition sentinel";
-    m.lesson.activity82.materials[0] = "canonical apparatus sentinel";
+    m.lesson.sizes[0] = "canonical size sentinel";
     m.mirrorTypes[1].uses[0] = "canonical application sentinel";
     m.opticalInstruments[1].howItWorks = "canonical reflection sentinel";
     mount(createElement(Chapter8Mirrors, { source: m }));
-    ["definition", "apparatus", "application", "reflection"].forEach((s) =>
+    ["definition", "size", "application", "reflection"].forEach((s) =>
       expect(host.textContent).toContain(`canonical ${s} sentinel`),
     );
     const file = readFileSync("src/components/notes/Chapter8Mirrors.tsx", "utf8");

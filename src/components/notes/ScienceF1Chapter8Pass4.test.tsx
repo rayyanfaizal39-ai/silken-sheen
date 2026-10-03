@@ -1,3 +1,4 @@
+// Revision cleanup (2026-10-03): only the four 8.1–8.4 component snapshots are updated; canonical/deferred locks are unchanged.
 // @vitest-environment jsdom
 import { act, createElement, type ReactNode } from "react";
 import { createRoot, type Root } from "react-dom/client";
@@ -65,10 +66,10 @@ const locks = {
     deferred: "5b924ae4a14de777bdce2320a23ab1434729e9e37368b03fe35af7833691d552",
     supplement: "072172febec651301b49dc36b96d24bccd3d75c541ec7d446b2ed61d386844a8",
   },
-  Chapter8Mirrors: "e048f18ea0739910d13aebe1d90987ef190543dcf6c7fbabc90726f52f05056d",
-  Chapter8PropertiesOfLight: "e92572bc4e6980b5505efd0b7cab711c95a024b4fe2f71afeb5855b8be078d64",
-  Chapter8Reflection: "63e3e7cbd789f880780d8103b6b859c45b4f2225602b6da80cffd6c345d2ec56",
-  Chapter8Refraction: "12bfc933e74e482e50eae8a71a843a3976c8b08e24e34fa2c524f4da3e549de1",
+  Chapter8Mirrors: "0ec93bea9fc2e5a8c32eac59f48279ce3e011f49a23af25129b7c680ddea48fb",
+  Chapter8PropertiesOfLight: "fafce58d624495031073d45fb2f9ec12c2bacaccb49b43ab3e2d55f7761c0508",
+  Chapter8Reflection: "b57e8d2bf6fe30c19a7272095e453819c0f9d7ce7404802fe942cd2516a427eb",
+  Chapter8Refraction: "51194445a751ecd8b2bea2adf05bdabc0cd685925f11af5a7629bf9ab9c61d68",
   presentation: "1586997d29b96f961b6c0fe2f5283c1e4d6bffb287927828d21ff6f9547a4d15",
 };
 

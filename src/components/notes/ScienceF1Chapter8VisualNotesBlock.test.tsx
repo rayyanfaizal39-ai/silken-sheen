@@ -15,7 +15,8 @@ describe("ScienceF1Chapter8VisualNotesBlock", () => {
     );
 
     expect(html).toContain("Cahaya dan Optik");
-    expect(html).toContain("Aktiviti 8.1");
+    expect(html).toContain(chapter8Content.bm.mirrors.realVsVirtual.real);
+    expect(html).not.toContain("Aktiviti 8.1");
     expect(html).toContain("Pembiasan Cahaya");
     expect(html).toContain("Spektrum");
     expect(html).toContain("Indigo");
@@ -38,7 +39,8 @@ describe("ScienceF1Chapter8VisualNotesBlock", () => {
     expect(html).toContain("data-readable-word");
     expect(html).toContain("data-refraction-lesson");
     expect(html).toContain("Experiment 8.2");
-    expect(html).toContain("data-refraction-results");
+    expect(html).not.toContain("data-refraction-results");
+    expect(html).toContain(chapter8Content.en.refraction.experiment.hypothesis);
     expect(html).toContain("Overlapping filter outcomes");
     expect(html).toContain("A red road sign");
   });

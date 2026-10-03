@@ -1,3 +1,4 @@
+// Revision cleanup (2026-10-03): only the four 8.1–8.4 component snapshots are updated; canonical/deferred locks are unchanged.
 // Pass 4 authorises 8.5/8.6 edits; deferred checks now cover pre-Pass-4 8.7 only.
 // @vitest-environment jsdom
 import { act, createElement, type ReactNode } from "react";
@@ -69,9 +70,9 @@ const locks = {
 describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
   it("keeps all three approved Pass 1/2 diagram implementations unchanged", () => {
     const files = {
-      Chapter8Mirrors: "e048f18ea0739910d13aebe1d90987ef190543dcf6c7fbabc90726f52f05056d",
-      Chapter8PropertiesOfLight: "e92572bc4e6980b5505efd0b7cab711c95a024b4fe2f71afeb5855b8be078d64",
-      Chapter8Reflection: "63e3e7cbd789f880780d8103b6b859c45b4f2225602b6da80cffd6c345d2ec56",
+      Chapter8Mirrors: "0ec93bea9fc2e5a8c32eac59f48279ce3e011f49a23af25129b7c680ddea48fb",
+      Chapter8PropertiesOfLight: "fafce58d624495031073d45fb2f9ec12c2bacaccb49b43ab3e2d55f7761c0508",
+      Chapter8Reflection: "b57e8d2bf6fe30c19a7272095e453819c0f9d7ce7404802fe942cd2516a427eb",
     };
     Object.entries(files).forEach(([file, expected]) =>
       expect(
@@ -211,7 +212,7 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
       render();
       const e = host.querySelector("[data-refraction-experiment]")!;
       expect(e.textContent).toContain(s.experiment.aim);
-      expect(e.textContent).toContain(s.experiment.problem);
+      expect(e.querySelector("[data-refraction-variables]")).toBeNull();
       expect(e.textContent).toContain(s.experiment.hypothesis);
       expect(s.experiment.variables).toEqual(
         lang === "en"
@@ -225,15 +226,6 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
               responding: "Sudut biasan, r",
               constant: "Saiz celah dan bentuk bongkah kaca",
             },
-      );
-      expect(e.querySelector('[data-variable="manipulated"]')?.textContent).toBe(
-        s.experiment.variables.manipulated,
-      );
-      expect(e.querySelector('[data-variable="responding"]')?.textContent).toBe(
-        s.experiment.variables.responding,
-      );
-      expect(e.querySelector('[data-variable="constant"]')?.textContent).toBe(
-        s.experiment.variables.constant,
       );
       expect(s.experiment.materials).toEqual(
         lang === "en"
@@ -256,9 +248,7 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
               "Protraktor",
             ],
       );
-      expect(
-        [...e.querySelectorAll("[data-refraction-materials] li")].map((n) => n.textContent),
-      ).toEqual(s.experiment.materials);
+      expect(e.querySelector("[data-refraction-materials]")).toBeNull();
     });
     it(`${lang}: glass-block apparatus uses normals for i/r and rays enter, traverse and leave the block`, () => {
       render();
@@ -315,63 +305,45 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
       tap("[data-glass-controls] button", 0);
       expect(host.querySelector("[data-glass-block]")).not.toBeNull();
     });
-    it(`${lang}: nine-step source procedure, blank results, graph task and conclusion remain complete`, () => {
+    it(`${lang}: preserves the air-to-glass relationship and angle labels without procedural results or graph tasks`, () => {
       render();
       const e = host.querySelector("[data-refraction-experiment]")!;
-      expect(
-        [...e.querySelectorAll("[data-refraction-procedure] li")].map((n) => n.textContent),
-      ).toEqual(s.experiment.instructions);
-      expect(s.experiment.instructions).toHaveLength(9);
-      expect(s.experiment.instructions[0]).toMatch(/dark|gelap/);
-      expect(s.experiment.instructions[4]).toMatch(/Remove|Alihkan/);
-      expect(s.experiment.instructions[5]).toMatch(/normal/);
-      expect(s.experiment.instructions[6]).toMatch(/protractor|protraktor/);
-      expect(s.experiment.results).toEqual(Array.from({ length: 5 }, () => ({ i: null, r: null })));
-      expect(
-        [...e.querySelectorAll("[data-refraction-results] td")].map((n) => n.textContent),
-      ).toEqual(Array(10).fill(""));
+      expect(e.textContent).toContain(s.experiment.aim);
+      expect(e.textContent).toContain(s.experiment.hypothesis);
+      expect(e.textContent).toContain(s.labels.incidence);
+      expect(e.textContent).toContain(s.labels.refraction);
       expect(e.textContent).toContain(s.labels.demo);
-      expect(e.textContent).toContain(s.experiment.discussion[0]);
-      expect(e.textContent).toContain(s.experiment.discussion[1]);
-      expect(e.textContent).toContain(s.experiment.conclusion);
-      const graph = e.querySelector('[data-refraction-visual="blank-graph"]')!;
-      expect(graph.querySelectorAll("path")).toHaveLength(1);
-      expect(graph.querySelectorAll("circle,polyline")).toHaveLength(0);
-      expect([...graph.querySelectorAll("text")].map((n) => n.textContent)).toEqual(["i", "r"]);
-      expect(graph.querySelector("text")?.getAttribute("x")).toBe("17");
-      s.experiment.questions.forEach((q) => expect(e.textContent).toContain(q));
+      expect(e.querySelector("table,ol,[data-refraction-procedure],[data-graph-axes]")).toBeNull();
+      s.experiment.instructions.forEach((text) => expect(e.textContent).not.toContain(text));
+      s.experiment.discussion.forEach((text) => expect(e.textContent).not.toContain(text));
+      expect(s.experiment.results).toEqual(Array.from({ length: 5 }, () => ({ i: null, r: null })));
     });
-    it(`${lang}: Activity 8.6 is source research and communication rather than another experiment`, () => {
+    it(`${lang}: Activity 8.6 phenomena accompany the existing illustrations without research instructions`, () => {
       render();
-      const a = host.querySelector("[data-refraction-activity]")!;
-      expect(a.textContent).toContain(s.activity.aim);
-      s.activity.instructions.forEach((q) => expect(a.textContent).toContain(q));
-      s.activity.phenomena.forEach((q) => expect(a.textContent).toContain(q));
-      expect(s.activity.instructions).toHaveLength(lang === "en" ? 3 : 4);
-      expect(a.textContent).toMatch(/library|perpustakaan/);
-      expect(a.textContent).toMatch(/class|kelas/);
-      expect(a.querySelectorAll("svg,table,input")).toHaveLength(0);
+      expect(host.querySelector("[data-refraction-activity]")).toBeNull();
+      s.activity.phenomena.forEach((text) =>
+        expect(host.querySelector("[data-refraction-illusions]")?.textContent).toContain(text),
+      );
+      s.activity.instructions.forEach((text) => expect(host.textContent).not.toContain(text));
+      expect(host.querySelector('[data-refraction-visual="fish"]')).not.toBeNull();
+      expect(host.querySelector('[data-refraction-visual="pencil"]')).not.toBeNull();
     });
-    it(`${lang}: Practice 8.4 has both source questions and two unanswered A/B and C/D ray cases`, () => {
+    it(`${lang}: removes duplicate practice rays while all four density cases and apparent-depth teaching remain`, () => {
       render();
-      const p = host.querySelector('[data-practice="8.4"]')!;
-      expect(p.querySelectorAll("ol > li")).toHaveLength(2);
-      s.practice.questions.forEach((q) => expect(p.textContent).toContain(q));
-      const svgs = [...p.querySelectorAll("svg")];
-      expect(svgs).toHaveLength(2);
-      expect([...svgs[0].querySelectorAll("text")].map((n) => n.textContent)).toEqual(["A", "B"]);
-      expect([...svgs[1].querySelectorAll("text")].map((n) => n.textContent)).toEqual(["C", "D"]);
-      svgs.forEach((d) => {
-        expect(path(d, "practice-incident")[3]).toBe(115);
-        expect(path(d, "practice-refracted")[3]).toBeLessThan(115);
+      expect(host.querySelector('[data-practice="8.4"]')).toBeNull();
+      expect(
+        host.querySelector(
+          '[data-refraction-visual="practice-1"],[data-refraction-visual="practice-2"]',
+        ),
+      ).toBeNull();
+      expect(host.querySelectorAll("[data-ray-case]")).toHaveLength(4);
+      s.cases.forEach((c) => {
+        const figure = host.querySelector(`[data-ray-case="${c.id}"]`)!;
+        expect(figure.textContent).toContain(c.from);
+        expect(figure.textContent).toContain(c.to);
+        expect(figure.textContent).toContain(c.behavior);
       });
-      expect(angle(path(svgs[0], "practice-refracted"))).toBeGreaterThan(
-        angle(path(svgs[0], "practice-incident")),
-      );
-      expect(angle(path(svgs[1], "practice-refracted"))).toBeLessThan(
-        angle(path(svgs[1], "practice-incident")),
-      );
-      expect(p.querySelector("details")).toBeNull();
+      expect(host.textContent).toContain(s.fish.explanation);
     });
   }
   it("BM labels use refraction terms, never sudut pantulan", () => {
@@ -407,10 +379,10 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
     s.definition = "canonical definition sentinel";
     s.fish.question = "canonical fish question sentinel";
     s.cases[0].behavior = "canonical case sentinel";
-    s.experiment.materials[0] = "canonical apparatus sentinel";
+    s.experiment.hypothesis = "canonical relationship sentinel";
     s.activity.phenomena[0] = "canonical activity sentinel";
     mount(createElement(Chapter8Refraction, { source: s }));
-    ["definition", "fish question", "case", "apparatus", "activity"].forEach((k) =>
+    ["definition", "fish question", "case", "relationship", "activity"].forEach((k) =>
       expect(host.textContent).toContain(`canonical ${k} sentinel`),
     );
     const source = readFileSync("src/components/notes/Chapter8Refraction.tsx", "utf8");
