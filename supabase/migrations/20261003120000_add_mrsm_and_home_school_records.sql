@@ -1,0 +1,82 @@
+-- Extend the verified school directory with the current MARA MRSM directory
+-- and one schema-compatible Home School option.
+--
+-- MRSM names, states, districts, and postcodes are based on MARA's institution
+-- directory: https://www.mara.gov.my/institusi-pendidikan-mara-lp/
+-- Internal school codes are stable AcadeMY identifiers because MARA's public
+-- directory does not publish KPM-style school codes for these institutions.
+-- The existing schema requires a nonblank state, so Home School uses MALAYSIA.
+
+begin;
+
+insert into public.schools (
+  school_code,
+  school_name,
+  school_type,
+  state,
+  district,
+  postcode,
+  active
+)
+values
+  ('MRSM-BESERI', 'MRSM BESERI', 'MRSM', 'PERLIS', 'KANGAR', '01000', true),
+  ('MRSM-ARAU', 'MRSM ARAU', 'MRSM', 'PERLIS', 'ARAU', '02600', true),
+  ('MRSM-PDRM-KULIM', 'MRSM PDRM KULIM', 'MRSM', 'KEDAH', 'KULIM', '09000', true),
+  ('MRSM-LANGKAWI', 'MRSM LANGKAWI', 'MRSM', 'KEDAH', 'LANGKAWI', '07000', true),
+  ('MRSM-PENDANG', 'MRSM PENDANG', 'MRSM', 'KEDAH', 'PENDANG', '06750', true),
+  ('MRSM-KUBANG-PASU', 'MRSM KUBANG PASU', 'MRSM', 'KEDAH', 'KUBANG PASU', '06000', true),
+  ('MRSM-MERBOK', 'MRSM MERBOK', 'MRSM', 'KEDAH', 'KUALA MUDA', '08400', true),
+  ('MRSM-BALING', 'MRSM BALING', 'MRSM', 'KEDAH', 'BALING', '09100', true),
+  ('MRSM-BALIK-PULAU', 'MRSM BALIK PULAU', 'MRSM', 'PULAU PINANG', 'BARAT DAYA', '11000', true),
+  ('MRSM-TRANSKRIAN', 'MRSM TRANSKRIAN', 'MRSM', 'PULAU PINANG', 'SEBERANG PERAI SELATAN', '14300', true),
+  ('MRSM-KEPALA-BATAS', 'MRSM KEPALA BATAS', 'MRSM', 'PULAU PINANG', 'SEBERANG PERAI UTARA', '13200', true),
+  ('MRSM-BAGAN-DATUK', 'MRSM BAGAN DATUK', 'MRSM', 'PERAK', 'BAGAN DATUK', '36100', true),
+  ('MRSM-TAIPING', 'MRSM TAIPING', 'MRSM', 'PERAK', 'LARUT MATANG DAN SELAMA', '34000', true),
+  ('MRSM-GERIK', 'MRSM GERIK', 'MRSM', 'PERAK', 'HULU PERAK', '33300', true),
+  ('MRSM-LENGGONG', 'MRSM LENGGONG', 'MRSM', 'PERAK', 'HULU PERAK', '33400', true),
+  ('MRSM-PASIR-SALAK', 'MRSM PASIR SALAK', 'MRSM', 'PERAK', 'PERAK TENGAH', '36800', true),
+  ('MRSM-FELDA-TROLAK', 'MRSM FELDA (TROLAK)', 'MRSM', 'PERAK', 'MUALLIM', '35600', true),
+  ('MRSM-PENGKALAN-HULU', 'MRSM PENGKALAN HULU', 'MRSM', 'PERAK', 'HULU PERAK', '33100', true),
+  ('MRSM-PARIT', 'MRSM PARIT', 'MRSM', 'PERAK', 'PERAK TENGAH', '32800', true),
+  ('MRSM-SULTAN-AZLAN-SHAH', 'MRSM SULTAN AZLAN SHAH', 'MRSM', 'PERAK', 'KUALA KANGSAR', '33020', true),
+  ('MRSM-PENGKALAN-CHEPA', 'MRSM PENGKALAN CHEPA', 'MRSM', 'KELANTAN', 'KOTA BHARU', '16100', true),
+  ('MRSM-PASIR-TUMBOH', 'MRSM PASIR TUMBOH', 'MRSM', 'KELANTAN', 'KOTA BHARU', '16150', true),
+  ('MRSM-JELI', 'MRSM JELI', 'MRSM', 'KELANTAN', 'JELI', '17700', true),
+  ('MRSM-KUALA-KRAI', 'MRSM KUALA KRAI', 'MRSM', 'KELANTAN', 'KUALA KRAI', '18000', true),
+  ('MRSM-TUMPAT', 'MRSM TUMPAT', 'MRSM', 'KELANTAN', 'TUMPAT', '16200', true),
+  ('MRSM-KUALA-TERENGGANU', 'MRSM KUALA TERENGGANU', 'MRSM', 'TERENGGANU', 'KUALA NERUS', '21030', true),
+  ('MRSM-KUALA-BERANG', 'MRSM KUALA BERANG', 'MRSM', 'TERENGGANU', 'HULU TERENGGANU', '21700', true),
+  ('MRSM-KOTA-PUTRA', 'MRSM KOTA PUTRA', 'MRSM', 'TERENGGANU', 'BESUT', '22200', true),
+  ('MRSM-BESUT', 'MRSM BESUT', 'MRSM', 'TERENGGANU', 'BESUT', '22200', true),
+  ('MRSM-ATM-BERA', 'MRSM ATM BERA', 'MRSM', 'PAHANG', 'BERA', '28300', true),
+  ('MRSM-KUANTAN', 'MRSM KUANTAN', 'MRSM', 'PAHANG', 'KUANTAN', '25250', true),
+  ('MRSM-MUADZAM-SHAH', 'MRSM MUADZAM SHAH', 'MRSM', 'PAHANG', 'ROMPIN', '26700', true),
+  ('MRSM-TUN-GHAZALI-SHAFIE', 'MRSM TUN GHAZALI SHAFIE', 'MRSM', 'PAHANG', 'LIPIS', '27200', true),
+  ('MRSM-BENTONG', 'MRSM BENTONG', 'MRSM', 'PAHANG', 'BENTONG', '28700', true),
+  ('MRSM-TUN-ABDUL-RAZAK', 'MRSM TUN ABDUL RAZAK', 'MRSM', 'PAHANG', 'PEKAN', '26600', true),
+  ('MRSM-KUALA-KUBU-BHARU', 'MRSM KUALA KUBU BHARU', 'MRSM', 'SELANGOR', 'HULU SELANGOR', '44000', true),
+  ('MRSM-SUNGAI-BESAR', 'MRSM SUNGAI BESAR', 'MRSM', 'SELANGOR', 'SABAK BERNAM', '45300', true),
+  ('MRSM-TUN-GHAFAR-BABA', 'MRSM TUN GHAFAR BABA', 'MRSM', 'MELAKA', 'JASIN', '77000', true),
+  ('MRSM-TERENDAK', 'MRSM TERENDAK', 'MRSM', 'MELAKA', 'ALOR GAJAH', '76200', true),
+  ('MRSM-ALOR-GAJAH', 'MRSM ALOR GAJAH', 'MRSM', 'MELAKA', 'ALOR GAJAH', '78000', true),
+  ('MRSM-KUALA-KLAWANG', 'MRSM KUALA KLAWANG', 'MRSM', 'NEGERI SEMBILAN', 'JELEBU', '71600', true),
+  ('MRSM-SERTING', 'MRSM SERTING', 'MRSM', 'NEGERI SEMBILAN', 'JEMPOL', '72100', true),
+  ('MRSM-GEMENCHEH', 'MRSM GEMENCHEH', 'MRSM', 'NEGERI SEMBILAN', 'TAMPIN', '73200', true),
+  ('MRSM-MUAR', 'MRSM MUAR', 'MRSM', 'JOHOR', 'MUAR', '84200', true),
+  ('MRSM-MERSING', 'MRSM MERSING', 'MRSM', 'JOHOR', 'MERSING', '86800', true),
+  ('MRSM-TUN-DR-ISMAIL', 'MRSM TUN DR ISMAIL', 'MRSM', 'JOHOR', 'PONTIAN', '82100', true),
+  ('MRSM-BATU-PAHAT', 'MRSM BATU PAHAT', 'MRSM', 'JOHOR', 'BATU PAHAT', '83000', true),
+  ('MRSM-JOHOR-BAHRU', 'MRSM JOHOR BAHRU', 'MRSM', 'JOHOR', 'JOHOR BAHRU', '81780', true),
+  ('MRSM-KOTA-KINABALU', 'MRSM KOTA KINABALU', 'MRSM', 'SABAH', 'PUTATAN', '88722', true),
+  ('MRSM-TUN-MUSTAPHA', 'MRSM TUN MUSTAPHA', 'MRSM', 'SABAH', 'TAWAU', '91022', true),
+  ('MRSM-TUN-MOHAMMAD-FUAD-STEPHENS', 'MRSM TUN MOHAMMAD FUAD STEPHENS', 'MRSM', 'SABAH', 'SANDAKAN', '90000', true),
+  ('MRSM-SEMPORNA', 'MRSM SEMPORNA', 'MRSM', 'SABAH', 'SEMPORNA', '91308', true),
+  ('MRSM-RANAU', 'MRSM RANAU', 'MRSM', 'SABAH', 'RANAU', '89300', true),
+  ('MRSM-KUCHING', 'MRSM KUCHING', 'MRSM', 'SARAWAK', 'KUCHING', '93050', true),
+  ('MRSM-BETONG', 'MRSM BETONG', 'MRSM', 'SARAWAK', 'BETONG', '95700', true),
+  ('MRSM-MUKAH', 'MRSM MUKAH', 'MRSM', 'SARAWAK', 'MUKAH', '96400', true),
+  ('MRSM-BINTULU', 'MRSM BINTULU', 'MRSM', 'SARAWAK', 'BINTULU', '97000', true),
+  ('HOME-SCHOOL', 'Home School', 'HOME_SCHOOL', 'MALAYSIA', null, null, true)
+on conflict (school_code) do nothing;
+
+commit;
