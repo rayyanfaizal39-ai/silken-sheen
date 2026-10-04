@@ -55,7 +55,6 @@ import {
 import { QuizArena } from "@/components/quiz/QuizArena";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
-import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import imgF3Q01 from "@/assets/english posters/form 3/q01.png";
 import imgF3Q02 from "@/assets/english posters/form 3/q02.png";
 import imgF3Q03 from "@/assets/english posters/form 3/q03.png";
@@ -16866,7 +16865,6 @@ function QuizzesPage() {
         : "bg-emerald-400";
 
   const planetSubjectId = (subject ?? undefined) as SubjectPlanetId | undefined;
-  const planetTheme = getPlanetTheme(subject);
   const regularQuizBm = subject === "science" && scienceLang === "bm";
   const regularQuizCopy = regularQuizBm
     ? {
@@ -17626,7 +17624,7 @@ function QuizzesPage() {
           }}
         />
       ) : (
-        <QuizArena>
+        <QuizArena subjectId={subject}>
           <div className="quiz-hud shrink-0 max-sm:sticky max-sm:top-[env(safe-area-inset-top)] max-sm:z-30 max-sm:-mx-4 max-sm:bg-[#050816]/95 max-sm:px-4 max-sm:pb-1 max-sm:pt-1 sm:pt-1">
             <div className="flex flex-wrap items-start gap-1.5 sm:flex-nowrap sm:items-center sm:gap-2">
               <div className="hidden min-w-0 sm:order-1 sm:mr-auto sm:block">
@@ -17713,7 +17711,7 @@ function QuizzesPage() {
             <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10 sm:mt-3 sm:h-1.5">
               <div
                 key={done ? "done" : idx}
-                className="quiz-progress-fill h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#A78BFA]"
+                className="quiz-progress-fill h-full rounded-full"
                 style={{
                   width: `${((idx + 1) / Math.max(shuffledPool?.length ?? pool.length, 1)) * 100}%`,
                 }}
@@ -17738,7 +17736,7 @@ function QuizzesPage() {
                         reset();
                       }}
                       className={`rounded-full px-2 py-1 text-[11px] font-semibold transition ${
-                        form === f ? "bg-white/15 text-white" : "text-white/40 hover:text-white/70"
+                        form === f ? "quiz-subject-chip" : "text-white/40 hover:text-white/70"
                       }`}
                     >
                       {f}
@@ -17772,7 +17770,7 @@ function QuizzesPage() {
                           reset();
                         }}
                         className={`rounded-full px-2 py-1 text-[11px] font-semibold transition ${
-                          diff === d ? "bg-white/15 text-white" : "text-white/40 hover:text-white/70"
+                          diff === d ? "quiz-subject-chip" : "text-white/40 hover:text-white/70"
                         }`}
                       >
                         {regularDifficultyLabels[d]}
@@ -17813,7 +17811,7 @@ function QuizzesPage() {
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.3),transparent_60%)]" />
 
                 {/* Top accent bar */}
-                <div className="h-1 w-full bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#F472B6]" />
+                <div className="quiz-subject-action h-1 w-full" />
 
                 <div className="relative px-8 py-10 text-center">
                   {/* Score emoji + title */}
@@ -17827,7 +17825,7 @@ function QuizzesPage() {
                         ⭐
                       </div>
                     ) : (
-                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] shadow-[0_0_36px_rgba(99,102,241,0.4)] text-4xl">
+                      <div className="quiz-subject-action flex h-20 w-20 items-center justify-center rounded-full text-4xl">
                         📚
                       </div>
                     )}
@@ -17907,7 +17905,7 @@ function QuizzesPage() {
                   <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                     <button
                       onClick={reset}
-                      className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-8 py-3.5 font-bold text-white shadow-[0_0_32px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] hover:shadow-[0_0_48px_rgba(139,92,246,0.5)]"
+                      className="quiz-subject-action inline-flex items-center gap-2 rounded-2xl px-8 py-3.5 font-bold text-white transition-all hover:scale-[1.03]"
                     >
                       <RotateCcw className="h-4 w-4" /> {regularQuizCopy.tryAgain}
                     </button>
@@ -17933,10 +17931,7 @@ function QuizzesPage() {
                 className={`quiz-card relative overflow-hidden rounded-2xl border border-white/10 quiz-q-enter sm:rounded-[1.75rem] ${
                   feedback?.kind === "correct" ? "animate-correct-pulse" : ""
                 } ${feedback?.kind === "wrong" ? "quiz-card-miss" : ""}`}
-                style={{
-                  viewTransitionName: "quiz-card",
-                  outline: planetTheme ? `1px solid ${planetTheme.color}44` : undefined,
-                }}
+                style={{ viewTransitionName: "quiz-card" }}
               >
                 {/* ── Card header ── */}
                 <MobileArenaScroll questionKey={idx} revealed={selected !== null} />
@@ -18040,7 +18035,7 @@ function QuizzesPage() {
                               ? "bg-emerald-400 text-[#050816]"
                               : reveal && isPicked && !isAnswer
                                 ? "bg-rose-400 text-white"
-                                : "bg-white/[0.08] text-white/60 group-hover:bg-[#8B5CF6]/25 group-hover:text-[#A78BFA]"
+                                : "bg-white/[0.08] text-white/60"
                           }`}
                         >
                           {letter}
@@ -18129,7 +18124,7 @@ function QuizzesPage() {
                         }
                         next();
                       }}
-                      className="min-h-12 w-full touch-manipulation rounded-xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-3 font-bold text-white shadow-[0_0_28px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] active:scale-[0.99] sm:rounded-2xl sm:py-3.5"
+                      className="quiz-subject-action min-h-12 w-full touch-manipulation rounded-xl py-3 font-bold text-white transition-transform hover:scale-[1.01] active:scale-[0.99] sm:rounded-2xl sm:py-3.5"
                     >
                       {idx + 1 >= (shuffledPool?.length ?? pool.length)
                         ? regularQuizCopy.seeResults
@@ -18173,7 +18168,7 @@ function QuizzesPage() {
                       updateQuizSearch({ chapter: null });
                       reset();
                     }}
-                    className="flex-1 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-3 text-sm font-bold"
+                    className="quiz-subject-action flex-1 rounded-2xl py-3 text-sm font-bold"
                   >
                     {regularQuizBm ? "Keluar" : "Leave quiz"}
                   </button>
@@ -18981,7 +18976,7 @@ function EnglishQuizScreen({
   }
 
   return (
-    <QuizArena>
+    <QuizArena subjectId="english">
     <div className="my-auto w-full animate-fade-up">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <button
@@ -20096,7 +20091,7 @@ function MathObjectiveQuizScreen({
   }
 
   return (
-    <QuizArena>
+    <QuizArena subjectId={subjectId}>
     <div className="my-auto w-full animate-fade-up">
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
         <button

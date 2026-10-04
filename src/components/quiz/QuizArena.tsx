@@ -1,12 +1,32 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import { subjectPlanetStyles, type SubjectPlanetId } from "@/components/AcademyPage";
 
 /**
  * Full-viewport presentation frame for an in-progress Junior quiz.
  * It does not own questions, answers, timers, or scoring.
  * Portaled to document.body so site chrome cannot clip or cover it.
+ * Subject colour comes from the Dashboard Subject Worlds map.
  */
-export function QuizArena({ children }: { children: ReactNode }) {
+export function QuizArena({
+  children,
+  subjectId,
+}: {
+  children: ReactNode;
+  subjectId?: string | null;
+}) {
+  const planet =
+    subjectId && subjectPlanetStyles && subjectId in subjectPlanetStyles
+      ? subjectPlanetStyles[subjectId as SubjectPlanetId]
+      : null;
+  const themeVars: CSSProperties | undefined = planet
+    ? {
+        ["--quiz-accent" as string]: planet.color,
+        ["--quiz-accent-from" as string]: planet.accentFrom,
+        ["--quiz-accent-to" as string]: planet.accentTo,
+        ["--quiz-glow" as string]: planet.glow,
+      }
+    : undefined;
   useEffect(() => {
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -18,7 +38,7 @@ export function QuizArena({ children }: { children: ReactNode }) {
   const frame = (
     <div
       className="quiz-arena fixed inset-0 z-[200] overflow-x-hidden overflow-y-auto bg-[#050816] text-white"
-      style={{ minHeight: "100vh", height: "100dvh" }}
+      style={{ minHeight: "100vh", height: "100dvh", ...themeVars }}
       role="region"
       aria-label="AcadeMY Quiz Arena"
     >
@@ -87,13 +107,34 @@ export function QuizArena({ children }: { children: ReactNode }) {
         @keyframes quiz-spark {
           to { opacity: 0; transform: translate(var(--sx), var(--sy)); }
         }
-        .quiz-arena-drift { animation: quiz-arena-drift 28s ease-in-out infinite alternate; }
+        .quiz-arena {
+          --quiz-accent: #a78bfa;
+          --quiz-accent-from: #6366f1;
+          --quiz-accent-to: #8b5cf6;
+          --quiz-glow: rgba(99, 102, 241, 0.45);
+        }
+        .quiz-arena-drift {
+          background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--quiz-accent) 22%, transparent), transparent 48%);
+          animation: quiz-arena-drift 28s ease-in-out infinite alternate;
+        }
+        .quiz-subject-action {
+          background-image: linear-gradient(90deg, var(--quiz-accent-from), var(--quiz-accent-to));
+          box-shadow: 0 0 28px -8px var(--quiz-glow);
+        }
+        .quiz-subject-chip {
+          background: color-mix(in srgb, var(--quiz-accent) 22%, transparent);
+          color: var(--quiz-accent);
+        }
+        .quiz-progress-fill {
+          background-image: linear-gradient(90deg, var(--quiz-accent-from), var(--quiz-accent-to));
+        }
         @media (min-width: 640px) {
           .quiz-hud-controls { display: contents; }
         }
         .quiz-card {
           background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)), #0c1322;
           box-shadow: 0 18px 40px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.08);
+          outline: 1px solid color-mix(in srgb, var(--quiz-accent) 27%, transparent);
         }
         .quiz-stage { transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1); }
         .quiz-stage.is-revealed { transform: translateY(-22px); }
@@ -134,19 +175,23 @@ export function QuizArena({ children }: { children: ReactNode }) {
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
           transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
         }
+        .quiz-arena button.group:not(:disabled) > span:first-child {
+          color: var(--quiz-accent);
+          background: color-mix(in srgb, var(--quiz-accent) 18%, transparent);
+        }
         .quiz-arena button.group:hover:not(:disabled) {
           transform: translateY(-1px) scale(1.005);
-          border-color: rgba(167, 139, 250, 0.45);
-          box-shadow: 0 8px 18px -14px rgba(109, 40, 255, 0.55);
+          border-color: color-mix(in srgb, var(--quiz-accent) 45%, transparent);
+          box-shadow: 0 8px 18px -14px var(--quiz-glow);
         }
         .quiz-arena button.group:hover:not(:disabled) > span:first-child {
-          border-color: rgba(167, 139, 250, 0.45);
-          color: #DDD6FE;
+          color: var(--quiz-accent);
+          background: color-mix(in srgb, var(--quiz-accent) 32%, transparent);
         }
         .quiz-arena button.group:active:not(:disabled) { transform: scale(0.985); }
         .quiz-arena button.group:focus-visible {
           outline: none;
-          box-shadow: 0 0 0 2px #050816, 0 0 0 4px rgba(167, 139, 250, 0.85);
+          box-shadow: 0 0 0 2px #050816, 0 0 0 4px var(--quiz-accent);
         }
         .quiz-answer-sweep { animation: quiz-correct-in 180ms ease 120ms both; }
         .quiz-answer-sweep::after {
@@ -161,6 +206,7 @@ export function QuizArena({ children }: { children: ReactNode }) {
         .quiz-check-pop { animation: quiz-check-pop 200ms ease 180ms both; }
         .quiz-feedback { animation: quiz-rise 220ms ease 250ms both; }
         .quiz-explain { animation: quiz-rise 280ms ease 500ms both; }
+        .quiz-explain svg { color: var(--quiz-accent); }
         .quiz-continue { animation: quiz-rise 240ms ease 650ms both; }
         .quiz-streak-pulse { animation: quiz-streak-pop 220ms ease 450ms both; }
         .quiz-streak-warm { color: #FDBA74; }
@@ -227,7 +273,7 @@ export function QuizArena({ children }: { children: ReactNode }) {
         }
       `}</style>
       <div
-        className="quiz-arena-drift pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(99,102,241,0.09),transparent_46%)]"
+        className="quiz-arena-drift pointer-events-none absolute inset-0"
         aria-hidden="true"
       />
       <div className="relative mx-auto flex min-h-full w-full max-w-[1050px] flex-col px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 sm:pb-[max(1rem,env(safe-area-inset-bottom))]">
