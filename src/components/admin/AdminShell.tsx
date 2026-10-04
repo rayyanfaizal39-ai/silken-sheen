@@ -14,6 +14,7 @@ interface NavItem {
     | "/admin/content-library"
     | "/admin/content/quiz-importer"
     | "/admin/users"
+    | "/admin/school-reports"
     | "/admin/reports"
     | "/admin/traffic";
 }
@@ -24,6 +25,7 @@ const NAV: { group: string; items: NavItem[] }[] = [
     items: [
       { icon: "▣", label: "Dashboard", to: "/admin" },
       { icon: "👥", label: "Users", to: "/admin/users" },
+      { icon: "S", label: "School Reports", to: "/admin/school-reports" },
       { icon: "💳", label: "Payments" },
       { icon: "📝", label: "Quiz activity" },
       { icon: "◉", label: "Visitor traffic", to: "/admin/traffic" },
