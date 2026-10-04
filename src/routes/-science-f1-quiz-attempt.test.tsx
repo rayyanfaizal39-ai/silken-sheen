@@ -47,26 +47,26 @@ let root: Root;
 const bank = registry.getChapterQuizQuestions("science", "Form 1", "Chapter 1", "dlp");
 const render = () => root.render(<ContentRegistryContext.Provider value={registry}><Page /></ContentRegistryContext.Provider>);
 function button(text: string) {
-  const found = [...container.querySelectorAll("button")].find((node) => node.textContent?.trim() === text);
+  const found = [...document.querySelectorAll("button")].find((node) => node.textContent?.trim() === text);
   expect(found, `button ${text}`).toBeDefined();
   return found!;
 }
 function click(text: string) { act(() => button(text).click()); }
 function currentQuestion() {
-  const question = bank.find((q) => [...container.querySelectorAll("h2")].some((h) => h.textContent === q.question));
-  expect(question, container.textContent?.slice(-1500)).toBeDefined();
+  const question = bank.find((q) => [...document.querySelectorAll("h2")].some((h) => h.textContent === q.question));
+  expect(question, document.body.textContent?.slice(-1500)).toBeDefined();
   return question!;
 }
 function start(timed = false) {
   const selector = timed ? '[aria-label^="Timed quiz"]' : '[aria-label^="No Timer"]';
-  act(() => (container.querySelector(selector) as HTMLButtonElement).click());
-  const startButton = [...container.querySelectorAll("button")].find((b) => /Start Quiz/.test(b.textContent ?? ""));
+  act(() => (document.querySelector(selector) as HTMLButtonElement).click());
+  const startButton = [...document.querySelectorAll("button")].find((b) => /Start Quiz/.test(b.textContent ?? ""));
   expect(startButton).toBeDefined();
   act(() => startButton!.click());
 }
 function answerCorrectly() {
   const q = currentQuestion();
-  const answer = [...container.querySelectorAll("button")].find((b) => [...b.querySelectorAll("span")].some((span) => span.textContent === q.options[q.answerIndex]));
+  const answer = [...document.querySelectorAll("button")].find((b) => [...b.querySelectorAll("span")].some((span) => span.textContent === q.options[q.answerIndex]));
   expect(answer).toBeDefined();
   act(() => answer!.click());
 }
@@ -90,7 +90,7 @@ describe("actual Science Form 1 quiz attempt lifecycle", () => {
   it("keeps question/options stable through timers, XP renders and answer feedback; explicit Shuffle rebuilds", () => {
     start(true);
     const first = currentQuestion();
-    const optionText = () => [...container.querySelectorAll("button.group")].map((b) => b.textContent);
+    const optionText = () => [...document.querySelectorAll("button.group")].map((b) => b.textContent);
     const before = optionText();
     expect(vi.mocked(orderRegularQuizQuestions)).toHaveBeenCalledTimes(1);
     act(() => vi.advanceTimersByTime(2000));
@@ -113,8 +113,8 @@ describe("actual Science Form 1 quiz attempt lifecycle", () => {
     for (let i = 0; i < 30; i++) {
       seen.push(currentQuestion().id);
       answerCorrectly();
-      const next = [...container.querySelectorAll("button")].find((b) => /^(Next Question|See Results|View Results|Next)/.test(b.textContent?.trim() ?? ""));
-      expect(next, container.textContent?.slice(-600)).toBeDefined();
+      const next = [...document.querySelectorAll("button")].find((b) => /^(Next Question|See Results|View Results|Next)/.test(b.textContent?.trim() ?? ""));
+      expect(next, document.body.textContent?.slice(-600)).toBeDefined();
       await act(async () => next!.click());
     }
     expect(new Set(seen).size).toBe(30);
