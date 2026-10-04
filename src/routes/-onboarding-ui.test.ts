@@ -19,7 +19,7 @@ describe("Explorer onboarding UI contract", () => {
   });
 
   it("uses the existing completion mutation once and redirects home", () => {
-    expect(routeSource).toContain("if (savingRef.current || !school || !formLevel) return");
+    expect(routeSource).toContain("if (savingRef.current || !formLevel) return");
     expect(routeSource).toContain("await completeExplorerProfile({");
     expect(routeSource).toContain('await navigate({ to: "/home", replace: true })');
   });

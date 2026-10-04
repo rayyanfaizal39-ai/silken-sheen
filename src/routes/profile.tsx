@@ -491,6 +491,7 @@ function EditProfileDialog({
   const [formDraft, setFormDraft] = useState<ExplorerFormLevel | "">(formLevel ?? "");
   const [schoolDraft, setSchoolDraft] = useState<SchoolSearchResult | null>(school);
   const [schoolChanged, setSchoolChanged] = useState(false);
+  const [schoolSkipped, setSchoolSkipped] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [avatarSourceDraft, setAvatarSourceDraft] = useState(avatarSource);
@@ -527,8 +528,10 @@ function EditProfileDialog({
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
-    if (schoolId && schoolChanged && !schoolDraft) {
-      setError("Choose a verified school from the search results before saving.");
+    if (schoolId && schoolChanged && !schoolDraft && !schoolSkipped) {
+      setError(
+        "Choose a verified school from the search results, or choose Not provided, before saving.",
+      );
       return;
     }
     const parsedAge = ageDraft.trim() ? Number(ageDraft) : null;
@@ -682,9 +685,23 @@ function EditProfileDialog({
                   onChange={(nextSchool) => {
                     setSchoolDraft(nextSchool);
                     setSchoolChanged(true);
+                    setSchoolSkipped(false);
                     setError(null);
                   }}
                 />
+                {!schoolDraft && (
+                  <button
+                    type="button"
+                    aria-pressed={schoolSkipped}
+                    onClick={() => {
+                      setSchoolChanged(true);
+                      setSchoolSkipped(true);
+                      setError(null);
+                    }}
+                  >
+                    {schoolSkipped ? "School: Not provided" : "Not provided"}
+                  </button>
+                )}
               </div>
             </Suspense>
           )}

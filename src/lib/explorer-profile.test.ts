@@ -53,6 +53,37 @@ describe("Explorer Profile validation", () => {
     ).toThrow("verified school");
   });
 
+  it("saves a skipped school as NULL, never a placeholder", () => {
+    expect(
+      normalizeExplorerProfileInput({
+        displayName: "Alya",
+        age: 14,
+        formLevel: "Form 2",
+        schoolId: null,
+      }).schoolId,
+    ).toBeNull();
+    expect(
+      buildExplorerProfileEditPatch({
+        displayName: "Alya",
+        age: null,
+        formLevel: null,
+        schoolId: null,
+      }).school_id,
+    ).toBeNull();
+  });
+
+  it("keeps accepting a verified school UUID such as Home School", () => {
+    const homeSchoolId = "223e4567-e89b-42d3-a456-426614174001";
+    expect(
+      normalizeExplorerProfileInput({
+        displayName: "Alya",
+        age: 14,
+        formLevel: "Form 2",
+        schoolId: homeSchoolId,
+      }).schoolId,
+    ).toBe(homeSchoolId);
+  });
+
   it("builds an edit patch with identity fields only", () => {
     const patch = buildExplorerProfileEditPatch({
       displayName: "  Alya Explorer  ",

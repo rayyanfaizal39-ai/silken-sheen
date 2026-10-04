@@ -10,6 +10,8 @@ interface ExplorerOnboardingDraft {
   age: string;
   formLevel: ExplorerFormLevel | "";
   school: SchoolSearchResult | null;
+  /** The learner explicitly chose to skip school; saved as school_id = NULL. */
+  schoolSkipped?: boolean;
 }
 
 export function getExplorerStepError(
@@ -21,8 +23,8 @@ export function getExplorerStepError(
   if (step === 2 && (!draft.age || !EXPLORER_SUPPORTED_AGES.includes(draft.age))) {
     return "Choose your age to continue.";
   }
-  if (step === 3 && !draft.school) {
-    return "Choose a verified school from the search results.";
+  if (step === 3 && !draft.school && !draft.schoolSkipped) {
+    return "Choose a verified school from the search results, or skip for now.";
   }
   return null;
 }
