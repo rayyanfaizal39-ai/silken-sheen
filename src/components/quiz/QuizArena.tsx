@@ -88,6 +88,9 @@ export function QuizArena({ children }: { children: ReactNode }) {
           to { opacity: 0; transform: translate(var(--sx), var(--sy)); }
         }
         .quiz-arena-drift { animation: quiz-arena-drift 28s ease-in-out infinite alternate; }
+        @media (min-width: 640px) {
+          .quiz-hud-controls { display: contents; }
+        }
         .quiz-card {
           background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)), #0c1322;
           box-shadow: 0 18px 40px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.08);
@@ -176,8 +179,28 @@ export function QuizArena({ children }: { children: ReactNode }) {
           animation: quiz-spark 520ms ease-out 450ms both;
         }
         .quiz-streak-note { animation: quiz-fade 200ms ease 500ms both; }
-        @media (max-height: 760px) {
+        @media (max-height: 760px) and (min-width: 640px) {
           .quiz-stage.is-revealed { transform: translateY(-10px); }
+        }
+        @media (max-width: 639px) {
+          .quiz-stage.is-revealed { transform: none; }
+          .quiz-arena-drift { animation: none; }
+          .quiz-streak-sparks i { animation: none; opacity: 0; }
+          .quiz-answer-sweep::after { animation: none; }
+          .quiz-arena .quiz-card h2 {
+            font-size: clamp(19px, 5.6vw, 23px);
+            line-height: 1.4;
+          }
+        }
+        @media (max-height: 500px) and (orientation: landscape) {
+          .quiz-arena .quiz-card h2 {
+            font-size: clamp(19px, 2.6vw, 23px);
+            line-height: 1.4;
+          }
+          .quiz-stage.is-revealed { transform: none; }
+        }
+        @media (hover: none) {
+          .quiz-arena button.group:hover:not(:disabled) { transform: none; }
         }
         @media (prefers-reduced-motion: reduce) {
           .quiz-arena-drift,
@@ -207,7 +230,7 @@ export function QuizArena({ children }: { children: ReactNode }) {
         className="quiz-arena-drift pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(99,102,241,0.09),transparent_46%)]"
         aria-hidden="true"
       />
-      <div className="relative mx-auto flex min-h-full w-full max-w-[1050px] flex-col px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6">
+      <div className="relative mx-auto flex min-h-full w-full max-w-[1050px] flex-col px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 sm:pb-[max(1rem,env(safe-area-inset-bottom))]">
         {children}
       </div>
     </div>

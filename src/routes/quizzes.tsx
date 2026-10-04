@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import type { Difficulty, QuizQuestion } from "@/data/content";
@@ -17627,9 +17627,9 @@ function QuizzesPage() {
         />
       ) : (
         <QuizArena>
-          <div className="shrink-0 pt-1">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="min-w-0">
+          <div className="quiz-hud shrink-0 max-sm:sticky max-sm:top-[env(safe-area-inset-top)] max-sm:z-30 max-sm:-mx-4 max-sm:bg-[#050816]/95 max-sm:px-4 max-sm:pb-1 max-sm:pt-1 sm:pt-1">
+            <div className="flex flex-wrap items-start gap-1.5 sm:flex-nowrap sm:items-center sm:gap-2">
+              <div className="hidden min-w-0 sm:order-1 sm:mr-auto sm:block">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35">
                   AcadeMY
                 </p>
@@ -17637,10 +17637,16 @@ function QuizzesPage() {
                   {cleanLearningLabel(chapterMeta?.label ?? chapter)}
                 </p>
               </div>
-              <div className="flex items-center gap-2">
+              <p className="order-1 shrink-0 font-display text-sm font-bold tabular-nums text-white sm:hidden">
+                {(shuffledPool?.length ?? pool.length) > 0 ? idx + 1 : 0}
+                <span className="font-medium text-white/40">
+                  /{shuffledPool?.length ?? pool.length}
+                </span>
+              </p>
+              <div className="quiz-hud-controls order-2 flex min-w-0 flex-1 flex-wrap items-center justify-end gap-1.5">
                 {timerPref?.mode === "timer" && (
                   <div
-                    className={`flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-bold ${
+                    className={`flex items-center gap-1 rounded-full border px-2 py-1 text-xs font-bold sm:order-2 sm:px-3 sm:py-1.5 ${
                       timeLeft <= 5
                         ? "border-rose-500/40 bg-rose-500/15 text-rose-300"
                         : timeLeft <= 10
@@ -17651,20 +17657,9 @@ function QuizzesPage() {
                     <Timer className="h-3 w-3" /> {timeLeft}s
                   </div>
                 )}
-                <span className="relative inline-flex items-center gap-1 text-[11px] text-white/40">
-                  <span>{regularQuizCopy.lifetimeXp}</span>
-                  <span data-quiz-xp-target className="font-bold text-[#FBBF24]">
-                    {progress.xp}
-                  </span>
-                  {!done && feedback?.kind === "correct" && current && (
-                    <span key={`xp-${idx}`} className="quiz-xp-float">
-                      +{QUIZ_BASE_XP[historicalDifficultyTier(current.difficulty)]} XP
-                    </span>
-                  )}
-                </span>
                 <span
                   key={quizStreak.streak}
-                  className={`relative inline-flex items-center gap-1 text-[11px] ${
+                  className={`relative inline-flex items-center gap-1 text-xs sm:order-4 sm:text-[11px] ${
                     quizStreak.streak >= 10
                       ? "quiz-streak-max"
                       : quizStreak.streak >= 5
@@ -17686,7 +17681,8 @@ function QuizzesPage() {
                     </>
                   )}
                   <Flame className="h-3.5 w-3.5 text-orange-400" aria-hidden="true" />
-                  {quizStreak.streak} {regularQuizCopy.correct}
+                  {quizStreak.streak}
+                  <span className="hidden sm:inline"> {regularQuizCopy.correct}</span>
                   {feedback?.kind === "correct" &&
                     (quizStreak.streak === 5 || quizStreak.streak === 10) && (
                       <span className="quiz-streak-note ml-1 text-[10px] font-semibold tracking-wide text-white/70">
@@ -17697,13 +17693,24 @@ function QuizzesPage() {
                 <button
                   type="button"
                   onClick={() => setConfirmLeaveQuiz(true)}
-                  className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-bold text-white hover:bg-white/10"
+                  className="ml-0.5 inline-flex min-h-12 shrink-0 items-center rounded-full border border-white/15 bg-white/5 px-3 text-xs font-bold text-white hover:bg-white/10 sm:order-5 sm:ml-0 sm:min-h-0 sm:px-4 sm:py-2"
                 >
                   {regularQuizBm ? "Keluar" : "Exit"}
                 </button>
               </div>
+              <span className="relative order-3 inline-flex w-full items-center gap-1 text-[11px] text-white/45 sm:order-3 sm:w-auto sm:text-white/40">
+                <span className="max-w-[9rem] truncate sm:max-w-none">{regularQuizCopy.lifetimeXp}</span>
+                <span data-quiz-xp-target className="font-bold text-[#FBBF24]">
+                  {progress.xp}
+                </span>
+                {!done && feedback?.kind === "correct" && current && (
+                  <span key={`xp-${idx}`} className="quiz-xp-float">
+                    +{QUIZ_BASE_XP[historicalDifficultyTier(current.difficulty)]} XP
+                  </span>
+                )}
+              </span>
             </div>
-            <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+            <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10 sm:mt-3 sm:h-1.5">
               <div
                 key={done ? "done" : idx}
                 className="quiz-progress-fill h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#A78BFA]"
@@ -17714,8 +17721,11 @@ function QuizzesPage() {
             </div>
           </div>
 
-          <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-white/45">
-            <div className="flex flex-wrap gap-2 items-center">
+          <div className="mt-1.5 flex flex-wrap items-center justify-between gap-1.5 text-white/45 sm:mt-2 sm:gap-2">
+            <p className="min-w-0 max-w-full flex-[1_1_100%] truncate text-[11px] text-white/40 sm:hidden">
+              {cleanLearningLabel(chapterMeta?.label ?? chapter)}
+            </p>
+            <div className="flex min-w-0 flex-wrap items-center gap-1.5 sm:gap-2">
               {subject === "sejarah" ? (
                 <div className="flex gap-1">
                   {(["Form 1", "Form 2", "Form 3"] as const).map((f) => (
@@ -17747,7 +17757,7 @@ function QuizzesPage() {
                       updateQuizSearch({ form: nextForm });
                       reset();
                     }}
-                    className="rounded-full bg-transparent px-2 py-1 text-[11px] text-white/50"
+                    className="max-w-[7.5rem] rounded-full bg-transparent px-2 py-1 text-[11px] text-white/50 sm:max-w-none"
                   >
                     {forms.map((f) => (
                       <option key={f}>{f}</option>
@@ -17782,7 +17792,7 @@ function QuizzesPage() {
           </div>
           <p className="sr-only">{regularQuizCopy.shuffled}</p>
 
-          <div className={`quiz-stage my-auto w-full py-3 sm:py-6 ${!done && selected !== null ? "is-revealed" : ""}`}>
+          <div className={`quiz-stage w-full py-2 sm:my-auto sm:py-6 ${!done && selected !== null ? "is-revealed" : ""}`}>
           {pool.length === 0 || !shuffledPool || shuffledPool.length === 0 ? (
             <div className="text-center py-20 glass rounded-2xl">
               <p className="text-muted-foreground">
@@ -17920,7 +17930,7 @@ function QuizzesPage() {
               <div
                 key={idx}
                 data-quiz-combo-surface
-                className={`quiz-card relative overflow-hidden rounded-[1.75rem] border border-white/10 quiz-q-enter ${
+                className={`quiz-card relative overflow-hidden rounded-2xl border border-white/10 quiz-q-enter sm:rounded-[1.75rem] ${
                   feedback?.kind === "correct" ? "animate-correct-pulse" : ""
                 } ${feedback?.kind === "wrong" ? "quiz-card-miss" : ""}`}
                 style={{
@@ -17929,9 +17939,10 @@ function QuizzesPage() {
                 }}
               >
                 {/* ── Card header ── */}
-                <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5">
+                <MobileArenaScroll questionKey={idx} revealed={selected !== null} />
+                <div className="flex items-center justify-between border-b border-white/[0.07] px-4 py-2.5 sm:px-6 sm:py-4">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="hidden items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 sm:flex">
                       <span className="text-xs font-bold text-white/50">Q</span>
                       <span className="font-display text-sm font-bold">{idx + 1}</span>
                       <span className="text-xs text-white/30">
@@ -17959,7 +17970,7 @@ function QuizzesPage() {
                     </div>
                     {timerPref?.mode === "timer" && (
                       <div
-                        className={`flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-bold transition-all ${
+                        className={`hidden items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-bold transition-all sm:flex ${
                           timeLeft <= 5
                             ? "border-rose-500/40 bg-rose-500/15 text-rose-300 animate-pulse"
                             : timeLeft <= 10
@@ -17974,7 +17985,7 @@ function QuizzesPage() {
                 </div>
 
                 {timerPref?.mode === "timer" && (
-                  <div className="px-6 pt-4">
+                  <div className="px-4 pt-3 sm:px-6 sm:pt-4">
                     <div className="h-1 w-full overflow-hidden rounded-full bg-white/[0.04]">
                       <div
                         className={`h-full origin-left rounded-full transition-[width,background-color] duration-1000 ease-linear ${timerColor}`}
@@ -17985,7 +17996,7 @@ function QuizzesPage() {
                 )}
 
                 {/* ── Question text ── */}
-                <div className="px-6 pb-5 pt-7 sm:px-10">
+                <div className="px-4 pb-3 pt-4 sm:px-10 sm:pb-5 sm:pt-7">
                   {current.image ? (
                     <img
                       src={current.image}
@@ -17995,13 +18006,13 @@ function QuizzesPage() {
                   ) : current.visualKey ? (
                     <EnglishQuestionVisual visualKey={current.visualKey} />
                   ) : null}
-                  <h2 className="mx-auto max-w-[40rem] break-words text-center font-display text-[1.7rem] font-semibold leading-[1.32] text-white sm:text-[2.15rem] sm:leading-[1.28]">
+                  <h2 className="mx-auto max-w-[40rem] break-words text-center font-display text-[clamp(19px,5.6vw,23px)] font-semibold leading-[1.4] text-white sm:text-[2.15rem] sm:leading-[1.28]">
                     {cleanLearningQuestion(current.question)}
                   </h2>
                 </div>
 
                 {/* ── Answer options ── */}
-                <div className="grid gap-2.5 px-6 pb-6 sm:grid-cols-2">
+                <div className="grid gap-3 px-4 pb-4 sm:grid-cols-2 sm:gap-2.5 sm:px-6 sm:pb-6">
                   {current.options.map((o, i) => {
                     const isAnswer = i === current.answerIndex;
                     const isPicked = i === selected;
@@ -18012,7 +18023,7 @@ function QuizzesPage() {
                         key={i}
                         onClick={() => answer(i)}
                         disabled={reveal}
-                        className={`group relative flex items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left focus-visible:outline-none sm:p-5 ${
+                        className={`group relative flex min-h-12 touch-manipulation items-start gap-2.5 overflow-hidden rounded-xl border px-3 py-3 text-left focus-visible:outline-none sm:gap-3 sm:rounded-2xl sm:p-5 ${
                           reveal && isAnswer
                             ? "quiz-answer-sweep border-emerald-400/50 bg-emerald-500/15 shadow-[0_0_24px_rgba(52,211,153,0.2)]"
                             : reveal && isPicked && !isAnswer
@@ -18035,7 +18046,7 @@ function QuizzesPage() {
                           {letter}
                         </span>
                         <span
-                          className={`min-w-0 flex-1 break-words text-[15px] font-medium leading-[1.55] ${
+                          className={`min-w-0 flex-1 break-words text-[15px] font-medium leading-[1.4] sm:leading-[1.55] ${
                             reveal && isAnswer
                               ? "text-emerald-100"
                               : reveal && isPicked && !isAnswer
@@ -18065,15 +18076,15 @@ function QuizzesPage() {
 
                 {/* ── Explanation ── */}
                 {selected !== null && current.explanation && (
-                  <div className="quiz-explain mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                  <div className="quiz-explain mx-4 mb-2 flex items-start gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 sm:mx-6 sm:mb-4 sm:gap-3 sm:rounded-2xl sm:p-4">
                     <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-[#A78BFA]" />
-                    <p className="max-w-[46rem] text-sm leading-7 text-slate-300">{current.explanation}</p>
+                    <p className="max-w-[46rem] text-sm leading-6 text-slate-300 sm:leading-7">{current.explanation}</p>
                   </div>
                 )}
 
                 {/* ── Ace wrong-answer explainer ── */}
                 {selected !== null && feedback?.kind === "wrong" && (
-                  <div className="mx-6 mb-4 animate-fade-up">
+                  <div className="mx-4 mb-2 sm:mx-6 sm:mb-4 sm:animate-fade-up">
                     <button
                       onClick={() =>
                         openCikgu({
@@ -18095,7 +18106,7 @@ function QuizzesPage() {
                             : `I chose "${current.options[selected]}" for this question. Can you explain why it is wrong and why "${current.options[current.answerIndex]}" is correct?`,
                         })
                       }
-                      className="w-full flex items-center justify-center gap-2.5 rounded-2xl border border-[#6366F1]/30 bg-[#6366F1]/10 py-3 text-sm font-semibold text-[#A5B4FC] transition-all hover:bg-[#6366F1]/20 hover:border-[#6366F1]/50 active:scale-[0.99]"
+                      className="flex min-h-12 w-full touch-manipulation items-center justify-center gap-2 rounded-xl border border-[#6366F1]/30 bg-[#6366F1]/10 px-3 py-2.5 text-sm font-semibold text-[#A5B4FC] transition-all hover:border-[#6366F1]/50 hover:bg-[#6366F1]/20 active:scale-[0.99] sm:gap-2.5 sm:rounded-2xl sm:py-3"
                     >
                       <span className="text-base">👨‍🚀</span>
                       {regularQuizCopy.askWhy}
@@ -18105,7 +18116,7 @@ function QuizzesPage() {
 
                 {/* ── Next button ── */}
                 {selected !== null && (
-                  <div className="quiz-continue border-t border-white/[0.06] px-6 py-4">
+                  <div className="quiz-continue border-t border-white/[0.06] px-4 py-3 sm:px-6 sm:py-4">
                     <button
                       onClick={() => {
                         const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -18118,7 +18129,7 @@ function QuizzesPage() {
                         }
                         next();
                       }}
-                      className="w-full rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-3.5 font-bold text-white shadow-[0_0_28px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] active:scale-[0.99]"
+                      className="min-h-12 w-full touch-manipulation rounded-xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-3 font-bold text-white shadow-[0_0_28px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] active:scale-[0.99] sm:rounded-2xl sm:py-3.5"
                     >
                       {idx + 1 >= (shuffledPool?.length ?? pool.length)
                         ? regularQuizCopy.seeResults
@@ -18279,10 +18290,39 @@ function QuizAwardSummary({
   );
 }
 
+function MobileArenaScroll({ questionKey, revealed }: { questionKey: number; revealed: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia?.("(max-width: 639px)");
+    if (!media?.matches) return;
+    const arena = ref.current?.closest(".quiz-arena");
+    if (!(arena instanceof HTMLElement)) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+    arena.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+  }, [questionKey]);
+
+  useEffect(() => {
+    if (!revealed) return;
+    const media = window.matchMedia?.("(max-width: 639px)");
+    if (!media?.matches) return;
+    const arena = ref.current?.closest(".quiz-arena");
+    const feedback = arena?.querySelector(".quiz-feedback");
+    if (!(arena instanceof HTMLElement) || !(feedback instanceof HTMLElement)) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+    const overflow = feedback.getBoundingClientRect().bottom - (arena.getBoundingClientRect().bottom - 16);
+    if (overflow > 12) {
+      arena.scrollBy({ top: overflow, behavior: reduced ? "auto" : "smooth" });
+    }
+  }, [revealed]);
+
+  return <div ref={ref} className="pointer-events-none h-0 w-0 overflow-hidden" aria-hidden="true" />;
+}
+
 function QuestionXpFeedback({ feedback, bm = false }: { feedback: QuizFeedback; bm?: boolean }) {
   return (
     <div
-      className={`quiz-xp-feedback mx-6 mb-4 rounded-2xl border p-4 ${
+      className={`quiz-xp-feedback mx-4 mb-2 rounded-xl border px-3 py-2 sm:mx-6 sm:mb-4 sm:rounded-2xl sm:p-4 ${
         feedback.kind === "correct"
           ? "border-emerald-400/30 bg-emerald-500/12"
           : "border-rose-400/30 bg-rose-500/12"
@@ -18290,14 +18330,14 @@ function QuestionXpFeedback({ feedback, bm = false }: { feedback: QuizFeedback; 
       role="status"
       aria-live="polite"
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 sm:gap-3">
         {feedback.kind === "correct" ? (
-          <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" aria-hidden="true" />
+          <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400 sm:h-5 sm:w-5" aria-hidden="true" />
         ) : (
-          <XCircle className="h-5 w-5 shrink-0 text-rose-400" aria-hidden="true" />
+          <XCircle className="h-4 w-4 shrink-0 text-rose-400 sm:h-5 sm:w-5" aria-hidden="true" />
         )}
         <span
-          className={`font-display text-lg font-bold ${feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"}`}
+          className={`font-display text-sm font-bold sm:text-lg ${feedback.kind === "correct" ? "text-emerald-300" : "text-rose-300"}`}
         >
           {feedback.msg}
         </span>
