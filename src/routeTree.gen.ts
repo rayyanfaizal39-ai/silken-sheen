@@ -42,6 +42,7 @@ import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AdminLoginRouteImport } from './routes/admin_.login'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminTrafficRouteImport } from './routes/admin.traffic'
+import { Route as AdminSchoolReportsRouteImport } from './routes/admin.school-reports'
 import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-library'
 import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
@@ -215,6 +216,11 @@ const AdminTrafficRoute = AdminTrafficRouteImport.update({
   path: '/traffic',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSchoolReportsRoute = AdminSchoolReportsRouteImport.update({
+  id: '/school-reports',
+  path: '/school-reports',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminReportsRoute = AdminReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
@@ -284,6 +290,7 @@ export interface FileRoutesByFullPath {
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
+  '/admin/school-reports': typeof AdminSchoolReportsRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/login': typeof AdminLoginRoute
@@ -325,6 +332,7 @@ export interface FileRoutesByTo {
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
+  '/admin/school-reports': typeof AdminSchoolReportsRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/login': typeof AdminLoginRoute
@@ -368,6 +376,7 @@ export interface FileRoutesById {
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
+  '/admin/school-reports': typeof AdminSchoolReportsRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin_/login': typeof AdminLoginRoute
@@ -412,6 +421,7 @@ export interface FileRouteTypes {
     | '/admin/cikgu-intel'
     | '/admin/content-library'
     | '/admin/reports'
+    | '/admin/school-reports'
     | '/admin/traffic'
     | '/admin/users'
     | '/admin/login'
@@ -453,6 +463,7 @@ export interface FileRouteTypes {
     | '/admin/cikgu-intel'
     | '/admin/content-library'
     | '/admin/reports'
+    | '/admin/school-reports'
     | '/admin/traffic'
     | '/admin/users'
     | '/admin/login'
@@ -495,6 +506,7 @@ export interface FileRouteTypes {
     | '/admin/cikgu-intel'
     | '/admin/content-library'
     | '/admin/reports'
+    | '/admin/school-reports'
     | '/admin/traffic'
     | '/admin/users'
     | '/admin_/login'
@@ -775,6 +787,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminTrafficRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/school-reports': {
+      id: '/admin/school-reports'
+      path: '/school-reports'
+      fullPath: '/admin/school-reports'
+      preLoaderRoute: typeof AdminSchoolReportsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/reports': {
       id: '/admin/reports'
       path: '/reports'
@@ -831,6 +850,7 @@ interface AdminRouteChildren {
   AdminCikguIntelRoute: typeof AdminCikguIntelRoute
   AdminContentLibraryRoute: typeof AdminContentLibraryRoute
   AdminReportsRoute: typeof AdminReportsRoute
+  AdminSchoolReportsRoute: typeof AdminSchoolReportsRoute
   AdminTrafficRoute: typeof AdminTrafficRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -841,6 +861,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminCikguIntelRoute: AdminCikguIntelRoute,
   AdminContentLibraryRoute: AdminContentLibraryRoute,
   AdminReportsRoute: AdminReportsRoute,
+  AdminSchoolReportsRoute: AdminSchoolReportsRoute,
   AdminTrafficRoute: AdminTrafficRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
