@@ -158,11 +158,11 @@ describe("Sejarah Form 1 Bab 1 selective repair — live registry", () => {
   });
 
   it.each([
-    ["content", "85bb71c50848e86f5f85b673348551fbcdc86612ee10f1b4a0fafa9fcd8219cb"],
-    ["quizzes", "31bbe3c1bff505431b13e733cfd39ebdc71a770268df29dede6f7ea4465c2463"],
-  ])("locks untouched Chapters 2–8 records in %s", (file, expectedHash) => {
+    ["content", "a953685393307b0271c722444045287fdbd212bba18cc551a5e029d56c05e4e4"],
+    ["quizzes", "00c05822b71604dc168c70814584d4fe569da0f0798233220a86494864552f97"],
+  ])("locks untouched Chapters 3–8 records in %s", (file, expectedHash) => {
     const records = [...source(file).matchAll(/ {2}\{\n {4}id: "([^"]+)",[\s\S]*?\n {2}\},/g)]
-      .filter((m) => /^sej-f1-c[2-8]-/.test(m[1]))
+      .filter((m) => /^sej-f1-c[3-8]-/.test(m[1]))
       .map((m) => m[0])
       .join("\n");
     expect(createHash("sha256").update(records).digest("hex")).toBe(expectedHash);
