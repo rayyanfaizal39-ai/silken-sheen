@@ -425,7 +425,10 @@ export function ScienceF1Chapter8VisualNotesBlock({
                 {extra.workedFilter.bothRule}
               </p>
             </div>
-            <div data-filter-matrix className="min-w-0">
+            <div
+              data-filter-matrix
+              className="min-w-0 max-sm:[&_table]:min-w-[560px] max-sm:[&_td]:px-3 max-sm:[&_td:last-child]:max-w-[180px] max-sm:[&_th]:px-3"
+            >
               <h3 className="mb-4 font-bold text-white">{copy.filterMatrix}</h3>
               <DataTable
                 headers={[copy.first, copy.second, copy.result, copy.reason]}

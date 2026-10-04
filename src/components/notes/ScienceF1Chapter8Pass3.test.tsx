@@ -94,7 +94,7 @@ describe("Chapter 8 Pass 3 — source-controlled refraction", () => {
             "",
           ),
       ),
-    ).toBe("e21fb8f35694fe887082c16586fec3d0ec9220a16ccc8a534eeebbac296cb883");
+    ).toBe("1f4439ba82d852a6d59bdfdd3df814ef7fa8f5e2e752d6d36b4477c66e4e5e6a");
   });
   for (const lang of ["en", "bm"] as const) {
     const t = content[lang],

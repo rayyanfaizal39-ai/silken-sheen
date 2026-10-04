@@ -9,16 +9,16 @@ import { ScienceF1Chapter8VisualNotesBlock } from "./ScienceF1Chapter8VisualNote
 
 describe("8.1–8.4 revision cleanup boundary", () => {
   it("preserves all canonical source data and the complete 8.5–8.7 implementation against pre-cleanup hashes", () => {
-    // Content/root snapshots include the authorised 8.7 teaching refinement; 8.5/8.6 component locks remain unchanged.
+    // Content/root snapshots include the authorised 8.7 teaching refinement; visual QA adds mobile-only callout sizing and filter-matrix wrapping.
     const locks = {
       "src/content/form1/science/chapter-8/chapter8-content.ts":
         "74ab9ff8e5d6e08fa560e18cb14a0e586a80bd5fdc56de18ed06a2baed86e07f",
       "src/components/notes/Chapter8Dispersion.tsx":
-        "0f3e2a243cffe37a54e3217ca763a311aa4726b8bb38cb8a1274473e98f9bf13",
+        "3847282aba4c90fb549049a46c3171a7c7a299f832c35c412bd3f50353adc53e",
       "src/components/notes/Chapter8Scattering.tsx":
         "9db35631b73340e6feef776dd441758ecc83a38aa765104445f511e77d93de3a",
       "src/components/notes/ScienceF1Chapter8VisualNotesBlock.tsx":
-        "2235e57d299a4002ed477c74b65f46aa876d842fb7cb478d58d60cee6aa0bc6f",
+        "62d00ee6abcf3373a0e37310545e04c81f6c19d4dc44bd767b8f5c4a96292149",
     };
     for (const [file, expected] of Object.entries(locks)) {
       expect(

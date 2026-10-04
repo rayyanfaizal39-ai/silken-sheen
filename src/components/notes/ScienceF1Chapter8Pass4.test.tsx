@@ -73,7 +73,7 @@ const locks = {
   Chapter8PropertiesOfLight: "fafce58d624495031073d45fb2f9ec12c2bacaccb49b43ab3e2d55f7761c0508",
   Chapter8Reflection: "b4e09434648f359a49c1db0375deb99a0d09328fdaf1415b3bafdb5d8f176a81",
   Chapter8Refraction: "91241476e3beb06bbf40ec2b81e0e00edc9aac71967c6a1fdf2e51ebbc42260c",
-  presentation: "e21fb8f35694fe887082c16586fec3d0ec9220a16ccc8a534eeebbac296cb883",
+  presentation: "1f4439ba82d852a6d59bdfdd3df814ef7fa8f5e2e752d6d36b4477c66e4e5e6a",
 };
 
 describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
@@ -356,7 +356,13 @@ describe("Chapter 8 Pass 4 — audited dispersion and scattering", () => {
     expect(host.querySelectorAll("svg")).toHaveLength(4);
     host
       .querySelectorAll("[data-diagram-callout] text")
-      .forEach((n) => expect(Number(n.getAttribute("font-size"))).toBeGreaterThanOrEqual(18));
+      .forEach((n) => {
+        expect(Number(n.getAttribute("font-size"))).toBeGreaterThanOrEqual(18);
+        expect(n.getAttribute("class")).toContain("max-sm:text-[26px]");
+        expect(n.parentElement?.querySelector("circle")?.getAttribute("class")).toContain(
+          "max-sm:[r:17px]",
+        );
+      });
     expect(host.querySelectorAll("figure figcaption")).toHaveLength(4);
     for (const name of ["Chapter8Dispersion", "Chapter8Scattering"]) {
       const source = read(`src/components/notes/${name}.tsx`);
