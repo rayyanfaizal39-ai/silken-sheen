@@ -29,6 +29,13 @@ const schoolSearchTypeScopeSql = readFileSync(
   ),
   "utf8",
 ).toLowerCase();
+const extendedSchoolDirectorySql = readFileSync(
+  new URL(
+    "../../supabase/migrations/20261003120000_add_mrsm_and_home_school_records.sql",
+    import.meta.url,
+  ),
+  "utf8",
+);
 
 describe("Explorer Profile migration safety", () => {
   it("grandfathers legacy rows before changing the default for new profiles", () => {
@@ -113,5 +120,30 @@ describe("verified school abbreviation search migration", () => {
     expect(schoolSearchTypeScopeSql).toContain(
       "q.abbreviation_family is distinct from 'smk' or s.school_type = 'smk'",
     );
+  });
+});
+
+describe("MRSM and Home School directory extension", () => {
+  it("adds all 57 MARA directory schools with the existing school row shape", () => {
+    expect(extendedSchoolDirectorySql.match(/\('MRSM-/g)).toHaveLength(57);
+    expect(extendedSchoolDirectorySql.match(/'MRSM',/g)).toHaveLength(57);
+    expect(extendedSchoolDirectorySql).toContain(
+      "('MRSM-TUN-DR-ISMAIL', 'MRSM TUN DR ISMAIL', 'MRSM', 'JOHOR', 'PONTIAN', '82100', true)",
+    );
+  });
+
+  it("adds one active schema-compatible Home School record", () => {
+    expect(extendedSchoolDirectorySql).toContain(
+      "('HOME-SCHOOL', 'Home School', 'HOME_SCHOOL', 'MALAYSIA', null, null, true)",
+    );
+  });
+
+  it("is additive and conflict-safe for the existing KPM directory", () => {
+    const normalized = extendedSchoolDirectorySql.toLowerCase();
+    expect(normalized).toContain("insert into public.schools");
+    expect(normalized).toContain("on conflict (school_code) do nothing");
+    expect(normalized).not.toContain("update public.schools");
+    expect(normalized).not.toContain("delete from public.schools");
+    expect(normalized).not.toContain("alter table public.schools");
   });
 });
