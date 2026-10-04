@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
+import { flushSync } from "react-dom";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import type { Difficulty, QuizQuestion } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
@@ -51,6 +52,7 @@ import {
   SubjectWorldBanner,
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
+import { QuizArena } from "@/components/quiz/QuizArena";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import { getPlanetTheme } from "@/components/PlanetEnvironment";
@@ -100,13 +102,16 @@ import { QuizStreakCelebration } from "@/features/quiz-streak/QuizStreakCelebrat
 import { useQuizStreak } from "@/features/quiz-streak/useQuizStreak";
 import {
   orderQuestionsByDifficulty,
+  orderRegularQuizQuestions,
   shuffleQuestionOptions,
 } from "@/features/quiz/difficulty/quizDifficulty";
 import {
   EMPTY_CORRECT_BY_DIFFICULTY,
+  QUIZ_BASE_XP,
   addCorrectAnswer,
   buildCanonicalQuizKey,
   createQuizCompletionId,
+  historicalDifficultyTier,
   timerModeFromPref,
   type CorrectByDifficulty,
   type QuizCompletionResult,
@@ -16163,6 +16168,7 @@ function QuizzesPage() {
   const [animatedScore, setAnimatedScore] = useState(0);
   const [feedback, setFeedback] = useState<QuizFeedback | null>(null);
   const [timerPref, setTimerPref] = useState<TimerPref>(null);
+  const [confirmLeaveQuiz, setConfirmLeaveQuiz] = useState(false);
   const [shuffledPool, setShuffledPool] = useState<ShuffledQuestion[] | null>(null);
   const [mathObjectiveId, setMathObjectiveId] = useState<MathObjectiveId | null>(null);
   const [mathObjectivePhase, setMathObjectivePhase] = useState<MathObjectivePhase>("select");
@@ -16468,7 +16474,7 @@ function QuizzesPage() {
   // None of this is implemented yet — rawPool selection stays exactly
   // as they are; this comment documents where that logic will plug in.
   function buildShuffledPool(rawPool: QuizQuestion[]): ShuffledQuestion[] {
-    const ordered = orderQuestionsByDifficulty(rawPool);
+    const ordered = orderRegularQuizQuestions(rawPool, { subjectId: subject, form });
     if (import.meta.env.DEV && ordered.issues.length > 0) {
       console.error("[quiz-difficulty] Invalid difficulty metadata", ordered.issues);
     }
@@ -16608,6 +16614,7 @@ function QuizzesPage() {
     setTimeLeft(questionSeconds);
     setAnimatedScore(0);
     setTimerPref(null);
+    setConfirmLeaveQuiz(false);
     setShuffledPool(null);
     setMathObjectiveId(null);
     setMathObjectivePhase("select");
@@ -16632,6 +16639,7 @@ function QuizzesPage() {
     setTimeLeft(questionSeconds);
     setAnimatedScore(0);
     setTimerPref(null);
+    setConfirmLeaveQuiz(false);
     setShuffledPool(null);
     setMathShuffledQuestions(null);
     setEnglishShuffledQuestions(null);
@@ -17252,37 +17260,43 @@ function QuizzesPage() {
   return (
     <AcademyPageShell subjectId={planetSubjectId} className="max-w-7xl">
       <QuizStreakCelebration streak={quizStreak.streak} celebration={quizStreak.celebration} />
-      <AcademyHero
-        eyebrow="Quiz arena"
-        title="Take a"
-        gradientTitle="Quiz"
-        description="Instant scoring, focused practice, and XP momentum for every KSSM subject."
-        illustration="quizzes"
-        stats={[
-          {
-            label: "Quiz Progress",
-            value: activeQuiz.length > 0 ? `${idx + 1}/${activeQuiz.length}` : "Ready",
-          },
-          { label: "Questions Completed", value: progress.quizzesTaken },
-          {
-            label: "Average Score",
-            value:
-              activeQuiz.length > 0 ? `${Math.round((score / activeQuiz.length) * 100)}%` : "Start",
-          },
-        ]}
-      />
-      {subject && chapter && hasSelectedChapterQuiz && (
-        <ChapterContentTabs
-          subjectId={subject}
-          form={form}
-          chapterKey={chapter}
-          scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
-          currentContentType="quizzes"
-        />
+      {!timerPref && (
+        <>
+          <AcademyHero
+            eyebrow="Quiz arena"
+            title="Take a"
+            gradientTitle="Quiz"
+            description="Instant scoring, focused practice, and XP momentum for every KSSM subject."
+            illustration="quizzes"
+            stats={[
+              {
+                label: "Quiz Progress",
+                value: activeQuiz.length > 0 ? `${idx + 1}/${activeQuiz.length}` : "Ready",
+              },
+              { label: "Questions Completed", value: progress.quizzesTaken },
+              {
+                label: "Average Score",
+                value:
+                  activeQuiz.length > 0
+                    ? `${Math.round((score / activeQuiz.length) * 100)}%`
+                    : "Start",
+              },
+            ]}
+          />
+          {subject && chapter && hasSelectedChapterQuiz && (
+            <ChapterContentTabs
+              subjectId={subject}
+              form={form}
+              chapterKey={chapter}
+              scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+              currentContentType="quizzes"
+            />
+          )}
+          <div className="mb-7 flex justify-center">
+            <DailyQuote />
+          </div>
+        </>
       )}
-      <div className="mb-7 flex justify-center">
-        <DailyQuote />
-      </div>
 
       {!subject ? (
         <div className="space-y-6">
@@ -17597,6 +17611,8 @@ function QuizzesPage() {
           quizSets={availableChapterQuizSets}
           selectedQuizSet={scienceQuizSet}
           onSelectQuizSet={setScienceQuizSet}
+          questionCount={pool.length}
+          difficultyLabel={subject === "sejarah" ? "All" : regularDifficultyLabels[diff]}
           onBack={() => {
             setChapter(null);
             updateQuizSearch({ chapter: null });
@@ -17605,25 +17621,100 @@ function QuizzesPage() {
           onStart={(pref) => {
             setAttemptStartXp(progress.xp);
             resetQuizAward();
+            setConfirmLeaveQuiz(false);
             setTimerPref(pref);
           }}
         />
       ) : (
-        <>
-          <ContentHeader
-            subjectId={subject}
-            chapterKey={chapter}
-            scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
-            form={form}
-            mode="quizzes"
-            onBack={() => {
-              setChapter(null);
-              updateQuizSearch({ chapter: null });
-              reset();
-            }}
-          />
+        <QuizArena>
+          <div className="shrink-0 pt-1">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35">
+                  AcadeMY
+                </p>
+                <p className="truncate text-xs font-medium text-white/55">
+                  {cleanLearningLabel(chapterMeta?.label ?? chapter)}
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                {timerPref?.mode === "timer" && (
+                  <div
+                    className={`flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-bold ${
+                      timeLeft <= 5
+                        ? "border-rose-500/40 bg-rose-500/15 text-rose-300"
+                        : timeLeft <= 10
+                          ? "border-amber-500/30 bg-amber-500/10 text-amber-300"
+                          : "border-emerald-500/25 bg-emerald-500/10 text-emerald-300"
+                    }`}
+                  >
+                    <Timer className="h-3 w-3" /> {timeLeft}s
+                  </div>
+                )}
+                <span className="relative inline-flex items-center gap-1 text-[11px] text-white/40">
+                  <span>{regularQuizCopy.lifetimeXp}</span>
+                  <span data-quiz-xp-target className="font-bold text-[#FBBF24]">
+                    {progress.xp}
+                  </span>
+                  {!done && feedback?.kind === "correct" && current && (
+                    <span key={`xp-${idx}`} className="quiz-xp-float">
+                      +{QUIZ_BASE_XP[historicalDifficultyTier(current.difficulty)]} XP
+                    </span>
+                  )}
+                </span>
+                <span
+                  key={quizStreak.streak}
+                  className={`relative inline-flex items-center gap-1 text-[11px] ${
+                    quizStreak.streak >= 10
+                      ? "quiz-streak-max"
+                      : quizStreak.streak >= 5
+                        ? "quiz-streak-hot"
+                        : quizStreak.streak >= 3
+                          ? "quiz-streak-warm"
+                          : "text-white/40"
+                  } ${feedback?.kind === "correct" && quizStreak.streak === 3 ? "quiz-streak-pulse" : ""} ${
+                    feedback?.kind === "correct" && quizStreak.streak === 5 ? "quiz-streak-sparks" : ""
+                  } ${feedback?.kind === "correct" && quizStreak.streak === 10 ? "quiz-streak-celebrate" : ""}`}
+                  aria-label={`${regularQuizCopy.streakLabel}: ${quizStreak.streak}`}
+                  title={regularQuizCopy.streakLabel}
+                >
+                  {feedback?.kind === "correct" && quizStreak.streak === 5 && (
+                    <>
+                      <i style={{ ["--sx" as string]: "-10px", ["--sy" as string]: "-8px" }} />
+                      <i style={{ ["--sx" as string]: "8px", ["--sy" as string]: "-12px", animationDelay: "40ms" }} />
+                      <i style={{ ["--sx" as string]: "12px", ["--sy" as string]: "2px", animationDelay: "80ms" }} />
+                    </>
+                  )}
+                  <Flame className="h-3.5 w-3.5 text-orange-400" aria-hidden="true" />
+                  {quizStreak.streak} {regularQuizCopy.correct}
+                  {feedback?.kind === "correct" &&
+                    (quizStreak.streak === 5 || quizStreak.streak === 10) && (
+                      <span className="quiz-streak-note ml-1 text-[10px] font-semibold tracking-wide text-white/70">
+                        {quizStreak.streak}
+                      </span>
+                    )}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setConfirmLeaveQuiz(true)}
+                  className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-bold text-white hover:bg-white/10"
+                >
+                  {regularQuizBm ? "Keluar" : "Exit"}
+                </button>
+              </div>
+            </div>
+            <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+              <div
+                key={done ? "done" : idx}
+                className="quiz-progress-fill h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#A78BFA]"
+                style={{
+                  width: `${((idx + 1) / Math.max(shuffledPool?.length ?? pool.length, 1)) * 100}%`,
+                }}
+              />
+            </div>
+          </div>
 
-          <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between animate-fade-up">
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-white/45">
             <div className="flex flex-wrap gap-2 items-center">
               {subject === "sejarah" ? (
                 <div className="flex gap-1">
@@ -17636,10 +17727,8 @@ function QuizzesPage() {
                         updateQuizSearch({ form: f });
                         reset();
                       }}
-                      className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
-                        form === f
-                          ? "bg-gradient-to-r from-primary to-accent text-white"
-                          : "bg-white/5 text-muted-foreground"
+                      className={`rounded-full px-2 py-1 text-[11px] font-semibold transition ${
+                        form === f ? "bg-white/15 text-white" : "text-white/40 hover:text-white/70"
                       }`}
                     >
                       {f}
@@ -17658,7 +17747,7 @@ function QuizzesPage() {
                       updateQuizSearch({ form: nextForm });
                       reset();
                     }}
-                    className="px-4 py-2 rounded-full bg-white/5 text-sm"
+                    className="rounded-full bg-transparent px-2 py-1 text-[11px] text-white/50"
                   >
                     {forms.map((f) => (
                       <option key={f}>{f}</option>
@@ -17672,10 +17761,8 @@ function QuizzesPage() {
                           setDiff(d);
                           reset();
                         }}
-                        className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
-                          diff === d
-                            ? "bg-gradient-to-r from-primary to-accent text-white"
-                            : "bg-white/5 text-muted-foreground"
+                        className={`rounded-full px-2 py-1 text-[11px] font-semibold transition ${
+                          diff === d ? "bg-white/15 text-white" : "text-white/40 hover:text-white/70"
                         }`}
                       >
                         {regularDifficultyLabels[d]}
@@ -17685,33 +17772,17 @@ function QuizzesPage() {
                 </>
               )}
             </div>
-            <div className="flex items-center gap-3 text-sm">
-              <button
-                onClick={reshuffle}
-                title={regularQuizCopy.shuffleTitle}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition bg-white/5 text-muted-foreground hover:bg-white/10"
-              >
-                <Shuffle className="w-3.5 h-3.5" /> {regularQuizCopy.shuffle}
-              </button>
-              {/* Music toggle removed — background music is adaptive and global. */}
-              <span className="text-muted-foreground">{regularQuizCopy.lifetimeXp}</span>
-              <span data-quiz-xp-target className="font-bold text-nova-yellow">
-                {progress.xp}
-              </span>
-              <span
-                className="text-muted-foreground"
-                aria-label={`${regularQuizCopy.streakLabel}: ${quizStreak.streak}`}
-                title={regularQuizCopy.streakLabel}
-              >
-                <Flame className="mr-1 inline h-3.5 w-3.5 text-orange-400" aria-hidden="true" />
-                {quizStreak.streak} {regularQuizCopy.correct}
-              </span>
-            </div>
+            <button
+              onClick={reshuffle}
+              title={regularQuizCopy.shuffleTitle}
+              className="inline-flex items-center gap-1 rounded-full px-2 py-1 text-[11px] font-semibold text-white/40 transition hover:text-white/70"
+            >
+              <Shuffle className="h-3 w-3" /> {regularQuizCopy.shuffle}
+            </button>
           </div>
-          <p className="text-center text-xs text-muted-foreground mb-6 animate-fade-up">
-            🔀 {regularQuizCopy.shuffled}
-          </p>
+          <p className="sr-only">{regularQuizCopy.shuffled}</p>
 
+          <div className={`quiz-stage my-auto w-full py-3 sm:py-6 ${!done && selected !== null ? "is-revealed" : ""}`}>
           {pool.length === 0 || !shuffledPool || shuffledPool.length === 0 ? (
             <div className="text-center py-20 glass rounded-2xl">
               <p className="text-muted-foreground">
@@ -17784,8 +17855,11 @@ function QuizzesPage() {
                     </div>
                     <div className="flex items-center gap-2 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-4 py-2">
                       <Zap className="h-4 w-4 text-[#FBBF24]" />
-                      <span className="text-sm font-bold text-[#FBBF24]">
+                      <span className="relative text-sm font-bold text-[#FBBF24]">
                         +{quizCompletion?.xpEarned ?? 0}
+                        {quizCompletion && quizCompletion.xpEarned > 0 && (
+                          <span className="quiz-xp-float">+{quizCompletion.xpEarned} XP</span>
+                        )}
                       </span>
                       <span className="text-xs text-white/40">{regularQuizCopy.totalXpEarned}</span>
                     </div>
@@ -17797,6 +17871,14 @@ function QuizzesPage() {
                       <span className="text-xs text-white/40">{regularQuizCopy.bestStreak}</span>
                     </div>
                   </div>
+
+                  {score < (shuffledPool?.length ?? pool.length) && (
+                    <p className="mx-auto mb-6 max-w-md text-sm leading-6 text-white/60">
+                      {regularQuizBm
+                        ? `Ulang kaji ${cleanLearningLabel(chapterMeta?.label ?? chapter)} sebelum cuba lagi.`
+                        : `Review ${cleanLearningLabel(chapterMeta?.label ?? chapter)} before you retry.`}
+                    </p>
+                  )}
 
                   <div className="mx-auto mb-8 max-w-md">
                     <QuizAwardSummary
@@ -17838,25 +17920,14 @@ function QuizzesPage() {
               <div
                 key={idx}
                 data-quiz-combo-surface
-                className={`relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.4)] quiz-q-enter ${
-                  feedback?.kind === "wrong"
-                    ? "animate-shake"
-                    : feedback?.kind === "correct"
-                      ? "animate-correct-pulse"
-                      : ""
-                }`}
+                className={`quiz-card relative overflow-hidden rounded-[1.75rem] border border-white/10 quiz-q-enter ${
+                  feedback?.kind === "correct" ? "animate-correct-pulse" : ""
+                } ${feedback?.kind === "wrong" ? "quiz-card-miss" : ""}`}
                 style={{
-                  boxShadow: planetTheme
-                    ? `0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 0 1px ${planetTheme.color}30`
-                    : "0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)",
+                  viewTransitionName: "quiz-card",
+                  outline: planetTheme ? `1px solid ${planetTheme.color}44` : undefined,
                 }}
               >
-                {/* Ambient glow behind the card */}
-                <div
-                  className={`pointer-events-none absolute -top-20 left-1/2 h-40 w-80 -translate-x-1/2 rounded-full blur-3xl ${planetTheme ? "" : "bg-indigo-600/15"}`}
-                  style={{ background: planetTheme ? `${planetTheme.color}26` : undefined }}
-                />
-
                 {/* ── Card header ── */}
                 <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
                   <div className="flex items-center gap-3">
@@ -17902,30 +17973,19 @@ function QuizzesPage() {
                   </div>
                 </div>
 
-                {/* ── Progress bars ── */}
-                <div className="px-6 pt-4">
-                  {/* Question progress */}
-                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] transition-all duration-500"
-                      style={{
-                        width: `${((idx + 1) / (shuffledPool?.length ?? pool.length)) * 100}%`,
-                      }}
-                    />
-                  </div>
-                  {/* Timer bar */}
-                  {timerPref?.mode === "timer" && (
-                    <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-white/[0.04]">
+                {timerPref?.mode === "timer" && (
+                  <div className="px-6 pt-4">
+                    <div className="h-1 w-full overflow-hidden rounded-full bg-white/[0.04]">
                       <div
-                        className={`h-full origin-left transition-[width,background-color] duration-1000 ease-linear rounded-full ${timerColor}`}
+                        className={`h-full origin-left rounded-full transition-[width,background-color] duration-1000 ease-linear ${timerColor}`}
                         style={{ width: `${timerPct}%` }}
                       />
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
                 {/* ── Question text ── */}
-                <div className="px-6 pb-4 pt-6">
+                <div className="px-6 pb-5 pt-7 sm:px-10">
                   {current.image ? (
                     <img
                       src={current.image}
@@ -17935,7 +17995,7 @@ function QuizzesPage() {
                   ) : current.visualKey ? (
                     <EnglishQuestionVisual visualKey={current.visualKey} />
                   ) : null}
-                  <h2 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
+                  <h2 className="mx-auto max-w-[40rem] break-words text-center font-display text-[1.7rem] font-semibold leading-[1.32] text-white sm:text-[2.15rem] sm:leading-[1.28]">
                     {cleanLearningQuestion(current.question)}
                   </h2>
                 </div>
@@ -17947,44 +18007,16 @@ function QuizzesPage() {
                     const isPicked = i === selected;
                     const reveal = selected !== null;
                     const letter = ["A", "B", "C", "D"][i] ?? String(i + 1);
-                    const optionThemeColor = planetTheme?.color ?? "#8B5CF6";
-                    const optionThemeGlow = planetTheme?.glow ?? "rgba(139,92,246,0.4)";
                     return (
                       <button
                         key={i}
                         onClick={() => answer(i)}
                         disabled={reveal}
-                        onMouseEnter={(e) => {
-                          if (reveal) return;
-                          const el = e.currentTarget;
-                          el.style.borderColor = `${optionThemeColor}80`;
-                          el.style.backgroundColor = "rgba(255,255,255,0.08)";
-                          el.style.boxShadow = `0 4px 20px -2px ${optionThemeGlow}`;
-                          el.style.transform = "translateY(-2px)";
-                        }}
-                        onMouseLeave={(e) => {
-                          const el = e.currentTarget;
-                          el.style.borderColor = "";
-                          el.style.backgroundColor = "";
-                          el.style.boxShadow = "";
-                          el.style.transform = "";
-                        }}
-                        onFocus={(e) => {
-                          if (reveal) return;
-                          const el = e.currentTarget;
-                          el.style.borderColor = `${optionThemeColor}80`;
-                          el.style.boxShadow = `0 0 0 2px ${optionThemeColor}55`;
-                        }}
-                        onBlur={(e) => {
-                          const el = e.currentTarget;
-                          el.style.borderColor = "";
-                          el.style.boxShadow = "";
-                        }}
-                        className={`group relative flex items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left transition-all duration-200 focus-visible:outline-none ${
+                        className={`group relative flex items-start gap-3 overflow-hidden rounded-2xl border p-4 text-left focus-visible:outline-none sm:p-5 ${
                           reveal && isAnswer
-                            ? "border-emerald-400/50 bg-emerald-500/15 shadow-[0_0_24px_rgba(52,211,153,0.2)]"
+                            ? "quiz-answer-sweep border-emerald-400/50 bg-emerald-500/15 shadow-[0_0_24px_rgba(52,211,153,0.2)]"
                             : reveal && isPicked && !isAnswer
-                              ? "border-rose-400/50 bg-rose-500/15 shadow-[0_0_16px_rgba(239,68,68,0.15)]"
+                              ? "quiz-answer-nudge border-rose-400/50 bg-rose-500/15 shadow-[0_0_16px_rgba(239,68,68,0.15)]"
                               : reveal
                                 ? "border-white/[0.05] bg-white/[0.02] opacity-50"
                                 : "border-white/[0.09] bg-white/[0.04]"
@@ -18003,7 +18035,7 @@ function QuizzesPage() {
                           {letter}
                         </span>
                         <span
-                          className={`flex-1 text-sm font-semibold leading-6 ${
+                          className={`min-w-0 flex-1 break-words text-[15px] font-medium leading-[1.55] ${
                             reveal && isAnswer
                               ? "text-emerald-100"
                               : reveal && isPicked && !isAnswer
@@ -18014,7 +18046,7 @@ function QuizzesPage() {
                           {o}
                         </span>
                         {reveal && isAnswer && (
-                          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
+                          <CheckCircle2 className="quiz-check-pop mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
                         )}
                         {reveal && isPicked && !isAnswer && (
                           <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-rose-400" />
@@ -18025,13 +18057,17 @@ function QuizzesPage() {
                 </div>
 
                 {/* ── Feedback callout ── */}
-                {feedback && <QuestionXpFeedback feedback={feedback} bm={regularQuizBm} />}
+                {feedback && (
+                  <div className="quiz-feedback">
+                    <QuestionXpFeedback feedback={feedback} bm={regularQuizBm} />
+                  </div>
+                )}
 
                 {/* ── Explanation ── */}
                 {selected !== null && current.explanation && (
-                  <div className="mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-[#8B5CF6]/20 bg-[#8B5CF6]/8 p-4 animate-fade-up">
+                  <div className="quiz-explain mx-6 mb-4 flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
                     <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-[#A78BFA]" />
-                    <p className="text-sm leading-7 text-slate-300">{current.explanation}</p>
+                    <p className="max-w-[46rem] text-sm leading-7 text-slate-300">{current.explanation}</p>
                   </div>
                 )}
 
@@ -18069,9 +18105,19 @@ function QuizzesPage() {
 
                 {/* ── Next button ── */}
                 {selected !== null && (
-                  <div className="border-t border-white/[0.06] px-6 py-4">
+                  <div className="quiz-continue border-t border-white/[0.06] px-6 py-4">
                     <button
-                      onClick={next}
+                      onClick={() => {
+                        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                        const doc = document as Document & {
+                          startViewTransition?: (update: () => void) => void;
+                        };
+                        if (!reduced && typeof doc.startViewTransition === "function") {
+                          doc.startViewTransition(() => flushSync(() => next()));
+                          return;
+                        }
+                        next();
+                      }}
                       className="w-full rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-3.5 font-bold text-white shadow-[0_0_28px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.01] hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] active:scale-[0.99]"
                     >
                       {idx + 1 >= (shuffledPool?.length ?? pool.length)
@@ -18083,7 +18129,48 @@ function QuizzesPage() {
               </div>
             )
           )}
-        </>
+          </div>
+          {confirmLeaveQuiz && (
+            <div
+              className="fixed inset-0 z-[110] flex items-end justify-center bg-black/60 p-4 sm:items-center"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="quiz-arena-leave-title"
+            >
+              <div className="w-full max-w-sm rounded-3xl border border-white/10 bg-[#0B1220] p-6 shadow-2xl">
+                <h2 id="quiz-arena-leave-title" className="font-display text-xl font-bold">
+                  {regularQuizBm ? "Keluar dari kuiz?" : "Leave this quiz?"}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-white/65">
+                  {regularQuizBm
+                    ? "Kemajuan soalan pada halaman ini akan hilang."
+                    : "Question progress on this page will be lost."}
+                </p>
+                <div className="mt-5 flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setConfirmLeaveQuiz(false)}
+                    className="flex-1 rounded-2xl border border-white/15 py-3 text-sm font-bold"
+                  >
+                    {regularQuizBm ? "Kekal" : "Stay"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setConfirmLeaveQuiz(false);
+                      setChapter(null);
+                      updateQuizSearch({ chapter: null });
+                      reset();
+                    }}
+                    className="flex-1 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-3 text-sm font-bold"
+                  >
+                    {regularQuizBm ? "Keluar" : "Leave quiz"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </QuizArena>
       )}
     </AcademyPageShell>
   );
@@ -18234,6 +18321,8 @@ function QuizSettingsScreen({
   quizSets = [],
   selectedQuizSet,
   onSelectQuizSet,
+  questionCount,
+  difficultyLabel,
   onBack,
   onStart,
 }: {
@@ -18244,6 +18333,8 @@ function QuizSettingsScreen({
   quizSets?: readonly ("A" | "B")[];
   selectedQuizSet?: "A" | "B";
   onSelectQuizSet?: (set: "A" | "B") => void;
+  questionCount: number;
+  difficultyLabel: string;
   onBack: () => void;
   onStart: (pref: { mode: TimerMode; seconds: number }) => void;
 }) {
@@ -18271,12 +18362,26 @@ function QuizSettingsScreen({
         </span>
       </div>
 
-      <div className="glass-strong rounded-3xl p-8">
-        <div className="text-center mb-8">
-          <h2 className="font-display text-3xl font-bold">
-            Quiz <span className="gradient-text">Settings</span>
+      <div className="glass-strong rounded-3xl border border-white/10 bg-[#070d1c]/80 p-8">
+        <div className="mb-8 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#A78BFA]">
+            AcadeMY Quiz Arena
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-bold">
+            {subj?.name ?? "Quiz"}{" "}
+            <span className="gradient-text">{cleanLearningLabel(chapter?.label ?? chapterKey)}</span>
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="mt-3 text-sm text-white/70">
+            {questionCount} {scienceLang === "bm" ? "soalan" : "questions"}
+            <span className="mx-2 text-white/25">•</span>
+            {scienceLang === "bm" ? "Tahap" : "Difficulty"}: {difficultyLabel}
+          </p>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-muted-foreground">
+            {scienceLang === "bm"
+              ? "Baca soalan, pilih satu jawapan, kemudian semak penjelasan sebelum teruskan. Pemasa bermula hanya selepas anda menekan Start Quiz."
+              : "Read each question, choose one answer, then review the explanation before you continue. The timer starts only after you press Start Quiz."}
+          </p>
+          <p className="mt-2 text-xs text-muted-foreground">
             Timer choice does not change XP. XP is based only on completion and final score.
           </p>
         </div>
@@ -18836,7 +18941,8 @@ function EnglishQuizScreen({
   }
 
   return (
-    <div className="animate-fade-up">
+    <QuizArena>
+    <div className="my-auto w-full animate-fade-up">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <button
           onClick={onBack}
@@ -18853,11 +18959,7 @@ function EnglishQuizScreen({
         key={idx}
         data-quiz-combo-surface
         className={`quiz-q-enter relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 shadow-[0_24px_80px_rgba(0,0,0,0.4)] backdrop-blur-2xl ${
-          feedback?.kind === "wrong"
-            ? "animate-shake"
-            : feedback?.kind === "correct"
-              ? "animate-correct-pulse"
-              : ""
+          feedback?.kind === "correct" ? "animate-correct-pulse" : ""
         }`}
       >
         <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
@@ -18988,6 +19090,7 @@ function EnglishQuizScreen({
         )}
       </div>
     </div>
+    </QuizArena>
   );
 }
 
@@ -19953,7 +20056,8 @@ function MathObjectiveQuizScreen({
   }
 
   return (
-    <div className="animate-fade-up">
+    <QuizArena>
+    <div className="my-auto w-full animate-fade-up">
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
         <button
           onClick={onBack}
@@ -19972,7 +20076,7 @@ function MathObjectiveQuizScreen({
         data-quiz-combo-surface
         className={`relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.4)] quiz-q-enter ${
           feedback?.kind === "wrong"
-            ? "animate-shake"
+            ? ""
             : feedback?.kind === "correct"
               ? "animate-correct-pulse"
               : ""
@@ -20103,6 +20207,7 @@ function MathObjectiveQuizScreen({
         )}
       </div>
     </div>
+    </QuizArena>
   );
 }
 

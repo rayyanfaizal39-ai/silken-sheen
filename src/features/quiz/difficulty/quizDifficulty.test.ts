@@ -3,6 +3,7 @@ import {
   createAttemptSnapshot,
   normalizeQuizDifficulty,
   orderQuestionsByDifficulty,
+  orderRegularQuizQuestions,
   restoreAttemptOrder,
   shuffleQuestionOptions,
 } from "./quizDifficulty";
@@ -115,5 +116,50 @@ describe("controlled quiz difficulty ordering", () => {
     expect(activeAttempt).toBe(activeAttempt);
     const restarted = orderQuestionsByDifficulty(questions, () => 0.99).questions;
     expect(restarted.map(({ id }) => id)).not.toEqual(activeAttempt.map(({ id }) => id));
+  });
+});
+
+describe("Science Form 1 full-pool ordering", () => {
+  const science = { subjectId: "science", form: "Form 1" };
+
+  it("mixes difficulty tiers, retains every question and preserves metadata", () => {
+    const original = structuredClone(questions);
+    const ordered = orderRegularQuizQuestions(questions, science, () => 0).questions;
+    expect(ordered.map((q) => q.id)).toEqual(["e2", "m1", "m2", "h1", "h2", "e1"]);
+    expect(new Set(ordered.map((q) => q.id))).toEqual(new Set(questions.map((q) => q.id)));
+    expect(ordered).toHaveLength(questions.length);
+    for (const q of ordered) expect(q).toEqual(questions.find((source) => source.id === q.id));
+    expect(questions).toEqual(original);
+  });
+
+  it.each(["easy", "medium", "hard"])("shuffles only the filtered %s pool", (difficulty) => {
+    const filtered = questions.filter((q) => normalizeQuizDifficulty(q.difficulty) === difficulty);
+    const result = orderRegularQuizQuestions(filtered, science, () => 0).questions;
+    expect(result).toEqual([...filtered].reverse());
+    expect(result.every((q) => normalizeQuizDifficulty(q.difficulty) === difficulty)).toBe(true);
+  });
+
+  it.each([
+    ["science", "Form 2"], ["science", "Form 3"], ["math", "Form 1"],
+    ["sejarah", "Form 1"], ["english", "Form 1"], ["bm", "Form 1"],
+  ])("preserves the old ordering for %s %s", (subjectId, form) => {
+    expect(orderRegularQuizQuestions(questions, { subjectId, form }, () => 0.2))
+      .toEqual(orderQuestionsByDifficulty(questions, () => 0.2));
+  });
+
+  it("supports new orders, correct shuffled options and saved attempt restoration", () => {
+    const build = (random: () => number) => orderRegularQuizQuestions(questions, science, random)
+      .questions.map((q) => shuffleQuestionOptions(q, random));
+    const attempt = build(() => 0);
+    const next = build(() => 0.99);
+    expect(attempt.map((q) => q.id)).not.toEqual(next.map((q) => q.id));
+    for (const q of attempt) {
+      const source = questions.find((item) => item.id === q.id)!;
+      expect(q.options).not.toEqual(source.options);
+      expect(q.options[q.answerIndex]).toBe(source.options[source.answerIndex]);
+    }
+    const snapshot = createAttemptSnapshot("science-f1-ch1", "one", attempt)!;
+    expect(restoreAttemptOrder(snapshot, snapshot.quizKey, attempt)).toEqual(attempt);
+    expect(restoreAttemptOrder(snapshot, "another-quiz", attempt)).toBeNull();
   });
 });
