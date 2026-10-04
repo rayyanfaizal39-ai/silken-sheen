@@ -37,6 +37,9 @@ describe("Explorer onboarding flow", () => {
     expect(getExplorerStepError(3, { ...completeDraft, school: null })).toContain(
       "verified school",
     );
+    expect(
+      getExplorerStepError(3, { ...completeDraft, school: null, schoolSkipped: true }),
+    ).toBeNull();
     expect(getExplorerStepError(4, completeDraft)).toBeNull();
   });
 

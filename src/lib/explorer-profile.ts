@@ -20,7 +20,8 @@ export interface ExplorerProfileInput {
   displayName: string;
   age: number;
   formLevel: ExplorerFormLevel;
-  schoolId: string;
+  /** Verified school UUID, or null when the learner skipped school for now. */
+  schoolId: string | null;
 }
 
 export interface ExplorerProfileEditInput {
@@ -85,7 +86,7 @@ export function normalizeExplorerProfileInput(input: ExplorerProfileInput): Expl
   if (!isExplorerFormLevel(input.formLevel)) {
     throw new Error("Choose Form 1, Form 2, or Form 3.");
   }
-  if (!isUuid(input.schoolId)) {
+  if (input.schoolId !== null && !isUuid(input.schoolId)) {
     throw new Error("Choose a verified school from the search results.");
   }
 

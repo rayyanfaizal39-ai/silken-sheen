@@ -56,7 +56,7 @@ const STEP_COPY: Record<
   3: {
     eyebrow: "Find Your School",
     title: "Choose your verified school",
-    support: "Search the official Malaysian school directory to find your school.",
+    support: "Search the official Malaysian school directory, or skip for now.",
   },
   4: {
     eyebrow: "Explorer Profile Ready",
@@ -83,6 +83,7 @@ function ExplorerOnboardingPage() {
   const [age, setAge] = useState("");
   const [formLevel, setFormLevel] = useState<ExplorerFormLevel | "">("");
   const [school, setSchool] = useState<SchoolSearchResult | null>(null);
+  const [schoolSkipped, setSchoolSkipped] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const stepHeadingRef = useRef<HTMLHeadingElement>(null);
@@ -118,6 +119,7 @@ function ExplorerOnboardingPage() {
       age,
       formLevel,
       school,
+      schoolSkipped,
     });
     setError(validationError);
     return validationError === null;
@@ -143,7 +145,7 @@ function ExplorerOnboardingPage() {
       advance();
       return;
     }
-    if (savingRef.current || !school || !formLevel) return;
+    if (savingRef.current || !formLevel) return;
 
     setError(null);
     savingRef.current = true;
@@ -153,7 +155,7 @@ function ExplorerOnboardingPage() {
         displayName,
         age: Number(age),
         formLevel,
-        schoolId: school.id,
+        schoolId: school?.id ?? null,
       });
       await navigate({ to: "/home", replace: true });
     } catch {
@@ -319,10 +321,25 @@ function ExplorerOnboardingPage() {
                     value={school}
                     onChange={(nextSchool) => {
                       setSchool(nextSchool);
+                      setSchoolSkipped(false);
                       setError(null);
                     }}
                     invalid={Boolean(error && !school)}
                   />
+                  {!school && (
+                    <button
+                      type="button"
+                      className="explorer-onboarding__back"
+                      onClick={() => {
+                        setSchoolSkipped(true);
+                        setError(null);
+                        setDirection("forward");
+                        setStep(4);
+                      }}
+                    >
+                      Skip for now
+                    </button>
+                  )}
                   <div className="explorer-onboarding__school-help">
                     <School aria-hidden="true" />
                     <p>
@@ -333,7 +350,7 @@ function ExplorerOnboardingPage() {
                 </div>
               )}
 
-              {step === 4 && school && formLevel && (
+              {step === 4 && formLevel && (
                 <div className="explorer-onboarding__profile-card">
                   <div className="explorer-onboarding__profile-avatar">
                     <AcademyLogo variant="icon" className="h-10 w-10" />
@@ -358,14 +375,25 @@ function ExplorerOnboardingPage() {
                       <strong>{age}</strong>
                     </div>
                   </div>
-                  <div className="explorer-onboarding__verified-school">
-                    <BadgeCheck aria-hidden="true" />
-                    <div>
-                      <span>Verified school</span>
-                      <strong>{school.schoolName}</strong>
-                      <p>{formatSchoolLocation(school)}</p>
+                  {school ? (
+                    <div className="explorer-onboarding__verified-school">
+                      <BadgeCheck aria-hidden="true" />
+                      <div>
+                        <span>Verified school</span>
+                        <strong>{school.schoolName}</strong>
+                        <p>{formatSchoolLocation(school)}</p>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="explorer-onboarding__verified-school">
+                      <School aria-hidden="true" />
+                      <div>
+                        <span>School</span>
+                        <strong>Not provided</strong>
+                        <p>You can add a verified school later in Edit Profile.</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

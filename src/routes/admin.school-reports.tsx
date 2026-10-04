@@ -395,6 +395,10 @@ function AllSchoolsReport({
             chipClass="chip-blue"
           />
           <StatCard
+            k="School not provided"
+            v={number.format(report.school_coverage.school_not_provided)}
+          />
+          <StatCard
             k="Active students"
             v={number.format(report.engagement.active_students)}
             chipClass="chip-green"

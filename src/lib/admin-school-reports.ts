@@ -105,9 +105,17 @@ interface AdminSchoolReportBase {
   };
 }
 
+export interface SchoolCoverage {
+  registered_learners: number;
+  school_provided: number;
+  /** Learners with school_id IS NULL; aggregate only, never a school. */
+  school_not_provided: number;
+}
+
 export interface AdminAllSchoolsReport extends AdminSchoolReportBase {
   mode: "all_schools";
   school: null;
+  school_coverage: SchoolCoverage;
   school_type_breakdown: SchoolTypeBreakdownRow[];
   state_breakdown: SchoolReportBreakdownRow[];
   school_comparison: SchoolComparisonRow[];
