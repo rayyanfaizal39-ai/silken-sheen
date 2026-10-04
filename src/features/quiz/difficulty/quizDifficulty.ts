@@ -37,6 +37,7 @@ export function shuffleWithRandom<T>(items: readonly T[], random: () => number =
 export function orderQuestionsByDifficulty<T extends { difficulty?: unknown; id?: string }>(
   questions: readonly T[],
   random: () => number = Math.random,
+  mixDifficulties = false,
 ): { questions: T[]; issues: DifficultyIssue[] } {
   const tiers: Record<QuizDifficulty, T[]> = {
     easy: [],
@@ -62,7 +63,7 @@ export function orderQuestionsByDifficulty<T extends { difficulty?: unknown; id?
   });
 
   return {
-    questions: [
+    questions: mixDifficulties ? shuffleWithRandom(questions, random) : [
       ...shuffleWithRandom(tiers.easy, random),
       ...shuffleWithRandom(tiers.medium, random),
       // Invalid values are kept intact in a documented safe slot. The audit
@@ -72,6 +73,19 @@ export function orderQuestionsByDifficulty<T extends { difficulty?: unknown; id?
     ],
     issues,
   };
+}
+
+/** The caller filters the selected chapter/difficulty before creating an attempt. */
+export function orderRegularQuizQuestions<T extends { difficulty?: unknown; id?: string }>(
+  questions: readonly T[],
+  scope: { subjectId: string | null; form: string },
+  random: () => number = Math.random,
+) {
+  return orderQuestionsByDifficulty(
+    questions,
+    random,
+    scope.subjectId === "science" && scope.form === "Form 1",
+  );
 }
 
 export function shuffleQuestionOptions<

@@ -82,12 +82,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "Which branch of Science studies energy, force, and its influence on matter?",
-    options: ["Chemistry", "Biology", "Astronomy", "Physics"],
-    answerIndex: 3,
-    explanation:
-      "Physics studies energy, force, and matter. Applications include Engineering and Astronomy.",
+    difficulty: "Medium",
+    question: "An engineer uses knowledge of energy to develop a robot that helps with household tasks. Which pairing best links the science field and the benefit of this innovation?",
+    options: [
+      "Biology — identifying rocks",
+      "Physics — helping solve daily-life problems",
+      "Chemistry — predicting weather",
+      "Geology — studying microorganisms"
+    ],
+    answerIndex: 1,
+    explanation: "Physics studies energy and its effects on matter and is linked to engineering. Scientific innovations such as robots help solve daily-life problems."
   },
   {
     id: "sci-f1-c1-dlp-q4",
@@ -95,17 +99,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What does Chemistry study?",
+    difficulty: "Hard",
+    question: "A stone has a mass of 45 g. Fully submerging it raises the water reading from 50 cm³ to 65 cm³. What is its density, and how does it compare with water of density 1.0 g cm⁻³?",
     options: [
-      "Rocks and minerals",
-      "Weather and climate",
-      "Matter, its composition, and reactions",
-      "Celestial bodies",
+      "0.69 g cm⁻³; less dense",
+      "15 g cm⁻³; more dense",
+      "3.0 g cm⁻³; more dense",
+      "0.33 g cm⁻³; less dense"
     ],
     answerIndex: 2,
-    explanation:
-      "Chemistry studies matter, its composition, properties, and reactions. Applications include Pharmacology and Forensics.",
+    explanation: "The stone's volume is 65 − 50 = 15 cm³. Density = 45 ÷ 15 = 3.0 g cm⁻³, which is greater than 1.0 g cm⁻³."
   },
   {
     id: "sci-f1-c1-dlp-q5",
@@ -113,12 +116,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "Which branch of Science studies weather and climate changes?",
-    options: ["Geology", "Meteorology", "Astronomy", "Biology"],
-    answerIndex: 1,
-    explanation:
-      "Meteorology is the study of weather patterns and climate changes in the atmosphere.",
+    difficulty: "Hard",
+    question: "Solid P has mass 12 g and volume 20 cm³. Solid Q has mass 18 g and volume 15 cm³. Neither dissolves in water. Which statement is correct in water of density 1.0 g cm⁻³?",
+    options: [
+      "P floats and Q sinks because P is less dense and Q is more dense than water",
+      "Both float because both masses are smaller than 20 g",
+      "Both sink because both are solids",
+      "P sinks and Q floats because P has the larger volume"
+    ],
+    answerIndex: 0,
+    explanation: "P has density 12 ÷ 20 = 0.6 g cm⁻³; Q has density 18 ÷ 15 = 1.2 g cm⁻³. Compare each density with water, not mass or volume alone."
   },
   {
     id: "sci-f1-c1-dlp-q6",
@@ -127,11 +134,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "Which hazard symbol warns about chemicals that react violently to heat or shock?",
-    options: ["Flammable", "Toxic", "Explosive", "Corrosive"],
+    question: "Which hazardous-material category includes hydrogen gas and butane gas?",
+    options: [
+      "Corrosive",
+      "Toxic",
+      "Explosive",
+      "Radioactive"
+    ],
     answerIndex: 2,
-    explanation:
-      "The Explosive symbol warns about chemicals like Hydrogen and Butane that react violently to heat or shock.",
+    explanation: "Hydrogen gas and butane gas are listed as explosive materials. They must be handled carefully according to instructions."
   },
   {
     id: "sci-f1-c1-dlp-q7",
@@ -139,12 +150,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "Ethanol and Acetone are examples of which type of hazardous chemical?",
-    options: ["Toxic", "Corrosive", "Oxidising", "Flammable"],
+    difficulty: "Medium",
+    question: "A pupil places alcohol beside a lit burner. Which change addresses the main hazard?",
+    options: [
+      "Replace the label with a toxic warning",
+      "Keep it beside the burner but wear goggles",
+      "Move it closer so it is easier to reach",
+      "Keep the alcohol away from the flame and heat"
+    ],
     answerIndex: 3,
-    explanation:
-      "Ethanol and Acetone are Flammable chemicals that catch fire easily and must be kept away from heat and fire sources.",
+    explanation: "Alcohol is flammable and its vapour can ignite easily. Keeping it away from fire or heat addresses this hazard."
   },
   {
     id: "sci-f1-c1-dlp-q8",
@@ -152,13 +167,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question:
-      "Which hazard symbol indicates a chemical that releases oxygen to help other materials burn?",
-    options: ["Explosive", "Oxidising", "Flammable", "Irritant"],
+    difficulty: "Hard",
+    question: "A group's repeated readings do not support its hypothesis. Another group obtained the expected pattern. Which decision best preserves honest evidence and a valid conclusion?",
+    options: [
+      "Replace the readings with the other group's data before concluding",
+      "Keep the original readings, check the method and repeat measurements, then judge the hypothesis using the data",
+      "Keep only the readings that support the hypothesis",
+      "Accept the hypothesis because it was written before the experiment"
+    ],
     answerIndex: 1,
-    explanation:
-      "Oxidising chemicals like Potassium manganate(VII) release oxygen which helps other materials burn more intensely.",
+    explanation: "Honesty requires retaining the actual readings. Checking and repeating the method helps validate data; the conclusion must follow the evidence rather than the expected answer."
   },
   {
     id: "sci-f1-c1-dlp-q9",
@@ -166,12 +184,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "Concentrated Acid is an example of which type of hazardous chemical?",
-    options: ["Toxic", "Irritant", "Corrosive", "Flammable"],
+    difficulty: "Medium",
+    question: "A chemical labelled corrosive splashes onto a pupil's skin. Which action follows laboratory safety instructions?",
+    options: [
+      "Wipe it off and continue without reporting it",
+      "Cover the affected skin without washing it",
+      "Rinse with plenty of water and inform the teacher immediately",
+      "Add another chemical to the skin before informing the teacher"
+    ],
     answerIndex: 2,
-    explanation:
-      "Corrosive chemicals like Concentrated Acid burn skin and dissolve materials. Always avoid direct contact.",
+    explanation: "Corrosive chemicals can burn skin. The source safety instructions require washing the affected area with plenty of water and informing the teacher."
   },
   {
     id: "sci-f1-c1-dlp-q10",
@@ -179,12 +201,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "Mercury and Cyanide are examples of which type of hazardous chemical?",
-    options: ["Irritant", "Toxic", "Oxidising", "Explosive"],
-    answerIndex: 1,
-    explanation:
-      "Toxic chemicals like Mercury and Cyanide are lethal if swallowed or inhaled and must be handled with extreme care.",
+    difficulty: "Hard",
+    question: "A group is nearly finished when a chemical spill occurs. A member suggests finishing the measurements first and pouring the waste down the sink without checking instructions. Which plan best balances responsibility and scientific work?",
+    options: [
+      "Stop, inform the teacher, follow the correct disposal instructions and resume only when safe",
+      "Finish the measurements first, then report the spill",
+      "Clean the spill without telling the teacher and use the suggested disposal method",
+      "Leave the spill for another group and copy its measurements"
+    ],
+    answerIndex: 0,
+    explanation: "Responsibility includes protecting people and the environment. Reporting the spill and following correct disposal instructions come before completing measurements."
   },
   {
     id: "sci-f1-c1-dlp-q11",
@@ -193,12 +219,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question:
-      "Which laboratory apparatus is used to measure liquid volume with accuracy of 0.1 cm3?",
-    options: ["Beaker", "Bell Jar", "Gas Jar", "Burette and Pipette"],
-    answerIndex: 3,
+    question: "Which pairing of apparatus and function is correct?",
+    options: [
+      "Beaker — collects gas",
+      "Gas jar — measures a fixed liquid volume",
+      "Burette — measures liquid volume accurately",
+      "Pipette — heats chemicals",
+    ],
+    answerIndex: 2,
     explanation:
-      "Burette and Pipette are designed for extremely accurate liquid measurement with precision up to 0.1 cm3.",
+      "The textbook states that a burette measures liquid volume accurately, while a pipette measures a fixed liquid volume.",
   },
   {
     id: "sci-f1-c1-dlp-q12",
@@ -206,17 +236,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What is the purpose of a Bell Jar in a laboratory?",
+    difficulty: "Medium",
+    question: "A pupil needs to measure the diameter of a thin wire. Which instrument is most suitable for detecting small differences in its diameter?",
     options: [
-      "To measure liquid volume",
-      "To collect gases",
-      "To create a vacuum or isolate an experiment",
-      "To heat chemicals",
+      "Metre rule",
+      "Micrometer screw gauge",
+      "Measuring tape",
+      "Measuring cylinder"
     ],
-    answerIndex: 2,
-    explanation:
-      "A Bell Jar is used to create a vacuum or isolate an experiment from outside air conditions.",
+    answerIndex: 1,
+    explanation: "A micrometer screw gauge has fine scale divisions suited to measuring small dimensions such as the diameter of a thin wire."
   },
   {
     id: "sci-f1-c1-dlp-q13",
@@ -236,11 +265,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What is the SI unit for Mass?",
-    options: ["Meter (m)", "Kilogram (kg)", "Kelvin (K)", "Second (s)"],
+    difficulty: "Medium",
+    question: "Two laboratories compare masses but one reports only '5' and the other only '5000', without units. Which practice makes the comparison meaningful?",
+    options: [
+      "Assume the larger number always means a larger mass",
+      "State the units and convert both masses to the same standard unit, such as kilogram",
+      "Change both numbers to 5 without checking the units",
+      "Compare only the measuring instruments' brand names"
+    ],
     answerIndex: 1,
-    explanation: "The SI base unit for Mass is the Kilogram (kg).",
+    explanation: "Numbers without units do not identify the measured mass. Standard units allow measurements to be communicated and compared consistently."
   },
   {
     id: "sci-f1-c1-dlp-q15",
@@ -248,11 +282,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What is the SI unit for Temperature?",
-    options: ["Celsius (C)", "Fahrenheit (F)", "Ampere (A)", "Kelvin (K)"],
+    difficulty: "Medium",
+    question: "A pupil investigates how pendulum length affects the time for ten oscillations. Which hypothesis can be tested by changing the length and measuring that time?",
+    options: [
+      "The pendulum bob is made of metal",
+      "Ten oscillations are counted in every trial",
+      "A stopwatch is used to measure time",
+      "As pendulum length increases, the time for ten oscillations increases"
+    ],
     answerIndex: 3,
-    explanation: "The SI base unit for Temperature is Kelvin (K), not Celsius or Fahrenheit.",
+    explanation: "A hypothesis states a testable relationship: length is the manipulated variable and time for ten oscillations is the responding variable."
   },
   {
     id: "sci-f1-c1-dlp-q16",
@@ -260,11 +299,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What is the SI unit for Electric Current?",
-    options: ["Volt (V)", "Watt (W)", "Ampere (A)", "Ohm (O)"],
+    difficulty: "Hard",
+    question: "To test how pendulum length affects the time for ten oscillations, a pupil changes both the length and the bob's mass. Why is the design weak, and what should change?",
+    options: [
+      "Time should not be measured; record length only",
+      "The length must stay fixed while both time and mass are changed",
+      "Two factors change together; keep bob mass constant while changing length",
+      "Bob mass must increase whenever length increases"
+    ],
     answerIndex: 2,
-    explanation: "The SI base unit for Electric Current is the Ampere (A).",
+    explanation: "Changing two factors makes it unclear which caused the time difference. Change length, measure time for the same number of oscillations and keep bob mass constant."
   },
   {
     id: "sci-f1-c1-dlp-q17",
@@ -272,12 +316,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What does the prefix Kilo (k) represent?",
-    options: ["1,000,000", "0.001", "0.01", "1,000"],
+    difficulty: "Medium",
+    question: "Which pair correctly converts 2.5 km to metres and 2500 mg to grams?",
+    options: [
+      "250 m and 25 g",
+      "2500 m and 2500 g",
+      "25 000 m and 0.25 g",
+      "2500 m and 2.5 g"
+    ],
     answerIndex: 3,
-    explanation:
-      "The prefix Kilo (k) represents 1,000 or 10 to the power of 3. Example: 1 kilometer = 1,000 meters.",
+    explanation: "Kilo means 1000: 2.5 × 1000 = 2500 m. Milli means one thousandth: 2500 ÷ 1000 = 2.5 g."
   },
   {
     id: "sci-f1-c1-dlp-q18",
@@ -285,11 +333,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What does the prefix Mega (M) represent?",
-    options: ["1,000", "0.001", "1,000,000", "0.000001"],
+    difficulty: "Medium",
+    question: "A stone is fully submerged in a measuring cylinder. The water reading rises from 50 cm³ to 65 cm³. What is the stone's volume?",
+    options: [
+      "115 cm³",
+      "65 cm³",
+      "15 cm³",
+      "50 cm³"
+    ],
     answerIndex: 2,
-    explanation: "The prefix Mega (M) represents 1,000,000 or 10 to the power of 6.",
+    explanation: "The displaced water volume equals the submerged stone's volume: 65 − 50 = 15 cm³."
   },
   {
     id: "sci-f1-c1-dlp-q19",
@@ -297,11 +350,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What does the prefix Milli (m) represent?",
-    options: ["0.001", "0.01", "1,000", "0.000001"],
+    difficulty: "Hard",
+    question: "For ten pendulum oscillations, lengths of 20 cm, 30 cm and 40 cm give average times of 9.1 s, 11.4 s and 13.1 s. The hypothesis predicts a longer time for a longer pendulum. Which analysis is justified?",
+    options: [
+      "Time increases with length, so the data support the hypothesis",
+      "Time decreases with length, so the hypothesis is rejected",
+      "Every 10 cm increase adds exactly 2.3 s, so the relationship is numerically uniform",
+      "The bob's mass increases with length, so mass caused the time change"
+    ],
     answerIndex: 0,
-    explanation: "The prefix Milli (m) represents 0.001 or 10 to the power of -3.",
+    explanation: "The measured times increase from 9.1 to 11.4 to 13.1 s. They support the predicted trend, but the increases are 2.3 s and 1.7 s, not identical; no mass data are given."
   },
   {
     id: "sci-f1-c1-dlp-q20",
@@ -310,10 +368,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "What does the prefix Micro (u) represent?",
+    question: "What does the prefix Micro (µ) represent?",
     options: ["0.01", "0.001", "1,000,000", "0.000001"],
     answerIndex: 3,
-    explanation: "The prefix Micro (u) represents 0.000001 or 10 to the power of -6.",
+    explanation: "The prefix Micro (µ) represents 0.000001 or 10 to the power of -6.",
   },
   {
     id: "sci-f1-c1-dlp-q21",
@@ -321,17 +379,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What is the difference between Accuracy and Consistency?",
+    difficulty: "Hard",
+    question: "The actual length is 10.0 cm. Set P gives 12.0, 12.0, 12.0 cm; set Q gives 9.9, 10.0, 10.1 cm. Which comparison of Accuracy and Consistency is correct?",
     options: [
-      "They mean exactly the same thing",
-      "Accuracy is closeness to the actual value; Consistency is closeness among repeated readings",
-      "Accuracy is closeness among repeated readings; Consistency is closeness to the actual value",
-      "Accuracy only applies to temperature",
+      "P is more accurate because its readings are identical",
+      "Q is more accurate, but P is more consistent",
+      "P is more accurate and Q is more consistent",
+      "Both sets are equally accurate because each has three readings"
     ],
     answerIndex: 1,
-    explanation:
-      "Accuracy refers to how close a measurement is to the true value, while Consistency refers to how consistent repeated measurements are with each other.",
+    explanation: "Q's readings are closer to 10.0 cm, so Q is more accurate. P's readings are identical, so P is more consistent even though they are far from the actual value."
   },
   {
     id: "sci-f1-c1-dlp-q22",
@@ -340,16 +397,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "What is a Zero Error?",
+    question: "Which description identifies zero error?",
     options: [
-      "When the measurement is exactly zero",
-      "When the instrument reads zero correctly",
-      "A systematic error where the instrument does not start at zero",
-      "An error caused by wrong eye position",
+      "Readings vary because the observer views the scale from different angles",
+      "A pupil records a reading using the wrong unit",
+      "An instrument gives a non-zero reading when it should read zero",
+      "A pupil starts a stopwatch after the event begins"
     ],
     answerIndex: 2,
-    explanation:
-      "Zero Error is a systematic error where the instrument does not read zero when it should. Formula: Actual Reading = Scale Reading - Zero Error.",
+    explanation: "Zero error is a systematic error: the instrument does not read zero when it should. It must be checked and corrected."
   },
   {
     id: "sci-f1-c1-dlp-q23",
@@ -357,17 +413,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "How do you calculate the Actual Reading when there is a Zero Error?",
+    difficulty: "Medium",
+    question: "A measuring instrument has a zero error of +0.02 cm and gives a scale reading of 3.22 cm. What is the corrected reading?",
     options: [
-      "Actual Reading = Scale Reading + Zero Error",
-      "Actual Reading = Zero Error - Scale Reading",
-      "Actual Reading = Scale Reading x Zero Error",
-      "Actual Reading = Scale Reading - Zero Error",
+      "3.24 cm",
+      "3.22 cm",
+      "3.02 cm",
+      "3.20 cm"
     ],
     answerIndex: 3,
-    explanation:
-      "To correct for Zero Error, subtract the zero error from the scale reading to get the actual measurement.",
+    explanation: "Corrected reading = scale reading − zero error = 3.22 − (+0.02) = 3.20 cm."
   },
   {
     id: "sci-f1-c1-dlp-q24",
@@ -376,16 +431,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "What causes Parallax Error?",
+    question: "What causes parallax error when reading a scale?",
     options: [
-      "Using the wrong instrument",
-      "The eye not being perpendicular to the scale",
-      "The instrument being too old",
-      "Measuring at the wrong temperature",
+      "The instrument does not read zero when it should",
+      "The eye is not perpendicular to the scale being read",
+      "The wrong unit is written beside a reading",
+      "The stopwatch is started too late"
     ],
     answerIndex: 1,
-    explanation:
-      "Parallax Error is a random error caused by the eye not being perpendicular to the scale being read.",
+    explanation: "Parallax error results from an incorrect viewing position. Keep the eye perpendicular to the scale."
   },
   {
     id: "sci-f1-c1-dlp-q25",
@@ -393,17 +447,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "How do you avoid Parallax Error when reading a liquid in a measuring cylinder?",
+    difficulty: "Hard",
+    question: "A sheet is too thin to read directly with a ruler marked every 1 mm. Which plan best estimates one sheet's thickness and provides a more sensitive direct check?",
     options: [
-      "Read the top of the liquid curve",
-      "Read from any angle",
-      "Align eye level directly with the bottom of the meniscus",
-      "Tilt the measuring cylinder",
+      "Measure a stack of 100 sheets, divide by 100, then check one sheet with a micrometer screw gauge",
+      "Measure 100 sheets and multiply by 100, then use the same ruler",
+      "Read one sheet to several decimal places with the ruler, then repeat that reading",
+      "Measure one sheet with a measuring tape because its total scale is longer"
     ],
-    answerIndex: 2,
-    explanation:
-      "To avoid Parallax Error, align your eye level directly with the bottom of the meniscus.",
+    answerIndex: 0,
+    explanation: "Measuring a stack makes the thickness readable; dividing by the number of sheets estimates one sheet's thickness. A micrometer's finer divisions detect smaller changes; extra written decimal places do not improve a ruler's sensitivity."
   },
   {
     id: "sci-f1-c1-dlp-q26",
@@ -421,7 +474,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Density is defined as Mass per unit Volume. Formula: Density = Mass divided by Volume. Unit: g/cm3 or kg/m3.",
+      "Density is mass per unit volume. In this chapter, density is calculated in g cm-3 from mass in g and volume in cm3.",
   },
   {
     id: "sci-f1-c1-dlp-q27",
@@ -430,16 +483,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     difficulty: "Easy",
-    question: "What is the Water Displacement Method used for?",
+    question: "Which sequence correctly follows the start of a scientific investigation?",
     options: [
-      "To measure the mass of an object",
-      "To find the volume of an irregular solid",
-      "To measure the density of water",
-      "To find the weight of a liquid",
+      "Identify problem → construct hypothesis → control variables → plan experiment",
+      "Construct hypothesis → write report → identify problem → collect data",
+      "Plan experiment → identify problem → make conclusion → control variables",
+      "Collect data → construct hypothesis → identify problem → write report",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "The Water Displacement Method is used to find the volume of an irregular solid by measuring how much water it displaces in a measuring cylinder.",
+      "The textbook sequence begins by identifying the problem, constructing a hypothesis, controlling variables and planning the experiment.",
   },
   {
     id: "sci-f1-c1-dlp-q28",
@@ -447,17 +500,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "According to the Law of Flotation, an object will float if its density is:",
+    difficulty: "Medium",
+    question: "A pupil records that an object floats in water, then explains that it is less dense than water. Which pair correctly identifies these two steps?",
     options: [
-      "Equal to 1.0 g/cm3",
-      "Greater than 1.0 g/cm3",
-      "Less than 1.0 g/cm3",
-      "Greater than 2.0 g/cm3",
+      "Prediction, then measurement",
+      "Observation, then inference",
+      "Inference, then observation",
+      "Classification, then control of variables"
     ],
-    answerIndex: 2,
-    explanation:
-      "Objects with density LESS than 1.0 g/cm3 will float. Objects with higher density will sink.",
+    answerIndex: 1,
+    explanation: "Floating is observed directly. Explaining it using relative density is an inference based on that observation and scientific knowledge."
   },
   {
     id: "sci-f1-c1-dlp-q29",
@@ -465,17 +517,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "Which of the following is a correct application of Science in daily life?",
+    difficulty: "Hard",
+    question: "Two pupils disagree about a result. One proposes changing it to match the prediction; the other proposes checking the original records together and repeating the measurement. Which decision and reason best reflect scientific attitudes?",
     options: [
-      "Writing stories and poems",
-      "Solving crimes through forensic DNA",
-      "Painting and drawing",
-      "Playing musical instruments",
+      "Use the prediction because agreement matters more than evidence",
+      "Check the records respectfully and repeat the measurement, because conclusions require honest, validated data",
+      "Use the higher reading because larger values are more accurate",
+      "Average the prediction with the reading because both have equal status as measurements"
     ],
     answerIndex: 1,
-    explanation:
-      "Science helps solve crimes through forensic DNA, increase crop yields through hydroponics, and advance medicine through robotic surgery.",
+    explanation: "Respectful checking allows the group to validate its data without altering observations to fit expectations. Honesty and accuracy support an evidence-based conclusion."
   },
   {
     id: "sci-f1-c1-dlp-q30",
@@ -483,13 +534,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "dlp",
-    difficulty: "Easy",
+    difficulty: "Hard",
     question:
-      "A stone is placed in a measuring cylinder containing 50 cm3 of water. The water level rises to 65 cm3. What is the volume of the stone?",
-    options: ["115 cm3", "50 cm3", "65 cm3", "15 cm3"],
-    answerIndex: 3,
-    explanation:
-      "Volume of stone = Final water level - Initial water level = 65 - 50 = 15 cm3. This is the Water Displacement Method.",
+      "A measuring cylinder has a mass of 230 g. After 50 cm3 of liquid X is added, the total mass is 320 g. What is the density of liquid X?",
+    options: ["1.8 g cm-3", "4.6 g cm-3", "6.4 g cm-3", "11.0 g cm-3"],
+    answerIndex: 0,
+    explanation: "Mass of liquid X = 320 - 230 = 90 g. Density = 90 ÷ 50 = 1.8 g cm-3.",
   },
   {
     id: "sci-f1-c1-bm-q1",
@@ -528,12 +578,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Bidang Sains manakah yang mengkaji tenaga, daya, dan kesannya terhadap jirim?",
-    options: ["Kimia", "Biologi", "Astronomi", "Fizik"],
-    answerIndex: 3,
-    explanation:
-      "Fizik mengkaji tenaga, daya, dan jirim. Aplikasinya termasuk Kejuruteraan dan Astronomi.",
+    difficulty: "Medium",
+    question: "Seorang jurutera menggunakan pengetahuan tentang tenaga untuk menghasilkan robot yang membantu kerja rumah. Padanan manakah menghubungkan bidang sains dengan manfaat inovasi ini?",
+    options: [
+      "Biologi — mengenal pasti batuan",
+      "Fizik — membantu menyelesaikan masalah kehidupan harian",
+      "Kimia — meramalkan cuaca",
+      "Geologi — mengkaji mikroorganisma"
+    ],
+    answerIndex: 1,
+    explanation: "Fizik mengkaji tenaga dan kesannya terhadap jirim serta berkaitan dengan kejuruteraan. Inovasi sains seperti robot membantu menyelesaikan masalah kehidupan harian."
   },
   {
     id: "sci-f1-c1-bm-q4",
@@ -541,17 +595,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah yang dikaji dalam Kimia?",
+    difficulty: "Hard",
+    question: "Sebiji batu berjisim 45 g. Apabila ditenggelamkan sepenuhnya, bacaan air meningkat daripada 50 cm³ kepada 65 cm³. Berapakah ketumpatannya dan bagaimanakah perbandingannya dengan air berketumpatan 1.0 g cm⁻³?",
     options: [
-      "Batuan dan mineral",
-      "Cuaca dan iklim",
-      "Jirim, komposisi, dan tindak balasnya",
-      "Jasad-jasad angkasa",
+      "0.69 g cm⁻³; kurang tumpat",
+      "15 g cm⁻³; lebih tumpat",
+      "3.0 g cm⁻³; lebih tumpat",
+      "0.33 g cm⁻³; kurang tumpat"
     ],
     answerIndex: 2,
-    explanation:
-      "Kimia mengkaji jirim, komposisi, sifat, dan tindak balasnya. Aplikasinya termasuk Farmakologi dan Forensik.",
+    explanation: "Isi padu batu = 65 − 50 = 15 cm³. Ketumpatan = 45 ÷ 15 = 3.0 g cm⁻³, melebihi 1.0 g cm⁻³."
   },
   {
     id: "sci-f1-c1-bm-q5",
@@ -559,12 +612,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Bidang Sains manakah yang mengkaji cuaca dan perubahan iklim?",
-    options: ["Geologi", "Meteorologi", "Astronomi", "Biologi"],
-    answerIndex: 1,
-    explanation:
-      "Meteorologi ialah kajian tentang corak cuaca dan perubahan iklim dalam atmosfera.",
+    difficulty: "Hard",
+    question: "Pepejal P berjisim 12 g dan berisi padu 20 cm³. Pepejal Q berjisim 18 g dan berisi padu 15 cm³. Kedua-duanya tidak larut dalam air. Pernyataan manakah betul dalam air berketumpatan 1.0 g cm⁻³?",
+    options: [
+      "P terapung dan Q tenggelam kerana P kurang tumpat dan Q lebih tumpat daripada air",
+      "Kedua-duanya terapung kerana jisim masing-masing kurang daripada 20 g",
+      "Kedua-duanya tenggelam kerana kedua-duanya pepejal",
+      "P tenggelam dan Q terapung kerana isi padu P lebih besar"
+    ],
+    answerIndex: 0,
+    explanation: "Ketumpatan P = 12 ÷ 20 = 0.6 g cm⁻³; ketumpatan Q = 18 ÷ 15 = 1.2 g cm⁻³. Bandingkan setiap ketumpatan dengan air, bukan jisim atau isi padu sahaja."
   },
   {
     id: "sci-f1-c1-bm-q6",
@@ -573,12 +630,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question:
-      "Simbol amaran manakah memberi amaran tentang bahan kimia yang bertindak balas dengan hebat terhadap haba atau gegaran?",
-    options: ["Mudah Terbakar", "Toksik", "Mudah Meletup", "Mengakis"],
+    question: "Kategori bahan berbahaya manakah merangkumi gas hidrogen dan gas butana?",
+    options: [
+      "Bahan mengakis",
+      "Bahan beracun",
+      "Bahan mudah meletup",
+      "Bahan radioaktif"
+    ],
     answerIndex: 2,
-    explanation:
-      "Simbol Mudah Meletup memberi amaran tentang bahan kimia seperti Hidrogen dan Butana yang bertindak balas dengan hebat terhadap haba atau gegaran.",
+    explanation: "Gas hidrogen dan gas butana disenaraikan sebagai bahan mudah meletup. Bahan ini perlu digunakan mengikut arahan dengan cermat."
   },
   {
     id: "sci-f1-c1-bm-q7",
@@ -586,12 +646,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Etanol dan Aseton adalah contoh bahan kimia jenis apakah?",
-    options: ["Toksik", "Mengakis", "Pengoksidaan", "Mudah Terbakar"],
+    difficulty: "Medium",
+    question: "Seorang murid meletakkan alkohol di sebelah penunu yang menyala. Perubahan manakah menangani bahaya utama?",
+    options: [
+      "Gantikan label dengan amaran beracun",
+      "Biarkannya di sebelah penunu tetapi pakai cermin pelindung mata",
+      "Alihkannya lebih dekat supaya mudah dicapai",
+      "Jauhkan alkohol daripada api dan haba"
+    ],
     answerIndex: 3,
-    explanation:
-      "Etanol dan Aseton adalah bahan kimia Mudah Terbakar yang mudah menyala dan mesti dijauhkan daripada haba dan api.",
+    explanation: "Alkohol mudah terbakar dan wapnya mudah menyala. Menjauhkannya daripada api atau haba menangani bahaya ini."
   },
   {
     id: "sci-f1-c1-bm-q8",
@@ -599,13 +663,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question:
-      "Simbol amaran manakah menunjukkan bahan kimia yang membebaskan oksigen untuk membantu bahan lain terbakar?",
-    options: ["Mudah Meletup", "Pengoksidaan", "Mudah Terbakar", "Merengsa"],
+    difficulty: "Hard",
+    question: "Bacaan ulangan sebuah kumpulan tidak menyokong hipotesisnya. Kumpulan lain memperoleh pola yang dijangka. Keputusan manakah paling baik mengekalkan bukti yang jujur dan kesimpulan yang sah?",
+    options: [
+      "Gantikan bacaan dengan data kumpulan lain sebelum membuat kesimpulan",
+      "Kekalkan bacaan asal, semak kaedah dan ulang pengukuran, kemudian nilai hipotesis berdasarkan data",
+      "Kekalkan hanya bacaan yang menyokong hipotesis",
+      "Terima hipotesis kerana ditulis sebelum eksperimen"
+    ],
     answerIndex: 1,
-    explanation:
-      "Bahan kimia Pengoksidaan seperti Kalium manganat(VII) membebaskan oksigen yang membantu bahan lain terbakar dengan lebih kuat.",
+    explanation: "Kejujuran memerlukan bacaan sebenar dikekalkan. Semakan kaedah dan pengukuran ulangan membantu mengesahkan data; kesimpulan mesti berdasarkan bukti, bukan jawapan yang dijangka."
   },
   {
     id: "sci-f1-c1-bm-q9",
@@ -613,12 +680,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Asid pekat adalah contoh bahan kimia jenis apakah?",
-    options: ["Toksik", "Merengsa", "Mengakis", "Mudah Terbakar"],
+    difficulty: "Medium",
+    question: "Bahan kimia berlabel mengakis terpercik pada kulit seorang murid. Tindakan manakah mematuhi arahan keselamatan makmal?",
+    options: [
+      "Lap dan teruskan eksperimen tanpa melaporkannya",
+      "Tutup kulit yang terkena bahan tanpa mencucinya",
+      "Cuci dengan air yang banyak dan maklumkan kepada guru dengan segera",
+      "Tambah bahan kimia lain pada kulit sebelum memaklumkan kepada guru"
+    ],
     answerIndex: 2,
-    explanation:
-      "Bahan kimia Mengakis seperti Asid pekat membakar kulit dan melarutkan bahan. Sentiasa elakkan sentuhan langsung.",
+    explanation: "Bahan mengakis boleh melecurkan kulit. Arahan keselamatan menghendaki bahagian yang terkena bahan dicuci dengan air yang banyak dan guru dimaklumkan."
   },
   {
     id: "sci-f1-c1-bm-q10",
@@ -626,12 +697,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Merkuri dan Sianida adalah contoh bahan kimia jenis apakah?",
-    options: ["Merengsa", "Toksik", "Pengoksidaan", "Mudah Meletup"],
-    answerIndex: 1,
-    explanation:
-      "Bahan kimia Toksik seperti Merkuri dan Sianida boleh membawa maut jika ditelan atau dihidu.",
+    difficulty: "Hard",
+    question: "Sebuah kumpulan hampir selesai apabila bahan kimia tertumpah. Seorang ahli mencadangkan agar pengukuran disiapkan dahulu dan sisa dituang ke dalam sinki tanpa menyemak arahan. Pelan manakah paling baik mengimbangkan tanggungjawab dengan kerja saintifik?",
+    options: [
+      "Berhenti, maklumkan kepada guru, ikut arahan pelupusan yang betul dan sambung hanya apabila selamat",
+      "Siapkan pengukuran dahulu, kemudian laporkan tumpahan",
+      "Bersihkan tumpahan tanpa memberitahu guru dan gunakan cara pelupusan yang dicadangkan",
+      "Tinggalkan tumpahan untuk kumpulan lain dan salin bacaannya"
+    ],
+    answerIndex: 0,
+    explanation: "Tanggungjawab merangkumi keselamatan manusia dan alam sekitar. Melaporkan tumpahan dan mengikuti arahan pelupusan yang betul perlu didahulukan sebelum menyiapkan pengukuran."
   },
   {
     id: "sci-f1-c1-bm-q11",
@@ -640,12 +715,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question:
-      "Alat radas makmal manakah digunakan untuk mengukur isipadu cecair dengan kejituan 0.1 cm3?",
-    options: ["Bikar", "Balang Loceng", "Balang Gas", "Buret dan Pipet"],
-    answerIndex: 3,
+    question: "Padanan radas dengan fungsi yang manakah betul?",
+    options: [
+      "Bikar — mengumpul gas",
+      "Balang gas — menyukat isi padu cecair yang tetap",
+      "Buret — menyukat isi padu cecair dengan tepat",
+      "Pipet — memanaskan bahan kimia",
+    ],
+    answerIndex: 2,
     explanation:
-      "Buret dan Pipet direka untuk pengukuran cecair yang sangat tepat dengan kejituan sehingga 0.1 cm3.",
+      "Buku teks menyatakan bahawa buret menyukat isi padu cecair dengan tepat, manakala pipet menyukat isi padu cecair yang tetap.",
   },
   {
     id: "sci-f1-c1-bm-q12",
@@ -653,17 +732,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah kegunaan Balang Loceng dalam makmal?",
+    difficulty: "Medium",
+    question: "Seorang murid perlu mengukur diameter dawai halus. Alat manakah paling sesuai untuk mengesan perbezaan kecil pada diameternya?",
     options: [
-      "Mengukur isipadu cecair",
-      "Mengumpul gas",
-      "Mewujudkan vakum atau mengasingkan eksperimen daripada udara luar",
-      "Memanaskan bahan kimia",
+      "Pembaris meter",
+      "Tolok skru mikrometer",
+      "Pita pengukur",
+      "Silinder penyukat"
     ],
-    answerIndex: 2,
-    explanation:
-      "Balang Loceng digunakan untuk mewujudkan vakum atau mengasingkan eksperimen daripada keadaan udara luar.",
+    answerIndex: 1,
+    explanation: "Tolok skru mikrometer mempunyai senggatan skala yang kecil, sesuai untuk mengukur dimensi kecil seperti diameter dawai halus."
   },
   {
     id: "sci-f1-c1-bm-q13",
@@ -683,11 +761,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah unit SI untuk Jisim?",
-    options: ["Meter (m)", "Kilogram (kg)", "Kelvin (K)", "Saat (s)"],
+    difficulty: "Medium",
+    question: "Dua makmal membandingkan jisim tetapi satu melaporkan '5' dan satu lagi '5000' tanpa unit. Amalan manakah membolehkan perbandingan yang bermakna?",
+    options: [
+      "Anggap nombor yang lebih besar sentiasa bermaksud jisim lebih besar",
+      "Nyatakan unit dan tukarkan kedua-dua jisim kepada unit piawai yang sama, seperti kilogram",
+      "Tukar kedua-dua nombor kepada 5 tanpa menyemak unit",
+      "Bandingkan nama jenama alat pengukur sahaja"
+    ],
     answerIndex: 1,
-    explanation: "Unit asas SI untuk Jisim ialah Kilogram (kg).",
+    explanation: "Nombor tanpa unit tidak menyatakan jisim yang diukur. Unit piawai membolehkan ukuran disampaikan dan dibandingkan secara seragam."
   },
   {
     id: "sci-f1-c1-bm-q15",
@@ -695,11 +778,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah unit SI untuk Suhu?",
-    options: ["Celsius (C)", "Fahrenheit (F)", "Ampere (A)", "Kelvin (K)"],
+    difficulty: "Medium",
+    question: "Seorang murid menyiasat kesan panjang bandul terhadap masa untuk sepuluh ayunan. Hipotesis manakah boleh diuji dengan mengubah panjang dan mengukur masa itu?",
+    options: [
+      "Ladung bandul diperbuat daripada logam",
+      "Sepuluh ayunan dikira dalam setiap percubaan",
+      "Jam randik digunakan untuk mengukur masa",
+      "Semakin bertambah panjang bandul, semakin bertambah masa untuk sepuluh ayunan"
+    ],
     answerIndex: 3,
-    explanation: "Unit asas SI untuk Suhu ialah Kelvin (K), bukan Celsius atau Fahrenheit.",
+    explanation: "Hipotesis menyatakan hubungan yang boleh diuji: panjang ialah pemboleh ubah dimanipulasikan dan masa untuk sepuluh ayunan ialah pemboleh ubah bergerak balas."
   },
   {
     id: "sci-f1-c1-bm-q16",
@@ -707,11 +795,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah unit SI untuk Arus Elektrik?",
-    options: ["Volt (V)", "Watt (W)", "Ampere (A)", "Ohm (O)"],
+    difficulty: "Hard",
+    question: "Untuk menguji kesan panjang bandul terhadap masa bagi sepuluh ayunan, seorang murid mengubah panjang dan jisim ladung serentak. Mengapakah reka bentuk ini lemah dan apakah pembetulannya?",
+    options: [
+      "Masa tidak perlu diukur; rekod panjang sahaja",
+      "Panjang mesti tetap manakala masa dan jisim diubah",
+      "Dua faktor berubah serentak; malarkan jisim ladung semasa mengubah panjang",
+      "Jisim ladung mesti bertambah apabila panjang bertambah"
+    ],
     answerIndex: 2,
-    explanation: "Unit asas SI untuk Arus Elektrik ialah Ampere (A).",
+    explanation: "Perubahan dua faktor menyebabkan punca perbezaan masa tidak jelas. Ubah panjang, ukur masa untuk bilangan ayunan yang sama dan malarkan jisim ladung."
   },
   {
     id: "sci-f1-c1-bm-q17",
@@ -719,12 +812,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah yang diwakili oleh imbuhan Kilo (k)?",
-    options: ["1,000,000", "0.001", "0.01", "1,000"],
+    difficulty: "Medium",
+    question: "Pasangan manakah menukarkan 2.5 km kepada meter dan 2500 mg kepada gram dengan betul?",
+    options: [
+      "250 m dan 25 g",
+      "2500 m dan 2500 g",
+      "25 000 m dan 0.25 g",
+      "2500 m dan 2.5 g"
+    ],
     answerIndex: 3,
-    explanation:
-      "Imbuhan Kilo (k) mewakili 1,000 atau 10 kuasa 3. Contoh: 1 kilometer = 1,000 meter.",
+    explanation: "Kilo bermaksud 1000: 2.5 × 1000 = 2500 m. Mili bermaksud satu perseribu: 2500 ÷ 1000 = 2.5 g."
   },
   {
     id: "sci-f1-c1-bm-q18",
@@ -732,11 +829,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah yang diwakili oleh imbuhan Mega (M)?",
-    options: ["1,000", "0.001", "1,000,000", "0.000001"],
+    difficulty: "Medium",
+    question: "Sebiji batu ditenggelamkan sepenuhnya di dalam silinder penyukat. Bacaan air meningkat daripada 50 cm³ kepada 65 cm³. Berapakah isi padu batu?",
+    options: [
+      "115 cm³",
+      "65 cm³",
+      "15 cm³",
+      "50 cm³"
+    ],
     answerIndex: 2,
-    explanation: "Imbuhan Mega (M) mewakili 1,000,000 atau 10 kuasa 6.",
+    explanation: "Isi padu air yang disesarkan sama dengan isi padu batu yang ditenggelamkan: 65 − 50 = 15 cm³."
   },
   {
     id: "sci-f1-c1-bm-q19",
@@ -744,11 +846,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah yang diwakili oleh imbuhan Mili (m)?",
-    options: ["0.001", "0.01", "1,000", "0.000001"],
+    difficulty: "Hard",
+    question: "Bagi sepuluh ayunan bandul, panjang 20 cm, 30 cm dan 40 cm memberikan purata masa 9.1 s, 11.4 s dan 13.1 s. Hipotesis meramalkan masa lebih panjang bagi bandul lebih panjang. Analisis manakah disokong?",
+    options: [
+      "Masa bertambah dengan panjang, maka data menyokong hipotesis",
+      "Masa berkurang dengan panjang, maka hipotesis ditolak",
+      "Setiap pertambahan 10 cm menambah tepat 2.3 s, maka pertambahan masa adalah seragam",
+      "Jisim ladung bertambah dengan panjang, maka jisim menyebabkan perubahan masa"
+    ],
     answerIndex: 0,
-    explanation: "Imbuhan Mili (m) mewakili 0.001 atau 10 kuasa -3.",
+    explanation: "Masa yang diukur meningkat daripada 9.1 kepada 11.4 kepada 13.1 s. Data menyokong pola yang diramalkan, tetapi pertambahannya ialah 2.3 s dan 1.7 s, bukan sama; tiada data jisim diberikan."
   },
   {
     id: "sci-f1-c1-bm-q20",
@@ -757,10 +864,10 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question: "Apakah yang diwakili oleh imbuhan Mikro (u)?",
+    question: "Apakah yang diwakili oleh imbuhan Mikro (µ)?",
     options: ["0.01", "0.001", "1,000,000", "0.000001"],
     answerIndex: 3,
-    explanation: "Imbuhan Mikro (u) mewakili 0.000001 atau 10 kuasa -6.",
+    explanation: "Imbuhan Mikro (µ) mewakili 0.000001 atau 10 kuasa -6.",
   },
   {
     id: "sci-f1-c1-bm-q21",
@@ -768,17 +875,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah perbezaan antara Ketepatan dan Kepersisan?",
+    difficulty: "Hard",
+    question: "Panjang sebenar ialah 10.0 cm. Set P memberikan 12.0, 12.0, 12.0 cm; set Q memberikan 9.9, 10.0, 10.1 cm. Perbandingan Kejituan dan Kepersisan manakah betul?",
     options: [
-      "Kedua-duanya bermaksud sama",
-      "Ketepatan ialah kedekatan dengan nilai sebenar, Kepersisan ialah konsistensi bacaan",
-      "Ketepatan ialah konsistensi, Kepersisan ialah kedekatan dengan nilai sebenar",
-      "Ketepatan hanya digunakan untuk suhu",
+      "P lebih jitu kerana bacaannya sama",
+      "Q lebih jitu, tetapi P lebih persis",
+      "P lebih jitu dan Q lebih persis",
+      "Kedua-dua set sama jitu kerana masing-masing mempunyai tiga bacaan"
     ],
     answerIndex: 1,
-    explanation:
-      "Ketepatan merujuk kepada sejauh mana bacaan menghampiri nilai sebenar, manakala Kepersisan merujuk kepada konsistensi bacaan yang diulang.",
+    explanation: "Bacaan Q lebih hampir kepada 10.0 cm, maka Q lebih jitu. Bacaan P sama antara satu sama lain, maka P lebih persis walaupun jauh daripada nilai sebenar."
   },
   {
     id: "sci-f1-c1-bm-q22",
@@ -787,16 +893,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question: "Apakah Ralat Sifar?",
+    question: "Huraian manakah mengenal pasti ralat sifar?",
     options: [
-      "Apabila bacaan adalah tepat sifar",
-      "Apabila alat membaca sifar dengan betul",
-      "Ralat sistematik di mana alat tidak bermula pada sifar",
-      "Ralat yang disebabkan oleh kedudukan mata yang salah",
+      "Bacaan berubah kerana pemerhati melihat skala dari sudut berbeza",
+      "Murid merekod bacaan dengan unit yang salah",
+      "Alat menunjukkan bacaan bukan sifar apabila sepatutnya menunjukkan sifar",
+      "Murid memulakan jam randik selepas peristiwa bermula"
     ],
     answerIndex: 2,
-    explanation:
-      "Ralat Sifar ialah ralat sistematik di mana alat tidak menunjukkan sifar apabila sepatutnya. Formula: Bacaan Sebenar = Bacaan Skala - Ralat Sifar.",
+    explanation: "Ralat sifar ialah ralat sistematik: alat tidak menunjukkan sifar apabila sepatutnya. Ralat ini perlu diperiksa dan dibetulkan."
   },
   {
     id: "sci-f1-c1-bm-q23",
@@ -804,17 +909,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Bagaimana cara mengira Bacaan Sebenar apabila terdapat Ralat Sifar?",
+    difficulty: "Medium",
+    question: "Suatu alat pengukur mempunyai ralat sifar +0.02 cm dan memberikan bacaan skala 3.22 cm. Berapakah bacaan yang dibetulkan?",
     options: [
-      "Bacaan Sebenar = Bacaan Skala + Ralat Sifar",
-      "Bacaan Sebenar = Ralat Sifar - Bacaan Skala",
-      "Bacaan Sebenar = Bacaan Skala x Ralat Sifar",
-      "Bacaan Sebenar = Bacaan Skala - Ralat Sifar",
+      "3.24 cm",
+      "3.22 cm",
+      "3.02 cm",
+      "3.20 cm"
     ],
     answerIndex: 3,
-    explanation:
-      "Untuk membetulkan Ralat Sifar, tolak ralat sifar daripada bacaan skala untuk mendapatkan ukuran sebenar.",
+    explanation: "Bacaan sebenar = bacaan skala − ralat sifar = 3.22 − (+0.02) = 3.20 cm."
   },
   {
     id: "sci-f1-c1-bm-q24",
@@ -823,16 +927,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question: "Apakah yang menyebabkan Ralat Paralaks?",
+    question: "Apakah yang menyebabkan ralat paralaks semasa membaca skala?",
     options: [
-      "Menggunakan alat yang salah",
-      "Mata tidak tegak lurus dengan skala",
-      "Alat terlalu lama digunakan",
-      "Mengukur pada suhu yang salah",
+      "Alat tidak menunjukkan sifar apabila sepatutnya",
+      "Mata tidak berserenjang dengan skala yang dibaca",
+      "Unit yang salah ditulis di sebelah bacaan",
+      "Jam randik dimulakan terlalu lewat"
     ],
     answerIndex: 1,
-    explanation:
-      "Ralat Paralaks ialah ralat rawak yang disebabkan oleh mata yang tidak tegak lurus dengan skala yang dibaca.",
+    explanation: "Ralat paralaks berpunca daripada kedudukan mata yang salah. Pastikan mata berserenjang dengan skala."
   },
   {
     id: "sci-f1-c1-bm-q25",
@@ -840,18 +943,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question:
-      "Bagaimana cara mengelakkan Ralat Paralaks semasa membaca cecair dalam silinder penyukat?",
+    difficulty: "Hard",
+    question: "Sehelai kertas terlalu nipis untuk dibaca terus dengan pembaris bersenggat 1 mm. Pelan manakah paling baik menganggarkan ketebalan sehelai kertas dan memberikan semakan terus yang lebih peka?",
     options: [
-      "Baca bahagian atas lengkungan cecair",
-      "Baca dari mana-mana sudut",
-      "Selaraskan paras mata terus dengan bahagian bawah meniskus",
-      "Condongkan silinder penyukat",
+      "Ukur timbunan 100 helai, bahagi dengan 100, kemudian semak sehelai dengan tolok skru mikrometer",
+      "Ukur 100 helai dan darab dengan 100, kemudian gunakan pembaris yang sama",
+      "Baca sehelai kertas hingga beberapa tempat perpuluhan dengan pembaris, kemudian ulang bacaan itu",
+      "Ukur sehelai kertas dengan pita pengukur kerana skalanya lebih panjang"
     ],
-    answerIndex: 2,
-    explanation:
-      "Untuk mengelakkan Ralat Paralaks, selaraskan paras mata terus dengan bahagian bawah meniskus.",
+    answerIndex: 0,
+    explanation: "Mengukur timbunan membolehkan ketebalan dibaca; membahagikan dengan bilangan helai menganggarkan ketebalan sehelai. Senggatan mikrometer yang lebih kecil mengesan perubahan lebih kecil; menambah tempat perpuluhan tidak meningkatkan kepekaan pembaris."
   },
   {
     id: "sci-f1-c1-bm-q26",
@@ -862,14 +963,14 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah definisi Ketumpatan?",
     options: [
-      "Isipadu per unit jisim",
+      "Isi padu per unit jisim",
       "Jisim per unit luas",
-      "Berat per unit isipadu",
-      "Jisim per unit isipadu",
+      "Berat per unit isi padu",
+      "Jisim per unit isi padu",
     ],
     answerIndex: 3,
     explanation:
-      "Ketumpatan didefinisikan sebagai Jisim per unit Isipadu. Formula: Ketumpatan = Jisim dibahagi Isipadu. Unit: g/cm3 atau kg/m3.",
+      "Ketumpatan ialah jisim per unit isi padu. Dalam bab ini, ketumpatan dihitung dalam g cm-3 daripada jisim dalam g dan isi padu dalam cm3.",
   },
   {
     id: "sci-f1-c1-bm-q27",
@@ -878,16 +979,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "bm",
     difficulty: "Easy",
-    question: "Apakah kegunaan Kaedah Sesaran Air?",
+    question: "Urutan manakah betul pada permulaan penyiasatan saintifik?",
     options: [
-      "Mengukur jisim objek",
-      "Mencari isipadu pepejal tidak sekata",
-      "Mengukur ketumpatan air",
-      "Mencari berat cecair",
+      "Mengenal pasti masalah → membina hipotesis → mengawal pemboleh ubah → merancang eksperimen",
+      "Membina hipotesis → menulis laporan → mengenal pasti masalah → mengumpul data",
+      "Merancang eksperimen → mengenal pasti masalah → membuat kesimpulan → mengawal pemboleh ubah",
+      "Mengumpul data → membina hipotesis → mengenal pasti masalah → menulis laporan",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Kaedah Sesaran Air digunakan untuk mencari isipadu pepejal tidak sekata dengan mengukur jumlah air yang teranjak dalam silinder penyukat.",
+      "Urutan buku teks bermula dengan mengenal pasti masalah, membina hipotesis, mengawal pemboleh ubah dan merancang eksperimen.",
   },
   {
     id: "sci-f1-c1-bm-q28",
@@ -895,17 +996,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Menurut Hukum Apungan, objek akan terapung jika ketumpatannya:",
+    difficulty: "Medium",
+    question: "Seorang murid merekod bahawa objek terapung di dalam air, kemudian menerangkan bahawa objek itu kurang tumpat daripada air. Pasangan manakah mengenal pasti kedua-dua langkah ini dengan betul?",
     options: [
-      "Sama dengan 1.0 g/cm3",
-      "Lebih besar daripada 1.0 g/cm3",
-      "Kurang daripada 1.0 g/cm3",
-      "Lebih besar daripada 2.0 g/cm3",
+      "Ramalan, kemudian pengukuran",
+      "Pemerhatian, kemudian inferens",
+      "Inferens, kemudian pemerhatian",
+      "Pengelasan, kemudian pengawalan pemboleh ubah"
     ],
-    answerIndex: 2,
-    explanation:
-      "Objek dengan ketumpatan KURANG daripada 1.0 g/cm3 akan terapung. Objek dengan ketumpatan lebih tinggi akan tenggelam.",
+    answerIndex: 1,
+    explanation: "Keadaan terapung diperhatikan secara langsung. Penjelasan menggunakan ketumpatan relatif ialah inferens berdasarkan pemerhatian itu dan pengetahuan sains."
   },
   {
     id: "sci-f1-c1-bm-q29",
@@ -913,17 +1013,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Manakah antara berikut merupakan aplikasi Sains yang betul dalam kehidupan harian?",
+    difficulty: "Hard",
+    question: "Dua orang murid tidak bersetuju tentang suatu keputusan. Seorang mencadangkan agar keputusan diubah mengikut ramalan; seorang lagi mencadangkan agar rekod asal disemak bersama dan pengukuran diulang. Keputusan dan alasan manakah paling mencerminkan sikap saintifik?",
     options: [
-      "Menulis cerita dan puisi",
-      "Menyelesaikan jenayah melalui DNA forensik",
-      "Melukis dan menggambar",
-      "Bermain alat muzik",
+      "Gunakan ramalan kerana persetujuan lebih penting daripada bukti",
+      "Semak rekod dengan sopan dan ulang pengukuran kerana kesimpulan memerlukan data yang jujur dan disahkan",
+      "Gunakan bacaan lebih tinggi kerana nilai lebih besar lebih jitu",
+      "Puratakan ramalan dengan bacaan kerana kedua-duanya sama taraf sebagai ukuran"
     ],
     answerIndex: 1,
-    explanation:
-      "Sains membantu menyelesaikan jenayah melalui DNA forensik, meningkatkan hasil tanaman melalui hidroponik, dan memajukan perubatan melalui pembedahan robotik.",
+    explanation: "Semakan dengan sopan membolehkan kumpulan mengesahkan data tanpa mengubah pemerhatian agar sepadan dengan jangkaan. Kejujuran dan kejituan menyokong kesimpulan berdasarkan bukti."
   },
   {
     id: "sci-f1-c1-bm-q30",
@@ -931,13 +1030,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 1",
     lang: "bm",
-    difficulty: "Easy",
+    difficulty: "Hard",
     question:
-      "Sebiji batu dimasukkan ke dalam silinder penyukat yang mengandungi 50 cm3 air. Paras air naik kepada 65 cm3. Berapakah isipadu batu?",
-    options: ["115 cm3", "50 cm3", "65 cm3", "15 cm3"],
-    answerIndex: 3,
-    explanation:
-      "Isipadu batu = Paras air akhir - Paras air awal = 65 - 50 = 15 cm3. Ini adalah Kaedah Sesaran Air.",
+      "Sebuah silinder penyukat berjisim 230 g. Selepas 50 cm3 cecair X ditambah, jumlah jisim menjadi 320 g. Berapakah ketumpatan cecair X?",
+    options: ["1.8 g cm-3", "4.6 g cm-3", "6.4 g cm-3", "11.0 g cm-3"],
+    answerIndex: 0,
+    explanation: "Jisim cecair X = 320 - 230 = 90 g. Ketumpatan = 90 ÷ 50 = 1.8 g cm-3.",
   },
   {
     id: "sci-f1-c2-bm-q1",
@@ -11908,3 +12006,8 @@ export const quizzes: QuizQuestion[] = [
   ...bmF1ObjektifKuiz2,
   ...bmF1ObjektifKuiz3,
 ];
+
+// Single Chapter 1 owner, reused by the live registry barrel.
+export const scienceF1Chapter1Quizzes = quizzes.filter(
+  (question) => question.subjectId === "science" && question.form === "Form 1" && question.chapter === "Chapter 1",
+);

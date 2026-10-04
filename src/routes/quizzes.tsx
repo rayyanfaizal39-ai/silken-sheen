@@ -51,6 +51,7 @@ import {
   SubjectWorldBanner,
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
+import { QuizArena } from "@/components/quiz/QuizArena";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import { getPlanetTheme } from "@/components/PlanetEnvironment";
@@ -100,6 +101,7 @@ import { QuizStreakCelebration } from "@/features/quiz-streak/QuizStreakCelebrat
 import { useQuizStreak } from "@/features/quiz-streak/useQuizStreak";
 import {
   orderQuestionsByDifficulty,
+  orderRegularQuizQuestions,
   shuffleQuestionOptions,
 } from "@/features/quiz/difficulty/quizDifficulty";
 import {
@@ -16163,6 +16165,7 @@ function QuizzesPage() {
   const [animatedScore, setAnimatedScore] = useState(0);
   const [feedback, setFeedback] = useState<QuizFeedback | null>(null);
   const [timerPref, setTimerPref] = useState<TimerPref>(null);
+  const [confirmLeaveQuiz, setConfirmLeaveQuiz] = useState(false);
   const [shuffledPool, setShuffledPool] = useState<ShuffledQuestion[] | null>(null);
   const [mathObjectiveId, setMathObjectiveId] = useState<MathObjectiveId | null>(null);
   const [mathObjectivePhase, setMathObjectivePhase] = useState<MathObjectivePhase>("select");
@@ -16468,7 +16471,7 @@ function QuizzesPage() {
   // None of this is implemented yet — rawPool selection stays exactly
   // as they are; this comment documents where that logic will plug in.
   function buildShuffledPool(rawPool: QuizQuestion[]): ShuffledQuestion[] {
-    const ordered = orderQuestionsByDifficulty(rawPool);
+    const ordered = orderRegularQuizQuestions(rawPool, { subjectId: subject, form });
     if (import.meta.env.DEV && ordered.issues.length > 0) {
       console.error("[quiz-difficulty] Invalid difficulty metadata", ordered.issues);
     }
@@ -16608,6 +16611,7 @@ function QuizzesPage() {
     setTimeLeft(questionSeconds);
     setAnimatedScore(0);
     setTimerPref(null);
+    setConfirmLeaveQuiz(false);
     setShuffledPool(null);
     setMathObjectiveId(null);
     setMathObjectivePhase("select");
@@ -16632,6 +16636,7 @@ function QuizzesPage() {
     setTimeLeft(questionSeconds);
     setAnimatedScore(0);
     setTimerPref(null);
+    setConfirmLeaveQuiz(false);
     setShuffledPool(null);
     setMathShuffledQuestions(null);
     setEnglishShuffledQuestions(null);
@@ -17252,37 +17257,43 @@ function QuizzesPage() {
   return (
     <AcademyPageShell subjectId={planetSubjectId} className="max-w-7xl">
       <QuizStreakCelebration streak={quizStreak.streak} celebration={quizStreak.celebration} />
-      <AcademyHero
-        eyebrow="Quiz arena"
-        title="Take a"
-        gradientTitle="Quiz"
-        description="Instant scoring, focused practice, and XP momentum for every KSSM subject."
-        illustration="quizzes"
-        stats={[
-          {
-            label: "Quiz Progress",
-            value: activeQuiz.length > 0 ? `${idx + 1}/${activeQuiz.length}` : "Ready",
-          },
-          { label: "Questions Completed", value: progress.quizzesTaken },
-          {
-            label: "Average Score",
-            value:
-              activeQuiz.length > 0 ? `${Math.round((score / activeQuiz.length) * 100)}%` : "Start",
-          },
-        ]}
-      />
-      {subject && chapter && hasSelectedChapterQuiz && (
-        <ChapterContentTabs
-          subjectId={subject}
-          form={form}
-          chapterKey={chapter}
-          scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
-          currentContentType="quizzes"
-        />
+      {!timerPref && (
+        <>
+          <AcademyHero
+            eyebrow="Quiz arena"
+            title="Take a"
+            gradientTitle="Quiz"
+            description="Instant scoring, focused practice, and XP momentum for every KSSM subject."
+            illustration="quizzes"
+            stats={[
+              {
+                label: "Quiz Progress",
+                value: activeQuiz.length > 0 ? `${idx + 1}/${activeQuiz.length}` : "Ready",
+              },
+              { label: "Questions Completed", value: progress.quizzesTaken },
+              {
+                label: "Average Score",
+                value:
+                  activeQuiz.length > 0
+                    ? `${Math.round((score / activeQuiz.length) * 100)}%`
+                    : "Start",
+              },
+            ]}
+          />
+          {subject && chapter && hasSelectedChapterQuiz && (
+            <ChapterContentTabs
+              subjectId={subject}
+              form={form}
+              chapterKey={chapter}
+              scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
+              currentContentType="quizzes"
+            />
+          )}
+          <div className="mb-7 flex justify-center">
+            <DailyQuote />
+          </div>
+        </>
       )}
-      <div className="mb-7 flex justify-center">
-        <DailyQuote />
-      </div>
 
       {!subject ? (
         <div className="space-y-6">
@@ -17597,6 +17608,8 @@ function QuizzesPage() {
           quizSets={availableChapterQuizSets}
           selectedQuizSet={scienceQuizSet}
           onSelectQuizSet={setScienceQuizSet}
+          questionCount={pool.length}
+          difficultyLabel={subject === "sejarah" ? "All" : regularDifficultyLabels[diff]}
           onBack={() => {
             setChapter(null);
             updateQuizSearch({ chapter: null });
@@ -17605,25 +17618,54 @@ function QuizzesPage() {
           onStart={(pref) => {
             setAttemptStartXp(progress.xp);
             resetQuizAward();
+            setConfirmLeaveQuiz(false);
             setTimerPref(pref);
           }}
         />
       ) : (
-        <>
-          <ContentHeader
-            subjectId={subject}
-            chapterKey={chapter}
-            scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
-            form={form}
-            mode="quizzes"
-            onBack={() => {
-              setChapter(null);
-              updateQuizSearch({ chapter: null });
-              reset();
-            }}
-          />
+        <QuizArena>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#A78BFA]">
+                AcadeMY
+              </p>
+              <p className="truncate font-display text-sm font-bold text-white">
+                {cleanLearningLabel(chapterMeta?.label ?? chapter)}
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              {timerPref?.mode === "timer" && (
+                <div
+                  className={`flex items-center gap-1 rounded-full border px-3 py-1.5 text-xs font-bold ${
+                    timeLeft <= 5
+                      ? "border-rose-500/40 bg-rose-500/15 text-rose-300"
+                      : timeLeft <= 10
+                        ? "border-amber-500/30 bg-amber-500/10 text-amber-300"
+                        : "border-emerald-500/25 bg-emerald-500/10 text-emerald-300"
+                  }`}
+                >
+                  <Timer className="h-3 w-3" /> {timeLeft}s
+                </div>
+              )}
+              <button
+                type="button"
+                onClick={() => setConfirmLeaveQuiz(true)}
+                className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-bold text-white hover:bg-white/10"
+              >
+                {regularQuizBm ? "Keluar" : "Exit"}
+              </button>
+            </div>
+          </div>
+          <div className="mb-4 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-[#6366F1] to-[#A78BFA] transition-[width] duration-500"
+              style={{
+                width: `${((idx + (done ? 1 : 1)) / Math.max(shuffledPool?.length ?? pool.length, 1)) * 100}%`,
+              }}
+            />
+          </div>
 
-          <div className="glass-strong rounded-2xl p-5 mb-8 flex flex-wrap gap-3 items-center justify-between animate-fade-up">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3">
             <div className="flex flex-wrap gap-2 items-center">
               {subject === "sejarah" ? (
                 <div className="flex gap-1">
@@ -17798,6 +17840,14 @@ function QuizzesPage() {
                     </div>
                   </div>
 
+                  {score < (shuffledPool?.length ?? pool.length) && (
+                    <p className="mx-auto mb-6 max-w-md text-sm leading-6 text-white/60">
+                      {regularQuizBm
+                        ? `Ulang kaji ${cleanLearningLabel(chapterMeta?.label ?? chapter)} sebelum cuba lagi.`
+                        : `Review ${cleanLearningLabel(chapterMeta?.label ?? chapter)} before you retry.`}
+                    </p>
+                  )}
+
                   <div className="mx-auto mb-8 max-w-md">
                     <QuizAwardSummary
                       result={quizCompletion}
@@ -17839,11 +17889,7 @@ function QuizzesPage() {
                 key={idx}
                 data-quiz-combo-surface
                 className={`relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.4)] quiz-q-enter ${
-                  feedback?.kind === "wrong"
-                    ? "animate-shake"
-                    : feedback?.kind === "correct"
-                      ? "animate-correct-pulse"
-                      : ""
+                  feedback?.kind === "correct" ? "animate-correct-pulse" : ""
                 }`}
                 style={{
                   boxShadow: planetTheme
@@ -17935,9 +17981,14 @@ function QuizzesPage() {
                   ) : current.visualKey ? (
                     <EnglishQuestionVisual visualKey={current.visualKey} />
                   ) : null}
-                  <h2 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
+                  <h2 className="font-display text-2xl font-bold leading-snug text-white sm:text-3xl">
                     {cleanLearningQuestion(current.question)}
                   </h2>
+                  {feedback?.kind === "correct" && (
+                    <span className="quiz-arena-float mt-3 inline-flex text-sm font-bold text-[#FBBF24]">
+                      {regularQuizCopy.correct}
+                    </span>
+                  )}
                 </div>
 
                 {/* ── Answer options ── */}
@@ -18083,7 +18134,47 @@ function QuizzesPage() {
               </div>
             )
           )}
-        </>
+          {confirmLeaveQuiz && (
+            <div
+              className="fixed inset-0 z-[110] flex items-end justify-center bg-black/60 p-4 sm:items-center"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="quiz-arena-leave-title"
+            >
+              <div className="w-full max-w-sm rounded-3xl border border-white/10 bg-[#0B1220] p-6 shadow-2xl">
+                <h2 id="quiz-arena-leave-title" className="font-display text-xl font-bold">
+                  {regularQuizBm ? "Keluar dari kuiz?" : "Leave this quiz?"}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-white/65">
+                  {regularQuizBm
+                    ? "Kemajuan soalan pada halaman ini akan hilang."
+                    : "Question progress on this page will be lost."}
+                </p>
+                <div className="mt-5 flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setConfirmLeaveQuiz(false)}
+                    className="flex-1 rounded-2xl border border-white/15 py-3 text-sm font-bold"
+                  >
+                    {regularQuizBm ? "Kekal" : "Stay"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setConfirmLeaveQuiz(false);
+                      setChapter(null);
+                      updateQuizSearch({ chapter: null });
+                      reset();
+                    }}
+                    className="flex-1 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] py-3 text-sm font-bold"
+                  >
+                    {regularQuizBm ? "Keluar" : "Leave quiz"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </QuizArena>
       )}
     </AcademyPageShell>
   );
@@ -18234,6 +18325,8 @@ function QuizSettingsScreen({
   quizSets = [],
   selectedQuizSet,
   onSelectQuizSet,
+  questionCount,
+  difficultyLabel,
   onBack,
   onStart,
 }: {
@@ -18244,6 +18337,8 @@ function QuizSettingsScreen({
   quizSets?: readonly ("A" | "B")[];
   selectedQuizSet?: "A" | "B";
   onSelectQuizSet?: (set: "A" | "B") => void;
+  questionCount: number;
+  difficultyLabel: string;
   onBack: () => void;
   onStart: (pref: { mode: TimerMode; seconds: number }) => void;
 }) {
@@ -18271,12 +18366,26 @@ function QuizSettingsScreen({
         </span>
       </div>
 
-      <div className="glass-strong rounded-3xl p-8">
-        <div className="text-center mb-8">
-          <h2 className="font-display text-3xl font-bold">
-            Quiz <span className="gradient-text">Settings</span>
+      <div className="glass-strong rounded-3xl border border-white/10 bg-[#070d1c]/80 p-8">
+        <div className="mb-8 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#A78BFA]">
+            AcadeMY Quiz Arena
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-bold">
+            {subj?.name ?? "Quiz"}{" "}
+            <span className="gradient-text">{cleanLearningLabel(chapter?.label ?? chapterKey)}</span>
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="mt-3 text-sm text-white/70">
+            {questionCount} {scienceLang === "bm" ? "soalan" : "questions"}
+            <span className="mx-2 text-white/25">•</span>
+            {scienceLang === "bm" ? "Tahap" : "Difficulty"}: {difficultyLabel}
+          </p>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-muted-foreground">
+            {scienceLang === "bm"
+              ? "Baca soalan, pilih satu jawapan, kemudian semak penjelasan sebelum teruskan. Pemasa bermula hanya selepas anda menekan Start Quiz."
+              : "Read each question, choose one answer, then review the explanation before you continue. The timer starts only after you press Start Quiz."}
+          </p>
+          <p className="mt-2 text-xs text-muted-foreground">
             Timer choice does not change XP. XP is based only on completion and final score.
           </p>
         </div>
@@ -18836,6 +18945,7 @@ function EnglishQuizScreen({
   }
 
   return (
+    <QuizArena>
     <div className="animate-fade-up">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <button
@@ -18853,11 +18963,7 @@ function EnglishQuizScreen({
         key={idx}
         data-quiz-combo-surface
         className={`quiz-q-enter relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 shadow-[0_24px_80px_rgba(0,0,0,0.4)] backdrop-blur-2xl ${
-          feedback?.kind === "wrong"
-            ? "animate-shake"
-            : feedback?.kind === "correct"
-              ? "animate-correct-pulse"
-              : ""
+          feedback?.kind === "correct" ? "animate-correct-pulse" : ""
         }`}
       >
         <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-4">
@@ -18988,6 +19094,7 @@ function EnglishQuizScreen({
         )}
       </div>
     </div>
+    </QuizArena>
   );
 }
 
@@ -19953,6 +20060,7 @@ function MathObjectiveQuizScreen({
   }
 
   return (
+    <QuizArena>
     <div className="animate-fade-up">
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
         <button
@@ -19972,7 +20080,7 @@ function MathObjectiveQuizScreen({
         data-quiz-combo-surface
         className={`relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/80 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.4)] quiz-q-enter ${
           feedback?.kind === "wrong"
-            ? "animate-shake"
+            ? ""
             : feedback?.kind === "correct"
               ? "animate-correct-pulse"
               : ""
@@ -20103,6 +20211,7 @@ function MathObjectiveQuizScreen({
         )}
       </div>
     </div>
+    </QuizArena>
   );
 }
 
