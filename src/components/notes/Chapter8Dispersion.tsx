@@ -50,8 +50,14 @@ export function DiagramKey({ items }: { items: string[] }) {
 export function Pin({ x, y, n }: { x: number; y: number; n: number }) {
   return (
     <g data-diagram-callout="" transform={`translate(${x} ${y})`}>
-      <circle r="14" fill="#0f172a" stroke="#94a3b8" />
-      <text textAnchor="middle" y="6" fontSize="18" fill="#fff">
+      <circle r="14" fill="#0f172a" stroke="#94a3b8" className="max-sm:[r:17px]" />
+      <text
+        textAnchor="middle"
+        y="6"
+        fontSize="18"
+        fill="#fff"
+        className="max-sm:text-[26px] max-sm:font-semibold"
+      >
         {n}
       </text>
     </g>
