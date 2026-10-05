@@ -7,6 +7,7 @@ import {
   restoreAttemptOrder,
   shuffleQuestionOptions,
 } from "./quizDifficulty";
+import { addCorrectAnswer } from "../xp/quizXp";
 
 type TestQuestion = {
   id: string;
@@ -140,16 +141,22 @@ describe("Science Form 1 full-pool ordering", () => {
   });
 
   it.each([
-    ["science", "Form 2"], ["science", "Form 3"], ["math", "Form 1"],
-    ["sejarah", "Form 1"], ["english", "Form 1"], ["bm", "Form 1"],
+    ["science", "Form 2"],
+    ["science", "Form 3"],
+    ["math", "Form 1"],
+    ["english", "Form 1"],
+    ["bm", "Form 1"],
   ])("preserves the old ordering for %s %s", (subjectId, form) => {
-    expect(orderRegularQuizQuestions(questions, { subjectId, form }, () => 0.2))
-      .toEqual(orderQuestionsByDifficulty(questions, () => 0.2));
+    expect(orderRegularQuizQuestions(questions, { subjectId, form }, () => 0.2)).toEqual(
+      orderQuestionsByDifficulty(questions, () => 0.2),
+    );
   });
 
   it("supports new orders, correct shuffled options and saved attempt restoration", () => {
-    const build = (random: () => number) => orderRegularQuizQuestions(questions, science, random)
-      .questions.map((q) => shuffleQuestionOptions(q, random));
+    const build = (random: () => number) =>
+      orderRegularQuizQuestions(questions, science, random).questions.map((q) =>
+        shuffleQuestionOptions(q, random),
+      );
     const attempt = build(() => 0);
     const next = build(() => 0.99);
     expect(attempt.map((q) => q.id)).not.toEqual(next.map((q) => q.id));
@@ -161,5 +168,75 @@ describe("Science Form 1 full-pool ordering", () => {
     const snapshot = createAttemptSnapshot("science-f1-ch1", "one", attempt)!;
     expect(restoreAttemptOrder(snapshot, snapshot.quizKey, attempt)).toEqual(attempt);
     expect(restoreAttemptOrder(snapshot, "another-quiz", attempt)).toBeNull();
+  });
+});
+describe("Sejarah Form 1 full-pool ordering", () => {
+  const sejarah = { subjectId: "sejarah", form: "Form 1" };
+  const pool = [
+    ...Array.from({ length: 8 }, (_, i) => ({ id: `e${i}`, difficulty: "Easy" })),
+    ...Array.from({ length: 15 }, (_, i) => ({ id: `m${i}`, difficulty: "Medium" })),
+    ...Array.from({ length: 7 }, (_, i) => ({ id: `h${i}`, difficulty: "Hard" })),
+  ];
+  const seeded = (seed: number) => () => {
+    seed = (seed * 1664525 + 1013904223) % 4294967296;
+    return seed / 4294967296;
+  };
+
+  it("keeps every question once with its own difficulty and the 8/15/7 split", () => {
+    const { questions, issues } = orderRegularQuizQuestions(pool, sejarah, seeded(3));
+    expect(issues).toEqual([]);
+    expect(questions).toHaveLength(30);
+    expect(new Set(questions.map((q) => q.id)).size).toBe(30);
+    for (const q of questions) {
+      expect(q.difficulty).toBe(pool.find((p) => p.id === q.id)!.difficulty);
+    }
+    const count = (d: string) => questions.filter((q) => q.difficulty === d).length;
+    expect([count("Easy"), count("Medium"), count("Hard")]).toEqual([8, 15, 7]);
+  });
+
+  it("is not forced into Easy, Medium, Hard blocks", () => {
+    const rank = { Easy: 0, Medium: 1, Hard: 2 } as const;
+    for (const seed of [1, 2, 3, 4, 5]) {
+      const ranks = orderRegularQuizQuestions(pool, sejarah, seeded(seed)).questions.map(
+        (q) => rank[q.difficulty as keyof typeof rank],
+      );
+      const sorted = [...ranks].sort((a, b) => a - b);
+      expect(ranks).not.toEqual(sorted);
+      expect(ranks.slice(0, 8).some((r) => r > 0)).toBe(true);
+      expect(ranks.slice(-7).some((r) => r < 2)).toBe(true);
+    }
+  });
+
+  it("gives a different order for a new attempt and keeps a created attempt stable", () => {
+    const a = orderRegularQuizQuestions(pool, sejarah, seeded(1)).questions;
+    const b = orderRegularQuizQuestions(pool, sejarah, seeded(2)).questions;
+    expect(a.map((q) => q.id)).not.toEqual(b.map((q) => q.id));
+    const snapshot = createAttemptSnapshot("sejarah-f1-c6", "attempt-1", a)!;
+    expect(restoreAttemptOrder(snapshot, "sejarah-f1-c6", a)).toEqual(a);
+    expect(restoreAttemptOrder(snapshot, "sejarah-f1-c5", a)).toBeNull();
+  });
+
+  it("hands XP the same difficulty tally whatever the order", () => {
+    const tally = (list: typeof pool) =>
+      list.reduce((counts, q) => addCorrectAnswer(counts, q.difficulty), {
+        easy: 0,
+        medium: 0,
+        hard: 0,
+      } as Parameters<typeof addCorrectAnswer>[0]);
+    const ordered = orderRegularQuizQuestions(pool, sejarah, seeded(9)).questions;
+    expect(tally(ordered)).toEqual(tally(pool));
+    expect(tally(ordered)).toEqual({ easy: 8, medium: 15, hard: 7 });
+  });
+
+  it("leaves other subjects and forms on their previous ordering", () => {
+    for (const scope of [
+      { subjectId: "sejarah", form: "Form 2" },
+      { subjectId: "sejarah", form: "Form 3" },
+      { subjectId: "math", form: "Form 1" },
+    ]) {
+      expect(orderRegularQuizQuestions(pool, scope, seeded(5)).questions).toEqual(
+        orderQuestionsByDifficulty(pool, seeded(5)).questions,
+      );
+    }
   });
 });

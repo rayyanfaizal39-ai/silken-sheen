@@ -241,7 +241,11 @@ describe("Bab 3 existing attempt behavior — no shuffle-engine change", () => {
     expect(a).toHaveLength(30);
     expect(new Set(a.map((q) => q.id))).toEqual(new Set(bank.map((q) => q.id)));
     expect(a.map((q) => q.id)).not.toEqual(b.map((q) => q.id));
-    expect(a.map((q) => q.difficulty)).toEqual([
+    const tiers = a.map((q) => q.difficulty);
+    expect(tiers.filter((d) => d === "Easy")).toHaveLength(8);
+    expect(tiers.filter((d) => d === "Medium")).toHaveLength(15);
+    expect(tiers.filter((d) => d === "Hard")).toHaveLength(7);
+    expect(tiers).not.toEqual([
       ...Array(8).fill("Easy"),
       ...Array(15).fill("Medium"),
       ...Array(7).fill("Hard"),

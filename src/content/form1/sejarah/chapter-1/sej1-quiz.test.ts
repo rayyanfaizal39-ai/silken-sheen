@@ -176,12 +176,16 @@ describe("existing Sejarah attempt contract — no shuffle engine change", () =>
       shuffleQuestionOptions(q, random),
     );
 
-  it("shuffles all thirty without loss and preserves the current tier behavior", () => {
+  it("shuffles all thirty without loss and keeps tier counts but no longer groups by tier", () => {
     const attempt = build(() => 0);
     expect(new Set(attempt.map((q) => q.id))).toEqual(new Set(bank.map((q) => q.id)));
     expect(attempt).toHaveLength(30);
     expect(attempt.map((q) => q.id)).not.toEqual(build(() => 0.99).map((q) => q.id));
-    expect(attempt.map((q) => q.difficulty)).toEqual([
+    const tiers = attempt.map((q) => q.difficulty);
+    expect(tiers.filter((d) => d === "Easy")).toHaveLength(8);
+    expect(tiers.filter((d) => d === "Medium")).toHaveLength(16);
+    expect(tiers.filter((d) => d === "Hard")).toHaveLength(6);
+    expect(tiers).not.toEqual([
       ...Array(8).fill("Easy"),
       ...Array(16).fill("Medium"),
       ...Array(6).fill("Hard"),

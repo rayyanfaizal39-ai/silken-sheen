@@ -4232,7 +4232,7 @@ export const quizzes: QuizQuestion[] = [
     options: ["Negara kota", "Pusat pertanian", "Sistem perundangan", "Pusat keagamaan"],
     answerIndex: 0,
     explanation:
-      "Polis ialah negara kota bebas yang merangkumi bandar utama, bandar kecil dan kawasan kampung di sekelilingnya.",
+      "Polis ialah negara-kota yang merupakan gabungan bandar utama, bandar kecil dan kawasan kampung.",
   },
   {
     id: "sej-f1-c6-q2",
@@ -4240,16 +4240,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Apakah fungsi 'Acropolis' dalam sebuah Polis Yunani?",
+    question: "Apakah acropolis dalam sebuah polis Yunani?",
     options: [
-      "Pasar dan tempat pertemuan warganegara",
-      "Ladang dan kawasan penternakan penduduk",
-      "Pelabuhan dan gudang barangan dagangan",
-      "Pusat pentadbiran, keagamaan dan pertahanan",
+      "Kawasan lapang untuk pasar awam",
+      "Pusat komuniti yang dilindungi kubu",
+      "Pelabuhan untuk kapal dagang",
+      "Kawasan kampung di sekeliling bandar",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Acropolis terletak di kawasan tertinggi Polis dan berfungsi sebagai pusat keagamaan (menempatkan kuil), pentadbiran, dan benteng pertahanan terakhir.",
+      "Acropolis ialah pusat komuniti di tengah polis yang dilindungi oleh kubu, dengan rumah ibadat dan bangunan kerajaan.",
   },
   {
     id: "sej-f1-c6-q3",
@@ -4262,11 +4262,11 @@ export const quizzes: QuizQuestion[] = [
       "Pusat pemujaan dewa-dewi",
       "Kawasan kediaman golongan bangsawan",
       "Pasar dan pertemuan warganegara",
-      "Pusat latihan angkatan tentera",
+      "Benteng pertahanan polis",
     ],
     answerIndex: 2,
     explanation:
-      "Agora ialah kawasan terbuka yang menjadi pasar dan tempat pertemuan warganegara untuk membincangkan urusan negara kota.",
+      "Agora ialah kawasan lapang yang digunakan sebagai tempat pertemuan dan pasar awam.",
   },
   {
     id: "sej-f1-c6-q4",
@@ -4296,11 +4296,11 @@ export const quizzes: QuizQuestion[] = [
       "Pemerintahan oleh kelompok kecil berkuasa",
       "Pemerintahan oleh seorang raja berdaulat",
       "Pemerintahan melalui penyertaan langsung warganegara",
-      "Pemerintahan oleh perampas kuasa tunggal",
+      "Pemerintahan oleh golongan yang zalim",
     ],
     answerIndex: 0,
     explanation:
-      "Oligarki meletakkan kuasa pemerintahan pada sebahagian kecil golongan berkuasa, bukan seorang raja atau seluruh warganegara.",
+      "Oligarki ialah pemerintahan yang dikuasai oleh sebahagian kecil golongan yang berkuasa, bukan seorang raja atau seluruh warganegara.",
   },
   {
     id: "sej-f1-c6-q6",
@@ -4309,16 +4309,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Hard",
     question:
-      "Wanita dan hamba dikecualikan daripada demokrasi Athens. Apakah batas penyertaan politiknya?",
+      "Dewan Perhimpunan Athens dianggotai oleh warganegara lelaki. Apakah kesimpulan tentang penyertaan politik di Athens?",
     options: [
-      "Kuasa diwarisi oleh seorang raja",
-      "Hak politik terhad kepada golongan tertentu",
-      "Semua penduduk memilih wakil politik",
-      "Tentera menentukan semua keputusan negara",
+      "Hak politik dipegang oleh seorang raja",
+      "Hak politik terhad kepada warganegara lelaki",
+      "Hak politik dipegang oleh golongan bangsawan",
+      "Hak politik ditentukan oleh pihak tentera",
     ],
     answerIndex: 1,
     explanation:
-      "Penyertaan dalam demokrasi Athens terhad kepada warganegara lelaki yang layak, bukan semua penduduk dalam negara kota.",
+      "Keahlian Dewan Perhimpunan terdiri daripada warganegara lelaki Athens, maka penyertaan politik terhad kepada golongan tersebut.",
   },
   {
     id: "sej-f1-c6-q7",
@@ -4343,12 +4343,12 @@ export const quizzes: QuizQuestion[] = [
     options: [
       "Mengatasi kuasa Dewan Perhimpunan",
       "Memutuskan kes sebagai juri",
-      "Memerintah melalui pewarisan takhta",
+      "Mengurus hal pendidikan dan percukaian",
       "Melaksanakan keputusan Dewan Perhimpunan",
     ],
     answerIndex: 3,
     explanation:
-      "Majlis membantu mengurus hal pemerintahan dan pentadbiran serta melaksanakan keputusan Dewan Perhimpunan.",
+      "Majlis melaksanakan keputusan Dewan Perhimpunan dan kuasanya tidak mengatasi kuasa Dewan Perhimpunan.",
   },
   {
     id: "sej-f1-c6-q9",
@@ -4361,11 +4361,11 @@ export const quizzes: QuizQuestion[] = [
       "Badan pelaksana pentadbiran harian",
       "Badan pemutus kes mahkamah",
       "Badan tertinggi pemerintahan Athens",
-      "Badan pengurus perdagangan sahaja",
+      "Badan pengawal pertahanan negara-kota",
     ],
     answerIndex: 2,
     explanation:
-      "Dewan Perhimpunan ialah badan tertinggi pemerintahan Athens, dengan Majlis, Majistret dan Juri menjalankan fungsi masing-masing.",
+      "Dewan Perhimpunan ialah badan pentadbiran tertinggi di Athens, dengan Majlis, Majistret dan Juri menjalankan fungsi masing-masing.",
   },
   {
     id: "sej-f1-c6-q10",
@@ -4382,7 +4382,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Sparta menekankan latihan ketenteraan, disiplin dan taat setia kepada negara-kota dalam kehidupan masyarakatnya.",
+      "Sparta menekankan disiplin ketenteraan dan taat setia kepada negara-kota, maka ia dikategorikan sebagai kerajaan ketenteraan.",
   },
   {
     id: "sej-f1-c6-q11",
@@ -4393,13 +4393,13 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah fungsi Majistret dalam sistem demokrasi Athens?",
     options: [
       "Melaksanakan dasar dan urusan pentadbiran",
-      "Mengatasi kuasa tertinggi Dewan Perhimpunan",
-      "Memutuskan kes melalui tugas Juri",
-      "Memerintah melalui pewarisan takhta raja",
+      "Menggubal undang-undang bagi Athens",
+      "Memutuskan kes dan mendengar rayuan",
+      "Melantik ahli Majlis daripada warganegara",
     ],
     answerIndex: 0,
     explanation:
-      "Majistret berfungsi seperti kakitangan kerajaan yang melaksanakan dasar dan mengurus perkara seperti pendidikan serta percukaian.",
+      "Majistret ialah kakitangan kerajaan yang melaksanakan dasar dan mengurus hal seperti pendidikan serta percukaian.",
   },
   {
     id: "sej-f1-c6-q12",
@@ -4409,14 +4409,14 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Mengapakah kawasan berhampiran Sungai Tiber sesuai untuk perkembangan Tamadun Rom?",
     options: [
-      "Kawasan gurun dan laluan kafilah",
+      "Tanah subur dan kawasan perlombongan",
+      "Pulau terpencil dan laluan ke laut",
       "Tanah subur dan laluan ke laut",
-      "Kawasan pergunungan dan bekalan mineral",
-      "Tanah tandus dan perlindungan tebing",
+      "Kawasan pergunungan dan tanah tinggi",
     ],
-    answerIndex: 1,
+    answerIndex: 2,
     explanation:
-      "Lembah Latium yang subur menyokong pertanian, manakala Sungai Tiber membekalkan air dan menjadi laluan perhubungan.",
+      "Lembah Latium yang subur menyokong pertanian, manakala Sungai Tiber menjadi sumber air dan laluan untuk berlayar ke laut.",
   },
   {
     id: "sej-f1-c6-q13",
@@ -4427,14 +4427,14 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Rom menyesuaikan teknik Yunani dengan bahan baharu. Apakah hubungan yang ditunjukkan oleh perkembangan ini?",
     options: [
-      "Reka bentuk disalin tanpa penyesuaian",
-      "Semua pengetahuan terdahulu ditinggalkan",
-      "Warisan terdahulu dikembangkan melalui inovasi",
-      "Fungsi bangunan diganti oleh hiasan",
+      "Reka bentuk Yunani disalin sepenuhnya",
+      "Pengetahuan Yunani ditinggalkan oleh Rom",
+      "Warisan Yunani dikembangkan melalui inovasi",
+      "Fungsi bangunan digantikan oleh hiasan",
     ],
     answerIndex: 2,
     explanation:
-      "Seni bina Rom mengolah warisan Yunani melalui bahan dan teknik baharu, menunjukkan kesinambungan serta perubahan dalam teknologi.",
+      "Seni bina Rom menggabungkan teknik warisan Yunani dengan inovasi menggunakan bahan binaan baharu.",
   },
   {
     id: "sej-f1-c6-q14",
@@ -4442,16 +4442,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Easy",
-    question: "Apakah dua unsur struktur yang penting dalam seni bina Rom?",
+    question: "Antara berikut, yang manakah ciri seni bina Rom?",
     options: [
-      "Piramid dan obelisk",
-      "Parit dan pagar kayu",
-      "Gerbang dan kubah",
-      "Pelantar dan tangga",
+      "Piramid berperingkat",
+      "Kubah berbentuk bulat",
+      "Rumah bata tanah liat",
+      "Menara kayu bertingkat",
     ],
-    answerIndex: 2,
+    answerIndex: 1,
     explanation:
-      "Gerbang dan kubah membantu pembinaan bukaan serta ruang dalaman yang luas dalam perkembangan seni bina Rom.",
+      "Kubah berbentuk bulat ialah salah satu ciri seni bina Rom, selain bumbung melengkung, siling dan penggunaan marmar.",
   },
   {
     id: "sej-f1-c6-q15",
@@ -4477,7 +4477,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Easy",
-    question: "Apakah fungsi asal Pantheon dalam Tamadun Rom?",
+    question: "Apakah fungsi Pantheon dalam Tamadun Rom?",
     options: [
       "Arena pertandingan gladiator Rom",
       "Pusat penyembahan dewa-dewi Rom",
@@ -4486,7 +4486,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Pantheon merupakan binaan berkubah yang digunakan sebagai tempat penyembahan dewa-dewi masyarakat Rom.",
+      "Pantheon ialah binaan berkubah yang digunakan sebagai tempat penyembahan dewa-dewi masyarakat Rom.",
   },
   {
     id: "sej-f1-c6-q17",
@@ -4494,16 +4494,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Apakah 'Oculus' pada bangunan Pantheon?",
-    options: [
-      "Bukaan bulat di puncak kubah",
-      "Pintu bulat di bahagian hadapan",
-      "Tingkap berkaca pada dinding bangunan",
-      "Tiang utama di tengah bangunan",
-    ],
+    question: "Golongan manakah dalam masyarakat Rom terdiri daripada petani, artisan dan peniaga?",
+    options: ["Plebian", "Patrician", "Golongan hamba", "Pendeta"],
     answerIndex: 0,
     explanation:
-      "Oculus ialah bukaan bulat di puncak kubah Pantheon yang membolehkan cahaya semula jadi menerangi ruang dalaman.",
+      "Plebian terdiri daripada petani, artisan dan peniaga, manakala patrician ialah golongan atasan.",
   },
   {
     id: "sej-f1-c6-q18",
@@ -4515,7 +4510,7 @@ export const quizzes: QuizQuestion[] = [
     options: ["Colosseum", "Amfiteater", "Tembok pertahanan", "Akueduk"],
     answerIndex: 3,
     explanation:
-      "Akueduk membawa air dari sumber ke bandar untuk memenuhi keperluan penduduk dan pelbagai kemudahan awam Rom.",
+      "Akueduk ialah sistem pengawalan air yang membekalkan air ke rumah kediaman, tempat mandi awam dan binaan utama.",
   },
   {
     id: "sej-f1-c6-q19",
@@ -4541,16 +4536,15 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Medium",
     question:
-      "Selain kebersihan, tempat mandi awam Rom turut menyediakan kemudahan untuk kegiatan apakah?",
+      "Selain kebersihan, tempat mandi awam Rom turut dilengkapi kemudahan untuk kegiatan apakah?",
     options: [
       "Latihan tentera dan penyimpanan senjata",
-      "Pembelajaran dan pertemuan masyarakat",
+      "Membaca di perpustakaan dan bersenam",
       "Perdagangan gandum dan pembuatan alat",
       "Upacara pemujaan dan pelantikan raja",
     ],
     answerIndex: 1,
-    explanation:
-      "Perpustakaan dan ruang berehat di tempat mandi awam menyediakan kemudahan pembelajaran serta pertemuan dalam masyarakat Rom.",
+    explanation: "Tempat mandi awam Rom dilengkapi perpustakaan, bilik berehat dan ruang bersenam.",
   },
   {
     id: "sej-f1-c6-q21",
@@ -4558,16 +4552,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Bagaimanakah sokongan kewangan pemerintah membantu seni bina Rom?",
+    question: "Apakah yang berlaku pada era Pax Romana dalam Tamadun Rom?",
     options: [
-      "Membiayai bahan dan tenaga kerja",
-      "Mengira ukuran dan sudut pembinaan",
-      "Mereka corak hiasan dalaman bangunan",
-      "Menghasilkan kemahiran memahat batu marmar",
+      "Zaman beraja bermula di Rom",
+      "Rom dikalahkan oleh Macedonia",
+      "Keamanan wujud selama 200 tahun",
+      "Demokrasi langsung diperkenalkan",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Pembiayaan kerajaan menyediakan bahan, tenaga buruh dan kepakaran yang diperlukan untuk projek pembinaan Rom.",
+      "Pax Romana (27 SM-180 M) ialah zaman kegemilangan Rom dengan keamanan selama 200 tahun yang meliputi Asia, Afrika dan Eropah.",
   },
   {
     id: "sej-f1-c6-q22",
@@ -4576,16 +4570,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Hard",
     question:
-      "Athens melibatkan keputusan langsung warganegara. Apakah ciri demokrasi perwakilan yang berbeza?",
-    options: [
-      "Penyertaan tanpa pengundian",
-      "Pemilihan wakil rakyat",
-      "Pewarisan kuasa pemerintah",
-      "Pelantikan panglima tentera",
-    ],
-    answerIndex: 1,
+      "Penekanan kepada kuasa rakyat bagi memantapkan demokrasi Athens diberikan pada zaman pemerintah yang manakah?",
+    options: ["Pericles", "Solon", "Raja Philip", "Marco Vitruvius"],
+    answerIndex: 0,
     explanation:
-      "Demokrasi perwakilan melibatkan pemilihan wakil, manakala demokrasi langsung Athens melibatkan warganegara layak sendiri dalam keputusan negara kota.",
+      "Pada zaman Pericles (495-429 SM), penekanan diberikan kepada kuasa rakyat. Solon dikaitkan dengan permulaan demokrasi pada 594 SM dan demokrasi terhapus pada zaman Raja Philip.",
   },
   {
     id: "sej-f1-c6-q23",
@@ -4597,12 +4586,11 @@ export const quizzes: QuizQuestion[] = [
     options: [
       "Mengurus pendidikan dan kutipan cukai",
       "Melaksanakan keputusan sebagai ahli Majlis",
-      "Mengatasi kuasa tertinggi Dewan Perhimpunan",
+      "Mengisytiharkan perang dan menerima duta",
       "Memutuskan kes dan urusan kehakiman",
     ],
     answerIndex: 3,
-    explanation:
-      "Juri mengendalikan urusan keadilan dan memutuskan kes, berbeza daripada badan yang menjalankan pentadbiran harian Athens.",
+    explanation: "Juri bertanggungjawab dalam hal keadilan dan menjadi pemutus kepada sesuatu kes.",
   },
   {
     id: "sej-f1-c6-q24",
@@ -4610,12 +4598,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Easy",
-    question:
-      "Sistem apakah membolehkan warganegara layak menyertai pemerintahan melalui Dewan Perhimpunan Athens?",
-    options: ["Sistem monarki", "Sistem aristokrasi", "Sistem tirani", "Sistem demokrasi"],
-    answerIndex: 3,
+    question: "Berapakah bilangan raja yang memerintah Sparta bersama-sama?",
+    options: ["Seorang", "Dua orang", "Lima orang", "Sepuluh orang"],
+    answerIndex: 1,
     explanation:
-      "Demokrasi Athens melibatkan warganegara lelaki yang layak dalam perbincangan dan keputusan melalui Dewan Perhimpunan negara kota.",
+      "Dua orang raja memerintah Sparta bersama-sama bagi mengelakkan seorang daripada raja bertindak kejam.",
   },
   {
     id: "sej-f1-c6-q25",
@@ -4624,16 +4611,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Hard",
     question:
-      "Jalan raya menghubungkan wilayah Rom yang berjauhan. Bagaimanakah keadaan ini mengukuhkan kawalan empayar?",
+      "Jalan raya menghubungkan wilayah Rom yang berjauhan. Apakah fungsinya yang mengukuhkan kawalan empayar?",
     options: [
-      "Menggantikan pegawai pentadbiran setiap wilayah",
-      "Menjadikan sempadan tidak memerlukan kawalan",
       "Memudahkan penghantaran tentera antara wilayah",
-      "Menyerahkan kuasa pusat kepada pedagang",
+      "Membekalkan air ke bandar-bandar utama",
+      "Memisahkan wilayah Rom daripada wilayah lain",
+      "Menempatkan penonton pertandingan di arena",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Rangkaian jalan membolehkan tentera bergerak antara wilayah, lalu membantu kerajaan mempertahankan dan mengawal kawasan empayarnya.",
+      "Jalan raya Rom menghubungkan bandar-bandar utama untuk memudahkan pergerakan tentera dan menjadi sistem pengangkutan.",
   },
   {
     id: "sej-f1-c6-q26",
@@ -4641,16 +4628,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     difficulty: "Medium",
-    question: "Padanan tumpuan Athens dan Sparta manakah yang betul?",
+    question: "Mengapakah orang Yunani dikenali sebagai pelayar yang handal?",
     options: [
-      "Athens: pertanian; Sparta: perdagangan",
-      "Athens: demokrasi; Sparta: ketenteraan",
-      "Athens: ketenteraan; Sparta: demokrasi",
-      "Athens: perdagangan; Sparta: kesusasteraan",
+      "Kedudukan yang berhampiran dengan laut",
+      "Cuaca yang sederhana sepanjang tahun",
+      "Tanah pertanian yang luas dan subur",
+      "Banyak sungai besar di Semenanjung Greece",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Athens terkenal dengan perkembangan demokrasi, falsafah, dan seni; manakala Sparta terkenal dengan kekuatan tentera dan disiplin yang keras.",
+      "Kedudukan Yunani yang berhampiran dengan laut menyebabkan orang Yunani dikenali sebagai pelayar yang handal.",
   },
   {
     id: "sej-f1-c6-q27",
@@ -4659,16 +4646,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Hard",
     question:
-      "Rom mempunyai dana pembinaan, tetapi sebuah projek kekurangan jurubina mahir. Mengapakah kewangan sahaja tidak mencukupi?",
-    options: [
-      "Pembinaan turut memerlukan kepakaran mengolah bahan",
-      "Pembinaan turut memerlukan peluasan wilayah empayar",
-      "Pembinaan turut memerlukan pertambahan acara gladiator",
-      "Pembinaan turut memerlukan pembukaan laluan perdagangan",
-    ],
-    answerIndex: 0,
+      "Rom mempunyai dana pembinaan, tetapi sebuah projek kekurangan jurubina mahir. Faktor perkembangan seni bina manakah yang kurang?",
+    options: ["Kewangan", "Kepakaran", "Sumber alam", "Buruh"],
+    answerIndex: 1,
     explanation:
-      "Seni bina Rom berkembang melalui gabungan kewangan, kepakaran dan teknologi, maka dana sahaja tidak menjamin kejayaan pembinaan.",
+      "Kepakaran arkitek ialah salah satu faktor perkembangan seni bina Rom, selain kewangan, teknologi, sumber alam dan buruh.",
   },
   {
     id: "sej-f1-c6-q28",
@@ -4680,13 +4662,13 @@ export const quizzes: QuizQuestion[] = [
       "Warganegara Athens membahaskan dua cadangan dasar. Tindakan manakah mencerminkan demokrasi langsung?",
     options: [
       "Raja mewariskan keputusan kepada puteranya",
-      "Bangsawan menetapkan keputusan tanpa perhimpunan",
-      "Warganegara layak menentukan keputusan bersama",
-      "Wakil dipilih untuk menggantikan semua peserta",
+      "Golongan bangsawan menetapkan keputusan negara",
+      "Warganegara berbincang dan menentukan keputusan",
+      "Wakil dipilih untuk membuat keputusan bagi rakyat",
     ],
     answerIndex: 2,
     explanation:
-      "Demokrasi langsung melibatkan warganegara yang layak sendiri dalam perbincangan dan keputusan, bukan sekadar memilih wakil.",
+      "Dalam demokrasi langsung, setiap warganegara Athens terlibat secara langsung dalam perbincangan dan perdebatan untuk menentukan dasar.",
   },
   {
     id: "sej-f1-c6-q29",
@@ -4713,10 +4695,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question:
       "Campuran air, kapur dan abu gunung berapi menghasilkan bahan binaan Rom yang manakah?",
-    options: ["Simen", "Kayu", "Gangsa", "Kaca"],
-    answerIndex: 0,
+    options: ["Marmar", "Simen", "Batu bata", "Gangsa"],
+    answerIndex: 1,
     explanation:
-      "Simen Rom menggunakan air, kapur dan abu gunung berapi, yang menjadi bahan asas dalam teknologi pembinaannya.",
+      "Simen ialah bahan asas binaan Rom yang diperbuat daripada campuran air, kapur dan abu gunung berapi.",
   },
   // Sejarah Form 1 Chapter 7 - Peningkatan Tamadun India Dan China
 

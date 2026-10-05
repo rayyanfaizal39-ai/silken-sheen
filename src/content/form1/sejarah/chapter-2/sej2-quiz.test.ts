@@ -201,13 +201,17 @@ describe("Bab 2 existing Sejarah shuffle contract", () => {
     orderRegularQuizQuestions(bank, { subjectId: "sejarah", form: "Form 1" }, random).questions.map(
       (q) => shuffleQuestionOptions(q, random),
     );
-  it("shuffles questions within existing tiers and options without losing the correct answers", () => {
+  it("shuffles the whole pool across tiers and options without losing the correct answers", () => {
     const a = build(() => 0);
     const b = build(() => 0.99);
     expect(a).toHaveLength(30);
     expect(new Set(a.map((q) => q.id))).toEqual(new Set(bank.map((q) => q.id)));
     expect(a.map((q) => q.id)).not.toEqual(b.map((q) => q.id));
-    expect(a.map((q) => q.difficulty)).toEqual([
+    const tiers = a.map((q) => q.difficulty);
+    expect(tiers.filter((d) => d === "Easy")).toHaveLength(8);
+    expect(tiers.filter((d) => d === "Medium")).toHaveLength(16);
+    expect(tiers.filter((d) => d === "Hard")).toHaveLength(6);
+    expect(tiers).not.toEqual([
       ...Array(8).fill("Easy"),
       ...Array(16).fill("Medium"),
       ...Array(6).fill("Hard"),
