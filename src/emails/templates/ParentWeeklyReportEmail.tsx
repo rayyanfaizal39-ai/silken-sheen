@@ -1,14 +1,9 @@
 import {
-  Body,
   Column,
   Container,
-  Font,
-  Head,
   Heading,
-  Html,
   Img,
   Link,
-  Preview,
   Row,
   Section,
   Text,
@@ -75,35 +70,12 @@ export default function ParentWeeklyReportEmail({
   ];
 
   return (
-    <Html lang="en">
-      <Head>
-        <Font
-          fontFamily="Fraunces"
-          fallbackFontFamily="Georgia"
-          webFont={{
-            url: "https://fonts.gstatic.com/s/fraunces/v32/6NUh8FmMKi65sf3MZM7CG5NRnBTavwYSY7Yv0Y-XlicVKKUZTFxkQMBpUW32.woff2",
-            format: "woff2",
-          }}
-          fontWeight={700}
-          fontStyle="normal"
-        />
-        <Font
-          fontFamily="Schibsted Grotesk"
-          fallbackFontFamily="Arial"
-          webFont={{
-            url: "https://fonts.gstatic.com/s/schibstedgrotesk/v10/JTUSjIgg9ItlBI2GRZaRE9CyJUsx-JGVnDEmXsdM6ihcCmpvSA.woff2",
-            format: "woff2",
-          }}
-          fontWeight={400}
-          fontStyle="normal"
-        />
-      </Head>
-
-      <Preview>
-        {studentName}’s AcadeMY progress report for {reportPeriod}
-      </Preview>
-
-      <Body style={styles.body}>
+    <>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap"
+      />
+      <div style={styles.body}>
         <Container style={styles.container}>
           {/* Header */}
           <Section style={styles.header}>
@@ -410,8 +382,8 @@ export default function ParentWeeklyReportEmail({
             </Text>
           </Section>
         </Container>
-      </Body>
-    </Html>
+      </div>
+    </>
   );
 }
 
