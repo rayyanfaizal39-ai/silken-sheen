@@ -89,9 +89,9 @@ export const sejarahF2C3Quizzes: QuizQuestion[] = [
       "Selepas kedatangan Islam, tulisan Jawi berkembang di Champa manakala tulisan Pegon berkembang di Majapahit. Apakah persamaan kedua-dua tulisan ini?",
     options: [
       "Kedua-duanya menggunakan huruf Arab untuk menulis bahasa tempatan",
-      "Kedua-duanya menggantikan terus tulisan Palava di seluruh Alam Melayu",
-      "Kedua-duanya hanya digunakan oleh golongan pedagang",
-      "Kedua-duanya tidak berkaitan dengan Islam",
+      "Kedua-duanya menggunakan huruf Palava untuk menulis bahasa Arab",
+      "Kedua-duanya digunakan khusus oleh golongan pedagang Cina",
+      "Kedua-duanya berasal daripada tulisan Kawi dari India",
     ],
     answerIndex: 0,
     explanation:
@@ -218,10 +218,10 @@ export const sejarahF2C3Quizzes: QuizQuestion[] = [
     question:
       "Ramayana dan Mahabharata mewakili pengaruh sastera Hindu-Buddha, manakala syair dan gurindam mewakili pengaruh sastera selepas kedatangan Islam. Apakah yang membezakan kedua-dua kumpulan karya ini?",
     options: [
-      "Kumpulan Hindu-Buddha disadur daripada epik India, manakala bentuk seperti syair dan gurindam berkembang selepas Islam tersebar",
-      "Kedua-dua kumpulan karya ini dihasilkan pada masa yang sama tanpa sebarang pengaruh luar",
-      "Kumpulan Hindu-Buddha hanya wujud di Kedah Tua",
-      "Syair dan gurindam mendahului Ramayana dan Mahabharata dari segi kronologi",
+      "Karya Hindu-Buddha disadur daripada epik India, manakala syair dan gurindam berkembang selepas Islam",
+      "Karya Hindu-Buddha berkembang selepas Islam, manakala syair dan gurindam disadur daripada epik India",
+      "Karya Hindu-Buddha berasal dari China, manakala syair dan gurindam berasal dari Champa",
+      "Karya Hindu-Buddha ditulis pada batu bersurat, manakala syair dan gurindam disampaikan secara lisan",
     ],
     answerIndex: 0,
     explanation:
@@ -279,10 +279,10 @@ export const sejarahF2C3Quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah fungsi utama baray yang dibina oleh Kerajaan Angkor?",
     options: [
-      "Sebagai kubu pertahanan",
+      "Sebagai kubu pertahanan di sekeliling kota",
       "Sebagai kolam simpanan air bagi pertanian",
-      "Sebagai tempat pertabalan raja",
-      "Sebagai pusat perdagangan",
+      "Sebagai tempat pertabalan raja Angkor",
+      "Sebagai pusat perdagangan dan pelabuhan",
     ],
     answerIndex: 1,
     explanation:
@@ -295,12 +295,12 @@ export const sejarahF2C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Medium",
     question:
-      "Palembang menjadi pusat pembinaan kapal Melayu besar yang dikenali sebagai Kun-lun-po. Kapal ini belayar sejauh manakah?",
+      "Palembang menjadi pusat pembinaan kapal Melayu besar yang dikenali sebagai Kun-lun-po. Kapal ini dicatatkan belayar sehingga ke kawasan manakah?",
     options: [
-      "Hanya di Selat Melaka",
+      "Jepun dan Korea",
       "Tonkin dan tenggara China",
-      "Afrika Utara sahaja",
-      "Semenanjung Arab",
+      "Teluk Benggala dan Sri Lanka",
+      "Semenanjung Arab dan Teluk Parsi",
     ],
     answerIndex: 1,
     explanation:
@@ -377,12 +377,7 @@ export const sejarahF2C3Quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question:
       "Golongan Diraja, yang memiliki status tertinggi dalam golongan pemerintah, terdiri daripada raja, permaisuri, putera, puteri dan siapakah lagi?",
-    options: [
-      "Ahli keluarga diraja",
-      "Pedagang kaya",
-      "Ketua tentera sahaja",
-      "Pendeta istana sahaja",
-    ],
+    options: ["Ahli keluarga diraja", "Pedagang kaya", "Ketua tentera", "Pendeta istana"],
     answerIndex: 0,
     explanation:
       "Golongan Diraja terdiri daripada raja, permaisuri, putera, puteri serta ahli keluarga diraja yang lain.",
@@ -445,10 +440,10 @@ export const sejarahF2C3Quizzes: QuizQuestion[] = [
     question:
       "Walaupun golongan hamba berada pada kedudukan paling bawah dalam struktur sosial, mereka tetap memberi sumbangan kepada kerajaan. Apakah sumbangan tersebut?",
     options: [
-      "Memerintah wilayah-wilayah kerajaan",
-      "Menjadi penasihat utama raja",
-      "Berkhidmat dalam sektor sosioekonomi dan meningkatkan status pemiliknya",
-      "Mengetuai golongan agama istana",
+      "Memerintah wilayah kerajaan sebagai wakil raja",
+      "Menjadi penasihat utama raja dalam urusan diplomatik",
+      "Berkhidmat dalam sektor sosioekonomi dan meningkatkan status pemilik",
+      "Mengetuai golongan agama dan pendeta di istana",
     ],
     answerIndex: 2,
     explanation:

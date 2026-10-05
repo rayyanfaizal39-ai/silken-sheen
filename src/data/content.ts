@@ -5230,10 +5230,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Menurut Ismail Hussein, Dunia Melayu turut meliputi kawasan manakah?",
     options: [
-      "Madagaskar dan Australia",
+      "Madagaskar, Papua New Guinea dan Taiwan",
       "Selatan Vietnam, Kemboja dan selatan Myanmar",
-      "Tenasserim dan Kepulauan Solomon",
-      "Taiwan dan Kepulauan Pasifik",
+      "Australia, New Zealand dan Kepulauan Pasifik",
+      "Taiwan, Madagaskar dan Kepulauan Pasifik",
     ],
     answerIndex: 1,
     explanation:
@@ -5287,16 +5287,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Medium",
     question:
-      "Menurut A. Aziz Deraman, budaya di Alam Melayu menunjukkan persamaan dalam aspek yang manakah?",
+      "Menurut A. Aziz Deraman, apakah contoh budaya yang dikongsi oleh masyarakat Alam Melayu?",
     options: [
-      "Mata wang dan sistem cukai",
-      "Kesenian, adat, nilai masyarakat dan gotong-royong",
-      "Bahasa rasmi kerajaan sahaja",
-      "Sempadan politik moden",
+      "Mata wang, sistem cukai dan pelabuhan",
+      "Silat, wayang kulit dan nilai gotong-royong",
+      "Tulisan Palava, candi dan sistem kasta",
+      "Undang-undang bertulis, mahkamah dan penjara",
     ],
     answerIndex: 1,
     explanation:
-      "A. Aziz Deraman menyatakan budaya di Alam Melayu menunjukkan persamaan dalam kesenian, adat, nilai masyarakat dan gotong-royong.",
+      "Menurut A. Aziz Deraman, budaya Alam Melayu berkembang maju dengan kepandaian asli seperti silat, nilai gotong-royong dalam masyarakat serta wayang kulit di Kelantan dan Pulau Jawa.",
   },
 
   // 1.2 Kewujudan Kerajaan di Alam Melayu
@@ -5344,7 +5344,12 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Medium",
     question: "Manakah antara berikut ialah pusat pemerintahan Kerajaan Kedah Tua?",
-    options: ["Vyadhapura", "Sungai Mas dan Pangkalan Bujang", "Kota Trowulan", "Pangkalan"],
+    options: [
+      "Vyadhapura dan Oc Eo",
+      "Sungai Mas dan Pangkalan Bujang",
+      "Kota Trowulan dan Tuban",
+      "Indrapura dan Panduranga",
+    ],
     answerIndex: 1,
     explanation: "Kerajaan Kedah Tua berpusat di Sungai Mas dan Pangkalan Bujang.",
   },
@@ -5375,9 +5380,9 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Kewujudan kerajaan Alam Melayu seawal abad pertama membuktikan perkara yang manakah?",
     options: [
-      "Alam Melayu tidak mempunyai sebarang sistem pemerintahan",
-      "Alam Melayu hanya wujud selepas kedatangan penjajah Barat",
-      "Alam Melayu tidak menjalankan sebarang kegiatan ekonomi",
+      "Alam Melayu ditadbir oleh pemerintah yang dilantik dari India",
+      "Alam Melayu mewarisi sistem pemerintahan daripada kuasa Eropah",
+      "Alam Melayu menerima Islam lebih awal daripada Hindu dan Buddha",
       "Alam Melayu mempunyai tamadun yang setanding dengan tamadun dunia",
     ],
     answerIndex: 3,
@@ -5433,9 +5438,9 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Zaman kemasyhuran Champa bermula di bawah pemerintahan Che Bong Nga. Apakah pencapaian pentingnya?",
     options: [
-      "Membina Angkor Thom dan 102 buah hospital",
-      "Menakluk Selat Melaka dan Selat Sunda",
-      "Menjadi pusat pengajian agama Buddha",
+      "Membina Angkor Thom dan 102 buah hospital untuk rakyat",
+      "Menguasai Selat Melaka dan Selat Sunda sebagai pusat perdagangan",
+      "Menjadikan kerajaannya pusat pengajian agama Buddha di Asia Tenggara",
       "Mengatasi ancaman Dai Viet dan meluaskan empayar hingga Lembah Sungai Merah",
     ],
     answerIndex: 3,
@@ -5463,10 +5468,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Srivijaya menguasai Selat Melaka dan Selat Sunda serta menjadi pusat pengajian agama Buddha semasa zaman kegemilangannya. Apakah yang menyebabkan kerajaan ini merosot pada tahun 1025?",
     options: [
-      "Serangan Dai Viet",
-      "Serangan Kesultanan Demak",
+      "Serangan tentera Dai Viet dari utara",
+      "Serangan tentera Demak dari Jawa",
       "Serangan tentera Chola dari India",
-      "Serangan Siam",
+      "Serangan tentera Siam dari utara",
     ],
     answerIndex: 2,
     explanation:
@@ -5506,9 +5511,9 @@ export const quizzes: QuizQuestion[] = [
       "Kedah Tua dan Gangga Nagara sama-sama mengalami kemerosotan akibat satu peristiwa yang sama pada tahun 1025. Apakah peristiwa itu?",
     options: [
       "Serangan tentera Chola dari India",
-      "Serangan Dai Viet",
-      "Serangan Kesultanan Demak",
-      "Letusan gunung berapi",
+      "Serangan tentera Dai Viet dari utara",
+      "Serangan tentera Demak dari Jawa",
+      "Serangan tentera Srivijaya dari Palembang",
     ],
     answerIndex: 0,
     explanation:
@@ -5555,10 +5560,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Apakah tujuan utama hubungan diplomatik antara kerajaan Alam Melayu dengan kerajaan luar?",
     options: [
-      "Menakluki kerajaan luar sepenuhnya",
-      "Menyebarkan bahasa Melayu sahaja",
-      "Menghapuskan sistem beraja kerajaan luar",
-      "Mengukuhkan kedudukan kerajaan, membuka jalan perdagangan dan menjalin persahabatan",
+      "Menakluki kerajaan luar dan meluaskan wilayah",
+      "Menyebarkan bahasa Melayu dan agama Hindu ke luar",
+      "Memaksa kerajaan luar membayar ufti kepada Alam Melayu",
+      "Mengukuhkan kedudukan kerajaan dan membuka jalan perdagangan",
     ],
     answerIndex: 3,
     explanation:
@@ -5585,10 +5590,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Agama Buddha tersebar ke Alam Melayu terutamanya melalui peranan siapakah?",
     options: [
-      "Golongan Brahmin sahaja",
+      "Golongan Brahmin dan pendeta Hindu",
       "Maharaja Asoka dan sami Buddha",
-      "Pedagang Arab",
-      "Tentera Chola",
+      "Pedagang Arab dan Parsi",
+      "Tentera Chola dan pedagang Tamil",
     ],
     answerIndex: 1,
     explanation:
@@ -5604,7 +5609,7 @@ export const quizzes: QuizQuestion[] = [
       "Funan dan Champa kedua-duanya menjalin hubungan dengan China pada abad ketiga, tetapi bertujuan berbeza. Apakah tujuan Funan menjalin hubungan ini?",
     options: [
       "Mendapatkan pengiktirafan Dinasti Ming",
-      "Mengeratkan hubungan keagamaan sahaja",
+      "Mengeratkan hubungan keagamaan dengan China",
       "Memohon bantuan ketenteraan menentang Dai Viet",
       "Memulihkan hubungan selepas peperangan dengan Dai Viet",
     ],
@@ -5638,7 +5643,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     question:
       "Angkor dan Majapahit kedua-duanya menjalin hubungan dengan India bertujuan mengeratkan hubungan persahabatan, tetapi pada abad yang berbeza. Pada abad manakah Angkor menjalin hubungan ini, berbanding Majapahit pada abad ke-14?",
-    options: ["Abad ke-12", "Abad kesembilan", "Abad ketujuh", "Abad pertama"],
+    options: ["Abad kedua belas", "Abad kesembilan", "Abad ketujuh", "Abad pertama"],
     answerIndex: 0,
     explanation:
       "Angkor menjalin hubungan persahabatan dengan India pada abad ke-12, manakala Majapahit menjalin hubungan yang serupa pada abad ke-14.",
@@ -5652,10 +5657,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Berdasarkan pola hubungan kerajaan Alam Melayu dengan kerajaan luar yang sezaman, apakah kesimpulan yang paling tepat?",
     options: [
-      "Kerajaan Alam Melayu terpencil sepenuhnya daripada dunia luar",
+      "Kerajaan Alam Melayu bergantung kepada bantuan ketenteraan China",
       "Kerajaan Alam Melayu membangun dan maju setanding dengan tamadun dunia lain",
-      "Kerajaan Alam Melayu hanya bergantung kepada China",
-      "Kerajaan Alam Melayu tidak menjalin sebarang hubungan luar",
+      "Kerajaan Alam Melayu berada di bawah naungan kerajaan India",
+      "Kerajaan Alam Melayu menolak hubungan dengan pedagang Arab dan Parsi",
     ],
     answerIndex: 1,
     explanation:
@@ -5684,12 +5689,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question:
       "Masyarakat kerajaan Alam Melayu terbahagi kepada dua golongan utama, iaitu golongan pemerintah dan golongan apakah?",
-    options: [
-      "Golongan hamba sahaja",
-      "Golongan diperintah",
-      "Golongan pedagang sahaja",
-      "Golongan tentera sahaja",
-    ],
+    options: ["Golongan bangsawan", "Golongan diperintah", "Golongan pedagang", "Golongan tentera"],
     answerIndex: 1,
     explanation:
       "Dua golongan utama masyarakat kerajaan Alam Melayu ialah golongan pemerintah dan golongan diperintah.",
@@ -5741,8 +5741,8 @@ export const quizzes: QuizQuestion[] = [
       "Walaupun struktur pemerintahan Gangga Nagara tidak jelas, kerajaan ini tetap mengamalkan sistem beraja. Apakah dua tanggungjawab utama rajanya?",
     options: [
       "Mengutip cukai dan mendirikan candi",
-      "Mengetuai peperangan sahaja",
-      "Menyebarkan agama Buddha sahaja",
+      "Mengetuai peperangan dan meluaskan wilayah",
+      "Menyebarkan agama Buddha dan membina biara",
       "Memajukan perdagangan dan menjaga keselamatan",
     ],
     answerIndex: 3,
@@ -5771,9 +5771,9 @@ export const quizzes: QuizQuestion[] = [
       "Wilayah Srivijaya terbahagi kepada Kedatuan dan Pradatuan. Apakah perbezaan utama antara kedua-duanya?",
     options: [
       "Kedatuan ditadbir Datu berketurunan raja, Pradatuan ditadbir Datu bukan berketurunan raja",
-      "Kedatuan hanya wujud di Sumatera, Pradatuan hanya wujud di Tanah Melayu",
+      "Kedatuan terletak di Sumatera, Pradatuan terletak di Tanah Melayu",
       "Kedatuan ditadbir golongan agama, Pradatuan ditadbir golongan tentera",
-      "Tiada perbezaan antara Kedatuan dan Pradatuan",
+      "Kedatuan ditadbir Datu bukan berketurunan raja, Pradatuan ditadbir Datu berketurunan raja",
     ],
     answerIndex: 0,
     explanation:
@@ -5817,10 +5817,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Raja Majapahit dibantu oleh Sapta Prabu dalam urusan pentadbiran. Apakah Sapta Prabu?",
     options: [
-      "Tentera peribadi raja",
-      "Golongan hamba istana",
+      "Pasukan tentera peribadi yang terdiri daripada pengawal raja",
+      "Golongan pegawai yang mengutip cukai di pelabuhan",
       "Majlis Penasihat Diraja yang terdiri daripada kerabat diraja",
-      "Sekumpulan pedagang asing",
+      "Majlis pedagang asing yang menasihati raja tentang perdagangan",
     ],
     answerIndex: 2,
     explanation:
@@ -5874,10 +5874,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Angkor membina kolam simpanan air yang dikenali sebagai baray, membolehkan penuaian padi berapa kali setahun?",
     options: [
-      "Sekali setahun",
-      "Dua kali setahun",
+      "Sekali hingga dua kali setahun",
+      "Lima hingga enam kali setahun",
       "Tiga hingga empat kali setahun",
-      "Enam kali setahun",
+      "Tujuh hingga lapan kali setahun",
     ],
     answerIndex: 2,
     explanation:
@@ -5893,9 +5893,9 @@ export const quizzes: QuizQuestion[] = [
       "Champa mempunyai Ketua Air di setiap kampung, manakala Majapahit menjalankan pertanian di sekitar Sungai Bengawan Solo dan Sungai Brantas. Apakah persamaan pendekatan kedua-dua kerajaan ini dalam bidang pertanian?",
     options: [
       "Kedua-duanya membina sistem pengairan untuk menampung keperluan pertanian padi",
-      "Kedua-duanya hanya menanam rempah-ratus",
-      "Kedua-duanya tidak menjalankan pertanian sama sekali",
-      "Kedua-duanya bergantung sepenuhnya kepada hujan tanpa sebarang sistem pengairan",
+      "Kedua-duanya mengutamakan tanaman rempah untuk dieksport",
+      "Kedua-duanya menjalankan pertanian pindah di kawasan bukit",
+      "Kedua-duanya bergantung kepada air hujan tanpa sistem pengairan",
     ],
     answerIndex: 0,
     explanation:
@@ -5935,9 +5935,9 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah faktor utama yang menyebabkan perdagangan berkembang pesat di Alam Melayu?",
     options: [
-      "Bantuan kewangan daripada kerajaan luar",
-      "Ketiadaan pesaing perdagangan",
-      "Sistem cukai yang rendah sahaja",
+      "Bantuan kewangan dan kapal daripada kerajaan China",
+      "Ketiadaan pesaing perdagangan di Lautan Hindi",
+      "Penggunaan mata wang emas yang seragam di pelabuhan",
       "Kedudukan strategik di laluan perdagangan timur dan barat",
     ],
     answerIndex: 3,
@@ -5997,9 +5997,9 @@ export const quizzes: QuizQuestion[] = [
       "Pedagang China ke Alam Melayu membawa barangan seperti kain sutera. Apakah barangan yang mereka cari daripada Alam Melayu?",
     options: [
       "Rempah, gaharu dan kapur barus",
-      "Batu berharga dan akik",
+      "Batu berharga, akik dan manik",
       "Minyak wangi dan barangan kaca",
-      "Manik dan tembikar Arab",
+      "Tembikar, kain kapas dan kaca",
     ],
     answerIndex: 0,
     explanation:
@@ -6014,7 +6014,7 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Pedagang Arab dan Parsi membawa barangan seperti tembikar, minyak wangi serta barangan kaca dan manik ke Alam Melayu. Apakah tujuan mereka membeli rempah dan kayu wangi?",
     options: [
-      "Untuk kegunaan sendiri sahaja",
+      "Untuk kegunaan istana di Tanah Arab",
       "Untuk didagangkan semula",
       "Untuk dihadiahkan kepada raja Alam Melayu",
       "Untuk ditanam semula di Tanah Arab",
@@ -6030,11 +6030,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Hard",
     question:
-      "Perkembangan perdagangan memberi kesan yang meluas kepada masyarakat Alam Melayu. Sejauh manakah kemahiran pelayaran masyarakat Alam Melayu berkembang akibat perdagangan ini?",
+      "Perkembangan perdagangan memberi kesan yang meluas kepada masyarakat Alam Melayu. Apakah kawasan paling jauh yang mampu dicapai oleh pelayar Alam Melayu hasil perkembangan ini?",
     options: [
-      "Mereka hanya mampu belayar dalam Selat Melaka",
-      "Mereka tidak menguasai ilmu pelayaran langsung",
-      "Mereka bergantung sepenuhnya kepada kapal pedagang luar",
+      "Mereka mampu belayar sehingga ke Laut Jawa",
+      "Mereka mampu belayar sehingga ke Laut China Selatan",
+      "Mereka mampu belayar sehingga ke Teluk Benggala",
       "Mereka mampu belayar sehingga ke Afrika",
     ],
     answerIndex: 3,
@@ -6049,10 +6049,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Gaharu digunakan sebagai bahan apakah dalam kehidupan masyarakat Alam Melayu?",
     options: [
-      "Bahan binaan sahaja",
+      "Bahan binaan dan perabot",
       "Bahan pewangi dan perubatan",
-      "Bahan letupan",
-      "Bahan pewarna kain",
+      "Bahan makanan dan minuman",
+      "Bahan pewarna dan tenunan",
     ],
     answerIndex: 1,
     explanation:
@@ -6080,9 +6080,9 @@ export const quizzes: QuizQuestion[] = [
     question: "Gamat, rumpai laut dan mutiara diperoleh terutamanya di perairan manakah?",
     options: [
       "Selat Melaka dan Laut Sulu",
-      "Laut China Selatan sahaja",
-      "Lautan Hindi",
-      "Teluk Siam sahaja",
+      "Laut China Selatan dan Teluk Siam",
+      "Lautan Hindi dan Laut Arab",
+      "Laut Jawa dan Selat Sunda",
     ],
     answerIndex: 0,
     explanation:
@@ -6109,8 +6109,8 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Champa menjalankan perlombongan emas dan perak, manakala Majapahit terkenal dengan kegiatan pembuatan. Antara berikut, yang manakah barangan pembuatan Majapahit?",
     options: [
-      "Tembikar dan cuka kelapa",
-      "Barang perhiasan emas daripada bijih besi",
+      "Tembikar, cuka kelapa, tikar dan rotan",
+      "Barang perhiasan emas dan bijih besi",
       "Garam, gula, minyak dan mi beras",
       "Kain sutera dan barangan kaca",
     ],
