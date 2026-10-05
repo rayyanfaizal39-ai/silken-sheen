@@ -100,23 +100,8 @@ function WeeklyReportPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#e4e8f0]">
-      <ParentWeeklyReportEmail
-        studentName={report.studentName}
-        reportPeriod={report.reportPeriod}
-        overallStatus={report.overallStatus}
-        weeklySummary={report.weeklySummary}
-        quizzesCompleted={report.quizzesCompleted}
-        averageQuizScore={report.averageQuizScore === null ? "—" : `${report.averageQuizScore}%`}
-        weeklyXp={`${report.weeklyXp.toLocaleString("en-MY")} XP`}
-        currentStreak={`${report.currentStreak} day${report.currentStreak === 1 ? "" : "s"}`}
-        activeDayMarks={report.activeDayMarks}
-        subjects={report.subjects}
-        biggestWin={report.biggestWin}
-        focusArea={report.focusArea}
-        brainInsight={report.brainInsight}
-        recommendedGoals={report.recommendedGoals}
-      />
+    <div className="min-h-screen bg-[#F7F4EE]">
+      <ParentWeeklyReportEmail report={report} />
     </div>
   );
 }

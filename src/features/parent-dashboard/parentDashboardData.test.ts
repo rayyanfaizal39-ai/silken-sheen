@@ -82,6 +82,15 @@ describe("parent dashboard scopes", () => {
     expect(model.recent.insight).toBe("Not enough recent data.");
     expect(model.recent.recommendation).toBe("Not enough recent data.");
     expect(model.mostImproved).toBeNull();
+    expect(model.lastWeek.weekStart).toBe("2026-09-28");
+    expect(model.lastWeek.weekEnd).toBe("2026-10-04");
+    expect(model.lastWeek.quizzes).toBe(0);
+    expect(model.lastWeek.average).toBeNull();
+    expect(model.lastWeek.xpEarned).toBe(0);
+    expect(model.lastWeek.activeDays).toBe(0);
+    expect(model.lastWeek.summary).toBe("No quiz activity last week.");
+    expect(model.lastWeek.strongest).toBeNull();
+    expect(model.lastWeek.biggestWin).toBeNull();
   });
 
   it("ranks the strongest recent subject from repeated quizzes, not one high score", () => {
@@ -149,5 +158,133 @@ describe("parent dashboard scopes", () => {
     expect(source).not.toContain("Chapters completed");
     expect(source).not.toContain("Weekly activity");
     expect(source).not.toMatch(/mastery/i);
+    expect(source).toContain('title="Last week"');
+    expect(source).toContain("canViewReports ? <LastWeekDetails");
+    expect(source).toContain("canViewAnalytics && canViewReports");
+    expect(source).not.toMatch(/declined|week-over-week|study hours|retention/i);
+  });
+});
+
+describe("previous completed Malaysia week", () => {
+  it("uses the previous Monday–Sunday, not a rolling seven days", () => {
+    const model = buildParentDashboardModel({
+      studentName: "Maya",
+      now: NOW,
+      quizzes: [
+        quiz("2026-09-27T15:59:00.000Z", "science", "Chapter 1", 10, 5),
+        quiz("2026-09-27T16:00:00.000Z", "science", "Chapter 1", 70, 10),
+      ],
+    });
+
+    expect(model.lastWeek.weekStart).toBe("2026-09-28");
+    expect(model.lastWeek.weekEnd).toBe("2026-10-04");
+    expect(model.lastWeek.periodLabel).toBe("28 Sep–4 Oct 2026");
+    expect(model.lastWeek.quizzes).toBe(1);
+    expect(model.thisWeek.quizzes).toBe(0);
+  });
+
+  it("keeps Sunday 23:59 Kuala Lumpur in last week and Monday 00:00 in this week", () => {
+    const model = buildParentDashboardModel({
+      studentName: "Maya",
+      now: NOW,
+      quizzes: [
+        quiz("2026-10-04T15:59:00.000Z", "geography", "Chapter 2", 88, 15),
+        quiz("2026-10-04T16:00:00.000Z", "science", "Chapter 3", 100, 25),
+      ],
+    });
+
+    expect(model.lastWeek.quizzes).toBe(1);
+    expect(model.lastWeek.xpEarned).toBe(15);
+    expect(model.lastWeek.average).toBe(88);
+    expect(model.lastWeek.biggestWin).toMatchObject({ subjectName: "Geography", chapterKey: "Chapter 2", scorePct: 88 });
+    expect(model.thisWeek).toEqual({ quizzes: 1, weeklyXp: 25, average: 100, activeDays: 1 });
+  });
+
+  it("counts quizzes, XP, average, and active days across the completed week", () => {
+    const model = buildParentDashboardModel({
+      studentName: "Rayyan",
+      now: NOW,
+      quizzes: [
+        quiz("2026-09-27T16:30:00.000Z", "geography", "Chapter 1", 80, 10),
+        quiz("2026-09-29T04:00:00.000Z", "geography", "Chapter 1", 100, 20),
+        quiz("2026-10-02T08:00:00.000Z", "science", "Chapter 4", 90, 15),
+        quiz("2026-10-04T16:30:00.000Z", "science", "Chapter 4", 40, 99),
+      ],
+    });
+
+    expect(model.lastWeek.quizzes).toBe(3);
+    expect(model.lastWeek.average).toBe(90);
+    expect(model.lastWeek.xpEarned).toBe(45);
+    expect(model.lastWeek.activeDays).toBe(3);
+    expect(model.lastWeek.summary).toBe("Rayyan completed 3 quizzes last week with an average score of 90%.");
+    expect(model.thisWeek.quizzes).toBe(1);
+    expect(model.lastWeek.summary).not.toMatch(/improved|declined|mastery|chapter completed/i);
+  });
+
+  it("leaves last week empty when that completed week has no quizzes", () => {
+    const model = buildParentDashboardModel({
+      studentName: "Maya",
+      now: NOW,
+      quizzes: [
+        quiz("2026-09-20T04:00:00.000Z", "science", "Chapter 1", 100, 40),
+        quiz("2026-10-05T02:00:00.000Z", "science", "Chapter 1", 50, 10),
+      ],
+    });
+
+    expect(model.lastWeek.quizzes).toBe(0);
+    expect(model.lastWeek.average).toBeNull();
+    expect(model.lastWeek.xpEarned).toBe(0);
+    expect(model.lastWeek.activeDays).toBe(0);
+    expect(model.lastWeek.summary).toBe("No quiz activity last week.");
+    expect(model.lastWeek.strongest).toBeNull();
+    expect(model.lastWeek.weakestChapter).toBeNull();
+    expect(model.thisWeek.quizzes).toBe(1);
+    expect(model.recent.quizzes).toBe(2);
+  });
+
+  it("ranks the strongest subject and the repeated weak chapter inside last week", () => {
+    const model = buildParentDashboardModel({
+      studentName: "Maya",
+      now: NOW,
+      quizzes: [
+        ...repeat(3, "2026-09-29T04:00:00.000Z", "geography", "Chapter 2", 91),
+        quiz("2026-09-30T04:00:00.000Z", "sejarah", "Chapter 1", 40, 5),
+        ...repeat(3, "2026-10-01T04:00:00.000Z", "sejarah", "Chapter 6", 67),
+        quiz("2026-10-02T04:00:00.000Z", "geography", "Chapter 4", 100, 30),
+      ],
+    });
+
+    expect(model.lastWeek.strongest).toMatchObject({ name: "Geography", average: 93.25, quizzes: 4 });
+    expect(model.lastWeek.weakestSubject).toMatchObject({ name: "Sejarah" });
+    expect(model.lastWeek.weakestChapter).toMatchObject({
+      subjectName: "Sejarah",
+      chapterKey: "Chapter 6",
+      attempts: 3,
+    });
+    expect(model.lastWeek.biggestWin).toMatchObject({
+      subjectName: "Geography",
+      chapterKey: "Chapter 4",
+      scorePct: 100,
+    });
+    expect(model.lastWeek.weakestChapter?.chapterKey).not.toBe("Chapter 1");
+  });
+
+  it("does not replace a weak subject with a repeated chapter from a stronger subject", () => {
+    const model = buildParentDashboardModel({
+      studentName: "Maya",
+      now: NOW,
+      quizzes: [
+        ...repeat(3, "2026-09-29T04:00:00.000Z", "geography", "Chapter 2", 94),
+        ...repeat(2, "2026-09-30T04:00:00.000Z", "science", "Chapter 8", 88),
+        quiz("2026-09-30T06:00:00.000Z", "science", "Chapter 9", 90),
+        quiz("2026-10-01T04:00:00.000Z", "sejarah", "Chapter 1", 40),
+        quiz("2026-10-02T04:00:00.000Z", "sejarah", "Chapter 3", 93),
+        quiz("2026-10-03T04:00:00.000Z", "sejarah", "Chapter 4", 100),
+      ],
+    });
+
+    expect(model.lastWeek.strongest?.name).toBe("Geography");
+    expect(model.lastWeek.weakestSubject?.name).toBe("Sejarah");
+    expect(model.lastWeek.weakestChapter).toBeNull();
   });
 });

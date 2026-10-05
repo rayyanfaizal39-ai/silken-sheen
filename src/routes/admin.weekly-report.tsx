@@ -104,24 +104,9 @@ function AdminWeeklyReportPage() {
       {status === "missing" ? <p>No student profile was found for that ID.</p> : null}
       {status === "error" ? <p>The report could not be loaded.</p> : null}
       {status === "ready" && report ? (
-        <div style={{ background: "#e4e8f0", borderRadius: 16, overflow: "hidden" }}>
+        <div style={{ background: "#F7F4EE", borderRadius: 16, overflow: "hidden" }}>
           <p style={{ margin: 0, padding: "12px 16px", color: "#334155" }}>Preview for {studentLabel}</p>
-          <ParentWeeklyReportEmail
-            studentName={report.studentName}
-            reportPeriod={report.reportPeriod}
-            overallStatus={report.overallStatus}
-            weeklySummary={report.weeklySummary}
-            quizzesCompleted={report.quizzesCompleted}
-            averageQuizScore={report.averageQuizScore === null ? "—" : `${report.averageQuizScore}%`}
-            weeklyXp={`${report.weeklyXp.toLocaleString("en-MY")} XP`}
-            currentStreak={`${report.currentStreak} day${report.currentStreak === 1 ? "" : "s"}`}
-            activeDayMarks={report.activeDayMarks}
-            subjects={report.subjects}
-            biggestWin={report.biggestWin}
-            focusArea={report.focusArea}
-            brainInsight={report.brainInsight}
-            recommendedGoals={report.recommendedGoals}
-          />
+          <ParentWeeklyReportEmail report={report} />
         </div>
       ) : null}
     </div>
