@@ -55,6 +55,12 @@ export type KualaLumpurWeek = {
   endIso: string;
 };
 
+/** Closed email cycle. The labeled week is Monday–Sunday; the measured window starts at the previous Sunday 18:00. */
+export type EmailedReportCycle = KualaLumpurWeek & {
+  periodLabel: string;
+  subjectPeriod: string;
+};
+
 export function currentKualaLumpurWeek(now: Date): KualaLumpurWeek {
   const shifted = new Date(now.getTime() + KL_OFFSET_MS);
   const weekday = shifted.getUTCDay();
@@ -78,6 +84,68 @@ export function currentKualaLumpurWeek(now: Date): KualaLumpurWeek {
 
 export function kualaLumpurDateKey(instant: Date): string {
   return dateKeyFromUtc(instant.getTime() + KL_OFFSET_MS);
+}
+
+const EMAIL_CUTOFF_HOUR = 18;
+
+/**
+ * The report email that is due at `now`.
+ *
+ * Asia/Kuala_Lumpur is UTC+8 all year. The send clock is Sunday 18:00 there.
+ * Each emailed cycle is the half-open range
+ * [previous Sunday 18:00, this Sunday 18:00).
+ * Monday 00:00 and Sunday 17:59:59 belong to the cycle that closes that Sunday.
+ * Sunday 18:00:00 starts the next cycle, so a late Sunday quiz is not dropped.
+ */
+export function emailedParentReportCycle(now: Date): EmailedReportCycle {
+  const shifted = new Date(now.getTime() + KL_OFFSET_MS);
+  const weekday = shifted.getUTCDay();
+  const timeOfDayMs =
+    ((shifted.getUTCHours() * 60 + shifted.getUTCMinutes()) * 60 + shifted.getUTCSeconds()) * 1000 +
+    shifted.getUTCMilliseconds();
+  const daysUntilSunday = weekday === 0 ? 0 : 7 - weekday;
+  let sundayKlMidnight = Date.UTC(
+    shifted.getUTCFullYear(),
+    shifted.getUTCMonth(),
+    shifted.getUTCDate() + daysUntilSunday,
+  );
+  const beforeCutoff = weekday !== 0 || timeOfDayMs < EMAIL_CUTOFF_HOUR * 60 * 60 * 1000;
+  if (beforeCutoff) sundayKlMidnight -= 7 * 86_400_000;
+  const endMs = sundayKlMidnight + EMAIL_CUTOFF_HOUR * 60 * 60 * 1000 - KL_OFFSET_MS;
+  const mondayKlMidnight = sundayKlMidnight - 6 * 86_400_000;
+  const dayKeys = Array.from({ length: 7 }, (_, index) => dateKeyFromUtc(mondayKlMidnight + index * 86_400_000));
+  return {
+    weekStart: dayKeys[0],
+    weekEnd: dayKeys[6],
+    dayKeys,
+    startIso: new Date(endMs - 7 * 86_400_000).toISOString(),
+    endIso: new Date(endMs).toISOString(),
+    periodLabel: formatWeekPeriod(dayKeys[0], dayKeys[6]),
+    subjectPeriod: formatSubjectPeriod(dayKeys[0], dayKeys[6]),
+  };
+}
+
+export function formatSubjectPeriod(weekStart: string, weekEnd: string): string {
+  const start = parseDateKey(weekStart);
+  const end = parseDateKey(weekEnd);
+  const startMonth = monthName(start.month);
+  const endMonth = monthName(end.month);
+  if (start.month === end.month && start.year === end.year) return `${start.day}–${end.day} ${endMonth}`;
+  if (start.year === end.year) return `${start.day} ${startMonth}–${end.day} ${endMonth}`;
+  return `${start.day} ${startMonth} ${start.year}–${end.day} ${endMonth} ${end.year}`;
+}
+
+export function automatedDeliveryDecision(input: {
+  entitled: boolean;
+  existingStatus: string | null;
+  hasAccountEmail: boolean;
+  quizCount: number;
+}): "not_entitled" | "skipped" | "no_recipient" | "no_activity" | "send" {
+  if (!input.entitled) return "not_entitled";
+  if (input.existingStatus === "sent") return "skipped";
+  if (!input.hasAccountEmail) return "no_recipient";
+  if (input.quizCount < 1) return "no_activity";
+  return "send";
 }
 
 export function formatWeekPeriod(weekStart: string, weekEnd: string): string {
@@ -150,9 +218,11 @@ export function buildWeeklyParentReport(input: {
   streak: number;
   quizzes: WeeklyQuizRow[];
   now?: Date;
+  bounds?: KualaLumpurWeek;
+  preferRepeatedWeakness?: boolean;
 }): WeeklyParentReport {
   const now = input.now ?? new Date();
-  const week = currentKualaLumpurWeek(now);
+  const week = input.bounds ?? currentKualaLumpurWeek(now);
   const studentName = input.studentName.trim() || "Student";
   const firstName = studentName.split(/\s+/)[0] ?? studentName;
   const streak = Number.isFinite(input.streak) && input.streak > 0 ? Math.floor(input.streak) : 0;
@@ -238,9 +308,18 @@ export function buildWeeklyParentReport(input: {
       ? `${firstName} is on a ${streak}-day study streak.`
       : "No quiz result to highlight this week.";
 
+  const subjectAttempts = [...bySubject.entries()].map(([subjectId, stats]) => ({
+    name: SUBJECT_NAMES[subjectId] ?? subjectId,
+    average: stats.average,
+    attempts: stats.attempts,
+  }));
+  const repeatedFocus = input.preferRepeatedWeakness
+    ? repeatedWeaknessFocus(chapters, subjectAttempts)
+    : null;
   const weakest = chapters[0] ?? null;
-  const focusArea =
-    weakest && weakest.average < 80
+  const focusArea = repeatedFocus
+    ? repeatedFocus.focusArea
+    : weakest && weakest.average < 80
       ? `${weakest.subjectName} — ${weakest.chapterKey} averaged ${weakest.average}%.`
       : "No chapter stood out as needing extra support this week.";
 
@@ -248,13 +327,15 @@ export function buildWeeklyParentReport(input: {
     ? `${strongest.name} was ${firstName}'s strongest subject this week with an average score of ${strongest.percentage}%.`
     : `${firstName} has no quiz results in this Monday–Sunday week, so there is no subject insight yet.`;
 
-  const weakGoals = chapters
-    .filter((chapter) => chapter.average < 80)
-    .slice(0, 3)
-    .map(
-      (chapter) =>
-        `Revise ${chapter.subjectName} — ${chapter.chapterKey} (averaging ${chapter.average}%).`,
-    );
+  const weakGoals = input.preferRepeatedWeakness
+    ? repeatedFocus?.goals ?? []
+    : chapters
+        .filter((chapter) => chapter.average < 80)
+        .slice(0, 3)
+        .map(
+          (chapter) =>
+            `Revise ${chapter.subjectName} — ${chapter.chapterKey} (averaging ${chapter.average}%).`,
+        );
   const recommendedGoals =
     weakGoals.length > 0
       ? weakGoals
@@ -279,6 +360,39 @@ export function buildWeeklyParentReport(input: {
     focusArea,
     brainInsight,
     recommendedGoals,
+  };
+}
+
+function repeatedWeaknessFocus(
+  chapters: Array<{ subjectName: string; chapterKey: string; average: number; attempts: number }>,
+  subjects: Array<{ name: string; average: number; attempts: number }>,
+): { focusArea: string; goals: string[] } | null {
+  const weakestSubject = [...subjects]
+    .filter((subject) => subject.attempts >= 2)
+    .sort((a, b) => a.average - b.average || b.attempts - a.attempts || a.name.localeCompare(b.name))[0];
+  if (!weakestSubject) return null;
+  const chapter = chapters
+    .filter((item) => item.subjectName === weakestSubject.name && item.attempts >= 2)
+    .sort((a, b) => a.average - b.average || b.attempts - a.attempts)[0];
+  if (chapter && chapter.average < 80) {
+    return {
+      focusArea: `${chapter.subjectName} — ${chapter.chapterKey} averaged ${chapter.average}% over ${chapter.attempts} quizzes.`,
+      goals: [
+        `Revise ${chapter.subjectName} — ${chapter.chapterKey} (averaging ${chapter.average}% over ${chapter.attempts} quizzes).`,
+      ],
+    };
+  }
+  if (weakestSubject.average < 80) {
+    return {
+      focusArea: `${weakestSubject.name} averaged ${weakestSubject.average}% across ${weakestSubject.attempts} quizzes.`,
+      goals: [
+        `Revise ${weakestSubject.name} (averaging ${weakestSubject.average}% across ${weakestSubject.attempts} quizzes).`,
+      ],
+    };
+  }
+  return {
+    focusArea: "No chapter stood out as needing extra support this week.",
+    goals: [],
   };
 }
 

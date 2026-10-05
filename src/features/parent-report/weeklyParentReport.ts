@@ -1,6 +1,9 @@
 export {
+  automatedDeliveryDecision,
   buildWeeklyParentReport,
   currentKualaLumpurWeek,
+  emailedParentReportCycle,
+  formatSubjectPeriod,
   formatWeekPeriod,
   hasParentReportsAccess,
   kualaLumpurDateKey,
@@ -8,6 +11,7 @@ export {
   resolveWeeklyReportRecipient,
   storedPlanGrantsParentReports,
   usableEmail,
+  type EmailedReportCycle,
   type KualaLumpurWeek,
   type WeeklyParentReport,
   type WeeklyQuizRow,

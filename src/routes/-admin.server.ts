@@ -1,5 +1,6 @@
 import { createServerFn } from '@tanstack/react-start';
 import { getSupabaseServerClient } from '../lib/supabase.server';
+import { getSupabaseAdminClient } from '../lib/billing.server';
 import type {
   AdminProfile,
   AdminStats,
@@ -718,4 +719,82 @@ export const updateUserDetails = createServerFn({ method: 'POST' })
     const { id, ...patch } = f;
     const { error } = await supabase.from('profiles').update(patch).eq('id', id);
     if (error) throw error;
+  });
+
+const DELETE_STUDENT_ERROR = 'Unable to permanently delete student.';
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+export const deleteStudentPermanently = createServerFn({ method: 'POST' })
+  .validator((f: { id: string }) => f)
+  .handler(async ({ data: f }): Promise<void> => {
+    const supabase = getSupabaseServerClient();
+    if (!supabase || !UUID_PATTERN.test(f.id)) throw new Error(DELETE_STUDENT_ERROR);
+
+    const { data: authData, error: authError } = await supabase.auth.getUser();
+    if (authError || !authData.user) {
+      console.error('[admin.users] permanent delete authorization failed', {
+        targetUserId: f.id,
+        error: authError,
+      });
+      throw new Error(DELETE_STUDENT_ERROR);
+    }
+
+    const { data: actorProfile, error: actorProfileError } = await supabase
+      .from('profiles')
+      .select('id, role')
+      .eq('id', authData.user.id)
+      .maybeSingle();
+    if (actorProfileError || actorProfile?.role?.trim().toLowerCase() !== 'admin') {
+      console.error('[admin.users] permanent delete rejected for non-admin caller', {
+        actorUserId: authData.user.id,
+        targetUserId: f.id,
+        error: actorProfileError,
+      });
+      throw new Error(DELETE_STUDENT_ERROR);
+    }
+
+    if (authData.user.id === f.id) {
+      console.error('[admin.users] permanent delete rejected for current admin account', {
+        actorUserId: authData.user.id,
+      });
+      throw new Error(DELETE_STUDENT_ERROR);
+    }
+
+    try {
+      const admin = getSupabaseAdminClient();
+      const { data: targetProfile, error: targetProfileError } = await admin
+        .from('profiles')
+        .select('id, role')
+        .eq('id', f.id)
+        .maybeSingle();
+
+      if (targetProfileError || targetProfile?.role !== 'student') {
+        console.error('[admin.users] permanent delete target validation failed', {
+          actorUserId: authData.user.id,
+          targetUserId: f.id,
+          targetRole: targetProfile?.role ?? null,
+          error: targetProfileError,
+        });
+        throw new Error('TARGET_VALIDATION_FAILED');
+      }
+
+      const { error: deleteError } = await admin.auth.admin.deleteUser(f.id, false);
+      if (deleteError) {
+        console.error('[admin.users] Supabase Auth user deletion failed', {
+          actorUserId: authData.user.id,
+          targetUserId: f.id,
+          code: deleteError.code,
+          status: deleteError.status,
+          message: deleteError.message,
+        });
+        throw deleteError;
+      }
+    } catch (error) {
+      console.error('[admin.users] permanent student deletion failed', {
+        actorUserId: authData.user.id,
+        targetUserId: f.id,
+        error,
+      });
+      throw new Error(DELETE_STUDENT_ERROR);
+    }
   });

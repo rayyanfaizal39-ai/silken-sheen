@@ -302,7 +302,9 @@ describe("Chapter 7 live navigation and legacy consistency", () => {
   const DATA_FILES = ["notes", "content", "quizzes", "flashcards"] as const;
   const SEJARAH_F1_BASELINE: Record<(typeof DATA_FILES)[number], [number, string]> = {
     notes: [6, "c0b48f42a8b9b103bbf69ddd6d97fc8da44078cba4b23ca6c91052dfa6d0a40b"],
-    content: [631, "9f1dc2deb1adb7280260ef9033fdb4577578b905e4cddce19fee7f226904e2ef"],
+    // Re-baselined for the Sejarah F1 Bab 4 quiz audit (sej-f1-c4-q1..q30 in content.ts,
+    // same 30 ids). Every other Sejarah Form 1 record in this file is byte-identical.
+    content: [631, "e706c8fa7f1e1ad73a02d24747806152bd9fff33219ec735afe31ae0a1833cb2"],
     quizzes: [210, "f2cdd25ce271fbc7ab6fe6762a47384da0b7478619e228c410bea78671de515a"],
     flashcards: [415, "dbb8bcebd4755545b2ddedd4013a7808ba917d0307c5d0e35e39dc216176e1d5"],
   };
