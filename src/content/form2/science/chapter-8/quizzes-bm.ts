@@ -365,7 +365,7 @@ export const scienceF2C8QuizzesBM: QuizQuestion[] = [
       "Tayar lebar meningkatkan tekanan ke atas tanah, membantu traktor mencengkam dengan lebih baik",
       "Tayar lebar merebakkan berat traktor ke atas luas permukaan yang lebih besar, mengurangkan tekanan ke atas tanah supaya ia tidak tenggelam ke dalam tanah lembut",
       "Tayar lebar mengurangkan berat keseluruhan traktor",
-      "Tayar lebar tidak memberi sebarang kesan kepada tekanan",
+      "Tayar lebar mengekalkan tekanan yang sama kerana berat traktor tidak berubah",
     ],
     answerIndex: 1,
     explanation:

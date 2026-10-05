@@ -111,7 +111,7 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
     question: "Apakah maksud Hukum Ohm?",
     options: [
       "Arus elektrik berkadar terus dengan voltan, dengan syarat suhu tidak berubah",
-      "Arus elektrik tidak berkaitan dengan voltan",
+      "Arus elektrik berkadar songsang dengan voltan pada suhu malar",
       "Rintangan sentiasa malar tanpa mengira voltan",
       "Voltan berkadar songsang dengan masa",
     ],
@@ -236,7 +236,7 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "V = V₁ + V₂ (jumlah voltan setiap perintang)",
       "V = V₁ = V₂ (sama pada setiap perintang)",
       "V = V₁ − V₂",
-      "V tidak berkaitan dengan litar bersiri",
+      "V = V₁ × V₂",
     ],
     answerIndex: 0,
     explanation:
@@ -290,7 +290,7 @@ export const scienceF2C7QuizzesBM: QuizQuestion[] = [
       "Arah arus adalah dari terminal positif ke negatif; arah elektron adalah dari negatif ke positif",
       "Arah arus dan arah elektron adalah sama",
       "Arah arus adalah dari negatif ke positif; arah elektron adalah dari positif ke negatif",
-      "Arah arus dan elektron tidak berkaitan dengan terminal sumber",
+      "Arah arus dan elektron kedua-duanya dari terminal positif ke negatif",
     ],
     answerIndex: 0,
     explanation:

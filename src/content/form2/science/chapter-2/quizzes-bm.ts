@@ -12,8 +12,8 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     options: [
       "Sekumpulan organisma daripada spesies yang sama",
       "Beberapa komuniti yang hidup bersama dalam satu habitat dan berinteraksi sesama sendiri, termasuk komponen bukan hidup",
-      "Sejenis tumbuhan yang menghasilkan makanan sendiri",
-      "Kawasan yang hanya didiami oleh haiwan poikiloterma",
+      "Satu komuniti sahaja, tanpa komponen bukan hidup",
+      "Satu habitat sahaja, tanpa organisma yang berinteraksi",
     ],
     answerIndex: 1,
     explanation:
@@ -278,15 +278,15 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "bm",
-    question: "Apakah kesan utama aktiviti perindustrian terhadap alam sekitar mengikut jadual dalam bab ini?",
+    question: "Set kesan manakah yang disebabkan oleh aktiviti perindustrian?",
     options: [
-      "Kepupusan spesies flora dan fauna sahaja",
-      "Pencemaran udara, air dan tanah; hujan asid; kesan rumah hijau",
-      "Peningkatan kesuburan tanah",
-      "Peningkatan bekalan air bersih",
+      "Kepupusan spesies flora dan fauna, hakisan tanah, dan kesan rumah hijau",
+      "Pencemaran udara, air dan tanah, hujan asid, dan kesan rumah hijau",
+      "Pencemaran air oleh racun perosak dan baja, serta kehilangan mineral tanah",
+      "Pencemaran air dan tanah, bau busuk sisa reput, dan banjir kilat",
     ],
     answerIndex: 1,
-    explanation: "Perindustrian menyebabkan pencemaran udara, air dan tanah, hujan asid, serta kesan rumah hijau.",
+    explanation: "Perindustrian menyebabkan pencemaran udara, air dan tanah, hujan asid, serta kesan rumah hijau. Set yang lain ialah kesan pembalakan, pertanian atau pelupusan sisa.",
   },
   {
     id: "sci-f2-c2-bm-q20",
@@ -351,10 +351,10 @@ export const scienceF2C2QuizzesBM: QuizQuestion[] = [
     question:
       "Sebuah kawasan sawah padi mengalami musim kemarau yang panjang. Bagaimanakah ini menjejaskan siratan makanan di kawasan tersebut?",
     options: [
-      "Tidak memberi sebarang kesan kerana padi tidak memerlukan air",
+      "Populasi padi kekal, kerana kemarau hanya menjejaskan pengguna",
       "Populasi pengeluar (padi) berkurang akibat kekurangan air, menyebabkan keseluruhan siratan makanan yang bergantung kepadanya turut terjejas",
       "Populasi pengguna tertier akan meningkat secara mendadak",
-      "Kitar karbon akan terhenti serta-merta",
+      "Kitar karbon menjadi lebih cepat kerana respirasi berkurang",
     ],
     answerIndex: 1,
     explanation: "Padi memerlukan banyak air; musim kemarau yang panjang menyebabkan populasi pengeluar (padi) berkurang, menjejaskan keseluruhan siratan makanan yang bergantung kepada padi sebagai sumber tenaga asas.",

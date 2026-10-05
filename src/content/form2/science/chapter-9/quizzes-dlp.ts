@@ -11,12 +11,12 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     question: "What is heat?",
     options: [
       "A form of energy",
-      "A measure of the degree of hotness of an object",
-      "An instrument used to measure temperature",
-      "A type of chemical substance",
+      "A measure of how hot an object is",
+      "The rate of heat-energy transfer",
+      "The total expansion of a solid",
     ],
     answerIndex: 0,
-    explanation: "Heat is a form of energy that flows from a hotter region to a colder region.",
+    explanation: "Heat is a form of energy that flows from a hotter region to a cooler region.",
   },
   {
     id: "sci-f2-c9-dlp-q2",
@@ -28,13 +28,12 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     question: "What is temperature?",
     options: [
       "A form of energy",
-      "A measure of the degree of hotness or coldness of an object",
-      "The amount of heat absorbed by a substance",
-      "The rate of heat transfer",
+      "A measure of how hot or cold an object is",
+      "The amount of heat contained in a material",
+      "The rate of heat transfer between two objects",
     ],
     answerIndex: 1,
-    explanation:
-      "Temperature is a measure of the degree of hotness or coldness of an object, measured using a thermometer.",
+    explanation: "Temperature measures how hot or cold an object is.",
   },
   {
     id: "sci-f2-c9-dlp-q3",
@@ -45,14 +44,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Which of the following correctly compares the units of heat and temperature?",
     options: [
-      "Heat is measured in joule (J); temperature is measured in °C or K",
-      "Heat is measured in °C; temperature is measured in joule (J)",
-      "Both heat and temperature are measured in joule (J)",
+      "Heat is measured in joules (J); temperature is measured in °C or K",
+      "Heat is measured in °C; temperature is measured in joules (J)",
+      "Both heat and temperature are measured in joules (J)",
       "Both heat and temperature are measured in °C",
     ],
     answerIndex: 0,
-    explanation:
-      "Heat is a form of energy and is measured in joule (J). Temperature is a measure of hotness or coldness and is measured in degrees Celsius (°C) or kelvin (K).",
+    explanation: "Heat is energy and is measured in joules. Temperature is measured in °C or K.",
   },
   {
     id: "sci-f2-c9-dlp-q4",
@@ -65,13 +63,12 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
       "Beaker P contains 500 ml of water and beaker Q contains 100 ml of water, both at the same temperature. Which beaker contains more heat, and why?",
     options: [
       "Beaker P, because it contains a greater quantity of water even though the temperature is the same",
-      "Beaker Q, because a smaller quantity of water heats up faster",
-      "Both beakers contain the same amount of heat because the temperature is the same",
-      "Neither beaker contains any heat because they are at the same temperature",
+      "Beaker Q, because a smaller volume stores heat more efficiently",
+      "Both are the same, because the amount of heat depends only on temperature",
+      "Beaker Q, because the heat is concentrated in the smaller volume of water",
     ],
     answerIndex: 0,
-    explanation:
-      "Even at the same temperature, the amount of heat contained depends on the quantity (and type) of material. Beaker P has a greater quantity of water, so it contains more heat than beaker Q, even though both are at the same temperature.",
+    explanation: "At the same temperature, a greater quantity of material contains more heat.",
   },
   {
     id: "sci-f2-c9-dlp-q5",
@@ -82,13 +79,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "What is the correct direction of heat flow?",
     options: [
-      "From a hotter region to a colder region",
-      "From a colder region to a hotter region",
-      "Heat does not flow at all",
-      "Heat flows randomly without any specific direction",
+      "From a hot region to a cold region",
+      "From a cold region to a hot region",
+      "When both objects are already at the same temperature",
+      "From a larger object to a smaller object, regardless of temperature",
     ],
     answerIndex: 0,
-    explanation: "Heat flows from a hotter region to a colder region.",
+    explanation: "Heat flows from a hotter region to a cooler region.",
   },
   {
     id: "sci-f2-c9-dlp-q6",
@@ -99,14 +96,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "What is conduction?",
     options: [
-      "Heat transfer through the movement of fluid",
-      "Heat transfer from a hotter region to a colder region through a solid medium",
+      "Heat transfer by the movement of a fluid",
+      "Heat transfer through a solid without the solid itself moving",
       "Heat transfer without any medium",
-      "Heat transfer that only occurs through a vacuum",
+      "Heat transfer by rising currents of hot air",
     ],
     answerIndex: 1,
-    explanation:
-      "Conduction is the process of heat transfer from hotter regions to colder regions through a solid medium.",
+    explanation: "Conduction transfers heat through a solid from the hot part to the cold part.",
   },
   {
     id: "sci-f2-c9-dlp-q7",
@@ -117,14 +113,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "What is convection?",
     options: [
-      "Heat transfer through a solid medium",
-      "Heat transfer without any medium",
-      "Heat transfer through the movement of fluid (liquid and gas)",
-      "Heat transfer through the vibration of solid particles",
+      "Heat transfer through particle vibration in a solid",
+      "Heat transfer without a medium, including through a vacuum",
+      "Heat transfer by the movement of a heated fluid",
+      "Heat transfer when two solids reach the same temperature",
     ],
     answerIndex: 2,
-    explanation:
-      "Convection is the process of heat transfer by the movement of fluid (liquid and gas) from hotter regions to colder regions.",
+    explanation: "Convection transfers heat when a heated fluid moves.",
   },
   {
     id: "sci-f2-c9-dlp-q8",
@@ -135,14 +130,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "What is radiation?",
     options: [
-      "Heat transfer through a solid medium only",
-      "Heat transfer through the movement of liquid particles",
-      "Heat transfer that only occurs at night",
-      "Heat transfer without any medium, can propagate through a vacuum",
+      "Heat transfer through vibration of solid particles",
+      "Heat transfer by a fluid that rises and sinks",
+      "Heat transfer that requires air as a medium",
+      "Heat transfer without a medium, including through a vacuum",
     ],
     answerIndex: 3,
-    explanation:
-      "Radiation is the process of transferring heat without any medium and can propagate through an empty space or vacuum.",
+    explanation: "Radiation transfers heat without a medium and can pass through a vacuum.",
   },
   {
     id: "sci-f2-c9-dlp-q9",
@@ -153,14 +147,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Which statement correctly compares heat conductors and heat insulators?",
     options: [
-      "Conductors allow heat to flow through them easily; insulators prevent or slow down heat flow",
-      "Conductors prevent heat flow; insulators allow heat to flow easily",
-      "Both conductors and insulators allow heat to flow at the same rate",
-      "Neither conductors nor insulators allow any heat flow",
+      "Conductors transfer heat easily; insulators slow down heat flow",
+      "Conductors slow down heat; insulators transfer heat easily",
+      "Both transfer heat at the same rate",
+      "Both stop heat flow completely",
     ],
     answerIndex: 0,
-    explanation:
-      "Heat conductors, such as metals, allow heat to flow through them easily. Heat insulators, such as wood and fibreglass, prevent or slow down heat flow.",
+    explanation: "Heat conductors such as metals transfer heat easily. Insulators slow that flow.",
   },
   {
     id: "sci-f2-c9-dlp-q10",
@@ -171,14 +164,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "How does heat energy from the Sun reach the Earth?",
     options: [
-      "By conduction through the vacuum of space",
+      "By conduction across the vacuum of space",
       "By convection currents in space",
-      "By radiation, which does not require a medium and can travel through the vacuum of space",
-      "Heat energy from the Sun does not reach the Earth",
+      "By radiation, which can travel through a vacuum",
+      "By conduction in the atmosphere only, because a vacuum blocks heat",
     ],
     answerIndex: 2,
-    explanation:
-      "Heat energy from the Sun reaches the Earth through radiation. Unlike conduction and convection, radiation does not need a medium and can travel through the vacuum of space.",
+    explanation: "Heat from the Sun reaches the Earth by radiation, which does not need a medium.",
   },
   {
     id: "sci-f2-c9-dlp-q11",
@@ -189,14 +181,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "What is thermal equilibrium?",
     options: [
-      "A condition where one object is hotter than another",
-      "A condition where heat is transferred only through radiation",
-      "A condition where there is no net transfer of heat energy between two objects in contact",
-      "A condition where an object does not absorb any heat at all",
+      "One object stays hotter than the object touching it",
+      "Net heat is transferred by radiation, not by conduction",
+      "No net heat transfer between two objects at the same temperature",
+      "Two objects keep transferring net heat even after their temperatures are equal",
     ],
     answerIndex: 2,
-    explanation:
-      "Thermal equilibrium is achieved when there is no net transfer of heat energy between two objects in thermal contact, and both objects have the same temperature.",
+    explanation: "Thermal equilibrium occurs when there is no net heat transfer and both objects are at the same temperature.",
   },
   {
     id: "sci-f2-c9-dlp-q12",
@@ -206,16 +197,15 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "dlp",
     question:
-      "In the conduction demonstration, why do the thumbtacks fall off in sequence when a copper rod is heated at one end?",
+      "In the conduction demonstration, why do the drawing pins fall in sequence when a copper rod is heated at one end?",
     options: [
-      "Because the copper rod expands",
-      "Because the thumbtacks are heat insulators",
-      "Because the air around the rod becomes hot and rises",
-      "Because heat is transferred via conduction along the rod, melting the wax holding the thumbtacks one by one",
+      "The rod expands and shakes the pins off from the heated end first",
+      "Hot air rises and melts the wax from the far end first",
+      "Radiation from the flame melts all the wax at the same time",
+      "Heat flows by conduction and melts the wax in order along the rod",
     ],
     answerIndex: 3,
-    explanation:
-      "Heat is transferred via conduction along the copper rod, melting the wax in sequence and causing the thumbtacks to fall off one by one, showing the direction of heat flow.",
+    explanation: "Conduction transfers heat along the rod, so the wax melts and the pins fall in sequence.",
   },
   {
     id: "sci-f2-c9-dlp-q13",
@@ -224,17 +214,15 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "dlp",
-    question:
-      "Why does the potassium permanganate crystal move upward in a beaker of heated water?",
+    question: "Why do potassium permanganate crystals move upwards in a beaker of water that is heated?",
     options: [
-      "Because the heated water becomes less dense and rises, carrying the crystal with it (convection current)",
-      "Because potassium permanganate is a heat insulator",
-      "Because the crystal is lighter than air",
-      "Because heat is transferred through radiation in the beaker",
+      "Hot water becomes less dense, rises, and carries the crystals in a convection current",
+      "The crystals become less dense than water and float by themselves",
+      "Conduction through the glass pushes the crystals to the side of the beaker",
+      "Radiation from the burner makes the crystals lighter than air",
     ],
     answerIndex: 0,
-    explanation:
-      "Water heated at the bottom expands, becomes less dense and rises, carrying the potassium permanganate crystal with it — this demonstrates convection current in a liquid.",
+    explanation: "Heated water expands, becomes less dense and rises, carrying the crystals in a convection current.",
   },
   {
     id: "sci-f2-c9-dlp-q14",
@@ -243,17 +231,15 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "dlp",
-    question:
-      "How does the heat-transfer demonstration demonstrate radiation as a method of heat transfer?",
+    question: "How does the vacuum-jar demonstration show radiation as a method of heat transfer?",
     options: [
-      "Smoke moves due to hot and cold air",
-      "Heat can still be felt even when air is removed from a bell jar (vacuum)",
-      "Thumbtacks fall off in sequence",
-      "The potassium permanganate crystal moves upward",
+      "Heat is felt only while air is still present, so air is required",
+      "Heat can still be felt after the air is removed from the jar",
+      "The jar walls conduct the heat, so removing the air changes nothing",
+      "The jar stops radiation, so heat arrives only by convection of the remaining air",
     ],
     answerIndex: 1,
-    explanation:
-      "Heat can still be felt even when air is removed from a bell jar (creating a vacuum), showing that radiation does not require a medium to propagate.",
+    explanation: "Heat is still felt in a vacuum, so the transfer does not need air.",
   },
   {
     id: "sci-f2-c9-dlp-q15",
@@ -264,14 +250,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "How does sea breeze form during the day?",
     options: [
-      "Cold air on land is drawn towards the warmer sea",
-      "The land cools faster than the sea",
-      "Warm air on land expands and rises, then cold air from the sea is drawn in to replace it",
-      "The air above the sea becomes less dense and rises first",
+      "Cool air over the land flows towards the warmer sea",
+      "The land cools faster, so land air flows towards the sea",
+      "Hot air over the land rises, and cooler air from the sea moves in to replace it",
+      "Air over the sea rises first, and land air moves in to replace it",
     ],
     answerIndex: 2,
-    explanation:
-      "During the day, the Sun heats the land faster. Warm air on land expands, becomes less dense and rises; cold air from the sea is drawn in to replace it, resulting in sea breeze.",
+    explanation: "During the day the land heats faster. Land air rises and cooler sea air moves in.",
   },
   {
     id: "sci-f2-c9-dlp-q16",
@@ -282,14 +267,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "How does land breeze form at night?",
     options: [
-      "There is no air movement at night",
-      "The land remains warmer than the sea throughout the night",
-      "The air on land rises and replaces the air over the sea",
-      "The land cools faster than the sea, the warmer air above the sea rises and cold air from the land moves towards the sea",
+      "Land air and sea air stop moving when there is no sunlight",
+      "The land stays warmer, so sea air keeps moving inland",
+      "Land air rises and cooler sea air moves in to replace it",
+      "The land cools faster, sea air rises, and land air flows towards the sea",
     ],
     answerIndex: 3,
-    explanation:
-      "At night, the land cools faster than the sea. The warmer air above the sea becomes less dense and rises, and the colder, denser air from land moves to the sea, resulting in land breeze.",
+    explanation: "At night the land cools faster. Warmer sea air rises and land air flows towards the sea.",
   },
   {
     id: "sci-f2-c9-dlp-q17",
@@ -300,14 +284,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Why is mercury used in thermometers?",
     options: [
-      "Because mercury is a good heat conductor and can detect changes in temperature very quickly",
-      "Because mercury is a good heat insulator",
-      "Because mercury does not expand when heated",
-      "Because mercury is white in colour",
+      "It conducts heat well and expands when the temperature changes",
+      "It is a heat insulator, so the temperature inside stays constant",
+      "It hardly expands, so the scale can be made very long",
+      "It freezes at room temperature, so the column is easy to see",
     ],
     answerIndex: 0,
-    explanation:
-      "Mercury in thermometers is a good heat conductor that can detect changes in temperature very quickly, and it expands and contracts noticeably.",
+    explanation: "Mercury conducts heat well and expands or contracts when the temperature changes.",
   },
   {
     id: "sci-f2-c9-dlp-q18",
@@ -317,10 +300,9 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "dlp",
     question: "In the heat-insulator investigation, which material is a good heat insulator?",
-    options: ["Aluminium foil", "Cotton and felt", "Copper metal", "Water"],
+    options: ["Aluminium foil", "Cotton and felt", "Copper metal", "An iron rod"],
     answerIndex: 1,
-    explanation:
-      "The heat-insulator investigation shows that cotton and felt are good heat insulators (maintaining the temperature of hot water), while aluminium foil is a heat conductor.",
+    explanation: "Cotton and felt slow heat loss. Metals such as aluminium, copper and iron conduct heat.",
   },
   {
     id: "sci-f2-c9-dlp-q19",
@@ -331,14 +313,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Why are oven gloves used to take food trays out of the oven?",
     options: [
-      "Because oven gloves are good heat conductors",
-      "Because oven gloves make the hands hotter",
-      "Because oven gloves are heat insulators that prevent hands from getting scalded",
-      "Because oven gloves can expand",
+      "The gloves are heat conductors, so tray heat reaches the hand quickly",
+      "The gloves cool the tray before it is lifted",
+      "The gloves are heat insulators, so heat flow to the hand is slowed",
+      "The gloves raise the tray temperature so the food stays hot",
     ],
     answerIndex: 2,
-    explanation:
-      "Oven gloves are heat insulators that prevent hands from getting scalded while taking hot food trays out of the oven.",
+    explanation: "Oven gloves are heat insulators that slow heat reaching the hand.",
   },
   {
     id: "sci-f2-c9-dlp-q20",
@@ -349,14 +330,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "What happens to particles in a solid when the solid is heated?",
     options: [
-      "Particles vibrate slower and move closer together",
-      "Particles turn into liquid instantly",
-      "Particles stop moving completely",
-      "Particles vibrate faster and move further apart, causing the solid to expand",
+      "The particles vibrate more slowly and move closer together",
+      "The particles vibrate faster but the distance between them does not change",
+      "The particles leave their fixed positions and flow like a liquid",
+      "The particles vibrate faster and move farther apart, so the solid expands",
     ],
     answerIndex: 3,
-    explanation:
-      "When a solid is heated, particles vibrate faster and move further apart from one another, causing the volume to increase as the solid expands.",
+    explanation: "Heating makes solid particles vibrate faster and farther apart, so the solid expands.",
   },
   {
     id: "sci-f2-c9-dlp-q21",
@@ -366,16 +346,15 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "dlp",
     question:
-      "A metal bar that was just heated cannot fit into a gauge, but it fits again after being cooled with water. What is the most accurate explanation?",
+      "A metal rod just taken from a flame cannot be fitted into a gauge, but it fits again after it is cooled with water. What is a suitable explanation of this observation?",
     options: [
-      "Particles in the metal bar vibrate faster and move further apart when heated, causing the bar to expand; when cooled, particles vibrate slower and the bar contracts again",
-      "The metal bar turns into a liquid when hot",
-      "The gauge expands when exposed to heat from the bar",
-      "The water cools the gauge, not the bar",
+      "The rod's particles vibrate farther apart when hot, so the rod expands; cooling brings the particles closer and the rod contracts",
+      "The rod's particles vibrate faster when hot, but the rod contracts because metal conducts heat",
+      "The gauge expands more than the rod, so the hot rod does not fit",
+      "Cooling moves the rod's particles farther apart, so the cold rod becomes longer",
     ],
     answerIndex: 0,
-    explanation:
-      "Heating causes particles in the metal bar to vibrate faster and move further apart, resulting in expansion; cooling causes particles to vibrate slower and the bar contracts again, as shown in the expansion and contraction demonstration.",
+    explanation: "A hot rod expands because its particles vibrate farther apart. When cooled, the rod contracts and fits again.",
   },
   {
     id: "sci-f2-c9-dlp-q22",
@@ -386,14 +365,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Why are railway tracks built with small gaps between their rails?",
     options: [
-      "To save on construction costs",
-      "To allow the rails to expand in hot weather, so the tracks do not buckle and overlap",
-      "To allow water to flow through the tracks",
-      "To make it easier to install new rails",
+      "So the rails contract when hot and the gaps become larger",
+      "So the rails can expand when hot without buckling",
+      "So heat escapes from the rails more quickly through the gaps",
+      "So expansion of the rails is stopped completely by the joints",
     ],
     answerIndex: 1,
-    explanation:
-      "Expansion gaps on railway tracks allow the rails to expand in hot weather; without these gaps, the tracks would buckle and overlap.",
+    explanation: "The gaps give the rails room to expand when hot so the track does not buckle.",
   },
   {
     id: "sci-f2-c9-dlp-q23",
@@ -404,14 +382,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "How does a bimetallic strip function in a fire alarm system?",
     options: [
-      "Both metal strips expand at the same rate, completing the circuit instantly",
-      "The bimetallic strip contracts when exposed to heat and opens the circuit",
-      "When exposed to heat from a fire, the copper strip expands faster than the iron strip, causing the strip to bend towards the contact point and complete the circuit",
-      "The bimetallic strip is unaffected by heat",
+      "Copper and iron expand by the same amount, so the circuit closes immediately",
+      "Both metals contract when heated, so the circuit opens",
+      "Copper expands faster than iron, the strip bends and closes the circuit",
+      "Iron expands faster than copper, so the strip bends away from the contact",
     ],
     answerIndex: 2,
-    explanation:
-      "A bimetallic strip is made from two types of metal that expand at different rates; when exposed to heat, the copper strip expands faster than the iron strip, causing the strip to bend towards the contact point, completing the circuit and ringing the alarm.",
+    explanation: "Copper expands faster than iron, so the strip bends, closes the circuit and sounds the alarm.",
   },
   {
     id: "sci-f2-c9-dlp-q24",
@@ -421,16 +398,15 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "dlp",
     question:
-      "In the dark-versus-light surface investigation, two milk cans — one painted white (J) and one painted black (K) — are placed close to a Bunsen burner. What is observed and what is the conclusion?",
+      "In the dark-and-bright surface investigation, tin J is painted white and tin K is painted black, then both are placed near a burner. What is the observation and conclusion?",
     options: [
-      "Can J shows a greater increase in temperature, showing white surfaces absorb heat better",
-      "Neither can shows any change in temperature",
-      "Both cans show the same increase in temperature",
-      "Can K shows a greater increase in temperature, showing dark and dull surfaces absorb heat better than white and shiny surfaces",
+      "Tin J is hotter; a white and shiny surface absorbs heat better",
+      "Both tins reach the same temperature; surface colour does not affect absorption",
+      "Tin K is cooler; a dark surface reflects heat better",
+      "Tin K is hotter; dark and dull surfaces absorb heat better",
     ],
     answerIndex: 3,
-    explanation:
-      "Can K (black) shows a greater increase in temperature, proving that dark and dull surfaces are better heat absorbers compared to white and shiny surfaces.",
+    explanation: "The black tin becomes hotter because dark and dull surfaces absorb heat better.",
   },
   {
     id: "sci-f2-c9-dlp-q25",
@@ -440,16 +416,15 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "dlp",
     question:
-      "In the heat-emission investigation, both cans J (white) and K (black) are filled with hot water. What observation shows that can K is a better heat radiator?",
+      "In the heat-emission investigation, tin J (white) and tin K (black) are filled with hot water. Which observation shows that tin K is the better heat emitter?",
     options: [
-      "Can K shows a greater decrease in temperature compared to can J",
-      "Can K shows a smaller decrease in temperature compared to can J",
-      "Neither can shows any decrease in temperature",
-      "Can J shows a greater decrease in temperature",
+      "The temperature of tin K falls more than the temperature of tin J",
+      "The temperature of tin K falls less than the temperature of tin J",
+      "The temperatures of both tins do not change",
+      "The temperature of tin J falls more than the temperature of tin K",
     ],
     answerIndex: 0,
-    explanation:
-      "Can K (black) shows a greater decrease in temperature compared to can J (white), showing that dark and dull surfaces radiate heat better than white and shiny surfaces.",
+    explanation: "A larger temperature drop in the black tin shows that a dark surface emits heat better.",
   },
   {
     id: "sci-f2-c9-dlp-q26",
@@ -460,14 +435,13 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Why are fuel tanks usually painted in bright colours such as white or silver?",
     options: [
-      "To make the tank more visually appealing",
-      "Because bright colours do not absorb a lot of heat, thereby reducing the evaporation of fuel",
-      "Because bright colours are good heat absorbers",
-      "To add more weight to the fuel tank",
+      "Bright colours absorb more heat and cool the fuel",
+      "Bright colours absorb less heat, so less fuel evaporates",
+      "Dark colours would reflect heat and reduce evaporation",
+      "Paint colour does not affect absorption; the thickness of the metal does",
     ],
     answerIndex: 1,
-    explanation:
-      "Bright colours such as white or silver do not absorb a lot of heat compared to dark colours, thereby reducing heat absorption and fuel evaporation inside the tank.",
+    explanation: "Bright colours absorb less heat than dark colours, so the fuel absorbs less heat and evaporates less.",
   },
   {
     id: "sci-f2-c9-dlp-q27",
@@ -477,16 +451,15 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "dlp",
     question:
-      "A student claims that heat and temperature are the same thing because both relate to hotness. What is the most accurate correction to this claim?",
+      "A student claims that heat and temperature are the same thing. Which statement corrects this claim?",
     options: [
-      "The claim is correct because heat and temperature have the same unit",
-      "The claim is incorrect because temperature is a form of energy",
-      "The claim is incorrect; heat is a form of energy (measured in joule) that depends on the type and quantity of material as well as temperature, while temperature is a measure of the degree of movement of particles",
-      "The claim is correct because both are measured using a thermometer",
+      "The claim is correct, because both are measured in joules",
+      "The claim is inaccurate, because temperature is energy and heat is the thermometer reading",
+      "The claim is inaccurate; heat is energy in joules that depends on the quantity of material, whereas temperature measures particle motion",
+      "The claim is inaccurate, because the amount of heat depends only on temperature, not on the quantity of material",
     ],
     answerIndex: 2,
-    explanation:
-      "Although interrelated, heat and temperature are two different quantities: heat is energy (joule) that depends on the type and quantity of material as well as temperature, while temperature depends on the degree of movement of particles and is measured in °C or K.",
+    explanation: "Heat is energy and depends on the type, quantity and temperature of the material. Temperature measures the degree of hotness.",
   },
   {
     id: "sci-f2-c9-dlp-q28",
@@ -495,17 +468,15 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "dlp",
-    question:
-      "How is the principle of heat expansion used to solve the problem of a tight bottle lid?",
+    question: "How can thermal expansion loosen a tight metal bottle cap?",
     options: [
-      "Submerging the bottle lid in ice so it contracts",
-      "Leaving the bottle at room temperature for a long time",
-      "Hitting the bottle lid hard",
-      "Submerging the bottle lid in hot water so the metal expands and becomes looser",
+      "Soak the cap in cold water so the metal expands",
+      "Leave the bottle at room temperature so the cap contracts onto the glass",
+      "Soak the cap in hot water so the metal contracts and presses on the glass neck",
+      "Soak the cap in hot water so the metal expands and loosens",
     ],
     answerIndex: 3,
-    explanation:
-      "Submerging a metal bottle lid in hot water causes the metal to expand, thereby loosening a tight bottle lid.",
+    explanation: "Hot water expands the metal cap, so the cap becomes looser.",
   },
   {
     id: "sci-f2-c9-dlp-q29",
@@ -514,17 +485,15 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "dlp",
-    question:
-      "Steel bridges are built with rollers and a gap on one end. What is the purpose of this design?",
+    question: "A steel bridge is built with rollers and a gap at one end. What is the purpose of this design?",
     options: [
-      "To allow the bridge to expand in hot weather without suffering damage",
-      "To reduce the cost of building the bridge",
-      "To allow the bridge to move during an earthquake",
-      "To make it easier for vehicles to cross the bridge",
+      "To let the bridge expand when hot without being damaged",
+      "To let the bridge contract when hot so that it stays tight",
+      "To stop all expansion by fixing both ends",
+      "To speed up heat loss so the length of the steel does not change",
     ],
     answerIndex: 0,
-    explanation:
-      "Rollers and a gap on one end of a steel bridge allow the bridge to expand in hot weather without experiencing structural stress that could cause damage.",
+    explanation: "The rollers and gap give the steel room to expand when hot.",
   },
   {
     id: "sci-f2-c9-dlp-q30",
@@ -533,16 +502,14 @@ export const scienceF2C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "dlp",
-    question:
-      "What are the main features of the Green Building Concept related to heat and energy management?",
+    question: "Which feature of the Green Building Concept is related to heat and energy management?",
     options: [
-      "Using only new materials and avoiding any renewable energy",
-      "Having high energy efficiency through the usage of solar or renewable energy, good air circulation and lighting systems, and using recycled materials",
-      "Using only dark glass windows to absorb more heat",
-      "Not considering any environmental aspects at all",
+      "Reducing energy efficiency so the building uses more electricity",
+      "High energy efficiency, including renewable energy together with good ventilation and lighting",
+      "Dark glass only, so the building absorbs more heat from the Sun",
+      "Closing all ventilation so cooled air never escapes",
     ],
     answerIndex: 1,
-    explanation:
-      "The Green Building Concept aims to reduce the effects of development on the environment through features such as high energy efficiency (solar/renewable energy), good air circulation and lighting systems, and the use of recycled materials.",
+    explanation: "Green buildings emphasise energy efficiency, renewable energy, good ventilation and good lighting.",
   },
 ];

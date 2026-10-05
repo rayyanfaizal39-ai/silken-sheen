@@ -115,8 +115,8 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     options: [
       "Because it is not a true acid",
       "Because acids and alkalis only show their properties in the presence of water",
-      "Because the blue litmus paper is damaged",
-      "Because it is too dilute",
+      "Because blue litmus changes only in a dilute alkaline solution",
+      "Because a concentrated acid changes litmus even without water",
     ],
     answerIndex: 1,
     explanation:
@@ -232,7 +232,7 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "dlp",
     question:
-      "In the textbook acid-alkali titration, which apparatus contains hydrochloric acid and allows it to be added drop by drop into the conical flask?",
+      "In an acid-alkali titration, hydrochloric acid must be added drop by drop into a conical flask that already contains a fixed volume of sodium hydroxide solution. Which apparatus is used to add the acid drop by drop?",
     options: ["Pipette", "Burette", "Conical flask", "Measuring cylinder"],
     answerIndex: 1,
     explanation:
@@ -342,7 +342,7 @@ export const scienceF2C6QuizzesDLP: QuizQuestion[] = [
     options: [
       "Test the gas directly with litmus paper, because gases do not need water",
       "Dissolve the ammonia gas in water first, because acids and alkalis only show their properties in the presence of water, then test the resulting solution",
-      "Heat the ammonia gas until it becomes a solid before testing",
+      "Cool the ammonia gas until it becomes a liquid before testing",
       "Mix the ammonia gas with an acid before testing its pH",
     ],
     answerIndex: 1,
