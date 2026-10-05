@@ -84,7 +84,9 @@ export function orderRegularQuizQuestions<T extends { difficulty?: unknown; id?:
   return orderQuestionsByDifficulty(
     questions,
     random,
-    scope.subjectId === "science" && scope.form === "Form 1",
+    // Science and Sejarah Form 1 take the whole chapter pool in one fully shuffled
+    // attempt, so difficulty never predicts question position.
+    scope.form === "Form 1" && (scope.subjectId === "science" || scope.subjectId === "sejarah"),
   );
 }
 
