@@ -9,7 +9,12 @@ import {
   type WeeklyQuizRow,
 } from "../_shared/weekly-parent-report.ts";
 
-const jsonHeaders = { "Content-Type": "application/json" };
+const jsonHeaders = {
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Origin": "*",
+  "Content-Type": "application/json",
+};
 
 function response(body: Record<string, unknown>, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: jsonHeaders });
@@ -18,6 +23,7 @@ function response(body: Record<string, unknown>, status = 200) {
 type AdminClient = ReturnType<typeof createClient>;
 
 Deno.serve(async (request) => {
+  if (request.method === "OPTIONS") return new Response("ok", { headers: jsonHeaders });
   if (request.method !== "POST") return response({ error: "Method not allowed" }, 405);
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
