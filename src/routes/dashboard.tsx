@@ -49,6 +49,7 @@ import {
   Lock,
 } from "lucide-react";
 import { AcademyPageShell, NotesSubjectCard, type SubjectPlanetId } from "@/components/AcademyPage";
+import { ParentReportSettings } from "@/components/parent/ParentReportSettings";
 import { useCikgu } from "@/context/cikgu-context";
 import { useAuth } from "@/context/auth-context";
 import { useSignInModal } from "@/context/sign-in-modal";
@@ -307,6 +308,8 @@ function DashboardPage() {
           </Link>
         </div>
       </div>
+
+      {user ? <ParentReportSettings /> : null}
 
       {/* ── ROW 1 — Hero: Rank / Companion / Next Goal (answer in 3 seconds) ── */}
       <HeroRow

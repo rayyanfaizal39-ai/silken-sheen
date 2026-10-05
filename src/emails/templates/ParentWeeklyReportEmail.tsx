@@ -1,6 +1,5 @@
 import {
   Body,
-  Button,
   Column,
   Container,
   Font,
@@ -19,31 +18,23 @@ type SubjectProgress = {
   name: string;
   percentage: number;
   status: string;
-  change: string;
 };
 
 type ParentWeeklyReportEmailProps = {
-  parentName: string;
   studentName: string;
   reportPeriod: string;
   overallStatus: string;
   weeklySummary: string;
-  studyTime: string;
-  lessonsCompleted: number;
   quizzesCompleted: number;
   averageQuizScore: string;
   weeklyXp: string;
   currentStreak: string;
-  activeDays: number;
+  activeDayMarks: boolean[];
   subjects: SubjectProgress[];
   biggestWin: string;
   focusArea: string;
-  parentAction: string;
   brainInsight: string;
   recommendedGoals: string[];
-  recommendationsGenerated: number;
-  progressUpdatesSent: number;
-  dashboardUrl: string;
 };
 
 const WEEKDAY_LABELS = ["M", "T", "W", "T", "F", "S", "S"];
@@ -59,61 +50,24 @@ function subjectAccent(status: string) {
   return { badgeBg: "#dcfce7", badgeText: "#16a34a", barColor: "#22c55e" };
 }
 
-function changeColor(change: string) {
-  if (change.trim().startsWith("-")) return "#f59e0b";
-  if (change.trim().startsWith("+")) return "#22c55e";
-  return "#7c3aed";
-}
-
 export default function ParentWeeklyReportEmail({
-  parentName = "Puan Farah",
-  studentName = "Aina",
-  reportPeriod = "14–20 July 2026",
-  overallStatus = "Strong progress",
-  weeklySummary = "Aina completed most of her weekly learning goal and improved in Science and Mathematics.",
-  studyTime = "5h 45m",
-  lessonsCompleted = 12,
-  quizzesCompleted = 8,
-  averageQuizScore = "88%",
-  weeklyXp = "2,450 XP",
-  currentStreak = "5 days",
-  activeDays = 5,
-  subjects = [
-    {
-      name: "Mathematics",
-      percentage: 78,
-      status: "Improving",
-      change: "+9%",
-    },
-    {
-      name: "Science",
-      percentage: 84,
-      status: "Strong",
-      change: "+12%",
-    },
-    {
-      name: "Sejarah",
-      percentage: 55,
-      status: "Needs revision",
-      change: "-2%",
-    },
-  ],
-  biggestWin = "Scored 92% in the Science Chapter 4 quiz.",
-  focusArea = "Sejarah Bab 3 requires additional revision.",
-  parentAction = "Encourage one short 10-minute revision session before the next quiz.",
-  brainInsight = "Aina performs best during short evening study sessions. Her quiz accuracy was highest between 7:30 PM and 8:30 PM.",
-  recommendedGoals = [
-    "Review Sejarah Bab 3 for 10 minutes.",
-    "Complete two Mathematics quizzes.",
-    "Maintain at least four active learning days.",
-  ],
-  recommendationsGenerated = 24,
-  progressUpdatesSent = 8,
-  dashboardUrl = "https://www.myacademy.my/parent-dashboard",
+  studentName,
+  reportPeriod,
+  overallStatus,
+  weeklySummary,
+  quizzesCompleted,
+  averageQuizScore,
+  weeklyXp,
+  currentStreak,
+  activeDayMarks,
+  subjects,
+  biggestWin,
+  focusArea,
+  brainInsight,
+  recommendedGoals,
 }: ParentWeeklyReportEmailProps) {
+  const activeDayCount = activeDayMarks.filter(Boolean).length;
   const metrics = [
-    { label: "Study Time", value: studyTime, icon: "⏱️" },
-    { label: "Lessons Completed", value: String(lessonsCompleted), icon: "📖" },
     { label: "Quizzes Completed", value: String(quizzesCompleted), icon: "🎯" },
     { label: "Avg Quiz Score", value: averageQuizScore, icon: "📊" },
     { label: "XP Earned", value: weeklyXp, icon: "⚡" },
@@ -187,10 +141,10 @@ export default function ParentWeeklyReportEmail({
               </Column>
             </Row>
 
-            <Text style={styles.paragraph}>Hello {parentName},</Text>
+            <Text style={styles.paragraph}>Hello,</Text>
             <Text style={styles.paragraph}>
-              Here is a clear summary of {studentName}’s learning progress,
-              highlights and recommended focus for next week.
+              Here is a clear summary of {studentName}’s recorded quiz progress
+              and recommended focus for next week.
             </Text>
 
             {/* Momentum hero card */}
@@ -216,7 +170,7 @@ export default function ParentWeeklyReportEmail({
             {/* Weekly Key Metrics */}
             <SectionTitle label="Weekly Key Metrics" />
 
-            {[0, 2, 4].map((i) => (
+            {[0, 2].map((i) => (
               <Row key={i} style={styles.metricRow}>
                 <Column style={styles.metricColumn}>
                   <Metric {...metrics[i]} />
@@ -249,7 +203,7 @@ export default function ParentWeeklyReportEmail({
                   <td align="right">
                     <div style={styles.activeBadge}>
                       <Text style={styles.activeBadgeText}>
-                        {activeDays}/7 Days Active
+                        {activeDayCount}/7 days with a quiz
                       </Text>
                     </div>
                   </td>
@@ -259,7 +213,7 @@ export default function ParentWeeklyReportEmail({
               <table role="presentation" width="100%" cellPadding={0} cellSpacing={0} style={styles.weekdayTable}>
                 <tr>
                   {WEEKDAY_LABELS.map((label, index) => {
-                    const active = index < activeDays;
+                    const active = activeDayMarks[index] === true;
                     return (
                       <td key={index} align="center" style={styles.weekdayCell}>
                         <div
@@ -287,13 +241,16 @@ export default function ParentWeeklyReportEmail({
               </table>
 
               <Text style={styles.consistencyMessage}>
-                {studentName} maintained a steady learning rhythm this week.
+                {activeDayCount} of 7 days include a completed quiz.
               </Text>
             </Section>
 
             {/* Subject Progress */}
             <SectionTitle label="Subject Progress" />
 
+            {subjects.length === 0 ? (
+              <Text style={styles.paragraph}>No quiz results by subject this week.</Text>
+            ) : null}
             {subjects.map((subject) => {
               const accent = subjectAccent(subject.status);
               const width = Math.min(Math.max(subject.percentage, 0), 100);
@@ -329,13 +286,8 @@ export default function ParentWeeklyReportEmail({
                         </table>
                       </td>
                       <td align="right">
-                        <Text
-                          style={{
-                            ...styles.subjectChange,
-                            color: changeColor(subject.change),
-                          }}
-                        >
-                          {subject.change} this week
+                        <Text style={{ ...styles.subjectChange, color: "#334155" }}>
+                          {subject.percentage}%
                         </Text>
                       </td>
                     </tr>
@@ -379,11 +331,7 @@ export default function ParentWeeklyReportEmail({
 
               <div style={styles.focusBlock}>
                 <Text style={styles.focusBlockLabel}>⚠️ AREA THAT NEEDS SUPPORT</Text>
-                <Text style={styles.focusBlockTitle}>{focusArea}</Text>
-                <Text style={styles.focusBlockText}>
-                  <strong>Suggested parent support: </strong>
-                  {parentAction}
-                </Text>
+                <Text style={styles.focusBlockText}>{focusArea}</Text>
               </div>
             </Section>
 
@@ -426,62 +374,13 @@ export default function ParentWeeklyReportEmail({
             ))}
 
             <Text style={styles.goalsFooterNote}>
-              These goals are based on {studentName}’s current progress and
-              learning needs.
+              These goals come from {studentName}’s quiz results this week.
             </Text>
-
-            {/* Value reinforcement */}
-            <Section style={styles.valueCard}>
-              <table role="presentation" width="100%" cellPadding={0} cellSpacing={0} style={styles.valueRowTable}>
-                <tr>
-                  <td>
-                    <Text style={styles.valueRowLabel}>
-                      Personalised recommendations generated
-                    </Text>
-                  </td>
-                  <td align="right">
-                    <div style={styles.valuePill}>
-                      <Text style={styles.valuePillText}>
-                        {recommendationsGenerated}
-                      </Text>
-                    </div>
-                  </td>
-                </tr>
-              </table>
-              <table role="presentation" width="100%" cellPadding={0} cellSpacing={0} style={styles.valueRowTableLast}>
-                <tr>
-                  <td>
-                    <Text style={styles.valueRowLabel}>
-                      Real-time progress updates sent
-                    </Text>
-                  </td>
-                  <td align="right">
-                    <div style={styles.valuePill}>
-                      <Text style={styles.valuePillText}>
-                        {progressUpdatesSent}
-                      </Text>
-                    </div>
-                  </td>
-                </tr>
-              </table>
-            </Section>
 
             <Text style={styles.trustMessage}>
-              This report was generated using your child’s real learning
-              activity from this week. Every lesson, quiz and revision session
-              contributes to future recommendations.
+              This report uses this week’s recorded quiz results and the current
+              study streak. Study time, notes, and flashcards are not included.
             </Text>
-
-            <Section style={styles.ctaSection}>
-              <Button href={dashboardUrl} style={styles.button}>
-                View Full Parent Dashboard
-              </Button>
-              <Text style={styles.ctaSubLink}>
-                <Link href={dashboardUrl} style={styles.ctaSubLinkAnchor}>
-                  View {studentName}’s Recommended Learning Plan
-                </Link>
-              </Text>
-            </Section>
           </Section>
 
           <Section style={styles.footer}>
@@ -502,12 +401,6 @@ export default function ParentWeeklyReportEmail({
                 <td>
                   <Link href="https://www.myacademy.my/terms" style={styles.footerLink}>
                     Terms of Service
-                  </Link>
-                </td>
-                <td style={styles.footerDot}>•</td>
-                <td>
-                  <Link href="https://www.myacademy.my/email-preferences" style={styles.footerLink}>
-                    Manage Preferences
                   </Link>
                 </td>
               </tr>

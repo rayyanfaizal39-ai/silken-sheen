@@ -45,6 +45,11 @@ verify_jwt = true
 [functions.send-parent-report]
 verify_jwt = true
 
+# The function checks the student JWT itself, and a separate cron key for
+# the weekly batch. Gateway JWT verification would block that batch caller.
+[functions.send-weekly-parent-report]
+verify_jwt = false
+
 [functions.create-toyyibpay-bill]
 verify_jwt = true
 

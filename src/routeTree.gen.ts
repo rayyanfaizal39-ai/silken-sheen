@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WeeklyReportRouteImport } from './routes/weekly-report'
 import { Route as UpgradeRouteImport } from './routes/upgrade'
 import { Route as TrackerRouteImport } from './routes/tracker'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -40,6 +41,7 @@ import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-passw
 import { Route as AuthConfirmRouteImport } from './routes/auth.confirm'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AdminLoginRouteImport } from './routes/admin_.login'
+import { Route as AdminWeeklyReportRouteImport } from './routes/admin.weekly-report'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminTrafficRouteImport } from './routes/admin.traffic'
 import { Route as AdminSchoolReportsRouteImport } from './routes/admin.school-reports'
@@ -51,6 +53,11 @@ import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landin
 import { Route as EnglishForm1GrammarRouteImport } from './routes/english.form-1.grammar'
 import { Route as AdminContentQuizImporterRouteImport } from './routes/admin.content.quiz-importer'
 
+const WeeklyReportRoute = WeeklyReportRouteImport.update({
+  id: '/weekly-report',
+  path: '/weekly-report',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UpgradeRoute = UpgradeRouteImport.update({
   id: '/upgrade',
   path: '/upgrade',
@@ -206,6 +213,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminWeeklyReportRoute = AdminWeeklyReportRouteImport.update({
+  id: '/weekly-report',
+  path: '/weekly-report',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/users',
   path: '/users',
@@ -285,6 +297,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
+  '/weekly-report': typeof WeeklyReportRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
@@ -293,6 +306,7 @@ export interface FileRoutesByFullPath {
   '/admin/school-reports': typeof AdminSchoolReportsRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
+  '/admin/weekly-report': typeof AdminWeeklyReportRoute
   '/admin/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/confirm': typeof AuthConfirmRoute
@@ -327,6 +341,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
+  '/weekly-report': typeof WeeklyReportRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
@@ -335,6 +350,7 @@ export interface FileRoutesByTo {
   '/admin/school-reports': typeof AdminSchoolReportsRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
+  '/admin/weekly-report': typeof AdminWeeklyReportRoute
   '/admin/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/confirm': typeof AuthConfirmRoute
@@ -371,6 +387,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/tracker': typeof TrackerRoute
   '/upgrade': typeof UpgradeRoute
+  '/weekly-report': typeof WeeklyReportRoute
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
@@ -379,6 +396,7 @@ export interface FileRoutesById {
   '/admin/school-reports': typeof AdminSchoolReportsRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
+  '/admin/weekly-report': typeof AdminWeeklyReportRoute
   '/admin_/login': typeof AdminLoginRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/confirm': typeof AuthConfirmRoute
@@ -416,6 +434,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tracker'
     | '/upgrade'
+    | '/weekly-report'
     | '/academy/landingpage3'
     | '/account/billing'
     | '/admin/cikgu-intel'
@@ -424,6 +443,7 @@ export interface FileRouteTypes {
     | '/admin/school-reports'
     | '/admin/traffic'
     | '/admin/users'
+    | '/admin/weekly-report'
     | '/admin/login'
     | '/auth/callback'
     | '/auth/confirm'
@@ -458,6 +478,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tracker'
     | '/upgrade'
+    | '/weekly-report'
     | '/academy/landingpage3'
     | '/account/billing'
     | '/admin/cikgu-intel'
@@ -466,6 +487,7 @@ export interface FileRouteTypes {
     | '/admin/school-reports'
     | '/admin/traffic'
     | '/admin/users'
+    | '/admin/weekly-report'
     | '/admin/login'
     | '/auth/callback'
     | '/auth/confirm'
@@ -501,6 +523,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/tracker'
     | '/upgrade'
+    | '/weekly-report'
     | '/academy/landingpage3'
     | '/account/billing'
     | '/admin/cikgu-intel'
@@ -509,6 +532,7 @@ export interface FileRouteTypes {
     | '/admin/school-reports'
     | '/admin/traffic'
     | '/admin/users'
+    | '/admin/weekly-report'
     | '/admin_/login'
     | '/auth/callback'
     | '/auth/confirm'
@@ -545,6 +569,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TrackerRoute: typeof TrackerRoute
   UpgradeRoute: typeof UpgradeRoute
+  WeeklyReportRoute: typeof WeeklyReportRoute
   AcademyLandingpage3Route: typeof AcademyLandingpage3Route
   AccountBillingRoute: typeof AccountBillingRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -556,6 +581,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/weekly-report': {
+      id: '/weekly-report'
+      path: '/weekly-report'
+      fullPath: '/weekly-report'
+      preLoaderRoute: typeof WeeklyReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/upgrade': {
       id: '/upgrade'
       path: '/upgrade'
@@ -773,6 +805,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/weekly-report': {
+      id: '/admin/weekly-report'
+      path: '/weekly-report'
+      fullPath: '/admin/weekly-report'
+      preLoaderRoute: typeof AdminWeeklyReportRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/users': {
       id: '/admin/users'
       path: '/users'
@@ -853,6 +892,7 @@ interface AdminRouteChildren {
   AdminSchoolReportsRoute: typeof AdminSchoolReportsRoute
   AdminTrafficRoute: typeof AdminTrafficRoute
   AdminUsersRoute: typeof AdminUsersRoute
+  AdminWeeklyReportRoute: typeof AdminWeeklyReportRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminContentQuizImporterRoute: typeof AdminContentQuizImporterRoute
 }
@@ -864,6 +904,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminSchoolReportsRoute: AdminSchoolReportsRoute,
   AdminTrafficRoute: AdminTrafficRoute,
   AdminUsersRoute: AdminUsersRoute,
+  AdminWeeklyReportRoute: AdminWeeklyReportRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminContentQuizImporterRoute: AdminContentQuizImporterRoute,
 }
@@ -897,6 +938,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TrackerRoute: TrackerRoute,
   UpgradeRoute: UpgradeRoute,
+  WeeklyReportRoute: WeeklyReportRoute,
   AcademyLandingpage3Route: AcademyLandingpage3Route,
   AccountBillingRoute: AccountBillingRoute,
   AdminLoginRoute: AdminLoginRoute,

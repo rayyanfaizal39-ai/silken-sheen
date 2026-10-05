@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import {
   getAdminUsers,
@@ -351,6 +351,7 @@ function UsersPage() {
                     <td>
                       <div className="file-actions">
                         <button className="btn" onClick={() => setViewingId(u.id)}>View Profile</button>
+                        <Link className="btn" to="/admin/weekly-report" search={{ studentId: u.id }}>View Parent Report</Link>
                         <button
                           className="btn"
                           onClick={() => {
