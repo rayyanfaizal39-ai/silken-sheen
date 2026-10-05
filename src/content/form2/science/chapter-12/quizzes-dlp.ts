@@ -11,9 +11,9 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     question: "What is an Astronomical Unit (A.U.)?",
     options: [
       "The average distance between the Earth and the Sun, approximately 150 million kilometres",
+      "The average distance between the Earth and the Moon, approximately 150 million kilometres",
       "The distance travelled by light in one year",
-      "The average mass of a planet",
-      "The time taken for the Earth to orbit the Sun",
+      "The distance travelled by the Earth in one day",
     ],
     answerIndex: 0,
     explanation:
@@ -337,7 +337,7 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
       "Because it is the furthest planet from the Sun",
       "Because it has no atmosphere to trap or distribute heat",
       "Because it rotates too quickly",
-      "Because it is covered in ice",
+      "Because its thick atmosphere traps heat during the night",
     ],
     answerIndex: 1,
     explanation:
@@ -407,10 +407,10 @@ export const scienceF2C12QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "If the Earth's rotation slowed down or stopped, what effects would be expected?",
     options: [
-      "There would be no effect on Earth",
+      "Day and night stay the same length, but Earth's orbit around the Sun becomes shorter",
       "Longer day/night durations, more deserts, changes in tides and temperature drops in dark areas",
-      "Earth would float off into space",
-      "All other planets would stop orbiting the Sun",
+      "Earth's gravity becomes weaker, so the Moon moves into a more distant orbit, while day and night stay the same length",
+      "The other planets change their orbits around the Sun, while day and night on Earth stay the same length",
     ],
     answerIndex: 1,
     explanation:

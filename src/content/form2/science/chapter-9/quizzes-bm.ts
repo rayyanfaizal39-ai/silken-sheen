@@ -12,12 +12,11 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     options: [
       "Satu bentuk tenaga",
       "Ukuran tahap kepanasan sesuatu objek",
-      "Alat untuk mengukur suhu",
-      "Sejenis bahan kimia",
+      "Kadar pemindahan tenaga haba",
+      "Jumlah pengembangan sesuatu pepejal",
     ],
     answerIndex: 0,
-    explanation:
-      "Haba ialah satu bentuk tenaga yang mengalir daripada kawasan yang lebih panas ke kawasan yang lebih sejuk.",
+    explanation: "Haba ialah satu bentuk tenaga yang mengalir dari kawasan lebih panas ke kawasan lebih sejuk.",
   },
   {
     id: "sci-f2-c9-bm-q2",
@@ -30,12 +29,11 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     options: [
       "Satu bentuk tenaga",
       "Ukuran tahap kepanasan atau kesejukan sesuatu objek",
-      "Jumlah haba yang diserap oleh suatu bahan",
-      "Kadar pemindahan haba",
+      "Jumlah haba yang terkandung dalam suatu bahan",
+      "Kadar pemindahan haba antara dua objek",
     ],
     answerIndex: 1,
-    explanation:
-      "Suhu ialah ukuran tahap kepanasan atau kesejukan sesuatu objek, diukur menggunakan termometer.",
+    explanation: "Suhu mengukur tahap kepanasan atau kesejukan sesuatu objek.",
   },
   {
     id: "sci-f2-c9-bm-q3",
@@ -52,8 +50,7 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
       "Kedua-dua haba dan suhu diukur dalam °C",
     ],
     answerIndex: 0,
-    explanation:
-      "Haba ialah satu bentuk tenaga dan diukur dalam joule (J). Suhu ialah ukuran tahap kepanasan atau kesejukan dan diukur dalam darjah Celsius (°C) atau kelvin (K).",
+    explanation: "Haba ialah tenaga dan diukur dalam joule. Suhu diukur dalam °C atau K.",
   },
   {
     id: "sci-f2-c9-bm-q4",
@@ -66,13 +63,12 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
       "Bikar P mengandungi 500 ml air dan bikar Q mengandungi 100 ml air, kedua-duanya pada suhu yang sama. Bikar manakah mengandungi lebih banyak haba, dan mengapa?",
     options: [
       "Bikar P, kerana ia mengandungi kuantiti air yang lebih banyak walaupun suhunya sama",
-      "Bikar Q, kerana kuantiti air yang lebih sedikit memanas dengan lebih cepat",
-      "Kedua-dua bikar mengandungi jumlah haba yang sama kerana suhunya sama",
-      "Kedua-dua bikar tidak mengandungi haba langsung kerana suhunya sama",
+      "Bikar Q, kerana isi padu yang lebih kecil menyimpan haba dengan lebih cekap",
+      "Kedua-duanya sama, kerana jumlah haba bergantung pada suhu sahaja",
+      "Bikar Q, kerana haba tertumpu dalam isi padu air yang lebih kecil",
     ],
     answerIndex: 0,
-    explanation:
-      "Walaupun pada suhu yang sama, jumlah haba yang terkandung bergantung kepada kuantiti (dan jenis) bahan. Bikar P mempunyai kuantiti air yang lebih banyak, jadi ia mengandungi lebih banyak haba berbanding bikar Q, walaupun kedua-duanya pada suhu yang sama.",
+    explanation: "Pada suhu yang sama, kuantiti bahan yang lebih banyak mengandungi lebih banyak haba.",
   },
   {
     id: "sci-f2-c9-bm-q5",
@@ -85,11 +81,11 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     options: [
       "Daripada kawasan panas ke kawasan sejuk",
       "Daripada kawasan sejuk ke kawasan panas",
-      "Haba tidak mengalir sama sekali",
-      "Haba mengalir secara rawak tanpa arah tertentu",
+      "Apabila kedua-dua objek sudah sama suhu",
+      "Daripada objek yang lebih besar ke objek yang lebih kecil, tanpa mengira suhu",
     ],
     answerIndex: 0,
-    explanation: "Haba mengalir daripada kawasan yang lebih panas ke kawasan yang lebih sejuk.",
+    explanation: "Haba mengalir dari kawasan yang lebih panas ke kawasan yang lebih sejuk.",
   },
   {
     id: "sci-f2-c9-bm-q6",
@@ -101,13 +97,12 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     question: "Apakah konduksi?",
     options: [
       "Pemindahan haba melalui pergerakan bendalir",
-      "Pemindahan haba daripada kawasan panas ke kawasan sejuk melalui medium pepejal",
+      "Pemindahan haba melalui pepejal tanpa pepejal itu berpindah",
       "Pemindahan haba tanpa sebarang medium",
-      "Pemindahan haba melalui ruang vakum sahaja",
+      "Pemindahan haba oleh arus udara panas yang naik",
     ],
     answerIndex: 1,
-    explanation:
-      "Konduksi ialah proses pemindahan haba daripada kawasan lebih panas kepada kawasan lebih sejuk melalui medium pepejal.",
+    explanation: "Konduksi memindahkan haba melalui pepejal dari bahagian panas ke bahagian sejuk.",
   },
   {
     id: "sci-f2-c9-bm-q7",
@@ -118,14 +113,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Apakah perolakan?",
     options: [
-      "Pemindahan haba melalui medium pepejal",
-      "Pemindahan haba tanpa sebarang medium",
-      "Pemindahan haba melalui pergerakan bendalir (cecair dan gas)",
-      "Pemindahan haba melalui getaran zarah pepejal",
+      "Pemindahan haba melalui getaran zarah dalam pepejal",
+      "Pemindahan haba tanpa medium, termasuk melalui vakum",
+      "Pemindahan haba melalui pergerakan bendalir yang panas",
+      "Pemindahan haba apabila dua pepejal mencapai suhu yang sama",
     ],
     answerIndex: 2,
-    explanation:
-      "Perolakan ialah proses pemindahan haba melalui pergerakan bendalir (cecair dan gas) daripada kawasan panas ke kawasan sejuk.",
+    explanation: "Perolakan memindahkan haba apabila bendalir yang dipanaskan bergerak.",
   },
   {
     id: "sci-f2-c9-bm-q8",
@@ -136,14 +130,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Apakah sinaran?",
     options: [
-      "Pemindahan haba melalui medium pepejal sahaja",
-      "Pemindahan haba melalui pergerakan zarah cecair",
-      "Pemindahan haba yang hanya berlaku pada waktu malam",
-      "Pemindahan haba tanpa sebarang medium, boleh merebak melalui vakum",
+      "Pemindahan haba melalui getaran zarah pepejal",
+      "Pemindahan haba oleh bendalir yang naik dan turun",
+      "Pemindahan haba yang memerlukan udara sebagai medium",
+      "Pemindahan haba tanpa medium, termasuk melalui vakum",
     ],
     answerIndex: 3,
-    explanation:
-      "Sinaran ialah proses pemindahan haba tanpa sebarang medium dan boleh merebak melalui ruang kosong atau vakum.",
+    explanation: "Sinaran memindahkan haba tanpa medium dan boleh melalui vakum.",
   },
   {
     id: "sci-f2-c9-bm-q9",
@@ -154,14 +147,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Kenyataan manakah yang membandingkan dengan betul konduktor haba dan penebat haba?",
     options: [
-      "Konduktor membenarkan haba mengalir dengan mudah; penebat menghalang atau memperlahankan aliran haba",
-      "Konduktor menghalang aliran haba; penebat membenarkan haba mengalir dengan mudah",
-      "Kedua-dua konduktor dan penebat membenarkan haba mengalir pada kadar yang sama",
-      "Konduktor dan penebat kedua-duanya tidak membenarkan sebarang aliran haba",
+      "Konduktor mengalirkan haba dengan mudah; penebat memperlahankan aliran haba",
+      "Konduktor memperlahankan haba; penebat mengalirkan haba dengan mudah",
+      "Kedua-duanya mengalirkan haba pada kadar yang sama",
+      "Kedua-duanya menghentikan aliran haba sepenuhnya",
     ],
     answerIndex: 0,
-    explanation:
-      "Konduktor haba, seperti logam, membenarkan haba mengalir melaluinya dengan mudah. Penebat haba, seperti kayu dan gentian kaca, menghalang atau memperlahankan aliran haba.",
+    explanation: "Konduktor haba seperti logam mengalirkan haba dengan mudah. Penebat memperlahankan aliran itu.",
   },
   {
     id: "sci-f2-c9-bm-q10",
@@ -174,12 +166,11 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     options: [
       "Melalui konduksi merentasi vakum angkasa lepas",
       "Melalui arus perolakan di angkasa lepas",
-      "Melalui sinaran, yang tidak memerlukan medium dan boleh merambat melalui vakum angkasa lepas",
-      "Tenaga haba daripada Matahari tidak sampai ke Bumi",
+      "Melalui sinaran, yang boleh merambat melalui vakum",
+      "Melalui konduksi dalam atmosfera sahaja, kerana vakum menghalang haba",
     ],
     answerIndex: 2,
-    explanation:
-      "Tenaga haba daripada Matahari sampai ke Bumi melalui sinaran. Berbeza dengan konduksi dan perolakan, sinaran tidak memerlukan medium dan boleh merambat melalui vakum angkasa lepas.",
+    explanation: "Haba Matahari sampai ke Bumi melalui sinaran, yang tidak memerlukan medium.",
   },
   {
     id: "sci-f2-c9-bm-q11",
@@ -190,14 +181,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Apakah maksud keseimbangan terma?",
     options: [
-      "Keadaan apabila salah satu objek lebih panas daripada objek lain",
-      "Keadaan apabila haba dipindahkan melalui sinaran sahaja",
-      "Keadaan apabila tidak ada pemindahan bersih tenaga haba antara dua objek yang bersentuhan",
-      "Keadaan apabila suatu objek tidak menyerap haba langsung",
+      "Satu objek kekal lebih panas daripada objek yang bersentuhan dengannya",
+      "Haba bersih berpindah melalui sinaran, bukan melalui konduksi",
+      "Tiada pemindahan bersih haba antara dua objek yang sama suhu",
+      "Dua objek terus memindahkan haba bersih walaupun suhu sudah sama",
     ],
     answerIndex: 2,
-    explanation:
-      "Keseimbangan terma tercapai apabila tidak ada pemindahan bersih tenaga haba antara dua objek yang bersentuhan terma, dan kedua-dua objek mempunyai suhu yang sama.",
+    explanation: "Keseimbangan terma berlaku apabila tiada pemindahan bersih haba dan kedua-dua objek sama suhu.",
   },
   {
     id: "sci-f2-c9-bm-q12",
@@ -209,14 +199,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     question:
       "Dalam demonstrasi konduksi, mengapakah paku tekan jatuh secara berurutan apabila rod kuprum dipanaskan pada satu hujung?",
     options: [
-      "Kerana rod kuprum mengembang",
-      "Kerana paku tekan adalah penebat haba",
-      "Kerana udara di sekeliling rod menjadi panas dan naik",
-      "Kerana haba dipindahkan melalui konduksi sepanjang rod, melelehkan lilin yang menampung paku tekan satu demi satu",
+      "Rod mengembang dan menggugurkan paku dari hujung yang dipanaskan dahulu",
+      "Udara panas naik dan melelehkan lilin dari hujung yang jauh dahulu",
+      "Sinaran nyalaan melelehkan semua lilin pada masa yang sama",
+      "Haba mengalir melalui konduksi dan melelehkan lilin mengikut turutan sepanjang rod",
     ],
     answerIndex: 3,
-    explanation:
-      "Haba dipindahkan melalui konduksi sepanjang rod kuprum, melelehkan lilin secara berurutan dan menyebabkan paku tekan jatuh satu demi satu, menunjukkan arah aliran haba.",
+    explanation: "Konduksi memindahkan haba sepanjang rod, jadi lilin meleleh dan paku jatuh mengikut turutan.",
   },
   {
     id: "sci-f2-c9-bm-q13",
@@ -225,17 +214,15 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "bm",
-    question:
-      "Mengapakah hablur kalium permanganat bergerak ke atas dalam bikar air yang dipanaskan?",
+    question: "Mengapakah hablur kalium permanganat bergerak ke atas dalam bikar air yang dipanaskan?",
     options: [
-      "Kerana air yang dipanaskan menjadi kurang tumpat dan naik, membawa hablur bersamanya (arus perolakan)",
-      "Kerana kalium permanganat adalah penebat haba",
-      "Kerana hablur kalium permanganat lebih ringan daripada udara",
-      "Kerana haba dipindahkan melalui sinaran dalam bikar",
+      "Air panas menjadi kurang tumpat, naik, dan membawa hablur dalam arus perolakan",
+      "Hablur menjadi kurang tumpat daripada air lalu terapung dengan sendirinya",
+      "Konduksi melalui kaca menolak hablur ke tepi bikar",
+      "Sinaran dari penunu menjadikan hablur lebih ringan daripada udara",
     ],
     answerIndex: 0,
-    explanation:
-      "Air yang dipanaskan di bahagian bawah mengembang, menjadi kurang tumpat dan naik, membawa hablur kalium permanganat bersamanya — ini menunjukkan arus perolakan dalam cecair.",
+    explanation: "Air yang dipanaskan mengembang, menjadi kurang tumpat dan naik, lalu membawa hablur dalam arus perolakan.",
   },
   {
     id: "sci-f2-c9-bm-q14",
@@ -244,17 +231,15 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "bm",
-    question:
-      "Bagaimanakah demonstrasi balang vakum menunjukkan sinaran sebagai cara pemindahan haba?",
+    question: "Bagaimanakah demonstrasi balang vakum menunjukkan sinaran sebagai cara pemindahan haba?",
     options: [
-      "Asap bergerak akibat udara panas dan sejuk",
-      "Haba dirasakan walaupun udara dikeluarkan daripada balang loceng (vakum)",
-      "Paku tekan jatuh secara berurutan",
-      "Hablur kalium permanganat bergerak ke atas",
+      "Haba dirasakan hanya semasa udara masih ada, jadi udara diperlukan",
+      "Haba masih dapat dirasakan selepas udara dikeluarkan dari balang",
+      "Dinding balang mengalirkan haba, jadi mengeluarkan udara tidak mengubah apa-apa",
+      "Balang menghentikan sinaran, jadi haba hanya sampai melalui perolakan udara yang tinggal",
     ],
     answerIndex: 1,
-    explanation:
-      "Haba masih dapat dirasakan walaupun udara dikeluarkan daripada balang loceng (mewujudkan vakum), menunjukkan sinaran tidak memerlukan medium untuk merebak.",
+    explanation: "Haba masih dirasakan dalam vakum, jadi pemindahan itu tidak memerlukan udara.",
   },
   {
     id: "sci-f2-c9-bm-q15",
@@ -265,14 +250,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Bagaimanakah bayu laut terbentuk pada waktu siang?",
     options: [
-      "Udara sejuk di daratan ditarik ke laut yang lebih panas",
-      "Daratan menyejuk lebih cepat daripada laut",
-      "Udara panas di daratan mengembang dan naik, lalu udara sejuk daripada laut ditarik masuk menggantikannya",
-      "Udara di atas laut menjadi kurang tumpat dan naik terlebih dahulu",
+      "Udara sejuk di daratan mengalir ke laut yang lebih panas",
+      "Daratan menyejuk lebih cepat, jadi udara daratan mengalir ke laut",
+      "Udara panas di daratan naik, dan udara lebih sejuk dari laut masuk menggantikannya",
+      "Udara di atas laut naik dahulu, dan udara daratan masuk menggantikannya",
     ],
     answerIndex: 2,
-    explanation:
-      "Pada waktu siang, Matahari memanaskan daratan lebih cepat. Udara panas di daratan mengembang, menjadi kurang tumpat dan naik; udara sejuk daripada laut ditarik masuk menggantikannya, menghasilkan bayu laut.",
+    explanation: "Pada siang, daratan lebih cepat panas. Udara daratan naik dan udara laut yang lebih sejuk masuk.",
   },
   {
     id: "sci-f2-c9-bm-q16",
@@ -283,14 +267,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Bagaimanakah bayu darat terbentuk pada waktu malam?",
     options: [
-      "Tidak ada pergerakan udara pada waktu malam",
-      "Daratan kekal lebih panas berbanding laut sepanjang malam",
-      "Udara di daratan naik dan menggantikan udara di laut",
-      "Daratan menyejuk lebih cepat berbanding laut, udara panas di atas laut naik dan udara sejuk daripada daratan bergerak ke laut",
+      "Udara daratan dan udara laut berhenti bergerak apabila tiada cahaya matahari",
+      "Daratan kekal lebih panas, jadi udara laut terus masuk ke daratan",
+      "Udara daratan naik dan udara laut yang lebih sejuk masuk menggantikannya",
+      "Daratan menyejuk lebih cepat, udara laut naik, dan udara daratan mengalir ke laut",
     ],
     answerIndex: 3,
-    explanation:
-      "Pada waktu malam, daratan menyejuk lebih cepat berbanding laut. Udara di atas laut yang lebih panas menjadi kurang tumpat dan naik, lalu udara sejuk dan lebih tumpat daripada daratan bergerak ke laut, menghasilkan bayu darat.",
+    explanation: "Pada malam, daratan menyejuk lebih cepat. Udara laut yang lebih panas naik dan udara daratan mengalir ke laut.",
   },
   {
     id: "sci-f2-c9-bm-q17",
@@ -301,14 +284,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Mengapakah merkuri digunakan dalam termometer?",
     options: [
-      "Kerana merkuri adalah konduktor haba yang baik dan dapat mengesan perubahan suhu dengan sangat cepat",
-      "Kerana merkuri adalah penebat haba yang baik",
-      "Kerana merkuri tidak mengembang apabila dipanaskan",
-      "Kerana merkuri berwarna putih",
+      "Ia mengalirkan haba dengan baik dan mengembang apabila suhu berubah",
+      "Ia penebat haba, jadi suhu di dalamnya kekal malar",
+      "Ia hampir tidak mengembang, jadi skala boleh dibuat sangat panjang",
+      "Ia membeku pada suhu bilik, jadi lajur mudah dilihat",
     ],
     answerIndex: 0,
-    explanation:
-      "Merkuri dalam termometer adalah konduktor haba yang baik dan dapat mengesan perubahan suhu dengan sangat cepat, serta dapat mengembang dan mengecut dengan ketara.",
+    explanation: "Merkuri mengalirkan haba dengan baik dan mengembang atau mengecut apabila suhu berubah.",
   },
   {
     id: "sci-f2-c9-bm-q18",
@@ -317,12 +299,10 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "bm",
-    question:
-      "Dalam penyiasatan penebat haba, bahan manakah yang merupakan penebat haba yang baik?",
-    options: ["Kerajang aluminium", "Kapas dan felt", "Logam kuprum", "Air"],
+    question: "Dalam penyiasatan penebat haba, bahan manakah yang merupakan penebat haba yang baik?",
+    options: ["Kerajang aluminium", "Kapas dan felt", "Logam kuprum", "Rod besi"],
     answerIndex: 1,
-    explanation:
-      "Penyiasatan penebat haba menunjukkan kapas dan felt merupakan penebat haba yang baik (mengekalkan suhu air panas), manakala kerajang aluminium merupakan konduktor haba.",
+    explanation: "Kapas dan felt memperlahankan kehilangan haba. Logam seperti aluminium, kuprum dan besi mengalirkan haba.",
   },
   {
     id: "sci-f2-c9-bm-q19",
@@ -331,17 +311,15 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 9",
     lang: "bm",
-    question:
-      "Mengapakah sarung tangan ketuhar (oven gloves) digunakan untuk mengeluarkan dulang makanan daripada ketuhar?",
+    question: "Mengapakah sarung tangan ketuhar digunakan untuk mengeluarkan dulang makanan daripada ketuhar?",
     options: [
-      "Kerana sarung tangan ketuhar adalah konduktor haba yang baik",
-      "Kerana sarung tangan ketuhar membuatkan tangan lebih panas",
-      "Kerana sarung tangan ketuhar adalah penebat haba yang dapat mencegah tangan daripada melecur",
-      "Kerana sarung tangan ketuhar boleh mengembang",
+      "Sarung itu konduktor haba, jadi haba dulang sampai ke tangan dengan cepat",
+      "Sarung itu menyejukkan dulang sebelum dulang diangkat",
+      "Sarung itu penebat haba, jadi aliran haba ke tangan diperlahankan",
+      "Sarung itu meningkatkan suhu dulang supaya makanan kekal panas",
     ],
     answerIndex: 2,
-    explanation:
-      "Sarung tangan ketuhar adalah penebat haba yang dapat mencegah tangan daripada melecur semasa mengeluarkan dulang makanan yang panas daripada ketuhar.",
+    explanation: "Sarung tangan ketuhar ialah penebat haba yang memperlahankan haba sampai ke tangan.",
   },
   {
     id: "sci-f2-c9-bm-q20",
@@ -352,14 +330,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Apa yang berlaku kepada zarah pepejal apabila pepejal itu dipanaskan?",
     options: [
-      "Zarah bergetar lebih perlahan dan bergerak lebih rapat",
-      "Zarah bertukar menjadi cecair serta-merta",
-      "Zarah berhenti bergerak sepenuhnya",
-      "Zarah bergetar lebih cepat dan bergerak lebih jauh antara satu sama lain, menyebabkan pepejal mengembang",
+      "Zarah bergetar lebih perlahan dan saling mendekat",
+      "Zarah bergetar lebih cepat tetapi jarak antara zarah tidak berubah",
+      "Zarah meninggalkan kedudukan tetap dan mengalir seperti cecair",
+      "Zarah bergetar lebih cepat dan saling menjauh, lalu pepejal mengembang",
     ],
     answerIndex: 3,
-    explanation:
-      "Apabila pepejal dipanaskan, zarah bergetar lebih cepat dan bergerak lebih jauh antara satu sama lain, menyebabkan isi padu pepejal meningkat kerana pepejal mengembang.",
+    explanation: "Pemanasan membuat zarah pepejal bergetar lebih cepat dan lebih jauh, jadi pepejal mengembang.",
   },
   {
     id: "sci-f2-c9-bm-q21",
@@ -369,16 +346,15 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "bm",
     question:
-      "Sebatang rod logam yang baru dikeluarkan daripada api tidak boleh dimasukkan ke dalam tolok (gauge), tetapi boleh dimasukkan semula selepas disejukkan dengan air. Apakah penjelasan yang sesuai bagi pemerhatian ini?",
+      "Sebatang rod logam yang baru dikeluarkan daripada api tidak boleh dimasukkan ke dalam tolok, tetapi boleh dimasukkan semula selepas disejukkan dengan air. Apakah penjelasan yang sesuai bagi pemerhatian ini?",
     options: [
-      "Zarah dalam rod logam bergetar lebih cepat dan bergerak lebih jauh apabila dipanaskan, menyebabkan rod mengembang; apabila disejukkan, zarah bergetar lebih perlahan dan rod mengecut semula",
-      "Rod logam bertukar menjadi cecair apabila panas",
-      "Tolok itu mengembang apabila terkena haba daripada rod",
-      "Air menyejukkan tolok, bukan rod",
+      "Zarah rod bergetar lebih jauh apabila panas, jadi rod mengembang; penyejukan mendekatkan zarah dan rod mengecut",
+      "Zarah rod bergetar lebih cepat apabila panas, tetapi rod mengecut kerana logam mengalirkan haba",
+      "Tolok mengembang lebih banyak daripada rod, jadi rod panas tidak muat",
+      "Penyejukan menjauhkan zarah rod, jadi rod yang sejuk menjadi lebih panjang",
     ],
     answerIndex: 0,
-    explanation:
-      "Pemanasan menyebabkan zarah dalam rod logam bergetar lebih cepat dan bergerak lebih jauh, mengakibatkan pengembangan; penyejukan menyebabkan zarah bergetar lebih perlahan dan rod mengecut semula seperti dalam demonstrasi pengembangan dan pengecutan.",
+    explanation: "Rod panas mengembang kerana zarahnya bergetar lebih jauh. Apabila disejukkan, rod mengecut dan muat semula.",
   },
   {
     id: "sci-f2-c9-bm-q22",
@@ -389,14 +365,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Mengapakah landasan kereta api dibina dengan jurang kecil antara relnya?",
     options: [
-      "Untuk menjimatkan kos pembinaan",
-      "Untuk membolehkan pengembangan rel semasa cuaca panas, supaya landasan tidak melengkung dan bertindih",
-      "Untuk membolehkan air mengalir melalui landasan",
-      "Untuk memudahkan pemasangan rel baharu",
+      "Supaya rel mengecut semasa panas dan jurang menjadi lebih besar",
+      "Supaya rel boleh mengembang semasa panas tanpa melengkung",
+      "Supaya haba rel terbebas lebih cepat melalui jurang itu",
+      "Supaya pengembangan rel terhenti sepenuhnya oleh penyambung",
     ],
     answerIndex: 1,
-    explanation:
-      "Jurang dilatasi pada landasan kereta api membolehkan rel mengembang semasa cuaca panas; tanpa jurang ini, landasan akan melengkung dan bertindih.",
+    explanation: "Jurang memberi ruang untuk rel mengembang semasa panas supaya landasan tidak melengkung.",
   },
   {
     id: "sci-f2-c9-bm-q23",
@@ -407,14 +382,13 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Bagaimanakah jalur dwilogam berfungsi dalam sistem penggera kebakaran?",
     options: [
-      "Kedua-dua jalur logam mengembang pada kadar yang sama, melengkapkan litar serta-merta",
-      "Jalur dwilogam mengecut apabila terdedah kepada haba dan membuka litar",
-      "Apabila terdedah kepada haba kebakaran, jalur kuprum mengembang lebih cepat berbanding jalur besi, menyebabkan jalur melentur ke arah titik sentuhan dan melengkapkan litar",
-      "Jalur dwilogam tidak terjejas oleh haba sama sekali",
+      "Kuprum dan besi mengembang sama banyak, lalu litar tertutup serta-merta",
+      "Kedua-dua logam mengecut apabila panas, lalu litar terbuka",
+      "Kuprum mengembang lebih cepat daripada besi, jalur melentur dan menutup litar",
+      "Besi mengembang lebih cepat daripada kuprum, jalur melentur menjauhi sentuhan",
     ],
     answerIndex: 2,
-    explanation:
-      "Jalur dwilogam dibuat daripada dua jenis logam yang mengembang pada kadar berbeza; apabila terdedah kepada haba, jalur kuprum mengembang lebih cepat berbanding jalur besi, menyebabkan jalur melentur ke arah titik sentuhan, melengkapkan litar dan membunyikan penggera.",
+    explanation: "Kuprum mengembang lebih cepat daripada besi, jadi jalur melentur, menutup litar dan membunyikan penggera.",
   },
   {
     id: "sci-f2-c9-bm-q24",
@@ -424,16 +398,15 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "bm",
     question:
-      "Dalam penyiasatan permukaan gelap dan cerah, dua tin susu — satu dicat putih (J) dan satu dicat hitam (K) — diletakkan berdekatan penunu Bunsen. Apakah yang diperhatikan dan apakah kesimpulannya?",
+      "Dalam penyiasatan permukaan gelap dan cerah, tin J dicat putih dan tin K dicat hitam, kemudian kedua-duanya diletakkan berhampiran penunu. Apakah pemerhatian dan kesimpulannya?",
     options: [
-      "Tin J menunjukkan peningkatan suhu lebih besar, menunjukkan permukaan putih menyerap haba lebih baik",
-      "Tidak ada perubahan suhu pada kedua-dua tin",
-      "Kedua-dua tin menunjukkan peningkatan suhu yang sama",
-      "Tin K menunjukkan peningkatan suhu lebih besar, menunjukkan permukaan gelap dan kusam menyerap haba lebih baik berbanding permukaan putih dan berkilat",
+      "Tin J lebih panas; permukaan putih dan berkilat menyerap haba lebih baik",
+      "Kedua-dua tin sama suhu; warna permukaan tidak mempengaruhi penyerapan",
+      "Tin K lebih sejuk; permukaan gelap memantulkan haba lebih baik",
+      "Tin K lebih panas; permukaan gelap dan kusam menyerap haba lebih baik",
     ],
     answerIndex: 3,
-    explanation:
-      "Tin K (hitam) menunjukkan peningkatan suhu yang lebih besar, membuktikan permukaan gelap dan kusam adalah penyerap haba yang lebih baik berbanding permukaan putih dan berkilat.",
+    explanation: "Tin hitam menjadi lebih panas kerana permukaan gelap dan kusam menyerap haba lebih baik.",
   },
   {
     id: "sci-f2-c9-bm-q25",
@@ -443,16 +416,15 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "bm",
     question:
-      "Dalam penyiasatan pembebasan haba, kedua-dua tin J (putih) dan K (hitam) diisi air panas. Apakah pemerhatian yang menunjukkan tin K adalah pembebas haba yang lebih baik?",
+      "Dalam penyiasatan pembebasan haba, tin J (putih) dan tin K (hitam) diisi air panas. Apakah pemerhatian yang menunjukkan tin K pembebas haba yang lebih baik?",
     options: [
-      "Tin K menunjukkan penurunan suhu yang lebih besar berbanding tin J",
-      "Tin K menunjukkan penurunan suhu yang lebih kecil berbanding tin J",
-      "Kedua-dua tin tidak mengalami sebarang penurunan suhu",
-      "Tin J menunjukkan penurunan suhu yang lebih besar",
+      "Suhu tin K menurun lebih banyak daripada suhu tin J",
+      "Suhu tin K menurun lebih sedikit daripada suhu tin J",
+      "Suhu kedua-dua tin tidak berubah",
+      "Suhu tin J menurun lebih banyak daripada suhu tin K",
     ],
     answerIndex: 0,
-    explanation:
-      "Tin K (hitam) menunjukkan penurunan suhu yang lebih besar berbanding tin J (putih), menunjukkan permukaan gelap dan kusam membebaskan haba dengan lebih baik berbanding permukaan putih dan berkilat.",
+    explanation: "Penurunan suhu yang lebih besar pada tin hitam menunjukkan permukaan gelap membebaskan haba lebih baik.",
   },
   {
     id: "sci-f2-c9-bm-q26",
@@ -461,17 +433,15 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "bm",
-    question:
-      "Mengapakah tangki bahan api biasanya dicat dengan warna terang seperti putih atau perak?",
+    question: "Mengapakah tangki bahan api biasanya dicat dengan warna terang seperti putih atau perak?",
     options: [
-      "Untuk menjadikan tangki lebih menarik dari segi rekaan",
-      "Kerana warna terang tidak menyerap banyak haba, dengan itu mengurangkan penyejatan bahan api",
-      "Kerana warna terang adalah penyerap haba yang baik",
-      "Untuk menambah berat tangki bahan api",
+      "Warna terang menyerap lebih banyak haba dan menyejukkan bahan api",
+      "Warna terang menyerap kurang haba, jadi penyejatan bahan api berkurang",
+      "Warna gelap akan memantulkan haba dan mengurangkan penyejatan",
+      "Warna cat tidak mempengaruhi penyerapan; ketebalan logam yang menentukannya",
     ],
     answerIndex: 1,
-    explanation:
-      "Warna terang seperti putih atau perak tidak menyerap banyak haba berbanding warna gelap, dengan itu mengurangkan penyerapan haba dan penyejatan bahan api di dalam tangki.",
+    explanation: "Warna terang menyerap kurang haba daripada warna gelap, jadi bahan api kurang menyerap haba dan kurang menyejat.",
   },
   {
     id: "sci-f2-c9-bm-q27",
@@ -481,16 +451,15 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 9",
     lang: "bm",
     question:
-      "Seorang murid mendakwa bahawa haba dan suhu adalah perkara yang sama kerana kedua-duanya berkaitan dengan kepanasan. Apakah pernyataan yang membetulkan dakwaan ini?",
+      "Seorang murid mendakwa haba dan suhu adalah perkara yang sama. Pernyataan manakah yang membetulkan dakwaan ini?",
     options: [
-      "Dakwaan adalah betul kerana haba dan suhu mempunyai unit yang sama",
-      "Dakwaan tidak tepat kerana suhu adalah satu bentuk tenaga",
-      "Dakwaan tidak tepat; haba ialah satu bentuk tenaga (diukur dalam joule) yang bergantung pada jenis dan kuantiti bahan serta suhu, manakala suhu adalah ukuran darjah gerakan zarah",
-      "Dakwaan adalah betul kerana kedua-duanya diukur menggunakan termometer",
+      "Dakwaan betul, kerana kedua-duanya diukur dalam joule",
+      "Dakwaan tidak tepat, kerana suhu ialah tenaga dan haba ialah bacaan termometer",
+      "Dakwaan tidak tepat; haba ialah tenaga dalam joule yang bergantung pada kuantiti bahan, manakala suhu mengukur gerakan zarah",
+      "Dakwaan tidak tepat, kerana jumlah haba bergantung pada suhu sahaja, bukan kuantiti bahan",
     ],
     answerIndex: 2,
-    explanation:
-      "Walaupun saling berkait, haba dan suhu adalah dua kuantiti berbeza: haba adalah tenaga (joule) yang bergantung kepada jenis dan kuantiti bahan serta suhu, manakala suhu bergantung kepada darjah gerakan zarah dan diukur dalam °C atau K.",
+    explanation: "Haba ialah tenaga dan bergantung pada jenis, kuantiti dan suhu bahan. Suhu mengukur darjah kepanasan.",
   },
   {
     id: "sci-f2-c9-bm-q28",
@@ -499,17 +468,15 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "bm",
-    question:
-      "Bagaimanakah konsep pengembangan haba digunakan untuk menyelesaikan masalah penutup botol yang ketat?",
+    question: "Bagaimanakah pengembangan haba boleh melonggarkan penutup botol logam yang ketat?",
     options: [
-      "Merendam penutup botol dalam ais supaya ia mengecut",
-      "Membiarkan botol pada suhu bilik dalam tempoh yang lama",
-      "Memukul penutup botol dengan kuat",
-      "Merendam penutup botol dalam air panas supaya logam mengembang dan menjadi lebih longgar",
+      "Rendam penutup dalam air sejuk supaya logam mengembang",
+      "Biarkan botol pada suhu bilik supaya penutup mengecut pada kaca",
+      "Rendam penutup dalam air panas supaya logam mengecut dan menekan leher kaca",
+      "Rendam penutup dalam air panas supaya logam mengembang dan longgar",
     ],
     answerIndex: 3,
-    explanation:
-      "Merendam penutup botol logam dalam air panas menyebabkan logam mengembang, dengan itu melonggarkan penutup botol yang ketat.",
+    explanation: "Air panas mengembangkan penutup logam, lalu penutup menjadi lebih longgar.",
   },
   {
     id: "sci-f2-c9-bm-q29",
@@ -518,17 +485,15 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "bm",
-    question:
-      "Jambatan keluli dibina dengan roda gelek (roller) dan jurang pada satu hujung. Apakah tujuan reka bentuk ini?",
+    question: "Jambatan keluli dibina dengan roda gelek dan jurang pada satu hujung. Apakah tujuan reka bentuk ini?",
     options: [
-      "Untuk membolehkan jambatan mengembang semasa cuaca panas tanpa mengalami kerosakan",
-      "Untuk mengurangkan kos pembinaan jambatan",
-      "Untuk membolehkan jambatan bergerak semasa gempa bumi",
-      "Untuk memudahkan kenderaan melintasi jambatan",
+      "Membolehkan jambatan mengembang semasa panas tanpa rosak",
+      "Membolehkan jambatan mengecut semasa panas supaya kekal tegang",
+      "Menghentikan semua pengembangan dengan memaut kedua-dua hujung",
+      "Mempercepat kehilangan haba supaya panjang keluli tidak berubah",
     ],
     answerIndex: 0,
-    explanation:
-      "Roda gelek dan jurang pada satu hujung jambatan keluli membolehkan jambatan mengembang semasa cuaca panas tanpa mengalami tekanan struktur yang boleh menyebabkan kerosakan.",
+    explanation: "Roda gelek dan jurang memberi ruang untuk keluli mengembang semasa panas.",
   },
   {
     id: "sci-f2-c9-bm-q30",
@@ -537,16 +502,14 @@ export const scienceF2C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 9",
     lang: "bm",
-    question:
-      "Apakah ciri-ciri utama Konsep Bangunan Hijau yang berkaitan dengan pengurusan haba dan tenaga?",
+    question: "Apakah ciri Konsep Bangunan Hijau yang berkaitan dengan pengurusan haba dan tenaga?",
     options: [
-      "Menggunakan hanya bahan baharu dan mengelakkan sebarang tenaga boleh diperbaharui",
-      "Mempunyai kecekapan tenaga yang tinggi melalui penggunaan tenaga solar atau tenaga boleh diperbaharui, sistem aliran udara dan pencahayaan yang baik, serta menggunakan bahan kitar semula",
-      "Menggunakan tingkap kaca gelap sahaja untuk menyerap lebih banyak haba",
-      "Tidak mengambil kira sebarang aspek alam sekitar",
+      "Mengurangkan kecekapan tenaga supaya bangunan menggunakan lebih banyak elektrik",
+      "Kecekapan tenaga yang tinggi, termasuk tenaga boleh diperbaharui serta pengudaraan dan pencahayaan yang baik",
+      "Kaca gelap sahaja, supaya bangunan menyerap lebih banyak haba matahari",
+      "Menutup semua pengudaraan supaya udara sejuk tidak pernah keluar",
     ],
     answerIndex: 1,
-    explanation:
-      "Konsep Bangunan Hijau bertujuan mengurangkan kesan pembangunan terhadap alam sekitar dengan ciri-ciri seperti kecekapan tenaga tinggi (tenaga solar/boleh diperbaharui), sistem aliran udara dan pencahayaan yang baik, serta penggunaan bahan kitar semula.",
+    explanation: "Bangunan Hijau menekankan kecekapan tenaga, tenaga boleh diperbaharui, pengudaraan dan pencahayaan yang baik.",
   },
 ];

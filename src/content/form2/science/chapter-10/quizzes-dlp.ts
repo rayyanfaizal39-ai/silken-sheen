@@ -124,8 +124,8 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     options: [
       "The amplitude of the sound wave",
       "The frequency of the sound wave",
-      "The speed of sound",
-      "The air temperature",
+      "The speed of the sound wave",
+      "The temperature of the surrounding air",
     ],
     answerIndex: 1,
     explanation:
@@ -171,10 +171,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question:
       "Why can't the sound of an alarm clock's ringing be heard after air is sucked out of a bell jar using a vacuum pump?",
     options: [
-      "Because the alarm clock stops vibrating",
-      "Because sound requires a medium to propagate and cannot propagate through a vacuum",
-      "Because the frequency of the alarm clock changes",
-      "Because the amplitude of the alarm clock becomes zero",
+      "Because the alarm clock stops vibrating when the air is removed",
+      "Because sound cannot propagate through a vacuum",
+      "Because the frequency of the alarm clock falls below 20 Hz",
+      "Because the amplitude of the alarm clock's vibration becomes zero",
     ],
     answerIndex: 1,
     explanation:
@@ -189,10 +189,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "Why does sound propagate faster in solids compared to gases?",
     options: [
-      "Because solid particles are arranged closely together compared to gas particles, which are far apart",
-      "Because solids are heavier than gases",
-      "Because gases do not have particles",
-      "Because the temperature of solids is higher than gases",
+      "Because solid particles are closer together, so the vibration is passed on faster",
+      "Because solid particles are farther apart, so the vibration has more space",
+      "Because gas particles are closer together than solid particles",
+      "Because solid particles vibrate more slowly, so sound takes a shorter path",
     ],
     answerIndex: 0,
     explanation:
@@ -207,10 +207,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "How is the sound of a bell transferred to a listener?",
     options: [
-      "The metal surface of the bell vibrates, nearby air molecules also vibrate and collide with other air molecules, transferring vibration in the form of waves",
-      "The bell produces light that is seen by the listener",
-      "The bell heats the air until sound is produced",
-      "Sound is transferred directly without any medium",
+      "The bell metal vibrates and that vibration is passed through air molecules as a wave",
+      "The bell vibrates, but the vibration travels through a vacuum without air molecules",
+      "Air molecules vibrate first, and that vibration then moves the bell",
+      "The bell vibrates and the vibration travels only through solids, not through air",
     ],
     answerIndex: 0,
     explanation:
@@ -229,7 +229,7 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
       "Increases the amplitude of the wave, making the sound louder",
       "Increases the frequency of the wave, making the pitch higher",
       "Decreases the speed of sound",
-      "Converts sound into light",
+      "Decreases the frequency of the wave, making the pitch lower",
     ],
     answerIndex: 0,
     explanation:
@@ -245,10 +245,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question:
       "In the investigation using a C.R.O. and an audio signal generator, what is the effect of increasing frequency?",
     options: [
-      "Increases the amplitude of the wave",
-      "Increases the frequency of the wave, making the pitch higher",
-      "Decreases the loudness of the sound",
-      "Has no effect at all",
+      "Increases the amplitude, making the sound louder",
+      "Increases the frequency, making the pitch higher",
+      "Decreases the amplitude, making the sound softer",
+      "Increases the speed of sound in air",
     ],
     answerIndex: 1,
     explanation:
@@ -263,10 +263,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "What is meant by the Doppler effect?",
     options: [
-      "The apparent change in frequency caused by the relative movement of the sound source, the observer, or both",
+      "A change in frequency caused by relative movement of the source or observer",
       "The reflection of sound from a hard surface",
       "The absorption of sound by a soft surface",
-      "The loss of ear sensitivity to high frequencies",
+      "Sound that cannot propagate through a vacuum",
     ],
     answerIndex: 0,
     explanation:
@@ -348,7 +348,7 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 10",
     lang: "dlp",
     question:
-      "Based on the table of animal hearing ranges, which animal has the highest hearing range (Hz)?",
+      "Which animal has the highest upper limit of hearing?",
     options: [
       "Dog (67–45,000)",
       "Dolphin (40–100,000)",
@@ -369,10 +369,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question:
       "A doctor uses a device to listen to a patient's heartbeat more clearly. What device is used, and how does it work?",
     options: [
-      "Loudspeaker — makes a voice louder so it can be heard from a distance",
-      "Stethoscope — helps the doctor hear the patient's heartbeat by channelling and amplifying the sound",
+      "Loudspeaker — makes a sound louder for a distant listener",
+      "Stethoscope — channels the heartbeat to the doctor's ear",
       "Hearing aid — amplifies the sound entering the ear",
-      "Sonar — detects objects underwater",
+      "Megaphone — concentrates sound so that it travels farther",
     ],
     answerIndex: 1,
     explanation:
@@ -406,10 +406,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question:
       "A recording studio engineer lines the walls with sound-absorbing material. What is the main purpose of this, and why is it effective?",
     options: [
-      "To increase the amplitude of sound so recordings are louder",
+      "To increase the amplitude so the recording is louder",
       "To increase the frequency of the recorded sound",
-      "To convert sound into ultrasound",
-      "To reduce echo and produce high-quality recordings, because soft and rough surfaces absorb sound well",
+      "To reflect sound so the echo becomes stronger",
+      "To absorb sound so the echo is reduced and the recording is clearer",
     ],
     answerIndex: 3,
     explanation:
@@ -444,10 +444,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question:
       "Why doesn't a person carrying a sound source (e.g. an air horn) feel a change in pitch while moving, unlike a stationary observer?",
     options: [
-      "Because the air horn does not produce any sound",
-      "Because the air horn only produces ultrasound",
-      "Because the person's ears are deaf",
-      "Because there is no relative movement between the sound source and the person carrying it, unlike the stationary observer who experiences relative movement towards the source",
+      "Because pitch changes only when the observer moves, not the source",
+      "Because the air horn produces the same frequency for every listener",
+      "Because a stationary observer hears the same frequency even when the source moves",
+      "Because there is no relative movement between the source and the person carrying it",
     ],
     answerIndex: 3,
     explanation:
@@ -463,10 +463,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question:
       "Bats use ultrasound to navigate in the dark. How does this principle relate to the sonar technology used by humans?",
     options: [
-      "Both use light to detect objects",
-      "They are not related at all",
-      "Both use the reflection of sound waves (ultrasound) to detect the position or distance of objects",
-      "Bats use magnetism, while sonar uses sound",
+      "Both use reflected light to detect objects",
+      "Bats use sound, while sonar uses radio waves",
+      "Both use the reflection of ultrasound to detect the distance of objects",
+      "Bats emit sound, but sonar only listens and does not emit sound",
     ],
     answerIndex: 2,
     explanation:
@@ -482,10 +482,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question:
       "A student claims 'humans can hear all types of sound including ultrasound'. Is this claim accurate? Why?",
     options: [
-      "Accurate, because human ears are very sensitive",
-      "Not accurate, because humans cannot hear any sound at all",
-      "Accurate, because ultrasound is only used by animals",
-      "Not accurate, because ultrasound has a frequency of more than 20,000 Hz which exceeds the limit of human hearing (20 Hz–20,000 Hz)",
+      "Accurate, because the human range includes frequencies above 20,000 Hz",
+      "Not accurate, because humans hear only sounds below 20 Hz",
+      "Accurate, because ultrasound lies between 20 Hz and 20,000 Hz",
+      "Not accurate, because ultrasound is above 20,000 Hz, outside the range 20 Hz–20,000 Hz",
     ],
     answerIndex: 3,
     explanation:
@@ -520,10 +520,10 @@ export const scienceF2C10QuizzesDLP: QuizQuestion[] = [
     question:
       "Why does the human hearing range become narrower with age, and what are the implications for the need for hearing aids?",
     options: [
-      "Because the amplitude of all sounds in the world decreases over time",
-      "Because elderly people no longer produce sound waves",
-      "Because the air around elderly people becomes a vacuum",
-      "Because human ears lose sensitivity to certain sound frequencies with age, causing some elderly people to need hearing aids to amplify sound entering the ear",
+      "Because the ear becomes more sensitive to every frequency, so a hearing aid is not needed",
+      "Because the ear loses sensitivity only to sounds below 20 Hz",
+      "Because the amplitude of speech increases, so sounds become too loud",
+      "Because the ear loses sensitivity to some frequencies, so a hearing aid amplifies the sound",
     ],
     answerIndex: 3,
     explanation:

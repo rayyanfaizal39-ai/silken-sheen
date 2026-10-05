@@ -46,7 +46,7 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     question: "Apakah maksud komet?",
     options: [
       "Jasad besar berbatu sahaja",
-      "Sekeping logam yang terapung di angkasa lepas",
+      "Jasad kecil berbatu yang mengorbit antara Marikh dan Musytari",
       "Jasad kecil terdiri daripada campuran ais, gas dan debu yang membeku, bergerak mengelilingi Matahari",
       "Planet kecil dalam jalur asteroid",
     ],
@@ -177,7 +177,7 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     options: [
       "Asteroid adalah meteoroid yang sudah jatuh ke Bumi",
       "Asteroid berasal daripada serpihan meteoroid",
-      "Kedua-duanya tidak berkaitan",
+      "Meteoroid ialah asteroid yang sentiasa mengorbit pada laluan Bumi",
       "Meteoroid berasal daripada serpihan asteroid dan komet",
     ],
     answerIndex: 3,
@@ -325,8 +325,8 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
     options: [
       "Untuk mengira jumlah asteroid yang wujud di alam semesta",
       "Untuk memastikan orbit asteroid berada pada jarak selamat daripada orbit Bumi dan mengeluarkan amaran jika ada risiko perlanggaran",
-      "Untuk menentukan warna asteroid",
-      "Untuk membuktikan asteroid tidak mempunyai logam",
+      "Untuk mengukur tempoh putaran asteroid, bukan jarak orbitnya",
+      "Untuk mengalihkan semua asteroid ke orbit yang sama dengan Bumi",
     ],
     answerIndex: 1,
     explanation:
@@ -419,7 +419,7 @@ export const scienceF2C13QuizzesBM: QuizQuestion[] = [
       "Objek angkasa walaupun kecil boleh meninggalkan kesan kekal yang besar di permukaan Bumi akibat tenaga perlanggaran yang tinggi",
       "Hanya objek bersaiz lebih daripada 1,000 km mampu membentuk kawah",
       "Kawah hanya terbentuk akibat letupan gunung berapi, bukan perlanggaran objek angkasa",
-      "Saiz kawah tidak berkaitan dengan saiz objek yang melanggar",
+      "Objek yang lebih besar menghasilkan kawah yang lebih kecil kerana tenaganya tersebar",
     ],
     answerIndex: 0,
     explanation:

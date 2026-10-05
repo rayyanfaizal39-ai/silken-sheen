@@ -109,7 +109,7 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
     question: "What does Ohm's Law state?",
     options: [
       "Electric current is directly proportional to voltage, provided temperature remains unchanged",
-      "Electric current is unrelated to voltage",
+      "Electric current is inversely proportional to voltage at constant temperature",
       "Resistance is always constant regardless of voltage",
       "Voltage is inversely proportional to time",
     ],
@@ -233,7 +233,7 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "V = V₁ + V₂ (the sum of the voltages of each resistor)",
       "V = V₁ = V₂ (the same across each resistor)",
       "V = V₁ − V₂",
-      "V is unrelated to a series circuit",
+      "V = V₁ × V₂",
     ],
     answerIndex: 0,
     explanation:
@@ -287,7 +287,7 @@ export const scienceF2C7QuizzesDLP: QuizQuestion[] = [
       "Current flows from positive to negative terminal; electrons flow from negative to positive terminal",
       "Current and electron flow are in the same direction",
       "Current flows from negative to positive terminal; electrons flow from positive to negative terminal",
-      "Current and electron flow are unrelated to the source terminals",
+      "Current and electrons both flow from the positive terminal to the negative terminal",
     ],
     answerIndex: 0,
     explanation:

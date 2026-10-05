@@ -11,9 +11,9 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     question: "Apakah Unit Astronomi (A.U.)?",
     options: [
       "Jarak purata antara Bumi dan Matahari, iaitu kira-kira 150 juta kilometer",
+      "Jarak purata antara Bumi dan Bulan, iaitu kira-kira 150 juta kilometer",
       "Jarak yang dilalui cahaya dalam satu tahun",
-      "Jisim purata sesebuah planet",
-      "Tempoh masa Bumi mengorbit Matahari",
+      "Jarak yang dilalui Bumi dalam satu hari",
     ],
     answerIndex: 0,
     explanation:
@@ -331,7 +331,7 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
       "Kerana ia paling jauh daripada Matahari",
       "Kerana ia tidak mempunyai atmosfera untuk memerangkap atau mengagihkan haba",
       "Kerana ia berputar terlalu cepat",
-      "Kerana ia diliputi oleh ais",
+      "Kerana atmosferanya yang tebal memerangkap haba pada waktu malam",
     ],
     answerIndex: 1,
     explanation:
@@ -404,10 +404,10 @@ export const scienceF2C12QuizzesBM: QuizQuestion[] = [
     question:
       "Jika Bumi berputar lebih perlahan atau berhenti berputar, apakah kesan yang dijangka berlaku?",
     options: [
-      "Tidak ada kesan kepada Bumi",
+      "Tempoh siang dan malam kekal sama, tetapi orbit Bumi mengelilingi Matahari menjadi lebih pendek",
       "Tempoh siang/malam lebih panjang, lebih banyak gurun, perubahan air pasang surut dan suhu menurun di kawasan gelap",
-      "Bumi akan terapung ke angkasa lepas",
-      "Semua planet lain akan berhenti mengorbit Matahari",
+      "Daya graviti Bumi menjadi lebih lemah, jadi Bulan bergerak ke orbit yang lebih jauh, manakala tempoh siang dan malam kekal sama",
+      "Planet lain mengubah orbit masing-masing mengelilingi Matahari, manakala tempoh siang dan malam di Bumi kekal sama",
     ],
     answerIndex: 1,
     explanation:

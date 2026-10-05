@@ -124,8 +124,8 @@ export const scienceF2C6QuizzesBM: QuizQuestion[] = [
     options: [
       "Kerana ia bukan asid sebenar",
       "Kerana asid dan alkali hanya menunjukkan sifatnya dengan kehadiran air",
-      "Kerana kertas litmus biru telah rosak",
-      "Kerana ia terlalu cair",
+      "Kerana litmus biru hanya berubah dalam larutan alkali cair",
+      "Kerana asid pekat menukar litmus walaupun tanpa air",
     ],
     answerIndex: 1,
     explanation:
@@ -241,7 +241,7 @@ export const scienceF2C6QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "bm",
     question:
-      "Dalam pentitratan asid-alkali seperti dalam buku teks, radas manakah yang mengandungi asid hidroklorik dan membolehkannya ditambah setitik demi setitik ke dalam kelalang kon?",
+      "Dalam pentitratan asid-alkali, asid hidroklorik perlu ditambah setitik demi setitik ke dalam kelalang kon yang sudah mengandungi isipadu tetap larutan natrium hidroksida. Radas manakah yang digunakan untuk menambah asid itu setitik demi setitik?",
     options: ["Pipet", "Buret", "Kelalang kon", "Silinder penyukat"],
     answerIndex: 1,
     explanation:
@@ -353,7 +353,7 @@ export const scienceF2C6QuizzesBM: QuizQuestion[] = [
     options: [
       "Uji gas itu terus dengan kertas litmus, kerana gas tidak memerlukan air",
       "Larutkan gas ammonia itu ke dalam air terlebih dahulu, kerana asid dan alkali hanya menunjukkan sifatnya dengan kehadiran air, kemudian uji larutan yang terhasil",
-      "Panaskan gas ammonia itu sehingga menjadi pepejal sebelum diuji",
+      "Sejukkan gas ammonia itu sehingga menjadi cecair sebelum diuji",
       "Campurkan gas ammonia itu dengan asid sebelum menguji pHnya",
     ],
     answerIndex: 1,

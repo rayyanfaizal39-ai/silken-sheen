@@ -46,7 +46,7 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     question: "What is the meaning of a comet?",
     options: [
       "A large rocky body only",
-      "A piece of metal floating in outer space",
+      "A small rocky body that orbits between Mars and Jupiter",
       "A small body made up of a mixture of ice, gas and frozen dust, travelling around the Sun",
       "A small planet within the asteroid belt",
     ],
@@ -173,7 +173,7 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     options: [
       "Asteroids are meteoroids that have already fallen to Earth",
       "Asteroids originate from fragments of meteoroids",
-      "They are not related at all",
+      "A meteoroid is an asteroid that always orbits on Earth's path",
       "Meteoroids originate from fragments of asteroids and comets",
     ],
     answerIndex: 3,
@@ -321,8 +321,8 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
     options: [
       "To count the total number of asteroids that exist in the universe",
       "To ensure asteroid orbits are at a safe distance from Earth's orbit and issue warnings if there is a risk of collision",
-      "To determine the colour of asteroids",
-      "To prove that asteroids do not contain metal",
+      "To measure how long an asteroid takes to spin, not its orbital distance",
+      "To move every asteroid into the same orbit as Earth",
     ],
     answerIndex: 1,
     explanation:
@@ -417,7 +417,7 @@ export const scienceF2C13QuizzesDLP: QuizQuestion[] = [
       "Even relatively small space objects can leave large, lasting impacts on Earth's surface due to the high energy of collision",
       "Only objects larger than 1,000 km can form craters",
       "Craters only form from volcanic eruptions, not space object collisions",
-      "Crater size has no relationship to the size of the colliding object",
+      "A larger object produces a smaller crater because its energy is spread out",
     ],
     answerIndex: 0,
     explanation:

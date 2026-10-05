@@ -363,7 +363,7 @@ export const scienceF2C8QuizzesDLP: QuizQuestion[] = [
       "Wide wheels increase the pressure exerted on the ground, helping the tractor grip better",
       "Wide wheels spread the tractor's weight over a larger surface area, reducing the pressure on the ground so it does not sink into soft soil",
       "Wide wheels reduce the tractor's overall weight",
-      "Wide wheels have no effect on pressure",
+      "Wide wheels keep the pressure the same because the tractor's weight does not change",
     ],
     answerIndex: 1,
     explanation:

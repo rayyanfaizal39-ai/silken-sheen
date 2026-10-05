@@ -12,8 +12,8 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     options: [
       "A group of organisms from the same species",
       "A few communities that live together in one habitat and interact with one another, including non-living components",
-      "A type of plant that produces its own food",
-      "An area inhabited only by poikilothermic animals",
+      "One community only, without non-living components",
+      "One habitat only, without interacting organisms",
     ],
     answerIndex: 1,
     explanation:
@@ -278,15 +278,15 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "dlp",
-    question: "What is the main effect of industrialisation on the environment according to the table in this chapter?",
+    question: "Which set of effects is caused by industrial activity?",
     options: [
-      "Extinction of flora and fauna species only",
-      "Pollution of air, water and soil; acid rain; greenhouse effect",
-      "Increase in soil fertility",
-      "Increase in clean water supply",
+      "Extinction of flora and fauna, soil erosion, and the greenhouse effect",
+      "Pollution of air, water and soil, acid rain, and the greenhouse effect",
+      "Water pollution from pesticides and fertilisers, and loss of soil minerals",
+      "Water and soil pollution, a foul smell from rotting waste, and flash floods",
     ],
     answerIndex: 1,
-    explanation: "Industrialisation causes pollution of air, water and soil, acid rain, and the greenhouse effect.",
+    explanation: "Industrial activity causes pollution of air, water and soil, acid rain, and the greenhouse effect. The other sets are the effects of logging, agriculture or waste disposal.",
   },
   {
     id: "sci-f2-c2-dlp-q20",
@@ -351,10 +351,10 @@ export const scienceF2C2QuizzesDLP: QuizQuestion[] = [
     question:
       "A paddy field experiences a long drought season. How does this affect the food web in that area?",
     options: [
-      "There is no effect because paddy does not need water",
+      "The paddy population stays the same, because drought affects only consumers",
       "The producer (paddy) population decreases due to lack of water, causing the entire food web that depends on it to be affected",
       "The tertiary consumer population will increase drastically",
-      "The carbon cycle will stop immediately",
+      "The carbon cycle becomes faster because respiration decreases",
     ],
     answerIndex: 1,
     explanation: "Paddy requires a lot of water; a long drought season causes the producer (paddy) population to decrease, affecting the entire food web that depends on paddy as a basic energy source.",
