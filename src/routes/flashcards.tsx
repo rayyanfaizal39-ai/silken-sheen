@@ -187,6 +187,80 @@ const SEJARAH_F2_C6_FLASHCARD_SET_OPTIONS: Array<{
   { index: 2, title: "Strategi, Persuratan dan Warisan Johor Riau", range: "Cards 41-60" },
 ];
 
+type FlashcardSetOption = { index: FlashcardSetIndex; title: string; range: string };
+
+function topicSetOptions(set1: string, set2: string, set3: string): FlashcardSetOption[] {
+  return [
+    { index: 0, title: set1, range: "Cards 1-20" },
+    { index: 1, title: set2, range: "Cards 21-40" },
+    { index: 2, title: set3, range: "Cards 41-60" },
+  ];
+}
+
+const GEOGRAPHY_F2_C1_FLASHCARD_SET_OPTIONS = topicSetOptions(
+  "Skala",
+  "Jarak Mutlak & Jarak Relatif",
+  "Menentukan Jarak Sebenar",
+);
+const GEOGRAPHY_F2_C2_FLASHCARD_SET_OPTIONS = topicSetOptions(
+  "Peta Topografi & Ciri Pandang Darat",
+  "Garisan Grid & Rujukan Grid",
+  "Mentafsir Peta Topografi",
+);
+const GEOGRAPHY_F2_C3_FLASHCARD_SET_OPTIONS = topicSetOptions(
+  "Pergerakan Bumi & Sistem Suria",
+  "Putaran Bumi & Kesannya",
+  "Peredaran Bumi & Kesannya",
+);
+const GEOGRAPHY_F2_C4_FLASHCARD_SET_OPTIONS = topicSetOptions(
+  "Ciri Iklim Malaysia",
+  "Iklim & Kegiatan Manusia",
+  "Kesan Kegiatan Manusia & Perubahan Iklim",
+);
+const GEOGRAPHY_F2_C5_FLASHCARD_SET_OPTIONS = topicSetOptions(
+  "Jaringan Pengangkutan Darat, Udara & Air",
+  "Pengangkutan Awam & Faktor Jaringan",
+  "Kepentingan & Pengangkutan Lestari",
+);
+const GEOGRAPHY_F2_C6_FLASHCARD_SET_OPTIONS = topicSetOptions(
+  "Alat & Kemajuan Telekomunikasi",
+  "Kepentingan Telekomunikasi",
+  "Kesan & Penggunaan Beretika",
+);
+const GEOGRAPHY_F2_C7_FLASHCARD_SET_OPTIONS = topicSetOptions(
+  "Zon & Jenis Iklim Asia",
+  "Iklim Tundra & Laurentia",
+  "Iklim China & Gurun Panas",
+);
+const GEOGRAPHY_F2_C8_FLASHCARD_SET_OPTIONS = topicSetOptions(
+  "Jenis Pengangkutan di Asia",
+  "Kemajuan Pengangkutan di Asia",
+  "Kesan Pengangkutan",
+);
+const GEOGRAPHY_F2_C9_FLASHCARD_SET_OPTIONS = topicSetOptions(
+  "Konsep & Punca Pemanasan Global",
+  "Kesan Pemanasan Global",
+  "Langkah Mengurangkan Pemanasan Global",
+);
+const GEOGRAPHY_F2_C10_FLASHCARD_SET_OPTIONS = topicSetOptions(
+  "Konsep, Ciri & Teras Teknologi Hijau",
+  "Kepentingan Teknologi Hijau",
+  "Amalan Teknologi Hijau",
+);
+
+const GEOGRAPHY_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER: Record<string, FlashcardSetOption[]> = {
+  "Chapter 1": GEOGRAPHY_F2_C1_FLASHCARD_SET_OPTIONS,
+  "Chapter 2": GEOGRAPHY_F2_C2_FLASHCARD_SET_OPTIONS,
+  "Chapter 3": GEOGRAPHY_F2_C3_FLASHCARD_SET_OPTIONS,
+  "Chapter 4": GEOGRAPHY_F2_C4_FLASHCARD_SET_OPTIONS,
+  "Chapter 5": GEOGRAPHY_F2_C5_FLASHCARD_SET_OPTIONS,
+  "Chapter 6": GEOGRAPHY_F2_C6_FLASHCARD_SET_OPTIONS,
+  "Chapter 7": GEOGRAPHY_F2_C7_FLASHCARD_SET_OPTIONS,
+  "Chapter 8": GEOGRAPHY_F2_C8_FLASHCARD_SET_OPTIONS,
+  "Chapter 9": GEOGRAPHY_F2_C9_FLASHCARD_SET_OPTIONS,
+  "Chapter 10": GEOGRAPHY_F2_C10_FLASHCARD_SET_OPTIONS,
+};
+
 function vibrate(pattern: number | number[], enabled: boolean) {
   if (!enabled) return;
   try {
@@ -5565,7 +5639,9 @@ function FlashcardsPage() {
             ? SEJARAH_F2_C5_FLASHCARD_SET_OPTIONS
             : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 6"
               ? SEJARAH_F2_C6_FLASHCARD_SET_OPTIONS
-              : FLASHCARD_SET_OPTIONS;
+              : subject === "geography" && form === "Form 2" && chapter
+                ? (GEOGRAPHY_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER[chapter] ?? FLASHCARD_SET_OPTIONS)
+                : FLASHCARD_SET_OPTIONS;
   const pool = useMemo(() => {
     // Session guard: no active deck without a known Form, and no card tagged
     // with another Form may enter the active deck.

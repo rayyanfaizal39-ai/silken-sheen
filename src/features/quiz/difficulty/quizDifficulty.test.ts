@@ -240,3 +240,46 @@ describe("Sejarah Form 1 full-pool ordering", () => {
     }
   });
 });
+
+describe("Geography Form 1 full-pool ordering", () => {
+  const pool = [
+    ...Array.from({ length: 12 }, (_, i) => ({ id: `e${i}`, difficulty: "Easy" })),
+    ...Array.from({ length: 16 }, (_, i) => ({ id: `m${i}`, difficulty: "Medium" })),
+    ...Array.from({ length: 2 }, (_, i) => ({ id: `h${i}`, difficulty: "Hard" })),
+  ];
+  const seeded = (seed: number) => () => {
+    seed = (seed * 1664525 + 1013904223) % 4294967296;
+    return seed / 4294967296;
+  };
+
+  it("mixes tiers for Geography Form 1 and keeps every question with its tier", () => {
+    const rank = { Easy: 0, Medium: 1, Hard: 2 } as const;
+    for (const seed of [1, 2, 3, 4, 5]) {
+      const { questions } = orderRegularQuizQuestions(
+        pool,
+        { subjectId: "geography", form: "Form 1" },
+        seeded(seed),
+      );
+      expect(questions).toHaveLength(30);
+      expect(new Set(questions.map((q) => q.id)).size).toBe(30);
+      const ranks = questions.map((q) => rank[q.difficulty as keyof typeof rank]);
+      expect(ranks).not.toEqual([...ranks].sort((a, b) => a - b));
+      for (const q of questions)
+        expect(q.difficulty).toBe(pool.find((p) => p.id === q.id)!.difficulty);
+    }
+  });
+
+  it("leaves Geography Form 2 and Form 3 and other subjects on their previous ordering", () => {
+    for (const scope of [
+      { subjectId: "geography", form: "Form 2" },
+      { subjectId: "geography", form: "Form 3" },
+      { subjectId: "english", form: "Form 1" },
+      { subjectId: "bm", form: "Form 1" },
+      { subjectId: "math", form: "Form 1" },
+    ]) {
+      expect(orderRegularQuizQuestions(pool, scope, seeded(5)).questions).toEqual(
+        orderQuestionsByDifficulty(pool, seeded(5)).questions,
+      );
+    }
+  });
+});
