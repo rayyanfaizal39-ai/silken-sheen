@@ -4666,14 +4666,14 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah maksud tamadun secara umum?",
     options: [
-      "Pertambahan penduduk tanpa kemajuan kehidupan",
-      "Kekayaan pemerintah tanpa kemajuan masyarakat",
-      "Pembinaan monumen tanpa perkembangan lain",
-      "Pencapaian masyarakat dalam pelbagai bidang",
+      "Pencapaian tinggi masyarakat dalam pelbagai bidang",
+      "Pertambahan penduduk di sesebuah kawasan petempatan",
+      "Kekayaan raja dan pemerintah dalam sesebuah negara-kota",
+      "Pembinaan monumen besar di sesebuah bandar purba",
     ],
-    answerIndex: 3,
+    answerIndex: 0,
     explanation:
-      "Tamadun merujuk kepada pencapaian tinggi masyarakat dalam pelbagai aspek kehidupan sehingga meningkatkan kemajuan manusia.",
+      "Tamadun ialah pencapaian tinggi masyarakat dalam pelbagai bidang yang memajukan kehidupan manusia yang teratur.",
   },
   {
     id: "sej-f1-c4-q2",
@@ -4681,16 +4681,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Pembinaan sistem pengairan menunjukkan ciri tamadun yang manakah?",
+    question: "Apakah maksud 'civitas' dalam bahasa Yunani yang dikaitkan dengan tamadun?",
     options: [
-      "Agama dan kepercayaan",
-      "Teknologi dan inovasi",
-      "Kesenian dan kesusasteraan",
-      "Tulisan dan penyimpanan rekod",
+      "Kampung atau desa",
+      "Bandar atau kota",
+      "Kerajaan atau negeri",
+      "Sungai atau lembah",
     ],
     answerIndex: 1,
     explanation:
-      "Penciptaan sistem pengairan menunjukkan penggunaan ilmu, teknologi dan inovasi untuk menyelesaikan masalah serta meningkatkan pengeluaran.",
+      "Dalam bahasa Yunani, civitas bermaksud bandar atau kota, iaitu tempat kemajuan dalam kebudayaan, sains, industri dan sistem kerajaan.",
   },
   {
     id: "sej-f1-c4-q3",
@@ -4718,14 +4718,14 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah kepentingan undang-undang dalam sesebuah tamadun awal?",
     options: [
-      "Mengatur kehidupan dan pentadbiran masyarakat",
+      "Membantu melicinkan pentadbiran negara-kota",
       "Menentukan waktu menanam mengikut musim",
       "Mempercepat pengangkutan antara kawasan perdagangan",
       "Menyukat keluasan tanah untuk pembinaan",
     ],
     answerIndex: 0,
     explanation:
-      "Undang-undang menyediakan aturan bersama untuk mengurus kehidupan masyarakat, menyelesaikan pertikaian dan melancarkan pentadbiran tamadun awal.",
+      "Kerajaan dibentuk untuk mengurus negara-kota, dan undang-undang diwujudkan untuk melicinkan pentadbiran.",
   },
   {
     id: "sej-f1-c4-q5",
@@ -4733,16 +4733,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Easy",
-    question: "Dalam perbandingan buku teks, apakah penekanan konsep tamadun Barat?",
+    question: "Apakah penekanan utama konsep tamadun menurut sudut pandangan Barat?",
     options: [
-      "Pencapaian lahiriah masyarakat",
-      "Keseimbangan kebendaan dan kerohanian",
-      "Pembangunan agama dan akhlak",
-      "Kemajuan rohani semata-mata",
+      "Pencapaian lahiriah seperti seni dan perbandaran",
+      "Keseimbangan antara kebendaan dan kerohanian manusia",
+      "Pembangunan nilai agama dan akhlak masyarakat",
+      "Pembentukan kehalusan tatasusila dan budaya luhur",
     ],
     answerIndex: 0,
     explanation:
-      "Dalam perbandingan buku teks, konsep tamadun Barat lebih menekankan pencapaian lahiriah seperti penulisan, undang-undang, kesenian dan perbandaran.",
+      "Konsep tamadun Barat lebih menekankan perkembangan lahiriah atau kebendaan, antaranya penulisan, undang-undang, seni dan perbandaran.",
   },
   {
     id: "sej-f1-c4-q6",
@@ -4760,7 +4760,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 2,
     explanation:
-      "Konsep tamadun Islam menggabungkan kemajuan lahiriah dengan pembangunan rohani, termasuk akhlak serta kehalusan budi pekerti.",
+      "Konsep tamadun Islam merangkumi pembangunan lahiriah dan rohaniah yang berasaskan nilai dalam al-Quran, hadis dan ajaran Nabi Muhammad SAW.",
   },
   {
     id: "sej-f1-c4-q7",
@@ -4768,11 +4768,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Easy",
-    question: "Siapakah tokoh Islam yang menekankan kehalusan budi pekerti dalam tamadun?",
-    options: ["Ibn Khaldun", "Arnold J. Toynbee", "Herodotus", "Syed Naquib al-Attas"],
-    answerIndex: 3,
+    question: "Menurut Syed Muhammad Naquib Al-Attas, apakah yang dimaksudkan dengan tamadun?",
+    options: [
+      "Sistem masyarakat yang memperkasakan politik dan ekonomi",
+      "Taraf kehalusan tatasusila dan kebudayaan yang luhur",
+      "Konsep umran yang dibincangkan dalam Muqaddimah",
+      "Pencapaian lahiriah dalam penulisan, seni dan undang-undang",
+    ],
+    answerIndex: 1,
     explanation:
-      "Beliau berpendapat tamadun adalah pencapaian tahap tatasusila yang tinggi dan kebudayaan yang luhur.",
+      "Al-Attas menjelaskan tamadun sebagai keadaan kehidupan insan bermasyarakat yang mencapai taraf kehalusan tatasusila dan kebudayaan yang luhur.",
   },
   {
     id: "sej-f1-c4-q8",
@@ -4781,16 +4786,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Hard",
     question:
-      "Selepas bekalan makanan mencukupi, sebahagian penduduk menjadi artisan. Mengapakah perubahan ini boleh berlaku?",
+      "Menurut Arnold J. Toynbee, tamadun ialah sistem masyarakat yang memperkasakan aspek yang manakah?",
     options: [
-      "Lebihan makanan menyokong penduduk yang tidak bertani",
-      "Artisan mengambil alih tugas mengagihkan tanah pertanian",
-      "Pertukangan menjadi syarat awal penghasilan makanan",
-      "Pengkhususan ditentukan oleh pewarisan tugas mengikut keturunan",
+      "Politik, ekonomi, sosial, kesenian dan kebudayaan",
+      "Akidah, syarak, akhlak, falsafah dan kebudayaan",
+      "Pertanian, teknologi, tulisan dan perbandaran",
+      "Tatasusila, budi bahasa dan kehalusan akhlak",
     ],
     answerIndex: 0,
     explanation:
-      "Bekalan makanan yang mencukupi membolehkan sebahagian penduduk mengkhusus dalam pertukangan, menunjukkan hubungan pertanian dengan pengkhususan pekerjaan.",
+      "Toynbee menjelaskan tamadun sebagai sistem masyarakat yang memperkasakan sistem politik, ekonomi, sosial serta kesenian dan kebudayaan.",
   },
   {
     id: "sej-f1-c4-q9",
@@ -4808,7 +4813,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Lebihan makanan adalah syarat penting sebelum sesebuah masyarakat boleh membina bandar dan mengamalkan pengkhususan kerja.",
+      "Peralatan, sistem pengairan, kincir angin dan teres menggalakkan kegiatan pertanian. Perkembangan pertanian ini kemudian menggalakkan perdagangan dan petempatan kekal.",
   },
   {
     id: "sej-f1-c4-q10",
@@ -4826,7 +4831,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 0,
     explanation:
-      "Bangunan pemerintah dan pasar menunjukkan pemusatan pentadbiran serta perdagangan, antara fungsi bandar dalam perkembangan tamadun awal.",
+      "Bangunan pemerintah menunjukkan fungsi politik dan pasar menunjukkan fungsi ekonomi. Petempatan kekal berkembang daripada kampung menjadi bandar yang menjadi pusat politik, ekonomi dan budaya.",
   },
   {
     id: "sej-f1-c4-q11",
@@ -4834,16 +4839,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Easy",
-    question: "Dalam sistem beraja tamadun awal, raja memegang kedudukan yang manakah?",
+    question: "Apakah perubahan yang berlaku dalam kepimpinan negara-kota tamadun awal?",
     options: [
-      "Ketua upacara keagamaan sahaja",
-      "Ketua pasukan tentera sahaja",
-      "Wakil rakyat melalui pilihan raya",
-      "Ketua pemerintah berkuasa mutlak",
+      "Raja memimpin pada peringkat awal, kemudian pendeta mengambil alih",
+      "Pendeta memimpin pada peringkat awal, kemudian raja mengambil alih",
+      "Bangsawan memimpin pada peringkat awal, kemudian raja mengambil alih",
+      "Pedagang memimpin pada peringkat awal, kemudian bangsawan mengambil alih",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Dalam sistem beraja tamadun awal, raja memegang kuasa pemerintahan tertinggi dan dibantu oleh pegawai pentadbiran.",
+      "Pada peringkat awal, kerajaan negara-kota diketuai oleh pendeta. Kemudian raja mengambil alih pemerintahan dan dibantu oleh pegawai bangsawan dan pendeta.",
   },
   {
     id: "sej-f1-c4-q12",
@@ -4854,13 +4859,13 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah yang dimaksudkan dengan pengkhususan pekerjaan?",
     options: [
       "Penyamaan kerja semua anggota masyarakat",
-      "Pembahagian tugas mengikut kepakaran",
-      "Penugasan kerja kepada hamba sahaja",
-      "Pemberian kerja kepada bangsawan sahaja",
+      "Pembahagian tugas mengikut kepakaran masyarakat",
+      "Penugasan semua kerja kepada golongan hamba",
+      "Pemberian semua kerja kepada golongan bangsawan",
     ],
     answerIndex: 1,
     explanation:
-      "Ini berlaku apabila tidak semua orang perlu bertani kerana bekalan makanan sudah mencukupi.",
+      "Perkembangan bandar mewujudkan pekerjaan baharu seperti pengutip cukai, jurutera pengairan, tentera, petani, pentadbir dan artisan.",
   },
   {
     id: "sej-f1-c4-q13",
@@ -4873,12 +4878,12 @@ export const quizzes: QuizQuestion[] = [
     options: [
       "Memudahkan penyukatan keluasan tanah pertanian",
       "Memudahkan pengangkutan barang dagangan",
-      "Menentukan waktu menanam berdasarkan kalendar",
+      "Menentukan waktu menanam mengikut musim",
       "Menyimpan rekod hasil dan cukai",
     ],
     answerIndex: 1,
     explanation:
-      "Roda memudahkan pergerakan barang dagangan dan tentera dari satu tempat ke tempat lain.",
+      "Penciptaan roda ialah kemajuan teknologi yang memudahkan pengangkutan, termasuk barang dagangan antara tempat.",
   },
   {
     id: "sej-f1-c4-q14",
@@ -4886,16 +4891,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Mengapakah organisasi sosial penting dalam masyarakat bertamadun?",
+    question: "Apakah asas pembentukan kelas sosial dalam masyarakat tamadun awal?",
     options: [
-      "Menyusun musim penanaman mengikut kalendar",
-      "Menentukan keluasan ladang melalui pengukuran",
-      "Menyusun peranan dan tanggungjawab masyarakat",
-      "Mencatat hasil cukai menggunakan tulisan",
+      "Agama, bahasa dan tempat tinggal",
+      "Umur, jantina dan jumlah keluarga",
+      "Pekerjaan, kekayaan dan pengaruh",
+      "Kepandaian bertutur dan kekuatan fizikal",
     ],
     answerIndex: 2,
     explanation:
-      "Masyarakat yang semakin kompleks memerlukan pembahagian peranan dan susunan sosial bagi memastikan kehidupan lebih teratur.",
+      "Kemunculan institusi dan golongan pekerja mewujudkan kelas sosial yang berasaskan pekerjaan, kekayaan dan pengaruh.",
   },
   {
     id: "sej-f1-c4-q15",
@@ -4907,7 +4912,7 @@ export const quizzes: QuizQuestion[] = [
     options: ["Hamba", "Pendeta", "Pedagang", "Artisan"],
     answerIndex: 0,
     explanation:
-      "Hamba biasanya terdiri daripada tawanan perang atau mereka yang gagal membayar hutang.",
+      "Hamba berada pada lapisan paling bawah. Mereka terdiri daripada hamba perang dan hamba yang dijual.",
   },
   {
     id: "sej-f1-c4-q16",
@@ -4915,16 +4920,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Easy",
-    question: "Apakah maksud kepercayaan politeisme?",
+    question: "Apakah kepercayaan masyarakat tamadun awal terhadap tuhan?",
     options: [
-      "Kepercayaan kepada satu tuhan",
-      "Kepercayaan kepada banyak tuhan",
-      "Penolakan kewujudan semua tuhan",
-      "Kepercayaan unsur alam bersemangat",
+      "Mempercayai satu tuhan sahaja",
+      "Mempercayai banyak tuhan",
+      "Mempercayai raja sebagai tuhan tunggal",
+      "Menolak kewujudan semua tuhan",
     ],
     answerIndex: 1,
     explanation:
-      "Masyarakat awal menyembah pelbagai tuhan yang dikaitkan dengan unsur alam seperti matahari, sungai, dan bulan.",
+      "Masyarakat tamadun awal mempercayai banyak tuhan, seperti tuhan bulan, matahari, ibu dan sungai.",
   },
   {
     id: "sej-f1-c4-q17",
@@ -4932,16 +4937,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Apakah peranan agama dan kepercayaan dalam masyarakat tamadun awal?",
+    question: "Apakah pengertian umum istilah Arab mudun, madain dan madana dalam konteks tamadun?",
     options: [
-      "Menentukan nilai barangan melalui sukatan",
-      "Mengurus pengairan melalui saluran air",
-      "Mencatat hutang melalui rekod perdagangan",
-      "Membentuk nilai dan amalan masyarakat",
+      "Kemajuan hidup yang teratur dan perkembangan pemikiran",
+      "Pengetahuan, kepercayaan, seni dan adat masyarakat",
+      "Tinggi budi bahasa dan pembukaan bandar",
+      "Kemajuan kota dalam sains dan sistem kerajaan",
     ],
-    answerIndex: 3,
+    answerIndex: 2,
     explanation:
-      "Agama dan kepercayaan membentuk nilai, amalan dan cara masyarakat memahami kehidupan serta alam.",
+      "Mudun, madain dan madana dikaitkan dengan tinggi budi bahasa dan pembukaan bandar. Pilihan lain menghampiri takrif dalam bahasa Melayu, Inggeris dan Yunani.",
   },
   {
     id: "sej-f1-c4-q18",
@@ -4949,16 +4954,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Apakah kepentingan sistem tulisan kepada pemerintah purba?",
+    question: "Mengapakah penciptaan tulisan penting kepada masyarakat tamadun awal?",
     options: [
-      "Merekod cukai dan urusan pentadbiran",
-      "Menentukan musim pertanian melalui cerapan",
-      "Mengangkut hasil pertanian antara petempatan",
-      "Membekalkan air ke kawasan tanaman",
+      "Membolehkan rekod dan perkara penting disimpan",
+      "Membolehkan barang dagangan diangkut lebih jauh",
+      "Membolehkan air dialirkan ke kawasan tanaman",
+      "Membolehkan kelas sosial ditentukan oleh kekayaan",
     ],
     answerIndex: 0,
     explanation:
-      "Tulisan membolehkan pemerintah menyimpan rekod cukai, undang-undang dan urusan pentadbiran untuk mengurus masyarakat yang semakin kompleks.",
+      "Dengan tulisan, manusia dapat menyimpan rekod dan memelihara perkara penting tentang masyarakat dan diri mereka.",
   },
   {
     id: "sej-f1-c4-q19",
@@ -4966,17 +4971,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question:
-      "Penduduk sebuah petempatan bertambah dan pertikaian pembahagian air meningkat. Perkembangan manakah paling membantu pengurusan petempatan itu?",
+    question: "Menurut bahasa Melayu, tamadun atau peradaban merujuk kepada apakah?",
     options: [
-      "Pembentukan pemerintahan untuk menyelaras aturan bersama",
-      "Penghasilan kesenian untuk menghias bangunan masyarakat",
-      "Pengkhususan pertukangan untuk menghasilkan barang dagangan",
-      "Perluasan perdagangan untuk mendapatkan bahan mentah",
+      "Kemajuan lahiriah dan rohaniah berasaskan al-Quran dan hadis",
+      "Tahap pembangunan manusia yang dianggap paling maju",
+      "Kemajuan kebendaan dan perkembangan pemikiran masyarakat",
+      "Bandar atau kota yang maju dalam kebudayaan dan sains",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Pertambahan penduduk memerlukan pemerintahan dan aturan bersama supaya sumber serta pertikaian masyarakat dapat diurus dengan teratur.",
+      "Dalam bahasa Melayu, peradaban merujuk kemajuan kebendaan dan perkembangan pemikiran dari segi sosial, budaya dan politik. Keseimbangan lahiriah dan rohaniah ialah konsep dalam pandangan Islam.",
   },
   {
     id: "sej-f1-c4-q20",
@@ -4984,16 +4988,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Apakah tujuan pembinaan piramid dalam Tamadun Mesir Purba?",
+    question: "Perkembangan manakah menunjukkan kemajuan teknologi dalam tamadun awal?",
     options: [
-      "Kediaman rakyat dan bengkel pertukangan",
-      "Gudang makanan dan pusat pertukaran",
-      "Makam raja dan lambang keagungan",
-      "Pusat perdagangan dan latihan ketenteraan",
+      "Pembahagian kerja kepada artisan dan petani",
+      "Pembentukan kelas sosial berasaskan kekayaan",
+      "Penggunaan tulisan untuk menyimpan rekod",
+      "Penggunaan logam untuk menghasilkan bajak",
     ],
-    answerIndex: 2,
+    answerIndex: 3,
     explanation:
-      "Piramid Mesir dibina sebagai makam raja dan menunjukkan kemampuan masyarakat menyelaras tenaga kerja serta kemahiran pembinaan.",
+      "Penggunaan tembaga, gangsa dan besi menghasilkan alatan seperti bajak, iaitu contoh teknologi. Pilihan lain menunjukkan pengkhususan pekerjaan, organisasi sosial dan tulisan.",
   },
   {
     id: "sej-f1-c4-q21",
@@ -5019,16 +5023,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Hard",
     question:
-      "Dua kawasan sesuai didiami, tetapi satu mempunyai sungai dan tanah subur. Mengapakah kawasan itu dipilih?",
+      "Tulisan pertama menggunakan sistem piktograf atau simbol gambar kira-kira 5,000 tahun lalu. Apakah kesan kemunculan tulisan terhadap pengkajian sejarah?",
     options: [
-      "Menjamin petempatan bebas daripada banjir",
-      "Mengurangkan keperluan mengurus sumber makanan",
-      "Memudahkan pertanian dan bekalan air",
-      "Memisahkan penduduk daripada kegiatan perdagangan",
+      "Membezakan Zaman Prasejarah dengan zaman sejarah",
+      "Menamatkan penggunaan alatan logam dalam kehidupan",
+      "Menggantikan sistem pemerintahan beraja",
+      "Menghentikan perdagangan antara petempatan",
     ],
-    answerIndex: 2,
+    answerIndex: 0,
     explanation:
-      "Bekalan air dan tanah subur menyokong pertanian, menjadikan lembah sungai sesuai untuk perkembangan petempatan tamadun awal.",
+      "Kemunculan tulisan membezakan Zaman Prasejarah dengan zaman sejarah kerana peristiwa kini boleh direkodkan secara bertulis.",
   },
   {
     id: "sej-f1-c4-q23",
@@ -5036,17 +5040,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Hard",
-    question:
-      "Pedagang sukar mencari pasangan pertukaran barang yang sepadan. Bagaimanakah mata wang membantu?",
+    question: "Dalam konsep tamadun Islam, apakah perbezaan antara hadharah dan madaniyyah?",
     options: [
-      "Menyamakan nilai semua barang dagangan",
-      "Menjadi perantara penilaian dan pembayaran",
-      "Menggantikan semua rekod urusan perdagangan",
-      "Mengehadkan pertukaran kepada satu petempatan",
+      "Hadharah menjurus kepada kebendaan; madaniyyah menekankan nilai dan prinsip",
+      "Hadharah menekankan nilai dan prinsip; madaniyyah menjurus kepada kebendaan",
+      "Hadharah khusus kepada orang Islam; madaniyyah khusus kepada orang Barat",
+      "Kedua-duanya bermaksud sama, iaitu pembinaan bandar sahaja",
     ],
     answerIndex: 1,
     explanation:
-      "Mata wang menjadi perantara nilai, membolehkan perdagangan berlaku tanpa memerlukan kedua-dua pihak menghendaki barang masing-masing.",
+      "Hadharah ialah prinsip nilai yang meliputi akidah, syarak, akhlak, falsafah, kebudayaan dan peradaban. Madaniyyah menjurus kepada aspek kebendaan dan bersifat umum kepada semua manusia.",
   },
   {
     id: "sej-f1-c4-q24",
@@ -5054,16 +5057,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Bagaimanakah penciptaan kalendar membantu pertanian tamadun awal?",
+    question: "Apakah maksud 'civilisation' dalam bahasa Inggeris?",
     options: [
-      "Mengukur keluasan kawasan tanah pertanian",
-      "Mengangkut hasil tanaman ke petempatan",
-      "Menyalurkan air ke kawasan tanaman",
-      "Membantu menentukan musim penanaman",
+      "Pencapaian kebudayaan, sains, industri dan sistem kerajaan",
+      "Tahap pembangunan dan organisasi manusia yang paling maju",
+      "Peningkatan nilai akidah, syarak dan akhlak masyarakat",
+      "Kehidupan sosial, budaya dan politik yang teratur",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Kalendar membantu petani mengenal pasti musim yang sesuai untuk menanam dan menuai. Ini menunjukkan sumbangan teknologi kepada pertanian.",
+      "Civilisation dalam bahasa Inggeris ialah tahap pembangunan manusia dan organisasi yang dianggap paling maju, meliputi pengetahuan, kepercayaan, seni, moral, undang-undang dan adat.",
   },
   {
     id: "sej-f1-c4-q25",
@@ -5079,8 +5082,7 @@ export const quizzes: QuizQuestion[] = [
       "Askar, pedagang dan hamba",
     ],
     answerIndex: 2,
-    explanation:
-      "Golongan bangsawan, pendeta dan pegawai membantu raja melaksanakan pentadbiran serta mengurus urusan masyarakat dalam tamadun awal.",
+    explanation: "Raja dibantu oleh pegawai bangsawan dan pendeta dalam mentadbir negara-kota.",
   },
   {
     id: "sej-f1-c4-q26",
@@ -5091,14 +5093,14 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Mengapakah sebuah bangunan besar sahaja tidak mencukupi untuk menilai pencapaian tamadun?",
     options: [
-      "Penilaian bergantung pada keluasan bangunan",
-      "Penilaian meliputi pelbagai bidang kehidupan",
-      "Penilaian berdasarkan kekayaan pemerintah sahaja",
-      "Penilaian ditentukan oleh usia monumen",
+      "Tamadun merangkumi pencapaian dalam pelbagai bidang kehidupan",
+      "Pencapaian tamadun diukur melalui hasil pertanian semata-mata",
+      "Kekayaan pemerintah menentukan tahap tamadun sesebuah negara",
+      "Bilangan penduduk bandar menentukan tahap kemajuan tamadun",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Tamadun melibatkan pencapaian masyarakat dalam pelbagai bidang, maka sebuah monumen sahaja tidak mewakili keseluruhan perkembangannya.",
+      "Tamadun ialah pencapaian tinggi masyarakat dalam pelbagai bidang, maka satu bangunan tidak mewakili keseluruhan kemajuan sesebuah tamadun.",
   },
   {
     id: "sej-f1-c4-q27",
@@ -5116,7 +5118,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 2,
     explanation:
-      "Tempat ibadat dan upacara bersama menunjukkan agama serta kepercayaan yang membentuk amalan kehidupan masyarakat tamadun awal.",
+      "Tempat ibadat yang besar dibina untuk menghormati tuhan, dan institusi agama mengurus upacara keagamaan.",
   },
   {
     id: "sej-f1-c4-q28",
@@ -5142,16 +5144,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Bagaimanakah pengkhususan pekerjaan membantu perkembangan ekonomi?",
+    question:
+      "Bagaimanakah pengkhususan pekerjaan menyokong kegiatan ekonomi dalam bandar yang berkembang?",
     options: [
-      "Menyamakan kemahiran semua golongan pekerja",
-      "Memusatkan pengeluaran pada kegiatan pemburuan",
-      "Mengehadkan pertukaran hasil antara petempatan",
-      "Meningkatkan mutu barangan dan perdagangan",
+      "Semua penduduk bandar kembali mengusahakan pertanian",
+      "Pertukaran barangan antara petempatan dihentikan",
+      "Bilangan pekerjaan dalam bandar semakin berkurangan",
+      "Artisan dan pedagang mengeluarkan dan menukar barangan",
     ],
     answerIndex: 3,
     explanation:
-      "Pengkhususan membolehkan pekerja meningkatkan kemahiran, menghasilkan barangan bermutu dan menyokong perkembangan pertukaran serta perdagangan antara masyarakat.",
+      "Bandar yang berkembang mewujudkan pekerjaan baharu. Artisan menghasilkan barangan dan pedagang menukarkannya, lalu menggalakkan perdagangan.",
   },
   {
     id: "sej-f1-c4-q30",
@@ -5160,16 +5163,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 4",
     difficulty: "Hard",
     question:
-      "Kemarau mengancam tanaman sebuah tamadun. Apakah tindakan pemerintah yang paling sesuai?",
+      "Apakah nilai yang dapat dipelajari daripada pembinaan tamadun awal untuk membangunkan negara pada masa kini?",
     options: [
-      "Menyelaras bekalan air dan tenaga kerja",
-      "Meluaskan monumen menggunakan tenaga petani",
-      "Menaikkan cukai untuk membiayai upacara",
-      "Menumpukan tenaga kepada perluasan sempadan",
+      "Mementingkan kekayaan sendiri dalam usaha membangunkan negara",
+      "Menghargai sumbangan lampau dan bekerjasama membangunkan negara",
+      "Mengekalkan kaedah lama dan menolak sebarang pembaharuan",
+      "Mengutamakan golongan tertentu dalam pembahagian pekerjaan",
     ],
-    answerIndex: 0,
+    answerIndex: 1,
     explanation:
-      "Pemerintah perlu menyelaras bekalan air dan tenaga kerja supaya pertanian serta bekalan makanan dapat dipertahankan.",
+      "Tamadun dibina melalui kerjasama, penggunaan ilmu dan kemahiran serta inovasi. Nilai ini patut dihargai dan diamalkan untuk menyumbang kepada pembangunan negara.",
   },
   //  Sejarah Form 1 Chapter 5 - Tamadun Awal Dunia
   {
