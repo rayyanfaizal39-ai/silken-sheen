@@ -4728,12 +4728,17 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     chapter: "Chapter 8",
-    difficulty: "Easy",
-    question: "Apakah sistem sosial utama masyarakat Arab Jahiliah?",
-    options: ["Sistem feudal", "Sistem kabilah", "Sistem demokrasi", "Sistem oligarki"],
-    answerIndex: 1,
+    difficulty: "Medium",
+    question: "Apakah semangat assabiyah dalam masyarakat Arab sebelum Islam?",
+    options: [
+      "Penyatuan masyarakat berasaskan agama yang sama",
+      "Penyatuan masyarakat berasaskan kekayaan perniagaan",
+      "Penyatuan masyarakat berasaskan keturunan kabilah",
+      "Penyatuan masyarakat berasaskan kawasan petempatan",
+    ],
+    answerIndex: 2,
     explanation:
-      "Masyarakat Arab hidup dalam kabilah yang berasaskan keturunan. Semangat assabiyah yang keterlaluan boleh menyebabkan persengketaan antara kabilah.",
+      "Assabiyah ialah penyatuan masyarakat berkabilah berdasarkan keturunan. Mereka bermegah dengan kabilah masing-masing dan sering berperang untuk merebut kuasa, pengaruh dan harta.",
   },
   {
     id: "sej-f1-c8-q3",
@@ -4741,16 +4746,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah yang membantu Makkah berkembang sebagai pusat perdagangan masyarakat Hijaz?",
+    question: "Apakah kepentingan Makkah kepada masyarakat Hijaz sejak abad ke-6 Masihi?",
     options: [
-      "Kedudukan sebagai pelabuhan bagi kapal Laut Merah",
-      "Kedudukan sebagai pusat pertanian gandum di Yaman",
-      "Kedudukan dalam hubungan dagangan Yaman dan Syam",
-      "Kedudukan sebagai pengeluar kemenyan di Hadramaut",
+      "Pusat pertanian baharu",
+      "Pusat dagangan baharu",
+      "Pusat perlombongan kemenyan",
+      "Pusat penternakan unta",
     ],
-    answerIndex: 2,
+    answerIndex: 1,
     explanation:
-      "Pedagang Hijaz memperoleh barangan dari Yaman dan Habsyah untuk dijual di Syam serta Mesir, dengan Makkah sebagai pusat.",
+      "Laluan Sutera menghubungkan pedagang Arab dengan China, India dan Asia, dan sejak abad ke-6 Masihi Makkah menjadi pusat dagangan baharu bagi masyarakat Hijaz.",
   },
   {
     id: "sej-f1-c8-q4",
@@ -4758,16 +4763,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Easy",
-    question: "Apakah kepentingan turunnya wahyu pertama kepada Nabi Muhammad SAW?",
-    options: [
-      "Permulaan pemerintahan Khulafa al-Rasyidin",
-      "Pembentukan kerajaan Bani Abbasiyah",
-      "Penggubalan perlembagaan Piagam Madinah",
-      "Permulaan perkembangan Tamadun Islam",
-    ],
-    answerIndex: 3,
+    question: "Di manakah Nabi Muhammad SAW menerima wahyu pertama?",
+    options: ["Bukit Safa", "Rumah al-Arqam", "Gua Hira'", "Masjid Quba'"],
+    answerIndex: 2,
     explanation:
-      "Turunnya wahyu pertama menjadi titik penting kemunculan Islam dan perkembangan tamadun baharu.",
+      "Wahyu pertama, Surah al-Alaq ayat 1-5, diterima di Gua Hira' pada 17 Ramadan (6 Ogos 610 M).",
   },
   {
     id: "sej-f1-c8-q5",
@@ -4778,12 +4778,12 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Mengapakah perintah membaca dalam wahyu pertama penting kepada perkembangan Tamadun Islam?",
     options: [
-      "Menentukan keturunan pemimpin sesebuah kabilah",
-      "Menetapkan laluan perdagangan antara wilayah",
-      "Menyusun pembahagian pasukan angkatan tentera",
+      "Menjadikan perdagangan asas kemajuan Makkah",
       "Menjadikan pembacaan asas penguasaan ilmu",
+      "Menjadikan kabilah asas kekuatan masyarakat",
+      "Menjadikan peperangan asas penyebaran Islam",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
       "Wahyu pertama bermula dengan perintah membaca. Buku teks menekankan membaca dan menulis sebagai asas ilmu pengetahuan untuk melahirkan tamadun.",
   },
@@ -4792,17 +4792,13 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "sejarah",
     form: "Form 1",
     chapter: "Chapter 8",
-    difficulty: "Medium",
-    question: "Mengapakah kesyumulan Islam membantu agama Islam diterima oleh masyarakat?",
-    options: [
-      "Mengutamakan pembangunan fizikal tanpa akhlak",
-      "Memisahkan ekonomi daripada nilai keadilan",
-      "Menyeimbangkan kehidupan rohani dan jasmani",
-      "Mengehadkan ilmu kepada bidang tertentu",
-    ],
-    answerIndex: 2,
+    difficulty: "Hard",
+    question:
+      "Seorang pemerintah Islam mengutus wakil kepada negara lain untuk mengeratkan hubungan tanpa peperangan. Faktor penyebaran Islam manakah ditunjukkan?",
+    options: ["Dakwah", "Diplomasi", "Perdagangan", "Pembukaan wilayah baharu"],
+    answerIndex: 1,
     explanation:
-      "Islam menekankan keseimbangan pembangunan rohani dan jasmani serta membimbing kehidupan masyarakat secara menyeluruh.",
+      "Antara faktor penyebaran Islam ialah dakwah, diplomasi, perdagangan dan pembukaan wilayah baharu. Hubungan aman antara negara melalui utusan menunjukkan faktor diplomasi.",
   },
   {
     id: "sej-f1-c8-q7",
@@ -4810,34 +4806,29 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question:
-      "Madinah dihuni masyarakat pelbagai agama. Bagaimanakah Piagam Madinah membantu mengurus perbezaan ini?",
+    question: "Madinah dihuni masyarakat pelbagai agama. Apakah hasil Piagam Madinah yang tepat?",
     options: [
-      "Menyeragamkan semua kepercayaan penduduk",
-      "Mengehadkan pentadbiran kepada urusan perdagangan",
-      "Menyediakan aturan hidup bersama",
-      "Memisahkan setiap kelompok daripada tanggungjawab bersama",
+      "Semua penduduk Madinah diwajibkan menganut Islam",
+      "Setiap kabilah memerintah wilayah sendiri tanpa kuasa pusat",
+      "Penduduk bukan Islam bebas mengamalkan agama mereka",
+      "Kuasa pemerintahan dipegang oleh golongan peniaga Madinah",
     ],
     answerIndex: 2,
     explanation:
-      "Piagam Madinah menyediakan aturan pentadbiran dan hubungan masyarakat, membantu kelompok berbeza hidup bersama dengan tanggungjawab yang tersusun.",
+      "Piagam Madinah ialah perlembagaan untuk membentuk negara Islam yang adil dan maju di Madinah. Penduduk bukan Islam diberi kebebasan mengamalkan agama masing-masing.",
   },
   {
     id: "sej-f1-c8-q8",
     subjectId: "sejarah",
     form: "Form 1",
     chapter: "Chapter 8",
-    difficulty: "Medium",
-    question: "Apakah tujuan utama konsep ummah dalam Tamadun Islam?",
-    options: [
-      "Mengutamakan keturunan dalam pembahagian tanggungjawab",
-      "Menyatukan masyarakat untuk kerjasama bersama",
-      "Mendahulukan kabilah berbanding kepentingan bersama",
-      "Mengehadkan kerjasama kepada keluarga pemerintah",
-    ],
-    answerIndex: 1,
+    difficulty: "Hard",
+    question:
+      "Sebuah masyarakat bersatu tanpa mengira agama dan keturunan serta berkongsi tanggungjawab membangunkan negara. Konsep manakah ditunjukkan?",
+    options: ["Assabiyah", "Syura", "Ummah", "Jihad"],
+    answerIndex: 2,
     explanation:
-      "Konsep ummah menggalakkan masyarakat bekerjasama dan berkongsi tanggungjawab untuk membina kehidupan bersama serta membangunkan negara.",
+      "Ummah ialah masyarakat yang bersatu tanpa mengira agama dan keturunan serta berkongsi tanggungjawab membangunkan negara, berbeza daripada assabiyah yang berasaskan keturunan kabilah.",
   },
   {
     id: "sej-f1-c8-q9",
@@ -4849,7 +4840,7 @@ export const quizzes: QuizQuestion[] = [
     options: ["Zakat", "Dakwah", "Hijrah", "Syura"],
     answerIndex: 3,
     explanation:
-      "Syura ialah perundingan sebelum keputusan dibuat, yang membolehkan pandangan pihak terlibat dipertimbangkan dalam urusan pemerintahan.",
+      "Syura ialah perundingan atau mesyuarat sebelum keputusan dibuat, berdasarkan suara majoriti atau muafakat.",
   },
   {
     id: "sej-f1-c8-q10",
@@ -4858,16 +4849,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Hard",
     question:
-      "Pentadbir dua wilayah menggunakan rujukan tarikh berbeza. Pembaharuan Umar al-Khattab manakah paling berkaitan untuk menyelaraskan urusan mereka?",
-    options: [
-      "Penggunaan takwim Hijrah bagi urusan pentadbiran",
-      "Pembahagian wilayah kepada beberapa bahagian pentadbiran",
-      "Penghantaran peneroka untuk membuka wilayah baharu",
-      "Penyusunan tanggungjawab pegawai dalam pentadbiran wilayah",
-    ],
-    answerIndex: 0,
+      "Nabi Muhammad SAW merangka Piagam Madinah dan menghantar perwakilan dakwah ke Habsyah, Mesir dan Parsi. Aspek ketokohan baginda yang manakah ditunjukkan?",
+    options: ["Pemimpin Masyarakat", "Pemimpin Negara", "Pembangun Ekonomi", "Pemimpin Tentera"],
+    answerIndex: 1,
     explanation:
-      "Takwim Hijrah menyediakan rujukan masa bersama, membantu penyelarasan tarikh urusan pentadbiran antara wilayah pada zaman Umar.",
+      "Merangka Piagam Madinah dan menghantar perwakilan ke luar negara ialah tugas pemimpin negara, salah satu daripada empat aspek ketokohan baginda.",
   },
   {
     id: "sej-f1-c8-q11",
@@ -4884,7 +4870,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 2,
     explanation:
-      "Baitulmal mengurus hasil dan perbelanjaan negara untuk membiayai pembangunan serta memenuhi keperluan masyarakat dalam pentadbiran Islam.",
+      "Baitulmal ialah perbendaharaan negara yang mengurus hasil dan perbelanjaan negara untuk pembangunan.",
   },
   {
     id: "sej-f1-c8-q12",
@@ -4901,7 +4887,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Islam mengangkat martabat wanita dan membuka ruang kepada pendidikan serta penyertaan dalam masyarakat.",
+      "Islam mengangkat martabat wanita dan membuka peluang pendidikan, antaranya kepada Siti Aisyah.",
   },
   {
     id: "sej-f1-c8-q13",
@@ -4918,7 +4904,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Dalam urutan sejarah yang dipelajari, kerajaan Umaiyah mendahului Abbasiyah, diikuti perkembangan kerajaan Turki Uthmaniyah pada masa kemudian.",
+      "Bani Umaiyah (Damsyik, 661-750 M) mendahului Bani Abbasiyah (Baghdad, 750-1258 M), diikuti kerajaan Turki Uthmaniyah.",
   },
   {
     id: "sej-f1-c8-q14",
@@ -4931,25 +4917,20 @@ export const quizzes: QuizQuestion[] = [
     options: ["Motif tumbuhan", "Corak geometri", "Seni kaligrafi", "Ukiran kerawang"],
     answerIndex: 2,
     explanation:
-      "Kaligrafi atau seni khat menggunakan tulisan yang indah sebagai hiasan, termasuk ayat al-Quran pada bangunan seni bina Islam.",
+      "Kaligrafi atau seni khat ialah tulisan yang indah dan menjadi salah satu hiasan pada seni bina masjid.",
   },
   {
     id: "sej-f1-c8-q15",
     subjectId: "sejarah",
     form: "Form 1",
     chapter: "Chapter 8",
-    difficulty: "Hard",
+    difficulty: "Medium",
     question:
-      "Apakah yang ditunjukkan oleh unsur tradisional China pada seni bina masjid di China?",
-    options: [
-      "Penyesuaian unsur budaya tempatan",
-      "Penyeragaman reka bentuk seluruh wilayah",
-      "Pengasingan bangunan daripada pengaruh budaya",
-      "Penggantian fungsi masjid dengan kediaman",
-    ],
-    answerIndex: 0,
+      "Seorang pelajar melihat elemen binaan di dalam masjid yang menunjukkan arah kiblat. Elemen manakah itu?",
+    options: ["Mimbar", "Mihrab", "Menara", "Kubah"],
+    answerIndex: 1,
     explanation:
-      "Seni bina Islam berkembang dengan menyesuaikan unsur estetika dan budaya tempatan di pelbagai wilayah.",
+      "Mihrab ialah penanda arah kiblat. Mimbar digunakan imam untuk membaca khutbah, manakala menara membolehkan laungan azan didengari jauh.",
   },
   {
     id: "sej-f1-c8-q16",
@@ -4957,16 +4938,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Mengapakah warisan seni bina Islam wajar dipelihara untuk generasi seterusnya?",
+    question: "Mengapakah menara masjid dibina tirus dan tinggi?",
     options: [
-      "Menentukan nilai warisan melalui harga bahan",
-      "Mengekalkan bukti teknologi dan identiti masyarakat",
-      "Mengelaskan warisan mengikut saiz bangunan",
-      "Menilai sejarah melalui usia bahan sahaja",
+      "Supaya arah kiblat dapat ditunjukkan",
+      "Supaya imam dapat membaca khutbah",
+      "Supaya laungan azan didengari jauh",
+      "Supaya ruang dalam masjid lebih sejuk",
     ],
-    answerIndex: 1,
+    answerIndex: 2,
     explanation:
-      "Pemeliharaan seni bina mengekalkan bukti teknologi, fungsi dan identiti masyarakat supaya warisan tersebut dapat dipelajari generasi seterusnya.",
+      "Menara berbentuk tirus dan memuncak tinggi supaya laungan azan dapat didengari jauh.",
   },
   {
     id: "sej-f1-c8-q17",
@@ -4977,14 +4958,14 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Masjid di Malaysia mempunyai banyak tingkap, manakala masjid di China menggunakan bentuk bumbung tradisional tempatan. Apakah faktor penyesuaian masing-masing?",
     options: [
-      "Malaysia: iklim; China: budaya",
       "Malaysia: budaya; China: iklim",
-      "Malaysia: pertahanan; China: perdagangan",
-      "Malaysia: perdagangan; China: pertahanan",
+      "Malaysia: iklim; China: iklim",
+      "Malaysia: budaya; China: budaya",
+      "Malaysia: iklim; China: budaya",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation:
-      "Tingkap membantu keselesaan dalam iklim panas dan lembap, manakala bumbung tradisional China mencerminkan penyesuaian budaya tempatan.",
+      "Tingkap yang banyak membantu penyejukan di iklim panas dan lembap (Masjid Tengkera), manakala bumbung tradisional China menunjukkan pengaruh budaya tempatan.",
   },
   {
     id: "sej-f1-c8-q18",
@@ -4992,11 +4973,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Easy",
-    question: "Apakah bidang ilmu yang dikembangkan melalui karya algebra al-Khawarizmi?",
-    options: ["Perubatan", "Matematik", "Geografi", "Astronomi"],
+    question: "Al-Khawarizmi dikenali sebagai pengasas ilmu yang manakah?",
+    options: ["Kimia", "Algebra", "Kartografi", "Trigonometri"],
     answerIndex: 1,
     explanation:
-      "Karya algebra al-Khawarizmi menyumbang kepada perkembangan matematik dan digunakan dalam pembelajaran selepas diterjemahkan ke bahasa lain.",
+      "Al-Khawarizmi ialah pengasas ilmu algebra melalui kitab Hisab al-Jabr wa al-Muqabalah.",
   },
   {
     id: "sej-f1-c8-q19",
@@ -5004,16 +4985,10 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Easy",
-    question: "Apakah sumbangan Ibn Sina melalui karya al-Qanun fi al-Tib?",
-    options: [
-      "Mengembangkan pengetahuan bidang perubatan",
-      "Menghuraikan cahaya dan penglihatan",
-      "Memperkenalkan kaedah pengiraan algebra",
-      "Memetakan laluan pelayaran dunia",
-    ],
-    answerIndex: 0,
-    explanation:
-      "Karya al-Qanun fi al-Tib oleh Ibn Sina menghimpunkan pengetahuan perubatan dan mempengaruhi perkembangan pembelajaran bidang tersebut.",
+    question: "Siapakah penulis buku al-Qanun fi al-Tib dalam bidang perubatan?",
+    options: ["Al-Biruni", "Al-Kindi", "Ibn Sina", "Jabir bin Hayyan"],
+    answerIndex: 2,
+    explanation: "Ibn Sina menulis buku al-Qanun fi al-Tib dalam bidang perubatan.",
   },
   {
     id: "sej-f1-c8-q20",
@@ -5039,17 +5014,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question:
-      "Umar al-Khattab membuka wilayah di Iraq, Syam dan Mesir lalu membahagikannya kepada beberapa bahagian. Mengapakah kedua-dua tindakan ini berkait?",
+    question: "Padanan khalifah dengan pembukaan wilayah manakah yang betul?",
     options: [
-      "Pembukaan wilayah memerlukan penyelarasan bacaan al-Quran",
-      "Pembukaan wilayah memerlukan penetapan takwim baharu",
-      "Pembukaan wilayah memerlukan pengumpulan wahyu bertulis",
-      "Pembukaan wilayah memerlukan penyusunan pentadbiran setempat",
+      "Umar: Parsi dan Byzantium; Uthman: Iraq, Syam dan Mesir",
+      "Umar: Iraq, Syam dan Mesir; Uthman: Parsi dan sebahagian Byzantium",
+      "Abu Bakar: Iraq, Syam dan Mesir; Umar: Perang al-Riddah",
+      "Ali: Parsi dan Byzantium; Uthman: Perang al-Riddah",
     ],
-    answerIndex: 3,
+    answerIndex: 1,
     explanation:
-      "Wilayah yang semakin luas dibahagikan pada zaman Umar al-Khattab untuk memudahkan pentadbiran kawasan di bawah pemerintahan Islam.",
+      "Umar al-Khattab membuka Iraq, Syam dan Mesir serta membahagikan wilayah untuk pentadbiran, manakala wilayah Islam pada zaman Uthman bin Affan meluas hingga Parsi dan sebahagian Byzantium.",
   },
   {
     id: "sej-f1-c8-q22",
@@ -5058,16 +5032,16 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     difficulty: "Medium",
     question:
-      "Apakah perbezaan usaha berkaitan al-Quran pada zaman Abu Bakar al-Siddiq dan Uthman bin Affan?",
+      "Antara berikut, tindakan manakah menunjukkan Nabi Muhammad SAW sebagai pembangun ekonomi?",
     options: [
-      "Abu Bakar: penyelarasan mushaf; Uthman: pengumpulan al-Quran",
-      "Abu Bakar: pengumpulan al-Quran; Uthman: penyelarasan mushaf",
-      "Abu Bakar: pengumpulan al-Quran; Uthman: penetapan takwim",
-      "Abu Bakar: penetapan takwim; Uthman: penyelarasan mushaf",
+      "Mengetuai pasukan dalam Perang Badar",
+      "Menggalakkan pembangunan tanah terbiar",
+      "Menghantar perwakilan dakwah ke Habsyah",
+      "Menekankan syura dalam perundingan",
     ],
     answerIndex: 1,
     explanation:
-      "Usaha pengumpulan al-Quran bermula pada zaman Abu Bakar, manakala Uthman menyelaraskan mushaf untuk kegunaan masyarakat Islam.",
+      "Menggalakkan pembangunan semula tanah terbiar dan menebus tanah tergadai menunjukkan baginda sebagai pembangun ekonomi.",
   },
   {
     id: "sej-f1-c8-q23",
@@ -5075,16 +5049,17 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Apakah peranan masjid dalam Tamadun Islam selain tempat ibadat?",
+    question:
+      "Antara berikut, tindakan manakah menunjukkan Nabi Muhammad SAW sebagai pemimpin tentera?",
     options: [
-      "Pusat pendidikan dan kegiatan masyarakat",
-      "Pusat kediaman keluarga pemerintah",
-      "Pusat latihan ketenteraan semata-mata",
-      "Pusat simpanan barang dagangan",
+      "Menghubungkan perdagangan Madinah dengan Syam",
+      "Merangka Piagam Madinah di Madinah",
+      "Menekankan akhlak dan akidah di Makkah",
+      "Mengetuai pasukan dalam Perang Khandak",
     ],
-    answerIndex: 0,
+    answerIndex: 3,
     explanation:
-      "Selain ibadat, masjid menjadi tempat pembelajaran, penyampaian maklumat dan kegiatan masyarakat dalam perkembangan institusi Tamadun Islam.",
+      "Baginda mengetuai Perang Badar, Uhud dan Khandak, dan peperangan hanya diizinkan selepas orang Islam diancam.",
   },
   {
     id: "sej-f1-c8-q24",
@@ -5092,16 +5067,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Bagaimanakah Hijrah ke Madinah membantu perkembangan kepimpinan Nabi Muhammad SAW?",
-    options: [
-      "Membina pentadbiran masyarakat di Madinah",
-      "Memulakan pemerintahan kerajaan Bani Umaiyah",
-      "Mengasaskan Baghdad sebagai pusat kerajaan",
-      "Membuka Cordoba sebagai pusat pembelajaran",
-    ],
-    answerIndex: 0,
+    question:
+      "Dakwah terang-terangan dimulakan kepada kaum keluarga di Bukit Safa. Siapakah antara penentang utamanya?",
+    options: ["Abu Talib", "Abu Lahab", "Zaid bin Harithah", "Abdul Muttalib"],
+    answerIndex: 1,
     explanation:
-      "Hijrah membuka ruang pembinaan pentadbiran di Madinah, tempat Nabi Muhammad SAW diterima sebagai pemimpin masyarakat.",
+      "Dakwah terang-terangan dimulakan kepada kaum keluarga di Bukit Safa dan ditentang hebat oleh Abu Lahab serta masyarakat Arab Quraisy.",
   },
   {
     id: "sej-f1-c8-q25",
@@ -5109,16 +5080,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Mengapakah Cordoba dan Toledo penting kepada perkembangan ilmu dunia?",
+    question: "Mengapakah pelajar dari seluruh Eropah datang ke Cordoba dan Toledo?",
     options: [
-      "Menjadi pusat latihan tentera sempadan",
-      "Menjadi pusat pemilihan pewaris takhta",
-      "Menggalakkan pembelajaran dan pertukaran ilmu",
-      "Menjadi pusat penetapan cukai tanah",
+      "Untuk berdagang rempah ratus",
+      "Untuk menyertai pasukan tentera",
+      "Untuk mempelajari pertukangan logam",
+      "Untuk belajar sains dan falsafah",
     ],
-    answerIndex: 2,
+    answerIndex: 3,
     explanation:
-      "Pusat intelektual Islam menarik pelajar dan sarjana serta membantu perkembangan dan penyebaran ilmu.",
+      "Pelajar dari seluruh Eropah belajar sains dan falsafah di Cordoba dan Toledo, tempat sarjana Islam menterjemah dan meningkatkan pengetahuan Yunani.",
   },
   {
     id: "sej-f1-c8-q26",
@@ -5126,17 +5097,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question:
-      "Kaum Badwi berpindah mencari rumput dan air. Kegiatan apakah mendorong perpindahan ini?",
+    question: "Padanan kaum dengan cara hidup manakah yang betul?",
     options: [
-      "Pertanian menetap di kawasan kota",
-      "Penternakan binatang secara nomad",
-      "Perdagangan laut antara pelabuhan",
-      "Pertukangan logam di pusat bandar",
+      "Hadhari: hidup nomad menternak; Badwi: tinggal di kota dan berniaga",
+      "Hadhari: tinggal di kota dan berniaga; Badwi: bertani di oasis",
+      "Hadhari: tinggal di kota dan berniaga; Badwi: hidup nomad menternak",
+      "Hadhari: hidup nomad menternak; Badwi: bertani di oasis",
     ],
-    answerIndex: 1,
+    answerIndex: 2,
     explanation:
-      "Kaum Badwi menternak binatang dan berpindah mencari rumput serta air untuk memenuhi keperluan ternakan mereka.",
+      "Kaum Hadhari tinggal di kota, berniaga dan memiliki binatang ternakan, manakala Kaum Badwi hidup nomad dan memelihara binatang ternakan.",
   },
   {
     id: "sej-f1-c8-q27",
@@ -5144,17 +5114,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Hard",
-    question:
-      "Satu kajian membandingkan pembahagian wilayah baharu dengan usaha mengekalkan kestabilan ketika konflik dalaman. Padanan khalifah manakah paling sesuai?",
+    question: "Padanan kerajaan Islam dengan pusat atau kawasan pengaruh manakah yang betul?",
     options: [
-      "Pembahagian: Ali; kestabilan ketika konflik: Umar",
-      "Pembahagian: Umar; kestabilan ketika konflik: Ali",
-      "Pembahagian: Abu Bakar; kestabilan ketika konflik: Uthman",
-      "Pembahagian: Uthman; kestabilan ketika konflik: Abu Bakar",
+      "Bani Umaiyah: Baghdad; Bani Abbasiyah: Damsyik",
+      "Bani Umaiyah: Damsyik; Bani Abbasiyah: Baghdad",
+      "Bani Abbasiyah: Anatolia; Turki Uthmaniyah: Damsyik",
+      "Turki Uthmaniyah: Baghdad; Bani Umaiyah: Anatolia",
     ],
     answerIndex: 1,
     explanation:
-      "Umar menyusun pentadbiran wilayah yang meluas, manakala Ali berusaha mengekalkan kestabilan pemerintahan ketika menghadapi konflik dalaman.",
+      "Bani Umaiyah berpusat di Damsyik dan Bani Abbasiyah di Baghdad, manakala pengaruh Turki Uthmaniyah meliputi Anatolia, Balkan dan Eropah Timur.",
   },
   {
     id: "sej-f1-c8-q28",
@@ -5165,14 +5134,14 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Apakah langkah Nabi Muhammad SAW untuk mengukuhkan hubungan penduduk asal Madinah dengan umat Islam yang berhijrah?",
     options: [
-      "Mengadakan perjanjian Hudaibiyah dengan Quraisy",
+      "Mengadakan perjanjian damai dengan Quraisy",
       "Menghantar utusan kepada pemerintah kerajaan luar",
-      "Membahagikan pasukan untuk pembukaan semula Makkah",
+      "Mengerahkan pasukan menghadapi Quraisy",
       "Mempersaudarakan Muhajirin dengan Ansar",
     ],
     answerIndex: 3,
     explanation:
-      "Persaudaraan Muhajirin dengan Ansar mengukuhkan hubungan dan kerjasama, lalu membantu pembentukan masyarakat Islam yang bersatu di Madinah.",
+      "Persaudaraan Muhajirin dengan Ansar menerapkan toleransi dan hormat-menghormati serta menyatukan masyarakat Islam di Madinah.",
   },
   {
     id: "sej-f1-c8-q29",
@@ -5180,28 +5149,29 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     difficulty: "Medium",
-    question: "Pengairan, benih dan baja yang ditambah baik menunjukkan kemajuan bidang apakah?",
-    options: ["Strategi ketenteraan", "Seni khat", "Teknologi pertanian", "Sistem kehakiman"],
+    question:
+      "Seorang pedagang menipu timbangan supaya mendapat keuntungan lebih. Prinsip ekonomi Islam manakah dilanggar?",
+    options: [
+      "Galakan bersedekah",
+      "Kewajipan membayar zakat",
+      "Larangan menipu dan menindas",
+      "Sikap berjimat cermat",
+    ],
     answerIndex: 2,
     explanation:
-      "Penambahbaikan pengairan, benih dan baja menunjukkan penggunaan ilmu untuk meningkatkan hasil pertanian dalam perkembangan Tamadun Islam.",
+      "Perniagaan Jahiliah mementingkan keuntungan, mengamalkan riba dan menipu timbangan, sedangkan ekonomi Islam mengutamakan rezeki halal tanpa penindasan.",
   },
   {
     id: "sej-f1-c8-q30",
     subjectId: "sejarah",
     form: "Form 1",
     chapter: "Chapter 8",
-    difficulty: "Hard",
-    question: "Karya sarjana Islam diterjemahkan ke bahasa Latin. Apakah kesannya?",
-    options: [
-      "Memindahkan pemerintahan Islam ke Eropah",
-      "Menyeragamkan sistem cukai kerajaan Eropah",
-      "Menetapkan bahasa pentadbiran seluruh Eropah",
-      "Menyebarkan ilmu kepada masyarakat Eropah",
-    ],
-    answerIndex: 3,
+    difficulty: "Easy",
+    question: "Sifat Nabi Muhammad SAW manakah yang bermaksud boleh dipercayai?",
+    options: ["Siddiq", "Tabligh", "Amanah", "Fatanah"],
+    answerIndex: 2,
     explanation:
-      "Penterjemahan karya sarjana Islam membolehkan pengetahuan dipelajari oleh masyarakat berbahasa lain, termasuk pembaca dan pelajar di Eropah.",
+      "Empat sifat terpuji Nabi Muhammad SAW ialah Siddiq (benar), Amanah (boleh dipercayai), Tabligh (menyampaikan ajaran Islam) dan Fatanah (bijaksana).",
   },
 
   // Sejarah Form 2 Chapter 1 - Kerajaan Alam Melayu
