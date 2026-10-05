@@ -1,15 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
-  ArrowRight, Award, BarChart3, BookOpen, CheckCircle2,
-  Flame, Layers3, LockKeyhole, Rocket, Sparkles,
-  Star, Target, TrendingDown, TrendingUp, Trophy, UsersRound,
+  ArrowRight, Award, BarChart3, CheckCircle2,
+  Flame, LockKeyhole, Rocket, Sparkles,
+  Star, Target, Trophy, UsersRound,
 } from "lucide-react";
 import { AcademyPageShell } from "@/components/AcademyPage";
-import { WeeklyParentReportPreview } from "@/components/parent/WeeklyParentReportPreview";
 import { useAuth } from "@/context/auth-context";
-import { useProgress, totalChaptersCompleted } from "@/hooks/use-progress";
-import { getStudentAnalytics, type StudentAnalytics, type SubjectPerformance } from "@/lib/analytics";
+import { COMPANION_STAGES, getCompanionStageForXp, getRank, useProgress } from "@/hooks/use-progress";
+import {
+  buildParentDashboardModel,
+  formatQuizAverage,
+  parentDashboardHistorySince,
+  type ParentDashboardModel,
+  type ParentDashboardQuiz,
+} from "@/features/parent-dashboard/parentDashboardData";
 import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { subjects } from "@/data/subjects-meta";
@@ -33,9 +38,10 @@ const SUBJECT_COLOR: Record<string, string> = {
 function ParentDashboardPage() {
   const { user, loading: authLoading } = useAuth();
   const { progress } = useProgress();
-  const [analytics, setAnalytics] = useState<StudentAnalytics | null>(null);
+  const [model, setModel] = useState<ParentDashboardModel | null>(null);
   const [storedPlan, setStoredPlan] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [quizError, setQuizError] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -46,6 +52,8 @@ function ParentDashboardPage() {
     }
 
     setLoading(true);
+    setQuizError(false);
+    const now = new Date();
     const subscriptionRequest = isSupabaseConfigured
       ? supabase
           .from("subscriptions")
@@ -54,27 +62,42 @@ function ParentDashboardPage() {
           .eq("status", "active")
           .maybeSingle()
       : Promise.resolve({ data: null, error: null });
+    const quizRequest = isSupabaseConfigured
+      ? supabase
+          .from("quiz_history")
+          .select("created_at, score_pct, subject_id, chapter_key, xp_earned")
+          .eq("user_id", user.id)
+          .gte("created_at", parentDashboardHistorySince(now))
+      : Promise.resolve({ data: [], error: null });
 
-    Promise.all([
-      getStudentAnalytics(user.id, { progress, studentName: user.name, windowDays: 7 }),
-      subscriptionRequest,
-    ]).then(([nextAnalytics, subscriptionResult]) => {
+    Promise.all([quizRequest, subscriptionRequest]).then(([quizResult, subscriptionResult]) => {
       if (!active) return;
       if (subscriptionResult.error && import.meta.env.DEV) {
-        console.error(
-          "[parent-dashboard] subscription plan query failed",
-          subscriptionResult.error,
-        );
+        console.error("[parent-dashboard] subscription plan query failed", subscriptionResult.error);
+      }
+      if (quizResult.error) {
+        if (import.meta.env.DEV) console.error("[parent-dashboard] quiz history query failed", quizResult.error);
+        setQuizError(true);
+        setModel(null);
+        setLoading(false);
+        return;
       }
       setStoredPlan(subscriptionResult.data?.plan ?? null);
-      setAnalytics(nextAnalytics);
+      setModel(buildParentDashboardModel({
+        studentName: user.name?.trim() || "Student",
+        now,
+        quizzes: (quizResult.data ?? []).map(toParentDashboardQuiz),
+      }));
       setLoading(false);
     }).catch((error: unknown) => {
       if (import.meta.env.DEV) console.error("[parent-dashboard] analytics load failed", error);
-      if (active) setLoading(false);
+      if (active) {
+        setQuizError(true);
+        setLoading(false);
+      }
     });
     return () => { active = false; };
-  }, [authLoading, user, progress]);
+  }, [authLoading, user]);
 
   if (authLoading || loading) return <DashboardSkeleton />;
 
@@ -87,7 +110,7 @@ function ParentDashboardPage() {
     );
   }
 
-  if (!analytics) {
+  if (quizError || !model) {
     return (
       <AcademyPageShell className="max-w-6xl">
         <EmptyPanel icon={<BarChart3 />} title="Progress is not available yet"
@@ -100,33 +123,51 @@ function ParentDashboardPage() {
   const canViewDashboard = hasFeature(plan, "parent_dashboard");
   const canViewAnalytics = hasFeature(plan, "parent_analytics");
   const canViewReports = hasFeature(plan, "parent_reports");
+  const canViewPremiumAnalytics = canViewAnalytics && canViewReports;
 
-  return <DashboardContent analytics={analytics} progress={progress} canViewDashboard={canViewDashboard}
-    canViewAnalytics={canViewAnalytics} canViewReports={canViewReports} />;
+  return <DashboardContent model={model} progress={progress} canViewDashboard={canViewDashboard}
+    canViewPremiumAnalytics={canViewPremiumAnalytics} canViewReports={canViewReports} />;
 }
 
-function DashboardContent({ analytics, progress, canViewDashboard, canViewAnalytics, canViewReports }: {
-  analytics: StudentAnalytics;
+function toParentDashboardQuiz(row: {
+  created_at: string;
+  score_pct: number | string | null;
+  subject_id: string;
+  chapter_key: string;
+  xp_earned: number | string | null;
+}): ParentDashboardQuiz {
+  return {
+    createdAt: row.created_at,
+    scorePct: finiteNumber(row.score_pct),
+    subjectId: row.subject_id,
+    chapterKey: row.chapter_key,
+    xpEarned: finiteNumber(row.xp_earned),
+  };
+}
+
+function finiteNumber(value: number | string | null): number | null {
+  if (typeof value === "number") return Number.isFinite(value) ? value : null;
+  if (typeof value !== "string" || value.trim() === "") return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function DashboardContent({ model, progress, canViewDashboard, canViewPremiumAnalytics, canViewReports }: {
+  model: ParentDashboardModel;
   progress: ReturnType<typeof useProgress>["progress"];
   canViewDashboard: boolean;
-  canViewAnalytics: boolean;
+  canViewPremiumAnalytics: boolean;
   canViewReports: boolean;
 }) {
-  const quizResults = progress.quizHistory ?? [];
-  const weeklyResults = quizResults.filter((item) => Date.now() - new Date(item.date).getTime() <= 7 * 86_400_000);
-  const averageQuiz = weeklyResults.length
-    ? Math.round(weeklyResults.reduce((sum, item) => sum + item.scorePct, 0) / weeklyResults.length)
-    : null;
   const activeSubjectIds = new Set(Object.keys(progress.subjectXp));
-  const totalSubjectXp = Math.max(1, Object.values(progress.subjectXp).reduce((a, b) => a + b, 0));
-  const performanceById = new Map(analytics.subjectPerformance.map((item) => [item.subjectId, item]));
-  const subjectRows = subjects.filter((subject) => activeSubjectIds.has(subject.id) || performanceById.has(subject.id));
-  const mostImproved = [...analytics.subjectPerformance].sort((a, b) => b.trend - a.trend)[0] ?? null;
+  const totalSubjectXp = Math.max(1, Object.values(progress.subjectXp).reduce((sum, value) => sum + value, 0));
+  const subjectRows = subjects.filter((subject) => activeSubjectIds.has(subject.id));
   const formLevel = progress.lastVisited?.form ?? "Form not set";
   const lastActive = formatLastActive(progress.lastActive);
-  const chaptersCompleted = totalChaptersCompleted(progress.chapterActivity);
-  const recentActivity = (progress.recentActivity ?? []).slice(0, 6);
-  const weeklyTotal = analytics.quizzesCompletedThisWeek + analytics.chaptersCompletedThisWeek + analytics.flashcardsReviewedThisWeek;
+  const rankName = getRank(progress.xp).name;
+  const companionStage = COMPANION_STAGES.find((stage) => stage.id === getCompanionStageForXp(progress.xp));
+  const attention = attentionSummary(model);
+  const strongest = model.recent.strongest;
 
   return (
     <AcademyPageShell className="max-w-7xl">
@@ -136,17 +177,17 @@ function DashboardContent({ analytics, progress, canViewDashboard, canViewAnalyt
             <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-emerald-300">
               <UsersRound className="h-4 w-4" /> Parent overview
             </div>
-            <h1 className="font-display text-3xl font-black text-white sm:text-4xl">{analytics.studentName}</h1>
+            <h1 className="font-display text-3xl font-black text-white sm:text-4xl">{model.studentName}</h1>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-              {weeklyTotal > 0
-                ? `${weeklyTotal} learning activities recorded this week. Here is where progress is building and where a little support can help.`
-                : "No learning activity has been recorded this week yet. A short revision session is a good way to restart momentum."}
+              {model.thisWeek.quizzes > 0
+                ? `${model.thisWeek.quizzes} quiz${model.thisWeek.quizzes === 1 ? "" : "zes"} recorded this Monday–Sunday week.`
+                : "No quizzes have been recorded this Monday–Sunday week."}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:min-w-[520px]">
             <HeaderFact label="Level" value={formLevel} />
-            <HeaderFact label="Current rank" value={analytics.rankName} />
-            <HeaderFact label="Companion" value={`Nova · ${analytics.companionStageName}`} />
+            <HeaderFact label="Current rank" value={rankName} />
+            <HeaderFact label="Companion" value={`Nova · ${companionStage?.name ?? "Egg"}`} />
             <HeaderFact label="Last active" value={lastActive} />
           </div>
         </div>
@@ -154,89 +195,88 @@ function DashboardContent({ analytics, progress, canViewDashboard, canViewAnalyt
 
       {!canViewDashboard && <UpgradeBanner />}
 
-      <section aria-labelledby="key-metrics" className="mb-8">
-        <SectionHeading id="key-metrics" eyebrow="At a glance" title="Key learning metrics" />
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
-          <Metric icon={<Star />} label="Total XP" value={analytics.totalXp.toLocaleString()} detail={`+${analytics.weeklyXp} this week`} color="#A78BFA" />
-          <Metric icon={<Flame />} label="Current streak" value={`${analytics.studyStreak} days`} detail="Study consistency" color="#F59E0B" />
-          <Metric icon={<BarChart3 />} label="Weekly activity" value={String(weeklyTotal)} detail="Recorded actions" color="#38BDF8" />
-          <Metric icon={<Trophy />} label="Quiz average" value={averageQuiz === null ? "—" : `${averageQuiz}%`} detail={weeklyResults.length ? `${weeklyResults.length} attempts` : "No attempts yet"} color="#34D399" />
-          <Metric icon={<BookOpen />} label="Chapters completed" value={String(chaptersCompleted)} detail="Notes, cards and quiz" color="#F472B6" />
+      <section aria-labelledby="this-week" className="mb-8">
+        <SectionHeading id="this-week" eyebrow="Monday–Sunday" title="This week" />
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <Metric icon={<BarChart3 />} label="Quizzes this week" value={String(model.thisWeek.quizzes)} detail="Recorded quizzes" color="#38BDF8" />
+          <Metric icon={<Star />} label="Weekly quiz XP" value={model.thisWeek.weeklyXp.toLocaleString()} detail="From this week's quizzes" color="#A78BFA" />
+          <Metric icon={<Trophy />} label="Quiz average" value={formatQuizAverage(model.thisWeek.average)} detail={model.thisWeek.quizzes ? `${model.thisWeek.quizzes} quizzes` : "No quizzes yet"} color="#34D399" />
+          <Metric icon={<CheckCircle2 />} label="Active quiz days" value={String(model.thisWeek.activeDays)} detail="Days with a quiz" color="#F59E0B" />
         </div>
       </section>
 
-      <LockedSection locked={!canViewAnalytics} label="Captain insight">
-        <div className="grid gap-6 xl:grid-cols-[1.45fr_.8fr]">
+      <section aria-labelledby="last-week" className="mb-8">
+        <SectionHeading id="last-week" eyebrow={model.lastWeek.periodLabel} title="Last week" />
+        {canViewReports ? <LastWeekDetails model={model} /> : (
+          <LockedSection locked label="Captain report">
+            <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+              <Metric icon={<BarChart3 />} label="Quizzes" value="—" detail="Previous completed week" color="#38BDF8" />
+              <Metric icon={<Trophy />} label="Average score" value="—" detail="Previous completed week" color="#34D399" />
+              <Metric icon={<Star />} label="XP earned" value="—" detail="Previous completed week" color="#A78BFA" />
+              <Metric icon={<CheckCircle2 />} label="Active days" value="— / 7" detail="Previous completed week" color="#F59E0B" />
+            </div>
+          </LockedSection>
+        )}
+      </section>
+
+      <section aria-labelledby="recent-learning" className="mb-8">
+        <SectionHeading id="recent-learning" eyebrow="Recent learning" title="Last 30 days" />
+        {canViewPremiumAnalytics ? (
           <Panel>
-            <SectionHeading id="subjects" eyebrow="Performance" title="Subject progress" compact />
+            <div className="space-y-3">
+              <Insight icon={<BarChart3 />} label="Recent quizzes" value={String(model.recent.quizzes)} />
+              <Insight icon={<Trophy />} label="Recent average" value={formatQuizAverage(model.recent.average)} />
+              <Insight icon={<Award />} label="Strongest subject" value={strongest ? strongest.name : "Not enough recent data"} detail={strongest ? `${formatQuizAverage(strongest.average)} average · ${strongest.quizzes} quizzes` : undefined} />
+              <Insight icon={<Target />} label="Needs attention" value={attention.value} detail={attention.detail} />
+              {model.mostImproved ? (
+                <Insight icon={<Award />} label="Most improved" value={model.mostImproved.name} detail={`+${model.mostImproved.change} points vs the previous 30 days`} />
+              ) : null}
+            </div>
+            <p className="mt-5 text-sm leading-6 text-slate-300">{model.recent.insight}</p>
+            <div className="mt-5 rounded-2xl border border-violet-400/20 bg-violet-400/[.07] p-4">
+              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-violet-200"><Rocket className="h-4 w-4" /> Revision recommendation</p>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{model.recent.recommendation}</p>
+            </div>
+          </Panel>
+        ) : (
+          <LockedSection locked label="Captain insight">
+            <Panel><p className="text-sm text-slate-300">Recent quiz results from the last 30 days.</p></Panel>
+          </LockedSection>
+        )}
+      </section>
+
+      <section aria-labelledby="overall-progress" className="mb-8">
+        <SectionHeading id="overall-progress" eyebrow="Lifetime and current standing" title="Overall progress" />
+        <div className="mb-6 grid grid-cols-2 gap-3 lg:max-w-xl">
+          <Metric icon={<Star />} label="Total XP" value={progress.xp.toLocaleString()} detail="Lifetime" color="#A78BFA" />
+          <Metric icon={<Flame />} label="Current streak" value={`${progress.streak} days`} detail="Current study streak" color="#F59E0B" />
+        </div>
+        {canViewPremiumAnalytics ? (
+          <Panel>
+            <SectionHeading id="subjects" eyebrow="Subject XP distribution" title="Subject XP" compact />
             {subjectRows.length ? (
               <div className="mt-5 space-y-4">
                 {subjectRows.map((subject) => {
-                  const performance = performanceById.get(subject.id);
-                  const progressPct = Math.round(((progress.subjectXp[subject.id] ?? 0) / totalSubjectXp) * 100);
-                  return <SubjectRow key={subject.id} name={subject.name} color={SUBJECT_COLOR[subject.id] ?? "#A78BFA"}
-                    progress={progressPct} performance={performance} />;
+                  const share = Math.round(((progress.subjectXp[subject.id] ?? 0) / totalSubjectXp) * 100);
+                  return <SubjectRow key={subject.id} name={subject.name} color={SUBJECT_COLOR[subject.id] ?? "#A78BFA"} share={share} />;
                 })}
               </div>
-            ) : <InlineEmpty text="Subject progress will appear after the first learning activity." />}
+            ) : <InlineEmpty text="Subject XP will appear after XP is earned in a subject." />}
           </Panel>
-
-          <Panel>
-            <SectionHeading id="insights" eyebrow="Plain-language guidance" title="Learning insights" compact />
-            <div className="mt-5 space-y-3">
-              <Insight icon={<Award />} label="Strongest subject" value={analytics.bestSubject?.name ?? "Not enough data"} />
-              <Insight icon={<Target />} label="Needs attention" value={analytics.weakestSubject?.name ?? "Not enough data"} />
-              <Insight icon={<TrendingUp />} label="Most improved" value={mostImproved && mostImproved.trend > 0 ? mostImproved.name : "Not enough history"} />
-            </div>
-            <div className="mt-5 rounded-2xl border border-violet-400/20 bg-violet-400/[.07] p-4">
-              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-violet-200"><Rocket className="h-4 w-4" /> Next revision mission</p>
-              <p className="mt-2 text-sm leading-6 text-slate-200">{analytics.missionInsight.recommendation}</p>
-            </div>
-          </Panel>
-        </div>
-      </LockedSection>
-
-      <section className="my-8 grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
-        <Panel>
-          <SectionHeading id="activity" eyebrow="Latest learning" title="Weekly activity" compact />
-          {recentActivity.length ? (
-            <ol className="mt-5 space-y-2">
-              {recentActivity.map((item) => (
-                <li key={item.id} className="flex items-center gap-3 rounded-2xl border border-white/[.07] bg-white/[.035] p-3">
-                  <ActivityIcon type={item.type} />
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold text-white">{item.label}</p>
-                    <p className="mt-0.5 text-xs capitalize text-slate-400">{item.type} · {formatActivityTime(item.timestamp)}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          ) : <InlineEmpty text="Recent quizzes, notes and flashcard sessions will appear here." />}
-        </Panel>
-
-        <LockedSection locked={!canViewAnalytics} label="Captain insight" flush>
-          <Panel className="h-full">
-            <SectionHeading id="support" eyebrow="Support priorities" title="Topics to revisit" compact />
-            {analytics.weakTopics.length ? (
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                {analytics.weakTopics.slice(0, 4).map((topic) => (
-                  <div key={`${topic.subjectId}-${topic.chapterKey}`} className="rounded-2xl border border-amber-300/15 bg-amber-300/[.055] p-4">
-                    <div className="flex items-start justify-between gap-3">
-                      <div><p className="font-semibold text-white">{topic.chapterLabel}</p><p className="mt-1 text-xs text-slate-400">{topic.subjectName}</p></div>
-                      <span className="rounded-full bg-amber-300/10 px-2.5 py-1 text-xs font-bold text-amber-200">{topic.avgScore}%</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : <InlineEmpty text="No weak topics detected from recent quizzes." />}
-          </Panel>
-        </LockedSection>
+        ) : (
+          <LockedSection locked label="Captain insight">
+            <Panel><p className="text-sm text-slate-300">Share of subject XP.</p></Panel>
+          </LockedSection>
+        )}
       </section>
 
       <section className="mb-8">
-        <SectionHeading id="report" eyebrow="Parent-friendly summary" title="Weekly Parent Report" />
+        <SectionHeading id="report" eyebrow="Monday–Sunday report" title="Weekly Parent Report" />
         <LockedSection locked={!canViewReports} label="Captain report">
-          <WeeklyParentReportPreview analytics={analytics} />
+          <Panel>
+            <p className="text-sm leading-6 text-slate-300">The Monday–Sunday report uses this week's recorded quizzes and the current streak.</p>
+            <Link to="/weekly-report" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-violet-500 px-4 py-2 text-sm font-bold text-white hover:bg-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300">Preview this week's report <ArrowRight className="h-4 w-4" /></Link>
+          </Panel>
         </LockedSection>
       </section>
 
@@ -247,19 +287,69 @@ function DashboardContent({ analytics, progress, canViewDashboard, canViewAnalyt
   );
 }
 
-function SubjectRow({ name, color, progress, performance }: { name: string; color: string; progress: number; performance?: SubjectPerformance }) {
-  const status = !performance ? "Building" : performance.avgScore >= 80 ? "Strong" : performance.trend > 0 ? "Improving" : "Needs Attention";
+function LastWeekDetails({ model }: { model: ParentDashboardModel }) {
+  const week = model.lastWeek;
+  const attention = week.weakestChapter
+    ? {
+        value: `${week.weakestChapter.subjectName} · ${week.weakestChapter.chapterKey}`,
+        detail: `${formatQuizAverage(week.weakestChapter.average)} · ${week.weakestChapter.attempts} quizzes`,
+      }
+    : week.weakestSubject
+      ? {
+          value: week.weakestSubject.name,
+          detail: `${formatQuizAverage(week.weakestSubject.average)} average · ${week.weakestSubject.quizzes} quizzes`,
+        }
+      : null;
   return (
-    <div className="grid items-center gap-3 rounded-2xl border border-white/[.07] bg-white/[.03] p-4 sm:grid-cols-[140px_1fr_70px_105px]">
+    <>
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <Metric icon={<BarChart3 />} label="Quizzes" value={String(week.quizzes)} detail="Recorded last week" color="#38BDF8" />
+        <Metric icon={<Trophy />} label="Average score" value={formatQuizAverage(week.average)} detail={week.quizzes ? "Mean quiz score" : "No quizzes yet"} color="#34D399" />
+        <Metric icon={<Star />} label="XP earned" value={week.xpEarned.toLocaleString()} detail="From last week's quizzes" color="#A78BFA" />
+        <Metric icon={<CheckCircle2 />} label="Active days" value={`${week.activeDays} / 7`} detail="Days with a quiz" color="#F59E0B" />
+      </div>
+      <Panel className="mt-4">
+        <p className="text-sm leading-6 text-slate-300">{week.summary}</p>
+        {week.quizzes > 0 ? (
+          <div className="mt-4 space-y-3">
+            {week.strongest ? <Insight icon={<Award />} label="Strongest subject" value={`${week.strongest.name} · ${formatQuizAverage(week.strongest.average)} average`} detail={`${week.strongest.quizzes} quizzes`} /> : null}
+            {attention ? <Insight icon={<Target />} label="Needs attention" value={attention.value} detail={attention.detail} /> : null}
+            {week.biggestWin ? <Insight icon={<Trophy />} label="Biggest win" value={`${week.biggestWin.subjectName} · ${week.biggestWin.chapterKey}`} detail={formatQuizAverage(week.biggestWin.scorePct)} /> : null}
+          </div>
+        ) : null}
+      </Panel>
+    </>
+  );
+}
+
+function SubjectRow({ name, color, share }: { name: string; color: string; share: number }) {
+  return (
+    <div className="grid items-center gap-3 rounded-2xl border border-white/[.07] bg-white/[.03] p-4 sm:grid-cols-[140px_1fr]">
       <p className="font-semibold text-white">{name}</p>
-      <div><div className="mb-1.5 flex justify-between text-xs text-slate-400"><span>Current progress</span><span>{progress}%</span></div>
-        <div className="h-2 overflow-hidden rounded-full bg-white/[.08]"><div className="h-full rounded-full" style={{ width: `${progress}%`, background: color }} /></div></div>
-      <p className="text-sm font-bold tabular-nums" style={{ color }}>{performance ? `${performance.avgScore}%` : "—"}</p>
-      <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-300">
-        {performance?.trend !== undefined && (performance.trend >= 0 ? <TrendingUp className="h-3.5 w-3.5 text-emerald-300" /> : <TrendingDown className="h-3.5 w-3.5 text-rose-300" />)}{status}
-      </span>
+      <div>
+        <div className="mb-1.5 flex justify-between text-xs text-slate-400"><span>Share of subject XP</span><span>{share}%</span></div>
+        <div className="h-2 overflow-hidden rounded-full bg-white/[.08]"><div className="h-full rounded-full" style={{ width: `${share}%`, background: color }} /></div>
+      </div>
     </div>
   );
+}
+
+function attentionSummary(model: ParentDashboardModel): { value: string; detail?: string } {
+  const chapter = model.recent.weakestChapter;
+  if (chapter) {
+    return {
+      value: `${chapter.subjectName} · ${chapter.chapterKey}`,
+      detail: `${formatQuizAverage(chapter.average)} · ${chapter.attempts} quizzes`,
+    };
+  }
+  const subject = model.recent.weakestSubject;
+  if (subject) {
+    return {
+      value: subject.name,
+      detail: `${formatQuizAverage(subject.average)} average · ${subject.quizzes} quizzes`,
+    };
+  }
+  return { value: "Not enough recent data" };
 }
 
 function LockedSection({ locked, label, children, flush = false }: { locked: boolean; label: string; children: ReactNode; flush?: boolean }) {
@@ -282,10 +372,8 @@ function Panel({ children, className = "" }: { children: ReactNode; className?: 
 function SectionHeading({ id, eyebrow, title, compact = false }: { id: string; eyebrow: string; title: string; compact?: boolean }) { return <div className={compact ? "" : "mb-4"}><p className="text-xs font-bold uppercase tracking-[.16em] text-emerald-300">{eyebrow}</p><h2 id={id} className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">{title}</h2></div>; }
 function HeaderFact({ label, value }: { label: string; value: string }) { return <div className="rounded-2xl border border-white/[.08] bg-white/[.045] p-3"><p className="text-[11px] font-bold uppercase tracking-wide text-slate-400">{label}</p><p className="mt-1 text-sm font-semibold text-white">{value}</p></div>; }
 function Metric({ icon, label, value, detail, color }: { icon: ReactNode; label: string; value: string; detail: string; color: string }) { return <div className="rounded-2xl border border-white/[.08] bg-[#0B1322]/80 p-4"><span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl [&>svg]:h-5 [&>svg]:w-5" style={{ color, background: `${color}1A` }}>{icon}</span><p className="mt-4 text-xs font-semibold text-slate-400">{label}</p><p className="mt-1 font-display text-2xl font-black tabular-nums text-white">{value}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></div>; }
-function Insight({ icon, label, value }: { icon: ReactNode; label: string; value: string }) { return <div className="flex items-center gap-3 rounded-2xl border border-white/[.07] bg-white/[.035] p-3"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/[.06] text-emerald-300 [&>svg]:h-4.5 [&>svg]:w-4.5">{icon}</span><div className="min-w-0"><p className="text-xs text-slate-400">{label}</p><p className="mt-0.5 truncate text-sm font-semibold text-white">{value}</p></div></div>; }
-function ActivityIcon({ type }: { type: string }) { const icon = type === "quiz" ? <CheckCircle2 /> : type === "flashcards" ? <Layers3 /> : <BookOpen />; return <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-400/10 text-sky-300 [&>svg]:h-4.5 [&>svg]:w-4.5">{icon}</span>; }
+function Insight({ icon, label, value, detail }: { icon: ReactNode; label: string; value: string; detail?: string }) { return <div className="flex items-center gap-3 rounded-2xl border border-white/[.07] bg-white/[.035] p-3"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/[.06] text-emerald-300 [&>svg]:h-4.5 [&>svg]:w-4.5">{icon}</span><div className="min-w-0"><p className="text-xs text-slate-400">{label}</p><p className="mt-0.5 truncate text-sm font-semibold text-white">{value}</p>{detail ? <p className="mt-0.5 truncate text-xs text-slate-400">{detail}</p> : null}</div></div>; }
 function InlineEmpty({ text }: { text: string }) { return <div className="mt-5 rounded-2xl border border-dashed border-white/10 p-5 text-center text-sm text-slate-400">{text}</div>; }
 function DashboardSkeleton() { return <AcademyPageShell className="max-w-7xl"><div aria-label="Loading Parent Dashboard" className="animate-pulse space-y-6"><div className="h-48 rounded-[2rem] bg-white/[.05]" /><div className="grid grid-cols-2 gap-3 lg:grid-cols-5">{Array.from({ length: 5 }).map((_, i) => <div key={i} className="h-36 rounded-2xl bg-white/[.05]" />)}</div><div className="grid gap-6 lg:grid-cols-2"><div className="h-80 rounded-[2rem] bg-white/[.05]" /><div className="h-80 rounded-[2rem] bg-white/[.05]" /></div></div></AcademyPageShell>; }
 function EmptyPanel({ icon, title, body, action, to }: { icon: ReactNode; title: string; body: string; action?: string; to?: string }) { return <div className="mx-auto mt-16 max-w-xl rounded-[2rem] border border-white/10 bg-[#0B1322]/85 p-8 text-center"><span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300 [&>svg]:h-5 [&>svg]:w-5">{icon}</span><h1 className="mt-5 font-display text-2xl font-bold text-white">{title}</h1><p className="mt-2 text-sm leading-6 text-slate-300">{body}</p>{action && to && <Link to={to} className="mt-5 inline-flex min-h-11 items-center rounded-xl bg-emerald-500 px-5 text-sm font-bold text-emerald-950">{action}</Link>}</div>; }
 function formatLastActive(value: string) { if (!value) return "No activity yet"; const date = new Date(`${value}T00:00:00`); const days = Math.floor((Date.now() - date.getTime()) / 86_400_000); if (days <= 0) return "Today"; if (days === 1) return "Yesterday"; return `${days} days ago`; }
-function formatActivityTime(value: number) { return new Intl.DateTimeFormat("en-MY", { weekday: "short", hour: "numeric", minute: "2-digit" }).format(new Date(value)); }

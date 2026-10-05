@@ -1,0 +1,18 @@
+export {
+  automatedDeliveryDecision,
+  buildWeeklyParentReport,
+  currentKualaLumpurWeek,
+  emailedParentReportCycle,
+  formatSubjectPeriod,
+  formatWeekPeriod,
+  hasParentReportsAccess,
+  kualaLumpurDateKey,
+  normalizeParentReportEmail,
+  resolveWeeklyReportRecipient,
+  storedPlanGrantsParentReports,
+  usableEmail,
+  type EmailedReportCycle,
+  type KualaLumpurWeek,
+  type WeeklyParentReport,
+  type WeeklyQuizRow,
+} from "../../../supabase/functions/_shared/weekly-parent-report.ts";
