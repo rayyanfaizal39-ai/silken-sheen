@@ -178,17 +178,17 @@ describe("Sejarah Form 1 Bab 2 — textbook audit and single live owner", () => 
   });
 
   it.each([
-    ["content", "2aed9577919f3bb783cd29a916bd73718c14d82abecb7ddeafa15a6fd0889396"],
-    ["quizzes", "89562df907de1c27209a712aa4ae46c84863d634d1bab8e2a4c855ed7c3671a7"],
+    ["content", "465a1603cf33ba899ba6361cc4acf5cca14619652a935a81c800c6aa6062e1ff"],
+    ["quizzes", "4f09ebbbaae9fbc7ee2aa6e7ae06ee034ff6e258daf825dd3c590f660897251c"],
   ])(
-    "locks every unrelated inline record in %s, including Chapter 1 and Chapters 3–8",
+    "locks every unrelated inline record in %s, including Chapter 1 and Chapters 4–8",
     (file, expected) => {
       const source = readFileSync(
         new URL(`../../../../data/${file}.ts`, import.meta.url),
         "utf8",
       ).replace(/\r\n/g, "\n");
       const records = [...source.matchAll(/ {2}\{\n {4}id: "([^"]+)",[\s\S]*?\n {2}\},/g)]
-        .filter((m) => !/^sej-f1-c2-q\d+$/.test(m[1]))
+        .filter((m) => !/^sej-f1-c[23]-q\d+$/.test(m[1]))
         .map((m) => m[0])
         .join("\n");
       expect(createHash("sha256").update(records).digest("hex")).toBe(expected);
