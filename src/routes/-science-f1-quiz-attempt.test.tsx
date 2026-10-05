@@ -9,7 +9,7 @@ import { Route } from "@/routes/quizzes";
 
 const mocks = vi.hoisted(() => ({
   progress: { xp: 0, quizzesTaken: 0, quizHistory: [] },
-  record: vi.fn().mockResolvedValue({ awarded: false, xpEarned: 0, reason: "guest" }),
+  record: vi.fn(() => Promise.resolve({ awarded: false, xpEarned: 0, reason: "guest" })),
   mark: vi.fn(),
   confirm: vi.fn(),
   reset: vi.fn(),
@@ -34,14 +34,14 @@ vi.mock("@/components/Confetti", () => ({ Confetti: () => null }));
 vi.mock("@/components/DailyQuote", () => ({ DailyQuote: () => null }));
 vi.mock("@/components/notes/ChapterFeatureBar", () => ({ ChapterContentTabs: () => null }));
 vi.mock("@/components/ChapterPicker", () => ({ ContentHeader: () => null, SubjectGrid: () => null, FormGrid: () => null, ChapterGrid: () => null, FormComingSoon: () => null, ComingSoonScreen: () => null }));
-vi.mock("@/components/AcademyPage", () => ({ AcademyPageShell: ({ children }: { children: ReactNode }) => children, AcademyPanel: ({ children }: { children: ReactNode }) => children, AcademyHero: () => null, SubjectWorldBanner: () => null }));
+vi.mock("@/components/AcademyPage", () => ({ AcademyPageShell: ({ children }: { children: ReactNode }) => children, AcademyPanel: ({ children }: { children: ReactNode }) => children, AcademyHero: () => null, SubjectWorldBanner: () => null, subjectPlanetStyles: {} }));
 vi.mock("@/lib/sounds", () => ({ sfx: { success: vi.fn(), wrong: vi.fn(), perfect: vi.fn(), click: vi.fn() } }));
 vi.mock("@/features/quiz/difficulty/quizDifficulty", async (importOriginal) => {
   const actual = await importOriginal<typeof import("@/features/quiz/difficulty/quizDifficulty")>();
   return { ...actual, orderRegularQuizQuestions: vi.fn(actual.orderRegularQuizQuestions) };
 });
 
-const Page = Route.options.component as ComponentType;
+const Page = Route.options.component as ComponentType & { preload?: () => Promise<unknown> };
 let container: HTMLDivElement;
 let root: Root;
 const bank = registry.getChapterQuizQuestions("science", "Form 1", "Chapter 1", "dlp");
@@ -71,7 +71,8 @@ function answerCorrectly() {
   act(() => answer!.click());
 }
 
-beforeEach(() => {
+beforeEach(async () => {
+  if (Page.preload) await Page.preload();
   vi.clearAllMocks();
   vi.useFakeTimers();
   vi.spyOn(Math, "random").mockReturnValue(0);
@@ -113,9 +114,14 @@ describe("actual Science Form 1 quiz attempt lifecycle", () => {
     for (let i = 0; i < 30; i++) {
       seen.push(currentQuestion().id);
       answerCorrectly();
-      const next = [...document.querySelectorAll("button")].find((b) => /^(Next Question|See Results|View Results|Next)/.test(b.textContent?.trim() ?? ""));
+      const next = [...document.querySelectorAll("button")].find((b) => /^(Next Question|Finish Quiz|See Results|View Results|Next)/.test(b.textContent?.trim() ?? ""));
       expect(next, document.body.textContent?.slice(-600)).toBeDefined();
       await act(async () => next!.click());
+      for (let step = 0; step < 12; step++) {
+        await act(async () => {
+          vi.advanceTimersByTime(80);
+        });
+      }
     }
     expect(new Set(seen).size).toBe(30);
     expect(vi.mocked(orderRegularQuizQuestions)).toHaveBeenCalledTimes(1);
@@ -125,7 +131,7 @@ describe("actual Science Form 1 quiz attempt lifecycle", () => {
     }));
     expect(mocks.mark).toHaveBeenCalledWith("science", "Chapter 1", "quiz");
     vi.mocked(Math.random).mockReturnValue(0.99);
-    click("Try Again"); start();
+    click("Redo Quiz");
     expect(vi.mocked(orderRegularQuizQuestions)).toHaveBeenCalledTimes(2);
     expect(currentQuestion().id).not.toBe(seen[0]);
   });

@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { flushSync } from "react-dom";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
 import type { Difficulty, QuizQuestion } from "@/data/content";
 import { useProgress } from "@/hooks/use-progress";
@@ -53,6 +52,7 @@ import {
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
 import { QuizArena } from "@/components/quiz/QuizArena";
+import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
 import imgF3Q01 from "@/assets/english posters/form 3/q01.png";
@@ -16163,6 +16163,7 @@ function QuizzesPage() {
   const [quizCompletionPending, setQuizCompletionPending] = useState(false);
   const [quizCompletionError, setQuizCompletionError] = useState<QuizSaveFailure | null>(null);
   const [done, setDone] = useState(false);
+  const quizMotion = useQuizStageTransition();
   // Background music is now handled globally by BgMusicController.
   const [animatedScore, setAnimatedScore] = useState(0);
   const [feedback, setFeedback] = useState<QuizFeedback | null>(null);
@@ -16236,6 +16237,12 @@ function QuizzesPage() {
       : [];
   const chapterMeta =
     subject && chapter ? subjectChaptersForForm.find((c) => c.key === chapter) : null;
+  const nextChapterMeta = (() => {
+    if (!chapter) return null;
+    const index = subjectChaptersForForm.findIndex((item) => item.key === chapter);
+    if (index < 0) return null;
+    return subjectChaptersForForm.slice(index + 1).find((item) => item.selectable) ?? null;
+  })();
   const missingChapter = !!(subject && chapter && !chapterMeta);
 
   const chapterQuizQuestions = useMemo(() => {
@@ -16513,6 +16520,7 @@ function QuizzesPage() {
   }
 
   function reshuffle() {
+    quizMotion.cancel();
     if (pool.length > 0) {
       setShuffledPool(buildShuffledPool(pool));
     }
@@ -16603,6 +16611,7 @@ function QuizzesPage() {
   }
 
   function reset() {
+    quizMotion.cancel();
     setIdx(0);
     setSelected(null);
     setScore(0);
@@ -16627,7 +16636,23 @@ function QuizzesPage() {
     setEnglishShuffledQuestions(null);
   }
 
+  function redoRegularQuiz() {
+    quizMotion.cancel();
+    if (pool.length > 0) setShuffledPool(buildShuffledPool(pool));
+    setIdx(0);
+    setSelected(null);
+    setScore(0);
+    resetQuizAward();
+    setDone(false);
+    quizStreak.resetStreak();
+    setFeedback(null);
+    setTimeLeft(questionSeconds);
+    setAnimatedScore(0);
+    setConfirmLeaveQuiz(false);
+  }
+
   function resetRegularQuiz() {
+    quizMotion.cancel();
     setIdx(0);
     setSelected(null);
     setScore(0);
@@ -16888,6 +16913,15 @@ function QuizzesPage() {
         chooseChapter: "Pilih Bab",
         nextQuestion: "Soalan Seterusnya →",
         seeResults: "Lihat Keputusan ✨",
+        finishQuiz: "Tamatkan Kuiz →",
+        quizCompleteLabel: "KUIZ SELESAI",
+        excellentWork: "Syabas!",
+        continueNext: "Teruskan ke Bab Seterusnya →",
+        redoQuiz: "Ulang Kuiz",
+        backHome: "Kembali ke Laman Utama",
+        backSubject: "Kembali ke Subjek →",
+        correctAnswers: "Jawapan betul",
+        incorrectAnswers: "Jawapan salah",
         askWhy: "Ace — Mengapakah jawapan saya salah?",
       }
     : {
@@ -16911,6 +16945,15 @@ function QuizzesPage() {
         chooseChapter: "Choose Chapter",
         nextQuestion: "Next Question →",
         seeResults: "See Results ✨",
+        finishQuiz: "Finish Quiz →",
+        quizCompleteLabel: "QUIZ COMPLETE",
+        excellentWork: "Excellent work!",
+        continueNext: "Continue to Next Chapter →",
+        redoQuiz: "Redo Quiz",
+        backHome: "Back to Home",
+        backSubject: "Back to Subject →",
+        correctAnswers: "Correct answers",
+        incorrectAnswers: "Incorrect answers",
         askWhy: "Ace — Why was my answer wrong?",
       };
   const regularDifficultyLabels: Record<"All" | Difficulty, string> = regularQuizBm
@@ -17710,7 +17753,6 @@ function QuizzesPage() {
             </div>
             <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10 sm:mt-3 sm:h-1.5">
               <div
-                key={done ? "done" : idx}
                 className="quiz-progress-fill h-full rounded-full"
                 style={{
                   width: `${((idx + 1) / Math.max(shuffledPool?.length ?? pool.length, 1)) * 100}%`,
@@ -17790,148 +17832,168 @@ function QuizzesPage() {
           </div>
           <p className="sr-only">{regularQuizCopy.shuffled}</p>
 
-          <div className={`quiz-stage w-full py-2 sm:my-auto sm:py-6 ${!done && selected !== null ? "is-revealed" : ""}`}>
+          <div className={`quiz-stage w-full py-2 sm:py-6 ${done ? "sm:my-auto" : "is-anchored"}`}>
           {pool.length === 0 || !shuffledPool || shuffledPool.length === 0 ? (
             <div className="text-center py-20 glass rounded-2xl">
               <p className="text-muted-foreground">
                 {subject === "math" ? "Quizzes Coming Soon" : regularQuizCopy.noQuestions}
               </p>
             </div>
-          ) : done ? (
-            <>
-              <Confetti count={shuffledPool && score === shuffledPool.length ? 160 : 70} />
-              {shuffledPool && score === shuffledPool.length && <Confetti count={120} />}
+          ) : (
+            <div className="quiz-swap">
               <div
-                className="relative overflow-hidden rounded-[2rem] border border-white/[0.10] bg-[#0B1220]/90 animate-fade-up backdrop-blur-2xl"
+                ref={quizMotion.panelRef}
+                key={done ? "complete" : idx}
+                className={`quiz-swap-panel${
+                  quizMotion.phase === "exiting"
+                    ? " is-exiting"
+                    : quizMotion.phase === "preparing"
+                      ? " is-preparing"
+                      : quizMotion.phase === "entering"
+                        ? " is-entering"
+                        : ""
+                }`}
+                aria-live="polite"
+              >
+          {done ? (
+            <div className="quiz-complete mx-auto w-full max-w-lg">
+              <div
+                className="relative overflow-hidden rounded-[1.75rem] border border-white/[0.10] bg-[#0B1220]/90 backdrop-blur-2xl"
                 style={{
                   boxShadow: "0 32px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07)",
                 }}
               >
-                {/* Background gradient */}
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.3),transparent_60%)]" />
-
-                {/* Top accent bar */}
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,var(--quiz-glow),transparent_62%)] opacity-80" />
                 <div className="quiz-subject-action h-1 w-full" />
-
-                <div className="relative px-8 py-10 text-center">
-                  {/* Score emoji + title */}
-                  <div className="mb-4 flex items-center justify-center">
-                    {shuffledPool && score === shuffledPool.length ? (
-                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#FBBF24] to-[#F59E0B] shadow-[0_0_48px_rgba(251,191,36,0.5)] text-4xl">
-                        🏆
+                <div className="relative px-5 py-8 text-center sm:px-8 sm:py-10">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/45">
+                    {regularQuizCopy.quizCompleteLabel}
+                  </p>
+                  <h2 className="mt-2 font-display text-3xl font-extrabold sm:text-4xl">
+                    {score === (shuffledPool?.length ?? pool.length)
+                      ? regularQuizCopy.perfectScore
+                      : score >= Math.ceil((shuffledPool?.length ?? pool.length) * 0.7)
+                        ? regularQuizCopy.excellentWork
+                        : regularQuizCopy.quizComplete}
+                  </h2>
+                  <div className="quiz-complete-score mx-auto my-6 max-w-xs rounded-3xl border border-white/10 bg-white/[0.04] px-6 py-5">
+                    <div className="quiz-complete-glow" aria-hidden="true" />
+                    <div className="quiz-complete-stars" aria-hidden="true">
+                      {[
+                        ["22%", "0ms"],
+                        ["36%", "70ms"],
+                        ["50%", "30ms"],
+                        ["64%", "110ms"],
+                        ["78%", "20ms"],
+                      ].map(([left, delay]) => (
+                        <i key={left} style={{ left, animationDelay: delay }} />
+                      ))}
+                    </div>
+                    <p className="font-display text-5xl font-extrabold tracking-tight text-white sm:text-6xl">
+                      {animatedScore}
+                      <span className="text-2xl text-white/30 sm:text-3xl">
+                        {" "}
+                        / {shuffledPool?.length ?? pool.length}
+                      </span>
+                    </p>
+                    <p className="mt-1 text-lg font-bold text-white/70">
+                      {Math.round((score / Math.max(shuffledPool?.length ?? pool.length, 1)) * 100)}%
+                    </p>
+                  </div>
+                  <div className="mb-6 grid grid-cols-2 gap-2 text-left">
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3">
+                      <div className="text-lg font-bold text-emerald-300">{score}</div>
+                      <div className="text-[11px] text-white/45">{regularQuizCopy.correctAnswers}</div>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3">
+                      <div className="text-lg font-bold text-rose-300">
+                        {Math.max((shuffledPool?.length ?? pool.length) - score, 0)}
                       </div>
-                    ) : score >= Math.ceil((shuffledPool?.length ?? pool.length) * 0.7) ? (
-                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 shadow-[0_0_40px_rgba(52,211,153,0.4)] text-4xl">
-                        ⭐
+                      <div className="text-[11px] text-white/45">{regularQuizCopy.incorrectAnswers}</div>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3">
+                      <div className="text-lg font-bold">
+                        {Math.round((score / Math.max(shuffledPool?.length ?? pool.length, 1)) * 100)}%
                       </div>
-                    ) : (
-                      <div className="quiz-subject-action flex h-20 w-20 items-center justify-center rounded-full text-4xl">
-                        📚
+                      <div className="text-[11px] text-white/45">{regularQuizCopy.accuracy}</div>
+                    </div>
+                    <div className="rounded-2xl border border-orange-500/25 bg-orange-500/10 px-3 py-3">
+                      <div className="text-lg font-bold text-orange-300">{quizStreak.bestStreak}</div>
+                      <div className="text-[11px] text-white/45">{regularQuizCopy.bestStreak}</div>
+                    </div>
+                    {quizCompletion && (
+                      <div className="rounded-2xl border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-3 py-3">
+                        <div className="text-lg font-bold text-[#FBBF24]">+{quizCompletion.xpEarned}</div>
+                        <div className="text-[11px] text-white/45">{regularQuizCopy.xpEarned}</div>
                       </div>
                     )}
                   </div>
-
-                  <h2 className="font-display text-3xl font-extrabold">
-                    {shuffledPool && score === shuffledPool.length
-                      ? regularQuizCopy.perfectScore
-                      : score >= Math.ceil((shuffledPool?.length ?? pool.length) * 0.7)
-                        ? regularQuizCopy.greatJob
-                        : regularQuizCopy.quizComplete}
-                  </h2>
-
-                  <p className="mt-1.5 text-sm text-white/50">{regularQuizCopy.resultIntro}</p>
-
-                  {/* Big score number */}
-                  <p
-                    key={`score-${done}`}
-                    className="font-display text-8xl font-extrabold my-6 animate-score-reveal gradient-text drop-shadow-[0_0_40px_oklch(0.63_0.22_295_/_0.7)]"
-                  >
-                    {animatedScore}
-                    <span className="text-white/25 text-5xl">
-                      /{shuffledPool?.length ?? pool.length}
-                    </span>
-                  </p>
-
-                  {/* Stat chips */}
-                  <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
-                    <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2">
-                      <span className="text-base">🎯</span>
-                      <span className="text-sm font-bold">
-                        {Math.round((score / (shuffledPool?.length ?? pool.length)) * 100)}%
-                      </span>
-                      <span className="text-xs text-white/40">{regularQuizCopy.accuracy}</span>
-                    </div>
-                    <div className="flex items-center gap-2 rounded-full border border-[#FBBF24]/25 bg-[#FBBF24]/10 px-4 py-2">
-                      <Zap className="h-4 w-4 text-[#FBBF24]" />
-                      <span className="relative text-sm font-bold text-[#FBBF24]">
-                        +{quizCompletion?.xpEarned ?? 0}
-                        {quizCompletion && quizCompletion.xpEarned > 0 && (
-                          <span className="quiz-xp-float">+{quizCompletion.xpEarned} XP</span>
-                        )}
-                      </span>
-                      <span className="text-xs text-white/40">{regularQuizCopy.totalXpEarned}</span>
-                    </div>
-                    <div className="flex items-center gap-2 rounded-full border border-orange-500/25 bg-orange-500/10 px-4 py-2">
-                      <Flame className="h-4 w-4 text-orange-400" />
-                      <span className="text-sm font-bold text-orange-300">
-                        {quizStreak.bestStreak}
-                      </span>
-                      <span className="text-xs text-white/40">{regularQuizCopy.bestStreak}</span>
-                    </div>
-                  </div>
-
-                  {score < (shuffledPool?.length ?? pool.length) && (
-                    <p className="mx-auto mb-6 max-w-md text-sm leading-6 text-white/60">
-                      {regularQuizBm
-                        ? `Ulang kaji ${cleanLearningLabel(chapterMeta?.label ?? chapter)} sebelum cuba lagi.`
-                        : `Review ${cleanLearningLabel(chapterMeta?.label ?? chapter)} before you retry.`}
-                    </p>
-                  )}
-
-                  <div className="mx-auto mb-8 max-w-md">
+                  <div className="mx-auto mb-6 max-w-md text-left">
                     <QuizAwardSummary
                       result={quizCompletion}
                       pending={quizCompletionPending}
                       error={quizCompletionError}
                       bm={scienceLang === "bm"}
                     />
-                    <p className="mt-3 text-xs text-white/45">
+                    <p className="mt-3 text-center text-xs text-white/45">
                       {regularQuizCopy.lifetimeXp} {attemptStartXp.toLocaleString()} →{" "}
                       {progress.xp.toLocaleString()} XP
                     </p>
                   </div>
-
-                  {/* CTA buttons */}
-                  <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                  <div className="flex flex-col gap-2.5">
+                    {nextChapterMeta ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setChapter(nextChapterMeta.key);
+                          updateQuizSearch({ chapter: nextChapterMeta.key });
+                          reset();
+                        }}
+                        className="quiz-subject-action min-h-12 w-full rounded-2xl px-4 py-3 text-center font-bold text-white"
+                      >
+                        <span className="block">{regularQuizCopy.continueNext}</span>
+                        <span className="mt-0.5 block text-xs font-semibold text-white/80">
+                          {nextChapterMeta.label}
+                        </span>
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setChapter(null);
+                          updateQuizSearch({ chapter: null });
+                          reset();
+                        }}
+                        className="quiz-subject-action min-h-12 w-full rounded-2xl px-4 py-3 font-bold text-white"
+                      >
+                        {regularQuizCopy.backSubject}
+                      </button>
+                    )}
                     <button
-                      onClick={reset}
-                      className="quiz-subject-action inline-flex items-center gap-2 rounded-2xl px-8 py-3.5 font-bold text-white transition-all hover:scale-[1.03]"
+                      type="button"
+                      onClick={redoRegularQuiz}
+                      className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-white/[0.12] bg-white/[0.06] px-4 py-3 font-bold text-white hover:bg-white/[0.10]"
                     >
-                      <RotateCcw className="h-4 w-4" /> {regularQuizCopy.tryAgain}
+                      <RotateCcw className="h-4 w-4" /> {regularQuizCopy.redoQuiz}
                     </button>
                     <button
-                      onClick={() => {
-                        setChapter(null);
-                        updateQuizSearch({ chapter: null });
-                        reset();
-                      }}
-                      className="inline-flex items-center gap-2 rounded-2xl border border-white/[0.12] bg-white/[0.06] px-8 py-3.5 font-bold text-white transition-all hover:bg-white/[0.10]"
+                      type="button"
+                      onClick={() => void navigate({ to: "/home" })}
+                      className="min-h-12 w-full rounded-2xl px-4 py-3 text-sm font-semibold text-white/70 hover:text-white"
                     >
-                      <ArrowLeft className="h-4 w-4" /> {regularQuizCopy.chooseChapter}
+                      {regularQuizCopy.backHome}
                     </button>
                   </div>
                 </div>
               </div>
-            </>
+            </div>
           ) : (
             current && (
               <div
-                key={idx}
                 data-quiz-combo-surface
-                className={`quiz-card relative overflow-hidden rounded-2xl border border-white/10 quiz-q-enter sm:rounded-[1.75rem] ${
+                className={`quiz-card relative overflow-hidden rounded-2xl border border-white/10 sm:rounded-[1.75rem] ${
                   feedback?.kind === "correct" ? "animate-correct-pulse" : ""
                 } ${feedback?.kind === "wrong" ? "quiz-card-miss" : ""}`}
-                style={{ viewTransitionName: "quiz-card" }}
               >
                 {/* ── Card header ── */}
                 <MobileArenaScroll questionKey={idx} revealed={selected !== null} />
@@ -18113,27 +18175,22 @@ function QuizzesPage() {
                 {selected !== null && (
                   <div className="quiz-continue border-t border-white/[0.06] px-4 py-3 sm:px-6 sm:py-4">
                     <button
-                      onClick={() => {
-                        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-                        const doc = document as Document & {
-                          startViewTransition?: (update: () => void) => void;
-                        };
-                        if (!reduced && typeof doc.startViewTransition === "function") {
-                          doc.startViewTransition(() => flushSync(() => next()));
-                          return;
-                        }
-                        next();
-                      }}
-                      className="quiz-subject-action min-h-12 w-full touch-manipulation rounded-xl py-3 font-bold text-white transition-transform hover:scale-[1.01] active:scale-[0.99] sm:rounded-2xl sm:py-3.5"
+                      type="button"
+                      disabled={quizMotion.busy}
+                      onClick={() => quizMotion.advance(() => next())}
+                      className="quiz-subject-action min-h-12 w-full touch-manipulation rounded-xl py-3 font-bold text-white transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:pointer-events-none disabled:opacity-70 sm:rounded-2xl sm:py-3.5"
                     >
                       {idx + 1 >= (shuffledPool?.length ?? pool.length)
-                        ? regularQuizCopy.seeResults
+                        ? regularQuizCopy.finishQuiz
                         : regularQuizCopy.nextQuestion}
                     </button>
                   </div>
                 )}
               </div>
             )
+          )}
+              </div>
+            </div>
           )}
           </div>
           {confirmLeaveQuiz && (
@@ -18292,9 +18349,8 @@ function MobileArenaScroll({ questionKey, revealed }: { questionKey: number; rev
     const media = window.matchMedia?.("(max-width: 639px)");
     if (!media?.matches) return;
     const arena = ref.current?.closest(".quiz-arena");
-    if (!(arena instanceof HTMLElement)) return;
-    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
-    arena.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    if (!(arena instanceof HTMLElement) || arena.scrollTop === 0) return;
+    arena.scrollTo({ top: 0, behavior: "auto" });
   }, [questionKey]);
 
   useEffect(() => {
