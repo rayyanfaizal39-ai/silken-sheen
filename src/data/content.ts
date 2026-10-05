@@ -6866,7 +6866,7 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 2",
-    difficulty: "Hard",
+    difficulty: "Medium",
     question:
       "Titik Q terletak tepat di tengah antara garisan latitud 10° U dengan 12° U. Apakah latitud titik Q?",
     options: ["10° U.", "11° U.", "11° S.", "12° U."],
@@ -6890,7 +6890,7 @@ export const quizzes: QuizQuestion[] = [
     subjectId: "geography",
     form: "Form 1",
     chapter: "Chapter 2",
-    difficulty: "Medium",
+    difficulty: "Hard",
     question:
       "Jika sesuatu tempat terletak di antara 0° dan 5° U pada atlas, apakah langkah untuk menentukan darjahnya?",
     options: [
