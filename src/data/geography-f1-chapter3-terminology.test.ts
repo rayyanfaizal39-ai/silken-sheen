@@ -44,9 +44,15 @@ describe("Geografi Tingkatan 1 Bab 3 terminology", () => {
 
       expect(question2?.answerIndex).toBe(1);
       expect(question2?.options[1]).toContain("pemidang");
-      expect(question27?.answerIndex).toBe(1);
       expect(question27?.options[1]).toContain("pemidang");
     }
+  });
+
+  it("keeps tinjauan as the first overall drawing step in the live bank", () => {
+    // The live bank (content.ts) was repaired; src/data/quizzes.ts is a stale, unserved copy.
+    const question27 = aggregateQuizzes.find((question) => question.id === "geo-f1-c3-q27");
+
+    expect(question27?.options[question27.answerIndex]).toMatch(/tinjauan/i);
   });
 
   it("preserves affected flashcard and note IDs", () => {
