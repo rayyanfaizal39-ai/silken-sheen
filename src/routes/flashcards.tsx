@@ -261,6 +261,132 @@ const GEOGRAPHY_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER: Record<string, FlashcardSet
   "Chapter 10": GEOGRAPHY_F2_C10_FLASHCARD_SET_OPTIONS,
 };
 
+const SCIENCE_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER: Record<
+  string,
+  { dlp: FlashcardSetOption[]; bm: FlashcardSetOption[] }
+> = {
+  "Chapter 1": {
+    dlp: topicSetOptions(
+      "Biodiversity & Conservation",
+      "Classification of Animals",
+      "Classification of Plants & Dichotomous Keys",
+    ),
+    bm: topicSetOptions(
+      "Biodiversiti & Pemuliharaan",
+      "Pengelasan Haiwan",
+      "Pengelasan Tumbuhan & Kekunci Dikotomi",
+    ),
+  },
+  "Chapter 2": {
+    dlp: topicSetOptions(
+      "Ecosystem Components & Energy Flow",
+      "Nutrient Cycles & Interactions",
+      "Population Factors & Human Roles",
+    ),
+    bm: topicSetOptions(
+      "Komponen Ekosistem & Aliran Tenaga",
+      "Kitar Nutrien & Interaksi Organisma",
+      "Faktor Populasi & Peranan Manusia",
+    ),
+  },
+  "Chapter 3": {
+    dlp: topicSetOptions(
+      "Classes of Food & Food Tests",
+      "Balanced Diet & Energy",
+      "Digestion, Absorption & Defecation",
+    ),
+    bm: topicSetOptions(
+      "Kelas Makanan & Ujian Makanan",
+      "Gizi Seimbang & Tenaga",
+      "Pencernaan, Penyerapan & Penyahtinjaan",
+    ),
+  },
+  "Chapter 4": {
+    dlp: topicSetOptions("Diseases & How They Spread", "Body Defence", "Immunity & Immunisation"),
+    bm: topicSetOptions("Penyakit & Cara Penyebaran", "Pertahanan Badan", "Keimunan & Imunisasi"),
+  },
+  "Chapter 5": {
+    dlp: topicSetOptions(
+      "Physical Characteristics of Water",
+      "Solutions & Solubility",
+      "Water Purification & Supply",
+    ),
+    bm: topicSetOptions("Ciri Fizikal Air", "Larutan & Keterlarutan", "Penulenan & Bekalan Air"),
+  },
+  "Chapter 6": {
+    dlp: topicSetOptions(
+      "Properties of Acids & Alkalis",
+      "pH, Indicators & Neutralisation",
+      "Applications of Neutralisation",
+    ),
+    bm: topicSetOptions("Sifat Asid & Alkali", "pH, Penunjuk & Peneutralan", "Aplikasi Peneutralan"),
+  },
+  "Chapter 7": {
+    dlp: topicSetOptions(
+      "Electrostatics & Electricity",
+      "Series & Parallel Circuits",
+      "Magnetism & Electromagnets",
+    ),
+    bm: topicSetOptions(
+      "Elektrostatik & Elektrik",
+      "Litar Bersiri & Selari",
+      "Kemagnetan & Elektromagnet",
+    ),
+  },
+  "Chapter 8": {
+    dlp: topicSetOptions("Types of Force & Their Effects", "Buoyancy, Moments & Levers", "Pressure"),
+    bm: topicSetOptions("Jenis Daya & Kesannya", "Daya Keapungan, Momen & Tuil", "Tekanan"),
+  },
+  "Chapter 9": {
+    dlp: topicSetOptions(
+      "Heat, Temperature & Heat Flow",
+      "Expansion & Contraction",
+      "Heat Conductors, Insulators & Surface Properties",
+    ),
+    bm: topicSetOptions(
+      "Haba, Suhu & Pengaliran Haba",
+      "Pengembangan & Pengecutan",
+      "Konduktor Haba, Penebat & Sifat Permukaan",
+    ),
+  },
+  "Chapter 10": {
+    dlp: topicSetOptions(
+      "Nature & Propagation of Sound",
+      "Loudness, Pitch & Doppler Effect",
+      "Reflection of Sound & Applications",
+    ),
+    bm: topicSetOptions(
+      "Sifat & Perambatan Bunyi",
+      "Kenyaringan, Kelangsingan & Kesan Doppler",
+      "Pantulan Bunyi & Aplikasinya",
+    ),
+  },
+  "Chapter 11": {
+    dlp: topicSetOptions(
+      "The Universe & Galaxies",
+      "Characteristics of Stars",
+      "Life Cycle of Stars",
+    ),
+    bm: topicSetOptions("Alam Semesta & Galaksi", "Ciri-ciri Bintang", "Kitar Hidup Bintang"),
+  },
+  "Chapter 12": {
+    dlp: topicSetOptions(
+      "Planets of the Solar System",
+      "Distance, Gravity, Temperature & Orbit",
+      "Earth, Moon & Ecological Footprint",
+    ),
+    bm: topicSetOptions(
+      "Planet dalam Sistem Suria",
+      "Jarak, Graviti, Suhu & Orbit",
+      "Bumi, Bulan & Jejak Ekologi",
+    ),
+  },
+  "Chapter 13": {
+    dlp: topicSetOptions("Meteoroids, Meteors & Meteorites", "Asteroids", "Comets"),
+    bm: topicSetOptions("Meteoroid, Meteor & Meteorit", "Asteroid", "Komet"),
+  },
+};
+
 function vibrate(pattern: number | number[], enabled: boolean) {
   if (!enabled) return;
   try {
@@ -5641,7 +5767,10 @@ function FlashcardsPage() {
               ? SEJARAH_F2_C6_FLASHCARD_SET_OPTIONS
               : subject === "geography" && form === "Form 2" && chapter
                 ? (GEOGRAPHY_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER[chapter] ?? FLASHCARD_SET_OPTIONS)
-                : FLASHCARD_SET_OPTIONS;
+                : subject === "science" && form === "Form 2" && chapter && scienceLang
+                  ? (SCIENCE_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER[chapter]?.[scienceLang] ??
+                    FLASHCARD_SET_OPTIONS)
+                  : FLASHCARD_SET_OPTIONS;
   const pool = useMemo(() => {
     // Session guard: no active deck without a known Form, and no card tagged
     // with another Form may enter the active deck.

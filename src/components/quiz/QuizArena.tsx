@@ -147,7 +147,7 @@ export function QuizArena({
         }
         @media (min-width: 1024px) {
           .quiz-arena .quiz-stage.is-anchored {
-            padding-top: min(calc(1.5rem + 11vh), 10rem);
+            padding-top: max(min(calc(1.5rem + 11vh), 10rem), min(calc(28vh - 4.5rem), 13rem));
           }
         }
         .quiz-stage.is-revealed { transform: none; }
