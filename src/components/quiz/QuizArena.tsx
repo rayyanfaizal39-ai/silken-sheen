@@ -1,12 +1,10 @@
-import { useEffect, type CSSProperties, type ReactNode } from "react";
-import { createPortal } from "react-dom";
-import { subjectPlanetStyles, type SubjectPlanetId } from "@/components/AcademyPage";
+import type { ReactNode } from "react";
+import { LearningArena } from "@/components/learning/LearningArena";
 
 /**
- * Full-viewport presentation frame for an in-progress Junior quiz.
- * It does not own questions, answers, timers, or scoring.
- * Portaled to document.body so site chrome cannot clip or cover it.
- * Subject colour comes from the Dashboard Subject Worlds map.
+ * Quiz experience inside the shared Learning Arena frame.
+ * It does not own questions, answers, timers, or scoring — only the
+ * quiz-specific presentation rules layered on top of the arena.
  */
 export function QuizArena({
   children,
@@ -15,38 +13,9 @@ export function QuizArena({
   children: ReactNode;
   subjectId?: string | null;
 }) {
-  const planet =
-    subjectId && subjectPlanetStyles && subjectId in subjectPlanetStyles
-      ? subjectPlanetStyles[subjectId as SubjectPlanetId]
-      : null;
-  const themeVars: CSSProperties | undefined = planet
-    ? {
-        ["--quiz-accent" as string]: planet.color,
-        ["--quiz-accent-from" as string]: planet.accentFrom,
-        ["--quiz-accent-to" as string]: planet.accentTo,
-        ["--quiz-glow" as string]: planet.glow,
-      }
-    : undefined;
-  useEffect(() => {
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previous;
-    };
-  }, []);
-
-  const frame = (
-    <div
-      className="quiz-arena fixed inset-0 z-[200] overflow-x-hidden overflow-y-auto bg-[#050816] text-white"
-      style={{ minHeight: "100vh", height: "100dvh", ...themeVars }}
-      role="region"
-      aria-label="AcadeMY Quiz Arena"
-    >
+  return (
+    <LearningArena subjectId={subjectId} className="quiz-arena" label="AcadeMY Quiz Arena">
       <style>{`
-        @keyframes quiz-arena-drift {
-          from { transform: translate3d(0, 0, 0); }
-          to { transform: translate3d(-1.2%, 0.8%, 0); }
-        }
         @keyframes quiz-arena-q-in {
           from { opacity: 0; transform: translateY(14px); }
           to { opacity: 1; transform: translateY(0); }
@@ -108,14 +77,10 @@ export function QuizArena({
           to { opacity: 0; transform: translate(var(--sx), var(--sy)); }
         }
         .quiz-arena {
-          --quiz-accent: #a78bfa;
-          --quiz-accent-from: #6366f1;
-          --quiz-accent-to: #8b5cf6;
-          --quiz-glow: rgba(99, 102, 241, 0.45);
-        }
-        .quiz-arena-drift {
-          background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--quiz-accent) 22%, transparent), transparent 48%);
-          animation: quiz-arena-drift 28s ease-in-out infinite alternate;
+          --quiz-accent: var(--arena-accent);
+          --quiz-accent-from: var(--arena-accent-from);
+          --quiz-accent-to: var(--arena-accent-to);
+          --quiz-glow: var(--arena-glow);
         }
         .quiz-subject-action {
           background-image: linear-gradient(90deg, var(--quiz-accent-from), var(--quiz-accent-to));
@@ -322,7 +287,6 @@ export function QuizArena({
         }
         @media (max-width: 639px) {
           .quiz-stage.is-revealed { transform: none; }
-          .quiz-arena-drift { animation: none; }
           .quiz-streak-sparks i { animation: none; opacity: 0; }
           .quiz-answer-sweep::after { animation: none; }
           .quiz-arena .quiz-card h2 {
@@ -341,7 +305,6 @@ export function QuizArena({
           .quiz-arena button.group:hover:not(:disabled) { transform: none; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .quiz-arena-drift,
           .quiz-arena .quiz-q-enter,
           .quiz-arena .animate-correct-pulse,
           .quiz-arena .animate-shake,
@@ -378,16 +341,7 @@ export function QuizArena({
           }
         }
       `}</style>
-      <div
-        className="quiz-arena-drift pointer-events-none absolute inset-0"
-        aria-hidden="true"
-      />
-      <div className="relative mx-auto flex min-h-full w-full max-w-[1050px] flex-col px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 sm:pb-[max(1rem,env(safe-area-inset-bottom))]">
-        {children}
-      </div>
-    </div>
+      {children}
+    </LearningArena>
   );
-
-  if (typeof document === "undefined") return frame;
-  return createPortal(frame, document.body);
 }
