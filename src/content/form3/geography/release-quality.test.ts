@@ -17,7 +17,7 @@ describe("Form 3 Geography release quality", () => {
     expect(chapters).toHaveLength(11);
 
     for (const chapter of chapters) {
-      expect(chapter.flashcards?.length ?? 0).toBeGreaterThanOrEqual(60);
+      expect(chapter.flashcards?.length ?? 0).toBe(60);
       expect(chapter.quiz).toHaveLength(30);
       expect(chapter.mindMap?.data).toBeTruthy();
     }
@@ -30,7 +30,7 @@ describe("Form 3 Geography release quality", () => {
       const fronts = cards.map((card) => card.front.trim());
       const pairs = cards.map((card) => `${card.front.trim()}\u0000${card.back.trim()}`);
 
-      expect(cards.length).toBeGreaterThanOrEqual(60);
+      expect(cards.length).toBe(60);
       expect(new Set(ids).size).toBe(cards.length);
       expect(new Set(fronts).size).toBe(cards.length);
       expect(new Set(pairs).size).toBe(cards.length);
