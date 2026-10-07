@@ -1,4 +1,4 @@
-import { buildGeographyF3Quizzes } from "@/content/form3/geography/resource-builders";
-import { geographyF3C7Notes } from "./notes";
+import { buildGeographyF3QuizzesFromFlashcards } from "@/content/form3/geography/resource-builders";
+import { geographyF3C7Flashcards } from "./flashcards";
 
-export const geographyF3C7Quizzes = buildGeographyF3Quizzes(7, geographyF3C7Notes);
+export const geographyF3C7Quizzes = buildGeographyF3QuizzesFromFlashcards(7, geographyF3C7Flashcards);
