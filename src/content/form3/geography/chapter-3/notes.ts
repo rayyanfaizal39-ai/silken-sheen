@@ -1,306 +1,361 @@
 import type { StructuredNotes } from "@/content/types";
 
 export const geographyF3C3Notes: StructuredNotes = {
-  "chapterSummary": "Bab 3 Pengaruh Persekitaran Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar merangkumi 2 subtopik rasmi: 3.1 Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar; 3.2 Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar. Nota ini disusun mengikut urutan buku teks dan mengekalkan fokus kepada fakta, konsep, proses, contoh, jadual, peta, rajah dan kemahiran UASA yang terdapat dalam bab.",
-  "quickRevision": [
-    "3.1 Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-    "3.2 Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-    "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar Iklim Gurun Panas (Namibia) Iklim merujuk kombinasi beberapa elemen seperti suhu, hujan, angin,",
-    "Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar"
+  chapterSummary:
+    "Bab 3 menerangkan bagaimana empat faktor persekitaran fizikal — bentuk muka bumi, saliran, tanih dan iklim — mempengaruhi jenis serta taburan tumbuh-tumbuhan semula jadi dan hidupan liar. Murid perlu memahami hubungan sebab dan kesan antara keadaan fizikal sesuatu kawasan dengan flora dan fauna yang mampu hidup di situ.",
+
+  quickRevision: [
+    "Empat faktor persekitaran fizikal utama ialah bentuk muka bumi, saliran, tanih dan iklim.",
+    "Bentuk muka bumi dibahagikan kepada tanah pamah, tanah tinggi dan pinggir laut.",
+    "Kawasan bersaliran baik tidak bertakung air, manakala kawasan bersaliran buruk sentiasa atau kerap bertakung air.",
+    "Jenis tanih mempengaruhi kesuburan, jenis akar tumbuhan dan habitat hidupan liar.",
+    "Tanih chernozem berkait dengan padang rumput hawa sederhana, permafrost dengan Tundra dan aridisols dengan Gurun Panas.",
+    "Tanih latosol sesuai dengan Hutan Hujan Tropika dan Hutan Monsun Tropika, podzol dengan Hutan Konifer dan terra rossa dengan Hutan Mediterranean.",
+    "Empat iklim yang ditekankan dalam bab ini ialah Gurun Panas, Monsun Tropika, Siberia dan Laurentia.",
+    "Dalam soalan struktur atau KBAT, hubungkan faktor fizikal dengan ciri tumbuhan dan hidupan liar menggunakan pola: faktor → keadaan habitat → penyesuaian → contoh.",
   ],
-  "keyTerms": [
-    "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-    "Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-    "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar Iklim Gurun Panas (Namibia) Iklim merujuk kombinasi beberapa elemen seperti suhu, hujan, angin,",
-    "KSSM_2019_Geografi_Tingkatan_3_Bab03.indd 33 10/22/19 10:03 AM Kawasan tanah tinggi merupakan kawasan yang berketinggian melebihi 180 meter dari aras laut Di ka wasan tanah tinggi, tumbuh-tumbuhan akan berbeza-beza mengikut ketinggian",
-    "Hidupan liar di kawasan tanah tinggi adalah seperti kambing gurun, tupai, serigala dan ilama",
-    "(Sumber: Diubah suai daripada The Enviroment, The Encyclopedia of Malaysia, Archipelago Press, 2004) Kawasan pinggir laut adalah seperti pulau, pantai berpasir, pantai berlumpur dan paya",
-    "Kawasan bersaliran baik merujuk kawasan yang tidak"
+
+  keyTerms: [
+    "Iklim",
+    "Tanih",
+    "Saliran",
+    "Bentuk muka bumi",
+    "Tanah pamah",
+    "Tanah tinggi",
+    "Pinggir laut",
+    "Saliran baik",
+    "Saliran buruk",
+    "Humus",
+    "Chernozem",
+    "Permafrost",
+    "Aridisols",
+    "Latosol",
+    "Podzol",
+    "Terra rossa",
   ],
-  "keyExamFacts": [
-    "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar Iklim Gurun Panas (Namibia) Iklim merujuk kombinasi beberapa elemen seperti suhu, hujan, angin,",
-    "Dunia kita kaya dengan pelbagai jenis tumbuh-tumbuhan semula jadi dan hidupan liar yang berbeza-beza mengikut persekitaran fizikal merangkumi bentuk muka bumi, saliran, tanih dan iklim.",
-    "Senaraikan empat faktor persekitaran fizikal yang mempengaruhi kepelbagaian tumbuh-tumbuhan semula jadi dan hidupan liar.",
-    "Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-    "Bentuk muka bumi terbahagi kepada tiga jenis, iaitu tanah tinggi, tanah pamah dan pinggir laut. Setiap bentuk muka bumi ini dilitupi oleh tumbuh-tumbuhan semula jadi serta didiami oleh hidupan liar yang berbeza-beza.",
-    "Kepelbagaian tumbuh-tumbuhan semula jadi dan hidupan liar dipengaruhi oleh pelbagai faktor seperti bentuk muka bumi, saliran, iklim dan tanih.",
-    "Teluk Hanauma (Pulau Hawaii) Saliran seperti sungai dan tasik kebiasaannya mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi dan hidupan liar Saliran terbahagi kepada dua jenis, iaitu bersaliran baik dan bersaliran buruk",
-    "Kawasan bersaliran buruk: KSSM_2019_Geografi_Tingkatan_3_Bab03.indd 37 10/22/19 10:03 AM Tumbuh-tumbuhan semula jadi hidup subur di kawasan tanih mengikut kesesuaian dan ciri-ciri tumbuh-tumbuhan tersebut.",
-    "Hutan Hujan Tropika dan Hutan Monsun Tropika tumbuh dengan padat, tinggi dan mempunyai pelbagai spesies tumbuh-tumbuhan Keadaan ini menyebabkan kedua-dua hutan ini menjadi habitat pelbagai jenis hidupan liar yang",
-    "Tanih ini juga sesuai menjadi habitat pelbagai jenis",
-    "Alatan: Kertas sebak, alat tulis Langkah-langkah: 1. Murid membuat aktiviti dalam kumpulan.",
-    "(b) Jenis tanih tidak mempengaruhi tumbuh-tumbuhan semula jadi.",
-    "Iklim Monsun Tropika Iklim Gurun Panas Iklim Siberia Iklim Laurentia 3. Terangkan jenis tumbuh-tumbuhan dan hidupan liar berdasarkan jenis tanih di bawah.",
-    "Jenis tanih Jenis tumbuh-tumbuhan Jenis hidupan liar (a) Tanih aridosols i."
+
+  keyExamFacts: [
+    "Tanah tinggi ialah kawasan yang berketinggian melebihi 180 meter dari aras laut.",
+    "Perubahan tumbuh-tumbuhan di tanah tinggi menjadi lebih ketara apabila ketinggian melebihi kira-kira 1 200 meter.",
+    "Kawasan bersaliran buruk boleh membentuk paya air tawar di tanah rendah dan paya air masin di pinggir laut berlumpur.",
+    "Tanih terbentuk daripada bahan organik dan bahan bukan organik; pereputan serta pemecahan bahan menghasilkan humus dan garam galian.",
+    "Tanih aridisols kering dan tandus, menyebabkan tumbuhan perlu mempunyai penyesuaian seperti akar yang panjang.",
+    "Tanih podzol nipis, berasid dan sejuk; tumbuhan Hutan Konifer mempunyai akar yang pendek.",
+    "Iklim Gurun Panas menerima hujan tahunan kurang daripada 250 mm.",
+    "Iklim Monsun Tropika menerima hujan kira-kira 1 000 mm hingga 2 000 mm setahun dan mempunyai musim kering yang nyata.",
+    "Iklim Siberia mempunyai musim sejuk yang panjang, manakala musim panasnya pendek.",
+    "Iklim Laurentia menerima hujan sepanjang tahun, lebih banyak pada musim panas, dan salji pada musim sejuk.",
   ],
-  "sections": [
+
+  sections: [
     {
-      "title": "Pengenalan Bab",
-      "subsections": [
+      title: "Pengenalan Bab",
+      subsections: [
         {
-          "title": "Gambaran keseluruhan",
-          "content": "Fizikal terhadap Kepelbagaian Tumbuh-tumbuhan Semula Jadi 3 Mengenal pasti faktor persekitaran fizikal yang mempengaruhi kepelbagaian tumbuh-tumbuhan semula jadi dan hidupan liar 3 Menghuraikan faktor bentuk muka bumi, saliran, tanih dan iklim yang mempengaruhi kepelbagaian tumbuh-tumbuhan semula jadi dan hidupan liar 3 Menganalisis pengaruh bentuk muka bumi, saliran dan tanih terhadap jenis tumbuh-tumbuhan semula"
+          title: "Gambaran keseluruhan",
+          content:
+            "Tumbuh-tumbuhan semula jadi dan hidupan liar tidak tersebar secara rawak. Setiap spesies memerlukan keadaan habitat tertentu. Dalam bab ini, empat faktor fizikal — bentuk muka bumi, saliran, tanih dan iklim — digunakan untuk menerangkan mengapa sesuatu kawasan mempunyai flora dan fauna yang berbeza daripada kawasan lain.",
         },
         {
-          "title": "Checklist subtopik",
-          "bulletPoints": [
-            "✓ 3.1 Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-            "✓ 3.2 Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "3.1 Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar Iklim Gurun Panas (Namibia) Iklim merujuk kombinasi beberapa elemen seperti suhu, hujan, angin, tekanan udara, keadaan awan serta kelembapan udara dan cahaya matahari dalam tempoh yang panjang di sesuatu kawasan."
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-            "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar Iklim Gurun Panas (Namibia) Iklim merujuk kombinasi beberapa elemen seperti suhu, hujan, angin,",
-            "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar Iklim Gurun Panas (Namibia) Iklim merujuk kombinasi beberapa elemen seperti suhu, hujan, angin,",
-            "Senaraikan empat faktor persekitaran fizikal yang mempengaruhi kepelbagaian tumbuh-tumbuhan semula jadi dan hidupan liar."
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar Iklim Gurun Panas (Namibia) Iklim merujuk kombinasi beberapa elemen seperti suhu, hujan, angin,"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "tekanan udara, keadaan awan serta kelembapan udara dan cahaya matahari dalam tempoh yang panjang di sesuatu kawasan.",
-            "Dunia kita kaya dengan pelbagai jenis tumbuh-tumbuhan semula jadi dan hidupan liar yang berbeza-beza mengikut persekitaran fizikal merangkumi bentuk muka bumi, saliran, tanih dan iklim.",
-            "Senaraikan empat faktor persekitaran fizikal yang mempengaruhi kepelbagaian tumbuh-tumbuhan semula jadi dan hidupan liar."
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar Iklim Gurun Panas (Namibia) Iklim merujuk kombinasi beberapa elemen seperti suhu, hujan, angin,"
-          ]
-        },
-        {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar Iklim Gurun Panas (Namibia) Iklim merujuk kombinasi beberapa elemen seperti suhu, hujan, angin,",
-            "tekanan udara, keadaan awan serta kelembapan udara dan cahaya matahari dalam tempoh yang panjang di sesuatu kawasan.",
-            "Dunia kita kaya dengan pelbagai jenis tumbuh-tumbuhan semula jadi dan hidupan liar yang berbeza-beza mengikut persekitaran fizikal merangkumi bentuk muka bumi, saliran, tanih dan iklim.",
-            "Senaraikan empat faktor persekitaran fizikal yang mempengaruhi kepelbagaian tumbuh-tumbuhan semula jadi dan hidupan liar."
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 3.1 menekankan Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
-    },
-    {
-      "title": "3.2 Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar Bentuk muka bumi terbahagi kepada tiga jenis, iaitu tanah tinggi, tanah pamah dan pinggir laut. Setiap bentuk muka bumi ini dilitupi oleh tumbuh-tumbuhan semula jadi serta didiami oleh hidupan liar yang berbeza-beza."
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab03.indd 33 10/22/19 10:03 AM Kawasan tanah tinggi merupakan kawasan yang berketinggian melebihi 180 meter dari aras laut Di ka wasan tanah tinggi, tumbuh-tumbuhan akan berbeza-beza mengikut ketinggian",
-            "Hidupan liar di kawasan tanah tinggi adalah seperti kambing gurun, tupai, serigala dan ilama",
-            "(Sumber: Diubah suai daripada The Enviroment, The Encyclopedia of Malaysia, Archipelago Press, 2004) Kawasan pinggir laut adalah seperti pulau, pantai berpasir, pantai berlumpur dan paya",
-            "Kawasan bersaliran baik merujuk kawasan yang tidak",
-            "Kawasan bersaliran baik dan tidak bertakung air merupakan kawasan yang subur dan dilitupi oleh banyak tumbuh-tumbuhan semula jadi seperti yang terdapat di kawasan Hutan Tropika, Hutan Monsun",
-            "Jadual 3.3 Lokasi Hutan Paya Air Masin dan Hutan Paya Air Tawar di negara-negara terpilih Lembah Menam Chao Phraya (Thailand) Paya Everglades (Florida) Kawasan bersaliran buruk merujuk kawasan tanah",
-            "Tanih ialah lapisan paling atas di permukaan bumi yang terhasil daripada dua bahan, iaitu bahan organik dan bahan bukan organik. Bahan organik terhasil daripada proses pereputan sisa tumbuhan dan bangkai haiwan manakala bahan bukan organik terhasil daripada proses",
-            "Tanih chernozem di kawasan padang rumput hawa sederhana Tanih chernozem merupakan tanah hitam yang terdapat di kawasan padang rumput yang mengalami iklim Steppe Sesuai untuk pertumbuhan rumput-rumput, bunga-bungaan",
-            "Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar"
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "KSSM_2019_Geografi_Tingkatan_3_Bab03.indd 33 10/22/19 10:03 AM Kawasan tanah tinggi merupakan kawasan yang berketinggian melebihi 180 meter dari aras laut Di ka wasan tanah tinggi, tumbuh-tumbuhan akan berbeza-beza mengikut ketinggian",
-            "Hidupan liar di kawasan tanah tinggi adalah seperti kambing gurun, tupai, serigala dan ilama",
-            "(Sumber: Diubah suai daripada The Enviroment, The Encyclopedia of Malaysia, Archipelago Press, 2004) Kawasan pinggir laut adalah seperti pulau, pantai berpasir, pantai berlumpur dan paya",
-            "Kawasan bersaliran baik merujuk kawasan yang tidak",
-            "Kawasan bersaliran baik dan tidak bertakung air merupakan kawasan yang subur dan dilitupi oleh banyak tumbuh-tumbuhan semula jadi seperti yang terdapat di kawasan Hutan Tropika, Hutan Monsun",
-            "Jadual 3.3 Lokasi Hutan Paya Air Masin dan Hutan Paya Air Tawar di negara-negara terpilih Lembah Menam Chao Phraya (Thailand) Paya Everglades (Florida) Kawasan bersaliran buruk merujuk kawasan tanah",
-            "Tanih ialah lapisan paling atas di permukaan bumi yang terhasil daripada dua bahan, iaitu bahan organik dan bahan bukan organik. Bahan organik terhasil daripada proses pereputan sisa tumbuhan dan bangkai haiwan manakala bahan bukan organik terhasil daripada proses",
-            "Tanih chernozem di kawasan padang rumput hawa sederhana Tanih chernozem merupakan tanah hitam yang terdapat di kawasan padang rumput yang mengalami iklim Steppe Sesuai untuk pertumbuhan rumput-rumput, bunga-bungaan"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-            "Bentuk muka bumi terbahagi kepada tiga jenis, iaitu tanah tinggi, tanah pamah dan pinggir laut. Setiap bentuk muka bumi ini dilitupi oleh tumbuh-tumbuhan semula jadi serta didiami oleh hidupan liar yang berbeza-beza.",
-            "Kepelbagaian tumbuh-tumbuhan semula jadi dan hidupan liar dipengaruhi oleh pelbagai faktor seperti bentuk muka bumi, saliran, iklim dan tanih.",
-            "Kawasan tanah pamah di Malaysia dan Amazon (Brazil) dilitupi Hutan Hujan Tropika Di Malaysia, terdapat pokok meranti, jelutong, cengal, merbau dan seraya manakala di Amazon, terdapat pokok wimba, Brazilian mahagoni, lapuna, ficus dan getah",
-            "Tanah pamah di Thailand, Laos, Myanmar, Filipina, India dan Bangladesh dilitupi oleh Hutan Monsun Tropika seperti pokok jati, cendana, pyinkado, damar, mahogani dan sal Tanah pamah di Tasik Great St. Lawrence (Kanada) pula dilitupi oleh Hutan Konifer",
-            "Kawasan tanah pamah yang luas mempunyai banyak sumber makanan telah menjadi habitat semula jadi pelbagai hidupan liar Di Malaysia, terdapat hidupan liar seperti gajah, harimau, badak sumbu pelbagai spesies",
-            "monyet, arnab, rusa dan musang manakala di Amazon, terdapat hidupan liar seperti puma, jaguar, anakonda dan ikan pirana",
-            "terutama selepas ketinggian melebihi 1200 meter dari aras laut Terdiri daripada pokok-pokok bantut, rendah dan renek seperti oak, laurel, palma, paku pakis,",
-            "(Sumber: Jabatan Ukur dan Pemetaan, 2016) Banjaran Crocker Banjaran Himalaya",
-            "semula jadi Hidupan liar Tumbuh-tumbuhan",
-            "semula jadi Hidupan liar",
-            "Rhododendron buxifolium Tupai tanah gunung Borneo Barberry Eurasian brown bear Lumut Summit rat Lumut Asiatic brown bear Kulampair Whitehead’s trogon Kulampair Himalayan serow Paku pakis Beruang matahari",
-            "(beruang madu) Birch Snow leopard Periuk kera Katak pokok Kinabalu Cedar Rhesus monkey Orkid Leopard cat Himalayan pine Eurasian kingfisher Halia liar Binturong Juniper Yak Jadual 3.1 Perbandingan tumbuh-tumbuhan semula jadi dan hidupan liar antara Banjaran",
-            "Crocker dengan Banjaran Himalaya",
-            "Lumut Eurasian brown bear",
-            "Terdiri daripada tumbuh-tumbuhan yang tahan tiupan angin dan air laut seperti semak samun, bintangor laut, jemerlang laut, mengkuang laut, pokok bakau dan pokok kelapa serta pokok menjalar seperti tapak kuda"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Tanih ialah lapisan paling atas di permukaan bumi yang terhasil daripada dua bahan, iaitu bahan organik dan bahan bukan organik. Bahan organik terhasil daripada proses pereputan sisa tumbuhan dan bangkai haiwan manakala bahan bukan organik terhasil daripada proses",
-            "Setiap bahan yang mengalami proses pereputan dan pemecahan akan membentuk nutrien tanih yang subur dalam bentuk humus dan garam galian. Komposisi bahan-bahan ini akan menentukan kesuburan tanih serta kesesuaiannya dengan tumbuh-tumbuhan.",
-            "Luluh hawa: Proses hakisan atau peluluhan batu-batan yang disebabkan oleh keadaan iklim setempat Tanih aridisols di kawasan Gurun Panas Kawasan Gurun Panas dilitupi oleh tanih aridisols yang",
-            "Tajuk: Pengaruh persekitaran terhadap tumbuh-tumbuhan semula jadi dan hidupan liar Objektif: Menghasilkan secara berkumpulan tentang pengaruh persekitaran terhadap tumbuh-tumbuhan semula jadi dan hidupan liar",
-            "Alatan: Kertas sebak, alat tulis Langkah-langkah: 1. Murid membuat aktiviti dalam kumpulan."
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Kepelbagaian tumbuh-tumbuhan semula jadi dan hidupan liar dipengaruhi oleh pelbagai faktor seperti bentuk muka bumi, saliran, iklim dan tanih.",
-            "Tanah pamah di Thailand, Laos, Myanmar, Filipina, India dan Bangladesh dilitupi oleh Hutan Monsun Tropika seperti pokok jati, cendana, pyinkado, damar, mahogani dan sal Tanah pamah di Tasik Great St. Lawrence (Kanada) pula dilitupi oleh Hutan Konifer",
-            "Kawasan tanah pamah yang luas mempunyai banyak sumber makanan telah menjadi habitat semula jadi pelbagai hidupan liar Di Malaysia, terdapat hidupan liar seperti gajah, harimau, badak sumbu pelbagai spesies",
-            "monyet, arnab, rusa dan musang manakala di Amazon, terdapat hidupan liar seperti puma, jaguar, anakonda dan ikan pirana",
-            "terutama selepas ketinggian melebihi 1200 meter dari aras laut Terdiri daripada pokok-pokok bantut, rendah dan renek seperti oak, laurel, palma, paku pakis,",
-            "Hidupan liar di kawasan tanah tinggi adalah seperti kambing gurun, tupai, serigala dan ilama",
-            "(Sumber: Diubah suai daripada The Enviroment, The Encyclopedia of Malaysia, Archipelago Press, 2004) Kawasan pinggir laut adalah seperti pulau, pantai berpasir, pantai berlumpur dan paya",
-            "Terdiri daripada tumbuh-tumbuhan yang tahan tiupan angin dan air laut seperti semak samun, bintangor laut, jemerlang laut, mengkuang laut, pokok bakau dan pokok kelapa serta pokok menjalar seperti tapak kuda",
-            "Pinggir laut sesuai untuk hidupan liar seperti ular, siput, ketam, anjing laut dan umang-umang",
-            "Teluk Hanauma (Pulau Hawaii) Saliran seperti sungai dan tasik kebiasaannya mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi dan hidupan liar Saliran terbahagi kepada dua jenis, iaitu bersaliran baik dan bersaliran buruk"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Kawasan tanah pamah yang luas mempunyai banyak sumber makanan telah menjadi habitat semula jadi pelbagai hidupan liar Di Malaysia, terdapat hidupan liar seperti gajah, harimau, badak sumbu pelbagai spesies",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab03.indd 33 10/22/19 10:03 AM Kawasan tanah tinggi merupakan kawasan yang berketinggian melebihi 180 meter dari aras laut Di ka wasan tanah tinggi, tumbuh-tumbuhan akan berbeza-beza mengikut ketinggian",
-            "(Sumber: Jabatan Ukur dan Pemetaan, 2016) Banjaran Crocker Banjaran Himalaya",
-            "(beruang madu) Birch Snow leopard Periuk kera Katak pokok Kinabalu Cedar Rhesus monkey Orkid Leopard cat Himalayan pine Eurasian kingfisher Halia liar Binturong Juniper Yak Jadual 3.1 Perbandingan tumbuh-tumbuhan semula jadi dan hidupan liar antara Banjaran",
-            "(Sumber: Diubah suai daripada The Enviroment, The Encyclopedia of Malaysia, Archipelago Press, 2004) Kawasan pinggir laut adalah seperti pulau, pantai berpasir, pantai berlumpur dan paya",
-            "Jadual 3.2 Lokasi Hutan Pantai di negara-negara terpilih",
-            "Jadual 3.3 Lokasi Hutan Paya Air Masin dan Hutan Paya Air Tawar di negara-negara terpilih Lembah Menam Chao Phraya (Thailand) Paya Everglades (Florida) Kawasan bersaliran buruk merujuk kawasan tanah",
-            "Kawasan bersaliran buruk: KSSM_2019_Geografi_Tingkatan_3_Bab03.indd 37 10/22/19 10:03 AM Tumbuh-tumbuhan semula jadi hidup subur di kawasan tanih mengikut kesesuaian dan ciri-ciri tumbuh-tumbuhan tersebut.",
-            "Pokok-pokok renek yang tumbuh di permukaan menjadi sumber makanan dan habitat pelbagai hidupan liar di Hutan Konifer Contoh tumbuh-tumbuhan: Pokok pain, cedar, birch,"
+          title: "Apa yang perlu dikuasai",
+          bulletPoints: [
+            "Mengenal pasti empat faktor persekitaran fizikal.",
+            "Menghuraikan pengaruh bentuk muka bumi, saliran, tanih dan iklim terhadap tumbuh-tumbuhan semula jadi dan hidupan liar.",
+            "Membandingkan habitat yang berbeza berdasarkan keadaan fizikalnya.",
+            "Menghubungkaitkan keadaan persekitaran dengan penyesuaian flora dan fauna.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "Kawasan tanah pamah yang luas mempunyai banyak sumber makanan telah menjadi habitat"
-              ],
-              [
-                "KSSM_2019_Geografi_Tingkatan_3_Bab03.indd 33 10/22/19 10:03 AM"
-              ],
-              [
-                "(Sumber: Jabatan Ukur dan Pemetaan, 2016)"
-              ],
-              [
-                "Jadual 3.1 Perbandingan tumbuh-tumbuhan semula jadi dan hidupan liar antara Banjaran"
-              ],
-              [
-                "(Sumber: Diubah suai daripada The Enviroment, The Encyclopedia of Malaysia, Archipelago Press, 2004)"
-              ],
-              [
-                "Jadual 3.2 Lokasi Hutan Pantai di negara-negara terpilih"
-              ],
-              [
-                "Jadual 3.3 Lokasi Hutan Paya Air Masin dan Hutan Paya Air Tawar di negara-negara terpilih"
-              ],
-              [
-                "KSSM_2019_Geografi_Tingkatan_3_Bab03.indd 37 10/22/19 10:03 AM"
-              ]
-            ]
-          }
         },
-        {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-            "Bentuk muka bumi terbahagi kepada tiga jenis, iaitu tanah tinggi, tanah pamah dan pinggir laut. Setiap bentuk muka bumi ini dilitupi oleh tumbuh-tumbuhan semula jadi serta didiami oleh hidupan liar yang berbeza-beza.",
-            "Kepelbagaian tumbuh-tumbuhan semula jadi dan hidupan liar dipengaruhi oleh pelbagai faktor seperti bentuk muka bumi, saliran, iklim dan tanih.",
-            "Kawasan tanah pamah di Malaysia dan Amazon (Brazil) dilitupi Hutan Hujan Tropika Di Malaysia, terdapat pokok meranti, jelutong, cengal, merbau dan seraya manakala di Amazon, terdapat pokok wimba, Brazilian mahagoni, lapuna, ficus dan getah",
-            "Tanah pamah di Thailand, Laos, Myanmar, Filipina, India dan Bangladesh dilitupi oleh Hutan Monsun Tropika seperti pokok jati, cendana, pyinkado, damar, mahogani dan sal Tanah pamah di Tasik Great St. Lawrence (Kanada) pula dilitupi oleh Hutan Konifer",
-            "Kawasan tanah pamah yang luas mempunyai banyak sumber makanan telah menjadi habitat semula jadi pelbagai hidupan liar Di Malaysia, terdapat hidupan liar seperti gajah, harimau, badak sumbu pelbagai spesies",
-            "monyet, arnab, rusa dan musang manakala di Amazon, terdapat hidupan liar seperti puma, jaguar, anakonda dan ikan pirana",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab03.indd 33 10/22/19 10:03 AM Kawasan tanah tinggi merupakan kawasan yang berketinggian melebihi 180 meter dari aras laut Di ka wasan tanah tinggi, tumbuh-tumbuhan akan berbeza-beza mengikut ketinggian",
-            "terutama selepas ketinggian melebihi 1200 meter dari aras laut Terdiri daripada pokok-pokok bantut, rendah dan renek seperti oak, laurel, palma, paku pakis,",
-            "Hidupan liar di kawasan tanah tinggi adalah seperti kambing gurun, tupai, serigala dan ilama",
-            "(Sumber: Jabatan Ukur dan Pemetaan, 2016) Banjaran Crocker Banjaran Himalaya",
-            "semula jadi Hidupan liar Tumbuh-tumbuhan"
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 3.2 menekankan Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+      ],
     },
+
     {
-      "title": "Imbas Kembali",
-      "subsections": [
+      title:
+        "3.1 Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
+      subsections: [
         {
-          "title": "Checklist akhir bab",
-          "bulletPoints": [
-            "✓ 3.1 Faktor-faktor Persekitaran Fizikal yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
-            "✓ 3.2 Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar"
-          ]
+          title: "Empat faktor utama",
+          table: {
+            headers: ["Faktor", "Maksud ringkas", "Bagaimana faktor ini mempengaruhi habitat"],
+            rows: [
+              [
+                "Iklim",
+                "Gabungan unsur seperti suhu, hujan, angin, tekanan udara, keadaan awan, kelembapan dan cahaya matahari dalam tempoh yang panjang.",
+                "Menentukan jumlah haba dan air yang tersedia untuk tumbuhan serta keadaan hidup hidupan liar.",
+              ],
+              [
+                "Tanih",
+                "Lapisan paling atas permukaan bumi yang terbentuk daripada bahan organik dan bahan bukan organik.",
+                "Menentukan kesuburan, kelembapan, kedalaman akar dan jenis tumbuhan yang boleh hidup.",
+              ],
+              [
+                "Saliran",
+                "Ciri pola aliran sungai dan cawangannya serta kuantiti air yang mengairi sesuatu kawasan.",
+                "Menentukan sama ada kawasan kering, lembap atau bertakung air.",
+              ],
+              [
+                "Bentuk muka bumi",
+                "Kepelbagaian ciri dan ketinggian permukaan daratan yang diukur dari aras laut.",
+                "Mempengaruhi suhu, saliran, jenis tumbuhan dan habitat hidupan liar.",
+              ],
+            ],
+          },
         },
         {
-          "title": "Cara ulang kaji pantas",
-          "bulletPoints": [
-            "Baca semula setiap definisi dan kata kunci utama.",
-            "Semak semula contoh, jadual, graf, carta, peta dan rajah yang terdapat dalam bab.",
-            "Latih menjawab dengan format fakta + huraian + contoh daripada buku teks."
-          ]
-        }
-      ]
-    }
-  ]
+          title: "Hubungan antara faktor",
+          content:
+            "Keempat-empat faktor saling berkaitan. Contohnya, kawasan tanah tinggi mempunyai suhu yang lebih rendah; cerunnya pula biasanya mempunyai saliran yang baik. Gabungan keadaan ini menentukan tumbuh-tumbuhan yang boleh hidup dan seterusnya jenis hidupan liar yang mendapat makanan serta perlindungan di kawasan tersebut.",
+        },
+        {
+          title: "Tip mengingat",
+          bulletPoints: [
+            "Gunakan kata kunci B-S-T-I: Bentuk muka bumi, Saliran, Tanih, Iklim.",
+            "Untuk soalan 'bagaimanakah faktor mempengaruhi?', jangan hanya menamakan faktor. Terangkan keadaan habitat dan kesannya kepada flora atau fauna.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title:
+        "3.2 Faktor-faktor yang Mempengaruhi Kepelbagaian Tumbuh-tumbuhan Semula Jadi dan Hidupan Liar",
+      subsections: [
+        {
+          title: "A. Bentuk muka bumi",
+          table: {
+            headers: ["Bentuk muka bumi", "Ciri utama", "Tumbuh-tumbuhan / habitat", "Contoh hidupan liar"],
+            rows: [
+              [
+                "Tanah pamah",
+                "Kawasan rendah dan rata, lazimnya kurang daripada 180 m dari aras laut.",
+                "Malaysia dan Amazon: Hutan Hujan Tropika. Beberapa kawasan Asia Selatan dan Asia Tenggara: Hutan Monsun Tropika. Kawasan tertentu di Kanada: Hutan Konifer.",
+                "Gajah, harimau, rusa dan pelbagai spesies monyet; Amazon turut menjadi habitat puma, jaguar dan anakonda.",
+              ],
+              [
+                "Tanah tinggi",
+                "Melebihi 180 m dari aras laut; perubahan tumbuhan lebih ketara selepas kira-kira 1 200 m.",
+                "Tumbuhan semakin rendah dan renek mengikut ketinggian, contohnya oak, laurel, palma, paku pakis, lumut dan kulampair.",
+                "Kambing gurun, tupai, serigala dan ilama.",
+              ],
+              [
+                "Pinggir laut",
+                "Pulau, pantai berpasir, pantai berlumpur dan paya air masin; terdedah kepada angin dan pengaruh air laut.",
+                "Semak samun, bintangor laut, jemerlang laut, mengkuang laut, bakau, kelapa dan tapak kuda.",
+                "Ular, siput, ketam, anjing laut dan umang-umang.",
+              ],
+            ],
+          },
+        },
+        {
+          title: "Mengapa ketinggian penting?",
+          content:
+            "Semakin tinggi sesuatu kawasan, suhu biasanya semakin rendah. Keadaan ini menyebabkan jenis dan saiz tumbuh-tumbuhan berubah mengikut altitud. Perubahan tumbuh-tumbuhan turut mengubah sumber makanan dan perlindungan untuk hidupan liar.",
+        },
+
+        {
+          title: "B. Saliran",
+          table: {
+            headers: ["Jenis saliran", "Keadaan kawasan", "Tumbuh-tumbuhan", "Hidupan liar"],
+            rows: [
+              [
+                "Bersaliran baik",
+                "Air tidak bertakung; lazim di kawasan beralun, cerun bukit dan tanah pamah tertentu.",
+                "Sesuai untuk pelbagai hutan seperti Hutan Hujan Tropika, Hutan Monsun Tropika, Hutan Konifer dan Hutan Mediterranean.",
+                "Rusa, kijang, moose, badak sumbu, harimau dan gajah.",
+              ],
+              [
+                "Bersaliran buruk",
+                "Tanah rendah sentiasa atau kerap bertakung air. Paya air tawar terbentuk di pedalaman, manakala paya air masin terbentuk di pinggir laut berlumpur.",
+                "Bakau, nipah dan mengkuang yang tahan keadaan berair.",
+                "Biawak, buaya, memerang, burung shoebill dan ular.",
+              ],
+            ],
+          },
+        },
+        {
+          title: "Hubungan saliran dengan habitat",
+          content:
+            "Saliran menentukan jumlah air yang tersedia dan kandungan oksigen dalam tanih. Tumbuhan yang tidak tahan air bertakung lebih sesuai di kawasan bersaliran baik, manakala tumbuhan paya mempunyai penyesuaian untuk hidup di kawasan yang sentiasa berair.",
+        },
+
+        {
+          title: "C. Tanih",
+          content:
+            "Tanih terbentuk daripada bahan organik seperti sisa tumbuhan dan haiwan yang mereput serta bahan bukan organik daripada pemecahan batuan. Pereputan dan pemecahan ini menghasilkan humus dan garam galian. Komposisi tanih menentukan kesuburan dan jenis tumbuhan yang sesuai.",
+        },
+        {
+          title: "Jenis tanih dan pengaruhnya",
+          table: {
+            headers: ["Jenis tanih", "Kawasan / ciri", "Tumbuh-tumbuhan", "Hidupan liar"],
+            rows: [
+              [
+                "Chernozem",
+                "Tanah hitam di padang rumput hawa sederhana beriklim Steppe.",
+                "Rumput, bunga dan tumbuhan renek seperti buffalo grass dan feather grass.",
+                "Coyote, bobcat, badger dan saiga antelope.",
+              ],
+              [
+                "Permafrost",
+                "Tanih beku, sangat sejuk dan kurang subur di kawasan Tundra.",
+                "Liken, lumut, kulampair, willow dan birch.",
+                "Beruang kutub, karibu, musang Artik, arnab Artik dan lemming.",
+              ],
+              [
+                "Aridisols",
+                "Tanih kering dan tandus di Gurun Panas.",
+                "Kaktus, akasia dan kurma; tumbuhan biasanya mempunyai akar panjang untuk mendapatkan air.",
+                "Unta, gazelle, oryx, musang fennec dan tikus jerboa.",
+              ],
+              [
+                "Latosol",
+                "Tanih tropika berwarna merah atau kuning; boleh berpasir, liat atau lembap.",
+                "Hutan Hujan Tropika dan Hutan Monsun Tropika; contoh jati, cendana, mahogani dan jelutong.",
+                "Gajah, harimau, beruang, kancil dan cerpelai.",
+              ],
+              [
+                "Podzol",
+                "Tanih nipis, berasid dan sejuk di kawasan Hutan Konifer.",
+                "Pain, cedar, birch, fir dan sprus; akar lazimnya pendek.",
+                "Moose, elk, lynx, beruang perang dan harimau Siberia.",
+              ],
+              [
+                "Terra rossa",
+                "Campuran tanah liat dan pasir berwarna merah atau coklat kemerahan di kawasan Mediterranean.",
+                "Rosemary, lavender, laurel dan pain.",
+                "Serigala, rusa, landak dan helang.",
+              ],
+            ],
+          },
+        },
+        {
+          title: "Cara memahami tanih",
+          bulletPoints: [
+            "Jangan hafal nama tanih sahaja. Kaitkan setiap tanih dengan keadaan habitatnya.",
+            "Chernozem → padang rumput; Permafrost → sangat sejuk; Aridisols → sangat kering; Latosol → tropika lembap; Podzol → konifer; Terra rossa → Mediterranean.",
+          ],
+        },
+
+        {
+          title: "D. Iklim Gurun Panas",
+          table: {
+            headers: ["Aspek", "Ciri"],
+            rows: [
+              ["Kawasan", "Gurun Arab di Asia Barat, termasuk Arab Saudi, Oman, Qatar, Kuwait, Iraq dan negara sekitarnya."],
+              ["Suhu", "Min suhu tahunan kira-kira 25°C; siang sekitar 32°C–36°C dan malam boleh turun kira-kira 5°C."],
+              ["Hujan", "Kurang daripada 250 mm setahun."],
+              ["Angin", "Angin daratan yang kering menyebabkan keadaan panas dan kering."],
+              ["Tumbuh-tumbuhan", "Kaktus, akasia, kurma dan tumbuhan tahan kering."],
+              ["Hidupan liar", "Unta, oryx, gazelle, musang fennec dan tikus jerboa."],
+            ],
+          },
+        },
+        {
+          title: "Mengapa flora Gurun Panas jarang?",
+          content:
+            "Kekurangan hujan dan kadar sejatan yang tinggi menyebabkan air sangat terhad. Tumbuhan perlu mengurangkan kehilangan air atau mendapatkan air dari jauh di dalam tanah. Banyak haiwan pula mengelakkan bahang siang dengan berlindung atau aktif pada waktu yang lebih sejuk.",
+        },
+
+        {
+          title: "E. Iklim Monsun Tropika",
+          table: {
+            headers: ["Aspek", "Ciri"],
+            rows: [
+              ["Kawasan", "India, Sri Lanka, Pakistan, Bangladesh, Filipina, Myanmar, Thailand, Vietnam, Laos dan Kemboja."],
+              ["Suhu", "Sekitar 24°C–27°C sepanjang tahun."],
+              ["Hujan", "Kira-kira 1 000 mm–2 000 mm setahun dan taburannya tidak sekata."],
+              ["Angin", "Monsun lembap dari laut membawa hujan; monsun kering dari darat menghasilkan musim kering yang nyata."],
+              ["Tumbuh-tumbuhan", "Jati, paku pakis, buluh dan mahogani."],
+              ["Hidupan liar", "Gajah, monyet, binturong, cerpelai, burung bangau, biawak dan harimau bintang."],
+            ],
+          },
+        },
+        {
+          title: "Kesan musim kering",
+          content:
+            "Musim kering menyebabkan bekalan air berkurang. Sebahagian tumbuhan menyesuaikan diri dengan menggugurkan daun untuk mengurangkan kehilangan air, manakala hidupan liar bergantung pada sumber air dan makanan yang masih tersedia.",
+        },
+
+        {
+          title: "F. Iklim Siberia",
+          table: {
+            headers: ["Aspek", "Ciri"],
+            rows: [
+              ["Kawasan", "Sebahagian besar utara Asia, khususnya wilayah Rusia; turut terdapat di bahagian utara Eropah."],
+              ["Suhu", "Musim panas pendek sekitar 15°C–20°C; musim sejuk panjang sekitar -17°C hingga -5°C."],
+              ["Kerpasan", "Kira-kira 500 mm setahun; salji turun pada musim sejuk."],
+              ["Tumbuh-tumbuhan", "Pain merah, paper birch dan Dahurian larch."],
+              ["Hidupan liar", "Martens, mink, harimau Siberia, serigala Siberia dan lynx."],
+            ],
+          },
+        },
+        {
+          title: "Penyesuaian kepada iklim sejuk",
+          content:
+            "Musim sejuk yang panjang mengehadkan tempoh pertumbuhan tumbuhan. Pokok konifer mempunyai ciri yang membantu menghadapi cuaca sejuk, manakala hidupan liar mempunyai bulu tebal, lapisan lemak atau tingkah laku yang membantu mengekalkan haba badan.",
+        },
+
+        {
+          title: "G. Iklim Laurentia",
+          table: {
+            headers: ["Aspek", "Ciri"],
+            rows: [
+              ["Kawasan", "Kanada Timur, timur laut Amerika Syarikat, China utara dan Manchuria, Korea Utara, Jepun utara serta Patagonia."],
+              ["Suhu", "Min suhu tahunan sekitar 9°C–17°C; musim panas sekitar 21°C–26°C dan musim sejuk kira-kira -6°C hingga 10°C."],
+              ["Hujan", "Sekitar 500 mm–1 000 mm setahun; hujan sepanjang tahun, lebih banyak pada musim panas, dan salji pada musim sejuk."],
+              ["Tumbuh-tumbuhan", "Maple, fir, beech dan yellow birch."],
+              ["Hidupan liar", "Beaver, Canadian lynx, Canadian goose, wood duck, northern flicker dan chipmunk."],
+            ],
+          },
+        },
+        {
+          title: "Perbandingan empat iklim",
+          table: {
+            headers: ["Iklim", "Keadaan dominan", "Kata kunci tumbuhan", "Kata kunci hidupan liar"],
+            rows: [
+              ["Gurun Panas", "Sangat kering; hujan < 250 mm", "Tahan kering", "Tahan panas / kurang aktif waktu siang"],
+              ["Monsun Tropika", "Panas; musim hujan dan musim kering", "Hutan monsun", "Fauna tropika yang pelbagai"],
+              ["Siberia", "Musim sejuk panjang", "Konifer / tumbuhan tahan sejuk", "Bulu tebal / tahan sejuk"],
+              ["Laurentia", "Empat musim; hujan sepanjang tahun", "Hutan daun luruh / campuran", "Fauna sederhana sejuk"],
+            ],
+          },
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Bezakan saliran baik dengan saliran buruk berdasarkan keadaan air, tumbuh-tumbuhan dan hidupan liar.",
+            "Padankan jenis tanih dengan kawasan tumbuh-tumbuhan yang betul.",
+            "Bandingkan iklim Gurun Panas, Monsun Tropika, Siberia dan Laurentia dari segi suhu, hujan, flora dan fauna.",
+            "Untuk soalan KBAT, terangkan sebab sesuatu tumbuhan atau haiwan sesuai dengan habitatnya, bukan sekadar menyenaraikan contoh.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "Imbas Kembali",
+      subsections: [
+        {
+          title: "Checklist akhir bab",
+          bulletPoints: [
+            "Saya boleh menamakan empat faktor persekitaran fizikal.",
+            "Saya boleh menerangkan perbezaan tanah pamah, tanah tinggi dan pinggir laut.",
+            "Saya boleh membezakan saliran baik dengan saliran buruk.",
+            "Saya boleh memadankan enam jenis tanih dengan tumbuh-tumbuhan dan hidupan liar.",
+            "Saya boleh membandingkan empat jenis iklim utama dalam bab ini.",
+            "Saya boleh menjawab soalan sebab dan kesan dengan menghubungkan faktor fizikal kepada habitat.",
+          ],
+        },
+        {
+          title: "Cara menjawab soalan struktur",
+          bulletPoints: [
+            "Kenal pasti faktor yang ditanya.",
+            "Nyatakan keadaan fizikal kawasan, contohnya kering, sejuk, bertakung air atau tanah tinggi.",
+            "Terangkan kesan keadaan itu terhadap tumbuh-tumbuhan.",
+            "Hubungkan tumbuh-tumbuhan dengan habitat atau sumber makanan hidupan liar.",
+            "Berikan contoh spesies jika soalan meminta contoh.",
+          ],
+        },
+      ],
+    },
+  ],
 };
