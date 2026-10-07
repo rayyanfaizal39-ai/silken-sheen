@@ -46,10 +46,10 @@ function getFlashcardDeckCards(
 import { geographyF3C3Flashcards } from "./flashcards";
 
 describe("Geografi Tingkatan 3 Bab 3 replacement flashcards", () => {
-  it("contains all 65 CSV rows in source order", () => {
-    expect(geographyF3C3Flashcards).toHaveLength(65);
+  it("contains exactly 60 curated cards in source order", () => {
+    expect(geographyF3C3Flashcards).toHaveLength(60);
     expect(geographyF3C3Flashcards.map(({ id }) => id)).toEqual(
-      Array.from({ length: 65 }, (_, index) => `geo-f3-c3-f${index + 1}`),
+      Array.from({ length: 60 }, (_, index) => `geo-f3-c3-f${index + 1}`),
     );
     expect(geographyF3C3Flashcards[0]).toMatchObject({
       front:
@@ -81,9 +81,9 @@ describe("Geografi Tingkatan 3 Bab 3 replacement flashcards", () => {
     const fronts = geographyF3C3Flashcards.map(({ front }) => front);
     const pairs = geographyF3C3Flashcards.map(({ front, back }) => `${front}\u0000${back}`);
 
-    expect(new Set(ids).size).toBe(65);
-    expect(new Set(fronts).size).toBe(65);
-    expect(new Set(pairs).size).toBe(65);
+    expect(new Set(ids).size).toBe(60);
+    expect(new Set(fronts).size).toBe(60);
+    expect(new Set(pairs).size).toBe(60);
     expect(new Set(geographyF3C3Flashcards.map(({ back }) => back)).size).toBe(60);
   });
 
