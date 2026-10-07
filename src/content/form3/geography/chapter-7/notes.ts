@@ -1,635 +1,600 @@
 import type { StructuredNotes } from "@/content/types";
 
 export const geographyF3C7Notes: StructuredNotes = {
-  "chapterSummary": "Bab 7 Kegiatan Ekonomi di Malaysia merangkumi 4 subtopik rasmi: 7.1 Jenis Kegiatan Ekonomi di Malaysia; 7.2 Taburan Kegiatan Ekonomi Utama di Malaysia; 7.3 Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia; 7.4 Kepentingan Kegiatan Ekonomi di Malaysia. Nota ini disusun mengikut urutan buku teks dan mengekalkan fokus kepada fakta, konsep, proses, contoh, jadual, peta, rajah dan kemahiran UASA yang terdapat dalam bab.",
-  "quickRevision": [
-    "7.1 Jenis Kegiatan Ekonomi di Malaysia",
-    "7.2 Taburan Kegiatan Ekonomi Utama di Malaysia",
-    "7.3 Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia",
-    "7.4 Kepentingan Kegiatan Ekonomi di Malaysia",
-    "Jenis Kegiatan Ekonomi di Malaysia7.1 Kegiatan ekonomi merupakan kegiatan manusia yang menghasilkan pendapatan. Kegiatan ekonomi di Malaysia terbahagi kepada tiga sektor, iaitu primer, sekunder dan tertier.",
-    "Taburan Kegiatan Ekonomi Utama di Malaysia7.2 (Sumber: Majlis Promosi Eksport",
-    "Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi",
-    "Kepentingan Kegiatan Ekonomi di Malaysia7.4 Kegiatan ekonomi di Malaysia memainkan peranan yang penting terhadap pembangunan negara. Antara kepentingan kegiatan ekonomi adalah seperti yang berikut:"
+  chapterSummary:
+    "Bab 7 menerangkan jenis kegiatan ekonomi di Malaysia, taburannya, faktor fizikal dan manusia yang mempengaruhinya, serta kepentingannya kepada pembangunan negara. Murid perlu dapat membezakan sektor primer, sekunder dan tertier, menghubungkan lokasi dengan kegiatan ekonomi yang sesuai, serta menghuraikan bagaimana faktor seperti bentuk muka bumi, tanih, iklim, infrastruktur, teknologi, modal, pasaran dan buruh mempengaruhi sesuatu kegiatan.",
+
+  quickRevision: [
+    "Kegiatan ekonomi ialah kegiatan manusia yang menghasilkan pendapatan.",
+    "Tiga sektor utama ialah sektor primer, sekunder dan tertier.",
+    "Sektor primer mengeluarkan bahan mentah terus daripada sumber semula jadi.",
+    "Sektor sekunder memproses bahan mentah menjadi barangan siap atau separa siap.",
+    "Sektor tertier menyediakan perkhidmatan seperti pengangkutan, perdagangan, pelancongan, pendidikan dan kewangan.",
+    "Taburan kegiatan ekonomi tidak sekata kerana setiap kegiatan memerlukan keadaan fizikal dan kemudahan manusia yang berbeza.",
+    "Faktor fizikal utama ialah bentuk muka bumi, tanih, iklim, saliran dan bahan mentah.",
+    "Faktor manusia utama ialah dasar kerajaan, infrastruktur, teknologi, modal, pasaran dan buruh.",
+    "Kegiatan ekonomi penting kerana meningkatkan taraf hidup, menyediakan pekerjaan, menjana pendapatan negara, memajukan infrastruktur, memindahkan teknologi dan menggalakkan pembandaran.",
   ],
-  "keyTerms": [
-    "Jenis Kegiatan Ekonomi di Malaysia",
-    "Taburan Kegiatan Ekonomi Utama di Malaysia",
-    "Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia",
-    "Kepentingan Kegiatan Ekonomi di Malaysia",
-    "Jenis Kegiatan Ekonomi di Malaysia7.1 Kegiatan ekonomi merupakan kegiatan manusia yang menghasilkan pendapatan. Kegiatan ekonomi di Malaysia terbahagi kepada tiga sektor, iaitu primer, sekunder dan tertier.",
-    "Merupakan aktiviti ekonomi yang",
-    "Merupakan kegiatan ekonomi yang menawarkan pelbagai perkhidmatan Disebut juga sebagai sektor perkhidmatan Sumbangannya memainkan peranan penting kepada pembangunan negara Terdiri daripada:",
-    "Antara contoh tanaman utama di Malaysia ialah kelapa sawit dan getah Kelapa sawit merupakan tanaman jualan terpenting di Malaysia manakala getah merupakan tanaman jualan kedua terpenting",
-    "Sektor Primer: Sektor Pertanian “Industri sawit merupakan tunggak kepada ekonomi Malaysia dan",
-    "Merupakan sektor perkhidmatan yang utama di Malaysia sejak",
-    "Malaysia mengalami iklim Khatulistiwa Purata suhu Malaysia ialah 27°C dengan jumlah hujan tahunan",
-    "Menurut Jabatan Perangkaan Malaysia (2017), tenaga buruh merujuk mereka yang berumur 15 hingga 64 tahun sama ada",
-    "kepada jumlah modal sedia ada Terdapat dua jenis modal di Malaysia, iaitu modal domestik dan pelaburan langsung asing Bagi menggerakkan kegiatan ekonomi negara, agensi yang bertanggungjawab untuk mengeluarkan modal domestik adalah seperti",
-    "Kepentingan Kegiatan Ekonomi di Malaysia7.4 Kegiatan ekonomi di Malaysia memainkan peranan yang penting terhadap pembangunan negara. Antara kepentingan kegiatan ekonomi adalah seperti yang berikut:"
+
+  keyTerms: [
+    "Kegiatan ekonomi",
+    "Sektor primer",
+    "Sektor sekunder",
+    "Sektor tertier",
+    "Pertanian",
+    "Perikanan",
+    "Perlombongan",
+    "Pembuatan",
+    "Perindustrian",
+    "Pembinaan",
+    "Perkhidmatan",
+    "Bentuk muka bumi",
+    "Tanih",
+    "Iklim",
+    "Saliran",
+    "Bahan mentah",
+    "Dasar kerajaan",
+    "Infrastruktur",
+    "Teknologi",
+    "Modal domestik",
+    "Pelaburan langsung asing (FDI)",
+    "Pasaran",
+    "Buruh",
+    "Pemindahan teknologi",
+    "Pembandaran",
   ],
-  "keyExamFacts": [
-    "Jenis Kegiatan Ekonomi di Malaysia7.1 Kegiatan ekonomi merupakan kegiatan manusia yang menghasilkan pendapatan. Kegiatan ekonomi di Malaysia terbahagi kepada tiga sektor, iaitu primer, sekunder dan tertier.",
-    "Peta 7.1 Taburan tanaman pertanian di Malaysia",
-    "Taburan Kegiatan Ekonomi Utama di Malaysia7.2 (Sumber: Majlis Promosi Eksport",
-    "Sektor Sekunder: Sektor Perindustrian Peta 7.2 Taburan kawasan perindustrian di Malaysia",
-    "Peta 7.3 Taburan kawasan pelancongan di Malaysia",
-    "Bentuk muka bumi seperti tanah tinggi, tanah beralun, tanah pamah dan pinggir laut yang terdapat di Malaysia dapat mempengaruhi jenis kegiatan ekonomi yang dijalankan Malaysia mempunyai pelbagai jenis tanih yang sesuai untuk",
-    "Pasir - Gajus - Pantai Kelantan dan Terengganu Kelapa - Bagan Datoh (Perak) Beris Kenaf - Pasir Puteh (Kelantan) Setiu, Marang dan Besut (Terengganu) Jadual 7.1 Jenis bentuk muka bumi dan kegiatan ekonomi",
-    "Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi",
-    "Iklim yang panas dan lembap sepanjang tahun mempengaruhi jenis kegiatan ekonomi seperti pertanian, pelancongan,",
-    "Pelbagai jenis tanaman seperti padi, getah, kelapa sawit, koko, nanas, kopi dan lada hitam dapat hidup dengan subur Cuaca yang sejuk dengan suhu yang sederhana, iaitu kira-kira 18°C di kawasan tanah tinggi seperti Kundasang (Sabah) dan",
-    "Selain itu, Pihak Berkuasa Kemajuan Pekebun Kecil Perusahaan Getah (RISDA) juga diwujudkan bagi menjalankan penanaman semula getah untuk pekebun kecil manakala Lembaga Penyatuan dan Pemulihan Tanah Persekutuan",
-    "Tajuk: Faktor fizikal yang mempengaruhi kegiatan ekonomi di Malaysia Objektif: Menghasilkan peta minda yang sesuai tentang faktor-faktor yang mempengaruhi kegiatan ekonomi di Malaysia",
-    "Alatan: Tablet atau komputer riba Langkah-langkah: 1. Murid membuat aktiviti dalam kumpulan.",
-    "Nyatakan tiga faktor yang mempengaruhi kegiatan ekonomi di Malaysia.",
-    "China bagi menampung kekurangan buruh dalam pelbagai sektor Pasaran boleh dibahagikan kepada dua jenis, iaitu:",
-    "kepada jumlah modal sedia ada Terdapat dua jenis modal di Malaysia, iaitu modal domestik dan pelaburan langsung asing Bagi menggerakkan kegiatan ekonomi negara, agensi yang bertanggungjawab untuk mengeluarkan modal domestik adalah seperti",
-    "Terdapat tiga jenis buruh, iaitu buruh mahir, buruh separa mahir dan buruh",
-    "Kepentingan Kegiatan Ekonomi di Malaysia7.4 Kegiatan ekonomi di Malaysia memainkan peranan yang penting terhadap pembangunan negara. Antara kepentingan kegiatan ekonomi adalah seperti yang berikut:"
+
+  keyExamFacts: [
+    "Sektor primer merangkumi kegiatan seperti pertanian, perikanan, pembalakan, perlombongan dan penternakan.",
+    "Sektor sekunder merangkumi pembuatan dan pembinaan yang menukarkan bahan mentah kepada barangan bernilai lebih tinggi.",
+    "Sektor tertier menyediakan perkhidmatan seperti pengangkutan, perbankan, pendidikan, pelancongan, perdagangan dan komunikasi.",
+    "Tanih aluvium sesuai untuk padi sawah, laterit untuk getah dan kelapa sawit, gambut untuk tanaman tertentu seperti nanas, dan beris sesuai untuk kenaf.",
+    "Tanah pamah memudahkan pertanian, perindustrian, pembinaan dan jaringan pengangkutan kerana bentuknya rata.",
+    "Tanah tinggi sesuai untuk tanaman hawa sederhana dan pelancongan seperti di Cameron Highlands dan Kundasang.",
+    "Jaringan pengangkutan yang baik menghubungkan sumber bahan mentah, kilang dan pasaran.",
+    "RISDA membantu pekebun kecil getah, manakala FELDA dan FELCRA terlibat dalam pembangunan pertanian dan kawasan luar bandar.",
+    "Teknologi seperti robotik, gema bunyi, seismik dan sistem maklumat geografi meningkatkan kecekapan kegiatan ekonomi.",
+    "Kegiatan ekonomi boleh menggalakkan pertumbuhan bandar, peluang pekerjaan, eksport, pembangunan infrastruktur dan pemindahan teknologi.",
   ],
-  "sections": [
+
+  sections: [
     {
-      "title": "Pengenalan Bab",
-      "subsections": [
+      title: "Pengenalan Bab",
+      subsections: [
         {
-          "title": "Gambaran keseluruhan",
-          "content": "Malaysia telah mengalami beberapa fasa perubahan struktur ekonomi sejak merdeka. Kegiatan ekonomi memberi kesan terhadap pertumbuhan dan penguncupan ekonomi negara serta kehidupan rakyat. Tahukah anda jenis kegiatan ekonomi yang terdapat di Malaysia? Bagaimanakah bentuk taburan kegiatan ekonomi utama? Apakah faktor yang mempengaruhi kegiatan ekonomi? Bolehkah anda jelaskan kepentingannya terhadap pembangunan negara?"
+          title: "Gambaran keseluruhan",
+          content:
+            "Malaysia mempunyai kegiatan ekonomi yang pelbagai kerana mempunyai sumber semula jadi, tenaga buruh, infrastruktur dan pasaran yang luas. Kegiatan-kegiatan ini saling berkait: sektor primer membekalkan bahan mentah, sektor sekunder memproses bahan mentah, dan sektor tertier menyediakan perkhidmatan untuk menyokong pengeluaran serta pengguna.",
         },
         {
-          "title": "Checklist subtopik",
-          "bulletPoints": [
-            "✓ 7.1 Jenis Kegiatan Ekonomi di Malaysia",
-            "✓ 7.2 Taburan Kegiatan Ekonomi Utama di Malaysia",
-            "✓ 7.3 Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia",
-            "✓ 7.4 Kepentingan Kegiatan Ekonomi di Malaysia"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "7.1 Jenis Kegiatan Ekonomi di Malaysia",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Kegiatan ekonomi merupakan kegiatan manusia yang menghasilkan pendapatan. Kegiatan ekonomi di Malaysia terbahagi kepada tiga sektor, iaitu primer, sekunder dan tertier. mengeluarkan bahan mentah terus daripada sumber semula jadi Terdiri daripada:"
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Jenis Kegiatan Ekonomi di Malaysia",
-            "Kegiatan ekonomi merupakan kegiatan manusia yang menghasilkan pendapatan. Kegiatan ekonomi di Malaysia terbahagi kepada tiga sektor, iaitu primer, sekunder dan tertier.",
-            "Merupakan aktiviti ekonomi yang",
-            "Merupakan kegiatan ekonomi yang menawarkan pelbagai perkhidmatan Disebut juga sebagai sektor perkhidmatan Sumbangannya memainkan peranan penting kepada pembangunan negara Terdiri daripada:",
-            "Antara contoh tanaman utama di Malaysia ialah kelapa sawit dan getah Kelapa sawit merupakan tanaman jualan terpenting di Malaysia manakala getah merupakan tanaman jualan kedua terpenting",
-            "Peta 7.1 Taburan tanaman pertanian di Malaysia"
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Kegiatan ekonomi merupakan kegiatan manusia yang menghasilkan pendapatan. Kegiatan ekonomi di Malaysia terbahagi kepada tiga sektor, iaitu primer, sekunder dan tertier.",
-            "Merupakan aktiviti ekonomi yang",
-            "Merupakan kegiatan ekonomi yang menawarkan pelbagai perkhidmatan Disebut juga sebagai sektor perkhidmatan Sumbangannya memainkan peranan penting kepada pembangunan negara Terdiri daripada:",
-            "Antara contoh tanaman utama di Malaysia ialah kelapa sawit dan getah Kelapa sawit merupakan tanaman jualan terpenting di Malaysia manakala getah merupakan tanaman jualan kedua terpenting"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "mengeluarkan bahan mentah terus daripada sumber semula jadi Terdiri daripada:",
-            "Pertumbuhan prestasi ekonomi di Malaysia pada tahun 2017 didominasi oleh peningkatan dalam sektor pembuatan dan perkhidmatan di samping pemulihan dalam sektor pertanian.",
-            "(Sumber: Jabatan Perangkaan Malaysia, Mei 2018)",
-            "Memberi keutamaan dalam menukarkan bahan mentah kepada barangan siap",
-            "Peta 7.1 Taburan tanaman pertanian di Malaysia",
-            "Kuala Lipis dan Segi Tiga",
-            "Sibu, Marudi dan Sri Aman",
-            "pengeluaran getah di Malaysia meningkat kepada 880.6 ribu tan pada tahun 2017” ."
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Antara contoh tanaman utama di Malaysia ialah kelapa sawit dan getah Kelapa sawit merupakan tanaman jualan terpenting di Malaysia manakala getah merupakan tanaman jualan kedua terpenting"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "mengeluarkan bahan mentah terus daripada sumber semula jadi Terdiri daripada:",
-            "(Sumber: Jabatan Perangkaan Malaysia, Mei 2018)",
-            "Peta 7.1 Taburan tanaman pertanian di Malaysia"
+          title: "Apa yang perlu dikuasai",
+          bulletPoints: [
+            "Membezakan sektor primer, sekunder dan tertier.",
+            "Mengenal pasti taburan kegiatan pertanian, perindustrian dan pelancongan.",
+            "Menerangkan faktor fizikal yang mempengaruhi kegiatan ekonomi.",
+            "Menerangkan faktor manusia yang mempengaruhi kegiatan ekonomi.",
+            "Menghuraikan kepentingan kegiatan ekonomi kepada penduduk dan negara.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "daripada sumber semula jadi"
-              ],
-              [
-                "(Sumber: Jabatan Perangkaan Malaysia, Mei 2018)"
-              ],
-              [
-                "Peta 7.1 Taburan tanaman pertanian di Malaysia"
-              ]
-            ]
-          }
         },
-        {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Kegiatan ekonomi merupakan kegiatan manusia yang menghasilkan pendapatan. Kegiatan ekonomi di Malaysia terbahagi kepada tiga sektor, iaitu primer, sekunder dan tertier.",
-            "mengeluarkan bahan mentah terus daripada sumber semula jadi Terdiri daripada:",
-            "Pertumbuhan prestasi ekonomi di Malaysia pada tahun 2017 didominasi oleh peningkatan dalam sektor pembuatan dan perkhidmatan di samping pemulihan dalam sektor pertanian.",
-            "(Sumber: Jabatan Perangkaan Malaysia, Mei 2018)",
-            "Merupakan aktiviti ekonomi yang",
-            "Memberi keutamaan dalam menukarkan bahan mentah kepada barangan siap",
-            "Merupakan kegiatan ekonomi yang menawarkan pelbagai perkhidmatan Disebut juga sebagai sektor perkhidmatan Sumbangannya memainkan peranan penting kepada pembangunan negara Terdiri daripada:",
-            "Antara contoh tanaman utama di Malaysia ialah kelapa sawit dan getah Kelapa sawit merupakan tanaman jualan terpenting di Malaysia manakala getah merupakan tanaman jualan kedua terpenting",
-            "Peta 7.1 Taburan tanaman pertanian di Malaysia",
-            "Kuala Lipis dan Segi Tiga",
-            "Sibu, Marudi dan Sri Aman",
-            "pengeluaran getah di Malaysia meningkat kepada 880.6 ribu tan pada tahun 2017” ."
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Jenis Kegiatan Ekonomi di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Jenis Kegiatan Ekonomi di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 7.1 menekankan Jenis Kegiatan Ekonomi di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+      ],
     },
+
     {
-      "title": "7.2 Taburan Kegiatan Ekonomi Utama di Malaysia",
-      "subsections": [
+      title: "7.1 Jenis Kegiatan Ekonomi di Malaysia",
+      subsections: [
         {
-          "title": "Pengenalan",
-          "content": "(Sumber: Majlis Promosi Eksport Getah Malaysia, Mei 2018)"
+          title: "Maksud kegiatan ekonomi",
+          content:
+            "Kegiatan ekonomi ialah kegiatan manusia yang menghasilkan pendapatan melalui pengeluaran barangan, pemprosesan bahan atau penyediaan perkhidmatan.",
+        },
+
+        {
+          title: "Tiga sektor utama",
+          table: {
+            headers: ["Sektor", "Maksud", "Contoh kegiatan"],
+            rows: [
+              [
+                "Primer",
+                "Mengeluarkan bahan mentah terus daripada sumber semula jadi.",
+                "Pertanian, perikanan, pembalakan, perlombongan dan penternakan.",
+              ],
+              [
+                "Sekunder",
+                "Memproses bahan mentah menjadi barangan siap atau separa siap.",
+                "Pembuatan, perkilangan dan pembinaan.",
+              ],
+              [
+                "Tertier",
+                "Menyediakan pelbagai jenis perkhidmatan kepada individu dan organisasi.",
+                "Pengangkutan, perdagangan, perbankan, pendidikan, pelancongan, kesihatan dan komunikasi.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "Sektor primer",
+          content:
+            "Sektor primer bergantung secara langsung pada sumber semula jadi. Hasil sektor primer menjadi bahan mentah kepada sektor sekunder. Contohnya, kayu balak diproses menjadi perabot, getah menjadi sarung tangan atau tayar, dan kelapa sawit diproses menjadi pelbagai produk.",
         },
         {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Taburan Kegiatan Ekonomi Utama di Malaysia",
-            "Sektor Primer: Sektor Pertanian “Industri sawit merupakan tunggak kepada ekonomi Malaysia dan",
-            "Merupakan sektor perkhidmatan yang utama di Malaysia sejak",
-            "Sektor Sekunder: Sektor Perindustrian Peta 7.2 Taburan kawasan perindustrian di Malaysia",
-            "Peta 7.3 Taburan kawasan pelancongan di Malaysia"
-          ]
+          title: "Contoh hubungan primer → sekunder",
+          table: {
+            headers: ["Bahan mentah", "Sumber / kegiatan primer", "Produk / kegiatan sekunder"],
+            rows: [
+              ["Kayu balak", "Pembalakan", "Perabot, papan dan produk kayu."],
+              ["Kelapa sawit", "Pertanian", "Minyak masak, sabun dan produk berasaskan sawit."],
+              ["Getah", "Pertanian", "Sarung tangan, tayar dan barangan getah."],
+              ["Petroleum dan gas asli", "Perlombongan", "Petrokimia, bahan api, plastik dan bahan kimia."],
+            ],
+          },
         },
+
         {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Sektor Primer: Sektor Pertanian “Industri sawit merupakan tunggak kepada ekonomi Malaysia dan",
-            "Merupakan sektor perkhidmatan yang utama di Malaysia sejak"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "(Sumber: Majlis Promosi Eksport",
-            "Getah Malaysia, Mei 2018)",
-            "membekal sumber makanan dan tenaga kepada populasi global yang semakin meningkat. Sehingga akhir September 2017, kawasan tanaman sawit negara meningkat kepada 5.79 juta hektar daripada 5.74 juta hektar",
-            "pada tahun 2016. Peningkatan tertinggi dicatatkan di Sarawak” .",
-            "Kawasan tanaman kelapa sawit",
-            "Kota Tinggi, Kulai dan Segamat (Johor) Muadzam Shah dan Segi Tiga Jengka (Pahang) Terengganu Tengah (Terengganu) Lahad Datu, Tawau dan Sandakan (Sabah) Bintulu dan Miri (Sarawak)",
-            "(Sumber: Lembaga Minyak Sawit Malaysia, 2017) (Sumber: Diubah suai daripada Jabatan Ukur dan Pemetaan Malaysia, 2016)",
-            "Sektor Sekunder: Sektor Perindustrian Peta 7.2 Taburan kawasan perindustrian di Malaysia",
-            "dua, iaitu: Industri berasaskan sumber",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab07.indd 120 10/22/19 10:24 AM",
-            "(Sumber: Diubah suai daripada World Industrial Information, 2016)",
-            "Contoh industri bukan berasaskan sumber",
-            "Contoh industri berasaskan sumber",
-            "keperluan perkhidmatan yang lain seperti pengangkutan, perhotelan dan perhubungan",
-            "Peta 7.3 Taburan kawasan pelancongan di Malaysia",
-            "P15 Pantai Damai (Santubong)"
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Contoh industri bukan berasaskan sumber",
-            "Contoh industri berasaskan sumber",
-            "keperluan perkhidmatan yang lain seperti pengangkutan, perhotelan dan perhubungan",
-            "Bentuk muka bumi seperti tanah tinggi, tanah beralun, tanah pamah dan pinggir laut yang terdapat di Malaysia dapat mempengaruhi jenis kegiatan ekonomi yang dijalankan Malaysia mempunyai pelbagai jenis tanih yang sesuai untuk"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "(Sumber: Majlis Promosi Eksport",
-            "membekal sumber makanan dan tenaga kepada populasi global yang semakin meningkat. Sehingga akhir September 2017, kawasan tanaman sawit negara meningkat kepada 5.79 juta hektar daripada 5.74 juta hektar",
-            "(Sumber: Lembaga Minyak Sawit Malaysia, 2017) (Sumber: Diubah suai daripada Jabatan Ukur dan Pemetaan Malaysia, 2016)",
-            "Sektor Sekunder: Sektor Perindustrian Peta 7.2 Taburan kawasan perindustrian di Malaysia",
-            "dua, iaitu: Industri berasaskan sumber",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab07.indd 120 10/22/19 10:24 AM",
-            "(Sumber: Diubah suai daripada World Industrial Information, 2016)",
-            "Contoh industri bukan berasaskan sumber",
-            "Contoh industri berasaskan sumber",
-            "Peta 7.3 Taburan kawasan pelancongan di Malaysia"
+          title: "Sektor sekunder",
+          bulletPoints: [
+            "Menambah nilai kepada bahan mentah.",
+            "Menghasilkan barangan siap atau separa siap.",
+            "Merangkumi industri berasaskan sumber dan industri bukan berasaskan sumber.",
+            "Memerlukan bekalan bahan mentah, tenaga, modal, buruh, teknologi dan pengangkutan.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
+        },
+
+        {
+          title: "Industri berasaskan sumber dan bukan berasaskan sumber",
+          table: {
+            headers: ["Jenis industri", "Ciri", "Contoh"],
+            rows: [
+              [
+                "Berasaskan sumber",
+                "Menggunakan sumber tempatan sebagai bahan mentah utama.",
+                "Petrokimia, pemprosesan makanan, kayu dan perabot, getah serta minyak sawit.",
+              ],
+              [
+                "Bukan berasaskan sumber",
+                "Tidak bergantung secara langsung pada bahan mentah tempatan tertentu.",
+                "Elektrik dan elektronik, automotif serta pemasangan komponen.",
+              ],
             ],
-            "rows": [
-              [
-                "(Sumber: Majlis Promosi Eksport"
-              ],
-              [
-                "PETUNJUK"
-              ],
-              [
-                "membekal sumber makanan dan"
-              ],
-              [
-                "PETUNJUK"
-              ],
-              [
-                "(Sumber: Lembaga Minyak Sawit Malaysia, 2017)"
-              ],
-              [
-                "(Sumber: Diubah suai daripada Jabatan Ukur dan Pemetaan Malaysia, 2016)"
-              ],
-              [
-                "PETUNJUK"
-              ],
-              [
-                "Peta 7.2 Taburan kawasan perindustrian di Malaysia"
-              ]
-            ]
-          }
+          },
         },
+
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "(Sumber: Majlis Promosi Eksport",
-            "Getah Malaysia, Mei 2018)",
-            "Sektor Primer: Sektor Pertanian “Industri sawit merupakan tunggak kepada ekonomi Malaysia dan",
-            "membekal sumber makanan dan tenaga kepada populasi global yang semakin meningkat. Sehingga akhir September 2017, kawasan tanaman sawit negara meningkat kepada 5.79 juta hektar daripada 5.74 juta hektar",
-            "pada tahun 2016. Peningkatan tertinggi dicatatkan di Sarawak” .",
-            "Kawasan tanaman kelapa sawit",
-            "Kota Tinggi, Kulai dan Segamat (Johor) Muadzam Shah dan Segi Tiga Jengka (Pahang) Terengganu Tengah (Terengganu) Lahad Datu, Tawau dan Sandakan (Sabah) Bintulu dan Miri (Sarawak)",
-            "(Sumber: Lembaga Minyak Sawit Malaysia, 2017) (Sumber: Diubah suai daripada Jabatan Ukur dan Pemetaan Malaysia, 2016)",
-            "Sektor Sekunder: Sektor Perindustrian Peta 7.2 Taburan kawasan perindustrian di Malaysia",
-            "dua, iaitu: Industri berasaskan sumber",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab07.indd 120 10/22/19 10:24 AM",
-            "(Sumber: Diubah suai daripada World Industrial Information, 2016)"
-          ]
+          title: "Sektor tertier",
+          content:
+            "Sektor tertier tidak menghasilkan bahan mentah tetapi menyediakan perkhidmatan yang membolehkan sektor lain berfungsi. Contohnya, pengangkutan membawa bahan mentah ke kilang, bank menyediakan pembiayaan, dan perdagangan menghubungkan pengeluar dengan pasaran.",
         },
+
         {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Taburan Kegiatan Ekonomi Utama di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
+          title: "Hubungan antara tiga sektor",
+          content:
+            "Ketiga-tiga sektor saling bergantung. Contohnya, getah ditanam dalam sektor primer, diproses menjadi tayar dalam sektor sekunder, kemudian dihantar dan dijual melalui sektor tertier.",
         },
+
         {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Taburan Kegiatan Ekonomi Utama di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 7.2 menekankan Taburan Kegiatan Ekonomi Utama di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
-    },
-    {
-      "title": "7.3 Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi Malaysia mengalami iklim Khatulistiwa Purata suhu Malaysia ialah 27°C dengan jumlah hujan tahunan"
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia",
-            "Malaysia mengalami iklim Khatulistiwa Purata suhu Malaysia ialah 27°C dengan jumlah hujan tahunan",
-            "Menurut Jabatan Perangkaan Malaysia (2017), tenaga buruh merujuk mereka yang berumur 15 hingga 64 tahun sama ada",
-            "kepada jumlah modal sedia ada Terdapat dua jenis modal di Malaysia, iaitu modal domestik dan pelaburan langsung asing Bagi menggerakkan kegiatan ekonomi negara, agensi yang bertanggungjawab untuk mengeluarkan modal domestik adalah seperti",
-            "Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi",
-            "Selain itu, Pihak Berkuasa Kemajuan Pekebun Kecil Perusahaan Getah (RISDA) juga diwujudkan bagi menjalankan penanaman semula getah untuk pekebun kecil manakala Lembaga Penyatuan dan Pemulihan Tanah Persekutuan",
-            "Tajuk: Faktor fizikal yang mempengaruhi kegiatan ekonomi di Malaysia Objektif: Menghasilkan peta minda yang sesuai tentang faktor-faktor yang mempengaruhi kegiatan ekonomi di Malaysia",
-            "Nyatakan tiga faktor yang mempengaruhi kegiatan ekonomi di Malaysia."
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Malaysia mengalami iklim Khatulistiwa Purata suhu Malaysia ialah 27°C dengan jumlah hujan tahunan",
-            "Menurut Jabatan Perangkaan Malaysia (2017), tenaga buruh merujuk mereka yang berumur 15 hingga 64 tahun sama ada",
-            "kepada jumlah modal sedia ada Terdapat dua jenis modal di Malaysia, iaitu modal domestik dan pelaburan langsung asing Bagi menggerakkan kegiatan ekonomi negara, agensi yang bertanggungjawab untuk mengeluarkan modal domestik adalah seperti"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi",
-            "Iklim yang panas dan lembap sepanjang tahun mempengaruhi jenis kegiatan ekonomi seperti pertanian, pelancongan,",
-            "Pelbagai jenis tanaman seperti padi, getah, kelapa sawit, koko, nanas, kopi dan lada hitam dapat hidup dengan subur Cuaca yang sejuk dengan suhu yang sederhana, iaitu kira-kira 18°C di kawasan tanah tinggi seperti Kundasang (Sabah) dan",
-            "Cameron Highlands (Pahang) amat sesuai bagi penanaman teh, sayur-sayuran dan bunga-bungaan",
-            "Kegiatan pelancongan, iaitu pelancongan air seperti Melaka River Cruise juga dapat dijalankan apabila adanya sistem saliran",
-            "Jadual 7.3 Bahan mentah yang digunakan dalam sektor",
-            "Bahan mentah Kegiatan ekonomi Kayu balak Industri perabot, papan dan kayu gergaji Kelapa sawit Minyak masak, sabun dan lilin Getah Sarung tangan dan tayar",
-            "gas asli Minyak pelincir, plastik dan cat",
-            "Kaolin Tembikar dan jubin",
-            "Melaka River Cruise (Melaka)",
-            "Pengangkutan yang cekap dalam sektor pertanian amat perlu bagi mengangkut barangan pertanian yang cepat rosak seperti sayur-sayuran dan buah-buahan untuk terus ke pasaran Sistem pengangkutan dalam negara yang efisien juga diperlukan dalam",
-            "sektor pelancongan, terutamanya untuk keselesaan pelancong luar negara datang melancong ke Malaysia Kemajuan telekomunikasi negara juga telah membantu kepesatan pembangunan ekonomi melalui penggunaan Internet, telekonferens",
-            "dan kemajuan ICT yang dapat mempercepatkan perhubungan antarabangsa",
-            "Kegiatan ekonomi di Malaysia bertambah maju dengan adanya penggunaan teknologi yang canggih dan moden Penggunaan teknologi yang canggih dan moden dapat:",
-            "Kerajaan Malaysia telah mengadakan dasar-dasar untuk mendorong peningkatan ekonomi negara, iaitu: Dasar Pertanian Negara yang berperanan memaksimumkan sumbangan sektor pertanian kepada Keluaran Dalam Negara Kasar (KDNK)",
-            "Selain itu, Pihak Berkuasa Kemajuan Pekebun Kecil Perusahaan Getah (RISDA) juga diwujudkan bagi menjalankan penanaman semula getah untuk pekebun kecil manakala Lembaga Penyatuan dan Pemulihan Tanah Persekutuan"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Malaysia mempunyai pelbagai bahan mentah yang diperoleh daripada sumber mineral, hutan dan pertanian Bahan mentah primer boleh diproses untuk menghasilkan barangan sekunder Malaysia memiliki saliran yang baik",
-            "Dengan adanya pengairan baik maka kegiatan pertanian juga dapat dijalankan dengan baik Contoh: Penanaman padi memerlukan pengairan baik untuk proses penanaman seperti penanaman padi di Dataran",
-            "Kewujudan jaringan pengangkutan yang baik seperti jalan raya, jalan kereta api, jalan air dan jalan udara memudahkan proses pengangkutan bahan mentah dari sumbernya ke kilang dan barangan siap ke pasaran",
-            "Pelan induk perindustrian yang berperanan merangka secara terperinci kegiatan sektor perindustrian dan sektor industri kecil untuk menghasilkan penggunaan sumber secara optimum Dasar Pendidikan Kebangsaan yang berperanan memenuhi keperluan tenaga",
-            "Alatan: Tablet atau komputer riba Langkah-langkah: 1. Murid membuat aktiviti dalam kumpulan."
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Iklim yang panas dan lembap sepanjang tahun mempengaruhi jenis kegiatan ekonomi seperti pertanian, pelancongan,",
-            "Pelbagai jenis tanaman seperti padi, getah, kelapa sawit, koko, nanas, kopi dan lada hitam dapat hidup dengan subur Cuaca yang sejuk dengan suhu yang sederhana, iaitu kira-kira 18°C di kawasan tanah tinggi seperti Kundasang (Sabah) dan",
-            "Dengan adanya pengairan baik maka kegiatan pertanian juga dapat dijalankan dengan baik Contoh: Penanaman padi memerlukan pengairan baik untuk proses penanaman seperti penanaman padi di Dataran",
-            "Kegiatan pelancongan, iaitu pelancongan air seperti Melaka River Cruise juga dapat dijalankan apabila adanya sistem saliran",
-            "Kewujudan jaringan pengangkutan yang baik seperti jalan raya, jalan kereta api, jalan air dan jalan udara memudahkan proses pengangkutan bahan mentah dari sumbernya ke kilang dan barangan siap ke pasaran",
-            "Pengangkutan yang cekap dalam sektor pertanian amat perlu bagi mengangkut barangan pertanian yang cepat rosak seperti sayur-sayuran dan buah-buahan untuk terus ke pasaran Sistem pengangkutan dalam negara yang efisien juga diperlukan dalam",
-            "Antarabangsa Kuala Lumpur (KLIA) Jadual 7.4 Pengaruh teknologi terhadap kegiatan ekonomi Teknologi Kegiatan ekonomi Contoh",
-            "Sehingga Mei tahun 2017, terdapat kira-kira 14.96 juta guna tenaga buruh tempatan di Malaysia Malaysia juga menerima tenaga buruh asing dari negara luar seperti Indonesia, Bangladesh, Filipina, Myanmar, Vietnam dan",
-            "kepada jumlah modal sedia ada Terdapat dua jenis modal di Malaysia, iaitu modal domestik dan pelaburan langsung asing Bagi menggerakkan kegiatan ekonomi negara, agensi yang bertanggungjawab untuk mengeluarkan modal domestik adalah seperti"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Malaysia mempunyai pelbagai bahan mentah yang diperoleh daripada sumber mineral, hutan dan pertanian Bahan mentah primer boleh diproses untuk menghasilkan barangan sekunder Malaysia memiliki saliran yang baik",
-            "Jadual 7.3 Bahan mentah yang digunakan dalam sektor",
-            "Kewujudan jaringan pengangkutan yang baik seperti jalan raya, jalan kereta api, jalan air dan jalan udara memudahkan proses pengangkutan bahan mentah dari sumbernya ke kilang dan barangan siap ke pasaran",
-            "Pelan induk perindustrian yang berperanan merangka secara terperinci kegiatan sektor perindustrian dan sektor industri kecil untuk menghasilkan penggunaan sumber secara optimum Dasar Pendidikan Kebangsaan yang berperanan memenuhi keperluan tenaga",
-            "Antarabangsa Kuala Lumpur (KLIA) Jadual 7.4 Pengaruh teknologi terhadap kegiatan ekonomi Teknologi Kegiatan ekonomi Contoh",
-            "Seismik - Perlombongan - Mengesan kawasan petroleum Nanoteknologi - Perindustrian - Pengeluaran litar elektronik Kimia - Perindustrian - Pembuatan cat dan baja Sistem Maklumat Geografi atau",
-            "Tajuk: Faktor fizikal yang mempengaruhi kegiatan ekonomi di Malaysia Objektif: Menghasilkan peta minda yang sesuai tentang faktor-faktor yang mempengaruhi kegiatan ekonomi di Malaysia"
+          title: "Tip mengingat",
+          bulletPoints: [
+            "Primer = ambil daripada alam.",
+            "Sekunder = proses / bina.",
+            "Tertier = beri perkhidmatan.",
+            "Jika soalan memberi satu kegiatan, tentukan sama ada ia mengeluarkan bahan mentah, memproses bahan atau menyediakan perkhidmatan.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "diperoleh daripada sumber mineral, hutan dan pertanian"
-              ],
-              [
-                "Jadual 7.3 Bahan mentah yang digunakan dalam sektor"
-              ],
-              [
-                "bahan mentah dari sumbernya ke kilang dan barangan siap ke pasaran"
-              ],
-              [
-                "penggunaan sumber secara optimum"
-              ],
-              [
-                "Jadual 7.4 Pengaruh teknologi terhadap kegiatan ekonomi"
-              ],
-              [
-                "Sistem Maklumat Geografi atau"
-              ],
-              [
-                "Objektif: Menghasilkan peta minda yang sesuai tentang faktor-faktor yang mempengaruhi"
-              ],
-              [
-                "3. Murid perlu menyediakan peta minda yang kreatif dan dibentangkan di hadapan kelas."
-              ]
-            ]
-          }
         },
+
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi",
-            "Malaysia mengalami iklim Khatulistiwa Purata suhu Malaysia ialah 27°C dengan jumlah hujan tahunan",
-            "Iklim yang panas dan lembap sepanjang tahun mempengaruhi jenis kegiatan ekonomi seperti pertanian, pelancongan,",
-            "Pelbagai jenis tanaman seperti padi, getah, kelapa sawit, koko, nanas, kopi dan lada hitam dapat hidup dengan subur Cuaca yang sejuk dengan suhu yang sederhana, iaitu kira-kira 18°C di kawasan tanah tinggi seperti Kundasang (Sabah) dan",
-            "Cameron Highlands (Pahang) amat sesuai bagi penanaman teh, sayur-sayuran dan bunga-bungaan",
-            "Malaysia mempunyai pelbagai bahan mentah yang diperoleh daripada sumber mineral, hutan dan pertanian Bahan mentah primer boleh diproses untuk menghasilkan barangan sekunder Malaysia memiliki saliran yang baik",
-            "Dengan adanya pengairan baik maka kegiatan pertanian juga dapat dijalankan dengan baik Contoh: Penanaman padi memerlukan pengairan baik untuk proses penanaman seperti penanaman padi di Dataran",
-            "Kegiatan pelancongan, iaitu pelancongan air seperti Melaka River Cruise juga dapat dijalankan apabila adanya sistem saliran",
-            "Jadual 7.3 Bahan mentah yang digunakan dalam sektor",
-            "Bahan mentah Kegiatan ekonomi Kayu balak Industri perabot, papan dan kayu gergaji Kelapa sawit Minyak masak, sabun dan lilin Getah Sarung tangan dan tayar",
-            "gas asli Minyak pelincir, plastik dan cat",
-            "Kaolin Tembikar dan jubin"
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 7.3 menekankan Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
-    },
-    {
-      "title": "7.4 Kepentingan Kegiatan Ekonomi di Malaysia",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Kegiatan ekonomi di Malaysia memainkan peranan yang penting terhadap pembangunan negara. Antara kepentingan kegiatan ekonomi adalah seperti yang berikut: Penduduk dapat meningkatkan taraf hidup mereka apabila melibatkan diri dalam kegiatan Petunjuk taraf hidup boleh dilihat melalui peningkatan jumlah pendapatan per kapita keluarga, perumahan yang selesa, tahap"
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Kepentingan Kegiatan Ekonomi di Malaysia",
-            "Kegiatan ekonomi di Malaysia memainkan peranan yang penting terhadap pembangunan negara. Antara kepentingan kegiatan ekonomi adalah seperti yang berikut:",
-            "Kemajuan ekonomi yang pesat di negara kita menggalakkan pambangunan infrastruktur moden Berikut adalah infrastruktur yang disediakan, iaitu:",
-            "Kegiatan ekonomi di Malaysia memainkan peranan yang penting terhadap pembangunan negara. Antara kepentingan kegiatan ekonomi adalah seperti yang berikut:",
-            "Pelabuhan Pelabuhan antarabangsa seperti Pelabuhan Klang dan Pelabuhan Tanjung Pelepas telah memudahkan urusan import dan eksport Nyatakan tiga kepentingan kegiatan ekonomi kepada negara."
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Kegiatan ekonomi di Malaysia memainkan peranan yang penting terhadap pembangunan negara. Antara kepentingan kegiatan ekonomi adalah seperti yang berikut:",
-            "Kemajuan ekonomi yang pesat di negara kita menggalakkan pambangunan infrastruktur moden Berikut adalah infrastruktur yang disediakan, iaitu:"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Penduduk dapat meningkatkan taraf hidup mereka apabila melibatkan diri dalam kegiatan Petunjuk taraf hidup boleh dilihat melalui peningkatan jumlah pendapatan per kapita keluarga, perumahan yang selesa, tahap",
-            "pendidikan dan lain-lain kemudahan Peningkatan pendapatan penduduk membolehkan kuasa beli, taraf kesihatan dan tahap pendidikan penduduk turut meningkat Mewujudkan peluang pekerjaan",
-            "Kepelbagaian kegiatan ekonomi dapat menyediakan peluang pekerjaan menyebabkan kadar pengangguran",
-            "Prestasi eksport dan pengeluaran perindustrian yang semakin kukuh juga telah mewujudkan peluang pekerjaan dalam sektor primer, sekunder dan tertier",
-            "Kegiatan ekonomi dapat menyumbangkan pendapatan untuk membiayai perbelanjaan mengurus dan mentadbir negara Pendapatan negara diperoleh daripada cukai, hasil eksport, kedatangan pelancong",
-            "asing dan keuntungan aktiviti perniagaan Menurut Perbadanan Pembangunan Perdagangan Luar Malaysia, sektor perkhidmatan khususnya pendidikan dan pelancongan telah menjadi pemacu utama",
-            "kepada pertumbuhan ekonomi di Malaysia",
-            "Menggalakkan pengeluaran sektor pertanian seperti buah-buahan, sayur-sayuran, perikanan dan ternakan",
-            "Meningkatkan darjah ketersampaian penduduk ke sesuatu kawasan, contohnya Lebuhraya Utara Selatan (PLUS) dan Lebuhraya Pantai Timur",
-            "Sistem pengangkutan kereta api elektrik seperti Transit Aliran Massa atau Mass Rapid Transit (MRT), Tren Laju Antara Bandar atau Electric Train Services (ETS), Transit Aliran Ringan atau Light Rail Transit (LRT) dan Ekspres KLIA atau Express Rail Link (ERL) dibina",
-            "untuk mengurangkan kesesakan lalu lintas",
-            "Pembinaan lapangan terbang antarabangsa seperti Lapangan Terbang Antarabangsa Kuala Lumpur (KLIA) dan Lapangan Terbang Antarabangsa Pulau Pinang telah meningkatkan industri pelancongan negara dan kegiatan ekonomi yang lain",
-            "Pelabuhan Pelabuhan antarabangsa seperti Pelabuhan Klang dan Pelabuhan Tanjung Pelepas telah memudahkan urusan import dan eksport Nyatakan tiga kepentingan kegiatan ekonomi kepada negara.",
-            "Kegiatan sektor perkhidmatan juga telah menyebabkan wujud pertumbuhan bandar Putrajaya dan Cyberjaya Kepelbagaian kegiatan ekonomi turut menambahkan peluang pekerjaan dan menggalakkan penghijrahan penduduk luar bandar",
-            "ganti tahunan tidak melebihi RM25 juta.",
-            "untuk mendapatkan maklumat tentang Human Factors that Affect Agriculture:"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Pemindahan teknologi melibatkan pemindahan kemahiran, kepakaran dan teknik dari satu negara ke negara lain melalui proses pembelajaran,",
-            "Di Malaysia, terdapat dua cara pemindahan teknologi dilaksanakan, iaitu:",
-            "Pemindahan teknologi juga dilakukan melalui proses penyelidikan dan pembangunan (R&D)",
-            "Kegiatan ekonomi tempatan mengurangkan pergantungan negara kepada barangan import Kerajaan telah mengambil beberapa langkah bagi mengurangkan import, iaitu: Menggalakkan sektor Industri Kecil Sederhana (IKS)",
-            "Proses pembandaran (Urbanisasi) Kegiatan ekonomi telah menyumbang kepada proses pembandaran Perkembangan bandar Petaling Jaya, Shah Alam dan Bayan Lepas berlaku akibat kegiatan perindustrian",
-            "ke bandar untuk mendapatkan pekerjaan Kemajuan ekonomi secara tidak langsung menyebabkan perkembangan dan perluasan saiz serta pertambahan fungsi bandar Industri Kecil dan Sederhana"
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Kegiatan ekonomi di Malaysia memainkan peranan yang penting terhadap pembangunan negara. Antara kepentingan kegiatan ekonomi adalah seperti yang berikut:",
-            "Menggalakkan pengeluaran sektor pertanian seperti buah-buahan, sayur-sayuran, perikanan dan ternakan",
-            "Meningkatkan darjah ketersampaian penduduk ke sesuatu kawasan, contohnya Lebuhraya Utara Selatan (PLUS) dan Lebuhraya Pantai Timur",
-            "Sistem pengangkutan kereta api elektrik seperti Transit Aliran Massa atau Mass Rapid Transit (MRT), Tren Laju Antara Bandar atau Electric Train Services (ETS), Transit Aliran Ringan atau Light Rail Transit (LRT) dan Ekspres KLIA atau Express Rail Link (ERL) dibina",
-            "Pembinaan lapangan terbang antarabangsa seperti Lapangan Terbang Antarabangsa Kuala Lumpur (KLIA) dan Lapangan Terbang Antarabangsa Pulau Pinang telah meningkatkan industri pelancongan negara dan kegiatan ekonomi yang lain",
-            "Pelabuhan Pelabuhan antarabangsa seperti Pelabuhan Klang dan Pelabuhan Tanjung Pelepas telah memudahkan urusan import dan eksport Nyatakan tiga kepentingan kegiatan ekonomi kepada negara."
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Penduduk dapat meningkatkan taraf hidup mereka apabila melibatkan diri dalam kegiatan Petunjuk taraf hidup boleh dilihat melalui peningkatan jumlah pendapatan per kapita keluarga, perumahan yang selesa, tahap",
-            "Proses pembandaran (Urbanisasi) Kegiatan ekonomi telah menyumbang kepada proses pembandaran Perkembangan bandar Petaling Jaya, Shah Alam dan Bayan Lepas berlaku akibat kegiatan perindustrian",
-            "Namakan lokasi di dalam Peta 1 berikut mengikut sektor yang tepat."
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Bezakan tiga sektor menggunakan definisi dan contoh.",
+            "Bolehkan diri anda menerangkan hubungan primer → sekunder → tertier.",
+            "Jangan keliru antara perlombongan (primer) dengan industri petrokimia (sekunder).",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "Petunjuk taraf hidup boleh dilihat melalui"
-              ],
-              [
-                "Perkembangan bandar Petaling Jaya, Shah Alam dan Bayan Lepas"
-              ],
-              [
-                "(Sumber: Jabatan Penerangan"
-              ],
-              [
-                "1. Peta 1 menunjukkan taburan sektor pertanian, perindustrian dan pelancongan."
-              ],
-              [
-                "Namakan lokasi di dalam Peta 1 berikut mengikut sektor yang tepat."
-              ],
-              [
-                "PETUNJUK"
-              ]
-            ]
-          }
         },
-        {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Kegiatan ekonomi di Malaysia memainkan peranan yang penting terhadap pembangunan negara. Antara kepentingan kegiatan ekonomi adalah seperti yang berikut:",
-            "Penduduk dapat meningkatkan taraf hidup mereka apabila melibatkan diri dalam kegiatan Petunjuk taraf hidup boleh dilihat melalui peningkatan jumlah pendapatan per kapita keluarga, perumahan yang selesa, tahap",
-            "pendidikan dan lain-lain kemudahan Peningkatan pendapatan penduduk membolehkan kuasa beli, taraf kesihatan dan tahap pendidikan penduduk turut meningkat Mewujudkan peluang pekerjaan",
-            "Kepelbagaian kegiatan ekonomi dapat menyediakan peluang pekerjaan menyebabkan kadar pengangguran",
-            "Prestasi eksport dan pengeluaran perindustrian yang semakin kukuh juga telah mewujudkan peluang pekerjaan dalam sektor primer, sekunder dan tertier",
-            "Kegiatan ekonomi dapat menyumbangkan pendapatan untuk membiayai perbelanjaan mengurus dan mentadbir negara Pendapatan negara diperoleh daripada cukai, hasil eksport, kedatangan pelancong",
-            "asing dan keuntungan aktiviti perniagaan Menurut Perbadanan Pembangunan Perdagangan Luar Malaysia, sektor perkhidmatan khususnya pendidikan dan pelancongan telah menjadi pemacu utama",
-            "kepada pertumbuhan ekonomi di Malaysia",
-            "Pemindahan teknologi melibatkan pemindahan kemahiran, kepakaran dan teknik dari satu negara ke negara lain melalui proses pembelajaran,",
-            "Di Malaysia, terdapat dua cara pemindahan teknologi dilaksanakan, iaitu:",
-            "Pemindahan teknologi juga dilakukan melalui proses penyelidikan dan pembangunan (R&D)",
-            "Kegiatan ekonomi tempatan mengurangkan pergantungan negara kepada barangan import Kerajaan telah mengambil beberapa langkah bagi mengurangkan import, iaitu: Menggalakkan sektor Industri Kecil Sederhana (IKS)"
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Kepentingan Kegiatan Ekonomi di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Kepentingan Kegiatan Ekonomi di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 7.4 menekankan Kepentingan Kegiatan Ekonomi di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+      ],
     },
+
     {
-      "title": "Imbas Kembali",
-      "subsections": [
+      title: "7.2 Taburan Kegiatan Ekonomi Utama di Malaysia",
+      subsections: [
         {
-          "title": "Checklist akhir bab",
-          "bulletPoints": [
-            "✓ 7.1 Jenis Kegiatan Ekonomi di Malaysia",
-            "✓ 7.2 Taburan Kegiatan Ekonomi Utama di Malaysia",
-            "✓ 7.3 Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia",
-            "✓ 7.4 Kepentingan Kegiatan Ekonomi di Malaysia"
-          ]
+          title: "Mengapa kegiatan ekonomi bertabur tidak sekata?",
+          content:
+            "Setiap kegiatan memerlukan keadaan yang berbeza. Pertanian bergantung pada tanih, iklim dan air; perindustrian memerlukan tanah yang sesuai, tenaga, pengangkutan dan pasaran; pelancongan pula berkembang di kawasan yang mempunyai tarikan semula jadi, budaya atau kemudahan yang baik.",
+        },
+
+        {
+          title: "Pertanian: kelapa sawit",
+          table: {
+            headers: ["Negeri / kawasan", "Contoh lokasi"],
+            rows: [
+              ["Johor", "Kota Tinggi, Kulai dan Segamat."],
+              ["Pahang", "Muadzam Shah dan Segi Tiga Jengka."],
+              ["Terengganu", "Terengganu Tengah."],
+              ["Sabah", "Lahad Datu, Tawau dan Sandakan."],
+              ["Sarawak", "Bintulu dan Miri."],
+            ],
+          },
+        },
+
+        {
+          title: "Pertanian: getah dan tanaman makanan",
+          bulletPoints: [
+            "Getah ditanam di pelbagai kawasan yang mempunyai tanih dan iklim sesuai, termasuk kawasan di Semenanjung Malaysia, Sabah dan Sarawak.",
+            "Jasin dan Merlimau di Melaka merupakan antara contoh kawasan getah.",
+            "Dataran Kedah–Perlis merupakan kawasan utama penanaman padi sawah.",
+            "Pertanian tanah tinggi seperti teh, sayur-sayuran dan bunga-bungaan terdapat di Cameron Highlands dan Kundasang.",
+          ],
+        },
+
+        {
+          title: "Kawasan perindustrian",
+          content:
+            "Kawasan perindustrian lazimnya tertumpu berhampiran bandar besar, pelabuhan, lebuh raya, lapangan terbang, sumber tenaga atau bahan mentah. Faktor ini mengurangkan kos pengangkutan dan memudahkan akses kepada buruh serta pasaran.",
         },
         {
-          "title": "Cara ulang kaji pantas",
-          "bulletPoints": [
-            "Baca semula setiap definisi dan kata kunci utama.",
-            "Semak semula contoh, jadual, graf, carta, peta dan rajah yang terdapat dalam bab.",
-            "Latih menjawab dengan format fakta + huraian + contoh daripada buku teks."
-          ]
-        }
-      ]
-    }
-  ]
+          title: "Contoh kawasan perindustrian",
+          table: {
+            headers: ["Kawasan", "Kaitan utama"],
+            rows: [
+              ["Shah Alam dan Bangi, Selangor", "Kawasan perindustrian berhampiran bandar, pasaran dan jaringan pengangkutan utama."],
+              ["Bayan Lepas, Pulau Pinang", "Kawasan perindustrian dan elektronik berhampiran pelabuhan serta lapangan terbang."],
+              ["Kidurong / Bintulu, Sarawak", "Industri berkaitan gas asli dan petrokimia."],
+              ["Kerteh, Terengganu", "Industri petroleum dan petrokimia."],
+              ["Pasir Gudang, Johor", "Perindustrian dan pelabuhan."],
+            ],
+          },
+        },
+
+        {
+          title: "Pelancongan",
+          content:
+            "Kegiatan pelancongan berkembang di kawasan yang mempunyai tarikan semula jadi, sejarah, budaya atau rekreasi. Kemudahan pengangkutan, penginapan dan perkhidmatan membantu meningkatkan jumlah pengunjung.",
+        },
+        {
+          title: "Contoh kawasan pelancongan",
+          table: {
+            headers: ["Jenis tarikan", "Contoh"],
+            rows: [
+              ["Tanah tinggi", "Cameron Highlands, Genting Highlands, Bukit Tinggi dan Kundasang."],
+              ["Pulau dan marin", "Pulau Sipadan dan pulau-pulau peranginan lain."],
+              ["Sejarah dan budaya", "Bandaraya Melaka."],
+              ["Alam semula jadi / warisan", "Taman Negara Mulu, Sarawak."],
+              ["Pantai", "Pantai Damai, Santubong dan kawasan pantai peranginan lain."],
+            ],
+          },
+        },
+
+        {
+          title: "Cara menjawab soalan taburan",
+          bulletPoints: [
+            "Nyatakan kegiatan ekonomi.",
+            "Berikan satu atau dua lokasi yang tepat.",
+            "Terangkan mengapa lokasi itu sesuai berdasarkan faktor fizikal atau manusia.",
+            "Elakkan menghafal terlalu banyak lokasi tanpa memahami sebab taburannya.",
+          ],
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Pertanian → kaitkan dengan tanih, iklim dan saliran.",
+            "Perindustrian → kaitkan dengan bahan mentah, tenaga, pengangkutan, buruh dan pasaran.",
+            "Pelancongan → kaitkan dengan tarikan, akses dan kemudahan.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "7.3 Faktor-faktor yang Mempengaruhi Kegiatan Ekonomi di Malaysia",
+      subsections: [
+        {
+          title: "Dua kumpulan faktor",
+          table: {
+            headers: ["Faktor fizikal", "Faktor manusia"],
+            rows: [
+              [
+                "Bentuk muka bumi, tanih, iklim, saliran dan bahan mentah.",
+                "Dasar kerajaan, infrastruktur, teknologi, modal, pasaran dan buruh.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "A. Bentuk muka bumi",
+          table: {
+            headers: ["Bentuk muka bumi", "Kegiatan ekonomi yang sesuai", "Sebab"],
+            rows: [
+              [
+                "Tanah pamah",
+                "Pertanian, perindustrian, petempatan dan pengangkutan.",
+                "Rata, mudah dibangunkan dan kos pembinaan lebih rendah.",
+              ],
+              [
+                "Tanah tinggi",
+                "Pertanian hawa sederhana dan pelancongan.",
+                "Suhu lebih rendah dan landskap menarik.",
+              ],
+              [
+                "Pinggir laut",
+                "Pelabuhan, perikanan, pelancongan dan kegiatan marin.",
+                "Akses ke laut serta perairan yang sesuai untuk kapal atau aktiviti marin.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "B. Tanih",
+          table: {
+            headers: ["Jenis tanih", "Tanaman / kegiatan sesuai", "Contoh kawasan"],
+            rows: [
+              ["Aluvium", "Padi sawah", "Dataran Kedah–Perlis dan dataran sungai."],
+              ["Laterit", "Getah dan kelapa sawit", "Kawasan beralun dan tanah pamah tertentu."],
+              ["Gambut", "Nanas dan tanaman tertentu yang sesuai", "Contohnya kawasan di Johor."],
+              ["Beris", "Kenaf dan tanaman yang tahan tanih berpasir", "Pantai Kelantan dan Terengganu."],
+              ["Pasir", "Kelapa dan gajus", "Kawasan pantai."],
+            ],
+          },
+        },
+
+        {
+          title: "C. Iklim",
+          content:
+            "Iklim Khatulistiwa yang panas dan lembap sepanjang tahun membolehkan pelbagai tanaman tropika ditanam. Kawasan tanah tinggi pula mempunyai suhu lebih sederhana dan sesuai untuk teh, sayur-sayuran serta bunga-bungaan.",
+        },
+        {
+          title: "Contoh pengaruh iklim",
+          bulletPoints: [
+            "Padi, getah, kelapa sawit, koko, nanas, kopi dan lada hitam sesuai dengan keadaan tropika.",
+            "Cameron Highlands dan Kundasang sesuai untuk tanaman tanah tinggi kerana suhu yang lebih sejuk.",
+            "Cuaca dan musim turut mempengaruhi pelancongan serta operasi perikanan.",
+          ],
+        },
+
+        {
+          title: "D. Saliran",
+          content:
+            "Bekalan air yang mencukupi penting kepada pertanian dan sesetengah kegiatan pelancongan. Penanaman padi memerlukan sistem pengairan yang baik, manakala sungai dan tasik juga boleh menyokong pelancongan air serta perikanan.",
+        },
+
+        {
+          title: "E. Bahan mentah",
+          table: {
+            headers: ["Bahan mentah", "Kegiatan / industri berkaitan"],
+            rows: [
+              ["Kayu balak", "Perabot, papan dan kayu gergaji."],
+              ["Kelapa sawit", "Minyak masak, sabun dan produk sawit."],
+              ["Getah", "Sarung tangan, tayar dan barangan getah."],
+              ["Petroleum dan gas asli", "Petrokimia, plastik, bahan api dan bahan kimia."],
+              ["Batu kapur", "Simen."],
+              ["Kaolin", "Tembikar dan jubin."],
+            ],
+          },
+        },
+
+        {
+          title: "F. Dasar kerajaan",
+          content:
+            "Kerajaan mempengaruhi kegiatan ekonomi melalui dasar, pembangunan kawasan, penyelidikan, latihan dan bantuan kepada pengusaha. Dasar yang jelas boleh menggalakkan pelaburan dan meningkatkan produktiviti sektor tertentu.",
+        },
+        {
+          title: "Contoh peranan kerajaan dan agensi",
+          table: {
+            headers: ["Dasar / agensi", "Peranan"],
+            rows: [
+              ["Dasar Pertanian Negara", "Menggalakkan pembangunan dan sumbangan sektor pertanian kepada ekonomi."],
+              ["RISDA", "Membantu pekebun kecil getah termasuk penanaman semula dan pembangunan produktiviti."],
+              ["FELDA", "Membangunkan kawasan pertanian dan penempatan serta meningkatkan taraf hidup peneroka."],
+              ["FELCRA", "Menyatukan, memulih dan membangunkan tanah pertanian terutama di kawasan luar bandar."],
+            ],
+          },
+        },
+
+        {
+          title: "G. Infrastruktur",
+          content:
+            "Jalan raya, kereta api, pelabuhan, lapangan terbang, bekalan elektrik dan komunikasi membantu menghubungkan kawasan pengeluaran dengan kilang dan pasaran. Infrastruktur yang baik mengurangkan masa serta kos pengangkutan.",
+        },
+        {
+          title: "Mengapa pengangkutan sangat penting?",
+          bulletPoints: [
+            "Membawa bahan mentah ke kilang.",
+            "Menghantar barangan siap ke pasaran.",
+            "Mengangkut hasil pertanian yang cepat rosak dengan lebih pantas.",
+            "Meningkatkan akses pelancong ke destinasi.",
+            "Memudahkan urusan eksport dan import.",
+          ],
+        },
+
+        {
+          title: "H. Teknologi",
+          table: {
+            headers: ["Teknologi", "Kegiatan ekonomi", "Kegunaan"],
+            rows: [
+              ["Robotik", "Perindustrian / automotif", "Mempercepat pemasangan dan meningkatkan ketepatan."],
+              ["Gema bunyi (echo sounder)", "Perikanan", "Mengesan kumpulan ikan."],
+              ["Seismik", "Perlombongan petroleum", "Membantu mengesan struktur bawah permukaan yang berpotensi mengandungi petroleum atau gas."],
+              ["Sistem Maklumat Geografi (GIS)", "Pelbagai sektor", "Menganalisis lokasi, taburan dan maklumat ruang."],
+              ["Teknologi moden / automasi", "Pertanian dan pembuatan", "Meningkatkan produktiviti dan menjimatkan masa."],
+            ],
+          },
+        },
+
+        {
+          title: "I. Modal",
+          content:
+            "Modal diperlukan untuk membeli tanah, mesin, bahan, teknologi dan membayar kos operasi. Modal boleh datang dari dalam negara atau daripada pelaburan asing.",
+        },
+        {
+          title: "Modal domestik dan FDI",
+          table: {
+            headers: ["Jenis modal", "Maksud"],
+            rows: [
+              ["Modal domestik", "Modal daripada sumber dalam negara seperti institusi kewangan, kerajaan, syarikat dan usahawan tempatan."],
+              ["Pelaburan langsung asing (FDI)", "Pelaburan daripada syarikat atau pelabur luar negara dalam kegiatan ekonomi tempatan."],
+            ],
+          },
+        },
+
+        {
+          title: "J. Pasaran",
+          content:
+            "Pasaran menentukan permintaan terhadap barangan dan perkhidmatan. Pasaran boleh terdiri daripada pasaran tempatan dan pasaran antarabangsa. Kawasan yang mempunyai pasaran besar menarik lebih banyak pengeluaran, perdagangan dan perkhidmatan.",
+        },
+
+        {
+          title: "K. Buruh",
+          content:
+            "Buruh membekalkan tenaga fizikal, kemahiran dan kepakaran. Kegiatan ekonomi memerlukan buruh mahir, separa mahir dan kurang mahir mengikut jenis pekerjaan. Sesetengah sektor menggunakan tenaga buruh asing apabila bekalan buruh tempatan tidak mencukupi.",
+        },
+
+        {
+          title: "Cara menjawab soalan faktor",
+          bulletPoints: [
+            "Nyatakan faktor dengan tepat.",
+            "Terangkan bagaimana faktor itu membantu atau mengehadkan kegiatan ekonomi.",
+            "Berikan contoh kegiatan atau lokasi.",
+            "Elakkan jawapan umum seperti 'membantu ekonomi' tanpa menerangkan mekanismenya.",
+          ],
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Bezakan faktor fizikal dengan faktor manusia.",
+            "Untuk soalan perindustrian, gunakan bahan mentah + infrastruktur + pasaran + buruh + modal.",
+            "Untuk pertanian, gunakan tanih + iklim + saliran + dasar/teknologi.",
+            "Untuk pelancongan, gunakan tarikan fizikal + akses + kemudahan + promosi/perkhidmatan.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "7.4 Kepentingan Kegiatan Ekonomi di Malaysia",
+      subsections: [
+        {
+          title: "Meningkatkan taraf hidup",
+          content:
+            "Pendapatan daripada pekerjaan dan perniagaan meningkatkan kuasa beli penduduk. Apabila pendapatan meningkat, keluarga lebih mampu mendapatkan perumahan, pendidikan, kesihatan dan kemudahan hidup yang lebih baik.",
+        },
+
+        {
+          title: "Mewujudkan peluang pekerjaan",
+          content:
+            "Kepelbagaian sektor primer, sekunder dan tertier mewujudkan banyak jenis pekerjaan. Peningkatan kegiatan ekonomi membantu mengurangkan pengangguran dan memberi peluang kepada pekerja berkemahiran berbeza.",
+        },
+
+        {
+          title: "Menjana pendapatan negara",
+          bulletPoints: [
+            "Cukai daripada perniagaan dan pendapatan.",
+            "Hasil eksport barangan dan perkhidmatan.",
+            "Pendapatan daripada pelancongan.",
+            "Keuntungan kegiatan perniagaan dan pelaburan.",
+          ],
+        },
+
+        {
+          title: "Memajukan infrastruktur",
+          content:
+            "Pertumbuhan ekonomi meningkatkan keperluan terhadap jalan raya, lebuh raya, kereta api, pelabuhan, lapangan terbang, tenaga dan telekomunikasi. Kemudahan ini pula mempercepat perkembangan ekonomi seterusnya.",
+        },
+        {
+          title: "Contoh kemajuan infrastruktur",
+          table: {
+            headers: ["Infrastruktur", "Kepentingan ekonomi"],
+            rows: [
+              ["Lebuh raya", "Meningkatkan ketersampaian dan mempercepat pengangkutan barang serta manusia."],
+              ["MRT, LRT, ETS dan rel bandar", "Memudahkan pergerakan pekerja dan mengurangkan kesesakan di kawasan bandar."],
+              ["KLIA dan lapangan terbang lain", "Menyokong pelancongan, perdagangan dan pergerakan antarabangsa."],
+              ["Pelabuhan Klang dan Pelabuhan Tanjung Pelepas", "Memudahkan eksport dan import."],
+            ],
+          },
+        },
+
+        {
+          title: "Pemindahan teknologi",
+          content:
+            "Pemindahan teknologi berlaku apabila kemahiran, kepakaran, teknik dan pengetahuan baharu dipindahkan daripada satu organisasi atau negara kepada pihak lain. Proses ini boleh berlaku melalui latihan pekerja, latihan sambil kerja, pelaburan dan penyelidikan serta pembangunan (R&D).",
+        },
+
+        {
+          title: "Mengurangkan kebergantungan kepada import",
+          content:
+            "Apabila negara meningkatkan pengeluaran tempatan, sebahagian barangan yang sebelum ini perlu diimport boleh dihasilkan dalam negara. Industri kecil dan sederhana serta peningkatan produktiviti pertanian membantu menyokong tujuan ini.",
+        },
+
+        {
+          title: "Menggalakkan pembandaran",
+          content:
+            "Peluang pekerjaan menarik penduduk ke kawasan ekonomi yang berkembang. Perindustrian dan sektor perkhidmatan menyebabkan bandar bertambah penduduk, berkembang dari segi keluasan dan memperoleh fungsi baharu.",
+        },
+        {
+          title: "Contoh pembandaran akibat kegiatan ekonomi",
+          bulletPoints: [
+            "Shah Alam berkembang sebagai pusat perindustrian dan pentadbiran.",
+            "Bayan Lepas berkembang dengan kegiatan perindustrian dan teknologi.",
+            "Petaling Jaya berkembang bersama perindustrian dan perkhidmatan.",
+            "Putrajaya dan Cyberjaya berkembang melalui kegiatan perkhidmatan, pentadbiran dan teknologi.",
+          ],
+        },
+
+        {
+          title: "Kesan pengganda",
+          content:
+            "Satu kegiatan ekonomi boleh merangsang kegiatan lain. Sebuah kawasan perindustrian bukan sahaja menyediakan pekerjaan kilang, tetapi turut meningkatkan permintaan terhadap pengangkutan, perumahan, makanan, perbankan, pendidikan dan perkhidmatan lain.",
+        },
+
+        {
+          title: "Cara menghuraikan kepentingan",
+          bulletPoints: [
+            "Peluang pekerjaan → pendapatan meningkat → taraf hidup meningkat.",
+            "Perindustrian berkembang → permintaan pengangkutan meningkat → infrastruktur bertambah baik.",
+            "Eksport meningkat → pertukaran asing dan pendapatan negara meningkat.",
+            "Pelaburan dan teknologi baharu → kemahiran pekerja serta produktiviti meningkat.",
+            "Pusat ekonomi berkembang → migrasi masuk → proses pembandaran.",
+          ],
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Bezakan kepentingan kepada individu dengan kepentingan kepada negara.",
+            "Jangan sekadar menulis 'meningkatkan ekonomi'. Nyatakan mekanisme seperti pekerjaan, eksport, cukai, infrastruktur atau teknologi.",
+            "Untuk KBAT, bina rantaian sebab dan kesan sekurang-kurangnya dua langkah.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "Imbas Kembali",
+      subsections: [
+        {
+          title: "Checklist akhir bab",
+          bulletPoints: [
+            "Saya boleh membezakan sektor primer, sekunder dan tertier.",
+            "Saya boleh memberikan contoh taburan pertanian, perindustrian dan pelancongan.",
+            "Saya boleh menerangkan lima faktor fizikal kegiatan ekonomi.",
+            "Saya boleh menerangkan enam faktor manusia kegiatan ekonomi.",
+            "Saya boleh menjelaskan peranan RISDA, FELDA dan FELCRA secara umum.",
+            "Saya boleh menghuraikan bagaimana teknologi, modal, pasaran dan buruh mempengaruhi kegiatan ekonomi.",
+            "Saya boleh menerangkan kepentingan kegiatan ekonomi menggunakan fakta + huraian + contoh.",
+          ],
+        },
+        {
+          title: "Cara menjawab soalan struktur",
+          bulletPoints: [
+            "Kenal pasti sektor, faktor atau kepentingan yang ditanya.",
+            "Berikan fakta yang tepat.",
+            "Terangkan hubungan sebab dan kesan.",
+            "Masukkan satu contoh lokasi, kegiatan atau agensi jika sesuai.",
+            "Untuk KBAT, hubungkan lebih daripada satu faktor dan jelaskan kesannya kepada pengeluaran, pekerjaan atau pembangunan.",
+          ],
+        },
+      ],
+    },
+  ],
 };
