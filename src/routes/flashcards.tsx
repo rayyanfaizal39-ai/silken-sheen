@@ -10,8 +10,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Shuffle,
-  X,
-  Check,
   Volume2,
   VolumeX,
   Vibrate,
@@ -27,7 +25,6 @@ import {
 } from "@/components/ChapterPicker";
 import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
-import { Confetti } from "@/components/Confetti";
 import { sfx } from "@/lib/sounds";
 import { prefersReducedMotion } from "@/lib/motion-preferences";
 import {
@@ -56,7 +53,6 @@ import {
   SubjectWorldBanner,
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
-import { getPlanetTheme } from "@/components/PlanetEnvironment";
 import {
   ENGLISH_FLASHCARD_DECKS,
   getEnglishFlashcardsForDeck,
@@ -78,6 +74,14 @@ import {
 import { seoMeta } from "@/lib/seo";
 import { subjectSeoName, subjectSeoKeywords } from "@/lib/subject-seo";
 import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
+import { getPlanetTheme } from "@/components/PlanetEnvironment";
+import {
+  FLASHCARD_EXIT_MS,
+  FlashcardArena,
+  FlashcardCompletion,
+  FlashcardControls,
+  FlashcardDeck,
+} from "@/components/flashcards/FlashcardArena";
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
@@ -108,14 +112,6 @@ export const Route = createFileRoute("/flashcards")({
   },
   component: FlashcardsPage,
 });
-
-const ENCOURAGE = ["Hebat! 🔥", "Pandai! ⚡", "Betul! 🌟", "Bagus! 💪", "Keep it up! 🎯"];
-const GENTLE = [
-  "Cuba lagi! 💫",
-  "Jangan give up! 🌈",
-  "Hampir! Keep going! 🎮",
-  "Ulang semula! 📚",
-];
 
 const FLASHCARD_SET_SIZE = 20;
 const FLASHCARD_SET_OPTIONS: Array<{ index: FlashcardSetIndex; title: string; range: string }> = [
@@ -319,7 +315,11 @@ const SCIENCE_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER: Record<
       "pH, Indicators & Neutralisation",
       "Applications of Neutralisation",
     ),
-    bm: topicSetOptions("Sifat Asid & Alkali", "pH, Penunjuk & Peneutralan", "Aplikasi Peneutralan"),
+    bm: topicSetOptions(
+      "Sifat Asid & Alkali",
+      "pH, Penunjuk & Peneutralan",
+      "Aplikasi Peneutralan",
+    ),
   },
   "Chapter 7": {
     dlp: topicSetOptions(
@@ -334,7 +334,11 @@ const SCIENCE_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER: Record<
     ),
   },
   "Chapter 8": {
-    dlp: topicSetOptions("Types of Force & Their Effects", "Buoyancy, Moments & Levers", "Pressure"),
+    dlp: topicSetOptions(
+      "Types of Force & Their Effects",
+      "Buoyancy, Moments & Levers",
+      "Pressure",
+    ),
     bm: topicSetOptions("Jenis Daya & Kesannya", "Daya Keapungan, Momen & Tuil", "Tekanan"),
   },
   "Chapter 9": {
@@ -394,13 +398,6 @@ function vibrate(pattern: number | number[], enabled: boolean) {
   } catch {
     return;
   }
-}
-
-function progressColor(pct: number) {
-  if (pct <= 25) return "from-red-500 to-rose-500";
-  if (pct <= 50) return "from-orange-500 to-amber-500";
-  if (pct <= 75) return "from-yellow-400 to-yellow-500";
-  return "from-emerald-500 to-green-500";
 }
 
 const MATH_FLASHCARD_CATEGORIES: Array<{
@@ -5177,54 +5174,6 @@ function readStudySearch(): {
   };
 }
 
-function FireBadge({ streak }: { streak: number }) {
-  if (streak < 3) return null;
-  const size = streak >= 10 ? "text-3xl" : streak >= 5 ? "text-2xl" : "text-xl";
-  const label =
-    streak >= 10 ? "MEGA FIRE 🔥🔥🔥" : streak >= 5 ? "ON FIRE! 🔥🔥" : "Heating up! 🔥";
-  return (
-    <div className="fixed top-24 left-1/2 -translate-x-1/2 z-40 pointer-events-none animate-combo-pop">
-      <div
-        className={`glass-strong rounded-full px-5 py-2 flex items-center gap-2 font-display font-bold ${size}`}
-      >
-        <span className="animate-fire-flicker inline-block">🔥</span>
-        <span className="gradient-text">{label}</span>
-      </div>
-    </div>
-  );
-}
-
-function MiniConfetti({ color }: { color: string }) {
-  const pieces = useMemo(
-    () =>
-      Array.from({ length: 24 }, (_, i) => ({
-        id: i,
-        dx: (Math.random() - 0.5) * 320,
-        dy: -120 - Math.random() * 200,
-        delay: Math.random() * 0.1,
-        dur: 0.8 + Math.random() * 0.6,
-      })),
-    [],
-  );
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-visible z-30">
-      {pieces.map((p) => (
-        <span
-          key={p.id}
-          className="absolute left-1/2 top-1/2 w-2 h-2 rounded-full"
-          style={{
-            background: color,
-            // @ts-expect-error css var
-            "--cx": `${p.dx}px`,
-            animation: `confetti-fall ${p.dur}s ${p.delay}s cubic-bezier(.2,.6,.4,1) forwards`,
-            transform: `translate(${p.dx}px, ${p.dy}px)`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 function MathFlashcardLanguagePicker({
   chapterKey,
   onBack,
@@ -5608,14 +5557,15 @@ function FlashcardsPage() {
   );
 
   // engagement state
-  const [flash, setFlash] = useState<"green" | "red" | null>(null);
-  const [shake, setShake] = useState(false);
-  const [shimmer, setShimmer] = useState(false);
-  const [bounce, setBounce] = useState(false);
   const [slideOut, setSlideOut] = useState<"left" | "right" | null>(null);
   const [floatXp, setFloatXp] = useState(false);
-  const [toast, setToast] = useState<string | null>(null);
-  const [burstColor, setBurstColor] = useState<string | null>(null);
+  /** Bumped every time a card is dealt, so the arena replays its enter motion
+   *  even when a re-queued card is dealt again straight after itself. */
+  const [cardTurn, setCardTurn] = useState(0);
+  /** Cards rated below "Know" at least once in this run. Purely a view of the
+   *  existing re-queue: a missed card stays in `queue` until it is known, so
+   *  the review pile is the queue entries whose id is in this set. */
+  const [missedCardIds, setMissedCardIds] = useState<ReadonlySet<string>>(() => new Set());
 
   // stats
   const [knownCount, setKnownCount] = useState(0);
@@ -5626,7 +5576,6 @@ function FlashcardsPage() {
   // settings
   const [soundOn, setSoundOn] = useState(true);
   const [vibrateOn, setVibrateOn] = useState(true);
-  const [dealing, setDealing] = useState(false);
   const [showTip, setShowTip] = useState(false);
 
   useEffect(() => {
@@ -5753,24 +5702,26 @@ function FlashcardsPage() {
   const shouldSplitFlashcards = flashcardSets.length > 1;
   const selectedSetIsValid =
     selectedFlashcardSet !== null && selectedFlashcardSet < flashcardSets.length;
-  const flashcardSetOptions = subject === "sejarah" && form === "Form 3"
-    ? SEJARAH_F3_FLASHCARD_OPTIONS.slice(0, flashcardSets.length)
-    : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 2"
-      ? SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS
-      : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 3"
-        ? SEJARAH_F2_C3_FLASHCARD_SET_OPTIONS
-        : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 4"
-          ? SEJARAH_F2_C4_FLASHCARD_SET_OPTIONS
-          : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 5"
-            ? SEJARAH_F2_C5_FLASHCARD_SET_OPTIONS
-            : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 6"
-              ? SEJARAH_F2_C6_FLASHCARD_SET_OPTIONS
-              : subject === "geography" && form === "Form 2" && chapter
-                ? (GEOGRAPHY_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER[chapter] ?? FLASHCARD_SET_OPTIONS)
-                : subject === "science" && form === "Form 2" && chapter && scienceLang
-                  ? (SCIENCE_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER[chapter]?.[scienceLang] ??
+  const flashcardSetOptions =
+    subject === "sejarah" && form === "Form 3"
+      ? SEJARAH_F3_FLASHCARD_OPTIONS.slice(0, flashcardSets.length)
+      : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 2"
+        ? SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS
+        : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 3"
+          ? SEJARAH_F2_C3_FLASHCARD_SET_OPTIONS
+          : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 4"
+            ? SEJARAH_F2_C4_FLASHCARD_SET_OPTIONS
+            : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 5"
+              ? SEJARAH_F2_C5_FLASHCARD_SET_OPTIONS
+              : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 6"
+                ? SEJARAH_F2_C6_FLASHCARD_SET_OPTIONS
+                : subject === "geography" && form === "Form 2" && chapter
+                  ? (GEOGRAPHY_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER[chapter] ??
                     FLASHCARD_SET_OPTIONS)
-                  : FLASHCARD_SET_OPTIONS;
+                  : subject === "science" && form === "Form 2" && chapter && scienceLang
+                    ? (SCIENCE_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER[chapter]?.[scienceLang] ??
+                      FLASHCARD_SET_OPTIONS)
+                    : FLASHCARD_SET_OPTIONS;
   const pool = useMemo(() => {
     // Session guard: no active deck without a known Form, and no card tagged
     // with another Form may enter the active deck.
@@ -5864,11 +5815,11 @@ function FlashcardsPage() {
     setXpEarned(0);
     setTotalCards(arr.length);
     setCompleted(false);
-    setDealing(true);
+    setMissedCardIds(new Set());
+    setCardTurn((t) => t + 1);
     setSwipeOffset(0);
     setSwipeRatingCue(null);
     setInteractionState("idle");
-    setTimeout(() => setDealing(false), 500);
   }
 
   // rating: 0=Again, 1=Hard, 2=Good, 3=Easy
@@ -5902,10 +5853,7 @@ function FlashcardsPage() {
     if (pass) {
       sfx.ding();
       vibrate(40, vibrateOn);
-      setFlash("green");
-      setBurstColor("#22C55E");
       if (xpAmount > 0) setFloatXp(true);
-      setToast(ENCOURAGE[Math.floor(Math.random() * ENCOURAGE.length)]);
       setSlideOut("right");
       setKnownCount((c) => c + 1);
       if (xpAmount > 0) addXp(xpAmount, subject ?? undefined);
@@ -5920,24 +5868,20 @@ function FlashcardsPage() {
     } else {
       sfx.whomp();
       vibrate([40, 60, 40], vibrateOn);
-      setFlash("red");
-      setShake(true);
-      setToast(GENTLE[Math.floor(Math.random() * GENTLE.length)]);
       setSlideOut("left");
       setUnknownCount((c) => c + 1);
+      const missedId = current.id;
+      setMissedCardIds((ids) => (ids.has(missedId) ? ids : new Set(ids).add(missedId)));
       setStreak(0);
     }
 
     commitTimeoutRef.current = setTimeout(() => {
-      setFlash(null);
-      setShake(false);
       setFloatXp(false);
-      setToast(null);
-      setBurstColor(null);
       setSlideOut(null);
       setFlipped(false);
       setSwipeOffset(0);
       setSwipeRatingCue(null);
+      setCardTurn((t) => t + 1);
       isCommittingRef.current = false;
       setInteractionState("idle");
 
@@ -5962,7 +5906,7 @@ function FlashcardsPage() {
         setIdx(0);
         return nextQueue;
       });
-    }, 450);
+    }, FLASHCARD_EXIT_MS);
   }
 
   // Click/keyboard path (the rating buttons, shown once flipped): same
@@ -5994,8 +5938,6 @@ function FlashcardsPage() {
     setSwipeOffset(0);
     if (!flipped) {
       sfx.whoosh();
-      setShimmer(true);
-      setTimeout(() => setShimmer(false), 700);
       setFlipped(true);
     }
     setSwipeRatingCue(direction);
@@ -6025,15 +5967,7 @@ function FlashcardsPage() {
       return;
     }
     if (interactionState !== "idle") return;
-    if (!flipped) {
-      sfx.whoosh();
-      setShimmer(true);
-      setTimeout(() => setShimmer(false), 700);
-      setTimeout(() => {
-        setBounce(true);
-        setTimeout(() => setBounce(false), 500);
-      }, 700);
-    }
+    if (!flipped) sfx.whoosh();
     setFlipped((f) => !f);
   }
 
@@ -6160,6 +6094,9 @@ function FlashcardsPage() {
     setUnknownCount(0);
     setXpEarned(0);
     setTotalCards(0);
+    setMissedCardIds(new Set());
+    setSlideOut(null);
+    setFloatXp(false);
   }
 
   function selectFlashcardSet(setIndex: FlashcardSetIndex) {
@@ -6194,8 +6131,7 @@ function FlashcardsPage() {
       const arr = buildShuffled();
       setQueue(arr);
       setTotalCards(arr.length);
-      setDealing(true);
-      setTimeout(() => setDealing(false), 500);
+      setCardTurn((t) => t + 1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pool, completed, queue.length]);
@@ -6215,6 +6151,50 @@ function FlashcardsPage() {
       setShowTip(false);
     }
   }, []);
+
+  // A deck is open and dealt: the study session renders in the Flashcard Arena.
+  const isStudySession =
+    !!subject &&
+    !!chapter &&
+    formWasChosen &&
+    !needsScienceLang &&
+    !missingChapter &&
+    !(chapterMeta && !hasSelectedChapterFlashcards) &&
+    !(hasMathFlashcards && !mathFlashcardLang) &&
+    !(shouldSplitFlashcards && !selectedSetIsValid);
+
+  // Desktop shortcuts: ← Don't know, → Know. Before the answer is revealed an
+  // arrow behaves exactly like the matching swipe (reveal, then Next Card);
+  // once revealed it is the matching rating button. Never fires while typing.
+  // Re-subscribed every render so it always sees the current card state.
+  useEffect(() => {
+    if (!isStudySession || completed || !current) return;
+    function onKeyDown(event: globalThis.KeyboardEvent) {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+      const target = event.target instanceof Element ? event.target : null;
+      if (
+        target?.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])')
+      )
+        return;
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        if (interactionState !== "idle") return;
+        event.preventDefault();
+        const know = event.key === "ArrowRight";
+        if (flipped) handleResponse(know ? 2 : 0);
+        else commitSwipe(know ? "right" : "left");
+        return;
+      }
+      if (event.key === "Enter" || event.key === " ") {
+        // focused buttons and the card itself handle their own activation
+        if (target?.closest('button, a, [role="button"]')) return;
+        event.preventDefault();
+        if (interactionState === "revealing-answer") handleNextCard();
+        else handleFlip();
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  });
 
   useEffect(() => {
     if (
@@ -6367,6 +6347,344 @@ function FlashcardsPage() {
           }}
         />
       </AcademyPageShell>
+    );
+  }
+
+  if (isStudySession) {
+    // Same back behaviour the in-page header used: a set returns to the set
+    // picker, a Math category to its categories, anything else to chapters.
+    const exitStudySession = () => {
+      if (shouldSplitFlashcards && selectedFlashcardSet !== null) {
+        resetSession();
+        updateFlashcardSearch({ set: null });
+        return;
+      }
+      if (isEnglishFlashcardDeck) {
+        setChapter(null);
+        updateFlashcardSearch({ chapter: null, set: null });
+        resetSession();
+        return;
+      }
+      if (hasMathFlashcards) {
+        setMathFlashcardCategory(null);
+        resetSession();
+        return;
+      }
+      setChapter(null);
+      updateFlashcardSearch({ chapter: null, set: null });
+    };
+    const setTitleFor = (index: FlashcardSetIndex) =>
+      cleanLearningTitle(flashcardSetOptions[index]?.title ?? `Set ${index + 1}`);
+    const activeSetTitle =
+      shouldSplitFlashcards && selectedFlashcardSet !== null
+        ? setTitleFor(selectedFlashcardSet)
+        : null;
+    const nextSetIndex =
+      shouldSplitFlashcards &&
+      selectedFlashcardSet !== null &&
+      selectedFlashcardSet + 1 < flashcardSets.length
+        ? ((selectedFlashcardSet + 1) as FlashcardSetIndex)
+        : null;
+    const subjectName = subjects.find((s) => s.id === subject)?.name ?? subject;
+    // The existing re-queue keeps a missed card in `queue` until it is known.
+    const reviewCount = queue.reduce(
+      (count, poolIdx) => count + (missedCardIds.has(pool[poolIdx]?.id ?? "") ? 1 : 0),
+      0,
+    );
+    const pendingRating =
+      interactionState === "revealing-answer"
+        ? swipeRatingCue === "right"
+          ? ("know" as const)
+          : ("review" as const)
+        : null;
+    const decide = (know: boolean) => {
+      if (flipped) handleResponse(know ? 2 : 0);
+      else commitSwipe(know ? "right" : "left");
+    };
+
+    // Before the first deal the queue is empty, which would read as "all done"
+    // for one frame; show the start of the set instead.
+    const dealt = completed || queue.length > 0;
+
+    return (
+      <FlashcardArena subjectId={subject}>
+        <header className="fc-column shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              onClick={exitStudySession}
+              aria-label="Back"
+              className="fc-icon-btn px-3"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              <span className="hidden sm:inline">Back</span>
+            </button>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-semibold text-white/85">
+                {subjectName} · {cleanLearningLabel(flashcardSetTitle)}
+              </p>
+              {activeSetTitle && <p className="truncate text-xs text-white/50">{activeSetTitle}</p>}
+            </div>
+            <button
+              type="button"
+              onClick={() => setSoundOn((v) => !v)}
+              aria-label="Toggle sound"
+              aria-pressed={soundOn}
+              title={soundOn ? "Sound on" : "Sound off"}
+              className="fc-icon-btn"
+            >
+              {soundOn ? (
+                <Volume2 className="h-4 w-4" aria-hidden="true" />
+              ) : (
+                <VolumeX className="h-4 w-4 opacity-60" aria-hidden="true" />
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={() => setVibrateOn((v) => !v)}
+              aria-label="Toggle vibration"
+              aria-pressed={vibrateOn}
+              title={vibrateOn ? "Vibration on" : "Vibration off"}
+              className={`fc-icon-btn ${vibrateOn ? "" : "opacity-60"}`}
+            >
+              <Vibrate className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
+          {subject === "math" &&
+            chapter &&
+            MATH_FLASHCARD_BANKS[chapter] &&
+            mathFlashcardLang &&
+            mathFlashcardCategory && (
+              <div className="mt-2 flex gap-1.5 overflow-x-auto pb-1">
+                {MATH_FLASHCARD_CATEGORIES.map((category) => (
+                  <button
+                    key={category.id}
+                    type="button"
+                    onClick={() => selectMathCategory(category.id)}
+                    aria-pressed={mathFlashcardCategory === category.id}
+                    className="fc-icon-btn fc-chip shrink-0 px-3"
+                  >
+                    {category.icon} {cleanLearningLabel(category[mathFlashcardLang].title)}
+                  </button>
+                ))}
+              </div>
+            )}
+        </header>
+
+        <main className="fc-stage">
+          {/* Progress, card and controls are one composition, centred together
+              in the space under the header. */}
+          <div className="fc-column fc-progress">
+            <div className="flex h-6 items-center justify-between gap-3 text-xs text-white/60">
+              <span className="tabular-nums">
+                {completed ? (
+                  `${total} of ${total} cards`
+                ) : dealt ? (
+                  <>
+                    Card {done + 1} of {total}
+                  </>
+                ) : (
+                  <>Card 1 of {total}</>
+                )}
+              </span>
+              <span className="flex shrink-0 items-center gap-2 font-semibold sm:gap-3">
+                {!completed && streak >= 2 && (
+                  <span className="inline-flex items-center gap-1 text-nova-yellow">
+                    <span aria-hidden="true">🔥</span>
+                    {streak}
+                    <span className="hidden font-normal text-white/60 sm:inline">
+                      known in a row
+                    </span>
+                  </span>
+                )}
+                {!completed && reviewCount > 0 && (
+                  <span className="rounded-full border border-rose-300/30 bg-rose-500/10 px-2 py-0.5 leading-4 text-rose-200">
+                    Review: {reviewCount}
+                  </span>
+                )}
+                <span className="font-normal tabular-nums">
+                  {completed ? 100 : dealt ? pct : 0}%
+                </span>
+              </span>
+            </div>
+            <div
+              className="mt-2 h-2 w-full overflow-hidden rounded-full bg-white/10"
+              role="progressbar"
+              aria-label="Flashcard progress"
+              aria-valuemin={0}
+              aria-valuemax={total}
+              aria-valuenow={completed ? total : dealt ? done : 0}
+            >
+              <div
+                className="fc-progress-fill h-full rounded-full"
+                style={{ width: `${completed ? 100 : dealt ? pct : 0}%` }}
+              />
+            </div>
+          </div>
+          {pool.length === 0 || !current ? (
+            <div
+              className="fc-column fc-face relative text-center"
+              style={{ background: "var(--fc-surface)" }}
+            >
+              <p className="py-10 text-white/70">
+                {subject === "math" && !favOnly
+                  ? "Flashcards Coming Soon"
+                  : "No flashcards match your filters."}
+              </p>
+              {favOnly && (
+                <button
+                  type="button"
+                  onClick={() => setFavOnly(false)}
+                  className="fc-icon-btn mx-auto px-5"
+                >
+                  Show all cards
+                </button>
+              )}
+            </div>
+          ) : completed ? (
+            <FlashcardCompletion
+              setTitle={activeSetTitle}
+              total={totalCards}
+              neededReview={missedCardIds.size}
+              bestStreak={longestStreak}
+              xpEarned={xpEarned}
+              nextSetTitle={nextSetIndex !== null ? setTitleFor(nextSetIndex) : null}
+              onNextSet={nextSetIndex !== null ? () => selectFlashcardSet(nextSetIndex) : null}
+              onStudyAgain={shuffle}
+              onFinish={exitStudySession}
+            />
+          ) : (
+            <div className="fc-column">
+              <FlashcardDeck
+                turnKey={`${cardTurn}:${idx}:${current.id}`}
+                front={cleanLearningTitle(current.front)}
+                back={cleanLearningQuestion(current.back)}
+                metaLabel={`${subj?.emoji ?? ""} ${subj?.name ?? subjectName} • ${current.form}`.trim()}
+                favourite={fav}
+                onToggleFavourite={() => toggleFavorite(current.id)}
+                watermark={
+                  planetTheme
+                    ? [planetTheme.decor[0], planetTheme.decor[1] ?? planetTheme.decor[0]]
+                    : null
+                }
+                flipped={flipped}
+                exit={slideOut}
+                remaining={remaining}
+                dragProgress={dragProgress}
+                cardRef={cardRef}
+                cardStyle={{
+                  // pan-y: the browser keeps vertical scroll, we own horizontal drag
+                  touchAction: "pan-y",
+                  transform: `translateX(${swipeOffset}px) rotate(${dragRotation}deg)`,
+                  transition:
+                    swipeOffset === 0
+                      ? reducedMotionRef.current
+                        ? "transform 0.15s linear"
+                        : "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)"
+                      : "none",
+                }}
+                ariaLabel={
+                  flipped
+                    ? "Flashcard answer shown. Press Enter to show question."
+                    : "Flashcard question shown. Press Enter to flip."
+                }
+                hint="Tap to flip · Swipe → know · Swipe ← don't know"
+                knowCueOpacity={knowCueOpacity}
+                dontKnowCueOpacity={dontKnowCueOpacity}
+                ratingCue={
+                  swipeRatingCue
+                    ? swipeRatingCue === "right"
+                      ? { text: "✓ I knew this", tone: "know" }
+                      : { text: "↻ Review again", tone: "review" }
+                    : null
+                }
+                showXp={floatXp}
+                onFlip={handleFlip}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    handleFlip();
+                  }
+                }}
+                onPointerDown={onCardPointerDown}
+                onPointerMove={onCardPointerMove}
+                onPointerUp={onCardPointerUp}
+                onPointerCancel={onCardPointerCancel}
+              />
+              <FlashcardControls
+                flipped={flipped}
+                pending={pendingRating}
+                disabled={interactionState !== "idle"}
+                onDontKnow={() => decide(false)}
+                onKnow={() => decide(true)}
+                onAlmost={() => handleResponse(1)}
+                onEasy={() => handleResponse(3)}
+                onNext={handleNextCard}
+                // Deck tools sit on the left, clear of the floating music
+                // button on phones; card navigation stays centred.
+                tools={
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => setFavOnly((v) => !v)}
+                      aria-pressed={favOnly}
+                      aria-label="Show favourite cards only"
+                      title="Favorites only"
+                      className="fc-icon-btn fc-icon-btn-sm fc-fav"
+                    >
+                      <Heart
+                        className={`h-4 w-4 ${favOnly ? "fill-current" : ""}`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={shuffle}
+                      aria-label="Shuffle deck"
+                      title="Shuffle"
+                      className="fc-icon-btn fc-icon-btn-sm"
+                    >
+                      <Shuffle className="h-4 w-4" aria-hidden="true" />
+                    </button>
+                  </>
+                }
+                // Locked while a rating is pending or applying, so it can't
+                // abandon or duplicate that attempt.
+                pager={
+                  <>
+                    <button
+                      type="button"
+                      aria-label="Previous card"
+                      disabled={interactionState !== "idle"}
+                      onClick={() => go(-1)}
+                      className="fc-icon-btn"
+                    >
+                      <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+                    </button>
+                    <span className="min-w-[3.5rem] text-center text-sm tabular-nums text-white/70">
+                      {dealt ? Math.min(done + 1, total) : 1} / {total}
+                    </span>
+                    <button
+                      type="button"
+                      aria-label="Next card"
+                      disabled={interactionState !== "idle"}
+                      onClick={() => go(1)}
+                      className="fc-icon-btn"
+                    >
+                      <ChevronRight className="h-5 w-5" aria-hidden="true" />
+                    </button>
+                  </>
+                }
+              />
+            </div>
+          )}
+        </main>
+        {showTip && !completed && (
+          <div className="pointer-events-none fixed inset-x-0 bottom-[calc(var(--mobile-content-bottom)+0.5rem)] z-10 mx-auto w-fit max-w-[calc(100%-2rem)] rounded-full border border-white/10 bg-[#0d1416] px-4 py-2 text-xs text-white/75 shadow-xl lg:bottom-6">
+            💡 Tap card to flip · swipe ➜ to know · ⬅ to skip
+          </div>
+        )}
+      </FlashcardArena>
     );
   }
 
@@ -6618,581 +6936,7 @@ function FlashcardsPage() {
           }}
           onSelect={selectFlashcardSet}
         />
-      ) : (
-        <>
-          {isEnglishFlashcardDeck ? (
-            <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-              <button
-                onClick={() => {
-                  if (shouldSplitFlashcards && selectedFlashcardSet !== null) {
-                    resetSession();
-                    updateFlashcardSearch({ set: null });
-                    return;
-                  }
-                  setChapter(null);
-                  updateFlashcardSearch({ chapter: null, set: null });
-                  resetSession();
-                }}
-                className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm transition-all hover:-translate-x-0.5 hover:bg-white/10"
-              >
-                <ArrowLeft className="h-4 w-4" /> Back to flashcards
-              </button>
-              <span className="text-sm font-semibold text-muted-foreground">
-                {form === "Form 2"
-                  ? "English Form 2 •"
-                  : form === "Form 3"
-                    ? "English Form 3 •"
-                    : "English Form 1 •"}{" "}
-                {cleanLearningLabel(
-                  (form === "Form 2"
-                    ? ENGLISH_FLASHCARD_DECKS_F2
-                    : form === "Form 3"
-                      ? ENGLISH_FLASHCARD_DECKS_F3
-                      : ENGLISH_FLASHCARD_DECKS
-                  ).find((deck) => deck.id === chapter)?.title ?? chapter,
-                )}
-              </span>
-            </div>
-          ) : (
-            <ContentHeader
-              subjectId={subject}
-              chapterKey={chapter}
-              scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
-              form={form}
-              mode="flashcards"
-              onBack={() => {
-                if (shouldSplitFlashcards && selectedFlashcardSet !== null) {
-                  resetSession();
-                  updateFlashcardSearch({ set: null });
-                  return;
-                }
-                if (hasMathFlashcards) {
-                  setMathFlashcardCategory(null);
-                  resetSession();
-                  return;
-                }
-                setChapter(null);
-                updateFlashcardSearch({ chapter: null, set: null });
-              }}
-            />
-          )}
-
-          {/* Settings row */}
-          <div className="flex justify-end gap-2 mb-3">
-            <button
-              onClick={() => setSoundOn((v) => !v)}
-              aria-label="Toggle sound"
-              className="p-2 rounded-full glass hover:bg-white/10 transition"
-              title={soundOn ? "Sound on" : "Sound off"}
-            >
-              {soundOn ? (
-                <Volume2 className="w-4 h-4" />
-              ) : (
-                <VolumeX className="w-4 h-4 text-muted-foreground" />
-              )}
-            </button>
-            <button
-              onClick={() => setVibrateOn((v) => !v)}
-              aria-label="Toggle vibration"
-              className={`p-2 rounded-full glass hover:bg-white/10 transition ${vibrateOn ? "" : "text-muted-foreground"}`}
-              title={vibrateOn ? "Vibration on" : "Vibration off"}
-            >
-              <Vibrate className="w-4 h-4" />
-            </button>
-          </div>
-
-          {subject === "math" &&
-            chapter &&
-            MATH_FLASHCARD_BANKS[chapter] &&
-            mathFlashcardLang &&
-            mathFlashcardCategory && (
-              <div className="glass-strong rounded-2xl p-3 mb-3 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
-                  {mathFlashcardLang === "dlp" ? "Categories" : "Kategori"}
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {MATH_FLASHCARD_CATEGORIES.map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => selectMathCategory(category.id)}
-                      className={`px-3 py-1.5 rounded-full text-xs font-semibold transition ${
-                        mathFlashcardCategory === category.id
-                          ? "bg-gradient-to-r from-primary to-accent text-white"
-                          : "bg-white/5 text-muted-foreground hover:bg-white/10"
-                      }`}
-                    >
-                      {category.icon} {cleanLearningLabel(category[mathFlashcardLang].title)}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-          {!isEnglishFlashcardDeck && (
-            <div className="glass-strong rounded-2xl p-4 mb-6 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
-              <div className="flex flex-wrap gap-2 items-center">
-                <select
-                  value={form}
-                  onChange={(e) => {
-                    const nextForm = normalizeFormParam(e.target.value);
-                    if (!nextForm) return;
-                    // Rebuild the session for the newly selected Form and keep
-                    // it in the URL so refresh/direct links stay on that Form.
-                    resetSession();
-                    setForm(nextForm);
-                    setFormWasChosen(true);
-                    updateFlashcardSearch({ form: nextForm, set: null });
-                  }}
-                  className="px-4 py-2 rounded-full bg-white/5 text-sm"
-                >
-                  {forms.map((f) => (
-                    <option key={f}>{f}</option>
-                  ))}
-                </select>
-                <button
-                  onClick={() => setFavOnly((v) => !v)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition ${favOnly ? "bg-rose-500/30 text-rose-200" : "bg-white/5 text-muted-foreground"}`}
-                >
-                  ❤ Favorites
-                </button>
-                <span className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 text-xs font-semibold">
-                  <span className="text-base">🔥</span>
-                  <span className="text-nova-yellow">{streak}</span>
-                  <span className="text-muted-foreground">streak</span>
-                </span>
-              </div>
-              <button
-                onClick={shuffle}
-                className="px-4 py-2 rounded-full bg-white/5 text-sm flex items-center gap-2 hover:bg-white/10"
-              >
-                <Shuffle className="w-4 h-4" /> Shuffle
-              </button>
-            </div>
-          )}
-          {isEnglishFlashcardDeck && (
-            <div className="glass-strong rounded-2xl p-4 mb-6 flex flex-wrap gap-2 items-center justify-between animate-fade-up">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-bold text-cyan-100">
-                {total || pool.length} Cards
-              </span>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setFavOnly((v) => !v)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition ${favOnly ? "bg-rose-500/30 text-rose-200" : "bg-white/5 text-muted-foreground"}`}
-                >
-                  Favorites
-                </button>
-                <button
-                  onClick={shuffle}
-                  className="px-4 py-2 rounded-full bg-white/5 text-sm flex items-center gap-2 hover:bg-white/10"
-                >
-                  <Shuffle className="w-4 h-4" /> Shuffle
-                </button>
-              </div>
-            </div>
-          )}
-          <p className="text-center text-xs text-muted-foreground mb-4 animate-fade-up">
-            🔀 Cards are shuffled every session
-          </p>
-
-          {pool.length === 0 || !current ? (
-            <div className="text-center py-20 glass rounded-2xl">
-              <p className="text-muted-foreground">
-                {subject === "math"
-                  ? "Flashcards Coming Soon"
-                  : "No flashcards match your filters."}
-              </p>
-            </div>
-          ) : completed ? (
-            <>
-              <Confetti count={90} />
-              <div className="glass-strong rounded-3xl p-10 text-center animate-fade-up">
-                <div className="text-6xl mb-3 animate-float-soft">🏆</div>
-                <h2 className="font-display text-3xl font-bold">All done!</h2>
-                <p className="mt-2 text-muted-foreground">Magnificent revision session.</p>
-                <div className="mt-6 grid grid-cols-2 sm:grid-cols-5 gap-3 text-sm">
-                  <div className="glass rounded-2xl p-3">
-                    <div className="text-2xl font-bold">{totalCards}</div>
-                    <div className="text-xs text-muted-foreground">Total</div>
-                  </div>
-                  <div className="glass rounded-2xl p-3">
-                    <div className="text-2xl font-bold text-emerald-300">{knownCount} ✅</div>
-                    <div className="text-xs text-muted-foreground">Known</div>
-                  </div>
-                  <div className="glass rounded-2xl p-3">
-                    <div className="text-2xl font-bold text-rose-300">{unknownCount} ❌</div>
-                    <div className="text-xs text-muted-foreground">To review</div>
-                  </div>
-                  <div className="glass rounded-2xl p-3">
-                    <div className="text-2xl font-bold">{longestStreak} 🔥</div>
-                    <div className="text-xs text-muted-foreground">Best streak</div>
-                  </div>
-                  <div className="glass rounded-2xl p-3">
-                    <div className="text-2xl font-bold text-nova-yellow">+{xpEarned}</div>
-                    <div className="text-xs text-muted-foreground">Activity XP earned</div>
-                  </div>
-                </div>
-                <div className="mt-7 flex flex-wrap gap-3 justify-center">
-                  <button
-                    onClick={shuffle}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:scale-105 transition-transform"
-                  >
-                    Ulang Semula 🔄
-                  </button>
-                  <button
-                    onClick={() => {
-                      setSubject(null);
-                      setChapter(null);
-                      resetSession();
-                    }}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-strong font-semibold hover:scale-105 transition-transform"
-                  >
-                    Subjek Lain 📚
-                  </button>
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              {/* Progress */}
-              <div className="mb-3 flex justify-between items-center text-xs text-muted-foreground">
-                <span>
-                  Card {done + 1} of {total}
-                </span>
-                <span>{pct}%</span>
-              </div>
-              <div
-                className="mb-6 h-2 w-full overflow-hidden rounded-full bg-white/10"
-                role="progressbar"
-                aria-label="Flashcard progress"
-                aria-valuemin={0}
-                aria-valuemax={total}
-                aria-valuenow={done + 1}
-              >
-                <div
-                  className={`h-full bg-gradient-to-r ${progressColor(pct)} transition-all duration-700 ${(pct >= 25 && pct < 30) || (pct >= 50 && pct < 55) || (pct >= 75 && pct < 80) || pct === 100 ? "animate-pulse" : ""}`}
-                  style={{ width: `${pct}%` }}
-                />
-              </div>
-
-              <FireBadge streak={streak} />
-
-              <div className="relative">
-                {/* Card stack behind — not interactive, and not independently
-                    draggable: only the top card has pointer handlers. The
-                    next card eases toward full scale as the top one is
-                    dragged away, so the stack reads as "the next one is
-                    coming up" rather than a static backdrop. */}
-                {remaining > 1 && (
-                  <>
-                    <div
-                      className="absolute inset-0 glass rounded-3xl translate-y-3 opacity-50 pointer-events-none"
-                      style={{
-                        transform: `scale(${0.96 + dragProgress * 0.04})`,
-                        transition:
-                          interactionState === "dragging" ? "none" : "transform 0.3s ease",
-                      }}
-                    />
-                    {remaining > 2 && (
-                      <div className="absolute inset-0 glass rounded-3xl translate-y-6 scale-[0.92] opacity-30 pointer-events-none" />
-                    )}
-                    <div className="absolute -top-3 -right-3 z-20 glass-strong rounded-full px-3 py-1 text-xs font-bold pointer-events-none">
-                      {remaining} left
-                    </div>
-                  </>
-                )}
-
-                <div
-                  ref={cardRef}
-                  role="button"
-                  tabIndex={0}
-                  aria-pressed={flipped}
-                  aria-label={
-                    flipped
-                      ? "Flashcard answer shown. Press Enter to show question."
-                      : "Flashcard question shown. Press Enter to flip."
-                  }
-                  onClick={handleFlip}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      handleFlip();
-                    }
-                  }}
-                  onPointerDown={onCardPointerDown}
-                  onPointerMove={onCardPointerMove}
-                  onPointerUp={onCardPointerUp}
-                  onPointerCancel={onCardPointerCancel}
-                  className={`flashcard-study-card relative mx-auto cursor-pointer select-none rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]
-                    ${dealing ? "animate-deal-in" : ""}
-                    ${shake ? "animate-shake" : ""}
-                    ${bounce ? "animate-bounce-soft" : ""}
-                    ${slideOut === "right" ? "animate-slide-out-right" : ""}
-                    ${slideOut === "left" ? "animate-slide-out-left" : ""}
-                    ${flash === "green" ? "animate-flash-green" : ""}
-                    ${flash === "red" ? "animate-flash-red" : ""}
-                  `}
-                  style={{
-                    height: "clamp(360px, 58dvh, 440px)",
-                    // pan-y: the browser keeps vertical scroll, we own horizontal drag
-                    touchAction: "pan-y",
-                    transform: slideOut
-                      ? undefined
-                      : `translateX(${swipeOffset}px) rotate(${dragRotation}deg)`,
-                    transition:
-                      swipeOffset === 0
-                        ? reducedMotionRef.current
-                          ? "transform 0.15s linear"
-                          : "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)"
-                        : "none",
-                  }}
-                >
-                  {/* Progressive KNOW / DON'T KNOW cue — fades in with drag
-                      distance, so the decision is legible before release. */}
-                  {knowCueOpacity > 0 && (
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute left-4 top-4 z-30 -rotate-6 rounded-xl border-2 border-emerald-400 px-3 py-1 text-lg font-black uppercase tracking-wide text-emerald-400"
-                      style={{ opacity: knowCueOpacity }}
-                    >
-                      Know
-                    </div>
-                  )}
-                  {dontKnowCueOpacity > 0 && (
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute right-4 top-4 z-30 rotate-6 rounded-xl border-2 border-rose-400 px-3 py-1 text-lg font-black uppercase tracking-wide text-rose-400"
-                      style={{ opacity: dontKnowCueOpacity }}
-                    >
-                      Don't know
-                    </div>
-                  )}
-                  {/* Swipe accepted: the answer is showing and this confirms
-                      how it was rated. It stays up — no timer — until the
-                      student presses "Next Card" below. */}
-                  {swipeRatingCue && (
-                    <div
-                      aria-live="polite"
-                      className="pointer-events-none absolute left-1/2 top-4 z-30 -translate-x-1/2 rounded-full px-4 py-1.5 text-sm font-bold shadow-lg animate-fade-up"
-                      style={{
-                        backgroundColor: swipeRatingCue === "right" ? "#22C55E" : "#F43F5E",
-                        color: "white",
-                      }}
-                    >
-                      {swipeRatingCue === "right" ? "✓ I knew this" : "↻ Review again"}
-                    </div>
-                  )}
-                  <div className="flashcard-scene">
-                    <div
-                      key={current.id}
-                      className={`flashcard-inner${flipped ? " is-flipped" : ""}`}
-                    >
-                      {/* front */}
-                      <div
-                        className="flashcard-face flashcard-front glass-strong rounded-3xl p-6 sm:p-8 flex flex-col overflow-hidden"
-                        style={{
-                          border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
-                          boxShadow: planetTheme
-                            ? `0 24px 70px -30px ${planetTheme.glow}`
-                            : undefined,
-                        }}
-                      >
-                        {shimmer && <div className="card-shimmer-overlay" />}
-                        {planetTheme && (
-                          <span
-                            aria-hidden
-                            className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
-                            style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.12 }}
-                          >
-                            {planetTheme.decor[0]}
-                          </span>
-                        )}
-                        <div className="flex justify-between items-start">
-                          <span className="text-xs font-semibold text-muted-foreground">
-                            {subj?.emoji} {subj?.name} • {current.form}
-                          </span>
-                          <button
-                            type="button"
-                            aria-label={fav ? "Remove from favorites" : "Add to favorites"}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              toggleFavorite(current.id);
-                            }}
-                            className={`rounded-full p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70 ${fav ? "bg-rose-500/20 text-rose-300" : "bg-white/5 text-muted-foreground hover:text-rose-300"}`}
-                          >
-                            <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
-                          </button>
-                        </div>
-                        <div className="flex-1 flex items-center justify-center text-center">
-                          <p className="font-display text-2xl sm:text-4xl font-bold leading-tight">
-                            {cleanLearningTitle(current.front)}
-                          </p>
-                        </div>
-                        <p className="text-center text-xs text-muted-foreground">
-                          Tap to flip · Swipe → know · Swipe ← don't know
-                        </p>
-                      </div>
-                      {/* back */}
-                      <div
-                        className="flashcard-face flashcard-back glass-strong rounded-3xl p-6 sm:p-8 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden"
-                        style={{
-                          background: planetTheme
-                            ? `linear-gradient(135deg, ${planetTheme.color}22, rgba(0,0,0,0.45))`
-                            : undefined,
-                          border: planetTheme ? `1px solid ${planetTheme.color}40` : undefined,
-                          boxShadow: planetTheme
-                            ? `0 24px 70px -30px ${planetTheme.glow}`
-                            : undefined,
-                        }}
-                      >
-                        {shimmer && <div className="card-shimmer-overlay" />}
-                        {planetTheme && (
-                          <span
-                            aria-hidden
-                            className="pointer-events-none absolute bottom-3 right-4 font-display font-black leading-none"
-                            style={{ fontSize: "2.6rem", color: planetTheme.color, opacity: 0.14 }}
-                          >
-                            {planetTheme.decor[1] ?? planetTheme.decor[0]}
-                          </span>
-                        )}
-                        {/* The answer now stays on screen indefinitely (no
-                          auto-advance timer), so a long answer must be able
-                          to scroll internally rather than clip against the
-                          card's fixed height. */}
-                        <div className="max-h-full w-full overflow-y-auto py-1">
-                          <p className="font-display text-xl sm:text-3xl text-center leading-relaxed whitespace-pre-line">
-                            {cleanLearningQuestion(current.back)}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Floating XP */}
-                  {floatXp && (
-                    <div className="pointer-events-none absolute left-1/2 top-6 z-40 animate-xp-float font-display font-bold text-2xl text-emerald-300 drop-shadow-[0_0_12px_rgba(34,197,94,0.7)]">
-                      +XP
-                    </div>
-                  )}
-                  {/* Toast message */}
-                  {toast && (
-                    <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 -bottom-12 z-40 animate-combo-pop font-display font-bold text-xl">
-                      <span className={flash === "green" ? "text-emerald-300" : "text-rose-300"}>
-                        {toast}
-                      </span>
-                    </div>
-                  )}
-                  {/* Confetti burst */}
-                  {burstColor && <MiniConfetti color={burstColor} />}
-                </div>
-              </div>
-
-              {/* Navigation row — locked while a swipe rating is pending or
-                  applying, so it can't abandon/duplicate that attempt. */}
-              <div className="mt-6 flex items-center justify-center gap-3">
-                <button
-                  type="button"
-                  aria-label="Previous card"
-                  disabled={interactionState !== "idle"}
-                  onClick={() => go(-1)}
-                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <span className="text-sm text-muted-foreground">
-                  {done + 1} / {total}
-                </span>
-                <button
-                  type="button"
-                  aria-label="Next card"
-                  disabled={interactionState !== "idle"}
-                  onClick={() => go(1)}
-                  className="rounded-full glass p-3 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Below the card: three mutually exclusive states.
-                  1. A swipe already decided the rating — the answer stays up
-                     indefinitely and the only way forward is this explicit
-                     button, which fires the rating exactly once.
-                  2. Flipped manually (no swipe pending) — the original SM-2
-                     rating grid, unchanged.
-                  3. Still on the question — the flip hint, unchanged. */}
-              {interactionState === "revealing-answer" ? (
-                <div className="mt-4 flex flex-col items-center gap-2">
-                  <p className="text-xs text-muted-foreground">
-                    {swipeRatingCue === "right"
-                      ? "Marked as known — read the answer, then continue."
-                      : "Marked for review — read the answer, then continue."}
-                  </p>
-                  <button
-                    type="button"
-                    aria-label="Continue to the next card"
-                    onClick={handleNextCard}
-                    className="flex min-h-14 w-full max-w-sm items-center justify-center gap-2 rounded-2xl bg-[#8B5CF6] px-6 text-base font-bold text-white shadow-lg transition-all hover:bg-[#7C3AED] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  >
-                    Next Card <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
-              ) : flipped ? (
-                <div className="mt-4 grid grid-cols-4 gap-2">
-                  <button
-                    type="button"
-                    aria-label="Rate this card Again"
-                    onClick={() => handleResponse(0)}
-                    className="flex min-h-20 flex-col items-center gap-0.5 rounded-2xl bg-rose-500/15 py-3 text-sm font-bold text-rose-200 transition-all hover:bg-rose-500/25 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/70"
-                  >
-                    <X className="w-4 h-4" />
-                    <span>Lagi</span>
-                    <span className="text-[10px] font-normal opacity-60">Again</span>
-                  </button>
-                  <button
-                    type="button"
-                    aria-label="Rate this card Almost"
-                    onClick={() => handleResponse(1)}
-                    className="flex min-h-20 flex-col items-center gap-0.5 rounded-2xl bg-orange-500/15 py-3 text-sm font-bold text-orange-200 transition-all hover:bg-orange-500/25 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/70"
-                  >
-                    <span className="text-base">😓</span>
-                    <span>Hampir</span>
-                    <span className="text-[10px] font-normal opacity-60">No XP</span>
-                  </button>
-                  <button
-                    type="button"
-                    aria-label="Rate this card Known"
-                    onClick={() => handleResponse(2)}
-                    className="flex min-h-20 flex-col items-center gap-0.5 rounded-2xl bg-emerald-500/15 py-3 text-sm font-bold text-emerald-200 transition-all hover:bg-emerald-500/25 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/70"
-                  >
-                    <Check className="w-4 h-4" />
-                    <span>Tahu</span>
-                    <span className="text-[10px] font-normal opacity-60">+10 XP</span>
-                  </button>
-                  <button
-                    type="button"
-                    aria-label="Rate this card Easy"
-                    onClick={() => handleResponse(3)}
-                    className="flex min-h-20 flex-col items-center gap-0.5 rounded-2xl bg-sky-500/15 py-3 text-sm font-bold text-sky-200 transition-all hover:bg-sky-500/25 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/70"
-                  >
-                    <span className="text-base">✨</span>
-                    <span>Mudah</span>
-                    <span className="text-[10px] font-normal opacity-60">+15 XP</span>
-                  </button>
-                </div>
-              ) : (
-                <div className="mt-4 flex items-center justify-center gap-3 text-xs text-muted-foreground">
-                  <span>Tap card to flip, then rate how well you knew it</span>
-                </div>
-              )}
-
-              {showTip && (
-                <div className="mobile-bottom-toast fixed left-1/2 -translate-x-1/2 z-50 glass-strong rounded-full px-4 py-2 text-sm animate-fade-up shadow-xl">
-                  💡 Tap card to flip · swipe ➜ to know · ⬅ to skip
-                </div>
-              )}
-            </>
-          )}
-        </>
-      )}
+      ) : null}
     </AcademyPageShell>
   );
 }
