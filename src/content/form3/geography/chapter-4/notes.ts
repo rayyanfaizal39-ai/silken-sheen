@@ -1,659 +1,517 @@
 import type { StructuredNotes } from "@/content/types";
 
 export const geographyF3C4Notes: StructuredNotes = {
-  "chapterSummary": "Bab 4 Tumbuh-tumbuhan Semula Jadi di Malaysia merangkumi 4 subtopik rasmi: 4.1 Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia; 4.2 Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia; 4.3 Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia; 4.4 Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia. Nota ini disusun mengikut urutan buku teks dan mengekalkan fokus kepada fakta, konsep, proses, contoh, jadual, peta, rajah dan kemahiran UASA yang terdapat dalam bab.",
-  "quickRevision": [
-    "4.1 Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-    "4.2 Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia",
-    "4.3 Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-    "4.4 Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia",
-    "Jenis dan Taburan Tumbuh-tumbuhan Semula",
-    "Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan",
-    "Kepentingan Tumbuh-tumbuhan Semula Jadi",
-    "Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia"
+  chapterSummary:
+    "Bab 4 menerangkan lima jenis tumbuh-tumbuhan semula jadi utama di Malaysia, faktor yang mempengaruhi taburannya, kepentingannya kepada alam sekitar dan manusia, serta kesan kegiatan manusia terhadap hutan. Murid perlu dapat mengenal pasti ciri setiap jenis hutan dan menerangkan hubungan antara bentuk muka bumi, saliran, tanih dan iklim dengan taburan tumbuh-tumbuhan.",
+
+  quickRevision: [
+    "Lima jenis hutan utama di Malaysia ialah Hutan Hujan Tropika, Hutan Paya Air Masin, Hutan Paya Air Tawar, Hutan Pantai dan Hutan Gunung.",
+    "Hutan Hujan Tropika merupakan jenis hutan yang paling luas dan mempunyai struktur berlapis-lapis.",
+    "Hutan Paya Air Masin terdapat di pinggir laut terlindung dan muara sungai berlumpur.",
+    "Hutan Paya Air Tawar terdapat di kawasan pedalaman bersaliran buruk yang sering bertakung air tawar.",
+    "Hutan Pantai terdapat di kawasan pantai berpasir, manakala Hutan Gunung berubah mengikut ketinggian.",
+    "Empat faktor utama yang mempengaruhi tumbuh-tumbuhan semula jadi ialah bentuk muka bumi, saliran, tanih dan iklim.",
+    "Hutan penting sebagai kawasan tadahan hujan, habitat, penstabil ekosistem, sumber bahan mentah dan sumber perubatan.",
+    "Kegiatan manusia boleh membawa kesan positif melalui pemeliharaan dan pemuliharaan, atau kesan negatif melalui penyahhutanan dan penerokaan tidak terkawal.",
   ],
-  "keyTerms": [
-    "Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-    "Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia",
-    "Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-    "Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia",
-    "Hutan Pantai tumbuh di kawasan pantai yang berpasir Jenis-jenis pokok yang terdapat di kawasan ini adalah seperti pokok ru, tapak kuda, pokok renek, mengkuang, jemerlang laut, bintangor laut, kelat jambu laut dan pokok kelapa",
-    "Antara jenis pokok yang tumbuh di hutan ini ialah mengkuang, mersawa paya,",
-    "Terdapat di kawasan tanah tinggi yang melebihi 1 200 m dari aras laut Jenis tumbuh-tumbuhan semula jadi adalah berbeza mengikut ketinggian Tumbuh-tumbuhan akan mengadaptasikan dengan suhu dan kesuburan tanih",
-    "Hutan montane atas: Terdapat pokok-pokok daun tirus Kebanyakan pokok adalah rendah Ketinggian pokok di antara 1.5 meter",
-    "Malaysia kaya dengan pelbagai jenis tanih, antaranya ialah:",
-    "Konsep ekosistem adalah saling bergantung antara komponen biotik dengan komponen abiotik dalam alam sekitar: Biotik meliputi organisma hidup seperti tumbuh-tumbuhan, haiwan dan manusia",
-    "Abiotik mengandungi persekitaran fizikal seperti bentuk muka bumi, batuan, tanih, air, udara, mineral dan sumber tenaga suria Kawasan hutan merupakan satu ekosistem dengan tumbuh-tumbuhan semula jadi sebagai",
-    "Hutan adalah penting sebagai bahan mentah untuk membekalkan sumber kayu balak dalam industri",
-    "Dalam program berkenaan, spesies yang disenaraikan ialah jati, sentang, getah, khaya, akasia, batai, kelempayan dan binuang. Namun, tumpuan diberikan kepada pokok getah dan pokok akasia.",
-    "Agensi seperti Jabatan Perhutanan, Institusi Penyelidikan Hutan Malaysia (FRIM) dan Jabatan Perlindungan Hidupan Liar dan Taman Negara (PERHILITAN) telah mengambil langkah untuk memulihara hutan. Antaranya adalah dengan menanam pokok yang bermutu dan tahan daripada"
+
+  keyTerms: [
+    "Hutan Hujan Tropika",
+    "Hutan Paya Air Masin",
+    "Hutan Paya Air Tawar",
+    "Hutan Pantai",
+    "Hutan Gunung",
+    "Lapisan renjong",
+    "Kanopi",
+    "Liana",
+    "Epifit",
+    "Akar banir",
+    "Akar jangkang",
+    "Pneumatofor",
+    "Tanih gambut",
+    "Ekosistem",
+    "Tadahan hujan",
+    "Penyahhutanan",
+    "Pemeliharaan",
+    "Pemuliharaan",
   ],
-  "keyExamFacts": [
-    "Jenis dan Taburan Tumbuh-tumbuhan Semula",
-    "Peta 4.1 Taburan tumbuh-tumbuhan semula jadi di Malaysia",
-    "jadi ini dibahagikan kepada lima jenis, iaitu:",
-    "turun dengan mudah dan cepat Empat jenis lapisan Hutan Hujan Tropika",
-    "Hutan Pantai tumbuh di kawasan pantai yang berpasir Jenis-jenis pokok yang terdapat di kawasan ini adalah seperti pokok ru, tapak kuda, pokok renek, mengkuang, jemerlang laut, bintangor laut, kelat jambu laut dan pokok kelapa",
-    "Antara jenis pokok yang tumbuh di hutan ini ialah mengkuang, mersawa paya,",
-    "Terdapat juga pokok-pokok jenis berkayu keras dan batangnya besar, lurus dan tinggi yang tumbuh secara bercampur aduk, rapat-rapat dan tidak mempunyai dahan di",
-    "Jadual 4.1 Jenis akar dan kegunaannya",
-    "Jenis akar Pokok Kegunaan",
-    "Jenis akar Pokok Huraian",
-    "Jadual 4.2 Jenis akar dan huraiannya",
-    "Terdapat di kawasan tanah tinggi yang melebihi 1 200 m dari aras laut Jenis tumbuh-tumbuhan semula jadi adalah berbeza mengikut ketinggian Tumbuh-tumbuhan akan mengadaptasikan dengan suhu dan kesuburan tanih",
-    "Bunga rafflesia di Banjaran Crocker (Sabah) Jadual 4.3 Ciri-ciri empat lapisan hutan Rajah 4.6 Profil Hutan Gunung Ketinggian Lapisan hutan Jenis pokok/ tumbuhan",
-    "Tumbuhan hampir alpain: Terdapat hutan campur jenis pokok",
-    "Rumput jenis Low’s Buttercup, Bornean eyebright, red sanicle dan periuk kera",
-    "Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan",
-    "Saliran Jenis pokok Lokasi",
-    "Malaysia kaya dengan pelbagai jenis tanih, antaranya ialah:"
+
+  keyExamFacts: [
+    "Hutan Hujan Tropika mempunyai empat lapisan utama: renjong, kanopi, lapisan tengah dan lantai hutan.",
+    "Pokok pada lapisan renjong boleh mencapai sekitar 40 hingga 50 meter dan mempunyai akar banir untuk sokongan.",
+    "Kanopi yang rapat mengehadkan cahaya matahari daripada sampai ke lantai hutan.",
+    "Bakau mempunyai akar jangkang untuk sokongan pada tanah berlumpur, manakala pneumatofor membantu pernafasan di kawasan yang kerap ditenggelami air.",
+    "Hutan Paya Air Tawar lazimnya mempunyai tanih gambut dan air tawar yang bertakung.",
+    "Hutan Pantai dicirikan oleh tumbuhan yang tahan angin dan keadaan pantai seperti ru, kelapa, mengkuang dan tapak kuda.",
+    "Hutan Gunung lazimnya terdapat pada ketinggian melebihi kira-kira 1 200 meter dan tumbuhannya semakin rendah serta renek apabila altitud meningkat.",
+    "Iklim Khatulistiwa yang panas dan lembap sepanjang tahun membantu pertumbuhan hutan yang tebal dan malar hijau.",
+    "Penyahhutanan boleh meningkatkan hakisan tanih, risiko tanah runtuh, gangguan kawasan tadahan hujan dan kehilangan habitat.",
+    "Pemeliharaan mengekalkan keadaan asal hutan, manakala pemuliharaan membantu mengurus dan memulihkan hutan secara lestari.",
   ],
-  "sections": [
+
+  sections: [
     {
-      "title": "Pengenalan Bab",
-      "subsections": [
+      title: "Pengenalan Bab",
+      subsections: [
         {
-          "title": "Gambaran keseluruhan",
-          "content": "Malaysia kaya dengan pelbagai jenis tumbuhan semula jadi. Tahukah anda apakah jenis dan taburan tumbuh-tumbuhan semula jadi di Malaysia? Apakah faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di Malaysia? Apakah kepentingan tumbuh-tumbuhan semula jadi kepada negara? Bagaimanakah kegiatan manusia dapat memberi kesan terhadap tumbuh-tumbuhan ini? Info3 Mengenal pasti jenis dan taburan tumbuh-tumbuhan semula"
+          title: "Gambaran keseluruhan",
+          content:
+            "Malaysia mempunyai iklim Khatulistiwa yang panas dan lembap serta menerima hujan yang banyak. Keadaan ini menyokong pertumbuhan pelbagai jenis hutan. Walau bagaimanapun, jenis hutan tidak sama di semua tempat kerana bentuk muka bumi, saliran dan tanih turut mempengaruhi taburannya.",
         },
         {
-          "title": "Checklist subtopik",
-          "bulletPoints": [
-            "✓ 4.1 Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "✓ 4.2 Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "✓ 4.3 Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "✓ 4.4 Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "4.1 Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Jenis dan Taburan Tumbuh-tumbuhan Semula Hutan di Malaysia terdiri daripada:"
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "Hutan Pantai tumbuh di kawasan pantai yang berpasir Jenis-jenis pokok yang terdapat di kawasan ini adalah seperti pokok ru, tapak kuda, pokok renek, mengkuang, jemerlang laut, bintangor laut, kelat jambu laut dan pokok kelapa",
-            "Antara jenis pokok yang tumbuh di hutan ini ialah mengkuang, mersawa paya,",
-            "Terdapat di kawasan tanah tinggi yang melebihi 1 200 m dari aras laut Jenis tumbuh-tumbuhan semula jadi adalah berbeza mengikut ketinggian Tumbuh-tumbuhan akan mengadaptasikan dengan suhu dan kesuburan tanih",
-            "Hutan montane atas: Terdapat pokok-pokok daun tirus Kebanyakan pokok adalah rendah Ketinggian pokok di antara 1.5 meter",
-            "Jenis dan Taburan Tumbuh-tumbuhan Semula",
-            "Peta 4.1 Taburan tumbuh-tumbuhan semula jadi di Malaysia",
-            "Jadual 4.1 Jenis akar dan kegunaannya",
-            "Jenis akar Pokok Kegunaan",
-            "Bunga rafflesia di Banjaran Crocker (Sabah) Jadual 4.3 Ciri-ciri empat lapisan hutan Rajah 4.6 Profil Hutan Gunung Ketinggian Lapisan hutan Jenis pokok/ tumbuhan"
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Hutan Pantai tumbuh di kawasan pantai yang berpasir Jenis-jenis pokok yang terdapat di kawasan ini adalah seperti pokok ru, tapak kuda, pokok renek, mengkuang, jemerlang laut, bintangor laut, kelat jambu laut dan pokok kelapa",
-            "Antara jenis pokok yang tumbuh di hutan ini ialah mengkuang, mersawa paya,",
-            "Terdapat di kawasan tanah tinggi yang melebihi 1 200 m dari aras laut Jenis tumbuh-tumbuhan semula jadi adalah berbeza mengikut ketinggian Tumbuh-tumbuhan akan mengadaptasikan dengan suhu dan kesuburan tanih",
-            "Hutan montane atas: Terdapat pokok-pokok daun tirus Kebanyakan pokok adalah rendah Ketinggian pokok di antara 1.5 meter"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Jenis dan Taburan Tumbuh-tumbuhan Semula",
-            "Hutan di Malaysia terdiri daripada:",
-            "Iklim Khatulistiwa yang panas dan lembap sepanjang tahun",
-            "semula jadi di Malaysia.",
-            "Peta 4.1 Taburan tumbuh-tumbuhan semula jadi di Malaysia",
-            "(Sumber: Jabatan Perhutanan Malaysia, 2016) KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 54 06/04/2021 1:52 PM 1. Namakan dua contoh kawasan lain yang dilitupi Hutan Hujan Tropika.",
-            "untuk mendapatkan maklumat tentang Hutan Hujan Tropika:",
-            "di Pulau Sipadan (Sabah)",
-            "(Sumber: Diubah suai daripada Jabatan Ukur dan Pemetaan Malaysia, 2016)",
-            "jadi ini dibahagikan kepada lima jenis, iaitu:",
-            "Hutan Gunung di Taman Negara",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 55 10/22/19 10:08 AM",
-            "Rajah 4.1 Empat lapisan Hutan Hujan Tropika",
-            "Pokok-pokok di hutan ini kelihatan berlapis-lapis dan malar hijau Daun pokok bersaiz lebar, pokok yang tinggi dan dahan yang tersebar Hujung daun berbentuk tirus untuk membolehkan air hujan mengalir",
-            "turun dengan mudah dan cepat Empat jenis lapisan Hutan Hujan Tropika",
-            "Ketinggian pokok di antara 40 hingga"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Terdapat juga pokok-pokok jenis berkayu keras dan batangnya besar, lurus dan tinggi yang tumbuh secara bercampur aduk, rapat-rapat dan tidak mempunyai dahan di"
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "(Sumber: Jabatan Perhutanan Malaysia, 2016) KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 54 06/04/2021 1:52 PM 1. Namakan dua contoh kawasan lain yang dilitupi Hutan Hujan Tropika.",
-            "Hutan Pantai tumbuh di kawasan pantai yang berpasir Jenis-jenis pokok yang terdapat di kawasan ini adalah seperti pokok ru, tapak kuda, pokok renek, mengkuang, jemerlang laut, bintangor laut, kelat jambu laut dan pokok kelapa",
-            "Tumbuh-tumbuhan menjalar seperti tapak kuda sesuai hidup di pantai yang berpasir Profil hutan pantai di bawah menunjukkan perbezaan tumbuh-tumbuhan semula jadi"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Peta 4.1 Taburan tumbuh-tumbuhan semula jadi di Malaysia",
-            "(Sumber: Jabatan Perhutanan Malaysia, 2016) KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 54 06/04/2021 1:52 PM 1. Namakan dua contoh kawasan lain yang dilitupi Hutan Hujan Tropika.",
-            "(Sumber: Diubah suai daripada Jabatan Ukur dan Pemetaan Malaysia, 2016)",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 55 10/22/19 10:08 AM",
-            "Rajah 4.1 Empat lapisan Hutan Hujan Tropika",
-            "(Sumber: Diubah suai daripada wwf.org.my, 2017)",
-            "Rajah 4.2 Profil Hutan Pantai",
-            "Rajah 4.3 Profil Hutan Paya Air Tawar Terdapat di kawasan bersaliran buruk yang sering ditenggelami air, khususnya air",
-            "Jadual 4.1 Jenis akar dan kegunaannya",
-            "Rajah 4.4 Profil Hutan Paya Air Masin"
+          title: "Apa yang perlu dikuasai",
+          bulletPoints: [
+            "Mengenal pasti lima jenis tumbuh-tumbuhan semula jadi utama di Malaysia.",
+            "Menerangkan ciri dan taburan setiap jenis hutan.",
+            "Menghuraikan empat faktor yang mempengaruhi tumbuh-tumbuhan semula jadi.",
+            "Menjelaskan kepentingan hutan kepada alam sekitar, hidupan liar, manusia dan ekonomi.",
+            "Menganalisis kesan positif dan negatif kegiatan manusia terhadap hutan.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "Peta 4.1 Taburan tumbuh-tumbuhan semula jadi di Malaysia"
-              ],
-              [
-                "PETUNJUK"
-              ],
-              [
-                "(Sumber: Jabatan Perhutanan Malaysia, 2016)"
-              ],
-              [
-                "KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 54 06/04/2021 1:52 PM"
-              ],
-              [
-                "PETUNJUK"
-              ],
-              [
-                "(Sumber: Diubah suai daripada Jabatan Ukur dan Pemetaan Malaysia, 2016)"
-              ],
-              [
-                "KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 55 10/22/19 10:08 AM"
-              ],
-              [
-                "Rajah 4.1 Empat lapisan Hutan Hujan Tropika"
-              ]
-            ]
-          }
         },
-        {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Jenis dan Taburan Tumbuh-tumbuhan Semula",
-            "Hutan di Malaysia terdiri daripada:",
-            "Iklim Khatulistiwa yang panas dan lembap sepanjang tahun",
-            "semula jadi di Malaysia.",
-            "Peta 4.1 Taburan tumbuh-tumbuhan semula jadi di Malaysia",
-            "(Sumber: Jabatan Perhutanan Malaysia, 2016) KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 54 06/04/2021 1:52 PM 1. Namakan dua contoh kawasan lain yang dilitupi Hutan Hujan Tropika.",
-            "untuk mendapatkan maklumat tentang Hutan Hujan Tropika:",
-            "di Pulau Sipadan (Sabah)",
-            "(Sumber: Diubah suai daripada Jabatan Ukur dan Pemetaan Malaysia, 2016)",
-            "jadi ini dibahagikan kepada lima jenis, iaitu:",
-            "Hutan Gunung di Taman Negara",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 55 10/22/19 10:08 AM"
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 4.1 menekankan Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+      ],
     },
+
     {
-      "title": "4.2 Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia",
-      "subsections": [
+      title: "4.1 Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia",
+      subsections: [
         {
-          "title": "Pengenalan",
-          "content": "Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Tanah pamah dan kaki bukit Hutan Hujan Tropika tumbuh di kawasan tanah pamah dan kaki bukit yang bersaliran baik Terdiri daripada pokok yang tinggi dan"
+          title: "Lima jenis hutan utama",
+          table: {
+            headers: ["Jenis hutan", "Lokasi / keadaan utama", "Contoh tumbuhan"],
+            rows: [
+              [
+                "Hutan Hujan Tropika",
+                "Tanah pamah dan kaki bukit yang panas, lembap dan bersaliran baik.",
+                "Meranti, cengal, keruing, seraya, jelutong dan pelbagai tumbuhan liana serta epifit.",
+              ],
+              [
+                "Hutan Paya Air Masin",
+                "Pinggir laut terlindung dan muara sungai yang berlumpur serta dipengaruhi air masin.",
+                "Bakau, nipah dan tumbuhan yang tahan keadaan berlumpur serta air masin.",
+              ],
+              [
+                "Hutan Paya Air Tawar",
+                "Kawasan pedalaman bersaliran buruk yang sering bertakung air tawar.",
+                "Ramin, kempas, meranti paya dan mengkuang.",
+              ],
+              [
+                "Hutan Pantai",
+                "Pantai berpasir yang terdedah kepada angin laut.",
+                "Ru, kelapa, mengkuang, tapak kuda, bintangor laut dan tumbuhan renek.",
+              ],
+              [
+                "Hutan Gunung",
+                "Kawasan tanah tinggi, lazimnya melebihi kira-kira 1 200 m dari aras laut.",
+                "Oak, laurel, paku pakis, lumut, orkid, periuk kera dan rhododendron mengikut ketinggian.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "Hutan Hujan Tropika",
+          content:
+            "Hutan Hujan Tropika tumbuh dengan lebat kerana menerima suhu tinggi dan hujan yang banyak sepanjang tahun. Pokoknya malar hijau, tumbuh rapat dan mempunyai ketinggian yang berbeza, lalu membentuk beberapa lapisan.",
         },
         {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "Malaysia kaya dengan pelbagai jenis tanih, antaranya ialah:",
-            "Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan",
-            "Tanih berpasir: Tanah yang terbentuk dari batuan beku dan batuan sedimen yang mempunyai butiran kasar dan berkerikil 1. Senaraikan faktor-faktor yang",
-            "Tumbuh-tumbuhan semula jadi di Malaysia memberi banyak manfaat kepada alam sekitar, manusia dan negara. Kepentingan tumbuh-tumbuhan ini tiada nilainya."
-          ]
+          title: "Empat lapisan Hutan Hujan Tropika",
+          table: {
+            headers: ["Lapisan", "Ciri utama"],
+            rows: [
+              [
+                "Renjong",
+                "Lapisan paling tinggi; pokok boleh mencapai sekitar 40–50 m. Batang tinggi dan akar banir membantu menyokong pokok besar.",
+              ],
+              [
+                "Kanopi",
+                "Dahan dan daun membentuk bumbung hutan yang rapat. Banyak burung dan hidupan arboreal hidup di sini.",
+              ],
+              [
+                "Lapisan tengah",
+                "Menerima cahaya yang lebih sedikit. Banyak tumbuhan liana dan epifit seperti rotan, orkid dan paku pakis.",
+              ],
+              [
+                "Lantai hutan",
+                "Gelap dan lembap kerana sedikit cahaya sampai ke bawah. Bahan organik yang gugur mengalami pereputan.",
+              ],
+            ],
+          },
         },
         {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Malaysia kaya dengan pelbagai jenis tanih, antaranya ialah:"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan",
-            "Tanah pamah dan kaki bukit Hutan Hujan Tropika tumbuh di kawasan tanah pamah dan kaki bukit yang bersaliran baik Terdiri daripada pokok yang tinggi dan",
-            "Kawasan yang berada di bawah",
-            "180 meter dari aras laut",
-            "Akar banir berfungsi untuk menyokong pokok daripada tumbang",
-            "Bentuk muka bumi Saliran",
-            "Muara sungai, pinggir tasik dan",
-            "Kawasan berpasir dan berlumpur",
-            "Kawasan pinggir laut yang",
-            "terlindung dan muara sungai",
-            "Tanah pamah yang sering ditenggelami air ditumbuhi oleh Hutan Paya Air Tawar Tanah tinggi melebihi 1 200",
-            "ketinggian 1 200 meter terdiri daripada pokok yang bersaiz kecil Pada ketinggian 1 800 meter hingga",
-            "2 900 meter pula terdapat",
-            "pertumbuhan lumut dan pokok tumpang seperti orkid serta",
-            "Air Terjun Lasir (Terengganu)",
-            "Malaysia mengalami iklim Khatulistiwa yang panas dan lembap sepanjang tahun Purata suhu, iaitu 27°C dan menerima hujan yang banyak kira-kira"
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "pertumbuhan lumut dan pokok tumpang seperti orkid serta",
-            "Suhu kira-kira 18°C di kawasan tanah tinggi menggalakkan pertumbuhan Hutan Gunung seperti yang terdapat",
-            "Malaysia kaya dengan pelbagai jenis tanih, antaranya ialah:"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Jadual 4.4 Pelbagai jenis tanih dan tumbuh-tumbuhan semula jadi Hutan dan jenis pokok Jenis tanih Jenis pokok Lokasi Hutan Hujan Tropika - Tanih aluvium"
+          title: "Penyesuaian Hutan Hujan Tropika",
+          bulletPoints: [
+            "Daun lebar membantu penyerapan cahaya, manakala hujung daun yang tirus membantu air hujan mengalir dengan cepat.",
+            "Akar banir menyokong pokok yang tinggi dan besar.",
+            "Liana memanjat pokok lain untuk mendapatkan cahaya.",
+            "Epifit hidup pada batang atau dahan pokok tanpa bergantung pada tanih di lantai hutan.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
+        },
+
+        {
+          title: "Hutan Paya Air Masin",
+          content:
+            "Hutan Paya Air Masin tumbuh di kawasan berlumpur di pinggir laut terlindung dan muara sungai. Kawasan ini dipengaruhi pasang surut air laut, menyebabkan tumbuhannya memerlukan penyesuaian khas.",
+        },
+        {
+          title: "Penyesuaian tumbuhan paya air masin",
+          table: {
+            headers: ["Penyesuaian", "Fungsi"],
+            rows: [
+              ["Akar jangkang", "Memberi sokongan kepada pokok bakau pada tanah lumpur yang lembut."],
+              ["Pneumatofor / akar ceracak", "Membantu pertukaran udara apabila tanah sering ditenggelami air."],
+              ["Toleransi terhadap garam", "Membolehkan tumbuhan hidup dalam persekitaran yang dipengaruhi air masin."],
             ],
-            "rows": [
-              [
-                "Jadual 4.4 Pelbagai jenis tanih dan tumbuh-tumbuhan semula jadi"
-              ]
-            ]
-          }
+          },
+        },
+
+        {
+          title: "Hutan Paya Air Tawar",
+          content:
+            "Hutan Paya Air Tawar terdapat di kawasan tanah pamah pedalaman yang bersaliran buruk dan sering bertakung air tawar. Tanihnya lazimnya kaya dengan bahan organik dan boleh membentuk tanih gambut.",
         },
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan",
-            "Tanah pamah dan kaki bukit Hutan Hujan Tropika tumbuh di kawasan tanah pamah dan kaki bukit yang bersaliran baik Terdiri daripada pokok yang tinggi dan",
-            "Kawasan yang berada di bawah",
-            "180 meter dari aras laut",
-            "Akar banir berfungsi untuk menyokong pokok daripada tumbang",
-            "Bentuk muka bumi Saliran",
-            "Muara sungai, pinggir tasik dan",
-            "Kawasan berpasir dan berlumpur",
-            "Kawasan pinggir laut yang",
-            "terlindung dan muara sungai",
-            "Tanah pamah yang sering ditenggelami air ditumbuhi oleh Hutan Paya Air Tawar Tanah tinggi melebihi 1 200",
-            "ketinggian 1 200 meter terdiri daripada pokok yang bersaiz kecil Pada ketinggian 1 800 meter hingga"
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 4.2 menekankan Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
-    },
-    {
-      "title": "4.3 Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Kepentingan Tumbuh-tumbuhan Semula Jadi Tajuk: Faktor-faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di Malaysia Objekif: Mengenal pasti faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di"
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "Konsep ekosistem adalah saling bergantung antara komponen biotik dengan komponen abiotik dalam alam sekitar: Biotik meliputi organisma hidup seperti tumbuh-tumbuhan, haiwan dan manusia",
-            "Abiotik mengandungi persekitaran fizikal seperti bentuk muka bumi, batuan, tanih, air, udara, mineral dan sumber tenaga suria Kawasan hutan merupakan satu ekosistem dengan tumbuh-tumbuhan semula jadi sebagai",
-            "Hutan adalah penting sebagai bahan mentah untuk membekalkan sumber kayu balak dalam industri",
-            "Kepentingan Tumbuh-tumbuhan Semula Jadi",
-            "Tajuk: Faktor-faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di Malaysia Objekif: Mengenal pasti faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di",
-            "Apakah faktor-faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di Malaysia?",
-            "pembangunan dan sebagainya) Manusia menggunakan tumbuh-tumbuhan untuk kepentingan sendiri tanpa memikirkan masa hadapan generasi akan datang. Kegiatan manusia yang berleluasa secara tidak langsung",
-            "akan memberikan kesan positif dan negatif terhadap tumbuh-tumbuhan semula jadi di Malaysia."
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Konsep ekosistem adalah saling bergantung antara komponen biotik dengan komponen abiotik dalam alam sekitar: Biotik meliputi organisma hidup seperti tumbuh-tumbuhan, haiwan dan manusia",
-            "Abiotik mengandungi persekitaran fizikal seperti bentuk muka bumi, batuan, tanih, air, udara, mineral dan sumber tenaga suria Kawasan hutan merupakan satu ekosistem dengan tumbuh-tumbuhan semula jadi sebagai",
-            "Hutan adalah penting sebagai bahan mentah untuk membekalkan sumber kayu balak dalam industri"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Kepentingan Tumbuh-tumbuhan Semula Jadi",
-            "Tajuk: Faktor-faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di Malaysia Objekif: Mengenal pasti faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di",
-            "Apakah faktor-faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di Malaysia?",
-            "salah satu komponen biotik utama Tumbuh-tumbuhan saling berinteraksi dengan unsur-unsur lain dalam komponen biotik dan abiotik bagi mewujudkan satu persekitaran yang",
-            "Contoh lokasi: Taman Negara Bako (Sarawak) dan",
-            "Hutan bertindak sebagai span berongga yang menyerap air serta mengalirkan air ke sungai,",
-            "empangan, kolam dan tasik",
-            "Hutan di kawasan tanah tinggi penting sebagai",
-            "Taman Negeri Royal Belum (Perak) KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 66 10/22/19 10:09 AM",
-            "Tumbuhan-tumbuhan yang terdapat di hutan kebanyakannya boleh digunakan dalam",
-            "Akar, kulit, daun, ranting dan buah daripada pelbagai spesies tumbuhan dijadikan sebagai ubat Hutan bertindak sebagai habitat kepada pelbagai",
-            "Hutan di Malaysia menjadi tempat perlindungan dan sumber makanan bagi hidupan liar Haiwan juga memilih tempat tinggal berlainan untuk keselamatan, keperluan sumber makanan",
-            "Sekiranya tumbuh-tumbuhan musnah, pelbagai spesies flora dan fauna akan kehilangan habitat",
-            "Contoh lokasi: Taman Negara Endau-Rompin (Johor) dan Lembah Danum (Sabah)",
-            "Sembong Daun, akar dan bunga Senduduk Daun, pucuk dan akar",
-            "Jadual 4.5 Tumbuh-tumbuhan semula jadi di Malaysia yang mempunyai nilai perubatan"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Alatan: Kertas sebak, alat tulis Langkah-langkah: 1. Guru akan mencantumkan dua helai kertas sebak.",
-            "Air yang diserap ke dalam tanah ditapis secara semula jadi dan menjadi air yang bersih Contoh lokasi: Banjaran Kapuas Hulu (Sarawak) dan Taman Negeri Royal Belum (Perak)",
-            "Malaysia telah mengamalkan kaedah yang bernama Selective Management System (SMS) yang terkandung dalam amalan pengurusan hutan secara mampan. Melalui teknik ini, hanya pokok balak yang matang akan ditebang manakala pokok balak",
-            "pembangunan dan sebagainya) Manusia menggunakan tumbuh-tumbuhan untuk kepentingan sendiri tanpa memikirkan masa hadapan generasi akan datang. Kegiatan manusia yang berleluasa secara tidak langsung"
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Konsep ekosistem adalah saling bergantung antara komponen biotik dengan komponen abiotik dalam alam sekitar: Biotik meliputi organisma hidup seperti tumbuh-tumbuhan, haiwan dan manusia",
-            "Abiotik mengandungi persekitaran fizikal seperti bentuk muka bumi, batuan, tanih, air, udara, mineral dan sumber tenaga suria Kawasan hutan merupakan satu ekosistem dengan tumbuh-tumbuhan semula jadi sebagai",
-            "Contoh lokasi: Taman Negara Bako (Sarawak) dan",
-            "Air yang diserap ke dalam tanah ditapis secara semula jadi dan menjadi air yang bersih Contoh lokasi: Banjaran Kapuas Hulu (Sarawak) dan Taman Negeri Royal Belum (Perak)",
-            "Contoh lokasi: Taman Negara Endau-Rompin (Johor) dan Lembah Danum (Sabah)",
-            "Hutan di Malaysia mempunyai pelbagai pokok yang sesuai untuk pembalakan seperti cengal, balau dan keruing Hasil eksport kayu balak telah memberikan sumber"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Abiotik mengandungi persekitaran fizikal seperti bentuk muka bumi, batuan, tanih, air, udara, mineral dan sumber tenaga suria Kawasan hutan merupakan satu ekosistem dengan tumbuh-tumbuhan semula jadi sebagai",
-            "Taman Negeri Royal Belum (Perak) KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 66 10/22/19 10:09 AM",
-            "Hutan di Malaysia menjadi tempat perlindungan dan sumber makanan bagi hidupan liar Haiwan juga memilih tempat tinggal berlainan untuk keselamatan, keperluan sumber makanan",
-            "Jadual 4.5 Tumbuh-tumbuhan semula jadi di Malaysia yang mempunyai nilai perubatan",
-            "(Sumber: Jabatan Perhutanan Malaysia, 2017) Habitat: Tempat hidup bagi haiwan",
-            "Hutan adalah penting sebagai bahan mentah untuk membekalkan sumber kayu balak dalam industri",
-            "Hutan di Malaysia mempunyai pelbagai pokok yang sesuai untuk pembalakan seperti cengal, balau dan keruing Hasil eksport kayu balak telah memberikan sumber"
+          title: "Ciri penting paya air tawar",
+          bulletPoints: [
+            "Air bertakung untuk tempoh yang lama.",
+            "Tanih gambut terbentuk daripada bahan organik yang mengalami pereputan perlahan.",
+            "Antara tumbuhan yang sesuai ialah ramin, kempas, meranti paya dan mengkuang.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "mineral dan sumber tenaga suria"
-              ],
-              [
-                "KSSM_2019_Geografi_Tingkatan_3_Bab04.indd 66 10/22/19 10:09 AM"
-              ],
-              [
-                "Sumber perubatan"
-              ],
-              [
-                "dan sumber makanan bagi hidupan liar"
-              ],
-              [
-                "untuk keselamatan, keperluan sumber makanan"
-              ],
-              [
-                "dan sumber makanan"
-              ],
-              [
-                "Jadual 4.5 Tumbuh-tumbuhan semula jadi di Malaysia"
-              ],
-              [
-                "(Sumber: Jabatan Perhutanan Malaysia, 2017)"
-              ]
-            ]
-          }
+        },
+
+        {
+          title: "Hutan Pantai",
+          content:
+            "Hutan Pantai terdapat di kawasan pantai berpasir. Tumbuhan perlu tahan terhadap tiupan angin, pancaran matahari dan keadaan tanih berpasir yang cepat kehilangan air.",
         },
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Kepentingan Tumbuh-tumbuhan Semula Jadi",
-            "Tajuk: Faktor-faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di Malaysia Objekif: Mengenal pasti faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di",
-            "Alatan: Kertas sebak, alat tulis Langkah-langkah: 1. Guru akan mencantumkan dua helai kertas sebak.",
-            "Apakah faktor-faktor yang mempengaruhi jenis dan taburan tumbuh-tumbuhan semula jadi di Malaysia?",
-            "Konsep ekosistem adalah saling bergantung antara komponen biotik dengan komponen abiotik dalam alam sekitar: Biotik meliputi organisma hidup seperti tumbuh-tumbuhan, haiwan dan manusia",
-            "Abiotik mengandungi persekitaran fizikal seperti bentuk muka bumi, batuan, tanih, air, udara, mineral dan sumber tenaga suria Kawasan hutan merupakan satu ekosistem dengan tumbuh-tumbuhan semula jadi sebagai",
-            "salah satu komponen biotik utama Tumbuh-tumbuhan saling berinteraksi dengan unsur-unsur lain dalam komponen biotik dan abiotik bagi mewujudkan satu persekitaran yang",
-            "Contoh lokasi: Taman Negara Bako (Sarawak) dan",
-            "Hutan bertindak sebagai span berongga yang menyerap air serta mengalirkan air ke sungai,",
-            "empangan, kolam dan tasik",
-            "Hutan di kawasan tanah tinggi penting sebagai",
-            "Air yang diserap ke dalam tanah ditapis secara semula jadi dan menjadi air yang bersih Contoh lokasi: Banjaran Kapuas Hulu (Sarawak) dan Taman Negeri Royal Belum (Perak)"
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 4.3 menekankan Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
-    },
-    {
-      "title": "4.4 Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia Pada tahun 2006, Program Penubuhan Ladang Hutan (PPLH) telah dilaksanakan bertujuan untuk mengurangkan tekanan ke atas hutan asli sebagai sumber bahan mentah dan untuk memastikan ketersediaan berterusan bagi industri kayu tempatan."
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "Dalam program berkenaan, spesies yang disenaraikan ialah jati, sentang, getah, khaya, akasia, batai, kelempayan dan binuang. Namun, tumpuan diberikan kepada pokok getah dan pokok akasia.",
-            "Agensi seperti Jabatan Perhutanan, Institusi Penyelidikan Hutan Malaysia (FRIM) dan Jabatan Perlindungan Hidupan Liar dan Taman Negara (PERHILITAN) telah mengambil langkah untuk memulihara hutan. Antaranya adalah dengan menanam pokok yang bermutu dan tahan daripada",
-            "Taman negara merupakan kawasan yang terdiri daripada pelbagai spesies tumbuh-tumbuhan semula jadi, tumbuh-tumbuhan ubatan dan tumbuh-tumbuhan yang jarang dijumpai.",
-            "Hutan simpan kekal di Malaysia boleh ditetapkan sebagai kawasan sensitif alam sekitar kerana hutan merupakan kawasan yang berkepentingan dan bernilai tinggi dari segi kepelbagaian biologi.",
-            "Contoh lokasi hutan simpan kekal di Malaysia ialah Hutan Simpan Kabili-Sepilok (Sabah), Hutan Simpan Kuala Langat Utara dan Hutan Simpan Raja Musa (Selangor).",
-            "Halaju: Kecepatan gerakan atau kadar kecepatan Cetek: Tidak dalam atau tidak tinggi Pupus: Habis lenyap sama sekali Kawasan tadahan hujan terganggu Hutan merupakan kawasan semula jadi yang",
-            "Contoh tumbuh-tumbuhan yang diancam kepupusan adalah seperti periuk kera, tongkat ali, pokok bakau, pokok cengal dan pokok meranti.",
-            "Contoh haiwan liar yang semakin pupus adalah seperti gajah, badak Sumatera, tapir, harimau Malaya, kancil, kambing gurun dan sebagainya.",
-            "Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia"
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Dalam program berkenaan, spesies yang disenaraikan ialah jati, sentang, getah, khaya, akasia, batai, kelempayan dan binuang. Namun, tumpuan diberikan kepada pokok getah dan pokok akasia.",
-            "Agensi seperti Jabatan Perhutanan, Institusi Penyelidikan Hutan Malaysia (FRIM) dan Jabatan Perlindungan Hidupan Liar dan Taman Negara (PERHILITAN) telah mengambil langkah untuk memulihara hutan. Antaranya adalah dengan menanam pokok yang bermutu dan tahan daripada",
-            "Taman negara merupakan kawasan yang terdiri daripada pelbagai spesies tumbuh-tumbuhan semula jadi, tumbuh-tumbuhan ubatan dan tumbuh-tumbuhan yang jarang dijumpai.",
-            "Hutan simpan kekal di Malaysia boleh ditetapkan sebagai kawasan sensitif alam sekitar kerana hutan merupakan kawasan yang berkepentingan dan bernilai tinggi dari segi kepelbagaian biologi.",
-            "Contoh lokasi hutan simpan kekal di Malaysia ialah Hutan Simpan Kabili-Sepilok (Sabah), Hutan Simpan Kuala Langat Utara dan Hutan Simpan Raja Musa (Selangor).",
-            "Halaju: Kecepatan gerakan atau kadar kecepatan Cetek: Tidak dalam atau tidak tinggi Pupus: Habis lenyap sama sekali Kawasan tadahan hujan terganggu Hutan merupakan kawasan semula jadi yang",
-            "Contoh tumbuh-tumbuhan yang diancam kepupusan adalah seperti periuk kera, tongkat ali, pokok bakau, pokok cengal dan pokok meranti.",
-            "Contoh haiwan liar yang semakin pupus adalah seperti gajah, badak Sumatera, tapir, harimau Malaya, kancil, kambing gurun dan sebagainya."
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "Pada tahun 2006, Program Penubuhan Ladang Hutan (PPLH) telah dilaksanakan bertujuan untuk mengurangkan tekanan ke atas hutan asli sebagai sumber bahan mentah dan untuk memastikan ketersediaan berterusan bagi industri kayu tempatan.",
-            "Bagi meningkatkan kadar penanaman semula hutan, semua pihak diarahkan mengkaji spesies pokok yang hendak ditanam serta penjagaan pokok-pokok yang telah ditanam.",
-            "serangan penyakit di kawasan hutan yang telah ditebang.",
-            "FRIM juga telah menjalankan aktiviti penghutanan semula di Hutan Lipur Bukit Lagong, Kepong (Kuala Lumpur) dengan menjadikan kawasan tersebut sebagai hutan rekreasi yang terkenal sehingga",
-            "diiktiraf sebagai hutan tropika buatan manusia tertua di dunia.",
-            "Ladang hutan pokok jati (Perlis)",
-            "(Sumber: Lembaga Perindustrian Kayu Malaysia, Mei 2018)",
-            "Tumbuh-tumbuhan di taman negara ini dijaga dan disimpan dengan baik bagi mengekalkan biodiversiti alam sekitar.",
-            "Taman negara juga paling banyak dijadikan kawasan pelancongan kerana tersedia dengan pelbagai prasarana.",
-            "Di Malaysia, terdapat taman-taman negara yang diuruskan di bawah kerajaan negeri dan terdapat juga di bawah kerajaan persekutuan.",
-            "Di negeri Sarawak, terdapat 30 buah taman negara dengan jumlah keluasan 623 463 hektar yang ditadbir oleh Perbadanan Perhutanan Sarawak, manakala di negeri Sabah terdapat sembilan buah taman negara, iaitu tiga taman terestrial",
-            "dan enam taman marin di bawah Lembaga Pemegang Amanah Taman-taman Sabah.",
-            "(Sumber: Jabatan PERHILITAN, 2015)",
-            "menggalakkan pembangunan perindustrian berkaitan dengan hasil hutan.",
-            "Hutan Simpan Kabili-Sepilok (Sabah) Taman Negara Similajau (Sarawak) Ketidakseimbangan ekosistem Kestabilan ekosistem hutan terganggu akibat berlakunya penyahhutanan. Kawasan hutan yang padat dengan tumbuh-tumbuhan semula"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Agensi seperti Jabatan Perhutanan, Institusi Penyelidikan Hutan Malaysia (FRIM) dan Jabatan Perlindungan Hidupan Liar dan Taman Negara (PERHILITAN) telah mengambil langkah untuk memulihara hutan. Antaranya adalah dengan menanam pokok yang bermutu dan tahan daripada",
-            "Selain itu, dengan adanya pelaksanaan program pembangunan hutan yang terancang ini akan menggalakkan penghasilan dan penggunaan hasil hutan yang dapat memberi faedah kepada ekonomi secara maksimum serta",
-            "Kekurangan proses infiltrasi (kemusnahan akar pokok yang berfungsi menyerap air larian permukaan ke dalam tanah) menyebabkan air hujan jatuh dengan laju ke permukaan bumi dan meningkatkan kadar",
-            "Penyahhutanan: Pemusnahan hutan secara kekal, misalnya untuk membuat jalan"
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Agensi seperti Jabatan Perhutanan, Institusi Penyelidikan Hutan Malaysia (FRIM) dan Jabatan Perlindungan Hidupan Liar dan Taman Negara (PERHILITAN) telah mengambil langkah untuk memulihara hutan. Antaranya adalah dengan menanam pokok yang bermutu dan tahan daripada",
-            "Contoh lokasi hutan simpan kekal di Malaysia ialah Hutan Simpan Kabili-Sepilok (Sabah), Hutan Simpan Kuala Langat Utara dan Hutan Simpan Raja Musa (Selangor).",
-            "Penyahhutanan menyebabkan ekosistem hutan terganggu dan berlaku ketidakseimbangan dalam siratan makanan, berlaku bencana alam seperti banjir lumpur dan tanah runtuh serta menyebabkan",
-            "Penyahhutanan: Pemusnahan hutan secara kekal, misalnya untuk membuat jalan",
-            "Contoh tumbuh-tumbuhan yang diancam kepupusan adalah seperti periuk kera, tongkat ali, pokok bakau, pokok cengal dan pokok meranti.",
-            "Contoh haiwan liar yang semakin pupus adalah seperti gajah, badak Sumatera, tapir, harimau Malaya, kancil, kambing gurun dan sebagainya."
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Pada tahun 2006, Program Penubuhan Ladang Hutan (PPLH) telah dilaksanakan bertujuan untuk mengurangkan tekanan ke atas hutan asli sebagai sumber bahan mentah dan untuk memastikan ketersediaan berterusan bagi industri kayu tempatan.",
-            "(Sumber: Lembaga Perindustrian Kayu Malaysia, Mei 2018)",
-            "(Sumber: Jabatan PERHILITAN, 2015)",
-            "Penerokaan hutan yang tidak terancang menyebabkan flora dan fauna kehilangan habitat dan kekurangan sumber makanan.",
-            "Namakan lokasi tumbuh-tumbuhan semula jadi di dalam Peta 1."
+          title: "Penyesuaian tumbuhan pantai",
+          bulletPoints: [
+            "Pokok ru mempunyai daun halus seperti jarum yang membantu mengurangkan kehilangan air.",
+            "Pokok kelapa sesuai dengan tanih berpasir dan keadaan pantai.",
+            "Tapak kuda tumbuh menjalar di atas pasir dan membantu menstabilkan permukaan pantai.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "mengurangkan tekanan ke atas hutan asli sebagai sumber bahan mentah dan untuk memastikan"
-              ],
-              [
-                "(Sumber: Lembaga Perindustrian Kayu Malaysia, Mei 2018)"
-              ],
-              [
-                "(Sumber: Jabatan PERHILITAN, 2015)"
-              ],
-              [
-                "fauna kehilangan habitat dan kekurangan sumber makanan."
-              ],
-              [
-                "Sumber perubatan"
-              ],
-              [
-                "Sumber bahan mentah"
-              ],
-              [
-                "1. Peta 1 menunjukkan taburan tumbuh-tumbuhan semula jadi di Malaysia."
-              ],
-              [
-                "Namakan lokasi tumbuh-tumbuhan semula jadi di dalam Peta 1."
-              ]
-            ]
-          }
+        },
+
+        {
+          title: "Hutan Gunung",
+          content:
+            "Hutan Gunung berubah mengikut ketinggian kerana suhu semakin rendah apabila altitud meningkat. Tumbuhan pada aras yang lebih tinggi lazimnya lebih rendah, renek dan tahan keadaan sejuk serta berangin.",
         },
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "Pada tahun 2006, Program Penubuhan Ladang Hutan (PPLH) telah dilaksanakan bertujuan untuk mengurangkan tekanan ke atas hutan asli sebagai sumber bahan mentah dan untuk memastikan ketersediaan berterusan bagi industri kayu tempatan.",
-            "Bagi meningkatkan kadar penanaman semula hutan, semua pihak diarahkan mengkaji spesies pokok yang hendak ditanam serta penjagaan pokok-pokok yang telah ditanam.",
-            "Dalam program berkenaan, spesies yang disenaraikan ialah jati, sentang, getah, khaya, akasia, batai, kelempayan dan binuang. Namun, tumpuan diberikan kepada pokok getah dan pokok akasia.",
-            "Agensi seperti Jabatan Perhutanan, Institusi Penyelidikan Hutan Malaysia (FRIM) dan Jabatan Perlindungan Hidupan Liar dan Taman Negara (PERHILITAN) telah mengambil langkah untuk memulihara hutan. Antaranya adalah dengan menanam pokok yang bermutu dan tahan daripada",
-            "serangan penyakit di kawasan hutan yang telah ditebang.",
-            "FRIM juga telah menjalankan aktiviti penghutanan semula di Hutan Lipur Bukit Lagong, Kepong (Kuala Lumpur) dengan menjadikan kawasan tersebut sebagai hutan rekreasi yang terkenal sehingga",
-            "diiktiraf sebagai hutan tropika buatan manusia tertua di dunia.",
-            "Ladang hutan pokok jati (Perlis)",
-            "(Sumber: Lembaga Perindustrian Kayu Malaysia, Mei 2018)",
-            "Taman negara merupakan kawasan yang terdiri daripada pelbagai spesies tumbuh-tumbuhan semula jadi, tumbuh-tumbuhan ubatan dan tumbuh-tumbuhan yang jarang dijumpai.",
-            "Tumbuh-tumbuhan di taman negara ini dijaga dan disimpan dengan baik bagi mengekalkan biodiversiti alam sekitar."
-          ]
+          title: "Perubahan tumbuhan mengikut ketinggian",
+          bulletPoints: [
+            "Bahagian lebih rendah masih mempunyai pokok hutan yang tinggi dan lebat.",
+            "Apabila ketinggian meningkat, pokok menjadi semakin rendah dan kecil.",
+            "Pada aras tinggi terdapat lebih banyak lumut, paku pakis, orkid, rhododendron dan tumbuhan renek.",
+            "Kawasan hampir puncak yang sangat tinggi mempunyai tumbuhan alpin dan spesies yang sangat tahan keadaan sejuk.",
+          ],
         },
+
         {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
+          title: "Tip mengingat",
+          bulletPoints: [
+            "Pantai berpasir → Hutan Pantai.",
+            "Lumpur + air masin → Hutan Paya Air Masin.",
+            "Pedalaman bertakung air tawar → Hutan Paya Air Tawar.",
+            "Tanah tinggi → Hutan Gunung.",
+            "Tanah pamah dan kaki bukit bersaliran baik → Hutan Hujan Tropika.",
+          ],
         },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 4.4 menekankan Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+      ],
     },
+
     {
-      "title": "Imbas Kembali",
-      "subsections": [
+      title: "4.2 Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia",
+      subsections: [
         {
-          "title": "Checklist akhir bab",
-          "bulletPoints": [
-            "✓ 4.1 Jenis dan Taburan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "✓ 4.2 Faktor-faktor yang Mempengaruhi Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "✓ 4.3 Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia",
-            "✓ 4.4 Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia"
-          ]
+          title: "Empat faktor fizikal",
+          table: {
+            headers: ["Faktor", "Pengaruh terhadap tumbuh-tumbuhan"],
+            rows: [
+              [
+                "Bentuk muka bumi",
+                "Ketinggian dan keadaan permukaan menentukan suhu, saliran dan jenis hutan yang sesuai.",
+              ],
+              [
+                "Saliran",
+                "Menentukan sama ada air cepat mengalir atau bertakung, lalu membezakan hutan bersaliran baik dengan hutan paya.",
+              ],
+              [
+                "Tanih",
+                "Tekstur, kandungan bahan organik dan kesuburan menentukan jenis tumbuhan yang boleh hidup.",
+              ],
+              [
+                "Iklim",
+                "Suhu tinggi dan hujan yang banyak sepanjang tahun menggalakkan pertumbuhan tumbuhan yang lebat serta malar hijau.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "Bentuk muka bumi",
+          bulletPoints: [
+            "Tanah pamah dan kaki bukit yang bersaliran baik sesuai untuk Hutan Hujan Tropika.",
+            "Tanah pamah yang sering bertakung air sesuai untuk Hutan Paya Air Tawar.",
+            "Pinggir laut berpasir sesuai untuk Hutan Pantai.",
+            "Pinggir laut terlindung dan muara berlumpur sesuai untuk Hutan Paya Air Masin.",
+            "Kawasan melebihi kira-kira 1 200 m menunjukkan ciri Hutan Gunung.",
+          ],
+        },
+
+        {
+          title: "Saliran",
+          content:
+            "Saliran mempengaruhi jumlah air yang terdapat di dalam tanih. Kawasan bersaliran baik tidak bertakung air, manakala kawasan bersaliran buruk boleh mengekalkan air untuk tempoh yang lama. Oleh itu, spesies yang hidup di kawasan paya mempunyai penyesuaian yang berbeza daripada spesies di kawasan tanah pamah yang lebih kering.",
+        },
+
+        {
+          title: "Tanih dan jenis hutan",
+          table: {
+            headers: ["Jenis / keadaan tanih", "Hutan yang berkaitan", "Contoh tumbuhan"],
+            rows: [
+              ["Aluvium dan laterit", "Hutan Hujan Tropika", "Meranti, cengal, keruing dan seraya."],
+              ["Lumpur dan selut", "Hutan Paya Air Masin", "Bakau dan nipah."],
+              ["Gambut", "Hutan Paya Air Tawar", "Ramin, kempas dan meranti paya."],
+              ["Berpasir", "Hutan Pantai", "Ru, kelapa dan tapak kuda."],
+              ["Tanih gunung yang nipis dan lebih sejuk", "Hutan Gunung", "Oak, laurel, lumut, paku pakis dan tumbuhan renek."],
+            ],
+          },
+        },
+
+        {
+          title: "Iklim Khatulistiwa",
+          content:
+            "Malaysia mengalami iklim Khatulistiwa yang panas dan lembap sepanjang tahun. Suhu tahunan yang tinggi serta hujan yang banyak membekalkan haba dan air yang mencukupi untuk pertumbuhan tumbuhan. Inilah sebab utama kebanyakan hutan di Malaysia kekal hijau sepanjang tahun.",
+        },
+
+        {
+          title: "Cara menjawab soalan faktor",
+          bulletPoints: [
+            "Nyatakan faktor: contoh, saliran.",
+            "Terangkan keadaan: contoh, air bertakung dan tanih sentiasa basah.",
+            "Hubungkan dengan jenis hutan: Hutan Paya Air Tawar.",
+            "Berikan contoh tumbuhan jika diperlukan: ramin, kempas atau meranti paya.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "4.3 Kepentingan Tumbuh-tumbuhan Semula Jadi di Malaysia",
+      subsections: [
+        {
+          title: "Keseimbangan ekosistem",
+          content:
+            "Hutan ialah satu ekosistem yang menghubungkan komponen biotik seperti tumbuhan, haiwan dan manusia dengan komponen abiotik seperti air, udara, tanih dan cahaya matahari. Gangguan besar terhadap salah satu komponen boleh mempengaruhi keseluruhan ekosistem.",
+        },
+
+        {
+          title: "Kawasan tadahan hujan",
+          content:
+            "Hutan membantu menyerap air hujan ke dalam tanih dan melepaskannya secara beransur-ansur ke sungai, tasik dan empangan. Akar tumbuhan meningkatkan resapan air dan membantu mengurangkan aliran permukaan yang terlalu cepat.",
+        },
+
+        {
+          title: "Habitat dan sumber makanan hidupan liar",
+          content:
+            "Hutan menyediakan tempat perlindungan, kawasan pembiakan dan sumber makanan kepada hidupan liar. Kehilangan tumbuh-tumbuhan boleh menyebabkan haiwan kehilangan habitat dan memecahkan siratan makanan.",
+        },
+
+        {
+          title: "Sumber bahan mentah",
+          bulletPoints: [
+            "Kayu keras seperti cengal, balau dan keruing digunakan dalam pembinaan, perabot dan industri berasaskan kayu.",
+            "Rotan dan buluh digunakan dalam kraf tangan dan perabot.",
+            "Daun nipah dan hasil hutan lain digunakan oleh masyarakat tempatan untuk pelbagai kegunaan.",
+          ],
+        },
+
+        {
+          title: "Sumber perubatan",
+          content:
+            "Sebahagian tumbuhan hutan mempunyai nilai perubatan. Bahagian seperti akar, daun, pucuk, kulit kayu, bunga atau buah boleh digunakan dalam perubatan tradisional dan penyelidikan farmaseutikal.",
         },
         {
-          "title": "Cara ulang kaji pantas",
-          "bulletPoints": [
-            "Baca semula setiap definisi dan kata kunci utama.",
-            "Semak semula contoh, jadual, graf, carta, peta dan rajah yang terdapat dalam bab.",
-            "Latih menjawab dengan format fakta + huraian + contoh daripada buku teks."
-          ]
-        }
-      ]
-    }
-  ]
+          title: "Contoh tumbuhan bernilai perubatan",
+          table: {
+            headers: ["Tumbuhan", "Bahagian yang lazim digunakan"],
+            rows: [
+              ["Tongkat ali", "Akar"],
+              ["Kacip fatimah", "Akar dan bahagian tumbuhan tertentu"],
+              ["Senduduk", "Daun, pucuk dan akar"],
+              ["Sembong", "Daun, akar dan bunga"],
+            ],
+          },
+        },
+
+        {
+          title: "Perlindungan fizikal",
+          bulletPoints: [
+            "Hutan di cerun membantu mengurangkan hakisan dan risiko tanah runtuh melalui sistem akar.",
+            "Hutan paya air masin membantu memecahkan tenaga ombak dan melindungi pinggir pantai.",
+            "Tumbuhan pantai membantu menstabilkan pasir dan mengurangkan hakisan pantai.",
+          ],
+        },
+
+        {
+          title: "Kepentingan kepada manusia dan ekonomi",
+          bulletPoints: [
+            "Mewujudkan pekerjaan dalam perhutanan, penyelidikan, rekreasi dan ekopelancongan.",
+            "Membekalkan bahan mentah untuk industri tempatan.",
+            "Menyediakan kawasan rekreasi, pendidikan dan penyelidikan.",
+            "Menjadi sumber pengetahuan tentang biodiversiti dan perubatan.",
+          ],
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Untuk soalan 'kepentingan', nyatakan fungsi dan kesannya. Contoh: hutan sebagai tadahan hujan → meningkatkan resapan air → membantu mengekalkan bekalan air.",
+            "Elakkan jawapan satu perkataan seperti 'habitat'. Huraikan: hutan menyediakan tempat perlindungan, pembiakan dan sumber makanan.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "4.4 Kesan Kegiatan Manusia terhadap Tumbuh-tumbuhan Semula Jadi di Malaysia",
+      subsections: [
+        {
+          title: "Kegiatan manusia boleh membawa dua jenis kesan",
+          table: {
+            headers: ["Kesan positif", "Kesan negatif"],
+            rows: [
+              [
+                "Penghutanan semula, pewartaan hutan simpan, taman negara, penyelidikan dan pengurusan hutan secara lestari.",
+                "Pembalakan tidak terkawal, pembukaan tanah, pembangunan jalan, pertanian dan penerokaan hutan tanpa kawalan.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "Kesan negatif penyahhutanan",
+          table: {
+            headers: ["Kesan", "Huraian"],
+            rows: [
+              [
+                "Hakisan tanih",
+                "Kehilangan litupan tumbuhan menyebabkan tanah terdedah terus kepada hentaman hujan dan aliran permukaan.",
+              ],
+              [
+                "Tanah runtuh",
+                "Akar yang semakin berkurang menyebabkan tanih di cerun kurang stabil.",
+              ],
+              [
+                "Gangguan kawasan tadahan hujan",
+                "Resapan air berkurang dan aliran permukaan menjadi lebih cepat, meningkatkan risiko banjir serta mengurangkan simpanan air dalam tanih.",
+              ],
+              [
+                "Kehilangan habitat",
+                "Flora dan fauna kehilangan kawasan perlindungan, pembiakan dan sumber makanan.",
+              ],
+              [
+                "Ketidakseimbangan ekosistem",
+                "Perubahan populasi organisma mengganggu rantaian dan siratan makanan.",
+              ],
+              [
+                "Peningkatan suhu",
+                "Pengurangan tumbuhan mengurangkan penyerapan karbon dioksida dan boleh menyumbang kepada peningkatan suhu setempat serta pemanasan global.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "Pemeliharaan dan pemuliharaan",
+          table: {
+            headers: ["Pendekatan", "Maksud", "Contoh"],
+            rows: [
+              [
+                "Pemeliharaan",
+                "Mengekalkan keadaan asal hutan daripada dimusnahkan atau dieksploitasi.",
+                "Hutan simpan kekal, taman negara dan kawasan perlindungan.",
+              ],
+              [
+                "Pemuliharaan",
+                "Mengurus, membaiki dan memulihkan sumber hutan supaya dapat terus digunakan secara lestari.",
+                "Penghutanan semula, penanaman semula dan pengurusan hutan secara terkawal.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "Penghutanan semula dan ladang hutan",
+          content:
+            "Penghutanan semula menggantikan pokok yang telah ditebang atau memulihkan kawasan yang rosak. Ladang hutan pula dapat membantu membekalkan kayu daripada kawasan yang diurus khas, sekali gus mengurangkan tekanan terhadap sebahagian hutan asli.",
+        },
+
+        {
+          title: "Taman negara dan hutan simpan",
+          content:
+            "Taman negara dan hutan simpan melindungi kawasan yang mempunyai nilai biodiversiti tinggi. Perlindungan ini membantu mengekalkan spesies tumbuhan, habitat hidupan liar, kawasan tadahan hujan dan fungsi ekosistem.",
+        },
+
+        {
+          title: "Peranan penyelidikan dan agensi",
+          bulletPoints: [
+            "Penyelidikan membantu mengenal pasti spesies yang sesuai untuk penanaman semula dan kaedah pengurusan hutan yang lebih baik.",
+            "Jabatan Perhutanan terlibat dalam pengurusan dan perlindungan sumber hutan.",
+            "FRIM menjalankan penyelidikan berkaitan perhutanan dan teknologi hutan.",
+            "PERHILITAN terlibat dalam perlindungan hidupan liar dan habitat yang berkaitan.",
+          ],
+        },
+
+        {
+          title: "Soalan KBAT: mengapa hutan perlu diurus secara lestari?",
+          bulletPoints: [
+            "Hutan mengambil masa yang panjang untuk pulih selepas ditebang.",
+            "Eksploitasi berlebihan boleh mengurangkan biodiversiti dan menjejaskan fungsi ekosistem.",
+            "Pengurusan lestari membolehkan generasi kini menggunakan sumber tanpa menafikan keperluan generasi akan datang.",
+            "Kawasan tadahan hujan, kestabilan cerun dan habitat hidupan liar perlu dikekalkan walaupun sumber hutan digunakan.",
+          ],
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Bezakan kesan positif dengan kesan negatif kegiatan manusia.",
+            "Terangkan rantaian sebab dan kesan: penyahhutanan → kurang akar dan litupan → aliran permukaan meningkat → hakisan / banjir / tanah runtuh.",
+            "Bezakan pemeliharaan dengan pemuliharaan menggunakan contoh.",
+            "Untuk cadangan, gunakan langkah seperti penghutanan semula, hutan simpan, taman negara, penguatkuasaan dan pengurusan hutan secara lestari.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "Imbas Kembali",
+      subsections: [
+        {
+          title: "Checklist akhir bab",
+          bulletPoints: [
+            "Saya boleh menamakan lima jenis hutan utama di Malaysia.",
+            "Saya boleh menerangkan ciri Hutan Hujan Tropika dan empat lapisannya.",
+            "Saya boleh membezakan Hutan Paya Air Masin, Hutan Paya Air Tawar dan Hutan Pantai.",
+            "Saya boleh menerangkan perubahan tumbuhan mengikut ketinggian di Hutan Gunung.",
+            "Saya boleh menghuraikan empat faktor yang mempengaruhi taburan tumbuh-tumbuhan.",
+            "Saya boleh menerangkan sekurang-kurangnya empat kepentingan hutan.",
+            "Saya boleh menghuraikan kesan penyahhutanan serta langkah pemeliharaan dan pemuliharaan.",
+          ],
+        },
+        {
+          title: "Cara menjawab soalan struktur",
+          bulletPoints: [
+            "Kenal pasti jenis hutan atau faktor yang ditanya.",
+            "Nyatakan ciri utama kawasan, contohnya berpasir, berlumpur, bertakung air atau tanah tinggi.",
+            "Hubungkan keadaan itu dengan jenis tumbuhan atau penyesuaiannya.",
+            "Untuk kepentingan atau kesan, beri fakta + huraian sebab atau akibat.",
+            "Masukkan contoh tumbuhan, kawasan atau langkah pengurusan apabila sesuai.",
+          ],
+        },
+      ],
+    },
+  ],
 };
