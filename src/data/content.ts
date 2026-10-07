@@ -8373,7 +8373,7 @@ export const quizzes: QuizQuestion[] = [
     options: ["Dua kategori", "Tiga kategori", "Empat kategori", "Lima kategori"],
     answerIndex: 2,
     explanation:
-      "Bentuk muka bumi Malaysia terbahagi kepada 4 kategori utama iaitu tanah tinggi, tanah pamah, pinggir laut, dan saliran.",
+      "Bentuk muka bumi di Malaysia terdiri daripada empat kategori, iaitu tanah tinggi, tanah pamah, pinggir laut dan saliran.",
   },
   {
     id: "geo-f1-c6-q2",
@@ -8381,17 +8381,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question:
-      "Kawasan tanah tinggi di Malaysia merujuk kepada kawasan yang mempunyai ketinggian melebihi...?",
-    options: [
-      "50 meter dari aras laut",
-      "100 meter dari aras laut",
-      "180 meter dari aras laut",
-      "500 meter dari aras laut",
-    ],
+    question: "Tanah tinggi ialah kawasan yang ketinggiannya melebihi berapa meter dari aras laut?",
+    options: ["100 meter", "150 meter", "180 meter", "300 meter"],
     answerIndex: 2,
     explanation:
-      "Mengikut sukatan geografi fizikal Malaysia, kawasan yang berketinggian melebihi 180 meter dari aras laut dikategorikan sebagai tanah tinggi.",
+      "Tanah tinggi ialah kawasan yang ketinggiannya melebihi 180 meter dari aras laut. Kawasan ini merangkumi banjaran gunung dan dataran tinggi.",
   },
   {
     id: "geo-f1-c6-q3",
@@ -8399,12 +8393,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 6",
-    question:
-      "Apakah nama banjaran gunung yang digelar sebagai 'tulang belakang' Semenanjung Malaysia?",
-    options: ["Banjaran Crocker", "Banjaran Titiwangsa", "Banjaran Bintang", "Banjaran Tama Abu"],
+    question: "Banjaran manakah yang dikenali sebagai 'tulang belakang' Semenanjung Malaysia?",
+    options: ["Banjaran Benom", "Banjaran Titiwangsa", "Banjaran Tahan", "Banjaran Crocker"],
     answerIndex: 1,
     explanation:
-      "Banjaran Titiwangsa ialah banjaran terpanjang di Semenanjung Malaysia yang bertindak seperti tulang belakang yang memisahkan Pantai Barat dan Pantai Timur.",
+      "Banjaran Titiwangsa dikenali sebagai 'tulang belakang' Semenanjung Malaysia. Banjaran ini tinggi di bahagian utara dan semakin rendah ke selatan. Banjaran Crocker pula terletak di Sabah.",
   },
   {
     id: "geo-f1-c6-q4",
@@ -8412,12 +8405,11 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question:
-      "Di manakah terletaknya Banjaran Crocker yang menempatkan puncak tertinggi di Malaysia?",
-    options: ["Sarawak", "Pahang", "Sabah", "Perak"],
-    answerIndex: 2,
+    question: "Banjaran Crocker, tempat terletaknya Gunung Kinabalu, berada di negeri manakah?",
+    options: ["Sarawak", "Pahang", "Perak", "Sabah"],
+    answerIndex: 3,
     explanation:
-      "Banjaran Crocker terletak di negeri Sabah dan menempatkan Gunung Kinabalu (4,095 meter).",
+      "Banjaran Crocker terletak di Sabah. Gunung Kinabalu (4,095 m) di banjaran ini ialah gunung tertinggi di Malaysia.",
   },
   {
     id: "geo-f1-c6-q5",
@@ -8425,12 +8417,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Hard",
     chapter: "Chapter 6",
-    question:
-      "Berapakah anggaran penurunan suhu udara bagi setiap kenaikan ketinggian 1,000 meter di kawasan tanah tinggi?",
-    options: ["1.5°C", "3.5°C", "6.5°C", "10.0°C"],
-    answerIndex: 2,
+    question: "Pengelasan manakah yang betul dari segi jenis bentuk muka bumi dan lokasinya?",
+    options: [
+      "Gunung Mulu – tanah tinggi – Sabah",
+      "Delta Rajang – tanah pamah – Sabah",
+      "Banjaran Crocker – tanah pamah – Sabah",
+      "Gunung Tahan – tanah tinggi – Semenanjung",
+    ],
+    answerIndex: 3,
     explanation:
-      "Secara purata dalam ulasan klimatorlogi, setiap kenaikan ketinggian 1,000 meter dari aras laut, suhu persekitaran akan menurun sebanyak 6.5°C.",
+      "Gunung Tahan ialah tanah tinggi di Semenanjung Malaysia dan merupakan puncak tertinggi di Semenanjung. Gunung Mulu dan Delta Rajang terletak di Sarawak, manakala Banjaran Crocker ialah tanah tinggi, bukan tanah pamah.",
   },
   {
     id: "geo-f1-c6-q6",
@@ -8439,11 +8435,11 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 6",
     question:
-      "Manakah antara berikut merupakan kawasan tanah tinggi yang terkenal sebagai pusat pertanian sayuran hawa sederhana?",
-    options: ["Cameron Highlands", "Genting Highlands", "Bukit Larut", "Gunung Ledang"],
+      "Kawasan tanah tinggi manakah yang terkenal dengan pertanian hawa sederhana seperti teh, strawberi dan sayur-sayuran?",
+    options: ["Cameron Highlands", "Bukit Larut", "Gunung Ledang", "Genting Highlands"],
     answerIndex: 0,
     explanation:
-      "Cameron Highlands (Pahang) sangat terkenal dengan aktiviti pertanian tanaman hawa sederhana seperti teh, strawberi, dan sayur-sayuran kerana suhunya yang sejuk.",
+      "Cameron Highlands di Pahang mempunyai suhu yang rendah, iaitu purata 19°C. Keadaan ini sesuai untuk pertanian hawa sederhana seperti sayur-sayuran, strawberi, teh dan bunga-bungaan.",
   },
   {
     id: "geo-f1-c6-q7",
@@ -8451,12 +8447,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 6",
-    question:
-      "Apakah jenis tenaga yang dijanakan dengan membina empangan di kawasan aliran sungai tanah tinggi yang deras?",
-    options: ["Tenaga Nuklear", "Tenaga Hidroelektrik", "Tenaga Suria", "Tenaga Geotermal"],
+    question: "Mengapakah hutan di kawasan tanah tinggi penting kepada sistem saliran?",
+    options: [
+      "Menjadi kawasan pemendapan tanih aluvium",
+      "Menjadi kawasan tadahan hujan bagi sungai",
+      "Menjadi kawasan petempatan utama penduduk",
+      "Menjadi kawasan perikanan air masin",
+    ],
     answerIndex: 1,
     explanation:
-      "Aliran air sungai yang deras di kawasan tanah tinggi membekalkan tenaga kinetik yang tinggi untuk memusingkan turbin bagi menjana tenaga hidroelektrik.",
+      "Hutan tanah tinggi menjadi kawasan tadahan hujan yang menyerap, menapis dan membekalkan air bersih ke sistem saliran. Kebanyakan sungai di Malaysia berpunca dari kawasan ini.",
   },
   {
     id: "geo-f1-c6-q8",
@@ -8464,17 +8464,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question:
-      "Kawasan tanah pamah didefinisikan sebagai kawasan rata atau beralun yang mempunyai ketinggian...?",
+    question: "Apakah had ketinggian kawasan tanah pamah?",
     options: [
-      "Kurang daripada 180 meter dari aras laut",
-      "Lebih daripada 180 meter dari aras laut",
-      "Tepat pada aras laut sahaja",
-      "Antara 200 hingga 500 meter dari aras laut",
+      "Melebihi 180 meter dari aras laut",
+      "Tidak melebihi 50 meter dari aras laut",
+      "Tidak melebihi 180 meter dari aras laut",
+      "Antara 180 hingga 500 meter dari aras laut",
     ],
-    answerIndex: 0,
+    answerIndex: 2,
     explanation:
-      "Kawasan tanah pamah mempunyai ketinggian fizikal kurang daripada 180 meter dari aras laut.",
+      "Tanah pamah ialah kawasan rendah yang ketinggiannya tidak melebihi 180 meter dari aras laut. Kebanyakannya terdapat di lembangan sungai, dataran, delta dan dataran pantai.",
   },
   {
     id: "geo-f1-c6-q9",
@@ -8483,11 +8482,11 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     question:
-      "Apakah jenis tanah tanih subur yang dimendapkan oleh aliran sungai di kawasan dataran tanah pamah?",
-    options: ["Tanih Laterit", "Tanih Pasir", "Tanih Aluvium", "Tanih Podzol"],
-    answerIndex: 2,
+      "Dataran Kelantan rendah, rata dan subur untuk pertanian kerana diliputi oleh tanih jenis apa?",
+    options: ["Tanih laterit", "Tanih pasir", "Tanih gambut", "Tanih aluvium"],
+    answerIndex: 3,
     explanation:
-      "Proses banjir dan aliran sungai di kawasan tanah pamah memendapkan tanih aluvium yang sangat subur untuk tanaman padi air.",
+      "Dataran Kelantan dan Dataran Kedah–Perlis diliputi tanih aluvium yang subur dan sesuai untuk pertanian seperti penanaman padi.",
   },
   {
     id: "geo-f1-c6-q10",
@@ -8495,12 +8494,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question:
-      "Dataran tanah pamah manakah yang amat sinonim dengan aktiviti penanaman padi berskala besar di Malaysia?",
-    options: ["Lembah Kinta", "Dataran Kedah-Perlis", "Dataran Klang", "Lembah Segama"],
-    answerIndex: 1,
+    question: "Dataran manakah yang terkenal dengan penanaman padi di utara Semenanjung Malaysia?",
+    options: [
+      "Dataran Pantai Timur Sabah",
+      "Dataran Pantai Barat Sabah",
+      "Dataran Hulu Sungai Perak",
+      "Dataran Kedah–Perlis",
+    ],
+    answerIndex: 3,
     explanation:
-      "Dataran Kedah-Perlis merupakan dataran tanah pamah terluas yang menjadi pusat pengeluaran padi utama negara.",
+      "Dataran Kedah–Perlis bermula dari Perlis hingga ke selatan Kedah. Tanih aluviumnya sesuai untuk penanaman padi.",
   },
   {
     id: "geo-f1-c6-q11",
@@ -8509,16 +8512,11 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     question:
-      "Mengapakah kawasan tanah pamah sangat ideal dan jimat kos untuk dijadikan sebagai tapak perindustrian dan petempatan?",
-    options: [
-      "Kerana suhunya yang sentiasa bersalji.",
-      "Kerana bentuk muka buminya yang rata mempermudah dan mengurangkan kos pembinaan.",
-      "Kerana ia jauh daripada rangkaian jalan raya.",
-      "Kerana tanah pamah dipenuhi oleh batuan granit tebal.",
-    ],
+      "Kuala Lumpur, Shah Alam dan Kuching ialah contoh kepentingan tanah pamah sebagai kawasan apa?",
+    options: ["Tadahan hujan", "Petempatan", "Pertanian hawa sederhana", "Perikanan"],
     answerIndex: 1,
     explanation:
-      "Kawasan yang rata mengurangkan kos meratakan cerun, memotong bukit, atau membina struktur sokongan berbanding kawasan berbukit.",
+      "Tanah pamah yang rendah dan rata menjadi kawasan petempatan utama, contohnya Kuala Lumpur, Shah Alam dan Kuching. Tadahan hujan dan pertanian hawa sederhana berkaitan dengan tanah tinggi.",
   },
   {
     id: "geo-f1-c6-q12",
@@ -8527,16 +8525,11 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     question:
-      "Pembinaan jalan raya dan landasan kereta api di kawasan tanah pamah adalah lebih efisien kerana...?",
-    options: [
-      "Tidak memerlukan bahan simen.",
-      "Kurang memerlukan pembinaan jambatan besar atau penebukan terowong bukit.",
-      "Kenderaan boleh bergerak tanpa menggunakan minyak.",
-      "Kawasan tersebut bebas daripada tiupan angin.",
-    ],
-    answerIndex: 1,
+      "Lebuhraya Utara–Selatan, jalan kereta api dan lapangan terbang banyak dibina di kawasan bentuk muka bumi yang manakah?",
+    options: ["Tanah tinggi", "Pinggir laut", "Tanah pamah", "Saliran"],
+    answerIndex: 2,
     explanation:
-      "Bentuk bumi yang rata membolehkan laluan pengangkutan dibina secara terus tanpa halangan fizikal bukit yang memerlukan terowong mahal.",
+      "Tanah pamah penting untuk pengangkutan dan perhubungan. Lebuhraya Utara–Selatan, jalan kereta api dan lapangan terbang banyak dibina di kawasan tanah pamah yang rendah dan rata.",
   },
   {
     id: "geo-f1-c6-q13",
@@ -8544,29 +8537,23 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question:
-      "Apakah nama ciri fizikal pinggir laut berupa daratan yang menonjol keluar ke arah laut?",
-    options: ["Teluk", "Tanjung", "Pulau", "Pentas Benua"],
-    answerIndex: 1,
+    question: "Apakah nama bahagian daratan yang menganjur ke laut?",
+    options: ["Tanjung", "Teluk", "Lagun", "Batu tunggul"],
+    answerIndex: 0,
     explanation:
-      "Tanjung ialah pembentukan batuan keras pada pinggir pantai yang menonjol dan menghadap terus ke laut.",
+      "Tanjung ialah bahagian daratan yang menganjur ke laut. Teluk pula ialah lekukan pantai yang menghala ke daratan.",
   },
   {
     id: "geo-f1-c6-q14",
     subjectId: "geography",
     form: "Form 1",
-    difficulty: "Medium",
+    difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Mengapakah kawasan 'Teluk' biasanya mempunyai keadaan air laut yang tenang?",
-    options: [
-      "Kerana ia terletak di kawasan kutub.",
-      "Kerana ia terlindung daripada ombak besar oleh tanjung di kiri dan kanannya.",
-      "Kerana air teluk adalah air tawar.",
-      "Kerana teluk tidak mempunyai hidupan laut.",
-    ],
-    answerIndex: 1,
+    question: "Apakah nama lekukan pantai yang menghala ke daratan dan biasanya terlindung?",
+    options: ["Tanjung", "Gerbang laut", "Lagun", "Teluk"],
+    answerIndex: 3,
     explanation:
-      "Bentuk teluk yang melengkung ke dalam daratan dilindungi oleh formasi tanjung di sekitarnya yang memecahkan kekuatan ombak besar.",
+      "Teluk ialah lekukan pantai yang menghala ke daratan dan biasanya terlindung. Lagun pula ialah kawasan air masin yang terpisah daripada laut oleh beting pasir.",
   },
   {
     id: "geo-f1-c6-q15",
@@ -8575,29 +8562,33 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 6",
     question:
-      "Manakah antara berikut merupakan pelabuhan utama Malaysia yang terletak di kawasan teluk yang terlindung?",
-    options: ["Pelabuhan Klang", "Pelabuhan Sibu", "Pelabuhan Sandakan", "Pelabuhan Kudat"],
-    answerIndex: 0,
+      "Kawasan pinggir laut di Klang dan Pulau Pinang penting kerana menempatkan kemudahan apakah?",
+    options: [
+      "Empangan hidroelektrik",
+      "Ladang kelapa sawit",
+      "Kawasan tadahan hujan",
+      "Pelabuhan",
+    ],
+    answerIndex: 3,
     explanation:
-      "Pelabuhan Klang terletak di kawasan perairan yang terlindung, menjadikannya sesuai dan selamat untuk kapal-kapal dagang besar berlabuh.",
+      "Pinggir laut penting untuk pelabuhan, contohnya Pelabuhan Klang di Selangor dan Pelabuhan Pulau Pinang.",
   },
   {
     id: "geo-f1-c6-q16",
     subjectId: "geography",
     form: "Form 1",
-    difficulty: "Hard",
+    difficulty: "Medium",
     chapter: "Chapter 6",
-    question:
-      "Kawasan pinggir laut yang cetek (sehingga kedalaman 180 meter) dikenali sebagai 'pentas benua'. Mengapakah kawasan ini kaya dengan pembiakan ikan?",
+    question: "Apakah nama dan kedalaman laut cetek yang mengelilingi Malaysia?",
     options: [
-      "Kerana suhunya terlalu sejuk.",
-      "Kerana ia menerima banyak cahaya matahari yang menggalakkan pertumbuhan plankton.",
-      "Kerana tidak ada arus laut di situ.",
-      "Kerana dasar pentas benua dilitupi oleh lumpur gunung berapi.",
+      "Pentas Sunda, sehingga 180 m",
+      "Pentas Sunda, sehingga 1,800 m",
+      "Laut Sulawesi, sehingga 180 m",
+      "Laut Sulu, sehingga 1,800 m",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Air yang cetek membolehkan cahaya matahari menembusi dasar untuk proses fotosintesis plankton (makanan utama rantaian hidupan ikan).",
+      "Malaysia dikelilingi laut cetek di atas pentas benua yang dikenali sebagai Pentas Sunda, dengan kedalaman sehingga 180 m. Laut Sulawesi dan Laut Sulu ialah antara laut yang mengelilingi Malaysia.",
   },
   {
     id: "geo-f1-c6-q17",
@@ -8606,16 +8597,16 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 6",
     question:
-      "Pulau Sipadan dan Pulau Redang sangat terkenal di peringkat antarabangsa sebagai pusat...?",
+      "Pulau Redang dan Pulau Tioman menunjukkan kepentingan pinggir laut dalam bidang manakah?",
     options: [
-      "Perlombongan petroleum",
-      "Pelancongan dan aktiviti menyelam skuba",
-      "Pertanian padi sawah",
-      "Pusat industri automotif",
+      "Pertanian sawah padi",
+      "Perindustrian dan perdagangan",
+      "Pelancongan dan rekreasi",
+      "Penjanaan hidroelektrik",
     ],
-    answerIndex: 1,
+    answerIndex: 2,
     explanation:
-      "Kedua-dua pulau ini mempunyai air yang jernih, pantai berpasir, dan keindahan terumbu karang yang menarik pelancong untuk menyelam.",
+      "Pinggir laut penting untuk pelancongan dan rekreasi, contohnya Pantai Chenang, Pulau Redang dan Pulau Tioman.",
   },
   {
     id: "geo-f1-c6-q18",
@@ -8623,23 +8614,24 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question:
-      "Apakah nama sungai yang memegang rekod sebagai sungai terpanjang di seluruh Malaysia?",
-    options: ["Sungai Pahang", "Sungai Kinabatangan", "Sungai Rajang", "Sungai Perak"],
-    answerIndex: 2,
+    question: "Bentuk muka bumi saliran di Malaysia merujuk kepada apa?",
+    options: ["Sungai dan tasik", "Pantai dan teluk", "Delta dan dataran", "Banjaran dan gunung"],
+    answerIndex: 0,
     explanation:
-      "Sungai Rajang yang terletak di negeri Sarawak ialah sungai yang paling panjang di Malaysia.",
+      "Saliran di Malaysia merujuk kepada sungai dan tasik. Kebanyakan sungai berpunca dari kawasan tadahan hujan di tanah tinggi.",
   },
   {
     id: "geo-f1-c6-q19",
     subjectId: "geography",
     form: "Form 1",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 6",
-    question: "Sungai terpanjang di Semenanjung Malaysia ialah...?",
-    options: ["Sungai Perak", "Sungai Kelantan", "Sungai Pahang", "Sungai Muar"],
+    question:
+      "Hakisan ombak yang berterusan menembusi dinding gua laut sehingga terbentuk bukaan. Apakah bentuk muka bumi ini?",
+    options: ["Tebing tinggi", "Batu sisa", "Gerbang laut", "Batu tunggul"],
     answerIndex: 2,
-    explanation: "Sungai Pahang ialah sungai yang paling panjang di wilayah Semenanjung Malaysia.",
+    explanation:
+      "Gerbang laut terbentuk apabila hakisan ombak yang berterusan menembusi dinding gua laut. Batu tunggul hanya terbentuk selepas bahagian atas gerbang laut runtuh.",
   },
   {
     id: "geo-f1-c6-q20",
@@ -8647,29 +8639,29 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 6",
-    question:
-      "Manakah antara berikut merupakan contoh tasik semula jadi terbesar yang ada di Malaysia?",
-    options: ["Tasik Kenyir", "Tasik Bera", "Tasik Temenggor", "Tasik Titiwangsa"],
-    answerIndex: 1,
+    question: "Pengelasan tasik manakah yang betul?",
+    options: [
+      "Tasik Bera semula jadi; Tasik Kenyir buatan manusia",
+      "Tasik Kenyir semula jadi; Tasik Bera buatan manusia",
+      "Tasik Bera dan Tasik Kenyir buatan manusia",
+      "Tasik Bera dan Tasik Kenyir semula jadi",
+    ],
+    answerIndex: 0,
     explanation:
-      "Tasik Bera di Pahang merupakan salah satu contoh tasik semula jadi (natural lake) terbesar di Malaysia.",
+      "Tasik Bera dan Tasik Chini di Pahang ialah tasik semula jadi. Tasik Kenyir di Terengganu ialah tasik buatan manusia yang berfungsi menjana kuasa hidroelektrik.",
   },
   {
     id: "geo-f1-c6-q21",
     subjectId: "geography",
     form: "Form 1",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 6",
-    question: "Tasik Kenyir di Terengganu dikategorikan sebagai jenis tasik...?",
-    options: [
-      "Tasik semula jadi",
-      "Tasik buatan manusia (empangan)",
-      "Tasik kawah gunung berapi",
-      "Tasik air masin",
-    ],
+    question:
+      "Delta Rajang dan Delta Segama ialah kawasan tanah pamah. Di manakah kedua-dua delta itu terletak, mengikut susunan?",
+    options: ["Sabah dan Sarawak", "Sarawak dan Sabah", "Sarawak dan Pahang", "Kelantan dan Sabah"],
     answerIndex: 1,
     explanation:
-      "Tasik Kenyir terbentuk akibat pembinaan empangan hidroelektrik, menjadikannya tasik buatan manusia terbesar di Asia Tenggara.",
+      "Delta Rajang terletak di Sarawak, manakala Delta Segama terletak di bahagian timur Sabah.",
   },
   {
     id: "geo-f1-c6-q22",
@@ -8678,51 +8670,46 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 6",
     question:
-      "Di kawasan pedalaman Sabah dan Sarawak, peranan utama sistem saliran sungai adalah sebagai...?",
+      "Penduduk pedalaman Sarawak menggunakan bot di Sungai Rajang dan Sungai Baram untuk bergerak ke bandar. Apakah kepentingan saliran yang ditunjukkan?",
     options: [
-      "Sempadan antarabangsa",
-      "Jalan perhubungan dan pengangkutan utama (lebuh raya sungai)",
-      "Tempat pembuangan sisa kuari",
-      "Zon sukan luncur air",
+      "Sempadan semula jadi",
+      "Sumber protein air tawar",
+      "Pengangkutan dan perhubungan",
+      "Bekalan air domestik",
     ],
-    answerIndex: 1,
+    answerIndex: 2,
     explanation:
-      "Kawasan pedalaman yang belum mempunyai akses jalan raya darat bergantung sepenuhnya kepada bot melalui sungai untuk mobiliti.",
+      "Sungai Rajang dan Sungai Baram penting sebagai jalan pengangkutan dan perhubungan di Sarawak. Sumber protein air tawar pula dicontohkan oleh ternakan ikan patin dalam sangkar di Sungai Pahang.",
   },
   {
     id: "geo-f1-c6-q23",
     subjectId: "geography",
     form: "Form 1",
-    difficulty: "Medium",
+    difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Apakah fungsi Sungai Golok dari segi geografi politik antarabangsa?",
-    options: [
-      "Sebagai pusat penangkapan ikan paus.",
-      "Sebagai sempadan semula jadi yang memisahkan Malaysia dan Thailand.",
-      "Sebagai tempat janakuasa nuklear.",
-      "Sebagai penggerak turbin angin.",
-    ],
-    answerIndex: 1,
+    question: "Sungai manakah yang menjadi sempadan semula jadi antara Malaysia dengan Thailand?",
+    options: ["Sungai Bernam", "Sungai Rajang", "Sungai Pahang", "Sungai Golok"],
+    answerIndex: 3,
     explanation:
-      "Sungai Golok mengalir di sempadan Kelantan dan bertindak sebagai garisan pemisah fizikal rasmi antara Malaysia dan Thailand.",
+      "Sungai Golok ialah sempadan semula jadi antara Malaysia dengan Thailand. Sungai Bernam pula menjadi sempadan antara Selangor dengan Perak.",
   },
   {
     id: "geo-f1-c6-q24",
     subjectId: "geography",
     form: "Form 1",
-    difficulty: "Medium",
+    difficulty: "Easy",
     chapter: "Chapter 6",
     question:
-      "Sistem saliran sungai di Malaysia amat penting kepada sektor domestik bandar besar kerana bertindak sebagai...?",
+      "Sungai membekalkan air bersih kepada penduduk dan kilang. Apakah kepentingan saliran ini?",
     options: [
-      "Sumber bekalan air mentah utama",
-      "Zon perdagangan bebas",
-      "Pusat sukan lumba bot",
-      "Sempadan daerah perumahan",
+      "Kawasan tadahan hujan",
+      "Bekalan air domestik dan industri",
+      "Sempadan semula jadi negeri",
+      "Kawasan pemendapan aluvium",
     ],
-    answerIndex: 0,
+    answerIndex: 1,
     explanation:
-      "Sungai membekalkan air mentah yang kemudiannya dirawat di loji rawatan air (LRA) untuk kegunaan memasak, mandi, dan pembersihan bandar.",
+      "Saliran penting sebagai sumber bekalan air domestik dan industri, iaitu air bersih untuk penduduk dan operasi kilang.",
   },
   {
     id: "geo-f1-c6-q25",
@@ -8731,16 +8718,16 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 6",
     question:
-      "Mengapakah banjaran gunung di Malaysia kebanyakannya bebas daripada aktiviti gempa bumi tektonik yang kuat?",
+      "Sebuah kawasan berketinggian melebihi 180 m, bersuhu rendah dan sungainya sesuai dibina empangan. Pasangan kegiatan manakah yang paling sesuai di kawasan ini?",
     options: [
-      "Kerana banjaran gunung di Malaysia sangat rendah.",
-      "Kerana kedudukan geografi Malaysia terletak di luar zon Lingkaran Api Pasifik.",
-      "Kerana batuan gunung di Malaysia berasaskan tanah liat.",
-      "Kerana dilindungi oleh tiupan Angin Monsun.",
+      "Pertanian hawa sederhana dan hidroelektrik",
+      "Penanaman padi dan hidroelektrik",
+      "Pertanian hawa sederhana dan pelabuhan",
+      "Penanaman padi dan petempatan bandar",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Malaysia terselamat daripada lingkaran aktif gempa bumi dan gunung berapi kerana kedudukannya yang stabil di atas Plat Sunda.",
+      "Kawasan melebihi 180 m ialah tanah tinggi. Suhu yang rendah sesuai untuk pertanian hawa sederhana, dan sungai di tanah tinggi boleh dibina empangan untuk menjana hidroelektrik. Padi dan petempatan bandar sesuai di tanah pamah, manakala pelabuhan di pinggir laut.",
   },
   {
     id: "geo-f1-c6-q26",
@@ -8748,16 +8735,16 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 6",
-    question: "Empangan Bakun di Sarawak dibina merentasi sungai untuk kepentingan apa?",
+    question: "Empangan Bakun di Sarawak dibina terutamanya untuk tujuan apa?",
     options: [
-      "Sempadan daerah baru",
-      "Penjanaan kuasa hidroelektrik berskala besar",
-      "Pusat pembiakan ikan lumba-lumba",
-      "Penternakan udang galah",
+      "Bekalan air untuk sawah padi",
+      "Sempadan antara negeri",
+      "Penjanaan kuasa hidroelektrik",
+      "Pengangkutan sungai ke pedalaman",
     ],
-    answerIndex: 1,
+    answerIndex: 2,
     explanation:
-      "Empangan Bakun memegang peranan kritikal sebagai stesen janakuasa hidroelektrik terbesar yang membekalkan kuasa tenaga elektrik.",
+      "Empangan Bakun di Sarawak dibina untuk menjana kuasa hidroelektrik. Penjanaan hidroelektrik ialah salah satu kepentingan kawasan tanah tinggi.",
   },
   {
     id: "geo-f1-c6-q27",
@@ -8765,29 +8752,34 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 6",
-    question:
-      "Apakah tanaman komersial yang sesuai diusahakan di kawasan tanah pamah beralun yang mempunyai sistem saliran baik (bukan dataran banjir)?",
-    options: ["Sayuran hawa sederhana", "Kelapa sawit dan getah", "Teh Jepun", "Padi sawah"],
-    answerIndex: 1,
+    question: "Selain padi, tanaman apakah yang banyak diusahakan di kawasan tanah pamah?",
+    options: [
+      "Getah dan kelapa sawit",
+      "Teh dan sayur-sayuran",
+      "Sayur-sayuran dan bunga-bungaan",
+      "Strawberi dan bunga-bungaan",
+    ],
+    answerIndex: 0,
     explanation:
-      "Kawasan pamah yang beralun dan mempunyai saliran yang baik sangat sesuai untuk tanaman kontemporari seperti kelapa sawit dan getah.",
+      "Selain padi di Dataran Kedah–Perlis dan Dataran Kelantan, getah dan kelapa sawit banyak diusahakan di tanah pamah. Teh, strawberi, sayur-sayuran dan bunga-bungaan ialah tanaman hawa sederhana di tanah tinggi.",
   },
   {
-    id: "geo-f1-c6-q22",
+    id: "geo-f1-c6-q28",
     subjectId: "geography",
     form: "Form 1",
-    difficulty: "Medium",
+    difficulty: "Hard",
     chapter: "Chapter 6",
-    question: "Apakah fungsi utama 'tanjung' di pinggir laut dari sudut fizikal?",
+    question:
+      "Ombak menghakis tebing tinggi sehingga terbentuk gua. Hakisan berterusan menembusi gua itu, kemudian bahagian atasnya runtuh. Apakah bentuk muka bumi yang terhasil, dan apakah yang terbentuk jika hakisan berterusan?",
     options: [
-      "Menjadi kawasan pemendapan pasir halus.",
-      "Bertindak sebagai pemecah ombak semula jadi yang melindungi kawasan teluk.",
-      "Menjadi tempat mengalir air sungai.",
-      "Tempat berlabuh kapal tangki petroleum minyak.",
+      "Gerbang laut, kemudian batu tunggul",
+      "Batu tunggul, kemudian batu sisa",
+      "Batu sisa, kemudian batu tunggul",
+      "Gerbang laut, kemudian gua",
     ],
     answerIndex: 1,
     explanation:
-      "Struktur batuan keras tanjung menahan hakisan dan memecahkan impak tenaga ombak terus dari laut lepas.",
+      "Hakisan yang menembusi gua membentuk gerbang laut. Apabila bahagian atas gerbang laut runtuh, terbentuk batu tunggul. Batu tunggul yang terus terhakis oleh ombak menjadi batu sisa.",
   },
   {
     id: "geo-f1-c6-q29",
@@ -8796,34 +8788,33 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 6",
     question:
-      "Jika sistem saliran sungai di Malaysia mengalami pencemaran teruk, komponen sistem fizikal manakah yang terjejas secara langsung dalam biosfera?",
+      "Kawasan X rata, berketinggian tidak melebihi 180 m dan bertanih aluvium. Kawasan Y bergunung dan bersuhu rendah. Perbandingan kepentingan manakah yang betul?",
     options: [
-      "Kandungan gas nitrogen di atmosfera.",
-      "Habitat hidupan akuatik dan rantaian makanan ekosistem sungai.",
-      "Struktur batuan sial di kerak bumi.",
-      "Ketinggian banjaran gunung lipat.",
+      "X: penanaman padi; Y: pertanian hawa sederhana",
+      "X: pertanian hawa sederhana; Y: penanaman padi",
+      "X: petempatan bandar; Y: penanaman padi",
+      "X: penanaman padi; Y: perikanan dan pelabuhan",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation:
-      "Pencemaran air sungai merosakkan kualiti hidrosfera yang memberi impak maut langsung kepada biosfera (organisma hidup seperti ikan dan manusia).",
+      "X ialah tanah pamah kerana rata, tidak melebihi 180 m dan bertanih aluvium, jadi sesuai untuk penanaman padi. Y ialah tanah tinggi yang bersuhu rendah, jadi sesuai untuk pertanian hawa sederhana. Perikanan dan pelabuhan ialah kepentingan pinggir laut.",
   },
   {
     id: "geo-f1-c6-q30",
     subjectId: "geography",
     form: "Form 1",
-    difficulty: "Easy",
+    difficulty: "Medium",
     chapter: "Chapter 6",
-    question:
-      "Apakah kepentingan bentuk muka bumi yang pelbagai di Malaysia terhadap pembangunan negara?",
+    question: "Pernyataan manakah yang membandingkan kepentingan bentuk muka bumi dengan betul?",
     options: [
-      "Menyebabkan negara sukar ditadbir.",
-      "Membekalkan pelbagai sumber ekonomi, pelancongan, dan menyokong aktiviti harian penduduk.",
-      "Menghalang komunikasi radio.",
-      "Menyebabkan cuaca menjadi tidak menentu.",
+      "Tanah tinggi untuk pelabuhan; pinggir laut untuk hidroelektrik",
+      "Tanah pamah untuk petempatan; pinggir laut untuk perikanan",
+      "Saliran untuk pertanian hawa sederhana; tanah tinggi untuk pelabuhan",
+      "Tanah pamah untuk tadahan hujan; saliran untuk pelancongan pulau",
     ],
     answerIndex: 1,
     explanation:
-      "Kepelbagaian bentuk bumi (tanah tinggi, pamah, laut, sungai) memberikan kepelbagaian portfolio ekonomi mampan kepada Malaysia.",
+      "Tanah pamah penting untuk petempatan seperti Kuala Lumpur, manakala pinggir laut penting untuk perikanan seperti di Kuala Besut dan Sandakan. Pelabuhan berada di pinggir laut, manakala hidroelektrik, pertanian hawa sederhana dan tadahan hujan berkaitan dengan tanah tinggi.",
   },
   // Geografi Form 1 Chapter 7 - Saliran di Malaysia
   {
