@@ -4,7 +4,7 @@ const flashcardContent = [
   ["Apakah definisi sumber hutan?", "Sumber boleh baharu yang meliputi kawasan yang ditumbuhi pelbagai jenis flora dan fauna yang hidup secara semula jadi"],
   ["Adakah sumber hutan dikategorikan sebagai sumber boleh baharu?", "Ya"],
   ["Nyatakan tiga faktor yang menggalakkan pertumbuhan sumber hutan di Malaysia.", "Iklim Khatulistiwa yang panas dan lembap sepanjang tahun serta jumlah taburan hujan yang tinggi"],
-  ["Negeri manakah yang mempunyai jumlah hutan terbesar di Malaysia?", "Sarawak, dengan keluasan kira-kira 8.23 juta hektar"],
+  ["Negeri manakah mempunyai kawasan hutan yang sangat luas di Malaysia?", "Sarawak"],
   ["Apakah yang dimaksudkan dengan ekosistem hutan?", "Proses interaksi antara komponen biotik (benda hidup) dengan komponen abiotik (benda bukan hidup) dalam alam sekitar"],
   ["Berikan dua contoh komponen abiotik dalam ekosistem hutan.", "Tanih, air, udara, dan cahaya matahari"],
   ["Sebutkan satu contoh hutan rekreasi yang terkenal di Selangor.", "Hutan Rekreasi Sungai Tekala"],
