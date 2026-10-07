@@ -47,10 +47,10 @@ function getFlashcardDeckCards(
 import { geographyF3C10Flashcards } from "./flashcards";
 
 describe("Geography Form 3 Chapter 10 flashcards", () => {
-  it("contains exactly 65 ordered cards using the existing identity schema", () => {
-    expect(geographyF3C10Flashcards).toHaveLength(65);
+  it("contains exactly 60 curated cards using the existing identity schema", () => {
+    expect(geographyF3C10Flashcards).toHaveLength(60);
     expect(geographyF3C10Flashcards.map((card) => card.id)).toEqual(
-      Array.from({ length: 65 }, (_, index) => `geo-f3-c10-f${index + 1}`),
+      Array.from({ length: 60 }, (_, index) => `geo-f3-c10-f${index + 1}`),
     );
     expect(geographyF3C10Flashcards[0]).toMatchObject({
       front: "Apakah definisi sumber hutan?",
@@ -89,8 +89,8 @@ describe("Geography Form 3 Chapter 10 flashcards", () => {
     );
     expect(geographyF3C10Flashcards.every((card) => !/^\s*\.\s*$/.test(card.front))).toBe(true);
     expect(geographyF3C10Flashcards.every((card) => !/^\s*\.\s*$/.test(card.back))).toBe(true);
-    expect(new Set(fronts).size).toBe(65);
-    expect(new Set(pairs).size).toBe(65);
+    expect(new Set(fronts).size).toBe(60);
+    expect(new Set(pairs).size).toBe(60);
   });
 
   it("is exposed through the existing global content and Chapter 10 route mapping", () => {
