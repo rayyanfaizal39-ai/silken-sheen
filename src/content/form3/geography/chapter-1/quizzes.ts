@@ -8,6 +8,13 @@ function q(
   answerIndex: number,
   explanation: string,
 ): QuizQuestion {
+  const correct = options[answerIndex];
+  const rotation = (number - 1) % options.length;
+  const rotatedOptions = [
+    ...options.slice(rotation),
+    ...options.slice(0, rotation),
+  ] as [string, string, string, string];
+
   return {
     id: `geo-f3-c1-q${number}`,
     subjectId: "geography",
@@ -16,8 +23,8 @@ function q(
     lang: "bm",
     difficulty,
     question,
-    options,
-    answerIndex,
+    options: rotatedOptions,
+    answerIndex: rotatedOptions.indexOf(correct),
     explanation,
   };
 }
