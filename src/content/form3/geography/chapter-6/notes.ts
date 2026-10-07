@@ -1,496 +1,404 @@
 import type { StructuredNotes } from "@/content/types";
 
 export const geographyF3C6Notes: StructuredNotes = {
-  "chapterSummary": "Bab 6 Sumber Semula Jadi di Malaysia merangkumi 3 subtopik rasmi: 6.1 Sumber Semula Jadi di Malaysia; 6.2 Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia; 6.3 Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia. Nota ini disusun mengikut urutan buku teks dan mengekalkan fokus kepada fakta, konsep, proses, contoh, jadual, peta, rajah dan kemahiran UASA yang terdapat dalam bab.",
-  "quickRevision": [
-    "6.1 Sumber Semula Jadi di Malaysia",
-    "6.2 Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia",
-    "6.3 Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia",
-    "Sumber Semula Jadi di Malaysia6.1",
-    "Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia Empangan Kenyir (Terengganu)",
-    "Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia"
+  chapterSummary:
+    "Bab 6 menerangkan sumber semula jadi di Malaysia, taburan sumber boleh baharu dan sumber tidak boleh baharu, serta kepentingannya kepada pembangunan ekonomi. Murid perlu dapat membezakan jenis sumber, mengenal pasti contoh dan lokasi utama, kemudian menghuraikan bagaimana sumber tersebut menyokong industri, pekerjaan, infrastruktur, bandar dan pendapatan negara.",
+
+  quickRevision: [
+    "Sumber semula jadi ialah bahan atau punca yang wujud secara semula jadi di atas permukaan bumi, di dalam bumi atau di dalam air.",
+    "Sumber semula jadi dibahagikan kepada sumber boleh baharu dan sumber tidak boleh baharu.",
+    "Sumber boleh baharu boleh diganti atau diperbaharui melalui proses semula jadi atau pengurusan yang baik.",
+    "Contoh sumber boleh baharu ialah hutan, air, tanih dan tenaga seperti suria, angin, biomas serta hidroelektrik.",
+    "Sumber tidak boleh baharu mempunyai bekalan terhad dan boleh berkurang atau habis apabila dieksploitasi secara berterusan.",
+    "Contoh sumber tidak boleh baharu ialah petroleum, gas asli, arang batu, emas, bijih timah, bauksit, kuprum dan mineral lain.",
+    "Petroleum dan gas asli banyak terdapat di kawasan luar pesisir Kelantan, Terengganu, Sabah dan Sarawak.",
+    "Sumber semula jadi penting sebagai bahan mentah, sumber tenaga, peluang pekerjaan, pendapatan negara, pemangkin industri dan pembangunan kawasan baharu.",
   ],
-  "keyTerms": [
-    "Sumber Semula Jadi di Malaysia",
-    "Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia",
-    "Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia",
-    "Sumber semula jadi merujuk bahan atau punca yang terdapat di sekeliling kita, sama ada di atas permukaan bumi, di dalam bumi atau di dalam air. Terdapat dua jenis sumber semula jadi,",
-    "Sumber boleh baharu ialah",
-    "Bersifat mesra alam dan digunakan untuk menggantikan penggunaan bahan api fosil seperti minyak, gas dan arang batu Contoh tenaga alternatif ialah penjanaan kuasa hidroelektrik, tenaga suria, biomas, ombak,",
-    "Tenaga biomas: Miri dan Sri Aman (Sarawak) Tenaga angin: Pulau Layang-layang (Sabah) Sumber tidak boleh baharu ialah sumber semula jadi yang akan habis atau pupus dalam jangka waktu yang tertentu jika penerokaan",
-    "(Sumber: Diubah suai daripada Suruhanjaya Tenaga, 2015 dan Sarawak Integrated Water Resources, 2008) Empangan Bakun merupakan empangan hidroelektrik yang terbesar di Malaysia. Empangan ini mampu menjana 2 400 MV tenaga elektrik.",
-    "Pada tahun 2020, dianggarkan 60 peratus daripada penjanaan tenaga elektrik di Sarawak adalah bersumberkan hidroelektrik."
+
+  keyTerms: [
+    "Sumber semula jadi",
+    "Sumber boleh baharu",
+    "Sumber tidak boleh baharu",
+    "Mineral logam",
+    "Mineral bukan logam",
+    "Tenaga alternatif",
+    "Hidroelektrik",
+    "Tenaga suria",
+    "Tenaga biomas",
+    "Tenaga angin",
+    "Tenaga ombak",
+    "Tenaga geoterma",
+    "Petroleum",
+    "Gas asli",
+    "Arang batu",
+    "Industri hiliran",
+    "Infrastruktur",
+    "Kelestarian",
   ],
-  "keyExamFacts": [
-    "Sumber semula jadi merujuk bahan atau punca yang terdapat di sekeliling kita, sama ada di atas permukaan bumi, di dalam bumi atau di dalam air. Terdapat dua jenis sumber semula jadi,",
-    "dan gas asli. Sumber mineral pula terbahagi kepada dua jenis, iaitu logam dan bukan logam.",
-    "Sumber Semula Jadi Boleh Baharu: Air (Empangan Hidroelektrik) Peta 6.1 Taburan beberapa stesen jana kuasa hidroelektrik di Malaysia",
-    "Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia Empangan Kenyir (Terengganu)",
-    "Bahagian ini memfokuskan taburan beberapa sumber boleh baharu dan sumber tidak boleh baharu utama di Malaysia.",
-    "Jadual 6.1 Contoh jenis hutan dan tanih, lokasi dan sumber hutan yang terdapat di Malaysia KSSM_2019_Geografi_Tingkatan_3_Bab06.indd 106 10/22/19 10:20 AM Pokok bakau Pokok kelapa Pokok renek",
-    "KSSM_2019_Geografi_Tingkatan_3_Bab06.indd 107 10/22/19 10:20 AM Taburan Sumber Semula Jadi Tidak Boleh Baharu: Mineral Peta 6.2 Taburan sumber tidak boleh baharu di Malaysia sumber Petroleum Gas asli Emas Arang batu",
-    "Objekif: Menyatakan taburan sumber semula jadi boleh baharu dan tidak",
-    "Alatan: Sticky notes, kertas sebak, pen penanda, pelekat Langkah-langkah: 1. Murid membuat aktiviti dalam kumpulan.",
-    "Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia",
-    "Kepentingan sumber semula jadi"
+
+  keyExamFacts: [
+    "Sumber boleh baharu perlu diurus dengan baik supaya kadar penggunaan tidak melebihi kadar pemulihan atau pembaharuan.",
+    "Sumber tidak boleh baharu terbentuk dalam tempoh yang sangat panjang dan tidak dapat diganti dengan cepat selepas digunakan.",
+    "Tenaga hidroelektrik menggunakan aliran atau simpanan air untuk memutarkan turbin dan menghasilkan elektrik.",
+    "Empangan Kenyir terletak di Terengganu, Bakun dan Batang Ai di Sarawak, manakala Tenom Pangi di Sabah.",
+    "Petroleum dan gas asli banyak dilombong di kawasan luar pesisir Kelantan, Terengganu, Sabah dan Sarawak.",
+    "Raub dan Kuala Lipis di Pahang serta Bau di Sarawak merupakan contoh kawasan perlombongan emas.",
+    "Silimpopon dan Maliau di Sabah serta Merit-Pila dan Silantek di Sarawak dikaitkan dengan sumber arang batu.",
+    "Bauksit digunakan untuk menghasilkan aluminium, kuprum untuk wayar elektrik, kaolin untuk tembikar dan porselin, serta pasir untuk kaca.",
+    "Sumber semula jadi membekalkan bahan mentah kepada industri primer, sekunder dan industri hiliran.",
+    "Pembangunan sumber boleh mendorong pembinaan jalan, pelabuhan, landasan pengangkutan serta pertumbuhan bandar seperti Kerteh, Paka, Bintulu dan Miri.",
   ],
-  "sections": [
+
+  sections: [
     {
-      "title": "Pengenalan Bab",
-      "subsections": [
+      title: "Pengenalan Bab",
+      subsections: [
         {
-          "title": "Gambaran keseluruhan",
-          "content": "Sebagai rakyat Malaysia, kita seharusnya berbangga dengan kepelbagaian sumber semula jadi yang terdapat di Malaysia. Bolehkah anda nyatakan dan kenal pasti taburan sumber semula jadi yang terdapat di negara kita? Bagaimanakah sumber semula jadi ini boleh mempengaruhi pembangunan ekonomi di negara kita? 3 Menamakan sumber semula jadi di Malaysia 3 Mengenal pasti taburan sumber boleh baharu dan sumber tidak boleh baharu di Malaysia 3 Menghuraikan sumber boleh baharu dan sumber tidak boleh baharu di Malaysia"
+          title: "Gambaran keseluruhan",
+          content:
+            "Malaysia mempunyai pelbagai sumber semula jadi daripada hutan dan air hingga mineral, petroleum dan gas asli. Sumber-sumber ini berbeza dari segi kebolehdiperbaharui, lokasi dan kegunaannya. Pengurusan yang cekap penting supaya pembangunan ekonomi dapat diteruskan tanpa membazir atau memusnahkan sumber.",
         },
         {
-          "title": "Checklist subtopik",
-          "bulletPoints": [
-            "✓ 6.1 Sumber Semula Jadi di Malaysia",
-            "✓ 6.2 Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia",
-            "✓ 6.3 Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "6.1 Sumber Semula Jadi di Malaysia",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Maksud Sumber Semula Jadi Sumber semula jadi merujuk bahan atau punca yang terdapat di sekeliling kita, sama ada di atas permukaan bumi, di dalam bumi atau di dalam air. Terdapat dua jenis sumber semula jadi,"
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Sumber Semula Jadi di Malaysia",
-            "Sumber semula jadi merujuk bahan atau punca yang terdapat di sekeliling kita, sama ada di atas permukaan bumi, di dalam bumi atau di dalam air. Terdapat dua jenis sumber semula jadi,",
-            "Sumber boleh baharu ialah",
-            "Bersifat mesra alam dan digunakan untuk menggantikan penggunaan bahan api fosil seperti minyak, gas dan arang batu Contoh tenaga alternatif ialah penjanaan kuasa hidroelektrik, tenaga suria, biomas, ombak,",
-            "Tenaga biomas: Miri dan Sri Aman (Sarawak) Tenaga angin: Pulau Layang-layang (Sabah) Sumber tidak boleh baharu ialah sumber semula jadi yang akan habis atau pupus dalam jangka waktu yang tertentu jika penerokaan",
-            "Sumber Semula Jadi Boleh Baharu: Air (Empangan Hidroelektrik) Peta 6.1 Taburan beberapa stesen jana kuasa hidroelektrik di Malaysia"
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Sumber semula jadi merujuk bahan atau punca yang terdapat di sekeliling kita, sama ada di atas permukaan bumi, di dalam bumi atau di dalam air. Terdapat dua jenis sumber semula jadi,",
-            "Sumber boleh baharu ialah",
-            "Bersifat mesra alam dan digunakan untuk menggantikan penggunaan bahan api fosil seperti minyak, gas dan arang batu Contoh tenaga alternatif ialah penjanaan kuasa hidroelektrik, tenaga suria, biomas, ombak,",
-            "Tenaga biomas: Miri dan Sri Aman (Sarawak) Tenaga angin: Pulau Layang-layang (Sabah) Sumber tidak boleh baharu ialah sumber semula jadi yang akan habis atau pupus dalam jangka waktu yang tertentu jika penerokaan"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Maksud Sumber Semula Jadi",
-            "iaitu sumber boleh baharu dan sumber tidak boleh baharu.",
-            "Hutan Pantai Gambut Paya",
-            "Hutan Gunung Aluvium Laut",
-            "Hutan Paya Beris Air bawah tanah",
-            "melihat video tentang tenaga boleh baharu:",
-            "maklumat tentang tenaga boleh baharu: Panel solar pada bumbung rumah Berasaskan alam semula jadi seperti suria, air, angin, ombak, kolam air panas, sisa tumbuhan dan tinja haiwan untuk menghasilkan sumber kuasa elektrik",
-            "Antara sumber tenaga alternatif di Malaysia: Tenaga hidroelektrik: Empangan Kenyir (Terengganu) Tenaga suria: Pemasangan panel solar pada bumbung",
-            "sesuatu sumber itu tidak dikawal dan dirancang dengan baik.",
-            "Sumber tidak boleh baharu antaranya terdiri daripada sumber mineral yang diperoleh dengan menggali atau melombong permukaan dan kerak bumi. Terdapat sumber mineral yang digali di dasar laut seperti petroleum",
-            "dan gas asli. Sumber mineral pula terbahagi kepada dua jenis, iaitu logam dan bukan logam.",
-            "Sumber Tidak Boleh Baharu",
-            "maklumat tentang sumber mineral di Malaysia:",
-            "Sumber Semula Jadi Boleh Baharu: Air (Empangan Hidroelektrik) Peta 6.1 Taburan beberapa stesen jana kuasa hidroelektrik di Malaysia"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "sumber semula jadi yang tidak akan habis walaupun diambil dan digunakan secara berterusan.",
-            "Sumber ini boleh diperbaharu melalui beberapa kaedah."
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "maklumat tentang tenaga boleh baharu: Panel solar pada bumbung rumah Berasaskan alam semula jadi seperti suria, air, angin, ombak, kolam air panas, sisa tumbuhan dan tinja haiwan untuk menghasilkan sumber kuasa elektrik",
-            "Bersifat mesra alam dan digunakan untuk menggantikan penggunaan bahan api fosil seperti minyak, gas dan arang batu Contoh tenaga alternatif ialah penjanaan kuasa hidroelektrik, tenaga suria, biomas, ombak,",
-            "Sumber tidak boleh baharu antaranya terdiri daripada sumber mineral yang diperoleh dengan menggali atau melombong permukaan dan kerak bumi. Terdapat sumber mineral yang digali di dasar laut seperti petroleum"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Maksud Sumber Semula Jadi",
-            "Sumber semula jadi merujuk bahan atau punca yang terdapat di sekeliling kita, sama ada di atas permukaan bumi, di dalam bumi atau di dalam air. Terdapat dua jenis sumber semula jadi,",
-            "iaitu sumber boleh baharu dan sumber tidak boleh baharu.",
-            "Sumber boleh baharu ialah",
-            "sumber semula jadi yang tidak akan habis walaupun diambil dan digunakan secara berterusan.",
-            "Sumber ini boleh diperbaharu melalui beberapa kaedah.",
-            "maklumat tentang tenaga boleh baharu: Panel solar pada bumbung rumah Berasaskan alam semula jadi seperti suria, air, angin, ombak, kolam air panas, sisa tumbuhan dan tinja haiwan untuk menghasilkan sumber kuasa elektrik",
-            "Antara sumber tenaga alternatif di Malaysia: Tenaga hidroelektrik: Empangan Kenyir (Terengganu) Tenaga suria: Pemasangan panel solar pada bumbung",
-            "Tenaga biomas: Miri dan Sri Aman (Sarawak) Tenaga angin: Pulau Layang-layang (Sabah) Sumber tidak boleh baharu ialah sumber semula jadi yang akan habis atau pupus dalam jangka waktu yang tertentu jika penerokaan",
-            "sesuatu sumber itu tidak dikawal dan dirancang dengan baik."
+          title: "Apa yang perlu dikuasai",
+          bulletPoints: [
+            "Menerangkan maksud sumber semula jadi.",
+            "Membezakan sumber boleh baharu dengan sumber tidak boleh baharu.",
+            "Mengenal pasti contoh dan taburan sumber utama di Malaysia.",
+            "Menghubungkan sumber dengan kegunaan dan industri yang berkaitan.",
+            "Menghuraikan kepentingan sumber semula jadi kepada pembangunan ekonomi.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "Maksud Sumber Semula Jadi"
-              ],
-              [
-                "Sumber semula jadi merujuk bahan atau punca yang terdapat di sekeliling kita, sama ada di"
-              ],
-              [
-                "atas permukaan bumi, di dalam bumi atau di dalam air. Terdapat dua jenis sumber semula jadi,"
-              ],
-              [
-                "iaitu sumber boleh baharu dan sumber tidak boleh baharu."
-              ],
-              [
-                "Sumber Boleh Baharu"
-              ],
-              [
-                "Sumber boleh baharu"
-              ],
-              [
-                "Sumber boleh baharu ialah"
-              ],
-              [
-                "sumber semula jadi yang tidak"
-              ]
-            ]
-          }
         },
-        {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Maksud Sumber Semula Jadi",
-            "Sumber semula jadi merujuk bahan atau punca yang terdapat di sekeliling kita, sama ada di atas permukaan bumi, di dalam bumi atau di dalam air. Terdapat dua jenis sumber semula jadi,",
-            "iaitu sumber boleh baharu dan sumber tidak boleh baharu.",
-            "Hutan Pantai Gambut Paya",
-            "Hutan Gunung Aluvium Laut",
-            "Hutan Paya Beris Air bawah tanah",
-            "melihat video tentang tenaga boleh baharu:",
-            "Sumber boleh baharu ialah",
-            "sumber semula jadi yang tidak akan habis walaupun diambil dan digunakan secara berterusan.",
-            "Sumber ini boleh diperbaharu melalui beberapa kaedah.",
-            "maklumat tentang tenaga boleh baharu: Panel solar pada bumbung rumah Berasaskan alam semula jadi seperti suria, air, angin, ombak, kolam air panas, sisa tumbuhan dan tinja haiwan untuk menghasilkan sumber kuasa elektrik",
-            "Bersifat mesra alam dan digunakan untuk menggantikan penggunaan bahan api fosil seperti minyak, gas dan arang batu Contoh tenaga alternatif ialah penjanaan kuasa hidroelektrik, tenaga suria, biomas, ombak,"
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Sumber Semula Jadi di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Sumber Semula Jadi di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 6.1 menekankan Sumber Semula Jadi di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+      ],
     },
+
     {
-      "title": "6.2 Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia",
-      "subsections": [
+      title: "6.1 Sumber Semula Jadi di Malaysia",
+      subsections: [
         {
-          "title": "Pengenalan",
-          "content": "Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia Empangan Kenyir (Terengganu) Air sungai yang diempang,"
+          title: "Maksud sumber semula jadi",
+          content:
+            "Sumber semula jadi ialah bahan atau punca yang tersedia secara semula jadi di persekitaran, sama ada di atas permukaan bumi, di dalam bumi atau di dalam air. Manusia menggunakan sumber ini untuk makanan, tenaga, bahan mentah, pembinaan dan pelbagai kegiatan ekonomi.",
         },
+
         {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia",
-            "(Sumber: Diubah suai daripada Suruhanjaya Tenaga, 2015 dan Sarawak Integrated Water Resources, 2008) Empangan Bakun merupakan empangan hidroelektrik yang terbesar di Malaysia. Empangan ini mampu menjana 2 400 MV tenaga elektrik.",
-            "Pada tahun 2020, dianggarkan 60 peratus daripada penjanaan tenaga elektrik di Sarawak adalah bersumberkan hidroelektrik.",
-            "Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia Empangan Kenyir (Terengganu)",
-            "Bahagian ini memfokuskan taburan beberapa sumber boleh baharu dan sumber tidak boleh baharu utama di Malaysia.",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab06.indd 107 10/22/19 10:20 AM Taburan Sumber Semula Jadi Tidak Boleh Baharu: Mineral Peta 6.2 Taburan sumber tidak boleh baharu di Malaysia sumber Petroleum Gas asli Emas Arang batu",
-            "Jadual 6.2 Contoh lokasi dan kegunaan sumber tidak boleh baharu",
-            "Objekif: Menyatakan taburan sumber semula jadi boleh baharu dan tidak"
-          ]
+          title: "Dua jenis sumber utama",
+          table: {
+            headers: ["Jenis sumber", "Ciri", "Contoh"],
+            rows: [
+              [
+                "Boleh baharu",
+                "Boleh diganti, dipulihkan atau diperbaharui melalui proses semula jadi atau pengurusan yang baik.",
+                "Hutan, air, tanih, suria, angin dan biomas.",
+              ],
+              [
+                "Tidak boleh baharu",
+                "Bekalannya terhad dan mengambil masa yang sangat panjang untuk terbentuk semula.",
+                "Petroleum, gas asli, arang batu, emas, bijih timah, bauksit dan kuprum.",
+              ],
+            ],
+          },
         },
+
         {
-          "title": "Definisi",
-          "bulletPoints": [
-            "(Sumber: Diubah suai daripada Suruhanjaya Tenaga, 2015 dan Sarawak Integrated Water Resources, 2008) Empangan Bakun merupakan empangan hidroelektrik yang terbesar di Malaysia. Empangan ini mampu menjana 2 400 MV tenaga elektrik.",
-            "Pada tahun 2020, dianggarkan 60 peratus daripada penjanaan tenaga elektrik di Sarawak adalah bersumberkan hidroelektrik."
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia Empangan Kenyir (Terengganu)",
-            "Air sungai yang diempang,",
-            "Bahagian ini memfokuskan taburan beberapa sumber boleh baharu dan sumber tidak boleh baharu utama di Malaysia.",
-            "Empangan Tenom Pangi (Sabah)",
-            "(Sumber: The International Hydropower Association, 2017) Sumber Semula Jadi Boleh Baharu: Hutan",
-            "negeri dan setiap negeri",
-            "(Sumber: Kementerian Sumber Asli dan Alam Sekitar, 2017) Pokok buluh Pokok mengkuang",
-            "Sekitar Tasik Chini, Tasik Bera,",
-            "Rompin dan Pekan (Pahang)",
-            "Sekitar Sungai Lupar dan",
-            "Pantai Tanjung Rhu, Langkawi",
-            "Pulau Talang-talang (Sarawak) Pantai Penarik (Terengganu)",
-            "Harimau, gajah, tapir, landak,",
-            "palma, keladi air, putat, palas,",
-            "Ikan air tawar, katak, ular,",
-            "Pokok bakau: Bakau minyak,"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Alatan: Sticky notes, kertas sebak, pen penanda, pelekat Langkah-langkah: 1. Murid membuat aktiviti dalam kumpulan."
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Jadual 6.1 Contoh jenis hutan dan tanih, lokasi dan sumber hutan yang terdapat di Malaysia KSSM_2019_Geografi_Tingkatan_3_Bab06.indd 106 10/22/19 10:20 AM Pokok bakau Pokok kelapa Pokok renek",
-            "Jadual 6.2 Contoh lokasi dan kegunaan sumber tidak boleh baharu"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia Empangan Kenyir (Terengganu)",
-            "Bahagian ini memfokuskan taburan beberapa sumber boleh baharu dan sumber tidak boleh baharu utama di Malaysia.",
-            "(Sumber: Diubah suai daripada Suruhanjaya Tenaga, 2015 dan Sarawak Integrated Water Resources, 2008) Empangan Bakun merupakan empangan hidroelektrik yang terbesar di Malaysia. Empangan ini mampu menjana 2 400 MV tenaga elektrik.",
-            "Pada tahun 2020, dianggarkan 60 peratus daripada penjanaan tenaga elektrik di Sarawak adalah bersumberkan hidroelektrik.",
-            "(Sumber: The International Hydropower Association, 2017) Sumber Semula Jadi Boleh Baharu: Hutan",
-            "(Sumber: Kementerian Sumber Asli dan Alam Sekitar, 2017) Pokok buluh Pokok mengkuang",
-            "Jadual 6.1 Contoh jenis hutan dan tanih, lokasi dan sumber hutan yang terdapat di Malaysia KSSM_2019_Geografi_Tingkatan_3_Bab06.indd 106 10/22/19 10:20 AM Pokok bakau Pokok kelapa Pokok renek",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab06.indd 107 10/22/19 10:20 AM Taburan Sumber Semula Jadi Tidak Boleh Baharu: Mineral Peta 6.2 Taburan sumber tidak boleh baharu di Malaysia sumber Petroleum Gas asli Emas Arang batu",
-            "Jadual 6.2 Contoh lokasi dan kegunaan sumber tidak boleh baharu",
-            "Tajuk: Sumber semula jadi boleh baharu dan tidak boleh baharu"
+          title: "Sumber boleh baharu",
+          bulletPoints: [
+            "Hutan boleh diperbaharui melalui pertumbuhan semula dan penanaman semula.",
+            "Air diperbaharui melalui kitaran hidrologi, tetapi bekalannya tetap perlu dijaga daripada pencemaran dan pembaziran.",
+            "Tanih boleh mengekalkan produktiviti jika diurus dengan baik dan dilindungi daripada hakisan.",
+            "Tenaga suria, angin, air dan biomas boleh digunakan sebagai sumber tenaga alternatif.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
+        },
+
+        {
+          title: "Tenaga alternatif",
+          content:
+            "Tenaga alternatif ialah tenaga yang digunakan sebagai pilihan kepada bahan api fosil seperti petroleum, gas asli dan arang batu. Banyak sumber tenaga alternatif menghasilkan pencemaran udara yang lebih rendah semasa operasi dan membantu mempelbagaikan bekalan tenaga.",
+        },
+        {
+          title: "Jenis tenaga alternatif",
+          table: {
+            headers: ["Jenis tenaga", "Bagaimana tenaga diperoleh", "Contoh / potensi di Malaysia"],
+            rows: [
+              [
+                "Hidroelektrik",
+                "Air memutarkan turbin untuk menghasilkan elektrik.",
+                "Empangan Kenyir, Bakun, Batang Ai dan Tenom Pangi.",
+              ],
+              [
+                "Suria",
+                "Sel fotovolta menukar cahaya matahari kepada tenaga elektrik.",
+                "Berpotensi tinggi kerana Malaysia menerima cahaya matahari sepanjang tahun.",
+              ],
+              [
+                "Biomas",
+                "Bahan organik seperti sisa tumbuhan dan bahan buangan digunakan untuk menghasilkan tenaga.",
+                "Sesuai di kawasan yang mempunyai banyak sisa pertanian dan perhutanan.",
+              ],
+              [
+                "Angin",
+                "Pergerakan angin memutarkan turbin.",
+                "Berpotensi di lokasi yang mempunyai tiupan angin yang sesuai.",
+              ],
+              [
+                "Ombak",
+                "Pergerakan ombak laut ditukar kepada tenaga.",
+                "Berpotensi di kawasan pantai yang terdedah kepada tenaga ombak.",
+              ],
+              [
+                "Geoterma",
+                "Haba dalaman bumi digunakan sebagai sumber tenaga.",
+                "Bergantung pada keadaan geologi yang sesuai.",
+              ],
             ],
-            "rows": [
-              [
-                "Taburan Sumber Boleh Baharu dan Sumber"
-              ],
-              [
-                "PETUNJUK"
-              ],
-              [
-                "Bahagian ini memfokuskan taburan beberapa sumber boleh baharu dan sumber tidak boleh"
-              ],
-              [
-                "PETUNJUK"
-              ],
-              [
-                "(Sumber: Diubah suai daripada Suruhanjaya Tenaga, 2015 dan Sarawak Integrated Water Resources, 2008)"
-              ],
-              [
-                "elektrik di Sarawak adalah bersumberkan hidroelektrik."
-              ],
-              [
-                "(Sumber: The International Hydropower Association, 2017)"
-              ],
-              [
-                "Sumber Semula Jadi Boleh Baharu: Hutan"
-              ]
-            ]
-          }
+          },
         },
+
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia Empangan Kenyir (Terengganu)",
-            "Air sungai yang diempang,",
-            "Bahagian ini memfokuskan taburan beberapa sumber boleh baharu dan sumber tidak boleh baharu utama di Malaysia.",
-            "Empangan Tenom Pangi (Sabah)",
-            "(Sumber: Diubah suai daripada Suruhanjaya Tenaga, 2015 dan Sarawak Integrated Water Resources, 2008) Empangan Bakun merupakan empangan hidroelektrik yang terbesar di Malaysia. Empangan ini mampu menjana 2 400 MV tenaga elektrik.",
-            "Pada tahun 2020, dianggarkan 60 peratus daripada penjanaan tenaga elektrik di Sarawak adalah bersumberkan hidroelektrik.",
-            "(Sumber: The International Hydropower Association, 2017) Sumber Semula Jadi Boleh Baharu: Hutan",
-            "negeri dan setiap negeri",
-            "(Sumber: Kementerian Sumber Asli dan Alam Sekitar, 2017) Pokok buluh Pokok mengkuang",
-            "Sekitar Tasik Chini, Tasik Bera,",
-            "Rompin dan Pekan (Pahang)",
-            "Sekitar Sungai Lupar dan"
-          ]
+          title: "Sumber tidak boleh baharu",
+          content:
+            "Sumber tidak boleh baharu terbentuk dalam tempoh geologi yang sangat panjang. Apabila digunakan dengan kadar yang tinggi, bekalannya semakin berkurang. Oleh itu, penerokaan dan penggunaannya perlu dirancang dengan cekap.",
         },
+
         {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
+          title: "Sumber mineral",
+          table: {
+            headers: ["Kumpulan", "Contoh", "Kegunaan utama"],
+            rows: [
+              ["Mineral logam", "Emas, bauksit, bijih timah, kuprum, bijih besi", "Barang kemas, aluminium, piuter, wayar elektrik dan industri logam."],
+              ["Mineral / sumber bukan logam", "Granit, kaolin, pasir, arang batu, petroleum dan gas asli", "Pembinaan, tembikar, kaca, tenaga dan industri petrokimia."],
+            ],
+          },
         },
+
         {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 6.2 menekankan Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
-    },
-    {
-      "title": "6.3 Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia Peratus Pekerja Mengikut Sektor pada Tahun 2015"
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia",
-            "Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia",
-            "Kepentingan sumber semula jadi"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia",
-            "Peratus Pekerja Mengikut Sektor pada Tahun 2015",
-            "(Sumber: Jabatan Perangkaan Malaysia, 2017)",
-            "infrastruktur untuk memudahkan pengurusan sumber:",
-            "(dibina lewat kurun ke-19 untuk",
-            "Taiping ke Kuala Sepetang",
-            "negara melalui sektor yang melibatkan bahan mentah:",
-            "(Sumber: Jabatan Perangkaan dan Kementerian Kewangan Malaysia, Jun 2018)",
-            "Membangunkan bandar-bandar baharu yang dilengkapi dengan pelbagai kemudahan: Kerteh dan Paka (Terengganu) Bintulu dan Miri (Sarawak)",
-            "Keluaran Dalam Negara Kasar (KDNK) Mengikut Sektor",
-            "pada Tahun 2016 (RM juta)",
-            "Sumber Semula Jadi di Malaysia",
-            "Kepentingan sumber semula jadi",
-            "Sumber tenaga boleh baharu",
-            "Sumber tidak boleh baharu",
-            "Contoh sumber mineral logam"
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Contoh sumber mineral logam"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia",
-            "(Sumber: Jabatan Perangkaan Malaysia, 2017)",
-            "infrastruktur untuk memudahkan pengurusan sumber:",
-            "Taiping ke Kuala Sepetang",
-            "(Sumber: Jabatan Perangkaan dan Kementerian Kewangan Malaysia, Jun 2018)",
-            "Sumber Semula Jadi di Malaysia",
-            "Kepentingan sumber semula jadi",
-            "Sumber tenaga boleh baharu",
-            "Sumber tidak boleh baharu",
-            "Contoh sumber mineral logam"
+          title: "Perbandingan mudah",
+          bulletPoints: [
+            "Suria → boleh baharu.",
+            "Air → boleh baharu.",
+            "Hutan → boleh baharu jika diurus dan ditanam semula.",
+            "Petroleum → tidak boleh baharu.",
+            "Gas asli → tidak boleh baharu.",
+            "Arang batu → tidak boleh baharu.",
+            "Mineral logam → tidak boleh baharu.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "Kepentingan Sumber Semula Jadi dalam"
-              ],
-              [
-                "Sumber bahan"
-              ],
-              [
-                "PETUNJUK"
-              ],
-              [
-                "(Sumber: Jabatan Perangkaan Malaysia, 2017)"
-              ],
-              [
-                "pengurusan sumber:"
-              ],
-              [
-                "Taiping ke Kuala Sepetang"
-              ],
-              [
-                "2. Bagaimanakah sumber"
-              ],
-              [
-                "(Sumber: Jabatan Perangkaan dan Kementerian Kewangan Malaysia, Jun 2018)"
-              ]
-            ]
-          }
         },
+
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia",
-            "Peratus Pekerja Mengikut Sektor pada Tahun 2015",
-            "(Sumber: Jabatan Perangkaan Malaysia, 2017)",
-            "infrastruktur untuk memudahkan pengurusan sumber:",
-            "(dibina lewat kurun ke-19 untuk",
-            "Taiping ke Kuala Sepetang",
-            "negara melalui sektor yang melibatkan bahan mentah:",
-            "(Sumber: Jabatan Perangkaan dan Kementerian Kewangan Malaysia, Jun 2018)",
-            "Membangunkan bandar-bandar baharu yang dilengkapi dengan pelbagai kemudahan: Kerteh dan Paka (Terengganu) Bintulu dan Miri (Sarawak)",
-            "Keluaran Dalam Negara Kasar (KDNK) Mengikut Sektor",
-            "pada Tahun 2016 (RM juta)",
-            "Sumber Semula Jadi di Malaysia"
-          ]
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Jangan hanya hafal contoh. Fahami sebab sesuatu sumber dikategorikan sebagai boleh baharu atau tidak boleh baharu.",
+            "Jika ditanya tenaga alternatif, nyatakan sumber tenaga dan cara ia menghasilkan tenaga.",
+            "Untuk soalan perbandingan, gunakan kata kunci: boleh diganti / bekalan terhad / masa pembentukan.",
+          ],
         },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 6.3 menekankan Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+      ],
     },
+
     {
-      "title": "Imbas Kembali",
-      "subsections": [
+      title: "6.2 Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia",
+      subsections: [
         {
-          "title": "Checklist akhir bab",
-          "bulletPoints": [
-            "✓ 6.1 Sumber Semula Jadi di Malaysia",
-            "✓ 6.2 Taburan Sumber Boleh Baharu dan Sumber Tidak Boleh Baharu di Malaysia",
-            "✓ 6.3 Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia"
-          ]
+          title: "Taburan sumber boleh baharu: hidroelektrik",
+          table: {
+            headers: ["Lokasi", "Negeri"],
+            rows: [
+              ["Empangan Kenyir", "Terengganu"],
+              ["Empangan Bakun", "Sarawak"],
+              ["Empangan Batang Ai", "Sarawak"],
+              ["Tenom Pangi", "Sabah"],
+            ],
+          },
         },
         {
-          "title": "Cara ulang kaji pantas",
-          "bulletPoints": [
-            "Baca semula setiap definisi dan kata kunci utama.",
-            "Semak semula contoh, jadual, graf, carta, peta dan rajah yang terdapat dalam bab.",
-            "Latih menjawab dengan format fakta + huraian + contoh daripada buku teks."
-          ]
-        }
-      ]
-    }
-  ]
+          title: "Mengapa lokasi hidroelektrik tertumpu di kawasan tertentu?",
+          content:
+            "Penjanaan hidroelektrik memerlukan bekalan air yang banyak, aliran sungai yang sesuai dan keadaan bentuk muka bumi yang membolehkan pembinaan empangan serta takungan.",
+        },
+
+        {
+          title: "Taburan sumber hutan",
+          content:
+            "Hutan merupakan sumber boleh baharu yang terdapat di seluruh Malaysia, tetapi jenisnya berbeza mengikut bentuk muka bumi, saliran, tanih dan iklim. Sumber hutan termasuk kayu keras, rotan, buluh, nipah, mengkuang, tumbuhan ubatan dan pelbagai hasil bukan kayu.",
+        },
+        {
+          title: "Contoh hutan dan hasilnya",
+          table: {
+            headers: ["Jenis hutan", "Contoh lokasi / keadaan", "Contoh sumber"],
+            rows: [
+              ["Hutan Hujan Tropika", "Tanah pamah dan pedalaman di Semenanjung Malaysia, Sabah dan Sarawak", "Cengal, meranti, keruing, rotan dan buluh."],
+              ["Hutan Paya Air Tawar", "Sekitar Tasik Chini, Tasik Bera, Rompin dan Pekan di Pahang", "Ramin, kempas, tumbuhan paya dan hasil bukan kayu."],
+              ["Hutan Paya Air Masin", "Muara dan pesisir berlumpur seperti Matang di Perak serta kawasan pesisir Sarawak", "Bakau dan nipah."],
+              ["Hutan Pantai", "Pantai berpasir seperti Tanjung Rhu dan pantai-pantai di pantai timur", "Ru, kelapa, mengkuang dan tumbuhan pantai."],
+              ["Hutan Gunung", "Kawasan tanah tinggi seperti Gunung Kinabalu", "Periuk kera, rafflesia, orkid dan tumbuhan gunung."],
+            ],
+          },
+        },
+
+        {
+          title: "Taburan petroleum dan gas asli",
+          content:
+            "Petroleum dan gas asli banyak terdapat di kawasan luar pesisir. Antara kawasan utama ialah perairan Kelantan, Terengganu, Sabah dan Sarawak. Kedudukannya di dasar laut menyebabkan penerokaan memerlukan pelantar, teknologi dan sistem pengangkutan khusus.",
+        },
+
+        {
+          title: "Taburan sumber mineral utama",
+          table: {
+            headers: ["Sumber", "Contoh lokasi", "Kegunaan"],
+            rows: [
+              ["Emas", "Raub dan Kuala Lipis, Pahang; Bau, Sarawak", "Barang kemas, simpanan nilai dan kegunaan industri tertentu."],
+              ["Arang batu", "Silimpopon dan Maliau, Sabah; Merit-Pila dan Silantek, Sarawak", "Sumber tenaga dan kegunaan industri."],
+              ["Petroleum", "Luar pesisir Kelantan, Terengganu, Sabah dan Sarawak", "Bahan api dan bahan mentah industri petrokimia."],
+              ["Gas asli", "Luar pesisir Kelantan, Terengganu, Sabah dan Sarawak", "Bahan api domestik, penjanaan tenaga dan petrokimia."],
+              ["Bauksit", "Kawasan yang mempunyai deposit bauksit", "Bahan asas penghasilan aluminium."],
+              ["Bijih timah", "Kawasan bekas dan semasa perlombongan timah", "Barangan piuter dan kegunaan industri."],
+            ],
+          },
+        },
+
+        {
+          title: "Cara membaca soalan taburan",
+          bulletPoints: [
+            "Kenal pasti sumber terlebih dahulu.",
+            "Padankan sumber dengan negeri atau kawasan utama.",
+            "Nyatakan sama ada sumber itu berada di daratan atau luar pesisir.",
+            "Jika soalan meminta sebab, kaitkan lokasi dengan keadaan fizikal atau geologi.",
+          ],
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Hafal beberapa lokasi utama yang mewakili setiap sumber, bukan setiap lokasi kecil.",
+            "Petroleum/gas → luar pesisir Kelantan, Terengganu, Sabah, Sarawak.",
+            "Emas → Raub/Kuala Lipis dan Bau.",
+            "Arang batu → Sabah dan Sarawak.",
+            "Hidroelektrik → Kenyir, Bakun, Batang Ai, Tenom Pangi.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "6.3 Kepentingan Sumber Semula Jadi dalam Pembangunan Ekonomi di Malaysia",
+      subsections: [
+        {
+          title: "Sumber bahan mentah",
+          content:
+            "Sumber semula jadi membekalkan bahan mentah kepada pelbagai industri. Kayu balak menyokong industri perabot dan pembinaan, petroleum serta gas asli menyokong industri petrokimia, manakala mineral seperti bauksit, kuprum, kaolin dan pasir digunakan dalam industri pembuatan.",
+        },
+
+        {
+          title: "Hubungan sumber dengan industri",
+          table: {
+            headers: ["Sumber", "Industri / produk berkaitan"],
+            rows: [
+              ["Petroleum dan gas asli", "Petrokimia, bahan api, plastik, bahan kimia dan tenaga."],
+              ["Kayu balak", "Perabot, papan lapis, pembinaan dan produk kayu."],
+              ["Rotan dan buluh", "Perabot dan kraf tangan."],
+              ["Bauksit", "Aluminium."],
+              ["Kuprum", "Wayar dan komponen elektrik."],
+              ["Kaolin", "Tembikar dan porselin."],
+              ["Pasir", "Kaca dan pembinaan."],
+              ["Bijih timah", "Piuter dan kegunaan industri logam."],
+            ],
+          },
+        },
+
+        {
+          title: "Peluang pekerjaan",
+          content:
+            "Penerokaan, pemprosesan dan pengangkutan sumber mewujudkan pekerjaan dalam perlombongan, perhutanan, tenaga, kejuruteraan, pengangkutan, pembinaan, pembuatan dan perkhidmatan.",
+        },
+
+        {
+          title: "Pendapatan negara dan eksport",
+          content:
+            "Sumber seperti petroleum, gas asli, hasil hutan dan mineral menyumbang kepada kegiatan perdagangan dan pendapatan negara. Nilainya meningkat apabila bahan mentah diproses kepada produk bernilai tambah.",
+        },
+
+        {
+          title: "Industri hiliran",
+          content:
+            "Industri hiliran ialah industri yang menggunakan bahan mentah atau bahan yang telah diproses untuk menghasilkan produk seterusnya. Contohnya, petroleum dan gas menjadi asas kepada industri petrokimia, manakala kayu balak diproses menjadi papan, perabot dan produk kayu.",
+        },
+
+        {
+          title: "Pembangunan infrastruktur",
+          bulletPoints: [
+            "Jalan raya dibina untuk membawa sumber dari kawasan pengeluaran ke kilang atau pasaran.",
+            "Pelabuhan penting untuk mengeksport hasil dan mengimport peralatan.",
+            "Saluran paip digunakan untuk memindahkan petroleum dan gas.",
+            "Kemudahan tenaga serta komunikasi berkembang bersama kawasan perindustrian.",
+          ],
+        },
+
+        {
+          title: "Contoh hubungan sumber dengan pengangkutan",
+          content:
+            "Pembukaan kawasan perlombongan dan pengeluaran sumber sering mendorong pembinaan pengangkutan. Contoh sejarah ialah landasan kereta api Taiping–Kuala Sepetang yang dibina untuk memudahkan pengangkutan bijih timah ke pelabuhan.",
+        },
+
+        {
+          title: "Pembangunan bandar dan kawasan baharu",
+          content:
+            "Kegiatan petroleum dan gas telah membantu perkembangan bandar serta kawasan perindustrian seperti Kerteh dan Paka di Terengganu serta Bintulu dan Miri di Sarawak. Pertumbuhan kegiatan ekonomi menarik penduduk, perkhidmatan dan kemudahan baharu.",
+        },
+
+        {
+          title: "Kesan pengganda ekonomi",
+          content:
+            "Apabila satu sumber dibangunkan, kegiatan lain turut berkembang. Contohnya, industri petroleum memerlukan jurutera, pengangkutan, penyelenggaraan, perbankan, perumahan dan pelbagai perkhidmatan. Oleh itu, kesan ekonomi sumber tidak terhad kepada lokasi pengeluaran sahaja.",
+        },
+
+        {
+          title: "Mengapa sumber perlu diurus dengan cekap?",
+          bulletPoints: [
+            "Mengurangkan pembaziran.",
+            "Memanjangkan jangka hayat sumber tidak boleh baharu.",
+            "Menjamin bekalan bahan mentah untuk masa hadapan.",
+            "Mengurangkan kerosakan alam sekitar.",
+            "Menggalakkan penggunaan sumber alternatif dan teknologi yang lebih cekap.",
+          ],
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Untuk soalan kepentingan, gunakan pola: sumber → kegiatan ekonomi → kesan kepada negara.",
+            "Contoh: petroleum → industri petrokimia → pekerjaan + eksport + perkembangan bandar.",
+            "Bezakan 'bahan mentah', 'peluang pekerjaan', 'infrastruktur', 'pendapatan negara' dan 'pembangunan bandar' sebagai isi yang berbeza.",
+            "Untuk KBAT, kaitkan penggunaan sumber dengan keperluan pengurusan lestari.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "Imbas Kembali",
+      subsections: [
+        {
+          title: "Checklist akhir bab",
+          bulletPoints: [
+            "Saya boleh menerangkan maksud sumber semula jadi.",
+            "Saya boleh membezakan sumber boleh baharu dengan sumber tidak boleh baharu.",
+            "Saya boleh memberi contoh tenaga alternatif dan menerangkan cara ia dihasilkan.",
+            "Saya boleh mengenal pasti beberapa lokasi utama hidroelektrik, petroleum, gas asli, emas dan arang batu.",
+            "Saya boleh memadankan sumber mineral dengan kegunaannya.",
+            "Saya boleh menghuraikan sekurang-kurangnya lima kepentingan sumber semula jadi kepada pembangunan ekonomi.",
+            "Saya boleh menerangkan mengapa pengurusan sumber secara cekap penting.",
+          ],
+        },
+        {
+          title: "Cara menjawab soalan struktur",
+          bulletPoints: [
+            "Kenal pasti jenis sumber dan kategorinya.",
+            "Jika soalan meminta taburan, beri lokasi utama yang tepat.",
+            "Jika soalan meminta kepentingan, nyatakan kegiatan ekonomi yang menggunakan sumber tersebut.",
+            "Huraikan kesan kepada pekerjaan, industri, pendapatan, infrastruktur atau bandar.",
+            "Untuk KBAT, tambah unsur kelestarian dan penggunaan sumber secara cekap.",
+          ],
+        },
+      ],
+    },
+  ],
 };
