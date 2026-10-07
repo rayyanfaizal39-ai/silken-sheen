@@ -5,7 +5,7 @@ import { getChaptersForSubject } from "@/content/registry";
 const chapters = getChaptersForSubject("geography", undefined, "Form 3");
 
 const SOURCE_DEBRIS =
-  /KSSM_\d+|\.indd\b|\[\d+\]|10\/\d+\/\d+|luar sumber|rujukan sumber|pilih satu|logo pada sumber|mengikut buku teks/i;
+  /KSSM_\d+|\.indd\b|\[\d+\]|10\/\d+\/\d+|\\bluar sumber\\b|\\brujukan sumber\\b|\\bpilih satu\\b|\\blogo pada sumber\\b|\\bmengikut buku teks\\b/i;
 
 function walkMindMap(node: { label: string; children?: Array<{ label: string; children?: any[] }> }) {
   const labels: string[] = [node.label];
