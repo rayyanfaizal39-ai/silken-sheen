@@ -26,7 +26,7 @@ const flashcardContent = [
   ["Kawasan manakah di Malaysia yang berpotensi untuk tenaga ombak?", "Perairan Laut China Selatan (Pahang, Terengganu, Kelantan, Sabah, dan Sarawak)"],
   ["Berapakah purata jumlah hujan tahunan di Malaysia?", "Kira-kira 2,600 mm setahun"],
   ["Apakah fungsi utama pembinaan empangan?", "Menahan aliran air sungai untuk memutarkan turbin bagi menghasilkan tenaga elektrik"],
-  ["Namakan empangan hidroelektrik terbesar di Malaysia.", "Empangan Bakun (Sarawak)"],
+  ["Namakan satu empangan hidroelektrik utama di Sarawak.", "Empangan Bakun"],
   ["Di manakah letaknya Empangan Tenom Pangi?", "Sabah"],
   ["Nyatakan lokasi Empangan Batang Ai.", "Sarawak"],
   ["Hutan Hujan Tropika biasanya dikaitkan dengan jenis tanih apa?", "Tanih aluvium dan tanih laterit"],
