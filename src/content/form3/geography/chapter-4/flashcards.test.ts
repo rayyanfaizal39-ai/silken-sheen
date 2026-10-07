@@ -46,10 +46,10 @@ function getFlashcardDeckCards(
 import { geographyF3C4Flashcards } from "./flashcards";
 
 describe("Geografi Tingkatan 3 Bab 4 replacement flashcards", () => {
-  it("contains all 65 cleaned CSV rows in source order", () => {
-    expect(geographyF3C4Flashcards).toHaveLength(65);
+  it("contains exactly 60 curated cards in source order", () => {
+    expect(geographyF3C4Flashcards).toHaveLength(60);
     expect(geographyF3C4Flashcards.map(({ id }) => id)).toEqual(
-      Array.from({ length: 65 }, (_, index) => `geo-f3-c4-f${index + 1}`),
+      Array.from({ length: 60 }, (_, index) => `geo-f3-c4-f${index + 1}`),
     );
     expect(geographyF3C4Flashcards[0]).toMatchObject({
       front: "Nyatakan lima jenis hutan utama di Malaysia.",
@@ -80,10 +80,10 @@ describe("Geografi Tingkatan 3 Bab 4 replacement flashcards", () => {
     const backs = geographyF3C4Flashcards.map(({ back }) => back);
     const pairs = geographyF3C4Flashcards.map(({ front, back }) => `${front}\u0000${back}`);
 
-    expect(new Set(ids).size).toBe(65);
-    expect(new Set(fronts).size).toBe(65);
-    expect(new Set(backs).size).toBe(65);
-    expect(new Set(pairs).size).toBe(65);
+    expect(new Set(ids).size).toBe(60);
+    expect(new Set(fronts).size).toBe(60);
+    expect(new Set(backs).size).toBe(60);
+    expect(new Set(pairs).size).toBe(60);
     geographyF3C4Flashcards.forEach(({ front, back }) => {
       expect(front).not.toMatch(/^\s*S:|\[\d+\]/);
       expect(back).not.toMatch(/^\s*J:|\[\d+\]/);
