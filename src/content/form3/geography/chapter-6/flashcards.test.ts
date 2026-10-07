@@ -47,10 +47,10 @@ function getFlashcardDeckCards(
 import { geographyF3C6Flashcards } from "./flashcards";
 
 describe("Geography Form 3 Chapter 6 flashcards", () => {
-  it("contains exactly 65 ordered cards using the existing identity schema", () => {
-    expect(geographyF3C6Flashcards).toHaveLength(65);
+  it("contains exactly 60 curated cards using the existing identity schema", () => {
+    expect(geographyF3C6Flashcards).toHaveLength(60);
     expect(geographyF3C6Flashcards.map((card) => card.id)).toEqual(
-      Array.from({ length: 65 }, (_, index) => `geo-f3-c6-f${index + 1}`),
+      Array.from({ length: 60 }, (_, index) => `geo-f3-c6-f${index + 1}`),
     );
     expect(geographyF3C6Flashcards[0]).toMatchObject({
       front: "Apakah maksud sumber semula jadi?",
@@ -90,9 +90,9 @@ describe("Geography Form 3 Chapter 6 flashcards", () => {
     );
     expect(geographyF3C6Flashcards.every((card) => !/^\s*\.\s*$/.test(card.front))).toBe(true);
     expect(geographyF3C6Flashcards.every((card) => !/^\s*\.\s*$/.test(card.back))).toBe(true);
-    expect(new Set(fronts).size).toBe(65);
-    expect(new Set(backs).size).toBe(65);
-    expect(new Set(pairs).size).toBe(65);
+    expect(new Set(fronts).size).toBe(60);
+    expect(new Set(backs).size).toBe(60);
+    expect(new Set(pairs).size).toBe(60);
   });
 
   it("is exposed through the existing global content and Chapter 6 route mapping", () => {
