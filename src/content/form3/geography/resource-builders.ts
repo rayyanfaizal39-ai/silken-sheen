@@ -199,12 +199,107 @@ export function buildGeographyF3Flashcards(chapter: number, notes: StructuredNot
 
 function answerKind(answer: string) {
   const text = clean(answer);
-  if (/^[\d.,\s()+\-÷×/%°]+(?:mm|cm|m|km|°C|orang|tahun)?\.?$/i.test(text)) return "number";
+  if (/^[\\d.,\\s()+\\-÷×/%°]+(?:mm|cm|m|km|°C|orang|tahun|hektar|juta)?\\.?$/i.test(text)) {
+    return "number";
+  }
   if (/[=÷×]/.test(text)) return "formula";
-  if ((text.match(/,/g) ?? []).length >= 2 || /\b(?:dan|serta)\b/.test(text) && text.length < 150) return "list";
+  if ((text.match(/,/g) ?? []).length >= 2 || (/\\b(?:dan|serta)\\b/.test(text) && text.length < 150)) {
+    return "list";
+  }
   if (text.length <= 35) return "short";
   if (text.length <= 85) return "medium";
   return "long";
+}
+
+const QUESTION_STOPWORDS = new Set([
+  "apakah",
+  "yang",
+  "manakah",
+  "antara",
+  "berikut",
+  "dalam",
+  "bagi",
+  "pada",
+  "kepada",
+  "daripada",
+  "dengan",
+  "dan",
+  "atau",
+  "untuk",
+  "satu",
+  "dua",
+  "tiga",
+  "empat",
+  "lima",
+  "enam",
+  "nyatakan",
+  "namakan",
+  "berikan",
+  "terangkan",
+  "jelaskan",
+  "sebutkan",
+  "adakah",
+  "ialah",
+  "adalah",
+  "itu",
+  "ini",
+]);
+
+function questionTokens(question: string) {
+  return clean(question)
+    .toLocaleLowerCase("ms")
+    .replace(/[^a-z0-9À-ž°]+/gi, " ")
+    .split(/\\s+/)
+    .filter((token) => token.length >= 3 && !QUESTION_STOPWORDS.has(token));
+}
+
+type QuestionTag =
+  | "definition"
+  | "location"
+  | "number"
+  | "date"
+  | "example"
+  | "role"
+  | "cause"
+  | "effect"
+  | "type"
+  | "agency"
+  | "process"
+  | "comparison"
+  | "classification"
+  | "general";
+
+function questionTags(question: string): Set<QuestionTag> {
+  const q = clean(question).toLocaleLowerCase("ms");
+  const tags = new Set<QuestionTag>();
+
+  if (/maksud|definisi|apa itu|apakah itu/.test(q)) tags.add("definition");
+  if (/di mana|dimanakah|terletak|lokasi|negara|negeri|kawasan/.test(q)) tags.add("location");
+  if (/berapa|berapakah|peratus|sudut|jumlah|keluasan|ketinggian|nilai/.test(q)) tags.add("number");
+  if (/bilakah|tahun|tarikh|mulai/.test(q)) tags.add("date");
+  if (/contoh|namakan|senaraikan|sebutkan|berikan/.test(q)) tags.add("example");
+  if (/fungsi|peranan|kepentingan|tujuan|kegunaan|sumbangan/.test(q)) tags.add("role");
+  if (/mengapa|faktor|sebab/.test(q)) tags.add("cause");
+  if (/kesan|akibat|menjejaskan|mengancam/.test(q)) tags.add("effect");
+  if (/jenis|kategori/.test(q)) tags.add("type");
+  if (/agensi|jabatan|organisasi|badan|singkatan/.test(q)) tags.add("agency");
+  if (/bagaimana|bagaimanakah|cara|langkah|proses|kaedah/.test(q)) tags.add("process");
+  if (/beza|perbezaan|banding|lebih|kurang/.test(q)) tags.add("comparison");
+  if (/dikategorikan|dikaitkan|sinonim|merujuk|tergolong/.test(q)) tags.add("classification");
+
+  if (tags.size === 0) tags.add("general");
+  return tags;
+}
+
+function tagOverlap(a: Set<QuestionTag>, b: Set<QuestionTag>) {
+  let overlap = 0;
+  for (const tag of a) if (b.has(tag)) overlap += 1;
+  return overlap;
+}
+
+function tokenOverlap(a: string[], b: string[]) {
+  const right = new Set(b);
+  return a.reduce((score, token) => score + (right.has(token) ? 1 : 0), 0);
 }
 
 function questionComplexity(front: string, back: string) {
@@ -227,8 +322,11 @@ function quizSuitable(card: Flashcard) {
   const back = clean(card.back);
 
   if (!front.endsWith("?") && !front.includes("_____")) return false;
-  if (front.length < 12 || front.length > 190 || back.length < 1 || back.length > 240) return false;
-  if (/^(Senaraikan|Nyatakan|Berikan|Namakan)\s+(?:dua|tiga|empat|lima|enam)\b/i.test(front)) return false;
+  if (front.length < 12 || front.length > 190 || back.length < 1 || back.length > 220) return false;
+  if (/^(Senaraikan|Nyatakan|Berikan|Namakan|Sebutkan)\\s+(?:dua|tiga|empat|lima|enam)\\b/i.test(front)) {
+    return false;
+  }
+  if (/\\b(?:pilih satu|atau)\\b/i.test(back) && back.length > 70) return false;
   return true;
 }
 
@@ -247,29 +345,47 @@ function evenlySpaced<T>(items: T[], count: number) {
   return picked;
 }
 
+function distractorScore(correctCard: Flashcard, candidate: Flashcard) {
+  const correctQuestion = clean(correctCard.front);
+  const candidateQuestion = clean(candidate.front);
+  const correctAnswer = clean(correctCard.back);
+  const candidateAnswer = clean(candidate.back);
+
+  const correctTags = questionTags(correctQuestion);
+  const candidateTags = questionTags(candidateQuestion);
+  const tags = tagOverlap(correctTags, candidateTags);
+  const tokens = tokenOverlap(questionTokens(correctQuestion), questionTokens(candidateQuestion));
+  const kindMatch = answerKind(correctAnswer) === answerKind(candidateAnswer) ? 1 : 0;
+
+  const answerLengthPenalty = Math.abs(candidateAnswer.length - correctAnswer.length) / 35;
+  const tagBonus = tags * 12;
+  const tokenBonus = tokens * 5;
+  const kindBonus = kindMatch * 6;
+
+  return tagBonus + tokenBonus + kindBonus - answerLengthPenalty;
+}
+
 function buildOptions(cards: Flashcard[], correctCard: Flashcard, seed: number) {
   const correct = clean(correctCard.back);
-  const correctKind = answerKind(correct);
-  const sourceIndex = cards.indexOf(correctCard);
 
-  const ranked = cards
-    .map((card, index) => ({
+  const candidates = cards
+    .filter((card) => card !== correctCard)
+    .map((card) => ({
       card,
-      index,
       answer: clean(card.back),
+      score: distractorScore(correctCard, card),
     }))
-    .filter(({ card, answer }) => card !== correctCard && answer.toLocaleLowerCase("ms") !== correct.toLocaleLowerCase("ms"))
-    .sort((a, b) => {
-      const aKindPenalty = answerKind(a.answer) === correctKind ? 0 : 100;
-      const bKindPenalty = answerKind(b.answer) === correctKind ? 0 : 100;
-      const aDistance = Math.abs(a.index - sourceIndex);
-      const bDistance = Math.abs(b.index - sourceIndex);
-      const aLength = Math.abs(a.answer.length - correct.length) / 8;
-      const bLength = Math.abs(b.answer.length - correct.length) / 8;
-      return aKindPenalty + aDistance + aLength - (bKindPenalty + bDistance + bLength);
-    });
+    .filter(({ answer }) => answer && answer.toLocaleLowerCase("ms") !== correct.toLocaleLowerCase("ms"))
+    .sort((a, b) => b.score - a.score);
 
-  const distractors = uniqueStrings(ranked.map(({ answer }) => answer)).slice(0, 3);
+  const distractors: string[] = [];
+  for (const candidate of candidates) {
+    const key = candidate.answer.toLocaleLowerCase("ms");
+    if (distractors.some((value) => value.toLocaleLowerCase("ms") === key)) continue;
+    distractors.push(candidate.answer);
+    if (distractors.length === 3) break;
+  }
+
   if (distractors.length < 3) {
     throw new Error(`Not enough unique distractors for Geography Form 3 quiz card: ${correctCard.id}`);
   }
@@ -277,6 +393,7 @@ function buildOptions(cards: Flashcard[], correctCard: Flashcard, seed: number) 
   const options = [correct, ...distractors];
   const rotation = seed % 4;
   const rotated = [...options.slice(rotation), ...options.slice(0, rotation)];
+
   return {
     options: rotated,
     answerIndex: rotated.indexOf(correct),
@@ -300,8 +417,13 @@ export function buildGeographyF3QuizzesFromFlashcards(
   });
 
   const suitable = deduped.filter(quizSuitable);
-  const source = suitable.length >= 30 ? suitable : deduped;
-  const selected = evenlySpaced(source, Math.min(30, source.length));
+  if (suitable.length < 30) {
+    throw new Error(
+      `Geography Form 3 Chapter ${chapter} has only ${suitable.length} quiz-suitable flashcards; 30 are required.`,
+    );
+  }
+
+  const selected = evenlySpaced(suitable, 30);
 
   const ranked = [...selected]
     .map((card, index) => ({
