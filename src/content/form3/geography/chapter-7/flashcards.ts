@@ -27,7 +27,7 @@ const flashcardContent = [
   ["Pulau manakah di Sabah yang terkenal dengan keindahan batu karang?", "Pulau Sipadan"],
   ["Nyatakan lokasi pelancongan bersejarah yang utama di Malaysia.", "Bandaraya Melaka"],
   ["Di manakah terletaknya Taman Negara Mulu yang diiktiraf sebagai Tapak Warisan Dunia?", "Sarawak"],
-  ["Namakan kawasan tanaman padi yang terbesar di Malaysia.", "Dataran Kedah-Perlis"],
+  ["Namakan kawasan penanaman padi utama di utara Semenanjung Malaysia.", "Dataran Kedah-Perlis"],
   ["Nyatakan lima faktor fizikal yang mempengaruhi kegiatan ekonomi.", "Bentuk muka bumi, tanih, iklim, saliran, dan bahan mentah"],
   ["Mengapakah tanah pamah sesuai untuk pembinaan kilang?", "Kerana kos pembinaan lebih rendah dan mudah untuk membina jaringan pengangkutan"],
   ["Apakah kegiatan ekonomi yang sesuai dijalankan di kawasan tanah tinggi?", "Pertanian (teh, sayur-sayuran) dan pelancongan"],
