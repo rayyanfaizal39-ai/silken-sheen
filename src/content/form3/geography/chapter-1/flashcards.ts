@@ -1,128 +1,75 @@
 import type { Flashcard } from "@/data/types";
 
 const flashcardContent = [
-  [
-    "Apakah definisi jadual?",
-    "Cara untuk mempersembahkan data dan maklumat secara tersusun supaya mudah dibaca, difahami, dan ditafsir.",
-  ],
-  ["Nyatakan tiga ciri utama sebuah jadual.", "Tajuk, Data dan Maklumat, serta Sumber."],
-  [
-    "Apakah fungsi tajuk dalam jadual?",
-    "Memberikan gambaran tentang kandungan data yang dipersembahkan.",
-  ],
-  [
-    "Mengapakah sumber perlu dinyatakan dalam jadual?",
-    "Untuk membuktikan data tersebut sah dan boleh dipercayai.",
-  ],
-  [
-    "Apakah kegunaan utama jadual?",
-    "Digunakan untuk menghasilkan graf mengikut kesesuaian dan melihat pertalian antara dua set maklumat.",
-  ],
-  ["Apakah kaedah pengumpulan maklumat yang paling mudah dan cepat?", "Kaedah pemerhatian."],
-  [
-    "Terangkan kaedah pemerhatian.",
-    "Memerhati dan mencatat perkara yang berkaitan dengan maklumat yang hendak dikumpulkan secara terus.",
-  ],
-  [
-    "Bagaimanakah kaedah temu bual dijalankan?",
-    "Secara lisan melalui perjumpaan atau soal jawab dengan seseorang untuk mendapatkan berita, pendapat, atau nasihat.",
-  ],
-  [
-    "Apakah itu kaedah Banci?",
-    "Kaedah pengumpulan maklumat berkaitan sesuatu jumlah yang dihitung, contohnya menghitung jumlah penduduk oleh Jabatan Perangkaan Malaysia.",
-  ],
-  [
-    "Apakah proses dalam kaedah soal selidik?",
-    "Mengedarkan borang soal selidik kepada orang ramai dan mengumpulkannya semula setelah diisi.",
-  ],
-  [
-    "Apakah yang dimaksudkan dengan rujukan kepustakaan?",
-    "Merujuk kepada bahan terbitan sedia ada seperti buku, majalah, risalah, akhbar, dan laman web.",
-  ],
-  [
-    "Apakah definisi graf?",
-    "Persembahan data dalam bentuk visual seperti graf bar mudah, graf garisan mudah, dan graf gabungan.",
-  ],
-  [
-    "Nyatakan ciri utama Graf Bar Mudah.",
-    "Mempunyai paksi menegak, paksi mendatar, tajuk, dan petunjuk. Bar dilukis secara menegak atau mendatar.",
-  ],
-  [
-    "Bilakah Graf Bar Mudah sesuai digunakan?",
-    "Apabila data boleh dikira satu persatu seperti bilangan orang, kereta, atau rumah.",
-  ],
-  [
-    "Apakah fungsi paksi menegak dalam graf bar?",
-    "Menunjukkan kuantiti atau bilangan sesuatu komponen.",
-  ],
-  [
-    "Apakah ciri utama Graf Garisan Mudah?",
-    "Dilukis secara garisan yang panjang dan bersambung untuk menunjukkan perubahan nilai yang berterusan.",
-  ],
-  [
-    "Apakah maksud garisan yang curam pada graf garisan?",
-    "Menggambarkan perubahan nilai yang besar atau drastik.",
-  ],
-  [
-    "Apakah maksud garisan yang landai pada graf garisan?",
-    "Menggambarkan perubahan nilai yang kecil.",
-  ],
-  [
-    "Apakah maksud garisan mendatar pada graf garisan?",
-    "Bermakna tiada sebarang perubahan yang berlaku pada nilai tersebut dalam tempoh masa tertentu.",
-  ],
-  [
-    "Nyatakan definisi Graf Gabungan.",
-    "Gabungan graf bar mudah dan graf garisan mudah dalam satu graf.",
-  ],
-  [
-    "Apakah kegunaan Graf Gabungan?",
-    "Menunjukkan dua maklumat yang berlainan tetapi saling berkaitan, contohnya suhu dan hujan.",
-  ],
-  [
-    "Apakah langkah pertama membina jadual?",
-    "Menyusun data dan maklumat yang diperoleh dalam bentuk jadual yang mudah dibaca.",
-  ],
-  [
-    "Apakah kaedah gundalan (tally)?",
-    "Cara mengira kekerapan data menggunakan tanda garis sebelum diringkaskan kepada nombor.",
-  ],
-  [
-    "Apakah empat langkah asas melukis graf?",
-    `(1) Lukis paksi mendatar dan menegak.
-(2) Pilih skala yang sesuai.
-(3) Plotkan titik atau lukis bar.
-(4) Lengkapkan tajuk, label, dan petunjuk.`,
-  ],
-  [
-    "Mengapakah ketepatan skala kritikal semasa membina graf?",
-    "Supaya mesej data tidak disalah faham oleh pembaca.",
-  ],
-  ["Nyatakan langkah pertama dalam mentafsir jadual atau graf.", "Memperhatikan tajuk."],
-  [
-    "Apakah yang perlu dilakukan selepas mengenal pasti nilai maksimum dan minimum semasa mentafsir?",
-    "Menghuraikan aliran perubahan data (untuk graf garisan) dan menghuraikan isi tersirat.",
-  ],
-  [
-    'Apakah yang dimaksudkan dengan "Isi Tersirat" dalam tafsiran?',
-    'Merungkai soalan "mengapa" dan "kenapa" sesuatu trend data berkelakuan sedemikian.',
-  ],
-  ["Apakah langkah terakhir dalam mentafsir graf?", "Membuat rumusan secara keseluruhan."],
-  [
-    "Apakah kepentingan tafsiran graf yang terperinci?",
-    "Ia membantu mengembangkan data dan menterjemahkan fenomena alam atau aktiviti manusia secara lebih mendalam.",
-  ],
+  ["Apakah definisi jadual?", "Jadual ialah cara mempersembahkan data dan maklumat secara tersusun supaya lebih mudah dibaca, difahami dan ditafsir."],
+  ["Mengapakah data sesuai dipersembahkan dalam bentuk jadual?", "Kerana data dapat disusun dengan lebih teratur dan perbandingan antara maklumat menjadi lebih mudah."],
+  ["Nyatakan tiga ciri utama sebuah jadual.", "Tajuk, data atau maklumat, dan sumber."],
+  ["Apakah fungsi tajuk dalam jadual?", "Menjelaskan perkara atau data yang dipersembahkan dalam jadual."],
+  ["Mengapakah sumber perlu dinyatakan dalam jadual?", "Untuk menunjukkan asal data dan meningkatkan kebolehpercayaan maklumat."],
+  ["Apakah kegunaan utama jadual dalam Geografi?", "Untuk menyusun data, memudahkan perbandingan dan menjadi asas pembinaan graf."],
+  ["Apakah kelebihan pengkelasan maklumat dalam jadual?", "Maklumat menjadi lebih tersusun, jelas dan mudah dianalisis."],
+  ["Apakah lima kaedah pengumpulan maklumat yang biasa digunakan?", "Pemerhatian, temu bual, banci, soal selidik dan rujukan kepustakaan."],
+  ["Apakah kaedah pemerhatian?", "Kaedah mendapatkan maklumat dengan melihat keadaan sebenar dan mencatat perkara yang berkaitan."],
+  ["Bilakah kaedah temu bual sesuai digunakan?", "Apabila maklumat seperti pendapat, pengalaman atau penjelasan seseorang diperlukan secara langsung."],
+  ["Apakah maksud banci?", "Kaedah mengumpulkan maklumat dengan menghitung keseluruhan jumlah dalam sesuatu kumpulan atau kawasan."],
+  ["Bagaimanakah kaedah soal selidik dijalankan?", "Borang soalan diedarkan kepada responden dan dikumpulkan semula selepas dijawab."],
+  ["Apakah maksud rujukan kepustakaan?", "Kaedah mendapatkan maklumat daripada bahan yang telah diterbitkan seperti buku, akhbar, majalah dan laman web."],
+  ["Kaedah manakah paling sesuai untuk menghitung jumlah penduduk sesebuah kawasan?", "Banci."],
+  ["Kaedah manakah paling sesuai untuk mendapatkan penerangan terperinci daripada seorang responden?", "Temu bual."],
+  ["Kaedah manakah sesuai untuk mendapatkan jawapan daripada ramai responden menggunakan soalan yang sama?", "Soal selidik."],
+  ["Kaedah manakah sesuai jika maklumat yang diperlukan telah diterbitkan dalam buku atau laman rasmi?", "Rujukan kepustakaan."],
+  ["Mengapakah data yang dikumpulkan perlu disemak sebelum dimasukkan ke dalam jadual?", "Untuk mengurangkan kesilapan dan memastikan data yang dipersembahkan tepat."],
+  ["Apakah hubungan antara jadual dengan graf?", "Data dalam jadual boleh digunakan untuk membina graf yang sesuai."],
+  ["Mengapakah jadual memudahkan perbandingan data?", "Kerana kategori dan nilainya disusun dalam baris dan lajur yang jelas."],
+  ["Apakah definisi graf?", "Graf ialah persembahan data secara visual untuk menunjukkan nilai, pola atau perubahan dengan lebih jelas."],
+  ["Nyatakan tiga jenis graf yang dipelajari dalam bab ini.", "Graf bar mudah, graf garisan mudah dan graf gabungan."],
+  ["Bilakah graf bar mudah sesuai digunakan?", "Apabila membandingkan kuantiti antara kategori yang berasingan."],
+  ["Apakah fungsi paksi menegak dalam graf bar mudah?", "Menunjukkan nilai, bilangan atau kuantiti."],
+  ["Apakah yang biasanya ditunjukkan pada paksi mendatar graf bar mudah?", "Kategori atau komponen yang dibandingkan."],
+  ["Mengapakah bar dalam graf bar mudah perlu mempunyai lebar yang seragam?", "Supaya persembahan data kemas dan perbandingan antara kategori adil."],
+  ["Apakah ciri utama graf garisan mudah?", "Titik data diplot dan disambungkan untuk menunjukkan perubahan nilai secara berterusan."],
+  ["Apakah maksud garisan yang semakin menaik dalam graf garisan?", "Nilai data menunjukkan peningkatan."],
+  ["Apakah maksud garisan yang semakin menurun dalam graf garisan?", "Nilai data menunjukkan penurunan."],
+  ["Apakah maksud garisan mendatar dalam graf garisan?", "Tiada perubahan nilai dalam tempoh tersebut."],
+  ["Apakah maksud garisan yang curam dalam graf garisan?", "Perubahan nilai yang besar berlaku dalam tempoh yang singkat."],
+  ["Apakah maksud garisan yang landai dalam graf garisan?", "Perubahan nilai berlaku secara kecil atau perlahan."],
+  ["Apakah definisi graf gabungan?", "Graf yang menggabungkan graf bar mudah dengan graf garisan dalam satu persembahan."],
+  ["Bilakah graf gabungan sesuai digunakan?", "Apabila dua set data yang berbeza tetapi saling berkaitan perlu ditunjukkan serentak."],
+  ["Apakah contoh pasangan data yang sesuai dipersembahkan dalam graf gabungan?", "Jumlah hujan dan min suhu bulanan."],
+  ["Apakah langkah awal sebelum membina graf?", "Kenal pasti data, kategori, unit dan jenis graf yang sesuai."],
+  ["Mengapakah skala perlu dipilih dengan teliti?", "Supaya semua nilai dapat diplot dengan tepat dan graf mudah dibaca."],
+  ["Apakah yang perlu dilakukan selepas memilih skala graf?", "Labelkan paksi dan plotkan data mengikut nilai yang betul."],
+  ["Apakah fungsi petunjuk dalam graf?", "Menerangkan warna, simbol atau corak yang mewakili set data tertentu."],
+  ["Apakah maklumat akhir yang perlu dilengkapkan pada graf?", "Tajuk, label paksi, unit dan petunjuk jika diperlukan."],
+  ["Apakah langkah pertama apabila mentafsir jadual atau graf?", "Baca tajuk untuk mengetahui perkara yang ditunjukkan."],
+  ["Mengapakah unit perlu diperhatikan ketika mentafsir graf?", "Supaya nilai data dibaca dalam ukuran yang betul."],
+  ["Apakah yang perlu dikenal pasti selepas membaca tajuk dan paksi?", "Nilai tertinggi, nilai terendah dan pola utama data."],
+  ["Apakah maksud trend dalam tafsiran graf?", "Arah perubahan data seperti meningkat, menurun, turun naik atau kekal."],
+  ["Bagaimanakah dua kategori dalam jadual boleh dibandingkan?", "Bandingkan nilai setiap kategori dan nyatakan beza atau kedudukan relatifnya."],
+  ["Apakah yang dimaksudkan dengan isi tersirat dalam tafsiran?", "Sebab, kesan atau faktor yang dapat dihuraikan berdasarkan pola data."],
+  ["Apakah langkah terakhir dalam mentafsir jadual atau graf?", "Membuat rumusan keseluruhan berdasarkan pola dan bukti data."],
+  ["Mengapakah nilai maksimum dan minimum penting dalam tafsiran?", "Kedua-duanya membantu mengenal pasti perbezaan paling ketara dalam data."],
+  ["Jika graf menunjukkan peningkatan berterusan, apakah rumusan yang sesuai?", "Nilai data meningkat secara konsisten sepanjang tempoh yang ditunjukkan."],
+  ["Jika graf menunjukkan turun naik, apakah maksudnya?", "Nilai data berubah-ubah antara peningkatan dan penurunan."],
+  ["Mengapakah data pada graf perlu dirujuk ketika memberi huraian?", "Supaya tafsiran disokong oleh bukti nilai yang sebenar."],
+  ["Apakah kesalahan yang berlaku jika skala paksi tidak konsisten?", "Perbandingan data boleh menjadi mengelirukan atau tidak tepat."],
+  ["Mengapakah tajuk graf mesti jelas dan khusus?", "Supaya pembaca mengetahui jenis data, tempat atau tempoh yang ditunjukkan."],
+  ["Apakah kesan jika unit pada paksi tidak dinyatakan?", "Pembaca tidak dapat menentukan ukuran sebenar bagi nilai yang diplot."],
+  ["Apakah ciri graf bar yang membezakannya daripada histogram?", "Bar bagi kategori berasingan mempunyai ruang antara satu sama lain."],
+  ["Mengapakah titik dalam graf garisan disambungkan?", "Untuk menunjukkan arah dan perubahan data antara satu tempoh dengan tempoh berikutnya."],
+  ["Apakah dua paksi menegak yang lazim digunakan dalam graf gabungan suhu dan hujan?", "Satu paksi untuk jumlah hujan dan satu lagi untuk suhu."],
+  ["Mengapakah graf memudahkan pembaca memahami data?", "Pola, perbezaan dan perubahan dapat dilihat dengan cepat secara visual."],
+  ["Apakah prinsip utama ketika membina jadual atau graf?", "Data mesti tepat, tersusun, berlabel jelas dan menggunakan skala yang sesuai."],
+  ["Apakah kemahiran utama yang diuji melalui bab Jadual dan Graf?", "Mengumpul, menyusun, mempersembahkan dan mentafsir data geografi dengan tepat."],
 ] as const;
 
-export const geographyF3C1Flashcards: Flashcard[] = Array.from({ length: 60 }, (_, index) => {
-  const [front, back] = flashcardContent[index % flashcardContent.length];
-
-  return {
+export const geographyF3C1Flashcards: Flashcard[] = flashcardContent.map(
+  ([front, back], index) => ({
     id: `geo-f3-c1-f${index + 1}`,
     subjectId: "geography",
     form: "Form 3",
     chapter: "Chapter 1",
     front,
     back,
-  };
-});
+  }),
+);
