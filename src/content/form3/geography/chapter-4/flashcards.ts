@@ -5,7 +5,7 @@ const flashcardContent = [
   ["Apakah jenis hutan yang paling luas di Malaysia?", "Hutan Hujan Tropika"],
   ["Di manakah taburan Hutan Hujan Tropika biasanya ditemui?", "Di kawasan kaki bukit atau dataran pamah yang ketinggiannya kurang daripada 1,000 meter"],
   ["Namakan lokasi Hutan Paya Air Masin yang terkenal di Malaysia.", "Laut Matang (Perak) dan muara Sungai Rajang (Sarawak)"],
-  ["Di manakah terletaknya Hutan Paya Air Tawar yang terbesar di Malaysia?", "Tasik Bera dan Tasik Chini (Pahang)"],
+  ["Namakan dua lokasi utama Hutan Paya Air Tawar di Pahang.", "Tasik Bera dan Tasik Chini"],
   ["Nyatakan lokasi contoh bagi Hutan Pantai.", "Pantai Cahaya Bulan (Kelantan) dan Pantai Desaru (Johor)"],
   ["Berapakah ketinggian minimum bagi kawasan Hutan Gunung?", "Melebihi 1,200 meter dari aras laut"],
   ["Apakah ciri utama hutan di Malaysia secara umum?", "Malar hijau dan mempunyai kepelbagaian spesies (megabiodiversiti)"],
