@@ -253,6 +253,78 @@ function questionTokens(question: string) {
     .filter((token) => token.length >= 3 && !QUESTION_STOPWORDS.has(token));
 }
 
+const DOMAIN_TERMS = [
+  "tanih", "iklim", "hutan", "flora", "fauna", "hidupan", "saliran", "tumbuhan",
+  "gurun", "monsun", "ekosistem", "akar", "pokok", "pulau", "negara", "negeri",
+  "bandar", "kawasan", "pertanian", "perkilangan", "perindustrian", "pelancongan",
+  "sektor", "kegiatan", "ekonomi", "sumber", "mineral", "petroleum", "gas", "arang",
+  "tenaga", "agensi", "jabatan", "organisasi", "taman", "ramsar", "geopark",
+  "pemeliharaan", "pemuliharaan", "kitar", "semula", "reduce", "reuse", "recycle",
+  "jerman", "denmark", "sweden", "taiwan", "sisa", "carta", "graf", "jadual",
+  "paksi", "sudut", "peratus", "skala",
+] as const;
+
+function questionDomains(question: string) {
+  const q = clean(question).toLocaleLowerCase("ms");
+  return new Set(DOMAIN_TERMS.filter((term) => q.includes(term)));
+}
+
+function domainOverlap(a: Set<string>, b: Set<string>) {
+  let overlap = 0;
+  for (const term of a) if (b.has(term)) overlap += 1;
+  return overlap;
+}
+
+function singleNumberParts(value: string) {
+  const matches = [...value.matchAll(/-?\d+(?:\.\d+)?/g)];
+  if (matches.length !== 1) return null;
+
+  const match = matches[0];
+  const raw = match[0];
+  const number = Number(raw);
+  if (!Number.isFinite(number) || match.index === undefined) return null;
+
+  return {
+    number,
+    raw,
+    prefix: value.slice(0, match.index),
+    suffix: value.slice(match.index + raw.length),
+  };
+}
+
+function numericDistractors(answer: string) {
+  const parts = singleNumberParts(answer);
+  if (!parts) return null;
+
+  const { number, raw, prefix, suffix } = parts;
+  const isInteger = !raw.includes(".");
+  const decimals = isInteger ? 0 : raw.split(".")[1].length;
+
+  let candidates: number[];
+  if (number >= 1900 && number <= 2100 && isInteger) {
+    candidates = [number - 1, number + 1, number + 2];
+  } else if (Math.abs(number) <= 10) {
+    const step = isInteger ? 1 : Math.max(0.05, 10 ** -decimals);
+    candidates = [number - step, number + step, number + step * 2];
+  } else if (Math.abs(number) <= 100) {
+    const step = isInteger ? 5 : Math.max(0.1, 10 ** -decimals * 5);
+    candidates = [number - step, number + step, number + step * 2];
+  } else {
+    const step = Math.max(1, Math.round(Math.abs(number) * 0.1));
+    candidates = [number - step, number + step, number + step * 2];
+  }
+
+  const formatted = candidates
+    .filter((candidate) => candidate >= 0)
+    .map((candidate) => {
+      const rendered = isInteger ? String(Math.round(candidate)) : candidate.toFixed(decimals);
+      return clean(`${prefix}${rendered}${suffix}`);
+    })
+    .filter((candidate) => candidate !== clean(answer));
+
+  return uniqueStrings(formatted).slice(0, 3);
+}
+
 type QuestionTag =
   | "definition"
   | "location"
@@ -323,10 +395,14 @@ function quizSuitable(card: Flashcard) {
 
   if (!front.endsWith("?") && !front.includes("_____")) return false;
   if (front.length < 12 || front.length > 190 || back.length < 1 || back.length > 220) return false;
-  if (/^(Senaraikan|Nyatakan|Berikan|Namakan|Sebutkan)\\s+(?:dua|tiga|empat|lima|enam)\\b/i.test(front)) {
+  if (/^(Senaraikan|Nyatakan|Berikan|Namakan|Sebutkan)\s+(?:dua|tiga|empat|lima|enam)\b/i.test(front)) {
     return false;
   }
-  if (/\\b(?:pilih satu|atau)\\b/i.test(back) && back.length > 70) return false;
+  if (/^Adakah\b/i.test(front)) return false;
+  if (/\b(?:pilih satu|atau)\b/i.test(back) && back.length > 70) return false;
+  if ((back.match(/-?\d+(?:\.\d+)?/g) ?? []).length > 1 && /berapa|berapakah|bilakah|tahun/i.test(front)) {
+    return false;
+  }
   return true;
 }
 
@@ -357,33 +433,54 @@ function distractorScore(correctCard: Flashcard, candidate: Flashcard) {
   const tokens = tokenOverlap(questionTokens(correctQuestion), questionTokens(candidateQuestion));
   const kindMatch = answerKind(correctAnswer) === answerKind(candidateAnswer) ? 1 : 0;
 
-  const answerLengthPenalty = Math.abs(candidateAnswer.length - correctAnswer.length) / 35;
-  const tagBonus = tags * 12;
-  const tokenBonus = tokens * 5;
-  const kindBonus = kindMatch * 6;
+  const correctDomains = questionDomains(correctQuestion);
+  const candidateDomains = questionDomains(candidateQuestion);
+  const domains = domainOverlap(correctDomains, candidateDomains);
 
-  return tagBonus + tokenBonus + kindBonus - answerLengthPenalty;
+  const answerLengthPenalty = Math.abs(candidateAnswer.length - correctAnswer.length) / 35;
+  const tagBonus = tags * 14;
+  const tokenBonus = tokens * 5;
+  const kindBonus = kindMatch * 8;
+  const domainBonus = domains * 35;
+  const domainMismatchPenalty = correctDomains.size > 0 && domains === 0 ? 45 : 0;
+
+  return tagBonus + tokenBonus + kindBonus + domainBonus - domainMismatchPenalty - answerLengthPenalty;
 }
 
 function buildOptions(cards: Flashcard[], correctCard: Flashcard, seed: number) {
   const correct = clean(correctCard.back);
+  const numeric = numericDistractors(correct);
 
-  const candidates = cards
-    .filter((card) => card !== correctCard)
-    .map((card) => ({
-      card,
-      answer: clean(card.back),
-      score: distractorScore(correctCard, card),
-    }))
-    .filter(({ answer }) => answer && answer.toLocaleLowerCase("ms") !== correct.toLocaleLowerCase("ms"))
-    .sort((a, b) => b.score - a.score);
+  let distractors: string[] = [];
+  if (
+    numeric?.length === 3 &&
+    /berapa|berapakah|bilakah|peratus|sudut|jumlah|keluasan|ketinggian|nilai|tahun/i.test(correctCard.front)
+  ) {
+    distractors = numeric;
+  } else {
+    const correctDomains = questionDomains(correctCard.front);
+    const candidates = cards
+      .filter((card) => card !== correctCard)
+      .map((card) => ({
+        card,
+        answer: clean(card.back),
+        score: distractorScore(correctCard, card),
+        domainMatches: domainOverlap(correctDomains, questionDomains(card.front)),
+      }))
+      .filter(({ answer }) => answer && answer.toLocaleLowerCase("ms") !== correct.toLocaleLowerCase("ms"))
+      .sort((a, b) => b.score - a.score);
 
-  const distractors: string[] = [];
-  for (const candidate of candidates) {
-    const key = candidate.answer.toLocaleLowerCase("ms");
-    if (distractors.some((value) => value.toLocaleLowerCase("ms") === key)) continue;
-    distractors.push(candidate.answer);
-    if (distractors.length === 3) break;
+    const preferred =
+      correctDomains.size > 0
+        ? candidates.filter((candidate) => candidate.domainMatches > 0)
+        : candidates;
+
+    for (const candidate of [...preferred, ...candidates]) {
+      const key = candidate.answer.toLocaleLowerCase("ms");
+      if (distractors.some((value) => value.toLocaleLowerCase("ms") === key)) continue;
+      distractors.push(candidate.answer);
+      if (distractors.length === 3) break;
+    }
   }
 
   if (distractors.length < 3) {
