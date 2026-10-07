@@ -4,6 +4,9 @@ import { getChaptersForSubject } from "@/content/registry";
 
 const chapters = getChaptersForSubject("geography", undefined, "Form 3");
 
+const SOURCE_DEBRIS =
+  /KSSM_\d+|\.indd\b|\[\d+\]|10\/\d+\/\d+|luar sumber|rujukan sumber|pilih satu|logo pada sumber|mengikut buku teks/i;
+
 function walkMindMap(node: { label: string; children?: Array<{ label: string; children?: any[] }> }) {
   const labels: string[] = [node.label];
   for (const child of node.children ?? []) {
@@ -13,7 +16,7 @@ function walkMindMap(node: { label: string; children?: Array<{ label: string; ch
 }
 
 describe("Form 3 Geography release quality", () => {
-  it("registers all eleven KSSM chapters with all three learning resources", () => {
+  it("registers all eleven KSSM chapters with complete learning resources", () => {
     expect(chapters).toHaveLength(11);
 
     for (const chapter of chapters) {
@@ -23,22 +26,22 @@ describe("Form 3 Geography release quality", () => {
     }
   });
 
-  it("keeps flashcard decks substantial, unique and free from extraction debris", () => {
+  it("keeps every flashcard deck at exactly sixty clean, unique cards", () => {
     for (const chapter of chapters) {
       const cards = chapter.flashcards ?? [];
       const ids = cards.map((card) => card.id);
       const fronts = cards.map((card) => card.front.trim());
       const pairs = cards.map((card) => `${card.front.trim()}\u0000${card.back.trim()}`);
 
-      expect(cards.length).toBe(60);
-      expect(new Set(ids).size).toBe(cards.length);
-      expect(new Set(fronts).size).toBe(cards.length);
-      expect(new Set(pairs).size).toBe(cards.length);
+      expect(cards).toHaveLength(60);
+      expect(new Set(ids).size).toBe(60);
+      expect(new Set(fronts).size).toBe(60);
+      expect(new Set(pairs).size).toBe(60);
 
       for (const card of cards) {
         expect(card.front.trim().length).toBeGreaterThan(5);
         expect(card.back.trim().length).toBeGreaterThan(0);
-        expect(card.front + card.back).not.toMatch(/KSSM_\d+|\.indd\b|\[\d+\]|10\/\d+\/\d+/i);
+        expect(card.front + card.back).not.toMatch(SOURCE_DEBRIS);
       }
     }
   });
@@ -60,7 +63,7 @@ describe("Form 3 Geography release quality", () => {
     }
   });
 
-  it("keeps each multiple-choice item valid and avoids low-quality source debris", () => {
+  it("keeps every multiple-choice question valid and free from source debris", () => {
     for (const chapter of chapters) {
       const quiz = chapter.quiz ?? [];
       const answerPositions = [0, 0, 0, 0];
@@ -75,14 +78,11 @@ describe("Form 3 Geography release quality", () => {
         expect(item.question).not.toMatch(
           /^(Senaraikan|Nyatakan|Berikan|Namakan|Sebutkan)\s+(dua|tiga|empat|lima|enam)\b/i,
         );
-        expect(item.question + item.options.join(" ")).not.toMatch(
-          /KSSM_\d+|\.indd\b|\[\d+\]|10\/\d+\/\d+/i,
-        );
+        expect(item.question + item.options.join(" ")).not.toMatch(SOURCE_DEBRIS);
 
         answerPositions[item.answerIndex] += 1;
       }
 
-      // A healthy bank must not leak a fixed correct-answer position.
       for (const count of answerPositions) {
         expect(count).toBeGreaterThanOrEqual(5);
       }
@@ -101,7 +101,7 @@ describe("Form 3 Geography release quality", () => {
       for (const label of labels) {
         expect(label.length).toBeLessThanOrEqual(105);
         expect(label).not.toMatch(/^\d+(?:\.\d+)+\s/);
-        expect(label).not.toMatch(/KSSM_\d+|\.indd\b|\[\d+\]|10\/\d+\/\d+/i);
+        expect(label).not.toMatch(SOURCE_DEBRIS);
       }
     }
   });
