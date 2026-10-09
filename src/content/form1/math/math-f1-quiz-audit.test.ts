@@ -855,7 +855,9 @@ describe("Mathematics Form 1 Chapter 1 visual questions", () => {
     ["objective-2", 5, "moveLeftEight"],
     ["objective-2", 6, "moveRightSix"],
     ["objective-3", 10, "distanceMinus7To4"],
-  ] as const satisfies ReadonlyArray<[Objective, number, keyof typeof MATH_F1_C1_QUIZ_VISUALS]>;
+  ] as const satisfies ReadonlyArray<
+    readonly [Objective, number, keyof typeof MATH_F1_C1_QUIZ_VISUALS]
+  >;
 
   const at = (objective: Objective, lang: Lang, number: number) =>
     bank(1, objective, lang)[number - 1];
@@ -920,6 +922,8 @@ describe("Mathematics Form 1 Chapter 1 visual questions", () => {
       }
       if (visual.span) {
         expect(visual.span.from).toBeGreaterThanOrEqual(visual.min);
+        expect(visual.span.from).toBeLessThanOrEqual(visual.max);
+        expect(visual.span.to).toBeGreaterThanOrEqual(visual.min);
         expect(visual.span.to).toBeLessThanOrEqual(visual.max);
         expect(visual.span.label.bm).toContain("?");
         expect(visual.span.label.dlp).toContain("?");
