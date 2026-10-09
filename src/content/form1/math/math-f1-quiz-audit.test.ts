@@ -889,7 +889,10 @@ describe("Mathematics Form 1 Chapter 1 visual questions", () => {
   });
 
   it("stores valid number-line geometry without encoding a hidden answer", () => {
-    for (const visual of Object.values(MATH_F1_C1_QUIZ_VISUALS)) {
+    for (const visual of Object.values(MATH_F1_C1_QUIZ_VISUALS) as Extract<
+      MathQuestionVisual,
+      { kind: "number-line" }
+    >[]) {
       expect(visual.min).toBeLessThan(visual.max);
       const tickValues = visual.ticks.map((tick) => tick.value);
       expect(new Set(tickValues).size).toBe(tickValues.length);
