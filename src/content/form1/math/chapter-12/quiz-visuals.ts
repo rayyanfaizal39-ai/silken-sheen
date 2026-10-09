@@ -232,6 +232,47 @@ export const MATH_F1_C12_QUIZ_VISUALS = {
     values: [12, 15, 15, 15, 16, 16, 16, 16, 16, 17, 17, 20],
   },
 
+
+  // Extra visuals used by representation-first quiz questions.
+  mathPreference40: {
+    kind: "pie-chart",
+    title: {
+      bm: "Pilihan subjek 40 orang murid",
+      dlp: "Subject preference of 40 students",
+    },
+    sectors: [
+      { label: { bm: "Matematik", dlp: "Mathematics" }, angle: 144, text: "16" },
+      { label: { bm: "Lain-lain", dlp: "Others" }, angle: 216, text: "24" },
+    ],
+  },
+  midpointClasses: {
+    kind: "frequency-table",
+    title: { bm: "Jadual kekerapan markah", dlp: "Frequency table of marks" },
+    valueHeading: { bm: "Selang kelas", dlp: "Class interval" },
+    frequencyHeading: FREQUENCY,
+    rows: [
+      { value: "45–55", frequency: 4 },
+      { value: "55–65", frequency: 9 },
+      { value: "65–75", frequency: 5 },
+    ],
+  },
+  quarterCategory: {
+    kind: "pie-chart",
+    title: { bm: "Perkadaran kategori X", dlp: "Proportion of category X" },
+    sectors: [
+      { label: "X", angle: 90, text: "25%" },
+      { label: { bm: "Lain-lain", dlp: "Others" }, angle: 270, text: "75%" },
+    ],
+  },
+  survey30: {
+    kind: "pie-chart",
+    title: { bm: "Tinjauan 30 orang murid", dlp: "Survey of 30 students" },
+    sectors: [
+      { label: "X", angle: 144, text: "12" },
+      { label: { bm: "Lain-lain", dlp: "Others" }, angle: 216, text: "18" },
+    ],
+  },
+
   // ── Objective 3 ────────────────────────────────────────────────────────
   museumVisitors: {
     kind: "line-graph",
