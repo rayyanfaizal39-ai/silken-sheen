@@ -16948,7 +16948,7 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     "Easy",
   ],
   [
-    "Apakah jadual kekerapan?",
+    "Lihat jadual kekerapan. Pernyataan manakah menerangkan jadual ini dengan betul?",
     [
       "Jadual yang menyenaraikan nama murid",
       "Jadual yang menunjukkan setiap nilai dan kekerapannya",
@@ -16958,30 +16958,34 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Jadual kekerapan mengorganisasikan data dengan menunjukkan setiap nilai atau kelas bersama bilangan kali ia muncul.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.booksRead,
   ],
   [
-    "Apakah carta yang menggunakan palang untuk membandingkan data?",
+    "Lihat visual. Apakah jenis carta yang ditunjukkan?",
     ["Carta pai", "Graf garis", "Carta palang", "Histogram"],
     2,
     "Carta palang menggunakan palang tegak atau melintang untuk membandingkan data kategori atau diskret.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteSubjects,
   ],
   [
-    "Apakah carta yang menggunakan bulatan dibahagi kepada sektor?",
+    "Lihat visual. Apakah jenis carta yang digunakan untuk menunjukkan perkadaran kategori?",
     ["Carta pai", "Graf garis", "Histogram", "Carta palang"],
     0,
     "Carta pai adalah bulatan yang dibahagi kepada sektor-sektor untuk menunjukkan perkadaran setiap kategori.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteActivities,
   ],
   [
-    "Apakah jenis graf yang digunakan untuk menunjukkan trend atau perubahan merentasi masa?",
+    "Lihat visual. Apakah jenis graf yang menunjukkan perubahan merentasi masa?",
     ["Carta palang", "Carta pai", "Graf garis", "Histogram"],
     2,
     "Graf garis menggunakan titik yang disambungkan dengan garis untuk menunjukkan perubahan data merentasi masa.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.shopSales,
   ],
   [
-    "Apakah plot titik (dot plot)?",
+    "Lihat visual. Pernyataan manakah menerangkan plot titik ini?",
     [
       "Carta yang menggunakan palang tebal bagi setiap kategori",
       "Carta yang menggunakan titik di atas garis nombor",
@@ -16991,9 +16995,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Plot titik menggunakan titik di atas garis nombor. Setiap titik mewakili satu nilai data.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.goalsScored,
   ],
   [
-    "Apakah histogram?",
+    "Lihat visual. Pernyataan manakah menerangkan histogram ini?",
     [
       "Carta palang dengan ruang antara palang",
       "Carta pai yang besar",
@@ -17003,9 +17008,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Histogram ialah graf palang untuk data berterusan/berkumpulan dengan TIADA ruang antara palang.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.heights,
   ],
   [
-    "Apakah perbezaan utama antara carta palang dan histogram?",
+    "Perhatikan histogram. Apakah perbezaan utama antara carta palang dan histogram?",
     [
       "Carta palang menggunakan warna, histogram tidak",
       "Histogram ada ruang antara palang, carta palang tiada",
@@ -17015,9 +17021,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Carta palang ada RUANG antara palang (data diskret/kategori). Histogram TIADA ruang antara palang (data berterusan/berkumpulan).",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.heights,
   ],
   [
-    "Apakah plot batang-dan-daun?",
+    "Lihat visual. Pernyataan manakah menerangkan plot batang-dan-daun ini?",
     [
       "Carta yang menggunakan gambar daun pokok sebenar sebagai simbol",
       "Paparan yang memisahkan nilai kepada batang (puluhan) dan daun (sa)",
@@ -17027,9 +17034,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Plot batang-dan-daun memisahkan setiap nilai: batang = digit puluhan, daun = digit sa. Mengekalkan nilai asal.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.quizMarksStems,
   ],
   [
-    "Apakah poligon kekerapan?",
+    "Lihat visual. Pernyataan manakah menerangkan poligon kekerapan ini?",
     [
       "Bentuk poligon yang dikaji dalam geometri",
       "Jadual yang menyenaraikan kelas dan kekerapan",
@@ -17039,6 +17047,7 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Poligon kekerapan dibina dengan menghubungkan titik tengah bahagian atas setiap palang histogram.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.twoClassPolygons,
   ],
   [
     "Apakah julat?",
@@ -17083,6 +17092,7 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Paksi-x dalam carta palang biasanya menunjukkan kategori atau nilai data, manakala paksi-y menunjukkan kekerapan.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteSubjects,
   ],
   [
     "Apakah yang diwakili oleh setiap titik dalam plot titik?",
@@ -17090,6 +17100,7 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Dalam plot titik, setiap titik mewakili satu pemerhatian atau satu nilai data.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.goalsScored,
   ],
   [
     "Apakah pencilan (outlier)?",
@@ -17253,7 +17264,7 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     "Easy",
   ],
   [
-    "What is a frequency table?",
+    "Look at the frequency table. Which statement describes it correctly?",
     [
       "A table that lists students' names",
       "A table showing each value and its frequency",
@@ -17263,30 +17274,34 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A frequency table organises data by showing each value or class along with the number of times it occurs.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.booksRead,
   ],
   [
-    "What chart uses bars to compare data?",
+    "Look at the visual. What type of chart is shown?",
     ["Pie chart", "Line graph", "Bar chart", "Histogram"],
     2,
     "A bar chart uses vertical or horizontal bars to compare categorical or discrete data.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteSubjects,
   ],
   [
-    "What chart uses a circle divided into sectors?",
+    "Look at the visual. What type of chart is used to show category proportions?",
     ["Pie chart", "Line graph", "Histogram", "Bar chart"],
     0,
     "A pie chart is a circle divided into sectors to show the proportion of each category from the whole.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteActivities,
   ],
   [
-    "What type of graph shows trends or changes over time?",
+    "Look at the visual. What type of graph shows change over time?",
     ["Bar chart", "Pie chart", "Line graph", "Histogram"],
     2,
     "A line graph uses points connected by lines to show data changes over time.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.shopSales,
   ],
   [
-    "What is a dot plot?",
+    "Look at the visual. Which statement describes this dot plot?",
     [
       "A chart that uses thick bars for each category",
       "A chart that uses dots above a number line",
@@ -17296,9 +17311,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A dot plot uses dots above a number line. Each dot represents one data value.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.goalsScored,
   ],
   [
-    "What is a histogram?",
+    "Look at the visual. Which statement describes this histogram?",
     [
       "A bar chart with gaps between the bars",
       "A large pie chart",
@@ -17308,9 +17324,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A histogram is a bar graph for continuous/grouped data with NO gaps between bars.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.heights,
   ],
   [
-    "What is the main difference between a bar chart and a histogram?",
+    "Look at the histogram. What is the main difference between a bar chart and a histogram?",
     [
       "Bar charts use colours, histograms do not",
       "Histograms have gaps between bars, bar charts do not",
@@ -17320,9 +17337,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Bar charts have GAPS between bars (discrete/categorical data). Histograms have NO gaps (continuous/grouped data).",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.heights,
   ],
   [
-    "What is a stem-and-leaf plot?",
+    "Look at the visual. Which statement describes this stem-and-leaf plot?",
     [
       "A chart that uses pictures of real tree leaves as symbols",
       "A display splitting values into stems (tens) and leaves (units)",
@@ -17332,9 +17350,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A stem-and-leaf plot separates each value: stem = tens digit, leaf = units digit. Retains original data values.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.quizMarksStems,
   ],
   [
-    "What is a frequency polygon?",
+    "Look at the visual. Which statement describes this frequency polygon?",
     [
       "A polygon shape studied in geometry",
       "A table that lists classes and frequencies",
@@ -17344,6 +17363,7 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A frequency polygon is constructed by connecting the midpoints of the tops of each histogram bar.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.twoClassPolygons,
   ],
   [
     "What is the range?",
@@ -17388,6 +17408,7 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The x-axis in a bar chart typically shows categories or data values, while the y-axis shows frequency.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteSubjects,
   ],
   [
     "What does each dot represent in a dot plot?",
@@ -17395,6 +17416,7 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "In a dot plot, each dot represents one observation or one data value.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.goalsScored,
   ],
   [
     "What is an outlier?",
@@ -17448,6 +17470,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut = (16÷40) × 360° = 0.4 × 360° = 144°.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.mathPreference40,
   ],
   [
     "Jumlah sudut dalam carta pai = ?",
@@ -17455,6 +17478,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Jumlah semua sudut sektor dalam carta pai sentiasa 360° (sudut penuh).",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.fourSectors,
   ],
   [
     "Data: 8, 12, 5, 19, 7, 3, 15. Cari julat.",
@@ -17509,6 +17533,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Titik tengah = (55 + 65) ÷ 2 = 120 ÷ 2 = 60.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.midpointClasses,
   ],
   [
     "Plot titik menunjukkan markah kuiz sekumpulan murid. Berapakah murid yang mendapat markah 8?",
@@ -17593,6 +17618,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "25% × 360° = 0.25 × 360° = 90°.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.quarterCategory,
   ],
   [
     "Seramai 30 murid ditinjau. Kekerapan kategori X ialah 12. Apakah sudut sektor X dalam carta pai?",
@@ -17600,6 +17626,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Sudut = (12÷30) × 360° = 0.4 × 360° = 144°.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.survey30,
   ],
   [
     "Graf garis menunjukkan kehadiran murid ke perpustakaan dalam seminggu. Pada hari apakah kehadiran paling rendah?",
@@ -17681,6 +17708,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Angle = (16÷40) × 360° = 0.4 × 360° = 144°.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.mathPreference40,
   ],
   [
     "The total angles in a pie chart = ?",
@@ -17688,6 +17716,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "The sum of all sector angles in a pie chart is always 360° (full angle).",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.fourSectors,
   ],
   [
     "Data: 8, 12, 5, 19, 7, 3, 15. Find the range.",
@@ -17742,6 +17771,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Midpoint = (55 + 65) ÷ 2 = 120 ÷ 2 = 60.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.midpointClasses,
   ],
   [
     "The dot plot shows the quiz marks of a group of students. How many students scored 8?",
@@ -17826,6 +17856,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "25% × 360° = 0.25 × 360° = 90°.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.quarterCategory,
   ],
   [
     "30 students were surveyed. The frequency of category X is 12. What is the sector angle for X in a pie chart?",
@@ -17833,6 +17864,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Angle = (12÷30) × 360° = 0.4 × 360° = 144°.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.survey30,
   ],
   [
     "The line graph shows student attendance at the library over one week. On which day is attendance lowest?",
