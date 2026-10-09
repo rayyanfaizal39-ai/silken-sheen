@@ -454,6 +454,89 @@ function Dots({
   );
 }
 
+/** Neutral ten-dot rows avoid suggesting a particular factor or group size. */
+function ItemArrays({
+  visual,
+  lang,
+}: {
+  visual: Extract<MathQuestionVisualData, { kind: "item-arrays" }>;
+  lang: MathVisualLang;
+}) {
+  let nextY = 10;
+  const sections = visual.groups.map((group) => {
+    const top = nextY;
+    nextY += 28 + Math.ceil(group.count / 10) * 17 + 10;
+    return { group, top };
+  });
+  return (
+    <svg viewBox={`0 0 320 ${nextY}`} className="w-full" aria-hidden="true">
+      {sections.map(({ group, top }, groupIndex) => (
+        <g key={groupIndex}>
+          <Label x={16} y={top + 11} anchor="start" size={12} fill="#e2e8f0" weight={600}>
+            {textFor(group.label, lang)} · {group.count}
+          </Label>
+          {Array.from({ length: group.count }, (_, index) => (
+            <circle
+              key={index}
+              cx={29 + (index % 10) * 27.5}
+              cy={top + 30 + Math.floor(index / 10) * 17}
+              r={5}
+              fill={groupIndex % 2 === 0 ? VIOLET : "#fbbf5a"}
+              fillOpacity={0.85}
+            />
+          ))}
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+/** Only the opening events are drawn: never highlight the shared event/LCM. */
+function MultipleTracks({
+  visual,
+  lang,
+}: {
+  visual: Extract<MathQuestionVisualData, { kind: "multiple-tracks" }>;
+  lang: MathVisualLang;
+}) {
+  const left = 58;
+  const right = 301;
+  const xOf = (value: number) => left + (value / visual.upTo) * (right - left);
+  const height = 28 + visual.tracks.length * 62;
+  return (
+    <svg viewBox={`0 0 320 ${height}`} className="w-full" aria-hidden="true">
+      {visual.tracks.map((track, index) => {
+        const y = 42 + index * 62;
+        const marks = Array.from(
+          { length: Math.floor(visual.upTo / track.every) },
+          (_, position) => (position + 1) * track.every,
+        );
+        const color = index % 2 === 0 ? VIOLET : "#fbbf5a";
+        return (
+          <g key={index}>
+            <Label x={4} y={y + 4} anchor="start" fill="#e2e8f0" weight={600} size={11}>
+              {lang === "bm" ? "Setiap" : "Every"} {track.every}
+            </Label>
+            <line x1={left} y1={y} x2={right} y2={y} stroke={AXIS} strokeWidth={1.5} />
+            <circle cx={left} cy={y} r={2.5} fill={MUTED} />
+            <Label x={left} y={y + 18} size={10}>0</Label>
+            {marks.map((value) => (
+              <g key={value}>
+                <line x1={xOf(value)} x2={xOf(value)} y1={y - 8} y2={y + 8} stroke={color} strokeWidth={2.5} />
+                <circle cx={xOf(value)} cy={y} r={4} fill={color} />
+                <Label x={xOf(value)} y={y - 13} size={11} fill="#e2e8f0" weight={600}>
+                  {value}
+                </Label>
+              </g>
+            ))}
+            <Label x={311} y={y + 4} size={15} fill={MUTED}>→</Label>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 const CELL = "border border-white/[0.09] px-3 py-1.5";
 
 export function MathQuestionVisual({
@@ -521,6 +604,12 @@ export function MathQuestionVisual({
 
   let chart: ReactNode;
   switch (visual.kind) {
+    case "item-arrays":
+      chart = <ItemArrays visual={visual} lang={lang} />;
+      break;
+    case "multiple-tracks":
+      chart = <MultipleTracks visual={visual} lang={lang} />;
+      break;
     case "bar-chart":
       chart = (
         <Bars
