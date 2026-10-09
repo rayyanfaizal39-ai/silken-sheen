@@ -1,492 +1,481 @@
 import type { StructuredNotes } from "@/content/types";
 
 export const geographyF3C11Notes: StructuredNotes = {
-  "chapterSummary": "Bab 11 Kitar Semula merangkumi 4 subtopik rasmi: 11.1 Elemen Kitar Semula; 11.2 Kepentingan Amalan Kitar Semula; 11.3 Amalan Kitar Semula di Malaysia; 11.4 Amalan Kitar Semula di Negara-negara Lain. Nota ini disusun mengikut urutan buku teks dan mengekalkan fokus kepada fakta, konsep, proses, contoh, jadual, peta, rajah dan kemahiran UASA yang terdapat dalam bab.",
-  "quickRevision": [
-    "11.1 Elemen Kitar Semula",
-    "11.2 Kepentingan Amalan Kitar Semula",
-    "11.3 Amalan Kitar Semula di Malaysia",
-    "11.4 Amalan Kitar Semula di Negara-negara Lain",
-    "Kepentingan Amalan Kitar Semula11.2 Apakah yang dimaksudkan dengan elemen kitar semula 3R (Reduce, Reuse dan Recycle)?",
-    "Amalan Kitar Semula di Malaysia11.3 Peningkatan jumlah penduduk di sesuatu kawasan secara tidak langsung akan meningkatkan jumlah penghasilan sisa. Amalan kitar semula harus dipraktikkan oleh semua peringkat",
-    "Amalan Kitar Semula di Negara-negara Lain11.4 Banyak negara maju mengaplikasikan aktiviti kitar semula untuk memastikan kelestarian alam sekitar selari dengan pembangunan yang dijalankan. Berikut merupakan amalan kitar semula"
+  chapterSummary:
+    "Bab 11 menerangkan elemen 3R, kepentingan amalan kitar semula, amalan kitar semula di Malaysia dan contoh amalan di beberapa negara lain. Murid perlu memahami perbezaan Reduce, Reuse dan Recycle, menjelaskan bagaimana kitar semula menjimatkan sumber serta mengurangkan pencemaran, dan membandingkan sistem pengurusan sisa yang digunakan di Malaysia, Jerman, Denmark, Sweden dan Taiwan.",
+
+  quickRevision: [
+    "3R terdiri daripada Reduce, Reuse dan Recycle.",
+    "Reduce bermaksud mengurangkan penggunaan dan penghasilan sisa sejak awal.",
+    "Reuse bermaksud menggunakan semula barangan supaya tidak cepat menjadi sisa.",
+    "Recycle bermaksud mengasing dan memproses semula bahan terpakai menjadi produk yang boleh digunakan semula.",
+    "Kitar semula menjimatkan sumber semula jadi, tenaga dan ruang tapak pelupusan serta membantu mengurangkan pencemaran.",
+    "Pengasingan sisa di punca memudahkan bahan yang sesuai dikumpul dan diproses.",
+    "Malaysia menggunakan pendidikan, kempen, pengasingan sisa dan pengurusan sisa pepejal untuk menggalakkan amalan kitar semula.",
+    "Jerman terkenal dengan sistem deposit dan pengurusan pembungkusan; Denmark dengan pengurusan sisa sistematik dan instrumen ekonomi.",
+    "Sweden menggunakan pemulihan tenaga bagi sebahagian sisa, manakala Taiwan terkenal dengan kerjasama masyarakat melalui Program 4-Dalam-1.",
   ],
-  "keyTerms": [
-    "Elemen Kitar Semula",
-    "Kepentingan Amalan Kitar Semula",
-    "Amalan Kitar Semula di Malaysia",
-    "Amalan Kitar Semula di Negara-negara Lain",
-    "Kitar semula bermaksud memungut dan mengasingkan sisa pepejal bagi maksud menghasilkan keluaran.",
-    "Pulau Pinang ialah negeri pertama yang melaksanakan kempen ini, iaitu",
-    "Premis perniagaan yang terlibat akan mengenakan bayaran RM0.20 kepada pelanggan yang memerlukan beg plastik Beg mesra alam, beg kertas dan plastik biodegradasi adalah antara alternatif yang digunakan untuk menggantikan beg plastik",
-    "Amalan Kitar Semula di Negara-negara Lain11.4 Banyak negara maju mengaplikasikan aktiviti kitar semula untuk memastikan kelestarian alam sekitar selari dengan pembangunan yang dijalankan. Berikut merupakan amalan kitar semula",
-    "Denmark merupakan antara negara yang berjaya dalam pelaksanaan amalan kitar semula. Sistem pengumpulan sisa yang dijalankan di negara ini adalah sangat efisien. Hampir 67% daripada jumlah sisa keseluruhan di Denmark dikitar semula, 28% dilupus menggunakan incinerator dan",
-    "Sweden ialah negara yang mengitar semula 99% daripada sisa buangan domestik dan hanya 1% sisa yang berakhir di pusat pelupusan sampah. Malahan, Sweden juga mengimport sisa dari negara lain untuk menjana tenaga elektrik melaluinya. Revolusi kitar semula di negara ini",
-    "adalah contoh terbaik yang seharusnya diikuti oleh negara-negara lain."
+
+  keyTerms: [
+    "Kitar semula",
+    "3R",
+    "Reduce",
+    "Reuse",
+    "Recycle",
+    "Sisa pepejal",
+    "Pengasingan sisa di punca",
+    "Sisa kitar semula",
+    "Sisa baki",
+    "Sisa pukal",
+    "Sisa kebun",
+    "SWCorp",
+    "Akta Pengurusan Sisa Pepejal dan Pembersihan Awam 2007",
+    "Sistem deposit",
+    "Green Dot",
+    "Waste 21",
+    "Cukai hijau",
+    "Incinerator",
+    "Pemulihan tenaga",
+    "Program 4-Dalam-1",
+    "iTrash",
+    "Kelestarian",
   ],
-  "keyExamFacts": [
-    "Kepentingan Amalan Kitar Semula11.2 Apakah yang dimaksudkan dengan elemen kitar semula 3R (Reduce, Reuse dan Recycle)?",
-    "Amalan mengasingkan barangan mengikut jenis untuk menghasilkan produk yang sama jenis atau baharu semula. Pengasingan mengikut jenis sisa menjimatkan masa dan memudahkan proses kitar semula.",
-    "Program Cukai Sisa Pihak yang hendak melupuskan sebarang jenis sisa akan dikenakan cukai.",
-    "Program Waste 21 Menjelaskan secara terperinci tentang cara mengitar semula dengan cekap dan berkesan.",
-    "Menguatkuasakan undang-undang yang memberi definisi kepada sisa, menjelaskan jenis-jenis sisa dan menghuraikan cara pihak berkuasa tempatan menguruskan sisa pepejal di kawasan masing-masing.",
-    "Langkah-langkah: 1. Murid membuat aktiviti dalam kumpulan.",
-    "akan menerima kesan negatif jika bahan buangan sama ada dalam bentuk pepejal atau cecair tidak diuruskan dengan baik dan sistematik. Oleh hal yang demikian, Taiwan amat menggalakkan aktiviti kitar semula.",
-    "Mengurangkan kesan rumah hijau",
-    "(a) Kitar semula melibatkan langkah mengutip dan mengasingkan sisa pepejal mengikut jenis untuk mendapatkan keuntungan individu.",
-    "Malah, media elektronik, media cetak, mahupun pasar raya, semuanya berusaha untuk menyedarkan masyarakat betapa pentingnya menjaga alam sekitar."
+
+  keyExamFacts: [
+    "Reduce mengutamakan pencegahan sisa sebelum sisa terbentuk.",
+    "Reuse memanjangkan tempoh penggunaan sesuatu barangan.",
+    "Recycle memerlukan bahan diasingkan dan diproses untuk menghasilkan bahan atau produk yang boleh digunakan semula.",
+    "Kitar semula mengurangkan keperluan menggunakan bahan mentah baharu.",
+    "Mengurangkan jumlah sisa ke tapak pelupusan dapat memanjangkan jangka hayat tapak tersebut.",
+    "Kitar semula kertas membantu mengurangkan keperluan menebang pokok untuk penghasilan kertas baharu.",
+    "Pengasingan sisa di punca memudahkan proses kutipan, pengumpulan dan pemprosesan bahan kitar semula.",
+    "SWCorp berperanan dalam pengurusan sisa pepejal dan pembersihan awam di bawah bidang kuasanya.",
+    "Sistem deposit menggalakkan pengguna memulangkan bekas selepas digunakan untuk mendapatkan semula nilai deposit.",
+    "Program 4-Dalam-1 Taiwan menghubungkan masyarakat, pihak berkuasa tempatan, syarikat kitar semula dan organisasi komuniti dalam sistem kitar semula.",
   ],
-  "sections": [
+
+  sections: [
     {
-      "title": "Pengenalan Bab",
-      "subsections": [
+      title: "Pengenalan Bab",
+      subsections: [
         {
-          "title": "Gambaran keseluruhan",
-          "content": "3 Menerangkan elemen kitar semula (3R - Reduce, Reuse dan Recycle) 3 Menghuraikan kepentingan amalan kitar semula 3 Menjelaskan melalui contoh aktiviti kitar semula 3 Membandingkan amalan kitar semula di negara lain BAB Menurut Perbadanan Pengurusan Sisa Pepejal dan Pembersihan Awam (SWCorp), 2017 , jumlah penghasilan sisa pepejal di Malaysia sekitar 37 000 ribu tan sehari. Pernahkah anda mendengar istilah 3R? Tahukah anda akan kepentingan amalan kitar semula? Apakah amalan kitar semula yang boleh anda praktikkan dalam kehidupan seharian? Bagaimanakah pula negara-negara lain menjalankan amalan kitar semula untuk memastikan kelestarian alam sekitar di negara mereka?"
+          title: "Gambaran keseluruhan",
+          content:
+            "Pertambahan penduduk, penggunaan barangan dan pembungkusan menyebabkan jumlah sisa semakin meningkat. Jika sisa tidak diurus dengan baik, tapak pelupusan cepat penuh, pencemaran bertambah dan lebih banyak sumber semula jadi diperlukan untuk menghasilkan barangan baharu. Amalan 3R membantu mengurangkan masalah ini.",
         },
         {
-          "title": "Checklist subtopik",
-          "bulletPoints": [
-            "✓ 11.1 Elemen Kitar Semula",
-            "✓ 11.2 Kepentingan Amalan Kitar Semula",
-            "✓ 11.3 Amalan Kitar Semula di Malaysia",
-            "✓ 11.4 Amalan Kitar Semula di Negara-negara Lain"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "11.1 Elemen Kitar Semula",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Subtopik ini menerangkan kandungan utama tentang Elemen Kitar Semula berdasarkan buku teks Geografi Tingkatan 3."
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Elemen Kitar Semula"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": []
-        },
-        {
-          "title": "Fakta penting",
-          "bulletPoints": []
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Elemen Kitar Semula.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Elemen Kitar Semula.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 11.1 menekankan Elemen Kitar Semula. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
-    },
-    {
-      "title": "11.2 Kepentingan Amalan Kitar Semula",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Apakah yang dimaksudkan dengan elemen kitar semula 3R (Reduce, Reuse dan Recycle)? Kitar semula bermaksud memungut dan mengasingkan sisa pepejal bagi maksud menghasilkan keluaran."
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Kepentingan Amalan Kitar Semula",
-            "Kitar semula bermaksud memungut dan mengasingkan sisa pepejal bagi maksud menghasilkan keluaran."
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Kitar semula bermaksud memungut dan mengasingkan sisa pepejal bagi maksud menghasilkan keluaran."
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Apakah yang dimaksudkan dengan elemen kitar semula 3R (Reduce, Reuse dan Recycle)?",
-            "maklumat tentang bahan yang boleh dikitar semula:",
-            "Amalan mengurangkan sisa pepejal untuk meminimumkan penggunaan sumber semula jadi. Gunakan sesuatu sumber itu mengikut keperluan sahaja.",
-            "(Sumber: Jabatan Pengurusan Sisa Pepejal Negara, Ogos 2018)"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Tindakan penggunaan semula barangan secara berulang kali untuk mengurangkan penghasilan sisa. Penggunaan sesuatu barangan secara maksimum dapat mengelakkan pembaziran.",
-            "Amalan mengasingkan barangan mengikut jenis untuk menghasilkan produk yang sama jenis atau baharu semula. Pengasingan mengikut jenis sisa menjimatkan masa dan memudahkan proses kitar semula."
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Amalan mengurangkan sisa pepejal untuk meminimumkan penggunaan sumber semula jadi. Gunakan sesuatu sumber itu mengikut keperluan sahaja.",
-            "(Sumber: Jabatan Pengurusan Sisa Pepejal Negara, Ogos 2018)"
+          title: "Apa yang perlu dikuasai",
+          bulletPoints: [
+            "Menerangkan maksud Reduce, Reuse dan Recycle.",
+            "Memberikan contoh amalan bagi setiap elemen 3R.",
+            "Menghuraikan kepentingan kitar semula kepada manusia dan alam sekitar.",
+            "Menerangkan amalan pengasingan dan kitar semula di Malaysia.",
+            "Membandingkan pendekatan kitar semula di Jerman, Denmark, Sweden dan Taiwan.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
+        },
+      ],
+    },
+
+    {
+      title: "11.1 Elemen Kitar Semula",
+      subsections: [
+        {
+          title: "Maksud kitar semula",
+          content:
+            "Kitar semula melibatkan pengumpulan, pengasingan dan pemprosesan bahan terpakai supaya bahan tersebut boleh digunakan semula sebagai bahan mentah atau produk baharu. Dalam pengurusan sisa, kitar semula paling berkesan apabila digabungkan dengan Reduce dan Reuse.",
+        },
+
+        {
+          title: "Tiga elemen 3R",
+          table: {
+            headers: ["Elemen", "Maksud", "Contoh"],
+            rows: [
               [
-                "sumber semula jadi. Gunakan sesuatu sumber itu mengikut keperluan sahaja."
+                "Reduce — Kurangkan",
+                "Mengurangkan penggunaan sumber dan penghasilan sisa sejak awal.",
+                "Membeli makanan mengikut keperluan, mengurangkan pembungkusan dan menggunakan dokumen digital.",
               ],
               [
-                "(Sumber: Jabatan Pengurusan Sisa Pepejal Negara, Ogos 2018)"
-              ]
-            ]
-          }
+                "Reuse — Guna semula",
+                "Menggunakan sesuatu barangan lebih daripada sekali supaya jangka hayatnya lebih panjang.",
+                "Menggunakan beg guna semula, menggunakan semula bekas atau mendermakan pakaian yang masih elok.",
+              ],
+              [
+                "Recycle — Kitar semula",
+                "Mengasing dan memproses semula bahan terpakai menjadi bahan atau produk yang boleh digunakan.",
+                "Kertas diproses semula, sisa organik dijadikan kompos dan bahan tertentu dijadikan produk baharu.",
+              ],
+            ],
+          },
         },
+
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Apakah yang dimaksudkan dengan elemen kitar semula 3R (Reduce, Reuse dan Recycle)?",
-            "Kitar semula bermaksud memungut dan mengasingkan sisa pepejal bagi maksud menghasilkan keluaran.",
-            "maklumat tentang bahan yang boleh dikitar semula:",
-            "Amalan mengurangkan sisa pepejal untuk meminimumkan penggunaan sumber semula jadi. Gunakan sesuatu sumber itu mengikut keperluan sahaja.",
-            "Tindakan penggunaan semula barangan secara berulang kali untuk mengurangkan penghasilan sisa. Penggunaan sesuatu barangan secara maksimum dapat mengelakkan pembaziran.",
-            "Amalan mengasingkan barangan mengikut jenis untuk menghasilkan produk yang sama jenis atau baharu semula. Pengasingan mengikut jenis sisa menjimatkan masa dan memudahkan proses kitar semula.",
-            "(Sumber: Jabatan Pengurusan Sisa Pepejal Negara, Ogos 2018)"
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Kepentingan Amalan Kitar Semula.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Kepentingan Amalan Kitar Semula.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 11.2 menekankan Kepentingan Amalan Kitar Semula. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
-    },
-    {
-      "title": "11.3 Amalan Kitar Semula di Malaysia",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Peningkatan jumlah penduduk di sesuatu kawasan secara tidak langsung akan meningkatkan jumlah penghasilan sisa. Amalan kitar semula harus dipraktikkan oleh semua peringkat masyarakat untuk memastikan kelestarian alam sekitar. masih elok kepada mereka"
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Amalan Kitar Semula di Malaysia",
-            "Pulau Pinang ialah negeri pertama yang melaksanakan kempen ini, iaitu",
-            "Premis perniagaan yang terlibat akan mengenakan bayaran RM0.20 kepada pelanggan yang memerlukan beg plastik Beg mesra alam, beg kertas dan plastik biodegradasi adalah antara alternatif yang digunakan untuk menggantikan beg plastik"
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Pulau Pinang ialah negeri pertama yang melaksanakan kempen ini, iaitu",
-            "Premis perniagaan yang terlibat akan mengenakan bayaran RM0.20 kepada pelanggan yang memerlukan beg plastik Beg mesra alam, beg kertas dan plastik biodegradasi adalah antara alternatif yang digunakan untuk menggantikan beg plastik"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "masih elok kepada mereka",
-            "Kitar semula surat khabar",
-            "kraf tangan yang menarik",
-            "mengikut kategori tong kitar",
-            "Bertemakan “Fikir Dahulu Sebelum Buang” Selaras dengan Akta Pengurusan Sisa Pepejal dan Pembersihan Awam 2007 untuk memastikan bahan kitar semula diurus selia dengan baik oleh pihak berkuasa tempatan",
-            "baju terpakai untuk dikitar semula. Baju-baju tersebut",
-            "akan dijual dan hasilnya",
-            "Sisa baki: Sisa dapur, makanan, bahan-bahan",
-            "kotor, lampin pakai buang",
-            "Sisa pukal: Sisa perabot, sisa barangan elektrik",
-            "Sisa kebun: Ranting, pelepah, batang pokok,",
-            "Sisa kitar semula: Kertas, plastik, botol, kaca, sisa pukal,",
-            "Sisa pepejal diasingkan mengikut kategori seperti sisa kitar semula, sisa baki dan sisa pukal",
-            "Kutipan sisa kitar semula dan sisa pukal",
-            "Kutipan bagi sisa baki dilakukan",
-            "(Sumber: Pusat Kitar Semula Komuniti Presint 9 Putrajaya, 2017) 1. Nyatakan tiga aktiviti kitar semula yang terdapat dalam setiap elemen 3R."
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Peningkatan jumlah penduduk di sesuatu kawasan secara tidak langsung akan meningkatkan jumlah penghasilan sisa. Amalan kitar semula harus dipraktikkan oleh semua peringkat masyarakat untuk memastikan kelestarian alam sekitar.",
-            "Pengasingan sisa pepejal di rumah Dijalankan secara berperingkat-peringkat bermula pada 1 September 2015 Berdasarkan peraturan di bawah Akta Pengurusan Sisa Pepejal dan Pembersihan Awam 2007"
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Sisa pepejal diasingkan mengikut kategori seperti sisa kitar semula, sisa baki dan sisa pukal",
-            "Sejak 1 Januari 2013, semua bekas minuman seperti botol kaca dan tin dengan isi padu 0.1 liter hingga 3.0 liter akan dikenakan caj deposit. Deposit"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "(Sumber: Pusat Kitar Semula Komuniti Presint 9 Putrajaya, 2017) 1. Nyatakan tiga aktiviti kitar semula yang terdapat dalam setiap elemen 3R.",
-            "(Sumber: Federal Ministry for the Environment, Nature Conservation and Reactor Safety - 3Rs Study, 2011) Mesin tebus semula deposit"
+          title: "Reduce",
+          bulletPoints: [
+            "Utamakan keperluan berbanding kehendak.",
+            "Elakkan pembelian berlebihan yang akhirnya menjadi sisa.",
+            "Pilih produk dengan pembungkusan minimum.",
+            "Gunakan teknologi digital untuk mengurangkan penggunaan kertas apabila sesuai.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "(Sumber: Pusat Kitar Semula"
-              ],
-              [
-                "(Sumber: Federal Ministry for the"
-              ]
-            ]
-          }
         },
+
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Peningkatan jumlah penduduk di sesuatu kawasan secara tidak langsung akan meningkatkan jumlah penghasilan sisa. Amalan kitar semula harus dipraktikkan oleh semua peringkat masyarakat untuk memastikan kelestarian alam sekitar.",
-            "masih elok kepada mereka",
-            "Kitar semula surat khabar",
-            "kraf tangan yang menarik",
-            "mengikut kategori tong kitar",
-            "Bertemakan “Fikir Dahulu Sebelum Buang” Selaras dengan Akta Pengurusan Sisa Pepejal dan Pembersihan Awam 2007 untuk memastikan bahan kitar semula diurus selia dengan baik oleh pihak berkuasa tempatan",
-            "baju terpakai untuk dikitar semula. Baju-baju tersebut",
-            "akan dijual dan hasilnya",
-            "Sisa baki: Sisa dapur, makanan, bahan-bahan",
-            "kotor, lampin pakai buang",
-            "Sisa pukal: Sisa perabot, sisa barangan elektrik",
-            "Sisa kebun: Ranting, pelepah, batang pokok,"
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Amalan Kitar Semula di Malaysia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Amalan Kitar Semula di Malaysia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 11.3 menekankan Amalan Kitar Semula di Malaysia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
-    },
-    {
-      "title": "11.4 Amalan Kitar Semula di Negara-negara Lain",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Banyak negara maju mengaplikasikan aktiviti kitar semula untuk memastikan kelestarian alam sekitar selari dengan pembangunan yang dijalankan. Berikut merupakan amalan kitar semula yang dijalankan di Jerman, Denmark, Sweden dan Taiwan, Republik Rakyat China: KSSM_2019_Geografi_Tingkatan_3_Bab11.indd 183 10/22/19 11:31 AM"
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Amalan Kitar Semula di Negara-negara Lain",
-            "Banyak negara maju mengaplikasikan aktiviti kitar semula untuk memastikan kelestarian alam sekitar selari dengan pembangunan yang dijalankan. Berikut merupakan amalan kitar semula yang dijalankan di Jerman, Denmark, Sweden dan Taiwan, Republik Rakyat China:",
-            "Denmark merupakan antara negara yang berjaya dalam pelaksanaan amalan kitar semula. Sistem pengumpulan sisa yang dijalankan di negara ini adalah sangat efisien. Hampir 67% daripada jumlah sisa keseluruhan di Denmark dikitar semula, 28% dilupus menggunakan incinerator dan",
-            "Sweden ialah negara yang mengitar semula 99% daripada sisa buangan domestik dan hanya 1% sisa yang berakhir di pusat pelupusan sampah. Malahan, Sweden juga mengimport sisa dari negara lain untuk menjana tenaga elektrik melaluinya. Revolusi kitar semula di negara ini",
-            "adalah contoh terbaik yang seharusnya diikuti oleh negara-negara lain.",
-            "Matlamat guna semula adalah untuk membentuk sikap",
-            "Kitar semula bermaksud memungut dan mengasingkan sisa pepejal bagi maksud menghasilkan keluaran",
-            "(b) 3R merujuk Reduce, Reuse dan Recycle.",
-            "(e) Membawa beg plastik ke pasar raya ialah amalan Reuse.",
-            "Program Waste 21 Menjelaskan secara terperinci tentang cara mengitar semula dengan cekap dan berkesan."
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Banyak negara maju mengaplikasikan aktiviti kitar semula untuk memastikan kelestarian alam sekitar selari dengan pembangunan yang dijalankan. Berikut merupakan amalan kitar semula yang dijalankan di Jerman, Denmark, Sweden dan Taiwan, Republik Rakyat China:",
-            "Denmark merupakan antara negara yang berjaya dalam pelaksanaan amalan kitar semula. Sistem pengumpulan sisa yang dijalankan di negara ini adalah sangat efisien. Hampir 67% daripada jumlah sisa keseluruhan di Denmark dikitar semula, 28% dilupus menggunakan incinerator dan",
-            "Sweden ialah negara yang mengitar semula 99% daripada sisa buangan domestik dan hanya 1% sisa yang berakhir di pusat pelupusan sampah. Malahan, Sweden juga mengimport sisa dari negara lain untuk menjana tenaga elektrik melaluinya. Revolusi kitar semula di negara ini",
-            "adalah contoh terbaik yang seharusnya diikuti oleh negara-negara lain.",
-            "Matlamat guna semula adalah untuk membentuk sikap",
-            "Kitar semula bermaksud memungut dan mengasingkan sisa pepejal bagi maksud menghasilkan keluaran",
-            "(b) 3R merujuk Reduce, Reuse dan Recycle.",
-            "(e) Membawa beg plastik ke pasar raya ialah amalan Reuse."
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "KSSM_2019_Geografi_Tingkatan_3_Bab11.indd 183 10/22/19 11:31 AM",
-            "hanya 5% sahaja dikembalikan semula ke tapak pelupusan sampah.",
-            "Pengilang diwajibkan membayar deposit kepada kerajaan apabila menghasilkan produk yang dapat dikitar semula. Deposit akan dikembalikan semula apabila pengilang mengitar semula produk",
-            "yang dikeluarkan selepas digunakan.",
-            "Program Cukai Sisa Pihak yang hendak melupuskan sebarang jenis sisa akan dikenakan cukai.",
-            "Program Subsidi Sisa Pihak yang ingin membangunkan teknologi kitar semula akan diberikan bantuan kewangan oleh pihak kerajaan.",
-            "Pihak yang hendak melupuskan sisa pepejal yang tidak mudah hancur seperti pembungkus plastik, bateri dan beg plastik akan dikenakan cukai.",
-            "Jadual 11.1 Program kitar semula di Denmark",
-            "memilih makanan yang perlu sahaja mengikut kesesuaian",
-            "penghasilan sisa makanan yang berlebihan dapat dielakkan Sisa buangan domestik akan dikitar semula dan dihantar ke kawasan pemulihan tenaga Sektor pembinaan yang menyumbang kepada sisa",
-            "yang tidak boleh dikitar semula seperti asbestos perlu diuruskan oleh syarikat sendiri menggunakan incinerator",
-            "Penyediaan tong kitar semula mengikut kategori di kawasan",
-            "Bahan kitar semula disalurkan ke kontena bawah tanah yang",
-            "terutama untuk sistem pemanasan rumah Lambakan sisa dapat dikurangkan dan isu masalah ruangan kawasan pelupusan sampah dapat",
-            "Perabot dan pakaian yang masih elok boleh dihantar ke pusat guna semula yang berkonsepkan perbaiki, perkongsian dan guna semula Garment Collecting, iaitu pemberian kupon rebat oleh H&M apabila pelanggan menyumbang pakaian terpakai",
-            "Tajuk: Menghasilkan satu barangan baharu"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Program kitar semula Kaedah",
-            "Program Waste 21 Menjelaskan secara terperinci tentang cara mengitar semula dengan cekap dan berkesan.",
-            "Menguatkuasakan undang-undang yang memberi definisi kepada sisa, menjelaskan jenis-jenis sisa dan menghuraikan cara pihak berkuasa tempatan menguruskan sisa pepejal di kawasan masing-masing.",
-            "Syarikat Optibag membangunkan mesin yang boleh mengasingan beg sisa mengikut warna secara",
-            "Satu tan sisa buangan yang dibakar dalam incinerator akan menghasilkan 3MWh dan secara tidak langsung pemulihan tenaga dapat dijalankan Sisa domestik digunakan untuk menjana tenaga,",
-            "Kempen guna semula disebar secara meluas melalui",
-            "Langkah-langkah: 1. Murid membuat aktiviti dalam kumpulan.",
-            "Garis Panduan Kitar Semula Menerangkan cara pengurusan sisa pepejal termasuk kaedah menyimpan, panduan kitar semula,",
-            "Duales System Deutschland GmBH Cara memungut bahan terbuang",
-            "(a) Kitar semula melibatkan langkah mengutip dan mengasingkan sisa pepejal mengikut jenis untuk mendapatkan keuntungan individu."
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Pihak yang hendak melupuskan sisa pepejal yang tidak mudah hancur seperti pembungkus plastik, bateri dan beg plastik akan dikenakan cukai.",
-            "adalah contoh terbaik yang seharusnya diikuti oleh negara-negara lain.",
-            "yang tidak boleh dikitar semula seperti asbestos perlu diuruskan oleh syarikat sendiri menggunakan incinerator",
-            "Melalui kitar semula, masyarakat dapat mengurangkan bahan buangan seperti kertas dan plastik. Amalan ini juga dapat mengurangkan penggunaan bahan mentah baharu, mengurangkan penggunaan tenaga, pencemaran dan pengeluaran"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "KSSM_2019_Geografi_Tingkatan_3_Bab11.indd 183 10/22/19 11:31 AM",
-            "Jadual 11.1 Program kitar semula di Denmark",
-            "PAK-21: Projek Berkumpulan KSSM_2019_Geografi_Tingkatan_3_Bab11.indd 186 10/22/19 11:34 AM",
-            "Menjimatkan sumber semula jadi Mewujudkan persekitaran yang sihat,",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab11.indd 187 10/22/19 11:35 AM",
-            "betapa pentingnya kitar semula, pasti negara akan bersih, sumber alamnya terpelihara dan rakyat juga menjadi sihat.",
-            "(Sumber: Dipetik dan diubah suai daripada Utusan Malaysia,"
+          title: "Reuse",
+          bulletPoints: [
+            "Gunakan semula beg, bekas dan botol yang masih selamat digunakan.",
+            "Baiki barangan yang masih boleh digunakan.",
+            "Derma, tukar atau jual barangan yang masih elok.",
+            "Gunakan semula bahan secara kreatif sebelum membuangnya.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
+        },
+
+        {
+          title: "Recycle",
+          bulletPoints: [
+            "Asingkan bahan mengikut jenis supaya lebih mudah dikumpul dan diproses.",
+            "Pastikan bahan kitar semula tidak tercemar dengan sisa makanan atau bahan kotor jika sistem kutipan memerlukannya.",
+            "Hantar bahan ke pusat pengumpulan atau kemudahan kitar semula yang sesuai.",
+            "Pilih produk yang menggunakan bahan kitar semula apabila sesuai untuk mewujudkan permintaan terhadap bahan kitar semula.",
+          ],
+        },
+
+        {
+          title: "Urutan keutamaan 3R",
+          content:
+            "Reduce biasanya menjadi pilihan terbaik kerana ia mencegah sisa daripada terbentuk. Jika barangan telah digunakan, Reuse memanjangkan jangka hayatnya. Recycle digunakan apabila bahan tidak lagi sesuai untuk digunakan semula tetapi masih boleh diproses.",
+        },
+
+        {
+          title: "Cara membezakan 3R",
+          table: {
+            headers: ["Situasi", "Elemen 3R"],
+            rows: [
+              ["Membawa botol air sendiri supaya tidak membeli botol baharu setiap hari.", "Reduce / Reuse"],
+              ["Menggunakan kotak lama sebagai tempat simpanan.", "Reuse"],
+              ["Mengasingkan tin aluminium untuk diproses semula.", "Recycle"],
+              ["Membeli makanan dalam kuantiti yang diperlukan sahaja.", "Reduce"],
             ],
-            "rows": [
-              [
-                "KSSM_2019_Geografi_Tingkatan_3_Bab11.indd 183 10/22/19 11:31 AM"
-              ],
-              [
-                "Jadual 11.1 Program kitar semula di Denmark"
-              ],
-              [
-                "Pembaziran sumber dan"
-              ],
-              [
-                "(Sumber: Worldometers, 2017)"
-              ],
-              [
-                "KSSM_2019_Geografi_Tingkatan_3_Bab11.indd 186 10/22/19 11:34 AM"
-              ],
-              [
-                "Menjimatkan sumber semula jadi"
-              ],
-              [
-                "KSSM_2019_Geografi_Tingkatan_3_Bab11.indd 187 10/22/19 11:35 AM"
-              ],
-              [
-                "bersih, sumber alamnya terpelihara dan rakyat juga"
-              ]
-            ]
-          }
+          },
         },
+
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Banyak negara maju mengaplikasikan aktiviti kitar semula untuk memastikan kelestarian alam sekitar selari dengan pembangunan yang dijalankan. Berikut merupakan amalan kitar semula yang dijalankan di Jerman, Denmark, Sweden dan Taiwan, Republik Rakyat China:",
-            "KSSM_2019_Geografi_Tingkatan_3_Bab11.indd 183 10/22/19 11:31 AM",
-            "Denmark merupakan antara negara yang berjaya dalam pelaksanaan amalan kitar semula. Sistem pengumpulan sisa yang dijalankan di negara ini adalah sangat efisien. Hampir 67% daripada jumlah sisa keseluruhan di Denmark dikitar semula, 28% dilupus menggunakan incinerator dan",
-            "hanya 5% sahaja dikembalikan semula ke tapak pelupusan sampah.",
-            "Program kitar semula Kaedah",
-            "Pengilang diwajibkan membayar deposit kepada kerajaan apabila menghasilkan produk yang dapat dikitar semula. Deposit akan dikembalikan semula apabila pengilang mengitar semula produk",
-            "yang dikeluarkan selepas digunakan.",
-            "Program Cukai Sisa Pihak yang hendak melupuskan sebarang jenis sisa akan dikenakan cukai.",
-            "Program Waste 21 Menjelaskan secara terperinci tentang cara mengitar semula dengan cekap dan berkesan.",
-            "Program Subsidi Sisa Pihak yang ingin membangunkan teknologi kitar semula akan diberikan bantuan kewangan oleh pihak kerajaan.",
-            "Pihak yang hendak melupuskan sisa pepejal yang tidak mudah hancur seperti pembungkus plastik, bateri dan beg plastik akan dikenakan cukai.",
-            "Menguatkuasakan undang-undang yang memberi definisi kepada sisa, menjelaskan jenis-jenis sisa dan menghuraikan cara pihak berkuasa tempatan menguruskan sisa pepejal di kawasan masing-masing."
-          ]
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Reduce = cegah sisa; Reuse = guna lagi; Recycle = proses semula.",
+            "Jangan anggap semua penggunaan semula sebagai kitar semula.",
+            "Untuk soalan contoh, jelaskan tindakan dan mengapa ia termasuk dalam elemen tersebut.",
+          ],
         },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Amalan Kitar Semula di Negara-negara Lain.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Amalan Kitar Semula di Negara-negara Lain.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 11.4 menekankan Amalan Kitar Semula di Negara-negara Lain. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+      ],
     },
+
     {
-      "title": "Imbas Kembali",
-      "subsections": [
+      title: "11.2 Kepentingan Amalan Kitar Semula",
+      subsections: [
         {
-          "title": "Checklist akhir bab",
-          "bulletPoints": [
-            "✓ 11.1 Elemen Kitar Semula",
-            "✓ 11.2 Kepentingan Amalan Kitar Semula",
-            "✓ 11.3 Amalan Kitar Semula di Malaysia",
-            "✓ 11.4 Amalan Kitar Semula di Negara-negara Lain"
-          ]
+          title: "Mengurangkan penggunaan sumber semula jadi",
+          content:
+            "Apabila bahan terpakai digunakan semula atau diproses semula, permintaan terhadap bahan mentah baharu dapat dikurangkan. Contohnya, kitar semula kertas membantu mengurangkan keperluan menggunakan kayu baharu untuk menghasilkan kertas.",
+        },
+
+        {
+          title: "Mengurangkan jumlah sisa",
+          content:
+            "Bahan yang dipisahkan untuk guna semula atau kitar semula tidak perlu terus dihantar ke tapak pelupusan. Ini mengurangkan jumlah sisa dan memanjangkan jangka hayat tapak pelupusan.",
+        },
+
+        {
+          title: "Mengurangkan pencemaran",
+          bulletPoints: [
+            "Mengurangkan pembuangan sampah secara tidak terkawal.",
+            "Mengurangkan risiko sisa memasuki sungai, longkang dan kawasan semula jadi.",
+            "Mengurangkan keperluan membakar atau melupuskan sebahagian bahan buangan.",
+            "Persekitaran menjadi lebih bersih, sihat dan selesa.",
+          ],
+        },
+
+        {
+          title: "Menjimatkan tenaga",
+          content:
+            "Bagi banyak jenis bahan, pemprosesan bahan kitar semula boleh menggunakan kurang tenaga berbanding menghasilkan produk bermula daripada bahan mentah asli. Penjimatan sebenar bergantung pada jenis bahan dan proses yang digunakan.",
+        },
+
+        {
+          title: "Mengurangkan pelepasan gas rumah hijau",
+          content:
+            "Pengurangan penggunaan bahan mentah, tenaga dan pelupusan sisa boleh membantu mengurangkan pelepasan gas rumah hijau. Kesan ini bergantung pada keseluruhan proses pengeluaran, pengangkutan dan pengurusan sisa.",
+        },
+
+        {
+          title: "Menjana pendapatan dan peluang ekonomi",
+          bulletPoints: [
+            "Bahan kitar semula mempunyai nilai jualan tertentu.",
+            "Barangan terpakai boleh dibaiki, dijual atau dijadikan produk baharu.",
+            "Aktiviti kutipan, pemprosesan, kompos dan penghasilan produk kitar semula mewujudkan peluang perniagaan serta pekerjaan.",
+          ],
+        },
+
+        {
+          title: "Melindungi habitat",
+          content:
+            "Penggunaan bahan kitar semula boleh mengurangkan tekanan terhadap sebahagian sumber semula jadi. Contohnya, pengurangan permintaan terhadap bahan mentah hutan membantu mengurangkan tekanan penebangan dan melindungi habitat flora serta fauna.",
+        },
+
+        {
+          title: "Hubungan kepentingan dengan kesannya",
+          table: {
+            headers: ["Amalan / kesan awal", "Kesan seterusnya"],
+            rows: [
+              ["Kurang sisa ke tapak pelupusan", "Tapak pelupusan tahan lebih lama."],
+              ["Kurang bahan mentah baharu digunakan", "Sumber semula jadi lebih terpelihara."],
+              ["Pengasingan sisa lebih baik", "Bahan lebih mudah dikitar semula dan pencemaran dapat dikurangkan."],
+              ["Barangan digunakan semula", "Pembelian baharu dan penghasilan sisa dapat dikurangkan."],
+            ],
+          },
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Untuk soalan kepentingan, tulis fakta + bagaimana ia berlaku + kesan.",
+            "Contoh: kitar semula kertas → kurang bahan mentah baharu diperlukan → tekanan terhadap sumber hutan berkurang.",
+            "Bezakan kepentingan kepada alam sekitar dengan kepentingan ekonomi.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "11.3 Amalan Kitar Semula di Malaysia",
+      subsections: [
+        {
+          title: "Pengasingan sisa di punca",
+          content:
+            "Pengasingan sisa di punca bermaksud sisa dipisahkan mengikut kategori sebelum dikutip. Langkah ini mengelakkan bahan yang boleh dikitar semula bercampur dengan sisa kotor dan memudahkan proses pengumpulan serta pemprosesan.",
+        },
+
+        {
+          title: "Kategori sisa",
+          table: {
+            headers: ["Kategori", "Contoh"],
+            rows: [
+              ["Sisa kitar semula", "Kertas, plastik tertentu, tin, logam, kaca dan bahan lain yang diterima sistem kitar semula."],
+              ["Sisa baki", "Sisa makanan, lampin pakai buang dan bahan kotor yang tidak sesuai dikitar semula."],
+              ["Sisa pukal", "Perabot dan barangan elektrik bersaiz besar."],
+              ["Sisa kebun", "Ranting, daun, bunga, pelepah dan bahan tumbuhan."],
+            ],
+          },
+        },
+
+        {
+          title: "Peranan individu dan keluarga",
+          bulletPoints: [
+            "Asingkan bahan kitar semula daripada sisa baki.",
+            "Kurangkan penggunaan barangan sekali guna.",
+            "Gunakan beg dan bekas guna semula.",
+            "Derma atau jual barangan yang masih elok.",
+            "Komposkan sisa organik jika kemudahan dan keadaan sesuai.",
+          ],
+        },
+
+        {
+          title: "Kempen mengurangkan beg plastik",
+          content:
+            "Kempen mengurangkan penggunaan beg plastik bertujuan mengurangkan barangan sekali guna dan menggalakkan pengguna membawa beg sendiri. Pendekatan seperti caj atau galakan beg guna semula digunakan di pelbagai tempat sebagai sebahagian daripada usaha mengubah tabiat pengguna.",
+        },
+
+        {
+          title: "Pengurusan sisa pepejal",
+          content:
+            "Pengurusan sisa pepejal melibatkan kutipan, pengangkutan, pengasingan, rawatan, pemulihan dan pelupusan. Di Malaysia, Akta Pengurusan Sisa Pepejal dan Pembersihan Awam 2007 menyediakan kerangka undang-undang bagi pengurusan sisa pepejal di kawasan yang berada di bawah pelaksanaannya.",
+        },
+
+        {
+          title: "SWCorp",
+          content:
+            "Perbadanan Pengurusan Sisa Pepejal dan Pembersihan Awam (SWCorp) menjalankan fungsi berkaitan pengurusan sisa pepejal dan pembersihan awam di bawah bidang kuasanya, termasuk pendidikan, kesedaran dan sokongan kepada amalan pengasingan serta kitar semula.",
+        },
+
+        {
+          title: "Pendidikan dan kesedaran",
+          bulletPoints: [
+            "Program sekolah membantu membina tabiat 3R sejak usia muda.",
+            "Pusat kitar semula komuniti menyediakan saluran pengumpulan bahan.",
+            "Kempen awam menerangkan jenis bahan yang boleh dikitar semula dan cara mengasingkannya.",
+            "Media dan komuniti membantu membentuk budaya tidak membazir.",
+          ],
+        },
+
+        {
+          title: "Contoh amalan harian di Malaysia",
+          table: {
+            headers: ["Amalan", "Elemen / tujuan"],
+            rows: [
+              ["Membawa beg sendiri", "Reduce dan Reuse."],
+              ["Mengasingkan kertas, tin dan botol", "Recycle."],
+              ["Menderma pakaian yang masih elok", "Reuse."],
+              ["Menghasilkan kompos daripada sisa organik yang sesuai", "Mengurangkan sisa dan memulihkan bahan organik."],
+              ["Menghantar e-sisa ke saluran kutipan yang sesuai", "Mengelakkan bahan berbahaya bercampur dengan sisa biasa."],
+            ],
+          },
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Pengasingan sisa di punca = asing sebelum kutipan.",
+            "Jangan hafal jadual kutipan lama; fahami kategori sisa dan tujuan pengasingan.",
+            "Jika ditanya peranan masyarakat, beri tindakan yang boleh dilakukan di rumah, sekolah atau komuniti.",
+            "Jika ditanya peranan kerajaan, kaitkan dengan sistem pengurusan sisa, undang-undang, pendidikan dan kemudahan.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "11.4 Amalan Kitar Semula di Negara-negara Lain",
+      subsections: [
+        {
+          title: "Mengapa membandingkan negara?",
+          content:
+            "Setiap negara menggunakan gabungan undang-undang, kemudahan, insentif ekonomi, teknologi dan pendidikan untuk mengurus sisa. Perbandingan membantu menunjukkan bahawa kitar semula tidak bergantung pada satu kaedah sahaja.",
+        },
+
+        {
+          title: "Jerman",
+          bulletPoints: [
+            "Menggunakan sistem deposit bagi sesetengah bekas minuman supaya pengguna mempunyai insentif untuk memulangkannya.",
+            "Pengurusan pembungkusan melibatkan tanggungjawab pengeluar terhadap kos dan pengumpulan bahan pembungkusan.",
+            "Sistem Green Dot digunakan sebagai contoh bagaimana pengeluar menyumbang kepada sistem pengurusan dan pemulihan pembungkusan.",
+            "Pengumpulan dan pengasingan yang sistematik memudahkan bahan dihantar ke aliran pemprosesan yang sesuai.",
+          ],
+        },
+
+        {
+          title: "Cara sistem deposit berfungsi",
+          content:
+            "Pengguna membayar deposit ketika membeli produk tertentu. Selepas bekas dipulangkan melalui mesin atau pusat kutipan, nilai deposit dikembalikan. Sistem ini memberi nilai ekonomi kepada bekas terpakai dan menggalakkan pemulangan.",
+        },
+
+        {
+          title: "Denmark",
+          bulletPoints: [
+            "Menekankan pengasingan dan kutipan sisa secara sistematik.",
+            "Menggunakan sistem deposit bagi sesetengah jenis pembungkusan.",
+            "Menggunakan instrumen ekonomi seperti cukai atau bayaran untuk menggalakkan pengurangan sisa.",
+            "Waste 21 digunakan dalam bahan pembelajaran sebagai contoh perancangan pengurusan sisa yang lebih cekap.",
+            "Sebahagian sisa yang tidak sesuai dikitar semula boleh dihantar ke kemudahan rawatan terkawal termasuk pemulihan tenaga.",
+          ],
+        },
+
+        {
+          title: "Sweden",
+          bulletPoints: [
+            "Menggabungkan kitar semula, guna semula dan pemulihan tenaga.",
+            "Sisa yang sesuai diasingkan untuk dikitar semula.",
+            "Sebahagian sisa baki diproses dalam kemudahan terkawal untuk menghasilkan haba atau elektrik.",
+            "Pusat guna semula membantu barangan seperti perabot dan pakaian terus digunakan sebelum menjadi sisa.",
+          ],
+        },
+
+        {
+          title: "Pemulihan tenaga bukan sama dengan kitar semula",
+          content:
+            "Apabila sisa dibakar dalam kemudahan terkawal untuk menghasilkan tenaga, proses itu ialah pemulihan tenaga, bukan kitar semula. Kitar semula mengekalkan bahan dalam kitaran bahan, manakala pemulihan tenaga menggunakan kandungan tenaga dalam sisa.",
+        },
+
+        {
+          title: "Taiwan",
+          bulletPoints: [
+            "Program 4-Dalam-1 menghubungkan empat pihak utama dalam sistem kitar semula.",
+            "Masyarakat mengasingkan dan menyerahkan bahan yang boleh dikitar semula.",
+            "Pihak berkuasa tempatan membantu kutipan dan penyelarasan.",
+            "Syarikat kitar semula memproses bahan yang dikumpulkan.",
+            "Organisasi komuniti atau sukarela membantu pendidikan dan penyertaan masyarakat.",
+            "Sistem automatik seperti iTrash menunjukkan penggunaan teknologi untuk memudahkan pengurusan sisa dan bahan kitar semula.",
+          ],
+        },
+
+        {
+          title: "Perbandingan negara",
+          table: {
+            headers: ["Negara", "Pendekatan utama", "Idea yang boleh dipelajari"],
+            rows: [
+              [
+                "Jerman",
+                "Deposit bekas dan tanggungjawab pengurusan pembungkusan.",
+                "Berikan nilai ekonomi kepada bahan terpakai dan libatkan pengeluar.",
+              ],
+              [
+                "Denmark",
+                "Pengasingan, perancangan sistem sisa dan instrumen ekonomi.",
+                "Gabungkan peraturan, kutipan dan insentif.",
+              ],
+              [
+                "Sweden",
+                "Kitar semula, guna semula dan pemulihan tenaga.",
+                "Gunakan hierarki pengurusan sisa dan kurangkan pelupusan terus.",
+              ],
+              [
+                "Taiwan",
+                "Program 4-Dalam-1 dan penyertaan masyarakat.",
+                "Kerjasama komuniti, kerajaan dan industri meningkatkan kadar pengumpulan.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "Apakah persamaan antara negara-negara ini?",
+          bulletPoints: [
+            "Pengasingan sisa dibuat dengan lebih sistematik.",
+            "Kerajaan menyediakan undang-undang, dasar atau insentif.",
+            "Masyarakat perlu mengambil bahagian secara aktif.",
+            "Industri atau pengeluar turut mempunyai tanggungjawab.",
+            "Teknologi dan kemudahan membantu proses kutipan serta pemprosesan.",
+          ],
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Jerman → deposit + pembungkusan.",
+            "Denmark → pengurusan sistematik + instrumen ekonomi.",
+            "Sweden → guna semula + kitar semula + pemulihan tenaga.",
+            "Taiwan → Program 4-Dalam-1 + teknologi / komuniti.",
+            "Untuk soalan perbandingan, nyatakan pendekatan dan jelaskan mengapa pendekatan itu berkesan.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "Imbas Kembali",
+      subsections: [
+        {
+          title: "Checklist akhir bab",
+          bulletPoints: [
+            "Saya boleh membezakan Reduce, Reuse dan Recycle.",
+            "Saya boleh memberikan contoh amalan bagi setiap elemen 3R.",
+            "Saya boleh menghuraikan sekurang-kurangnya lima kepentingan amalan kitar semula.",
+            "Saya boleh menerangkan tujuan pengasingan sisa di punca.",
+            "Saya boleh mengenal pasti kategori sisa utama.",
+            "Saya boleh menerangkan peranan SWCorp secara umum.",
+            "Saya boleh membandingkan amalan Jerman, Denmark, Sweden dan Taiwan.",
+            "Saya tahu bahawa pemulihan tenaga berbeza daripada kitar semula.",
+          ],
         },
         {
-          "title": "Cara ulang kaji pantas",
-          "bulletPoints": [
-            "Baca semula setiap definisi dan kata kunci utama.",
-            "Semak semula contoh, jadual, graf, carta, peta dan rajah yang terdapat dalam bab.",
-            "Latih menjawab dengan format fakta + huraian + contoh daripada buku teks."
-          ]
-        }
-      ]
-    }
-  ]
+          title: "Cara menjawab soalan struktur",
+          bulletPoints: [
+            "Untuk 3R: nyatakan elemen + maksud + contoh.",
+            "Untuk kepentingan: nyatakan manfaat + proses + kesan.",
+            "Untuk Malaysia: kaitkan pengasingan, pengurusan sisa, masyarakat dan kerajaan.",
+            "Untuk negara lain: nyatakan negara + sistem / program + bagaimana sistem itu menggalakkan pengurangan atau pemulihan sisa.",
+            "Untuk KBAT, cadangkan gabungan pendidikan, kemudahan, insentif dan penguatkuasaan.",
+          ],
+        },
+      ],
+    },
+  ],
 };
