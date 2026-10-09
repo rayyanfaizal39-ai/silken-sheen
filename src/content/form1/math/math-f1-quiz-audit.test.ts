@@ -855,17 +855,31 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
   // [objective, question number, representation, difficulty]
   const VISUAL_SLOTS: Array<[Objective, number, Kind, Difficulty]> = [
     ["objective-1", 2, "frequency-table", "Easy"],
+    ["objective-1", 15, "frequency-table", "Easy"],
+    ["objective-1", 16, "bar-chart", "Easy"],
+    ["objective-1", 17, "pie-chart", "Easy"],
+    ["objective-1", 18, "line-graph", "Easy"],
+    ["objective-1", 19, "dot-plot", "Easy"],
+    ["objective-1", 20, "histogram", "Easy"],
+    ["objective-1", 21, "histogram", "Easy"],
+    ["objective-1", 22, "stem-leaf", "Easy"],
+    ["objective-1", 23, "frequency-polygon", "Easy"],
     ["objective-1", 26, "dot-plot", "Easy"],
+    ["objective-1", 27, "bar-chart", "Easy"],
+    ["objective-1", 28, "dot-plot", "Easy"],
     ...(
       [
         [1, "bar-chart"],
         [2, "bar-chart"],
         [3, "pie-chart"],
+        [4, "pie-chart"],
+        [5, "pie-chart"],
         [7, "line-graph"],
         [8, "frequency-table"],
         [9, "frequency-table"],
         [10, "stem-leaf"],
         [11, "stem-leaf"],
+        [12, "frequency-table"],
         [13, "dot-plot"],
         [14, "dot-plot"],
         [15, "pie-chart"],
@@ -873,6 +887,8 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
         [19, "histogram"],
         [21, "frequency-table"],
         [22, "stem-leaf"],
+        [23, "pie-chart"],
+        [24, "pie-chart"],
         [25, "line-graph"],
         [27, "stem-leaf"],
         [28, "frequency-table"],
@@ -939,7 +955,15 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
     );
     const withVisual = allQuestions.filter((question) => question.visual).map((q) => q.id);
     expect(withVisual.sort()).toEqual(expected.sort());
-    expect(withVisual).toHaveLength(78);
+    expect(withVisual).toHaveLength(110);
+  });
+
+
+  it("always renders a pie chart when a Chapter 12 question explicitly asks about a pie chart", () => {
+    for (const question of chapter12) {
+      if (!/(pie chart|carta pai)/i.test(question.question)) continue;
+      expect(question.visual?.kind, question.id).toBe("pie-chart");
+    }
   });
 
   it("never describes a chart, table or plot in prose without showing it", () => {
