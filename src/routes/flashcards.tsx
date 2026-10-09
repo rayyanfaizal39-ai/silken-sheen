@@ -5231,7 +5231,7 @@ function MathFlashcardLanguagePicker({
             className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_0_32px_oklch(0.7_0.18_180_/_0.35)]"
           >
             <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
-            <div className="relative mb-4 text-5xl">🇬🇧</div>
+            <div className="relative mb-4 font-display text-5xl font-black tracking-tight">EN</div>
             <h3 className="relative font-display text-2xl font-bold">DLP (English)</h3>
             <p className="relative mt-2 text-sm text-muted-foreground">
               Revision cards for this chapter translated into English.
@@ -5267,7 +5267,7 @@ function MathFlashcardCategoryPicker({
           <ChevronLeft className="w-4 h-4" /> {isDlp ? "Back to language" : "Kembali ke bahasa"}
         </button>
         <span className="text-sm font-semibold text-muted-foreground">
-          {isDlp ? "🇬🇧 DLP (English)" : "🇲🇾 Bahasa Melayu"}
+          {isDlp ? "EN · DLP (English)" : "🇲🇾 Bahasa Melayu"}
         </span>
       </div>
 

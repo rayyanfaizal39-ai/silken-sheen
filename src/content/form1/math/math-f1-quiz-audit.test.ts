@@ -6,6 +6,13 @@
 import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it } from "vitest";
 import { resolveMathObjectiveQuestions } from "@/routes/quizzes";
+import type { Difficulty } from "@/data/content";
+import {
+  axisScale,
+  dotPlotCounts,
+  type LocalizedText,
+  type MathQuestionVisual,
+} from "@/features/quiz/visuals/mathQuestionVisual";
 import { createQuizXpDb, registered } from "@/features/quiz/xp/quizXpDbHarness";
 import {
   buildQuizCatalog,
@@ -725,7 +732,9 @@ describe("Mathematics Form 1 objective quizzes — repaired content regressions"
   });
 
   it("Chapter 12: data counts, range and bar chart/histogram gaps", () => {
-    expect(keyed(find(12, "objective-2", "dlp", "1|5 8, 2|3 6 9, 3|1 4 7, 4|2"))).toBe("9");
+    expect(keyed(find(12, "objective-2", "dlp", "ages of the participants in a fun run"))).toBe(
+      "9",
+    );
     expect(
       keyed(find(12, "objective-1", "dlp", "difference between a bar chart and a histogram")),
     ).toBe("Bar charts have gaps between bars, histograms do not");
@@ -834,6 +843,516 @@ describe("Mathematics Form 1 objective quizzes — routing, catalog and runtime"
       expect([...ordered].sort((a, b) => a - b)).toEqual(ordered);
     }
   });
+});
+
+// Chapter 12 (Data Handling) visual questions. Every question whose skill is
+// reading a data representation now shows that representation (a table or a
+// static SVG chart) instead of describing it in prose. Questions were
+// rewritten in place: counts, IDs, difficulty and answer slots are unchanged,
+// so the quiz catalog (and the server XP rows) stay exactly as released.
+describe("Mathematics Form 1 Chapter 12 visual questions", () => {
+  type Kind = MathQuestionVisual["kind"];
+  // [objective, question number, representation, difficulty]
+  const VISUAL_SLOTS: Array<[Objective, number, Kind, Difficulty]> = [
+    ["objective-1", 2, "frequency-table", "Easy"],
+    ["objective-1", 26, "dot-plot", "Easy"],
+    ...(
+      [
+        [1, "bar-chart"],
+        [2, "bar-chart"],
+        [3, "pie-chart"],
+        [7, "line-graph"],
+        [8, "frequency-table"],
+        [9, "frequency-table"],
+        [10, "stem-leaf"],
+        [11, "stem-leaf"],
+        [13, "dot-plot"],
+        [14, "dot-plot"],
+        [15, "pie-chart"],
+        [16, "line-graph"],
+        [19, "histogram"],
+        [21, "frequency-table"],
+        [22, "stem-leaf"],
+        [25, "line-graph"],
+        [27, "stem-leaf"],
+        [28, "frequency-table"],
+        [29, "pie-chart"],
+        [30, "dot-plot"],
+      ] as const
+    ).map(
+      ([number, kind]) =>
+        ["objective-2", number, kind, "Medium"] as [Objective, number, Kind, Difficulty],
+    ),
+    ...(
+      [
+        [1, "line-graph"],
+        [2, "bar-chart"],
+        [3, "histogram"],
+        [4, "stem-leaf"],
+        [7, "line-graph"],
+        [8, "stem-leaf"],
+        [9, "dot-plot"],
+        [10, "pie-chart"],
+        [11, "histogram"],
+        [12, "line-graph"],
+        [16, "dot-plot"],
+        [17, "frequency-table"],
+        [21, "frequency-polygon"],
+        [22, "line-graph"],
+        [27, "line-graph"],
+        [28, "histogram"],
+        [29, "pie-chart"],
+      ] as const
+    ).map(
+      ([number, kind]) =>
+        ["objective-3", number, kind, "Hard"] as [Objective, number, Kind, Difficulty],
+    ),
+  ];
+  const at = (objective: Objective, lang: Lang, number: number) =>
+    bank(12, objective, lang)[number - 1];
+  const visualOf = <K extends Kind>(objective: Objective, number: number, kind: K) => {
+    const visual = at(objective, "dlp", number).visual;
+    if (visual?.kind !== kind) throw new Error(`C12 ${objective} q${number} is not a ${kind}`);
+    return visual as MathQuestionVisual & { kind: K };
+  };
+  const value = (option: string) => Number(option.match(/\d+(\.\d+)?/)?.[0]);
+  const visualQuestions = VISUAL_SLOTS.flatMap(([objective, number]) =>
+    LANGS.map((lang) => at(objective, lang, number)),
+  );
+  const chapter12 = OBJECTIVES.flatMap((objective) =>
+    LANGS.flatMap((lang) => bank(12, objective, lang)),
+  );
+  /** Values that stand apart at either end of the data (gap of 2 or more to the next value). */
+  const isolated = (values: number[]) => {
+    const distinct = [...new Set(values)].sort((a, b) => a - b);
+    return distinct.filter(
+      (entry, index) =>
+        values.filter((other) => other === entry).length === 1 &&
+        ((index === 0 && distinct[1] - entry >= 2) ||
+          (index === distinct.length - 1 && entry - distinct[index - 1] >= 2)),
+    );
+  };
+
+  it("shows a visual on exactly the planned BM/DLP pairs and nowhere else in Form 1 Maths", () => {
+    const expected = VISUAL_SLOTS.flatMap(([objective, number]) =>
+      LANGS.map((lang) => `math-f1-c12-${objective}-${lang}-q${number}`),
+    );
+    const withVisual = allQuestions.filter((question) => question.visual).map((q) => q.id);
+    expect(withVisual.sort()).toEqual(expected.sort());
+    expect(withVisual).toHaveLength(78);
+  });
+
+  it("never describes a chart, table or plot in prose without showing it", () => {
+    const representation =
+      /(bar chart|pie chart|line graph|histogram|dot plot|stem-and-leaf( plot)?|frequency table|frequency polygons?|carta palang|carta pai|graf garis|plot titik|plot batang-dan-daun|jadual kekerapan|poligon kekerapan)( menunjukkan| shows?|:)/i;
+    for (const question of chapter12) {
+      if (question.visual) continue;
+      expect(question.question, question.id).not.toMatch(representation);
+      expect(question.question, question.id).not.toMatch(/●|\d\s*\|\s*\d/);
+    }
+  });
+
+  it("keeps every Chapter 12 pool at 30 with its original IDs, difficulty and answer slot", () => {
+    for (const objective of OBJECTIVES) {
+      for (const lang of LANGS) {
+        const questions = bank(12, objective, lang);
+        expect(questions).toHaveLength(30);
+        expect(questions.map((question) => question.id)).not.toContain(
+          `math-f1-c12-${objective}-${lang}-q31`,
+        );
+      }
+    }
+    for (const [objective, number, kind, difficulty] of VISUAL_SLOTS) {
+      const bm = at(objective, "bm", number);
+      const dlp = at(objective, "dlp", number);
+      expect(bm.id).toBe(`math-f1-c12-${objective}-bm-q${number}`);
+      expect(bm.visual?.kind, bm.id).toBe(kind);
+      expect(bm.difficulty, bm.id).toBe(difficulty);
+      expect(dlp.difficulty, dlp.id).toBe(difficulty);
+      // BM and DLP read the very same data object: identical values by construction.
+      expect(dlp.visual, dlp.id).toBe(bm.visual);
+      expect(dlp.answerIndex, dlp.id).toBe(bm.answerIndex);
+      expect(dlp.options.map(value), dlp.id).toEqual(bm.options.map(value));
+    }
+  });
+
+  it("only uses representations taught in the Chapter 12 notes", () => {
+    const notes = readFileSync("src/content/form1/math/chapter-12/notes-dlp.ts", "utf8");
+    const taught: Record<Kind, RegExp> = {
+      "frequency-table": /frequency table/i,
+      "bar-chart": /bar chart/i,
+      histogram: /histogram/i,
+      "line-graph": /line graph/i,
+      "frequency-polygon": /frequency polygon/i,
+      "pie-chart": /pie chart/i,
+      "dot-plot": /dot plot/i,
+      "stem-leaf": /stem-and-leaf/i,
+    };
+    for (const question of visualQuestions) expect(notes).toMatch(taught[question.visual!.kind]);
+  });
+
+  it("stores valid, honestly scaled data in every visual", () => {
+    const localized = (text: unknown) =>
+      typeof text === "string" ||
+      (typeof text === "object" &&
+        !!(text as LocalizedText).bm?.trim() &&
+        !!(text as LocalizedText).dlp?.trim());
+    for (const question of visualQuestions) {
+      const visual = question.visual!;
+      const id = question.id;
+      expect(visual.title.bm.trim() && visual.title.dlp.trim(), id).toBeTruthy();
+      switch (visual.kind) {
+        case "frequency-table": {
+          expect(new Set(visual.rows.map((row) => JSON.stringify(row.value))).size, id).toBe(
+            visual.rows.length,
+          );
+          for (const row of visual.rows) {
+            expect(Object.keys(row).sort(), id).toEqual(["frequency", "value"]);
+            expect(localized(row.value), id).toBe(true);
+            expect(Number.isInteger(row.frequency) && row.frequency >= 0, id).toBe(true);
+          }
+          break;
+        }
+        case "bar-chart":
+        case "histogram": {
+          const values =
+            visual.kind === "bar-chart"
+              ? visual.bars.map((bar) => bar.value)
+              : visual.classes.map((entry) => entry.frequency);
+          for (const n of values) expect(Number.isInteger(n) && n >= 0, id).toBe(true);
+          // The value axis starts at 0 and reaches at least the tallest bar.
+          const { step, top } = axisScale(Math.max(...values));
+          expect(top, id).toBeGreaterThanOrEqual(Math.max(...values));
+          expect(top / step, id).toBeLessThanOrEqual(6);
+          if (visual.kind === "histogram") {
+            // Classes are consecutive: 41–50 then 51–60, or 60–70 then 70–80.
+            const bounds = visual.classes.map((entry) => entry.label.split("–").map(Number));
+            for (let i = 1; i < bounds.length; i += 1) {
+              expect([bounds[i - 1][1], bounds[i - 1][1] + 1], id).toContain(bounds[i][0]);
+            }
+          }
+          break;
+        }
+        case "line-graph":
+        case "frequency-polygon": {
+          for (const series of visual.series) {
+            expect(series.values, id).toHaveLength(visual.xLabels.length);
+            for (const n of series.values) expect(Number.isFinite(n) && n >= 0, id).toBe(true);
+          }
+          expect(visual.series.length > 1, id).toBe(visual.series.every((series) => !!series.name));
+          break;
+        }
+        case "pie-chart": {
+          const total = visual.sectors.reduce((sum, sector) => sum + sector.angle, 0);
+          expect(total, id).toBe(360);
+          for (const sector of visual.sectors) {
+            if (sector.text.endsWith("%")) {
+              expect(parseFloat(sector.text) * 3.6, `${id} ${sector.text}`).toBeCloseTo(
+                sector.angle,
+              );
+            } else if (sector.text.endsWith("°")) {
+              expect(parseFloat(sector.text), id).toBe(sector.angle);
+            } else {
+              // An unknown sector (x) must be the value the question asks for.
+              expect(sector.text, id).toBe("x");
+              expect(question.explanation, id).toContain(`x = 360° − `);
+              expect(question.explanation, id).toContain(`${sector.angle}°`);
+            }
+          }
+          break;
+        }
+        case "dot-plot": {
+          for (const n of visual.values) {
+            expect(Number.isInteger(n) && n >= visual.min && n <= visual.max, id).toBe(true);
+          }
+          expect(
+            Math.max(...dotPlotCounts(visual.values).map(([, count]) => count)),
+            id,
+          ).toBeLessThanOrEqual(8);
+          break;
+        }
+        case "stem-leaf": {
+          for (const n of visual.values) expect(n >= 10 && n <= 99, id).toBe(true);
+          const [stem, leaf] = visual.key.dlp
+            .match(/(\d+) \| (\d)/)!
+            .slice(1)
+            .map(Number);
+          expect(visual.values, id).toContain(stem * 10 + leaf);
+          expect(visual.key.bm, id).toContain(`${stem} | ${leaf}`);
+          break;
+        }
+      }
+    }
+  });
+
+  it("asks about the visual instead of repeating its data in the question", () => {
+    for (const question of visualQuestions) {
+      expect(question.question, question.id).toMatch(
+        /^(Jadual kekerapan|Plot titik|Carta palang|Carta pai|Graf garis|Histogram|Poligon kekerapan|Plot batang-dan-daun) (menunjukkan|dibahagikan)|^The (frequency table|dot plot|bar chart|pie chart|line graph|histogram|frequency polygons|stem-and-leaf plot) (shows?|is divided)/,
+      );
+      expect(question.question, question.id).not.toMatch(/=\s*\d|\d+,\s*\d+,\s*\d+|●|\d\s*\|\s*\d/);
+      expect(
+        `${question.question} ${question.options.join(" ")} ${question.explanation}`,
+        question.id,
+      ).not.toMatch(/\bmean\b|\bmin\b|purata|median|probability|kebarangkalian/i);
+    }
+  });
+
+  it("re-derives every visual answer from the chart data and rejects every distractor", () => {
+    const expectOnly = (
+      objective: Objective,
+      number: number,
+      correct: (option: string) => boolean,
+    ) => {
+      const question = at(objective, "dlp", number);
+      question.options.forEach((option, index) =>
+        expect(correct(option), `${question.id}: ${option}`).toBe(index === question.answerIndex),
+      );
+    };
+    const expectKey = (objective: Objective, number: number, expected: string) =>
+      expect(keyed(at(objective, "dlp", number)), `C12 ${objective} q${number}`).toBe(expected);
+    const sum = (values: number[]) => values.reduce((total, n) => total + n, 0);
+    const is = (n: number) => (option: string) => value(option) === n;
+
+    // Objective 1
+    const books = visualOf("objective-1", 2, "frequency-table");
+    expectOnly("objective-1", 2, is(books.rows.find((row) => row.value === "3")!.frequency));
+    const goals = dotPlotCounts(visualOf("objective-1", 26, "dot-plot").values);
+    const most = Math.max(...goals.map(([, count]) => count));
+    expect(goals.filter(([, count]) => count === most)).toHaveLength(1);
+    expectOnly("objective-1", 26, is(goals.find(([, count]) => count === most)![0]));
+
+    // Objective 2
+    expectOnly(
+      "objective-2",
+      1,
+      is(sum(visualOf("objective-2", 1, "bar-chart").bars.map((b) => b.value))),
+    );
+    const club = visualOf("objective-2", 2, "bar-chart").bars.map((bar) => bar.value);
+    expectOnly("objective-2", 2, is(Math.max(...club) - Math.min(...club)));
+    const sports = visualOf("objective-2", 3, "pie-chart").sectors[0];
+    expect(sports.label).toEqual({ bm: "Sukan", dlp: "Sports" });
+    expectOnly("objective-2", 3, is((sports.angle / 360) * 50));
+    const sales = visualOf("objective-2", 7, "line-graph").series[0].values;
+    expectOnly("objective-2", 7, is(sales.at(-1)! - sales[0]));
+    const marks = visualOf("objective-2", 8, "frequency-table").rows;
+    const marksTotal = sum(marks.map((row) => row.frequency));
+    expectOnly("objective-2", 8, is(marksTotal));
+    const modal = marks.reduce((best, row) => (row.frequency > best.frequency ? row : best));
+    expectOnly("objective-2", 9, (option) => option === modal.value);
+    const quizStems = visualOf("objective-2", 10, "stem-leaf").values;
+    expectOnly("objective-2", 10, is(quizStems.filter((n) => n >= 30 && n <= 39).length));
+    expectOnly("objective-2", 11, is(Math.max(...visualOf("objective-2", 11, "stem-leaf").values)));
+    const quizDots = visualOf("objective-2", 13, "dot-plot").values;
+    expectOnly("objective-2", 13, is(quizDots.filter((n) => n === 8).length));
+    expect(isolated(visualOf("objective-2", 14, "dot-plot").values)).toEqual([4]);
+    expectKey("objective-2", 14, "An outlier");
+    const four = visualOf("objective-2", 15, "pie-chart").sectors;
+    expectOnly(
+      "objective-2",
+      15,
+      (option) => option === `${360 - sum(four.slice(0, 3).map((s) => s.angle))}°`,
+    );
+    const club2 = visualOf("objective-2", 16, "line-graph").series[0].values;
+    expectOnly("objective-2", 16, is(Math.max(...club2) - Math.min(...club2)));
+    const heightBar = visualOf("objective-2", 19, "histogram").classes.find(
+      (c) => c.label === "150–155",
+    )!;
+    expectKey(
+      "objective-2",
+      19,
+      `${heightBar.frequency} students have heights in the range 150 cm to 155 cm`,
+    );
+    const travel = visualOf("objective-2", 21, "frequency-table").rows;
+    expectOnly(
+      "objective-2",
+      21,
+      is(
+        sum(
+          travel
+            .filter((row) => Number(String(row.value).split("–")[0]) > 30)
+            .map((row) => row.frequency),
+        ),
+      ),
+    );
+    expectOnly("objective-2", 22, is(visualOf("objective-2", 22, "stem-leaf").values.length));
+    const library = visualOf("objective-2", 25, "line-graph");
+    const lowest = library.series[0].values.indexOf(Math.min(...library.series[0].values));
+    expect(
+      keyed(at("objective-2", "dlp", 25)).startsWith(
+        (library.xLabels[lowest] as LocalizedText).dlp,
+      ),
+    ).toBe(true);
+    expect(
+      keyed(at("objective-2", "bm", 25)).startsWith((library.xLabels[lowest] as LocalizedText).bm),
+    ).toBe(true);
+    expectOnly(
+      "objective-2",
+      27,
+      (option) => option === `${Math.min(...visualOf("objective-2", 27, "stem-leaf").values)} kg`,
+    );
+    expect(visualOf("objective-2", 28, "frequency-table")).toBe(
+      visualOf("objective-2", 8, "frequency-table"),
+    );
+    expectOnly(
+      "objective-2",
+      28,
+      (option) => option === `${(modal.frequency / marksTotal) * 100}%`,
+    );
+    const football = visualOf("objective-2", 29, "pie-chart").sectors[0];
+    expectOnly("objective-2", 29, is((football.angle / 360) * 50));
+    expect(isolated(visualOf("objective-2", 30, "dot-plot").values)).toEqual([12, 20]);
+    expectKey("objective-2", 30, "Outliers");
+
+    // Objective 3
+    const museum = visualOf("objective-3", 1, "line-graph").series[0].values;
+    const perYear = Math.round((museum.at(-1)! - museum[0]) / (museum.length - 1));
+    expectOnly("objective-3", 1, is(museum.at(-1)! + perYear));
+    const products = visualOf("objective-3", 2, "bar-chart").bars;
+    const productTotal = sum(products.map((bar) => bar.value));
+    const above = products.filter((bar) => bar.value > 0.3 * productTotal).map((bar) => bar.label);
+    expect(above).toHaveLength(1);
+    expectOnly("objective-3", 2, (option) => option === `Product ${above[0]}`);
+    const fifty = visualOf("objective-3", 3, "histogram").classes;
+    expect(sum(fifty.map((entry) => entry.frequency))).toBe(50);
+    const fiftyModal = fifty.reduce((best, entry) =>
+      entry.frequency > best.frequency ? entry : best,
+    );
+    expectKey("objective-3", 3, `Most students scored ${fiftyModal.label} marks`);
+    const masses = [...visualOf("objective-3", 4, "stem-leaf").values].sort((a, b) => a - b);
+    expect(isolated(masses)).toEqual([74]);
+    expectOnly(
+      "objective-3",
+      4,
+      (option) =>
+        option === `Range = ${masses.at(-1)! - masses[0]} kg; ${masses.at(-1)} kg is an outlier`,
+    );
+    const temps = visualOf("objective-3", 7, "line-graph").series[0].values;
+    const peak = temps.indexOf(Math.max(...temps));
+    expect(peak).toBeGreaterThan(0);
+    expect(peak).toBeLessThan(temps.length - 1);
+    expect(keyed(at("objective-3", "dlp", 7))).toContain(`${temps.at(-1)! - 2}°C`);
+    const puzzle = visualOf("objective-3", 8, "stem-leaf").values;
+    expectOnly("objective-3", 8, is(Math.max(...puzzle) - Math.min(...puzzle)));
+    const sleep = [...visualOf("objective-3", 9, "dot-plot").values].sort((a, b) => a - b);
+    expect(isolated(sleep)).toEqual([sleep[0]]);
+    expectOnly(
+      "objective-3",
+      9,
+      (option) => option === `${sleep.at(-1)! - sleep[0]} hours; ${sleep.at(-1)! - sleep[1]} hours`,
+    );
+    const five = visualOf("objective-3", 10, "pie-chart").sectors;
+    const x = 360 - sum(five.slice(0, 4).map((sector) => sector.angle));
+    expectOnly("objective-3", 10, (option) => option === `x=${x}°, ${(x / 360) * 100}%`);
+    const classes = visualOf("objective-3", 11, "histogram").classes;
+    const [c1, c2] = ["60–70", "70–80"].map(
+      (label) => classes.find((entry) => entry.label === label)!,
+    );
+    const mid = (label: string) => sum(label.split("–").map(Number)) / 2;
+    const gcd = (a: number, b: number): number => (b ? gcd(b, a % b) : a);
+    const g = gcd(c1.frequency, c2.frequency);
+    expectKey(
+      "objective-3",
+      11,
+      `MP1=${mid(c1.label)}, MP2=${mid(c2.label)}, Ratio ${c1.frequency / g}:${c2.frequency / g}`,
+    );
+    const pass = visualOf("objective-3", 12, "line-graph").series[0].values;
+    expect(pass.at(-1)!).toBeGreaterThan(pass[0]);
+    expect(pass.filter((n, i) => i > 0 && n < pass[i - 1])).toHaveLength(1);
+    expect(keyed(at("objective-3", "dlp", 12))).toMatch(/generally rising despite the 2020 dip/);
+    expect(isolated(visualOf("objective-3", 16, "dot-plot").values)).toEqual([12]);
+    expect(keyed(at("objective-3", "dlp", 16))).toContain("12 is an outlier");
+    const finals = visualOf("objective-3", 17, "frequency-table").rows;
+    const finalModal = finals.reduce((best, row) => (row.frequency > best.frequency ? row : best));
+    expectKey(
+      "objective-3",
+      17,
+      `MP=${mid(String(finalModal.value))}, n=${sum(finals.map((row) => row.frequency))}`,
+    );
+    const [classX, classY] = visualOf("objective-3", 21, "frequency-polygon").series.map(
+      (s) => s.values,
+    );
+    expect(classX.indexOf(Math.max(...classX))).toBeLessThan(classY.indexOf(Math.max(...classY)));
+    expectKey("objective-3", 21, "Class X tends to score lower; Class Y tends to score higher");
+    const yearly = visualOf("objective-3", 22, "line-graph").series[0].values;
+    const top = yearly.indexOf(Math.max(...yearly));
+    expect(top).toBe(5); // June
+    expect(yearly.slice(0, top + 1).every((n, i, all) => i === 0 || n > all[i - 1])).toBe(true);
+    expect(yearly.slice(top).every((n, i, all) => i === 0 || n < all[i - 1])).toBe(true);
+    expect(keyed(at("objective-3", "dlp", 22))).toMatch(
+      /^A seasonal pattern: high in the first half/,
+    );
+    const cases = visualOf("objective-3", 27, "line-graph").series[0].values;
+    expect(cases.every((n, i) => i === 0 || n < cases[i - 1])).toBe(true);
+    expectKey("objective-3", 27, "Cases are falling steadily and are likely to keep falling");
+    const tall = visualOf("objective-3", 28, "histogram").classes.map((entry) => entry.frequency);
+    const tallest = tall.indexOf(Math.max(...tall));
+    expect(tallest).toBe(Math.floor(tall.length / 2));
+    expect(Math.max(tall[0], tall.at(-1)!)).toBeLessThan(tall[tallest] / 2);
+    expectKey("objective-3", 28, "Most students are of medium height");
+    const food = visualOf("objective-3", 29, "pie-chart").sectors[0];
+    expect(food.label).toEqual({ bm: "Makanan", dlp: "Food" });
+    expectOnly("objective-3", 29, (option) => option === `RM${(food.angle / 360) * 1200}`);
+  });
+
+  it("explains how to read each visual and its answer in both languages", () => {
+    for (const question of visualQuestions) {
+      const answerNumbers = keyed(question).match(/\d+/g) ?? [];
+      for (const n of answerNumbers) expect(question.explanation, question.id).toContain(n);
+      expect(question.explanation!.length, question.id).toBeGreaterThan(60);
+    }
+  });
+
+  it("keeps the visual through difficulty ordering, option shuffling and a retry", () => {
+    for (const objective of OBJECTIVES) {
+      for (const lang of LANGS) {
+        const questions = bank(12, objective, lang);
+        const attempt = () =>
+          orderQuestionsByDifficulty(questions, Math.random).questions.map((question) =>
+            shuffleQuestionOptions(question),
+          );
+        for (const run of [attempt(), attempt()]) {
+          for (const question of run) {
+            const original = questions.find((entry) => entry.id === question.id)!;
+            expect(question.visual, question.id).toBe(original.visual);
+            expect(keyed(question)).toBe(keyed(original));
+          }
+        }
+        // A JSON round trip (persisted state) keeps the data intact.
+        const restored = JSON.parse(JSON.stringify(questions)) as typeof questions;
+        restored.forEach((question, index) =>
+          expect(question.visual).toEqual(questions[index].visual),
+        );
+      }
+    }
+  });
+
+  it("leaves the Chapter 12 catalog rows exactly as released (no migration needed)", () => {
+    const rows = buildQuizCatalog().quizzes.filter(
+      (row) => row.kind === "math-objective" && row.quizKey.includes(":form-1:chapter-12:"),
+    );
+    expect(
+      rows
+        .map((row) => [
+          row.quizKey.split(":").slice(-2).join(":"),
+          row.totalQuestions,
+          row.easyCount,
+          row.mediumCount,
+          row.hardCount,
+          row.maxXp,
+        ])
+        .sort(),
+    ).toEqual(
+      [
+        ["bm:objective-1", 30, 30, 0, 0, 475],
+        ["bm:objective-2", 30, 0, 30, 0, 775],
+        ["bm:objective-3", 30, 0, 0, 30, 1075],
+        ["dlp:objective-1", 30, 30, 0, 0, 475],
+        ["dlp:objective-2", 30, 0, 30, 0, 775],
+        ["dlp:objective-3", 30, 0, 0, 30, 1075],
+      ].sort(),
+    );
+  }, 120_000);
 });
 
 // The server checks submitted correct answers per difficulty against

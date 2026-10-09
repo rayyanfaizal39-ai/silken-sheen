@@ -52,6 +52,9 @@ import {
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
 import { QuizArena } from "@/components/quiz/QuizArena";
+import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
+import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
+import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
@@ -1495,8 +1498,17 @@ function mq(
   answerIndex: number,
   explanation: string,
   difficulty: Difficulty,
+  visual?: MathQuestionVisualData,
 ): ShuffledQuestion {
-  return { question, options, answerIndex, explanation, difficulty, subjectId: "math" };
+  return {
+    question,
+    options,
+    answerIndex,
+    explanation,
+    difficulty,
+    subjectId: "math",
+    ...(visual ? { visual } : {}),
+  };
 }
 
 const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
@@ -2871,11 +2883,15 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
 ]);
 
-type MathQuestionSeed = [string, string[], number, string, Difficulty];
+// The optional sixth element is a data display shown between the question and
+// the answers (see MathQuestionVisual); BM and DLP pairs share the same object.
+type MathQuestionSeed =
+  | [string, string[], number, string, Difficulty]
+  | [string, string[], number, string, Difficulty, MathQuestionVisualData];
 
 function mathQuestions(items: MathQuestionSeed[]): ShuffledQuestion[] {
-  return items.map(([question, options, answerIndex, explanation, difficulty]) =>
-    mq(question, options, answerIndex, explanation, difficulty),
+  return items.map(([question, options, answerIndex, explanation, difficulty, visual]) =>
+    mq(question, options, answerIndex, explanation, difficulty, visual),
   );
 }
 
@@ -16805,11 +16821,12 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     "Easy",
   ],
   [
-    "Berapakah peringkat utama dalam pengendalian data?",
-    ["2", "4", "3", "5"],
+    "Jadual kekerapan menunjukkan bilangan buku yang dibaca oleh sekumpulan murid dalam seminggu. Berapakah murid yang membaca 3 buah buku?",
+    ["3", "4", "9", "5"],
     1,
-    "Terdapat 4 peringkat: ① Mengumpul data ② Mengorganisasikan data ③ Mewakili data ④ Mentafsir data.",
+    "Cari baris 3 dalam lajur Bilangan buku, kemudian baca lajur Kekerapan di sebelahnya: 4 murid. Nombor 3 ialah bilangan buku, bukan bilangan murid.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.booksRead,
   ],
   [
     "Apakah soalan statistik?",
@@ -17048,11 +17065,12 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     "Easy",
   ],
   [
-    "Yang manakah BUKAN merupakan jenis perwakilan data?",
-    ["Carta palang", "Graf garis", "Jadual kekerapan", "Persamaan linear"],
+    "Plot titik menunjukkan bilangan gol yang dijaringkan oleh sebuah pasukan dalam setiap perlawanan. Bilangan gol manakah yang paling kerap dijaringkan?",
+    ["5", "1", "3", "2"],
     3,
-    "Persamaan linear adalah topik algebra, bukan perwakilan data. Perwakilan data termasuk carta, graf, plot dan jadual.",
+    "Setiap titik mewakili satu perlawanan. Lajur titik di atas 2 paling tinggi (5 titik), jadi 2 gol paling kerap dijaringkan. Nombor 5 ialah bilangan perlawanan, bukan bilangan gol.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.goalsScored,
   ],
   [
     "Apakah yang diwakili oleh paksi-x dalam carta palang biasa?",
@@ -17108,11 +17126,12 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     "Easy",
   ],
   [
-    "How many main stages are there in data handling?",
-    ["2", "4", "3", "5"],
+    "The frequency table shows the number of books read by a group of students in a week. How many students read 3 books?",
+    ["3", "4", "9", "5"],
     1,
-    "There are 4 stages: ① Collecting data ② Organising data ③ Representing data ④ Interpreting data.",
+    "Find the row 3 in the Number of books column, then read the Frequency column beside it: 4 students. The number 3 is the number of books, not the number of students.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.booksRead,
   ],
   [
     "What is a statistical question?",
@@ -17351,11 +17370,12 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     "Easy",
   ],
   [
-    "Which of the following is NOT a type of data representation?",
-    ["Bar chart", "Line graph", "Frequency table", "Linear equation"],
+    "The dot plot shows the number of goals a team scored in each match. Which number of goals was scored most often?",
+    ["5", "1", "3", "2"],
     3,
-    "A linear equation is an algebra topic, not a data representation. Data representations include charts, graphs, plots and tables.",
+    "Each dot stands for one match. The column of dots above 2 is the tallest (5 dots), so 2 goals was scored most often. The number 5 is the number of matches, not the number of goals.",
     "Easy",
+    MATH_F1_C12_QUIZ_VISUALS.goalsScored,
   ],
   [
     "What does the x-axis typically represent in a bar chart?",
@@ -17399,25 +17419,28 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
 
 const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
-    "Carta palang menunjukkan: Matematik=15, Sains=12, BM=9, Sejarah=6. Berapakah jumlah murid?",
+    "Carta palang menunjukkan subjek kegemaran sekumpulan murid. Setiap murid memilih satu subjek. Berapakah jumlah murid?",
     ["42", "36", "38", "40"],
     0,
-    "Jumlah = 15 + 12 + 9 + 6 = 42 murid.",
+    "Baca nilai setiap palang, kemudian tambah: 15 + 12 + 9 + 6 = 42 murid.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteSubjects,
   ],
   [
-    "Carta palang menunjukkan: Matematik=15, Sains=12, BM=9, Sejarah=6. Berapakah perbezaan antara Matematik dan Sejarah?",
-    ["7", "9", "8", "10"],
+    "Carta palang menunjukkan bilangan ahli kelab robotik dari lima kelas Tingkatan 1. Berapakah beza antara kelas yang mempunyai ahli paling ramai dengan kelas yang mempunyai ahli paling sedikit?",
+    ["12", "8", "6", "16"],
     1,
-    "Perbezaan = 15 − 6 = 9 murid.",
+    "Palang tertinggi ialah 1B (12 murid) dan palang terendah ialah 1E (4 murid). Beza = 12 − 4 = 8 murid.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.roboticsClub,
   ],
   [
-    "Carta pai menunjukkan: Sukan=40%, Muzik=30%, Seni=20%, Lain=10%. Jika jumlah = 50 murid, berapakah murid yang memilih Sukan?",
+    "Carta pai menunjukkan aktiviti kegemaran 50 orang murid. Berapakah murid yang memilih Sukan?",
     ["15", "25", "20", "30"],
     2,
-    "40% daripada 50 = 0.40 × 50 = 20 murid.",
+    "Sektor Sukan ialah 40% daripada carta pai. 40% × 50 = 0.40 × 50 = 20 murid.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteActivities,
   ],
   [
     "40 murid dipilih. 16 suka Matematik. Berapakah sudut sektor Matematik dalam carta pai?",
@@ -17441,39 +17464,44 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     "Medium",
   ],
   [
-    "Graf garis menunjukkan jualan meningkat dari RM200 ke RM350 dalam 5 bulan. Berapakah peningkatan keseluruhan?",
+    "Graf garis menunjukkan jualan sebuah kedai dalam lima bulan. Berapakah peningkatan jualan dari bulan Januari hingga bulan Mei?",
     ["RM100", "RM250", "RM200", "RM150"],
     3,
-    "Peningkatan = RM350 − RM200 = RM150.",
+    "Baca titik pertama dan titik terakhir: Januari = RM200 dan Mei = RM350. Peningkatan = RM350 − RM200 = RM150.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.shopSales,
   ],
   [
-    "Jadual kekerapan: Markah 41–50 (kekerapan 5), 51–60 (8), 61–70 (12), 71–80 (10), 81–90 (5). Berapakah jumlah murid?",
+    "Jadual kekerapan menunjukkan markah ujian sekumpulan murid. Berapakah jumlah murid?",
     ["40", "38", "35", "42"],
     0,
-    "Jumlah = 5 + 8 + 12 + 10 + 5 = 40 murid.",
+    "Tambah semua nilai dalam lajur Kekerapan: 5 + 8 + 12 + 10 + 5 = 40 murid.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.testMarks,
   ],
   [
-    "Jadual kekerapan menunjukkan markah: 41–50 (5 murid), 51–60 (8), 61–70 (12), 71–80 (10), 81–90 (5). Kelas manakah mempunyai kekerapan tertinggi?",
+    "Jadual kekerapan menunjukkan markah ujian sekumpulan murid. Kelas markah manakah yang mempunyai kekerapan tertinggi?",
     ["41–50", "51–60", "61–70", "71–80"],
     2,
-    "Kelas 61–70 mempunyai kekerapan tertinggi = 12.",
+    "Bandingkan nilai dalam lajur Kekerapan. Nilai terbesar ialah 12, iaitu bagi kelas 61–70.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.testMarks,
   ],
   [
-    "Plot batang-dan-daun: Batang 3 → Daun 2, 5, 8, 9. Berapa banyak nilai dalam julat 30–39?",
+    "Plot batang-dan-daun menunjukkan markah kuiz sekumpulan murid. Berapakah bilangan markah dari 30 hingga 39?",
     ["3", "6", "5", "4"],
     3,
-    "Batang 3 mempunyai 4 daun: 2, 5, 8, 9. Jadi terdapat 4 nilai dalam julat 30–39.",
+    "Markah 30 hingga 39 berada pada batang 3. Batang 3 mempunyai 4 daun (2, 5, 8, 9), iaitu markah 32, 35, 38 dan 39. Jadi terdapat 4 markah.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.quizMarksStems,
   ],
   [
-    "Plot batang-dan-daun: 2|3 5 7, 3|1 4 8, 4|2 6. Apakah nilai terbesar?",
+    "Plot batang-dan-daun menunjukkan markah ujian sains sekumpulan murid. Apakah markah tertinggi?",
     ["46", "43", "48", "36"],
     0,
-    "Batang terbesar = 4. Daun terbesar = 6. Nilai = 46.",
+    "Markah tertinggi berada pada batang terakhir (4) dengan daun terbesar (6). Gunakan kunci: 4 | 6 = 46.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.scienceMarksStems,
   ],
   [
     "Kelas 55–65 dalam jadual kekerapan. Apakah titik tengahnya?",
@@ -17483,32 +17511,36 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     "Medium",
   ],
   [
-    "Plot titik menunjukkan markah: ●●● pada 7, ●●●● pada 8, ●● pada 9, ● pada 4. Berapakah bilangan murid yang mendapat markah 8?",
+    "Plot titik menunjukkan markah kuiz sekumpulan murid. Berapakah murid yang mendapat markah 8?",
     ["2", "3", "5", "4"],
     3,
-    "Terdapat 4 titik pada markah 8, jadi 4 murid mendapat markah 8.",
+    "Setiap titik mewakili seorang murid. Terdapat 4 titik di atas markah 8, jadi 4 murid mendapat markah 8.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.quizMarksDots,
   ],
   [
-    "Plot titik menunjukkan: ● pada 4, ●●● pada 7, ●●●● pada 8. Nilai 4 adalah:",
-    ["Pencilan", "Nilai mod", "Nilai minimum biasa", "Nilai median"],
+    "Plot titik menunjukkan bilangan buku yang dipinjam oleh sekumpulan murid. Apakah nilai 4 dalam data ini?",
+    ["Pencilan", "Nilai mod", "Nilai minimum biasa", "Nilai di tengah-tengah data"],
     0,
-    "Nilai 4 adalah pencilan kerana ia jauh berbeza daripada nilai-nilai lain (7 dan 8) dan hanya ada 1 titik.",
+    "Titik di 4 terpisah jauh daripada titik lain yang berkumpul pada 7 dan 8, jadi 4 ialah pencilan. Nilai mod ialah 8 kerana 8 mempunyai titik paling banyak.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.booksBorrowedDots,
   ],
   [
-    "Carta pai dengan sektor A=90°, B=120°, C=80°, D=x°. Cari nilai x.",
+    "Carta pai dibahagikan kepada empat sektor, iaitu A, B, C dan D. Cari nilai x.",
     ["60°", "70°", "65°", "75°"],
     1,
-    "90 + 120 + 80 + x = 360. 290 + x = 360. x = 70°.",
+    "Jumlah sudut semua sektor ialah 360°. 90° + 120° + 80° + x = 360°, jadi x = 360° − 290° = 70°.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.fourSectors,
   ],
   [
-    "Graf garis menunjukkan kehadiran murid: Jan=45, Feb=42, Mac=48, Apr=50. Berapakah perbezaan antara nilai tertinggi dan terendah?",
+    "Graf garis menunjukkan kehadiran murid ke kelab sains dalam empat bulan. Berapakah beza antara kehadiran tertinggi dengan kehadiran terendah?",
     ["6", "7", "8", "10"],
     2,
-    "Tertinggi = 50 (Apr), Terendah = 42 (Feb). Perbezaan = 50 − 42 = 8.",
+    "Titik tertinggi ialah April (50) dan titik terendah ialah Februari (42). Beza = 50 − 42 = 8.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.scienceClubAttendance,
   ],
   [
     "Julat set data A = 12, Julat set data B = 20. Set data manakah lebih konsisten?",
@@ -17525,16 +17557,12 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     "Medium",
   ],
   [
-    "Histogram menunjukkan kelas 150–155 dengan kekerapan 8. Apakah yang dapat disimpulkan?",
-    [
-      "8 murid mempunyai tinggi kurang daripada 150 cm",
-      "8 murid mempunyai tinggi dalam julat 150 cm hingga 155 cm",
-      "8 murid mempunyai tinggi melebihi 155 cm",
-      "Purata tinggi ialah 152.5 cm",
-    ],
+    "Histogram menunjukkan tinggi sekumpulan murid. Apakah yang ditunjukkan oleh palang bagi kelas 150–155?",
+    ["8 murid mempunyai tinggi kurang daripada 150 cm", "8 murid mempunyai tinggi dalam julat 150 cm hingga 155 cm", "8 murid mempunyai tinggi melebihi 155 cm", "12 murid mempunyai tinggi dalam julat 150 cm hingga 155 cm"],
     1,
-    "Kekerapan 8 bermaksud 8 murid mempunyai tinggi dalam kelas 150 cm hingga kurang daripada 155 cm.",
+    "Palang kelas 150–155 mencapai 8 pada paksi kekerapan, jadi 8 murid mempunyai tinggi dari 150 cm hingga kurang daripada 155 cm. Palang yang mencapai 12 ialah kelas 155–160.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.heights,
   ],
   [
     "Data: 22, 35, 28, 41, 19, 33, 45, 27. Cari julat.",
@@ -17544,18 +17572,20 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     "Medium",
   ],
   [
-    "Carta palang: Jan=20, Feb=25, Mac=18, Apr=30. Berapakah jumlah untuk semua bulan?",
-    ["90", "95", "93", "88"],
+    "Jadual kekerapan menunjukkan masa perjalanan sekumpulan murid ke sekolah. Berapakah murid yang mengambil masa lebih daripada 30 minit?",
+    ["4", "3", "7", "15"],
     2,
-    "Jumlah = 20 + 25 + 18 + 30 = 93.",
+    "Lebih daripada 30 minit bermaksud kelas 31–40 dan 41–50. Jumlah = 4 + 3 = 7 murid. Kelas 21–30 tidak dikira kerana masa dalam kelas itu tidak melebihi 30 minit.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.travelTime,
   ],
   [
-    "Dalam plot batang-dan-daun: 1|5 8, 2|3 6 9, 3|1 4 7, 4|2. Berapakah jumlah nilai data?",
+    "Plot batang-dan-daun menunjukkan umur peserta suatu larian. Berapakah bilangan peserta?",
     ["7", "9", "8", "10"],
     1,
-    "Kira jumlah daun: Batang 1 (2 daun) + Batang 2 (3 daun) + Batang 3 (3 daun) + Batang 4 (1 daun) = 9. Jawapan: 9.",
+    "Setiap daun mewakili seorang peserta. Kira daun bagi setiap batang: 2 + 3 + 3 + 1 = 9 peserta.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.runnerAgesStems,
   ],
   [
     "Peratusan sesuatu kategori dalam carta pai = 25%. Berapakah sudut sektornya?",
@@ -17572,11 +17602,12 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     "Medium",
   ],
   [
-    "Graf garis menunjukkan kehadiran: Isnin=35, Selasa=38, Rabu=40, Khamis=37, Jumaat=32. Pada hari apakah kehadiran paling rendah?",
+    "Graf garis menunjukkan kehadiran murid ke perpustakaan dalam seminggu. Pada hari apakah kehadiran paling rendah?",
     ["Isnin", "Jumaat", "Rabu", "Khamis"],
     1,
-    "Kehadiran paling rendah = 32, pada hari Jumaat.",
+    "Cari titik yang paling rendah pada graf garis. Titik itu bernilai 32 dan berada di atas Jumaat, jadi kehadiran paling rendah pada hari Jumaat.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.libraryAttendance,
   ],
   [
     "Data tinggi (cm): 150, 155, 148, 162, 158, 145, 170. Cari julat.",
@@ -17586,56 +17617,63 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     "Medium",
   ],
   [
-    "Plot batang-dan-daun: 5 | 0 4 7 dan 6 | 2 2 8. Apakah nilai data yang terkecil?",
-    ["50", "54", "5", "62"],
+    "Plot batang-dan-daun menunjukkan jisim enam orang murid. Apakah jisim yang paling kecil?",
+    ["50 kg", "54 kg", "5 kg", "62 kg"],
     0,
-    "Batang 5 dengan daun 0 mewakili 50, iaitu nilai terkecil.",
+    "Nilai terkecil ialah batang pertama dengan daun terkecil: 5 | 0 = 50 kg. Nombor 5 hanyalah batang (digit puluh), bukan nilai data.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.massesSmallStems,
   ],
   [
-    "Jadual kekerapan: kekerapan kelas 61–70 = 12, jumlah = 40. Apakah peratusannya?",
+    "Jadual kekerapan menunjukkan markah ujian sekumpulan murid. Berapakah peratusan murid yang mendapat markah 61–70?",
     ["25%", "28%", "30%", "32%"],
     2,
-    "Peratusan = (12÷40) × 100% = 30%.",
+    "Kekerapan kelas 61–70 ialah 12. Jumlah murid = 5 + 8 + 12 + 10 + 5 = 40. Peratusan = (12 ÷ 40) × 100% = 30%.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.testMarks,
   ],
   [
-    "Carta pai menunjukkan sudut Sukan = 144°. Jika jumlah = 50 murid, berapakah murid yang memilih Sukan?",
+    "Carta pai menunjukkan sukan kegemaran 50 orang murid. Berapakah murid yang memilih bola sepak?",
     ["18", "24", "22", "20"],
     3,
-    "Perkadaran = 144÷360 = 0.4. Bilangan = 0.4 × 50 = 20 murid.",
+    "Sudut sektor bola sepak ialah 144°. Bilangan murid = (144° ÷ 360°) × 50 = 0.4 × 50 = 20 murid.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteSports,
   ],
   [
-    "Plot titik menunjukkan: ● pada 12, ●●● pada 15, ●●●●● pada 16, ●● pada 17, ● pada 20. Nilai 12 dan 20 adalah:",
-    ["Nilai mod", "Pencilan", "Nilai dalam kumpulan", "Nilai median"],
+    "Plot titik menunjukkan bilangan tekan tubi yang dibuat oleh sekumpulan murid dalam seminit. Apakah nilai 12 dan 20?",
+    ["Nilai mod", "Pencilan", "Nilai dalam kumpulan utama", "Nilai di tengah-tengah data"],
     1,
-    "12 dan 20 terasing dari kumpulan utama (15–17). Kedua-duanya adalah pencilan.",
+    "Kebanyakan titik berkumpul pada 15 hingga 17. Titik di 12 dan 20 terpisah daripada kumpulan itu, jadi kedua-duanya ialah pencilan.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.pushUpsDots,
   ],
 ]);
 
 const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
-    "A bar chart shows: Mathematics=15, Science=12, Malay=9, History=6. What is the total number of students?",
+    "The bar chart shows the favourite subjects of a group of students. Each student chose one subject. What is the total number of students?",
     ["42", "36", "38", "40"],
     0,
-    "Total = 15 + 12 + 9 + 6 = 42 students.",
+    "Read the value of each bar, then add: 15 + 12 + 9 + 6 = 42 students.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteSubjects,
   ],
   [
-    "A bar chart shows: Mathematics=15, Science=12, Malay=9, History=6. What is the difference between Mathematics and History?",
-    ["7", "9", "8", "10"],
+    "The bar chart shows the number of robotics club members from five Form 1 classes. What is the difference between the class with the most members and the class with the fewest members?",
+    ["12", "8", "6", "16"],
     1,
-    "Difference = 15 − 6 = 9 students.",
+    "The tallest bar is 1B (12 students) and the shortest bar is 1E (4 students). Difference = 12 − 4 = 8 students.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.roboticsClub,
   ],
   [
-    "A pie chart shows: Sports=40%, Music=30%, Arts=20%, Others=10%. If total = 50 students, how many chose Sports?",
+    "The pie chart shows the favourite activities of 50 students. How many students chose Sports?",
     ["15", "25", "20", "30"],
     2,
-    "40% of 50 = 0.40 × 50 = 20 students.",
+    "The Sports sector is 40% of the pie chart. 40% × 50 = 0.40 × 50 = 20 students.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteActivities,
   ],
   [
     "40 students surveyed. 16 like Mathematics. What is the sector angle for Mathematics in the pie chart?",
@@ -17659,39 +17697,44 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "Medium",
   ],
   [
-    "A line graph shows sales increasing from RM200 to RM350 over 5 months. What is the total increase?",
+    "The line graph shows the sales of a shop over five months. What is the increase in sales from January to May?",
     ["RM100", "RM250", "RM200", "RM150"],
     3,
-    "Increase = RM350 − RM200 = RM150.",
+    "Read the first and last points: January = RM200 and May = RM350. Increase = RM350 − RM200 = RM150.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.shopSales,
   ],
   [
-    "Frequency table: Marks 41–50 (freq. 5), 51–60 (8), 61–70 (12), 71–80 (10), 81–90 (5). How many students total?",
+    "The frequency table shows the test marks of a group of students. How many students are there altogether?",
     ["40", "38", "35", "42"],
     0,
-    "Total = 5 + 8 + 12 + 10 + 5 = 40 students.",
+    "Add all the values in the Frequency column: 5 + 8 + 12 + 10 + 5 = 40 students.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.testMarks,
   ],
   [
-    "A frequency table shows marks: 41–50 (5 students), 51–60 (8), 61–70 (12), 71–80 (10), 81–90 (5). Which class has the highest frequency?",
+    "The frequency table shows the test marks of a group of students. Which class of marks has the highest frequency?",
     ["41–50", "51–60", "61–70", "71–80"],
     2,
-    "Class 61–70 has the highest frequency = 12.",
+    "Compare the values in the Frequency column. The largest value is 12, for the class 61–70.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.testMarks,
   ],
   [
-    "Stem-and-leaf: Stem 3 → Leaves 2, 5, 8, 9. How many values are in the range 30–39?",
+    "The stem-and-leaf plot shows the quiz marks of a group of students. How many marks are from 30 to 39?",
     ["3", "6", "5", "4"],
     3,
-    "Stem 3 has 4 leaves: 2, 5, 8, 9. So there are 4 values in the range 30–39.",
+    "Marks from 30 to 39 are on stem 3. Stem 3 has 4 leaves (2, 5, 8, 9), which are the marks 32, 35, 38 and 39. So there are 4 marks.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.quizMarksStems,
   ],
   [
-    "Stem-and-leaf: 2|3 5 7, 3|1 4 8, 4|2 6. What is the largest value?",
+    "The stem-and-leaf plot shows the science test marks of a group of students. What is the highest mark?",
     ["46", "43", "48", "36"],
     0,
-    "Largest stem = 4. Largest leaf = 6. Value = 46.",
+    "The highest mark is on the last stem (4) with the largest leaf (6). Use the key: 4 | 6 = 46.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.scienceMarksStems,
   ],
   [
     "Class 55–65 in a frequency table. What is its midpoint?",
@@ -17701,32 +17744,36 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "Medium",
   ],
   [
-    "A dot plot shows marks: ●●● at 7, ●●●● at 8, ●● at 9, ● at 4. How many students scored 8?",
+    "The dot plot shows the quiz marks of a group of students. How many students scored 8?",
     ["2", "3", "5", "4"],
     3,
-    "There are 4 dots at mark 8, so 4 students scored 8.",
+    "Each dot stands for one student. There are 4 dots above the mark 8, so 4 students scored 8.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.quizMarksDots,
   ],
   [
-    "A dot plot shows: ● at 4, ●●● at 7, ●●●● at 8. The value 4 is:",
-    ["An outlier", "The mode", "A normal minimum value", "The median"],
+    "The dot plot shows the number of books borrowed by a group of students. What is the value 4 in this data?",
+    ["An outlier", "The mode", "A normal minimum value", "The middle value of the data"],
     0,
-    "The value 4 is an outlier because it differs greatly from other values (7 and 8) and has only 1 dot.",
+    "The dot at 4 lies far from the other dots, which cluster at 7 and 8, so 4 is an outlier. The mode is 8 because 8 has the most dots.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.booksBorrowedDots,
   ],
   [
-    "A pie chart with sector A=90°, B=120°, C=80°, D=x°. Find x.",
+    "The pie chart is divided into four sectors, A, B, C and D. Find the value of x.",
     ["60°", "70°", "65°", "75°"],
     1,
-    "90 + 120 + 80 + x = 360. 290 + x = 360. x = 70°.",
+    "The sector angles add up to 360°. 90° + 120° + 80° + x = 360°, so x = 360° − 290° = 70°.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.fourSectors,
   ],
   [
-    "A line graph shows student attendance: Jan=45, Feb=42, Mar=48, Apr=50. What is the difference between highest and lowest?",
+    "The line graph shows student attendance at the science club over four months. What is the difference between the highest and the lowest attendance?",
     ["6", "7", "8", "10"],
     2,
-    "Highest = 50 (Apr), Lowest = 42 (Feb). Difference = 50 − 42 = 8.",
+    "The highest point is April (50) and the lowest point is February (42). Difference = 50 − 42 = 8.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.scienceClubAttendance,
   ],
   [
     "Range of data set A = 12, Range of data set B = 20. Which data set is more consistent?",
@@ -17743,16 +17790,12 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "Medium",
   ],
   [
-    "A histogram shows class 150–155 with frequency 8. What can be concluded?",
-    [
-      "8 students are shorter than 150 cm",
-      "8 students have heights in the range 150 cm to 155 cm",
-      "8 students are taller than 155 cm",
-      "The mean height is 152.5 cm",
-    ],
+    "The histogram shows the heights of a group of students. What does the bar for the class 150–155 show?",
+    ["8 students are shorter than 150 cm", "8 students have heights in the range 150 cm to 155 cm", "8 students are taller than 155 cm", "12 students have heights in the range 150 cm to 155 cm"],
     1,
-    "Frequency 8 means 8 students have heights in the class 150 cm to less than 155 cm.",
+    "The bar for the class 150–155 reaches 8 on the frequency axis, so 8 students have heights from 150 cm to less than 155 cm. The bar that reaches 12 is the class 155–160.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.heights,
   ],
   [
     "Data: 22, 35, 28, 41, 19, 33, 45, 27. Find the range.",
@@ -17762,18 +17805,20 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "Medium",
   ],
   [
-    "Bar chart: Jan=20, Feb=25, Mar=18, Apr=30. What is the total for all months?",
-    ["90", "95", "93", "88"],
+    "The frequency table shows the travel time to school of a group of students. How many students take more than 30 minutes?",
+    ["4", "3", "7", "15"],
     2,
-    "Total = 20 + 25 + 18 + 30 = 93.",
+    "More than 30 minutes means the classes 31–40 and 41–50. Total = 4 + 3 = 7 students. The class 21–30 is not counted because the times in that class do not exceed 30 minutes.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.travelTime,
   ],
   [
-    "In a stem-and-leaf plot: 1|5 8, 2|3 6 9, 3|1 4 7, 4|2. How many total data values are there?",
+    "The stem-and-leaf plot shows the ages of the participants in a fun run. How many participants are there?",
     ["7", "9", "8", "10"],
     1,
-    "Count total leaves: Stem 1 (2) + Stem 2 (3) + Stem 3 (3) + Stem 4 (1) = 9.",
+    "Each leaf stands for one participant. Count the leaves on each stem: 2 + 3 + 3 + 1 = 9 participants.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.runnerAgesStems,
   ],
   [
     "A category's percentage in a pie chart = 25%. What is the sector angle?",
@@ -17790,11 +17835,12 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "Medium",
   ],
   [
-    "A line graph shows attendance: Mon=35, Tue=38, Wed=40, Thu=37, Fri=32. On which day is attendance lowest?",
+    "The line graph shows student attendance at the library over one week. On which day is attendance lowest?",
     ["Monday", "Friday", "Wednesday", "Thursday"],
     1,
-    "Lowest attendance = 32, on Friday.",
+    "Find the lowest point on the line graph. It has the value 32 and sits above Friday, so attendance is lowest on Friday.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.libraryAttendance,
   ],
   [
     "Height data (cm): 150, 155, 148, 162, 158, 145, 170. Find the range.",
@@ -17804,73 +17850,71 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "Medium",
   ],
   [
-    "Stem-and-leaf plot: 5 | 0 4 7 and 6 | 2 2 8. What is the smallest data value?",
-    ["50", "54", "5", "62"],
+    "The stem-and-leaf plot shows the masses of six students. What is the smallest mass?",
+    ["50 kg", "54 kg", "5 kg", "62 kg"],
     0,
-    "Stem 5 with leaf 0 represents 50, the smallest value.",
+    "The smallest value is the first stem with its smallest leaf: 5 | 0 = 50 kg. The number 5 is only the stem (tens digit), not a data value.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.massesSmallStems,
   ],
   [
-    "Frequency table: frequency of class 61–70 = 12, total = 40. What is the percentage?",
+    "The frequency table shows the test marks of a group of students. What percentage of the students scored 61–70?",
     ["25%", "28%", "30%", "32%"],
     2,
-    "Percentage = (12÷40) × 100% = 30%.",
+    "The frequency of the class 61–70 is 12. Total students = 5 + 8 + 12 + 10 + 5 = 40. Percentage = (12 ÷ 40) × 100% = 30%.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.testMarks,
   ],
   [
-    "A pie chart shows Sports sector angle = 144°. If total = 50 students, how many chose Sports?",
+    "The pie chart shows the favourite sports of 50 students. How many students chose football?",
     ["18", "24", "22", "20"],
     3,
-    "Proportion = 144÷360 = 0.4. Number = 0.4 × 50 = 20 students.",
+    "The football sector angle is 144°. Number of students = (144° ÷ 360°) × 50 = 0.4 × 50 = 20 students.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.favouriteSports,
   ],
   [
-    "A dot plot shows: ● at 12, ●●● at 15, ●●●●● at 16, ●● at 17, ● at 20. Values 12 and 20 are:",
-    ["Mode values", "Outliers", "Values within the cluster", "Median values"],
+    "The dot plot shows the number of push-ups a group of students did in one minute. What are the values 12 and 20?",
+    ["Mode values", "Outliers", "Values within the main cluster", "Values in the middle of the data"],
     1,
-    "12 and 20 are isolated from the main cluster (15–17). Both are outliers.",
+    "Most dots cluster from 15 to 17. The dots at 12 and 20 lie apart from that cluster, so both are outliers.",
     "Medium",
+    MATH_F1_C12_QUIZ_VISUALS.pushUpsDots,
   ],
 ]);
 
 const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
-    "Graf garis menunjukkan jumlah pelawat muzium (ribu): 2021=45, 2022=52, 2023=58, 2024=65. Ramalkan bilangan pelawat pada 2025.",
+    "Graf garis menunjukkan bilangan pelawat sebuah muzium dari tahun 2021 hingga 2024. Ramalkan bilangan pelawat pada tahun 2025.",
     ["72 ribu", "68 ribu", "75 ribu", "80 ribu"],
     0,
-    "Corak: peningkatan lebih kurang 7 ribu setiap tahun. 65 + 7 = 72 ribu. Ramalan: kira-kira 72 ribu pelawat.",
+    "Baca titik: 45, 52, 58 dan 65 ribu. Bilangan pelawat meningkat lebih kurang 7 ribu setiap tahun, jadi ramalan bagi 2025 ialah 65 + 7 = 72 ribu.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.museumVisitors,
   ],
   [
-    "Carta palang menunjukkan jualan 4 produk: A=RM500, B=RM800, C=RM650, D=RM350. Produk manakah yang menyumbang lebih daripada 30% jumlah jualan?",
+    "Carta palang menunjukkan jualan empat produk dalam RM ribu. Produk manakah yang menyumbang lebih daripada 30% jumlah jualan?",
     ["Produk A", "Produk B", "Produk C", "Produk D"],
     1,
-    "Jumlah = 500+800+650+350 = RM2300. 30% × 2300 = RM690. Hanya Produk B (RM800) melebihi RM690.",
+    "Baca setiap palang: A = 5, B = 8, C = 6, D = 3 (RM ribu). Jumlah = 22. 30% × 22 = 6.6. Hanya Produk B (8) melebihi 6.6; Produk C (6) tidak melebihinya.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.productSales,
   ],
   [
-    "Histogram menunjukkan markah 50 murid: kelas 41–50(f=5), 51–60(f=10), 61–70(f=20), 71–80(f=10), 81–90(f=5). Buat inferens tentang prestasi murid.",
-    [
-      "Kebanyakan murid mendapat markah bawah 50",
-      "Data tidak mencukupi untuk sebarang kesimpulan",
-      "Kebanyakan murid mendapat 61–70 markah",
-      "Semua murid mendapat markah yang sama",
-    ],
+    "Histogram menunjukkan markah 50 orang murid dalam suatu ujian. Buat inferens tentang prestasi murid.",
+    ["Kebanyakan murid mendapat markah bawah 50", "Data tidak mencukupi untuk sebarang kesimpulan", "Kebanyakan murid mendapat 61–70 markah", "Semua murid mendapat markah yang sama"],
     2,
-    "Kelas mod = 61–70 dengan kekerapan 20. Taburan berbentuk loceng simetri. Kebanyakan murid berprestasi sederhana ke baik.",
+    "Palang tertinggi ialah kelas 61–70 (20 murid), dan palang semakin rendah ke arah kedua-dua hujung. Jadi kebanyakan murid mendapat 61–70 markah.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.fiftyMarksHistogram,
   ],
   [
-    "Graf yang bermula dari paksi-y = 95 (bukan 0) menunjukkan perbezaan kecil kelihatan besar. Ini adalah:",
-    [
-      "Amalan data yang baik dan jujur",
-      "Perwakilan data yang beretika",
-      "Tiada masalah selagi data itu betul",
-      "Perwakilan data yang mengelirukan dan tidak beretika",
-    ],
+    "Plot batang-dan-daun menunjukkan jisim 13 orang murid. Pernyataan manakah yang betul?",
+    ["Julat = 4 kg; 74 kg ialah pencilan", "Julat = 36 kg; 38 kg ialah pencilan", "Julat = 35 kg; 74 kg ialah pencilan", "Julat = 36 kg; 74 kg ialah pencilan"],
     3,
-    "Paksi yang tidak bermula dari sifar menjadikan perbezaan kecil kelihatan sangat besar. Ini adalah perwakilan data yang tidak beretika.",
+    "Gunakan kunci: 3 | 8 = 38 kg (terkecil) dan 7 | 4 = 74 kg (terbesar). Julat = 74 − 38 = 36 kg, bukan 7 − 3 = 4 (batang mesti digabungkan dengan daun). Nilai lain paling besar 56 kg, jadi 74 kg jauh terpisah dan ialah pencilan.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.studentMasses,
   ],
   [
     "Set data A: 48, 50, 51, 49, 52. Set data B: 40, 55, 48, 62, 45. Bandingkan serakan kedua-dua set data menggunakan julat dan buat kesimpulan.",
@@ -17897,66 +17941,52 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     "Hard",
   ],
   [
-    "Graf garis menunjukkan suhu setiap jam: 9pagi=28°, 10pagi=30°, 11pagi=33°, 12tgh=35°, 1ptg=34°, 2ptg=32°. Buat inferens dan ramalan untuk pukul 3ptg.",
-    [
-      "Suhu akan terus meningkat, sekitar 36°C",
-      "Suhu akan kekal pada 32°C sepanjang petang",
-      "Tidak ada corak yang jelas dalam data",
-      "Suhu naik hingga tengah hari, kemudian turun — sekitar 30°C",
-    ],
+    "Graf garis menunjukkan suhu setiap jam pada suatu hari. Buat inferens dan ramalkan suhu pada pukul 15:00.",
+    ["Suhu akan terus meningkat, sekitar 36°C", "Suhu akan kekal pada 32°C sepanjang petang", "Tidak ada corak yang jelas dalam data", "Suhu naik hingga tengah hari, kemudian turun — sekitar 30°C"],
     3,
-    "Corak: suhu naik hingga 12 tgh, kemudian turun. Penurunan: 35→34→32 (penurunan ~2° sejam). Ramalan 3ptg: ~30°C.",
+    "Suhu naik hingga 35°C pada pukul 12:00, kemudian turun: 35 → 34 → 32 (kira-kira 2°C sejam). Ramalan pada pukul 15:00: kira-kira 30°C.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.hourlyTemperature,
   ],
   [
-    "Plot batang-dan-daun: 1|2 5 8, 2|0 3 6 9, 3|1 4 7, 4|0 3. Cari julat data ini.",
+    "Plot batang-dan-daun menunjukkan masa yang diambil oleh sekumpulan murid untuk menyiapkan teka-teki. Cari julat data ini.",
     ["31", "28", "33", "35"],
     0,
-    "Nilai terkecil = 12 (batang 1, daun 2). Nilai terbesar = 43 (batang 4, daun 3). Julat = 43 − 12 = 31.",
+    "Nilai terkecil = 1 | 2 = 12 dan nilai terbesar = 4 | 3 = 43. Julat = 43 − 12 = 31 minit.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.puzzleTimesStems,
   ],
   [
-    "50 murid disoal tentang masa tidur: julat = 4 jam. 30 murid lain disoal: julat = 2 jam. Kumpulan manakah lebih konsisten dan mengapa?",
-    [
-      "Kumpulan 50 murid, kerana saiznya lebih besar",
-      "Kedua-dua kumpulan sama konsisten",
-      "Kumpulan 30 murid, kerana julatnya lebih kecil",
-      "Tidak boleh dibandingkan kerana saiznya berbeza",
-    ],
+    "Plot titik menunjukkan bilangan jam tidur sekumpulan murid pada suatu malam. Berapakah julat data itu, dan berapakah julat jika pencilan dikeluarkan?",
+    ["3 jam; 5 jam", "9 jam; 3 jam", "5 jam; 3 jam", "5 jam; 2 jam"],
     2,
-    "Kumpulan 30 murid lebih konsisten kerana julatnya (2 jam) lebih kecil daripada kumpulan 50 murid (4 jam).",
+    "Nilai terkecil ialah 4 dan nilai terbesar ialah 9, jadi julat = 9 − 4 = 5 jam. Titik di 4 jauh terpisah daripada titik lain, jadi 4 ialah pencilan. Tanpa 4, nilai terkecil ialah 6, jadi julat = 9 − 6 = 3 jam.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.sleepHours,
   ],
   [
-    "Carta pai menunjukkan 5 sektor. Sektor A=72°, B=108°, C=54°, D=90°, E=x°. Cari x dan peratusan sektor E.",
+    "Carta pai dibahagikan kepada lima sektor, A hingga E. Cari x dan peratusan sektor E.",
     ["x=40°, 11%", "x=36°, 12%", "x=30°, 10%", "x=36°, 10%"],
     3,
-    "72+108+54+90+x=360. 324+x=360. x=36°. Peratusan E = (36÷360)×100% = 10%.",
+    "Jumlah sudut sektor ialah 360°. 72° + 108° + 54° + 90° + x = 360°, jadi x = 360° − 324° = 36°. Peratusan E = (36° ÷ 360°) × 100% = 10%.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.fiveSectors,
   ],
   [
-    "Histogram kelas 60–70 mempunyai kekerapan 15. Kelas 70–80 mempunyai kekerapan 10. Cari titik tengah setiap kelas dan nisbah kekerapan.",
-    [
-      "TT1=65, TT2=75, Nisbah 3:2",
-      "TT1=64.5, TT2=74.5, Nisbah 2:3",
-      "TT1=65, TT2=75, Nisbah 2:3",
-      "TT1=64.5, TT2=74.5, Nisbah 3:2",
-    ],
+    "Histogram menunjukkan markah sekumpulan murid. Bagi kelas 60–70 dan 70–80, cari titik tengah setiap kelas dan nisbah kekerapannya.",
+    ["TT1=65, TT2=75, Nisbah 3:2", "TT1=64.5, TT2=74.5, Nisbah 2:3", "TT1=65, TT2=75, Nisbah 2:3", "TT1=64.5, TT2=74.5, Nisbah 3:2"],
     0,
-    "TT1 = (60+70)÷2 = 65. TT2 = (70+80)÷2 = 75. Nisbah kekerapan = 15:10 = 3:2.",
+    "Baca palang: kelas 60–70 = 15 dan kelas 70–80 = 10. TT1 = (60 + 70) ÷ 2 = 65. TT2 = (70 + 80) ÷ 2 = 75. Nisbah kekerapan = 15 : 10 = 3:2.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.classMarksHistogram,
   ],
   [
-    "Graf garis menunjukkan peratusan kelulusan sekolah: 2019=78%, 2020=75%, 2021=80%, 2022=83%, 2023=85%. Buat inferens.",
-    [
-      "Tiada corak yang jelas dalam peratusan kelulusan",
-      "Peratusan kelulusan secara umumnya meningkat walaupun menurun pada 2020",
-      "Peratusan kelulusan menurun setiap tahun",
-      "Data tidak mencukupi untuk sebarang inferens",
-    ],
+    "Graf garis menunjukkan peratusan kelulusan sebuah sekolah dari tahun 2019 hingga 2023. Buat inferens.",
+    ["Tiada corak yang jelas dalam peratusan kelulusan", "Peratusan kelulusan secara umumnya meningkat walaupun menurun pada 2020", "Peratusan kelulusan menurun setiap tahun", "Data tidak mencukupi untuk sebarang inferens"],
     1,
-    "Trend keseluruhan: 78%→75%→80%→83%→85%. Ada sedikit penurunan pada 2020 tetapi kemudian terus meningkat. Inferens: trend positif.",
+    "Baca titik: 78%, 75%, 80%, 83% dan 85%. Graf turun sedikit pada 2020, kemudian naik setiap tahun. Inferens: peratusan kelulusan secara umumnya meningkat.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.passRates,
   ],
   [
     "Perwakilan data yang manakah TIDAK beretika?",
@@ -17995,23 +18025,20 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     "Hard",
   ],
   [
-    "Plot titik menunjukkan: ●●● pada 5, ●●●●● pada 6, ●●●●●● pada 7, ●●● pada 8, ● pada 12. Apakah inferens yang paling sesuai?",
-    [
-      "Data tersebar sama rata dari 5 hingga 12",
-      "Tiada pencilan kerana semua nilai direkodkan",
-      "Kebanyakan nilai antara 6 hingga 8, dan 12 ialah pencilan",
-      "Data mempunyai dua mod, iaitu 7 dan 12",
-    ],
+    "Plot titik menunjukkan bilangan soalan yang dijawab dengan betul oleh sekumpulan murid. Apakah inferens yang paling sesuai?",
+    ["Data tersebar sama rata dari 5 hingga 12", "Tiada pencilan kerana semua nilai direkodkan", "Kebanyakan nilai antara 6 hingga 8, dan 12 ialah pencilan", "Data mempunyai dua mod, iaitu 7 dan 12"],
     2,
-    "Data tertumpu pada 6–8. Nilai 12 tersasing (pencilan) — mungkin ralat ukuran atau kes luar biasa.",
+    "Kebanyakan titik berkumpul pada 6 hingga 8. Titik di 12 terpisah jauh daripada kumpulan itu, jadi 12 ialah pencilan.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.correctAnswersDots,
   ],
   [
-    "Jadual kekerapan: kelas 60–70(f=8), 70–80(f=15), 80–90(f=12), 90–100(f=5). Cari titik tengah kelas mod dan jumlah data.",
+    "Jadual kekerapan menunjukkan markah ujian akhir sekumpulan murid. Cari titik tengah kelas mod dan jumlah murid.",
     ["TT=75, n=40", "TT=74.5, n=40", "TT=74.5, n=38", "TT=75, n=42"],
     0,
-    "Kelas mod = 70–80 (kekerapan tertinggi=15). Titik tengah = (70+80)÷2 = 75. Jumlah = 8+15+12+5 = 40.",
+    "Kelas mod ialah kelas dengan kekerapan tertinggi: 70–80 (15). Titik tengah = (70 + 80) ÷ 2 = 75. Jumlah murid = 8 + 15 + 12 + 5 = 40.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.finalMarks,
   ],
   [
     "Syarikat A mempunyai julat gaji pekerja = RM500. Syarikat B julat = RM5000. Inferens yang lebih tepat:",
@@ -18039,39 +18066,26 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Markah Kelas A: 55, 62, 58, 70, 65, 68, 72, 60. Markah Kelas B: 40, 80, 55, 75, 45, 85, 50, 70. Bandingkan serakan markah kedua-dua kelas menggunakan julat.",
-    [
-      "Tidak boleh dibandingkan kerana min sama",
-      "Kelas B lebih konsisten (julat B < julat A)",
-      "Kedua-dua kelas sama konsisten",
-      "Kelas A lebih konsisten (julat A=17, julat B=45)",
-    ],
+    ["Tidak boleh dibandingkan kerana markahnya berbeza", "Kelas B lebih konsisten (julat B < julat A)", "Kedua-dua kelas sama konsisten", "Kelas A lebih konsisten (julat A=17, julat B=45)"],
     3,
-    "Julat A = 72−55 = 17. Julat B = 85−40 = 45. Walaupun min sama, Kelas A jauh lebih konsisten.",
+    "Julat A = 72 − 55 = 17. Julat B = 85 − 40 = 45. Julat A jauh lebih kecil, jadi markah Kelas A jauh lebih konsisten.",
     "Hard",
   ],
   [
-    "Poligon kekerapan bagi dua kelas diplot pada graf yang sama. Poligon kelas X lebih tinggi di bahagian kiri manakala kelas Y lebih tinggi di bahagian kanan. Inferens:",
-    [
-      "Kedua-dua kelas mempunyai prestasi yang sama",
-      "Kelas X berprestasi lebih baik daripada Kelas Y",
-      "Kelas X cenderung mendapat markah lebih rendah; Y lebih tinggi",
-      "Tiada inferens boleh dibuat daripada poligon",
-    ],
+    "Poligon kekerapan menunjukkan markah ujian Kelas X dan Kelas Y. Apakah inferens yang paling sesuai?",
+    ["Kedua-dua kelas mempunyai prestasi yang sama", "Kelas X berprestasi lebih baik daripada Kelas Y", "Kelas X cenderung mendapat markah lebih rendah; Y lebih tinggi", "Tiada inferens boleh dibuat daripada poligon"],
     2,
-    "Poligon lebih tinggi di kiri = lebih banyak nilai rendah. Poligon lebih tinggi di kanan = lebih banyak nilai tinggi.",
+    "Poligon Kelas X paling tinggi di sebelah kiri (kemuncak 10 pada titik tengah 55), manakala poligon Kelas Y paling tinggi di sebelah kanan (kemuncak 10 pada 75). Jadi Kelas X cenderung mendapat markah lebih rendah dan Kelas Y lebih tinggi.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.twoClassPolygons,
   ],
   [
-    "Graf garis jualan kedai: Jan–Jun meningkat, Jul–Dis menurun. Buat inferens tentang corak perniagaan.",
-    [
-      "Jualan tidak menentu dan rawak sepanjang tahun",
-      "Corak bermusim: tinggi pada separuh pertama, rendah pada separuh kedua",
-      "Perniagaan mengalami kerugian pada separuh kedua",
-      "Data tidak mencukupi untuk membuat sebarang inferens",
-    ],
+    "Graf garis menunjukkan jualan bulanan sebuah kedai dalam setahun. Buat inferens tentang corak perniagaan.",
+    ["Jualan tidak menentu dan rawak sepanjang tahun", "Corak bermusim: tinggi pada separuh pertama, rendah pada separuh kedua", "Perniagaan mengalami kerugian pada separuh kedua", "Data tidak mencukupi untuk membuat sebarang inferens"],
     1,
-    "Corak meningkat kemudian menurun menunjukkan corak bermusim. Ini adalah maklumat berguna untuk perancangan perniagaan.",
+    "Garis naik dari Januari hingga Jun, kemudian turun dari Julai hingga Disember. Ini corak bermusim: jualan tinggi pada separuh pertama tahun dan lebih rendah pada separuh kedua.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.yearlySales,
   ],
   [
     "Seorang pengkaji hanya melaporkan data yang menyokong hipotesisnya dan mengabaikan data yang bertentangan. Ini adalah:",
@@ -18122,35 +18136,28 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     "Hard",
   ],
   [
-    "Graf garis menunjukkan bilangan kes penyakit selama 10 tahun. Garis menurun secara konsisten. Ramalan dan inferens yang tepat:",
-    [
-      "Kes menurun secara konsisten dan dijangka terus menurun",
-      "Kes akan mula meningkat semula tahun depan",
-      "Data tidak mencukupi untuk sebarang inferens",
-      "Penyakit itu tidak lagi berbahaya",
-    ],
+    "Graf garis menunjukkan bilangan kes suatu penyakit dari tahun 2015 hingga 2024. Apakah ramalan dan inferens yang tepat?",
+    ["Kes menurun secara konsisten dan dijangka terus menurun", "Kes akan mula meningkat semula tahun depan", "Data tidak mencukupi untuk sebarang inferens", "Penyakit itu tidak lagi berbahaya"],
     0,
-    "Garis yang menurun secara konsisten menunjukkan bilangan kes berkurang setiap tahun. Jika trend ini berterusan, bilangan kes dijangka terus berkurang.",
+    "Garis menurun setiap tahun tanpa naik semula. Jika trend ini berterusan, bilangan kes dijangka terus menurun.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.diseaseCases,
   ],
   [
-    "Histogram tinggi murid sebuah kelas mempunyai palang tertinggi di bahagian tengah dan palang yang rendah di kedua-dua hujung. Inferens manakah paling sesuai?",
-    [
-      "Kebanyakan murid sangat rendah",
-      "Kebanyakan murid sangat tinggi",
-      "Kebanyakan murid mempunyai tinggi sederhana",
-      "Semua murid sama tinggi",
-    ],
+    "Histogram menunjukkan tinggi murid sebuah kelas. Inferens manakah yang paling sesuai?",
+    ["Kebanyakan murid sangat rendah", "Kebanyakan murid sangat tinggi", "Kebanyakan murid mempunyai tinggi sederhana", "Semua murid sama tinggi"],
     2,
-    "Palang tertinggi di tengah bermaksud kekerapan paling tinggi bagi kelas tinggi yang sederhana. Hanya sedikit murid yang sangat rendah atau sangat tinggi.",
+    "Palang tertinggi berada di tengah (150–155 cm, 12 murid), manakala palang di kedua-dua hujung rendah (2 dan 3 murid). Jadi kebanyakan murid mempunyai tinggi sederhana.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.classHeights,
   ],
   [
-    "Sebuah carta pai menunjukkan perbelanjaan bulanan sebuah keluarga sebanyak RM1 200. Sudut sektor makanan ialah 120°. Berapakah perbelanjaan untuk makanan?",
+    "Carta pai menunjukkan perbelanjaan bulanan sebuah keluarga sebanyak RM1 200. Berapakah perbelanjaan untuk makanan?",
     ["RM600", "RM120", "RM360", "RM400"],
     3,
-    "Perbelanjaan makanan = 120°/360° × RM1 200 = 1/3 × RM1 200 = RM400.",
+    "Sudut sektor makanan ialah 120°. Perbelanjaan makanan = 120°/360° × RM1 200 = 1/3 × RM1 200 = RM400.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.familySpending,
   ],
   [
     "Data: 2, 4, 6, 8, 10. Seorang murid menambah satu lagi data: 100. Apakah kesan ke atas julat?",
@@ -18168,42 +18175,36 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
 
 const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
-    "A line graph shows museum visitors (thousands): 2021=45, 2022=52, 2023=58, 2024=65. Predict visitors for 2025.",
+    "The line graph shows the number of visitors to a museum from 2021 to 2024. Predict the number of visitors in 2025.",
     ["72 thousand", "68 thousand", "75 thousand", "80 thousand"],
     0,
-    "Pattern: increase of approximately 7 thousand per year. 65 + 7 = 72 thousand. Prediction: approximately 72 thousand visitors.",
+    "Read the points: 45, 52, 58 and 65 thousand. Visitors increase by about 7 thousand each year, so the prediction for 2025 is 65 + 7 = 72 thousand.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.museumVisitors,
   ],
   [
-    "A bar chart shows sales of 4 products: A=RM500, B=RM800, C=RM650, D=RM350. Which product contributes more than 30% of total sales?",
+    "The bar chart shows the sales of four products in RM thousand. Which product contributes more than 30% of total sales?",
     ["Product A", "Product B", "Product C", "Product D"],
     1,
-    "Total = 500+800+650+350 = RM2300. 30% × 2300 = RM690. Only Product B (RM800) exceeds RM690.",
+    "Read each bar: A = 5, B = 8, C = 6, D = 3 (RM thousand). Total = 22. 30% × 22 = 6.6. Only Product B (8) exceeds 6.6; Product C (6) does not.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.productSales,
   ],
   [
-    "A histogram shows marks for 50 students: class 41–50(f=5), 51–60(f=10), 61–70(f=20), 71–80(f=10), 81–90(f=5). Make an inference about student performance.",
-    [
-      "Most students scored below 50 marks",
-      "The data is not enough to draw any conclusion",
-      "Most students scored 61–70 marks",
-      "Every student scored the same mark",
-    ],
+    "The histogram shows the marks of 50 students in a test. Make an inference about student performance.",
+    ["Most students scored below 50 marks", "The data is not enough to draw any conclusion", "Most students scored 61–70 marks", "Every student scored the same mark"],
     2,
-    "Modal class = 61–70 with frequency 20. Bell-shaped symmetric distribution. Most students perform moderately to well.",
+    "The tallest bar is the class 61–70 (20 students), and the bars get shorter towards both ends. So most students scored 61–70 marks.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.fiftyMarksHistogram,
   ],
   [
-    "A graph with y-axis starting at 95 (not 0) makes a small difference appear large. This is:",
-    [
-      "Good and honest data practice",
-      "An ethical way to represent data",
-      "Fine as long as the data is correct",
-      "Misleading and unethical data representation",
-    ],
+    "The stem-and-leaf plot shows the masses of 13 students. Which statement is correct?",
+    ["Range = 4 kg; 74 kg is an outlier", "Range = 36 kg; 38 kg is an outlier", "Range = 35 kg; 74 kg is an outlier", "Range = 36 kg; 74 kg is an outlier"],
     3,
-    "An axis not starting from zero makes small differences appear very large. This is unethical data representation.",
+    "Use the key: 3 | 8 = 38 kg (smallest) and 7 | 4 = 74 kg (largest). Range = 74 − 38 = 36 kg, not 7 − 3 = 4 (a stem must be joined to its leaf). The other values are at most 56 kg, so 74 kg lies far from them and is an outlier.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.studentMasses,
   ],
   [
     "Data set A: 48, 50, 51, 49, 52. Data set B: 40, 55, 48, 62, 45. Compare the dispersion of the two data sets using the range and draw a conclusion.",
@@ -18230,66 +18231,52 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     "Hard",
   ],
   [
-    "A line graph shows hourly temperature: 9am=28°, 10am=30°, 11am=33°, 12pm=35°, 1pm=34°, 2pm=32°. Make an inference and predict temperature at 3pm.",
-    [
-      "It will keep rising, to about 36°C",
-      "It will stay at 32°C all afternoon",
-      "There is no clear pattern in the data",
-      "It rises until noon, then falls — about 30°C",
-    ],
+    "The line graph shows the temperature every hour on one day. Make an inference and predict the temperature at 15:00.",
+    ["It will keep rising, to about 36°C", "It will stay at 32°C all afternoon", "There is no clear pattern in the data", "It rises until noon, then falls — about 30°C"],
     3,
-    "Pattern: temperature rises until 12pm, then falls. Fall: 35→34→32 (drop ~2° per hour). Prediction 3pm: ~30°C.",
+    "The temperature rises to 35°C at 12:00, then falls: 35 → 34 → 32 (about 2°C per hour). Prediction at 15:00: about 30°C.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.hourlyTemperature,
   ],
   [
-    "Stem-and-leaf: 1|2 5 8, 2|0 3 6 9, 3|1 4 7, 4|0 3. Find the range of this data.",
+    "The stem-and-leaf plot shows the time a group of students took to finish a puzzle. Find the range of the data.",
     ["31", "28", "33", "35"],
     0,
-    "Smallest value = 12 (stem 1, leaf 2). Largest value = 43 (stem 4, leaf 3). Range = 43 − 12 = 31.",
+    "Smallest value = 1 | 2 = 12 and largest value = 4 | 3 = 43. Range = 43 − 12 = 31 minutes.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.puzzleTimesStems,
   ],
   [
-    "50 students asked about sleep duration: range = 4 hours. Another 30 students: range = 2 hours. Which group is more consistent and why?",
-    [
-      "The group of 50, because it is larger",
-      "Both groups are equally consistent",
-      "The group of 30, because its range is smaller",
-      "They cannot be compared because sizes differ",
-    ],
+    "The dot plot shows the number of hours a group of students slept one night. What is the range of the data, and what is the range if the outlier is removed?",
+    ["3 hours; 5 hours", "9 hours; 3 hours", "5 hours; 3 hours", "5 hours; 2 hours"],
     2,
-    "Group of 30 is more consistent because its range (2 hours) is smaller than the group of 50 (4 hours).",
+    "The smallest value is 4 and the largest is 9, so range = 9 − 4 = 5 hours. The dot at 4 lies far from the other dots, so 4 is an outlier. Without 4, the smallest value is 6, so range = 9 − 6 = 3 hours.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.sleepHours,
   ],
   [
-    "A pie chart has 5 sectors. A=72°, B=108°, C=54°, D=90°, E=x°. Find x and the percentage of sector E.",
+    "The pie chart is divided into five sectors, A to E. Find x and the percentage of sector E.",
     ["x=40°, 11%", "x=36°, 12%", "x=30°, 10%", "x=36°, 10%"],
     3,
-    "72+108+54+90+x=360. 324+x=360. x=36°. Percentage of E = (36÷360)×100% = 10%.",
+    "The sector angles add up to 360°. 72° + 108° + 54° + 90° + x = 360°, so x = 360° − 324° = 36°. Percentage of E = (36° ÷ 360°) × 100% = 10%.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.fiveSectors,
   ],
   [
-    "Histogram class 60–70 has frequency 15. Class 70–80 has frequency 10. Find the midpoint of each class and frequency ratio.",
-    [
-      "MP1=65, MP2=75, Ratio 3:2",
-      "MP1=64.5, MP2=74.5, Ratio 2:3",
-      "MP1=65, MP2=75, Ratio 2:3",
-      "MP1=64.5, MP2=74.5, Ratio 3:2",
-    ],
+    "The histogram shows the marks of a group of students. For the classes 60–70 and 70–80, find the midpoint of each class and their frequency ratio.",
+    ["MP1=65, MP2=75, Ratio 3:2", "MP1=64.5, MP2=74.5, Ratio 2:3", "MP1=65, MP2=75, Ratio 2:3", "MP1=64.5, MP2=74.5, Ratio 3:2"],
     0,
-    "MP1 = (60+70)÷2 = 65. MP2 = (70+80)÷2 = 75. Frequency ratio = 15:10 = 3:2.",
+    "Read the bars: class 60–70 = 15 and class 70–80 = 10. MP1 = (60 + 70) ÷ 2 = 65. MP2 = (70 + 80) ÷ 2 = 75. Frequency ratio = 15 : 10 = 3:2.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.classMarksHistogram,
   ],
   [
-    "A line graph shows school pass rates: 2019=78%, 2020=75%, 2021=80%, 2022=83%, 2023=85%. Make an inference.",
-    [
-      "There is no clear pattern in the pass rates",
-      "Pass rates are generally rising despite the 2020 dip",
-      "Pass rates are falling year after year",
-      "The data is not enough for any inference",
-    ],
+    "The line graph shows the pass rate of a school from 2019 to 2023. Make an inference.",
+    ["There is no clear pattern in the pass rates", "Pass rates are generally rising despite the 2020 dip", "Pass rates are falling year after year", "The data is not enough for any inference"],
     1,
-    "Overall trend: 78%→75%→80%→83%→85%. Slight dip in 2020 but consistently rising after. Inference: positive trend.",
+    "Read the points: 78%, 75%, 80%, 83% and 85%. The graph dips slightly in 2020, then rises every year. Inference: the pass rate is generally rising.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.passRates,
   ],
   [
     "Which data representation is NOT ethical?",
@@ -18328,23 +18315,20 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     "Hard",
   ],
   [
-    "A dot plot shows: ●●● at 5, ●●●●● at 6, ●●●●●● at 7, ●●● at 8, ● at 12. What is the most appropriate inference?",
-    [
-      "The data is spread evenly from 5 to 12",
-      "There are no outliers because every value is recorded",
-      "Most values lie from 6 to 8, and 12 is an outlier",
-      "The data has two modes, 7 and 12",
-    ],
+    "The dot plot shows the number of questions a group of students answered correctly. What is the most appropriate inference?",
+    ["The data is spread evenly from 5 to 12", "There are no outliers because every value is recorded", "Most values lie from 6 to 8, and 12 is an outlier", "The data has two modes, 7 and 12"],
     2,
-    "Data is clustered at 6–8. Value 12 is isolated (outlier) — possibly a measurement error or unusual case.",
+    "Most dots cluster from 6 to 8. The dot at 12 lies far from that cluster, so 12 is an outlier.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.correctAnswersDots,
   ],
   [
-    "Frequency table: class 60–70(f=8), 70–80(f=15), 80–90(f=12), 90–100(f=5). Find midpoint of modal class and total data.",
+    "The frequency table shows the final test marks of a group of students. Find the midpoint of the modal class and the total number of students.",
     ["MP=75, n=40", "MP=74.5, n=40", "MP=74.5, n=38", "MP=75, n=42"],
     0,
-    "Modal class = 70–80 (highest frequency=15). Midpoint = (70+80)÷2 = 75. Total = 8+15+12+5 = 40.",
+    "The modal class is the class with the highest frequency: 70–80 (15). Midpoint = (70 + 80) ÷ 2 = 75. Total students = 8 + 15 + 12 + 5 = 40.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.finalMarks,
   ],
   [
     "Company A has employee salary range = RM500. Company B range = RM5000. A more accurate inference:",
@@ -18372,39 +18356,26 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "Class A marks: 55, 62, 58, 70, 65, 68, 72, 60. Class B marks: 40, 80, 55, 75, 45, 85, 50, 70. Compare the dispersion of the two classes' marks using the range.",
-    [
-      "Cannot be compared because mean is the same",
-      "Class B is more consistent (range B < range A)",
-      "Both classes are equally consistent",
-      "Class A is more consistent (range A=17, range B=45)",
-    ],
+    ["Cannot be compared because the marks are different", "Class B is more consistent (range B < range A)", "Both classes are equally consistent", "Class A is more consistent (range A=17, range B=45)"],
     3,
-    "Range A = 72−55 = 17. Range B = 85−40 = 45. Despite the same mean, Class A is far more consistent.",
+    "Range A = 72 − 55 = 17. Range B = 85 − 40 = 45. Range A is much smaller, so Class A's marks are far more consistent.",
     "Hard",
   ],
   [
-    "Frequency polygons for two classes are plotted on the same graph. Class X polygon is higher on the left, Class Y is higher on the right. Inference:",
-    [
-      "Both classes have the same performance",
-      "Class X performs better than Class Y",
-      "Class X tends to score lower; Class Y tends to score higher",
-      "No inference can be made from the polygons",
-    ],
+    "The frequency polygons show the test marks of Class X and Class Y. What is the most appropriate inference?",
+    ["Both classes have the same performance", "Class X performs better than Class Y", "Class X tends to score lower; Class Y tends to score higher", "No inference can be made from the polygons"],
     2,
-    "Higher polygon on the left = more low values. Higher polygon on the right = more high values.",
+    "The Class X polygon is highest on the left (a peak of 10 at the midpoint 55), while the Class Y polygon is highest on the right (a peak of 10 at 75). So Class X tends to score lower and Class Y tends to score higher.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.twoClassPolygons,
   ],
   [
-    "A line graph shows monthly sales: Jan–Jun increasing, Jul–Dec decreasing. Make an inference about the business pattern.",
-    [
-      "Sales are erratic and random throughout the year",
-      "A seasonal pattern: high in the first half, lower in the second",
-      "The business makes a loss in the second half",
-      "The data is not enough to make any inference",
-    ],
+    "The line graph shows the monthly sales of a shop over one year. Make an inference about the business pattern.",
+    ["Sales are erratic and random throughout the year", "A seasonal pattern: high in the first half, lower in the second", "The business makes a loss in the second half", "The data is not enough to make any inference"],
     1,
-    "An increasing then decreasing pattern shows a seasonal pattern. This is useful information for business planning.",
+    "The line rises from January to June, then falls from July to December. This is a seasonal pattern: sales are high in the first half of the year and lower in the second half.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.yearlySales,
   ],
   [
     "A researcher only reports data supporting their hypothesis and ignores contradictory data. This is:",
@@ -18455,35 +18426,28 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     "Hard",
   ],
   [
-    "A line graph shows number of disease cases over 10 years. The line is consistently decreasing. Correct prediction and inference:",
-    [
-      "Cases are falling steadily and are likely to keep falling",
-      "Cases will start rising again next year",
-      "The data is not enough for any inference",
-      "The disease is no longer dangerous",
-    ],
+    "The line graph shows the number of cases of a disease from 2015 to 2024. What is the correct prediction and inference?",
+    ["Cases are falling steadily and are likely to keep falling", "Cases will start rising again next year", "The data is not enough for any inference", "The disease is no longer dangerous"],
     0,
-    "A consistently falling line shows the number of cases dropping each year. If this trend continues, cases are expected to keep falling.",
+    "The line falls every year without rising again. If this trend continues, the number of cases is expected to keep falling.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.diseaseCases,
   ],
   [
-    "A histogram of students' heights has its tallest bars in the middle and short bars at both ends. Which inference is most suitable?",
-    [
-      "Most students are very short",
-      "Most students are very tall",
-      "Most students are of medium height",
-      "All the students are the same height",
-    ],
+    "The histogram shows the heights of the students in a class. Which inference is most suitable?",
+    ["Most students are very short", "Most students are very tall", "Most students are of medium height", "All the students are the same height"],
     2,
-    "The tallest bars in the middle mean the highest frequencies are for medium heights. Only a few students are very short or very tall.",
+    "The tallest bar is in the middle (150–155 cm, 12 students), while the bars at both ends are short (2 and 3 students). So most students are of medium height.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.classHeights,
   ],
   [
-    "A pie chart shows a family's monthly spending of RM1 200. The food sector angle is 120°. How much is spent on food?",
+    "The pie chart shows a family's monthly spending of RM1 200. How much is spent on food?",
     ["RM600", "RM120", "RM360", "RM400"],
     3,
-    "Food spending = 120°/360° × RM1 200 = 1/3 × RM1 200 = RM400.",
+    "The food sector angle is 120°. Food spending = 120°/360° × RM1 200 = 1/3 × RM1 200 = RM400.",
     "Hard",
+    MATH_F1_C12_QUIZ_VISUALS.familySpending,
   ],
   [
     "Data: 2, 4, 6, 8, 10. A student adds one more data point: 100. What is the effect on the range?",
@@ -18881,6 +18845,8 @@ interface ShuffledQuestion {
   set?: string;
   visualKey?: string;
   image?: string;
+  /** Maths data display (table/chart), rendered by MathObjectiveQuizScreen. */
+  visual?: MathQuestionVisualData;
 }
 
 type FormFilter = Form | "All";
@@ -22367,7 +22333,7 @@ function MathQuizLanguagePicker({
             className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[0_0_32px_oklch(0.7_0.18_180_/_0.35)]"
           >
             <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
-            <div className="relative mb-4 text-5xl">🇬🇧</div>
+            <div className="relative mb-4 font-display text-5xl font-black tracking-tight">EN</div>
             <h3 className="relative font-display text-2xl font-bold">DLP (English)</h3>
             <p className="relative mt-2 text-sm text-muted-foreground">
               Questions, instructions, explanations, and results in English.
@@ -22427,7 +22393,7 @@ function MathObjectiveSelectionScreen({
             {cleanLearningTitle(chapter?.label ?? chapterKey)} at the right level.
           </p>
           <p className="mt-2 text-xs font-semibold text-accent">
-            {quizLang === "dlp" ? "🇬🇧 DLP (English)" : "🇲🇾 Bahasa Melayu"}
+            {quizLang === "dlp" ? "EN · DLP (English)" : "🇲🇾 Bahasa Melayu"}
           </p>
         </div>
 
@@ -23041,7 +23007,7 @@ function MathObjectiveIntroScreen({
   );
 }
 
-function MathObjectiveQuizScreen({
+export function MathObjectiveQuizScreen({
   objective,
   subjectId,
   chapterKey,
@@ -23154,6 +23120,12 @@ function MathObjectiveQuizScreen({
             {cleanLearningQuestion(current.question)}
           </h2>
         </div>
+
+        {current.visual && (
+          <div className="px-6 pb-5">
+            <MathQuestionVisual visual={current.visual} lang={quizLang} />
+          </div>
+        )}
 
         {/* Answer options */}
         <div className="grid gap-2.5 px-6 pb-6 sm:grid-cols-2">
