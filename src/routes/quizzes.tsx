@@ -56,6 +56,7 @@ import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
 import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
 import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
+import { MATH_F1_C2_QUIZ_VISUALS } from "@/content/form1/math/chapter-2/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
@@ -1551,6 +1552,7 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Faktor 12 ialah 1, 2, 3, 4, 6 dan 12.",
     "Easy",
+    MATH_F1_C2_QUIZ_VISUALS.factorsOf12,
   ],
   [
     "Apakah nombor perdana?",
@@ -1627,6 +1629,7 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Faktor sepunya 12 dan 18 ialah 1, 2, 3, 6. Yang terbesar ialah 6.",
     "Easy",
+    MATH_F1_C2_QUIZ_VISUALS.commonFactors12And18,
   ],
   [
     "Apakah gandaan?",
@@ -1677,6 +1680,7 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Gandaan sepunya 4 dan 6 termasuk 12 dan 24. Yang terkecil ialah 12.",
     "Easy",
+    MATH_F1_C2_QUIZ_VISUALS.multiples4And6,
   ],
   [
     "FSTB sesuai digunakan untuk:",
@@ -1783,6 +1787,7 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "16 boleh dibahagi tepat oleh 1, 2, 4, 8 dan 16.",
     "Medium",
+    MATH_F1_C2_QUIZ_VISUALS.factorsOf16,
   ],
   [
     "Cari semua faktor bagi 24.",
@@ -1797,6 +1802,7 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "30 = 2 × 3 × 5.",
     "Medium",
+    MATH_F1_C2_QUIZ_VISUALS.factorsOf30,
   ],
   [
     "Pemfaktoran perdana bagi 36 ialah:",
@@ -1811,6 +1817,7 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Faktor sepunya terbesar bagi 16 dan 24 ialah 8.",
     "Medium",
+    MATH_F1_C2_QUIZ_VISUALS.commonFactors16And24,
   ],
   [
     "FSTB bagi 20 dan 30 ialah:",
@@ -1846,6 +1853,7 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Gandaan sepunya terkecil bagi 6 dan 8 ialah 24.",
     "Medium",
+    MATH_F1_C2_QUIZ_VISUALS.multiples6And8,
   ],
   [
     "GSTK bagi 9 dan 12 ialah:",
@@ -1937,6 +1945,7 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "12 ialah gandaan terkecil yang boleh dibahagi 3, 4 dan 6.",
     "Medium",
+    MATH_F1_C2_QUIZ_VISUALS.multiples3_4_6,
   ],
   [
     "Cari FSTB bagi 8 dan 20.",
@@ -1996,6 +2005,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Gunakan FSTB. FSTB bagi 24 dan 36 ialah 12.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.pencilsAndPens,
   ],
   [
     "Loceng A berbunyi setiap 6 minit dan loceng B setiap 8 minit. Kedua-duanya berbunyi bersama setiap:",
@@ -2003,6 +2013,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Gunakan GSTK. GSTK bagi 6 dan 8 ialah 24.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.multiples6And8,
   ],
   [
     "12 epal dan 18 oren dibahagi sama banyak ke dalam beg. Bilangan beg paling banyak ialah:",
@@ -2010,6 +2021,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Gunakan FSTB. FSTB bagi 12 dan 18 ialah 6.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.applesAndOranges,
   ],
   [
     "Bas A tiba setiap 10 minit dan Bas B setiap 15 minit. Kedua-duanya tiba bersama setiap:",
@@ -2031,6 +2043,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Gunakan GSTK. GSTK bagi 9 dan 12 ialah 36.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.multiples9And12,
   ],
   [
     "FSTB bagi 48 dan 60 ialah:",
@@ -2106,6 +2119,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Bilangan kumpulan maksimum ialah FSTB 16 dan 24 = 8, jadi setiap kumpulan ada 2 merah dan 3 biru.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.ribbons,
   ],
   [
     "Mesin A berhenti setiap 8 jam dan Mesin B setiap 12 jam. Jika berhenti bersama sekarang, bersama lagi selepas:",
@@ -2193,6 +2207,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Bilangan itu mestilah gandaan 12 dan juga gandaan 18, jadi gunakan GSTK. GSTK bagi 12 dan 18 = 36. (6 ialah FSTB.)",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.multiples12And18,
   ],
   [
     "Cari nombor terkecil yang boleh dibahagi tepat oleh 4, 5 dan 10.",
@@ -2214,6 +2229,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Gunakan FSTB. FSTB bagi 18 dan 24 ialah 6.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.bouquets,
   ],
 ]);
 
@@ -2243,6 +2259,7 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "The factors of 12 are 1, 2, 3, 4, 6 and 12.",
     "Easy",
+    MATH_F1_C2_QUIZ_VISUALS.factorsOf12,
   ],
   [
     "What is a prime number?",
@@ -2313,6 +2330,7 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The common factors of 12 and 18 are 1, 2, 3 and 6. The greatest is 6.",
     "Easy",
+    MATH_F1_C2_QUIZ_VISUALS.commonFactors12And18,
   ],
   [
     "What is a multiple?",
@@ -2363,6 +2381,7 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Common multiples of 4 and 6 include 12 and 24. The lowest is 12.",
     "Easy",
+    MATH_F1_C2_QUIZ_VISUALS.multiples4And6,
   ],
   [
     "HCF is suitable for:",
@@ -2469,6 +2488,7 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "16 can be divided exactly by 1, 2, 4, 8 and 16.",
     "Medium",
+    MATH_F1_C2_QUIZ_VISUALS.factorsOf16,
   ],
   [
     "Find all factors of 24.",
@@ -2483,6 +2503,7 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "30 = 2 × 3 × 5.",
     "Medium",
+    MATH_F1_C2_QUIZ_VISUALS.factorsOf30,
   ],
   [
     "The prime factorisation of 36 is:",
@@ -2497,6 +2518,7 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "The highest common factor of 16 and 24 is 8.",
     "Medium",
+    MATH_F1_C2_QUIZ_VISUALS.commonFactors16And24,
   ],
   [
     "The HCF of 20 and 30 is:",
@@ -2532,6 +2554,7 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "The lowest common multiple of 6 and 8 is 24.",
     "Medium",
+    MATH_F1_C2_QUIZ_VISUALS.multiples6And8,
   ],
   [
     "The LCM of 9 and 12 is:",
@@ -2623,6 +2646,7 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "12 is the lowest multiple that can be divided by 3, 4 and 6.",
     "Medium",
+    MATH_F1_C2_QUIZ_VISUALS.multiples3_4_6,
   ],
   [
     "Find the HCF of 8 and 20.",
@@ -2682,6 +2706,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Use HCF. The HCF of 24 and 36 is 12.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.pencilsAndPens,
   ],
   [
     "Bell A rings every 6 minutes and Bell B rings every 8 minutes. They ring together every:",
@@ -2689,6 +2714,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Use LCM. The LCM of 6 and 8 is 24.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.multiples6And8,
   ],
   [
     "12 apples and 18 oranges are divided equally into bags. The greatest number of bags is:",
@@ -2696,6 +2722,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Use HCF. The HCF of 12 and 18 is 6.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.applesAndOranges,
   ],
   [
     "Bus A arrives every 10 minutes and Bus B arrives every 15 minutes. They arrive together every:",
@@ -2717,6 +2744,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Use LCM. The LCM of 9 and 12 is 36.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.multiples9And12,
   ],
   [
     "The HCF of 48 and 60 is:",
@@ -2786,6 +2814,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "The maximum number of groups is HCF of 16 and 24 = 8, so each group has 2 red and 3 blue.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.ribbons,
   ],
   [
     "Machine A stops every 8 hours and Machine B every 12 hours. If they stop together now, they will stop together again after:",
@@ -2873,6 +2902,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "The number must be a multiple of both 12 and 18, so use LCM. LCM of 12 and 18 = 36. (6 is the HCF.)",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.multiples12And18,
   ],
   [
     "Find the smallest number that can be divided exactly by 4, 5 and 10.",
@@ -2894,6 +2924,7 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Use HCF. The HCF of 18 and 24 is 6.",
     "Hard",
+    MATH_F1_C2_QUIZ_VISUALS.bouquets,
   ],
 ]);
 
