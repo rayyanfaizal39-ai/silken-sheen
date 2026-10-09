@@ -16,6 +16,19 @@ export type VisualText = string | LocalizedText;
 export type MathQuestionVisual =
   | MathIndicesVisual
   | {
+      /** Un-grouped quantities shown as identical dots, without factoring for the student. */
+      kind: "item-arrays";
+      title: LocalizedText;
+      groups: { label: VisualText; count: number }[];
+    }
+  | {
+      /** Partial timelines for recurring events; never draws the first shared event. */
+      kind: "multiple-tracks";
+      title: LocalizedText;
+      upTo: number;
+      tracks: { every: number }[];
+    }
+  | {
       kind: "frequency-table";
       title: LocalizedText;
       valueHeading: LocalizedText;
@@ -129,6 +142,8 @@ const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
   "index-equations": { bm: "Persamaan indeks", dlp: "Index equations" },
   "unit-cube": { bm: "Kubus unit", dlp: "Unit cube" },
   "fraction-area": { bm: "Model luas pecahan", dlp: "Fractional area model" },
+  "item-arrays": { bm: "Model kuantiti", dlp: "Quantity model" },
+  "multiple-tracks": { bm: "Pola gandaan", dlp: "Multiple patterns" },
   "frequency-table": { bm: "Jadual kekerapan", dlp: "Frequency table" },
   "bar-chart": { bm: "Carta palang", dlp: "Bar chart" },
   histogram: { bm: "Histogram", dlp: "Histogram" },
@@ -157,6 +172,20 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
     case "unit-cube":
     case "fraction-area":
       return describeMathIndicesVisual(visual, lang);
+    case "item-arrays":
+      return `${head} ${visual.groups
+        .map((group) => `${textFor(group.label, lang)}: ${group.count}`)
+        .join("; ")}.`;
+    case "multiple-tracks":
+      return `${head} ${visual.tracks
+        .map((track) => {
+          const marks = Array.from(
+            { length: Math.floor(visual.upTo / track.every) },
+            (_, index) => (index + 1) * track.every,
+          );
+          return `${bm ? "Setiap" : "Every"} ${track.every}: ${marks.join(", ") || "—"}`;
+        })
+        .join("; ")}. ${bm ? "Pola berterusan" : "Patterns continue"}.`;
     case "frequency-table":
       return `${head} ${pairs(visual.rows.map((row) => [row.value, row.frequency]))}.`;
     case "bar-chart":
