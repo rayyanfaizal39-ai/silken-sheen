@@ -53,6 +53,7 @@ import {
 } from "@/components/AcademyPage";
 import { QuizArena } from "@/components/quiz/QuizArena";
 import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
+import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
 import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
@@ -18892,6 +18893,7 @@ interface ShuffledQuestion {
   image?: string;
   /** Maths data display (table/chart), rendered by MathObjectiveQuizScreen. */
   visual?: MathQuestionVisualData;
+  mathNotation?: "indices";
 }
 
 type FormFilter = Form | "All";
@@ -21017,9 +21019,17 @@ function QuizzesPage() {
                     <EnglishQuestionVisual visualKey={current.visualKey} />
                   ) : null}
                   <h2 className="mx-auto max-w-[40rem] break-words text-center font-display text-[clamp(19px,5.6vw,23px)] font-semibold leading-[1.4] text-white sm:text-[2.15rem] sm:leading-[1.28]">
-                    {cleanLearningQuestion(current.question)}
+                    {current.mathNotation === "indices" ? (
+                      <MathIndexText text={cleanLearningQuestion(current.question)} lang={current.lang ?? "bm"} />
+                    ) : cleanLearningQuestion(current.question)}
                   </h2>
                 </div>
+
+                {current.visual && (
+                  <div className="px-4 pb-4 sm:px-6 sm:pb-5">
+                    <MathQuestionVisual visual={current.visual} lang={current.lang ?? "bm"} />
+                  </div>
+                )}
 
                 {/* ── Answer options ── */}
                 <div className="grid gap-3 px-4 pb-4 sm:grid-cols-2 sm:gap-2.5 sm:px-6 sm:pb-6">
@@ -21064,7 +21074,9 @@ function QuizzesPage() {
                                 : "text-white/80 group-hover:text-white"
                           }`}
                         >
-                          {o}
+                          {current.mathNotation === "indices" ? (
+                            <MathIndexText text={o} lang={current.lang ?? "bm"} />
+                          ) : o}
                         </span>
                         {reveal && isAnswer && (
                           <CheckCircle2 className="quiz-check-pop mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
@@ -21088,7 +21100,11 @@ function QuizzesPage() {
                 {selected !== null && current.explanation && (
                   <div className="quiz-explain mx-4 mb-2 flex items-start gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 sm:mx-6 sm:mb-4 sm:gap-3 sm:rounded-2xl sm:p-4">
                     <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-[#A78BFA]" />
-                    <p className="max-w-[46rem] text-sm leading-6 text-slate-300 sm:leading-7">{current.explanation}</p>
+                    <p className="max-w-[46rem] text-sm leading-6 text-slate-300 sm:leading-7">
+                      {current.mathNotation === "indices" ? (
+                        <MathIndexText text={current.explanation} lang={current.lang ?? "bm"} />
+                      ) : current.explanation}
+                    </p>
                   </div>
                 )}
 

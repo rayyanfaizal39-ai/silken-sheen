@@ -3184,6 +3184,8 @@ export interface QuizQuestion {
   explanation?: string;
   visualKey?: string;
   image?: string;
+  visual?: import("@/features/quiz/visuals/mathQuestionVisual").MathQuestionVisual;
+  mathNotation?: "indices";
 }
 
 export const quizzes: QuizQuestion[] = [

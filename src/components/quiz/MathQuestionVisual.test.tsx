@@ -230,7 +230,7 @@ describe("MathQuestionVisual", () => {
 
 describe("MathObjectiveQuizScreen with question visuals", () => {
   const visualQuestion = bank("objective-2", "dlp")[1];
-  const plainQuestion = bank("objective-2", "dlp")[3];
+  const plainQuestion = bank("objective-2", "dlp").find((question) => !question.visual)!;
 
   it("shows the visual between the question and the answer options", () => {
     const html = renderScreen(visualQuestion, "dlp");

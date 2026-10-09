@@ -7,11 +7,14 @@
  * identical data. Text is either language-neutral (a plain string such as
  * "1A", "2021" or "41–50") or a { bm, dlp } pair.
  */
+import { describeMathIndicesVisual, type MathIndicesVisual } from "./mathIndicesVisual";
+
 export type MathVisualLang = "bm" | "dlp";
 export type LocalizedText = Record<MathVisualLang, string>;
 export type VisualText = string | LocalizedText;
 
 export type MathQuestionVisual =
+  | MathIndicesVisual
   | {
       kind: "frequency-table";
       title: LocalizedText;
@@ -121,6 +124,11 @@ export function stemLeafRows(values: readonly number[]): [number, number[]][] {
 }
 
 const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
+  "index-notation": { bm: "Tatatanda indeks", dlp: "Index notation" },
+  "factor-groups": { bm: "Pendaraban berulang", dlp: "Repeated multiplication" },
+  "index-equations": { bm: "Persamaan indeks", dlp: "Index equations" },
+  "unit-cube": { bm: "Kubus unit", dlp: "Unit cube" },
+  "fraction-area": { bm: "Model luas pecahan", dlp: "Fractional area model" },
   "frequency-table": { bm: "Jadual kekerapan", dlp: "Frequency table" },
   "bar-chart": { bm: "Carta palang", dlp: "Bar chart" },
   histogram: { bm: "Histogram", dlp: "Histogram" },
@@ -143,6 +151,12 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
   const pairs = (items: [VisualText, number | string][]) =>
     items.map(([label, value]) => `${textFor(label, lang)}: ${value}`).join("; ");
   switch (visual.kind) {
+    case "index-notation":
+    case "factor-groups":
+    case "index-equations":
+    case "unit-cube":
+    case "fraction-area":
+      return describeMathIndicesVisual(visual, lang);
     case "frequency-table":
       return `${head} ${pairs(visual.rows.map((row) => [row.value, row.frequency]))}.`;
     case "bar-chart":

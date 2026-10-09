@@ -50,6 +50,8 @@ export interface QuizQuestion {
   options: string[];
   answerIndex: number;
   explanation?: string;
+  visual?: import("@/features/quiz/visuals/mathQuestionVisual").MathQuestionVisual;
+  mathNotation?: "indices";
 }
 
 export interface Flashcard {

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { MathIndicesVisual } from "./MathIndicesVisual";
 import {
   axisScale,
   describeMathQuestionVisual,
@@ -464,6 +465,12 @@ export function MathQuestionVisual({
 }) {
   const title = visual.title[lang];
   const t = (text: Parameters<typeof textFor>[0]) => textFor(text, lang);
+
+  if (visual.kind === "index-notation" || visual.kind === "factor-groups" ||
+      visual.kind === "index-equations" || visual.kind === "unit-cube" ||
+      visual.kind === "fraction-area") {
+    return <MathIndicesVisual visual={visual} lang={lang} />;
+  }
 
   if (visual.kind === "frequency-table" || visual.kind === "stem-leaf") {
     const stemLeaf = visual.kind === "stem-leaf";
