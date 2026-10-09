@@ -6,6 +6,7 @@
 import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it } from "vitest";
 import { resolveMathObjectiveQuestions } from "@/routes/quizzes";
+import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
 import type { Difficulty } from "@/data/content";
 import {
   axisScale,
@@ -845,6 +846,96 @@ describe("Mathematics Form 1 objective quizzes — routing, catalog and runtime"
   });
 });
 
+
+describe("Mathematics Form 1 Chapter 1 visual questions", () => {
+  const VISUAL_SLOTS = [
+    ["objective-1", 5, "rightOfZero"],
+    ["objective-1", 6, "compareNegativeIntegers"],
+    ["objective-1", 20, "compareNegativeFractions"],
+    ["objective-2", 5, "moveLeftEight"],
+    ["objective-2", 6, "moveRightSix"],
+    ["objective-3", 10, "distanceMinus7To4"],
+  ] as const satisfies ReadonlyArray<[Objective, number, keyof typeof MATH_F1_C1_QUIZ_VISUALS]>;
+
+  const at = (objective: Objective, lang: Lang, number: number) =>
+    bank(1, objective, lang)[number - 1];
+  const chapter1 = OBJECTIVES.flatMap((objective) =>
+    LANGS.flatMap((lang) => bank(1, objective, lang)),
+  );
+
+  it("uses number-line visuals only where Chapter 1 benefits from the representation", () => {
+    const expected = VISUAL_SLOTS.flatMap(([objective, number]) =>
+      LANGS.map((lang) => `math-f1-c1-${objective}-${lang}-q${number}`),
+    );
+    const actual = chapter1.filter((question) => question.visual).map((question) => question.id);
+    expect(actual.sort()).toEqual(expected.sort());
+    expect(actual).toHaveLength(12);
+
+    for (const [objective, number, key] of VISUAL_SLOTS) {
+      const bm = at(objective, "bm", number);
+      const dlp = at(objective, "dlp", number);
+      expect(bm.visual, bm.id).toBe(MATH_F1_C1_QUIZ_VISUALS[key]);
+      expect(dlp.visual, dlp.id).toBe(MATH_F1_C1_QUIZ_VISUALS[key]);
+      expect(bm.visual?.kind, bm.id).toBe("number-line");
+      expect(dlp.visual, dlp.id).toBe(bm.visual);
+    }
+  });
+
+  it("never mentions a number line without actually showing one", () => {
+    for (const question of chapter1) {
+      if (!/(garis nombor|number line)/i.test(question.question)) continue;
+      expect(question.visual?.kind, question.id).toBe("number-line");
+    }
+  });
+
+  it("stores valid number-line geometry without encoding a hidden answer", () => {
+    for (const visual of Object.values(MATH_F1_C1_QUIZ_VISUALS)) {
+      expect(visual.min).toBeLessThan(visual.max);
+      const tickValues = visual.ticks.map((tick) => tick.value);
+      expect(new Set(tickValues).size).toBe(tickValues.length);
+      expect([...tickValues].sort((a, b) => a - b)).toEqual(tickValues);
+      for (const value of tickValues) {
+        expect(value).toBeGreaterThanOrEqual(visual.min);
+        expect(value).toBeLessThanOrEqual(visual.max);
+      }
+      for (const point of visual.points ?? []) {
+        expect(point.value).toBeGreaterThanOrEqual(visual.min);
+        expect(point.value).toBeLessThanOrEqual(visual.max);
+      }
+      if (visual.movement) {
+        const end =
+          visual.movement.from +
+          (visual.movement.direction === "right" ? 1 : -1) * visual.movement.steps;
+        expect(visual.movement.steps).toBeGreaterThan(0);
+        expect(visual.movement.from).toBeGreaterThanOrEqual(visual.min);
+        expect(visual.movement.from).toBeLessThanOrEqual(visual.max);
+        expect(end).toBeGreaterThanOrEqual(visual.min);
+        expect(end).toBeLessThanOrEqual(visual.max);
+        // The visual label gives the operation, not the destination answer.
+        expect(visual.movement.label.bm).not.toMatch(/−?11|−?3$/);
+        expect(visual.movement.label.dlp).not.toMatch(/-?11|-?3$/);
+      }
+      if (visual.span) {
+        expect(visual.span.from).toBeGreaterThanOrEqual(visual.min);
+        expect(visual.span.to).toBeLessThanOrEqual(visual.max);
+        expect(visual.span.label.bm).toContain("?");
+        expect(visual.span.label.dlp).toContain("?");
+      }
+    }
+  });
+
+  it("keeps the number-line visual through option shuffling", () => {
+    for (const [objective, number] of VISUAL_SLOTS) {
+      for (const lang of LANGS) {
+        const original = at(objective, lang, number);
+        const shuffled = shuffleQuestionOptions(original);
+        expect(shuffled.visual, original.id).toBe(original.visual);
+        expect(keyed(shuffled), original.id).toBe(keyed(original));
+      }
+    }
+  });
+});
+
 // Chapter 12 (Data Handling) visual questions. Every question whose skill is
 // reading a data representation now shows that representation (a table or a
 // static SVG chart) instead of describing it in prose. Questions were
@@ -949,11 +1040,11 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
     );
   };
 
-  it("shows a visual on exactly the planned BM/DLP pairs and nowhere else in Form 1 Maths", () => {
+  it("shows a visual on exactly the planned Chapter 12 BM/DLP pairs", () => {
     const expected = VISUAL_SLOTS.flatMap(([objective, number]) =>
       LANGS.map((lang) => `math-f1-c12-${objective}-${lang}-q${number}`),
     );
-    const withVisual = allQuestions.filter((question) => question.visual).map((q) => q.id);
+    const withVisual = chapter12.filter((question) => question.visual).map((q) => q.id);
     expect(withVisual.sort()).toEqual(expected.sort());
     expect(withVisual).toHaveLength(110);
   });
