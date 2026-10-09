@@ -69,7 +69,7 @@ const en: MathF3C2Content = {
         {
           formula: {
             eyebrow: "The Rules",
-            formula: "Leading zeros: NEVER count. Zeros between/after digits: USUALLY count.",
+            formula: "Non-zero digits and zeros between them count. Leading zeros do not count. Trailing decimal zeros count.",
           },
           worked: {
             question: "State the number of significant figures: (a) 60 007 (b) 0.005020",
@@ -88,7 +88,7 @@ const en: MathF3C2Content = {
       ],
       guided: {
         question:
-          "How many significant figures does 8750 have, if rounded to 2 significant figures?",
+          "Round 8750 to 2 significant figures.",
         answer: "Rounded to 2 sig figs: 8800 (keep the first 2 meaningful digits, round the rest).",
       },
       mistake: {
@@ -159,9 +159,9 @@ const en: MathF3C2Content = {
         answer: "Positive power → move the decimal point 5 places RIGHT: 417,000.",
       },
       mistake: {
-        wrong: 'Writing 5.1 × 10⁰ or 51 × 10³ as "standard form".',
+        wrong: 'Writing 51 × 10³ as "standard form".',
         right:
-          "A MUST be between 1 and 10 (not including 10 itself) — 51×10³ isn't standard form since 51 is too big; it should be 5.1×10⁴.",
+          "A MUST be between 1 and 10 (not including 10 itself) — 51×10³ isn't standard form since 51 is too big; it should be 5.1×10⁴. A zero index is valid: 5.1×10⁰ = 5.1.",
       },
       practice: {
         easy: {
@@ -202,7 +202,7 @@ const en: MathF3C2Content = {
   challenge: {
     question:
       "Malaysia's population is approximately 3.35 × 10⁷, and its land area is approximately 3.3 × 10⁵ km². Estimate the population density (people per km²), giving your answer to 2 significant figures.",
-    answer: "3.35×10⁷ ÷ 3.3×10⁵ = 1.015×10² ≈ 100 people/km² (2 s.f.).",
+    answer: "3.35×10⁷ ÷ 3.3×10⁵ = 1.015×10² ≈ 1.0×10² people/km² (2 s.f.).",
   },
 };
 
@@ -226,7 +226,7 @@ const bm: MathF3C2Content = {
           formula: {
             eyebrow: "Peraturan",
             formula:
-              "Sifar hadapan: TIDAK PERNAH dikira. Sifar antara/selepas digit: BIASANYA dikira.",
+              "Digit bukan sifar dan sifar di antaranya bererti. Sifar hadapan tidak bererti. Sifar akhir dalam perpuluhan bererti.",
           },
           worked: {
             question: "Nyatakan bilangan angka bererti: (a) 60 007 (b) 0.005020",
@@ -244,7 +244,7 @@ const bm: MathF3C2Content = {
         },
       ],
       guided: {
-        question: "Berapa angka bererti ada 8750, jika dibundarkan kepada 2 angka bererti?",
+        question: "Bundarkan 8750 kepada 2 angka bererti.",
         answer:
           "Dibundarkan kepada 2 angka bererti: 8800 (kekalkan 2 digit bermakna pertama, bundarkan selebihnya).",
       },
@@ -317,9 +317,9 @@ const bm: MathF3C2Content = {
         answer: "Kuasa positif → gerak titik perpuluhan 5 tempat KANAN: 417,000.",
       },
       mistake: {
-        wrong: 'Menulis 5.1 × 10⁰ atau 51 × 10³ sebagai "bentuk piawai".',
+        wrong: 'Menulis 51 × 10³ sebagai "bentuk piawai".',
         right:
-          "A MESTI antara 1 dan 10 (tidak termasuk 10 sendiri) — 51×10³ bukan bentuk piawai kerana 51 terlalu besar; ia patut 5.1×10⁴.",
+          "A MESTI antara 1 dan 10 (tidak termasuk 10 sendiri) — 51×10³ bukan bentuk piawai kerana 51 terlalu besar; ia patut 5.1×10⁴. Indeks sifar adalah sah: 5.1×10⁰ = 5.1.",
       },
       practice: {
         easy: {
@@ -358,7 +358,7 @@ const bm: MathF3C2Content = {
   challenge: {
     question:
       "Populasi Malaysia lebih kurang 3.35 × 10⁷, dan luas tanahnya lebih kurang 3.3 × 10⁵ km². Anggarkan kepadatan populasi (orang setiap km²), beri jawapan anda kepada 2 angka bererti.",
-    answer: "3.35×10⁷ ÷ 3.3×10⁵ = 1.015×10² ≈ 100 orang/km² (2 a.b.).",
+    answer: "3.35×10⁷ ÷ 3.3×10⁵ = 1.015×10² ≈ 1.0×10² orang/km² (2 a.b.).",
   },
 };
 

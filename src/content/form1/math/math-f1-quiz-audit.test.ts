@@ -1100,7 +1100,7 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
 
   it("only uses representations taught in the Chapter 12 notes", () => {
     const notes = readFileSync("src/content/form1/math/chapter-12/notes-dlp.ts", "utf8");
-    const taught: Record<Kind, RegExp> = {
+    const taught: Partial<Record<Kind, RegExp>> = {
       "frequency-table": /frequency table/i,
       "bar-chart": /bar chart/i,
       histogram: /histogram/i,
@@ -1110,7 +1110,11 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
       "dot-plot": /dot plot/i,
       "stem-leaf": /stem-and-leaf/i,
     };
-    for (const question of visualQuestions) expect(notes).toMatch(taught[question.visual!.kind]);
+    for (const question of visualQuestions) {
+      const pattern = taught[question.visual!.kind];
+      expect(pattern, question.id).toBeDefined();
+      if (pattern) expect(notes).toMatch(pattern);
+    }
   });
 
   it("stores valid, honestly scaled data in every visual", () => {

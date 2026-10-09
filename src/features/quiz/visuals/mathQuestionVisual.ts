@@ -8,6 +8,7 @@
  * "1A", "2021" or "41–50") or a { bm, dlp } pair.
  */
 import { describeMathIndicesVisual, type MathIndicesVisual } from "./mathIndicesVisual";
+import { describeMathStandardFormVisual, type MathStandardFormVisual } from "./mathStandardFormVisual";
 
 export type MathVisualLang = "bm" | "dlp";
 export type LocalizedText = Record<MathVisualLang, string>;
@@ -15,6 +16,7 @@ export type VisualText = string | LocalizedText;
 
 export type MathQuestionVisual =
   | MathIndicesVisual
+  | MathStandardFormVisual
   | {
       kind: "frequency-table";
       title: LocalizedText;
@@ -124,6 +126,13 @@ export function stemLeafRows(values: readonly number[]): [number, number[]][] {
 }
 
 const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
+  "place-value": { bm: "Nilai tempat", dlp: "Place value" },
+  "standard-form-parts": { bm: "Bentuk piawai", dlp: "Standard form" },
+  "standard-form-operation": { bm: "Operasi bentuk piawai", dlp: "Standard form operation" },
+  "right-triangle": { bm: "Segitiga bersudut tegak", dlp: "Right-angled triangle" },
+  "measurement-model": { bm: "Model ukuran", dlp: "Measurement model" },
+  "distance-comparison": { bm: "Perbandingan jarak", dlp: "Distance comparison" },
+  "storage-capacity": { bm: "Kapasiti storan", dlp: "Storage capacity" },
   "index-notation": { bm: "Tatatanda indeks", dlp: "Index notation" },
   "factor-groups": { bm: "Pendaraban berulang", dlp: "Repeated multiplication" },
   "index-equations": { bm: "Persamaan indeks", dlp: "Index equations" },
@@ -151,6 +160,14 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
   const pairs = (items: [VisualText, number | string][]) =>
     items.map(([label, value]) => `${textFor(label, lang)}: ${value}`).join("; ");
   switch (visual.kind) {
+    case "place-value":
+    case "standard-form-parts":
+    case "standard-form-operation":
+    case "right-triangle":
+    case "measurement-model":
+    case "distance-comparison":
+    case "storage-capacity":
+      return describeMathStandardFormVisual(visual, lang);
     case "index-notation":
     case "factor-groups":
     case "index-equations":

@@ -40,7 +40,7 @@ export const mathF3C2MindMapBM: MindNode = {
             { id: "f3c2-2-1-1", label: "A x 10^n, dengan 1 ≤ A < 10, n integer" },
             { id: "f3c2-2-1-2", label: "280 = 2.8 x 10^2" },
             { id: "f3c2-2-1-3", label: "0.03025 = 3.025 x 10^-2" },
-            { id: "f3c2-2-1-4", label: "n positif jika nombor ≥10; n negatif jika nombor <1" },
+            { id: "f3c2-2-1-4", label: "n positif jika nombor ≥10; n negatif jika 0<nombor<1" },
           ],
         },
         {

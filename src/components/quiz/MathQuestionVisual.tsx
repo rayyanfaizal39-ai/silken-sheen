@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { MathIndicesVisual } from "./MathIndicesVisual";
+import { MathStandardFormVisual } from "./MathStandardFormVisual";
 import {
   axisScale,
   describeMathQuestionVisual,
@@ -465,6 +466,13 @@ export function MathQuestionVisual({
 }) {
   const title = visual.title[lang];
   const t = (text: Parameters<typeof textFor>[0]) => textFor(text, lang);
+
+  if (visual.kind === "place-value" || visual.kind === "standard-form-parts" ||
+      visual.kind === "standard-form-operation" || visual.kind === "right-triangle" ||
+      visual.kind === "measurement-model" || visual.kind === "distance-comparison" ||
+      visual.kind === "storage-capacity") {
+    return <MathStandardFormVisual visual={visual} lang={lang} />;
+  }
 
   if (visual.kind === "index-notation" || visual.kind === "factor-groups" ||
       visual.kind === "index-equations" || visual.kind === "unit-cube" ||
