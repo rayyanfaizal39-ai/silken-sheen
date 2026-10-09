@@ -76,7 +76,10 @@ describe("MathQuestionVisual", () => {
 
 
   it("renders Chapter 1 number lines as lightweight SVGs with truthful ticks and movement labels", () => {
-    for (const visual of Object.values(V1)) {
+    for (const visual of Object.values(V1) as Extract<
+      MathQuestionVisualData,
+      { kind: "number-line" }
+    >[]) {
       for (const lang of ["bm", "dlp"] as const) {
         const html = render(visual, lang);
         expect(html, visual.title.dlp).toContain('data-math-visual="number-line"');
