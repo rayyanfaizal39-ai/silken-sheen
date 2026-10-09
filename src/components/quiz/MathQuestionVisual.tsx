@@ -271,6 +271,137 @@ function Pie({ sectors }: { sectors: { label: string; angle: number; text: strin
   );
 }
 
+
+function NumberLine({
+  visual,
+  lang,
+}: {
+  visual: Extract<MathQuestionVisualData, { kind: "number-line" }>;
+  lang: MathVisualLang;
+}) {
+  const left = 20;
+  const right = W - 20;
+  const axisY = 70;
+  const height = visual.movement || visual.span ? 126 : 106;
+  const xOf = (value: number) =>
+    left + ((value - visual.min) / Math.max(1e-9, visual.max - visual.min)) * (right - left);
+  const labelFor = (value: number, label?: Parameters<typeof textFor>[0]) =>
+    label === undefined ? String(value).replace("-", "−") : textFor(label, lang);
+  const markerId = "math-number-line-arrow";
+  const movementEnd = visual.movement
+    ? visual.movement.from + (visual.movement.direction === "right" ? 1 : -1) * visual.movement.steps
+    : null;
+
+  return (
+    <svg viewBox={`0 0 ${W} ${height}`} className="w-full" aria-hidden="true">
+      <defs>
+        <marker
+          id={markerId}
+          markerWidth="7"
+          markerHeight="7"
+          refX="6"
+          refY="3.5"
+          orient="auto"
+        >
+          <path d="M0,0 L7,3.5 L0,7 Z" fill={VIOLET} />
+        </marker>
+      </defs>
+
+      <line x1={left - 6} x2={right + 6} y1={axisY} y2={axisY} stroke={AXIS} strokeWidth={1.4} />
+      <path d={`M${left - 6},${axisY} l7,-4 v8 z`} fill={AXIS} />
+      <path d={`M${right + 6},${axisY} l-7,-4 v8 z`} fill={AXIS} />
+
+      {visual.ticks.map((tick) => (
+        <g key={`tick-${tick.value}`}>
+          <line
+            x1={xOf(tick.value)}
+            x2={xOf(tick.value)}
+            y1={axisY - 5}
+            y2={axisY + 5}
+            stroke={AXIS}
+          />
+          <Label x={xOf(tick.value)} y={axisY + 20} size={10.5}>
+            {labelFor(tick.value, tick.label)}
+          </Label>
+        </g>
+      ))}
+
+      {visual.points?.map((point) => (
+        <g key={`point-${point.value}`}>
+          <circle
+            cx={xOf(point.value)}
+            cy={axisY}
+            r={5.5}
+            fill="rgba(139,107,255,0.62)"
+            stroke={VIOLET}
+            strokeWidth={1.5}
+          />
+          {point.label !== undefined && (
+            <Label x={xOf(point.value)} y={axisY - 12} fill="#fff" weight={700} size={10.5}>
+              {labelFor(point.value, point.label)}
+            </Label>
+          )}
+        </g>
+      ))}
+
+      {visual.movement && movementEnd !== null && (
+        <g data-number-line-movement>
+          <circle cx={xOf(visual.movement.from)} cy={axisY} r={5.5} fill={VIOLET} />
+          <path
+            d={`M${xOf(visual.movement.from)},${axisY - 10} Q${(xOf(visual.movement.from) + xOf(movementEnd)) / 2},18 ${xOf(movementEnd)},${axisY - 10}`}
+            fill="none"
+            stroke={VIOLET}
+            strokeWidth={2}
+            markerEnd={`url(#${markerId})`}
+          />
+          <Label
+            x={(xOf(visual.movement.from) + xOf(movementEnd)) / 2}
+            y={16}
+            fill="#fff"
+            weight={700}
+            size={10.5}
+          >
+            {visual.movement.label[lang]}
+          </Label>
+        </g>
+      )}
+
+      {visual.span && (
+        <g data-number-line-span>
+          <line
+            x1={xOf(visual.span.from)}
+            x2={xOf(visual.span.to)}
+            y1={25}
+            y2={25}
+            stroke={VIOLET}
+            strokeWidth={2}
+          />
+          {[visual.span.from, visual.span.to].map((value) => (
+            <line
+              key={value}
+              x1={xOf(value)}
+              x2={xOf(value)}
+              y1={20}
+              y2={31}
+              stroke={VIOLET}
+              strokeWidth={2}
+            />
+          ))}
+          <Label
+            x={(xOf(visual.span.from) + xOf(visual.span.to)) / 2}
+            y={16}
+            fill="#fff"
+            weight={700}
+            size={10.5}
+          >
+            {visual.span.label[lang]}
+          </Label>
+        </g>
+      )}
+    </svg>
+  );
+}
+
 function Dots({
   min,
   max,
@@ -421,6 +552,9 @@ export function MathQuestionVisual({
       chart = (
         <Pie sectors={visual.sectors.map((sector) => ({ ...sector, label: t(sector.label) }))} />
       );
+      break;
+    case "number-line":
+      chart = <NumberLine visual={visual} lang={lang} />;
       break;
     case "dot-plot":
       chart = (
