@@ -1,546 +1,571 @@
 import type { StructuredNotes } from "@/content/types";
 
 export const geographyF3C9Notes: StructuredNotes = {
-  "chapterSummary": "Bab 9 Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia merangkumi 4 subtopik rasmi: 9.1 Taburan Sumber Semula Jadi Utama di Dunia; 9.2 Krisis Sumber Semula Jadi di Dunia; 9.3 Contoh Kerjasama Ekonomi Antarabangsa; 9.4 Kepentingan Kerjasama Ekonomi Antarabangsa. Nota ini disusun mengikut urutan buku teks dan mengekalkan fokus kepada fakta, konsep, proses, contoh, jadual, peta, rajah dan kemahiran UASA yang terdapat dalam bab.",
-  "quickRevision": [
-    "9.1 Taburan Sumber Semula Jadi Utama di Dunia",
-    "9.2 Krisis Sumber Semula Jadi di Dunia",
-    "9.3 Contoh Kerjasama Ekonomi Antarabangsa",
-    "9.4 Kepentingan Kerjasama Ekonomi Antarabangsa",
-    "Taburan Sumber Semula Jadi",
-    "Krisis Sumber Semula Jadi di Dunia9.2 Eksploitasi dan penerokaan sumber secara berterusan dan tidak terancang mengakibatkan kuantiti sumber semula jadi di dunia semakin berkurangan. Keadaan ini mewujudkan pelbagai",
-    "Contoh Kerjasama Ekonomi Antarabangsa9.3 Kerjasama ekonomi serantau yang ditubuhkan pada tahun 1967 Dianggotai oleh 10 buah negara Asia Tenggara, iaitu Thailand, Malaysia, Singapura, Indonesia, Vietnam, Myanmar, Filipina, Kemboja, Brunei Darussalam",
-    "Kepentingan Kerjasama Ekonomi Antarabangsa9.4"
+  chapterSummary:
+    "Bab 9 menerangkan taburan sumber tenaga utama di dunia, punca dan kesan krisis sumber semula jadi, contoh bentuk kerjasama ekonomi antarabangsa, serta kepentingan kerjasama tersebut kepada negara. Murid perlu dapat menghubungkan sumber dengan contoh negara, menghuraikan krisis dari aspek ekonomi, politik, masyarakat dan alam sekitar, serta menerangkan bagaimana perdagangan, pelaburan, buruh, bahan mentah dan teknologi bergerak antara negara.",
+
+  quickRevision: [
+    "Sumber tenaga dunia boleh dibahagikan kepada sumber bahan bakar dan sumber tenaga alternatif.",
+    "Petroleum, gas asli dan arang batu ialah sumber bahan bakar yang tidak boleh baharu.",
+    "Suria, angin, air, ombak, geoterma dan biomas ialah contoh sumber tenaga alternatif.",
+    "Taburan sumber semula jadi tidak sekata; sesetengah negara mempunyai sumber yang banyak manakala negara lain bergantung pada import.",
+    "Eksploitasi berlebihan dan peningkatan permintaan boleh mencetuskan krisis sumber.",
+    "Krisis sumber memberi kesan kepada ekonomi, politik, masyarakat dan alam sekitar.",
+    "Kerjasama ekonomi antarabangsa boleh berbentuk dua hala, pelbagai hala, serantau, kumpulan negara, sedunia dan segi tiga pertumbuhan.",
+    "Contoh kerjasama penting dalam bab ini ialah ASEAN, IMT-GT, IMS-GT, APEC, WTO dan EU.",
+    "Kerjasama ekonomi membantu meluaskan pasaran, mendapatkan bahan mentah, menarik pelaburan, memperoleh tenaga buruh dan memindahkan teknologi.",
   ],
-  "keyTerms": [
-    "Taburan Sumber Semula Jadi Utama di Dunia",
-    "Krisis Sumber Semula Jadi di Dunia",
-    "Contoh Kerjasama Ekonomi Antarabangsa",
-    "Kepentingan Kerjasama Ekonomi Antarabangsa",
-    "Semenanjung Malaysia (Perlis, Kedah, Negeri Sembilan, Kelantan, Perak, Melaka, Selangor dan Pulau Pinang) dan 14 buah wilayah di selatan Thailand Bidang fokus utama ialah pertanian dan industri asas tani, pelancongan,",
-    "Rajah 9.1 Eksport petroleum mentah Malaysia mengikut negara utama pada tahun 2016 Rajah 9.2 Eksport kayu balak Malaysia mengikut negara utama pada tahun 2016 Malaysia adalah salah satu daripada pengeluar kayu tropika. Hasil kayu negara dieksport ke",
-    "lebih 162 buah negara dan India merupakan pasaran utama.",
-    "(MITI) dan Perbadanan Pembangunan Perdagangan Luar Malaysia atau Malaysia External Trade Development Corporation (MATRADE) adalah agensi yang menguruskan perdagangan di Malaysia Membolehkan negara-negara yang bekerjasama untuk meluaskan pasaran eksport barangan",
-    "Mexico dan Kanada merupakan antara negara utama yang mengimport gas asli dari Amerika Syarikat",
-    "(a) Kerjasama ekonomi antarabangsa terbentuk melalui hubungan diplomatik (b) WTO ialah kerjasama segi tiga pertumbuhan (c) Australia merupakan salah sebuah negara yang menganggotai pertubuhan ASEAN",
-    "(e) MATRADE ialah kerjasama ekonomi antarabangsa yang mengendalikan sistem perdagangan pada peringkat global 4. Lengkapkan jadual di bawah dengan menulis krisis sumber semula jadi sama ada terhadap ekonomi,"
+
+  keyTerms: [
+    "Sumber bahan bakar",
+    "Tenaga alternatif",
+    "Petroleum",
+    "Gas asli",
+    "Arang batu",
+    "Geoterma",
+    "Tenaga angin",
+    "Tenaga ombak",
+    "Tenaga suria",
+    "Hidroelektrik",
+    "Biomas",
+    "Krisis sumber",
+    "Kerjasama dua hala",
+    "Kerjasama pelbagai hala",
+    "Kerjasama serantau",
+    "Segi tiga pertumbuhan",
+    "ASEAN",
+    "IMT-GT",
+    "IMS-GT",
+    "APEC",
+    "WTO",
+    "EU",
+    "Pelaburan langsung asing (FDI)",
+    "Pemindahan teknologi",
+    "Tarif",
+    "Kuota",
+    "Embargo",
   ],
-  "keyExamFacts": [
-    "Taburan Sumber Semula Jadi",
-    "Kepentingan Kerjasama Ekonomi Antarabangsa9.4",
-    "Terdapat dua jenis pelaburan, iaitu pelaburan ekuiti dan pelaburan langsung asing atau Foreign",
-    "Kesan krisis sumber semula jadi di dunia Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
-    "(d) Pertubuhan APEC berusaha menggalakkan amalan perdagangan bebas antara"
+
+  keyExamFacts: [
+    "Arab Saudi sering digunakan sebagai contoh negara pengeluar petroleum utama dalam bab ini.",
+    "Amerika Syarikat digunakan sebagai contoh negara yang mempunyai sumber gas asli yang besar.",
+    "Rusia merupakan contoh negara yang mempunyai sumber arang batu yang besar.",
+    "Iceland terkenal dengan penggunaan tenaga geoterma kerana aktiviti haba dalaman bumi yang tinggi.",
+    "Belanda digunakan sebagai contoh negara yang memanfaatkan tenaga angin, manakala Jepun dikaitkan dengan penggunaan tenaga suria.",
+    "China merupakan contoh negara yang menjana hidroelektrik pada skala besar, manakala India dikaitkan dengan penggunaan biomas.",
+    "Krisis sumber boleh menyebabkan kenaikan harga, kos sara hidup meningkat, konflik perebutan sumber dan kerosakan ekosistem.",
+    "ASEAN ialah contoh kerjasama serantau Asia Tenggara; APEC pula melibatkan ekonomi di rantau Asia Pasifik.",
+    "WTO mengendalikan sistem perdagangan global dan menyediakan forum rundingan serta penyelesaian pertikaian perdagangan.",
+    "Kerjasama ekonomi antarabangsa memudahkan pasaran eksport, bekalan bahan mentah, pelaburan, buruh dan pemindahan teknologi.",
   ],
-  "sections": [
+
+  sections: [
     {
-      "title": "Pengenalan Bab",
-      "subsections": [
+      title: "Pengenalan Bab",
+      subsections: [
         {
-          "title": "Gambaran keseluruhan",
-          "content": "Eksploitasi sumber semula jadi secara berlebihan, terutamanya sumber tidak boleh baharu mencetuskan pelbagai krisis. Tahukah anda tentang krisis sumber semula jadi dunia yang berlaku pada masa ini? Bolehkah anda nyatakan kerjasama ekonomi antarabangsa berkaitan sumber semula jadi? Apakah pula kepentingan kerjasama ekonomi ini? 3 Mengenal pasti sumber semula jadi utama di dunia 3 Menjelaskan taburan sumber semula jadi utama di dunia 3 Menghuraikan krisis sumber semula jadi di dunia 3 Menjelaskan melalui contoh kerjasama ekonomi"
+          title: "Gambaran keseluruhan",
+          content:
+            "Sumber semula jadi tidak tersebar secara sama rata di dunia. Ada negara yang kaya dengan petroleum, gas asli atau arang batu, manakala negara lain mempunyai potensi besar dalam tenaga suria, angin, air atau geoterma. Perbezaan ini mewujudkan perdagangan dan kerjasama antara negara, tetapi penggunaan yang tidak terkawal juga boleh mencetuskan krisis sumber.",
         },
         {
-          "title": "Checklist subtopik",
-          "bulletPoints": [
-            "✓ 9.1 Taburan Sumber Semula Jadi Utama di Dunia",
-            "✓ 9.2 Krisis Sumber Semula Jadi di Dunia",
-            "✓ 9.3 Contoh Kerjasama Ekonomi Antarabangsa",
-            "✓ 9.4 Kepentingan Kerjasama Ekonomi Antarabangsa"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "9.1 Taburan Sumber Semula Jadi Utama di Dunia",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Taburan Sumber Semula Jadi Sumber tenaga terbahagi kepada sumber tenaga bahan bakar, iaitu petroleum, gas asli dan arang batu serta sumber tenaga alternatif, iaitu ombak, angin, geoterma, air, suria dan biomas."
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Taburan Sumber Semula Jadi Utama di Dunia",
-            "Taburan Sumber Semula Jadi"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Taburan Sumber Semula Jadi",
-            "Sumber tenaga terbahagi kepada sumber tenaga bahan bakar, iaitu petroleum, gas asli dan arang batu serta sumber tenaga alternatif, iaitu ombak, angin, geoterma, air, suria dan biomas.",
-            "Gas asli (Amerika Syarikat)",
-            "Sumber Tenaga Utama di Dunia Peta 9.1 Sumber tenaga utama di dunia 1. Nyatakan tiga sumber semula jadi boleh baharu yang terdapat di dunia."
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Taburan Sumber Semula Jadi",
-            "Sumber tenaga terbahagi kepada sumber tenaga bahan bakar, iaitu petroleum, gas asli dan arang batu serta sumber tenaga alternatif, iaitu ombak, angin, geoterma, air, suria dan biomas.",
-            "Sumber Tenaga Utama di Dunia Peta 9.1 Sumber tenaga utama di dunia 1. Nyatakan tiga sumber semula jadi boleh baharu yang terdapat di dunia."
+          title: "Apa yang perlu dikuasai",
+          bulletPoints: [
+            "Mengenal pasti sumber tenaga utama dan contoh negara yang berkaitan.",
+            "Menerangkan punca dan kesan krisis sumber semula jadi.",
+            "Membezakan bentuk kerjasama ekonomi antarabangsa.",
+            "Mengenal pasti peranan ASEAN, IMT-GT, IMS-GT, APEC, WTO dan EU secara umum.",
+            "Menghuraikan kepentingan kerjasama ekonomi kepada pasaran, bahan mentah, pelaburan, buruh dan teknologi.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "Taburan Sumber Semula Jadi"
-              ],
-              [
-                "Sumber tenaga terbahagi kepada sumber tenaga bahan bakar, iaitu petroleum, gas asli dan"
-              ],
-              [
-                "arang batu serta sumber tenaga alternatif, iaitu ombak, angin, geoterma, air, suria dan biomas."
-              ],
-              [
-                "Sumber Tenaga Utama di Dunia"
-              ],
-              [
-                "Peta 9.1 Sumber tenaga utama di dunia"
-              ],
-              [
-                "1. Nyatakan tiga sumber semula jadi boleh baharu yang terdapat di dunia."
-              ],
-              [
-                "2. Berikan dua contoh negara lain yang mempunyai sumber semula jadi petroleum."
-              ]
-            ]
-          }
         },
-        {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Taburan Sumber Semula Jadi",
-            "Sumber tenaga terbahagi kepada sumber tenaga bahan bakar, iaitu petroleum, gas asli dan arang batu serta sumber tenaga alternatif, iaitu ombak, angin, geoterma, air, suria dan biomas.",
-            "Gas asli (Amerika Syarikat)",
-            "Sumber Tenaga Utama di Dunia Peta 9.1 Sumber tenaga utama di dunia 1. Nyatakan tiga sumber semula jadi boleh baharu yang terdapat di dunia."
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Taburan Sumber Semula Jadi Utama di Dunia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Taburan Sumber Semula Jadi Utama di Dunia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 9.1 menekankan Taburan Sumber Semula Jadi Utama di Dunia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+      ],
     },
+
     {
-      "title": "9.2 Krisis Sumber Semula Jadi di Dunia",
-      "subsections": [
+      title: "9.1 Taburan Sumber Semula Jadi Utama di Dunia",
+      subsections: [
         {
-          "title": "Pengenalan",
-          "content": "Eksploitasi dan penerokaan sumber secara berterusan dan tidak terancang mengakibatkan kuantiti sumber semula jadi di dunia semakin berkurangan. Keadaan ini mewujudkan pelbagai krisis sumber semula jadi dalam aspek ekonomi, politik, masyarakat dan alam sekitar. Krisis sumber semula jadi dunia"
+          title: "Dua kumpulan sumber tenaga",
+          table: {
+            headers: ["Kumpulan", "Contoh", "Ciri utama"],
+            rows: [
+              [
+                "Sumber bahan bakar",
+                "Petroleum, gas asli dan arang batu.",
+                "Sumber tidak boleh baharu; bekalan terhad dan terbentuk dalam tempoh geologi yang sangat panjang.",
+              ],
+              [
+                "Sumber tenaga alternatif",
+                "Suria, angin, hidroelektrik, ombak, geoterma dan biomas.",
+                "Digunakan sebagai alternatif kepada bahan api fosil; banyak daripadanya boleh diperbaharui.",
+              ],
+            ],
+          },
         },
+
         {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Krisis Sumber Semula Jadi di Dunia"
-          ]
+          title: "Sumber bahan bakar utama",
+          table: {
+            headers: ["Sumber", "Contoh negara yang dikaitkan dalam bab", "Kegunaan umum"],
+            rows: [
+              [
+                "Petroleum",
+                "Arab Saudi dan negara pengeluar petroleum lain.",
+                "Bahan api pengangkutan, tenaga dan bahan mentah industri petrokimia.",
+              ],
+              [
+                "Gas asli",
+                "Amerika Syarikat dan negara pengeluar gas lain.",
+                "Penjanaan tenaga, kegunaan domestik dan industri petrokimia.",
+              ],
+              [
+                "Arang batu",
+                "Rusia dan negara yang mempunyai deposit arang batu besar.",
+                "Penjanaan tenaga dan kegunaan industri.",
+              ],
+            ],
+          },
         },
+
         {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Krisis sumber semula jadi dunia"
-          ]
+          title: "Sumber tenaga alternatif",
+          table: {
+            headers: ["Sumber", "Contoh negara", "Mengapa sesuai"],
+            rows: [
+              ["Geoterma", "Iceland", "Aktiviti haba dalaman bumi yang tinggi."],
+              ["Angin", "Belanda", "Keadaan angin yang sesuai untuk turbin angin."],
+              ["Ombak", "Perancis", "Kawasan pantai tertentu mempunyai tenaga ombak yang boleh dimanfaatkan."],
+              ["Suria", "Jepun", "Teknologi fotovolta digunakan untuk menukar cahaya matahari kepada elektrik."],
+              ["Hidroelektrik", "China", "Sungai besar, empangan dan bentuk muka bumi sesuai untuk penjanaan hidroelektrik."],
+              ["Biomas", "India", "Sisa pertanian dan bahan organik boleh digunakan untuk menghasilkan tenaga."],
+            ],
+          },
         },
+
         {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Eksploitasi dan penerokaan sumber secara berterusan dan tidak terancang mengakibatkan kuantiti sumber semula jadi di dunia semakin berkurangan. Keadaan ini mewujudkan pelbagai krisis sumber semula jadi dalam aspek ekonomi, politik, masyarakat dan alam sekitar."
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Eksploitasi dan penerokaan sumber secara berterusan dan tidak terancang mengakibatkan kuantiti sumber semula jadi di dunia semakin berkurangan. Keadaan ini mewujudkan pelbagai krisis sumber semula jadi dalam aspek ekonomi, politik, masyarakat dan alam sekitar.",
-            "Krisis sumber semula jadi dunia"
+          title: "Bagaimana tenaga dihasilkan?",
+          bulletPoints: [
+            "Suria: panel fotovolta menukar cahaya matahari kepada tenaga elektrik.",
+            "Hidroelektrik: aliran air memutarkan turbin untuk menjana elektrik.",
+            "Angin: angin memutarkan bilah turbin.",
+            "Geoterma: haba dalaman bumi digunakan untuk menghasilkan tenaga.",
+            "Biomas: bahan organik seperti sisa tumbuhan dan sisa haiwan diproses sebagai sumber tenaga.",
+            "Ombak: pergerakan air laut digunakan untuk menjana tenaga.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "Eksploitasi dan penerokaan sumber secara berterusan dan tidak terancang mengakibatkan"
-              ],
-              [
-                "kuantiti sumber semula jadi di dunia semakin berkurangan. Keadaan ini mewujudkan pelbagai"
-              ],
-              [
-                "krisis sumber semula jadi dalam aspek ekonomi, politik, masyarakat dan alam sekitar."
-              ],
-              [
-                "sumber seperti"
-              ],
-              [
-                "kekurangan sumber"
-              ],
-              [
-                "sumber semula jadi"
-              ],
-              [
-                "SUMBER SEMULA JADI"
-              ],
-              [
-                "Krisis sumber semula jadi dunia"
-              ]
-            ]
-          }
         },
+
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Eksploitasi dan penerokaan sumber secara berterusan dan tidak terancang mengakibatkan kuantiti sumber semula jadi di dunia semakin berkurangan. Keadaan ini mewujudkan pelbagai krisis sumber semula jadi dalam aspek ekonomi, politik, masyarakat dan alam sekitar.",
-            "Krisis sumber semula jadi dunia"
-          ]
+          title: "Mengapa taburan sumber tidak sekata?",
+          content:
+            "Taburan sumber dipengaruhi oleh keadaan geologi, iklim, bentuk muka bumi, sistem sungai, lokasi pesisir dan teknologi. Oleh sebab keadaan fizikal setiap negara berbeza, tidak semua negara mempunyai sumber atau potensi tenaga yang sama.",
         },
+
         {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Krisis Sumber Semula Jadi di Dunia.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
+          title: "Hubungan taburan sumber dengan perdagangan",
+          content:
+            "Negara yang mempunyai lebihan sesuatu sumber boleh mengeksportnya, manakala negara yang kekurangan sumber perlu mengimport. Keadaan ini menjadikan sumber semula jadi salah satu asas penting kepada perdagangan antarabangsa.",
         },
+
         {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Krisis Sumber Semula Jadi di Dunia.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 9.2 menekankan Krisis Sumber Semula Jadi di Dunia. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
-    },
-    {
-      "title": "9.3 Contoh Kerjasama Ekonomi Antarabangsa",
-      "subsections": [
-        {
-          "title": "Pengenalan",
-          "content": "Kerjasama ekonomi serantau yang ditubuhkan pada tahun 1967 Dianggotai oleh 10 buah negara Asia Tenggara, iaitu Thailand, Malaysia, Singapura, Indonesia, Vietnam, Myanmar, Filipina, Kemboja, Brunei Darussalam Menggalakkan kerjasama dalam pelbagai bidang antara negara anggota seperti pendidikan, pelancongan serta penyelidikan dan pembangunan (R&D) Pertubuhan Negara-negara Asia Tenggara atau"
-        },
-        {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Contoh Kerjasama Ekonomi Antarabangsa",
-            "Semenanjung Malaysia (Perlis, Kedah, Negeri Sembilan, Kelantan, Perak, Melaka, Selangor dan Pulau Pinang) dan 14 buah wilayah di selatan Thailand Bidang fokus utama ialah pertanian dan industri asas tani, pelancongan,",
-            "Rajah 9.1 Eksport petroleum mentah Malaysia mengikut negara utama pada tahun 2016 Rajah 9.2 Eksport kayu balak Malaysia mengikut negara utama pada tahun 2016 Malaysia adalah salah satu daripada pengeluar kayu tropika. Hasil kayu negara dieksport ke",
-            "lebih 162 buah negara dan India merupakan pasaran utama."
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "Semenanjung Malaysia (Perlis, Kedah, Negeri Sembilan, Kelantan, Perak, Melaka, Selangor dan Pulau Pinang) dan 14 buah wilayah di selatan Thailand Bidang fokus utama ialah pertanian dan industri asas tani, pelancongan,",
-            "Rajah 9.1 Eksport petroleum mentah Malaysia mengikut negara utama pada tahun 2016 Rajah 9.2 Eksport kayu balak Malaysia mengikut negara utama pada tahun 2016 Malaysia adalah salah satu daripada pengeluar kayu tropika. Hasil kayu negara dieksport ke",
-            "lebih 162 buah negara dan India merupakan pasaran utama."
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Kerjasama ekonomi serantau yang ditubuhkan pada tahun 1967 Dianggotai oleh 10 buah negara Asia Tenggara, iaitu Thailand, Malaysia, Singapura, Indonesia, Vietnam, Myanmar, Filipina, Kemboja, Brunei Darussalam",
-            "Menggalakkan kerjasama dalam pelbagai bidang antara negara anggota seperti pendidikan, pelancongan serta penyelidikan dan pembangunan (R&D) Pertubuhan Negara-negara Asia Tenggara atau",
-            "Association of Southeast Asian Nations (ASEAN) IMS-GT dan IMT-GT: Kerjasama segi tiga pertumbuhan IMT-GT yang ditubuhkan pada tahun 1994 Dianggotai oleh 10 buah wilayah di Sumatera, lapan buah negeri di",
-            "produk halal dan perkhidmatan Segi Tiga Pertumbuhan Indonesia, Malaysia dan Thailand Kerjasama ekonomi antarabangsa diwujudkan atas dasar ingin membantu sesama negara dalam bidang ekonomi. Kerjasama ekonomi antarabangsa telah diterjemahkan dalam pelbagai bentuk",
-            "kerjasama seperti kerjasama hubungan dua hala, kerjasama pelbagai hala, kerjasama serantau, kerjasama kumpulan negara, kerjasama sedunia dan kerjasama segi tiga pertumbuhan.",
-            "Kerjasama segi tiga pertumbuhan IMS-GT yang ditubuhkan pada tahun 1992 Meliputi kawasan Kalimantan Barat, Wilayah Riau, Sumatera Selatan, Johor, Pahang, Melaka, Negeri Sembilan dan Singapura",
-            "Menggalakkan kerjasama dalam bidang ekonomi seperti pelaburan, perdagangan, perindustrian, pertanian, perikanan dan pelancongan Segi Tiga Pertumbuhan Indonesia, Malaysia dan Singapura",
-            "Kerjasama ekonomi serantau yang ditubuhkan pada tahun 1989 Keanggotaan melibatkan China, Amerika Syarikat, Vietnam, Jepun, Rusia, Filipina, Indonesia, Korea Selatan, Peru, Singapura, Australia, Hong Kong,",
-            "Thailand, Kanada, Malaysia, Mexico, New Zealand, Chile, Taipei, Brunei Darussalam dan Papua New Guinea Menggalakkan perdagangan bebas dan pelaburan dalam kalangan",
-            "Kerjasama sedunia yang ditubuhkan pada tahun 1995 Melibatkan 164 buah negara Mengendalikan sistem perdagangan global, berfungsi sebagai forum untuk rundingan perjanjian perdagangan, menyelesaikan pertikaian",
-            "perdagangan antara anggota dan menyokong keperluan negara-negara",
-            "Pertubuhan Ekonomi Negara-negara Asia Pasifik atau Asia-Pacific Economic Cooperation (APEC) Pertubuhan Perdagangan Dunia atau World Trade Organization (WTO) Malaysia pernah menjadi tuan rumah bagi persidangan kemuncak APEC yang ke-10 pada tahun",
-            "1998 dan akan menjadi tuan rumah bagi persidangan ke-32, iaitu pada tahun 2020 selepas Chile.",
-            "(Sumber: Pertubuhan Ekonomi Negara-negara Asia Pasifik, Julai 2018) Komuniti Ekonomi Eropah atau kini dikenali sebagai Kesatuan Eropah yang ditubuhkan pada tahun 1958 Dianggotai 28 buah negara, iaitu Austria, Belgium, Bulgaria, Croatia",
-            "Cyprus, Republik Czech, Denmark, Estonia, Finland, Perancis, Jerman, Greece, Hungary, Ireland, Itali, Latvia, Lithuania, Luxembourg, Malta, Netherlands (Belanda), Poland, Portugal, Romania, Slovakia, Slovenia,",
-            "Sepanyol, Sweden dan United Kingdom Perniagaan dan perdagangan bebas antara negara EU tanpa had kuantiti"
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Menggalakkan kerjasama dalam pelbagai bidang antara negara anggota seperti pendidikan, pelancongan serta penyelidikan dan pembangunan (R&D) Pertubuhan Negara-negara Asia Tenggara atau",
-            "kerjasama seperti kerjasama hubungan dua hala, kerjasama pelbagai hala, kerjasama serantau, kerjasama kumpulan negara, kerjasama sedunia dan kerjasama segi tiga pertumbuhan.",
-            "Menggalakkan kerjasama dalam bidang ekonomi seperti pelaburan, perdagangan, perindustrian, pertanian, perikanan dan pelancongan Segi Tiga Pertumbuhan Indonesia, Malaysia dan Singapura",
-            "Kesatuan Eropah atau European Union (EU) Contoh Kerjasama Ekonomi antara Malaysia dengan Negara Lain Berkaitan Sumber Semula Jadi Malaysia menjadi pengeksport utama sumber semula jadi kepada beberapa buah negara yang"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "(Sumber: Pertubuhan Ekonomi Negara-negara Asia Pasifik, Julai 2018) Komuniti Ekonomi Eropah atau kini dikenali sebagai Kesatuan Eropah yang ditubuhkan pada tahun 1958 Dianggotai 28 buah negara, iaitu Austria, Belgium, Bulgaria, Croatia",
-            "Kesatuan Eropah atau European Union (EU) Contoh Kerjasama Ekonomi antara Malaysia dengan Negara Lain Berkaitan Sumber Semula Jadi Malaysia menjadi pengeksport utama sumber semula jadi kepada beberapa buah negara yang",
-            "Rajah 9.1 Eksport petroleum mentah Malaysia mengikut negara utama pada tahun 2016 Rajah 9.2 Eksport kayu balak Malaysia mengikut negara utama pada tahun 2016 Malaysia adalah salah satu daripada pengeluar kayu tropika. Hasil kayu negara dieksport ke",
-            "(Sumber: Lembaga Kayu Malaysia, 2017)",
-            "(Sumber: The Observation of Economic Complexity, Julai 2018) (Sumber: The Observation of Economic Complexity, Julai 2018) 1. Apakah maksud ASEAN? Senaraikan negara-negara yang menganggotai pertubuhan tersebut.",
-            "Kerjasama ekonomi dunia yang bersifat dua hala membolehkan negara Malaysia mengimport sumber semula jadi dari negara luar yang menjadi rakan dagang Malaysia.",
-            "Rajah 9.3 Import petroleum mentah Malaysia mengikut negara utama pada tahun 2016 Rajah 9.4 Import arang batu Malaysia mengikut negara utama pada tahun 2016",
-            "(Sumber: The Observation of Economic Complexity, Julai 2018) (Sumber: The Observation of Economic Complexity, Julai 2018)"
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Bezakan sumber bahan bakar dengan tenaga alternatif.",
+            "Padankan sumber dengan contoh negara yang betul.",
+            "Jangan hafal negara sahaja — fahami mengapa sumber atau teknologi itu sesuai di negara tersebut.",
+            "Untuk KBAT, kaitkan taburan tidak sekata dengan keperluan perdagangan dan kerjasama antarabangsa.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
-            ],
-            "rows": [
-              [
-                "(Sumber: Pertubuhan Ekonomi Negara-negara Asia Pasifik, Julai 2018)"
-              ],
-              [
-                "Berkaitan Sumber Semula Jadi"
-              ],
-              [
-                "Malaysia menjadi pengeksport utama sumber semula jadi kepada beberapa buah negara yang"
-              ],
-              [
-                "Rajah 9.1 Eksport petroleum mentah Malaysia mengikut negara utama pada tahun 2016"
-              ],
-              [
-                "Rajah 9.2 Eksport kayu balak Malaysia mengikut negara utama pada tahun 2016"
-              ],
-              [
-                "(Sumber: Lembaga Kayu Malaysia, 2017)"
-              ],
-              [
-                "PETUNJUK"
-              ],
-              [
-                "PETUNJUK"
-              ]
-            ]
-          }
         },
-        {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Kerjasama ekonomi serantau yang ditubuhkan pada tahun 1967 Dianggotai oleh 10 buah negara Asia Tenggara, iaitu Thailand, Malaysia, Singapura, Indonesia, Vietnam, Myanmar, Filipina, Kemboja, Brunei Darussalam",
-            "Menggalakkan kerjasama dalam pelbagai bidang antara negara anggota seperti pendidikan, pelancongan serta penyelidikan dan pembangunan (R&D) Pertubuhan Negara-negara Asia Tenggara atau",
-            "Association of Southeast Asian Nations (ASEAN) IMS-GT dan IMT-GT: Kerjasama segi tiga pertumbuhan IMT-GT yang ditubuhkan pada tahun 1994 Dianggotai oleh 10 buah wilayah di Sumatera, lapan buah negeri di",
-            "Semenanjung Malaysia (Perlis, Kedah, Negeri Sembilan, Kelantan, Perak, Melaka, Selangor dan Pulau Pinang) dan 14 buah wilayah di selatan Thailand Bidang fokus utama ialah pertanian dan industri asas tani, pelancongan,",
-            "produk halal dan perkhidmatan Segi Tiga Pertumbuhan Indonesia, Malaysia dan Thailand Kerjasama ekonomi antarabangsa diwujudkan atas dasar ingin membantu sesama negara dalam bidang ekonomi. Kerjasama ekonomi antarabangsa telah diterjemahkan dalam pelbagai bentuk",
-            "kerjasama seperti kerjasama hubungan dua hala, kerjasama pelbagai hala, kerjasama serantau, kerjasama kumpulan negara, kerjasama sedunia dan kerjasama segi tiga pertumbuhan.",
-            "Kerjasama segi tiga pertumbuhan IMS-GT yang ditubuhkan pada tahun 1992 Meliputi kawasan Kalimantan Barat, Wilayah Riau, Sumatera Selatan, Johor, Pahang, Melaka, Negeri Sembilan dan Singapura",
-            "Menggalakkan kerjasama dalam bidang ekonomi seperti pelaburan, perdagangan, perindustrian, pertanian, perikanan dan pelancongan Segi Tiga Pertumbuhan Indonesia, Malaysia dan Singapura",
-            "Kerjasama ekonomi serantau yang ditubuhkan pada tahun 1989 Keanggotaan melibatkan China, Amerika Syarikat, Vietnam, Jepun, Rusia, Filipina, Indonesia, Korea Selatan, Peru, Singapura, Australia, Hong Kong,",
-            "Thailand, Kanada, Malaysia, Mexico, New Zealand, Chile, Taipei, Brunei Darussalam dan Papua New Guinea Menggalakkan perdagangan bebas dan pelaburan dalam kalangan",
-            "Kerjasama sedunia yang ditubuhkan pada tahun 1995 Melibatkan 164 buah negara Mengendalikan sistem perdagangan global, berfungsi sebagai forum untuk rundingan perjanjian perdagangan, menyelesaikan pertikaian",
-            "perdagangan antara anggota dan menyokong keperluan negara-negara"
-          ]
-        },
-        {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Contoh Kerjasama Ekonomi Antarabangsa.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
-        },
-        {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Contoh Kerjasama Ekonomi Antarabangsa.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
-        },
-        {
-          "title": "Rumusan",
-          "content": "Subtopik 9.3 menekankan Contoh Kerjasama Ekonomi Antarabangsa. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+      ],
     },
+
     {
-      "title": "9.4 Kepentingan Kerjasama Ekonomi Antarabangsa",
-      "subsections": [
+      title: "9.2 Krisis Sumber Semula Jadi di Dunia",
+      subsections: [
         {
-          "title": "Pengenalan",
-          "content": "Kerjasama ekonomi antarabangsa menjadi pemangkin kepada pembentukan hubungan perdagangan antara negara dan menjadi pengerak kemajuan ekonomi sesebuah negara. Jalinan hubungan ekonomi antarabangsa wajar diperkasa bagi menjamin kesinambungan ekonomi serta pembangunan negara selain daripada memenuhi keperluan masyarakat."
+          title: "Maksud krisis sumber",
+          content:
+            "Krisis sumber berlaku apabila bekalan sumber tidak mencukupi untuk memenuhi keperluan atau apabila eksploitasi sumber secara berlebihan menimbulkan tekanan kepada ekonomi, masyarakat, politik dan alam sekitar.",
         },
+
         {
-          "title": "Konsep utama",
-          "bulletPoints": [
-            "Kepentingan Kerjasama Ekonomi Antarabangsa",
-            "(MITI) dan Perbadanan Pembangunan Perdagangan Luar Malaysia atau Malaysia External Trade Development Corporation (MATRADE) adalah agensi yang menguruskan perdagangan di Malaysia Membolehkan negara-negara yang bekerjasama untuk meluaskan pasaran eksport barangan",
-            "Mexico dan Kanada merupakan antara negara utama yang mengimport gas asli dari Amerika Syarikat",
-            "(a) Kerjasama ekonomi antarabangsa terbentuk melalui hubungan diplomatik (b) WTO ialah kerjasama segi tiga pertumbuhan (c) Australia merupakan salah sebuah negara yang menganggotai pertubuhan ASEAN",
-            "(e) MATRADE ialah kerjasama ekonomi antarabangsa yang mengendalikan sistem perdagangan pada peringkat global 4. Lengkapkan jadual di bawah dengan menulis krisis sumber semula jadi sama ada terhadap ekonomi,",
-            "Membolehkan sesebuah negara memperoleh bekalan bahan mentah dari rakan dagang untuk kegunaan domestik dan industri melalui import China mengimport petroleum mentah dari beberapa buah negara seperti Arab Saudi, Oman, Iraq",
-            "Kesan krisis sumber semula jadi di dunia Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
-            "(d) Pertubuhan APEC berusaha menggalakkan amalan perdagangan bebas antara"
-          ]
-        },
-        {
-          "title": "Definisi",
-          "bulletPoints": [
-            "(MITI) dan Perbadanan Pembangunan Perdagangan Luar Malaysia atau Malaysia External Trade Development Corporation (MATRADE) adalah agensi yang menguruskan perdagangan di Malaysia Membolehkan negara-negara yang bekerjasama untuk meluaskan pasaran eksport barangan",
-            "Mexico dan Kanada merupakan antara negara utama yang mengimport gas asli dari Amerika Syarikat",
-            "(a) Kerjasama ekonomi antarabangsa terbentuk melalui hubungan diplomatik (b) WTO ialah kerjasama segi tiga pertumbuhan (c) Australia merupakan salah sebuah negara yang menganggotai pertubuhan ASEAN",
-            "(e) MATRADE ialah kerjasama ekonomi antarabangsa yang mengendalikan sistem perdagangan pada peringkat global 4. Lengkapkan jadual di bawah dengan menulis krisis sumber semula jadi sama ada terhadap ekonomi,"
-          ]
-        },
-        {
-          "title": "Penerangan lengkap",
-          "bulletPoints": [
-            "Kerjasama ekonomi antarabangsa menjadi pemangkin kepada pembentukan hubungan perdagangan antara negara dan menjadi pengerak kemajuan ekonomi sesebuah negara.",
-            "Jalinan hubungan ekonomi antarabangsa wajar diperkasa bagi menjamin kesinambungan ekonomi serta pembangunan negara selain daripada memenuhi keperluan masyarakat.",
-            "Mempermudah kemasukan tenga buruh asing dari sesebuah negara ke negara lain untuk menampung keperluan tenaga buruh dalam pelbagai sektor seperti sektor pertanian, perladangan, perkilangan, pembinaan, pembuatan dan perkhidmatan",
-            "Tenaga buruh profesional seperti pengurus, jurutera dan doktor perubatan kebanyakannya berasal",
-            "Tenaga buruh yang kurang mahir kebanyakannya berasal dari negara membangun",
-            "Pembelian ekuiti - Syarikat asing memiliki ekuiti atau saham dalam syarikat tempatan dan melatih pekerja-pekerja tempatan dalam syarikat tersebut Perjanjian pelesenan - Syarikat tempatan menjadi pengedar produk keluaran syarikat asing",
-            "Peraturan paten dan cap dagang - Syarikat tempatan mengeluarkan produk keluaran syarikat asing dengan menggunakan jenama yang sama Aliran sumber manusia - Pekerja atau pakar asing dibawa masuk ke dalam negara dan",
-            "memberikan latihan sambil bekerja untuk pekerja tempatan 1. Huraikan bagaimana kerjasama ekonomi antarabangsa membantu dalam pemindahan teknologi.",
-            "Tarif: Cukai yang dikenakan oleh",
-            "kerajaan ke atas barangan",
-            "Kuota: Kuantiti barang yang dibenarkan untuk dibuat, dijual dan lain-lain Embargo: Larangan mengeksport dagangan",
-            "Membuka peluang antara negara untuk menjalinkan hubungan perdagangan serta mendapat keistimewaan seperti pengecualian cukai, pengurangan tarif kuota dan embargo Kementerian Perdagangan Antarabangsa dan Industri atau Ministry of International Trade and Industry",
-            "keluaran negara masing-masing Brazil mengeksport kayu balak ke beberapa buah negara seperti India, China, Vietnam",
-            "Rusia mengeksport arang batu ke negara-negara seperti Korea Selatan, Jepun, China dan Turki",
-            "Menggalakkan pelaburan dalam negara untuk dijadikan modal bagi memulakan sesuatu",
-            "Terdapat dua jenis pelaburan, iaitu pelaburan ekuiti dan pelaburan langsung asing atau Foreign"
-          ]
-        },
-        {
-          "title": "Proses / langkah penting",
-          "bulletPoints": [
-            "Menggalakkan pemindahan teknologi terutamanya antara negara maju dengan negara membangun melalui beberapa cara, iaitu: Pembelian terus barangan modal - Melalui pembelian mesin, jentera serta peralatan lain dari"
-          ]
-        },
-        {
-          "title": "Contoh daripada buku teks",
-          "bulletPoints": [
-            "Mempermudah kemasukan tenga buruh asing dari sesebuah negara ke negara lain untuk menampung keperluan tenaga buruh dalam pelbagai sektor seperti sektor pertanian, perladangan, perkilangan, pembinaan, pembuatan dan perkhidmatan",
-            "Tenaga buruh profesional seperti pengurus, jurutera dan doktor perubatan kebanyakannya berasal",
-            "Membuka peluang antara negara untuk menjalinkan hubungan perdagangan serta mendapat keistimewaan seperti pengecualian cukai, pengurangan tarif kuota dan embargo Kementerian Perdagangan Antarabangsa dan Industri atau Ministry of International Trade and Industry",
-            "keluaran negara masing-masing Brazil mengeksport kayu balak ke beberapa buah negara seperti India, China, Vietnam",
-            "Rusia mengeksport arang batu ke negara-negara seperti Korea Selatan, Jepun, China dan Turki",
-            "FDI melibatkan pembukaan operasi syarikat asing seperti syarikat kereta, telekomunikasi serta barangan elektrik dan elektronik di Malaysia Jepun, Korea Selatan, Amerika Syarikat, China dan Singapura melabur di Malaysia dalam sektor",
-            "Membolehkan sesebuah negara memperoleh bekalan bahan mentah dari rakan dagang untuk kegunaan domestik dan industri melalui import China mengimport petroleum mentah dari beberapa buah negara seperti Arab Saudi, Oman, Iraq"
-          ]
-        },
-        {
-          "title": "Rajah, peta, graf dan jadual",
-          "bulletPoints": [
-            "Peraturan paten dan cap dagang - Syarikat tempatan mengeluarkan produk keluaran syarikat asing dengan menggunakan jenama yang sama Aliran sumber manusia - Pekerja atau pakar asing dibawa masuk ke dalam negara dan",
-            "Sumber semula jadi utama",
-            "Kesan krisis sumber semula jadi di dunia Sumber Semula Jadi Utama dan Kerjasama Ekonomi di Dunia",
-            "Namakan negara pengeluar beserta sumber tenaga utama yang terdapat di kawasan yang ditandakan.",
-            "Negara pengeluar Sumber tenaga",
-            "(e) MATRADE ialah kerjasama ekonomi antarabangsa yang mengendalikan sistem perdagangan pada peringkat global 4. Lengkapkan jadual di bawah dengan menulis krisis sumber semula jadi sama ada terhadap ekonomi,",
-            "(d) Berlaku kekurangan sumber semula jadi dengan kemusnahan pelbagai flora"
+          title: "Punca utama krisis sumber",
+          bulletPoints: [
+            "Penggunaan sumber tidak boleh baharu secara berterusan.",
+            "Pertambahan penduduk dan permintaan terhadap tenaga serta bahan mentah.",
+            "Pembaziran dan penggunaan sumber yang tidak cekap.",
+            "Penerokaan serta eksploitasi yang tidak dirancang.",
+            "Taburan sumber yang tidak seimbang antara negara.",
+            "Gangguan bekalan akibat konflik, bencana atau masalah perdagangan.",
           ],
-          "table": {
-            "headers": [
-              "Rujukan visual / data dalam buku teks"
+        },
+
+        {
+          title: "Kesan krisis sumber",
+          table: {
+            headers: ["Aspek", "Kesan", "Huraian"],
+            rows: [
+              [
+                "Ekonomi",
+                "Harga sumber dan kos sara hidup meningkat.",
+                "Bekalan yang terhad meningkatkan kos bahan mentah, tenaga, pengangkutan dan barangan pengguna.",
+              ],
+              [
+                "Ekonomi",
+                "Pendapatan negara tidak menentu.",
+                "Negara yang bergantung pada eksport atau import sumber terdedah kepada turun naik harga dan bekalan.",
+              ],
+              [
+                "Politik",
+                "Perebutan kawasan yang kaya dengan sumber.",
+                "Persaingan mendapatkan petroleum, mineral, air atau wilayah strategik boleh menimbulkan ketegangan.",
+              ],
+              [
+                "Politik",
+                "Tekanan antara negara.",
+                "Negara yang mempunyai sumber strategik boleh mempunyai pengaruh besar terhadap negara yang bergantung pada bekalannya.",
+              ],
+              [
+                "Masyarakat",
+                "Kemiskinan, pengangguran dan kebuluran.",
+                "Kekurangan sumber atau harga yang terlalu tinggi mengurangkan kemampuan penduduk memenuhi keperluan asas.",
+              ],
+              [
+                "Masyarakat",
+                "Kuasa beli berkurang.",
+                "Kenaikan harga barangan import dan tenaga menyebabkan pendapatan sebenar penduduk menurun.",
+              ],
+              [
+                "Alam sekitar",
+                "Kemusnahan habitat dan kehilangan biodiversiti.",
+                "Penerokaan hutan, perlombongan dan eksploitasi berlebihan merosakkan ekosistem.",
+              ],
+              [
+                "Alam sekitar",
+                "Pencemaran dan kemerosotan kualiti alam.",
+                "Aktiviti mendapatkan serta memproses sumber boleh mencemarkan udara, air dan tanih jika tidak dikawal.",
+              ],
             ],
-            "rows": [
-              [
-                "Aliran sumber manusia - Pekerja atau pakar asing dibawa masuk ke dalam negara dan"
-              ],
-              [
-                "Sumber tenaga"
-              ],
-              [
-                "Sumber tenaga"
-              ],
-              [
-                "Sumber semula jadi utama"
-              ],
-              [
-                "Sumber semakin"
-              ],
-              [
-                "Kesan krisis sumber semula jadi di dunia"
-              ],
-              [
-                "Sumber Semula Jadi Utama dan"
-              ],
-              [
-                "1. Tandakan ( ✔ ) pada sumber tenaga utama di dunia."
-              ]
-            ]
-          }
+          },
         },
+
         {
-          "title": "Fakta penting",
-          "bulletPoints": [
-            "Kerjasama ekonomi antarabangsa menjadi pemangkin kepada pembentukan hubungan perdagangan antara negara dan menjadi pengerak kemajuan ekonomi sesebuah negara.",
-            "Jalinan hubungan ekonomi antarabangsa wajar diperkasa bagi menjamin kesinambungan ekonomi serta pembangunan negara selain daripada memenuhi keperluan masyarakat.",
-            "Mempermudah kemasukan tenga buruh asing dari sesebuah negara ke negara lain untuk menampung keperluan tenaga buruh dalam pelbagai sektor seperti sektor pertanian, perladangan, perkilangan, pembinaan, pembuatan dan perkhidmatan",
-            "Tenaga buruh profesional seperti pengurus, jurutera dan doktor perubatan kebanyakannya berasal",
-            "Tenaga buruh yang kurang mahir kebanyakannya berasal dari negara membangun",
-            "Menggalakkan pemindahan teknologi terutamanya antara negara maju dengan negara membangun melalui beberapa cara, iaitu: Pembelian terus barangan modal - Melalui pembelian mesin, jentera serta peralatan lain dari",
-            "Pembelian ekuiti - Syarikat asing memiliki ekuiti atau saham dalam syarikat tempatan dan melatih pekerja-pekerja tempatan dalam syarikat tersebut Perjanjian pelesenan - Syarikat tempatan menjadi pengedar produk keluaran syarikat asing",
-            "Peraturan paten dan cap dagang - Syarikat tempatan mengeluarkan produk keluaran syarikat asing dengan menggunakan jenama yang sama Aliran sumber manusia - Pekerja atau pakar asing dibawa masuk ke dalam negara dan",
-            "memberikan latihan sambil bekerja untuk pekerja tempatan 1. Huraikan bagaimana kerjasama ekonomi antarabangsa membantu dalam pemindahan teknologi.",
-            "Tarif: Cukai yang dikenakan oleh",
-            "kerajaan ke atas barangan",
-            "Kuota: Kuantiti barang yang dibenarkan untuk dibuat, dijual dan lain-lain Embargo: Larangan mengeksport dagangan"
-          ]
+          title: "Rantaian sebab dan kesan",
+          content:
+            "Contoh: permintaan petroleum meningkat → bekalan semakin terhad → harga petroleum meningkat → kos pengangkutan dan pengeluaran meningkat → harga barangan naik → kos sara hidup penduduk meningkat.",
         },
+
         {
-          "title": "Tip mengingat",
-          "bulletPoints": [
-            "Ingat kata kunci subtopik: Kepentingan Kerjasama Ekonomi Antarabangsa.",
-            "Susun jawapan mengikut urutan buku teks: maksud atau ciri, contoh, huraian, kemudian rumusan.",
-            "Untuk peta, graf, jadual atau rajah, nyatakan tajuk, petunjuk, pola utama dan contoh lokasi atau data yang ditunjukkan."
-          ]
+          title: "Krisis sumber dan ekosistem",
+          content:
+            "Krisis sumber bukan sekadar masalah bekalan. Jika hutan diteroka secara berlebihan untuk mendapatkan kayu atau membuka kawasan ekonomi, habitat flora dan fauna turut musnah. Kehilangan biodiversiti boleh mengganggu siratan makanan dan kestabilan ekosistem.",
         },
+
         {
-          "title": "Fokus UASA",
-          "bulletPoints": [
-            "Kenal pasti maksud, ciri dan contoh yang berkaitan dengan Kepentingan Kerjasama Ekonomi Antarabangsa.",
-            "Latih diri menghuraikan fakta dalam ayat lengkap berdasarkan bukti daripada jadual, graf, carta pai, peta, rajah atau contoh buku teks.",
-            "Soalan beraras tinggi lazimnya meminta sebab, kesan, kepentingan, perbandingan atau cadangan berdasarkan isi dalam subtopik."
-          ]
+          title: "Cara mengurangkan risiko krisis",
+          bulletPoints: [
+            "Mengurus sumber secara terancang.",
+            "Mengurangkan pembaziran dan meningkatkan kecekapan penggunaan.",
+            "Menggunakan sumber tenaga alternatif.",
+            "Mengitar semula bahan yang sesuai.",
+            "Memulihkan kawasan yang telah dieksploitasi.",
+            "Memperkukuh kerjasama ekonomi dan bekalan antara negara.",
+          ],
         },
+
         {
-          "title": "Rumusan",
-          "content": "Subtopik 9.4 menekankan Kepentingan Kerjasama Ekonomi Antarabangsa. Fokus ulang kaji ialah memahami istilah utama, menghuraikan fakta penting dan mengaitkan contoh dalam buku teks dengan soalan UASA."
-        }
-      ]
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Kategorikan kesan kepada ekonomi, politik, masyarakat atau alam sekitar.",
+            "Untuk jawapan struktur, bina rantaian sebab → perubahan bekalan → kesan.",
+            "Jangan menyamakan semua krisis dengan 'sumber habis'; konflik, taburan tidak seimbang dan gangguan perdagangan juga boleh menimbulkan krisis.",
+          ],
+        },
+      ],
     },
+
     {
-      "title": "Imbas Kembali",
-      "subsections": [
+      title: "9.3 Contoh Kerjasama Ekonomi Antarabangsa",
+      subsections: [
         {
-          "title": "Checklist akhir bab",
-          "bulletPoints": [
-            "✓ 9.1 Taburan Sumber Semula Jadi Utama di Dunia",
-            "✓ 9.2 Krisis Sumber Semula Jadi di Dunia",
-            "✓ 9.3 Contoh Kerjasama Ekonomi Antarabangsa",
-            "✓ 9.4 Kepentingan Kerjasama Ekonomi Antarabangsa"
-          ]
+          title: "Mengapa negara bekerjasama?",
+          content:
+            "Tiada negara mempunyai semua sumber, teknologi, modal dan pasaran yang diperlukan. Kerjasama ekonomi membolehkan negara berkongsi kelebihan, berdagang, menarik pelaburan, memperoleh bahan mentah dan membangunkan kawasan secara bersama.",
+        },
+
+        {
+          title: "Bentuk kerjasama ekonomi",
+          table: {
+            headers: ["Bentuk", "Maksud ringkas", "Contoh"],
+            rows: [
+              [
+                "Dua hala",
+                "Kerjasama antara dua negara.",
+                "Perdagangan atau perjanjian ekonomi antara Malaysia dengan sebuah negara rakan.",
+              ],
+              [
+                "Pelbagai hala",
+                "Kerjasama melibatkan beberapa negara bagi isu atau matlamat bersama.",
+                "Perjanjian perdagangan atau pelaburan yang melibatkan beberapa negara.",
+              ],
+              [
+                "Serantau",
+                "Kerjasama negara dalam rantau geografi yang sama.",
+                "ASEAN dan APEC mengikut skop rantau masing-masing.",
+              ],
+              [
+                "Kumpulan negara",
+                "Kerjasama sekumpulan negara yang berkongsi kepentingan ekonomi.",
+                "EU.",
+              ],
+              [
+                "Sedunia",
+                "Kerjasama pada skala global.",
+                "WTO.",
+              ],
+              [
+                "Segi tiga pertumbuhan",
+                "Kerjasama kawasan bersempadan daripada beberapa negara untuk merangsang pembangunan.",
+                "IMT-GT dan IMS-GT.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "ASEAN",
+          content:
+            "ASEAN ialah kerjasama serantau negara-negara Asia Tenggara. Kerjasama ekonomi dalam ASEAN membantu meningkatkan perdagangan, pelaburan, pelancongan, pendidikan, penyelidikan dan hubungan antara negara anggota.",
+        },
+
+        {
+          title: "IMT-GT",
+          content:
+            "IMT-GT ialah Segi Tiga Pertumbuhan Indonesia–Malaysia–Thailand. Kerjasama ini menghubungkan kawasan tertentu dalam ketiga-tiga negara untuk menggalakkan pembangunan ekonomi rentas sempadan.",
         },
         {
-          "title": "Cara ulang kaji pantas",
-          "bulletPoints": [
-            "Baca semula setiap definisi dan kata kunci utama.",
-            "Semak semula contoh, jadual, graf, carta, peta dan rajah yang terdapat dalam bab.",
-            "Latih menjawab dengan format fakta + huraian + contoh daripada buku teks."
-          ]
-        }
-      ]
-    }
-  ]
+          title: "Fokus IMT-GT",
+          bulletPoints: [
+            "Pertanian dan industri asas tani.",
+            "Pelancongan.",
+            "Perdagangan dan pelaburan.",
+            "Produk serta perkhidmatan halal.",
+            "Pengangkutan dan hubungan rentas sempadan.",
+          ],
+        },
+
+        {
+          title: "IMS-GT",
+          content:
+            "IMS-GT ialah Segi Tiga Pertumbuhan Indonesia–Malaysia–Singapura. Kerjasama ini memanfaatkan kelebihan berbeza antara kawasan yang terlibat seperti lokasi, tenaga buruh, modal, pelabuhan, pasaran dan infrastruktur.",
+        },
+        {
+          title: "Bidang kerjasama IMS-GT",
+          bulletPoints: [
+            "Pelaburan dan perdagangan.",
+            "Perindustrian.",
+            "Pertanian dan perikanan.",
+            "Pelancongan.",
+            "Pengangkutan dan perkhidmatan.",
+          ],
+        },
+
+        {
+          title: "APEC",
+          content:
+            "APEC ialah forum kerjasama ekonomi di rantau Asia Pasifik. Fokus utamanya ialah memudahkan perdagangan dan pelaburan serta meningkatkan kerjasama ekonomi antara ekonomi anggota.",
+        },
+
+        {
+          title: "WTO",
+          content:
+            "WTO ialah organisasi perdagangan pada peringkat global. WTO menyediakan kerangka bagi sistem perdagangan dunia, menjadi forum rundingan perjanjian dan membantu menyelesaikan pertikaian perdagangan antara anggota.",
+        },
+
+        {
+          title: "Kesatuan Eropah (EU)",
+          content:
+            "EU ialah kerjasama ekonomi dan politik antara negara-negara Eropah. Dalam konteks ekonomi, integrasi EU memudahkan pergerakan barangan, perkhidmatan, modal dan manusia antara banyak negara anggotanya.",
+        },
+
+        {
+          title: "Perdagangan sumber semula jadi",
+          content:
+            "Kerjasama dua hala dan pelbagai hala membolehkan negara mengeksport sumber yang berlebihan dan mengimport sumber yang tidak mencukupi. Contohnya, negara pengeluar petroleum, gas, arang batu atau hasil hutan boleh membekalkan pasaran antarabangsa.",
+        },
+
+        {
+          title: "Agensi Malaysia berkaitan perdagangan antarabangsa",
+          table: {
+            headers: ["Agensi", "Peranan umum"],
+            rows: [
+              [
+                "MITI",
+                "Menggubal dan menyelaras dasar berkaitan pelaburan, industri dan perdagangan antarabangsa Malaysia.",
+              ],
+              [
+                "MATRADE",
+                "Membantu mempromosikan eksport Malaysia dan menghubungkan syarikat tempatan dengan pasaran luar.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Kenal pasti skala kerjasama: serantau, global atau segi tiga pertumbuhan.",
+            "ASEAN ≠ APEC ≠ WTO: ASEAN = Asia Tenggara; APEC = Asia Pasifik; WTO = perdagangan global.",
+            "IMT-GT = Indonesia–Malaysia–Thailand; IMS-GT = Indonesia–Malaysia–Singapura.",
+            "Elakkan bergantung pada bilangan anggota kerana keanggotaan organisasi boleh berubah dari semasa ke semasa; fokus pada fungsi dan kawasan.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "9.4 Kepentingan Kerjasama Ekonomi Antarabangsa",
+      subsections: [
+        {
+          title: "Gambaran kepentingan",
+          content:
+            "Kerjasama ekonomi antarabangsa membantu negara mengatasi kekurangan sumber dan mempercepat pembangunan. Antara manfaat utama ialah memperoleh pasaran, bahan mentah, modal, tenaga buruh, teknologi dan kepakaran.",
+        },
+
+        {
+          title: "Meluaskan pasaran",
+          content:
+            "Hubungan perdagangan membolehkan pengeluar menjual barangan dan perkhidmatan kepada pasaran yang lebih luas. Pasaran eksport yang besar meningkatkan skala pengeluaran dan berpotensi menambah pendapatan syarikat serta negara.",
+        },
+
+        {
+          title: "Memperoleh bekalan bahan mentah",
+          content:
+            "Negara boleh mengimport bahan mentah yang tidak mencukupi atau tidak terdapat di dalam negara. Ini memastikan kilang dan kegiatan ekonomi terus mendapat bekalan walaupun sumber domestik terhad.",
+        },
+
+        {
+          title: "Menggalakkan pelaburan",
+          content:
+            "Kerjasama ekonomi menarik modal dari dalam dan luar negara. Pelaburan membantu membiayai pembinaan kilang, teknologi, infrastruktur, penyelidikan dan pengembangan perniagaan.",
+        },
+        {
+          title: "Pelaburan langsung asing (FDI)",
+          content:
+            "FDI berlaku apabila syarikat atau pelabur asing membuat pelaburan secara langsung dalam kegiatan ekonomi negara lain, contohnya dengan membina operasi, kilang atau mengambil pegangan dalam perniagaan tempatan.",
+        },
+
+        {
+          title: "Memenuhi keperluan tenaga buruh",
+          content:
+            "Pergerakan tenaga buruh antara negara membantu sektor yang kekurangan pekerja. Kerjasama antarabangsa juga membolehkan kemasukan tenaga profesional, teknikal dan pekerja berkemahiran tertentu.",
+        },
+
+        {
+          title: "Pemindahan teknologi",
+          content:
+            "Pemindahan teknologi berlaku apabila pengetahuan, kemahiran, mesin, proses atau kepakaran berpindah dari satu negara atau syarikat kepada pihak lain. Proses ini meningkatkan produktiviti dan kemahiran pekerja tempatan.",
+        },
+        {
+          title: "Cara pemindahan teknologi",
+          table: {
+            headers: ["Cara", "Bagaimana berlaku"],
+            rows: [
+              [
+                "Pembelian barangan modal",
+                "Negara atau syarikat membeli mesin, jentera dan peralatan moden dari luar negara.",
+              ],
+              [
+                "Pelaburan / ekuiti asing",
+                "Syarikat asing melabur dan membawa sistem pengeluaran serta latihan kepada pekerja tempatan.",
+              ],
+              [
+                "Pelesenan",
+                "Syarikat tempatan diberi hak menggunakan teknologi, proses atau produk syarikat luar mengikut perjanjian.",
+              ],
+              [
+                "Paten dan cap dagang",
+                "Hak harta intelek membolehkan penggunaan teknologi atau jenama mengikut syarat tertentu.",
+              ],
+              [
+                "Aliran sumber manusia",
+                "Pakar asing memberi latihan dan berkongsi kemahiran melalui pekerjaan atau latihan sambil bekerja.",
+              ],
+            ],
+          },
+        },
+
+        {
+          title: "Mengurangkan halangan perdagangan",
+          content:
+            "Kerjasama ekonomi boleh membantu negara merundingkan pengurangan halangan perdagangan. Namun, tarif, kuota dan embargo mempunyai maksud yang berbeza dan tidak semuanya merupakan bentuk kemudahan perdagangan.",
+        },
+        {
+          title: "Tarif, kuota dan embargo",
+          table: {
+            headers: ["Istilah", "Maksud"],
+            rows: [
+              ["Tarif", "Cukai yang dikenakan ke atas barangan import."],
+              ["Kuota", "Had kuantiti sesuatu barangan yang dibenarkan untuk diimport atau dieksport."],
+              ["Embargo", "Larangan perdagangan tertentu dengan sesebuah negara atau bagi barangan tertentu."],
+            ],
+          },
+        },
+
+        {
+          title: "Hubungan diplomatik dan perdagangan",
+          content:
+            "Hubungan diplomatik yang baik memudahkan rundingan perdagangan, perjanjian pelaburan, kerjasama teknikal dan penyelesaian pertikaian. Ini mengurangkan ketidakpastian bagi syarikat yang beroperasi merentasi sempadan.",
+        },
+
+        {
+          title: "Kesan pengganda kerjasama ekonomi",
+          bulletPoints: [
+            "Pasaran lebih luas → pengeluaran meningkat → peluang pekerjaan bertambah.",
+            "FDI masuk → modal dan teknologi bertambah → produktiviti meningkat.",
+            "Bekalan bahan mentah stabil → kilang dapat beroperasi → eksport meningkat.",
+            "Pakar dan latihan → kemahiran pekerja tempatan meningkat.",
+            "Halangan perdagangan berkurang → kos perdagangan menurun → urusan import dan eksport lebih lancar.",
+          ],
+        },
+
+        {
+          title: "Fokus UASA",
+          bulletPoints: [
+            "Jika ditanya kepentingan, jangan sekadar menulis 'meningkatkan ekonomi'. Nyatakan mekanisme sebenar.",
+            "Bezakan pasaran, bahan mentah, pelaburan, buruh dan teknologi sebagai isi yang berasingan.",
+            "Untuk pemindahan teknologi, berikan cara + bagaimana kemahiran atau teknologi sampai kepada pekerja / syarikat tempatan.",
+            "Untuk KBAT, bina rantaian: kerjasama → kemudahan tertentu → perubahan kegiatan ekonomi → manfaat kepada negara.",
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "Imbas Kembali",
+      subsections: [
+        {
+          title: "Checklist akhir bab",
+          bulletPoints: [
+            "Saya boleh membezakan sumber bahan bakar dengan tenaga alternatif.",
+            "Saya boleh memadankan contoh sumber tenaga dengan negara yang berkaitan.",
+            "Saya boleh menghuraikan kesan krisis sumber dari aspek ekonomi, politik, masyarakat dan alam sekitar.",
+            "Saya boleh membezakan ASEAN, APEC, WTO, EU, IMT-GT dan IMS-GT.",
+            "Saya boleh menerangkan sekurang-kurangnya lima kepentingan kerjasama ekonomi antarabangsa.",
+            "Saya boleh menerangkan maksud FDI, tarif, kuota dan embargo.",
+            "Saya boleh menghuraikan beberapa cara pemindahan teknologi.",
+          ],
+        },
+        {
+          title: "Cara menjawab soalan struktur",
+          bulletPoints: [
+            "Untuk taburan sumber: nyatakan sumber + negara contoh + sebab / kegunaan jika diminta.",
+            "Untuk krisis: nyatakan aspek + kesan + rantaian sebab.",
+            "Untuk organisasi: nyatakan skala / rantau + fungsi utama.",
+            "Untuk kepentingan: gunakan format kerjasama → kemudahan → kesan ekonomi.",
+            "Masukkan contoh organisasi atau bentuk kerjasama hanya apabila benar-benar menyokong isi.",
+          ],
+        },
+      ],
+    },
+  ],
 };
