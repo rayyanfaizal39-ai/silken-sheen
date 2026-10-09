@@ -54,6 +54,7 @@ import {
 import { QuizArena } from "@/components/quiz/QuizArena";
 import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
+import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
@@ -381,6 +382,7 @@ const MATH_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Nombor di sebelah kanan sifar ialah nombor positif dan nilainya semakin besar.",
     "Easy",
+    MATH_F1_C1_QUIZ_VISUALS.rightOfZero,
   ],
   [
     "Yang manakah paling besar?",
@@ -388,6 +390,7 @@ const MATH_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "-2 lebih besar kerana berada lebih kanan pada garis nombor.",
     "Easy",
+    MATH_F1_C1_QUIZ_VISUALS.compareNegativeIntegers,
   ],
   [
     "Susun nombor berikut secara menaik: -3, 5, -1, 2",
@@ -456,6 +459,7 @@ const MATH_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "-1/2 lebih besar kerana nilainya lebih hampir kepada sifar berbanding -3/4, -1 dan -2.",
     "Easy",
+    MATH_F1_C1_QUIZ_VISUALS.compareNegativeFractions,
   ],
   ["Hitung: 1/2 + 1/2", ["1/4", "2", "1", "3/2"], 2, "1/2 + 1/2 = 1.", "Easy"],
   [
@@ -528,6 +532,7 @@ const MATH_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Bergerak ke kiri bermaksud menolak: -3 - 8 = -11.",
     "Medium",
+    MATH_F1_C1_QUIZ_VISUALS.moveLeftEight,
   ],
   [
     "Pada garis nombor, bergerak 6 langkah ke kanan dari -9 akan sampai ke:",
@@ -535,6 +540,7 @@ const MATH_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Bergerak ke kanan bermaksud menambah: -9 + 6 = -3.",
     "Medium",
+    MATH_F1_C1_QUIZ_VISUALS.moveRightSix,
   ],
   [
     "Susun nombor berikut secara menaik: -7, 4, -2, 0, 9",
@@ -776,6 +782,7 @@ const MATH_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Jarak = 4 - (-7) = 11 unit.",
     "Medium",
+    MATH_F1_C1_QUIZ_VISUALS.distanceMinus7To4,
   ],
   [
     "Hitung: -2/3 + 5/6",
@@ -954,6 +961,7 @@ const MATH_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Numbers to the right of zero are positive numbers and their values become greater.",
     "Easy",
+    MATH_F1_C1_QUIZ_VISUALS.rightOfZero,
   ],
   [
     "Which is the greatest?",
@@ -961,6 +969,7 @@ const MATH_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "-2 is greater because it is further to the right on the number line.",
     "Easy",
+    MATH_F1_C1_QUIZ_VISUALS.compareNegativeIntegers,
   ],
   [
     "Arrange the numbers in ascending order: -3, 5, -1, 2",
@@ -1029,6 +1038,7 @@ const MATH_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "-1/2 is greater because it is closer to zero than -3/4, -1 and -2.",
     "Easy",
+    MATH_F1_C1_QUIZ_VISUALS.compareNegativeFractions,
   ],
   ["Calculate: 1/2 + 1/2", ["1/4", "2", "1", "3/2"], 2, "1/2 + 1/2 = 1.", "Easy"],
   [
@@ -1101,6 +1111,7 @@ const MATH_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Moving left means subtracting: -3 - 8 = -11.",
     "Medium",
+    MATH_F1_C1_QUIZ_VISUALS.moveLeftEight,
   ],
   [
     "On a number line, moving 6 steps right from -9 reaches:",
@@ -1108,6 +1119,7 @@ const MATH_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Moving right means adding: -9 + 6 = -3.",
     "Medium",
+    MATH_F1_C1_QUIZ_VISUALS.moveRightSix,
   ],
   [
     "Arrange the numbers in ascending order: -7, 4, -2, 0, 9",
@@ -1349,6 +1361,7 @@ const MATH_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Distance = 4 - (-7) = 11 units.",
     "Medium",
+    MATH_F1_C1_QUIZ_VISUALS.distanceMinus7To4,
   ],
   [
     "Calculate: -2/3 + 5/6",

@@ -49,6 +49,24 @@ export type MathQuestionVisual =
       sectors: { label: VisualText; angle: number; text: string }[];
     }
   | {
+      kind: "number-line";
+      title: LocalizedText;
+      min: number;
+      max: number;
+      ticks: { value: number; label?: VisualText }[];
+      /** Optional equally styled points; none of them is treated as the answer. */
+      points?: { value: number; label?: VisualText }[];
+      /** Movement is stored as direction + step count so accessibility text never needs a hidden answer. */
+      movement?: {
+        from: number;
+        direction: "left" | "right";
+        steps: number;
+        label: LocalizedText;
+      };
+      /** A span marks two positions while leaving the distance for the student to determine. */
+      span?: { from: number; to: number; label: LocalizedText };
+    }
+  | {
       kind: "dot-plot";
       title: LocalizedText;
       xLabel: LocalizedText;
@@ -109,6 +127,7 @@ const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
   "line-graph": { bm: "Graf garis", dlp: "Line graph" },
   "frequency-polygon": { bm: "Poligon kekerapan", dlp: "Frequency polygon" },
   "pie-chart": { bm: "Carta pai", dlp: "Pie chart" },
+  "number-line": { bm: "Garis nombor", dlp: "Number line" },
   "dot-plot": { bm: "Plot titik", dlp: "Dot plot" },
   "stem-leaf": { bm: "Plot batang-dan-daun", dlp: "Stem-and-leaf plot" },
 };
@@ -142,6 +161,25 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
         .join(". ")}.`;
     case "pie-chart":
       return `${head} ${pairs(visual.sectors.map((sector) => [sector.label, sector.text]))}.`;
+    case "number-line": {
+      const tickText = visual.ticks
+        .map((tick) => tick.label === undefined ? String(tick.value) : textFor(tick.label, lang))
+        .join(", ");
+      const points = visual.points?.length
+        ? ` ${bm ? "Titik ditanda" : "Marked points"}: ${visual.points
+            .map((point) =>
+              point.label === undefined ? String(point.value) : textFor(point.label, lang),
+            )
+            .join(", ")}.`
+        : "";
+      const movement = visual.movement
+        ? ` ${bm ? "Bermula pada" : "Starts at"} ${visual.movement.from}; ${visual.movement.label[lang]}.`
+        : "";
+      const span = visual.span
+        ? ` ${bm ? "Titik hujung" : "End points"}: ${visual.span.from} ${bm ? "dan" : "and"} ${visual.span.to}. ${visual.span.label[lang]}.`
+        : "";
+      return `${head} ${bm ? "Tanda skala" : "Scale marks"}: ${tickText}.${points}${movement}${span}`;
+    }
     case "dot-plot":
       return `${head} ${dotPlotCounts(visual.values)
         .map(

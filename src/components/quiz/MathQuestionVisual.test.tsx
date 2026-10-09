@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import * as registryModule from "@/content/registry";
 import * as dataModule from "@/data/content";
+import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { MathObjectiveQuizScreen, resolveMathObjectiveQuestions } from "@/routes/quizzes";
 import {
@@ -20,6 +21,7 @@ vi.mock("@/hooks/use-content-registry", () => ({
   useContentDataModule: () => dataModule,
 }));
 
+const V1 = MATH_F1_C1_QUIZ_VISUALS;
 const V = MATH_F1_C12_QUIZ_VISUALS;
 const render = (visual: Parameters<typeof MathQuestionVisual>[0]["visual"], lang: "bm" | "dlp") =>
   renderToStaticMarkup(createElement(MathQuestionVisual, { visual, lang }));
@@ -71,6 +73,40 @@ function renderScreen(
 describe("MathQuestionVisual", () => {
   const all = Object.values(V) as MathQuestionVisualData[];
   const count = (html: string, pattern: RegExp) => html.match(pattern)?.length ?? 0;
+
+
+  it("renders Chapter 1 number lines as lightweight SVGs with truthful ticks and movement labels", () => {
+    for (const visual of Object.values(V1) as Extract<
+      MathQuestionVisualData,
+      { kind: "number-line" }
+    >[]) {
+      for (const lang of ["bm", "dlp"] as const) {
+        const html = render(visual, lang);
+        expect(html, visual.title.dlp).toContain('data-math-visual="number-line"');
+        expect(html).not.toMatch(/<img|<canvas|<animate|transition|animation/);
+        for (const tick of visual.ticks) {
+          const label =
+            tick.label === undefined
+              ? String(tick.value).replace("-", "−")
+              : typeof tick.label === "string"
+                ? tick.label
+                : tick.label[lang];
+          expect(html, visual.title.dlp).toContain(label);
+        }
+      }
+    }
+
+    const left = render(V1.moveLeftEight, "dlp");
+    expect(left).toContain("8 steps left");
+    expect(left).toContain("data-number-line-movement");
+    expect(left).toContain("Starts at -3; 8 steps left.");
+    expect(left).not.toContain("arrives at -11");
+
+    const distance = render(V1.distanceMinus7To4, "bm");
+    expect(distance).toContain("data-number-line-span");
+    expect(distance).toContain("Jarak ? unit");
+    expect(distance).toContain("Titik hujung: -7 dan 4.");
+  });
 
   it("renders every Chapter 12 visual without images, canvas or animation", () => {
     for (const visual of all) {
