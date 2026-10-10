@@ -74,6 +74,9 @@ const triangleExt = (bm: string, dlp: string, angleA: VisualText | undefined,
   });
   fig.panels[0].labels.push(
     { at: pt(235, 142), text: exterior },
+    { at: pt(140, 27), text: "A" },
+    { at: pt(49, 206), text: "B" },
+    { at: pt(222, 207), text: "C" },
     { at: pt(287, 204), text: "D" },
   );
   if (sideMark) fig.panels[0].labels.push({ at: pt(148, 208), text: sideMark });
@@ -198,11 +201,12 @@ export const MATH_F1_C9_QUIZ_VISUALS = {
   rhombusAngle70: quad("Sudut rombus", "Rhombus angles",
     ["?", "70°", "?", "?"], rhombus, { points: true }),
   extAtA: (() => {
+    const vertices = [pt(78, 122), pt(238, 43), pt(221, 196)];
     const fig = triangle("Sudut dalaman dan peluaran di A", "Interior and exterior angles at A",
-      ["(6t − 10)°"], tri, {
-      extensions: [[tri[1], pt(30, 225)]],
+      ["(6t − 10)°"], vertices, {
+      points: true, extensions: [[vertices[0], pt(18, 152)]],
     });
-    fig.panels[0].labels.push({ at: pt(72, 187), text: "(4t + 20)°" });
+    fig.panels[0].labels.push({ at: pt(90, 164), text: "(4t + 20)°" });
     return fig;
   })(),
   ext130Equal: triangleExt("Sudut peluaran dan dua sudut tapak sama",
@@ -214,8 +218,8 @@ export const MATH_F1_C9_QUIZ_VISUALS = {
     ["3p", "2p", "4p", "p"]),
   exteriorB115: (() => {
     const fig = triangle("Sudut peluaran di B", "Exterior angle at B",
-      ["55°", "?"], tri, { extensions: [[tri[1], pt(9, 225)]] });
-    fig.panels[0].labels.push({ at: pt(33, 177), text: "115°" });
+      ["55°", "?"], tri, { points: true, extensions: [[tri[1], pt(30, 226)]] });
+    fig.panels[0].labels.push({ at: pt(22, 188), text: "115°" });
     return fig;
   })(),
   parallelPExpr: quad("Sudut bersebelahan segi empat selari",
