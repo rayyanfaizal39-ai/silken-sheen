@@ -157,6 +157,7 @@ const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
   "factor-groups": { bm: "Pendaraban berulang", dlp: "Repeated multiplication" },
   "index-equations": { bm: "Persamaan indeks", dlp: "Index equations" },
   "unit-cube": { bm: "Kubus unit", dlp: "Unit cube" },
+  "geometry-model": { bm: "Model bentuk geometri", dlp: "Geometry shape model" },
   "fraction-area": { bm: "Model luas pecahan", dlp: "Fractional area model" },
   "item-arrays": { bm: "Model kuantiti", dlp: "Quantity model" },
   "multiple-tracks": { bm: "Pola gandaan", dlp: "Multiple patterns" },
@@ -198,6 +199,7 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
     case "factor-groups":
     case "index-equations":
     case "unit-cube":
+    case "geometry-model":
     case "fraction-area":
       return describeMathIndicesVisual(visual, lang);
     case "item-arrays":

@@ -58,6 +58,7 @@ import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/qu
 import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
 import { MATH_F1_C2_QUIZ_VISUALS } from "@/content/form1/math/chapter-2/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
+import { MATH_F1_C3_QUIZ_VISUALS } from "@/content/form1/math/chapter-3/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
@@ -2953,8 +2954,8 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     "Kuasa dua bermaksud mendarab nombor dengan dirinya sendiri.",
     "Easy",
   ],
-  ["Apakah maksud a²?", ["a + a", "a × a", "a ÷ a", "2 × a"], 1, "a² bermaksud a × a.", "Easy"],
-  ["Berapakah 4²?", ["8", "12", "16", "24"], 2, "4² = 4 × 4 = 16.", "Easy"],
+  ["Apakah maksud a²?", ["a + a", "a × a", "a ÷ a", "2 × a"], 1, "a² bermaksud a × a.", "Easy", MATH_F1_C3_QUIZ_VISUALS.indexSquare],
+  ["Berapakah 4²?", ["8", "12", "16", "24"], 2, "4² = 4 × 4 = 16.", "Easy", MATH_F1_C3_QUIZ_VISUALS.squareFour],
   [
     "Kuasa dua boleh dikaitkan dengan:",
     ["Panjang garis sahaja", "Isipadu kubus", "Lilitan bulatan", "Luas segi empat sama"],
@@ -3042,8 +3043,9 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "a³ bermaksud a × a × a.",
     "Easy",
+    MATH_F1_C3_QUIZ_VISUALS.indexCube,
   ],
-  ["Berapakah 2³?", ["8", "6", "5", "9"], 0, "2³ = 2 × 2 × 2 = 8.", "Easy"],
+  ["Berapakah 2³?", ["8", "6", "5", "9"], 0, "2³ = 2 × 2 × 2 = 8.", "Easy", MATH_F1_C3_QUIZ_VISUALS.cubeTwo],
   [
     "2³ bukan bermaksud:",
     ["2 × 2 × 2", "8", "2 × 3", "Kuasa tiga bagi 2"],
@@ -3092,6 +3094,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "(-5)³ = (-5) × (-5) × (-5) = -125.",
     "Easy",
+    MATH_F1_C3_QUIZ_VISUALS.negativeCubeFive,
   ],
   [
     "Punca kuasa tiga ialah songsangan kepada:",
@@ -3100,7 +3103,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     "Punca kuasa tiga membalikkan proses kuasa tiga.",
     "Easy",
   ],
-  ["Berapakah ∛8?", ["8", "3", "4", "2"], 3, "∛8 = 2 kerana 2³ = 8.", "Easy"],
+  ["Berapakah ∛8?", ["8", "3", "4", "2"], 3, "∛8 = 2 kerana 2³ = 8.", "Easy", MATH_F1_C3_QUIZ_VISUALS.cubeRootEight],
   ["Berapakah ∛(-8)?", ["-2", "2", "4", "-4"], 0, "∛(-8) = -2 kerana (-2)³ = -8.", "Easy"],
   [
     "Punca kuasa tiga bagi isipadu kubus memberi:",
@@ -3115,6 +3118,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "49 < 54 < 64, jadi √54 terletak antara 7 dan 8.",
     "Easy",
+    MATH_F1_C3_QUIZ_VISUALS.sqrt54Bounds,
   ],
   [
     "Dalam tertib operasi, langkah pertama ialah:",
@@ -3138,8 +3142,8 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     "Square means multiplying a number by itself.",
     "Easy",
   ],
-  ["What does a² mean?", ["a + a", "a × a", "a ÷ a", "2 × a"], 1, "a² means a × a.", "Easy"],
-  ["What is 4²?", ["8", "12", "16", "24"], 2, "4² = 4 × 4 = 16.", "Easy"],
+  ["What does a² mean?", ["a + a", "a × a", "a ÷ a", "2 × a"], 1, "a² means a × a.", "Easy", MATH_F1_C3_QUIZ_VISUALS.indexSquare],
+  ["What is 4²?", ["8", "12", "16", "24"], 2, "4² = 4 × 4 = 16.", "Easy", MATH_F1_C3_QUIZ_VISUALS.squareFour],
   [
     "A square can be related to:",
     ["Length of a line only", "Volume of a cube", "Circumference of a circle", "Area of a square"],
@@ -3228,8 +3232,9 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "a³ means a × a × a.",
     "Easy",
+    MATH_F1_C3_QUIZ_VISUALS.indexCube,
   ],
-  ["What is 2³?", ["8", "6", "5", "9"], 0, "2³ = 2 × 2 × 2 = 8.", "Easy"],
+  ["What is 2³?", ["8", "6", "5", "9"], 0, "2³ = 2 × 2 × 2 = 8.", "Easy", MATH_F1_C3_QUIZ_VISUALS.cubeTwo],
   [
     "2³ does not mean:",
     ["2 × 2 × 2", "8", "2 × 3", "The cube of 2"],
@@ -3272,7 +3277,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     "A negative number cubed produces a negative value.",
     "Easy",
   ],
-  ["What is (-5)³?", ["-125", "125", "15", "-15"], 0, "(-5)³ = (-5) × (-5) × (-5) = -125.", "Easy"],
+  ["What is (-5)³?", ["-125", "125", "15", "-15"], 0, "(-5)³ = (-5) × (-5) × (-5) = -125.", "Easy", MATH_F1_C3_QUIZ_VISUALS.negativeCubeFive],
   [
     "Cube root is the inverse of:",
     ["Squaring", "Cubing", "Multiplying two numbers", "Subtraction"],
@@ -3280,7 +3285,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     "Cube root reverses the cubing process.",
     "Easy",
   ],
-  ["What is ∛8?", ["8", "3", "4", "2"], 3, "∛8 = 2 because 2³ = 8.", "Easy"],
+  ["What is ∛8?", ["8", "3", "4", "2"], 3, "∛8 = 2 because 2³ = 8.", "Easy", MATH_F1_C3_QUIZ_VISUALS.cubeRootEight],
   ["What is ∛(-8)?", ["-2", "2", "4", "-4"], 0, "∛(-8) = -2 because (-2)³ = -8.", "Easy"],
   [
     "The cube root of a cube's volume gives:",
@@ -3295,6 +3300,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "49 < 54 < 64, so √54 lies between 7 and 8.",
     "Easy",
+    MATH_F1_C3_QUIZ_VISUALS.sqrt54Bounds,
   ],
   [
     "In order of operations, the first step is:",
@@ -3315,6 +3321,7 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "√16 = 4 dan √25 = 5, jadi √(16/25) = 4/5.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.rootFraction16of25,
   ],
   ["Berapakah √64 × √64?", ["8", "64", "16", "128"], 1, "√64 × √64 = 64.", "Medium"],
   [
@@ -3324,9 +3331,9 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     "√9 = 3 dan √16 = 4, maka 3 × 4 = 12.",
     "Medium",
   ],
-  ["Berapakah 3³?", ["9", "18", "24", "27"], 3, "3³ = 3 × 3 × 3 = 27.", "Medium"],
+  ["Berapakah 3³?", ["9", "18", "24", "27"], 3, "3³ = 3 × 3 × 3 = 27.", "Medium", MATH_F1_C3_QUIZ_VISUALS.cubeThree],
   ["Berapakah 6³?", ["216", "126", "36", "236"], 0, "6³ = 216.", "Medium"],
-  ["Berapakah (-4)³?", ["64", "12", "-64", "-12"], 2, "(-4)³ = -64.", "Medium"],
+  ["Berapakah (-4)³?", ["64", "12", "-64", "-12"], 2, "(-4)³ = -64.", "Medium", MATH_F1_C3_QUIZ_VISUALS.negativeCubeFour],
   ["Berapakah ∛27?", ["2", "9", "4", "3"], 3, "∛27 = 3 kerana 3³ = 27.", "Medium"],
   ["Berapakah ∛125?", ["5", "4", "3", "25"], 0, "∛125 = 5 kerana 5³ = 125.", "Medium"],
   ["Berapakah ∛(-64)?", ["4", "-4", "-8", "8"], 1, "∛(-64) = -4 kerana (-4)³ = -64.", "Medium"],
@@ -3336,6 +3343,7 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Panjang sisi = √49 = 7 cm.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.squareArea49,
   ],
   [
     "Isipadu kubus ialah 216 cm³. Panjang sisinya ialah:",
@@ -3343,6 +3351,7 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Panjang sisi = ∛216 = 6 cm.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.cubeVolume216,
   ],
   [
     "√80 terletak antara:",
@@ -3350,6 +3359,7 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "64 < 80 < 81, jadi √80 terletak antara 8 dan 9.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.sqrt80Bounds,
   ],
   [
     "5.1³ terletak antara:",
@@ -3374,6 +3384,7 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "√25 = 5 dan √36 = 6, jadi √(25/36) = 5/6.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.rootFraction25of36,
   ],
   ["Hitung: 2³ + 2²", ["8", "10", "12", "16"], 2, "2³ = 8 dan 2² = 4, jumlah = 12.", "Medium"],
   ["Hitung: √64 + √16", ["8", "10", "16", "12"], 3, "√64 = 8 dan √16 = 4, jumlah = 12.", "Medium"],
@@ -3390,6 +3401,7 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "√16 = 4 and √25 = 5, so √(16/25) = 4/5.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.rootFraction16of25,
   ],
   ["What is √64 × √64?", ["8", "64", "16", "128"], 1, "√64 × √64 = 64.", "Medium"],
   [
@@ -3399,9 +3411,9 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "√9 = 3 and √16 = 4, so 3 × 4 = 12.",
     "Medium",
   ],
-  ["What is 3³?", ["9", "18", "24", "27"], 3, "3³ = 3 × 3 × 3 = 27.", "Medium"],
+  ["What is 3³?", ["9", "18", "24", "27"], 3, "3³ = 3 × 3 × 3 = 27.", "Medium", MATH_F1_C3_QUIZ_VISUALS.cubeThree],
   ["What is 6³?", ["216", "126", "36", "236"], 0, "6³ = 216.", "Medium"],
-  ["What is (-4)³?", ["64", "12", "-64", "-12"], 2, "(-4)³ = -64.", "Medium"],
+  ["What is (-4)³?", ["64", "12", "-64", "-12"], 2, "(-4)³ = -64.", "Medium", MATH_F1_C3_QUIZ_VISUALS.negativeCubeFour],
   ["What is ∛27?", ["2", "9", "4", "3"], 3, "∛27 = 3 because 3³ = 27.", "Medium"],
   ["What is ∛125?", ["5", "4", "3", "25"], 0, "∛125 = 5 because 5³ = 125.", "Medium"],
   ["What is ∛(-64)?", ["4", "-4", "-8", "8"], 1, "∛(-64) = -4 because (-4)³ = -64.", "Medium"],
@@ -3411,6 +3423,7 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Side length = √49 = 7 cm.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.squareArea49,
   ],
   [
     "The volume of a cube is 216 cm³. Its edge length is:",
@@ -3418,6 +3431,7 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Edge length = ∛216 = 6 cm.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.cubeVolume216,
   ],
   [
     "√80 lies between:",
@@ -3425,6 +3439,7 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "64 < 80 < 81, so √80 lies between 8 and 9.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.sqrt80Bounds,
   ],
   [
     "5.1³ lies between:",
@@ -3449,6 +3464,7 @@ const MATH_C3_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "√25 = 5 and √36 = 6, so √(25/36) = 5/6.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.rootFraction25of36,
   ],
   ["Calculate: 2³ + 2²", ["8", "10", "12", "16"], 2, "2³ = 8 and 2² = 4, total = 12.", "Medium"],
   [
@@ -3468,6 +3484,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Panjang sisi = √144 = 12 cm.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.squareArea144,
   ],
   [
     "Isipadu kubus ialah 512 cm³. Panjang sisinya ialah:",
@@ -3475,6 +3492,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Panjang sisi = ∛512 = 8 cm.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.cubeVolume512,
   ],
   [
     "Segi empat sama mempunyai sisi 9 cm. Luasnya ialah:",
@@ -3482,6 +3500,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Luas = 9² = 81 cm².",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.squareSide9,
   ],
   [
     "Kubus mempunyai sisi 6 cm. Isipadunya ialah:",
@@ -3489,6 +3508,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Isipadu = 6³ = 216 cm³.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.cubeSide6,
   ],
   [
     "Luas taman berbentuk segi empat sama ialah 169 m². Panjang sisinya ialah:",
@@ -3496,6 +3516,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Panjang sisi = √169 = 13 m.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.squareGarden169,
   ],
   [
     "Isipadu kotak berbentuk kubus ialah 343 cm³. Panjang sisinya ialah:",
@@ -3503,6 +3524,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Panjang sisi = ∛343 = 7 cm.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.cubeBox343,
   ],
   [
     "Antara berikut, yang manakah anggaran terbaik bagi √50?",
@@ -3567,6 +3589,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Luas segi empat tepat = 8 × 18 = 144 cm². Sisi segi empat sama = √144 = 12 cm.",
     "Hard",
+    MATH_F1_C3_QUIZ_VISUALS.equalAreaRectangleSquare,
   ],
   [
     "Sebuah lantai berbentuk segi empat sama mempunyai luas 81 m². Berapakah perimeter lantai itu?",
@@ -3574,6 +3597,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Panjang sisi = √81 = 9 m. Perimeter = 4 × 9 = 36 m.",
     "Hard",
+    MATH_F1_C3_QUIZ_VISUALS.squareFloor81,
   ],
   [
     "Sisi sebuah segi empat sama digandakan daripada 5 cm kepada 10 cm. Luas baharu ialah berapa kali luas asal?",
@@ -3630,6 +3654,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Isipadu kubus besar = 64 × 1 cm³ = 64 cm³. Panjang sisi = ∛64 = 4 cm. (8 cm ialah √64, bukan ∛64.)",
     "Hard",
+    MATH_F1_C3_QUIZ_VISUALS.cubeUnitBlocks64,
   ],
   [
     "Aiman menulis (−6)² = −36. Apakah nilai sebenar (−6)²?",
@@ -3637,6 +3662,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "(−6)² = (−6) × (−6) = 36. Hasil darab dua nombor negatif ialah positif. Aiman tersilap kerana mengira −(6²).",
     "Hard",
+    MATH_F1_C3_QUIZ_VISUALS.negativeSquareSix,
   ],
   [
     "Jika √a × √a = 49, nilai a ialah:",
@@ -3657,6 +3683,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Side length = √144 = 12 cm.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.squareArea144,
   ],
   [
     "The volume of a cube is 512 cm³. Its edge length is:",
@@ -3664,6 +3691,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Edge length = ∛512 = 8 cm.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.cubeVolume512,
   ],
   [
     "A square has a side length of 9 cm. Its area is:",
@@ -3671,6 +3699,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Area = 9² = 81 cm².",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.squareSide9,
   ],
   [
     "A cube has an edge length of 6 cm. Its volume is:",
@@ -3678,6 +3707,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Volume = 6³ = 216 cm³.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.cubeSide6,
   ],
   [
     "A square garden has an area of 169 m². Its side length is:",
@@ -3685,6 +3715,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Side length = √169 = 13 m.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.squareGarden169,
   ],
   [
     "A cube-shaped box has a volume of 343 cm³. Its edge length is:",
@@ -3692,6 +3723,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Edge length = ∛343 = 7 cm.",
     "Medium",
+    MATH_F1_C3_QUIZ_VISUALS.cubeBox343,
   ],
   [
     "Which of the following is the best estimate of √50?",
@@ -3756,6 +3788,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Area of the rectangle = 8 × 18 = 144 cm². Side of the square = √144 = 12 cm.",
     "Hard",
+    MATH_F1_C3_QUIZ_VISUALS.equalAreaRectangleSquare,
   ],
   [
     "A square floor has an area of 81 m². What is the perimeter of the floor?",
@@ -3763,6 +3796,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Side length = √81 = 9 m. Perimeter = 4 × 9 = 36 m.",
     "Hard",
+    MATH_F1_C3_QUIZ_VISUALS.squareFloor81,
   ],
   [
     "The side of a square is doubled from 5 cm to 10 cm. The new area is how many times the original area?",
@@ -3819,6 +3853,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Volume of the large cube = 64 × 1 cm³ = 64 cm³. Edge length = ∛64 = 4 cm. (8 cm is √64, not ∛64.)",
     "Hard",
+    MATH_F1_C3_QUIZ_VISUALS.cubeUnitBlocks64,
   ],
   [
     "Aiman wrote (−6)² = −36. What is the correct value of (−6)²?",
@@ -3826,6 +3861,7 @@ const MATH_C3_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "(−6)² = (−6) × (−6) = 36. The product of two negative numbers is positive. Aiman's mistake was calculating −(6²).",
     "Hard",
+    MATH_F1_C3_QUIZ_VISUALS.negativeSquareSix,
   ],
   [
     "If √a × √a = 49, the value of a is:",
