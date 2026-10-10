@@ -116,7 +116,8 @@ describe("Form 1 Mathematics Chapter 3 selective quiz diagrams", () => {
         const html = renderToStaticMarkup(createElement(MathQuestionVisual, { visual, lang }));
         expect(html).toContain(`data-math-visual="${visual.kind}"`);
         expect(html).toContain('role="img"');
-        expect(html).toContain("<svg");
+        // Factor groups use accessible CSS item cards; not every visual is an SVG.
+        expect(html).toMatch(/<(?:svg|div|table)\b/);
         expect(html).not.toMatch(/<canvas|<animate|animation:|transition:/);
         expect(describeMathQuestionVisual(visual, lang)).toContain(visual.title[lang]);
       }
