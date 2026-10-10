@@ -56,6 +56,7 @@ import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
 import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
 import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
+import { MATH_F1_C7_QUIZ_VISUALS } from "@/content/form1/math/chapter-7/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
@@ -7890,6 +7891,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "'Minimum 50' bermaksud markah mestilah sekurang-kurangnya 50, maka m ≥ 50.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.minMark50,
   ],
   [
     "Had laju tidak melebihi 110 km/j. Tulis ketaksamaan ini jika h ialah had laju.",
@@ -7897,6 +7899,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "'Tidak melebihi 110' bermaksud had laju paling banyak 110, maka h ≤ 110.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.speedLimit110,
   ],
   [
     "Bilakah bulatan terbuka ○ digunakan pada garis nombor?",
@@ -8037,6 +8040,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "'Melebihi 12' bermaksud lebih daripada 12, maka u > 12 (bukan termasuk 12).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.ageExceeds12,
   ],
   [
     "Pilih ketaksamaan yang betul bagi 'suhu kurang daripada 25°C' (s = suhu).",
@@ -8044,6 +8048,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "'Kurang daripada 25' bermaksud s < 25.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.temperature25,
   ],
   [
     "Ketaksamaan manakah yang BENAR?",
@@ -8051,6 +8056,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "−3 berada di sebelah kanan −5 pada garis nombor, maka −3 > −5.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.compareNegatives,
   ],
   [
     "Manakah gambaran garis nombor yang betul untuk x < −2?",
@@ -8063,6 +8069,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Simbol < menggunakan bulatan terbuka dan anak panah ke kiri (kerana x lebih kecil daripada −2).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.optionsLessMinus2,
   ],
   [
     "Manakah gambaran garis nombor yang betul untuk x ≥ 1?",
@@ -8075,6 +8082,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Simbol ≥ menggunakan bulatan tertutup dan anak panah ke kanan (kerana x lebih besar daripada atau sama dengan 1).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.optionsGte1,
   ],
   [
     "Antara nilai berikut, yang manakah memenuhi x ≤ −1?",
@@ -8082,6 +8090,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "−2 lebih kecil daripada −1, maka −2 memenuhi x ≤ −1. Nilai 0, 1 dan 3 lebih besar daripada −1.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.atMostMinus1,
   ],
   [
     "Pada garis nombor, nombor bertambah ke arah manakah?",
@@ -8103,6 +8112,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "'Tidak kurang daripada 7' bermaksud x mestilah sekurang-kurangnya 7, maka x ≥ 7.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.notLessThanSeven,
   ],
 ]);
 
@@ -8153,6 +8163,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "'Minimum 50' means the mark must be at least 50, so m ≥ 50.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.minMark50,
   ],
   [
     "The speed limit does not exceed 110 km/h. Write this inequality if h is the speed.",
@@ -8160,6 +8171,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "'Does not exceed 110' means the speed is at most 110, so h ≤ 110.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.speedLimit110,
   ],
   [
     "When is an open circle ○ used on the number line?",
@@ -8280,6 +8292,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "'Exceeds 12' means more than 12, so u > 12 (12 not included).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.ageExceeds12,
   ],
   [
     "Choose the correct inequality for 'temperature is less than 25°C' (s = temperature).",
@@ -8287,6 +8300,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "'Less than 25' means s < 25.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.temperature25,
   ],
   [
     "Which inequality is TRUE?",
@@ -8294,6 +8308,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "−3 is to the right of −5 on the number line, so −3 > −5.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.compareNegatives,
   ],
   [
     "Which number line representation is correct for x < −2?",
@@ -8306,6 +8321,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "The symbol < uses an open circle and arrow pointing left (because x is less than −2).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.optionsLessMinus2,
   ],
   [
     "Which number line representation is correct for x ≥ 1?",
@@ -8318,6 +8334,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "The symbol ≥ uses a closed circle and arrow pointing right (because x is greater than or equal to 1).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.optionsGte1,
   ],
   [
     "Which of the following values satisfies x ≤ −1?",
@@ -8325,6 +8342,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "−2 is less than −1, so −2 satisfies x ≤ −1. The values 0, 1 and 3 are greater than −1.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.atMostMinus1,
   ],
   [
     "On the number line, values increase in which direction?",
@@ -8346,6 +8364,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "'Not less than 7' means x must be at least 7, so x ≥ 7.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.notLessThanSeven,
   ],
 ]);
 
@@ -8426,6 +8445,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "x > 3 bermaksud x lebih besar daripada 3. Nilai integer yang mungkin ialah 4, 5, 6, 7, ... (tidak termasuk 3).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.greaterThan3,
   ],
   [
     "Apakah nilai integer yang mungkin bagi x ≤ 2?",
@@ -8433,6 +8453,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "x ≤ 2 bermaksud x lebih kecil daripada atau sama dengan 2. Nilai integer: 2, 1, 0, −1, −2, ... (termasuk 2).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.atMostTwo,
   ],
   [
     "Apakah nilai integer yang mungkin bagi −1 < x ≤ 4?",
@@ -8440,6 +8461,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "−1 < x ≤ 4 bermaksud x lebih besar daripada −1 (tidak termasuk) dan paling besar 4 (termasuk). Integer: 0, 1, 2, 3, 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenMinusOneFour,
   ],
   [
     "Apakah nilai integer yang mungkin bagi 2 ≤ x < 7?",
@@ -8447,6 +8469,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "2 ≤ x < 7 bermaksud x sekurang-kurangnya 2 (termasuk) dan kurang daripada 7 (tidak termasuk). Integer: 2, 3, 4, 5, 6.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenTwoSeven,
   ],
   [
     "Apakah nilai integer yang mungkin bagi 1 < x < 5?",
@@ -8454,6 +8477,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "1 < x < 5 bermaksud x lebih besar daripada 1 (tidak termasuk) dan kurang daripada 5 (tidak termasuk). Integer: 2, 3, 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenOneFive,
   ],
   [
     "Selesaikan 4x − 3 > 9.",
@@ -8529,6 +8553,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "x/3 + 1 ≥ 4 → x/3 ≥ 3 → x ≥ 9. Simbol ≥ menggunakan bulatan tertutup pada 9 dan anak panah ke kanan.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.optionsAtNine,
   ],
   [
     "Selesaikan −x/2 < 3.",
@@ -8543,6 +8568,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "x > −3 bermaksud x lebih besar daripada −3. Integer terkecil ialah −2.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.greaterThanMinus3,
   ],
   [
     "Nyatakan nilai integer terbesar yang memenuhi x < 5.",
@@ -8550,6 +8576,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "x < 5 bermaksud x lebih kecil daripada 5. Integer terbesar ialah 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.lessThanFive,
   ],
   [
     "Selesaikan 6x + 2 > 20.",
@@ -8644,6 +8671,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "x > 3 means x is greater than 3. Possible integers: 4, 5, 6, 7, ... (3 not included).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.greaterThan3,
   ],
   [
     "What are the possible integer values for x ≤ 2?",
@@ -8651,6 +8679,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "x ≤ 2 means x is less than or equal to 2. Integers: 2, 1, 0, −1, −2, ... (including 2).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.atMostTwo,
   ],
   [
     "What are the possible integer values for −1 < x ≤ 4?",
@@ -8658,6 +8687,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "−1 < x ≤ 4 means x is greater than −1 (not included) and at most 4 (included). Integers: 0, 1, 2, 3, 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenMinusOneFour,
   ],
   [
     "What are the possible integer values for 2 ≤ x < 7?",
@@ -8665,6 +8695,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "2 ≤ x < 7 means x is at least 2 (included) and less than 7 (not included). Integers: 2, 3, 4, 5, 6.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenTwoSeven,
   ],
   [
     "What are the possible integer values for 1 < x < 5?",
@@ -8672,6 +8703,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "1 < x < 5 means x is greater than 1 (not included) and less than 5 (not included). Integers: 2, 3, 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenOneFive,
   ],
   [
     "Solve 4x − 3 > 9.",
@@ -8757,6 +8789,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "x/3 + 1 ≥ 4 → x/3 ≥ 3 → x ≥ 9. The symbol ≥ uses a closed circle at 9 and an arrow pointing right.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.optionsAtNine,
   ],
   [
     "Solve −x/2 < 3.",
@@ -8771,6 +8804,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "x > −3 means x is greater than −3. The smallest integer is −2.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.greaterThanMinus3,
   ],
   [
     "State the largest integer that satisfies x < 5.",
@@ -8778,6 +8812,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "x < 5 means x is less than 5. The largest integer is 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.lessThanFive,
   ],
   [
     "Solve 6x + 2 > 20.",
@@ -8814,6 +8849,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "x > −1 (tidak termasuk −1) dan x ≤ 3 (termasuk 3) menghasilkan −1 < x ≤ 3.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenGivenMinusOneThree,
   ],
   [
     "Apakah nilai integer yang mungkin bagi ketaksamaan serentak x > −1 dan x ≤ 3?",
@@ -8821,6 +8857,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "−1 < x ≤ 3 menghasilkan nilai integer 0, 1, 2, 3 (−1 tidak termasuk, 3 termasuk).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenGivenMinusOneThree,
   ],
   [
     "Diberi x > 2 dan x > 5, apakah nilai sepunya?",
@@ -8828,6 +8865,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Apabila kedua-dua ketaksamaan menghala ke arah yang sama, gunakan syarat lebih ketat. x > 5 lebih ketat daripada x > 2.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.bothGreaterTwoFive,
   ],
   [
     "Diberi x ≤ 4 dan x ≤ 1, apakah nilai sepunya?",
@@ -8835,6 +8873,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Apabila kedua-dua menghala ke arah yang sama (kiri), gunakan syarat lebih ketat. x ≤ 1 lebih ketat daripada x ≤ 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.bothLessFourOne,
   ],
   [
     "Diberi x > 5 dan x < 2, apakah kesimpulannya?",
@@ -8847,6 +8886,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "x > 5 bermaksud nilai lebih dari 5; x < 2 bermaksud nilai kurang daripada 2. Tiada nilai yang boleh memenuhi kedua-dua syarat ini serentak.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.disjointFiveTwo,
   ],
   [
     "Diberi x ≥ 4 dan x ≤ 1, apakah kesimpulannya?",
@@ -8859,6 +8899,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "x ≥ 4 bermaksud 4 ke atas; x ≤ 1 bermaksud 1 ke bawah. Kawasan tidak bertindih, jadi tiada nilai sepunya.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.disjointFourOne,
   ],
   [
     "Selesaikan ketaksamaan serentak 2x + 1 > 5 dan 3x − 2 < 13, kemudian nyatakan nilai integer yang mungkin.",
@@ -8897,6 +8938,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "'Sekurang-kurangnya RM5' bermaksud h ≥ 5; 'tidak melebihi RM20' bermaksud h ≤ 20. Jadi 5 ≤ h ≤ 20.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.ticketFiveTwenty,
   ],
   [
     "Umur peserta mestilah lebih daripada 12 tahun dan tidak melebihi 18 tahun. Tulis ketaksamaan untuk umur u dan nyatakan nilai integer yang mungkin.",
@@ -8909,6 +8951,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "'Lebih daripada 12' → u > 12 (12 tidak termasuk); 'tidak melebihi 18' → u ≤ 18 (18 termasuk). Jadi 12 < u ≤ 18. Integer: 13, 14, 15, 16, 17, 18.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.participantAge12To18,
   ],
   [
     "Berat beg sekolah mestilah tidak kurang daripada 1 kg dan tidak melebihi 5 kg. Tulis ketaksamaan untuk berat b.",
@@ -8916,6 +8959,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "'Tidak kurang daripada 1' → b ≥ 1; 'tidak melebihi 5' → b ≤ 5. Jadi 1 ≤ b ≤ 5.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.schoolbagOneFive,
   ],
   [
     "Selesaikan ketaksamaan serentak −x + 2 > −1 dan 2x − 3 < 5.",
@@ -8956,6 +9000,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Kedua-dua menghala ke kanan. Syarat lebih ketat: x ≥ 2 (sempadan lebih besar). Nilai sepunya: x ≥ 2.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.bothGreaterTwoMinusOne,
   ],
   [
     "Diberi x < 3 dan x ≤ 7, apakah nilai sepunya?",
@@ -8963,6 +9008,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Kedua-dua menghala ke kiri. Syarat lebih ketat: x < 3 (sempadan lebih kecil). Nilai sepunya: x < 3.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.bothLessThreeSeven,
   ],
   [
     "Selesaikan ketaksamaan serentak 4 − x > 1 dan 2x + 3 ≤ 11.",
@@ -8977,6 +9023,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "x > −4 (tidak termasuk −4) dan x ≤ −1 (termasuk −1). Nilai sepunya: −4 < x ≤ −1. Integer: −3, −2, −1.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.betweenMinusFourMinusOne,
   ],
   [
     "Selesaikan ketaksamaan serentak 2x − 1 > 3 dan x + 4 ≤ 10, kemudian nyatakan nilai integer yang mungkin.",
@@ -8996,6 +9043,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "18 < u ≤ 25 menghasilkan integer: 19, 20, 21, 22, 23, 24, 25 — iaitu 7 nilai.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.youngWorkers18to25,
   ],
   [
     "Berapakah bilangan nilai integer bagi 2 < x < 5 dan bagi 2 ≤ x ≤ 5, masing-masing?",
@@ -9003,6 +9051,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "2 < x < 5: integer 3, 4 (2 nilai). 2 ≤ x ≤ 5: integer 2, 3, 4, 5 (4 nilai). Sempadan termasuk hanya apabila ≤ atau ≥ digunakan.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.compareOpenClosed,
   ],
   [
     "Jika a > 0 dan b > 0 dengan a < b, apakah yang dapat disimpulkan tentang 1/a dan 1/b?",
@@ -9048,6 +9097,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "3 < p < 8 menghasilkan integer 4, 5, 6, 7 (3 dan 8 tidak termasuk).",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.ropeThreeEight,
   ],
   [
     "Nyatakan bilangan nilai integer yang mungkin bagi ketaksamaan serentak x > 0 dan x ≤ 5.",
@@ -9055,6 +9105,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "0 < x ≤ 5 menghasilkan integer 1, 2, 3, 4, 5 — iaitu 5 nilai.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.betweenZeroFive,
   ],
 ]);
 
@@ -9077,6 +9128,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "x > −1 (−1 not included) and x ≤ 3 (3 included) gives −1 < x ≤ 3.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenGivenMinusOneThree,
   ],
   [
     "What are the possible integer values for the simultaneous inequality x > −1 and x ≤ 3?",
@@ -9084,6 +9136,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "−1 < x ≤ 3 gives integers 0, 1, 2, 3 (−1 not included, 3 included).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenGivenMinusOneThree,
   ],
   [
     "Given x > 2 and x > 5, what are the common values?",
@@ -9091,6 +9144,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "When both inequalities point in the same direction, use the stricter condition. x > 5 is stricter than x > 2.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.bothGreaterTwoFive,
   ],
   [
     "Given x ≤ 4 and x ≤ 1, what are the common values?",
@@ -9098,6 +9152,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "When both point the same way (left), use the stricter condition. x ≤ 1 is stricter than x ≤ 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.bothLessFourOne,
   ],
   [
     "Given x > 5 and x < 2, what is the conclusion?",
@@ -9110,6 +9165,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "x > 5 means values greater than 5; x < 2 means values less than 2. No value can satisfy both conditions at the same time.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.disjointFiveTwo,
   ],
   [
     "Given x ≥ 4 and x ≤ 1, what is the conclusion?",
@@ -9122,6 +9178,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "x ≥ 4 means 4 and above; x ≤ 1 means 1 and below. Regions do not overlap, so no common values.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.disjointFourOne,
   ],
   [
     "Solve the simultaneous inequalities 2x + 1 > 5 and 3x − 2 < 13, then state the possible integer values.",
@@ -9160,6 +9217,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "'At least RM5' means h ≥ 5; 'not more than RM20' means h ≤ 20. So 5 ≤ h ≤ 20.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.ticketFiveTwenty,
   ],
   [
     "Participants must be older than 12 but not older than 18. Write the inequality for age u and state the possible integer values.",
@@ -9172,6 +9230,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "'Older than 12' → u > 12 (12 not included); 'not older than 18' → u ≤ 18 (18 included). So 12 < u ≤ 18. Integers: 13, 14, 15, 16, 17, 18.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.participantAge12To18,
   ],
   [
     "A school bag must weigh at least 1 kg and not more than 5 kg. Write the inequality for weight b.",
@@ -9179,6 +9238,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "'Not less than 1' → b ≥ 1; 'not more than 5' → b ≤ 5. So 1 ≤ b ≤ 5.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.schoolbagOneFive,
   ],
   [
     "Solve the simultaneous inequalities −x + 2 > −1 and 2x − 3 < 5.",
@@ -9219,6 +9279,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Both point right. Stricter condition: x ≥ 2 (larger boundary). Common values: x ≥ 2.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.bothGreaterTwoMinusOne,
   ],
   [
     "Given x < 3 and x ≤ 7, what are the common values?",
@@ -9226,6 +9287,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Both point left. Stricter condition: x < 3 (smaller boundary). Common values: x < 3.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.bothLessThreeSeven,
   ],
   [
     "Solve the simultaneous inequalities 4 − x > 1 and 2x + 3 ≤ 11.",
@@ -9240,6 +9302,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "x > −4 (−4 not included) and x ≤ −1 (−1 included). Common: −4 < x ≤ −1. Integers: −3, −2, −1.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.betweenMinusFourMinusOne,
   ],
   [
     "Solve the simultaneous inequalities 2x − 1 > 3 and x + 4 ≤ 10, then state the possible integer values.",
@@ -9259,6 +9322,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "18 < u ≤ 25 gives integers: 19, 20, 21, 22, 23, 24, 25 — that is 7 values.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.youngWorkers18to25,
   ],
   [
     "How many integer values do 2 < x < 5 and 2 ≤ x ≤ 5 have, respectively?",
@@ -9266,6 +9330,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "2 < x < 5: integers 3, 4 (2 values). 2 ≤ x ≤ 5: integers 2, 3, 4, 5 (4 values). Boundaries are included only when ≤ or ≥ is used.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.compareOpenClosed,
   ],
   [
     "If a > 0 and b > 0 with a < b, what can be concluded about 1/a and 1/b?",
@@ -9311,6 +9376,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "3 < p < 8 gives integers 4, 5, 6, 7 (3 and 8 not included).",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.ropeThreeEight,
   ],
   [
     "State the number of possible integer values for the simultaneous inequality x > 0 and x ≤ 5.",
@@ -9318,6 +9384,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "0 < x ≤ 5 gives integers 1, 2, 3, 4, 5 — that is 5 values.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.betweenZeroFive,
   ],
 ]);
 
