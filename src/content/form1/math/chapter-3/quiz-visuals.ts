@@ -29,13 +29,13 @@ export const MATH_F1_C3_QUIZ_VISUALS = {
   // Foundation: reading indices, concrete repeated multiplication and bounds.
   indexSquare: {
     kind: "index-notation",
-    title: { bm: "Tatanda kuasa dua", dlp: "Square notation" },
+    title: { bm: "Tatatanda kuasa dua", dlp: "Square notation" },
     base: "a", exponent: "2",
   },
   squareFour: product("Pendaraban dua faktor yang sama", "Two equal factors", "4", "4"),
   indexCube: {
     kind: "index-notation",
-    title: { bm: "Tatanda kuasa tiga", dlp: "Cube notation" },
+    title: { bm: "Tatatanda kuasa tiga", dlp: "Cube notation" },
     base: "a", exponent: "3",
   },
   cubeTwo: product("Pendaraban tiga faktor yang sama", "Three equal factors", "2", "2", "2"),
