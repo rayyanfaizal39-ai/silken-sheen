@@ -479,6 +479,7 @@ export function MathQuestionVisual({
 
   if (visual.kind === "index-notation" || visual.kind === "factor-groups" ||
       visual.kind === "index-equations" || visual.kind === "unit-cube" ||
+      visual.kind === "geometry-model" ||
       visual.kind === "fraction-area") {
     return <MathIndicesVisual visual={visual} lang={lang} />;
   }
