@@ -28,6 +28,20 @@ export type MathIndicesVisual =
       rows: { label?: VisualText; left: string; right: string }[];
     }
   | {
+      /** Diagram shows only the supplied measurements; unknowns stay labelled '?'. */
+      kind: "geometry-model";
+      title: LocalizedText;
+      models: {
+        shape: "square" | "rectangle" | "cube";
+        label?: VisualText;
+        side?: string;
+        width?: string;
+        height?: string;
+        area?: string;
+        volume?: string;
+      }[];
+    }
+  | {
       kind: "unit-cube";
       title: LocalizedText;
       divisions: number;
@@ -68,6 +82,18 @@ export function describeMathIndicesVisual(
             `${row.label ? `${textFor(row.label, lang)}: ` : ""}${row.left} = ${row.right}`,
         )
         .join("; ")}.`;
+    case "geometry-model":
+      return `${head}. ${visual.models.map((model) => [
+        model.label ? textFor(model.label, lang) : "",
+        model.shape === "square" ? (lang === "bm" ? "segi empat sama" : "square") :
+          model.shape === "rectangle" ? (lang === "bm" ? "segi empat tepat" : "rectangle") :
+          (lang === "bm" ? "kubus" : "cube"),
+        model.side ? `${lang === "bm" ? "sisi" : "side"} ${model.side}` : "",
+        model.width ? `${lang === "bm" ? "lebar" : "width"} ${model.width}` : "",
+        model.height ? `${lang === "bm" ? "tinggi" : "height"} ${model.height}` : "",
+        model.area ? `${lang === "bm" ? "luas" : "area"} ${model.area}` : "",
+        model.volume ? `${lang === "bm" ? "isipadu" : "volume"} ${model.volume}` : "",
+      ].filter(Boolean).join(", ")).join("; ")}.`;
     case "unit-cube":
       return lang === "bm"
         ? `${head}. Kubus terdiri daripada ${visual.volume} kubus unit. Panjang sisi dilabel ${visual.edge}.`
