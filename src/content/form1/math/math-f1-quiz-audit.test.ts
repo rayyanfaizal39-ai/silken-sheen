@@ -1182,10 +1182,12 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
               // A chart may print the *number of people* rather than an angle:
               // e.g. 16 of 40 students occupies 144° in the pie.
               const counts = visual.sectors.map((entry) => Number(entry.text));
-              expect(question.question + " " + question.explanation, id).toContain(sector.text);
               if (counts.every((count) => Number.isFinite(count) && count >= 0)) {
                 const n = counts.reduce((sum, count) => sum + count, 0);
                 expect((Number(sector.text) / n) * 360, id).toBeCloseTo(sector.angle);
+                expect(question.question + " " + question.explanation, id).toContain(String(n));
+              } else {
+                expect(question.question + " " + question.explanation, id).toContain(sector.text);
               }
             } else {
               // In diagrams with an unknown *angle*, x must be the unknown label.
@@ -1223,7 +1225,7 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
   it("asks about the visual instead of repeating its data in the question", () => {
     for (const question of visualQuestions) {
       expect(question.question, question.id).toMatch(
-        /^(?:Lihat )?(Jadual kekerapan|Plot titik|Carta palang|Carta pai|Graf garis|Histogram|Poligon kekerapan|Plot batang-dan-daun)(?: (menunjukkan|dibahagikan)|\.)|^(?:Look at )?[Tt]he (frequency table|dot plot|bar chart|pie chart|line graph|histogram|frequency polygons|stem-and-leaf plot)(?: (shows?|is divided)|\.)/,
+        /^(?:Lihat )?(Jadual kekerapan|Plot titik|Carta palang|Carta pai|Graf garis|Histogram|Poligon kekerapan|Plot batang-dan-daun)(?: (menunjukkan|dibahagikan)|\.)|^(?:Look at )?[Tt]he (frequency table|dot plot|bar chart|pie chart|line graph|histogram|frequency polygons|stem-and-leaf plot)(?: (shows?|is divided)|\.)/i,
       );
       expect(question.question, question.id).not.toMatch(/=\s*\d|\d+,\s*\d+,\s*\d+|●|\d\s*\|\s*\d/);
       expect(
