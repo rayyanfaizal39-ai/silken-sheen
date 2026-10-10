@@ -131,7 +131,7 @@ describe("Form 1 Mathematics Chapter 4 selective visual questions", () => {
       expect(question!.options[question!.answerIndex]).toBe(answer);
     };
     check("objective-1", "Class 1A has 12 boys", "4 : 5");
-    check("objective-1", "3 kg of flour costs RM12", "RM4");
+    check("objective-1", "3 kg of flour costs RM12", "RM4/kg");
     check("objective-2", "A car travels 180 km in 3 hours", "60 km/h");
     check("objective-2", "A : B : C = 2 : 3 : 5", "50");
     check("objective-3", "If 60% of students are boys", "16");
