@@ -52,6 +52,8 @@ import {
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
 import { QuizArena } from "@/components/quiz/QuizArena";
+import quizTimedArtwork from "@/assets/quiz-mode-timed.svg";
+import quizUntimedArtwork from "@/assets/quiz-mode-untimed.svg";
 import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
 import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
@@ -22435,15 +22437,22 @@ function QuizSettingsScreen({
             onClick={() => setMode("timer")}
             aria-pressed={mode === "timer"}
             aria-label="Timed quiz. Select 15, 30, or 60 seconds per question. Timer choice does not change XP."
-            className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
+            className={`group relative text-center glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
               mode === "timer"
                 ? "border-2 border-primary shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.55)] scale-[1.02]"
                 : "border border-white/10 hover:border-primary/40"
             }`}
           >
             <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-rose-500 to-nova-yellow opacity-20 blur-2xl" />
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-nova-yellow flex items-center justify-center text-3xl mb-3 shadow-lg animate-float-soft">
-              <span>⏱️</span>
+            <div className="relative z-10 mx-auto mb-3 flex h-36 w-full max-w-[256px] items-center justify-center sm:h-40" aria-hidden="true">
+              <img
+                src={quizTimedArtwork}
+                alt=""
+                width={256}
+                height={200}
+                draggable={false}
+                className="h-full w-full object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-[1.05]"
+              />
             </div>
             <h3 className="font-display text-xl font-bold">With Timer</h3>
             <p className="mt-1 text-sm font-semibold gradient-text">Race against the clock!</p>
@@ -22497,15 +22506,22 @@ function QuizSettingsScreen({
             onClick={() => setMode("none")}
             aria-pressed={mode === "none"}
             aria-label={`No Timer${mode === "none" ? ", selected" : ""}`}
-            className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
+            className={`group relative text-center glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
               mode === "none"
                 ? "border-2 border-accent shadow-[0_0_30px_oklch(0.7_0.18_180_/_0.5)] scale-[1.02]"
                 : "border border-white/10 hover:border-accent/40"
             }`}
           >
             <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-emerald-400 to-sky-400 opacity-20 blur-2xl" />
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-sky-400 flex items-center justify-center text-3xl mb-3 shadow-lg animate-float-soft">
-              <span>🧘</span>
+            <div className="relative z-10 mx-auto mb-3 flex h-36 w-full max-w-[256px] items-center justify-center sm:h-40" aria-hidden="true">
+              <img
+                src={quizUntimedArtwork}
+                alt=""
+                width={256}
+                height={200}
+                draggable={false}
+                className="h-full w-full object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-[1.05]"
+              />
             </div>
             <h3 className="font-display text-xl font-bold">No Timer</h3>
             <p className="mt-1 text-sm font-semibold gradient-text">Answer at your own pace.</p>
