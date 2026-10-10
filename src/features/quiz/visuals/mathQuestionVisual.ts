@@ -1,3 +1,4 @@
+import { describeMathCoordinateVisual, type MathCoordinateVisual } from "./mathCoordinateVisual";
 /**
  * Declarative data displays for Maths objective quiz questions.
  *
@@ -21,6 +22,7 @@ export type LocalizedText = Record<MathVisualLang, string>;
 export type VisualText = string | LocalizedText;
 
 export type MathQuestionVisual =
+  | MathCoordinateVisual
   | MathAlgebraVisual
   | MathEquationVisual
   | MathInequalityVisual
@@ -173,6 +175,7 @@ export function stemLeafRows(values: readonly number[]): [number, number[]][] {
 }
 
 const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
+  "coordinate-plane": { bm: "Satah koordinat", dlp: "Coordinate plane" },
   "algebra-jars": { bm: "Model balang algebra", dlp: "Algebra jar model" },
   "algebra-tiles": { bm: "Jubin sebutan algebra", dlp: "Algebra term tiles" },
   "equation-balance": { bm: "Model kesamaan persamaan", dlp: "Equation balance model" },
@@ -232,6 +235,8 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
     case "inequality-tracks":
     case "inequality-options":
       return describeMathInequalityVisual(visual, lang);
+    case "coordinate-plane":
+      return describeMathCoordinateVisual(visual, lang);
     case "geometry-diagram":
       return describeMathGeometryVisual(visual, lang);
     case "finance-model":
