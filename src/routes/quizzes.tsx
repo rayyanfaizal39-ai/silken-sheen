@@ -57,6 +57,7 @@ import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
 import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
 import { MATH_F1_C2_QUIZ_VISUALS } from "@/content/form1/math/chapter-2/quiz-visuals";
+import { MATH_F1_C10_QUIZ_VISUALS } from "@/content/form1/math/chapter-10/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { MATH_F1_C3_QUIZ_VISUALS } from "@/content/form1/math/chapter-3/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
@@ -12371,6 +12372,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Perimeter ialah jumlah panjang kesemua sisi luar sesuatu bentuk rata.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterConcept,
   ],
   [
     "Apakah luas sesuatu bentuk?",
@@ -12383,6 +12385,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Luas ialah jumlah ruang di dalam sempadan sesuatu bentuk rata (2D).",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaConcept,
   ],
   [
     "Dalam unit apakah perimeter diukur?",
@@ -12390,6 +12393,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Perimeter diukur dalam unit panjang satu dimensi seperti cm, m, atau mm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterUnits,
   ],
   [
     "Dalam unit apakah luas diukur?",
@@ -12397,6 +12401,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Luas diukur dalam unit persegi (dua dimensi) seperti cm² atau m².",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaUnits,
   ],
   [
     "Apakah formula perimeter segi empat tepat?",
@@ -12404,6 +12409,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Perimeter segi empat tepat = 2(p + l), di mana p = panjang dan l = lebar.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterRectangle,
   ],
   [
     "Apakah formula perimeter segi empat sama?",
@@ -12411,6 +12417,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Perimeter segi empat sama = 4s, di mana s = panjang sisi.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterSquare,
   ],
   [
     "Apakah formula luas segi tiga?",
@@ -12418,6 +12425,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Luas segi tiga = ½ × tapak × tinggi.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaTriangle,
   ],
   [
     "Apakah formula luas segi empat selari?",
@@ -12425,6 +12433,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Luas segi empat selari = tapak × tinggi.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaParallelogram,
   ],
   [
     "Apakah formula luas trapezium?",
@@ -12432,6 +12441,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Luas trapezium = ½ × (a + b) × tinggi, di mana a dan b ialah sisi selari.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaTrapezium,
   ],
   [
     "Apakah formula luas lelayang?",
@@ -12439,6 +12449,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Luas lelayang = ½ × d₁ × d₂, di mana d₁ dan d₂ ialah dua pepenjuru.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaKite,
   ],
   [
     "1 m² bersamaan dengan berapa cm²?",
@@ -12458,6 +12469,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Tinggi segi tiga MESTI berserenjang (90°) dengan tapak. Bukan sisi condong.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triangleCorrectHeight,
   ],
   [
     "Apakah perbezaan utama antara perimeter dan luas?",
@@ -12470,6 +12482,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Perimeter = panjang sempadan luar (unit: cm, m). Luas = kawasan dalaman (unit: cm², m²).",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.boundaryVsArea,
   ],
   [
     "Bentuk apakah yang memberikan luas terbesar untuk perimeter yang tetap?",
@@ -12496,6 +12509,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Dalam formula ½(a + b)h, a dan b adalah DUA sisi yang SELARI — bukan semua sisi.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.trapeziumParallelSides,
   ],
   [
     "Apakah d₁ dan d₂ dalam formula luas lelayang?",
@@ -12508,6 +12522,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "d₁ dan d₂ ialah DUA PEPENJURU lelayang. Pepenjuru lelayang saling berserenjang (90°).",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.kiteDiagonals,
   ],
   [
     "Apakah kaedah grid untuk menganggar luas?",
@@ -12520,6 +12535,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Kaedah grid: lukis bentuk di atas kertas grid, kira petak penuh dan separuh di dalam bentuk.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.gridArea,
   ],
   [
     "Dalam kaedah grid, petak yang lebih separuh berada di dalam bentuk dikira sebagai?",
@@ -12541,6 +12557,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Perimeter = 2(6 + 4) = 2(10) = 20 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.rectangleSixFour,
   ],
   [
     "Segi empat sama berisi 5 cm. Apakah perimeter?",
@@ -12548,6 +12565,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Perimeter = 4 × 5 = 20 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.squareFive,
   ],
   [
     "Segi tiga dengan sisi 3 cm, 4 cm dan 5 cm. Apakah perimeter?",
@@ -12555,6 +12573,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Perimeter = 3 + 4 + 5 = 12 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triThreeFourFive,
   ],
   [
     "Apakah bentuk komposit?",
@@ -12567,6 +12586,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Bentuk komposit ialah bentuk yang terbentuk daripada gabungan dua atau lebih bentuk mudah.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.compositeConcept,
   ],
   [
     "Apakah perbezaan antara segi tiga (luas) dan segi empat selari (luas)?",
@@ -12579,6 +12599,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Luas segi tiga = ½bh. Luas segi empat selari = bh.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triangleVsParallelogram,
   ],
   [
     "Perimeter segi empat tepat = 30 cm. Panjang = 8 cm. Apakah lebar?",
@@ -12586,6 +12607,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "2(8 + l) = 30. 8 + l = 15. l = 7 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.rectanglePerimeter30,
   ],
   [
     "Heksagon sekata berisi 3 cm. Apakah perimeter?",
@@ -12593,6 +12615,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Heksagon mempunyai 6 sisi. Perimeter = 6 × 3 = 18 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.hexSideThree,
   ],
   [
     "Apakah unit yang sesuai untuk mengukur luas bilik tidur?",
@@ -12614,6 +12637,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Formula ½d₁d₂ juga digunakan untuk BELAH KETUPAT, kerana pepenjuru belah ketupat juga berserenjang.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.kiteRhombus,
   ],
 ]);
 
@@ -12629,6 +12653,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Perimeter is the total length of all outer sides of a flat shape.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterConcept,
   ],
   [
     "What is the area of a shape?",
@@ -12641,6 +12666,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Area is the total amount of space inside the boundary of a flat (2D) shape.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaConcept,
   ],
   [
     "In what units is perimeter measured?",
@@ -12648,6 +12674,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Perimeter is measured in one-dimensional length units such as cm, m, or mm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterUnits,
   ],
   [
     "In what units is area measured?",
@@ -12655,6 +12682,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Area is measured in square units (two-dimensional) such as cm² or m².",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaUnits,
   ],
   [
     "What is the formula for the perimeter of a rectangle?",
@@ -12662,6 +12690,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Perimeter of a rectangle = 2(l + w), where l = length and w = width.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterRectangle,
   ],
   [
     "What is the formula for the perimeter of a square?",
@@ -12669,6 +12698,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Perimeter of a square = 4s, where s = side length.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterSquare,
   ],
   [
     "What is the formula for the area of a triangle?",
@@ -12676,6 +12706,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Area of a triangle = ½ × base × height.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaTriangle,
   ],
   [
     "What is the formula for the area of a parallelogram?",
@@ -12683,6 +12714,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Area of a parallelogram = base × height.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaParallelogram,
   ],
   [
     "What is the formula for the area of a trapezium?",
@@ -12690,6 +12722,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Area of a trapezium = ½ × (a + b) × height, where a and b are the parallel sides.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaTrapezium,
   ],
   [
     "What is the formula for the area of a kite?",
@@ -12697,6 +12730,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Area of a kite = ½ × d₁ × d₂, where d₁ and d₂ are the two diagonals.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaKite,
   ],
   [
     "How many cm² is 1 m²?",
@@ -12716,6 +12750,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "The height of a triangle MUST be perpendicular (90°) to the base. Not the slant side.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triangleCorrectHeight,
   ],
   [
     "What is the main difference between perimeter and area?",
@@ -12728,6 +12763,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Perimeter = length of outer boundary (units: cm, m). Area = inner region (units: cm², m²).",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.boundaryVsArea,
   ],
   [
     "Which shape gives the largest area for a fixed perimeter?",
@@ -12754,6 +12790,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "In the formula ½(a + b)h, a and b are the TWO PARALLEL sides — not all sides.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.trapeziumParallelSides,
   ],
   [
     "What are d₁ and d₂ in the kite area formula?",
@@ -12766,6 +12803,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "d₁ and d₂ are the TWO DIAGONALS of the kite. The diagonals of a kite are perpendicular (90°).",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.kiteDiagonals,
   ],
   [
     "What is the grid method for estimating area?",
@@ -12778,6 +12816,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Grid method: draw the shape on grid paper, count full and partial squares inside the shape.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.gridArea,
   ],
   [
     "In the grid method, a square more than half inside the shape counts as?",
@@ -12799,6 +12838,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Perimeter = 2(6 + 4) = 2(10) = 20 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.rectangleSixFour,
   ],
   [
     "Square with side 5 cm. What is the perimeter?",
@@ -12806,6 +12846,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Perimeter = 4 × 5 = 20 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.squareFive,
   ],
   [
     "Triangle with sides 3 cm, 4 cm and 5 cm. What is the perimeter?",
@@ -12813,6 +12854,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Perimeter = 3 + 4 + 5 = 12 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triThreeFourFive,
   ],
   [
     "What is a composite shape?",
@@ -12825,6 +12867,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A composite shape is formed by combining two or more simple shapes.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.compositeConcept,
   ],
   [
     "What is the difference between the triangle (area) and parallelogram (area) formulas?",
@@ -12837,6 +12880,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Area of triangle = ½bh. Area of parallelogram = bh.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triangleVsParallelogram,
   ],
   [
     "Perimeter of rectangle = 30 cm. Length = 8 cm. What is the width?",
@@ -12844,6 +12888,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "2(8 + w) = 30. 8 + w = 15. w = 7 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.rectanglePerimeter30,
   ],
   [
     "Regular hexagon with side 3 cm. What is the perimeter?",
@@ -12851,6 +12896,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A hexagon has 6 sides. Perimeter = 6 × 3 = 18 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.hexSideThree,
   ],
   [
     "What is the appropriate unit for measuring the area of a bedroom?",
@@ -12872,6 +12918,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "The ½d₁d₂ formula also applies to a RHOMBUS, because a rhombus's diagonals are also perpendicular.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.kiteRhombus,
   ],
 ]);
 
@@ -12882,6 +12929,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Perimeter = 2(9 + 5) = 2(14) = 28 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectNineFive,
   ],
   [
     "Segi tiga dengan tapak 10 cm dan tinggi 7 cm. Kira luas.",
@@ -12889,6 +12937,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Luas = ½ × 10 × 7 = ½ × 70 = 35 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriTenSeven,
   ],
   [
     "Segi empat selari tapak 12 cm, tinggi 8 cm, sisi condong 10 cm. Kira luas.",
@@ -12896,6 +12945,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Luas = tapak × tinggi = 12 × 8 = 96 cm². Gunakan tinggi (8 cm), bukan sisi condong (10 cm).",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaTwelveEight,
   ],
   [
     "Trapezium dengan sisi selari 11 cm dan 7 cm, tinggi 6 cm. Kira luas.",
@@ -12903,6 +12953,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Luas = ½ × (11 + 7) × 6 = ½ × 18 × 6 = ½ × 108 = 54 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapElevenSeven,
   ],
   [
     "Lelayang dengan pepenjuru 14 cm dan 8 cm. Kira luas.",
@@ -12910,6 +12961,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Luas = ½ × 14 × 8 = ½ × 112 = 56 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteFourteenEight,
   ],
   [
     "Segi tiga: luas = 40 cm², tinggi = 8 cm. Cari tapak.",
@@ -12917,6 +12969,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "40 = ½ × tapak × 8. 40 = 4 × tapak. Tapak = 40 ÷ 4 = 10 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriUnknownBase,
   ],
   [
     "Trapezium: luas = 45 cm², sisi selari = 6 cm dan 12 cm. Cari tinggi.",
@@ -12924,6 +12977,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "45 = ½ × (6 + 12) × tinggi. 45 = ½ × 18 × tinggi. 45 = 9 × tinggi. Tinggi = 5 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapUnknownHeight,
   ],
   [
     "Lelayang: luas = 60 cm², satu pepenjuru = 15 cm. Cari pepenjuru yang lain.",
@@ -12931,6 +12985,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "60 = ½ × 15 × d₂. 60 = 7.5 × d₂. d₂ = 60 ÷ 7.5 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteUnknownDiagonal,
   ],
   [
     "Segi empat selari: luas = 72 cm², tinggi = 9 cm. Cari tapak.",
@@ -12938,6 +12993,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "72 = tapak × 9. Tapak = 72 ÷ 9 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaUnknownBase,
   ],
   [
     "Segi empat tepat 5 m × 3 m. Kira luas dalam cm².",
@@ -12945,6 +13001,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Luas = 5 × 3 = 15 m². 15 m² = 15 × 10 000 = 150 000 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectMeters,
   ],
   [
     "Tukarkan 2.4 m² kepada cm².",
@@ -12966,6 +13023,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "2(p + 7) = 40. p + 7 = 20. p = 13 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectPerimeter40,
   ],
   [
     "Segi tiga sama sisi berperimeter 36 cm. Cari panjang setiap sisi.",
@@ -12973,6 +13031,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Segi tiga sama sisi: 3 sisi sama. 3s = 36. s = 12 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceEqualTri36,
   ],
   [
     "Segi empat sama berisi 8 cm. Kira perimeter dan luas.",
@@ -12985,6 +13044,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Perimeter = 4 × 8 = 32 cm. Luas = 8² = 64 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceSquareEight,
   ],
   [
     "Segi tiga bersudut tegak dengan kaki 6 cm dan 8 cm. Kira luas.",
@@ -12992,6 +13052,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Luas = ½ × 6 × 8 = ½ × 48 = 24 cm². (Kaki berserenjang bertindak sebagai tapak dan tinggi.)",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRightSixEight,
   ],
   [
     "Perimeter segi empat sama adalah sama dengan perimeter segi empat tepat 8 cm × 6 cm. Cari sisi segi empat sama.",
@@ -12999,6 +13060,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Perimeter segi empat tepat = 2(8 + 6) = 28 cm. Sisi segi empat sama = 28 ÷ 4 = 7 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practicePerimeterCompare,
   ],
   [
     "Trapezium dengan sisi selari 20 m dan 14 m, tinggi 8 m. Kira luas.",
@@ -13006,6 +13068,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Luas = ½ × (20 + 14) × 8 = ½ × 34 × 8 = ½ × 272 = 136 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapTwentyFourteen,
   ],
   [
     "Segi tiga: tapak = (2x + 4) cm, tinggi = 6 cm, luas = 36 cm². Cari x.",
@@ -13013,6 +13076,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "½ × (2x + 4) × 6 = 36. 3(2x + 4) = 36. 6x + 12 = 36. 6x = 24. x = 4.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriLinearBase,
   ],
   [
     "Sebuah lapangan bola sepak berbentuk segi empat tepat 105 m × 68 m. Kira luas lapangan dalam m².",
@@ -13020,6 +13084,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Luas = 105 × 68 = 7 140 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceFootballPitch,
   ],
   [
     "Jika luas segi empat tepat = 120 cm² dan panjang = 15 cm, apakah lebar?",
@@ -13027,6 +13092,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "120 = 15 × lebar. Lebar = 120 ÷ 15 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectArea120,
   ],
   [
     "Taman berbentuk trapezium dengan sisi selari 30 m dan 20 m, tinggi 12 m. Kira luas.",
@@ -13034,6 +13100,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Luas = ½ × (30 + 20) × 12 = ½ × 50 × 12 = ½ × 600 = 300 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapGarden,
   ],
   [
     "Lelayang: pepenjuru d₁ = 2d₂. Jika luas = 64 cm² dan d₁ = 16 cm, cari d₂.",
@@ -13041,6 +13108,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "64 = ½ × 16 × d₂. 64 = 8 × d₂. d₂ = 8 cm. Semak: d₁ = 16 = 2(8) = 2d₂ ✓.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteDouble,
   ],
   [
     "Segi empat tepat: panjang adalah 3 kali lebarnya. Perimeter = 48 cm. Cari luas.",
@@ -13048,6 +13116,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "p = 3l. 2(3l + l) = 48. 8l = 48. l = 6. p = 18. Luas = 18 × 6 = 108 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectTripleWidth,
   ],
   [
     "Segi empat selari dengan tapak 15 cm, tinggi 9 cm. Kira luas.",
@@ -13055,6 +13124,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Luas = 15 × 9 = 135 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaFifteenNine,
   ],
   [
     "Segi empat tepat A: 12 × 3 cm. Segi empat tepat B: 6 × 6 cm. Bandingkan luas dan perimeter.",
@@ -13067,6 +13137,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Luas A = 36 cm², Luas B = 36 cm² (sama). Perimeter A = 30 cm, Perimeter B = 24 cm. Perimeter A > B.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTwoRects,
   ],
   [
     "Segi tiga: luas = 54 cm², tapak = 12 cm. Cari tinggi.",
@@ -13074,6 +13145,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "54 = ½ × 12 × tinggi. 54 = 6 × tinggi. Tinggi = 9 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriUnknownHeight,
   ],
   [
     "Perimeter heksagon sekata = 42 cm. Kira panjang setiap sisi.",
@@ -13081,6 +13153,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Heksagon = 6 sisi. 6s = 42. s = 7 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceHexPerimeter42,
   ],
   [
     "Trapezium: sisi selari 8 cm dan 4 cm, tinggi h. Luas = 36 cm². Cari h.",
@@ -13088,6 +13161,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "36 = ½ × (8 + 4) × h. 36 = ½ × 12 × h. 36 = 6h. h = 6 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapUnknownH,
   ],
   [
     "Sebuah lelayang mempunyai pepenjuru 20 cm dan 11 cm. Kira luasnya.",
@@ -13095,6 +13169,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Luas = ½ × 20 × 11 = ½ × 220 = 110 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteTwentyEleven,
   ],
 ]);
 
@@ -13105,6 +13180,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Perimeter = 2(9 + 5) = 2(14) = 28 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectNineFive,
   ],
   [
     "Triangle with base 10 cm and height 7 cm. Calculate the area.",
@@ -13112,6 +13188,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Area = ½ × 10 × 7 = ½ × 70 = 35 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriTenSeven,
   ],
   [
     "Parallelogram with base 12 cm, height 8 cm, slant side 10 cm. Calculate the area.",
@@ -13119,6 +13196,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Area = base × height = 12 × 8 = 96 cm². Use height (8 cm), not the slant side (10 cm).",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaTwelveEight,
   ],
   [
     "Trapezium with parallel sides 11 cm and 7 cm, height 6 cm. Calculate the area.",
@@ -13126,6 +13204,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Area = ½ × (11 + 7) × 6 = ½ × 18 × 6 = ½ × 108 = 54 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapElevenSeven,
   ],
   [
     "Kite with diagonals 14 cm and 8 cm. Calculate the area.",
@@ -13133,6 +13212,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Area = ½ × 14 × 8 = ½ × 112 = 56 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteFourteenEight,
   ],
   [
     "Triangle: area = 40 cm², height = 8 cm. Find the base.",
@@ -13140,6 +13220,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "40 = ½ × base × 8. 40 = 4 × base. Base = 40 ÷ 4 = 10 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriUnknownBase,
   ],
   [
     "Trapezium: area = 45 cm², parallel sides = 6 cm and 12 cm. Find the height.",
@@ -13147,6 +13228,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "45 = ½ × (6 + 12) × height. 45 = ½ × 18 × height. 45 = 9 × height. Height = 5 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapUnknownHeight,
   ],
   [
     "Kite: area = 60 cm², one diagonal = 15 cm. Find the other diagonal.",
@@ -13154,6 +13236,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "60 = ½ × 15 × d₂. 60 = 7.5 × d₂. d₂ = 60 ÷ 7.5 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteUnknownDiagonal,
   ],
   [
     "Parallelogram: area = 72 cm², height = 9 cm. Find the base.",
@@ -13161,6 +13244,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "72 = base × 9. Base = 72 ÷ 9 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaUnknownBase,
   ],
   [
     "Rectangle 5 m × 3 m. Calculate the area in cm².",
@@ -13168,6 +13252,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Area = 5 × 3 = 15 m². 15 m² = 15 × 10 000 = 150 000 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectMeters,
   ],
   [
     "Convert 2.4 m² to cm².",
@@ -13189,6 +13274,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "2(l + 7) = 40. l + 7 = 20. l = 13 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectPerimeter40,
   ],
   [
     "Equilateral triangle with perimeter 36 cm. Find each side.",
@@ -13196,6 +13282,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Equilateral triangle: 3 equal sides. 3s = 36. s = 12 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceEqualTri36,
   ],
   [
     "Square with side 8 cm. Calculate perimeter and area.",
@@ -13208,6 +13295,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Perimeter = 4 × 8 = 32 cm. Area = 8² = 64 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceSquareEight,
   ],
   [
     "Right-angled triangle with legs 6 cm and 8 cm. Calculate the area.",
@@ -13215,6 +13303,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Area = ½ × 6 × 8 = ½ × 48 = 24 cm². (Perpendicular legs act as base and height.)",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRightSixEight,
   ],
   [
     "Perimeter of a square equals perimeter of rectangle 8 cm × 6 cm. Find the square's side.",
@@ -13222,6 +13311,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Rectangle perimeter = 2(8 + 6) = 28 cm. Square side = 28 ÷ 4 = 7 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practicePerimeterCompare,
   ],
   [
     "Trapezium with parallel sides 20 m and 14 m, height 8 m. Calculate the area.",
@@ -13229,6 +13319,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Area = ½ × (20 + 14) × 8 = ½ × 34 × 8 = ½ × 272 = 136 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapTwentyFourteen,
   ],
   [
     "Triangle: base = (2x + 4) cm, height = 6 cm, area = 36 cm². Find x.",
@@ -13236,6 +13327,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "½ × (2x + 4) × 6 = 36. 3(2x + 4) = 36. 6x + 12 = 36. 6x = 24. x = 4.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriLinearBase,
   ],
   [
     "A football pitch is rectangular, 105 m × 68 m. Calculate the area in m².",
@@ -13243,6 +13335,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Area = 105 × 68 = 7 140 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceFootballPitch,
   ],
   [
     "If area of rectangle = 120 cm² and length = 15 cm, what is the width?",
@@ -13250,6 +13343,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "120 = 15 × width. Width = 120 ÷ 15 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectArea120,
   ],
   [
     "Trapezoidal garden with parallel sides 30 m and 20 m, height 12 m. Calculate the area.",
@@ -13257,6 +13351,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Area = ½ × (30 + 20) × 12 = ½ × 50 × 12 = ½ × 600 = 300 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapGarden,
   ],
   [
     "Kite: diagonal d₁ = 2d₂. Area = 64 cm², d₁ = 16 cm. Find d₂.",
@@ -13264,6 +13359,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "64 = ½ × 16 × d₂. 64 = 8 × d₂. d₂ = 8 cm. Check: d₁ = 16 = 2(8) = 2d₂ ✓.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteDouble,
   ],
   [
     "Rectangle: length is 3 times its width. Perimeter = 48 cm. Find the area.",
@@ -13271,6 +13367,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "l = 3w. 2(3w + w) = 48. 8w = 48. w = 6. l = 18. Area = 18 × 6 = 108 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectTripleWidth,
   ],
   [
     "Parallelogram with base 15 cm and height 9 cm. Calculate the area.",
@@ -13278,6 +13375,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Area = 15 × 9 = 135 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaFifteenNine,
   ],
   [
     "Rectangle A: 12 × 3 cm. Rectangle B: 6 × 6 cm. Compare areas and perimeters.",
@@ -13290,6 +13388,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Area A = 36 cm², Area B = 36 cm² (equal). Perimeter A = 30 cm, Perimeter B = 24 cm. Perimeter A > B.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTwoRects,
   ],
   [
     "Triangle: area = 54 cm², base = 12 cm. Find the height.",
@@ -13297,6 +13396,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "54 = ½ × 12 × height. 54 = 6 × height. Height = 9 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriUnknownHeight,
   ],
   [
     "Perimeter of regular hexagon = 42 cm. Calculate each side length.",
@@ -13304,6 +13404,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Hexagon = 6 sides. 6s = 42. s = 7 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceHexPerimeter42,
   ],
   [
     "Trapezium: parallel sides 8 cm and 4 cm, height h. Area = 36 cm². Find h.",
@@ -13311,6 +13412,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "36 = ½ × (8 + 4) × h. 36 = ½ × 12 × h. 36 = 6h. h = 6 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapUnknownH,
   ],
   [
     "A kite has diagonals of 20 cm and 11 cm. Calculate its area.",
@@ -13318,6 +13420,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Area = ½ × 20 × 11 = ½ × 220 = 110 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteTwentyEleven,
   ],
 ]);
 
@@ -13328,6 +13431,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Luas = (10 × 6) + (4 × 3) = 60 + 12 = 72 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLTwoSections,
   ],
   [
     "Sebuah rumah mainan terdiri daripada badan segi empat tepat 8 cm × 5 cm dan bumbung segi tiga dengan tapak 8 cm dan tinggi 3 cm. Kira jumlah luas permukaan hadapannya.",
@@ -13335,6 +13439,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Luas badan = 8 × 5 = 40 cm². Luas bumbung = ½ × 8 × 3 = 12 cm². Jumlah = 52 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeHouseRoof,
   ],
   [
     "Sekeping papan segi empat tepat 12 cm × 9 cm mempunyai lubang segi empat tepat 4 cm × 3 cm. Kira luas papan yang tinggal.",
@@ -13342,6 +13447,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Luas papan = 12 × 9 = 108 cm². Luas lubang = 4 × 3 = 12 cm². Luas yang tinggal = 108 − 12 = 96 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeBoardHole,
   ],
   [
     "Sebidang ladang berbentuk trapezium mempunyai sisi selari 50 m dan 30 m serta tinggi 20 m. Baja digunakan sebanyak 3 kg bagi setiap m². Kira jumlah baja yang diperlukan.",
@@ -13349,6 +13455,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Luas = ½ × (50 + 30) × 20 = 800 m². Baja = 800 × 3 = 2 400 kg.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeFarmTrap,
   ],
   [
     "Lantai sebuah bilik berukuran 6 m × 4 m dipasang dengan jubin segi empat sama bersisi 50 cm tanpa memotong jubin. Berapakah bilangan jubin yang diperlukan?",
@@ -13356,6 +13463,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "6 m = 600 cm, maka 600 ÷ 50 = 12 jubin sebaris. 4 m = 400 cm, maka 400 ÷ 50 = 8 baris. Jumlah = 12 × 8 = 96 jubin.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTileSixFour,
   ],
   [
     "Sebahagian dinding berbentuk segi tiga dengan tapak 10 m dan tinggi 4 m. Setiap m² memerlukan 0.5 liter cat dan satu tin mengandungi 2.5 liter. Berapakah bilangan tin yang diperlukan?",
@@ -13363,6 +13471,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Luas = ½ × 10 × 4 = 20 m². Cat = 20 × 0.5 = 10 liter. Tin = 10 ÷ 2.5 = 4 tin.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeWallPaint,
   ],
   [
     "Sebuah bentuk gubahan terdiri daripada segi empat tepat 8 cm × 6 cm dan trapezium dengan sisi selari 8 cm dan 4 cm serta tinggi 3 cm di atasnya. Kira jumlah luas.",
@@ -13370,6 +13479,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Luas segi empat tepat = 8 × 6 = 48 cm². Luas trapezium = ½ × (8 + 4) × 3 = 18 cm². Jumlah = 66 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeCompositeTrap,
   ],
   [
     "Sebidang tanah berbentuk lelayang mempunyai pepenjuru 100 m dan 80 m. Harga tanah ialah RM50 per m². Kira nilai tanah itu.",
@@ -13377,6 +13487,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Luas = ½ × 100 × 80 = 4 000 m². Nilai = 4 000 × RM50 = RM200 000.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeKiteLand,
   ],
   [
     "Sebuah segi tiga mempunyai luas 24 cm², tapak (x + 2) cm dan tinggi 6 cm. Cari x.",
@@ -13384,6 +13495,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "24 = ½ × (x + 2) × 6. 24 = 3(x + 2). x + 2 = 8. x = 6.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriExpr,
   ],
   [
     "Segi empat sama 2 cm × 2 cm dipotong dari satu bucu sebuah segi empat tepat 6 cm × 4 cm untuk membentuk bentuk L. Berapakah perimeter bentuk L itu?",
@@ -13391,6 +13503,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Dua sisi 2 cm hilang tetapi dua sisi baharu 2 cm terbentuk, jadi perimeter tidak berubah: 2(6 + 4) = 20 cm. Perimeter diukur dalam cm, bukan cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLCutCorner,
   ],
   [
     "Segi empat tepat A berukuran 8 cm × 6 cm. Segi empat sama B mempunyai perimeter yang sama dengan A. Bandingkan luas A dan B.",
@@ -13398,6 +13511,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Perimeter A = 2(8 + 6) = 28 cm. Sisi B = 28 ÷ 4 = 7 cm. Luas A = 48 cm² dan luas B = 49 cm². Maka luas A < luas B.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeRectSquarePerimeter,
   ],
   [
     "Segi empat tepat A berukuran 9 cm × 4 cm dan segi empat tepat B berukuran 6 cm × 6 cm. Kedua-duanya mempunyai luas 36 cm². Yang manakah mempunyai perimeter lebih kecil?",
@@ -13410,6 +13524,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Perimeter A = 2(9 + 4) = 26 cm. Perimeter B = 2(6 + 6) = 24 cm. B (segi empat sama) mempunyai perimeter lebih kecil.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTwoRectSameArea,
   ],
   [
     "Lantai sebuah bilik berukuran 5 m × 4 m akan dipasang permaidani, kecuali kawasan pintu berukuran 1 m × 0.5 m. Kira luas permaidani.",
@@ -13417,6 +13532,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Luas bilik = 5 × 4 = 20 m². Luas kawasan pintu = 1 × 0.5 = 0.5 m². Luas permaidani = 20 − 0.5 = 19.5 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeDoorArea,
   ],
   [
     "Sebuah segi empat tepat mempunyai luas 48 cm² dan lebar 6 cm. Berapakah perimeternya?",
@@ -13424,6 +13540,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Panjang = 48 ÷ 6 = 8 cm. Perimeter = 2(8 + 6) = 28 cm. (14 cm ialah separuh perimeter.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeArea48,
   ],
   [
     "Seorang petani ingin memagar kawasan segi empat tepat yang paling luas dengan 40 m pagar. Dimensi manakah yang memberikan luas terbesar?",
@@ -13431,6 +13548,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Semua pilihan mempunyai perimeter 40 m. Luas: 36 m², 75 m², 100 m² dan 96 m². Segi empat sama 10 m × 10 m memberikan luas terbesar.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeFence40,
   ],
   [
     "Sebuah trapezium mempunyai sisi selari 6 cm dan 10 cm. Tingginya sama dengan sisi selari yang lebih pendek. Kira luasnya.",
@@ -13438,6 +13556,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Tinggi = 6 cm. Luas = ½ × (6 + 10) × 6 = 48 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTrapHeightShorter,
   ],
   [
     "Tapak sebuah segi tiga ialah 2 kali tingginya. Luas segi tiga itu ialah 100 cm². Cari tapaknya.",
@@ -13445,6 +13564,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Katakan tinggi = h, maka tapak = 2h. Luas = ½ × 2h × h = h² = 100, jadi h = 10 cm. Tapak = 20 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriTwiceHeight,
   ],
   [
     "Kawasan rumput berbentuk segi empat tepat 15 m × 10 m mempunyai kolam berbentuk lelayang dengan pepenjuru 6 m dan 4 m. Berapakah luas kawasan rumput?",
@@ -13452,6 +13572,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Luas segi empat tepat = 15 × 10 = 150 m². Luas kolam = ½ × 6 × 4 = 12 m². Luas rumput = 150 − 12 = 138 m². (126 m² datang daripada terlupa ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLawnPond,
   ],
   [
     "Perimeter sebuah segi tiga ialah 36 cm. Sisi-sisinya ialah x cm, (x + 4) cm dan (2x − 4) cm. Cari x dan panjang setiap sisi.",
@@ -13464,6 +13585,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "x + (x + 4) + (2x − 4) = 36. 4x = 36. x = 9. Sisi: 9 cm, 13 cm, 14 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriPerimeter36,
   ],
   [
     "Luas sebuah segi tiga sama dengan luas segi empat tepat 8 cm × 6 cm. Tapak segi tiga itu ialah 16 cm. Cari tinggi segi tiga itu.",
@@ -13471,6 +13593,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Luas segi empat tepat = 48 cm². ½ × 16 × tinggi = 48. 8 × tinggi = 48. Tinggi = 6 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriEqualsRect,
   ],
   [
     "Sebuah segi tiga bersudut tegak mempunyai sisi 5 cm, 12 cm dan 13 cm. Berapakah luasnya?",
@@ -13478,6 +13601,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Sisi terpanjang (13 cm) ialah hipotenus. Dua sisi yang membentuk sudut tegak (5 cm dan 12 cm) ialah tapak dan tinggi. Luas = ½ × 5 × 12 = 30 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeRightFiveTwelveThirteen,
   ],
   [
     "Sebuah padang segi empat tepat berukuran 20 m × 15 m. Laluan selebar 1 m dibina di sebelah dalam sepanjang keempat-empat tepinya. Cari luas laluan itu.",
@@ -13485,6 +13609,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Luas padang = 20 × 15 = 300 m². Kawasan dalam = 18 × 13 = 234 m². Luas laluan = 300 − 234 = 66 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeInsidePath,
   ],
   [
     "Sebuah taman segi empat tepat 10 m × 8 m dikelilingi oleh laluan selebar 2 m di sebelah luarnya. Berapakah luas laluan itu?",
@@ -13492,6 +13617,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Segi empat tepat luar = (10 + 4) × (8 + 4) = 14 × 12 = 168 m². Luas laluan = 168 − 80 = 88 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeOutsidePath,
   ],
   [
     "Sebuah segi empat sama dan sebuah segi empat tepat masing-masing mempunyai luas 100 cm². Sisi segi empat sama ialah 10 cm dan panjang segi empat tepat ialah 20 cm. Cari lebar segi empat tepat dan bandingkan perimeter kedua-duanya.",
@@ -13504,6 +13630,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Lebar = 100 ÷ 20 = 5 cm. Perimeter segi empat sama = 40 cm. Perimeter segi empat tepat = 2(20 + 5) = 50 cm. Perimeter segi empat sama lebih kecil.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeSameAreaSquareRect,
   ],
   [
     "Sebuah bilik berukuran 4.8 m × 3.2 m dipasang jubin 40 cm × 40 cm. Setiap jubin berharga RM8. Kira kos jubin.",
@@ -13511,6 +13638,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Jubin sebaris: 480 ÷ 40 = 12. Bilangan baris: 320 ÷ 40 = 8. Jumlah jubin = 12 × 8 = 96. Kos = 96 × RM8 = RM768.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTilingCost,
   ],
   [
     "Sebuah bentuk gubahan terdiri daripada trapezium (sisi selari 12 cm dan 6 cm, tinggi 5 cm) di atas segi empat tepat 12 cm × 4 cm. Kira jumlah luas.",
@@ -13518,6 +13646,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Luas trapezium = ½ × (12 + 6) × 5 = 45 cm². Luas segi empat tepat = 12 × 4 = 48 cm². Jumlah = 93 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeCompositeTrapRect,
   ],
   [
     "Sebuah segi empat selari mempunyai tapak 12 cm dan tinggi 5 cm. Sebuah segi tiga mempunyai luas yang sama dan tapak 10 cm. Berapakah tinggi segi tiga itu?",
@@ -13525,6 +13654,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Luas segi empat selari = 12 × 5 = 60 cm². ½ × 10 × tinggi = 60, maka 5 × tinggi = 60 dan tinggi = 12 cm. (6 cm datang daripada terlupa ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeParaTriangleEqual,
   ],
   [
     "Sebuah trapezium mempunyai luas 60 cm² dan tinggi 6 cm. Satu daripada sisi selarinya ialah 8 cm. Berapakah panjang sisi selari yang satu lagi?",
@@ -13532,6 +13662,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "½ × (8 + b) × 6 = 60. 3(8 + b) = 60. 8 + b = 20. b = 12 cm. (20 cm ialah hasil tambah kedua-dua sisi selari.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTrapArea60,
   ],
   [
     "Sebuah lelayang mempunyai luas 54 cm² dan satu pepenjuru 12 cm. Berapakah panjang pepenjuru yang satu lagi?",
@@ -13539,6 +13670,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "½ × 12 × d = 54. 6d = 54. d = 9 cm. (4.5 cm datang daripada 54 ÷ 12, tanpa menggunakan ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeKiteArea54,
   ],
   [
     "Jalur hiasan akan dipasang di sepanjang tepi lantai sebuah bilik segi empat tepat 5 m × 4 m, kecuali pada pintu selebar 1 m. Berapakah panjang jalur yang diperlukan?",
@@ -13546,6 +13678,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Perimeter bilik = 2(5 + 4) = 18 m. Tolak lebar pintu: 18 − 1 = 17 m.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeDoorTrim,
   ],
 ]);
 
@@ -13556,6 +13689,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Area = (10 × 6) + (4 × 3) = 60 + 12 = 72 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLTwoSections,
   ],
   [
     "A toy house front consists of a rectangular body 8 cm × 5 cm and a triangular roof with base 8 cm and height 3 cm. Calculate the total area of the front.",
@@ -13563,6 +13697,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Body area = 8 × 5 = 40 cm². Roof area = ½ × 8 × 3 = 12 cm². Total = 52 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeHouseRoof,
   ],
   [
     "A rectangular board 12 cm × 9 cm has a rectangular hole 4 cm × 3 cm. Calculate the remaining area of the board.",
@@ -13570,6 +13705,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Board area = 12 × 9 = 108 cm². Hole area = 4 × 3 = 12 cm². Remaining area = 108 − 12 = 96 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeBoardHole,
   ],
   [
     "A trapezium-shaped farm has parallel sides of 50 m and 30 m and a height of 20 m. Fertiliser is used at 3 kg per m². Calculate the total fertiliser needed.",
@@ -13577,6 +13713,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Area = ½ × (50 + 30) × 20 = 800 m². Fertiliser = 800 × 3 = 2 400 kg.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeFarmTrap,
   ],
   [
     "The floor of a room measuring 6 m × 4 m is covered with square tiles of side 50 cm without cutting any tiles. How many tiles are needed?",
@@ -13584,6 +13721,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "6 m = 600 cm, so 600 ÷ 50 = 12 tiles per row. 4 m = 400 cm, so 400 ÷ 50 = 8 rows. Total = 12 × 8 = 96 tiles.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTileSixFour,
   ],
   [
     "Part of a wall is a triangle with base 10 m and height 4 m. Each m² needs 0.5 litre of paint and one tin holds 2.5 litres. How many tins are needed?",
@@ -13591,6 +13729,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Area = ½ × 10 × 4 = 20 m². Paint = 20 × 0.5 = 10 litres. Tins = 10 ÷ 2.5 = 4 tins.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeWallPaint,
   ],
   [
     "A composite shape consists of a rectangle 8 cm × 6 cm with a trapezium (parallel sides 8 cm and 4 cm, height 3 cm) on top. Calculate the total area.",
@@ -13598,6 +13737,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Rectangle area = 8 × 6 = 48 cm². Trapezium area = ½ × (8 + 4) × 3 = 18 cm². Total = 66 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeCompositeTrap,
   ],
   [
     "A kite-shaped plot of land has diagonals of 100 m and 80 m. The land costs RM50 per m². Calculate the value of the land.",
@@ -13605,6 +13745,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Area = ½ × 100 × 80 = 4 000 m². Value = 4 000 × RM50 = RM200 000.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeKiteLand,
   ],
   [
     "A triangle has an area of 24 cm², a base of (x + 2) cm and a height of 6 cm. Find x.",
@@ -13612,6 +13753,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "24 = ½ × (x + 2) × 6. 24 = 3(x + 2). x + 2 = 8. x = 6.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriExpr,
   ],
   [
     "A 2 cm × 2 cm square is cut from one corner of a 6 cm × 4 cm rectangle to make an L-shape. What is the perimeter of the L-shape?",
@@ -13619,6 +13761,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Two 2 cm edges are removed but two new 2 cm edges are created, so the perimeter is unchanged: 2(6 + 4) = 20 cm. Perimeter is measured in cm, not cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLCutCorner,
   ],
   [
     "Rectangle A measures 8 cm × 6 cm. Square B has the same perimeter as A. Compare the areas of A and B.",
@@ -13626,6 +13769,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Perimeter of A = 2(8 + 6) = 28 cm. Side of B = 28 ÷ 4 = 7 cm. Area of A = 48 cm² and area of B = 49 cm². So area A < area B.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeRectSquarePerimeter,
   ],
   [
     "Rectangle A measures 9 cm × 4 cm and rectangle B measures 6 cm × 6 cm. Both have an area of 36 cm². Which has the smaller perimeter?",
@@ -13638,6 +13782,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Perimeter of A = 2(9 + 4) = 26 cm. Perimeter of B = 2(6 + 6) = 24 cm. B (a square) has the smaller perimeter.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTwoRectSameArea,
   ],
   [
     "A room floor measuring 5 m × 4 m is to be carpeted, except for a doorway area measuring 1 m × 0.5 m. Calculate the carpet area.",
@@ -13645,6 +13790,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Room area = 5 × 4 = 20 m². Doorway area = 1 × 0.5 = 0.5 m². Carpet area = 20 − 0.5 = 19.5 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeDoorArea,
   ],
   [
     "A rectangle has an area of 48 cm² and a width of 6 cm. What is its perimeter?",
@@ -13652,6 +13798,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Length = 48 ÷ 6 = 8 cm. Perimeter = 2(8 + 6) = 28 cm. (14 cm is half the perimeter.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeArea48,
   ],
   [
     "A farmer wants to fence the largest possible rectangular area with 40 m of fencing. Which dimensions give the largest area?",
@@ -13659,6 +13806,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "All the options have a perimeter of 40 m. Areas: 36 m², 75 m², 100 m² and 96 m². The 10 m × 10 m square gives the largest area.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeFence40,
   ],
   [
     "A trapezium has parallel sides of 6 cm and 10 cm. Its height equals the shorter parallel side. Calculate its area.",
@@ -13666,6 +13814,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Height = 6 cm. Area = ½ × (6 + 10) × 6 = 48 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTrapHeightShorter,
   ],
   [
     "The base of a triangle is 2 times its height. The area of the triangle is 100 cm². Find its base.",
@@ -13673,6 +13822,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Let the height = h, so the base = 2h. Area = ½ × 2h × h = h² = 100, so h = 10 cm. Base = 20 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriTwiceHeight,
   ],
   [
     "A rectangular lawn 15 m × 10 m has a kite-shaped pond with diagonals of 6 m and 4 m. What is the area of the grass?",
@@ -13680,6 +13830,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Rectangle area = 15 × 10 = 150 m². Pond area = ½ × 6 × 4 = 12 m². Grass area = 150 − 12 = 138 m². (126 m² comes from forgetting the ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLawnPond,
   ],
   [
     "The perimeter of a triangle is 36 cm. Its sides are x cm, (x + 4) cm and (2x − 4) cm. Find x and the length of each side.",
@@ -13692,6 +13843,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "x + (x + 4) + (2x − 4) = 36. 4x = 36. x = 9. Sides: 9 cm, 13 cm, 14 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriPerimeter36,
   ],
   [
     "The area of a triangle equals the area of a rectangle 8 cm × 6 cm. The base of the triangle is 16 cm. Find the height of the triangle.",
@@ -13699,6 +13851,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Rectangle area = 48 cm². ½ × 16 × height = 48. 8 × height = 48. Height = 6 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriEqualsRect,
   ],
   [
     "A right-angled triangle has sides of 5 cm, 12 cm and 13 cm. What is its area?",
@@ -13706,6 +13859,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "The longest side (13 cm) is the hypotenuse. The two sides forming the right angle (5 cm and 12 cm) are the base and height. Area = ½ × 5 × 12 = 30 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeRightFiveTwelveThirteen,
   ],
   [
     "A rectangular field measures 20 m × 15 m. A path 1 m wide runs along the inside of all four edges. Find the area of the path.",
@@ -13713,6 +13867,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Field area = 20 × 15 = 300 m². Inner area = 18 × 13 = 234 m². Path area = 300 − 234 = 66 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeInsidePath,
   ],
   [
     "A rectangular garden 10 m × 8 m is surrounded by a path 2 m wide on the outside. What is the area of the path?",
@@ -13720,6 +13875,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Outer rectangle = (10 + 4) × (8 + 4) = 14 × 12 = 168 m². Path area = 168 − 80 = 88 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeOutsidePath,
   ],
   [
     "A square and a rectangle each have an area of 100 cm². The square's side is 10 cm and the rectangle's length is 20 cm. Find the rectangle's width and compare their perimeters.",
@@ -13732,6 +13888,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Width = 100 ÷ 20 = 5 cm. Square perimeter = 40 cm. Rectangle perimeter = 2(20 + 5) = 50 cm. The square's perimeter is smaller.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeSameAreaSquareRect,
   ],
   [
     "A room measuring 4.8 m × 3.2 m is tiled with 40 cm × 40 cm tiles. Each tile costs RM8. Calculate the cost of the tiles.",
@@ -13739,6 +13896,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Tiles per row: 480 ÷ 40 = 12. Rows: 320 ÷ 40 = 8. Total tiles = 12 × 8 = 96. Cost = 96 × RM8 = RM768.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTilingCost,
   ],
   [
     "A composite shape consists of a trapezium (parallel sides 12 cm and 6 cm, height 5 cm) on top of a rectangle 12 cm × 4 cm. Calculate the total area.",
@@ -13746,6 +13904,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Trapezium area = ½ × (12 + 6) × 5 = 45 cm². Rectangle area = 12 × 4 = 48 cm². Total = 93 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeCompositeTrapRect,
   ],
   [
     "A parallelogram has a base of 12 cm and a height of 5 cm. A triangle has the same area and a base of 10 cm. What is the height of the triangle?",
@@ -13753,6 +13912,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Parallelogram area = 12 × 5 = 60 cm². ½ × 10 × height = 60, so 5 × height = 60 and height = 12 cm. (6 cm comes from forgetting the ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeParaTriangleEqual,
   ],
   [
     "A trapezium has an area of 60 cm² and a height of 6 cm. One of its parallel sides is 8 cm. What is the length of the other parallel side?",
@@ -13760,6 +13920,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "½ × (8 + b) × 6 = 60. 3(8 + b) = 60. 8 + b = 20. b = 12 cm. (20 cm is the sum of both parallel sides.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTrapArea60,
   ],
   [
     "A kite has an area of 54 cm² and one diagonal of 12 cm. What is the length of the other diagonal?",
@@ -13767,6 +13928,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "½ × 12 × d = 54. 6d = 54. d = 9 cm. (4.5 cm comes from 54 ÷ 12, without using the ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeKiteArea54,
   ],
   [
     "A decorative strip is fitted along the edges of the floor of a 5 m × 4 m rectangular room, except across a door 1 m wide. What length of strip is needed?",
@@ -13774,6 +13936,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Perimeter of the room = 2(5 + 4) = 18 m. Subtract the door width: 18 − 1 = 17 m.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeDoorTrim,
   ],
 ]);
 
