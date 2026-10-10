@@ -77,7 +77,7 @@ describe("Math Form 1 Chapter 13 bilingual Pythagoras diagrams", () => {
       [V.challenge[24], "16 m", "21 m", "25.6 m"],
     ] as const;
     for (const [visual, givenA, givenB, answer] of cases) {
-      const description = describeMathQuestionVisual(visual, "dlp");
+      const description = describeMathQuestionVisual(visual!, "dlp");
       expect(description).toContain(givenA);
       expect(description).toContain(givenB);
       expect(description).not.toContain(answer);
@@ -113,14 +113,15 @@ describe("Math Form 1 Chapter 13 bilingual Pythagoras diagrams", () => {
   });
 
   it("draws genuinely acute and obtuse Foundation triangle sketches", () => {
-    const apexDot = (diagram: NonNullable<typeof V.foundation[13]>) => {
-      if (diagram.kind !== "geometry-diagram") throw new Error("Expected geometry");
+    const apexDot = (number: 13 | 14) => {
+      const diagram = V.foundation[number];
+      if (!diagram || diagram.kind !== "geometry-diagram") throw new Error("Expected geometry");
       const [a, b, c] = diagram.panels[0].paths![0].points;
       return (b[0] - a[0]) * (c[0] - a[0]) + (b[1] - a[1]) * (c[1] - a[1]);
     };
-    expect(apexDot(V.foundation[13])).toBeGreaterThan(0);
-    expect(apexDot(V.foundation[14])).toBeLessThan(0);
-    const angles = describeMathQuestionVisual(V.foundation[27], "dlp");
+    expect(apexDot(13)).toBeGreaterThan(0);
+    expect(apexDot(14)).toBeLessThan(0);
+    const angles = describeMathQuestionVisual(V.foundation[27]!, "dlp");
     expect(angles).toContain("30°");
     expect(angles).toContain("60°");
     expect(angles).toContain("90°");
