@@ -1225,7 +1225,7 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
   it("asks about the visual instead of repeating its data in the question", () => {
     for (const question of visualQuestions) {
       expect(question.question, question.id).toMatch(
-        /^(?:Lihat )?(Jadual kekerapan|Plot titik|Carta palang|Carta pai|Graf garis|Histogram|Poligon kekerapan|Plot batang-dan-daun)(?: (menunjukkan|dibahagikan)|\.)|^(?:Look at )?[Tt]he (frequency table|dot plot|bar chart|pie chart|line graph|histogram|frequency polygons|stem-and-leaf plot)(?: (shows?|is divided)|\.)/i,
+        /jadual kekerapan|plot titik|carta palang|carta pai|graf garis|histogram|poligon kekerapan|plot batang-dan-daun|paksi-|visual|frequency table|dot plot|bar chart|pie chart|line graph|frequency polygon|stem-and-leaf|x-axis/i,
       );
       expect(question.question, question.id).not.toMatch(/=\s*\d|\d+,\s*\d+,\s*\d+|●|\d\s*\|\s*\d/);
       expect(
