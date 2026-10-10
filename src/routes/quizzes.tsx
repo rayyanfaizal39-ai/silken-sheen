@@ -56,6 +56,7 @@ import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
 import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
 import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
+import { MATH_F1_C6_QUIZ_VISUALS } from "@/content/form1/math/chapter-6/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
@@ -6356,6 +6357,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Baki = jumlah asal − perbelanjaan, maka p − q = 10.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.rahimMoney,
   ],
   [
     "Apakah ciri utama persamaan linear dalam dua pemboleh ubah?",
@@ -6408,6 +6410,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Beza umur ditulis sebagai p − q = 10.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.ageDifference,
   ],
   [
     "Manakah berikut BUKAN persamaan linear dalam dua pemboleh ubah?",
@@ -6477,6 +6480,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "'Dua kali suatu nombor n tambah 5' diterjemahkan kepada 2n + 5, maka persamaannya ialah 2n + 5 = 17.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.twiceNPlusFive,
   ],
   [
     "Manakah antara berikut mengandungi pemboleh ubah berkuasa 2?",
@@ -6491,6 +6495,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Jumlah dua nombor ditulis sebagai x + y = 20.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.sumXAndY20,
   ],
   [
     "Apakah langkah pertama dalam membentuk persamaan linear daripada situasi harian?",
@@ -6524,6 +6529,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Harga 4 batang pen = 4 × x = 4x. Maka 4x = 12.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.fourPens,
   ],
   [
     "Tulis persamaan bagi 'tiga kali suatu nombor p ditolak 4 sama dengan 11'.",
@@ -6531,6 +6537,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "'Tiga kali suatu nombor p ditolak 4' diterjemahkan kepada 3p − 4, maka persamaannya ialah 3p − 4 = 11.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.threePMinusFour,
   ],
   [
     "Selesaikan x − 6 = 2.",
@@ -6538,6 +6545,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Tambah 6 pada kedua-dua belah persamaan: x − 6 + 6 = 2 + 6, maka x = 8.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.xMinusSix,
   ],
   [
     "Apakah yang membezakan suatu persamaan daripada ungkapan algebra?",
@@ -6624,6 +6632,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Amount left = original amount − amount spent, so p − q = 10.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.rahimMoney,
   ],
   [
     "What is the main feature of a linear equation in two variables?",
@@ -6676,6 +6685,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The age difference is written as p − q = 10.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.ageDifference,
   ],
   [
     "Which of the following is NOT a linear equation in two variables?",
@@ -6740,6 +6750,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "'Two times a number n plus 5' translates to 2n + 5, so the equation is 2n + 5 = 17.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.twiceNPlusFive,
   ],
   [
     "Which of the following contains a variable raised to the power of 2?",
@@ -6754,6 +6765,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "The sum of two numbers is written as x + y = 20.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.sumXAndY20,
   ],
   [
     "What is the first step in forming a linear equation from a daily-life situation?",
@@ -6787,6 +6799,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The price of 4 pens = 4 × x = 4x. So 4x = 12.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.fourPens,
   ],
   [
     "Write the equation for 'Three times a number p minus 4 equals 11'.",
@@ -6794,6 +6807,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "'Three times a number p minus 4' translates to 3p − 4, so the equation is 3p − 4 = 11.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.threePMinusFour,
   ],
   [
     "Solve x − 6 = 2.",
@@ -6801,6 +6815,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Add 6 to both sides of the equation: x − 6 + 6 = 2 + 6, so x = 8.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.xMinusSix,
   ],
   [
     "What distinguishes an equation from an algebraic expression?",
@@ -6823,6 +6838,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Tolak 7 daripada kedua-dua belah: x + 7 − 7 = 11 − 7, maka x = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xPlusSeven,
   ],
   [
     "Apakah operasi yang perlu dilakukan pada kedua-dua belah persamaan x + 7 = 11 untuk mendapatkan x bersendirian?",
@@ -6849,6 +6865,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Tambah 5 pada kedua-dua belah: x − 5 + 5 = 9 + 5, maka x = 14.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xMinusFive,
   ],
   [
     "Gunakan kaedah cuba jaya untuk menyelesaikan x + 5 = 9. Apakah nilai x yang betul?",
@@ -6894,6 +6911,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Langkah pertama ialah menolak 7 daripada kedua-dua belah supaya 4x/5 = 16.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.fourFifthsXPlusSeven,
   ],
   [
     "Dalam menyelesaikan 4x/5 + 7 = 23, selepas mendapat 4x/5 = 16, apakah langkah seterusnya?",
@@ -6920,6 +6938,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "3x − 4 = 11 → 3x = 15 → x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.threeXMinusFour,
   ],
   [
     "Selesaikan persamaan x/4 = 6.",
@@ -6927,6 +6946,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "x/4 = 6 → x = 6 × 4 = 24.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xOverFour,
   ],
   [
     "Selesaikan persamaan 2x + 3 = 13.",
@@ -6934,6 +6954,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "2x + 3 = 13 → 2x = 10 → x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.twoXPlusThree,
   ],
   [
     "Selesaikan persamaan 5x − 1 = 0.",
@@ -6955,6 +6976,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "2(3) + y = 10 → 6 + y = 10 → y = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.twoXPlusY,
   ],
   [
     "Diberi y = 7x + 6, apakah nilai y apabila x = 2?",
@@ -6988,6 +7010,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Tolak 9 daripada kedua-dua belah: x = 15 − 9 = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xPlusNine,
   ],
   [
     "Selesaikan persamaan 2x = 18 menggunakan konsep kesamaan.",
@@ -7021,6 +7044,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "6x + 2 = 20 → 6x = 18 → x = 3.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.sixXPlusTwo,
   ],
   [
     "Apakah operasi songsang yang digunakan untuk menyelesaikan persamaan x × 5 = 35?",
@@ -7049,6 +7073,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "7x − 3 = 4x + 9 → 7x − 4x = 9 + 3 → 3x = 12 → x = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xBothSides,
   ],
   [
     "Selesaikan 3(x − 2) = 12.",
@@ -7056,6 +7081,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Bahagi kedua-dua belah dengan 3: x − 2 = 4. Tambah 2 pada kedua-dua belah: x = 6. (x = 14 datang daripada 3x − 2 = 12 tanpa mendarab ke dalam kurungan.)",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.bracketsThreeXMinusTwo,
   ],
 ]);
 
@@ -7066,6 +7092,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Subtract 7 from both sides: x + 7 − 7 = 11 − 7, giving x = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xPlusSeven,
   ],
   [
     "What operation should be performed on both sides of x + 7 = 11 to isolate x?",
@@ -7092,6 +7119,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Add 5 to both sides: x − 5 + 5 = 9 + 5, giving x = 14.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xMinusFive,
   ],
   [
     "Use trial and error to solve x + 5 = 9. What is the correct value of x?",
@@ -7137,6 +7165,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "The first step is to subtract 7 from both sides so that 4x/5 = 16.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.fourFifthsXPlusSeven,
   ],
   [
     "When solving 4x/5 + 7 = 23, after obtaining 4x/5 = 16, what is the next step?",
@@ -7163,6 +7192,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "3x − 4 = 11 → 3x = 15 → x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.threeXMinusFour,
   ],
   [
     "Solve the equation x/4 = 6.",
@@ -7170,6 +7200,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "x/4 = 6 → x = 6 × 4 = 24.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xOverFour,
   ],
   [
     "Solve the equation 2x + 3 = 13.",
@@ -7177,6 +7208,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "2x + 3 = 13 → 2x = 10 → x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.twoXPlusThree,
   ],
   [
     "Solve the equation 5x − 1 = 0.",
@@ -7198,6 +7230,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "2(3) + y = 10 → 6 + y = 10 → y = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.twoXPlusY,
   ],
   [
     "Given y = 7x + 6, what is the value of y when x = 2?",
@@ -7231,6 +7264,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Subtract 9 from both sides: x = 15 − 9 = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xPlusNine,
   ],
   [
     "Solve the equation 2x = 18 using the equality concept.",
@@ -7264,6 +7298,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "6x + 2 = 20 → 6x = 18 → x = 3.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.sixXPlusTwo,
   ],
   [
     "Which inverse operation is used to solve the equation x × 5 = 35?",
@@ -7292,6 +7327,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "7x − 3 = 4x + 9 → 7x − 4x = 9 + 3 → 3x = 12 → x = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xBothSides,
   ],
   [
     "Solve 3(x − 2) = 12.",
@@ -7299,6 +7335,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Divide both sides by 3: x − 2 = 4. Add 2 to both sides: x = 6. (x = 14 comes from writing 3x − 2 = 12 without multiplying into the brackets.)",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.bracketsThreeXMinusTwo,
   ],
 ]);
 
@@ -7381,6 +7418,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Daripada x + y = 10, ungkapkan x = 10 − y.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemTenTwo,
   ],
   [
     "Selepas menggantikan x = 10 − y ke dalam x − y = 2, apakah persamaan satu pemboleh ubah yang terhasil (sebelum dipermudahkan)?",
@@ -7395,6 +7433,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Gantikan y = 2x ke dalam x + y = 9: x + 2x = 9 → 3x = 9 → x = 3. Maka y = 2(3) = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemDoubleY,
   ],
   [
     "Pasangan nilai manakah memuaskan KEDUA-DUA persamaan x + y = 7 dan x − y = 1?",
@@ -7402,6 +7441,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Semak x = 4, y = 3: 4 + 3 = 7 dan 4 − 3 = 1. Pasangan lain hanya memuaskan x + y = 7.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemSevenOne,
   ],
   [
     "Selepas mendapat y = 4, apakah nilai x dalam persamaan serentak x + y = 10 dan x − y = 2?",
@@ -7442,6 +7482,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Tolak persamaan kedua daripada persamaan pertama: 2x = 6 → x = 3. Gantikan ke dalam x + y = 5: y = 2.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemThreeEleven,
   ],
   [
     "Apakah penyelesaian akhir bagi persamaan serentak x + y = 10 dan x − y = 2?",
@@ -7492,6 +7533,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Katakan x + y = 15 dan x − y = 3. Tambah kedua-dua persamaan: 2x = 18 → x = 9, maka y = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.sumDifference,
   ],
   [
     "2 kg epal dan 1 kg oren berharga RM13, manakala 1 kg epal dan 1 kg oren berharga RM8. Berapakah harga 1 kg epal?",
@@ -7499,6 +7541,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Katakan harga 1 kg epal = RMx dan 1 kg oren = RMy. 2x + y = 13 dan x + y = 8. Tolak: x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.fruitPurchases,
   ],
   [
     "Selesaikan persamaan serentak 2x + y = 7 dan x − y = 2 menggunakan kaedah penghapusan.",
@@ -7506,6 +7549,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Tambah kedua-dua persamaan: 3x = 9, maka x = 3; gantikan ke (2): 3 − y = 2, maka y = 1.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemTwoXSeven,
   ],
   [
     "Selesaikan persamaan serentak x + 2y = 8 dan x − y = 2 menggunakan kaedah penggantian.",
@@ -7513,6 +7557,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Daripada x − y = 2, x = 2 + y. Gantikan ke x + 2y = 8: (2 + y) + 2y = 8 → 3y = 6 → y = 2, maka x = 4.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemXPlusTwoY,
   ],
   [
     "Suatu kedai menjual 2 buku dan 3 pensel dengan harga RM16, manakala 1 buku dan 1 pensel berharga RM7. Jika harga buku ialah RM b dan pensel RM p, tulis persamaan serentak bagi situasi ini.",
@@ -7525,6 +7570,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Dua buku dan tiga pensel berharga RM16 ditulis 2b + 3p = 16; satu buku dan satu pensel berharga RM7 ditulis b + p = 7.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.bookPencilPurchases,
   ],
   [
     "Daripada persamaan serentak 2b + 3p = 16 dan b + p = 7, cari nilai b dan p.",
@@ -7532,6 +7578,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Daripada b + p = 7, b = 7 − p. Gantikan ke 2b + 3p = 16: 2(7 − p) + 3p = 16 → 14 + p = 16 → p = 2, maka b = 5.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.bookPencilPurchases,
   ],
   [
     "Dua garis lurus y = 2x + 1 dan y = 2x − 3 dilukis pada satah Cartesan yang sama. Apakah jenis penyelesaian bagi persamaan serentak ini?",
@@ -7558,6 +7605,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Tambah kedua-dua persamaan: 3x = 15, maka x = 5; gantikan ke x + y = 12: y = 7.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemTwelveThree,
   ],
   [
     "Sebuah taman segi empat tepat mempunyai perimeter 28 m. Jika panjangnya ialah x m dan lebarnya y m, tulis persamaan yang mewakili perimeter ini.",
@@ -7565,6 +7613,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Perimeter segi empat tepat = 2(panjang + lebar), maka 2x + 2y = 28.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.gardenPerimeter,
   ],
   [
     "Diberi 2x + 2y = 28 dan x − y = 2, cari nilai x dan y.",
@@ -7572,6 +7621,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Permudahkan 2x + 2y = 28 kepada x + y = 14. Tambah dengan x − y = 2: 2x = 16, maka x = 8 dan y = 6.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemGarden,
   ],
 ]);
 
@@ -7654,6 +7704,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "From x + y = 10, express x = 10 − y.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemTenTwo,
   ],
   [
     "After substituting x = 10 − y into x − y = 2, what one-variable equation results (before simplifying)?",
@@ -7668,6 +7719,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Substitute y = 2x into x + y = 9: x + 2x = 9 → 3x = 9 → x = 3. So y = 2(3) = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemDoubleY,
   ],
   [
     "Which pair of values satisfies BOTH equations x + y = 7 and x − y = 1?",
@@ -7675,6 +7727,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Check x = 4, y = 3: 4 + 3 = 7 and 4 − 3 = 1. The other pairs only satisfy x + y = 7.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemSevenOne,
   ],
   [
     "After finding y = 4, what is the value of x in the simultaneous equations x + y = 10 and x − y = 2?",
@@ -7715,6 +7768,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Subtract the second equation from the first: 2x = 6 → x = 3. Substitute into x + y = 5: y = 2.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemThreeEleven,
   ],
   [
     "What is the final solution of the simultaneous equations x + y = 10 and x − y = 2?",
@@ -7765,6 +7819,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Let x + y = 15 and x − y = 3. Add the equations: 2x = 18 → x = 9, so y = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.sumDifference,
   ],
   [
     "2 kg of apples and 1 kg of oranges cost RM13, while 1 kg of apples and 1 kg of oranges cost RM8. What is the price of 1 kg of apples?",
@@ -7772,6 +7827,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Let 1 kg of apples cost RMx and 1 kg of oranges cost RMy. 2x + y = 13 and x + y = 8. Subtract: x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.fruitPurchases,
   ],
   [
     "Solve the simultaneous equations 2x + y = 7 and x − y = 2 using the elimination method.",
@@ -7779,6 +7835,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Adding both equations: 3x = 9, so x = 3; substituting into x − y = 2 gives y = 1.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemTwoXSeven,
   ],
   [
     "Solve the simultaneous equations x + 2y = 8 and x − y = 2 using the substitution method.",
@@ -7786,6 +7843,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "From x − y = 2, x = 2 + y. Substituting into x + 2y = 8: (2 + y) + 2y = 8 → 3y = 6 → y = 2, so x = 4.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemXPlusTwoY,
   ],
   [
     "A shop sells 2 books and 3 pencils for RM16, while 1 book and 1 pencil cost RM7. If a book costs RM b and a pencil costs RM p, write the simultaneous equations for this situation.",
@@ -7798,6 +7856,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Two books and three pencils costing RM16 is written as 2b + 3p = 16; one book and one pencil costing RM7 is written as b + p = 7.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.bookPencilPurchases,
   ],
   [
     "From the simultaneous equations 2b + 3p = 16 and b + p = 7, find the values of b and p.",
@@ -7805,6 +7864,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "From b + p = 7, b = 7 − p. Substituting into 2b + 3p = 16: 2(7 − p) + 3p = 16 → 14 + p = 16 → p = 2, so b = 5.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.bookPencilPurchases,
   ],
   [
     "Two straight lines y = 2x + 1 and y = 2x − 3 are drawn on the same Cartesian plane. What type of solution do these simultaneous equations have?",
@@ -7826,6 +7886,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Adding both equations: 3x = 15, so x = 5; substituting into x + y = 12 gives y = 7.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemTwelveThree,
   ],
   [
     "A rectangular garden has a perimeter of 28 m. If its length is x m and width is y m, write the equation representing this perimeter.",
@@ -7833,6 +7894,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "The perimeter of a rectangle = 2(length + width), so 2x + 2y = 28.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.gardenPerimeter,
   ],
   [
     "Given 2x + 2y = 28 and x − y = 2, find the values of x and y.",
@@ -7840,6 +7902,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Simplify 2x + 2y = 28 to x + y = 14. Adding to x − y = 2: 2x = 16, so x = 8 and y = 6.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemGarden,
   ],
 ]);
 
