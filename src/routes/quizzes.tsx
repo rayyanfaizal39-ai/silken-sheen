@@ -18572,7 +18572,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     MATH_F1_C12_QUIZ_VISUALS.runnerAgesStems,
   ],
   [
-    "Peratusan sesuatu kategori dalam carta pai = 25%. Berapakah sudut sektornya?",
+    "Carta pai menunjukkan kategori X. Berapakah sudut sektor X?",
     ["60°", "75°", "100°", "90°"],
     3,
     "Carta pai berjumlah 360°. Tukar 25% kepada 0.25 lalu darabkan: 0.25 × 360° = 90°. Sektor ini mewakili satu perempat bulatan.",
@@ -18810,7 +18810,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     MATH_F1_C12_QUIZ_VISUALS.runnerAgesStems,
   ],
   [
-    "A category's percentage in a pie chart = 25%. What is the sector angle?",
+    "The pie chart shows category X. What is the angle of sector X?",
     ["60°", "75°", "100°", "90°"],
     3,
     "A full pie chart is 360°. Convert 25% to 0.25 and multiply: 0.25 × 360° = 90°. This sector is one-quarter of the circle.",
