@@ -56,6 +56,7 @@ import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
 import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
 import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
+import { MATH_F1_C8_QUIZ_VISUALS } from "@/content/form1/math/chapter-8/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
@@ -9356,6 +9357,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "145° terletak antara 90° dan 180°, maka ia adalah sudut cakah.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle145,
   ],
   [
     "Sudut 250° termasuk dalam jenis apakah?",
@@ -9363,6 +9365,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "250° terletak antara 180° dan 360°, maka ia adalah sudut refleks.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle250,
   ],
   [
     "Sudut 55° termasuk dalam jenis apakah?",
@@ -9370,6 +9373,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "55° terletak antara 0° dan 90°, maka ia adalah sudut tirus.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle55,
   ],
   [
     "Apakah simbol yang menandakan sudut tegak dalam rajah?",
@@ -9450,6 +9454,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Kedua-dua sudut mempunyai saiz yang sama, iaitu 47°, jadi kedua-duanya kongruen. (47° + 47° = 94°, bukan 90° atau 180°.)",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.pair47,
   ],
   [
     "Berapakah hasil tambah sudut-sudut pada satu garis lurus?",
@@ -9457,6 +9462,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Sudut-sudut pada satu garis lurus berjumlah 180°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.straightReference,
   ],
   [
     "Dalam rajah geometri, tembereng garis kongruen ditandakan dengan?",
@@ -9599,6 +9605,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "145° lies between 90° and 180°, so it is an obtuse angle.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle145,
   ],
   [
     "What type of angle is 250°?",
@@ -9606,6 +9613,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "250° lies between 180° and 360°, so it is a reflex angle.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle250,
   ],
   [
     "What type of angle is 55°?",
@@ -9613,6 +9621,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "55° lies between 0° and 90°, so it is an acute angle.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle55,
   ],
   [
     "What symbol marks a right angle in a diagram?",
@@ -9703,6 +9712,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Both angles have the same size, 47°, so they are congruent. (47° + 47° = 94°, not 90° or 180°.)",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.pair47,
   ],
   [
     "What is the sum of the angles on a straight line?",
@@ -9710,6 +9720,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "The angles on a straight line add up to 180°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.straightReference,
   ],
   [
     "In geometric diagrams, congruent line segments are marked with?",
@@ -9824,6 +9835,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Sudut pada garis lurus berjumlah 180°. x = 180° − 75° = 105°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight75,
   ],
   [
     "Tiga sudut pada garis lurus ialah 40°, 60° dan y. Cari y.",
@@ -9831,6 +9843,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "40° + 60° + y = 180°. y = 180° − 100° = 80°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight40_60,
   ],
   [
     "Empat sudut pada satu titik ialah 90°, 120°, 80° dan z. Cari z.",
@@ -9838,6 +9851,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "90° + 120° + 80° + z = 360°. z = 360° − 290° = 70°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.fullTurn90_120_80,
   ],
   [
     "Cari pelengkap bagi sudut 38°.",
@@ -9845,6 +9859,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Pelengkap = 90° − 38° = 52°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.complement38,
   ],
   [
     "Cari penggenap bagi sudut 115°.",
@@ -9852,6 +9867,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Penggenap = 180° − 115° = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.supplement115,
   ],
   [
     "Cari konjugat bagi sudut 135°.",
@@ -9859,6 +9875,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Konjugat = 360° − 135° = 225°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.conjugate135,
   ],
   [
     "Dua garis bersilang membentuk sudut 65° dan x (sudut bertentang bucu). Cari x.",
@@ -9866,6 +9883,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut bertentang bucu adalah sama. x = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite65,
   ],
   [
     "Dua garis bersilang membentuk sudut 3a dan 120° (bertentang bucu). Cari a.",
@@ -9873,6 +9891,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "3a = 120° (bertentang bucu). a = 120° ÷ 3 = 40°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite3a120,
   ],
   [
     "Dua garis lurus bersilang. Satu daripada sudut yang terbentuk ialah 55°. Apakah saiz keempat-empat sudut itu?",
@@ -9880,6 +9899,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Sudut bertentang bucu adalah sama: 55° dan 55°. Sudut bersebelahan pada garis lurus: 180° − 55° = 125°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite55,
   ],
   [
     "Sudut bersebelahan pada garis lurus = 148° dan y. Cari y.",
@@ -9887,6 +9907,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut bersebelahan berjumlah 180°. y = 180° − 148° = 32°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.adjacent148,
   ],
   [
     "Jika (2x + 10)° dan 80° adalah sudut bertentang bucu, cari x.",
@@ -9894,6 +9915,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "2x + 10 = 80. 2x = 70. x = 35.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite2x80,
   ],
   [
     "Pelengkap bagi sudut (x + 15)° ialah 40°. Cari nilai x.",
@@ -9901,6 +9923,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "(x + 15) + 40 = 90. x + 55 = 90. x = 35.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.complementX15,
   ],
   [
     "Penggenap bagi sudut (3y − 10)° ialah 70°. Cari nilai y.",
@@ -9908,6 +9931,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "(3y − 10) + 70 = 180. 3y + 60 = 180. 3y = 120. y = 40.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.supplement3y70,
   ],
   [
     "Garis rentas memotong dua garis selari. Satu sudut ialah 110°. Cari sudut sepadan dengannya.",
@@ -9915,6 +9939,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Sudut SEPADAN adalah SAMA BESAR. Sudut selari yang lain = 110°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding110,
   ],
   [
     "Garis rentas memotong dua garis selari. Satu sudut ialah 65°. Cari sudut selang-seli dengannya.",
@@ -9922,6 +9947,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Sudut SELANG-SELI adalah SAMA BESAR. Sudut yang lain = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.alternate65,
   ],
   [
     "Garis rentas memotong dua garis selari. Satu sudut pedalaman ialah 75°. Cari sudut pedalaman yang satu lagi pada sisi garis rentas yang sama.",
@@ -9929,6 +9955,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Sudut PEDALAMAN BERSEBELAHAN berjumlah 180°. Sudut yang lain = 180° − 75° = 105°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior75,
   ],
   [
     "Garis rentas memotong dua garis selari dengan sudut sepadan = (5x − 20)° dan 80°. Cari x.",
@@ -9936,6 +9963,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "5x − 20 = 80 (sudut sepadan sama). 5x = 100. x = 20.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding5x80,
   ],
   [
     "Garis rentas memotong dua garis selari. Sudut selang-seli = (4y + 5)° dan 85°. Cari y.",
@@ -9943,6 +9971,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "4y + 5 = 85 (sudut selang-seli sama). 4y = 80. y = 20.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.alternate4y85,
   ],
   [
     "Sudut pedalaman bersebelahan = (3z + 15)° dan 75°. Cari z.",
@@ -9950,6 +9979,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "(3z + 15) + 75 = 180. 3z + 90 = 180. 3z = 90. z = 30.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior3z75,
   ],
   [
     "Dua garis bersilang. Sudut 1 = 4a, sudut bertentang bucu = 60°. Cari a.",
@@ -9964,6 +9994,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "(x + 20) + 50 + (x − 10) = 180. 2x + 60 = 180. 2x = 120. x = 60. Semak: 80° + 50° + 50° = 180°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straightX20_50,
   ],
   [
     "Garis AB adalah serenjang dengan CD. Apakah sudut yang terbentuk di persimpangan?",
@@ -9978,6 +10009,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut sepadan adalah sama besar. Sudut sepadan = 120°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding120,
   ],
   [
     "Sudut pada garis lurus: (2x + 5)° dan (3x − 5)°. Cari x.",
@@ -9985,6 +10017,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "(2x + 5) + (3x − 5) = 180. 5x = 180. x = 36.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight2x5_3x5,
   ],
   [
     "Dua sudut putaran lengkap: 200° dan y. Cari y.",
@@ -9992,6 +10025,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "200° + y = 360°. y = 360° − 200° = 160°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.fullTurn200,
   ],
   [
     "Sudut pedalaman bersebelahan pada garis selari = 90° dan k. Cari k.",
@@ -10020,6 +10054,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut bertentang bucu: 40° bertentang bucu = 40°. Sudut bersebelahan: y = 180° − 40° = 140°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.crossing40,
   ],
   [
     "Jika sudut pedalaman bersebelahan = 2p dan 4p, cari nilai p.",
@@ -10027,6 +10062,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "2p + 4p = 180°. 6p = 180°. p = 30°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior2p4p,
   ],
 ]);
 
@@ -10037,6 +10073,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Angles on a straight line sum to 180°. x = 180° − 75° = 105°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight75,
   ],
   [
     "Three angles on a straight line are 40°, 60° and y. Find y.",
@@ -10044,6 +10081,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "40° + 60° + y = 180°. y = 180° − 100° = 80°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight40_60,
   ],
   [
     "Four angles at a point are 90°, 120°, 80° and z. Find z.",
@@ -10051,6 +10089,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "90° + 120° + 80° + z = 360°. z = 360° − 290° = 70°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.fullTurn90_120_80,
   ],
   [
     "Find the complement of 38°.",
@@ -10058,6 +10097,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Complement = 90° − 38° = 52°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.complement38,
   ],
   [
     "Find the supplement of 115°.",
@@ -10065,6 +10105,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Supplement = 180° − 115° = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.supplement115,
   ],
   [
     "Find the conjugate of 135°.",
@@ -10072,6 +10113,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Conjugate = 360° − 135° = 225°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.conjugate135,
   ],
   [
     "Two lines intersect forming 65° and x (vertically opposite). Find x.",
@@ -10079,6 +10121,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Vertically opposite angles are equal. x = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite65,
   ],
   [
     "Two lines intersect forming 3a and 120° (vertically opposite). Find a.",
@@ -10086,6 +10129,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "3a = 120° (vertically opposite). a = 120° ÷ 3 = 40°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite3a120,
   ],
   [
     "Two straight lines intersect. One of the angles formed is 55°. What are the sizes of all four angles?",
@@ -10093,6 +10137,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Vertically opposite angles are equal: 55° and 55°. Adjacent angles on a straight line: 180° − 55° = 125°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite55,
   ],
   [
     "Adjacent angles on a straight line: 148° and y. Find y.",
@@ -10100,6 +10145,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Adjacent angles sum to 180°. y = 180° − 148° = 32°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.adjacent148,
   ],
   [
     "If (2x + 10)° and 80° are vertically opposite angles, find x.",
@@ -10107,6 +10153,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "2x + 10 = 80. 2x = 70. x = 35.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite2x80,
   ],
   [
     "The complement of the angle (x + 15)° is 40°. Find the value of x.",
@@ -10114,6 +10161,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "(x + 15) + 40 = 90. x + 55 = 90. x = 35.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.complementX15,
   ],
   [
     "The supplement of the angle (3y − 10)° is 70°. Find the value of y.",
@@ -10121,6 +10169,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "(3y − 10) + 70 = 180. 3y + 60 = 180. 3y = 120. y = 40.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.supplement3y70,
   ],
   [
     "A transversal cuts two parallel lines. One angle is 110°. Find the angle corresponding to it.",
@@ -10128,6 +10177,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "CORRESPONDING angles are EQUAL. The other angle = 110°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding110,
   ],
   [
     "A transversal cuts two parallel lines. One angle is 65°. Find the angle alternate to it.",
@@ -10135,6 +10185,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "ALTERNATE angles are EQUAL. The other angle = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.alternate65,
   ],
   [
     "A transversal cuts two parallel lines. One interior angle is 75°. Find the other interior angle on the same side of the transversal.",
@@ -10142,6 +10193,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "CO-INTERIOR angles sum to 180°. The other = 180° − 75° = 105°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior75,
   ],
   [
     "Transversal cuts two parallel lines: corresponding angles = (5x − 20)° and 80°. Find x.",
@@ -10149,6 +10201,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "5x − 20 = 80 (corresponding angles equal). 5x = 100. x = 20.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding5x80,
   ],
   [
     "Transversal cuts two parallel lines: alternate angles = (4y + 5)° and 85°. Find y.",
@@ -10156,6 +10209,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "4y + 5 = 85 (alternate angles equal). 4y = 80. y = 20.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.alternate4y85,
   ],
   [
     "Co-interior angles = (3z + 15)° and 75°. Find z.",
@@ -10163,6 +10217,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "(3z + 15) + 75 = 180. 3z + 90 = 180. 3z = 90. z = 30.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior3z75,
   ],
   [
     "Two lines intersect. Angle 1 = 4a, vertically opposite angle = 60°. Find a.",
@@ -10177,6 +10232,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "(x + 20) + 50 + (x − 10) = 180. 2x + 60 = 180. 2x = 120. x = 60. Check: 80° + 50° + 50° = 180°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straightX20_50,
   ],
   [
     "Line AB is perpendicular to CD. What angle is formed at the intersection?",
@@ -10191,6 +10247,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Corresponding angles are equal. Corresponding angle = 120°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding120,
   ],
   [
     "Angles on a straight line: (2x + 5)° and (3x − 5)°. Find x.",
@@ -10198,6 +10255,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "(2x + 5) + (3x − 5) = 180. 5x = 180. x = 36.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight2x5_3x5,
   ],
   [
     "Two angles at a complete turn: 200° and y. Find y.",
@@ -10205,6 +10263,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "200° + y = 360°. y = 360° − 200° = 160°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.fullTurn200,
   ],
   [
     "Co-interior angles of parallel lines = 90° and k. Find k.",
@@ -10233,6 +10292,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Vertically opposite: 40° opposite = 40°. Adjacent: y = 180° − 40° = 140°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.crossing40,
   ],
   [
     "If co-interior angles = 2p and 4p, find p.",
@@ -10240,6 +10300,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "2p + 4p = 180°. 6p = 180°. p = 30°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior2p4p,
   ],
 ]);
 
@@ -10250,6 +10311,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Sudut sepadan adalah sama: 2x + 15 = 3x − 10, maka x = 25. Sudut = 2(25) + 15 = 65°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.correspondingExpr,
   ],
   [
     "Tiga sudut pada satu garis lurus ialah (3x + 5)°, (x + 15)° dan 60°. Cari x dan saiz semua sudut.",
@@ -10262,6 +10324,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "(3x + 5) + (x + 15) + 60 = 180. 4x + 80 = 180. 4x = 100. x = 25. Sudut: 80°, 40°, 60°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straight3x_1x60,
   ],
   [
     "Dua sudut bertentang bucu ialah (5a − 30)° dan (2a + 15)°. Cari a dan saiz sudut itu.",
@@ -10269,6 +10332,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Sudut bertentang bucu adalah sama: 5a − 30 = 2a + 15. 3a = 45. a = 15. Sudut = 5(15) − 30 = 45°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.opposite5a2a,
   ],
   [
     "Dua garis selari dipotong oleh garis rentas. Dua sudut pedalaman pada sisi garis rentas yang sama ialah (3x + 10)° dan (2x + 20)°. Cari x.",
@@ -10276,6 +10340,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut pedalaman berjumlah 180°: (3x + 10) + (2x + 20) = 180. 5x + 30 = 180. 5x = 150. x = 30. Sudut: 100° dan 80°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior3x2x,
   ],
   [
     "Siti berkata: 'Sudut pedalaman antara dua garis selari pada sisi garis rentas yang sama sentiasa sama besar.' Manakah pembetulan yang tepat?",
@@ -10300,6 +10365,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Sudut dongak diukur dari garis ufuk ke atas. Pemerhati di A berada di bawah dan melihat ke atas pada 35°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.elevation35,
   ],
   [
     "Sudut tunduk dari puncak menara ke sebuah bot ialah 40°. Apakah yang boleh disimpulkan?",
@@ -10312,6 +10378,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut tunduk diukur dari garis ufuk ke bawah. Pemerhati di menara melihat ke bawah pada 40°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.depression40,
   ],
   [
     "Dua garis selari dipotong oleh garis rentas. Satu sudut pedalaman ialah (6x − 10)° dan sudut pedalaman yang satu lagi pada sisi garis rentas yang sama ialah 130°. Cari x.",
@@ -10319,6 +10386,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Sudut pedalaman berjumlah 180°: (6x − 10) + 130 = 180. 6x + 120 = 180. 6x = 60. x = 10.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior6x130,
   ],
   [
     "Dua garis lurus bersilang. Satu sudut ialah (3y + 20)° dan sudut bersebelahan dengannya pada garis lurus yang sama ialah (2y + 40)°. Cari y.",
@@ -10326,6 +10394,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Sudut bersebelahan pada garis lurus berjumlah 180°: (3y + 20) + (2y + 40) = 180. 5y + 60 = 180. 5y = 120. y = 24.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straight3y2y,
   ],
   [
     "Garis rentas memotong dua garis selari di A dan B. Sudut pedalaman di A ialah 75°. Cari sudut selang-seli dengannya di B dan sudut pedalaman yang lain di B pada sisi garis rentas yang sama.",
@@ -10338,6 +10407,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut selang-seli adalah sama: 75°. Sudut pedalaman pada sisi yang sama berjumlah 180°: 180° − 75° = 105°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallelA75,
   ],
   [
     "Sudut tunduk dari puncak sebuah rumah api ke sebuah bot ialah 35°. Berapakah sudut dongak dari bot ke puncak rumah api itu?",
@@ -10345,6 +10415,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Garis ufuk di puncak rumah api dan di paras laut adalah selari. Sudut tunduk dan sudut dongak ialah sudut selang-seli, jadi kedua-duanya 35°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.lighthouse35,
   ],
   [
     "Garis rentas memotong dua garis selari di A dan B. Sudut di sebelah atas kiri A ialah 125°. Cari sudut di sebelah atas kiri B menggunakan sifat sudut sepadan.",
@@ -10352,6 +10423,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Sudut sepadan (pada kedudukan yang sama di kedua-dua persilangan) adalah sama. Sudut di sebelah atas kiri B = 125°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding125,
   ],
   [
     "Dua garis selari dipotong oleh garis rentas. Satu sudut tirus yang terbentuk ialah 72°. Berapakah saiz setiap sudut cakah yang terbentuk?",
@@ -10359,6 +10431,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Setiap sudut cakah bersebelahan dengan sudut tirus pada garis lurus: 180° − 72° = 108°. (18° ialah pelengkap, 288° ialah konjugat.)",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallelAcute72,
   ],
   [
     "Dua sudut pedalaman pada sisi garis rentas yang sama ialah (4p + 10)° dan (2p + 20)°. Cari p dan kedua-dua sudut.",
@@ -10366,6 +10439,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "(4p + 10) + (2p + 20) = 180. 6p + 30 = 180. 6p = 150. p = 25. Sudut: 4(25) + 10 = 110° dan 2(25) + 20 = 70°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior4p2p,
   ],
   [
     "Dua garis lurus bersilang dan membentuk sudut 2m, 3m, 2m dan 3m secara berselang-seli. Cari nilai m.",
@@ -10373,6 +10447,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Sudut bersebelahan pada garis lurus berjumlah 180°: 2m + 3m = 180°. 5m = 180°. m = 36°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.crossing2m3m,
   ],
   [
     "Ali berdiri di atas sebuah bukit dan melihat sebuah kereta di jalan dengan sudut tunduk 28°. Kereta itu kemudian bergerak lebih dekat ke kaki bukit. Apakah yang berlaku kepada sudut tunduk?",
@@ -10385,6 +10460,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Apabila kereta semakin hampir ke kaki bukit, Ali perlu memandang lebih ke bawah dari garis ufuk, jadi sudut tunduk bertambah.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.carCloser,
   ],
   [
     "Tiga sudut pada satu garis lurus ialah (x + 30)°, (2x − 10)° dan (x + 20)°. Cari x dan nyatakan jenis setiap sudut.",
@@ -10397,6 +10473,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "(x + 30) + (2x − 10) + (x + 20) = 180. 4x + 40 = 180. 4x = 140. x = 35. Sudut: 65°, 60°, 55°, semuanya sudut tirus.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straightX30_2x10_x20,
   ],
   [
     "Garis rentas memotong dua garis selari dan membentuk lapan sudut. Satu daripadanya ialah 85°. Berapakah bilangan sudut yang bersaiz 95°?",
@@ -10404,6 +10481,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Di setiap persilangan, dua sudut bertentang bucu ialah 85° dan dua lagi ialah 180° − 85° = 95°. Kedua-dua persilangan adalah sama, jadi terdapat 4 sudut bersaiz 95°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallel85,
   ],
   [
     "Dari titik A dan titik B di atas tanah rata, sudut dongak ke puncak menara C masing-masing ialah 25° dan 40°. Titik manakah lebih hampir dengan menara itu?",
@@ -10411,6 +10489,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Bagi objek yang sama tinggi, pemerhati yang lebih hampir melihat dengan sudut dongak yang lebih besar. B (40°) lebih hampir dengan menara.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.elevationCompare,
   ],
   [
     "Garis rentas memotong dua garis dan sudut selang-seli yang terbentuk adalah sama besar. Apakah kesimpulan tentang kedua-dua garis itu?",
@@ -10430,6 +10509,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "(3a + 10) + (2a + 20) + (4a − 10) + (a + 20) = 360. 10a + 40 = 360. 10a = 320. a = 32.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.pointFourExpressions,
   ],
   [
     "Garis rentas berserenjang dengan dua garis selari. Berapakah saiz setiap sudut sepadan?",
@@ -10456,6 +10536,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "2x + 3x + (x + 60) = 360. 6x + 60 = 360. 6x = 300. x = 50°. Sudut: 100°, 150°, 110°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.pointThreeExpressions,
   ],
   [
     "Konjugat bagi suatu sudut ialah 4 kali sudut itu. Cari sudut itu.",
@@ -10463,6 +10544,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Katakan sudut itu x. Konjugat = 360° − x = 4x. Maka 5x = 360°, x = 72°. (288° ialah konjugatnya.)",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.conjugateFourTimes,
   ],
   [
     "Dua garis lurus bersilang. Dua sudut bertentang bucu ialah (4x − 15)° dan (2x + 25)°. Berapakah saiz sudut yang bersebelahan dengan salah satu sudut itu?",
@@ -10470,6 +10552,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut bertentang bucu adalah sama: 4x − 15 = 2x + 25, maka x = 20 dan setiap sudut = 65°. Sudut bersebelahan = 180° − 65° = 115°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.opposite4x2x,
   ],
   [
     "Garis rentas memotong dua garis yang TIDAK selari. Adakah sudut sepadan yang terbentuk sama besar?",
@@ -10496,6 +10579,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "∠AOC dan ∠BOC berada pada garis lurus AB: 3x + 2x = 180°, x = 36°. ∠BOC = 72°. ∠AOD bertentang bucu dengan ∠BOC, maka ∠AOD = 72°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.crossingABCD,
   ],
   [
     "Bilakah dua sudut pedalaman pada sisi garis rentas yang sama menjadi sama besar?",
@@ -10518,6 +10602,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Corresponding angles are equal: 2x + 15 = 3x − 10, so x = 25. Angle = 2(25) + 15 = 65°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.correspondingExpr,
   ],
   [
     "Three angles on a straight line are (3x + 5)°, (x + 15)° and 60°. Find x and the size of all the angles.",
@@ -10530,6 +10615,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "(3x + 5) + (x + 15) + 60 = 180. 4x + 80 = 180. 4x = 100. x = 25. Angles: 80°, 40°, 60°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straight3x_1x60,
   ],
   [
     "Two vertically opposite angles are (5a − 30)° and (2a + 15)°. Find a and the size of the angle.",
@@ -10537,6 +10623,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Vertically opposite angles are equal: 5a − 30 = 2a + 15. 3a = 45. a = 15. Angle = 5(15) − 30 = 45°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.opposite5a2a,
   ],
   [
     "Two parallel lines are cut by a transversal. Two interior angles on the same side of the transversal are (3x + 10)° and (2x + 20)°. Find x.",
@@ -10544,6 +10631,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Interior angles add up to 180°: (3x + 10) + (2x + 20) = 180. 5x + 30 = 180. 5x = 150. x = 30. Angles: 100° and 80°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior3x2x,
   ],
   [
     "Siti says: 'Interior angles between two parallel lines on the same side of the transversal are always equal.' Which correction is accurate?",
@@ -10568,6 +10656,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "An angle of elevation is measured upward from the horizontal. The observer at A is below and looks up at 35°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.elevation35,
   ],
   [
     "The angle of depression from the top of a tower to a boat is 40°. What can be concluded?",
@@ -10580,6 +10669,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "An angle of depression is measured downward from the horizontal. The observer on the tower looks down at 40°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.depression40,
   ],
   [
     "Two parallel lines are cut by a transversal. One interior angle is (6x − 10)° and the other interior angle on the same side of the transversal is 130°. Find x.",
@@ -10587,6 +10677,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Interior angles add up to 180°: (6x − 10) + 130 = 180. 6x + 120 = 180. 6x = 60. x = 10.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior6x130,
   ],
   [
     "Two straight lines intersect. One angle is (3y + 20)° and the adjacent angle on the same straight line is (2y + 40)°. Find y.",
@@ -10594,6 +10685,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Adjacent angles on a straight line add up to 180°: (3y + 20) + (2y + 40) = 180. 5y + 60 = 180. 5y = 120. y = 24.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straight3y2y,
   ],
   [
     "A transversal cuts two parallel lines at A and B. The interior angle at A is 75°. Find the angle alternate to it at B and the other interior angle at B on the same side of the transversal.",
@@ -10606,6 +10698,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Alternate angles are equal: 75°. Interior angles on the same side add up to 180°: 180° − 75° = 105°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallelA75,
   ],
   [
     "The angle of depression from the top of a lighthouse to a boat is 35°. What is the angle of elevation from the boat to the top of the lighthouse?",
@@ -10613,6 +10706,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "The horizontal lines at the top of the lighthouse and at sea level are parallel. The angles of depression and elevation are alternate angles, so both are 35°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.lighthouse35,
   ],
   [
     "A transversal cuts two parallel lines at A and B. The top-left angle at A is 125°. Find the top-left angle at B using corresponding angles.",
@@ -10620,6 +10714,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Corresponding angles (in the same position at both intersections) are equal. The top-left angle at B = 125°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding125,
   ],
   [
     "Two parallel lines are cut by a transversal. One acute angle formed is 72°. What is the size of each obtuse angle formed?",
@@ -10627,6 +10722,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Each obtuse angle is adjacent to the acute angle on a straight line: 180° − 72° = 108°. (18° is the complement and 288° is the conjugate.)",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallelAcute72,
   ],
   [
     "Two interior angles on the same side of a transversal are (4p + 10)° and (2p + 20)°. Find p and both angles.",
@@ -10634,6 +10730,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "(4p + 10) + (2p + 20) = 180. 6p + 30 = 180. 6p = 150. p = 25. Angles: 4(25) + 10 = 110° and 2(25) + 20 = 70°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior4p2p,
   ],
   [
     "Two intersecting straight lines form angles 2m, 3m, 2m and 3m in turn. Find the value of m.",
@@ -10641,6 +10738,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Adjacent angles on a straight line add up to 180°: 2m + 3m = 180°. 5m = 180°. m = 36°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.crossing2m3m,
   ],
   [
     "Ali stands on a hill and sees a car on the road at an angle of depression of 28°. The car then moves closer to the foot of the hill. What happens to the angle of depression?",
@@ -10653,6 +10751,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "As the car gets closer to the foot of the hill, Ali has to look further down from the horizontal, so the angle of depression increases.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.carCloser,
   ],
   [
     "Three angles on a straight line are (x + 30)°, (2x − 10)° and (x + 20)°. Find x and state the type of each angle.",
@@ -10665,6 +10764,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "(x + 30) + (2x − 10) + (x + 20) = 180. 4x + 40 = 180. 4x = 140. x = 35. Angles: 65°, 60°, 55°, all acute angles.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straightX30_2x10_x20,
   ],
   [
     "A transversal cuts two parallel lines and forms eight angles. One of them is 85°. How many of the angles measure 95°?",
@@ -10672,6 +10772,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "At each intersection, two vertically opposite angles are 85° and the other two are 180° − 85° = 95°. Both intersections match, so 4 angles measure 95°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallel85,
   ],
   [
     "From points A and B on level ground, the angles of elevation to the top of tower C are 25° and 40° respectively. Which point is closer to the tower?",
@@ -10679,6 +10780,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "For the same object height, an observer who is closer sees it at a larger angle of elevation. B (40°) is closer to the tower.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.elevationCompare,
   ],
   [
     "A transversal cuts two lines and the alternate angles formed are equal. What can be concluded about the two lines?",
@@ -10698,6 +10800,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "(3a + 10) + (2a + 20) + (4a − 10) + (a + 20) = 360. 10a + 40 = 360. 10a = 320. a = 32.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.pointFourExpressions,
   ],
   [
     "A transversal is perpendicular to two parallel lines. What is the size of each corresponding angle?",
@@ -10724,6 +10827,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "2x + 3x + (x + 60) = 360. 6x + 60 = 360. 6x = 300. x = 50°. Angles: 100°, 150°, 110°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.pointThreeExpressions,
   ],
   [
     "The conjugate of an angle is 4 times the angle. Find the angle.",
@@ -10731,6 +10835,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Let the angle be x. Conjugate = 360° − x = 4x. So 5x = 360°, x = 72°. (288° is its conjugate.)",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.conjugateFourTimes,
   ],
   [
     "Two straight lines intersect. Two vertically opposite angles are (4x − 15)° and (2x + 25)°. What is the size of an angle adjacent to one of them?",
@@ -10738,6 +10843,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Vertically opposite angles are equal: 4x − 15 = 2x + 25, so x = 20 and each angle = 65°. Adjacent angle = 180° − 65° = 115°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.opposite4x2x,
   ],
   [
     "A transversal cuts two lines that are NOT parallel. Are the corresponding angles formed equal?",
@@ -10764,6 +10870,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "∠AOC and ∠BOC lie on the straight line AB: 3x + 2x = 180°, x = 36°. ∠BOC = 72°. ∠AOD is vertically opposite ∠BOC, so ∠AOD = 72°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.crossingABCD,
   ],
   [
     "When are two interior angles on the same side of a transversal equal?",
