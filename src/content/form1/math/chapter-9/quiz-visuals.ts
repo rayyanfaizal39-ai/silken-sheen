@@ -163,7 +163,7 @@ export const MATH_F1_C9_QUIZ_VISUALS = {
   obtuse115_35: triangle("Sudut segi tiga cakah", "Obtuse triangle angles",
     ["115°", "35°", "?"], obtuse),
   parallelExpr: quad("Sudut bersebelahan dalam segi empat selari", "Adjacent parallelogram angles",
-    "(4k + 10)°", "(2k + 50)°", undefined, undefined, parallelogram),
+    ["(4k + 10)°", "(2k + 50)°", undefined, undefined], parallelogram),
   isoExpr: triangle("Dua sisi sama", "Two equal sides", ["?", "(3x − 5)°", "(2x + 10)°"]),
   rhombusP58: quad("Sudut rombus", "Rhombus angles", ["58°", "?", "?", "?"], rhombus),
   quadOpposite100: quad("Dua pasangan sudut bertentangan", "Two pairs of opposite angles",
