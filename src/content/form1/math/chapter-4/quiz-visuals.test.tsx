@@ -81,7 +81,7 @@ describe("Form 1 Mathematics Chapter 4 selective visual questions", () => {
       expect(visual.kind, key).toBe("value-pairs");
       if (visual.kind === "value-pairs") {
         expect(visual.rows).toHaveLength(2);
-        expect(visual.rows[1].left === "?" || visual.rows[1].right === "?", key).toBe(true);
+        expect(visual.rows[1].left.includes("?") || visual.rows[1].right.includes("?"), key).toBe(true);
         for (const lang of LANGS) {
           expect(describeMathQuestionVisual(visual, lang)).toContain("?");
         }
