@@ -153,16 +153,23 @@ export function MathIndicesVisual({
                   <>
                     <rect x="53" y="16" width="114" height="114" rx="2"
                       fill="#8b5cf6" fillOpacity=".23" stroke="#c4b5fd" strokeWidth="2" />
-                    {model.area && <text x="110" y="80" textAnchor="middle" fontSize="14" fill="#fcd34d">
-                      {lang === "bm" ? "Luas" : "Area"} = {model.area}
-                    </text>}
+                    {model.area && (
+                      <>
+                        <text x="110" y="69" textAnchor="middle" fontSize="12" fill="#cbd5e1">
+                          {lang === "bm" ? "Luas" : "Area"}
+                        </text>
+                        <text x="110" y="91" textAnchor="middle" fontSize="15" fill="#fcd34d">
+                          {model.area}
+                        </text>
+                      </>
+                    )}
                     {model.side && <text x="110" y="155" textAnchor="middle" fontSize="14" fill="#e2e8f0">
                       {lang === "bm" ? "Sisi" : "Side"} = {model.side}
                     </text>}
                   </>
                 ) : model.shape === "rectangle" ? (
                   <>
-                    <rect x="36" y="31" width="163" height="88" rx="2"
+                    <rect x="28" y="38" width="166" height="74" rx="2"
                       fill="#38bdf8" fillOpacity=".20" stroke="#7dd3fc" strokeWidth="2" />
                     {model.area && <text x="117" y="79" textAnchor="middle" fontSize="14" fill="#fcd34d">
                       {lang === "bm" ? "Luas" : "Area"} = {model.area}
@@ -179,9 +186,16 @@ export function MathIndicesVisual({
                       fill="#38bdf8" fillOpacity=".28" stroke="#7dd3fc" strokeWidth="1.7" />
                     <polygon points="150,52 194,19 194,116 150,149"
                       fill="#fbbf24" fillOpacity=".26" stroke="#fcd34d" strokeWidth="1.7" />
-                    {model.volume && <text x="102" y="102" textAnchor="middle" fontSize="13" fill="#fff">
-                      {lang === "bm" ? "Isipadu" : "Volume"} = {model.volume}
-                    </text>}
+                    {model.volume && (
+                      <>
+                        <text x="101" y="83" textAnchor="middle" fontSize="12" fill="#ddd6fe">
+                          {lang === "bm" ? "Isipadu" : "Volume"}
+                        </text>
+                        <text x="101" y="104" textAnchor="middle" fontSize="14" fill="#fff">
+                          {model.volume}
+                        </text>
+                      </>
+                    )}
                     {model.side && <text x="118" y="169" textAnchor="middle" fontSize="14" fill="#e2e8f0">
                       {lang === "bm" ? "Sisi" : "Side"} = {model.side}
                     </text>}
