@@ -14,7 +14,10 @@ import {
 import { AcademyLogo } from "@/components/AcademyLogo";
 import { SchoolCombobox } from "@/components/onboarding/SchoolCombobox";
 import { useAuth } from "@/context/auth-context";
-import { EXPLORER_FORM_LEVELS, type ExplorerFormLevel } from "@/lib/explorer-profile";
+import {
+  EXPLORER_FORM_LEVELS,
+  type ExplorerFormLevel,
+} from "@/lib/explorer-profile";
 import {
   EXPLORER_SUPPORTED_AGES,
   getExplorerStepError,
@@ -92,7 +95,8 @@ function ExplorerOnboardingPage() {
   useEffect(() => {
     if (explorerProfileLoading) return;
     setDisplayName(
-      explorerProfile?.displayName ?? (user?.name && user.name !== user.email ? user.name : ""),
+      explorerProfile?.displayName ??
+        (user?.name && user.name !== user.email ? user.name : ""),
     );
     setAge(explorerProfile?.age ? String(explorerProfile.age) : "");
     setFormLevel(explorerProfile?.formLevel ?? "");
@@ -104,10 +108,17 @@ function ExplorerOnboardingPage() {
       void navigate({ to: "/login", replace: true });
       return;
     }
-    if (explorerProfile && !onboardingRequired) {
+    if (explorerProfile && !onboardingRequired && !savingRef.current) {
       void navigate({ to: "/home", replace: true });
     }
-  }, [explorerProfile, explorerProfileLoading, loading, navigate, onboardingRequired, user]);
+  }, [
+    explorerProfile,
+    explorerProfileLoading,
+    loading,
+    navigate,
+    onboardingRequired,
+    user,
+  ]);
 
   useEffect(() => {
     stepHeadingRef.current?.focus({ preventScroll: true });
@@ -157,21 +168,38 @@ function ExplorerOnboardingPage() {
         formLevel,
         schoolId: school?.id ?? null,
       });
-      await navigate({ to: "/home", replace: true });
+      if (["Form 1", "Form 2", "Form 3"].includes(formLevel)) {
+        await navigate({
+          to: "/companion",
+          search: { intro: true },
+          replace: true,
+        });
+      } else {
+        await navigate({ to: "/home", replace: true });
+      }
     } catch {
-      setError("We couldn’t prepare your profile. Check your details and try again.");
+      setError(
+        "We couldn’t prepare your profile. Check your details and try again.",
+      );
     } finally {
       savingRef.current = false;
       setSaving(false);
     }
   }
 
-  if (loading || explorerProfileLoading || !user || (explorerProfile && !onboardingRequired)) {
+  if (
+    loading ||
+    explorerProfileLoading ||
+    !user ||
+    (explorerProfile && !onboardingRequired)
+  ) {
     return (
       <main className="explorer-onboarding explorer-onboarding--loading">
         <div className="text-center" role="status">
           <Loader2 className="mx-auto h-7 w-7 animate-spin text-violet-300" />
-          <p className="mt-3 text-sm text-violet-100/65">Checking your Explorer Profile…</p>
+          <p className="mt-3 text-sm text-violet-100/65">
+            Checking your Explorer Profile…
+          </p>
         </div>
       </main>
     );
@@ -207,7 +235,10 @@ function ExplorerOnboardingPage() {
           </div>
         </aside>
 
-        <section className="explorer-onboarding__panel" aria-labelledby="onboarding-step-title">
+        <section
+          className="explorer-onboarding__panel"
+          aria-labelledby="onboarding-step-title"
+        >
           <div
             className="explorer-onboarding__progress"
             role="group"
@@ -227,17 +258,28 @@ function ExplorerOnboardingPage() {
           {explorerProfileError && (
             <div className="explorer-onboarding__notice" role="alert">
               <p>{explorerProfileError}</p>
-              <button type="button" onClick={() => void refreshExplorerProfile()}>
+              <button
+                type="button"
+                onClick={() => void refreshExplorerProfile()}
+              >
                 Try loading it again
               </button>
             </div>
           )}
 
           <form onSubmit={submit} noValidate>
-            <div key={step} className="explorer-onboarding__step" data-direction={direction}>
+            <div
+              key={step}
+              className="explorer-onboarding__step"
+              data-direction={direction}
+            >
               <div className="explorer-onboarding__step-heading">
                 <p>{copy.eyebrow}</p>
-                <h1 id="onboarding-step-title" ref={stepHeadingRef} tabIndex={-1}>
+                <h1
+                  id="onboarding-step-title"
+                  ref={stepHeadingRef}
+                  tabIndex={-1}
+                >
                   {copy.title}
                 </h1>
                 <span>{copy.support}</span>
@@ -263,7 +305,9 @@ function ExplorerOnboardingPage() {
                       aria-describedby="display-name-help"
                     />
                   </div>
-                  <p id="display-name-help">This is how you’ll appear around AcadeMY.</p>
+                  <p id="display-name-help">
+                    This is how you’ll appear around AcadeMY.
+                  </p>
                 </div>
               )}
 
@@ -390,7 +434,9 @@ function ExplorerOnboardingPage() {
                       <div>
                         <span>School</span>
                         <strong>Not provided</strong>
-                        <p>You can add a verified school later in Edit Profile.</p>
+                        <p>
+                          You can add a verified school later in Edit Profile.
+                        </p>
                       </div>
                     </div>
                   )}
@@ -424,8 +470,8 @@ function ExplorerOnboardingPage() {
               >
                 {saving ? (
                   <>
-                    <Loader2 className="animate-spin" aria-hidden="true" /> Preparing Academy
-                    Station…
+                    <Loader2 className="animate-spin" aria-hidden="true" />{" "}
+                    Preparing Academy Station…
                   </>
                 ) : step === 4 ? (
                   <>
