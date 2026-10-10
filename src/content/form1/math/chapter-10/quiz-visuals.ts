@@ -20,7 +20,7 @@ const draw = (bm: string, dlp: string, paths: GeometryPanel["paths"],
     description: options?.description ?? desc, paths, labels, ...(options?.grid ? { grid: options.grid } : {}),
   }],
 });
-const edge = (vertices: Point[]): GeometryPanel["paths"] => [{ points: vertices, closed: true, fill: true }];
+const edge = (vertices: Point[]): NonNullable<GeometryPanel["paths"]> => [{ points: vertices, closed: true, fill: true }];
 const rect = (bm: string, dlp: string, length: string, width: string, settings?: {
   w?: number; h?: number; annotation?: string; diagonal?: boolean; omitLabels?: boolean;
 }): MathGeometryVisual => {
@@ -54,7 +54,7 @@ const tri = (bm: string, dlp: string, base: string, height: string, extra?: {
     { at: p(160, 214), text: base },
     { at: extra?.right ? p(44, 115) : p(179, 125), text: height },
     ...(extra?.sideLabels?.map((text, i) => ({
-      at: (extra.right
+      at: (extra?.right
         ? [p(194, 106), p(42, 122), p(150, 216)]
         : [p(90, 112), p(225, 111), p(153, 216)])[i] ?? p(130, 85), text,
     })) ?? []),
