@@ -1,5 +1,6 @@
 import { MathFinanceVisual } from "./MathFinanceVisual";
 import { MathGeometryVisual } from "./MathGeometryVisual";
+import { MathAlgebraVisual } from "./MathAlgebraVisual";
 import type { ReactNode } from "react";
 import { MathIndicesVisual } from "./MathIndicesVisual";
 import { MathStandardFormVisual } from "./MathStandardFormVisual";
@@ -469,6 +470,9 @@ export function MathQuestionVisual({
   const title = visual.title[lang];
   const t = (text: Parameters<typeof textFor>[0]) => textFor(text, lang);
 
+  if (visual.kind === "algebra-jars" || visual.kind === "algebra-tiles") {
+    return <MathAlgebraVisual visual={visual} lang={lang} />;
+  }
   if (visual.kind === "finance-model") return <MathFinanceVisual visual={visual} lang={lang} />;
   if (visual.kind === "geometry-diagram") return <MathGeometryVisual visual={visual} lang={lang} />;
 
