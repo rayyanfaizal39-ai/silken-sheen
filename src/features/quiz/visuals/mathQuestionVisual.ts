@@ -12,12 +12,14 @@ import { describeMathStandardFormVisual, type MathStandardFormVisual } from "./m
 
 import { describeMathFinanceVisual, type MathFinanceVisual } from "./mathFinanceVisual";
 import { describeMathGeometryVisual, type MathGeometryVisual } from "./mathGeometryVisual";
+import { describeMathEquationVisual, type MathEquationVisual } from "./mathEquationVisual";
 
 export type MathVisualLang = "bm" | "dlp";
 export type LocalizedText = Record<MathVisualLang, string>;
 export type VisualText = string | LocalizedText;
 
 export type MathQuestionVisual =
+  | MathEquationVisual
   | MathGeometryVisual
   | MathFinanceVisual
   | MathIndicesVisual
@@ -131,6 +133,8 @@ export function stemLeafRows(values: readonly number[]): [number, number[]][] {
 }
 
 const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
+  "equation-balance": { bm: "Model kesamaan persamaan", dlp: "Equation balance model" },
+  "equation-story": { bm: "Model situasi persamaan", dlp: "Equation situation model" },
   "geometry-diagram": { bm: "Rajah geometri", dlp: "Geometry diagram" },
   "finance-model": { bm: "Model kewangan", dlp: "Finance model" },
   "place-value": { bm: "Nilai tempat", dlp: "Place value" },
@@ -167,6 +171,9 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
   const pairs = (items: [VisualText, number | string][]) =>
     items.map(([label, value]) => `${textFor(label, lang)}: ${value}`).join("; ");
   switch (visual.kind) {
+    case "equation-balance":
+    case "equation-story":
+      return describeMathEquationVisual(visual, lang);
     case "geometry-diagram":
       return describeMathGeometryVisual(visual, lang);
     case "finance-model":
