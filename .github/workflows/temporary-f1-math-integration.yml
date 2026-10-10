@@ -1,0 +1,24 @@
+name: Temporary Form 1 Maths Full Integration Verification
+on:
+  push:
+    branches:
+      - integration/math-f1-c4-c10-audit-fixes
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Whole Form 1 Mathematics quiz, chapter visuals and notes checks
+        run: npx vitest run src/content/form1/math src/data/mathForm1Dlp.test.tsx
+      - name: Production build
+        run: npm run build
+      - name: TypeScript diagnostics
+        run: npx tsc --noEmit --pretty false
+        continue-on-error: true
