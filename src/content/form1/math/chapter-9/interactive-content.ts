@@ -268,10 +268,8 @@ const en: MathF1C9Content = {
     'A square and rhombus share "all sides equal"; a square and rectangle share "all angles 90°" — a square is both.',
   ],
   challenge: {
-    question:
-      "PQRU is a rectangle and RSTU is a rhombus, with SUV a straight line. One angle is 62°. Find x and y.",
-    answer:
-      "Use the rectangle's 90° corners and the rhombus's equal opposite angles together with the straight-line rule to solve for x and y step by step.",
+    question: "In parallelogram ABCD, ∠A = (3x + 2)° and adjacent angle ∠B = (5x − 14)°. Find x and the sizes of ∠A, ∠B, ∠C and ∠D.",
+    answer: "Adjacent angles in a parallelogram sum to 180°: (3x + 2) + (5x − 14) = 180, so 8x − 12 = 180 and x = 24. ∠A = 74°, ∠B = 106°. Opposite angles are equal, so ∠C = 74° and ∠D = 106°.",
   },
 };
 
@@ -508,10 +506,8 @@ const bm: MathF1C9Content = {
     'Segi empat sama dan rombus kongsi "semua sisi sama"; segi empat sama dan segi empat tepat kongsi "semua sudut 90°" — segi empat sama adalah kedua-duanya.',
   ],
   challenge: {
-    question:
-      "PQRU segi empat tepat dan RSTU rombus, dengan SUV garis lurus. Satu sudut 62°. Cari x dan y.",
-    answer:
-      "Guna penjuru 90° segi empat tepat dan sudut bertentangan sama rombus bersama peraturan garis lurus untuk selesaikan x dan y langkah demi langkah.",
+    question: "Dalam segi empat selari ABCD, ∠A = (3x + 2)° dan sudut bersebelahan ∠B = (5x − 14)°. Cari nilai x serta saiz ∠A, ∠B, ∠C dan ∠D.",
+    answer: "Jumlah dua sudut bersebelahan segi empat selari ialah 180°: (3x + 2) + (5x − 14) = 180, maka 8x − 12 = 180 dan x = 24. ∠A = 74° dan ∠B = 106°. Sudut bertentangan adalah sama, jadi ∠C = 74° dan ∠D = 106°.",
   },
 };
 

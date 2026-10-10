@@ -403,21 +403,19 @@ function vibrate(pattern: number | number[], enabled: boolean) {
 const MATH_FLASHCARD_CATEGORIES: Array<{
   id: MathFlashcardCategoryId;
   icon: string;
-  bm: { title: string; purpose: string; target: string };
-  dlp: { title: string; purpose: string; target: string };
+  bm: { title: string; purpose: string };
+  dlp: { title: string; purpose: string };
 }> = [
   {
     id: "concepts",
     icon: "📖",
     bm: {
       title: "Konsep",
-      purpose: "Definisi, kefahaman konsep, dan jenis nombor",
-      target: "33 Flashcards",
+      purpose: "Takrif, istilah dan idea utama bab ini",
     },
     dlp: {
       title: "Concepts",
-      purpose: "Definitions, concept understanding, and number types",
-      target: "33 Flashcards",
+      purpose: "Definitions, key terms and core ideas from this chapter",
     },
   },
   {
@@ -425,13 +423,11 @@ const MATH_FLASHCARD_CATEGORIES: Array<{
     icon: "📐",
     bm: {
       title: "Peraturan & Operasi",
-      purpose: "Operasi integer, pecahan, hukum aritmetik, dan tertib operasi",
-      target: "18 Flashcards",
+      purpose: "Peraturan, langkah pengiraan dan kaedah penyelesaian",
     },
     dlp: {
       title: "Rules & Operations",
-      purpose: "Integer operations, fractions, arithmetic laws, and order of operations",
-      target: "18 Flashcards",
+      purpose: "Methods, calculation rules and problem-solving steps",
     },
   },
   {
@@ -439,13 +435,11 @@ const MATH_FLASHCARD_CATEGORIES: Array<{
     icon: "📋",
     bm: {
       title: "Formula & Fakta",
-      purpose: "Fakta matematik, bentuk nombor nisbah, salingan, dan ulang kaji pantas",
-      target: "9 Flashcards",
+      purpose: "Rumus, sifat dan fakta penting untuk diingati",
     },
     dlp: {
       title: "Formulas & Facts",
-      purpose: "Mathematical facts, rational number forms, reciprocals, and quick revision",
-      target: "9 Flashcards",
+      purpose: "Formulas, properties and essential facts to remember",
     },
   },
   {
@@ -454,12 +448,10 @@ const MATH_FLASHCARD_CATEGORIES: Array<{
     bm: {
       title: "Latihan Pantas",
       purpose: "Pengiraan cepat dan ulang kaji segera",
-      target: "8 Flashcards",
     },
     dlp: {
       title: "Quick Practice",
       purpose: "Quick calculations and fast revision",
-      target: "8 Flashcards",
     },
   },
 ];
@@ -5289,6 +5281,7 @@ function MathFlashcardCategoryPicker({
         <div className="grid gap-4 sm:grid-cols-2">
           {MATH_FLASHCARD_CATEGORIES.map((category, index) => {
             const copy = category[lang];
+            const cardsInChapter = getMathFlashcards(chapterKey, lang, category.id).length;
             return (
               <button
                 key={category.id}
@@ -5304,6 +5297,9 @@ function MathFlashcardCategoryPicker({
                 </h3>
                 <p className="relative mt-2 text-sm leading-6 text-muted-foreground">
                   {copy.purpose}
+                </p>
+                <p className="relative mt-3 text-xs font-semibold text-accent">
+                  {cardsInChapter} {isDlp ? "flashcards" : "kad imbas"}
                 </p>
               </button>
             );

@@ -1,5 +1,8 @@
 import { MathFinanceVisual } from "./MathFinanceVisual";
 import { MathGeometryVisual } from "./MathGeometryVisual";
+import { MathAlgebraVisual } from "./MathAlgebraVisual";
+import { MathEquationVisual } from "./MathEquationVisual";
+import { MathInequalityVisual } from "./MathInequalityVisual";
 import type { ReactNode } from "react";
 import { MathIndicesVisual } from "./MathIndicesVisual";
 import { MathStandardFormVisual } from "./MathStandardFormVisual";
@@ -552,6 +555,16 @@ export function MathQuestionVisual({
   const title = visual.title[lang];
   const t = (text: Parameters<typeof textFor>[0]) => textFor(text, lang);
 
+  if (visual.kind === "algebra-jars" || visual.kind === "algebra-tiles") {
+    return <MathAlgebraVisual visual={visual} lang={lang} />;
+  }
+  if (visual.kind === "equation-balance" || visual.kind === "equation-story") {
+    return <MathEquationVisual visual={visual} lang={lang} />;
+  }
+  if (visual.kind === "inequality-reference-axis" || visual.kind === "inequality-tracks" ||
+      visual.kind === "inequality-options") {
+    return <MathInequalityVisual visual={visual} lang={lang} />;
+  }
   if (visual.kind === "finance-model") return <MathFinanceVisual visual={visual} lang={lang} />;
   if (visual.kind === "geometry-diagram") return <MathGeometryVisual visual={visual} lang={lang} />;
 
@@ -567,6 +580,90 @@ export function MathQuestionVisual({
       visual.kind === "geometry-model" ||
       visual.kind === "fraction-area") {
     return <MathIndicesVisual visual={visual} lang={lang} />;
+  }
+
+  if (visual.kind === "ratio-bars") {
+    const maxParts = Math.max(...visual.rows.map((row) => row.parts));
+    const palette = ["#a78bfa", "#38bdf8", "#fbbf24", "#34d399"];
+    return (
+      <figure data-math-visual={visual.kind} role="img"
+        aria-label={describeMathQuestionVisual(visual, lang)}
+        className="mx-auto w-full max-w-[380px] rounded-2xl border border-white/10 bg-slate-950/30 p-3 sm:p-4">
+        <figcaption className="mb-3 text-center text-xs font-semibold text-slate-300">
+          {title}
+        </figcaption>
+        <div className="space-y-3" aria-hidden="true">
+          {visual.rows.map((row, index) => (
+            <div key={index}>
+              <div className="mb-1 flex flex-wrap items-center justify-between gap-1.5 text-xs">
+                <span className="font-semibold text-slate-100">{t(row.label)}</span>
+                {row.given && <span className="rounded-md bg-white/[0.07] px-2 py-0.5 text-amber-200">{t(row.given)}</span>}
+              </div>
+              <div className="grid h-6 gap-[3px]"
+                style={{
+                  width: `${(row.parts / maxParts) * 100}%`,
+                  gridTemplateColumns: `repeat(${row.parts}, minmax(0, 1fr))`,
+                }}>
+                {Array.from({ length: row.parts }, (_, i) => (
+                  <span key={i} className="min-w-0 rounded-[3px] border border-white/20"
+                    style={{ backgroundColor: palette[index % palette.length], opacity: 0.85 }} />
+                ))}
+              </div>
+            </div>
+          ))}
+          {visual.note && <p className="text-center text-xs text-slate-300">{t(visual.note)}</p>}
+        </div>
+      </figure>
+    );
+  }
+
+  if (visual.kind === "percentage-strip") {
+    return (
+      <figure data-math-visual={visual.kind} role="img"
+        aria-label={describeMathQuestionVisual(visual, lang)}
+        className="mx-auto w-full max-w-[380px] rounded-2xl border border-white/10 bg-slate-950/30 p-3 sm:p-4">
+        <figcaption className="mb-3 text-center text-xs font-semibold text-slate-300">{title}</figcaption>
+        <div aria-hidden="true">
+          <div className="grid grid-cols-10 gap-1">
+            {Array.from({ length: 10 }, (_, i) => (
+              <div key={i} className="aspect-[2/3] rounded-[3px] border border-white/20"
+                style={{ backgroundColor: i < visual.shaded ? "#a78bfa" : "#334155" }} />
+            ))}
+          </div>
+          <div className="mt-3 flex flex-wrap justify-between gap-2 text-xs text-slate-200">
+            <span><span className="mr-1 inline-block h-2.5 w-2.5 rounded-sm bg-violet-400" />{t(visual.shadedLabel)} ({visual.shaded * 10}%)</span>
+            <span><span className="mr-1 inline-block h-2.5 w-2.5 rounded-sm bg-slate-700" />{t(visual.otherLabel)}</span>
+          </div>
+          {visual.note && <p className="mt-2 text-center text-xs text-slate-300">{t(visual.note)}</p>}
+        </div>
+      </figure>
+    );
+  }
+
+  if (visual.kind === "value-pairs") {
+    return (
+      <figure data-math-visual={visual.kind}
+        className="mx-auto w-full max-w-[380px] overflow-hidden rounded-2xl border border-white/10 bg-slate-950/30">
+        <table className="w-full border-collapse text-sm">
+          <caption className="px-3 pt-3 pb-2 text-center text-xs font-semibold text-slate-300">{title}</caption>
+          <thead>
+            <tr className="bg-violet-500/10 text-slate-100">
+              {visual.headings.map((heading, i) => (
+                <th key={i} scope="col" className="border-b border-white/15 px-3 py-2 text-center font-semibold">{t(heading)}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {visual.rows.map((row, i) => (
+              <tr key={i} className="text-slate-100">
+                <td className="border-t border-white/10 px-3 py-2 text-center">{t(row.left)}</td>
+                <td className="border-t border-white/10 px-3 py-2 text-center font-semibold text-amber-200">{t(row.right)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </figure>
+    );
   }
 
   if (visual.kind === "frequency-table" || visual.kind === "stem-leaf") {

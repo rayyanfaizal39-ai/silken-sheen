@@ -12,12 +12,18 @@ import { describeMathStandardFormVisual, type MathStandardFormVisual } from "./m
 
 import { describeMathFinanceVisual, type MathFinanceVisual } from "./mathFinanceVisual";
 import { describeMathGeometryVisual, type MathGeometryVisual } from "./mathGeometryVisual";
+import { describeMathAlgebraVisual, type MathAlgebraVisual } from "./mathAlgebraVisual";
+import { describeMathEquationVisual, type MathEquationVisual } from "./mathEquationVisual";
+import { describeMathInequalityVisual, type MathInequalityVisual } from "./mathInequalityVisual";
 
 export type MathVisualLang = "bm" | "dlp";
 export type LocalizedText = Record<MathVisualLang, string>;
 export type VisualText = string | LocalizedText;
 
 export type MathQuestionVisual =
+  | MathAlgebraVisual
+  | MathEquationVisual
+  | MathInequalityVisual
   | MathGeometryVisual
   | MathFinanceVisual
   | MathIndicesVisual
@@ -34,6 +40,29 @@ export type MathQuestionVisual =
       title: LocalizedText;
       upTo: number;
       tracks: { every: number }[];
+    }
+  | {
+      /** Equal-size parts encode only the supplied ratios, never solved shares. */
+      kind: "ratio-bars";
+      title: LocalizedText;
+      rows: { label: VisualText; parts: number; given?: VisualText }[];
+      note?: VisualText;
+    }
+  | {
+      /** Given input/output pairs; blank cells are deliberately unsolved. */
+      kind: "value-pairs";
+      title: LocalizedText;
+      headings: [VisualText, VisualText];
+      rows: { left: VisualText; right: VisualText }[];
+    }
+  | {
+      /** 10 equally sized units represent a percentage in tenths. */
+      kind: "percentage-strip";
+      title: LocalizedText;
+      shaded: number;
+      shadedLabel: VisualText;
+      otherLabel: VisualText;
+      note?: VisualText;
     }
   | {
       kind: "frequency-table";
@@ -144,6 +173,16 @@ export function stemLeafRows(values: readonly number[]): [number, number[]][] {
 }
 
 const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
+  "algebra-jars": { bm: "Model balang algebra", dlp: "Algebra jar model" },
+  "algebra-tiles": { bm: "Jubin sebutan algebra", dlp: "Algebra term tiles" },
+  "equation-balance": { bm: "Model kesamaan persamaan", dlp: "Equation balance model" },
+  "equation-story": { bm: "Model situasi persamaan", dlp: "Equation situation model" },
+  "inequality-reference-axis": { bm: "Garis nombor rujukan", dlp: "Reference number line" },
+  "inequality-tracks": { bm: "Ketaksamaan pada garis nombor", dlp: "Inequalities on number lines" },
+  "inequality-options": { bm: "Empat pilihan garis nombor", dlp: "Four number-line choices" },
+  "ratio-bars": { bm: "Model jalur nisbah", dlp: "Ratio strip model" },
+  "value-pairs": { bm: "Jadual nilai berkaitan", dlp: "Corresponding values table" },
+  "percentage-strip": { bm: "Model peratus", dlp: "Percentage strip" },
   "geometry-diagram": { bm: "Rajah geometri", dlp: "Geometry diagram" },
   "finance-model": { bm: "Model kewangan", dlp: "Finance model" },
   "place-value": { bm: "Nilai tempat", dlp: "Place value" },
@@ -183,6 +222,16 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
   const pairs = (items: [VisualText, number | string][]) =>
     items.map(([label, value]) => `${textFor(label, lang)}: ${value}`).join("; ");
   switch (visual.kind) {
+    case "algebra-jars":
+    case "algebra-tiles":
+      return describeMathAlgebraVisual(visual, lang);
+    case "equation-balance":
+    case "equation-story":
+      return describeMathEquationVisual(visual, lang);
+    case "inequality-reference-axis":
+    case "inequality-tracks":
+    case "inequality-options":
+      return describeMathInequalityVisual(visual, lang);
     case "geometry-diagram":
       return describeMathGeometryVisual(visual, lang);
     case "finance-model":
@@ -216,6 +265,18 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
           return `${bm ? "Setiap" : "Every"} ${track.every}: ${marks.join(", ") || "—"}`;
         })
         .join("; ")}. ${bm ? "Pola berterusan" : "Patterns continue"}.`;
+    case "ratio-bars":
+      return `${head} ${visual.rows.map((row) =>
+        `${textFor(row.label, lang)}: ${row.parts} ${bm ? "bahagian" : "equal parts"}${row.given ? `, ${textFor(row.given, lang)}` : ""}`,
+      ).join("; ")}.${visual.note ? ` ${textFor(visual.note, lang)}.` : ""}`;
+    case "value-pairs":
+      return `${head} ${textFor(visual.headings[0], lang)} / ${textFor(visual.headings[1], lang)}: ${visual.rows.map(
+        (row) => `${textFor(row.left, lang)} / ${textFor(row.right, lang)}`,
+      ).join("; ")}.`;
+    case "percentage-strip":
+      return `${head} ${textFor(visual.shadedLabel, lang)}: ${visual.shaded * 10}%; ${textFor(
+        visual.otherLabel, lang,
+      )}: ${(10 - visual.shaded) * 10}%.${visual.note ? ` ${textFor(visual.note, lang)}.` : ""}`;
     case "frequency-table":
       return `${head} ${pairs(visual.rows.map((row) => [row.value, row.frequency]))}.`;
     case "bar-chart":

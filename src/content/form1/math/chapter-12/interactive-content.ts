@@ -265,14 +265,14 @@ const en: MathF1C12Content = {
   ],
   challenge: {
     question:
-      "A dot plot shows the lifespans (nearest hour) of 24 dry cells tested in a quality control lab. Explain what additional information a stem-and-leaf plot of the same data could reveal that the dot plot cannot.",
+      "A quality-control laboratory records the lifespans of 24 dry cells in whole hours. Both a dot plot and a stem-and-leaf plot show the same values. Explain how the stem-and-leaf plot groups those values differently and one advantage of each display.",
     widget: {
       kind: "representationCompare",
-      positionOnlyLabel: "position only",
-      exactValuesLabel: "exact values kept",
+      positionOnlyLabel: "dots show frequency",
+      exactValuesLabel: "stems group digits",
     },
     answer:
-      "A stem-and-leaf plot retains the EXACT original data values (via stem and leaf digits), so you can do precise arithmetic on it — a dot plot only shows relative position and clustering, not exact recoverable values.",
+      "A stem-and-leaf plot groups the lifespans by leading digits (stems) and records the final digits as leaves, making individual two-digit values easy to list and sort. A correctly labelled dot plot ALSO preserves exact values; its advantage is that the number of dots above each value makes frequency and clusters easy to compare.",
   },
 };
 
@@ -438,14 +438,14 @@ const bm: MathF1C12Content = {
   ],
   challenge: {
     question:
-      "Plot titik tunjuk jangka hayat (jam terdekat) 24 sel kering diuji di makmal kawalan kualiti. Jelaskan maklumat tambahan apa plot batang-dan-daun data sama boleh dedahkan yang plot titik tidak boleh.",
+      "Makmal kawalan kualiti merekod jangka hayat 24 sel kering dalam jam penuh. Plot titik dan plot batang-dan-daun menunjukkan nilai data yang sama. Terangkan bagaimana plot batang-dan-daun menyusun nilai secara berbeza dan satu kelebihan setiap paparan.",
     widget: {
       kind: "representationCompare",
-      positionOnlyLabel: "kedudukan sahaja",
-      exactValuesLabel: "nilai tepat dikekalkan",
+      positionOnlyLabel: "titik menunjukkan kekerapan",
+      exactValuesLabel: "batang mengumpulkan digit",
     },
     answer:
-      "Plot batang-dan-daun mengekalkan nilai data asal TEPAT (melalui digit batang dan daun), jadi anda boleh buat pengiraan tepat — plot titik hanya tunjuk kedudukan relatif dan pengelompokan, bukan nilai tepat boleh dipulihkan.",
+      "Plot batang-dan-daun mengumpulkan nilai mengikut digit awal (batang) dan mencatat digit akhir sebagai daun, supaya nilai dua digit mudah disenaraikan dan disusun. Plot titik yang mempunyai skala jelas JUGA mengekalkan nilai tepat; kelebihannya ialah bilangan titik menunjukkan kekerapan dan kelompok data dengan pantas.",
   },
 };
 
