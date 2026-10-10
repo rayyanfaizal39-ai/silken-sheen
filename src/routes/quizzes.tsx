@@ -56,6 +56,7 @@ import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
 import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
 import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
+import { MATH_F1_C5_QUIZ_VISUALS } from "@/content/form1/math/chapter-5/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
@@ -5042,6 +5043,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Menambah 6 biji gula-gula kepada n biji gula-gula memberikan ungkapan n + 6.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.sweetsPlusSix,
   ],
   [
     "Apakah ungkapan algebra bagi 'n biji gula-gula tolak 1'?",
@@ -5049,6 +5051,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Memakan 1 biji gula-gula daripada n biji gula-gula memberikan ungkapan n − 1.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.sweetsMinusOne,
   ],
   [
     "Apakah ungkapan bagi 'tiga balang, setiap satu mengandungi n biji gula-gula'?",
@@ -5056,6 +5059,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Tiga balang yang setiap satu mengandungi n biji gula-gula memberi 3 × n = 3n.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.threeJars,
   ],
   [
     "Apakah sebutan algebra?",
@@ -5075,6 +5079,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Ungkapan 3ab + 5x − 2y + 7 mempunyai empat sebutan: 3ab, 5x, −2y dan 7.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.fourTerms,
   ],
   [
     "Apakah pekali bagi sebutan 3x?",
@@ -5131,6 +5136,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "x mempunyai kuasa 1 manakala x² mempunyai kuasa 2, maka kuasanya berbeza.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.xComparedSquare,
   ],
   [
     "Mengapakah 2a dan 2b ialah sebutan tidak serupa?",
@@ -5138,6 +5144,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "2a dan 2b mempunyai pemboleh ubah yang berbeza, iaitu a dan b.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.aComparedB,
   ],
   [
     "Apakah ciri utama sebutan serupa?",
@@ -5254,6 +5261,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Dua kali y ialah 2y. Tolak 5 daripadanya: 2y − 5.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.twiceYMinusFive,
   ],
 ]);
 
@@ -5295,6 +5303,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Adding 6 sweets to n sweets gives the expression n + 6.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.sweetsPlusSix,
   ],
   [
     "What is the algebraic expression for 'n sweets minus 1'?",
@@ -5302,6 +5311,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Eating 1 sweet from n sweets gives the expression n − 1.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.sweetsMinusOne,
   ],
   [
     "What is the expression for 'three jars, each containing n sweets'?",
@@ -5309,6 +5319,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Three jars, each containing n sweets, gives 3 × n = 3n.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.threeJars,
   ],
   [
     "What is an algebraic term?",
@@ -5328,6 +5339,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The expression 3ab + 5x − 2y + 7 has four terms: 3ab, 5x, −2y and 7.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.fourTerms,
   ],
   [
     "What is the coefficient of the term 3x?",
@@ -5384,6 +5396,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "x has power 1 while x² has power 2, so their powers are different.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.xComparedSquare,
   ],
   [
     "Why are 2a and 2b unlike terms?",
@@ -5391,6 +5404,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "2a and 2b have different variables, namely a and b.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.aComparedB,
   ],
   [
     "What is the main feature of like terms?",
@@ -5502,11 +5516,12 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Twice y is 2y. Subtracting 5 from it gives 2y − 5.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.twiceYMinusFive,
   ],
 ]);
 
 const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
-  ["Diberi x = 3, cari nilai 2x + 1.", ["7", "6", "5", "8"], 0, "2x + 1 = 2(3) + 1 = 7.", "Medium"],
+  ["Diberi x = 3, cari nilai 2x + 1.", ["7", "6", "5", "8"], 0, "2x + 1 = 2(3) + 1 = 7.", "Medium", MATH_F1_C5_QUIZ_VISUALS.twiceXPlusOne],
   [
     "Diberi x = 4, cari nilai 3x − 2.",
     ["8", "10", "9", "12"],
@@ -5541,16 +5556,18 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "3x + 2x = 5x kerana kedua-duanya sebutan serupa.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.threeXPlusTwoX,
   ],
-  ["Permudahkan 9y − 4y.", ["4y", "13y", "5", "5y"], 3, "9y − 4y = 5y.", "Medium"],
-  ["Permudahkan 7ab − 4ab.", ["3ab", "3a", "3", "11ab"], 0, "7ab − 4ab = 3ab.", "Medium"],
-  ["Permudahkan 6x + 3x − 2x.", ["5x", "9x", "7x", "11x"], 2, "6x + 3x − 2x = 7x.", "Medium"],
+  ["Permudahkan 9y − 4y.", ["4y", "13y", "5", "5y"], 3, "9y − 4y = 5y.", "Medium", MATH_F1_C5_QUIZ_VISUALS.nineYMinusFourY],
+  ["Permudahkan 7ab − 4ab.", ["3ab", "3a", "3", "11ab"], 0, "7ab − 4ab = 3ab.", "Medium", MATH_F1_C5_QUIZ_VISUALS.sevenAbMinusFourAb],
+  ["Permudahkan 6x + 3x − 2x.", ["5x", "9x", "7x", "11x"], 2, "6x + 3x − 2x = 7x.", "Medium", MATH_F1_C5_QUIZ_VISUALS.sixXThreeXMinusTwoX],
   [
     "Permudahkan 4m + 5n − m.",
     ["3m − 5n", "9m + 5n", "4m + 4n", "3m + 5n"],
     3,
     "Gabungkan sebutan serupa m: 4m − m = 3m, hasilnya 3m + 5n.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fourMFiveNMinusM,
   ],
   [
     "Permudahkan 2a + 3b + 4a − b.",
@@ -5558,6 +5575,7 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Gabungkan sebutan serupa: (2a + 4a) + (3b − b) = 6a + 2b.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.twoAThreeBFourAMinusB,
   ],
   [
     "Permudahkan −(x + 4).",
@@ -5663,6 +5681,7 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Gabungkan sebutan serupa: (5x − 2x) + (7 − 4) = 3x + 3.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fiveXSevenMinusTwoXFour,
   ],
   [
     "Permudahkan 9ab − 5ab + ab.",
@@ -5670,8 +5689,9 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "9ab − 5ab + ab = 5ab.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.nineAbMinusFiveAbPlusAb,
   ],
-  ["Apakah hasil bagi 3x + 5x − x?", ["6x", "8x", "7x", "9x"], 2, "3x + 5x − x = 7x.", "Medium"],
+  ["Apakah hasil bagi 3x + 5x − x?", ["6x", "8x", "7x", "9x"], 2, "3x + 5x − x = 7x.", "Medium", MATH_F1_C5_QUIZ_VISUALS.threeXFiveXMinusX],
   [
     "Permudahkan 10p − (3p − 2).",
     ["7p − 2", "13p + 2", "13p − 2", "7p + 2"],
@@ -5695,6 +5715,7 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "2x + 1 = 2(3) + 1 = 7.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.twiceXPlusOne,
   ],
   [
     "Given x = 4, find the value of 3x − 2.",
@@ -5730,16 +5751,18 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "3x + 2x = 5x because both are like terms.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.threeXPlusTwoX,
   ],
-  ["Simplify 9y − 4y.", ["4y", "13y", "5", "5y"], 3, "9y − 4y = 5y.", "Medium"],
-  ["Simplify 7ab − 4ab.", ["3ab", "3a", "3", "11ab"], 0, "7ab − 4ab = 3ab.", "Medium"],
-  ["Simplify 6x + 3x − 2x.", ["5x", "9x", "7x", "11x"], 2, "6x + 3x − 2x = 7x.", "Medium"],
+  ["Simplify 9y − 4y.", ["4y", "13y", "5", "5y"], 3, "9y − 4y = 5y.", "Medium", MATH_F1_C5_QUIZ_VISUALS.nineYMinusFourY],
+  ["Simplify 7ab − 4ab.", ["3ab", "3a", "3", "11ab"], 0, "7ab − 4ab = 3ab.", "Medium", MATH_F1_C5_QUIZ_VISUALS.sevenAbMinusFourAb],
+  ["Simplify 6x + 3x − 2x.", ["5x", "9x", "7x", "11x"], 2, "6x + 3x − 2x = 7x.", "Medium", MATH_F1_C5_QUIZ_VISUALS.sixXThreeXMinusTwoX],
   [
     "Simplify 4m + 5n − m.",
     ["3m − 5n", "9m + 5n", "4m + 4n", "3m + 5n"],
     3,
     "Combine the like terms m: 4m − m = 3m, giving 3m + 5n.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fourMFiveNMinusM,
   ],
   [
     "Simplify 2a + 3b + 4a − b.",
@@ -5747,6 +5770,7 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Combine like terms: (2a + 4a) + (3b − b) = 6a + 2b.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.twoAThreeBFourAMinusB,
   ],
   ["Simplify −(x + 4).", ["x + 4", "−x − 4", "−x + 4", "x − 4"], 1, "−(x + 4) = −x − 4.", "Medium"],
   [
@@ -5846,14 +5870,16 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Combine like terms: (5x − 2x) + (7 − 4) = 3x + 3.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fiveXSevenMinusTwoXFour,
   ],
-  ["Simplify 9ab − 5ab + ab.", ["5ab", "4ab", "3ab", "13ab"], 0, "9ab − 5ab + ab = 5ab.", "Medium"],
+  ["Simplify 9ab − 5ab + ab.", ["5ab", "4ab", "3ab", "13ab"], 0, "9ab − 5ab + ab = 5ab.", "Medium", MATH_F1_C5_QUIZ_VISUALS.nineAbMinusFiveAbPlusAb],
   [
     "What is the result of 3x + 5x − x?",
     ["6x", "8x", "7x", "9x"],
     2,
     "3x + 5x − x = 7x.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.threeXFiveXMinusX,
   ],
   [
     "Simplify 10p − (3p − 2).",
@@ -5878,6 +5904,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "a × a × a = a³ kerana pemboleh ubah didarab dengan dirinya sendiri tiga kali.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aCubed,
   ],
   [
     "Permudahkan a² × a³.",
@@ -5885,6 +5912,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "a² × a³ = a²⁺³ = a⁵ (tambah kuasa pemboleh ubah yang sama).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aSquareTimesCube,
   ],
   [
     "Permudahkan a⁵ ÷ a².",
@@ -5892,6 +5920,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "a⁵ ÷ a² = a⁵⁻² = a³ (tolak kuasa pemboleh ubah yang sama).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aFifthDividedSquare,
   ],
   ["Permudahkan b⁴ ÷ b.", ["b", "b⁴", "b⁵", "b³"], 3, "b⁴ ÷ b = b⁴⁻¹ = b³.", "Medium"],
   [
@@ -5900,6 +5929,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "2a × 3a = (2 × 3) × (a × a) = 6a².",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.twoATimesThreeA,
   ],
   [
     "Permudahkan 4x × 2x².",
@@ -5907,6 +5937,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "4x × 2x² = (4 × 2) × (x × x²) = 8x¹⁺² = 8x³.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fourXTimesTwoXSquare,
   ],
   [
     "Permudahkan 3ab² × 4a³b.",
@@ -5914,6 +5945,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "3ab² × 4a³b = (3 × 4) × a¹⁺³ × b²⁺¹ = 12a⁴b³.",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.threeAbSquareTimesFourACubedB,
   ],
   [
     "Permudahkan 5m²n × 2mn³.",
@@ -5928,6 +5960,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "20m⁴n³ ÷ 5m²n = (20 ÷ 5) × m⁴⁻² × n³⁻¹ = 4m²n².",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.twentyMNOverFiveMN,
   ],
   [
     "Permudahkan 12x³y² ÷ 4xy.",
@@ -5956,6 +5989,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "(a + b)(a + b)(a + b) = (a + b)³ (pendaraban berulang ungkapan).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.repeatedAPlusB,
   ],
   [
     "Permudahkan 6x² × 3x.",
@@ -6054,6 +6088,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Luas segi empat tepat = panjang × lebar = 3x × 2x = 6x².",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.rectangleThreeXByTwoX,
   ],
   [
     "Sebuah kotak berbentuk kubus mempunyai sisi sepanjang a unit. Apakah ungkapan bagi isipadunya?",
@@ -6061,6 +6096,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Isipadu kubus = sisi × sisi × sisi = a × a × a = a³.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.cubeSideA,
   ],
   [
     "Permudahkan 6x²y³ ÷ 3xy.",
@@ -6085,6 +6121,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "a × a × a = a³ because the variable is multiplied by itself three times.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aCubed,
   ],
   [
     "Simplify a² × a³.",
@@ -6092,6 +6129,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "a² × a³ = a²⁺³ = a⁵ (add the powers of the same variable).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aSquareTimesCube,
   ],
   [
     "Simplify a⁵ ÷ a².",
@@ -6099,6 +6137,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "a⁵ ÷ a² = a⁵⁻² = a³ (subtract the powers of the same variable).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aFifthDividedSquare,
   ],
   ["Simplify b⁴ ÷ b.", ["b", "b⁴", "b⁵", "b³"], 3, "b⁴ ÷ b = b⁴⁻¹ = b³.", "Medium"],
   [
@@ -6107,6 +6146,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "2a × 3a = (2 × 3) × (a × a) = 6a².",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.twoATimesThreeA,
   ],
   [
     "Simplify 4x × 2x².",
@@ -6114,6 +6154,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "4x × 2x² = (4 × 2) × (x × x²) = 8x¹⁺² = 8x³.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fourXTimesTwoXSquare,
   ],
   [
     "Simplify 3ab² × 4a³b.",
@@ -6121,6 +6162,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "3ab² × 4a³b = (3 × 4) × a¹⁺³ × b²⁺¹ = 12a⁴b³.",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.threeAbSquareTimesFourACubedB,
   ],
   [
     "Simplify 5m²n × 2mn³.",
@@ -6135,6 +6177,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "20m⁴n³ ÷ 5m²n = (20 ÷ 5) × m⁴⁻² × n³⁻¹ = 4m²n².",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.twentyMNOverFiveMN,
   ],
   [
     "Simplify 12x³y² ÷ 4xy.",
@@ -6163,6 +6206,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "(a + b)(a + b)(a + b) = (a + b)³ (repeated multiplication of an expression).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.repeatedAPlusB,
   ],
   [
     "Simplify 6x² × 3x.",
@@ -6261,6 +6305,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Area of rectangle = length × width = 3x × 2x = 6x².",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.rectangleThreeXByTwoX,
   ],
   [
     "A cube-shaped box has sides of length a units. What is the expression for its volume?",
@@ -6268,6 +6313,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Volume of cube = side × side × side = a × a × a = a³.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.cubeSideA,
   ],
   [
     "Simplify 6x²y³ ÷ 3xy.",
