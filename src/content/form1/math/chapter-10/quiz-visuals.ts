@@ -80,14 +80,17 @@ const trapezoid = (bm: string, dlp: string, top: string, bottom: string,
   const topWidth = Number.isFinite(a) ? 203 * a / maximum : 144;
   const bottomWidth = Number.isFinite(b) ? 203 * b / maximum : 205;
   const topL = 150 - topWidth / 2, bottomL = 150 - bottomWidth / 2;
+  // Perpendicular height must land on both parallel edges, including when
+  // the shorter parallel side is below the longer one.
+  const footX = Math.max(topL, bottomL) + 12;
   return draw(bm, dlp, [
     ...edge([p(topL, 65), p(150 + topWidth / 2, 65),
       p(150 + bottomWidth / 2, 191), p(bottomL, 191)]),
-    { points: [p(topL, 65), p(topL, 191)], dashed: true },
+    { points: [p(footX, 65), p(footX, 191)], dashed: true },
   ], [
     { at: p(150, 48), text: top },
     { at: p(150, 214), text: bottom },
-    { at: p(topL + 14, 130), text: height },
+    { at: p(footX + 15, 130), text: height },
     ...(area ? [{ at: p(172, 145), text: area }] : []),
   ]);
 };
