@@ -9,7 +9,7 @@ import { MATH_F1_C8_QUIZ_VISUALS as V } from "./quiz-visuals";
 
 const OBJECTIVES = ["objective-1", "objective-2", "objective-3"] as const;
 const LANGS = ["bm", "dlp"] as const;
-const EXPECTED = [5, 25, 23] as const;
+const EXPECTED = [17, 25, 23] as const;
 type Objective = (typeof OBJECTIVES)[number];
 type Lang = (typeof LANGS)[number];
 const bank = (objective: Objective, lang: Lang, chapter = "Chapter 8") =>
@@ -19,7 +19,7 @@ const bank = (objective: Objective, lang: Lang, chapter = "Chapter 8") =>
 const keyOf = (visual: unknown) => Object.entries(V).find(([, v]) => v === visual)?.[0];
 
 describe("Mathematics Form 1 Chapter 8 — selective lines-and-angles visuals", () => {
-  it("keeps all six question banks at 30 items and adds exactly 5/25/23 visuals per language", () => {
+  it("keeps all six question banks at 30 items and adds exactly 17/25/23 visuals per language", () => {
     for (const lang of LANGS) OBJECTIVES.forEach((objective, setIndex) => {
       const questions = bank(objective, lang);
       expect(questions, `${objective}/${lang}`).toHaveLength(30);
@@ -41,13 +41,37 @@ describe("Mathematics Form 1 Chapter 8 — selective lines-and-angles visuals", 
       bank(objective, lang).map((question) => keyOf(question.visual) ?? null),
     );
     expect(names("bm")).toEqual(names("dlp"));
-    expect(names("bm").flat().filter(Boolean)).toHaveLength(53);
+    expect(names("bm").flat().filter(Boolean)).toHaveLength(65);
     expect(new Set(names("bm").flat().filter(Boolean))).toEqual(new Set(Object.keys(V)));
-    expect(Object.keys(V)).toHaveLength(53);
+    expect(Object.keys(V)).toHaveLength(64);
     for (const lang of LANGS) {
       expect(bank("objective-2", lang, "Chapter 7")
         .some((question) => keyOf(question.visual) !== undefined)).toBe(false);
     }
+  });
+
+  it("shows 17 conceptual Foundation diagrams, with correct example rays and neutral vertex markings", () => {
+    const selected = bank("objective-1", "dlp").map((question) => keyOf(question.visual));
+    const positions = [1, 2, 3, 4, 5, 6, 7, 14, 15, 16, 17, 18, 22, 23, 24, 25, 28];
+    expect(selected.flatMap((key, i) => key ? [i + 1] : [])).toEqual(positions);
+    expect(selected[13]).toBe("labelledVertex");
+    expect(selected[23]).toBe("labelledVertex");
+    const cases = [
+      ["rightAngle90", 90], ["acuteExample40", 40],
+      ["obtuseExample130", 130], ["reflexExample220", 220],
+      ["nearRight88", 88], ["nearStraight179", 179],
+    ] as const;
+    for (const [key, size] of cases) {
+      const visual = V[key];
+      expect(visual.panels[0].arcs?.[0].end).toBe(size);
+      expect(visual.panels[0].labels.map((label) => label.text)).toContain(size + "°");
+    }
+    expect(V.obtuseVsReflex.panels).toHaveLength(2);
+    const vertexLabels = V.labelledVertex.panels[0].labels.map((label) => label.text);
+    expect(vertexLabels).toEqual(["Q", "P", "R"]);
+    // Angle types remain to be inferred by the student; none appears as a panel label.
+    expect(describeMathQuestionVisual(V.acuteExample40, "dlp")).not.toContain("Acute");
+    expect(describeMathQuestionVisual(V.reflexChoiceExample, "dlp")).not.toContain("Reflex");
   });
 
   it("shows true 145°, 250° reflex and 55° angles using matching ray/arc geometry", () => {
