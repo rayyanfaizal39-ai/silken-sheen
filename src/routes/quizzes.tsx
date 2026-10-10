@@ -56,6 +56,7 @@ import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
 import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
 import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
+import { MATH_F1_C4_QUIZ_VISUALS } from "@/content/form1/math/chapter-4/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
@@ -3853,6 +3854,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Darab 2 dan 3 dengan 2 → 4 : 6.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.equivalent2To3,
   ],
   [
     "Apakah bentuk termudah 12 : 18?",
@@ -3860,6 +3862,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "FSTB 12 dan 18 ialah 6 → 2 : 3.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.simplify12To18,
   ],
   [
     "Bagaimana mempermudah nisbah?",
@@ -3930,6 +3933,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "12 : 15. Bahagi kedua-dua sebutan dengan FSTB, iaitu 3: 4 : 5.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.classBoysGirls,
   ],
   [
     "Sebuah kereta bergerak sejauh 60 km dengan menggunakan 5 liter petrol. Berapakah kadar penggunaan petrol itu?",
@@ -3937,6 +3941,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Kadar = 60 km ÷ 5 liter = 12 km/liter.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.carFuel60km5L,
   ],
   [
     "Manakah BUKAN kadar?",
@@ -3991,6 +3996,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Jumlah bahagian = 3 + 5 = 8. Pecahan murid lelaki = 3/8. (3/5 membandingkan lelaki dengan perempuan, bukan dengan jumlah.)",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirls3To5,
   ],
   [
     "Harga 3 kg tepung ialah RM12. Berapakah harga per kg?",
@@ -3998,6 +4004,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Kadar = RM12 ÷ 3 kg = RM4/kg.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.flour3kgRm12,
   ],
   [
     "80% sebagai nisbah termudah?",
@@ -4079,6 +4086,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Multiply 2 and 3 by 2 → 4 : 6.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.equivalent2To3,
   ],
   [
     "What is the simplest form of 12 : 18?",
@@ -4086,6 +4094,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "HCF of 12 and 18 is 6 → 2 : 3.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.simplify12To18,
   ],
   [
     "How do you simplify a ratio?",
@@ -4156,6 +4165,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "12 : 15. Divide both terms by the HCF, 3: 4 : 5.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.classBoysGirls,
   ],
   [
     "A car travels 60 km using 5 litres of petrol. What is its rate of petrol use?",
@@ -4163,6 +4173,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Rate = 60 km ÷ 5 litres = 12 km/litre.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.carFuel60km5L,
   ],
   [
     "Which is NOT a rate?",
@@ -4217,6 +4228,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Total parts = 3 + 5 = 8. Fraction of boys = 3/8. (3/5 compares boys with girls, not with the total.)",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirls3To5,
   ],
   [
     "3 kg of flour costs RM12. What is the price per kg?",
@@ -4224,6 +4236,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Rate = RM12 ÷ 3 kg = RM4/kg.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.flour3kgRm12,
   ],
   [
     "80% as simplest ratio?",
@@ -4275,6 +4288,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "FSTB = 4 → 2 : 3 : 5.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.simplify8_12_20,
   ],
   [
     "Tukarkan 500 g : 1 kg kepada bentuk termudah.",
@@ -4305,6 +4319,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "180 ÷ 3 = 60 km/j.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.car180km3h,
   ],
   [
     "RM 24 untuk 4 kg gula. Harga 7 kg?",
@@ -4312,6 +4327,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "1 kg = RM 6; 7 kg = RM 42.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.sugar4kg24Rm,
   ],
   [
     "5 buku = RM 35. 12 buku?",
@@ -4319,6 +4335,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "1 buku = RM 7; 12 buku = RM 84.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.fiveBooks35Rm,
   ],
   [
     "Tukarkan 90 km/j kepada m/s.",
@@ -4340,6 +4357,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "200 × 6/4 = 300 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.recipeFourToSix,
   ],
   [
     "Permudahkan 200 ml : 1 liter.",
@@ -4369,6 +4387,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "3/5 × 30 = 18.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirlsTotal30,
   ],
   [
     "Jika £2 = RM9, maka £5 = ?",
@@ -4383,6 +4402,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "4 × 5000 = 20 000 cm = 200 m.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.mapScale5000,
   ],
   [
     "Kadar pekerja: 5 jam = RM 75. 1 jam = ?",
@@ -4404,6 +4424,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "25 km = 2 500 000 cm; 5 : 2 500 000 = 1 : 500 000.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.map5cm25km,
   ],
   [
     "Permudahkan nisbah 45 minit : 2 jam.",
@@ -4433,6 +4454,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "B = 25 × 3/5 = 15.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.a5b3a25,
   ],
   [
     "A : B : C = 2 : 3 : 5. Jika jumlah 100, nilai C?",
@@ -4440,6 +4462,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "C = 5/10 × 100 = 50.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.abc2_3_5Total100,
   ],
 ]);
 
@@ -4458,6 +4481,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "HCF = 4 → 2 : 3 : 5.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.simplify8_12_20,
   ],
   [
     "Express 500 g : 1 kg in simplest form.",
@@ -4482,6 +4506,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "180 ÷ 3 = 60 km/h.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.car180km3h,
   ],
   [
     "RM 24 for 4 kg of sugar. Cost of 7 kg?",
@@ -4489,6 +4514,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "1 kg = RM 6; 7 kg = RM 42.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.sugar4kg24Rm,
   ],
   [
     "5 books = RM 35. 12 books?",
@@ -4496,6 +4522,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "1 book = RM 7; 12 books = RM 84.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.fiveBooks35Rm,
   ],
   ["Convert 90 km/h to m/s.", ["20", "25", "27", "30"], 1, "90 × 1000/3600 = 25 m/s.", "Medium"],
   [
@@ -4511,6 +4538,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "200 × 6/4 = 300 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.recipeFourToSix,
   ],
   [
     "Simplify 200 ml : 1 litre.",
@@ -4540,6 +4568,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "3/5 × 30 = 18.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirlsTotal30,
   ],
   [
     "If £2 = RM9, then £5 = ?",
@@ -4554,6 +4583,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "4 × 5000 = 20 000 cm = 200 m.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.mapScale5000,
   ],
   [
     "Worker rate: 5 hours = RM 75. 1 hour = ?",
@@ -4575,6 +4605,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "25 km = 2 500 000 cm; 5 : 2 500 000 = 1 : 500 000.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.map5cm25km,
   ],
   [
     "Simplify ratio 45 minutes : 2 hours.",
@@ -4592,13 +4623,14 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "Medium",
   ],
   ["Convert 36 km/h to m/s.", ["8", "12", "10", "15"], 2, "36 × 1000/3600 = 10 m/s.", "Medium"],
-  ["A : B = 5 : 3. If A = 25, B = ?", ["10", "12", "20", "15"], 3, "B = 25 × 3/5 = 15.", "Medium"],
+  ["A : B = 5 : 3. If A = 25, B = ?", ["10", "12", "20", "15"], 3, "B = 25 × 3/5 = 15.", "Medium", MATH_F1_C4_QUIZ_VISUALS.a5b3a25],
   [
     "A : B : C = 2 : 3 : 5. If total is 100, value of C?",
     ["20", "50", "40", "30"],
     1,
     "C = 5/10 × 100 = 50.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.abc2_3_5Total100,
   ],
 ]);
 
@@ -4609,6 +4641,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "400 × 14/8 = 700 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.cakes8To14,
   ],
   [
     "Jika 60% pelajar lelaki dan jumlah 40, bilangan perempuan?",
@@ -4616,6 +4649,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "40% perempuan = 0.40 × 40 = 16.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.boys60PctTotal40,
   ],
   [
     "Skala peta 1 : 250 000. Dua bandar 6 cm pada peta. Jarak sebenar (km)?",
@@ -4623,6 +4657,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "6 × 250 000 = 1 500 000 cm = 15 km.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.mapScale250000,
   ],
   [
     "Harga 3 kg beras ialah RM12.60. Berapakah harga 5 kg beras pada kadar yang sama?",
@@ -4637,6 +4672,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "B − A = 5k − 3k = 2k = 8 → k = 4; A = 12.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.difference3To5,
   ],
   [
     "Larutan 5 : 3 air : sirap. Untuk 240 ml sirap, isipadu air?",
@@ -4644,6 +4680,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Air = 5/3 × 240 = 400 ml.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.waterSyrup5To3,
   ],
   [
     "Kereta A: 240 km dalam 3 jam. Kereta B: 300 km dalam 4 jam. Yang lebih laju?",
@@ -4651,6 +4688,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "A = 80 km/j; B = 75 km/j.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.carComparison,
   ],
   [
     "Sebatang paip mengalirkan air pada kadar 12 liter per minit. Berapakah masa yang diambil untuk mengisi sebuah tangki 300 liter?",
@@ -4665,6 +4703,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "RM 7/kg vs RM 6/kg → 5 kg lebih jimat.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.groceryPriceComparison,
   ],
   [
     "A : B : C = 2 : 3 : 4. Jumlah RM 90. Bahagian C?",
@@ -4672,6 +4711,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "C = 4/9 × 90 = RM 40.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.abc2_3_4Total90,
   ],
   [
     "Nisbah lelaki kepada perempuan 7 : 5. Jika perempuan 35, jumlah?",
@@ -4679,6 +4719,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Lelaki = 7/5 × 35 = 49; jumlah 84.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirls7To5,
   ],
   [
     "Kadar laju 72 km/j dalam m/s?",
@@ -4700,6 +4741,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Jus = 1/5 × 1500 = 300 ml.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.juiceWater1To4,
   ],
   [
     "Cas teksi RM 3 mula + RM 1.50/km. Bayaran 8 km?",
@@ -4722,6 +4764,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "30% = 21 → 100% = 70.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.pass70PctFail21,
   ],
   [
     "Resipi cookies 5 : 3 : 2 (tepung : gula : mentega). Jumlah 500 g. Tepung?",
@@ -4729,6 +4772,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "5/10 × 500 = 250 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.cookieRecipe5_3_2,
   ],
   [
     "Selesaikan 2x : 5 = 8 : 10.",
@@ -4750,6 +4794,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "B = 9/15 × 450 = RM 270.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.workDays6To9Total450,
   ],
   [
     "Bas 240 km dalam 5 jam. Berapa jam untuk 168 km?",
@@ -4764,6 +4809,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Panjang + lebar = 64 ÷ 2 = 32 cm. Panjang = 5/8 × 32 = 20 cm. (40 cm diperoleh jika terlupa membahagi perimeter dengan 2.)",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.rectangleLengthWidth5To3,
   ],
   [
     "Jika RM 50 ditukar 1100 yen, RM 80 = ?",
@@ -4778,6 +4824,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Tempoh = 9:15 pagi hingga 1:15 petang = 4 jam. Bayaran = 4 × RM1.50 = RM6.00.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.parkingTimeline,
   ],
   [
     "Kadar 0.6 liter/minit. Berapa liter dalam 25 minit?",
@@ -4792,6 +4839,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Kadar = 96 km ÷ 8 liter = 12 km/liter. Jarak = 12 × 15 = 180 km.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.car8L96km,
   ],
   [
     "Selesaikan (x+1)/4 = 3/2.",
@@ -4816,6 +4864,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "400 × 14/8 = 700 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.cakes8To14,
   ],
   [
     "If 60% of students are boys and total is 40, number of girls?",
@@ -4823,6 +4872,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "40% girls = 0.40 × 40 = 16.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.boys60PctTotal40,
   ],
   [
     "Map scale 1 : 250 000. Two cities 6 cm apart on map. Actual distance (km)?",
@@ -4830,6 +4880,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "6 × 250 000 = 1 500 000 cm = 15 km.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.mapScale250000,
   ],
   [
     "3 kg of rice costs RM12.60. What is the price of 5 kg of rice at the same rate?",
@@ -4844,6 +4895,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "B − A = 5k − 3k = 2k = 8 → k = 4; A = 12.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.difference3To5,
   ],
   [
     "Solution 5 : 3 water : syrup. For 240 ml syrup, volume of water?",
@@ -4851,6 +4903,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Water = 5/3 × 240 = 400 ml.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.waterSyrup5To3,
   ],
   [
     "Car A: 240 km in 3 h. Car B: 300 km in 4 h. Which is faster?",
@@ -4858,6 +4911,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "A = 80 km/h; B = 75 km/h.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.carComparison,
   ],
   [
     "A pipe fills water at a rate of 12 litres per minute. How long does it take to fill a 300-litre tank?",
@@ -4872,6 +4926,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "RM 7/kg vs RM 6/kg → 5 kg cheaper.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.groceryPriceComparison,
   ],
   [
     "A : B : C = 2 : 3 : 4. Total RM 90. Share of C?",
@@ -4879,6 +4934,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "C = 4/9 × 90 = RM 40.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.abc2_3_4Total90,
   ],
   [
     "Boys : girls = 7 : 5. If girls = 35, total?",
@@ -4886,6 +4942,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Boys = 7/5 × 35 = 49; total 84.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirls7To5,
   ],
   ["Rate 72 km/h in m/s?", ["18", "20", "22", "24"], 1, "72 × 1000/3600 = 20 m/s.", "Medium"],
   [
@@ -4901,6 +4958,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Juice = 1/5 × 1500 = 300 ml.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.juiceWater1To4,
   ],
   [
     "Taxi fare RM 3 base + RM 1.50/km. Fare for 8 km?",
@@ -4923,6 +4981,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "30% = 21 → 100% = 70.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.pass70PctFail21,
   ],
   [
     "Cookie recipe 5 : 3 : 2 (flour : sugar : butter). Total 500 g. Flour?",
@@ -4930,6 +4989,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "5/10 × 500 = 250 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.cookieRecipe5_3_2,
   ],
   [
     "Solve 2x : 5 = 8 : 10.",
@@ -4951,6 +5011,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "B = 9/15 × 450 = RM 270.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.workDays6To9Total450,
   ],
   [
     "Bus 240 km in 5 h. How many hours for 168 km?",
@@ -4965,6 +5026,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Length + width = 64 ÷ 2 = 32 cm. Length = 5/8 × 32 = 20 cm. (40 cm comes from forgetting to halve the perimeter.)",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.rectangleLengthWidth5To3,
   ],
   [
     "If RM 50 exchanges for 1100 yen, RM 80 = ?",
@@ -4979,6 +5041,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Duration = 9:15 a.m. to 1:15 p.m. = 4 hours. Charge = 4 × RM1.50 = RM6.00.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.parkingTimeline,
   ],
   [
     "Rate 0.6 litre/minute. How many litres in 25 minutes?",
@@ -4993,6 +5056,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Rate = 96 km ÷ 8 litres = 12 km/litre. Distance = 12 × 15 = 180 km.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.car8L96km,
   ],
   ["Solve (x+1)/4 = 3/2.", ["3", "4", "6", "5"], 3, "Cross multiply: 2(x+1) = 12 → x = 5.", "Hard"],
   [
