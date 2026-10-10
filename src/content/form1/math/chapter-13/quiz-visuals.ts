@@ -12,8 +12,8 @@ const draw = (title: LocalizedText, description: LocalizedText, panel: Omit<Pane
 /**
  * Chapter 13 (Pythagoras). Diagrams are deliberately NOT TO SCALE.
  * Right-angle marks are used only when the stem explicitly guarantees 90°.
- * For triangle-classification questions, the same neutral scalene outline is
- * used regardless of the correct classification. No computed answer is shown.
+ * Triangle classifications show proportional independent side-length segments,
+ * with no misleading drawn angle or calculated answer.
  */
 const rt = (
   vertical: VisualText, horizontal: VisualText, hypotenuse: VisualText,
@@ -38,33 +38,37 @@ const rt = (
     ] : []),
   ],
 });
-const tri = (a: string, b: string, c: string, vertices?: [string, string, string]): Diagram => draw(
-  tr("Panjang tiga sisi", "Lengths of the three sides"),
-  tr("Setiap ruas ialah sisi yang berasingan. Panjang dilabel tanpa melukis sebarang sudut; jenis segi tiga mesti dikira.",
-     "Each segment is a separate side, not a triangle outline. There is no suggested angle: determine the triangle type from the three lengths."),
-  {
-    // Equal-length drawn segments avoid implying an acute/right/obtuse angle
-    // when the question asks the student to determine it by calculation.
-    paths: [
-      { points: [[60, 68], [238, 68]] },
-      { points: [[60, 128], [238, 128]] },
-      { points: [[60, 188], [238, 188]] },
-    ],
-    labels: [
-      { at: [149, 51], text: a },
-      { at: [149, 111], text: b },
-      { at: [149, 171], text: c },
-      ...(vertices ? [
-        { at: [46, 73] as [number, number], text: vertices[0] },
-        { at: [251, 73] as [number, number], text: vertices[1] },
-        { at: [46, 133] as [number, number], text: vertices[1] },
-        { at: [251, 133] as [number, number], text: vertices[2] },
-        { at: [46, 193] as [number, number], text: vertices[0] },
-        { at: [251, 193] as [number, number], text: vertices[2] },
-      ] : []),
-    ],
-  },
-);
+/** Separate side-length segments never imply any angle classification. */
+const sideLength = (side: string) => {
+  const radical = side.match(/^√(\d+(?:\.\d+)?)/u);
+  const value = radical ? Math.sqrt(Number(radical[1])) : Number.parseFloat(side);
+  return Number.isFinite(value) && value > 0 ? value : null;
+};
+const tri = (a: string, b: string, c: string, vertices?: [string, string, string]): Diagram => {
+  const labels = [a, b, c], lengths = labels.map(sideLength);
+  const max = Math.max(0, ...lengths.filter((n): n is number => n !== null));
+  const ys = [68, 128, 188];
+  const ends = lengths.map((n) => n === null || max === 0 ? 238 : 60 + Math.round(178 * n / max));
+  return draw(
+    tr("Panjang tiga sisi", "Lengths of the three sides"),
+    tr("Ruas berasingan menggambarkan panjang sisi, tanpa menyatakan jenis sudut. Tentukan jenis dengan mengira.",
+       "Independent side segments, not a connected triangle or an angle. Classify by calculation."),
+    {
+      paths: ys.map((y, i) => ({ points: [[60, y], [ends[i], y]] })),
+      labels: [
+        ...labels.map((value, i) => ({ at: [60 + (ends[i] - 60) / 2, ys[i] - 17] as [number,number], text: value })),
+        ...(vertices ? [
+          { at: [45, 73] as [number,number], text: vertices[0] },
+          { at: [ends[0] + 11, 73] as [number,number], text: vertices[1] },
+          { at: [45, 133] as [number,number], text: vertices[1] },
+          { at: [ends[1] + 11, 133] as [number,number], text: vertices[2] },
+          { at: [45, 193] as [number,number], text: vertices[0] },
+          { at: [ends[2] + 11, 193] as [number,number], text: vertices[2] },
+        ] : []),
+      ],
+    },
+  );
+};
 const rect = (
   width: string, height: string, diagonal: string,
   bm = "Segi empat tepat dan pepenjuru", dlp = "Rectangle and its diagonal",
@@ -89,6 +93,56 @@ const rect = (
     ] : []),
   ],
 });
+/** The stem already gives acute or obtuse: this adds context without calculating the inequality. */
+const angleType = (type: "acute" | "obtuse"): Diagram => {
+  const acute = type === "acute";
+  return draw(
+    acute ? tr("Segi tiga tirus", "Acute triangle") : tr("Segi tiga cakah", "Obtuse triangle"),
+    tr("Bandingkan kuasa dua sisi terpanjang c dengan dua sisi lain.",
+       "Compare the square of longest side c with the other two sides."),
+    {
+      paths: [{ points: acute ? [[150, 35], [58, 192], [244, 192], [150, 35]]
+        : [[81, 142], [55, 192], [248, 192], [81, 142]], closed: true }],
+      labels: acute
+        ? [{ at: [82, 106], text: "a" }, { at: [222, 108], text: "b" }, { at: [152, 214], text: "c" }]
+        : [{ at: [47, 153], text: "a" }, { at: [195, 154], text: "b" }, { at: [151, 214], text: "c" }],
+    },
+  );
+};
+const givenAngles = (): Diagram => draw(
+  tr("Sudut segi tiga yang diberi", "Given triangle angles"),
+  tr("Sudut 30°, 60° dan 90° seperti dalam soalan.", "The 30°, 60° and 90° angles from the question."),
+  {
+    paths: [
+      { points: [[98, 28], [98, 200], [198, 200], [98, 28]], closed: true },
+      { points: [[98, 184], [114, 184], [114, 200]] },
+    ],
+    labels: [
+      { at: [114, 65], text: "30°" }, { at: [118, 177], text: "90°" },
+      { at: [171, 186], text: "60°" },
+    ],
+  },
+);
+const nestedRightTriangles = (): Diagram => draw(
+  tr("Dua segi tiga berkongsi sisi AC", "Two triangles sharing AC"),
+  tr("AB = 6 cm, BC = 8 cm dan CD = 24 cm; sudut tegak di B dan C. Cari AD.",
+     "AB = 6 cm, BC = 8 cm and CD = 24 cm; right angles at B and C. Find AD."),
+  {
+    paths: [
+      { points: [[65, 145], [65, 175], [105, 175], [65, 145]], closed: true },
+      { points: [[65, 145], [105, 175], [177, 79], [65, 145]], closed: true },
+      { points: [[65, 166], [74, 166], [74, 175]] },
+      { points: [[97, 169], [103, 161], [111, 167]] },
+    ],
+    labels: [
+      { at: [52, 134], text: "A" }, { at: [54, 191], text: "B" },
+      { at: [111, 195], text: "C" }, { at: [187, 78], text: "D" },
+      { at: [38, 164], text: "6 cm" }, { at: [84, 218], text: "8 cm" },
+      { at: [183, 143], text: "24 cm" },
+      { at: [94, 156], text: "AC = ?" }, { at: [126, 96], text: "AD = ?" },
+    ],
+  },
+);
 const iso = (): Diagram => draw(
   tr("Segi tiga sama kaki dan tinggi", "Isosceles triangle and its altitude"),
   tr("Dua sisi condong masing-masing 13 cm; seluruh tapak 24 cm. Tinggi belum diketahui.",
@@ -166,14 +220,22 @@ export const MATH_F1_C13_QUIZ_VISUALS = {
     5: rt("AB","BC","AC","Segi tiga ABC, sudut tegak di B", "Triangle ABC, right angle at B", ["B","A","C"]),
     6: tri("3","4","5"),
     8: rt("a","b","c"),
+    9: rt("a","b","c"),
+    10: tri("a","b","c"),
+    13: angleType("acute"),
+    14: angleType("obtuse"),
     15: rt("a","b","c"),
     16: tri("6","8","10"),
     17: tri("5","12","13"),
     18: rt(tr("kaki","leg"),tr("kaki","leg"),"?"),
+    19: rt("a","b","c"),
     20: rt("a","b","c"),
+    21: rt("a","b","c"),
     22: tri("3","4","5"),
     24: rect("?","?","?"),
+    25: tri("a","b","c"),
     26: rt("a","b","c"),
+    27: givenAngles(),
     29: tri("8","15","17"),
   },
   practice: {
@@ -209,6 +271,7 @@ export const MATH_F1_C13_QUIZ_VISUALS = {
     30: rt("? m","10 m","26 m","Tiang dengan wayar","Pole with support wire"),
   },
   challenge: {
+    7: nestedRightTriangles(),
     1: tri("5 cm","7 cm","9 cm"),
     2: tri("6 cm","7 cm","8 cm"),
     3: tri("9 cm","40 cm","41 cm",["P","Q","R"]),
