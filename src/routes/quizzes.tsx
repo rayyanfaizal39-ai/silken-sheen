@@ -9329,6 +9329,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Sudut tegak ialah sudut yang saiznya tepat 90°. Ia dilambangkan dengan tanda kotak kecil □ di bucu.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.rightAngle90,
   ],
   [
     "Apakah julat sudut tirus?",
@@ -9336,6 +9337,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Sudut tirus ialah sudut yang lebih besar daripada 0° tetapi lebih kecil daripada 90°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.acuteExample40,
   ],
   [
     "Apakah julat sudut cakah?",
@@ -9343,6 +9345,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Sudut cakah ialah sudut yang lebih besar daripada 90° tetapi lebih kecil daripada 180°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.obtuseExample130,
   ],
   [
     "Apakah julat sudut refleks?",
@@ -9350,6 +9353,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Sudut refleks ialah sudut yang lebih besar daripada 180° tetapi lebih kecil daripada 360°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.reflexExample220,
   ],
   [
     "Sudut 145° termasuk dalam jenis apakah?",
@@ -9433,6 +9437,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Bucu ialah titik di mana dua kaki (tembereng garis) sudut bertemu.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.labelledVertex,
   ],
   [
     "Manakah antara berikut adalah sudut tirus?",
@@ -9440,6 +9445,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "75° terletak antara 0° dan 90°, maka ia adalah sudut tirus. 95° adalah cakah, 90° adalah tegak, 185° adalah refleks.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.acuteChoiceExample,
   ],
   [
     "Manakah antara berikut adalah sudut refleks?",
@@ -9447,6 +9453,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "200° terletak antara 180° dan 360°, maka ia adalah sudut refleks.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.reflexChoiceExample,
   ],
   [
     "Diberi ∠PQR = 47° dan ∠STU = 47°. Apakah hubungan antara kedua-dua sudut itu?",
@@ -9496,6 +9503,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "88° terletak antara 0° dan 90°, maka ia adalah sudut tirus (kurang daripada 90°).",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.nearRight88,
   ],
   [
     "Apakah perbezaan antara sudut cakah dan sudut refleks?",
@@ -9508,6 +9516,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Sudut cakah terletak antara 90° dan 180°. Sudut refleks terletak antara 180° dan 360°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.obtuseVsReflex,
   ],
   [
     "Apakah yang dimaksudkan dengan 'kaki sudut'?",
@@ -9520,6 +9529,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Kaki sudut ialah dua tembereng garis yang bertemu di bucu untuk membentuk sudut.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.labelledVertex,
   ],
   [
     "Sudut manakah yang TIDAK boleh diukur menggunakan protraktor separuh bulatan biasa (0°–180°) secara terus?",
@@ -9527,6 +9537,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Protraktor separuh bulatan hanya mengukur sudut 0° hingga 180°. Sudut refleks seperti 270° memerlukan pengiraan tambahan.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.beyondSemicircle,
   ],
   [
     "Apakah jenis sudut yang terbentuk di penjuru buku teks?",
@@ -9548,6 +9559,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "179° terletak antara 90° dan 180°, maka ia adalah sudut cakah (walaupun hampir 180°).",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.nearStraight179,
   ],
   [
     "Manakah contoh sudut dalam kehidupan sebenar?",
@@ -9577,6 +9589,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A right angle is exactly 90°. It is marked with a small square symbol □ at the vertex.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.rightAngle90,
   ],
   [
     "What is the range of an acute angle?",
@@ -9584,6 +9597,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "An acute angle is greater than 0° but less than 90°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.acuteExample40,
   ],
   [
     "What is the range of an obtuse angle?",
@@ -9591,6 +9605,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "An obtuse angle is greater than 90° but less than 180°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.obtuseExample130,
   ],
   [
     "What is the range of a reflex angle?",
@@ -9598,6 +9613,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A reflex angle is greater than 180° but less than 360°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.reflexExample220,
   ],
   [
     "What type of angle is 145°?",
@@ -9691,6 +9707,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A vertex is the point where the two arms (line segments) of an angle meet.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.labelledVertex,
   ],
   [
     "Which of the following is an acute angle?",
@@ -9698,6 +9715,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "75° lies between 0° and 90°, so it is acute. 95° is obtuse, 90° is right, 185° is reflex.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.acuteChoiceExample,
   ],
   [
     "Which of the following is a reflex angle?",
@@ -9705,6 +9723,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "200° lies between 180° and 360°, so it is a reflex angle.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.reflexChoiceExample,
   ],
   [
     "Given ∠PQR = 47° and ∠STU = 47°. What is the relationship between the two angles?",
@@ -9754,6 +9773,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "88° lies between 0° and 90°, so it is an acute angle (less than 90°).",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.nearRight88,
   ],
   [
     "What is the difference between an obtuse and a reflex angle?",
@@ -9766,6 +9786,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Obtuse angles are between 90° and 180°. Reflex angles are between 180° and 360°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.obtuseVsReflex,
   ],
   [
     "What are the 'arms' of an angle?",
@@ -9778,6 +9799,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The arms of an angle are the two line segments that meet at the vertex to form the angle.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.labelledVertex,
   ],
   [
     "Which angle CANNOT be directly measured with a standard semicircular protractor (0°–180°)?",
@@ -9785,6 +9807,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A semicircular protractor only measures 0° to 180°. Reflex angles like 270° require additional calculation.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.beyondSemicircle,
   ],
   [
     "What type of angle is formed at the corner of a textbook?",
@@ -9806,6 +9829,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "179° lies between 90° and 180°, so it is an obtuse angle (even though it is close to 180°).",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.nearStraight179,
   ],
   [
     "Which is a real-life example of an angle?",
