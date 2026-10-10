@@ -10,7 +10,7 @@ import { MATH_F1_C13_QUIZ_VISUALS as V } from "./quiz-visuals";
 const OBJECTIVES = ["objective-1", "objective-2", "objective-3"] as const;
 const LANGS = ["bm", "dlp"] as const;
 const MAPS = [V.foundation, V.practice, V.challenge] as const;
-const COUNTS = [15, 30, 29] as const;
+const COUNTS = [23, 30, 30] as const;
 
 function questions(objective: (typeof OBJECTIVES)[number], lang: (typeof LANGS)[number]) {
   return resolveMathObjectiveQuestions({
@@ -23,7 +23,7 @@ function questions(objective: (typeof OBJECTIVES)[number], lang: (typeof LANGS)[
 }
 
 describe("Math Form 1 Chapter 13 bilingual Pythagoras diagrams", () => {
-  it("retains all 180 questions while adding only the 148 reviewed visual placements", () => {
+  it("retains all 180 questions while adding only the 166 reviewed visual placements", () => {
     for (const lang of LANGS) {
       OBJECTIVES.forEach((objective, i) => {
         const bank = questions(objective, lang);
@@ -62,7 +62,7 @@ describe("Math Form 1 Chapter 13 bilingual Pythagoras diagrams", () => {
       if (visual?.kind === "geometry-diagram") {
         expect(visual.panels[0].paths).toHaveLength(3);
         const description = describeMathQuestionVisual(visual, "dlp");
-        expect(description).toContain("There is no suggested angle");
+        expect(description).toContain("not a connected triangle or an angle");
       }
     }
   });
@@ -97,6 +97,52 @@ describe("Math Form 1 Chapter 13 bilingual Pythagoras diagrams", () => {
         }
       }
     }
+  });
+
+  it("renders accurate scale relationships between independent side segments", () => {
+    for (const diagram of [V.challenge[1], V.challenge[2], V.challenge[12]]) {
+      expect(diagram?.kind).toBe("geometry-diagram");
+      if (diagram?.kind !== "geometry-diagram") continue;
+      const paths = diagram.panels[0].paths ?? [];
+      expect(paths).toHaveLength(3);
+      expect(paths.every((path) => path.points.length === 2)).toBe(true);
+      const distances = paths.map((path) => path.points[1][0] - path.points[0][0]);
+      expect(distances[0]).toBeLessThan(distances[1]);
+      expect(distances[1]).toBeLessThan(distances[2]);
+    }
+  });
+
+  it("draws genuinely acute and obtuse Foundation triangle sketches", () => {
+    const apexDot = (diagram: NonNullable<typeof V.foundation[13]>) => {
+      if (diagram.kind !== "geometry-diagram") throw new Error("Expected geometry");
+      const [a, b, c] = diagram.panels[0].paths![0].points;
+      return (b[0] - a[0]) * (c[0] - a[0]) + (b[1] - a[1]) * (c[1] - a[1]);
+    };
+    expect(apexDot(V.foundation[13])).toBeGreaterThan(0);
+    expect(apexDot(V.foundation[14])).toBeLessThan(0);
+    const angles = describeMathQuestionVisual(V.foundation[27], "dlp");
+    expect(angles).toContain("30°");
+    expect(angles).toContain("60°");
+    expect(angles).toContain("90°");
+  });
+
+  it("illustrates two linked triangles correctly without revealing AC or AD", () => {
+    const diagram = V.challenge[7];
+    expect(diagram?.kind).toBe("geometry-diagram");
+    if (diagram?.kind !== "geometry-diagram") return;
+    const accessible = describeMathQuestionVisual(diagram, "dlp");
+    for (const given of ["AB = 6 cm", "BC = 8 cm", "CD = 24 cm", "AC = ?", "AD = ?"]) {
+      expect(accessible).toContain(given);
+    }
+    expect(accessible).not.toContain("10 cm");
+    expect(accessible).not.toContain("26 cm");
+    const paths = diagram.panels[0].paths!;
+    expect(paths).toHaveLength(4);
+    // The second right-angle marker is two perpendicular short segments.
+    const [a, b, c] = paths[3].points;
+    const one = [b[0] - a[0], b[1] - a[1]];
+    const two = [c[0] - b[0], c[1] - b[1]];
+    expect(one[0] * two[0] + one[1] * two[1]).toBe(0);
   });
 
   it("never adds visuals from this chapter into unrelated chapters", () => {
