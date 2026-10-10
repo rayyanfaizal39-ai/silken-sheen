@@ -129,7 +129,7 @@ describe("Regular Form 3 maths visual quiz screen", () => {
     if (number === 46) expect(document.querySelector(".quiz-explain sup")).toBeTruthy();
   });
 
-  it.each(([1, 4, 5] as const).flatMap(chapter => (["bm", "dlp"] as const).flatMap(lang => (["A", "B"] as const).map(set => ({ chapter, lang, set })))))("chooses Chapter $chapter $lang Set $set, runs exactly 25 questions and saves its own result", async ({ chapter, lang, set }) => {
+  it.each(([1, 4, 5, 6, 7] as const).flatMap(chapter => (["bm", "dlp"] as const).flatMap(lang => (["A", "B"] as const).map(set => ({ chapter, lang, set })))))("chooses Chapter $chapter $lang Set $set, runs exactly 25 questions and saves its own result", async ({ chapter, lang, set }) => {
     state.lang = lang; state.recordQuizResult.mockClear();
     const bank = registry.getChapterQuizQuestions("math", "Form 3", `Chapter ${chapter}`, lang).filter(q => q.set === set);
     window.history.replaceState({}, "", `/quizzes?subject=math&form=3&chapter=Chapter%20${chapter}`);
