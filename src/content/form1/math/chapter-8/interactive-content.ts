@@ -234,9 +234,8 @@ const en: MathF1C8Content = {
     "To check if lines are parallel, verify EITHER corresponding angles are equal OR interior angles sum to 180° — either one is sufficient proof.",
   ],
   challenge: {
-    question:
-      "POS, QOT and UOR are straight lines. Given the angles 5y and 2y marked at O, find the value of y.",
-    answer: "Using the angle-on-a-straight-line rule: 5y + 2y + 5y = 180° → 12y = 180° → y = 15°.",
+    question: "Three adjacent angles on a straight line measure 5y°, 2y° and 5y°. Find y and the size of each angle.",
+    answer: "Angles on a straight line total 180°. Hence 5y + 2y + 5y = 180, so 12y = 180 and y = 15. The three angles are 75°, 30° and 75°.",
   },
 };
 
@@ -440,9 +439,8 @@ const bm: MathF1C8Content = {
     "Untuk semak jika garis selari, sahkan SAMA ADA sudut sepadan sama ATAU sudut pedalaman berjumlah 180° — mana-mana satu sudah cukup bukti.",
   ],
   challenge: {
-    question:
-      "POS, QOT dan UOR ialah garis lurus. Diberi sudut 5y dan 2y ditandakan di O, cari nilai y.",
-    answer: "Guna peraturan sudut pada garis lurus: 5y + 2y + 5y = 180° → 12y = 180° → y = 15°.",
+    question: "Tiga sudut bersebelahan pada satu garis lurus masing-masing ialah 5y°, 2y° dan 5y°. Cari nilai y dan saiz setiap sudut.",
+    answer: "Jumlah sudut pada garis lurus ialah 180°. Maka 5y + 2y + 5y = 180, jadi 12y = 180 dan y = 15. Saiz ketiga-tiga sudut ialah 75°, 30° dan 75°.",
   },
 };
 
