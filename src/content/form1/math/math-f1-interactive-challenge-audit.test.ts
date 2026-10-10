@@ -42,6 +42,10 @@ describe("Form 1 Mathematics bilingual interactive challenge repairs", () => {
       expect(challenge.question).toContain("24");
       expect(challenge.answer).toMatch(/ALSO|JUGA/);
       expect(challenge.answer).not.toMatch(/not exact recoverable|bukan nilai tepat boleh dipulihkan/i);
+      expect(challenge.widget.kind).toBe("representationCompare");
+      if (challenge.widget.kind !== "representationCompare") {
+        throw new Error("Expected data-representation comparison");
+      }
       expect(challenge.widget.positionOnlyLabel).toBeTruthy();
       expect(challenge.widget.exactValuesLabel).toBeTruthy();
     }
