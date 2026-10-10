@@ -82,6 +82,8 @@ const triangleExt = (bm: string, dlp: string, angleA: VisualText | undefined,
   if (sideMark) fig.panels[0].labels.push({ at: pt(148, 208), text: sideMark });
   return fig;
 };
+const rectangleShapeVisual = quad("Rajah segi empat", "Quadrilateral diagram", [], rectangle);
+const squareShapeVisual = quad("Rajah segi empat", "Quadrilateral diagram", [], square);
 export const MATH_F1_C9_QUIZ_VISUALS = {
   // Foundation: visual polygon vocabulary and symmetry figures without named answers.
   polygonExample: shape("Contoh bentuk tertutup", "Example of a closed shape", reg(5)),
@@ -97,8 +99,8 @@ export const MATH_F1_C9_QUIZ_VISUALS = {
   rightShape: triangle("Rajah segi tiga", "Triangle diagram", ["90°"], right),
   hypotenuseShape: triangle("Sisi pada segi tiga bersudut tegak", "Sides of a right triangle",
     ["90°"], right, { sideLabels: [{ side: 1, text: "a" }, { side: 2, text: "b" }, { side: 0, text: "c" }] }),
-  rectangleShape: quad("Rajah segi empat", "Quadrilateral diagram", [], rectangle),
-  squareShape: quad("Rajah segi empat", "Quadrilateral diagram", [], square),
+  rectangleShape: rectangleShapeVisual,
+  squareShape: squareShapeVisual,
   parallelogramShape: quad("Rajah segi empat", "Quadrilateral diagram", [], parallelogram),
   rhombusShape: quad("Rajah segi empat", "Quadrilateral diagram", [], rhombus),
   trapeziumShape: quad("Rajah segi empat", "Quadrilateral diagram", [], trapezium),
@@ -113,7 +115,7 @@ export const MATH_F1_C9_QUIZ_VISUALS = {
   rectangleSymmetry: quad("Kira paksi simetri", "Count symmetry axes", [], rectangle),
   squareVsRectangle: {
     kind: "geometry-diagram", title: t("Bandingkan dua segi empat", "Compare two quadrilaterals"),
-    panels: [squareShape.panels[0], rectangleShape.panels[0]],
+    panels: [squareShapeVisual.panels[0], rectangleShapeVisual.panels[0]],
   },
   sevenSides: shape("Kira sisi", "Count sides", reg(7)),
   nineSides: shape("Kira sisi", "Count sides", reg(9)),
