@@ -1,4 +1,4 @@
-import type { MathQuestionVisual, LocalizedText } from "@/features/quiz/visuals/mathQuestionVisual";
+import type { MathQuestionVisual, LocalizedText, VisualText } from "@/features/quiz/visuals/mathQuestionVisual";
 
 type Diagram = Extract<MathQuestionVisual, { kind: "geometry-diagram" }>;
 type Panel = Diagram["panels"][number];
@@ -16,7 +16,7 @@ const draw = (title: LocalizedText, description: LocalizedText, panel: Omit<Pane
  * used regardless of the correct classification. No computed answer is shown.
  */
 const rt = (
-  vertical: string, horizontal: string, hypotenuse: string,
+  vertical: VisualText, horizontal: VisualText, hypotenuse: VisualText,
   bm = "Segi tiga bersudut tegak", dlp = "Right-angled triangle",
   vertices?: [string, string, string],
 ): Diagram => draw(tr(bm, dlp), tr(
@@ -169,7 +169,7 @@ export const MATH_F1_C13_QUIZ_VISUALS = {
     15: rt("a","b","c"),
     16: tri("6","8","10"),
     17: tri("5","12","13"),
-    18: rt("kaki / leg","kaki / leg","?"),
+    18: rt(tr("kaki","leg"),tr("kaki","leg"),"?"),
     20: rt("a","b","c"),
     22: tri("3","4","5"),
     24: rect("?","?","?"),
@@ -227,7 +227,7 @@ export const MATH_F1_C13_QUIZ_VISUALS = {
     17: tri("6 cm","8 cm","11 cm"),
     18: rt("5 cm","k cm","13 cm"),
     19: tree(),
-    20: rt("3 bahagian / parts","4 bahagian / parts","20 cm","Nisbah sisi 3 : 4","Leg ratio 3 : 4"),
+    20: rt(tr("3 bahagian","3 parts"),tr("4 bahagian","4 parts"),"20 cm","Nisbah sisi 3 : 4","Leg ratio 3 : 4"),
     21: tri("1 cm","1 cm","√2 cm"),
     22: rt("20 km","15 km","? km","Perjalanan kapal: utara dan timur","Ship route: north and east"),
     23: tri("8 cm","15 cm","18 cm"),
