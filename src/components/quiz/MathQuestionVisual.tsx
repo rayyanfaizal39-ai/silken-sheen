@@ -1,5 +1,6 @@
 import { MathFinanceVisual } from "./MathFinanceVisual";
 import { MathGeometryVisual } from "./MathGeometryVisual";
+import { MathEquationVisual } from "./MathEquationVisual";
 import type { ReactNode } from "react";
 import { MathIndicesVisual } from "./MathIndicesVisual";
 import { MathStandardFormVisual } from "./MathStandardFormVisual";
@@ -471,6 +472,9 @@ export function MathQuestionVisual({
 
   if (visual.kind === "finance-model") return <MathFinanceVisual visual={visual} lang={lang} />;
   if (visual.kind === "geometry-diagram") return <MathGeometryVisual visual={visual} lang={lang} />;
+  if (visual.kind === "equation-balance" || visual.kind === "equation-story") {
+    return <MathEquationVisual visual={visual} lang={lang} />;
+  }
 
   if (visual.kind === "place-value" || visual.kind === "standard-form-parts" ||
       visual.kind === "standard-form-operation" || visual.kind === "right-triangle" ||
