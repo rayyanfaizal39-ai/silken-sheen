@@ -129,12 +129,12 @@ describe("Regular Form 3 maths visual quiz screen", () => {
     if (number === 46) expect(document.querySelector(".quiz-explain sup")).toBeTruthy();
   });
 
-  it.each((["bm", "dlp"] as const).flatMap(lang => (["A", "B"] as const).map(set => ({ lang, set }))))("chooses $lang Set $set, runs exactly 25 questions and saves its own result", async ({ lang, set }) => {
+  it.each(([1, 4, 5] as const).flatMap(chapter => (["bm", "dlp"] as const).flatMap(lang => (["A", "B"] as const).map(set => ({ chapter, lang, set })))))("chooses Chapter $chapter $lang Set $set, runs exactly 25 questions and saves its own result", async ({ chapter, lang, set }) => {
     state.lang = lang; state.recordQuizResult.mockClear();
-    const bank = registry.getChapterQuizQuestions("math", "Form 3", "Chapter 1", lang).filter(q => q.set === set);
-    window.history.replaceState({}, "", "/quizzes?subject=math&form=3&chapter=Chapter%201");
+    const bank = registry.getChapterQuizQuestions("math", "Form 3", `Chapter ${chapter}`, lang).filter(q => q.set === set);
+    window.history.replaceState({}, "", `/quizzes?subject=math&form=3&chapter=Chapter%20${chapter}`);
     vi.spyOn(Route, "useNavigate").mockReturnValue(vi.fn());
-    vi.spyOn(Route, "useSearch").mockReturnValue({ subject: "math", form: 3, chapter: "Chapter 1" } as never);
+    vi.spyOn(Route, "useSearch").mockReturnValue({ subject: "math", form: 3, chapter: `Chapter ${chapter}` } as never);
     vi.spyOn(Math, "random").mockReturnValue(0.999);
     Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
     window.matchMedia = vi.fn().mockImplementation(() => ({ matches: false, addEventListener: () => {}, removeEventListener: () => {} }));
@@ -151,14 +151,19 @@ describe("Regular Form 3 maths visual quiz screen", () => {
       const answers = [...document.querySelectorAll<HTMLButtonElement>(".quiz-arena button.group")];
       expect(answers).toHaveLength(4);
       expect(document.querySelector(".quiz-arena h2")).toBeTruthy();
+      if (chapter !== 1) {
+        expect(document.querySelector(".quiz-explain")).toBeNull();
+        if (bank[i].visual) expect(document.querySelector('[data-math-visual="geometry-diagram"]')).toBeTruthy();
+      }
       act(() => answers[bank[i].answerIndex].click());
+      if (chapter !== 1) expect(document.querySelector(".quiz-explain")?.textContent).toContain(bank[i].explanation!);
       const next = document.querySelector<HTMLButtonElement>(".quiz-continue button");
       expect(next).toBeTruthy();
       await act(async () => next!.click());
     }
     expect(state.recordQuizResult).toHaveBeenCalledTimes(1);
     expect(state.recordQuizResult.mock.calls[0][0]).toMatchObject({
-      quizKey: `quiz-v2:standard:math:form-3:chapter-1:${lang}:set-${set.toLowerCase()}:difficulty-all`,
+      quizKey: `quiz-v2:standard:math:form-3:chapter-${chapter}:${lang}:set-${set.toLowerCase()}:difficulty-all`,
       total: 25, correct: { easy: 10, medium: 10, hard: 5 },
     });
     expect(document.querySelector(".quiz-continue")).toBeNull();
@@ -166,6 +171,6 @@ describe("Regular Form 3 maths visual quiz screen", () => {
     act(() => button(lang === "bm" ? `Teruskan ke Set ${other}` : `Continue to Set ${other}`)!.click());
     expect(button(`Set ${other}`)?.getAttribute("aria-pressed")).toBe("true");
     expect(button(`Set ${other}`)?.textContent).toContain("25");
-  });
+  }, 30_000);
 
 });
