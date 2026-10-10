@@ -93,7 +93,7 @@ describe("Form 1 Mathematics Chapter 7 selective inequality number-line diagrams
       if (visual.kind !== "inequality-options") continue;
       expect(visual.options).toHaveLength(4);
       const descriptions = visual.options.map((option) =>
-        `${option.inclusive ? "Closed" : "Open"} circle at ${visual.boundary}, arrow pointing ${option.direction}`,
+        `${option.inclusive ? "Closed" : "Open"} circle at ${String(visual.boundary).replace("-", "−")}, arrow pointing ${option.direction}`,
       );
       expect(descriptions).toEqual(expected);
       for (const lang of LANGS) {
