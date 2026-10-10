@@ -59,13 +59,13 @@ describe("Form 1 Mathematics Chapter 3 selective quiz diagrams", () => {
 
   it("gives only supplied dimensions and leaves unknowns for the student to solve", () => {
     const unchangedGivens = [
-      ["squareArea144", "144 cm²", "12 cm"],
-      ["cubeVolume512", "512 cm³", "8 cm"],
-      ["squareSide9", "9 cm", "81 cm²"],
-      ["cubeSide6", "6 cm", "216 cm³"],
-      ["squareGarden169", "169 m²", "13 m"],
-      ["cubeUnitBlocks64", "64 cm³", "4 cm"],
-      ["equalAreaRectangleSquare", "18 cm", "12 cm"],
+      ["squareArea144", "144 cm²", "side 12 cm"],
+      ["cubeVolume512", "512 cm³", "side 8 cm"],
+      ["squareSide9", "9 cm", "area 81 cm²"],
+      ["cubeSide6", "6 cm", "volume 216 cm³"],
+      ["squareGarden169", "169 m²", "side 13 m"],
+      ["cubeUnitBlocks64", "64 cm³", "side 4 cm"],
+      ["equalAreaRectangleSquare", "18 cm", "side 12 cm"],
     ] as const;
     for (const [key, given, forbiddenAnswer] of unchangedGivens) {
       const visual = V[key];
