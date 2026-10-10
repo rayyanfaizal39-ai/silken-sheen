@@ -306,10 +306,8 @@ const en: MathF1C10Content = {
     "For composite shapes, split into simple shapes (rectangle, triangle, trapezium) you already know the formula for.",
   ],
   challenge: {
-    question:
-      "A rectangular tile PQRS (perimeter 120 cm) has a kite TUVW inscribed in it, with one diagonal 28 cm and part of the other 12 cm. Find the area of TUVW.",
-    answer:
-      "Use the rectangle's perimeter to find its full dimensions, identify both diagonal lengths of the kite from the rectangle's sides, then apply the kite area formula ½×d₁×d₂.",
+    question: "A kite has perpendicular diagonals. One diagonal is 28 cm long, and the other is divided by the intersection into segments of 12 cm and 18 cm. Find the area of the kite.",
+    answer: "The full second diagonal is 12 + 18 = 30 cm. The area of a kite is ½ × d₁ × d₂. Hence the area is ½ × 28 × 30 = 420 cm².",
   },
 };
 
@@ -550,10 +548,8 @@ const bm: MathF1C10Content = {
     "Untuk bentuk gubahan, pecahkan kepada bentuk mudah (segi empat tepat, segi tiga, trapezium) yang anda sudah tahu formulanya.",
   ],
   challenge: {
-    question:
-      "Jubin segi empat tepat PQRS (perimeter 120 cm) mempunyai lelayang TUVW terkandung, dengan satu pepenjuru 28 cm dan sebahagian pepenjuru lain 12 cm. Cari luas TUVW.",
-    answer:
-      "Guna perimeter segi empat tepat untuk cari dimensi penuhnya, kenal pasti kedua-dua panjang pepenjuru lelayang daripada sisi segi empat tepat, kemudian guna formula luas lelayang ½×d₁×d₂.",
+    question: "Sebuah layang-layang mempunyai dua pepenjuru berserenjang. Panjang satu pepenjuru ialah 28 cm dan pepenjuru yang satu lagi dibahagikan kepada dua bahagian sepanjang 12 cm dan 18 cm. Cari luas layang-layang itu.",
+    answer: "Panjang penuh pepenjuru kedua ialah 12 + 18 = 30 cm. Luas layang-layang = ½ × d₁ × d₂. Maka luas = ½ × 28 × 30 = 420 cm².",
   },
 };
 
