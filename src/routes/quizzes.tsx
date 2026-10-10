@@ -59,6 +59,7 @@ import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-vis
 import { MATH_F1_C2_QUIZ_VISUALS } from "@/content/form1/math/chapter-2/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { MATH_F1_C3_QUIZ_VISUALS } from "@/content/form1/math/chapter-3/quiz-visuals";
+import { MATH_F1_C13_QUIZ_VISUALS } from "@/content/form1/math/chapter-13/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
 import { BMWorldPage } from "@/components/BMWorldPage";
@@ -15402,6 +15403,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Hipotenus ialah sisi yang PALING PANJANG dalam segi tiga bersudut tegak dan ia sentiasa BERTENTANGAN dengan sudut 90°.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[1],
   ],
   [
     "Apakah Teorem Pythagoras?",
@@ -15414,6 +15416,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Teorem Pythagoras: c² = a² + b², di mana c ialah hipotenus (sisi terpanjang) dan a, b ialah dua kaki segi tiga bersudut tegak.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[2],
   ],
   [
     "Dalam segi tiga bersudut tegak, di manakah sudut 90°?",
@@ -15426,6 +15429,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Sudut 90° berada di ANTARA dua kaki (sisi yang lebih pendek). Hipotenus bertentangan dengan sudut 90° ini.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[3],
   ],
   [
     "Apakah simbol yang digunakan untuk menandakan sudut tegak dalam gambar rajah?",
@@ -15440,6 +15444,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Hipotenus bertentangan dengan sudut tegak. Sudut tegak di B, jadi hipotenus ialah sisi AC (bertentangan B).",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[5],
   ],
   [
     "Segi tiga manakah yang PASTI bersudut tegak?",
@@ -15452,6 +15457,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "3² + 4² = 9 + 16 = 25 = 5². Ini adalah triple Pythagoras yang terkenal, jadi ia pasti bersudut tegak.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[6],
   ],
   [
     "Apakah triple Pythagoras paling terkenal?",
@@ -15466,6 +15472,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "c = √(a² + b²). Kira a², kira b², tambah, kemudian ambil punca kuasa dua.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[8],
   ],
   [
     "Dalam formula c² = a² + b², huruf c mewakili:",
@@ -15473,6 +15480,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Dalam Teorem Pythagoras, c sentiasa mewakili hipotenus (sisi terpanjang yang bertentangan sudut 90°).",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[9],
   ],
   [
     "Apakah makna akas Teorem Pythagoras?",
@@ -15485,6 +15493,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Akas Teorem Pythagoras: jika c² = a² + b² (c = sisi terpanjang), maka segi tiga adalah bersudut tegak.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[10],
   ],
   [
     "Apakah jenis segi tiga yang mempunyai semua sudut kurang daripada 90°?",
@@ -15516,6 +15525,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Untuk segi tiga bersudut tirus: c² < a² + b². Sisi terpanjang 'tidak cukup panjang' untuk membentuk sudut tegak.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[13],
   ],
   [
     "Untuk segi tiga bersudut cakah dengan sisi terpanjang c, hubungannya ialah:",
@@ -15523,6 +15533,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Untuk segi tiga bersudut cakah: c² > a² + b². Sisi terpanjang 'terlalu panjang', menyebabkan satu sudut melebihi 90°.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[14],
   ],
   [
     "Dalam Teorem Pythagoras, apakah peranan a dan b?",
@@ -15535,6 +15546,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "a dan b ialah dua KAKI segi tiga bersudut tegak — iaitu dua sisi yang membentuk sudut 90°. c ialah hipotenus.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[15],
   ],
   [
     "Segi tiga 6, 8, 10 — adakah ia triple Pythagoras?",
@@ -15547,6 +15559,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "6² + 8² = 36 + 64 = 100 = 10². Ini adalah gandaan 3-4-5 (×2), jadi ia adalah triple Pythagoras.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[16],
   ],
   [
     "Jika segi tiga mempunyai sisi 5, 12 dan 13, apakah jenis segi tiga tersebut?",
@@ -15554,6 +15567,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "5² + 12² = 25 + 144 = 169 = 13². Ini adalah triple 5-12-13, jadi segi tiga bersudut tegak.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[17],
   ],
   [
     "Apakah yang dimaksudkan dengan 'kaki' dalam segi tiga bersudut tegak?",
@@ -15566,6 +15580,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Kaki ialah dua sisi yang membentuk sudut 90°. Mereka lebih pendek daripada hipotenus.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[18],
   ],
   [
     "Teorem Pythagoras HANYA boleh digunakan untuk:",
@@ -15578,6 +15593,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Teorem Pythagoras HANYA untuk segi tiga BERSUDUT TEGAK. Jangan gunakannya untuk segi tiga lain.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[19],
   ],
   [
     "Sisi manakah yang sentiasa lebih panjang dalam segi tiga bersudut tegak — kaki atau hipotenus?",
@@ -15585,6 +15601,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Hipotenus sentiasa LEBIH PANJANG daripada setiap kaki dalam segi tiga bersudut tegak.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[20],
   ],
   [
     "Adakah mungkin hipotenus = salah satu kaki?",
@@ -15597,6 +15614,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "TIDAK. Hipotenus sentiasa lebih panjang daripada setiap kaki. Jika jawapan anda menunjukkan hipotenus lebih pendek, terdapat kesilapan.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[21],
   ],
   [
     "4, 3, 5 — sisi manakah hipotenus?",
@@ -15604,6 +15622,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Hipotenus adalah sisi TERPANJANG = 5. Boleh disahkan: 3²+4² = 9+16 = 25 = 5².",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[22],
   ],
   [
     "Apakah triple Pythagoras kedua paling terkenal selepas 3-4-5?",
@@ -15623,6 +15642,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Pepenjuru segi empat tepat membahagikannya kepada DUA segi tiga bersudut tegak yang sama (kerana sudut segi empat tepat = 90°).",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[24],
   ],
   [
     "Apakah langkah pertama dalam mengklasifikasikan segi tiga menggunakan akas Teorem Pythagoras?",
@@ -15630,6 +15650,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Langkah pertama: KENAL PASTI sisi terpanjang dan labelkannya sebagai c. Kemudian kira c² dan a²+b² untuk dibandingkan.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[25],
   ],
   [
     "Apakah rumus untuk mencari kaki a jika hipotenus c dan kaki b diketahui?",
@@ -15637,6 +15658,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "a = √(c² − b²). Apabila mencari kaki (sisi lebih pendek), kita TOLAK dari hipotenus.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[26],
   ],
   [
     "Adakah segi tiga dengan sudut 30°, 60°, 90° merupakan segi tiga bersudut tegak?",
@@ -15649,6 +15671,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Ya! Terdapat sudut 90°, jadi ia adalah segi tiga BERSUDUT TEGAK. Teorem Pythagoras boleh digunakan.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[27],
   ],
   [
     "Apakah perbezaan antara Teorem Pythagoras dan akasnya?",
@@ -15668,6 +15691,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "8²+15² = 64+225 = 289 = 17². Ini adalah triple 8-15-17. Segi tiga bersudut tegak.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[29],
   ],
   [
     "Apakah maksud 'triple Pythagoras' didarab dengan faktor?",
@@ -15695,6 +15719,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The hypotenuse is the LONGEST side in a right-angled triangle and is always OPPOSITE the 90° angle.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[1],
   ],
   [
     "What is Pythagoras' Theorem?",
@@ -15707,6 +15732,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Pythagoras' Theorem: c² = a² + b², where c is the hypotenuse (longest side) and a, b are the two legs of the right-angled triangle.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[2],
   ],
   [
     "In a right-angled triangle, where is the 90° angle?",
@@ -15719,6 +15745,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "The 90° angle is BETWEEN the two legs (shorter sides). The hypotenuse is opposite this 90° angle.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[3],
   ],
   [
     "What symbol is used to mark a right angle in a diagram?",
@@ -15733,6 +15760,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "The hypotenuse is opposite the right angle. Right angle at B, so hypotenuse is AC (opposite B).",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[5],
   ],
   [
     "Which triangle is DEFINITELY right-angled?",
@@ -15745,6 +15773,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "3² + 4² = 9 + 16 = 25 = 5². This is the famous Pythagorean triple, so it is definitely right-angled.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[6],
   ],
   [
     "What is the most famous Pythagorean triple?",
@@ -15759,6 +15788,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "c = √(a² + b²). Calculate a², calculate b², add, then take the square root.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[8],
   ],
   [
     "In the formula c² = a² + b², the letter c represents:",
@@ -15766,6 +15796,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "In Pythagoras' Theorem, c always represents the hypotenuse (the longest side opposite the 90° angle).",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[9],
   ],
   [
     "What does the converse of Pythagoras' Theorem mean?",
@@ -15778,6 +15809,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Converse of Pythagoras' Theorem: if c² = a² + b² (c = longest side), then the triangle is right-angled.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[10],
   ],
   [
     "What type of triangle has all angles less than 90°?",
@@ -15809,6 +15841,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "For an acute-angled triangle: c² < a² + b². The longest side is 'not long enough' to form a right angle.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[13],
   ],
   [
     "For an obtuse triangle with longest side c, the relationship is:",
@@ -15816,6 +15849,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "For an obtuse-angled triangle: c² > a² + b². The longest side is 'too long', causing one angle to exceed 90°.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[14],
   ],
   [
     "In Pythagoras' Theorem, what is the role of a and b?",
@@ -15828,6 +15862,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "a and b are the two LEGS of the right-angled triangle — the two sides that form the 90° angle. c is the hypotenuse.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[15],
   ],
   [
     "Triangle 6, 8, 10 — is it a Pythagorean triple?",
@@ -15840,6 +15875,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "6² + 8² = 36 + 64 = 100 = 10². This is a multiple of 3-4-5 (×2), so it is a Pythagorean triple.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[16],
   ],
   [
     "If a triangle has sides 5, 12 and 13, what type is it?",
@@ -15847,6 +15883,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "5² + 12² = 25 + 144 = 169 = 13². This is the 5-12-13 triple, so it is a right-angled triangle.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[17],
   ],
   [
     "What is meant by 'legs' in a right-angled triangle?",
@@ -15859,6 +15896,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Legs are the two sides that form the 90° angle. They are shorter than the hypotenuse.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[18],
   ],
   [
     "Pythagoras' Theorem can ONLY be used for:",
@@ -15871,6 +15909,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Pythagoras' Theorem is ONLY for RIGHT-ANGLED triangles. Do not use it for other triangles.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[19],
   ],
   [
     "Which is always longer in a right-angled triangle — legs or hypotenuse?",
@@ -15878,6 +15917,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "The hypotenuse is always LONGER than each leg in a right-angled triangle.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[20],
   ],
   [
     "Is it possible for the hypotenuse to equal one of the legs?",
@@ -15890,6 +15930,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "NO. The hypotenuse is always longer than each leg. If your answer shows hypotenuse shorter, there is an error.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[21],
   ],
   [
     "4, 3, 5 — which side is the hypotenuse?",
@@ -15897,6 +15938,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "The hypotenuse is the LONGEST side = 5. Verified: 3²+4² = 9+16 = 25 = 5².",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[22],
   ],
   [
     "What is the second most famous Pythagorean triple after 3-4-5?",
@@ -15916,6 +15958,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A diagonal of a rectangle divides it into TWO congruent right-angled triangles (because rectangle angles = 90°).",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[24],
   ],
   [
     "What is the first step in classifying a triangle using the converse of Pythagoras' Theorem?",
@@ -15923,6 +15966,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "First step: IDENTIFY the longest side and label it c. Then calculate c² and a²+b² to compare.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[25],
   ],
   [
     "What is the formula to find leg a if hypotenuse c and leg b are known?",
@@ -15930,6 +15974,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "a = √(c² − b²). When finding a leg (shorter side), we SUBTRACT from the hypotenuse.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[26],
   ],
   [
     "Is a triangle with angles 30°, 60°, 90° a right-angled triangle?",
@@ -15942,6 +15987,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Yes! There is a 90° angle, so it IS a RIGHT-ANGLED triangle. Pythagoras' Theorem can be used.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[27],
   ],
   [
     "What is the difference between Pythagoras' Theorem and its converse?",
@@ -15961,6 +16007,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "8²+15² = 64+225 = 289 = 17². This is the 8-15-17 triple. Right-angled triangle.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[29],
   ],
   [
     "What does 'Pythagorean triple multiplied by a factor' mean?",
@@ -15983,6 +16030,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "c² = 9²+12² = 81+144 = 225. c = √225 = 15 cm. (Triple 9-12-15, gandaan 3-4-5×3)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[1],
   ],
   [
     "Hipotenus = 20 cm, kaki a = 12 cm. Cari kaki b.",
@@ -15990,6 +16038,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "b² = 20²−12² = 400−144 = 256. b = √256 = 16 cm. (Triple 12-16-20, gandaan 3-4-5×4)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[2],
   ],
   [
     "Segi tiga bersudut tegak dengan a = 7 cm, b = 24 cm. Cari c.",
@@ -15997,6 +16046,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "c² = 7²+24² = 49+576 = 625. c = √625 = 25 cm. (Triple 7-24-25)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[3],
   ],
   [
     "Segi empat tepat 8 cm × 15 cm. Cari panjang pepenjuru.",
@@ -16004,6 +16054,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "d² = 8²+15² = 64+225 = 289. d = √289 = 17 cm. (Triple 8-15-17)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[4],
   ],
   [
     "Tangga 13 m bersandar pada dinding. Kaki tangga 5 m dari dinding. Berapa tinggi tangga pada dinding?",
@@ -16011,6 +16062,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "h² = 13²−5² = 169−25 = 144. h = √144 = 12 m. (Triple 5-12-13)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[5],
   ],
   [
     "Hipotenus = 25 cm, kaki b = 7 cm. Cari kaki a.",
@@ -16018,6 +16070,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "a² = 25²−7² = 625−49 = 576. a = √576 = 24 cm. (Triple 7-24-25)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[6],
   ],
   [
     "Sebuah segi tiga bersudut tegak mempunyai kaki 1.5 cm dan 2 cm. Cari panjang hipotenus.",
@@ -16025,6 +16078,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "c² = 1.5² + 2² = 2.25 + 4 = 6.25. c = √6.25 = 2.5 cm. (6.25 cm ialah c², bukan c.)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[7],
   ],
   [
     "Tiang bendera 12 m tinggi. Wayar sokongan dari puncak ke tanah, 9 m dari kaki tiang. Cari panjang wayar.",
@@ -16032,6 +16086,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Wayar² = 12²+9² = 144+81 = 225. Wayar = √225 = 15 m. (Triple 9-12-15)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[8],
   ],
   [
     "Segi tiga bersudut tegak dengan kaki 6 cm dan 8 cm. Berapakah panjang hipotenus?",
@@ -16039,6 +16094,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "c² = 6² + 8² = 36 + 64 = 100. c = √100 = 10 cm. (14 cm datang daripada 6 + 8.)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[9],
   ],
   [
     "Hipotenus sebuah segi tiga bersudut tegak ialah 26 cm dan satu kakinya 10 cm. Cari panjang kaki yang satu lagi.",
@@ -16046,6 +16102,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "x² = 26² − 10² = 676 − 100 = 576. x = √576 = 24 cm. (√776 cm datang daripada menambah dan bukannya menolak.)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[10],
   ],
   [
     "Segi tiga bersudut tegak dengan sisi a = 20 cm dan hipotenus c = 25 cm. Cari b.",
@@ -16053,6 +16110,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "b² = 25²−20² = 625−400 = 225. b = √225 = 15 cm. (Triple 15-20-25, gandaan 3-4-5×5)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[11],
   ],
   [
     "Segi empat tepat dengan lebar 10 cm dan panjang 24 cm. Pepenjuru berukuran:",
@@ -16060,6 +16118,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "d² = 10²+24² = 100+576 = 676. d = √676 = 26 cm. (Triple 10-24-26, gandaan 5-12-13×2)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[12],
   ],
   [
     "Khemah lebar 6 m. Tali dari puncak ke tepi = 5 m. Berapa ketinggian khemah?",
@@ -16067,6 +16126,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Separa lebar = 3 m. h² + 3² = 5². h² = 25−9 = 16. h = 4 m. (Triple 3-4-5)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[13],
   ],
   [
     "Cari panjang kaki a dalam segi tiga bersudut tegak jika kaki yang lain ialah 40 cm dan hipotenus ialah 41 cm.",
@@ -16074,6 +16134,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "a² = 41²−40² = 1681−1600 = 81. a = √81 = 9. (Triple 9-40-41)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[14],
   ],
   [
     "Segi tiga dengan sisi 1.5 m, 2 m, 2.5 m. Adakah ia bersudut tegak?",
@@ -16086,6 +16147,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "1.5²+2² = 2.25+4 = 6.25 = 2.5². Ya, bersudut tegak! (Ini adalah gandaan 3-4-5 ÷ 2 = 1.5-2-2.5)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[15],
   ],
   [
     "Cari hipotenus segi tiga bersudut tegak dengan kaki 11 cm dan 60 cm.",
@@ -16093,6 +16155,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "c² = 11²+60² = 121+3600 = 3721. c = √3721 = 61 cm. (Triple 11-60-61)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[16],
   ],
   [
     "Segi empat tepat dengan pepenjuru 10 cm dan panjang 8 cm. Cari lebar.",
@@ -16100,6 +16163,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "lebar² = 10²−8² = 100−64 = 36. lebar = 6 cm. (Triple 6-8-10)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[17],
   ],
   [
     "Segi tiga bersudut tegak mempunyai kaki 30 cm dan 40 cm. Berapakah hipotenusnya?",
@@ -16107,6 +16171,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "c² = 30²+40² = 900+1600 = 2500. c = √2500 = 50 cm. (Triple 30-40-50, gandaan 3-4-5×10)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[18],
   ],
   [
     "Menara tinggi 24 m. Jarak dari menara = 7 m. Cari jarak pepenjuru dari titik ke puncak menara.",
@@ -16114,6 +16179,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "d² = 24²+7² = 576+49 = 625. d = √625 = 25 m. (Triple 7-24-25)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[19],
   ],
   [
     "Kaki segi tiga bersudut tegak = 15 cm dan 36 cm. Cari hipotenus.",
@@ -16121,6 +16187,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "c² = 15²+36² = 225+1296 = 1521. c = √1521 = 39 cm. (Triple 15-36-39, gandaan 5-12-13×3)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[20],
   ],
   [
     "Hipotenus = 29 cm, satu kaki = 20 cm. Cari kaki yang lain.",
@@ -16128,6 +16195,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "b² = 29²−20² = 841−400 = 441. b = √441 = 21 cm. (Triple 20-21-29)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[21],
   ],
   [
     "Sebatang tangga sepanjang 10 m bersandar pada dinding. Hujung atas tangga berada 8 m dari tanah. Berapakah jarak kaki tangga dari dinding?",
@@ -16135,6 +16203,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Tangga ialah hipotenus. Jarak² = 10² − 8² = 100 − 64 = 36. Jarak = 6 m. (√164 m datang daripada menambah 10² dan 8².)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[22],
   ],
   [
     "Padang segi empat tepat 30 m × 40 m. Berapakah jarak terpendek merentasi padang secara pepenjuru?",
@@ -16142,6 +16211,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "d² = 30²+40² = 900+1600 = 2500. d = 50 m. (Triple 30-40-50)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[23],
   ],
   [
     "Segi tiga dengan sisi 12 cm, 16 cm, dan 20 cm. Adakah ia bersudut tegak?",
@@ -16149,6 +16219,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "12²+16² = 144+256 = 400 = 20². Ya, bersudut tegak! (Triple 12-16-20, gandaan 3-4-5×4)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[24],
   ],
   [
     "Berapakah panjang pepenjuru kubus dengan sisi 1 unit (pepenjuru permukaan)?",
@@ -16156,6 +16227,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Pepenjuru permukaan = √(1²+1²) = √2 unit. (Segi tiga bersudut tegak dengan dua kaki = 1 unit)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[25],
   ],
   [
     "Segi tiga bersudut tegak. Hipotenus = 50 cm. Satu kaki = 14 cm. Kaki yang lain = ?",
@@ -16163,6 +16235,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "kaki² = 50²−14² = 2500−196 = 2304. kaki = √2304 = 48 cm. (Triple 14-48-50, gandaan 7-24-25×2)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[26],
   ],
   [
     "Sebuah segi tiga bersudut tegak mempunyai kaki 16 cm dan 30 cm. Cari panjang hipotenus.",
@@ -16170,6 +16243,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "c² = 16² + 30² = 256 + 900 = 1 156. c = √1 156 = 34 cm.",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[27],
   ],
   [
     "Seekor semut berjalan 6 m ke timur dan kemudian 8 m ke utara. Berapakah jarak terdekat semut itu dari titik permulaannya?",
@@ -16177,6 +16251,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Laluan timur dan utara membentuk sudut tegak. Jarak² = 6² + 8² = 100. Jarak = 10 m. (14 m ialah jumlah jarak yang dilalui.)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[28],
   ],
   [
     "Segi tiga bersudut tegak: kaki 45 cm dan 28 cm. Cari hipotenus.",
@@ -16184,6 +16259,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "c² = 45²+28² = 2025+784 = 2809. c = √2809 = 53 cm. (Triple 28-45-53)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[29],
   ],
   [
     "Wayar sepanjang 26 m dipasang dari puncak tiang ke tanah. Kaki wayar 10 m dari tiang. Berapa tinggi tiang?",
@@ -16191,6 +16267,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "h² = 26²−10² = 676−100 = 576. h = √576 = 24 m. (Triple 10-24-26)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[30],
   ],
 ]);
 
@@ -16201,6 +16278,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "c² = 9²+12² = 81+144 = 225. c = √225 = 15 cm. (9-12-15 triple, multiple of 3-4-5×3)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[1],
   ],
   [
     "Hypotenuse = 20 cm, leg a = 12 cm. Find leg b.",
@@ -16208,6 +16286,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "b² = 20²−12² = 400−144 = 256. b = √256 = 16 cm. (12-16-20 triple, multiple of 3-4-5×4)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[2],
   ],
   [
     "Right-angled triangle with a = 7 cm, b = 24 cm. Find c.",
@@ -16215,6 +16294,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "c² = 7²+24² = 49+576 = 625. c = √625 = 25 cm. (7-24-25 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[3],
   ],
   [
     "Rectangle 8 cm × 15 cm. Find the length of the diagonal.",
@@ -16222,6 +16302,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "d² = 8²+15² = 64+225 = 289. d = √289 = 17 cm. (8-15-17 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[4],
   ],
   [
     "A 13 m ladder leans against a wall. Base is 5 m from wall. How high does it reach?",
@@ -16229,6 +16310,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "h² = 13²−5² = 169−25 = 144. h = √144 = 12 m. (5-12-13 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[5],
   ],
   [
     "Hypotenuse = 25 cm, leg b = 7 cm. Find leg a.",
@@ -16236,6 +16318,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "a² = 25²−7² = 625−49 = 576. a = √576 = 24 cm. (7-24-25 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[6],
   ],
   [
     "A right-angled triangle has legs of 1.5 cm and 2 cm. Find the length of the hypotenuse.",
@@ -16243,6 +16326,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "c² = 1.5² + 2² = 2.25 + 4 = 6.25. c = √6.25 = 2.5 cm. (6.25 cm is c², not c.)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[7],
   ],
   [
     "Flagpole 12 m high. Support wire from top to ground, 9 m from base. Find wire length.",
@@ -16250,6 +16334,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Wire² = 12²+9² = 144+81 = 225. Wire = √225 = 15 m. (9-12-15 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[8],
   ],
   [
     "Right-angled triangle with legs 6 cm and 8 cm. What is the hypotenuse length?",
@@ -16257,6 +16342,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "c² = 6² + 8² = 36 + 64 = 100. c = √100 = 10 cm. (14 cm comes from 6 + 8.)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[9],
   ],
   [
     "The hypotenuse of a right-angled triangle is 26 cm and one leg is 10 cm. Find the length of the other leg.",
@@ -16264,6 +16350,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "x² = 26² − 10² = 676 − 100 = 576. x = √576 = 24 cm. (√776 cm comes from adding instead of subtracting.)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[10],
   ],
   [
     "Right-angled triangle with side a = 20 cm and hypotenuse c = 25 cm. Find b.",
@@ -16271,6 +16358,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "b² = 25²−20² = 625−400 = 225. b = √225 = 15 cm. (15-20-25 triple, multiple of 3-4-5×5)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[11],
   ],
   [
     "Rectangle with width 10 cm and length 24 cm. Diagonal measures:",
@@ -16278,6 +16366,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "d² = 10²+24² = 100+576 = 676. d = √676 = 26 cm. (10-24-26 triple, multiple of 5-12-13×2)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[12],
   ],
   [
     "Tent width 6 m. Rope from peak to edge = 5 m. Find tent height.",
@@ -16285,6 +16374,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Half width = 3 m. h² + 3² = 5². h² = 25−9 = 16. h = 4 m. (3-4-5 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[13],
   ],
   [
     "Find the length of leg a in a right-angled triangle if the other leg is 40 cm and the hypotenuse is 41 cm.",
@@ -16292,6 +16382,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "a² = 41²−40² = 1681−1600 = 81. a = √81 = 9. (9-40-41 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[14],
   ],
   [
     "Triangle with sides 1.5 m, 2 m, 2.5 m. Is it right-angled?",
@@ -16304,6 +16395,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "1.5²+2² = 2.25+4 = 6.25 = 2.5². Yes, right-angled! (Multiple of 3-4-5 ÷ 2 = 1.5-2-2.5)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[15],
   ],
   [
     "Find hypotenuse of right-angled triangle with legs 11 cm and 60 cm.",
@@ -16311,6 +16403,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "c² = 11²+60² = 121+3600 = 3721. c = √3721 = 61 cm. (11-60-61 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[16],
   ],
   [
     "Rectangle with diagonal 10 cm and length 8 cm. Find width.",
@@ -16318,6 +16411,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "width² = 10²−8² = 100−64 = 36. width = 6 cm. (6-8-10 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[17],
   ],
   [
     "Right-angled triangle with legs 30 cm and 40 cm. What is the hypotenuse?",
@@ -16325,6 +16419,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "c² = 30²+40² = 900+1600 = 2500. c = √2500 = 50 cm. (30-40-50 triple, multiple of 3-4-5×10)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[18],
   ],
   [
     "Tower 24 m tall. Distance from base = 7 m. Find diagonal distance from point to tower top.",
@@ -16332,6 +16427,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "d² = 24²+7² = 576+49 = 625. d = √625 = 25 m. (7-24-25 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[19],
   ],
   [
     "Legs of right-angled triangle = 15 cm and 36 cm. Find hypotenuse.",
@@ -16339,6 +16435,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "c² = 15²+36² = 225+1296 = 1521. c = √1521 = 39 cm. (15-36-39 triple, multiple of 5-12-13×3)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[20],
   ],
   [
     "Hypotenuse = 29 cm, one leg = 20 cm. Find the other leg.",
@@ -16346,6 +16443,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "b² = 29²−20² = 841−400 = 441. b = √441 = 21 cm. (20-21-29 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[21],
   ],
   [
     "A 10 m ladder leans against a wall. The top of the ladder is 8 m above the ground. How far is the foot of the ladder from the wall?",
@@ -16353,6 +16451,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "The ladder is the hypotenuse. Distance² = 10² − 8² = 100 − 64 = 36. Distance = 6 m. (√164 m comes from adding 10² and 8².)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[22],
   ],
   [
     "Rectangular field 30 m × 40 m. What is the shortest diagonal distance across?",
@@ -16360,6 +16459,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "d² = 30²+40² = 900+1600 = 2500. d = 50 m. (30-40-50 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[23],
   ],
   [
     "Triangle with sides 12 cm, 16 cm, 20 cm. Is it right-angled?",
@@ -16367,6 +16467,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "12²+16² = 144+256 = 400 = 20². Yes, right-angled! (12-16-20 triple, multiple of 3-4-5×4)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[24],
   ],
   [
     "What is the length of the face diagonal of a unit cube (side = 1 unit)?",
@@ -16374,6 +16475,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Face diagonal = √(1²+1²) = √2 units. (Right-angled triangle with two legs = 1 unit)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[25],
   ],
   [
     "Right-angled triangle. Hypotenuse = 50 cm. One leg = 14 cm. Other leg = ?",
@@ -16381,6 +16483,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "leg² = 50²−14² = 2500−196 = 2304. leg = √2304 = 48 cm. (14-48-50 triple, multiple of 7-24-25×2)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[26],
   ],
   [
     "A right-angled triangle has legs of 16 cm and 30 cm. Find the length of the hypotenuse.",
@@ -16388,6 +16491,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "c² = 16² + 30² = 256 + 900 = 1 156. c = √1 156 = 34 cm.",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[27],
   ],
   [
     "An ant walks 6 m east and then 8 m north. What is the shortest distance between the ant and its starting point?",
@@ -16395,6 +16499,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "The east and north paths form a right angle. Distance² = 6² + 8² = 100. Distance = 10 m. (14 m is the total distance walked.)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[28],
   ],
   [
     "Right-angled triangle: legs 45 cm and 28 cm. Find hypotenuse.",
@@ -16402,6 +16507,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "c² = 45²+28² = 2025+784 = 2809. c = √2809 = 53 cm. (28-45-53 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[29],
   ],
   [
     "A 26 m wire is stretched from a pole top to the ground, 10 m from the base. How tall is the pole?",
@@ -16409,6 +16515,7 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "h² = 26²−10² = 676−100 = 576. h = √576 = 24 m. (10-24-26 triple!)",
     "Medium",
+    MATH_F1_C13_QUIZ_VISUALS.practice[30],
   ],
 ]);
 
@@ -16419,6 +16526,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Sisi terpanjang = 9: 9² = 81. 5² + 7² = 25 + 49 = 74. 81 > 74, jadi segi tiga itu bersudut cakah.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[1],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 6 cm, 7 cm dan 8 cm. Apakah jenis segi tiga itu?",
@@ -16426,6 +16534,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Sisi terpanjang = 8: 8² = 64. 6² + 7² = 36 + 49 = 85. 64 < 85, jadi segi tiga itu bersudut tirus.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[2],
   ],
   [
     "Segi tiga PQR mempunyai PQ = 9 cm, QR = 40 cm dan PR = 41 cm. Di manakah sudut tegak?",
@@ -16433,6 +16542,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "9² + 40² = 81 + 1 600 = 1 681 = 41². PR ialah sisi terpanjang (hipotenus), jadi sudut tegak berada bertentangan dengan PR, iaitu di Q.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[3],
   ],
   [
     "Sebuah segi tiga sama kaki mempunyai dua sisi sama 13 cm dan tapak 24 cm. Cari tingginya.",
@@ -16440,6 +16550,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Tinggi membahagi dua tapak: separuh tapak = 12 cm. h² = 13² − 12² = 169 − 144 = 25. h = 5 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[4],
   ],
   [
     "Dalam segi empat tepat ABCD, AB = 6 cm dan BC = 8 cm. Cari panjang AC dan luas ABCD.",
@@ -16452,6 +16563,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "∠B = 90°. AC² = 6² + 8² = 100, maka AC = 10 cm. Luas = 6 × 8 = 48 cm².",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[5],
   ],
   [
     "Sebuah segi tiga bersudut tegak mempunyai sisi 9 cm, 12 cm dan x cm, dengan x sebagai hipotenus. Cari x.",
@@ -16459,6 +16571,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "x² = 9² + 12² = 81 + 144 = 225. x = 15 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[6],
   ],
   [
     "Segi tiga ABC bersudut tegak di B dengan AB = 6 cm dan BC = 8 cm. Segi tiga ACD bersudut tegak di C dengan CD = 24 cm. Cari panjang AD.",
@@ -16466,6 +16579,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "AC² = 6² + 8² = 100, maka AC = 10 cm. AD ialah hipotenus segi tiga ACD: AD² = 10² + 24² = 676, maka AD = 26 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[7],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 2.5 cm, 6 cm dan 6.5 cm. Apakah jenis segi tiga itu?",
@@ -16473,6 +16587,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "6.5² = 42.25. 2.5² + 6² = 6.25 + 36 = 42.25. Kedua-duanya sama, jadi segi tiga itu bersudut tegak.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[8],
   ],
   [
     "Dalam segi tiga ABC, AB = 5 cm, BC = 12 cm dan AC = 13 cm. Di manakah sudut tegak?",
@@ -16480,6 +16595,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "5² + 12² = 169 = 13². AC ialah hipotenus, jadi sudut tegak bertentangan dengan AC, iaitu di B.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[9],
   ],
   [
     "Sebidang tanah segi empat tepat berukuran 40 m × 30 m. Ahmad berjalan merentasi tanah itu secara pepenjuru dan bukan di sepanjang dua tepinya. Berapakah jarak yang dijimatkan?",
@@ -16487,6 +16603,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Pepenjuru = √(40² + 30²) = √2 500 = 50 m. Jalan di tepi = 40 + 30 = 70 m. Jimat = 70 − 50 = 20 m.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[10],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 3k, 4k dan 5k dengan k > 0. Bilakah segi tiga itu bersudut tegak?",
@@ -16499,6 +16616,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "(3k)² + (4k)² = 9k² + 16k² = 25k² = (5k)² bagi sebarang k > 0. Inilah sebabnya semua gandaan 3, 4, 5 membentuk segi tiga bersudut tegak.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[11],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 10 cm, 11 cm dan 14 cm. Apakah jenis segi tiga itu?",
@@ -16506,6 +16624,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Sisi terpanjang = 14: 14² = 196. 10² + 11² = 100 + 121 = 221. 196 < 221, jadi segi tiga itu bersudut tirus.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[12],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 5 cm, 8 cm dan 10 cm. Apakah jenis segi tiga itu?",
@@ -16513,6 +16632,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sisi terpanjang = 10: 10² = 100. 5² + 8² = 25 + 64 = 89. 100 > 89, jadi segi tiga itu bersudut cakah.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[13],
   ],
   [
     "Dua batang jalan lurus bertemu pada sudut tegak di simpang S. Rumah Ali berada 8 km dari S di sepanjang satu jalan, dan sekolah berada 15 km dari S di sepanjang jalan yang satu lagi. Berapakah jarak lurus dari rumah Ali ke sekolah?",
@@ -16520,6 +16640,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Jarak² = 8² + 15² = 64 + 225 = 289. Jarak = √289 = 17 km. (23 km ialah jarak melalui simpang S.)",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[14],
   ],
   [
     "Segi tiga ABC mempunyai AB = 15 cm, BC = 20 cm dan AC = 25 cm. Adakah segi tiga itu bersudut tegak? Jika ya, di manakah sudut tegaknya?",
@@ -16527,6 +16648,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "15² + 20² = 225 + 400 = 625 = 25². AC ialah hipotenus, jadi sudut tegak bertentangan dengan AC, iaitu di B.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[15],
   ],
   [
     "Sebuah segi empat tepat mempunyai pepenjuru 25 cm dan panjang 24 cm. Berapakah lebarnya?",
@@ -16534,6 +16656,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Lebar² = 25² − 24² = 625 − 576 = 49. Lebar = 7 cm. (1 cm datang daripada 25 − 24.)",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[16],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 6 cm, 8 cm dan 11 cm. Apakah jenis segi tiga itu?",
@@ -16541,6 +16664,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Sisi terpanjang = 11: 11² = 121. 6² + 8² = 36 + 64 = 100. 121 > 100, jadi segi tiga itu bersudut cakah.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[17],
   ],
   [
     "Sisi-sisi sebuah segi tiga bersudut tegak ialah 5 cm, k cm dan 13 cm, dengan 13 cm sebagai hipotenus. Cari k.",
@@ -16548,6 +16672,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "5² + k² = 13². k² = 169 − 25 = 144. k = 12.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[18],
   ],
   [
     "Sebatang pokok setinggi 16 m patah pada ketinggian 6 m dari tanah. Hujung pokok yang patah menyentuh tanah. Berapakah jarak hujung pokok itu dari pangkalnya?",
@@ -16555,6 +16680,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Bahagian yang patah = 16 − 6 = 10 m dan menjadi hipotenus. Jarak² = 10² − 6² = 100 − 36 = 64. Jarak = 8 m.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[19],
   ],
   [
     "Kaki-kaki sebuah segi tiga bersudut tegak adalah dalam nisbah 3 : 4 dan hipotenusnya 20 cm. Cari panjang kedua-dua kaki.",
@@ -16562,6 +16688,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Katakan kaki = 3x dan 4x. (3x)² + (4x)² = 20². 25x² = 400. x² = 16. x = 4. Kaki: 12 cm dan 16 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[20],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 1 cm, 1 cm dan √2 cm. Apakah jenis segi tiga itu?",
@@ -16569,6 +16696,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "(√2)² = 2. 1² + 1² = 2. Kedua-duanya sama, jadi segi tiga itu bersudut tegak (dan juga sama kaki).",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[21],
   ],
   [
     "Sebuah kapal belayar 15 km ke timur, kemudian 20 km ke utara. Berapakah jarak kapal itu dari titik permulaannya?",
@@ -16576,6 +16704,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Jarak² = 15² + 20² = 225 + 400 = 625. Jarak = √625 = 25 km. (35 km ialah jumlah jarak yang dilayari.)",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[22],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 8 cm, 15 cm dan 18 cm. Apakah jenis segi tiga itu?",
@@ -16583,6 +16712,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sisi terpanjang = 18: 18² = 324. 8² + 15² = 64 + 225 = 289. 324 > 289, jadi segi tiga itu bersudut cakah.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[23],
   ],
   [
     "Dua utas wayar sokongan dipasang dari puncak sebatang tiang setinggi 20 m ke tanah. Wayar A sampai ke tanah 16 m dari kaki tiang dan wayar B 21 m dari kaki tiang. Berapakah panjang setiap wayar? (Beri jawapan betul kepada 1 tempat perpuluhan jika perlu.)",
@@ -16595,6 +16725,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "A² = 20² + 16² = 400 + 256 = 656, A = √656 = 25.6 m (1 t.p.). B² = 20² + 21² = 400 + 441 = 841, B = √841 = 29 m.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[24],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 1 cm, √3 cm dan 2 cm. Apakah jenis segi tiga itu?",
@@ -16602,6 +16733,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "2² = 4. 1² + (√3)² = 1 + 3 = 4. Kedua-duanya sama, jadi segi tiga itu bersudut tegak.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[25],
   ],
   [
     "Dalam segi empat tepat PQRS, PQ = 10 cm dan QR = 24 cm. Cari PR dan nyatakan jenis segi tiga PQR.",
@@ -16614,6 +16746,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "∠Q = 90° kerana PQRS ialah segi empat tepat. PR² = 10² + 24² = 676. PR = 26 cm. Segi tiga PQR bersudut tegak di Q.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[26],
   ],
   [
     "Tentukan sama ada (20, 21, 29) ialah triple Pythagoras.",
@@ -16626,6 +16759,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "20² + 21² = 400 + 441 = 841 = 29². Maka (20, 21, 29) ialah triple Pythagoras.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[27],
   ],
   [
     "Dua batang jalan bersilang pada sudut tegak. Sebuah kereta bergerak 1.8 km di sepanjang jalan A, kemudian 2.4 km di sepanjang jalan B. Berapakah jarak lurus dari titik mula ke titik akhir?",
@@ -16633,6 +16767,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Jarak² = 1.8² + 2.4² = 3.24 + 5.76 = 9. Jarak = √9 = 3 km. (9 km ialah jarak², bukan jarak.)",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[28],
   ],
   [
     "Sebuah skrin berbentuk segi empat tepat mempunyai pepenjuru 100 cm dan lebar 80 cm. Berapakah tinggi skrin itu?",
@@ -16640,6 +16775,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Pepenjuru ialah hipotenus. Tinggi² = 100² − 80² = 10 000 − 6 400 = 3 600. Tinggi = 60 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[29],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 7 cm, 8 cm dan 9 cm. Apakah jenis segi tiga itu?",
@@ -16647,6 +16783,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Sisi terpanjang = 9: 9² = 81. 7² + 8² = 49 + 64 = 113. 81 < 113, jadi segi tiga itu bersudut tirus.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[30],
   ],
 ]);
 
@@ -16657,6 +16794,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Longest side = 9: 9² = 81. 5² + 7² = 25 + 49 = 74. 81 > 74, so the triangle is obtuse-angled.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[1],
   ],
   [
     "A triangle has sides of 6 cm, 7 cm and 8 cm. What type of triangle is it?",
@@ -16664,6 +16802,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Longest side = 8: 8² = 64. 6² + 7² = 36 + 49 = 85. 64 < 85, so the triangle is acute-angled.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[2],
   ],
   [
     "Triangle PQR has PQ = 9 cm, QR = 40 cm and PR = 41 cm. Where is the right angle?",
@@ -16671,6 +16810,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "9² + 40² = 81 + 1 600 = 1 681 = 41². PR is the longest side (the hypotenuse), so the right angle is opposite PR, at Q.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[3],
   ],
   [
     "An isosceles triangle has two equal sides of 13 cm and a base of 24 cm. Find its height.",
@@ -16678,6 +16818,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "The height bisects the base: half the base = 12 cm. h² = 13² − 12² = 169 − 144 = 25. h = 5 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[4],
   ],
   [
     "In rectangle ABCD, AB = 6 cm and BC = 8 cm. Find the length of AC and the area of ABCD.",
@@ -16690,6 +16831,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "∠B = 90°. AC² = 6² + 8² = 100, so AC = 10 cm. Area = 6 × 8 = 48 cm².",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[5],
   ],
   [
     "A right-angled triangle has sides of 9 cm, 12 cm and x cm, where x is the hypotenuse. Find x.",
@@ -16697,6 +16839,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "x² = 9² + 12² = 81 + 144 = 225. x = 15 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[6],
   ],
   [
     "Triangle ABC is right-angled at B with AB = 6 cm and BC = 8 cm. Triangle ACD is right-angled at C with CD = 24 cm. Find the length of AD.",
@@ -16704,6 +16847,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "AC² = 6² + 8² = 100, so AC = 10 cm. AD is the hypotenuse of triangle ACD: AD² = 10² + 24² = 676, so AD = 26 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[7],
   ],
   [
     "A triangle has sides of 2.5 cm, 6 cm and 6.5 cm. What type of triangle is it?",
@@ -16711,6 +16855,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "6.5² = 42.25. 2.5² + 6² = 6.25 + 36 = 42.25. They are equal, so the triangle is right-angled.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[8],
   ],
   [
     "In triangle ABC, AB = 5 cm, BC = 12 cm and AC = 13 cm. Where is the right angle?",
@@ -16718,6 +16863,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "5² + 12² = 169 = 13². AC is the hypotenuse, so the right angle is opposite AC, at B.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[9],
   ],
   [
     "A rectangular plot of land measures 40 m × 30 m. Ahmad walks diagonally across it instead of along two edges. How much distance does he save?",
@@ -16725,6 +16871,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Diagonal = √(40² + 30²) = √2 500 = 50 m. Along the edges = 40 + 30 = 70 m. Saving = 70 − 50 = 20 m.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[10],
   ],
   [
     "A triangle has sides 3k, 4k and 5k with k > 0. When is the triangle right-angled?",
@@ -16737,6 +16884,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "(3k)² + (4k)² = 9k² + 16k² = 25k² = (5k)² for any k > 0. This is why all multiples of 3, 4, 5 form right-angled triangles.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[11],
   ],
   [
     "A triangle has sides of 10 cm, 11 cm and 14 cm. What type of triangle is it?",
@@ -16744,6 +16892,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Longest side = 14: 14² = 196. 10² + 11² = 100 + 121 = 221. 196 < 221, so the triangle is acute-angled.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[12],
   ],
   [
     "A triangle has sides of 5 cm, 8 cm and 10 cm. What type of triangle is it?",
@@ -16751,6 +16900,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Longest side = 10: 10² = 100. 5² + 8² = 25 + 64 = 89. 100 > 89, so the triangle is obtuse-angled.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[13],
   ],
   [
     "Two straight roads meet at right angles at junction S. Ali's house is 8 km from S along one road, and the school is 15 km from S along the other road. What is the straight-line distance from Ali's house to the school?",
@@ -16758,6 +16908,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Distance² = 8² + 15² = 64 + 225 = 289. Distance = √289 = 17 km. (23 km is the distance via junction S.)",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[14],
   ],
   [
     "Triangle ABC has AB = 15 cm, BC = 20 cm and AC = 25 cm. Is it right-angled? If so, where is the right angle?",
@@ -16765,6 +16916,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "15² + 20² = 225 + 400 = 625 = 25². AC is the hypotenuse, so the right angle is opposite AC, at B.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[15],
   ],
   [
     "A rectangle has a diagonal of 25 cm and a length of 24 cm. What is its width?",
@@ -16772,6 +16924,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Width² = 25² − 24² = 625 − 576 = 49. Width = 7 cm. (1 cm comes from 25 − 24.)",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[16],
   ],
   [
     "A triangle has sides of 6 cm, 8 cm and 11 cm. What type of triangle is it?",
@@ -16779,6 +16932,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Longest side = 11: 11² = 121. 6² + 8² = 36 + 64 = 100. 121 > 100, so the triangle is obtuse-angled.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[17],
   ],
   [
     "The sides of a right-angled triangle are 5 cm, k cm and 13 cm, where 13 cm is the hypotenuse. Find k.",
@@ -16786,6 +16940,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "5² + k² = 13². k² = 169 − 25 = 144. k = 12.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[18],
   ],
   [
     "A 16 m tall tree breaks at a height of 6 m above the ground. The broken top touches the ground. How far is the tip of the tree from its base?",
@@ -16793,6 +16948,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "The broken part = 16 − 6 = 10 m and is the hypotenuse. Distance² = 10² − 6² = 100 − 36 = 64. Distance = 8 m.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[19],
   ],
   [
     "The legs of a right-angled triangle are in the ratio 3 : 4 and the hypotenuse is 20 cm. Find the lengths of both legs.",
@@ -16800,6 +16956,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Let the legs be 3x and 4x. (3x)² + (4x)² = 20². 25x² = 400. x² = 16. x = 4. Legs: 12 cm and 16 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[20],
   ],
   [
     "A triangle has sides of 1 cm, 1 cm and √2 cm. What type of triangle is it?",
@@ -16807,6 +16964,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "(√2)² = 2. 1² + 1² = 2. They are equal, so the triangle is right-angled (and also isosceles).",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[21],
   ],
   [
     "A ship sails 15 km east, then 20 km north. How far is the ship from its starting point?",
@@ -16814,6 +16972,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Distance² = 15² + 20² = 225 + 400 = 625. Distance = √625 = 25 km. (35 km is the total distance sailed.)",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[22],
   ],
   [
     "A triangle has sides of 8 cm, 15 cm and 18 cm. What type of triangle is it?",
@@ -16821,6 +16980,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Longest side = 18: 18² = 324. 8² + 15² = 64 + 225 = 289. 324 > 289, so the triangle is obtuse-angled.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[23],
   ],
   [
     "Two support wires run from the top of a 20 m pole to the ground. Wire A reaches the ground 16 m from the base of the pole and wire B 21 m from the base. What is the length of each wire? (Give answers correct to 1 decimal place where necessary.)",
@@ -16833,6 +16993,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "A² = 20² + 16² = 400 + 256 = 656, A = √656 = 25.6 m (1 d.p.). B² = 20² + 21² = 400 + 441 = 841, B = √841 = 29 m.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[24],
   ],
   [
     "A triangle has sides of 1 cm, √3 cm and 2 cm. What type of triangle is it?",
@@ -16840,6 +17001,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "2² = 4. 1² + (√3)² = 1 + 3 = 4. They are equal, so the triangle is right-angled.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[25],
   ],
   [
     "In rectangle PQRS, PQ = 10 cm and QR = 24 cm. Find PR and state the type of triangle PQR.",
@@ -16852,6 +17014,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "∠Q = 90° because PQRS is a rectangle. PR² = 10² + 24² = 676. PR = 26 cm. Triangle PQR is right-angled at Q.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[26],
   ],
   [
     "Determine whether (20, 21, 29) is a Pythagorean triple.",
@@ -16864,6 +17027,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "20² + 21² = 400 + 441 = 841 = 29². So (20, 21, 29) is a Pythagorean triple.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[27],
   ],
   [
     "Two roads cross at right angles. A car travels 1.8 km along road A, then 2.4 km along road B. What is the straight-line distance from the start to the end point?",
@@ -16871,6 +17035,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Distance² = 1.8² + 2.4² = 3.24 + 5.76 = 9. Distance = √9 = 3 km. (9 km is the distance squared, not the distance.)",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[28],
   ],
   [
     "A rectangular screen has a diagonal of 100 cm and a width of 80 cm. What is the height of the screen?",
@@ -16878,6 +17043,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "The diagonal is the hypotenuse. Height² = 100² − 80² = 10 000 − 6 400 = 3 600. Height = 60 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[29],
   ],
   [
     "A triangle has sides of 7 cm, 8 cm and 9 cm. What type of triangle is it?",
@@ -16885,6 +17051,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Longest side = 9: 9² = 81. 7² + 8² = 49 + 64 = 113. 81 < 113, so the triangle is acute-angled.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[30],
   ],
 ]);
 
