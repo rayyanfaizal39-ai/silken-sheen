@@ -138,6 +138,61 @@ export function MathIndicesVisual({
         </div>
       );
       break;
+    case "geometry-model":
+      body = (
+        <div className="flex flex-wrap items-start justify-center gap-3" aria-hidden="true">
+          {visual.models.map((model, index) => (
+            <div key={index} className="w-full max-w-[222px] rounded-xl border border-white/10 bg-white/[0.03] p-2">
+              {model.label && (
+                <p className="mb-1 text-center text-xs font-medium text-slate-300">
+                  {textFor(model.label, lang)}
+                </p>
+              )}
+              <svg viewBox="0 0 220 178" className="h-auto w-full" aria-hidden="true">
+                {model.shape === "square" ? (
+                  <>
+                    <rect x="53" y="16" width="114" height="114" rx="2"
+                      fill="#8b5cf6" fillOpacity=".23" stroke="#c4b5fd" strokeWidth="2" />
+                    {model.area && <text x="110" y="80" textAnchor="middle" fontSize="14" fill="#fcd34d">
+                      {lang === "bm" ? "Luas" : "Area"} = {model.area}
+                    </text>}
+                    {model.side && <text x="110" y="155" textAnchor="middle" fontSize="14" fill="#e2e8f0">
+                      {lang === "bm" ? "Sisi" : "Side"} = {model.side}
+                    </text>}
+                  </>
+                ) : model.shape === "rectangle" ? (
+                  <>
+                    <rect x="36" y="31" width="163" height="88" rx="2"
+                      fill="#38bdf8" fillOpacity=".20" stroke="#7dd3fc" strokeWidth="2" />
+                    {model.area && <text x="117" y="79" textAnchor="middle" fontSize="14" fill="#fcd34d">
+                      {lang === "bm" ? "Luas" : "Area"} = {model.area}
+                    </text>}
+                    {model.width && <text x="117" y="145" textAnchor="middle" fontSize="14" fill="#e2e8f0">{model.width}</text>}
+                    {model.height && <text x="18" y="74" textAnchor="middle" fontSize="12" fill="#e2e8f0"
+                      transform="rotate(-90 18 74)">{model.height}</text>}
+                  </>
+                ) : (
+                  <>
+                    <polygon points="52,52 150,52 150,149 52,149"
+                      fill="#8b5cf6" fillOpacity=".34" stroke="#c4b5fd" strokeWidth="1.7" />
+                    <polygon points="52,52 96,19 194,19 150,52"
+                      fill="#38bdf8" fillOpacity=".28" stroke="#7dd3fc" strokeWidth="1.7" />
+                    <polygon points="150,52 194,19 194,116 150,149"
+                      fill="#fbbf24" fillOpacity=".26" stroke="#fcd34d" strokeWidth="1.7" />
+                    {model.volume && <text x="102" y="102" textAnchor="middle" fontSize="13" fill="#fff">
+                      {lang === "bm" ? "Isipadu" : "Volume"} = {model.volume}
+                    </text>}
+                    {model.side && <text x="118" y="169" textAnchor="middle" fontSize="14" fill="#e2e8f0">
+                      {lang === "bm" ? "Sisi" : "Side"} = {model.side}
+                    </text>}
+                  </>
+                )}
+              </svg>
+            </div>
+          ))}
+        </div>
+      );
+      break;
     case "unit-cube": {
       const n = visual.divisions;
       body = (
