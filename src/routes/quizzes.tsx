@@ -57,6 +57,7 @@ import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
 import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-visuals";
 import { MATH_F1_C2_QUIZ_VISUALS } from "@/content/form1/math/chapter-2/quiz-visuals";
+import { MATH_F1_C9_QUIZ_VISUALS } from "@/content/form1/math/chapter-9/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { MATH_F1_C3_QUIZ_VISUALS } from "@/content/form1/math/chapter-3/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
@@ -10858,6 +10859,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Poligon ialah bentuk dua dimensi (2D) tertutup yang dibatasi oleh tiga atau lebih sisi lurus.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.polygonExample,
   ],
   [
     "Berapakah bilangan sisi segi tiga?",
@@ -10865,6 +10867,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Segi tiga mempunyai 3 sisi, 3 bucu dan 3 sudut.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.threeSides,
   ],
   [
     "Berapakah bilangan sisi pentagon?",
@@ -10872,6 +10875,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Pentagon mempunyai 5 sisi (penta = 5 dalam bahasa Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.fiveSides,
   ],
   [
     "Berapakah bilangan sisi heksagon?",
@@ -10879,6 +10883,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Heksagon mempunyai 6 sisi (hexa = 6 dalam bahasa Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.sixSides,
   ],
   [
     "Apakah nama poligon dengan 8 sisi?",
@@ -10886,6 +10891,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Poligon dengan 8 sisi dipanggil Oktagon (octa = 8 dalam bahasa Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.eightSides,
   ],
   [
     "Apakah nama poligon dengan 10 sisi?",
@@ -10893,6 +10899,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Poligon dengan 10 sisi dipanggil Dekagon (deca = 10 dalam bahasa Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.tenSides,
   ],
   [
     "Apakah poligon sekata?",
@@ -10905,6 +10912,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Poligon sekata mempunyai semua sisi sama panjang DAN semua sudut dalam sama besar.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.regularShape,
   ],
   [
     "Apakah segi tiga sama sisi?",
@@ -10917,6 +10925,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Segi tiga sama sisi mempunyai 3 sisi sama panjang dan semua sudut = 60°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.equilateralShape,
   ],
   [
     "Apakah segi tiga sama kaki?",
@@ -10929,6 +10938,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Segi tiga sama kaki mempunyai DUA sisi sama panjang dan DUA sudut tapak yang sama.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.isoscelesShape,
   ],
   [
     "Apakah segi tiga tak sama kaki?",
@@ -10941,6 +10951,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Segi tiga tak sama kaki mempunyai semua sisi berbeza panjang dan semua sudut berbeza besar.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.scaleneShape,
   ],
   [
     "Apakah segi tiga bersudut tegak?",
@@ -10953,6 +10964,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Segi tiga bersudut tegak mempunyai tepat SATU sudut 90°. Sisi terpanjang dipanggil hipotenus.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rightShape,
   ],
   [
     "Apakah hipotenus?",
@@ -10965,6 +10977,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Hipotenus ialah sisi terpanjang segi tiga bersudut tegak, yang berada bertentangan dengan sudut 90°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.hypotenuseShape,
   ],
   [
     "Apakah segi empat tepat?",
@@ -10977,6 +10990,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Segi empat tepat mempunyai 4 sudut 90°, sisi bertentangan sama panjang dan selari.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleShape,
   ],
   [
     "Apakah segi empat sama?",
@@ -10989,6 +11003,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Segi empat sama mempunyai 4 sisi sama, 4 sudut 90°, dan pepenjuru berserenjang.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareShape,
   ],
   [
     "Apakah segi empat selari?",
@@ -11001,6 +11016,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Segi empat selari mempunyai 2 pasang sisi bertentangan yang selari dan sama panjang, serta sudut bertentangan yang sama.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.parallelogramShape,
   ],
   [
     "Apakah belah ketupat?",
@@ -11013,6 +11029,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Belah ketupat mempunyai 4 sisi sama panjang dan pepenjuru yang berserenjang.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusShape,
   ],
   [
     "Apakah trapezium?",
@@ -11025,6 +11042,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Trapezium mempunyai tepat SATU pasang sisi yang selari.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.trapeziumShape,
   ],
   [
     "Apakah lelayang?",
@@ -11037,6 +11055,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Lelayang mempunyai DUA pasang sisi BERSEBELAHAN yang sama panjang.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.kiteShape,
   ],
   [
     "Berapakah bilangan garis simetri segi tiga sama sisi?",
@@ -11044,6 +11063,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Segi tiga sama sisi mempunyai 3 garis simetri — setiap satu melalui puncak dan titik tengah sisi bertentangan.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.triangleSymmetry,
   ],
   [
     "Berapakah bilangan garis simetri segi empat sama?",
@@ -11051,6 +11071,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Segi empat sama mempunyai 4 garis simetri — 2 melalui sisi bertentangan dan 2 melalui pepenjuru.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareSymmetry,
   ],
   [
     "Berapakah bilangan garis simetri segi tiga sama kaki?",
@@ -11058,6 +11079,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Segi tiga sama kaki mempunyai 1 garis simetri — melalui puncak dan titik tengah tapak.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.isoscelesSymmetry,
   ],
   [
     "Berapakah bilangan garis simetri segi empat selari?",
@@ -11065,6 +11087,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Segi empat selari mempunyai 0 garis simetri.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.parallelogramSymmetry,
   ],
   [
     "Berapakah bilangan garis simetri belah ketupat?",
@@ -11072,6 +11095,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Belah ketupat mempunyai 2 garis simetri — melalui kedua-dua pasang bucu bertentangan.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusSymmetry,
   ],
   [
     "Berapakah bilangan garis simetri lelayang?",
@@ -11079,6 +11103,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Lelayang mempunyai 1 garis simetri — pepenjuru yang membahagi dua pepenjuru yang lain.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.kiteSymmetry,
   ],
   [
     "Apakah segi tiga bersudut cakah?",
@@ -11091,6 +11116,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Segi tiga bersudut cakah mempunyai tepat SATU sudut lebih besar daripada 90°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.obtuseTriangle,
   ],
   [
     "Berapakah bilangan garis simetri segi empat tepat (bukan segi empat sama)?",
@@ -11098,6 +11124,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Segi empat tepat (bukan segi empat sama) mempunyai 2 garis simetri — melalui titik tengah sisi bertentangan.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleSymmetry,
   ],
   [
     "Apakah yang membezakan segi empat sama dengan segi empat tepat?",
@@ -11110,6 +11137,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Segi empat sama: semua 4 sisi sama. Segi empat tepat: hanya sisi bertentangan sama. Kedua-duanya mempunyai 4 sudut 90°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareVsRectangle,
   ],
   [
     "Apakah nama poligon dengan 7 sisi?",
@@ -11117,6 +11145,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Poligon dengan 7 sisi dipanggil Heptagon (hepta = 7 dalam bahasa Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.sevenSides,
   ],
   [
     "Apakah nama poligon dengan 9 sisi?",
@@ -11124,6 +11153,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Poligon dengan 9 sisi dipanggil Nonagon (nona = 9 dalam bahasa Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.nineSides,
   ],
   [
     "Apakah ciri utama pepenjuru poligon?",
@@ -11136,6 +11166,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Pepenjuru ialah tembereng garis yang menghubungkan dua bucu yang TIDAK bersebelahan. Sisi bukan pepenjuru.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.diagonalExample,
   ],
 ]);
 
@@ -11151,6 +11182,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A polygon is a two-dimensional (2D) closed shape bounded by three or more straight sides.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.polygonExample,
   ],
   [
     "How many sides does a triangle have?",
@@ -11158,6 +11190,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A triangle has 3 sides, 3 vertices and 3 angles.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.threeSides,
   ],
   [
     "How many sides does a pentagon have?",
@@ -11165,6 +11198,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "A pentagon has 5 sides (penta = 5 in Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.fiveSides,
   ],
   [
     "How many sides does a hexagon have?",
@@ -11172,6 +11206,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A hexagon has 6 sides (hexa = 6 in Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.sixSides,
   ],
   [
     "What is the name of a polygon with 8 sides?",
@@ -11179,6 +11214,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A polygon with 8 sides is called an Octagon (octa = 8 in Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.eightSides,
   ],
   [
     "What is the name of a polygon with 10 sides?",
@@ -11186,6 +11222,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "A polygon with 10 sides is called a Decagon (deca = 10 in Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.tenSides,
   ],
   [
     "What is a regular polygon?",
@@ -11198,6 +11235,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A regular polygon has all sides equal in length AND all interior angles equal.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.regularShape,
   ],
   [
     "What is an equilateral triangle?",
@@ -11210,6 +11248,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "An equilateral triangle has 3 equal sides and all angles = 60°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.equilateralShape,
   ],
   [
     "What is an isosceles triangle?",
@@ -11222,6 +11261,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "An isosceles triangle has TWO equal sides and TWO equal base angles.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.isoscelesShape,
   ],
   [
     "What is a scalene triangle?",
@@ -11234,6 +11274,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A scalene triangle has all sides of different lengths and all angles of different sizes.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.scaleneShape,
   ],
   [
     "What is a right-angled triangle?",
@@ -11246,6 +11287,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A right-angled triangle has exactly ONE 90° angle. The longest side is called the hypotenuse.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rightShape,
   ],
   [
     "What is the hypotenuse?",
@@ -11258,6 +11300,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "The hypotenuse is the longest side of a right-angled triangle, opposite the 90° angle.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.hypotenuseShape,
   ],
   [
     "What is a rectangle?",
@@ -11270,6 +11313,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A rectangle has 4 right angles and opposite sides that are equal in length and parallel.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleShape,
   ],
   [
     "What is a square?",
@@ -11282,6 +11326,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A square has 4 equal sides, 4 right angles, and perpendicular diagonals.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareShape,
   ],
   [
     "What is a parallelogram?",
@@ -11294,6 +11339,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A parallelogram has 2 pairs of opposite sides that are parallel and equal, with opposite angles equal.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.parallelogramShape,
   ],
   [
     "What is a rhombus?",
@@ -11306,6 +11352,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "A rhombus has 4 equal sides and perpendicular diagonals.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusShape,
   ],
   [
     "What is a trapezium?",
@@ -11318,6 +11365,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A trapezium has exactly ONE pair of parallel sides.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.trapeziumShape,
   ],
   [
     "What is a kite?",
@@ -11330,6 +11378,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "A kite has TWO pairs of ADJACENT (neighbouring) sides that are equal in length.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.kiteShape,
   ],
   [
     "How many lines of symmetry does an equilateral triangle have?",
@@ -11337,6 +11386,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "An equilateral triangle has 3 lines of symmetry — each through a vertex and the midpoint of the opposite side.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.triangleSymmetry,
   ],
   [
     "How many lines of symmetry does a square have?",
@@ -11344,6 +11394,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A square has 4 lines of symmetry — 2 through opposite sides and 2 through diagonals.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareSymmetry,
   ],
   [
     "How many lines of symmetry does an isosceles triangle have?",
@@ -11351,6 +11402,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "An isosceles triangle has 1 line of symmetry — through the apex and the midpoint of the base.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.isoscelesSymmetry,
   ],
   [
     "How many lines of symmetry does a parallelogram have?",
@@ -11358,6 +11410,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A parallelogram has 0 lines of symmetry.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.parallelogramSymmetry,
   ],
   [
     "How many lines of symmetry does a rhombus have?",
@@ -11365,6 +11418,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A rhombus has 2 lines of symmetry — through both pairs of opposite vertices.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusSymmetry,
   ],
   [
     "How many lines of symmetry does a kite have?",
@@ -11372,6 +11426,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A kite has 1 line of symmetry — the diagonal that bisects the other diagonal.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.kiteSymmetry,
   ],
   [
     "What is an obtuse-angled triangle?",
@@ -11384,6 +11439,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "An obtuse-angled triangle has exactly ONE angle greater than 90°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.obtuseTriangle,
   ],
   [
     "How many lines of symmetry does a rectangle (non-square) have?",
@@ -11391,6 +11447,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A rectangle (non-square) has 2 lines of symmetry — through the midpoints of opposite sides.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleSymmetry,
   ],
   [
     "What distinguishes a square from a rectangle?",
@@ -11403,6 +11460,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Square: all 4 sides equal. Rectangle: only opposite sides equal. Both have 4 right angles.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareVsRectangle,
   ],
   [
     "What is the name of a polygon with 7 sides?",
@@ -11410,6 +11468,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "A polygon with 7 sides is called a Heptagon (hepta = 7 in Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.sevenSides,
   ],
   [
     "What is the name of a polygon with 9 sides?",
@@ -11417,6 +11476,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A polygon with 9 sides is called a Nonagon (nona = 9 in Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.nineSides,
   ],
   [
     "What is the key feature of a polygon's diagonal?",
@@ -11429,6 +11489,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A diagonal connects two NON-ADJACENT vertices. Sides are not diagonals.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.diagonalExample,
   ],
 ]);
 
@@ -11439,6 +11500,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Jumlah ketiga-tiga sudut dalam mana-mana segi tiga sentiasa 180°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleInterior,
   ],
   [
     "Berapakah jumlah sudut dalam sisi empat?",
@@ -11446,6 +11508,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Jumlah keempat-empat sudut dalam mana-mana sisi empat sentiasa 360°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadInterior,
   ],
   [
     "Segi tiga ABC: ∠A = 55°, ∠B = 75°. Cari ∠C.",
@@ -11453,6 +11516,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "∠C = 180° − 55° − 75° = 50°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangle55_75,
   ],
   [
     "Sisi empat PQRS: ∠P = 90°, ∠Q = 85°, ∠R = 95°. Cari ∠S.",
@@ -11460,6 +11524,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "∠S = 360° − 90° − 85° − 95° = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quad90_85_95,
   ],
   [
     "Berapakah bilangan pepenjuru segi empat?",
@@ -11467,6 +11532,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Pepenjuru sisi empat = 4(4−3)/2 = 4(1)/2 = 2 pepenjuru.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadDiagonals,
   ],
   [
     "Berapakah bilangan pepenjuru pentagon?",
@@ -11474,6 +11540,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Pepenjuru pentagon = 5(5−3)/2 = 5(2)/2 = 5 pepenjuru.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.pentagonDiagonals,
   ],
   [
     "Berapakah bilangan pepenjuru heksagon?",
@@ -11481,6 +11548,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Pepenjuru heksagon = 6(6−3)/2 = 6(3)/2 = 9 pepenjuru.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.hexagonDiagonals,
   ],
   [
     "Dalam segi tiga PQR, ∠P = 2∠Q dan ∠R = 60°. Cari ∠Q.",
@@ -11488,6 +11556,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "∠P + ∠Q + ∠R = 180°. 2∠Q + ∠Q + 60° = 180°. 3∠Q = 120°. ∠Q = 40°. (∠P = 80°.)",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangle2q60,
   ],
   [
     "Segi tiga sama kaki: sudut puncak = 50°. Cari sudut tapak.",
@@ -11495,6 +11564,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Dua sudut tapak sama: (180° − 50°)/2 = 130°/2 = 65°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoApex50,
   ],
   [
     "Segi tiga sama kaki: setiap sudut tapak = 40°. Cari sudut puncak.",
@@ -11502,6 +11572,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut puncak = 180° − 40° − 40° = 100°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoBase40,
   ],
   [
     "Segi empat selari: ∠A = 65°. Cari ∠B, ∠C dan ∠D.",
@@ -11514,6 +11585,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Sudut bertentangan sama: ∠C = 65°. Sudut bersebelahan berjumlah 180°: ∠B = ∠D = 180° − 65° = 115°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.parallelA65,
   ],
   [
     "Sudut luar segi tiga = 125°. Satu sudut dalam berhadapan = 60°. Cari sudut dalam berhadapan yang lain.",
@@ -11521,6 +11593,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Sudut luar = jumlah dua sudut dalam berhadapan. 125° = 60° + x. x = 65°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.ext125Interior60,
   ],
   [
     "Segi tiga bersudut tegak: satu sudut bukan tegak = 38°. Cari sudut yang lain.",
@@ -11528,6 +11601,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Dua sudut bukan tegak berjumlah 90°. 38° + x = 90°. x = 52°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rightAngle38,
   ],
   [
     "Lelayang PQRS mempunyai ∠P = 110°, ∠R = 70° dan ∠Q = ∠S. Cari ∠Q.",
@@ -11535,6 +11609,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Jumlah sudut sisi empat = 360°. ∠Q + ∠S = 360° − 110° − 70° = 180°. Oleh sebab ∠Q = ∠S, ∠Q = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.kite11070,
   ],
   [
     "Sisi empat: tiga sudut = 75°, 95°, 110°. Cari sudut keempat.",
@@ -11542,6 +11617,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Sudut keempat = 360° − 75° − 95° − 110° = 80°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quad75_95_110,
   ],
   [
     "Segi tiga dengan sudut (3x)°, (2x + 10)° dan (x + 20)°. Cari x.",
@@ -11549,6 +11625,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "3x + (2x + 10) + (x + 20) = 180. 6x + 30 = 180. 6x = 150. x = 25.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleExpr,
   ],
   [
     "Sisi empat dengan sudut (2a + 10)°, 90°, (3a − 5)° dan 85°. Cari a.",
@@ -11556,6 +11633,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "(2a + 10) + 90 + (3a − 5) + 85 = 360. 5a + 180 = 360. 5a = 180. a = 36. Semak: (72+10)+90+(108−5)+85 = 82+90+103+85 = 360 ✓. a = 36.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadExpr,
   ],
   [
     "Trapezium ABCD mempunyai AB selari dengan DC. ∠A = 65° dan ∠B = 100°. Cari ∠D.",
@@ -11563,6 +11641,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "AB selari dengan DC, maka ∠A dan ∠D ialah sudut pedalaman yang berjumlah 180°. ∠D = 180° − 65° = 115°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.trapezium65_100,
   ],
   [
     "Segi tiga sama sisi: setiap sudut adalah?",
@@ -11570,6 +11649,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Segi tiga sama sisi: semua sudut = 180°/3 = 60°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.equilateralInterior,
   ],
   [
     "Sisi empat dengan semua sudut sama. Berapakah setiap sudut?",
@@ -11577,6 +11657,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Jumlah sudut sisi empat = 360°. Jika semua sama: 360°/4 = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.allEqualQuad,
   ],
   [
     "Sudut luar segi tiga dengan dua sudut dalam berhadapan = (2x + 15)° dan (x + 10)°. Jika sudut luar = 100°, cari x.",
@@ -11584,6 +11665,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "(2x + 15) + (x + 10) = 100. 3x + 25 = 100. 3x = 75. x = 25.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.exteriorExpressions,
   ],
   [
     "Sebuah poligon mempunyai 5 pepenjuru. Berapakah bilangan sisinya?",
@@ -11598,6 +11680,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "115° + 35° + x = 180°. x = 180° − 150° = 30°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.obtuse115_35,
   ],
   [
     "Segi empat selari ABCD: ∠A = (4k + 10)° dan ∠B = (2k + 50)°. Cari k.",
@@ -11605,6 +11688,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "∠A + ∠B = 180° (bersebelahan). (4k + 10) + (2k + 50) = 180. 6k + 60 = 180. 6k = 120. k = 20.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.parallelExpr,
   ],
   [
     "Segi tiga sama kaki PQR: PQ = PR. ∠Q = (3x − 5)° dan ∠R = (2x + 10)°. Cari x dan nilai sudut.",
@@ -11612,6 +11696,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "∠Q = ∠R (sudut tapak). 3x − 5 = 2x + 10. x = 15. Sudut = 3(15) − 5 = 40°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoExpr,
   ],
   [
     "Dalam belah ketupat PQRS, ∠P = 58°. Cari ∠Q.",
@@ -11619,6 +11704,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut bersebelahan dalam belah ketupat berjumlah 180°. ∠Q = 180° − 58° = 122°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusP58,
   ],
   [
     "Sisi empat: ∠A = ∠C = 100° dan ∠B = ∠D. Cari ∠B.",
@@ -11626,6 +11712,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "∠A + ∠B + ∠C + ∠D = 360°. 100 + ∠B + 100 + ∠B = 360. 2∠B = 160. ∠B = 80°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadOpposite100,
   ],
   [
     "Segi tiga: sudut luar di A = 140°. ∠B = 80°. Cari ∠C.",
@@ -11633,6 +11720,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Sudut luar di A = ∠B + ∠C. 140° = 80° + ∠C. ∠C = 60°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.exterior140_80,
   ],
   [
     "Sudut-sudut dalam sebuah segi tiga ialah x°, (x + 10)° dan (x + 20)°. Cari sudut yang terbesar.",
@@ -11640,6 +11728,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "x + (x + 10) + (x + 20) = 180. 3x + 30 = 180. x = 50. Sudut terbesar = 50° + 20° = 70°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleLinear,
   ],
   [
     "Segi empat tepat ABCD dibahagikan oleh pepenjuru AC. ∠BAC = 35°. Cari ∠ACB.",
@@ -11647,6 +11736,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Dalam segi tiga ABC, ∠ABC = 90° kerana ABCD ialah segi empat tepat. ∠ACB = 180° − 90° − 35° = 55°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleAC,
   ],
 ]);
 
@@ -11657,6 +11747,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "The sum of all three interior angles of any triangle is always 180°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleInterior,
   ],
   [
     "What is the sum of interior angles of a quadrilateral?",
@@ -11664,6 +11755,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "The sum of all four interior angles of any quadrilateral is always 360°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadInterior,
   ],
   [
     "Triangle ABC: ∠A = 55°, ∠B = 75°. Find ∠C.",
@@ -11671,6 +11763,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "∠C = 180° − 55° − 75° = 50°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangle55_75,
   ],
   [
     "Quadrilateral PQRS: ∠P = 90°, ∠Q = 85°, ∠R = 95°. Find ∠S.",
@@ -11678,6 +11771,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "∠S = 360° − 90° − 85° − 95° = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quad90_85_95,
   ],
   [
     "How many diagonals does a quadrilateral have?",
@@ -11685,6 +11779,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Diagonals of a quadrilateral = 4(4−3)/2 = 4(1)/2 = 2 diagonals.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadDiagonals,
   ],
   [
     "How many diagonals does a pentagon have?",
@@ -11692,6 +11787,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Diagonals of a pentagon = 5(5−3)/2 = 5(2)/2 = 5 diagonals.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.pentagonDiagonals,
   ],
   [
     "How many diagonals does a hexagon have?",
@@ -11699,6 +11795,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Diagonals of a hexagon = 6(6−3)/2 = 6(3)/2 = 9 diagonals.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.hexagonDiagonals,
   ],
   [
     "In triangle PQR, ∠P = 2∠Q and ∠R = 60°. Find ∠Q.",
@@ -11706,6 +11803,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "∠P + ∠Q + ∠R = 180°. 2∠Q + ∠Q + 60° = 180°. 3∠Q = 120°. ∠Q = 40°. (∠P = 80°.)",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangle2q60,
   ],
   [
     "Isosceles triangle: apex angle = 50°. Find the base angles.",
@@ -11713,6 +11811,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Two base angles equal: (180° − 50°)/2 = 130°/2 = 65°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoApex50,
   ],
   [
     "Isosceles triangle: each base angle = 40°. Find the apex angle.",
@@ -11720,6 +11819,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Apex angle = 180° − 40° − 40° = 100°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoBase40,
   ],
   [
     "Parallelogram: ∠A = 65°. Find ∠B, ∠C and ∠D.",
@@ -11732,6 +11832,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Opposite angles equal: ∠C = 65°. Adjacent angles sum to 180°: ∠B = ∠D = 180° − 65° = 115°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.parallelA65,
   ],
   [
     "Exterior angle of a triangle = 125°. One non-adjacent interior angle = 60°. Find the other.",
@@ -11739,6 +11840,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Exterior angle = sum of two non-adjacent interior angles. 125° = 60° + x. x = 65°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.ext125Interior60,
   ],
   [
     "Right-angled triangle: one non-right angle = 38°. Find the other non-right angle.",
@@ -11746,6 +11848,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Two non-right angles sum to 90°. 38° + x = 90°. x = 52°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rightAngle38,
   ],
   [
     "Kite PQRS has ∠P = 110°, ∠R = 70° and ∠Q = ∠S. Find ∠Q.",
@@ -11753,6 +11856,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "The angles of a quadrilateral add up to 360°. ∠Q + ∠S = 360° − 110° − 70° = 180°. Since ∠Q = ∠S, ∠Q = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.kite11070,
   ],
   [
     "Quadrilateral: three angles = 75°, 95°, 110°. Find the fourth angle.",
@@ -11760,6 +11864,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Fourth angle = 360° − 75° − 95° − 110° = 80°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quad75_95_110,
   ],
   [
     "Triangle with angles (3x)°, (2x + 10)° and (x + 20)°. Find x.",
@@ -11767,6 +11872,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "3x + (2x + 10) + (x + 20) = 180. 6x + 30 = 180. 6x = 150. x = 25.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleExpr,
   ],
   [
     "Quadrilateral with angles (2a + 10)°, 90°, (3a − 5)° and 85°. Find a.",
@@ -11774,6 +11880,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "(2a + 10) + 90 + (3a − 5) + 85 = 360. 5a + 180 = 360. 5a = 180. a = 36.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadExpr,
   ],
   [
     "Trapezium ABCD has AB parallel to DC. ∠A = 65° and ∠B = 100°. Find ∠D.",
@@ -11781,6 +11888,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "AB is parallel to DC, so ∠A and ∠D are interior angles that add up to 180°. ∠D = 180° − 65° = 115°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.trapezium65_100,
   ],
   [
     "What is each angle of an equilateral triangle?",
@@ -11788,6 +11896,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Equilateral triangle: all angles = 180°/3 = 60°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.equilateralInterior,
   ],
   [
     "A quadrilateral has all equal angles. What is each angle?",
@@ -11795,6 +11904,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Sum of quadrilateral angles = 360°. If all equal: 360°/4 = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.allEqualQuad,
   ],
   [
     "Exterior angle with two non-adjacent interior angles = (2x + 15)° and (x + 10)°. Exterior angle = 100°. Find x.",
@@ -11802,6 +11912,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "(2x + 15) + (x + 10) = 100. 3x + 25 = 100. 3x = 75. x = 25.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.exteriorExpressions,
   ],
   [
     "A polygon has 5 diagonals. How many sides does it have?",
@@ -11816,6 +11927,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "115° + 35° + x = 180°. x = 180° − 150° = 30°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.obtuse115_35,
   ],
   [
     "Parallelogram ABCD: ∠A = (4k + 10)° and ∠B = (2k + 50)°. Find k.",
@@ -11823,6 +11935,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "∠A + ∠B = 180° (adjacent). (4k + 10) + (2k + 50) = 180. 6k + 60 = 180. 6k = 120. k = 20.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.parallelExpr,
   ],
   [
     "Isosceles triangle PQR: PQ = PR. ∠Q = (3x − 5)° and ∠R = (2x + 10)°. Find x and the angle value.",
@@ -11830,6 +11943,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "∠Q = ∠R (base angles). 3x − 5 = 2x + 10. x = 15. Angle = 3(15) − 5 = 40°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoExpr,
   ],
   [
     "In rhombus PQRS, ∠P = 58°. Find ∠Q.",
@@ -11837,6 +11951,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Adjacent angles in a rhombus add up to 180°. ∠Q = 180° − 58° = 122°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusP58,
   ],
   [
     "Quadrilateral: ∠A = ∠C = 100° and ∠B = ∠D. Find ∠B.",
@@ -11844,6 +11959,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "∠A + ∠B + ∠C + ∠D = 360°. 100 + ∠B + 100 + ∠B = 360. 2∠B = 160. ∠B = 80°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadOpposite100,
   ],
   [
     "Triangle: exterior angle at A = 140°. ∠B = 80°. Find ∠C.",
@@ -11851,6 +11967,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Exterior angle at A = ∠B + ∠C. 140° = 80° + ∠C. ∠C = 60°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.exterior140_80,
   ],
   [
     "The angles in a triangle are x°, (x + 10)° and (x + 20)°. Find the largest angle.",
@@ -11858,6 +11975,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "x + (x + 10) + (x + 20) = 180. 3x + 30 = 180. x = 50. The largest angle = 50° + 20° = 70°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleLinear,
   ],
   [
     "Rectangle ABCD is divided by the diagonal AC. ∠BAC = 35°. Find ∠ACB.",
@@ -11865,6 +11983,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "In triangle ABC, ∠ABC = 90° because ABCD is a rectangle. ∠ACB = 180° − 90° − 35° = 55°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleAC,
   ],
 ]);
 
@@ -11875,6 +11994,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "(3x + 5) + (2x − 10) + (x + 35) = 180. 6x + 30 = 180. 6x = 150. x = 25. Sudut: 80°, 40°, 60°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.triChallengeExpr,
   ],
   [
     "Sisi empat ABCD mempunyai ∠A = (2x + 10)°, ∠B = (x + 20)°, ∠C = (3x − 5)° dan ∠D = (4x − 5)°. Cari x.",
@@ -11882,6 +12002,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "(2x + 10) + (x + 20) + (3x − 5) + (4x − 5) = 360. 10x + 20 = 360. 10x = 340. x = 34. Semak: 78° + 54° + 97° + 131° = 360°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadChallengeExpr,
   ],
   [
     "Sebuah poligon mempunyai 35 pepenjuru. Berapakah bilangan sisinya?",
@@ -11896,6 +12017,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "∠ACB = 180° − 115° = 65°. Oleh sebab AB = AC, ∠ABC = ∠ACB = 65°. ∠BAC = 180° − 65° − 65° = 50°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoExtension115,
   ],
   [
     "Dalam segi tiga ABC, ∠A = 50° dan ∠B = 70°. Sisi BC dipanjangkan ke D. Cari ∠ACD (sudut luar di C).",
@@ -11903,6 +12025,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "∠C = 180° − 50° − 70° = 60°. Sudut peluaran di C = 180° − 60° = 120°, iaitu sama dengan ∠A + ∠B = 50° + 70°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.ext50_70,
   ],
   [
     "Segi tiga PQR ialah segi tiga sama kaki dengan PQ = PR. ∠QPR = (4y − 20)° dan ∠PQR = (y + 25)°. Cari y.",
@@ -11910,6 +12033,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "∠PQR = ∠PRQ = (y + 25)°. (4y − 20) + 2(y + 25) = 180. 6y + 30 = 180. 6y = 150. y = 25. Sudut: 80°, 50°, 50°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoExprY,
   ],
   [
     "Segi empat selari ABCD mempunyai ∠A = (5m − 15)° dan ∠C = (3m + 25)°. Cari m dan ∠A.",
@@ -11917,6 +12041,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut bertentangan dalam segi empat selari adalah sama: 5m − 15 = 3m + 25. 2m = 40. m = 20. ∠A = 5(20) − 15 = 85°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelOppositeExpr,
   ],
   [
     "Sudut-sudut dalam sebuah segi tiga adalah dalam nisbah 2 : 3 : 4. Cari ketiga-tiga sudut itu.",
@@ -11924,6 +12049,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Jumlah bahagian = 2 + 3 + 4 = 9. Satu bahagian = 180° ÷ 9 = 20°. Sudut: 40°, 60°, 80°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.triangleRatio234,
   ],
   [
     "Sudut-sudut dalam sebuah sisi empat adalah dalam nisbah 1 : 2 : 3 : 4. Cari keempat-empat sudut itu.",
@@ -11931,6 +12057,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Jumlah bahagian = 1 + 2 + 3 + 4 = 10. Satu bahagian = 360° ÷ 10 = 36°. Sudut: 36°, 72°, 108°, 144°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadRatio1234,
   ],
   [
     "Dalam belah ketupat ABCD, ∠ABC = 70°. Cari ∠BAD, ∠BCD dan ∠CDA.",
@@ -11943,6 +12070,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut bertentangan dalam belah ketupat adalah sama: ∠CDA = ∠ABC = 70°. Sudut bersebelahan berjumlah 180°: ∠BAD = ∠BCD = 180° − 70° = 110°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusAngle70,
   ],
   [
     "Dalam segi tiga ABC, ∠A = (6t − 10)° dan sudut luar di A = (4t + 20)°. Cari t.",
@@ -11950,6 +12078,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Sudut pedalaman dan sudut luar di bucu yang sama berjumlah 180°: (6t − 10) + (4t + 20) = 180. 10t + 10 = 180. 10t = 170. t = 17.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.extAtA,
   ],
   [
     "Dalam segi tiga PQR, sudut luar di R ialah 130° dan ∠P = ∠Q. Cari ∠P.",
@@ -11957,6 +12086,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Sudut peluaran di R = ∠P + ∠Q = 130°. Oleh sebab ∠P = ∠Q, ∠P = 130° ÷ 2 = 65°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.ext130Equal,
   ],
   [
     "Dalam sebuah segi tiga bersudut tegak, dua sudut tirus ialah (2x + 5)° dan (3x − 10)°. Cari x.",
@@ -11964,6 +12094,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Dua sudut tirus dalam segi tiga bersudut tegak berjumlah 90°: (2x + 5) + (3x − 10) = 90. 5x − 5 = 90. 5x = 95. x = 19.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightExpr,
   ],
   [
     "Sebuah poligon sekata mempunyai 6 garis simetri. Apakah nama poligon itu?",
@@ -11971,6 +12102,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Poligon sekata dengan n sisi mempunyai n garis simetri. 6 garis simetri bermaksud 6 sisi, iaitu heksagon sekata.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.sixFoldShape,
   ],
   [
     "Sisi empat ABCD mempunyai ∠A = 3p, ∠B = 2p, ∠C = 4p dan ∠D = p. Cari p dan semua sudut.",
@@ -11983,6 +12115,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "3p + 2p + 4p + p = 360°. 10p = 360°. p = 36°. Sudut: 108°, 72°, 144°, 36°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadPExpr,
   ],
   [
     "Dalam segi tiga ABC, sudut luar di B ialah 115° dan ∠A = 55°. Adakah segi tiga ABC sebuah segi tiga sama kaki?",
@@ -11995,6 +12128,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "∠B = 180° − 115° = 65°. ∠C = 180° − 55° − 65° = 60°. Ketiga-tiga sudut (55°, 65°, 60°) berbeza, jadi segi tiga itu bukan sama kaki.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.exteriorB115,
   ],
   [
     "Segi empat selari PQRS mempunyai ∠P = (7n − 5)° dan ∠Q = (3n + 45)°. Cari n dan ∠P.",
@@ -12002,6 +12136,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Sudut bersebelahan dalam segi empat selari berjumlah 180°: (7n − 5) + (3n + 45) = 180. 10n + 40 = 180. n = 14. ∠P = 7(14) − 5 = 93°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelPExpr,
   ],
   [
     "Dalam segi tiga XYZ, XY = XZ = 8 cm dan YZ = 6 cm. ∠Y = 70°. Apakah jenis segi tiga ini dan berapakah ∠X?",
@@ -12014,6 +12149,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "XY = XZ, jadi segi tiga itu sama kaki dan ∠Y = ∠Z = 70°. ∠X = 180° − 70° − 70° = 40°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoSide8_8_6,
   ],
   [
     "Trapezium ABCD mempunyai AB selari dengan DC. ∠A = (2x + 10)° dan ∠D = (3x − 20)°. Cari x.",
@@ -12021,6 +12157,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "AB selari dengan DC, maka ∠A + ∠D = 180° (sudut pedalaman). (2x + 10) + (3x − 20) = 180. 5x − 10 = 180. 5x = 190. x = 38.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.trapeziumExpr,
   ],
   [
     "Sebuah sisi empat dibahagikan kepada 2 segi tiga oleh satu pepenjuru. Gunakan fakta ini untuk mencari hasil tambah sudut dalam sisi empat itu.",
@@ -12028,6 +12165,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Setiap segi tiga mempunyai hasil tambah sudut 180°. 2 segi tiga = 2 × 180° = 360°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.diagonalSplit,
   ],
   [
     "Dalam sebuah segi tiga bersudut tegak, satu sudut tirus ialah 4 kali sudut tirus yang lain. Cari sudut tirus yang lebih kecil.",
@@ -12035,6 +12173,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Dua sudut tirus berjumlah 90°: x + 4x = 90°. 5x = 90°. x = 18°. (72° ialah sudut tirus yang lebih besar.)",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightRatio4to1,
   ],
   [
     "Dalam sisi empat ABCD, ∠A = ∠C, ∠B = ∠D dan ∠A = 2∠B. Cari semua sudut.",
@@ -12047,6 +12186,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "2∠A + 2∠B = 360°, jadi ∠A + ∠B = 180°. 2∠B + ∠B = 180°. ∠B = 60° dan ∠A = 120°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadOppositeRelations,
   ],
   [
     "Sebuah segi tiga sama kaki mempunyai sudut puncak yang dua kali sudut tapak. Cari semua sudut.",
@@ -12059,6 +12199,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Katakan sudut tapak = x, maka sudut puncak = 2x. 2x + x + x = 180°. 4x = 180°. x = 45°. Puncak = 90°, tapak = 45°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoApexTwice,
   ],
   [
     "Dalam sisi empat PQRS, ∠P = 75°, ∠Q = 105° dan ∠R = 75°. Cari ∠S.",
@@ -12066,6 +12207,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "∠S = 360° − 75° − 105° − 75° = 105°. Sudut bertentangan adalah sama, seperti dalam segi empat selari.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quad75_105_75,
   ],
   [
     "Sebuah segi tiga mempunyai satu sudut 90° dan dua sudut lain yang sama besar. Berapakah saiz setiap sudut yang sama itu, dan apakah jenis segi tiga itu?",
@@ -12078,6 +12220,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Dua sudut yang sama berjumlah 180° − 90° = 90°, jadi setiap satu ialah 45°. Segi tiga itu bersudut tegak dan sama kaki.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.equalLegRight,
   ],
   [
     "Dalam segi empat selari ABCD, ∠A − ∠B = 40°. Cari ∠A.",
@@ -12085,6 +12228,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut bersebelahan berjumlah 180°: ∠A + ∠B = 180°. Dengan ∠A − ∠B = 40°, 2∠A = 220°, maka ∠A = 110° dan ∠B = 70°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelDifference40,
   ],
   [
     "Sisi empat ABCD mempunyai AB selari dengan DC, ∠A = ∠D = 90° dan AB ≠ DC. Apakah jenis sisi empat itu?",
@@ -12092,6 +12236,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Hanya satu pasang sisi (AB dan DC) yang selari kerana AB ≠ DC, jadi ABCD ialah trapezium (trapezium bersudut tegak).",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightTrapezium,
   ],
   [
     "Dalam segi tiga ABC, ∠A = (4k + 10)°, ∠B = (3k − 5)° dan sudut luar di C ialah 110°. Cari k.",
@@ -12099,6 +12244,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Sudut peluaran di C = ∠A + ∠B: (4k + 10) + (3k − 5) = 110. 7k + 5 = 110. 7k = 105. k = 15.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.extAlgebra110,
   ],
   [
     "Dalam segi tiga sama kaki ABC, AB = BC dan ∠A = 40°. Cari ∠B.",
@@ -12106,6 +12252,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "AB = BC, maka ∠A = ∠C = 40° (sudut tapak). ∠B = 180° − 40° − 40° = 100°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoABCABBC,
   ],
   [
     "Lelayang PQRS mempunyai PQ = PS dan QR = SR. ∠P = 80° dan ∠R = 60°. Cari ∠Q.",
@@ -12113,6 +12260,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Lelayang itu bersimetri pada PR, jadi ∠Q = ∠S. ∠Q + ∠S = 360° − 80° − 60° = 220°. ∠Q = 110°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.kiteP80R60,
   ],
 ]);
 
@@ -12123,6 +12271,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "(3x + 5) + (2x − 10) + (x + 35) = 180. 6x + 30 = 180. 6x = 150. x = 25. Angles: 80°, 40°, 60°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.triChallengeExpr,
   ],
   [
     "Quadrilateral ABCD has ∠A = (2x + 10)°, ∠B = (x + 20)°, ∠C = (3x − 5)° and ∠D = (4x − 5)°. Find x.",
@@ -12130,6 +12279,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "(2x + 10) + (x + 20) + (3x − 5) + (4x − 5) = 360. 10x + 20 = 360. 10x = 340. x = 34. Check: 78° + 54° + 97° + 131° = 360°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadChallengeExpr,
   ],
   [
     "A polygon has 35 diagonals. How many sides does it have?",
@@ -12144,6 +12294,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "∠ACB = 180° − 115° = 65°. Since AB = AC, ∠ABC = ∠ACB = 65°. ∠BAC = 180° − 65° − 65° = 50°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoExtension115,
   ],
   [
     "In triangle ABC, ∠A = 50° and ∠B = 70°. Side BC is extended to D. Find ∠ACD (the exterior angle at C).",
@@ -12151,6 +12302,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "∠C = 180° − 50° − 70° = 60°. The exterior angle at C = 180° − 60° = 120°, which equals ∠A + ∠B = 50° + 70°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.ext50_70,
   ],
   [
     "Triangle PQR is isosceles with PQ = PR. ∠QPR = (4y − 20)° and ∠PQR = (y + 25)°. Find y.",
@@ -12158,6 +12310,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "∠PQR = ∠PRQ = (y + 25)°. (4y − 20) + 2(y + 25) = 180. 6y + 30 = 180. 6y = 150. y = 25. Angles: 80°, 50°, 50°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoExprY,
   ],
   [
     "Parallelogram ABCD has ∠A = (5m − 15)° and ∠C = (3m + 25)°. Find m and ∠A.",
@@ -12165,6 +12318,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Opposite angles in a parallelogram are equal: 5m − 15 = 3m + 25. 2m = 40. m = 20. ∠A = 5(20) − 15 = 85°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelOppositeExpr,
   ],
   [
     "The angles of a triangle are in the ratio 2 : 3 : 4. Find all three angles.",
@@ -12172,6 +12326,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Total parts = 2 + 3 + 4 = 9. One part = 180° ÷ 9 = 20°. Angles: 40°, 60°, 80°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.triangleRatio234,
   ],
   [
     "The angles of a quadrilateral are in the ratio 1 : 2 : 3 : 4. Find all four angles.",
@@ -12179,6 +12334,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Total parts = 1 + 2 + 3 + 4 = 10. One part = 360° ÷ 10 = 36°. Angles: 36°, 72°, 108°, 144°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadRatio1234,
   ],
   [
     "In rhombus ABCD, ∠ABC = 70°. Find ∠BAD, ∠BCD and ∠CDA.",
@@ -12191,6 +12347,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Opposite angles in a rhombus are equal: ∠CDA = ∠ABC = 70°. Adjacent angles add up to 180°: ∠BAD = ∠BCD = 180° − 70° = 110°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusAngle70,
   ],
   [
     "In triangle ABC, ∠A = (6t − 10)° and the exterior angle at A = (4t + 20)°. Find t.",
@@ -12198,6 +12355,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "The interior and exterior angles at the same vertex add up to 180°: (6t − 10) + (4t + 20) = 180. 10t + 10 = 180. 10t = 170. t = 17.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.extAtA,
   ],
   [
     "In triangle PQR, the exterior angle at R is 130° and ∠P = ∠Q. Find ∠P.",
@@ -12205,6 +12363,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "The exterior angle at R = ∠P + ∠Q = 130°. Since ∠P = ∠Q, ∠P = 130° ÷ 2 = 65°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.ext130Equal,
   ],
   [
     "In a right-angled triangle, the two acute angles are (2x + 5)° and (3x − 10)°. Find x.",
@@ -12212,6 +12371,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "The two acute angles in a right-angled triangle add up to 90°: (2x + 5) + (3x − 10) = 90. 5x − 5 = 90. 5x = 95. x = 19.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightExpr,
   ],
   [
     "A regular polygon has 6 lines of symmetry. What is the polygon?",
@@ -12219,6 +12379,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "A regular polygon with n sides has n lines of symmetry. 6 lines of symmetry means 6 sides, a regular hexagon.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.sixFoldShape,
   ],
   [
     "Quadrilateral ABCD has ∠A = 3p, ∠B = 2p, ∠C = 4p and ∠D = p. Find p and all the angles.",
@@ -12231,6 +12392,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "3p + 2p + 4p + p = 360°. 10p = 360°. p = 36°. Angles: 108°, 72°, 144°, 36°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadPExpr,
   ],
   [
     "In triangle ABC, the exterior angle at B is 115° and ∠A = 55°. Is triangle ABC an isosceles triangle?",
@@ -12243,6 +12405,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "∠B = 180° − 115° = 65°. ∠C = 180° − 55° − 65° = 60°. All three angles (55°, 65°, 60°) are different, so the triangle is not isosceles.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.exteriorB115,
   ],
   [
     "Parallelogram PQRS has ∠P = (7n − 5)° and ∠Q = (3n + 45)°. Find n and ∠P.",
@@ -12250,6 +12413,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Adjacent angles in a parallelogram add up to 180°: (7n − 5) + (3n + 45) = 180. 10n + 40 = 180. n = 14. ∠P = 7(14) − 5 = 93°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelPExpr,
   ],
   [
     "In triangle XYZ, XY = XZ = 8 cm and YZ = 6 cm. ∠Y = 70°. What type of triangle is it and what is ∠X?",
@@ -12257,6 +12421,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "XY = XZ, so the triangle is isosceles and ∠Y = ∠Z = 70°. ∠X = 180° − 70° − 70° = 40°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoSide8_8_6,
   ],
   [
     "Trapezium ABCD has AB parallel to DC. ∠A = (2x + 10)° and ∠D = (3x − 20)°. Find x.",
@@ -12264,6 +12429,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "AB is parallel to DC, so ∠A + ∠D = 180° (interior angles). (2x + 10) + (3x − 20) = 180. 5x − 10 = 180. 5x = 190. x = 38.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.trapeziumExpr,
   ],
   [
     "A quadrilateral is divided into 2 triangles by one diagonal. Use this fact to find the sum of the interior angles of the quadrilateral.",
@@ -12271,6 +12437,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Each triangle has an angle sum of 180°. 2 triangles = 2 × 180° = 360°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.diagonalSplit,
   ],
   [
     "In a right-angled triangle, one acute angle is 4 times the other acute angle. Find the smaller acute angle.",
@@ -12278,6 +12445,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "The two acute angles add up to 90°: x + 4x = 90°. 5x = 90°. x = 18°. (72° is the larger acute angle.)",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightRatio4to1,
   ],
   [
     "In quadrilateral ABCD, ∠A = ∠C, ∠B = ∠D and ∠A = 2∠B. Find all the angles.",
@@ -12290,6 +12458,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "2∠A + 2∠B = 360°, so ∠A + ∠B = 180°. 2∠B + ∠B = 180°. ∠B = 60° and ∠A = 120°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadOppositeRelations,
   ],
   [
     "An isosceles triangle has an apex angle that is twice a base angle. Find all the angles.",
@@ -12302,6 +12471,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Let each base angle = x, so the apex angle = 2x. 2x + x + x = 180°. 4x = 180°. x = 45°. Apex = 90°, base = 45°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoApexTwice,
   ],
   [
     "In quadrilateral PQRS, ∠P = 75°, ∠Q = 105° and ∠R = 75°. Find ∠S.",
@@ -12309,6 +12479,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "∠S = 360° − 75° − 105° − 75° = 105°. Opposite angles are equal, as in a parallelogram.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quad75_105_75,
   ],
   [
     "A triangle has one angle of 90° and two other equal angles. What is the size of each equal angle, and what type of triangle is it?",
@@ -12321,6 +12492,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "The two equal angles add up to 180° − 90° = 90°, so each is 45°. The triangle is right-angled and isosceles.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.equalLegRight,
   ],
   [
     "In parallelogram ABCD, ∠A − ∠B = 40°. Find ∠A.",
@@ -12328,6 +12500,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Adjacent angles add up to 180°: ∠A + ∠B = 180°. With ∠A − ∠B = 40°, 2∠A = 220°, so ∠A = 110° and ∠B = 70°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelDifference40,
   ],
   [
     "Quadrilateral ABCD has AB parallel to DC, ∠A = ∠D = 90° and AB ≠ DC. What type of quadrilateral is it?",
@@ -12335,6 +12508,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Only one pair of sides (AB and DC) is parallel because AB ≠ DC, so ABCD is a trapezium (a right-angled trapezium).",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightTrapezium,
   ],
   [
     "In triangle ABC, ∠A = (4k + 10)°, ∠B = (3k − 5)° and the exterior angle at C is 110°. Find k.",
@@ -12342,6 +12516,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "The exterior angle at C = ∠A + ∠B: (4k + 10) + (3k − 5) = 110. 7k + 5 = 110. 7k = 105. k = 15.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.extAlgebra110,
   ],
   [
     "In isosceles triangle ABC, AB = BC and ∠A = 40°. Find ∠B.",
@@ -12349,6 +12524,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "AB = BC, so ∠A = ∠C = 40° (base angles). ∠B = 180° − 40° − 40° = 100°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoABCABBC,
   ],
   [
     "Kite PQRS has PQ = PS and QR = SR. ∠P = 80° and ∠R = 60°. Find ∠Q.",
@@ -12356,6 +12532,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "The kite is symmetric about PR, so ∠Q = ∠S. ∠Q + ∠S = 360° − 80° − 60° = 220°. ∠Q = 110°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.kiteP80R60,
   ],
 ]);
 
