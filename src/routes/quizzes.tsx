@@ -15480,6 +15480,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Dalam Teorem Pythagoras, c sentiasa mewakili hipotenus (sisi terpanjang yang bertentangan sudut 90°).",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[9],
   ],
   [
     "Apakah makna akas Teorem Pythagoras?",
@@ -15492,6 +15493,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Akas Teorem Pythagoras: jika c² = a² + b² (c = sisi terpanjang), maka segi tiga adalah bersudut tegak.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[10],
   ],
   [
     "Apakah jenis segi tiga yang mempunyai semua sudut kurang daripada 90°?",
@@ -15523,6 +15525,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Untuk segi tiga bersudut tirus: c² < a² + b². Sisi terpanjang 'tidak cukup panjang' untuk membentuk sudut tegak.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[13],
   ],
   [
     "Untuk segi tiga bersudut cakah dengan sisi terpanjang c, hubungannya ialah:",
@@ -15530,6 +15533,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Untuk segi tiga bersudut cakah: c² > a² + b². Sisi terpanjang 'terlalu panjang', menyebabkan satu sudut melebihi 90°.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[14],
   ],
   [
     "Dalam Teorem Pythagoras, apakah peranan a dan b?",
@@ -15589,6 +15593,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Teorem Pythagoras HANYA untuk segi tiga BERSUDUT TEGAK. Jangan gunakannya untuk segi tiga lain.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[19],
   ],
   [
     "Sisi manakah yang sentiasa lebih panjang dalam segi tiga bersudut tegak — kaki atau hipotenus?",
@@ -15609,6 +15614,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "TIDAK. Hipotenus sentiasa lebih panjang daripada setiap kaki. Jika jawapan anda menunjukkan hipotenus lebih pendek, terdapat kesilapan.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[21],
   ],
   [
     "4, 3, 5 — sisi manakah hipotenus?",
@@ -15644,6 +15650,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Langkah pertama: KENAL PASTI sisi terpanjang dan labelkannya sebagai c. Kemudian kira c² dan a²+b² untuk dibandingkan.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[25],
   ],
   [
     "Apakah rumus untuk mencari kaki a jika hipotenus c dan kaki b diketahui?",
@@ -15664,6 +15671,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Ya! Terdapat sudut 90°, jadi ia adalah segi tiga BERSUDUT TEGAK. Teorem Pythagoras boleh digunakan.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[27],
   ],
   [
     "Apakah perbezaan antara Teorem Pythagoras dan akasnya?",
@@ -15788,6 +15796,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "In Pythagoras' Theorem, c always represents the hypotenuse (the longest side opposite the 90° angle).",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[9],
   ],
   [
     "What does the converse of Pythagoras' Theorem mean?",
@@ -15800,6 +15809,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Converse of Pythagoras' Theorem: if c² = a² + b² (c = longest side), then the triangle is right-angled.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[10],
   ],
   [
     "What type of triangle has all angles less than 90°?",
@@ -15831,6 +15841,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "For an acute-angled triangle: c² < a² + b². The longest side is 'not long enough' to form a right angle.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[13],
   ],
   [
     "For an obtuse triangle with longest side c, the relationship is:",
@@ -15838,6 +15849,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "For an obtuse-angled triangle: c² > a² + b². The longest side is 'too long', causing one angle to exceed 90°.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[14],
   ],
   [
     "In Pythagoras' Theorem, what is the role of a and b?",
@@ -15897,6 +15909,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Pythagoras' Theorem is ONLY for RIGHT-ANGLED triangles. Do not use it for other triangles.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[19],
   ],
   [
     "Which is always longer in a right-angled triangle — legs or hypotenuse?",
@@ -15917,6 +15930,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "NO. The hypotenuse is always longer than each leg. If your answer shows hypotenuse shorter, there is an error.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[21],
   ],
   [
     "4, 3, 5 — which side is the hypotenuse?",
@@ -15952,6 +15966,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "First step: IDENTIFY the longest side and label it c. Then calculate c² and a²+b² to compare.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[25],
   ],
   [
     "What is the formula to find leg a if hypotenuse c and leg b are known?",
@@ -15972,6 +15987,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Yes! There is a 90° angle, so it IS a RIGHT-ANGLED triangle. Pythagoras' Theorem can be used.",
     "Easy",
+    MATH_F1_C13_QUIZ_VISUALS.foundation[27],
   ],
   [
     "What is the difference between Pythagoras' Theorem and its converse?",
@@ -16563,6 +16579,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "AC² = 6² + 8² = 100, maka AC = 10 cm. AD ialah hipotenus segi tiga ACD: AD² = 10² + 24² = 676, maka AD = 26 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[7],
   ],
   [
     "Sebuah segi tiga mempunyai sisi 2.5 cm, 6 cm dan 6.5 cm. Apakah jenis segi tiga itu?",
@@ -16830,6 +16847,7 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "AC² = 6² + 8² = 100, so AC = 10 cm. AD is the hypotenuse of triangle ACD: AD² = 10² + 24² = 676, so AD = 26 cm.",
     "Hard",
+    MATH_F1_C13_QUIZ_VISUALS.challenge[7],
   ],
   [
     "A triangle has sides of 2.5 cm, 6 cm and 6.5 cm. What type of triangle is it?",
