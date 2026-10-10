@@ -60,9 +60,9 @@ describe("Math Form 1 Chapter 13 bilingual Pythagoras diagrams", () => {
       V.challenge[11], V.challenge[12], V.challenge[13], V.challenge[15], V.challenge[30]]) {
       expect(visual?.kind).toBe("geometry-diagram");
       if (visual?.kind === "geometry-diagram") {
-        expect(visual.panels[0].paths).toHaveLength(1);
+        expect(visual.panels[0].paths).toHaveLength(3);
         const description = describeMathQuestionVisual(visual, "dlp");
-        expect(description).toContain("No right-angle symbol");
+        expect(description).toContain("There is no suggested angle");
       }
     }
   });
