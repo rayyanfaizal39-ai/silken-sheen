@@ -161,7 +161,29 @@ const elevation = (bm: string, dlp: string, measure: string, depression = false)
 
 /** No model includes an answer such as x=, a solved angle, or an angle category. */
 export const MATH_F1_C8_QUIZ_VISUALS = {
-  // Foundation: only explicitly-given angles and a straight-line reference.
+  // Foundation: illustrations of angle size without printing the category answer.
+  rightAngle90: angle(90),
+  acuteExample40: angle(40),
+  obtuseExample130: angle(130),
+  reflexExample220: angle(220),
+  labelledVertex: make("Dua jejari dari satu titik", "Two rays sharing a point", panel([
+    { points: [p(115, 165), p(223, 72)] },
+    { points: [p(115, 165), p(256, 165)] },
+  ], [
+    { at: p(99, 183), text: "Q" },
+    { at: p(231, 66), text: "P" },
+    { at: p(267, 174), text: "R" },
+  ])),
+  acuteChoiceExample: angle(60),
+  reflexChoiceExample: angle(210),
+  nearRight88: angle(88),
+  obtuseVsReflex: make("Bandingkan dua saiz sudut", "Compare two angle sizes",
+    { ...angle(130).panels[0], title: t("Sudut A", "Angle A") },
+    { ...angle(220).panels[0], title: t("Sudut B", "Angle B") }),
+  beyondSemicircle: angle(230),
+  nearStraight179: angle(179),
+  // Existing examples and concept diagrams.
+
   angle145: angle(145),
   angle250: angle(250),
   angle55: angle(55),
