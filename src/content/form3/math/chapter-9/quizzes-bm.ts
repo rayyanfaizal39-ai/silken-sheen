@@ -1,5 +1,7 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -16,7 +18,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C9QuizzesBM: QuizQuestion[] = buildQuiz([
+export const mathF3C9QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Easy", "Dalam y=mx+c, apakah m?", ["Kecerunan", "Pintasan-y", "Pintasan-x", "Pemalar"], 0],
   ["Easy", "Dalam y=mx+c, apakah c?", ["Pintasan-y", "Kecerunan", "Pintasan-x", "Sudut"], 0],
   ["Easy", "Tentukan kecerunan bagi y=2x+9.", ["2", "9", "-2", "1/2"], 0],
@@ -56,13 +58,13 @@ export const mathF3C9QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Medium", "Tentukan nilai k bagi pasangan garis selari y=-3x+4 dan y+kx=14.", ["k = 3", "k = -3", "k = 4", "k = 14"], 0],
   ["Medium", "Tentukan nilai k bagi pasangan garis selari kx+2y=7 dan 6x+2y=15.", ["k = 6", "k = 7", "k = 2", "k = 15"], 0],
   ["Medium", "3x+5y=15. Apakah pintasan-x (h)?", ["h = 5", "h = 3", "h = 15", "h = 1/5"], 0],
-  ["Medium", "Daripada soalan di atas, apakah pintasan-y (k)?", ["k = 3", "k = 5", "k = 15", "k = 1/3"], 0],
+  ["Medium", "Garis mempunyai persamaan 3x + 5y = 15. Cari pintasan-y, k.", ["k = 3", "k = 5", "k = 15", "k = 1/3"], 0],
   ["Medium", "Daripada 3x+5y=15, jika titik (2,q) pada garis, cari q.", ["q = 9/5", "q = 5/9", "q = 3", "q = -9/5"], 0],
 
   ["Hard", "Tukar y=-2x+8 kepada bentuk ax+by=c.", ["2x + y = 8", "-2x + y = 8", "2x - y = 8", "x + 2y = 8"], 0],
   ["Hard", "Tukar y=3x+6 kepada bentuk x/a+y/b=1.", ["x/(-2) + y/6 = 1", "x/2 + y/6 = 1", "x/6 + y/2 = 1", "x/(-2) + y/(-6) = 1"], 0],
   ["Hard", "Garis lurus PQ: y=(1/3)x+2. Cari persamaan garis selari PQ melalui A(2,4).", ["y = (1/3)x + 10/3", "y = (1/3)x + 2", "y = 3x + 4", "y = (1/3)x - 10/3"], 0],
-  ["Hard", "Daripada soalan di atas, cari persamaan garis selari PQ melalui asalan (0,0).", ["y = (1/3)x", "y = (1/3)x + 2", "x = 0", "y = 0"], 0],
+  ["Hard", "Garis PQ mempunyai persamaan y = (1/3)x + 2. Cari persamaan garis selari PQ melalui asalan (0,0).", ["y = (1/3)x", "y = (1/3)x + 2", "x = 0", "y = 0"], 0],
   ["Hard", "Cari titik persilangan y=x+2 dan 2x+3y=6.", ["x=0, y=2 (gantikan: 2x+3(x+2)=6, 5x=0, x=0)", "x=2, y=4", "x=-2, y=0", "x=1, y=3"], 0],
   ["Hard", "Dua garis 3y=-6x+3 dan y+2x=14. Adakah selari?", ["Ya (kecerunan -2 dan -2)", "Tidak", "Tidak dapat ditentukan", "Hanya jika c sama"], 0],
   ["Hard", "Dua garis 2x+3y=3 dan 2x+6y=12. Adakah selari?", ["Tidak (kecerunan -2/3 vs -1/3)", "Ya", "Tidak dapat ditentukan", "Hanya jika dibahagi dahulu"], 0],
@@ -73,3 +75,5 @@ export const mathF3C9QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Hard", "Apakah strategi terbaik menyelesaikan dua persamaan serentak dengan pekali x berbeza tetapi mudah disamakan?", ["Kaedah penghapusan: darab salah satu/kedua persamaan untuk samakan pekali, kemudian tolak/tambah", "Kaedah penggantian sahaja", "Lukis graf sahaja", "Anggar jawapan"], 0],
   ["Hard", "Bagaimana sahkan jawapan titik persilangan adalah betul?", ["Gantikan semula koordinat ke kedua-dua persamaan asal dan pastikan kedua memenuhi", "Hanya semak satu persamaan", "Tidak perlu semak", "Bandingkan dengan jawapan rakan"], 0],
 ]);
+
+export const mathF3C9QuizzesBM: QuizQuestion[] = buildForm3MathQuizSets(9, mathF3C9QuestionBankBM);

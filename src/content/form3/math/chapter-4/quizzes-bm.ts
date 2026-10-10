@@ -1,5 +1,7 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -16,7 +18,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C4QuizzesBM: QuizQuestion[] = buildQuiz([
+export const mathF3C4QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Easy", "Apakah maksud lukisan berskala?", ["Lukisan objek dengan semua ukuran berkadaran dengan ukuran objek", "Lukisan tanpa sebarang skala", "Lukisan yang berbeza bentuk daripada objek", "Lukisan yang lebih besar sahaja"], 0],
   ["Easy", "Apakah formula skala?", ["Ukuran lukisan berskala / Ukuran objek", "Ukuran objek / Ukuran lukisan berskala", "Ukuran lukisan + ukuran objek", "Ukuran lukisan - ukuran objek"], 0],
   ["Easy", "Skala biasa ditulis dalam bentuk apa?", ["1 : n", "n : 1", "1 + n", "n - 1"], 0],
@@ -43,17 +45,17 @@ export const mathF3C4QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Medium", "K'N'=2.5cm (dari Pythagoras), KN=5cm. Tentukan skala dalam bentuk 1:n.", ["1 : 2", "1 : 0.5", "2 : 1", "2.5 : 5"], 0],
   ["Medium", "Peta negeri Johor skala 1cm:10km, jarak Kluang-Ayer Hitam 2cm pada peta. Hitung jarak sebenar.", ["20 km", "10 km", "2 km", "12 km"], 0],
   ["Medium", "Poster 24cm panjang dan 8cm lebar dilukis dengan skala 1:4. Hitung panjang lukisan berskala.", ["6 cm", "96 cm", "24 cm", "4 cm"], 0],
-  ["Medium", "Daripada soalan di atas, hitung lebar lukisan berskala.", ["2 cm", "8 cm", "32 cm", "4 cm"], 0],
+  ["Medium", "Poster berukuran 24 cm × 8 cm dilukis pada skala 1:4. Hitung lebar lukisan berskala.", ["2 cm", "8 cm", "32 cm", "4 cm"], 0],
   ["Medium", "Peta skala 1:400 000, sungai 2.5cm pada peta. Hitung jarak sebenar (km).", ["10 km", "4 km", "100 km", "1 km"], 0],
   ["Medium", "Siew Lin lukis segi tiga skala 1:1/3, hipotenus lukisan 18cm. Hitung hipotenus sebenar.", ["6 cm", "54 cm", "3 cm", "18 cm"], 0],
   ["Medium", "Bilik segi empat tepat 7cm x 5cm skala 1:400. Hitung luas sebenar (m²).", ["560 m²", "35 m²", "1 400 m²", "280 m²"], 0],
   ["Medium", "Poligon sekata sudut peluaran 36° (jadi 10 sisi), skala 1:5, sisi sebenar 10cm. Hitung perimeter lukisan berskala.", ["20 cm (10 sisi x 2cm)", "50 cm", "100 cm", "10 cm"], 0],
   ["Medium", "Bilik 3.5m x 5.2m, lukisan berskala 1:50. Hitung perimeter lukisan dalam cm.", ["34.8 cm (2x(7+10.4))", "17.4 cm", "69.6 cm", "350 cm"], 0],
   ["Medium", "Padang segi empat tepat skala 1:2000, luas sebenar dikira daripada lukisan. Jika lukisan 3cm x 6cm, hitung luas sebenar (m²).", ["7 200 m² (60x120)", "3 600 m²", "18 m²", "360 m²"], 0],
-  ["Medium", "Daripada soalan di atas, jika rumput dipotong 400m² dalam 8 minit, hitung masa keseluruhan.", ["144 minit (2 jam 24 minit)", "100 minit", "72 minit", "200 minit"], 0],
+  ["Medium", "Padang segi empat tepat dilukis 3 cm × 6 cm pada skala 1:2000. Rumput dipotong pada kadar 400 m² setiap 8 minit. Hitung masa untuk memotong seluruh padang.", ["144 minit (2 jam 24 minit)", "100 minit", "72 minit", "200 minit"], 0],
   ["Medium", "Bintulu-Miri 4cm pada peta skala 1cm:50km. Hitung jarak sebenar.", ["200 km", "50 km", "150 km", "20 km"], 0],
-  ["Medium", "Daripada soalan di atas, peta dilukis semula skala 1:2 000 000. Hitung jarak baru pada peta (cm).", ["10 cm", "4 cm", "20 cm", "100 cm"], 0],
-  ["Medium", "Daripada soalan di atas, jika dipandu pada 80km/j, hitung masa perjalanan.", ["2.5 jam (2 jam 30 minit)", "2 jam", "3 jam", "1.5 jam"], 0],
+  ["Medium", "Jarak sebenar Bintulu–Miri ialah 200 km. Peta baharu menggunakan skala 1:2 000 000. Hitung jarak pada peta dalam cm.", ["10 cm", "4 cm", "20 cm", "100 cm"], 0],
+  ["Medium", "Jarak perjalanan Bintulu–Miri ialah 200 km. Jika kelajuan purata 80 km/j, hitung masa perjalanan.", ["2.5 jam (2 jam 30 minit)", "2 jam", "3 jam", "1.5 jam"], 0],
   ["Medium", "Bilik stor pada lukisan skala 1:400 berukuran 2cm x 3cm. Hitung luas sebenar (m²).", ["96 m² (8x12)", "24 m²", "600 m²", "48 m²"], 0],
   ["Medium", "Jika ketinggian rumah kedai sebenar 3.75m dan tapak rumah kedai 8m x 12m, hitung isi padu (m³).", ["360 m³", "96 m³", "45 m³", "180 m³"], 0],
   ["Medium", "Bunga dilukis pada grid 1cmx1cm, lukis objek sebenar pada grid 1.5cmx1.5cm. Apakah skala baru?", ["1 : 1.5 (objek lebih besar)", "1.5 : 1", "1 : 1", "1 : 0.5"], 0],
@@ -75,3 +77,5 @@ export const mathF3C4QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Hard", "Apakah kesilapan jika seseorang mengira luas sebenar dengan terus mendarab luas lukisan dengan nisbah panjang (bukan kuasa dua)?", ["Akan memberi jawapan terlalu kecil/silap kerana luas memerlukan kuasa dua nisbah panjang", "Jawapan tetap betul", "Hanya salah untuk bentuk bulat", "Hanya salah untuk segi tiga"], 0],
   ["Hard", "Rumah kedai skala 1:400, bilik stor 2cmx3cm pada lukisan, ketinggian sebenar 3.75m. Jika tapak rumah kedai 8mx12m, nyatakan nisbah luas rumah kedai kepada luas bilik stor.", ["(8x12) : (8x12) = 96:96 -> perlu nilai bilik stor sebenar dahulu (8x12=96m² berbanding 96m² jika sama; gunakan nisbah sebenar 96:96=1:1 jika sama saiz, atau kira semula mengikut data sebenar", "10 : 1", "4 : 1", "2 : 1"], 0],
 ]);
+
+export const mathF3C4QuizzesBM: QuizQuestion[] = buildForm3MathQuizSets(4, mathF3C4QuestionBankBM);

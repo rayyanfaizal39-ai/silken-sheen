@@ -35,10 +35,10 @@ if (metadataScope) {
   writeFileSync(join(migrationsDir, output), renderForm3SejarahQuiz25MetadataSql(buildQuizCatalog(), metadataScope));
   console.log(`Wrote supabase/migrations/${output}`);
 } else {
-  const scope = process.argv.includes("--scope=sejarah-f3") ? "sejarah-f3" : undefined;
+  const scope = process.argv.includes("--scope=math-f3") ? "math-f3" : process.argv.includes("--scope=sejarah-f3") ? "sejarah-f3" : undefined;
   const sql = renderQuizCatalogSql(buildQuizCatalog(), scope);
   const latest = readdirSync(migrationsDir)
-    .filter((name) => QUIZ_CATALOG_MIGRATION_PATTERN.test(name))
+    .filter((name) => scope === "math-f3" ? /^\d{14}_sync_form3_math_quiz_sets\.sql$/.test(name) : QUIZ_CATALOG_MIGRATION_PATTERN.test(name))
     .sort()
     .at(-1);
 
@@ -46,7 +46,7 @@ if (metadataScope) {
     console.log(`Quiz catalog is up to date (${latest}).`);
   } else {
     const stamp = new Date().toISOString().replace(/\D/g, "").slice(0, 14);
-    const name = `${stamp}_${latest ? "sync" : "seed"}_quiz_catalog.sql`;
+    const name = scope === "math-f3" ? `${stamp}_sync_form3_math_quiz_sets.sql` : `${stamp}_${latest ? "sync" : "seed"}_quiz_catalog.sql`;
     writeFileSync(join(migrationsDir, name), sql);
     console.log(`Wrote supabase/migrations/${name}. Apply it before deploying the content.`);
   }

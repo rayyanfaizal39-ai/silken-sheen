@@ -3,6 +3,8 @@ import type { Difficulty, QuizQuestion } from "@/data/content";
 import { MATH_F3_C3_QUIZ_VISUALS } from "./quiz-visuals";
 import { MATH_F3_C3_QUIZ_EXPLANATIONS } from "./quiz-explanations";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -22,7 +24,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C3QuizzesBM: QuizQuestion[] = buildQuiz([
+export const mathF3C3QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Easy", "Apakah formula faedah mudah?", ["I = Prt", "I = P + rt", "I = P/rt", "I = Pr + t"], 0],
   ["Easy", "Apakah maksud P dalam I=Prt?", ["Prinsipal", "Peratus", "Pulangan", "Pinjaman bulanan"], 0],
   ["Easy", "Apakah maksud r dalam I = Prt, apabila t dalam tahun?", ["Kadar faedah tahunan dalam perpuluhan", "Risiko", "Pulangan", "Rebat"], 0],
@@ -79,3 +81,5 @@ export const mathF3C3QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Hard", "Encik Hussein membeli rumah RM300 000 dengan pendahuluan RM30 000 dan menjualnya RM600 000 selepas 20 tahun. Jumlah bayaran pinjaman kepada bank sepanjang tempoh itu ialah RM475 000 dan sewa terkumpul RM60 000. Pinjaman selesai sepenuhnya. Abaikan kos lain. Hitung jumlah pulangan bersih.", ["RM155 000", "RM600 000", "RM300 000", "RM60 000"], 0],
   ["Hard", "Encik Hussein memperoleh jumlah pulangan bersih RM155 000. Gunakan kos pelaburan awal RM300 000 sebagai penyebut. Hitung ROI kepada 1 tempat perpuluhan.", ["51.7%", "200.0%", "20.0%", "100.0%"], 0],
 ]);
+
+export const mathF3C3QuizzesBM: QuizQuestion[] = buildForm3MathQuizSets(3, mathF3C3QuestionBankBM);

@@ -1,5 +1,7 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -16,7 +18,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C4QuizzesDLP: QuizQuestion[] = buildQuiz([
+export const mathF3C4QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Easy", "What is a scale drawing?", ["A drawing of an object where all measurements are proportional to the object's measurements", "A drawing without any scale", "A drawing with a different shape from the object", "A drawing that is always larger"], 0],
   ["Easy", "What is the formula for scale?", ["Scale drawing measurement / Object measurement", "Object measurement / Scale drawing measurement", "Drawing measurement + object measurement", "Drawing measurement - object measurement"], 0],
   ["Easy", "What form is scale usually written in?", ["1 : n", "n : 1", "1 + n", "n - 1"], 0],
@@ -43,17 +45,17 @@ export const mathF3C4QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Medium", "K'N'=2.5cm (from Pythagoras), KN=5cm. Determine the scale in the form 1:n.", ["1 : 2", "1 : 0.5", "2 : 1", "2.5 : 5"], 0],
   ["Medium", "Johor map scale 1cm:10km, Kluang-Ayer Hitam distance 2cm on the map. Find the actual distance.", ["20 km", "10 km", "2 km", "12 km"], 0],
   ["Medium", "A poster 24cm long and 8cm wide is drawn at scale 1:4. Find the scale drawing's length.", ["6 cm", "96 cm", "24 cm", "4 cm"], 0],
-  ["Medium", "From the above, find the scale drawing's width.", ["2 cm", "8 cm", "32 cm", "4 cm"], 0],
+  ["Medium", "A poster measures 24 cm × 8 cm and is drawn at scale 1:4. Find the drawing’s width.", ["2 cm", "8 cm", "32 cm", "4 cm"], 0],
   ["Medium", "Map scale 1:400 000, river measures 2.5cm on the map. Find the actual distance (km).", ["10 km", "4 km", "100 km", "1 km"], 0],
   ["Medium", "Siew Lin draws a triangle at scale 1:1/3, the drawing's hypotenuse is 18cm. Find the actual hypotenuse.", ["6 cm", "54 cm", "3 cm", "18 cm"], 0],
   ["Medium", "A rectangular room 7cm x 5cm at scale 1:400. Find the actual area (m²).", ["560 m²", "35 m²", "1 400 m²", "280 m²"], 0],
   ["Medium", "A regular polygon with exterior angle 36° (10 sides), scale 1:5, actual side 10cm. Find the scale drawing's perimeter.", ["20 cm (10 sides x 2cm)", "50 cm", "100 cm", "10 cm"], 0],
   ["Medium", "A room 3.5m x 5.2m, scale drawing 1:50. Find the drawing's perimeter in cm.", ["34.8 cm (2x(7+10.4))", "17.4 cm", "69.6 cm", "350 cm"], 0],
   ["Medium", "A rectangular field at scale 1:2000; if the drawing measures 3cm x 6cm, find the actual area (m²).", ["7 200 m² (60x120)", "3 600 m²", "18 m²", "360 m²"], 0],
-  ["Medium", "From the above, if grass is mowed at 400m² in 8 minutes, find the total time.", ["144 minutes (2 hours 24 minutes)", "100 minutes", "72 minutes", "200 minutes"], 0],
+  ["Medium", "A rectangular field is drawn as 3 cm × 6 cm at scale 1:2000. Grass is mowed at 400 m² every 8 minutes. Find the time to mow the whole field.", ["144 minutes (2 hours 24 minutes)", "100 minutes", "72 minutes", "200 minutes"], 0],
   ["Medium", "Bintulu-Miri is 4cm on a map at scale 1cm:50km. Find the actual distance.", ["200 km", "50 km", "150 km", "20 km"], 0],
-  ["Medium", "From the above, if the map is redrawn at scale 1:2 000 000, find the new map distance (cm).", ["10 cm", "4 cm", "20 cm", "100 cm"], 0],
-  ["Medium", "From the above, if driven at 80km/h, find the travel time.", ["2.5 hours (2 hours 30 minutes)", "2 hours", "3 hours", "1.5 hours"], 0],
+  ["Medium", "The actual Bintulu–Miri distance is 200 km. A new map uses scale 1:2 000 000. Find the map distance in cm.", ["10 cm", "4 cm", "20 cm", "100 cm"], 0],
+  ["Medium", "The Bintulu–Miri journey is 200 km. At an average speed of 80 km/h, find the travel time.", ["2.5 hours (2 hours 30 minutes)", "2 hours", "3 hours", "1.5 hours"], 0],
   ["Medium", "A storeroom on a drawing at scale 1:400 measures 2cm x 3cm. Find the actual area (m²).", ["96 m² (8x12)", "24 m²", "600 m²", "48 m²"], 0],
   ["Medium", "If the shop's actual height is 3.75m and its footprint is 8m x 12m, find the volume (m³).", ["360 m³", "96 m³", "45 m³", "180 m³"], 0],
   ["Medium", "A flower is drawn on a 1cmx1cm grid; redraw the actual object on a 1.5cmx1.5cm grid. What is the new scale?", ["1 : 1.5 (object is larger)", "1.5 : 1", "1 : 1", "1 : 0.5"], 0],
@@ -75,3 +77,5 @@ export const mathF3C4QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Hard", "What is the mistake if someone calculates the actual area by multiplying the drawing's area directly by the length ratio (not squared)?", ["The answer will be too small/incorrect because area requires the square of the length ratio", "The answer is still correct", "It is only wrong for circular shapes", "It is only wrong for triangles"], 0],
   ["Hard", "A shop lot at scale 1:400, storeroom 2cmx3cm on the drawing, actual height 3.75m. If the shop's footprint is 8mx12m, state the ratio of the shop's area to the storeroom's area.", ["Requires the storeroom's actual area first (8x12=96m² each if computed identically, or recompute using actual storeroom dimensions)", "10 : 1", "4 : 1", "2 : 1"], 0],
 ]);
+
+export const mathF3C4QuizzesDLP: QuizQuestion[] = buildForm3MathQuizSets(4, mathF3C4QuestionBankDLP);

@@ -158,13 +158,13 @@ function collectStandardQuizzes(collector: CatalogCollector) {
         for (const chapter of getRegisteredSubjectChapters(subjectId, lang, form)) {
           const chapterQuestions = getChapterQuizQuestions(subjectId, form, chapter.key, lang);
           const sets =
-            (subjectId === "science" || subjectId === "sejarah") && form === "Form 3"
+            (subjectId === "science" || subjectId === "sejarah" || subjectId === "math") && form === "Form 3"
               ? (["A", "B"] as const).filter((set) =>
                   chapterQuestions.some((question) => question.set === set),
                 )
               : [];
           for (const set of sets.length > 0 ? sets : [null]) {
-            for (const difficulty of STANDARD_DIFFICULTIES) {
+            for (const difficulty of subjectId === "math" && form === "Form 3" && sets.length > 0 ? ["All"] as const : STANDARD_DIFFICULTIES) {
               const pool = chapterQuestions.filter((question) => {
                 if (set && question.set !== set) return false;
                 if (subjectId !== "sejarah" && difficulty !== "All") {

@@ -6,8 +6,8 @@ import { MathIndexText } from "@/components/quiz/MathIndexText";
 import { getChapterQuizQuestions } from "@/content/registry";
 import { shuffleQuestionOptions } from "@/features/quiz/difficulty/quizDifficulty";
 import { describeMathQuestionVisual } from "@/features/quiz/visuals/mathQuestionVisual";
-import { mathF3C3QuizzesBM } from "./quizzes-bm";
-import { mathF3C3QuizzesDLP } from "./quizzes-dlp";
+import { mathF3C3QuestionBankBM as mathF3C3QuizzesBM } from "./quizzes-bm";
+import { mathF3C3QuestionBankDLP as mathF3C3QuizzesDLP } from "./quizzes-dlp";
 import { MATH_F3_C3_QUIZ_VISUALS } from "./quiz-visuals";
 const banks = { bm: mathF3C3QuizzesBM, dlp: mathF3C3QuizzesDLP };
 const langs = ["bm", "dlp"] as const;
@@ -54,15 +54,16 @@ describe("Form 3 Chapter 3 consumer mathematics quizzes", () => {
     "registers the complete %s bank with self-contained questions",
     (lang) => {
       const bank = getChapterQuizQuestions("math", "Form 3", "Chapter 3", lang);
-      expect(bank).toEqual(banks[lang]);
-      expect(bank).toHaveLength(55);
-      expect(bank.filter((q) => q.visual)).toHaveLength(36);
-      expect(bank.map((q) => q.id)).toEqual(
+      expect(bank).toEqual(banks[lang].filter(q => bank.some(item => item.id === q.id)).map(q => ({ ...q, set: bank.find(item => item.id === q.id)!.set })));
+      const source = banks[lang];
+      expect(bank).toHaveLength(50);
+      expect(source.filter((q) => q.visual)).toHaveLength(36);
+      expect(source.map((q) => q.id)).toEqual(
         Array.from({ length: 55 }, (_, i) => `math-f3-c3-${lang}-q${i + 1}`),
       );
       expect(
         ["Easy", "Medium", "Hard"].map(
-          (d) => bank.filter((q) => q.difficulty === d).length,
+          (d) => source.filter((q) => q.difficulty === d).length,
         ),
       ).toEqual([20, 20, 15]);
       for (const q of bank) {

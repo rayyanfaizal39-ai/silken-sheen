@@ -3,6 +3,8 @@ import type { Difficulty, QuizQuestion } from "@/data/content";
 import { MATH_F3_C3_QUIZ_VISUALS } from "./quiz-visuals";
 import { MATH_F3_C3_QUIZ_EXPLANATIONS } from "./quiz-explanations";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -22,7 +24,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C3QuizzesDLP: QuizQuestion[] = buildQuiz([
+export const mathF3C3QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Easy", "What is the formula for simple interest?", ["I = Prt", "I = P + rt", "I = P/rt", "I = Pr + t"], 0],
   ["Easy", "What does P mean in I=Prt?", ["Principal", "Percentage", "Profit", "Periodic payment"], 0],
   ["Easy", "What does r mean in I = Prt when t is measured in years?", ["Annual interest rate as a decimal", "Risk", "Return", "Rebate"], 0],
@@ -79,3 +81,5 @@ export const mathF3C3QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Hard", "Encik Hussein buys a house for RM300 000 with a RM30 000 down payment and sells it for RM600 000 after 20 years. Total loan payments to the bank over that period are RM475 000 and accumulated rent is RM60 000. The loan is fully settled. Ignore other costs. Find the total net return.", ["RM155 000", "RM600 000", "RM300 000", "RM60 000"], 0],
   ["Hard", "Encik Hussein earns a total net return of RM155 000. Use the initial investment cost of RM300 000 as the denominator. Find the ROI to 1 decimal place.", ["51.7%", "200.0%", "20.0%", "100.0%"], 0],
 ]);
+
+export const mathF3C3QuizzesDLP: QuizQuestion[] = buildForm3MathQuizSets(3, mathF3C3QuestionBankDLP);

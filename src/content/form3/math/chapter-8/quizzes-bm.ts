@@ -1,5 +1,7 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -16,7 +18,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C8QuizzesBM: QuizQuestion[] = buildQuiz([
+export const mathF3C8QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Easy", "Apakah maksud lokus?", ["Surihan/lintasan satu set titik yang memenuhi syarat tertentu", "Satu titik tetap sahaja", "Sebarang garis lurus", "Luas sesuatu bentuk"], 0],
   ["Easy", "Apakah lokus titik pada sayap kipas berputar?", ["Bulatan", "Garis lurus", "Segi tiga", "Segi empat"], 0],
   ["Easy", "Apakah lokus titik pada roket dilancarkan menegak?", ["Garis lurus", "Bulatan", "Lengkok", "Sfera"], 0],
@@ -46,14 +48,14 @@ export const mathF3C8QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Medium", "X berjarak 7 unit dari A; Y berjarak sama dari AB dan CD. Bagaimana cari persilangan X dan Y?", ["Lukis kedua-dua lokus pada rajah sama, kenal pasti titik bertemu", "Hanya lukis lokus X", "Hanya lukis lokus Y", "Anggar tanpa lukisan"], 0],
   ["Medium", "Garis MN, titik P berjarak sama dari M dan N. Bagaimana bina lokus P?", ["Lukis pembahagi dua sama serenjang MN", "Lukis bulatan jejari MN", "Lukis garis selari MN", "Lukis pembahagi dua sudut M"], 0],
   ["Medium", "Pada satah Cartes, pasangan koordinat (0,0),(-2,-2),(4,4) disambung. Apakah lokus ini?", ["Garis yang membahagi dua sama sudut antara paksi-x dan paksi-y (45°)", "Bulatan berpusat O", "Garis selari paksi-x", "Garis selari paksi-y"], 0],
-  ["Medium", "Daripada soalan di atas, berapakah nilai ∠a=∠b=∠c=∠d yang terbentuk?", ["45°", "90°", "60°", "30°"], 0],
+  ["Medium", "Garis melalui (0,0), (−2,−2) dan (4,4) ialah y = x. Hitung sudut tirus antara garis itu dengan paksi-x positif.", ["45°", "90°", "60°", "30°"], 0],
   ["Medium", "Faruk berjarak sama dari paksi-x dan paksi-y, dan kurang dari 5 unit dari O. Apakah jenis lokus yang relevan?", ["Pembahagi dua sudut (garis 45°) dalam julat jarak <5 unit dari O", "Bulatan jejari 5 unit sahaja", "Garis selari paksi-x", "Garis selari paksi-y"], 0],
   ["Medium", "Segi empat sama ABCD, P bergerak sama jarak dari A dan D. Apakah lokus P?", ["Pembahagi dua sama serenjang AD", "Bulatan berpusat A", "Pembahagi dua sudut A", "Garis selari AD"], 0],
   ["Medium", "Q bergerak sama jarak dari B dan D (segi empat sama ABCD). Apakah lokus Q?", ["Pembahagi dua sama serenjang BD", "Bulatan berpusat B", "Garis selari BD", "Pembahagi dua sudut B"], 0],
   ["Medium", "R bergerak 4 unit dari garis lurus BC. Apakah lokus R?", ["Sepasang garis selari BC, jarak 4 unit", "Bulatan jejari 4 unit", "Pembahagi dua sudut BC", "Satu garis sahaja"], 0],
   ["Medium", "S bergerak sama jarak dari garis AB dan BC. Apakah lokus S?", ["Pembahagi dua sama sudut ABC", "Pembahagi dua serenjang AB", "Bulatan berpusat B", "Garis selari AB"], 0],
   ["Medium", "Garis lurus PQ 5cm, X berjarak 3cm dari P. Huraikan lokus X.", ["Bulatan jejari 3cm berpusat P", "Garis lurus 3cm dari P", "Pembahagi dua serenjang PQ", "Bulatan jejari 5cm berpusat P"], 0],
-  ["Medium", "Daripada soalan di atas, Y berjarak 4cm dari Q. Huraikan lokus Y.", ["Bulatan jejari 4cm berpusat Q", "Garis lurus 4cm dari Q", "Pembahagi dua serenjang PQ", "Bulatan jejari 5cm berpusat Q"], 0],
+  ["Medium", "PQ ialah garis sepanjang 5 cm. Y bergerak pada jarak tetap 4 cm dari Q. Huraikan lokus Y.", ["Bulatan jejari 4cm berpusat Q", "Garis lurus 4cm dari Q", "Pembahagi dua serenjang PQ", "Bulatan jejari 5cm berpusat Q"], 0],
   ["Medium", "Garis lurus CD 6cm, T berjarak 1.5cm dari CD. Berapa garis terbentuk dalam lokus T?", ["Dua garis selari CD", "Satu garis sahaja", "Satu bulatan", "Tiga garis"], 0],
   ["Medium", "Segi empat ABCD mewakili tasik. Bot V bergerak 5 unit dari D, Bot W berjarak 3 unit dari BC. Bagaimana cari persilangan laluan?", ["Lukis kedua lokus (bulatan dan garis selari) pada rajah sama dan kenal pasti titik bertemu", "Hanya kira jarak tanpa lukisan", "Anggap kedua laluan tidak bertemu", "Lukis hanya satu lokus"], 0],
   ["Medium", "Empat segi empat sama 2cm digabung; X bergerak 2cm dari M. Apakah lokus X?", ["Bulatan jejari 2cm berpusat M", "Garis lurus 2cm dari M", "Pembahagi dua sudut M", "Garis selari sebarang sisi"], 0],
@@ -70,3 +72,5 @@ export const mathF3C8QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Hard", "Bagaimana lokus tiga dimensi (silinder/sfera) berkait dengan lokus dua dimensi yang dipelajari dalam bab ini?", ["Lokus 3D dihasilkan apabila bentuk 2D (segi empat tepat/semi bulatan) diputar 360° mengeliling paksi", "Tiada kaitan antara kedua-duanya", "Lokus 3D adalah lokus 2D yang diperbesarkan", "Lokus 3D hanya berlaku untuk bulatan"], 0],
   ["Hard", "Apakah kesilapan konsep jika seseorang menganggap lokus jarak sama dari dua garis selari ialah dua garis (bukan satu)?", ["Salah; lokus tersebut hanya SATU garis di tengah-tengah, bukan sepasang", "Betul, sentiasa dua garis", "Bergantung jarak antara dua garis selari", "Hanya satu garis jika garis selari sangat jauh"], 0],
 ]);
+
+export const mathF3C8QuizzesBM: QuizQuestion[] = buildForm3MathQuizSets(8, mathF3C8QuestionBankBM);

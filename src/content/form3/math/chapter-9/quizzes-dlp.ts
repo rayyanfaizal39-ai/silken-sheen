@@ -1,5 +1,7 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -16,7 +18,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C9QuizzesDLP: QuizQuestion[] = buildQuiz([
+export const mathF3C9QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Easy", "In y=mx+c, what is m?", ["Gradient", "y-intercept", "x-intercept", "Constant"], 0],
   ["Easy", "In y=mx+c, what is c?", ["y-intercept", "Gradient", "x-intercept", "Angle"], 0],
   ["Easy", "Find the gradient of y=2x+9.", ["2", "9", "-2", "1/2"], 0],
@@ -56,13 +58,13 @@ export const mathF3C9QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Medium", "Find the value of k for the parallel lines y=-3x+4 and y+kx=14.", ["k = 3", "k = -3", "k = 4", "k = 14"], 0],
   ["Medium", "Find the value of k for the parallel lines kx+2y=7 and 6x+2y=15.", ["k = 6", "k = 7", "k = 2", "k = 15"], 0],
   ["Medium", "3x+5y=15. What is the x-intercept (h)?", ["h = 5", "h = 3", "h = 15", "h = 1/5"], 0],
-  ["Medium", "From the above, what is the y-intercept (k)?", ["k = 3", "k = 5", "k = 15", "k = 1/3"], 0],
+  ["Medium", "A line has equation 3x + 5y = 15. Find its y-intercept, k.", ["k = 3", "k = 5", "k = 15", "k = 1/3"], 0],
   ["Medium", "From 3x+5y=15, if point (2,q) is on the line, find q.", ["q = 9/5", "q = 5/9", "q = 3", "q = -9/5"], 0],
 
   ["Hard", "Convert y=-2x+8 to the form ax+by=c.", ["2x + y = 8", "-2x + y = 8", "2x - y = 8", "x + 2y = 8"], 0],
   ["Hard", "Convert y=3x+6 to the form x/a+y/b=1.", ["x/(-2) + y/6 = 1", "x/2 + y/6 = 1", "x/6 + y/2 = 1", "x/(-2) + y/(-6) = 1"], 0],
   ["Hard", "Line PQ: y=(1/3)x+2. Find the equation of a line parallel to PQ through A(2,4).", ["y = (1/3)x + 10/3", "y = (1/3)x + 2", "y = 3x + 4", "y = (1/3)x - 10/3"], 0],
-  ["Hard", "From the above, find the equation of a line parallel to PQ through the origin (0,0).", ["y = (1/3)x", "y = (1/3)x + 2", "x = 0", "y = 0"], 0],
+  ["Hard", "Line PQ has equation y = (1/3)x + 2. Find the equation of a line parallel to PQ through the origin (0,0).", ["y = (1/3)x", "y = (1/3)x + 2", "x = 0", "y = 0"], 0],
   ["Hard", "Find the intersection of y=x+2 and 2x+3y=6.", ["x=0, y=2 (substitute: 2x+3(x+2)=6, 5x=0, x=0)", "x=2, y=4", "x=-2, y=0", "x=1, y=3"], 0],
   ["Hard", "Two lines 3y=-6x+3 and y+2x=14. Are they parallel?", ["Yes (gradient -2 and -2)", "No", "Cannot be determined", "Only if c is equal"], 0],
   ["Hard", "Two lines 2x+3y=3 and 2x+6y=12. Are they parallel?", ["No (gradient -2/3 vs -1/3)", "Yes", "Cannot be determined", "Only if divided first"], 0],
@@ -73,3 +75,5 @@ export const mathF3C9QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Hard", "What is the best strategy for solving two simultaneous equations whose x coefficients differ but are easy to match?", ["Elimination method: multiply one/both equations to match coefficients, then subtract/add", "Substitution method only", "Graphing only", "Estimate the answer"], 0],
   ["Hard", "How do you verify the intersection point answer is correct?", ["Substitute the coordinates back into both original equations and confirm both are satisfied", "Only check one equation", "No need to check", "Compare with a classmate's answer"], 0],
 ]);
+
+export const mathF3C9QuizzesDLP: QuizQuestion[] = buildForm3MathQuizSets(9, mathF3C9QuestionBankDLP);

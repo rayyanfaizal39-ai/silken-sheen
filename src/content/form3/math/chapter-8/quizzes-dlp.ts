@@ -1,5 +1,7 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -16,7 +18,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C8QuizzesDLP: QuizQuestion[] = buildQuiz([
+export const mathF3C8QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Easy", "What does locus mean?", ["A path/trace of a set of points satisfying certain conditions", "A single fixed point only", "Any straight line", "The area of a shape"], 0],
   ["Easy", "What is the locus of a point on a rotating fan blade?", ["Circle", "Straight line", "Triangle", "Rectangle"], 0],
   ["Easy", "What is the locus of a point on a vertically launched rocket?", ["Straight line", "Circle", "Arc", "Sphere"], 0],
@@ -46,14 +48,14 @@ export const mathF3C8QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Medium", "X is 7 units from A; Y is equidistant from AB and CD. How do you find the intersection of X and Y?", ["Draw both loci on the same diagram, identify where they meet", "Only draw locus X", "Only draw locus Y", "Estimate without drawing"], 0],
   ["Medium", "Line MN, point P is equidistant from M and N. How do you construct the locus of P?", ["Draw the perpendicular bisector of MN", "Draw a circle of radius MN", "Draw a line parallel to MN", "Draw the angle bisector at M"], 0],
   ["Medium", "On the Cartesian plane, coordinate pairs (0,0),(-2,-2),(4,4) are connected. What is this locus?", ["The line bisecting the angle between the x-axis and y-axis (45°)", "A circle centred at O", "A line parallel to the x-axis", "A line parallel to the y-axis"], 0],
-  ["Medium", "From the above, what is the value of ∠a=∠b=∠c=∠d formed?", ["45°", "90°", "60°", "30°"], 0],
+  ["Medium", "The line through (0,0), (−2,−2) and (4,4) is y = x. Find its acute angle with the positive x-axis.", ["45°", "90°", "60°", "30°"], 0],
   ["Medium", "Faruk is equidistant from the x-axis and y-axis, and less than 5 units from O. What locus type is relevant?", ["The angle bisector (45° line) within a range of <5 units from O", "Only a circle of radius 5 units", "A line parallel to the x-axis", "A line parallel to the y-axis"], 0],
   ["Medium", "Square ABCD, P moves equidistant from A and D. What is the locus of P?", ["The perpendicular bisector of AD", "A circle centred at A", "The angle bisector at A", "A line parallel to AD"], 0],
   ["Medium", "Q moves equidistant from B and D (square ABCD). What is the locus of Q?", ["The perpendicular bisector of BD", "A circle centred at B", "A line parallel to BD", "The angle bisector at B"], 0],
   ["Medium", "R moves 4 units from straight line BC. What is the locus of R?", ["A pair of lines parallel to BC, 4 units away", "A circle of radius 4 units", "The angle bisector at BC", "Just one line"], 0],
   ["Medium", "S moves equidistant from lines AB and BC. What is the locus of S?", ["The bisector of ∠ABC", "The perpendicular bisector of AB", "A circle centred at B", "A line parallel to AB"], 0],
   ["Medium", "Straight line PQ is 5cm, X is 3cm from P. Describe the locus of X.", ["A circle of radius 3cm centred at P", "A straight line 3cm from P", "The perpendicular bisector of PQ", "A circle of radius 5cm centred at P"], 0],
-  ["Medium", "From the above, Y is 4cm from Q. Describe the locus of Y.", ["A circle of radius 4cm centred at Q", "A straight line 4cm from Q", "The perpendicular bisector of PQ", "A circle of radius 5cm centred at Q"], 0],
+  ["Medium", "PQ is a line segment of length 5 cm. Y moves at a fixed distance of 4 cm from Q. Describe the locus of Y.", ["A circle of radius 4cm centred at Q", "A straight line 4cm from Q", "The perpendicular bisector of PQ", "A circle of radius 5cm centred at Q"], 0],
   ["Medium", "Straight line CD is 6cm, T is 1.5cm from CD. How many lines form the locus of T?", ["Two lines parallel to CD", "Just one line", "A single circle", "Three lines"], 0],
   ["Medium", "Quadrilateral ABCD represents a lake. Boat V moves 5 units from D, boat W is 3 units from BC. How do you find where the paths intersect?", ["Draw both loci (circle and parallel lines) on the same diagram and identify where they meet", "Just calculate distance without drawing", "Assume the paths never meet", "Draw only one locus"], 0],
   ["Medium", "Four 2cm squares are combined; X moves 2cm from M. What is the locus of X?", ["A circle of radius 2cm centred at M", "A straight line 2cm from M", "The angle bisector at M", "A line parallel to any side"], 0],
@@ -70,3 +72,5 @@ export const mathF3C8QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Hard", "How is a 3D locus (cylinder/sphere) related to the 2D loci studied in this chapter?", ["A 3D locus is produced when a 2D shape (rectangle/semicircle) is rotated 360° about an axis", "There is no relationship between the two", "A 3D locus is simply a magnified 2D locus", "A 3D locus only occurs for circles"], 0],
   ["Hard", "What is the conceptual error if someone assumes the locus equidistant from two parallel lines is two lines (not one)?", ["Incorrect; that locus is only ONE line midway between them, not a pair", "Correct, always two lines", "Depends on the distance between the parallel lines", "Only one line if the parallel lines are very far apart"], 0],
 ]);
+
+export const mathF3C8QuizzesDLP: QuizQuestion[] = buildForm3MathQuizSets(8, mathF3C8QuestionBankDLP);

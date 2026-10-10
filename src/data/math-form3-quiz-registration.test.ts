@@ -36,16 +36,16 @@ describe("Mathematics Form 3 quiz renderer registration", () => {
     }
   });
 
-  it("aggregates all 976 existing questions without duplicating IDs", () => {
+  it("aggregates all 900 set questions without duplicating IDs", () => {
     const form3MathQuizzes = quizzes.filter(
       (quiz) => quiz.subjectId === "math" && quiz.form === FORM,
     );
     const bmQuizzes = form3MathQuizzes.filter((quiz) => quiz.lang === "bm");
     const dlpQuizzes = form3MathQuizzes.filter((quiz) => quiz.lang === "dlp");
 
-    expect(form3MathQuizzes).toHaveLength(976);
-    expect(bmQuizzes).toHaveLength(488);
-    expect(dlpQuizzes).toHaveLength(488);
-    expect(new Set(form3MathQuizzes.map((quiz) => quiz.id)).size).toBe(976);
+    expect(form3MathQuizzes).toHaveLength(900);
+    expect(bmQuizzes).toHaveLength(450);
+    expect(dlpQuizzes).toHaveLength(450);
+    expect(new Set(form3MathQuizzes.map((quiz) => quiz.id)).size).toBe(900);
   });
 });

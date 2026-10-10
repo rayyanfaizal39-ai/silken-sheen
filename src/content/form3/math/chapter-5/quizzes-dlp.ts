@@ -1,5 +1,7 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -16,7 +18,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C5QuizzesDLP: QuizQuestion[] = buildQuiz([
+export const mathF3C5QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Easy", "What is the hypotenuse in a right-angled triangle?", ["The longest side, opposite the 90° angle", "The shortest side", "The side adjacent to the acute angle", "Only the horizontal side"], 0],
   ["Easy", "What is the formula for sin θ?", ["Opposite side / hypotenuse", "Adjacent side / hypotenuse", "Opposite side / adjacent side", "Hypotenuse / opposite side"], 0],
   ["Easy", "What is the formula for cos θ?", ["Adjacent side / hypotenuse", "Opposite side / hypotenuse", "Opposite side / adjacent side", "Hypotenuse / adjacent side"], 0],
@@ -34,13 +36,13 @@ export const mathF3C5QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Easy", "What happens to cos θ as θ increases from 0° to 90°?", ["Decreases toward 0", "Increases toward 1", "Stays the same", "Increases without bound"], 0],
   ["Easy", "What happens to tan θ as θ approaches 90°?", ["Increases toward infinity", "Decreases toward 0", "Stays at 1", "Becomes negative"], 0],
   ["Easy", "Right-angled triangle PQR, PQ=15cm, QR=8cm. Find PR.", ["17 cm", "23 cm", "7 cm", "13 cm"], 0],
-  ["Easy", "From the above, find sin∠PRQ.", ["15/17", "8/17", "8/15", "17/15"], 0],
+  ["Easy", "Triangle PQR is right-angled at Q, with PQ = 15 cm and QR = 8 cm. Find sin∠PRQ.", ["15/17", "8/17", "8/15", "17/15"], 0],
   ["Easy", "If sin θ=0.6 and cos θ=0.8, find tan θ.", ["0.75", "1.33", "0.48", "1.4"], 0],
   ["Easy", "What is the correct calculator mode for degree trigonometry?", ["Deg mode (degrees)", "Rad mode (radians)", "Grad mode", "It does not matter"], 0],
 
   ["Medium", "Triangle PQR, PR=20cm, sin∠QPR=3/5. Find the length QR.", ["12 cm", "16 cm", "20 cm", "8 cm"], 0],
-  ["Medium", "From the above, find PQ using Pythagoras.", ["16 cm (√(20²-12²))", "12 cm", "24 cm", "8 cm"], 0],
-  ["Medium", "From the above, find cos∠QPR.", ["4/5", "3/5", "3/4", "4/3"], 0],
+  ["Medium", "Triangle PQR is right-angled at Q, with PR = 20 cm and QR = 12 cm. Find PQ using Pythagoras’ theorem.", ["16 cm (√(20²-12²))", "12 cm", "24 cm", "8 cm"], 0],
+  ["Medium", "Triangle PQR is right-angled at Q, with PR = 20 cm and QR = 12 cm. Find cos∠QPR.", ["4/5", "3/5", "3/4", "4/3"], 0],
   ["Medium", "If sin θ=3/8 and tan θ=3/√55, find cos θ.", ["√55/8", "8/√55", "3/√55", "√55/3"], 0],
   ["Medium", "Find sin45°+cos45° without a calculator.", ["√2", "1", "2", "1/√2"], 0],
   ["Medium", "Find 3cos30°-2sin60°.", ["√3/2", "√3", "3√3/2", "0"], 0],
@@ -51,27 +53,29 @@ export const mathF3C5QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Medium", "If cos x=0.7021, find x.", ["45.4° or 45° 24'", "44.6°", "30°", "60°"], 0],
   ["Medium", "Ladder PQR leans against a wall at 50°, height QR=2.5m. Find the ladder's length PR.", ["3.26 m", "1.91 m", "2.5 m", "3.91 m"], 0],
   ["Medium", "Cuboid ABCDEFGH: BC=8cm, CH=5cm, HE=4cm. FG=EH. Find CG.", ["√89 cm (≈9.43cm)", "13 cm", "√41 cm", "9 cm"], 0],
-  ["Medium", "From the above, find tan∠FCG.", ["4/√89", "√89/4", "5/4", "4/5"], 0],
-  ["Medium", "From the above, find ∠FCG.", ["22.98° or 22°59'", "30°", "45°", "60°"], 0],
+  ["Medium", "Triangle FCG is right-angled at G, with FG = 4 cm and CG = √89 cm. Find tan∠FCG.", ["4/√89", "√89/4", "5/4", "4/5"], 0],
+  ["Medium", "Triangle FCG is right-angled at G, with FG = 4 cm and CG = √89 cm. Find ∠FCG to 2 decimal places.", ["22.98° or 22°59'", "30°", "45°", "60°"], 0],
   ["Medium", "An isosceles triangle ladder PQR, T is the midpoint of PR, ∠PQR=38°, PR=1.4m. Find PQ.", ["Using sin19°=0.7/PQ, PQ≈2.15m", "PQ=1.4m", "PQ=0.7m", "PQ=2.8m"], 0],
   ["Medium", "Aisyah views a lamp post at an elevation angle of 55°, eye-to-top distance 145m. Find the horizontal distance d.", ["d=145cos55°≈83.1m", "d=145sin55°≈118.8m", "d=145tan55°≈207m", "d=145m"], 0],
   ["Medium", "A ship is viewed from a lighthouse at a depression angle of 41°, horizontal distance 200m. Find the lighthouse height h.", ["h=200tan41°≈173.9m", "h=200sin41°≈131.2m", "h=200cos41°≈151m", "h=200m"], 0],
   ["Medium", "PRS with PQR a straight line, cos60°=0.5, PQ=10cm, angle QPS=30°. Find QR.", ["QR=5cm (cos60°=QR/10)", "QR=10cm", "QR=8.66cm", "QR=2.5cm"], 0],
-  ["Medium", "From the above, if SR=√75cm and PR=15cm, find PS.", ["PS≈17.32cm (√(75+225))", "PS=15cm", "PS=20cm", "PS=10cm"], 0],
+  ["Medium", "Triangle PRS is right-angled at R, with SR = √75 cm and PR = 15 cm. Find the hypotenuse PS.", ["PS≈17.32cm (√(75+225))", "PS=15cm", "PS=20cm", "PS=10cm"], 0],
 
   ["Hard", "Cuboid PQRSTUVW, PQ=12cm, QR=7cm. Find tan∠PQS (∠PQS in square PSTU).", ["12/7 (estimate, depends on exact configuration)", "7/12", "1", "12/√193"], 0],
   ["Hard", "From the above, find the length QS (base diagonal) if PQRS is a square with PQ=12, QR=7.", ["QS=√(12²+7²)=√193≈13.89cm", "QS=19cm", "QS=12cm", "QS=7cm"], 0],
   ["Hard", "A regular hexagon PQRSTU with side 6cm. Find ∠PTS (estimate using regular hexagon properties).", ["30° (estimate based on hexagon symmetry)", "60°", "90°", "120°"], 0],
   ["Hard", "From the regular hexagon with side 6cm, find the length of the short diagonal PS (estimate).", ["6√3 cm (estimated short diagonal of a regular hexagon)", "12 cm", "6 cm", "9 cm"], 0],
   ["Hard", "Rectangle ABCD, AB=8cm, BC=16cm (2xAB), N is the midpoint of BC. Find BN.", ["8 cm (half of BC)", "16 cm", "4 cm", "12 cm"], 0],
-  ["Hard", "From the above, if MD=(1/4)AD and AD=16cm, find AM.", ["12 cm (16-4)", "4 cm", "8 cm", "16 cm"], 0],
+  ["Hard", "M lies on side AD of a rectangle. AD = 16 cm and MD = (1/4)AD. Find AM.", ["12 cm (16-4)", "4 cm", "8 cm", "16 cm"], 0],
   ["Hard", "Find 8sin60°-3tan60° without a calculator.", ["4√3-3√3=√3 (8(√3/2)-3√3)", "5√3", "√3/2", "0"], 0],
   ["Hard", "Find (tan30°)(2cos30°)+6sin30°.", ["1+3=4 ((1/√3)(2)(√3/2)+6(1/2)=1+3)", "4√3", "1", "6"], 0],
   ["Hard", "Find (8cos45°)(sin60°)+(8sin45°)(cos30°).", ["4√6+4√6/√2 (estimate of a complex surd calculation)", "16", "8√2", "4√3"], 0],
   ["Hard", "PRS with QR=RS=18cm, tan θ=3/4. Find the length PQ if θ=∠QPR.", ["PQ=24cm (18÷tan θ for the appropriate angle; depends on exact diagram configuration)", "PQ=18cm", "PQ=13.5cm", "PQ=30cm"], 0],
   ["Hard", "Right-angled ABC, AB=21cm, sin θ=3/5. Find the length AC.", ["AC depends on θ's position; if θ is opposite AC, AC=AB x (sinθ/cosθ) or use the corresponding ratio", "AC=15.75cm", "AC=35cm", "AC=12.6cm"], 0],
-  ["Hard", "From the above, find ∠BAC to the nearest degree if sin θ=3/5.", ["∠BAC=37° (sin⁻¹0.6≈36.87°, rounded to 37°)", "53°", "30°", "60°"], 0],
+  ["Hard", "Triangle ABC is right-angled at B. If sin∠BAC = 3/5, find ∠BAC to the nearest degree.", ["∠BAC=37° (sin⁻¹0.6≈36.87°, rounded to 37°)", "53°", "30°", "60°"], 0],
   ["Hard", "A sliding door forms a triangle; use trigonometry to estimate the opening angle if the side ratio is 3:4:5.", ["θ=sin⁻¹(3/5)≈36.87° or θ=cos⁻¹(4/5)≈36.87°", "θ=45°", "θ=60°", "θ=30°"], 0],
   ["Hard", "DPF is a straight line in right-angled DEF, PE=5cm, x and θ are not given directly. What is the correct solving strategy?", ["Identify the smaller right-angled triangle involving PE and known sides, apply Pythagoras and trig ratios in sequence", "Apply the sine rule directly", "Apply the cosine rule directly", "Assume all angles are 45°"], 0],
   ["Hard", "Why do trigonometric ratios for the same angle stay the same even when triangle sizes differ?", ["The triangles are similar (same angles, proportional sides)", "Because the hypotenuse is always the same length", "Because the 90° angle changes", "It is purely coincidental"], 0],
 ]);
+
+export const mathF3C5QuizzesDLP: QuizQuestion[] = buildForm3MathQuizSets(5, mathF3C5QuestionBankDLP);

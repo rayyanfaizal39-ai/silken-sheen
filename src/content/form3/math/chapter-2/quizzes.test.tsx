@@ -7,8 +7,8 @@ import { getChapterQuizQuestions } from "@/content/registry";
 import { shuffleQuestionOptions } from "@/features/quiz/difficulty/quizDifficulty";
 import { describeMathQuestionVisual } from "@/features/quiz/visuals/mathQuestionVisual";
 import { placeValueCells } from "@/features/quiz/visuals/mathStandardFormVisual";
-import { mathF3C2QuizzesBM } from "./quizzes-bm";
-import { mathF3C2QuizzesDLP } from "./quizzes-dlp";
+import { mathF3C2QuestionBankBM as mathF3C2QuizzesBM } from "./quizzes-bm";
+import { mathF3C2QuestionBankDLP as mathF3C2QuizzesDLP } from "./quizzes-dlp";
 import { mathF3C2InteractiveContent } from "./interactive-content";
 import { MATH_F3_C2_QUIZ_VISUALS } from "./quiz-visuals";
 
@@ -114,15 +114,16 @@ describe("Form 3 Chapter 2 standard form", () => {
     "preserves the %s bank and delivers visuals and feedback through the registry",
     (lang) => {
       const bank = getChapterQuizQuestions("math", "Form 3", "Chapter 2", lang);
-      expect(bank).toEqual(banks[lang]);
-      expect(bank).toHaveLength(57);
-      expect(bank.filter((q) => q.visual)).toHaveLength(36);
-      expect(bank.map((q) => q.id)).toEqual(
+      expect(bank).toEqual(banks[lang].filter(q => bank.some(item => item.id === q.id)).map(q => ({ ...q, set: bank.find(item => item.id === q.id)!.set })));
+      const source = banks[lang];
+      expect(bank).toHaveLength(50);
+      expect(source.filter((q) => q.visual)).toHaveLength(36);
+      expect(source.map((q) => q.id)).toEqual(
         Array.from({ length: 57 }, (_, i) => `math-f3-c2-${lang}-q${i + 1}`),
       );
       expect(
         ["Easy", "Medium", "Hard"].map(
-          (d) => bank.filter((q) => q.difficulty === d).length,
+          (d) => source.filter((q) => q.difficulty === d).length,
         ),
       ).toEqual([20, 20, 17]);
       for (const q of bank) {

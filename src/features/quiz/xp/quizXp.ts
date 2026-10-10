@@ -160,7 +160,7 @@ export type CanonicalQuizIdentity =
       form: string;
       chapterKey: string;
       lang: string;
-      /** Science Form 3 set (A/B); null when the chapter has no sets. */
+      /** Chapter quiz set (A/B); null when the chapter has no sets. */
       set: string | null;
       /** Difficulty filter; "All" for subjects that ignore the filter. */
       difficulty: string;

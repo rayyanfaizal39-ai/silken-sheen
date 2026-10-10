@@ -4,13 +4,13 @@ import { createRoot, type Root } from "react-dom/client";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import * as registry from "@/content/registry";
 import * as content from "@/data/content";
-import { mathF3C2QuizzesBM } from "@/content/form3/math/chapter-2/quizzes-bm";
-import { mathF3C2QuizzesDLP } from "@/content/form3/math/chapter-2/quizzes-dlp";
-import { mathF3C3QuizzesBM } from "@/content/form3/math/chapter-3/quizzes-bm";
-import { mathF3C3QuizzesDLP } from "@/content/form3/math/chapter-3/quizzes-dlp";
+import { mathF3C2QuestionBankBM as mathF3C2QuizzesBM } from "@/content/form3/math/chapter-2/quizzes-bm";
+import { mathF3C2QuestionBankDLP as mathF3C2QuizzesDLP } from "@/content/form3/math/chapter-2/quizzes-dlp";
+import { mathF3C3QuestionBankBM as mathF3C3QuizzesBM } from "@/content/form3/math/chapter-3/quizzes-bm";
+import { mathF3C3QuestionBankDLP as mathF3C3QuizzesDLP } from "@/content/form3/math/chapter-3/quizzes-dlp";
 import { Route } from "./quizzes";
 
-const state = vi.hoisted(() => ({ lang: "bm" as "bm" | "dlp" }));
+const state = vi.hoisted(() => ({ lang: "bm" as "bm" | "dlp", recordQuizResult: vi.fn((_input: unknown) => new Promise<never>(() => {})) }));
 vi.mock("@tanstack/react-router", async (importOriginal) => {
   const actual = await importOriginal<typeof import("@tanstack/react-router")>();
   return { ...actual, Link: ({ children }: { children: import("react").ReactNode }) => createElement("a", { href: "#" }, children) };
@@ -23,14 +23,16 @@ vi.mock("@/hooks/use-content-registry", () => ({
 vi.mock("@/hooks/use-progress", () => ({
   useProgress: () => ({
     progress: { xp: 0, quizzesTaken: 0, quizHistory: [], completedChapters: [] },
-    awardBadge: () => {}, markChapter: () => {}, recordQuizResult: vi.fn(),
+    awardBadge: () => {}, markChapter: () => {}, recordQuizResult: state.recordQuizResult,
   }),
 }));
 vi.mock("@/context/auth-context", () => ({ useAuth: () => ({ user: { id: "test-student" } }) }));
 vi.mock("@/context/sign-in-modal", () => ({ useSignInModal: () => ({ open: () => {} }) }));
 vi.mock("@/context/cikgu-context", () => ({ useCikgu: () => ({ openCikgu: () => {} }) }));
 vi.mock("@/hooks/use-science-lang", () => ({ useScienceLang: () => ({ lang: state.lang, setLang: () => {} }) }));
-vi.mock("@/lib/sounds", () => ({ sfx: { success: () => {}, error: () => {}, click: () => {}, levelUp: () => {} } }));
+vi.mock("@/lib/sounds", () => ({ sfx: new Proxy({}, { get: () => () => {} }) }));
+
+vi.mock("@/components/quiz/useQuizStageTransition", () => ({ useQuizStageTransition: () => ({ phase: "idle", panelRef: { current: null }, busy: false, cancel: () => {}, advance: (commit: () => void) => commit() }) }));
 
 let root: Root | null = null;
 let host: HTMLDivElement | null = null;
@@ -125,6 +127,45 @@ describe("Regular Form 3 maths visual quiz screen", () => {
     expect(document.querySelector(".quiz-answer-nudge")).toBeNull();
     expect(document.querySelector(".quiz-explain")?.textContent).toContain(number === 46 ? "634.13" : "9 900");
     if (number === 46) expect(document.querySelector(".quiz-explain sup")).toBeTruthy();
+  });
+
+  it.each((["bm", "dlp"] as const).flatMap(lang => (["A", "B"] as const).map(set => ({ lang, set }))))("chooses $lang Set $set, runs exactly 25 questions and saves its own result", async ({ lang, set }) => {
+    state.lang = lang; state.recordQuizResult.mockClear();
+    const bank = registry.getChapterQuizQuestions("math", "Form 3", "Chapter 1", lang).filter(q => q.set === set);
+    window.history.replaceState({}, "", "/quizzes?subject=math&form=3&chapter=Chapter%201");
+    vi.spyOn(Route, "useNavigate").mockReturnValue(vi.fn());
+    vi.spyOn(Route, "useSearch").mockReturnValue({ subject: "math", form: 3, chapter: "Chapter 1" } as never);
+    vi.spyOn(Math, "random").mockReturnValue(0.999);
+    Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
+    window.matchMedia = vi.fn().mockImplementation(() => ({ matches: false, addEventListener: () => {}, removeEventListener: () => {} }));
+    host = document.createElement("div"); document.body.appendChild(host); root = createRoot(host);
+    act(() => root!.render(createElement(Route.options.component as ComponentType)));
+    const button = (label: string) => [...document.querySelectorAll<HTMLButtonElement>("button")].find(b => b.textContent?.includes(label));
+    for (const letter of ["A", "B"]) expect(button(`Set ${letter}`)?.textContent).toContain("25");
+    act(() => button(`Set ${set}`)!.click());
+    expect(button(`Set ${set}`)?.getAttribute("aria-pressed")).toBe("true");
+    act(() => button("No Timer")!.click()); act(() => button("Start Quiz")!.click());
+    expect(document.body.textContent).toContain(`Set ${set}`);
+    expect(button(lang === "bm" ? "Mudah" : "Easy")).toBeUndefined();
+    for (let i = 0; i < 25; i++) {
+      const answers = [...document.querySelectorAll<HTMLButtonElement>(".quiz-arena button.group")];
+      expect(answers).toHaveLength(4);
+      expect(document.querySelector(".quiz-arena h2")).toBeTruthy();
+      act(() => answers[bank[i].answerIndex].click());
+      const next = document.querySelector<HTMLButtonElement>(".quiz-continue button");
+      expect(next).toBeTruthy();
+      await act(async () => next!.click());
+    }
+    expect(state.recordQuizResult).toHaveBeenCalledTimes(1);
+    expect(state.recordQuizResult.mock.calls[0][0]).toMatchObject({
+      quizKey: `quiz-v2:standard:math:form-3:chapter-1:${lang}:set-${set.toLowerCase()}:difficulty-all`,
+      total: 25, correct: { easy: 10, medium: 10, hard: 5 },
+    });
+    expect(document.querySelector(".quiz-continue")).toBeNull();
+    const other = set === "A" ? "B" : "A";
+    act(() => button(lang === "bm" ? `Teruskan ke Set ${other}` : `Continue to Set ${other}`)!.click());
+    expect(button(`Set ${other}`)?.getAttribute("aria-pressed")).toBe("true");
+    expect(button(`Set ${other}`)?.textContent).toContain("25");
   });
 
 });

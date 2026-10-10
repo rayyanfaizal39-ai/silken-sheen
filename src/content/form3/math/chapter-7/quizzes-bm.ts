@@ -1,5 +1,7 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -16,7 +18,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C7QuizzesBM: QuizQuestion[] = buildQuiz([
+export const mathF3C7QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Easy", "Apakah satah?", ["Permukaan rata pada objek", "Garis lurus sahaja", "Sudut pada objek", "Titik pada objek"], 0],
   ["Easy", "Apakah tiga jenis satah?", ["Mengufuk, mencancang, condong", "Bulat, segi tiga, segi empat", "Tinggi, rendah, sederhana", "Merah, biru, hijau"], 0],
   ["Easy", "Apakah normal kepada satah?", ["Garis lurus berserenjang dengan satah", "Garis selari dengan satah", "Garis condong sahaja", "Sebarang garis pada satah"], 0],
@@ -42,7 +44,7 @@ export const mathF3C7QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Medium", "Prisma tegak ABCD mengufuk, FM⊥AB, EN⊥CD. Apakah FM dan EN?", ["Normal kepada satah ABCD", "Unjuran ortogon ABCD", "Sisi tegak prisma", "Garis sempang"], 0],
   ["Medium", "Jika garis unjuran tidak berserenjang satah, apakah hasilnya?", ["Bukan unjuran ortogon", "Unjuran ortogon sah", "Pelan yang sah", "Dongakan yang sah"], 0],
   ["Medium", "Silinder diameter 4cm, tinggi 6cm di atas satah mengufuk. Apakah bentuk pelan (pandangan atas)?", ["Bulatan diameter 4cm", "Segi empat 4cmx6cm", "Segi tiga", "Garis lurus 6cm"], 0],
-  ["Medium", "Daripada soalan di atas, apakah bentuk dongakan (pandangan sisi)?", ["Segi empat tepat 4cm x 6cm", "Bulatan diameter 4cm", "Segi tiga", "Bulatan diameter 6cm"], 0],
+  ["Medium", "Silinder tegak mempunyai diameter 4 cm dan tinggi 6 cm di atas satah mengufuk. Apakah bentuk dongakan sisinya?", ["Segi empat tepat 4cm x 6cm", "Bulatan diameter 4cm", "Segi tiga", "Bulatan diameter 6cm"], 0],
   ["Medium", "Bagi unjuran ortogon pada satah mengufuk dari arah Z, apakah yang tidak berubah?", ["Panjang sisi dan sudut yang selari/pada satah itu", "Semua panjang sisi objek", "Semua sudut objek", "Tiada yang kekal sama"], 0],
   ["Medium", "Mengapa panjang sisi unjuran berbeza mengikut arah pandangan?", ["Kerana sisi condong/tegak terhadap satah berubah panjang dalam unjuran", "Kerana objek berubah bentuk", "Kerana skala berubah", "Kerana kesilapan lukisan"], 0],
   ["Medium", "Prisma tegak tapak PQRS, URQ keratan rentas. Apakah langkah pertama melukis pelan?", ["Unjurkan setiap bucu objek kepada satah mengufuk", "Unjurkan terus ke satah mencancang", "Lukis dongakan dahulu", "Ukur sudut sahaja"], 0],
@@ -60,7 +62,7 @@ export const mathF3C7QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Medium", "Mengapa label bucu objek (contoh E/D, F/A) digunakan dalam unjuran bertindih?", ["Menunjukkan dua bucu objek bertindih pada titik unjuran yang sama", "Kesilapan pelabelan", "Menunjukkan bucu berlainan warna", "Tidak bermakna apa-apa"], 0],
 
   ["Hard", "Objek dengan AC=14cm, ∠VCB=60° (objek), unjuran dari arah Z memberi ∠VCB=45°. Apakah maksud perubahan ini?", ["Sudut unjuran berbeza dari sudut objek sebenar mengikut arah pandangan", "Kesilapan pengukuran", "Objek berubah bentuk", "Unjuran tidak sah"], 0],
-  ["Hard", "Daripada data di atas, jika AC=14cm tidak berubah dalam unjuran dari arah Z, apakah sebabnya?", ["AC terletak/selari dengan satah unjuran (mengufuk) sehingga panjang dikekalkan", "AC ialah sisi tegak", "AC ialah sisi terpanjang", "Kebetulan sahaja"], 0],
+  ["Hard", "Dalam unjuran ortogon dari arah Z, AC = 14 cm kekal tidak berubah kerana AC selari dengan satah unjuran. Mengapa panjang sebenar AC dikekalkan?", ["AC terletak/selari dengan satah unjuran (mengufuk) sehingga panjang dikekalkan", "AC ialah sisi tegak", "AC ialah sisi terpanjang", "Kebetulan sahaja"], 0],
   ["Hard", "Bagi unjuran pada satah mencancang dari arah Y, VC berubah daripada 19.8cm kepada 14cm. Apakah sebabnya?", ["VC tidak selari dengan satah mencancang arah Y, jadi panjang unjurannya berbeza", "VC ialah sisi yang sentiasa kekal", "Kesilapan dalam buku teks", "VC ialah sisi mengufuk"], 0],
   ["Hard", "Prisma tegak tapak PQRS, satah URQ keratan rentas. Lukis pelan dari arah Z dan dongakan dari arah X — apakah perbezaan utama antara dua pandangan ini?", ["Pelan menunjukkan pandangan atas (susun atur tapak), dongakan menunjukkan pandangan depan (profil tegak)", "Kedua-duanya sama", "Pelan lebih besar daripada dongakan", "Dongakan tidak mempunyai garis sempang"], 0],
   ["Hard", "Dalam melakar bentuk 3D daripada pelan+dongakan dengan bongkah kuboid dikeluarkan, apakah cabaran utama?", ["Mengenal pasti permukaan yang membentuk lubang/lekukan kuboid dengan tepat dalam ketiga-tiga pandangan", "Tiada cabaran, terus sambung garis", "Hanya perlu lukis kotak besar", "Skala tidak penting"], 0],
@@ -70,3 +72,5 @@ export const mathF3C7QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Hard", "Apakah kesan jika garis normal tidak tepat 90° semasa melukis unjuran ortogon?", ["Unjuran terhasil bukan unjuran ortogon yang sah dan ukuran menjadi tidak tepat", "Tiada kesan, unjuran tetap sah", "Unjuran menjadi lebih tepat", "Hanya menjejaskan warna lukisan"], 0],
   ["Hard", "Apakah strategi terbaik untuk menyemak ketepatan unjuran ortogon yang dilukis?", ["Bandingkan ukuran panjang sisi dan sudut unjuran dengan objek sebenar mengikut arah pandangan yang betul", "Anggap semua unjuran automatik betul", "Tidak perlu semak", "Hanya semak warna garis"], 0],
 ]);
+
+export const mathF3C7QuizzesBM: QuizQuestion[] = buildForm3MathQuizSets(7, mathF3C7QuestionBankBM);

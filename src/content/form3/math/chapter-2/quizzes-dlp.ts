@@ -2,6 +2,8 @@ import type { Difficulty, QuizQuestion } from "@/data/content";
 import { MATH_F3_C2_QUIZ_VISUALS } from "./quiz-visuals";
 import { MATH_F3_C2_QUIZ_EXPLANATIONS } from "./quiz-explanations";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -21,7 +23,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C2QuizzesDLP: QuizQuestion[] = buildQuiz([
+export const mathF3C2QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Easy", "What does a significant figure indicate?", ["The level of accuracy of a measurement", "The type of number", "The sign of a number", "The unit of measurement"], 0],
   ["Easy", "How many significant figures are in 2 763?", ["4", "3", "2", "1"], 0],
   ["Easy", "How many significant figures are in 60 007?", ["5", "4", "3", "2"], 0],
@@ -82,3 +84,5 @@ export const mathF3C2QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Hard", "An A4 sheet measures 297 mm × 210 mm and is 70 GSM (70 g/m^2). Find the mass of one sheet in grams, in standard form to 3 s.f.", ["4.37 × 10^0 g", "4.37 × 10^1 g", "4.37 × 10^-1 g", "6.24 × 10^1 g"], 0],
   ["Hard", "What is the mistake in this step: '7.02 × 10^4 + 2.17 × 10^5 = 9.19 × 10^9'?", ["The powers of 10 should be equalised first, not directly added as indices", "The answer is already correct", "It should be subtracted, not added", "The A values should be multiplied"], 0],
 ]);
+
+export const mathF3C2QuizzesDLP: QuizQuestion[] = buildForm3MathQuizSets(2, mathF3C2QuestionBankDLP);

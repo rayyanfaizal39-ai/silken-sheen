@@ -1,5 +1,7 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -16,7 +18,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C6QuizzesBM: QuizQuestion[] = buildQuiz([
+export const mathF3C6QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Easy", "Apakah sifat sudut lilitan yang dicangkum lengkok sama?", ["Sama besar", "Berbeza-beza", "Sentiasa 90°", "Sentiasa 180°"], 0],
   ["Easy", "Apakah hubungan sudut pusat dengan sudut lilitan lengkok sama?", ["Sudut pusat = 2x sudut lilitan", "Sudut pusat = sudut lilitan", "Sudut pusat = sudut lilitan/2", "Tiada hubungan"], 0],
   ["Easy", "Apakah sudut lilitan yang dicangkum oleh diameter?", ["90°", "180°", "45°", "60°"], 0],
@@ -41,14 +43,14 @@ export const mathF3C6QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Medium", "KLMN sisi empat kitaran, ∠LKN=104°, ∠LMN=8x. Hitung x.", ["9.5°", "10°", "8.5°", "13°"], 0],
   ["Medium", "∠KNM=98°, ∠KLM=4y dalam sisi empat kitaran. Hitung y.", ["20.5°", "20°", "22°", "18°"], 0],
   ["Medium", "PQRS kitaran, ∠PQR=4y, ∠PSR=2y, garis lurus RST. Hitung y.", ["30°", "20°", "60°", "45°"], 0],
-  ["Medium", "Daripada soalan di atas, hitung ∠PST.", ["120°", "60°", "90°", "150°"], 0],
+  ["Medium", "PQRS ialah sisi empat kitaran, ∠PQR = 4y dan ∠PSR = 2y. R, S dan T terletak pada garis lurus dengan S di antara R dan T. Hitung ∠PST.", ["120°", "60°", "90°", "150°"], 0],
   ["Medium", "ABC garis lurus tangen, ∠OBA=90° (tangen-jejari), ∠AOB=42°. Hitung x jika x+∠AOB=90°.", ["48°", "42°", "90°", "138°"], 0],
   ["Medium", "Tangen PQ, RQ bertemu Q, ∠OPQ=90°, sudut x=∠POQ, ∠OQP=66°. Hitung x.", ["24°", "66°", "90°", "156°"], 0],
   ["Medium", "Panjang PQ=14cm (tangen). Hitung panjang RQ (tangen lain dari titik sama).", ["14 cm", "7 cm", "28 cm", "21 cm"], 0],
   ["Medium", "Sudut x=24° (dari segi tiga OPQ bersudut tegak), OP=14tan24°. Hitung OP.", ["≈6.233 cm", "14 cm", "12.8 cm", "7 cm"], 0],
   ["Medium", "∠QSR=60° (tembereng selang-seli), PQ&PR tangen. Hitung sudut berkaitan x jika x=∠QSR.", ["60°", "30°", "90°", "120°"], 0],
   ["Medium", "Lengkok PQ=2x lengkok QR, ∠PTS=180-2(48°). Hitung ∠PTS.", ["84°", "96°", "48°", "132°"], 0],
-  ["Medium", "Daripada soalan di atas, hitung x jika x=∠PTS/2.", ["42°", "84°", "21°", "48°"], 0],
+  ["Medium", "∠PTS = 84° dan x = ∠PTS/2. Hitung x.", ["42°", "84°", "21°", "48°"], 0],
   ["Medium", "∠QPR=35°, ∠PSQ=45°, panjang lengkok RS=2QR. Hitung ∠SPR.", ["Bergantung rajah; anggaran 35°+sudut tambahan", "45°", "70°", "90°"], 0],
   ["Medium", "Sisi empat kitaran ABCD, ∠ADB=30°, ∠ABD=20°. Hitung ∠BCD.", ["130° (180-30-20=130, anggaran berdasarkan sudut segi tiga ABD)", "50°", "100°", "150°"], 0],
   ["Medium", "POS segi tiga sama sisi, ∠SOR=20°. Hitung ∠PQR menggunakan sudut pusat.", ["Anggaran 40° (separuh daripada (60+20))", "60°", "20°", "80°"], 0],
@@ -57,17 +59,17 @@ export const mathF3C6QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Medium", "PQ=QR, ∠PSQ=30°, ∠SPR=32°. Hitung x+y+z (anggaran jumlah sudut berkaitan).", ["Anggaran 180° jika x,y,z membentuk segi tiga", "360°", "90°", "270°"], 0],
   ["Medium", "Dua bulatan jejari 4cm dan 3cm berjarak pusat 7cm. Tangen sepunya PQRS. Hitung kos x jika kos x=1/7.", ["x≈81.79°", "x=45°", "x=60°", "x=30°"], 0],
   ["Medium", "Tayar diameter 50cm, jarak WY=1.2m. VY=WY (dua tangen). Hitung VY.", ["1.2 m", "0.6 m", "2.4 m", "0.25 m"], 0],
-  ["Medium", "Daripada soalan di atas, jejari=0.25m. Hitung OY menggunakan Pythagoras (OY²=1.2²+0.25²).", ["≈1.23 m", "1.45 m", "1.2 m", "0.25 m"], 0],
+  ["Medium", "Bulatan berpusat O mempunyai jejari 0.25 m. Y ialah titik luar dan VY ialah tangen sepanjang 1.2 m pada V. Hitung OY menggunakan Teorem Pythagoras.", ["≈1.23 m", "1.45 m", "1.2 m", "0.25 m"], 0],
 
   ["Hard", "Rajah arca: lengkok PQ=lengkok QR, SQ melalui O, ∠QOR=50°. Hitung ∠QSR.", ["25° (separuh 50°)", "50°", "100°", "12.5°"], 0],
-  ["Hard", "Daripada soalan di atas, hitung ∠PQS jika ∠PSQ=∠QSR=25°.", ["65° (180-90-25)", "25°", "90°", "155°"], 0],
+  ["Hard", "QS ialah diameter bulatan dan P terletak pada lilitan. Jika ∠PSQ = 25°, hitung ∠PQS.", ["65° (180-90-25)", "25°", "90°", "155°"], 0],
   ["Hard", "OSU dan PST garis lurus, diameter 16cm, ∠ROS=70°, ∠QRP=40°, ST=TU. Hitung θ.", ["Anggaran kompleks; perlukan rajah penuh, anggaran θ≈35°", "70°", "20°", "55°"], 0],
   ["Hard", "Daripada soalan di atas, hitung panjang PQ (3 a.b.) menggunakan trigonometri dalam segi tiga bersudut tegak diameter.", ["Anggaran bergantung sudut θ dan diameter 16cm", "16.0 cm", "8.00 cm", "12.3 cm"], 0],
   ["Hard", "∠DOB=158°, DCE garis lurus, sisi empat kitaran ABCD. Hitung x (sudut peluaran berkaitan).", ["Anggaran 79° (separuh 158° untuk sudut lilitan berkaitan)", "158°", "22°", "101°"], 0],
   ["Hard", "PQRS kitaran, ∠QSR=36°, PS=PQ, RST garis lurus. Hitung x (sudut peluaran berkaitan dengan ∠QSR).", ["Anggaran 36° atau berkaitan terus dengan ∠QPR", "72°", "18°", "144°"], 0],
   ["Hard", "∠BCD=126°, lengkok AB=BC, AOD garis lurus. Hitung x (sudut berkaitan bulatan berpusat O).", ["Anggaran 54° (180-126)", "126°", "63°", "108°"], 0],
   ["Hard", "Dua tangen PQ dan PR daripada titik luar P, ∠QSR=60° (tembereng selang-seli), bulatan jejari 5cm. Hitung panjang PQ menggunakan trigonometri.", ["Bergantung sudut ∠OPQ; anggaran menggunakan tan(separuh sudut luar)", "5 cm", "10 cm", "2.5 cm"], 0],
-  ["Hard", "Daripada soalan di atas, hitung panjang OP (jarak pusat ke titik luar) menggunakan Pythagoras OP²=OQ²+PQ².", ["Bergantung PQ yang dikira; OP=√(5²+PQ²)", "5 cm", "10 cm", "OP=PQ"], 0],
+  ["Hard", "PQ ialah tangen dari titik luar P kepada bulatan berpusat O pada Q. Jejari OQ = 5 cm. Ungkapkan OP dalam sebutan PQ menggunakan Teorem Pythagoras.", ["Bergantung PQ yang dikira; OP=√(5²+PQ²)", "5 cm", "10 cm", "OP=PQ"], 0],
   ["Hard", "ROS garis lurus, jejari 3cm, ∠ORP=25°, PS tangen. Hitung x (sudut berkaitan segi tiga bersudut tegak).", ["Anggaran 65° (90-25)", "25°", "90°", "155°"], 0],
   ["Hard", "Daripada soalan di atas, hitung panjang PS menggunakan tan25°=PS/jejari berkaitan.", ["PS=3tan25°≈1.40cm (anggaran)", "PS=3cm", "PS=6cm", "PS=1.5cm"], 0],
   ["Hard", "Segi tiga KLM dengan PMN tangen. ∠PMK dan ∠KLM tembereng selang-seli. Jika ∠KLM=60°, ∠PMK=?", ["60° (sudut tembereng selang-seli sama)", "30°", "90°", "120°"], 0],
@@ -75,3 +77,5 @@ export const mathF3C6QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Hard", "Mengapa sudut antara tangen dan perentas sama dengan sudut tembereng selang-seli?", ["Teorem sudut tangen-perentas (Alternate Segment Theorem) yang terbukti melalui sudut tangen-jejari 90° dan sudut lilitan", "Kebetulan sahaja", "Kerana tangen sentiasa sejajar perentas", "Kerana semua sudut bulatan sama"], 0],
   ["Hard", "Apakah strategi terbaik menyelesaikan masalah bulatan kompleks dengan banyak sudut tidak diketahui?", ["Selesaikan secara berperingkat: sudut pusat/lilitan dahulu, kemudian sisi empat kitaran, kemudian tangen", "Cuba teka semua sudut", "Gunakan hanya satu teorem untuk semua", "Abaikan rajah dan kira terus"], 0],
 ]);
+
+export const mathF3C6QuizzesBM: QuizQuestion[] = buildForm3MathQuizSets(6, mathF3C6QuestionBankBM);

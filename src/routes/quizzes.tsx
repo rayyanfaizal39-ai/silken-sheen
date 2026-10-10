@@ -19105,7 +19105,7 @@ function QuizzesPage() {
   const [form, setForm] = useState<FormFilter>(initialSearch.form);
   const [formWasChosen, setFormWasChosen] = useState(initialSearch.hasForm);
   const [diff, setDiff] = useState<"All" | Difficulty>("All");
-  const [scienceQuizSet, setScienceQuizSet] = useState<"A" | "B">("A");
+  const [chapterQuizSet, setChapterQuizSet] = useState<"A" | "B">("A");
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
@@ -19143,7 +19143,7 @@ function QuizzesPage() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [attemptStartXp, setAttemptStartXp] = useState(progress.xp);
   const quizStreak = useQuizStreak(
-    `${subject ?? "picker"}:${form}:${chapter ?? "none"}:${mathObjectiveId ?? "regular"}:${form === "Form 3" && (subject === "science" || subject === "sejarah") ? scienceQuizSet : (englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "none")}`,
+    `${subject ?? "picker"}:${form}:${chapter ?? "none"}:${mathObjectiveId ?? "regular"}:${form === "Form 3" && (subject === "science" || subject === "sejarah" || subject === "math") ? chapterQuizSet : (englishSetId ?? englishSetIdF2 ?? englishSetIdF3 ?? "none")}`,
   );
   const confirmStreakAnswer = quizStreak.confirmAnswer;
 
@@ -19212,7 +19212,7 @@ function QuizzesPage() {
 
   const availableChapterQuizSets = useMemo(
     () =>
-      form === "Form 3" && (subject === "science" || subject === "sejarah")
+      form === "Form 3" && (subject === "science" || subject === "sejarah" || subject === "math")
         ? (["A", "B"] as const).filter((set) =>
             chapterQuizQuestions.some((question) => question.set === set),
           )
@@ -19220,15 +19220,17 @@ function QuizzesPage() {
     [subject, form, chapterQuizQuestions],
   );
 
+  const isForm3MathSetQuiz = subject === "math" && form === "Form 3" && availableChapterQuizSets.length > 0;
+
   const pool = useMemo(() => {
     const filteredQuestions = chapterQuizQuestions.filter((q) => {
-      if (availableChapterQuizSets.length > 0 && q.set !== scienceQuizSet) return false;
-      if (subject !== "sejarah" && diff !== "All" && q.difficulty !== diff) return false;
+      if (availableChapterQuizSets.length > 0 && q.set !== chapterQuizSet) return false;
+      if (!isForm3MathSetQuiz && subject !== "sejarah" && diff !== "All" && q.difficulty !== diff) return false;
       return true;
     });
 
     return filteredQuestions;
-  }, [chapterQuizQuestions, availableChapterQuizSets, scienceQuizSet, subject, diff]);
+  }, [chapterQuizQuestions, availableChapterQuizSets, chapterQuizSet, subject, diff, isForm3MathSetQuiz]);
   const hasSelectedChapterQuiz =
     !!subject &&
     !!chapter &&
@@ -19539,9 +19541,9 @@ function QuizzesPage() {
           form,
           chapterKey,
           lang: isBilingualSubject ? (scienceLang ?? "bm") : defaultQuizLanguage(subjectId),
-          set: availableChapterQuizSets.length > 0 ? scienceQuizSet : null,
-          // Sejarah ignores the difficulty filter, so every filter is one quiz.
-          difficulty: subject === "sejarah" ? "All" : diff,
+          set: availableChapterQuizSets.length > 0 ? chapterQuizSet : null,
+          // Sejarah and fixed 25-question Maths sets ignore the difficulty filter.
+          difficulty: subject === "sejarah" || isForm3MathSetQuiz ? "All" : diff,
         }),
         formula: "standard",
         subjectId,
@@ -19554,7 +19556,7 @@ function QuizzesPage() {
       if (
         total > 0 &&
         score + (selected === current?.answerIndex ? 1 : 0) === total &&
-        diff === "Hard"
+        diff === "Hard" && !isForm3MathSetQuiz
       ) {
         awardBadge("master");
       }
@@ -20239,7 +20241,7 @@ function QuizzesPage() {
         resourceType="quiz"
         onSelectChapter={(key) => {
           setChapter(key);
-          setScienceQuizSet("A");
+          setChapterQuizSet("A");
           updateQuizSearch({ chapter: key });
           reset();
         }}
@@ -20419,7 +20421,7 @@ function QuizzesPage() {
           resourceType="quiz"
           onSelectChapter={(key) => {
             setChapter(key);
-            setScienceQuizSet("A");
+            setChapterQuizSet("A");
             updateQuizSearch({ chapter: key });
             reset();
           }}
@@ -20605,10 +20607,10 @@ function QuizzesPage() {
           chapterKey={chapter}
           scienceLang={isBilingualSubject ? (scienceLang ?? undefined) : undefined}
           quizSets={availableChapterQuizSets}
-          selectedQuizSet={scienceQuizSet}
-          onSelectQuizSet={setScienceQuizSet}
+          selectedQuizSet={chapterQuizSet}
+          onSelectQuizSet={setChapterQuizSet}
           questionCount={pool.length}
-          difficultyLabel={subject === "sejarah" ? "All" : regularDifficultyLabels[diff]}
+          difficultyLabel={subject === "sejarah" || isForm3MathSetQuiz ? regularDifficultyLabels.All : regularDifficultyLabels[diff]}
           onBack={() => {
             setChapter(null);
             updateQuizSearch({ chapter: null });
@@ -20630,7 +20632,7 @@ function QuizzesPage() {
                   AcadeMY
                 </p>
                 <p className="truncate text-xs font-medium text-white/55">
-                  {cleanLearningLabel(chapterMeta?.label ?? chapter)}
+                  {cleanLearningLabel(chapterMeta?.label ?? chapter)}{availableChapterQuizSets.length > 0 && ` • Set ${chapterQuizSet}`}
                 </p>
               </div>
               <p className="order-1 shrink-0 font-display text-sm font-bold tabular-nums text-white sm:hidden">
@@ -20718,7 +20720,7 @@ function QuizzesPage() {
 
           <div className="mt-1.5 flex flex-wrap items-center justify-between gap-1.5 text-white/45 sm:mt-2 sm:gap-2">
             <p className="min-w-0 max-w-full flex-[1_1_100%] truncate text-[11px] text-white/40 sm:hidden">
-              {cleanLearningLabel(chapterMeta?.label ?? chapter)}
+              {cleanLearningLabel(chapterMeta?.label ?? chapter)}{availableChapterQuizSets.length > 0 && ` • Set ${chapterQuizSet}`}
             </p>
             <div className="flex min-w-0 flex-wrap items-center gap-1.5 sm:gap-2">
               {subject === "sejarah" ? (
@@ -20758,7 +20760,7 @@ function QuizzesPage() {
                       <option key={f}>{f}</option>
                     ))}
                   </select>
-                  <div className="flex gap-1">
+                  {!isForm3MathSetQuiz && <div className="flex gap-1">
                     {diffs.map((d) => (
                       <button
                         key={d}
@@ -20773,7 +20775,7 @@ function QuizzesPage() {
                         {regularDifficultyLabels[d]}
                       </button>
                     ))}
-                  </div>
+                  </div>}
                 </>
               )}
             </div>
@@ -20896,6 +20898,14 @@ function QuizzesPage() {
                     </p>
                   </div>
                   <div className="flex flex-col gap-2.5">
+                    {isForm3MathSetQuiz && (
+                      <button type="button" onClick={() => {
+                        setChapterQuizSet(chapterQuizSet === "A" ? "B" : "A");
+                        resetRegularQuiz();
+                      }} className="quiz-subject-action min-h-12 w-full rounded-2xl px-4 py-3 text-center font-bold text-white">
+                        {scienceLang === "bm" ? "Teruskan ke" : "Continue to"} Set {chapterQuizSet === "A" ? "B" : "A"}
+                      </button>
+                    )}
                     {nextChapterMeta ? (
                       <button
                         type="button"

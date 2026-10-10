@@ -2,6 +2,8 @@ import type { Difficulty, QuizQuestion } from "@/data/content";
 import { MATH_F3_C1_QUIZ_VISUALS } from "./quiz-visuals";
 import { MATH_F3_C1_EXPLANATIONS } from "./quiz-explanations";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -21,7 +23,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C1QuizzesDLP: QuizQuestion[] = buildQuiz([
+export const mathF3C1QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Easy", "In a^n, what is a called?", ["Base", "Index", "Power", "Factor"], 0],
   ["Easy", "In a^n, what is n called?", ["Index or power", "Base", "Root", "Coefficient"], 0],
   ["Easy", "Write 5 × 5 × 5 × 5 × 5 × 5 in index form.", ["5^6", "6^5", "5^5", "6^6"], 0],
@@ -83,3 +85,5 @@ export const mathF3C1QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Hard", "Why is 0^0 undefined under the zero index law?", ["Because proving a^0=1 uses a^n/a^n which is invalid when a=0", "Because 0 is an even number", "Because 0 has no base", "Because 0 is always negative"], 0],
   ["Hard", "What is the mistake in this step: '(-2)^3 = -2 × 3 = -6'?", ["It should be (-2) × (-2) × (-2) = -8, not multiplication by the index", "The answer -6 is correct", "It should be 2 × 3", "There is no mistake"], 0],
 ]);
+
+export const mathF3C1QuizzesDLP: QuizQuestion[] = buildForm3MathQuizSets(1, mathF3C1QuestionBankDLP);

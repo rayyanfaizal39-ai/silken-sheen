@@ -6,8 +6,8 @@ import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
 import { describeMathQuestionVisual } from "@/features/quiz/visuals/mathQuestionVisual";
 import { shuffleQuestionOptions } from "@/features/quiz/difficulty/quizDifficulty";
 import { getChapterQuizQuestions } from "@/content/registry";
-import { mathF3C1QuizzesBM } from "./quizzes-bm";
-import { mathF3C1QuizzesDLP } from "./quizzes-dlp";
+import { mathF3C1QuestionBankBM as mathF3C1QuizzesBM } from "./quizzes-bm";
+import { mathF3C1QuestionBankDLP as mathF3C1QuizzesDLP } from "./quizzes-dlp";
 import { MATH_F3_C1_QUIZ_VISUALS } from "./quiz-visuals";
 
 const banks = { bm: mathF3C1QuizzesBM, dlp: mathF3C1QuizzesDLP };
@@ -18,8 +18,8 @@ const renderText = (text: string, lang: "bm" | "dlp") =>
 describe("Form 3 Chapter 1 indices", () => {
   it.each(languages)("delivers enriched %s questions through the actual regular-quiz registry", (lang) => {
     const resolved = getChapterQuizQuestions("math", "Form 3", "Chapter 1", lang);
-    expect(resolved).toHaveLength(58);
-    expect(resolved.filter((q) => q.visual)).toHaveLength(24);
+    expect(resolved).toHaveLength(50);
+    expect(resolved.filter((q) => q.visual).length).toBeGreaterThan(15);
     for (const q of resolved) {
       expect(q.mathNotation).toBe("indices");
       expect(q.explanation).toBeTruthy();

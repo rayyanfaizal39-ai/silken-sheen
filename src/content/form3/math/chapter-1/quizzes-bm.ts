@@ -2,6 +2,8 @@ import type { Difficulty, QuizQuestion } from "@/data/content";
 import { MATH_F3_C1_QUIZ_VISUALS } from "./quiz-visuals";
 import { MATH_F3_C1_EXPLANATIONS } from "./quiz-explanations";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -21,7 +23,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C1QuizzesBM: QuizQuestion[] = buildQuiz([
+export const mathF3C1QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Easy", "Dalam a^n, apakah nama bagi a?", ["Asas", "Indeks", "Kuasa", "Faktor"], 0],
   ["Easy", "Dalam a^n, apakah nama bagi n?", ["Indeks atau kuasa", "Asas", "Punca", "Pekali"], 0],
   ["Easy", "Tukar 5 × 5 × 5 × 5 × 5 × 5 kepada bentuk indeks.", ["5^6", "6^5", "5^5", "6^6"], 0],
@@ -83,3 +85,5 @@ export const mathF3C1QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Hard", "Mengapa 0^0 tidak ditakrifkan dalam hukum indeks sifar?", ["Kerana pembuktian a^0=1 menggunakan pembahagian a^n/a^n yang tidak sah apabila a=0", "Kerana 0 ialah nombor genap", "Kerana 0 tiada asas", "Kerana 0 sentiasa negatif"], 0],
   ["Hard", "Apakah kesilapan dalam langkah ini: '(-2)^3 = -2 × 3 = -6'?", ["Sepatutnya (-2) × (-2) × (-2) = -8, bukan pendaraban dengan indeks", "Jawapan -6 adalah betul", "Sepatutnya 2 × 3", "Tiada kesilapan"], 0],
 ]);
+
+export const mathF3C1QuizzesBM: QuizQuestion[] = buildForm3MathQuizSets(1, mathF3C1QuestionBankBM);

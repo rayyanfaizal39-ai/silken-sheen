@@ -2,6 +2,8 @@ import type { Difficulty, QuizQuestion } from "@/data/content";
 import { MATH_F3_C2_QUIZ_VISUALS } from "./quiz-visuals";
 import { MATH_F3_C2_QUIZ_EXPLANATIONS } from "./quiz-explanations";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -21,7 +23,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C2QuizzesBM: QuizQuestion[] = buildQuiz([
+export const mathF3C2QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Easy", "Apakah fungsi angka bererti?", ["Menunjukkan tahap kejituan ukuran", "Menunjukkan jenis nombor", "Menunjukkan tanda nombor", "Menunjukkan unit ukuran"], 0],
   ["Easy", "Berapa angka bererti dalam 2 763?", ["4", "3", "2", "1"], 0],
   ["Easy", "Berapa angka bererti dalam 60 007?", ["5", "4", "3", "2"], 0],
@@ -82,3 +84,5 @@ export const mathF3C2QuizzesBM: QuizQuestion[] = buildQuiz([
   ["Hard", "Kertas A4 mempunyai ukuran 297 mm × 210 mm dan 70 GSM (70 g/m^2). Hitung jisim sehelai dalam gram, bentuk piawai kepada 3 a.b.", ["4.37 × 10^0 g", "4.37 × 10^1 g", "4.37 × 10^-1 g", "6.24 × 10^1 g"], 0],
   ["Hard", "Apakah kesilapan dalam langkah '7.02 × 10^4 + 2.17 × 10^5 = 9.19 × 10^9'?", ["Sepatutnya samakan kuasa 10 dahulu, bukan terus menambah indeks", "Jawapan sudah betul", "Sepatutnya ditolak bukan ditambah", "Sepatutnya darab nilai A"], 0],
 ]);
+
+export const mathF3C2QuizzesBM: QuizQuestion[] = buildForm3MathQuizSets(2, mathF3C2QuestionBankBM);

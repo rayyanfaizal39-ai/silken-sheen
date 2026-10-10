@@ -1,5 +1,7 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
 
+import { buildForm3MathQuizSets } from "../quiz-sets";
+
 type QuizSeed = [Difficulty, string, [string, string, string, string], number];
 
 function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
@@ -16,7 +18,7 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
   }));
 }
 
-export const mathF3C7QuizzesDLP: QuizQuestion[] = buildQuiz([
+export const mathF3C7QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Easy", "What is a plane?", ["A flat surface on an object", "Only a straight line", "An angle on an object", "A point on an object"], 0],
   ["Easy", "What are the three types of planes?", ["Horizontal, vertical, inclined", "Round, triangular, square", "Tall, short, medium", "Red, blue, green"], 0],
   ["Easy", "What is a normal to a plane?", ["A straight line perpendicular to the plane", "A line parallel to the plane", "An inclined line only", "Any line on the plane"], 0],
@@ -42,7 +44,7 @@ export const mathF3C7QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Medium", "A right prism with horizontal ABCD, FM⊥AB, EN⊥CD. What are FM and EN?", ["Normals to plane ABCD", "Orthogonal projections of ABCD", "Vertical sides of the prism", "Dashed lines"], 0],
   ["Medium", "If the projection line is not perpendicular to the plane, what is the result?", ["Not an orthogonal projection", "A valid orthogonal projection", "A valid plan", "A valid elevation"], 0],
   ["Medium", "A cylinder with diameter 4cm, height 6cm, on a horizontal plane. What is the shape of the plan (top view)?", ["A circle of diameter 4cm", "A rectangle 4cm x 6cm", "A triangle", "A straight line of 6cm"], 0],
-  ["Medium", "From the above, what is the shape of the elevation (side view)?", ["A rectangle 4cm x 6cm", "A circle of diameter 4cm", "A triangle", "A circle of diameter 6cm"], 0],
+  ["Medium", "An upright cylinder has diameter 4 cm and height 6 cm on a horizontal plane. What is the shape of its side elevation?", ["A rectangle 4cm x 6cm", "A circle of diameter 4cm", "A triangle", "A circle of diameter 6cm"], 0],
   ["Medium", "For an orthogonal projection on the horizontal plane from direction Z, what stays unchanged?", ["Side lengths and angles that are parallel/on that plane", "All side lengths of the object", "All angles of the object", "Nothing stays the same"], 0],
   ["Medium", "Why do side lengths in a projection differ depending on the viewing direction?", ["Because sides inclined/vertical to the plane change length in the projection", "Because the object changes shape", "Because the scale changes", "Due to drawing mistakes"], 0],
   ["Medium", "A right prism with base PQRS, URQ as the cross-section. What is the first step in drawing the plan?", ["Project each vertex of the object onto the horizontal plane", "Project directly onto the vertical plane", "Draw the elevation first", "Only measure angles"], 0],
@@ -60,7 +62,7 @@ export const mathF3C7QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Medium", "Why are overlapping vertex labels (e.g. E/D, F/A) used in a projection?", ["To show two object vertices coinciding at the same projected point", "A labelling mistake", "To show vertices of different colours", "They have no meaning"], 0],
 
   ["Hard", "An object with AC=14cm, ∠VCB=60° (object), projection from direction Z gives ∠VCB=45°. What does this change mean?", ["The projected angle differs from the actual object angle depending on viewing direction", "A measurement error", "The object changed shape", "The projection is invalid"], 0],
-  ["Hard", "From the above, if AC=14cm stays unchanged in the projection from direction Z, why?", ["AC lies on/parallel to the projection plane (horizontal), so its length is preserved", "AC is a vertical side", "AC is the longest side", "It's purely coincidental"], 0],
+  ["Hard", "In an orthogonal projection from direction Z, AC = 14 cm remains unchanged because AC is parallel to the projection plane. Why is AC’s true length preserved?", ["AC lies on/parallel to the projection plane (horizontal), so its length is preserved", "AC is a vertical side", "AC is the longest side", "It's purely coincidental"], 0],
   ["Hard", "For the projection on the vertical plane from direction Y, VC changes from 19.8cm to 14cm. Why?", ["VC is not parallel to the vertical plane in direction Y, so its projected length differs", "VC is a side that always stays the same", "It's a textbook error", "VC is a horizontal side"], 0],
   ["Hard", "A right prism with base PQRS, plane URQ as cross-section. Draw the plan from Z and elevation from X — what is the key difference between these two views?", ["The plan shows the top view (base layout), the elevation shows the front view (vertical profile)", "Both are the same", "The plan is always bigger than the elevation", "The elevation has no dashed lines"], 0],
   ["Hard", "When sketching a 3D shape from a plan+elevations with a cuboid block removed, what is the main challenge?", ["Accurately identifying the surfaces that form the cuboid hole/notch across all three views", "No challenge, just connect the lines directly", "Only need to draw a large box", "Scale doesn't matter"], 0],
@@ -70,3 +72,5 @@ export const mathF3C7QuizzesDLP: QuizQuestion[] = buildQuiz([
   ["Hard", "What happens if the normal line is not exactly 90° when drawing an orthogonal projection?", ["The resulting projection is not a valid orthogonal projection and measurements become inaccurate", "No effect, the projection remains valid", "The projection becomes more accurate", "Only affects the drawing's colour"], 0],
   ["Hard", "What is the best strategy to check the accuracy of a drawn orthogonal projection?", ["Compare the projection's side lengths and angles with the actual object according to the correct viewing direction", "Assume all projections are automatically correct", "No need to check", "Only check the line colour"], 0],
 ]);
+
+export const mathF3C7QuizzesDLP: QuizQuestion[] = buildForm3MathQuizSets(7, mathF3C7QuestionBankDLP);
