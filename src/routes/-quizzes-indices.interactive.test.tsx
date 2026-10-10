@@ -6,6 +6,8 @@ import * as registry from "@/content/registry";
 import * as content from "@/data/content";
 import { mathF3C2QuizzesBM } from "@/content/form3/math/chapter-2/quizzes-bm";
 import { mathF3C2QuizzesDLP } from "@/content/form3/math/chapter-2/quizzes-dlp";
+import { mathF3C3QuizzesBM } from "@/content/form3/math/chapter-3/quizzes-bm";
+import { mathF3C3QuizzesDLP } from "@/content/form3/math/chapter-3/quizzes-dlp";
 import { Route } from "./quizzes";
 
 const state = vi.hoisted(() => ({ lang: "bm" as "bm" | "dlp" }));
@@ -98,4 +100,31 @@ describe("Regular Form 3 maths visual quiz screen", () => {
     expect(document.querySelector(".quiz-explain sup")).toBeTruthy();
     expect(document.querySelector(".quiz-explain")?.textContent).toContain(number === 51 ? "174.58" : lang === "bm" ? "2 tempat ke kanan" : "2 places right");
   });
+  it.each((["bm", "dlp"] as const).flatMap(lang => [34, 46].map(number => ({ lang, number }))))("renders Chapter 3 $lang question $number and reveals working only after submission", ({ lang, number }) => {
+    state.lang = lang;
+    const q = (lang === "bm" ? mathF3C3QuizzesBM : mathF3C3QuizzesDLP)[number - 1];
+    vi.spyOn(registry, "getChapterQuizQuestions").mockReturnValue([q]);
+    window.history.replaceState({}, "", "/quizzes?subject=math&form=3&chapter=Chapter%203");
+    vi.spyOn(Route, "useNavigate").mockReturnValue(vi.fn());
+    vi.spyOn(Route, "useSearch").mockReturnValue({ subject: "math", form: 3, chapter: "Chapter 3" } as never);
+    vi.spyOn(Math, "random").mockReturnValue(0.999);
+    Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
+    window.matchMedia = vi.fn().mockImplementation(() => ({ matches: false, addEventListener: () => {}, removeEventListener: () => {} }));
+    host = document.createElement("div"); document.body.appendChild(host); root = createRoot(host);
+    act(() => root!.render(createElement(Route.options.component as ComponentType)));
+    const button = (label: string) => [...document.querySelectorAll("button")].find(b => b.textContent?.includes(label));
+    act(() => button("No Timer")!.click()); act(() => button("Start Quiz")!.click());
+    const visual = document.querySelector('[data-math-visual="finance-model"]');
+    expect(visual).toBeTruthy();
+    expect(document.querySelector(".quiz-explain")).toBeNull();
+    expect(visual!.textContent).not.toContain(number === 46 ? "634.13" : "9 900");
+    const correct = button(q.options[q.answerIndex]); expect(correct).toBeTruthy();
+    expect(visual!.compareDocumentPosition(correct!)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    act(() => correct!.click());
+    expect(correct!.className).toContain("quiz-answer-sweep");
+    expect(document.querySelector(".quiz-answer-nudge")).toBeNull();
+    expect(document.querySelector(".quiz-explain")?.textContent).toContain(number === 46 ? "634.13" : "9 900");
+    if (number === 46) expect(document.querySelector(".quiz-explain sup")).toBeTruthy();
+  });
+
 });

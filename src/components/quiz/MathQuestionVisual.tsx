@@ -1,3 +1,4 @@
+import { MathFinanceVisual } from "./MathFinanceVisual";
 import type { ReactNode } from "react";
 import { MathIndicesVisual } from "./MathIndicesVisual";
 import { MathStandardFormVisual } from "./MathStandardFormVisual";
@@ -466,6 +467,8 @@ export function MathQuestionVisual({
 }) {
   const title = visual.title[lang];
   const t = (text: Parameters<typeof textFor>[0]) => textFor(text, lang);
+
+  if (visual.kind === "finance-model") return <MathFinanceVisual visual={visual} lang={lang} />;
 
   if (visual.kind === "place-value" || visual.kind === "standard-form-parts" ||
       visual.kind === "standard-form-operation" || visual.kind === "right-triangle" ||
