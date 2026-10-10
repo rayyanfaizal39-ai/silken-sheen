@@ -354,7 +354,7 @@ export const MATH_F1_C10_QUIZ_VISUALS = {
 
   // Challenge: exact composite topology and all supplied measurements.
   challengeLTwoSections: actualLRoom,
-  challengeHouseRoof: roofHouse,
+  challengeHouseRoof: { ...roofHouse, panels: [...roofHouse.panels] },
   challengeBoardHole: rectHole("Papan dengan potongan segi empat", "Board with rectangular hole",
     "12 cm", "9 cm", "4 cm", "3 cm"),
   challengeFarmTrap: trapezoid("Ladang trapezium", "Trapezium farm",
