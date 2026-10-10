@@ -48,6 +48,7 @@ describe("Math Form 1 Chapter 13 bilingual Pythagoras diagrams", () => {
         expect(q.visual).toBe(dlp[i].visual);
         if (q.visual) {
           expect(q.visual.kind).toBe("geometry-diagram");
+          if (q.visual.kind !== "geometry-diagram") throw new Error("Expected static geometry");
           expect(q.visual.panels).toHaveLength(1);
         }
       });
