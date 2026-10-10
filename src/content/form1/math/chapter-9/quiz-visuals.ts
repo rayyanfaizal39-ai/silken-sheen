@@ -8,10 +8,10 @@ import type { MathQuestionVisual, VisualText } from "@/features/quiz/visuals/mat
 const t = (bm: string, dlp: string) => ({ bm, dlp });
 type P = GeometryPoint;
 const pt = (x: number, y: number): P => [x, y];
-const tri: P[] = [pt(147, 32), pt(45, 202), pt(259, 202)];
-const right: P[] = [pt(52, 43), pt(52, 199), pt(258, 199)];
+const tri: P[] = [pt(152, 32), pt(45, 202), pt(259, 202)];
+const right: P[] = [pt(52, 199), pt(52, 43), pt(258, 199)];
 const scalene: P[] = [pt(182, 37), pt(45, 201), pt(260, 196)];
-const obtuse: P[] = [pt(62, 68), pt(48, 197), pt(260, 197)];
+const obtuse: P[] = [pt(120, 151), pt(33, 196), pt(268, 196)];
 const square: P[] = [pt(82, 45), pt(219, 45), pt(219, 188), pt(82, 188)];
 const rectangle: P[] = [pt(44, 62), pt(259, 62), pt(259, 187), pt(44, 187)];
 const parallelogram: P[] = [pt(82, 57), pt(267, 57), pt(219, 187), pt(34, 187)];
@@ -79,9 +79,6 @@ const triangleExt = (bm: string, dlp: string, angleA: VisualText | undefined,
   if (sideMark) fig.panels[0].labels.push({ at: pt(148, 208), text: sideMark });
   return fig;
 };
-const angleSet = (bm: string, dlp: string, values: VisualText[],
-  coords: P[] = tri) => shape(bm, dlp, coords, values);
-
 export const MATH_F1_C9_QUIZ_VISUALS = {
   // Foundation: visual polygon vocabulary and symmetry figures without named answers.
   polygonExample: shape("Contoh bentuk tertutup", "Example of a closed shape", reg(5)),
@@ -153,7 +150,7 @@ export const MATH_F1_C9_QUIZ_VISUALS = {
   quadExpr: quad("Empat ungkapan sudut", "Four angle expressions",
     ["(2a + 10)°", "90°", "(3a − 5)°", "85°"]),
   trapezium65_100: quad("Dua sisi selari", "Two parallel sides",
-    ["65°", "100°", "?", "?"], trapezium, { points: true }),
+    ["65°", "100°", undefined, "?"], trapezium, { points: true }),
   equilateralInterior: triangle("Tiga sudut", "Three angles", ["a", "a", "a"], reg(3)),
   allEqualQuad: quad("Empat sudut sama", "Four equal angles", ["a", "a", "a", "a"], rectangle),
   exteriorExpressions: triangleExt("Sudut peluaran", "Exterior angle",
@@ -169,12 +166,18 @@ export const MATH_F1_C9_QUIZ_VISUALS = {
   exterior140_80: triangleExt("Sudut peluaran di C", "Exterior angle at C", "?", "80°", "140°"),
   triangleLinear: triangle("Sudut segi tiga", "Triangle angles",
     ["x°", "(x + 10)°", "(x + 20)°"]),
-  rectangleAC: quad("Pepenjuru AC dalam segi empat tepat", "Diagonal AC in a rectangle",
-    ["35°", undefined, "?", undefined], rectangle, {
-    points: true, interiorPaths: [[rectangle[0], rectangle[2]]],
-    description: t("Sudut BAC = 35°, sudut ACB tidak diketahui. Sisi bertentangan adalah selari.",
-      "Angle BAC = 35°, angle ACB unknown. Opposite sides are parallel."),
-  }),
+  rectangleAC: (() => {
+    const figure = quad("Pepenjuru AC dalam segi empat tepat", "Diagonal AC in a rectangle",
+      [], rectangle, {
+      points: true, interiorPaths: [[rectangle[0], rectangle[2]]],
+      description: t("Sudut BAC = 35°, sudut ACB tidak diketahui. Sisi bertentangan adalah selari.",
+        "Angle BAC = 35°, angle ACB unknown. Opposite sides are parallel."),
+    });
+    figure.panels[0].labels.push(
+      { at: pt(103, 80), text: "35°" }, { at: pt(210, 170), text: "?" },
+    );
+    return figure;
+  })(),
 
   // Challenge: diagrammatic problems with unknown symbolic angles/sides.
   triChallengeExpr: triangle("Ungkapan sudut", "Angle expressions",
@@ -194,8 +197,14 @@ export const MATH_F1_C9_QUIZ_VISUALS = {
     ["x", "2x", "3x", "4x"]),
   rhombusAngle70: quad("Sudut rombus", "Rhombus angles",
     ["?", "70°", "?", "?"], rhombus, { points: true }),
-  extAtA: triangleExt("Dua sudut pada garis lurus", "Two angles on a straight line",
-    "(6t − 10)°", undefined, "(4t + 20)°"),
+  extAtA: (() => {
+    const fig = triangle("Sudut dalaman dan peluaran di A", "Interior and exterior angles at A",
+      ["(6t − 10)°"], tri, {
+      extensions: [[tri[1], pt(30, 225)]],
+    });
+    fig.panels[0].labels.push({ at: pt(72, 187), text: "(4t + 20)°" });
+    return fig;
+  })(),
   ext130Equal: triangleExt("Sudut peluaran dan dua sudut tapak sama",
     "Exterior angle and two equal base angles", "x", "x", "130°"),
   rightExpr: triangle("Sudut tirus dalam segi tiga bersudut tegak",
@@ -203,8 +212,12 @@ export const MATH_F1_C9_QUIZ_VISUALS = {
   sixFoldShape: shape("Poligon dengan simetri", "Polygon with symmetry", reg(6)),
   quadPExpr: quad("Sudut segi empat", "Quadrilateral angles",
     ["3p", "2p", "4p", "p"]),
-  exteriorB115: triangleExt("Sudut peluaran dan sudut A", "Exterior angle and angle A",
-    "55°", "?", "115°"),
+  exteriorB115: (() => {
+    const fig = triangle("Sudut peluaran di B", "Exterior angle at B",
+      ["55°", "?"], tri, { extensions: [[tri[1], pt(9, 225)]] });
+    fig.panels[0].labels.push({ at: pt(33, 177), text: "115°" });
+    return fig;
+  })(),
   parallelPExpr: quad("Sudut bersebelahan segi empat selari",
     "Adjacent parallelogram angles", ["(7n − 5)°", "(3n + 45)°", undefined, undefined],
     parallelogram, { points: true }),
@@ -230,7 +243,7 @@ export const MATH_F1_C9_QUIZ_VISUALS = {
   equalLegRight: triangle("Sisi tegak sama", "Equal perpendicular legs",
     ["90°", "x", "x"], right),
   parallelDifference40: quad("Beza dua sudut bersebelahan", "Difference between adjacent angles",
-    ["A", "B", "A", "B"], parallelogram),
+    ["x", "y", "x", "y"], parallelogram),
   rightTrapezium: quad("Sisi AB selari dengan CD", "AB parallel to CD",
     ["90°", undefined, undefined, "90°"],
     [pt(74, 66), pt(215, 66), pt(266, 191), pt(74, 191)], { points: true }),
