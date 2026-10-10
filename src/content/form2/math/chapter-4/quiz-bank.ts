@@ -77,11 +77,11 @@ export const mathF2C4PairedSeeds: readonly PairedQuizSeed[] = [
   q(
     "Antara berikut, yang manakah menerangkan poligon sekata?",
     "Which statement describes a regular polygon?",
-    ["Semua sisi dan semua sudut pedalaman sama", "All sides and all interior angles are equal"],
+    ["Semua sisi dan sudut sama", "All sides and angles equal"],
     [
-      ["Hanya semua sisinya sama", "Only all its sides are equal"],
-      ["Hanya semua sudutnya sama", "Only all its angles are equal"],
-      ["Mempunyai sekurang-kurangnya dua sisi melengkung", "It has at least two curved sides"],
+      ["Semua sisi sama, sudut berbeza", "All sides equal, angles unequal"],
+      ["Semua sudut sama, sisi berbeza", "All angles equal, sides unequal"],
+      ["Semua sisi dan sudut berbeza", "All sides and angles unequal"],
     ],
     "Poligon sekata mesti mempunyai semua sisi dan semua sudut pedalaman yang sama.",
     "A regular polygon must have all sides and all interior angles equal.",
@@ -92,8 +92,8 @@ export const mathF2C4PairedSeeds: readonly PairedQuizSeed[] = [
     ["Poligon tidak sekata", "Irregular polygon"],
     [
       ["Poligon sekata", "Regular polygon"],
-      ["Bukan poligon", "Not a polygon"],
-      ["Segi tiga sekata", "Regular triangle"],
+      ["Bentuk bukan poligon", "A non-polygon shape"],
+      ["Bentuk tiga matra", "A three-dimensional shape"],
     ],
     "Kesamaan sisi sahaja tidak mencukupi; sudut juga mesti sama untuk menjadi sekata.",
     "Equal sides alone are insufficient; the angles must also be equal for it to be regular.",
@@ -113,11 +113,14 @@ export const mathF2C4PairedSeeds: readonly PairedQuizSeed[] = [
   q(
     "Mengapakah sebuah segi empat tepat yang bukan segi empat sama tidak sekata?",
     "Why is a rectangle that is not a square irregular?",
-    ["Tidak semua sisinya sama panjang", "Not all its sides are equal in length"],
+    ["Panjang sisinya tidak semua sama", "Its side lengths are unequal"],
     [
-      ["Sudutnya tidak sama", "Its angles are unequal"],
-      ["Ia mempunyai garis melengkung", "It has a curved line"],
-      ["Ia tidak tertutup", "It is not closed"],
+      ["Saiz sudutnya tidak semua sama", "Its angle measures are unequal"],
+      ["Sempadan bentuknya tidak tertutup", "Its boundary is not closed"],
+      [
+        "Sempadan bentuknya tidak semua lurus",
+        "Its boundary is not entirely straight",
+      ],
     ],
     "Semua sudutnya sama, tetapi dua pasang sisinya berlainan panjang.",
     "All its angles are equal, but its two pairs of sides have different lengths.",

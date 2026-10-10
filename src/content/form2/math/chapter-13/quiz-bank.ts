@@ -1,7 +1,8 @@
 import { numericPairedSeed as n, pairedSeed as q, type PairedQuizSeed } from "../paired-quiz-bank";
 
 const fraction = (a: number, b: number) => {
-  const gcd = (x: number, y: number): number => (y ? gcd(y, x % y) : Math.abs(x));
+  const gcd = (x: number, y: number): number =>
+    y ? gcd(y, x % y) : Math.abs(x);
   const d = gcd(a, b);
   return `${a / d}/${b / d}`;
 };
@@ -22,11 +23,20 @@ const foundation: PairedQuizSeed[] = [
   q(
     "Apakah peristiwa dalam kebarangkalian?",
     "What is an event in probability?",
-    ["Satu set kesudahan daripada ruang sampel", "A set of outcomes from the sample space"],
+    ["Set kesudahan dalam ruang sampel", "A set of sample-space outcomes"],
     [
-      ["Semua nombor nyata", "All real numbers"],
-      ["Bilangan percubaan", "The number of trials"],
-      ["Satu formula tanpa kesudahan", "A formula without outcomes"],
+      [
+        "Bilangan kesudahan dalam ruang sampel",
+        "The count of sample-space outcomes",
+      ],
+      [
+        "Jumlah percubaan dalam eksperimen",
+        "The number of experimental trials",
+      ],
+      [
+        "Rumus pengiraan dalam eksperimen",
+        "A formula for experimental calculation",
+      ],
     ],
     "Peristiwa ialah subset ruang sampel.",
     "An event is a subset of the sample space.",
@@ -59,13 +69,22 @@ const foundation: PairedQuizSeed[] = [
     "Rumus kebarangkalian teori bagi kesudahan sama mungkin ialah apa?",
     "What is the theoretical probability formula for equally likely outcomes?",
     [
-      "bilangan kesudahan memihak ÷ jumlah kesudahan",
-      "number of favourable outcomes ÷ total outcomes",
+      "Kesudahan memihak ÷ semua kesudahan",
+      "Favourable outcomes ÷ total outcomes",
     ],
     [
-      ["jumlah kesudahan ÷ kesudahan memihak", "total outcomes ÷ favourable outcomes"],
-      ["kesudahan memihak × jumlah kesudahan", "favourable outcomes × total outcomes"],
-      ["1 + bilangan kesudahan memihak", "1 + number of favourable outcomes"],
+      [
+        "Semua kesudahan ÷ kesudahan memihak",
+        "Total outcomes ÷ favourable outcomes",
+      ],
+      [
+        "Kesudahan memihak × semua kesudahan",
+        "Favourable outcomes × total outcomes",
+      ],
+      [
+        "Kesudahan memihak + semua kesudahan",
+        "Favourable outcomes + total outcomes",
+      ],
     ],
     "Bandingkan kesudahan memihak dengan semua kesudahan.",
     "Compare favourable outcomes with all outcomes.",
@@ -73,11 +92,23 @@ const foundation: PairedQuizSeed[] = [
   q(
     "Rumus kebarangkalian eksperimen ialah apa?",
     "What is the experimental probability formula?",
-    ["kekerapan peristiwa ÷ jumlah percubaan", "event frequency ÷ total trials"],
     [
-      ["jumlah percubaan ÷ kekerapan", "total trials ÷ frequency"],
-      ["kekerapan + percubaan", "frequency + trials"],
-      ["kekerapan teori × 2", "theoretical frequency × 2"],
+      "Kekerapan peristiwa ÷ jumlah percubaan",
+      "Event frequency ÷ total trials",
+    ],
+    [
+      [
+        "Jumlah percubaan ÷ kekerapan peristiwa",
+        "Total trials ÷ event frequency",
+      ],
+      [
+        "Kekerapan peristiwa × jumlah percubaan",
+        "Event frequency × total trials",
+      ],
+      [
+        "Kekerapan peristiwa + jumlah percubaan",
+        "Event frequency + total trials",
+      ],
     ],
     "Gunakan keputusan sebenar percubaan.",
     "Use the actual trial results.",

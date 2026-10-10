@@ -74,8 +74,8 @@ export const MATH_F3_C4_QUIZ_EXPLANATIONS: Record<number, LocalizedText> = {
     dlp: "Actual width = 5 × 400 = 2 000 cm = 20 m.",
   },
   "19": {
-    bm: "Lukisan berskala membolehkan objek besar atau kecil diwakilkan dengan ukuran berkadaran.",
-    dlp: "Scale drawings represent large or small objects using proportional measurements.",
+    bm: "40 m = 4000 cm. Panjang lukisan = 4000 ÷ 200 = 20 cm.",
+    dlp: "40 m = 4000 cm. Drawing length = 4000 ÷ 200 = 20 cm.",
   },
   "20": {
     bm: "Sudut sepadan kekal sama dan semua sisi berubah dengan faktor yang sama, jadi bentuk dikekalkan.",

@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { resolveMathObjectiveQuestions } from "@/routes/quizzes";
 import {
   mathF2C1ChallengeQuizzesDLP,
   mathF2C1FoundationQuizzesDLP,
@@ -9,7 +10,7 @@ import {
 
 const expectedAnswers = {
   foundation: [
-    "A rule or arrangement followed by numbers or objects",
+    "A rule followed by numbers or objects",
     "21",
     "Subtract 3",
     "48",
@@ -20,7 +21,7 @@ const expectedAnswers = {
     "21",
     "1",
     "1, 4, 6, 4, 1",
-    "Numbers or objects arranged according to a pattern",
+    "An arrangement following a pattern",
     "22",
     "33",
     "1,250",
@@ -98,8 +99,8 @@ const expectedAnswers = {
     "2:30 p.m.",
     "62",
     "Stage 20",
-    "Yes, because T₁₅ = −5 + 14(7) = 93",
-    "Both increase by the same amount each term",
+    "Yes; T₁₅ = 93",
+    "Equal increases per term",
     "26",
     "4",
     "T₃",
@@ -138,8 +139,11 @@ describe("Mathematics Form 2 Chapter 1 DLP curated quiz bank", () => {
   });
 
   it.each(objectiveBanks)("preserves every independently checked %s answer", (_, bank, answers) => {
-    expect(bank.map((question) => question.options[question.answerIndex])).toEqual(answers);
-  });
+      expect(
+        bank.map((question) => question.options[question.answerIndex]),
+      ).toEqual(answers);
+    },
+  );
 
   it("keeps the intended objective difficulty progression", () => {
     expect(new Set(mathF2C1FoundationQuizzesDLP.map(({ difficulty }) => difficulty))).toEqual(
@@ -168,12 +172,31 @@ describe("Mathematics Form 2 Chapter 1 objective routing contract", () => {
   );
 
   it("routes only the Form 2 Chapter 1 DLP chapter through the three existing objective cards", () => {
-    expect(routeSource).toContain("const MATH_F2_C1_DLP_OBJECTIVE_BANK");
-    expect(routeSource).toContain('form === "Form 2"');
-    expect(routeSource).toContain('chapter === "Chapter 1"');
-    expect(routeSource).toContain('scienceLang === "dlp"');
-    expect(routeSource).toContain("MATH_F2_C1_DLP_OBJECTIVE_BANK[mathObjectiveId]");
-    expect(routeSource).toContain('form === "Form 1" || isForm2Chapter1DlpObjective');
+    for (const [index, [, bank]] of objectiveBanks.entries()) {
+      const parameters = {
+        form: "Form 2",
+        chapter: "Chapter 1",
+        mathObjectiveId: `objective-${index + 1}` as
+          | "objective-1"
+          | "objective-2"
+          | "objective-3",
+        lang: "dlp" as const,
+        scienceLang: "dlp",
+      };
+      const resolved = resolveMathObjectiveQuestions(parameters).questions;
+      expect(resolved.map(({ id }) => id)).toEqual(bank.map(({ id }) => id));
+      expect(
+        resolved.every(({ form, lang }) => form === "Form 2" && lang === "dlp"),
+      ).toBe(true);
+      const form1 = resolveMathObjectiveQuestions({
+        ...parameters,
+        form: "Form 1",
+      }).questions;
+      expect(form1.every(({ form }) => form === "Form 1")).toBe(true);
+      expect(
+        form1.some(({ id }) => bank.some((question) => question.id === id)),
+      ).toBe(false);
+    }
   });
 
   it("retains the existing objective scoring, explanations, results, and retry handlers", () => {

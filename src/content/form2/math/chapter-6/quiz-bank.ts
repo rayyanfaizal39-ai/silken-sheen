@@ -56,11 +56,11 @@ const foundation: PairedQuizSeed[] = [
   q(
     "Apakah rusuk bagi bentuk tiga matra?",
     "What is an edge of a three-dimensional shape?",
-    ["Garis tempat dua muka bertemu", "A line where two faces meet"],
+    ["Pertemuan dua muka", "Where two faces meet"],
     [
-      ["Permukaan bentuk", "A surface of the shape"],
-      ["Titik tengah bentuk", "The centre of the shape"],
-      ["Isi padu bentuk", "The volume of the shape"],
+      ["Permukaan satu muka", "The surface of one face"],
+      ["Pertemuan beberapa rusuk", "Where several edges meet"],
+      ["Ruang dalam pepejal", "The space inside the solid"],
     ],
     "Rusuk terbentuk pada pertemuan dua muka.",
     "An edge is formed where two faces meet.",
@@ -105,13 +105,19 @@ const foundation: PairedQuizSeed[] = [
     "Apakah bentangan?",
     "What is a net?",
     [
-      "Corak dua matra yang boleh dilipat menjadi bentuk tiga matra",
-      "A two-dimensional pattern that folds into a three-dimensional shape",
+      "Corak rata yang dilipat menjadi pepejal",
+      "A flat pattern folding into a solid",
     ],
     [
-      ["Pandangan hadapan sahaja", "A front view only"],
-      ["Luas satu muka", "The area of one face"],
-      ["Keratan rentas melengkung", "A curved cross-section"],
+      [
+        "Pandangan rata dari hadapan pepejal",
+        "A flat view from the front of a solid",
+      ],
+      ["Keratan rata melalui tengah pepejal", "A flat section through a solid"],
+      [
+        "Unjuran rata dari atas pepejal",
+        "A flat projection from above a solid",
+      ],
     ],
     "Bentangan menunjukkan semua permukaan dalam bentuk rata sebelum dilipat.",
     "A net shows all surfaces laid flat before folding.",
@@ -227,11 +233,23 @@ const foundation: PairedQuizSeed[] = [
   q(
     "Permukaan kon terdiri daripada apa?",
     "What surfaces make up a cone?",
-    ["Satu tapak bulat dan satu permukaan melengkung", "One circular base and one curved surface"],
     [
-      ["Dua tapak bulat", "Two circular bases"],
-      ["Satu segi tiga dan satu bulatan", "One triangle and one circle"],
-      ["Empat muka segi tiga", "Four triangular faces"],
+      "1 tapak bulat + 1 permukaan lengkung",
+      "1 circular base + 1 curved surface",
+    ],
+    [
+      [
+        "2 tapak bulat + 1 permukaan lengkung",
+        "2 circular bases + 1 curved surface",
+      ],
+      [
+        "1 tapak bulat + 1 muka segi tiga",
+        "1 circular base + 1 triangular face",
+      ],
+      [
+        "1 tapak segi empat + 4 muka segi tiga",
+        "1 square base + 4 triangular faces",
+      ],
     ],
     "Kon mempunyai satu bulatan sebagai tapak serta satu permukaan melengkung.",
     "A cone has one circular base and one curved surface.",
@@ -328,13 +346,22 @@ const foundation: PairedQuizSeed[] = [
     "Apakah perbezaan utama luas permukaan dan isi padu?",
     "What is the main difference between surface area and volume?",
     [
-      "Luas permukaan mengukur bahagian luar; isi padu mengukur ruang di dalam",
-      "Surface area measures the outside; volume measures space inside",
+      "Luar: unit persegi; dalam: unit padu",
+      "Outside: square units; inside: cubic units",
     ],
     [
-      ["Kedua-duanya mengukur panjang", "Both measure length"],
-      ["Luas permukaan menggunakan unit padu", "Surface area uses cubic units"],
-      ["Isi padu hanya untuk bentuk dua matra", "Volume is only for two-dimensional shapes"],
+      [
+        "Luar: unit padu; dalam: unit persegi",
+        "Outside: cubic units; inside: square units",
+      ],
+      [
+        "Luar: unit panjang; dalam: unit padu",
+        "Outside: length units; inside: cubic units",
+      ],
+      [
+        "Luar: unit persegi; dalam: unit panjang",
+        "Outside: square units; inside: length units",
+      ],
     ],
     "Luas permukaan menjumlahkan permukaan luar, manakala isi padu mengukur ruang yang diisi.",
     "Surface area totals the outside surfaces, while volume measures occupied space.",
@@ -342,11 +369,11 @@ const foundation: PairedQuizSeed[] = [
   q(
     "Dalam gabungan dua pepejal, muka yang bercantum dikira dalam luas permukaan luar?",
     "In a composite solid, is a joined face counted in the external surface area?",
-    ["Tidak, kerana muka itu tersembunyi di dalam", "No, because the face is hidden inside"],
+    ["Tidak; tersembunyi di dalam", "No; hidden inside"],
     [
-      ["Ya, dua kali", "Yes, twice"],
-      ["Ya, sekali", "Yes, once"],
-      ["Hanya jika berbentuk bulatan", "Only if it is circular"],
+      ["Ya; dikira satu kali", "Yes; counted once"],
+      ["Ya; dikira dua kali", "Yes; counted twice"],
+      ["Tidak; jika bukan bulatan", "No; unless circular"],
     ],
     "Muka cantuman bukan sebahagian daripada permukaan yang terdedah.",
     "A joined face is not part of the exposed surface.",

@@ -10,7 +10,7 @@ import {
 
 const expectedAnswers = {
   foundation: [
-    "Aturan atau corak tertentu bagi nombor atau objek",
+    "Aturan tertentu bagi nombor atau objek",
     "21",
     "Tolak 3",
     "48",
@@ -21,7 +21,7 @@ const expectedAnswers = {
     "21",
     "1",
     "1, 4, 6, 4, 1",
-    "Susunan nombor atau objek yang mengikut suatu pola",
+    "Susunan mengikut pola",
     "22",
     "33",
     "1 250",
@@ -99,8 +99,8 @@ const expectedAnswers = {
     "2:30 petang",
     "62",
     "Corak 20",
-    "Ya, kerana T₁₅ = −5 + 14(7) = 93",
-    "Kedua-duanya bertambah dengan nilai yang sama",
+    "Ya; T₁₅ = 93",
+    "Pertambahan setiap sebutan sama",
     "26",
     "4",
     "T₃",

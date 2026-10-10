@@ -44,13 +44,19 @@ export const mathF2C5PairedSeeds: readonly PairedQuizSeed[] = [
     "Apakah perentas bulatan?",
     "What is a chord of a circle?",
     [
-      "Garis lurus yang menghubungkan dua titik pada lilitan",
-      "A line segment joining two points on the circumference",
+      "Segmen antara dua titik lilitan",
+      "A segment between two circumference points",
     ],
     [
-      ["Garis dari pusat ke lilitan", "A line from the centre to the circumference"],
-      ["Jarak mengelilingi bulatan", "The distance around the circle"],
-      ["Rantau antara dua jejari sahaja", "The region between two radii only"],
+      [
+        "Segmen antara pusat dan lilitan",
+        "A segment between centre and circumference",
+      ],
+      [
+        "Jarak sepanjang seluruh lilitan",
+        "The distance around the circumference",
+      ],
+      ["Rantau di antara dua jejari", "The region between two radii"],
     ],
     "Perentas mempunyai kedua-dua titik hujung pada lilitan.",
     "A chord has both endpoints on the circumference.",
@@ -162,11 +168,11 @@ export const mathF2C5PairedSeeds: readonly PairedQuizSeed[] = [
   q(
     "Dua perentas berada pada jarak yang sama dari pusat. Apakah yang boleh disimpulkan?",
     "Two chords are the same distance from the centre. What can be concluded?",
-    ["Kedua-dua perentas sama panjang", "The two chords are equal in length"],
+    ["Panjang perentas sama", "Equal chord lengths"],
     [
-      ["Kedua-duanya diameter", "Both are diameters"],
-      ["Kedua-duanya berserenjang", "Both are perpendicular"],
-      ["Lengkoknya sentiasa major", "Their arcs are always major"],
+      ["Panjang jejari berbeza", "Different radius lengths"],
+      ["Perentas saling berserenjang", "Perpendicular chord directions"],
+      ["Perentas mesti diameter", "Both chords must be diameters"],
     ],
     "Perentas yang sama jarak dari pusat adalah sama panjang.",
     "Chords equidistant from the centre are equal in length.",
@@ -357,13 +363,22 @@ export const mathF2C5PairedSeeds: readonly PairedQuizSeed[] = [
     "Mengapakah dua pembahagi dua serenjang perentas mencukupi untuk mencari pusat bulatan?",
     "Why are the perpendicular bisectors of two chords sufficient to locate a circle's centre?",
     [
-      "Kedua-duanya melalui pusat dan berpotongan di satu titik",
-      "Both pass through the centre and intersect at one point",
+      "Persilangan kedua-duanya ialah pusat",
+      "Their intersection is the centre",
     ],
     [
-      ["Kedua-duanya sentiasa menjadi diameter yang sama", "Both are always the same diameter"],
-      ["Perentas mesti sama panjang", "The chords must be equal"],
-      ["Titik tengah perentas berada pada lilitan", "Chord midpoints lie on the circumference"],
+      [
+        "Persilangan kedua-duanya ialah titik lilitan",
+        "Their intersection is on the circumference",
+      ],
+      [
+        "Titik tengah perentas ialah pusat",
+        "The chord midpoints are the centre",
+      ],
+      [
+        "Hujung setiap perentas ialah pusat",
+        "Each chord endpoint is the centre",
+      ],
     ],
     "Setiap pembahagi dua serenjang melalui pusat; titik persilangannya ialah pusat.",
     "Each perpendicular bisector passes through the centre; their intersection is the centre.",

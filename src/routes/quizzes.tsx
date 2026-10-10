@@ -1559,7 +1559,12 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Manakah senarai faktor bagi 12?",
-    ["3, 6, 9, 12", "2, 4, 8, 12", "1, 2, 3, 4, 6, 12", "1, 5, 10, 12"],
+    [
+      "1, 2, 3, 4, 8, 12",
+      "1, 2, 3, 6, 9, 12",
+      "1, 2, 3, 4, 6, 12",
+      "1, 2, 4, 6, 8, 12",
+    ],
     2,
     "Faktor 12 ialah 1, 2, 3, 4, 6 dan 12.",
     "Easy",
@@ -1568,10 +1573,10 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah nombor perdana?",
     [
-      "Nombor yang ada banyak faktor",
-      "Nombor gandaan 10",
-      "Nombor genap sahaja",
-      "Nombor yang ada tepat dua faktor",
+      "Nombor dengan tepat satu faktor",
+      "Nombor dengan lebih dua faktor",
+      "Nombor dengan tiada faktor",
+      "Nombor dengan tepat dua faktor",
     ],
     3,
     "Nombor perdana mempunyai tepat dua faktor: 1 dan nombor itu sendiri.",
@@ -1594,10 +1599,10 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah faktor perdana?",
     [
-      "Nombor yang bukan faktor",
-      "Gandaan paling kecil",
-      "Faktor paling besar sahaja",
-      "Faktor yang merupakan nombor perdana",
+      "Faktor yang juga nombor komposit",
+      "Gandaan yang juga nombor perdana",
+      "Gandaan yang juga nombor komposit",
+      "Faktor yang juga nombor perdana",
     ],
     3,
     "Faktor perdana ialah faktor yang juga nombor perdana.",
@@ -1613,10 +1618,10 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah faktor sepunya?",
     [
-      "Gandaan yang dikongsi oleh dua nombor",
-      "Nombor terbesar dalam suatu senarai",
-      "Faktor yang dikongsi oleh dua atau lebih nombor",
-      "Nombor terkecil dalam suatu senarai",
+      "Gandaan bagi dua atau lebih nombor",
+      "Faktor terbesar bagi satu nombor",
+      "Faktor bagi dua atau lebih nombor",
+      "Gandaan terkecil bagi satu nombor",
     ],
     2,
     "Faktor sepunya ialah faktor yang sama bagi dua atau lebih nombor.",
@@ -1697,9 +1702,9 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     "FSTB sesuai digunakan untuk:",
     [
       "Membahagi kepada kumpulan sama",
-      "Mencari masa berulang",
-      "Menukar perpuluhan",
-      "Membina graf",
+      "Mencari masa pertama serentak",
+      "Mencari gandaan sepunya terkecil",
+      "Menjumlahkan bilangan kumpulan",
     ],
     0,
     "FSTB sesuai untuk pembahagian kepada kumpulan sama banyak.",
@@ -1726,7 +1731,12 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Kata kunci GSTK ialah:",
-    ["Maksimum", "Kumpulan sama", "Terbesar", "Pertama kali bersama"],
+    [
+      "Kumpulan sama terbesar",
+      "Pembahagian sama terbesar",
+      "Faktor sepunya terbesar",
+      "Kali pertama serentak",
+    ],
     3,
     "GSTK kerap digunakan apabila mencari masa pertama berlaku bersama.",
     "Easy",
@@ -1802,7 +1812,12 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   ],
   [
     "Cari semua faktor bagi 24.",
-    ["1, 2, 4, 12", "1, 2, 3, 4, 6, 8, 12, 24", "2, 3, 6, 24", "1, 5, 10, 24"],
+    [
+      "1, 2, 3, 4, 6, 9, 12, 24",
+      "1, 2, 3, 4, 6, 8, 12, 24",
+      "1, 2, 4, 6, 8, 10, 12, 24",
+      "1, 2, 3, 4, 8, 12, 16, 24",
+    ],
     1,
     "Senarai lengkap faktor 24 ialah 1, 2, 3, 4, 6, 8, 12 dan 24.",
     "Medium",
@@ -2196,10 +2211,10 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Manakah situasi memerlukan GSTK?",
     [
-      "Mencari kumpulan terbesar",
-      "Menentukan dua loceng berbunyi bersama",
-      "Membahagi gula-gula sama banyak",
-      "Mencari faktor sepunya",
+      "Membina kumpulan sama terbesar",
+      "Dua loceng berbunyi serentak",
+      "Memotong reben sama terpanjang",
+      "Membahagi gula-gula sama terbanyak",
     ],
     1,
     "Kejadian berulang bersama menggunakan GSTK.",
@@ -2266,7 +2281,12 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "Which list shows the factors of 12?",
-    ["3, 6, 9, 12", "2, 4, 8, 12", "1, 2, 3, 4, 6, 12", "1, 5, 10, 12"],
+    [
+      "1, 2, 3, 4, 8, 12",
+      "1, 2, 3, 6, 9, 12",
+      "1, 2, 3, 4, 6, 12",
+      "1, 2, 4, 6, 8, 12",
+    ],
     2,
     "The factors of 12 are 1, 2, 3, 4, 6 and 12.",
     "Easy",
@@ -2275,9 +2295,9 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a prime number?",
     [
-      "A number with many factors",
-      "A multiple of 10",
-      "Even numbers only",
+      "A number with exactly one factor",
+      "A number with more than two factors",
+      "A number with no factors",
       "A number with exactly two factors",
     ],
     3,
@@ -2295,10 +2315,10 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a prime factor?",
     [
-      "A number that is not a factor",
-      "The smallest multiple",
-      "Only the greatest factor",
-      "A factor that is also a prime number",
+      "A factor that is also composite",
+      "A multiple that is also prime",
+      "A multiple that is also composite",
+      "A factor that is also prime",
     ],
     3,
     "A prime factor is a factor that is also a prime number.",
@@ -2314,10 +2334,10 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What are common factors?",
     [
-      "Multiples shared by two numbers",
-      "The greatest number in a list",
-      "Factors shared by two or more numbers",
-      "The smallest number in a list",
+      "Multiples of two or more numbers",
+      "The greatest factor of one number",
+      "Factors of two or more numbers",
+      "The least multiple of one number",
     ],
     2,
     "Common factors are factors shared by two or more numbers.",
@@ -2398,9 +2418,9 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     "HCF is suitable for:",
     [
       "Dividing into equal groups",
-      "Finding repeated times",
-      "Converting decimals",
-      "Drawing graphs",
+      "Finding the first simultaneous time",
+      "Finding the least common multiple",
+      "Adding the numbers of groups",
     ],
     0,
     "HCF is suitable for dividing into equal groups.",
@@ -2427,7 +2447,12 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "A keyword for LCM is:",
-    ["Maximum", "Equal groups", "Greatest", "First time together"],
+    [
+      "Greatest equal groups",
+      "Greatest equal division",
+      "Greatest common factor",
+      "First simultaneous time",
+    ],
     3,
     "LCM is often used when finding the first time events happen together.",
     "Easy",
@@ -2503,7 +2528,12 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "Find all factors of 24.",
-    ["1, 2, 4, 12", "1, 2, 3, 4, 6, 8, 12, 24", "2, 3, 6, 24", "1, 5, 10, 24"],
+    [
+      "1, 2, 3, 4, 6, 9, 12, 24",
+      "1, 2, 3, 4, 6, 8, 12, 24",
+      "1, 2, 4, 6, 8, 10, 12, 24",
+      "1, 2, 3, 4, 8, 12, 16, 24",
+    ],
     1,
     "The complete list of factors of 24 is 1, 2, 3, 4, 6, 8, 12 and 24.",
     "Medium",
@@ -2891,10 +2921,10 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "Which situation requires LCM?",
     [
-      "Finding the greatest group",
-      "Determining when two bells ring together",
-      "Dividing sweets equally",
-      "Finding common factors",
+      "Making the largest equal groups",
+      "Finding when two bells coincide",
+      "Cutting the longest equal ribbons",
+      "Sharing into the largest equal groups",
     ],
     1,
     "Repeated events happening together use LCM.",
@@ -2954,12 +2984,7 @@ function mathQuestions(items: MathQuestionSeed[]): ShuffledQuestion[] {
 const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah maksud kuasa dua?",
-    [
-      "Mendarab nombor dengan dirinya sendiri",
-      "Mendarab nombor dengan 2",
-      "Menambah nombor dua kali",
-      "Membahagi nombor dengan 2",
-    ],
+    ["n × n", "n × 2", "n + n", "n ÷ 2"],
     0,
     "Kuasa dua bermaksud mendarab nombor dengan dirinya sendiri.",
     "Easy",
@@ -2976,10 +3001,10 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah kuasa dua sempurna?",
     [
-      "Nombor yang mempunyai bahagian perpuluhan",
-      "Nombor hasil kuasa dua nombor bulat",
-      "Nombor yang sentiasa negatif",
-      "Nombor yang boleh dibahagi dengan 3",
+      "Hasil kuasa tiga nombor bulat",
+      "Hasil kuasa dua nombor bulat",
+      "Hasil darab nombor bulat dengan 2",
+      "Hasil tambah nombor bulat dengan 2",
     ],
     1,
     "Kuasa dua sempurna terhasil daripada kuasa dua nombor bulat.",
@@ -3037,12 +3062,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ["Apakah nilai √a × √b?", ["√(ab)", "a + b", "ab²", "√a + √b"], 0, "√a × √b = √(ab).", "Easy"],
   [
     "Apakah maksud kuasa tiga?",
-    [
-      "Mendarab nombor dengan 3 sahaja",
-      "Mendarab nombor dengan dirinya sendiri tiga kali",
-      "Menambah nombor tiga kali",
-      "Membahagi nombor dengan 3",
-    ],
+    ["n × 3", "n × n × n", "n + n + n", "n ÷ 3"],
     1,
     "Kuasa tiga bermaksud a × a × a.",
     "Easy",
@@ -3117,7 +3137,12 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ["Berapakah ∛(-8)?", ["-2", "2", "4", "-4"], 0, "∛(-8) = -2 kerana (-2)³ = -8.", "Easy"],
   [
     "Punca kuasa tiga bagi isipadu kubus memberi:",
-    ["Jisim kubus", "Luas permukaan", "Panjang sisi kubus", "Sudut kubus"],
+    [
+      "Luas muka kubus",
+      "Luas permukaan kubus",
+      "Panjang sisi kubus",
+      "Perimeter muka kubus",
+    ],
     2,
     "Panjang sisi kubus diperoleh dengan mencari punca kuasa tiga isipadu.",
     "Easy",
@@ -3142,12 +3167,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
 const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does square mean?",
-    [
-      "Multiplying a number by itself",
-      "Multiplying a number by 2",
-      "Adding a number twice",
-      "Dividing a number by 2",
-    ],
+    ["n × n", "n × 2", "n + n", "n ÷ 2"],
     0,
     "Square means multiplying a number by itself.",
     "Easy",
@@ -3164,10 +3184,10 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a perfect square?",
     [
-      "A number that has a decimal part",
-      "A number produced by squaring a whole number",
-      "A number that is always negative",
-      "A number that can be divided by 3",
+      "A whole number cubed",
+      "A whole number squared",
+      "A whole number multiplied by 2",
+      "A whole number increased by 2",
     ],
     1,
     "A perfect square is produced by squaring a whole number.",
@@ -3226,12 +3246,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "What does cube mean?",
-    [
-      "Multiplying a number by 3 only",
-      "Multiplying a number by itself three times",
-      "Adding a number three times",
-      "Dividing a number by 3",
-    ],
+    ["n × 3", "n × n × n", "n + n + n", "n ÷ 3"],
     1,
     "Cube means a × a × a.",
     "Easy",
@@ -3299,7 +3314,12 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ["What is ∛(-8)?", ["-2", "2", "4", "-4"], 0, "∛(-8) = -2 because (-2)³ = -8.", "Easy"],
   [
     "The cube root of a cube's volume gives:",
-    ["Mass of the cube", "Surface area", "Edge length of the cube", "Angle of the cube"],
+    [
+      "Cube face area",
+      "Cube surface area",
+      "Cube edge length",
+      "Cube face perimeter",
+    ],
     2,
     "The edge length of a cube is found by taking the cube root of the volume.",
     "Easy",
@@ -4106,10 +4126,10 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Bilakah pendaraban silang digunakan?",
     [
-      "Apabila hanya ada satu nisbah sahaja",
-      "Apabila menyelesaikan kadaran yang ada nilai tidak diketahui",
-      "Apabila mempermudah nisbah kepada bentuk termudah",
-      "Apabila menggabungkan dua nisbah menjadi satu",
+      "Mempermudah satu nisbah",
+      "Menyelesaikan kadaran",
+      "Menjumlahkan dua nisbah",
+      "Menukar nisbah kepada kadar",
     ],
     1,
     "Digunakan untuk mencari nilai tidak diketahui dalam kadaran.",
@@ -4338,10 +4358,10 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "When is cross multiplication used?",
     [
-      "When there is only one ratio",
-      "When solving a proportion with an unknown",
-      "When simplifying a ratio to lowest terms",
-      "When combining two ratios into one",
+      "Simplifying one ratio",
+      "Solving a proportion",
+      "Adding two ratios",
+      "Converting a ratio to a rate",
     ],
     1,
     "It finds the unknown in a proportion.",
@@ -5148,10 +5168,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah pemboleh ubah?",
     [
-      "Huruf atau simbol yang mewakili nilai tidak diketahui",
-      "Nombor yang nilainya tidak pernah berubah",
-      "Tanda seperti + atau − bagi suatu operasi",
-      "Unit yang digunakan untuk mengukur kuantiti",
+      "Simbol bagi nilai tidak diketahui",
+      "Nombor bagi nilai yang tetap",
+      "Tanda bagi operasi matematik",
+      "Unit bagi kuantiti yang diukur",
     ],
     0,
     "Pemboleh ubah ialah huruf atau simbol yang mewakili nilai yang tidak diketahui.",
@@ -5279,7 +5299,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Mengapakah 2a dan 2b ialah sebutan tidak serupa?",
-    ["Pemboleh ubah berbeza", "Kuasa berbeza", "Pekali berbeza", "Operasi berbeza"],
+    ["Huruf berbeza", "Kuasa berbeza", "Pekali berbeza", "Operasi berbeza"],
     0,
     "2a dan 2b mempunyai pemboleh ubah yang berbeza, iaitu a dan b.",
     "Easy",
@@ -5288,10 +5308,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah ciri utama sebutan serupa?",
     [
-      "Pekali yang sama",
-      "Tanda yang sama",
-      "Pemboleh ubah dan kuasa yang sama",
-      "Bilangan sebutan yang sama",
+      "Huruf dan pekali sama",
+      "Kuasa dan pekali sama",
+      "Huruf dan kuasa sama",
+      "Tanda dan pekali sama",
     ],
     2,
     "Sebutan serupa mesti mempunyai pemboleh ubah yang sama dan kuasa yang sama bagi setiap pemboleh ubah.",
@@ -5307,10 +5327,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah maksud 'nilai berubah'?",
     [
-      "Nilai yang sentiasa tetap",
-      "Nilai yang tidak boleh diukur",
-      "Nilai yang sentiasa sifar",
-      "Nilai yang berubah-ubah mengikut keadaan",
+      "Nilai kekal dalam semua keadaan",
+      "Nilai sifar dalam semua keadaan",
+      "Nilai sama bagi semua kuantiti",
+      "Nilai bergantung pada keadaan",
     ],
     3,
     "Nilai berubah ialah kuantiti yang nilainya boleh berubah-ubah mengikut keadaan.",
@@ -5343,10 +5363,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah ungkapan algebra?",
     [
-      "Hanya satu nombor sahaja",
-      "Persamaan dengan tanda sama dengan",
-      "Hanya satu pemboleh ubah sahaja",
-      "Gabungan sebutan yang dipisahkan oleh + atau −",
+      "Gabungan sebutan dengan tanda =",
+      "Gabungan sebutan dengan tanda >",
+      "Gabungan sebutan dengan tanda <",
+      "Gabungan sebutan tanpa tanda =",
     ],
     3,
     "Ungkapan algebra terdiri daripada satu atau lebih sebutan yang dipisahkan oleh + atau −.",
@@ -5408,10 +5428,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a variable?",
     [
-      "A letter or symbol representing an unknown value",
-      "A number whose value never changes",
-      "A sign such as + or − for an operation",
-      "A unit used to measure a quantity",
+      "A symbol for an unknown value",
+      "A number for a fixed value",
+      "A sign for a mathematical operation",
+      "A unit for a measured quantity",
     ],
     0,
     "A variable is a letter or symbol that represents an unknown value.",
@@ -5539,7 +5559,12 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "Why are 2a and 2b unlike terms?",
-    ["Different variables", "Different powers", "Different coefficients", "Different operations"],
+    [
+      "Different variables",
+      "Different powers",
+      "Different coefficients",
+      "Different operations",
+    ],
     0,
     "2a and 2b have different variables, namely a and b.",
     "Easy",
@@ -5547,7 +5572,12 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "What is the main feature of like terms?",
-    ["Same coefficient", "Same sign", "Same variables and same powers", "Same number of terms"],
+    [
+      "Same variables and coefficients",
+      "Same powers and coefficients",
+      "Same variables and powers",
+      "Same signs and coefficients",
+    ],
     2,
     "Like terms must have the same variables and the same power for each variable.",
     "Easy",
@@ -5562,10 +5592,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does 'varying value' mean?",
     [
-      "A value that is always fixed",
-      "A value that cannot be measured",
-      "A value that is always zero",
-      "A value that changes depending on circumstances",
+      "A value fixed in all conditions",
+      "A value zero in all conditions",
+      "A value equal for all quantities",
+      "A value depending on conditions",
     ],
     3,
     "A varying value is a quantity whose value can change depending on circumstances.",
@@ -5598,10 +5628,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is an algebraic expression?",
     [
-      "Only a single number",
-      "An equation with an equals sign",
-      "Only a single variable",
-      "A combination of terms separated by + or −",
+      "Terms combined with an = sign",
+      "Terms combined with a > sign",
+      "Terms combined with a < sign",
+      "Terms combined without an = sign",
     ],
     3,
     "An algebraic expression consists of one or more terms separated by + or −.",
@@ -6572,10 +6602,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah maksud 'pemboleh ubah' dalam suatu persamaan?",
     [
-      "Nombor tetap dalam persamaan",
-      "Huruf yang mewakili nilai tidak diketahui",
-      "Tanda operasi seperti + atau −",
-      "Jawapan akhir bagi persamaan",
+      "Nombor bagi nilai yang tetap",
+      "Huruf bagi nilai tidak diketahui",
+      "Tanda bagi suatu operasi",
+      "Unit bagi kuantiti yang diukur",
     ],
     1,
     "Pemboleh ubah ialah huruf atau simbol yang mewakili nilai yang tidak diketahui.",
@@ -6618,10 +6648,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah maksud 'menyelesaikan' suatu persamaan linear?",
     [
-      "Mencari nilai pemboleh ubah yang menjadikannya benar",
-      "Menukar persamaan kepada ungkapan",
-      "Menggandakan kedua-dua belah persamaan",
-      "Menukar tanda setiap sebutan",
+      "Mencari nilai yang memenuhi persamaan",
+      "Mencari bilangan sebutan persamaan",
+      "Mencari bilangan operasi persamaan",
+      "Mencari jumlah pekali persamaan",
     ],
     0,
     "Menyelesaikan persamaan bermaksud mencari nilai pemboleh ubah yang menjadikan kedua-dua belah persamaan sama nilai.",
@@ -6629,12 +6659,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Berapakah bilangan penyelesaian yang dimiliki oleh sebuah persamaan linear dalam dua pemboleh ubah?",
-    [
-      "Tiada penyelesaian",
-      "Hanya satu penyelesaian",
-      "Tidak terhingga banyaknya",
-      "Dua penyelesaian sahaja",
-    ],
+    ["Tiada", "Tepat satu", "Tak terhingga", "Tepat dua"],
     2,
     "Persamaan linear dalam dua pemboleh ubah mempunyai bilangan penyelesaian yang tidak terhingga.",
     "Easy",
@@ -6684,10 +6709,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama dalam membentuk persamaan linear daripada situasi harian?",
     [
-      "Pilih pemboleh ubah bagi kuantiti tidak diketahui",
-      "Selesaikan persamaan dengan segera",
-      "Lukis graf bagi situasi itu",
-      "Tukar semua nombor kepada pecahan",
+      "Tetapkan pemboleh ubah",
+      "Selesaikan persamaan",
+      "Lukis graf persamaan",
+      "Tukar nombor kepada pecahan",
     ],
     0,
     "Langkah pertama ialah mengenal pasti kuantiti yang tidak diketahui dan mewakilkannya dengan pemboleh ubah.",
@@ -6734,10 +6759,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah yang membezakan suatu persamaan daripada ungkapan algebra?",
     [
-      "Persamaan tidak pernah mengandungi pemboleh ubah",
-      "Persamaan mempunyai tanda sama dengan (=); ungkapan tidak",
-      "Ungkapan algebra sentiasa lebih panjang",
-      "Persamaan tidak pernah mengandungi pemalar",
+      "Persamaan tiada pemalar",
+      "Persamaan ada tanda =",
+      "Persamaan tiada pemboleh ubah",
+      "Persamaan ada lebih sebutan",
     ],
     1,
     "Persamaan mengandungi tanda sama dengan (=) yang menunjukkan dua bahagian mempunyai nilai yang sama, manakala ungkapan algebra tidak.",
@@ -6847,10 +6872,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does 'variable' mean in an equation?",
     [
-      "A fixed number in the equation",
-      "A letter representing an unknown value",
-      "An operation sign such as + or −",
-      "The final answer to the equation",
+      "A number for a fixed value",
+      "A letter for an unknown value",
+      "A sign for an operation",
+      "A unit for a measured quantity",
     ],
     1,
     "A variable is a letter or symbol that represents an unknown value.",
@@ -6893,10 +6918,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does it mean to 'solve' a linear equation?",
     [
-      "Finding the value of the variable that makes it true",
-      "Turning the equation into an expression",
-      "Doubling both sides of the equation",
-      "Changing the sign of every term",
+      "Finding a value satisfying the equation",
+      "Counting the terms in the equation",
+      "Counting the operations in the equation",
+      "Adding the coefficients in the equation",
     ],
     0,
     "Solving an equation means finding the value of the variable that makes both sides of the equation equal in value.",
@@ -6904,7 +6929,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "How many solutions does a linear equation in two variables have?",
-    ["No solutions", "Only one solution", "An infinite number of solutions", "Only two solutions"],
+    ["None", "Exactly one", "Infinitely many", "Exactly two"],
     2,
     "A linear equation in two variables has an infinite number of solutions.",
     "Easy",
@@ -6954,10 +6979,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the first step in forming a linear equation from a daily-life situation?",
     [
-      "Choose a variable for the unknown quantity",
-      "Solve the equation straight away",
-      "Draw a graph of the situation",
-      "Change all the numbers into fractions",
+      "Define the variable",
+      "Solve the equation",
+      "Draw the equation graph",
+      "Convert numbers to fractions",
     ],
     0,
     "The first step is to identify the unknown quantity and represent it with a variable.",
@@ -7004,10 +7029,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What distinguishes an equation from an algebraic expression?",
     [
-      "An equation never contains a variable",
-      "An equation has an equals sign (=); an expression does not",
-      "An algebraic expression is always longer",
-      "An equation never contains a constant",
+      "An equation has no constant",
+      "An equation has an = sign",
+      "An equation has no variable",
+      "An equation has more terms",
     ],
     1,
     "An equation contains an equals sign (=) showing that two parts have equal value, while an algebraic expression does not.",
@@ -7034,10 +7059,10 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Apakah konsep kesamaan?",
     [
-      "Melakukan operasi berbeza pada setiap belah persamaan",
-      "Menukar semua pemboleh ubah kepada nombor",
-      "Melakukan operasi yang sama pada kedua-dua belah persamaan supaya ia kekal seimbang",
-      "Mengabaikan tanda sama dengan dalam persamaan",
+      "Operasi berbeza pada setiap belah",
+      "Operasi pada satu belah sahaja",
+      "Operasi sama pada kedua-dua belah",
+      "Operasi pada pemboleh ubah sahaja",
     ],
     2,
     "Konsep kesamaan ialah melakukan operasi yang sama pada kedua-dua belah persamaan supaya ia kekal seimbang.",
@@ -7179,10 +7204,10 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Mengapakah persamaan linear dalam dua pemboleh ubah mempunyai bilangan penyelesaian yang tidak terhingga?",
     [
-      "Kerana pemboleh ubahnya berkuasa 2",
-      "Kerana persamaan itu tidak mempunyai pemalar",
-      "Kerana ia tidak boleh diselesaikan",
-      "Kerana setiap nilai x yang berbeza menghasilkan nilai y yang sepadan",
+      "Setiap nilai x memberi nilai y sama",
+      "Setiap nilai x memberi dua nilai y",
+      "Tiada nilai x memberi pasangan y",
+      "Nilai x berlainan memberi pasangan y",
     ],
     3,
     "Setiap nilai berbeza yang disubstitusikan untuk satu pemboleh ubah menghasilkan nilai sepadan bagi pemboleh ubah satu lagi, menghasilkan banyak pasangan penyelesaian.",
@@ -7205,12 +7230,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   ],
   [
     "Apakah yang perlu dilakukan untuk menyemak sama ada x = 4 ialah penyelesaian bagi x + 7 = 11?",
-    [
-      "Tukar persamaan kepada bentuk pecahan",
-      "Selesaikan semula persamaan dari awal",
-      "Lukis graf persamaan itu",
-      "Gantikan x = 4 dan semak kedua-dua belah sama nilai",
-    ],
+    ["Gantikan x = 7", "Gantikan x = 11", "Gantikan x = −4", "Gantikan x = 4"],
     3,
     "Untuk menyemak penyelesaian, gantikan nilai itu ke dalam persamaan asal dan periksa jika kedua-dua belah sama nilai.",
     "Medium",
@@ -7288,10 +7308,10 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "What is the equality concept?",
     [
-      "Performing different operations on each side of the equation",
-      "Converting all variables into numbers",
-      "Performing the same operation on both sides of the equation so it stays balanced",
-      "Ignoring the equals sign in the equation",
+      "Different operations on each side",
+      "An operation on only one side",
+      "The same operation on both sides",
+      "An operation on only the variables",
     ],
     2,
     "The equality concept means performing the same operation on both sides of the equation so it stays balanced.",
@@ -7433,10 +7453,10 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "Why does a linear equation in two variables have an infinite number of solutions?",
     [
-      "Because its variables are raised to the power of 2",
-      "Because the equation has no constant",
-      "Because it cannot be solved",
-      "Because each different value of x produces a corresponding value of y",
+      "Every x value gives the same y value",
+      "Every x value gives two different y values",
+      "No x value gives a corresponding y value",
+      "Different x values give corresponding y values",
     ],
     3,
     "Each different value substituted for one variable produces a corresponding value for the other, giving many solution pairs.",
@@ -7460,10 +7480,10 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "What should be done to check whether x = 4 is the solution of x + 7 = 11?",
     [
-      "Change the equation into fraction form",
-      "Solve the equation again from the beginning",
-      "Draw a graph of the equation",
-      "Substitute x = 4 and check both sides are equal",
+      "Substitute x = 7",
+      "Substitute x = 11",
+      "Substitute x = −4",
+      "Substitute x = 4",
     ],
     3,
     "To check the solution, substitute the value into the original equation and verify both sides are equal in value.",
@@ -7527,10 +7547,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah persamaan linear serentak?",
     [
-      "Dua persamaan linear dengan pemboleh ubah sama diselesaikan bersama",
-      "Dua persamaan tidak berkaitan yang diselesaikan satu demi satu",
-      "Satu persamaan dengan tiga pemboleh ubah",
-      "Persamaan yang tiada penyelesaian",
+      "Dua persamaan linear diselesaikan bersama",
+      "Dua persamaan linear diselesaikan berasingan",
+      "Dua ungkapan linear ditambah bersama",
+      "Dua ungkapan linear didarab bersama",
     ],
     0,
     "Persamaan linear serentak ialah dua atau lebih persamaan linear yang melibatkan pemboleh ubah sama yang diselesaikan bersama.",
@@ -7551,10 +7571,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Bilakah persamaan serentak mempunyai penyelesaian unik?",
     [
-      "Apabila dua garis lurus selari",
-      "Apabila dua garis lurus bertindih",
-      "Apabila dua garis lurus bersilang pada hanya satu titik",
-      "Apabila dua garis lurus tidak dapat dilukis",
+      "Garis selari berbeza",
+      "Garis bertindih sepenuhnya",
+      "Garis bersilang sekali",
+      "Garis tidak mempunyai pemalar",
     ],
     2,
     "Penyelesaian unik wujud apabila dua garis lurus bersilang pada hanya satu titik.",
@@ -7563,10 +7583,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Bilakah persamaan serentak tiada penyelesaian?",
     [
-      "Apabila dua garis lurus bersilang pada satu titik",
-      "Apabila dua garis lurus bertindih sepenuhnya",
-      "Apabila salah satu persamaan mempunyai pemalar sifar",
-      "Apabila dua garis lurus selari dan tidak bersilang",
+      "Garis bersilang sekali",
+      "Garis bertindih sepenuhnya",
+      "Garis mempunyai pintasan sifar",
+      "Garis selari berbeza",
     ],
     3,
     "Persamaan serentak tiada penyelesaian apabila dua garis lurus selari dan tidak akan bersilang.",
@@ -7575,10 +7595,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Bilakah persamaan serentak mempunyai penyelesaian tak terhingga?",
     [
-      "Apabila dua garis lurus bersilang pada satu titik",
-      "Apabila dua garis lurus mewakili garis yang sama (bertindih)",
-      "Apabila dua garis lurus selari",
-      "Apabila salah satu persamaan tiada pemboleh ubah",
+      "Garis bersilang sekali",
+      "Garis bertindih sepenuhnya",
+      "Garis selari berbeza",
+      "Garis mempunyai pintasan sifar",
     ],
     1,
     "Penyelesaian tak terhingga wujud apabila kedua-dua persamaan mewakili garis lurus yang sama dan bertindih sepenuhnya.",
@@ -7587,10 +7607,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama dalam kaedah penggantian?",
     [
-      "Lukis graf bagi kedua-dua persamaan",
-      "Tambah kedua-dua persamaan bersama",
-      "Ungkapkan satu pemboleh ubah dalam sebutan yang lain",
-      "Samakan pekali kedua-dua persamaan",
+      "Lukis kedua-dua graf dahulu",
+      "Tambah kedua-dua persamaan",
+      "Ungkapkan satu pemboleh ubah",
+      "Samakan pekali dahulu",
     ],
     2,
     "Langkah pertama dalam kaedah penggantian ialah mengungkapkan satu pemboleh ubah dalam sebutan pemboleh ubah yang satu lagi.",
@@ -7637,10 +7657,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama dalam kaedah penghapusan?",
     [
-      "Selesaikan persamaan tanpa mengubah pekali",
-      "Buat pekali satu pemboleh ubah sama dalam kedua-dua persamaan",
-      "Lukis graf kedua-dua persamaan",
-      "Gantikan satu pemboleh ubah dengan nombor",
+      "Samakan pemalar kedua-dua persamaan",
+      "Samakan pekali satu pemboleh ubah",
+      "Darab kedua-dua persamaan bersama",
+      "Lukis kedua-dua graf persamaan",
     ],
     1,
     "Langkah pertama kaedah penghapusan ialah membuat pekali satu pemboleh ubah sama dalam kedua-dua persamaan.",
@@ -7678,10 +7698,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama dalam kaedah graf untuk menyelesaikan persamaan serentak?",
     [
-      "Lukis graf bagi persamaan pertama pada satah Cartesan",
-      "Selesaikan persamaan secara algebra dahulu",
-      "Tukar kedua-dua persamaan kepada bentuk pecahan",
-      "Cari nilai pemalar sahaja",
+      "Lukis graf persamaan pertama",
+      "Selesaikan persamaan secara algebra",
+      "Darab kedua-dua persamaan bersama",
+      "Samakan pemalar kedua-dua persamaan",
     ],
     0,
     "Langkah pertama kaedah graf ialah melukis graf persamaan pertama pada satah Cartesan.",
@@ -7773,12 +7793,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Dua persamaan 2x + 4y = 10 dan x + 2y = 5 dilukis sebagai graf. Apakah jenis penyelesaian bagi persamaan serentak ini?",
-    [
-      "Penyelesaian tak terhingga",
-      "Tiada penyelesaian",
-      "Penyelesaian unik",
-      "Tidak dapat ditentukan",
-    ],
+    ["Tak terhingga", "Tiada", "Tepat satu", "Tepat dua"],
     0,
     "Persamaan 2x + 4y = 10 boleh dipermudahkan kepada x + 2y = 5, iaitu sama dengan persamaan kedua, maka kedua-duanya mewakili garis yang sama dan mempunyai penyelesaian tak terhingga.",
     "Hard",
@@ -7813,10 +7828,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What are simultaneous linear equations?",
     [
-      "Two linear equations in the same variables solved together",
-      "Two unrelated equations solved one at a time",
-      "A single equation with three variables",
-      "An equation that has no solution",
+      "Two linear equations solved together",
+      "Two linear equations solved separately",
+      "Two linear expressions added together",
+      "Two linear expressions multiplied together",
     ],
     0,
     "Simultaneous linear equations are two or more linear equations involving the same variables that are solved together.",
@@ -7837,10 +7852,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "When do simultaneous equations have a unique solution?",
     [
-      "When the two straight lines are parallel",
-      "When the two straight lines overlap",
-      "When the two straight lines intersect at exactly one point",
-      "When the two straight lines cannot be drawn",
+      "Distinct parallel lines",
+      "Completely overlapping lines",
+      "Lines intersect once",
+      "Lines have no constant",
     ],
     2,
     "A unique solution exists when the two straight lines intersect at exactly one point.",
@@ -7849,10 +7864,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "When do simultaneous equations have no solution?",
     [
-      "When the two straight lines intersect at one point",
-      "When the two straight lines completely overlap",
-      "When one of the equations has a zero constant",
-      "When the two straight lines are parallel and never intersect",
+      "Lines intersect once",
+      "Completely overlapping lines",
+      "Lines have a zero intercept",
+      "Distinct parallel lines",
     ],
     3,
     "Simultaneous equations have no solution when the two straight lines are parallel and never intersect.",
@@ -7861,10 +7876,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "When do simultaneous equations have an infinite number of solutions?",
     [
-      "When the two straight lines intersect at one point",
-      "When the two lines represent the same line (overlap)",
-      "When the two straight lines are parallel",
-      "When one equation has no variable",
+      "Lines intersect once",
+      "Completely overlapping lines",
+      "Distinct parallel lines",
+      "Lines have a zero intercept",
     ],
     1,
     "Infinite solutions exist when both equations represent the same straight line and overlap completely.",
@@ -7873,10 +7888,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What is the first step in the substitution method?",
     [
-      "Draw the graphs of both equations",
-      "Add both equations together",
-      "Express one variable in terms of the other",
-      "Equalise the coefficients in both equations",
+      "Draw both graphs first",
+      "Add both equations",
+      "Isolate one variable",
+      "Equalise coefficients first",
     ],
     2,
     "The first step in the substitution method is to express one variable in terms of the other variable.",
@@ -7923,10 +7938,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What is the first step in the elimination method?",
     [
-      "Solve the equations without changing the coefficients",
-      "Make the coefficients of one variable equal in both equations",
-      "Draw the graphs of both equations",
-      "Replace one variable with a number",
+      "Equalise both equations’ constants",
+      "Equalise one variable’s coefficients",
+      "Multiply both equations together",
+      "Draw both equations’ graphs",
     ],
     1,
     "The first step in the elimination method is to make the coefficients of one variable equal in both equations.",
@@ -7964,10 +7979,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What is the first step in the graphical method for solving simultaneous equations?",
     [
-      "Draw the graph of the first equation on a Cartesian plane",
-      "Solve the equations algebraically first",
-      "Convert both equations into fraction form",
-      "Find only the constant value",
+      "Plot the first equation",
+      "Solve the equations algebraically",
+      "Multiply both equations together",
+      "Equalise both equations’ constants",
     ],
     0,
     "The first step of the graphical method is to draw the graph of the first equation on a Cartesian plane.",
@@ -8059,7 +8074,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The equations 2x + 4y = 10 and x + 2y = 5 are drawn as graphs. What type of solution do these simultaneous equations have?",
-    ["Infinitely many solutions", "No solution", "A unique solution", "Cannot be determined"],
+    ["Infinitely many", "None", "Exactly one", "Exactly two"],
     0,
     "The equation 2x + 4y = 10 simplifies to x + 2y = 5, the same as the second equation, so both represent the same line and have infinitely many solutions.",
     "Hard",
@@ -8247,10 +8262,10 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah perbezaan utama antara persamaan dan ketaksamaan?",
     [
-      "Tiada perbezaan antara kedua-duanya",
-      "Persamaan menggunakan =; ketaksamaan menggunakan <, >, ≤ atau ≥",
-      "Persamaan sentiasa lebih sukar diselesaikan",
-      "Ketaksamaan tidak pernah mengandungi pemboleh ubah",
+      "+ berbanding −, ×, ÷",
+      "= berbanding <, >, ≤, ≥",
+      "x berbanding y, z, w",
+      "() berbanding [], {}",
     ],
     1,
     "Persamaan menggunakan tanda = manakala ketaksamaan menggunakan simbol seperti >, <, ≥, atau ≤.",
@@ -8271,10 +8286,10 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah kata kunci yang dikaitkan dengan simbol ≤?",
     [
-      "Lebih daripada, melebihi",
-      "Sekurang-kurangnya, minimum",
-      "Paling banyak, tidak melebihi",
-      "Kurang daripada, di bawah",
+      "Sekurang-kurangnya",
+      "Lebih daripada",
+      "Paling banyak",
+      "Kurang daripada",
     ],
     2,
     "Simbol ≤ dikaitkan dengan kata kunci 'paling banyak', 'tidak melebihi', dan 'maksimum'.",
@@ -8509,10 +8524,10 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the main difference between an equation and an inequality?",
     [
-      "There is no difference between them",
-      "An equation uses =; an inequality uses <, >, ≤ or ≥",
-      "An equation is always harder to solve",
-      "An inequality never contains a variable",
+      "+ versus −, ×, ÷",
+      "= versus <, >, ≤, ≥",
+      "x versus y, z, w",
+      "() versus [], {}",
     ],
     1,
     "An equation uses the = sign while an inequality uses symbols such as >, <, ≥, or ≤.",
@@ -8527,7 +8542,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "What keywords are associated with the symbol ≤?",
-    ["More than, exceeds", "At least, minimum", "At most, does not exceed", "Less than, below"],
+    ["At least", "More than", "At most", "Less than"],
     2,
     "The symbol ≤ is associated with keywords 'at most', 'does not exceed', and 'maximum'.",
     "Easy",
@@ -8695,7 +8710,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   ],
   [
     "Apakah nilai integer yang mungkin bagi x ≤ 2?",
-    ["1, 2, 3, 4", "2, 1, 0, −1, ...", "2, 3, 4, 5", "3, 4, 5, ..."],
+    ["…, −2, −1, 0, 1", "…, −1, 0, 1, 2", "2, 3, 4, 5, …", "3, 4, 5, 6, …"],
     1,
     "x ≤ 2 bermaksud x lebih kecil daripada atau sama dengan 2. Nilai integer: 2, 1, 0, −1, −2, ... (termasuk 2).",
     "Medium",
@@ -8921,7 +8936,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "What are the possible integer values for x ≤ 2?",
-    ["1, 2, 3, 4", "2, 1, 0, −1, ...", "2, 3, 4, 5", "3, 4, 5, ..."],
+    ["…, −2, −1, 0, 1", "…, −1, 0, 1, 2", "2, 3, 4, 5, …", "3, 4, 5, 6, …"],
     1,
     "x ≤ 2 means x is less than or equal to 2. Integers: 2, 1, 0, −1, −2, ... (including 2).",
     "Medium",
@@ -9080,10 +9095,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah ketaksamaan linear serentak?",
     [
-      "Dua atau lebih ketaksamaan linear yang dipenuhi serentak",
-      "Dua persamaan yang diselesaikan bersama",
-      "Ketaksamaan yang setiap satunya ada dua pemboleh ubah",
-      "Ketaksamaan yang menggunakan simbol berbeza",
+      "Ketaksamaan dipenuhi bersama",
+      "Persamaan dipenuhi bersama",
+      "Ketaksamaan dipenuhi berasingan",
+      "Ungkapan dipermudah bersama",
     ],
     0,
     "Ketaksamaan linear serentak ialah dua atau lebih ketaksamaan linear yang perlu dipenuhi pada masa yang sama oleh satu pemboleh ubah.",
@@ -9157,10 +9172,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Selesaikan ketaksamaan serentak x + 3 ≥ 1 dan x − 2 ≤ 4, kemudian nyatakan nilai integer yang mungkin.",
     [
-      "x ≤ 6, integer: ..., 4, 5, 6",
-      "x ≥ −2, integer: −2, −1, 0, ...",
-      "−2 ≤ x ≤ 6, integer: −2, −1, 0, 1, 2, 3, 4, 5, 6",
-      "Tiada nilai sepunya",
+      "−2 < x < 6; −1, 0, …, 5",
+      "−6 ≤ x ≤ 2; −6, −5, …, 2",
+      "−2 ≤ x ≤ 6; −2, −1, …, 6",
+      "2 ≤ x ≤ 6; 2, 3, …, 6",
     ],
     2,
     "x + 3 ≥ 1 → x ≥ −2; x − 2 ≤ 4 → x ≤ 6. Nilai sepunya: −2 ≤ x ≤ 6. Integer: −2, −1, 0, 1, 2, 3, 4, 5, 6.",
@@ -9309,10 +9324,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Selesaikan ketaksamaan −3x + 6 ≥ 0 dan nyatakan nilai integer yang mungkin jika disertakan syarat x ≥ −5 juga.",
     [
-      "Tiada nilai sepunya",
-      "x ≤ 2 sahaja, integer: 2, 1, 0, −1, ...",
-      "x ≥ −5 sahaja",
-      "−5 ≤ x ≤ 2, integer: −5, −4, −3, −2, −1, 0, 1, 2",
+      "−5 ≤ x ≤ −2; −5, −4, …, −2",
+      "−2 ≤ x ≤ 5; −2, −1, …, 5",
+      "−5 < x < 2; −4, −3, …, 1",
+      "−5 ≤ x ≤ 2; −5, −4, …, 2",
     ],
     3,
     "−3x + 6 ≥ 0 → −3x ≥ −6 → x ≤ 2. Dan x ≥ −5. Nilai sepunya: −5 ≤ x ≤ 2. Integer: −5, −4, −3, −2, −1, 0, 1, 2.",
@@ -9321,10 +9336,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah maksud 'kawasan bertindih' pada garis nombor dalam konteks ketaksamaan serentak?",
     [
-      "Kawasan yang dipenuhi oleh KEDUA-DUA ketaksamaan pada masa yang sama",
-      "Kawasan di mana garis dua ketaksamaan bersilang",
-      "Kawasan antara dua sempadan sahaja",
-      "Kawasan di luar kedua-dua ketaksamaan",
+      "Rantau memenuhi kedua-dua syarat",
+      "Rantau memenuhi syarat pertama sahaja",
+      "Rantau memenuhi syarat kedua sahaja",
+      "Rantau tidak memenuhi sebarang syarat",
     ],
     0,
     "Kawasan bertindih ialah kawasan pada garis nombor yang dipenuhi oleh KEDUA-DUA ketaksamaan serentak pada masa yang sama.",
@@ -9359,10 +9374,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What are simultaneous linear inequalities?",
     [
-      "Two or more linear inequalities satisfied at the same time",
-      "Two equations that are solved together",
-      "Inequalities that each contain two variables",
-      "Inequalities that use different symbols",
+      "Inequalities satisfied together",
+      "Equations satisfied together",
+      "Inequalities satisfied separately",
+      "Expressions simplified together",
     ],
     0,
     "Simultaneous linear inequalities are two or more linear inequalities that must be satisfied at the same time by one variable.",
@@ -9436,10 +9451,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "Solve the simultaneous inequalities x + 3 ≥ 1 and x − 2 ≤ 4, then state the possible integer values.",
     [
-      "x ≤ 6, integers: ..., 4, 5, 6",
-      "x ≥ −2, integers: −2, −1, 0, ...",
-      "−2 ≤ x ≤ 6, integers: −2, −1, 0, 1, 2, 3, 4, 5, 6",
-      "No common values",
+      "−2 < x < 6; −1, 0, …, 5",
+      "−6 ≤ x ≤ 2; −6, −5, …, 2",
+      "−2 ≤ x ≤ 6; −2, −1, …, 6",
+      "2 ≤ x ≤ 6; 2, 3, …, 6",
     ],
     2,
     "x + 3 ≥ 1 → x ≥ −2; x − 2 ≤ 4 → x ≤ 6. Common values: −2 ≤ x ≤ 6. Integers: −2, −1, 0, 1, 2, 3, 4, 5, 6.",
@@ -9588,10 +9603,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "Solve −3x + 6 ≥ 0 and state possible integer values if x ≥ −5 is also required.",
     [
-      "No common values",
-      "x ≤ 2 only, integers: 2, 1, 0, −1, ...",
-      "x ≥ −5 only",
-      "−5 ≤ x ≤ 2, integers: −5, −4, −3, −2, −1, 0, 1, 2",
+      "−5 ≤ x ≤ −2; −5, −4, …, −2",
+      "−2 ≤ x ≤ 5; −2, −1, …, 5",
+      "−5 < x < 2; −4, −3, …, 1",
+      "−5 ≤ x ≤ 2; −5, −4, …, 2",
     ],
     3,
     "−3x + 6 ≥ 0 → −3x ≥ −6 → x ≤ 2. And x ≥ −5. Common: −5 ≤ x ≤ 2. Integers: −5, −4, −3, −2, −1, 0, 1, 2.",
@@ -9600,10 +9615,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What does 'overlapping region' mean on a number line in simultaneous inequalities?",
     [
-      "The region satisfied by BOTH inequalities at the same time",
-      "The region where the two inequality lines cross",
-      "The region between two boundaries only",
-      "The region outside both inequalities",
+      "Region satisfying both conditions",
+      "Region satisfying only the first condition",
+      "Region satisfying only the second condition",
+      "Region satisfying neither condition",
     ],
     0,
     "The overlapping region is the region on the number line satisfied by BOTH simultaneous inequalities at the same time.",
@@ -9715,10 +9730,10 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama menggunakan protraktor?",
     [
-      "Letakkan titik tengah protraktor pada bucu",
-      "Baca nilai darjah pada skala",
-      "Sejajarkan garis dasar dengan satu kaki sudut",
-      "Lukis garis baharu dari bucu",
+      "Letakkan pusat pada bucu",
+      "Baca nilai darjah dahulu",
+      "Sejajarkan garis dasar dahulu",
+      "Lukis kaki sudut baharu",
     ],
     0,
     "Langkah pertama: Letakkan titik tengah protraktor tepat pada bucu sudut yang hendak diukur.",
@@ -9733,7 +9748,12 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Dua sudut adalah kongruen apabila?",
-    ["Bentuknya sama", "Letaknya sama", "Keduanya sudut tirus", "Saiznya (bilangan darjah) sama"],
+    [
+      "Kedudukan sudut sama",
+      "Kedua-duanya sudut tirus",
+      "Panjang kaki sudut sama",
+      "Ukuran darjah sama",
+    ],
     3,
     "Dua sudut adalah kongruen jika saiznya (bilangan darjah) adalah sama.",
     "Easy",
@@ -9741,10 +9761,10 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah 'bucu' dalam konteks sudut?",
     [
-      "Titik di mana dua kaki sudut bertemu",
-      "Titik hujung tembereng garis",
-      "Sisi sudut",
-      "Panjang sudut",
+      "Pertemuan dua kaki sudut",
+      "Titik tengah kaki sudut",
+      "Titik hujung kaki sudut",
+      "Persilangan lengkung sudut",
     ],
     0,
     "Bucu ialah titik di mana dua kaki (tembereng garis) sudut bertemu.",
@@ -9785,7 +9805,12 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Dalam rajah geometri, tembereng garis kongruen ditandakan dengan?",
-    ["Tanda anak panah", "Tanda seretan (tick) yang sama", "Nombor yang sama", "Huruf yang sama"],
+    [
+      "Tanda anak panah sama",
+      "Tanda sengkang sama",
+      "Label huruf yang sama",
+      "Label nombor yang sama",
+    ],
     1,
     "Tembereng garis kongruen ditandakan dengan tanda seretan (tick marks) yang sama dalam rajah geometri.",
     "Easy",
@@ -9793,10 +9818,10 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Dalam rajah geometri, sudut kongruen ditandakan dengan?",
     [
-      "Tanda seretan (tick) yang sama",
-      "Nombor yang sama",
-      "Simbol kotak □",
-      "Lengkung (arc) yang sama",
+      "Tanda sengkang sama",
+      "Label huruf yang sama",
+      "Simbol sudut tegak",
+      "Tanda lengkok sama",
     ],
     3,
     "Sudut kongruen ditandakan dengan lengkung (arc) yang sama dalam rajah geometri.",
@@ -9975,10 +10000,10 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the first step when using a protractor?",
     [
-      "Place the protractor's centre on the vertex",
-      "Read the degree value on the scale",
-      "Line up the baseline with one arm",
-      "Draw a new line from the vertex",
+      "Place the centre on the vertex",
+      "Read the degree value first",
+      "Align the baseline first",
+      "Draw a new angle arm",
     ],
     0,
     "First step: Place the centre point of the protractor exactly at the vertex of the angle.",
@@ -9999,10 +10024,10 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "Two angles are congruent when?",
     [
-      "They look the same shape",
-      "They are in the same position",
-      "They are both acute angles",
-      "They have the same size (degrees)",
+      "Equal angle positions",
+      "Both are acute angles",
+      "Equal arm lengths",
+      "Equal degree measures",
     ],
     3,
     "Two angles are congruent if they have the same size (number of degrees).",
@@ -10011,10 +10036,10 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a 'vertex' in the context of angles?",
     [
-      "The point where the two arms of an angle meet",
-      "The endpoint of a line segment",
-      "The side of an angle",
-      "The length of an angle",
+      "Where the two arms meet",
+      "The midpoint of an arm",
+      "The endpoint of an arm",
+      "Where the angle arcs cross",
     ],
     0,
     "A vertex is the point where the two arms (line segments) of an angle meet.",
@@ -10055,14 +10080,24 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "In geometric diagrams, congruent line segments are marked with?",
-    ["Arrow marks", "The same number of tick marks", "The same number", "The same letter"],
+    [
+      "Matching arrow marks",
+      "Matching tick marks",
+      "Matching letter labels",
+      "Matching number labels",
+    ],
     1,
     "Congruent line segments are marked with the same number of tick marks in geometric diagrams.",
     "Easy",
   ],
   [
     "In geometric diagrams, congruent angles are marked with?",
-    ["Tick marks", "The same number", "A square symbol □", "The same number of arcs"],
+    [
+      "Matching tick marks",
+      "Matching letter labels",
+      "Right-angle square marks",
+      "Matching arc marks",
+    ],
     3,
     "Congruent angles are marked with the same number of arcs in geometric diagrams.",
     "Easy",
@@ -10693,10 +10728,10 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Sudut dongak dari titik A ke puncak sebuah bangunan ialah 35°. Apakah yang boleh disimpulkan?",
     [
-      "Pemerhati berada di atas bangunan itu",
-      "Bangunan itu condong sebanyak 35°",
-      "Pemerhati di bawah, melihat ke atas 35° dari garis ufuk",
-      "Sudut di puncak bangunan ialah 35°",
+      "Pandangan turun 35° dari ufuk",
+      "Bangunan condong 35° dari ufuk",
+      "Pandangan naik 35° dari ufuk",
+      "Pandangan naik 35° dari menegak",
     ],
     2,
     "Sudut dongak diukur dari garis ufuk ke atas. Pemerhati di A berada di bawah dan melihat ke atas pada 35°.",
@@ -10706,10 +10741,10 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Sudut tunduk dari puncak menara ke sebuah bot ialah 40°. Apakah yang boleh disimpulkan?",
     [
-      "Orang di bot melihat ke bawah pada 40°",
-      "Menara itu condong sebanyak 40°",
-      "Sudut 40° diukur dari kaki menara",
-      "Pemerhati di menara melihat ke bawah 40° dari garis ufuk",
+      "Pandangan naik 40° dari ufuk",
+      "Menara condong 40° dari ufuk",
+      "Pandangan turun 40° dari menegak",
+      "Pandangan turun 40° dari ufuk",
     ],
     3,
     "Sudut tunduk diukur dari garis ufuk ke bawah. Pemerhati di menara melihat ke bawah pada 40°.",
@@ -10920,10 +10955,10 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Bilakah dua sudut pedalaman pada sisi garis rentas yang sama menjadi sama besar?",
     [
-      "Apabila garis rentas tidak berserenjang",
-      "Apabila garis rentas berserenjang dengan garis-garis selari",
-      "Apabila kedua-dua sudut tirus",
-      "Tidak mungkin sama besar",
+      "Garis rentas tidak berserenjang",
+      "Garis rentas berserenjang",
+      "Kedua-dua sudut tirus",
+      "Kedua-dua sudut cakah",
     ],
     1,
     "Sudut pedalaman berjumlah 180°. Supaya sama besar, setiap satu mesti 90°, iaitu apabila garis rentas berserenjang dengan garis-garis selari.",
@@ -10984,10 +11019,10 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "The angle of elevation from point A to the top of a building is 35°. What can be concluded?",
     [
-      "The observer is standing above the building",
-      "The building leans over at an angle of 35°",
-      "The observer is below, looking up 35° from the horizontal",
-      "The angle at the top of the building is 35°",
+      "Sightline falls 35° below horizontal",
+      "Building leans 35° from horizontal",
+      "Sightline rises 35° above horizontal",
+      "Sightline rises 35° from vertical",
     ],
     2,
     "An angle of elevation is measured upward from the horizontal. The observer at A is below and looks up at 35°.",
@@ -10997,10 +11032,10 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "The angle of depression from the top of a tower to a boat is 40°. What can be concluded?",
     [
-      "A person in the boat looks down at 40°",
-      "The tower leans over at an angle of 40°",
-      "The 40° is measured from the foot of the tower",
-      "The observer looks down 40° from the horizontal",
+      "Sightline rises 40° above horizontal",
+      "Tower leans 40° from horizontal",
+      "Sightline falls 40° from vertical",
+      "Sightline falls 40° below horizontal",
     ],
     3,
     "An angle of depression is measured downward from the horizontal. The observer on the tower looks down at 40°.",
@@ -11211,10 +11246,10 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "When are two interior angles on the same side of a transversal equal?",
     [
-      "When the transversal is not perpendicular",
-      "When the transversal is perpendicular to the parallel lines",
-      "When both angles are acute",
-      "They can never be equal",
+      "A non-perpendicular transversal",
+      "A perpendicular transversal",
+      "Both angles are acute",
+      "Both angles are obtuse",
     ],
     1,
     "Interior angles add up to 180°. To be equal, each must be 90°, which happens when the transversal is perpendicular to the parallel lines.",
@@ -11226,10 +11261,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah poligon?",
     [
-      "Bentuk 2D tertutup dengan 3 atau lebih sisi lurus",
-      "Bentuk 3D dengan permukaan rata",
-      "Lengkung tertutup seperti bulatan",
-      "Satu tembereng garis lurus",
+      "Bentuk tertutup bersisi lurus",
+      "Bentuk terbuka bersisi lurus",
+      "Bentuk tertutup bersisi melengkung",
+      "Bentuk terbuka bersisi melengkung",
     ],
     0,
     "Poligon ialah bentuk dua dimensi (2D) tertutup yang dibatasi oleh tiga atau lebih sisi lurus.",
@@ -11279,10 +11314,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah poligon sekata?",
     [
-      "Poligon dengan semua sisi berbeza",
-      "Poligon dengan 4 sisi",
-      "Poligon dengan satu garis simetri",
-      "Poligon dengan semua sisi sama DAN semua sudut sama",
+      "Semua sisi sama, sudut berbeza",
+      "Semua sudut sama, sisi berbeza",
+      "Semua sisi dan sudut berbeza",
+      "Semua sisi dan sudut sama",
     ],
     3,
     "Poligon sekata mempunyai semua sisi sama panjang DAN semua sudut dalam sama besar.",
@@ -11305,10 +11340,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah segi tiga sama kaki?",
     [
-      "Segi tiga dengan 3 sisi sama",
-      "Segi tiga dengan semua sisi berbeza",
-      "Segi tiga dengan 2 sisi sama dan 2 sudut tapak sama",
-      "Segi tiga dengan satu sudut tegak",
+      "Tiga sisi dan semua sudut sama",
+      "Semua sisi dan sudut berbeza",
+      "Dua sisi dan sudut tapak sama",
+      "Satu sudut tepat 90°",
     ],
     2,
     "Segi tiga sama kaki mempunyai DUA sisi sama panjang dan DUA sudut tapak yang sama.",
@@ -11331,10 +11366,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah segi tiga bersudut tegak?",
     [
-      "Segi tiga dengan satu sudut tepat 90°",
-      "Segi tiga dengan satu sudut > 90°",
-      "Segi tiga dengan semua sudut < 90°",
-      "Segi tiga dengan semua sudut 60°",
+      "Satu sudut = 90°",
+      "Satu sudut > 90°",
+      "Semua sudut < 90°",
+      "Semua sudut = 60°",
     ],
     0,
     "Segi tiga bersudut tegak mempunyai tepat SATU sudut 90°. Sisi terpanjang dipanggil hipotenus.",
@@ -11370,10 +11405,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah segi empat sama?",
     [
-      "Segi empat tepat dengan pepenjuru berserenjang dan 4 sisi sama",
-      "Sisi empat dengan 4 sisi berbeza",
-      "Sisi empat dengan satu pasang sisi selari",
-      "Segi empat selari biasa",
+      "Empat sisi sama dan sudut tegak",
+      "Empat sisi sama dan sudut tidak tegak",
+      "Sisi bertentangan sama, sudut tidak tegak",
+      "Satu pasang sisi selari, sudut tidak tegak",
     ],
     0,
     "Segi empat sama mempunyai 4 sisi sama, 4 sudut 90°, dan pepenjuru berserenjang.",
@@ -11383,10 +11418,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah segi empat selari?",
     [
-      "Sisi empat dengan 4 sudut tegak",
-      "Sisi empat dengan 2 pasang sisi bertentangan selari",
-      "Sisi empat dengan 4 sisi sama panjang",
-      "Sisi empat dengan satu pasang sisi selari",
+      "Satu pasang sisi bertentangan selari",
+      "Dua pasang sisi bertentangan selari",
+      "Dua pasang sisi bersebelahan selari",
+      "Tiada pasang sisi bertentangan selari",
     ],
     1,
     "Segi empat selari mempunyai 2 pasang sisi bertentangan yang selari dan sama panjang, serta sudut bertentangan yang sama.",
@@ -11396,10 +11431,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah belah ketupat?",
     [
-      "Sisi empat dengan 4 sudut 90°",
-      "Sisi empat dengan 2 pasang sisi bersebelahan sama",
-      "Sisi empat dengan 4 sisi sama dan pepenjuru berserenjang",
-      "Sisi empat dengan satu pasang sisi selari",
+      "Empat sudut sama besar sahaja",
+      "Satu pasang sisi selari sahaja",
+      "Empat sisi sama panjang",
+      "Dua sisi sama panjang sahaja",
     ],
     2,
     "Belah ketupat mempunyai 4 sisi sama panjang dan pepenjuru yang berserenjang.",
@@ -11504,10 +11539,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah yang membezakan segi empat sama dengan segi empat tepat?",
     [
-      "Segi empat sama ada 4 sisi sama; segi empat tepat tidak semestinya",
-      "Segi empat sama mempunyai lebih banyak sudut tegak",
-      "Segi empat tepat mempunyai lebih banyak sisi",
-      "Tiada perbezaan antara kedua-duanya",
+      "Segi empat sama: semua sisi sama",
+      "Segi empat sama: lebih sudut tegak",
+      "Segi empat tepat: lebih banyak sisi",
+      "Segi empat tepat: kurang sudut tegak",
     ],
     0,
     "Segi empat sama: semua 4 sisi sama. Segi empat tepat: hanya sisi bertentangan sama. Kedua-duanya mempunyai 4 sudut 90°.",
@@ -11533,10 +11568,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah ciri utama pepenjuru poligon?",
     [
-      "Menghubungkan dua bucu bersebelahan",
-      "Menghubungkan dua bucu yang TIDAK bersebelahan",
-      "Ialah sisi poligon",
-      "Berada di luar poligon",
+      "Menyambung bucu yang bersebelahan",
+      "Menyambung bucu tidak bersebelahan",
+      "Menyambung titik tengah dua sisi",
+      "Menyambung titik tengah dan bucu",
     ],
     1,
     "Pepenjuru ialah tembereng garis yang menghubungkan dua bucu yang TIDAK bersebelahan. Sisi bukan pepenjuru.",
@@ -11549,10 +11584,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a polygon?",
     [
-      "A closed 2D shape with 3 or more straight sides",
-      "A 3D solid with flat faces",
-      "A closed curve such as a circle",
-      "A single straight line segment",
+      "A closed shape with straight sides",
+      "An open shape with straight sides",
+      "A closed shape with curved sides",
+      "An open shape with curved sides",
     ],
     0,
     "A polygon is a two-dimensional (2D) closed shape bounded by three or more straight sides.",
@@ -11602,10 +11637,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a regular polygon?",
     [
-      "A polygon with all sides different",
-      "A polygon with 4 sides",
-      "A polygon with one line of symmetry",
-      "A polygon with all sides equal AND all angles equal",
+      "All sides equal, angles different",
+      "All angles equal, sides different",
+      "All sides and angles different",
+      "All sides and angles equal",
     ],
     3,
     "A regular polygon has all sides equal in length AND all interior angles equal.",
@@ -11628,10 +11663,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is an isosceles triangle?",
     [
-      "A triangle with 3 equal sides",
-      "A triangle with all different sides",
-      "A triangle with 2 equal sides and 2 equal base angles",
-      "A triangle with one right angle",
+      "Three equal sides and angles",
+      "All sides and angles different",
+      "Two equal sides and base angles",
+      "One angle exactly 90°",
     ],
     2,
     "An isosceles triangle has TWO equal sides and TWO equal base angles.",
@@ -11654,10 +11689,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a right-angled triangle?",
     [
-      "A triangle with exactly one angle of 90°",
-      "A triangle with one angle > 90°",
-      "A triangle with all angles < 90°",
-      "A triangle with all angles 60°",
+      "One angle = 90°",
+      "One angle > 90°",
+      "All angles < 90°",
+      "All angles = 60°",
     ],
     0,
     "A right-angled triangle has exactly ONE 90° angle. The longest side is called the hypotenuse.",
@@ -11693,10 +11728,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a square?",
     [
-      "A rectangle with perpendicular diagonals and all 4 sides equal",
-      "A quadrilateral with 4 different sides",
-      "A quadrilateral with one pair of parallel sides",
-      "An ordinary parallelogram",
+      "Four equal sides and right angles",
+      "Four equal sides and no right angles",
+      "Equal opposite sides, no right angles",
+      "One parallel pair, no right angles",
     ],
     0,
     "A square has 4 equal sides, 4 right angles, and perpendicular diagonals.",
@@ -11706,10 +11741,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a parallelogram?",
     [
-      "A quadrilateral with 4 right angles",
-      "A quadrilateral with 2 pairs of parallel opposite sides",
-      "A quadrilateral with 4 equal sides",
-      "A quadrilateral with one pair of parallel sides",
+      "One pair of opposite parallel sides",
+      "Two pairs of opposite parallel sides",
+      "Two pairs of adjacent parallel sides",
+      "No pairs of opposite parallel sides",
     ],
     1,
     "A parallelogram has 2 pairs of opposite sides that are parallel and equal, with opposite angles equal.",
@@ -11719,10 +11754,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a rhombus?",
     [
-      "A quadrilateral with 4 right angles",
-      "A quadrilateral with 2 pairs of adjacent equal sides",
-      "A quadrilateral with 4 equal sides and perpendicular diagonals",
-      "A quadrilateral with one pair of parallel sides",
+      "Four equal angles only",
+      "One parallel side pair only",
+      "Four equal side lengths",
+      "Two equal side lengths only",
     ],
     2,
     "A rhombus has 4 equal sides and perpendicular diagonals.",
@@ -11827,10 +11862,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What distinguishes a square from a rectangle?",
     [
-      "A square has 4 equal sides; a rectangle need not",
-      "A square has more right angles than a rectangle",
-      "A rectangle has more sides than a square",
-      "There is no difference between them",
+      "A square always has equal sides",
+      "A square has more right angles",
+      "A rectangle has more sides",
+      "A rectangle has fewer right angles",
     ],
     0,
     "Square: all 4 sides equal. Rectangle: only opposite sides equal. Both have 4 right angles.",
@@ -11856,10 +11891,10 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the key feature of a polygon's diagonal?",
     [
-      "Connects two adjacent vertices",
-      "Connects two NON-ADJACENT vertices",
-      "Is a side of the polygon",
-      "Lies outside the polygon",
+      "Joins adjacent vertices",
+      "Joins non-adjacent vertices",
+      "Joins two side midpoints",
+      "Joins a midpoint and a vertex",
     ],
     1,
     "A diagonal connects two NON-ADJACENT vertices. Sides are not diagonals.",
@@ -12928,10 +12963,10 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah luas sesuatu bentuk?",
     [
-      "Jumlah panjang sempadannya",
-      "Jumlah permukaan di dalam sempadannya",
-      "Bilangan sisi yang dimilikinya",
-      "Tinggi bentuk itu",
+      "Ukuran panjang di sekeliling sempadan",
+      "Ukuran permukaan dalam sempadan",
+      "Ukuran bilangan sisi di sempadan",
+      "Ukuran tinggi dari tapak bentuk",
     ],
     1,
     "Luas ialah jumlah ruang di dalam sempadan sesuatu bentuk rata (2D).",
@@ -13012,10 +13047,10 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah tinggi yang BETUL untuk mengira luas segi tiga?",
     [
-      "Sisi terpanjang segi tiga",
-      "Jarak berserenjang dari tapak ke puncak",
-      "Mana-mana sisi segi tiga",
-      "Sisi condong di sebelah tapak",
+      "Jarak condong tapak–puncak",
+      "Jarak serenjang tapak–puncak",
+      "Panjang sisi yang terpanjang",
+      "Panjang sisi yang terpendek",
     ],
     1,
     "Tinggi segi tiga MESTI berserenjang (90°) dengan tapak. Bukan sisi condong.",
@@ -13065,10 +13100,10 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah d₁ dan d₂ dalam formula luas lelayang?",
     [
-      "Dua pepenjuru lelayang yang berserenjang",
-      "Dua sisi bersebelahan lelayang",
-      "Panjang dan lebar lelayang itu",
-      "Dua sudut bertentangan lelayang",
+      "Dua pepenjuru lelayang",
+      "Dua sisi bersebelahan",
+      "Dua sisi bertentangan",
+      "Dua sudut bertentangan",
     ],
     0,
     "d₁ dan d₂ ialah DUA PEPENJURU lelayang. Pepenjuru lelayang saling berserenjang (90°).",
@@ -13078,10 +13113,10 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah kaedah grid untuk menganggar luas?",
     [
-      "Mengira bilangan sisi bentuk itu",
-      "Mengukur perimeter bentuk itu",
-      "Melukis bentuk pada grid dan mengira petaknya",
-      "Mengira bilangan pepenjuru bentuk",
+      "Mengira sisi di sekeliling bentuk",
+      "Mengukur perimeter bentuk",
+      "Mengira petak dalam bentuk",
+      "Mengira pepenjuru bentuk",
     ],
     2,
     "Kaedah grid: lukis bentuk di atas kertas grid, kira petak penuh dan separuh di dalam bentuk.",
@@ -13209,10 +13244,10 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the area of a shape?",
     [
-      "The total length of its boundary",
-      "The amount of surface inside its boundary",
-      "The number of sides it has",
-      "The height of the shape",
+      "Length measure around the boundary",
+      "Surface measure within the boundary",
+      "Number of sides along the boundary",
+      "Height measure from the shape’s base",
     ],
     1,
     "Area is the total amount of space inside the boundary of a flat (2D) shape.",
@@ -13293,10 +13328,10 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the CORRECT height for calculating the area of a triangle?",
     [
-      "The longest side of the triangle",
-      "The perpendicular distance from base to apex",
-      "Any side of the triangle",
-      "The sloping side next to the base",
+      "Sloping base–vertex distance",
+      "Perpendicular base–vertex distance",
+      "The longest side length",
+      "The shortest side length",
     ],
     1,
     "The height of a triangle MUST be perpendicular (90°) to the base. Not the slant side.",
@@ -13346,10 +13381,10 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What are d₁ and d₂ in the kite area formula?",
     [
-      "The two perpendicular diagonals of the kite",
-      "Two adjacent sides of the kite",
-      "The length and width of the kite",
-      "Two opposite angles of the kite",
+      "The two kite diagonals",
+      "Two adjacent kite sides",
+      "Two opposite kite sides",
+      "Two opposite kite angles",
     ],
     0,
     "d₁ and d₂ are the TWO DIAGONALS of the kite. The diagonals of a kite are perpendicular (90°).",
@@ -13359,10 +13394,10 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the grid method for estimating area?",
     [
-      "Counting the number of sides of the shape",
-      "Measuring the perimeter of the shape",
-      "Drawing the shape on a grid and counting squares",
-      "Counting the diagonals of the shape",
+      "Counting sides around the shape",
+      "Measuring the shape’s perimeter",
+      "Counting squares within the shape",
+      "Counting the shape’s diagonals",
     ],
     2,
     "Grid method: draw the shape on grid paper, count full and partial squares inside the shape.",
@@ -14495,10 +14530,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah set?",
     [
-      "Koleksi objek yang mempunyai ciri sepunya yang jelas",
-      "Koleksi nombor sahaja dalam sebarang susunan",
-      "Senarai nombor rawak yang boleh berulang",
-      "Koleksi huruf abjad sahaja",
+      "Koleksi dengan ciri yang jelas",
+      "Koleksi dengan ciri yang berubah-ubah",
+      "Koleksi ditentukan susunan unsur",
+      "Koleksi ditentukan pengulangan unsur",
     ],
     0,
     "Set ialah koleksi objek yang mempunyai ciri-ciri yang sama dan boleh ditakrifkan dengan jelas.",
@@ -14546,7 +14581,12 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Apakah n(A)?",
-    ["Nama set A", "Subset set A", "Pelengkap set A", "Bilangan unsur dalam set A"],
+    [
+      "Nama bagi set A",
+      "Subset bagi set A",
+      "Pelengkap bagi set A",
+      "Bilangan unsur A",
+    ],
     3,
     "n(A) mewakili bilangan unsur dalam set A.",
     "Easy",
@@ -14596,10 +14636,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah pelengkap set A (A')?",
     [
-      "Unsur dalam ξ yang tiada dalam A",
-      "Semua unsur dalam A sahaja",
-      "Semua unsur dalam A dan ξ",
-      "Set kosong, iaitu ∅",
+      "Unsur ξ di luar A",
+      "Unsur ξ di dalam A",
+      "Semua unsur ξ dan A",
+      "Unsur A di luar ξ",
     ],
     0,
     "A' ialah set semua unsur dalam ξ yang tidak berada dalam A.",
@@ -14655,10 +14695,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah kaedah penyenaraian untuk mewakili set?",
     [
-      "Menggunakan ayat untuk menerangkan set",
-      "Menggunakan formula matematik",
-      "Menyenaraikan semua unsur dalam kurungan kurawal { }",
-      "Melukis gambar rajah",
+      "Terangkan ciri dalam ayat",
+      "Nyatakan ciri dengan rumus",
+      "Senaraikan unsur dalam { }",
+      "Lukis unsur dalam rajah",
     ],
     2,
     "Kaedah penyenaraian: senaraikan semua unsur dalam { }. Contoh: A = {1, 2, 3}.",
@@ -14753,10 +14793,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a set?",
     [
-      "A collection of objects with a common, well-defined feature",
-      "A collection of numbers only, in any order",
-      "A list of random numbers that may repeat",
-      "A collection of letters of the alphabet only",
+      "A collection with a well-defined feature",
+      "A collection with an undefined feature",
+      "A collection defined by element order",
+      "A collection defined by repeated elements",
     ],
     0,
     "A set is a collection of objects that share common characteristics and can be clearly defined.",
@@ -14805,10 +14845,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is n(A)?",
     [
-      "The name of set A",
-      "A subset of set A",
-      "The complement of set A",
-      "The number of elements in set A",
+      "Name of the set A",
+      "A subset of the set A",
+      "Complement of the set A",
+      "Number of A’s elements",
     ],
     3,
     "n(A) represents the number of elements in set A.",
@@ -14859,10 +14899,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the complement of set A (A')?",
     [
-      "The elements of ξ that are not in A",
-      "All the elements of A only",
-      "All the elements of A and ξ",
-      "The empty set, ∅",
+      "Elements of ξ outside A",
+      "Elements of ξ inside A",
+      "All elements of ξ and A",
+      "Elements of A outside ξ",
     ],
     0,
     "A' is the set of all elements in ξ that are not in A.",
@@ -14918,10 +14958,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the listing method for representing a set?",
     [
-      "Using a sentence to describe the set",
-      "Using a mathematical formula",
-      "Listing all elements inside curly braces { }",
-      "Drawing a diagram",
+      "Describe features in a sentence",
+      "State features using a formula",
+      "List elements inside { }",
+      "Draw elements in a diagram",
     ],
     2,
     "Listing method: list all elements in { }. Example: A = {1, 2, 3}.",
@@ -15035,10 +15075,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Adakah {a,b,c} = {c,a,b}? Berikan alasan.",
     [
-      "Tidak, kerana susunan berbeza",
-      "Tidak, kerana panjangnya berbeza",
-      "Ya, kerana mengandungi unsur yang sama",
-      "Ya, kerana kedua-duanya mempunyai 3 huruf",
+      "Tidak; susunan berbeza",
+      "Ya; bilangan huruf sama",
+      "Ya; unsur yang sama",
+      "Tidak; unsur berbeza",
     ],
     2,
     "Set adalah sama jika mengandungi unsur yang sama. Susunan tidak penting. Jadi {a,b,c} = {c,a,b}.",
@@ -15054,10 +15094,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Senaraikan semua subset bagi {1, 2, 3}.",
     [
-      "∅,{1},{2},{3}",
+      "∅,{1},{2},{3},{1,2},{1,3},{2,3},{1,2,4}",
       "∅,{1},{2},{3},{1,2},{1,3},{2,3},{1,2,3}",
-      "{1},{2},{3},{1,2,3}",
-      "∅,{1,2},{1,3},{2,3},{1,2,3}",
+      "∅,{1},{2},{3},{1,2},{1,3},{2,4},{1,2,3}",
+      "∅,{1},{2},{4},{1,2},{1,3},{2,3},{1,2,3}",
     ],
     1,
     "2³ = 8 subset: ∅, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}.",
@@ -15227,10 +15267,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Antara berikut, yang manakah set kosong?",
     [
-      "{x : x ialah gandaan 5 antara 11 dan 14}",
-      "{x : x ialah nombor perdana genap}",
-      "{0}",
-      "{x : x ialah faktor bagi 7}",
+      "{x : 11 < x < 14, x gandaan 5}",
+      "{x : 11 < x < 14, x gandaan 3}",
+      "{x : 11 < x < 14, x nombor genap}",
+      "{x : 11 < x < 14, x nombor perdana}",
     ],
     0,
     "Tiada gandaan 5 antara 11 dan 14, jadi set itu kosong. {x : x ialah nombor perdana genap} = {2}, {0} mempunyai satu unsur dan faktor 7 ialah {1, 7}.",
@@ -15260,10 +15300,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Dalam gambar rajah Venn bagi B ⊂ A, bagaimanakah rupa bulatan B?",
     [
-      "Bulatan B berada di luar bulatan A",
-      "Bulatan B bersilang separuh dengan A",
-      "Bulatan B berada sepenuhnya di dalam bulatan A",
-      "Bulatan B dan A adalah sama",
+      "B sepenuhnya di luar A",
+      "B bersilang sebahagian dengan A",
+      "B sepenuhnya di dalam A",
+      "B bersaiz sama dengan A",
     ],
     2,
     "Apabila B ⊂ A, bulatan B dilukis SEPENUHNYA DI DALAM bulatan A dalam gambar rajah Venn.",
@@ -15271,7 +15311,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   ],
   [
     "Set R = {x : x ialah nombor bulat, x² < 25}. Senaraikan R (nombor positif dan negatif).",
-    ["{0,1,2,3,4}", "{1,2,3,4}", "{-5,-4,...,4,5}", "{-4,-3,-2,-1,0,1,2,3,4}"],
+    ["{−5,−4,…,4,5}", "{0,1,…,3,4}", "{1,2,…,4,5}", "{−4,−3,…,3,4}"],
     3,
     "x² < 25 bermaksud |x| < 5. Nombor bulat: -4,-3,-2,-1,0,1,2,3,4. R = {-4,-3,-2,-1,0,1,2,3,4}.",
     "Medium",
@@ -15308,10 +15348,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "Is {a,b,c} = {c,a,b}? Give a reason.",
     [
-      "No, because the order is different",
-      "No, because the lengths differ",
-      "Yes, because they contain the same elements",
-      "Yes, because both have 3 letters",
+      "No; a different order",
+      "Yes; the same letter count",
+      "Yes; the same elements",
+      "No; different elements",
     ],
     2,
     "Sets are equal if they contain the same elements. Order does not matter. So {a,b,c} = {c,a,b}.",
@@ -15327,10 +15367,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "List all subsets of {1, 2, 3}.",
     [
-      "∅,{1},{2},{3}",
+      "∅,{1},{2},{3},{1,2},{1,3},{2,3},{1,2,4}",
       "∅,{1},{2},{3},{1,2},{1,3},{2,3},{1,2,3}",
-      "{1},{2},{3},{1,2,3}",
-      "∅,{1,2},{1,3},{2,3},{1,2,3}",
+      "∅,{1},{2},{3},{1,2},{1,3},{2,4},{1,2,3}",
+      "∅,{1},{2},{4},{1,2},{1,3},{2,3},{1,2,3}",
     ],
     1,
     "2³ = 8 subsets: ∅, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}.",
@@ -15500,10 +15540,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "Which of the following is an empty set?",
     [
-      "{x : x is a multiple of 5 between 11 and 14}",
-      "{x : x is an even prime number}",
-      "{0}",
-      "{x : x is a factor of 7}",
+      "{x : 11 < x < 14, x a multiple of 5}",
+      "{x : 11 < x < 14, x a multiple of 3}",
+      "{x : 11 < x < 14, x an even number}",
+      "{x : 11 < x < 14, x a prime number}",
     ],
     0,
     "There is no multiple of 5 between 11 and 14, so the set is empty. {x : x is an even prime number} = {2}, {0} has one element, and the factors of 7 are {1, 7}.",
@@ -15533,10 +15573,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "In a Venn diagram for B ⊂ A, how does circle B appear?",
     [
-      "Circle B is outside circle A",
-      "Circle B partially intersects A",
-      "Circle B is entirely inside circle A",
-      "Circle B and A are the same size",
+      "B entirely outside A",
+      "B partly overlaps A",
+      "B entirely inside A",
+      "B the same size as A",
     ],
     2,
     "When B ⊂ A, circle B is drawn ENTIRELY INSIDE circle A in the Venn diagram.",
@@ -15544,7 +15584,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "Set R = {x : x is an integer, x² < 25}. List R (positive and negative).",
-    ["{0,1,2,3,4}", "{1,2,3,4}", "{-5,-4,...,4,5}", "{-4,-3,-2,-1,0,1,2,3,4}"],
+    ["{−5,−4,…,4,5}", "{0,1,…,3,4}", "{1,2,…,4,5}", "{−4,−3,…,3,4}"],
     3,
     "x² < 25 means |x| < 5. Integers: -4,-3,-2,-1,0,1,2,3,4. R = {-4,-3,-2,-1,0,1,2,3,4}.",
     "Medium",
@@ -15562,10 +15602,10 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "ξ = {1, 2, 3, ..., 20}. A = {nombor perdana}. B = {nombor ganjil}. Adakah A ⊂ B?",
     [
-      "Tidak, kerana 2 ialah nombor perdana tetapi genap",
-      "Ya, semua nombor perdana ialah nombor ganjil",
-      "Ya, kecuali nombor 1",
-      "Bergantung pada set semesta",
+      "Tidak; 2 perdana tetapi genap",
+      "Ya; semua perdana ialah ganjil",
+      "Tidak; 3 perdana tetapi genap",
+      "Ya; 1 ialah perdana ganjil",
     ],
     0,
     "2 ialah nombor perdana tetapi 2 ialah nombor genap. Jadi 2 ∈ A tetapi 2 ∉ B. Oleh itu A ⊄ B.",
@@ -15728,10 +15768,10 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "ξ = {1, 2, 3, ..., 9}. A = {x : x ialah kuasa dua sempurna} dan B = {x : x ialah nombor ganjil}. Adakah A ⊂ B?",
     [
-      "Ya, semua kuasa dua sempurna ialah nombor ganjil",
-      "Tidak, kerana 4 ialah kuasa dua sempurna tetapi genap",
-      "Ya, kecuali 1",
-      "Tidak boleh ditentukan",
+      "Ya; semua kuasa dua ialah ganjil",
+      "Tidak; 4 kuasa dua tetapi genap",
+      "Tidak; 9 kuasa dua tetapi genap",
+      "Ya; semua nombor genap di luar A",
     ],
     1,
     "Kuasa dua sempurna dalam ξ: {1, 4, 9}. 4 ∈ A tetapi 4 ∉ B. Jadi A ⊄ B.",
@@ -15830,10 +15870,10 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "ξ = {1, 2, 3, ..., 20}. A = {prime numbers}. B = {odd numbers}. Is A ⊂ B?",
     [
-      "No, because 2 is a prime number but even",
-      "Yes, all prime numbers are odd",
-      "Yes, except the number 1",
-      "It depends on the universal set",
+      "No; 2 is prime but even",
+      "Yes; every prime is odd",
+      "No; 3 is prime but even",
+      "Yes; 1 is an odd prime",
     ],
     0,
     "2 is a prime number but 2 is even. So 2 ∈ A but 2 ∉ B. Therefore A ⊄ B.",
@@ -16011,10 +16051,10 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "ξ = {1, 2, 3, ..., 9}. A = {x : x is a perfect square} and B = {x : x is an odd number}. Is A ⊂ B?",
     [
-      "Yes, all perfect squares are odd",
-      "No, because 4 is a perfect square but even",
-      "Yes, except 1",
-      "Cannot be determined",
+      "Yes; every square is odd",
+      "No; 4 is square but even",
+      "No; 9 is square but even",
+      "Yes; every even number is outside A",
     ],
     1,
     "Perfect squares in ξ: {1, 4, 9}. 4 ∈ A but 4 ∉ B. So A ⊄ B.",
@@ -16108,10 +16148,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah hipotenus dalam segi tiga bersudut tegak?",
     [
-      "Sisi yang paling panjang, bertentangan dengan sudut 90°",
-      "Sisi yang bertentangan dengan sudut terkecil",
-      "Sisi yang paling pendek",
-      "Sebarang sisi dalam segi tiga",
+      "Sisi bertentangan sudut 90°",
+      "Sisi bertentangan sudut terkecil",
+      "Sisi bersebelahan sudut terkecil",
+      "Mana-mana sisi segi tiga",
     ],
     0,
     "Hipotenus ialah sisi yang PALING PANJANG dalam segi tiga bersudut tegak dan ia sentiasa BERTENTANGAN dengan sudut 90°.",
@@ -16120,12 +16160,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Apakah Teorem Pythagoras?",
-    [
-      "a² + b² = c (bukan kuasa dua)",
-      "c² = a² + b², di mana c ialah hipotenus",
-      "c = a + b",
-      "c² = a² × b²",
-    ],
+    ["c = a² + b²", "c² = a² + b²", "c = a + b", "c² = a² × b²"],
     1,
     "Teorem Pythagoras: c² = a² + b², di mana c ialah hipotenus (sisi terpanjang) dan a, b ialah dua kaki segi tiga bersudut tegak.",
     "Easy",
@@ -16134,10 +16169,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Dalam segi tiga bersudut tegak, di manakah sudut 90°?",
     [
-      "Di hadapan hipotenus",
-      "Di hadapan sisi terpendek",
-      "Di antara dua kaki (sisi yang pendek)",
-      "Di atas hipotenus",
+      "Antara kaki dan hipotenus",
+      "Di titik tengah hipotenus",
+      "Antara dua kaki segi tiga",
+      "Di titik tengah kaki segi tiga",
     ],
     2,
     "Sudut 90° berada di ANTARA dua kaki (sisi yang lebih pendek). Hipotenus bertentangan dengan sudut 90° ini.",
@@ -16198,10 +16233,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah makna akas Teorem Pythagoras?",
     [
-      "Teorem yang sama tetapi dalam bahasa lain",
-      "Teorem untuk segi tiga sama kaki sahaja",
-      "Teorem untuk mencari sudut",
-      "Jika c² = a² + b², maka segi tiga adalah bersudut tegak",
+      "c² = a² + b² menguji sisi sama",
+      "c² = a² + b² menguji sudut tirus",
+      "c² = a² + b² menguji sudut cakah",
+      "c² = a² + b² menguji sudut tegak",
     ],
     3,
     "Akas Teorem Pythagoras: jika c² = a² + b² (c = sisi terpanjang), maka segi tiga adalah bersudut tegak.",
@@ -16264,10 +16299,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Segi tiga 6, 8, 10 — adakah ia triple Pythagoras?",
     [
-      "Tidak, bukan triple Pythagoras",
-      "Ya, kerana 6+8=14 > 10",
-      "Ya, kerana 6²+8² = 36+64 = 100 = 10²",
-      "Tidak boleh ditentukan",
+      "Tidak; 6² + 8² ≠ 10²",
+      "Ya; 6² × 8² = 10²",
+      "Ya; 6² + 8² = 10²",
+      "Tidak; 6² + 8² = 10",
     ],
     2,
     "6² + 8² = 36 + 64 = 100 = 10². Ini adalah gandaan 3-4-5 (×2), jadi ia adalah triple Pythagoras.",
@@ -16359,7 +16394,12 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Apakah langkah pertama dalam mengklasifikasikan segi tiga menggunakan akas Teorem Pythagoras?",
-    ["Kira c²", "Kenal pasti sisi terpanjang (c)", "Kira a²+b²", "Bandingkan c² dengan a²+b²"],
+    [
+      "Kira kuasa dua sisi terpendek",
+      "Kenal pasti sisi terpanjang",
+      "Kira jumlah panjang dua sisi",
+      "Kira hasil darab dua sisi",
+    ],
     1,
     "Langkah pertama: KENAL PASTI sisi terpanjang dan labelkannya sebagai c. Kemudian kira c² dan a²+b² untuk dibandingkan.",
     "Easy",
@@ -16389,10 +16429,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah perbezaan antara Teorem Pythagoras dan akasnya?",
     [
-      "Tiada perbezaan antara kedua-duanya",
-      "Akas digunakan untuk mencari panjang sisi",
-      "Akas menggunakan c² = a² + b² untuk menentukan sudut tegak",
-      "Teorem hanya untuk segi tiga sama kaki",
+      "Akas mencari panjang sisi sahaja",
+      "Akas mengira bilangan sudut tegak",
+      "Akas menguji kewujudan sudut tegak",
+      "Akas menguji sisi sama sahaja",
     ],
     2,
     "Teorem (maju): segi tiga bersudut tegak → c²=a²+b². Akas: jika c²=a²+b² → segi tiga bersudut tegak.",
@@ -16409,10 +16449,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah maksud 'triple Pythagoras' didarab dengan faktor?",
     [
-      "Hanya triple asal yang sah",
-      "Gandaan triple juga membentuk segi tiga bersudut tegak",
-      "Gandaan tidak sah bagi Teorem Pythagoras",
-      "Faktor itu mestilah nombor perdana",
+      "Gandaan juga segi tiga sama sisi",
+      "Gandaan juga segi tiga bersudut tegak",
+      "Gandaan tidak lagi bersudut tegak",
+      "Gandaan mesti menggunakan faktor perdana",
     ],
     1,
     "Gandaan triple Pythagoras juga sah. Cth: 3-4-5 × 2 = 6-8-10; × 3 = 9-12-15. Semuanya bersudut tegak.",
@@ -16424,9 +16464,9 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the hypotenuse in a right-angled triangle?",
     [
-      "The longest side, opposite the 90° angle",
+      "The side opposite the 90° angle",
       "The side opposite the smallest angle",
-      "The shortest side",
+      "The side beside the smallest angle",
       "Any side of the triangle",
     ],
     0,
@@ -16436,12 +16476,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "What is Pythagoras' Theorem?",
-    [
-      "a² + b² = c (not squared)",
-      "c² = a² + b², where c is the hypotenuse",
-      "c = a + b",
-      "c² = a² × b²",
-    ],
+    ["c = a² + b²", "c² = a² + b²", "c = a + b", "c² = a² × b²"],
     1,
     "Pythagoras' Theorem: c² = a² + b², where c is the hypotenuse (longest side) and a, b are the two legs of the right-angled triangle.",
     "Easy",
@@ -16450,10 +16485,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "In a right-angled triangle, where is the 90° angle?",
     [
-      "Opposite the hypotenuse",
-      "Opposite the shortest side",
-      "Between the two legs (shorter sides)",
-      "On top of the hypotenuse",
+      "Between a leg and hypotenuse",
+      "At the hypotenuse midpoint",
+      "Between the two legs",
+      "At the midpoint of a leg",
     ],
     2,
     "The 90° angle is BETWEEN the two legs (shorter sides). The hypotenuse is opposite this 90° angle.",
@@ -16514,10 +16549,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does the converse of Pythagoras' Theorem mean?",
     [
-      "The same theorem but in another language",
-      "A theorem for isosceles triangles only",
-      "A theorem for finding angles",
-      "If c² = a² + b², then the triangle is right-angled",
+      "c² = a² + b² tests for equal sides",
+      "c² = a² + b² tests for an acute angle",
+      "c² = a² + b² tests for an obtuse angle",
+      "c² = a² + b² tests for a right angle",
     ],
     3,
     "Converse of Pythagoras' Theorem: if c² = a² + b² (c = longest side), then the triangle is right-angled.",
@@ -16580,10 +16615,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "Triangle 6, 8, 10 — is it a Pythagorean triple?",
     [
-      "No, not a Pythagorean triple",
-      "Yes, because 6+8=14 > 10",
-      "Yes, because 6²+8² = 36+64 = 100 = 10²",
-      "Cannot be determined",
+      "No; 6² + 8² ≠ 10²",
+      "Yes; 6² × 8² = 10²",
+      "Yes; 6² + 8² = 10²",
+      "No; 6² + 8² = 10",
     ],
     2,
     "6² + 8² = 36 + 64 = 100 = 10². This is a multiple of 3-4-5 (×2), so it is a Pythagorean triple.",
@@ -16675,7 +16710,12 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "What is the first step in classifying a triangle using the converse of Pythagoras' Theorem?",
-    ["Calculate c²", "Identify the longest side (c)", "Calculate a²+b²", "Compare c² with a²+b²"],
+    [
+      "Square the shortest side",
+      "Identify the longest side",
+      "Add two side lengths",
+      "Multiply two side lengths",
+    ],
     1,
     "First step: IDENTIFY the longest side and label it c. Then calculate c² and a²+b² to compare.",
     "Easy",
@@ -16705,10 +16745,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the difference between Pythagoras' Theorem and its converse?",
     [
-      "There is no difference between them",
-      "The converse is used to find a side length",
-      "The converse uses c² = a² + b² to test for a right angle",
-      "The theorem only works for isosceles triangles",
+      "The converse only finds a side length",
+      "The converse counts the right angles",
+      "The converse tests for a right angle",
+      "The converse only tests for equal sides",
     ],
     2,
     "Theorem (forward): right-angled triangle → c²=a²+b². Converse: if c²=a²+b² → right-angled triangle.",
@@ -16725,10 +16765,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does 'Pythagorean triple multiplied by a factor' mean?",
     [
-      "Only the original triple is valid",
-      "Its multiples also form right-angled triangles",
-      "Multiples are not valid for Pythagoras",
-      "The factor must be a prime number",
+      "Multiples also form equilateral triangles",
+      "Multiples also form right-angled triangles",
+      "Multiples cease to be right-angled triangles",
+      "Multiples must use a prime factor",
     ],
     1,
     "Multiples of a Pythagorean triple are also valid. E.g.: 3-4-5 × 2 = 6-8-10; × 3 = 9-12-15. All are right-angled.",
@@ -16852,10 +16892,10 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Segi tiga dengan sisi 1.5 m, 2 m, 2.5 m. Adakah ia bersudut tegak?",
     [
-      "Tidak, bukan triple Pythagoras",
-      "Ya, kerana 1.5²+2² = 2.25+4 = 6.25 = 2.5²",
-      "Tidak boleh ditentukan",
-      "Ya, tetapi hanya jika nilai dalam cm",
+      "Tidak; 1.5² + 2² ≠ 2.5²",
+      "Ya; 1.5² + 2² = 2.5²",
+      "Ya; 1.5² × 2² = 2.5²",
+      "Tidak; 1.5² + 2² = 2.5",
     ],
     1,
     "1.5²+2² = 2.25+4 = 6.25 = 2.5². Ya, bersudut tegak! (Ini adalah gandaan 3-4-5 ÷ 2 = 1.5-2-2.5)",
@@ -17100,10 +17140,10 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "Triangle with sides 1.5 m, 2 m, 2.5 m. Is it right-angled?",
     [
-      "No, not a Pythagorean triple",
-      "Yes, because 1.5²+2² = 2.25+4 = 6.25 = 2.5²",
-      "Cannot be determined",
-      "Yes, but only in cm",
+      "No; 1.5² + 2² ≠ 2.5²",
+      "Yes; 1.5² + 2² = 2.5²",
+      "Yes; 1.5² × 2² = 2.5²",
+      "No; 1.5² + 2² = 2.5",
     ],
     1,
     "1.5²+2² = 2.25+4 = 6.25 = 2.5². Yes, right-angled! (Multiple of 3-4-5 ÷ 2 = 1.5-2-2.5)",
@@ -17464,10 +17504,10 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Tentukan sama ada (20, 21, 29) ialah triple Pythagoras.",
     [
-      "Ya, kerana 20² + 21² = 400 + 441 = 841 = 29²",
-      "Bukan, kerana 20² + 21² ≠ 29²",
-      "Hanya gandaan triple Pythagoras",
-      "Tidak boleh ditentukan",
+      "Ya; 20² + 21² = 29²",
+      "Tidak; 20² + 21² ≠ 29²",
+      "Ya; 20² × 21² = 29²",
+      "Tidak; 20² + 21² = 29",
     ],
     0,
     "20² + 21² = 400 + 441 = 841 = 29². Maka (20, 21, 29) ialah triple Pythagoras.",
@@ -17732,10 +17772,10 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "Determine whether (20, 21, 29) is a Pythagorean triple.",
     [
-      "Yes, because 20² + 21² = 400 + 441 = 841 = 29²",
-      "No, because 20² + 21² ≠ 29²",
-      "Only a multiple of a Pythagorean triple",
-      "Cannot be determined",
+      "Yes; 20² + 21² = 29²",
+      "No; 20² + 21² ≠ 29²",
+      "Yes; 20² × 21² = 29²",
+      "No; 20² + 21² = 29",
     ],
     0,
     "20² + 21² = 400 + 441 = 841 = 29². So (20, 21, 29) is a Pythagorean triple.",
@@ -17772,10 +17812,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah pengendalian data?",
     [
-      "Mengumpul, mengorganisasi, mewakili dan mentafsir data",
-      "Proses mengira nombor dalam senarai",
-      "Proses melukis carta sahaja",
-      "Proses menghafal fakta statistik",
+      "Mengumpul hingga mentafsir data",
+      "Mengira hingga menambah nombor",
+      "Melukis hingga mewarna carta",
+      "Membaca hingga menghafal fakta",
     ],
     0,
     "Pengendalian data ialah proses mengumpul, mengorganisasikan, mewakili dan mentafsir data untuk menjawab soalan atau membuat keputusan.",
@@ -17792,10 +17832,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah soalan statistik?",
     [
-      "Soalan yang mempunyai satu jawapan tetap",
-      "Soalan matematik yang melibatkan formula",
-      "Soalan yang memerlukan pengumpulan data dan melibatkan variasi",
-      "Soalan yang boleh dijawab terus",
+      "Soalan mempunyai jawapan tetap",
+      "Soalan hanya memerlukan rumus",
+      "Soalan memerlukan data bervariasi",
+      "Soalan dijawab tanpa data",
     ],
     2,
     "Soalan statistik memerlukan pengumpulan data dan melibatkan variasi — jawapannya berbeza bagi individu yang berbeza.",
@@ -17816,10 +17856,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah data kategori?",
     [
-      "Data yang melibatkan nombor bulat",
-      "Data yang menerangkan kualiti atau jenis/kategori",
-      "Data yang diukur dengan alat",
-      "Data yang bermula dari sifar",
+      "Data bilangan objek",
+      "Data jenis objek",
+      "Data ukuran panjang",
+      "Data ukuran jisim",
     ],
     1,
     "Data kategori menerangkan kualiti atau jenis — contohnya kumpulan darah, warna, hobi. Bukan nombor.",
@@ -17835,10 +17875,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah data diskret?",
     [
-      "Data yang diukur dengan pembaris atau penimbang",
-      "Data tentang warna, nama dan jenis",
-      "Data yang boleh mengambil sebarang nilai perpuluhan",
-      "Data berangka yang hanya boleh mengambil nilai tertentu",
+      "Data dengan sebarang nilai",
+      "Data dengan kategori sahaja",
+      "Data dengan nama sahaja",
+      "Data dengan nilai terpisah",
     ],
     3,
     "Data diskret hanya boleh mengambil nilai nombor bulat (boleh dikira). Contoh: bilangan anak, bilangan buku.",
@@ -17859,10 +17899,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah data berterusan?",
     [
-      "Data yang hanya boleh mengambil nilai nombor bulat",
-      "Data tentang jenis atau kategori",
-      "Data berangka yang boleh mengambil mana-mana nilai termasuk perpuluhan",
-      "Data yang dikira satu per satu",
+      "Data bernilai integer sahaja",
+      "Data berbentuk kategori sahaja",
+      "Sebarang nilai dalam julat",
+      "Data berbentuk nama sahaja",
     ],
     2,
     "Data berterusan diperoleh melalui pengukuran dan boleh ada perpuluhan. Contoh: tinggi 162.4 cm, jisim 3.2 kg.",
@@ -17911,10 +17951,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Lihat jadual kekerapan. Pernyataan manakah menerangkan jadual ini dengan betul?",
     [
-      "Jadual yang menyenaraikan nama murid",
-      "Jadual yang menunjukkan setiap nilai dan kekerapannya",
-      "Graf yang menggunakan palang",
-      "Bulatan yang dibahagi kepada sektor",
+      "Jadual nama dan alamat",
+      "Jadual nilai dan kekerapan",
+      "Graf palang dan kekerapan",
+      "Bulatan dibahagi kepada sektor",
     ],
     1,
     "Jadual kekerapan mengorganisasikan data dengan menunjukkan setiap nilai atau kelas bersama bilangan kali ia muncul.",
@@ -18000,10 +18040,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Lihat visual. Pernyataan manakah menerangkan poligon kekerapan ini?",
     [
-      "Bentuk poligon yang dikaji dalam geometri",
-      "Jadual yang menyenaraikan kelas dan kekerapan",
-      "Carta pai yang dilukis dalam bentuk poligon",
-      "Graf garis yang menyambung titik tengah atas palang histogram",
+      "Graf menyambung hujung kiri palang",
+      "Graf menyambung hujung kanan palang",
+      "Graf menyambung pusat sektor pai",
+      "Graf menyambung titik tengah palang",
     ],
     3,
     "Poligon kekerapan dibina dengan menghubungkan titik tengah bahagian atas setiap palang histogram.",
@@ -18013,10 +18053,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah julat?",
     [
-      "Perbezaan antara nilai tertinggi dan terendah",
-      "Nilai yang paling kerap muncul",
-      "Nilai tengah data",
-      "Jumlah semua nilai",
+      "Nilai tertinggi − terendah",
+      "Jumlah nilai ÷ bilangan nilai",
+      "Nilai paling kerap muncul",
+      "Nilai tengah selepas disusun",
     ],
     0,
     "Julat = Nilai Tertinggi − Nilai Terendah. Ia mengukur penyebaran keseluruhan data.",
@@ -18066,10 +18106,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah pencilan (outlier)?",
     [
-      "Nilai yang paling kerap muncul dalam data",
-      "Nilai maksimum data",
-      "Nilai tengah data",
-      "Nilai yang jauh berbeza daripada nilai-nilai lain dalam set data",
+      "Nilai paling kerap dalam data",
+      "Nilai tengah selepas disusun",
+      "Nilai purata bagi seluruh data",
+      "Nilai jauh daripada kelompok data",
     ],
     3,
     "Pencilan ialah nilai yang jauh berbeza daripada nilai-nilai lain. Dalam plot titik, ia kelihatan tersasing dari kumpulan.",
@@ -18088,10 +18128,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is data handling?",
     [
-      "Collecting, organising, representing and interpreting data",
-      "A process of counting numbers in a list",
-      "A process of drawing charts only",
-      "A process of memorising statistics facts",
+      "Collecting through interpreting data",
+      "Counting through adding numbers",
+      "Drawing through colouring charts",
+      "Reading through memorising facts",
     ],
     0,
     "Data handling is the process of collecting, organising, representing and interpreting data to answer questions or make decisions.",
@@ -18109,9 +18149,9 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     "What is a statistical question?",
     [
       "A question with one fixed answer",
-      "A mathematical question involving formulas",
-      "A question that requires data collection and involves variability",
-      "A question that can be answered directly",
+      "A question requiring only a formula",
+      "A question requiring variable data",
+      "A question answered without data",
     ],
     2,
     "A statistical question requires data collection and involves variability — the answer differs for different individuals.",
@@ -18132,10 +18172,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is categorical data?",
     [
-      "Data involving whole numbers",
-      "Data describing qualities or types/categories",
-      "Data measured with instruments",
-      "Data starting from zero",
+      "Data on numbers of objects",
+      "Data on types or categories",
+      "Data on length measurements",
+      "Data on mass measurements",
     ],
     1,
     "Categorical data describes qualities or types — e.g. blood group, colour, hobby. It is not numerical.",
@@ -18151,10 +18191,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is discrete data?",
     [
-      "Data measured with a ruler or scale",
-      "Data about colours, names and types",
-      "Data that can take any decimal value",
-      "Numerical data that can only take certain values",
+      "Data with any possible value",
+      "Data with only categories",
+      "Data with only names",
+      "Data with separate possible values",
     ],
     3,
     "Discrete data can only take whole number values (can be counted). Examples: number of children, number of books.",
@@ -18175,10 +18215,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is continuous data?",
     [
-      "Data that can only take whole number values",
-      "Data about types or categories",
-      "Numerical data that can take any value including decimals",
-      "Data counted one by one",
+      "Data taking only integer values",
+      "Data taking only category values",
+      "Data taking any value in a range",
+      "Data taking only name values",
     ],
     2,
     "Continuous data is obtained through measurement and can have decimals. Examples: height 162.4 cm, mass 3.2 kg.",
@@ -18227,9 +18267,9 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "Look at the frequency table. Which statement describes it correctly?",
     [
-      "A table that lists students' names",
-      "A table showing each value and its frequency",
-      "A graph that uses bars",
+      "A table of names and addresses",
+      "A table of values and frequencies",
+      "A bar graph of values and frequencies",
       "A circle divided into sectors",
     ],
     1,
@@ -18316,10 +18356,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "Look at the visual. Which statement describes this frequency polygon?",
     [
-      "A polygon shape studied in geometry",
-      "A table that lists classes and frequencies",
-      "A pie chart drawn in the shape of a polygon",
-      "A line graph joining the midpoints of histogram bar tops",
+      "A graph joining bar-top left edges",
+      "A graph joining bar-top right edges",
+      "A graph joining pie-sector centres",
+      "A graph joining bar-top midpoints",
     ],
     3,
     "A frequency polygon is constructed by connecting the midpoints of the tops of each histogram bar.",
@@ -18329,10 +18369,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the range?",
     [
-      "The difference between the highest and lowest values",
-      "The most frequently occurring value",
-      "The middle value of data",
-      "The sum of all values",
+      "Highest value − lowest value",
+      "Sum of values ÷ number of values",
+      "The most frequent value",
+      "The middle value after sorting",
     ],
     0,
     "Range = Highest Value − Lowest Value. It measures the overall spread of data.",
@@ -18382,10 +18422,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is an outlier?",
     [
-      "The most frequently occurring value in data",
-      "The maximum value of data",
-      "The middle value of data",
-      "A value that differs greatly from other values in the data set",
+      "The most frequent data value",
+      "The middle value after sorting",
+      "The mean of all the data values",
+      "A value far from the main data cluster",
     ],
     3,
     "An outlier is a value that differs greatly from others. In a dot plot, it appears isolated from the cluster.",
@@ -18935,7 +18975,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Graf garis menunjukkan suhu setiap jam pada suatu hari. Buat inferens dan ramalkan suhu pada pukul 15:00.",
-    ["Suhu akan terus meningkat, sekitar 36°C", "Suhu akan kekal pada 32°C sepanjang petang", "Tidak ada corak yang jelas dalam data", "Suhu naik hingga tengah hari, kemudian turun — sekitar 30°C"],
+    [
+      "Naik berterusan; ramalan 36°C",
+      "Kekal sepanjang petang; ramalan 32°C",
+      "Turun berterusan; ramalan 20°C",
+      "Naik lalu turun; ramalan 30°C",
+    ],
     3,
     "Suhu naik hingga 35°C pada pukul 12:00, kemudian turun: 35 → 34 → 32 (kira-kira 2°C sejam). Ramalan pada pukul 15:00: kira-kira 30°C.",
     "Hard",
@@ -18975,7 +19020,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Graf garis menunjukkan peratusan kelulusan sebuah sekolah dari tahun 2019 hingga 2023. Buat inferens.",
-    ["Tiada corak yang jelas dalam peratusan kelulusan", "Peratusan kelulusan secara umumnya meningkat walaupun menurun pada 2020", "Peratusan kelulusan menurun setiap tahun", "Data tidak mencukupi untuk sebarang inferens"],
+    [
+      "Umumnya menurun selepas 2020",
+      "Umumnya meningkat selepas 2020",
+      "Kekal sama sepanjang tempoh",
+      "Tiada perubahan antara tahun",
+    ],
     1,
     "Baca titik: 78%, 75%, 80%, 83% dan 85%. Graf turun sedikit pada 2020, kemudian naik setiap tahun. Inferens: peratusan kelulusan secara umumnya meningkat.",
     "Hard",
@@ -19019,7 +19069,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Plot titik menunjukkan bilangan soalan yang dijawab dengan betul oleh sekumpulan murid. Apakah inferens yang paling sesuai?",
-    ["Data tersebar sama rata dari 5 hingga 12", "Tiada pencilan kerana semua nilai direkodkan", "Kebanyakan nilai antara 6 hingga 8, dan 12 ialah pencilan", "Data mempunyai dua mod, iaitu 7 dan 12"],
+    [
+      "Kelompok 5–12; tiada pencilan",
+      "Kelompok 6–8; pencilan 5",
+      "Kelompok 6–8; pencilan 12",
+      "Mod 7 dan 12; tiada pencilan",
+    ],
     2,
     "Kebanyakan titik berkumpul pada 6 hingga 8. Titik di 12 terpisah jauh daripada kumpulan itu, jadi 12 ialah pencilan.",
     "Hard",
@@ -19066,7 +19121,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Poligon kekerapan menunjukkan markah ujian Kelas X dan Kelas Y. Apakah inferens yang paling sesuai?",
-    ["Kedua-dua kelas mempunyai prestasi yang sama", "Kelas X berprestasi lebih baik daripada Kelas Y", "Kelas X cenderung mendapat markah lebih rendah; Y lebih tinggi", "Tiada inferens boleh dibuat daripada poligon"],
+    [
+      "Markah X cenderung lebih tinggi",
+      "Markah X dan Y cenderung sama",
+      "Markah X cenderung lebih rendah",
+      "Markah X dan Y tidak boleh dibanding",
+    ],
     2,
     "Poligon Kelas X paling tinggi di sebelah kiri (kemuncak 10 pada titik tengah 55), manakala poligon Kelas Y paling tinggi di sebelah kanan (kemuncak 10 pada 75). Jadi Kelas X cenderung mendapat markah lebih rendah dan Kelas Y lebih tinggi.",
     "Hard",
@@ -19074,7 +19134,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Graf garis menunjukkan jualan bulanan sebuah kedai dalam setahun. Buat inferens tentang corak perniagaan.",
-    ["Jualan tidak menentu dan rawak sepanjang tahun", "Corak bermusim: tinggi pada separuh pertama, rendah pada separuh kedua", "Perniagaan mengalami kerugian pada separuh kedua", "Data tidak mencukupi untuk membuat sebarang inferens"],
+    [
+      "Separuh kedua lebih tinggi",
+      "Separuh pertama lebih tinggi",
+      "Kedua-dua separuh sama tinggi",
+      "Jualan rawak tanpa corak",
+    ],
     1,
     "Garis naik dari Januari hingga Jun, kemudian turun dari Julai hingga Disember. Ini corak bermusim: jualan tinggi pada separuh pertama tahun dan lebih rendah pada separuh kedua.",
     "Hard",
@@ -19083,10 +19148,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Seorang pengkaji hanya melaporkan data yang menyokong hipotesisnya dan mengabaikan data yang bertentangan. Ini adalah:",
     [
-      "Amalan statistik yang baik",
-      "Cara biasa dalam penyelidikan",
-      "Dibenarkan jika sampel kecil",
-      "Amalan tidak beretika (memilih-milih data)",
+      "Pemilihan data secara rawak",
+      "Pelaporan data secara lengkap",
+      "Pengumpulan data berulang",
+      "Pemilihan data berat sebelah",
     ],
     3,
     "Memilih-milih data (cherry-picking) adalah amalan tidak beretika yang menghasilkan kesimpulan yang mengelirukan atau palsu.",
@@ -19119,10 +19184,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama yang MESTI dilakukan semasa mentafsir sebarang carta atau graf?",
     [
-      "Kira julat data terlebih dahulu",
-      "Bandingkan carta dengan data lain",
-      "Cari nilai tertinggi dalam carta",
-      "Baca tajuk untuk mengetahui apa yang ditunjukkan",
+      "Kira julat data",
+      "Bandingkan carta lain",
+      "Cari nilai tertinggi",
+      "Baca tajuk carta",
     ],
     3,
     "Langkah pertama ialah membaca tajuk carta untuk memahami apa yang sedang diwakili. Tanpa ini, tafsiran mungkin tersalah.",
@@ -19130,7 +19195,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Graf garis menunjukkan bilangan kes suatu penyakit dari tahun 2015 hingga 2024. Apakah ramalan dan inferens yang tepat?",
-    ["Kes menurun secara konsisten dan dijangka terus menurun", "Kes akan mula meningkat semula tahun depan", "Data tidak mencukupi untuk sebarang inferens", "Penyakit itu tidak lagi berbahaya"],
+    [
+      "Menurun; dijangka terus menurun",
+      "Menurun; dijangka meningkat semula",
+      "Meningkat; dijangka terus meningkat",
+      "Meningkat; dijangka menurun semula",
+    ],
     0,
     "Garis menurun setiap tahun tanpa naik semula. Jika trend ini berterusan, bilangan kes dijangka terus menurun.",
     "Hard",
@@ -19138,7 +19208,7 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Histogram menunjukkan tinggi murid sebuah kelas. Inferens manakah yang paling sesuai?",
-    ["Kebanyakan murid sangat rendah", "Kebanyakan murid sangat tinggi", "Kebanyakan murid mempunyai tinggi sederhana", "Semua murid sama tinggi"],
+    ["Sangat rendah", "Sangat tinggi", "Tinggi sederhana", "Semua sama tinggi"],
     2,
     "Palang tertinggi berada di tengah (150–155 cm, 12 murid), manakala palang di kedua-dua hujung rendah (2 dan 3 murid). Jadi kebanyakan murid mempunyai tinggi sederhana.",
     "Hard",
@@ -19155,10 +19225,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Data: 2, 4, 6, 8, 10. Seorang murid menambah satu lagi data: 100. Apakah kesan ke atas julat?",
     [
-      "Julat tidak berubah langsung",
-      "Julat meningkat daripada 8 kepada 98",
-      "Julat berkurang daripada 8",
-      "Julat kekal kira-kira 8",
+      "Meningkat: 8 kepada 100",
+      "Meningkat: 8 kepada 98",
+      "Menurun: 8 kepada 2",
+      "Kekal: 8 kepada 8",
     ],
     1,
     "Julat asal = 10−2 = 8. Dengan data 100: Julat = 100−2 = 98. Pencilan (100) membesarkan julat dengan sangat ketara.",
@@ -19225,7 +19295,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The line graph shows the temperature every hour on one day. Make an inference and predict the temperature at 15:00.",
-    ["It will keep rising, to about 36°C", "It will stay at 32°C all afternoon", "There is no clear pattern in the data", "It rises until noon, then falls — about 30°C"],
+    [
+      "Continuous rise; prediction 36°C",
+      "Steady all afternoon; prediction 32°C",
+      "Continuous fall; prediction 20°C",
+      "Rise then fall; prediction 30°C",
+    ],
     3,
     "The temperature rises to 35°C at 12:00, then falls: 35 → 34 → 32 (about 2°C per hour). Prediction at 15:00: about 30°C.",
     "Hard",
@@ -19265,7 +19340,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The line graph shows the pass rate of a school from 2019 to 2023. Make an inference.",
-    ["There is no clear pattern in the pass rates", "Pass rates are generally rising despite the 2020 dip", "Pass rates are falling year after year", "The data is not enough for any inference"],
+    [
+      "Generally falls after 2020",
+      "Generally rises after 2020",
+      "Stays constant throughout",
+      "Shows no changes between years",
+    ],
     1,
     "Read the points: 78%, 75%, 80%, 83% and 85%. The graph dips slightly in 2020, then rises every year. Inference: the pass rate is generally rising.",
     "Hard",
@@ -19309,7 +19389,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The dot plot shows the number of questions a group of students answered correctly. What is the most appropriate inference?",
-    ["The data is spread evenly from 5 to 12", "There are no outliers because every value is recorded", "Most values lie from 6 to 8, and 12 is an outlier", "The data has two modes, 7 and 12"],
+    [
+      "Cluster 5–12; no outlier",
+      "Cluster 6–8; outlier 5",
+      "Cluster 6–8; outlier 12",
+      "Modes 7 and 12; no outlier",
+    ],
     2,
     "Most dots cluster from 6 to 8. The dot at 12 lies far from that cluster, so 12 is an outlier.",
     "Hard",
@@ -19356,7 +19441,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The frequency polygons show the test marks of Class X and Class Y. What is the most appropriate inference?",
-    ["Both classes have the same performance", "Class X performs better than Class Y", "Class X tends to score lower; Class Y tends to score higher", "No inference can be made from the polygons"],
+    [
+      "Class X tends to score higher",
+      "Both classes tend to score equally",
+      "Class X tends to score lower",
+      "The classes cannot be compared",
+    ],
     2,
     "The Class X polygon is highest on the left (a peak of 10 at the midpoint 55), while the Class Y polygon is highest on the right (a peak of 10 at 75). So Class X tends to score lower and Class Y tends to score higher.",
     "Hard",
@@ -19364,7 +19454,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The line graph shows the monthly sales of a shop over one year. Make an inference about the business pattern.",
-    ["Sales are erratic and random throughout the year", "A seasonal pattern: high in the first half, lower in the second", "The business makes a loss in the second half", "The data is not enough to make any inference"],
+    [
+      "Higher in the second half",
+      "Higher in the first half",
+      "Equal in both halves",
+      "Random with no pattern",
+    ],
     1,
     "The line rises from January to June, then falls from July to December. This is a seasonal pattern: sales are high in the first half of the year and lower in the second half.",
     "Hard",
@@ -19373,10 +19468,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "A researcher only reports data supporting their hypothesis and ignores contradictory data. This is:",
     [
-      "Good statistical practice",
-      "Normal practice in research",
-      "Allowed if the sample is small",
-      "Unethical practice (cherry-picking data)",
+      "Random data selection",
+      "Complete data reporting",
+      "Repeated data collection",
+      "Biased data selection",
     ],
     3,
     "Cherry-picking data (selecting only supporting data) is unethical and produces misleading or false conclusions.",
@@ -19409,10 +19504,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What is the FIRST step that MUST be done when interpreting any chart or graph?",
     [
-      "Calculate the range of the data first",
-      "Compare the chart with other data",
-      "Find the highest value in the chart",
-      "Read the title to know what is shown",
+      "Calculate the data range",
+      "Compare another chart",
+      "Find the highest value",
+      "Read the chart title",
     ],
     3,
     "The first step is to read the chart title to understand what is being represented. Without this, interpretation may be incorrect.",
@@ -19420,7 +19515,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The line graph shows the number of cases of a disease from 2015 to 2024. What is the correct prediction and inference?",
-    ["Cases are falling steadily and are likely to keep falling", "Cases will start rising again next year", "The data is not enough for any inference", "The disease is no longer dangerous"],
+    [
+      "Falling; likely to keep falling",
+      "Falling; likely to rise again",
+      "Rising; likely to keep rising",
+      "Rising; likely to fall again",
+    ],
     0,
     "The line falls every year without rising again. If this trend continues, the number of cases is expected to keep falling.",
     "Hard",
@@ -19428,7 +19528,7 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The histogram shows the heights of the students in a class. Which inference is most suitable?",
-    ["Most students are very short", "Most students are very tall", "Most students are of medium height", "All the students are the same height"],
+    ["Very short", "Very tall", "Medium height", "All the same height"],
     2,
     "The tallest bar is in the middle (150–155 cm, 12 students), while the bars at both ends are short (2 and 3 students). So most students are of medium height.",
     "Hard",
@@ -19445,10 +19545,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "Data: 2, 4, 6, 8, 10. A student adds one more data point: 100. What is the effect on the range?",
     [
-      "The range does not change at all",
-      "The range increases from 8 to 98",
-      "The range decreases from 8",
-      "The range stays at about 8",
+      "Increases: 8 to 100",
+      "Increases: 8 to 98",
+      "Decreases: 8 to 2",
+      "Unchanged: 8 to 8",
     ],
     1,
     "Original range = 10−2 = 8. With data 100: Range = 100−2 = 98. The outlier (100) drastically increases the range.",

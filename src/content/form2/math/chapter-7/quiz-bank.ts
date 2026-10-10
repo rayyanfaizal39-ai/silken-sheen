@@ -203,14 +203,20 @@ foundation.push(
   q(
     "Semasa menggunakan kaedah kasut, bucu mesti disenaraikan bagaimana?",
     "When using the shoelace method, how must vertices be listed?",
+    ["Mengikut urutan di sekeliling poligon", "In order around the polygon"],
     [
-      "Mengikut arah jam atau lawan jam secara konsisten",
-      "Consistently clockwise or anticlockwise",
-    ],
-    [
-      ["Secara rawak", "Randomly"],
-      ["Mengikut koordinat-x sahaja", "By x-coordinate only"],
-      ["Bermula pada asalan sahaja", "Starting only at the origin"],
+      [
+        "Mengikut urutan koordinat-x menaik",
+        "In increasing x-coordinate order",
+      ],
+      [
+        "Mengikut urutan koordinat-y menaik",
+        "In increasing y-coordinate order",
+      ],
+      [
+        "Mengikut urutan jarak dari asalan",
+        "In distance order from the origin",
+      ],
     ],
     "Tertib mengelilingi sempadan memastikan hasil darab mewakili poligon.",
     "Boundary order ensures the products represent the polygon.",

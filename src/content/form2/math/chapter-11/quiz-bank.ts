@@ -57,11 +57,11 @@ const foundation: PairedQuizSeed[] = [
   q(
     "Apakah maklumat lengkap bagi putaran?",
     "What information fully describes a rotation?",
-    ["Pusat, sudut dan arah", "Centre, angle and direction"],
+    ["Pusat, sudut, arah", "Centre, angle, direction"],
     [
-      ["Garis dan faktor skala", "Line and scale factor"],
-      ["Vektor sahaja", "Vector only"],
-      ["Dua panjang sisi", "Two side lengths"],
+      ["Pusat, garis, panjang", "Centre, line, length"],
+      ["Vektor, garis, panjang", "Vector, line, length"],
+      ["Garis, sudut, skala", "Line, angle, scale"],
     ],
     "Ketiga-tiga maklumat diperlukan untuk putaran yang unik.",
     "All three details are required for a unique rotation.",
@@ -377,8 +377,8 @@ const challenge: PairedQuizSeed[] = [];
       ["90° lawan arah jam", "90° anticlockwise"],
       [
         ["90° ikut arah jam", "90° clockwise"],
-        ["180°", "180°"],
-        ["360°", "360°"],
+        ["180° ikut arah jam", "180° clockwise"],
+        ["45° lawan arah jam", "45° anticlockwise"],
       ],
       "Pemetaan (x,y)→(−y,x) ialah 90° lawan arah jam.",
       "The mapping (x,y)→(−y,x) is 90° anticlockwise.",

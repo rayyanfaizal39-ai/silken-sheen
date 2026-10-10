@@ -10,9 +10,9 @@ export const mathF2C2FoundationQuizzesBM: QuizQuestion[] = [
     lang: "bm",
     question: "Apakah maksud kembangan ungkapan algebra?",
     options: [
-      "Menulis ungkapan sebagai hasil darab faktor",
-      "Mendarab sebutan dengan ungkapan dalam tanda kurungan dan mempermudahkannya",
-      "Membahagi semua sebutan dengan pemboleh ubah",
+      "Memfaktorkan untuk membina kurungan",
+      "Mendarab untuk membuang kurungan",
+      "Membahagi setiap sebutan dengan pemboleh ubah",
       "Menggantikan pemboleh ubah dengan nombor",
     ],
     answerIndex: 1,

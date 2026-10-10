@@ -197,8 +197,9 @@ describe("Form 3 Chapters 8 and 9 repaired quizzes", () => {
   });
   it("distinguishes the whole-plane locus from a restricted internal bisector", () => {
     expect(answer(8, 8)).toMatch(/Both/);
-    expect(answer(8, 30)).toContain("y = −x");
-    expect(answer(8, 30)).toMatch(/excluding/);
+    expect(answer(8, 30)).toContain("y = ±x");
+    expect(answer(8, 30)).toContain("x² + y² < 25");
+    expect(answer(8, 30)).not.toContain("x² + y² = 25");
     for (const [x, y] of [
       [2, 2],
       [-2, 2],

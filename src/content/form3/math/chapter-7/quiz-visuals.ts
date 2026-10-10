@@ -30,6 +30,7 @@ export const MATH_F3_C7_QUIZ_VISUALS: Partial<
   17: views("?", "?", "?"),
   18: normal,
   19: views("8 cm", "5 cm", "3 cm"),
+  20: views("12 cm", "8 cm", "5 cm"),
   21: cuboid("?", "?", "?", true),
   22: normal,
   24: tube,
