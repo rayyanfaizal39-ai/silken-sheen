@@ -25,8 +25,8 @@ export const MATH_F3_C8_QUIZ_EXPLANATIONS: Record<number, LocalizedText> = {
     dlp: "Distance is measured perpendicularly. One parallel line on each side of the original line lies at the specified distance.",
   },
   "7": {
-    bm: "Titik yang sama jauh daripada dua garis selari terletak pada satu garis selari di tengah-tengahnya.",
-    dlp: "Points equally far from two parallel lines lie on the single parallel line midway between them.",
+    bm: "Jarak dari titik ke garis diukur secara serenjang (90°). Lokus ialah semua kedudukan P yang memenuhi d₁ = d₂. P boleh bergerak sepanjang satu garis lurus selari di tengah-tengah AB dan CD sambil mengekalkan kedua-dua jarak sama. Jika P bergerak mendekati salah satu garis, kedua-dua jarak menjadi berbeza.",
+    dlp: "Distance from a point to a line is measured perpendicularly (90°). The locus is all positions of P satisfying d₁ = d₂. P can move along one straight line parallel to and halfway between AB and CD while keeping both distances equal. Moving closer to either given line makes the distances unequal.",
   },
   "8": {
     bm: "Dalam seluruh satah, kedua-dua pembahagi dua sama sudut memenuhi syarat. Kedua-dua garis ini berserenjang antara satu sama lain.",
@@ -45,12 +45,12 @@ export const MATH_F3_C8_QUIZ_EXPLANATIONS: Record<number, LocalizedText> = {
     dlp: "A full rotation of a semicircle about its diameter produces a sphere. The rotation axis must be specified.",
   },
   "12": {
-    bm: "Jangka lukis mengekalkan jarak tetap daripada pusat semasa melukis bulatan.",
-    dlp: "A compass maintains a fixed distance from the centre while drawing a circle.",
+    bm: "Jarak OQ = 3 cm kurang daripada jejari 4 cm, maka Q berada di dalam bulatan. Q tidak berada pada lokus kerana titik pada lokus mesti berjarak tepat 4 cm dari O.",
+    dlp: "Distance OQ = 3 cm is less than radius 4 cm, so Q is inside the circle. Q is not on the locus because every point on it must be exactly 4 cm from O.",
   },
   "13": {
-    bm: "Binaan dengan jangka lukis dan pembaris menghasilkan pembahagi dua sama sudut tanpa bergantung pada anggaran.",
-    dlp: "A compass-and-straightedge construction bisects the angle without relying on an estimate.",
+    bm: "Pembahagi dua sama serenjang melalui titik tengah segmen, maka AM = MB = 10 ÷ 2 = 5 cm.",
+    dlp: "The perpendicular bisector passes through the segment midpoint, so AM = MB = 10 ÷ 2 = 5 cm.",
   },
   "14": {
     bm: "Panjang bandul tetap dan sudut ayunan terhad, maka titik hujung menurih lengkok bulatan, bukan bulatan penuh.",
@@ -73,8 +73,8 @@ export const MATH_F3_C8_QUIZ_EXPLANATIONS: Record<number, LocalizedText> = {
     dlp: "On either side of line CD, perpendicular distance 1.5 cm gives a pair of parallel lines.",
   },
   "19": {
-    bm: "Lokus digunakan untuk menerangkan laluan dan menentukan kedudukan yang memenuhi kekangan jarak.",
-    dlp: "Loci describe paths and locate positions satisfying distance constraints.",
+    bm: "Pembahagi dua sama serenjang AB ialah x = 0. Bagi (0,3), jarak kuasa dua ke A dan B masing-masing 2² + 3² = 13. Titik lain mempunyai jarak yang berbeza ke A dan B.",
+    dlp: "The perpendicular bisector of AB is x = 0. For (0,3), the squared distances to A and B are both 2² + 3² = 13. Each other point has different distances to A and B.",
   },
   "20": {
     bm: "Jarak (3,4) dari O = √(3² + 4²) = 5 unit. Titik lain berjarak √18, 4 dan 6 unit.",

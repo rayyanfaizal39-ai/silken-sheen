@@ -73,7 +73,7 @@ export const mathF3C8QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ],
   [
     "Easy",
-    "What is the locus of a point equidistant from two parallel lines?",
+    "Point P moves so its perpendicular distances from parallel lines AB and CD are equal (d₁ = d₂). What is its locus?",
     [
       "A straight line parallel midway between them",
       "A circle",
@@ -118,19 +118,19 @@ export const mathF3C8QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ],
   [
     "Easy",
-    "What tool is used to accurately construct a circle?",
-    ["A compass", "A protractor only", "A ruler only", "A pencil only"],
+    "The locus of P is a circle with centre O and radius 4 cm. Point Q is 3 cm from O. Where is Q relative to that circle?",
+    [
+      "Inside the circle",
+      "On the circumference",
+      "Outside the circle",
+      "At the centre",
+    ],
     0,
   ],
   [
     "Easy",
-    "What tool is used to construct an angle bisector?",
-    [
-      "Compass and ruler",
-      "A protractor only",
-      "A calculator",
-      "No tool needed",
-    ],
+    "The perpendicular bisector of segment AB passes through M on AB. If AB = 10 cm, what is AM?",
+    ["5 cm", "10 cm", "20 cm", "2.5 cm"],
     0,
   ],
   [
@@ -170,13 +170,8 @@ export const mathF3C8QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ],
   [
     "Easy",
-    "Which fields use the concept of locus?",
-    [
-      "Construction, engineering, aviation, satellites",
-      "Only fine art",
-      "Only music",
-      "Only football",
-    ],
+    "A(−2,0) and B(2,0) are fixed points. Which point lies on the locus equidistant from A and B?",
+    ["(0, 3)", "(1, 3)", "(−1, 3)", "(2, 3)"],
     0,
   ],
   [

@@ -57,24 +57,24 @@ export const MATH_F3_C9_QUIZ_EXPLANATIONS: Record<number, LocalizedText> = {
     dlp: "3y = −2x + 12 gives y = (−2/3)x + 4, so the y-intercept is 4.",
   },
   "15": {
-    bm: "Gantikan kedua-dua koordinat P. Titik berada pada garis jika kedua-dua belah persamaan sama.",
-    dlp: "Substitute both coordinates of P. A point lies on the line if both sides are equal.",
+    bm: "Bagi (1,5), 3(1)+2 = 5. Titik lain gagal persamaan: apabila x = 1, 2 dan 3, nilai y sepatutnya 5, 8 dan 11.",
+    dlp: "For (1,5), 3(1)+2 = 5. The other points fail the equation: for x = 1, 2 and 3, y should be 5, 8 and 11.",
   },
   "16": {
-    bm: "Bagi P(2,8), 3(2) + 2 = 8, sama dengan koordinat-y. Maka P berada pada garis.",
-    dlp: "For P(2,8), 3(2) + 2 = 8, matching its y-coordinate. P lies on the line.",
+    bm: "Gantikan y = 8: 8 = 3k+2, maka 3k = 6 dan k = 2.",
+    dlp: "Substitute y = 8: 8 = 3k+2, so 3k = 6 and k = 2.",
   },
   "17": {
-    bm: "Persilangan boleh dibaca pada graf atau dikira dengan menyelesaikan kedua-dua persamaan serentak.",
-    dlp: "The intersection can be read from a graph or calculated by solving both equations simultaneously.",
+    bm: "Pada persilangan, y = 3. Maka 3 = x+1, jadi x = 2. Koordinat ialah (2,3).",
+    dlp: "At the intersection, y = 3. Hence 3 = x+1, so x = 2. The coordinates are (2,3).",
   },
   "18": {
-    bm: "Penggantian menggantikan satu pemboleh ubah; penghapusan menghapuskan satu pemboleh ubah melalui penambahan atau penolakan persamaan.",
-    dlp: "Substitution replaces one variable; elimination removes one variable by adding or subtracting equations.",
+    bm: "Gantikan x = 3 ke dalam y = 2x: y = 6. Koordinat persilangan ialah (3,6).",
+    dlp: "Substitute x = 3 into y = 2x: y = 6. The intersection is (3,6).",
   },
   "19": {
-    bm: "Dalam bentuk y = mx + c, pekali y ialah +1.",
-    dlp: "In the form y = mx + c, the coefficient of y is +1.",
+    bm: "Pada paksi-x, y = 0. Maka 0 = −2x+5, jadi 2x = 5 dan x = 5/2.",
+    dlp: "On the x-axis, y = 0. Thus 0 = −2x+5, so 2x = 5 and x = 5/2.",
   },
   "21": {
     bm: "Bahagi persamaan dengan 12: (2x)/12 + (3y)/12 = 1, iaitu x/6 + y/4 = 1.",
@@ -93,20 +93,20 @@ export const MATH_F3_C9_QUIZ_EXPLANATIONS: Record<number, LocalizedText> = {
     dlp: "3x − 4y = 24 gives y = (3/4)x − 6, so m = 3/4.",
   },
   "25": {
-    bm: "3(−4) − 2(2) = −16, bukan 12. Maka P tidak berada pada garis.",
-    dlp: "3(−4) − 2(2) = −16, not 12. P does not lie on the line.",
+    bm: "Gantikan x = −4: −12−2k = 12, maka −2k = 24 dan k = −12.",
+    dlp: "Substitute x = −4: −12−2k = 12, so −2k = 24 and k = −12.",
   },
   "26": {
-    bm: "6/3 + (−2)/2 = 2 − 1 = 1. Maka P berada pada garis.",
-    dlp: "6/3 + (−2)/2 = 2 − 1 = 1. P lies on the line.",
+    bm: "k/3 + (−2)/2 = 1 memberi k/3−1 = 1. Maka k/3 = 2 dan k = 6.",
+    dlp: "k/3 + (−2)/2 = 1 gives k/3−1 = 1. Therefore k/3 = 2 and k = 6.",
   },
   "27": {
-    bm: "6x − 2y = 9 memberi y = 3x − 4.5. Kedua-dua kecerunan 3 dan pintasan-y berbeza, maka garis selari.",
-    dlp: "6x − 2y = 9 gives y = 3x − 4.5. Both gradients are 3 and their y-intercepts differ, so the lines are parallel.",
+    bm: "6x−2y = 9 memberi y = 3x−9/2. Garis selari mempunyai kecerunan yang sama, iaitu 3.",
+    dlp: "6x−2y = 9 gives y = 3x−9/2. A parallel line has the same gradient, 3.",
   },
   "28": {
-    bm: "6y = 3x − 9 memberi y = (1/2)x − 1.5. Kecerunan 3 dan 1/2 berbeza, maka tidak selari.",
-    dlp: "6y = 3x − 9 gives y = (1/2)x − 1.5. Gradients 3 and 1/2 differ, so the lines are not parallel.",
+    bm: "Garis pertama mempunyai kecerunan 3. Bahagi persamaan kedua dengan 6: y = (1/2)x−3/2, maka kecerunannya 1/2.",
+    dlp: "The first gradient is 3. Divide the second equation by 6: y = (1/2)x−3/2, giving gradient 1/2.",
   },
   "29": {
     bm: "Kecerunan ialah −4/3 dan −2/h. Maka −4/3 = −2/h, jadi 4h = 6 dan h = 3/2.",
@@ -177,28 +177,28 @@ export const MATH_F3_C9_QUIZ_EXPLANATIONS: Record<number, LocalizedText> = {
     dlp: "Substitute y = x+2: 2x+3(x+2) = 6. Thus 5x = 0, x = 0 and y = 2.",
   },
   "46": {
-    bm: "3y = −6x+3 memberi y = −2x+1. Garis kedua ialah y = −2x+14. Kecerunan sama dan pintasan-y berbeza.",
-    dlp: "3y = −6x+3 gives y = −2x+1. The second line is y = −2x+14. Their gradients match and their y-intercepts differ.",
+    bm: "Garis pertama mempunyai kecerunan −6/3 = −2. Garis kedua mempunyai kecerunan −k/2. Maka −k/2 = −2 dan k = 4.",
+    dlp: "The first gradient is −6/3 = −2; the second is −k/2. Thus −k/2 = −2 and k = 4.",
   },
   "47": {
-    bm: "Kecerunan garis pertama −2/3 dan garis kedua −1/3, maka tidak selari.",
-    dlp: "The first gradient is −2/3 and the second is −1/3, so they are not parallel.",
+    bm: "Tolak persamaan pertama daripada persamaan kedua: 3y = 9, maka y = 3. Gantikan semula: 2x+9 = 3, jadi x = −3.",
+    dlp: "Subtract the first equation from the second: 3y = 9, so y = 3. Substitute back: 2x+9 = 3, giving x = −3.",
   },
   "48": {
-    bm: "8x − 4y = 5 memberi y = 2x − 5/4. Kedua-dua kecerunan 2 dan pintasan-y berbeza, maka selari.",
-    dlp: "8x − 4y = 5 gives y = 2x − 5/4. Both gradients are 2 and the y-intercepts differ, so the lines are parallel.",
+    bm: "kx−4y = 5 memberi y = (k/4)x−5/4. Maka k/4 = 3/2 dan k = 6.",
+    dlp: "kx−4y = 5 gives y = (k/4)x−5/4. Hence k/4 = 3/2 and k = 6.",
   },
   "49": {
     bm: "8y = 5x+1 memberi m = 5/8. kx−3y = 8 memberi y = (k/3)x − 8/3, jadi k/3 = 5/8 dan k = 15/8.",
     dlp: "8y = 5x+1 gives m = 5/8. kx−3y = 8 gives y = (k/3)x − 8/3, so k/3 = 5/8 and k = 15/8.",
   },
   "51": {
-    bm: "Bahagikan semua sebutan dengan pekali y yang bukan sifar supaya pekali y menjadi +1. Hanya selepas itu m dan c boleh dibaca terus.",
-    dlp: "Divide every term by the nonzero coefficient of y to make it +1. Only then can m and c be read directly.",
+    bm: "Apabila x = 0, y = −9/a = −3, maka a = 3. Kecerunan ialah 6/a = 2.",
+    dlp: "At x = 0, y = −9/a = −3, so a = 3. The gradient is 6/a = 2.",
   },
   "52": {
-    bm: "Penghapusan sesuai apabila pekali boleh disamakan dengan mudah. Selepas menghapuskan satu pemboleh ubah, selesaikan yang lain dan gantikan semula.",
-    dlp: "Elimination is suitable when coefficients can easily be matched. After eliminating one variable, solve for the other and substitute back.",
+    bm: "Daripada 3(3)+k = 11, k = 2. Gantikan ke dalam 2 = 2(3)+c untuk mendapat c = −4.",
+    dlp: "From 3(3)+k = 11, k = 2. Substitute into 2 = 2(3)+c to obtain c = −4.",
   },
   "20": {
     bm: "m = (6−2)/(3−1) = 4/2 = 2.",

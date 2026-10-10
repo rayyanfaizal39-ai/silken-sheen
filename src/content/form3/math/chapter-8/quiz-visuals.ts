@@ -137,24 +137,77 @@ const intersect = diagram(t("Dua garis bersilang", "Two intersecting lines"), {
   ],
   labels: [label(260, 184, "l₁"), label(254, 33, "l₂")],
 });
-const parallel = diagram(t("Dua garis selari", "Two parallel lines"), {
-  title: t("l₁, l₂"),
-  description: t(
-    "Dua garis selari; lokus belum dilukis.",
-    "Two parallel lines; the locus is not drawn.",
-  ),
-  paths: [
-    path([
-      [25, 75],
-      [275, 75],
-    ]),
-    path([
-      [25, 175],
-      [275, 175],
-    ]),
-  ],
-  labels: [label(260, 60, "l₁"), label(260, 200, "l₂")],
-});
+const parallel = diagram(
+  t("Jarak P dari dua garis selari", "Distances from P to two parallel lines"),
+  {
+    title: t("Jarak serenjang: d₁ = d₂", "Perpendicular distances: d₁ = d₂"),
+    description: t(
+      "AB dan CD ialah dua garis selari. P menunjukkan satu kedudukan yang memenuhi syarat. Segmen putus-putus d₁ dan d₂ berserenjang dengan garis masing-masing; tanda sengkang menunjukkan kedua-dua jarak sama. Cari semua kedudukan P yang memenuhi syarat ini.",
+      "AB and CD are parallel lines. P shows one position satisfying the condition. Dashed segments d₁ and d₂ are perpendicular to their respective lines; matching ticks show equal distances. Find all positions of P satisfying this condition.",
+    ),
+    paths: [
+      path([
+        [25, 55],
+        [275, 55],
+      ]),
+      path([
+        [25, 185],
+        [275, 185],
+      ]),
+      path(
+        [
+          [150, 55],
+          [150, 114],
+        ],
+        false,
+        true,
+      ),
+      path(
+        [
+          [150, 126],
+          [150, 185],
+        ],
+        false,
+        true,
+      ),
+      // Right-angle marks show how distance from a point to a line is measured.
+      path([
+        [150, 65],
+        [160, 65],
+        [160, 55],
+      ]),
+      path([
+        [150, 175],
+        [160, 175],
+        [160, 185],
+      ]),
+      // Matching ticks express the given equality without drawing the answer locus.
+      path([
+        [143, 87.5],
+        [157, 87.5],
+      ]),
+      path([
+        [143, 152.5],
+        [157, 152.5],
+      ]),
+    ],
+    circles: [{ centre: [150, 120], radius: 4 }],
+    labels: [
+      label(45, 40, "A"),
+      label(255, 40, "B"),
+      label(45, 209, "C"),
+      label(255, 209, "D"),
+      label(173, 125, "P"),
+      label(125, 91, "d₁"),
+      label(125, 156, "d₂"),
+      label(
+        150,
+        230,
+        t("Tanda sengkang = jarak sama", "Matching ticks = equal distances"),
+      ),
+    ],
+  },
+);
 const rotation = (sized = false) =>
   diagram(t("Putaran 360°", "360° rotation"), {
     title: t("Segi empat tepat", "Rectangle"),
@@ -224,6 +277,39 @@ export const MATH_F3_C8_QUIZ_VISUALS: Record<number, MathQuestionVisual> = {
       label(150, 215, "360°"),
     ],
   }),
+  13: diagram(t("Segmen AB diberi", "Given segment AB"), {
+    title: t("AB = 10 cm"),
+    description: t(
+      "Garis putus-putus ialah pembahagi dua sama serenjang AB melalui M. Panjang AM belum diberi.",
+      "The dashed line is the perpendicular bisector of AB through M. Length AM is not given.",
+    ),
+    paths: [
+      path([
+        [45, 140],
+        [255, 140],
+      ]),
+      path(
+        [
+          [150, 85],
+          [150, 190],
+        ],
+        false,
+        true,
+      ),
+      path([
+        [150, 128],
+        [162, 128],
+        [162, 140],
+      ]),
+    ],
+    labels: [
+      label(45, 163, "A"),
+      label(255, 163, "B"),
+      label(137, 164, "M"),
+      label(95, 122, "AM = ?"),
+      label(150, 60, "AB = 10 cm"),
+    ],
+  }),
   14: diagram(t("Bandul", "Pendulum"), {
     title: t("Dua kedudukan bandul", "Two positions of a pendulum"),
     description: t(
@@ -250,6 +336,13 @@ export const MATH_F3_C8_QUIZ_VISUALS: Record<number, MathQuestionVisual> = {
   16: intersect,
   17: pair(),
   18: straight("CD", "1.5 cm"),
+  19: coordinates(
+    t(
+      "Titik tetap A(−2,0) dan B(2,0) diberi. Titik jawapan belum ditanda.",
+      "Fixed points A(−2,0) and B(2,0) are given. No answer point is marked.",
+    ),
+    { points: [point("A", -2, 0, [-8, -10]), point("B", 2, 0, [8, -10])] },
+  ),
   20: coordinates(
     t("Empat titik calon diberi.", "Four given candidate points."),
     {

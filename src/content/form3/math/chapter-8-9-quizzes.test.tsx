@@ -48,7 +48,7 @@ const xy = (s: string) =>
         ? Math.sqrt(Number(x.slice(1)))
         : x.startsWith("-√")
           ? -Math.sqrt(Number(x.slice(2)))
-          : Number(x),
+          : numeric(x),
     );
 // Parse only linear arithmetic used in this bank. Refuse other syntax before evaluation.
 function expression(s: string, x: number, y: number) {
@@ -244,15 +244,24 @@ describe("Form 3 Chapters 8 and 9 repaired quizzes", () => {
       4: 9,
       13: -2 / 3,
       14: 12 / 3,
+      16: (8 - 2) / 3,
+      19: 5 / 2,
       20: (6 - 2) / (3 - 1),
       24: 3 / 4,
+      25: (3 * -4 - 12) / 2,
+      26: 3 * (1 - -2 / 2),
+      27: 6 / 2,
       29: 2 / (4 / 3),
       36: 3,
       37: 6,
       38: 15 / 3,
       39: 15 / 5,
       40: (15 - 3 * 2) / 5,
+      46: 2 * (6 / 3),
+      48: 4 * (3 / 2),
       49: 3 * (5 / 8),
+      51: 6 / (-9 / -3),
+      52: 11 - 3 * 3 - 2 * 3,
     };
     for (const lang of ["bm", "dlp"] as const)
       for (const [n, v] of Object.entries(values)) {
@@ -266,7 +275,10 @@ describe("Form 3 Chapters 8 and 9 repaired quizzes", () => {
   });
   it("verifies intersections and the clinic against BOTH original constraints", () => {
     for (const [n, a, b, c, d, e, f] of [
+      [17, -1, 1, 1, 0, 1, 3],
+      [18, -2, 1, 0, 1, 0, 3],
       [35, 2, 1, 5, 1, 2, 1],
+      [47, 2, 3, 3, 2, 6, 12],
       [45, -1, 1, 2, 2, 3, 6],
       [53, 2, -1, 7, 1, 1, 5],
     ]) {
@@ -282,18 +294,56 @@ describe("Form 3 Chapters 8 and 9 repaired quizzes", () => {
     expect(y).toBe(600);
     expect(y).toBeGreaterThan(0);
   });
-  it("keeps working out of Yes/No answer choices and solutions out of figure labels", () => {
-    for (const lang of ["bm", "dlp"] as const)
-      for (const n of [16, 25, 26, 27, 28, 46, 47, 48])
-        expect(answer(9, n, lang)).toMatch(
-          lang === "bm" ? /^(Ya|Tidak)$/ : /^(Yes|No)$/,
-        );
+  it("uses mathematical choices instead of giveaway trivia and Yes/No fillers", () => {
+    for (const lang of ["bm", "dlp"] as const) {
+      for (const [c, numbers] of [
+        [8, [12, 13, 19]],
+        [9, [15, 16, 17, 18, 19, 25, 26, 27, 28, 46, 47, 48, 51, 52]],
+      ] as const)
+        for (const n of numbers) {
+          const q = sources[c][lang][n - 1];
+          expect(q.options.join(" "), q.id).not.toMatch(
+            /hanya|only|cannot be determined|tidak dapat ditentukan|calculator|kalkulator|estimate|anggar|^(yes|no|ya|tidak)$/i,
+          );
+          expect(q.question, q.id).not.toMatch(
+            /apakah bidang|which fields|what field|what tool|apakah alat|what.*methods|apakah.*kaedah/i,
+          );
+        }
+    }
     for (const n of [30, 31, 32, 43, 49, 50, 53]) {
       const q = c9en[n - 1];
       const html = renderToStaticMarkup(
         createElement(MathQuestionVisual, { visual: q.visual!, lang: "dlp" }),
       );
       expect(html, q.id).not.toContain(q.options[q.answerIndex]);
+    }
+  });
+  it("checks the replacement locus and point-membership problems against every choice", () => {
+    expect(answer(8, 12)).toBe("Inside the circle");
+    expect(3).toBeLessThan(4);
+    expect(numeric(answer(8, 13).replace("cm", ""))).toBe(10 / 2);
+    for (const lang of ["bm", "dlp"] as const) {
+      const locus = sources[8][lang][18];
+      expect(
+        locus.options.map((o) => {
+          const [x, y] = xy(o);
+          return Math.abs(Math.hypot(x + 2, y) - Math.hypot(x - 2, y)) < 1e-9;
+        }),
+      ).toEqual(locus.options.map((_, i) => i === locus.answerIndex));
+      const member = sources[9][lang][14];
+      expect(
+        member.options.map((o) => {
+          const [x, y] = xy(o);
+          return y === 3 * x + 2;
+        }),
+      ).toEqual(member.options.map((_, i) => i === member.answerIndex));
+      expect(xy(answer(9, 28, lang))).toEqual([3, 3 / 6]);
+      for (const n of [16, 25, 26]) {
+        const v = sources[9][lang][n - 1].visual;
+        expect(v?.kind).toBe("coordinate-plane");
+        if (v?.kind === "coordinate-plane")
+          expect(v.points || []).toHaveLength(0);
+      }
     }
   });
   it("matches every plotted Chapter 9 equation to the actual question", () => {

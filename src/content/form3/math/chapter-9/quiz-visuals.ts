@@ -33,28 +33,20 @@ export const MATH_F3_C9_QUIZ_VISUALS: Record<number, MathQuestionVisual> = {
   8: line(1, 0, 2, "x = 2"),
   13: line(2, 3, 12, "3y = −2x + 12", [-2, 10, -2, 10]),
   14: line(2, 3, 12, "3y = −2x + 12", [-2, 10, -2, 10]),
-  15: coordinates(
-    t(
-      "P(2,8) dan garis y = 3x + 2 diberi.",
-      "P(2,8) and the line y = 3x + 2 are given.",
-    ),
-    {
-      domain: [-2, 10, -2, 10],
-      lines: [equation(-3, 1, 2, "y = 3x + 2")],
-      points: [point("P", 2, 8)],
-    },
+  15: line(-3, 1, 2, "y = 3x + 2", [-2, 10, -2, 10]),
+  16: line(-3, 1, 2, "y = 3x + 2", [-2, 10, -2, 10]),
+  17: lines([
+    [-1, 1, 1, "y = x + 1"],
+    [0, 1, 3, "y = 3"],
+  ]),
+  18: lines(
+    [
+      [-2, 1, 0, "y = 2x"],
+      [1, 0, 3, "x = 3"],
+    ],
+    [-2, 10, -2, 10],
   ),
-  16: coordinates(
-    t(
-      "P(2,8) dan garis y = 3x + 2 diberi.",
-      "P(2,8) and the line y = 3x + 2 are given.",
-    ),
-    {
-      domain: [-2, 10, -2, 10],
-      lines: [equation(-3, 1, 2, "y = 3x + 2")],
-      points: [point("P", 2, 8)],
-    },
-  ),
+  19: line(2, 1, 5, "y = −2x + 5"),
   20: coordinates(
     t(
       "P(1,2) dan Q(3,6) diberi. Cari kecerunan PQ.",
@@ -77,32 +69,9 @@ export const MATH_F3_C9_QUIZ_VISUALS: Record<number, MathQuestionVisual> = {
   22: line(2, 3, 12, "2x + 3y = 12", [-2, 10, -2, 10]),
   23: line(1, 2, 6, "x/6 + y/3 = 1", [-2, 10, -2, 10]),
   24: line(3, -4, 24, "3x − 4y = 24", [-2, 10, -8, 4]),
-  25: coordinates(
-    t(
-      "P(−4,2) dan garis 3x − 2y = 12 diberi.",
-      "P(−4,2) and the line 3x − 2y = 12 are given.",
-    ),
-    {
-      domain: [-6, 6, -6, 6],
-      points: [point("P", -4, 2)],
-      lines: [equation(3, -2, 12, "3x − 2y = 12")],
-    },
-  ),
-  26: coordinates(
-    t(
-      "P(6,−2) dan garis x/3 + y/2 = 1 diberi.",
-      "P(6,−2) and the line x/3 + y/2 = 1 are given.",
-    ),
-    {
-      domain: [-2, 10, -6, 6],
-      points: [point("P", 6, -2)],
-      lines: [equation(2, 3, 6, "x/3 + y/2 = 1")],
-    },
-  ),
-  27: lines([
-    [-3, 1, 5, "y = 3x + 5"],
-    [6, -2, 9, "6x − 2y = 9"],
-  ]),
+  25: line(3, -2, 12, "3x − 2y = 12", [-8, 8, -16, 0]),
+  26: line(2, 3, 6, "x/3 + y/2 = 1", [-2, 10, -6, 6]),
+  27: line(6, -2, 9, "6x − 2y = 9"),
   28: lines([
     [-3, 1, 8, "y = 3x + 8"],
     [-3, 6, -9, "6y = 3x − 9"],
@@ -190,21 +159,12 @@ export const MATH_F3_C9_QUIZ_VISUALS: Record<number, MathQuestionVisual> = {
     [-1, 1, 2, "y = x + 2"],
     [2, 3, 6, "2x + 3y = 6"],
   ]),
-  46: lines(
-    [
-      [6, 3, 3, "3y = −6x + 3"],
-      [2, 1, 14, "y + 2x = 14"],
-    ],
-    [-10, 6, -4, 12],
-  ),
+  46: line(6, 3, 3, "3y = −6x + 3"),
   47: lines([
     [2, 3, 3, "2x + 3y = 3"],
     [2, 6, 12, "2x + 6y = 12"],
   ]),
-  48: lines([
-    [-2, 1, 1, "y = 2x + 1"],
-    [8, -4, 5, "8x − 4y = 5"],
-  ]),
+  48: line(-3, 2, 2, "y = (3/2)x + 1"),
   49: line(-5, 8, 1, "8y = 5x + 1"),
   50: coordinates(
     t(

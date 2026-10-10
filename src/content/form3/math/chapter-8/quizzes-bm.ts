@@ -78,7 +78,7 @@ export const mathF3C8QuestionBankBM: QuizQuestion[] = buildQuiz([
   ],
   [
     "Easy",
-    "Apakah lokus titik berjarak sama dari dua garis selari?",
+    "Titik P bergerak dengan jarak serenjang yang sama dari dua garis selari AB dan CD (d₁ = d₂). Apakah lokus P?",
     [
       "Satu garis lurus selari di tengah-tengah",
       "Bulatan",
@@ -123,19 +123,19 @@ export const mathF3C8QuestionBankBM: QuizQuestion[] = buildQuiz([
   ],
   [
     "Easy",
-    "Apakah alat yang digunakan untuk membina bulatan secara tepat?",
-    ["Jangka lukis", "Protraktor sahaja", "Pembaris sahaja", "Pensel sahaja"],
+    "Lokus P ialah bulatan berpusat O dan berjejari 4 cm. Titik Q berjarak 3 cm dari O. Di manakah Q berbanding bulatan lokus itu?",
+    [
+      "Di dalam bulatan",
+      "Pada lilitan bulatan",
+      "Di luar bulatan",
+      "Di pusat bulatan",
+    ],
     0,
   ],
   [
     "Easy",
-    "Apakah alat yang digunakan untuk membina pembahagi dua sudut?",
-    [
-      "Jangka lukis dan pembaris",
-      "Protraktor sahaja",
-      "Kalkulator",
-      "Tidak perlu alat",
-    ],
+    "Pembahagi dua sama serenjang bagi segmen AB melalui titik M pada AB. Jika AB = 10 cm, berapakah AM?",
+    ["5 cm", "10 cm", "20 cm", "2.5 cm"],
     0,
   ],
   [
@@ -185,13 +185,8 @@ export const mathF3C8QuestionBankBM: QuizQuestion[] = buildQuiz([
   ],
   [
     "Easy",
-    "Apakah bidang yang menggunakan konsep lokus?",
-    [
-      "Pembinaan, kejuruteraan, penerbangan, satelit",
-      "Hanya seni lukis",
-      "Hanya muzik",
-      "Hanya sukan bola",
-    ],
+    "A(−2,0) dan B(2,0) ialah dua titik tetap. Titik manakah berada pada lokus titik yang sama jarak dari A dan B?",
+    ["(0, 3)", "(1, 3)", "(−1, 3)", "(2, 3)"],
     0,
   ],
   [
