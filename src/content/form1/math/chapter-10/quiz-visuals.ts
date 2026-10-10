@@ -158,6 +158,29 @@ const tiles = (bm: string, dlp: string, length: string, width: string,
     ], { grid: { origin: p(52, 51), columns: 12, rows: 8, step: 16 },
       description: t("Jubin segi empat sama; kira jumlah melalui pembahagian ukuran.",
         "Square tiles; work out the number using the dimensions.") });
+const equalTrianglePerimeter = draw("Tiga sisi sama, keliling diberi",
+  "Three equal sides, given perimeter", [
+  ...edge([p(150, 20), p(44, 204), p(256, 204)]),
+], [
+  { at: p(92, 99), text: "s" }, { at: p(213, 99), text: "s" },
+  { at: p(150, 226), text: "s" }, { at: p(150, 153), text: "P = 36 cm" },
+]);
+const trianglePerimeterUnknown = draw("Tiga panjang sisi", "Three side lengths", [
+  ...edge([p(167, 47), p(43, 201), p(259, 201)]),
+], [
+  { at: p(97, 98), text: "x cm" },
+  { at: p(231, 114), text: "(x + 4) cm" },
+  { at: p(151, 226), text: "(2x − 4) cm" },
+  { at: p(152, 161), text: "P = 36 cm" },
+]);
+const rightTriangleFiveTwelveThirteen = draw("Segi tiga bersudut tegak dengan tiga sisi",
+  "Right triangle with three given sides", [
+  ...edge([p(50, 191), p(50, 103), p(261, 191)]),
+], [
+  { at: p(160, 214), text: "12 cm" },
+  { at: p(27, 153), text: "5 cm" },
+  { at: p(192, 120), text: "13 cm" },
+]);
 const actualLRoom = draw("Bilik bentuk L", "L-shaped room", [
   ...edge([p(47, 58), p(132, 58), p(132, 109),
     p(254, 109), p(254, 203), p(47, 203)]),
@@ -296,8 +319,7 @@ export const MATH_F1_C10_QUIZ_VISUALS = {
     "5 m", "3 m"),
   practiceRectPerimeter40: rect("Keliling dan lebar diketahui", "Given perimeter and width",
     "l", "7 cm", { annotation: "P = 40 cm" }),
-  practiceEqualTri36: tri("Tiga sisi sama", "Three equal sides", "s", "h",
-    { sideLabels: ["s", "s"] }),
+  practiceEqualTri36: equalTrianglePerimeter,
   practiceSquareEight: square("Ukur keliling dan luas", "Find perimeter and area", "8 cm"),
   practiceRightSixEight: tri("Dua sisi serenjang", "Two perpendicular sides",
     "8 cm", "6 cm", { right: true }),
@@ -362,15 +384,11 @@ export const MATH_F1_C10_QUIZ_VISUALS = {
   challengeTriTwiceHeight: tri("Tapak dua kali tinggi", "Base twice the height",
     "2h", "h", { areaLabel: "100 cm²" }),
   challengeLawnPond: lawnWithPond,
-  challengeTriPerimeter36: tri("Tiga sisi segi tiga", "Three triangle sides",
-    "x cm", "h", { sideLabels: ["(x + 4) cm", "(2x − 4) cm"],
-      areaLabel: "P = 36 cm" }),
+  challengeTriPerimeter36: trianglePerimeterUnknown,
   challengeTriEqualsRect: two("Luas dua bentuk sama", "Equal areas of two shapes",
     rect("Segi empat tepat", "Rectangle", "8 cm", "6 cm"),
     tri("Segi tiga", "Triangle", "16 cm", "h")),
-  challengeRightFiveTwelveThirteen: tri("Tiga sisi segi tiga bersudut tegak",
-    "Three sides of a right triangle", "12 cm", "5 cm",
-    { right: true, sideLabels: ["13 cm"] }),
+  challengeRightFiveTwelveThirteen: rightTriangleFiveTwelveThirteen,
   challengeInsidePath: fieldInsidePath,
   challengeOutsidePath: gardenOutsidePath,
   challengeSameAreaSquareRect: two("Luas 100 cm² bagi kedua-duanya",
