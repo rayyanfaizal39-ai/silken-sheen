@@ -99,7 +99,7 @@ export const MATH_F1_C6_QUIZ_VISUALS = {
   sumDifference: story("Dua nombor tidak diketahui", "Two unknown numbers", [
     { items: [{ text: "x", count: 1 }, { text: "y", count: 1 }],
       result: title("Jumlah = 15", "Sum = 15") },
-    { items: [{ text: "x", count: 1 }, { text: "y", count: 1 }],
+    { items: [{ text: "x", count: 1 }, { text: "−y", count: 1 }],
       result: title("Beza = 3", "Difference = 3") },
   ]),
   fruitPurchases: story("Dua pembelian buah", "Two fruit purchases", [
