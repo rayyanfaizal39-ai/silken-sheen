@@ -21,6 +21,29 @@ export type MathQuestionVisual =
   | MathIndicesVisual
   | MathStandardFormVisual
   | {
+      /** Equal-size parts encode only the supplied ratios, never solved shares. */
+      kind: "ratio-bars";
+      title: LocalizedText;
+      rows: { label: VisualText; parts: number; given?: VisualText }[];
+      note?: VisualText;
+    }
+  | {
+      /** Given input/output pairs; blank cells are deliberately unsolved. */
+      kind: "value-pairs";
+      title: LocalizedText;
+      headings: [VisualText, VisualText];
+      rows: { left: VisualText; right: VisualText }[];
+    }
+  | {
+      /** 10 equally sized units represent a percentage in tenths. */
+      kind: "percentage-strip";
+      title: LocalizedText;
+      shaded: number;
+      shadedLabel: VisualText;
+      otherLabel: VisualText;
+      note?: VisualText;
+    }
+  | {
       kind: "frequency-table";
       title: LocalizedText;
       valueHeading: LocalizedText;
@@ -142,6 +165,9 @@ const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
   "index-equations": { bm: "Persamaan indeks", dlp: "Index equations" },
   "unit-cube": { bm: "Kubus unit", dlp: "Unit cube" },
   "fraction-area": { bm: "Model luas pecahan", dlp: "Fractional area model" },
+  "ratio-bars": { bm: "Model jalur nisbah", dlp: "Ratio strip model" },
+  "value-pairs": { bm: "Jadual nilai berkaitan", dlp: "Corresponding values table" },
+  "percentage-strip": { bm: "Model peratus", dlp: "Percentage strip" },
   "frequency-table": { bm: "Jadual kekerapan", dlp: "Frequency table" },
   "bar-chart": { bm: "Carta palang", dlp: "Bar chart" },
   histogram: { bm: "Histogram", dlp: "Histogram" },
@@ -180,6 +206,18 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
     case "unit-cube":
     case "fraction-area":
       return describeMathIndicesVisual(visual, lang);
+    case "ratio-bars":
+      return `${head} ${visual.rows.map((row) =>
+        `${textFor(row.label, lang)}: ${row.parts} ${bm ? "bahagian" : "equal parts"}${row.given ? `, ${textFor(row.given, lang)}` : ""}`,
+      ).join("; ")}.${visual.note ? ` ${textFor(visual.note, lang)}.` : ""}`;
+    case "value-pairs":
+      return `${head} ${textFor(visual.headings[0], lang)} / ${textFor(visual.headings[1], lang)}: ${visual.rows.map(
+        (row) => `${textFor(row.left, lang)} / ${textFor(row.right, lang)}`,
+      ).join("; ")}.`;
+    case "percentage-strip":
+      return `${head} ${textFor(visual.shadedLabel, lang)}: ${visual.shaded * 10}%; ${textFor(
+        visual.otherLabel, lang,
+      )}: ${(10 - visual.shaded) * 10}%.${visual.note ? ` ${textFor(visual.note, lang)}.` : ""}`;
     case "frequency-table":
       return `${head} ${pairs(visual.rows.map((row) => [row.value, row.frequency]))}.`;
     case "bar-chart":
