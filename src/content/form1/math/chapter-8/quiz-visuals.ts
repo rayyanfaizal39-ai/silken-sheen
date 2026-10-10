@@ -106,7 +106,8 @@ const crossing = (
 ));
 type AnglePosition =
   | "corresponding-acute" | "corresponding-obtuse"
-  | "cointerior-left" | "cointerior-right" | "alternate" | "top-left-mirrored";
+  | "cointerior-left" | "cointerior-right" | "alternate" | "top-left-mirrored"
+  | "acute-and-adjacent-obtuse";
 const parallel = (
   bm: string, dlp: string, a: string, b: string, position: AnglePosition,
   third?: string,
@@ -122,6 +123,7 @@ const parallel = (
     "cointerior-right": [p(180, 116), p(227, 137)],
     alternate: [p(175, 116), p(146, 134)],
     "top-left-mirrored": [p(99, 57), p(59, 149)],
+    "acute-and-adjacent-obtuse": [p(80, 57), p(190, 57)],
   };
   const [first, second] = pos[position];
   return make(bm, dlp, panel([
@@ -243,8 +245,8 @@ export const MATH_F1_C8_QUIZ_VISUALS = {
     "35°", true),
   corresponding125: parallel("Sudut sepadan di A dan B", "Corresponding angles at A and B",
     "125°", "x", "top-left-mirrored"),
-  parallelAcute72: parallel("Sudut daripada garis selari", "Angles formed by parallel lines",
-    "72°", "?", "corresponding-acute"),
+  parallelAcute72: parallel("Sudut tirus dan sudut cakah bersebelahan", "Adjacent acute and obtuse angles",
+    "72°", "?", "acute-and-adjacent-obtuse"),
   cointerior4p2p: parallel("Sudut pedalaman pada sisi yang sama", "Co-interior angles",
     "(4p + 10)°", "(2p + 20)°", "cointerior-left"),
   crossing2m3m: crossing("Empat sudut di titik persilangan", "Four angles at an intersection",
@@ -264,8 +266,8 @@ export const MATH_F1_C8_QUIZ_VISUALS = {
   ])),
   straightX30_2x10_x20: straightThree("Tiga sudut pada satu garis lurus",
     "Three angles on one straight line", "(x + 30)°", "(2x − 10)°", "(x + 20)°"),
-  parallel85: parallel("Sudut tirus dan sudut cakah", "Acute and obtuse angles",
-    "85°", "?", "corresponding-acute"),
+  parallel85: parallel("Sudut tirus dan sudut cakah bersebelahan", "Adjacent acute and obtuse angles",
+    "85°", "?", "acute-and-adjacent-obtuse"),
   elevationCompare: make("Dua titik melihat puncak yang sama",
     "Two points viewing the same tower", panel([
     { points: [p(24, 200), p(276, 200)] },
