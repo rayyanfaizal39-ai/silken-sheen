@@ -54,7 +54,7 @@ const tri = (a: string, b: string, c: string, vertices?: [string, string, string
     tr("Ruas berasingan menggambarkan panjang sisi, tanpa menyatakan jenis sudut. Tentukan jenis dengan mengira.",
        "Independent side segments, not a connected triangle or an angle. Classify by calculation."),
     {
-      paths: ys.map((y, i) => ({ points: [[60, y], [ends[i], y]] })),
+      paths: ys.map((y, i) => ({ points: [[60, y], [ends[i], y]] as [number, number][] })),
       labels: [
         ...labels.map((value, i) => ({ at: [60 + (ends[i] - 60) / 2, ys[i] - 17] as [number,number], text: value })),
         ...(vertices ? [
