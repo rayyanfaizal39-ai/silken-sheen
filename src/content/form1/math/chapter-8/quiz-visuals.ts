@@ -103,7 +103,7 @@ const crossing = (
     { at: p(35, 216), text: "D" },
     { at: p(150, 130), text: "O" },
   ] : []),
-));
+]));
 type AnglePosition =
   | "corresponding-acute" | "corresponding-obtuse"
   | "cointerior-left" | "cointerior-right" | "alternate" | "top-left-mirrored"
