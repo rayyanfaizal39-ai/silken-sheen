@@ -81,7 +81,10 @@ describe("Form 1 Mathematics Chapter 4 selective visual questions", () => {
       expect(visual.kind, key).toBe("value-pairs");
       if (visual.kind === "value-pairs") {
         expect(visual.rows).toHaveLength(2);
-        expect(visual.rows[1].left.includes("?") || visual.rows[1].right.includes("?"), key).toBe(true);
+        const text = (value: typeof visual.rows[number]["left"]) =>
+          typeof value === "string" ? value : `${value.bm} ${value.dlp}`;
+        expect(text(visual.rows[1].left).includes("?") ||
+          text(visual.rows[1].right).includes("?"), key).toBe(true);
         for (const lang of LANGS) {
           expect(describeMathQuestionVisual(visual, lang)).toContain("?");
         }
