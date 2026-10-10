@@ -49,12 +49,14 @@ const tri = (bm: string, dlp: string, base: string, height: string, extra?: {
   const foot = extra?.right ? p(66, 191) : p(164, 191);
   return draw(bm, dlp, [
     ...edge(pts),
-    { points: [pts[1 === (extra?.right ? 1 : 0) ? 1 : 0], foot], dashed: true },
+    { points: [extra?.right ? pts[1] : pts[0], foot], dashed: true },
   ], [
     { at: p(160, 214), text: base },
     { at: extra?.right ? p(44, 115) : p(179, 125), text: height },
     ...(extra?.sideLabels?.map((text, i) => ({
-      at: [p(97, 85), p(207, 117), p(103, 171)][i] ?? p(130, 85), text,
+      at: (extra.right
+        ? [p(194, 106), p(42, 122), p(150, 216)]
+        : [p(90, 112), p(225, 111), p(153, 216)])[i] ?? p(130, 85), text,
     })) ?? []),
     ...(extra?.areaLabel ? [{ at: p(162, 162), text: extra.areaLabel }] : []),
   ]);
@@ -71,16 +73,24 @@ const para = (bm: string, dlp: string, base: string, height: string, slant?: str
     ...(area ? [{ at: p(170, 143), text: area }] : []),
   ]);
 const trapezoid = (bm: string, dlp: string, top: string, bottom: string,
-  height: string, area?: string): MathGeometryVisual =>
-  draw(bm, dlp, [
-    ...edge([p(92, 65), p(216, 65), p(265, 191), p(35, 191)]),
-    { points: [p(92, 65), p(92, 191)], dashed: true },
+  height: string, area?: string): MathGeometryVisual => {
+  const a = parseFloat(top), b = parseFloat(bottom);
+  const maximum = Math.max(Number.isFinite(a) ? a : 0,
+    Number.isFinite(b) ? b : 0, 1);
+  const topWidth = Number.isFinite(a) ? 203 * a / maximum : 144;
+  const bottomWidth = Number.isFinite(b) ? 203 * b / maximum : 205;
+  const topL = 150 - topWidth / 2, bottomL = 150 - bottomWidth / 2;
+  return draw(bm, dlp, [
+    ...edge([p(topL, 65), p(150 + topWidth / 2, 65),
+      p(150 + bottomWidth / 2, 191), p(bottomL, 191)]),
+    { points: [p(topL, 65), p(topL, 191)], dashed: true },
   ], [
-    { at: p(154, 48), text: top },
+    { at: p(150, 48), text: top },
     { at: p(150, 214), text: bottom },
-    { at: p(105, 125), text: height },
+    { at: p(topL + 14, 130), text: height },
     ...(area ? [{ at: p(172, 145), text: area }] : []),
   ]);
+};
 const kite = (bm: string, dlp: string, d1: string, d2: string,
   area?: string): MathGeometryVisual =>
   draw(bm, dlp, [
@@ -145,6 +155,51 @@ const tiles = (bm: string, dlp: string, length: string, width: string,
     ], { grid: { origin: p(52, 51), columns: 12, rows: 8, step: 16 },
       description: t("Jubin segi empat sama; kira jumlah melalui pembahagian ukuran.",
         "Square tiles; work out the number using the dimensions.") });
+const actualLRoom = draw("Bilik bentuk L", "L-shaped room", [
+  ...edge([p(47, 58), p(132, 58), p(132, 109),
+    p(254, 109), p(254, 203), p(47, 203)]),
+  { points: [p(47, 109), p(132, 109)], dashed: true },
+], [
+  { at: p(148, 224), text: "10 m" },
+  { at: p(29, 160), text: "6 m" },
+  { at: p(87, 42), text: "4 m" },
+  { at: p(149, 85), text: "3 m" },
+], { description: t("Bahagian 10 m × 6 m dan 4 m × 3 m bercantum tanpa bertindih.",
+  "Sections of 10 m × 6 m and 4 m × 3 m are joined without overlapping.") });
+const joinedTrapezoid = draw("Trapezium di atas segi empat tepat",
+  "Trapezium above a rectangle", [
+  ...edge([p(53, 104), p(249, 104), p(249, 207), p(53, 207)]),
+  { points: [p(53, 104), p(100, 44), p(201, 44), p(249, 104)], closed: true },
+  { points: [p(100, 44), p(100, 104)], dashed: true },
+], [
+  { at: p(150, 222), text: "12 cm" },
+  { at: p(276, 158), text: "4 cm" },
+  { at: p(151, 30), text: "6 cm" },
+  { at: p(112, 81), text: "5 cm" },
+]);
+const lawnWithPond = draw("Kolam di dalam padang rumput", "Pond inside the lawn", [
+  ...edge([p(43, 44), p(256, 44), p(256, 209), p(43, 209)]),
+  { points: [p(150, 86), p(208, 127), p(150, 176), p(92, 127)], closed: true },
+  { points: [p(150, 86), p(150, 176)], dashed: true },
+  { points: [p(92, 127), p(208, 127)], dashed: true },
+], [
+  { at: p(149, 29), text: "15 m" },
+  { at: p(277, 125), text: "10 m" },
+  { at: p(164, 108), text: "6 m" },
+  { at: p(184, 145), text: "4 m" },
+  { at: p(73, 188), text: t("Rumput", "Lawn") },
+], { description: t("Kolam berbentuk layang-layang berada di dalam kawasan rumput.",
+  "The kite-shaped pond sits inside the rectangular lawn.") });
+const roomDoorway = draw("Bahagian pintu pada tepi lantai",
+  "Doorway area at the edge of the floor", [
+  ...edge([p(43, 43), p(256, 43), p(256, 205), p(43, 205)]),
+  { points: [p(117, 43), p(184, 43), p(184, 68), p(117, 68)], closed: true, dashed: true },
+], [
+  { at: p(76, 28), text: "5 m" },
+  { at: p(279, 125), text: "4 m" },
+  { at: p(151, 86), text: "1 m × 0.5 m" },
+], { description: t("Kawasan pintu yang tidak berkarpet bersambung pada tepi bilik.",
+  "The uncarpeted doorway meets the edge of the room.") });
 const fieldInsidePath = draw("Laluan di bahagian dalam padang", "Path inside a field", [
   ...edge([p(50, 45), p(250, 45), p(250, 200), p(50, 200)]),
   { points: [p(63, 57), p(237, 57), p(237, 188), p(63, 188)], closed: true, dashed: true },
@@ -170,7 +225,6 @@ const doorwayTrim = draw("Jalur tepi lantai dengan bukaan pintu", "Edge strip ex
   { at: p(188, 67), text: t("Pintu 1 m", "Door 1 m") },
 ]);
 const wallTriangle = tri("Tembok segi tiga", "Triangular wall", "10 m", "4 m");
-const q = (value: string) => value;
 
 export const MATH_F1_C10_QUIZ_VISUALS = {
   // Foundation: shape and measurement concepts; avoid unhelpful unit/conversion pictures.
@@ -263,10 +317,7 @@ export const MATH_F1_C10_QUIZ_VISUALS = {
   practiceKiteTwentyEleven: kite("Pepenjuru layang-layang", "Kite diagonals", "20 cm", "11 cm"),
 
   // Challenge: exact composite topology and all supplied measurements.
-  challengeLTwoSections: two("Bilik bentuk L dengan dua bahagian tidak bertindih",
-    "L-shaped room: two non-overlapping sections",
-    rect("Bahagian panjang", "Long section", "10 m", "6 m"),
-    rect("Bahagian kecil", "Smaller section", "4 m", "3 m")),
+  challengeLTwoSections: actualLRoom,
   challengeHouseRoof: roofHouse,
   challengeBoardHole: rectHole("Papan dengan potongan segi empat", "Board with rectangular hole",
     "12 cm", "9 cm", "4 cm", "3 cm"),
@@ -275,10 +326,7 @@ export const MATH_F1_C10_QUIZ_VISUALS = {
   challengeTileSixFour: tiles("Lantai dengan jubin 0.5 m", "Floor with 0.5 m tiles",
     "6 m", "4 m", "0.5 m"),
   challengeWallPaint: wallTriangle,
-  challengeCompositeTrap: two("Trapezium di atas segi empat tepat",
-    "Trapezium above a rectangle",
-    rect("Bahagian segi empat", "Rectangular part", "8 cm", "6 cm"),
-    trapezoid("Bahagian trapezium", "Trapezium part", "4 cm", "8 cm", "3 cm")),
+  challengeCompositeTrap: joinedTrapezoid,
   challengeKiteLand: kite("Tanah berbentuk layang-layang", "Kite-shaped land", "100 m", "80 m"),
   challengeTriExpr: tri("Tapak berungkapan", "Algebraic base", "(x + 2) cm", "6 cm",
     { areaLabel: "24 cm²" }),
@@ -290,8 +338,7 @@ export const MATH_F1_C10_QUIZ_VISUALS = {
   challengeTwoRectSameArea: two("Luas sama: banding keliling", "Equal areas: compare perimeters",
     rect("A", "A", "9 cm", "4 cm", { w: 215, h: 92 }),
     rect("B", "B", "6 cm", "6 cm", { w: 145, h: 145 })),
-  challengeDoorArea: rectHole("Kawasan pintu tidak berkarpet", "Doorway area not carpeted",
-    "5 m", "4 m", "1 m", "0.5 m"),
+  challengeDoorArea: roomDoorway,
   challengeArea48: rect("Luas diketahui", "Area given",
     "l", "6 cm", { annotation: "A = 48 cm²" }),
   challengeFence40: rect("Panjang dan lebar belum ditetapkan", "Length and width not yet selected",
@@ -300,9 +347,7 @@ export const MATH_F1_C10_QUIZ_VISUALS = {
     "6 cm", "10 cm", "6 cm"),
   challengeTriTwiceHeight: tri("Tapak dua kali tinggi", "Base twice the height",
     "2h", "h", { areaLabel: "100 cm²" }),
-  challengeLawnPond: two("Padang dan kolam", "Lawn and pond",
-    rect("Rumput", "Lawn", "15 m", "10 m"),
-    kite("Kolam", "Pond", "6 m", "4 m")),
+  challengeLawnPond: lawnWithPond,
   challengeTriPerimeter36: tri("Tiga sisi segi tiga", "Three triangle sides",
     "x cm", "h", { sideLabels: ["(x + 4) cm", "(2x − 4) cm"],
       areaLabel: "P = 36 cm" }),
@@ -321,9 +366,7 @@ export const MATH_F1_C10_QUIZ_VISUALS = {
       { w: 219, h: 70 })),
   challengeTilingCost: tiles("Lantai dengan jubin 40 cm", "Floor with 40 cm tiles",
     "4.8 m", "3.2 m", "40 cm"),
-  challengeCompositeTrapRect: two("Dua kawasan tidak bertindih", "Two non-overlapping regions",
-    rect("Segi empat tepat", "Rectangle", "12 cm", "4 cm"),
-    trapezoid("Trapezium", "Trapezium", "6 cm", "12 cm", "5 cm")),
+  challengeCompositeTrapRect: joinedTrapezoid,
   challengeParaTriangleEqual: two("Luas sama", "Equal areas",
     para("Segi empat selari", "Parallelogram", "12 cm", "5 cm"),
     tri("Segi tiga", "Triangle", "10 cm", "h")),
