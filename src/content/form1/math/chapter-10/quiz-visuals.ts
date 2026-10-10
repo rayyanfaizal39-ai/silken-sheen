@@ -177,6 +177,17 @@ const joinedTrapezoid = draw("Trapezium di atas segi empat tepat",
   { at: p(151, 30), text: "6 cm" },
   { at: p(112, 81), text: "5 cm" },
 ]);
+const joinedTrapEight = draw("Trapezium di atas segi empat tepat",
+  "Trapezium on top of rectangle", [
+  ...edge([p(53, 101), p(249, 101), p(249, 207), p(53, 207)]),
+  { points: [p(53, 101), p(100, 44), p(202, 44), p(249, 101)], closed: true },
+  { points: [p(100, 44), p(100, 101)], dashed: true },
+], [
+  { at: p(150, 222), text: "8 cm" },
+  { at: p(275, 158), text: "6 cm" },
+  { at: p(151, 31), text: "4 cm" },
+  { at: p(114, 77), text: "3 cm" },
+]);
 const lawnWithPond = draw("Kolam di dalam padang rumput", "Pond inside the lawn", [
   ...edge([p(43, 44), p(256, 44), p(256, 209), p(43, 209)]),
   { points: [p(150, 86), p(208, 127), p(150, 176), p(92, 127)], closed: true },
@@ -326,7 +337,7 @@ export const MATH_F1_C10_QUIZ_VISUALS = {
   challengeTileSixFour: tiles("Lantai dengan jubin 0.5 m", "Floor with 0.5 m tiles",
     "6 m", "4 m", "0.5 m"),
   challengeWallPaint: wallTriangle,
-  challengeCompositeTrap: joinedTrapezoid,
+  challengeCompositeTrap: joinedTrapEight,
   challengeKiteLand: kite("Tanah berbentuk layang-layang", "Kite-shaped land", "100 m", "80 m"),
   challengeTriExpr: tri("Tapak berungkapan", "Algebraic base", "(x + 2) cm", "6 cm",
     { areaLabel: "24 cm²" }),
