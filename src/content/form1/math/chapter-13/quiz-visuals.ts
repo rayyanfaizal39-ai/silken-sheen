@@ -163,7 +163,7 @@ export const MATH_F1_C13_QUIZ_VISUALS = {
     1: rt("a","b","c"),
     2: rt("a","b","c"),
     3: rt("?","?","?"),
-    5: rt("AB","BC","AC","", "", ["B","A","C"]),
+    5: rt("AB","BC","AC","Segi tiga ABC, sudut tegak di B", "Triangle ABC, right angle at B", ["B","A","C"]),
     6: tri("3","4","5"),
     8: rt("a","b","c"),
     15: rt("a","b","c"),
