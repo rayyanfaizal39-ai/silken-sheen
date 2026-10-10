@@ -39,19 +39,28 @@ const rt = (
   ],
 });
 const tri = (a: string, b: string, c: string, vertices?: [string, string, string]): Diagram => draw(
-  tr("Tiga sisi segi tiga", "Three triangle side lengths"),
-  tr("Sisi ditunjukkan tanpa menandakan sudut tegak; jenis segi tiga mesti ditentukan daripada panjang sisi.",
-     "No right-angle symbol is shown; classify the triangle using its side lengths."),
+  tr("Panjang tiga sisi", "Lengths of the three sides"),
+  tr("Setiap ruas ialah sisi yang berasingan. Panjang dilabel tanpa melukis sebarang sudut; jenis segi tiga mesti dikira.",
+     "Each segment is a separate side, not a triangle outline. There is no suggested angle: determine the triangle type from the three lengths."),
   {
-    paths: [{ points: [[150, 32], [48, 192], [270, 192], [150, 32]], closed: true }],
+    // Equal-length drawn segments avoid implying an acute/right/obtuse angle
+    // when the question asks the student to determine it by calculation.
+    paths: [
+      { points: [[60, 68], [238, 68]] },
+      { points: [[60, 128], [238, 128]] },
+      { points: [[60, 188], [238, 188]] },
+    ],
     labels: [
-      { at: [77, 104], text: a },
-      { at: [158, 213], text: b },
-      { at: [244, 103], text: c },
+      { at: [149, 51], text: a },
+      { at: [149, 111], text: b },
+      { at: [149, 171], text: c },
       ...(vertices ? [
-        { at: [150, 19] as [number,number], text: vertices[0] },
-        { at: [35, 206] as [number,number], text: vertices[1] },
-        { at: [283, 206] as [number,number], text: vertices[2] },
+        { at: [46, 73] as [number, number], text: vertices[0] },
+        { at: [251, 73] as [number, number], text: vertices[1] },
+        { at: [46, 133] as [number, number], text: vertices[1] },
+        { at: [251, 133] as [number, number], text: vertices[2] },
+        { at: [46, 193] as [number, number], text: vertices[0] },
+        { at: [251, 193] as [number, number], text: vertices[2] },
       ] : []),
     ],
   },
