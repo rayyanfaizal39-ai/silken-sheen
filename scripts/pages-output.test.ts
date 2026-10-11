@@ -8,15 +8,20 @@ describe("Pages deployment output", () => {
     expect(routes.exclude).not.toContain("/assets/*");
     expect(routes.exclude).toContain("/sw.js");
     expect(routes.exclude).toContain("/index.html");
+    expect(routes.exclude).toContain("/card/*.png");
   });
 
   it("revalidates the shell and worker while keeping hashed assets immutable", () => {
-    const headers = mergePagesHeaders("/assets/*\n  cache-control: public, max-age=31536000, immutable\n");
+    const headers = mergePagesHeaders(
+      "/assets/*\n  cache-control: public, max-age=31536000, immutable\n",
+    );
 
     expect(headers).toContain("/assets/*\n  cache-control: public, max-age=31536000, immutable");
     expect(headers).toContain("/index.html\n  cache-control: no-cache, must-revalidate");
     expect(headers).toContain("/sw.js\n  cache-control: no-cache, no-store, must-revalidate");
-    expect(headers).toContain("/workbox-*.js\n  cache-control: no-cache, no-store, must-revalidate");
+    expect(headers).toContain(
+      "/workbox-*.js\n  cache-control: no-cache, no-store, must-revalidate",
+    );
     expect(headers).toContain("/site.webmanifest\n  cache-control: no-cache, must-revalidate");
     expect(headers.match(/\/assets\/\*/g)).toHaveLength(1);
     expect(headers).not.toContain("max-age=31536000, immutable\n\n/sw.js");

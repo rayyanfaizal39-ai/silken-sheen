@@ -3,13 +3,14 @@ export const BUSINESS_CARD_CONTACT = {
   lastName: "Zain",
   fullName: "Faizal Zain",
   organization: "AcadeMY",
-  title: "Chief Executive Officer (CEO)",
+  title: "Chief Executive Officer",
   email: "admin@academy.my",
   phone: "+60126761486",
   website: "https://www.myacademy.my",
 } as const;
 
 export const BUSINESS_CARD_VCF_FILENAME = "faizal-zain-academy.vcf";
+export const BUSINESS_CARD_VCF_PATH = "/card/contact.vcf";
 
 function escapeVCardValue(value: string): string {
   return value
@@ -37,18 +38,12 @@ export function createBusinessCardVCard(): string {
   ].join("\r\n");
 }
 
-export function downloadBusinessCardVCard(): void {
-  const blob = new Blob([createBusinessCardVCard()], {
-    type: "text/vcard;charset=utf-8",
+export function createBusinessCardVCardResponse(): Response {
+  return new Response(createBusinessCardVCard(), {
+    headers: {
+      "Cache-Control": "public, max-age=3600",
+      "Content-Disposition": `inline; filename="${BUSINESS_CARD_VCF_FILENAME}"`,
+      "Content-Type": "text/vcard; charset=utf-8",
+    },
   });
-  const objectUrl = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-
-  link.href = objectUrl;
-  link.download = BUSINESS_CARD_VCF_FILENAME;
-  link.rel = "noopener";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  window.setTimeout(() => URL.revokeObjectURL(objectUrl), 0);
 }

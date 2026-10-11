@@ -6,17 +6,23 @@ import {
   Mail,
   MessageCircle,
   Phone,
+  QrCode,
   Rotate3D,
   Share2,
   UserPlus,
+  X,
 } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { AcademyLogo } from "@/components/AcademyLogo";
-import { BUSINESS_CARD_CONTACT, downloadBusinessCardVCard } from "@/features/business-card/contact";
+import { BUSINESS_CARD_CONTACT, BUSINESS_CARD_VCF_PATH } from "@/features/business-card/contact";
+import {
+  BUSINESS_CARD_QR_FILENAME,
+  BUSINESS_CARD_QR_PATH,
+  BUSINESS_CARD_QR_SIZE,
+  BUSINESS_CARD_URL,
+} from "@/features/business-card/qr-code";
 import { seoMeta } from "@/lib/seo";
 import "./card.css";
-
-const CARD_URL = "https://www.myacademy.my/card/";
 
 export const Route = createFileRoute("/card")({
   head: () =>
@@ -31,8 +37,11 @@ export const Route = createFileRoute("/card")({
 
 function BusinessCardPage() {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isQrOpen, setIsQrOpen] = useState(false);
   const [notice, setNotice] = useState("");
   const cardRef = useRef<HTMLButtonElement>(null);
+  const qrDialogRef = useRef<HTMLDivElement>(null);
+  const qrTriggerRef = useRef<HTMLButtonElement>(null);
   const animationFrameRef = useRef<number | null>(null);
   const noticeTimerRef = useRef<number | null>(null);
 
@@ -43,6 +52,49 @@ function BusinessCardPage() {
     },
     [],
   );
+
+  useEffect(() => {
+    if (!isQrOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const trigger = qrTriggerRef.current;
+    const focusFrame = window.requestAnimationFrame(() => qrDialogRef.current?.focus());
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsQrOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab" || !qrDialogRef.current) return;
+      const focusable = Array.from(
+        qrDialogRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    }
+
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+      trigger?.focus();
+    };
+  }, [isQrOpen]);
 
   function showNotice(message: string) {
     setNotice(message);
@@ -81,7 +133,7 @@ function BusinessCardPage() {
     const shareData = {
       title: `${BUSINESS_CARD_CONTACT.fullName} — AcadeMY`,
       text: `${BUSINESS_CARD_CONTACT.fullName}, ${BUSINESS_CARD_CONTACT.title} at AcadeMY`,
-      url: CARD_URL,
+      url: BUSINESS_CARD_URL,
     };
 
     try {
@@ -91,7 +143,7 @@ function BusinessCardPage() {
         return;
       }
 
-      await navigator.clipboard.writeText(CARD_URL);
+      await navigator.clipboard.writeText(BUSINESS_CARD_URL);
       showNotice("Card link copied.");
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return;
@@ -199,24 +251,31 @@ function BusinessCardPage() {
           </p>
         </section>
 
+        <button
+          ref={qrTriggerRef}
+          type="button"
+          className="business-card-qr-trigger"
+          onClick={() => setIsQrOpen(true)}
+          aria-haspopup="dialog"
+        >
+          <QrCode aria-hidden="true" />
+          Show QR Code
+        </button>
+
         <nav className="business-card-actions" aria-label="Contact actions">
-          <button
-            type="button"
+          <a
             className="business-card-save"
-            onClick={() => {
-              downloadBusinessCardVCard();
-              showNotice("Contact file downloaded.");
-            }}
+            href={BUSINESS_CARD_VCF_PATH}
+            onClick={() => showNotice("Opening contact import. Review and confirm to add it.")}
           >
             <span className="business-card-save-icon" aria-hidden="true">
               <UserPlus />
-              <Download />
             </span>
             <span>
-              <strong>Save to Contacts</strong>
-              <small>Download VCF</small>
+              <strong>Add to My Contacts</strong>
+              <small>Review and confirm</small>
             </span>
-          </button>
+          </a>
 
           <div className="business-card-secondary-actions">
             <a
@@ -242,6 +301,73 @@ function BusinessCardPage() {
           {notice}
         </p>
       </div>
+
+      {isQrOpen ? (
+        <div
+          className="business-card-qr-backdrop"
+          onPointerDown={(event) => {
+            if (event.target === event.currentTarget) setIsQrOpen(false);
+          }}
+        >
+          <div
+            ref={qrDialogRef}
+            className="business-card-qr-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="business-card-qr-title"
+            aria-describedby="business-card-qr-description"
+            tabIndex={-1}
+          >
+            <button
+              type="button"
+              className="business-card-qr-close"
+              onClick={() => setIsQrOpen(false)}
+              aria-label="Close QR code"
+            >
+              <X aria-hidden="true" />
+            </button>
+
+            <div className="business-card-qr-heading">
+              <span className="business-card-qr-emblem" aria-hidden="true">
+                <QrCode />
+              </span>
+              <div>
+                <p>AcadeMY Digital Card</p>
+                <h2 id="business-card-qr-title">Scan to connect</h2>
+              </div>
+            </div>
+
+            <div className="business-card-qr-frame">
+              <img
+                src={BUSINESS_CARD_QR_PATH}
+                alt={`QR code for ${BUSINESS_CARD_URL}`}
+                width={BUSINESS_CARD_QR_SIZE}
+                height={BUSINESS_CARD_QR_SIZE}
+              />
+            </div>
+
+            <p id="business-card-qr-description" className="business-card-qr-description">
+              Point a phone camera at the code to open Faizal Zain&apos;s digital business card.
+            </p>
+            <a className="business-card-qr-url" href={BUSINESS_CARD_URL}>
+              www.myacademy.my/card/
+            </a>
+
+            <a
+              className="business-card-qr-save"
+              href={BUSINESS_CARD_QR_PATH}
+              download={BUSINESS_CARD_QR_FILENAME}
+              onClick={() => showNotice("Print-ready QR code download started.")}
+            >
+              <Download aria-hidden="true" />
+              Save QR Code
+            </a>
+            <p className="business-card-qr-print-note">
+              High-resolution {BUSINESS_CARD_QR_SIZE} × {BUSINESS_CARD_QR_SIZE} PNG for print
+            </p>
+          </div>
+        </div>
+      ) : null}
     </main>
   );
 }
