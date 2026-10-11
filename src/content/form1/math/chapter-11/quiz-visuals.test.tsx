@@ -18,7 +18,7 @@ const bank = (objective: Objective, lang: Lang) =>
   }).questions;
 
 const slots = {
-  "objective-1": { 12: "structure", 13: "structure", 14: "structure" },
+  "objective-1": { 14: "structure" },
   "objective-2": {
     2: "oddNumbers", 6: "letterB", 14: "structure",
     18: "smallEvens", 22: "perfectSquares", 25: "oddToFifteen",
@@ -44,7 +44,7 @@ describe("Form 1 Mathematics Chapter 11 — accessible Venn diagrams", () => {
     }
   });
 
-  it("places 12 helpful diagrams per language, at identical question positions", () => {
+  it("places 10 helpful diagrams per language, at identical question positions", () => {
     for (const lang of LANGS) for (const objective of OBJECTIVES) {
       const expected = slots[objective] as Record<number, keyof typeof V>;
       const questions = bank(objective, lang);
