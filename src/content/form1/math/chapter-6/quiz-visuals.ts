@@ -86,7 +86,7 @@ export const MATH_F1_C6_QUIZ_VISUALS = {
   // Intersection coordinates and the system's solution count are not printed.
   intersectingGraph: {
     kind: "coordinate-plane",
-    title: title("Graf dua garis bersilang", "Graph of two intersecting lines"),
+    title: title("Graf dua garis lurus", "Two straight-line graphs"),
     description: title("Dua garis bagi persamaan serentak", "Two lines for simultaneous equations"),
     domain: [-5, 5, -5, 5],
     step: 1,
@@ -97,7 +97,7 @@ export const MATH_F1_C6_QUIZ_VISUALS = {
   },
   parallelGraph: {
     kind: "coordinate-plane",
-    title: title("Graf dua garis selari", "Graph of two parallel lines"),
+    title: title("Graf dua garis lurus", "Two straight-line graphs"),
     description: title("Dua garis lurus pada satah yang sama", "Two straight lines in the same plane"),
     domain: [-5, 5, -5, 5],
     step: 1,
