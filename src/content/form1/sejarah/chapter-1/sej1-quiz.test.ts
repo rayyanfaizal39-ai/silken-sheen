@@ -231,8 +231,8 @@ describe("existing Sejarah attempt contract — no shuffle engine change", () =>
 
   it("guards the existing route lifecycle: state-held order, start dependencies, explicit reshuffle and reset", () => {
     const route = readFileSync(new URL("../../../../routes/quizzes.tsx", import.meta.url), "utf8");
-    expect(route).toContain('subject !== "sejarah" && diff !== "All"');
-    expect(route).toContain('difficulty: subject === "sejarah" ? "All" : diff');
+    expect(route).toContain('!isForm3MathSetQuiz && subject !== "sejarah" && diff !== "All"');
+    expect(route).toContain('difficulty: subject === "sejarah" || isForm3MathSetQuiz ? "All" : diff');
     expect(route).toMatch(/const \[shuffledPool, setShuffledPool\] = useState/);
     expect(route).toMatch(
       /if \(timerPref && pool.length > 0\) \{\s*setShuffledPool\(buildShuffledPool\(pool\)\);\s*\}\s*\}, \[timerPref, pool\]\)/,
