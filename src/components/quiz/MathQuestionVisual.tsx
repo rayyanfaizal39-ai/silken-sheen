@@ -280,6 +280,49 @@ function Pie({ sectors }: { sectors: { label: string; angle: number; text: strin
 }
 
 
+/** A readable Venn diagram: the rectangle is ξ and the circle is the given set.
+ * Data, not colour, encodes membership. Neither complement nor solution is highlighted.
+ */
+function VennOneSet({
+  visual,
+  lang,
+}: {
+  visual: Extract<MathQuestionVisualData, { kind: "venn-one-set" }>;
+  lang: MathVisualLang;
+}) {
+  const columns = Math.min(3, Math.max(1, visual.inside.length));
+  const firstRow = visual.inside.length > 6 ? 98 : visual.inside.length > 3 ? 110 : 122;
+  const outsideLeftCount = Math.ceil(visual.outside.length / 2);
+  return (
+    <svg viewBox="0 0 340 235" className="w-full" aria-hidden="true">
+      <rect x={12} y={10} width={316} height={215} rx={8}
+        fill="rgba(139,107,255,0.045)" stroke="#a5b4fc" strokeWidth={1.8} />
+      <circle cx={170} cy={122} r={75}
+        fill="rgba(139,107,255,0.14)" stroke="#a78bfa" strokeWidth={2.5} />
+      <Label x={29} y={35} fill="#e2e8f0" weight={700} size={16}>ξ</Label>
+      <Label x={170} y={67} fill="#e9d5ff" weight={800} size={16}>{visual.setName}</Label>
+      {visual.inside.map((item, index) => (
+        <Label key={index}
+          x={170 + (index % columns - (columns - 1) / 2) * 35}
+          y={firstRow + Math.floor(index / columns) * 26}
+          fill="#ffffff" weight={650} size={13}>
+          {textFor(item, lang)}
+        </Label>
+      ))}
+      {visual.outside.map((item, index) => {
+        const left = index < outsideLeftCount;
+        return (
+          <Label key={index} x={left ? 48 : 291}
+            y={68 + (left ? index : index - outsideLeftCount) * 27}
+            fill="#e2e8f0" weight={600} size={13}>
+            {textFor(item, lang)}
+          </Label>
+        );
+      })}
+    </svg>
+  );
+}
+
 function NumberLine({
   visual,
   lang,
@@ -677,7 +720,7 @@ export function MathQuestionVisual({
       ? stemLeafRows(visual.values).map(([stem, leaves]) => [String(stem), leaves.join("  ")])
       : visual.rows.map((row) => [t(row.value), String(row.frequency)]);
     return (
-      <figure data-math-visual={visual.kind} className="mx-auto w-full max-w-[320px]">
+      <figure data-math-visual={visual.kind} className="mx-auto w-full max-w-[440px]">
         <table className="w-full border-collapse text-sm">
           <caption className="pb-2 text-center text-xs font-semibold text-slate-400">
             {title}
@@ -762,6 +805,9 @@ export function MathQuestionVisual({
         <Pie sectors={visual.sectors.map((sector) => ({ ...sector, label: t(sector.label) }))} />
       );
       break;
+    case "venn-one-set":
+      chart = <VennOneSet visual={visual} lang={lang} />;
+      break;
     case "number-line":
       chart = <NumberLine visual={visual} lang={lang} />;
       break;
@@ -782,7 +828,7 @@ export function MathQuestionVisual({
       data-math-visual={visual.kind}
       role="img"
       aria-label={describeMathQuestionVisual(visual, lang)}
-      className="mx-auto w-full max-w-[320px]"
+      className="mx-auto w-full max-w-[440px]"
     >
       <figcaption className="pb-1 text-center text-xs font-semibold text-slate-400">
         {title}

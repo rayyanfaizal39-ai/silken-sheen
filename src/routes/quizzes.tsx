@@ -68,6 +68,7 @@ import { MATH_F1_C7_QUIZ_VISUALS } from "@/content/form1/math/chapter-7/quiz-vis
 import { MATH_F1_C8_QUIZ_VISUALS } from "@/content/form1/math/chapter-8/quiz-visuals";
 import { MATH_F1_C9_QUIZ_VISUALS } from "@/content/form1/math/chapter-9/quiz-visuals";
 import { MATH_F1_C10_QUIZ_VISUALS } from "@/content/form1/math/chapter-10/quiz-visuals";
+import { MATH_F1_C11_QUIZ_VISUALS } from "@/content/form1/math/chapter-11/quiz-visuals";
 import { MATH_F1_C13_QUIZ_VISUALS } from "@/content/form1/math/chapter-13/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
@@ -7718,6 +7719,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Penyelesaian persamaan serentak diwakili oleh titik persilangan antara dua garis lurus pada graf.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.intersectingGraph,
   ],
   [
     "Jika graf bagi dua persamaan serentak adalah dua garis selari, apakah kesimpulan tentang penyelesaiannya?",
@@ -7730,6 +7732,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Garis selari tidak akan bersilang, jadi persamaan serentak itu tiada penyelesaian.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.parallelGraph,
   ],
   [
     "Hasil tambah dua nombor ialah 15 dan beza kedua-dua nombor itu ialah 3. Apakah nombor-nombor itu?",
@@ -7999,6 +8002,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "The solution of simultaneous equations is represented by the point of intersection between the two straight lines on the graph.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.intersectingGraph,
   ],
   [
     "If the graphs of two simultaneous equations are two parallel lines, what can be concluded about the solution?",
@@ -8011,6 +8015,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Parallel lines never intersect, so the simultaneous equations have no solution.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.parallelGraph,
   ],
   [
     "The sum of two numbers is 15 and their difference is 3. What are the numbers?",
@@ -14644,6 +14649,7 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "A' ialah set semua unsur dalam ξ yang tidak berada dalam A.",
     "Easy",
+    MATH_F1_C11_QUIZ_VISUALS.structure,
   ],
   [
     "Apakah subset?",
@@ -14907,6 +14913,7 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A' is the set of all elements in ξ that are not in A.",
     "Easy",
+    MATH_F1_C11_QUIZ_VISUALS.structure,
   ],
   [
     "What is a subset?",
@@ -15071,6 +15078,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "A' = unsur dalam ξ yang bukan dalam A = {2,4,6,8,10}.",
     "Medium",
+    MATH_F1_C11_QUIZ_VISUALS.oddNumbers,
   ],
   [
     "Adakah {a,b,c} = {c,a,b}? Berikan alasan.",
@@ -15109,6 +15117,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "B' = unsur dalam ξ yang bukan dalam B = {b,d,f,h}. n(B') = 4.",
     "Medium",
+    MATH_F1_C11_QUIZ_VISUALS.letterB,
   ],
   [
     "Tentukan sama ada {3,5} ⊂ {1,2,3,4,5,6}.",
@@ -15185,6 +15194,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "A' ialah kawasan dalam segi empat tepat ξ yang berada di luar bulatan A.",
     "Medium",
+    MATH_F1_C11_QUIZ_VISUALS.structure,
   ],
   [
     "Jika n(ξ) = 12 dan n(A) = 7, cari n(A').",
@@ -15213,6 +15223,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "n(A) = 3. n(A') = n(ξ) − n(A) = 10 − 3 = 7.",
     "Medium",
+    MATH_F1_C11_QUIZ_VISUALS.smallEvens,
   ],
   [
     "Set M = {p,q,r,s,t}. Berapakah bilangan subset M?",
@@ -15344,6 +15355,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "A' = elements in ξ not in A = {2,4,6,8,10}.",
     "Medium",
+    MATH_F1_C11_QUIZ_VISUALS.oddNumbers,
   ],
   [
     "Is {a,b,c} = {c,a,b}? Give a reason.",
@@ -15382,6 +15394,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "B' = elements in ξ not in B = {b,d,f,h}. n(B') = 4.",
     "Medium",
+    MATH_F1_C11_QUIZ_VISUALS.letterB,
   ],
   [
     "Determine whether {3,5} ⊂ {1,2,3,4,5,6}.",
@@ -15458,6 +15471,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "A' is the region inside rectangle ξ that is outside circle A.",
     "Medium",
+    MATH_F1_C11_QUIZ_VISUALS.structure,
   ],
   [
     "If n(ξ) = 12 and n(A) = 7, find n(A').",
@@ -15486,6 +15500,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "n(A) = 3. n(A') = n(ξ) − n(A) = 10 − 3 = 7.",
     "Medium",
+    MATH_F1_C11_QUIZ_VISUALS.smallEvens,
   ],
   [
     "Set M = {p,q,r,s,t}. How many subsets does M have?",
@@ -15629,6 +15644,7 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "A' ialah unsur ξ yang tiada dalam A: A' = {b, d, f}. Oleh sebab B = {b, d, f}, maka A' = B.",
     "Hard",
+    MATH_F1_C11_QUIZ_VISUALS.lettersA,
   ],
   [
     "Set P mempunyai 256 subset dan n(ξ) = 12. Cari n(P) dan n(P').",
@@ -15733,6 +15749,7 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Unsur ξ yang tiada dalam A membentuk pelengkap A, iaitu A' = {5, 6, 7, 8, 9, 10}. Maka B = A'.",
     "Hard",
+    MATH_F1_C11_QUIZ_VISUALS.firstFour,
   ],
   [
     "ξ = {1, 2, 3, ..., 15}. A = {nombor ganjil} dan B = {nombor perdana}. Cari n(A'), n(B') dan tentukan sama ada B ⊂ A.",
@@ -15902,6 +15919,7 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "A' is the elements of ξ not in A: A' = {b, d, f}. Since B = {b, d, f}, A' = B.",
     "Hard",
+    MATH_F1_C11_QUIZ_VISUALS.lettersA,
   ],
   [
     "Set P has 256 subsets and n(ξ) = 12. Find n(P) and n(P').",
@@ -16011,6 +16029,7 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "The elements of ξ not in A form the complement of A, A' = {5, 6, 7, 8, 9, 10}. So B = A'.",
     "Hard",
+    MATH_F1_C11_QUIZ_VISUALS.firstFour,
   ],
   [
     "ξ = {1, 2, 3, ..., 15}. A = {odd numbers} and B = {prime numbers}. Find n(A'), n(B') and determine whether B ⊂ A.",

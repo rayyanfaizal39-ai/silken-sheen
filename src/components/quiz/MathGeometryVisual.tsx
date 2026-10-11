@@ -31,7 +31,7 @@ export function MathGeometryVisual({
         {visual.panels.map((p, index) => (
           <div
             key={index}
-            className="mx-auto w-full max-w-[320px] rounded-xl border border-white/10 bg-slate-950/40 p-2"
+            className={`mx-auto w-full ${visual.panels.length > 1 ? "max-w-[320px]" : "max-w-[440px]"} rounded-xl border border-white/10 bg-slate-950/40 p-2`}
           >
             <p className="text-center text-xs font-semibold text-amber-200">
               {p.title[lang]}

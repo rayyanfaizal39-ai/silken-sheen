@@ -103,6 +103,14 @@ export type MathQuestionVisual =
       sectors: { label: VisualText; angle: number; text: string }[];
     }
   | {
+      /** One set inside its universal set; membership data only, never a solved complement label. */
+      kind: "venn-one-set";
+      title: LocalizedText;
+      setName: "A" | "B";
+      inside: VisualText[];
+      outside: VisualText[];
+    }
+  | {
       kind: "number-line";
       title: LocalizedText;
       min: number;
@@ -209,6 +217,7 @@ const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
   "line-graph": { bm: "Graf garis", dlp: "Line graph" },
   "frequency-polygon": { bm: "Poligon kekerapan", dlp: "Frequency polygon" },
   "pie-chart": { bm: "Carta pai", dlp: "Pie chart" },
+  "venn-one-set": { bm: "Rajah Venn", dlp: "Venn diagram" },
   "number-line": { bm: "Garis nombor", dlp: "Number line" },
   "dot-plot": { bm: "Plot titik", dlp: "Dot plot" },
   "stem-leaf": { bm: "Plot batang-dan-daun", dlp: "Stem-and-leaf plot" },
@@ -300,6 +309,12 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
         .join(". ")}.`;
     case "pie-chart":
       return `${head} ${pairs(visual.sectors.map((sector) => [sector.label, sector.text]))}.`;
+    case "venn-one-set": {
+      // An empty region is not announced: "outside A: —" would read as A′ = ∅.
+      const region = (label: string, items: VisualText[]) =>
+        items.length ? ` ${label} ${visual.setName}: ${items.map((item) => textFor(item, lang)).join(", ")}.` : "";
+      return `${head} ${bm ? "Set semesta" : "Universal set"} ξ; ${bm ? "bulatan" : "circle"} ${visual.setName}.${region(bm ? "Dalam" : "Inside", visual.inside)}${region(bm ? "Di luar" : "Outside", visual.outside)}`;
+    }
     case "number-line": {
       const tickText = visual.ticks
         .map((tick) => tick.label === undefined ? String(tick.value) : textFor(tick.label, lang))

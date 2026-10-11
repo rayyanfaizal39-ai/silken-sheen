@@ -82,6 +82,31 @@ export const MATH_F1_C6_QUIZ_VISUALS = {
   bracketsThreeXMinusTwo: balance("Persamaan dengan kurungan", "Equation with brackets",
     { left: "3(x − 2)", right: "12" }),
 
+  // Graphical-method concepts — only the two GIVEN configurations are drawn.
+  // Intersection coordinates and the system's solution count are not printed.
+  intersectingGraph: {
+    kind: "coordinate-plane",
+    title: title("Graf dua garis lurus", "Two straight-line graphs"),
+    description: title("Dua garis bagi persamaan serentak", "Two lines for simultaneous equations"),
+    domain: [-5, 5, -5, 5],
+    step: 1,
+    lines: [
+      { a: 1, b: 1, c: 2, label: title("Garis 1", "Line 1") },
+      { a: 1, b: -1, c: 0, label: title("Garis 2", "Line 2") },
+    ],
+  },
+  parallelGraph: {
+    kind: "coordinate-plane",
+    title: title("Graf dua garis lurus", "Two straight-line graphs"),
+    description: title("Dua garis lurus pada satah yang sama", "Two straight lines in the same plane"),
+    domain: [-5, 5, -5, 5],
+    step: 1,
+    lines: [
+      { a: -1, b: 1, c: 1, label: title("Garis 1", "Line 1") },
+      { a: -1, b: 1, c: -2, label: title("Garis 2", "Line 2") },
+    ],
+  },
+
   // Challenge — two separate balances prevent students conflating two
   // equations in a system. Shopping cards use only given item counts/prices.
   systemTenTwo: balance("Dua persamaan serentak", "Two simultaneous equations",
