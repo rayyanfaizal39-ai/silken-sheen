@@ -9,7 +9,7 @@ import { MATH_F1_C6_QUIZ_VISUALS as V } from "./quiz-visuals";
 
 const OBJECTIVES = ["objective-1", "objective-2", "objective-3"] as const;
 const LANGS = ["bm", "dlp"] as const;
-const EXPECTED_COUNTS = [7, 11, 13] as const;
+const EXPECTED_COUNTS = [7, 11, 15] as const;
 type Objective = (typeof OBJECTIVES)[number];
 type Lang = (typeof LANGS)[number];
 
@@ -25,7 +25,7 @@ const visualName = (visual: unknown) =>
   Object.entries(V).find(([, value]) => value === visual)?.[0];
 
 describe("Form 1 Mathematics Chapter 6 — selective equation illustrations", () => {
-  it("preserves all 180 question IDs, answers and the intended 7/11/13 visuals per language", () => {
+  it("preserves all 180 question IDs, answers and the intended 7/11/15 visuals per language", () => {
     for (const lang of LANGS) {
       OBJECTIVES.forEach((objective, index) => {
         const questions = bank(objective, lang);
@@ -52,8 +52,8 @@ describe("Form 1 Mathematics Chapter 6 — selective equation illustrations", ()
     expect(names("bm")).toEqual(names("dlp"));
     const usedKeys = new Set(names("bm").flat().filter(Boolean));
     expect(usedKeys).toEqual(new Set(Object.keys(V)));
-    expect(Object.keys(V)).toHaveLength(30);
-    expect(names("bm").flat().filter(Boolean)).toHaveLength(31);
+    expect(Object.keys(V)).toHaveLength(32);
+    expect(names("bm").flat().filter(Boolean)).toHaveLength(33);
     for (const lang of LANGS) {
       const other = bank("objective-2", lang, "Chapter 5");
       expect(other.some((question) => visualName(question.visual) !== undefined)).toBe(false);
@@ -107,6 +107,28 @@ describe("Form 1 Mathematics Chapter 6 — selective equation illustrations", ()
       expect(fruit.scenes.map((scene) => scene.result)).toEqual(["RM13", "RM8"]);
     }
     expect(describeMathQuestionVisual(V.fruitPurchases, "dlp")).not.toContain("RM5");
+  });
+
+  it("draws graph relationships faithfully, without writing the answer", () => {
+    const crossed = V.intersectingGraph;
+    const parallel = V.parallelGraph;
+    expect(crossed.kind).toBe("coordinate-plane");
+    expect(parallel.kind).toBe("coordinate-plane");
+    const determinant = (lines: typeof crossed.lines) =>
+      lines[0].a * lines[1].b - lines[1].a * lines[0].b;
+    expect(determinant(crossed.lines)).not.toBe(0);
+    expect(determinant(parallel.lines)).toBe(0);
+    expect(parallel.lines[0].c).not.toBe(parallel.lines[1].c);
+    for (const lang of LANGS) {
+      expect(bank("objective-3", lang)[17].visual).toBe(crossed);
+      expect(bank("objective-3", lang)[18].visual).toBe(parallel);
+      for (const visual of [crossed, parallel]) {
+        const html = renderToStaticMarkup(createElement(MathQuestionVisual, { visual, lang }));
+        expect(html).toContain('data-math-visual="coordinate-plane"');
+        expect(html).toContain("<svg");
+      }
+      expect(describeMathQuestionVisual(crossed, lang)).not.toMatch(/x\\s*=\\s*1|y\\s*=\\s*1/);
+    }
   });
 
   it("renders all visual types as readable, accessible, responsive and static", () => {
