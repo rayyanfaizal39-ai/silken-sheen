@@ -37,7 +37,7 @@ const mobileMindMap: MindNode = {
 describe("MindMap mobile learning path", () => {
   it("renders a connected, expandable vertical path without a scaled canvas", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={mobileMindMap} mobileLayout="learning-path" />,
+      <MindMap data={mobileMindMap} mobileLayout="learning-path" locale="ms" />,
     );
 
     expect(markup).toContain('aria-label="Peta minda KATA KERJA"');
@@ -55,7 +55,7 @@ describe("MindMap mobile learning path", () => {
 
   it("renders Kata Adjektif in branch order with mobile overflow and safe-area protection", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuKataAdjektifMindMap} mobileLayout="learning-path" />,
+      <MindMap data={bahasaMelayuKataAdjektifMindMap} mobileLayout="learning-path" locale="ms" />,
     );
     const branchPositions = [
       "Definisi",
@@ -85,7 +85,7 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Kata Sendi Nama learning path without leaking child content", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuKataSendiNamaMindMap} mobileLayout="learning-path" />,
+      <MindMap data={bahasaMelayuKataSendiNamaMindMap} mobileLayout="learning-path" locale="ms" />,
     );
     const branchPositions = (bahasaMelayuKataSendiNamaMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -107,7 +107,7 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Kata Ganti Nama path in order without child details", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuKataGantiNamaMindMap} mobileLayout="learning-path" />,
+      <MindMap data={bahasaMelayuKataGantiNamaMindMap} mobileLayout="learning-path" locale="ms" />,
     );
     const branchPositions = (bahasaMelayuKataGantiNamaMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -127,7 +127,7 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Kata Hubung path in order without child details", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuKataHubungMindMap} mobileLayout="learning-path" />,
+      <MindMap data={bahasaMelayuKataHubungMindMap} mobileLayout="learning-path" locale="ms" />,
     );
     const branchPositions = (bahasaMelayuKataHubungMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -151,7 +151,11 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Penjodoh Bilangan path in order without child details", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuPenjodohBilanganMindMap} mobileLayout="learning-path" />,
+      <MindMap
+        data={bahasaMelayuPenjodohBilanganMindMap}
+        mobileLayout="learning-path"
+        locale="ms"
+      />,
     );
     const branchPositions = (bahasaMelayuPenjodohBilanganMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -175,7 +179,7 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Kata Bilangan path in order without child details", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuKataBilanganMindMap} mobileLayout="learning-path" />,
+      <MindMap data={bahasaMelayuKataBilanganMindMap} mobileLayout="learning-path" locale="ms" />,
     );
     const branchPositions = (bahasaMelayuKataBilanganMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -199,7 +203,7 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Imbuhan path in order without child details", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuImbuhanMindMap} mobileLayout="learning-path" />,
+      <MindMap data={bahasaMelayuImbuhanMindMap} mobileLayout="learning-path" locale="ms" />,
     );
     const branchPositions = (bahasaMelayuImbuhanMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -223,7 +227,7 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Penanda Wacana path in order without child details", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuPenandaWacanaMindMap} mobileLayout="learning-path" />,
+      <MindMap data={bahasaMelayuPenandaWacanaMindMap} mobileLayout="learning-path" locale="ms" />,
     );
     const branchPositions = (bahasaMelayuPenandaWacanaMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -247,7 +251,7 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Form 2 Frasa Nama path without leaking lesson details", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuForm2FrasaNamaMindMap} mobileLayout="learning-path" />,
+      <MindMap data={bahasaMelayuForm2FrasaNamaMindMap} mobileLayout="learning-path" locale="ms" />,
     );
     const branchPositions = (bahasaMelayuForm2FrasaNamaMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -272,7 +276,11 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Form 2 Frasa Kerja path without horizontal overflow or child leakage", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuForm2FrasaKerjaMindMap} mobileLayout="learning-path" />,
+      <MindMap
+        data={bahasaMelayuForm2FrasaKerjaMindMap}
+        mobileLayout="learning-path"
+        locale="ms"
+      />,
     );
     const branchPositions = (bahasaMelayuForm2FrasaKerjaMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -295,7 +303,11 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Form 2 Frasa Adjektif path without horizontal overflow or child leakage", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuForm2FrasaAdjektifMindMap} mobileLayout="learning-path" />,
+      <MindMap
+        data={bahasaMelayuForm2FrasaAdjektifMindMap}
+        mobileLayout="learning-path"
+        locale="ms"
+      />,
     );
     const branchPositions = (bahasaMelayuForm2FrasaAdjektifMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -318,7 +330,7 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Form 2 Ayat Pasif path in order without child leakage", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuForm2AyatPasifMindMap} mobileLayout="learning-path" />,
+      <MindMap data={bahasaMelayuForm2AyatPasifMindMap} mobileLayout="learning-path" locale="ms" />,
     );
     const branchPositions = (bahasaMelayuForm2AyatPasifMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -341,7 +353,7 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Form 2 Ayat Aktif path in order without child leakage", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuForm2AyatAktifMindMap} mobileLayout="learning-path" />,
+      <MindMap data={bahasaMelayuForm2AyatAktifMindMap} mobileLayout="learning-path" locale="ms" />,
     );
     const branchPositions = (bahasaMelayuForm2AyatAktifMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),
@@ -364,7 +376,11 @@ describe("MindMap mobile learning path", () => {
 
   it("renders the collapsed Form 2 Ayat Tunggal path in order without child leakage", () => {
     const markup = renderToStaticMarkup(
-      <MindMap data={bahasaMelayuForm2AyatTunggalMindMap} mobileLayout="learning-path" />,
+      <MindMap
+        data={bahasaMelayuForm2AyatTunggalMindMap}
+        mobileLayout="learning-path"
+        locale="ms"
+      />,
     );
     const branchPositions = (bahasaMelayuForm2AyatTunggalMindMap.children ?? []).map((branch) =>
       markup.indexOf(`data-node-id="${branch.id}"`),

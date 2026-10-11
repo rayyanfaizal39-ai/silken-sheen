@@ -624,32 +624,28 @@ describe("MindMap reusable hierarchy", () => {
   });
 });
 
-describe("MindMap balanced desktop layout", () => {
+describe("MindMap horizontal tree layout", () => {
   it.each(tatabahasaMindMaps)(
-    "%s distributes collapsed first-level branches on both sides",
+    "%s places the main topic on the left with primary branches to its right",
     (_, data) => {
       const layout = calculateMindMapLayout(data, new Set([data.id]));
-      const root = layout.positions.get(data.id);
+      const root = layout.positions.get(data.id)!;
       expect(root).toBeDefined();
 
-      const branches = (data.children ?? []).map((branch) => {
-        const position = layout.positions.get(branch.id);
-        expect(position).toBeDefined();
-        return position!;
-      });
-      const left = branches.filter((position) => position.x + position.w <= root!.x);
-      const right = branches.filter((position) => position.x >= root!.x + root!.w);
-
-      expect(left.length).toBeGreaterThan(0);
-      expect(right.length).toBeGreaterThan(0);
-      expect(Math.abs(left.length - right.length)).toBeLessThanOrEqual(1);
-      expect(branches.every((position) => position.w >= 188)).toBe(true);
+      const branches = (data.children ?? []).map((branch) => layout.positions.get(branch.id)!);
+      expect(branches.every(Boolean)).toBe(true);
+      expect(branches.every((position) => position.x >= root.x + root.w)).toBe(true);
+      // One aligned column, in the chapter's own order from top to bottom.
+      expect(new Set(branches.map((position) => position.x)).size).toBe(1);
+      const tops = branches.map((position) => position.y);
+      expect(tops).toEqual([...tops].sort((a, b) => a - b));
+      expect(branches.every((position) => position.w >= 228)).toBe(true);
       expect(layout.edges).toHaveLength(data.children?.length ?? 0);
     },
   );
 
   it.each(tatabahasaMindMaps)(
-    "%s keeps fully expanded nodes separate and growing outward",
+    "%s keeps fully expanded nodes separate and growing to the right",
     (_, data) => {
       const layout = calculateMindMapLayout(data, getExpandableMindNodeIds(data));
       const positions = [...layout.positions.entries()];
@@ -665,10 +661,7 @@ describe("MindMap balanced desktop layout", () => {
       layout.edges.forEach(({ from, to }) => {
         const parent = layout.positions.get(from)!;
         const child = layout.positions.get(to)!;
-        expect(
-          child.x + child.w <= parent.x || child.x >= parent.x + parent.w,
-          `${to} must grow outward from ${from}`,
-        ).toBe(true);
+        expect(child.x >= parent.x + parent.w, `${to} must sit right of ${from}`).toBe(true);
       });
     },
   );

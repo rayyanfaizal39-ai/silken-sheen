@@ -8,6 +8,12 @@ const LEARNING_ARENA_CSS = `
     from { transform: translate3d(0, 0, 0); }
     to { transform: translate3d(-1.2%, 0.8%, 0); }
   }
+  /* Page scroll lock. Lives in a stylesheet so it survives other code
+     resetting body's inline overflow (the boot loader does on first load). */
+  html[data-learning-arena-open],
+  html[data-learning-arena-open] body {
+    overflow: hidden;
+  }
   .learning-arena {
     --arena-accent: #a78bfa;
     --arena-accent-from: #6366f1;
@@ -35,7 +41,8 @@ const LEARNING_ARENA_CSS = `
 `;
 
 /**
- * Full-viewport presentation frame shared by the Quiz and Flashcard arenas.
+ * Full-viewport presentation frame shared by the Quiz, Flashcard and Mind Map
+ * arenas.
  * It owns only presentation: portal, scroll lock, backdrop, subject accent
  * variables, content width and safe-area padding. Each learning tool renders
  * its own behaviour inside it.
@@ -49,13 +56,19 @@ export function LearningArena({
   label,
   atmosphere = "drift",
   keepMobileNav = false,
+  layout = "column",
 }: {
   children: ReactNode;
   subjectId?: string | null;
   className?: string;
   label: string;
-  atmosphere?: "drift" | "planet";
+  atmosphere?: "drift" | "planet" | "none";
   keepMobileNav?: boolean;
+  /**
+   * "column": centred reading column with safe-area padding (Quiz, Flashcards).
+   * "fill": edge-to-edge, fixed to the viewport; the child owns safe areas.
+   */
+  layout?: "column" | "fill";
 }) {
   const planet =
     subjectId && subjectPlanetStyles && subjectId in subjectPlanetStyles
@@ -70,22 +83,33 @@ export function LearningArena({
       }
     : undefined;
   useEffect(() => {
+    const root = document.documentElement;
+    root.dataset.learningArenaOpen = String(Number(root.dataset.learningArenaOpen ?? 0) + 1);
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = previous;
+      const open = Number(root.dataset.learningArenaOpen ?? 1) - 1;
+      if (open > 0) root.dataset.learningArenaOpen = String(open);
+      else delete root.dataset.learningArenaOpen;
     };
   }, []);
 
   const frame = (
     <div
-      className={`learning-arena fixed inset-0 z-[200] isolate overflow-x-hidden overflow-y-auto bg-[#050816] text-white ${keepMobileNav ? "keeps-mobile-nav" : ""} ${className}`}
-      style={{ minHeight: "100vh", height: "100dvh", ...themeVars }}
+      className={`learning-arena fixed inset-0 z-[200] isolate overflow-x-hidden ${layout === "fill" ? "overflow-y-hidden" : "overflow-y-auto"} bg-[#050816] text-white ${keepMobileNav ? "keeps-mobile-nav" : ""} ${className}`}
+      style={{
+        minHeight: "100vh",
+        height: "100dvh",
+        // A filled arena never scrolls, not even programmatically on focus.
+        ...(layout === "fill" ? { overflow: "clip" } : null),
+        ...themeVars,
+      }}
       role="region"
       aria-label={label}
     >
       <style>{LEARNING_ARENA_CSS}</style>
-      {atmosphere === "planet" && planet ? (
+      {atmosphere === "none" ? null : atmosphere === "planet" && planet ? (
         <PlanetEnvironment subjectId={subjectId as PlanetSubjectId} />
       ) : (
         // Clipped so the drifting glow can never extend the scrollable area.
@@ -93,9 +117,15 @@ export function LearningArena({
           <div className="learning-arena-drift absolute inset-0" />
         </div>
       )}
-      <div className="learning-arena-content relative mx-auto flex min-h-full w-full max-w-[1050px] flex-col px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 sm:pb-[max(1rem,env(safe-area-inset-bottom))]">
-        {children}
-      </div>
+      {layout === "fill" ? (
+        <div className="learning-arena-content relative flex h-full w-full flex-col">
+          {children}
+        </div>
+      ) : (
+        <div className="learning-arena-content relative mx-auto flex min-h-full w-full max-w-[1050px] flex-col px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 sm:pb-[max(1rem,env(safe-area-inset-bottom))]">
+          {children}
+        </div>
+      )}
     </div>
   );
 

@@ -1,25 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
-import { ArrowLeft, ChevronLeft, ChevronRight, GitFork, Network, Rocket } from "lucide-react";
+import { ArrowLeft, GitFork, Network, Rocket } from "lucide-react";
 import { forms, subjects, type Form } from "@/data/subjects-meta";
 import {
   SubjectGrid,
   FormGrid,
   FormComingSoon,
-  ContentHeader,
   ComingSoonScreen,
 } from "@/components/ChapterPicker";
 import { ScienceLanguagePicker, ScienceLangBar } from "@/components/ScienceLanguagePicker";
 import { useScienceLang } from "@/hooks/use-science-lang";
 import { useContentRegistry, type ContentRegistryModule } from "@/hooks/use-content-registry";
-import { MindMapBlock } from "@/components/notes/MindMapBlock";
-import { ChapterContentTabs } from "@/components/notes/ChapterFeatureBar";
-import {
-  formSearchValue,
-  normalizeFormParam,
-  normalizeSubjectParam,
-} from "@/lib/study-routing";
+import { MindMapExplorer } from "@/components/mindmap/MindMapExplorer";
+import { formSearchValue, normalizeFormParam, normalizeSubjectParam } from "@/lib/study-routing";
 import {
   BAHASA_MELAYU_CATEGORY_DETAILS,
   getBahasaMelayuMindMapCategories,
@@ -489,6 +483,9 @@ function MindMapsPage() {
   const [chapter, setChapter] = useState<string | null>(search.chapter ?? null);
   const [selectedBmCategory, setSelectedBmCategory] =
     useState<BahasaMelayuMindMapCategory>("Tatabahasa");
+  // The chapter the student last opened, so the chapter list can return
+  // them to the same card instead of the top of the page.
+  const [recentChapterKey, setRecentChapterKey] = useState<string | null>(null);
   const { lang: scienceLang, setLang: setScienceLang } = useScienceLang();
   const isBilingualSubject = subject === "science" || subject === "math";
   const needsScienceLang = isBilingualSubject && !scienceLang;
@@ -572,8 +569,13 @@ function MindMapsPage() {
     }
   }, [activeBahasaMelayuCategory]);
 
+  useEffect(() => {
+    if (activeChapterKey) setRecentChapterKey(activeChapterKey);
+  }, [activeChapterKey]);
+
   function chooseSubject(subjectId: string) {
     setChapter(null);
+    setRecentChapterKey(null);
     setSelectedBmCategory("Tatabahasa");
     void navigate({
       search: () => ({
@@ -586,6 +588,7 @@ function MindMapsPage() {
 
   function chooseForm(selectedForm: Form) {
     setChapter(null);
+    setRecentChapterKey(null);
     setSelectedBmCategory("Tatabahasa");
     void navigate({
       search: (previous: Record<string, unknown>) => ({
@@ -665,6 +668,55 @@ function MindMapsPage() {
     );
   }
 
+  const mindMap =
+    subject &&
+    !needsScienceLang &&
+    activeChapterKey &&
+    registry?.hasResourceContent(subject, form, activeChapterKey, "mindMap", activeScienceLang)
+      ? activeChapter?.mindMap
+      : undefined;
+
+  if (subject && activeChapterKey && mindMap) {
+    const subjectMeta = subjects.find((candidate) => candidate.id === subject);
+    const isMalay = subject === "bm";
+    const categoryLabel = chapterMeta?.categoryLabel;
+    const formNumber = form.replace("Form ", "");
+    return (
+      <MindMapExplorer
+        // A new chapter starts a fresh exploration (expansion, camera, reader).
+        key={`${subject}:${form}:${activeScienceLang ?? ""}:${activeChapterKey}`}
+        data={mindMap.data}
+        title={mindMap.title}
+        subjectId={subject}
+        palette={mindMapPalette}
+        locale={isMalay ? "ms" : "en"}
+        header={{
+          chapter: chapterMeta?.label ?? mindMap.title,
+          subject: subjectMeta?.name,
+          subjectEmoji: subjectMeta?.emoji,
+          form: isMalay ? `Tingkatan ${formNumber}` : form,
+          category: categoryLabel,
+          backLabel: categoryLabel
+            ? isMalay
+              ? `Kembali ke ${categoryLabel}`
+              : `Back to ${categoryLabel}`
+            : undefined,
+          onBack: backToChapters,
+          topicNav: showBmTopicNavigation
+            ? {
+                previous: previousTopic
+                  ? { label: previousTopic.key, onSelect: () => chooseChapter(previousTopic.key) }
+                  : undefined,
+                next: nextTopic
+                  ? { label: nextTopic.key, onSelect: () => chooseChapter(nextTopic.key) }
+                  : undefined,
+              }
+            : undefined,
+        }}
+      />
+    );
+  }
+
   return (
     <AcademyPageShell subjectId={planetSubjectId}>
       {!subject ? (
@@ -702,6 +754,7 @@ function MindMapsPage() {
             form={form}
             scienceLang={activeScienceLang}
             initialBahasaMelayuCategory={selectedBmCategory}
+            recentChapterKey={recentChapterKey}
             onSelect={chooseChapter}
             onBack={backToForms}
           />
@@ -724,101 +777,9 @@ function MindMapsPage() {
           onBack={backToChapters}
         />
       ) : (
-        <>
-          <ContentHeader
-            subjectId={subject}
-            chapterKey={activeChapterKey}
-            scienceLang={activeScienceLang}
-            form={form}
-            mode="mindmaps"
-            onBack={backToChapters}
-          />
-          <ChapterContentTabs
-            subjectId={subject}
-            form={form}
-            chapterKey={activeChapterKey}
-            scienceLang={activeScienceLang}
-            currentContentType="mindmaps"
-          />
-          {activeChapter?.mindMap ? (
-            <>
-              <MindMapBlock
-                id="mindMap"
-                data={activeChapter.mindMap.data}
-                title={activeChapter.mindMap.title}
-                storageKey={`mindmaps:${subject}:${form}:${activeChapterKey}`}
-                palette={mindMapPalette}
-                mobileLayout={subject === "bm" ? "learning-path" : "canvas"}
-              />
-              {showBmTopicNavigation && (
-                <nav
-                  aria-label={`Navigasi topik ${chapterMeta?.categoryLabel ?? "Bahasa Melayu"}`}
-                  className="mb-8 grid gap-3 sm:grid-cols-2"
-                >
-                  <button
-                    type="button"
-                    onClick={() => previousTopic && chooseChapter(previousTopic.key)}
-                    disabled={!previousTopic}
-                    aria-disabled={!previousTopic}
-                    className="group inline-flex min-h-16 items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-left transition-all duration-200 hover:border-cyan-300/30 hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70"
-                  >
-                    <ChevronLeft
-                      aria-hidden="true"
-                      className="h-5 w-5 shrink-0 text-cyan-200 transition-transform group-hover:-translate-x-0.5"
-                    />
-                    <span>
-                      <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
-                        Sebelumnya
-                      </span>
-                      <span className="mt-0.5 block text-sm font-bold text-white">
-                        {previousTopic?.key ?? "Tiada topik sebelumnya"}
-                      </span>
-                    </span>
-                  </button>
-                  {nextTopic ? (
-                    <button
-                      type="button"
-                      onClick={() => chooseChapter(nextTopic.key)}
-                      className="group inline-flex min-h-16 items-center justify-end gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.05] px-4 py-3 text-right transition-all duration-200 hover:border-cyan-300/30 hover:bg-white/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70"
-                    >
-                      <span>
-                        <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
-                          Seterusnya
-                        </span>
-                        <span className="mt-0.5 block text-sm font-bold text-white">
-                          {nextTopic.key}
-                        </span>
-                      </span>
-                      <ChevronRight
-                        aria-hidden="true"
-                        className="h-5 w-5 shrink-0 text-cyan-200 transition-transform group-hover:translate-x-0.5"
-                      />
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      disabled
-                      aria-disabled="true"
-                      className="inline-flex min-h-16 cursor-not-allowed items-center justify-end gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.025] px-4 py-3 text-right opacity-50"
-                    >
-                      <span>
-                        <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
-                          Seterusnya
-                        </span>
-                        <span className="mt-0.5 block text-sm font-bold text-white/60">
-                          Tiada topik seterusnya
-                        </span>
-                      </span>
-                      <ChevronRight aria-hidden="true" className="h-5 w-5 shrink-0 text-white/35" />
-                    </button>
-                  )}
-                </nav>
-              )}
-            </>
-          ) : (
-            <MindMapComingSoon onBack={backToChapters} />
-          )}
-        </>
+        // Registry still loading, or the chapter lists a mind map it does
+        // not ship yet; the explorer above renders once content exists.
+        <MindMapComingSoon onBack={backToChapters} />
       )}
     </AcademyPageShell>
   );
@@ -829,6 +790,7 @@ function MindMapChapterGrid({
   form,
   scienceLang,
   initialBahasaMelayuCategory,
+  recentChapterKey,
   onSelect,
   onBack,
 }: {
@@ -836,6 +798,7 @@ function MindMapChapterGrid({
   form: Form;
   scienceLang?: "bm" | "dlp";
   initialBahasaMelayuCategory?: BahasaMelayuMindMapCategory;
+  recentChapterKey?: string | null;
   onSelect: (key: string) => void;
   onBack: () => void;
 }) {
@@ -851,6 +814,17 @@ function MindMapChapterGrid({
     setActiveBahasaMelayuCategory(initialBahasaMelayuCategory ?? "Tatabahasa");
   }, [form, initialBahasaMelayuCategory, subjectId]);
 
+  const recentCardRef = useRef<HTMLButtonElement | null>(null);
+  const hasChapters = chapters.length > 0;
+
+  // Returning from a mind map lands on the chapter that was open.
+  useEffect(() => {
+    const card = recentCardRef.current;
+    if (!card) return;
+    card.scrollIntoView({ block: "center" });
+    card.focus({ preventScroll: true });
+  }, [hasChapters, recentChapterKey]);
+
   const activeCategoryChapters = chapters.filter(
     (chapter) =>
       !isBahasaMelayu || (chapter.categoryLabel ?? "Tatabahasa") === activeBahasaMelayuCategory,
@@ -863,7 +837,9 @@ function MindMapChapterGrid({
     return (
       <button
         key={chapter.key}
+        ref={chapter.key === recentChapterKey ? recentCardRef : undefined}
         type="button"
+        data-chapter-key={chapter.key}
         onClick={() => hasMindMap && onSelect(chapter.key)}
         disabled={!hasMindMap}
         className={`group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#0D1525]/80 p-5 text-left shadow-[0_18px_70px_rgba(0,0,0,0.20)] backdrop-blur-2xl transition-all duration-300 animate-slide-up hover:-translate-y-1 hover:border-cyan-300/30 hover:shadow-[0_24px_80px_rgba(14,165,233,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 ${
@@ -951,10 +927,10 @@ function MindMapChapterGrid({
             bahasaMelayuCategories.length === 5
               ? "grid-cols-2 sm:min-w-[720px] sm:grid-cols-5"
               : bahasaMelayuCategories.length === 4
-              ? "grid-cols-2 sm:min-w-[720px] sm:grid-cols-4"
-              : bahasaMelayuCategories.length === 3
-                ? "grid-cols-3 sm:min-w-[540px]"
-                : "grid-cols-2 sm:min-w-[360px]"
+                ? "grid-cols-2 sm:min-w-[720px] sm:grid-cols-4"
+                : bahasaMelayuCategories.length === 3
+                  ? "grid-cols-3 sm:min-w-[540px]"
+                  : "grid-cols-2 sm:min-w-[360px]"
           }`}
         >
           {bahasaMelayuCategories.map((category) => {
