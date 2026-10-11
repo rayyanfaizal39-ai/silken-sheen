@@ -1,6 +1,7 @@
 const ONBOARDING_EXEMPT_ROUTES = new Set([
   "/",
   "/account/billing",
+  "/card",
   "/contact",
   "/command-center-preview",
   "/explore-academy",
