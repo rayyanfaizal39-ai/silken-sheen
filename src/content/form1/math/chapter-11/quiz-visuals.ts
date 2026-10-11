@@ -17,7 +17,7 @@ const single = (setName: "A" | "B", inside: string[], outside: string[],
 
 export const MATH_F1_C11_QUIZ_VISUALS = {
   structure: single("A", [], [],
-    "Set A dalam set semesta ξ", "Set A inside universal set ξ"),
+    "Rajah Venn: ξ dan A", "Venn diagram: ξ and A"),
 
   oddNumbers: single("A", ["1", "3", "5", "7", "9"],
     ["2", "4", "6", "8", "10"],
