@@ -470,7 +470,7 @@ export function MathStandardFormVisual({
       data-math-visual={visual.kind}
       role="img"
       aria-label={describeMathStandardFormVisual(visual, lang)}
-      className="mx-auto w-full max-w-[360px] rounded-2xl border border-violet-400/20 bg-slate-950/40 p-3 sm:p-4"
+      className="mx-auto w-full max-w-[420px] rounded-2xl border border-violet-400/20 bg-slate-950/40 p-3 sm:p-4"
     >
       <figcaption className="mb-3 text-center text-xs font-semibold text-slate-400">
         {visual.title[lang]}
