@@ -307,7 +307,7 @@ describe("Chapter 7 live navigation and legacy consistency", () => {
     // Re-baselined 2026-10-11: Chapters 1–3 now live in quizzes.ts (single live owner,
     // 90 records moved before this audit) and the option-quality audit revised 32 live
     // questions in place (ids, answer keys and difficulty unchanged).
-    content: [541, "d83cda73dcd81a1152eec60fa5763629eae2ebde37d730f63eb1d6eb341381ed"],
+    content: [541, "d737617f8378138001273712a4c6c0e167625430092fb6cb30a94c1caf23dcd7"],
     quizzes: [210, "0369edee3d8e9f627cee16fdd2d2164851e87f897d839468f7f3bf33a5a7daaa"],
     flashcards: [415, "dbb8bcebd4755545b2ddedd4013a7808ba917d0307c5d0e35e39dc216176e1d5"],
   };
