@@ -6420,7 +6420,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     question: "Mengapakah kompas perlu diletakkan di atas permukaan yang rata?",
     options: [
-      "Supaya jarum sentiasa menghala objek.",
+      "Supaya jarum terus menghala ke objek.",
       "Supaya jarum terlindung daripada magnet.",
       "Supaya jarum dapat berpusing bebas.",
       "Supaya jarum selari dengan permukaan peta.",
@@ -6835,12 +6835,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Easy",
     chapter: "Chapter 2",
-    question: "Kedudukan sesuatu tempat ditentukan berdasarkan titik...?",
+    question: "Bagaimanakah kedudukan mutlak sesuatu tempat ditentukan?",
     options: [
-      "Permulaan.",
+      "Jarak relatif dari sesuatu mercu tanda.",
       "Persilangan antara latitud dan longitud.",
-      "Pertengahan Garisan Khatulistiwa.",
-      "Tertinggi di atas glob.",
+      "Persilangan dua garisan latitud utama.",
+      "Jarak antara dua kawasan pentadbiran.",
     ],
     answerIndex: 1,
     explanation:
@@ -7161,7 +7161,7 @@ export const quizzes: QuizQuestion[] = [
       "Ciri buatan manusia seperti petempatan dan ladang",
       "Ciri semula jadi seperti bentuk muka bumi dan saliran",
       "Ciri yang terhasil daripada kegiatan pertanian",
-      "Ciri yang diwakili oleh simbol titik sahaja",
+      "Ciri yang diwakili terutama oleh simbol titik",
     ],
     answerIndex: 1,
     explanation:
@@ -7459,7 +7459,7 @@ export const quizzes: QuizQuestion[] = [
       "Lukis ladang getah dengan simbol garisan dan masukkannya dalam petunjuk",
       "Lukis ladang getah dengan simbol kawasan dan masukkannya dalam petunjuk",
       "Lukis ladang getah dengan simbol kawasan dan tambahkan skala pada peta",
-      "Kekalkan simbol titik dan masukkan ladang getah dalam petunjuk sahaja",
+      "Kekalkan simbol titik dan tulis jenis tanaman dalam petunjuk",
     ],
     answerIndex: 1,
     explanation:
@@ -8011,7 +8011,7 @@ export const quizzes: QuizQuestion[] = [
       "Lapisan udara yang menyelubungi Bumi",
       "Kawasan yang didiami oleh benda hidup",
       "Lapisan luar Bumi yang terdiri daripada batuan",
-      "Semua bahagian air yang wujud di Bumi",
+      "Kawasan air seperti sungai, tasik dan lautan",
     ],
     answerIndex: 1,
     explanation:
@@ -8704,10 +8704,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Sungai membekalkan air bersih kepada penduduk dan kilang. Apakah kepentingan saliran ini?",
     options: [
-      "Kawasan tadahan hujan",
+      "Kawasan tadahan hujan untuk simpanan air",
       "Bekalan air domestik dan industri",
-      "Sempadan semula jadi negeri",
-      "Kawasan pemendapan aluvium",
+      "Sempadan semula jadi antara dua negeri",
+      "Kawasan pemendapan aluvium di muara",
     ],
     answerIndex: 1,
     explanation:
@@ -9315,7 +9315,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     question: "Bagaimanakah taburan penduduk di Malaysia?",
     options: [
-      "Sekata di semua negeri",
+      "Seragam antara kawasan bandar dan luar bandar",
       "Tertumpu di tanah tinggi",
       "Tidak sekata antara kawasan",
       "Sama rata di bandar dan desa",
@@ -9671,7 +9671,7 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Kawasan X ialah tanah pamah yang rata, mempunyai banyak kilang dan infrastruktur yang lengkap. Kawasan Y bergunung-ganang, sukar dihubungi dan kekurangan kemudahan. Perbandingan manakah yang betul?",
     options: [
-      "X padat – faktor dasar kerajaan sahaja; Y jarang – faktor ekonomi sahaja",
+      "X padat – faktor dasar kerajaan; Y jarang – faktor ekonomi",
       "X jarang – faktor fizikal dan sosial; Y padat – faktor fizikal, ekonomi dan sosial",
       "X padat – faktor fizikal, ekonomi dan sosial; Y jarang – faktor fizikal dan sosial",
       "X padat – faktor fizikal, ekonomi dan sosial; Y sederhana padat – faktor ekonomi",
@@ -9840,7 +9840,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 9",
     question: "Antara berikut, yang manakah menggambarkan sebuah petempatan bandar?",
     options: [
-      "Kemudahan asas yang minimum sahaja",
+      "Kemudahan asas kurang pelbagai dan penduduk jarang",
       "Kemudahan asas yang pelbagai dan kediaman moden",
       "Kediaman sederhana yang berciri tradisional",
       "Kegiatan utama pertanian, penternakan dan industri desa",
@@ -10727,7 +10727,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 11",
     question: "Bagaimanakah taburan penduduk di rantau Asia Tenggara?",
     options: [
-      "Sama rata di semua kawasan dan negara",
+      "Agak seragam antara kawasan bandar dan luar bandar",
       "Tidak sekata dan berbeza mengikut kawasan",
       "Tertumpu di kawasan pergunungan sahaja",
       "Tertumpu di kawasan pulau sahaja",
@@ -11002,7 +11002,7 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Antara kawasan berikut, yang manakah tergolong dalam kategori taburan penduduk sederhana?",
     options: [
-      "Pulau Jawa, Indonesia",
+      "Dataran rendah Pulau Jawa, Indonesia",
       "Pedalaman Sabah dan Sarawak",
       "Kawasan paya Sumatera Timur",
       "Pantai timur Semenanjung Malaysia",
@@ -11134,7 +11134,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 11",
     question: "Pernyataan manakah yang membandingkan fungsi Bangkok dan Singapura dengan betul?",
     options: [
-      "Bangkok: perdagangan dan pelabuhan sahaja; Singapura: ibu negara dan industri besi keluli",
+      "Bangkok: perdagangan dan pelabuhan; Singapura: ibu negara dan industri besi keluli",
       "Bangkok: industri besi keluli; Singapura: pemasangan kenderaan dan pertanian padi",
       "Bangkok: ibu negara dan industri elektronik; Singapura: kawasan berpenduduk jarang",
       "Bangkok: ibu negara dan industri elektronik; Singapura: perdagangan antarabangsa dan pelabuhan",
@@ -11701,11 +11701,11 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     question:
-      "Sebuah kawasan perumahan mempunyai banyak bekas pakai buang, sampah yang melimpah dan longkang yang kerap tersumbat. Pelan manakah yang paling sesuai?",
+      "Sebuah kawasan perumahan mempunyai banyak bekas pakai buang, sampah yang melimpah dan longkang yang kerap tersumbat. Pelan manakah paling lengkap untuk mengurangkan sisa, meningkatkan kesedaran dan mencegah pembuangan haram?",
     options: [
-      "Amalkan 3R sahaja kerana banjir kilat tidak berkaitan dengan sampah",
-      "Kuatkuasakan denda sahaja kerana kempen tidak mengurangkan sampah",
-      "Tambah tong sampah dan bakar sampah yang melimpah secara terbuka",
+      "Tambah tong sampah dan jadualkan kutipan berkala di kawasan perumahan",
+      "Adakan gotong-royong bulanan serta bersihkan longkang yang tersumbat",
+      "Bina pusat pelupusan baharu dan tingkatkan kekerapan kutipan sampah",
       "Amalkan 3R, jalankan kempen kesedaran dan kuatkuasakan denda pembuangan haram",
     ],
     answerIndex: 3,
