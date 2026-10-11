@@ -9315,7 +9315,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 8",
     question: "Bagaimanakah taburan penduduk di Malaysia?",
     options: [
-      "Seragam antara kawasan bandar dan luar bandar",
+      "Seragam antara negeri",
       "Tertumpu di tanah tinggi",
       "Tidak sekata antara kawasan",
       "Sama rata di bandar dan desa",
