@@ -58,7 +58,7 @@ export function MathCoordinateVisual({
       data-math-visual={visual.kind}
       role="img"
       aria-label={describeMathCoordinateVisual(visual, lang)}
-      className="mx-auto w-full max-w-[360px] rounded-xl border border-white/10 bg-slate-950/40 p-3"
+      className="mx-auto w-full max-w-[440px] rounded-xl border border-white/10 bg-slate-950/40 p-3"
     >
       <figcaption className="mb-2 text-center text-sm font-semibold text-amber-200">
         {visual.title[lang]}
