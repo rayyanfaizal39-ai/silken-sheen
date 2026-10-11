@@ -7719,6 +7719,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Penyelesaian persamaan serentak diwakili oleh titik persilangan antara dua garis lurus pada graf.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.intersectingGraph,
   ],
   [
     "Jika graf bagi dua persamaan serentak adalah dua garis selari, apakah kesimpulan tentang penyelesaiannya?",
@@ -7731,6 +7732,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Garis selari tidak akan bersilang, jadi persamaan serentak itu tiada penyelesaian.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.parallelGraph,
   ],
   [
     "Hasil tambah dua nombor ialah 15 dan beza kedua-dua nombor itu ialah 3. Apakah nombor-nombor itu?",
@@ -8000,6 +8002,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "The solution of simultaneous equations is represented by the point of intersection between the two straight lines on the graph.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.intersectingGraph,
   ],
   [
     "If the graphs of two simultaneous equations are two parallel lines, what can be concluded about the solution?",
@@ -8012,6 +8015,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Parallel lines never intersect, so the simultaneous equations have no solution.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.parallelGraph,
   ],
   [
     "The sum of two numbers is 15 and their difference is 3. What are the numbers?",
