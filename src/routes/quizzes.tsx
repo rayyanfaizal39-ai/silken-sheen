@@ -14630,7 +14630,6 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Segi empat tepat dalam gambar rajah Venn mewakili set semesta (ξ).",
     "Easy",
-    MATH_F1_C11_QUIZ_VISUALS.structure,
   ],
   [
     "Apakah yang diwakili oleh bulatan dalam gambar rajah Venn?",
@@ -14638,7 +14637,6 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Bulatan dalam gambar rajah Venn mewakili sesebuah set.",
     "Easy",
-    MATH_F1_C11_QUIZ_VISUALS.structure,
   ],
   [
     "Apakah pelengkap set A (A')?",
@@ -14896,7 +14894,6 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "The rectangle in a Venn diagram represents the universal set (ξ).",
     "Easy",
-    MATH_F1_C11_QUIZ_VISUALS.structure,
   ],
   [
     "What does the circle represent in a Venn diagram?",
@@ -14904,7 +14901,6 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A circle in a Venn diagram represents a set.",
     "Easy",
-    MATH_F1_C11_QUIZ_VISUALS.structure,
   ],
   [
     "What is the complement of set A (A')?",
