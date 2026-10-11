@@ -304,8 +304,11 @@ describe("Chapter 7 live navigation and legacy consistency", () => {
     notes: [6, "c0b48f42a8b9b103bbf69ddd6d97fc8da44078cba4b23ca6c91052dfa6d0a40b"],
     // Re-baselined for the Sejarah F1 Bab 4 quiz audit (sej-f1-c4-q1..q30 in content.ts,
     // same 30 ids). Every other Sejarah Form 1 record in this file is byte-identical.
-    content: [631, "e706c8fa7f1e1ad73a02d24747806152bd9fff33219ec735afe31ae0a1833cb2"],
-    quizzes: [210, "f2cdd25ce271fbc7ab6fe6762a47384da0b7478619e228c410bea78671de515a"],
+    // Re-baselined 2026-10-11: Chapters 1–3 now live in quizzes.ts (single live owner,
+    // 90 records moved before this audit) and the option-quality audit revised 32 live
+    // questions in place (ids, answer keys and difficulty unchanged).
+    content: [541, "d83cda73dcd81a1152eec60fa5763629eae2ebde37d730f63eb1d6eb341381ed"],
+    quizzes: [210, "0369edee3d8e9f627cee16fdd2d2164851e87f897d839468f7f3bf33a5a7daaa"],
     flashcards: [415, "dbb8bcebd4755545b2ddedd4013a7808ba917d0307c5d0e35e39dc216176e1d5"],
   };
 

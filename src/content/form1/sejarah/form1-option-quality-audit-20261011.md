@@ -35,4 +35,23 @@ Priority review items:
 
 ## Status
 
-Read-only live-bank audit and repair plan. The source content edits must be tested and committed separately. Existing textbook-specific chapter tests provide a useful starting point but are not a substitute for checking the printed text question by question.
+Repaired on 11 October 2026. All 240 live questions were reviewed. Using the printed *Buku Teks Sejarah Tingkatan 1* (`prompts/T1 BT SEJ - SEJARAH.pdf`, pp. 2–193), every fact a correction relies on was checked, as were the dates, figures, names, stages and definitions tested in each chapter. 32 questions were corrected; the other 208 needed no option repair. This is not a page-by-page proof of every statement in those 208. IDs, order, per-item difficulty, answer slots, XP and shuffle behaviour are unchanged. Only the live sources were edited; the stale Chapter 4–6 and 8 copies in `src/data/quizzes.ts` are byte-identical.
+
+| Chapter | Corrected | Questions |
+|---|---|---|
+| 1 Mengenali Sejarah | 5 | Q13, Q17, Q22, Q23, Q29 |
+| 2 Zaman Air Batu | 0 | — |
+| 3 Zaman Prasejarah | 4 | Q11, Q13, Q23, Q30 |
+| 4 Mengenali Tamadun | 5 | Q12, Q16, Q23, Q26, Q29 |
+| 5 Tamadun Awal Dunia | 8 | Q8, Q10, Q12, Q13, Q16, Q27, Q29, Q30 |
+| 6 Yunani dan Rom | 0 | — |
+| 7 India dan China | 4 | Q3, Q17, Q20, Q30 |
+| 8 Tamadun Islam | 6 | Q1, Q7, Q12, Q20, Q21, Q29 |
+
+Measured on the live bank: correct answer strictly longest 44 → 39 of 240; correct answer more than 1.2× longer than every other choice 5 → 2; conspicuously short correct answer 2 → 0; sweeping-word distractors (`semua/tiada/sahaja/sentiasa/hanya`) 29 → 0.
+
+Deliberately unchanged: C1 Q19 and C6 Q7 (proper/system names, per rule 1); C6 Q7 is not given an *Oligarki* distractor because the textbook's definitions (oligarki: small powerful group; aristokrasi: nobles) would make "a group of nobles" ambiguous; C6 Q6 restates "warganegara lelaki" because the textbook defines the Assembly that way and rewording would turn a Hard inference item into recall; C3 Q14 keeps the earlier textbook-wording decision ("yang lebih tersusun").
+
+Textbook note for reviewers: C4 Q2 follows the textbook in calling *civitas* a Greek (Yunani) word; historically it is Latin.
+
+`sejarah-f1-option-quality.test.ts` now locks these results (≤ 40 longest-correct, the two reviewed outliers only, no short outliers, no sweeping-word distractors, consistent item counts when a stem asks for "dua/tiga").

@@ -161,7 +161,7 @@ const questions: [string, string[], number, string][] = [
   // q3
   [
     "Seorang raja mempunyai tentera yang kuat tetapi perbendaharaan kerajaan tidak mencukupi untuk membiayai projek perluasan. Faktor perluasan kuasa manakah yang lemah?",
-    ["Kekuatan ketenteraan", "Dasar pemerintahan", "Kewangan", "Diplomasi keagamaan"],
+    ["Kekuatan ketenteraan", "Dasar pemerintahan", "Kewangan kerajaan", "Diplomasi keagamaan"],
     2,
     `${c.powerExpansion.factors[4].factor}: ${c.powerExpansion.factors[4].description}.`,
   ],
@@ -295,7 +295,7 @@ const questions: [string, string[], number, string][] = [
   [
     "Siapakah yang dibenarkan menduduki peperiksaan perkhidmatan awam China?",
     [
-      "Lelaki daripada keluarga bangsawan sahaja",
+      "Lelaki daripada golongan bangsawan",
       "Lelaki tanpa mengira latar belakang sosial",
       "Lelaki dan wanita daripada keluarga pegawai",
       "Lelaki yang sudah menjadi pegawai kerajaan",
@@ -331,8 +331,13 @@ const questions: [string, string[], number, string][] = [
   ],
   // q20
   [
-    "Seorang calon lulus peperiksaan tahap pertama di peringkat daerah dan mahu menduduki peperiksaan seterusnya di ibu kota daerah. Peperiksaan manakah yang akan disertainya?",
-    ["Xiucai", "Juren", "Jinshi", "Ujian peringkat kampung"],
+    "Seorang calon baru lulus peperiksaan tahap pertama. Peperiksaan manakah yang akan didudukinya seterusnya, dan di manakah peperiksaan itu dijalankan?",
+    [
+      "Xiucai, di peringkat daerah",
+      "Juren, di ibu kota daerah",
+      "Jinshi, di ibu kota kerajaan",
+      "Jinshi, di ibu kota daerah",
+    ],
     1,
     `${stages[1].name}: ${stages[1].location}. ${stages[1].eligibility}`,
   ],
@@ -435,7 +440,7 @@ const questions: [string, string[], number, string][] = [
     [
       "Sima Qian – sarjana Konfusius terkemuka",
       "Dong Zhongshu – sejarawan China pertama",
-      "Han Fei Zi – penulis Shiji",
+      "Han Fei Zi – penulis karya sejarah Shiji",
       "Dong Zhongshu – sarjana Konfusius terkemuka",
     ],
     3,

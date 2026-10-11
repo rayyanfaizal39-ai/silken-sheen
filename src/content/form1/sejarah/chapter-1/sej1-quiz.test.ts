@@ -42,16 +42,16 @@ const correctAnswers = [
   "Bersifat asli dan belum ditafsir",
   "Loceng gangsa",
   "Struktur candi",
-  "Buku teks sejarah",
+  "Ensiklopedia",
   "Riwayat dahulu kala",
   "Kaedah bertulis",
   "Menemu bual bekas tentera",
-  "Menentukan skop dan soalan semasa persediaan, merakam temu bual, kemudian menilai fakta dengan sumber bertulis semasa memproses rakaman",
+  "Menentukan skop dan soalan, merakam temu bual, kemudian menilai fakta dengan sumber bertulis",
   "Kaedah arkeologi daratan",
   "Muhd Yusof Ibrahim",
   "Menerangkan makna fakta sejarah",
   "Mengesahkan, menyimpan sumber, kemudian menganalisis kandungan",
-  "Perbezaan pandangan dan pemilihan sumber boleh menghasilkan tafsiran berbeza tentang peristiwa yang sama",
+  "Perbezaan pandangan dan pemilihan sumber menghasilkan tafsiran berbeza",
   "Mengambil iktibar daripada pengalaman lalu",
   "Semangat cinta akan negara",
   "Memahami budaya pelbagai kaum",
@@ -157,8 +157,10 @@ describe("Sejarah Form 1 Bab 1 selective repair — live registry", () => {
     expect(bank[24].explanation).toContain("adat resam serta tradisi");
   });
 
+  // Re-baselined 2026-10-11 for the Sejarah F1 option-quality audit (32 live questions in
+  // Chapters 1, 3, 4, 5, 7 and 8; ids, answer keys and difficulty unchanged).
   it.each([
-    ["content", "4bd7d92647845ff6be1d0026cc2e39914bbd7181ceed2c83b11f3902a18b590f"],
+    ["content", "dd7dbe09010e16d85d30e05db25fc11860effd68483d467c49aaa16048300660"],
     ["quizzes", "5348fe2c41e531d81bc2e92b85c3144ea598a5a49aa324a24881cb8696f832c4"],
   ])("locks untouched Chapters 4–8 records in %s", (file, expectedHash) => {
     const records = [...source(file).matchAll(/ {2}\{\n {4}id: "([^"]+)",[\s\S]*?\n {2}\},/g)]

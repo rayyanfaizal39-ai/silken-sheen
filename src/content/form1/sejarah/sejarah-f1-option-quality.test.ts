@@ -84,7 +84,8 @@ describe("Sejarah Form 1 — full live-bank objective audit", () => {
   it("does not create a subject-wide 'pick the longest' trick", () => {
     const strictlyLongest = allQuestions.filter((q) => longerThanAllOthers(q, 1));
     // Older, unaudited duplicate banks were severely biased; the live bank is not.
-    expect(strictlyLongest.length).toBeLessThanOrEqual(55);
+    // 39/240 after the 2026-10-11 repair (44 before), below the 25% chance rate of 60.
+    expect(strictlyLongest.length).toBeLessThanOrEqual(40);
     for (const { chapter, questions } of banks) {
       expect(
         questions.filter((q) => longerThanAllOthers(q, 1)).length,
@@ -93,12 +94,35 @@ describe("Sejarah Form 1 — full live-bank objective audit", () => {
     }
   });
 
-  it("alerts reviewers when one answer is conspicuously longer or shorter", () => {
-    // Baseline risk budget, *not* a claim that five outliers are desirable.
-    // Existing editorial action list lives in form1-option-quality-audit-20261011.md.
+  it("has no conspicuously longer or shorter correct answer beyond two reviewed exceptions", () => {
+    // The 2026-10-11 repair cleared the audit action list. Two outliers remain on purpose
+    // (see form1-option-quality-audit-20261011.md): c1-q19 is the proper name
+    // "Muhd Yusof Ibrahim" and c6-q7 is the system name "Aristokrasi". Names are not
+    // distorted or padded to match character counts.
     const veryLong = allQuestions.filter((q) => longerThanAllOthers(q, 1.2));
     const veryShort = allQuestions.filter((q) => shorterThanAllOthers(q, 1.6));
-    expect(veryLong.map((q) => q.id).length).toBeLessThanOrEqual(5);
-    expect(veryShort.map((q) => q.id).length).toBeLessThanOrEqual(2);
+    expect(veryLong.map((q) => q.id).sort()).toEqual(["sej-f1-c1-q19", "sej-f1-c6-q7"]);
+    expect(veryShort.map((q) => q.id)).toEqual([]);
+  });
+
+  it("does not let sweeping words mark distractors as wrong", () => {
+    // "semua/tiada/sahaja/sentiasa/hanya" on wrong choices only makes them easy to
+    // eliminate without knowing the history. Correct answers are not restricted.
+    const sweeping = /\b(semua|tiada|sahaja|sentiasa|hanya)\b/i;
+    const flagged = allQuestions.flatMap((q) =>
+      q.options
+        .filter((option, index) => index !== q.answerIndex && sweeping.test(option))
+        .map((option) => `${q.id}: ${option}`),
+    );
+    expect(flagged).toEqual([]);
+  });
+
+  it("lists the same number of items in every choice when the stem asks for a count", () => {
+    // e.g. "dua bandar": a three-item distractor would be eliminated by counting.
+    const items = (option: string) => option.split(/,| dan /).length;
+    for (const q of allQuestions.filter((item) => /\b(dua|tiga) (bandar|tahap)\b/i.test(item.question))) {
+      const counts = new Set(q.options.map(items));
+      expect(counts.size, q.id).toBe(1);
+    }
   });
 });
