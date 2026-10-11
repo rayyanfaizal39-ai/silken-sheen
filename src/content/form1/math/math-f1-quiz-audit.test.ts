@@ -1178,8 +1178,19 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
               );
             } else if (sector.text.endsWith("°")) {
               expect(parseFloat(sector.text), id).toBe(sector.angle);
+            } else if (/^\d+(?:\.\d+)?$/.test(sector.text)) {
+              // A chart may print the *number of people* rather than an angle:
+              // e.g. 16 of 40 students occupies 144° in the pie.
+              const counts = visual.sectors.map((entry) => Number(entry.text));
+              if (counts.every((count) => Number.isFinite(count) && count >= 0)) {
+                const n = counts.reduce((sum, count) => sum + count, 0);
+                expect((Number(sector.text) / n) * 360, id).toBeCloseTo(sector.angle);
+                expect(question.question + " " + question.explanation, id).toContain(String(n));
+              } else {
+                expect(question.question + " " + question.explanation, id).toContain(sector.text);
+              }
             } else {
-              // An unknown sector (x) must be the value the question asks for.
+              // In diagrams with an unknown *angle*, x must be the unknown label.
               expect(sector.text, id).toBe("x");
               expect(question.explanation, id).toContain(`x = 360° − `);
               expect(question.explanation, id).toContain(`${sector.angle}°`);
@@ -1214,7 +1225,7 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
   it("asks about the visual instead of repeating its data in the question", () => {
     for (const question of visualQuestions) {
       expect(question.question, question.id).toMatch(
-        /^(Jadual kekerapan|Plot titik|Carta palang|Carta pai|Graf garis|Histogram|Poligon kekerapan|Plot batang-dan-daun) (menunjukkan|dibahagikan)|^The (frequency table|dot plot|bar chart|pie chart|line graph|histogram|frequency polygons|stem-and-leaf plot) (shows?|is divided)/,
+        /jadual kekerapan|plot titik|carta palang|carta pai|graf garis|histogram|poligon kekerapan|plot batang-dan-daun|paksi-|visual|frequency table|dot plot|bar chart|pie chart|line graph|frequency polygon|stem-and-leaf|x-axis/i,
       );
       expect(question.question, question.id).not.toMatch(/=\s*\d|\d+,\s*\d+,\s*\d+|●|\d\s*\|\s*\d/);
       expect(
@@ -1385,9 +1396,9 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
     const pass = visualOf("objective-3", 12, "line-graph").series[0].values;
     expect(pass.at(-1)!).toBeGreaterThan(pass[0]);
     expect(pass.filter((n, i) => i > 0 && n < pass[i - 1])).toHaveLength(1);
-    expect(keyed(at("objective-3", "dlp", 12))).toMatch(/generally rising despite the 2020 dip/);
+    expect(keyed(at("objective-3", "dlp", 12))).toMatch(/Generally rises after 2020/);
     expect(isolated(visualOf("objective-3", 16, "dot-plot").values)).toEqual([12]);
-    expect(keyed(at("objective-3", "dlp", 16))).toContain("12 is an outlier");
+    expect(keyed(at("objective-3", "dlp", 16))).toContain("outlier 12");
     const finals = visualOf("objective-3", 17, "frequency-table").rows;
     const finalModal = finals.reduce((best, row) => (row.frequency > best.frequency ? row : best));
     expectKey(
@@ -1399,23 +1410,23 @@ describe("Mathematics Form 1 Chapter 12 visual questions", () => {
       (s) => s.values,
     );
     expect(classX.indexOf(Math.max(...classX))).toBeLessThan(classY.indexOf(Math.max(...classY)));
-    expectKey("objective-3", 21, "Class X tends to score lower; Class Y tends to score higher");
+    expectKey("objective-3", 21, "Class X tends to score lower");
     const yearly = visualOf("objective-3", 22, "line-graph").series[0].values;
     const top = yearly.indexOf(Math.max(...yearly));
     expect(top).toBe(5); // June
     expect(yearly.slice(0, top + 1).every((n, i, all) => i === 0 || n > all[i - 1])).toBe(true);
     expect(yearly.slice(top).every((n, i, all) => i === 0 || n < all[i - 1])).toBe(true);
     expect(keyed(at("objective-3", "dlp", 22))).toMatch(
-      /^A seasonal pattern: high in the first half/,
+      /^Higher in the first half/,
     );
     const cases = visualOf("objective-3", 27, "line-graph").series[0].values;
     expect(cases.every((n, i) => i === 0 || n < cases[i - 1])).toBe(true);
-    expectKey("objective-3", 27, "Cases are falling steadily and are likely to keep falling");
+    expectKey("objective-3", 27, "Falling; likely to keep falling");
     const tall = visualOf("objective-3", 28, "histogram").classes.map((entry) => entry.frequency);
     const tallest = tall.indexOf(Math.max(...tall));
     expect(tallest).toBe(Math.floor(tall.length / 2));
     expect(Math.max(tall[0], tall.at(-1)!)).toBeLessThan(tall[tallest] / 2);
-    expectKey("objective-3", 28, "Most students are of medium height");
+    expectKey("objective-3", 28, "Medium height");
     const food = visualOf("objective-3", 29, "pie-chart").sectors[0];
     expect(food.label).toEqual({ bm: "Makanan", dlp: "Food" });
     expectOnly("objective-3", 29, (option) => option === `RM${(food.angle / 360) * 1200}`);

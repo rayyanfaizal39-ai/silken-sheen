@@ -52,6 +52,8 @@ import {
   type SubjectPlanetId,
 } from "@/components/AcademyPage";
 import { QuizArena } from "@/components/quiz/QuizArena";
+import quizTimedArtwork from "@/assets/quiz-mode-timed.svg";
+import quizUntimedArtwork from "@/assets/quiz-mode-untimed.svg";
 import { MathQuestionVisual } from "@/components/quiz/MathQuestionVisual";
 import { MathIndexText } from "@/components/quiz/MathIndexText";
 import type { MathQuestionVisual as MathQuestionVisualData } from "@/features/quiz/visuals/mathQuestionVisual";
@@ -59,6 +61,13 @@ import { MATH_F1_C1_QUIZ_VISUALS } from "@/content/form1/math/chapter-1/quiz-vis
 import { MATH_F1_C2_QUIZ_VISUALS } from "@/content/form1/math/chapter-2/quiz-visuals";
 import { MATH_F1_C12_QUIZ_VISUALS } from "@/content/form1/math/chapter-12/quiz-visuals";
 import { MATH_F1_C3_QUIZ_VISUALS } from "@/content/form1/math/chapter-3/quiz-visuals";
+import { MATH_F1_C4_QUIZ_VISUALS } from "@/content/form1/math/chapter-4/quiz-visuals";
+import { MATH_F1_C5_QUIZ_VISUALS } from "@/content/form1/math/chapter-5/quiz-visuals";
+import { MATH_F1_C6_QUIZ_VISUALS } from "@/content/form1/math/chapter-6/quiz-visuals";
+import { MATH_F1_C7_QUIZ_VISUALS } from "@/content/form1/math/chapter-7/quiz-visuals";
+import { MATH_F1_C8_QUIZ_VISUALS } from "@/content/form1/math/chapter-8/quiz-visuals";
+import { MATH_F1_C9_QUIZ_VISUALS } from "@/content/form1/math/chapter-9/quiz-visuals";
+import { MATH_F1_C10_QUIZ_VISUALS } from "@/content/form1/math/chapter-10/quiz-visuals";
 import { MATH_F1_C13_QUIZ_VISUALS } from "@/content/form1/math/chapter-13/quiz-visuals";
 import { useQuizStageTransition } from "@/components/quiz/useQuizStageTransition";
 import { SubjectWorldPage } from "@/components/SubjectWorldPage";
@@ -1550,7 +1559,12 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Manakah senarai faktor bagi 12?",
-    ["3, 6, 9, 12", "2, 4, 8, 12", "1, 2, 3, 4, 6, 12", "1, 5, 10, 12"],
+    [
+      "1, 2, 3, 4, 8, 12",
+      "1, 2, 3, 6, 9, 12",
+      "1, 2, 3, 4, 6, 12",
+      "1, 2, 4, 6, 8, 12",
+    ],
     2,
     "Faktor 12 ialah 1, 2, 3, 4, 6 dan 12.",
     "Easy",
@@ -1559,10 +1573,10 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah nombor perdana?",
     [
-      "Nombor yang ada banyak faktor",
-      "Nombor gandaan 10",
-      "Nombor genap sahaja",
-      "Nombor yang ada tepat dua faktor",
+      "Nombor dengan tepat satu faktor",
+      "Nombor dengan lebih dua faktor",
+      "Nombor dengan tiada faktor",
+      "Nombor dengan tepat dua faktor",
     ],
     3,
     "Nombor perdana mempunyai tepat dua faktor: 1 dan nombor itu sendiri.",
@@ -1585,10 +1599,10 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah faktor perdana?",
     [
-      "Nombor yang bukan faktor",
-      "Gandaan paling kecil",
-      "Faktor paling besar sahaja",
-      "Faktor yang merupakan nombor perdana",
+      "Faktor yang juga nombor komposit",
+      "Gandaan yang juga nombor perdana",
+      "Gandaan yang juga nombor komposit",
+      "Faktor yang juga nombor perdana",
     ],
     3,
     "Faktor perdana ialah faktor yang juga nombor perdana.",
@@ -1604,10 +1618,10 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah faktor sepunya?",
     [
-      "Gandaan yang dikongsi oleh dua nombor",
-      "Nombor terbesar dalam suatu senarai",
-      "Faktor yang dikongsi oleh dua atau lebih nombor",
-      "Nombor terkecil dalam suatu senarai",
+      "Gandaan bagi dua atau lebih nombor",
+      "Faktor terbesar bagi satu nombor",
+      "Faktor bagi dua atau lebih nombor",
+      "Gandaan terkecil bagi satu nombor",
     ],
     2,
     "Faktor sepunya ialah faktor yang sama bagi dua atau lebih nombor.",
@@ -1688,9 +1702,9 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     "FSTB sesuai digunakan untuk:",
     [
       "Membahagi kepada kumpulan sama",
-      "Mencari masa berulang",
-      "Menukar perpuluhan",
-      "Membina graf",
+      "Mencari masa pertama serentak",
+      "Mencari gandaan sepunya terkecil",
+      "Menjumlahkan bilangan kumpulan",
     ],
     0,
     "FSTB sesuai untuk pembahagian kepada kumpulan sama banyak.",
@@ -1717,7 +1731,12 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Kata kunci GSTK ialah:",
-    ["Maksimum", "Kumpulan sama", "Terbesar", "Pertama kali bersama"],
+    [
+      "Kumpulan sama terbesar",
+      "Pembahagian sama terbesar",
+      "Faktor sepunya terbesar",
+      "Kali pertama serentak",
+    ],
     3,
     "GSTK kerap digunakan apabila mencari masa pertama berlaku bersama.",
     "Easy",
@@ -1793,7 +1812,12 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   ],
   [
     "Cari semua faktor bagi 24.",
-    ["1, 2, 4, 12", "1, 2, 3, 4, 6, 8, 12, 24", "2, 3, 6, 24", "1, 5, 10, 24"],
+    [
+      "1, 2, 3, 4, 6, 9, 12, 24",
+      "1, 2, 3, 4, 6, 8, 12, 24",
+      "1, 2, 4, 6, 8, 10, 12, 24",
+      "1, 2, 3, 4, 8, 12, 16, 24",
+    ],
     1,
     "Senarai lengkap faktor 24 ialah 1, 2, 3, 4, 6, 8, 12 dan 24.",
     "Medium",
@@ -2187,10 +2211,10 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Manakah situasi memerlukan GSTK?",
     [
-      "Mencari kumpulan terbesar",
-      "Menentukan dua loceng berbunyi bersama",
-      "Membahagi gula-gula sama banyak",
-      "Mencari faktor sepunya",
+      "Membina kumpulan sama terbesar",
+      "Dua loceng berbunyi serentak",
+      "Memotong reben sama terpanjang",
+      "Membahagi gula-gula sama terbanyak",
     ],
     1,
     "Kejadian berulang bersama menggunakan GSTK.",
@@ -2257,7 +2281,12 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "Which list shows the factors of 12?",
-    ["3, 6, 9, 12", "2, 4, 8, 12", "1, 2, 3, 4, 6, 12", "1, 5, 10, 12"],
+    [
+      "1, 2, 3, 4, 8, 12",
+      "1, 2, 3, 6, 9, 12",
+      "1, 2, 3, 4, 6, 12",
+      "1, 2, 4, 6, 8, 12",
+    ],
     2,
     "The factors of 12 are 1, 2, 3, 4, 6 and 12.",
     "Easy",
@@ -2266,9 +2295,9 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a prime number?",
     [
-      "A number with many factors",
-      "A multiple of 10",
-      "Even numbers only",
+      "A number with exactly one factor",
+      "A number with more than two factors",
+      "A number with no factors",
       "A number with exactly two factors",
     ],
     3,
@@ -2286,10 +2315,10 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a prime factor?",
     [
-      "A number that is not a factor",
-      "The smallest multiple",
-      "Only the greatest factor",
-      "A factor that is also a prime number",
+      "A factor that is also composite",
+      "A multiple that is also prime",
+      "A multiple that is also composite",
+      "A factor that is also prime",
     ],
     3,
     "A prime factor is a factor that is also a prime number.",
@@ -2305,10 +2334,10 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What are common factors?",
     [
-      "Multiples shared by two numbers",
-      "The greatest number in a list",
-      "Factors shared by two or more numbers",
-      "The smallest number in a list",
+      "Multiples of two or more numbers",
+      "The greatest factor of one number",
+      "Factors of two or more numbers",
+      "The least multiple of one number",
     ],
     2,
     "Common factors are factors shared by two or more numbers.",
@@ -2389,9 +2418,9 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     "HCF is suitable for:",
     [
       "Dividing into equal groups",
-      "Finding repeated times",
-      "Converting decimals",
-      "Drawing graphs",
+      "Finding the first simultaneous time",
+      "Finding the least common multiple",
+      "Adding the numbers of groups",
     ],
     0,
     "HCF is suitable for dividing into equal groups.",
@@ -2418,7 +2447,12 @@ const MATH_C2_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "A keyword for LCM is:",
-    ["Maximum", "Equal groups", "Greatest", "First time together"],
+    [
+      "Greatest equal groups",
+      "Greatest equal division",
+      "Greatest common factor",
+      "First simultaneous time",
+    ],
     3,
     "LCM is often used when finding the first time events happen together.",
     "Easy",
@@ -2494,7 +2528,12 @@ const MATH_C2_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "Find all factors of 24.",
-    ["1, 2, 4, 12", "1, 2, 3, 4, 6, 8, 12, 24", "2, 3, 6, 24", "1, 5, 10, 24"],
+    [
+      "1, 2, 3, 4, 6, 9, 12, 24",
+      "1, 2, 3, 4, 6, 8, 12, 24",
+      "1, 2, 4, 6, 8, 10, 12, 24",
+      "1, 2, 3, 4, 8, 12, 16, 24",
+    ],
     1,
     "The complete list of factors of 24 is 1, 2, 3, 4, 6, 8, 12 and 24.",
     "Medium",
@@ -2882,10 +2921,10 @@ const MATH_C2_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "Which situation requires LCM?",
     [
-      "Finding the greatest group",
-      "Determining when two bells ring together",
-      "Dividing sweets equally",
-      "Finding common factors",
+      "Making the largest equal groups",
+      "Finding when two bells coincide",
+      "Cutting the longest equal ribbons",
+      "Sharing into the largest equal groups",
     ],
     1,
     "Repeated events happening together use LCM.",
@@ -2945,12 +2984,7 @@ function mathQuestions(items: MathQuestionSeed[]): ShuffledQuestion[] {
 const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah maksud kuasa dua?",
-    [
-      "Mendarab nombor dengan dirinya sendiri",
-      "Mendarab nombor dengan 2",
-      "Menambah nombor dua kali",
-      "Membahagi nombor dengan 2",
-    ],
+    ["n × n", "n × 2", "n + n", "n ÷ 2"],
     0,
     "Kuasa dua bermaksud mendarab nombor dengan dirinya sendiri.",
     "Easy",
@@ -2967,10 +3001,10 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah kuasa dua sempurna?",
     [
-      "Nombor yang mempunyai bahagian perpuluhan",
-      "Nombor hasil kuasa dua nombor bulat",
-      "Nombor yang sentiasa negatif",
-      "Nombor yang boleh dibahagi dengan 3",
+      "Hasil kuasa tiga nombor bulat",
+      "Hasil kuasa dua nombor bulat",
+      "Hasil darab nombor bulat dengan 2",
+      "Hasil tambah nombor bulat dengan 2",
     ],
     1,
     "Kuasa dua sempurna terhasil daripada kuasa dua nombor bulat.",
@@ -3028,12 +3062,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ["Apakah nilai √a × √b?", ["√(ab)", "a + b", "ab²", "√a + √b"], 0, "√a × √b = √(ab).", "Easy"],
   [
     "Apakah maksud kuasa tiga?",
-    [
-      "Mendarab nombor dengan 3 sahaja",
-      "Mendarab nombor dengan dirinya sendiri tiga kali",
-      "Menambah nombor tiga kali",
-      "Membahagi nombor dengan 3",
-    ],
+    ["n × 3", "n × n × n", "n + n + n", "n ÷ 3"],
     1,
     "Kuasa tiga bermaksud a × a × a.",
     "Easy",
@@ -3108,7 +3137,12 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ["Berapakah ∛(-8)?", ["-2", "2", "4", "-4"], 0, "∛(-8) = -2 kerana (-2)³ = -8.", "Easy"],
   [
     "Punca kuasa tiga bagi isipadu kubus memberi:",
-    ["Jisim kubus", "Luas permukaan", "Panjang sisi kubus", "Sudut kubus"],
+    [
+      "Luas muka kubus",
+      "Luas permukaan kubus",
+      "Panjang sisi kubus",
+      "Perimeter muka kubus",
+    ],
     2,
     "Panjang sisi kubus diperoleh dengan mencari punca kuasa tiga isipadu.",
     "Easy",
@@ -3133,12 +3167,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
 const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does square mean?",
-    [
-      "Multiplying a number by itself",
-      "Multiplying a number by 2",
-      "Adding a number twice",
-      "Dividing a number by 2",
-    ],
+    ["n × n", "n × 2", "n + n", "n ÷ 2"],
     0,
     "Square means multiplying a number by itself.",
     "Easy",
@@ -3155,10 +3184,10 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a perfect square?",
     [
-      "A number that has a decimal part",
-      "A number produced by squaring a whole number",
-      "A number that is always negative",
-      "A number that can be divided by 3",
+      "A whole number cubed",
+      "A whole number squared",
+      "A whole number multiplied by 2",
+      "A whole number increased by 2",
     ],
     1,
     "A perfect square is produced by squaring a whole number.",
@@ -3217,12 +3246,7 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "What does cube mean?",
-    [
-      "Multiplying a number by 3 only",
-      "Multiplying a number by itself three times",
-      "Adding a number three times",
-      "Dividing a number by 3",
-    ],
+    ["n × 3", "n × n × n", "n + n + n", "n ÷ 3"],
     1,
     "Cube means a × a × a.",
     "Easy",
@@ -3290,7 +3314,12 @@ const MATH_C3_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ["What is ∛(-8)?", ["-2", "2", "4", "-4"], 0, "∛(-8) = -2 because (-2)³ = -8.", "Easy"],
   [
     "The cube root of a cube's volume gives:",
-    ["Mass of the cube", "Surface area", "Edge length of the cube", "Angle of the cube"],
+    [
+      "Cube face area",
+      "Cube surface area",
+      "Cube edge length",
+      "Cube face perimeter",
+    ],
     2,
     "The edge length of a cube is found by taking the cube root of the volume.",
     "Easy",
@@ -3921,6 +3950,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Darab 2 dan 3 dengan 2 → 4 : 6.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.equivalent2To3,
   ],
   [
     "Apakah bentuk termudah 12 : 18?",
@@ -3928,6 +3958,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "FSTB 12 dan 18 ialah 6 → 2 : 3.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.simplify12To18,
   ],
   [
     "Bagaimana mempermudah nisbah?",
@@ -3998,6 +4029,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "12 : 15. Bahagi kedua-dua sebutan dengan FSTB, iaitu 3: 4 : 5.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.classBoysGirls,
   ],
   [
     "Sebuah kereta bergerak sejauh 60 km dengan menggunakan 5 liter petrol. Berapakah kadar penggunaan petrol itu?",
@@ -4005,6 +4037,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Kadar = 60 km ÷ 5 liter = 12 km/liter.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.carFuel60km5L,
   ],
   [
     "Manakah BUKAN kadar?",
@@ -4059,6 +4092,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Jumlah bahagian = 3 + 5 = 8. Pecahan murid lelaki = 3/8. (3/5 membandingkan lelaki dengan perempuan, bukan dengan jumlah.)",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirls3To5,
   ],
   [
     "Harga 3 kg tepung ialah RM12. Berapakah harga per kg?",
@@ -4066,6 +4100,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Kadar = RM12 ÷ 3 kg = RM4/kg.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.flour3kgRm12,
   ],
   [
     "80% sebagai nisbah termudah?",
@@ -4091,10 +4126,10 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Bilakah pendaraban silang digunakan?",
     [
-      "Apabila hanya ada satu nisbah sahaja",
-      "Apabila menyelesaikan kadaran yang ada nilai tidak diketahui",
-      "Apabila mempermudah nisbah kepada bentuk termudah",
-      "Apabila menggabungkan dua nisbah menjadi satu",
+      "Mempermudah satu nisbah",
+      "Menyelesaikan kadaran",
+      "Menjumlahkan dua nisbah",
+      "Menukar nisbah kepada kadar",
     ],
     1,
     "Digunakan untuk mencari nilai tidak diketahui dalam kadaran.",
@@ -4147,6 +4182,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Multiply 2 and 3 by 2 → 4 : 6.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.equivalent2To3,
   ],
   [
     "What is the simplest form of 12 : 18?",
@@ -4154,6 +4190,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "HCF of 12 and 18 is 6 → 2 : 3.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.simplify12To18,
   ],
   [
     "How do you simplify a ratio?",
@@ -4224,6 +4261,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "12 : 15. Divide both terms by the HCF, 3: 4 : 5.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.classBoysGirls,
   ],
   [
     "A car travels 60 km using 5 litres of petrol. What is its rate of petrol use?",
@@ -4231,6 +4269,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Rate = 60 km ÷ 5 litres = 12 km/litre.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.carFuel60km5L,
   ],
   [
     "Which is NOT a rate?",
@@ -4285,6 +4324,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Total parts = 3 + 5 = 8. Fraction of boys = 3/8. (3/5 compares boys with girls, not with the total.)",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirls3To5,
   ],
   [
     "3 kg of flour costs RM12. What is the price per kg?",
@@ -4292,6 +4332,7 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Rate = RM12 ÷ 3 kg = RM4/kg.",
     "Easy",
+    MATH_F1_C4_QUIZ_VISUALS.flour3kgRm12,
   ],
   [
     "80% as simplest ratio?",
@@ -4317,10 +4358,10 @@ const MATH_C4_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "When is cross multiplication used?",
     [
-      "When there is only one ratio",
-      "When solving a proportion with an unknown",
-      "When simplifying a ratio to lowest terms",
-      "When combining two ratios into one",
+      "Simplifying one ratio",
+      "Solving a proportion",
+      "Adding two ratios",
+      "Converting a ratio to a rate",
     ],
     1,
     "It finds the unknown in a proportion.",
@@ -4343,6 +4384,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "FSTB = 4 → 2 : 3 : 5.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.simplify8_12_20,
   ],
   [
     "Tukarkan 500 g : 1 kg kepada bentuk termudah.",
@@ -4373,6 +4415,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "180 ÷ 3 = 60 km/j.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.car180km3h,
   ],
   [
     "RM 24 untuk 4 kg gula. Harga 7 kg?",
@@ -4380,6 +4423,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "1 kg = RM 6; 7 kg = RM 42.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.sugar4kg24Rm,
   ],
   [
     "5 buku = RM 35. 12 buku?",
@@ -4387,6 +4431,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "1 buku = RM 7; 12 buku = RM 84.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.fiveBooks35Rm,
   ],
   [
     "Tukarkan 90 km/j kepada m/s.",
@@ -4408,6 +4453,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "200 × 6/4 = 300 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.recipeFourToSix,
   ],
   [
     "Permudahkan 200 ml : 1 liter.",
@@ -4437,6 +4483,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "3/5 × 30 = 18.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirlsTotal30,
   ],
   [
     "Jika £2 = RM9, maka £5 = ?",
@@ -4451,6 +4498,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "4 × 5000 = 20 000 cm = 200 m.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.mapScale5000,
   ],
   [
     "Kadar pekerja: 5 jam = RM 75. 1 jam = ?",
@@ -4472,6 +4520,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "25 km = 2 500 000 cm; 5 : 2 500 000 = 1 : 500 000.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.map5cm25km,
   ],
   [
     "Permudahkan nisbah 45 minit : 2 jam.",
@@ -4501,6 +4550,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "B = 25 × 3/5 = 15.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.a5b3a25,
   ],
   [
     "A : B : C = 2 : 3 : 5. Jika jumlah 100, nilai C?",
@@ -4508,6 +4558,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "C = 5/10 × 100 = 50.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.abc2_3_5Total100,
   ],
 ]);
 
@@ -4526,6 +4577,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "HCF = 4 → 2 : 3 : 5.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.simplify8_12_20,
   ],
   [
     "Express 500 g : 1 kg in simplest form.",
@@ -4550,6 +4602,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "180 ÷ 3 = 60 km/h.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.car180km3h,
   ],
   [
     "RM 24 for 4 kg of sugar. Cost of 7 kg?",
@@ -4557,6 +4610,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "1 kg = RM 6; 7 kg = RM 42.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.sugar4kg24Rm,
   ],
   [
     "5 books = RM 35. 12 books?",
@@ -4564,6 +4618,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "1 book = RM 7; 12 books = RM 84.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.fiveBooks35Rm,
   ],
   ["Convert 90 km/h to m/s.", ["20", "25", "27", "30"], 1, "90 × 1000/3600 = 25 m/s.", "Medium"],
   [
@@ -4579,6 +4634,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "200 × 6/4 = 300 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.recipeFourToSix,
   ],
   [
     "Simplify 200 ml : 1 litre.",
@@ -4608,6 +4664,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "3/5 × 30 = 18.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirlsTotal30,
   ],
   [
     "If £2 = RM9, then £5 = ?",
@@ -4622,6 +4679,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "4 × 5000 = 20 000 cm = 200 m.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.mapScale5000,
   ],
   [
     "Worker rate: 5 hours = RM 75. 1 hour = ?",
@@ -4643,6 +4701,7 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "25 km = 2 500 000 cm; 5 : 2 500 000 = 1 : 500 000.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.map5cm25km,
   ],
   [
     "Simplify ratio 45 minutes : 2 hours.",
@@ -4660,13 +4719,14 @@ const MATH_C4_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "Medium",
   ],
   ["Convert 36 km/h to m/s.", ["8", "12", "10", "15"], 2, "36 × 1000/3600 = 10 m/s.", "Medium"],
-  ["A : B = 5 : 3. If A = 25, B = ?", ["10", "12", "20", "15"], 3, "B = 25 × 3/5 = 15.", "Medium"],
+  ["A : B = 5 : 3. If A = 25, B = ?", ["10", "12", "20", "15"], 3, "B = 25 × 3/5 = 15.", "Medium", MATH_F1_C4_QUIZ_VISUALS.a5b3a25],
   [
     "A : B : C = 2 : 3 : 5. If total is 100, value of C?",
     ["20", "50", "40", "30"],
     1,
     "C = 5/10 × 100 = 50.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.abc2_3_5Total100,
   ],
 ]);
 
@@ -4677,6 +4737,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "400 × 14/8 = 700 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.cakes8To14,
   ],
   [
     "Jika 60% pelajar lelaki dan jumlah 40, bilangan perempuan?",
@@ -4684,6 +4745,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "40% perempuan = 0.40 × 40 = 16.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.boys60PctTotal40,
   ],
   [
     "Skala peta 1 : 250 000. Dua bandar 6 cm pada peta. Jarak sebenar (km)?",
@@ -4691,6 +4753,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "6 × 250 000 = 1 500 000 cm = 15 km.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.mapScale250000,
   ],
   [
     "Harga 3 kg beras ialah RM12.60. Berapakah harga 5 kg beras pada kadar yang sama?",
@@ -4705,6 +4768,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "B − A = 5k − 3k = 2k = 8 → k = 4; A = 12.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.difference3To5,
   ],
   [
     "Larutan 5 : 3 air : sirap. Untuk 240 ml sirap, isipadu air?",
@@ -4712,6 +4776,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Air = 5/3 × 240 = 400 ml.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.waterSyrup5To3,
   ],
   [
     "Kereta A: 240 km dalam 3 jam. Kereta B: 300 km dalam 4 jam. Yang lebih laju?",
@@ -4719,6 +4784,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "A = 80 km/j; B = 75 km/j.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.carComparison,
   ],
   [
     "Sebatang paip mengalirkan air pada kadar 12 liter per minit. Berapakah masa yang diambil untuk mengisi sebuah tangki 300 liter?",
@@ -4733,6 +4799,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "RM 7/kg vs RM 6/kg → 5 kg lebih jimat.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.groceryPriceComparison,
   ],
   [
     "A : B : C = 2 : 3 : 4. Jumlah RM 90. Bahagian C?",
@@ -4740,6 +4807,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "C = 4/9 × 90 = RM 40.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.abc2_3_4Total90,
   ],
   [
     "Nisbah lelaki kepada perempuan 7 : 5. Jika perempuan 35, jumlah?",
@@ -4747,6 +4815,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Lelaki = 7/5 × 35 = 49; jumlah 84.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirls7To5,
   ],
   [
     "Kadar laju 72 km/j dalam m/s?",
@@ -4768,6 +4837,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Jus = 1/5 × 1500 = 300 ml.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.juiceWater1To4,
   ],
   [
     "Cas teksi RM 3 mula + RM 1.50/km. Bayaran 8 km?",
@@ -4790,6 +4860,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "30% = 21 → 100% = 70.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.pass70PctFail21,
   ],
   [
     "Resipi cookies 5 : 3 : 2 (tepung : gula : mentega). Jumlah 500 g. Tepung?",
@@ -4797,6 +4868,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "5/10 × 500 = 250 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.cookieRecipe5_3_2,
   ],
   [
     "Selesaikan 2x : 5 = 8 : 10.",
@@ -4818,6 +4890,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "B = 9/15 × 450 = RM 270.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.workDays6To9Total450,
   ],
   [
     "Bas 240 km dalam 5 jam. Berapa jam untuk 168 km?",
@@ -4832,6 +4905,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Panjang + lebar = 64 ÷ 2 = 32 cm. Panjang = 5/8 × 32 = 20 cm. (40 cm diperoleh jika terlupa membahagi perimeter dengan 2.)",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.rectangleLengthWidth5To3,
   ],
   [
     "Jika RM 50 ditukar 1100 yen, RM 80 = ?",
@@ -4846,6 +4920,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Tempoh = 9:15 pagi hingga 1:15 petang = 4 jam. Bayaran = 4 × RM1.50 = RM6.00.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.parkingTimeline,
   ],
   [
     "Kadar 0.6 liter/minit. Berapa liter dalam 25 minit?",
@@ -4860,6 +4935,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Kadar = 96 km ÷ 8 liter = 12 km/liter. Jarak = 12 × 15 = 180 km.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.car8L96km,
   ],
   [
     "Selesaikan (x+1)/4 = 3/2.",
@@ -4884,6 +4960,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "400 × 14/8 = 700 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.cakes8To14,
   ],
   [
     "If 60% of students are boys and total is 40, number of girls?",
@@ -4891,6 +4968,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "40% girls = 0.40 × 40 = 16.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.boys60PctTotal40,
   ],
   [
     "Map scale 1 : 250 000. Two cities 6 cm apart on map. Actual distance (km)?",
@@ -4898,6 +4976,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "6 × 250 000 = 1 500 000 cm = 15 km.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.mapScale250000,
   ],
   [
     "3 kg of rice costs RM12.60. What is the price of 5 kg of rice at the same rate?",
@@ -4912,6 +4991,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "B − A = 5k − 3k = 2k = 8 → k = 4; A = 12.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.difference3To5,
   ],
   [
     "Solution 5 : 3 water : syrup. For 240 ml syrup, volume of water?",
@@ -4919,6 +4999,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Water = 5/3 × 240 = 400 ml.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.waterSyrup5To3,
   ],
   [
     "Car A: 240 km in 3 h. Car B: 300 km in 4 h. Which is faster?",
@@ -4926,6 +5007,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "A = 80 km/h; B = 75 km/h.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.carComparison,
   ],
   [
     "A pipe fills water at a rate of 12 litres per minute. How long does it take to fill a 300-litre tank?",
@@ -4940,6 +5022,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "RM 7/kg vs RM 6/kg → 5 kg cheaper.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.groceryPriceComparison,
   ],
   [
     "A : B : C = 2 : 3 : 4. Total RM 90. Share of C?",
@@ -4947,6 +5030,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "C = 4/9 × 90 = RM 40.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.abc2_3_4Total90,
   ],
   [
     "Boys : girls = 7 : 5. If girls = 35, total?",
@@ -4954,6 +5038,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Boys = 7/5 × 35 = 49; total 84.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.boysGirls7To5,
   ],
   ["Rate 72 km/h in m/s?", ["18", "20", "22", "24"], 1, "72 × 1000/3600 = 20 m/s.", "Medium"],
   [
@@ -4969,6 +5054,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Juice = 1/5 × 1500 = 300 ml.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.juiceWater1To4,
   ],
   [
     "Taxi fare RM 3 base + RM 1.50/km. Fare for 8 km?",
@@ -4991,6 +5077,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "30% = 21 → 100% = 70.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.pass70PctFail21,
   ],
   [
     "Cookie recipe 5 : 3 : 2 (flour : sugar : butter). Total 500 g. Flour?",
@@ -4998,6 +5085,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "5/10 × 500 = 250 g.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.cookieRecipe5_3_2,
   ],
   [
     "Solve 2x : 5 = 8 : 10.",
@@ -5019,6 +5107,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "B = 9/15 × 450 = RM 270.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.workDays6To9Total450,
   ],
   [
     "Bus 240 km in 5 h. How many hours for 168 km?",
@@ -5033,6 +5122,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Length + width = 64 ÷ 2 = 32 cm. Length = 5/8 × 32 = 20 cm. (40 cm comes from forgetting to halve the perimeter.)",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.rectangleLengthWidth5To3,
   ],
   [
     "If RM 50 exchanges for 1100 yen, RM 80 = ?",
@@ -5047,6 +5137,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Duration = 9:15 a.m. to 1:15 p.m. = 4 hours. Charge = 4 × RM1.50 = RM6.00.",
     "Medium",
+    MATH_F1_C4_QUIZ_VISUALS.parkingTimeline,
   ],
   [
     "Rate 0.6 litre/minute. How many litres in 25 minutes?",
@@ -5061,6 +5152,7 @@ const MATH_C4_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Rate = 96 km ÷ 8 litres = 12 km/litre. Distance = 12 × 15 = 180 km.",
     "Hard",
+    MATH_F1_C4_QUIZ_VISUALS.car8L96km,
   ],
   ["Solve (x+1)/4 = 3/2.", ["3", "4", "6", "5"], 3, "Cross multiply: 2(x+1) = 12 → x = 5.", "Hard"],
   [
@@ -5076,10 +5168,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah pemboleh ubah?",
     [
-      "Huruf atau simbol yang mewakili nilai tidak diketahui",
-      "Nombor yang nilainya tidak pernah berubah",
-      "Tanda seperti + atau − bagi suatu operasi",
-      "Unit yang digunakan untuk mengukur kuantiti",
+      "Simbol bagi nilai tidak diketahui",
+      "Nombor bagi nilai yang tetap",
+      "Tanda bagi operasi matematik",
+      "Unit bagi kuantiti yang diukur",
     ],
     0,
     "Pemboleh ubah ialah huruf atau simbol yang mewakili nilai yang tidak diketahui.",
@@ -5110,6 +5202,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Menambah 6 biji gula-gula kepada n biji gula-gula memberikan ungkapan n + 6.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.sweetsPlusSix,
   ],
   [
     "Apakah ungkapan algebra bagi 'n biji gula-gula tolak 1'?",
@@ -5117,6 +5210,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Memakan 1 biji gula-gula daripada n biji gula-gula memberikan ungkapan n − 1.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.sweetsMinusOne,
   ],
   [
     "Apakah ungkapan bagi 'tiga balang, setiap satu mengandungi n biji gula-gula'?",
@@ -5124,6 +5218,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Tiga balang yang setiap satu mengandungi n biji gula-gula memberi 3 × n = 3n.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.threeJars,
   ],
   [
     "Apakah sebutan algebra?",
@@ -5143,6 +5238,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Ungkapan 3ab + 5x − 2y + 7 mempunyai empat sebutan: 3ab, 5x, −2y dan 7.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.fourTerms,
   ],
   [
     "Apakah pekali bagi sebutan 3x?",
@@ -5199,21 +5295,23 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "x mempunyai kuasa 1 manakala x² mempunyai kuasa 2, maka kuasanya berbeza.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.xComparedSquare,
   ],
   [
     "Mengapakah 2a dan 2b ialah sebutan tidak serupa?",
-    ["Pemboleh ubah berbeza", "Kuasa berbeza", "Pekali berbeza", "Operasi berbeza"],
+    ["Huruf berbeza", "Kuasa berbeza", "Pekali berbeza", "Operasi berbeza"],
     0,
     "2a dan 2b mempunyai pemboleh ubah yang berbeza, iaitu a dan b.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.aComparedB,
   ],
   [
     "Apakah ciri utama sebutan serupa?",
     [
-      "Pekali yang sama",
-      "Tanda yang sama",
-      "Pemboleh ubah dan kuasa yang sama",
-      "Bilangan sebutan yang sama",
+      "Huruf dan pekali sama",
+      "Kuasa dan pekali sama",
+      "Huruf dan kuasa sama",
+      "Tanda dan pekali sama",
     ],
     2,
     "Sebutan serupa mesti mempunyai pemboleh ubah yang sama dan kuasa yang sama bagi setiap pemboleh ubah.",
@@ -5229,10 +5327,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah maksud 'nilai berubah'?",
     [
-      "Nilai yang sentiasa tetap",
-      "Nilai yang tidak boleh diukur",
-      "Nilai yang sentiasa sifar",
-      "Nilai yang berubah-ubah mengikut keadaan",
+      "Nilai kekal dalam semua keadaan",
+      "Nilai sifar dalam semua keadaan",
+      "Nilai sama bagi semua kuantiti",
+      "Nilai bergantung pada keadaan",
     ],
     3,
     "Nilai berubah ialah kuantiti yang nilainya boleh berubah-ubah mengikut keadaan.",
@@ -5265,10 +5363,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah ungkapan algebra?",
     [
-      "Hanya satu nombor sahaja",
-      "Persamaan dengan tanda sama dengan",
-      "Hanya satu pemboleh ubah sahaja",
-      "Gabungan sebutan yang dipisahkan oleh + atau −",
+      "Gabungan sebutan dengan tanda =",
+      "Gabungan sebutan dengan tanda >",
+      "Gabungan sebutan dengan tanda <",
+      "Gabungan sebutan tanpa tanda =",
     ],
     3,
     "Ungkapan algebra terdiri daripada satu atau lebih sebutan yang dipisahkan oleh + atau −.",
@@ -5322,6 +5420,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Dua kali y ialah 2y. Tolak 5 daripadanya: 2y − 5.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.twiceYMinusFive,
   ],
 ]);
 
@@ -5329,10 +5428,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a variable?",
     [
-      "A letter or symbol representing an unknown value",
-      "A number whose value never changes",
-      "A sign such as + or − for an operation",
-      "A unit used to measure a quantity",
+      "A symbol for an unknown value",
+      "A number for a fixed value",
+      "A sign for a mathematical operation",
+      "A unit for a measured quantity",
     ],
     0,
     "A variable is a letter or symbol that represents an unknown value.",
@@ -5363,6 +5462,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Adding 6 sweets to n sweets gives the expression n + 6.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.sweetsPlusSix,
   ],
   [
     "What is the algebraic expression for 'n sweets minus 1'?",
@@ -5370,6 +5470,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Eating 1 sweet from n sweets gives the expression n − 1.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.sweetsMinusOne,
   ],
   [
     "What is the expression for 'three jars, each containing n sweets'?",
@@ -5377,6 +5478,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Three jars, each containing n sweets, gives 3 × n = 3n.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.threeJars,
   ],
   [
     "What is an algebraic term?",
@@ -5396,6 +5498,7 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The expression 3ab + 5x − 2y + 7 has four terms: 3ab, 5x, −2y and 7.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.fourTerms,
   ],
   [
     "What is the coefficient of the term 3x?",
@@ -5452,17 +5555,29 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "x has power 1 while x² has power 2, so their powers are different.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.xComparedSquare,
   ],
   [
     "Why are 2a and 2b unlike terms?",
-    ["Different variables", "Different powers", "Different coefficients", "Different operations"],
+    [
+      "Different variables",
+      "Different powers",
+      "Different coefficients",
+      "Different operations",
+    ],
     0,
     "2a and 2b have different variables, namely a and b.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.aComparedB,
   ],
   [
     "What is the main feature of like terms?",
-    ["Same coefficient", "Same sign", "Same variables and same powers", "Same number of terms"],
+    [
+      "Same variables and coefficients",
+      "Same powers and coefficients",
+      "Same variables and powers",
+      "Same signs and coefficients",
+    ],
     2,
     "Like terms must have the same variables and the same power for each variable.",
     "Easy",
@@ -5477,10 +5592,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does 'varying value' mean?",
     [
-      "A value that is always fixed",
-      "A value that cannot be measured",
-      "A value that is always zero",
-      "A value that changes depending on circumstances",
+      "A value fixed in all conditions",
+      "A value zero in all conditions",
+      "A value equal for all quantities",
+      "A value depending on conditions",
     ],
     3,
     "A varying value is a quantity whose value can change depending on circumstances.",
@@ -5513,10 +5628,10 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is an algebraic expression?",
     [
-      "Only a single number",
-      "An equation with an equals sign",
-      "Only a single variable",
-      "A combination of terms separated by + or −",
+      "Terms combined with an = sign",
+      "Terms combined with a > sign",
+      "Terms combined with a < sign",
+      "Terms combined without an = sign",
     ],
     3,
     "An algebraic expression consists of one or more terms separated by + or −.",
@@ -5570,11 +5685,12 @@ const MATH_C5_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Twice y is 2y. Subtracting 5 from it gives 2y − 5.",
     "Easy",
+    MATH_F1_C5_QUIZ_VISUALS.twiceYMinusFive,
   ],
 ]);
 
 const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
-  ["Diberi x = 3, cari nilai 2x + 1.", ["7", "6", "5", "8"], 0, "2x + 1 = 2(3) + 1 = 7.", "Medium"],
+  ["Diberi x = 3, cari nilai 2x + 1.", ["7", "6", "5", "8"], 0, "2x + 1 = 2(3) + 1 = 7.", "Medium", MATH_F1_C5_QUIZ_VISUALS.twiceXPlusOne],
   [
     "Diberi x = 4, cari nilai 3x − 2.",
     ["8", "10", "9", "12"],
@@ -5609,16 +5725,18 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "3x + 2x = 5x kerana kedua-duanya sebutan serupa.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.threeXPlusTwoX,
   ],
-  ["Permudahkan 9y − 4y.", ["4y", "13y", "5", "5y"], 3, "9y − 4y = 5y.", "Medium"],
-  ["Permudahkan 7ab − 4ab.", ["3ab", "3a", "3", "11ab"], 0, "7ab − 4ab = 3ab.", "Medium"],
-  ["Permudahkan 6x + 3x − 2x.", ["5x", "9x", "7x", "11x"], 2, "6x + 3x − 2x = 7x.", "Medium"],
+  ["Permudahkan 9y − 4y.", ["4y", "13y", "5", "5y"], 3, "9y − 4y = 5y.", "Medium", MATH_F1_C5_QUIZ_VISUALS.nineYMinusFourY],
+  ["Permudahkan 7ab − 4ab.", ["3ab", "3a", "3", "11ab"], 0, "7ab − 4ab = 3ab.", "Medium", MATH_F1_C5_QUIZ_VISUALS.sevenAbMinusFourAb],
+  ["Permudahkan 6x + 3x − 2x.", ["5x", "9x", "7x", "11x"], 2, "6x + 3x − 2x = 7x.", "Medium", MATH_F1_C5_QUIZ_VISUALS.sixXThreeXMinusTwoX],
   [
     "Permudahkan 4m + 5n − m.",
     ["3m − 5n", "9m + 5n", "4m + 4n", "3m + 5n"],
     3,
     "Gabungkan sebutan serupa m: 4m − m = 3m, hasilnya 3m + 5n.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fourMFiveNMinusM,
   ],
   [
     "Permudahkan 2a + 3b + 4a − b.",
@@ -5626,6 +5744,7 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Gabungkan sebutan serupa: (2a + 4a) + (3b − b) = 6a + 2b.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.twoAThreeBFourAMinusB,
   ],
   [
     "Permudahkan −(x + 4).",
@@ -5731,6 +5850,7 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Gabungkan sebutan serupa: (5x − 2x) + (7 − 4) = 3x + 3.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fiveXSevenMinusTwoXFour,
   ],
   [
     "Permudahkan 9ab − 5ab + ab.",
@@ -5738,8 +5858,9 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "9ab − 5ab + ab = 5ab.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.nineAbMinusFiveAbPlusAb,
   ],
-  ["Apakah hasil bagi 3x + 5x − x?", ["6x", "8x", "7x", "9x"], 2, "3x + 5x − x = 7x.", "Medium"],
+  ["Apakah hasil bagi 3x + 5x − x?", ["6x", "8x", "7x", "9x"], 2, "3x + 5x − x = 7x.", "Medium", MATH_F1_C5_QUIZ_VISUALS.threeXFiveXMinusX],
   [
     "Permudahkan 10p − (3p − 2).",
     ["7p − 2", "13p + 2", "13p − 2", "7p + 2"],
@@ -5763,6 +5884,7 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "2x + 1 = 2(3) + 1 = 7.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.twiceXPlusOne,
   ],
   [
     "Given x = 4, find the value of 3x − 2.",
@@ -5798,16 +5920,18 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "3x + 2x = 5x because both are like terms.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.threeXPlusTwoX,
   ],
-  ["Simplify 9y − 4y.", ["4y", "13y", "5", "5y"], 3, "9y − 4y = 5y.", "Medium"],
-  ["Simplify 7ab − 4ab.", ["3ab", "3a", "3", "11ab"], 0, "7ab − 4ab = 3ab.", "Medium"],
-  ["Simplify 6x + 3x − 2x.", ["5x", "9x", "7x", "11x"], 2, "6x + 3x − 2x = 7x.", "Medium"],
+  ["Simplify 9y − 4y.", ["4y", "13y", "5", "5y"], 3, "9y − 4y = 5y.", "Medium", MATH_F1_C5_QUIZ_VISUALS.nineYMinusFourY],
+  ["Simplify 7ab − 4ab.", ["3ab", "3a", "3", "11ab"], 0, "7ab − 4ab = 3ab.", "Medium", MATH_F1_C5_QUIZ_VISUALS.sevenAbMinusFourAb],
+  ["Simplify 6x + 3x − 2x.", ["5x", "9x", "7x", "11x"], 2, "6x + 3x − 2x = 7x.", "Medium", MATH_F1_C5_QUIZ_VISUALS.sixXThreeXMinusTwoX],
   [
     "Simplify 4m + 5n − m.",
     ["3m − 5n", "9m + 5n", "4m + 4n", "3m + 5n"],
     3,
     "Combine the like terms m: 4m − m = 3m, giving 3m + 5n.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fourMFiveNMinusM,
   ],
   [
     "Simplify 2a + 3b + 4a − b.",
@@ -5815,6 +5939,7 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Combine like terms: (2a + 4a) + (3b − b) = 6a + 2b.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.twoAThreeBFourAMinusB,
   ],
   ["Simplify −(x + 4).", ["x + 4", "−x − 4", "−x + 4", "x − 4"], 1, "−(x + 4) = −x − 4.", "Medium"],
   [
@@ -5914,14 +6039,16 @@ const MATH_C5_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Combine like terms: (5x − 2x) + (7 − 4) = 3x + 3.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fiveXSevenMinusTwoXFour,
   ],
-  ["Simplify 9ab − 5ab + ab.", ["5ab", "4ab", "3ab", "13ab"], 0, "9ab − 5ab + ab = 5ab.", "Medium"],
+  ["Simplify 9ab − 5ab + ab.", ["5ab", "4ab", "3ab", "13ab"], 0, "9ab − 5ab + ab = 5ab.", "Medium", MATH_F1_C5_QUIZ_VISUALS.nineAbMinusFiveAbPlusAb],
   [
     "What is the result of 3x + 5x − x?",
     ["6x", "8x", "7x", "9x"],
     2,
     "3x + 5x − x = 7x.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.threeXFiveXMinusX,
   ],
   [
     "Simplify 10p − (3p − 2).",
@@ -5946,6 +6073,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "a × a × a = a³ kerana pemboleh ubah didarab dengan dirinya sendiri tiga kali.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aCubed,
   ],
   [
     "Permudahkan a² × a³.",
@@ -5953,6 +6081,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "a² × a³ = a²⁺³ = a⁵ (tambah kuasa pemboleh ubah yang sama).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aSquareTimesCube,
   ],
   [
     "Permudahkan a⁵ ÷ a².",
@@ -5960,6 +6089,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "a⁵ ÷ a² = a⁵⁻² = a³ (tolak kuasa pemboleh ubah yang sama).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aFifthDividedSquare,
   ],
   ["Permudahkan b⁴ ÷ b.", ["b", "b⁴", "b⁵", "b³"], 3, "b⁴ ÷ b = b⁴⁻¹ = b³.", "Medium"],
   [
@@ -5968,6 +6098,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "2a × 3a = (2 × 3) × (a × a) = 6a².",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.twoATimesThreeA,
   ],
   [
     "Permudahkan 4x × 2x².",
@@ -5975,6 +6106,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "4x × 2x² = (4 × 2) × (x × x²) = 8x¹⁺² = 8x³.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fourXTimesTwoXSquare,
   ],
   [
     "Permudahkan 3ab² × 4a³b.",
@@ -5982,6 +6114,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "3ab² × 4a³b = (3 × 4) × a¹⁺³ × b²⁺¹ = 12a⁴b³.",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.threeAbSquareTimesFourACubedB,
   ],
   [
     "Permudahkan 5m²n × 2mn³.",
@@ -5996,6 +6129,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "20m⁴n³ ÷ 5m²n = (20 ÷ 5) × m⁴⁻² × n³⁻¹ = 4m²n².",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.twentyMNOverFiveMN,
   ],
   [
     "Permudahkan 12x³y² ÷ 4xy.",
@@ -6024,6 +6158,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "(a + b)(a + b)(a + b) = (a + b)³ (pendaraban berulang ungkapan).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.repeatedAPlusB,
   ],
   [
     "Permudahkan 6x² × 3x.",
@@ -6122,6 +6257,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Luas segi empat tepat = panjang × lebar = 3x × 2x = 6x².",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.rectangleThreeXByTwoX,
   ],
   [
     "Sebuah kotak berbentuk kubus mempunyai sisi sepanjang a unit. Apakah ungkapan bagi isipadunya?",
@@ -6129,6 +6265,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Isipadu kubus = sisi × sisi × sisi = a × a × a = a³.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.cubeSideA,
   ],
   [
     "Permudahkan 6x²y³ ÷ 3xy.",
@@ -6153,6 +6290,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "a × a × a = a³ because the variable is multiplied by itself three times.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aCubed,
   ],
   [
     "Simplify a² × a³.",
@@ -6160,6 +6298,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "a² × a³ = a²⁺³ = a⁵ (add the powers of the same variable).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aSquareTimesCube,
   ],
   [
     "Simplify a⁵ ÷ a².",
@@ -6167,6 +6306,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "a⁵ ÷ a² = a⁵⁻² = a³ (subtract the powers of the same variable).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.aFifthDividedSquare,
   ],
   ["Simplify b⁴ ÷ b.", ["b", "b⁴", "b⁵", "b³"], 3, "b⁴ ÷ b = b⁴⁻¹ = b³.", "Medium"],
   [
@@ -6175,6 +6315,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "2a × 3a = (2 × 3) × (a × a) = 6a².",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.twoATimesThreeA,
   ],
   [
     "Simplify 4x × 2x².",
@@ -6182,6 +6323,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "4x × 2x² = (4 × 2) × (x × x²) = 8x¹⁺² = 8x³.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.fourXTimesTwoXSquare,
   ],
   [
     "Simplify 3ab² × 4a³b.",
@@ -6189,6 +6331,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "3ab² × 4a³b = (3 × 4) × a¹⁺³ × b²⁺¹ = 12a⁴b³.",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.threeAbSquareTimesFourACubedB,
   ],
   [
     "Simplify 5m²n × 2mn³.",
@@ -6203,6 +6346,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "20m⁴n³ ÷ 5m²n = (20 ÷ 5) × m⁴⁻² × n³⁻¹ = 4m²n².",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.twentyMNOverFiveMN,
   ],
   [
     "Simplify 12x³y² ÷ 4xy.",
@@ -6231,6 +6375,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "(a + b)(a + b)(a + b) = (a + b)³ (repeated multiplication of an expression).",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.repeatedAPlusB,
   ],
   [
     "Simplify 6x² × 3x.",
@@ -6329,6 +6474,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Area of rectangle = length × width = 3x × 2x = 6x².",
     "Hard",
+    MATH_F1_C5_QUIZ_VISUALS.rectangleThreeXByTwoX,
   ],
   [
     "A cube-shaped box has sides of length a units. What is the expression for its volume?",
@@ -6336,6 +6482,7 @@ const MATH_C5_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Volume of cube = side × side × side = a × a × a = a³.",
     "Medium",
+    MATH_F1_C5_QUIZ_VISUALS.cubeSideA,
   ],
   [
     "Simplify 6x²y³ ÷ 3xy.",
@@ -6424,6 +6571,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Baki = jumlah asal − perbelanjaan, maka p − q = 10.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.rahimMoney,
   ],
   [
     "Apakah ciri utama persamaan linear dalam dua pemboleh ubah?",
@@ -6454,10 +6602,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah maksud 'pemboleh ubah' dalam suatu persamaan?",
     [
-      "Nombor tetap dalam persamaan",
-      "Huruf yang mewakili nilai tidak diketahui",
-      "Tanda operasi seperti + atau −",
-      "Jawapan akhir bagi persamaan",
+      "Nombor bagi nilai yang tetap",
+      "Huruf bagi nilai tidak diketahui",
+      "Tanda bagi suatu operasi",
+      "Unit bagi kuantiti yang diukur",
     ],
     1,
     "Pemboleh ubah ialah huruf atau simbol yang mewakili nilai yang tidak diketahui.",
@@ -6476,6 +6624,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Beza umur ditulis sebagai p − q = 10.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.ageDifference,
   ],
   [
     "Manakah berikut BUKAN persamaan linear dalam dua pemboleh ubah?",
@@ -6499,10 +6648,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah maksud 'menyelesaikan' suatu persamaan linear?",
     [
-      "Mencari nilai pemboleh ubah yang menjadikannya benar",
-      "Menukar persamaan kepada ungkapan",
-      "Menggandakan kedua-dua belah persamaan",
-      "Menukar tanda setiap sebutan",
+      "Mencari nilai yang memenuhi persamaan",
+      "Mencari bilangan sebutan persamaan",
+      "Mencari bilangan operasi persamaan",
+      "Mencari jumlah pekali persamaan",
     ],
     0,
     "Menyelesaikan persamaan bermaksud mencari nilai pemboleh ubah yang menjadikan kedua-dua belah persamaan sama nilai.",
@@ -6510,12 +6659,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Berapakah bilangan penyelesaian yang dimiliki oleh sebuah persamaan linear dalam dua pemboleh ubah?",
-    [
-      "Tiada penyelesaian",
-      "Hanya satu penyelesaian",
-      "Tidak terhingga banyaknya",
-      "Dua penyelesaian sahaja",
-    ],
+    ["Tiada", "Tepat satu", "Tak terhingga", "Tepat dua"],
     2,
     "Persamaan linear dalam dua pemboleh ubah mempunyai bilangan penyelesaian yang tidak terhingga.",
     "Easy",
@@ -6545,6 +6689,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "'Dua kali suatu nombor n tambah 5' diterjemahkan kepada 2n + 5, maka persamaannya ialah 2n + 5 = 17.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.twiceNPlusFive,
   ],
   [
     "Manakah antara berikut mengandungi pemboleh ubah berkuasa 2?",
@@ -6559,14 +6704,15 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Jumlah dua nombor ditulis sebagai x + y = 20.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.sumXAndY20,
   ],
   [
     "Apakah langkah pertama dalam membentuk persamaan linear daripada situasi harian?",
     [
-      "Pilih pemboleh ubah bagi kuantiti tidak diketahui",
-      "Selesaikan persamaan dengan segera",
-      "Lukis graf bagi situasi itu",
-      "Tukar semua nombor kepada pecahan",
+      "Tetapkan pemboleh ubah",
+      "Selesaikan persamaan",
+      "Lukis graf persamaan",
+      "Tukar nombor kepada pecahan",
     ],
     0,
     "Langkah pertama ialah mengenal pasti kuantiti yang tidak diketahui dan mewakilkannya dengan pemboleh ubah.",
@@ -6592,6 +6738,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Harga 4 batang pen = 4 × x = 4x. Maka 4x = 12.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.fourPens,
   ],
   [
     "Tulis persamaan bagi 'tiga kali suatu nombor p ditolak 4 sama dengan 11'.",
@@ -6599,6 +6746,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "'Tiga kali suatu nombor p ditolak 4' diterjemahkan kepada 3p − 4, maka persamaannya ialah 3p − 4 = 11.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.threePMinusFour,
   ],
   [
     "Selesaikan x − 6 = 2.",
@@ -6606,14 +6754,15 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Tambah 6 pada kedua-dua belah persamaan: x − 6 + 6 = 2 + 6, maka x = 8.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.xMinusSix,
   ],
   [
     "Apakah yang membezakan suatu persamaan daripada ungkapan algebra?",
     [
-      "Persamaan tidak pernah mengandungi pemboleh ubah",
-      "Persamaan mempunyai tanda sama dengan (=); ungkapan tidak",
-      "Ungkapan algebra sentiasa lebih panjang",
-      "Persamaan tidak pernah mengandungi pemalar",
+      "Persamaan tiada pemalar",
+      "Persamaan ada tanda =",
+      "Persamaan tiada pemboleh ubah",
+      "Persamaan ada lebih sebutan",
     ],
     1,
     "Persamaan mengandungi tanda sama dengan (=) yang menunjukkan dua bahagian mempunyai nilai yang sama, manakala ungkapan algebra tidak.",
@@ -6692,6 +6841,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Amount left = original amount − amount spent, so p − q = 10.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.rahimMoney,
   ],
   [
     "What is the main feature of a linear equation in two variables?",
@@ -6722,10 +6872,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does 'variable' mean in an equation?",
     [
-      "A fixed number in the equation",
-      "A letter representing an unknown value",
-      "An operation sign such as + or −",
-      "The final answer to the equation",
+      "A number for a fixed value",
+      "A letter for an unknown value",
+      "A sign for an operation",
+      "A unit for a measured quantity",
     ],
     1,
     "A variable is a letter or symbol that represents an unknown value.",
@@ -6744,6 +6894,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The age difference is written as p − q = 10.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.ageDifference,
   ],
   [
     "Which of the following is NOT a linear equation in two variables?",
@@ -6767,10 +6918,10 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does it mean to 'solve' a linear equation?",
     [
-      "Finding the value of the variable that makes it true",
-      "Turning the equation into an expression",
-      "Doubling both sides of the equation",
-      "Changing the sign of every term",
+      "Finding a value satisfying the equation",
+      "Counting the terms in the equation",
+      "Counting the operations in the equation",
+      "Adding the coefficients in the equation",
     ],
     0,
     "Solving an equation means finding the value of the variable that makes both sides of the equation equal in value.",
@@ -6778,7 +6929,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "How many solutions does a linear equation in two variables have?",
-    ["No solutions", "Only one solution", "An infinite number of solutions", "Only two solutions"],
+    ["None", "Exactly one", "Infinitely many", "Exactly two"],
     2,
     "A linear equation in two variables has an infinite number of solutions.",
     "Easy",
@@ -6808,6 +6959,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "'Two times a number n plus 5' translates to 2n + 5, so the equation is 2n + 5 = 17.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.twiceNPlusFive,
   ],
   [
     "Which of the following contains a variable raised to the power of 2?",
@@ -6822,14 +6974,15 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "The sum of two numbers is written as x + y = 20.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.sumXAndY20,
   ],
   [
     "What is the first step in forming a linear equation from a daily-life situation?",
     [
-      "Choose a variable for the unknown quantity",
-      "Solve the equation straight away",
-      "Draw a graph of the situation",
-      "Change all the numbers into fractions",
+      "Define the variable",
+      "Solve the equation",
+      "Draw the equation graph",
+      "Convert numbers to fractions",
     ],
     0,
     "The first step is to identify the unknown quantity and represent it with a variable.",
@@ -6855,6 +7008,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The price of 4 pens = 4 × x = 4x. So 4x = 12.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.fourPens,
   ],
   [
     "Write the equation for 'Three times a number p minus 4 equals 11'.",
@@ -6862,6 +7016,7 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "'Three times a number p minus 4' translates to 3p − 4, so the equation is 3p − 4 = 11.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.threePMinusFour,
   ],
   [
     "Solve x − 6 = 2.",
@@ -6869,14 +7024,15 @@ const MATH_C6_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Add 6 to both sides of the equation: x − 6 + 6 = 2 + 6, so x = 8.",
     "Easy",
+    MATH_F1_C6_QUIZ_VISUALS.xMinusSix,
   ],
   [
     "What distinguishes an equation from an algebraic expression?",
     [
-      "An equation never contains a variable",
-      "An equation has an equals sign (=); an expression does not",
-      "An algebraic expression is always longer",
-      "An equation never contains a constant",
+      "An equation has no constant",
+      "An equation has an = sign",
+      "An equation has no variable",
+      "An equation has more terms",
     ],
     1,
     "An equation contains an equals sign (=) showing that two parts have equal value, while an algebraic expression does not.",
@@ -6891,6 +7047,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Tolak 7 daripada kedua-dua belah: x + 7 − 7 = 11 − 7, maka x = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xPlusSeven,
   ],
   [
     "Apakah operasi yang perlu dilakukan pada kedua-dua belah persamaan x + 7 = 11 untuk mendapatkan x bersendirian?",
@@ -6902,10 +7059,10 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Apakah konsep kesamaan?",
     [
-      "Melakukan operasi berbeza pada setiap belah persamaan",
-      "Menukar semua pemboleh ubah kepada nombor",
-      "Melakukan operasi yang sama pada kedua-dua belah persamaan supaya ia kekal seimbang",
-      "Mengabaikan tanda sama dengan dalam persamaan",
+      "Operasi berbeza pada setiap belah",
+      "Operasi pada satu belah sahaja",
+      "Operasi sama pada kedua-dua belah",
+      "Operasi pada pemboleh ubah sahaja",
     ],
     2,
     "Konsep kesamaan ialah melakukan operasi yang sama pada kedua-dua belah persamaan supaya ia kekal seimbang.",
@@ -6917,6 +7074,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Tambah 5 pada kedua-dua belah: x − 5 + 5 = 9 + 5, maka x = 14.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xMinusFive,
   ],
   [
     "Gunakan kaedah cuba jaya untuk menyelesaikan x + 5 = 9. Apakah nilai x yang betul?",
@@ -6962,6 +7120,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Langkah pertama ialah menolak 7 daripada kedua-dua belah supaya 4x/5 = 16.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.fourFifthsXPlusSeven,
   ],
   [
     "Dalam menyelesaikan 4x/5 + 7 = 23, selepas mendapat 4x/5 = 16, apakah langkah seterusnya?",
@@ -6988,6 +7147,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "3x − 4 = 11 → 3x = 15 → x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.threeXMinusFour,
   ],
   [
     "Selesaikan persamaan x/4 = 6.",
@@ -6995,6 +7155,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "x/4 = 6 → x = 6 × 4 = 24.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xOverFour,
   ],
   [
     "Selesaikan persamaan 2x + 3 = 13.",
@@ -7002,6 +7163,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "2x + 3 = 13 → 2x = 10 → x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.twoXPlusThree,
   ],
   [
     "Selesaikan persamaan 5x − 1 = 0.",
@@ -7023,6 +7185,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "2(3) + y = 10 → 6 + y = 10 → y = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.twoXPlusY,
   ],
   [
     "Diberi y = 7x + 6, apakah nilai y apabila x = 2?",
@@ -7041,10 +7204,10 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Mengapakah persamaan linear dalam dua pemboleh ubah mempunyai bilangan penyelesaian yang tidak terhingga?",
     [
-      "Kerana pemboleh ubahnya berkuasa 2",
-      "Kerana persamaan itu tidak mempunyai pemalar",
-      "Kerana ia tidak boleh diselesaikan",
-      "Kerana setiap nilai x yang berbeza menghasilkan nilai y yang sepadan",
+      "Setiap nilai x memberi nilai y sama",
+      "Setiap nilai x memberi dua nilai y",
+      "Tiada nilai x memberi pasangan y",
+      "Nilai x berlainan memberi pasangan y",
     ],
     3,
     "Setiap nilai berbeza yang disubstitusikan untuk satu pemboleh ubah menghasilkan nilai sepadan bagi pemboleh ubah satu lagi, menghasilkan banyak pasangan penyelesaian.",
@@ -7056,6 +7219,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Tolak 9 daripada kedua-dua belah: x = 15 − 9 = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xPlusNine,
   ],
   [
     "Selesaikan persamaan 2x = 18 menggunakan konsep kesamaan.",
@@ -7066,12 +7230,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   ],
   [
     "Apakah yang perlu dilakukan untuk menyemak sama ada x = 4 ialah penyelesaian bagi x + 7 = 11?",
-    [
-      "Tukar persamaan kepada bentuk pecahan",
-      "Selesaikan semula persamaan dari awal",
-      "Lukis graf persamaan itu",
-      "Gantikan x = 4 dan semak kedua-dua belah sama nilai",
-    ],
+    ["Gantikan x = 7", "Gantikan x = 11", "Gantikan x = −4", "Gantikan x = 4"],
     3,
     "Untuk menyemak penyelesaian, gantikan nilai itu ke dalam persamaan asal dan periksa jika kedua-dua belah sama nilai.",
     "Medium",
@@ -7089,6 +7248,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "6x + 2 = 20 → 6x = 18 → x = 3.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.sixXPlusTwo,
   ],
   [
     "Apakah operasi songsang yang digunakan untuk menyelesaikan persamaan x × 5 = 35?",
@@ -7117,6 +7277,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "7x − 3 = 4x + 9 → 7x − 4x = 9 + 3 → 3x = 12 → x = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xBothSides,
   ],
   [
     "Selesaikan 3(x − 2) = 12.",
@@ -7124,6 +7285,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Bahagi kedua-dua belah dengan 3: x − 2 = 4. Tambah 2 pada kedua-dua belah: x = 6. (x = 14 datang daripada 3x − 2 = 12 tanpa mendarab ke dalam kurungan.)",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.bracketsThreeXMinusTwo,
   ],
 ]);
 
@@ -7134,6 +7296,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Subtract 7 from both sides: x + 7 − 7 = 11 − 7, giving x = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xPlusSeven,
   ],
   [
     "What operation should be performed on both sides of x + 7 = 11 to isolate x?",
@@ -7145,10 +7308,10 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "What is the equality concept?",
     [
-      "Performing different operations on each side of the equation",
-      "Converting all variables into numbers",
-      "Performing the same operation on both sides of the equation so it stays balanced",
-      "Ignoring the equals sign in the equation",
+      "Different operations on each side",
+      "An operation on only one side",
+      "The same operation on both sides",
+      "An operation on only the variables",
     ],
     2,
     "The equality concept means performing the same operation on both sides of the equation so it stays balanced.",
@@ -7160,6 +7323,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Add 5 to both sides: x − 5 + 5 = 9 + 5, giving x = 14.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xMinusFive,
   ],
   [
     "Use trial and error to solve x + 5 = 9. What is the correct value of x?",
@@ -7205,6 +7369,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "The first step is to subtract 7 from both sides so that 4x/5 = 16.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.fourFifthsXPlusSeven,
   ],
   [
     "When solving 4x/5 + 7 = 23, after obtaining 4x/5 = 16, what is the next step?",
@@ -7231,6 +7396,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "3x − 4 = 11 → 3x = 15 → x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.threeXMinusFour,
   ],
   [
     "Solve the equation x/4 = 6.",
@@ -7238,6 +7404,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "x/4 = 6 → x = 6 × 4 = 24.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xOverFour,
   ],
   [
     "Solve the equation 2x + 3 = 13.",
@@ -7245,6 +7412,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "2x + 3 = 13 → 2x = 10 → x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.twoXPlusThree,
   ],
   [
     "Solve the equation 5x − 1 = 0.",
@@ -7266,6 +7434,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "2(3) + y = 10 → 6 + y = 10 → y = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.twoXPlusY,
   ],
   [
     "Given y = 7x + 6, what is the value of y when x = 2?",
@@ -7284,10 +7453,10 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "Why does a linear equation in two variables have an infinite number of solutions?",
     [
-      "Because its variables are raised to the power of 2",
-      "Because the equation has no constant",
-      "Because it cannot be solved",
-      "Because each different value of x produces a corresponding value of y",
+      "Every x value gives the same y value",
+      "Every x value gives two different y values",
+      "No x value gives a corresponding y value",
+      "Different x values give corresponding y values",
     ],
     3,
     "Each different value substituted for one variable produces a corresponding value for the other, giving many solution pairs.",
@@ -7299,6 +7468,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Subtract 9 from both sides: x = 15 − 9 = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xPlusNine,
   ],
   [
     "Solve the equation 2x = 18 using the equality concept.",
@@ -7310,10 +7480,10 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "What should be done to check whether x = 4 is the solution of x + 7 = 11?",
     [
-      "Change the equation into fraction form",
-      "Solve the equation again from the beginning",
-      "Draw a graph of the equation",
-      "Substitute x = 4 and check both sides are equal",
+      "Substitute x = 7",
+      "Substitute x = 11",
+      "Substitute x = −4",
+      "Substitute x = 4",
     ],
     3,
     "To check the solution, substitute the value into the original equation and verify both sides are equal in value.",
@@ -7332,6 +7502,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "6x + 2 = 20 → 6x = 18 → x = 3.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.sixXPlusTwo,
   ],
   [
     "Which inverse operation is used to solve the equation x × 5 = 35?",
@@ -7360,6 +7531,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "7x − 3 = 4x + 9 → 7x − 4x = 9 + 3 → 3x = 12 → x = 4.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.xBothSides,
   ],
   [
     "Solve 3(x − 2) = 12.",
@@ -7367,6 +7539,7 @@ const MATH_C6_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Divide both sides by 3: x − 2 = 4. Add 2 to both sides: x = 6. (x = 14 comes from writing 3x − 2 = 12 without multiplying into the brackets.)",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.bracketsThreeXMinusTwo,
   ],
 ]);
 
@@ -7374,10 +7547,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah persamaan linear serentak?",
     [
-      "Dua persamaan linear dengan pemboleh ubah sama diselesaikan bersama",
-      "Dua persamaan tidak berkaitan yang diselesaikan satu demi satu",
-      "Satu persamaan dengan tiga pemboleh ubah",
-      "Persamaan yang tiada penyelesaian",
+      "Dua persamaan linear diselesaikan bersama",
+      "Dua persamaan linear diselesaikan berasingan",
+      "Dua ungkapan linear ditambah bersama",
+      "Dua ungkapan linear didarab bersama",
     ],
     0,
     "Persamaan linear serentak ialah dua atau lebih persamaan linear yang melibatkan pemboleh ubah sama yang diselesaikan bersama.",
@@ -7398,10 +7571,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Bilakah persamaan serentak mempunyai penyelesaian unik?",
     [
-      "Apabila dua garis lurus selari",
-      "Apabila dua garis lurus bertindih",
-      "Apabila dua garis lurus bersilang pada hanya satu titik",
-      "Apabila dua garis lurus tidak dapat dilukis",
+      "Garis selari berbeza",
+      "Garis bertindih sepenuhnya",
+      "Garis bersilang sekali",
+      "Garis tidak mempunyai pemalar",
     ],
     2,
     "Penyelesaian unik wujud apabila dua garis lurus bersilang pada hanya satu titik.",
@@ -7410,10 +7583,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Bilakah persamaan serentak tiada penyelesaian?",
     [
-      "Apabila dua garis lurus bersilang pada satu titik",
-      "Apabila dua garis lurus bertindih sepenuhnya",
-      "Apabila salah satu persamaan mempunyai pemalar sifar",
-      "Apabila dua garis lurus selari dan tidak bersilang",
+      "Garis bersilang sekali",
+      "Garis bertindih sepenuhnya",
+      "Garis mempunyai pintasan sifar",
+      "Garis selari berbeza",
     ],
     3,
     "Persamaan serentak tiada penyelesaian apabila dua garis lurus selari dan tidak akan bersilang.",
@@ -7422,10 +7595,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Bilakah persamaan serentak mempunyai penyelesaian tak terhingga?",
     [
-      "Apabila dua garis lurus bersilang pada satu titik",
-      "Apabila dua garis lurus mewakili garis yang sama (bertindih)",
-      "Apabila dua garis lurus selari",
-      "Apabila salah satu persamaan tiada pemboleh ubah",
+      "Garis bersilang sekali",
+      "Garis bertindih sepenuhnya",
+      "Garis selari berbeza",
+      "Garis mempunyai pintasan sifar",
     ],
     1,
     "Penyelesaian tak terhingga wujud apabila kedua-dua persamaan mewakili garis lurus yang sama dan bertindih sepenuhnya.",
@@ -7434,10 +7607,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama dalam kaedah penggantian?",
     [
-      "Lukis graf bagi kedua-dua persamaan",
-      "Tambah kedua-dua persamaan bersama",
-      "Ungkapkan satu pemboleh ubah dalam sebutan yang lain",
-      "Samakan pekali kedua-dua persamaan",
+      "Lukis kedua-dua graf dahulu",
+      "Tambah kedua-dua persamaan",
+      "Ungkapkan satu pemboleh ubah",
+      "Samakan pekali dahulu",
     ],
     2,
     "Langkah pertama dalam kaedah penggantian ialah mengungkapkan satu pemboleh ubah dalam sebutan pemboleh ubah yang satu lagi.",
@@ -7449,6 +7622,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Daripada x + y = 10, ungkapkan x = 10 − y.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemTenTwo,
   ],
   [
     "Selepas menggantikan x = 10 − y ke dalam x − y = 2, apakah persamaan satu pemboleh ubah yang terhasil (sebelum dipermudahkan)?",
@@ -7463,6 +7637,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Gantikan y = 2x ke dalam x + y = 9: x + 2x = 9 → 3x = 9 → x = 3. Maka y = 2(3) = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemDoubleY,
   ],
   [
     "Pasangan nilai manakah memuaskan KEDUA-DUA persamaan x + y = 7 dan x − y = 1?",
@@ -7470,6 +7645,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Semak x = 4, y = 3: 4 + 3 = 7 dan 4 − 3 = 1. Pasangan lain hanya memuaskan x + y = 7.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemSevenOne,
   ],
   [
     "Selepas mendapat y = 4, apakah nilai x dalam persamaan serentak x + y = 10 dan x − y = 2?",
@@ -7481,10 +7657,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama dalam kaedah penghapusan?",
     [
-      "Selesaikan persamaan tanpa mengubah pekali",
-      "Buat pekali satu pemboleh ubah sama dalam kedua-dua persamaan",
-      "Lukis graf kedua-dua persamaan",
-      "Gantikan satu pemboleh ubah dengan nombor",
+      "Samakan pemalar kedua-dua persamaan",
+      "Samakan pekali satu pemboleh ubah",
+      "Darab kedua-dua persamaan bersama",
+      "Lukis kedua-dua graf persamaan",
     ],
     1,
     "Langkah pertama kaedah penghapusan ialah membuat pekali satu pemboleh ubah sama dalam kedua-dua persamaan.",
@@ -7510,6 +7686,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Tolak persamaan kedua daripada persamaan pertama: 2x = 6 → x = 3. Gantikan ke dalam x + y = 5: y = 2.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemThreeEleven,
   ],
   [
     "Apakah penyelesaian akhir bagi persamaan serentak x + y = 10 dan x − y = 2?",
@@ -7521,10 +7698,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama dalam kaedah graf untuk menyelesaikan persamaan serentak?",
     [
-      "Lukis graf bagi persamaan pertama pada satah Cartesan",
-      "Selesaikan persamaan secara algebra dahulu",
-      "Tukar kedua-dua persamaan kepada bentuk pecahan",
-      "Cari nilai pemalar sahaja",
+      "Lukis graf persamaan pertama",
+      "Selesaikan persamaan secara algebra",
+      "Darab kedua-dua persamaan bersama",
+      "Samakan pemalar kedua-dua persamaan",
     ],
     0,
     "Langkah pertama kaedah graf ialah melukis graf persamaan pertama pada satah Cartesan.",
@@ -7560,6 +7737,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Katakan x + y = 15 dan x − y = 3. Tambah kedua-dua persamaan: 2x = 18 → x = 9, maka y = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.sumDifference,
   ],
   [
     "2 kg epal dan 1 kg oren berharga RM13, manakala 1 kg epal dan 1 kg oren berharga RM8. Berapakah harga 1 kg epal?",
@@ -7567,6 +7745,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Katakan harga 1 kg epal = RMx dan 1 kg oren = RMy. 2x + y = 13 dan x + y = 8. Tolak: x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.fruitPurchases,
   ],
   [
     "Selesaikan persamaan serentak 2x + y = 7 dan x − y = 2 menggunakan kaedah penghapusan.",
@@ -7574,6 +7753,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Tambah kedua-dua persamaan: 3x = 9, maka x = 3; gantikan ke (2): 3 − y = 2, maka y = 1.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemTwoXSeven,
   ],
   [
     "Selesaikan persamaan serentak x + 2y = 8 dan x − y = 2 menggunakan kaedah penggantian.",
@@ -7581,6 +7761,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Daripada x − y = 2, x = 2 + y. Gantikan ke x + 2y = 8: (2 + y) + 2y = 8 → 3y = 6 → y = 2, maka x = 4.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemXPlusTwoY,
   ],
   [
     "Suatu kedai menjual 2 buku dan 3 pensel dengan harga RM16, manakala 1 buku dan 1 pensel berharga RM7. Jika harga buku ialah RM b dan pensel RM p, tulis persamaan serentak bagi situasi ini.",
@@ -7593,6 +7774,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Dua buku dan tiga pensel berharga RM16 ditulis 2b + 3p = 16; satu buku dan satu pensel berharga RM7 ditulis b + p = 7.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.bookPencilPurchases,
   ],
   [
     "Daripada persamaan serentak 2b + 3p = 16 dan b + p = 7, cari nilai b dan p.",
@@ -7600,6 +7782,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Daripada b + p = 7, b = 7 − p. Gantikan ke 2b + 3p = 16: 2(7 − p) + 3p = 16 → 14 + p = 16 → p = 2, maka b = 5.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.bookPencilPurchases,
   ],
   [
     "Dua garis lurus y = 2x + 1 dan y = 2x − 3 dilukis pada satah Cartesan yang sama. Apakah jenis penyelesaian bagi persamaan serentak ini?",
@@ -7610,12 +7793,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Dua persamaan 2x + 4y = 10 dan x + 2y = 5 dilukis sebagai graf. Apakah jenis penyelesaian bagi persamaan serentak ini?",
-    [
-      "Penyelesaian tak terhingga",
-      "Tiada penyelesaian",
-      "Penyelesaian unik",
-      "Tidak dapat ditentukan",
-    ],
+    ["Tak terhingga", "Tiada", "Tepat satu", "Tepat dua"],
     0,
     "Persamaan 2x + 4y = 10 boleh dipermudahkan kepada x + 2y = 5, iaitu sama dengan persamaan kedua, maka kedua-duanya mewakili garis yang sama dan mempunyai penyelesaian tak terhingga.",
     "Hard",
@@ -7626,6 +7804,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Tambah kedua-dua persamaan: 3x = 15, maka x = 5; gantikan ke x + y = 12: y = 7.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemTwelveThree,
   ],
   [
     "Sebuah taman segi empat tepat mempunyai perimeter 28 m. Jika panjangnya ialah x m dan lebarnya y m, tulis persamaan yang mewakili perimeter ini.",
@@ -7633,6 +7812,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Perimeter segi empat tepat = 2(panjang + lebar), maka 2x + 2y = 28.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.gardenPerimeter,
   ],
   [
     "Diberi 2x + 2y = 28 dan x − y = 2, cari nilai x dan y.",
@@ -7640,6 +7820,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Permudahkan 2x + 2y = 28 kepada x + y = 14. Tambah dengan x − y = 2: 2x = 16, maka x = 8 dan y = 6.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemGarden,
   ],
 ]);
 
@@ -7647,10 +7828,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What are simultaneous linear equations?",
     [
-      "Two linear equations in the same variables solved together",
-      "Two unrelated equations solved one at a time",
-      "A single equation with three variables",
-      "An equation that has no solution",
+      "Two linear equations solved together",
+      "Two linear equations solved separately",
+      "Two linear expressions added together",
+      "Two linear expressions multiplied together",
     ],
     0,
     "Simultaneous linear equations are two or more linear equations involving the same variables that are solved together.",
@@ -7671,10 +7852,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "When do simultaneous equations have a unique solution?",
     [
-      "When the two straight lines are parallel",
-      "When the two straight lines overlap",
-      "When the two straight lines intersect at exactly one point",
-      "When the two straight lines cannot be drawn",
+      "Distinct parallel lines",
+      "Completely overlapping lines",
+      "Lines intersect once",
+      "Lines have no constant",
     ],
     2,
     "A unique solution exists when the two straight lines intersect at exactly one point.",
@@ -7683,10 +7864,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "When do simultaneous equations have no solution?",
     [
-      "When the two straight lines intersect at one point",
-      "When the two straight lines completely overlap",
-      "When one of the equations has a zero constant",
-      "When the two straight lines are parallel and never intersect",
+      "Lines intersect once",
+      "Completely overlapping lines",
+      "Lines have a zero intercept",
+      "Distinct parallel lines",
     ],
     3,
     "Simultaneous equations have no solution when the two straight lines are parallel and never intersect.",
@@ -7695,10 +7876,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "When do simultaneous equations have an infinite number of solutions?",
     [
-      "When the two straight lines intersect at one point",
-      "When the two lines represent the same line (overlap)",
-      "When the two straight lines are parallel",
-      "When one equation has no variable",
+      "Lines intersect once",
+      "Completely overlapping lines",
+      "Distinct parallel lines",
+      "Lines have a zero intercept",
     ],
     1,
     "Infinite solutions exist when both equations represent the same straight line and overlap completely.",
@@ -7707,10 +7888,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What is the first step in the substitution method?",
     [
-      "Draw the graphs of both equations",
-      "Add both equations together",
-      "Express one variable in terms of the other",
-      "Equalise the coefficients in both equations",
+      "Draw both graphs first",
+      "Add both equations",
+      "Isolate one variable",
+      "Equalise coefficients first",
     ],
     2,
     "The first step in the substitution method is to express one variable in terms of the other variable.",
@@ -7722,6 +7903,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "From x + y = 10, express x = 10 − y.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemTenTwo,
   ],
   [
     "After substituting x = 10 − y into x − y = 2, what one-variable equation results (before simplifying)?",
@@ -7736,6 +7918,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Substitute y = 2x into x + y = 9: x + 2x = 9 → 3x = 9 → x = 3. So y = 2(3) = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemDoubleY,
   ],
   [
     "Which pair of values satisfies BOTH equations x + y = 7 and x − y = 1?",
@@ -7743,6 +7926,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Check x = 4, y = 3: 4 + 3 = 7 and 4 − 3 = 1. The other pairs only satisfy x + y = 7.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemSevenOne,
   ],
   [
     "After finding y = 4, what is the value of x in the simultaneous equations x + y = 10 and x − y = 2?",
@@ -7754,10 +7938,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What is the first step in the elimination method?",
     [
-      "Solve the equations without changing the coefficients",
-      "Make the coefficients of one variable equal in both equations",
-      "Draw the graphs of both equations",
-      "Replace one variable with a number",
+      "Equalise both equations’ constants",
+      "Equalise one variable’s coefficients",
+      "Multiply both equations together",
+      "Draw both equations’ graphs",
     ],
     1,
     "The first step in the elimination method is to make the coefficients of one variable equal in both equations.",
@@ -7783,6 +7967,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Subtract the second equation from the first: 2x = 6 → x = 3. Substitute into x + y = 5: y = 2.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.systemThreeEleven,
   ],
   [
     "What is the final solution of the simultaneous equations x + y = 10 and x − y = 2?",
@@ -7794,10 +7979,10 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What is the first step in the graphical method for solving simultaneous equations?",
     [
-      "Draw the graph of the first equation on a Cartesian plane",
-      "Solve the equations algebraically first",
-      "Convert both equations into fraction form",
-      "Find only the constant value",
+      "Plot the first equation",
+      "Solve the equations algebraically",
+      "Multiply both equations together",
+      "Equalise both equations’ constants",
     ],
     0,
     "The first step of the graphical method is to draw the graph of the first equation on a Cartesian plane.",
@@ -7833,6 +8018,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Let x + y = 15 and x − y = 3. Add the equations: 2x = 18 → x = 9, so y = 6.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.sumDifference,
   ],
   [
     "2 kg of apples and 1 kg of oranges cost RM13, while 1 kg of apples and 1 kg of oranges cost RM8. What is the price of 1 kg of apples?",
@@ -7840,6 +8026,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Let 1 kg of apples cost RMx and 1 kg of oranges cost RMy. 2x + y = 13 and x + y = 8. Subtract: x = 5.",
     "Medium",
+    MATH_F1_C6_QUIZ_VISUALS.fruitPurchases,
   ],
   [
     "Solve the simultaneous equations 2x + y = 7 and x − y = 2 using the elimination method.",
@@ -7847,6 +8034,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Adding both equations: 3x = 9, so x = 3; substituting into x − y = 2 gives y = 1.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemTwoXSeven,
   ],
   [
     "Solve the simultaneous equations x + 2y = 8 and x − y = 2 using the substitution method.",
@@ -7854,6 +8042,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "From x − y = 2, x = 2 + y. Substituting into x + 2y = 8: (2 + y) + 2y = 8 → 3y = 6 → y = 2, so x = 4.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemXPlusTwoY,
   ],
   [
     "A shop sells 2 books and 3 pencils for RM16, while 1 book and 1 pencil cost RM7. If a book costs RM b and a pencil costs RM p, write the simultaneous equations for this situation.",
@@ -7866,6 +8055,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Two books and three pencils costing RM16 is written as 2b + 3p = 16; one book and one pencil costing RM7 is written as b + p = 7.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.bookPencilPurchases,
   ],
   [
     "From the simultaneous equations 2b + 3p = 16 and b + p = 7, find the values of b and p.",
@@ -7873,6 +8063,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "From b + p = 7, b = 7 − p. Substituting into 2b + 3p = 16: 2(7 − p) + 3p = 16 → 14 + p = 16 → p = 2, so b = 5.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.bookPencilPurchases,
   ],
   [
     "Two straight lines y = 2x + 1 and y = 2x − 3 are drawn on the same Cartesian plane. What type of solution do these simultaneous equations have?",
@@ -7883,7 +8074,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The equations 2x + 4y = 10 and x + 2y = 5 are drawn as graphs. What type of solution do these simultaneous equations have?",
-    ["Infinitely many solutions", "No solution", "A unique solution", "Cannot be determined"],
+    ["Infinitely many", "None", "Exactly one", "Exactly two"],
     0,
     "The equation 2x + 4y = 10 simplifies to x + 2y = 5, the same as the second equation, so both represent the same line and have infinitely many solutions.",
     "Hard",
@@ -7894,6 +8085,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Adding both equations: 3x = 15, so x = 5; substituting into x + y = 12 gives y = 7.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemTwelveThree,
   ],
   [
     "A rectangular garden has a perimeter of 28 m. If its length is x m and width is y m, write the equation representing this perimeter.",
@@ -7901,6 +8093,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "The perimeter of a rectangle = 2(length + width), so 2x + 2y = 28.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.gardenPerimeter,
   ],
   [
     "Given 2x + 2y = 28 and x − y = 2, find the values of x and y.",
@@ -7908,6 +8101,7 @@ const MATH_C6_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Simplify 2x + 2y = 28 to x + y = 14. Adding to x − y = 2: 2x = 16, so x = 8 and y = 6.",
     "Hard",
+    MATH_F1_C6_QUIZ_VISUALS.systemGarden,
   ],
 ]);
 
@@ -7958,6 +8152,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "'Minimum 50' bermaksud markah mestilah sekurang-kurangnya 50, maka m ≥ 50.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.minMark50,
   ],
   [
     "Had laju tidak melebihi 110 km/j. Tulis ketaksamaan ini jika h ialah had laju.",
@@ -7965,6 +8160,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "'Tidak melebihi 110' bermaksud had laju paling banyak 110, maka h ≤ 110.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.speedLimit110,
   ],
   [
     "Bilakah bulatan terbuka ○ digunakan pada garis nombor?",
@@ -8066,10 +8262,10 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah perbezaan utama antara persamaan dan ketaksamaan?",
     [
-      "Tiada perbezaan antara kedua-duanya",
-      "Persamaan menggunakan =; ketaksamaan menggunakan <, >, ≤ atau ≥",
-      "Persamaan sentiasa lebih sukar diselesaikan",
-      "Ketaksamaan tidak pernah mengandungi pemboleh ubah",
+      "+ berbanding −, ×, ÷",
+      "= berbanding <, >, ≤, ≥",
+      "x berbanding y, z, w",
+      "() berbanding [], {}",
     ],
     1,
     "Persamaan menggunakan tanda = manakala ketaksamaan menggunakan simbol seperti >, <, ≥, atau ≤.",
@@ -8090,10 +8286,10 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah kata kunci yang dikaitkan dengan simbol ≤?",
     [
-      "Lebih daripada, melebihi",
-      "Sekurang-kurangnya, minimum",
-      "Paling banyak, tidak melebihi",
-      "Kurang daripada, di bawah",
+      "Sekurang-kurangnya",
+      "Lebih daripada",
+      "Paling banyak",
+      "Kurang daripada",
     ],
     2,
     "Simbol ≤ dikaitkan dengan kata kunci 'paling banyak', 'tidak melebihi', dan 'maksimum'.",
@@ -8105,6 +8301,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "'Melebihi 12' bermaksud lebih daripada 12, maka u > 12 (bukan termasuk 12).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.ageExceeds12,
   ],
   [
     "Pilih ketaksamaan yang betul bagi 'suhu kurang daripada 25°C' (s = suhu).",
@@ -8112,6 +8309,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "'Kurang daripada 25' bermaksud s < 25.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.temperature25,
   ],
   [
     "Ketaksamaan manakah yang BENAR?",
@@ -8119,6 +8317,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "−3 berada di sebelah kanan −5 pada garis nombor, maka −3 > −5.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.compareNegatives,
   ],
   [
     "Manakah gambaran garis nombor yang betul untuk x < −2?",
@@ -8131,6 +8330,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Simbol < menggunakan bulatan terbuka dan anak panah ke kiri (kerana x lebih kecil daripada −2).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.optionsLessMinus2,
   ],
   [
     "Manakah gambaran garis nombor yang betul untuk x ≥ 1?",
@@ -8143,6 +8343,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Simbol ≥ menggunakan bulatan tertutup dan anak panah ke kanan (kerana x lebih besar daripada atau sama dengan 1).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.optionsGte1,
   ],
   [
     "Antara nilai berikut, yang manakah memenuhi x ≤ −1?",
@@ -8150,6 +8351,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "−2 lebih kecil daripada −1, maka −2 memenuhi x ≤ −1. Nilai 0, 1 dan 3 lebih besar daripada −1.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.atMostMinus1,
   ],
   [
     "Pada garis nombor, nombor bertambah ke arah manakah?",
@@ -8171,6 +8373,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "'Tidak kurang daripada 7' bermaksud x mestilah sekurang-kurangnya 7, maka x ≥ 7.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.notLessThanSeven,
   ],
 ]);
 
@@ -8221,6 +8424,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "'Minimum 50' means the mark must be at least 50, so m ≥ 50.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.minMark50,
   ],
   [
     "The speed limit does not exceed 110 km/h. Write this inequality if h is the speed.",
@@ -8228,6 +8432,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "'Does not exceed 110' means the speed is at most 110, so h ≤ 110.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.speedLimit110,
   ],
   [
     "When is an open circle ○ used on the number line?",
@@ -8319,10 +8524,10 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the main difference between an equation and an inequality?",
     [
-      "There is no difference between them",
-      "An equation uses =; an inequality uses <, >, ≤ or ≥",
-      "An equation is always harder to solve",
-      "An inequality never contains a variable",
+      "+ versus −, ×, ÷",
+      "= versus <, >, ≤, ≥",
+      "x versus y, z, w",
+      "() versus [], {}",
     ],
     1,
     "An equation uses the = sign while an inequality uses symbols such as >, <, ≥, or ≤.",
@@ -8337,7 +8542,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "What keywords are associated with the symbol ≤?",
-    ["More than, exceeds", "At least, minimum", "At most, does not exceed", "Less than, below"],
+    ["At least", "More than", "At most", "Less than"],
     2,
     "The symbol ≤ is associated with keywords 'at most', 'does not exceed', and 'maximum'.",
     "Easy",
@@ -8348,6 +8553,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "'Exceeds 12' means more than 12, so u > 12 (12 not included).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.ageExceeds12,
   ],
   [
     "Choose the correct inequality for 'temperature is less than 25°C' (s = temperature).",
@@ -8355,6 +8561,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "'Less than 25' means s < 25.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.temperature25,
   ],
   [
     "Which inequality is TRUE?",
@@ -8362,6 +8569,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "−3 is to the right of −5 on the number line, so −3 > −5.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.compareNegatives,
   ],
   [
     "Which number line representation is correct for x < −2?",
@@ -8374,6 +8582,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "The symbol < uses an open circle and arrow pointing left (because x is less than −2).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.optionsLessMinus2,
   ],
   [
     "Which number line representation is correct for x ≥ 1?",
@@ -8386,6 +8595,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "The symbol ≥ uses a closed circle and arrow pointing right (because x is greater than or equal to 1).",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.optionsGte1,
   ],
   [
     "Which of the following values satisfies x ≤ −1?",
@@ -8393,6 +8603,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "−2 is less than −1, so −2 satisfies x ≤ −1. The values 0, 1 and 3 are greater than −1.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.atMostMinus1,
   ],
   [
     "On the number line, values increase in which direction?",
@@ -8414,6 +8625,7 @@ const MATH_C7_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "'Not less than 7' means x must be at least 7, so x ≥ 7.",
     "Easy",
+    MATH_F1_C7_QUIZ_VISUALS.notLessThanSeven,
   ],
 ]);
 
@@ -8494,13 +8706,15 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "x > 3 bermaksud x lebih besar daripada 3. Nilai integer yang mungkin ialah 4, 5, 6, 7, ... (tidak termasuk 3).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.greaterThan3,
   ],
   [
     "Apakah nilai integer yang mungkin bagi x ≤ 2?",
-    ["1, 2, 3, 4", "2, 1, 0, −1, ...", "2, 3, 4, 5", "3, 4, 5, ..."],
+    ["…, −2, −1, 0, 1", "…, −1, 0, 1, 2", "2, 3, 4, 5, …", "3, 4, 5, 6, …"],
     1,
     "x ≤ 2 bermaksud x lebih kecil daripada atau sama dengan 2. Nilai integer: 2, 1, 0, −1, −2, ... (termasuk 2).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.atMostTwo,
   ],
   [
     "Apakah nilai integer yang mungkin bagi −1 < x ≤ 4?",
@@ -8508,6 +8722,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "−1 < x ≤ 4 bermaksud x lebih besar daripada −1 (tidak termasuk) dan paling besar 4 (termasuk). Integer: 0, 1, 2, 3, 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenMinusOneFour,
   ],
   [
     "Apakah nilai integer yang mungkin bagi 2 ≤ x < 7?",
@@ -8515,6 +8730,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "2 ≤ x < 7 bermaksud x sekurang-kurangnya 2 (termasuk) dan kurang daripada 7 (tidak termasuk). Integer: 2, 3, 4, 5, 6.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenTwoSeven,
   ],
   [
     "Apakah nilai integer yang mungkin bagi 1 < x < 5?",
@@ -8522,6 +8738,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "1 < x < 5 bermaksud x lebih besar daripada 1 (tidak termasuk) dan kurang daripada 5 (tidak termasuk). Integer: 2, 3, 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenOneFive,
   ],
   [
     "Selesaikan 4x − 3 > 9.",
@@ -8597,6 +8814,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "x/3 + 1 ≥ 4 → x/3 ≥ 3 → x ≥ 9. Simbol ≥ menggunakan bulatan tertutup pada 9 dan anak panah ke kanan.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.optionsAtNine,
   ],
   [
     "Selesaikan −x/2 < 3.",
@@ -8611,6 +8829,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "x > −3 bermaksud x lebih besar daripada −3. Integer terkecil ialah −2.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.greaterThanMinus3,
   ],
   [
     "Nyatakan nilai integer terbesar yang memenuhi x < 5.",
@@ -8618,6 +8837,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "x < 5 bermaksud x lebih kecil daripada 5. Integer terbesar ialah 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.lessThanFive,
   ],
   [
     "Selesaikan 6x + 2 > 20.",
@@ -8712,13 +8932,15 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "x > 3 means x is greater than 3. Possible integers: 4, 5, 6, 7, ... (3 not included).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.greaterThan3,
   ],
   [
     "What are the possible integer values for x ≤ 2?",
-    ["1, 2, 3, 4", "2, 1, 0, −1, ...", "2, 3, 4, 5", "3, 4, 5, ..."],
+    ["…, −2, −1, 0, 1", "…, −1, 0, 1, 2", "2, 3, 4, 5, …", "3, 4, 5, 6, …"],
     1,
     "x ≤ 2 means x is less than or equal to 2. Integers: 2, 1, 0, −1, −2, ... (including 2).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.atMostTwo,
   ],
   [
     "What are the possible integer values for −1 < x ≤ 4?",
@@ -8726,6 +8948,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "−1 < x ≤ 4 means x is greater than −1 (not included) and at most 4 (included). Integers: 0, 1, 2, 3, 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenMinusOneFour,
   ],
   [
     "What are the possible integer values for 2 ≤ x < 7?",
@@ -8733,6 +8956,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "2 ≤ x < 7 means x is at least 2 (included) and less than 7 (not included). Integers: 2, 3, 4, 5, 6.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenTwoSeven,
   ],
   [
     "What are the possible integer values for 1 < x < 5?",
@@ -8740,6 +8964,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "1 < x < 5 means x is greater than 1 (not included) and less than 5 (not included). Integers: 2, 3, 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenOneFive,
   ],
   [
     "Solve 4x − 3 > 9.",
@@ -8825,6 +9050,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "x/3 + 1 ≥ 4 → x/3 ≥ 3 → x ≥ 9. The symbol ≥ uses a closed circle at 9 and an arrow pointing right.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.optionsAtNine,
   ],
   [
     "Solve −x/2 < 3.",
@@ -8839,6 +9065,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "x > −3 means x is greater than −3. The smallest integer is −2.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.greaterThanMinus3,
   ],
   [
     "State the largest integer that satisfies x < 5.",
@@ -8846,6 +9073,7 @@ const MATH_C7_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "x < 5 means x is less than 5. The largest integer is 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.lessThanFive,
   ],
   [
     "Solve 6x + 2 > 20.",
@@ -8867,10 +9095,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah ketaksamaan linear serentak?",
     [
-      "Dua atau lebih ketaksamaan linear yang dipenuhi serentak",
-      "Dua persamaan yang diselesaikan bersama",
-      "Ketaksamaan yang setiap satunya ada dua pemboleh ubah",
-      "Ketaksamaan yang menggunakan simbol berbeza",
+      "Ketaksamaan dipenuhi bersama",
+      "Persamaan dipenuhi bersama",
+      "Ketaksamaan dipenuhi berasingan",
+      "Ungkapan dipermudah bersama",
     ],
     0,
     "Ketaksamaan linear serentak ialah dua atau lebih ketaksamaan linear yang perlu dipenuhi pada masa yang sama oleh satu pemboleh ubah.",
@@ -8882,6 +9110,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "x > −1 (tidak termasuk −1) dan x ≤ 3 (termasuk 3) menghasilkan −1 < x ≤ 3.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenGivenMinusOneThree,
   ],
   [
     "Apakah nilai integer yang mungkin bagi ketaksamaan serentak x > −1 dan x ≤ 3?",
@@ -8889,6 +9118,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "−1 < x ≤ 3 menghasilkan nilai integer 0, 1, 2, 3 (−1 tidak termasuk, 3 termasuk).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenGivenMinusOneThree,
   ],
   [
     "Diberi x > 2 dan x > 5, apakah nilai sepunya?",
@@ -8896,6 +9126,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Apabila kedua-dua ketaksamaan menghala ke arah yang sama, gunakan syarat lebih ketat. x > 5 lebih ketat daripada x > 2.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.bothGreaterTwoFive,
   ],
   [
     "Diberi x ≤ 4 dan x ≤ 1, apakah nilai sepunya?",
@@ -8903,6 +9134,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Apabila kedua-dua menghala ke arah yang sama (kiri), gunakan syarat lebih ketat. x ≤ 1 lebih ketat daripada x ≤ 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.bothLessFourOne,
   ],
   [
     "Diberi x > 5 dan x < 2, apakah kesimpulannya?",
@@ -8915,6 +9147,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "x > 5 bermaksud nilai lebih dari 5; x < 2 bermaksud nilai kurang daripada 2. Tiada nilai yang boleh memenuhi kedua-dua syarat ini serentak.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.disjointFiveTwo,
   ],
   [
     "Diberi x ≥ 4 dan x ≤ 1, apakah kesimpulannya?",
@@ -8927,6 +9160,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "x ≥ 4 bermaksud 4 ke atas; x ≤ 1 bermaksud 1 ke bawah. Kawasan tidak bertindih, jadi tiada nilai sepunya.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.disjointFourOne,
   ],
   [
     "Selesaikan ketaksamaan serentak 2x + 1 > 5 dan 3x − 2 < 13, kemudian nyatakan nilai integer yang mungkin.",
@@ -8938,10 +9172,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Selesaikan ketaksamaan serentak x + 3 ≥ 1 dan x − 2 ≤ 4, kemudian nyatakan nilai integer yang mungkin.",
     [
-      "x ≤ 6, integer: ..., 4, 5, 6",
-      "x ≥ −2, integer: −2, −1, 0, ...",
-      "−2 ≤ x ≤ 6, integer: −2, −1, 0, 1, 2, 3, 4, 5, 6",
-      "Tiada nilai sepunya",
+      "−2 < x < 6; −1, 0, …, 5",
+      "−6 ≤ x ≤ 2; −6, −5, …, 2",
+      "−2 ≤ x ≤ 6; −2, −1, …, 6",
+      "2 ≤ x ≤ 6; 2, 3, …, 6",
     ],
     2,
     "x + 3 ≥ 1 → x ≥ −2; x − 2 ≤ 4 → x ≤ 6. Nilai sepunya: −2 ≤ x ≤ 6. Integer: −2, −1, 0, 1, 2, 3, 4, 5, 6.",
@@ -8965,6 +9199,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "'Sekurang-kurangnya RM5' bermaksud h ≥ 5; 'tidak melebihi RM20' bermaksud h ≤ 20. Jadi 5 ≤ h ≤ 20.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.ticketFiveTwenty,
   ],
   [
     "Umur peserta mestilah lebih daripada 12 tahun dan tidak melebihi 18 tahun. Tulis ketaksamaan untuk umur u dan nyatakan nilai integer yang mungkin.",
@@ -8977,6 +9212,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "'Lebih daripada 12' → u > 12 (12 tidak termasuk); 'tidak melebihi 18' → u ≤ 18 (18 termasuk). Jadi 12 < u ≤ 18. Integer: 13, 14, 15, 16, 17, 18.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.participantAge12To18,
   ],
   [
     "Berat beg sekolah mestilah tidak kurang daripada 1 kg dan tidak melebihi 5 kg. Tulis ketaksamaan untuk berat b.",
@@ -8984,6 +9220,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "'Tidak kurang daripada 1' → b ≥ 1; 'tidak melebihi 5' → b ≤ 5. Jadi 1 ≤ b ≤ 5.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.schoolbagOneFive,
   ],
   [
     "Selesaikan ketaksamaan serentak −x + 2 > −1 dan 2x − 3 < 5.",
@@ -9024,6 +9261,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Kedua-dua menghala ke kanan. Syarat lebih ketat: x ≥ 2 (sempadan lebih besar). Nilai sepunya: x ≥ 2.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.bothGreaterTwoMinusOne,
   ],
   [
     "Diberi x < 3 dan x ≤ 7, apakah nilai sepunya?",
@@ -9031,6 +9269,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Kedua-dua menghala ke kiri. Syarat lebih ketat: x < 3 (sempadan lebih kecil). Nilai sepunya: x < 3.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.bothLessThreeSeven,
   ],
   [
     "Selesaikan ketaksamaan serentak 4 − x > 1 dan 2x + 3 ≤ 11.",
@@ -9045,6 +9284,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "x > −4 (tidak termasuk −4) dan x ≤ −1 (termasuk −1). Nilai sepunya: −4 < x ≤ −1. Integer: −3, −2, −1.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.betweenMinusFourMinusOne,
   ],
   [
     "Selesaikan ketaksamaan serentak 2x − 1 > 3 dan x + 4 ≤ 10, kemudian nyatakan nilai integer yang mungkin.",
@@ -9064,6 +9304,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "18 < u ≤ 25 menghasilkan integer: 19, 20, 21, 22, 23, 24, 25 — iaitu 7 nilai.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.youngWorkers18to25,
   ],
   [
     "Berapakah bilangan nilai integer bagi 2 < x < 5 dan bagi 2 ≤ x ≤ 5, masing-masing?",
@@ -9071,6 +9312,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "2 < x < 5: integer 3, 4 (2 nilai). 2 ≤ x ≤ 5: integer 2, 3, 4, 5 (4 nilai). Sempadan termasuk hanya apabila ≤ atau ≥ digunakan.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.compareOpenClosed,
   ],
   [
     "Jika a > 0 dan b > 0 dengan a < b, apakah yang dapat disimpulkan tentang 1/a dan 1/b?",
@@ -9082,10 +9324,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Selesaikan ketaksamaan −3x + 6 ≥ 0 dan nyatakan nilai integer yang mungkin jika disertakan syarat x ≥ −5 juga.",
     [
-      "Tiada nilai sepunya",
-      "x ≤ 2 sahaja, integer: 2, 1, 0, −1, ...",
-      "x ≥ −5 sahaja",
-      "−5 ≤ x ≤ 2, integer: −5, −4, −3, −2, −1, 0, 1, 2",
+      "−5 ≤ x ≤ −2; −5, −4, …, −2",
+      "−2 ≤ x ≤ 5; −2, −1, …, 5",
+      "−5 < x < 2; −4, −3, …, 1",
+      "−5 ≤ x ≤ 2; −5, −4, …, 2",
     ],
     3,
     "−3x + 6 ≥ 0 → −3x ≥ −6 → x ≤ 2. Dan x ≥ −5. Nilai sepunya: −5 ≤ x ≤ 2. Integer: −5, −4, −3, −2, −1, 0, 1, 2.",
@@ -9094,10 +9336,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah maksud 'kawasan bertindih' pada garis nombor dalam konteks ketaksamaan serentak?",
     [
-      "Kawasan yang dipenuhi oleh KEDUA-DUA ketaksamaan pada masa yang sama",
-      "Kawasan di mana garis dua ketaksamaan bersilang",
-      "Kawasan antara dua sempadan sahaja",
-      "Kawasan di luar kedua-dua ketaksamaan",
+      "Rantau memenuhi kedua-dua syarat",
+      "Rantau memenuhi syarat pertama sahaja",
+      "Rantau memenuhi syarat kedua sahaja",
+      "Rantau tidak memenuhi sebarang syarat",
     ],
     0,
     "Kawasan bertindih ialah kawasan pada garis nombor yang dipenuhi oleh KEDUA-DUA ketaksamaan serentak pada masa yang sama.",
@@ -9116,6 +9358,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "3 < p < 8 menghasilkan integer 4, 5, 6, 7 (3 dan 8 tidak termasuk).",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.ropeThreeEight,
   ],
   [
     "Nyatakan bilangan nilai integer yang mungkin bagi ketaksamaan serentak x > 0 dan x ≤ 5.",
@@ -9123,6 +9366,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "0 < x ≤ 5 menghasilkan integer 1, 2, 3, 4, 5 — iaitu 5 nilai.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.betweenZeroFive,
   ],
 ]);
 
@@ -9130,10 +9374,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What are simultaneous linear inequalities?",
     [
-      "Two or more linear inequalities satisfied at the same time",
-      "Two equations that are solved together",
-      "Inequalities that each contain two variables",
-      "Inequalities that use different symbols",
+      "Inequalities satisfied together",
+      "Equations satisfied together",
+      "Inequalities satisfied separately",
+      "Expressions simplified together",
     ],
     0,
     "Simultaneous linear inequalities are two or more linear inequalities that must be satisfied at the same time by one variable.",
@@ -9145,6 +9389,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "x > −1 (−1 not included) and x ≤ 3 (3 included) gives −1 < x ≤ 3.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenGivenMinusOneThree,
   ],
   [
     "What are the possible integer values for the simultaneous inequality x > −1 and x ≤ 3?",
@@ -9152,6 +9397,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "−1 < x ≤ 3 gives integers 0, 1, 2, 3 (−1 not included, 3 included).",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.betweenGivenMinusOneThree,
   ],
   [
     "Given x > 2 and x > 5, what are the common values?",
@@ -9159,6 +9405,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "When both inequalities point in the same direction, use the stricter condition. x > 5 is stricter than x > 2.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.bothGreaterTwoFive,
   ],
   [
     "Given x ≤ 4 and x ≤ 1, what are the common values?",
@@ -9166,6 +9413,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "When both point the same way (left), use the stricter condition. x ≤ 1 is stricter than x ≤ 4.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.bothLessFourOne,
   ],
   [
     "Given x > 5 and x < 2, what is the conclusion?",
@@ -9178,6 +9426,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "x > 5 means values greater than 5; x < 2 means values less than 2. No value can satisfy both conditions at the same time.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.disjointFiveTwo,
   ],
   [
     "Given x ≥ 4 and x ≤ 1, what is the conclusion?",
@@ -9190,6 +9439,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "x ≥ 4 means 4 and above; x ≤ 1 means 1 and below. Regions do not overlap, so no common values.",
     "Medium",
+    MATH_F1_C7_QUIZ_VISUALS.disjointFourOne,
   ],
   [
     "Solve the simultaneous inequalities 2x + 1 > 5 and 3x − 2 < 13, then state the possible integer values.",
@@ -9201,10 +9451,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "Solve the simultaneous inequalities x + 3 ≥ 1 and x − 2 ≤ 4, then state the possible integer values.",
     [
-      "x ≤ 6, integers: ..., 4, 5, 6",
-      "x ≥ −2, integers: −2, −1, 0, ...",
-      "−2 ≤ x ≤ 6, integers: −2, −1, 0, 1, 2, 3, 4, 5, 6",
-      "No common values",
+      "−2 < x < 6; −1, 0, …, 5",
+      "−6 ≤ x ≤ 2; −6, −5, …, 2",
+      "−2 ≤ x ≤ 6; −2, −1, …, 6",
+      "2 ≤ x ≤ 6; 2, 3, …, 6",
     ],
     2,
     "x + 3 ≥ 1 → x ≥ −2; x − 2 ≤ 4 → x ≤ 6. Common values: −2 ≤ x ≤ 6. Integers: −2, −1, 0, 1, 2, 3, 4, 5, 6.",
@@ -9228,6 +9478,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "'At least RM5' means h ≥ 5; 'not more than RM20' means h ≤ 20. So 5 ≤ h ≤ 20.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.ticketFiveTwenty,
   ],
   [
     "Participants must be older than 12 but not older than 18. Write the inequality for age u and state the possible integer values.",
@@ -9240,6 +9491,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "'Older than 12' → u > 12 (12 not included); 'not older than 18' → u ≤ 18 (18 included). So 12 < u ≤ 18. Integers: 13, 14, 15, 16, 17, 18.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.participantAge12To18,
   ],
   [
     "A school bag must weigh at least 1 kg and not more than 5 kg. Write the inequality for weight b.",
@@ -9247,6 +9499,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "'Not less than 1' → b ≥ 1; 'not more than 5' → b ≤ 5. So 1 ≤ b ≤ 5.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.schoolbagOneFive,
   ],
   [
     "Solve the simultaneous inequalities −x + 2 > −1 and 2x − 3 < 5.",
@@ -9287,6 +9540,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Both point right. Stricter condition: x ≥ 2 (larger boundary). Common values: x ≥ 2.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.bothGreaterTwoMinusOne,
   ],
   [
     "Given x < 3 and x ≤ 7, what are the common values?",
@@ -9294,6 +9548,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Both point left. Stricter condition: x < 3 (smaller boundary). Common values: x < 3.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.bothLessThreeSeven,
   ],
   [
     "Solve the simultaneous inequalities 4 − x > 1 and 2x + 3 ≤ 11.",
@@ -9308,6 +9563,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "x > −4 (−4 not included) and x ≤ −1 (−1 included). Common: −4 < x ≤ −1. Integers: −3, −2, −1.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.betweenMinusFourMinusOne,
   ],
   [
     "Solve the simultaneous inequalities 2x − 1 > 3 and x + 4 ≤ 10, then state the possible integer values.",
@@ -9327,6 +9583,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "18 < u ≤ 25 gives integers: 19, 20, 21, 22, 23, 24, 25 — that is 7 values.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.youngWorkers18to25,
   ],
   [
     "How many integer values do 2 < x < 5 and 2 ≤ x ≤ 5 have, respectively?",
@@ -9334,6 +9591,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "2 < x < 5: integers 3, 4 (2 values). 2 ≤ x ≤ 5: integers 2, 3, 4, 5 (4 values). Boundaries are included only when ≤ or ≥ is used.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.compareOpenClosed,
   ],
   [
     "If a > 0 and b > 0 with a < b, what can be concluded about 1/a and 1/b?",
@@ -9345,10 +9603,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "Solve −3x + 6 ≥ 0 and state possible integer values if x ≥ −5 is also required.",
     [
-      "No common values",
-      "x ≤ 2 only, integers: 2, 1, 0, −1, ...",
-      "x ≥ −5 only",
-      "−5 ≤ x ≤ 2, integers: −5, −4, −3, −2, −1, 0, 1, 2",
+      "−5 ≤ x ≤ −2; −5, −4, …, −2",
+      "−2 ≤ x ≤ 5; −2, −1, …, 5",
+      "−5 < x < 2; −4, −3, …, 1",
+      "−5 ≤ x ≤ 2; −5, −4, …, 2",
     ],
     3,
     "−3x + 6 ≥ 0 → −3x ≥ −6 → x ≤ 2. And x ≥ −5. Common: −5 ≤ x ≤ 2. Integers: −5, −4, −3, −2, −1, 0, 1, 2.",
@@ -9357,10 +9615,10 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What does 'overlapping region' mean on a number line in simultaneous inequalities?",
     [
-      "The region satisfied by BOTH inequalities at the same time",
-      "The region where the two inequality lines cross",
-      "The region between two boundaries only",
-      "The region outside both inequalities",
+      "Region satisfying both conditions",
+      "Region satisfying only the first condition",
+      "Region satisfying only the second condition",
+      "Region satisfying neither condition",
     ],
     0,
     "The overlapping region is the region on the number line satisfied by BOTH simultaneous inequalities at the same time.",
@@ -9379,6 +9637,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "3 < p < 8 gives integers 4, 5, 6, 7 (3 and 8 not included).",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.ropeThreeEight,
   ],
   [
     "State the number of possible integer values for the simultaneous inequality x > 0 and x ≤ 5.",
@@ -9386,6 +9645,7 @@ const MATH_C7_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "0 < x ≤ 5 gives integers 1, 2, 3, 4, 5 — that is 5 values.",
     "Hard",
+    MATH_F1_C7_QUIZ_VISUALS.betweenZeroFive,
   ],
 ]);
 
@@ -9396,6 +9656,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Sudut tegak ialah sudut yang saiznya tepat 90°. Ia dilambangkan dengan tanda kotak kecil □ di bucu.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.rightAngle90,
   ],
   [
     "Apakah julat sudut tirus?",
@@ -9403,6 +9664,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Sudut tirus ialah sudut yang lebih besar daripada 0° tetapi lebih kecil daripada 90°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.acuteExample40,
   ],
   [
     "Apakah julat sudut cakah?",
@@ -9410,6 +9672,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Sudut cakah ialah sudut yang lebih besar daripada 90° tetapi lebih kecil daripada 180°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.obtuseExample130,
   ],
   [
     "Apakah julat sudut refleks?",
@@ -9417,6 +9680,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Sudut refleks ialah sudut yang lebih besar daripada 180° tetapi lebih kecil daripada 360°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.reflexExample220,
   ],
   [
     "Sudut 145° termasuk dalam jenis apakah?",
@@ -9424,6 +9688,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "145° terletak antara 90° dan 180°, maka ia adalah sudut cakah.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle145,
   ],
   [
     "Sudut 250° termasuk dalam jenis apakah?",
@@ -9431,6 +9696,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "250° terletak antara 180° dan 360°, maka ia adalah sudut refleks.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle250,
   ],
   [
     "Sudut 55° termasuk dalam jenis apakah?",
@@ -9438,6 +9704,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "55° terletak antara 0° dan 90°, maka ia adalah sudut tirus.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle55,
   ],
   [
     "Apakah simbol yang menandakan sudut tegak dalam rajah?",
@@ -9463,10 +9730,10 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama menggunakan protraktor?",
     [
-      "Letakkan titik tengah protraktor pada bucu",
-      "Baca nilai darjah pada skala",
-      "Sejajarkan garis dasar dengan satu kaki sudut",
-      "Lukis garis baharu dari bucu",
+      "Letakkan pusat pada bucu",
+      "Baca nilai darjah dahulu",
+      "Sejajarkan garis dasar dahulu",
+      "Lukis kaki sudut baharu",
     ],
     0,
     "Langkah pertama: Letakkan titik tengah protraktor tepat pada bucu sudut yang hendak diukur.",
@@ -9481,7 +9748,12 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Dua sudut adalah kongruen apabila?",
-    ["Bentuknya sama", "Letaknya sama", "Keduanya sudut tirus", "Saiznya (bilangan darjah) sama"],
+    [
+      "Kedudukan sudut sama",
+      "Kedua-duanya sudut tirus",
+      "Panjang kaki sudut sama",
+      "Ukuran darjah sama",
+    ],
     3,
     "Dua sudut adalah kongruen jika saiznya (bilangan darjah) adalah sama.",
     "Easy",
@@ -9489,14 +9761,15 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah 'bucu' dalam konteks sudut?",
     [
-      "Titik di mana dua kaki sudut bertemu",
-      "Titik hujung tembereng garis",
-      "Sisi sudut",
-      "Panjang sudut",
+      "Pertemuan dua kaki sudut",
+      "Titik tengah kaki sudut",
+      "Titik hujung kaki sudut",
+      "Persilangan lengkung sudut",
     ],
     0,
     "Bucu ialah titik di mana dua kaki (tembereng garis) sudut bertemu.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.labelledVertex,
   ],
   [
     "Manakah antara berikut adalah sudut tirus?",
@@ -9504,6 +9777,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "75° terletak antara 0° dan 90°, maka ia adalah sudut tirus. 95° adalah cakah, 90° adalah tegak, 185° adalah refleks.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.acuteChoiceExample,
   ],
   [
     "Manakah antara berikut adalah sudut refleks?",
@@ -9511,6 +9785,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "200° terletak antara 180° dan 360°, maka ia adalah sudut refleks.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.reflexChoiceExample,
   ],
   [
     "Diberi ∠PQR = 47° dan ∠STU = 47°. Apakah hubungan antara kedua-dua sudut itu?",
@@ -9518,6 +9793,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Kedua-dua sudut mempunyai saiz yang sama, iaitu 47°, jadi kedua-duanya kongruen. (47° + 47° = 94°, bukan 90° atau 180°.)",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.pair47,
   ],
   [
     "Berapakah hasil tambah sudut-sudut pada satu garis lurus?",
@@ -9525,10 +9801,16 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Sudut-sudut pada satu garis lurus berjumlah 180°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.straightReference,
   ],
   [
     "Dalam rajah geometri, tembereng garis kongruen ditandakan dengan?",
-    ["Tanda anak panah", "Tanda seretan (tick) yang sama", "Nombor yang sama", "Huruf yang sama"],
+    [
+      "Tanda anak panah sama",
+      "Tanda sengkang sama",
+      "Label huruf yang sama",
+      "Label nombor yang sama",
+    ],
     1,
     "Tembereng garis kongruen ditandakan dengan tanda seretan (tick marks) yang sama dalam rajah geometri.",
     "Easy",
@@ -9536,10 +9818,10 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Dalam rajah geometri, sudut kongruen ditandakan dengan?",
     [
-      "Tanda seretan (tick) yang sama",
-      "Nombor yang sama",
-      "Simbol kotak □",
-      "Lengkung (arc) yang sama",
+      "Tanda sengkang sama",
+      "Label huruf yang sama",
+      "Simbol sudut tegak",
+      "Tanda lengkok sama",
     ],
     3,
     "Sudut kongruen ditandakan dengan lengkung (arc) yang sama dalam rajah geometri.",
@@ -9558,6 +9840,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "88° terletak antara 0° dan 90°, maka ia adalah sudut tirus (kurang daripada 90°).",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.nearRight88,
   ],
   [
     "Apakah perbezaan antara sudut cakah dan sudut refleks?",
@@ -9570,6 +9853,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Sudut cakah terletak antara 90° dan 180°. Sudut refleks terletak antara 180° dan 360°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.obtuseVsReflex,
   ],
   [
     "Apakah yang dimaksudkan dengan 'kaki sudut'?",
@@ -9582,6 +9866,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Kaki sudut ialah dua tembereng garis yang bertemu di bucu untuk membentuk sudut.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.labelledVertex,
   ],
   [
     "Sudut manakah yang TIDAK boleh diukur menggunakan protraktor separuh bulatan biasa (0°–180°) secara terus?",
@@ -9589,6 +9874,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Protraktor separuh bulatan hanya mengukur sudut 0° hingga 180°. Sudut refleks seperti 270° memerlukan pengiraan tambahan.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.beyondSemicircle,
   ],
   [
     "Apakah jenis sudut yang terbentuk di penjuru buku teks?",
@@ -9610,6 +9896,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "179° terletak antara 90° dan 180°, maka ia adalah sudut cakah (walaupun hampir 180°).",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.nearStraight179,
   ],
   [
     "Manakah contoh sudut dalam kehidupan sebenar?",
@@ -9639,6 +9926,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A right angle is exactly 90°. It is marked with a small square symbol □ at the vertex.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.rightAngle90,
   ],
   [
     "What is the range of an acute angle?",
@@ -9646,6 +9934,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "An acute angle is greater than 0° but less than 90°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.acuteExample40,
   ],
   [
     "What is the range of an obtuse angle?",
@@ -9653,6 +9942,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "An obtuse angle is greater than 90° but less than 180°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.obtuseExample130,
   ],
   [
     "What is the range of a reflex angle?",
@@ -9660,6 +9950,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A reflex angle is greater than 180° but less than 360°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.reflexExample220,
   ],
   [
     "What type of angle is 145°?",
@@ -9667,6 +9958,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "145° lies between 90° and 180°, so it is an obtuse angle.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle145,
   ],
   [
     "What type of angle is 250°?",
@@ -9674,6 +9966,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "250° lies between 180° and 360°, so it is a reflex angle.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle250,
   ],
   [
     "What type of angle is 55°?",
@@ -9681,6 +9974,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "55° lies between 0° and 90°, so it is an acute angle.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.angle55,
   ],
   [
     "What symbol marks a right angle in a diagram?",
@@ -9706,10 +10000,10 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the first step when using a protractor?",
     [
-      "Place the protractor's centre on the vertex",
-      "Read the degree value on the scale",
-      "Line up the baseline with one arm",
-      "Draw a new line from the vertex",
+      "Place the centre on the vertex",
+      "Read the degree value first",
+      "Align the baseline first",
+      "Draw a new angle arm",
     ],
     0,
     "First step: Place the centre point of the protractor exactly at the vertex of the angle.",
@@ -9730,10 +10024,10 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "Two angles are congruent when?",
     [
-      "They look the same shape",
-      "They are in the same position",
-      "They are both acute angles",
-      "They have the same size (degrees)",
+      "Equal angle positions",
+      "Both are acute angles",
+      "Equal arm lengths",
+      "Equal degree measures",
     ],
     3,
     "Two angles are congruent if they have the same size (number of degrees).",
@@ -9742,14 +10036,15 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a 'vertex' in the context of angles?",
     [
-      "The point where the two arms of an angle meet",
-      "The endpoint of a line segment",
-      "The side of an angle",
-      "The length of an angle",
+      "Where the two arms meet",
+      "The midpoint of an arm",
+      "The endpoint of an arm",
+      "Where the angle arcs cross",
     ],
     0,
     "A vertex is the point where the two arms (line segments) of an angle meet.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.labelledVertex,
   ],
   [
     "Which of the following is an acute angle?",
@@ -9757,6 +10052,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "75° lies between 0° and 90°, so it is acute. 95° is obtuse, 90° is right, 185° is reflex.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.acuteChoiceExample,
   ],
   [
     "Which of the following is a reflex angle?",
@@ -9764,6 +10060,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "200° lies between 180° and 360°, so it is a reflex angle.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.reflexChoiceExample,
   ],
   [
     "Given ∠PQR = 47° and ∠STU = 47°. What is the relationship between the two angles?",
@@ -9771,6 +10068,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Both angles have the same size, 47°, so they are congruent. (47° + 47° = 94°, not 90° or 180°.)",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.pair47,
   ],
   [
     "What is the sum of the angles on a straight line?",
@@ -9778,17 +10076,28 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "The angles on a straight line add up to 180°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.straightReference,
   ],
   [
     "In geometric diagrams, congruent line segments are marked with?",
-    ["Arrow marks", "The same number of tick marks", "The same number", "The same letter"],
+    [
+      "Matching arrow marks",
+      "Matching tick marks",
+      "Matching letter labels",
+      "Matching number labels",
+    ],
     1,
     "Congruent line segments are marked with the same number of tick marks in geometric diagrams.",
     "Easy",
   ],
   [
     "In geometric diagrams, congruent angles are marked with?",
-    ["Tick marks", "The same number", "A square symbol □", "The same number of arcs"],
+    [
+      "Matching tick marks",
+      "Matching letter labels",
+      "Right-angle square marks",
+      "Matching arc marks",
+    ],
     3,
     "Congruent angles are marked with the same number of arcs in geometric diagrams.",
     "Easy",
@@ -9811,6 +10120,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "88° lies between 0° and 90°, so it is an acute angle (less than 90°).",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.nearRight88,
   ],
   [
     "What is the difference between an obtuse and a reflex angle?",
@@ -9823,6 +10133,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Obtuse angles are between 90° and 180°. Reflex angles are between 180° and 360°.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.obtuseVsReflex,
   ],
   [
     "What are the 'arms' of an angle?",
@@ -9835,6 +10146,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "The arms of an angle are the two line segments that meet at the vertex to form the angle.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.labelledVertex,
   ],
   [
     "Which angle CANNOT be directly measured with a standard semicircular protractor (0°–180°)?",
@@ -9842,6 +10154,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A semicircular protractor only measures 0° to 180°. Reflex angles like 270° require additional calculation.",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.beyondSemicircle,
   ],
   [
     "What type of angle is formed at the corner of a textbook?",
@@ -9863,6 +10176,7 @@ const MATH_C8_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "179° lies between 90° and 180°, so it is an obtuse angle (even though it is close to 180°).",
     "Easy",
+    MATH_F1_C8_QUIZ_VISUALS.nearStraight179,
   ],
   [
     "Which is a real-life example of an angle?",
@@ -9892,6 +10206,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Sudut pada garis lurus berjumlah 180°. x = 180° − 75° = 105°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight75,
   ],
   [
     "Tiga sudut pada garis lurus ialah 40°, 60° dan y. Cari y.",
@@ -9899,6 +10214,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "40° + 60° + y = 180°. y = 180° − 100° = 80°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight40_60,
   ],
   [
     "Empat sudut pada satu titik ialah 90°, 120°, 80° dan z. Cari z.",
@@ -9906,6 +10222,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "90° + 120° + 80° + z = 360°. z = 360° − 290° = 70°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.fullTurn90_120_80,
   ],
   [
     "Cari pelengkap bagi sudut 38°.",
@@ -9913,6 +10230,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Pelengkap = 90° − 38° = 52°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.complement38,
   ],
   [
     "Cari penggenap bagi sudut 115°.",
@@ -9920,6 +10238,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Penggenap = 180° − 115° = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.supplement115,
   ],
   [
     "Cari konjugat bagi sudut 135°.",
@@ -9927,6 +10246,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Konjugat = 360° − 135° = 225°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.conjugate135,
   ],
   [
     "Dua garis bersilang membentuk sudut 65° dan x (sudut bertentang bucu). Cari x.",
@@ -9934,6 +10254,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut bertentang bucu adalah sama. x = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite65,
   ],
   [
     "Dua garis bersilang membentuk sudut 3a dan 120° (bertentang bucu). Cari a.",
@@ -9941,6 +10262,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "3a = 120° (bertentang bucu). a = 120° ÷ 3 = 40°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite3a120,
   ],
   [
     "Dua garis lurus bersilang. Satu daripada sudut yang terbentuk ialah 55°. Apakah saiz keempat-empat sudut itu?",
@@ -9948,6 +10270,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Sudut bertentang bucu adalah sama: 55° dan 55°. Sudut bersebelahan pada garis lurus: 180° − 55° = 125°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite55,
   ],
   [
     "Sudut bersebelahan pada garis lurus = 148° dan y. Cari y.",
@@ -9955,6 +10278,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut bersebelahan berjumlah 180°. y = 180° − 148° = 32°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.adjacent148,
   ],
   [
     "Jika (2x + 10)° dan 80° adalah sudut bertentang bucu, cari x.",
@@ -9962,6 +10286,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "2x + 10 = 80. 2x = 70. x = 35.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite2x80,
   ],
   [
     "Pelengkap bagi sudut (x + 15)° ialah 40°. Cari nilai x.",
@@ -9969,6 +10294,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "(x + 15) + 40 = 90. x + 55 = 90. x = 35.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.complementX15,
   ],
   [
     "Penggenap bagi sudut (3y − 10)° ialah 70°. Cari nilai y.",
@@ -9976,6 +10302,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "(3y − 10) + 70 = 180. 3y + 60 = 180. 3y = 120. y = 40.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.supplement3y70,
   ],
   [
     "Garis rentas memotong dua garis selari. Satu sudut ialah 110°. Cari sudut sepadan dengannya.",
@@ -9983,6 +10310,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Sudut SEPADAN adalah SAMA BESAR. Sudut selari yang lain = 110°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding110,
   ],
   [
     "Garis rentas memotong dua garis selari. Satu sudut ialah 65°. Cari sudut selang-seli dengannya.",
@@ -9990,6 +10318,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Sudut SELANG-SELI adalah SAMA BESAR. Sudut yang lain = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.alternate65,
   ],
   [
     "Garis rentas memotong dua garis selari. Satu sudut pedalaman ialah 75°. Cari sudut pedalaman yang satu lagi pada sisi garis rentas yang sama.",
@@ -9997,6 +10326,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Sudut PEDALAMAN BERSEBELAHAN berjumlah 180°. Sudut yang lain = 180° − 75° = 105°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior75,
   ],
   [
     "Garis rentas memotong dua garis selari dengan sudut sepadan = (5x − 20)° dan 80°. Cari x.",
@@ -10004,6 +10334,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "5x − 20 = 80 (sudut sepadan sama). 5x = 100. x = 20.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding5x80,
   ],
   [
     "Garis rentas memotong dua garis selari. Sudut selang-seli = (4y + 5)° dan 85°. Cari y.",
@@ -10011,6 +10342,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "4y + 5 = 85 (sudut selang-seli sama). 4y = 80. y = 20.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.alternate4y85,
   ],
   [
     "Sudut pedalaman bersebelahan = (3z + 15)° dan 75°. Cari z.",
@@ -10018,6 +10350,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "(3z + 15) + 75 = 180. 3z + 90 = 180. 3z = 90. z = 30.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior3z75,
   ],
   [
     "Dua garis bersilang. Sudut 1 = 4a, sudut bertentang bucu = 60°. Cari a.",
@@ -10032,6 +10365,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "(x + 20) + 50 + (x − 10) = 180. 2x + 60 = 180. 2x = 120. x = 60. Semak: 80° + 50° + 50° = 180°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straightX20_50,
   ],
   [
     "Garis AB adalah serenjang dengan CD. Apakah sudut yang terbentuk di persimpangan?",
@@ -10046,6 +10380,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut sepadan adalah sama besar. Sudut sepadan = 120°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding120,
   ],
   [
     "Sudut pada garis lurus: (2x + 5)° dan (3x − 5)°. Cari x.",
@@ -10053,6 +10388,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "(2x + 5) + (3x − 5) = 180. 5x = 180. x = 36.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight2x5_3x5,
   ],
   [
     "Dua sudut putaran lengkap: 200° dan y. Cari y.",
@@ -10060,6 +10396,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "200° + y = 360°. y = 360° − 200° = 160°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.fullTurn200,
   ],
   [
     "Sudut pedalaman bersebelahan pada garis selari = 90° dan k. Cari k.",
@@ -10088,6 +10425,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut bertentang bucu: 40° bertentang bucu = 40°. Sudut bersebelahan: y = 180° − 40° = 140°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.crossing40,
   ],
   [
     "Jika sudut pedalaman bersebelahan = 2p dan 4p, cari nilai p.",
@@ -10095,6 +10433,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "2p + 4p = 180°. 6p = 180°. p = 30°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior2p4p,
   ],
 ]);
 
@@ -10105,6 +10444,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Angles on a straight line sum to 180°. x = 180° − 75° = 105°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight75,
   ],
   [
     "Three angles on a straight line are 40°, 60° and y. Find y.",
@@ -10112,6 +10452,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "40° + 60° + y = 180°. y = 180° − 100° = 80°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight40_60,
   ],
   [
     "Four angles at a point are 90°, 120°, 80° and z. Find z.",
@@ -10119,6 +10460,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "90° + 120° + 80° + z = 360°. z = 360° − 290° = 70°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.fullTurn90_120_80,
   ],
   [
     "Find the complement of 38°.",
@@ -10126,6 +10468,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Complement = 90° − 38° = 52°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.complement38,
   ],
   [
     "Find the supplement of 115°.",
@@ -10133,6 +10476,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Supplement = 180° − 115° = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.supplement115,
   ],
   [
     "Find the conjugate of 135°.",
@@ -10140,6 +10484,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Conjugate = 360° − 135° = 225°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.conjugate135,
   ],
   [
     "Two lines intersect forming 65° and x (vertically opposite). Find x.",
@@ -10147,6 +10492,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Vertically opposite angles are equal. x = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite65,
   ],
   [
     "Two lines intersect forming 3a and 120° (vertically opposite). Find a.",
@@ -10154,6 +10500,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "3a = 120° (vertically opposite). a = 120° ÷ 3 = 40°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite3a120,
   ],
   [
     "Two straight lines intersect. One of the angles formed is 55°. What are the sizes of all four angles?",
@@ -10161,6 +10508,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Vertically opposite angles are equal: 55° and 55°. Adjacent angles on a straight line: 180° − 55° = 125°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite55,
   ],
   [
     "Adjacent angles on a straight line: 148° and y. Find y.",
@@ -10168,6 +10516,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Adjacent angles sum to 180°. y = 180° − 148° = 32°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.adjacent148,
   ],
   [
     "If (2x + 10)° and 80° are vertically opposite angles, find x.",
@@ -10175,6 +10524,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "2x + 10 = 80. 2x = 70. x = 35.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.opposite2x80,
   ],
   [
     "The complement of the angle (x + 15)° is 40°. Find the value of x.",
@@ -10182,6 +10532,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "(x + 15) + 40 = 90. x + 55 = 90. x = 35.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.complementX15,
   ],
   [
     "The supplement of the angle (3y − 10)° is 70°. Find the value of y.",
@@ -10189,6 +10540,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "(3y − 10) + 70 = 180. 3y + 60 = 180. 3y = 120. y = 40.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.supplement3y70,
   ],
   [
     "A transversal cuts two parallel lines. One angle is 110°. Find the angle corresponding to it.",
@@ -10196,6 +10548,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "CORRESPONDING angles are EQUAL. The other angle = 110°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding110,
   ],
   [
     "A transversal cuts two parallel lines. One angle is 65°. Find the angle alternate to it.",
@@ -10203,6 +10556,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "ALTERNATE angles are EQUAL. The other angle = 65°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.alternate65,
   ],
   [
     "A transversal cuts two parallel lines. One interior angle is 75°. Find the other interior angle on the same side of the transversal.",
@@ -10210,6 +10564,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "CO-INTERIOR angles sum to 180°. The other = 180° − 75° = 105°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior75,
   ],
   [
     "Transversal cuts two parallel lines: corresponding angles = (5x − 20)° and 80°. Find x.",
@@ -10217,6 +10572,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "5x − 20 = 80 (corresponding angles equal). 5x = 100. x = 20.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding5x80,
   ],
   [
     "Transversal cuts two parallel lines: alternate angles = (4y + 5)° and 85°. Find y.",
@@ -10224,6 +10580,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "4y + 5 = 85 (alternate angles equal). 4y = 80. y = 20.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.alternate4y85,
   ],
   [
     "Co-interior angles = (3z + 15)° and 75°. Find z.",
@@ -10231,6 +10588,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "(3z + 15) + 75 = 180. 3z + 90 = 180. 3z = 90. z = 30.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior3z75,
   ],
   [
     "Two lines intersect. Angle 1 = 4a, vertically opposite angle = 60°. Find a.",
@@ -10245,6 +10603,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "(x + 20) + 50 + (x − 10) = 180. 2x + 60 = 180. 2x = 120. x = 60. Check: 80° + 50° + 50° = 180°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straightX20_50,
   ],
   [
     "Line AB is perpendicular to CD. What angle is formed at the intersection?",
@@ -10259,6 +10618,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Corresponding angles are equal. Corresponding angle = 120°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding120,
   ],
   [
     "Angles on a straight line: (2x + 5)° and (3x − 5)°. Find x.",
@@ -10266,6 +10626,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "(2x + 5) + (3x − 5) = 180. 5x = 180. x = 36.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.straight2x5_3x5,
   ],
   [
     "Two angles at a complete turn: 200° and y. Find y.",
@@ -10273,6 +10634,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "200° + y = 360°. y = 360° − 200° = 160°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.fullTurn200,
   ],
   [
     "Co-interior angles of parallel lines = 90° and k. Find k.",
@@ -10301,6 +10663,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Vertically opposite: 40° opposite = 40°. Adjacent: y = 180° − 40° = 140°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.crossing40,
   ],
   [
     "If co-interior angles = 2p and 4p, find p.",
@@ -10308,6 +10671,7 @@ const MATH_C8_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "2p + 4p = 180°. 6p = 180°. p = 30°.",
     "Medium",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior2p4p,
   ],
 ]);
 
@@ -10318,6 +10682,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Sudut sepadan adalah sama: 2x + 15 = 3x − 10, maka x = 25. Sudut = 2(25) + 15 = 65°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.correspondingExpr,
   ],
   [
     "Tiga sudut pada satu garis lurus ialah (3x + 5)°, (x + 15)° dan 60°. Cari x dan saiz semua sudut.",
@@ -10330,6 +10695,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "(3x + 5) + (x + 15) + 60 = 180. 4x + 80 = 180. 4x = 100. x = 25. Sudut: 80°, 40°, 60°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straight3x_1x60,
   ],
   [
     "Dua sudut bertentang bucu ialah (5a − 30)° dan (2a + 15)°. Cari a dan saiz sudut itu.",
@@ -10337,6 +10703,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Sudut bertentang bucu adalah sama: 5a − 30 = 2a + 15. 3a = 45. a = 15. Sudut = 5(15) − 30 = 45°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.opposite5a2a,
   ],
   [
     "Dua garis selari dipotong oleh garis rentas. Dua sudut pedalaman pada sisi garis rentas yang sama ialah (3x + 10)° dan (2x + 20)°. Cari x.",
@@ -10344,6 +10711,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut pedalaman berjumlah 180°: (3x + 10) + (2x + 20) = 180. 5x + 30 = 180. 5x = 150. x = 30. Sudut: 100° dan 80°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior3x2x,
   ],
   [
     "Siti berkata: 'Sudut pedalaman antara dua garis selari pada sisi garis rentas yang sama sentiasa sama besar.' Manakah pembetulan yang tepat?",
@@ -10360,26 +10728,28 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Sudut dongak dari titik A ke puncak sebuah bangunan ialah 35°. Apakah yang boleh disimpulkan?",
     [
-      "Pemerhati berada di atas bangunan itu",
-      "Bangunan itu condong sebanyak 35°",
-      "Pemerhati di bawah, melihat ke atas 35° dari garis ufuk",
-      "Sudut di puncak bangunan ialah 35°",
+      "Pandangan turun 35° dari ufuk",
+      "Bangunan condong 35° dari ufuk",
+      "Pandangan naik 35° dari ufuk",
+      "Pandangan naik 35° dari menegak",
     ],
     2,
     "Sudut dongak diukur dari garis ufuk ke atas. Pemerhati di A berada di bawah dan melihat ke atas pada 35°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.elevation35,
   ],
   [
     "Sudut tunduk dari puncak menara ke sebuah bot ialah 40°. Apakah yang boleh disimpulkan?",
     [
-      "Orang di bot melihat ke bawah pada 40°",
-      "Menara itu condong sebanyak 40°",
-      "Sudut 40° diukur dari kaki menara",
-      "Pemerhati di menara melihat ke bawah 40° dari garis ufuk",
+      "Pandangan naik 40° dari ufuk",
+      "Menara condong 40° dari ufuk",
+      "Pandangan turun 40° dari menegak",
+      "Pandangan turun 40° dari ufuk",
     ],
     3,
     "Sudut tunduk diukur dari garis ufuk ke bawah. Pemerhati di menara melihat ke bawah pada 40°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.depression40,
   ],
   [
     "Dua garis selari dipotong oleh garis rentas. Satu sudut pedalaman ialah (6x − 10)° dan sudut pedalaman yang satu lagi pada sisi garis rentas yang sama ialah 130°. Cari x.",
@@ -10387,6 +10757,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Sudut pedalaman berjumlah 180°: (6x − 10) + 130 = 180. 6x + 120 = 180. 6x = 60. x = 10.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior6x130,
   ],
   [
     "Dua garis lurus bersilang. Satu sudut ialah (3y + 20)° dan sudut bersebelahan dengannya pada garis lurus yang sama ialah (2y + 40)°. Cari y.",
@@ -10394,6 +10765,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Sudut bersebelahan pada garis lurus berjumlah 180°: (3y + 20) + (2y + 40) = 180. 5y + 60 = 180. 5y = 120. y = 24.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straight3y2y,
   ],
   [
     "Garis rentas memotong dua garis selari di A dan B. Sudut pedalaman di A ialah 75°. Cari sudut selang-seli dengannya di B dan sudut pedalaman yang lain di B pada sisi garis rentas yang sama.",
@@ -10406,6 +10778,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut selang-seli adalah sama: 75°. Sudut pedalaman pada sisi yang sama berjumlah 180°: 180° − 75° = 105°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallelA75,
   ],
   [
     "Sudut tunduk dari puncak sebuah rumah api ke sebuah bot ialah 35°. Berapakah sudut dongak dari bot ke puncak rumah api itu?",
@@ -10413,6 +10786,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Garis ufuk di puncak rumah api dan di paras laut adalah selari. Sudut tunduk dan sudut dongak ialah sudut selang-seli, jadi kedua-duanya 35°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.lighthouse35,
   ],
   [
     "Garis rentas memotong dua garis selari di A dan B. Sudut di sebelah atas kiri A ialah 125°. Cari sudut di sebelah atas kiri B menggunakan sifat sudut sepadan.",
@@ -10420,6 +10794,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Sudut sepadan (pada kedudukan yang sama di kedua-dua persilangan) adalah sama. Sudut di sebelah atas kiri B = 125°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding125,
   ],
   [
     "Dua garis selari dipotong oleh garis rentas. Satu sudut tirus yang terbentuk ialah 72°. Berapakah saiz setiap sudut cakah yang terbentuk?",
@@ -10427,6 +10802,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Setiap sudut cakah bersebelahan dengan sudut tirus pada garis lurus: 180° − 72° = 108°. (18° ialah pelengkap, 288° ialah konjugat.)",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallelAcute72,
   ],
   [
     "Dua sudut pedalaman pada sisi garis rentas yang sama ialah (4p + 10)° dan (2p + 20)°. Cari p dan kedua-dua sudut.",
@@ -10434,6 +10810,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "(4p + 10) + (2p + 20) = 180. 6p + 30 = 180. 6p = 150. p = 25. Sudut: 4(25) + 10 = 110° dan 2(25) + 20 = 70°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior4p2p,
   ],
   [
     "Dua garis lurus bersilang dan membentuk sudut 2m, 3m, 2m dan 3m secara berselang-seli. Cari nilai m.",
@@ -10441,6 +10818,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Sudut bersebelahan pada garis lurus berjumlah 180°: 2m + 3m = 180°. 5m = 180°. m = 36°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.crossing2m3m,
   ],
   [
     "Ali berdiri di atas sebuah bukit dan melihat sebuah kereta di jalan dengan sudut tunduk 28°. Kereta itu kemudian bergerak lebih dekat ke kaki bukit. Apakah yang berlaku kepada sudut tunduk?",
@@ -10453,6 +10831,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Apabila kereta semakin hampir ke kaki bukit, Ali perlu memandang lebih ke bawah dari garis ufuk, jadi sudut tunduk bertambah.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.carCloser,
   ],
   [
     "Tiga sudut pada satu garis lurus ialah (x + 30)°, (2x − 10)° dan (x + 20)°. Cari x dan nyatakan jenis setiap sudut.",
@@ -10465,6 +10844,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "(x + 30) + (2x − 10) + (x + 20) = 180. 4x + 40 = 180. 4x = 140. x = 35. Sudut: 65°, 60°, 55°, semuanya sudut tirus.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straightX30_2x10_x20,
   ],
   [
     "Garis rentas memotong dua garis selari dan membentuk lapan sudut. Satu daripadanya ialah 85°. Berapakah bilangan sudut yang bersaiz 95°?",
@@ -10472,6 +10852,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Di setiap persilangan, dua sudut bertentang bucu ialah 85° dan dua lagi ialah 180° − 85° = 95°. Kedua-dua persilangan adalah sama, jadi terdapat 4 sudut bersaiz 95°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallel85,
   ],
   [
     "Dari titik A dan titik B di atas tanah rata, sudut dongak ke puncak menara C masing-masing ialah 25° dan 40°. Titik manakah lebih hampir dengan menara itu?",
@@ -10479,6 +10860,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Bagi objek yang sama tinggi, pemerhati yang lebih hampir melihat dengan sudut dongak yang lebih besar. B (40°) lebih hampir dengan menara.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.elevationCompare,
   ],
   [
     "Garis rentas memotong dua garis dan sudut selang-seli yang terbentuk adalah sama besar. Apakah kesimpulan tentang kedua-dua garis itu?",
@@ -10498,6 +10880,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "(3a + 10) + (2a + 20) + (4a − 10) + (a + 20) = 360. 10a + 40 = 360. 10a = 320. a = 32.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.pointFourExpressions,
   ],
   [
     "Garis rentas berserenjang dengan dua garis selari. Berapakah saiz setiap sudut sepadan?",
@@ -10524,6 +10907,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "2x + 3x + (x + 60) = 360. 6x + 60 = 360. 6x = 300. x = 50°. Sudut: 100°, 150°, 110°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.pointThreeExpressions,
   ],
   [
     "Konjugat bagi suatu sudut ialah 4 kali sudut itu. Cari sudut itu.",
@@ -10531,6 +10915,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Katakan sudut itu x. Konjugat = 360° − x = 4x. Maka 5x = 360°, x = 72°. (288° ialah konjugatnya.)",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.conjugateFourTimes,
   ],
   [
     "Dua garis lurus bersilang. Dua sudut bertentang bucu ialah (4x − 15)° dan (2x + 25)°. Berapakah saiz sudut yang bersebelahan dengan salah satu sudut itu?",
@@ -10538,6 +10923,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut bertentang bucu adalah sama: 4x − 15 = 2x + 25, maka x = 20 dan setiap sudut = 65°. Sudut bersebelahan = 180° − 65° = 115°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.opposite4x2x,
   ],
   [
     "Garis rentas memotong dua garis yang TIDAK selari. Adakah sudut sepadan yang terbentuk sama besar?",
@@ -10564,14 +10950,15 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "∠AOC dan ∠BOC berada pada garis lurus AB: 3x + 2x = 180°, x = 36°. ∠BOC = 72°. ∠AOD bertentang bucu dengan ∠BOC, maka ∠AOD = 72°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.crossingABCD,
   ],
   [
     "Bilakah dua sudut pedalaman pada sisi garis rentas yang sama menjadi sama besar?",
     [
-      "Apabila garis rentas tidak berserenjang",
-      "Apabila garis rentas berserenjang dengan garis-garis selari",
-      "Apabila kedua-dua sudut tirus",
-      "Tidak mungkin sama besar",
+      "Garis rentas tidak berserenjang",
+      "Garis rentas berserenjang",
+      "Kedua-dua sudut tirus",
+      "Kedua-dua sudut cakah",
     ],
     1,
     "Sudut pedalaman berjumlah 180°. Supaya sama besar, setiap satu mesti 90°, iaitu apabila garis rentas berserenjang dengan garis-garis selari.",
@@ -10586,6 +10973,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Corresponding angles are equal: 2x + 15 = 3x − 10, so x = 25. Angle = 2(25) + 15 = 65°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.correspondingExpr,
   ],
   [
     "Three angles on a straight line are (3x + 5)°, (x + 15)° and 60°. Find x and the size of all the angles.",
@@ -10598,6 +10986,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "(3x + 5) + (x + 15) + 60 = 180. 4x + 80 = 180. 4x = 100. x = 25. Angles: 80°, 40°, 60°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straight3x_1x60,
   ],
   [
     "Two vertically opposite angles are (5a − 30)° and (2a + 15)°. Find a and the size of the angle.",
@@ -10605,6 +10994,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Vertically opposite angles are equal: 5a − 30 = 2a + 15. 3a = 45. a = 15. Angle = 5(15) − 30 = 45°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.opposite5a2a,
   ],
   [
     "Two parallel lines are cut by a transversal. Two interior angles on the same side of the transversal are (3x + 10)° and (2x + 20)°. Find x.",
@@ -10612,6 +11002,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Interior angles add up to 180°: (3x + 10) + (2x + 20) = 180. 5x + 30 = 180. 5x = 150. x = 30. Angles: 100° and 80°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior3x2x,
   ],
   [
     "Siti says: 'Interior angles between two parallel lines on the same side of the transversal are always equal.' Which correction is accurate?",
@@ -10628,26 +11019,28 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "The angle of elevation from point A to the top of a building is 35°. What can be concluded?",
     [
-      "The observer is standing above the building",
-      "The building leans over at an angle of 35°",
-      "The observer is below, looking up 35° from the horizontal",
-      "The angle at the top of the building is 35°",
+      "Sightline falls 35° below horizontal",
+      "Building leans 35° from horizontal",
+      "Sightline rises 35° above horizontal",
+      "Sightline rises 35° from vertical",
     ],
     2,
     "An angle of elevation is measured upward from the horizontal. The observer at A is below and looks up at 35°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.elevation35,
   ],
   [
     "The angle of depression from the top of a tower to a boat is 40°. What can be concluded?",
     [
-      "A person in the boat looks down at 40°",
-      "The tower leans over at an angle of 40°",
-      "The 40° is measured from the foot of the tower",
-      "The observer looks down 40° from the horizontal",
+      "Sightline rises 40° above horizontal",
+      "Tower leans 40° from horizontal",
+      "Sightline falls 40° from vertical",
+      "Sightline falls 40° below horizontal",
     ],
     3,
     "An angle of depression is measured downward from the horizontal. The observer on the tower looks down at 40°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.depression40,
   ],
   [
     "Two parallel lines are cut by a transversal. One interior angle is (6x − 10)° and the other interior angle on the same side of the transversal is 130°. Find x.",
@@ -10655,6 +11048,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Interior angles add up to 180°: (6x − 10) + 130 = 180. 6x + 120 = 180. 6x = 60. x = 10.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior6x130,
   ],
   [
     "Two straight lines intersect. One angle is (3y + 20)° and the adjacent angle on the same straight line is (2y + 40)°. Find y.",
@@ -10662,6 +11056,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Adjacent angles on a straight line add up to 180°: (3y + 20) + (2y + 40) = 180. 5y + 60 = 180. 5y = 120. y = 24.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straight3y2y,
   ],
   [
     "A transversal cuts two parallel lines at A and B. The interior angle at A is 75°. Find the angle alternate to it at B and the other interior angle at B on the same side of the transversal.",
@@ -10674,6 +11069,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Alternate angles are equal: 75°. Interior angles on the same side add up to 180°: 180° − 75° = 105°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallelA75,
   ],
   [
     "The angle of depression from the top of a lighthouse to a boat is 35°. What is the angle of elevation from the boat to the top of the lighthouse?",
@@ -10681,6 +11077,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "The horizontal lines at the top of the lighthouse and at sea level are parallel. The angles of depression and elevation are alternate angles, so both are 35°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.lighthouse35,
   ],
   [
     "A transversal cuts two parallel lines at A and B. The top-left angle at A is 125°. Find the top-left angle at B using corresponding angles.",
@@ -10688,6 +11085,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Corresponding angles (in the same position at both intersections) are equal. The top-left angle at B = 125°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.corresponding125,
   ],
   [
     "Two parallel lines are cut by a transversal. One acute angle formed is 72°. What is the size of each obtuse angle formed?",
@@ -10695,6 +11093,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Each obtuse angle is adjacent to the acute angle on a straight line: 180° − 72° = 108°. (18° is the complement and 288° is the conjugate.)",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallelAcute72,
   ],
   [
     "Two interior angles on the same side of a transversal are (4p + 10)° and (2p + 20)°. Find p and both angles.",
@@ -10702,6 +11101,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "(4p + 10) + (2p + 20) = 180. 6p + 30 = 180. 6p = 150. p = 25. Angles: 4(25) + 10 = 110° and 2(25) + 20 = 70°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.cointerior4p2p,
   ],
   [
     "Two intersecting straight lines form angles 2m, 3m, 2m and 3m in turn. Find the value of m.",
@@ -10709,6 +11109,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Adjacent angles on a straight line add up to 180°: 2m + 3m = 180°. 5m = 180°. m = 36°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.crossing2m3m,
   ],
   [
     "Ali stands on a hill and sees a car on the road at an angle of depression of 28°. The car then moves closer to the foot of the hill. What happens to the angle of depression?",
@@ -10721,6 +11122,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "As the car gets closer to the foot of the hill, Ali has to look further down from the horizontal, so the angle of depression increases.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.carCloser,
   ],
   [
     "Three angles on a straight line are (x + 30)°, (2x − 10)° and (x + 20)°. Find x and state the type of each angle.",
@@ -10733,6 +11135,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "(x + 30) + (2x − 10) + (x + 20) = 180. 4x + 40 = 180. 4x = 140. x = 35. Angles: 65°, 60°, 55°, all acute angles.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.straightX30_2x10_x20,
   ],
   [
     "A transversal cuts two parallel lines and forms eight angles. One of them is 85°. How many of the angles measure 95°?",
@@ -10740,6 +11143,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "At each intersection, two vertically opposite angles are 85° and the other two are 180° − 85° = 95°. Both intersections match, so 4 angles measure 95°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.parallel85,
   ],
   [
     "From points A and B on level ground, the angles of elevation to the top of tower C are 25° and 40° respectively. Which point is closer to the tower?",
@@ -10747,6 +11151,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "For the same object height, an observer who is closer sees it at a larger angle of elevation. B (40°) is closer to the tower.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.elevationCompare,
   ],
   [
     "A transversal cuts two lines and the alternate angles formed are equal. What can be concluded about the two lines?",
@@ -10766,6 +11171,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "(3a + 10) + (2a + 20) + (4a − 10) + (a + 20) = 360. 10a + 40 = 360. 10a = 320. a = 32.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.pointFourExpressions,
   ],
   [
     "A transversal is perpendicular to two parallel lines. What is the size of each corresponding angle?",
@@ -10792,6 +11198,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "2x + 3x + (x + 60) = 360. 6x + 60 = 360. 6x = 300. x = 50°. Angles: 100°, 150°, 110°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.pointThreeExpressions,
   ],
   [
     "The conjugate of an angle is 4 times the angle. Find the angle.",
@@ -10799,6 +11206,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Let the angle be x. Conjugate = 360° − x = 4x. So 5x = 360°, x = 72°. (288° is its conjugate.)",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.conjugateFourTimes,
   ],
   [
     "Two straight lines intersect. Two vertically opposite angles are (4x − 15)° and (2x + 25)°. What is the size of an angle adjacent to one of them?",
@@ -10806,6 +11214,7 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Vertically opposite angles are equal: 4x − 15 = 2x + 25, so x = 20 and each angle = 65°. Adjacent angle = 180° − 65° = 115°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.opposite4x2x,
   ],
   [
     "A transversal cuts two lines that are NOT parallel. Are the corresponding angles formed equal?",
@@ -10832,14 +11241,15 @@ const MATH_C8_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "∠AOC and ∠BOC lie on the straight line AB: 3x + 2x = 180°, x = 36°. ∠BOC = 72°. ∠AOD is vertically opposite ∠BOC, so ∠AOD = 72°.",
     "Hard",
+    MATH_F1_C8_QUIZ_VISUALS.crossingABCD,
   ],
   [
     "When are two interior angles on the same side of a transversal equal?",
     [
-      "When the transversal is not perpendicular",
-      "When the transversal is perpendicular to the parallel lines",
-      "When both angles are acute",
-      "They can never be equal",
+      "A non-perpendicular transversal",
+      "A perpendicular transversal",
+      "Both angles are acute",
+      "Both angles are obtuse",
     ],
     1,
     "Interior angles add up to 180°. To be equal, each must be 90°, which happens when the transversal is perpendicular to the parallel lines.",
@@ -10851,14 +11261,15 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah poligon?",
     [
-      "Bentuk 2D tertutup dengan 3 atau lebih sisi lurus",
-      "Bentuk 3D dengan permukaan rata",
-      "Lengkung tertutup seperti bulatan",
-      "Satu tembereng garis lurus",
+      "Bentuk tertutup bersisi lurus",
+      "Bentuk terbuka bersisi lurus",
+      "Bentuk tertutup bersisi melengkung",
+      "Bentuk terbuka bersisi melengkung",
     ],
     0,
     "Poligon ialah bentuk dua dimensi (2D) tertutup yang dibatasi oleh tiga atau lebih sisi lurus.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.polygonExample,
   ],
   [
     "Berapakah bilangan sisi segi tiga?",
@@ -10866,6 +11277,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Segi tiga mempunyai 3 sisi, 3 bucu dan 3 sudut.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.threeSides,
   ],
   [
     "Berapakah bilangan sisi pentagon?",
@@ -10873,6 +11285,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Pentagon mempunyai 5 sisi (penta = 5 dalam bahasa Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.fiveSides,
   ],
   [
     "Berapakah bilangan sisi heksagon?",
@@ -10880,6 +11293,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Heksagon mempunyai 6 sisi (hexa = 6 dalam bahasa Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.sixSides,
   ],
   [
     "Apakah nama poligon dengan 8 sisi?",
@@ -10887,6 +11301,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Poligon dengan 8 sisi dipanggil Oktagon (octa = 8 dalam bahasa Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.eightSides,
   ],
   [
     "Apakah nama poligon dengan 10 sisi?",
@@ -10894,18 +11309,20 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Poligon dengan 10 sisi dipanggil Dekagon (deca = 10 dalam bahasa Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.tenSides,
   ],
   [
     "Apakah poligon sekata?",
     [
-      "Poligon dengan semua sisi berbeza",
-      "Poligon dengan 4 sisi",
-      "Poligon dengan satu garis simetri",
-      "Poligon dengan semua sisi sama DAN semua sudut sama",
+      "Semua sisi sama, sudut berbeza",
+      "Semua sudut sama, sisi berbeza",
+      "Semua sisi dan sudut berbeza",
+      "Semua sisi dan sudut sama",
     ],
     3,
     "Poligon sekata mempunyai semua sisi sama panjang DAN semua sudut dalam sama besar.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.regularShape,
   ],
   [
     "Apakah segi tiga sama sisi?",
@@ -10918,18 +11335,20 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Segi tiga sama sisi mempunyai 3 sisi sama panjang dan semua sudut = 60°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.equilateralShape,
   ],
   [
     "Apakah segi tiga sama kaki?",
     [
-      "Segi tiga dengan 3 sisi sama",
-      "Segi tiga dengan semua sisi berbeza",
-      "Segi tiga dengan 2 sisi sama dan 2 sudut tapak sama",
-      "Segi tiga dengan satu sudut tegak",
+      "Tiga sisi dan semua sudut sama",
+      "Semua sisi dan sudut berbeza",
+      "Dua sisi dan sudut tapak sama",
+      "Satu sudut tepat 90°",
     ],
     2,
     "Segi tiga sama kaki mempunyai DUA sisi sama panjang dan DUA sudut tapak yang sama.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.isoscelesShape,
   ],
   [
     "Apakah segi tiga tak sama kaki?",
@@ -10942,18 +11361,20 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Segi tiga tak sama kaki mempunyai semua sisi berbeza panjang dan semua sudut berbeza besar.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.scaleneShape,
   ],
   [
     "Apakah segi tiga bersudut tegak?",
     [
-      "Segi tiga dengan satu sudut tepat 90°",
-      "Segi tiga dengan satu sudut > 90°",
-      "Segi tiga dengan semua sudut < 90°",
-      "Segi tiga dengan semua sudut 60°",
+      "Satu sudut = 90°",
+      "Satu sudut > 90°",
+      "Semua sudut < 90°",
+      "Semua sudut = 60°",
     ],
     0,
     "Segi tiga bersudut tegak mempunyai tepat SATU sudut 90°. Sisi terpanjang dipanggil hipotenus.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rightShape,
   ],
   [
     "Apakah hipotenus?",
@@ -10966,6 +11387,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Hipotenus ialah sisi terpanjang segi tiga bersudut tegak, yang berada bertentangan dengan sudut 90°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.hypotenuseShape,
   ],
   [
     "Apakah segi empat tepat?",
@@ -10978,42 +11400,46 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Segi empat tepat mempunyai 4 sudut 90°, sisi bertentangan sama panjang dan selari.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleShape,
   ],
   [
     "Apakah segi empat sama?",
     [
-      "Segi empat tepat dengan pepenjuru berserenjang dan 4 sisi sama",
-      "Sisi empat dengan 4 sisi berbeza",
-      "Sisi empat dengan satu pasang sisi selari",
-      "Segi empat selari biasa",
+      "Empat sisi sama dan sudut tegak",
+      "Empat sisi sama dan sudut tidak tegak",
+      "Sisi bertentangan sama, sudut tidak tegak",
+      "Satu pasang sisi selari, sudut tidak tegak",
     ],
     0,
     "Segi empat sama mempunyai 4 sisi sama, 4 sudut 90°, dan pepenjuru berserenjang.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareShape,
   ],
   [
     "Apakah segi empat selari?",
     [
-      "Sisi empat dengan 4 sudut tegak",
-      "Sisi empat dengan 2 pasang sisi bertentangan selari",
-      "Sisi empat dengan 4 sisi sama panjang",
-      "Sisi empat dengan satu pasang sisi selari",
+      "Satu pasang sisi bertentangan selari",
+      "Dua pasang sisi bertentangan selari",
+      "Dua pasang sisi bersebelahan selari",
+      "Tiada pasang sisi bertentangan selari",
     ],
     1,
     "Segi empat selari mempunyai 2 pasang sisi bertentangan yang selari dan sama panjang, serta sudut bertentangan yang sama.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.parallelogramShape,
   ],
   [
     "Apakah belah ketupat?",
     [
-      "Sisi empat dengan 4 sudut 90°",
-      "Sisi empat dengan 2 pasang sisi bersebelahan sama",
-      "Sisi empat dengan 4 sisi sama dan pepenjuru berserenjang",
-      "Sisi empat dengan satu pasang sisi selari",
+      "Empat sudut sama besar sahaja",
+      "Satu pasang sisi selari sahaja",
+      "Empat sisi sama panjang",
+      "Dua sisi sama panjang sahaja",
     ],
     2,
     "Belah ketupat mempunyai 4 sisi sama panjang dan pepenjuru yang berserenjang.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusShape,
   ],
   [
     "Apakah trapezium?",
@@ -11026,6 +11452,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Trapezium mempunyai tepat SATU pasang sisi yang selari.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.trapeziumShape,
   ],
   [
     "Apakah lelayang?",
@@ -11038,6 +11465,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Lelayang mempunyai DUA pasang sisi BERSEBELAHAN yang sama panjang.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.kiteShape,
   ],
   [
     "Berapakah bilangan garis simetri segi tiga sama sisi?",
@@ -11045,6 +11473,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Segi tiga sama sisi mempunyai 3 garis simetri — setiap satu melalui puncak dan titik tengah sisi bertentangan.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.triangleSymmetry,
   ],
   [
     "Berapakah bilangan garis simetri segi empat sama?",
@@ -11052,6 +11481,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Segi empat sama mempunyai 4 garis simetri — 2 melalui sisi bertentangan dan 2 melalui pepenjuru.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareSymmetry,
   ],
   [
     "Berapakah bilangan garis simetri segi tiga sama kaki?",
@@ -11059,6 +11489,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Segi tiga sama kaki mempunyai 1 garis simetri — melalui puncak dan titik tengah tapak.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.isoscelesSymmetry,
   ],
   [
     "Berapakah bilangan garis simetri segi empat selari?",
@@ -11066,6 +11497,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Segi empat selari mempunyai 0 garis simetri.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.parallelogramSymmetry,
   ],
   [
     "Berapakah bilangan garis simetri belah ketupat?",
@@ -11073,6 +11505,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Belah ketupat mempunyai 2 garis simetri — melalui kedua-dua pasang bucu bertentangan.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusSymmetry,
   ],
   [
     "Berapakah bilangan garis simetri lelayang?",
@@ -11080,6 +11513,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Lelayang mempunyai 1 garis simetri — pepenjuru yang membahagi dua pepenjuru yang lain.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.kiteSymmetry,
   ],
   [
     "Apakah segi tiga bersudut cakah?",
@@ -11092,6 +11526,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Segi tiga bersudut cakah mempunyai tepat SATU sudut lebih besar daripada 90°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.obtuseTriangle,
   ],
   [
     "Berapakah bilangan garis simetri segi empat tepat (bukan segi empat sama)?",
@@ -11099,18 +11534,20 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Segi empat tepat (bukan segi empat sama) mempunyai 2 garis simetri — melalui titik tengah sisi bertentangan.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleSymmetry,
   ],
   [
     "Apakah yang membezakan segi empat sama dengan segi empat tepat?",
     [
-      "Segi empat sama ada 4 sisi sama; segi empat tepat tidak semestinya",
-      "Segi empat sama mempunyai lebih banyak sudut tegak",
-      "Segi empat tepat mempunyai lebih banyak sisi",
-      "Tiada perbezaan antara kedua-duanya",
+      "Segi empat sama: semua sisi sama",
+      "Segi empat sama: lebih sudut tegak",
+      "Segi empat tepat: lebih banyak sisi",
+      "Segi empat tepat: kurang sudut tegak",
     ],
     0,
     "Segi empat sama: semua 4 sisi sama. Segi empat tepat: hanya sisi bertentangan sama. Kedua-duanya mempunyai 4 sudut 90°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareVsRectangle,
   ],
   [
     "Apakah nama poligon dengan 7 sisi?",
@@ -11118,6 +11555,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Poligon dengan 7 sisi dipanggil Heptagon (hepta = 7 dalam bahasa Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.sevenSides,
   ],
   [
     "Apakah nama poligon dengan 9 sisi?",
@@ -11125,18 +11563,20 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Poligon dengan 9 sisi dipanggil Nonagon (nona = 9 dalam bahasa Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.nineSides,
   ],
   [
     "Apakah ciri utama pepenjuru poligon?",
     [
-      "Menghubungkan dua bucu bersebelahan",
-      "Menghubungkan dua bucu yang TIDAK bersebelahan",
-      "Ialah sisi poligon",
-      "Berada di luar poligon",
+      "Menyambung bucu yang bersebelahan",
+      "Menyambung bucu tidak bersebelahan",
+      "Menyambung titik tengah dua sisi",
+      "Menyambung titik tengah dan bucu",
     ],
     1,
     "Pepenjuru ialah tembereng garis yang menghubungkan dua bucu yang TIDAK bersebelahan. Sisi bukan pepenjuru.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.diagonalExample,
   ],
 ]);
 
@@ -11144,14 +11584,15 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a polygon?",
     [
-      "A closed 2D shape with 3 or more straight sides",
-      "A 3D solid with flat faces",
-      "A closed curve such as a circle",
-      "A single straight line segment",
+      "A closed shape with straight sides",
+      "An open shape with straight sides",
+      "A closed shape with curved sides",
+      "An open shape with curved sides",
     ],
     0,
     "A polygon is a two-dimensional (2D) closed shape bounded by three or more straight sides.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.polygonExample,
   ],
   [
     "How many sides does a triangle have?",
@@ -11159,6 +11600,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A triangle has 3 sides, 3 vertices and 3 angles.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.threeSides,
   ],
   [
     "How many sides does a pentagon have?",
@@ -11166,6 +11608,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "A pentagon has 5 sides (penta = 5 in Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.fiveSides,
   ],
   [
     "How many sides does a hexagon have?",
@@ -11173,6 +11616,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A hexagon has 6 sides (hexa = 6 in Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.sixSides,
   ],
   [
     "What is the name of a polygon with 8 sides?",
@@ -11180,6 +11624,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A polygon with 8 sides is called an Octagon (octa = 8 in Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.eightSides,
   ],
   [
     "What is the name of a polygon with 10 sides?",
@@ -11187,18 +11632,20 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "A polygon with 10 sides is called a Decagon (deca = 10 in Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.tenSides,
   ],
   [
     "What is a regular polygon?",
     [
-      "A polygon with all sides different",
-      "A polygon with 4 sides",
-      "A polygon with one line of symmetry",
-      "A polygon with all sides equal AND all angles equal",
+      "All sides equal, angles different",
+      "All angles equal, sides different",
+      "All sides and angles different",
+      "All sides and angles equal",
     ],
     3,
     "A regular polygon has all sides equal in length AND all interior angles equal.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.regularShape,
   ],
   [
     "What is an equilateral triangle?",
@@ -11211,18 +11658,20 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "An equilateral triangle has 3 equal sides and all angles = 60°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.equilateralShape,
   ],
   [
     "What is an isosceles triangle?",
     [
-      "A triangle with 3 equal sides",
-      "A triangle with all different sides",
-      "A triangle with 2 equal sides and 2 equal base angles",
-      "A triangle with one right angle",
+      "Three equal sides and angles",
+      "All sides and angles different",
+      "Two equal sides and base angles",
+      "One angle exactly 90°",
     ],
     2,
     "An isosceles triangle has TWO equal sides and TWO equal base angles.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.isoscelesShape,
   ],
   [
     "What is a scalene triangle?",
@@ -11235,18 +11684,20 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A scalene triangle has all sides of different lengths and all angles of different sizes.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.scaleneShape,
   ],
   [
     "What is a right-angled triangle?",
     [
-      "A triangle with exactly one angle of 90°",
-      "A triangle with one angle > 90°",
-      "A triangle with all angles < 90°",
-      "A triangle with all angles 60°",
+      "One angle = 90°",
+      "One angle > 90°",
+      "All angles < 90°",
+      "All angles = 60°",
     ],
     0,
     "A right-angled triangle has exactly ONE 90° angle. The longest side is called the hypotenuse.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rightShape,
   ],
   [
     "What is the hypotenuse?",
@@ -11259,6 +11710,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "The hypotenuse is the longest side of a right-angled triangle, opposite the 90° angle.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.hypotenuseShape,
   ],
   [
     "What is a rectangle?",
@@ -11271,42 +11723,46 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A rectangle has 4 right angles and opposite sides that are equal in length and parallel.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleShape,
   ],
   [
     "What is a square?",
     [
-      "A rectangle with perpendicular diagonals and all 4 sides equal",
-      "A quadrilateral with 4 different sides",
-      "A quadrilateral with one pair of parallel sides",
-      "An ordinary parallelogram",
+      "Four equal sides and right angles",
+      "Four equal sides and no right angles",
+      "Equal opposite sides, no right angles",
+      "One parallel pair, no right angles",
     ],
     0,
     "A square has 4 equal sides, 4 right angles, and perpendicular diagonals.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareShape,
   ],
   [
     "What is a parallelogram?",
     [
-      "A quadrilateral with 4 right angles",
-      "A quadrilateral with 2 pairs of parallel opposite sides",
-      "A quadrilateral with 4 equal sides",
-      "A quadrilateral with one pair of parallel sides",
+      "One pair of opposite parallel sides",
+      "Two pairs of opposite parallel sides",
+      "Two pairs of adjacent parallel sides",
+      "No pairs of opposite parallel sides",
     ],
     1,
     "A parallelogram has 2 pairs of opposite sides that are parallel and equal, with opposite angles equal.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.parallelogramShape,
   ],
   [
     "What is a rhombus?",
     [
-      "A quadrilateral with 4 right angles",
-      "A quadrilateral with 2 pairs of adjacent equal sides",
-      "A quadrilateral with 4 equal sides and perpendicular diagonals",
-      "A quadrilateral with one pair of parallel sides",
+      "Four equal angles only",
+      "One parallel side pair only",
+      "Four equal side lengths",
+      "Two equal side lengths only",
     ],
     2,
     "A rhombus has 4 equal sides and perpendicular diagonals.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusShape,
   ],
   [
     "What is a trapezium?",
@@ -11319,6 +11775,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A trapezium has exactly ONE pair of parallel sides.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.trapeziumShape,
   ],
   [
     "What is a kite?",
@@ -11331,6 +11788,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "A kite has TWO pairs of ADJACENT (neighbouring) sides that are equal in length.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.kiteShape,
   ],
   [
     "How many lines of symmetry does an equilateral triangle have?",
@@ -11338,6 +11796,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "An equilateral triangle has 3 lines of symmetry — each through a vertex and the midpoint of the opposite side.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.triangleSymmetry,
   ],
   [
     "How many lines of symmetry does a square have?",
@@ -11345,6 +11804,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A square has 4 lines of symmetry — 2 through opposite sides and 2 through diagonals.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareSymmetry,
   ],
   [
     "How many lines of symmetry does an isosceles triangle have?",
@@ -11352,6 +11812,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "An isosceles triangle has 1 line of symmetry — through the apex and the midpoint of the base.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.isoscelesSymmetry,
   ],
   [
     "How many lines of symmetry does a parallelogram have?",
@@ -11359,6 +11820,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "A parallelogram has 0 lines of symmetry.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.parallelogramSymmetry,
   ],
   [
     "How many lines of symmetry does a rhombus have?",
@@ -11366,6 +11828,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A rhombus has 2 lines of symmetry — through both pairs of opposite vertices.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusSymmetry,
   ],
   [
     "How many lines of symmetry does a kite have?",
@@ -11373,6 +11836,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A kite has 1 line of symmetry — the diagonal that bisects the other diagonal.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.kiteSymmetry,
   ],
   [
     "What is an obtuse-angled triangle?",
@@ -11385,6 +11849,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "An obtuse-angled triangle has exactly ONE angle greater than 90°.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.obtuseTriangle,
   ],
   [
     "How many lines of symmetry does a rectangle (non-square) have?",
@@ -11392,18 +11857,20 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A rectangle (non-square) has 2 lines of symmetry — through the midpoints of opposite sides.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleSymmetry,
   ],
   [
     "What distinguishes a square from a rectangle?",
     [
-      "A square has 4 equal sides; a rectangle need not",
-      "A square has more right angles than a rectangle",
-      "A rectangle has more sides than a square",
-      "There is no difference between them",
+      "A square always has equal sides",
+      "A square has more right angles",
+      "A rectangle has more sides",
+      "A rectangle has fewer right angles",
     ],
     0,
     "Square: all 4 sides equal. Rectangle: only opposite sides equal. Both have 4 right angles.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.squareVsRectangle,
   ],
   [
     "What is the name of a polygon with 7 sides?",
@@ -11411,6 +11878,7 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "A polygon with 7 sides is called a Heptagon (hepta = 7 in Greek).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.sevenSides,
   ],
   [
     "What is the name of a polygon with 9 sides?",
@@ -11418,18 +11886,20 @@ const MATH_C9_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "A polygon with 9 sides is called a Nonagon (nona = 9 in Latin).",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.nineSides,
   ],
   [
     "What is the key feature of a polygon's diagonal?",
     [
-      "Connects two adjacent vertices",
-      "Connects two NON-ADJACENT vertices",
-      "Is a side of the polygon",
-      "Lies outside the polygon",
+      "Joins adjacent vertices",
+      "Joins non-adjacent vertices",
+      "Joins two side midpoints",
+      "Joins a midpoint and a vertex",
     ],
     1,
     "A diagonal connects two NON-ADJACENT vertices. Sides are not diagonals.",
     "Easy",
+    MATH_F1_C9_QUIZ_VISUALS.diagonalExample,
   ],
 ]);
 
@@ -11440,6 +11910,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Jumlah ketiga-tiga sudut dalam mana-mana segi tiga sentiasa 180°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleInterior,
   ],
   [
     "Berapakah jumlah sudut dalam sisi empat?",
@@ -11447,6 +11918,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Jumlah keempat-empat sudut dalam mana-mana sisi empat sentiasa 360°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadInterior,
   ],
   [
     "Segi tiga ABC: ∠A = 55°, ∠B = 75°. Cari ∠C.",
@@ -11454,6 +11926,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "∠C = 180° − 55° − 75° = 50°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangle55_75,
   ],
   [
     "Sisi empat PQRS: ∠P = 90°, ∠Q = 85°, ∠R = 95°. Cari ∠S.",
@@ -11461,6 +11934,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "∠S = 360° − 90° − 85° − 95° = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quad90_85_95,
   ],
   [
     "Berapakah bilangan pepenjuru segi empat?",
@@ -11468,6 +11942,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Pepenjuru sisi empat = 4(4−3)/2 = 4(1)/2 = 2 pepenjuru.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadDiagonals,
   ],
   [
     "Berapakah bilangan pepenjuru pentagon?",
@@ -11475,6 +11950,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Pepenjuru pentagon = 5(5−3)/2 = 5(2)/2 = 5 pepenjuru.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.pentagonDiagonals,
   ],
   [
     "Berapakah bilangan pepenjuru heksagon?",
@@ -11482,6 +11958,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Pepenjuru heksagon = 6(6−3)/2 = 6(3)/2 = 9 pepenjuru.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.hexagonDiagonals,
   ],
   [
     "Dalam segi tiga PQR, ∠P = 2∠Q dan ∠R = 60°. Cari ∠Q.",
@@ -11489,6 +11966,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "∠P + ∠Q + ∠R = 180°. 2∠Q + ∠Q + 60° = 180°. 3∠Q = 120°. ∠Q = 40°. (∠P = 80°.)",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangle2q60,
   ],
   [
     "Segi tiga sama kaki: sudut puncak = 50°. Cari sudut tapak.",
@@ -11496,6 +11974,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Dua sudut tapak sama: (180° − 50°)/2 = 130°/2 = 65°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoApex50,
   ],
   [
     "Segi tiga sama kaki: setiap sudut tapak = 40°. Cari sudut puncak.",
@@ -11503,6 +11982,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut puncak = 180° − 40° − 40° = 100°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoBase40,
   ],
   [
     "Segi empat selari: ∠A = 65°. Cari ∠B, ∠C dan ∠D.",
@@ -11515,6 +11995,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Sudut bertentangan sama: ∠C = 65°. Sudut bersebelahan berjumlah 180°: ∠B = ∠D = 180° − 65° = 115°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.parallelA65,
   ],
   [
     "Sudut luar segi tiga = 125°. Satu sudut dalam berhadapan = 60°. Cari sudut dalam berhadapan yang lain.",
@@ -11522,6 +12003,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Sudut luar = jumlah dua sudut dalam berhadapan. 125° = 60° + x. x = 65°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.ext125Interior60,
   ],
   [
     "Segi tiga bersudut tegak: satu sudut bukan tegak = 38°. Cari sudut yang lain.",
@@ -11529,6 +12011,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Dua sudut bukan tegak berjumlah 90°. 38° + x = 90°. x = 52°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rightAngle38,
   ],
   [
     "Lelayang PQRS mempunyai ∠P = 110°, ∠R = 70° dan ∠Q = ∠S. Cari ∠Q.",
@@ -11536,6 +12019,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Jumlah sudut sisi empat = 360°. ∠Q + ∠S = 360° − 110° − 70° = 180°. Oleh sebab ∠Q = ∠S, ∠Q = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.kite11070,
   ],
   [
     "Sisi empat: tiga sudut = 75°, 95°, 110°. Cari sudut keempat.",
@@ -11543,6 +12027,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Sudut keempat = 360° − 75° − 95° − 110° = 80°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quad75_95_110,
   ],
   [
     "Segi tiga dengan sudut (3x)°, (2x + 10)° dan (x + 20)°. Cari x.",
@@ -11550,6 +12035,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "3x + (2x + 10) + (x + 20) = 180. 6x + 30 = 180. 6x = 150. x = 25.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleExpr,
   ],
   [
     "Sisi empat dengan sudut (2a + 10)°, 90°, (3a − 5)° dan 85°. Cari a.",
@@ -11557,6 +12043,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "(2a + 10) + 90 + (3a − 5) + 85 = 360. 5a + 180 = 360. 5a = 180. a = 36. Semak: (72+10)+90+(108−5)+85 = 82+90+103+85 = 360 ✓. a = 36.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadExpr,
   ],
   [
     "Trapezium ABCD mempunyai AB selari dengan DC. ∠A = 65° dan ∠B = 100°. Cari ∠D.",
@@ -11564,6 +12051,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "AB selari dengan DC, maka ∠A dan ∠D ialah sudut pedalaman yang berjumlah 180°. ∠D = 180° − 65° = 115°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.trapezium65_100,
   ],
   [
     "Segi tiga sama sisi: setiap sudut adalah?",
@@ -11571,6 +12059,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Segi tiga sama sisi: semua sudut = 180°/3 = 60°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.equilateralInterior,
   ],
   [
     "Sisi empat dengan semua sudut sama. Berapakah setiap sudut?",
@@ -11578,6 +12067,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Jumlah sudut sisi empat = 360°. Jika semua sama: 360°/4 = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.allEqualQuad,
   ],
   [
     "Sudut luar segi tiga dengan dua sudut dalam berhadapan = (2x + 15)° dan (x + 10)°. Jika sudut luar = 100°, cari x.",
@@ -11585,6 +12075,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "(2x + 15) + (x + 10) = 100. 3x + 25 = 100. 3x = 75. x = 25.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.exteriorExpressions,
   ],
   [
     "Sebuah poligon mempunyai 5 pepenjuru. Berapakah bilangan sisinya?",
@@ -11599,6 +12090,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "115° + 35° + x = 180°. x = 180° − 150° = 30°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.obtuse115_35,
   ],
   [
     "Segi empat selari ABCD: ∠A = (4k + 10)° dan ∠B = (2k + 50)°. Cari k.",
@@ -11606,6 +12098,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "∠A + ∠B = 180° (bersebelahan). (4k + 10) + (2k + 50) = 180. 6k + 60 = 180. 6k = 120. k = 20.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.parallelExpr,
   ],
   [
     "Segi tiga sama kaki PQR: PQ = PR. ∠Q = (3x − 5)° dan ∠R = (2x + 10)°. Cari x dan nilai sudut.",
@@ -11613,6 +12106,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "∠Q = ∠R (sudut tapak). 3x − 5 = 2x + 10. x = 15. Sudut = 3(15) − 5 = 40°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoExpr,
   ],
   [
     "Dalam belah ketupat PQRS, ∠P = 58°. Cari ∠Q.",
@@ -11620,6 +12114,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Sudut bersebelahan dalam belah ketupat berjumlah 180°. ∠Q = 180° − 58° = 122°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusP58,
   ],
   [
     "Sisi empat: ∠A = ∠C = 100° dan ∠B = ∠D. Cari ∠B.",
@@ -11627,6 +12122,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "∠A + ∠B + ∠C + ∠D = 360°. 100 + ∠B + 100 + ∠B = 360. 2∠B = 160. ∠B = 80°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadOpposite100,
   ],
   [
     "Segi tiga: sudut luar di A = 140°. ∠B = 80°. Cari ∠C.",
@@ -11634,6 +12130,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Sudut luar di A = ∠B + ∠C. 140° = 80° + ∠C. ∠C = 60°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.exterior140_80,
   ],
   [
     "Sudut-sudut dalam sebuah segi tiga ialah x°, (x + 10)° dan (x + 20)°. Cari sudut yang terbesar.",
@@ -11641,6 +12138,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "x + (x + 10) + (x + 20) = 180. 3x + 30 = 180. x = 50. Sudut terbesar = 50° + 20° = 70°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleLinear,
   ],
   [
     "Segi empat tepat ABCD dibahagikan oleh pepenjuru AC. ∠BAC = 35°. Cari ∠ACB.",
@@ -11648,6 +12146,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Dalam segi tiga ABC, ∠ABC = 90° kerana ABCD ialah segi empat tepat. ∠ACB = 180° − 90° − 35° = 55°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleAC,
   ],
 ]);
 
@@ -11658,6 +12157,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "The sum of all three interior angles of any triangle is always 180°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleInterior,
   ],
   [
     "What is the sum of interior angles of a quadrilateral?",
@@ -11665,6 +12165,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "The sum of all four interior angles of any quadrilateral is always 360°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadInterior,
   ],
   [
     "Triangle ABC: ∠A = 55°, ∠B = 75°. Find ∠C.",
@@ -11672,6 +12173,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "∠C = 180° − 55° − 75° = 50°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangle55_75,
   ],
   [
     "Quadrilateral PQRS: ∠P = 90°, ∠Q = 85°, ∠R = 95°. Find ∠S.",
@@ -11679,6 +12181,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "∠S = 360° − 90° − 85° − 95° = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quad90_85_95,
   ],
   [
     "How many diagonals does a quadrilateral have?",
@@ -11686,6 +12189,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Diagonals of a quadrilateral = 4(4−3)/2 = 4(1)/2 = 2 diagonals.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadDiagonals,
   ],
   [
     "How many diagonals does a pentagon have?",
@@ -11693,6 +12197,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Diagonals of a pentagon = 5(5−3)/2 = 5(2)/2 = 5 diagonals.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.pentagonDiagonals,
   ],
   [
     "How many diagonals does a hexagon have?",
@@ -11700,6 +12205,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Diagonals of a hexagon = 6(6−3)/2 = 6(3)/2 = 9 diagonals.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.hexagonDiagonals,
   ],
   [
     "In triangle PQR, ∠P = 2∠Q and ∠R = 60°. Find ∠Q.",
@@ -11707,6 +12213,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "∠P + ∠Q + ∠R = 180°. 2∠Q + ∠Q + 60° = 180°. 3∠Q = 120°. ∠Q = 40°. (∠P = 80°.)",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangle2q60,
   ],
   [
     "Isosceles triangle: apex angle = 50°. Find the base angles.",
@@ -11714,6 +12221,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Two base angles equal: (180° − 50°)/2 = 130°/2 = 65°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoApex50,
   ],
   [
     "Isosceles triangle: each base angle = 40°. Find the apex angle.",
@@ -11721,6 +12229,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Apex angle = 180° − 40° − 40° = 100°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoBase40,
   ],
   [
     "Parallelogram: ∠A = 65°. Find ∠B, ∠C and ∠D.",
@@ -11733,6 +12242,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Opposite angles equal: ∠C = 65°. Adjacent angles sum to 180°: ∠B = ∠D = 180° − 65° = 115°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.parallelA65,
   ],
   [
     "Exterior angle of a triangle = 125°. One non-adjacent interior angle = 60°. Find the other.",
@@ -11740,6 +12250,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Exterior angle = sum of two non-adjacent interior angles. 125° = 60° + x. x = 65°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.ext125Interior60,
   ],
   [
     "Right-angled triangle: one non-right angle = 38°. Find the other non-right angle.",
@@ -11747,6 +12258,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Two non-right angles sum to 90°. 38° + x = 90°. x = 52°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rightAngle38,
   ],
   [
     "Kite PQRS has ∠P = 110°, ∠R = 70° and ∠Q = ∠S. Find ∠Q.",
@@ -11754,6 +12266,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "The angles of a quadrilateral add up to 360°. ∠Q + ∠S = 360° − 110° − 70° = 180°. Since ∠Q = ∠S, ∠Q = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.kite11070,
   ],
   [
     "Quadrilateral: three angles = 75°, 95°, 110°. Find the fourth angle.",
@@ -11761,6 +12274,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Fourth angle = 360° − 75° − 95° − 110° = 80°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quad75_95_110,
   ],
   [
     "Triangle with angles (3x)°, (2x + 10)° and (x + 20)°. Find x.",
@@ -11768,6 +12282,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "3x + (2x + 10) + (x + 20) = 180. 6x + 30 = 180. 6x = 150. x = 25.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleExpr,
   ],
   [
     "Quadrilateral with angles (2a + 10)°, 90°, (3a − 5)° and 85°. Find a.",
@@ -11775,6 +12290,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "(2a + 10) + 90 + (3a − 5) + 85 = 360. 5a + 180 = 360. 5a = 180. a = 36.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadExpr,
   ],
   [
     "Trapezium ABCD has AB parallel to DC. ∠A = 65° and ∠B = 100°. Find ∠D.",
@@ -11782,6 +12298,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "AB is parallel to DC, so ∠A and ∠D are interior angles that add up to 180°. ∠D = 180° − 65° = 115°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.trapezium65_100,
   ],
   [
     "What is each angle of an equilateral triangle?",
@@ -11789,6 +12306,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Equilateral triangle: all angles = 180°/3 = 60°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.equilateralInterior,
   ],
   [
     "A quadrilateral has all equal angles. What is each angle?",
@@ -11796,6 +12314,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Sum of quadrilateral angles = 360°. If all equal: 360°/4 = 90°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.allEqualQuad,
   ],
   [
     "Exterior angle with two non-adjacent interior angles = (2x + 15)° and (x + 10)°. Exterior angle = 100°. Find x.",
@@ -11803,6 +12322,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "(2x + 15) + (x + 10) = 100. 3x + 25 = 100. 3x = 75. x = 25.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.exteriorExpressions,
   ],
   [
     "A polygon has 5 diagonals. How many sides does it have?",
@@ -11817,6 +12337,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "115° + 35° + x = 180°. x = 180° − 150° = 30°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.obtuse115_35,
   ],
   [
     "Parallelogram ABCD: ∠A = (4k + 10)° and ∠B = (2k + 50)°. Find k.",
@@ -11824,6 +12345,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "∠A + ∠B = 180° (adjacent). (4k + 10) + (2k + 50) = 180. 6k + 60 = 180. 6k = 120. k = 20.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.parallelExpr,
   ],
   [
     "Isosceles triangle PQR: PQ = PR. ∠Q = (3x − 5)° and ∠R = (2x + 10)°. Find x and the angle value.",
@@ -11831,6 +12353,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "∠Q = ∠R (base angles). 3x − 5 = 2x + 10. x = 15. Angle = 3(15) − 5 = 40°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.isoExpr,
   ],
   [
     "In rhombus PQRS, ∠P = 58°. Find ∠Q.",
@@ -11838,6 +12361,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Adjacent angles in a rhombus add up to 180°. ∠Q = 180° − 58° = 122°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusP58,
   ],
   [
     "Quadrilateral: ∠A = ∠C = 100° and ∠B = ∠D. Find ∠B.",
@@ -11845,6 +12369,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "∠A + ∠B + ∠C + ∠D = 360°. 100 + ∠B + 100 + ∠B = 360. 2∠B = 160. ∠B = 80°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.quadOpposite100,
   ],
   [
     "Triangle: exterior angle at A = 140°. ∠B = 80°. Find ∠C.",
@@ -11852,6 +12377,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Exterior angle at A = ∠B + ∠C. 140° = 80° + ∠C. ∠C = 60°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.exterior140_80,
   ],
   [
     "The angles in a triangle are x°, (x + 10)° and (x + 20)°. Find the largest angle.",
@@ -11859,6 +12385,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "x + (x + 10) + (x + 20) = 180. 3x + 30 = 180. x = 50. The largest angle = 50° + 20° = 70°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.triangleLinear,
   ],
   [
     "Rectangle ABCD is divided by the diagonal AC. ∠BAC = 35°. Find ∠ACB.",
@@ -11866,6 +12393,7 @@ const MATH_C9_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "In triangle ABC, ∠ABC = 90° because ABCD is a rectangle. ∠ACB = 180° − 90° − 35° = 55°.",
     "Medium",
+    MATH_F1_C9_QUIZ_VISUALS.rectangleAC,
   ],
 ]);
 
@@ -11876,6 +12404,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "(3x + 5) + (2x − 10) + (x + 35) = 180. 6x + 30 = 180. 6x = 150. x = 25. Sudut: 80°, 40°, 60°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.triChallengeExpr,
   ],
   [
     "Sisi empat ABCD mempunyai ∠A = (2x + 10)°, ∠B = (x + 20)°, ∠C = (3x − 5)° dan ∠D = (4x − 5)°. Cari x.",
@@ -11883,6 +12412,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "(2x + 10) + (x + 20) + (3x − 5) + (4x − 5) = 360. 10x + 20 = 360. 10x = 340. x = 34. Semak: 78° + 54° + 97° + 131° = 360°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadChallengeExpr,
   ],
   [
     "Sebuah poligon mempunyai 35 pepenjuru. Berapakah bilangan sisinya?",
@@ -11897,6 +12427,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "∠ACB = 180° − 115° = 65°. Oleh sebab AB = AC, ∠ABC = ∠ACB = 65°. ∠BAC = 180° − 65° − 65° = 50°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoExtension115,
   ],
   [
     "Dalam segi tiga ABC, ∠A = 50° dan ∠B = 70°. Sisi BC dipanjangkan ke D. Cari ∠ACD (sudut luar di C).",
@@ -11904,6 +12435,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "∠C = 180° − 50° − 70° = 60°. Sudut peluaran di C = 180° − 60° = 120°, iaitu sama dengan ∠A + ∠B = 50° + 70°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.ext50_70,
   ],
   [
     "Segi tiga PQR ialah segi tiga sama kaki dengan PQ = PR. ∠QPR = (4y − 20)° dan ∠PQR = (y + 25)°. Cari y.",
@@ -11911,6 +12443,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "∠PQR = ∠PRQ = (y + 25)°. (4y − 20) + 2(y + 25) = 180. 6y + 30 = 180. 6y = 150. y = 25. Sudut: 80°, 50°, 50°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoExprY,
   ],
   [
     "Segi empat selari ABCD mempunyai ∠A = (5m − 15)° dan ∠C = (3m + 25)°. Cari m dan ∠A.",
@@ -11918,6 +12451,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut bertentangan dalam segi empat selari adalah sama: 5m − 15 = 3m + 25. 2m = 40. m = 20. ∠A = 5(20) − 15 = 85°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelOppositeExpr,
   ],
   [
     "Sudut-sudut dalam sebuah segi tiga adalah dalam nisbah 2 : 3 : 4. Cari ketiga-tiga sudut itu.",
@@ -11925,6 +12459,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Jumlah bahagian = 2 + 3 + 4 = 9. Satu bahagian = 180° ÷ 9 = 20°. Sudut: 40°, 60°, 80°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.triangleRatio234,
   ],
   [
     "Sudut-sudut dalam sebuah sisi empat adalah dalam nisbah 1 : 2 : 3 : 4. Cari keempat-empat sudut itu.",
@@ -11932,6 +12467,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Jumlah bahagian = 1 + 2 + 3 + 4 = 10. Satu bahagian = 360° ÷ 10 = 36°. Sudut: 36°, 72°, 108°, 144°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadRatio1234,
   ],
   [
     "Dalam belah ketupat ABCD, ∠ABC = 70°. Cari ∠BAD, ∠BCD dan ∠CDA.",
@@ -11944,6 +12480,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut bertentangan dalam belah ketupat adalah sama: ∠CDA = ∠ABC = 70°. Sudut bersebelahan berjumlah 180°: ∠BAD = ∠BCD = 180° − 70° = 110°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusAngle70,
   ],
   [
     "Dalam segi tiga ABC, ∠A = (6t − 10)° dan sudut luar di A = (4t + 20)°. Cari t.",
@@ -11951,6 +12488,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Sudut pedalaman dan sudut luar di bucu yang sama berjumlah 180°: (6t − 10) + (4t + 20) = 180. 10t + 10 = 180. 10t = 170. t = 17.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.extAtA,
   ],
   [
     "Dalam segi tiga PQR, sudut luar di R ialah 130° dan ∠P = ∠Q. Cari ∠P.",
@@ -11958,6 +12496,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Sudut peluaran di R = ∠P + ∠Q = 130°. Oleh sebab ∠P = ∠Q, ∠P = 130° ÷ 2 = 65°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.ext130Equal,
   ],
   [
     "Dalam sebuah segi tiga bersudut tegak, dua sudut tirus ialah (2x + 5)° dan (3x − 10)°. Cari x.",
@@ -11965,6 +12504,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Dua sudut tirus dalam segi tiga bersudut tegak berjumlah 90°: (2x + 5) + (3x − 10) = 90. 5x − 5 = 90. 5x = 95. x = 19.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightExpr,
   ],
   [
     "Sebuah poligon sekata mempunyai 6 garis simetri. Apakah nama poligon itu?",
@@ -11972,6 +12512,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Poligon sekata dengan n sisi mempunyai n garis simetri. 6 garis simetri bermaksud 6 sisi, iaitu heksagon sekata.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.sixFoldShape,
   ],
   [
     "Sisi empat ABCD mempunyai ∠A = 3p, ∠B = 2p, ∠C = 4p dan ∠D = p. Cari p dan semua sudut.",
@@ -11984,6 +12525,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "3p + 2p + 4p + p = 360°. 10p = 360°. p = 36°. Sudut: 108°, 72°, 144°, 36°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadPExpr,
   ],
   [
     "Dalam segi tiga ABC, sudut luar di B ialah 115° dan ∠A = 55°. Adakah segi tiga ABC sebuah segi tiga sama kaki?",
@@ -11996,6 +12538,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "∠B = 180° − 115° = 65°. ∠C = 180° − 55° − 65° = 60°. Ketiga-tiga sudut (55°, 65°, 60°) berbeza, jadi segi tiga itu bukan sama kaki.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.exteriorB115,
   ],
   [
     "Segi empat selari PQRS mempunyai ∠P = (7n − 5)° dan ∠Q = (3n + 45)°. Cari n dan ∠P.",
@@ -12003,6 +12546,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Sudut bersebelahan dalam segi empat selari berjumlah 180°: (7n − 5) + (3n + 45) = 180. 10n + 40 = 180. n = 14. ∠P = 7(14) − 5 = 93°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelPExpr,
   ],
   [
     "Dalam segi tiga XYZ, XY = XZ = 8 cm dan YZ = 6 cm. ∠Y = 70°. Apakah jenis segi tiga ini dan berapakah ∠X?",
@@ -12015,6 +12559,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "XY = XZ, jadi segi tiga itu sama kaki dan ∠Y = ∠Z = 70°. ∠X = 180° − 70° − 70° = 40°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoSide8_8_6,
   ],
   [
     "Trapezium ABCD mempunyai AB selari dengan DC. ∠A = (2x + 10)° dan ∠D = (3x − 20)°. Cari x.",
@@ -12022,6 +12567,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "AB selari dengan DC, maka ∠A + ∠D = 180° (sudut pedalaman). (2x + 10) + (3x − 20) = 180. 5x − 10 = 180. 5x = 190. x = 38.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.trapeziumExpr,
   ],
   [
     "Sebuah sisi empat dibahagikan kepada 2 segi tiga oleh satu pepenjuru. Gunakan fakta ini untuk mencari hasil tambah sudut dalam sisi empat itu.",
@@ -12029,6 +12575,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Setiap segi tiga mempunyai hasil tambah sudut 180°. 2 segi tiga = 2 × 180° = 360°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.diagonalSplit,
   ],
   [
     "Dalam sebuah segi tiga bersudut tegak, satu sudut tirus ialah 4 kali sudut tirus yang lain. Cari sudut tirus yang lebih kecil.",
@@ -12036,6 +12583,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Dua sudut tirus berjumlah 90°: x + 4x = 90°. 5x = 90°. x = 18°. (72° ialah sudut tirus yang lebih besar.)",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightRatio4to1,
   ],
   [
     "Dalam sisi empat ABCD, ∠A = ∠C, ∠B = ∠D dan ∠A = 2∠B. Cari semua sudut.",
@@ -12048,6 +12596,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "2∠A + 2∠B = 360°, jadi ∠A + ∠B = 180°. 2∠B + ∠B = 180°. ∠B = 60° dan ∠A = 120°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadOppositeRelations,
   ],
   [
     "Sebuah segi tiga sama kaki mempunyai sudut puncak yang dua kali sudut tapak. Cari semua sudut.",
@@ -12060,6 +12609,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Katakan sudut tapak = x, maka sudut puncak = 2x. 2x + x + x = 180°. 4x = 180°. x = 45°. Puncak = 90°, tapak = 45°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoApexTwice,
   ],
   [
     "Dalam sisi empat PQRS, ∠P = 75°, ∠Q = 105° dan ∠R = 75°. Cari ∠S.",
@@ -12067,6 +12617,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "∠S = 360° − 75° − 105° − 75° = 105°. Sudut bertentangan adalah sama, seperti dalam segi empat selari.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quad75_105_75,
   ],
   [
     "Sebuah segi tiga mempunyai satu sudut 90° dan dua sudut lain yang sama besar. Berapakah saiz setiap sudut yang sama itu, dan apakah jenis segi tiga itu?",
@@ -12079,6 +12630,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Dua sudut yang sama berjumlah 180° − 90° = 90°, jadi setiap satu ialah 45°. Segi tiga itu bersudut tegak dan sama kaki.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.equalLegRight,
   ],
   [
     "Dalam segi empat selari ABCD, ∠A − ∠B = 40°. Cari ∠A.",
@@ -12086,6 +12638,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Sudut bersebelahan berjumlah 180°: ∠A + ∠B = 180°. Dengan ∠A − ∠B = 40°, 2∠A = 220°, maka ∠A = 110° dan ∠B = 70°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelDifference40,
   ],
   [
     "Sisi empat ABCD mempunyai AB selari dengan DC, ∠A = ∠D = 90° dan AB ≠ DC. Apakah jenis sisi empat itu?",
@@ -12093,6 +12646,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Hanya satu pasang sisi (AB dan DC) yang selari kerana AB ≠ DC, jadi ABCD ialah trapezium (trapezium bersudut tegak).",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightTrapezium,
   ],
   [
     "Dalam segi tiga ABC, ∠A = (4k + 10)°, ∠B = (3k − 5)° dan sudut luar di C ialah 110°. Cari k.",
@@ -12100,6 +12654,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Sudut peluaran di C = ∠A + ∠B: (4k + 10) + (3k − 5) = 110. 7k + 5 = 110. 7k = 105. k = 15.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.extAlgebra110,
   ],
   [
     "Dalam segi tiga sama kaki ABC, AB = BC dan ∠A = 40°. Cari ∠B.",
@@ -12107,6 +12662,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "AB = BC, maka ∠A = ∠C = 40° (sudut tapak). ∠B = 180° − 40° − 40° = 100°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoABCABBC,
   ],
   [
     "Lelayang PQRS mempunyai PQ = PS dan QR = SR. ∠P = 80° dan ∠R = 60°. Cari ∠Q.",
@@ -12114,6 +12670,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Lelayang itu bersimetri pada PR, jadi ∠Q = ∠S. ∠Q + ∠S = 360° − 80° − 60° = 220°. ∠Q = 110°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.kiteP80R60,
   ],
 ]);
 
@@ -12124,6 +12681,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "(3x + 5) + (2x − 10) + (x + 35) = 180. 6x + 30 = 180. 6x = 150. x = 25. Angles: 80°, 40°, 60°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.triChallengeExpr,
   ],
   [
     "Quadrilateral ABCD has ∠A = (2x + 10)°, ∠B = (x + 20)°, ∠C = (3x − 5)° and ∠D = (4x − 5)°. Find x.",
@@ -12131,6 +12689,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "(2x + 10) + (x + 20) + (3x − 5) + (4x − 5) = 360. 10x + 20 = 360. 10x = 340. x = 34. Check: 78° + 54° + 97° + 131° = 360°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadChallengeExpr,
   ],
   [
     "A polygon has 35 diagonals. How many sides does it have?",
@@ -12145,6 +12704,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "∠ACB = 180° − 115° = 65°. Since AB = AC, ∠ABC = ∠ACB = 65°. ∠BAC = 180° − 65° − 65° = 50°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoExtension115,
   ],
   [
     "In triangle ABC, ∠A = 50° and ∠B = 70°. Side BC is extended to D. Find ∠ACD (the exterior angle at C).",
@@ -12152,6 +12712,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "∠C = 180° − 50° − 70° = 60°. The exterior angle at C = 180° − 60° = 120°, which equals ∠A + ∠B = 50° + 70°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.ext50_70,
   ],
   [
     "Triangle PQR is isosceles with PQ = PR. ∠QPR = (4y − 20)° and ∠PQR = (y + 25)°. Find y.",
@@ -12159,6 +12720,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "∠PQR = ∠PRQ = (y + 25)°. (4y − 20) + 2(y + 25) = 180. 6y + 30 = 180. 6y = 150. y = 25. Angles: 80°, 50°, 50°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoExprY,
   ],
   [
     "Parallelogram ABCD has ∠A = (5m − 15)° and ∠C = (3m + 25)°. Find m and ∠A.",
@@ -12166,6 +12728,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Opposite angles in a parallelogram are equal: 5m − 15 = 3m + 25. 2m = 40. m = 20. ∠A = 5(20) − 15 = 85°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelOppositeExpr,
   ],
   [
     "The angles of a triangle are in the ratio 2 : 3 : 4. Find all three angles.",
@@ -12173,6 +12736,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Total parts = 2 + 3 + 4 = 9. One part = 180° ÷ 9 = 20°. Angles: 40°, 60°, 80°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.triangleRatio234,
   ],
   [
     "The angles of a quadrilateral are in the ratio 1 : 2 : 3 : 4. Find all four angles.",
@@ -12180,6 +12744,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Total parts = 1 + 2 + 3 + 4 = 10. One part = 360° ÷ 10 = 36°. Angles: 36°, 72°, 108°, 144°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadRatio1234,
   ],
   [
     "In rhombus ABCD, ∠ABC = 70°. Find ∠BAD, ∠BCD and ∠CDA.",
@@ -12192,6 +12757,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Opposite angles in a rhombus are equal: ∠CDA = ∠ABC = 70°. Adjacent angles add up to 180°: ∠BAD = ∠BCD = 180° − 70° = 110°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rhombusAngle70,
   ],
   [
     "In triangle ABC, ∠A = (6t − 10)° and the exterior angle at A = (4t + 20)°. Find t.",
@@ -12199,6 +12765,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "The interior and exterior angles at the same vertex add up to 180°: (6t − 10) + (4t + 20) = 180. 10t + 10 = 180. 10t = 170. t = 17.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.extAtA,
   ],
   [
     "In triangle PQR, the exterior angle at R is 130° and ∠P = ∠Q. Find ∠P.",
@@ -12206,6 +12773,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "The exterior angle at R = ∠P + ∠Q = 130°. Since ∠P = ∠Q, ∠P = 130° ÷ 2 = 65°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.ext130Equal,
   ],
   [
     "In a right-angled triangle, the two acute angles are (2x + 5)° and (3x − 10)°. Find x.",
@@ -12213,6 +12781,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "The two acute angles in a right-angled triangle add up to 90°: (2x + 5) + (3x − 10) = 90. 5x − 5 = 90. 5x = 95. x = 19.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightExpr,
   ],
   [
     "A regular polygon has 6 lines of symmetry. What is the polygon?",
@@ -12220,6 +12789,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "A regular polygon with n sides has n lines of symmetry. 6 lines of symmetry means 6 sides, a regular hexagon.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.sixFoldShape,
   ],
   [
     "Quadrilateral ABCD has ∠A = 3p, ∠B = 2p, ∠C = 4p and ∠D = p. Find p and all the angles.",
@@ -12232,6 +12802,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "3p + 2p + 4p + p = 360°. 10p = 360°. p = 36°. Angles: 108°, 72°, 144°, 36°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadPExpr,
   ],
   [
     "In triangle ABC, the exterior angle at B is 115° and ∠A = 55°. Is triangle ABC an isosceles triangle?",
@@ -12244,6 +12815,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "∠B = 180° − 115° = 65°. ∠C = 180° − 55° − 65° = 60°. All three angles (55°, 65°, 60°) are different, so the triangle is not isosceles.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.exteriorB115,
   ],
   [
     "Parallelogram PQRS has ∠P = (7n − 5)° and ∠Q = (3n + 45)°. Find n and ∠P.",
@@ -12251,6 +12823,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Adjacent angles in a parallelogram add up to 180°: (7n − 5) + (3n + 45) = 180. 10n + 40 = 180. n = 14. ∠P = 7(14) − 5 = 93°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelPExpr,
   ],
   [
     "In triangle XYZ, XY = XZ = 8 cm and YZ = 6 cm. ∠Y = 70°. What type of triangle is it and what is ∠X?",
@@ -12258,6 +12831,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "XY = XZ, so the triangle is isosceles and ∠Y = ∠Z = 70°. ∠X = 180° − 70° − 70° = 40°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoSide8_8_6,
   ],
   [
     "Trapezium ABCD has AB parallel to DC. ∠A = (2x + 10)° and ∠D = (3x − 20)°. Find x.",
@@ -12265,6 +12839,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "AB is parallel to DC, so ∠A + ∠D = 180° (interior angles). (2x + 10) + (3x − 20) = 180. 5x − 10 = 180. 5x = 190. x = 38.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.trapeziumExpr,
   ],
   [
     "A quadrilateral is divided into 2 triangles by one diagonal. Use this fact to find the sum of the interior angles of the quadrilateral.",
@@ -12272,6 +12847,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Each triangle has an angle sum of 180°. 2 triangles = 2 × 180° = 360°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.diagonalSplit,
   ],
   [
     "In a right-angled triangle, one acute angle is 4 times the other acute angle. Find the smaller acute angle.",
@@ -12279,6 +12855,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "The two acute angles add up to 90°: x + 4x = 90°. 5x = 90°. x = 18°. (72° is the larger acute angle.)",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightRatio4to1,
   ],
   [
     "In quadrilateral ABCD, ∠A = ∠C, ∠B = ∠D and ∠A = 2∠B. Find all the angles.",
@@ -12291,6 +12868,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "2∠A + 2∠B = 360°, so ∠A + ∠B = 180°. 2∠B + ∠B = 180°. ∠B = 60° and ∠A = 120°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quadOppositeRelations,
   ],
   [
     "An isosceles triangle has an apex angle that is twice a base angle. Find all the angles.",
@@ -12303,6 +12881,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Let each base angle = x, so the apex angle = 2x. 2x + x + x = 180°. 4x = 180°. x = 45°. Apex = 90°, base = 45°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoApexTwice,
   ],
   [
     "In quadrilateral PQRS, ∠P = 75°, ∠Q = 105° and ∠R = 75°. Find ∠S.",
@@ -12310,6 +12889,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "∠S = 360° − 75° − 105° − 75° = 105°. Opposite angles are equal, as in a parallelogram.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.quad75_105_75,
   ],
   [
     "A triangle has one angle of 90° and two other equal angles. What is the size of each equal angle, and what type of triangle is it?",
@@ -12322,6 +12902,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "The two equal angles add up to 180° − 90° = 90°, so each is 45°. The triangle is right-angled and isosceles.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.equalLegRight,
   ],
   [
     "In parallelogram ABCD, ∠A − ∠B = 40°. Find ∠A.",
@@ -12329,6 +12910,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Adjacent angles add up to 180°: ∠A + ∠B = 180°. With ∠A − ∠B = 40°, 2∠A = 220°, so ∠A = 110° and ∠B = 70°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.parallelDifference40,
   ],
   [
     "Quadrilateral ABCD has AB parallel to DC, ∠A = ∠D = 90° and AB ≠ DC. What type of quadrilateral is it?",
@@ -12336,6 +12918,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Only one pair of sides (AB and DC) is parallel because AB ≠ DC, so ABCD is a trapezium (a right-angled trapezium).",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.rightTrapezium,
   ],
   [
     "In triangle ABC, ∠A = (4k + 10)°, ∠B = (3k − 5)° and the exterior angle at C is 110°. Find k.",
@@ -12343,6 +12926,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "The exterior angle at C = ∠A + ∠B: (4k + 10) + (3k − 5) = 110. 7k + 5 = 110. 7k = 105. k = 15.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.extAlgebra110,
   ],
   [
     "In isosceles triangle ABC, AB = BC and ∠A = 40°. Find ∠B.",
@@ -12350,6 +12934,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "AB = BC, so ∠A = ∠C = 40° (base angles). ∠B = 180° − 40° − 40° = 100°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.isoABCABBC,
   ],
   [
     "Kite PQRS has PQ = PS and QR = SR. ∠P = 80° and ∠R = 60°. Find ∠Q.",
@@ -12357,6 +12942,7 @@ const MATH_C9_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "The kite is symmetric about PR, so ∠Q = ∠S. ∠Q + ∠S = 360° − 80° − 60° = 220°. ∠Q = 110°.",
     "Hard",
+    MATH_F1_C9_QUIZ_VISUALS.kiteP80R60,
   ],
 ]);
 
@@ -12372,18 +12958,20 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Perimeter ialah jumlah panjang kesemua sisi luar sesuatu bentuk rata.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterConcept,
   ],
   [
     "Apakah luas sesuatu bentuk?",
     [
-      "Jumlah panjang sempadannya",
-      "Jumlah permukaan di dalam sempadannya",
-      "Bilangan sisi yang dimilikinya",
-      "Tinggi bentuk itu",
+      "Ukuran panjang di sekeliling sempadan",
+      "Ukuran permukaan dalam sempadan",
+      "Ukuran bilangan sisi di sempadan",
+      "Ukuran tinggi dari tapak bentuk",
     ],
     1,
     "Luas ialah jumlah ruang di dalam sempadan sesuatu bentuk rata (2D).",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaConcept,
   ],
   [
     "Dalam unit apakah perimeter diukur?",
@@ -12391,6 +12979,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Perimeter diukur dalam unit panjang satu dimensi seperti cm, m, atau mm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterUnits,
   ],
   [
     "Dalam unit apakah luas diukur?",
@@ -12398,6 +12987,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Luas diukur dalam unit persegi (dua dimensi) seperti cm² atau m².",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaUnits,
   ],
   [
     "Apakah formula perimeter segi empat tepat?",
@@ -12405,6 +12995,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Perimeter segi empat tepat = 2(p + l), di mana p = panjang dan l = lebar.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterRectangle,
   ],
   [
     "Apakah formula perimeter segi empat sama?",
@@ -12412,6 +13003,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Perimeter segi empat sama = 4s, di mana s = panjang sisi.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterSquare,
   ],
   [
     "Apakah formula luas segi tiga?",
@@ -12419,6 +13011,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Luas segi tiga = ½ × tapak × tinggi.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaTriangle,
   ],
   [
     "Apakah formula luas segi empat selari?",
@@ -12426,6 +13019,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Luas segi empat selari = tapak × tinggi.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaParallelogram,
   ],
   [
     "Apakah formula luas trapezium?",
@@ -12433,6 +13027,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Luas trapezium = ½ × (a + b) × tinggi, di mana a dan b ialah sisi selari.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaTrapezium,
   ],
   [
     "Apakah formula luas lelayang?",
@@ -12440,6 +13035,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Luas lelayang = ½ × d₁ × d₂, di mana d₁ dan d₂ ialah dua pepenjuru.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaKite,
   ],
   [
     "1 m² bersamaan dengan berapa cm²?",
@@ -12451,14 +13047,15 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah tinggi yang BETUL untuk mengira luas segi tiga?",
     [
-      "Sisi terpanjang segi tiga",
-      "Jarak berserenjang dari tapak ke puncak",
-      "Mana-mana sisi segi tiga",
-      "Sisi condong di sebelah tapak",
+      "Jarak condong tapak–puncak",
+      "Jarak serenjang tapak–puncak",
+      "Panjang sisi yang terpanjang",
+      "Panjang sisi yang terpendek",
     ],
     1,
     "Tinggi segi tiga MESTI berserenjang (90°) dengan tapak. Bukan sisi condong.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triangleCorrectHeight,
   ],
   [
     "Apakah perbezaan utama antara perimeter dan luas?",
@@ -12471,6 +13068,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Perimeter = panjang sempadan luar (unit: cm, m). Luas = kawasan dalaman (unit: cm², m²).",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.boundaryVsArea,
   ],
   [
     "Bentuk apakah yang memberikan luas terbesar untuk perimeter yang tetap?",
@@ -12497,30 +13095,33 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Dalam formula ½(a + b)h, a dan b adalah DUA sisi yang SELARI — bukan semua sisi.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.trapeziumParallelSides,
   ],
   [
     "Apakah d₁ dan d₂ dalam formula luas lelayang?",
     [
-      "Dua pepenjuru lelayang yang berserenjang",
-      "Dua sisi bersebelahan lelayang",
-      "Panjang dan lebar lelayang itu",
-      "Dua sudut bertentangan lelayang",
+      "Dua pepenjuru lelayang",
+      "Dua sisi bersebelahan",
+      "Dua sisi bertentangan",
+      "Dua sudut bertentangan",
     ],
     0,
     "d₁ dan d₂ ialah DUA PEPENJURU lelayang. Pepenjuru lelayang saling berserenjang (90°).",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.kiteDiagonals,
   ],
   [
     "Apakah kaedah grid untuk menganggar luas?",
     [
-      "Mengira bilangan sisi bentuk itu",
-      "Mengukur perimeter bentuk itu",
-      "Melukis bentuk pada grid dan mengira petaknya",
-      "Mengira bilangan pepenjuru bentuk",
+      "Mengira sisi di sekeliling bentuk",
+      "Mengukur perimeter bentuk",
+      "Mengira petak dalam bentuk",
+      "Mengira pepenjuru bentuk",
     ],
     2,
     "Kaedah grid: lukis bentuk di atas kertas grid, kira petak penuh dan separuh di dalam bentuk.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.gridArea,
   ],
   [
     "Dalam kaedah grid, petak yang lebih separuh berada di dalam bentuk dikira sebagai?",
@@ -12542,6 +13143,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     2,
     "Perimeter = 2(6 + 4) = 2(10) = 20 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.rectangleSixFour,
   ],
   [
     "Segi empat sama berisi 5 cm. Apakah perimeter?",
@@ -12549,6 +13151,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Perimeter = 4 × 5 = 20 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.squareFive,
   ],
   [
     "Segi tiga dengan sisi 3 cm, 4 cm dan 5 cm. Apakah perimeter?",
@@ -12556,6 +13159,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "Perimeter = 3 + 4 + 5 = 12 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triThreeFourFive,
   ],
   [
     "Apakah bentuk komposit?",
@@ -12568,6 +13172,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Bentuk komposit ialah bentuk yang terbentuk daripada gabungan dua atau lebih bentuk mudah.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.compositeConcept,
   ],
   [
     "Apakah perbezaan antara segi tiga (luas) dan segi empat selari (luas)?",
@@ -12580,6 +13185,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Luas segi tiga = ½bh. Luas segi empat selari = bh.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triangleVsParallelogram,
   ],
   [
     "Perimeter segi empat tepat = 30 cm. Panjang = 8 cm. Apakah lebar?",
@@ -12587,6 +13193,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     3,
     "2(8 + l) = 30. 8 + l = 15. l = 7 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.rectanglePerimeter30,
   ],
   [
     "Heksagon sekata berisi 3 cm. Apakah perimeter?",
@@ -12594,6 +13201,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     0,
     "Heksagon mempunyai 6 sisi. Perimeter = 6 × 3 = 18 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.hexSideThree,
   ],
   [
     "Apakah unit yang sesuai untuk mengukur luas bilik tidur?",
@@ -12615,6 +13223,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
     1,
     "Formula ½d₁d₂ juga digunakan untuk BELAH KETUPAT, kerana pepenjuru belah ketupat juga berserenjang.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.kiteRhombus,
   ],
 ]);
 
@@ -12630,18 +13239,20 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Perimeter is the total length of all outer sides of a flat shape.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterConcept,
   ],
   [
     "What is the area of a shape?",
     [
-      "The total length of its boundary",
-      "The amount of surface inside its boundary",
-      "The number of sides it has",
-      "The height of the shape",
+      "Length measure around the boundary",
+      "Surface measure within the boundary",
+      "Number of sides along the boundary",
+      "Height measure from the shape’s base",
     ],
     1,
     "Area is the total amount of space inside the boundary of a flat (2D) shape.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaConcept,
   ],
   [
     "In what units is perimeter measured?",
@@ -12649,6 +13260,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Perimeter is measured in one-dimensional length units such as cm, m, or mm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterUnits,
   ],
   [
     "In what units is area measured?",
@@ -12656,6 +13268,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Area is measured in square units (two-dimensional) such as cm² or m².",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaUnits,
   ],
   [
     "What is the formula for the perimeter of a rectangle?",
@@ -12663,6 +13276,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Perimeter of a rectangle = 2(l + w), where l = length and w = width.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterRectangle,
   ],
   [
     "What is the formula for the perimeter of a square?",
@@ -12670,6 +13284,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Perimeter of a square = 4s, where s = side length.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.perimeterSquare,
   ],
   [
     "What is the formula for the area of a triangle?",
@@ -12677,6 +13292,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Area of a triangle = ½ × base × height.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaTriangle,
   ],
   [
     "What is the formula for the area of a parallelogram?",
@@ -12684,6 +13300,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "Area of a parallelogram = base × height.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaParallelogram,
   ],
   [
     "What is the formula for the area of a trapezium?",
@@ -12691,6 +13308,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Area of a trapezium = ½ × (a + b) × height, where a and b are the parallel sides.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaTrapezium,
   ],
   [
     "What is the formula for the area of a kite?",
@@ -12698,6 +13316,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Area of a kite = ½ × d₁ × d₂, where d₁ and d₂ are the two diagonals.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.areaKite,
   ],
   [
     "How many cm² is 1 m²?",
@@ -12709,14 +13328,15 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the CORRECT height for calculating the area of a triangle?",
     [
-      "The longest side of the triangle",
-      "The perpendicular distance from base to apex",
-      "Any side of the triangle",
-      "The sloping side next to the base",
+      "Sloping base–vertex distance",
+      "Perpendicular base–vertex distance",
+      "The longest side length",
+      "The shortest side length",
     ],
     1,
     "The height of a triangle MUST be perpendicular (90°) to the base. Not the slant side.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triangleCorrectHeight,
   ],
   [
     "What is the main difference between perimeter and area?",
@@ -12729,6 +13349,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Perimeter = length of outer boundary (units: cm, m). Area = inner region (units: cm², m²).",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.boundaryVsArea,
   ],
   [
     "Which shape gives the largest area for a fixed perimeter?",
@@ -12755,30 +13376,33 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "In the formula ½(a + b)h, a and b are the TWO PARALLEL sides — not all sides.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.trapeziumParallelSides,
   ],
   [
     "What are d₁ and d₂ in the kite area formula?",
     [
-      "The two perpendicular diagonals of the kite",
-      "Two adjacent sides of the kite",
-      "The length and width of the kite",
-      "Two opposite angles of the kite",
+      "The two kite diagonals",
+      "Two adjacent kite sides",
+      "Two opposite kite sides",
+      "Two opposite kite angles",
     ],
     0,
     "d₁ and d₂ are the TWO DIAGONALS of the kite. The diagonals of a kite are perpendicular (90°).",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.kiteDiagonals,
   ],
   [
     "What is the grid method for estimating area?",
     [
-      "Counting the number of sides of the shape",
-      "Measuring the perimeter of the shape",
-      "Drawing the shape on a grid and counting squares",
-      "Counting the diagonals of the shape",
+      "Counting sides around the shape",
+      "Measuring the shape’s perimeter",
+      "Counting squares within the shape",
+      "Counting the shape’s diagonals",
     ],
     2,
     "Grid method: draw the shape on grid paper, count full and partial squares inside the shape.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.gridArea,
   ],
   [
     "In the grid method, a square more than half inside the shape counts as?",
@@ -12800,6 +13424,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     2,
     "Perimeter = 2(6 + 4) = 2(10) = 20 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.rectangleSixFour,
   ],
   [
     "Square with side 5 cm. What is the perimeter?",
@@ -12807,6 +13432,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Perimeter = 4 × 5 = 20 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.squareFive,
   ],
   [
     "Triangle with sides 3 cm, 4 cm and 5 cm. What is the perimeter?",
@@ -12814,6 +13440,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "Perimeter = 3 + 4 + 5 = 12 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triThreeFourFive,
   ],
   [
     "What is a composite shape?",
@@ -12826,6 +13453,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A composite shape is formed by combining two or more simple shapes.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.compositeConcept,
   ],
   [
     "What is the difference between the triangle (area) and parallelogram (area) formulas?",
@@ -12838,6 +13466,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "Area of triangle = ½bh. Area of parallelogram = bh.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.triangleVsParallelogram,
   ],
   [
     "Perimeter of rectangle = 30 cm. Length = 8 cm. What is the width?",
@@ -12845,6 +13474,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     3,
     "2(8 + w) = 30. 8 + w = 15. w = 7 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.rectanglePerimeter30,
   ],
   [
     "Regular hexagon with side 3 cm. What is the perimeter?",
@@ -12852,6 +13482,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     0,
     "A hexagon has 6 sides. Perimeter = 6 × 3 = 18 cm.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.hexSideThree,
   ],
   [
     "What is the appropriate unit for measuring the area of a bedroom?",
@@ -12873,6 +13504,7 @@ const MATH_C10_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     1,
     "The ½d₁d₂ formula also applies to a RHOMBUS, because a rhombus's diagonals are also perpendicular.",
     "Easy",
+    MATH_F1_C10_QUIZ_VISUALS.kiteRhombus,
   ],
 ]);
 
@@ -12883,6 +13515,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Perimeter = 2(9 + 5) = 2(14) = 28 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectNineFive,
   ],
   [
     "Segi tiga dengan tapak 10 cm dan tinggi 7 cm. Kira luas.",
@@ -12890,6 +13523,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Luas = ½ × 10 × 7 = ½ × 70 = 35 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriTenSeven,
   ],
   [
     "Segi empat selari tapak 12 cm, tinggi 8 cm, sisi condong 10 cm. Kira luas.",
@@ -12897,6 +13531,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Luas = tapak × tinggi = 12 × 8 = 96 cm². Gunakan tinggi (8 cm), bukan sisi condong (10 cm).",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaTwelveEight,
   ],
   [
     "Trapezium dengan sisi selari 11 cm dan 7 cm, tinggi 6 cm. Kira luas.",
@@ -12904,6 +13539,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Luas = ½ × (11 + 7) × 6 = ½ × 18 × 6 = ½ × 108 = 54 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapElevenSeven,
   ],
   [
     "Lelayang dengan pepenjuru 14 cm dan 8 cm. Kira luas.",
@@ -12911,6 +13547,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Luas = ½ × 14 × 8 = ½ × 112 = 56 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteFourteenEight,
   ],
   [
     "Segi tiga: luas = 40 cm², tinggi = 8 cm. Cari tapak.",
@@ -12918,6 +13555,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "40 = ½ × tapak × 8. 40 = 4 × tapak. Tapak = 40 ÷ 4 = 10 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriUnknownBase,
   ],
   [
     "Trapezium: luas = 45 cm², sisi selari = 6 cm dan 12 cm. Cari tinggi.",
@@ -12925,6 +13563,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "45 = ½ × (6 + 12) × tinggi. 45 = ½ × 18 × tinggi. 45 = 9 × tinggi. Tinggi = 5 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapUnknownHeight,
   ],
   [
     "Lelayang: luas = 60 cm², satu pepenjuru = 15 cm. Cari pepenjuru yang lain.",
@@ -12932,6 +13571,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "60 = ½ × 15 × d₂. 60 = 7.5 × d₂. d₂ = 60 ÷ 7.5 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteUnknownDiagonal,
   ],
   [
     "Segi empat selari: luas = 72 cm², tinggi = 9 cm. Cari tapak.",
@@ -12939,6 +13579,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "72 = tapak × 9. Tapak = 72 ÷ 9 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaUnknownBase,
   ],
   [
     "Segi empat tepat 5 m × 3 m. Kira luas dalam cm².",
@@ -12946,6 +13587,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Luas = 5 × 3 = 15 m². 15 m² = 15 × 10 000 = 150 000 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectMeters,
   ],
   [
     "Tukarkan 2.4 m² kepada cm².",
@@ -12967,6 +13609,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "2(p + 7) = 40. p + 7 = 20. p = 13 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectPerimeter40,
   ],
   [
     "Segi tiga sama sisi berperimeter 36 cm. Cari panjang setiap sisi.",
@@ -12974,6 +13617,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Segi tiga sama sisi: 3 sisi sama. 3s = 36. s = 12 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceEqualTri36,
   ],
   [
     "Segi empat sama berisi 8 cm. Kira perimeter dan luas.",
@@ -12986,6 +13630,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Perimeter = 4 × 8 = 32 cm. Luas = 8² = 64 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceSquareEight,
   ],
   [
     "Segi tiga bersudut tegak dengan kaki 6 cm dan 8 cm. Kira luas.",
@@ -12993,6 +13638,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Luas = ½ × 6 × 8 = ½ × 48 = 24 cm². (Kaki berserenjang bertindak sebagai tapak dan tinggi.)",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRightSixEight,
   ],
   [
     "Perimeter segi empat sama adalah sama dengan perimeter segi empat tepat 8 cm × 6 cm. Cari sisi segi empat sama.",
@@ -13000,6 +13646,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "Perimeter segi empat tepat = 2(8 + 6) = 28 cm. Sisi segi empat sama = 28 ÷ 4 = 7 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practicePerimeterCompare,
   ],
   [
     "Trapezium dengan sisi selari 20 m dan 14 m, tinggi 8 m. Kira luas.",
@@ -13007,6 +13654,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Luas = ½ × (20 + 14) × 8 = ½ × 34 × 8 = ½ × 272 = 136 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapTwentyFourteen,
   ],
   [
     "Segi tiga: tapak = (2x + 4) cm, tinggi = 6 cm, luas = 36 cm². Cari x.",
@@ -13014,6 +13662,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "½ × (2x + 4) × 6 = 36. 3(2x + 4) = 36. 6x + 12 = 36. 6x = 24. x = 4.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriLinearBase,
   ],
   [
     "Sebuah lapangan bola sepak berbentuk segi empat tepat 105 m × 68 m. Kira luas lapangan dalam m².",
@@ -13021,6 +13670,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Luas = 105 × 68 = 7 140 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceFootballPitch,
   ],
   [
     "Jika luas segi empat tepat = 120 cm² dan panjang = 15 cm, apakah lebar?",
@@ -13028,6 +13678,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "120 = 15 × lebar. Lebar = 120 ÷ 15 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectArea120,
   ],
   [
     "Taman berbentuk trapezium dengan sisi selari 30 m dan 20 m, tinggi 12 m. Kira luas.",
@@ -13035,6 +13686,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Luas = ½ × (30 + 20) × 12 = ½ × 50 × 12 = ½ × 600 = 300 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapGarden,
   ],
   [
     "Lelayang: pepenjuru d₁ = 2d₂. Jika luas = 64 cm² dan d₁ = 16 cm, cari d₂.",
@@ -13042,6 +13694,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "64 = ½ × 16 × d₂. 64 = 8 × d₂. d₂ = 8 cm. Semak: d₁ = 16 = 2(8) = 2d₂ ✓.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteDouble,
   ],
   [
     "Segi empat tepat: panjang adalah 3 kali lebarnya. Perimeter = 48 cm. Cari luas.",
@@ -13049,6 +13702,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "p = 3l. 2(3l + l) = 48. 8l = 48. l = 6. p = 18. Luas = 18 × 6 = 108 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectTripleWidth,
   ],
   [
     "Segi empat selari dengan tapak 15 cm, tinggi 9 cm. Kira luas.",
@@ -13056,6 +13710,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Luas = 15 × 9 = 135 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaFifteenNine,
   ],
   [
     "Segi empat tepat A: 12 × 3 cm. Segi empat tepat B: 6 × 6 cm. Bandingkan luas dan perimeter.",
@@ -13068,6 +13723,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "Luas A = 36 cm², Luas B = 36 cm² (sama). Perimeter A = 30 cm, Perimeter B = 24 cm. Perimeter A > B.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTwoRects,
   ],
   [
     "Segi tiga: luas = 54 cm², tapak = 12 cm. Cari tinggi.",
@@ -13075,6 +13731,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     0,
     "54 = ½ × 12 × tinggi. 54 = 6 × tinggi. Tinggi = 9 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriUnknownHeight,
   ],
   [
     "Perimeter heksagon sekata = 42 cm. Kira panjang setiap sisi.",
@@ -13082,6 +13739,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     2,
     "Heksagon = 6 sisi. 6s = 42. s = 7 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceHexPerimeter42,
   ],
   [
     "Trapezium: sisi selari 8 cm dan 4 cm, tinggi h. Luas = 36 cm². Cari h.",
@@ -13089,6 +13747,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     3,
     "36 = ½ × (8 + 4) × h. 36 = ½ × 12 × h. 36 = 6h. h = 6 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapUnknownH,
   ],
   [
     "Sebuah lelayang mempunyai pepenjuru 20 cm dan 11 cm. Kira luasnya.",
@@ -13096,6 +13755,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Luas = ½ × 20 × 11 = ½ × 220 = 110 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteTwentyEleven,
   ],
 ]);
 
@@ -13106,6 +13766,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Perimeter = 2(9 + 5) = 2(14) = 28 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectNineFive,
   ],
   [
     "Triangle with base 10 cm and height 7 cm. Calculate the area.",
@@ -13113,6 +13774,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Area = ½ × 10 × 7 = ½ × 70 = 35 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriTenSeven,
   ],
   [
     "Parallelogram with base 12 cm, height 8 cm, slant side 10 cm. Calculate the area.",
@@ -13120,6 +13782,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Area = base × height = 12 × 8 = 96 cm². Use height (8 cm), not the slant side (10 cm).",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaTwelveEight,
   ],
   [
     "Trapezium with parallel sides 11 cm and 7 cm, height 6 cm. Calculate the area.",
@@ -13127,6 +13790,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Area = ½ × (11 + 7) × 6 = ½ × 18 × 6 = ½ × 108 = 54 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapElevenSeven,
   ],
   [
     "Kite with diagonals 14 cm and 8 cm. Calculate the area.",
@@ -13134,6 +13798,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Area = ½ × 14 × 8 = ½ × 112 = 56 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteFourteenEight,
   ],
   [
     "Triangle: area = 40 cm², height = 8 cm. Find the base.",
@@ -13141,6 +13806,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "40 = ½ × base × 8. 40 = 4 × base. Base = 40 ÷ 4 = 10 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriUnknownBase,
   ],
   [
     "Trapezium: area = 45 cm², parallel sides = 6 cm and 12 cm. Find the height.",
@@ -13148,6 +13814,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "45 = ½ × (6 + 12) × height. 45 = ½ × 18 × height. 45 = 9 × height. Height = 5 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapUnknownHeight,
   ],
   [
     "Kite: area = 60 cm², one diagonal = 15 cm. Find the other diagonal.",
@@ -13155,6 +13822,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "60 = ½ × 15 × d₂. 60 = 7.5 × d₂. d₂ = 60 ÷ 7.5 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteUnknownDiagonal,
   ],
   [
     "Parallelogram: area = 72 cm², height = 9 cm. Find the base.",
@@ -13162,6 +13830,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "72 = base × 9. Base = 72 ÷ 9 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaUnknownBase,
   ],
   [
     "Rectangle 5 m × 3 m. Calculate the area in cm².",
@@ -13169,6 +13838,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Area = 5 × 3 = 15 m². 15 m² = 15 × 10 000 = 150 000 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectMeters,
   ],
   [
     "Convert 2.4 m² to cm².",
@@ -13190,6 +13860,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "2(l + 7) = 40. l + 7 = 20. l = 13 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectPerimeter40,
   ],
   [
     "Equilateral triangle with perimeter 36 cm. Find each side.",
@@ -13197,6 +13868,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Equilateral triangle: 3 equal sides. 3s = 36. s = 12 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceEqualTri36,
   ],
   [
     "Square with side 8 cm. Calculate perimeter and area.",
@@ -13209,6 +13881,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Perimeter = 4 × 8 = 32 cm. Area = 8² = 64 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceSquareEight,
   ],
   [
     "Right-angled triangle with legs 6 cm and 8 cm. Calculate the area.",
@@ -13216,6 +13889,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Area = ½ × 6 × 8 = ½ × 48 = 24 cm². (Perpendicular legs act as base and height.)",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRightSixEight,
   ],
   [
     "Perimeter of a square equals perimeter of rectangle 8 cm × 6 cm. Find the square's side.",
@@ -13223,6 +13897,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "Rectangle perimeter = 2(8 + 6) = 28 cm. Square side = 28 ÷ 4 = 7 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practicePerimeterCompare,
   ],
   [
     "Trapezium with parallel sides 20 m and 14 m, height 8 m. Calculate the area.",
@@ -13230,6 +13905,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Area = ½ × (20 + 14) × 8 = ½ × 34 × 8 = ½ × 272 = 136 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapTwentyFourteen,
   ],
   [
     "Triangle: base = (2x + 4) cm, height = 6 cm, area = 36 cm². Find x.",
@@ -13237,6 +13913,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "½ × (2x + 4) × 6 = 36. 3(2x + 4) = 36. 6x + 12 = 36. 6x = 24. x = 4.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriLinearBase,
   ],
   [
     "A football pitch is rectangular, 105 m × 68 m. Calculate the area in m².",
@@ -13244,6 +13921,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Area = 105 × 68 = 7 140 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceFootballPitch,
   ],
   [
     "If area of rectangle = 120 cm² and length = 15 cm, what is the width?",
@@ -13251,6 +13929,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "120 = 15 × width. Width = 120 ÷ 15 = 8 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectArea120,
   ],
   [
     "Trapezoidal garden with parallel sides 30 m and 20 m, height 12 m. Calculate the area.",
@@ -13258,6 +13937,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Area = ½ × (30 + 20) × 12 = ½ × 50 × 12 = ½ × 600 = 300 m².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapGarden,
   ],
   [
     "Kite: diagonal d₁ = 2d₂. Area = 64 cm², d₁ = 16 cm. Find d₂.",
@@ -13265,6 +13945,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "64 = ½ × 16 × d₂. 64 = 8 × d₂. d₂ = 8 cm. Check: d₁ = 16 = 2(8) = 2d₂ ✓.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteDouble,
   ],
   [
     "Rectangle: length is 3 times its width. Perimeter = 48 cm. Find the area.",
@@ -13272,6 +13953,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "l = 3w. 2(3w + w) = 48. 8w = 48. w = 6. l = 18. Area = 18 × 6 = 108 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceRectTripleWidth,
   ],
   [
     "Parallelogram with base 15 cm and height 9 cm. Calculate the area.",
@@ -13279,6 +13961,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Area = 15 × 9 = 135 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceParaFifteenNine,
   ],
   [
     "Rectangle A: 12 × 3 cm. Rectangle B: 6 × 6 cm. Compare areas and perimeters.",
@@ -13291,6 +13974,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "Area A = 36 cm², Area B = 36 cm² (equal). Perimeter A = 30 cm, Perimeter B = 24 cm. Perimeter A > B.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTwoRects,
   ],
   [
     "Triangle: area = 54 cm², base = 12 cm. Find the height.",
@@ -13298,6 +13982,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     0,
     "54 = ½ × 12 × height. 54 = 6 × height. Height = 9 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTriUnknownHeight,
   ],
   [
     "Perimeter of regular hexagon = 42 cm. Calculate each side length.",
@@ -13305,6 +13990,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     2,
     "Hexagon = 6 sides. 6s = 42. s = 7 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceHexPerimeter42,
   ],
   [
     "Trapezium: parallel sides 8 cm and 4 cm, height h. Area = 36 cm². Find h.",
@@ -13312,6 +13998,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     3,
     "36 = ½ × (8 + 4) × h. 36 = ½ × 12 × h. 36 = 6h. h = 6 cm.",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceTrapUnknownH,
   ],
   [
     "A kite has diagonals of 20 cm and 11 cm. Calculate its area.",
@@ -13319,6 +14006,7 @@ const MATH_C10_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Area = ½ × 20 × 11 = ½ × 220 = 110 cm².",
     "Medium",
+    MATH_F1_C10_QUIZ_VISUALS.practiceKiteTwentyEleven,
   ],
 ]);
 
@@ -13329,6 +14017,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Luas = (10 × 6) + (4 × 3) = 60 + 12 = 72 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLTwoSections,
   ],
   [
     "Sebuah rumah mainan terdiri daripada badan segi empat tepat 8 cm × 5 cm dan bumbung segi tiga dengan tapak 8 cm dan tinggi 3 cm. Kira jumlah luas permukaan hadapannya.",
@@ -13336,6 +14025,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Luas badan = 8 × 5 = 40 cm². Luas bumbung = ½ × 8 × 3 = 12 cm². Jumlah = 52 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeHouseRoof,
   ],
   [
     "Sekeping papan segi empat tepat 12 cm × 9 cm mempunyai lubang segi empat tepat 4 cm × 3 cm. Kira luas papan yang tinggal.",
@@ -13343,6 +14033,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Luas papan = 12 × 9 = 108 cm². Luas lubang = 4 × 3 = 12 cm². Luas yang tinggal = 108 − 12 = 96 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeBoardHole,
   ],
   [
     "Sebidang ladang berbentuk trapezium mempunyai sisi selari 50 m dan 30 m serta tinggi 20 m. Baja digunakan sebanyak 3 kg bagi setiap m². Kira jumlah baja yang diperlukan.",
@@ -13350,6 +14041,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Luas = ½ × (50 + 30) × 20 = 800 m². Baja = 800 × 3 = 2 400 kg.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeFarmTrap,
   ],
   [
     "Lantai sebuah bilik berukuran 6 m × 4 m dipasang dengan jubin segi empat sama bersisi 50 cm tanpa memotong jubin. Berapakah bilangan jubin yang diperlukan?",
@@ -13357,6 +14049,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "6 m = 600 cm, maka 600 ÷ 50 = 12 jubin sebaris. 4 m = 400 cm, maka 400 ÷ 50 = 8 baris. Jumlah = 12 × 8 = 96 jubin.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTileSixFour,
   ],
   [
     "Sebahagian dinding berbentuk segi tiga dengan tapak 10 m dan tinggi 4 m. Setiap m² memerlukan 0.5 liter cat dan satu tin mengandungi 2.5 liter. Berapakah bilangan tin yang diperlukan?",
@@ -13364,6 +14057,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Luas = ½ × 10 × 4 = 20 m². Cat = 20 × 0.5 = 10 liter. Tin = 10 ÷ 2.5 = 4 tin.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeWallPaint,
   ],
   [
     "Sebuah bentuk gubahan terdiri daripada segi empat tepat 8 cm × 6 cm dan trapezium dengan sisi selari 8 cm dan 4 cm serta tinggi 3 cm di atasnya. Kira jumlah luas.",
@@ -13371,6 +14065,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Luas segi empat tepat = 8 × 6 = 48 cm². Luas trapezium = ½ × (8 + 4) × 3 = 18 cm². Jumlah = 66 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeCompositeTrap,
   ],
   [
     "Sebidang tanah berbentuk lelayang mempunyai pepenjuru 100 m dan 80 m. Harga tanah ialah RM50 per m². Kira nilai tanah itu.",
@@ -13378,6 +14073,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Luas = ½ × 100 × 80 = 4 000 m². Nilai = 4 000 × RM50 = RM200 000.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeKiteLand,
   ],
   [
     "Sebuah segi tiga mempunyai luas 24 cm², tapak (x + 2) cm dan tinggi 6 cm. Cari x.",
@@ -13385,6 +14081,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "24 = ½ × (x + 2) × 6. 24 = 3(x + 2). x + 2 = 8. x = 6.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriExpr,
   ],
   [
     "Segi empat sama 2 cm × 2 cm dipotong dari satu bucu sebuah segi empat tepat 6 cm × 4 cm untuk membentuk bentuk L. Berapakah perimeter bentuk L itu?",
@@ -13392,6 +14089,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Dua sisi 2 cm hilang tetapi dua sisi baharu 2 cm terbentuk, jadi perimeter tidak berubah: 2(6 + 4) = 20 cm. Perimeter diukur dalam cm, bukan cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLCutCorner,
   ],
   [
     "Segi empat tepat A berukuran 8 cm × 6 cm. Segi empat sama B mempunyai perimeter yang sama dengan A. Bandingkan luas A dan B.",
@@ -13399,6 +14097,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Perimeter A = 2(8 + 6) = 28 cm. Sisi B = 28 ÷ 4 = 7 cm. Luas A = 48 cm² dan luas B = 49 cm². Maka luas A < luas B.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeRectSquarePerimeter,
   ],
   [
     "Segi empat tepat A berukuran 9 cm × 4 cm dan segi empat tepat B berukuran 6 cm × 6 cm. Kedua-duanya mempunyai luas 36 cm². Yang manakah mempunyai perimeter lebih kecil?",
@@ -13411,6 +14110,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Perimeter A = 2(9 + 4) = 26 cm. Perimeter B = 2(6 + 6) = 24 cm. B (segi empat sama) mempunyai perimeter lebih kecil.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTwoRectSameArea,
   ],
   [
     "Lantai sebuah bilik berukuran 5 m × 4 m akan dipasang permaidani, kecuali kawasan pintu berukuran 1 m × 0.5 m. Kira luas permaidani.",
@@ -13418,6 +14118,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Luas bilik = 5 × 4 = 20 m². Luas kawasan pintu = 1 × 0.5 = 0.5 m². Luas permaidani = 20 − 0.5 = 19.5 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeDoorArea,
   ],
   [
     "Sebuah segi empat tepat mempunyai luas 48 cm² dan lebar 6 cm. Berapakah perimeternya?",
@@ -13425,6 +14126,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Panjang = 48 ÷ 6 = 8 cm. Perimeter = 2(8 + 6) = 28 cm. (14 cm ialah separuh perimeter.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeArea48,
   ],
   [
     "Seorang petani ingin memagar kawasan segi empat tepat yang paling luas dengan 40 m pagar. Dimensi manakah yang memberikan luas terbesar?",
@@ -13432,6 +14134,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Semua pilihan mempunyai perimeter 40 m. Luas: 36 m², 75 m², 100 m² dan 96 m². Segi empat sama 10 m × 10 m memberikan luas terbesar.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeFence40,
   ],
   [
     "Sebuah trapezium mempunyai sisi selari 6 cm dan 10 cm. Tingginya sama dengan sisi selari yang lebih pendek. Kira luasnya.",
@@ -13439,6 +14142,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Tinggi = 6 cm. Luas = ½ × (6 + 10) × 6 = 48 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTrapHeightShorter,
   ],
   [
     "Tapak sebuah segi tiga ialah 2 kali tingginya. Luas segi tiga itu ialah 100 cm². Cari tapaknya.",
@@ -13446,6 +14150,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Katakan tinggi = h, maka tapak = 2h. Luas = ½ × 2h × h = h² = 100, jadi h = 10 cm. Tapak = 20 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriTwiceHeight,
   ],
   [
     "Kawasan rumput berbentuk segi empat tepat 15 m × 10 m mempunyai kolam berbentuk lelayang dengan pepenjuru 6 m dan 4 m. Berapakah luas kawasan rumput?",
@@ -13453,6 +14158,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Luas segi empat tepat = 15 × 10 = 150 m². Luas kolam = ½ × 6 × 4 = 12 m². Luas rumput = 150 − 12 = 138 m². (126 m² datang daripada terlupa ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLawnPond,
   ],
   [
     "Perimeter sebuah segi tiga ialah 36 cm. Sisi-sisinya ialah x cm, (x + 4) cm dan (2x − 4) cm. Cari x dan panjang setiap sisi.",
@@ -13465,6 +14171,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "x + (x + 4) + (2x − 4) = 36. 4x = 36. x = 9. Sisi: 9 cm, 13 cm, 14 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriPerimeter36,
   ],
   [
     "Luas sebuah segi tiga sama dengan luas segi empat tepat 8 cm × 6 cm. Tapak segi tiga itu ialah 16 cm. Cari tinggi segi tiga itu.",
@@ -13472,6 +14179,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Luas segi empat tepat = 48 cm². ½ × 16 × tinggi = 48. 8 × tinggi = 48. Tinggi = 6 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriEqualsRect,
   ],
   [
     "Sebuah segi tiga bersudut tegak mempunyai sisi 5 cm, 12 cm dan 13 cm. Berapakah luasnya?",
@@ -13479,6 +14187,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "Sisi terpanjang (13 cm) ialah hipotenus. Dua sisi yang membentuk sudut tegak (5 cm dan 12 cm) ialah tapak dan tinggi. Luas = ½ × 5 × 12 = 30 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeRightFiveTwelveThirteen,
   ],
   [
     "Sebuah padang segi empat tepat berukuran 20 m × 15 m. Laluan selebar 1 m dibina di sebelah dalam sepanjang keempat-empat tepinya. Cari luas laluan itu.",
@@ -13486,6 +14195,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Luas padang = 20 × 15 = 300 m². Kawasan dalam = 18 × 13 = 234 m². Luas laluan = 300 − 234 = 66 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeInsidePath,
   ],
   [
     "Sebuah taman segi empat tepat 10 m × 8 m dikelilingi oleh laluan selebar 2 m di sebelah luarnya. Berapakah luas laluan itu?",
@@ -13493,6 +14203,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Segi empat tepat luar = (10 + 4) × (8 + 4) = 14 × 12 = 168 m². Luas laluan = 168 − 80 = 88 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeOutsidePath,
   ],
   [
     "Sebuah segi empat sama dan sebuah segi empat tepat masing-masing mempunyai luas 100 cm². Sisi segi empat sama ialah 10 cm dan panjang segi empat tepat ialah 20 cm. Cari lebar segi empat tepat dan bandingkan perimeter kedua-duanya.",
@@ -13505,6 +14216,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Lebar = 100 ÷ 20 = 5 cm. Perimeter segi empat sama = 40 cm. Perimeter segi empat tepat = 2(20 + 5) = 50 cm. Perimeter segi empat sama lebih kecil.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeSameAreaSquareRect,
   ],
   [
     "Sebuah bilik berukuran 4.8 m × 3.2 m dipasang jubin 40 cm × 40 cm. Setiap jubin berharga RM8. Kira kos jubin.",
@@ -13512,6 +14224,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Jubin sebaris: 480 ÷ 40 = 12. Bilangan baris: 320 ÷ 40 = 8. Jumlah jubin = 12 × 8 = 96. Kos = 96 × RM8 = RM768.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTilingCost,
   ],
   [
     "Sebuah bentuk gubahan terdiri daripada trapezium (sisi selari 12 cm dan 6 cm, tinggi 5 cm) di atas segi empat tepat 12 cm × 4 cm. Kira jumlah luas.",
@@ -13519,6 +14232,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "Luas trapezium = ½ × (12 + 6) × 5 = 45 cm². Luas segi empat tepat = 12 × 4 = 48 cm². Jumlah = 93 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeCompositeTrapRect,
   ],
   [
     "Sebuah segi empat selari mempunyai tapak 12 cm dan tinggi 5 cm. Sebuah segi tiga mempunyai luas yang sama dan tapak 10 cm. Berapakah tinggi segi tiga itu?",
@@ -13526,6 +14240,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     0,
     "Luas segi empat selari = 12 × 5 = 60 cm². ½ × 10 × tinggi = 60, maka 5 × tinggi = 60 dan tinggi = 12 cm. (6 cm datang daripada terlupa ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeParaTriangleEqual,
   ],
   [
     "Sebuah trapezium mempunyai luas 60 cm² dan tinggi 6 cm. Satu daripada sisi selarinya ialah 8 cm. Berapakah panjang sisi selari yang satu lagi?",
@@ -13533,6 +14248,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "½ × (8 + b) × 6 = 60. 3(8 + b) = 60. 8 + b = 20. b = 12 cm. (20 cm ialah hasil tambah kedua-dua sisi selari.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTrapArea60,
   ],
   [
     "Sebuah lelayang mempunyai luas 54 cm² dan satu pepenjuru 12 cm. Berapakah panjang pepenjuru yang satu lagi?",
@@ -13540,6 +14256,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     3,
     "½ × 12 × d = 54. 6d = 54. d = 9 cm. (4.5 cm datang daripada 54 ÷ 12, tanpa menggunakan ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeKiteArea54,
   ],
   [
     "Jalur hiasan akan dipasang di sepanjang tepi lantai sebuah bilik segi empat tepat 5 m × 4 m, kecuali pada pintu selebar 1 m. Berapakah panjang jalur yang diperlukan?",
@@ -13547,6 +14264,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     1,
     "Perimeter bilik = 2(5 + 4) = 18 m. Tolak lebar pintu: 18 − 1 = 17 m.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeDoorTrim,
   ],
 ]);
 
@@ -13557,6 +14275,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Area = (10 × 6) + (4 × 3) = 60 + 12 = 72 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLTwoSections,
   ],
   [
     "A toy house front consists of a rectangular body 8 cm × 5 cm and a triangular roof with base 8 cm and height 3 cm. Calculate the total area of the front.",
@@ -13564,6 +14283,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Body area = 8 × 5 = 40 cm². Roof area = ½ × 8 × 3 = 12 cm². Total = 52 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeHouseRoof,
   ],
   [
     "A rectangular board 12 cm × 9 cm has a rectangular hole 4 cm × 3 cm. Calculate the remaining area of the board.",
@@ -13571,6 +14291,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Board area = 12 × 9 = 108 cm². Hole area = 4 × 3 = 12 cm². Remaining area = 108 − 12 = 96 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeBoardHole,
   ],
   [
     "A trapezium-shaped farm has parallel sides of 50 m and 30 m and a height of 20 m. Fertiliser is used at 3 kg per m². Calculate the total fertiliser needed.",
@@ -13578,6 +14299,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Area = ½ × (50 + 30) × 20 = 800 m². Fertiliser = 800 × 3 = 2 400 kg.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeFarmTrap,
   ],
   [
     "The floor of a room measuring 6 m × 4 m is covered with square tiles of side 50 cm without cutting any tiles. How many tiles are needed?",
@@ -13585,6 +14307,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "6 m = 600 cm, so 600 ÷ 50 = 12 tiles per row. 4 m = 400 cm, so 400 ÷ 50 = 8 rows. Total = 12 × 8 = 96 tiles.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTileSixFour,
   ],
   [
     "Part of a wall is a triangle with base 10 m and height 4 m. Each m² needs 0.5 litre of paint and one tin holds 2.5 litres. How many tins are needed?",
@@ -13592,6 +14315,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Area = ½ × 10 × 4 = 20 m². Paint = 20 × 0.5 = 10 litres. Tins = 10 ÷ 2.5 = 4 tins.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeWallPaint,
   ],
   [
     "A composite shape consists of a rectangle 8 cm × 6 cm with a trapezium (parallel sides 8 cm and 4 cm, height 3 cm) on top. Calculate the total area.",
@@ -13599,6 +14323,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Rectangle area = 8 × 6 = 48 cm². Trapezium area = ½ × (8 + 4) × 3 = 18 cm². Total = 66 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeCompositeTrap,
   ],
   [
     "A kite-shaped plot of land has diagonals of 100 m and 80 m. The land costs RM50 per m². Calculate the value of the land.",
@@ -13606,6 +14331,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Area = ½ × 100 × 80 = 4 000 m². Value = 4 000 × RM50 = RM200 000.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeKiteLand,
   ],
   [
     "A triangle has an area of 24 cm², a base of (x + 2) cm and a height of 6 cm. Find x.",
@@ -13613,6 +14339,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "24 = ½ × (x + 2) × 6. 24 = 3(x + 2). x + 2 = 8. x = 6.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriExpr,
   ],
   [
     "A 2 cm × 2 cm square is cut from one corner of a 6 cm × 4 cm rectangle to make an L-shape. What is the perimeter of the L-shape?",
@@ -13620,6 +14347,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Two 2 cm edges are removed but two new 2 cm edges are created, so the perimeter is unchanged: 2(6 + 4) = 20 cm. Perimeter is measured in cm, not cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLCutCorner,
   ],
   [
     "Rectangle A measures 8 cm × 6 cm. Square B has the same perimeter as A. Compare the areas of A and B.",
@@ -13627,6 +14355,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Perimeter of A = 2(8 + 6) = 28 cm. Side of B = 28 ÷ 4 = 7 cm. Area of A = 48 cm² and area of B = 49 cm². So area A < area B.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeRectSquarePerimeter,
   ],
   [
     "Rectangle A measures 9 cm × 4 cm and rectangle B measures 6 cm × 6 cm. Both have an area of 36 cm². Which has the smaller perimeter?",
@@ -13639,6 +14368,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Perimeter of A = 2(9 + 4) = 26 cm. Perimeter of B = 2(6 + 6) = 24 cm. B (a square) has the smaller perimeter.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTwoRectSameArea,
   ],
   [
     "A room floor measuring 5 m × 4 m is to be carpeted, except for a doorway area measuring 1 m × 0.5 m. Calculate the carpet area.",
@@ -13646,6 +14376,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Room area = 5 × 4 = 20 m². Doorway area = 1 × 0.5 = 0.5 m². Carpet area = 20 − 0.5 = 19.5 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeDoorArea,
   ],
   [
     "A rectangle has an area of 48 cm² and a width of 6 cm. What is its perimeter?",
@@ -13653,6 +14384,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Length = 48 ÷ 6 = 8 cm. Perimeter = 2(8 + 6) = 28 cm. (14 cm is half the perimeter.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeArea48,
   ],
   [
     "A farmer wants to fence the largest possible rectangular area with 40 m of fencing. Which dimensions give the largest area?",
@@ -13660,6 +14392,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "All the options have a perimeter of 40 m. Areas: 36 m², 75 m², 100 m² and 96 m². The 10 m × 10 m square gives the largest area.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeFence40,
   ],
   [
     "A trapezium has parallel sides of 6 cm and 10 cm. Its height equals the shorter parallel side. Calculate its area.",
@@ -13667,6 +14400,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Height = 6 cm. Area = ½ × (6 + 10) × 6 = 48 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTrapHeightShorter,
   ],
   [
     "The base of a triangle is 2 times its height. The area of the triangle is 100 cm². Find its base.",
@@ -13674,6 +14408,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Let the height = h, so the base = 2h. Area = ½ × 2h × h = h² = 100, so h = 10 cm. Base = 20 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriTwiceHeight,
   ],
   [
     "A rectangular lawn 15 m × 10 m has a kite-shaped pond with diagonals of 6 m and 4 m. What is the area of the grass?",
@@ -13681,6 +14416,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "Rectangle area = 15 × 10 = 150 m². Pond area = ½ × 6 × 4 = 12 m². Grass area = 150 − 12 = 138 m². (126 m² comes from forgetting the ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeLawnPond,
   ],
   [
     "The perimeter of a triangle is 36 cm. Its sides are x cm, (x + 4) cm and (2x − 4) cm. Find x and the length of each side.",
@@ -13693,6 +14429,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "x + (x + 4) + (2x − 4) = 36. 4x = 36. x = 9. Sides: 9 cm, 13 cm, 14 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriPerimeter36,
   ],
   [
     "The area of a triangle equals the area of a rectangle 8 cm × 6 cm. The base of the triangle is 16 cm. Find the height of the triangle.",
@@ -13700,6 +14437,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Rectangle area = 48 cm². ½ × 16 × height = 48. 8 × height = 48. Height = 6 cm.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTriEqualsRect,
   ],
   [
     "A right-angled triangle has sides of 5 cm, 12 cm and 13 cm. What is its area?",
@@ -13707,6 +14445,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "The longest side (13 cm) is the hypotenuse. The two sides forming the right angle (5 cm and 12 cm) are the base and height. Area = ½ × 5 × 12 = 30 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeRightFiveTwelveThirteen,
   ],
   [
     "A rectangular field measures 20 m × 15 m. A path 1 m wide runs along the inside of all four edges. Find the area of the path.",
@@ -13714,6 +14453,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Field area = 20 × 15 = 300 m². Inner area = 18 × 13 = 234 m². Path area = 300 − 234 = 66 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeInsidePath,
   ],
   [
     "A rectangular garden 10 m × 8 m is surrounded by a path 2 m wide on the outside. What is the area of the path?",
@@ -13721,6 +14461,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Outer rectangle = (10 + 4) × (8 + 4) = 14 × 12 = 168 m². Path area = 168 − 80 = 88 m².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeOutsidePath,
   ],
   [
     "A square and a rectangle each have an area of 100 cm². The square's side is 10 cm and the rectangle's length is 20 cm. Find the rectangle's width and compare their perimeters.",
@@ -13733,6 +14474,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Width = 100 ÷ 20 = 5 cm. Square perimeter = 40 cm. Rectangle perimeter = 2(20 + 5) = 50 cm. The square's perimeter is smaller.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeSameAreaSquareRect,
   ],
   [
     "A room measuring 4.8 m × 3.2 m is tiled with 40 cm × 40 cm tiles. Each tile costs RM8. Calculate the cost of the tiles.",
@@ -13740,6 +14482,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Tiles per row: 480 ÷ 40 = 12. Rows: 320 ÷ 40 = 8. Total tiles = 12 × 8 = 96. Cost = 96 × RM8 = RM768.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTilingCost,
   ],
   [
     "A composite shape consists of a trapezium (parallel sides 12 cm and 6 cm, height 5 cm) on top of a rectangle 12 cm × 4 cm. Calculate the total area.",
@@ -13747,6 +14490,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "Trapezium area = ½ × (12 + 6) × 5 = 45 cm². Rectangle area = 12 × 4 = 48 cm². Total = 93 cm².",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeCompositeTrapRect,
   ],
   [
     "A parallelogram has a base of 12 cm and a height of 5 cm. A triangle has the same area and a base of 10 cm. What is the height of the triangle?",
@@ -13754,6 +14498,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     0,
     "Parallelogram area = 12 × 5 = 60 cm². ½ × 10 × height = 60, so 5 × height = 60 and height = 12 cm. (6 cm comes from forgetting the ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeParaTriangleEqual,
   ],
   [
     "A trapezium has an area of 60 cm² and a height of 6 cm. One of its parallel sides is 8 cm. What is the length of the other parallel side?",
@@ -13761,6 +14506,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "½ × (8 + b) × 6 = 60. 3(8 + b) = 60. 8 + b = 20. b = 12 cm. (20 cm is the sum of both parallel sides.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeTrapArea60,
   ],
   [
     "A kite has an area of 54 cm² and one diagonal of 12 cm. What is the length of the other diagonal?",
@@ -13768,6 +14514,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     3,
     "½ × 12 × d = 54. 6d = 54. d = 9 cm. (4.5 cm comes from 54 ÷ 12, without using the ½.)",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeKiteArea54,
   ],
   [
     "A decorative strip is fitted along the edges of the floor of a 5 m × 4 m rectangular room, except across a door 1 m wide. What length of strip is needed?",
@@ -13775,6 +14522,7 @@ const MATH_C10_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     1,
     "Perimeter of the room = 2(5 + 4) = 18 m. Subtract the door width: 18 − 1 = 17 m.",
     "Hard",
+    MATH_F1_C10_QUIZ_VISUALS.challengeDoorTrim,
   ],
 ]);
 
@@ -13782,10 +14530,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah set?",
     [
-      "Koleksi objek yang mempunyai ciri sepunya yang jelas",
-      "Koleksi nombor sahaja dalam sebarang susunan",
-      "Senarai nombor rawak yang boleh berulang",
-      "Koleksi huruf abjad sahaja",
+      "Koleksi dengan ciri yang jelas",
+      "Koleksi dengan ciri yang berubah-ubah",
+      "Koleksi ditentukan susunan unsur",
+      "Koleksi ditentukan pengulangan unsur",
     ],
     0,
     "Set ialah koleksi objek yang mempunyai ciri-ciri yang sama dan boleh ditakrifkan dengan jelas.",
@@ -13833,7 +14581,12 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Apakah n(A)?",
-    ["Nama set A", "Subset set A", "Pelengkap set A", "Bilangan unsur dalam set A"],
+    [
+      "Nama bagi set A",
+      "Subset bagi set A",
+      "Pelengkap bagi set A",
+      "Bilangan unsur A",
+    ],
     3,
     "n(A) mewakili bilangan unsur dalam set A.",
     "Easy",
@@ -13883,10 +14636,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah pelengkap set A (A')?",
     [
-      "Unsur dalam ξ yang tiada dalam A",
-      "Semua unsur dalam A sahaja",
-      "Semua unsur dalam A dan ξ",
-      "Set kosong, iaitu ∅",
+      "Unsur ξ di luar A",
+      "Unsur ξ di dalam A",
+      "Semua unsur ξ dan A",
+      "Unsur A di luar ξ",
     ],
     0,
     "A' ialah set semua unsur dalam ξ yang tidak berada dalam A.",
@@ -13942,10 +14695,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah kaedah penyenaraian untuk mewakili set?",
     [
-      "Menggunakan ayat untuk menerangkan set",
-      "Menggunakan formula matematik",
-      "Menyenaraikan semua unsur dalam kurungan kurawal { }",
-      "Melukis gambar rajah",
+      "Terangkan ciri dalam ayat",
+      "Nyatakan ciri dengan rumus",
+      "Senaraikan unsur dalam { }",
+      "Lukis unsur dalam rajah",
     ],
     2,
     "Kaedah penyenaraian: senaraikan semua unsur dalam { }. Contoh: A = {1, 2, 3}.",
@@ -14040,10 +14793,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is a set?",
     [
-      "A collection of objects with a common, well-defined feature",
-      "A collection of numbers only, in any order",
-      "A list of random numbers that may repeat",
-      "A collection of letters of the alphabet only",
+      "A collection with a well-defined feature",
+      "A collection with an undefined feature",
+      "A collection defined by element order",
+      "A collection defined by repeated elements",
     ],
     0,
     "A set is a collection of objects that share common characteristics and can be clearly defined.",
@@ -14092,10 +14845,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is n(A)?",
     [
-      "The name of set A",
-      "A subset of set A",
-      "The complement of set A",
-      "The number of elements in set A",
+      "Name of the set A",
+      "A subset of the set A",
+      "Complement of the set A",
+      "Number of A’s elements",
     ],
     3,
     "n(A) represents the number of elements in set A.",
@@ -14146,10 +14899,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the complement of set A (A')?",
     [
-      "The elements of ξ that are not in A",
-      "All the elements of A only",
-      "All the elements of A and ξ",
-      "The empty set, ∅",
+      "Elements of ξ outside A",
+      "Elements of ξ inside A",
+      "All elements of ξ and A",
+      "Elements of A outside ξ",
     ],
     0,
     "A' is the set of all elements in ξ that are not in A.",
@@ -14205,10 +14958,10 @@ const MATH_C11_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the listing method for representing a set?",
     [
-      "Using a sentence to describe the set",
-      "Using a mathematical formula",
-      "Listing all elements inside curly braces { }",
-      "Drawing a diagram",
+      "Describe features in a sentence",
+      "State features using a formula",
+      "List elements inside { }",
+      "Draw elements in a diagram",
     ],
     2,
     "Listing method: list all elements in { }. Example: A = {1, 2, 3}.",
@@ -14322,10 +15075,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Adakah {a,b,c} = {c,a,b}? Berikan alasan.",
     [
-      "Tidak, kerana susunan berbeza",
-      "Tidak, kerana panjangnya berbeza",
-      "Ya, kerana mengandungi unsur yang sama",
-      "Ya, kerana kedua-duanya mempunyai 3 huruf",
+      "Tidak; susunan berbeza",
+      "Ya; bilangan huruf sama",
+      "Ya; unsur yang sama",
+      "Tidak; unsur berbeza",
     ],
     2,
     "Set adalah sama jika mengandungi unsur yang sama. Susunan tidak penting. Jadi {a,b,c} = {c,a,b}.",
@@ -14341,10 +15094,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Senaraikan semua subset bagi {1, 2, 3}.",
     [
-      "∅,{1},{2},{3}",
+      "∅,{1},{2},{3},{1,2},{1,3},{2,3},{1,2,4}",
       "∅,{1},{2},{3},{1,2},{1,3},{2,3},{1,2,3}",
-      "{1},{2},{3},{1,2,3}",
-      "∅,{1,2},{1,3},{2,3},{1,2,3}",
+      "∅,{1},{2},{3},{1,2},{1,3},{2,4},{1,2,3}",
+      "∅,{1},{2},{4},{1,2},{1,3},{2,3},{1,2,3}",
     ],
     1,
     "2³ = 8 subset: ∅, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}.",
@@ -14514,10 +15267,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Antara berikut, yang manakah set kosong?",
     [
-      "{x : x ialah gandaan 5 antara 11 dan 14}",
-      "{x : x ialah nombor perdana genap}",
-      "{0}",
-      "{x : x ialah faktor bagi 7}",
+      "{x : 11 < x < 14, x gandaan 5}",
+      "{x : 11 < x < 14, x gandaan 3}",
+      "{x : 11 < x < 14, x nombor genap}",
+      "{x : 11 < x < 14, x nombor perdana}",
     ],
     0,
     "Tiada gandaan 5 antara 11 dan 14, jadi set itu kosong. {x : x ialah nombor perdana genap} = {2}, {0} mempunyai satu unsur dan faktor 7 ialah {1, 7}.",
@@ -14547,10 +15300,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Dalam gambar rajah Venn bagi B ⊂ A, bagaimanakah rupa bulatan B?",
     [
-      "Bulatan B berada di luar bulatan A",
-      "Bulatan B bersilang separuh dengan A",
-      "Bulatan B berada sepenuhnya di dalam bulatan A",
-      "Bulatan B dan A adalah sama",
+      "B sepenuhnya di luar A",
+      "B bersilang sebahagian dengan A",
+      "B sepenuhnya di dalam A",
+      "B bersaiz sama dengan A",
     ],
     2,
     "Apabila B ⊂ A, bulatan B dilukis SEPENUHNYA DI DALAM bulatan A dalam gambar rajah Venn.",
@@ -14558,7 +15311,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   ],
   [
     "Set R = {x : x ialah nombor bulat, x² < 25}. Senaraikan R (nombor positif dan negatif).",
-    ["{0,1,2,3,4}", "{1,2,3,4}", "{-5,-4,...,4,5}", "{-4,-3,-2,-1,0,1,2,3,4}"],
+    ["{−5,−4,…,4,5}", "{0,1,…,3,4}", "{1,2,…,4,5}", "{−4,−3,…,3,4}"],
     3,
     "x² < 25 bermaksud |x| < 5. Nombor bulat: -4,-3,-2,-1,0,1,2,3,4. R = {-4,-3,-2,-1,0,1,2,3,4}.",
     "Medium",
@@ -14595,10 +15348,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "Is {a,b,c} = {c,a,b}? Give a reason.",
     [
-      "No, because the order is different",
-      "No, because the lengths differ",
-      "Yes, because they contain the same elements",
-      "Yes, because both have 3 letters",
+      "No; a different order",
+      "Yes; the same letter count",
+      "Yes; the same elements",
+      "No; different elements",
     ],
     2,
     "Sets are equal if they contain the same elements. Order does not matter. So {a,b,c} = {c,a,b}.",
@@ -14614,10 +15367,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "List all subsets of {1, 2, 3}.",
     [
-      "∅,{1},{2},{3}",
+      "∅,{1},{2},{3},{1,2},{1,3},{2,3},{1,2,4}",
       "∅,{1},{2},{3},{1,2},{1,3},{2,3},{1,2,3}",
-      "{1},{2},{3},{1,2,3}",
-      "∅,{1,2},{1,3},{2,3},{1,2,3}",
+      "∅,{1},{2},{3},{1,2},{1,3},{2,4},{1,2,3}",
+      "∅,{1},{2},{4},{1,2},{1,3},{2,3},{1,2,3}",
     ],
     1,
     "2³ = 8 subsets: ∅, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}.",
@@ -14787,10 +15540,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "Which of the following is an empty set?",
     [
-      "{x : x is a multiple of 5 between 11 and 14}",
-      "{x : x is an even prime number}",
-      "{0}",
-      "{x : x is a factor of 7}",
+      "{x : 11 < x < 14, x a multiple of 5}",
+      "{x : 11 < x < 14, x a multiple of 3}",
+      "{x : 11 < x < 14, x an even number}",
+      "{x : 11 < x < 14, x a prime number}",
     ],
     0,
     "There is no multiple of 5 between 11 and 14, so the set is empty. {x : x is an even prime number} = {2}, {0} has one element, and the factors of 7 are {1, 7}.",
@@ -14820,10 +15573,10 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "In a Venn diagram for B ⊂ A, how does circle B appear?",
     [
-      "Circle B is outside circle A",
-      "Circle B partially intersects A",
-      "Circle B is entirely inside circle A",
-      "Circle B and A are the same size",
+      "B entirely outside A",
+      "B partly overlaps A",
+      "B entirely inside A",
+      "B the same size as A",
     ],
     2,
     "When B ⊂ A, circle B is drawn ENTIRELY INSIDE circle A in the Venn diagram.",
@@ -14831,7 +15584,7 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "Set R = {x : x is an integer, x² < 25}. List R (positive and negative).",
-    ["{0,1,2,3,4}", "{1,2,3,4}", "{-5,-4,...,4,5}", "{-4,-3,-2,-1,0,1,2,3,4}"],
+    ["{−5,−4,…,4,5}", "{0,1,…,3,4}", "{1,2,…,4,5}", "{−4,−3,…,3,4}"],
     3,
     "x² < 25 means |x| < 5. Integers: -4,-3,-2,-1,0,1,2,3,4. R = {-4,-3,-2,-1,0,1,2,3,4}.",
     "Medium",
@@ -14849,10 +15602,10 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "ξ = {1, 2, 3, ..., 20}. A = {nombor perdana}. B = {nombor ganjil}. Adakah A ⊂ B?",
     [
-      "Tidak, kerana 2 ialah nombor perdana tetapi genap",
-      "Ya, semua nombor perdana ialah nombor ganjil",
-      "Ya, kecuali nombor 1",
-      "Bergantung pada set semesta",
+      "Tidak; 2 perdana tetapi genap",
+      "Ya; semua perdana ialah ganjil",
+      "Tidak; 3 perdana tetapi genap",
+      "Ya; 1 ialah perdana ganjil",
     ],
     0,
     "2 ialah nombor perdana tetapi 2 ialah nombor genap. Jadi 2 ∈ A tetapi 2 ∉ B. Oleh itu A ⊄ B.",
@@ -15015,10 +15768,10 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "ξ = {1, 2, 3, ..., 9}. A = {x : x ialah kuasa dua sempurna} dan B = {x : x ialah nombor ganjil}. Adakah A ⊂ B?",
     [
-      "Ya, semua kuasa dua sempurna ialah nombor ganjil",
-      "Tidak, kerana 4 ialah kuasa dua sempurna tetapi genap",
-      "Ya, kecuali 1",
-      "Tidak boleh ditentukan",
+      "Ya; semua kuasa dua ialah ganjil",
+      "Tidak; 4 kuasa dua tetapi genap",
+      "Tidak; 9 kuasa dua tetapi genap",
+      "Ya; semua nombor genap di luar A",
     ],
     1,
     "Kuasa dua sempurna dalam ξ: {1, 4, 9}. 4 ∈ A tetapi 4 ∉ B. Jadi A ⊄ B.",
@@ -15117,10 +15870,10 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "ξ = {1, 2, 3, ..., 20}. A = {prime numbers}. B = {odd numbers}. Is A ⊂ B?",
     [
-      "No, because 2 is a prime number but even",
-      "Yes, all prime numbers are odd",
-      "Yes, except the number 1",
-      "It depends on the universal set",
+      "No; 2 is prime but even",
+      "Yes; every prime is odd",
+      "No; 3 is prime but even",
+      "Yes; 1 is an odd prime",
     ],
     0,
     "2 is a prime number but 2 is even. So 2 ∈ A but 2 ∉ B. Therefore A ⊄ B.",
@@ -15298,10 +16051,10 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "ξ = {1, 2, 3, ..., 9}. A = {x : x is a perfect square} and B = {x : x is an odd number}. Is A ⊂ B?",
     [
-      "Yes, all perfect squares are odd",
-      "No, because 4 is a perfect square but even",
-      "Yes, except 1",
-      "Cannot be determined",
+      "Yes; every square is odd",
+      "No; 4 is square but even",
+      "No; 9 is square but even",
+      "Yes; every even number is outside A",
     ],
     1,
     "Perfect squares in ξ: {1, 4, 9}. 4 ∈ A but 4 ∉ B. So A ⊄ B.",
@@ -15395,10 +16148,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah hipotenus dalam segi tiga bersudut tegak?",
     [
-      "Sisi yang paling panjang, bertentangan dengan sudut 90°",
-      "Sisi yang bertentangan dengan sudut terkecil",
-      "Sisi yang paling pendek",
-      "Sebarang sisi dalam segi tiga",
+      "Sisi bertentangan sudut 90°",
+      "Sisi bertentangan sudut terkecil",
+      "Sisi bersebelahan sudut terkecil",
+      "Mana-mana sisi segi tiga",
     ],
     0,
     "Hipotenus ialah sisi yang PALING PANJANG dalam segi tiga bersudut tegak dan ia sentiasa BERTENTANGAN dengan sudut 90°.",
@@ -15407,12 +16160,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Apakah Teorem Pythagoras?",
-    [
-      "a² + b² = c (bukan kuasa dua)",
-      "c² = a² + b², di mana c ialah hipotenus",
-      "c = a + b",
-      "c² = a² × b²",
-    ],
+    ["c = a² + b²", "c² = a² + b²", "c = a + b", "c² = a² × b²"],
     1,
     "Teorem Pythagoras: c² = a² + b², di mana c ialah hipotenus (sisi terpanjang) dan a, b ialah dua kaki segi tiga bersudut tegak.",
     "Easy",
@@ -15421,10 +16169,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Dalam segi tiga bersudut tegak, di manakah sudut 90°?",
     [
-      "Di hadapan hipotenus",
-      "Di hadapan sisi terpendek",
-      "Di antara dua kaki (sisi yang pendek)",
-      "Di atas hipotenus",
+      "Antara kaki dan hipotenus",
+      "Di titik tengah hipotenus",
+      "Antara dua kaki segi tiga",
+      "Di titik tengah kaki segi tiga",
     ],
     2,
     "Sudut 90° berada di ANTARA dua kaki (sisi yang lebih pendek). Hipotenus bertentangan dengan sudut 90° ini.",
@@ -15485,10 +16233,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah makna akas Teorem Pythagoras?",
     [
-      "Teorem yang sama tetapi dalam bahasa lain",
-      "Teorem untuk segi tiga sama kaki sahaja",
-      "Teorem untuk mencari sudut",
-      "Jika c² = a² + b², maka segi tiga adalah bersudut tegak",
+      "c² = a² + b² menguji sisi sama",
+      "c² = a² + b² menguji sudut tirus",
+      "c² = a² + b² menguji sudut cakah",
+      "c² = a² + b² menguji sudut tegak",
     ],
     3,
     "Akas Teorem Pythagoras: jika c² = a² + b² (c = sisi terpanjang), maka segi tiga adalah bersudut tegak.",
@@ -15551,10 +16299,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Segi tiga 6, 8, 10 — adakah ia triple Pythagoras?",
     [
-      "Tidak, bukan triple Pythagoras",
-      "Ya, kerana 6+8=14 > 10",
-      "Ya, kerana 6²+8² = 36+64 = 100 = 10²",
-      "Tidak boleh ditentukan",
+      "Tidak; 6² + 8² ≠ 10²",
+      "Ya; 6² × 8² = 10²",
+      "Ya; 6² + 8² = 10²",
+      "Tidak; 6² + 8² = 10",
     ],
     2,
     "6² + 8² = 36 + 64 = 100 = 10². Ini adalah gandaan 3-4-5 (×2), jadi ia adalah triple Pythagoras.",
@@ -15646,7 +16394,12 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   ],
   [
     "Apakah langkah pertama dalam mengklasifikasikan segi tiga menggunakan akas Teorem Pythagoras?",
-    ["Kira c²", "Kenal pasti sisi terpanjang (c)", "Kira a²+b²", "Bandingkan c² dengan a²+b²"],
+    [
+      "Kira kuasa dua sisi terpendek",
+      "Kenal pasti sisi terpanjang",
+      "Kira jumlah panjang dua sisi",
+      "Kira hasil darab dua sisi",
+    ],
     1,
     "Langkah pertama: KENAL PASTI sisi terpanjang dan labelkannya sebagai c. Kemudian kira c² dan a²+b² untuk dibandingkan.",
     "Easy",
@@ -15676,10 +16429,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah perbezaan antara Teorem Pythagoras dan akasnya?",
     [
-      "Tiada perbezaan antara kedua-duanya",
-      "Akas digunakan untuk mencari panjang sisi",
-      "Akas menggunakan c² = a² + b² untuk menentukan sudut tegak",
-      "Teorem hanya untuk segi tiga sama kaki",
+      "Akas mencari panjang sisi sahaja",
+      "Akas mengira bilangan sudut tegak",
+      "Akas menguji kewujudan sudut tegak",
+      "Akas menguji sisi sama sahaja",
     ],
     2,
     "Teorem (maju): segi tiga bersudut tegak → c²=a²+b². Akas: jika c²=a²+b² → segi tiga bersudut tegak.",
@@ -15696,10 +16449,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah maksud 'triple Pythagoras' didarab dengan faktor?",
     [
-      "Hanya triple asal yang sah",
-      "Gandaan triple juga membentuk segi tiga bersudut tegak",
-      "Gandaan tidak sah bagi Teorem Pythagoras",
-      "Faktor itu mestilah nombor perdana",
+      "Gandaan juga segi tiga sama sisi",
+      "Gandaan juga segi tiga bersudut tegak",
+      "Gandaan tidak lagi bersudut tegak",
+      "Gandaan mesti menggunakan faktor perdana",
     ],
     1,
     "Gandaan triple Pythagoras juga sah. Cth: 3-4-5 × 2 = 6-8-10; × 3 = 9-12-15. Semuanya bersudut tegak.",
@@ -15711,9 +16464,9 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the hypotenuse in a right-angled triangle?",
     [
-      "The longest side, opposite the 90° angle",
+      "The side opposite the 90° angle",
       "The side opposite the smallest angle",
-      "The shortest side",
+      "The side beside the smallest angle",
       "Any side of the triangle",
     ],
     0,
@@ -15723,12 +16476,7 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "What is Pythagoras' Theorem?",
-    [
-      "a² + b² = c (not squared)",
-      "c² = a² + b², where c is the hypotenuse",
-      "c = a + b",
-      "c² = a² × b²",
-    ],
+    ["c = a² + b²", "c² = a² + b²", "c = a + b", "c² = a² × b²"],
     1,
     "Pythagoras' Theorem: c² = a² + b², where c is the hypotenuse (longest side) and a, b are the two legs of the right-angled triangle.",
     "Easy",
@@ -15737,10 +16485,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "In a right-angled triangle, where is the 90° angle?",
     [
-      "Opposite the hypotenuse",
-      "Opposite the shortest side",
-      "Between the two legs (shorter sides)",
-      "On top of the hypotenuse",
+      "Between a leg and hypotenuse",
+      "At the hypotenuse midpoint",
+      "Between the two legs",
+      "At the midpoint of a leg",
     ],
     2,
     "The 90° angle is BETWEEN the two legs (shorter sides). The hypotenuse is opposite this 90° angle.",
@@ -15801,10 +16549,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does the converse of Pythagoras' Theorem mean?",
     [
-      "The same theorem but in another language",
-      "A theorem for isosceles triangles only",
-      "A theorem for finding angles",
-      "If c² = a² + b², then the triangle is right-angled",
+      "c² = a² + b² tests for equal sides",
+      "c² = a² + b² tests for an acute angle",
+      "c² = a² + b² tests for an obtuse angle",
+      "c² = a² + b² tests for a right angle",
     ],
     3,
     "Converse of Pythagoras' Theorem: if c² = a² + b² (c = longest side), then the triangle is right-angled.",
@@ -15867,10 +16615,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "Triangle 6, 8, 10 — is it a Pythagorean triple?",
     [
-      "No, not a Pythagorean triple",
-      "Yes, because 6+8=14 > 10",
-      "Yes, because 6²+8² = 36+64 = 100 = 10²",
-      "Cannot be determined",
+      "No; 6² + 8² ≠ 10²",
+      "Yes; 6² × 8² = 10²",
+      "Yes; 6² + 8² = 10²",
+      "No; 6² + 8² = 10",
     ],
     2,
     "6² + 8² = 36 + 64 = 100 = 10². This is a multiple of 3-4-5 (×2), so it is a Pythagorean triple.",
@@ -15962,7 +16710,12 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "What is the first step in classifying a triangle using the converse of Pythagoras' Theorem?",
-    ["Calculate c²", "Identify the longest side (c)", "Calculate a²+b²", "Compare c² with a²+b²"],
+    [
+      "Square the shortest side",
+      "Identify the longest side",
+      "Add two side lengths",
+      "Multiply two side lengths",
+    ],
     1,
     "First step: IDENTIFY the longest side and label it c. Then calculate c² and a²+b² to compare.",
     "Easy",
@@ -15992,10 +16745,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the difference between Pythagoras' Theorem and its converse?",
     [
-      "There is no difference between them",
-      "The converse is used to find a side length",
-      "The converse uses c² = a² + b² to test for a right angle",
-      "The theorem only works for isosceles triangles",
+      "The converse only finds a side length",
+      "The converse counts the right angles",
+      "The converse tests for a right angle",
+      "The converse only tests for equal sides",
     ],
     2,
     "Theorem (forward): right-angled triangle → c²=a²+b². Converse: if c²=a²+b² → right-angled triangle.",
@@ -16012,10 +16765,10 @@ const MATH_C13_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What does 'Pythagorean triple multiplied by a factor' mean?",
     [
-      "Only the original triple is valid",
-      "Its multiples also form right-angled triangles",
-      "Multiples are not valid for Pythagoras",
-      "The factor must be a prime number",
+      "Multiples also form equilateral triangles",
+      "Multiples also form right-angled triangles",
+      "Multiples cease to be right-angled triangles",
+      "Multiples must use a prime factor",
     ],
     1,
     "Multiples of a Pythagorean triple are also valid. E.g.: 3-4-5 × 2 = 6-8-10; × 3 = 9-12-15. All are right-angled.",
@@ -16139,10 +16892,10 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
   [
     "Segi tiga dengan sisi 1.5 m, 2 m, 2.5 m. Adakah ia bersudut tegak?",
     [
-      "Tidak, bukan triple Pythagoras",
-      "Ya, kerana 1.5²+2² = 2.25+4 = 6.25 = 2.5²",
-      "Tidak boleh ditentukan",
-      "Ya, tetapi hanya jika nilai dalam cm",
+      "Tidak; 1.5² + 2² ≠ 2.5²",
+      "Ya; 1.5² + 2² = 2.5²",
+      "Ya; 1.5² × 2² = 2.5²",
+      "Tidak; 1.5² + 2² = 2.5",
     ],
     1,
     "1.5²+2² = 2.25+4 = 6.25 = 2.5². Ya, bersudut tegak! (Ini adalah gandaan 3-4-5 ÷ 2 = 1.5-2-2.5)",
@@ -16387,10 +17140,10 @@ const MATH_C13_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
   [
     "Triangle with sides 1.5 m, 2 m, 2.5 m. Is it right-angled?",
     [
-      "No, not a Pythagorean triple",
-      "Yes, because 1.5²+2² = 2.25+4 = 6.25 = 2.5²",
-      "Cannot be determined",
-      "Yes, but only in cm",
+      "No; 1.5² + 2² ≠ 2.5²",
+      "Yes; 1.5² + 2² = 2.5²",
+      "Yes; 1.5² × 2² = 2.5²",
+      "No; 1.5² + 2² = 2.5",
     ],
     1,
     "1.5²+2² = 2.25+4 = 6.25 = 2.5². Yes, right-angled! (Multiple of 3-4-5 ÷ 2 = 1.5-2-2.5)",
@@ -16751,10 +17504,10 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Tentukan sama ada (20, 21, 29) ialah triple Pythagoras.",
     [
-      "Ya, kerana 20² + 21² = 400 + 441 = 841 = 29²",
-      "Bukan, kerana 20² + 21² ≠ 29²",
-      "Hanya gandaan triple Pythagoras",
-      "Tidak boleh ditentukan",
+      "Ya; 20² + 21² = 29²",
+      "Tidak; 20² + 21² ≠ 29²",
+      "Ya; 20² × 21² = 29²",
+      "Tidak; 20² + 21² = 29",
     ],
     0,
     "20² + 21² = 400 + 441 = 841 = 29². Maka (20, 21, 29) ialah triple Pythagoras.",
@@ -17019,10 +17772,10 @@ const MATH_C13_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "Determine whether (20, 21, 29) is a Pythagorean triple.",
     [
-      "Yes, because 20² + 21² = 400 + 441 = 841 = 29²",
-      "No, because 20² + 21² ≠ 29²",
-      "Only a multiple of a Pythagorean triple",
-      "Cannot be determined",
+      "Yes; 20² + 21² = 29²",
+      "No; 20² + 21² ≠ 29²",
+      "Yes; 20² × 21² = 29²",
+      "No; 20² + 21² = 29",
     ],
     0,
     "20² + 21² = 400 + 441 = 841 = 29². So (20, 21, 29) is a Pythagorean triple.",
@@ -17059,10 +17812,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah pengendalian data?",
     [
-      "Mengumpul, mengorganisasi, mewakili dan mentafsir data",
-      "Proses mengira nombor dalam senarai",
-      "Proses melukis carta sahaja",
-      "Proses menghafal fakta statistik",
+      "Mengumpul hingga mentafsir data",
+      "Mengira hingga menambah nombor",
+      "Melukis hingga mewarna carta",
+      "Membaca hingga menghafal fakta",
     ],
     0,
     "Pengendalian data ialah proses mengumpul, mengorganisasikan, mewakili dan mentafsir data untuk menjawab soalan atau membuat keputusan.",
@@ -17079,10 +17832,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah soalan statistik?",
     [
-      "Soalan yang mempunyai satu jawapan tetap",
-      "Soalan matematik yang melibatkan formula",
-      "Soalan yang memerlukan pengumpulan data dan melibatkan variasi",
-      "Soalan yang boleh dijawab terus",
+      "Soalan mempunyai jawapan tetap",
+      "Soalan hanya memerlukan rumus",
+      "Soalan memerlukan data bervariasi",
+      "Soalan dijawab tanpa data",
     ],
     2,
     "Soalan statistik memerlukan pengumpulan data dan melibatkan variasi — jawapannya berbeza bagi individu yang berbeza.",
@@ -17103,10 +17856,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah data kategori?",
     [
-      "Data yang melibatkan nombor bulat",
-      "Data yang menerangkan kualiti atau jenis/kategori",
-      "Data yang diukur dengan alat",
-      "Data yang bermula dari sifar",
+      "Data bilangan objek",
+      "Data jenis objek",
+      "Data ukuran panjang",
+      "Data ukuran jisim",
     ],
     1,
     "Data kategori menerangkan kualiti atau jenis — contohnya kumpulan darah, warna, hobi. Bukan nombor.",
@@ -17122,10 +17875,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah data diskret?",
     [
-      "Data yang diukur dengan pembaris atau penimbang",
-      "Data tentang warna, nama dan jenis",
-      "Data yang boleh mengambil sebarang nilai perpuluhan",
-      "Data berangka yang hanya boleh mengambil nilai tertentu",
+      "Data dengan sebarang nilai",
+      "Data dengan kategori sahaja",
+      "Data dengan nama sahaja",
+      "Data dengan nilai terpisah",
     ],
     3,
     "Data diskret hanya boleh mengambil nilai nombor bulat (boleh dikira). Contoh: bilangan anak, bilangan buku.",
@@ -17146,10 +17899,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah data berterusan?",
     [
-      "Data yang hanya boleh mengambil nilai nombor bulat",
-      "Data tentang jenis atau kategori",
-      "Data berangka yang boleh mengambil mana-mana nilai termasuk perpuluhan",
-      "Data yang dikira satu per satu",
+      "Data bernilai integer sahaja",
+      "Data berbentuk kategori sahaja",
+      "Sebarang nilai dalam julat",
+      "Data berbentuk nama sahaja",
     ],
     2,
     "Data berterusan diperoleh melalui pengukuran dan boleh ada perpuluhan. Contoh: tinggi 162.4 cm, jisim 3.2 kg.",
@@ -17198,10 +17951,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Lihat jadual kekerapan. Pernyataan manakah menerangkan jadual ini dengan betul?",
     [
-      "Jadual yang menyenaraikan nama murid",
-      "Jadual yang menunjukkan setiap nilai dan kekerapannya",
-      "Graf yang menggunakan palang",
-      "Bulatan yang dibahagi kepada sektor",
+      "Jadual nama dan alamat",
+      "Jadual nilai dan kekerapan",
+      "Graf palang dan kekerapan",
+      "Bulatan dibahagi kepada sektor",
     ],
     1,
     "Jadual kekerapan mengorganisasikan data dengan menunjukkan setiap nilai atau kelas bersama bilangan kali ia muncul.",
@@ -17287,10 +18040,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Lihat visual. Pernyataan manakah menerangkan poligon kekerapan ini?",
     [
-      "Bentuk poligon yang dikaji dalam geometri",
-      "Jadual yang menyenaraikan kelas dan kekerapan",
-      "Carta pai yang dilukis dalam bentuk poligon",
-      "Graf garis yang menyambung titik tengah atas palang histogram",
+      "Graf menyambung hujung kiri palang",
+      "Graf menyambung hujung kanan palang",
+      "Graf menyambung pusat sektor pai",
+      "Graf menyambung titik tengah palang",
     ],
     3,
     "Poligon kekerapan dibina dengan menghubungkan titik tengah bahagian atas setiap palang histogram.",
@@ -17300,10 +18053,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah julat?",
     [
-      "Perbezaan antara nilai tertinggi dan terendah",
-      "Nilai yang paling kerap muncul",
-      "Nilai tengah data",
-      "Jumlah semua nilai",
+      "Nilai tertinggi − terendah",
+      "Jumlah nilai ÷ bilangan nilai",
+      "Nilai paling kerap muncul",
+      "Nilai tengah selepas disusun",
     ],
     0,
     "Julat = Nilai Tertinggi − Nilai Terendah. Ia mengukur penyebaran keseluruhan data.",
@@ -17353,10 +18106,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS = mathQuestions([
   [
     "Apakah pencilan (outlier)?",
     [
-      "Nilai yang paling kerap muncul dalam data",
-      "Nilai maksimum data",
-      "Nilai tengah data",
-      "Nilai yang jauh berbeza daripada nilai-nilai lain dalam set data",
+      "Nilai paling kerap dalam data",
+      "Nilai tengah selepas disusun",
+      "Nilai purata bagi seluruh data",
+      "Nilai jauh daripada kelompok data",
     ],
     3,
     "Pencilan ialah nilai yang jauh berbeza daripada nilai-nilai lain. Dalam plot titik, ia kelihatan tersasing dari kumpulan.",
@@ -17375,10 +18128,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is data handling?",
     [
-      "Collecting, organising, representing and interpreting data",
-      "A process of counting numbers in a list",
-      "A process of drawing charts only",
-      "A process of memorising statistics facts",
+      "Collecting through interpreting data",
+      "Counting through adding numbers",
+      "Drawing through colouring charts",
+      "Reading through memorising facts",
     ],
     0,
     "Data handling is the process of collecting, organising, representing and interpreting data to answer questions or make decisions.",
@@ -17396,9 +18149,9 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
     "What is a statistical question?",
     [
       "A question with one fixed answer",
-      "A mathematical question involving formulas",
-      "A question that requires data collection and involves variability",
-      "A question that can be answered directly",
+      "A question requiring only a formula",
+      "A question requiring variable data",
+      "A question answered without data",
     ],
     2,
     "A statistical question requires data collection and involves variability — the answer differs for different individuals.",
@@ -17419,10 +18172,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is categorical data?",
     [
-      "Data involving whole numbers",
-      "Data describing qualities or types/categories",
-      "Data measured with instruments",
-      "Data starting from zero",
+      "Data on numbers of objects",
+      "Data on types or categories",
+      "Data on length measurements",
+      "Data on mass measurements",
     ],
     1,
     "Categorical data describes qualities or types — e.g. blood group, colour, hobby. It is not numerical.",
@@ -17438,10 +18191,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is discrete data?",
     [
-      "Data measured with a ruler or scale",
-      "Data about colours, names and types",
-      "Data that can take any decimal value",
-      "Numerical data that can only take certain values",
+      "Data with any possible value",
+      "Data with only categories",
+      "Data with only names",
+      "Data with separate possible values",
     ],
     3,
     "Discrete data can only take whole number values (can be counted). Examples: number of children, number of books.",
@@ -17462,10 +18215,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is continuous data?",
     [
-      "Data that can only take whole number values",
-      "Data about types or categories",
-      "Numerical data that can take any value including decimals",
-      "Data counted one by one",
+      "Data taking only integer values",
+      "Data taking only category values",
+      "Data taking any value in a range",
+      "Data taking only name values",
     ],
     2,
     "Continuous data is obtained through measurement and can have decimals. Examples: height 162.4 cm, mass 3.2 kg.",
@@ -17514,9 +18267,9 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "Look at the frequency table. Which statement describes it correctly?",
     [
-      "A table that lists students' names",
-      "A table showing each value and its frequency",
-      "A graph that uses bars",
+      "A table of names and addresses",
+      "A table of values and frequencies",
+      "A bar graph of values and frequencies",
       "A circle divided into sectors",
     ],
     1,
@@ -17603,10 +18356,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "Look at the visual. Which statement describes this frequency polygon?",
     [
-      "A polygon shape studied in geometry",
-      "A table that lists classes and frequencies",
-      "A pie chart drawn in the shape of a polygon",
-      "A line graph joining the midpoints of histogram bar tops",
+      "A graph joining bar-top left edges",
+      "A graph joining bar-top right edges",
+      "A graph joining pie-sector centres",
+      "A graph joining bar-top midpoints",
     ],
     3,
     "A frequency polygon is constructed by connecting the midpoints of the tops of each histogram bar.",
@@ -17616,10 +18369,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is the range?",
     [
-      "The difference between the highest and lowest values",
-      "The most frequently occurring value",
-      "The middle value of data",
-      "The sum of all values",
+      "Highest value − lowest value",
+      "Sum of values ÷ number of values",
+      "The most frequent value",
+      "The middle value after sorting",
     ],
     0,
     "Range = Highest Value − Lowest Value. It measures the overall spread of data.",
@@ -17669,10 +18422,10 @@ const MATH_C12_OBJECTIVE_1_FOUNDATION_QUESTIONS_DLP = mathQuestions([
   [
     "What is an outlier?",
     [
-      "The most frequently occurring value in data",
-      "The maximum value of data",
-      "The middle value of data",
-      "A value that differs greatly from other values in the data set",
+      "The most frequent data value",
+      "The middle value after sorting",
+      "The mean of all the data values",
+      "A value far from the main data cluster",
     ],
     3,
     "An outlier is a value that differs greatly from others. In a dot plot, it appears isolated from the cluster.",
@@ -17716,7 +18469,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     "40 murid dipilih. 16 suka Matematik. Berapakah sudut sektor Matematik dalam carta pai?",
     ["120°", "108°", "90°", "144°"],
     3,
-    "Sudut = (16÷40) × 360° = 0.4 × 360° = 144°.",
+    "Daripada 40 murid, 16 memilih Matematik. Sudut sektor = (16 ÷ 40) × 360° = 144°, iaitu bahagian Matematik daripada bulatan penuh.",
     "Medium",
     MATH_F1_C12_QUIZ_VISUALS.mathPreference40,
   ],
@@ -17779,7 +18532,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     "Kelas 55–65 dalam jadual kekerapan. Apakah titik tengahnya?",
     ["57.5", "60", "59.5", "62.5"],
     1,
-    "Titik tengah = (55 + 65) ÷ 2 = 120 ÷ 2 = 60.",
+    "Titik tengah selang 55 hingga 65 dikira dengan menambah dua had kelas lalu membahagi dengan 2: (55 + 65) ÷ 2 = 60, bukannya had bawah atau had atas.",
     "Medium",
     MATH_F1_C12_QUIZ_VISUALS.midpointClasses,
   ],
@@ -17861,10 +18614,10 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     MATH_F1_C12_QUIZ_VISUALS.runnerAgesStems,
   ],
   [
-    "Peratusan sesuatu kategori dalam carta pai = 25%. Berapakah sudut sektornya?",
+    "Carta pai menunjukkan kategori X. Berapakah sudut sektor X?",
     ["60°", "75°", "100°", "90°"],
     3,
-    "25% × 360° = 0.25 × 360° = 90°.",
+    "Carta pai berjumlah 360°. Tukar 25% kepada 0.25 lalu darabkan: 0.25 × 360° = 90°. Sektor ini mewakili satu perempat bulatan.",
     "Medium",
     MATH_F1_C12_QUIZ_VISUALS.quarterCategory,
   ],
@@ -17872,7 +18625,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     "Seramai 30 murid ditinjau. Kekerapan kategori X ialah 12. Apakah sudut sektor X dalam carta pai?",
     ["144°", "130°", "140°", "120°"],
     0,
-    "Sudut = (12÷30) × 360° = 0.4 × 360° = 144°.",
+    "Daripada jumlah 30, kategori tersebut berjumlah 12. Sudut sektor carta pai = (12 ÷ 30) × 360° = 144°, iaitu 40% daripada bulatan.",
     "Medium",
     MATH_F1_C12_QUIZ_VISUALS.survey30,
   ],
@@ -17954,7 +18707,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "40 students surveyed. 16 like Mathematics. What is the sector angle for Mathematics in the pie chart?",
     ["120°", "108°", "90°", "144°"],
     3,
-    "Angle = (16÷40) × 360° = 0.4 × 360° = 144°.",
+    "Of the 40 students, 16 prefer Mathematics. Its pie sector is (16 ÷ 40) × 360° = 144°, the Mathematics share of a full circle.",
     "Medium",
     MATH_F1_C12_QUIZ_VISUALS.mathPreference40,
   ],
@@ -18017,7 +18770,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "Class 55–65 in a frequency table. What is its midpoint?",
     ["57.5", "60", "59.5", "62.5"],
     1,
-    "Midpoint = (55 + 65) ÷ 2 = 120 ÷ 2 = 60.",
+    "For class interval 55 to 65, add the lower and upper limits and divide by two: (55 + 65) ÷ 2 = 60. The midpoint is neither endpoint.",
     "Medium",
     MATH_F1_C12_QUIZ_VISUALS.midpointClasses,
   ],
@@ -18099,10 +18852,10 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     MATH_F1_C12_QUIZ_VISUALS.runnerAgesStems,
   ],
   [
-    "A category's percentage in a pie chart = 25%. What is the sector angle?",
+    "The pie chart shows category X. What is the angle of sector X?",
     ["60°", "75°", "100°", "90°"],
     3,
-    "25% × 360° = 0.25 × 360° = 90°.",
+    "A full pie chart is 360°. Convert 25% to 0.25 and multiply: 0.25 × 360° = 90°. This sector is one-quarter of the circle.",
     "Medium",
     MATH_F1_C12_QUIZ_VISUALS.quarterCategory,
   ],
@@ -18110,7 +18863,7 @@ const MATH_C12_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     "30 students were surveyed. The frequency of category X is 12. What is the sector angle for X in a pie chart?",
     ["144°", "130°", "140°", "120°"],
     0,
-    "Angle = (12÷30) × 360° = 0.4 × 360° = 144°.",
+    "There are 12 in this category out of 30 altogether. Its pie sector angle is (12 ÷ 30) × 360° = 144°, which represents 40% of the whole.",
     "Medium",
     MATH_F1_C12_QUIZ_VISUALS.survey30,
   ],
@@ -18222,7 +18975,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Graf garis menunjukkan suhu setiap jam pada suatu hari. Buat inferens dan ramalkan suhu pada pukul 15:00.",
-    ["Suhu akan terus meningkat, sekitar 36°C", "Suhu akan kekal pada 32°C sepanjang petang", "Tidak ada corak yang jelas dalam data", "Suhu naik hingga tengah hari, kemudian turun — sekitar 30°C"],
+    [
+      "Naik berterusan; ramalan 36°C",
+      "Kekal sepanjang petang; ramalan 32°C",
+      "Turun berterusan; ramalan 20°C",
+      "Naik lalu turun; ramalan 30°C",
+    ],
     3,
     "Suhu naik hingga 35°C pada pukul 12:00, kemudian turun: 35 → 34 → 32 (kira-kira 2°C sejam). Ramalan pada pukul 15:00: kira-kira 30°C.",
     "Hard",
@@ -18262,7 +19020,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Graf garis menunjukkan peratusan kelulusan sebuah sekolah dari tahun 2019 hingga 2023. Buat inferens.",
-    ["Tiada corak yang jelas dalam peratusan kelulusan", "Peratusan kelulusan secara umumnya meningkat walaupun menurun pada 2020", "Peratusan kelulusan menurun setiap tahun", "Data tidak mencukupi untuk sebarang inferens"],
+    [
+      "Umumnya menurun selepas 2020",
+      "Umumnya meningkat selepas 2020",
+      "Kekal sama sepanjang tempoh",
+      "Tiada perubahan antara tahun",
+    ],
     1,
     "Baca titik: 78%, 75%, 80%, 83% dan 85%. Graf turun sedikit pada 2020, kemudian naik setiap tahun. Inferens: peratusan kelulusan secara umumnya meningkat.",
     "Hard",
@@ -18306,7 +19069,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Plot titik menunjukkan bilangan soalan yang dijawab dengan betul oleh sekumpulan murid. Apakah inferens yang paling sesuai?",
-    ["Data tersebar sama rata dari 5 hingga 12", "Tiada pencilan kerana semua nilai direkodkan", "Kebanyakan nilai antara 6 hingga 8, dan 12 ialah pencilan", "Data mempunyai dua mod, iaitu 7 dan 12"],
+    [
+      "Kelompok 5–12; tiada pencilan",
+      "Kelompok 6–8; pencilan 5",
+      "Kelompok 6–8; pencilan 12",
+      "Mod 7 dan 12; tiada pencilan",
+    ],
     2,
     "Kebanyakan titik berkumpul pada 6 hingga 8. Titik di 12 terpisah jauh daripada kumpulan itu, jadi 12 ialah pencilan.",
     "Hard",
@@ -18353,7 +19121,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Poligon kekerapan menunjukkan markah ujian Kelas X dan Kelas Y. Apakah inferens yang paling sesuai?",
-    ["Kedua-dua kelas mempunyai prestasi yang sama", "Kelas X berprestasi lebih baik daripada Kelas Y", "Kelas X cenderung mendapat markah lebih rendah; Y lebih tinggi", "Tiada inferens boleh dibuat daripada poligon"],
+    [
+      "Markah X cenderung lebih tinggi",
+      "Markah X dan Y cenderung sama",
+      "Markah X cenderung lebih rendah",
+      "Markah X dan Y tidak boleh dibanding",
+    ],
     2,
     "Poligon Kelas X paling tinggi di sebelah kiri (kemuncak 10 pada titik tengah 55), manakala poligon Kelas Y paling tinggi di sebelah kanan (kemuncak 10 pada 75). Jadi Kelas X cenderung mendapat markah lebih rendah dan Kelas Y lebih tinggi.",
     "Hard",
@@ -18361,7 +19134,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Graf garis menunjukkan jualan bulanan sebuah kedai dalam setahun. Buat inferens tentang corak perniagaan.",
-    ["Jualan tidak menentu dan rawak sepanjang tahun", "Corak bermusim: tinggi pada separuh pertama, rendah pada separuh kedua", "Perniagaan mengalami kerugian pada separuh kedua", "Data tidak mencukupi untuk membuat sebarang inferens"],
+    [
+      "Separuh kedua lebih tinggi",
+      "Separuh pertama lebih tinggi",
+      "Kedua-dua separuh sama tinggi",
+      "Jualan rawak tanpa corak",
+    ],
     1,
     "Garis naik dari Januari hingga Jun, kemudian turun dari Julai hingga Disember. Ini corak bermusim: jualan tinggi pada separuh pertama tahun dan lebih rendah pada separuh kedua.",
     "Hard",
@@ -18370,10 +19148,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Seorang pengkaji hanya melaporkan data yang menyokong hipotesisnya dan mengabaikan data yang bertentangan. Ini adalah:",
     [
-      "Amalan statistik yang baik",
-      "Cara biasa dalam penyelidikan",
-      "Dibenarkan jika sampel kecil",
-      "Amalan tidak beretika (memilih-milih data)",
+      "Pemilihan data secara rawak",
+      "Pelaporan data secara lengkap",
+      "Pengumpulan data berulang",
+      "Pemilihan data berat sebelah",
     ],
     3,
     "Memilih-milih data (cherry-picking) adalah amalan tidak beretika yang menghasilkan kesimpulan yang mengelirukan atau palsu.",
@@ -18406,10 +19184,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Apakah langkah pertama yang MESTI dilakukan semasa mentafsir sebarang carta atau graf?",
     [
-      "Kira julat data terlebih dahulu",
-      "Bandingkan carta dengan data lain",
-      "Cari nilai tertinggi dalam carta",
-      "Baca tajuk untuk mengetahui apa yang ditunjukkan",
+      "Kira julat data",
+      "Bandingkan carta lain",
+      "Cari nilai tertinggi",
+      "Baca tajuk carta",
     ],
     3,
     "Langkah pertama ialah membaca tajuk carta untuk memahami apa yang sedang diwakili. Tanpa ini, tafsiran mungkin tersalah.",
@@ -18417,7 +19195,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Graf garis menunjukkan bilangan kes suatu penyakit dari tahun 2015 hingga 2024. Apakah ramalan dan inferens yang tepat?",
-    ["Kes menurun secara konsisten dan dijangka terus menurun", "Kes akan mula meningkat semula tahun depan", "Data tidak mencukupi untuk sebarang inferens", "Penyakit itu tidak lagi berbahaya"],
+    [
+      "Menurun; dijangka terus menurun",
+      "Menurun; dijangka meningkat semula",
+      "Meningkat; dijangka terus meningkat",
+      "Meningkat; dijangka menurun semula",
+    ],
     0,
     "Garis menurun setiap tahun tanpa naik semula. Jika trend ini berterusan, bilangan kes dijangka terus menurun.",
     "Hard",
@@ -18425,7 +19208,7 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   ],
   [
     "Histogram menunjukkan tinggi murid sebuah kelas. Inferens manakah yang paling sesuai?",
-    ["Kebanyakan murid sangat rendah", "Kebanyakan murid sangat tinggi", "Kebanyakan murid mempunyai tinggi sederhana", "Semua murid sama tinggi"],
+    ["Sangat rendah", "Sangat tinggi", "Tinggi sederhana", "Semua sama tinggi"],
     2,
     "Palang tertinggi berada di tengah (150–155 cm, 12 murid), manakala palang di kedua-dua hujung rendah (2 dan 3 murid). Jadi kebanyakan murid mempunyai tinggi sederhana.",
     "Hard",
@@ -18442,10 +19225,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
   [
     "Data: 2, 4, 6, 8, 10. Seorang murid menambah satu lagi data: 100. Apakah kesan ke atas julat?",
     [
-      "Julat tidak berubah langsung",
-      "Julat meningkat daripada 8 kepada 98",
-      "Julat berkurang daripada 8",
-      "Julat kekal kira-kira 8",
+      "Meningkat: 8 kepada 100",
+      "Meningkat: 8 kepada 98",
+      "Menurun: 8 kepada 2",
+      "Kekal: 8 kepada 8",
     ],
     1,
     "Julat asal = 10−2 = 8. Dengan data 100: Julat = 100−2 = 98. Pencilan (100) membesarkan julat dengan sangat ketara.",
@@ -18512,7 +19295,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The line graph shows the temperature every hour on one day. Make an inference and predict the temperature at 15:00.",
-    ["It will keep rising, to about 36°C", "It will stay at 32°C all afternoon", "There is no clear pattern in the data", "It rises until noon, then falls — about 30°C"],
+    [
+      "Continuous rise; prediction 36°C",
+      "Steady all afternoon; prediction 32°C",
+      "Continuous fall; prediction 20°C",
+      "Rise then fall; prediction 30°C",
+    ],
     3,
     "The temperature rises to 35°C at 12:00, then falls: 35 → 34 → 32 (about 2°C per hour). Prediction at 15:00: about 30°C.",
     "Hard",
@@ -18552,7 +19340,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The line graph shows the pass rate of a school from 2019 to 2023. Make an inference.",
-    ["There is no clear pattern in the pass rates", "Pass rates are generally rising despite the 2020 dip", "Pass rates are falling year after year", "The data is not enough for any inference"],
+    [
+      "Generally falls after 2020",
+      "Generally rises after 2020",
+      "Stays constant throughout",
+      "Shows no changes between years",
+    ],
     1,
     "Read the points: 78%, 75%, 80%, 83% and 85%. The graph dips slightly in 2020, then rises every year. Inference: the pass rate is generally rising.",
     "Hard",
@@ -18596,7 +19389,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The dot plot shows the number of questions a group of students answered correctly. What is the most appropriate inference?",
-    ["The data is spread evenly from 5 to 12", "There are no outliers because every value is recorded", "Most values lie from 6 to 8, and 12 is an outlier", "The data has two modes, 7 and 12"],
+    [
+      "Cluster 5–12; no outlier",
+      "Cluster 6–8; outlier 5",
+      "Cluster 6–8; outlier 12",
+      "Modes 7 and 12; no outlier",
+    ],
     2,
     "Most dots cluster from 6 to 8. The dot at 12 lies far from that cluster, so 12 is an outlier.",
     "Hard",
@@ -18643,7 +19441,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The frequency polygons show the test marks of Class X and Class Y. What is the most appropriate inference?",
-    ["Both classes have the same performance", "Class X performs better than Class Y", "Class X tends to score lower; Class Y tends to score higher", "No inference can be made from the polygons"],
+    [
+      "Class X tends to score higher",
+      "Both classes tend to score equally",
+      "Class X tends to score lower",
+      "The classes cannot be compared",
+    ],
     2,
     "The Class X polygon is highest on the left (a peak of 10 at the midpoint 55), while the Class Y polygon is highest on the right (a peak of 10 at 75). So Class X tends to score lower and Class Y tends to score higher.",
     "Hard",
@@ -18651,7 +19454,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The line graph shows the monthly sales of a shop over one year. Make an inference about the business pattern.",
-    ["Sales are erratic and random throughout the year", "A seasonal pattern: high in the first half, lower in the second", "The business makes a loss in the second half", "The data is not enough to make any inference"],
+    [
+      "Higher in the second half",
+      "Higher in the first half",
+      "Equal in both halves",
+      "Random with no pattern",
+    ],
     1,
     "The line rises from January to June, then falls from July to December. This is a seasonal pattern: sales are high in the first half of the year and lower in the second half.",
     "Hard",
@@ -18660,10 +19468,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "A researcher only reports data supporting their hypothesis and ignores contradictory data. This is:",
     [
-      "Good statistical practice",
-      "Normal practice in research",
-      "Allowed if the sample is small",
-      "Unethical practice (cherry-picking data)",
+      "Random data selection",
+      "Complete data reporting",
+      "Repeated data collection",
+      "Biased data selection",
     ],
     3,
     "Cherry-picking data (selecting only supporting data) is unethical and produces misleading or false conclusions.",
@@ -18696,10 +19504,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "What is the FIRST step that MUST be done when interpreting any chart or graph?",
     [
-      "Calculate the range of the data first",
-      "Compare the chart with other data",
-      "Find the highest value in the chart",
-      "Read the title to know what is shown",
+      "Calculate the data range",
+      "Compare another chart",
+      "Find the highest value",
+      "Read the chart title",
     ],
     3,
     "The first step is to read the chart title to understand what is being represented. Without this, interpretation may be incorrect.",
@@ -18707,7 +19515,12 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The line graph shows the number of cases of a disease from 2015 to 2024. What is the correct prediction and inference?",
-    ["Cases are falling steadily and are likely to keep falling", "Cases will start rising again next year", "The data is not enough for any inference", "The disease is no longer dangerous"],
+    [
+      "Falling; likely to keep falling",
+      "Falling; likely to rise again",
+      "Rising; likely to keep rising",
+      "Rising; likely to fall again",
+    ],
     0,
     "The line falls every year without rising again. If this trend continues, the number of cases is expected to keep falling.",
     "Hard",
@@ -18715,7 +19528,7 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   ],
   [
     "The histogram shows the heights of the students in a class. Which inference is most suitable?",
-    ["Most students are very short", "Most students are very tall", "Most students are of medium height", "All the students are the same height"],
+    ["Very short", "Very tall", "Medium height", "All the same height"],
     2,
     "The tallest bar is in the middle (150–155 cm, 12 students), while the bars at both ends are short (2 and 3 students). So most students are of medium height.",
     "Hard",
@@ -18732,10 +19545,10 @@ const MATH_C12_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
   [
     "Data: 2, 4, 6, 8, 10. A student adds one more data point: 100. What is the effect on the range?",
     [
-      "The range does not change at all",
-      "The range increases from 8 to 98",
-      "The range decreases from 8",
-      "The range stays at about 8",
+      "Increases: 8 to 100",
+      "Increases: 8 to 98",
+      "Decreases: 8 to 2",
+      "Unchanged: 8 to 8",
     ],
     1,
     "Original range = 10−2 = 8. With data 100: Range = 100−2 = 98. The outlier (100) drastically increases the range.",
@@ -21724,15 +22537,22 @@ function QuizSettingsScreen({
             onClick={() => setMode("timer")}
             aria-pressed={mode === "timer"}
             aria-label="Timed quiz. Select 15, 30, or 60 seconds per question. Timer choice does not change XP."
-            className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
+            className={`group relative text-center glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
               mode === "timer"
                 ? "border-2 border-primary shadow-[0_0_30px_oklch(0.63_0.22_295_/_0.55)] scale-[1.02]"
                 : "border border-white/10 hover:border-primary/40"
             }`}
           >
             <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-rose-500 to-nova-yellow opacity-20 blur-2xl" />
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-nova-yellow flex items-center justify-center text-3xl mb-3 shadow-lg animate-float-soft">
-              <span>⏱️</span>
+            <div className="relative z-10 mx-auto mb-3 flex h-36 w-full max-w-[256px] items-center justify-center sm:h-40" aria-hidden="true">
+              <img
+                src={quizTimedArtwork}
+                alt=""
+                width={256}
+                height={200}
+                draggable={false}
+                className="h-full w-full object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-[1.05]"
+              />
             </div>
             <h3 className="font-display text-xl font-bold">With Timer</h3>
             <p className="mt-1 text-sm font-semibold gradient-text">Race against the clock!</p>
@@ -21786,15 +22606,22 @@ function QuizSettingsScreen({
             onClick={() => setMode("none")}
             aria-pressed={mode === "none"}
             aria-label={`No Timer${mode === "none" ? ", selected" : ""}`}
-            className={`relative text-left glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
+            className={`group relative text-center glass rounded-2xl p-6 transition-all duration-300 overflow-hidden hover:-translate-y-0.5 ${
               mode === "none"
                 ? "border-2 border-accent shadow-[0_0_30px_oklch(0.7_0.18_180_/_0.5)] scale-[1.02]"
                 : "border border-white/10 hover:border-accent/40"
             }`}
           >
             <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br from-emerald-400 to-sky-400 opacity-20 blur-2xl" />
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-sky-400 flex items-center justify-center text-3xl mb-3 shadow-lg animate-float-soft">
-              <span>🧘</span>
+            <div className="relative z-10 mx-auto mb-3 flex h-36 w-full max-w-[256px] items-center justify-center sm:h-40" aria-hidden="true">
+              <img
+                src={quizUntimedArtwork}
+                alt=""
+                width={256}
+                height={200}
+                draggable={false}
+                className="h-full w-full object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-[1.05]"
+              />
             </div>
             <h3 className="font-display text-xl font-bold">No Timer</h3>
             <p className="mt-1 text-sm font-semibold gradient-text">Answer at your own pace.</p>

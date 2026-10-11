@@ -24,14 +24,29 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
 }
 
 export const mathF3C2QuestionBankBM: QuizQuestion[] = buildQuiz([
-  ["Easy", "Apakah fungsi angka bererti?", ["Menunjukkan tahap kejituan ukuran", "Menunjukkan jenis nombor", "Menunjukkan tanda nombor", "Menunjukkan unit ukuran"], 0],
+  [
+    "Easy",
+    "Apakah fungsi angka bererti?",
+    ["Kejituan ukuran", "Jenis nombor", "Tanda nombor", "Unit ukuran"],
+    0,
+  ],
   ["Easy", "Berapa angka bererti dalam 2 763?", ["4", "3", "2", "1"], 0],
   ["Easy", "Berapa angka bererti dalam 60 007?", ["5", "4", "3", "2"], 0],
   ["Easy", "Berapa angka bererti dalam 0.007?", ["1", "2", "3", "4"], 0],
   ["Easy", "Berapa angka bererti dalam 0.005020?", ["4", "3", "2", "6"], 0],
   ["Easy", "Bundarkan 63 479 kepada 2 a.b.", ["63 000", "63 500", "64 000", "63 480"], 0],
   ["Easy", "Bundarkan 2 476 kepada 2 a.b.", ["2 500", "2 400", "2 480", "2 000"], 0],
-  ["Easy", "Apakah format bentuk piawai?", ["A × 10^n, 1 ≤ A < 10, n integer", "A × 10^n, 0 < A < 1", "A × 10^n, A boleh sebarang", "A + 10^n"], 0],
+  [
+    "Easy",
+    "Apakah format bentuk piawai?",
+    [
+      "A × 10^n; 1 ≤ A < 10; n integer",
+      "A × 10^n; 0 < A < 1; n integer",
+      "A × 10^n; 1 < A ≤ 10; n integer",
+      "A + 10^n; 1 ≤ A < 10; n integer",
+    ],
+    0,
+  ],
   ["Easy", "Tukar 280 kepada bentuk piawai.", ["2.8 × 10^2", "28 × 10^1", "2.8 × 10^3", "0.28 × 10^3"], 0],
   ["Easy", "Tukar 2 805.3 kepada bentuk piawai.", ["2.8053 × 10^3", "2.8053 × 10^4", "28.053 × 10^2", "2.8053 × 10^2"], 0],
   ["Easy", "Tukar 4.17 × 10^5 kepada nombor tunggal.", ["417 000", "41 700", "4 170 000", "417"], 0],
@@ -82,7 +97,17 @@ export const mathF3C2QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Hard", "Diberi m=3.2 × 10^3, n=5.43 × 10^4, hitung m^-2+n^-3 dalam bentuk piawai 3 a.b.", ["9.77 × 10^(-8)", "9.77 × 10^-5", "9.77 × 10^-2", "1 × 10^-7"], 0],
   ["Hard", "Purata penggunaan air 6 950 m^3 sehari. Hitung jumlah penggunaan Februari 2016 (29 hari, tahun lompat) dalam bentuk piawai 3 a.b.", ["2.02 × 10^5 m^3", "2.02 × 10^4 m^3", "2.45 × 10^5 m^3", "2.02 × 10^6 m^3"], 0],
   ["Hard", "Kertas A4 mempunyai ukuran 297 mm × 210 mm dan 70 GSM (70 g/m^2). Hitung jisim sehelai dalam gram, bentuk piawai kepada 3 a.b.", ["4.37 × 10^0 g", "4.37 × 10^1 g", "4.37 × 10^-1 g", "6.24 × 10^1 g"], 0],
-  ["Hard", "Apakah kesilapan dalam langkah '7.02 × 10^4 + 2.17 × 10^5 = 9.19 × 10^9'?", ["Sepatutnya samakan kuasa 10 dahulu, bukan terus menambah indeks", "Jawapan sudah betul", "Sepatutnya ditolak bukan ditambah", "Sepatutnya darab nilai A"], 0],
+  [
+    "Hard",
+    "Apakah kesilapan dalam langkah '7.02 × 10^4 + 2.17 × 10^5 = 9.19 × 10^9'?",
+    [
+      "Samakan kuasa 10 sebelum tambah",
+      "Tambah indeks sebelum tambah A",
+      "Darab A dan darab kuasa 10",
+      "Tolak kuasa 10 sebelum tambah A",
+    ],
+    0,
+  ],
 ]);
 
 export const mathF3C2QuizzesBM: QuizQuestion[] = buildForm3MathQuizSets(2, mathF3C2QuestionBankBM);

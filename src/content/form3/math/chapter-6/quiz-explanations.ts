@@ -214,8 +214,8 @@ export const MATH_F3_C6_QUIZ_EXPLANATIONS: Record<number, LocalizedText> = {
     dlp: "The alternate segment theorem gives ∠LBA = ∠KLA = 54°.",
   },
   "54": {
-    bm: "Jejari berserenjang dengan tangen. Dengan sudut pusat dua kali sudut pada lilitan serta segi tiga sama kaki yang dibentuk oleh dua jejari, sudut tangen-perentas sama dengan sudut tembereng selang-seli.",
-    dlp: "The radius is perpendicular to the tangent. Combining the central-angle theorem with the isosceles triangle formed by two radii shows that the tangent–chord angle equals the angle in the alternate segment.",
+    bm: "Menurut teorem sudut tangen-perentas, sudut tangen dengan AB sama dengan sudut ACB dalam tembereng selang-seli, iaitu 52°.",
+    dlp: "By the Alternate Segment Theorem, the tangent–AB angle equals angle ACB in the alternate segment, 52°.",
   },
   "55": {
     bm: "Sudut bertentangan memberi ∠ADC = 180° − 110° = 70°. Dalam segi tiga ACD, ∠ACD = 180° − 70° − 25° = 85°. Teorem tembereng selang-seli memberi ∠TAD = ∠ACD = 85°.",

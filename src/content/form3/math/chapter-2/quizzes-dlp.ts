@@ -24,14 +24,29 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
 }
 
 export const mathF3C2QuestionBankDLP: QuizQuestion[] = buildQuiz([
-  ["Easy", "What does a significant figure indicate?", ["The level of accuracy of a measurement", "The type of number", "The sign of a number", "The unit of measurement"], 0],
+  [
+    "Easy",
+    "What does a significant figure indicate?",
+    ["Accuracy", "Measurement unit", "Number sign", "Number type"],
+    0,
+  ],
   ["Easy", "How many significant figures are in 2 763?", ["4", "3", "2", "1"], 0],
   ["Easy", "How many significant figures are in 60 007?", ["5", "4", "3", "2"], 0],
   ["Easy", "How many significant figures are in 0.007?", ["1", "2", "3", "4"], 0],
   ["Easy", "How many significant figures are in 0.005020?", ["4", "3", "2", "6"], 0],
   ["Easy", "Round 63 479 to 2 s.f.", ["63 000", "63 500", "64 000", "63 480"], 0],
   ["Easy", "Round 2 476 to 2 s.f.", ["2 500", "2 400", "2 480", "2 000"], 0],
-  ["Easy", "What is the standard form format?", ["A × 10^n, 1 ≤ A < 10, n is an integer", "A × 10^n, 0 < A < 1", "A × 10^n, A can be any value", "A + 10^n"], 0],
+  [
+    "Easy",
+    "What is the standard form format?",
+    [
+      "A × 10^n; 1 ≤ A < 10; n integer",
+      "A × 10^n; 0 < A < 1; n integer",
+      "A × 10^n; 1 < A ≤ 10; n integer",
+      "A + 10^n; 1 ≤ A < 10; n integer",
+    ],
+    0,
+  ],
   ["Easy", "Convert 280 to standard form.", ["2.8 × 10^2", "28 × 10^1", "2.8 × 10^3", "0.28 × 10^3"], 0],
   ["Easy", "Convert 2 805.3 to standard form.", ["2.8053 × 10^3", "2.8053 × 10^4", "28.053 × 10^2", "2.8053 × 10^2"], 0],
   ["Easy", "Convert 4.17 × 10^5 to a single number.", ["417 000", "41 700", "4 170 000", "417"], 0],
@@ -82,7 +97,17 @@ export const mathF3C2QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Hard", "Given m=3.2 × 10^3, n=5.43 × 10^4, find m^-2+n^-3 in standard form to 3 s.f.", ["9.77 × 10^(-8)", "9.77 × 10^-5", "9.77 × 10^-2", "1 × 10^-7"], 0],
   ["Hard", "Average water usage is 6 950 m^3 per day. Find the total usage for February 2016 (29 days, leap year) in standard form to 3 s.f.", ["2.02 × 10^5 m^3", "2.02 × 10^4 m^3", "2.45 × 10^5 m^3", "2.02 × 10^6 m^3"], 0],
   ["Hard", "An A4 sheet measures 297 mm × 210 mm and is 70 GSM (70 g/m^2). Find the mass of one sheet in grams, in standard form to 3 s.f.", ["4.37 × 10^0 g", "4.37 × 10^1 g", "4.37 × 10^-1 g", "6.24 × 10^1 g"], 0],
-  ["Hard", "What is the mistake in this step: '7.02 × 10^4 + 2.17 × 10^5 = 9.19 × 10^9'?", ["The powers of 10 should be equalised first, not directly added as indices", "The answer is already correct", "It should be subtracted, not added", "The A values should be multiplied"], 0],
+  [
+    "Hard",
+    "What is the mistake in this step: '7.02 × 10^4 + 2.17 × 10^5 = 9.19 × 10^9'?",
+    [
+      "Equalise powers of 10 before adding",
+      "Add indices before adding A values",
+      "Multiply A values and powers of 10",
+      "Subtract powers of 10 before adding A",
+    ],
+    0,
+  ],
 ]);
 
 export const mathF3C2QuizzesDLP: QuizQuestion[] = buildForm3MathQuizSets(2, mathF3C2QuestionBankDLP);

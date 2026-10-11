@@ -32,7 +32,7 @@ const foundation: PairedQuizSeed[] = [
   q(
     "Apakah kecerunan garis menegak?",
     "What is the gradient of a vertical line?",
-    ["Tidak ditentukan", "Undefined"],
+    ["Tak tertakrif", "Undefined"],
     [
       ["Sifar", "Zero"],
       ["Satu", "One"],

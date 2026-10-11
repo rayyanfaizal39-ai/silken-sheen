@@ -142,7 +142,7 @@ export const MATH_F1_C12_QUIZ_VISUALS = {
       { label: "A", angle: 90, text: "90°" },
       { label: "B", angle: 120, text: "120°" },
       { label: "C", angle: 80, text: "80°" },
-      { label: "D", angle: 70, text: "x" },
+      { label: "D", angle: 70, text: "70°" },
     ],
   },
   scienceClubAttendance: {

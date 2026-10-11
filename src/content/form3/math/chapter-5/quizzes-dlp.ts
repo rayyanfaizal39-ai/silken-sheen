@@ -25,10 +25,30 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
 }
 
 export const mathF3C5QuestionBankDLP: QuizQuestion[] = buildQuiz([
-  ["Easy", "What is the hypotenuse in a right-angled triangle?", ["The longest side, opposite the 90° angle", "The shortest side", "The side adjacent to the acute angle", "Only the horizontal side"], 0],
+  [
+    "Easy",
+    "What is the hypotenuse in a right-angled triangle?",
+    [
+      "The side opposite the 90° angle",
+      "The side opposite the smallest angle",
+      "The side beside the smallest angle",
+      "Any side of the triangle",
+    ],
+    0,
+  ],
   ["Easy", "What is the formula for sin θ?", ["Opposite side / hypotenuse", "Adjacent side / hypotenuse", "Opposite side / adjacent side", "Hypotenuse / opposite side"], 0],
   ["Easy", "What is the formula for cos θ?", ["Adjacent side / hypotenuse", "Opposite side / hypotenuse", "Opposite side / adjacent side", "Hypotenuse / adjacent side"], 0],
-  ["Easy", "What is the formula for tan θ?", ["Opposite side / adjacent side", "Adjacent side / hypotenuse", "Opposite side / hypotenuse", "Hypotenuse / opposite side"], 0],
+  [
+    "Easy",
+    "What is the formula for tan θ?",
+    [
+      "Opposite / adjacent",
+      "Adjacent / opposite",
+      "Opposite / hypotenuse",
+      "Adjacent / hypotenuse",
+    ],
+    0,
+  ],
   ["Easy", "What is the formula for tan θ in terms of sin and cos?", ["tan θ = sin θ / cos θ", "tan θ = cos θ / sin θ", "tan θ = sin θ x cos θ", "tan θ = sin θ + cos θ"], 0],
   ["Easy", "What is the value of sin 30°?", ["1/2", "√3/2", "1", "1/√2"], 0],
   ["Easy", "What is the value of cos 60°?", ["1/2", "√3/2", "1", "0"], 0],
@@ -40,7 +60,17 @@ export const mathF3C5QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Easy", "Convert 43° 30' to degrees.", ["43.5°", "43.3°", "44°", "43.03°"], 0],
   ["Easy", "What happens to sin θ as θ increases from 0° to 90°?", ["Increases toward 1", "Decreases toward 0", "Stays the same", "Decreases toward -1"], 0],
   ["Easy", "What happens to cos θ as θ increases from 0° to 90°?", ["Decreases toward 0", "Increases toward 1", "Stays the same", "Increases without bound"], 0],
-  ["Easy", "As θ approaches 90° from below, how does tan θ change?", ["Increases without bound", "Decreases to 0", "Stays at 1", "Becomes negative"], 0],
+  [
+    "Easy",
+    "As θ approaches 90° from below, how does tan θ change?",
+    [
+      "Increases without bound",
+      "Decreases towards zero",
+      "Stays at a value of one",
+      "Stays at a negative value",
+    ],
+    0,
+  ],
   ["Easy", "Triangle PQR is right-angled at Q, with PQ = 15 cm and QR = 8 cm. Find PR.", ["17 cm", "23 cm", "7 cm", "13 cm"], 0],
   ["Easy", "Triangle PQR is right-angled at Q, with PQ = 15 cm and QR = 8 cm. Find sin∠PRQ.", ["15/17", "8/17", "8/15", "17/15"], 0],
   ["Easy", "If sin θ=0.6 and cos θ=0.8, find tan θ.", ["0.75", "1.33", "0.48", "1.4"], 0],
@@ -81,7 +111,17 @@ export const mathF3C5QuestionBankDLP: QuizQuestion[] = buildQuiz([
   ["Hard", "Triangle ABC is right-angled at B. If sin∠BAC = 3/5, find ∠BAC to the nearest degree.", ["37°", "53°", "30°", "60°"], 0],
   ["Hard", "A right-angled triangle has opposite side 3 units, adjacent side 4 units and hypotenuse 5 units relative to θ. Find θ to 2 decimal places.", ["36.87°", "45.00°", "60.00°", "30.00°"], 0],
   ["Hard", "Triangle DEF is right-angled at E. P lies on DF and EP is perpendicular to DF. If DP = 12 cm and EP = 5 cm, find sin∠EDP.", ["5/13", "5/12", "12/13", "13/5"], 0],
-  ["Hard", "Why do trigonometric ratios for the same angle stay the same even when triangle sizes differ?", ["The triangles are similar (same angles, proportional sides)", "Because the hypotenuse is always the same length", "Because the 90° angle changes", "It is purely coincidental"], 0],
+  [
+    "Hard",
+    "Why do trigonometric ratios for the same angle stay the same even when triangle sizes differ?",
+    [
+      "The triangles are similar",
+      "The triangles are congruent",
+      "Both hypotenuses are equal",
+      "Both right angles change",
+    ],
+    0,
+  ],
 ]);
 
 export const mathF3C5QuizzesDLP: QuizQuestion[] = buildForm3MathQuizSets(5, mathF3C5QuestionBankDLP);

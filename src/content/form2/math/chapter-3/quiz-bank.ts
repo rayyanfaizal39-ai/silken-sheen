@@ -20,13 +20,22 @@ export const mathF2C3PairedSeeds: readonly PairedQuizSeed[] = [
     "Apakah rumus algebra?",
     "What is an algebraic formula?",
     [
-      "Persamaan yang menghubungkan dua atau lebih pemboleh ubah",
-      "An equation relating two or more variables",
+      "Persamaan yang menghubungkan pemboleh ubah",
+      "An equation relating variables",
     ],
     [
-      ["Ungkapan yang hanya mengandungi nombor", "An expression containing numbers only"],
-      ["Senarai nombor mengikut tertib", "A list of numbers in order"],
-      ["Pernyataan tanpa tanda sama dengan", "A statement without an equals sign"],
+      [
+        "Ungkapan yang hanya mengandungi nombor",
+        "An expression containing only numbers",
+      ],
+      [
+        "Senarai nombor yang mengikut suatu tertib",
+        "A list of numbers arranged in order",
+      ],
+      [
+        "Pernyataan yang tiada tanda sama dengan",
+        "A statement without an equals sign",
+      ],
     ],
     "Rumus algebra ialah persamaan yang menunjukkan hubungan antara pemboleh ubah.",
     "An algebraic formula is an equation that shows a relationship between variables.",

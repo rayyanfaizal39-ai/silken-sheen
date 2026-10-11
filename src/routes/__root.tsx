@@ -238,7 +238,10 @@ function RootComponent() {
   const router = useRouter();
   const pathname = router.state.location.pathname;
   const isMarketingPage =
-    pathname === "/" || pathname === "/explore-academy" || pathname.startsWith("/academy/");
+    pathname === "/" ||
+    pathname === "/card" ||
+    pathname === "/explore-academy" ||
+    pathname.startsWith("/academy/");
   const isMinimalPublicPage = isMarketingPage || isPublicAuthRoute(pathname);
 
   useEffect(() => {

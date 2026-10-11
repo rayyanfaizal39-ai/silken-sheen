@@ -146,14 +146,11 @@ const foundation: PairedQuizSeed[] = [
   q(
     "Ujian garis menegak digunakan untuk apa?",
     "What is the vertical-line test used for?",
+    ["Mengenal pasti graf fungsi", "Identifying a function graph"],
     [
-      "Menentukan sama ada graf mewakili fungsi",
-      "To determine whether a graph represents a function",
-    ],
-    [
-      ["Mencari luas di bawah graf", "To find the area under a graph"],
-      ["Mencari titik tengah", "To find a midpoint"],
-      ["Menukar skala paksi", "To change the axis scale"],
+      ["Mengenal pasti luas bawah graf", "Identifying the area under a graph"],
+      ["Mengenal pasti titik tengah graf", "Identifying a graph’s midpoint"],
+      ["Mengenal pasti skala paksi graf", "Identifying a graph’s axis scale"],
     ],
     "Graf fungsi dipotong paling banyak sekali oleh setiap garis menegak.",
     "A function graph is crossed at most once by every vertical line.",

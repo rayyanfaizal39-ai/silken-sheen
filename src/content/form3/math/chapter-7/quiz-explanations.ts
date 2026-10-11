@@ -66,8 +66,8 @@ export const MATH_F3_C7_QUIZ_EXPLANATIONS: Record<number, LocalizedText> = {
     dlp: "The plan shows width and depth, while elevations provide height. Combining the views helps reconstruct the three-dimensional shape.",
   },
   "20": {
-    bm: "Pelan dan dongakan digunakan untuk menyampaikan bentuk dan ukuran dalam bidang kejuruteraan, pembinaan dan seni bina.",
-    dlp: "Plans and elevations communicate shapes and dimensions in engineering, construction and architecture.",
+    bm: "Dongakan hadapan menunjukkan panjang dan tinggi. Maka tinggi kuboid ialah 5 cm.",
+    dlp: "The front elevation shows length and height. Therefore the cuboid is 5 cm high.",
   },
   "10": {
     bm: "Dalam susunan ini, pelan terletak di bawah dongakan depan dan lebarnya dijajarkan.",

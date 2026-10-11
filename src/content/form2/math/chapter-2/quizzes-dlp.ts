@@ -10,9 +10,9 @@ export const mathF2C2FoundationQuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     question: "What does the expansion of an algebraic expression mean?",
     options: [
-      "Writing an expression as a product of factors",
-      "Multiplying a term by the expression inside brackets and simplifying",
-      "Dividing every term by a variable",
+      "Factorising to introduce brackets",
+      "Multiplying to remove brackets",
+      "Dividing each term by a variable",
       "Substituting a number for a variable",
     ],
     answerIndex: 1,

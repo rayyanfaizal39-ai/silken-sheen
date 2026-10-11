@@ -65,6 +65,11 @@ export const MATH_F3_C4_QUIZ_VISUALS: Partial<
     rectangle(drawing, "?", "?", [], 1),
   ),
   18: plan("7 cm", "5 cm", "400"),
+  19: diagram(
+    t("Panjang sepadan", "Corresponding lengths"),
+    segment(drawing, "?", "1:200"),
+    segment(object, "40 m"),
+  ),
   21: grids("2 cm", "1 cm"),
   22: grids("0.5 cm", "1 cm"),
   23: diagram(

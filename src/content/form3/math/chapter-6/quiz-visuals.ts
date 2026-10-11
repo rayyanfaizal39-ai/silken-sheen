@@ -87,6 +87,16 @@ function externalTangent() {
 export const MATH_F3_C6_QUIZ_VISUALS: Partial<
   Record<number, MathGeometryVisual>
 > = {
+  54: c(
+    { A: 0, B: 104, C: 230 },
+    ["ABC", "CA", "TAS"],
+    [
+      ["A", "C", "B", "52°"],
+      ["T", "A", "B", "x"],
+    ],
+    [],
+    { T: [225, 25], S: [225, 220] },
+  ),
   1: c({ A: 0, B: 190, C: 110, D: 270 }, ["AB", "BC", "AD", "DC"]),
   2: c({ P: 40, Q: 180, R: 320 }, ["PO", "OR", "PQ", "QR"]),
   3: c(

@@ -25,10 +25,30 @@ function buildQuiz(items: QuizSeed[]): QuizQuestion[] {
 }
 
 export const mathF3C5QuestionBankBM: QuizQuestion[] = buildQuiz([
-  ["Easy", "Apakah hipotenus dalam segi tiga bersudut tegak?", ["Sisi terpanjang, bertentangan sudut 90°", "Sisi terpendek", "Sisi bersebelahan sudut tirus", "Sisi mendatar sahaja"], 0],
+  [
+    "Easy",
+    "Apakah hipotenus dalam segi tiga bersudut tegak?",
+    [
+      "Sisi bertentangan sudut 90°",
+      "Sisi bertentangan sudut terkecil",
+      "Sisi bersebelahan sudut terkecil",
+      "Mana-mana sisi segi tiga",
+    ],
+    0,
+  ],
   ["Easy", "Apakah formula sin θ?", ["Sisi bertentangan / hipotenus", "Sisi bersebelahan / hipotenus", "Sisi bertentangan / sisi bersebelahan", "Hipotenus / sisi bertentangan"], 0],
   ["Easy", "Apakah formula kos θ?", ["Sisi bersebelahan / hipotenus", "Sisi bertentangan / hipotenus", "Sisi bertentangan / sisi bersebelahan", "Hipotenus / sisi bersebelahan"], 0],
-  ["Easy", "Apakah formula tan θ?", ["Sisi bertentangan / sisi bersebelahan", "Sisi bersebelahan / hipotenus", "Sisi bertentangan / hipotenus", "Hipotenus / sisi bertentangan"], 0],
+  [
+    "Easy",
+    "Apakah formula tan θ?",
+    [
+      "Bertentangan / bersebelahan",
+      "Bersebelahan / bertentangan",
+      "Bertentangan / hipotenus",
+      "Bersebelahan / hipotenus",
+    ],
+    0,
+  ],
   ["Easy", "Apakah formula tan θ dalam sebutan sin dan kos?", ["tan θ = sin θ / kos θ", "tan θ = kos θ / sin θ", "tan θ = sin θ x kos θ", "tan θ = sin θ + kos θ"], 0],
   ["Easy", "Apakah nilai sin 30°?", ["1/2", "√3/2", "1", "1/√2"], 0],
   ["Easy", "Apakah nilai kos 60°?", ["1/2", "√3/2", "1", "0"], 0],
@@ -40,7 +60,17 @@ export const mathF3C5QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Easy", "Tukar 43° 30' kepada darjah.", ["43.5°", "43.3°", "44°", "43.03°"], 0],
   ["Easy", "Apa yang terjadi pada sin θ apabila sudut θ bertambah dari 0° ke 90°?", ["Bertambah ke 1", "Berkurang ke 0", "Tetap sama", "Berkurang ke -1"], 0],
   ["Easy", "Apa yang terjadi pada kos θ apabila sudut θ bertambah dari 0° ke 90°?", ["Berkurang ke 0", "Bertambah ke 1", "Tetap sama", "Bertambah tanpa had"], 0],
-  ["Easy", "Apabila θ menghampiri 90° dari bawah, bagaimanakah nilai tan θ berubah?", ["Bertambah tanpa had", "Berkurang ke 0", "Tetap 1", "Menjadi negatif"], 0],
+  [
+    "Easy",
+    "Apabila θ menghampiri 90° dari bawah, bagaimanakah nilai tan θ berubah?",
+    [
+      "Bertambah tanpa had",
+      "Berkurang menuju sifar",
+      "Kekal pada nilai satu",
+      "Kekal pada nilai negatif",
+    ],
+    0,
+  ],
   ["Easy", "Segi tiga PQR bersudut tegak di Q, PQ = 15 cm dan QR = 8 cm. Hitung PR.", ["17 cm", "23 cm", "7 cm", "13 cm"], 0],
   ["Easy", "Segi tiga PQR bersudut tegak di Q, PQ = 15 cm dan QR = 8 cm. Hitung sin∠PRQ.", ["15/17", "8/17", "8/15", "17/15"], 0],
   ["Easy", "Jika sin θ=0.6 dan kos θ=0.8, hitung tan θ.", ["0.75", "1.33", "0.48", "1.4"], 0],
@@ -81,7 +111,17 @@ export const mathF3C5QuestionBankBM: QuizQuestion[] = buildQuiz([
   ["Hard", "Segi tiga ABC bersudut tegak di B. Jika sin∠BAC = 3/5, hitung ∠BAC kepada darjah terdekat.", ["37°", "53°", "30°", "60°"], 0],
   ["Hard", "Segi tiga bersudut tegak mempunyai sisi bertentangan θ sepanjang 3 unit, sisi bersebelahan 4 unit dan hipotenus 5 unit. Hitung θ kepada 2 tempat perpuluhan.", ["36.87°", "45.00°", "60.00°", "30.00°"], 0],
   ["Hard", "Segi tiga DEF bersudut tegak di E. P terletak pada DF dan EP tegak lurus DF. Jika DP = 12 cm dan EP = 5 cm, hitung sin∠EDP.", ["5/13", "5/12", "12/13", "13/5"], 0],
-  ["Hard", "Mengapa nisbah trigonometri bagi sudut yang sama kekal sama walaupun saiz segi tiga berbeza?", ["Segi tiga adalah serupa (sudut sama, sisi berkadaran)", "Kerana hipotenus sentiasa sama panjang", "Kerana sudut 90° berubah", "Kebetulan sahaja"], 0],
+  [
+    "Hard",
+    "Mengapa nisbah trigonometri bagi sudut yang sama kekal sama walaupun saiz segi tiga berbeza?",
+    [
+      "Segi tiga adalah serupa",
+      "Segi tiga adalah kongruen",
+      "Hipotenus kedua-duanya sama",
+      "Sudut tegak kedua-duanya berubah",
+    ],
+    0,
+  ],
 ]);
 
 export const mathF3C5QuizzesBM: QuizQuestion[] = buildForm3MathQuizSets(5, mathF3C5QuestionBankBM);
