@@ -354,9 +354,24 @@ describe("Chapter 7 live navigation and legacy consistency", () => {
     expect(createHash("sha256").update(JSON.stringify(neighbours)).digest("hex")).toBe(hash);
   });
 
-  it.each(DATA_FILES)("deletes no record that existed at the baseline in %s", (name) => {
+  // The pre-merge inventory dates from before 60 Science F1 C1 and 90 Sejarah
+  // F1 C1–3 quiz records were moved from content.ts into quizzes.ts. Neither the
+  // identity nor the runtime question bank was deleted. Protect every other
+  // baseline record in its original file, and all 150 moved IDs in their new owner.
+  const approvedMovedQuizId = (id: string) =>
+    /^(?:sci-f1-c1-(?:bm|dlp)|sej-f1-c[1-3])-q(?:[1-9]|[12]\d|30)$/.test(id);
+
+  it.each(DATA_FILES)("preserves all baseline records, including approved quiz moves, from %s", (name) => {
     const present = new Set(unrelatedRecords(name).map((record) => record.id));
     const missing = baselineIds.files[name].filter((id) => !present.has(id));
-    expect(missing).toEqual([]);
+    if (name !== "content") {
+      expect(missing).toEqual([]);
+      return;
+    }
+    // A new missing record cannot be silently accepted as another migration.
+    expect(missing).toHaveLength(150);
+    expect(missing.every(approvedMovedQuizId)).toBe(true);
+    const migratedOwner = new Set(unrelatedRecords("quizzes").map((record) => record.id));
+    for (const id of missing) expect(migratedOwner.has(id), `migrated quiz ${id}`).toBe(true);
   });
 });
