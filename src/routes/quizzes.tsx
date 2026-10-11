@@ -15262,7 +15262,6 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Kuasa dua sempurna ≤ 10: 1,4,9. A={1,4,9}. A'={2,3,5,6,7,8,10}.",
     "Medium",
-    MATH_F1_C11_QUIZ_VISUALS.perfectSquares,
   ],
   [
     "Tukarkan ke tatatanda pembina set: B = {Januari, Jun, Julai}.",
@@ -15294,7 +15293,6 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS = mathQuestions([
     1,
     "Nombor ganjil dari 1-15: {1,3,5,7,9,11,13,15}. n(A) = 8. n(A') = 15 − 8 = 7. Nombor genap = {2,4,6,8,10,12,14} = 7.",
     "Medium",
-    MATH_F1_C11_QUIZ_VISUALS.oddToFifteen,
   ],
   [
     "Diberi A = {1, 3, 5}. Pernyataan manakah yang BENAR?",
@@ -15541,7 +15539,6 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Perfect squares ≤ 10: 1,4,9. A={1,4,9}. A'={2,3,5,6,7,8,10}.",
     "Medium",
-    MATH_F1_C11_QUIZ_VISUALS.perfectSquares,
   ],
   [
     "Convert to set builder notation: B = {January, June, July}.",
@@ -15573,7 +15570,6 @@ const MATH_C11_OBJECTIVE_2_PRACTICE_QUESTIONS_DLP = mathQuestions([
     1,
     "Odd numbers 1-15: {1,3,5,7,9,11,13,15}. n(A) = 8. n(A') = 15 − 8 = 7.",
     "Medium",
-    MATH_F1_C11_QUIZ_VISUALS.oddToFifteen,
   ],
   [
     "Given A = {1, 3, 5}. Which statement is TRUE?",
@@ -15870,7 +15866,6 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS = mathQuestions([
     2,
     "ξ = {M, A, T, E, I, K}, n(ξ) = 6. A = {A, E, I}, n(A) = 3. n(A') = 6 − 3 = 3.",
     "Hard",
-    MATH_F1_C11_QUIZ_VISUALS.matematikVowels,
   ],
   [
     "Set A mempunyai 3 unsur dan set B mempunyai 5 unsur. Bilangan subset B ialah berapa kali bilangan subset A?",
@@ -16151,7 +16146,6 @@ const MATH_C11_OBJECTIVE_3_CHALLENGE_QUESTIONS_DLP = mathQuestions([
     2,
     "ξ = {M, A, T, E, I, K}, n(ξ) = 6. A = {A, E, I}, n(A) = 3. n(A') = 6 − 3 = 3.",
     "Hard",
-    MATH_F1_C11_QUIZ_VISUALS.matematikVowels,
   ],
   [
     "Set A has 3 elements and set B has 5 elements. The number of subsets of B is how many times the number of subsets of A?",

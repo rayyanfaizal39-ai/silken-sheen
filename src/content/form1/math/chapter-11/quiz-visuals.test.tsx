@@ -20,10 +20,9 @@ const bank = (objective: Objective, lang: Lang) =>
 const slots = {
   "objective-1": { 14: "structure" },
   "objective-2": {
-    2: "oddNumbers", 6: "letterB", 14: "structure",
-    18: "smallEvens", 22: "perfectSquares", 25: "oddToFifteen",
+    2: "oddNumbers", 6: "letterB", 14: "structure", 18: "smallEvens",
   },
-  "objective-3": { 3: "lettersA", 15: "firstFour", 28: "matematikVowels" },
+  "objective-3": { 3: "lettersA", 15: "firstFour" },
 } as const;
 const keyOf = (visual: unknown) =>
   Object.entries(V).find(([, v]) => v === visual)?.[0] ?? null;
@@ -44,7 +43,7 @@ describe("Form 1 Mathematics Chapter 11 — accessible Venn diagrams", () => {
     }
   });
 
-  it("places 10 helpful diagrams per language, at identical question positions", () => {
+  it("places 7 helpful diagrams per language, at identical question positions", () => {
     for (const lang of LANGS) for (const objective of OBJECTIVES) {
       const expected = slots[objective] as Record<number, keyof typeof V>;
       const questions = bank(objective, lang);
@@ -63,17 +62,11 @@ describe("Form 1 Mathematics Chapter 11 — accessible Venn diagrams", () => {
   it("keeps exact universal-set membership, with no duplicates or invented elements", () => {
     const expected: Record<keyof typeof V, { inside: string[]; outside: string[] }> = {
       structure: { inside: [], outside: [] },
-      oddNumbers: { inside: ["1","3","5","7","9"], outside: ["2","4","6","8","10"] },
-      letterB: { inside: ["a","c","e","g"], outside: ["b","d","f","h"] },
-      smallEvens: { inside: ["2","4","6"], outside: ["1","3","5","7","8","9","10"] },
-      perfectSquares: { inside: ["1","4","9"], outside: ["2","3","5","6","7","8","10"] },
-      oddToFifteen: {
-        inside: ["1","3","5","7","9","11","13","15"],
-        outside: ["2","4","6","8","10","12","14"],
-      },
-      lettersA: { inside: ["a","c","e","g"], outside: ["b","d","f"] },
-      firstFour: { inside: ["1","2","3","4"], outside: ["5","6","7","8","9","10"] },
-      matematikVowels: { inside: ["A","E","I"], outside: ["M","T","K"] },
+      oddNumbers: { inside: ["1","3","5","7","9"], outside: [] },
+      letterB: { inside: ["a","c","e","g"], outside: [] },
+      smallEvens: { inside: ["2","4","6"], outside: [] },
+      lettersA: { inside: ["a","c","e","g"], outside: [] },
+      firstFour: { inside: ["1","2","3","4"], outside: [] },
     };
     for (const [key, visual] of Object.entries(V)) {
       expect(visual.kind).toBe("venn-one-set");
@@ -97,6 +90,28 @@ describe("Form 1 Mathematics Chapter 11 — accessible Venn diagrams", () => {
       const description = describeMathQuestionVisual(visual, lang);
       expect(description).toContain(visual.title[lang]);
       expect(description).not.toMatch(/A['′]\s*=|B['′]\s*=|n\(A['′]\)\s*=|n\(B['′]\)\s*=/);
+    }
+  });
+
+  it("never draws more than the question states: the given set only, no complement", () => {
+    // A′ is what these questions ask for, so the outside region stays empty,
+    // and the circle shows exactly the set literal written in the stem.
+    for (const lang of LANGS) for (const objective of OBJECTIVES) {
+      for (const q of bank(objective, lang)) {
+        if (q.visual?.kind !== "venn-one-set") continue;
+        expect(q.visual.outside, q.id).toEqual([]);
+        if (!q.visual.inside.length) continue;
+        const literal = new RegExp(`\\b${q.visual.setName} = \\{([^}]*)\\}`).exec(q.question);
+        expect(literal, `${q.id}: stem must list ${q.visual.setName}`).not.toBeNull();
+        const given = literal![1].split(",").map((item) => item.trim());
+        expect(q.visual.inside, q.id).toEqual(given);
+      }
+    }
+  });
+
+  it("does not announce an empty region as an empty set", () => {
+    for (const visual of Object.values(V)) for (const lang of LANGS) {
+      expect(describeMathQuestionVisual(visual, lang)).not.toContain("—");
     }
   });
 });

@@ -309,8 +309,12 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
         .join(". ")}.`;
     case "pie-chart":
       return `${head} ${pairs(visual.sectors.map((sector) => [sector.label, sector.text]))}.`;
-    case "venn-one-set":
-      return `${head} ${bm ? "Set semesta" : "Universal set"} ξ; ${bm ? "bulatan" : "circle"} ${visual.setName}. ${bm ? "Dalam" : "Inside"} ${visual.setName}: ${visual.inside.map(item => textFor(item, lang)).join(", ") || "—"}; ${bm ? "di luar" : "outside"} ${visual.setName}: ${visual.outside.map(item => textFor(item, lang)).join(", ") || "—"}.`;
+    case "venn-one-set": {
+      // An empty region is not announced: "outside A: —" would read as A′ = ∅.
+      const region = (label: string, items: VisualText[]) =>
+        items.length ? ` ${label} ${visual.setName}: ${items.map((item) => textFor(item, lang)).join(", ")}.` : "";
+      return `${head} ${bm ? "Set semesta" : "Universal set"} ξ; ${bm ? "bulatan" : "circle"} ${visual.setName}.${region(bm ? "Dalam" : "Inside", visual.inside)}${region(bm ? "Di luar" : "Outside", visual.outside)}`;
+    }
     case "number-line": {
       const tickText = visual.ticks
         .map((tick) => tick.label === undefined ? String(tick.value) : textFor(tick.label, lang))
