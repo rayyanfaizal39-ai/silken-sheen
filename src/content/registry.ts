@@ -120,6 +120,7 @@ import { sejarahF2C4MindMap } from "@/content/form2/sejarah/chapter-4/mindmap";
 import { sejarahF2C5MindMap } from "@/content/form2/sejarah/chapter-5/mindmap";
 import { sejarahF2C6MindMap } from "@/content/form2/sejarah/chapter-6/mindmap";
 import { sejarahF2C7MindMap } from "@/content/form2/sejarah/chapter-7/mindmap";
+import { sejarahF2C8MindMap } from "@/content/form2/sejarah/chapter-8/mindmap";
 import { organizeSejarahF2Notes } from "@/content/form2/sejarah/notes-structure";
 
 // Geografi F1 mind maps
@@ -1022,6 +1023,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 8",
     title: "Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
     sej2Chapter8Data: sej2Ch8Content,
+    mindMap: { data: sejarahF2C8MindMap, title: "Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis" },
     flashcards: sejarahF2FlashcardsFor(8),
     quiz: sejarahF2QuizzesFor(8),
   },
