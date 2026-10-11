@@ -121,6 +121,8 @@ import { sejarahF2C5MindMap } from "@/content/form2/sejarah/chapter-5/mindmap";
 import { sejarahF2C6MindMap } from "@/content/form2/sejarah/chapter-6/mindmap";
 import { sejarahF2C7MindMap } from "@/content/form2/sejarah/chapter-7/mindmap";
 import { sejarahF2C8MindMap } from "@/content/form2/sejarah/chapter-8/mindmap";
+import { sejarahF2C9MindMap } from "@/content/form2/sejarah/chapter-9/mindmap";
+import { sejarahF2C10MindMap } from "@/content/form2/sejarah/chapter-10/mindmap";
 import { organizeSejarahF2Notes } from "@/content/form2/sejarah/notes-structure";
 
 // Geografi F1 mind maps
@@ -1034,6 +1036,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 9",
     title: "Warisan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis",
     sej2Chapter9Data: sej2Ch9Content,
+    mindMap: { data: sejarahF2C9MindMap, title: "Warisan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis" },
     flashcards: sejarahF2FlashcardsFor(9),
     quiz: sejarahF2QuizzesFor(9),
   },
@@ -1044,6 +1047,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 10",
     title: "Sarawak dan Sabah",
     sej2Chapter10Data: sej2Ch10Content,
+    mindMap: { data: sejarahF2C10MindMap, title: "Sarawak dan Sabah" },
     flashcards: sejarahF2FlashcardsFor(10),
     quiz: sejarahF2QuizzesFor(10),
   },
