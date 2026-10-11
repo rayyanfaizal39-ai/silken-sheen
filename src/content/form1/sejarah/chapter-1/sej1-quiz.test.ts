@@ -160,7 +160,7 @@ describe("Sejarah Form 1 Bab 1 selective repair — live registry", () => {
   // Re-baselined 2026-10-11 for the Sejarah F1 option-quality audit (32 live questions in
   // Chapters 1, 3, 4, 5, 7 and 8; ids, answer keys and difficulty unchanged).
   it.each([
-    ["content", "dd7dbe09010e16d85d30e05db25fc11860effd68483d467c49aaa16048300660"],
+    ["content", "27469ea741b4ac3dacb509b18378936ddf691c53123a367ad47b019b5d1282cb"],
     ["quizzes", "5348fe2c41e531d81bc2e92b85c3144ea598a5a49aa324a24881cb8696f832c4"],
   ])("locks untouched Chapters 4–8 records in %s", (file, expectedHash) => {
     const records = [...source(file).matchAll(/ {2}\{\n {4}id: "([^"]+)",[\s\S]*?\n {2}\},/g)]
