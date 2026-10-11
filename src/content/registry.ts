@@ -119,6 +119,7 @@ import { sejarahF2C3MindMap } from "@/content/form2/sejarah/chapter-3/mindmap";
 import { sejarahF2C4MindMap } from "@/content/form2/sejarah/chapter-4/mindmap";
 import { sejarahF2C5MindMap } from "@/content/form2/sejarah/chapter-5/mindmap";
 import { sejarahF2C6MindMap } from "@/content/form2/sejarah/chapter-6/mindmap";
+import { sejarahF2C7MindMap } from "@/content/form2/sejarah/chapter-7/mindmap";
 import { organizeSejarahF2Notes } from "@/content/form2/sejarah/notes-structure";
 
 // Geografi F1 mind maps
@@ -1010,6 +1011,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 7",
     title: "Kesultanan Melayu Pahang, Perak, Terengganu dan Selangor",
     sej2Chapter7Data: sej2Ch7Content,
+    mindMap: { data: sejarahF2C7MindMap, title: "Kesultanan Melayu Pahang, Perak, Terengganu dan Selangor" },
     flashcards: sejarahF2FlashcardsFor(7),
     quiz: sejarahF2QuizzesFor(7),
   },
