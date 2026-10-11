@@ -34,9 +34,11 @@ import { Route as ExploreAcademyRouteImport } from './routes/explore-academy'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompanionRouteImport } from './routes/companion'
+import { Route as CardRouteImport } from './routes/card'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as CardContactDotvcfRouteImport } from './routes/card.contact[.]vcf'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
 import { Route as AuthConfirmRouteImport } from './routes/auth.confirm'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
@@ -178,6 +180,11 @@ const CompanionRoute = CompanionRouteImport.update({
   path: '/companion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CardRoute = CardRouteImport.update({
+  id: '/card',
+  path: '/card',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -192,6 +199,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const CardContactDotvcfRoute = CardContactDotvcfRouteImport.update({
+  id: '/contact.vcf',
+  path: '/contact.vcf',
+  getParentRoute: () => CardRoute,
 } as any)
 const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
   id: '/auth/reset-password',
@@ -273,6 +285,7 @@ const AdminContentQuizImporterRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -311,12 +324,14 @@ export interface FileRoutesByFullPath {
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/card/contact.vcf': typeof CardContactDotvcfRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -355,6 +370,7 @@ export interface FileRoutesByTo {
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/card/contact.vcf': typeof CardContactDotvcfRoute
   '/admin': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
@@ -363,6 +379,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
@@ -401,6 +418,7 @@ export interface FileRoutesById {
   '/auth/callback': typeof AuthCallbackRoute
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/card/contact.vcf': typeof CardContactDotvcfRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
@@ -410,6 +428,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/card'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -448,12 +467,14 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/auth/confirm'
     | '/auth/reset-password'
+    | '/card/contact.vcf'
     | '/admin/'
     | '/admin/content/quiz-importer'
     | '/english/form-1/grammar'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/card'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -492,6 +513,7 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/auth/confirm'
     | '/auth/reset-password'
+    | '/card/contact.vcf'
     | '/admin'
     | '/admin/content/quiz-importer'
     | '/english/form-1/grammar'
@@ -499,6 +521,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/card'
     | '/companion'
     | '/contact'
     | '/dashboard'
@@ -537,6 +560,7 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/auth/confirm'
     | '/auth/reset-password'
+    | '/card/contact.vcf'
     | '/admin/'
     | '/admin/content/quiz-importer'
     | '/english/form-1/grammar'
@@ -545,6 +569,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  CardRoute: typeof CardRouteWithChildren
   CompanionRoute: typeof CompanionRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
@@ -756,6 +781,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/card': {
+      id: '/card'
+      path: '/card'
+      fullPath: '/card'
+      preLoaderRoute: typeof CardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -776,6 +808,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/card/contact.vcf': {
+      id: '/card/contact.vcf'
+      path: '/contact.vcf'
+      fullPath: '/card/contact.vcf'
+      preLoaderRoute: typeof CardContactDotvcfRouteImport
+      parentRoute: typeof CardRoute
     }
     '/auth/reset-password': {
       id: '/auth/reset-password'
@@ -911,9 +950,20 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface CardRouteChildren {
+  CardContactDotvcfRoute: typeof CardContactDotvcfRoute
+}
+
+const CardRouteChildren: CardRouteChildren = {
+  CardContactDotvcfRoute: CardContactDotvcfRoute,
+}
+
+const CardRouteWithChildren = CardRoute._addFileChildren(CardRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  CardRoute: CardRouteWithChildren,
   CompanionRoute: CompanionRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,

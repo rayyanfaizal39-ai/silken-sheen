@@ -1,6 +1,7 @@
 /** Paths served as static files. /assets/* is intentionally absent: the Worker must 404 a missing hashed chunk instead of letting Pages substitute index.html. */
 export const PAGES_ROUTE_EXCLUDES = [
   "/companions/*",
+  "/card/*.png",
   "/favicon.ico",
   "/index.html",
   "/sw.js",
