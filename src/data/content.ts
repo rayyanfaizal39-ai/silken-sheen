@@ -3262,7 +3262,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Apakah maksud 'civitas' dalam bahasa Yunani yang dikaitkan dengan tamadun?",
+    question: "Apakah maksud istilah 'civitas' yang dikaitkan dengan tamadun?",
     options: [
       "Kampung atau desa",
       "Bandar atau kota",
@@ -3271,7 +3271,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Dalam bahasa Yunani, civitas bermaksud bandar atau kota, iaitu tempat kemajuan dalam kebudayaan, sains, industri dan sistem kerajaan.",
+      "Istilah civitas merujuk kepada bandar atau kota dalam penerangan konsep tamadun, yang dikaitkan dengan kemajuan kebudayaan, sains, industri dan sistem kerajaan.",
   },
   {
     id: "sej-f1-c4-q3",
