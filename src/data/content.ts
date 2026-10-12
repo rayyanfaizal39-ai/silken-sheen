@@ -6946,7 +6946,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question:
-      "Dengan masjid sebagai titik rujukan, bank berada di hadapan, hospital di belakang dan sekolah di sebelah kiri. Di manakah pejabat pos?",
+      "Masjid berada di antara sekolah dengan pejabat pos pada satu garisan lurus. Sekolah terletak di sebelah kiri masjid. Di manakah pejabat pos berbanding masjid?",
     options: [
       "Hadapan masjid.",
       "Belakang masjid.",
@@ -6955,7 +6955,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Pejabat pos berada di sebelah kanan masjid, kerana hadapan, belakang dan kiri telah diduduki oleh bank, hospital dan sekolah.",
+      "Masjid menjadi titik rujukan dan berada di antara sekolah dengan pejabat pos. Oleh sebab sekolah di sebelah kiri masjid, pejabat pos berada di sebelah kanan masjid.",
   },
   {
     id: "geo-f1-c2-q29",
