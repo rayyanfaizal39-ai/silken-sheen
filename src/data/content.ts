@@ -10533,7 +10533,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     chapter: "Chapter 10",
-    question: "Banjaran Annam dan Banjaran Bilauktaung masing-masing terletak di negara manakah?",
+    question: "Menurut padanan dalam buku teks Geografi Tingkatan 1, Banjaran Annam dan Banjaran Bilauktaung masing-masing dikaitkan dengan negara manakah?",
     options: [
       "Thailand dan Vietnam",
       "Vietnam dan Myanmar",
@@ -10542,7 +10542,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 2,
     explanation:
-      "Banjaran Annam terletak di Vietnam, manakala Banjaran Bilauktaung terletak di Thailand. Banjaran Arakan Yoma pula terletak di Myanmar.",
+      "Menurut peta dan keterangan buku teks, Banjaran Annam dipadankan dengan Vietnam dan Banjaran Bilauktaung dengan Thailand. Secara geografi, Banjaran Bilauktaung juga merentasi kawasan sempadan Myanmar–Thailand.",
   },
   {
     id: "geo-f1-c10-q20",
