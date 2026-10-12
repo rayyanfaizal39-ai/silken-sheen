@@ -11701,11 +11701,11 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 13",
     question:
-      "Sebuah kawasan perumahan mempunyai banyak bekas pakai buang, sampah yang melimpah dan longkang yang kerap tersumbat. Pelan manakah paling lengkap untuk mengurangkan sisa, meningkatkan kesedaran dan mencegah pembuangan haram?",
+      "Sebuah taman perumahan menghadapi masalah penggunaan bekas pakai buang, longkang tersumbat dan pembuangan sampah haram walaupun kutipan sampah ditambah. Pelan manakah paling menyeluruh untuk menangani punca masalah?",
     options: [
-      "Tambah tong sampah dan jadualkan kutipan berkala di kawasan perumahan",
-      "Adakan gotong-royong bulanan serta bersihkan longkang yang tersumbat",
-      "Bina pusat pelupusan baharu dan tingkatkan kekerapan kutipan sampah",
+      "Tambah tong sampah, kerapkan kutipan dan bersihkan longkang secara berkala",
+      "Adakan gotong-royong, kerapkan kutipan dan tambah lori sampah di taman",
+      "Asingkan bahan kitar semula, tambah tong dan bina pusat pelupusan baharu",
       "Amalkan 3R, jalankan kempen kesedaran dan kuatkuasakan denda pembuangan haram",
     ],
     answerIndex: 3,
