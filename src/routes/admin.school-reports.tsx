@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ArrowDown, ArrowUp, Check, Loader2, Search, X } from "lucide-react";
 import { BarList, Panel, StatCard } from "@/components/admin/ui";
+import { AdminPrintReport } from "@/components/admin/AdminPrintReport";
 import {
   SCHOOL_REPORT_DATE_OPTIONS,
   type AdminAllSchoolsReport,
@@ -754,36 +755,42 @@ function AdminSchoolReportsPage() {
   const [form, setForm] = useState<string | null>(null);
   const [dateRange, setDateRange] = useState<SchoolReportDateRange>("last_30_days");
   const [report, setReport] = useState<AdminSchoolReport | null>(null);
+  const [loadedQueryKey, setLoadedQueryKey] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const queryKey = JSON.stringify({
+    mode, schoolId: mode === "specific_school" ? school?.id : null, age, form, dateRange,
+  });
 
   const loadReport = useCallback(async () => {
     if (mode === "specific_school" && !school) {
       setReport(null);
+      setLoadedQueryKey(null);
       setError(null);
       return;
     }
     setLoading(true);
     setError(null);
     try {
-      setReport(
-        await getAdminSchoolReport({
-          data: {
-            schoolId: mode === "specific_school" ? (school?.id ?? null) : null,
-            age,
-            form,
-            dateRange,
-          },
-        }),
-      );
+      const loadedReport = await getAdminSchoolReport({
+        data: {
+          schoolId: mode === "specific_school" ? (school?.id ?? null) : null,
+          age,
+          form,
+          dateRange,
+        },
+      });
+      setReport(loadedReport);
+      setLoadedQueryKey(queryKey);
     } catch (cause) {
       console.error("[School Reports] Report query failed", cause);
       setReport(null);
+      setLoadedQueryKey(null);
       setError(cause instanceof Error ? cause.message : "The school report could not be loaded.");
     } finally {
       setLoading(false);
     }
-  }, [age, dateRange, form, mode, school]);
+  }, [age, dateRange, form, mode, school, queryKey]);
 
   useEffect(() => {
     void loadReport();
@@ -820,6 +827,18 @@ function AdminSchoolReportsPage() {
   const canLoad = mode === "all_schools" || Boolean(school);
   return (
     <div className="admin-content">
+      <AdminPrintReport
+        title="School Performance Report"
+        description="Aggregate school participation, engagement and learning outcomes."
+        scope={[
+          mode === "all_schools" ? "All Schools" : (school?.schoolName ?? "No school selected"),
+          age == null ? "All ages" : "Age " + age,
+          form ?? "All forms",
+          SCHOOL_REPORT_DATE_OPTIONS.find((option) => option.value === dateRange)?.label ?? dateRange,
+          reportPeriod ? "Period " + reportPeriod : null,
+        ].filter(Boolean).join(" · ")}
+        disabled={!report || loading || Boolean(error) || !canLoad || report.mode !== mode || loadedQueryKey !== queryKey}
+      />
       <div className="school-report-heading">
         <div>
           <h2>School Reports</h2>
@@ -831,7 +850,7 @@ function AdminSchoolReportsPage() {
         {reportPeriod && <span className="pill pill-free">{reportPeriod}</span>}
       </div>
 
-      <Panel title="Report mode">
+      <Panel title="Report mode" className="admin-no-print">
         <div className="school-report-mode" role="group" aria-label="Report mode">
           <button
             type="button"
@@ -852,7 +871,7 @@ function AdminSchoolReportsPage() {
         </div>
       </Panel>
 
-      <Panel title="Report filters">
+      <Panel title="Report filters" className="admin-no-print">
         <div className={`school-report-filters ${mode === "all_schools" ? "without-school" : ""}`}>
           {mode === "specific_school" && (
             <div className="filter-field school-report-school-field">

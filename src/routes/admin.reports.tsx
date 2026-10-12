@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { getReportsData } from './-reports.server';
 import type { ReportsData } from '../lib/admin.types';
 import { Panel, StatCard, BarList, Pill } from '../components/admin/ui';
+import { AdminPrintReport } from '../components/admin/AdminPrintReport';
 
 export const Route = createFileRoute('/admin/reports')({
   loader: async () => {
@@ -48,6 +49,11 @@ function ReportsPage() {
 
   return (
     <div className="admin-content">
+      <AdminPrintReport
+        title="Mission Intelligence Report"
+        description="Learning engagement, platform health, content status and premium insights."
+        scope="Live operational snapshot from the currently loaded report"
+      />
       {/* ── Founder Mission Brief ── */}
       <Panel title="Today's Mission Brief" badge={<span className="chip chip-orange">Live</span>}>
         {briefLines.length ? (
