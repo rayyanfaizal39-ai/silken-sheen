@@ -98,8 +98,29 @@ describe("Geografi Form 1 — all 390 live quiz questions", () => {
     expect(location.options[location.answerIndex]).toBe("Pantai timur Semenanjung Malaysia");
     expect(Math.max(...optionLengths(location)) / Math.min(...optionLengths(location))).toBeLessThan(1.4);
 
+    const relativePosition = byId("geo-f1-c2-q28");
+    expect(relativePosition.question).toMatch(/masjid berada di antara sekolah dengan pejabat pos/i);
+    expect(relativePosition.options[relativePosition.answerIndex]).toBe("Sebelah kanan masjid.");
+
+    const hydro = byId("geo-f1-c7-q17");
+    expect(hydro.question).toMatch(/Empangan Bakun.*Empangan Kenering/);
+    expect(hydro.options[hydro.answerIndex]).toBe("Penjanaan kuasa hidroelektrik");
+
+    const origin = byId("geo-f1-c10-q4");
+    expect(origin.options).toEqual([
+      "Banjaran Annam",
+      "Banjaran Bilauktaung",
+      "Banjaran Himalaya",
+      "Banjaran Crocker",
+    ]);
+
+    const border = byId("geo-f1-c10-q19");
+    expect(border.question).toMatch(/Menurut padanan dalam buku teks/);
+    expect(border.explanation).toMatch(/sempadan Myanmar–Thailand/);
+
     const waste = byId("geo-f1-c13-q30");
-    expect(waste.question).toMatch(/paling lengkap/);
+    expect(waste.question).toMatch(/paling menyeluruh/);
+    expect(waste.question).not.toMatch(/meningkatkan kesedaran|mencegah pembuangan haram/);
     expect(waste.options[waste.answerIndex]).toBe(
       "Amalkan 3R, jalankan kempen kesedaran dan kuatkuasakan denda pembuangan haram",
     );
