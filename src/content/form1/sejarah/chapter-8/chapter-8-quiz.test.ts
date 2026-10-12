@@ -253,7 +253,7 @@ describe("Sejarah Form 1 Bab 8 answer-cue control", () => {
   it("keeps same-domain options (scholars, architecture, roles, kingdoms, caliphs)", () => {
     expect(byId(19).options.every((o) => /^(Al-|Ibn|Jabir)/.test(o))).toBe(true);
     expect(byId(15).options).toEqual(expect.arrayContaining(["Mimbar", "Menara", "Kubah"]));
-    expect(byId(21).options.every((o) => /^(Umar|Abu Bakar|Ali)/.test(o))).toBe(true);
+    expect(byId(21).options.every((o) => /^(Umar|Uthman|Abu Bakar|Ali): /.test(o))).toBe(true);
     expect(byId(27).options.every((o) => /: .*; .*: /.test(o))).toBe(true);
     expect(byId(2).options.every((o) => /^Penyatuan masyarakat berasaskan/.test(o))).toBe(true);
   });

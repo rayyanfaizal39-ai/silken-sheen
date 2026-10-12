@@ -28,9 +28,9 @@ const correctAnswers = [
   "Zaman Neolitik",
   "Pertukaran barang tanpa wang",
   "Sisa kerang dan debunga tumbuhan",
-  "Gangsa dan Besi",
+  "Gangsa dan besi",
   "Masyarakat menggunakan peralatan sebelum mengenali tulisan",
-  "Kepercayaan unsur alam mempunyai roh",
+  "Setiap benda dipercayai mempunyai kuasa",
   "Pembentukan sistem pentadbiran yang lebih tersusun",
   "Pertukaran barangan antara masyarakat",
   "Lebih halus dan tajam",
@@ -106,10 +106,14 @@ describe("Sejarah Form 1 Bab 3 — selective source repair", () => {
     },
   );
 
-  it("retains eighteen strong live records byte-for-byte in serialized data", () => {
-    const keep = [2, 4, 5, 6, 8, 9, 11, 12, 13, 15, 16, 17, 19, 21, 24, 26, 27, 30];
+  // q11, q13 and q30 were revised in the 2026-10-11 option-quality audit (textbook
+  // glossary wording for animism, no non-metal distractor for the Metal Age, no
+  // "semua" cue in q30), so q11 and q13 are pinned by their own assertions above.
+  // The other fifteen strong records stay byte-for-byte.
+  it("retains fifteen strong live records byte-for-byte in serialized data", () => {
+    const keep = [2, 4, 5, 6, 8, 9, 12, 15, 16, 17, 19, 21, 24, 26, 27];
     expect(hash(JSON.stringify(keep.map((n) => bank[n - 1])))).toBe(
-      "2d803ab9e3bdd96f9bb0bbedc8f4c155be8efcf8cd2f19bbf9a07c61beca92a7",
+      "b036440d847953843cf728bbf9ef0e8e63829abfc39a91a03093a6d20211ebc6",
     );
   });
 
@@ -211,9 +215,11 @@ describe("Sejarah Form 1 Bab 3 — selective source repair", () => {
     );
   });
 
+  // Re-baselined 2026-10-11 for the Sejarah F1 option-quality audit (32 live questions in
+  // Chapters 1, 3, 4, 5, 7 and 8; ids, answer keys and difficulty unchanged).
   it.each([
-    ["content", "465a1603cf33ba899ba6361cc4acf5cca14619652a935a81c800c6aa6062e1ff"],
-    ["quizzes", "76fde311e2bba5454e7b2cd6eaeca3892cbd078a04ccfabf04306f5ccf3c3313"],
+    ["content", "a2af61610d31dd8a44785ba16ffc2db7d52374cd75bfb10444c1fe682b0a2780"],
+    ["quizzes", "702332b5b26123264006214fa3b833beb0f2f585da0c12af2ad4348274345b6e"],
   ])(
     "locks every unrelated inline record in %s, including Chapters 1, 2 and 4–8",
     (file, expected) => {

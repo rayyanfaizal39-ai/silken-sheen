@@ -177,9 +177,11 @@ describe("Sejarah Form 1 Bab 2 — textbook audit and single live owner", () => 
     expect(correct(30)).toBe("Memelihara hutan dan habitat asal");
   });
 
+  // Re-baselined 2026-10-11 for the Sejarah F1 option-quality audit (32 live questions in
+  // Chapters 1, 3, 4, 5, 7 and 8; ids, answer keys and difficulty unchanged).
   it.each([
-    ["content", "465a1603cf33ba899ba6361cc4acf5cca14619652a935a81c800c6aa6062e1ff"],
-    ["quizzes", "4f09ebbbaae9fbc7ee2aa6e7ae06ee034ff6e258daf825dd3c590f660897251c"],
+    ["content", "a2af61610d31dd8a44785ba16ffc2db7d52374cd75bfb10444c1fe682b0a2780"],
+    ["quizzes", "93d4717dccbbeac6c3365040d936844461dd5f62d9ebf13f338948a07601e5ea"],
   ])(
     "locks every unrelated inline record in %s, including Chapter 1 and Chapters 4–8",
     (file, expected) => {

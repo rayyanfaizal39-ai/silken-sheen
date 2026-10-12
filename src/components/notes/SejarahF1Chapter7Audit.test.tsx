@@ -304,8 +304,11 @@ describe("Chapter 7 live navigation and legacy consistency", () => {
     notes: [6, "c0b48f42a8b9b103bbf69ddd6d97fc8da44078cba4b23ca6c91052dfa6d0a40b"],
     // Re-baselined for the Sejarah F1 Bab 4 quiz audit (sej-f1-c4-q1..q30 in content.ts,
     // same 30 ids). Every other Sejarah Form 1 record in this file is byte-identical.
-    content: [631, "e706c8fa7f1e1ad73a02d24747806152bd9fff33219ec735afe31ae0a1833cb2"],
-    quizzes: [210, "f2cdd25ce271fbc7ab6fe6762a47384da0b7478619e228c410bea78671de515a"],
+    // Re-baselined 2026-10-11: Chapters 1–3 now live in quizzes.ts (single live owner,
+    // 90 records moved before this audit) and the option-quality audit revised 32 live
+    // questions in place (ids, answer keys and difficulty unchanged).
+    content: [541, "d737617f8378138001273712a4c6c0e167625430092fb6cb30a94c1caf23dcd7"],
+    quizzes: [210, "0369edee3d8e9f627cee16fdd2d2164851e87f897d839468f7f3bf33a5a7daaa"],
     flashcards: [415, "dbb8bcebd4755545b2ddedd4013a7808ba917d0307c5d0e35e39dc216176e1d5"],
   };
 
@@ -351,9 +354,24 @@ describe("Chapter 7 live navigation and legacy consistency", () => {
     expect(createHash("sha256").update(JSON.stringify(neighbours)).digest("hex")).toBe(hash);
   });
 
-  it.each(DATA_FILES)("deletes no record that existed at the baseline in %s", (name) => {
+  // The pre-merge inventory dates from before 60 Science F1 C1 and 90 Sejarah
+  // F1 C1–3 quiz records were moved from content.ts into quizzes.ts. Neither the
+  // identity nor the runtime question bank was deleted. Protect every other
+  // baseline record in its original file, and all 150 moved IDs in their new owner.
+  const approvedMovedQuizId = (id: string) =>
+    /^(?:sci-f1-c1-(?:bm|dlp)|sej-f1-c[1-3])-q(?:[1-9]|[12]\d|30)$/.test(id);
+
+  it.each(DATA_FILES)("preserves all baseline records, including approved quiz moves, from %s", (name) => {
     const present = new Set(unrelatedRecords(name).map((record) => record.id));
     const missing = baselineIds.files[name].filter((id) => !present.has(id));
-    expect(missing).toEqual([]);
+    if (name !== "content") {
+      expect(missing).toEqual([]);
+      return;
+    }
+    // A new missing record cannot be silently accepted as another migration.
+    expect(missing).toHaveLength(150);
+    expect(missing.every(approvedMovedQuizId)).toBe(true);
+    const migratedOwner = new Set(unrelatedRecords("quizzes").map((record) => record.id));
+    for (const id of missing) expect(migratedOwner.has(id), `migrated quiz ${id}`).toBe(true);
   });
 });

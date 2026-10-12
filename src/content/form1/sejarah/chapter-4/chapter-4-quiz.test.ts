@@ -165,6 +165,14 @@ describe("Sejarah Form 1 Bab 4 answer-cue control", () => {
 });
 
 describe("Sejarah Form 1 Bab 4 textbook alignment", () => {
+  it("asks for the textbook's civitas meaning without incorrectly assigning a Greek origin", () => {
+    const question = byId(2);
+    expect(question.question).toContain("civitas");
+    expect(correct(2)).toBe("Bandar atau kota");
+    expect(question.question).not.toMatch(/bahasa Yunani|Greek/i);
+    expect(question.explanation).not.toMatch(/bahasa Yunani|Greek/i);
+  });
+
   it("never presents Mudun/Madain/Madana as a single-word 'Madana' definition", () => {
     expect(chapter4.some((q) => /maksud\s+'?madana/i.test(q.question))).toBe(false);
     expect(byId(17).question).toMatch(/mudun, madain dan madana/i);
