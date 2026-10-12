@@ -1292,11 +1292,21 @@
     justify-content: space-between;
     gap: 5mm;
   }
-  .admin-root .admin-print-brand {
-    color: #142b51;
-    font-size: 20px;
-    letter-spacing: -0.04em;
-    font-weight: 850;
+  .admin-root .admin-print-logo-lockup {
+    display: inline-flex !important;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #c19548;
+    border-radius: 8px;
+    background: #050816 !important;
+    break-inside: avoid;
+  }
+  .admin-root .admin-print-logo {
+    display: block !important;
+    width: 170px;
+    height: 40px;
+    max-width: 100%;
+    object-fit: contain;
   }
   .admin-root .admin-print-confidential {
     color: #805c0c;
@@ -1431,8 +1441,9 @@
     border-radius: 2px;
     padding: 4mm 5mm 5mm !important;
   }
-  .admin-root .admin-print-brand {
-    color: #102a51 !important;
+  .admin-root .admin-print-logo-lockup {
+    background: #050816 !important;
+    border-color: #c19548 !important;
   }
   .admin-root .admin-print-letterhead h1 {
     color: #142b50 !important;
