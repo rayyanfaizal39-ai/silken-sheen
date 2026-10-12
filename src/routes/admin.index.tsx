@@ -21,6 +21,7 @@ import {
   timeAgo,
 } from '../components/admin/ui';
 import { Filters } from '../components/admin/Filters';
+import { AdminPrintReport } from '../components/admin/AdminPrintReport';
 
 const EMPTY_STATS: AdminStats = {
   total_users: 0,
@@ -183,6 +184,20 @@ function AdminDashboard() {
   return (
     <div className="admin-content">
       {/* ── KPI ROW ──────────────────────────────────────────── */}
+      <AdminPrintReport
+        title="Admin Dashboard"
+        description="Platform-wide statistics and recently recorded activity. The tables below reflect applied filters."
+        scope={[
+          applied.start ? "From " + applied.start : null,
+          applied.end ? "To " + applied.end : null,
+          applied.subject ? "Subject: " + applied.subject : null,
+          applied.role ? "Role: " + applied.role : null,
+          applied.plan ? "Plan: " + applied.plan : null,
+          applied.search ? "Search: " + applied.search : null,
+          "Tables limited to " + (applied.limit ?? 100) + " rows each",
+        ].filter(Boolean).join(" · ")}
+        disabled={loading}
+      />
       <Eyebrow>Overview</Eyebrow>
       <div className="admin-grid cols-4">
         <StatCard k="Registered users" v={loading ? 'Loading…' : stats.total_users.toLocaleString()} c="all accounts" chip="Total" />
@@ -249,7 +264,7 @@ function AdminDashboard() {
       </div>
 
       {/* ── FILTERS ─────────────────────────────────────────── */}
-      <Panel title="Filters">
+      <Panel title="Filters" className="admin-no-print">
         <Filters
           value={filters}
           onChange={setFilters}
