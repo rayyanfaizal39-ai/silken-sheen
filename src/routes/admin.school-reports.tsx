@@ -755,36 +755,42 @@ function AdminSchoolReportsPage() {
   const [form, setForm] = useState<string | null>(null);
   const [dateRange, setDateRange] = useState<SchoolReportDateRange>("last_30_days");
   const [report, setReport] = useState<AdminSchoolReport | null>(null);
+  const [loadedQueryKey, setLoadedQueryKey] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const queryKey = JSON.stringify({
+    mode, schoolId: mode === "specific_school" ? school?.id : null, age, form, dateRange,
+  });
 
   const loadReport = useCallback(async () => {
     if (mode === "specific_school" && !school) {
       setReport(null);
+      setLoadedQueryKey(null);
       setError(null);
       return;
     }
     setLoading(true);
     setError(null);
     try {
-      setReport(
-        await getAdminSchoolReport({
-          data: {
-            schoolId: mode === "specific_school" ? (school?.id ?? null) : null,
-            age,
-            form,
-            dateRange,
-          },
-        }),
-      );
+      const loadedReport = await getAdminSchoolReport({
+        data: {
+          schoolId: mode === "specific_school" ? (school?.id ?? null) : null,
+          age,
+          form,
+          dateRange,
+        },
+      });
+      setReport(loadedReport);
+      setLoadedQueryKey(queryKey);
     } catch (cause) {
       console.error("[School Reports] Report query failed", cause);
       setReport(null);
+      setLoadedQueryKey(null);
       setError(cause instanceof Error ? cause.message : "The school report could not be loaded.");
     } finally {
       setLoading(false);
     }
-  }, [age, dateRange, form, mode, school]);
+  }, [age, dateRange, form, mode, school, queryKey]);
 
   useEffect(() => {
     void loadReport();
@@ -831,7 +837,7 @@ function AdminSchoolReportsPage() {
           SCHOOL_REPORT_DATE_OPTIONS.find((option) => option.value === dateRange)?.label ?? dateRange,
           reportPeriod ? "Period " + reportPeriod : null,
         ].filter(Boolean).join(" · ")}
-        disabled={!report || loading || Boolean(error) || !canLoad || report.mode !== mode}
+        disabled={!report || loading || Boolean(error) || !canLoad || report.mode !== mode || loadedQueryKey !== queryKey}
       />
       <div className="school-report-heading">
         <div>
