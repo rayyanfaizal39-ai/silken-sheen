@@ -158,8 +158,17 @@ describe("Geografi Form 1 Bab 10 textbook coverage", () => {
   it("10.2: highlands from the Himalaya via Arakan Yoma, with range-country matching", () => {
     expect(correct(4)).toBe("Banjaran Himalaya");
     expect(byId(4).explanation).toMatch(/Arakan Yoma di Myanmar/);
+    expect(byId(4).options).toEqual([
+      "Banjaran Annam",
+      "Banjaran Bilauktaung",
+      "Banjaran Himalaya",
+      "Banjaran Crocker",
+    ]);
+    expect(byId(4).question).toMatch(/Arakan Yoma di Myanmar/);
     expect(correct(19)).toBe("Vietnam dan Thailand");
     expect(byId(19).question).toMatch(/Annam.*Bilauktaung/);
+    expect(byId(19).question).toMatch(/Menurut padanan dalam buku teks/);
+    expect(byId(19).explanation).toMatch(/sempadan Myanmar–Thailand/);
     expect(correct(6)).toBe("Arakan Yoma – Myanmar; Crocker – Malaysia; Mayon – Filipina");
     expect(correct(24)).toBe("Lipat muda sejak 35 juta tahun; lipat tua sejak 200 juta tahun");
     // Young fold mountains are not scored as earthquake-prone or unstable.
