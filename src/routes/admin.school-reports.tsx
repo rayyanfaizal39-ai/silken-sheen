@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ArrowDown, ArrowUp, Check, Loader2, Search, X } from "lucide-react";
 import { BarList, Panel, StatCard } from "@/components/admin/ui";
+import { AdminPrintReport } from "@/components/admin/AdminPrintReport";
 import {
   SCHOOL_REPORT_DATE_OPTIONS,
   type AdminAllSchoolsReport,
@@ -820,6 +821,18 @@ function AdminSchoolReportsPage() {
   const canLoad = mode === "all_schools" || Boolean(school);
   return (
     <div className="admin-content">
+      <AdminPrintReport
+        title="School Performance Report"
+        description="Aggregate school participation, engagement and learning outcomes."
+        scope={[
+          mode === "all_schools" ? "All Schools" : (school?.schoolName ?? "No school selected"),
+          age == null ? "All ages" : "Age " + age,
+          form ?? "All forms",
+          SCHOOL_REPORT_DATE_OPTIONS.find((option) => option.value === dateRange)?.label ?? dateRange,
+          reportPeriod ? "Period " + reportPeriod : null,
+        ].filter(Boolean).join(" · ")}
+        disabled={!report || loading || Boolean(error) || !canLoad || report.mode !== mode}
+      />
       <div className="school-report-heading">
         <div>
           <h2>School Reports</h2>
@@ -831,7 +844,7 @@ function AdminSchoolReportsPage() {
         {reportPeriod && <span className="pill pill-free">{reportPeriod}</span>}
       </div>
 
-      <Panel title="Report mode">
+      <Panel title="Report mode" className="admin-no-print">
         <div className="school-report-mode" role="group" aria-label="Report mode">
           <button
             type="button"
@@ -852,7 +865,7 @@ function AdminSchoolReportsPage() {
         </div>
       </Panel>
 
-      <Panel title="Report filters">
+      <Panel title="Report filters" className="admin-no-print">
         <div className={`school-report-filters ${mode === "all_schools" ? "without-school" : ""}`}>
           {mode === "specific_school" && (
             <div className="filter-field school-report-school-field">
