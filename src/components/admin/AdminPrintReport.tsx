@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Printer } from "lucide-react";
+import { AcademyLogo } from "../AcademyLogo";
 
 interface AdminPrintReportProps {
   title: string;
@@ -53,13 +54,15 @@ export function AdminPrintReport({
           Print / Save PDF
         </button>
         <span className="admin-print-hint">
-          A4 landscape · use your browser&apos;s Save as PDF option
+          Colour PDF: Save as PDF · Landscape · enable Background graphics
         </span>
       </div>
 
       <section className="admin-print-letterhead" aria-label="Report heading">
         <div className="admin-print-brandline">
-          <span className="admin-print-brand">AcadeMY</span>
+          <span className="admin-print-logo-lockup">
+            <AcademyLogo variant="full" className="admin-print-logo" width={170} height={40} alt="AcadeMY" />
+          </span>
           <span className="admin-print-confidential">CONFIDENTIAL · ADMIN REPORT</span>
         </div>
         <h1>{title}</h1>
