@@ -1408,3 +1408,180 @@
     border: 1px solid var(--line);
   }
 }
+
+
+/* ---- premium navy / gold COLOUR PDF output -------------------------- */
+/* Print-only: the on-screen Mission Control theme remains unchanged.
+   For colour output select Save as PDF, enable Background graphics, and
+   choose a colour-capable printer when printing on paper. */
+@media print {
+  .admin-root,
+  .admin-root *,
+  .admin-root *::before,
+  .admin-root *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Branded letterhead: rich colour without an ink-heavy dark banner. */
+  .admin-root .admin-print-letterhead {
+    background: linear-gradient(115deg, #f0f5fd 0%, #ffffff 68%) !important;
+    border-top: 4px solid #c19548 !important;
+    border-bottom: 2px solid #142b50 !important;
+    border-radius: 2px;
+    padding: 4mm 5mm 5mm !important;
+  }
+  .admin-root .admin-print-brand {
+    color: #102a51 !important;
+  }
+  .admin-root .admin-print-letterhead h1 {
+    color: #142b50 !important;
+  }
+  .admin-root .admin-print-confidential {
+    color: #93651d !important;
+    border: 1px solid #d9bd80;
+    border-radius: 4px;
+    padding: 3px 6px;
+    background: #fcf6e8 !important;
+  }
+  .admin-root .admin-print-scope strong {
+    color: #142b50 !important;
+  }
+  .admin-root .admin-print-date {
+    color: #687993 !important;
+  }
+
+  /* Bold section labels, with a gold accent that remains visible even
+     if the user disables background printing. */
+  .admin-root .admin-eyebrow {
+    color: #142b50 !important;
+    font-weight: 750;
+  }
+  .admin-root .admin-eyebrow::before {
+    background: #c19548 !important;
+  }
+
+  /* Pastel metric cards with visible coloured borders, not dark blocks. */
+  .admin-root .stat-card {
+    background: #f1f6fe !important;
+    border: 1px solid #c9d9ec !important;
+    border-left: 3px solid #295eac !important;
+  }
+  .admin-root .stat-card:nth-child(4n + 2) {
+    background: #fff9ed !important;
+    border-color: #ecdbad !important;
+    border-left-color: #b18537 !important;
+  }
+  .admin-root .stat-card:nth-child(4n + 3) {
+    background: #eefaf7 !important;
+    border-color: #c8e7e0 !important;
+    border-left-color: #1d8b77 !important;
+  }
+  .admin-root .stat-card:nth-child(4n) {
+    background: #f5f1fe !important;
+    border-color: #ddd3f4 !important;
+    border-left-color: #7552ac !important;
+  }
+  .admin-root .stat-card .k {
+    color: #51647b !important;
+  }
+  .admin-root .stat-card .v {
+    color: #142b50 !important;
+  }
+  .admin-root .stat-card .c {
+    color: #4c637b !important;
+  }
+  .admin-root .admin-panel,
+  .admin-root .school-report-insight-card,
+  .admin-root .school-report-breakdown-card {
+    border-color: #d7e1ee !important;
+    color: #14243c !important;
+  }
+  .admin-root .school-report-insight-card,
+  .admin-root .school-report-breakdown-card,
+  .admin-root .school-report-popular-grid > div {
+    background: #f3f7fd !important;
+    border-color: #d3dfec !important;
+  }
+  .admin-root .school-report-insight-card strong,
+  .admin-root .school-report-breakdown-card h3,
+  .admin-root .school-report-popular-grid strong {
+    color: #173b69 !important;
+  }
+  .admin-root .school-report-school-summary {
+    background: #f3f7fd !important;
+    border-color: #d9c08d !important;
+  }
+
+  /* Colour bar charts. Solid fills print more reliably than gradients. */
+  .admin-root .bar-track {
+    background: #e8eef5 !important;
+  }
+  .admin-root .bar-row:nth-child(4n + 1) .bar-fill {
+    background: #295eac !important;
+  }
+  .admin-root .bar-row:nth-child(4n + 2) .bar-fill {
+    background: #bc8b37 !important;
+  }
+  .admin-root .bar-row:nth-child(4n + 3) .bar-fill {
+    background: #168a80 !important;
+  }
+  .admin-root .bar-row:nth-child(4n) .bar-fill {
+    background: #7455aa !important;
+  }
+  .admin-root .bar-row .top .vl,
+  .admin-root .donut-center .num {
+    color: #142b50 !important;
+    font-weight: 700;
+  }
+  .admin-root .donut-wrap svg circle:first-child {
+    stroke: #e0e9f4 !important;
+  }
+
+  /* Accessible coloured tables without overwhelming the paper. */
+  .admin-root table thead th {
+    background: #eaf1fa !important;
+    color: #173b69 !important;
+    border-bottom: 2px solid #c19548 !important;
+  }
+  .admin-root table tbody tr:nth-child(even) td {
+    background: #f7faff !important;
+  }
+  .admin-root table tbody tr:nth-child(odd) td {
+    background: #ffffff !important;
+  }
+  .admin-root table td {
+    border-bottom-color: #e3ebf5 !important;
+  }
+
+  .admin-root .chip-blue,
+  .admin-root .pill-admin {
+    color: #20559a !important;
+    background: #eaf2ff !important;
+    border-color: #bfd2ee !important;
+  }
+  .admin-root .chip-green,
+  .admin-root .pill-paid {
+    color: #18705b !important;
+    background: #e7f7f1 !important;
+    border-color: #b8dfd0 !important;
+  }
+  .admin-root .chip-violet {
+    color: #65429c !important;
+    background: #f0eafd !important;
+    border-color: #d6c5f1 !important;
+  }
+  .admin-root .chip-orange {
+    color: #865f18 !important;
+    background: #fff5dd !important;
+    border-color: #e7cb8d !important;
+  }
+  .admin-root .school-report-unavailable {
+    background: #fffaef !important;
+    border-color: #dcc28c !important;
+  }
+  .admin-root .school-report-unavailable,
+  .admin-root .school-report-unavailable strong {
+    color: #7b571a !important;
+  }
+}
