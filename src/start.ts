@@ -1,4 +1,4 @@
-import { createStart, createMiddleware } from "@tanstack/react-start";
+import { createStart, createMiddleware, createCsrfMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
 
@@ -17,6 +17,12 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
   }
 });
 
+// Reject cross-site calls to same-origin server functions before application handlers run.
+// Keep the existing branded error middleware for non-CSRF errors.
+const csrfMiddleware = createCsrfMiddleware({
+  filter: (ctx) => ctx.handlerType === "serverFn",
+});
+
 export const startInstance = createStart(() => ({
-  requestMiddleware: [errorMiddleware],
+  requestMiddleware: [csrfMiddleware, errorMiddleware],
 }));
