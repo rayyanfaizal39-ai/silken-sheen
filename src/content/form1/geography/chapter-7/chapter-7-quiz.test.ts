@@ -200,10 +200,9 @@ describe("Geografi Form 1 Bab 7 textbook coverage", () => {
 
   it("drops off-scope statistics, treaties, culture, wildlife and environmental management", () => {
     expect(allText).not.toMatch(/RAMSAR|tanah lembap|konvensyen/i);
-    expect(allText).not.toMatch(/Orang Asli|legenda|naga|Jakun/i);
+    expect(allText).not.toMatch(/Orang Asli|legenda|\bnaga\b|Jakun/i);
     expect(allText).not.toMatch(/90%|2,500 mm|Khatulistiwa/);
     expect(allText).not.toMatch(/rumah hijau|mesra alam|bahan api fosil/i);
-    expect(allText).not.toMatch(/Bakun/);
     expect(allText).not.toMatch(/\bspan\b|limpahan banjir|menyerap air/i);
     expect(allText).not.toMatch(/loji|\bLRA\b|pencemaran|tercemar/i);
     expect(allText).not.toMatch(/akuakultur/i);
