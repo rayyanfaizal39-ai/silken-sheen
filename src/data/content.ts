@@ -10727,7 +10727,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 11",
     question: "Bagaimanakah taburan penduduk di rantau Asia Tenggara?",
     options: [
-      "Agak seragam antara kawasan bandar dan luar bandar",
+      "Hampir seragam dan sama rata di seluruh rantau",
       "Tidak sekata dan berbeza mengikut kawasan",
       "Tertumpu di kawasan pergunungan sahaja",
       "Tertumpu di kawasan pulau sahaja",
