@@ -9061,7 +9061,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 7",
     question:
-      "Empangan Pelagus di Sarawak dan Empangan Kenering di Perak menunjukkan kepentingan sungai untuk apa?",
+      "Empangan Bakun di Sarawak dan Empangan Kenering di Perak memanfaatkan tenaga air sungai. Apakah kepentingan sungai yang ditunjukkan?",
     options: [
       "Sumber pengairan sawah padi",
       "Pengangkutan dan perhubungan",
@@ -9070,7 +9070,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 2,
     explanation:
-      "Empangan Pelagus dan Empangan Kenering dibina di sungai untuk menjana kuasa hidroelektrik.",
+      "Empangan Bakun di Sarawak dan Empangan Kenering di Perak ialah contoh projek hidroelektrik yang memanfaatkan tenaga air sungai untuk menjana elektrik.",
   },
   {
     id: "geo-f1-c7-q18",
