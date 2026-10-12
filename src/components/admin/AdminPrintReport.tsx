@@ -53,7 +53,7 @@ export function AdminPrintReport({
           Print / Save PDF
         </button>
         <span className="admin-print-hint">
-          A4 landscape · use your browser&apos;s Save as PDF option
+          Colour PDF: Save as PDF · Landscape · enable Background graphics
         </span>
       </div>
 
