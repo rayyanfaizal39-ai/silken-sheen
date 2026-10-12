@@ -10308,8 +10308,8 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 10",
     question:
-      "Banjaran gunung di Asia Tenggara berpunca dari banjaran manakah sebelum menganjur ke Myanmar?",
-    options: ["Banjaran Alps", "Banjaran Andes", "Banjaran Himalaya", "Banjaran Rocky"],
+      "Menurut buku teks, banjaran tinggi di Asia Tenggara berpunca dari banjaran manakah sebelum menganjur ke Arakan Yoma di Myanmar?",
+    options: ["Banjaran Annam", "Banjaran Bilauktaung", "Banjaran Himalaya", "Banjaran Crocker"],
     answerIndex: 2,
     explanation:
       "Banjaran gunung di Asia Tenggara berpunca dari Banjaran Himalaya dan menganjur ke Asia Tenggara bermula dengan Banjaran Arakan Yoma di Myanmar.",
