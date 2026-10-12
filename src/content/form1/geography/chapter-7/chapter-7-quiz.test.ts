@@ -177,7 +177,9 @@ describe("Geografi Form 1 Bab 7 textbook coverage", () => {
 
   it("2.3.3: every textbook importance of rivers and lakes is assessed", () => {
     expect(correct(17)).toBe("Penjanaan kuasa hidroelektrik");
-    expect(byId(17).question).toMatch(/Empangan Pelagus.*Empangan Kenering/);
+    expect(byId(17).question).toMatch(/Empangan Bakun.*Empangan Kenering/);
+    expect(byId(17).explanation).toMatch(/Bakun.*Kenering.*hidroelektrik/);
+    expect(byId(17).question).not.toMatch(/Pelagus/);
     expect(correct(22)).toBe("Menanam padi dua kali setahun");
     expect(byId(22).question).toMatch(/Sungai Muda/);
     expect(correct(16)).toBe("Kegunaan domestik");
@@ -198,10 +200,9 @@ describe("Geografi Form 1 Bab 7 textbook coverage", () => {
 
   it("drops off-scope statistics, treaties, culture, wildlife and environmental management", () => {
     expect(allText).not.toMatch(/RAMSAR|tanah lembap|konvensyen/i);
-    expect(allText).not.toMatch(/Orang Asli|legenda|naga|Jakun/i);
+    expect(allText).not.toMatch(/Orang Asli|legenda|\bnaga\b|Jakun/i);
     expect(allText).not.toMatch(/90%|2,500 mm|Khatulistiwa/);
     expect(allText).not.toMatch(/rumah hijau|mesra alam|bahan api fosil/i);
-    expect(allText).not.toMatch(/Bakun/);
     expect(allText).not.toMatch(/\bspan\b|limpahan banjir|menyerap air/i);
     expect(allText).not.toMatch(/loji|\bLRA\b|pencemaran|tercemar/i);
     expect(allText).not.toMatch(/akuakultur/i);

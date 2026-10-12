@@ -147,6 +147,11 @@ describe("Geografi Form 1 Bab 2 coverage", () => {
       /pintu depan|pintu masuk|hadapan.*bangunan|bangunan seperti masjid/i,
     );
     expect(correct(28)).toBe("Sebelah kanan masjid.");
+    // The old textbook diagram is not rendered by the quiz: the stem must
+    // establish the opposite-side relationship itself.
+    expect(byId(28).question).toMatch(/masjid berada di antara sekolah dengan pejabat pos/i);
+    expect(byId(28).question).toMatch(/sebelah kiri masjid/i);
+    expect(byId(28).explanation).toMatch(/sebelah kanan masjid/i);
     expect(correct(2)).toBe("Titik rujukan.");
     expect(correct(4)).toBe("Sebelah kanan Siti.");
   });

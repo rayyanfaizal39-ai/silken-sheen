@@ -174,6 +174,13 @@ describe("Geografi Form 1 Bab 13 textbook coverage", () => {
     expect(correct(30)).toBe(
       "Amalkan 3R, jalankan kempen kesedaran dan kuatkuasakan denda pembuangan haram",
     );
+    // The stem describes the problem, not the correct three-part solution.
+    expect(byId(30).question).toMatch(/paling menyeluruh/);
+    expect(byId(30).question).not.toMatch(/meningkatkan kesedaran|mencegah pembuangan haram/);
+    // All choices should be plausible, multi-part waste-management plans;
+    // three obviously useless or dangerous alternatives would cue the key.
+    expect(byId(30).options.every((option) => option.split(",").length >= 2)).toBe(true);
+    expect(byId(30).options.join(" ")).not.toMatch(/bakar sampah secara terbuka|tidak berkaitan/);
   });
 
   it("drops off-syllabus measures, chemistry and generic morals", () => {
