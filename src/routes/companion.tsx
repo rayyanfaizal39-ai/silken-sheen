@@ -1,6 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { CheckCircle2, Lock, Orbit, Pencil, Sparkles, Star } from "lucide-react";
-import { useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import {
+  CheckCircle2,
+  Lock,
+  Orbit,
+  Pencil,
+  Sparkles,
+  Star,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 import {
   COMPANION_STAGES,
   type CompanionId,
@@ -19,8 +26,13 @@ import {
   useCompanionMessage,
 } from "@/companion";
 import { seoMeta } from "@/lib/seo";
+import { NovaPersonalityIntro } from "@/companion/NovaPersonalityIntro";
+import { NOVA_PERSONALITIES, type NovaBond } from "@/companion/personality";
+import { useNovaBond } from "@/companion/useNovaBond";
 
 export const Route = createFileRoute("/companion")({
+  validateSearch: (search: Record<string, unknown>): { intro?: true } =>
+    search.intro === true || search.intro === "true" ? { intro: true } : {},
   component: CosmicCompanionPage,
   // Per-user gamification state — noindex, same as /dashboard.
   head: () =>
@@ -60,11 +72,24 @@ const STAGE_ART: Record<CompanionStageId, { tint: string }> = {
 };
 
 function CosmicCompanionPage() {
+  const navigate = useNavigate();
+  const { intro } = Route.useSearch();
   const { progress, renameCompanion } = useProgress();
-  const companion = progress.companion ?? { id: "nova" as CompanionId, level: 1 };
-  const activeStarter = STARTERS.find((starter) => starter.id === companion.id) ?? STARTERS[0];
+  const { bond, loading: bondLoading, saveBond } = useNovaBond();
+  const companion = progress.companion ?? {
+    id: "nova" as CompanionId,
+    level: 1,
+  };
+  const activeStarter =
+    STARTERS.find((starter) => starter.id === companion.id) ?? STARTERS[0];
   const displayName = getCompanionDisplayName(companion);
-  const dailyMessage = useCompanionMessage();
+  const dailyMessage = useCompanionMessage(bond?.personality);
+
+  // The saved bond supplies the nickname on a new device, while the existing
+  // progress system keeps the companion's earned XP and evolution untouched.
+  useEffect(() => {
+    if (bond?.name && companion.id === "nova") renameCompanion(bond.name);
+  }, [bond?.name, companion.id, renameCompanion]);
 
   // Stage is always derived from XP, so the artwork updates automatically as the student earns XP.
   const companionProgress = getCompanionLevelProgress(progress.xp);
@@ -77,7 +102,36 @@ function CosmicCompanionPage() {
 
   const mood = getCompanionMood(progress, currentStageId);
   const moodMessage = getCompanionMoodMessage(mood, displayName);
-  const daysTogether = progress.companion ? getCompanionDaysTogether(progress.companion) : 1;
+  const daysTogether = progress.companion
+    ? getCompanionDaysTogether(progress.companion)
+    : 1;
+
+  async function completeBond(next: NovaBond) {
+    await saveBond(next);
+    renameCompanion(next.name);
+  }
+
+  if (intro && companion.id === "nova") {
+    if (bondLoading)
+      return (
+        <main className="nova-bond">
+          <p className="nova-bond__support" role="status">
+            Preparing your Nova introduction…
+          </p>
+        </main>
+      );
+    return (
+      <NovaPersonalityIntro
+        initialName={bond?.name ?? displayName}
+        stage={currentStageId}
+        onBond={completeBond}
+        onClose={() =>
+          void navigate({ to: "/companion", search: {}, replace: true })
+        }
+        onStartLearning={() => void navigate({ to: "/subjects" })}
+      />
+    );
+  }
 
   return (
     <main className="relative isolate overflow-hidden px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10">
@@ -97,15 +151,42 @@ function CosmicCompanionPage() {
                 Meet Your Cosmic Companion
               </h1>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-white/60 sm:text-base">
-                Study, earn XP, hatch your egg, and evolve your Cosmic Companion as you learn.
+                Study, earn XP, hatch your egg, and evolve your Cosmic Companion
+                as you learn.
               </p>
+              {companion.id === "nova" && (
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  {bond && (
+                    <span className="nova-bond__trait">
+                      <Sparkles className="h-4 w-4" aria-hidden="true" />
+                      {NOVA_PERSONALITIES[bond.personality].title}
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    className="rounded-xl border border-amber-200/30 bg-amber-200/10 px-4 py-3 text-sm font-bold text-amber-100"
+                    onClick={() =>
+                      void navigate({
+                        to: "/companion",
+                        search: { intro: true },
+                      })
+                    }
+                  >
+                    {bond ? "Rediscover your Nova" : "Discover your Nova"}
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Nova is the visual centerpiece — bigger display + daily message + mood */}
             <div className="relative min-h-[280px] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-white/[0.05] p-5">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.16),transparent_34%)]" />
               <div className="relative flex flex-col items-center justify-center gap-3">
-                <CompanionArtwork starter={activeStarter} stage={currentStage.id} size="large" />
+                <CompanionArtwork
+                  starter={activeStarter}
+                  stage={currentStage.id}
+                  size="large"
+                />
                 <p className="max-w-[260px] text-center text-sm font-bold leading-5 text-white/80">
                   "{dailyMessage}"
                 </p>
@@ -121,7 +202,11 @@ function CosmicCompanionPage() {
           <div className="rounded-[2rem] border border-white/[0.09] bg-[#0B1220]/68 p-5 backdrop-blur-2xl sm:p-6">
             <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-center">
               <div className="flex justify-center">
-                <CompanionArtwork starter={activeStarter} stage={currentStage.id} size="hero" />
+                <CompanionArtwork
+                  starter={activeStarter}
+                  stage={currentStage.id}
+                  size="hero"
+                />
               </div>
 
               <div className="min-w-0">
@@ -140,18 +225,35 @@ function CosmicCompanionPage() {
                 <CompanionNameEditor
                   displayName={displayName}
                   stageName={currentStage.name}
-                  onRename={renameCompanion}
+                  onRename={(name) => {
+                    renameCompanion(name);
+                    if (bond)
+                      void saveBond({
+                        ...bond,
+                        name,
+                        completedAt: new Date().toISOString(),
+                      }).catch(() => {
+                        /* The current device retains its existing nickname. */
+                      });
+                  }}
                 />
                 <p className="mt-2 text-sm text-white/50">
                   {activeStarter.role} companion · {activeStarter.focus}
                 </p>
-                <p className="mt-1 text-xs italic text-white/40">{moodMessage}</p>
+                <p className="mt-1 text-xs italic text-white/40">
+                  {moodMessage}
+                </p>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <MetricCard label="Lifetime XP" value={progress.xp.toLocaleString()} />
+                  <MetricCard
+                    label="Lifetime XP"
+                    value={progress.xp.toLocaleString()}
+                  />
                   <MetricCard
                     label="XP until next stage"
-                    value={nextStage ? xpNeeded.toLocaleString() : "Final stage"}
+                    value={
+                      nextStage ? xpNeeded.toLocaleString() : "Final stage"
+                    }
                   />
                 </div>
 
@@ -159,7 +261,9 @@ function CosmicCompanionPage() {
                   <div className="mb-2 flex items-center justify-between gap-3 text-xs font-bold text-white/55">
                     <span>{progress.xp.toLocaleString()} Lifetime XP</span>
                     <span>
-                      {nextStage ? `${nextStage.xpRequired.toLocaleString()} XP` : "Max stage"}
+                      {nextStage
+                        ? `${nextStage.xpRequired.toLocaleString()} XP`
+                        : "Max stage"}
                     </span>
                   </div>
                   <div
@@ -196,7 +300,10 @@ function CosmicCompanionPage() {
           </div>
 
           <div className="flex flex-col gap-5">
-            <StarterSelection activeId={companion.id} displayName={displayName} />
+            <StarterSelection
+              activeId={companion.id}
+              displayName={displayName}
+            />
             <CompanionStatsCard
               displayName={displayName}
               stageName={currentStage.name}
@@ -303,8 +410,12 @@ function NextEvolutionPreview({
         <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#67E8F9]">
           Next Evolution
         </p>
-        <p className="mt-0.5 font-display text-lg font-black text-white">{nextStage.name}</p>
-        <p className="text-xs font-bold text-white/50">{xpNeeded.toLocaleString()} XP remaining</p>
+        <p className="mt-0.5 font-display text-lg font-black text-white">
+          {nextStage.name}
+        </p>
+        <p className="text-xs font-bold text-white/50">
+          {xpNeeded.toLocaleString()} XP remaining
+        </p>
       </div>
     </div>
   );
@@ -330,13 +441,18 @@ function CompanionStatsCard({
       <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#818CF8]">
         Companion Profile
       </p>
-      <h2 className="mt-1 font-display text-2xl font-black text-white">{displayName}</h2>
+      <h2 className="mt-1 font-display text-2xl font-black text-white">
+        {displayName}
+      </h2>
 
       <dl className="mt-4 grid grid-cols-2 gap-2">
         <StatField label="Stage" value={stageName} />
         <StatField label="Companion Level" value={`Level ${level}`} />
         <StatField label="Lifetime XP" value={`${xp.toLocaleString()} XP`} />
-        <StatField label="Mood" value={`${MOOD_EMOJI[mood]} ${MOOD_LABEL[mood]}`} />
+        <StatField
+          label="Mood"
+          value={`${MOOD_EMOJI[mood]} ${MOOD_LABEL[mood]}`}
+        />
       </dl>
       <div className="mt-3 rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 py-2">
         <p className="text-[9px] font-black uppercase tracking-widest text-white/30">
@@ -353,7 +469,9 @@ function CompanionStatsCard({
 function StatField({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 py-2">
-      <p className="text-[9px] font-black uppercase tracking-widest text-white/30">{label}</p>
+      <p className="text-[9px] font-black uppercase tracking-widest text-white/30">
+        {label}
+      </p>
       <p className="mt-0.5 truncate text-sm font-bold text-white">{value}</p>
     </div>
   );
@@ -372,7 +490,9 @@ function StarterSelection({
         <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#818CF8]">
           Starter Companion
         </p>
-        <h2 className="mt-1 font-display text-2xl font-black text-white">Your Active Companion</h2>
+        <h2 className="mt-1 font-display text-2xl font-black text-white">
+          Your Active Companion
+        </h2>
       </div>
 
       <div className="space-y-3">
@@ -399,8 +519,8 @@ function StarterSelection({
         ))}
       </div>
       <p className="mt-4 text-[11px] leading-5 text-white/35">
-        More starter companions are on the way — for now, {displayName} is your guide through
-        AcadeMY.
+        More starter companions are on the way — for now, {displayName} is your
+        guide through AcadeMY.
       </p>
     </section>
   );
@@ -427,9 +547,13 @@ function EvolutionPath({
           <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#818CF8]">
             Evolution Journey
           </p>
-          <h2 className="mt-1 font-display text-2xl font-black text-white">Growth Path</h2>
+          <h2 className="mt-1 font-display text-2xl font-black text-white">
+            Growth Path
+          </h2>
         </div>
-        <p className="text-xs font-bold text-white/45">Powered by Lifetime XP</p>
+        <p className="text-xs font-bold text-white/45">
+          Powered by Lifetime XP
+        </p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -455,13 +579,19 @@ function EvolutionPath({
                 className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl"
                 style={{
                   background: `${STAGE_ART[stage.id].tint}22`,
-                  boxShadow: active ? `0 0 28px ${STAGE_ART[stage.id].tint}55` : undefined,
+                  boxShadow: active
+                    ? `0 0 28px ${STAGE_ART[stage.id].tint}55`
+                    : undefined,
                 }}
               >
                 {locked ? (
                   <Lock className="h-4 w-4 text-white/30" />
                 ) : (
-                  <CompanionImage speciesId={speciesId} stage={stage.id} size={48} />
+                  <CompanionImage
+                    speciesId={speciesId}
+                    stage={stage.id}
+                    size={48}
+                  />
                 )}
               </div>
               <p className="font-black text-white">{stage.name}</p>
@@ -498,7 +628,8 @@ function CompanionArtwork({
   stage: CompanionStageId;
   size: "large" | "hero";
 }) {
-  const dimension = size === "hero" ? "clamp(220px, 28vw, 320px)" : "clamp(150px, 18vw, 190px)";
+  const dimension =
+    size === "hero" ? "clamp(220px, 28vw, 320px)" : "clamp(150px, 18vw, 190px)";
   return (
     <div
       className="relative flex items-center justify-center animate-[companionFloat_4.6s_ease-in-out_infinite]"
@@ -540,7 +671,9 @@ function CompanionMini({ starter }: { starter: (typeof STARTERS)[number] }) {
 function MetricCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-2xl border border-white/[0.08] bg-white/[0.045] p-4">
-      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/35">{label}</p>
+      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/35">
+        {label}
+      </p>
       <p className="mt-1 truncate text-lg font-black text-white">{value}</p>
     </div>
   );

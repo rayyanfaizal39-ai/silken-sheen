@@ -1391,7 +1391,7 @@ export function useProgress() {
   /** Give the companion a custom nickname (e.g. "Nova" → "Blaze"). */
   const renameCompanion = useCallback(
     (name: string) => {
-      const trimmed = name.trim().slice(0, 24);
+      const trimmed = Array.from(name.trim()).slice(0, 24).join("");
       setProgress((prev) => {
         if (!prev.companion || !trimmed) return prev;
         const next: Progress = {
