@@ -74,3 +74,33 @@ Never write `berdasarkan rajah di atas` without actually rendering the reference
 A cross-chapter regression test `geography-f1-390-bank-quality.test.ts` has been added to guard the student-facing 390-question registry, four distinct options, unique IDs, answer text, and answer-cue quality. The source was statically checked for consistency, **but Vitest and the Vite production build have not been executed in this GitHub-only session**. Merge only after running the thirteen existing chapter suites plus the new global suite, and inspect the edited C2 q21 and C13 q30 on a small mobile viewport.
 
 No Supabase migration or XP adjustment is needed. This PR is unrelated to the still-unmerged Sejarah Form 1 PR #59.
+
+## Follow-up audit and corrections — 12 October 2026
+
+A second, manual pass targeted five question-level flaws flagged after the 13 initial repairs. Four additional live records were changed plus a second revision to C13 Q30, for **17 distinct changed questions compared with the base `main` bank**.
+
+| Live question | Verified flaw | Final revision |
+|---|---|---|
+| `geo-f1-c2-q28` | The correct position of the post office could not be deduced without the omitted Pekan Indah diagram. | Makes the mosque's position *between* school and post office explicit, and places the school to its left, so the post office on its right follows logically. |
+| `geo-f1-c7-q17` | The KSSM textbook names Pelagus, but this is unsuitable as an unqualified **operating** hydropower example. | Uses verified operating Bakun (Sarawak) and Kenering (Perak) while retaining the syllabus concept of hydroelectric generation. |
+| `geo-f1-c10-q4` | Alps/Andes/Rocky were conspicuously out of the regional knowledge domain. | All four options now name real ranges referenced in the Southeast Asian highlands lesson: Annam, Bilauktaung, Himalaya, Crocker. |
+| `geo-f1-c10-q19` | "Bilauktaung terletak di Thailand" describes the textbook country-pairing without acknowledging a cross-border range. | Stem expressly asks for **the textbook pairing** and explanation notes the Myanmar–Thailand border geography. |
+| `geo-f1-c13-q30` | The question stem virtually spelled out the complete three-part correct plan; other options had shorter, incomplete plans. | The stem now describes a realistic multi-cause residential scenario; four similarly structured, plausible response plans require evaluating coverage of the underlying causes. |
+
+### Textbook and independent source checkpoints
+- KSSM Geografi Tingkatan 1, textbook page **15**, diagram *Pekan Indah*, is the source of the original Q28 position, but no accompanying diagram was displayed in the quiz: https://fliphtml5.com/faksy/vlbd/Buku_Teks_Geografi_Tingkatan_1_KSSM/26/
+- KSSM textbook page **80**, 7.3 *Kepentingan Sungai dan Tasik*, explicitly calls out **Empangan Pelagus** and **Empangan Kenering**: https://fliphtml5.com/kitdt/pmya/BUKU_TEKS_GEOGRAFI_TINGKATAN_1/90/ . The revised quiz deliberately substitutes a verified operational project instead of claiming the original example was absent from the textbook.
+- Sarawak Energy, 28 Aug 2026, identifies **Bakun** as an operating hydropower plant: https://www.sarawakenergy.com/media-info/media-releases/2026/reliable-electricity-supply-maintained-as-dry-weather-continues
+- Tenaga Nasional confirms **Kenering** among its Sungai Perak hydropower stations: https://www.tnb.com.my/sustainability/esg-stories-tnb-sungai-perak-hydropower-cascade
+- KSSM textbook page **113**, 10.2 *Bentuk Muka Bumi*, pairs Banjaran Annam with Vietnam and Bilauktaung with Thailand: https://fliphtml5.com/faksy/vlbd/Buku_Teks_Geografi_Tingkatan_1_KSSM/124/ . Myanmar's official geography description confirms Bilauktaung extends along the Myanmar–Thailand boundary: https://myanmar.gov.mm/en/geography .
+
+### Revised static safety check after both passes
+Compared by extracting all **390 live source records** from `src/data/content.ts` on original `main` vs this PR:
+- 390/390 IDs, chapter counts, answer texts, answer indices and difficulty tiers **unchanged**; no duplicate options/IDs.
+- **17 distinct live questions changed**; no other questions altered.
+- Correct answers strictly longest **93 → 89 / 390**; disproportionate longest (>1.25×) remained at three proper-name/category cases; sweeping-word wrong choices **20 → 9**.
+- Existing per-chapter tests and global regression assertions were updated to pin the five fixes.
+- **Vitest, build and actual mobile rendering have not been run from this GitHub-only editing session.** Re-run `npx vitest run src/content/form1/geography` and `npm run build` before approval or merge. Do not claim automated tests passed.
+
+### Visual policy
+**Yes, selective visuals are appropriate for Geography.** Prioritize legible vector maps and diagrams where the geography skill itself is visual (bearings, coordinates, peta lakar, river landforms, population density). The five corrections above are complete without adding images. Prefer embedded crisp SVG with readable Malay labels, mobile zoom and accessible text alternatives. Never require a missing diagram, never make a conventional memorization question harder by adding a decorative visual, and never change an answer key only to accommodate a picture. Introduce visuals in a separate reviewed PR after these textual fixes pass.
