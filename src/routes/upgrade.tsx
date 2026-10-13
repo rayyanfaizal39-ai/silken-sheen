@@ -250,6 +250,9 @@ function formatPlanName(plan: BillingPlan) {
   return plan === "basic" ? "Free" : plan === "pro" ? "Pro" : "Premium";
 }
 
+const PROVIDER_UNAVAILABLE_MESSAGE =
+  "Our payment provider is temporarily unavailable. Please try again later.";
+
 function UpgradePage() {
   const { user, loading: authLoading } = useAuth();
   const subscriptionState = useSubscriptionOverview();
@@ -268,6 +271,12 @@ function UpgradePage() {
       const checkout = await createCheckout({
         data: { plan, idempotencyKey: crypto.randomUUID() },
       });
+      if (checkout.mode === "unavailable") {
+        setCheckoutError(PROVIDER_UNAVAILABLE_MESSAGE);
+        setCheckoutPlan(null);
+        checkoutLock.current = false;
+        return;
+      }
       if (checkout.mode === "toyyibpay") {
         window.location.assign(checkout.checkoutUrl);
         return;

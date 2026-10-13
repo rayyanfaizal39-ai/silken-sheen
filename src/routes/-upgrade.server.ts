@@ -42,6 +42,19 @@ async function requireUser() {
   return { supabase, user: data.user };
 }
 
+// The edge function answers 503 {error:"provider_unavailable"} when ToyyibPay
+// times out or returns something unusable; anything else stays a generic failure.
+async function isProviderUnavailable(error: unknown) {
+  const context = (error as { context?: unknown })?.context;
+  if (!(context instanceof Response) || context.status !== 503) return false;
+  try {
+    const body = (await context.json()) as { error?: unknown };
+    return body.error === "provider_unavailable";
+  } catch {
+    return false;
+  }
+}
+
 export const createCheckout = createServerFn({ method: "POST" })
   .validator((input: unknown) => checkoutSchema.parse(input))
   .handler(async ({ data }) => {
@@ -61,7 +74,13 @@ export const createCheckout = createServerFn({ method: "POST" })
     const checkout = await supabase.functions.invoke("create-toyyibpay-bill", {
       body: data,
     });
-    if (checkout.error) throw new Error(`Checkout service failed: ${checkout.error.message}`);
+    if (checkout.error) {
+      if (await isProviderUnavailable(checkout.error)) {
+        console.error("[billing] payment provider unavailable:", checkout.error.message);
+        return { mode: "unavailable" as const };
+      }
+      throw new Error(`Checkout service failed: ${checkout.error.message}`);
+    }
     const result = checkout.data as { paymentId?: unknown; checkoutUrl?: unknown };
     if (typeof result.paymentId !== "string" || typeof result.checkoutUrl !== "string") {
       throw new Error("Checkout service returned an invalid response");
