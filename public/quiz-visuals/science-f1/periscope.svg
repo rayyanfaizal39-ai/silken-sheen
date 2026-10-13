@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" role="img" aria-label="Two tilted mirrors inside a periscope housing, no light path"><rect width="640" height="250" rx="20" fill="#F8FAFC"/><rect x="7" y="7" width="626" height="236" rx="15" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<path d="M184 42 H342 V168 H465 V212 H295 V90 H184 Z" fill="#E2E8F0" stroke="#475569" stroke-width="5" stroke-linejoin="round"/>
+<line x1="275" y1="59" x2="342" y2="109" stroke="#0EA5E9" stroke-width="8" stroke-linecap="round"/><line x1="294" y1="163" x2="360" y2="210" stroke="#0EA5E9" stroke-width="8" stroke-linecap="round"/>
+<circle cx="461" cy="186" r="16" fill="#FDE68A" stroke="#A16207" stroke-width="3"/>
+<text x="145" y="49" font-family="Arial,sans-serif" font-size="23" font-weight="600" fill="#475569" text-anchor="middle">A</text><text x="508" y="203" font-family="Arial,sans-serif" font-size="23" font-weight="600" fill="#475569" text-anchor="middle">B</text></svg>
