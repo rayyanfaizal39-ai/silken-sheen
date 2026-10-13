@@ -40,6 +40,7 @@ import {
   DEFAULT_PROFILE_AVATAR_ID,
   type ProfileAvatarId,
 } from "@/data/profile-avatars";
+import { isLearningIdentityResult, type LearningIdentityResult } from "@/lib/learning-identity";
 import {
   createXpProgressionEvent,
   publishProgressionEvent,
@@ -231,6 +232,8 @@ export interface Progress {
   profileAvatarSource?: ProfileAvatarSource;
   profileAvatarId?: ProfileAvatarId;
   profileAvatarUpdatedAt?: string;
+  /** One-time Nova Egg discovery result; separate from existing companion evolution. */
+  learningIdentity?: LearningIdentityResult;
   quizHistory: QuizResult[]; // recent completed quizzes
   parentEmail?: string; // where Mission Reports are sent
   reportCadence?: ReportCadence;
@@ -615,6 +618,7 @@ export function progressToRow(p: Progress) {
       source: p.profileAvatarSource ?? "google",
       presetId: p.profileAvatarId ?? DEFAULT_PROFILE_AVATAR_ID,
       updatedAt: p.profileAvatarUpdatedAt ?? null,
+      learningIdentity: p.learningIdentity ?? null,
     },
     updated_at: new Date().toISOString(),
   };
@@ -645,6 +649,8 @@ function rowToProgress(row: Record<string, unknown>): Progress {
         : DEFAULT_PROFILE_AVATAR_ID,
     profileAvatarUpdatedAt:
       typeof avatarPreferences?.updatedAt === "string" ? avatarPreferences.updatedAt : undefined,
+    learningIdentity: isLearningIdentityResult(avatarPreferences?.learningIdentity)
+      ? avatarPreferences.learningIdentity : undefined,
   });
 }
 
@@ -708,6 +714,14 @@ function mergeProgress(local: Progress, remote: Progress): Progress {
     profileAvatarSource: preferredProfileAvatar.profileAvatarSource ?? "google",
     profileAvatarId: preferredProfileAvatar.profileAvatarId ?? DEFAULT_PROFILE_AVATAR_ID,
     profileAvatarUpdatedAt: preferredProfileAvatar.profileAvatarUpdatedAt,
+    learningIdentity: (() => {
+      const l = local.learningIdentity;
+      const r = remote.learningIdentity;
+      if (!l) return r;
+      if (!r) return l;
+      // Reward can only be claimed once: retain the first completed result.
+      return l.awardedAt <= r.awardedAt ? l : r;
+    })(),
     quizHistory: mergedHistory,
     recentActivity: mergedRecentActivity,
     parentEmail: local.parentEmail ?? remote.parentEmail,
@@ -1532,6 +1546,22 @@ export function useProgress() {
     [scheduleSync],
   );
 
+  /** Grant one Nova personality egg without resetting an existing companion or XP. */
+  const setLearningIdentity = useCallback(
+    (identity: LearningIdentityResult) => {
+      if (!isLearningIdentityResult(identity)) return;
+      const current = sharedProgress ?? load(sharedUserId);
+      if (current.learningIdentity) return;
+      const next: Progress = { ...current, learningIdentity: identity };
+      try {
+        localStorage.setItem(progressStorageKey(sharedUserId), JSON.stringify(next));
+      } catch {}
+      broadcastProgress(next);
+      scheduleSync(next);
+    },
+    [scheduleSync],
+  );
+
   const setProfileAvatar = useCallback(
     (source: ProfileAvatarSource, profileAvatarId?: ProfileAvatarId) => {
       const current = sharedProgress ?? load(sharedUserId);
@@ -1568,6 +1598,7 @@ export function useProgress() {
     setParentReport,
     setStudentProfile,
     setProfileAvatar,
+    setLearningIdentity,
     lastRankUp,
     lastCompanionEvolution,
     clearRankUpEvent,
