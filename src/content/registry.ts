@@ -48,6 +48,7 @@ import {
   validateQuizQuestions,
 } from "@/lib/quiz-identity";
 import { bab7Content } from "@/content/form1/science/chapter-7/bab7-content";
+import { scienceF1QuizVisualById } from "@/content/form1/science/quiz-visuals";
 import { chapter1Content } from "@/content/form1/science/chapter-1/chapter1-content";
 import { chapter2Content } from "@/content/form1/science/chapter-2/chapter2-content";
 import {
@@ -3809,7 +3810,16 @@ export function getChapterQuizQuestions(
       (!lang || (question.lang ?? defaultQuizLanguage(question.subjectId)) === lang),
   );
 
-  const resolvedQuestions = registeredQuestions.length > 0 ? registeredQuestions : legacyQuestions;
+  const rawQuestions = registeredQuestions.length > 0 ? registeredQuestions : legacyQuestions;
+  // Decorate the canonical question on lookup. Leave the underlying banks and
+  // answer indices untouched; option shuffling happens later in the quiz route.
+  const resolvedQuestions =
+    subjectId === "science" && form === "Form 1"
+      ? rawQuestions.map((question) => {
+          const image = scienceF1QuizVisualById[question.id];
+          return image ? { ...question, image } : question;
+        })
+      : rawQuestions;
   const language = lang ?? defaultQuizLanguage(subjectId);
   const identity = {
     subject: subjectId,
