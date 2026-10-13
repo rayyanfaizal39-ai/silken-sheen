@@ -4,6 +4,7 @@
 declare const Deno: any;
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.108.1";
+import { requestToyyibPayBill, ToyyibPayUnavailableError } from "../_shared/toyyibpay-response.ts";
 import {
   BILLING_CURRENCY,
   CHECKOUT_PLANS,
@@ -149,48 +150,10 @@ Deno.serve(async (request: Request) => {
       billPaymentChannel: "0",
       billExpiryDays: "1",
     });
-    const billResponse = await fetch(`${TOYYIBPAY_SANDBOX_URL}/index.php/api/createBill`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: createBillBody,
-    });
-    const billResponseText = await billResponse.text();
-    const raw = await billResponse.text();
-    let parsedResponse: unknown;
-    try {
-      parsedResponse = JSON.parse(raw);
-    } catch {
-      parsedResponse = null;
-    }
-    console.info(
-      JSON.stringify({
-        scope: "billing",
-        event: "toyyibpay_response",
-        httpStatus: billResponse.status,
-        responseHeaders: Object.fromEntries(billResponse.headers.entries()),
-        contentType: billResponse.headers.get("content-type"),
-        rawResponse: raw,
-        parsedResponse,
-      }),
+    const billCode = await requestToyyibPayBill(
+      `${TOYYIBPAY_SANDBOX_URL}/index.php/api/createBill`,
+      createBillBody,
     );
-    if (!billResponse.ok) {
-      throw new Error(
-        `ToyyibPay bill creation failed (${billResponse.status}): ${billResponseText.slice(0, 300)}`,
-      );
-    }
-    let billPayload: Array<{ BillCode?: unknown }>;
-    try {
-      billPayload = JSON.parse(billResponseText) as Array<{ BillCode?: unknown }>;
-    } catch {
-      throw new Error(`ToyyibPay returned invalid JSON: ${billResponseText.slice(0, 300)}`);
-    }
-    const billCode =
-      Array.isArray(billPayload) && typeof billPayload[0]?.BillCode === "string"
-        ? billPayload[0].BillCode.trim()
-        : "";
-    if (!billCode || !/^[a-z0-9_-]+$/i.test(billCode)) {
-      throw new Error(`ToyyibPay returned no valid bill code: ${billResponseText.slice(0, 300)}`);
-    }
 
     const update = await admin
       .from("payment_transactions")
@@ -219,6 +182,9 @@ Deno.serve(async (request: Request) => {
         error: error instanceof Error ? error.message : String(error),
       }),
     );
+    if (error instanceof ToyyibPayUnavailableError) {
+      return response({ error: "provider_unavailable" }, 503);
+    }
     return response({ error: "Checkout could not be created" }, 500);
   }
 });
