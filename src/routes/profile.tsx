@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Award,
-  BookOpen,
   CreditCard,
   Edit3,
   Flame,
@@ -21,8 +20,8 @@ import {
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { CompanionImage, getCompanionDisplayName } from "@/companion";
 import { RankBadge } from "@/components/RankBadge";
+import { LearningIdentityPanel } from "@/components/profile/LearningIdentityPanel";
 import { useAuth } from "@/context/auth-context";
-import { subjects } from "@/data/subjects-meta";
 import {
   DEFAULT_PROFILE_AVATAR_ID,
   PROFILE_AVATARS,
@@ -71,7 +70,7 @@ function ExplorerProfilePage() {
     refreshExplorerProfile,
     signOut,
   } = useAuth();
-  const { progress, setProfileAvatar } = useProgress();
+  const { progress, setProfileAvatar, setLearningIdentity } = useProgress();
   const [school, setSchool] = useState<SchoolSearchResult | null>(null);
   const [schoolLoading, setSchoolLoading] = useState(false);
   const [schoolError, setSchoolError] = useState(false);
@@ -314,36 +313,7 @@ function ExplorerProfilePage() {
         </section>
 
         <div className="explorer-profile-columns">
-          <section className="explorer-profile-panel" aria-labelledby="subjects-title">
-            <div className="explorer-profile-section-heading">
-              <div>
-                <p>Learning activity</p>
-                <h2 id="subjects-title">Subject Progress</h2>
-              </div>
-              <BookOpen aria-hidden="true" />
-            </div>
-            <div className="explorer-profile-subjects">
-              {subjects.map((subject) => {
-                const xp = Math.max(0, progress.subjectXp[subject.id] ?? 0);
-                return (
-                  <div className="explorer-profile-subject" key={subject.id}>
-                    <span className="explorer-profile-subject-icon" aria-hidden="true">
-                      {subject.emoji}
-                    </span>
-                    <div>
-                      <strong>{subject.name}</strong>
-                      <span>
-                        {xp > 0 ? `${xp.toLocaleString()} XP earned` : "No activity recorded yet"}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <Link className="explorer-profile-text-link" to="/notes">
-              Explore subjects <span aria-hidden="true">→</span>
-            </Link>
-          </section>
+          <LearningIdentityPanel identity={progress.learningIdentity} onComplete={setLearningIdentity} />
 
           <section className="explorer-profile-panel" aria-labelledby="achievements-title">
             <div className="explorer-profile-section-heading">
