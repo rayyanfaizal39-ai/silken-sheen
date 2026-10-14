@@ -4,6 +4,7 @@
 declare const Deno: any;
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.108.1";
+import { applyDuitNowQrOptions } from "../_shared/toyyibpay-qr.ts";
 import {
   BILLING_CURRENCY,
   CHECKOUT_PLANS,
@@ -149,6 +150,10 @@ Deno.serve(async (request: Request) => {
       billPaymentChannel: "0",
       billExpiryDays: "1",
     });
+    applyDuitNowQrOptions(
+      createBillBody,
+      Deno.env.get("TOYYIBPAY_ENABLE_DUITNOW_QR")?.trim() === "true",
+    );
     const billResponse = await fetch(`${TOYYIBPAY_SANDBOX_URL}/index.php/api/createBill`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
