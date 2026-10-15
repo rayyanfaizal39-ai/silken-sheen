@@ -425,27 +425,31 @@ const challenge: PairedQuizSeed[] = [];
   [4, 6, 7, 4, 7, 6],
   [6, 8, 10, 12, 16, 20],
   [7, 9, 11, 7, 9, 12],
-].forEach(([a, b, c, d, e, f], i) =>
+].forEach(([a, b, c, d, e, f], i) => {
+  const congruent =
+    [a, b, c].sort((x, y) => x - y).join() ===
+    [d, e, f].sort((x, y) => x - y).join();
   challenge.push(
     q(
       `Segi tiga A${i + 1} bersisi ${a},${b},${c}; segi tiga B bersisi ${d},${e},${f}. Tentukan sama ada kedua-duanya kongruen.`,
       `Triangle A${i + 1} has sides ${a},${b},${c}; triangle B has sides ${d},${e},${f}. Determine whether they are congruent.`,
-      [a, b, c].sort((x, y) => x - y).join() === [d, e, f].sort((x, y) => x - y).join()
-        ? ["Kongruen", "Congruent"]
-        : ["Tidak kongruen", "Not congruent"],
-      [
-        ["Semua segi tiga mempunyai panjang sisi yang sama", "All triangles have the same side lengths"],
-        ["Kongruen jika perimeter hampir sama", "Congruent if perimeters are close"],
-        [
-          "Tidak dapat ditentukan walaupun sisi diberi",
-          "Cannot be determined even with side lengths",
-        ],
-      ],
-      "Susun dan bandingkan ketiga-tiga panjang sisi.",
-      "Order and compare all three side lengths.",
+      congruent ? ["Kongruen", "Congruent"] : ["Tidak kongruen", "Not congruent"],
+      congruent
+        ? [
+            ["Tidak kongruen kerana turutan panjang sisi berbeza", "Not congruent because side lengths are listed in different orders"],
+            ["Tidak kongruen jika satu segi tiga diputar", "Not congruent if one triangle is rotated"],
+            ["Tidak dapat ditentukan tanpa nilai sudut", "Cannot be determined without angle measurements"],
+          ]
+        : [
+            ["Kongruen kerana satu panjang sisi sepadan", "Congruent because one side length matches"],
+            ["Kongruen kerana panjang sisi adalah berkadar", "Congruent because the sides are proportional"],
+            ["Tidak dapat ditentukan tanpa nilai sudut", "Cannot be determined without angle measurements"],
+          ],
+      "Bandingkan ketiga-tiga sisi selepas disusun mengikut panjang. Saiz mestilah sama, bukan hanya berkadar.",
+      "Compare all three sides after sorting by length. The triangles must have the same size, not merely proportional sides.",
     ),
-  ),
-);
+  );
+});
 
 export const mathF2C11PairedSeeds: readonly PairedQuizSeed[] = [
   ...foundation,
