@@ -434,7 +434,7 @@ const challenge: PairedQuizSeed[] = [];
         ? ["Kongruen", "Congruent"]
         : ["Tidak kongruen", "Not congruent"],
       [
-        ["Kongruen kerana kedua-duanya segi tiga", "Congruent because both are triangles"],
+        ["Semua segi tiga mempunyai panjang sisi yang sama", "All triangles have the same side lengths"],
         ["Kongruen jika perimeter hampir sama", "Congruent if perimeters are close"],
         [
           "Tidak dapat ditentukan walaupun sisi diberi",
