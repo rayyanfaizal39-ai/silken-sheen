@@ -241,7 +241,7 @@ export function mathF2VisualForSeed(chapter: number, bmQuestion: string): MathQu
       if (bmQuestion === "Cari luas permukaan kuboid 5 cm × 3 cm × 2 cm.") return cuboid("5 cm", "3 cm", "2 cm");
       break;
     case 7: {
-      const midpoint = /^M ialah titik tengah segmen \\d+ dengan hujung \\((-?\\d+),(-?\\d+)\\) dan \\((-?\\d+),(-?\\d+)\\)\\. Cari M\\.$/.exec(bmQuestion);
+      const midpoint = /^M ialah titik tengah segmen \d+ dengan hujung \((-?\d+),(-?\d+)\) dan \((-?\d+),(-?\d+)\)\. Cari M\.$/.exec(bmQuestion);
       if (midpoint) return midpointStimulus(
         [Number(midpoint[1]), Number(midpoint[2])],
         [Number(midpoint[3]), Number(midpoint[4])],
@@ -255,7 +255,7 @@ export function mathF2VisualForSeed(chapter: number, bmQuestion: string): MathQu
       if (bmQuestion === "Sebuah graf melalui (0,6) dan (3,0). Apakah kecerunannya?") return slopeLine;
       break;
     case 9: {
-      const legs = /^Laluan A \\d+ ialah (\\d+) km pada (\\d+) km\\/h, diikuti laluan B (\\d+) km pada (\\d+) km\\/h\\. Berapa minitkah keseluruhan perjalanan\\?$/.exec(bmQuestion);
+      const legs = /^Laluan A \d+ ialah (\d+) km pada (\d+) km\/h, diikuti laluan B (\d+) km pada (\d+) km\/h\. Berapa minitkah keseluruhan perjalanan\?$/.exec(bmQuestion);
       if (legs) return twoLegJourney(
         Number(legs[1]), Number(legs[2]), Number(legs[3]), Number(legs[4]),
       );
