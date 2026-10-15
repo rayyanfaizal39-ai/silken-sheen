@@ -271,7 +271,7 @@ export function mathF2VisualForSeed(chapter: number, bmQuestion: string): MathQu
       break;
     }
     case 13: {
-      const marbles = /^Sebuah beg \\d+ mengandungi (\\d+) guli merah dan (\\d+) guli biru\\. Cari kebarangkalian memilih guli bukan merah\\.$/.exec(bmQuestion);
+      const marbles = /^Sebuah beg \d+ mengandungi (\d+) guli merah dan (\d+) guli biru\. Cari kebarangkalian memilih guli bukan merah\.$/.exec(bmQuestion);
       if (marbles) {
         const red = Number(marbles[1]), blue = Number(marbles[2]);
         if (red > 0 && blue > 0 && red + blue <= 30)
