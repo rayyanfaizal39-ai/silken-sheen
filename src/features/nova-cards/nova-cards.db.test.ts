@@ -199,7 +199,7 @@ describe("Nova migration running in PostgreSQL with real API roles and RLS", () 
       await expect(create(C, answers)).rejects.toThrow();
   });
   it("never exposes future or unreleased artwork, even to its owner", async () => {
-    await db.exec(`insert into public.nova_artwork(card_id,stage,candidate,storage_path,released,selected) select id,9,'a','future.png',true,true from public.nova_cards where owner_id='${A}';
+    await db.exec(`insert into public.nova_artwork(card_id,stage,candidate,storage_path,released,selected) select id,5,'a','future.png',true,true from public.nova_cards where owner_id='${A}';
       insert into public.nova_artwork(card_id,stage,candidate,storage_path,released,selected) select id,1,'a','current.png',true,true from public.nova_cards where owner_id='${A}';
       insert into public.nova_artwork(card_id,stage,candidate,storage_path,released,selected) select id,1,'b','unselected.png',true,false from public.nova_cards where owner_id='${A}';
       insert into storage.objects(bucket_id,name) values('nova-artwork','current.png'),('nova-artwork','future.png'),('nova-artwork','unselected.png');`);
