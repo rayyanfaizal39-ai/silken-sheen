@@ -131,6 +131,43 @@ describe("partner referral commissions", () => {
     expect(referral.rows).toEqual([{ status: "active", plan: "premium" }]);
   });
 
+  it("keeps checkout, subscription activation and invoicing unchanged", async () => {
+    await claim(STUDENT, "ACAPARTNER1");
+    const payment = await createCheckout(STUDENT, "premium");
+    await verifiedCallback(payment);
+    const state = await db.query(`
+      select p.payment_status, s.status as subscription, s.plan, i.total, i.invoice_number like 'ACAD-%' as numbered, pr.plan as profile_plan
+        from public.payment_transactions p
+        join public.subscriptions s on s.id = p.subscription_id
+        join public.invoices i on i.payment_transaction_id = p.id
+        join public.profiles pr on pr.id = p.user_id
+       where p.id = $1`, [payment.id]);
+    expect(state.rows).toEqual([
+      { payment_status: "successful", subscription: "active", plan: "premium", total: "59.00", numbered: true, profile_plan: "paid" },
+    ]);
+  });
+
+  it("attributes an existing free student with abandoned checkouts and a brand-new registration", async () => {
+    // Existing account: earlier pending/failed attempts (like the 15 Oct student) do not block a claim.
+    const abandoned = await createCheckout(STUDENT, "premium");
+    await db.query(`update public.payment_transactions set payment_status = 'failed' where id = $1`, [abandoned.id]);
+    await createCheckout(STUDENT, "pro");
+    expect(await claim(STUDENT, "ACAPARTNER1")).toEqual({ claimed: true });
+
+    // New registration: on_auth_user_created inserts the profile with role 'student'.
+    const NEW_STUDENT = "00000000-0000-4000-8000-0000000000b9";
+    await db.query(`insert into auth.users (id) values ($1)`, [NEW_STUDENT]);
+    await db.query(`insert into public.profiles (id) values ($1)`, [NEW_STUDENT]);
+    expect(await claim(NEW_STUDENT, "ACAPARTNER2")).toEqual({ claimed: true });
+
+    await verifiedCallback(await createCheckout(STUDENT, "premium"));
+    await verifiedCallback(await createCheckout(NEW_STUDENT, "premium"));
+    expect((await commissions(STUDENT)).map((row) => [row.partner_user_id, row.commission_amount])).toEqual([[PARTNER, "17.70"]]);
+    expect((await commissions(NEW_STUDENT)).map((row) => [row.partner_user_id, row.commission_amount])).toEqual([
+      [OTHER_PARTNER, "17.70"],
+    ]);
+  });
+
   it("creates no duplicate commission when the callback is replayed", async () => {
     await claim(STUDENT, "ACAPARTNER1");
     const payment = await createCheckout(STUDENT, "premium");
@@ -168,13 +205,15 @@ describe("partner referral commissions", () => {
     expect((await commissions())[0].commission_amount).toBe("8.70");
   });
 
-  it("never reassigns a student to a later partner", async () => {
+  it("never reassigns a student to a later partner across renewals", async () => {
     await claim(STUDENT, "ACAPARTNER1");
-    expect(await claim(STUDENT, "ACAPARTNER2")).toEqual({ claimed: false, reason: "already_attributed" });
-    const payment = await createCheckout(STUDENT, "premium");
-    await db.query(`select public.partner_attach_sandbox_checkout($1, $2, 'ACAPARTNER2')`, [payment.id, STUDENT]);
-    await verifiedCallback(payment);
-    expect((await commissions())[0].partner_user_id).toBe(PARTNER);
+    for (let month = 0; month < 3; month += 1) {
+      expect(await claim(STUDENT, "ACAPARTNER2")).toEqual({ claimed: false, reason: "already_attributed" });
+      const payment = await createCheckout(STUDENT, "premium");
+      await db.query(`select public.partner_attach_sandbox_checkout($1, $2, 'ACAPARTNER2')`, [payment.id, STUDENT]);
+      await verifiedCallback(payment);
+    }
+    expect((await commissions()).map((row) => row.partner_user_id)).toEqual([PARTNER, PARTNER, PARTNER]);
   });
 
   it("rejects self-referrals, inactive partners, unknown codes and non-students", async () => {
