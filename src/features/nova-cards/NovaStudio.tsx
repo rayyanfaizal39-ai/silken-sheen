@@ -61,7 +61,7 @@ export function NovaStudio() {
   return (
     <main className="nova-page">
       <header className="nova-topbar">
-        <a href="/companion" className="nova-home">
+        <a href="/dashboard" className="nova-home">
           <img src="/branding/academy-icon.png" alt="AcadeMY" width="32" height="32" />
           AcadeMY
         </a>

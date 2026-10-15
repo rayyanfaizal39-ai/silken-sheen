@@ -33,6 +33,7 @@ import { CosmicRankIcon } from "@/components/CosmicRankIcon";
 import { ProfileAvatar } from "@/components/ProfileAvatar";
 import { useAuth } from "@/context/auth-context";
 import { useSubscriptionOverview } from "@/hooks/use-subscription-overview";
+import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { GalaxySearch } from "@/components/GalaxySearch";
 import { AICompanionButton } from "@/companion";
@@ -405,7 +406,7 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
   const companionEntitled =
     novaSubscription.resolved && !novaSubscription.error &&
     currentSubscription?.status === "active" &&
-    (currentSubscription.plan === "pro" || currentSubscription.plan === "premium") &&
+    hasFeature(resolveStoredPlan(currentSubscription?.plan), "xp_companion_progress") &&
     !!currentSubscription.current_period_end &&
     Date.parse(currentSubscription.current_period_end) > Date.now();
   const [moreOpen, setMoreOpen] = useState(false);

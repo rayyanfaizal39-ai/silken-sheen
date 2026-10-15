@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { CheckCircle2, Lock, Orbit, Pencil, Sparkles, Star } from "lucide-react";
 import { useState } from "react";
 import {
@@ -21,6 +21,8 @@ import {
 import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/companion")({
+  // Retire the old egg/hatching UI without touching the historical progress ledger.
+  beforeLoad: () => { throw redirect({ to: "/nova" }); },
   component: CosmicCompanionPage,
   // Per-user gamification state — noindex, same as /dashboard.
   head: () =>

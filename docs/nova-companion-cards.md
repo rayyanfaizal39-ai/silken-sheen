@@ -29,9 +29,9 @@ opening it from a different device requires an accessible preview host.
 ## Features and files
 
 - `src/features/nova-cards/model.ts`: twelve questions, typed traits, fixed demo identities,
-  exactly nine XP thresholds, level calculation and permanent URL helpers.
+  exactly five XP thresholds, level calculation and permanent URL helpers.
 - `artwork.ts`: original vector sample creatures with two distinct design silhouettes,
-  persistent species/palette/eye identity and nine earned visual transformations.
+  persistent species/palette/eye identity and five earned visual transformations.
 - `NovaCard.tsx`, `nova-cards.css`: portrait fantasy card, official purple/yellow AcadeMY
   icon, navy/gold styling, holographic sheen, keyboard/touch flip, reduced motion,
   current XP, QR, serial, Code 128 barcode, sharing and image export controls.
@@ -81,7 +81,7 @@ Review and stage it after existing quiz XP and mission migrations:
    **Review the grandfathered XP snapshot:** old persisted XP predates complete server
    verification. This compatibility snapshot preserves it; it does not retroactively
    authenticate every historical point. New students have no unverified XP fallback.
-5. Nine thresholds are 0, 400, 1600, 4200, 9000, 18000, 32000, 52000 and 80000 XP.
+5. Five thresholds are 0, 1600, 9000, 32000 and 80000 XP.
    The original nonzero milestone values remain represented. Level is 1 + floor(XP/400).
    Rarity is a separately controlled field and never changes because a stage changes.
 6. `nova_generation_jobs`, `nova_artwork`, and private `nova-artwork` Storage support
@@ -110,7 +110,7 @@ npm run build
 ```
 
 Tests decode both generated QR PNGs using jsQR, independently decode Code 128 via
-ZXing, rasterize barcodes at mobile/export sizes, verify nine-stage threshold parity,
+ZXing, rasterize barcodes at mobile/export sizes, verify five-stage threshold parity,
 immutable design/identity, unique public IDs/serials, RLS, direct-write rejection,
 public/private/serial access, sharing revocation, XP preservation and future-art restrictions.
 The existing business-card QR decoding test passes as part of the regression suite.
@@ -146,8 +146,23 @@ Both pass `string | undefined` to a string parameter. No Nova type errors remain
 - Real-account end-to-end creation and live Supabase Storage still need a staging check
   after migration review; no production credentials or database were used here.
 - Legacy companion UI remains compatible and still follows its existing five-stage model.
-  Nova cards have nine stages and contain no egg or hatching features or future-stage art gallery.
+  Nova cards have five stages and contain no egg or hatching features or future-stage art gallery.
 - XP refresh is explicit on the owner page; there is no new realtime progress subscription.
 - Stage and rarity labels are feature copy, not curriculum content.
 
 UNSOURCED LEARNER-FACING CURRICULUM CONTENT ADDED: NONE.
+
+## Follow-up: five-stage evolution and billing reactivation
+
+- Stages: Origin 0 XP, Awakened 1,600, Ascended 9,000, Mythic 32,000, Legendary 80,000. Rarity is independent.
+- Only active Pro/Premium subscribers with a paid period ending in the future can create a Nova or request a future evolution job. SQL and server both enforce this; no payment provider was added.
+- A cancelled/expired student sees a premium locked teaser at `/nova`, not their active companion. A pending payment shows verification messaging. Outages are not mislabeled as expiry.
+- Previously approved art, personal public ID, serial, QR and barcode persist. Public sharing remains opt-in; public XP and artwork stay on the last paid snapshot when inactive. XP earned without visiting Nova while paid may not appear in the frozen snapshot, but is preserved in the original verified XP ledger.
+- `nova_generation_jobs` uses `(card_id,stage)` uniqueness. The guarded queue checks the verified XP threshold and preceding approved stage; it does not call a paid generator. Stage 1 still uses temporary SVG demo art, not a live AI generator. Real AI stage-1 candidate selection remains future work.
+- `/companion` redirects to `/nova` so the legacy egg/hatching screen cannot remain an alternative paid/anonymous companion experience. XP award paths and user progress remain untouched.
+- On successful ToyyibPay verification, the payment return page offers a Nova link only for a same-browser checkout initiated from the Nova teaser. Existing payments otherwise keep their dashboard return.
+- Branch-only development: no production database migration, production deployment, live paid AI calls or real payment tests performed.
+
+## Existing preview failures
+
+GitHub reported a failed Cloudflare Pages check and Vercel deployment status on initial commit `68961c0`. The original PR description reports a successful local production build, but logs for the failed provider builds are not exposed in the GitHub check metadata. Their underlying cause is **not yet established**. Inspect the authenticated provider build logs before claiming these deployment failures resolved. The existing Cloudflare config in `vite.config.ts` explicitly depends on `scripts/build-pages-worker.js` and root `wrangler.jsonc`; confirm deployment root and generated output settings against logs.
