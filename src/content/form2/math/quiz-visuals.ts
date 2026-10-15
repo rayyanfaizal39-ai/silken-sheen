@@ -25,35 +25,6 @@ const shape = (
   }],
 });
 
-const areaTriangle: MathQuestionVisual = {
-  kind: "geometry-diagram",
-  title: t("Dua segi tiga, luas kekal", "Two triangles, equal areas"),
-  panels: [
-    {
-      title: t("Asal", "Original"),
-      description: t("Luas A = bh/2, tapak b, tinggi h.", "Area A = bh/2, base b, height h."),
-      paths: [
-        { points: [[54, 201], [246, 201], [140, 56]], closed: true, fill: true },
-        { points: [[140, 56], [140, 201]], dashed: true },
-      ],
-      labels: [
-        { at: [150, 224], text: "b" }, { at: [126, 121], text: "h" },
-      ],
-    },
-    {
-      title: t("Selepas perubahan", "After the change"),
-      description: t("Tapak menjadi b/2 tetapi luas mesti kekal. Tinggi baharu tidak diberikan.",
-        "Base becomes b/2, but area remains equal. The new height is unknown."),
-      paths: [
-        { points: [[92, 201], [209, 201], [142, 56]], closed: true, fill: true },
-        { points: [[142, 56], [142, 201]], dashed: true },
-      ],
-      labels: [
-        { at: [149, 225], text: "b/2" }, { at: [129, 119], text: "?" },
-      ],
-    },
-  ],
-};
 const quad = shape(
   t("Sudut segi empat", "Quadrilateral angles"),
   t("Hanya tiga sudut diberi. Rajah tidak mengikut skala.", "Only three angles are given. Diagram not to scale."),
@@ -218,9 +189,6 @@ const statTable = (values: number[], frequencies: number[], mode: boolean): Math
 /** Called when the paired bank is built, not at render time. */
 export function mathF2VisualForSeed(chapter: number, bmQuestion: string): MathQuestionVisual | undefined {
   switch (chapter) {
-    case 3:
-      if (bmQuestion === "Diberi A = bh/2. Tapak dikurangkan separuh tetapi luas hendak dikekalkan. Apakah perlu berlaku kepada tinggi?") return areaTriangle;
-      break;
     case 4:
       if (bmQuestion === "Tiga sudut sebuah segi empat ialah 80°, 95° dan 105°. Cari sudut keempat.") return quad;
       if (bmQuestion === "Sudut sebuah pentagon ialah 100°, 110°, 120°, 90° dan x°. Cari x.") return pentagon;
