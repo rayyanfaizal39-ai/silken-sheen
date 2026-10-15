@@ -1,4 +1,5 @@
 import type { QuizQuestion } from "@/data/content";
+import { MATH_F2_C2_QUIZ_VISUALS } from "./quiz-visuals";
 
 export const mathF2C2FoundationQuizzesDLP: QuizQuestion[] = [
   {
@@ -62,6 +63,7 @@ export const mathF2C2FoundationQuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 2",
     lang: "dlp",
+    visual: MATH_F2_C2_QUIZ_VISUALS["F5"],
     question: "Expand (x + 2)(x + 3).",
     options: ["x² + 6", "x² + 5x + 6", "x² + 6x + 5", "x² + x + 6"],
     answerIndex: 1,
@@ -86,6 +88,7 @@ export const mathF2C2FoundationQuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 2",
     lang: "dlp",
+    visual: MATH_F2_C2_QUIZ_VISUALS["F7"],
     question: "Expand (a + 5)².",
     options: ["a² + 25", "a² + 5a + 25", "a² + 10a + 25", "a² + 10a + 10"],
     answerIndex: 2,
@@ -460,6 +463,7 @@ export const mathF2C2PracticeQuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "dlp",
+    visual: MATH_F2_C2_QUIZ_VISUALS["P6"],
     question: "A rectangle has length (3x + 2) cm and width (x + 4) cm. What is its area?",
     options: ["3x² + 8", "3x² + 14x + 8", "3x² + 12x + 8", "4x² + 14x + 8"],
     answerIndex: 1,
@@ -472,6 +476,7 @@ export const mathF2C2PracticeQuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "dlp",
+    visual: MATH_F2_C2_QUIZ_VISUALS["P7"],
     question: "A square has side length (2y − 3) cm. What is its area?",
     options: ["4y² − 9", "4y² − 6y + 9", "4y² − 12y + 9", "2y² − 12y + 9"],
     answerIndex: 2,
@@ -819,6 +824,7 @@ export const mathF2C2ChallengeQuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "dlp",
+    visual: MATH_F2_C2_QUIZ_VISUALS["C4"],
     question:
       "A square region has side length (x + 5) m. A square of side x m is removed from its centre. What is the remaining area?",
     options: ["5x + 25", "10x + 25", "x² + 10x + 25", "25"],
@@ -1097,6 +1103,7 @@ export const mathF2C2ChallengeQuizzesDLP: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 2",
     lang: "dlp",
+    visual: MATH_F2_C2_QUIZ_VISUALS["C25"],
     question:
       "The area of a rectangle is x² + 6x + 8 and its width is (x + 2). What is its length?",
     options: ["x + 4", "x + 1", "x + 6", "x + 8"],
