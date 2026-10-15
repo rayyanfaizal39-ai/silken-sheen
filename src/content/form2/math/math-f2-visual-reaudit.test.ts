@@ -49,9 +49,9 @@ describe("Math Form 2 visual re-audit", () => {
     });
   }
 
-  it("attaches exactly 43 bilingual pair diagrams, only where the premises match", () => {
+  it("attaches exactly 48 bilingual pair diagrams, only where the premises match", () => {
     const expectedCounts = new Map<number, number>([
-      [3, 0], [4, 2], [5, 3], [6, 2], [7, 7], [8, 2],
+      [3, 0], [4, 2], [5, 3], [6, 2], [7, 12], [8, 2],
       [9, 5], [10, 2], [11, 5], [12, 10], [13, 5],
     ]);
     let total = 0;
@@ -64,7 +64,7 @@ describe("Math Form 2 visual re-audit", () => {
         expect(bm[i].visual).toEqual(mathF2VisualForSeed(chapter, seeds[i].question[0]));
       }
     }
-    expect(total).toBe(43);
+    expect(total).toBe(48);
   });
 
   it("corrects the misleading radius/chord construction in both languages", () => {
@@ -106,10 +106,10 @@ describe("Math Form 2 visual re-audit", () => {
     }
   });
 
-  it("draws only given endpoints, never midpoint answers, for five coordinate tasks", () => {
+  it("draws only given endpoints, never midpoint answers, for ten coordinate tasks", () => {
     const bm = buildPairedQuizBank(7, "bm", c7);
     const candidates = bm.filter(q => /^M ialah titik tengah segmen \d+ dengan hujung/.test(q.question));
-    expect(candidates).toHaveLength(5);
+    expect(candidates).toHaveLength(10);
     for (const q of candidates) {
       expect(q.visual?.kind).toBe("coordinate-plane");
       if (q.visual?.kind !== "coordinate-plane") throw new Error("Expected coordinate plane");
