@@ -16,7 +16,7 @@ const rectangle = (
   kind: "geometry-diagram",
   title: t(bm, dlp),
   panels: [{
-    title: t("Segi empat tepat", "Rectangle"),
+    title: isSquare ? t("Segi empat sama", "Square") : t("Segi empat tepat", "Rectangle"),
     description: t("Label hanya menunjukkan maklumat yang diberi; rajah tidak mengikut skala.",
       "Labels show only the givens; diagram not to scale."),
     paths: [{ points: (isSquare
