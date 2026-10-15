@@ -28,11 +28,11 @@ $$;
 revoke all on function public.nova_verified_xp(uuid) from public, anon, authenticated;
 
 create function public.nova_subscription_active(owner_id uuid) returns boolean
-language sql stable security definer set search_path = '' as $
+language sql stable security definer set search_path = '' as $$
   select exists (select 1 from public.subscriptions s
     where s.user_id = owner_id and s.status = 'active'
       and s.plan in ('pro','premium') and s.current_period_end > now());
-$;
+$$;
 revoke all on function public.nova_subscription_active(uuid) from public, anon, authenticated;
 
 create function public.nova_stage(xp bigint) returns integer
@@ -202,7 +202,7 @@ grant execute on function public.get_my_nova_card(), public.create_nova_card(tex
 
 -- Queue only; no paid AI worker is configured. Prevent skipping generations.
 create function public.request_nova_evolution(target_stage integer) returns jsonb
-language plpgsql security definer set search_path = '' as $
+language plpgsql security definer set search_path = '' as $$
 declare c public.nova_cards;
   previous_stage integer;
   job public.nova_generation_jobs;
@@ -235,7 +235,7 @@ begin
     where card_id=c.id and stage=target_stage;
   return jsonb_build_object('stage',job.stage,'status',job.status);
 end;
-$;
+$$;
 revoke all on function public.request_nova_evolution(integer) from public, anon, authenticated;
 grant execute on function public.request_nova_evolution(integer) to authenticated;
 
