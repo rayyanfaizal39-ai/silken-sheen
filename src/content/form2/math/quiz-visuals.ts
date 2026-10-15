@@ -149,31 +149,34 @@ const slopeLine = plane(
   [{ at: [0, 6], name: "A" }, { at: [3, 0], name: "B" }],
   [{ points: [[0, 6], [3, 0]] }],
 );
-const graph = (distance: boolean): MathQuestionVisual => ({
-  kind: "geometry-diagram",
-  title: distance ? t("Graf jarak-masa", "Distance-time graph") : t("Graf laju-masa", "Speed-time graph"),
-  panels: [{
-    title: t("Graf skematik", "Schematic graph"),
-    description: distance
-      ? t("Segmen menaik pada graf jarak-masa. Tiada nilai kecerunan ditulis.",
-          "An increasing distance-time segment. Its gradient is not labelled.")
-      : t("Rantau di bawah segmen laju seragam. Luasnya tidak dinyatakan.",
-          "The region under a constant-speed section. Its area is not given."),
-    paths: [
-      { points: [[56, 45], [56, 223], [260, 223]] },
-      ...(distance
-        ? [{ points: [[56, 205], [235, 80]] }]
-        : [
-          { points: [[57, 135], [242, 135]] },
-          { points: [[57, 135], [242, 135], [242, 223], [57, 223]], closed: true, fill: true },
-        ]),
-    ],
-    labels: [
-      { at: [36, 32], text: distance ? t("Jarak", "Distance") : t("Laju", "Speed") },
-      { at: [243, 244], text: t("Masa", "Time") },
-    ],
-  }],
-});
+const graph = (distance: boolean): MathQuestionVisual => {
+  const graphPaths: NonNullable<GeometryPanel["paths"]> = distance
+    ? [
+        { points: [[56, 45], [56, 223], [260, 223]] },
+        { points: [[56, 205], [235, 80]] },
+      ]
+    : [
+        { points: [[56, 45], [56, 223], [260, 223]] },
+        { points: [[57, 135], [242, 135], [242, 223], [57, 223]], closed: true, fill: true },
+      ];
+  return {
+    kind: "geometry-diagram",
+    title: distance ? t("Graf jarak-masa", "Distance-time graph") : t("Graf laju-masa", "Speed-time graph"),
+    panels: [{
+      title: t("Graf skematik", "Schematic graph"),
+      description: distance
+        ? t("Segmen menaik pada graf jarak-masa. Tiada nilai kecerunan ditulis.",
+            "An increasing distance-time segment. Its gradient is not labelled.")
+        : t("Rantau di bawah segmen laju seragam. Luasnya tidak dinyatakan.",
+            "The region under a constant-speed section. Its area is not given."),
+      paths: graphPaths,
+      labels: [
+        { at: [36, 32], text: distance ? t("Jarak", "Distance") : t("Laju", "Speed") },
+        { at: [243, 244], text: t("Masa", "Time") },
+      ],
+    }],
+  };
+};
 const statTable = (values: number[], frequencies: number[], mode: boolean): MathQuestionVisual => ({
   kind: "frequency-table",
   title: mode ? t("Jadual kekerapan: cari mod", "Frequency table: find the mode")
