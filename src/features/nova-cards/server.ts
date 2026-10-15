@@ -11,6 +11,50 @@ function client() {
   return db;
 }
 
+export type NovaEntitlement = {
+  active: boolean;
+  status: "active" | "pending" | "expired" | "cancelled" | "free";
+};
+
+// Server verification is independent of any client-provided plan.
+async function resolveNovaEntitlement(
+  db: ReturnType<typeof client>,
+  userId: string,
+): Promise<NovaEntitlement> {
+  const { data, error } = await db
+    .from("subscriptions")
+    .select("plan, status, current_period_end")
+    .eq("user_id", userId)
+    .maybeSingle();
+  if (error) throw new Error("We couldn't verify your subscription. Please try again.");
+  if (!data) return { active: false, status: "free" };
+  const active =
+    data.status === "active" &&
+    (data.plan === "pro" || data.plan === "premium") &&
+    typeof data.current_period_end === "string" &&
+    Date.parse(data.current_period_end) > Date.now();
+  return {
+    active,
+    status: active
+      ? "active"
+      : data.status === "pending"
+        ? "pending"
+        : data.status === "cancelled"
+          ? "cancelled"
+          : "expired",
+  };
+}
+
+export const getNovaEntitlement = createServerFn({ method: "GET" }).handler(
+  async (): Promise<NovaEntitlement> => {
+    const db = client();
+    const { data, error } = await db.auth.getUser();
+    if (error || !data.user || data.user.is_anonymous)
+      throw new Error("Sign in to access your Nova companion.");
+    return resolveNovaEntitlement(db, data.user.id);
+  },
+);
+
 async function withArtwork(db: ReturnType<typeof client>, card: NovaCard | null) {
   if (card?.artworkPath) {
     const { data, error } = await db.storage
@@ -62,6 +106,12 @@ export const createCard = createServerFn({ method: "POST" })
   )
   .handler(async ({ data: input }): Promise<NovaCard> => {
     const db = client();
+    const { data: auth, error: authError } = await db.auth.getUser();
+    if (authError || !auth.user || auth.user.is_anonymous)
+      throw new Error("Sign in to create your Nova companion.");
+    const entitlement = await resolveNovaEntitlement(db, auth.user.id);
+    if (!entitlement.active)
+      throw new Error("An active Pro or Premium subscription is required to create your Nova.");
     const { data, error } = await db.rpc("create_nova_card", {
       display_username: input.username,
       questionnaire: input.answers,

@@ -11,10 +11,12 @@ import {
   traitsFromAnswers,
   type NovaCard as Card,
 } from "./model";
-import { createCard, getMyCard, setSharing } from "./server";
+import { createCard, getMyCard, getNovaEntitlement, setSharing, type NovaEntitlement } from "./server";
+import { NovaTeaser } from "./NovaTeaser";
 
 export function NovaStudio() {
   const [card, setCard] = useState<Card | null>(null);
+  const [entitlement, setEntitlement] = useState<NovaEntitlement | null>(null);
   const [answers, setAnswers] = useState<number[]>([]);
   const [username, setUsername] = useState("");
   const [variant, setVariant] = useState<"a" | "b" | null>(null);
@@ -24,9 +26,12 @@ export function NovaStudio() {
   useEffect(() => {
     setOrigin(window.location.origin);
     let active = true;
-    getMyCard()
-      .then((c) => {
-        if (active) setCard(c);
+    Promise.all([getMyCard(), getNovaEntitlement()])
+      .then(([c, access]) => {
+        if (active) {
+          setCard(c);
+          setEntitlement(access);
+        }
       })
       .catch((e) => {
         if (active) setNotice(e.message);
@@ -81,7 +86,7 @@ export function NovaStudio() {
               <small>Twelve questions. Two original designs. One lifelong bond.</small>
             </span>
             <span>
-              02 <b>Grow through nine stages</b>
+              02 <b>Grow through five stages</b>
               <small>Your earned XP shapes the journey. Your identity stays yours.</small>
             </span>
             <span>
@@ -89,7 +94,7 @@ export function NovaStudio() {
               <small>A permanent card, scannable identity, and privacy you control.</small>
             </span>
           </div>
-          {card && (
+          {card && entitlement?.active && (
             <>
               <div className="nova-owner-panel">
                 <h2>Your card settings</h2>
@@ -139,11 +144,11 @@ export function NovaStudio() {
                   Refresh earned XP
                 </button>
               </div>
-              <div className="nova-stage-list" aria-label="Nine evolution stages">
+              <div className="nova-stage-list" aria-label="Five evolution stages">
                 {STAGES.map((s, i) => (
                   <span
                     key={s.name}
-                    className={i + 1 === evolution(card.xp).stage ? "current" : ""}
+                    className={i + 1 === (card.stage ?? evolution(card.xp).stage) ? "current" : ""}
                   >
                     {i + 1}. {s.name} <small>{s.xp.toLocaleString()} XP</small>
                   </span>
@@ -156,8 +161,16 @@ export function NovaStudio() {
           </p>
         </section>
         <section className="nova-studio-content">
-          {busy && !card ? (
-            <p role="status">Loading your collection…</p>
+          {busy ? (
+            <p role="status">Checking your Nova and subscription…</p>
+          ) : !entitlement ? (
+            <div className="nova-creation-panel" role="alert">
+              <h2>We couldn't verify your Nova access</h2>
+              <p>A connection error does not mean your subscription has expired. Please sign in or try again.</p>
+              <a href="/login?next=/nova">Sign in</a>{" · "}<a href="/nova">Retry</a>
+            </div>
+          ) : !entitlement.active ? (
+            <NovaTeaser card={card} status={entitlement.status} />
           ) : card ? (
             <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
           ) : (
@@ -265,7 +278,7 @@ export function NovaDemoGallery() {
         <a href="/nova">Create your Nova ↗</a>
       </header>
       <section className="nova-gallery-heading">
-        <p className="nova-eyebrow">MEET THE FIRST LITTLE SPARKS</p>
+        <p className="nova-eyebrow">MEET THE FIRST ORIGINS</p>
         <h1>
           Two companions.
           <br />
