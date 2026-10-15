@@ -49,10 +49,10 @@ describe("Math Form 2 visual re-audit", () => {
     });
   }
 
-  it("attaches exactly 33 bilingual pair diagrams, only where the premises match", () => {
+  it("attaches exactly 43 bilingual pair diagrams, only where the premises match", () => {
     const expectedCounts = new Map<number, number>([
-      [3, 0], [4, 2], [5, 3], [6, 2], [7, 2], [8, 2],
-      [9, 0], [10, 2], [11, 5], [12, 10], [13, 5],
+      [3, 0], [4, 2], [5, 3], [6, 2], [7, 7], [8, 2],
+      [9, 5], [10, 2], [11, 5], [12, 10], [13, 5],
     ]);
     let total = 0;
     for (const [chapter, seeds] of chapters) {
@@ -64,7 +64,7 @@ describe("Math Form 2 visual re-audit", () => {
         expect(bm[i].visual).toEqual(mathF2VisualForSeed(chapter, seeds[i].question[0]));
       }
     }
-    expect(total).toBe(33);
+    expect(total).toBe(43);
   });
 
   it("corrects the misleading radius/chord construction in both languages", () => {
@@ -103,6 +103,34 @@ describe("Math Form 2 visual re-audit", () => {
       expect(diagram.groups.map((g) => g.count)).toEqual([Number(n?.[1]), Number(n?.[2])]);
       const twin = dl.find((item) => item.id === q.id.replace(/^bm-/, "dlp-"));
       expect(twin?.visual).toEqual(diagram);
+    }
+  });
+
+  it("draws only given endpoints, never midpoint answers, for five coordinate tasks", () => {
+    const bm = buildPairedQuizBank(7, "bm", c7);
+    const candidates = bm.filter(q => /^M ialah titik tengah segmen \d+ dengan hujung/.test(q.question));
+    expect(candidates).toHaveLength(5);
+    for (const q of candidates) {
+      expect(q.visual?.kind).toBe("coordinate-plane");
+      if (q.visual?.kind !== "coordinate-plane") throw new Error("Expected coordinate plane");
+      expect(q.visual.points).toHaveLength(2);
+      expect(q.visual.points?.map(p => p.name)).toEqual(["A", "B"]);
+      expect(q.visual.description.bm).not.toContain("=");
+    }
+  });
+
+  it("represents each of five two-leg speed problems without giving computed times", () => {
+    const bm = buildPairedQuizBank(9, "bm", c9);
+    const candidates = bm.filter(q => /^Laluan A \d+ ialah/.test(q.question));
+    expect(candidates).toHaveLength(5);
+    for (const q of candidates) {
+      expect(q.visual?.kind).toBe("geometry-diagram");
+      if (q.visual?.kind !== "geometry-diagram") throw new Error("Expected journey diagram");
+      expect(q.visual.panels).toHaveLength(2);
+      expect(q.visual.panels.map(p => p.labels.length)).toEqual([2, 2]);
+      const givens = q.question.match(/\d+(?:\.\d+)?/g) ?? [];
+      const visualLabels = q.visual.panels.flatMap(p => p.labels.map(l => l.text)).join(" ");
+      for (const value of givens.slice(1, 5)) expect(visualLabels).toContain(value);
     }
   });
 
