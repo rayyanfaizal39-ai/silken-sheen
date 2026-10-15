@@ -19,6 +19,7 @@ export type UpgradePlan = CheckoutPlan;
 const checkoutSchema = z.object({
   plan: z.enum(["pro_monthly", "premium_monthly"]),
   idempotencyKey: z.string().uuid(),
+  partnerCode: z.string().trim().toUpperCase().regex(/^[A-Z0-9][A-Z0-9_-]{2,39}$/).optional(),
 });
 
 const mockSchema = z.object({
@@ -61,6 +62,14 @@ export const createCheckout = createServerFn({ method: "POST" })
     const { supabase, user } = await requireUser();
     const mock = areMockPaymentsEnabled();
 
+    // Lock the referring partner before the payment row exists: the database
+    // links new ToyyibPay payments to the student's referral on insert, so the
+    // attribution is fixed before any bill is created. Never blocks checkout.
+    if (data.partnerCode) {
+      const claim = await supabase.rpc("partner_claim_referral", { p_partner_code: data.partnerCode });
+      if (claim.error) console.warn("[partners] checkout referral claim failed:", claim.error.message);
+    }
+
     if (mock) {
       const payment = await createPendingPayment({
         userId: user.id,
@@ -72,7 +81,7 @@ export const createCheckout = createServerFn({ method: "POST" })
     }
 
     const checkout = await supabase.functions.invoke("create-toyyibpay-bill", {
-      body: data,
+      body: { plan: data.plan, idempotencyKey: data.idempotencyKey },
     });
     if (checkout.error) {
       if (await isProviderUnavailable(checkout.error)) {

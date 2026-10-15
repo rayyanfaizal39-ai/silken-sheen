@@ -27,6 +27,7 @@ import {
   type SubscriptionOverviewState,
 } from "@/hooks/use-subscription-overview";
 import { toCheckoutPlan } from "@/lib/billing-config";
+import { checkoutPartnerCode } from "@/lib/partner-attribution";
 import { hasFeature } from "@/lib/feature-access";
 import type { BillingPlan } from "@/lib/billing.types";
 import { seoMeta } from "@/lib/seo";
@@ -268,8 +269,10 @@ function UpgradePage() {
     setCheckoutError(null);
 
     try {
+      let partnerCode: string | undefined;
+      try { partnerCode = checkoutPartnerCode(window.location.href, window.localStorage); } catch { /* Checkout can continue without referral storage. */ }
       const checkout = await createCheckout({
-        data: { plan, idempotencyKey: crypto.randomUUID() },
+        data: { plan, idempotencyKey: crypto.randomUUID(), partnerCode },
       });
       if (checkout.mode === "unavailable") {
         setCheckoutError(PROVIDER_UNAVAILABLE_MESSAGE);
