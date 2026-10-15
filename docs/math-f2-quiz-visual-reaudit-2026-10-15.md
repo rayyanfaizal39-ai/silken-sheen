@@ -25,13 +25,13 @@ In total, **6 question numbers** had content changes, mirrored in **12 BM/DLP in
 
 ## New visual coverage
 
-Created **34 answer-neutral declarative visual question pairs**, rendered in both languages: **68 quiz instances**, using one typed reusable map in `src/content/form2/math/quiz-visuals.ts`. No decorative stock photos and no additional network-image dependencies. Every graphic shows the original givens and leaves the answer unsolved.
+Created **33 answer-neutral declarative visual question pairs**, rendered in both languages: **66 quiz instances**, using one typed reusable map in `src/content/form2/math/quiz-visuals.ts`. No decorative stock photos and no additional network-image dependencies. Every graphic shows the original givens and leaves the answer unsolved.
 
 | Chapter | Visual pairs | Topic and rationale |
 |---|---:|---|
 | 1: Patterns | 0 | Existing questions are primarily symbolic sequence/pattern calculations; avoid decorative figures. |
 | 2: Algebraic Expansion and Factorisation | 0 | Source has direct-owned banks; visual mapping reserved for substantive follow-up. |
-| 3: Algebraic Formulae | 1 | Two triangle area models comparing original base `b` to `b/2`, leaving new height unknown. |
+| 3: Algebraic Formulae | 0 | Algebraic relationships are sufficiently represented in text; a two-triangle sketch risked suggesting a misleading scale, so it was omitted. |
 | 4: Polygons | 2 | Quadrilateral and pentagon with supplied interior angles; unknown `x` remains unsolved. |
 | 5: Circles | 3 | Centre-to-chord perpendicular, 90° arc and 90° sector; geometry includes only given radius and angle. |
 | 6: Three-Dimensional Geometrical Shapes | 2 | Cuboid edge measurements for volume and surface-area problems. |
@@ -42,7 +42,7 @@ Created **34 answer-neutral declarative visual question pairs**, rendered in bot
 | 11: Isometric Transformations | 5 | Five reflected points; show only original position, **not** the solution point. |
 | 12: Measures of Central Tendencies | 10 | Five exact frequency tables for mean and five for mode. |
 | 13: Simple Probability | 5 | Marble groups from stated red/blue counts, with no selected outcome. |
-| **Total** | **34** | **68 bilingual rendered instances** |
+| **Total** | **33** | **66 bilingual rendered instances** |
 
 The visuals use the existing `MathQuestionVisual` SVG/table renderer. Charts use bilingual labels, geometry descriptions state when diagrams are not to scale, coordinate planes use equal axis-unit scaling, and BM/DLP refer to equivalent diagram content.
 
@@ -58,7 +58,7 @@ The visuals use the existing `MathQuestionVisual` SVG/table renderer. Charts use
 
 ## Regression coverage
 
-Added `src/content/form2/math/math-f2-visual-reaudit.test.ts` to check 90 unique question IDs and 4 distinct options in every paired BM/DLP bank (Chapters 3–13), language alignment, correct indices, Foundation/Practice/Challenge difficulty metadata, exact 34 visual mappings, the chord terminology correction, the congruence distractors, and marble counts matching premises.
+Added `src/content/form2/math/math-f2-visual-reaudit.test.ts` to check 90 unique question IDs and 4 distinct options in every paired BM/DLP bank (Chapters 3–13), language alignment, correct indices, Foundation/Practice/Challenge difficulty metadata, exact 33 visual mappings, the chord terminology correction, the congruence distractors, and marble counts matching premises.
 
 Suggested local commands:
 
