@@ -23,7 +23,7 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Nova model and SQL/RLS tests
-        run: npx vitest run src/features/nova-cards/nova-cards.test.ts src/features/nova-cards/nova-cards.db.test.ts
+      - name: Nova model, SQL/RLS and visual preview tests
+        run: npx vitest run src/features/nova-cards
       - name: Production build (compile only; no deployment)
         run: npm run build

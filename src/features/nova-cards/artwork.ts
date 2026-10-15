@@ -1,13 +1,24 @@
+import { awakenedAnatomy } from "./awakened-artwork";
 import type { NovaTraits } from "./model";
 import { xml } from "./model";
 
 // Original vector sample artwork. Only the requested, earned stage is rendered.
 // Identity (species, palette, eye treatment, marking and variant) persists across stages.
 export function companionSvg(traits: NovaTraits, variant: "a" | "b", stage = 1) {
+  return renderCompanion(traits, variant, stage, false);
+}
+
+// Explicit preview path: never changes a real card, its XP, or its earned artwork.
+export function companionPreviewSvg(traits: NovaTraits, variant: "a" | "b", stage: 1 | 2) {
+  if (stage !== 1 && stage !== 2)
+    throw new Error("Only Origin and Awakened previews are available.");
+  return renderCompanion(traits, variant, stage, stage === 2);
+}
+
+function renderCompanion(traits: NovaTraits, variant: "a" | "b", stage: number, awakened: boolean) {
   if (!Number.isInteger(stage) || stage < 1 || stage > 5)
     throw new Error("Invalid evolution stage");
-  // Preserve the old demo detail arc across exactly five new evolution stages.
-  const artStage = [1, 3, 5, 7, 9][stage - 1];
+  const artStage = awakened ? 2 : [1, 3, 5, 7, 9][stage - 1];
   const fox = traits.creature === "Magical Fox";
   const palette = traits.colours.startsWith("Sapphire")
     ? ["#113c9b", "#4ba9ed", "#f4cf75"]
@@ -76,5 +87,9 @@ export function companionSvg(traits: NovaTraits, variant: "a" | "b", stage = 1) 
   const marking = traits.marking.startsWith("A crescent")
     ? `<path d="M307 230 A13 13 0 1 1 294 211 A10 10 0 0 0 307 230" fill="${gold}"/>`
     : `<path d="M300 211 L304 222 L316 226 L304 230 L300 242 L296 230 L284 226 L296 222Z" fill="${gold}"/>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="640" viewBox="0 0 600 640" role="img"><title>${xml(`${traits.creature} · Stage ${stage} · ${traits.colours}`)}</title><defs><radialGradient id="bg"><stop stop-color="${dark}"/><stop offset="1" stop-color="#050c1c"/></radialGradient><radialGradient id="halo"><stop stop-color="${light}" stop-opacity=".35"/><stop offset="1" stop-color="${light}" stop-opacity="0"/></radialGradient><linearGradient id="body" x2=".8" y2="1"><stop stop-color="${light}"/><stop offset=".55" stop-color="${variant === "a" ? dark : light}"/><stop offset="1" stop-color="${light}"/></linearGradient><linearGradient id="wing" x2="1" y2="1"><stop stop-color="${gold}"/><stop offset=".45" stop-color="${light}"/><stop offset="1" stop-color="${dark}"/></linearGradient></defs><rect width="600" height="640" fill="url(#bg)"/>${stars}<circle cx="300" cy="310" r="280" fill="url(#halo)"/>${legendary}${constellation}${aura}<ellipse cx="300" cy="525" rx="150" ry="17" fill="${light}" opacity=".12"/>${tails}${wings}${mantle}<ellipse cx="300" cy="389" rx="${variant === "a" ? 83 : 67}" ry="103" fill="url(#body)" stroke="${gold}" stroke-width="2"/><path d="M258 346 Q300 367 342 346 Q345 430 300 457 Q255 430 258 346" fill="${gold}" opacity=".75"/>${ears}<ellipse cx="300" cy="279" rx="${variant === "a" ? 101 : 82}" ry="${variant === "a" ? 86 : 97}" fill="url(#body)" stroke="${light}" stroke-width="3"/>${crest}${marking}${eyes}<path d="M284 307 Q300 ${fox ? 320 : 339} 316 307 Q300 301 284 307" fill="${gold}"/>${fox ? '<path d="M300 317 Q288 335 278 325 M300 317 Q312 335 322 325" fill="none" stroke="#d8bbdf" stroke-width="2"/>' : ""}<ellipse cx="248" cy="476" rx="32" ry="19" fill="${dark}" stroke="${gold}" stroke-width="2"/><ellipse cx="352" cy="476" rx="32" ry="19" fill="${dark}" stroke="${gold}" stroke-width="2"/>${artStage >= 7 ? `<path d="M260 362 L300 340 L340 362 L300 397Z" fill="${light}" stroke="${gold}" stroke-width="3"/>` : ""}<g fill="${gold}" opacity=".7"><path d="M122 330 l4 12 12 4 -12 4 -4 12 -4 -12 -12 -4 12 -4Z"/><path d="M470 240 l3 9 9 3 -9 3 -3 9 -3 -9 -9 -3 9 -3Z"/></g></svg>`;
+  const anatomy = awakened ? awakenedAnatomy(fox, light, dark, gold) : null;
+  const body = `<ellipse cx="300" cy="389" rx="${variant === "a" ? 83 : 67}" ry="103" fill="url(#body)" stroke="${gold}" stroke-width="2"/><path d="M258 346 Q300 367 342 346 Q345 430 300 457 Q255 430 258 346" fill="${gold}" opacity=".75"/>`;
+  const face = `${anatomy?.ears ?? ears}<ellipse cx="300" cy="279" rx="${variant === "a" ? 101 : 82}" ry="${variant === "a" ? 86 : 97}" fill="url(#body)" stroke="${light}" stroke-width="3"/>${crest}${marking}${eyes}<path d="M284 307 Q300 ${fox ? 320 : 339} 316 307 Q300 301 284 307" fill="${gold}"/>${fox ? '<path d="M300 317 Q288 335 278 325 M300 317 Q312 335 322 325" fill="none" stroke="#d8bbdf" stroke-width="2"/>' : ""}`;
+  const feet = `<ellipse cx="248" cy="476" rx="32" ry="19" fill="${dark}" stroke="${gold}" stroke-width="2"/><ellipse cx="352" cy="476" rx="32" ry="19" fill="${dark}" stroke="${gold}" stroke-width="2"/>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="640" viewBox="0 0 600 640" role="img"><title>${xml(`${traits.creature} · Stage ${stage} · ${traits.colours}`)}</title><defs><radialGradient id="bg"><stop stop-color="${dark}"/><stop offset="1" stop-color="#050c1c"/></radialGradient><radialGradient id="halo"><stop stop-color="${light}" stop-opacity=".35"/><stop offset="1" stop-color="${light}" stop-opacity="0"/></radialGradient><linearGradient id="body" x2=".8" y2="1"><stop stop-color="${light}"/><stop offset=".55" stop-color="${variant === "a" ? dark : light}"/><stop offset="1" stop-color="${light}"/></linearGradient><linearGradient id="wing" x2="1" y2="1"><stop stop-color="${gold}"/><stop offset=".45" stop-color="${light}"/><stop offset="1" stop-color="${dark}"/></linearGradient></defs><rect width="600" height="640" fill="url(#bg)"/>${stars}<circle cx="300" cy="310" r="280" fill="url(#halo)"/>${legendary}${constellation}${aura}<ellipse cx="300" cy="525" rx="150" ry="17" fill="${light}" opacity=".12"/>${anatomy?.tails ?? tails}${anatomy?.wings ?? wings}${mantle}${anatomy?.body ?? body}${awakened ? `<g data-identity="original-face" transform="translate(0 -18)">${face}<g fill="${fox ? "#7cddf4" : gold}" opacity=".85"><path d="M232 301 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3Z M368 301 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3Z"/></g></g>` : face}${anatomy?.feet ?? feet}${anatomy?.details ?? ""}${artStage >= 7 ? `<path d="M260 362 L300 340 L340 362 L300 397Z" fill="${light}" stroke="${gold}" stroke-width="3"/>` : ""}<g fill="${gold}" opacity=".7"><path d="M122 330 l4 12 12 4 -12 4 -4 12 -4 -12 -12 -4 12 -4Z"/><path d="M470 240 l3 9 9 3 -9 3 -3 9 -3 -9 -9 -3 9 -3Z"/></g></svg>`;
 }

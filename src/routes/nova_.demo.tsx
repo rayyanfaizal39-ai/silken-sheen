@@ -6,9 +6,9 @@ export const Route = createFileRoute("/nova_/demo")({
   component: NovaDemoGallery,
   head: () =>
     novaHead({
-      title: "Nova Companion Demo Collection",
+      title: "Nova Origin / Awakened Visual Preview",
       description:
-        "Meet Rayyan's Phoenix and Mia's Magical Fox. Fictional Nova demonstration cards.",
+        "Compare Stage 1 Origin and Stage 2 Awakened versions of Rayyan's Phoenix and Mia's Magical Fox. A fictional visual study.",
       path: "/nova/demo",
       noindex: true,
       image: "https://www.myacademy.my/nova-cards/preview.png",

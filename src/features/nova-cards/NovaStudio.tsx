@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NovaCard } from "./NovaCard";
+import { EvolutionPreview } from "./EvolutionPreview";
 import { companionSvg } from "./artwork";
 import { svgUrl } from "./codes";
 import {
@@ -11,7 +12,13 @@ import {
   traitsFromAnswers,
   type NovaCard as Card,
 } from "./model";
-import { createCard, getMyCard, getNovaEntitlement, setSharing, type NovaEntitlement } from "./server";
+import {
+  createCard,
+  getMyCard,
+  getNovaEntitlement,
+  setSharing,
+  type NovaEntitlement,
+} from "./server";
 import { NovaTeaser } from "./NovaTeaser";
 
 export function NovaStudio() {
@@ -166,8 +173,13 @@ export function NovaStudio() {
           ) : !entitlement ? (
             <div className="nova-creation-panel" role="alert">
               <h2>We couldn't verify your Nova access</h2>
-              <p>A connection error does not mean your subscription has expired. Please sign in or try again.</p>
-              <a href="/login?next=/nova">Sign in</a>{" · "}<a href="/nova">Retry</a>
+              <p>
+                A connection error does not mean your subscription has expired. Please sign in or
+                try again.
+              </p>
+              <a href="/login?next=/nova">Sign in</a>
+              {" · "}
+              <a href="/nova">Retry</a>
             </div>
           ) : !entitlement.active ? (
             <NovaTeaser
@@ -285,23 +297,35 @@ export function NovaDemoGallery() {
           <img src="/branding/academy-icon.png" alt="AcadeMY" width="32" height="32" />
           AcadeMY
         </a>
-        <span>FICTIONAL TEST COLLECTION</span>
+        <span>NOVA · EVOLUTION STUDY</span>
         <a href="/nova">Create your Nova ↗</a>
       </header>
       <section className="nova-gallery-heading">
-        <p className="nova-eyebrow">MEET THE FIRST ORIGINS</p>
+        <p className="nova-eyebrow">RAYYAN & MIA · STAGE 2 VISUAL PREVIEW</p>
         <h1>
-          Two companions.
+          From Origin
           <br />
-          <em>Two different worlds.</em>
+          <em>to Awakened.</em>
         </h1>
-        <p>Fictional demonstration cards. Stage 1 sample artwork. No real student data.</p>
+        <p>
+          Two familiar companions, a little more grown. Compare their original designs with a new
+          Stage 2 interpretation.
+        </p>
+        <p className="nova-experiment-note">
+          Fictional visual experiment · no student progress or card identities are changed.
+        </p>
       </section>
-      <div className="nova-gallery">
-        {DEMO_CARDS.map((c) => (
-          <NovaCard key={c.publicId} card={c} url={cardUrl(c.publicId, origin)} />
-        ))}
-      </div>
+      <EvolutionPreview />
+      <details className="nova-original-cards">
+        <summary>
+          Original demo cards <span>Flip, scan, share and download ↗</span>
+        </summary>
+        <div className="nova-gallery">
+          {DEMO_CARDS.map((c) => (
+            <NovaCard key={c.publicId} card={c} url={cardUrl(c.publicId, origin)} />
+          ))}
+        </div>
+      </details>
     </main>
   );
 }

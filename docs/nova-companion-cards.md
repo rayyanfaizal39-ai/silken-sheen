@@ -166,3 +166,36 @@ UNSOURCED LEARNER-FACING CURRICULUM CONTENT ADDED: NONE.
 ## Existing preview failures
 
 GitHub reported a failed Cloudflare Pages check and Vercel deployment status on initial commit `68961c0`. The original PR description reports a successful local production build, but logs for the failed provider builds are not exposed in the GitHub check metadata. Their underlying cause is **not yet established**. Inspect the authenticated provider build logs before claiming these deployment failures resolved. The existing Cloudflare config in `vite.config.ts` explicitly depends on `scripts/build-pages-worker.js` and root `wrangler.jsonc`; confirm deployment root and generated output settings against logs.
+
+## Stage 2 — Awakened visual experiment
+
+`/nova/demo` now opens an Origin / Awakened comparison for each fictional companion.
+Each character has independent **Compare both**, **Stage 1 — Origin**, and
+**Stage 2 — Awakened** buttons. Both artworks appear side by side on desktop and
+stack below 600 px. The original interactive cards remain in an expandable section.
+
+The Phoenix gains layered wings, three flowing plume feathers, a fuller crest,
+gentle violet flames, cheek markings and a small pendant. The Fox gains three
+fuller tails, a neck ruff, longer detailed ears, celestial markings, a water pendant
+and water ribbons. Both retain the original face, eye shapes and main colours.
+
+This uses an explicit `companionPreviewSvg` path in the existing SVG engine.
+`companionSvg` output for all five existing earned stages is protected
+by before/after hash tests. Student progression, thresholds, stage names, fixtures,
+public URLs, serials, database schema and persistence behavior are unchanged.
+The preview uses the existing Origin and Awakened names without changing the five-stage model.
+
+New files: `EvolutionPreview.tsx`, `awakened-artwork.ts`, and two preview test files.
+No AI provider or paid generation is involved. SVG supports clear silhouettes,
+layered feathers, gradients and controlled magical detail here; this prototype
+remains a stylized vector illustration rather than painted fur or cinematic fire/water.
+Browser automation was blocked by the local-page URL policy during this experiment;
+SVG rendering and independent switching behavior are covered by local tests.
+The current Nova and business-card test suites pass 35 tests across six files.
+The broad TypeScript check still reports upstream errors in the two science tests
+listed above and `nova-cards.db.test.ts:293` (an untyped query result). These files
+are unchanged by the visual experiment; the new preview files have no type errors.
+
+The approved cinematic art direction in `docs/nova-master-art-direction.md` remains
+the production target. This SVG anatomy study does not claim the painted surface
+detail and cinematic finish specified in that brief.
