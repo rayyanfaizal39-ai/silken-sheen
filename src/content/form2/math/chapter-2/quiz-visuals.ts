@@ -11,6 +11,7 @@ const rectangle = (
   width: string,
   height: string,
   area?: string,
+  isSquare = false,
 ): [string, MathQuestionVisual] => [key, {
   kind: "geometry-diagram",
   title: t(bm, dlp),
@@ -18,7 +19,9 @@ const rectangle = (
     title: t("Segi empat tepat", "Rectangle"),
     description: t("Label hanya menunjukkan maklumat yang diberi; rajah tidak mengikut skala.",
       "Labels show only the givens; diagram not to scale."),
-    paths: [{ points: [[57, 56], [240, 56], [240, 183], [57, 183]] as P[], closed: true, fill: true }],
+    paths: [{ points: (isSquare
+      ? [[80, 56], [220, 56], [220, 196], [80, 196]]
+      : [[57, 56], [240, 56], [240, 183], [57, 183]]) as P[], closed: true, fill: true }],
     labels: [
       { at: [146, 43], text: width },
       { at: [266, 120], text: height },
@@ -27,7 +30,7 @@ const rectangle = (
   }],
 }];
 const square = (key: string, bm: string, dlp: string, side: string): [string, MathQuestionVisual] =>
-  rectangle(key, bm, dlp, side, side);
+  rectangle(key, bm, dlp, side, side, undefined, true);
 
 const removedSquare: MathQuestionVisual = {
   kind: "geometry-diagram",
