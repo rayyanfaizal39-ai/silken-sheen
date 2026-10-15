@@ -37,6 +37,7 @@ describe("Nova migration running in PostgreSQL with real API roles and RLS", () 
       grant usage on schema auth,public,storage to anon,authenticated;
       grant execute on all functions in schema auth to anon,authenticated;
       alter default privileges in schema public grant all on tables to anon,authenticated;
+      create table public.subscriptions(user_id uuid primary key references auth.users(id), plan text not null, status text not null, current_period_end timestamptz);
       create table public.user_progress(user_id uuid primary key references auth.users(id),xp integer not null, companion jsonb);
       create table public.quiz_xp_awards(user_id uuid references auth.users(id), xp_earned integer);
       create table public.mission_reward_claims(user_id uuid references auth.users(id),reward_xp integer);
@@ -46,6 +47,7 @@ describe("Nova migration running in PostgreSQL with real API roles and RLS", () 
       alter table storage.objects enable row level security;
       grant select on storage.objects to anon,authenticated;
       insert into auth.users values('${A}'),('${B}'),('${C}');
+      insert into public.subscriptions values ('${A}','pro','active',now()+interval '30 days'),('${B}','premium','active',now()+interval '30 days'),('${C}','pro','active',now()+interval '30 days');
       insert into public.user_progress values('${A}',9000,'{"stage":"guardian"}'),('${B}',1600,'{"stage":"sprout"}');
       insert into public.quiz_xp_awards values('${A}',1000);
       insert into public.mission_reward_claims values('${A}',500);`);
@@ -105,7 +107,7 @@ describe("Nova migration running in PostgreSQL with real API roles and RLS", () 
       "update public.nova_cards set sharing=true",
       "delete from public.nova_cards",
       "update public.nova_cards set rarity='Legendary'",
-      "insert into public.nova_artwork(card_id,stage,candidate,storage_path) select id,9,'a','future.png' from public.nova_cards",
+      "insert into public.nova_artwork(card_id,stage,candidate,storage_path) select id,5,'a','future.png' from public.nova_cards",
       "select public.nova_verified_xp('" + A + "')",
     ])
       await expect(as("authenticated", A, sql)).rejects.toThrow(/permission/);
@@ -172,8 +174,8 @@ describe("Nova migration running in PostgreSQL with real API roles and RLS", () 
         .xp,
     ).toBe(0);
   });
-  it("has exactly the same nine XP thresholds on the server", async () => {
-    for (const xp of [0, 399, 400, 1599, 1600, 4200, 9000, 18000, 32000, 52000, 80000, 999999]) {
+  it("has exactly the same five XP thresholds on the server", async () => {
+    for (const xp of [0,1599,1600,8999,9000,31999,32000,79999,80000,999999]) {
       const result = await db.query<{ stage: number }>("select public.nova_stage($1) as stage", [
         xp,
       ]);
@@ -198,8 +200,8 @@ describe("Nova migration running in PostgreSQL with real API roles and RLS", () 
   });
   it("never exposes future or unreleased artwork, even to its owner", async () => {
     await db.exec(`insert into public.nova_artwork(card_id,stage,candidate,storage_path,released,selected) select id,9,'a','future.png',true,true from public.nova_cards where owner_id='${A}';
-      insert into public.nova_artwork(card_id,stage,candidate,storage_path,released,selected) select id,5,'a','current.png',true,true from public.nova_cards where owner_id='${A}';
-      insert into public.nova_artwork(card_id,stage,candidate,storage_path,released,selected) select id,5,'b','unselected.png',true,false from public.nova_cards where owner_id='${A}';
+      insert into public.nova_artwork(card_id,stage,candidate,storage_path,released,selected) select id,1,'a','current.png',true,true from public.nova_cards where owner_id='${A}';
+      insert into public.nova_artwork(card_id,stage,candidate,storage_path,released,selected) select id,1,'b','unselected.png',true,false from public.nova_cards where owner_id='${A}';
       insert into storage.objects(bucket_id,name) values('nova-artwork','current.png'),('nova-artwork','future.png'),('nova-artwork','unselected.png');`);
     const own = await as(
       "authenticated",
@@ -244,5 +246,32 @@ describe("Nova migration running in PostgreSQL with real API roles and RLS", () 
       (await as("anon", null, "select public.get_public_nova_card($1) as result", [publicId]))
         .rows[0].result!.artworkPath,
     ).toBeNull();
+  });
+  it("freezes XP after expiry, then reactivates the same card", async () => {
+    const before=(await as("authenticated",A,"select public.get_my_nova_card() as result")).rows[0].result!;
+    await db.exec(`update public.subscriptions set status='expired' where user_id='${A}'; insert into public.quiz_xp_awards values('${A}',90000);`);
+    const frozen=(await as("anon",null,"select public.get_public_nova_card($1) as result",[publicId])).rows[0].result!;
+    expect(frozen.xp).toBe(before.xp);
+    expect(frozen.stage).toBe(before.stage);
+    await expect(create(A)).rejects.toThrow(/active Pro or Premium/);
+    await db.exec(`update public.subscriptions set status='active',current_period_end=now()+interval '30 days' where user_id='${A}';`);
+    const restored=(await create(A)).rows[0].result!;
+    expect(restored.publicId).toBe(publicId);
+    expect(restored.serial).toBe(serial);
+    expect(restored.xp).toBeGreaterThan(before.xp as number);
+  });
+  it("blocks pending, cancelled and lapsed billing", async () => {
+    await db.exec(`update public.subscriptions set status='pending' where user_id='${B}';`);
+    await expect(create(B)).rejects.toThrow(/active Pro or Premium/);
+    await db.exec(`update public.subscriptions set status='cancelled' where user_id='${B}';`);
+    await expect(create(B)).rejects.toThrow(/active Pro or Premium/);
+    await db.exec(`update public.subscriptions set status='active',current_period_end=now()-interval '1 day' where user_id='${B}';`);
+    await expect(create(B)).rejects.toThrow(/active Pro or Premium/);
+  });
+  it("never schedules unpaid or skipped evolution artwork", async () => {
+    await expect(as("anon",null,"select public.request_nova_evolution(2)")).rejects.toThrow(/permission/);
+    await expect(as("authenticated",A,"select public.request_nova_evolution(5)")).rejects.toThrow(/Previous approved/);
+    const jobs=await db.query("select count(*)::integer as count from public.nova_generation_jobs");
+    expect(jobs.rows[0].count).toBe(0);
   });
 });
