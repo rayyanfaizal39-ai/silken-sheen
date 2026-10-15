@@ -21,6 +21,7 @@ import { Route as PaymentReturnRouteImport } from './routes/payment-return'
 import { Route as ParentDashboardRouteImport } from './routes/parent-dashboard'
 import { Route as ParentRouteImport } from './routes/parent'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as NovaRouteImport } from './routes/nova'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as MindmapsRouteImport } from './routes/mindmaps'
 import { Route as LoginRouteImport } from './routes/login'
@@ -38,6 +39,7 @@ import { Route as CardRouteImport } from './routes/card'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as NovaDemoRouteImport } from './routes/nova_.demo'
 import { Route as CardContactDotvcfRouteImport } from './routes/card.contact[.]vcf'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
 import { Route as AuthConfirmRouteImport } from './routes/auth.confirm'
@@ -53,6 +55,7 @@ import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
 import { Route as AccountBillingRouteImport } from './routes/account.billing'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
 import { Route as EnglishForm1GrammarRouteImport } from './routes/english.form-1.grammar'
+import { Route as CardCPublicIdRouteImport } from './routes/card_.c.$publicId'
 import { Route as AdminContentQuizImporterRouteImport } from './routes/admin.content.quiz-importer'
 
 const WeeklyReportRoute = WeeklyReportRouteImport.update({
@@ -113,6 +116,11 @@ const ParentRoute = ParentRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovaRoute = NovaRouteImport.update({
+  id: '/nova',
+  path: '/nova',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NotesRoute = NotesRouteImport.update({
@@ -200,6 +208,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const NovaDemoRoute = NovaDemoRouteImport.update({
+  id: '/nova_/demo',
+  path: '/nova/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CardContactDotvcfRoute = CardContactDotvcfRouteImport.update({
   id: '/contact.vcf',
   path: '/contact.vcf',
@@ -275,6 +288,11 @@ const EnglishForm1GrammarRoute = EnglishForm1GrammarRouteImport.update({
   path: '/english/form-1/grammar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CardCPublicIdRoute = CardCPublicIdRouteImport.update({
+  id: '/card_/c/$publicId',
+  path: '/card/c/$publicId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminContentQuizImporterRoute =
   AdminContentQuizImporterRouteImport.update({
     id: '/content/quiz-importer',
@@ -299,6 +317,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
+  '/nova': typeof NovaRoute
   '/onboarding': typeof OnboardingRoute
   '/parent': typeof ParentRoute
   '/parent-dashboard': typeof ParentDashboardRoute
@@ -325,8 +344,10 @@ export interface FileRoutesByFullPath {
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
+  '/nova/demo': typeof NovaDemoRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
+  '/card/c/$publicId': typeof CardCPublicIdRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
 }
 export interface FileRoutesByTo {
@@ -345,6 +366,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
+  '/nova': typeof NovaRoute
   '/onboarding': typeof OnboardingRoute
   '/parent': typeof ParentRoute
   '/parent-dashboard': typeof ParentDashboardRoute
@@ -371,8 +393,10 @@ export interface FileRoutesByTo {
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
+  '/nova/demo': typeof NovaDemoRoute
   '/admin': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
+  '/card/c/$publicId': typeof CardCPublicIdRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
 }
 export interface FileRoutesById {
@@ -393,6 +417,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/mindmaps': typeof MindmapsRoute
   '/notes': typeof NotesRoute
+  '/nova': typeof NovaRoute
   '/onboarding': typeof OnboardingRoute
   '/parent': typeof ParentRoute
   '/parent-dashboard': typeof ParentDashboardRoute
@@ -419,8 +444,10 @@ export interface FileRoutesById {
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
+  '/nova_/demo': typeof NovaDemoRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
+  '/card_/c/$publicId': typeof CardCPublicIdRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
 }
 export interface FileRouteTypes {
@@ -442,6 +469,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mindmaps'
     | '/notes'
+    | '/nova'
     | '/onboarding'
     | '/parent'
     | '/parent-dashboard'
@@ -468,8 +496,10 @@ export interface FileRouteTypes {
     | '/auth/confirm'
     | '/auth/reset-password'
     | '/card/contact.vcf'
+    | '/nova/demo'
     | '/admin/'
     | '/admin/content/quiz-importer'
+    | '/card/c/$publicId'
     | '/english/form-1/grammar'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -488,6 +518,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mindmaps'
     | '/notes'
+    | '/nova'
     | '/onboarding'
     | '/parent'
     | '/parent-dashboard'
@@ -514,8 +545,10 @@ export interface FileRouteTypes {
     | '/auth/confirm'
     | '/auth/reset-password'
     | '/card/contact.vcf'
+    | '/nova/demo'
     | '/admin'
     | '/admin/content/quiz-importer'
+    | '/card/c/$publicId'
     | '/english/form-1/grammar'
   id:
     | '__root__'
@@ -535,6 +568,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mindmaps'
     | '/notes'
+    | '/nova'
     | '/onboarding'
     | '/parent'
     | '/parent-dashboard'
@@ -561,8 +595,10 @@ export interface FileRouteTypes {
     | '/auth/confirm'
     | '/auth/reset-password'
     | '/card/contact.vcf'
+    | '/nova_/demo'
     | '/admin/'
     | '/admin/content/quiz-importer'
+    | '/card_/c/$publicId'
     | '/english/form-1/grammar'
   fileRoutesById: FileRoutesById
 }
@@ -583,6 +619,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MindmapsRoute: typeof MindmapsRoute
   NotesRoute: typeof NotesRoute
+  NovaRoute: typeof NovaRoute
   OnboardingRoute: typeof OnboardingRoute
   ParentRoute: typeof ParentRoute
   ParentDashboardRoute: typeof ParentDashboardRoute
@@ -601,6 +638,8 @@ export interface RootRouteChildren {
   AuthCallbackRoute: typeof AuthCallbackRoute
   AuthConfirmRoute: typeof AuthConfirmRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  NovaDemoRoute: typeof NovaDemoRoute
+  CardCPublicIdRoute: typeof CardCPublicIdRoute
   EnglishForm1GrammarRoute: typeof EnglishForm1GrammarRoute
 }
 
@@ -688,6 +727,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nova': {
+      id: '/nova'
+      path: '/nova'
+      fullPath: '/nova'
+      preLoaderRoute: typeof NovaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/notes': {
@@ -809,6 +855,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/nova_/demo': {
+      id: '/nova_/demo'
+      path: '/nova/demo'
+      fullPath: '/nova/demo'
+      preLoaderRoute: typeof NovaDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/card/contact.vcf': {
       id: '/card/contact.vcf'
       path: '/contact.vcf'
@@ -914,6 +967,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnglishForm1GrammarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/card_/c/$publicId': {
+      id: '/card_/c/$publicId'
+      path: '/card/c/$publicId'
+      fullPath: '/card/c/$publicId'
+      preLoaderRoute: typeof CardCPublicIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/content/quiz-importer': {
       id: '/admin/content/quiz-importer'
       path: '/content/quiz-importer'
@@ -977,6 +1037,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MindmapsRoute: MindmapsRoute,
   NotesRoute: NotesRoute,
+  NovaRoute: NovaRoute,
   OnboardingRoute: OnboardingRoute,
   ParentRoute: ParentRoute,
   ParentDashboardRoute: ParentDashboardRoute,
@@ -995,6 +1056,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthCallbackRoute: AuthCallbackRoute,
   AuthConfirmRoute: AuthConfirmRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
+  NovaDemoRoute: NovaDemoRoute,
+  CardCPublicIdRoute: CardCPublicIdRoute,
   EnglishForm1GrammarRoute: EnglishForm1GrammarRoute,
 }
 export const routeTree = rootRouteImport

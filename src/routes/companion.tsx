@@ -96,6 +96,9 @@ function CosmicCompanionPage() {
               <h1 className="font-display text-4xl font-black leading-tight text-white sm:text-5xl">
                 Meet Your Cosmic Companion
               </h1>
+              <a href="/nova" className="mt-4 inline-flex rounded-full border border-amber-200/30 px-4 py-2 text-sm text-amber-100">
+                Discover your Nova Companion Card ↗
+              </a>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-white/60 sm:text-base">
                 Study, earn XP, hatch your egg, and evolve your Cosmic Companion as you learn.
               </p>

@@ -2,6 +2,8 @@ const ONBOARDING_EXEMPT_ROUTES = new Set([
   "/",
   "/account/billing",
   "/card",
+  "/nova",
+  "/nova/demo",
   "/contact",
   "/command-center-preview",
   "/explore-academy",
@@ -18,7 +20,7 @@ const ONBOARDING_EXEMPT_ROUTES = new Set([
   "/upgrade",
 ]);
 
-const ONBOARDING_EXEMPT_PREFIXES = ["/academy/", "/admin", "/auth/"];
+const ONBOARDING_EXEMPT_PREFIXES = ["/academy/", "/admin", "/auth/", "/card/c/"];
 
 const STUDENT_PROTECTED_ROUTES = new Set([
   "/companion",

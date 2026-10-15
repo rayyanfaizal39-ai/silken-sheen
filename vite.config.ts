@@ -201,6 +201,8 @@ export default defineConfig({
                 if (!request.headers.get("accept")?.includes("text/html")) return false;
 
                 const path = url.pathname;
+                // Nova sharing can be revoked. Never retain its documents offline.
+                if (path.startsWith("/card/c/") || path === "/nova" || path === "/nova/demo") return false;
                 const isApplicationEndpoint =
                   /^\/(?:api|auth|~oauth|_serverFn|_worker)(?:\/|$)/.test(path);
                 const isStaticPath =

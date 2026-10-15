@@ -375,6 +375,9 @@ export function AppShell({ children }: { children: ReactNode }) {
     pathname.startsWith("/academy/") ||
     pathname.startsWith("/admin") ||
     pathname === "/card" ||
+    pathname.startsWith("/card/c/") ||
+    pathname === "/nova" ||
+    pathname === "/nova/demo" ||
     pathname === "/onboarding" ||
     pathname === "/explore-academy" ||
     pathname === "/"
