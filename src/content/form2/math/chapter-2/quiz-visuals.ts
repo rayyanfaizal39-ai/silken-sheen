@@ -37,8 +37,8 @@ const removedSquare: MathQuestionVisual = {
     description: t("Segi empat sama kecil dikeluarkan dari tengah yang besar. Cari luas baki; nilai luas tidak ditulis.",
       "The inner square is removed from the outer square. Find the remaining area; area values are not shown."),
     paths: [
-      { points: [[38, 28], [263, 28], [263, 223], [38, 223]], closed: true, fill: true },
-      { points: [[107, 82], [194, 82], [194, 172], [107, 172]], closed: true, dashed: true },
+      { points: [[48, 27], [250, 27], [250, 229], [48, 229]], closed: true, fill: true },
+      { points: [[110, 88], [190, 88], [190, 168], [110, 168]], closed: true, dashed: true },
     ],
     labels: [
       { at: [151, 22], text: "x + 5 m" },
