@@ -177,6 +177,44 @@ const graph = (distance: boolean): MathQuestionVisual => {
     }],
   };
 };
+/** A midpoint prompt: plot *only* the two given endpoints, not its answer M. */
+const midpointStimulus = (a: [number, number], b: [number, number]): MathQuestionVisual => ({
+  kind: "coordinate-plane",
+  title: t("Titik tengah segmen", "Midpoint of a segment"),
+  description: t("A dan B diberi. Tentukan M tanpa ia ditanda pada rajah.",
+    "Endpoints A and B are given. Determine midpoint M, which is not marked."),
+  domain: [
+    Math.min(-1, a[0], b[0]) - 2, Math.max(1, a[0], b[0]) + 2,
+    Math.min(-1, a[1], b[1]) - 2, Math.max(1, a[1], b[1]) + 2,
+  ],
+  step: 2,
+  points: [{ at: a, name: "A" }, { at: b, name: "B" }],
+  paths: [{ points: [a, b] }],
+});
+
+/** Two stages of a journey; no time, total or computed result is drawn. */
+const twoLegJourney = (distA: number, speedA: number, distB: number, speedB: number): MathQuestionVisual => ({
+  kind: "geometry-diagram",
+  title: t("Dua bahagian perjalanan", "Two journey sections"),
+  panels: [
+    { title: t("Laluan A", "Route A"),
+      description: t("Jarak dan laju bagi bahagian pertama.", "Distance and speed of the first section."),
+      paths: [{ points: [[60, 121], [250, 121]] }],
+      labels: [
+        { at: [153, 94], text: `${distA} km` },
+        { at: [153, 167], text: `${speedA} km/h` },
+      ],
+    },
+    { title: t("Laluan B", "Route B"),
+      description: t("Jarak dan laju bagi bahagian kedua.", "Distance and speed of the second section."),
+      paths: [{ points: [[60, 121], [250, 121]] }],
+      labels: [
+        { at: [153, 94], text: `${distB} km` },
+        { at: [153, 167], text: `${speedB} km/h` },
+      ],
+    },
+  ],
+});
 const statTable = (values: number[], frequencies: number[], mode: boolean): MathQuestionVisual => ({
   kind: "frequency-table",
   title: mode ? t("Jadual kekerapan: cari mod", "Frequency table: find the mode")
@@ -202,14 +240,27 @@ export function mathF2VisualForSeed(chapter: number, bmQuestion: string): MathQu
       if (bmQuestion === "Sebuah kuboid berukuran 6 cm × 4 cm × 3 cm. Cari isi padunya.") return cuboid("6 cm", "4 cm", "3 cm");
       if (bmQuestion === "Cari luas permukaan kuboid 5 cm × 3 cm × 2 cm.") return cuboid("5 cm", "3 cm", "2 cm");
       break;
-    case 7:
+    case 7: {
+      const midpoint = /^M ialah titik tengah segmen \\d+ dengan hujung \\((-?\\d+),(-?\\d+)\\) dan \\((-?\\d+),(-?\\d+)\\)\\. Cari M\\.$/.exec(bmQuestion);
+      if (midpoint) return midpointStimulus(
+        [Number(midpoint[1]), Number(midpoint[2])],
+        [Number(midpoint[3]), Number(midpoint[4])],
+      );
       if (bmQuestion === "Sebuah robot bergerak dari (-3,4) ke (5,10), kemudian ke (11,2). Cari jumlah jarak.") return robot;
       if (bmQuestion === "Sebuah segi tiga bersudut tegak mempunyai bucu (-1,2), (7,2) dan (-1,8). Cari panjang hipotenus.") return rightTriangle;
       break;
+    }
     case 8:
       if (bmQuestion === "Graf y=2x+1 dan y=2x−4 mempunyai hubungan apa?") return parallel;
       if (bmQuestion === "Sebuah graf melalui (0,6) dan (3,0). Apakah kecerunannya?") return slopeLine;
       break;
+    case 9: {
+      const legs = /^Laluan A \\d+ ialah (\\d+) km pada (\\d+) km\\/h, diikuti laluan B (\\d+) km pada (\\d+) km\\/h\\. Berapa minitkah keseluruhan perjalanan\\?$/.exec(bmQuestion);
+      if (legs) return twoLegJourney(
+        Number(legs[1]), Number(legs[2]), Number(legs[3]), Number(legs[4]),
+      );
+      break;
+    }
     case 10:
       if (bmQuestion === "Kecerunan graf jarak-masa mewakili apa?") return graph(true);
       if (bmQuestion === "Luas di bawah graf laju-masa mewakili apa?") return graph(false);
