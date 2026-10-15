@@ -25,24 +25,26 @@ In total, **6 question numbers** had content changes, mirrored in **12 BM/DLP in
 
 ## New visual coverage
 
-Created **33 answer-neutral declarative visual question pairs**, rendered in both languages: **66 quiz instances**, using one typed reusable map in `src/content/form2/math/quiz-visuals.ts`. No decorative stock photos and no additional network-image dependencies. Every graphic shows the original givens and leaves the answer unsolved.
+Created **54 answer-neutral visual question pairs**, rendered in both languages: **108 quiz instances**, using the existing typed `MathQuestionVisual` renderer. Chapter 2 uses `src/content/form2/math/chapter-2/quiz-visuals.ts` and Chapters 3–13 use the shared `src/content/form2/math/quiz-visuals.ts`. No decorative stock photos and no additional network-image dependencies. Every graphic shows the original givens and leaves the answer unsolved.
 
 | Chapter | Visual pairs | Topic and rationale |
 |---|---:|---|
 | 1: Patterns | 0 | Existing questions are primarily symbolic sequence/pattern calculations; avoid decorative figures. |
-| 2: Algebraic Expansion and Factorisation | 0 | Source has direct-owned banks; visual mapping reserved for substantive follow-up. |
+| 2: Algebraic Expansion and Factorisation | 6 | Symbolic rectangle/square area models for F5, F7, P6, P7, C4 and C25; the inner removed square is geometrically square, and no expanded or factorised result is revealed. |
 | 3: Algebraic Formulae | 0 | Algebraic relationships are sufficiently represented in text; a two-triangle sketch risked suggesting a misleading scale, so it was omitted. |
 | 4: Polygons | 2 | Quadrilateral and pentagon with supplied interior angles; unknown `x` remains unsolved. |
 | 5: Circles | 3 | Centre-to-chord perpendicular, 90° arc and 90° sector; geometry includes only given radius and angle. |
 | 6: Three-Dimensional Geometrical Shapes | 2 | Cuboid edge measurements for volume and surface-area problems. |
-| 7: Coordinates | 2 | Robot's two-segment path and a coordinate right triangle, to equal coordinate-axis scales. |
+| 7: Coordinates | 12 | Robot's path, a coordinate right triangle, and ten generated midpoint problems showing ONLY the two given endpoints, not midpoint M. |
 | 8: Graphs of Functions | 2 | Two linear functions and gradient through two given points; graph title never names the answer. |
-| 9: Speed and Acceleration | 0 | Existing questions are mostly numeric; no artificial illustrations added. |
+| 9: Speed and Acceleration | 5 | Each generated two-leg journey shows only the two given distances and speeds, without calculated durations. |
 | 10: Gradient | 2 | Schematic distance–time slope and the region beneath a speed–time graph. |
 | 11: Isometric Transformations | 5 | Five reflected points; show only original position, **not** the solution point. |
 | 12: Measures of Central Tendencies | 10 | Five exact frequency tables for mean and five for mode. |
 | 13: Simple Probability | 5 | Marble groups from stated red/blue counts, with no selected outcome. |
-| **Total** | **33** | **66 bilingual rendered instances** |
+| **Total** | **54** | **108 bilingual rendered instances** |
+
+**Additional targeted visual pass:** Chapter 2 gained 6 diagrams (12 BM/DLP instances); Chapter 7 gained 10 midpoint plots (20 instances); Chapter 9 gained 5 route-comparison diagrams (10 instances). These 21 additions increase visual coverage from 33 to **54** question pairs.
 
 The visuals use the existing `MathQuestionVisual` SVG/table renderer. Charts use bilingual labels, geometry descriptions state when diagrams are not to scale, coordinate planes use equal axis-unit scaling, and BM/DLP refer to equivalent diagram content.
 
@@ -50,7 +52,7 @@ The visuals use the existing `MathQuestionVisual` SVG/table renderer. Charts use
 
 1. **Full answer recomputation:** Manually or programmatically solve each question and independently verify each plausible alternative. Existing validation scripts check structural correctness; structure alone is not proof of mathematics.
 2. **Chapter 1 DLP existing routing test:** Previous repository reports identify a pre-existing failure in `chapter-1/quizzes-dlp.test.ts`; verify its present status against `main`. Do not attribute it to this branch without a baseline comparison.
-3. **Chapter 2 direct-owned algebra bank:** Audit longer algebraic questions separately and add algebra-tile or area models only when they genuinely test representation rather than give away factorisation.
+3. **Chapter 2 direct-owned algebra bank:** Six selected area models have now been attached to the direct BM/DLP objective banks. Further algebraic questions should receive models only if a diagram genuinely clarifies a mathematical premise and never exposes the result.
 4. **Hardness and pedagogy:** Inspect Foundation vs Practice vs Challenge balance, repeated templates, unrealistic distractors and answer-length biases. Distinguish DSKP scope from supplementary extension exercises.
 5. **Dynamic seed generation:** Re-solve generated coordinate, area, speed, probability, and statistics variants; protect their numerical invariants with tests.
 6. **Manual responsive preview:** Check rendering of each figure/table at 320px and tablet widths for clipping, overlapping points or labels, and accessibility description quality. Don't force diagrams on every question.
@@ -58,12 +60,12 @@ The visuals use the existing `MathQuestionVisual` SVG/table renderer. Charts use
 
 ## Regression coverage
 
-Added `src/content/form2/math/math-f2-visual-reaudit.test.ts` to check 90 unique question IDs and 4 distinct options in every paired BM/DLP bank (Chapters 3–13), language alignment, correct indices, Foundation/Practice/Challenge difficulty metadata, exact 33 visual mappings, the chord terminology correction, the congruence distractors, and marble counts matching premises.
+Added `src/content/form2/math/chapter-2/quiz-visuals.test.ts` to validate the six BM/DLP area models; expanded `src/content/form2/math/math-f2-visual-reaudit.test.ts` to check 90 unique question IDs and 4 distinct options in every paired BM/DLP bank (Chapters 3–13), language alignment, correct indices, Foundation/Practice/Challenge difficulty metadata, exact 48 paired-seed visual mappings, plus six direct Chapter 2 visual mappings, the chord terminology correction, the congruence distractors, and marble counts matching premises.
 
 Suggested local commands:
 
 ```bash
-npm test -- src/content/form2/math/math-f2-visual-reaudit.test.ts
+npm test -- src/content/form2/math/math-f2-visual-reaudit.test.ts src/content/form2/math/chapter-2/quiz-visuals.test.ts
 npm run validate:math-f2-batch-a
 npm run validate:math-f2-batch-b
 npm run validate:math-f2-batch-c
