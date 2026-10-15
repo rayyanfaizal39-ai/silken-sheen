@@ -222,7 +222,7 @@ begin
     raise exception 'Not enough verified XP';
   end if;
   select max(stage) into previous_stage from public.nova_artwork
-    where card_id=c.id and released and selected;
+    where card_id=c.id and released and selected and stage = target_stage-1;
   if previous_stage is distinct from target_stage-1 then
     raise exception 'Previous approved evolution artwork is required';
   end if;
