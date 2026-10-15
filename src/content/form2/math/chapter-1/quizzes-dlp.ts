@@ -1084,7 +1084,7 @@ export const mathF2C1ChallengeQuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 1",
     lang: "dlp",
     question:
-      "A decorative wall pattern uses 7 tiles in Stage 1 and increases by 6 tiles per stage. The designer has 121 tiles. What is the greatest complete stage that uses exactly 121 tiles?",
+      "A decorative wall pattern uses 7 tiles in Stage 1 and increases by 6 tiles per stage. Which stage uses exactly 121 tiles?",
     options: ["Stage 18", "Stage 19", "Stage 20", "Stage 21"],
     answerIndex: 2,
     explanation: "7+(n−1)6=121. Thus 6(n−1)=114, n−1=19 and n=20.",

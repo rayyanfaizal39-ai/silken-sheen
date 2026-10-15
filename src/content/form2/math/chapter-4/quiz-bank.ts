@@ -265,7 +265,7 @@ export const mathF2C4PairedSeeds: readonly PairedQuizSeed[] = [
     "Berapakah jumlah sudut peluaran bagi mana-mana poligon cembung?",
     "What is the sum of the exterior angles of any convex polygon?",
     "360°",
-    ["180°", "540°", "Bergantung pada bilangan sisi"],
+    ["180°", "540°", ["Bergantung pada bilangan sisi", "It depends on the number of sides"]],
     "Satu sudut peluaran pada setiap bucu sentiasa berjumlah 360°.",
     "One exterior angle at each vertex always sums to 360°.",
   ),

@@ -49,10 +49,10 @@ describe("Math Form 2 visual re-audit", () => {
     });
   }
 
-  it("attaches exactly 48 bilingual pair diagrams, only where the premises match", () => {
+  it("attaches exactly 165 bilingual pair diagrams, only where the premises match", () => {
     const expectedCounts = new Map<number, number>([
-      [3, 0], [4, 2], [5, 3], [6, 2], [7, 12], [8, 2],
-      [9, 5], [10, 2], [11, 5], [12, 10], [13, 5],
+      [3, 0], [4, 7], [5, 18], [6, 9], [7, 22], [8, 2],
+      [9, 5], [10, 32], [11, 55], [12, 10], [13, 5],
     ]);
     let total = 0;
     for (const [chapter, seeds] of chapters) {
@@ -64,7 +64,7 @@ describe("Math Form 2 visual re-audit", () => {
         expect(bm[i].visual).toEqual(mathF2VisualForSeed(chapter, seeds[i].question[0]));
       }
     }
-    expect(total).toBe(48);
+    expect(total).toBe(165);
   });
 
   it("corrects the misleading radius/chord construction in both languages", () => {

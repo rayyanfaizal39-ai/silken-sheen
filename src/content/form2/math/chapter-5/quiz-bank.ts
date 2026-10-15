@@ -328,18 +328,18 @@ export const mathF2C5PairedSeeds: readonly PairedQuizSeed[] = [
 
   // Objective 2 — Practice: chord and symmetry reasoning (5)
   q(
-    "OP berserenjang dengan perentas AB di P. Jika AB = 18 cm, cari AP.",
-    "OP is perpendicular to chord AB at P. If AB = 18 cm, find AP.",
+    "O ialah pusat bulatan. Garis OP berserenjang dengan perentas AB di P. Jika AB = 18 cm, cari AP.",
+    "O is the centre of the circle. Line OP is perpendicular to chord AB at P. If AB = 18 cm, find AP.",
     "9 cm",
     ["6 cm", "18 cm", "36 cm"],
-    "Jejari serenjang membahagi dua perentas, jadi AP = 18/2 = 9 cm.",
-    "A perpendicular radius bisects the chord, so AP = 18/2 = 9 cm.",
+    "Garis dari pusat yang berserenjang dengan perentas membahagi dua perentas itu, jadi AP = 18/2 = 9 cm.",
+    "A line from the centre perpendicular to a chord bisects the chord, so AP = 18/2 = 9 cm.",
   ),
   q(
     "Perentas AB dan CD sama panjang. Jarak AB dari pusat ialah 6 cm. Berapakah jarak CD dari pusat?",
     "Chords AB and CD are equal. AB is 6 cm from the centre. How far is CD from the centre?",
     "6 cm",
-    ["3 cm", "12 cm", "Tidak dapat ditentukan"],
+    ["3 cm", "12 cm", ["Tidak dapat ditentukan", "Cannot be determined"]],
     "Perentas sama panjang adalah sama jarak dari pusat.",
     "Equal chords are equidistant from the centre.",
   ),
@@ -668,8 +668,8 @@ export const mathF2C5PairedSeeds: readonly PairedQuizSeed[] = [
     "Circumference ratio equals radius ratio. Area ratio is its square: 2²:5² = 4:25.",
   ),
   q(
-    "Jejari bulatan A ialah 3 cm lebih besar daripada B. Jika lilitan A melebihi B sebanyak 6π cm, sahkan perbezaan jejari.",
-    "Circle A's radius is 3 cm larger than B's. If A's circumference exceeds B's by 6π cm, verify the radius difference.",
+    "Lilitan bulatan A melebihi lilitan bulatan B sebanyak 6π cm. Berapakah beza jejari kedua-dua bulatan?",
+    "Circle A's circumference exceeds circle B's by 6π cm. What is the difference between their radii?",
     "3 cm",
     ["1.5 cm", "6 cm", "9 cm"],
     "Beza lilitan = 2π(rA − rB) = 6π, jadi beza jejari = 3 cm.",
@@ -752,12 +752,12 @@ export const mathF2C5PairedSeeds: readonly PairedQuizSeed[] = [
     "Major:minor angle ratio = 3:1. Four parts = 360°, so minor = 90°.",
   ),
   q(
-    "Sektor 40° mempunyai luas 10π cm². Cari jejari bulatan.",
-    "A 40° sector has area 10π cm². Find the circle's radius.",
-    "3√10 cm",
-    ["3 cm", "5√2 cm", "10 cm"],
-    "10π = 40/360 × πr² = πr²/9. Maka r² = 90 dan r = 3√10 cm.",
-    "10π = 40/360 × πr² = πr²/9. Thus r² = 90 and r = 3√10 cm.",
+    "Sektor 40° mempunyai luas 16π cm². Cari jejari bulatan.",
+    "A 40° sector has area 16π cm². Find the circle's radius.",
+    "12 cm",
+    ["4 cm", "72 cm", "144 cm"],
+    "16π = 40/360 × πj² = πj²/9. Maka j² = 144 dan j = 12 cm.",
+    "16π = 40/360 × πr² = πr²/9. Thus r² = 144 and r = 12 cm.",
   ),
   q(
     "Sektor A dan B mempunyai luas sama. Jejari A ialah 6 cm dengan sudut 120°, manakala jejari B ialah 12 cm. Cari sudut B.",

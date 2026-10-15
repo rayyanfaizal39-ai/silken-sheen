@@ -1,15 +1,17 @@
 import { numericPairedSeed as n, pairedSeed as q, type PairedQuizSeed } from "../paired-quiz-bank";
 
-const point = ([x, y]: number[]) => `(${x}, ${y})`;
+const point = ([x, y]: number[]) => `(${x}, ${y})`.replace(/-/g, "−");
 const coordinateQuestion = (
   bm: string,
   dlp: string,
   answer: number[],
+  mistakes: number[][],
   bmExplanation: string,
   dlpExplanation: string,
 ): PairedQuizSeed => {
   const [x, y] = answer;
   const wrong = [
+    ...mistakes,
     [x + 1, y],
     [x, y + 1],
     [-x, y],
@@ -152,6 +154,7 @@ const foundation: PairedQuizSeed[] = [
       `Pantulkan titik P${i + 1}(${x},${y}) pada paksi-x.`,
       `Reflect point P${i + 1}(${x},${y}) in the x-axis.`,
       [x, -y],
+      [[-x, y], [-x, -y], [y, x]],
       "Kekalkan x dan tukar tanda y.",
       "Keep x and change the sign of y.",
     ),
@@ -169,6 +172,7 @@ const foundation: PairedQuizSeed[] = [
       `Titik A${i + 1}(${x},${y}) ditranslasi oleh vektor (${a},${b}). Cari imejnya.`,
       `Point A${i + 1}(${x},${y}) is translated by vector (${a},${b}). Find its image.`,
       [x + a, y + b],
+      [[x - a, y - b], [x + b, y + a], [x + a, y - b]],
       "Tambah komponen vektor pada koordinat sepadan.",
       "Add each vector component to its corresponding coordinate.",
     ),
@@ -186,33 +190,38 @@ const foundation: PairedQuizSeed[] = [
       `Putarkan titik B${i + 1}(${x},${y}) sebanyak 180° pada asalan.`,
       `Rotate point B${i + 1}(${x},${y}) through 180° about the origin.`,
       [-x, -y],
+      [[-x, y], [x, -y], [-y, -x]],
       "Putaran 180° menukar kedua-dua tanda.",
       "A 180° rotation changes both signs.",
     ),
   ),
 );
 [
-  [3, 4, 5],
-  [5, 12, 13],
-  [6, 8, 10],
-  [8, 15, 17],
-  [7, 24, 25],
-].forEach(([a, b, c], i) =>
+  // Reordered lists test that order does not matter; near-miss lists are neither congruent nor similar.
+  [[3, 4, 5], [4, 5, 3]],
+  [[5, 12, 13], [5, 12, 13]],
+  [[6, 8, 10], [6, 8, 11]],
+  [[8, 15, 17], [15, 17, 8]],
+  [[7, 24, 25], [7, 23, 25]],
+].forEach(([first, second], i) => {
+  const congruent = [...first].sort((x, y) => x - y).join() === [...second].sort((x, y) => x - y).join();
+  const yes = ["Kongruen", "Congruent"] as const;
+  const no = ["Tidak kongruen", "Not congruent"] as const;
   foundation.push(
     q(
-      `Segi tiga ${i + 1} bersisi ${a}, ${b}, ${c}. Segi tiga lain juga bersisi ${a}, ${b}, ${c}. Apakah hubungannya?`,
-      `Triangle ${i + 1} has sides ${a}, ${b}, ${c}. Another triangle has the same three side lengths. What is their relationship?`,
-      ["Kongruen", "Congruent"],
-      [
-        ["Serupa sahaja", "Similar only"],
-        ["Tidak kongruen", "Not congruent"],
-        ["Tidak boleh dibandingkan", "Cannot be compared"],
-      ],
-      "Tiga sisi sepadan sama panjang, maka bentuk dan saiz sama.",
-      "All three corresponding sides are equal, so shape and size match.",
+      `Segi tiga ${i + 1} bersisi ${first.join(", ")}. Segi tiga lain bersisi ${second.join(", ")}. Apakah hubungannya?`,
+      `Triangle ${i + 1} has sides ${first.join(", ")}. Another triangle has sides ${second.join(", ")}. What is their relationship?`,
+      congruent ? yes : no,
+      [congruent ? no : yes, ["Serupa sahaja", "Similar only"], ["Tidak boleh dibandingkan", "Cannot be compared"]],
+      congruent
+        ? "Selepas disusun, ketiga-tiga sisi sepadan sama panjang, maka bentuk dan saiz sama (SSS)."
+        : "Satu pasang sisi sepadan berbeza, jadi saiznya tidak sama; nisbah sisi juga tidak sama, jadi tidak serupa.",
+      congruent
+        ? "After sorting, all three corresponding sides are equal, so shape and size match (SSS)."
+        : "One pair of corresponding sides differs, so the sizes differ; the side ratios also differ, so they are not similar.",
     ),
-  ),
-);
+  );
+});
 
 const practice: PairedQuizSeed[] = [];
 [
@@ -227,6 +236,7 @@ const practice: PairedQuizSeed[] = [];
       `Pantulkan C${i + 1}(${x},${y}) pada garis x=${k}.`,
       `Reflect C${i + 1}(${x},${y}) in the line x=${k}.`,
       [2 * k - x, y],
+      [[-x, y], [k - x, y], [x, 2 * k - y]],
       "Garis cermin ialah titik tengah koordinat-x objek dan imej.",
       "The mirror line is midway between the object's and image's x-coordinates.",
     ),
@@ -244,6 +254,7 @@ const practice: PairedQuizSeed[] = [];
       `Pantulkan D${i + 1}(${x},${y}) pada garis y=${k}.`,
       `Reflect D${i + 1}(${x},${y}) in the line y=${k}.`,
       [x, 2 * k - y],
+      [[x, -y], [x, k - y], [2 * k - x, y]],
       "Garis y=k membahagi dua jarak menegak objek-imej.",
       "The line y=k bisects the vertical object-image distance.",
     ),
@@ -261,6 +272,7 @@ const practice: PairedQuizSeed[] = [];
       `Putarkan E${i + 1}(${x},${y}) 90° lawan arah jam pada asalan.`,
       `Rotate E${i + 1}(${x},${y}) 90° anticlockwise about the origin.`,
       [-y, x],
+      [[y, -x], [-x, -y], [y, x]],
       "Peraturan putaran ialah (x,y)→(−y,x).",
       "The rotation rule is (x,y)→(−y,x).",
     ),
@@ -278,6 +290,7 @@ const practice: PairedQuizSeed[] = [];
       `Putarkan F${i + 1}(${x},${y}) 90° ikut arah jam pada asalan.`,
       `Rotate F${i + 1}(${x},${y}) 90° clockwise about the origin.`,
       [y, -x],
+      [[-y, x], [-x, -y], [y, x]],
       "Peraturan putaran ialah (x,y)→(y,−x).",
       "The rotation rule is (x,y)→(y,−x).",
     ),
@@ -307,24 +320,33 @@ const practice: PairedQuizSeed[] = [];
   [4, 6, 6, 4],
   [8, 10, 12, 15],
   [6, 9, 9, 6],
-].forEach(([a, b, c, d], i) =>
+].forEach(([a, b, c, d], i) => {
+  const yes = ["Ya; kedua-dua pasang sisi sepadan sama panjang", "Yes; both pairs of corresponding sides are equal"] as const;
+  const no = ["Tidak; panjang sisi sepadan berbeza", "No; the corresponding side lengths differ"] as const;
+  const congruent = [a, b].sort((x, y) => x - y).join() === [c, d].sort((x, y) => x - y).join();
+  // Every distractor carries the opposite verdict, so no option is "right for the wrong reason".
+  const wrong: PairedQuizSeed["distractors"] = congruent
+    ? [
+        no,
+        ["Tidak; sisi disenaraikan mengikut tertib berbeza", "No; the sides are listed in a different order"],
+        ["Tidak dapat ditentukan tanpa mengukur sudut", "Cannot be determined without measuring angles"],
+      ]
+    : [
+        yes,
+        ["Ya; kerana kedua-duanya segi empat tepat", "Yes; because both are rectangles"],
+        ["Ya; kerana sisi-sisinya berkadar", "Yes; because their sides are proportional"],
+      ];
   practice.push(
     q(
       `Segi empat tepat P${i + 1} bersisi ${a} dan ${b}; Q bersisi ${c} dan ${d}. Adakah P dan Q kongruen?`,
       `Rectangle P${i + 1} has sides ${a} and ${b}; Q has sides ${c} and ${d}. Are P and Q congruent?`,
-      a * b === c * d && [a, b].sort().join() === [c, d].sort().join()
-        ? ["Ya", "Yes"]
-        : ["Tidak", "No"],
-      [
-        ["Ya kerana kedua-duanya segi empat tepat", "Yes because both are rectangles"],
-        ["Ya jika luas hampir sama", "Yes if their areas are close"],
-        ["Tidak dapat ditentukan", "Cannot be determined"],
-      ],
+      congruent ? yes : no,
+      wrong,
       "Bandingkan kedua-dua panjang sisi sepadan, bukan nama bentuk sahaja.",
       "Compare both corresponding side lengths, not only the shape name.",
     ),
-  ),
-);
+  );
+});
 
 const challenge: PairedQuizSeed[] = [];
 [
@@ -345,49 +367,69 @@ const challenge: PairedQuizSeed[] = [];
     ),
   ),
 );
-[
-  [3, 5, -3, 5],
-  [-4, 2, 4, 2],
-  [6, -1, -6, -1],
-  [-2, -7, 2, -7],
-  [5, 3, -5, 3],
-].forEach(([x, y, X, Y], i) =>
+(
+  [
+    [3, 5, -3, 5, "x = 0", ["y = 0", "y = x", "x = 3"],
+      "Koordinat-y kekal dan x bertukar tanda, jadi garis cermin ialah paksi-y, x = 0.",
+      "y stays fixed while x changes sign, so the mirror line is the y-axis, x = 0."],
+    [-4, 2, -4, -2, "y = 0", ["x = 0", "y = −x", "y = 2"],
+      "Koordinat-x kekal dan y bertukar tanda, jadi garis cermin ialah paksi-x, y = 0.",
+      "x stays fixed while y changes sign, so the mirror line is the x-axis, y = 0."],
+    [6, -1, 2, -1, "x = 4", ["x = 0", "x = 2", "y = −1"],
+      "Koordinat-y kekal. Garis cermin menegak di tengah-tengah: x = (6 + 2)/2 = 4.",
+      "y stays fixed. The vertical mirror line is midway: x = (6 + 2)/2 = 4."],
+    [-2, -7, -2, 3, "y = −2", ["y = 0", "x = −2", "y = 5"],
+      "Koordinat-x kekal. Garis cermin mengufuk di tengah-tengah: y = (−7 + 3)/2 = −2.",
+      "x stays fixed. The horizontal mirror line is midway: y = (−7 + 3)/2 = −2."],
+    [5, 3, 3, 5, "y = x", ["y = −x", "x = 4", "y = 4"],
+      "Koordinat x dan y bertukar tempat, iaitu pantulan pada garis y = x.",
+      "The x- and y-coordinates swap places, which is a reflection in y = x."],
+  ] as const
+).forEach(([x, y, X, Y, line, wrong, bmExplanation, dlpExplanation]) =>
   challenge.push(
     q(
       `P(${x},${y}) dipantulkan kepada P′(${X},${Y}). Apakah garis cermin?`,
       `P(${x},${y}) is reflected to P′(${X},${Y}). What is the mirror line?`,
-      `x = 0`,
-      ["y = 0", "y = x", "x = 1"],
-      "Koordinat-y kekal dan x bertukar tanda, jadi paksi-y ialah garis cermin.",
-      "y stays fixed while x changes sign, so the y-axis is the mirror line.",
+      line,
+      wrong,
+      bmExplanation,
+      dlpExplanation,
     ),
   ),
 );
-[
-  [2, 5, -5, 2],
-  [-3, 4, -4, -3],
-  [6, -1, 1, 6],
-  [-2, -7, 7, -2],
-  [5, 3, -3, 5],
-].forEach(([x, y, X, Y], i) =>
+const rotations = [
+  { bm: "90° lawan arah jam", dlp: "90° anticlockwise", map: ([x, y]: number[]) => [-y, x], rule: "(x, y) → (−y, x)" },
+  { bm: "90° ikut arah jam", dlp: "90° clockwise", map: ([x, y]: number[]) => [y, -x], rule: "(x, y) → (y, −x)" },
+  { bm: "180°", dlp: "180°", map: ([x, y]: number[]) => [-x, -y], rule: "(x, y) → (−x, −y)" },
+  { bm: "45° lawan arah jam", dlp: "45° anticlockwise", map: undefined, rule: "" },
+] as const;
+(
+  [
+    [2, 5, 0],
+    [-3, 4, 1],
+    [6, -1, 0],
+    [-2, -7, 2],
+    [5, 3, 1],
+  ] as const
+).forEach(([x, y, r], i) => {
+  const [X, Y] = rotations[r].map!([x, y]);
+  const [correct, ...wrong] = [rotations[r], ...rotations.filter((_, k) => k !== r)].map(
+    (rotation) => [rotation.bm, rotation.dlp] as const,
+  );
   challenge.push(
     q(
       `Titik K${i + 1}(${x},${y}) dipetakan kepada (${X},${Y}) oleh putaran berpusat di asalan. Nyatakan putaran.`,
       `Point K${i + 1}(${x},${y}) maps to (${X},${Y}) by a rotation about the origin. State the rotation.`,
-      ["90° lawan arah jam", "90° anticlockwise"],
-      [
-        ["90° ikut arah jam", "90° clockwise"],
-        ["180° ikut arah jam", "180° clockwise"],
-        ["45° lawan arah jam", "45° anticlockwise"],
-      ],
-      "Pemetaan (x,y)→(−y,x) ialah 90° lawan arah jam.",
-      "The mapping (x,y)→(−y,x) is 90° anticlockwise.",
+      correct,
+      wrong as unknown as PairedQuizSeed["distractors"],
+      `Pemetaan ${rotations[r].rule} ialah putaran ${rotations[r].bm}.`,
+      `The mapping ${rotations[r].rule} is a ${rotations[r].dlp} rotation.`,
     ),
-  ),
-);
+  );
+});
 [
   [1, 2, 4, -1],
-  [-3, 5, 2, 8],
+  [-3, 5, 2, 3],
   [0, -4, -5, 2],
   [6, 1, 1, -7],
   [-2, -6, 7, 0],
@@ -397,6 +439,7 @@ const challenge: PairedQuizSeed[] = [];
       `Titik L${i + 1}(${x},${y}) ditranslasi oleh (${a},${b}), kemudian dipantulkan pada paksi-x. Cari imej akhir.`,
       `Point L${i + 1}(${x},${y}) is translated by (${a},${b}), then reflected in the x-axis. Find the final image.`,
       [x + a, -(y + b)],
+      [[x + a, -y + b], [x + a, y + b], [-(x + a), y + b]],
       "Lakukan translasi dahulu, kemudian tukar tanda koordinat-y.",
       "Translate first, then change the sign of the y-coordinate.",
     ),
@@ -414,6 +457,7 @@ const challenge: PairedQuizSeed[] = [];
       `Titik M${i + 1}(${x},${y}) diputar 90° ikut arah jam, kemudian ditranslasi oleh (3,−2). Cari imej akhir.`,
       `Point M${i + 1}(${x},${y}) is rotated 90° clockwise, then translated by (3,−2). Find the final image.`,
       [y + 3, -x - 2],
+      [[-y + 3, x - 2], [y - 2, -x - 3], [y - 3, -x + 2]],
       "Putaran memberi (y,−x), kemudian tambah (3,−2).",
       "Rotation gives (y,−x), then add (3,−2).",
     ),

@@ -21,11 +21,12 @@ const rectangle = (
       "Labels show only the givens; diagram not to scale."),
     paths: [{ points: (isSquare
       ? [[80, 56], [220, 56], [220, 196], [80, 196]]
-      : [[57, 56], [240, 56], [240, 183], [57, 183]]) as P[], closed: true, fill: true }],
+      : [[40, 56], [212, 56], [212, 183], [40, 183]]) as P[], closed: true, fill: true }],
     labels: [
-      { at: [146, 43], text: width },
-      { at: [266, 120], text: height },
-      ...(area ? [{ at: [149, 127] as P, text: area }] : []),
+      { at: [isSquare ? 150 : 126, 43], text: width },
+      // Start-anchored just right of the right edge so long labels never cross it.
+      { at: [isSquare ? 228 : 220, 124], text: height, anchor: "start" },
+      ...(area ? [{ at: [126, 127] as P, text: area }] : []),
     ],
   }],
 }];

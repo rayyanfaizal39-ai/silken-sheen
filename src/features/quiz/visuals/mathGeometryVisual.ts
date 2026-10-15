@@ -16,12 +16,14 @@ export type GeometryPanel = {
     dashed?: boolean;
     fill?: boolean;
   }[];
-  circles?: { centre: GeometryPoint; radius: number }[];
+  /** Circles are lightly filled unless `fill` is false; `dashed` marks a removed or hidden outline. */
+  circles?: { centre: GeometryPoint; radius: number; fill?: boolean; dashed?: boolean }[];
   arcs?: {
     centre: GeometryPoint;
     radius: number;
     start: number;
     end: number;
+    dashed?: boolean;
   }[];
   labels: {
     at: GeometryPoint;

@@ -1,6 +1,7 @@
 import { MathCoordinateVisual } from "./MathCoordinateVisual";
 import { MathFinanceVisual } from "./MathFinanceVisual";
 import { MathGeometryVisual } from "./MathGeometryVisual";
+import { MathMotionGraphVisual } from "./MathMotionGraphVisual";
 import { MathAlgebraVisual } from "./MathAlgebraVisual";
 import { MathEquationVisual } from "./MathEquationVisual";
 import { MathInequalityVisual } from "./MathInequalityVisual";
@@ -612,6 +613,7 @@ export function MathQuestionVisual({
   if (visual.kind === "finance-model") return <MathFinanceVisual visual={visual} lang={lang} />;
   if (visual.kind === "coordinate-plane") return <MathCoordinateVisual visual={visual} lang={lang} />;
   if (visual.kind === "geometry-diagram") return <MathGeometryVisual visual={visual} lang={lang} />;
+  if (visual.kind === "motion-graph") return <MathMotionGraphVisual visual={visual} lang={lang} />;
 
   if (visual.kind === "place-value" || visual.kind === "standard-form-parts" ||
       visual.kind === "standard-form-operation" || visual.kind === "right-triangle" ||

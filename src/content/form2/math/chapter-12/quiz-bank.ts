@@ -169,19 +169,25 @@ const foundation: PairedQuizSeed[] = [
     ),
   ),
 );
-[
-  { v: [2, 3, 3, 4, 5], a: "3" },
-  { v: [6, 7, 6, 8, 9, 6], a: "6" },
-  { v: [1, 2, 2, 3, 3, 4], a: "2 dan 3" },
-  { v: [5, 7, 9, 5, 8, 5, 9], a: "5" },
-  { v: [4, 4, 6, 6, 7, 8], a: "4 dan 6" },
-].forEach(({ v, a }, i) =>
+// Distractors: the frequency mistaken for the mode, the mean/median, a largest value, or half of a bimodal answer.
+const only = (value: number) => [`${value} sahaja`, `${value} only`] as const;
+const both = (a: number, b: number) => [`${a} dan ${b}`, `${a} and ${b}`] as const;
+const noMode = ["Tiada mod", "No mode"] as const;
+(
+  [
+    { v: [2, 3, 3, 4, 5], a: "3", wrong: ["2", "3.4", "5"] },
+    { v: [6, 7, 6, 8, 9, 6], a: "6", wrong: ["3", "6.5", "9"] },
+    { v: [1, 2, 2, 3, 3, 4], a: both(2, 3), wrong: [only(2), noMode, "2.5"] },
+    { v: [5, 7, 9, 5, 8, 5, 9], a: "5", wrong: ["3", "7", "9"] },
+    { v: [4, 4, 6, 6, 7, 8], a: both(4, 6), wrong: [only(4), only(6), noMode] },
+  ] as const
+).forEach(({ v, a, wrong }, i) =>
   foundation.push(
     q(
       `Cari mod bagi data ${i + 1}: ${v.join(", ")}.`,
       `Find the mode of data set ${i + 1}: ${v.join(", ")}.`,
       a,
-      [`${Math.min(...v)}`, `${Math.max(...v)}`, `${mean(v)}`],
+      wrong,
       "Kenal pasti nilai dengan kekerapan tertinggi.",
       "Identify the value with the highest frequency.",
     ),
@@ -294,19 +300,21 @@ const practice: PairedQuizSeed[] = [];
     ),
   ),
 );
-[
-  [[1, 2, 3, 4], [2, 5, 5, 1], "2 dan 3"],
-  [[5, 6, 7], [4, 2, 4], "5 dan 7"],
-  [[2, 4, 6, 8], [1, 3, 2, 3], "4 dan 8"],
-  [[10, 12, 14], [5, 2, 1], "10"],
-  [[3, 5, 7, 9], [2, 4, 4, 1], "5 dan 7"],
-].forEach(([values, freqs, answer], i) =>
+(
+  [
+    [[1, 2, 3, 4], [2, 5, 5, 1], both(2, 3), ["5", only(2), noMode]],
+    [[5, 6, 7], [4, 2, 4], both(5, 7), ["4", "6", noMode]],
+    [[2, 4, 6, 8], [1, 3, 2, 3], both(4, 8), ["3", only(8), both(4, 6)]],
+    [[10, 12, 14], [5, 2, 1], "10", ["5", "12", "14"]],
+    [[3, 5, 7, 9], [2, 4, 4, 1], both(5, 7), ["4", only(5), "6"]],
+  ] as const
+).forEach(([values, freqs, answer, wrong], i) =>
   practice.push(
     q(
       `Jadual ${i + 1} mempunyai nilai ${values} dan kekerapan ${freqs}. Cari mod.`,
       `Table ${i + 1} has values ${values} and frequencies ${freqs}. Find the mode.`,
-      answer as string,
-      [`${(values as number[])[0]}`, `${(values as number[]).at(-1)}`, "Tiada mod"],
+      answer,
+      wrong,
       "Pilih nilai dengan kekerapan maksimum.",
       "Select the value with maximum frequency.",
     ),
@@ -381,18 +389,21 @@ const challenge: PairedQuizSeed[] = [];
   [30, 16, 20, 22],
   [12, 25, 18, 19],
   [24, 10, 16, 15],
-].forEach(([n1, m1, n2, m2], i) =>
-  challenge.push(
-    n(
+].forEach(([n1, m1, n2, m2], i) => {
+  const seed = n(
       `Kumpulan A${i + 1} mempunyai ${n1} murid dengan min ${m1}; kumpulan B mempunyai ${n2} murid dengan min ${m2}. Cari min gabungan.`,
       `Group A${i + 1} has ${n1} students with mean ${m1}; group B has ${n2} students with mean ${m2}. Find the combined mean.`,
       (n1 * m1 + n2 * m2) / (n1 + n2),
       "",
       "Gabungkan jumlah kedua-dua kumpulan sebelum membahagi jumlah murid.",
       "Combine both group totals before dividing by total students.",
-    ),
-  ),
-);
+  );
+  const naive = `${Number(((m1 + m2) / 2).toFixed(2))}`;
+  const rest = seed.distractors.filter((value) => value !== naive);
+  challenge.push(
+    naive === seed.correct ? seed : { ...seed, distractors: [naive, rest[0], rest[1]] },
+  );
+});
 [
   [[4, 7, 9, 12], 8],
   [[10, 14, 18], 15],
@@ -466,7 +477,7 @@ const challenge: PairedQuizSeed[] = [];
   ],
   [
     [12, 14, 16, 18],
-    [10, 10, 15, 25],
+    [10, 10, 15, 26],
   ],
   [
     [3, 5, 7, 9, 11],
@@ -478,19 +489,28 @@ const challenge: PairedQuizSeed[] = [];
       `Set data A${i + 1}: ${(a as number[]).join(", ")}; B: ${(b as number[]).join(", ")}. Set manakah mempunyai min lebih tinggi?`,
       `Data set A${i + 1}: ${(a as number[]).join(", ")}; B: ${(b as number[]).join(", ")}. Which set has the higher mean?`,
       mean(a as number[]) > mean(b as number[])
-        ? "A"
+        ? ["Set A", "Set A"]
         : mean(a as number[]) < mean(b as number[])
-          ? "B"
+          ? ["Set B", "Set B"]
           : ["Sama", "Equal"],
-      ["A", "B", ["Sama", "Equal"]]
-        .filter(
-          (value) =>
-            Array.isArray(value) ||
-            value !== (mean(a as number[]) > mean(b as number[]) ? "A" : "B"),
-        )
-        .slice(0, 3) as [string, string, string],
-      "Kira dan bandingkan min kedua-dua set.",
-      "Calculate and compare both means.",
+      (
+        [
+          ["Set A", "Set A"],
+          ["Set B", "Set B"],
+          ["Sama", "Equal"],
+          ["Tidak dapat ditentukan tanpa median", "Cannot be determined without the medians"],
+        ] as const
+      ).filter(
+        ([bm]) =>
+          bm !==
+          (mean(a as number[]) > mean(b as number[])
+            ? "Set A"
+            : mean(a as number[]) < mean(b as number[])
+              ? "Set B"
+              : "Sama"),
+      ) as unknown as PairedQuizSeed["distractors"],
+      `Min A = ${Number(mean(a as number[]).toFixed(2))}; min B = ${Number(mean(b as number[]).toFixed(2))}.`,
+      `Mean of A = ${Number(mean(a as number[]).toFixed(2))}; mean of B = ${Number(mean(b as number[]).toFixed(2))}.`,
     ),
   ),
 );

@@ -17,6 +17,13 @@ const num = (answer: number, unit = ""): PairedQuizSeed["distractors"] => {
     .slice(0, 3);
   return [`${values[0]}${unit}`, `${values[1]}${unit}`, `${values[2]}${unit}`];
 };
+/** First three candidates that differ from the answer and from each other. */
+const pick3 = (correct: string, candidates: string[]): PairedQuizSeed["distractors"] => {
+  const chosen = candidates.filter((value, index) => value !== correct && candidates.indexOf(value) === index);
+  if (chosen.length < 3) throw new Error(`Chapter 7 needs three distinct distractors for ${correct}`);
+  return [chosen[0], chosen[1], chosen[2]];
+};
+const pt = (x: number, y: number) => `(${fmt(x)}, ${fmt(y)})`;
 const calc = (bm: string, dlp: string, answer: number, unit: string, be: string, de: string) =>
   q(bm, dlp, `${answer}${unit}`, num(answer, unit), be, de);
 const dist = (a: number, b: number, c: number, d: number) => Math.sqrt((c - a) ** 2 + (d - b) ** 2);
@@ -163,7 +170,14 @@ const foundation: PairedQuizSeed[] = [
       `Cari titik tengah bagi (${a}, ${b}) dan (${c}, ${d}).`,
       `Find the midpoint of (${a}, ${b}) and (${c}, ${d}).`,
       `(${(a + c) / 2}, ${(b + d) / 2})`,
-      [`(${a}, ${b})`, `(${c}, ${d})`, `(${(a + c) / 2 + 1}, ${(b + d) / 2})`],
+      pick3(pt((a + c) / 2, (b + d) / 2), [
+        pt(a + c, b + d),
+        pt((c - a) / 2, (d - b) / 2),
+        pt((b + d) / 2, (a + c) / 2),
+        pt(c - a, d - b),
+        pt(a + c, (b + d) / 2),
+        pt((a + c) / 2, b + d),
+      ]),
       `Titik tengah = (${a + c}/2, ${b + d}/2) = (${(a + c) / 2}, ${(b + d) / 2}).`,
       `Midpoint = (${a + c}/2, ${b + d}/2) = (${(a + c) / 2}, ${(b + d) / 2}).`,
     ),
@@ -189,49 +203,28 @@ const foundation: PairedQuizSeed[] = [
 );
 foundation.push(
   q(
-    "Apakah kaedah sesuai untuk luas poligon daripada koordinat bucu?",
-    "Which method is suitable for finding polygon area from vertex coordinates?",
-    ["Kaedah kasut (shoelace)", "Shoelace method"],
-    [
-      ["Rumus titik tengah sahaja", "Midpoint formula only"],
-      ["Rumus jarak sahaja", "Distance formula only"],
-      ["Jumlah semua koordinat", "Sum of all coordinates"],
-    ],
-    "Kaedah kasut menggunakan hasil darab silang koordinat bucu yang tersusun.",
-    "The shoelace method uses cross-products of ordered vertex coordinates.",
+    "Berapakah jarak titik P(3, 4) dari asalan?",
+    "How far is the point P(3, 4) from the origin?",
+    "5 unit",
+    ["1 unit", "7 unit", "25 unit"],
+    "Jarak = √(3² + 4²) = √25 = 5 unit.",
+    "Distance = √(3² + 4²) = √25 = 5 units.",
   ),
   q(
-    "Semasa menggunakan kaedah kasut, bucu mesti disenaraikan bagaimana?",
-    "When using the shoelace method, how must vertices be listed?",
-    ["Mengikut urutan di sekeliling poligon", "In order around the polygon"],
-    [
-      [
-        "Mengikut urutan koordinat-x menaik",
-        "In increasing x-coordinate order",
-      ],
-      [
-        "Mengikut urutan koordinat-y menaik",
-        "In increasing y-coordinate order",
-      ],
-      [
-        "Mengikut urutan jarak dari asalan",
-        "In distance order from the origin",
-      ],
-    ],
-    "Tertib mengelilingi sempadan memastikan hasil darab mewakili poligon.",
-    "Boundary order ensures the products represent the polygon.",
+    "Titik A(2, 5) dan B(2, −3) terletak pada satu garis menegak. Cari jarak AB.",
+    "Points A(2, 5) and B(2, −3) lie on a vertical line. Find the distance AB.",
+    "8 unit",
+    ["2 unit", "4 unit", "16 unit"],
+    "Koordinat-x sama, jadi AB = |5 − (−3)| = 8 unit.",
+    "The x-coordinates are equal, so AB = |5 − (−3)| = 8 units.",
   ),
   q(
-    "Mengapakah nilai mutlak diambil dalam pengiraan luas koordinat?",
-    "Why is an absolute value taken in coordinate-area calculations?",
-    ["Luas mesti positif", "Area must be positive"],
-    [
-      ["Koordinat tidak boleh negatif", "Coordinates cannot be negative"],
-      ["Jarak mesti integer", "Distance must be an integer"],
-      ["Titik tengah mesti di asalan", "The midpoint must be at the origin"],
-    ],
-    "Arah susunan bucu boleh menghasilkan tanda negatif, tetapi luas ialah positif.",
-    "Vertex order can produce a negative sign, but area is positive.",
+    "Titik tengah PQ ialah asalan O(0, 0). Jika P(4, −6), cari Q.",
+    "The midpoint of PQ is the origin O(0, 0). If P(4, −6), find Q.",
+    "(−4, 6)",
+    ["(2, −3)", "(−4, −6)", "(4, 6)"],
+    "Q = (2(0) − 4, 2(0) − (−6)) = (−4, 6).",
+    "Q = (2(0) − 4, 2(0) − (−6)) = (−4, 6).",
   ),
   q(
     "Titik tengah suatu segmen membahagikan segmen itu dalam nisbah apa?",
@@ -317,8 +310,8 @@ const practice: PairedQuizSeed[] = [];
       `Triangle ${i + 1} has vertices A(${ax},${ay}), B(${bx},${by}) and C(${cx},${cy}). Find its area.`,
       ans,
       " unit²",
-      `Luas = ½|(${bx - ax})(${cy - ay})-(${by - ay})(${cx - ax})| = ${ans}.`,
-      `Area = ½|(${bx - ax})(${cy - ay})-(${by - ay})(${cx - ax})| = ${ans}.`,
+      `AB mengufuk (${Math.abs(bx - ax)} unit) dan AC menegak (${Math.abs(cy - ay)} unit), jadi sudut A tegak. Luas = ½ × ${Math.abs(bx - ax)} × ${Math.abs(cy - ay)} = ${ans} unit².`,
+      `AB is horizontal (${Math.abs(bx - ax)} units) and AC is vertical (${Math.abs(cy - ay)} units), so angle A is right. Area = ½ × ${Math.abs(bx - ax)} × ${Math.abs(cy - ay)} = ${ans} units².`,
     ),
   );
 });
@@ -345,9 +338,9 @@ const challenge: PairedQuizSeed[] = [];
 [
   [0, 0, 3, 4, 6, 0],
   [-2, 1, 2, 4, 6, 1],
-  [1, -3, 5, 0, 9, -3],
-  [-4, -2, 0, 1, 4, -2],
-  [2, 5, 6, 8, 10, 5],
+  [1, -3, 7, 5, 13, -3],
+  [-4, -2, 1, 10, 6, -2],
+  [2, 5, 10, 20, 18, 5],
 ].forEach(([ax, ay, bx, by, cx, cy], i) => {
   const ab = dist(ax, ay, bx, by),
     bc = dist(bx, by, cx, cy),
@@ -358,8 +351,8 @@ const challenge: PairedQuizSeed[] = [];
       `Coordinate triangle ${i + 1} has A(${ax},${ay}), B(${bx},${by}), C(${cx},${cy}). Find its perimeter.`,
       Number((ab + bc + ca).toFixed(2)),
       " unit",
-      `Perimeter = AB+BC+CA = ${(ab + bc + ca).toFixed(2)} unit.`,
-      `Perimeter = AB+BC+CA = ${(ab + bc + ca).toFixed(2)} units.`,
+      `Perimeter = AB + BC + CA = ${fmt(ab)} + ${fmt(bc)} + ${fmt(ca)} = ${fmt(ab + bc + ca)} unit.`,
+      `Perimeter = AB + BC + CA = ${fmt(ab)} + ${fmt(bc)} + ${fmt(ca)} = ${fmt(ab + bc + ca)} units.`,
     ),
   );
 });
@@ -375,7 +368,17 @@ const challenge: PairedQuizSeed[] = [];
       `Titik P membahagi AB pada ${t * 100}% perjalanan dari A(${ax},${ay}) ke B(${bx},${by}) bagi kes ${i + 1}. Cari P.`,
       `Point P is ${t * 100}% of the way from A(${ax},${ay}) to B(${bx},${by}) in case ${i + 1}. Find P.`,
       `(${ax + t * (bx - ax)}, ${ay + t * (by - ay)})`,
-      [`(${ax}, ${ay})`, `(${bx}, ${by})`, `(${ax + t * (bx - ax) + 1}, ${ay + t * (by - ay)})`],
+      pick3(pt(ax + t * (bx - ax), ay + t * (by - ay)), [
+        pt(bx + t * (ax - bx), by + t * (ay - by)),
+        pt(t * bx, t * by),
+        pt((ax + bx) / 2, (ay + by) / 2),
+        pt(ax + t * (by - ay), ay + t * (bx - ax)),
+        pt(t * (bx - ax), t * (by - ay)),
+        pt(ax + t * bx, ay + t * by),
+        pt(ax + t * (bx - ax), ay),
+        pt(ax, ay + t * (by - ay)),
+        pt(ax + t * (bx - ax), by),
+      ]),
       `P = A + ${t}(B-A) = (${ax + t * (bx - ax)},${ay + t * (by - ay)}).`,
       `P = A + ${t}(B-A) = (${ax + t * (bx - ax)},${ay + t * (by - ay)}).`,
     ),
@@ -403,26 +406,31 @@ const challenge: PairedQuizSeed[] = [];
 });
 [
   [0, 0, 6, 8, 3, 4],
-  [-2, 1, 4, 9, 1, 5],
-  [1, -5, 9, 7, 5, 1],
+  [-2, 1, 4, 9, 2, 4],
+  [1, -5, 9, 7, 5, 2],
   [-6, -2, 2, 4, -2, 1],
-  [3, 3, 13, 9, 8, 6],
-].forEach(([ax, ay, bx, by, mx, my], i) =>
+  [3, 3, 13, 9, 9, 6],
+].forEach(([ax, ay, bx, by, mx, my], i) => {
+  const [tx, ty] = [(ax + bx) / 2, (ay + by) / 2];
+  const verdicts: [string, string][] = [
+    ["Betul; M ialah purata koordinat A dan B", "Correct; M is the average of the coordinates of A and B"],
+    ["Salah; hanya koordinat-x M tidak sepadan", "False; only M's x-coordinate does not match"],
+    ["Salah; hanya koordinat-y M tidak sepadan", "False; only M's y-coordinate does not match"],
+    ["Salah; kedua-dua koordinat M tidak sepadan", "False; neither coordinate of M matches"],
+  ];
+  const verdict = mx === tx ? (my === ty ? 0 : 2) : my === ty ? 1 : 3;
+  const [correct, ...wrong] = [verdicts[verdict], ...verdicts.filter((_, k) => k !== verdict)];
   challenge.push(
     q(
       `Bagi segmen ${i + 1}, A(${ax},${ay}), B(${bx},${by}) dan calon titik tengah M(${mx},${my}). Nilai dakwaan bahawa M ialah titik tengah.`,
       `For segment ${i + 1}, A(${ax},${ay}), B(${bx},${by}) and proposed midpoint M(${mx},${my}). Assess the claim.`,
-      ["Betul", "Correct"],
-      [
-        ["Salah; M ialah A", "False; M is A"],
-        ["Salah; M ialah B", "False; M is B"],
-        ["Tidak dapat ditentukan", "Cannot be determined"],
-      ],
-      `Purata koordinat A dan B ialah (${(ax + bx) / 2},${(ay + by) / 2}), sama dengan M.`,
-      `The coordinate averages are (${(ax + bx) / 2},${(ay + by) / 2}), equal to M.`,
+      correct,
+      wrong as [[string, string], [string, string], [string, string]],
+      `Titik tengah sebenar = ((${ax} + ${bx})/2, (${ay} + ${by})/2) = (${tx}, ${ty}); bandingkan dengan M(${mx}, ${my}).`,
+      `The true midpoint = ((${ax} + ${bx})/2, (${ay} + ${by})/2) = (${tx}, ${ty}); compare it with M(${mx}, ${my}).`,
     ),
-  ),
-);
+  );
+});
 [
   [0, 0, 4, 0, 6, 3, 2, 5],
   [-3, 1, 3, 1, 5, 5, -1, 7],
@@ -441,14 +449,16 @@ const challenge: PairedQuizSeed[] = [];
     s2 += y * xn;
   }
   const ans = Math.abs(s1 - s2) / 2;
+  const xs = [v[0], v[2], v[4], v[6]], ys = [v[1], v[3], v[5], v[7]];
+  const box = (Math.max(...xs) - Math.min(...xs)) * (Math.max(...ys) - Math.min(...ys));
   challenge.push(
     calc(
-      `Gunakan kaedah kasut untuk luas poligon ${i + 1} dengan bucu berturutan (${v[0]},${v[1]}), (${v[2]},${v[3]}), (${v[4]},${v[5]}), (${v[6]},${v[7]}).`,
-      `Use the shoelace method for polygon ${i + 1} with consecutive vertices (${v[0]},${v[1]}), (${v[2]},${v[3]}), (${v[4]},${v[5]}), (${v[6]},${v[7]}).`,
+      `Sisi empat ${i + 1} mempunyai bucu berturutan (${v[0]},${v[1]}), (${v[2]},${v[3]}), (${v[4]},${v[5]}) dan (${v[6]},${v[7]}). Cari luasnya.`,
+      `Quadrilateral ${i + 1} has consecutive vertices (${v[0]},${v[1]}), (${v[2]},${v[3]}), (${v[4]},${v[5]}) and (${v[6]},${v[7]}). Find its area.`,
       ans,
       " unit²",
-      `Luas = ½|${s1}-${s2}| = ${ans} unit².`,
-      `Area = ½|${s1}-${s2}| = ${ans} units².`,
+      `Segi empat tepat yang melingkungi bucu berluas ${box} unit². Tolak tiga segi tiga bersudut tegak di luar sisi empat (jumlah ${box - ans} unit²): ${box} − ${box - ans} = ${ans} unit².`,
+      `The enclosing rectangle has area ${box} units². Subtract the three right triangles outside the quadrilateral (total ${box - ans} units²): ${box} − ${box - ans} = ${ans} units².`,
     ),
   );
 });

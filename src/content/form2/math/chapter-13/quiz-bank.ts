@@ -141,9 +141,9 @@ const foundation: PairedQuizSeed[] = [
 
 [
   [12, 20],
-  [18, 30],
+  [16, 30],
   [9, 25],
-  [24, 40],
+  [26, 40],
   [35, 50],
 ].forEach(([success, trials], i) =>
   foundation.push(
@@ -161,19 +161,28 @@ const foundation: PairedQuizSeed[] = [
     ),
   ),
 );
-[
-  ["lambungan dua syiling", "tossing two coins", "{HH, HT, TH, TT}"],
-  ["satu dadu", "one die", "{1, 2, 3, 4, 5, 6}"],
-  ["pilihan huruf daripada MAT", "choosing a letter from MAT", "{M, A, T}"],
-  ["pemutar bernombor 1 hingga 4", "a spinner numbered 1 to 4", "{1, 2, 3, 4}"],
-  ["jantina dua anak menggunakan L/P", "sexes of two children using B/G", "{BB, BG, GB, GG}"],
-].forEach(([bmContext, dlpContext, answer], i) =>
+(
+  [
+    ["lambungan dua syiling", "tossing two coins", "{HH, HT, TH, TT}",
+      ["{HH, HT, TT}", "{HH, TT}", "{H, T}"]],
+    ["satu dadu", "one die", "{1, 2, 3, 4, 5, 6}",
+      ["{1, 2, 3, 4, 5}", "{0, 1, 2, 3, 4, 5, 6}", "{1, 6}"]],
+    ["pilihan huruf daripada MAT", "choosing a letter from MAT", "{M, A, T}",
+      ["{MAT}", "{M, T}", "{MA, AT, MT}"]],
+    ["pemutar bernombor 1 hingga 4", "a spinner numbered 1 to 4", "{1, 2, 3, 4}",
+      ["{1, 4}", "{0, 1, 2, 3, 4}", "{2, 3}"]],
+    // BM names the outcomes L/P (lelaki/perempuan); DLP uses B/G.
+    ["jantina dua anak menggunakan L/P", "sexes of two children using B/G",
+      ["{LL, LP, PL, PP}", "{BB, BG, GB, GG}"],
+      [["{LL, LP, PP}", "{BB, BG, GG}"], ["{LL, PP}", "{BB, GG}"], ["{L, P}", "{B, G}"]]],
+  ] as const
+).forEach(([bmContext, dlpContext, answer, wrong], i) =>
   foundation.push(
     q(
       `Nyatakan ruang sampel bagi ${bmContext}.`,
       `State the sample space for ${dlpContext}.`,
       answer,
-      ["{1}", "{A sahaja}", "{dua kesudahan sahaja}"],
+      wrong,
       "Senaraikan setiap kesudahan yang mungkin sekali sahaja.",
       "List every possible outcome exactly once.",
     ),
@@ -183,8 +192,8 @@ const foundation: PairedQuizSeed[] = [
   [2, 6],
   [3, 8],
   [5, 10],
-  [4, 12],
-  [7, 14],
+  [5, 12],
+  [9, 14],
 ].forEach(([fav, total], i) =>
   foundation.push(
     q(
@@ -323,7 +332,11 @@ const practice: PairedQuizSeed[] = [];
       `Diberi P(A${i + 1})=${a}/${b}. Dalam ${b * mult} percubaan, berapakah kekerapan jangkaan A?`,
       `Given P(A${i + 1})=${a}/${b}. In ${b * mult} trials, what is the expected frequency of A?`,
       `${a * mult}`,
-      [`${(b - a) * mult}`, `${b * mult}`, `${mult}`],
+      // Complement × trials, all trials, the multiplier, numerator × trials — first three that differ.
+      [(b - a) * mult, b * mult, mult, a * b * mult, (a + b) * mult]
+        .filter((value, index, all) => value !== a * mult && all.indexOf(value) === index)
+        .slice(0, 3)
+        .map(String) as [string, string, string],
       "Kekerapan jangkaan = kebarangkalian × percubaan.",
       "Expected frequency = probability × trials.",
     ),
@@ -332,11 +345,11 @@ const practice: PairedQuizSeed[] = [];
 
 const challenge: PairedQuizSeed[] = [];
 [
-  [3, 2, 5],
-  [4, 3, 7],
-  [5, 4, 9],
-  [6, 2, 8],
-  [7, 5, 12],
+  [3, 2, 7],
+  [4, 3, 9],
+  [5, 4, 11],
+  [6, 2, 10],
+  [7, 5, 16],
 ].forEach(([red, blue, total], i) =>
   challenge.push(
     q(
@@ -360,13 +373,17 @@ const challenge: PairedQuizSeed[] = [];
     q(
       `Eksperimen I${i + 1}: A berlaku ${a1}/${t1}; Eksperimen II: ${a2}/${t2}. Eksperimen manakah memberi kebarangkalian A lebih tinggi?`,
       `Experiment I${i + 1}: A occurs ${a1}/${t1}; Experiment II: ${a2}/${t2}. Which gives a higher probability of A?`,
-      a1 / t1 > a2 / t2 ? "I" : a1 / t1 < a2 / t2 ? "II" : ["Sama", "Equal"],
-      ["I", "II", ["Sama", "Equal"], ["Tidak dapat ditentukan", "Cannot be determined"]]
-        .filter(
-          (v) =>
-            Array.isArray(v) || v !== (a1 / t1 > a2 / t2 ? "I" : a1 / t1 < a2 / t2 ? "II" : ""),
-        )
-        .slice(0, 3) as [string, string, string],
+      ...((): [PairedQuizSeed["correct"], PairedQuizSeed["distractors"]] => {
+        const verdicts = [
+          ["Eksperimen I", "Experiment I"],
+          ["Eksperimen II", "Experiment II"],
+          ["Sama", "Equal"],
+          ["Tidak dapat ditentukan kerana bilangan percubaan berbeza", "Cannot be determined because the trial counts differ"],
+        ] as const;
+        const k = a1 / t1 > a2 / t2 ? 0 : a1 / t1 < a2 / t2 ? 1 : 2;
+        const [correct, ...wrong] = [verdicts[k], ...verdicts.filter((_, j) => j !== k)];
+        return [correct, wrong as unknown as PairedQuizSeed["distractors"]];
+      })(),
       "Tukarkan kedua-dua nisbah kepada pecahan atau perpuluhan setara.",
       "Convert both ratios to equivalent fractions or decimals.",
     ),
@@ -381,16 +398,16 @@ const challenge: PairedQuizSeed[] = [];
 ].forEach(([a, b, c, d], i) =>
   challenge.push(
     q(
-      `Peristiwa A${i + 1} dan B saling eksklusif dengan P(A)=${a}/${b} dan P(B)=${c}/${d}. Cari P(A atau B).`,
-      `Events A${i + 1} and B are mutually exclusive with P(A)=${a}/${b} and P(B)=${c}/${d}. Find P(A or B).`,
+      `Dalam beg ${i + 1}, kebarangkalian memilih guli merah ialah ${a}/${b} dan guli biru ialah ${c}/${d}. Guli selebihnya hijau. Cari kebarangkalian memilih guli merah atau biru.`,
+      `In bag ${i + 1}, the probability of picking a red marble is ${a}/${b} and a blue marble is ${c}/${d}. The remaining marbles are green. Find the probability of picking a red or blue marble.`,
       fraction(a * d + c * b, b * d),
       [
         fraction(a * c, b * d),
         fraction(Math.abs(a * d - c * b), b * d),
         fraction(b * d - (a * d + c * b), b * d),
       ],
-      "Bagi peristiwa saling eksklusif, tambah P(A)+P(B).",
-      "For mutually exclusive events, add P(A)+P(B).",
+      `Guli merah dan biru ialah kesudahan berbeza, jadi tambah: ${a}/${b} + ${c}/${d} = ${fraction(a * d + c * b, b * d)}.`,
+      `Red and blue are different outcomes, so add: ${a}/${b} + ${c}/${d} = ${fraction(a * d + c * b, b * d)}.`,
     ),
   ),
 );
@@ -415,9 +432,9 @@ const challenge: PairedQuizSeed[] = [];
 [
   [2, 3, 1],
   [3, 4, 2],
-  [4, 5, 1],
+  [4, 5, 3],
   [5, 6, 3],
-  [6, 7, 2],
+  [6, 7, 3],
 ].forEach(([red, total, added], i) =>
   challenge.push(
     q(
@@ -426,7 +443,7 @@ const challenge: PairedQuizSeed[] = [];
       fraction(red + added, total + added),
       [
         fraction(red, total + added),
-        fraction(red + added, total),
+        fraction(red, total),
         fraction(total - red, total + added),
       ],
       "Kemas kini pengangka dan jumlah guli.",

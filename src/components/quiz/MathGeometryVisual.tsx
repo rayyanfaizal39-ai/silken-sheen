@@ -81,7 +81,8 @@ export function MathGeometryVisual({
                   cx={c.centre[0]}
                   cy={c.centre[1]}
                   r={c.radius}
-                  fill="#fbbf2412"
+                  fill={c.fill === false ? "none" : "#fbbf2412"}
+                  strokeDasharray={c.dashed ? "5 4" : undefined}
                   stroke="#fbbf24"
                   strokeWidth="2"
                 />
@@ -100,6 +101,7 @@ export function MathGeometryVisual({
                     fill="none"
                     stroke="#38bdf8"
                     strokeWidth="2"
+                    strokeDasharray={a.dashed ? "5 4" : undefined}
                   />
                 );
               })}
