@@ -6,9 +6,11 @@ export const NOVA_RETURN_SESSION_KEY = "academy:nova-resume";
 export function NovaTeaser({
   card,
   status,
+  onMakePrivate,
 }: {
   card: NovaCard | null;
   status: NovaEntitlement["status"];
+  onMakePrivate?: () => Promise<void>;
 }) {
   const currentStage = Math.max(1, Math.min(STAGES.length, card?.stage ?? 1));
   const next = STAGES[currentStage];
@@ -75,6 +77,15 @@ export function NovaTeaser({
       >
         {pending ? "View My Subscription" : card ? "Reactivate My Nova" : "Explore Nova Plans"} →
       </a>
+      {card?.sharing && onMakePrivate && (
+        <button
+          type="button"
+          onClick={() => void onMakePrivate()}
+          className="nova-teaser-private"
+        >
+          Make my shared card private
+        </button>
+      )}
       <p className="nova-teaser-footnote">
         Existing AcadeMY checkout · No extra payment system · No future artwork generated
       </p>

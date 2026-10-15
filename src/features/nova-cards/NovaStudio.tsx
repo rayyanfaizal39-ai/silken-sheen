@@ -170,7 +170,18 @@ export function NovaStudio() {
               <a href="/login?next=/nova">Sign in</a>{" · "}<a href="/nova">Retry</a>
             </div>
           ) : !entitlement.active ? (
-            <NovaTeaser card={card} status={entitlement.status} />
+            <NovaTeaser
+              card={card}
+              status={entitlement.status}
+              onMakePrivate={async () => {
+                try {
+                  setCard(await setSharing({ data: false }));
+                  setNotice("Your public card is now private.");
+                } catch {
+                  setNotice("Could not change sharing. Please retry.");
+                }
+              }}
+            />
           ) : card ? (
             <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
           ) : (

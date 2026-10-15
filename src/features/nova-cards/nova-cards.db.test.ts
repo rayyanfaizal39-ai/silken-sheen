@@ -268,10 +268,31 @@ describe("Nova migration running in PostgreSQL with real API roles and RLS", () 
     await db.exec(`update public.subscriptions set status='active',current_period_end=now()-interval '1 day' where user_id='${B}';`);
     await expect(create(B)).rejects.toThrow(/active Pro or Premium/);
   });
+  it("queues only one evolution job even after duplicate requests", async () => {
+    await db.exec("update public.nova_artwork set released=true where storage_path='current.png'");
+    const first = (await as("authenticated", A,
+      "select public.request_nova_evolution(2) as result")).rows[0].result!;
+    const second = (await as("authenticated", A,
+      "select public.request_nova_evolution(2) as result")).rows[0].result!;
+    expect(first).toEqual({ stage: 2, status: "queued" });
+    expect(second).toEqual(first);
+    const { rows } = await db.query<{ count: number }>(
+      "select count(*)::integer as count from public.nova_generation_jobs");
+    expect(rows[0].count).toBe(1);
+    await db.exec("update public.nova_generation_jobs set status='failed'");
+    const retry = (await as("authenticated", A,
+      "select public.request_nova_evolution(2) as result")).rows[0].result!;
+    expect(retry).toEqual({ stage: 2, status: "failed" });
+    expect((await db.query<{ count: number }>(
+      "select count(*)::integer as count from public.nova_generation_jobs")).rows[0].count).toBe(1);
+  });
   it("never schedules unpaid or skipped evolution artwork", async () => {
     await expect(as("anon",null,"select public.request_nova_evolution(2)")).rejects.toThrow(/permission/);
     await expect(as("authenticated",A,"select public.request_nova_evolution(5)")).rejects.toThrow(/Previous approved/);
     const jobs=await db.query("select count(*)::integer as count from public.nova_generation_jobs");
-    expect(jobs.rows[0].count).toBe(0);
+    expect(jobs.rows[0].count).toBe(1); // Existing Stage 2 job; no skipped Stage 5 job.
+    await db.exec(`update public.subscriptions set status='cancelled' where user_id='${A}';`);
+    await expect(as("authenticated", A,
+      "select public.request_nova_evolution(3)")).rejects.toThrow(/active Pro or Premium/);
   });
 });
