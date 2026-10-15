@@ -49,10 +49,10 @@ describe("Math Form 2 visual re-audit", () => {
     });
   }
 
-  it("attaches exactly 28 bilingual pair diagrams, only where the premises match", () => {
+  it("attaches exactly 34 bilingual pair diagrams, only where the premises match", () => {
     const expectedCounts = new Map<number, number>([
-      [3, 0], [4, 2], [5, 3], [6, 2], [7, 2], [8, 2],
-      [9, 0], [10, 2], [11, 5], [12, 10], [13, 0],
+      [3, 1], [4, 2], [5, 3], [6, 2], [7, 2], [8, 2],
+      [9, 0], [10, 2], [11, 5], [12, 10], [13, 5],
     ]);
     let total = 0;
     for (const [chapter, seeds] of chapters) {
@@ -64,7 +64,7 @@ describe("Math Form 2 visual re-audit", () => {
         expect(bm[i].visual).toEqual(mathF2VisualForSeed(chapter, seeds[i].question[0]));
       }
     }
-    expect(total).toBe(28);
+    expect(total).toBe(34);
   });
 
   it("corrects the misleading radius/chord construction in both languages", () => {
@@ -89,4 +89,21 @@ describe("Math Form 2 visual re-audit", () => {
       }
     }
   });
+  it("uses only given values in the bag-of-marbles diagrams", () => {
+    const bm = buildPairedQuizBank(13, "bm", c13);
+    const dl = buildPairedQuizBank(13, "dlp", c13);
+    const questions = bm.filter((q) => /^Sebuah beg \d+ mengandungi/.test(q.question));
+    expect(questions).toHaveLength(5);
+    for (const q of questions) {
+      const diagram = q.visual;
+      expect(diagram?.kind).toBe("item-arrays");
+      if (diagram?.kind !== "item-arrays") throw new Error("Expected marble item arrays");
+      const n = /^Sebuah beg \d+ mengandungi (\d+) guli merah dan (\d+) guli biru/.exec(q.question);
+      expect(n).not.toBeNull();
+      expect(diagram.groups.map((g) => g.count)).toEqual([Number(n?.[1]), Number(n?.[2])]);
+      const twin = dl.find((item) => item.id === q.id.replace(/^bm-/, "dlp-"));
+      expect(twin?.visual).toEqual(diagram);
+    }
+  });
+
 });
