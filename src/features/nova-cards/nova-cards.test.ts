@@ -63,7 +63,7 @@ describe("Nova permanent identities and scannable codes", () => {
 });
 
 describe("Nova creation and XP compatibility", () => {
-  it("requires all twelve answers and preserves all nine trait dimensions", () => {
+  it("requires all twelve answers and preserves all trait dimensions", () => {
     expect(QUESTIONS).toHaveLength(12);
     expect(() => traitsFromAnswers([])).toThrow();
     expect(() => traitsFromAnswers(Array(12).fill(3))).toThrow();
@@ -81,22 +81,22 @@ describe("Nova creation and XP compatibility", () => {
       colours: "Sapphire Blue / Gold",
     });
   });
-  it("has exactly nine earned stages without altering the input XP or rarity", () => {
-    expect(STAGES).toHaveLength(9);
+  it("has exactly five earned stages without altering the input XP or rarity", () => {
+    expect(STAGES).toHaveLength(5);
     STAGES.forEach((s, i) => {
       expect(evolution(s.xp).stage).toBe(i + 1);
       if (i) expect(evolution(s.xp - 1).stage).toBe(i);
     });
     expect(evolution(NaN).stage).toBe(1);
     expect(evolution(-100).stage).toBe(1);
-    expect(evolution(9000).stage).toBe(5); // Original Guardian milestone is preserved.
-    expect(evolution(80000)).toMatchObject({ stage: 9, name: "Legendary", percent: 100 });
+    expect(evolution(9000).stage).toBe(3); // Existing 9,000 XP milestone is preserved.
+    expect(evolution(80000)).toMatchObject({ stage: 5, name: "Legendary", percent: 100 });
     expect(DEMO_CARDS[0].rarity).toBe("Rare");
   });
   it("renders a distinct silhouette at every stage while retaining its species and palette", () => {
     for (const c of DEMO_CARDS) {
       const stages = STAGES.map((_, i) => companionSvg(c.traits, c.variant, i + 1));
-      expect(new Set(stages).size).toBe(9);
+      expect(new Set(stages).size).toBe(5);
       expect(
         stages.every((s) => s.includes(c.traits.creature) && s.includes(c.traits.colours)),
       ).toBe(true);

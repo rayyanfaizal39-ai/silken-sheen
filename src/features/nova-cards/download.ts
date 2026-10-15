@@ -1,6 +1,6 @@
 import { companionSvg } from "./artwork";
 import { barcodeSvg, qrDataUrl, svgUrl } from "./codes";
-import { evolution, xml, type NovaCard } from "./model";
+import { evolution, STAGES, xml, type NovaCard } from "./model";
 
 async function embed(url: string): Promise<string> {
   const response = await fetch(url);
@@ -16,14 +16,15 @@ async function embed(url: string): Promise<string> {
 
 export async function downloadCard(card: NovaCard, url: string) {
   const info = evolution(card.xp);
+  const stage = Math.max(1, Math.min(STAGES.length, card.stage ?? info.stage));
   const [logo, qr, artwork] = await Promise.all([
     embed("/branding/academy-icon.png"),
     qrDataUrl(url),
     card.artworkUrl
       ? embed(card.artworkUrl)
-      : Promise.resolve(svgUrl(companionSvg(card.traits, card.variant, info.stage))),
+      : Promise.resolve(svgUrl(companionSvg(card.traits, card.variant, stage))),
   ]);
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1800" viewBox="0 0 600 900"><rect width="600" height="900" rx="30" fill="#071326"/><rect x="10" y="10" width="580" height="880" rx="22" fill="none" stroke="#d9bb77" stroke-width="3"/><image href="${xml(logo)}" x="30" y="30" width="44" height="44"/><g fill="#f2d49b" font-family="Georgia"><text x="90" y="58" font-size="23">NOVA COMPANION</text><text x="555" y="58" text-anchor="end" font-size="14">${xml(card.rarity)}</text></g><image href="${xml(artwork)}" x="25" y="90" width="550" height="480" preserveAspectRatio="xMidYMid slice"/><g fill="#fff3dc" font-family="Georgia"><text x="30" y="605" font-size="34" ${card.username.length > 14 ? 'textLength="530" lengthAdjust="spacingAndGlyphs"' : ""}>${xml(card.username)}'s Nova</text><text x="30" y="639" font-size="20">${xml(card.traits.creature)} · ${xml(card.traits.element)} · ${xml(card.traits.personality)}</text><text x="30" y="673" font-size="17">Stage ${info.stage} / 9 · ${xml(info.name)} · Level ${info.level}</text><text x="30" y="702" font-size="16">${xml(card.traits.colours)}</text><text x="30" y="731" font-size="15">${card.demo ? "FICTIONAL DEMO · " : ""}${card.sharing ? "Public card" : "Private card · enable sharing to open QR"}</text></g><image href="${xml(svgUrl(barcodeSvg(card.serial)))}" x="30" y="755" width="375" height="74"/><text x="218" y="852" text-anchor="middle" font-family="monospace" font-size="17" fill="#f2d49b">${card.serial}</text><image href="${xml(qr)}" x="438" y="755" width="130" height="130"/></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1800" viewBox="0 0 600 900"><rect width="600" height="900" rx="30" fill="#071326"/><rect x="10" y="10" width="580" height="880" rx="22" fill="none" stroke="#d9bb77" stroke-width="3"/><image href="${xml(logo)}" x="30" y="30" width="44" height="44"/><g fill="#f2d49b" font-family="Georgia"><text x="90" y="58" font-size="23">NOVA COMPANION</text><text x="555" y="58" text-anchor="end" font-size="14">${xml(card.rarity)}</text></g><image href="${xml(artwork)}" x="25" y="90" width="550" height="480" preserveAspectRatio="xMidYMid slice"/><g fill="#fff3dc" font-family="Georgia"><text x="30" y="605" font-size="34" ${card.username.length > 14 ? 'textLength="530" lengthAdjust="spacingAndGlyphs"' : ""}>${xml(card.username)}'s Nova</text><text x="30" y="639" font-size="20">${xml(card.traits.creature)} · ${xml(card.traits.element)} · ${xml(card.traits.personality)}</text><text x="30" y="673" font-size="17">Stage ${stage} / ${STAGES.length} · ${xml(STAGES[stage - 1].name)} · Level ${info.level}</text><text x="30" y="702" font-size="16">${xml(card.traits.colours)}</text><text x="30" y="731" font-size="15">${card.demo ? "FICTIONAL DEMO · " : ""}${card.sharing ? "Public card" : "Private card · enable sharing to open QR"}</text></g><image href="${xml(svgUrl(barcodeSvg(card.serial)))}" x="30" y="755" width="375" height="74"/><text x="218" y="852" text-anchor="middle" font-family="monospace" font-size="17" fill="#f2d49b">${card.serial}</text><image href="${xml(qr)}" x="438" y="755" width="130" height="130"/></svg>`;
   const img = new Image();
   await new Promise<void>((resolve, reject) => {
     img.onload = () => resolve();

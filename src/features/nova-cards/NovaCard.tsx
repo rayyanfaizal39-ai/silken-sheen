@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { companionSvg } from "./artwork";
 import { barcodeSvg, qrDataUrl, svgUrl } from "./codes";
-import { evolution, type NovaCard as Card } from "./model";
+import { evolution, STAGES, type NovaCard as Card } from "./model";
 import { downloadCard } from "./download";
 
 export function NovaCard({ card, url }: { card: Card; url: string }) {
@@ -10,7 +10,13 @@ export function NovaCard({ card, url }: { card: Card; url: string }) {
   const [notice, setNotice] = useState("");
   const [downloading, setDownloading] = useState(false);
   const info = evolution(card.xp);
-  const artwork = card.artworkUrl || svgUrl(companionSvg(card.traits, card.variant, info.stage));
+  const stage = Math.max(1, Math.min(STAGES.length, card.stage ?? info.stage));
+  const next = STAGES[stage];
+  const current = STAGES[stage - 1];
+  const percent = next
+    ? Math.min(100, Math.max(0, ((card.xp - current.xp) / (next.xp - current.xp)) * 100))
+    : 100;
+  const artwork = card.artworkUrl || svgUrl(companionSvg(card.traits, card.variant, stage));
   useEffect(() => {
     let active = true;
     setQr("");
@@ -70,12 +76,12 @@ export function NovaCard({ card, url }: { card: Card; url: string }) {
               <img
                 className="nova-art"
                 src={artwork}
-                alt={`${card.traits.colours} ${card.traits.creature}, ${card.traits.eyes}, stage ${info.stage}`}
+                alt={`${card.traits.colours} ${card.traits.creature}, ${card.traits.eyes}, stage ${stage}`}
                 width="600"
                 height="640"
               />
               <span className="nova-art-label">
-                {card.demo ? "FICTIONAL DEMO · " : ""}STAGE {info.stage} / 9
+                {card.demo ? "FICTIONAL DEMO · " : ""}STAGE {stage} / {STAGES.length}
               </span>
             </div>
             <div className="nova-card-content">
@@ -95,7 +101,7 @@ export function NovaCard({ card, url }: { card: Card; url: string }) {
                 {card.traits.habitat.toLowerCase()}. {card.traits.bond}.
               </p>
               <div className="nova-card-footer">
-                <span>✦ {info.name}</span>
+                <span>✦ {STAGES[stage - 1].name}</span>
                 <span>{card.serial.slice(-8)}</span>
               </div>
             </div>
@@ -155,11 +161,13 @@ export function NovaCard({ card, url }: { card: Card; url: string }) {
           {card.xp.toLocaleString()} {card.demo ? "sample" : "earned"} XP
         </span>
         <span>
-          {info.nextXp === null
+          {!next
             ? "Final evolution"
-            : `${info.nextXp.toLocaleString()} XP · next stage`}
+            : card.xp >= next.xp
+              ? "Next evolution ready"
+              : `${next.xp.toLocaleString()} XP · next stage`}
         </span>
-        <progress value={info.percent} max={100} aria-label="Progress to next Nova stage" />
+        <progress value={percent} max={100} aria-label="Progress to next Nova stage" />
       </div>
       <div className="nova-actions">
         <button onClick={() => setFlipped((v) => !v)}>↻ Flip card</button>

@@ -1,12 +1,8 @@
 export const STAGES = [
-  { name: "Little Spark", xp: 0 },
-  { name: "Trail Finder", xp: 400 },
-  { name: "Wild Spirit", xp: 1600 },
-  { name: "Star Seeker", xp: 4200 },
-  { name: "Guardian", xp: 9000 },
-  { name: "Astral Warden", xp: 18000 },
-  { name: "Celestial", xp: 32000 },
-  { name: "Mythic", xp: 52000 },
+  { name: "Origin", xp: 0 },
+  { name: "Awakened", xp: 1600 },
+  { name: "Ascended", xp: 9000 },
+  { name: "Mythic", xp: 32000 },
   { name: "Legendary", xp: 80000 },
 ] as const;
 
@@ -113,6 +109,8 @@ export interface NovaCard {
   variant: "a" | "b";
   rarity: string;
   xp: number;
+  /** Approved stage art shown to others; can lag earned XP. */
+  stage?: number;
   sharing: boolean;
   demo?: boolean;
   artworkPath?: string | null;
