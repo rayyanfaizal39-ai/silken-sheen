@@ -64,3 +64,26 @@ npm run build
 ```
 
 Also inspect the eight assets at 320px width and verify there is no crop/overlap and the stem still makes sense. Recheck both `src/data/content.ts` and the registry in the browser. **Do not change the existing uncommitted Science Form 1 local worktree**, and do not merge into main before all checks pass.
+
+## Visual repair and validation — 16 October 2026
+
+- Increased all eight SVG label sizes to 32–36 SVG units, removed redundant tiny instruction footers, and repositioned labels. Preserved the navy palette and 720 × 360 viewBox. Reviewed the exact assets in a temporary browser gallery at desktop, 320px and 360px widths: no clipping, overlaps or horizontal overflow.
+- Compass: unchanged 225° arrow geometry; separated the bearing explanation from clearly visible U/T/S/B labels.
+- Earth: exactly three major layers remain. The outer pointer now ends at (240,96), radius approximately 145 from centre (358,180), within the outer annulus (139–151).
+- River: the old loop meets the shortcut at (280,115) and (440,115); the shortcut now rejoins the downstream channel. Both old-loop mouths remain open. Neither deposition nor the next-step answer is depicted or labelled.
+- Geometry cross-check: USGS describes meander cutoff as an upstream/downstream connection that shortens the river, leaving the old bend: https://pubs.usgs.gov/ha/ha730/ch_f/F-text2.html . This is verification of the diagram, not new question content.
+- Drain: removed “Sisa menyekat laluan air” and causal wording from its title/description. The illustration shows objects and differing water levels without spelling out the answer.
+- Added descriptive BM alternative text for the eight exact Geography asset URLs. Both existing image-render sites use the scoped helper; every other image retains its previous empty alternative. SVG descriptions match the accessible alternatives. No correct option names or next-step answers were added.
+- Preserved all 390 questions, IDs, options, answer indices and explanations. No question-bank, XP or scoring changes. New presentation text consists solely of the requested accessible descriptions of visible features.
+- Geography validation: 325 tests passed across 14 files, including bank preservation, all eight mappings, outer-pointer geometry, connected river junctions, unchanged bearing and accessibility scoping.
+
+### Unrelated TypeScript failures (not repaired)
+
+`npx tsc --noEmit` still reports only these two existing TS2345 errors (`string | undefined` passed to a string parameter):
+
+- `src/content/form2/science/chapter-7-9-10-visual-integration.test.tsx:305:65`
+- `src/content/form2/science/chapter-9/chapter-9-heat-visuals.test.tsx:523:65`
+
+Neither file was edited. The original Science workspace and Mathematics worktree were not accessed or modified during this repair.
+
+Production build: passed. Targeted ESLint for the Geography helper and regression tests: passed. No merge performed.
