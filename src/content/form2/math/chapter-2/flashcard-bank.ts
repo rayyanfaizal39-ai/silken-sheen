@@ -234,37 +234,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.1",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.1",
-              "1"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A rectangular garden has sides (x + 4) m and (x + 2) m.",
       "parts": [
@@ -307,37 +276,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.1",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.1",
-              "2"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A school buys 3 packs of (2x + 5) pencils and 2 packs of (x − 1) pencils.",
       "parts": [
@@ -380,37 +318,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.1",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.1",
-              "3"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A banner has width (x + 5) cm and height (2x − 1) cm.",
       "parts": [
@@ -453,37 +360,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.1",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.1",
-              "4"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A hall has x rows with (x + 4) chairs per row, plus 6 spare chairs.",
       "parts": [
@@ -746,37 +622,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.2",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.2",
-              "1"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A rectangle has area (x² + 7x + 12) m² and length (x + 3) m.",
       "parts": [
@@ -819,37 +664,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.2",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.2",
-              "2"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A tiled floor has area (x² − 16) m² and one side (x + 4) m, x > 4.",
       "parts": [
@@ -892,37 +706,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.2",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.2",
-              "3"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A notice board has area (2x² + 7x + 3) cm².",
       "parts": [
@@ -965,37 +748,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.2",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.2",
-              "4"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "Two identical square panels each have area x² cm². A smaller square of area 9 cm² is cut from one panel.",
       "parts": [
@@ -1258,37 +1010,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.3",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.3",
-              "1"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A ribbon of length (6x²/5) m is cut into (3x/2) equal pieces, x > 0.",
       "parts": [
@@ -1331,37 +1052,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.3",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.3",
-              "2"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A garden of area (x² − 9) m² has length (x + 3) m, x > 3.",
       "parts": [
@@ -1404,37 +1094,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.3",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.3",
-              "3"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A printer uses (3x/4) litres of ink per batch and completes (8/3x) batches, x > 0.",
       "parts": [
@@ -1477,37 +1136,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.3",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.3",
-              "4"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A student simplifies (x² − 4)/(x − 2) to x² + 2.",
       "parts": [
@@ -1770,37 +1398,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.4",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.4",
-              "1"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "Two ribbons have lengths x/3 m and x/4 m.",
       "parts": [
@@ -1843,37 +1440,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.4",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.4",
-              "2"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A tank is filled by x/2 L in the morning and x/3 L in the afternoon, then loses x/6 L.",
       "parts": [
@@ -1916,37 +1482,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.4",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.4",
-              "3"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A recipe uses (x + 2)/4 kg flour and (x − 2)/6 kg sugar.",
       "parts": [
@@ -1989,37 +1524,6 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
   {
     "subtopic": "2.4",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "term-table",
-        "title": {
-          "dlp": "Problem data",
-          "bm": "Maklumat soalan"
-        },
-        "rows": [
-          {
-            "label": {
-              "dlp": "Expression",
-              "bm": "Ungkapan"
-            },
-            "cells": [
-              "2.4",
-              "4"
-            ]
-          },
-          {
-            "label": {
-              "dlp": "Task",
-              "bm": "Tugasan"
-            },
-            "cells": [
-              "(a)",
-              "(b), (c)"
-            ]
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A student writes x/2 + x/3 = 2x/5.",
       "parts": [
