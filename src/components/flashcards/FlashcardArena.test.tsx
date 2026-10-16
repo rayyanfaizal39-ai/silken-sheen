@@ -3,6 +3,7 @@ import { act, createRef, type ReactNode } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
+  FlashcardArena,
   FlashcardCompletion,
   FlashcardControls,
   FlashcardDeck,
@@ -324,5 +325,55 @@ describe("FlashcardDeck structured cards", () => {
     expect(slot.style.getPropertyValue("--fc-fit-h")).toBe("900px");
     offset.mockRestore();
     client.mockRestore();
+  });
+});
+
+describe("FlashcardArena scrolling and gestures", () => {
+  /** The arena stylesheet text, plus the body of one top-level rule in it. */
+  function arenaCss(subjectId: string) {
+    render(<FlashcardArena subjectId={subjectId}>{deck()}</FlashcardArena>);
+    const css = [...document.querySelectorAll(".flashcard-arena style")]
+      .map((style) => style.textContent ?? "")
+      .join("\n");
+    const rule = (selector: string) => {
+      const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      return css.match(new RegExp(`\\n\\s*${escaped} \\{([^}]*)\\}`))?.[1] ?? "";
+    };
+    return { css, rule };
+  }
+
+  it("lets wheel and touch scrolls over the card reach the page", () => {
+    const { css, rule } = arenaCss("math");
+    // "contain" on the card body swallowed every scroll that began over the
+    // card, because fitted structured cards never have anything to scroll.
+    expect(css).not.toMatch(/overscroll-behavior:\s*contain/);
+    expect(rule(".fc-face-body")).toMatch(/overscroll-behavior:\s*auto/);
+  });
+
+  it("keeps the card body on pan-y so horizontal swipes over the text stay with the card", () => {
+    // A scroll container resets touch-action, so without this the browser
+    // cancelled swipes that started over the question or solution.
+    expect(arenaCss("math").rule(".fc-face-body")).toMatch(/touch-action:\s*pan-y/);
+  });
+
+  it("keeps the fixed Mathematics scene out of hit-testing so it never captures the wheel", () => {
+    const { rule } = arenaCss("math");
+    expect(rule(".flashcard-arena-math .world-scene-math")).toMatch(/pointer-events:\s*none/);
+    expect(document.querySelector(".learning-arena")?.classList.contains("flashcard-arena-math")).toBe(true);
+  });
+
+  it("scopes the Mathematics arena styling to Mathematics", () => {
+    arenaCss("science");
+    const arena = document.querySelector(".learning-arena");
+    expect(arena?.classList.contains("flashcard-arena")).toBe(true);
+    expect(arena?.classList.contains("flashcard-arena-math")).toBe(false);
+  });
+
+  it("does not hijack the wheel on the card", () => {
+    render(deck());
+    const card = document.querySelector<HTMLElement>(".flashcard-study-card")!;
+    const wheel = new WheelEvent("wheel", { deltaY: 120, bubbles: true, cancelable: true });
+    card.dispatchEvent(wheel);
+    expect(wheel.defaultPrevented).toBe(false);
   });
 });

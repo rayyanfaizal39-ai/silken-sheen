@@ -46,6 +46,7 @@ import {
   splitFlashcardDeck,
   standardizeFlashcardDeck,
 } from "@/lib/flashcard-availability";
+import { classifyCardDrag } from "@/lib/flashcard-gesture";
 import { useContentRegistryStatus, useContentDataModule } from "@/hooks/use-content-registry";
 import {
   AcademyHero,
@@ -6128,9 +6129,11 @@ function FlashcardsPage() {
   // vertical scrolling to the browser and hands horizontal movement to us.
   const SWIPE_DISTANCE_FRACTION = 0.27; // ~25-30% of card width
   const SWIPE_VELOCITY_THRESHOLD = 0.55; // px/ms — a fast flick counts even if short
-  const MOVE_THRESHOLD = 6; // px before a pointerdown counts as a drag, not a tap
 
   function onCardPointerDown(e: PointerEvent<HTMLDivElement>) {
+    // Each press starts fresh: browsers fire no click after a touch drag or
+    // scroll, so a flag left over from that gesture must not swallow this tap.
+    wasDragRef.current = false;
     if (interactionState !== "idle") return;
     if (e.pointerType === "mouse" && e.button !== 0) return;
     dragRef.current = {
@@ -6149,11 +6152,14 @@ function FlashcardsPage() {
     const dy = e.clientY - drag.startY;
 
     if (!drag.isDragging) {
-      if (Math.abs(dx) < MOVE_THRESHOLD && Math.abs(dy) < MOVE_THRESHOLD) return;
-      if (Math.abs(dy) > Math.abs(dx) * 1.2) {
+      const intent = classifyCardDrag(dx, dy);
+      if (intent === "undecided") return;
+      if (intent === "scroll") {
         // mostly vertical — this is a page scroll, not a card swipe; let the
-        // browser handle it and stop tracking this pointer entirely
+        // browser handle it and stop tracking this pointer entirely. A mouse
+        // still fires a click on release, which must not flip the card.
         dragRef.current = null;
+        wasDragRef.current = true;
         return;
       }
       drag.isDragging = true;

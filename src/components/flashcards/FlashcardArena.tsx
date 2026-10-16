@@ -36,9 +36,12 @@ const FLASHCARD_ARENA_CSS = `
     --fc-surface-deep: #07090f;
   }
   /* The world scene is pinned to the viewport: as an absolute layer it ended
-     at the first screen, so scrolling a long card uncovered a second colour. */
+     at the first screen, so scrolling a long card uncovered a second colour.
+     It is decoration only, so it takes no pointer input: a fixed layer under
+     the cursor would send wheel scrolls to the locked page, not the arena. */
   .flashcard-arena-math .world-scene-math {
     position: fixed;
+    pointer-events: none;
     background-color: #050816;
   }
   /* Desktop: the card takes what the viewport leaves after the header and the
@@ -196,15 +199,22 @@ const FLASHCARD_ARENA_CSS = `
     gap: 0.75rem;
   }
   .fc-face-foot { flex-shrink: 0; }
-  /* Only this region scrolls. Its child uses auto margins rather than
-     justify-content so short text centres while long text starts at the top
-     and stays reachable. */
+  /* Only this region scrolls, and only when text outgrows a fixed-height
+     card. Its child uses auto margins rather than justify-content so short
+     text centres while long text starts at the top and stays reachable.
+     Scroll chaining stays on: with "contain", a body that had nothing to
+     scroll (every fitted structured card) swallowed wheel and touch scrolls,
+     so the page only scrolled from beside the card.
+     A scroller does not inherit the card's touch-action, so it repeats pan-y:
+     otherwise the browser claimed horizontal swipes that started over the
+     text (pointercancel) and Know / Don't know only worked from the edges. */
   .fc-face-body {
     flex: 1 1 auto;
     min-height: 0;
     display: flex;
     overflow-y: auto;
-    overscroll-behavior: contain;
+    overscroll-behavior: auto;
+    touch-action: pan-y;
     padding-block: 0.75rem;
   }
   .fc-face-body > p { margin: auto; text-align: center; overflow-wrap: anywhere; text-wrap: pretty; }
