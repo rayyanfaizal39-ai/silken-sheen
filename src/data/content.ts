@@ -9278,14 +9278,14 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     question: "Pernyataan manakah yang membandingkan kepentingan sungai dan tasik dengan betul?",
     options: [
-      "Kedua-duanya menjana hidroelektrik; hanya sungai menjadi sempadan semula jadi",
+      "Kedua-duanya penting untuk hidroelektrik; Sungai Bernam menjadi sempadan Perak–Selangor",
       "Kedua-duanya menjadi sempadan semula jadi; hanya tasik menjana hidroelektrik",
       "Kedua-duanya menjadi sumber protein; hanya tasik digunakan untuk pengangkutan",
       "Kedua-duanya digunakan untuk pengangkutan; hanya sungai menjadi sumber protein",
     ],
     answerIndex: 0,
     explanation:
-      "Sungai dan tasik sama-sama penting untuk hidroelektrik, sumber protein, rekreasi dan kegunaan domestik. Sempadan semula jadi, pengairan serta pengangkutan dan perhubungan ialah kepentingan sungai, contohnya Sungai Bernam, Sungai Muda dan Sungai Rajang.",
+      "Sungai dan tasik sama-sama penting untuk hidroelektrik, sumber protein dan rekreasi. Sungai Bernam menjadi sempadan semula jadi antara Perak dengan Selangor. Ini tidak bermaksud tasik di tempat lain tidak boleh membentuk sempadan.",
   },
 
   // Geografi Form 1 Chapter 8 - Penduduk di Malaysia
